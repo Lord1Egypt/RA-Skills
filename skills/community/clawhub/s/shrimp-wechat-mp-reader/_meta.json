@@ -1,6 +1,7 @@
 {
-  "ownerId": "kn78zhtvgcjh26c94t5r53zcb182mxra",
-  "slug": "shrimp-wechat-mp-reader",
+  "name": "wechat-mp-reader",
   "version": "0.1.2",
-  "publishedAt": 1775274385322
+  "description": "直接安装、直接运行、直接读出公众号正文；不是只给方法，而是已经把 setup、run 和验证成功的提取链都做好的微信公众号读取 skill。",
+  "author": "assistant-shrimp",
+  "license": "MIT"
 }

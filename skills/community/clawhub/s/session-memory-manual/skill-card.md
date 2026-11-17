@@ -1,42 +1,58 @@
-## Description: <br>
-Provides manually triggered cross-session memory search and synchronization for OpenClaw. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides manual, user-triggered search and synchronization of memories, decisions, and TODOs across OpenClaw sessions.
 
-## Publisher: <br>
-[guoquan](https://clawhub.ai/user/guoquan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[guoquan](https://clawhub.ai/user/guoquan)
 
-## Use Case: <br>
-External users and developers use this skill when they explicitly ask an agent to search prior OpenClaw sessions or shared memory files, summarize relevant decisions or reminders, and synchronize selected notes into shared memory after user approval. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read prior OpenClaw sessions and expose information from earlier conversations. <br>
-Mitigation: Use it only for explicit cross-session lookup requests, specify exact keywords, sessions, or time ranges, and review retrieved results before using them. <br>
-Risk: User-approved memory writes could persist sensitive or overly broad information in shared memory. <br>
-Mitigation: Approve only necessary notes, redact secrets and private details, and avoid storing passwords, API keys, private chats, or sensitive business information. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill when they explicitly ask an agent to find prior-session decisions, TODOs, or memory entries and optionally synchronize selected findings into shared memory after confirmation.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/guoquan/session-memory-manual) <br>
-- [Publisher Profile](https://clawhub.ai/user/guoquan) <br>
-- [Homepage](https://github.com/openclaw/skills/session-memory-sync) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown summaries with inline commands and file references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose session-history lookup, memory-file search, and user-approved memory writes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.5.6 (source: server release and package.json) <br>
+Risk: The skill can expose private prior-session history and shared memory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use explicit session IDs, narrow date ranges, and minimal message limits; review target content before allowing tool-history reads or memory synchronization.
+
+Risk: Shell-based search examples can be unsafe if untrusted search text is inserted directly.
+
+Mitigation: Avoid shell search with untrusted text; quote inputs safely or use native session and memory search tools when available.
+
+Risk: Memory synchronization can persist sensitive information across sessions.
+
+Mitigation: Show extracted findings to the user, redact secrets and private content, and write shared memory only after explicit confirmation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/guoquan/skills/session-memory-manual)
+- [ClawHub publisher profile](https://clawhub.ai/user/guoquan)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell command examples and structured search summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include session identifiers, file paths, and proposed memory updates for user confirmation.]
+
+## Skill Version(s):
+
+0.5.6 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

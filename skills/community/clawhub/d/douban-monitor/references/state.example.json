@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "updated_at": "2026-03-21T10:00:00+08:00",
+  "items": {
+    "1292052": {
+      "douban_id": "1292052",
+      "title": "示例标题",
+      "category": "movie",
+      "url": "https://movie.douban.com/subject/1292052/",
+      "first_seen_at": "2026-03-21T09:00:00+08:00",
+      "last_seen_at": "2026-03-21T10:00:00+08:00",
+      "first_qualified_at": "2026-03-21T10:00:00+08:00",
+      "last_notified_at": "2026-03-21T10:00:00+08:00",
+      "last_rating": 8.4,
+      "last_rating_count": 12532,
+      "peak_rating": 8.4,
+      "peak_rating_count": 12532,
+      "notified_stage": "initial",
+      "qualified": true,
+      "milestones_notified": [
+        10000
+      ]
+    }
+  }
+}

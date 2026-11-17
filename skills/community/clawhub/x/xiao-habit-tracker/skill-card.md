@@ -1,42 +1,54 @@
-## Description: <br>
-Xiao Habit Tracker provides habit-tracking workflows for check-ins, statistics, achievements, reminders, and data export. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Xiao Habit Tracker helps users track habit check-ins, view statistics, manage achievements, reminders, and data export.
 
-## Publisher: <br>
-[kaising-openclaw1](https://clawhub.ai/user/kaising-openclaw1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kaising-openclaw1](https://clawhub.ai/user/kaising-openclaw1)
 
-## Use Case: <br>
-External users and agents use this skill to manage daily habits: add habits, record check-ins, inspect streak and completion statistics, view achievements, configure reminders, and export habit data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A required curl binary is declared even though reviewed artifacts contain no executable code; future cloud sync or notification behavior could introduce network activity. <br>
-Mitigation: Confirm why curl is required and review future versions for documented network behavior before deployment. <br>
-Risk: Habit exports, reminders, and cloud sync may involve personal routine data. <br>
-Mitigation: Review data storage, sync, notification, and export handling before using the skill with sensitive personal information. <br>
+## Use Case:
 
+External users use this skill to manage daily habits with check-ins, progress statistics, achievement tracking, reminders, and data export.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kaising-openclaw1/xiao-habit-tracker) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable code was found in the reviewed artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact/_meta.json) <br>
+Risk: The documented install command tracks the latest ClawHub CLI release, which can reduce reproducibility.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer a pinned and reviewed ClawHub CLI installer version when reproducible installation matters.
+
+Risk: The skill documentation is Chinese-only, which may limit review quality for non-Chinese-speaking users.
+
+Mitigation: Use a qualified reviewer or translation before approving the skill for teams that do not read Chinese.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kaising-openclaw1/skills/xiao-habit-tracker)
+- [Publisher profile](https://clawhub.ai/user/kaising-openclaw1)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline bash command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language documentation; example commands use the ClawHub CLI.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and artifact/_meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

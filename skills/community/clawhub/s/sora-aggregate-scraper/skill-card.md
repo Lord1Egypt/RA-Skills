@@ -1,47 +1,64 @@
-## Description: <br>
-Sora2 视频平台数据查询助手。覆盖作品详情、用户数据、搜索、评论、Cameo等全功能。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A bilingual Sora2 data assistant for querying posts, users, search, comments, Cameo appearances, downloads, and related platform data through the MaxHub API.
 
-## Publisher: <br>
-[new-ironman](https://clawhub.ai/user/new-ironman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[new-ironman](https://clawhub.ai/user/new-ironman)
 
-## Use Case: <br>
-External users and developers use this skill to query Sora2 post, user, search, comment, Cameo, and media-related data through MaxHub APIs for content monitoring, comparison, and analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a sensitive MaxHub API key and sends Sora-related queries to www.aconfig.cn. <br>
-Mitigation: Install only after review, keep the API key out of prompts and outputs, and use an account/key scoped for this integration. <br>
-Risk: The security evidence notes that image upload behavior may send user images to the upstream service. <br>
-Mitigation: Avoid uploading sensitive, private, or personal images unless the user has confirmed that sharing them with the upstream service is acceptable. <br>
-Risk: The security evidence notes retrieval of no-watermark download links. <br>
-Mitigation: Treat downloaded media as subject to content rights and platform terms before reuse or redistribution. <br>
+## Use Case:
 
+Developers, analysts, and product teams use this skill to inspect Sora2 content, user activity, comments, Cameo data, and download metadata, then summarize findings in English or Chinese. It can also upload images to the remote service to obtain media IDs for later Sora-related workflows.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/new-ironman/sora-aggregate-scraper) <br>
-- [Publisher Profile](https://clawhub.ai/user/new-ironman) <br>
-- [MaxHub Website](https://www.aconfig.cn) <br>
-- [Post & User API](references/api-post-user.md) <br>
-- [Cameo API](references/api-cameo.md) <br>
-- [Parameter Mappings](references/param-mappings.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, API Calls, Configuration guidance, Analysis] <br>
-**Output Format:** [Markdown with inline shell commands, tables, links, and API response summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Bilingual English and Chinese responses; API keys should remain out of output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.6.1 (source: server release metadata and skill metadata) <br>
+Risk: The skill claims read-only behavior but includes an image upload endpoint that can send user files to a third-party service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation before uploads and avoid uploading sensitive images.
+
+Risk: Use requires sharing an API key and submitted data with MaxHub/aconfig.cn.
+
+Mitigation: Install and run only when the operator trusts that service with the key and data.
+
+Risk: The documented install command uses an unpinned npx invocation.
+
+Mitigation: Pin the installer or package version during installation where the deployment process allows it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/new-ironman/skills/sora-aggregate-scraper)
+- [Publisher profile](https://clawhub.ai/user/new-ironman)
+- [MaxHub API website](https://www.aconfig.cn)
+- [README](artifact/README.md)
+- [中文 README](artifact/README_CN.md)
+- [Post and User API reference](artifact/references/api-post-user.md)
+- [Cameo API reference](artifact/references/api-cameo.md)
+- [Parameter mappings](artifact/references/param-mappings.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance, API call guidance]
+
+**Output Format:** [Markdown summaries, tables, links, and inline shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Matches the user's language, humanizes numeric values, and omits API key values from responses.]
+
+## Skill Version(s):
+
+3.6.1 (source: server release metadata and artifact frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

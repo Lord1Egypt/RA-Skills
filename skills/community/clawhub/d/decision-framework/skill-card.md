@@ -1,41 +1,59 @@
-## Description: <br>
-Helps users structure decisions with SWOT, 10-10-10, decision trees, weighted scoring, and the Eisenhower matrix. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Decision Framework helps users structure decisions with SWOT, 10-10-10 analysis, decision trees, weighted scoring, and the Eisenhower Matrix.
 
-## Publisher: <br>
-[SuCriss](https://clawhub.ai/user/SuCriss) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sucriss](https://clawhub.ai/user/sucriss)
 
-## Use Case: <br>
-External users and agents use this skill to choose an appropriate decision framework, gather the needed inputs, and produce structured decision analysis without making the final choice for the user. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate for broad analysis or selection requests, which can be surprising or too heavy for simple questions. <br>
-Mitigation: Narrow trigger wording or have the agent confirm before applying a decision framework when intent is ambiguous. <br>
-Risk: Decision analyses can be misleading when user-provided weights, scores, probabilities, or assumptions are incomplete or biased. <br>
-Mitigation: Ask for missing assumptions, label uncertainty, and use sensitivity checks or human review before acting on high-impact decisions. <br>
+## Use Case:
 
+Developers and agent users use this skill to guide structured analysis of choices, compare options, prioritize tasks, and produce decision-support outputs without taking the final decision away from the user.
 
-## Reference(s): <br>
-- [Decision Tree Guide](references/decision-tree-guide.md) <br>
-- [Frameworks Comparison](references/frameworks-comparison.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Shell commands] <br>
-**Output Format:** [Markdown with tables, lists, tree diagrams, and optional weighted-scoring command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs include key insights, recommendation tendencies, and uncertainty notes; final decisions remain with the user.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Decision-support output may be incomplete or inappropriate for investment, legal, medical, career, or other high-stakes situations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as structured thinking aids, verify assumptions and data, and consult qualified professionals before acting.
+
+Risk: Generated Markdown may include sensitive personal context or analysis that is not ready to share.
+
+Mitigation: Review and edit exported Markdown before saving or sharing it.
+
+Risk: Weighted scoring results can reflect subjective or biased weights and scores.
+
+Mitigation: Document the scoring assumptions and test whether rankings change under reasonable alternative weights or scores.
+
+## Reference(s):
+
+- [Decision Framework Skill Page](https://clawhub.ai/sucriss/skills/decision-framework)
+- [Decision Tree Guide](artifact/references/decision-tree-guide.md)
+- [Frameworks Comparison](artifact/references/frameworks-comparison.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with structured lists, tables, tree diagrams, rankings, and optional shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The weighted scoring helper can produce Markdown tables and rankings from user-provided dimensions, weights, options, and scores.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

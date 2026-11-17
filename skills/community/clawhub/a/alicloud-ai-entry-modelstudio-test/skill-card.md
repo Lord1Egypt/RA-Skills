@@ -1,41 +1,54 @@
-## Description: <br>
-Run a minimal test matrix for the Model Studio skills that exist in this repo, including image/video/audio, realtime speech, omni, visual reasoning, embedding, rerank, and edit variants. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run a minimal test matrix for the Model Studio skills that exist in this repo, including image/video/audio, realtime speech, omni, visual reasoning, embedding, rerank, and edit variants.
 
-## Publisher: <br>
-[cinience](https://clawhub.ai/user/cinience) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cinience](https://clawhub.ai/user/cinience)
 
-## Use Case: <br>
-Developers and operators use this skill to run one small Alibaba Cloud Model Studio request per supported capability and record model, request, response, duration, and status details. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow can call Alibaba Cloud Model Studio APIs and may trigger billable generation, editing, voice-cloning, or media-processing operations. <br>
-Mitigation: Confirm each operation before running it, keep the request scope minimal, and use a dedicated test API key where possible. <br>
-Risk: Prompts, media, API responses, and generated artifacts may be saved locally as test evidence. <br>
-Mitigation: Avoid sensitive prompts or media, and review or delete saved output files before sharing or committing them. <br>
+## Use Case:
 
+Developers and engineers use this skill to run small, bounded validation requests across Alibaba Cloud Model Studio capabilities and record model, request, response, duration, and status results.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cinience/alicloud-ai-entry-modelstudio-test) <br>
-- [Source list](references/sources.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, markdown, configuration] <br>
-**Output Format:** [Markdown with inline shell commands and a results table template] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local evidence files and result summaries under output/alicloud-ai-entry-modelstudio-test/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: ClawHub release evidence) <br>
+Risk: The skill requires third-party SDK installation and Alibaba Cloud API credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a controlled environment with a reviewed or pinned dashscope dependency and a limited-scope Alibaba Cloud API key.
+
+Risk: Minimal tests may send prompts, media, or voice samples to Alibaba Cloud and store local evidence files.
+
+Mitigation: Use synthetic or non-sensitive test data; avoid confidential prompts, customer files, regulated data, and real voice samples unless that transfer and retention are intended.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cinience/skills/alicloud-ai-entry-modelstudio-test)
+- [Source list](references/sources.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and saved evidence files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Records capability, sub-skill, model, request summary, result summary, status, and notes for each test.]
+
+## Skill Version(s):
+
+1.0.3 (source: release evidence; artifact frontmatter lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

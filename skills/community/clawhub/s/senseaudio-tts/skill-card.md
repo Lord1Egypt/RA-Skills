@@ -1,43 +1,61 @@
-## Description: <br>
-Build and debug SenseAudio text-to-speech integrations on `/v1/t2a_v2` and `/ws/v1/t2a_v2`, including sync HTTP, SSE stream, WebSocket event sequencing, hex audio decoding, and voice/audio parameter tuning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build and debug SenseAudio text-to-speech integrations on `/v1/t2a_v2` and `/ws/v1/t2a_v2`, including sync HTTP, SSE stream, WebSocket event sequencing, hex audio decoding, and voice/audio parameter tuning.
 
-## Publisher: <br>
-[scikkk](https://clawhub.ai/user/scikkk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[scikkk](https://clawhub.ai/user/scikkk)
 
-## Use Case: <br>
-Developers and engineers use this skill to build or troubleshoot SenseAudio text-to-speech integrations, including HTTP, SSE, and WebSocket synthesis flows. It helps with request construction, response parsing, audio hex decoding, voice and audio parameters, and production hardening guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a SenseAudio API key and sends synthesis text to the SenseAudio service. <br>
-Mitigation: Use a dedicated or scoped API key where available, avoid exposing the key in prompts or logs, and review SenseAudio privacy and retention terms before processing sensitive text. <br>
-Risk: Generated integration guidance could mishandle streaming events, empty chunks, or transient network failures. <br>
-Mitigation: Review proposed code before deployment, validate request parameters, handle terminal and failure events explicitly, and use bounded retry or backoff for transient errors. <br>
+## Use Case:
 
+Developers and engineers use this skill to build, troubleshoot, and harden SenseAudio text-to-speech integrations across synchronous HTTP, SSE streaming, and WebSocket workflows.
 
-## Reference(s): <br>
-- [TTS Reference](references/tts.md) <br>
-- [SenseAudio Homepage](https://senseaudio.cn) <br>
-- [SenseAudio API Key](https://senseaudio.cn/platform/api-key) <br>
-- [ClawHub Skill Page](https://clawhub.ai/scikkk/senseaudio-tts) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with code and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include API request examples, streaming event sequences, audio decoding steps, and error-handling guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: SenseAudio requests require SENSEAUDIO_API_KEY and can expose credentials if keys are committed, logged, or shared broadly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Store the API key in a private environment variable or secret manager, scope access to intended users, and exclude credentials from code, logs, traces, and generated examples.
+
+Risk: Text sent for speech generation is transmitted to the SenseAudio cloud service.
+
+Mitigation: Do not send secrets, regulated data, or confidential text unless the use is authorized and covered by the appropriate data handling controls.
+
+Risk: Debugging sessions may capture request text, trace identifiers, session identifiers, or credentials.
+
+Mitigation: Keep session and trace logging access-controlled, redact request text and credentials where possible, and retain only the diagnostics needed for troubleshooting.
+
+## Reference(s):
+
+- [TTS Reference](references/tts.md)
+- [SenseAudio Homepage](https://senseaudio.cn)
+- [SenseAudio API Key](https://senseaudio.cn/platform/api-key)
+- [ClawHub Skill Page](https://clawhub.ai/scikkk/skills/senseaudio-tts)
+- [Publisher Profile](https://clawhub.ai/user/scikkk)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline code and command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include API request structure, streaming event sequencing, audio hex decoding guidance, and production hardening notes.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

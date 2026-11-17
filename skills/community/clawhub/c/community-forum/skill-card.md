@@ -1,43 +1,57 @@
-## Description: <br>
-Guides forum promotion, community invitation, and vertical community marketing across channels such as Indie Hackers, Hacker News, Reddit, Discord, Quora, and vertical forums. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides community and forum promotion guidance for selecting channels, planning invitations, targeting vertical communities, shaping content, and setting launch timelines.
 
-## Publisher: <br>
-[kostja94](https://clawhub.ai/user/kostja94) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kostja94](https://clawhub.ai/user/kostja94)
 
-## Use Case: <br>
-Marketing and growth teams use this skill to choose forum and community channels, plan respectful community invitations, and shape content strategy for launches or sustained engagement. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated forum or community posting advice could conflict with community rules or norms. <br>
-Mitigation: Review each target community's rules and adapt wording to contribute value before promoting. <br>
-Risk: Marketing statistics or channel benchmarks in generated guidance may be stale or unsuitable for a specific product. <br>
-Mitigation: Verify statistics and assumptions before using them for launch planning or business decisions. <br>
-Risk: Project context files may contain sensitive positioning, audience, or brand information. <br>
-Mitigation: Review any .claude/project-context.md or .cursor/project-context.md files before use. <br>
+## Use Case:
 
+External builders, founders, and marketing teams use this skill to plan forum and community promotion across Hacker News, Indie Hackers, Reddit, Discord, vertical forums, and community invitation surfaces.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kostja94/community-forum) <br>
-- [Publisher profile](https://clawhub.ai/user/kostja94) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, configuration] <br>
-**Output Format:** [Markdown guidance with plans, channel recommendations, timelines, and community invitation tactics] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable code, account access, or automatic posting behavior.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: frontmatter and release evidence) <br>
+Risk: The skill may activate for broad community or marketing requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the requested channel, audience, and growth goal before applying its forum or community promotion guidance.
+
+Risk: The skill may use local project context to tailor recommendations.
+
+Mitigation: Review project context before use and remove confidential details that should not inform marketing guidance.
+
+Risk: Community promotion guidance can be misapplied as mass posting or overly promotional outreach.
+
+Mitigation: Match each community's rules and tone, contribute value before promotion, and review copy before posting.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kostja94/skills/community-forum)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, text]
+
+**Output Format:** [Markdown planning guidance with tables and bullet lists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May tailor recommendations to product, audience, and brand voice context when available.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata and SKILL.md metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

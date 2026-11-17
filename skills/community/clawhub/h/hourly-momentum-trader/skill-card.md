@@ -1,39 +1,51 @@
-## Description: <br>
-Hourly Momentum Trader scores hourly crypto candle momentum with RSI, MACD, OBV, EMA, Bollinger Band, and volume signals for short-term directional analysis and Polymarket hourly market edge detection. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Hourly Momentum Trader helps agents score short-term crypto momentum from hourly candles and produce directional signals for Polymarket hourly binary markets and spot or perpetual entries.
 
-## Publisher: <br>
-[JamieRossouw](https://clawhub.ai/user/JamieRossouw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jamierossouw](https://clawhub.ai/user/jamierossouw)
 
-## Use Case: <br>
-External users and developers use this skill to score hourly crypto momentum and compare those signals with Polymarket hourly odds for short-term directional analysis. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Speculative crypto and prediction-market signals may be mistaken for reliable financial advice. <br>
-Mitigation: Treat outputs as analysis only, review the assumptions independently, and do not present BET UP or similar signals as financial advice. <br>
-Risk: Connecting generated signals directly to a real-money workflow could cause financial loss. <br>
-Mitigation: Add independent confirmation, explicit loss warnings, position limits, and human approval before any real-money use. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/JamieRossouw/hourly-momentum-trader) <br>
+## Use Case:
+
+External users and developers use this skill to generate hourly crypto momentum scores, directional trade signals, and Polymarket edge estimates for analysis dashboards or bot workflows. Outputs should remain analysis aids under human control, especially where real-money trades or bets are involved.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can produce actionable crypto and Polymarket betting recommendations.
+
+Mitigation: Use outputs only for explicit analysis, keep human control over any trades or bets, and do not treat signals as financial advice.
+
+Risk: The guide describes real-money entry thresholds without clear risk boundaries.
+
+Mitigation: Require users to apply their own risk limits, eligibility checks, and compliance review before acting on any generated signal.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, guidance] <br>
-**Output Format:** [JSON with concise text guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes asset, momentum score, technical indicator values, directional bias, confidence percentage, and Polymarket edge fields.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server evidence) <br>
+**Output Type(s):** [text, json, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown guidance with JSON signal examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include momentum scores, confidence percentages, directional bias, and Polymarket edge estimates.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

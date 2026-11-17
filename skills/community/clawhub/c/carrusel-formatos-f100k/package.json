@@ -1,0 +1,8 @@
+{
+  "name": "carrusel-formatos-f100k",
+  "private": true,
+  "main": "build.js",
+  "dependencies": {
+    "puppeteer-core": "^24.42.0"
+  }
+}

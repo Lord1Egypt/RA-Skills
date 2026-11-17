@@ -1,41 +1,57 @@
-## Description: <br>
-Monitors new email from whitelisted QQ Mail senders, creates a short preview or AI summary, and sends QQ notifications. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitors new messages from whitelisted senders in a QQ Mail inbox and sends QQ notifications with AI summaries, key-detail highlighting, and concise previews.
 
-## Publisher: <br>
-[zhang-lxuan](https://clawhub.ai/user/zhang-lxuan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhang-lxuan](https://clawhub.ai/user/zhang-lxuan)
 
-## Use Case: <br>
-Developers and operators use this skill to configure a QQ Mail watcher that filters messages by sender whitelist, summarizes or previews new mail, and forwards notifications through QQ. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill ships with real-looking mailbox credentials and a fixed QQ recipient, which could expose private email if run without reconfiguration. <br>
-Mitigation: Replace EMAIL, AUTH_CODE, and QQ_TARGET before any run, avoid committing IMAP authorization codes, and rotate any exposed authorization code. <br>
-Risk: Whitelisted email subjects and body previews may be processed by OpenClaw AI and sent over QQ. <br>
-Mitigation: Use the watcher only for intended senders, review privacy expectations for monitored mail, and avoid forwarding sensitive content without approval. <br>
+## Use Case:
 
+Developers and QQ Mail users use this skill to configure a mailbox watcher that filters senders through a whitelist and forwards new-mail notifications to QQ. It is useful for reminders, verification-code alerts, and automated monitoring of selected contacts.
 
-## Reference(s): <br>
-- [QQ Mail configuration guide](references/configure.md) <br>
-- [ClawHub skill page](https://clawhub.ai/zhang-lxuan/qq-email-watcher) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, code] <br>
-**Output Format:** [Markdown with inline bash, Python, and JSON snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes a Python watcher that polls QQ Mail with IMAP and sends QQ notifications through OpenClaw.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The security evidence reports hardcoded mailbox credentials and a fixed QQ notification target, which could expose email data without clear user control.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove bundled credentials and target identifiers before use, revoke the included IMAP authorization code, and replace all account and recipient values with protected user-controlled configuration.
+
+Risk: Email subjects and message previews may be sent to an AI summarization command and then forwarded to QQ.
+
+Mitigation: Disable or constrain AI summarization for sensitive mailboxes and confirm that forwarding email content to QQ is acceptable for the mailbox owner.
+
+Risk: Whitelist matching may not strictly limit notifications to the intended senders.
+
+Mitigation: Review and fix whitelist matching logic before monitoring a real mailbox, and test notifications with controlled sender addresses.
+
+## Reference(s):
+
+- [QQ Mail Monitor Configuration Guide](references/configure.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline JSON, Python, and bash examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces QQ notification text from watched email metadata and message previews.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

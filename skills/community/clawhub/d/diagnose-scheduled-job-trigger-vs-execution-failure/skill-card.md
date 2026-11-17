@@ -1,39 +1,52 @@
-## Description: <br>
-Helps agents diagnose scheduled-job incidents by separating trigger failures from execution failures and grounding conclusions in run history, logs, authorization state, and recovery checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents diagnose scheduled-job incidents by distinguishing jobs that failed to trigger from jobs that were triggered but failed during execution because of workspace, authorization, session, token, or timeout issues.
 
-## Publisher: <br>
-[can4hou6joeng4](https://clawhub.ai/user/can4hou6joeng4) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[can4hou6joeng4](https://clawhub.ai/user/can4hou6joeng4)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and operations engineers use this skill to investigate cron-like job incidents, build evidence-backed incident conclusions, and verify recovery after authorization, configuration, or gateway changes.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Embedded job names, dates, errors, and recovery results could be mistaken for current incident evidence.
+
+Mitigation: Treat the embedded details only as historical examples and verify all conclusions against current run history, logs, and user-provided context.
+
+Risk: Manual scheduled-job triggers can cause side effects such as duplicate delivery, writes, or external actions.
+
+Mitigation: Use read-only checks first, then require explicit user approval and prefer staging, dry-run, idempotency, and duplicate-delivery checks before triggering jobs.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and operations engineers use this skill to investigate cron and scheduled-job incidents, distinguish missing triggers from failed executions, and write evidence-backed incident conclusions. It also supports post-repair regression checks for OpenClaw-style scheduled task workflows. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Manual verification of scheduled jobs can trigger production tasks or send real test notifications. <br>
-Mitigation: Confirm the cron schedule, destination chat, message payload, and whether a real test notification is acceptable before approving verification runs. <br>
-Risk: Incident conclusions can be misleading if process status is treated as proof that scheduled jobs recovered. <br>
-Mitigation: Require run history, execution status, delivery or output evidence, and remaining error checks before declaring recovery. <br>
+**Output Format:** [Markdown or plain text incident analysis with optional shell/log inspection commands and conclusion templates]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [May include root-cause framing, recovery verification steps, and cautions about treating embedded examples as historical evidence only.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Analysis, Markdown] <br>
-**Output Format:** [Markdown guidance with diagnostic steps, incident conclusion templates, and recovery validation checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include example error codes, log evidence summaries, task status checks, and recommended follow-up validation steps.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

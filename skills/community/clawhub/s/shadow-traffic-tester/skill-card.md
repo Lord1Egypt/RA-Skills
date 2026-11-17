@@ -1,39 +1,56 @@
-## Description: <br>
-Set up and analyze shadow traffic testing to compare new service versions against production without user impact. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Set up and analyze shadow traffic testing to compare new service versions against production without user impact.
 
-## Publisher: <br>
-[charlie-morrison](https://clawhub.ai/user/charlie-morrison) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[charlie-morrison](https://clawhub.ai/user/charlie-morrison)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and platform engineers use this skill to configure traffic mirroring and compare production and shadow service behavior before promoting a new service version.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Mirroring full production requests can expose credentials, cookies, or sensitive request data to the shadow service.
+
+Mitigation: Use only with approval from service, security, and privacy stakeholders; restrict mirrored routes, sample traffic, and strip credentials and cookies before requests reach the shadow service.
+
+Risk: A cloned shadow deployment can inherit production-level privileges and dependencies.
+
+Mitigation: Isolate the shadow service with separate low-privilege credentials and read-only dependencies.
+
+Risk: Captured production and shadow logs may contain sensitive data if written to shared temporary files.
+
+Mitigation: Avoid storing raw production logs in shared temporary files and apply approved retention and access controls to any collected logs.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and platform engineers use this skill to configure shadow traffic mirroring and compare production and shadow service behavior before promoting a new version. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Mirroring production traffic and collecting access logs may expose sensitive data or exceed the operator's authorization. <br>
-Mitigation: Confirm approval before mirroring production traffic, prefer redacted or sampled logs, store captured data in restricted locations, and delete logs after analysis. <br>
-Risk: Generated Kubernetes and ingress changes may affect live cluster behavior if applied without review. <br>
-Mitigation: Review all Kubernetes manifests and mirror settings before applying them to a live cluster. <br>
+**Output Format:** [Markdown with inline bash, Kubernetes YAML, Python, and JSON examples]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Produces setup guidance, verification steps, analysis snippets, and report templates for shadow traffic testing.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Markdown, Code, Guidance] <br>
-**Output Format:** [Markdown with inline bash, YAML, and Python code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces setup, analysis, and report guidance for Kubernetes-based shadow traffic testing.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

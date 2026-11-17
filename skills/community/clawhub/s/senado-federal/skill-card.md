@@ -1,44 +1,65 @@
-## Description: <br>
-Monitor and research Brazilian Senate legislative activity, including bills, agendas, senators, votes, committees, speeches, mandates, and public accountability data via open Senate APIs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Research Brazil's Federal Senate using its official legislative and administrative open-data APIs. Use for senators, Senate bills and processes, votes, agendas, committees, speeches, mandates, CEAP expenses, contracts, or transparency records; use camara-deputados for Chamber-only records.
 
-## Publisher: <br>
-[olegantonov](https://clawhub.ai/user/olegantonov) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[olegantonov](https://clawhub.ai/user/olegantonov)
 
-## Use Case: <br>
-External users, researchers, journalists, policy analysts, and developers use this skill to query Brazilian Senate open data for legislative tracking, senator research, voting history, committee activity, and transparency review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can query public administrative transparency data that may include names, compensation, pension, office, supplier, tax identifier, telephone, or email details. <br>
-Mitigation: Use results for legitimate transparency and legislative research; avoid bulk profiling, doxxing, harassment, or unsolicited outreach. <br>
-Risk: Dependency hygiene is not fully pinned by a lockfile in the release evidence. <br>
-Mitigation: Install in an isolated environment and review dependency versions before deployment. <br>
+## Use Case:
 
+Developers, researchers, journalists, and policy analysts use this skill to query official Brazilian Federal Senate legislative and administrative open-data APIs for senators, bills, votes, agendas, committees, speeches, CEAP expenses, contracts, and transparency records. It supports auditable research and reusable Python integrations that preserve official identifiers and source URLs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/olegantonov/senado-federal) <br>
-- [Senado Federal Open Data API](https://legis.senado.leg.br/dadosabertos) <br>
-- [Senado Federal Open Data Swagger UI](https://legis.senado.leg.br/dadosabertos/api-docs/swagger-ui/index.html) <br>
-- [Senado Federal Administrative Open Data Swagger UI](https://adm.senado.gov.br/adm-dadosabertos/swagger-ui/index.html) <br>
-- [Complete endpoint reference](references/api-endpoints.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown with API examples, Python snippets, shell commands, and summarized public-data results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce live API queries against public Senado Federal endpoints; no authentication is required by the documented APIs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release metadata; artifact frontmatter declares 1.1.0) <br>
+Risk: Dependency versions may drift because the artifact has requirements but no lockfile or dependency hashes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install the skill in an isolated Python environment and review resolved dependency versions before operational use.
+
+Risk: Public Senate API data can be time-sensitive or shaped differently across legislative and administrative endpoints.
+
+Mitigation: Use exact official API URLs, preserve retrieval dates and official identifiers, and distinguish empty results from upstream API failures.
+
+Risk: Financial or transparency summaries can be misleading if response fields or filters are normalized incorrectly.
+
+Mitigation: Validate response shapes, state filters and currency handling, and cite the fields used for CEAP or administrative totals.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/olegantonov/skills/senado-federal)
+- [Senate legislative API endpoint reference](references/api-endpoints.md)
+- [Senate response shapes, identifiers, and dates](references/response-shapes.md)
+- [Senate administrative and transparency API](references/administrative-api.md)
+- [Tracking a process across the Senate and Chamber](references/cross-house.md)
+- [Official Senate Legislative API](https://legis.senado.leg.br/dadosabertos)
+- [Official Senate Legislative Swagger](https://legis.senado.leg.br/dadosabertos/api-docs/swagger-ui/index.html)
+- [Official Senate Administrative API](https://adm.senado.gov.br/adm-dadosabertos)
+- [Official Senate Administrative Swagger](https://adm.senado.gov.br/adm-dadosabertos/swagger-ui/index.html)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance]
+
+**Output Format:** [Markdown with API URLs, Python snippets, shell commands, or structured JSON-like summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include exact public Senate API URLs and retrieval dates for auditable outputs; no credentials required.]
+
+## Skill Version(s):
+
+1.1.0 (source: SKILL.md metadata, pyproject.toml, ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,54 @@
-## Description: <br>
-Offline OCR extracts and structures Chinese and English screenshot text into raw or cleaned rows and fields for receipts, tables, chat screenshots, statements, and other text-heavy images. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+General-purpose offline OCR and post-processing for Chinese/English screenshots, scanned images, receipts, tables, chat screenshots, statement screenshots, and other text-heavy images.
 
-## Publisher: <br>
-[9penny](https://clawhub.ai/user/9penny) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[9penny](https://clawhub.ai/user/9penny)
 
-## Use Case: <br>
-Employees, external users, and developers use this skill to run local OCR on user-selected images, review raw recognized text, and structure clear transaction-like screenshots into reusable fields without sending image content over a network. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Images may contain financial, chat, identity, or other sensitive details. <br>
-Mitigation: Use the skill only on images intentionally selected by the user and review the raw OCR output before using structured fields. <br>
-Risk: Fixed structuring heuristics can mis-group rows or merchant names in transaction screenshots. <br>
-Mitigation: Treat raw OCR as the source of truth, mark ambiguous fields as requiring confirmation, and request a higher-resolution source image when OCR quality is weak. <br>
+## Use Case:
 
+Developers and operators use this skill to run local OCR on text-heavy images, review raw recognized text, and structure clear transaction-like screenshots into rows and fields before downstream table entry, summaries, or document drafting.
 
-## Reference(s): <br>
-- [Structuring notes](artifact/references.md) <br>
-- [ClawHub skill page](https://clawhub.ai/9penny/general-ocr-struct) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, guidance] <br>
-**Output Format:** [Plain text or JSON, commonly summarized in Markdown with shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Raw OCR text should be reviewed before relying on structured fields; uncertain fields are marked for confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: Receipts, card statements, chat screenshots, and similar images can contain sensitive personal or financial information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Process only files the user intentionally provides for local OCR and avoid sharing the extracted text beyond the intended workflow.
+
+Risk: OCR quality or fixed transaction heuristics can produce incorrect grouping, merchant spillover, or ambiguous fields.
+
+Mitigation: Show raw OCR text for verification, mark uncertain fields as needing confirmation, and request a higher-resolution source image when recognition quality is weak.
+
+## Reference(s):
+
+- [Structuring notes](artifact/references.md)
+- [ClawHub skill page](https://clawhub.ai/9penny/skills/general-ocr-struct)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with shell commands and optional JSON OCR results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Raw OCR text should be shown before interpretation when accuracy matters; uncertain structured fields should be marked for confirmation.]
+
+## Skill Version(s):
+
+0.1.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

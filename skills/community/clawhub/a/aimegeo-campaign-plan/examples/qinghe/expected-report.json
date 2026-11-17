@@ -1,0 +1,54 @@
+{
+  "ok": true,
+  "summary": {
+    "event_id": "qinghe-expo",
+    "time_raw": "下周",
+    "topics": 9,
+    "coverage": {
+      "before": {
+        "public": 1,
+        "moments": 1,
+        "dm": 1
+      },
+      "during": {
+        "public": 1,
+        "moments": 1,
+        "dm": 1
+      },
+      "after": {
+        "public": 1,
+        "moments": 1,
+        "dm": 1
+      }
+    },
+    "drafts": 9,
+    "shots": 7,
+    "staff": 2,
+    "scheduled_person_minutes": 48,
+    "pending_fact_keys": [
+      "audience",
+      "booth",
+      "business",
+      "event_dates",
+      "exhibition_name",
+      "goal"
+    ],
+    "draft_statuses": {
+      "ready_for_review": 3,
+      "awaiting_facts": 0,
+      "awaiting_capture": 6
+    },
+    "geo": {
+      "status": "no_observed_answers",
+      "status_counts": {
+        "observed": 0,
+        "simulated": 0,
+        "not_run": 0,
+        "query_failed": 0
+      },
+      "observed_answers": 0,
+      "brand_mentions": null,
+      "native_citations": null
+    }
+  }
+}

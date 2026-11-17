@@ -1,40 +1,53 @@
-## Description: <br>
-Trade prediction markets on Polymarket. Search markets, place orders, and manage positions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Trade prediction markets on Polymarket by searching markets, placing orders, and managing positions.
 
-## Publisher: <br>
-[rachelbastian](https://clawhub.ai/user/rachelbastian) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[rachelbastian](https://clawhub.ai/user/rachelbastian)
 
-## Use Case: <br>
-External users and agents use Lucky Lobster to search Polymarket markets, inspect prices and positions, place or cancel orders, close positions, and redeem settled markets through the LuckyLobster API. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can give an agent persistent authority to place trades, cancel orders, close positions, and redeem settled markets. <br>
-Mitigation: Require explicit user approval for every wallet-affecting action, keep balances and budgets limited, and review order details before execution. <br>
-Risk: The LuckyLobster API key grants ongoing account access if stored or exposed incorrectly. <br>
-Mitigation: Store the key only in approved agent configuration or environment storage, avoid committing env files, and rotate or revoke the key if exposure is suspected. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [LuckyLobster homepage](https://luckylobster.io) <br>
-- [ClawHub skill page](https://clawhub.ai/rachelbastian/lucky-lobster) <br>
+## Use Case:
 
+External users and developers use this skill to connect an agent to LuckyLobster's Polymarket trading API for market search, wallet and position review, order placement, cancellation, closing, and redemption workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, API calls, Shell commands, Configuration] <br>
-**Output Format:** [Markdown instructions with HTTP, JSON, and shell examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires LUCKYLOBSTER_API_KEY for authenticated LuckyLobster API access.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can give agents broad real-money trading authority over a funded account.
+
+Mitigation: Use a dedicated low-balance account or constrained budget, and require explicit confirmation or dry runs before placing orders, approving tokens, closing positions, or redeeming funds.
+
+Risk: The skill instructs users to persist a live trading API key in local configuration or environment files.
+
+Mitigation: Prefer a protected secret store, avoid workspace .env storage for live keys, and revoke and rotate the LuckyLobster key immediately if it is exposed.
+
+## Reference(s):
+
+- [LuckyLobster homepage](https://luckylobster.io)
+- [Lucky Lobster ClawHub listing](https://clawhub.ai/rachelbastian/skills/lucky-lobster)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, API calls, guidance]
+
+**Output Format:** [Markdown guidance with HTTP, JSON, JavaScript, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses LUCKYLOBSTER_API_KEY for authenticated API requests.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

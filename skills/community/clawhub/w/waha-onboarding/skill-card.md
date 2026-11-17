@@ -1,40 +1,54 @@
-## Description: <br>
-Onboard a new user to WhatsApp via WAHA--greet them, collect and sanitize their phone number, create/start a WAHA session, request and share a pairing code, verify authentication, and then offer next actions (recent chats, contacts, specific chat). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides an agent through onboarding a user to WhatsApp via WAHA by collecting a phone number, creating and starting a session, requesting a pairing code, checking authentication status, and offering next actions.
 
-## Publisher: <br>
-[lotfinity](https://clawhub.ai/user/lotfinity) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lotfinity](https://clawhub.ai/user/lotfinity)
 
-## Use Case: <br>
-External users and developers use this skill to connect a WhatsApp account through WAHA by collecting a phone number, creating or starting a WAHA session, sharing a pairing code, checking authentication, and offering next WhatsApp actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill links a persistent WhatsApp session without clearly explaining account access, retention, or cleanup. <br>
-Mitigation: Use only a trusted WAHA instance, confirm what WhatsApp data the agent may access after pairing, and make sure the user knows how to unlink or delete the WAHA session. <br>
-Risk: The artifact derives WAHA session names directly from the user's phone number. <br>
-Mitigation: Prefer an opaque session name instead of one containing the phone number. <br>
+## Use Case:
 
+External users and operators use this skill to connect a WhatsApp account through a trusted WAHA deployment and complete pairing-code onboarding before accessing recent conversations, contacts, or a specific chat.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/lotfinity/waha-onboarding) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks and user-facing instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides WAHA session creation, pairing-code sharing, authentication checks, and follow-up WhatsApp actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: The skill links a WhatsApp account through WAHA and exposes a phone number in session metadata.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, use only a trusted WAHA deployment, avoid phone numbers in session names where possible, and remove the linked device in WhatsApp when access is no longer needed.
+
+Risk: The security guidance says the artifact lacks explicit consent, scope, retention, and revocation instructions.
+
+Mitigation: Define consent, allowed actions, data retention, and revocation steps before using the skill in a production workflow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lotfinity/skills/waha-onboarding)
+- [Publisher profile](https://clawhub.ai/user/lotfinity)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash command blocks and procedural text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a WAHA CLI deployment and a user phone number with country code.]
+
+## Skill Version(s):
+
+0.1.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

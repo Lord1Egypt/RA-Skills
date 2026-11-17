@@ -1,44 +1,58 @@
-## Description: <br>
-Basis Arb helps agents draft a Freqtrade strategy template that reads spot-perp basis and funding as a directional long-perp signal, not a hedged arbitrage bot. <br>
+## Description:
 
-This skill is for demonstration purposes and not for production usage. <br>
+Basis Arb provides a Freqtrade strategy template that uses spot-perp basis and funding-rate signals to propose a directional long-perp entry, not a hedged basis arbitrage trade.
 
-## Publisher: <br>
-[superior-ai](https://clawhub.ai/user/superior-ai) <br>
+This skill is for demonstration purposes and not for production usage.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[superior-ai](https://clawhub.ai/user/superior-ai)
 
-## Use Case: <br>
-External developers and trading-strategy builders use this skill to create or adapt a Freqtrade template for Hyperliquid spot-perp basis signals and to understand the limits before paper trading. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The strategy is financial trading guidance and is not a guaranteed arbitrage bot. <br>
-Mitigation: Use dry-run or paper trading first and compare entries against an external basis tracker before any live deployment. <br>
-Risk: The template uses futures cross-margin configuration and exchange credentials. <br>
-Mitigation: Review margin settings and credential handling carefully before connecting it to a live exchange account. <br>
-Risk: The signal depends on both spot and perpetual market data for the same asset. <br>
-Mitigation: Confirm the exchange pair has both spot and perpetual data available; otherwise the strategy may produce no trades. <br>
+## Use Case:
 
+External developers and crypto strategy builders use this skill to draft a Hyperliquid/Freqtrade futures strategy that reads spot-perp basis and funding as directional entry signals. It is suited for paper trading, review, and adaptation rather than direct deployment as market-neutral arbitrage.
 
-## Reference(s): <br>
-- [Basis Arb on ClawHub](https://clawhub.ai/superior-ai/basis-arb) <br>
-- [Freqtrade informative_pairs documentation](https://www.freqtrade.io/en/stable/strategy-customization/#additional-data-informative_pairs) <br>
-- [Superior Trade alpha scan improvement plan](https://github.com/Superior-Trade/superior-turborepo/blob/main/docs/alpha-scan-improvement-plan.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown with Python and JSON code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes financial-risk caveats and expects user review before live trading.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence; artifact frontmatter lists 0.1.0) <br>
+Risk: The strategy can be mistaken for market-neutral basis arbitrage even though it only implements the long-perp leg.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as directional futures strategy guidance, and use a separate paired-leg runtime if true hedged arbitrage is required.
+
+Risk: The current backtest evidence reports zero trades because spot OHLCV was unavailable to the Freqtrade engine.
+
+Mitigation: Validate in dry-run mode or with an external basis tracker before committing capital, and confirm that the selected pair has both spot and perp data.
+
+Risk: Crypto futures execution can amplify losses through leverage, margin settings, stale data, and exchange behavior.
+
+Mitigation: Use deliberately limited capital, verify leverage and margin configuration, and independently test funding, basis, stoploss, and timeout behavior.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/superior-ai/skills/basis-arb)
+- [Freqtrade informative_pairs documentation](https://www.freqtrade.io/en/stable/strategy-customization/#additional-data-informative_pairs)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown with Python and JSON code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a single strategy template with configuration requirements, tuning notes, variants, and operational caveats.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata; artifact frontmatter reports 0.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

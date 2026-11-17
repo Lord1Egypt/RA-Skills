@@ -1,41 +1,60 @@
-## Description: <br>
-Create and redeem Linkdrop claim links from the command line with strict JSON output on Base, Polygon, Arbitrum, Optimism, and Avalanche. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create and redeem Linkdrop claim links from the command line with strict JSON output on Base, Polygon, Arbitrum, Optimism, and Avalanche.
 
-## Publisher: <br>
-[seichris](https://clawhub.ai/user/seichris) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[seichris](https://clawhub.ai/user/seichris)
 
-## Use Case: <br>
-Developers and automation agents use this skill to create funded Linkdrop claim links, redeem claim links to destination addresses, and consume one JSON object per CLI invocation for downstream workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The CLI can sign and broadcast real blockchain transactions from a private key without a built-in confirmation step. <br>
-Mitigation: Use a dedicated, low-balance wallet and review the amount, token, chain, destination, and claim URL before every run. <br>
-Risk: Runtime secrets include a wallet private key, a Linkdrop API key, and RPC URLs. <br>
-Mitigation: Keep secrets out of logs, repositories, and shared shell history; avoid using a primary wallet. <br>
+## Use Case:
 
+Developers and automation agents use this skill to create or redeem Linkdrop claim links from a local wallet while preserving machine-readable JSON output. It is intended for workflows on Base, Polygon, Arbitrum, Optimism, and Avalanche that can safely manage wallet and API credentials.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/seichris/linkdrop-agent-cli) <br>
-- [Linkdrop SDK CLI Homepage](https://github.com/seichris/linkdrop-sdk-cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Guidance] <br>
-**Output Format:** [JSON objects from the CLI with markdown usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Success responses include fields such as claimUrl, transferId, depositTx, and redeemTx; failures return ok: false with an error object.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter, package.json, server release metadata) <br>
+Risk: The skill handles wallet private keys, Linkdrop API keys, RPC URLs, claim URLs, recipient addresses, and chain selection as sensitive financial controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated low-balance wallet, keep secrets and claim URLs out of logs and git history, and verify the selected chain and recipient before each invocation.
+
+Risk: The CLI can initiate irreversible on-chain deposits and redemptions.
+
+Mitigation: Run a small test transfer first and require explicit human review of amount, token, chain, claim URL, and recipient before sending real value.
+
+Risk: Dependency installation is not fully reproducible when using npm install without a reviewed lockfile.
+
+Mitigation: Review package versions and dependency changes before exposing secrets, and prefer a reviewed lockfile with npm ci in a controlled environment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/seichris/skills/linkdrop-agent-cli)
+- [Project Homepage](https://github.com/seichris/linkdrop-sdk-cli)
+- [Linkdrop Application](https://p2p.linkdrop.io)
+- [Linkdrop Escrow API](https://escrow-api.linkdrop.io/v3)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [JSON objects from command-line invocations with setup and usage guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Success and failure return one JSON object per invocation; successful operations may include claim URLs, transfer IDs, deposit transactions, and redeem transactions.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter, package.json, and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

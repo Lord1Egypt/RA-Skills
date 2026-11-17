@@ -1,45 +1,58 @@
-## Description: <br>
-Command-line tool for macOS Sonoma that manages Apple Calendar events using EventKit with create, list, edit, and delete capabilities. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Calctl guides agents in helping macOS users install and use the calctl EventKit CLI to list, create, edit, delete, and inspect Apple Calendar events, including recurring events.
 
-## Publisher: <br>
-[christianteohx](https://clawhub.ai/user/christianteohx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[christianteohx](https://clawhub.ai/user/christianteohx)
 
-## Use Case: <br>
-Developers and macOS users use this skill to install and operate calctl for creating, listing, editing, and deleting Apple Calendar events from the terminal, including recurring events. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The tool requires macOS Calendar permission and can access calendar event data. <br>
-Mitigation: Grant Calendar permission knowingly and use the access-status command before relying on calendar operations. <br>
-Risk: Calendar edit and delete commands can modify or remove user events. <br>
-Mitigation: Confirm add, edit, and delete actions before running generated commands. <br>
-Risk: Using attendee output can expose attendee names, email addresses, and response statuses. <br>
-Mitigation: Avoid the attendee flag unless that information is needed for the task. <br>
-Risk: Installation depends on an external calctl package source. <br>
-Mitigation: Install only when the referenced package source is trusted. <br>
+## Use Case:
 
+External users and developers use this skill when they want an agent to provide practical calctl installation and command guidance for managing Apple Calendar events from a macOS terminal.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/christianteohx/apple-calctl) <br>
-- [calctl project homepage listed by the skill](https://github.com/christianteohx/calctl) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include plain text or JSON command output when calctl is run with supported output options.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.9 (source: server release evidence) <br>
+Risk: Installing an unpinned external CLI can expose users to supply-chain risk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the upstream calctl project before installing and prefer a pinned, verified release when available.
+
+Risk: Calendar access can expose event details, and attendee output can expose invitee names, email addresses, and participation status.
+
+Mitigation: Grant Calendar access only when needed, avoid attendee output unless necessary, and revoke Calendar access when the skill is no longer required.
+
+Risk: Edit and delete commands can change or remove calendar events.
+
+Mitigation: Review generated commands and target event IDs before running mutating operations.
+
+## Reference(s):
+
+- [Calctl ClawHub Skill Page](https://clawhub.ai/christianteohx/skills/apple-calctl)
+- [calctl Project Homepage](https://github.com/christianteohx/calctl)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include commands that read or modify local Apple Calendar data.]
+
+## Skill Version(s):
+
+1.2.9 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

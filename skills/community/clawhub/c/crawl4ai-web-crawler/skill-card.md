@@ -1,43 +1,59 @@
-## Description: <br>
-Use Crawl4AI for web scraping and content extraction, including structured data extraction, Markdown conversion, batch crawling, and AI-driven web data collection. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use Crawl4AI for web scraping and content extraction, including structured data extraction, Markdown conversion, batch crawling, and AI-driven web data collection.
 
-## Publisher: <br>
-[openlark](https://clawhub.ai/user/openlark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[openlark](https://clawhub.ai/user/openlark)
 
-## Use Case: <br>
-Developers and engineers use this skill to generate guidance, code examples, shell commands, and configuration patterns for crawling public web pages, extracting structured content, converting pages to Markdown, and running Crawl4AI locally or in Docker. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Web crawling can collect private, authenticated, or otherwise sensitive page content, including screenshots or extracted data. <br>
-Mitigation: Crawl only pages the user is authorized to access, avoid private or authenticated pages unless explicitly approved, and review extracted content before sharing it with external services. <br>
-Risk: Persistent browser profiles, proxies, screenshots, and LLM extraction settings can expose credentials or sensitive browsing state. <br>
-Mitigation: Use fresh browser profiles for crawling tasks, avoid profiles tied to personal accounts, handle proxy credentials carefully, and confirm whether configured LLM providers receive extracted content. <br>
+## Use Case:
 
+Developers and engineers use this skill to configure and run Crawl4AI for web scraping, content-to-Markdown conversion, structured JSON extraction, batch crawling, deep crawling, and optional LLM-assisted extraction.
 
-## Reference(s): <br>
-- [Crawl4AI API Reference](references/api-reference.md) <br>
-- [Crawl4AI GitHub Repository](https://github.com/unclecode/crawl4ai) <br>
-- [Crawl4AI Documentation](https://docs.crawl4ai.com) <br>
-- [ClawHub Skill Page](https://clawhub.ai/openlark/crawl4ai-web-crawler) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with Python and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Crawl4AI usage patterns for browser configuration, extraction strategies, crawling options, and deployment commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Crawler and browser tooling can access broad network targets, persistent browser profiles, downloads, and cached page content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an isolated environment, avoid private or authenticated sites unless explicitly intended, avoid normal browser profiles, and keep downloads and caches in disposable directories.
+
+Risk: Unpinned package and Docker image installation can change behavior across releases.
+
+Mitigation: Pin the Crawl4AI package version and Docker image digest before use.
+
+Risk: Remote LLM extraction can disclose crawled page content to the configured provider.
+
+Mitigation: Use remote LLM extraction only for content approved for that provider, or use a local model when page content should remain local.
+
+## Reference(s):
+
+- [Crawl4AI API Reference](references/api-reference.md)
+- [Crawl4AI GitHub Repository](https://github.com/unclecode/crawl4ai)
+- [Crawl4AI Documentation](https://docs.crawl4ai.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Crawl4AI installation commands, crawler configuration, API usage examples, and safety scoping guidance.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

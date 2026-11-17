@@ -1,45 +1,57 @@
-## Description: <br>
-Manage Alibaba Cloud Security Center (Sas) via OpenAPI/SDK for Security Center resource operations, configuration updates, status queries, and troubleshooting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Alibaba Cloud Security Center (Sas) via OpenAPI/SDK for Security Center resource operations, configuration updates, status queries, and security workflow troubleshooting.
 
-## Publisher: <br>
-[cinience](https://clawhub.ai/user/cinience) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cinience](https://clawhub.ai/user/cinience)
 
-## Use Case: <br>
-Developers, cloud operators, and security engineers use this skill to discover Alibaba Cloud Security Center APIs, prepare SDK or OpenAPI Explorer calls, manage Security Center resources, and verify results with list, describe, get, or query operations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide create, update, modify, or set operations against Alibaba Cloud Security Center resources. <br>
-Mitigation: Use a dedicated least-privilege Alibaba Cloud AccessKey and confirm mutating actions before execution. <br>
-Risk: Discovery output can contain security-resource details. <br>
-Mitigation: Review files under output/alicloud-security-center-sas/ before sharing them. <br>
-Risk: Running without a clear region can target the wrong Alibaba Cloud region. <br>
-Mitigation: Confirm the intended region before mutating operations when ALICLOUD_REGION_ID is unset or ambiguous. <br>
+## Use Case:
 
+Developers and cloud security operators use this skill to discover Alibaba Cloud Security Center SAS APIs, prepare least-privilege API calls, perform inventory or configuration workflows, and verify results with describe/list/status APIs.
 
-## Reference(s): <br>
-- [OpenAPI product page for Sas](https://api.aliyun.com/product/Sas) <br>
-- [Sas 2021-01-14 API metadata list](https://api.aliyun.com/meta/v1/products/Sas/versions/2021-01-14/api-docs.json) <br>
-- [Sas API definition metadata template](https://api.aliyun.com/meta/v1/products/Sas/versions/2021-01-14/apis/{ApiName}/api.json) <br>
-- [ClawHub skill page](https://clawhub.ai/cinience/alicloud-security-center-sas) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, configuration notes, and generated JSON or Markdown discovery files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes API inventory artifacts under output/alicloud-security-center-sas/ when its discovery script is run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence; artifact frontmatter is 1.0.0) <br>
+Risk: The skill can guide API calls that create, update, modify, or set Alibaba Cloud Security Center resources.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use least-privilege Alibaba Cloud credentials and review proposed mutating operations, target regions, and resource IDs before execution.
+
+Risk: Ambiguous region or resource identifiers can lead to operations against the wrong Alibaba Cloud scope.
+
+Mitigation: Explicitly confirm the target region, resource identifiers, and desired action before running API calls; ask the user when the region is unclear.
+
+## Reference(s):
+
+- [Alibaba Cloud Security Center SAS Skill Page](https://clawhub.ai/cinience/skills/alicloud-security-center-sas)
+- [OpenAPI product page](https://api.aliyun.com/product/Sas)
+- [SAS API list metadata](https://api.aliyun.com/meta/v1/products/Sas/versions/2021-01-14/api-docs.json)
+- [SAS single API definition metadata](https://api.aliyun.com/meta/v1/products/Sas/versions/2021-01-14/apis/{ApiName}/api.json)
+- [sources.md](references/sources.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, code, markdown, JSON]
+
+**Output Format:** [Markdown guidance with inline shell commands and optional JSON or Markdown output files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write API inventory artifacts and response summaries under output/alicloud-security-center-sas/.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata; artifact frontmatter reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

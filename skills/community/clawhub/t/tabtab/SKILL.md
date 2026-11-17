@@ -39,7 +39,7 @@ The API Key is obtained from the **KMS** page(https://tabtabai.com/api-key) in T
 
 ```bash
 cat > "$(dirname "$0")/scripts/env" <<'EOF'
-TABTAB_API_KEY="sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+TABTAB_API_KEY="REDACTED-SECRET"
 TABTAB_BASE_URL="https://tabtabai.com"   # optional
 EOF
 chmod 600 "$(dirname "$0")/scripts/env"
@@ -55,7 +55,7 @@ All scripts automatically source `scripts/env` on startup if the file exists —
 ### Alternative: export in shell session (lost on terminal close)
 
 ```bash
-export TABTAB_API_KEY="sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+export TABTAB_API_KEY="REDACTED-SECRET"
 export TABTAB_BASE_URL="https://tabtabai.com"  # optional
 ```
 

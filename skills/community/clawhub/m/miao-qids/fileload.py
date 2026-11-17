@@ -2,6 +2,8 @@ import os,re,sys,pickle
 import numpy as np
 import torch
 from scapy.all import*
+from scapy.contrib.ospf import OSPF_Hdr
+
 from FeatureSelection import*
 
 class FileLoader:
@@ -63,8 +65,7 @@ class FileLoader:
 			print(f"处理文件错误{filename}:{e}")
 			return None,None
 	
-	def _apply_unified_pca_transform(self,features):
-		"""使用统一SPCA模型转换特征"""
+	def _apply_unified_pca_transform(self,features):#使用统一SPCA模型转换特征
 		if self.unified_pca_model is None:
 			return torch.tensor(features,dtype=torch.float32)
 		model_data=self.unified_pca_model

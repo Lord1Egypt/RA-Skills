@@ -1,41 +1,54 @@
-## Description: <br>
-Generate structured meeting minutes from templates, sync to Feishu, and track action items. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate structured meeting minutes from templates, sync to Feishu, and track action items.
 
-## Publisher: <br>
-[terrycarter1985](https://clawhub.ai/user/terrycarter1985) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[terrycarter1985](https://clawhub.ai/user/terrycarter1985)
 
-## Use Case: <br>
-Employees and external collaborators use this skill to turn meeting context into structured Chinese meeting minutes, including agenda, decisions, open issues, and action items. It can also support Feishu document creation and local follow-up tracking when those workflows are appropriate. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Meeting notes may contain confidential or sensitive information and can be sent to Feishu during sync. <br>
-Mitigation: Review meeting content before sync, use local Markdown-only output for confidential meetings, and confirm the separate feishu-doc skill is approved for the workspace. <br>
-Risk: Action items may be retained locally for follow-up. <br>
-Mitigation: Review saved action items and avoid storing sensitive names, deadlines, or decisions in local memory when retention is not appropriate. <br>
+## Use Case:
 
+Employees and external users use this skill to turn meeting context into structured Chinese meeting minutes, including agenda, decisions, action items, and follow-up issues. It can also guide Feishu document creation and local action-item tracking when those destinations are intended.
 
-## Reference(s): <br>
-- [Meeting minutes template](references/template.md) <br>
-- [ClawHub skill listing](https://clawhub.ai/terrycarter1985/meeting-minutes-cn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown meeting minutes with tables, optional Feishu document creation command, and optional action-item checklist.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create a Feishu document through a separate Feishu skill and may append action items to memory/YYYY-MM-DD.md.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Meeting minutes may contain confidential discussion details that could be synced to Feishu or stored locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when the Feishu destination and local storage location are approved for the meeting content.
+
+Risk: The Feishu sync workflow uses shell-style command guidance for meeting text.
+
+Mitigation: Review generated commands before execution and prefer an argument-array or API-based integration that treats meeting content as data.
+
+## Reference(s):
+
+- [Meeting Minutes Template](artifact/references/template.md)
+- [ClawHub Skill Page](https://clawhub.ai/terrycarter1985/skills/meeting-minutes-cn)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown meeting minutes with optional shell command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language meeting template with placeholders for meeting metadata, discussion notes, decisions, action items, unresolved issues, and next meeting details.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,63 @@
-## Description: <br>
-财经热点新闻爬取与话题归纳系统 crawls selected finance news sources, summarizes hot topics, scores news relevance, collects market flashes, and prepares finance reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Crawls mainstream Chinese finance news sites, scores and summarizes hot topics, collects live finance news flashes, and generates text and HTML finance reports.
 
-## Publisher: <br>
-[diudiuhuang](https://clawhub.ai/user/diudiuhuang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[diudiuhuang](https://clawhub.ai/user/diudiuhuang)
 
-## Use Case: <br>
-Developers and finance-focused users can use this skill to collect current finance news, group and score hot topics, gather important market flashes, and generate report files for review. It is not intended for non-finance news, weather, entertainment, or gossip coverage. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill writes reports and logs and can automatically clean configured temp/report paths. <br>
-Mitigation: Set temp_dir and reports_dir to dedicated disposable directories before running the workflow, and review the configured paths before enabling cleanup. <br>
-Risk: The skill may use configured API credentials and browser profile or cookie paths. <br>
-Mitigation: Use scoped API keys, avoid real browser profiles unless required, and remove credential or partial-key logging before use. <br>
-Risk: The workflow can make outbound requests to finance websites and model APIs and invokes external commands. <br>
-Mitigation: Run it in a controlled environment, review the configured sites and shell execution paths, and confirm that outbound network access is acceptable. <br>
+## Use Case:
 
+Developers and finance analysts use this skill to collect recent market news from supported Chinese finance sites, cluster and score hot topics, gather important live updates, and generate operational news reports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/diudiuhuang/stock-hot-news) <br>
-- [Publisher profile](https://clawhub.ai/user/diudiuhuang) <br>
-- [README](artifact/README.md) <br>
-- [Directory migration notes](artifact/DIRECTORY_MIGRATION.md) <br>
-- [Configuration example](artifact/url_config.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Files] <br>
-**Output Format:** [Markdown guidance with bash commands; generated artifacts may include JSON, text, and HTML reports.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires configured finance source access, local output directories, and model API credentials when model-based scoring or summarization is used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release evidence) <br>
+Risk: The clawscan summary reports automatic recursive cleanup through configurable paths.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run only in an isolated workspace, set dedicated temp_dir and reports_dir locations, and review path configuration before execution.
+
+Risk: The clawscan summary reports credential reuse and API-key handling.
+
+Mitigation: Use a dedicated low-quota API key for this skill and avoid sharing personal or production credentials with the runtime.
+
+Risk: The clawscan summary reports browser-profile reuse and automatic opening of generated HTML reports.
+
+Mitigation: Use a disposable browser profile and avoid opening generated HTML reports from scraped or model-produced content until escaping and URL validation are fixed.
+
+Risk: The clawscan summary reports shell command execution.
+
+Mitigation: Review configured commands and dependencies, then execute the workflow in a sandboxed environment with limited filesystem and network access.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/diudiuhuang/skills/stock-hot-news)
+- [Artifact README](artifact/README.md)
+- [Directory migration notes](artifact/DIRECTORY_MIGRATION.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Files]
+
+**Output Format:** [Markdown guidance with bash commands; runtime outputs include JSON, text, screenshot, and HTML report files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes intermediate files and reports under configured temp_dir and reports_dir paths.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,55 @@
-## Description: <br>
-获取出行优惠券，支持滴滴出行大礼包、携程礼包天天领（酒店、机票、门票），并返回领取链接和二维码图片供用户领取优惠。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches DiDi ride and hotel travel coupons and presents redemption links and QR code image links for use with WeChat.
 
-## Publisher: <br>
-[moooai](https://clawhub.ai/user/moooai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[moooai](https://clawhub.ai/user/moooai)
 
-## Use Case: <br>
-External users can ask an agent to retrieve available DiDi ride-hailing and Ctrip travel coupon offers. The skill helps agents present coupon titles, redemption links, QR code image links, and brief redemption guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill calls an external coupon API and may display third-party redemption links or QR code image URLs. <br>
-Mitigation: Review returned destinations before opening links in WeChat or scanning QR codes. <br>
-Risk: Bundled reference files describe unrelated food-delivery coupon flows, creating package consistency risk. <br>
-Mitigation: Prefer a corrected release whose reference files match the travel-coupon purpose before deploying broadly. <br>
+## Use Case:
 
+Travelers and their assistants use this skill to find ride-hailing and hotel coupon offers and share links or QR codes for redemption.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/moooai/trip-coupon) <br>
-- [Project homepage from ClawHub metadata](https://github.com/moooai/trip-coupon) <br>
-- [Trip coupon API endpoint](https://agskills.moontai.top/coupon/trip) <br>
-- [Packaged API documentation](references/api_documentation.md) <br>
-- [Packaged API reference](references/api_reference.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown text with coupon links, QR code image URLs, and optional JSON from helper scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes external redemption links and QR code image URLs returned by the coupon API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; packaged artifact frontmatter and _meta.json say 1.0.0) <br>
+Risk: Coupon links and QR codes lead to third-party redemption pages.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Check the destination and offer terms before opening, scanning, or sharing a coupon.
+
+Risk: The helper script stores an anonymous installation identifier and sends it to the coupon API for attribution.
+
+Mitigation: Privacy-sensitive users can avoid running the helper script or delete scripts/.install_id to rotate the identifier.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/moooai/skills/trip-coupon)
+- [Publisher-listed project homepage](https://github.com/moooai/trip-coupon)
+- [Coupon API documentation](references/api_documentation.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Text with coupon titles, redemption links, QR code image links, and instructions; optional JSON from the helper script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Coupon availability and links depend on the external coupon service; redemption is suggested through WeChat.]
+
+## Skill Version(s):
+
+2.0.2 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

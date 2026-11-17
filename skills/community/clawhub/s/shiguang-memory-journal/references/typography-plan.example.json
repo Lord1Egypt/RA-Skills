@@ -1,0 +1,56 @@
+{
+  "approvedTitle": "广州欢迎，2026",
+  "renderedTitle": "广州欢迎，2026",
+  "referenceOcrDenyList": ["REFERENCE TITLE"],
+  "titleSafeRegion": {
+    "id": "safe-bottom",
+    "x": 0.07,
+    "y": 0.7,
+    "width": 0.86,
+    "height": 0.24,
+    "orientation": "horizontal"
+  },
+  "avoidRegions": [{
+    "id": "face-1",
+    "x": 0.42,
+    "y": 0.16,
+    "width": 0.22,
+    "height": 0.28,
+    "orientation": "horizontal",
+    "reason": "protected-subject"
+  }],
+  "typography": {
+    "relation": "weave",
+    "displayLines": ["广州欢迎，", "2026"],
+    "titleWidthRatio": 0.82,
+    "titleScaleRatio": 0.078,
+    "titleOrientation": "horizontal",
+    "titleEffect": "ink-edge"
+  },
+  "typographyTournament": {
+    "winnerCandidateId": "story-led",
+    "candidates": [
+      {
+        "id": "reference-led",
+        "plan": { "style": "editorial-serif", "relation": "anchor", "titleOrientation": "horizontal", "titleLines": 2 },
+        "safeRegion": { "x": 0.05, "y": 0.68, "width": 0.9, "height": 0.24, "orientation": "horizontal" },
+        "placements": [{ "id": "poster-title", "x": 44, "y": 882, "width": 620, "height": 190, "fontSize": 72, "orientation": "horizontal", "displayLines": ["广州欢迎，", "2026"] }],
+        "signature": "ad90ea4cd7f9404c90db9f032c01a5c6f08884714efe77e323115faf754dd6f0"
+      },
+      {
+        "id": "story-led",
+        "plan": { "style": "brush-impact", "relation": "weave", "titleOrientation": "horizontal", "titleLines": 2 },
+        "safeRegion": { "x": 0.05, "y": 0.03, "width": 0.9, "height": 0.12, "orientation": "horizontal" },
+        "placements": [{ "id": "poster-title", "x": 54, "y": 50, "width": 596, "height": 120, "fontSize": 50, "orientation": "horizontal", "displayLines": ["广州欢迎，", "2026"] }],
+        "signature": "a682047e3e32a69d0861c70a9158dc7c661aebecb562b4d39c13c3a44b403216"
+      },
+      {
+        "id": "wild-card",
+        "plan": { "style": "condensed-cinematic", "relation": "blade", "titleOrientation": "vertical", "titleLines": 1 },
+        "safeRegion": { "x": 0.7, "y": 0.1, "width": 0.25, "height": 0.7, "orientation": "vertical" },
+        "placements": [{ "id": "poster-title", "x": 522, "y": 170, "width": 138, "height": 760, "fontSize": 68, "orientation": "vertical", "displayLines": ["广州欢迎，2026"] }],
+        "signature": "1c5bcdf293b8a321b3755ceb06ebb5a685b8a51f54c668998fca1535110eab90"
+      }
+    ]
+  }
+}

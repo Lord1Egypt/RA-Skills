@@ -1,40 +1,53 @@
-## Description: <br>
-Provides audit professionals with a practical reference for audit sampling design, statistical analysis, anomaly detection, and Python examples. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audit Statistics provides Chinese-language guidance for applying audit sampling, anomaly detection, analytical review, and Python statistical examples in audit work.
 
-## Publisher: <br>
-[iamdracula](https://clawhub.ai/user/iamdracula) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[iamdracula](https://clawhub.ai/user/iamdracula)
 
-## Use Case: <br>
-Audit practitioners and agents supporting audit work use this skill to choose sampling methods, run statistical checks, interpret anomalies, and document audit analysis steps. It is most useful as a reference guide and code-example source, not as a substitute for professional judgment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sample statistical code or audit guidance could be misapplied to real financial data or unsupported assumptions. <br>
-Mitigation: Have a qualified reviewer validate sampling design, statistical assumptions, and conclusions before relying on outputs. <br>
-Risk: Using examples with real audit or financial data can expose confidential information. <br>
-Mitigation: Handle real data under normal confidentiality controls and avoid sharing sensitive datasets in agent prompts or logs. <br>
+## Use Case:
 
+Auditors and audit analytics practitioners use this skill to select audit sampling methods, identify anomalous transactions, plan analytical reviews, and adapt statistical code examples for audit evidence work.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/iamdracula/audit-statistics) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown with Python code blocks and checklist-style guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes statistical audit guidance, sample Python snippets, and audit sampling checklist items; users should validate assumptions before relying on conclusions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill includes statistical guidance and Python examples that may be adapted incorrectly for real audit data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the statistical assumptions, sample design, and adapted code before relying on outputs in an audit engagement.
+
+Risk: The guidance is primarily written in Chinese, which may be misunderstood by users who are not fluent in Chinese.
+
+Mitigation: Use qualified review or translation when applying the guidance in multilingual audit teams.
+
+## Reference(s):
+
+- [Audit Statistics on ClawHub](https://clawhub.ai/iamdracula/skills/audit-statistics)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown with Chinese-language explanations and Python code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Code examples should be reviewed and adapted before use with real audit data.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

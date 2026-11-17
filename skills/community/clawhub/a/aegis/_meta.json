@@ -1,6 +1,38 @@
 {
-  "ownerId": "kn70nrd1g9t9ferwjbk0tgpgz582dr89",
-  "slug": "aegis",
+  "name": "aegis",
   "version": "3.4.0",
-  "publishedAt": 1773652174418
+  "description": "Automated Emergency Geopolitical Intelligence System \u2014 civilian-first threat monitoring for conflict zones with human-readable situation updates",
+  "author": "Machine Spirit",
+  "license": "MIT",
+  "keywords": [
+    "aegis",
+    "osint",
+    "threat-intelligence",
+    "emergency",
+    "conflict-zone",
+    "civilian-safety",
+    "geopolitical",
+    "liveuamap",
+    "world-monitor"
+  ],
+  "requires": {
+    "binaries": [
+      "curl",
+      "python3"
+    ],
+    "env": [],
+    "optional_env": [
+      "AEGIS_DATA_DIR",
+      "AEGIS_BOT_TOKEN",
+      "AEGIS_CHANNEL_ID"
+    ]
+  },
+  "scripts": {
+    "scan": "python3 scripts/aegis_scanner.py",
+    "cron": "python3 scripts/aegis_cron.py",
+    "feed": "python3 scripts/aegis_feed.py",
+    "briefing": "python3 scripts/aegis_briefing.py",
+    "channel": "python3 scripts/aegis_channel.py",
+    "onboard": "python3 scripts/aegis_onboard.py"
+  }
 }

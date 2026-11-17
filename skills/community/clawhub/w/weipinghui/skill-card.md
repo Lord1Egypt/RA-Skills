@@ -1,40 +1,49 @@
-## Description: <br>
-唯品会购物返利与订单管理工具，追踪唯品会返利订单状态，统计品牌特卖省钱金额，管理唯品券使用。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+唯品会购物返利与订单管理工具，追踪唯品会返利订单状态，统计品牌特卖省钱金额，管理唯品券使用。
 
-## Publisher: <br>
-[fangshan101-coder](https://clawhub.ai/user/fangshan101-coder) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fangshan101-coder](https://clawhub.ai/user/fangshan101-coder)
 
-## Use Case: <br>
-External users can use this skill to organize Vipshop rebate orders, coupon reminders, expected rebate timing, brand sale notices, and savings summaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may share more Vipshop account, order, coupon, rebate, balance, payment, or session information than the skill needs. <br>
-Mitigation: Share only the order, coupon, rebate, or balance details required for the current task; do not provide passwords, cookies, session tokens, or payment credentials. <br>
-Risk: Rebate timing, sale calendars, coupon expiry, and balance figures may be incomplete or stale if the user-provided data is outdated. <br>
-Mitigation: Treat generated tracking summaries and reminders as planning aids and verify important order, coupon, and balance details against Vipshop or the relevant rebate source before taking action. <br>
+## Use Case:
 
+External shoppers use this skill to manage Vipshop rebate orders, coupon expirations, rebate payout status, savings summaries, and brand sale reminders.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/fangshan101-coder/weipinghui) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown summary with order, rebate, coupon, and brand sale sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable output; the skill provides structured shopping-management guidance and reminders.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: frontmatter and server release evidence) <br>
+Risk: Real account syncing or reminder features in a future version could involve Vipshop account access, order data, purchase history, rebate amounts, or notification preferences.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Only connect accounts or share order data after confirming what data the skill accesses and how notifications are controlled.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fangshan101-coder/skills/weipinghui)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown shopping summary with order, rebate, coupon, and sale reminder sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable output; content depends on user-provided Vipshop order, rebate, coupon, and brand-interest data.]
+
+## Skill Version(s):
+
+0.1.0 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

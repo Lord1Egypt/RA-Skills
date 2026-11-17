@@ -1,0 +1,343 @@
+snapshot_date: 2026-11-02 06:21
+base_url: https://yce-api-01.makeupar.com
+credit:
+  balance_path: /s2s/v1.0/client/credit
+  history_path: /s2s/v1.0/client/credit/history
+  feature_cost_path: /s2s/v2.0/credit/feature-cost
+  api_spendable_prefix: Api
+features:
+  face-attr-analysis:
+    api_name: AI Face Attributes & Ratio Analyzer
+    version: v2.0
+    task_path: /s2s/v2.0/task/face-attr-analysis
+    doc: https://docs.perfectcorp.com/reference/ai_face_analyzer.md
+    body_schema:
+      title: BasicRunTaskV2
+      anyOf:
+      - title: Run task with src file url
+        type: object
+        required:
+        - src_file_url
+        properties:
+          src_file_url:
+            type: string
+            description: Url of the file to run task. The url should be publicly accessible.
+            example: https://example.com/selfie.jpg
+      - title: Run task with src file ID
+        type: object
+        required:
+        - src_file_id
+        properties:
+          src_file_id:
+            type: string
+            description: ID of file to run task. File ID from upload file API.
+            example: pfNK5PuRe0MrwLHcGA3DOmB1ahwfXTbYHjv+KoBIxbE=
+      type: object
+      required:
+      - features
+      properties:
+        face_angle_strictness_level:
+          type: string
+          description: "The strictness level of face angle detection (pitch, yaw, roll).\nA stricter level ensures more accurate face attribute results.\nDefault is 'high'.\noptoins:\n  - strict: pitch <= 4 degrees, yaw <= 6 degrees, roll <= 4 degrees\n  - high: pitch, yaw, roll <= 10 degrees\n  - medium: pitch, yaw, roll <= 15 degrees\n  - low: pitch, yaw, roll <= 20 degrees\n  - flexible: pitch, yaw, roll <= 30 degrees\n"
+          enum:
+          - strict
+          - high
+          - medium
+          - low
+          - flexible
+          example: high
+        features:
+          description: "AI Face Analysis categories\n* Face Analysis\n  - FACE: faceShape\n  - EYES: eyeShape eyeSize eyeAngle eyeDistance eyelid\n  - BROWS: eyebrowShape eyebrowThickness eyebrowDistance eyebrowShortness\n  - LIPS: lipShape\n  - NOSE: noseWidth noseLength\n  - CHEEKBONES: cheekbones\n  - AGE & GENDER: age gender\n  - COLORS: eyeColor hairColor eyebrowColor lipColor\n\n* Facial Ratios\n  - horizontalThird\n  - verticalFifth\n  - faceAspectRatio\n  - eyeAspectRatio\n  - eyebrowPosition\n  - eyebrowArch\n  - eyeHeightToEyebrowDistance\n  - noseAspectRatio\n  - noseWidthToMouthWidth\n  - noseToLipToChin\n  - upperLipToLowerLip\n"
+          type: array
+          items:
+            type: string
+            enum:
+            - eyeShape
+            - eyeSize
+            - eyeAngle
+            - eyeDistance
+            - eyelid
+            - eyebrowShape
+            - eyebrowThickness
+            - eyebrowDistance
+            - eyebrowShortness
+            - cheekbones
+            - faceShape
+            - lipShape
+            - noseWidth
+            - noseLength
+            - age
+            - gender
+            - eyeColor
+            - lipColor
+            - eyebrowColor
+            - hairColor
+            - horizontalThird
+            - verticalFifth
+            - faceAspectRatio
+            - eyeAspectRatio
+            - eyebrowPosition
+            - eyebrowArch
+            - eyeHeightToEyebrowDistance
+            - noseAspectRatio
+            - noseWidthToMouthWidth
+            - noseToLipToChin
+            - upperLipToLowerLip
+  skin-tone-analysis:
+    api_name: AI Facial Color Tones Analyzer
+    version: v2.0
+    task_path: /s2s/v2.0/task/skin-tone-analysis
+    doc: https://docs.perfectcorp.com/reference/ai_skin_tone_analysis.md
+    body_schema:
+      title: BasicRunTaskV2
+      anyOf:
+      - title: Run task with src file url
+        type: object
+        required:
+        - src_file_url
+        properties:
+          src_file_url:
+            type: string
+            description: Url of the file to run task. The url should be publicly accessible.
+            example: https://example.com/selfie.jpg
+      - title: Run task with src file ID
+        type: object
+        required:
+        - src_file_id
+        properties:
+          src_file_id:
+            type: string
+            description: ID of file to run task. File ID from upload file API.
+            example: pfNK5PuRe0MrwLHcGA3DOmB1ahwfXTbYHjv+KoBIxbE=
+      type: object
+      properties:
+        face_angle_strictness_level:
+          type: string
+          description: "The strictness level of face angle detection (pitch, yaw, roll).\nA stricter level ensures more accurate face attribute results.\nDefault is 'high'.\noptoins:\n  - strict: pitch <= 4 degrees, yaw <= 6 degrees, roll <= 4 degrees\n  - high: pitch, yaw, roll <= 10 degrees\n  - medium: pitch, yaw, roll <= 15 degrees\n  - low: pitch, yaw, roll <= 20 degrees\n  - flexible: pitch, yaw, roll <= 30 degrees\n"
+          enum:
+          - strict
+          - high
+          - medium
+          - low
+          - flexible
+          example: high
+  hair-transfer:
+    api_name: AI Hair Style Virtual Try-On
+    version: v2.1
+    task_path: /s2s/v2.1/task/hair-transfer
+    template_list: /s2s/v2.1/task/template/hair-transfer
+    doc: https://docs.perfectcorp.com/reference/ai_hairstyle.md
+    body_schema:
+      type: object
+      title: Provide exactly one of ref_file_id, ref_file_url, or template_id
+      not:
+        anyOf:
+        - required:
+          - ref_file_url
+          - template_id
+        - required:
+          - ref_file_id
+          - template_id
+      anyOf:
+      - title: Run task with src file url & ref file url
+        required:
+        - ref_file_url
+        - src_file_url
+        type: object
+        properties:
+          src_file_url:
+            type: string
+            description: Url of the file to run task. The url should be publicly accessible.
+            example: https://example.com/selfie.jpg
+          ref_file_url:
+            type: string
+            description: Url of the reference file to run task. The url should be publicly accessible.
+            example: https://example.com/reference.jpg
+      - title: Run task with src file url & ref file ID
+        required:
+        - ref_file_id
+        - src_file_url
+        type: object
+        properties:
+          src_file_url:
+            type: string
+            description: Url of the file to run task. The url should be publicly accessible.
+            example: https://example.com/selfie.jpg
+          ref_file_id:
+            type: string
+            description: ID of the reference file to run task. File ID from upload file API.
+            example: pfNK5PuRe0MrwLHcGA3DOmB1ahwfXTbYHjv+KoBIxbE=
+      - title: Run task with src file ID & ref file url
+        required:
+        - ref_file_url
+        - src_file_id
+        type: object
+        properties:
+          src_file_id:
+            type: string
+            description: ID of file to run task. File ID from upload file API.
+            example: pfNK5PuRe0MrwLHcGA3DOmB1ahwfXTbYHjv+KoBIxbE=
+          ref_file_url:
+            type: string
+            description: Url of the reference file to run task. The url should be publicly accessible.
+            example: https://example.com/reference.jpg
+      - title: Run task with src file ID & ref file ID
+        required:
+        - ref_file_id
+        - src_file_id
+        type: object
+        properties:
+          src_file_id:
+            type: string
+            description: ID of file to run task. File ID from upload file API.
+            example: pfNK5PuRe0MrwLHcGA3DOmB1ahwfXTbYHjv+KoBIxbE=
+          ref_file_id:
+            type: string
+            description: ID of the reference file to run task. File ID from upload file API.
+            example: pfNK5PuRe0MrwLHcGA3DOmB1ahwfXTbYHjv+KoBIxbE=
+      - title: Run task with src file url and template
+        type: object
+        required:
+        - src_file_url
+        - template_id
+        properties:
+          src_file_url:
+            type: string
+            description: Url of the file to run task. The url should be publicly accessible.
+            example: https://example.com/selfie.jpg
+          template_id:
+            type: string
+            description: ID of the template. List predefined templates first, and use the id of a template.
+            example: good_template_001
+      - title: Run task with src file ID and template
+        type: object
+        required:
+        - src_file_id
+        - template_id
+        properties:
+          src_file_id:
+            type: string
+            description: ID of file to run task. File ID from upload file API.
+            example: pfNK5PuRe0MrwLHcGA3DOmB1ahwfXTbYHjv+KoBIxbE=
+          template_id:
+            type: string
+            description: ID of the template. List predefined templates first, and use the id of a template.
+            example: good_template_001
+      properties:
+        hair_color:
+          type: string
+          enum:
+          - ref
+          - src
+          default: ref
+          description: Specifies the hair color of the output image (source/reference), default reference color.
+  hair-color:
+    api_name: AI Hair Color Virtual Try-On
+    version: v2.0
+    task_path: /s2s/v2.0/task/hair-color
+    doc: https://docs.perfectcorp.com/reference/ai_hair_color.md
+    body_schema:
+      title: RunHairColorTaskV2
+      description: This object represents a run AI Hair Color Virtual Try-On task.
+      type: object
+      anyOf:
+      - title: Run task with src file url
+        type: object
+        required:
+        - src_file_url
+        properties:
+          src_file_url:
+            type: string
+            description: Url of the file to run task. The url should be publicly accessible.
+            example: https://example.com/selfie.jpg
+      - title: Run task with src file ID
+        type: object
+        required:
+        - src_file_id
+        properties:
+          src_file_id:
+            type: string
+            description: ID of file to run task. File ID from upload file API.
+            example: pfNK5PuRe0MrwLHcGA3DOmB1ahwfXTbYHjv+KoBIxbE=
+      properties:
+        preset:
+          type: string
+          description: '(optional; required if neither "pattern" nor "palettes" is provided) Default hair color preset. Available for full mode: [''Jet Black'', ''Chocolate Brown'', ''Honey Blonde'', ''Platinum Blonde'', ''Ash Gray'', ''Rose Gold'', ''Burgundy'', ''Copper Red'', ''Lavender'', ''Teal Blue''] Available for ombre mode: [''Dark Brown/Caramel Blonde'', ''Jet Black/Silver Gray'', ''Ash Brown/Lavender'', ''Rose Gold/Peach Blonde'', ''Burgundy/Magenta Pink'', ''Deep Blue/Teal Green'', ''Plum Purple/Pastel Lilac'', ''Copper Red/Golden Blonde'', ''Dark Gray/Ice Blonde'', ''Midnight Blue/Denim Blue'']
+
+            '
+          enum:
+          - Jet Black
+          - Chocolate Brown
+          - Honey Blonde
+          - Platinum Blonde
+          - Ash Gray
+          - Rose Gold
+          - Burgundy
+          - Copper Red
+          - Lavender
+          - Teal Blue
+          - Dark Brown/Caramel Blonde
+          - Jet Black/Silver Gray
+          - Ash Brown/Lavender
+          - Rose Gold/Peach Blonde
+          - Burgundy/Magenta Pink
+          - Deep Blue/Teal Green
+          - Plum Purple/Pastel Lilac
+          - Copper Red/Golden Blonde
+          - Dark Gray/Ice Blonde
+          - Midnight Blue/Denim Blue
+        pattern:
+          type: object
+          description: (optional; required if "preset" is not provided)
+          required:
+          - name
+          properties:
+            name:
+              type: string
+              enum:
+              - ombre
+              - full
+              description: Pattern type (required)
+            blend_strength:
+              type: integer
+              minimum: 0
+              maximum: 100
+              description: (optional; required for ombre) Blend strength (0–100)
+            line_offset:
+              type: number
+              minimum: -0.99
+              maximum: 0.99
+              description: '(optional; required for ombre) Vertical offset (–0.99 to 0.99). 0.99: top color covers 99% of bottom half;   –0.99: bottom color covers 99% of top half
+
+                '
+            coloring_section:
+              type: string
+              enum:
+              - top
+              description: (optional; required for ombre) Section to color
+        palettes:
+          type: array
+          description: '(optional; required if "preset" is not provided)   Array length 1 for full mode, 2 for ombre mode
+
+            '
+          minItems: 1
+          maxItems: 2
+          items:
+            type: object
+            required:
+            - color
+            properties:
+              color:
+                type: string
+                pattern: ^#([A-Fa-f0-9]{6})$
+                description: Hex color code
+              color_intensity:
+                type: integer
+                minimum: 0
+                maximum: 100
+                description: Color intensity (0–100)
+              shine_intensity:
+                type: integer
+                minimum: 0
+                maximum: 100
+                description: Shine intensity (0–100)

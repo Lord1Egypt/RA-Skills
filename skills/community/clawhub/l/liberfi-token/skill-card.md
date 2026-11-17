@@ -1,41 +1,54 @@
-## Description: <br>
-Researches and analyzes cryptocurrency tokens on supported blockchains using the LiberFi CLI, including token search, token details, security checks, liquidity pools, holders, traders, and candlestick data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Research and analyze tokens on supported blockchains, including token search, price and market data, security audit signals, liquidity pools, holders, traders, and K-line candlestick data.
 
-## Publisher: <br>
-[bombmod](https://clawhub.ai/user/bombmod) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bombmod](https://clawhub.ai/user/bombmod)
 
-## Use Case: <br>
-External users and developers use this skill to research specific cryptocurrency tokens, compare on-chain market data, review security flags, inspect holder concentration, and summarize chart data before taking further action. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill instructs agents to install an unpinned global LiberFi CLI automatically and to retry npm installation against the public registry. <br>
-Mitigation: Review or install the CLI manually with an explicit version before enabling the skill, and avoid unattended global installs in restricted environments. <br>
-Risk: Token security checks and token-analysis outputs are informational and may not prove that a token is safe. <br>
-Mitigation: Treat security findings as due-diligence inputs, verify high-risk flags independently, and avoid representing a clean result as a safety guarantee. <br>
+## Use Case:
 
+Developers, analysts, and external users use this skill to research specific tokens before making decisions, using public token data, security audit signals, holder distribution, liquidity, trader, and candlestick information. It is informational only and does not execute trades or broadcast transactions.
 
-## Reference(s): <br>
-- [LiberFi homepage](https://liberfi.io) <br>
-- [ClawHub skill page](https://clawhub.ai/bombmod/liberfi-token) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown summaries with inline shell commands and JSON-backed token data] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses the LiberFi CLI with --json for structured command output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server-resolved release evidence) <br>
+Risk: The release security summary says the skill tells agents to silently install a global CLI package and misreport install failures.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing; ask for confirmation before installing the CLI, prefer a non-global or pinned installation when possible, verify the package source, and report installation errors accurately.
+
+Risk: Token analysis and security audit results may be incomplete or misleading if treated as proof that a token is safe.
+
+Mitigation: Present token security results as informational signals, clearly state raised flags and missing audit data, and recommend independent due diligence.
+
+## Reference(s):
+
+- [LiberFi homepage](https://liberfi.io)
+- [Liberfi Token on ClawHub](https://clawhub.ai/bombmod/skills/liberfi-token)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown summaries with inline shell commands and JSON-derived token data]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses public token data and no authentication; token security results are informational and should not be presented as a guarantee of safety.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

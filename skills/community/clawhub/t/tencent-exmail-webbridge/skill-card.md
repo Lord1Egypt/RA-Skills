@@ -1,44 +1,63 @@
-## Description: <br>
-Guides agents in operating Tencent Exmail's web UI through Kimi WebBridge, including iframe traversal, Chinese text encoding, reading messages, preparing replies or forwards, appending body content, saving drafts, and folder navigation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides agent guidance for automating Tencent Exmail Web through Kimi WebBridge, including iframe navigation, text encoding, mail reading, reply, reply-all, forwarding, draft editing, and folder navigation.
 
-## Publisher: <br>
-[coolingrabbit](https://clawhub.ai/user/coolingrabbit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[coolingrabbit](https://clawhub.ai/user/coolingrabbit)
 
-## Use Case: <br>
-Developers and agent operators use this documentation-only skill to automate user-directed Tencent Exmail browser workflows in a logged-in mailbox. It helps inspect messages, prepare replies or forwards, append draft body content, and navigate folders while keeping final sending under explicit user confirmation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can help read email content and prepare replies or forwards in a logged-in Tencent Exmail mailbox. <br>
-Mitigation: Use it only with accounts and pages the user intends to automate, and require explicit user confirmation before any send action. <br>
-Risk: Tencent Exmail uses nested iframes and dynamic DOM changes, so browser automation can target the wrong frame or state. <br>
-Mitigation: Confirm login, WebBridge injection, page load, iframe titles, and current compose mode before acting. <br>
-Risk: Chinese text can be corrupted if sent through WebBridge as direct UTF-8 literals. <br>
-Mitigation: Use the documented character-code encoding and decoding protocol for Chinese text input and returned strings. <br>
+## Use Case:
 
+Developers and agents use this skill to operate Tencent Exmail Web in an already logged-in browser session through Kimi WebBridge. It helps read mail, prepare replies, reply-all messages, forwards, body edits, drafts, and folder navigation while keeping sensitive mailbox actions under user review.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/coolingrabbit/skills/tencent-exmail-webbridge) <br>
-- [README](README.md) <br>
-- [REFERENCE](REFERENCE.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown instructions with JavaScript and Python code snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only skill; no runtime scripts are installed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release evidence; artifact frontmatter/config list 2.0.0) <br>
+Risk: Live mailbox automation can affect sensitive messages, recipients, subjects, and message bodies.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require user review of recipients, subject, and body before saving drafts or sending any message.
+
+Risk: Reply-all, forwarding, recipient edits, and sending can disclose email content to unintended recipients.
+
+Mitigation: Require explicit user approval before reply-all, forwarding, recipient changes, or sending.
+
+Risk: Untrusted text used as formatted HTML can alter draft content or rendering.
+
+Mitigation: Avoid using untrusted text as formatted HTML; encode inserted text using the documented character-code approach.
+
+Risk: The security summary identifies under-scoped draft, recipient, and body modification guidance.
+
+Mitigation: Treat draft and body changes as proposals until the user confirms the final draft state.
+
+## Reference(s):
+
+- [Tencent Exmail WebBridge Reference](REFERENCE.md)
+- [Tencent Exmail WebBridge README](README.md)
+- [ClawHub skill page](https://clawhub.ai/coolingrabbit/skills/tencent-exmail-webbridge)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Configuration]
+
+**Output Format:** [Markdown instructions with JavaScript and Python snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only skill; produces operating guidance for a logged-in Tencent Exmail browser session.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release metadata; artifact frontmatter and config list 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,15 @@
+{
+  "name": "english-memory-method",
+  "owner": {
+    "name": "yxdwind"
+  },
+  "plugins": [
+    {
+      "name": "english-memory-method",
+      "source": "./",
+      "description": "English passage memorization method: structure map + chained retelling (L1-L5) + spaced review + connected-speech marking. Give it an English article, get a full study plan.",
+      "version": "2.1.1",
+      "category": "learning"
+    }
+  ]
+}

@@ -1,41 +1,62 @@
-## Description: <br>
-Generates distillation tower CAD drawing workflows by guiding users through JXT mechanical platform product selection, parameter collection, calculation, production sheet creation, and progress monitoring. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Distillation helps users collect distillation-tower CAD parameters, calculate them through jixietools.com, and create a guest production sheet for generated drawing results.
 
-## Publisher: <br>
-[liv09370](https://clawhub.ai/user/liv09370) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liv09370](https://clawhub.ai/user/liv09370)
 
-## Use Case: <br>
-External users and engineers use this skill to create distillation tower CAD production requests through the JXT mechanical parts service. The skill collects design parameters, calls the external CAD service, and reports production sheet status and output links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends distillation tower design inputs to an external CAD service. <br>
-Mitigation: Use only with design data that can be shared with jixietools.com, and review the returned production sheet before relying on it. <br>
-Risk: The artifact contains a documented category mismatch: the base information says distillation tower category ID 33, while the product listing command uses category_id=8. <br>
-Mitigation: Confirm the product list and category ID match distillation towers before submitting parameters or creating a production sheet. <br>
+## Use Case:
 
+External users and engineers use this skill to generate distillation-tower CAD drawing workflows by selecting a product, entering parameters one at a time, reviewing calculated values, and creating a guest production sheet.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/liv09370/distillation) <br>
-- [JXT mechanical API base URL](https://jixietools.com/api/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, API calls, guidance] <br>
-**Output Format:** [Chinese conversational guidance with Markdown tables, JSON examples, and curl commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses external jixietools.com CAD endpoints, preserves calculation filenames for incremental updates, and polls guest production sheet status.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server evidence release.version; artifact frontmatter lists 1.0.0) <br>
+Risk: CAD and design parameters are sent to the external service jixietools.com.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Disclose this data sharing before use and avoid submitting sensitive or proprietary design details unless the user has approved that service.
+
+Risk: Generated results are returned through unauthenticated guest links.
+
+Mitigation: Warn users that generated links may expose result details and should be shared only with intended recipients.
+
+Risk: The security summary reports inconsistent product-category instructions that could send design details into the wrong workflow.
+
+Mitigation: Verify the selected product and category before submitting parameters; the publisher should align the category instructions before release.
+
+Risk: Shell interpolation examples can mishandle user-provided values.
+
+Mitigation: Prefer structured HTTP requests with JSON serialization and review command inputs before execution.
+
+## Reference(s):
+
+- [ClawHub Distillation skill page](https://clawhub.ai/liv09370/skills/distillation)
+- [Jixietools API base endpoint](https://jixietools.com/api/v1)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Chinese Markdown with parameter tables, curl command examples, JSON response summaries, status updates, and generated service links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include guest production-sheet links and output-file lists returned by jixietools.com after user confirmation.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

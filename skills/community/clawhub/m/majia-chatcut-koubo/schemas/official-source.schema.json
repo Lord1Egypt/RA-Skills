@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/maojiebc/majia-chatcut-koubo/schemas/official-source.schema.json",
+  "title": "Reviewed official ChatCut source snapshot",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["$schema", "repository", "commit", "observedAt", "hostedPluginVersion", "desktopConnectorVersion", "websiteVersions", "latestPublicChangelog", "hostedSkills", "reviewedFiles", "license", "sourceUse", "verificationScope", "liveToolsObserved", "mediaVerified"],
+  "properties": {
+    "$schema": {"const": "https://github.com/maojiebc/majia-chatcut-koubo/schemas/official-source.schema.json"},
+    "repository": {"const": "https://github.com/ChatCut-Inc/agent-plugin"},
+    "commit": {"type": "string", "pattern": "^[a-f0-9]{40}$"},
+    "observedAt": {"type": "string", "format": "date-time"},
+    "hostedPluginVersion": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"},
+    "desktopConnectorVersion": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"},
+    "websiteVersions": {"type": "object", "additionalProperties": false, "required": ["url", "desktop", "agentPlugin"], "properties": {"url": {"const": "https://chatcut.io/docs/releases"}, "desktop": {"type": "string"}, "agentPlugin": {"type": "string"}}},
+    "latestPublicChangelog": {"type": "object", "additionalProperties": false, "required": ["date", "url"], "properties": {"date": {"type": "string", "format": "date"}, "url": {"type": "string", "pattern": "^https://chatcut\\.io/docs/changelog/"}}},
+    "hostedSkills": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "pattern": "^[a-z][a-z0-9-]{0,79}$"}},
+    "reviewedFiles": {"type": "array", "minItems": 1, "items": {"type": "object", "additionalProperties": false, "required": ["path", "sha256"], "properties": {"path": {"type": "string", "pattern": "^(codex|chatcut-desktop-codex-plugin)/[a-zA-Z0-9._/-]+$"}, "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"}}}},
+    "license": {"const": "GPL-3.0-only"},
+    "sourceUse": {"type": "string", "minLength": 1},
+    "verificationScope": {"const": "official-source-review"},
+    "liveToolsObserved": {"const": false},
+    "mediaVerified": {"const": false}
+  }
+}

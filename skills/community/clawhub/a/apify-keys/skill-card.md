@@ -1,43 +1,62 @@
-## Description: <br>
-Rotating Apify API key manager that returns the least-recently-used active Apify key from the ColdCore database before Apify API calls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Rotating Apify API key manager that returns the least-recently-used active Apify key from the ColdCore database before Apify API calls that need available credits.
 
-## Publisher: <br>
-[aces1up](https://clawhub.ai/user/aces1up) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aces1up](https://clawhub.ai/user/aces1up)
 
-## Use Case: <br>
-Developers and automation agents use this skill to select an available Apify API key, check balances, list active keys, and pass credentials to Apify-dependent scripts or skills. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release can expose sensitive Apify key data through stdout, JSON output, or key listing commands. <br>
-Mitigation: Treat all outputs as credential material; avoid logging or sharing them and restrict key listing to trusted internal operators. <br>
-Risk: The artifact includes live-looking default database credentials and can mutate key usage records. <br>
-Mitigation: Install only in a trusted internal ColdCore/Apify environment, remove and rotate the hardcoded database password before broader use, and require explicit secret configuration. <br>
-Risk: The script installs missing Python dependencies at runtime. <br>
-Mitigation: Preinstall pinned dependencies in the execution environment before deployment. <br>
+## Use Case:
 
+Developers and automation agents use this skill to retrieve, rotate, list, and optionally balance-check Apify API keys backed by a ColdCore MySQL database before making Apify API calls.
 
-## Reference(s): <br>
-- [Apify Keys ClawHub release](https://clawhub.ai/aces1up/apify-keys) <br>
-- [Apify monthly usage API endpoint](https://api.apify.com/v2/users/me/usage/monthly) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, shell commands, configuration] <br>
-**Output Format:** [Plain text API key strings, JSON account records, or terminal tables from the local CLI script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads ColdCore database configuration from environment variables and treats emitted key data as sensitive credential material.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Embedded database credentials and exposed API keys can disclose or compromise owned accounts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Rotate exposed credentials, move secrets to environment variables or a secret manager, and install only in environments authorized for the ColdCore database and Apify accounts.
+
+Risk: List and JSON output can reveal API keys and account metadata to logs or unauthorized callers.
+
+Mitigation: Redact API keys in list output, restrict invocation to authorized agents or users, and avoid logging returned key material.
+
+Risk: Runtime package installation mutates the host Python environment.
+
+Mitigation: Preinstall dependencies in an isolated environment and remove runtime pip installation from the operational path.
+
+Risk: The key rotation flow writes usage state back to the database.
+
+Mitigation: Use least-privilege database credentials, verify the target database before deployment, and audit updates to key usage state.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aces1up/skills/apify-keys)
+- [Apify monthly usage API endpoint](https://api.apify.com/v2/users/me/usage/monthly)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Configuration guidance]
+
+**Output Format:** [Plain text API key or JSON object, with Markdown usage guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May expose secrets if installed or invoked without access controls.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

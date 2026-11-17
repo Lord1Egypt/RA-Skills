@@ -1,43 +1,57 @@
-## Description: <br>
-Extracts archive files and sorts their contents into user-selected directories based on filename keyword rules. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Sorts files from compressed archives into target folders by matching filenames against configurable keyword rules.
 
-## Publisher: <br>
-[zj-zc](https://clawhub.ai/user/zj-zc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zj-zc](https://clawhub.ai/user/zj-zc)
 
-## Use Case: <br>
-Developers, employees, and external users can use this skill to preview and execute archive extraction and file classification workflows. It helps organize files from zip, tar, 7z, and rar archives into configured destination folders using reusable keyword rules. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Rule-controlled target paths may move files outside the intended organization pattern or destination structure. <br>
-Mitigation: Review data/rules.json before execution and keep target directories to simple relative names under the chosen output folder. <br>
-Risk: Executing classification can move or overwrite files. <br>
-Mitigation: Run preview mode first, confirm the generated classification report, and avoid overwrite mode unless the destination has been reviewed. <br>
-Risk: Password-protected 7z/rar archives or optional archive-tool installs can add handling uncertainty. <br>
-Mitigation: Use caution with protected archives and only install or invoke optional archive tools when the source and archive contents are trusted. <br>
+## Use Case:
 
+External users and developers use this skill to preview and execute archive extraction workflows that classify files into output directories based on reusable filename rules.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zj-zc/compress-file-sorter) <br>
-- [Publisher profile](https://clawhub.ai/user/zj-zc) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports with shell commands and JSON rule configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May move or copy files after user confirmation; preview mode reports planned classifications without moving files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: Crafted archives or classification rules could write, move, or delete files outside the intended folder.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after review or fixes, use trusted archives and trusted classification rules, and require explicit confirmation before execute or overwrite behavior.
+
+Risk: The 7z/unrar command-line fallback may be inappropriate for sensitive or untrusted archives.
+
+Mitigation: Avoid the command-line fallback for sensitive or untrusted archives and prefer reviewed dependencies or trusted archive inputs.
+
+Risk: Passwords for protected archives may be exposed through process arguments.
+
+Mitigation: Do not use password-protected archives when process arguments may be visible.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zj-zc/skills/compress-file-sorter)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown reports with shell command examples and JSON rule configuration]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces preview reports before confirmed move operations; output depends on archive contents and configured classification rules.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

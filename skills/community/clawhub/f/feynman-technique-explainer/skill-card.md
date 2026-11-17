@@ -1,42 +1,54 @@
-## Description: <br>
-Explain any concept using the Feynman Technique, plain language, a real-world analogy, a concrete example, and a comprehension quiz. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Explain any concept using the Feynman Technique, plain language, a real-world analogy, a concrete example, and a comprehension quiz.
 
-## Publisher: <br>
-[arbazex](https://clawhub.ai/user/arbazex) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[arbazex](https://clawhub.ai/user/arbazex)
 
-## Use Case: <br>
-External learners, students, and general users use this skill to understand a single concept through plain language, an analogy, a concrete example, and a short comprehension quiz. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may oversimplify specialized, medical, legal, financial, or technical topics if used as the only source of guidance. <br>
-Mitigation: Use it as a teaching aid, narrow triggers where specialized skills exist, and require domain review for safety-critical decisions. <br>
-Risk: A broad or ambiguous topic can produce an explanation for the wrong concept. <br>
-Mitigation: Ask a clarifying question before explaining vague or multi-concept requests. <br>
+## Use Case:
 
+External users and learners use this skill to turn a single concept into a plain-language explanation, analogy, concrete example, and short comprehension quiz. It is best suited for foundational understanding rather than deep technical study or document summarization.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/arbazex/feynman-technique-explainer) <br>
-- [README](artifact/README.md) <br>
-- [Skill Definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown with labelled explanation sections and numbered quiz questions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces one structured explanation for one concept, then evaluates quiz answers after the user responds.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: ClawHub release evidence) <br>
+Risk: Broad activation phrases may cause generic explanation requests to use this simplified teaching format even when the user did not explicitly request the skill.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Enable it when Feynman-style explanations are desired by default, and review trigger behavior in the target agent before release.
+
+Risk: Plain-language simplification can omit technical depth that expert users may expect.
+
+Mitigation: Use it for foundational understanding, and route explicit expert-level, derivation, retrieval, or document-summary requests to a more suitable response mode.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/arbazex/skills/feynman-technique-explainer)
+- [Artifact README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with labelled explanation sections and a numbered comprehension quiz]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responses are intended to stay concise, use plain language, include one analogy limit statement, and withhold quiz answers until the user responds.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release metadata; artifact frontmatter reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

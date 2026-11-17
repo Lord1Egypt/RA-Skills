@@ -1,44 +1,55 @@
-## Description: <br>
-Possibly the cheapest AI image generation (~$0.0036/image). Text-to-image via the EvoLink API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Possibly the cheapest AI image generation (~$0.0036/image). Text-to-image via the EvoLink API.
 
-## Publisher: <br>
-[Pharmacist9527](https://clawhub.ai/user/Pharmacist9527) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[pharmacist9527](https://clawhub.ai/user/pharmacist9527)
 
-## Use Case: <br>
-External users and developers use this skill to generate images from text prompts through EvoLink z-image-turbo. Agents can run the Python script or documented shell fallbacks, then attach the saved local image file. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Prompts are sent to EvoLink and may include sensitive content if the user supplies it. <br>
-Mitigation: Do not include secrets, personal data, or confidential material in image prompts. <br>
-Risk: The EvoLink API key may consume paid credits when image generation requests are submitted. <br>
-Mitigation: Use the skill only with an EvoLink key whose spending and access are acceptable for the environment. <br>
-Risk: The curl fallback can mishandle prompts that contain quotes or control characters if they are not JSON-escaped. <br>
-Mitigation: Prefer the Python script or PowerShell fallback, or JSON-escape prompt text before using the curl heredoc example. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [EvoLink](https://evolink.ai) <br>
-- [ClawHub Skill Page](https://clawhub.ai/Pharmacist9527/cheapest-image) <br>
-- [PowerShell fallback](artifact/references/powershell.md) <br>
-- [curl + heredoc fallback](artifact/references/curl_heredoc.md) <br>
+## Use Case:
 
+External users and developers use this skill to generate low-cost images from text prompts through EvoLink, with Python as the primary path and PowerShell or curl fallbacks when Python is unavailable.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, code, configuration, guidance, image files] <br>
-**Output Format:** [Markdown guidance with command examples; scripts print MEDIA:<path> for the generated local image file.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires EVOLINK_API_KEY; supports prompt, size, optional seed, NSFW check, output path, and polling controls.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Image prompts and the API key are sent to EvoLink.
+
+Mitigation: Use non-sensitive prompts, protect EVOLINK_API_KEY, and review EvoLink terms and data handling before use.
+
+Risk: The skill downloads provider-returned result URLs without explicit destination or size limits.
+
+Mitigation: Run it in a controlled working directory, avoid privileged paths, and monitor downloaded file size and storage use.
+
+## Reference(s):
+
+- [EvoLink](https://evolink.ai)
+- [Cheapest Image ClawHub listing](https://clawhub.ai/pharmacist9527/skills/cheapest-image)
+- [PowerShell fallback](references/powershell.md)
+- [curl + heredoc fallback](references/curl_heredoc.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, files]
+
+**Output Format:** [Markdown guidance with Python, PowerShell, and curl command examples; execution emits MEDIA:<path> for a local generated image file.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires EVOLINK_API_KEY and writes generated image files locally.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

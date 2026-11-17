@@ -1,43 +1,58 @@
-## Description: <br>
-Turns a user's Google Local, nearby search, or place search request into a Dataify Scraper API form POST. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search Google Local for nearby businesses and local pack keyword-and-location results.
 
-## Publisher: <br>
-[dataify-server](https://clawhub.ai/user/dataify-server) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dataify-server](https://clawhub.ai/user/dataify-server)
 
-## Use Case: <br>
-External users and developers use this skill to prepare and run Dataify Google Local searches with a pre-call parameter preview and explicit confirmation before API execution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local search terms and possible location details are sent to Dataify/Google Local when the API call is approved. <br>
-Mitigation: Review the pre-call confirmation table carefully and avoid submitting sensitive personal locations or private search terms. <br>
-Risk: The skill requires a sensitive Dataify API token. <br>
-Mitigation: Use a dedicated Dataify API token where possible and avoid echoing credentials in conversation or logs. <br>
-Risk: Users who do not read Chinese may miss details in the confirmation prompt or generated table. <br>
-Mitigation: Review each field name, current value, default, and description before confirming the request. <br>
+## Use Case:
 
+Developers and external users use this skill to run Google Local keyword-and-location searches through Dataify and receive compact local business results. Raw JSON or HTML can be requested when the user needs the original response format.
 
-## Reference(s): <br>
-- [Dataify Google Local API](artifact/references/google_local_api.md) <br>
-- [ClawHub skill page](https://clawhub.ai/dataify-server/dataify-google-local) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance, API response] <br>
-**Output Format:** [Markdown parameter previews and raw API response bodies, typically JSON or HTML depending on the requested output mode.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Dataify API token and explicit user confirmation before live API calls.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: API tokens may be exposed if passed in chat, command arguments, logs, or previews.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use DATAIFY_API_TOKEN from the shell environment or a secret manager, and avoid the --token argument for normal use.
+
+Risk: Search queries and location fields are sent to Dataify.
+
+Mitigation: Avoid submitting sensitive data in search terms or locations unless that disclosure is approved for the workflow.
+
+Risk: The package accepts direct CID or Place ID lookup even though the advertised skill boundary excludes known Place ID and detailed map record use.
+
+Mitigation: Use the skill for keyword-and-location Google Local searches, and treat direct CID or Place ID lookup as out of scope until the package aligns its documentation and code.
+
+## Reference(s):
+
+- [Dataify Google Local API](references/google_local_api.md)
+- [Dataify Scraper API endpoint](https://scraperapi.dataify.com/request)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration guidance]
+
+**Output Format:** [Compact Markdown summaries by default, with optional raw JSON, HTML, or parameter preview tables.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Dataify API token; search query, location, and related Google Local parameters are sent to Dataify.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,59 @@
-## Description: <br>
-Deploy and serve LLM models on GPU. Compare GPU pricing. Launch vLLM on Modal, RunPod, Cerebrium, Cloud Run, Baseten, or Azure with spot instance fallback. OpenAI-compatible inference endpoint. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deploy and serve LLM models on GPU, compare GPU pricing, launch vLLM on Modal, RunPod, Cerebrium, Cloud Run, Baseten, or Azure with spot instance fallback, and create an OpenAI-compatible inference endpoint.
 
-## Publisher: <br>
-[choprahetarth](https://clawhub.ai/user/choprahetarth) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[choprahetarth](https://clawhub.ai/user/choprahetarth)
 
-## Use Case: <br>
-Developers and engineers use this skill to deploy, manage, check, and tear down GPU-backed LLM inference services across serverless and spot infrastructure. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create real cloud GPU infrastructure that may incur cost. <br>
-Mitigation: Use least-privilege provider credentials, confirm the target account, project, or subscription before deployment, and monitor budgets. <br>
-Risk: Deployments may expose public endpoints when public access is requested. <br>
-Mitigation: Avoid public endpoints unless authentication, rate limits, logging, and budget monitoring are in place. <br>
-Risk: Bulk teardown can remove active deployments. <br>
-Mitigation: Confirm any destroy-all request explicitly before running it. <br>
+## Use Case:
 
+Developers and engineers use this skill to deploy, inspect, manage, and tear down GPU-backed LLM inference services across serverless and spot cloud providers.
 
-## Reference(s): <br>
-- [ClawHub package page](https://clawhub.ai/choprahetarth/tandemn-tuna) <br>
-- [Project homepage](https://github.com/Tandemn-Labs/tandemn-tuna) <br>
-- [Support issues](https://github.com/Tandemn-Labs/tandemn-tuna/issues) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes provider setup steps, deployment commands, status and cost commands, and teardown guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.1 (source: frontmatter and server release metadata) <br>
+Risk: The skill can guide users toward cloud actions that create infrastructure costs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use least-privilege cloud credentials, monitor cloud costs, and validate provider configuration before deployment.
+
+Risk: The skill can propose commands that expose inference endpoints publicly.
+
+Mitigation: Avoid public endpoint options except for controlled testing and review access settings before deployment.
+
+Risk: The skill can propose destroy commands that remove deployments.
+
+Mitigation: Check current deployments with list or status commands before running destroy commands, especially commands targeting all deployments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/choprahetarth/skills/tandemn-tuna)
+- [Tandemn Tuna project homepage](https://github.com/Tandemn-Labs/tandemn-tuna)
+- [Tandemn Tuna support issues](https://github.com/Tandemn-Labs/tandemn-tuna/issues)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline shell commands and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose commands that create, expose, list, inspect, or destroy cloud GPU deployments.]
+
+## Skill Version(s):
+
+0.0.1 (source: SKILL.md frontmatter, clawhub.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

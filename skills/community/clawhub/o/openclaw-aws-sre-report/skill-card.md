@@ -1,42 +1,62 @@
-## Description: <br>
-AWS SRE health check with FinOps that queries CloudWatch, SQS DLQ, and Cost Explorer, generates a Bedrock-powered incident diagnosis, and sends a structured report to Telegram. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AWS SRE health check with FinOps that queries CloudWatch, SQS DLQ, and Cost Explorer, generates a Bedrock-powered incident diagnosis, and sends a structured report to Telegram.
 
-## Publisher: <br>
-[vieiradiego](https://clawhub.ai/user/vieiradiego) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vieiradiego](https://clawhub.ai/user/vieiradiego)
 
-## Use Case: <br>
-Developers and SRE teams use this skill to monitor AWS pipeline health, cost trends, SLO status, DLQ depth, and Lambda errors, then receive incident-oriented next actions through Telegram. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: AWS operational metrics, cost data, and incident context are sent to a configured Telegram chat. <br>
-Mitigation: Use a private Telegram destination, a dedicated bot token, and limit access to the chat where reports are delivered. <br>
-Risk: Incident diagnosis may include sampled DLQ message content sent to Bedrock for summarization. <br>
-Mitigation: Avoid placing secrets, PII, or customer payloads in DLQ messages that may be sampled. <br>
-Risk: The skill requires AWS permissions for CloudWatch, SQS, Cost Explorer, and Bedrock. <br>
-Mitigation: Grant least-privilege IAM permissions scoped to the monitored queues, Lambda functions, metrics, and model access needed for the deployment. <br>
+## Use Case:
 
+Developers and SRE teams use this skill to monitor an AWS pipeline, summarize operational health, report FinOps status, and produce incident follow-up actions for human operators.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/vieiradiego/openclaw-aws-sre-report) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Telegram MarkdownV2 report with structured incident context, findings, and AWS CLI next actions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports include AWS operational metrics, cost summaries, SLO calculations, and optional Bedrock-generated incident diagnosis.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: Raw DLQ message bodies can be included in Bedrock diagnosis input and Telegram reports.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only queues whose message bodies are approved for those destinations, or redact or disable DLQ samples before production use.
+
+Risk: The documented IAM policy includes broad resources for some AWS read and model-invocation actions.
+
+Mitigation: Deploy with least-privilege IAM scoped to the exact queues, Lambda functions, Cost Explorer needs, and Bedrock model used by the report.
+
+Risk: Generated incident CTAs may contain operational commands that are incomplete or inappropriate for the live incident.
+
+Mitigation: Treat CTAs as guidance and require operator review before running AWS CLI commands or redrive actions.
+
+Risk: Telegram bot credentials and chat destinations control where operational reports are sent.
+
+Mitigation: Store Telegram credentials securely and verify the chat destination before enabling scheduled reports.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/vieiradiego/skills/openclaw-aws-sre-report)
+- [OpenClaw](https://clawhub.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Telegram MarkdownV2 report, TypeScript report object, and incident CTAs with AWS CLI commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires AWS and Telegram configuration; Cost Explorer and Bedrock failures are handled with graceful fallbacks.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata; artifact frontmatter and package.json are 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

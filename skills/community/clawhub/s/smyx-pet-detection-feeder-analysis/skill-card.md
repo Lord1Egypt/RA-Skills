@@ -1,45 +1,59 @@
-## Description: <br>
-Uses computer vision to detect and recognize cats and dogs in smart-feeder or IPC camera media, including pet identity matching, enrollment, and history-report lookup. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Based on computer vision, automatically detects and recognizes cats and dogs appearing in the target area from the perspective of feeder/IPC cameras, and supports pet identity recognition and database entry, suitable for pet identification management in smart feeding scenarios.
 
-## Publisher: <br>
-[smyx-sunjinhui](https://clawhub.ai/user/smyx-sunjinhui) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[smyx-sunjinhui](https://clawhub.ai/user/smyx-sunjinhui)
 
-## Use Case: <br>
-External users and developers use this skill to analyze smart-feeder or IPC camera images, videos, or media URLs for pet detection, cat/dog classification, pet identity recognition, pet enrollment, and cloud history-report retrieval. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Media files, media URLs, and pet-analysis history queries may be sent to Lifeemergence/Open API services and associated with an automatically selected local identity. <br>
-Mitigation: Use only media and URLs that are appropriate to share with that backend, and avoid private camera URLs unless its retention and access practices are acceptable. <br>
-Risk: The skill silently creates or reuses a local user identity and may store tokens in the local workspace data directory or SQLite database. <br>
-Mitigation: Review and protect the local workspace data directory, and remove or rotate stored credentials when the skill is no longer needed. <br>
-Risk: Pet recognition results and feeding suggestions can be incorrect or incomplete. <br>
-Mitigation: Treat outputs as advisory and confirm important feeding, identity, or health-related decisions manually. <br>
+## Use Case:
 
+People operating smart feeders or fixed-view IPC cameras use the skill to detect cats and dogs in images or videos, identify and enroll individual pets, and review historical analysis reports.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/smyx-sunjinhui/skills/smyx-pet-detection-feeder-analysis) <br>
-- [API Reference](references/api_doc.md) <br>
-- [Shared Analysis API Reference](skills/smyx_analysis/references/api_doc.md) <br>
-- [Skill Demo](https://lifeemergence.com/sample.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, shell commands, guidance] <br>
-**Output Format:** [Markdown reports and tables with optional JSON result blocks and file output paths.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include report links and pet detection, enrollment, or history-query results derived from remote API responses.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release metadata; artifact frontmatter states 1.0.7) <br>
+Risk: Local media may be processed remotely.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm where media is sent and how it is retained before use; submit only media approved for that service.
+
+Risk: The security review reports possible account creation and credential handling.
+
+Mitigation: Review the account and authentication behavior before installation, and avoid supplying credentials until their handling is understood.
+
+Risk: The security review reports unexpected remote and file-system side effects and behavior that may exceed the described pet-identification purpose.
+
+Mitigation: Review the operations and access requested, and limit use to the intended task until the reported behavior is understood.
+
+## Reference(s):
+
+- [API reference](references/api_doc.md)
+- [Skill demonstration](https://lifeemergence.com/sample.html)
+- [ClawHub release page](https://clawhub.ai/smyx-sunjinhui/skills/smyx-pet-detection-feeder-analysis)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Markdown, Guidance]
+
+**Output Format:** [Text or JSON analysis reports; Markdown tables for historical reports, with report links when available]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes pet detection and identification results, enrollment results, recommendations, and historical report links when available.]
+
+## Skill Version(s):
+
+1.0.18 (source: server-resolved release metadata; artifact frontmatter lists 1.0.26)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

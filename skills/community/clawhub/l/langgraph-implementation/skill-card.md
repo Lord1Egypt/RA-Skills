@@ -1,43 +1,58 @@
-## Description: <br>
-Helps developers implement stateful LangGraph agent graphs, including nodes, edges, state schemas, checkpointing, interrupts, and multi-agent patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Implements stateful agent graphs using LangGraph. Use when building graphs, adding nodes/edges, defining state schemas, implementing checkpointing, handling interrupts, or creating multi-agent systems with LangGraph.
 
-## Publisher: <br>
-[anderskev](https://clawhub.ai/user/anderskev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[anderskev](https://clawhub.ai/user/anderskev)
 
-## Use Case: <br>
-Developers and engineers use this skill to design and validate LangGraph-based agent workflows with persistence, human-in-the-loop pauses, streaming, subgraphs, and multi-agent routing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Checkpointed LangGraph applications can persist conversation state or user messages longer than intended. <br>
-Mitigation: Define retention, storage, and access rules for checkpointed state before using these patterns in production. <br>
-Risk: Human-in-the-loop resume flows can execute with incomplete or incorrectly shaped resume payloads. <br>
-Mitigation: Inspect pending graph state and validate every field read after interrupt() before resuming execution. <br>
-Risk: Multi-agent or tool-enabled graphs may expose user messages to agents or tools that should not receive them. <br>
-Mitigation: Restrict which agents and tools receive user messages and review routing decisions before deployment. <br>
+## Use Case:
 
+Developers and engineers use this skill to design and implement LangGraph applications with state schemas, graph nodes and edges, checkpointing, streaming, human-in-the-loop interrupts, and multi-agent workflow patterns.
 
-## Reference(s): <br>
-- [Advanced LangGraph Patterns](artifact/PATTERNS.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/anderskev/langgraph-implementation) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Configuration] <br>
-**Output Format:** [Markdown with Python code blocks and implementation checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces documentation-only implementation patterns; no executable artifacts are included.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Generated LangGraph applications may store conversation state or intermediate data through checkpointing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review checkpoint configuration before deployment, use durable storage only where appropriate, and avoid in-memory checkpointing for production workflows.
+
+Risk: Examples involving external tools or action execution can expand the runtime authority of an agent application.
+
+Mitigation: Review generated tool calls, permissions, and action paths before execution, especially in workflows that can modify systems or data.
+
+Risk: Human-in-the-loop resume flows can fail or behave unexpectedly if pending state and resume payloads are incomplete.
+
+Mitigation: Inspect graph state before resuming and ensure the resume payload includes every field read after the interrupt.
+
+## Reference(s):
+
+- [Langgraph Implementation on ClawHub](https://clawhub.ai/anderskev/skills/langgraph-implementation)
+- [PATTERNS.md](artifact/PATTERNS.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python code examples and configuration notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces implementation patterns and validation checks; it does not install or execute code by itself.]
+
+## Skill Version(s):
+
+1.0.1 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

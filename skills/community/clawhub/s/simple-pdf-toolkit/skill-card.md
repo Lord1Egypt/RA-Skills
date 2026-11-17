@@ -1,41 +1,61 @@
-## Description: <br>
-PDF 工具箱 helps agents run local PDF merge, split, rotate, compress, and text extraction workflows using bundled command-line scripts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+PDF 工具箱 helps agents perform local PDF merging, splitting, rotation, compression, and text extraction with bundled Python scripts.
 
-## Publisher: <br>
-[changeworldy-cyber](https://clawhub.ai/user/changeworldy-cyber) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[changeworldy-cyber](https://clawhub.ai/user/changeworldy-cyber)
 
-## Use Case: <br>
-Developers, office users, and document-processing agents use this skill to prepare shell commands for common local PDF operations such as combining files, extracting selected pages, rotating pages, compressing output, and exporting text. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: PDF operations write new files and may overwrite outputs when filenames are reused. <br>
-Mitigation: Use explicit output filenames, keep backups of important PDFs, and review paths before running batch commands. <br>
-Risk: The release advertises conversion, watermark, and encryption helpers that are not present in the supplied artifact. <br>
-Mitigation: Treat missing helpers as unavailable or unreviewed unless they are supplied separately from a trusted source. <br>
+## Use Case:
 
+Developers, employees, and external users can use this skill to ask an agent to run local PDF file operations such as merging, splitting, rotating, compressing, and extracting text. It is best suited for non-confidential documents in environments where the Chinese-language interface and local file writes are acceptable.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/changeworldy-cyber/simple-pdf-toolkit) <br>
-- [Publisher profile](https://clawhub.ai/user/changeworldy-cyber) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Code, Guidance, Files, Text] <br>
-**Output Format:** [Markdown guidance with shell commands; bundled scripts return JSON status and may write PDF or text files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Local file-processing workflows depend on pypdf and optionally Ghostscript for stronger compression.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: PDF operations read and write local files, and output paths could overwrite important documents if chosen carelessly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use copies of important PDFs and choose explicit output paths that do not replace originals.
+
+Risk: Processing confidential documents in an untrusted environment can expose sensitive document contents.
+
+Mitigation: Avoid using the skill on confidential PDFs unless the runtime environment is trusted.
+
+Risk: The skill depends on pypdf and optionally Ghostscript for compression behavior.
+
+Mitigation: Install dependencies from trusted, pinned sources before use.
+
+Risk: Server security review notes some overstated or missing advertised features.
+
+Mitigation: Rely on the bundled scripts for supported operations: merge, split, rotate, compress, and text extraction.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/changeworldy-cyber/skills/simple-pdf-toolkit)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands; helper scripts emit JSON status and write PDF or text files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Local filesystem PDF operations require pypdf, with optional Ghostscript support for stronger compression.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

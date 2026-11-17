@@ -1,0 +1,4 @@
+interface:
+  display_name: "亚马逊用户画像分析 · 买家人群洞察"
+  short_description: "还原买家是谁：场景、动机与替代来源"
+  default_prompt: "使用 $amazon-user-persona 从评论提炼一个 Amazon ASIN 的用户画像。"

@@ -1,41 +1,55 @@
-## Description: <br>
-AI-optimized web search via Tavily API. Returns concise, relevant results for AI agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-optimized web search via Tavily API. Returns concise, relevant results for AI agents.
 
-## Publisher: <br>
-[williamwang-wh](https://clawhub.ai/user/williamwang-wh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[williamwang-wh](https://clawhub.ai/user/williamwang-wh)
 
-## Use Case: <br>
-Developers and agents use this skill to run Tavily-backed web searches, retrieve concise source summaries, and extract readable content from URLs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search queries and extraction URLs are sent to Tavily as a third-party provider. <br>
-Mitigation: Use a dedicated Tavily API key and avoid submitting secrets, private internal URLs, signed links, or sensitive personal data. <br>
-Risk: Extracted web content may be inaccurate, outdated, or otherwise untrusted. <br>
-Mitigation: Treat returned content as reference material and verify important claims before using them in decisions or generated outputs. <br>
+## Use Case:
 
+Developers and agents use this skill to run Tavily-powered web searches, retrieve concise source-backed results, and extract readable content from supplied URLs.
 
-## Reference(s): <br>
-- [Claw Tavily Search Pro on ClawHub](https://clawhub.ai/williamwang-wh/claw-tavily-search-pro) <br>
-- [Tavily](https://tavily.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands] <br>
-**Output Format:** [Markdown text with answers, source lists, and extracted URL content] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search result count is bounded from 1 to 20; use requires Node.js and TAVILY_API_KEY.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Search queries, requested URLs, and the Tavily API key are sent to Tavily's API when the skill is invoked.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when that data sharing is acceptable, manage TAVILY_API_KEY as a secret, and avoid submitting sensitive queries or URLs.
+
+Risk: Search and extraction results depend on Tavily API responses and may be incomplete or unsuitable for high-stakes decisions without review.
+
+Mitigation: Review returned sources and extracted content before relying on the output.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/williamwang-wh/skills/claw-tavily-search-pro)
+- [Publisher Profile](https://clawhub.ai/user/williamwang-wh)
+- [Tavily Homepage](https://tavily.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown]
+
+**Output Format:** [Markdown sections containing answers, sources, extracted content, and failed URL reports.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search result count is clamped to 1-20 and output depends on Tavily API responses.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

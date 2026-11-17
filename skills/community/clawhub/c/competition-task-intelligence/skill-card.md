@@ -1,40 +1,58 @@
-## Description: <br>
-Build and maintain a structured PDE equation registry, analyze competition tasks for difficulty, bottlenecks, and score projections, generate strategic recommendations for research focus, and expose this intelligence via CLI and MCP tools. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build and maintain a structured PDE equation registry, analyze competition tasks including difficulty, bottlenecks, and score projections, generate strategic recommendations for research focus, and expose this intelligence via CLI and MCP tools.
 
-## Publisher: <br>
-[diamond2nv](https://clawhub.ai/user/diamond2nv) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[diamond2nv](https://clawhub.ai/user/diamond2nv)
 
-## Use Case: <br>
-Developers and research engineers use this skill to maintain PDE equation metadata, inspect competition task difficulty and bottlenecks, estimate score potential, and choose experiment priorities. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill names an external expflow-pde Python package, so installation and execution depend on trusting that package. <br>
-Mitigation: Confirm the package source and publisher before installing or running generated commands. <br>
-Risk: Competition scores, task metadata, and hardcoded dates may become stale. <br>
-Mitigation: Verify scores, deadlines, and recommendations against the current competition state before using them for planning. <br>
+## Use Case:
 
+Developers and research engineers use this skill to inspect PDE competition tasks, compare equation-level metadata and scoring constraints, and plan which experiments or submissions to prioritize.
 
-## Reference(s): <br>
-- [Project homepage](https://github.com/diamond2nv/expflow) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands] <br>
-**Output Format:** [Markdown with inline shell and Python code snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes task analysis, score projections, strategy recommendations, and CLI/MCP usage guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.5.0 (source: server release metadata; artifact frontmatter says 1.0.0) <br>
+Risk: Unpinned tool execution can run an unexpected package version.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use pinned package versions when launching or installing the related CLI tools.
+
+Risk: MCP tools can expand what an agent is allowed to call.
+
+Mitigation: Review MCP tool definitions and only add trusted servers to the agent configuration.
+
+Risk: Experiment credentials or dataset paths could be exposed if stored in tracked files.
+
+Mitigation: Keep ClearML, Langfuse, and dataset credentials in local untracked environment or config files.
+
+## Reference(s):
+
+- [Expflow project homepage](https://github.com/diamond2nv/expflow)
+- [Competition Task Intelligence on ClawHub](https://clawhub.ai/diamond2nv/skills/competition-task-intelligence)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline code blocks and command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference local configuration files and MCP setup for agent integration.]
+
+## Skill Version(s):
+
+0.7.2 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

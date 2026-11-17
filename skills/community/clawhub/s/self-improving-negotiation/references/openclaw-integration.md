@@ -26,11 +26,13 @@ Repository:
 
 ## Install
 
+Prefer the registry install (network to ClawHub):
+
 ```bash
 clawdhub install self-improving-negotiation
 ```
 
-Manual:
+Manual clone is optional network access to GitHub. Use only if you trust that repository:
 
 ```bash
 git clone https://github.com/jose-compu/self-improving-negotiation.git ~/.openclaw/skills/self-improving-negotiation
@@ -38,9 +40,11 @@ git clone https://github.com/jose-compu/self-improving-negotiation.git ~/.opencl
 
 ## Optional Hook
 
+Do **not** copy hooks into `~/.openclaw/hooks/` (user-global). Keep them in this workspace:
+
 ```bash
-cp -r hooks/openclaw ~/.openclaw/hooks/self-improving-negotiation
-openclaw hooks enable self-improving-negotiation
+mkdir -p .openclaw/hooks
+cp -r hooks/openclaw .openclaw/hooks/self-improving-negotiation
 ```
 
 ## Promotion Targets
@@ -66,3 +70,5 @@ Promote recurring learnings to:
 ## Safety Note
 
 Skill and hooks are reminder-only and do not auto-accept terms or approvals.
+Do not log BATNA values, pricing floors, confidential terms, legal advice, or transcripts.
+`extract-skill.sh` is dry-run unless `--write` is passed after an explicit user request.

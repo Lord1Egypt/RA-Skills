@@ -1,43 +1,54 @@
-## Description: <br>
-Which of these addresses are smart money? Batch-profile a list in one call. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Which of these addresses are smart money? Batch-profile a list in one call.
 
-## Publisher: <br>
-[nansen-devops](https://clawhub.ai/user/nansen-devops) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nansen-devops](https://clawhub.ai/user/nansen-devops)
 
-## Use Case: <br>
-External users and analysts use this skill to batch-profile Ethereum wallet addresses with the Nansen CLI and identify addresses labeled as smart_money or fund. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a Nansen API key and submits wallet addresses for profiling. <br>
-Mitigation: Install and run it only when you trust the nansen-cli package and are comfortable sharing those wallet addresses with Nansen. <br>
-Risk: A broader nansen command could go beyond wallet label lookup. <br>
-Mitigation: Review any proposed nansen command before execution and keep usage scoped to the documented batch profiler workflow. <br>
-Risk: Invalid wallet addresses can produce per-result errors. <br>
-Mitigation: Check each result for an error field and skip errored addresses instead of treating them as successful classifications. <br>
+## Use Case:
 
+Developers and researchers can batch-profile selected blockchain wallet addresses with Nansen and identify addresses labeled as smart money or funds. The skill also explains authentication, per-address errors, and possible payment behavior.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nansen-devops/nansen-wallet-batch) <br>
-- [Publisher profile](https://clawhub.ai/user/nansen-devops) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, guidance, configuration] <br>
-**Output Format:** [Markdown with bash command examples and filtering guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses NANSEN_API_KEY and the nansen CLI; output may include wallet labels, balances, and per-address errors.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: release evidence) <br>
+Risk: Submitting selected wallet addresses to Nansen may reveal private research interests or associations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before running, consider whether you are comfortable sending each selected address to Nansen and whether the list could reveal private research interests or associations.
+
+Risk: A supported HTTP 402 challenge can spend funds from the configured wallet, and each call in a batch or loop can incur a payment.
+
+Mitigation: Review the configured wallet authorization, payment policy, and spending limits before running; account for possible charges on each call.
+
+## Reference(s):
+
+- [Nansen browser login platform scope](https://github.com/nansen-ai/nansen-cli/blob/main/docs/browser-login.md#preview-platform-scope)
+- [Nansen Wallet Batch on ClawHub](https://clawhub.ai/nansen-devops/skills/nansen-wallet-batch)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration instructions, Guidance, JSON]
+
+**Output Format:** [Markdown with shell commands and JSON response fields]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Batch address input; results may include per-address errors, and supported calls may incur a payment.]
+
+## Skill Version(s):
+
+0.1.4 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

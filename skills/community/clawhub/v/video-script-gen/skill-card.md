@@ -1,40 +1,52 @@
-## Description: <br>
-短视频口播脚本生成器。输入产品/话题，自动生成5分钟以内抖音/视频号口播脚本，包含开场钩子、叙事结构、话术技巧、BGM推荐和互动引导。适用场景：AI科普/印刷知识/产品介绍/行业干货。触发词：生成脚本/口播脚本/短视频文案/抖音脚本 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+短视频口播脚本生成器，可根据产品或话题生成5分钟以内的抖音/视频号脚本，包含开场钩子、叙事结构、话术技巧、BGM推荐和互动引导。
 
-## Publisher: <br>
-[tlcyqj2023](https://clawhub.ai/user/tlcyqj2023) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[tlcyqj2023](https://clawhub.ai/user/tlcyqj2023)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External creators, marketers, and business users use this skill to draft Chinese short-video voiceover scripts for Douyin, 视频号, and similar platforms. It is oriented toward knowledge sharing, product introductions, case studies, industry tips, publishing tags, and engagement prompts.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill defaults to Chinese short-video conventions for Douyin, 视频号, and similar platforms, which may be unsuitable for other languages or channels.
+
+Mitigation: Tell the agent the target language, platform, audience, and format whenever they differ from the default Chinese platform style.
+
+Risk: Generated scripts may include promotional framing, engagement prompts, or example claims that need review before publication.
+
+Mitigation: Review factual claims, product statements, hashtags, and calls to action before recording or publishing.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External creators, marketers, and business users use this skill to draft short-form spoken video scripts for Douyin, Video Accounts, and similar platforms. It turns a topic, product, audience, and duration into a concise recording-ready script with hooks, structure, BGM guidance, publishing tags, and interaction prompts. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Generated scripts may contain factual claims, urgency cues, or competitor tags that are inaccurate, deceptive, or unsuitable for publication. <br>
-Mitigation: Treat scripts as drafts; verify claims, remove misleading urgency, and review competitor or traffic-related tags before publishing. <br>
-Risk: Generated copy may conflict with platform, brand, or advertising rules. <br>
-Mitigation: Check the final script, captions, tags, and calls to action against platform policies and brand guidelines before use. <br>
+**Output Format:** [Markdown-style Chinese short-video script with structured sections]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tlcyqj2023/video-script-gen) <br>
+**Other Properties Related to Output:** [Includes topic metadata, shooting tips, opening hook, timed body segments, summary line, interaction prompt, CTA, BGM recommendation, hashtags, and pinned comment suggestion.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown-formatted short-video script with sections for shooting notes, spoken lines, BGM recommendations, tags, and pinned-comment guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generates marketing drafts for videos under five minutes; users should review factual claims, platform compliance, and brand suitability before publishing.] <br>
+1.0.0 (source: release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

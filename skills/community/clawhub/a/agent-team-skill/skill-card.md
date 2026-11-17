@@ -1,46 +1,58 @@
-## Description: <br>
-Manage AI agent team members with roles, skills, and task delegation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manages AI agent team members with roles, skills, leader assignment, expertise lookup, task delegation, and multi-agent workflow coordination.
 
-## Publisher: <br>
-[realqiyan](https://clawhub.ai/user/realqiyan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[realqiyan](https://clawhub.ai/user/realqiyan)
 
-## Use Case: <br>
-Developers and agent operators use this skill to maintain local team-member records, identify relevant expertise, set a single team leader, and support task delegation in OpenClaw-based multi-agent workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local team records may influence leader-agent behavior if they contain inaccurate, stale, or instruction-like content. <br>
-Mitigation: Keep ~/.agent-team/team.json factual and non-sensitive, and review team fields before enabling the OpenClaw plugin. <br>
-Risk: The reset command clears the skill's local team data file. <br>
-Mitigation: Back up or inspect the configured team data file before running reset, especially when using a custom data path. <br>
-Risk: Automatic context injection may continue after the user no longer wants team data applied. <br>
-Mitigation: Disable the plugin or reset the team file when team context should no longer guide the agent. <br>
+## Use Case:
 
+Developers and agent operators use this skill to maintain a shared roster of AI agents, designate a leader, and route tasks based on roles, expertise, and availability.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/realqiyan/agent-team-skill) <br>
-- [Project Homepage](https://github.com/realqiyan/agent-team-skill) <br>
-- [OpenClaw Plugin Installation Guide](https://github.com/realqiyan/agent-team-skill/blob/master/integrations/openclaw/agent-team/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [README.md](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown, JSON-backed local state, and shell command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and OpenClaw plugin installation; stores team data in a local JSON file by default.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.9 (source: server release metadata) <br>
+Risk: Persistent team data and workflow rules can influence leader-agent behavior across sessions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when this behavior is intended, keep ~/.agent-team/team.json writable only by trusted users, and review team fields before use.
+
+Risk: Team fields may contain instructions or sensitive content that affect agent behavior.
+
+Mitigation: Avoid storing instructions or secrets in team fields, and disable load_workflow when workflow injection is not needed.
+
+Risk: Resetting team data can remove shared team configuration.
+
+Mitigation: Back up team data before using reset, or use a custom data-file path for isolated testing.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/realqiyan/skills/agent-team-skill)
+- [Plugin Installation Guide](https://github.com/realqiyan/agent-team-skill/blob/master/integrations/openclaw/agent-team/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and plain text CLI output with inline shell commands and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reads and writes team data in JSON at ~/.agent-team/team.json by default; supports a custom data-file path.]
+
+## Skill Version(s):
+
+2.1.9 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

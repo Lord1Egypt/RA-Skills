@@ -1,46 +1,59 @@
-## Description: <br>
-Provides quantitative football and 2026 World Cup analysis using Elo ratings, Dixon-Coles Poisson scoring, Monte Carlo simulation, web-sourced calibration, and optional odds-data integration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Chinese-language quantitative football and World Cup 2026 analysis using Elo ratings, Dixon-Coles Poisson scoring, Monte Carlo simulation, searchable live calibration, and optional odds APIs.
 
-## Publisher: <br>
-[luciuszhao0101-dot](https://clawhub.ai/user/luciuszhao0101-dot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[luciuszhao0101-dot](https://clawhub.ai/user/luciuszhao0101-dot)
 
-## Use Case: <br>
-Football analysts, developers, and agent users use this skill to generate match predictions, score probabilities, group or knockout advancement estimates, upset analysis, odds-value checks, and calibration workflows for World Cup and other football matches. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Incorrect match results, injury reports, lineup information, or odds can alter local calibration files and affect future predictions. <br>
-Mitigation: Review sourced calibration inputs before running calibration or updating local model data, and skip unavailable facts rather than filling gaps. <br>
-Risk: The skill can optionally use odds and football-data API credentials. <br>
-Mitigation: Provide only the needed environment variables, keep credentials out of prompts and logs, and rotate keys if exposure is suspected. <br>
-Risk: Odds-value analysis may be mistaken for betting advice. <br>
-Mitigation: Present outputs as statistical analysis, preserve the no-betting-advice disclaimer, and highlight model uncertainty when model and market probabilities diverge. <br>
+## Use Case:
 
+External users and developers use this skill to generate football match forecasts, score-probability summaries, group or knockout advancement estimates, upset analysis, odds-value checks, and calibration notes. It is framed as an analytics aid and not as betting advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/luciuszhao0101-dot/worldcup-2026-analysis) <br>
-- [Publisher profile](https://clawhub.ai/user/luciuszhao0101-dot) <br>
-- [The Odds API](https://the-odds-api.com) <br>
-- [football-data.org](https://www.football-data.org) <br>
-- [football-data.org API registration](https://www.football-data.org/client/register) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown analysis with JSON inputs, Python command examples, and structured probability outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should cite calibration sources, show data cutoff time, and include the skill's stated warning that statistical analysis is not betting advice.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.1 (source: server release metadata and skill frontmatter) <br>
+Risk: Optional API credentials may be exposed through request URLs or local process/cache handling.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use scoped, revocable API keys; avoid logging generated URLs; rotate keys if command output or cache data is shared.
+
+Risk: Calibration commands can modify local Elo ratings, team statistics, schedule data, and calibration logs.
+
+Mitigation: Review source data before calibration, keep generated backups, and compare changed files before relying on updated predictions.
+
+Risk: The skill can over-trigger on broad football or odds-analysis prompts and produce probabilistic outputs that may be mistaken for betting advice.
+
+Mitigation: Use it only for football analytics workflows, require source-backed live facts, and preserve the non-betting-advice disclaimer in user-facing outputs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/luciuszhao0101-dot/skills/worldcup-2026-analysis)
+- [The Odds API](https://the-odds-api.com)
+- [football-data.org](https://www.football-data.org)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown analysis with probability tables, score summaries, cited calibration notes, and optional command snippets.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should include data cutoff time, source notes for live facts, and a reminder that results are statistical analysis rather than betting advice.]
+
+## Skill Version(s):
+
+2.1.1 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

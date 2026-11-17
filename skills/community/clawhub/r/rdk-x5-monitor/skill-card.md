@@ -1,40 +1,48 @@
-## Description: <br>
-Checks real-time RDK X5 hardware status, including CPU usage and frequency, BPU utilization, memory, disk, temperature, GPU frequency, and network IP address. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Rdk X5 Monitor provides read-only RDK X5 hardware status checks for CPU, BPU, memory, disk, temperature, GPU frequency, and network IP information.
 
-## Publisher: <br>
-[katherineedwards2475](https://clawhub.ai/user/katherineedwards2475) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[katherineedwards2475](https://clawhub.ai/user/katherineedwards2475)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and device operators use this skill to check live RDK X5 CPU, BPU, memory, disk, thermal, GPU, and network status, and to receive bounded troubleshooting guidance for common resource issues.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Troubleshooting guidance can terminate processes or run a privileged cleanup command, which may exceed strict read-only monitoring expectations.
+
+Mitigation: Require explicit user confirmation and target review before running kill or sudo apt clean; use the normal status commands for read-only monitoring.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use this skill to inspect current RDK X5 device health and resource status without changing system settings. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Shell commands, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Troubleshooting guidance includes commands that can change system state, such as killing a process or clearing the package cache. <br>
-Mitigation: Run those commands only after reviewing the target process or cache action and confirming that the user explicitly wants the change. <br>
-Risk: Hardware status commands are platform-specific and may fail or return incomplete data outside an RDK X5 environment. <br>
-Mitigation: Use the skill only on RDK X5 systems or verify equivalent device paths before relying on the output. <br>
+**Output Format:** [Markdown with bash command blocks]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/katherineedwards2475/rdk-x5-monitor) <br>
+**Other Properties Related to Output:** [Includes RDK X5 Linux status commands and concise troubleshooting notes.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill primarily proposes read-only status commands for RDK X5 monitoring.] <br>
+1.0.0 (source: release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

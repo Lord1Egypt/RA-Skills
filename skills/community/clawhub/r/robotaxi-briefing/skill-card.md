@@ -1,48 +1,67 @@
-## Description: <br>
-Track autonomous driving and Robotaxi sector intelligence with Pony.ai, Waymo, Tesla Robotaxi, and Baidu Apollo as core targets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Track autonomous driving and Robotaxi sector intelligence with Pony.ai, Waymo, Tesla Robotaxi, and Baidu Apollo as core targets.
 
-## Publisher: <br>
-[yangzhe1991](https://clawhub.ai/user/yangzhe1991) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yangzhe1991](https://clawhub.ai/user/yangzhe1991)
 
-## Use Case: <br>
-External users and analysts use this skill to generate twice-daily Chinese-language briefings on robotaxi and autonomous-driving sector developments, with source URLs, delta extraction against recent reports, and competitive context. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Report history older than 24 hours may be deleted from OpenClaw memory by the skill's cleanup step. <br>
-Mitigation: Keep separate copies of reports when long-term audit, comparison, or compliance history is required. <br>
-Risk: Briefing quality depends on public news, RSS, Reddit, and web-search availability during the reporting window. <br>
-Mitigation: Use the skill's source status reporting and fallback channels, and treat source outages or empty fetches as coverage limitations. <br>
-Risk: Robotaxi, market, regulatory, and financial claims can mislead readers if sources are stale, redirected, or weak. <br>
-Mitigation: Require resolved final URLs and cross-verification for financial data, stock-price context, permits, and other high-impact claims. <br>
+## Use Case:
 
+Employees and external analysts use this skill to produce twice-daily incremental briefings on autonomous driving and robotaxi market developments. It focuses on fresh public-source reporting, prior-report delta comparison, source URL resolution, and competitive context.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yangzhe1991/robotaxi-briefing) <br>
-- [TechCrunch RSS feed](https://techcrunch.com/feed/) <br>
-- [The Verge RSS feed](https://www.theverge.com/rss/index.xml) <br>
-- [Wired RSS feed](https://www.wired.com/feed/rss) <br>
-- [Ars Technica RSS feed](https://arstechnica.com/feed/) <br>
-- [Reuters technology feed](https://www.reutersagency.com/feed/?taxonomy=best-sectors&post_type=best&best-sectors=tech) <br>
-- [Reddit SelfDrivingCars feed](https://www.reddit.com/r/SelfDrivingCars/new.json?limit=15) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Analysis, Shell commands, Files] <br>
-**Output Format:** [Chinese-language Markdown briefing with bare source URLs and a saved local report file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Briefings are constrained to a 24-hour news window, compare against saved reports from the previous 24 hours, and avoid long tables for Feishu readability.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-6.0.1 (source: server release evidence) <br>
+Risk: Briefings depend on public web, RSS, Reddit, and social-search sources that can be incomplete, stale, or misleading.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require 24-hour freshness, resolved source URLs, source status reporting, and cross-verification for financial, licensing, permit, and safety-sensitive claims.
+
+Risk: The workflow writes report files and removes old matching robotaxi report files in the OpenClaw memory directory.
+
+Mitigation: Review the configured memory path and cleanup pattern before deployment, especially in shared or restricted environments.
+
+Risk: The skill includes shell examples for direct public-source fetching and URL resolution.
+
+Mitigation: Review shell execution policy before installation and follow the skill's single-command URL-resolution guidance in environments that restrict shell access.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yangzhe1991/skills/robotaxi-briefing)
+- [Publisher profile](https://clawhub.ai/user/yangzhe1991)
+- [TechCrunch RSS feed](https://techcrunch.com/feed/)
+- [The Verge RSS feed](https://www.theverge.com/rss/index.xml)
+- [Wired RSS feed](https://www.wired.com/feed/rss)
+- [Ars Technica RSS feed](https://arstechnica.com/feed/)
+- [Reuters technology feed](https://www.reutersagency.com/feed/?taxonomy=best-sectors&post_type=best&best-sectors=tech)
+- [SelfDrivingCars Reddit feed](https://www.reddit.com/r/SelfDrivingCars/new.json?limit=15)
+- [Reuters autos and transportation](https://www.reuters.com/technology/autos-transportation/)
+- [36Kr robotaxi search](https://36kr.com/search/articles/robotaxi)
+- [CLS robotaxi search](https://www.cls.cn/searchPage?keyword=robotaxi)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Chinese Markdown briefing with bare source URLs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes 24-hour delta comparison, source status reporting, resolved final-domain URLs, and scoped local report retention guidance.]
+
+## Skill Version(s):
+
+6.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

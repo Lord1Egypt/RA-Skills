@@ -1,0 +1,26 @@
+{
+  "schema": "v1",
+  "name": "ghl-integration",
+  "displayName": "GoHighLevel (GHL) CRM v2 & Lead Automation Engine",
+  "version": "1.2.0",
+  "description": "Full GoHighLevel CRM v2 automation: contacts, opportunity pipelines, unanswered lead triage, workflow triggers, and real-time webhook lead ingestion.",
+  "author": "Rafa Martins <rafacpti@gmail.com>",
+  "category": "productivity",
+  "tags": [
+    "ghl",
+    "gohighlevel",
+    "crm",
+    "lead-generation",
+    "pipeline",
+    "kanban",
+    "omnichannel",
+    "habilis"
+  ],
+  "entrypoint": "SKILL.md",
+  "platforms": [
+    "linux",
+    "darwin",
+    "windows"
+  ],
+  "homepage": "https://xvix.com.br"
+}

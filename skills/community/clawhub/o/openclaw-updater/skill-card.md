@@ -1,42 +1,60 @@
-## Description: <br>
-Safely update OpenClaw with pre-flight checks, workspace snapshots, config backups, notification support, rollback, and post-update verification. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Safely update OpenClaw with pre-flight checks and rollback support.
 
-## Publisher: <br>
-[bigsan](https://clawhub.ai/user/bigsan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[bigsan](https://clawhub.ai/user/bigsan)
 
-## Use Case: <br>
-Developers and OpenClaw operators use this skill to prepare for OpenClaw updates, run update commands with notification support, verify the result, and roll back when an update fails. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill's scripts change local OpenClaw and workspace state, including git commits, config backups, package updates, gateway restarts, and optional rollback installs. <br>
-Mitigation: Run the update script with --dry-run first, review workspace contents before allowing automatic git add or commit, and verify rollback versions and backup contents before restoring or running npm install -g. <br>
-Risk: Telegram notification setup uses a bot token and chat ID stored in or sourced from the local OpenClaw directory. <br>
-Mitigation: Store the Telegram token file with restrictive permissions or skip the notification wrapper when notification credentials are not needed. <br>
-Risk: The optional BACKUP_SCRIPT environment variable can execute an additional local script during pre-flight checks. <br>
-Mitigation: Set BACKUP_SCRIPT only to a trusted executable script that has been reviewed for the current environment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [OpenClaw Updater on ClawHub](https://clawhub.ai/bigsan/openclaw-updater) <br>
-- [Telegram Bot API sendMessage endpoint](https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage) <br>
+## Use Case:
 
+Developers and operators use this skill to update OpenClaw, run pre-flight checks, preserve workspace and configuration state, verify the gateway after an update, and recover by rolling back to a previous version when needed.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with bash command examples and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces update, dry-run, notification, verification, and rollback instructions for local OpenClaw maintenance.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.6.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Maintenance scripts make broad local changes to OpenClaw workspaces, configuration, the gateway, and the globally installed package.
+
+Mitigation: Review the scripts before use, run the dry-run path first, and confirm workspace snapshots and configuration backups before updating or rolling back.
+
+Risk: Rollback state and configuration backups are stored under /tmp, which can be unsafe if the state is stale or untrusted.
+
+Mitigation: Inspect rollback state before use and prefer moving update state to a private, user-owned directory.
+
+Risk: Telegram notification settings are sourced as shell code and include bot credentials.
+
+Mitigation: Keep the Telegram environment file private, do not source untrusted files, and use a narrowly scoped bot token.
+
+Risk: Rollback installs a version with npm install -g based on recorded state.
+
+Mitigation: Validate the recorded OpenClaw version before rollback and confirm global package changes are acceptable for the host.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bigsan/skills/openclaw-updater)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes operational guidance for pre-update checks, Telegram notification setup, post-update verification, and rollback.]
+
+## Skill Version(s):
+
+1.6.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

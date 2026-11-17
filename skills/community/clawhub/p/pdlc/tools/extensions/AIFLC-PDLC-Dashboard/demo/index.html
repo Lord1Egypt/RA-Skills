@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AIFLC Dashboard — PDLC Family</title>
+<link rel="stylesheet" href="styles.css?v=52">
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <span class="topbar-title">AIFLC : AI-* PDLC Family</span>
+  <span class="badge" id="overall-badge">0%</span>
+  <button class="theme-toggle" onclick="toggleTheme()">☀/🌙</button>
+</div>
+
+<!-- MAIN PANELS -->
+<div class="main">
+  <!-- LEFT PANEL -->
+  <div class="panel-left" id="panel-left">
+    <div class="tabs" id="left-tabs">
+      <div class="tab active" data-tab="portfolio">Portfolio</div>
+      <div class="tab" data-tab="ideas">Ideas</div>
+      <div class="tab" data-tab="stats-left">Stats</div>
+    </div>
+    <div class="tab-content active" id="tc-portfolio"></div>
+    <div class="tab-content" id="tc-ideas"></div>
+    <div class="tab-content" id="tc-stats-left"></div>
+  </div>
+
+  <!-- TOGGLE BUTTON (between panels in DOM) -->
+  <div class="panel-toggle" id="panel-toggle" onclick="toggleLeftPanel()">&lt;</div>
+
+  <!-- RIGHT PANEL -->
+  <div class="panel-right">
+    <h2 id="right-header" style="color:var(--text-heading);margin-bottom:12px;font-size:16px;">Select a project</h2>
+    <div class="tabs" id="right-tabs">
+      <div class="tab active" data-tab="pm">PM</div>
+      <div class="tab" data-tab="po" style="display:none;">PO</div>
+      <div class="tab" data-tab="architect" style="display:none;">Architect</div>
+      <div class="tab" data-tab="ux" style="display:none;">UX</div>
+      <div class="tab" data-tab="chain">Chain</div>
+      <div class="tab" data-tab="mgmt">MF</div>
+      <div class="tab" data-tab="stats-right">Stats</div>
+    </div>
+    <div class="tab-content active" id="tc-pm"></div>
+    <div class="tab-content" id="tc-po"></div>
+    <div class="tab-content" id="tc-architect"></div>
+    <div class="tab-content" id="tc-ux"></div>
+    <div class="tab-content" id="tc-chain">
+      <div id="chain-container"><div class="mermaid" id="chain-mermaid"></div></div>
+    </div>
+    <div class="tab-content" id="tc-mgmt"></div>
+    <div class="tab-content" id="tc-stats-right"></div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer"><span>AIFLC PDLC Dashboard v0.1.0 · AI-* PDLC Family</span><span id="footer-date"></span><span>Built on AIFLC by <a href="https://www.linkedin.com/in/mohammad-maheri-8399565b" target="_blank" style="color:var(--color-accent);text-decoration:none;">Mohammad Maheri</a></span></div>
+
+<!-- MERMAID CDN -->
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+
+<!-- DATA: Embedded inline for file:// mode. In VS Code mode, extension overrides D. -->
+<script id="dashboard-data">
+var D = {"generated":null,"projects":[],"ideas":[],"ppm":{"totalProjects":0,"dispatched":0,"pending":0,"strategicFit":0,"topPriority":""},"health":{"totalBlockers":0,"stalledProjects":0,"overallProgress":0}};
+</script>
+
+<!-- DASHBOARD LOGIC -->
+<script src="dashboard.js?v=52"></script>
+</body>
+</html>

@@ -1,43 +1,58 @@
-## Description: <br>
-Search and send GIF reactions on any messaging platform (Telegram, WhatsApp, Discord, Signal, etc). Auto-detects your enabled channels. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search and send GIF reactions on any messaging platform (Telegram, WhatsApp, Discord, Signal, etc). Auto-detects your enabled channels.
 
-## Publisher: <br>
-[chdlc](https://clawhub.ai/user/chdlc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chdlc](https://clawhub.ai/user/chdlc)
 
-## Use Case: <br>
-Users and agents use this skill to find reaction GIFs, convert them for the active messaging channel, and send the resulting media in conversations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: GIF search queries are sent to Giphy and the skill requires a GIPHY_API_KEY credential. <br>
-Mitigation: Configure the API key deliberately and avoid using sensitive or private terms as GIF search queries. <br>
-Risk: In natural mode, the agent may send GIF media spontaneously in conversations. <br>
-Mitigation: Use on_request mode when GIFs should only be sent after an explicit user request. <br>
-Risk: Generated media is stored locally for a short period and channel or mode preferences persist in the skill configuration. <br>
-Mitigation: Review local storage expectations before deployment and rely on the skill's cleanup behavior for generated media after use. <br>
+## Use Case:
 
+External users and developers use this skill to search Giphy, convert GIF reactions for the active messaging channel, and send them through supported chat platforms.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/chdlc/gif-multi) <br>
-- [Giphy Developers](https://developers.giphy.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON status objects with media file paths, plus Markdown and shell snippets for setup guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates GIF or MP4 media files in .gif_cache and stores channel and mode preferences in config.json.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.2 (source: frontmatter and server release metadata) <br>
+Risk: GIF search terms are sent to Giphy.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sending sensitive or private conversation content as GIF search queries.
+
+Risk: Natural mode allows the skill to send GIFs without an explicit user request.
+
+Mitigation: Set the mode to `on_request` when explicit user confirmation is required before sending media.
+
+Risk: Security evidence flags under-scoped message-sending and cleanup behavior that can affect local files or unsafe shell cleanup if channel names are attacker-influenced.
+
+Mitigation: Use trusted channel identifiers, keep cache cleanup constrained, and review cleanup behavior before deployment.
+
+## Reference(s):
+
+- [Giphy Developers](https://developers.giphy.com)
+- [GIF Multi on ClawHub](https://clawhub.ai/chdlc/skills/gif-multi)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON output from the helper script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The helper script returns JSON that can include a generated media path, selected channel, format, query, warnings, errors, or setup help.]
+
+## Skill Version(s):
+
+1.1.2 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

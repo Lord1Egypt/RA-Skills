@@ -1,143 +1,143 @@
 # Accommodation — Spain
 
-## Tipos
+## Types
 
-| Tipo | Precio/noche | Para quién |
+| Type | Price/night | For whom |
 |------|--------------|------------|
-| Hostel | €15-35 | Mochileros, solos |
-| Pensión | €30-60 | Budget, básico |
-| Hotel 3★ | €60-120 | Estándar |
-| Hotel 4★ | €100-200 | Cómodo |
-| Hotel 5★ | €200-500+ | Lujo |
-| Apartamento | €60-150 | Familias, grupos |
-| Parador | €100-250 | Experiencia única |
+| Hostel | €15-35 | Backpackers, solo travelers |
+| Pensión (guesthouse) | €30-60 | Budget, basic |
+| Hotel 3★ | €60-120 | Standard |
+| Hotel 4★ | €100-200 | Comfortable |
+| Hotel 5★ | €200-500+ | Luxury |
+| Apartment | €60-150 | Families, groups |
+| Parador | €100-250 | Unique experience |
 
-## Dónde Alojarse por Ciudad
+## Where to Stay by City
 
 ### Madrid
 
-| Zona | Tipo | Pros | Contras |
+| Area | Type | Pros | Cons |
 |------|------|------|---------|
-| Sol/Centro | Turístico | Todo cerca | Ruidoso, caro |
-| La Latina | Castizo | Tapas, ambiente | Ruidoso fines de semana |
-| Malasaña | Hipster | Vida nocturna | Ruidoso |
-| Chueca | LGBTQ+ | Animado | Ruidoso |
-| Salamanca | Pijo | Tranquilo, tiendas | Caro, lejos centro |
-| Chamberí | Local | Auténtico | Menos turístico |
-| Lavapiés | Multicultural | Barato | Zona mixta |
+| Sol/Centro | Touristy | Everything nearby | Noisy, expensive |
+| La Latina | Traditional (castizo) | Tapas, atmosphere | Noisy on weekends |
+| Malasaña | Hipster | Nightlife | Noisy |
+| Chueca | LGBTQ+ | Lively | Noisy |
+| Salamanca | Posh | Quiet, shops | Expensive, far from center |
+| Chamberí | Local | Authentic | Less touristy |
+| Lavapiés | Multicultural | Cheap | Mixed area |
 
-**Recomendación:** Malasaña o Chueca para vida nocturna. Chamberí para tranquilidad.
+**Recommendation:** Malasaña or Chueca for nightlife. Chamberí for quiet.
 
 ### Barcelona
 
-| Zona | Tipo | Pros | Contras |
+| Area | Type | Pros | Cons |
 |------|------|------|---------|
-| Gótico | Casco antiguo | Ambiente | Carteristas, ruidoso |
-| Born | Trendy | Restaurantes | Caro |
-| Raval | Alternativo | Barato | Zonas cuestionables |
-| Eixample | Modernismo | Céntrico | Menos carácter |
-| Gràcia | Local | Auténtico | Algo lejos playas |
-| Barceloneta | Playa | Mar cerca | Turístico, ruidoso |
-| Poble Sec | Tapas | Buena comida | Algo lejos |
+| Gothic Quarter | Old town | Atmosphere | Pickpockets, noisy |
+| Born | Trendy | Restaurants | Expensive |
+| Raval | Alternative | Cheap | Sketchy pockets |
+| Eixample | Modernisme | Central | Less character |
+| Gràcia | Local | Authentic | A bit far from beaches |
+| Barceloneta | Beach | Sea nearby | Touristy, noisy |
+| Poble Sec | Tapas | Good food | A bit far |
 
-**Recomendación:** Gràcia para local. Born si quieres gastar. Eixample para equilibrio.
+**Recommendation:** Gràcia for local. Born if you want to splurge. Eixample for balance.
 
-### Sevilla
+### Seville
 
-| Zona | Tipo | Pros | Contras |
+| Area | Type | Pros | Cons |
 |------|------|------|---------|
-| Santa Cruz | Turístico | Bonito | Muy turístico, caro |
-| Centro | Catedral | Todo a mano | Caro |
-| Triana | Auténtico | Flamenco, local | Cruzar puente |
-| Alameda | Alternativo | Vida nocturna | Algo alejado |
-| Macarena | Local | Barato | Menos interés turístico |
+| Santa Cruz | Touristy | Beautiful | Very touristy, expensive |
+| Centro | Cathedral | Everything at hand | Expensive |
+| Triana | Authentic | Flamenco, local | Across the river |
+| Alameda | Alternative | Nightlife | A bit out of the way |
+| Macarena | Local | Cheap | Less tourist appeal |
 
-**Recomendación:** Triana para autenticidad. Centro si primera vez.
+**Recommendation:** Triana for authenticity. Centro if it's your first time.
 
 ## Paradores
 
-Hoteles en edificios históricos (castillos, monasterios, palacios).
+Hotels in historic buildings (castles, monasteries, palaces).
 
-| Parador | Dónde | Edificio | Precio |
+| Parador | Where | Building | Price |
 |---------|-------|----------|--------|
-| Granada | Alhambra | Convento dentro Alhambra | €250-400 |
+| Granada | Alhambra | Convent inside the Alhambra | €250-400 |
 | Santiago | Santiago | Hostal Reyes Católicos | €150-250 |
-| León | León | Convento San Marcos | €120-200 |
-| Carmona | Sevilla | Alcázar árabe | €100-180 |
-| Hondarribia | País Vasco | Castillo siglo X | €120-200 |
-| Cardona | Barcelona | Castillo medieval | €100-180 |
-| Chinchón | Madrid | Convento agustino | €100-160 |
+| León | León | Convent of San Marcos | €120-200 |
+| Carmona | Seville | Moorish alcázar | €100-180 |
+| Hondarribia | Basque Country | 10th-century castle | €120-200 |
+| Cardona | Barcelona | Medieval castle | €100-180 |
+| Chinchón | Madrid | Augustinian convent | €100-160 |
 
-**Reservar:** parador.es — ofertas especiales frecuentes.
+**Book:** parador.es — frequent special offers.
 
-## Hostels Buenos
+## Good Hostels
 
-| Ciudad | Hostel | Nota |
+| City | Hostel | Note |
 |--------|--------|------|
-| Madrid | The Hat | Terraza, centro |
+| Madrid | The Hat | Rooftop, central |
 | Madrid | Way Hostel | Social, Gran Vía |
-| Barcelona | Sant Jordi | Varios, fiesteros |
-| Barcelona | Casa Gracia | Diseño, terraza |
-| Sevilla | The Nomad | Piscina |
-| Granada | Oasis | Mochileros mítico |
+| Barcelona | Sant Jordi | Several locations, party vibe |
+| Barcelona | Casa Gracia | Design, rooftop |
+| Seville | The Nomad | Pool |
+| Granada | Oasis | Legendary backpacker spot |
 
-## Apartamentos vs Hotel
+## Apartments vs Hotel
 
-**Elige apartamento si:**
-- Familia con niños
-- Estancia +4 noches
-- Quieres cocinar
-- Grupo de amigos
+**Choose an apartment if:**
+- Family with kids
+- Stay of 4+ nights
+- You want to cook
+- Group of friends
 
-**Elige hotel si:**
-- Viaje corto
-- Quieres desayuno
-- Prefieres servicio
-- No quieres complicaciones
+**Choose a hotel if:**
+- Short trip
+- You want breakfast
+- You prefer service
+- You don't want any hassle
 
-**Plataformas:** Booking, Airbnb (regulado/prohibido en algunas ciudades), Vrbo.
+**Platforms:** Booking, Airbnb (regulated/banned in some cities), Vrbo.
 
-## Temporadas y Precios
+## Seasons and Prices
 
-| Época | Nivel precios | Nota |
+| Season | Price level | Note |
 |-------|---------------|------|
-| Semana Santa | Muy alto | Sevilla x4 |
-| Julio-agosto costa | Alto | Reservar meses antes |
-| Agosto Madrid/Sevilla | Bajo | Ciudades vacías |
-| Puentes (festivos) | Alto | Españoles viajan |
-| Navidad | Alto | Ciudades grandes |
-| Enero-febrero | Bajo | Excepto San Sebastián |
-| Septiembre | Medio-alto | Buen momento |
+| Holy Week (Semana Santa) | Very high | Seville x3-4 |
+| July-August coast | High | Book months ahead |
+| August Madrid/Seville | Low | Cities are empty |
+| Long weekends (puentes) | High | Spaniards travel |
+| Christmas | High | Big cities |
+| January-February | Low | Except San Sebastián |
+| September | Medium-high | Good time |
 
-## Zonas a Evitar
+## Areas to Avoid
 
-| Ciudad | Evitar | Por qué |
+| City | Avoid | Why |
 |--------|--------|---------|
-| Madrid | Junto estaciones (Atocha, Chamartín) | Sin encanto, inseguro noche |
-| Barcelona | Raval sur (cerca puerto) | Problemático noche |
-| Barcelona | Junto Sagrada Família | Solo turistas, sin vida |
-| Sevilla | Muy lejos centro | Ciudad para caminar |
+| Madrid | Right by the stations (Atocha, Chamartín) | No charm, unsafe at night |
+| Barcelona | Southern Raval (near the port) | Problematic at night |
+| Barcelona | Right by the Sagrada Família | Tourists only, no local life |
+| Seville | Too far from the center | It's a walking city |
 
-## Tips de Reserva
+## Booking Tips
 
-1. **Booking:** Cancelación gratis frecuente
-2. **Directo hotel:** A veces más barato
-3. **Genius/fidelidad:** Descuentos reales
-4. **Desayuno:** A menudo no incluido y caro (€10-20). Desayuna fuera.
-5. **Apartamentos centro histórico:** Check normativa, algunos ilegales = problemas
-6. **Agosto:** Madrid y Sevilla tienen ofertas por vacío
-7. **Check-in:** Muchos hoteles 14-15h. Negociar early check-in.
-8. **Maletas:** Muchos apartamentos no tienen ascensor en edificios antiguos
+1. **Booking:** Free cancellation is common
+2. **Direct with the hotel:** Sometimes cheaper
+3. **Genius/loyalty:** Real discounts
+4. **Breakfast:** Often not included and expensive (€10-20). Eat out.
+5. **Historic-center apartments:** Check the regulations, some are illegal = trouble
+6. **August:** Madrid and Seville have deals because they empty out
+7. **Check-in:** Many hotels 2-3pm. Negotiate early check-in.
+8. **Luggage:** Many apartments in old buildings have no elevator
 
-## Presupuesto por Ciudad (por noche, habitación doble)
+## Budget by City (per night, double room)
 
-| Ciudad | Budget | Medio | Alto |
+| City | Budget | Mid | High |
 |--------|--------|-------|------|
 | Madrid | €60-80 | €100-150 | €200+ |
 | Barcelona | €70-100 | €120-180 | €250+ |
-| Sevilla | €50-80 | €90-140 | €180+ |
+| Seville | €50-80 | €90-140 | €180+ |
 | San Sebastián | €80-120 | €150-220 | €300+ |
 | Granada | €40-70 | €80-120 | €150+ |
 | Valencia | €50-80 | €90-130 | €170+ |
 | Bilbao | €60-90 | €100-150 | €200+ |
-| Mallorca (verano) | €100-150 | €180-280 | €400+ |
+| Mallorca (summer) | €100-150 | €180-280 | €400+ |

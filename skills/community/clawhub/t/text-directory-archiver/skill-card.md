@@ -1,40 +1,49 @@
-## Description: <br>
-Package directory structures into a single plain text file, or restore directory structures from text files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Package directory structures into a single plain text file, or restore directory structures from text files.
 
-## Publisher: <br>
-[turinfohlen](https://clawhub.ai/user/turinfohlen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[turinfohlen](https://clawhub.ai/user/turinfohlen)
 
-## Use Case: <br>
-Developers and agent users use this skill to serialize project directories into portable text archives, restore those archives, and exchange multi-file project snapshots in environments where direct file transfer is inconvenient. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Unpacking archives from untrusted text can write or remove local files and create symlinks. <br>
-Mitigation: Use only trusted archives, unpack into a new empty temporary directory, and inspect the manifest before running the unpack command. <br>
-Risk: Archive manifests may contain unsafe destinations such as absolute paths, parent-directory path segments, symlinks, executable files, or unexpected targets. <br>
-Mitigation: Reject archives with absolute paths, '..' path segments, symlinks, executable files, or destinations outside the intended temporary directory, and review restored code before execution. <br>
+## Use Case:
 
+Developers and AI agent users use this skill to serialize project directories into portable plain text archives and restore those archives in another environment or conversation.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/turinfohlen/text-directory-archiver) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with protocol examples and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The bundled Python script can produce or consume plain text archive files representing directories, text files, base64-encoded binary files, and symlink records.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: A crafted archive can write files or create symlinks outside the chosen output folder during unpacking.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted archives, unpack into a disposable empty directory, and avoid elevated privileges until path traversal and symlink containment checks are added.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/turinfohlen/skills/text-directory-archiver)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with protocol examples and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce or consume plain text archive files containing JSON metadata, text blocks, Base64 blocks, directory entries, and symlink declarations.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

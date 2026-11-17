@@ -1,45 +1,62 @@
-## Description: <br>
-输入研究主题，自动采集 Reddit 讨论，提炼爆款角度，产出 X 推文、小红书笔记、公众号文章三平台成品。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+输入研究主题，自动采集 Reddit 讨论，提炼爆款角度，产出 X 推文、小红书笔记、公众号文章三平台成品。
 
-## Publisher: <br>
-[Wbule](https://clawhub.ai/user/Wbule) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[wbule](https://clawhub.ai/user/wbule)
 
-## Use Case: <br>
-Content creators, marketers, researchers, and developers use this skill to research public Reddit discussions for a topic, identify content angles, and generate draft content for X, Xiaohongshu, and WeChat. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill makes outbound requests to Reddit and may use Reddit API credentials from the local environment. <br>
-Mitigation: Use only approved Reddit API credentials and review network access expectations before running the collection steps. <br>
-Risk: The workflow stores Reddit-derived data and generated drafts under runs/<slug>. <br>
-Mitigation: Avoid sensitive private research topics unless local storage of collected material and drafts is acceptable. <br>
-Risk: Generated social and article drafts may contain inaccurate or misleading interpretations of Reddit discussions. <br>
-Mitigation: Review generated content and source tables before publishing or reusing the drafts. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Wbule/reddit-topic-insight) <br>
-- [10 article types](reference/article-types.md) <br>
-- [X tweet template](reference/x-tweet-template.md) <br>
-- [Xiaohongshu note template](reference/xiaohongshu-template.md) <br>
-- [WeChat article template](reference/wechat-template.md) <br>
+## Use Case:
 
+Content creators, marketers, and research-focused agents use this skill to turn Reddit discussions on a topic into Chinese-language content angles and finished drafts for X, Xiaohongshu, and WeChat.
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Files, Shell commands, Configuration] <br>
-**Output Format:** [Markdown reports and JSON intermediate files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local run artifacts under runs/<slug>, including Reddit post data, angle plans, per-angle drafts, and a merged content.md report.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Reddit posts and comments can influence generated drafts, including through misleading, biased, or adversarial source content.
+
+Mitigation: Review generated content and source attributions before publishing or reusing the drafts.
+
+Risk: The workflow contacts Reddit and may use optional Reddit API credentials from environment variables.
+
+Mitigation: Install and run it only when Reddit network access is expected, and keep Reddit credentials in environment variables rather than generated files.
+
+Risk: The skill depends on Python package installation for requests.
+
+Mitigation: Use a pinned virtual environment for dependencies before running the collection scripts.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wbule/skills/reddit-topic-insight)
+- [10 article types](reference/article-types.md)
+- [X tweet template](reference/x-tweet-template.md)
+- [Xiaohongshu note template](reference/xiaohongshu-template.md)
+- [WeChat article template](reference/wechat-template.md)
+- [Reddit search JSON endpoint](https://www.reddit.com/search.json)
+- [Reddit OAuth token endpoint](https://www.reddit.com/api/v1/access_token)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and JSON files with inline shell commands and configuration notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates local run artifacts under runs/<slug>/, including keywords.json, posts_raw.json, posts_detail.json, angles.json, piece Markdown files, and merged content.md.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

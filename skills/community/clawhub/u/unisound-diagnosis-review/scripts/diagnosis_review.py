@@ -104,7 +104,7 @@ def load_guideline_api_settings_from_env() -> GuidelineApiSettings:
     )
 
 DEFAULT_LLM_BASE = "https://maas-api.hivoice.cn/v1"
-DEFAULT_LLM_MODEL = "u1-insuremed"
+DEFAULT_LLM_MODEL = "u2-med"
 
 
 def build_internal_llm_settings(

@@ -1,46 +1,64 @@
-## Description: <br>
-Turn job descriptions and PDF resumes into structured hiring decisions, interview questions, and Feishu/DingTalk-friendly output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Turn job descriptions and PDF resumes into structured hiring decisions, interview questions, and Feishu/DingTalk-friendly output.
 
-## Publisher: <br>
-[qinjobs](https://clawhub.ai/user/qinjobs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qinjobs](https://clawhub.ai/user/qinjobs)
 
-## Use Case: <br>
-Recruiters, hiring managers, and recruiting operations teams use this skill to turn a single-role job description into a repeatable screening scorecard, then score PDF or text resumes against that scorecard. It supports first-pass review, interview-question generation, and Feishu/DingTalk-friendly sharing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Resumes and job descriptions may contain personal or confidential recruiting data. <br>
-Mitigation: Use the skill only when authorized to process the provided recruiting materials, and share candidate details in Feishu, DingTalk, or other tools only when that sharing is approved. <br>
-Risk: Scorecards and resume scores can be incomplete or misleading if the JD is vague, the resume text is missing, or the PDF is image-only. <br>
-Mitigation: Review outputs before making hiring decisions, calibrate thresholds with real screening results, and return needs_ocr rather than guessing when PDF text cannot be extracted. <br>
-Risk: Automated screening can overstate fit when evidence is inferred beyond the supplied JD, resume, or scorecard. <br>
-Mitigation: Keep scoring tied to explicit evidence, use null or empty values for missing information, and treat the result as first-pass support for a human recruiter or hiring manager. <br>
+## Use Case:
 
+Recruiters, hiring managers, and recruiting operations teams use this skill to convert a single-role JD into a repeatable screening scorecard, generate interview questions, and score PDF or pasted-text resumes against that scorecard.
 
-## Reference(s): <br>
-- [Quickstart](artifact/references/quickstart.md) <br>
-- [FAQ](artifact/references/faq.md) <br>
-- [Limitations](artifact/references/limitations.md) <br>
-- [ClawHub skill page](https://clawhub.ai/qinjobs/hrclaw-jd-scorecard) <br>
-- [Publisher profile](https://clawhub.ai/user/qinjobs) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [JSON objects for scorecards and resume scores, with optional Markdown or chat-ready Markdown views] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are evidence-grounded screening artifacts; image-only PDFs should return needs_ocr instead of guessed content.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release evidence) <br>
+Risk: Resume scoring can expose personal data from resumes and packaged examples.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only resumes the user is authorized to process, redact names, employers, and resume excerpts before sharing results, and replace candidate-like examples with fully synthetic data.
+
+Risk: Implicit handling of attached PDFs can process sensitive resume content before the user has supplied a scorecard or confirmed intent.
+
+Mitigation: Ask for a JD or scorecard before scoring a resume, avoid implicit processing of attachments, and stop with needs_scorecard or needs_ocr when required inputs are missing.
+
+Risk: Automated scorecards and scores may be treated as final hiring decisions or may overstate evidence from vague JDs and resumes.
+
+Mitigation: Use outputs as a first-pass screening aid, rely only on explicit JD and resume evidence, add assumptions instead of guessing, and have recruiters or hiring managers review thresholds and decisions.
+
+## Reference(s):
+
+- [Quickstart](references/quickstart.md)
+- [FAQ](references/faq.md)
+- [Limitations](references/limitations.md)
+- [JD to scorecard prompt](prompts/jd-to-scorecard.md)
+- [Resume scoring prompt](prompts/resume-score.md)
+- [Interview questions prompt](prompts/interview-questions.md)
+- [Scorecard JSON template](templates/scorecard.json)
+- [Resume score JSON template](templates/resume-score.json)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Markdown, Guidance]
+
+**Output Format:** [JSON objects with optional Markdown scorecard, resume-score, and team-chat views]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns scorecard JSON first for JD analysis and resume scoring JSON first for resumes; uses needs_ocr when an image-only PDF has no extractable text.]
+
+## Skill Version(s):
+
+0.1.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

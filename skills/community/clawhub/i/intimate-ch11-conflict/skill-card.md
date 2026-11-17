@@ -1,46 +1,60 @@
-## Description: <br>
-在对话中辅助学习《Intimate Relationships》第 6 版第 11 章“冲突”，按需解释核心概念、研究证据、教材例子和场景应用。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese study aid that helps users learn and apply Chapter 11, "Conflict," from Rowland S. Miller's Intimate Relationships, 6th edition.
 
-## Publisher: <br>
-[junwugit](https://clawhub.ai/user/junwugit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[junwugit](https://clawhub.ai/user/junwugit)
 
-## Use Case: <br>
-External learners and educators use this skill to study, review, and apply chapter 11 conflict concepts from Rowland S. Miller's Intimate Relationships. It supports concise Chinese explanations, terminology review, model mapping, research lookup, and textbook-grounded discussion of relationship-conflict scenarios. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat textbook study output as professional relationship, crisis, legal, or safety advice. <br>
-Mitigation: Keep responses framed as educational support and direct users describing danger, threats, control, or violence to local emergency resources and trusted people. <br>
-Risk: The skill contains textbook-derived notes that may not fit every classroom or copyright-use context. <br>
-Mitigation: Installers should review the included notes and references against their intended educational use before deployment. <br>
+## Use Case:
 
+External learners, students, and instructors use this skill for concise Chinese tutoring on interpersonal conflict concepts, models, research findings, and application examples from a specific textbook chapter. It supports study and discussion, not therapy, crisis intervention, legal advice, or safety planning.
 
-## Reference(s): <br>
-- [Applications and Common Misunderstandings](references/applications.md) <br>
-- [Conflict Sources and Frequency](references/conflict-sources.md) <br>
-- [Escalation, Demand/Withdraw, and Health](references/escalation-and-health.md) <br>
-- [Textbook Example Anchors](references/examples.md) <br>
-- [Key Terms](references/key-terms.md) <br>
-- [Theories and Models](references/models.md) <br>
-- [Research, Years, and Textbook Data](references/research.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Analysis, Markdown, Text] <br>
-**Output Format:** [Markdown or plain text in conversational Chinese, with English terms introduced where useful] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Provides study support only; does not produce executable code or professional counseling, crisis, legal, or safety advice.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Users may treat relationship-conflict study guidance as therapy, crisis support, legal advice, or a safety plan.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Frame responses as textbook learning support and direct users describing immediate danger, threats, sustained control, or violence to local emergency resources and trusted people.
+
+Risk: The skill is narrowly scoped to one textbook chapter and primarily Chinese-language materials.
+
+Mitigation: State the chapter and language scope when relevant, avoid extending claims beyond the supplied chapter material, and ask users to request another language when needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/junwugit/skills/intimate-ch11-conflict)
+- [Applications and common misunderstandings](artifact/references/applications.md)
+- [Conflict sources and frequency](artifact/references/conflict-sources.md)
+- [Escalation, demand/withdraw, and health](artifact/references/escalation-and-health.md)
+- [Textbook example anchors](artifact/references/examples.md)
+- [Key terms](artifact/references/key-terms.md)
+- [Theories and models](artifact/references/models.md)
+- [Research, years, and textbook data](artifact/references/research.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Chinese conversational Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses progressive disclosure, textbook-grounded examples, and chapter-scoped reference material; produces no code, shell commands, configuration, or files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

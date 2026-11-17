@@ -1,43 +1,62 @@
-## Description: <br>
-Email Address Validation Single helps agents validate one email address through AgentPMT-hosted remote calls, checking syntax, DNS/MX records, SMTP mailbox status, disposable or role-based addresses, spam traps, and typo suggestions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Email Address Validation - Single verifies one email address for syntax, DNS/MX reachability, SMTP mailbox status without sending mail, and signals such as disposable, role-based, spam-trap, catch-all, or unknown results.
 
-## Publisher: <br>
-[agentpmt](https://clawhub.ai/user/agentpmt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[agentpmt](https://clawhub.ai/user/agentpmt)
 
-## Use Case: <br>
-External agents and developers use this skill to validate individual email addresses before signups, contact imports, marketing sends, CRM updates, lead qualification, or checkout workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Email addresses are sent to AgentPMT for validation, and each validation may consume account credits. <br>
-Mitigation: Configure agents to use the skill only when the user clearly requests email validation or an established workflow requires it. <br>
-Risk: Broad trigger terms could cause unintended validation requests if an agent routes too aggressively. <br>
-Mitigation: Restrict activation to explicit single-address validation tasks and review routing behavior before deployment. <br>
+## Use Case:
 
+External developers and agents use this skill to validate a single submitted email address before signup, checkout, CRM updates, lead qualification, or email sending workflows.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/agentpmt/skills/email-address-validation-single) <br>
-- [AgentPMT Marketplace Product](https://www.agentpmt.com/marketplace/email-address-validation-single) <br>
-- [What AgentPMT Is](https://clawhub.ai/agentpmt/what-is-agentpmt) <br>
-- [AgentPMT Account MCP/REST Setup](https://clawhub.ai/agentpmt/agentpmt-account-mcp-rest-api-setup) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, API Calls, Configuration instructions] <br>
-**Output Format:** [Markdown instructions with JSON call examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill guides agents to submit a single email address and optional validation settings, then handle JSON validation results from AgentPMT.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: Checked email addresses are sent to an AgentPMT-hosted service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user consent before validating third-party or customer email addresses and avoid submitting sensitive addresses unless that data sharing is acceptable.
+
+Risk: Each verification consumes account credits.
+
+Mitigation: Confirm the user intends to spend a verification credit before calling the remote validation action.
+
+Risk: The skill includes broad activation, setup, reinstall, and update guidance.
+
+Mitigation: Use pinned or ClawHub-managed installation paths and review setup or update instructions before execution.
+
+## Reference(s):
+
+- [Email Address Validation - Single marketplace page](https://www.agentpmt.com/marketplace/email-address-validation-single)
+- [ClawHub skill page](https://clawhub.ai/agentpmt/skills/email-address-validation-single)
+- [Email Address Validation - Single schema](artifact/schema.md)
+- [AgentPMT account MCP/REST setup](https://clawhub.ai/agentpmt/agentpmt-account-mcp-rest-api-setup)
+- [AgentPMT MCP server](https://api.agentpmt.com/mcp/)
+- [AgentPMT REST invoke endpoint](https://api.agentpmt.com/products/purchase)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, configuration, shell commands, API calls, JSON]
+
+**Output Format:** [Markdown instructions with JSON request and response examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill guides a single remote email verification action and may return status flags, suggested corrections, execution timing, address metadata, and account credit information.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

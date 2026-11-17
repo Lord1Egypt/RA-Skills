@@ -1,44 +1,58 @@
-## Description: <br>
-Use medical cv resume builder for academic writing workflows that need structured execution, explicit assumptions, and clear output boundaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates structured medical CVs and resumes for medical professionals using provided education, experience, and CV type inputs.
 
-## Publisher: <br>
-[aipoch-ai](https://clawhub.ai/user/aipoch-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aipoch-ai](https://clawhub.ai/user/aipoch-ai)
 
-## Use Case: <br>
-External users and agents use this skill to structure medical CVs or resumes from provided education and experience details. It emphasizes explicit assumptions, bounded scope, reproducible output, and fallback handling when inputs are incomplete. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Security evidence flags unresolved scope-boundary issues and overbroad activation language. <br>
-Mitigation: Use only for medical CV or resume structuring, refuse out-of-scope academic writing or medical advice requests, and confirm missing required inputs before generation. <br>
-Risk: Artifact audit evidence records a stress-case scope-control failure and weak boundary handling. <br>
-Mitigation: Require education and experience inputs, state assumptions explicitly, and stop rather than widening the task when the request lacks critical context. <br>
-Risk: Packaged execution examples and fallback behavior may need review before deployment. <br>
-Mitigation: Run the documented compile and script checks in a sandboxed workspace and review generated outputs before sharing them. <br>
+## Use Case:
 
+Medical professionals, academic medicine applicants, and supporting agents use this skill to draft US-style CV or resume sections from education and experience inputs. It is best suited for formatting and organization, with human review required for accuracy, credentials, citations, and local requirements.
 
-## Reference(s): <br>
-- [Medical CV/Resume Builder - References](references/guidelines.md) <br>
-- [ClawHub skill page](https://clawhub.ai/aipoch-ai/medical-cv-resume-builder) <br>
-- [Publisher profile](https://clawhub.ai/user/aipoch-ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, JSON, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance and JSON containing cv_markdown, sections, and type fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces structured CV or resume content from education, experience, and optional type inputs; final outputs should call out assumptions, risks, and unresolved items when relevant.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Generated CV or resume content may be incomplete, inaccurate, or mismatched to institution-specific and locale-specific expectations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review all generated sections against the source materials, medical credentials, citation needs, and applicable local or institutional requirements before use.
+
+Risk: The packaged implementation is basic and does not validate credentials, citations, or professional claims.
+
+Mitigation: Use the skill for formatting and organization only; require a qualified human reviewer to confirm facts and professional suitability.
+
+Risk: Broad workflow wording could lead an agent beyond CV and resume formatting tasks.
+
+Mitigation: Keep use within documented medical CV/resume formatting scope and stop when required inputs or source evidence are missing.
+
+## Reference(s):
+
+- [Medical CV/Resume Builder References](references/guidelines.md)
+- [ClawHub Skill Page](https://clawhub.ai/aipoch-ai/skills/medical-cv-resume-builder)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, json, guidance]
+
+**Output Format:** [JSON containing generated CV markdown and section metadata]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No additional Python packages are required; output should be reviewed for accuracy and locale fit.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

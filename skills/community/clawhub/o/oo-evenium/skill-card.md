@@ -1,44 +1,55 @@
-## Description: <br>
-Evenium (corp.evenium.com). Use this skill for Evenium requests that read, create, or update event and guest data through an OOMOL-connected account. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search and read Evenium event and guest data through a connected account.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and operators use this skill to let an agent inspect Evenium action schemas, list or retrieve events and guests, and perform confirmed status-changing guest actions through the oo CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can use a connected Evenium account and therefore depends on sensitive account credentials managed by OOMOL. <br>
-Mitigation: Install and use it only for accounts the agent is allowed to access, and verify the OOMOL connection flow from trusted sources before first-time setup. <br>
-Risk: Some Evenium actions can change guest status or other event data. <br>
-Mitigation: Inspect the live action schema and confirm the exact payload and expected effect with the user before running any write or destructive action. <br>
+## Use Case:
 
+Users with an OOMOL-connected Evenium account can search events and read event, guest, RSVP, and attendance information.
 
-## Reference(s): <br>
-- [ClawHub Evenium Skill](https://clawhub.ai/oomol/oo-evenium) <br>
-- [OOMOL Publisher Profile](https://clawhub.ai/user/oomol) <br>
-- [Evenium Homepage](https://corp.evenium.com) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [oo CLI Install Guide](https://cli.oomol.com/install-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API Calls, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON payloads or responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses server-side OOMOL credential injection and requires confirmation before write or destructive actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and release evidence) <br>
+Risk: CLI setup can execute downloaded code, and the exact installed release is unverified.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and approve CLI installation separately, use a verified release, and consider disabling automatic skill synchronization.
+
+Risk: The connected account may expose attendee information through OOMOL.
+
+Mitigation: Connect only an appropriate Evenium account and consider which attendee information it can access.
+
+## Reference(s):
+
+- [Evenium](https://corp.evenium.com)
+- [Evenium Organizer API documentation](https://static.evenium.com/api-docs/organizer/index-json.html)
+- [oo CLI](https://github.com/oomol-lab/oo-cli)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON]
+
+**Output Format:** [JSON data and natural-language summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only event and guest information]
+
+## Skill Version(s):
+
+1.0.6 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

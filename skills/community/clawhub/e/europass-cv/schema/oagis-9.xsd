@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  OAGIS 9 elements as used by the Europass Candidate document (namespace http://www.openapplications.org/oagis/9).
+  Subset observed in real exports, not the OAGIS schema. See docs/format.md.
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://www.openapplications.org/oagis/9"
+           elementFormDefault="qualified">
+
+  <xs:element name="GivenName" type="xs:string"/>
+  <xs:element name="URI" type="xs:string">
+    <xs:annotation><xs:documentation>E-mail address for ChannelCode Email; absolute URL for Web and Social Media.</xs:documentation></xs:annotation>
+  </xs:element>
+  <xs:element name="DialNumber" type="xs:string"/>
+  <xs:element name="AddressLine" type="xs:string"/>
+  <xs:element name="CityName" type="xs:string"/>
+  <xs:element name="PostalCode" type="xs:string"/>
+  <xs:element name="Description" type="xs:string">
+    <xs:annotation><xs:documentation>Main activities of a position. HTML stored escaped inside the text node.</xs:documentation></xs:annotation>
+  </xs:element>
+  <xs:element name="EmbeddedData" type="xs:string">
+    <xs:annotation><xs:documentation>Base64 of a data: URI (itself base64), used for the profile picture.</xs:documentation></xs:annotation>
+  </xs:element>
+  <xs:element name="FileType" type="xs:string">
+    <xs:annotation><xs:documentation>"photo" for the profile picture.</xs:documentation></xs:annotation>
+  </xs:element>
+</xs:schema>

@@ -1,42 +1,55 @@
-## Description: <br>
-Perform a dual-mode deep reading of any academic paper provided as a PDF attachment or URL. Use this skill when the user requests analysis, close reading, interpretation, or summarization of a scholarly paper. Produce two reports in a single pass: Part A is a rigorous in-depth academic analysis for researchers; Part B distills the core logic and essential value for rapid comprehension. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Performs dual-mode deep reading of academic papers from PDF attachments or URLs, producing both an in-depth academic analysis and a concise logic-focused distillation.
 
-## Publisher: <br>
-[sterlingfrank1](https://clawhub.ai/user/sterlingfrank1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sterlingfrank1](https://clawhub.ai/user/sterlingfrank1)
 
-## Use Case: <br>
-Researchers, students, and analysts use this skill to turn a supplied scholarly paper into a rigorous academic analysis and a concise explanation of the paper's core logic and value. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The agent reads the full contents of supplied papers, which may include unpublished, confidential, or sensitive manuscripts. <br>
-Mitigation: Use the skill only in an environment approved for the paper's sensitivity and avoid providing manuscripts the agent is not allowed to process. <br>
-Risk: The workflow briefly creates workspace notes while synthesizing the final report. <br>
-Mitigation: Confirm temporary analysis files are removed after completion, especially when handling confidential papers. <br>
+## Use Case:
 
+Researchers, students, analysts, and other external users use this skill to turn scholarly PDFs or paper URLs into a structured reading report with a rigorous Part A analysis and a concise Part B summary.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sterlingfrank1/academic-paper-parse-en) <br>
-- [Part A in-depth analysis template](artifact/references/part-a-template.md) <br>
-- [Part B core logic template](artifact/references/part-b-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown report file with a brief text delivery summary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a dual-mode reading report with Part A for detailed academic analysis and Part B for concise core-logic distillation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release evidence) <br>
+Risk: URL-based papers may need to be fetched externally, and submitted papers or URLs may be processed in the runtime environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide only papers or URLs the user is comfortable having processed.
+
+Risk: The skill creates temporary analysis content and a final Markdown report in the workspace.
+
+Mitigation: Review generated reports before sharing and keep workspace files aligned with the user's document-handling requirements.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sterlingfrank1/skills/academic-paper-parse-en)
+- [Part A template](artifact/references/part-a-template.md)
+- [Part B template](artifact/references/part-b-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown report file plus a brief message summary]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a dual-mode reading report with Part A in-depth academic analysis and Part B core logic distillation.]
+
+## Skill Version(s):
+
+1.2.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,41 @@
+{
+  "envId": "__ENV_ID__",
+  "functionRoot": "cloudfunctions",
+  "functions": [
+    {
+      "name": "api",
+      "runtime": "Nodejs16.13",
+      "handler": "index.main",
+      "memorySize": 256,
+      "timeout": 30
+    },
+    {
+      "name": "login",
+      "runtime": "Nodejs16.13",
+      "handler": "index.main",
+      "memorySize": 256,
+      "timeout": 30
+    },
+    {
+      "name": "seed",
+      "runtime": "Nodejs16.13",
+      "handler": "index.main",
+      "memorySize": 256,
+      "timeout": 30
+    },
+    {
+      "name": "dailyPush",
+      "runtime": "Nodejs16.13",
+      "handler": "index.main",
+      "memorySize": 256,
+      "timeout": 60,
+      "triggers": [
+        {
+          "name": "dailyPushTimer",
+          "type": "timer",
+          "config": "0 0 20 * * * *"
+        }
+      ]
+    }
+  ]
+}

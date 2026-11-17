@@ -1,0 +1,8 @@
+{
+  "name": "cqccjy",
+  "deployment": "current",
+  "owner_user_id": 2,
+  "base_url": "https://wanfang.cqccjy.cn",
+  "pages": {"home": "https://wanfang.cqccjy.cn/", "entry": "https://wanfang.cqccjy.cn/pwf", "payment": "https://wanfang.cqccjy.cn/pwf?orderNo={order_no}&stage=payment", "progress": "https://wanfang.cqccjy.cn/pwf/check?orderNo={order_no}&stage=progress", "report": "https://wanfang.cqccjy.cn/pwf/check?orderNo={order_no}", "verify_funnel": "https://vpcs.cqccjy.cn/pwp/verify", "verify_official": "https://truth.wanfangdata.com.cn/"},
+  "api": {"config": "/api/paper/wanfang/public/config", "presign": "/api/paper/wanfang/public/upload/presign", "create": "/api/paper/wanfang/public/order/create", "order": "/api/paper/wanfang/public/order/{order_no}", "report_download_url": "/api/paper/wanfang/public/order/{order_no}/report-download-url"}
+}

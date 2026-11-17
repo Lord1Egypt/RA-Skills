@@ -1,0 +1,70 @@
+{
+ "_scene": "RCT 研究设计/CONSORT 流程图",
+ "_description": "RCT 研究设计/CONSORT 流程图（diagram）。用模板自带 _command 一键渲染示例。",
+ "_chart_type": "diagram",
+ "_command": "python3 scripts/gen_figure.py -t diagram -d templates/16-study-design-diagram.json -o diagram.pdf --theme glm --verify",
+ "_caption_template": "图X | 研究设计：240 例患者 1:1 随机分组，随访 24 周后评估主要终点。",
+ "_note": "示例数字仅示意；block 用 x/y/w/h 定位，arrows 用 id 连接（背景恒为浅色）",
+ "background": "light",
+ "blocks": [
+  {
+   "id": "A",
+   "label": "Enrolled (n=240)",
+   "x": 0,
+   "y": 2.5,
+   "w": 2.6,
+   "h": 1.1,
+   "color": "#0072B2"
+  },
+  {
+   "id": "B",
+   "label": "Treatment Arm",
+   "sublabel": "n=120",
+   "x": 4,
+   "y": 3.6,
+   "w": 2.6,
+   "h": 1.1,
+   "color": "#009E73",
+   "shape": "round"
+  },
+  {
+   "id": "C",
+   "label": "Control Arm",
+   "sublabel": "n=120",
+   "x": 4,
+   "y": 1.2,
+   "w": 2.6,
+   "h": 1.1,
+   "color": "#D55E00",
+   "shape": "round"
+  },
+  {
+   "id": "D",
+   "label": "Follow-up 24 wk",
+   "x": 8,
+   "y": 2.4,
+   "w": 2.6,
+   "h": 1.1,
+   "color": "#CC79A7"
+  }
+ ],
+ "arrows": [
+  {
+   "from": "A",
+   "to": "B",
+   "label": "1:1 randomize"
+  },
+  {
+   "from": "A",
+   "to": "C"
+  },
+  {
+   "from": "B",
+   "to": "D"
+  },
+  {
+   "from": "C",
+   "to": "D"
+  }
+ ]
+}

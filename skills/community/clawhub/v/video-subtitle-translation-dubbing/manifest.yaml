@@ -1,0 +1,130 @@
+# OpenClaw skill manifest — translation_dubbing_skill
+#
+# See design.md §"技能入口（Entry）与清单文件（Manifest）" for the schema
+# and field semantics. Enumerations, required_when conditions and defaults
+# mirror the design exactly so the runtime, the Python entry module and
+# the property tests stay in lockstep.
+
+name: video-subtitle-translation-dubbing
+version: 0.1.4
+description: Multi-language video subtitle translation and dubbing skill (English, Chinese, Japanese, Spanish, etc.)
+entrypoint:
+  module: translation_dubbing_skill
+  function: run
+
+inputs:
+  video_path:
+    type: path
+    required: true
+    description: Path to the input video file
+  subtitle_path:
+    type: path
+    required: false
+    description: Optional external subtitle file (.srt / .vtt); extracts embedded subtitle track if omitted
+  source_language:
+    type: string
+    required: true
+    default: en
+    description: Source video/subtitle language code (e.g. en, zh-CN, ja, etc.)
+  target_language:
+    type: string
+    required: true
+    default: zh-CN
+    description: Target translation and TTS voiceover language code (e.g. zh-CN, en, ja, etc.)
+  processing_mode:
+    type: enum
+    values: [subtitle_only, subtitle_and_dubbing]
+    required: true
+    default: subtitle_and_dubbing
+    description: Processing mode. subtitle_only skips TTS voiceover and audio alignment.
+  voice_id:
+    type: string
+    required: false
+    description: TTS voice identifier; ignored in subtitle_only mode
+  translation_provider:
+    type: enum
+    values: [llm, web]
+    required: true
+    description: Translation provider type identifier
+  translation_endpoint:
+    type: string
+    required: true
+    description: HTTP endpoint for translation service
+  translation_credential:
+    type: secret
+    required: true
+    description: Translation provider credential; automatically desensitized in logs and error objects
+  translation_config:
+    type: object
+    required: false
+    description: Custom configuration for translation provider (e.g. model_name / language_pair)
+  translation_rate_limit:
+    type: object
+    required: false
+    description: Adaptive scheduler rate limit configuration for translation provider
+    default:
+      batch_size_initial: 20
+      batch_size_min: 1
+      batch_size_max: 50
+      payload_size_initial: 4000
+      payload_size_min: 500
+      payload_size_max: 32000
+      payload_unit: tokens
+      concurrency_initial: 2
+      concurrency_min: 1
+      concurrency_max: 8
+      max_retries: 5
+      backoff_base_ms: 500
+      backoff_jitter_ms: 300
+      probe_up_every_n_success: 10
+      supports_batch: true
+  tts_provider:
+    type: enum
+    values: [llm, web]
+    required_when:
+      processing_mode: subtitle_and_dubbing
+    description: TTS provider type identifier; ignored in subtitle_only mode
+  tts_endpoint:
+    type: string
+    required_when:
+      processing_mode: subtitle_and_dubbing
+    description: HTTP endpoint for TTS provider
+  tts_credential:
+    type: secret
+    required_when:
+      processing_mode: subtitle_and_dubbing
+    description: TTS provider credential; desensitized in logs and errors
+  tts_config:
+    type: object
+    required: false
+    description: Custom configuration for TTS provider (e.g. model_name, default_voice)
+  tts_rate_limit:
+    type: object
+    required: false
+    description: Adaptive scheduler rate limit configuration for TTS provider
+    default:
+      batch_size_initial: 1
+      batch_size_min: 1
+      batch_size_max: 16
+      payload_size_initial: 1000
+      payload_size_min: 200
+      payload_size_max: 5000
+      payload_unit: chars
+      concurrency_initial: 4
+      concurrency_min: 1
+      concurrency_max: 16
+      max_retries: 5
+      backoff_base_ms: 500
+      backoff_jitter_ms: 300
+      probe_up_every_n_success: 10
+      supports_batch: false
+
+outputs:
+  output_video_path:
+    type: path
+    description: Path to the output synthesized .mkv video
+  output_subtitle_path:
+    type: path
+    description: Path to the translated target-language UTF-8 subtitle file
+
+supported_video_formats: [mp4, mkv, mov, webm, avi, flv, ts, wmv]

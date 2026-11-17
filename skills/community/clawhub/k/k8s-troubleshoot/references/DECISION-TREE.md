@@ -1,0 +1,137 @@
+# Troubleshooting Decision Trees
+
+Visual flowcharts for diagnosing Kubernetes issues.
+
+## Pod Not Running
+
+```
+Pod Status?
+├── Pending
+│   ├── Events show "Insufficient cpu/memory"
+│   │   └── Scale cluster or reduce requests
+│   ├── Events show "no nodes available"
+│   │   └── Check node taints, affinity rules
+│   ├── Events show "PersistentVolumeClaim not found"
+│   │   └── Create PVC or check storage class
+│   └── No events
+│       └── Check scheduler pods in kube-system
+│
+├── CrashLoopBackOff
+│   ├── kubectl_logs(pod_name, previous=True)
+│   ├── Exit Code 137 (OOMKilled)
+│   │   └── Increase memory limits
+│   ├── Exit Code 1 (App Error)
+│   │   └── Check application logs, config
+│   └── Exit Code 127 (Command Not Found)
+│       └── Check entrypoint/command in spec
+│
+├── ImagePullBackOff
+│   ├── "unauthorized"
+│   │   └── Create/update imagePullSecrets
+│   ├── "not found"
+│   │   └── Verify image name and tag
+│   └── "timeout"
+│       └── Check network, registry availability
+│
+├── ContainerCreating (stuck)
+│   ├── Volume issues
+│   │   └── Check PVC status, storage class
+│   ├── ConfigMap/Secret not found
+│   │   └── Create missing resources
+│   └── Network issues
+│       └── Check CNI pods
+│
+└── Running but not ready
+    ├── Readiness probe failing
+    │   └── Check probe config, app health
+    └── Init containers not complete
+        └── Check init container logs
+```
+
+## Service Not Accessible
+
+```
+Service unreachable?
+├── kubectl_get(resource_type="endpoints", namespace) empty?
+│   ├── Yes
+│   │   ├── Pods exist with matching labels?
+│   │   │   ├── No → Fix selector labels
+│   │   │   └── Yes → Pods not ready
+│   │   │       └── Fix pod readiness
+│   │   └── Service selector correct?
+│   │       └── Update service spec
+│   └── No (endpoints exist)
+│       ├── Check NetworkPolicy
+│       │   └── analyze_network_policies(namespace)
+│       ├── Check Service type
+│       │   ├── ClusterIP → Only internal access
+│       │   ├── NodePort → Access via node:port
+│       │   └── LoadBalancer → Check cloud LB
+│       └── DNS resolution working?
+│           └── Test from inside pod
+```
+
+## Node Issues
+
+```
+Node Not Ready?
+├── kubectl_describe(name)
+├── Conditions show:
+│   ├── MemoryPressure
+│   │   └── Eviction happening, free memory
+│   ├── DiskPressure
+│   │   └── Clean up images, logs
+│   ├── PIDPressure
+│   │   └── Kill zombie processes
+│   └── NetworkUnavailable
+│       └── Check CNI, kubelet
+├── Kubelet not running?
+│   └── Check systemctl status kubelet
+└── Node cordoned?
+    └── kubectl uncordon node
+```
+
+## Storage Issues
+
+```
+PVC Pending?
+├── kubectl_describe(name, namespace)
+├── Events show:
+│   ├── "no persistent volumes available"
+│   │   ├── Dynamic provisioning enabled?
+│   │   │   └── Check StorageClass exists
+│   │   └── Static PV exists with matching spec?
+│   │       └── Check access modes, capacity
+│   ├── "waiting for first consumer"
+│   │   └── Normal with WaitForFirstConsumer
+│   └── "provisioning failed"
+│       └── Check storage backend, quotas
+```
+
+## Deployment Not Progressing
+
+```
+Deployment stuck?
+├── kubectl_rollout(name, namespace)
+├── Shows "waiting for rollout to finish"
+│   ├── New pods starting?
+│   │   ├── No → Check pod issues above
+│   │   └── Yes but failing
+│   │       └── Check pod logs
+│   ├── Old pods not terminating?
+│   │   ├── Check finalizers
+│   │   └── Check PDBs (PodDisruptionBudget)
+│   └── Deadline exceeded?
+│       └── Increase progressDeadlineSeconds
+```
+
+## Quick Commands Reference
+
+| Issue | First Command |
+|-------|--------------|
+| Pod not starting | `kubectl_describe(name, namespace)` |
+| Logs needed | `kubectl_logs(name, namespace, previous=True)` |
+| Events check | `kubectl_get(resource_type="events", namespace)` |
+| Node issues | `kubectl_describe(name)` |
+| Service debug | `kubectl_get(resource_type="endpoints", namespace)` |
+| Storage issues | `kubectl_describe(name, namespace)` |

@@ -1,0 +1,39 @@
+{
+  "name": "@yottameta/yotta-logwatch",
+  "version": "0.3.3",
+  "description": "Yuancha — a zero-dependency security log analysis & detection engine for AI agents: parses auth/secure, Web access logs (common/combined), PowerShell script-block logs and Windows Event Log (Security/System, key=value / wevtutil text / XML exports) with the pure Python 3.8+ standard library; auto-sniffs the log type; detects brute-force / webshell / scanning / abnormal login / suspicious script blocks / account operations / suspicious process / log clearing; outputs a timeline with Chinese teaching-style reports. Triggers when the user provides log files, asks to analyze login / Web access / PowerShell logs, or traces intrusion traces or abnormal activity. Boundaries: read-only local log files; no network, no proactive scanning, never modifies any content.",
+  "license": "MIT",
+  "keywords": [
+    "agent-skills",
+    "yotta-logwatch"
+  ],
+  "files": [
+    "SKILL.md",
+    "LICENSE",
+    "README.md",
+    "install.sh",
+    "references",
+    "scripts",
+    "assets",
+    "bin",
+    "NOTICE",
+    "CHANGELOG.md",
+    "README.zh-CN.md",
+    "!scripts/test_*.py",
+    "!**/__pycache__",
+    "!**/*.pyc"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YottaMeta/yotta-logwatch.git"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "bin": {
+    "yotta-logwatch": "bin/install.js"
+  },
+  "scripts": {
+    "test": "python scripts/test_yotta_logwatch.py"
+  }
+}

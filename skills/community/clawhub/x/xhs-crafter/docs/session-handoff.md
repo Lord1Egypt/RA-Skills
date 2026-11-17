@@ -13,7 +13,7 @@
 | One-line description | 将MD文章排版为3:4比例精美图片卡片+压缩文字稿，用于公众号/小红书贴图发布 |
 | GitHub | `https://github.com/<owner>/xhs-crafter` |
 | ClawHub slug | `xhs-crafter` |
-| Current version | 7.3.0 |
+| Current version | 7.8.0 |
 | Project directory | `<project-dir>/xhs-crafter` |
 | Tech stack | HTML / CSS / Node.js (Puppeteer screenshot + validate) |
 | License | MIT |
@@ -65,7 +65,7 @@
 - 10套主题色预设（6 Editorial + 4 Swiss）
 - 28种布局模板（M01-M16 + S01-S12）
 - 自动验证12项规则（溢出/字号/节奏/颜色等）
-- 双通道交付（本地文件夹 + 飞书云盘）
+- 双通道交付（本地文件夹默认 + 飞书云盘可选需用户同意）
 
 ### Cannot Do (Current Limitations)
 - 梦核/氛围感装饰风（与Editorial和Swiss均冲突）
@@ -78,9 +78,8 @@
 | Dependency | Constraint | Impact |
 |------------|-----------|--------|
 | Puppeteer/Chrome | 需系统Chrome或Playwright chromium | 截图依赖浏览器环境 |
-| 飞书lark-cli | 需安装并登录 | 云盘交付依赖 |
-| GitHub网络 | 当前网络不稳定 | 推送/Release可能失败 |
-| AI生图API | 可能返回相同占位图 | 需buf1.equals(buf2)验证 |
+| 飞书lark-cli | 需安装并登录（可选，仅飞书云盘同步时需要） | 可选云盘交付依赖，需用户同意后调用 |
+| AI生图API | 可能返回相同占位图（仅限TRAE内部环境） | 需buf1.equals(buf2)验证，生产环境改用Pexels/Unsplash |
 
 ---
 
@@ -121,16 +120,19 @@ xhs-crafter/
 ## 6. Platform Status
 
 ### GitHub Repository
-- Repo: `<owner>/xhs-crafter`
-- Latest Release: v7.2.0 (v7.3.0本地已commit，推送因网络问题待恢复)
+- Repo: `EdwardWason/xhs-crafter`
+- Latest Release: v7.7.0 (v7.8.0 待发布)
 - Branch: main
 
 ### ClawHub
 | Version | Security | Notes |
 |---------|----------|-------|
-| 7.3.0 | CLEAN | 最新发布，含R10/R11/R12+速查表 |
-| 7.2.0 | CLEAN | R8/R9+Swiss字号同步 |
-| 7.1.1 | CLEAN | 字号速查表嵌入 |
+| 7.7.0 | CLEAN | 结构性披露修复 + Wallhaven 移除 + AI 生图披露统一 |
+| 7.6.0 | CLEAN | Google Fonts CDN 移除 + 批量授权规则删除 + 触发词收紧 |
+| 7.5.0 | CLEAN | 过渡修补回退 + workflow.md 残留引用块修复 |
+| 7.4.0 | CLEAN | ClawHub SkillSpector 17项 Findings 修复 |
+| 7.3.1 | CLEAN | screenshot.js 自动启动 http.server |
+| 7.3.0 | CLEAN | R10/R11/R12+速查表 |
 
 ---
 
@@ -138,9 +140,11 @@ xhs-crafter/
 
 | Variable | Purpose | Status |
 |----------|---------|--------|
-| GitHub token | git push + Release API | Configured (in remote URL) |
-| ClawHub CLI | npx clawhub@latest publish | Configured |
-| lark-cli | 飞书云盘上传 | Needs user login check |
+| PEXELS_API_KEY | Pexels 图库搜索 | Configured (User-level env var) |
+| PIXABAY_API_KEY | Pixabay 图库搜索 | Configured (User-level env var) |
+| lark-cli | 飞书云盘上传（可选，需用户同意后调用） | Needs user login check |
+
+> ⚠️ **供应链操作不在本技能范围内**：GitHub push / Release / ClawHub publish 等发布操作属于**用户手动操作**，不应在 xhs-crafter 工作流中自动执行。本技能的核心能力是本地 MD→HTML→PNG 渲染，飞书云盘同步为可选外部能力（需用户明确同意）。
 
 ---
 
@@ -186,7 +190,7 @@ xhs-crafter/
 | Work style | SOLO工程化模式（Spec→Plan→Build→Verify→Review→Ship→Evolve） |
 | Code style | 最小化修改，不过度重构 |
 | Security sensitivity | 高（不提交token/密钥，删除.claude-plugin/） |
-| 交付偏好 | 双通道：本地文件夹 + 飞书云盘 |
+| 交付偏好 | 本地文件夹（默认） + 飞书云盘（可选，需用户同意） |
 | 字号偏好 | 整体偏大，封面/封底比内容页更大 |
 | 验证偏好 | 自动化validate.js优先，铁律规则嵌入SKILL.md确保可见 |
 
@@ -222,9 +226,9 @@ xhs-crafter/
 N/A — no scheduled tasks for this project
 
 ### Pending Items
-- [ ] GitHub推送v7.3.0（网络恢复后执行 `git push origin main`）
-- [ ] GitHub Release v7.3.0创建
-- [ ] README.md更新版本号到7.3.0
+- [ ] GitHub推送v7.4.0（用户手动执行 `git push origin main`，本技能不自动执行）
+- [ ] GitHub Release v7.4.0创建（用户手动）
+- [ ] ClawHub publish（用户手动执行 `npx clawhub@latest publish`，本技能不自动执行）
 - [ ] `.agents/skills/xhs-crafter/` 手动同步（权限受限无法自动同步）
 
 ### Known Issues

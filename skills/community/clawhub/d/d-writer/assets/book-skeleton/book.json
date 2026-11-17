@@ -1,0 +1,13 @@
+{
+  "id": "frost-chronicle",
+  "title": "霜寒之纪",
+  "language": "zh",
+  "genre": "仙侠",
+  "status": "drafting",
+  "targetChapters": 200,
+  "chapterWordCount": 1500,
+  "createdAt": "2026-01-01T00:00:00+08:00",
+  "updatedAt": "2026-01-02T00:00:00+08:00",
+  "schemaVersion": "1.0.0",
+  "skillVersion": ""
+}

@@ -1,43 +1,62 @@
-## Description: <br>
-微信公众号文章发布技能，可将带 YAML frontmatter 的 Markdown 文章转换为微信友好的 HTML，上传封面图，创建草稿，并提供 API 发布或手动发布指引与常见错误处理。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Publishes Markdown articles to WeChat Official Accounts by converting Markdown to WeChat-friendly HTML, uploading cover images, creating drafts, and providing API or manual publishing guidance.
 
-## Publisher: <br>
-[shimonxin](https://clawhub.ai/user/shimonxin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shimonxin](https://clawhub.ai/user/shimonxin)
 
-## Use Case: <br>
-Developers and content operators use this skill to prepare and publish Markdown articles to a WeChat public account workflow. It helps convert Markdown to styled HTML, manage cover images and drafts, inspect quota/status, and fall back to manual publishing when account permissions block API publishing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can operate a WeChat public-account workflow with credential access. <br>
-Mitigation: Install only for accounts where this access is intended, keep WeChat credentials scoped and protected, and review configuration before executing publishing commands. <br>
-Risk: The bundled scripts include draft deletion and rebuild behavior that could alter account-level drafts. <br>
-Mitigation: Review or remove delete and rebuild scripts before installation, and require manual confirmation for publish, delete, and rebuild actions. <br>
-Risk: The skill includes local record-writing and optional local facts or tracker updates. <br>
-Mitigation: Disable or review local facts and article-tracker updates unless that local state management is explicitly desired. <br>
+## Use Case:
 
+Content operators and developers use this skill to turn Markdown with YAML frontmatter into WeChat Official Account drafts or publications while checking account limits, cover image requirements, and common API errors.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/shimonxin/wx-mp-publish) <br>
-- [微信公众号发布最佳实践](references/best-practices.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and generated HTML/API workflow instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or delete WeChat drafts and may read local WeChat credential configuration when the provided Node.js scripts are executed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can use WeChat credentials to create, publish, list, and delete account drafts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review commands before execution, test with non-sensitive drafts first, and confirm the target media_id before deleting or publishing.
+
+Risk: Stored WeChat configuration and token files can expose account access if permissions are loose.
+
+Mitigation: Store ~/.config/wx-mp securely, restrict token-file permissions, and rotate credentials if account access is uncertain.
+
+Risk: The rebuild script contains hardcoded media IDs and local article paths.
+
+Mitigation: Avoid running the rebuild script unless the paths and media IDs have been reviewed for the intended account.
+
+Risk: Dependency provenance may be affected by the lockfile using a non-HTTPS registry mirror.
+
+Mitigation: Prefer a consistent HTTPS registry and refresh dependencies before production use.
+
+## Reference(s):
+
+- [WeChat publishing best practices](references/best-practices.md)
+- [ClawHub skill page](https://clawhub.ai/shimonxin/skills/wx-mp-publish)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and generated WeChat-ready HTML handled by scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create, publish, list, or delete WeChat drafts when run with account credentials.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and scripts/package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

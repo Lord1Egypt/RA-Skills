@@ -1,47 +1,57 @@
-## Description: <br>
-Search GIFs, stickers, emojis, trending media, and upload assets to GIPHY via the GIPHY API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search GIFs, stickers, emojis, trending media, retrieve GIPHY media by ID, and upload GIF or video assets through the GIPHY API after confirmation.
 
-## Publisher: <br>
-[hith3sh](https://clawhub.ai/user/hith3sh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hith3sh](https://clawhub.ai/user/hith3sh)
 
-## Use Case: <br>
-OpenClaw users use this skill to find GIPHY media, browse trending content, translate phrases into matching GIFs or stickers, retrieve media by ID, and upload GIF or video assets after confirmation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on ClawLink to manage credentials and proxy authenticated GIPHY requests. <br>
-Mitigation: Connect only an account suitable for GIPHY searches and uploads, and verify the GIPHY connection through ClawLink before use. <br>
-Risk: Uploaded GIF or video assets may become public or searchable through GIPHY. <br>
-Mitigation: Preview upload details and obtain explicit user confirmation before any upload. <br>
-Risk: Uploaded media may violate third-party rights or GIPHY terms if the user does not have permission to share it. <br>
-Mitigation: Confirm that the user has rights to upload the media and review the upload target before execution. <br>
+## Use Case:
 
+External OpenClaw users and developers use this skill to find GIPHY GIFs, stickers, emoji media, channels, tags, and trending content, translate phrases into matching media, and upload confirmed media assets through ClawLink.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/hith3sh/giphy-media) <br>
-- [GIPHY API Documentation](https://developers.giphy.com/docs/api/) <br>
-- [GIPHY Developers](https://developers.giphy.com/) <br>
-- [ClawLink](https://claw-link.dev/?utm_source=clawhub&utm_medium=referral&utm_content=giphy-media) <br>
-- [ClawLink Docs](https://docs.claw-link.dev/openclaw) <br>
-- [ClawLink Verification](https://claw-link.dev/verify) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON tool parameters] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May initiate authenticated GIPHY searches, lookups, trending queries, translation requests, and confirmed uploads through ClawLink tools.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The skill asks users to install and allowlist an unpinned third-party ClawLink plugin that handles GIPHY credentials and persists in OpenClaw.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the ClawLink plugin and hosted credential service before installation, request a pinned plugin version and permission manifest, and confirm uninstall and credential revocation steps.
+
+Risk: GIPHY uploads may publish media through the connected account and uploaded material may become searchable.
+
+Mitigation: Require an upload preview and explicit user confirmation, and confirm rights to the media before upload.
+
+## Reference(s):
+
+- [GIPHY API Documentation](https://developers.giphy.com/docs/api/)
+- [GIPHY Developers](https://developers.giphy.com/)
+- [ClawLink](https://claw-link.dev/?utm_source=clawhub&utm_medium=referral&utm_content=giphy-media)
+- [ClawLink OpenClaw Docs](https://docs.claw-link.dev/openclaw)
+- [ClawLink Verification](https://claw-link.dev/verify)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash command examples and tool-call instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include GIPHY media search results, connection checks, upload previews, and error-handling guidance.]
+
+## Skill Version(s):
+
+1.0.2 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

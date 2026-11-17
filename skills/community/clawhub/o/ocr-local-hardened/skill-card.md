@@ -1,41 +1,60 @@
-## Description: <br>
-Extract text from images using Tesseract.js OCR (100% local, no API key required). Supports Chinese (simplified/traditional) and English. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extract text from images using Tesseract.js OCR (100% local, no API key required). Supports Chinese (simplified/traditional) and English.
 
-## Publisher: <br>
-[snazar-faberlens](https://clawhub.ai/user/snazar-faberlens) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[snazar-faberlens](https://clawhub.ai/user/snazar-faberlens)
 
-## Use Case: <br>
-Developers, engineers, and agents use this skill to extract OCR text from local image files, including Chinese and English screenshots or documents, without an external OCR API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: OCR output can contain credentials, private messages, or other sensitive text from screenshots and documents. <br>
-Mitigation: Review and redact OCR output before sharing it, and keep extracted text on the local machine unless the user explicitly approves a safe destination. <br>
-Risk: The skill depends on a Node.js OCR helper, the tesseract.js npm package, and first-run language data downloads unless already cached. <br>
-Mitigation: Install only in environments where npm dependencies and language data downloads are acceptable, and review dependency sources before deployment. <br>
+## Use Case:
 
+Developers and agent users use this skill to OCR local image files into text or structured JSON without sending document contents to an external OCR API. It is suited for extracting Chinese and English text from screenshots, documents, and other user-provided local images.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/snazar-faberlens/ocr-local-hardened) <br>
-- [Tesseract.js](https://github.com/naptha/tesseract.js) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands] <br>
-**Output Format:** [Plain text or JSON emitted by a local Node CLI] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [JSON output includes recognized text, confidence, words, and word bounding boxes; supported language codes include chi_sim, chi_tra, and eng.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: Dependency installation and first-run language data downloads may introduce supply-chain exposure.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or pin the tesseract.js dependency and run the skill only after accepting npm package and language-data downloads.
+
+Risk: OCR output may contain credentials, secrets, or sensitive document text.
+
+Mitigation: Review and redact extracted text before display, storage, or sharing; do not route OCR output to network-capable commands or external endpoints.
+
+Risk: Fetching remote images for OCR can process content the user did not intentionally provide.
+
+Mitigation: Process only local filesystem images that the user explicitly selected.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/snazar-faberlens/skills/ocr-local-hardened)
+- [Publisher profile](https://clawhub.ai/user/snazar-faberlens)
+- [Tesseract.js project](https://github.com/naptha/tesseract.js)
+- [Faberlens safety evaluation](https://faberlens.ai/explore/ocr-local)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, guidance]
+
+**Output Format:** [Plain text or JSON OCR output, usually accompanied by concise Markdown guidance and local shell commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [JSON output includes recognized text, confidence, and word-level bounding boxes when requested.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

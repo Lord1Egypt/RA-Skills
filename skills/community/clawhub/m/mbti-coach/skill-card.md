@@ -1,43 +1,58 @@
-## Description: <br>
-MBTI Personality Coach helps users understand their current MBTI type, set a target type, and grow deliberately through schedule management and expert coaching. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MBTI Coach helps users assess their MBTI type, track cognitive-function development, plan growth exercises, and receive coaching from different MBTI perspectives.
 
-## Publisher: <br>
-[leilei926524-tech](https://clawhub.ai/user/leilei926524-tech) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leilei926524-tech](https://clawhub.ai/user/leilei926524-tech)
 
-## Use Case: <br>
-External users use this skill to assess MBTI-related cognitive function patterns, choose development goals, receive daily coaching exercises, schedule practice, and visualize progress. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Calendar integration and profile storage can handle sensitive personal data and credentials. <br>
-Mitigation: Review the Feishu calendar script before use, keep data/profile.json private, and use least-privilege Feishu or Lark credentials. <br>
-Risk: Calendar writes may send personal development schedule details outside the local machine. <br>
-Mitigation: Confirm each calendar write and avoid scheduling sensitive details unless external calendar storage is acceptable. <br>
-Risk: The script can print a Feishu tenant access token for debugging. <br>
-Mitigation: Avoid the token command and do not share terminal output or logs that may contain credentials. <br>
+## Use Case:
 
+External users use this skill as a personal MBTI development coach for type assessment, daily cognitive-function exercises, progress tracking, and scheduling growth tasks. Developers or agent operators may also use its scripts to generate progress charts and create Feishu/Lark calendar events.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/leilei926524-tech/mbti-coach) <br>
-- [Feishu Open APIs](https://open.feishu.cn/open-apis) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration, files] <br>
-**Output Format:** [Markdown coaching guidance with optional shell commands and generated local profile or chart files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local profile data, calendar events, and radar chart images when the user enables those workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill stores a local personality profile that may contain sensitive self-assessment and development data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the profile local, restrict file permissions, and avoid adding secrets or unrelated personal data to the profile.
+
+Risk: Calendar features can send scheduling data to Feishu/Lark.
+
+Mitigation: Use calendar integration only with user consent and make the external sharing behavior explicit before creating or listing events.
+
+Risk: The Feishu/Lark helper has unsafe credential handling and command construction according to the authoritative security evidence.
+
+Mitigation: Review and harden the helper before installation: remove or restrict token printing, avoid sourcing untrusted .env files, and fix unsafe python3 -c interpolation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/leilei926524-tech/skills/mbti-coach)
+- [Feishu Open API](https://open.feishu.cn/open-apis)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with optional JSON profile updates, shell commands, calendar API calls, and generated chart files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write a local profile JSON file and a radar chart image when the corresponding workflow is used.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

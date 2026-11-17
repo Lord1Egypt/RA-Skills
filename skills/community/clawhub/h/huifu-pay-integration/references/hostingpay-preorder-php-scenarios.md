@@ -1,5 +1,7 @@
 # PHP 场景示例
 
+> 真实请求只使用官方 PHP SDK 的 `BsPayClient::postRequest()`；不得改写 Guzzle、curl 或自实现 HTTP+签名客户端。联调/生产仍须满足共享凭据边界和 DEBUG 硬检查点。
+
 
 ## 目录
 
@@ -8,7 +10,7 @@
 - 抖音直连下单
 - 支付宝小程序预下单
 - 微信小程序预下单
-- 生产写法约束
+- SDK 调用约束
 
 本文件只覆盖托管支付 PHP 场景。
 
@@ -36,7 +38,7 @@ require_once HUIFU_SDK_ROOT . '/request/V2TradeHostingPaymentPreorderH5Request.p
 use BsPaySdk\request\V2TradeHostingPaymentPreorderH5Request;
 
 $request = new V2TradeHostingPaymentPreorderH5Request();
-$result = $client->postRequest([
+$requestShape = (static function (array $request): array { return $request; })([
     'funcCode' => $request->getFunctionCode(),
     'params' => [
         'req_date' => date('Ymd'),
@@ -55,7 +57,15 @@ $result = $client->postRequest([
     ],
 ]);
 
-$response = $result->getRspDatas()['data'] ?? [];
+$result = $client->postRequest($requestShape);
+if ($result === null || $result->isError()) {
+    throw new RuntimeException('SDK请求或响应验签失败，拒绝处理业务结果');
+}
+$envelope = $result->getRspDatas();
+if (!is_array($envelope) || !isset($envelope['data']) || !is_array($envelope['data'])) {
+    throw new RuntimeException('SDK响应结构异常，拒绝处理业务结果');
+}
+$response = $envelope['data'];
 $jumpUrl = $response['jump_url'] ?? '';
 ```
 
@@ -72,15 +82,15 @@ $jumpUrl = $response['jump_url'] ?? '';
 
 ## 抖音直连下单
 
-PHP SDK 使用托管预下单 `V2TradeHostingPaymentPreorderH5Request` 承载抖音直连场景，关键是固定 `pre_order_type=4` 并传入 `dy_data`；不要生成不存在的抖音专属 request 类。
+PHP SDK `2.0.31` 使用专属 `V2TradeHostingPaymentPreorderDyRequest`，固定 `pre_order_type=4` 并传入 `dy_data`；其功能码仍映射共用托管预下单 Endpoint。
 
 ```php
-require_once HUIFU_SDK_ROOT . '/request/V2TradeHostingPaymentPreorderH5Request.php';
+require_once HUIFU_SDK_ROOT . '/request/V2TradeHostingPaymentPreorderDyRequest.php';
 
-use BsPaySdk\request\V2TradeHostingPaymentPreorderH5Request;
+use BsPaySdk\request\V2TradeHostingPaymentPreorderDyRequest;
 
-$request = new V2TradeHostingPaymentPreorderH5Request();
-$result = $client->postRequest([
+$request = new V2TradeHostingPaymentPreorderDyRequest();
+$requestShape = (static function (array $request): array { return $request; })([
     'funcCode' => $request->getFunctionCode(),
     'params' => [
         'req_date' => date('Ymd'),
@@ -104,6 +114,15 @@ $result = $client->postRequest([
         ], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES),
     ],
 ]);
+$result = $client->postRequest($requestShape);
+if ($result === null || $result->isError()) {
+    throw new RuntimeException('SDK请求或响应验签失败，拒绝处理业务结果');
+}
+$envelope = $result->getRspDatas();
+if (!is_array($envelope) || !isset($envelope['data']) || !is_array($envelope['data'])) {
+    throw new RuntimeException('SDK响应结构异常，拒绝处理业务结果');
+}
+$response = $envelope['data'];
 ```
 
 字段拆分：
@@ -121,7 +140,7 @@ require_once HUIFU_SDK_ROOT . '/request/V2TradeHostingPaymentPreorderAliRequest.
 use BsPaySdk\request\V2TradeHostingPaymentPreorderAliRequest;
 
 $request = new V2TradeHostingPaymentPreorderAliRequest();
-$result = $client->postRequest([
+$requestShape = (static function (array $request): array { return $request; })([
     'funcCode' => $request->getFunctionCode(),
     'params' => [
         'req_date' => date('Ymd'),
@@ -143,6 +162,15 @@ $result = $client->postRequest([
         ], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES),
     ],
 ]);
+$result = $client->postRequest($requestShape);
+if ($result === null || $result->isError()) {
+    throw new RuntimeException('SDK请求或响应验签失败，拒绝处理业务结果');
+}
+$envelope = $result->getRspDatas();
+if (!is_array($envelope) || !isset($envelope['data']) || !is_array($envelope['data'])) {
+    throw new RuntimeException('SDK响应结构异常，拒绝处理业务结果');
+}
+$response = $envelope['data'];
 ```
 
 可选增强字段：
@@ -183,7 +211,7 @@ require_once HUIFU_SDK_ROOT . '/request/V2TradeHostingPaymentPreorderWxRequest.p
 use BsPaySdk\request\V2TradeHostingPaymentPreorderWxRequest;
 
 $request = new V2TradeHostingPaymentPreorderWxRequest();
-$result = $client->postRequest([
+$requestShape = (static function (array $request): array { return $request; })([
     'funcCode' => $request->getFunctionCode(),
     'params' => [
         'req_date' => date('Ymd'),
@@ -207,6 +235,15 @@ $result = $client->postRequest([
         ], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES),
     ],
 ]);
+$result = $client->postRequest($requestShape);
+if ($result === null || $result->isError()) {
+    throw new RuntimeException('SDK请求或响应验签失败，拒绝处理业务结果');
+}
+$envelope = $result->getRspDatas();
+if (!is_array($envelope) || !isset($envelope['data']) || !is_array($envelope['data'])) {
+    throw new RuntimeException('SDK响应结构异常，拒绝处理业务结果');
+}
+$response = $envelope['data'];
 ```
 
 可选增强字段：
@@ -237,7 +274,7 @@ $optionalPayload = [
 2. 场景必填是 `miniapp_data.seq_id`；如果要走 scheme 回跳，再补 `need_scheme=Y`。
 3. `acct_split_bunch`、`biz_info`、`wx_data.sub_openid` 都属于条件字段，必须来自真实授权或订单上下文，不能照抄 demo 占位值。
 
-## 生产写法约束
+## SDK 调用约束
 
 1. 官网 demo 里的 JSON 字段看起来像普通字符串，实际都应由 `json_encode(..., JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES)` 编码而来，不要手写拼接 JSON。
 2. `delay_acct_flag`、`acct_split_bunch`、`biz_info` 在官方 demo 里经常出现，但都属于条件字段，只有业务场景需要时才上送。

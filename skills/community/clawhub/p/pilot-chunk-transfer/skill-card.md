@@ -1,42 +1,58 @@
-## Description: <br>
-Provides Pilot Protocol shell workflows for chunking, sending, receiving, and reassembling large files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Large file transfer with automatic chunking, resume capability, and integrity verification.
 
-## Publisher: <br>
-[teoslayer](https://clawhub.ai/user/teoslayer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[teoslayer](https://clawhub.ai/user/teoslayer)
 
-## Use Case: <br>
-Developers and operators using Pilot Protocol can use this skill as command guidance for transferring files larger than 100MB by chunking them, sending chunk metadata and data, and reassembling received chunks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow sends selected local files and filenames to a pilotctl destination. <br>
-Mitigation: Review file paths and the destination before execution, and avoid sensitive transfers unless the destination is trusted and approved. <br>
-Risk: The security review says advertised integrity verification and resume behavior are overstated. <br>
-Mitigation: Do not rely on the advertised checksum or resume guarantees until receive-side hash validation and end-to-end resume behavior are verified. <br>
-Risk: Received files are written under $HOME/.pilot/chunk-recv. <br>
-Mitigation: Inspect received filenames and reassembled outputs before opening, moving, or relying on them. <br>
+## Use Case:
 
+Developers and engineers use this skill to transfer large files over Pilot Protocol by chunking files, tracking progress, and resuming interrupted transfers.
 
-## Reference(s): <br>
-- [Pilot Protocol](https://pilotprotocol.network) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with bash command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands assume pilotctl, jq, dd, md5sum, bc, and a running Pilot Protocol daemon.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact metadata reports 1.0) <br>
+Risk: Incoming transfer metadata may write or delete files outside the intended receive folder.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Validate filenames, confine receives to a private temporary directory, and reject path traversal before creating, concatenating, or deleting paths.
+
+Risk: The documented integrity verification is incomplete.
+
+Mitigation: Implement checksum validation and resume-state checks before accepting chunks or reassembling a transferred file.
+
+Risk: The skill should not be used as written with untrusted senders or important local files.
+
+Mitigation: Review commands before execution and use only with trusted senders until the receive path handling and verification behavior are corrected.
+
+## Reference(s):
+
+- [Pilot Protocol Homepage](https://pilotprotocol.network)
+- [ClawHub Skill Page](https://clawhub.ai/teoslayer/skills/pilot-chunk-transfer)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires pilotctl on PATH, a running Pilot daemon, jq, dd, md5sum, and bc.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

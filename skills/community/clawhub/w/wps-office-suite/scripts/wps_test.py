@@ -1,6 +1,6 @@
 """
 WPS Office 全家桶 - 环境自检
-一键检测：引擎、依赖、WPS 版本、路径、权限
+一键检测：引擎、依赖、WPS 版本、路径、权限、COM 健康（v4.5 新增）
 """
 import sys
 import json
@@ -85,6 +85,31 @@ def check_python_pptx() -> dict:
             "ok": False,
             "message": "❌ python-pptx 未安装",
             "hint": "运行: pip install python-pptx",
+        }
+
+
+def check_com_health() -> dict:
+    """检查 COM 健康状态（v4.5 新增）"""
+    if sys.platform != "win32":
+        return {"ok": True, "skipped": True, "message": "⏭️ 非 Windows，跳过"}
+    
+    try:
+        from com_health import COMHealthChecker
+        checker = COMHealthChecker(auto_release=True)
+        result = checker.full_health_check()
+        
+        return {
+            "ok": result.get("ok", False),
+            "score": result.get("score", 0),
+            "message": f"{result.get('status_message', '未知')}（{result.get('score', 0)}/100）",
+            "residuals": result.get("checks", {}).get("residuals", {}).get("residuals", []),
+            "suggestions": result.get("suggestions", []),
+        }
+    except Exception as e:
+        return {
+            "ok": False,
+            "message": f"⚠️ COM 健康检查失败: {e}",
+            "hint": "确保 com_health.py 存在且 Python 环境正常",
         }
 
 
@@ -184,6 +209,10 @@ def run_all_checks() -> dict:
     checks.append({"name": "WPS Office", **wps_check})
     if not wps_check.get("ok"):
         checks.append({"name": "MS Office", **check_ms_office()})
+
+    # v4.5: COM 健康检查（仅在 Windows 上运行）
+    if sys.platform == "win32":
+        checks.append({"name": "COM 健康", **check_com_health()})
 
     # 汇总
     errors = [c for c in checks if c.get("ok") is False]

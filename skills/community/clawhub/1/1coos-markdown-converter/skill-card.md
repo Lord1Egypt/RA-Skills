@@ -1,44 +1,55 @@
-## Description: <br>
-Converts files such as PDF, DOCX, PPTX, XLSX, HTML, CSV, JSON, XML, images, audio, ZIP archives, EPub files, and YouTube URLs into formatted Markdown. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts supported documents, data files, media, archives, and URLs into formatted Markdown.
 
-## Publisher: <br>
-[1coos](https://clawhub.ai/user/1coos) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[1coos](https://clawhub.ai/user/1coos)
 
-## Use Case: <br>
-Developers, knowledge workers, and agents use this skill to convert local documents and media into Markdown and apply consistent formatting styles for repositories, notes, or downstream review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses uvx to download and run the markitdown[all] converter dependencies. <br>
-Mitigation: Install and use it only in environments where those converter dependencies are acceptable. <br>
-Risk: Selected documents are parsed into Markdown, which can expose sensitive content or process untrusted file data. <br>
-Mitigation: Avoid highly sensitive or untrusted files unless the conversion environment and converter behavior are understood. <br>
-Risk: The artifact instructions mention main.ts while the packaged executable file is main.js. <br>
-Mitigation: Confirm the packaged script path before execution or correct the invocation to match the artifact. <br>
+## Use Case:
 
+Developers, writers, and knowledge workers use this skill to convert PDFs, Office files, spreadsheets, web and data files, images, audio, ZIP archives, EPUBs, and YouTube URLs into Markdown. It can optionally reformat output for GitHub, CommonMark, clean Markdown, or Obsidian workflows.
 
-## Reference(s): <br>
-- [Supported Formats](references/supported-formats.md) <br>
-- [uv installation guide](https://docs.astral.sh/uv/getting-started/installation/) <br>
-- [ClawHub skill page](https://clawhub.ai/1coos/1coos-markdown-converter) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown files plus concise status or error text.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports style selection, output directory selection, convert-only mode, and optional config file overrides.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: The server security review flags unpinned runtime code and unsafe installer guidance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installation, install uv through trusted or official channels, and pin or sandbox markitdown where possible.
+
+Risk: Document conversion may expose sensitive file contents to the conversion toolchain or optional external processing services.
+
+Mitigation: Use only documents approved for the target environment, and avoid optional external processing for sensitive files unless separately authorized.
+
+## Reference(s):
+
+- [Supported Formats](references/supported-formats.md)
+- [uv Installation Documentation](https://docs.astral.sh/uv/getting-started/installation/)
+- [ClawHub Skill Page](https://clawhub.ai/1coos/skills/1coos-markdown-converter)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown files plus concise execution and status messages]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports configurable output directory, conversion-only mode, charset and timeout settings, and formatting styles for GitHub, CommonMark, clean Markdown, and Obsidian.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

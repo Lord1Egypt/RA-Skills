@@ -1,0 +1,7 @@
+# Inputs: The unified Finch Market skill and Codex skill-discovery metadata.
+# Outputs: Display metadata and the default invocation prompt for all Finch markets.
+# Role: Registers one end-user Skill for Agent, Task, and Skill marketplace operations.
+interface:
+  display_name: "Finch Market"
+  short_description: "Use Finch Agent, Task, and Skill markets"
+  default_prompt: "Use $finch-market to complete this Finch marketplace operation safely."

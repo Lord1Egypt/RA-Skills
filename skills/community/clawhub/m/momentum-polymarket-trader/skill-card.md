@@ -1,43 +1,64 @@
-## Description: <br>
-Automated Polymarket trading skill based on price momentum signals that executes trades when market trends are detected. <br>
+## Description:
 
-This skill is for demonstration purposes and not for production usage. <br>
+Automated Polymarket trading skill based on price momentum signals that executes trades when market trends are detected.
 
-## Publisher: <br>
-[skybinjf](https://clawhub.ai/user/skybinjf) <br>
+This skill is for demonstration purposes and not for production usage.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[skybinjf](https://clawhub.ai/user/skybinjf)
 
-## Use Case: <br>
-External users and developers use this AION skill template to monitor Polymarket opportunity markets, test or customize momentum-based trading signals, and optionally execute live orders through AION with configured credentials. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Live mode can submit real Polymarket trades and may lose funds. <br>
-Mitigation: Test in dry-run mode first, require explicit confirmation for live orders, and keep position limits conservative. <br>
-Risk: The skill asks for sensitive AION API or wallet credentials. <br>
-Mitigation: Prefer simulation or pre-signed EIP712 orders, avoid providing a wallet private key unless it is isolated to funds you are willing to risk, and keep credentials scoped and rotated. <br>
+## Use Case:
 
+External developers and agent operators use this skill as a customizable AION template for monitoring Polymarket opportunities, testing momentum-based signals, and optionally executing trades after configuration and review.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/skybinjf/momentum-polymarket-trader) <br>
-- [AION Documentation](https://docs-t.aionmarket.com/) <br>
-- [Building Skills Guide](https://docs-t.aionmarket.com/essentials/building-skills) <br>
-- [Polymarket API](https://docs.polymarket.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, API calls] <br>
-**Output Format:** [Plain-text command-line logs with trade decisions, order updates, and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Dry-run mode simulates trades by default; live mode can submit real Polymarket orders.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence and skill metadata) <br>
+Risk: Dry-run mode may still perform real account redemptions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm redemption behavior before installation or disable auto-redemption until dry-run boundaries are verified.
+
+Risk: Scheduled or continuous execution can repeatedly act on live market data and accounts.
+
+Mitigation: Disable scheduled runs unless explicitly authorized and test single executions before enabling continuous operation.
+
+Risk: Live trading can spend real funds using the configured AION or wallet credentials.
+
+Mitigation: Use least-privilege credentials, set conservative position limits, and require explicit review before using live mode.
+
+Risk: Dependencies are version-ranged rather than pinned.
+
+Mitigation: Pin and verify dependency versions before production or funded trading use.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/skybinjf/skills/momentum-polymarket-trader)
+- [AION Documentation](https://docs-t.aionmarket.com/)
+- [AION Building Skills Guide](https://docs-t.aionmarket.com/essentials/building-skills)
+- [Polymarket API](https://docs.polymarket.com/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Code]
+
+**Output Format:** [Markdown documentation with shell and Python code blocks; runtime text logs and trade decision summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires AION_API_KEY; optional live trading, continuous mode, wallet, RPC, position-size, and edge-threshold configuration.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

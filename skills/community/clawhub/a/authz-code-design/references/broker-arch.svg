@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 360" font-family="-apple-system,Segoe UI,Microsoft YaHei,sans-serif">
+  <rect width="680" height="360" fill="#ffffff"/>
+  <text x="24" y="30" font-size="16" font-weight="700" fill="#185FA5">授权码 / 本地 Broker 架构（零知识 · 秘不进模型上下文）</text>
+
+  <!-- 三栏 -->
+  <rect x="24" y="50" width="150" height="250" rx="8" fill="#f5f7fa" stroke="#d6dbe3"/>
+  <text x="99" y="72" font-size="12" font-weight="700" fill="#534AB7" text-anchor="middle">AI agent / 本地程序</text>
+
+  <rect x="265" y="50" width="150" height="250" rx="8" fill="#eef6ff" stroke="#9cc4ee"/>
+  <text x="340" y="72" font-size="12" font-weight="700" fill="#185FA5" text-anchor="middle">本地 Broker</text>
+  <text x="340" y="90" font-size="10" fill="#5b6b7c" text-anchor="middle">127.0.0.1 仅本机</text>
+
+  <rect x="506" y="50" width="150" height="250" rx="8" fill="#fdf3ec" stroke="#e7c39a"/>
+  <text x="581" y="72" font-size="12" font-weight="700" fill="#B5651D" text-anchor="middle">凭据保险库 .kdbx</text>
+  <text x="581" y="90" font-size="10" fill="#5b6b7c" text-anchor="middle">密钥驻留内存</text>
+
+  <!-- 箭头 1 发令 -->
+  <line x1="174" y1="120" x2="263" y2="120" stroke="#534AB7" stroke-width="1.6" marker-end="url(#ar)"/>
+  <text x="218" y="113" font-size="9.5" fill="#534AB7" text-anchor="middle">POST /token</text>
+  <text x="218" y="135" font-size="8.5" fill="#888" text-anchor="middle">title/scope/ttl/device</text>
+
+  <!-- 箭头 2 返回 JWT -->
+  <line x1="263" y1="150" x2="174" y2="150" stroke="#2E8B57" stroke-width="1.6" marker-end="url(#ar2)"/>
+  <text x="218" y="143" font-size="9.5" fill="#2E8B57" text-anchor="middle">JWT (HS256)</text>
+  <text x="218" y="168" font-size="8.5" fill="#888" text-anchor="middle">exp≤900s · 秘不进</text>
+
+  <!-- 箭头 3 fulfill -->
+  <line x1="174" y1="200" x2="263" y2="200" stroke="#534AB7" stroke-width="1.6" marker-end="url(#ar)"/>
+  <text x="218" y="193" font-size="9.5" fill="#534AB7" text-anchor="middle">POST /fulfill</text>
+
+  <!-- 箭头 4 取秘 -->
+  <line x1="415" y1="200" x2="504" y2="200" stroke="#B5651D" stroke-width="1.4" stroke-dasharray="4 3" marker-end="url(#ar3)"/>
+  <text x="460" y="193" font-size="9" fill="#B5651D" text-anchor="middle">读条目</text>
+
+  <!-- 箭头 5 返回秘文 -->
+  <line x1="263" y1="230" x2="174" y2="230" stroke="#2E8B57" stroke-width="1.6" marker-end="url(#ar2)"/>
+  <text x="218" y="223" font-size="9.5" fill="#2E8B57" text-anchor="middle">秘文→本机调用方</text>
+  <text x="218" y="252" font-size="8.5" fill="#888" text-anchor="middle">不落盘·不进上下文</text>
+
+  <!-- 箭头 6 吊销 -->
+  <line x1="174" y1="278" x2="263" y2="278" stroke="#C0392B" stroke-width="1.6" marker-end="url(#ar)"/>
+  <text x="218" y="271" font-size="9.5" fill="#C0392B" text-anchor="middle">/revoke · /revoke_all</text>
+
+  <!-- 安全条 -->
+  <rect x="24" y="312" width="632" height="36" rx="6" fill="#f0f4f8" stroke="#d6dbe3"/>
+  <text x="36" y="328" font-size="9.5" fill="#33414f">安全层：</text>
+  <text x="78" y="328" font-size="9.5" fill="#33414f">纯 env 配置</text>
+  <text x="170" y="328" font-size="9.5" fill="#33414f">· 设备指纹</text>
+  <text x="250" y="328" font-size="9.5" fill="#33414f">· 生物标记</text>
+  <text x="330" y="328" font-size="9.5" fill="#33414f">· 审计哈希链</text>
+  <text x="420" y="328" font-size="9.5" fill="#33414f">· 短 TTL(JIT)</text>
+  <text x="510" y="328" font-size="9.5" fill="#33414f">· 一键解绑</text>
+
+  <defs>
+    <marker id="ar" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#534AB7"/></marker>
+    <marker id="ar2" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#2E8B57"/></marker>
+    <marker id="ar3" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#B5651D"/></marker>
+  </defs>
+</svg>

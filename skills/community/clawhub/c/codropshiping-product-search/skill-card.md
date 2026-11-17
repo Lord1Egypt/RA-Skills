@@ -1,40 +1,49 @@
-## Description: <br>
-Searches for products on the Codrop shipping platform using a keyword. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches for products on the Codrop shipping platform using a keyword.
 
-## Publisher: <br>
-[shan-vvv](https://clawhub.ai/user/shan-vvv) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shan-vvv](https://clawhub.ai/user/shan-vvv)
 
-## Use Case: <br>
-External developers and operators use this skill to query Codrop product data by keyword when they have a valid Codrop API token. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires an API token and asks users to pass it as a command-line argument, which can expose credentials in shell history or process listings. <br>
-Mitigation: Use only limited-scope or disposable tokens, avoid command-line token entry, and prefer environment variables, a secure prompt, or a credential store. <br>
-Risk: The security review notes that the destination API endpoint is under-disclosed. <br>
-Mitigation: Install only if you trust the Codrop/Cargosoon API endpoint and can verify where the token will be sent. <br>
+## Use Case:
 
+External users and developers use this skill to query Codrop product data by keyword when they have an appropriate Codrop API token.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/shan-vvv/codropshiping-product-search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON] <br>
-**Output Format:** [JSON product data on success; plain-text error messages on failure] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a keyword and an API authentication token.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill asks for an API token on the command line and sends it to an underdocumented test endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only a low-privilege, revocable Codrop token, avoid placing production secrets directly in command lines, and confirm that test-codrop.cargosoon.online is the intended endpoint before running searches.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/shan-vvv/skills/codropshiping-product-search)
+
+## Skill Output:
+
+**Output Type(s):** [text]
+
+**Output Format:** [JSON on success; plain-text error messages on failure]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a keyword and a Codrop API token; responses depend on the remote Codrop endpoint.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

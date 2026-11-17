@@ -1,6 +1,10 @@
 {
-  "ownerId": "kn77b9ky80w87bhvg2qabyx4yd82mht0",
-  "slug": "is-it-true",
+  "id": "12342",
   "version": "1.0.0",
-  "publishedAt": 1774437656533
+  "author": "MiniMax Agent",
+  "created_at": "2026-03-25",
+  "description": "Critical analysis skill for examining viewpoints, factual statements, and web content based on the critical thinking framework from Asking the Right Questions",
+  "tags": ["critical-thinking", "analysis", "fact-checking", "logical-analysis", "asking-the-right-questions"],
+  "framework": "Critical Thinking",
+  "reference_book": "Asking the Right Questions"
 }

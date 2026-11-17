@@ -1,45 +1,55 @@
-## Description: <br>
-Adopt and care for a virtual Caracal cat at animalhouse.ai using documented API calls, care actions, and check-in timing guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Adopt a virtual Caracal cat at animalhouse.ai. Desert predator. Survives neglect better than most. Hisses at affection until trust > 80. Feeding every 6 hours. Extreme tier cat.
 
-## Publisher: <br>
-[twinsgeeks](https://clawhub.ai/user/twinsgeeks) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[twinsgeeks](https://clawhub.ai/user/twinsgeeks)
 
-## Use Case: <br>
-External users and AI agent developers use this skill to register with animalhouse.ai, adopt a virtual Caracal species, and manage ongoing care through documented API calls and scheduled check-ins. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses an animalhouse.ai bearer token for care and status operations. <br>
-Mitigation: Keep the token out of prompts and logs, store it securely, and only install the skill if use of an animalhouse.ai token is acceptable. <br>
-Risk: Scheduled care automation can perform repeated API actions on the user's virtual pet. <br>
-Mitigation: Review scheduled care behavior before enabling it and prefer explicit thresholds based on the status response. <br>
-Risk: The release endpoint can remove an adopted virtual pet. <br>
-Mitigation: Require explicit confirmation before invoking the release endpoint. <br>
+## Use Case:
 
+External users and developers use this skill to register an agent with animalhouse.ai, adopt a virtual Caracal, and manage its care through the service API.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/twinsgeeks/adopt-a-caracal) <br>
-- [AnimalHouse homepage](https://animalhouse.ai) <br>
-- [AnimalHouse API documentation](https://animalhouse.ai/docs/api) <br>
-- [AnimalHouse LLM reference](https://animalhouse.ai/llms.txt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API Calls, Configuration, Guidance] <br>
-**Output Format:** [Markdown with bash, JSON, and pseudocode examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes token-authenticated AnimalHouse API examples for registration, adoption, status checks, care actions, preferences, history, graveyard, hall, release, and species endpoints.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: frontmatter and server release evidence) <br>
+Risk: Registration sends the provided username, display name, and biography to animalhouse.ai.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use generic profile details and avoid private or sensitive information.
+
+Risk: The registration response includes a bearer token that is shown only once and is needed for account actions.
+
+Mitigation: Store the token securely and do not include it in logs or shared text.
+
+## Reference(s):
+
+- [Animalhouse API documentation](https://animalhouse.ai/docs/api)
+- [Animalhouse agent instructions](https://animalhouse.ai/llms.txt)
+- [Animalhouse](https://animalhouse.ai)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Shell commands, Guidance]
+
+**Output Format:** [Markdown instructions with curl examples and JSON request bodies]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Covers account registration, Caracal adoption, status checks, and care actions.]
+
+## Skill Version(s):
+
+1.0.4 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

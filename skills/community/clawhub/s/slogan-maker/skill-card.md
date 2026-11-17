@@ -1,44 +1,59 @@
-## Description: <br>
-Slogan Maker helps agents generate brand taglines, industry slogans, rhyming slogans, bilingual slogan translations, slogan tests, and reference examples. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Slogan Maker helps agents generate brand taglines, industry slogans, rhyming slogans, translations, effectiveness checks, and classic slogan examples.
 
-## Publisher: <br>
-[ckchzh](https://clawhub.ai/user/ckchzh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ckchzh](https://clawhub.ai/user/ckchzh)
 
-## Use Case: <br>
-External users, marketing teams, and agents use this skill to draft, translate, compare, and test short advertising slogans for brands and common industries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The artifact includes an unrelated data-processing helper script alongside the slogan-writing script. <br>
-Mitigation: Review the extra script before installation and prefer invoking artifact/scripts/slogan.sh directly for slogan workflows. <br>
-Risk: The unrelated helper script can store the first argument locally in a history file. <br>
-Mitigation: Do not pass confidential brand plans, credentials, file paths, or sensitive business text to artifact/scripts/script.sh. <br>
-Risk: Generated slogans and heuristic scores may be unsuitable, misleading, or culturally inappropriate without review. <br>
-Mitigation: Review candidate slogans with humans and test them with the intended audience before public or commercial use. <br>
+## Use Case:
 
+Marketing teams, brand builders, and agents use this skill to draft, translate, compare, and evaluate short Chinese and English slogans for products, industries, and campaigns.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ckchzh/slogan-maker) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
-- [Slogan Maker tips](artifact/tips.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown tables, plain text, and shell command output.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Slogan generation and scoring are heuristic and should be reviewed before public use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The package includes an unrelated data-processing command that creates local storage and logs user arguments.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the package before installation, avoid using the unrelated data command, and require the publisher to remove or clearly document its local logging behavior.
+
+Risk: Sensitive campaign text, customer identifiers, file paths, or private queries could be captured if passed to the logging data command.
+
+Mitigation: Do not enter sensitive inputs into this skill unless the logging behavior is removed or isolated and reviewed.
+
+Risk: Slogan scoring and recommendations are heuristic and may not predict campaign performance.
+
+Mitigation: Treat generated slogans as drafts and validate them with human review, brand checks, and audience testing before release.
+
+## Reference(s):
+
+- [Slogan Maker Tips](tips.md)
+- [BytesAgain homepage](https://bytesagain.com)
+- [ClawHub skill page](https://clawhub.ai/ckchzh/skills/slogan-maker)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with slogan drafts, translation notes, scoring summaries, and tabular examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated locally by bundled shell scripts; no external API keys were detected in the evidence.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

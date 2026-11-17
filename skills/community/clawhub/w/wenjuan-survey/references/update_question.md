@@ -1,8 +1,10 @@
 # update_question - 编辑题目
 
-通过 `edit_question.js` 修改问卷中已有题目（题干预览、选项增删改、矩阵行等）。
+通过 `edit_question.js` 修改问卷中已有题目（题干预览、选项增删改等）。
 
 **实际请求接口**：`POST /app_api/edit/edit_question/`（表单带签名；请求头携带 JWT）。
+
+> **不支持矩阵题型**：本 Skill 不能新建或批量导入矩阵题。若项目中已有矩阵题（`fetch_project` 可读），仅可改题干/选项等通用字段；矩阵行请在问卷网编辑器中维护。
 
 ## 执行流程
 
@@ -13,9 +15,9 @@
 
 ## 题目结构与 `title_as_txt`
 
-- 本地组装结构时，会生成 `title`（HTML）及选项/矩阵行的文案字段。
-- **更新失败时**：`updateQuestion` 会自动 **去掉题干、所有选项、所有矩阵行上的 `title_as_txt`** 后 **再请求一次**，避免部分环境下同时携带 `title` 与 `title_as_txt` 导致 **500**。
-- **`editTitle`**：只设置 `<p>…</p>` 形式的 `title`，并主动删除题干及各选项/矩阵行上的 `title_as_txt` 后再提交。
+- 本地组装结构时，会生成 `title`（HTML）及选项的文案字段。
+- **更新失败时**：`updateQuestion` 会自动 **去掉题干、所有选项上的 `title_as_txt`** 后 **再请求一次**，避免部分环境下同时携带 `title` 与 `title_as_txt` 导致 **500**。
+- **`editTitle`**：只设置 `<p>…</p>` 形式的 `title`，并主动删除题干及各选项上的 `title_as_txt` 后再提交。
 
 ## CLI 用法
 
@@ -29,10 +31,6 @@
 | `--option-title <text>` | 选项新标题 |
 | `--delete-option <option_id>` | 删除选项 |
 | `--add-option <text>` | 新增选项（测评可用 `--is-answer`、`--score`） |
-| `--edit-matrix-row <row_id>` | 编辑矩阵行（需配合 `--row-title`） |
-| `--row-title <text>` | 矩阵行新标题 |
-| `--delete-matrix-row <row_id>` | 删除矩阵行 |
-| `--add-matrix-row <text>` | 新增矩阵行 |
 | `-h, --help` | 帮助 |
 
 **注意**：一次命令只支持 **一种** 操作（一个子命令）。
@@ -66,4 +64,4 @@ node "${SKILL_DIR}/scripts/edit_question.js" <project_id> <question_id> \
 
 ## 错误码（节选）
 
-与脚本内 `ERROR_CODE_MAP` 一致，常见包括：`10003` 参数错误、`10026` 项目已删除、`11004` 编辑锁、`20034` 题目不存在、以及选项/矩阵相关的 `30019`–`30143` 等。详见 `scripts/edit_question.js`。
+与脚本内 `ERROR_CODE_MAP` 一致，常见包括：`10003` 参数错误、`10026` 项目已删除、`11004` 编辑锁、`20034` 题目不存在、以及选项相关的 `30019`–`30143` 等。详见 `scripts/edit_question.js`。

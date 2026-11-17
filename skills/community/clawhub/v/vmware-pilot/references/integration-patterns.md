@@ -1,6 +1,10 @@
 # Cross-Skill Integration Patterns
 
-vmware-pilot orchestrates 7 VMware skills (156 tools) into coherent workflows.
+vmware-pilot orchestrates the VMware skill family into coherent workflows. Its
+design catalog (`get_skill_catalog`) offers 101 curated building blocks across 13
+skills. Without `--dispatch` a step handed to the agent may name any companion skill,
+catalogued or not; with `--dispatch` pilot runs only the catalog's skills and refuses the rest
+before any step runs.
 This reference documents the most common integration patterns and when to use
 Pilot vs. calling a skill directly.
 
@@ -12,27 +16,27 @@ Pilot is a **Dispatcher**, not an **Executor**. This is a deliberate v2-style ar
 
 The contract:
 
-1. **Pilot generates a plan** via `plan_workflow` or `design_workflow`. The plan is a sequence of `(skill, tool, params)` tuples plus approval gates and rollback metadata. State is persisted to SQLite.
+1. **Pilot generates a plan** via `create_workflow_from_template` or `design_workflow`. The plan is a sequence of `(skill, tool, params)` tuples plus approval gates and rollback metadata. State is persisted to SQLite.
 2. **Pilot tracks state** via `run_workflow`, `approve`, `rollback`. Each call returns immediately on the next checkpoint — running, awaiting approval, completed, or failed.
-3. **The calling AI agent dispatches each step**. After `run_workflow` returns a step description, the agent invokes the corresponding MCP tool on the target skill (e.g., `vmware-aiops::vm_clone`), captures the result, and reports back to pilot via the next state transition.
+3. **The calling AI agent dispatches each step**. After `run_workflow` returns a step description, the agent invokes the corresponding MCP tool on the target skill (e.g., `vmware-aiops::clone_vm`) and captures the result. Pilot has no call for reporting a step's result back, so on the MCP server those steps stay `not_executed` in pilot's record — which is why `rollback` there cannot undo them (see Error Handling).
 
-In other words: pilot is the brain, the AI agent is the hands. Pilot never reaches across the wire to call other skills' tools itself — its `dispatch` function defaults to a no-op.
+In other words: by default pilot is the brain and the AI agent is the hands — pilot does not call other skills' tools. Started with `vmware-pilot mcp --dispatch`, pilot runs each step itself in that skill's own MCP server instead, and the result carries no `pending_dispatch`.
 
 ### Why this matters
 
 - **Context isolation**: each step runs in the agent's main loop, not inside pilot. Pilot's context stays small (~100 lines/turn).
 - **No persistent agents**: there is no long-running pilot process that holds state in memory. State is always on disk.
 - **Approval gates as state, not blocking calls**: when a workflow hits `require_approval`, pilot persists the state and returns. Resumption is a new MCP call (`approve`), not an unblocking signal to a paused thread.
-- **Rollback is an explicit operation**: it doesn't happen automatically on agent crash or context loss. The user (or agent) must call `rollback` deliberately.
+- **Rollback is an explicit operation**: it never happens automatically — not on a failed step, not on agent crash or context loss. The user (or agent) must call `rollback` deliberately, and on the MCP server the agent performs the undo calls itself.
 
 ### What this means for agents using pilot
 
 | Agent action | Correct pilot interaction |
 |---|---|
-| Start a multi-step task | Call `plan_workflow`; read returned plan; show to user |
+| Start a multi-step task | Call `create_workflow_from_template`; read returned plan; show to user |
 | Execute the plan | Call `run_workflow`; for each pending step in the response, invoke the named skill+tool yourself; report progress to the user |
 | Hit an approval gate | Tell the user; wait for explicit approval; call `approve` |
-| Encounter a failure | Surface the error; ask the user whether to `rollback` |
+| Encounter a failure | Surface the error; ask the user whether to undo; if yes, call each performed step's `rollback_tool` yourself, last first (pilot's `rollback` cannot see steps you performed) |
 | Need to know workflow state mid-execution | Call `get_workflow_status` (idempotent, safe) |
 
 ### What this means for skill authors
@@ -61,7 +65,7 @@ The approval gate ensures no one auto-acknowledges a real issue.
 
 **Variations**:
 - Add `aria.list_rightsizing_recommendations` if the alarm is resource-related
-- Add `aiops.vm_power_off` / `vm_power_on` if restart is the remediation
+- Add `aiops.power_off_vm` / `power_on_vm` if restart is the remediation
 - Add `nsx-security.run_traceflow` if the alarm is network-related
 
 ---
@@ -74,8 +78,8 @@ Validate capacity/health, make a change, confirm no regressions.
 aria.get_remaining_capacity             -> Confirm capacity exists
 aria.list_rightsizing_recommendations   -> Validate change is reasonable
     [APPROVAL GATE]                     -> Human confirms the plan
-aiops.vm_create_plan                    -> Create batch operation plan
-aiops.vm_apply_plan                     -> Execute the plan
+aiops.create_vm_plan                    -> Create batch operation plan
+aiops.apply_vm_plan                     -> Execute the plan
 monitor.get_alarms                      -> Verify no new alarms
 ```
 
@@ -85,8 +89,8 @@ monitor.get_alarms                      -> Verify no new alarms
 The pre-check steps prevent expanding a VM when the cluster is already at capacity.
 
 **Variations**:
-- Replace `vm_create_plan` with direct `vm_power_on`/`vm_power_off` for simpler ops
-- Add `storage.vsan_capacity` if the change involves disk expansion
+- Replace `create_vm_plan` with direct `power_on_vm`/`power_off_vm` for simpler ops
+- Add `storage.get_vsan_capacity` if the change involves disk expansion
 - Chain with Pattern 4 (baseline) to detect drift after the change
 
 ---
@@ -129,7 +133,8 @@ Phase 1 - Capture (run once, save as baseline):
     nsx.list_segments               -> Network segments
     storage.list_all_datastores     -> Storage state
     monitor.get_alarms              -> Alarm state
-    [Save to ~/.vmware/baselines/]
+    [Agent saves results to ~/.vmware/baselines/ — pilot does not;
+     sensitive inventory, keep it owner-only (0700 dir / 0600 file)]
 
 Phase 2 - Audit (run periodically):
     monitor.list_virtual_machines   -> Current VM state
@@ -137,7 +142,7 @@ Phase 2 - Audit (run periodically):
     nsx.list_segments               -> Current network state
     storage.list_all_datastores     -> Current storage state
     aria.list_anomalies             -> Any new anomalies
-    [Compare against saved baseline -> drift report]
+    [Agent compares against the saved baseline -> drift report]
 
 Phase 3 - Remediate (if drift detected):
     monitor.get_alarms              -> Pre-check
@@ -164,11 +169,12 @@ Safe change deployment using a staging clone.
 
 ```
 aiops.deploy_linked_clone       -> Clone production VM to staging
-aiops.vm_reconfigure            -> Apply changes to staging clone
-monitor.get_alarms              -> Monitor staging for issues
+aiops.reconfigure_vm            -> Apply changes to the staging clone (powered off)
+aiops.power_on_vm               -> Start staging
+monitor.investigate_vm          -> Check the staging VM's alarms and events
     [APPROVAL GATE]             -> Human verifies staging is healthy
-aiops.vm_reconfigure            -> Apply same changes to production
-aiops.vm_power_off              -> Cleanup staging clone
+aiops.reconfigure_vm            -> Apply same changes to production
+aiops.power_off_vm              -> Cleanup staging clone
 ```
 
 **Built-in template**: `clone_and_test`
@@ -190,10 +196,10 @@ monitor.get_alarms              -> Pre-flight health check
     [APPROVAL GATE]             -> Human confirms VM list
 
 For each VM:
-    aiops.vm_power_off          -> Stop VM (graceful)
-    aiops.vm_power_on           -> Start VM
+    aiops.power_off_vm          -> Stop VM (graceful)
+    aiops.power_on_vm           -> Start VM
     monitor.get_alarms          -> Verify health after restart
-    [If alarms -> stop rolling, offer rollback]
+    [If alarms -> stop rolling; undo only if the user asks]
 ```
 
 **Built-in templates**: `rolling_restart`, `patch_deployment`
@@ -202,7 +208,9 @@ For each VM:
 be done simultaneously (database clusters, load-balanced web servers, etc.).
 
 **Key benefit**: If one VM fails the health check after restart, the workflow
-stops before touching remaining VMs. Rollback powers the failed VM back on.
+stops before touching remaining VMs. Nothing is undone automatically; the
+step's `rollback_tool` (`power_on_vm`) is there for the agent to call if the
+user wants the VM back on.
 
 ---
 
@@ -211,11 +219,13 @@ stops before touching remaining VMs. Rollback powers the failed VM back on.
 Provision a complete Tanzu Kubernetes environment.
 
 ```
-vks.create_namespace            -> Create Supervisor Namespace with storage policy
     [APPROVAL GATE]             -> Human reviews namespace config
+vks.create_namespace            -> Create Supervisor Namespace with storage policy
+    [APPROVAL GATE]             -> Human approves the TKC cluster
 vks.create_tkc_cluster          -> Deploy TKC cluster
 vks.get_tkc_cluster             -> Verify cluster is ready
-vks.get_tkc_kubeconfig          -> Retrieve kubeconfig for access
+    [APPROVAL GATE]             -> issue_tkc_kubeconfig returns a live credential
+vks.issue_tkc_kubeconfig          -> Write it to a file (0600); never print the token
 ```
 
 **Built-in template**: `vks_cluster_deploy`
@@ -235,11 +245,11 @@ provisioning.
 Add or expand storage on ESXi hosts.
 
 ```
-storage.storage_iscsi_status    -> Check current iSCSI state
-storage.storage_iscsi_enable    -> Enable adapter if needed
-    [APPROVAL GATE]             -> Human confirms storage target
-storage.storage_iscsi_add_target -> Add iSCSI target
-storage.storage_rescan          -> Rescan HBAs
+storage.get_iscsi_status    -> Check current iSCSI state (read-only)
+    [APPROVAL GATE]             -> Human confirms adapter enable + storage target
+storage.enable_iscsi    -> Enable adapter if needed
+storage.add_iscsi_target -> Add iSCSI target
+storage.rescan_storage          -> Rescan HBAs
 storage.list_all_datastores     -> Verify new datastores visible
 ```
 
@@ -248,7 +258,7 @@ storage.list_all_datastores     -> Verify new datastores visible
 **When to use**: Adding SAN/NAS storage to hosts, expanding storage pools.
 
 **Variations**:
-- Add `storage.vsan_health` + `storage.vsan_capacity` for vSAN operations
+- Add `storage.get_vsan_health` + `storage.get_vsan_capacity` for vSAN operations
 - Chain with Pattern 2 for VM disk expansion after new storage is available
 
 ---
@@ -262,7 +272,7 @@ storage.list_all_datastores     -> Verify new datastores visible
 | Check VM details | monitor | -- | Read-only query |
 | List network segments | nsx | -- | Read-only query |
 | Check capacity | aria | -- | Read-only query |
-| Get kubeconfig | vks | -- | Read-only query |
+| Get kubeconfig | vks | -- | Credential retrieval, not a read-only query: returns a live Supervisor session token. Run it only when the user asks, write it to an owner-only file (`output_path` on the MCP tool, `-o <path>` on the CLI), and never echo the token into chat or logs |
 | Clone, test, approve, apply | -- | pilot | Multi-step with approval gate |
 | Set up network + firewall + VMs | -- | pilot | Cross-skill orchestration |
 | Incident diagnosis + remediation | -- | pilot | Needs approval before action |
@@ -310,9 +320,21 @@ When a workflow step fails:
 1. The step is marked `failed` with the error message
 2. All remaining steps are marked `skipped`
 3. The workflow state becomes `FAILED`
-4. Pilot offers rollback for steps that have `rollback_tool` defined
-5. Rollback executes in reverse order (last completed step first)
-6. Steps without rollback are skipped during rollback
+4. **Nothing is undone automatically.** Undo happens only when someone decides to
+   roll back, and it is best-effort:
+   - **MCP server without `--dispatch` (the default):** the steps the agent
+     performed are still `not_executed` in pilot's record, so `rollback()`
+     reverses nothing and just marks the workflow `failed`.
+     The agent undoes the work itself: for each step it performed, last first,
+     call that step's `rollback_tool` with its `rollback_params`, after the user
+     agrees.
+   - **With `--dispatch` (or an embedder's dispatcher):** `rollback()`
+     dispatches `rollback_tool` for each step pilot recorded as `success`, in
+     reverse order. The failed step itself is not rolled back (it is `failed`,
+     not `success`).
+5. Steps without a `rollback_tool` are reported `not_reversible`; they cannot be undone this way
+6. `rollback()` itself previews first: a bare call returns `blast_radius` and
+   changes nothing; call it again with `confirm=True` after the user decides
 
-If rollback itself fails on one step, Pilot continues rolling back the remaining
-steps (best-effort rollback) and reports which rollback steps succeeded or failed.
+If an undo call fails, the remaining ones still run; the result reports each one
+and sets `blocked_reason: rollback_failed`.

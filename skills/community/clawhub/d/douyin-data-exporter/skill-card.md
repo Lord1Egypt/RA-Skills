@@ -1,44 +1,59 @@
-## Description: <br>
-Exports Douyin user homepage video data and optional Dou+/BOSS advertising order data through Python API calls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Exports Douyin user profile video data through the TikHub API and can optionally export DOU+/BOSS promotion order data.
 
-## Publisher: <br>
-[ahsbnb](https://clawhub.ai/user/ahsbnb) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ahsbnb](https://clawhub.ai/user/ahsbnb)
 
-## Use Case: <br>
-Developers and operators use this skill to export Douyin account video lists for analysis or reporting, with optional advertising order export when a separate Dou+/BOSS bearer token and customer ID are available. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill exports sensitive Douyin account data and optional advertising order data using bearer tokens. <br>
-Mitigation: Use short-lived, least-privilege tokens and avoid passing long-lived bearer tokens directly in shell command history. <br>
-Risk: Exported files may contain sensitive account or advertising data. <br>
-Mitigation: Check the workspace output location before running and store or share generated JSON, CSV, and Excel files only in approved locations. <br>
-Risk: Account names are used in generated file names. <br>
-Mitigation: Use simple account names without slashes or path characters. <br>
+## Use Case:
 
+External analysts, operators, and developers use this skill to export a Douyin account's video list and optional paid promotion order data into local JSON, CSV, or Excel files for review or downstream analysis.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/ahsbnb/douyin-data-exporter) <br>
-- [TikHub registration](https://user.tikhub.io/register) <br>
-- [TikHub API base](https://api.tikhub.io/api/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, files, text] <br>
-**Output Format:** [JSON, CSV, Excel, and terminal status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Python and a TikHub token; optional Dou+/BOSS bearer token and customer ID enable advertising order export.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill handles sensitive API tokens and business export data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only authorized tokens, avoid passing bearer tokens on the command line, and store exports in a protected location.
+
+Risk: Generated CSV files may include remote text fields that are unsafe to open directly in spreadsheet software.
+
+Mitigation: Sanitize exported text fields before opening CSV files in a spreadsheet.
+
+Risk: The DOU+/BOSS export is a separate sensitive business-data capability.
+
+Mitigation: Review and approve that capability separately from the Douyin video export workflow before use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ahsbnb/skills/douyin-data-exporter)
+- [TikHub Registration](https://user.tikhub.io/register)
+- [TikHub API Base](https://api.tikhub.io/api/v1)
+
+## Skill Output:
+
+**Output Type(s):** [Files, JSON, CSV, Excel, Shell commands]
+
+**Output Format:** [Local JSON, CSV, Excel, and summary report files, with a REPORT_PATH line on stdout.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Python and authorized API tokens; export files may contain sensitive account, video, promotion, or business data.]
+
+## Skill Version(s):
+
+1.0.1 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

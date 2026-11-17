@@ -1,41 +1,53 @@
-## Description: <br>
-Tantan social assistant for profile optimization, conversation strategy, matching guidance, and safer online dating practices. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tantan helps agents provide profile optimization, matching strategy, conversation guidance, and online dating safety advice for Tantan users.
 
-## Publisher: <br>
-[zhangifonly](https://clawhub.ai/user/zhangifonly) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhangifonly](https://clawhub.ai/user/zhangifonly)
 
-## Use Case: <br>
-External users use this skill to get practical Tantan profile, photo-selection, matching, conversation, VIP-feature, privacy, and in-person safety guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Dating, matching, and VIP-feature suggestions are subjective and may not apply to every user or current app behavior. <br>
-Mitigation: Treat recommendations as optional guidance and adapt them to the user's goals, local norms, and current Tantan experience. <br>
-Risk: Online dating can expose users to privacy, fraud, and in-person safety risks. <br>
-Mitigation: Preserve the skill's cautions about limiting personal disclosures, verifying suspicious profiles, meeting in public places, and leaving unsafe situations. <br>
+## Use Case:
 
+External users and agents use this skill to improve Tantan profiles, understand matching and chat strategy, and apply privacy, scam-prevention, and first-meeting safety guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhangifonly/tantan) <br>
-- [Publisher profile](https://clawhub.ai/user/zhangifonly) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Text, Markdown] <br>
-**Output Format:** [Markdown or plain text conversational guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution, external account access, or install hooks are indicated by the release evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: Dating-app feature and matching claims may change over time.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat feature and matching advice as general guidance and verify current Tantan behavior before relying on it.
+
+Risk: Online dating can expose users to scams, privacy leakage, or unsafe in-person meetings.
+
+Mitigation: Follow the skill's privacy, scam-warning, and public-meeting precautions, and treat money, investment, or transfer requests as high risk.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/zhangifonly/skills/tantan)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Text, Markdown]
+
+**Output Format:** [Markdown guidance and checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Advice-only output; no executable, persistent, or data-accessing behavior.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

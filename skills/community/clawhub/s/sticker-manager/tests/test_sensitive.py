@@ -8,7 +8,7 @@ def test_allowlisted_placeholder_line_passes():
 
 
 def test_sensitive_pattern_matches_github_token():
-    line = 'token = "ghp_ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890abcd"'
+    line = 'token = "REDACTED-SECRET"'
     matched = any(pattern.search(line) for _label, pattern in check_sensitive.BLOCK_PATTERNS)
     assert matched is True
 

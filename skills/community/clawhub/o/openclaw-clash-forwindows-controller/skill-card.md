@@ -1,42 +1,57 @@
-## Description: <br>
-Controls Clash for Windows proxy state by starting or stopping proxy routing, checking status, and switching nodes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Controls a local Clash for Windows proxy by changing proxy routing, checking status, and switching nodes through the Clash REST controller.
 
-## Publisher: <br>
-[IceNoodle](https://clawhub.ai/user/IceNoodle) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[icenoodle](https://clawhub.ai/user/icenoodle)
 
-## Use Case: <br>
-External users who run Clash for Windows use this skill to let an agent inspect and change local proxy routing state through the Clash external controller. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can change local proxy routing from broad proxy-control commands without a separate confirmation step. <br>
-Mitigation: Use explicit Clash-specific commands and review whether agent-driven proxy changes are appropriate before deployment. <br>
-Risk: The artifact includes a hardcoded Clash external-controller secret. <br>
-Mitigation: Replace the hardcoded secret with a private local configuration value before use. <br>
-Risk: The documented Clash configuration includes allow-lan, which can expose proxy access beyond the local machine if enabled carelessly. <br>
-Mitigation: Avoid enabling allow-lan unless the network exposure is intended and controlled. <br>
+## Use Case:
 
+Developers and end users who run Clash for Windows use this skill to manage local proxy routing and inspect the current proxy status from an agent conversation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/IceNoodle/openclaw-clash-forwindows-controller) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [Plain text status and action-result messages] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may report current Clash status, selected node, success, or failure after local proxy-control actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata and package.json) <br>
+Risk: The skill embeds a Clash controller secret that can authorize local proxy control if reused.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Replace or rotate the controller secret before use and keep the Clash REST controller bound to localhost.
+
+Risk: Broad or ambiguous trigger phrases can unexpectedly change proxy routing.
+
+Mitigation: Use explicit commands and review command handling before enabling the skill in shared or sensitive environments.
+
+Risk: The skill can alter local network proxy behavior.
+
+Mitigation: Install only where the Clash for Windows REST controller, ports, and proxy configuration are understood and intentionally configured.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/icenoodle/skills/openclaw-clash-forwindows-controller)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Guidance]
+
+**Output Format:** [Plain text status, success, failure, and usage messages]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can change local proxy routing through the Clash REST controller when matching commands are issued.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

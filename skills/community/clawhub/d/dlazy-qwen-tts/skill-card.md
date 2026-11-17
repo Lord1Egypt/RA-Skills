@@ -1,45 +1,56 @@
-## Description: <br>
-Alibaba Bailian qwen3-tts text-to-speech. Choose from curated system voices, including dialects, or design a custom voice from a natural-language description. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates speech from text with Alibaba Bailian Qwen3-TTS, using curated system voices or a custom voice description.
 
-## Publisher: <br>
-[dlazyai](https://clawhub.ai/user/dlazyai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dlazyai](https://clawhub.ai/user/dlazyai)
 
-## Use Case: <br>
-External users and developers use this skill to generate text-to-speech audio through the dLazy hosted Qwen TTS service, selecting predefined voices or describing a custom voice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a dLazy API key and stores credentials locally or accepts them through an environment variable. <br>
-Mitigation: Use the documented dLazy login or auth command, keep the key scoped to the intended organization, and rotate or revoke it from the dLazy dashboard when needed. <br>
-Risk: Prompts, parameters, and selected media paths may be sent to the dLazy hosted API and file service. <br>
-Mitigation: Use the skill only when sharing the requested inputs with the dLazy service is acceptable, and prefer dry runs or local review before submitting sensitive content. <br>
-Risk: A persistent global CLI install may increase local dependency footprint. <br>
-Mitigation: Use the documented npx invocation when a one-time or non-persistent CLI execution is preferred. <br>
+## Use Case:
 
+Developers and other agent users can turn text into speech with a selected system voice or a voice described in natural language. The skill returns a generated audio asset or a link to it.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dlazyai/dlazy-qwen-tts) <br>
-- [dLazy CLI package](https://www.npmjs.com/package/@dlazy/cli) <br>
-- [dLazy CLI homepage](https://github.com/dlazyai/cli) <br>
-- [dLazy website](https://dlazy.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown instructions with inline shell commands and JSON response examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May return hosted result URLs or an asynchronous generation task ID through the dLazy CLI.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: frontmatter and server release metadata) <br>
+Risk: The security scan was partial: the CLI package and related files were unavailable for review, and the CLI login behavior was not established by the scan.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the CLI package and confirm its credential flow before signing in or providing an API key.
+
+Risk: The skill sends prompts to dLazy’s hosted API, and its CLI login stores an API key in local CLI configuration.
+
+Mitigation: Avoid sending sensitive text unless that use is approved, protect the local API key, and rotate or revoke it if exposed.
+
+## Reference(s):
+
+- [CLI homepage (metadata.clawdis)](https://github.com/dlazy-ai/cli)
+- [dLazy CLI package on npm](https://www.npmjs.com/package/@dlazy/cli)
+- [dLazy service](https://dlazy.com)
+- [ClawHub release page](https://clawhub.ai/dlazyai/skills/dlazy-qwen-tts)
+
+## Skill Output:
+
+**Output Type(s):** [Audio, JSON]
+
+**Output Format:** [Generated speech audio asset or hosted audio URL, with result metadata in JSON]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Audio may be saved locally; asynchronous requests may return a task identifier before the asset is ready.]
+
+## Skill Version(s):
+
+1.3.41 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

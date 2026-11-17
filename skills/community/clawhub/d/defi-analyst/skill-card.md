@@ -1,46 +1,57 @@
-## Description: <br>
-DeFi research and analysis via Tavily MCP, GeckoTerminal API, and DeFiLlama for protocol research, TVL tracking, yield analysis, token discovery, and competitive landscape research. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+DeFi research and analysis via Tavily MCP, GeckoTerminal API, and DeFiLlama.
 
-## Publisher: <br>
-[0x-wzw](https://clawhub.ai/user/0x-wzw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[0x-wzw](https://clawhub.ai/user/0x-wzw)
 
-## Use Case: <br>
-External analysts and developers use this skill to research DeFi protocols, compare TVL and lending or yield data, inspect token pools, and gather recent news or sentiment via third-party APIs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release includes and recommends an apparent shared Tavily API key. <br>
-Mitigation: Create and configure your own Tavily key, store it securely, and ask the publisher to revoke and replace the exposed key. <br>
-Risk: Research queries may disclose private trading strategies, wallet details, or confidential topics to third-party search and API services. <br>
-Mitigation: Avoid submitting sensitive wallet, strategy, or confidential research details to Tavily, GeckoTerminal, DeFiLlama, or related services. <br>
-Risk: The artifact references Moltbook without enough detail to confirm whether it is a real dependency. <br>
-Mitigation: Confirm whether Moltbook is required before use and document any setup, data sharing, or access requirements. <br>
+## Use Case:
 
+DeFi researchers, analysts, and agent developers use this skill to investigate protocols, monitor TVL and yield data, discover token and pool activity, and compare competitive DeFi landscapes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/0x-wzw/defi-analyst) <br>
-- [Tavily](https://tavily.io) <br>
-- [DeFiLlama protocol API example](https://api.llama.fi/protocol/aave) <br>
-- [DeFiLlama lending overview API](https://api.llama.fi/overview/lending) <br>
-- [GeckoTerminal pools API example](https://api.geckoterminal.com/api/v2/networks/eth/pools) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON-oriented API query examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses third-party API and search results that may change over time.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill.json) <br>
+Risk: The README exposes and encourages use of a real-looking Tavily API credential.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not use the included key; create a fresh Tavily key and keep secrets out of shell history, shared configs, and committed files.
+
+Risk: Research queries and token or protocol identifiers may be sent to Tavily, DeFiLlama, GeckoTerminal, and potentially Moltbook.
+
+Mitigation: Avoid submitting confidential strategy, wallet, customer, or unreleased token information to these external services.
+
+## Reference(s):
+
+- [Tavily](https://tavily.io)
+- [DeFiLlama API](https://api.llama.fi)
+- [GeckoTerminal API](https://api.geckoterminal.com/api/v2)
+- [ClawHub Skill Page](https://clawhub.ai/0x-wzw/skills/defi-analyst)
+- [Publisher Profile](https://clawhub.ai/user/0x-wzw)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON-shaped examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include API queries and summarized DeFi metrics from external services.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

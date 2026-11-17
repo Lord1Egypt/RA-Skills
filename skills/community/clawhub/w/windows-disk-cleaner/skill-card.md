@@ -1,44 +1,54 @@
-## Description: <br>
-Safe Windows disk cleanup assistant that scans a selected drive, analyzes cache and storage usage, and produces cleanup guidance and reports with user-confirmed deletion steps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Safe Windows disk cleanup assistant that scans Windows drives, analyzes temporary files, developer caches, browser caches, Windows Update leftovers, large files, duplicate files, and node_modules, then generates an interactive report with safe, review, and never-touch cleanup tiers.
 
-## Publisher: <br>
-[guge0](https://clawhub.ai/user/guge0) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[guge0](https://clawhub.ai/user/guge0)
 
-## Use Case: <br>
-Developers, power users, and IT support staff use this skill to inspect Windows disk usage, identify safe cleanup candidates, and generate reviewable cleanup reports and commands before removing files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local scan reports can contain filenames, paths, and system or cache metadata. <br>
-Mitigation: Keep scan_result.json and cleanup_report.html private and avoid sharing them unless the contents have been reviewed. <br>
-Risk: Generated cleanup commands can remove user data or persistent development resources if run without review. <br>
-Mitigation: Inspect each generated PowerShell command before execution, especially commands touching Downloads, Docker volumes, node_modules, and Remove-Item targets. <br>
-Risk: Some cleanup candidates require user judgment, such as large files, duplicate files, virtual environments, and old project dependencies. <br>
-Mitigation: Confirm each review-tier item before deletion and prefer backup, recycle-bin, or tool-native cleanup workflows when available. <br>
+## Use Case:
 
+Developers, IT staff, and Windows power users use this skill to inspect disk usage, identify cleanup candidates, and generate reviewable cleanup commands and reports before deleting local files.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/guge0/windows-disk-cleaner) <br>
-- [Windows safe cleanup paths reference](references/safe_paths.md) <br>
-- [OpenClaw runtime metadata](metadata.openclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with PowerShell and Python command snippets, JSON scan output, and generated HTML cleanup reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Targets Windows environments and requires powershell and python3.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release evidence) <br>
+Risk: Generated cleanup commands may delete important Firefox profile data or Docker volumes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Inspect every generated command before execution, remove Docker `--volumes`, and avoid any command targeting Firefox profile roots.
+
+Risk: Generated reports can expose local usernames, file paths, and file inventories.
+
+Mitigation: Treat reports as sensitive local artifacts and redact or avoid sharing them outside the intended review workflow.
+
+## Reference(s):
+
+- [Windows Safe Cleanup Paths](references/safe_paths.md)
+- [ClawHub Skill Page](https://clawhub.ai/guge0/skills/windows-disk-cleaner)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Files, Guidance]
+
+**Output Format:** [Markdown guidance with PowerShell commands, JSON scan results, and an HTML cleanup report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Windows-only; generated reports may contain local usernames, paths, and file inventories.]
+
+## Skill Version(s):
+
+2.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

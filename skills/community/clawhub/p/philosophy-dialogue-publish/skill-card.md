@@ -1,41 +1,54 @@
-## Description: <br>
-Provides a collection of 243 Eastern and Western philosopher and thinker perspectives that an agent can use for viewpoint-based analysis, dialogue, and multi-perspective discussion. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a collection of 243 Eastern and Western philosopher and thinker perspectives that an agent can invoke by name for analysis, dialogue, debate, or multi-perspective discussion.
 
-## Publisher: <br>
-[wings229](https://clawhub.ai/user/wings229) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wings229](https://clawhub.ai/user/wings229)
 
-## Use Case: <br>
-External users and developers use this skill to ask an agent to analyze questions through named philosopher or thinker perspectives, compare multiple viewpoints, or stage dialogue between selected thinkers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad activation wording may cause the skill to activate when a user is only discussing philosopher names or multiple perspectives. <br>
-Mitigation: Use explicit prompts when requesting a philosopher perspective, and confirm that the skill is intended before relying on the response. <br>
-Risk: The submitted artifact references a full perspective library that is not included in the artifact. <br>
-Mitigation: Confirm the required perspective files or equivalent source material are available before expecting complete per-thinker behavior. <br>
+## Use Case:
 
+External users and developers use this skill to ask an agent to analyze questions through named philosopher, thinker, scientist, strategist, or writer perspectives, including single-persona responses, debates, random perspectives, and multi-view discussions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wings229/philosophy-dialogue-publish) <br>
-- [Publisher profile](https://clawhub.ai/user/wings229) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or plain text responses containing perspective-based analysis and dialogue] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May vary by requested thinker, number of perspectives, and prompt framing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and skill frontmatter) <br>
+Risk: Broad trigger phrases may shift the agent into philosopher-style roleplay unexpectedly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use explicit invocation phrasing and review whether the requested persona framing is appropriate for the task.
+
+Risk: Persona-style outputs can sound authoritative even when they are interpretive and should not be treated as factual or professional advice.
+
+Mitigation: Treat responses as perspective-taking or analysis aids and verify factual, legal, medical, financial, or safety-critical claims against authoritative sources.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wings229/skills/philosophy-dialogue-publish)
+- [ClawHub publisher profile](https://clawhub.ai/user/wings229)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or conversational text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces persona-style philosophical analysis, dialogue, debate, and multi-perspective responses.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,54 @@
-## Description: <br>
-Write formal legal memos with proper structure, citations, legal analysis, and professional tone for legal memoranda, case analysis, statutory interpretation, regulatory summaries, and structured legal documents using IRAC or CREAC formats. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Write formal legal memos with proper structure, citations, legal analysis, and professional tone.
 
-## Publisher: <br>
-[jimmy974](https://clawhub.ai/user/jimmy974) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jimmy974](https://clawhub.ai/user/jimmy974)
 
-## Use Case: <br>
-Legal, compliance, and business users use this skill to draft structured legal memoranda, compliance summaries, contract clause blocks, and legal analyses for attorney or qualified reviewer follow-up. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate broadly on legal, compliance, privacy, contract, or litigation terms. <br>
-Mitigation: Review activation and use it only when legal drafting assistance is intended. <br>
-Risk: Generated legal analysis, citations, or jurisdiction-specific conclusions may be incorrect or incomplete. <br>
-Mitigation: Require qualified legal review and independent citation verification before relying on outputs. <br>
-Risk: Compliance and privacy outputs may be unsuitable for specific facts, jurisdictions, or organizational obligations. <br>
-Mitigation: Validate outputs against current law, governing contracts, and internal compliance requirements before use. <br>
+## Use Case:
 
+Employees, legal operations teams, and external reviewers can use this skill to draft structured legal memoranda, case analyses, statutory interpretations, regulatory summaries, and contract or compliance clause blocks for attorney review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jimmy974/legal-memo-writer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown legal memo templates, citation guidance, clause text, and optional Python helper code] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes disclaimers that outputs are informational and citations must be independently verified.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Legal memo drafts may contain incorrect legal conclusions, unsupported citations, or jurisdiction-specific errors.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as drafting aids only, verify citations independently, and have a qualified attorney or DPO review high-stakes or jurisdiction-specific conclusions.
+
+Risk: Users may mistake generated memoranda or clause blocks for legal advice.
+
+Mitigation: Retain the informational-use disclaimer and clearly flag questions that require licensed legal advice.
+
+## Reference(s):
+
+- [Legal Memo Writer on ClawHub](https://clawhub.ai/jimmy974/skills/legal-memo-writer)
+- [Publisher profile: jimmy974](https://clawhub.ai/user/jimmy974)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Guidance]
+
+**Output Format:** [Markdown or plain text legal memo drafts with optional Python code examples and citation guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should include the skill's legal-information disclaimer, independently verified citations, jurisdictional caveats, and qualified attorney or DPO review for high-stakes conclusions.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata; skill frontmatter metadata lists 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

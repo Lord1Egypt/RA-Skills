@@ -1,41 +1,54 @@
-## Description: <br>
-Workflow Structurer guides users through progressive clarification to turn vague process descriptions into structured workflow documents covering steps, inputs, outputs, responsibilities, risks, validation criteria, and rules. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Interactive workflow structuring assistant that guides users step-by-step to transform vague process descriptions into structured, executable workflow documents with inputs, outputs, responsibilities, risks, validation criteria, and rules.
 
-## Publisher: <br>
-[csh995426531](https://clawhub.ai/user/csh995426531) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[csh995426531](https://clawhub.ai/user/csh995426531)
 
-## Use Case: <br>
-Employees, external contributors, and process owners use this skill to clarify an under-defined process and document it as an executable workflow. It is especially useful when the user needs step-by-step questioning, per-step confirmation, and a final handoff summary for skill creation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may include secrets or sensitive business details while the skill captures workflow notes and handoff material. <br>
-Mitigation: Avoid pasting secrets or sensitive details unless they are appropriate to retain in generated workflow documentation. <br>
-Risk: The workflow document may be incomplete or misleading if users confirm steps before all required sections are clarified. <br>
-Mitigation: Use the skill's per-step confirmation loop and verify inputs, outputs, responsibilities, risks, validation criteria, and rules before relying on the final workflow. <br>
+## Use Case:
 
+Employees, external users, and developers use this skill to turn an unclear process description into a structured workflow document. It progressively clarifies the goal, step skeleton, inputs, outputs, responsibilities, risks, validation criteria, rules, and final handoff summary.
 
-## Reference(s): <br>
-- [Step Definition Template](references/step-template.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/csh995426531/workflow-structurer-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces progressive questions, step summaries, progress notes, interruption summaries, and a final skill-creator handoff.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill asks for operational process details, which may include sensitive business or personal information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Share only details needed to document the workflow, and omit or generalize sensitive information where possible.
+
+Risk: Broad process-related prompts may activate the skill even when a user only wants a quick answer.
+
+Mitigation: Confirm the user's workflow-structuring goal before collecting step details or producing structured documentation.
+
+## Reference(s):
+
+- [Step Definition Template](references/step-template.md)
+- [ClawHub Skill Page](https://clawhub.ai/csh995426531/skills/workflow-structurer-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown workflow documentation and handoff summary]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Interactive question-and-answer flow; matches the user's language and asks for confirmation before advancing between workflow steps.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

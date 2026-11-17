@@ -61,6 +61,8 @@ Call `rune-verification.md` to run the full test suite and build.
 If verification fails → STOP. Do NOT proceed. Report failure with test output.
 ```
 
+**Wiring evidence check (advisory)**: when deploying a FEATURE (not a hotfix — hotfix chain exempt) whose changes touch both UI and api/service/data files, look for cross-layer evidence: `integration.verified` (verification Level 3.5 passed) or `convergence.clean` (converge found zero gaps). Neither present → WARN the user explicitly — "Deploying UI+data changes with no cross-layer wiring evidence. Unit tests alone don't prove the buttons work. Proceed?" — and require confirmation. Advisory, not a block: the user can proceed, but never unknowingly.
+
 Call `rune-sentinel.md` to run security scan.
 
 ```
@@ -366,7 +368,7 @@ Known failure modes for this skill. Check these before declaring done.
 ~1000-3000 tokens input, ~500-1000 tokens output. Sonnet. Most time in build/deploy commands.
 
 ---
-> **Rune Skill Mesh** — 64 skills, 204 connections + 40 signals, 14 extension packs
+> **Rune Skill Mesh** — 66 skills, 248 connections + 45 signals, 14 extension packs
 > [Landing Page](https://rune-kit.github.io/rune) · [Source](https://github.com/rune-kit/rune) (MIT)
-> **Rune Pro** ($49 lifetime) — product, sales, data-science, support packs → [rune-kit/rune-pro](https://github.com/rune-kit/rune-pro)
+> **Rune Pro** ($49 lifetime) — 9 domain packs + context intelligence → [rune-kit/rune-pro](https://github.com/rune-kit/rune-pro)
 > **Rune Business** ($149 lifetime) — finance, legal, HR, enterprise-search packs → [rune-kit/rune-business](https://github.com/rune-kit/rune-business)

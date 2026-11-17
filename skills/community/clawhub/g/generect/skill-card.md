@@ -1,44 +1,57 @@
-## Description: <br>
-Search B2B leads and companies, find and validate emails via the Generect Live API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search B2B leads and companies, find and validate business emails, and support prospecting and enrichment workflows via the Generect Live API.
 
-## Publisher: <br>
-[vokaplok](https://clawhub.ai/user/vokaplok) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[vokaplok](https://clawhub.ai/user/vokaplok)
 
-## Use Case: <br>
-Sales, marketing, recruiting, and business development users can use this skill to search for lead and company records, enrich LinkedIn profiles, generate likely business email addresses, and validate email deliverability through Generect. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Lead, company, LinkedIn URL, and email lookup data is sent to Generect as part of normal operation. <br>
-Mitigation: Submit only data appropriate for Generect processing, avoid regulated or unnecessary personal data, and confirm a legal basis for enrichment or outreach. <br>
-Risk: API credentials may grant access to paid or sensitive Generect account capabilities. <br>
-Mitigation: Use a dedicated Generect API key, keep it in the GENERECT_API_KEY environment variable, and rotate or revoke it if exposed. <br>
-Risk: Optional MCP server paths are separate integrations from the documented API helper. <br>
-Mitigation: Review the remote MCP endpoint or local MCP package separately before enabling those optional paths. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Generect Live API documentation](https://liveapi.generect.com) <br>
-- [Generect API access](https://beta.generect.com) <br>
-- [Generect API filter reference](references/api-filters.md) <br>
-- [ClawHub skill page](https://clawhub.ai/vokaplok/generect) <br>
+## Use Case:
 
+Developers and go-to-market operators use this skill to search leads and companies by ICP, retrieve enriched profiles, generate likely business emails from names and domains, and validate email addresses through Generect.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, JSON] <br>
-**Output Format:** [Markdown guidance with JSON request bodies and curl examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a GENERECT_API_KEY environment variable and sends requested lead, company, LinkedIn, and email lookup data to Generect.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill sends contact, prospecting, and email-address data to the third-party Generect API.
+
+Mitigation: Use only data you are allowed to send to Generect and require user confirmation before submitting personal or prospecting data.
+
+Risk: The artifact references using an unpinned npm package for the optional MCP server.
+
+Mitigation: Prefer pinned and reviewed package versions over @latest before enabling MCP usage.
+
+Risk: The Generect API key could be exposed if broad environment secrets are available to the integration.
+
+Mitigation: Expose only the required GENERECT_API_KEY secret to the process and avoid passing unrelated environment variables.
+
+## Reference(s):
+
+- [Generect Live API Documentation](https://liveapi.generect.com)
+- [Generect API Filter Reference](references/api-filters.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON request examples and curl commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires GENERECT_API_KEY; responses depend on Generect API availability, account permissions, and rate limits.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

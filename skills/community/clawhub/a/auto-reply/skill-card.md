@@ -1,43 +1,57 @@
-## Description: <br>
-Instagram DM auto-reply system for monitoring, reading, replying to, and checking Instagram direct messages with prompt-injection rejection. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+auto-reply is an Instagram DM automation skill for monitoring, reading, replying to messages, setting up notification workflows, and rejecting common prompt-injection attempts.
 
-## Publisher: <br>
-[mupengi-bot](https://clawhub.ai/user/mupengi-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[mupengi-bot](https://clawhub.ai/user/mupengi-bot)
 
-## Use Case: <br>
-Developers and operators use this skill to check Instagram DM state, read unread conversations, prepare replies, and configure cron or watcher-based DM monitoring. It is intended for accounts already logged into an OpenClaw browser profile. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can access browser session cookies and private Instagram DMs for the account logged into the OpenClaw browser. <br>
-Mitigation: Use a dedicated browser profile or account and install only when this access is intentional. <br>
-Risk: The background watcher can continuously monitor DMs and write message details to local alert files. <br>
-Mitigation: Enable the watcher only when continuous monitoring is desired and review generated alert files regularly. <br>
-Risk: DM previews may be forwarded to Discord when Discord credentials are configured. <br>
-Mitigation: Do not configure Discord credentials unless forwarding private DM snippets to Discord is acceptable. <br>
-Risk: The skill depends on a local browser debug port for Instagram session access. <br>
-Mitigation: Keep the browser debug port local and protected from other users or network access. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mupengi-bot/auto-reply) <br>
+## Use Case:
 
+External users and developers use this skill to let an agent check Instagram DMs, inspect unread conversations, prepare reply actions, and configure polling or watcher workflows. It is intended for workflows where the user intentionally grants access to a logged-in Instagram browser session.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce reply metadata, notification summaries, security alerts, and browser fallback instructions.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can access a logged-in Instagram browser session and use session cookies to read or send DMs.
+
+Mitigation: Install and run it only in an account and browser session where that access is intentional, and stop browser debugging access when the workflow is not in use.
+
+Risk: Watcher workflows can copy private DM previews to Discord when Discord-related environment variables are configured.
+
+Mitigation: Do not set DISCORD_TOKEN or OWNER_DISCORD_ID unless forwarding DM previews is explicitly desired, and review the configured recipient before enabling watcher notifications.
+
+Risk: The documented global npm dependency install broadens trust in globally available packages.
+
+Mitigation: Prefer a reviewed local dependency install in a project directory and run the scripts from that controlled environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mupengi-bot/skills/auto-reply)
+- [Publisher profile](https://clawhub.ai/user/mupengi-bot)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, JSON]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or read local DM state and alert files as part of watcher and auto-reply workflows.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

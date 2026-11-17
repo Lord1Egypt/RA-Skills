@@ -1,41 +1,57 @@
-## Description: <br>
-Ollama Memory helps an agent maintain local Markdown and SQLite memory with Ollama embeddings for semantic search. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides guidance for a local AI assistant memory system using Markdown records, SQLite vector storage, and Ollama embeddings.
 
-## Publisher: <br>
-[Kk-kingkong](https://clawhub.ai/user/Kk-kingkong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kk-kingkong](https://clawhub.ai/user/kk-kingkong)
 
-## Use Case: <br>
-Developers and agent users use this skill to keep durable local assistant notes, long-term memory, user preferences, and daily session records searchable through a local Ollama embedding workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Assistant memory persists on the user's machine and may retain sensitive personal data if the user saves it. <br>
-Mitigation: Avoid saving passwords, account tokens, or sensitive personal data unless retention is intentional; periodically review or delete USER.md, MEMORY.md, SOUL.md, daily notes, and any SQLite memory database. <br>
-Risk: The artifact references Python memory scripts that are not bundled with the skill. <br>
-Mitigation: Review any local memory scripts before running initialization, add, or search commands. <br>
+## Use Case:
 
+Developers and agent users use this skill to set up and operate a local long-term memory workflow for AI assistants, including daily notes, long-term memory files, local embeddings, and semantic search.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Kk-kingkong/ollama-memory) <br>
-- [Publisher profile](https://clawhub.ai/user/Kk-kingkong) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Describes local files under ~/.openclaw/workspace and requires python3, sqlite3, and ollama.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill stores and reloads user and session memories.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Define consent, retention, and deletion rules before use, then periodically review and delete memory files.
+
+Risk: Stored memories may contain secrets or personal information.
+
+Mitigation: Avoid saving secrets, real account details, or private personal data in memory files.
+
+Risk: Changes to SOUL.md or MEMORY.md can alter long-term assistant behavior.
+
+Mitigation: Require user confirmation before changing personality or long-term behavior files.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/kk-kingkong/skills/ollama-memory)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown with inline shell commands and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance depends on local files, Ollama, SQLite, and Python scripts configured by the user.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

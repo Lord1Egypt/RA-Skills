@@ -1,41 +1,57 @@
-## Description: <br>
-Fetches a GitHub user's starred repositories and generates a standardized Chinese Markdown report grouped by category. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches a GitHub user's starred repositories through the GitHub API and generates a categorized Chinese Markdown report.
 
-## Publisher: <br>
-[blckrabbit](https://clawhub.ai/user/blckrabbit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[blckrabbit](https://clawhub.ai/user/blckrabbit)
 
-## Use Case: <br>
-Developers and GitHub users use this skill to export a user's public starred repositories and produce a categorized Chinese Markdown report for review, sharing, or personal knowledge management. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Optional GitHub token use can expose credentials if pasted into shared shells, logs, or transcripts. <br>
-Mitigation: Prefer running without a token; if rate-limited, use a token with no permissions and avoid entering it in shared environments. <br>
-Risk: GitHub API rate limits or network access failures can prevent report generation. <br>
-Mitigation: Run the script in an environment with GitHub network access and use the documented optional token only when rate limits block completion. <br>
+## Use Case:
 
+Developers and technical users use this skill to analyze a GitHub user's starred repositories, group them by category and language, and produce a shareable Chinese Markdown report.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/blckrabbit/yardor) <br>
-- [GitHub starred repositories API](https://api.github.com/users/{username}/starred) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Chinese Markdown report file with summary tables and categorized repository listings] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use an optional GitHub personal access token to raise API rate limits.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.1 (source: release evidence) <br>
+Risk: GitHub tokens can be supplied through command-line arguments.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer unauthenticated use; if a token is needed, use a short-lived GitHub token with no permissions and avoid passing valuable PATs in command arguments.
+
+Risk: The output path can overwrite writable files.
+
+Mitigation: Keep output paths inside a dedicated reports folder and review the path before running the script.
+
+Risk: The skill runs a local Python script and fetches public GitHub data over the network.
+
+Mitigation: Install only after review, run it for intended GitHub usernames, and expect GitHub API availability and rate limits to affect results.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/blckrabbit/skills/yardor)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, shell commands, guidance]
+
+**Output Format:** [Chinese Markdown report file with summary tables and categorized repository lists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires network access to the GitHub API and may optionally use a GitHub token for higher rate limits.]
+
+## Skill Version(s):
+
+0.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

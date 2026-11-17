@@ -1,0 +1,145 @@
+{
+  "schema": "2.0",
+  "config": {
+    "wide_screen_mode": true,
+    "update_multi": true
+  },
+  "header": {
+    "title": {
+      "tag": "plain_text",
+      "content": "20260719-增量日报-信任崩塌不可逆-PMF不在制作环节"
+    },
+    "subtitle": {
+      "tag": "plain_text",
+      "content": "2026-07-19 · obsidian-loop v2.1 · 知识编译轨 · 07:30 自动生成 · 4 反常识 / 1 融合 / 3 行动"
+    },
+    "template": "blue",
+    "icon": {
+      "tag": "standard_icon",
+      "token": "myai_colorful"
+    }
+  },
+  "body": {
+    "direction": "vertical",
+    "padding": "16px 16px 16px 16px",
+    "elements": [
+      {
+        "tag": "markdown",
+        "content": "**今日编译产出**：6 篇素材 → 32 atoms（4 层 10 类）→ 5 concepts（cangjie 全过）→ 3 行动卡片\n\n**使命**：让你看完就能立即行动。obsidian-loop 不是知识生产机器，而是用户行动催化剂。"
+      },
+      {
+        "tag": "hr"
+      },
+      {
+        "tag": "column_set",
+        "flex_mode": "none",
+        "background_style": "blue-50",
+        "columns": [
+          {
+            "tag": "column",
+            "width": "weighted",
+            "weight": 1,
+            "vertical_align": "top",
+            "background_style": "blue-50",
+            "elements": [
+              {
+                "tag": "markdown",
+                "content": "🌟 **本日最重要发现**\n\n**Concept 1**：知识管理系统必须包含「排期/行动」环节才有价值\n\n> 「我觉得最大的卡点不在整理，把文件从目录 A 转移到 BDC 一点用都没有，解决方法是排期。」—— 卡尔\n\n**atom_id**：`atom-10`（5★ INSIGHT，挑战 obsidian-loop 设计）\n**信源**：卡尔 · AI 沃茨公众号 · Tier 1 · 20 万阅读\n**关联**：3 源 cangjie 验证（卡尔 + David Allen + Dario）\n**影响**：04:00 整理归档轨需升级为「整理 + 排期 + 行动」三段式"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tag": "hr"
+      },
+      {
+        "tag": "column_set",
+        "flex_mode": "none",
+        "background_style": "default",
+        "columns": [
+          {
+            "tag": "column",
+            "width": "weighted",
+            "weight": 1,
+            "vertical_align": "top",
+            "elements": [
+              {
+                "tag": "markdown",
+                "content": "⚡ **其余 3 条反常识发现**\n\n**atom-2** · AI 视频工具 PMF 不在制作环节\n▸ 「做出来之后，价值到底在哪里发生？」—— 晨然\n▸ 论证：制作自动化不解决价值发生 → PMF 在消费/分发/结算\n\n**atom-3** · Dario 离开 OpenAI 是信任崩塌\n▸ 「分歧可以争论，但信任一旦崩塌，争论本身就失去了意义。」\n▸ 论证：当事人原话纠正安全分歧叙事 → 真因是信任崩塌\n\n**atom-5** · Mythos 超级武器：要求不发布的是测试公司\n▸ 「要求不发布它的，恰恰是那些拿它测试的公司。」\n▸ 4 特征：14 字 ≤30 / 悖论式 / 具象化 / 认知冲击"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tag": "hr"
+      },
+      {
+        "tag": "column_set",
+        "flex_mode": "none",
+        "background_style": "yellow-50",
+        "columns": [
+          {
+            "tag": "column",
+            "width": "weighted",
+            "weight": 1,
+            "vertical_align": "top",
+            "background_style": "yellow-50",
+            "elements": [
+              {
+                "tag": "markdown",
+                "content": "🔗 **今日 1 个跨域融合**\n\n**Concept：信任崩塌不可逆 + 知识管理需排期 = 「认知排期」机制**\n\n▸ 融合路径：Dario 信任崩塌 → 不可挽回 → 需要「预防性排期」检查信任健康度 → 卡尔知识管理需排期 → 同构映射到「关系管理需排期」\n▸ 跨域证据：组织行为学（Edmondson 心理安全感）+ 软件工程（健康度监控）\n▸ 新概念：**「认知排期」** = 定期审视未处理的信息/关系/决策是否进入「崩塌临界点」\n▸ 落地：obsidian-loop 周报增加「信任健康度」+「信息积压度」两维指标"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tag": "hr"
+      },
+      {
+        "tag": "column_set",
+        "flex_mode": "none",
+        "background_style": "grey-50",
+        "columns": [
+          {
+            "tag": "column",
+            "width": "weighted",
+            "weight": 1,
+            "vertical_align": "top",
+            "background_style": "grey-50",
+            "elements": [
+              {
+                "tag": "markdown",
+                "content": "📊 **今日扫描**\n- 素材：6 篇 / atoms：32 个（4 层 10 类）\n- 5 星 atoms：8 个（25% 覆盖率，远超 10% 门控）\n- concepts：5 个（cangjie 三重验证全过）\n- 字典表查表：4 次查询 / 23 次命中 / 3 融合解法\n- 5 重质量门控：全过 ✅\n\n⚠️ **风险**：信源单一域名占比 40%（waytoagi.feishu.cn），独立信源 ≥4 ✅\n⚠️ **数据缺口**：Concept 2/3/5 缺实测数据，需 1-2 年观察期"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tag": "hr"
+      },
+      {
+        "tag": "button",
+        "text": {
+          "tag": "plain_text",
+          "content": "📄 查看完整增量日报（含 3 行动清单链接）"
+        },
+        "type": "primary",
+        "width": "fill",
+        "behaviors": [
+          {
+            "type": "open_url",
+            "default_url": "https://example.com/flow-report"
+          }
+        ]
+      },
+      {
+        "tag": "markdown",
+        "content": "> 🤖 obsidian-loop v2.1 · 07:30 知识编译轨 · schema 2.0 · 邻近色环 blue+yellow+grey（3 主色系）"
+      }
+    ]
+  }
+}

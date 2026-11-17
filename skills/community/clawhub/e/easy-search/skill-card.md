@@ -1,42 +1,58 @@
-## Description: <br>
-Simple web search using multiple search engines with no API key required. Supports Google, Bing, DuckDuckGo, Baidu, Sogou, 360, Brave, Yandex. Features time filtering, interactive mode, snippet extraction, and network diagnostics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Simple web search using multiple search engines with no API key required. Supports Google, Bing, DuckDuckGo, Baidu, Sogou, 360, Brave, Yandex. Features time filtering, interactive mode, snippet extraction, and network diagnostics.
 
-## Publisher: <br>
-[hkall](https://clawhub.ai/user/hkall) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hkall](https://clawhub.ai/user/hkall)
 
-## Use Case: <br>
-Developers and agents use this skill to run web searches across multiple public search engines, retrieve snippets, apply time filters, and format results for downstream reading or analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search terms are sent to public search engines and may also pass through a configured proxy. <br>
-Mitigation: Avoid searching for secrets, credentials, private customer data, or internal-only project details. <br>
-Risk: Automatic fallback can route a query to a different search engine than expected. <br>
-Mitigation: Use a specific engine and --no-fallback when query routing needs tighter control. <br>
-Risk: Search results are cached locally for faster repeated searches. <br>
-Mitigation: Use --clear-cache after sensitive workflows and avoid submitting sensitive queries. <br>
+## Use Case:
 
+Developers and agent users use Easy Search to run web searches from the command line without API keys, retrieve snippets, apply time filters, and switch among supported public search engines.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/hkall/easy-search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, CSV, shell commands, guidance] <br>
-**Output Format:** [Search results and diagnostics as JSON, Markdown, simple text, or CSV] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports result count, engine selection, time filtering, interactive mode, proxy-aware requests, and local cache clearing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Search queries are sent to third-party search services and may expose secrets, sensitive internal terms, or confidential topics.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid searching for secrets or sensitive internal terms, and use an appropriate network or proxy environment for the data being searched.
+
+Risk: Search queries and results may be cached locally in plaintext.
+
+Mitigation: Use --no-cache for sensitive searches and --clear-cache to remove saved results.
+
+Risk: Optional dependencies and public search interfaces can affect result availability, reliability, and privacy posture.
+
+Mitigation: Install dependencies in a normal user environment, preferably a virtual environment, and review returned URLs before acting on them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hkall/skills/easy-search)
+- [README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [JSON, Markdown, CSV, or simple text search results with titles, URLs, snippets, engine metadata, and optional diagnostics.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search results may be cached locally for faster repeated searches; users can disable or clear the cache.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

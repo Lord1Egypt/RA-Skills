@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+# fake ssh: prints the remote command it was asked to run
+printf 'SSH_CMD[%s]\n' "${@: -1}"

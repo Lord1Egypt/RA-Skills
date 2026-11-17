@@ -1,40 +1,54 @@
-## Description: <br>
-Performance-optimized strategies for editing Feishu (Lark) documents via OpenClaw's feishu_doc tool, including targeted block updates, positioned image insertion, table edits, chunking, rate-limit handling, rich-text preservation, and conflict avoidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Performance-optimized guidance for editing Feishu and Lark documents with OpenClaw's feishu_doc tool while preserving formatting and reducing API calls.
 
-## Publisher: <br>
-[guoqunabc](https://clawhub.ai/user/guoqunabc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[guoqunabc](https://clawhub.ai/user/guoqunabc)
 
-## Use Case: <br>
-Developers, operators, and agents working with Feishu or Lark documents use this skill to plan faster, lower-risk block-level edits, image placement, table updates, and large-document changes while preserving existing formatting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Agents may update or delete Feishu document blocks incorrectly or affect shared work. <br>
-Mitigation: Review planned edits before applying them to important shared documents, especially when collaborators may be editing at the same time. <br>
-Risk: Blind block updates can remove existing rich-text formatting. <br>
-Mitigation: Read affected blocks first, skip unchanged blocks, and use style-specific actions for formatting-only changes where possible. <br>
+## Use Case:
 
+Developers and agents use this skill to plan and execute targeted Feishu or Lark document edits, including block updates, inserts, tables, image placement, chunked writes, and rate-limit handling.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/guoqunabc/feishu-doc-editing) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, API calls] <br>
-**Output Format:** [Markdown guidance with JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides agents toward targeted Feishu document operations and asks them to review planned document mutations before applying them.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release evidence) <br>
+Risk: Unconfirmed operations could modify or delete live Feishu document content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the target document, requested edits, and any delete operations before running the workflow.
+
+Risk: Image upload guidance could cause an agent to upload the wrong local file or expose private content.
+
+Mitigation: Confirm each local image file path and destination document before upload, especially for business or private documents.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/guoqunabc/skills/feishu-doc-editing)
+- [ClawHub publisher profile](https://clawhub.ai/user/guoqunabc)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code]
+
+**Output Format:** [Markdown guidance with Feishu tool-call patterns and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include edit plans, block-operation choices, rate-limit handling, image insertion instructions, and preservation guidance for existing rich text.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

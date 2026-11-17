@@ -1,43 +1,57 @@
-## Description: <br>
-Provides batch file operations for renaming files, converting images, organizing files by type, finding duplicates, counting files, and listing large files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Batch file operations for renaming, converting, organizing, counting, and inspecting files.
 
-## Publisher: <br>
-[yushimohuang](https://clawhub.ai/user/yushimohuang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yushimohuang](https://clawhub.ai/user/yushimohuang)
 
-## Use Case: <br>
-External users, developers, and operators use this skill to generate shell commands and guidance for local bulk file management tasks such as renaming, organizing, image conversion, duplicate detection, file counting, and large-file listing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Bulk rename and organize operations can move or rename many local files without enough warning or safeguards. <br>
-Mitigation: Use only backed-up or test folders, avoid broad paths such as home or Downloads unless intended, and require preview plus confirmation before executing rename or organize operations. <br>
-Risk: Image conversion removes original files after conversion. <br>
-Mitigation: Convert copies or backed-up folders first, and require explicit confirmation that removing originals is acceptable. <br>
-Risk: The security verdict is suspicious because useful local batching behavior can still cause destructive file changes. <br>
-Mitigation: Review the script before installing and limit execution to folders the user explicitly selected. <br>
+## Use Case:
 
+Developers and users managing local files use this skill to run batch rename, image conversion, file organization, duplicate discovery, file counting, and large-file listing workflows.
 
-## Reference(s): <br>
-- [File Batcher Tool on ClawHub](https://clawhub.ai/yushimohuang/file-batcher-tool) <br>
-- [Artifact README](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands and command output text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands act on local folders and can modify files; image conversion requires ImageMagick.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: Bulk operations can rename, move, overwrite, or delete many local files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use test folders first, avoid broad paths such as a home directory, keep backups, and review the command scope before execution.
+
+Risk: Image conversion can remove original files and may overwrite converted outputs.
+
+Mitigation: Run conversion on copies of important files and check for output filename collisions before using it on originals.
+
+Risk: Large-file search uses user-provided size values.
+
+Mitigation: Use explicit, narrow size values and scoped folders to reduce unintended scanning or unsafe size parsing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yushimohuang/skills/file-batcher-tool)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, text, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks and command output text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Runs file-management operations on local folders and may change files in place.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

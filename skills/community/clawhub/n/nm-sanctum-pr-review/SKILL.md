@@ -2,7 +2,7 @@
 name: pr-review
 description: |
   Reviews pull requests with scope validation, requirements compliance, and line comments
-version: 1.9.8
+version: 1.10.3
 triggers:
   - pr
   - review
@@ -13,38 +13,12 @@ triggers:
   - knowledge-capture
   - cross-platform
   - reviewing GitHub or GitLab PRs
-metadata: {"openclaw": {"homepage": "https://github.com/athola/claude-night-market/tree/master/plugins/sanctum", "emoji": "\ud83e\udd9e", "requires": {"config": ["night-market.leyline:git-platform", "night-market.sanctum:shared", "night-market.sanctum:git-workspace-review", "night-market.sanctum:version-updates", "night-market.pensive:unified-review", "night-market.imbue:proof-of-work", "night-market.imbue:justify", "night-market.memory-palace:review-chamber", "night-market.scribe:slop-detector", "night-market.scribe:doc-generator"]}}}
+metadata: {"openclaw": {"homepage": "https://github.com/athola/claude-night-market/tree/master/plugins/sanctum", "emoji": "\ud83e\udd9e", "requires": {"config": ["night-market.leyline:git-platform", "night-market.sanctum:git-workspace-review", "night-market.sanctum:version-updates", "night-market.pensive:unified-review", "night-market.imbue:proof-of-work", "night-market.imbue:justify", "night-market.imbue:review-core", "night-market.imbue:structured-output", "night-market.memory-palace:review-chamber", "night-market.scribe:slop-detector", "night-market.scribe:doc-generator"]}}}
 source: claude-night-market
 source_plugin: sanctum
 ---
 
-> **Night Market Skill** — ported from [claude-night-market/sanctum](https://github.com/athola/claude-night-market/tree/master/plugins/sanctum). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
-
-
-## Table of Contents
-
-- [Core Principle](#core-principle)
-- [When to Use](#when-to-use)
-- [Scope Classification Framework](#scope-classification-framework)
-- [Classification Examples](#classification-examples)
-- [Workflow](#workflow)
-- [Phase 1: Establish Scope Baseline](#phase-1-establish-scope-baseline)
-- [Phase 2: Gather Changes](#phase-2-gather-changes)
-- [Phase 3: Requirements Validation](#phase-3-requirements-validation)
-- [Phase 1.5: Version Validation (MANDATORY)](#phase-15-version-validation-mandatory)
-- [Phase 4: Code Review with Scope Context](#phase-4-code-review-with-scope-context)
-- [Phase 4.5: Additive Bias Audit](#phase-45-additive-bias-audit)
-- [Phase 5: Backlog Triage](#phase-5-backlog-triage)
-- [Phase 6: Generate Report](#phase-6-generate-report)
-- [Phase 7: Knowledge Capture](#phase-7-knowledge-capture)
-- [Quality Gates](#quality-gates)
-- [Anti-Patterns to Avoid](#anti-patterns-to-avoid)
-- [Don't: Scope Creep Review](#dont-scope-creep-review)
-- [Don't: Perfect is Enemy of Good](#dont-perfect-is-enemy-of-good)
-- [Don't: Blocking on Style](#dont-blocking-on-style)
-- [Don't: Reviewing Unchanged Code](#dont-reviewing-unchanged-code)
-- [Integration with Other Tools](#integration-with-other-tools)
-- [Exit Criteria](#exit-criteria)
+> **Night Market Skill**: ported from [claude-night-market/sanctum](https://github.com/athola/claude-night-market/tree/master/plugins/sanctum). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
 
 # Scope-Focused PR Review
@@ -77,44 +51,8 @@ The goal is to validate the implementation meets its stated requirements without
 
 ## Scope Classification Framework
 
-Every finding must be classified:
-
-| Category | Definition | Action |
-|----------|------------|--------|
-| **BLOCKING** | Bug, security issue, or regression introduced by this change | Must fix before merge |
-| **IN-SCOPE** | Issue directly related to stated requirements | Should address in this PR |
-| **SUGGESTION** | Improvement within changed code, not required | Author decides |
-| **BACKLOG** | Good idea but outside PR scope | Create GitHub issue |
-| **IGNORE** | Nitpick, style preference, or not worth tracking | Skip entirely |
-
-### Classification Examples
-
-**BLOCKING:**
-- Null pointer exception in new code path
-- SQL injection in new endpoint
-- Breaking change to public API without migration
-- Test that was passing now fails
-
-**IN-SCOPE:**
-- Missing error handling specified in requirements
-- Feature doesn't match spec behavior
-- Incomplete implementation of planned functionality
-
-**SUGGESTION:**
-- Better variable name in changed function
-- Slightly more efficient algorithm
-- Additional edge case test
-
-**BACKLOG:**
-- Refactoring opportunity in adjacent code
-- "While we're here" improvements
-- Technical debt in files touched but not changed
-- Features sparked by seeing the code
-
-**IGNORE:**
-- Personal style preferences
-- Theoretical improvements with no practical impact
-- Premature optimization suggestions
+How each finding is classified against the PR's stated scope:
+[`modules/scope-classification.md`](modules/scope-classification.md).
 
 ## Workflow
 
@@ -221,25 +159,9 @@ See `modules/version-validation.md` for detailed validation procedures.
 
 ### Phase 3.5: PR Hygiene Checks
 
-Before diving into code, run the PR hygiene checks from
-`modules/pr-hygiene.md`:
-
-1. **Atomicity check**: Does this PR contain one logical
-   change? Flag mixed commit types (feat, refactor, and fix),
-   formatting commits bundled with logic, or changes spanning
-   unrelated subsystems. Large PRs get 30% defect detection
-   vs 75% for focused ones.
-
-2. **Agent curation check**: Does the code show signs of
-   iterative AI generation without a cleanup pass? Look for
-   redundant implementations, premature abstractions, incomplete
-   refactors, and scope drift.
-
-3. **Self-review signals**: Are there unsquashed fixup commits,
-   debug statements, or commented-out code that suggest the
-   author did not read their own diff before sending?
-
-Classify findings per `modules/pr-hygiene.md` severity tables.
+Before diving into code, run the atomicity, agent-curation and
+self-review checks from `modules/pr-hygiene.md`, and classify findings
+per its severity tables.
 
 ### Phase 4: Code Review with Scope Context
 
@@ -265,11 +187,11 @@ complexity.
 
 **Key checks:**
 
-1. **Additive bias score** -- flag changes with high
+1. **Additive bias score**: flag changes with high
    add/delete ratio (>5:1) that lack justification
-2. **Iron Law compliance** -- verify test assertions were
+2. **Iron Law compliance**: verify test assertions were
    not weakened to match broken implementations
-3. **Minimal intervention** -- confirm each changed file
+3. **Minimal intervention**: confirm each changed file
    was necessary and the change was the smallest fix
 
 **Classify justify findings using the scope framework:**
@@ -286,60 +208,8 @@ the Phase 6 report.
 
 ### Phase 4.6: Invariant Conflict Detection
 
-Check whether the PR touches existing design invariants.
-This is a judgment problem that models get wrong far too
-often — surface conflicts for human review rather than
-silently accepting or rejecting them.
-
-**Quick detection heuristic:**
-
-1. Do changed files cross module boundaries that
-   previously didn't interact?
-2. Do changes introduce a new pattern alongside an
-   existing one (two ways to do the same thing)?
-3. Do interface/type/schema files change shape?
-4. Do data flow directions change?
-5. Are ADR-documented decisions being contradicted?
-
-```bash
-# Check for structural pattern changes
-git diff --name-only HEAD...origin/master 2>/dev/null \
-  | rg "(interface|types|schema|model|base|core|contract)" \
-  || git diff --name-only HEAD...origin/master 2>/dev/null \
-  | grep -E "(interface|types|schema|model|base|core|contract)"
-```
-
-**When a conflict is detected:**
-
-Do NOT resolve it. Add to the report as a special
-category:
-
-| Category | Definition | Action |
-|----------|------------|--------|
-| **INVARIANT** | Change conflicts with an existing design decision | Escalate to human with 3-option analysis |
-
-**For each invariant conflict, present:**
-
-1. **The invariant**: Name the design decision and why
-   it was made (reference ADRs if available)
-2. **The conflict**: What this PR does that clashes
-3. **Option A — Preserve**: Don't merge this change;
-   the invariant pays dividends elsewhere
-4. **Option B — Layer**: Merge as-is, accepting
-   inelegance; not every feature must be elegant
-5. **Option C — Revise**: The invariant is wrong;
-   here's what a redesign would look like
-
-**Classification:** INVARIANT findings are always
-BLOCKING — not because the code is wrong, but because
-the judgment call requires human input. Only the human
-reviewer can decide which of the three options is right.
-
-**Why this matters:** Bad invariant decisions compound.
-A few wrong calls and the codebase becomes unsalvageable.
-This is not a context problem solvable with better
-documentation — it is a judgment problem that requires
-human wisdom.
+Load `modules/invariant-conflicts.md` and run its checks on the diff
+before Phase 5.
 
 ### Phase 5: Backlog Triage
 
@@ -375,6 +245,14 @@ IN-SCOPE finding MUST include educational insights per
 (generalized lesson). SUGGESTION findings include Why and
 optionally Proof. BACKLOG items need only a brief rationale.
 
+With `--concise`, none of those paragraphs is posted. Each finding
+on a diff line becomes a suggestion block the author can apply,
+with a short explanation beside it only for clarification purposes.
+Findings with no line to anchor to appear in the summary as one
+line each. The full report with its educational content is still
+written locally, to the `--local` path, so nothing is lost. It is
+only kept off the MR. Posting patterns: `modules/suggestion-comments.md`.
+
 ```markdown
 ## PR #X: Title
 
@@ -387,6 +265,7 @@ optionally Proof. BACKLOG items need only a brief rationale.
 ### Blocking (1)
 1. [B1] SQL injection via string concatenation
    - **Location**: `db/queries.py:89`
+   - **Anchor**: `cursor.execute("SELECT * FROM t WHERE id = " + uid)`
    - **Issue**: User input interpolated directly into SQL
    - **Why**: String-interpolated SQL allows attackers to
      execute arbitrary queries (CWE-89). This is the #1
@@ -401,6 +280,7 @@ optionally Proof. BACKLOG items need only a brief rationale.
 ### In-Scope (1)
 1. [S1] Missing validation for edge case
    - **Location**: `api.py:45`
+   - **Anchor**: `def handle_request(payload):`
    - **Issue**: Empty input not handled per requirement
    - **Why**: Defensive validation at API boundaries
      prevents cascading failures in downstream logic.
@@ -437,36 +317,22 @@ Knowledge capture (Phase 7) still runs.
 
 ### Phase 7: Knowledge Capture
 
-After generating the report, evaluate findings for knowledge capture into the project's review chamber.
-
-**Trigger:** Automatically for findings scoring ≥60 on evaluation criteria.
-
-```bash
-# Capture significant findings to review-chamber
-# Uses memory-palace:review-chamber evaluation framework
-```
-**Verification:** Run the command with `--help` flag to verify availability.
-
-**Candidates for capture:**
-- BLOCKING findings with architectural context → `decisions/`
-- Recurring patterns seen in multiple PRs → `patterns/`
-- Quality standards and conventions → `standards/`
-- Post-mortem insights and learnings → `lessons/`
-
-**Output:** Add to report:
-```markdown
-### Knowledge Captured 📚
-
-| Entry ID | Title | Room |
-|----------|-------|------|
-| abc123 | JWT over sessions | decisions/ |
-| def456 | Token refresh pattern | patterns/ |
-
-View: `/review-room list --palace <project>`
-```
-**Verification:** Run the command with `--help` flag to verify availability.
-
+After generating the report, findings scoring ≥60 are captured to the
+project's review chamber (`decisions/`, `patterns/`, `standards/`,
+`lessons/`) and listed in a Knowledge Captured section of the report.
 See `modules/knowledge-capture.md` for full workflow.
+
+### Phase 8: Comprehension Loop (`--interactive`)
+
+Opt-in. Skip this phase unless the reviewer passed `--interactive`.
+
+A socratic loop over the diff: each exchange is graded `pass`,
+`partial`, or `fail` and recorded to gauntlet's shared progress store.
+Probe results never change the merge recommendation. They add a
+Comprehension section to the report from Phase 6.
+
+Full turn order, scoring table, category mapping, and the recording
+contract: `modules/interactive-review.md`.
 
 ## Quality Gates
 
@@ -481,61 +347,18 @@ A PR should be approved when:
 - [ ] Author can explain how each changed section works and how
       it could fail (understanding check, not just "tests pass")
 
+### Verify Findings Are Grounded (`pr-review:findings-verified`)
+
+Write findings to `.review/findings.json`, run the citation verifier
+(`Skill(imbue:review-core)` Step 5), and drop or label `UNVERIFIED` any
+the verifier rejects.
+
 ## Anti-Patterns to Avoid
 
-### Don't: Scope Creep Review
-> "While you're here, you should also refactor X, add feature Y, and fix Z in adjacent files."
-
-**Do:** Create backlog issues, keep PR focused.
-
-### Don't: Perfect is Enemy of Good
-> "This works but could be 5% more efficient with different approach."
-
-**Do:** If it meets requirements and has no bugs, it's ready.
-
-### Don't: Blocking on Style
-> "I prefer tabs over spaces."
-
-**Do:** Use linters for style, reserve review for logic.
-
-### Don't: Reviewing Unchanged Code
-> "The file you imported from has some issues..."
-
-**Do:** That's a separate PR. Create an issue if important.
-
-### Don't: Tests That Prove Old Code Was Bad
-> "Here's a test showing the old behavior was wrong."
-
-**Do:** Write tests that break if your fix is reverted.
-Tests should protect against regressions in *your* code,
-not document why the change was needed. See
-`modules/pr-hygiene.md` Principle 4.
-
-### Don't: Bundling Unrelated Changes
-> "I also reformatted the file and fixed a typo in another module."
-
-**Do:** One PR = one logical change. Formatting, refactors,
-and unrelated fixes belong in separate PRs. See
-`modules/pr-hygiene.md` Principle 2.
-
-### Don't: Merge Code You Cannot Explain
-
-> "It works and the tests pass."
-
-A PR where the author cannot explain how each changed section
-works and how it might fail is not ready to merge. This is
-especially true for AI-assisted code: generation speed creates
-the illusion of understanding.
-
-**Do:** Before marking a PR ready, ask the reviewing agent to
-question you about the changed code — how each part works, what
-assumptions it makes, and what inputs would break it. Continue
-until you can answer without hesitation. Only merge code you
-own front-to-back.
-
-This applies to self-reviews: run the same probe before
-requesting external review. Do not submit a PR for review that
-you yourself do not fully understand.
+Scope creep, perfectionism, blocking on style, reviewing unchanged
+code, tests that only prove the old code was bad, bundled unrelated
+changes, and merging code you cannot explain. Each one, with what to do
+instead: `modules/anti-patterns.md`.
 
 ## Integration with Other Tools
 
@@ -548,32 +371,39 @@ you yourself do not fully understand.
 
 ## Slop Detection Integration
 
-### Documentation Review
-For all changed `.md` files, invoke `Skill(scribe:slop-detector)`:
-- Score ≥ 3.0: Flag as IN-SCOPE (should remediate)
-- Score ≥ 5.0: Flag as BLOCKING if `--strict` mode
-
-### Commit Message Review
-Scan all PR commit messages for slop markers:
-```bash
-gh pr view <number> --json commits --jq '.commits[].messageBody' | \
-  grep -iE 'leverage|seamless|comprehensive|delve|robust|utilize|facilitate'
-```
-If slop found in commits: Add to SUGGESTION category with remediation guidance.
-
-### PR Description Review
-Apply `scribe:slop-detector` to PR body:
-- Tier 1 words in description → SUGGESTION to rephrase
-- Marketing phrases ("unlock potential") → Flag for removal
+How PR prose and changed docs are checked for AI-generated patterns:
+[`modules/slop-detection.md`](modules/slop-detection.md).
 
 ## Exit Criteria
 
-- Scope baseline established
-- All changes reviewed against scope
-- Findings classified correctly
-- Backlog items tracked as issues
-- Clear recommendation provided
+- [ ] Scope baseline established and recorded in the report
+- [ ] Every changed file classified in-scope, out-of-scope, or blocking
+- [ ] Each out-of-scope finding has a tracked issue number
+- [ ] Report states one recommendation: approve, comment, or request changes
+- [ ] Every BLOCKING and IN-SCOPE finding carries a `Location` (file:line)
+      and verbatim `Anchor`, and `citation_verifier.py` exits `0` or the
+      unverified findings are dropped or labeled `UNVERIFIED`
+- [ ] With `--interactive`: every hunk carrying a blocking or high-risk
+      finding was probed, or the reviewer ended the session
+- [ ] With `--interactive`: each graded exchange appears in
+      `.gauntlet/progress/<developer>.json`, and the report carries a
+      Comprehension section whose row count matches the probes recorded
+- [ ] With `--concise`: every finding on a diff line was posted as a
+      suggestion block, the summary review exists, and no test plan
+      comment or description update was posted
+- [ ] With `--hold-insights`: every direction or architecture finding was
+      shown in chat before posting, and only the selected ones appear
+      on the PR
 
 ## Supporting Modules
 
+- [Scope classification](modules/scope-classification.md) - finding categories
+- [Invariant conflicts](modules/invariant-conflicts.md) - Phase 4.6 checks
+  for changes that weaken an invariant
+- [Slop detection](modules/slop-detection.md) - AI-pattern checks on PR prose
+- [Review anti-patterns](modules/anti-patterns.md) - what to avoid in a
+  review, with what to do instead
+- [Interactive comprehension loop](modules/interactive-review.md) -
+  socratic probes graded and recorded to gauntlet's adaptive selector
 - [GitHub PR comment patterns](modules/github-comments.md) - `gh api` patterns for inline and summary PR comments
+- [Suggestion comments](modules/suggestion-comments.md) - one-click suggestion blocks on GitHub and GitLab, and the `--concise` posting rule

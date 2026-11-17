@@ -1,39 +1,51 @@
-## Description: <br>
-Manage UpNote notes and notebooks via x-callback-url automation for creating notes, opening notes, creating notebooks, viewing tags, and managing content in UpNote. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage UpNote notes and notebooks via x-callback-url automation.
 
-## Publisher: <br>
-[wemcdonald](https://clawhub.ai/user/wemcdonald) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[wemcdonald](https://clawhub.ai/user/wemcdonald)
 
-## Use Case: <br>
-External users and developers use this skill to automate local UpNote note, notebook, tag, filter, and search operations through a shell wrapper for UpNote x-callback-url commands. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can create persistent content in the user's local UpNote app. <br>
-Mitigation: Review note titles, note content, notebook targets, and create actions before approving commands. <br>
-Risk: Search and open requests may expose or navigate to local note content in UpNote. <br>
-Mitigation: Confirm note IDs, notebook IDs, tag names, and search terms before running commands. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub UpNote skill page](https://clawhub.ai/wemcdonald/upnote) <br>
+## Use Case:
+
+Developers and agent users use this skill to create, open, search, and navigate UpNote notes, notebooks, tags, filters, and views through the bundled shell wrapper.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can open UpNote and create or navigate notes on the user's behalf.
+
+Mitigation: Install and use it only when local UpNote automation through agent-generated commands is acceptable.
+
+Risk: Some note, notebook, tag, filter, or space identifiers may include URL-special characters that are not consistently encoded.
+
+Mitigation: Avoid untrusted or unusual IDs until URL parameters are encoded consistently across all script operations.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, guidance] <br>
-**Output Format:** [Markdown with inline bash command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands open the local UpNote app and may create persistent notes or notebooks.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+**Output Type(s):** [Shell commands, Markdown, Guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown with inline bash code blocks and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces commands that open the local UpNote application through x-callback-url automation.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

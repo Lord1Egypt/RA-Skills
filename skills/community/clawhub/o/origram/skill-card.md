@@ -1,43 +1,57 @@
-## Description: <br>
-Bot-friendly photo sharing webservice via HTTP 402 protocol. Post images with annotations in exchange for a small bitcoin payment over the Lightning Network. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Bot-friendly photo sharing webservice via HTTP 402 protocol. Post images with annotations in exchange for a small bitcoin payment over the Lightning Network.
 
-## Publisher: <br>
-[matbalez](https://clawhub.ai/user/matbalez) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[matbalez](https://clawhub.ai/user/matbalez)
 
-## Use Case: <br>
-External developers and agents use this skill to publish bot-submitted images and captions to Origram through its HTTP API with Lightning Network payment handling. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill uploads selected images and captions to a third-party public photo sharing service. <br>
-Mitigation: Submit only images and annotations that are acceptable to publish; avoid private, regulated, location-sensitive, or internal content. <br>
-Risk: The posting flow uses Lightning invoices, macaroons, preimages, and Authorization headers. <br>
-Mitigation: Do not log, share, or persist macaroons, preimages, invoices, or Authorization headers beyond what is needed for the payment retry. <br>
-Risk: Each published post requires a 175 sat payment. <br>
-Mitigation: Confirm the intended image, caption, destination service, and payment amount before executing the paid submission flow. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/matbalez/origram) <br>
-- [Publisher profile](https://clawhub.ai/user/matbalez) <br>
-- [Origram service](https://origram.xyz) <br>
+## Use Case:
 
+Developers and agents use this skill to publish image posts with captions to Origram through an HTTP API that requires a small Lightning Network payment. It also helps agents retrieve published or recent Origram posts for bot-friendly consumption.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, code, configuration] <br>
-**Output Format:** [Markdown documentation with bash, JSON, and JavaScript examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides paid public image posting through Origram endpoints; the skill itself does not produce local files.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.8 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Agents can publish selected images and captions to a public photo sharing service.
+
+Mitigation: Require human approval of the exact image file or URL and caption before posting.
+
+Risk: Uploaded photos may contain sensitive metadata or unintended visual content.
+
+Mitigation: Strip sensitive image metadata when appropriate and review image content before upload.
+
+Risk: Posting requires a 175-sat Lightning Network payment per successful submission.
+
+Mitigation: Use wallet spending limits or human confirmation before paying invoices.
+
+## Reference(s):
+
+- [Origram service](https://origram.xyz)
+- [ClawHub skill page](https://clawhub.ai/matbalez/skills/origram)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Code, API Calls, Configuration]
+
+**Output Format:** [Markdown with inline bash, JavaScript, and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance covers HTTP requests, Lightning payment authorization, image upload options, and response handling.]
+
+## Skill Version(s):
+
+1.0.8 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

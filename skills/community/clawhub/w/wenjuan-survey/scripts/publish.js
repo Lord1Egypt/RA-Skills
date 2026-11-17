@@ -218,7 +218,7 @@ function useImmediatePollLog() {
 }
 
 /**
- * 发布轮询专用输出：每行立即写入 fd1，便于 OpenClaw、WorkerBuddy 等实时展示。
+ * 发布轮询专用输出：每行立即写入 fd1，便于 OpenClaw、WorkBuddy 等实时展示。
  * 交互终端默认仍用 console.log；可设 WENJUAN_SYNC_LOG=1 强制同步写。
  */
 function pollStatusOut(line) {
@@ -622,7 +622,7 @@ function showHelp() {
   每行：项目详情 | 状态接口 | 排队提示 | 已等待时长，最长约 30 分钟。
   环境变量 WENJUAN_SYNC_LOG=1：即使在本机 TTY 也强制每行同步写入 stdout（便于排查缓冲问题）。
 
-OpenClaw / WorkerBuddy 等通过管道抓输出时，脚本会自动用同步写行，无需额外配置。
+OpenClaw / WorkBuddy 等通过管道抓输出时，脚本会自动用同步写行，无需额外配置。
 `);
 }
 

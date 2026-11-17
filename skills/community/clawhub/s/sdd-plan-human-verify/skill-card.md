@@ -1,38 +1,49 @@
-## Description: <br>
-Generates a human verification checklist from a completed spec-plan.md, with [A] automated and [H] human substeps covering all verification items for AI-driven acceptance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+从已完成的 spec-plan.md 生成验收清单，包含 [A]/[H] 子步骤，覆盖所有验证项用于 AI 驱动验收。
 
-## Publisher: <br>
-[mahingbun-dev](https://clawhub.ai/user/mahingbun-dev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mahingbun-dev](https://clawhub.ai/user/mahingbun-dev)
 
-## Use Case: <br>
-Developers and engineers use this skill to turn SDD plan and design documents into a detailed Chinese acceptance checklist. It separates shell-checkable steps from human visual or interaction checks so a follow-on verifier can execute automated preparation and ask focused yes/no questions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated checklist commands may later be run automatically by another verifier, including installs, long-running services, database migrations, or other workspace-changing commands. <br>
-Mitigation: Review the generated spec-human-verify.md before running a follow-on verifier, especially all [AUTO] and [AUTO/SERVICE] entries that install packages, migrate data, delete files, use sudo, touch secrets, or affect cloud or account resources. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to turn SDD plan and design documents into a detailed human verification checklist with automated and manual acceptance steps.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mahingbun-dev/sdd-plan-human-verify) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown checklist with inline shell commands and yes/no human verification prompts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The generated checklist is written in Chinese and uses [AUTO], [AUTO/SERVICE], [MANUAL], [A], and [H] tags to distinguish automated execution from human review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The skill can convert project specification text into commands intended for later autonomous execution.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if you trust the spec documents that this skill will read and are prepared to review every generated [A], [AUTO], and [AUTO/SERVICE] command before running sdd-start-human-verify. Pay special attention to commands that install packages, contact the network, read .env files, start services, or modify databases.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mahingbun-dev/skills/sdd-plan-human-verify)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, shell commands, guidance]
+
+**Output Format:** [Markdown checklist with inline shell commands and yes/no human verification prompts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces spec-human-verify.md content in Chinese after user confirmation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

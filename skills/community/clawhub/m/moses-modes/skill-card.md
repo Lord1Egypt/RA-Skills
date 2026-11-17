@@ -1,43 +1,58 @@
-## Description: <br>
-Moses Modes injects behavioral governance constraints from the active mode into agent prompts across eight operating modes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Moses Modes applies operator-selected governance modes as behavioral guardrails for an agent, using persistent mode state from the companion moses-governance skill.
 
-## Publisher: <br>
-[sunrisesillneversee](https://clawhub.ai/user/sunrisesillneversee) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sunrisesillneversee](https://clawhub.ai/user/sunrisesillneversee)
 
-## Use Case: <br>
-Developers and operators use this skill to apply selectable governance modes that shape agent behavior for sensitive work, research, creative exploration, problem solving, and ambiguous tasks. It is intended for agents using the OpenClaw governance state shared with the moses-governance bundle. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent local mode state can shape agent behavior across later tasks in ways the user may not expect. <br>
-Mitigation: Check the active mode before sensitive work and switch modes deliberately for each task. <br>
-Risk: The unrestricted mode removes the skill's behavioral constraints while actions may still be logged by the broader governance bundle. <br>
-Mitigation: Avoid unrestricted mode for high-risk tasks unless the operator explicitly accepts the risk and understands the logging behavior. <br>
-Risk: The skill depends on the separate moses-governance bundle for state management and command behavior. <br>
-Mitigation: Review the moses-governance dependency before use, especially its logging, audit, and deletion controls. <br>
+## Use Case:
 
+Developers and operators use this skill to apply explicit governance postures such as high-security, high-integrity, research, creative, problem-solving, or unrestricted behavior to an agent. It is intended for environments where trusted operators control the active governance state.
 
-## Reference(s): <br>
-- [Moses Modes on ClawHub](https://clawhub.ai/sunrisesillneversee/moses-modes) <br>
-- [Moses Modes Reference](references/modes.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, configuration] <br>
-**Output Format:** [Markdown instructions and behavioral constraints] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads persistent governance mode state and depends on the moses-governance bundle for mode changes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server-resolved release metadata) <br>
+Risk: Persistent mode state can affect agent behavior across tasks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only where trusted operators control governance state and review the active mode before sensitive work.
+
+Risk: Unrestricted mode can remove the skill's behavioral constraints.
+
+Mitigation: Avoid unrestricted mode for sensitive tasks and require explicit operator approval before enabling it.
+
+Risk: Audit and growth-log behavior has unclear privacy limits.
+
+Mitigation: Define logging scope, retention, and privacy boundaries before enabling audit or growth-log behavior.
+
+## Reference(s):
+
+- [Moses Modes ClawHub skill page](https://clawhub.ai/sunrisesillneversee/skills/moses-modes)
+- [MO§ES™ Governance Modes Reference](artifact/references/modes.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, configuration, shell commands]
+
+**Output Format:** [Markdown guidance with inline shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Depends on moses-governance state in ~/.openclaw/governance/state.json.]
+
+## Skill Version(s):
+
+1.0.3 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

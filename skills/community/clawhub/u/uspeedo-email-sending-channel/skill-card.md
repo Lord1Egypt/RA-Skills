@@ -1,45 +1,60 @@
-## Description: <br>
-Sends user-authorized transactional email via uSpeedo API with ACCESSKEY credentials, resolves the sender when needed, and requires explicit confirmation of sender, recipients, subject, and content before sending. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Sends user-authorized transactional email via uSpeedo API with ACCESSKEY credentials, resolving a default sender through GetSenderList when needed and requiring explicit confirmation before sending.
 
-## Publisher: <br>
-[code-by-ai](https://clawhub.ai/user/code-by-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[code-by-ai](https://clawhub.ai/user/code-by-ai)
 
-## Use Case: <br>
-External users and developers use this skill to send user-authorized transactional or notification email through the uSpeedo API after credentials, sender, recipients, subject, and content are confirmed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses sensitive ACCESSKEY credentials and can send real email through uSpeedo. <br>
-Mitigation: Use environment variables or a secure secret mechanism, prefer test or least-privilege keys, avoid unnecessary sensitive message bodies, and require final confirmation of sender, recipients, subject, and exact content before sending. <br>
-Risk: HTML email content may contain active or unsafe patterns. <br>
-Mitigation: Prefer plain text when possible and reject or rewrite HTML containing scripts, iframes, forms, inline event handlers, or javascript URLs before sending. <br>
-Risk: A missing or ambiguous sender could cause email to be sent from the wrong address. <br>
-Mitigation: Resolve the sender with GetSenderList when the user does not provide one, then present the resolved sender for confirmation with the rest of the send parameters. <br>
+## Use Case:
 
+External users and developers use this skill to send user-approved transactional or notification emails through uSpeedo after configuring ACCESSKEY_ID and ACCESSKEY_SECRET. It helps collect and confirm sender, recipient, subject, content, and credential requirements before making uSpeedo email API calls.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/code-by-ai/uspeedo-email-sending-channel) <br>
-- [uSpeedo Homepage](https://uspeedo.com/?ChannelCode=OpenClaw) <br>
-- [uSpeedo GetSenderList API Reference](https://uspeedo.com/docs/products/email/api/GetSenderList) <br>
-- [uSpeedo Email API Key Management](https://console.uspeedo.com/email/setting?type=apiKeys&ChannelCode=OpenClaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, code, configuration] <br>
-**Output Format:** [Markdown with inline JSON, JavaScript, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires ACCESSKEY_ID and ACCESSKEY_SECRET; sends only after explicit user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.2 (source: server release metadata; artifact frontmatter lists 1.0.0) <br>
+Risk: ACCESSKEY_ID or ACCESSKEY_SECRET could be exposed through chat history, logs, or echoed request data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use environment variables or a secure secret mechanism, avoid pasting long-lived credentials into chat, and do not echo authorization headers or raw credential-bearing payloads.
+
+Risk: Email could be sent to the wrong recipients or from an unintended sender.
+
+Mitigation: Resolve the sender before sending and require explicit user confirmation of sender, recipients, subject, and final content in the current turn.
+
+Risk: Raw HTML email content can contain unsafe active content or be used for abusive email.
+
+Mitigation: Prefer plain text, reject risky HTML patterns, and refuse deceptive, phishing, credential-harvesting, or policy-violating send requests.
+
+## Reference(s):
+
+- [uSpeedo Homepage](https://uspeedo.com/?ChannelCode=OpenClaw)
+- [uSpeedo GetSenderList API](https://uspeedo.com/docs/products/email/api/GetSenderList)
+- [uSpeedo Email API Key Management](https://console.uspeedo.com/email/setting?type=apiKeys&ChannelCode=OpenClaw)
+- [uSpeedo Domain Setting](https://console.uspeedo.com/email/setting?type=domain)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration, API calls]
+
+**Output Format:** [Markdown guidance with JSON, JavaScript, and curl examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user confirmation before sending and should report only user-safe API outcomes.]
+
+## Skill Version(s):
+
+1.1.2 (source: ClawHub release evidence; source SKILL.md frontmatter remains 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

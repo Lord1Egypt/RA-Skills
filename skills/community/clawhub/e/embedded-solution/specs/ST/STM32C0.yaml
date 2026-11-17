@@ -1,0 +1,151 @@
+part: STM32C0
+link_status: verified_2026-07-01 (datasheet-pdf-extracted)
+expected_family: "ST STM32C0 \u2014 Cortex-M0+ @ 48 MHz (cheapest STM32 from $0.21)"
+main_page: https://www.st.com/en/microcontrollers-microprocessors/stm32c0-series.html
+datasheet_path_expected: ../../datasheets/stm32c011d6.pdf
+created_at: '2026-06-30T10:24:00+08:00'
+specs:
+  family: STM32C0 (entry-tier 32-bit MCU, replaces 8-bit)
+  cores:
+  - Arm Cortex-M0+ @ 48 MHz
+  memory:
+    flash_kb_min: 16
+    flash_kb_max: 256
+    ram_kb_max: 36
+  internal_clock:
+    accuracy_pct: 1
+    external_crystal_required: false
+  pricing:
+    note: Suggested Resale Price USD per 10,000 units
+    min_usd: 0.21
+    range_usd:
+    - 0.21
+    - 0.92
+  sub_series:
+  - name: C011
+    flash_kb_max: 32
+    packages:
+    - SO8N
+    - TSSOP20
+    price_range_usd:
+    - 0.21
+    - 0.32
+    notes: entry-level
+    smallest: null
+    for 8-bit MCU replacement: null
+  - name: C031
+    flash_kb_max: 32
+    packages:
+    - LQFP32
+    - LQFP48
+    price_range_usd:
+    - 0.41
+    - 0.49
+    notes: mainstream 32/48-pin
+  - name: C051
+    flash_kb_max: 64
+    packages:
+    - TSSOP20
+    - LQFP32
+    - LQFP48
+    - UFQFPN32
+    - UFQFPN48
+    price_range_usd:
+    - 0.43
+    - 0.53
+    notes: 64 KB flash
+    migration from G0: null
+  - name: C071
+    flash_kb_max: 128
+    packages:
+    - LQFP32
+    - LQFP48
+    - UFBGA64
+    price_range_usd:
+    - 0.58
+    - 0.7
+    notes: USB crystal-less host/device
+    max flash: null
+  - name: C091
+    flash_kb_max: 256
+    packages:
+    - TSSOP20
+    - LQFP48
+    - UFBGA64
+    price_range_usd:
+    - 0.68
+    - 0.87
+    notes: max flash
+    256 KB on TSSOP20: null
+  - name: C092
+    flash_kb_options:
+    - 128
+    - 256
+    packages:
+    - TSSOP20
+    - LQFP48
+    - UFBGA64
+    price_range_usd:
+    - 0.65
+    - 0.92
+    notes: FDCAN support + high flash
+  package_options_min:
+  - WLCSP12 (1.70x1.42 mm)
+  - UFQFPN
+  - UFQFPN20
+  - TSSOP
+  - LQFP
+  - SON
+  pin_range:
+  - 8
+  - 64
+  highlight_features:
+  - 12-bit ADC with hardware resolution up to 16-bit (oversampling)
+  - USB host/device crystal-less for STM32C071
+  - FDCAN support for STM32C092
+  - Flexible DMA mapping
+  - 2x UART on every device (even smallest 8-pin)
+  - Timers with advanced control capability
+  reliability:
+    proven_stm32_quality: true
+    st_10_year_longevity: true
+    iec_61508_functional_safety: true
+  operating_temp_c_max: 125
+  compatibility:
+    pinout: compatible with STM32G0 for migration
+    technology: same IP platform as STM32G0
+  dev_tools:
+    nucleo:
+    - NUCLEO-C031C6
+    - NUCLEO-C051C8
+    - NUCLEO-C071RB (with GFX01M2 display)
+  use_cases:
+  - 8-bit MCU replacement (STM8)
+  - Coin-cell battery applications (smoke detectors, IoT tags)
+  - Ultra-small form factor (wearables, hearables, biosensors)
+  - Cost-sensitive industrial sensor nodes
+  - Low-cost USB peripherals (mice, keyboards, HID)
+  - Industrial CAN nodes (STM32C092 FDCAN)
+  - LED lighting drivers
+  - Vending machines
+unverified:
+- exact ADC sample rate
+- exact supply voltage range
+- exact peripheral count per sub-series
+- "exact operating temperature range (only +125\xB0C max listed)"
+notes:
+- "New yaml entry on 2026-06-30 \u2014 extracted from st.com STM32C0 series page via Firecrawl (57,442 bytes raw)."
+- 'Family differentiator vs STM32G0 (existing yaml): G0 is general-purpose Cortex-M0+ @ 64 MHz with more peripherals; C0 is
+  cost-optimized 32-bit migration path for 8-bit MCU designs. Pin-compatible family.'
+- 'Family differentiator vs STM32G4 (newly added): G4 is Cortex-M4 + rich analog for motor control + DSP @ 170 MHz; C0 is
+  Cortex-M0+ basic cost-tier.'
+- "Use case: pin-compatible migration STM32C0xxx \u2192 STM32G0xxx for applications needing more horsepower later in product\
+  \ lifecycle."
+extracted_at: '2026-06-30T10:24:00+08:00'
+extraction_method: firecrawl-extract (keyed) of st.com product page + manual enrich
+extraction_source: references/semiconductor-vendor/ST/firecrawl-snapshots/STM32C0-family_clean.md
+extraction_source_raw: references/semiconductor-vendor/ST/firecrawl-snapshots/STM32C0-family_raw.md
+extraction_credits_used: 1
+datasheet_source_url: https://www.st.com/resource/en/datasheet/stm32c011d6.pdf
+datasheet_source_note: STM32C011D6 datasheet (PDF, 2.0MB, family-page covering STM32C0 series). Used as canonical reference
+  for STM32C0 family spec values (Cortex-M0+ 48 MHz, 16-256 KB flash, 1.7x1.4 mm WLCSP, $0.21 price point).

@@ -1,44 +1,59 @@
-## Description: <br>
-Tailor resumes for specific job applications using the Tamar AI API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tailor resumes for specific job applications using the Tamar AI API.
 
-## Publisher: <br>
-[evgenyshneyderman](https://clawhub.ai/user/evgenyshneyderman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[evgenyshneyderman](https://clawhub.ai/user/evgenyshneyderman)
 
-## Use Case: <br>
-External users and agents use this skill to tailor a resume for a specific job description or job URL, review match analysis and gaps, apply feedback, and download the result. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Resume files, job descriptions, profile information, and feedback are sent to Tamar through its CLI/API. <br>
-Mitigation: Use the skill only when that data sharing is acceptable, confirm files and text before upload, and redact unrelated sensitive information where possible. <br>
-Risk: The Tamar API key is sensitive and enables access to the user's Tamar account. <br>
-Mitigation: Use a revocable API key, avoid pasting secrets into chat or screenshots, and check authentication with Tamar CLI commands instead of reading local config files directly. <br>
-Risk: Job descriptions, URLs, resume paths, and feedback are user-provided inputs that may be unsafe if interpolated directly into shell commands. <br>
-Mitigation: Write multi-line text to temporary files or quote arguments safely before invoking the Tamar CLI. <br>
+## Use Case:
 
+External users and agents use this skill to guide Tamar CLI workflows for uploading or selecting a resume, analyzing a job description, tailoring the resume, applying feedback, and downloading PDF or JSON results.
 
-## Reference(s): <br>
-- [Tamar API Documentation](https://ask-tamar.com/developers) <br>
-- [Tamar Account and Pricing](https://ask-tamar.com) <br>
-- [ClawHub Skill Page](https://clawhub.ai/evgenyshneyderman/tamar-resume-tailor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and summaries of Tamar CLI JSON output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May direct the agent to upload resume files, pass job descriptions to the Tamar CLI, summarize generated analysis, and download PDF or JSON resume output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.1 (source: server release evidence) <br>
+Risk: Resume files, job descriptions, feedback, and generated resume data may be sent to a third-party service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with materials the user is comfortable sending to Tamar, and confirm each upload, tailoring, feedback, and download step before running CLI commands.
+
+Risk: Unsafe shell examples can become command-injection risks if untrusted pasted text is interpolated into shell commands.
+
+Mitigation: Write job descriptions and feedback to safely created temporary files or pass values as safely separated arguments; do not interpolate untrusted text into shell commands.
+
+Risk: Installing an unpinned global npm CLI can introduce unexpected behavior from later package versions.
+
+Mitigation: Install tamar-cli from a pinned, trusted version and verify the intended binary before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/evgenyshneyderman/skills/tamar-resume-tailor)
+- [Tamar API documentation](https://ask-tamar.com/developers)
+- [Tamar website](https://ask-tamar.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and summaries of Tamar CLI JSON results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide generation of PDF or JSON resume artifacts through the Tamar CLI; resume content and job descriptions are handled by the third-party Tamar service.]
+
+## Skill Version(s):
+
+1.4.1 (source: server release evidence; artifact/claw.json lists 1.4.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,57 @@
-## Description: <br>
-Generate text using OATDA's unified LLM API across supported providers and model aliases. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate text using OATDA's unified LLM API across supported third-party model providers.
 
-## Publisher: <br>
-[devcsde](https://clawhub.ai/user/devcsde) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[devcsde](https://clawhub.ai/user/devcsde)
 
-## Use Case: <br>
-Developers and agent users use this skill to send text prompts to OATDA, choose a supported provider/model, and return generated text with optional token usage and cost information. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, model choices, and usage metadata are sent to OATDA's external API. <br>
-Mitigation: Use only with data intended for OATDA; avoid secrets, regulated data, or private content unless that external transmission is acceptable. <br>
-Risk: The skill requires an OATDA API key for API calls. <br>
-Mitigation: Use a limited or monitored API key where possible, store it in OATDA_API_KEY or the declared credentials file, and never print the full key. <br>
+## Use Case:
 
+Developers and agent users use this skill to route text generation prompts through OATDA's unified LLM API, select a provider or model alias, and return generated text with optional usage and cost details.
 
-## Reference(s): <br>
-- [OATDA](https://oatda.com) <br>
-- [OATDA LLM API endpoint](https://oatda.com/api/v1/llm) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown with inline bash commands and generated text responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses OATDA_API_KEY or ~/.oatda/credentials.json; responses may include provider, model, token usage, and cost.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release evidence) <br>
+Risk: Prompts are sent to OATDA and the selected external model provider, which can expose sensitive user content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with approved data transfer paths, and do not send secrets, regulated data, private business data, or proprietary content unless that transfer is authorized.
+
+Risk: The shell examples handle API keys and user prompts in commands that could expose credentials or behave unexpectedly if copied literally.
+
+Mitigation: Keep API keys scoped to the request, avoid printing full credentials, and construct request JSON with structured tooling such as jq --arg before execution.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/devcsde/skills/oatda-text-completion)
+- [OATDA](https://oatda.com)
+- [OATDA LLM API Endpoint](https://oatda.com/api/v1/llm)
+- [OATDA API Keys](https://oatda.com/dashboard/api-keys)
+- [OATDA Usage Dashboard](https://oatda.com/dashboard/usage)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline bash commands and JSON response examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include generated text, provider and model identifiers, token usage, and cost details returned by the OATDA API.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

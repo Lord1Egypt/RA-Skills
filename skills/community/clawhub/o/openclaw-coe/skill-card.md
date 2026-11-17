@@ -1,39 +1,56 @@
-## Description: <br>
-OpenClaw Chain of Execution (CoE) adds visible step-by-step progress narration for complex OpenClaw tasks, including task breakdown, skill selection, calls, waits, results, warnings, and final summaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw Chain of Execution (CoE) surfaces step-by-step execution progress for complex OpenClaw tasks, including decomposition, skill and model selection, calls, waiting states, results, warnings, and final summaries.
 
-## Publisher: <br>
-[liuyh17](https://clawhub.ai/user/liuyh17) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liuyh17](https://clawhub.ai/user/liuyh17)
 
-## Use Case: <br>
-OpenClaw users and skill developers use this skill to make long-running or multi-step tasks more transparent by emitting concise progress updates as work is broken down, tools are selected, external responses are awaited, and results are summarized. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger words may activate the skill unexpectedly and produce more process detail than desired. <br>
-Mitigation: Disable the skill when progress narration becomes noisy or when workflow detail should remain minimal. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to make long-running or complex agent tasks more transparent by showing concise execution-progress messages as work is decomposed, routed, executed, and summarized.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/liuyh17/openclaw-coe) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/liuyh17) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown and plain text progress messages, with Python examples and simple command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No external dependencies, API keys, or environment variables are required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Broad automatic triggers may activate verbose execution-progress output when a user did not intend to enable it.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Narrow or disable automatic triggers such as '过程' if accidental activation would be distracting in the target environment.
+
+Risk: Verbose process output could expose hidden chain-of-thought, private prompts, credentials, or sensitive intermediate data if used carelessly.
+
+Mitigation: Use the tracker for execution status only, and redact or omit sensitive prompts, credentials, and private intermediate content from progress messages.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/liuyh17/skills/openclaw-coe)
+- [Publisher profile](https://clawhub.ai/user/liuyh17)
+- [Artifact README](artifact/README.md)
+- [Artifact skill definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown and terminal text with optional Python usage snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Prints concise progress messages and flushes standard output after each step; no network, credential, persistence, or destructive behavior was reported by the security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

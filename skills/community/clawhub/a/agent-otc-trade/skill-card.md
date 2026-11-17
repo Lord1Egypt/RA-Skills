@@ -1,44 +1,57 @@
-## Description: <br>
-Facilitates over-the-counter token trades between agents using Uniswap for price discovery and settlement, with ERC-8004 counterparty verification and optional cross-chain intents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Facilitates over-the-counter token trades between agents using Uniswap pricing and settlement tools, with ERC-8004 counterparty checks and explicit user confirmation before execution.
 
-## Publisher: <br>
-[wpank](https://clawhub.ai/user/wpank) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[wpank](https://clawhub.ai/user/wpank)
 
-## Use Case: <br>
-External users and agent developers use this skill to prepare and execute counterparty-specific token trades, verify agent identity, compare negotiated terms against Uniswap pool pricing, and settle confirmed trades on chain. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can prepare and submit Uniswap-based crypto trades, which may cause irreversible financial loss if the counterparty, token, amount, chain, price, slippage, fees, approvals, or transaction details are wrong. <br>
-Mitigation: Use a limited wallet and require explicit review of counterparty identity, trade terms, wallet approvals, safety checks, and final transaction details before confirming settlement. <br>
-Risk: Trade logs may contain sensitive counterparty, terms, settlement, and transaction information. <br>
-Mitigation: Treat trade records as sensitive until the publisher documents where logs are stored, who can access them, and how long they are retained. <br>
-Risk: Cross-chain OTC settlement can add bridge or intent latency and may fail due to liquidity, gas, chain, or bridge conditions. <br>
-Mitigation: Confirm source and destination chains, expected timing, bridge or intent status, gas availability, and fallback behavior before submitting cross-chain trades. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wpank/agent-otc-trade) <br>
-- [Publisher profile](https://clawhub.ai/user/wpank) <br>
-- [Agentic Uniswap skill source](https://github.com/wpank/Agentic-Uniswap/tree/main/.ai/skills/agent-otc-trade) <br>
-- [Agentic Uniswap MCP server](https://github.com/wpank/Agentic-Uniswap/tree/main/packages/mcp-server) <br>
+## Use Case:
 
+External users and developers use this skill to coordinate user-confirmed agent-to-agent token trades with counterparty identity checks, Uniswap pool pricing, and settlement reporting.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown or plain text trade workflow guidance with transaction details, verification reports, confirmations, and error messages] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May call Uniswap MCP tools for quotes, prices, pool data, balances, swaps, cross-chain intents, and safety status checks.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill handles real crypto trades and the security evidence warns that settlement guarantees are overstated.
+
+Mitigation: Treat outputs as user-confirmed Uniswap swap guidance, require wallet confirmation before every transaction, and do not assume the counterparty is forced to execute.
+
+Risk: Incorrect token addresses, chains, prices, or safety checks could cause financial loss.
+
+Mitigation: Manually verify token addresses and chains, require a fresh safety check, compare quoted terms against current pool pricing, and stop when required trade parameters are missing.
+
+Risk: Mutable installation commands can change what code is installed later.
+
+Mitigation: Prefer pinned installation sources or reviewed release artifacts before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wpank/skills/agent-otc-trade)
+- [Agentic-Uniswap MCP server](https://github.com/wpank/Agentic-Uniswap/tree/main/packages/mcp-server)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown-like trade reports and confirmation prompts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include counterparty identity status, Uniswap pricing, settlement method, wallet or safety warnings, and transaction links when a trade is executed.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

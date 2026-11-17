@@ -1,42 +1,58 @@
-## Description: <br>
-Generates a structured Weibo hot-search daily report by fetching public trending topics, categorizing them, and formatting a segmented summary. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates a segmented daily report from Weibo hot-list topics, grouping items into finance and technology, social livelihood, culture and entertainment, and internet trends.
 
-## Publisher: <br>
-[renyuzhuo](https://clawhub.ai/user/renyuzhuo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[renyuzhuo](https://clawhub.ai/user/renyuzhuo)
 
-## Use Case: <br>
-External users and agent operators use this skill to fetch current Weibo hot-search topics, group them by topic area, and generate a daily report for review or sharing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill contacts a disclosed third-party Weibo hot-search mirror for live public content. <br>
-Mitigation: Use only in environments where this outbound request is acceptable; review or replace the data source for stricter deployments. <br>
-Risk: Returned topics are dynamic third-party content and may be incomplete, sensitive, or unsuitable for all audiences. <br>
-Mitigation: Review generated reports before sharing and apply local content policies to the output. <br>
+## Use Case:
 
+External users and agents use this skill to fetch current Weibo hot-list topics and produce a concise categorized daily briefing. It is useful for trend monitoring and quick topical summaries.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/renyuzhuo/weibo-hot-daily-skill) <br>
-- [Weibo Hot-Search Source](https://weibo.g.renyuzhuo.cn/) <br>
-- [README-listed Open Source Link](https://github.com/renyuzhuo/WeiboHotSkills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands] <br>
-**Output Format:** [Segmented markdown-style daily report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Fetches up to 50 hot-search items and prints up to five items per category; no persistence or automatic posting.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release evidence and artifact changelog, released 2026-03-31) <br>
+Risk: The skill contacts a disclosed third-party Weibo hot-list source to generate live reports.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Deploy only where outbound access to that source is acceptable, and review the generated report before sharing it.
+
+Risk: Hot-topic titles may include sensitive or unwanted content despite the README's filtering claim.
+
+Mitigation: Apply downstream content review or filtering for the audience and publication context.
+
+Risk: The helper script depends on curl and network availability, so report generation can fail when the source is unreachable.
+
+Mitigation: Handle empty or failed fetches gracefully and rerun when network access is restored.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/renyuzhuo/skills/weibo-hot-daily-skill)
+- [Weibo hot-list source](https://weibo.g.renyuzhuo.cn/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown daily report with categorized topic lists; helper script prints text to stdout.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and curl. The helper script fetches up to 50 items and lists up to five topics per category.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release metadata; artifact README also states v1.1.1 released 2026-03-31)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

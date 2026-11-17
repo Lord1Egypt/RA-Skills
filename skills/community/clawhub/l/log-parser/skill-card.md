@@ -1,40 +1,57 @@
-## Description: <br>
-Parse and analyze various log formats (nginx, apache, syslog, application logs). Extract key information and generate reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Parse and analyze various log formats (nginx, apache, syslog, application logs). Extract key information and generate reports.
 
-## Publisher: <br>
-[freeter226](https://clawhub.ai/user/freeter226) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[freeter226](https://clawhub.ai/user/freeter226)
 
-## Use Case: <br>
-Developers, DevOps teams, and security operators use this skill to parse local nginx, apache, syslog, and JSON application logs, then generate statistics, filters, top values, and error-focused reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Parsed samples and reports can expose secrets, personal data, or operational details already present in the selected log file. <br>
-Mitigation: Use the parser only on logs you intend to inspect, redact sensitive logs when needed, and avoid sharing generated JSON reports without review. <br>
-Risk: The tool reads local files by path and may process the wrong log if invoked with an unintended file argument. <br>
-Mitigation: Check the target path before execution and run it in a workspace with access limited to the logs needed for the analysis. <br>
+## Use Case:
 
+Developers, DevOps engineers, and security analysts use this skill to parse local nginx, Apache, syslog, and JSON application logs, then produce structured summaries, filters, error extracts, and top-value reports.
 
-## Reference(s): <br>
-- [ClawHub package page](https://clawhub.ai/freeter226/log-parser) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, JSON, Shell commands, Guidance] <br>
-**Output Format:** [JSON from a local Python command-line tool, with Markdown usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads a user-selected local log file and supports sample or result limits.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Parsed logs and JSON outputs may contain secrets, personal data, internal hostnames, or session identifiers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and redact parser output before sharing it outside the intended analysis context.
+
+Risk: Very large log files may cause slow execution or excessive memory use because the parser reads the file into memory.
+
+Mitigation: Run the parser on bounded log samples or rotated files when analyzing large production logs.
+
+Risk: The skill reads local log files supplied by path.
+
+Mitigation: Provide only log paths that the agent is authorized to inspect.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/freeter226/skills/log-parser)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [JSON from the bundled parser, with Markdown guidance and shell command examples for agent-facing use.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3. Reads only log files explicitly provided to the parser command.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,38 +1,52 @@
-## Description: <br>
-Controls user-selected Chrome tabs through Chrome Session Attach, including extension setup, tab attach and detach, screenshots, navigation, form entry, and tab management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Controls a user-selected existing Chrome tab through OpenClaw Session Attach, including extension setup, connection configuration, attach and detach, screenshots, navigation, form entry, and tab management.
 
-## Publisher: <br>
-[meowlegemy-sudo](https://clawhub.ai/user/meowlegemy-sudo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[meowlegemy-sudo](https://clawhub.ai/user/meowlegemy-sudo)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and agent operators use this skill to let an agent work with a Chrome tab they have explicitly attached, without logging in through an OpenClaw-managed browser.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The attached browser session and gateway token are sensitive, and the agent can view or act on the attached page.
+
+Mitigation: Attach only intended tabs, avoid banking, admin, email, or other highly sensitive sessions unless the user accepts that access, and keep the gateway token out of chats, logs, screenshots, and shared terminals.
+
+Risk: Connecting the gateway incorrectly can expose the attach workflow beyond the intended local session.
+
+Mitigation: Verify the gateway is running locally on 127.0.0.1, use the expected port and token, and detach the tab when agent control is no longer needed.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and agent operators use this skill to let an agent work in an existing local Chrome tab without requiring a separate OpenClaw-managed browser login. It is suited for browser automation tasks such as page inspection, navigation, clicking, typing, screenshots, and tab management after the user explicitly attaches a tab. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives an agent control of a selected local Chrome tab and relies on a sensitive gateway token. <br>
-Mitigation: Keep the gateway token private, keep the gateway bound to 127.0.0.1, attach only the tab needed for the task, avoid highly sensitive tabs unless necessary, and detach when finished. <br>
+**Output Format:** [Markdown instructions with shell command examples]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [Chrome Session Attach on ClawHub](https://clawhub.ai/meowlegemy-sudo/chrome-attach) <br>
+**Other Properties Related to Output:** [Guides extension setup, gateway token configuration, browser-tab attachment, browser actions, detachment, and troubleshooting.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown instructions with inline shell commands and command tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces operational guidance for installing a Chrome extension, configuring a local gateway connection, attaching or detaching tabs, and invoking OpenClaw browser commands.] <br>
+1.0.0 (source: frontmatter and server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

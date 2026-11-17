@@ -1,41 +1,58 @@
-## Description: <br>
-Notion API helper for creating and managing Notion pages and databases for notes and knowledge management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Notion API助手 - 创建和管理Notion页面、数据库，支持笔记和知识管理。
 
-## Publisher: <br>
-[534422530](https://clawhub.ai/user/534422530) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[534422530](https://clawhub.ai/user/534422530)
 
-## Use Case: <br>
-Developers and knowledge workers use this skill to connect an agent to Notion for page creation, database queries, page updates, retrieval, and workspace search. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The helper can create or update content in any Notion pages or databases shared with the integration. <br>
-Mitigation: Use a least-privilege Notion integration, share only the needed pages or databases, and confirm exact targets before create or update actions. <br>
-Risk: A real Notion API token could be exposed if copied into examples or committed with code. <br>
-Mitigation: Store tokens outside source files and avoid hardcoding real API tokens. <br>
+## Use Case:
 
+Developers and knowledge-management users can use this skill to set up a Notion API helper for creating pages, querying databases, updating page properties, retrieving pages, and searching workspace content.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/534422530/laosi-notion) <br>
-- [Notion integrations](https://www.notion.so/my-integrations) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with Python and shell code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Notion workspace actions depend on a user-provided API token and pages or databases shared with the integration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and frontmatter) <br>
+Risk: The helper can read or modify selected Notion pages and databases when a user supplies a Notion integration token.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Grant the integration access only to the required pages or databases and confirm before running create_page or update_page examples.
+
+Risk: Embedding a Notion token in source code or examples can expose workspace access.
+
+Mitigation: Store the Notion token outside source code, such as in a local secret store or environment variable.
+
+Risk: Installing an unreviewed dependency version can introduce supply-chain risk.
+
+Mitigation: Use a virtual environment and pin a reviewed notion-client version before deployment.
+
+## Reference(s):
+
+- [Notion integrations setup](https://www.notion.so/my-integrations)
+- [ClawHub skill page](https://clawhub.ai/534422530/skills/laosi-notion)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with Python and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a user-supplied Notion integration token and the notion-client Python package.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

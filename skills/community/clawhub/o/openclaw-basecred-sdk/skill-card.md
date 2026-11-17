@@ -1,47 +1,63 @@
-## Description: <br>
-Check human reputation via Ethos Network, Talent Protocol, and Farcaster using the neutral basecred-sdk to fetch raw scores, levels, and signals for identity verification and trust assessment. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Check human reputation via Ethos Network, Talent Protocol, and Farcaster using the neutral basecred-sdk, returning raw scores, levels, and signals for identity verification and trust assessment.
 
-## Publisher: <br>
-[teeclaw](https://clawhub.ai/user/teeclaw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[teeclaw](https://clawhub.ai/user/teeclaw)
 
-## Use Case: <br>
-Developers and agents use this skill to query reputation signals for Ethereum addresses across Ethos Network, Talent Protocol, and Farcaster. It returns source-specific data for verification and trust assessment without making a trustworthiness decision for the user. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Queried wallet addresses may be sent to Ethos, Talent Protocol, and Neynar/Farcaster depending on available providers and credentials. <br>
-Mitigation: Use the skill only when those provider lookups are acceptable for the address being checked, and avoid submitting addresses that should not be shared with these services. <br>
-Risk: Optional Talent Protocol and Neynar API keys are read from the user's OpenClaw environment file. <br>
-Mitigation: Store provider keys only in the expected credential location, keep file permissions restricted, and rotate keys if exposure is suspected. <br>
-Risk: Dependency updates could change provider behavior or credential handling. <br>
-Mitigation: Use the lockfile or verify dependency versions before upgrading, and re-review the security posture after dependency changes. <br>
+## Use Case:
 
+Developers and agents use this skill to fetch reputation and identity signals for Ethereum addresses across Ethos Network, Talent Protocol, and Farcaster. It supports trust-assessment workflows by reporting source-specific data without making a final trust judgment.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/teeclaw/openclaw-basecred-sdk) <br>
-- [basecred SDK npm Package](https://www.npmjs.com/package/@basecred/sdk) <br>
-- [basecred SDK Output Schema](https://github.com/Callmedas69/basecred/tree/main/packages/sdk#output-schema) <br>
-- [Ethos Network](https://ethos.network) <br>
-- [Talent Protocol](https://talentprotocol.com) <br>
-- [Neynar](https://neynar.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Configuration] <br>
-**Output Format:** [JSON summary or full profile, with optional human-readable text output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js; optional TALENT_API_KEY and NEYNAR_API_KEY enable additional provider data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release evidence, package.json, CHANGELOG released 2026-02-11) <br>
+Risk: The skill reads ~/.openclaw/.env, which can expose all values in that file to the Node process and dependencies.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it with an isolated environment containing only TALENT_API_KEY and NEYNAR_API_KEY when those sources are needed.
+
+Risk: The SDK install is not consistently pinned in package metadata.
+
+Mitigation: Verify that @basecred/sdk resolves to the reviewed version before installation or execution.
+
+Risk: The isolation test can access the user's OpenClaw credential path.
+
+Mitigation: Do not run the isolation test as an elevated user.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/teeclaw/skills/openclaw-basecred-sdk)
+- [Security documentation](SECURITY.md)
+- [@basecred/sdk package](https://www.npmjs.com/package/@basecred/sdk)
+- [@basecred/sdk output schema](https://github.com/Callmedas69/basecred/tree/main/packages/sdk#output-schema)
+- [Ethos Network](https://ethos.network)
+- [Talent Protocol](https://talentprotocol.com)
+- [Neynar](https://neynar.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, code, configuration]
+
+**Output Format:** [JSON by default, with optional human-readable text output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an Ethereum address; optional TALENT_API_KEY and NEYNAR_API_KEY enable additional data sources.]
+
+## Skill Version(s):
+
+1.0.4 (source: evidence release, package.json, CHANGELOG, released 2026-02-11)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

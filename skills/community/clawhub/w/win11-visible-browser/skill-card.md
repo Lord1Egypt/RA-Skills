@@ -1,45 +1,63 @@
-## Description: <br>
-Guides an agent in controlling, diagnosing, and repairing a visible Windows 11 Edge/Chrome browser from OpenClaw in WSL2 via CDP while keeping the user in the loop. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Control, diagnose, or repair a visible Windows 11 Edge/Chrome browser from OpenClaw running in WSL2 via CDP.
 
-## Publisher: <br>
-[pe4atnik](https://clawhub.ai/user/pe4atnik) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pe4atnik](https://clawhub.ai/user/pe4atnik)
 
-## Use Case: <br>
-Developers and operators use this skill when OpenClaw running in WSL2 needs a visible Windows 11 Edge or Chrome session for browsing tasks that require existing browser state, human oversight, login, 2FA, captcha handling, CDP diagnostics, or repair. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: CDP access can expose browser state, logged-in sessions, sensitive tabs, and account actions. <br>
-Mitigation: Prefer a dedicated browser profile, close sensitive tabs before diagnostics, keep the browser visible, and require explicit approval before account, payment, form, or other state-changing actions. <br>
-Risk: A CDP relay exposed beyond WSL/Hyper-V could allow unintended remote browser control. <br>
-Mitigation: Keep CDP on Windows localhost, scope the relay firewall rule to the WSL/Hyper-V CIDR, and never expose the CDP relay to the LAN or Internet. <br>
-Risk: Repair flows may change OpenClaw configuration, Windows firewall or portproxy state, browser processes, or persistent Scheduled Tasks. <br>
-Mitigation: Run read-only diagnostics first, ask for explicit approval before changes, state rollback steps, and use documented rollback commands such as removing the Scheduled Task, portproxy rule, and firewall rule. <br>
-Risk: Visible browser automation can consume memory and CDP stability budget, especially with many tabs, iframes, workers, or reCAPTCHA targets. <br>
-Mitigation: Run the read-only browser budget helper before non-trivial browser work, avoid tab fan-out, reuse a small number of agent-owned tabs, archive useful URLs, and leave existing user tabs untouched unless the user approves cleanup. <br>
+## Use Case:
 
+Developers and engineers use this skill to connect OpenClaw running in WSL2 to a visible Windows 11 Edge or Chrome browser for assisted browsing, diagnostics, and repair. It is intended for human-in-the-loop browser work that needs existing tabs, cookies, logins, CDP access, or manual handling of login, captcha, 2FA, approvals, and file dialogs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/pe4atnik/win11-visible-browser) <br>
-- [Setup reference](artifact/references/setup.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration, Code] <br>
-**Output Format:** [Markdown guidance with bash and PowerShell command snippets, JSON configuration examples, and bundled helper scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces operational guidance for visible browser control and diagnostics; state-changing actions require explicit user approval.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata and artifact _meta.json) <br>
+Risk: CDP access can expose control of a visible logged-in browser profile.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer a dedicated browser profile, use personal or logged-in profiles only after explicit approval, and keep the browser visible for human oversight.
+
+Risk: A WSL-visible CDP relay can be dangerous if reachable from the LAN or Internet.
+
+Mitigation: Require confirmation before firewall or portproxy changes, scope Windows firewall rules to the WSL/Hyper-V CIDR, and verify the relay is not exposed beyond the intended local environment.
+
+Risk: State-changing browser, account, payment, form, firewall, profile, config, or Scheduled Task actions may have persistent effects.
+
+Mitigation: State the action, location, risk, and rollback before proceeding, then wait for explicit user confirmation.
+
+Risk: The browser budget helper can print full page URLs, which may reveal sensitive browsing context.
+
+Mitigation: Avoid running the helper on sensitive tabs unless full URL disclosure is acceptable or URLs are redacted before sharing.
+
+## Reference(s):
+
+- [Win11 Visible Browser on ClawHub](https://clawhub.ai/pe4atnik/skills/win11-visible-browser)
+- [Setup reference](references/setup.md)
+- [README](README.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown with inline shell and PowerShell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include diagnostic steps, configuration recommendations, rollback notes, and browser/CDP evidence summaries.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata, _meta.json, and CHANGELOG)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{SOURCE_NAME_HTML}} - VibePolish</title>
+<style>
+*{box-sizing:border-box}
+html,body{height:100%;margin:0}
+body{font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",sans-serif;color:#182230;background:#f5f6f8;overflow:hidden}
+.dt-app{height:100vh;position:relative;display:block;overflow:hidden}
+.dt-app[data-panel-open="true"]{display:grid;grid-template-columns:minmax(0,1fr) 384px}
+.dt-stage{position:relative;min-width:0;width:100%;height:100%;background:#fff;padding:0}
+.dt-stage iframe{width:100%;height:100%;border:0;background:#fff;display:block}
+.dt-app[data-panel-open="true"] .dt-stage{background:#d9dde5;padding:12px}
+.dt-app[data-panel-open="true"] .dt-stage iframe{border:1px solid #c8d0dc}
+.dt-stage.dt-viewport-locked{overflow:auto;display:block}
+.dt-stage.dt-viewport-locked iframe{max-width:none;max-height:none;flex:none}
+.dt-frame-shield{position:absolute;z-index:20;background:transparent;cursor:crosshair}
+#dt-toast{position:absolute;left:22px;bottom:22px;max-width:520px;padding:10px 12px;border-radius:6px;color:#fff;background:rgba(16,24,40,.88);font-size:12px;line-height:1.45;opacity:0;transform:translateY(8px);transition:.18s;pointer-events:none}
+#dt-toast.dt-show{opacity:1;transform:translateY(0)}
+#dt-panel-root{min-width:0}
+@media(max-width:720px){.dt-app[data-panel-open="true"]{grid-template-columns:minmax(0,1fr) min(384px,54vw)}}
+</style>
+</head>
+<body>
+<div class="dt-app" data-panel-open="false">
+  <main class="dt-stage">
+    <iframe id="dt-frame" sandbox="allow-scripts allow-same-origin allow-forms allow-modals"></iframe>
+    <div id="dt-toast"></div>
+  </main>
+  <div id="dt-panel-root"></div>
+</div>
+<script id="dt-source-html" type="application/json">{{SOURCE_HTML_JSON}}</script>
+<script>
+window.DESIGNTOOLS_FREEZE_SOURCE_NAME = {{SOURCE_NAME_JSON}};
+window.DESIGNTOOLS_RUNTIME_SOURCE = {{RUNTIME_SOURCE_JSON}};
+window.DESIGNTOOLS_IRO_SOURCE = {{IRO_SOURCE_JSON}};
+window.DESIGNTOOLS_RUNTIME_MODE = {{RUNTIME_MODE_JSON}};
+window.DESIGNTOOLS_SESSION = {{SESSION_JSON}};
+</script>
+<script>
+{{RUNTIME_JS}}
+</script>
+</body>
+</html>

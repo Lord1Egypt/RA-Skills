@@ -1,43 +1,60 @@
-## Description: <br>
-AI自动识别Word文档中的8种题型题目，生成格式统一的参考答案，支持批量处理和doc/docx格式转换。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Processes Word and Markdown documents locally, detects common question formats, and generates formatted reference-answer documents.
 
-## Publisher: <br>
-[43622283](https://clawhub.ai/user/43622283) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[43622283](https://clawhub.ai/user/43622283)
 
-## Use Case: <br>
-Developers, educators, and operations users can use this skill to process local Word or Markdown documents, identify common question types, add reference-answer templates, convert formats, validate documents, and batch-generate processed .docx outputs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads local Word or Markdown files selected by the user. <br>
-Mitigation: Process only documents you intend the local tool to read and avoid running it on sensitive files unless that access is intended. <br>
-Risk: Explicit output filenames can overwrite existing files. <br>
-Mitigation: Choose output paths carefully and review existing files before reusing a destination filename. <br>
-Risk: Generated answers are reference material and may be incomplete or incorrect. <br>
-Mitigation: Manually review generated answers before relying on them or sharing the processed documents. <br>
+## Use Case:
 
+Developers, educators, and office users use this skill to batch process local Word documents, add answer sections, convert Markdown to DOCX, and create template-style reference answers for review.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/43622283/li-doc-answer) <br>
-- [Publisher Profile](https://clawhub.ai/user/43622283) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python command examples and generated .docx document outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Processes local input files and may write .docx files to user-selected or default output paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.5 (source: server release evidence) <br>
+Risk: Generated answers may be incomplete or inaccurate because the artifact produces template-style reference answers rather than authoritative solutions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated answers against textbooks, instructor guidance, or other authoritative materials before use.
+
+Risk: Batch processing and default output filenames can create or overwrite derived local documents.
+
+Mitigation: Run scripts in a working copy, inspect output paths before batch runs, and keep backups of source documents.
+
+Risk: Unpinned dependencies or system tools may behave differently across environments.
+
+Mitigation: Install dependencies in a virtual environment, prefer pinned package versions, and verify legacy .doc handling where antiword is required.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/43622283/skills/li-doc-answer)
+- [SKILL.md](artifact/SKILL.md)
+- [README_EN.md](artifact/README_EN.md)
+- [README.md](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands; generated artifacts are DOCX files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Runs on local document inputs and writes derived DOCX files; generated answers are templates for human review.]
+
+## Skill Version(s):
+
+3.0.5 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

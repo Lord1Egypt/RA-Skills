@@ -1,0 +1,16 @@
+name: bid-rejection-decision-support
+slug: bid-rejection-decision-support
+display_name: 否决/废标决策支持·专家版
+emoji: "🚫"
+version: 1.0.0
+version_stage: stable
+author: "一线评标专家&ChesaraM"
+license: MIT-0
+agent_created: true
+description: 评标委员会（专家）侧否决/废标决策支持引擎。输入具体投标人响应+招标文件对应条款，输出是否构成否决及依据、应当否决与可澄清补正的区分、可直接进评标报告的规范化否决理由措辞。
+feedback:
+  channel: github
+  account: "项目仓库 Issues（GitHub）"
+  note: "使用问题、误报反馈、实务建议，欢迎通过项目仓库提交 Issue 反馈。"
+changelog:
+  - "1.0.0: 初版发布，评标委员会专家侧否决/废标决策支持引擎；含决策五步框架、应当否决vs可澄清补正判定矩阵、规范化否决理由措辞模板、IMA知识库挂载方案与纪律红线"

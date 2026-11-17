@@ -1,41 +1,54 @@
-## Description: <br>
-基于妙想 (Meixiang) 智能选股 API，按用户提供的指标、行业或板块条件筛选 A 股、港股、美股等股票，返回完整 CSV 数据并提供列说明，避免使用过时的金融信息。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Screens A-share, Hong Kong, and U.S. stocks through the Meixiang smart stock-screening API using user-specified indicators, industries, or sectors, then returns current results as CSV with Chinese column descriptions.
 
-## Publisher: <br>
-[xpmars](https://clawhub.ai/user/xpmars) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xpmars](https://clawhub.ai/user/xpmars)
 
-## Use Case: <br>
-External users and developers use this skill to translate natural-language stock-screening criteria into Meixiang API requests and return current screening results, CSV data, and column descriptions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Screening keywords are sent to an external API provider and may include confidential trading plans or private business information. <br>
-Mitigation: Use the skill only when the user intends to use the Meixiang stock-screening service and avoid sensitive or confidential details in screening keywords. <br>
-Risk: The skill requires an API key for the Meixiang service. <br>
-Mitigation: Use a dedicated, revocable API key stored in MX_APIKEY and rotate or revoke it if exposure is suspected. <br>
+## Use Case:
 
+External users and developers use this skill to translate natural-language stock-screening requests into Meixiang API calls, retrieve current market screening results, and present or attach CSV data with column explanations.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/xpmars/mx-select-stock) <br>
-- [Meixiang stock-screening API endpoint](https://mkapi2.dfcfs.com/finskillshub/api/claw/stock-screen) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, JSON, CSV] <br>
-**Output Format:** [Markdown guidance with curl commands, JSON response handling, and optional CSV and Markdown files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires MX_APIKEY and sends screening keywords to an external Meixiang API provider.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Stock-screening keywords and the configured API key are sent to an external Meixiang endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid including secrets, proprietary strategy text, or unrelated confidential information in screening keywords, and use an appropriately scoped API key.
+
+Risk: Returned tables use Chinese column headers, which can be misunderstood by users who expect another language.
+
+Mitigation: Ask the agent to translate or explain column names before relying on the results.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xpmars/skills/mx-select-stock)
+- [Meixiang stock-screening API endpoint](https://mkapi2.dfcfs.com/finskillshub/api/claw/stock-screen)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, CSV data, guidance]
+
+**Output Format:** [Markdown guidance with curl commands, JSON parsing steps, and optional CSV and Markdown files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires MX_APIKEY; stock-screening queries and the API key are sent to the Meixiang endpoint, and returned tables use Chinese column headers.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

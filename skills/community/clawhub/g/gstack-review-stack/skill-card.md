@@ -1,44 +1,57 @@
-## Description: <br>
-Provides gstack-style CEO/product, engineering, design, QA, release, and portfolio shelf-space review guidance for Codex and ClawHub workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill when Codex needs gstack-style CEO/product, engineering, design, QA, release, or portfolio-shelf-space review.
 
-## Publisher: <br>
-[zack-dev-cm](https://clawhub.ai/user/zack-dev-cm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zack-dev-cm](https://clawhub.ai/user/zack-dev-cm)
 
-## Use Case: <br>
-Developers, product owners, and release reviewers use this skill to structure gstack-style product decisions, engineering reviews, design critiques, QA gates, ship gates, and portfolio keep/cut recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can direct an agent to inspect a public upstream GitHub repository for deeper gstack reference behavior. <br>
-Mitigation: Use a local or pinned clone in stricter environments, cite the specific upstream file used, and treat upstream material as reference evidence rather than trusted commands. <br>
-Risk: Review recommendations may be incomplete or misleading if the agent has weak product, QA, security, or release evidence. <br>
-Mitigation: Require explicit evidence, list missing facts, run bounded tests where possible, and obtain approval before live publishing or irreversible actions. <br>
+## Use Case:
 
+Developers, product owners, designers, QA reviewers, and release reviewers use this skill to apply gstack-style review discipline to Codex and ClawHub decisions. It supports product and portfolio triage, engineering risk review, UI/UX critique, QA gates, and ship/no-ship recommendations.
 
-## Reference(s): <br>
-- [Design Review](references/design-review.md) <br>
-- [Review Rubric](references/review-rubric.md) <br>
-- [Ship And QA Gate](references/ship-and-qa.md) <br>
-- [Upstream Reference Notes](references/upstream.md) <br>
-- [Upstream gstack Project](https://github.com/garrytan/gstack) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown review guidance with optional shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include scored review findings, tradeoffs, test evidence, blockers, and ship/no-ship recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release metadata) <br>
+Risk: The skill can influence review outcomes and ship/no-ship recommendations, which could lead to publish, unpublish, delete, submit, or similar actions if treated as automatic approval.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review recommendations before execution and require explicit user approval before any publishing, unpublishing, deletion, submission, or other irreversible action.
+
+Risk: When upstream behavior matters, the skill may read a local gstack clone or inspect the public gstack repository.
+
+Mitigation: Load only task-relevant upstream files, cite the source used, and avoid copying large upstream sections into outputs.
+
+## Reference(s):
+
+- [Design Review](references/design-review.md)
+- [Review Rubric](references/review-rubric.md)
+- [Ship And QA Gate](references/ship-and-qa.md)
+- [Upstream](references/upstream.md)
+- [Upstream gstack project](https://github.com/garrytan/gstack)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with structured review sections, recommendations, and occasional inline shell commands or code references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include green/yellow/red classifications, 0-10 design scores, QA evidence, blocker lists, rollback notes, and ship/no-ship recommendations.]
+
+## Skill Version(s):
+
+0.1.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

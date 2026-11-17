@@ -1,41 +1,50 @@
-## Description: <br>
-Provides polite, enthusiastic greetings with the current date when the user says hello or requests a greeting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides polite, enthusiastic greetings with the current date when the user says hello or requests a greeting.
 
-## Publisher: <br>
-[qq648125180](https://clawhub.ai/user/qq648125180) <br>
+This skill is for demonstration purposes and not for production usage.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qq648125180](https://clawhub.ai/user/qq648125180)
 
-## Use Case: <br>
-Agent users can use this skill to produce concise, friendly greetings when a conversation begins or when a greeting is requested. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The greeting trigger may activate unintentionally when a user says hello. <br>
-Mitigation: Apply the skill only when a greeting or welcome response is appropriate for the active conversation. <br>
-Risk: Future releases could add scripts, file access, network calls, credentials, or broader authority. <br>
-Mitigation: Review and rescan future updates before installation or deployment. <br>
+## Use Case:
 
+End users use this skill to receive concise, polite greeting responses when they say hello or ask to be greeted. The response includes the current date.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/qq648125180/moxun-test-skill-20260420) <br>
-- [Publisher profile](https://clawhub.ai/user/qq648125180) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [Concise natural-language greeting text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes the current date and keeps greetings under 50 words.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may activate on ordinary greeting messages.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only where greeting responses are desired, or narrow the trigger wording before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/qq648125180/skills/moxun-test-skill-20260420)
+- [Publisher profile](https://clawhub.ai/user/qq648125180)
+
+## Skill Output:
+
+**Output Type(s):** [text, guidance]
+
+**Output Format:** [Plain text greeting under 50 words]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes the current date; does not produce code, files, shell commands, or configuration.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

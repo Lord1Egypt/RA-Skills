@@ -1,38 +1,49 @@
-## Description: <br>
-Kai's Horse provides interactive access to 48 classic thought experiments with definitions, AI-era reinterpretations, comparisons, keyword search, and narrative explanations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Kai's Horse gives an agent interactive access to 48 classic thought experiments, with concise definitions, AI-era reinterpretations, comparisons, keyword search, and narrative explanations.
 
-## Publisher: <br>
-[wanyview1](https://clawhub.ai/user/wanyview1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wanyview1](https://clawhub.ai/user/wanyview1)
 
-## Use Case: <br>
-People using ClawHub agents can invoke this skill for concise, structured philosophy and AI-ethics explanations, including random thought experiments, indexed lookup, comparison, keyword search, and story-style interpretation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill has broad automatic activation and can shape normal conversations when related philosophy, consciousness, ethics, or AI topics appear. <br>
-Mitigation: Install it only when that behavior is desired; prefer explicit /kh invocation or disable/remove the skill when ordinary chat behavior should remain unchanged. <br>
+## Use Case:
 
+External users and agent operators use this skill to explore philosophy, logic paradoxes, consciousness, quantum thought experiments, and AI ethics through the /kh command set and automatic topic-aware responses.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wanyview1/kais-horse) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-style conversational responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Responses are command-triggered with the /kh prefix and may also activate for philosophy, consciousness, ethics, or AI-related topics.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill has broad auto-activation for philosophy, AI, ethics, and consciousness topics, so it may influence related conversations without an explicit /kh command.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only when that global response style is desired; narrow triggers, disable always-on behavior, or invoke it only with /kh when explicit opt-in behavior is preferred.
+
+## Reference(s):
+
+- [Kai's Horse ClawHub skill page](https://clawhub.ai/wanyview1/skills/kais-horse)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Concise markdown-style command responses, comparisons, search results, and narrative explanations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responses are intended to stay structured, high-level, and contemplative; story mode uses a more literary style.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

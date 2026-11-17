@@ -1,0 +1,48 @@
+{
+  "url": "https://www.doi.org/doi-handbook/html/",
+  "title": "DOI® Handbook",
+  "observed_at": "2026-10-09T13:06:11.948Z",
+  "method": "Playwright JavaScript library / visible Google Chrome",
+  "excerpts": [
+    "global unique identifier",
+    "while the mapping of the DOI name to the entity persists",
+    "a landing page with access to further resources"
+  ],
+  "sections": [
+    {
+      "section": "^1\\.3\\s+Identifier\\/Resolution System within the Handle System$",
+      "locator": "p filtered by /^A DOI name is a global unique identifier/",
+      "excerpt": "global unique identifier",
+      "screenshot": "doi-basics-identity.png",
+      "visible": true
+    },
+    {
+      "section": "^1\\.9\\s+Persistence as a Design Feature of the DOI System$",
+      "locator": "p filtered by /^Through the DOI name resolution concept/",
+      "excerpt": "while the mapping of the DOI name to the entity persists",
+      "screenshot": "doi-basics-persistence.png",
+      "visible": true
+    },
+    {
+      "section": "^1\\.2\\s+Basic Principle: Integration of Identifier Resolution and Semantics$",
+      "locator": "li filtered by /^an identification system of entities based on the Handle System/",
+      "excerpt": "a landing page with access to further resources",
+      "screenshot": "doi-basics-resolution.png",
+      "visible": true
+    }
+  ],
+  "claims_basis": {
+    "identity": {
+      "summary": "DOI 是实体的全球唯一标识符，可标识数字、物理或抽象实体，不只用于期刊论文。",
+      "kind": "paraphrase of observed definition"
+    },
+    "persistence": {
+      "summary": "DOI 标识与其解析到的信息分开维护；目标 URL 等信息可以更新，而 DOI 与被标识实体的对应关系保持。",
+      "kind": "paraphrase of observed definition"
+    },
+    "resolution": {
+      "summary": "DOI 可以解析到资源、描述实体的元数据或提供进一步访问入口的落地页；仅有 DOI 不能证明全文可免费获得。",
+      "kind": "bounded interpretation of observed definition"
+    }
+  }
+}

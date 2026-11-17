@@ -1,49 +1,65 @@
-## Description: <br>
-Synchronizes and manages multi-channel conversation memories across Feishu, WeChat, Telegram, voice records, and OpenClaw/Hermes stores with MCP access, monitoring, deduplication, and cleanup. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Memory Plus Sync synchronizes Feishu, WeChat, Telegram, and voice conversation memories into OpenClaw SQLite, with MCP tools, validation, deduplication, batch processing, version history, monitoring, alerts, and automatic recovery.
 
-## Publisher: <br>
-[lewistouchtech](https://clawhub.ai/user/lewistouchtech) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lewistouchtech](https://clawhub.ai/user/lewistouchtech)
 
-## Use Case: <br>
-Developers and operators use this skill to collect, sync, search, validate, deduplicate, monitor, and maintain personal or workspace memory data across messaging channels and local agent memory stores. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads and duplicates private conversation and memory data across channels and local stores. <br>
-Mitigation: Review exactly which channels, folders, and databases are synced before enabling, and restrict access to the local workspace and memory directories. <br>
-Risk: Configured LLM and channel credentials may be used during validation, arbitration, or sync workflows. <br>
-Mitigation: Keep API keys in environment variables or a secrets manager, avoid committing keys in configuration files, and scope credentials to the minimum required permissions. <br>
-Risk: Cleanup, deduplication, archiving, and memory-delete behavior can remove or rewrite memory records. <br>
-Mitigation: Back up Hermes and OpenClaw memory stores, test cleanup on a copy first, and avoid automatic cron cleanup until retention and deletion rules are reviewed. <br>
-Risk: MCP or service endpoints bound broadly could expose memory operations beyond the intended local agent. <br>
-Mitigation: Bind services locally unless remote access is explicitly required, place any remote endpoint behind authentication, and review available MCP tools before deployment. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to consolidate multi-channel conversation history into a shared memory store, operate on memories through MCP tools, and monitor the health of the underlying memory database.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/lewistouchtech/memory-plus-sync) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact Skill Documentation](artifact/SKILL.md) <br>
-- [Skill Manifest](artifact/skill.yaml) <br>
-- [Shared Memory System README](artifact/SHARED_MEMORY_SYSTEM_README.md) <br>
-- [Test Report 2026-04-07](artifact/TEST_REPORT_2026-04-07.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and text guidance with Python code, shell commands, YAML configuration, and JSON status data] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May operate on local memory databases, channel sync folders, API-backed model settings, and MCP tool responses.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release evidence and artifact/skill.yaml) <br>
+Risk: The skill broadly handles private memories across configured channels and memory stores.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and narrow which channels and memories it may read, store, export, and delete before enabling synchronization.
+
+Risk: Installer, cleanup, and automation behavior may alter local state or remove memory data.
+
+Mitigation: Avoid sudo installation, require backups, and confirm dry-run behavior before enabling cleanup or cron-style automation.
+
+Risk: Credential-bearing configuration or API keys could be exposed through source files or logs.
+
+Mitigation: Keep secrets out of source files, use environment or secret-manager configuration, redact logs, and rotate any exposed credentials.
+
+Risk: MCP server and command execution surfaces can expand local access if exposed broadly.
+
+Mitigation: Bind services to trusted interfaces, restrict network access, and review command paths before deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/lewistouchtech/skills/memory-plus-sync)
+- [README](artifact/README.md)
+- [Skill Documentation](artifact/SKILL.md)
+- [Release Notes](artifact/PUBLISH.md)
+- [Skill Manifest](artifact/skill.yaml)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, Python examples, and JSON/API payloads]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May read, write, export, delete, and synchronize memory records across configured channels and local services.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata and artifact/skill.yaml)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

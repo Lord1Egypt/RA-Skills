@@ -1,0 +1,4 @@
+interface:
+  display_name: "ARI 评论智能"
+  short_description: "一句话分析 Amazon 评论：找痛点、比较竞品、优化 Listing，并可持续监控"
+  default_prompt: "使用 $amazon-review-intelligence 分析美国站 B0XXXXXXXX 的评论，简要说明主要问题和近期趋势。"

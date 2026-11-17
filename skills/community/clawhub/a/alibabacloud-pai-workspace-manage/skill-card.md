@@ -1,50 +1,69 @@
-## Description: <br>
-Creates, queries, and lists Alibaba Cloud Platform for AI (PAI) workspaces. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill helps agents create, query, and list Alibaba Cloud Platform for AI (PAI) workspaces using Aliyun CLI workflows.
 
-## Publisher: <br>
-[sdk-team](https://clawhub.ai/user/sdk-team) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sdk-team](https://clawhub.ai/user/sdk-team)
 
-## Use Case: <br>
-Developers and cloud operators use this skill to manage Alibaba Cloud PAI workspace lifecycle tasks from an agent, including creating workspaces, querying details, and listing workspace inventory while confirming region, permissions, and parameters. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can affect Alibaba Cloud account resources by creating and managing PAI workspaces. <br>
-Mitigation: Use a least-privilege RAM user or role limited to the documented PAI workspace actions, and require explicit user confirmation for region and workspace parameters before running commands. <br>
-Risk: Credential exposure could occur if access keys or raw API responses are printed, logged, saved, or pasted into chat. <br>
-Mitigation: Do not request or display access keys; verify credential status only with safe CLI checks, and keep workspace query output masked in a single command pipeline. <br>
-Risk: CLI installation, plugin updates, and irreversible deletion guidance can create account or environment changes beyond ordinary documentation lookup. <br>
-Mitigation: Review CLI and plugin installation steps before execution, and avoid deletion-related guidance unless the user explicitly requests irreversible removal. <br>
+## Use Case:
 
+Developers, cloud engineers, and AI platform operators use this skill to manage Alibaba Cloud PAI workspaces, including workspace creation, lookup, listing, activation checks, and verification.
 
-## Reference(s): <br>
-- [Acceptance Criteria](references/acceptance-criteria.md) <br>
-- [Aliyun CLI Installation and Configuration Guide](references/cli-installation-guide.md) <br>
-- [RAM Policies](references/ram-policies.md) <br>
-- [Related Commands](references/related-commands.md) <br>
-- [Verification Method](references/verification-method.md) <br>
-- [Alibaba Cloud CreateWorkspace API](https://help.aliyun.com/zh/pai/developer-reference/api-aiworkspace-2021-02-04-createworkspace) <br>
-- [Alibaba Cloud GetWorkspace API](https://help.aliyun.com/zh/pai/developer-reference/api-aiworkspace-2021-02-04-getworkspace) <br>
-- [Alibaba Cloud ListWorkspaces API](https://help.aliyun.com/zh/pai/developer-reference/api-aiworkspace-2021-02-04-listworkspaces) <br>
-- [Alibaba Cloud ListProducts API](https://help.aliyun.com/zh/pai/developer-reference/api-aiworkspace-2021-02-04-listproducts) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline bash commands, jq filters, and RAM policy JSON] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Aliyun CLI 3.3.3+, Alibaba Cloud credentials, explicit user-confirmed regions and parameters, and masked handling of workspace query outputs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.2 (source: server release evidence) <br>
+Risk: Setup steps can modify the local CLI environment through install, update, and plugin update behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review setup before execution, prefer a package manager or pinned verified Aliyun CLI release, and avoid curl-to-bash and global plugin auto-install or update behavior.
+
+Risk: Workspace operations can change Alibaba Cloud account resources.
+
+Mitigation: Use least-privilege RAM credentials and confirm every workspace-changing action before running commands.
+
+Risk: Credential secrets may be exposed if entered directly or passed on command lines.
+
+Mitigation: Use configured profiles, temporary credentials, or role-based authentication; do not ask for, print, or pass credential secrets in commands.
+
+Risk: Workspace deletion is outside the normal create, query, and list workflow and is irreversible.
+
+Mitigation: Treat deletion instructions as out of scope for normal use and require explicit user confirmation and appropriate console or API safeguards before deletion.
+
+## Reference(s):
+
+- [RAM Policies](references/ram-policies.md)
+- [Related Commands](references/related-commands.md)
+- [Verification Method](references/verification-method.md)
+- [Acceptance Criteria](references/acceptance-criteria.md)
+- [Aliyun CLI Installation Guide](references/cli-installation-guide.md)
+- [ListWorkspaces API Documentation](https://help.aliyun.com/zh/pai/developer-reference/api-aiworkspace-2021-02-04-listworkspaces)
+- [CreateWorkspace API Documentation](https://help.aliyun.com/zh/pai/developer-reference/api-aiworkspace-2021-02-04-createworkspace)
+- [GetWorkspace API Documentation](https://help.aliyun.com/zh/pai/developer-reference/api-aiworkspace-2021-02-04-getworkspace)
+- [ListProducts API Documentation](https://help.aliyun.com/zh/pai/developer-reference/api-aiworkspace-2021-02-04-listproducts)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash commands and concise operational guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user-confirmed parameters, Aliyun CLI 3.3.3 or later, configured Alibaba Cloud credentials, and masked output for workspace queries.]
+
+## Skill Version(s):
+
+0.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

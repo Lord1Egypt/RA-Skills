@@ -1,47 +1,64 @@
-## Description: <br>
-NewAPI helps agents manage a New API gateway account, including models, groups, balance, tokens, and secure token use in config files or shell commands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Assistant for newapi (new-api), an open-source unified AI gateway platform (https://github.com/QuantumNous/new-api). Use when the user asks about New API, managing models, groups, balance, or tokens, or securely copying keys, applying them to config files, or using them in commands without exposing secrets.
 
-## Publisher: <br>
-[Calcium-Ion](https://clawhub.ai/user/Calcium-Ion) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[calcium-ion](https://clawhub.ai/user/calcium-ion)
 
-## Use Case: <br>
-Developers and operators use this skill to manage New API gateway accounts from an agent session. It supports querying account state, managing tokens, and applying token keys to downstream tools while reducing accidental secret exposure. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill has sensitive token-management power for New API accounts. <br>
-Mitigation: Install only when the publisher is trusted, prefer exported NEWAPI_* environment variables, keep .env files minimal, and avoid exposing raw token values in chat, files, logs, or command arguments. <br>
-Risk: The exec-token action can run a shell command after substituting a real token key. <br>
-Mitigation: Prefer apply-token for config-file updates, and review any exec-token command carefully before it runs. <br>
-Risk: scan-config redaction is best-effort and may miss secrets in some file formats. <br>
-Mitigation: Treat sanitized scans as risk reduction rather than proof that a file contains no secrets, and avoid direct reads of secret-bearing config files. <br>
+## Use Case:
 
+Developers and operators who administer New API instances use this skill to list models, groups, account balance, and token metadata; create and update tokens; and apply token keys to local tooling without displaying secrets.
 
-## Reference(s): <br>
-- [ClawHub NewAPI skill page](https://clawhub.ai/Calcium-Ion/newapi) <br>
-- [New API project](https://github.com/QuantumNous/new-api) <br>
-- [New API website](https://www.newapi.ai) <br>
-- [New API API reference index](https://apifox.newapi.ai/llms.txt) <br>
-- [New API product documentation index](https://www.newapi.ai/llms.txt) <br>
-- [QuantumNous skills repository](https://github.com/QuantumNous/skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown responses with tables and inline shell commands; helper scripts return sanitized text or JSON-derived summaries.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses placeholder-based token handling and best-effort redaction for secret-bearing outputs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata) <br>
+Risk: The skill handles New API management credentials, API token keys, local clipboard access, and config files selected by the user.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when that access is acceptable, prefer narrowly scoped config files, keep New API credentials out of broad project .env files, and avoid using the skill on shared machines.
+
+Risk: The exec-token action can run shell commands with a retrieved token substituted into the command.
+
+Mitigation: Use exec-token only for trusted commands that the user explicitly requested, and prefer apply-token when a target application can read credentials from a config file.
+
+Risk: Secret redaction for scanned config files and command output is best effort and may miss uncommon formats.
+
+Mitigation: Treat sanitized output as risk reduction rather than proof that no secret remains, and avoid asking the assistant to inspect files likely to contain unrelated credentials.
+
+Risk: The release source is unpinned and server evidence does not provide GitHub import provenance for this version.
+
+Mitigation: Review the ClawHub release evidence and source artifact before installing or updating the skill.
+
+## Reference(s):
+
+- [New API GitHub Repository](https://github.com/QuantumNous/new-api)
+- [New API Website](https://www.newapi.ai)
+- [New API API Reference Index](https://apifox.newapi.ai/llms.txt)
+- [New API Product Docs Index](https://www.newapi.ai/llms.txt)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration, API calls, Guidance]
+
+**Output Format:** [Markdown with tables and inline shell commands; helper actions may return sanitized JSON or text.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May copy token keys to the local clipboard or update user-selected configuration files when those actions are explicitly invoked.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata and user changelog, released 2026-03-14)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

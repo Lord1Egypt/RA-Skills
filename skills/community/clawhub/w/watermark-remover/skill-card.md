@@ -1,42 +1,51 @@
-## Description: <br>
-Removes watermarks from PDF files, supporting single-file and batch workflows with environment checks, dependency-install confirmation, watermark detection, and user confirmation before removal. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Removes watermarks from PDF files after checking the local environment, detecting likely watermark elements, and asking for user confirmation before processing.
 
-## Publisher: <br>
-[TechhnicistSmallWhite](https://clawhub.ai/user/TechhnicistSmallWhite) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[oalh-wh](https://clawhub.ai/user/oalh-wh)
 
-## Use Case: <br>
-External users and document-processing agents use this skill to inspect PDFs for watermarks, generate preview evidence, and create new PDF copies with detected watermark patterns removed after explicit approval. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Unauthorized modification of protected or third-party PDFs. <br>
-Mitigation: Use the skill only on PDFs the user is authorized to modify and require explicit confirmation before watermark removal. <br>
-Risk: Unexpected preview images or output PDFs may be written to disk. <br>
-Mitigation: Review output directories before execution, keep originals backed up, and prefer an explicit output path for generated files. <br>
-Risk: Dependency installation can alter the active Python environment. <br>
-Mitigation: Approve package installation only in a trusted Python environment after reviewing the required packages. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/TechhnicistSmallWhite/watermark-remover) <br>
-- [Publisher profile](https://clawhub.ai/user/TechhnicistSmallWhite) <br>
+## Use Case:
+
+External users and document-processing agents use this skill to inspect PDFs for likely watermarks, show detection results, and create processed PDF copies after explicit confirmation.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill may install unpinned Python libraries after confirmation.
+
+Mitigation: Review the proposed packages before installation, avoid elevated privileges, and run in a controlled Python environment.
+
+Risk: The skill may write extracted preview images and processed PDFs to disk.
+
+Mitigation: Use copies of documents, choose a private output directory, and avoid shared writable folders.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, JSON, files, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, JSON script output, generated preview images, and output PDF files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates preview images and new PDF outputs; defaults to naming outputs with a _no_watermark suffix when no output path is supplied.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+**Output Type(s):** [text, shell commands, configuration, files, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown guidance with local command output and generated PDF or preview files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write watermark preview images and processed PDF copies after user confirmation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

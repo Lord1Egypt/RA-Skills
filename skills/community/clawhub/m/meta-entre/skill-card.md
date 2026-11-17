@@ -1,38 +1,49 @@
-## Description: <br>
-Generates a meta-architecture for substantial entrepreneurial ventures, including business model, technology stack, funding roadmap, and agent orchestration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates a meta-architecture for substantial entrepreneurial ventures, covering business model, technology stack, funding roadmap, and agent orchestration.
 
-## Publisher: <br>
-[adamdaphna18-design](https://clawhub.ai/user/adamdaphna18-design) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[adamdaphna18-design](https://clawhub.ai/user/adamdaphna18-design)
 
-## Use Case: <br>
-Entrepreneurs, founders, and operators use this skill to draft structured venture plans that cover strategy, operating model, technical architecture, funding milestones, and execution roadmap. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Planning outputs may contain incomplete or unsuitable business, funding, legal, privacy, or technical recommendations. <br>
-Mitigation: Treat outputs as planning drafts and review them with qualified experts before relying on them for decisions. <br>
+## Use Case:
 
+External users, founders, operators, and developers use this skill to turn an entrepreneurial venture prompt into a structured plan covering strategy, operations, technical architecture, funding milestones, and execution roadmap.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/adamdaphna18-design/meta-entre) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown structured plan] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Business, funding, legal, privacy, and technical recommendations should be reviewed before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Generated business, funding, privacy, or compliance guidance may be incomplete or unsuitable for a specific venture.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated plans with qualified business, financial, legal, privacy, and technical reviewers before acting on them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/adamdaphna18-design/skills/meta-entre)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown structured plan]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces business planning guidance organized into venture strategy, operating model, technical architecture, funding and growth, and execution roadmap sections.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter says 0.0.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

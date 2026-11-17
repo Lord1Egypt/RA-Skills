@@ -1,42 +1,60 @@
-## Description: <br>
-Call GET /api/tiktok/search-post/v1 for TikTok Post Search through JustOneAPI with keyword. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Call GET /api/tiktok/search-post/v1 for TikTok Post Search through JustOneAPI with keyword.
 
-## Publisher: <br>
-[justoneapi](https://clawhub.ai/user/justoneapi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[justoneapi](https://clawhub.ai/user/justoneapi)
 
-## Use Case: <br>
-Developers and external agents use this skill to search TikTok posts through JustOneAPI by keyword, with optional region, sort, pagination, and publish-time filters. It supports trend monitoring, content discovery, keyword-based market analysis, and sentiment tracking workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The JustOneAPI token is sent as a request URL query parameter and may be exposed through copied commands, URLs, screenshots, shell history, or logs. <br>
-Mitigation: Keep the token in the JUST_ONE_API_TOKEN environment variable, avoid sharing request URLs or command lines containing token values, and rotate the token if exposure is suspected. <br>
-Risk: Search terms and filters are sent to JustOneAPI when the endpoint is called. <br>
-Mitigation: Use this skill only when the user or deploying organization trusts JustOneAPI with the search terms, filters, and resulting API processing. <br>
+## Use Case:
 
+Developers and external users can use this skill to search TikTok posts by keyword through JustOneAPI for trend monitoring, content discovery, market analysis, and sentiment tracking.
 
-## Reference(s): <br>
-- [JustOneAPI homepage](https://api.justoneapi.com) <br>
-- [JustOneAPI usage guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_tiktok_search_post&utm_content=project_link) <br>
-- [ClawHub skill page](https://clawhub.ai/justoneapi/justoneapi-tiktok-search-post) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, JSON, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses operation searchPostV1 against GET /api/tiktok/search-post/v1; returns raw JSON after a short endpoint-specific summary.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The JustOneAPI token is passed through command-line arguments and query URLs, where local diagnostics, shell history, process listings, or service logs may expose it.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a narrowly scoped token when available, avoid sharing command output that includes request details, and rotate the token if exposure is suspected.
+
+Risk: Paid quota or broad API permissions could be consumed unexpectedly if the token is overprivileged.
+
+Mitigation: Prefer a token with limited scope or quota for this skill and review usage before installing or running it.
+
+Risk: Search keywords and filters may be recorded by the external API provider or local logs.
+
+Mitigation: Avoid sensitive keywords and review the provider's data-handling expectations before using the skill for confidential work.
+
+## Reference(s):
+
+- [JustOneAPI Homepage](https://api.justoneapi.com)
+- [Just One API Usage Guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_tiktok_search_post&utm_content=project_link)
+- [Just One API Dashboard](https://dashboard.justoneapi.com/en/login?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_tiktok_search_post&utm_content=project_link)
+- [ClawHub Skill Page](https://clawhub.ai/justoneapi/skills/justoneapi-tiktok-search-post)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Short Markdown summary followed by raw JSON from the JustOneAPI endpoint]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a JustOneAPI token and the keyword query parameter; optional filters include offset, publishTime, region, and sortType.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

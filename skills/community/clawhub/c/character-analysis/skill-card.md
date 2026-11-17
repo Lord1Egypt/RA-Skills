@@ -1,51 +1,67 @@
-## Description: <br>
-基于面部和手部特征的趣味性格分析。结合传统面相学/手相学 + 行为经济学 + 行为心理学，提供深度的性格画像和实用建议。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+基于面部和手部特征的趣味性格分析。结合传统面相学/手相学 + 行为经济学 + 行为心理学，提供深度的性格画像和实用建议。
 
-## Publisher: <br>
-[xiangzhangshe](https://clawhub.ai/user/xiangzhangshe) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiangzhangshe](https://clawhub.ai/user/xiangzhangshe)
 
-## Use Case: <br>
-External users can use this entertainment skill to generate personality-oriented readings from face or hand images, combining traditional face-reading or palmistry prompts with behavioral psychology and behavioral economics framing. Outputs are intended for casual self-reflection and practical suggestions, not professional, medical, financial, or life-decision advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks users to provide face or hand photos, which may be identifiable or sensitive. <br>
-Mitigation: Use non-sensitive images when possible, avoid uploading private or identifiable photos, and follow the artifact's instruction not to retain photos after analysis. <br>
-Risk: The skill can produce personality, relationship, career, and investment-oriented suggestions that may be mistaken for professional advice. <br>
-Mitigation: Keep the entertainment disclaimer visible, avoid absolute claims or predictions, and direct users to qualified professionals for important financial, health, or life decisions. <br>
-Risk: The artifact includes a WeChat contact for further communication, which could lead users to share private images or financial details outside the agent environment. <br>
-Mitigation: Do not share private photos, financial details, or other sensitive information through the contact channel unless the recipient has been independently trusted. <br>
+## Use Case:
 
+External users use this skill for entertainment-oriented personality analysis from face or hand photos. It combines traditional face-reading or palmistry references with behavioral economics and psychology prompts to produce character, work, relationship, finance, and growth suggestions.
 
-## Reference(s): <br>
-- [Character Analysis Skill Instructions](SKILL.md) <br>
-- [面相特征库](references/face-reading.md) <br>
-- [手相特征库](references/palmistry.md) <br>
-- [行为经济学分析库](references/behavioral-economics.md) <br>
-- [行为心理学分析库](references/behavioral-psychology.md) <br>
-- [性格类型与建议](references/personality-types.md) <br>
-- [理财建议库](references/finance-advice.md) <br>
-- [联系作者](references/contact.md) <br>
-- [ClawHub skill page](https://clawhub.ai/xiangzhangshe/character-analysis) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/xiangzhangshe) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, analysis, guidance] <br>
-**Output Format:** [Markdown personality-analysis report with disclaimer, trait observations, behavioral-economics framing, behavioral-psychology framing, and practical suggestions.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user-provided face or hand image context; the artifact instructs the agent to include disclaimers and avoid absolute predictions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill asks users for face or hand photos and gender, which can be sensitive personal information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep analysis on-platform, avoid sharing identifying photos unless comfortable, and do not retain or reuse uploaded images.
+
+Risk: The skill may produce investment-sounding recommendations from entertainment and non-scientific inputs.
+
+Mitigation: Treat finance output as entertainment only and consult a qualified professional before making real financial decisions.
+
+Risk: The skill promotes a personal WeChat contact channel.
+
+Mitigation: Avoid moving sensitive discussion off-platform or sharing private information through the contact channel.
+
+Risk: The palmistry workflow uses a gendered hand-selection rule.
+
+Mitigation: Treat the rule as a palmistry convention and avoid using it to make demographic or identity-based claims.
+
+## Reference(s):
+
+- [Behavioral Economics Analysis Library](references/behavioral-economics.md)
+- [Behavioral Psychology Analysis Library](references/behavioral-psychology.md)
+- [Face Reading Feature Library](references/face-reading.md)
+- [Palmistry Feature Library](references/palmistry.md)
+- [Personality Types and Suggestions](references/personality-types.md)
+- [Finance Suggestions Library](references/finance-advice.md)
+- [Author Contact](references/contact.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown analysis with disclaimer, tables, and recommendation sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are intended as entertainment and should include disclaimers rather than professional, medical, or financial advice.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,54 @@
-## Description: <br>
-Search academic papers by keyword, look up metadata by DOI, and fetch journal info via Crossref <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search academic papers by keyword, look up metadata by DOI, and fetch journal info via Crossref.
 
-## Publisher: <br>
-[brucegutman](https://clawhub.ai/user/brucegutman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[brucegutman](https://clawhub.ai/user/brucegutman)
 
-## Use Case: <br>
-External users, researchers, and developers use this skill to search scholarly works, resolve DOI metadata, look up journal information by ISSN, and support literature review, citation verification, bibliography, and research trend workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search queries, DOIs, and ISSNs may be sent through Pipeworx when the skill is used. <br>
-Mitigation: Avoid submitting private, sensitive, or embargoed research details unless sharing them with the Pipeworx service is acceptable. <br>
-Risk: The optional MCP setup uses an npm-based remote connector to reach the Pipeworx endpoint. <br>
-Mitigation: Review and approve the MCP remote configuration before enabling it in an agent client. <br>
+## Use Case:
 
+Researchers, developers, and research-support teams use this skill to search scholarly works, verify DOI metadata, retrieve journal details, and support bibliography or citation-analysis workflows.
 
-## Reference(s): <br>
-- [Pipeworx Crossref Pack](https://pipeworx.io/packs/crossref) <br>
-- [Pipeworx Crossref MCP Endpoint](https://gateway.pipeworx.io/crossref/mcp) <br>
-- [ClawHub Skill Page](https://clawhub.ai/brucegutman/pipeworx-crossref) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON responses with scholarly work, DOI, and journal metadata, plus Markdown guidance with command and MCP configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl for the documented example and can be connected through an MCP remote endpoint; returned metadata can include titles, authors, DOIs, publication dates, citation counts, abstracts, references, funders, licenses, publishers, subject areas, and coverage dates.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: The documented client setup runs an unpinned npm package at install or runtime.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin mcp-remote to a reviewed exact version before deploying the skill.
+
+Risk: Queries are sent through a hosted gateway and may expose sensitive research interests or confidential citation data.
+
+Mitigation: Use the skill only in a restricted environment and avoid sending sensitive or confidential queries through the gateway.
+
+## Reference(s):
+
+- [Pipeworx Crossref homepage](https://pipeworx.io/packs/crossref)
+- [ClawHub skill page](https://clawhub.ai/brucegutman/skills/pipeworx-crossref)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Shell commands, Configuration instructions, Markdown, JSON]
+
+**Output Format:** [Markdown with inline bash and JSON code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns Crossref search results and metadata through MCP tool calls; requires curl for the documented direct request example.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

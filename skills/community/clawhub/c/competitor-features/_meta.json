@@ -1,0 +1,15 @@
+{
+  "ownerId": "583963",
+  "slug": "competitor-features",
+  "version": "1.5.3",
+  "workflow": "page_compare",
+  "focus": "features",
+  "outputTemplate": "ops_page_compare",
+  "requiredCapabilities": [
+    "product-detail",
+    "reviews",
+    "competitor-product-detail",
+    "competitor-reviews"
+  ],
+  "releaseWave": 4
+}

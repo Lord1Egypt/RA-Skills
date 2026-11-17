@@ -1,45 +1,59 @@
-## Description: <br>
-Ptrade helps agents reference and draft Python strategy work for the Ptrade quantitative trading platform, including A-share, futures, margin, ETF, market data, and broker-server execution workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ptrade 恒生量化交易平台 - 策略运行在券商服务器上，低延迟执行，支持A股、期货、融资融券等中国证券市场。
 
-## Publisher: <br>
-[coderwpf](https://clawhub.ai/user/coderwpf) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[coderwpf](https://clawhub.ai/user/coderwpf)
 
-## Use Case: <br>
-External developers and trading-strategy authors use this skill as a compact Ptrade API reference for drafting, reviewing, and adapting Python strategy code before broker-side backtesting, paper testing, or approved live deployment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Copyable examples can submit live orders, margin trades, futures trades, ETF operations, IPO subscriptions, or cancellations against real brokerage accounts. <br>
-Mitigation: Test generated strategies in backtest or paper mode first and require explicit human approval before any live broker-side action. <br>
-Risk: Ptrade strategies run on broker intranet servers with no external network access and limited package installation. <br>
-Mitigation: Keep generated code within the broker-provided Python runtime and APIs, and avoid dependencies that require pip or internet access. <br>
-Risk: Some Ptrade market-data calls are documented as unsafe to call concurrently. <br>
-Mitigation: Serialize those data calls and add result validation plus exception handling around data fetches. <br>
+## Use Case:
 
+Developers and quantitative trading practitioners use this skill as a Ptrade API reference for writing, reviewing, and adapting Python strategies for Chinese equities, futures, margin trading, ETF workflows, and broker-hosted backtests or live trading.
 
-## Reference(s): <br>
-- [ClawHub Ptrade Skill Page](https://clawhub.ai/coderwpf/ptrade) <br>
-- [Ptrade API Homepage](https://ptradeapi.com) <br>
-- [QMT Ptrade API Reference](http://qmt.ptradeapi.com) <br>
-- [BossQuant Bilibili Profile](https://space.bilibili.com/48693330) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with Python code examples and concise reference guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include trading API examples that require human review before use with a brokerage account.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata; artifact files also mention 1.2.0 and 1.3.0) <br>
+Risk: Copyable examples may place live broker-backed trading orders or alter positions if run in a live Ptrade account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use paper trading or backtests first, add explicit account-mode checks, and enforce position limits before live deployment.
+
+Risk: Persistence examples use pickle, which can be unsafe for untrusted or corrupted files.
+
+Mitigation: Use safer validated formats such as JSON for persisted state, or strictly control and validate any files loaded by strategy code.
+
+Risk: Demo dependencies may be installed without pinned versions.
+
+Mitigation: Install demo dependencies only in an isolated environment with pinned package versions.
+
+## Reference(s):
+
+- [ClawHub Ptrade Skill](https://clawhub.ai/coderwpf/skills/ptrade)
+- [Ptrade Documentation](https://ptradeapi.com)
+- [QMT API Documentation](http://qmt.ptradeapi.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with Python and shell code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes API usage notes, trading strategy examples, environment constraints, and broker-platform guidance.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

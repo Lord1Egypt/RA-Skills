@@ -15,7 +15,7 @@ Step-by-step instructions for generating the API tokens em-intel needs.
 ```env
 EM_CODE_PROVIDER=gitlab
 GITLAB_URL=https://gitlab.com
-GITLAB_TOKEN=glpat-xxxxxxxxxxxxxxxxxxxx
+GITLAB_TOKEN=REDACTED-SECRET
 GITLAB_GROUP=your-org/your-group
 ```
 
@@ -84,7 +84,7 @@ SMTP_TO=recipient@example.com
 
 ```env
 EM_DELIVERY=slack
-SLACK_WEBHOOK_URL=https://hooks.slack.com/services/T.../B.../xxx
+SLACK_WEBHOOK_URL=REDACTED-SECRET.../B.../xxx
 ```
 
 ### Telegram

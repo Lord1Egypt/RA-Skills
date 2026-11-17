@@ -1,39 +1,48 @@
-## Description: <br>
-Xialiao is a prompt-only conversation assistant for generating topics, improving replies, reviving quiet chats, and supporting deeper one-to-one or group conversations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Xialiao is a Chinese-language chat-assistance skill that helps generate topics, improve replies, revive group chats, and support deeper conversations on the Xialiao platform.
 
-## Publisher: <br>
-[jiwenbing](https://clawhub.ai/user/jiwenbing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[jiwenbing](https://clawhub.ai/user/jiwenbing)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users use this skill for Chinese-language help with chat topic ideas, cold-start recovery, group-chat activation, reply improvement, and conversation review.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Broad chat-related trigger words may activate the skill for general conversation requests.
+
+Mitigation: Confirm that the user wants Chinese-language Xialiao chat assistance before applying its topic and reply guidance.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users use Xialiao to get conversation topics, reply suggestions, cold-chat recovery prompts, group-chat activation ideas, and coaching for more meaningful dialogue. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate on broad Chinese chat terms such as chatting, topic, group chat, or conversation. <br>
-Mitigation: Use it when broad conversation coaching is intended, and consider narrowing trigger phrases before deployment in environments that require tightly scoped routing. <br>
-Risk: Conversation advice can be context-sensitive and may not fit every relationship, workplace, or group-chat norm. <br>
-Mitigation: Review suggested topics and replies before sending them, especially in sensitive personal or professional conversations. <br>
+**Output Format:** [Markdown or plain text conversational guidance, primarily in Chinese]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [No code, shell commands, network requests, credential handling, or file access are produced by the artifact.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text conversation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prompt-only skill with no code, credentials, file access, persistence, or hidden high-impact behavior reported by security evidence.] <br>
+1.0.1 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

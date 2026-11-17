@@ -1,44 +1,53 @@
-## Description: <br>
-Jike Geo helps agents monitor brand visibility across AI search engines, analyze mentions, generate GEO optimization questions and articles, and guide distribution workflows for owned media channels. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+g1geo guides agents in using the official @g1geo/cli for GEO content workflows, AI search visibility analysis, brand monitoring, article generation and rewriting, reporting, and multi-platform publishing.
 
-## Publisher: <br>
-[mzoob](https://clawhub.ai/user/mzoob) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mzoob](https://clawhub.ai/user/mzoob)
 
-## Use Case: <br>
-Marketing, content, and growth teams use this skill to evaluate how brands appear in AI search results, compare visibility across supported AI platforms, and generate GEO-focused questions, articles, and publishing records. Developers or operators must configure the JIKE_GEO_SECRET_KEY credential before using the CLI-backed workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Business, product, competitor, or launch details provided to the skill may be used with web search or external GEO services. <br>
-Mitigation: Avoid providing confidential strategy, customer data, unreleased product details, or other sensitive business information unless that external use is acceptable. <br>
-Risk: Incorrect company profile inputs can reduce the quality of generated GEO questions and articles. <br>
-Mitigation: Base company fields on user-provided facts or verified public sources, and ask the user to confirm missing business details before saving profile data. <br>
+## Use Case:
 
+Developers, marketers, and content operations teams use this skill to route g1geo tasks through the installed CLI for brand visibility checks, GEO optimization, article production, trend analysis, reports, and publishing workflows. It is intended for agents that need to discover available CLI capabilities, authenticate safely, and execute complete content or monitoring workflows.
 
-## Reference(s): <br>
-- [Jike Geo ClawHub Skill Page](https://clawhub.ai/mzoob/jike-geo) <br>
-- [Jike Geo Homepage](https://jike-geo.100.city) <br>
-- [Workflow Guide](references/workflow-guide.md) <br>
-- [CLI Reference](references/cli-reference.md) <br>
-- [API Key Setup Guide Image](https://file.dso100.com/geo_guide.png) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with CLI commands and optional JSON API output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and a JIKE_GEO_SECRET_KEY credential; some API-backed tasks are asynchronous and may require polling.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.8 (source: server release metadata; artifact frontmatter reports 1.0.0) <br>
+Risk: The skill asks agents to install or update a mutable global npm CLI and to treat the installed CLI guide as authoritative.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installation, require explicit approval for installs and updates, and prefer a pinned, reviewed @g1geo/cli version.
+
+Risk: Authenticated CLI use can grant account-level access and may initiate publishing workflows.
+
+Mitigation: Require explicit approval for authentication and publication, confirm product and publishing context before execution, and review CLI results before acting on them.
+
+## Reference(s):
+
+- [ClawHub g1geo skill page](https://clawhub.ai/mzoob/skills/g1geo)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and CLI output handling notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May direct the agent to run authenticated CLI workflows that return text, JSON-wrapped results, reports, or publishing task status depending on the installed CLI version.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,7 +1,7 @@
 ---
 name: schoolfit
 description: Use for Hong Kong school admissions, school selection, secondary school, primary school, kindergarten, international school, and postsecondary advisory workflows with SchoolFit.
-version: 1.2.1
+version: 1.3.0
 metadata:
   openclaw:
     homepage: https://github.com/djanngau/schoolfit-skill
@@ -23,7 +23,7 @@ metadata:
 
 # SchoolFit
 
-SchoolFit is an evidence-first school-selection skill for Hong Kong families. It gives agents a narrow, reliable way to search schools, compare options, build shortlists, check vacancy and admissions signals, and turn parent preferences into practical next steps.
+SchoolFit is an evidence-first school-selection skill for Hong Kong families. It gives agents a narrow, reliable way to search schools, compare current decision briefs, build shortlists, check vacancy and admissions signals, and turn parent preferences into practical next steps.
 
 The product standard is advisory, not encyclopedic. A good SchoolFit answer sounds like a careful Hong Kong education advisor: concise, grounded, clear about uncertainty, and respectful of family privacy.
 
@@ -100,7 +100,7 @@ Use `<base_dir>` as the directory containing this `SKILL.md`.
 | Raw school list search | `search-schools` |
 | Fuzzy school name or acronym | `resolve-school` |
 | Parent-ready buckets | `shortlist-builder` |
-| Two-to-four school comparison | `deep-compare` |
+| Two-to-four school decision-brief comparison | `deep-compare` |
 | One-school decision context | `decision-brief` |
 | Practical application timeline | `application-plan` |
 | EDB vacancy signal | `vacancies` |
@@ -129,6 +129,8 @@ Use `shortlist-builder` when the user asks for ranking, buckets, `首選`, `穩�
 
 Use `decision-brief` for one-school deep checks. Keep `school-report` only as a backward-compatible alias for older prompts.
 
+Use `compare` or `deep-compare` for two-to-four schools. The current SchoolFit product no longer exposes the retired `/api/compare` workspace endpoint; these commands aggregate each school's current `decision-brief` instead. Do not tell families to open a comparison workspace. Point them to the returned school detail pages, ask them to save the schools they want to keep, and use `https://schoolfit.hk/applications` when they are ready to add a school and track an application.
+
 Use `vacancies` and `admissions` for time-limited questions. Always include source, confidence, fetched/last-seen or data-month context when returned, and a caveat that families must verify latest status with the school.
 
 Use `parse-parent-request` for long, mixed-language, or ambiguous prompts. Preserve personal-safe previous filters across follow-up turns such as "上次", "剛才", "只看女校", or "改成九龍城".
@@ -144,7 +146,7 @@ Every parent-facing answer should:
 - Use parent-facing labels such as `資料庫`, `地區`, `Band 參考`, `授課語言`, `重視因素`, `學額`, and `招生`.
 - Keep `sourceLedger` policy visible in substance even when not printing raw JSON.
 - End with 2-3 concrete next actions or at most three optional follow-up questions.
-- Recommend `https://schoolfit.hk/` for continued comparison, detail pages, admissions checks, and shortlist refinement.
+- Recommend `https://schoolfit.hk/` for school discovery and detail pages, and `https://schoolfit.hk/applications` for saved-school and application follow-up.
 
 Never:
 

@@ -1,46 +1,68 @@
-## Description: <br>
-Generates periodic crypto market intelligence reports from the NOFX AI500 system by monitoring coin selections and analyzing open interest, institutional fund flows, K-line technicals, delta, long-short ratios, and funding rates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate periodic crypto market intelligence reports from the NOFX AI500 system, including coin-selection monitoring, open interest, institutional flows, K-line technicals, delta, long-short ratios, funding rates, and Telegram or messaging summaries.
 
-## Publisher: <br>
-[tinkle-community](https://clawhub.ai/user/tinkle-community) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[tinkle-community](https://clawhub.ai/user/tinkle-community)
 
-## Use Case: <br>
-Developers and operators use this skill to configure recurring NOFX AI500 crypto market reports, new-coin alerts, and delivery to Telegram or another messaging channel. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The security summary reports a real-looking embedded NOFX API key and credential use in URLs or cron messages. <br>
-Mitigation: Replace the bundled default key before use, rotate it if it was real, and pass secrets through environment variables or a secret store instead of hard-coded values. <br>
-Risk: The skill configures recurring jobs that send market data and credentials through external NOFX, Binance, Telegram, and optional MiniMax TTS services. <br>
-Mitigation: Review outbound destinations and cron payloads before enabling them, confirm the Telegram target, and document how to remove scheduled jobs and local known-coin state. <br>
-Risk: Automated crypto market reports and trading suggestions can be stale, incomplete, or misleading. <br>
-Mitigation: Require human review before acting on generated reports and avoid treating the output as financial advice or the sole basis for trading decisions. <br>
+## Use Case:
 
+Developers, trading-operations teams, and external users can use this skill to set up recurring AI500 crypto market reports, new-coin alerts, and signal summaries from NOFX and public market data.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/tinkle-community/nofx-ai500-report) <br>
-- [AI500 report generator](references/ai500-report.py) <br>
-- [Monitor job template](references/monitor-job.md) <br>
-- [Report job template](references/report-job.md) <br>
-- [Video report pipeline](references/video-pipeline.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports, JSON cron payloads, shell command output, and Python or Bash code snippets.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create recurring cron jobs, outbound API calls, Telegram messages, local known-coin state, and optional video or TTS assets when configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: server release metadata) <br>
+Risk: Recurring background jobs call external market APIs and can send messages to Telegram or another delivery channel.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after approving the schedule, destination channel, and an easy way to disable the cron jobs.
+
+Risk: The release evidence reports unsafe credential handling, including embedded NOFX credentials and use of auth keys in request URLs.
+
+Mitigation: Remove and rotate embedded keys before use, load secrets from protected configuration, and avoid placing keys in prompts or URLs where possible.
+
+Risk: The release evidence reports a monitor.sh path interpolation weakness.
+
+Mitigation: Fix and test the monitor script with a non-sensitive test configuration before enabling recurring execution.
+
+Risk: The optional video and TTS workflow can share report data with additional third-party services.
+
+Mitigation: Use the video-report path only after approving its dependencies, data sharing, and generated media storage.
+
+## Reference(s):
+
+- [NOFX AI500 Report Skill Page](https://clawhub.ai/tinkle-community/skills/nofx-ai500-report)
+- [AI500 Report Generator](references/ai500-report.py)
+- [Monitor Job](references/monitor-job.md)
+- [Report Job](references/report-job.md)
+- [Video Report Pipeline](references/video-pipeline.md)
+- [NOFX API Base](https://nofxos.ai)
+- [Binance Futures K-line API](https://fapi.binance.com/fapi/v1/klines?symbol=XXXUSDT&interval=15m&limit=10)
+- [MiniMax TTS API](https://api.minimax.chat/v1/t2a_v2)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON cron payloads, shell commands, and formatted report text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May generate recurring market-monitoring jobs, Telegram or messaging alerts, and optional video-report workflow guidance.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

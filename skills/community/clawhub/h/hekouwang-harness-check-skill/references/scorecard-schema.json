@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/huiyonghkw/hekouwang-harness-check-skill/blob/main/references/scorecard-schema.json",
+  "title": "Harness Scorecard",
+  "type": "object",
+  "required": ["schemaVersion", "target", "score", "dimensions", "findings", "hosts", "executions", "verification", "counts"],
+  "properties": {
+    "schemaVersion": {"type": "string"},
+    "target": {"type": "object"},
+    "score": {
+      "type": "object",
+      "required": ["value", "max", "confidence", "maturity", "decision"],
+      "properties": {
+        "value": {"type": "number", "minimum": 0, "maximum": 100},
+        "max": {"const": 100},
+        "confidence": {"type": "number", "minimum": 0, "maximum": 100},
+        "maturity": {"type": "object"},
+        "decision": {"enum": ["READY", "CONDITIONAL", "BLOCKED"]},
+        "caps": {"type": "array"}
+      }
+    },
+    "dimensions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "name", "weight", "earned", "status", "signals"],
+        "properties": {
+          "id": {"type": "string"},
+          "name": {"type": "string"},
+          "weight": {"type": "number"},
+          "earned": {"type": "number"},
+          "status": {"enum": ["pass", "partial", "missing"]},
+          "signals": {"type": "array"}
+        }
+      }
+    },
+    "findings": {"type": "array"},
+    "hosts": {"type": "array"},
+    "executions": {"type": "array"},
+    "verification": {"type": "object"},
+    "counts": {"type": "object"},
+    "rubric": {"type": "object"},
+    "comparison": {"type": "object"},
+    "profile": {
+      "type": ["object", "null"],
+      "properties": {
+        "id": {"type": "string"},
+        "name": {"type": "string"},
+        "score": {"type": "object"},
+        "controls": {"type": "array"},
+        "findings": {"type": "array"}
+      }
+    }
+  }
+}

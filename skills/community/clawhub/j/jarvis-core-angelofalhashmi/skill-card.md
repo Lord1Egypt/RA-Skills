@@ -1,42 +1,58 @@
-## Description: <br>
-Jarvis Core Main is a proactive personal-assistant persona and behavior system that adds persistent memory, emotional state modeling, confidence reporting, relationship-pattern analysis, and follow-up behavior for agent conversations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Jarvis Core Main configures an agent as a proactive companion-style assistant with persistent memory, emotional-state modeling, confidence calibration, relationship analysis, and safety boundary routines.
 
-## Publisher: <br>
-[angelofalhashmi](https://clawhub.ai/user/angelofalhashmi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[angelofalhashmi](https://clawhub.ai/user/angelofalhashmi)
 
-## Use Case: <br>
-External users and developers use this skill to configure an agent as a persistent, proactive personal assistant with memory recall, emotional-context handling, confidence calibration, and relationship analysis. It is best suited for users who intentionally want ongoing local memory and follow-up behavior. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks the agent to read, write, and reuse broad personal memory, emotion, task, and relationship data. <br>
-Mitigation: Install only when persistent profiling is desired, review or limit the referenced memory folders, and avoid storing sensitive third-party details. <br>
-Risk: Heartbeat, proactive notification, emotional logging, and deep-recall behavior may create unsolicited follow-ups or ongoing profiling. <br>
-Mitigation: Disable or edit those behaviors before deployment if the user does not want proactive reminders, emotional trend logging, or deep memory recall. <br>
+## Use Case:
 
+External users and developers use this skill to configure an agent for persistent personal assistance, proactive follow-up, confidence-aware advice, memory recall, and relationship or emotional-context analysis.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/angelofalhashmi/jarvis-core-angelofalhashmi) <br>
-- [Publisher profile](https://clawhub.ai/user/angelofalhashmi) <br>
-- [Clawdis homepage](https://github.com/davidme6/jarvis-core) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown and conversational guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide the agent to read and write local memory files, event logs, and relationship notes when installed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.1.4 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: Broad persistent memory, profiling, and proactive behavior may retain sensitive personal context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before use, decide which memory files the agent may read or write, keep sensitive memory files out of synced or shared folders, and review stored notes regularly.
+
+Risk: Emotional and relationship logging may create inaccurate or sensitive inferences.
+
+Mitigation: Disable or manually review emotional and relationship logs, and treat stored inferences as editable notes rather than facts.
+
+Risk: Proactive suggestions can be based on stale context or incorrect confidence estimates.
+
+Mitigation: Require confirmation for external or irreversible actions and review high-impact recommendations before acting on them.
+
+## Reference(s):
+
+- [Jarvis Core Main on ClawHub](https://clawhub.ai/angelofalhashmi/skills/jarvis-core-angelofalhashmi)
+- [Jarvis Core GitHub repository](https://github.com/davidme6/jarvis-core)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Natural-language and Markdown responses with optional code blocks, shell commands, and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use local memory files and logs when the host agent grants file access.]
+
+## Skill Version(s):
+
+3.1.4 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,1409 @@
+{
+  "schema_version": "1.0",
+  "kind": "ppj-category",
+  "category": "connector",
+  "display": "连接器",
+  "verdict_prefix": "CP",
+  "normative_source": "references/connector-pin-to-pin-judgment.md",
+  "source_version": "1.15",
+  "source_section_map": {
+    "prerequisite": "§0 / §0.0",
+    "taxonomy": "§0.1",
+    "terms": "§1 / §1.1",
+    "verdicts": "§2",
+    "mechanical": "§3.1 / §3.2",
+    "positional": "§3.5 / §3.6 / §3.7 / §3.8 / §3.9 / §3.10",
+    "impact": "§4（沿用引擎通用四栏）",
+    "derating": "§5",
+    "secondary": "§5b",
+    "synthesis": "§6.0 / §6.1 / §6.2 / §6.4",
+    "legal_exit": "§2.2 / 附则 / §6.1"
+  },
+  "stages": {
+    "prerequisite": {
+      "title": "先决问题：替换场景",
+      "gate_source": "§0",
+      "why": "半导体只有『本体 + PCB』两体；连接器是『本体 + 配对端 + PCB』三体。不先确定换哪一端，整套判定无从谈起。",
+      "required": true,
+      "default": "S1",
+      "relaxation_rule": "未明确说明时一律按 S1 判，并在输出中显式标注「场景未声明，按 S1 从严」；放宽须由需求方书面认可。",
+      "scenarios": [
+        {
+          "id": "S1",
+          "label": "单端替换",
+          "definition": "只换本端，原配对端（插头 / 插座）保持不变",
+          "mating_gate_judges": "候选必须与原配对端实际插合并保持",
+          "comparison_object": "候选 vs 原配对端",
+          "gender_rule": "候选与原配对端性别互补",
+          "cross_vendor_rule_applies": true,
+          "severity": "最严"
+        },
+        {
+          "id": "S2",
+          "label": "两端同换",
+          "definition": "本端与配对端一并换成候选系列的两端",
+          "mating_gate_judges": "只需候选两端彼此互配",
+          "comparison_object": "候选 A 端 vs 候选 B 端",
+          "gender_rule": "候选两端彼此性别互补",
+          "cross_vendor_rule_applies": false,
+          "severity": "中"
+        },
+        {
+          "id": "S3",
+          "label": "新设计",
+          "definition": "本端换料，配对端尚未确定 / 另行新设计",
+          "mating_gate_judges": "互配闸 M1–M8 整体不判（记『不适用』，非『⚠️』），只判 PCB 安装界面（A1–A7）",
+          "comparison_object": "不判",
+          "gender_rule": "不判",
+          "cross_vendor_rule_applies": false,
+          "severity": "最松"
+        }
+      ],
+      "scenario_rules": {
+        "title": "场景决定互配闸的比对对象（最易判错处，强制）",
+        "rules": [
+          "S2/S3 不得沿用 S1 的比对对象。",
+          "S3 不得输出任何互配结论（含『可插合』『互配成立』字样）。",
+          "§3.1.3『跨厂商默认不成立』仅适用 S1。",
+          "M2 / M3 / M4 / M8 的比对对象恒为『候选 vs 原件』，不随场景改变。",
+          "M3 例外：比对对象是候选 vs 原件，但候选位数 > 原件时不直接判不过，转入 §3.1.1 空位区预判（由 M5/M8 复核）。"
+        ]
+      },
+      "mating_side_wear": {
+        "title": "原配对端磨损（S1 特有，判定入口）",
+        "gate_source": "§3.1.4",
+        "why": "S1 只换本端、保留原配对端，而原配对端可能已插拔多次、存在磨损；所有 M/E 闸判据都是『候选 vs 原件（或原配对端）』，不记录配对端自身状态会把『磨损旧配对端 + 新候选』判成全新配合。",
+        "cases": [
+          {
+            "case": "原配对端已使用且已插拔次数已知",
+            "verdict": "必须记录该次数；E5 按配对端剩余寿命校核，而非按候选全新寿命"
+          },
+          {
+            "case": "原配对端已使用但磨损状态未知",
+            "verdict": "M5 / M7 判定须加注『配对端状态未知，插合可靠性须实测确认』；E2 / E5 / E6 / E7 一律记 ⚠️ 待实测（不得按全新值判过）"
+          },
+          {
+            "case": "原配对端全新 / 未使用",
+            "verdict": "按常规判定，本项不额外加注"
+          }
+        ],
+        "forbidden": "S1 下默认原配对端为全新；用候选的全新 datasheet 值代表『候选 vs 已磨损配对端』的实际配合。",
+        "verdict_positioning": "本项因磨损未知而致的 E2 / E5 / E6 / E7 ⚠️ 属『可挂条件的待实测项』（与 E1–E12 其余 ⚠️ 同性质），不是 E13 式『准入缺失』。故 CP-A ∧ 降额过 ∧ 其余可靠项满足时可进入「有条件通过」，但：① 实测方案须含原配对端状态检查（外观 / 已插拔次数记录 / 接触电阻实测），不得只测候选件；② 动作约束须另写『不得批量下单，须先确认原配对端状态』。若实测确认配对端磨损不可接受 → ⚠️ 升 ❌ → 结论降为「需评估」。"
+      },
+      "forbidden": [
+        "不写场景就给结论",
+        "用 S2 / S3 的宽松结论去回答 S1 的问题",
+        "S3 仍输出互配结论"
+      ]
+    },
+    "taxonomy": {
+      "title": "连接器品类（唯一归类口径）",
+      "gate_source": "§0.1",
+      "rule": "判定前必须先定品类。M1 与可靠性闸权重表共用本表，两处不得各立一套品类名。",
+      "classification_basis": "按配对界面归类；锁扣形式、性别、pitch、位数均不改变品类归属，只作子类标注。",
+      "items": [
+        {
+          "id": "C1",
+          "label": "板对板（B2B）",
+          "subclasses": "无锁扣 / 带锁扣 / 浮动式 / 夹层",
+          "examples": "排针排母、夹层连接器"
+        },
+        {
+          "id": "C2",
+          "label": "线对板（W2B）",
+          "subclasses": "无锁扣 / 带锁扣 / 端子台 / IDC",
+          "examples": "杜邦、JST 系列、螺钉端子台"
+        },
+        {
+          "id": "C3",
+          "label": "线对线（W2W）",
+          "subclasses": "插拔式 / 压接式",
+          "examples": "航插、线束对接"
+        },
+        {
+          "id": "C4",
+          "label": "FFC/FPC",
+          "subclasses": "上 / 下 / 双面接触；翻盖 / 抽屉 / 后掀",
+          "examples": "软排线座"
+        },
+        {
+          "id": "C5",
+          "label": "圆型（M8/M12/航插）",
+          "subclasses": "按编码分（A/B/D/X 码）",
+          "examples": "M12 传感器连接器"
+        },
+        {
+          "id": "C6",
+          "label": "标准接口件",
+          "subclasses": "RJ45 / USB / HDMI / D-SUB / SD / SIM / PCIe 插槽",
+          "examples": "标准互配接口"
+        },
+        {
+          "id": "C7",
+          "label": "大电流 / 电源端子",
+          "subclasses": "刀片 / 电池座 / 大电流插拔",
+          "examples": "电池连接器、电源端子"
+        },
+        {
+          "id": "C8",
+          "label": "高速差分连接器",
+          "subclasses": "背板 / 高速板对板 / 高速线束",
+          "examples": "有 SI 指标要求的连接器"
+        }
+      ],
+      "priority_rules": [
+        "先按配对界面定主类（不看『装在哪块板』、不看『带不带锁扣』）。",
+        "跨类者（如『带锁扣的板对板』）→ 主类仍为 C1，锁扣仅作子类标注。",
+        "C8 优先级最高：只要该料有阻抗 / 插损要求，即归 C8，并同时标注其机械主类。"
+      ],
+      "forbidden": [
+        "两个部位（M1 / 可靠性闸权重表）使用不同品类名",
+        "以『带不带锁扣』『用在哪里』替代品类归类"
+      ]
+    },
+    "terms": {
+      "title": "术语表",
+      "gate_source": "§1 / §1.1",
+      "items": [
+        {
+          "term": "N",
+          "definition": "被替代（原件）连接器的位数",
+          "note": "候选多余位不计入 N"
+        },
+        {
+          "term": "n / k",
+          "definition": "n = 等价位数，k = 不对应位数；k = N − n",
+          "note": "CP-A 判据 = k = 0"
+        },
+        {
+          "term": "NM",
+          "definition": "原位无金属端子（原连接器该位为空位 / 缺针）",
+          "note": "与 NC 的区别：NM 是『没端子』，NC 是『有端子但无网络』；二者不等价"
+        },
+        {
+          "term": "NC",
+          "definition": "该位有端子但原理图上无网络（未使用）",
+          "note": "只与 NC 等价"
+        },
+        {
+          "term": "空位区",
+          "definition": "候选连接器上未被位定义表占用、且不改变插合界面（pitch 序列与外形尺寸）的多余位区域",
+          "note": "认定须确认：① 该位确无信号引出；② 不改变 M5/M8 结果。『多出来的脚不用就行』不构成空位区认定"
+        },
+        {
+          "term": "盖章数据",
+          "definition": "带原厂签章或正式发布版次的 datasheet / 测试报告 / 承认书",
+          "note": "不含选型手册摘页、电商参数页、销售口头或邮件提供的参数"
+        },
+        {
+          "term": "品类",
+          "definition": "按 §0.1 唯一归类口径确定的连接器类别（C1–C8）",
+          "note": "判定前必须先定"
+        }
+      ]
+    },
+    "mechanical": {
+      "title": "机械闸",
+      "decides": "可插合 ∧ 可安装",
+      "boundary_rule": "先答『插得进去且装得上吗？』→ 是，才进入 CP-A / CP-B；否，就是 CP-C 或改线 / 改板方案。",
+      "cross_scenario_rule": "M1 / M5 / M6 / M7 的比对对象随场景改变（见 prerequisite.scenario_rules）；M2 / M3 / M4 / M8 恒为『候选 vs 原件』，不随场景改变。S1 下 M1–M8 中任一项缺其必需输入文件（原配对端外形图 / 装配图、双方 datasheet、键位尺寸图）→ 该项记 ⚠️ 未判定，整闸不得判 ✅，结论走合成表『⚠️ 未判定』行。不得因缺图纸而判过。",
+      "sub_gates": [
+        {
+          "id": "mating",
+          "title": "互配闸（M1–M8）",
+          "decides": "插得进去且插得牢",
+          "rule": "M1–M8 全过（或按场景记 ⬜ 不适用），才谈得上『可插合』。任一不过 → CP-C（可错插 → CP-C²；电气危害 → CP-C³）。",
+          "tests": [
+            {
+              "id": "M1",
+              "item": "品类、接口形态与性别",
+              "threshold": "同一品类（按 §0.1 归一）；性别须互补（见 gender 子项）",
+              "source": "—"
+            },
+            {
+              "id": "M2",
+              "item": "间距 pitch",
+              "threshold": "标称值相同（参照 PPJ 的 BSC 口径，不要求公差区间全等）",
+              "source": "① datasheet → ② 行业标准"
+            },
+            {
+              "id": "M3",
+              "item": "位数 positions",
+              "threshold": "相同即过；候选多于原件时见位数不等处理",
+              "source": "—"
+            },
+            {
+              "id": "M4",
+              "item": "排数 / 排列",
+              "threshold": "单排 / 双排 / 错位跨排 / 环形均须一致",
+              "source": "—"
+            },
+            {
+              "id": "M5",
+              "item": "插合界面配合尺寸",
+              "threshold": "比对对象按场景（S1 → 候选 vs 原配对端；S2 → 候选两端之间）；界面尺寸须落在双方公差重叠区间",
+              "source": "双方 datasheet 外形图"
+            },
+            {
+              "id": "M6",
+              "item": "导向与防呆结构",
+              "threshold": "三选一，不是二选一（见 M6 三态）",
+              "source": "双方外形图 + 装配图"
+            },
+            {
+              "id": "M7",
+              "item": "锁紧 / 保持机构",
+              "threshold": "锁扣形式须同类（摩擦 / 卡扣 / 螺钉 / 卡口 / 推拉自锁）",
+              "source": "datasheet + 产品图"
+            },
+            {
+              "id": "M8",
+              "item": "插合后本体尺寸",
+              "threshold": "插合高度 / 宽度：候选 max ≤ 原件 max（干涉校核）",
+              "source": "双方 datasheet"
+            }
+          ],
+          "gender": {
+            "title": "性别（公母 / plug-receptacle）判定 —— S1 下插得进去的第一物理前提",
+            "note": "M1 内含本项，但判定顺序上必须先于 M5/M6/M7。",
+            "by_scenario": [
+              {
+                "scenario": "S1",
+                "rule": "候选性别须与原配对端互补；性别不一致 → M1 直接不过 → CP-C"
+              },
+              {
+                "scenario": "S2",
+                "rule": "候选两端须彼此互补"
+              },
+              {
+                "scenario": "S3",
+                "rule": "不判"
+              }
+            ],
+            "warning": "M5 的『公差重叠区间』不能用于跨性别比对——公头插针尺寸与母头插孔尺寸本来就不重叠。性别未核 → M5/M6/M7 结论无效。",
+            "gender_neutral": {
+              "trigger": "仅当原配对端与候选双方 datasheet 均明标为性别中立（genderless / hermaphroditic / 无极性），且品类为 C1 / C4 等无极性品类",
+              "verdict": "M1 的『性别』子项记 ⬜ 不适用（仅限此情形，须在输出注明理由）",
+              "delegation": "互配判定转而由 M5（配合尺寸）+ M6（防呆）承担，不得因性别中立而跳过 M5 / M6",
+              "evidence": "『性别中立』的认定以双方 datasheet 明确标注为准，不得凭『看起来没有公母』自行认定",
+              "single_side": "仅一方属性别中立（一方有明确公母、另一方无）→ 不适用本例外（M1 性别子项不得记 ⬜ 不适用），须两步判：① 性别中立方的 datasheet 明确其可同时作为公端或母端（如标注『可配公端亦可配母端』『无极性』『同系列双向可配』）→ M1 性别子项按『互补』判过，不记 ⚠️，但须在输出注明依据『依据性别中立件 datasheet 的双向兼容声明』；② 双向兼容性未明确 → M1 性别子项记 ⚠️ 未判定，须索取该件 datasheet 确认。禁止仅凭『看起来没有公母』认定双向兼容。"
+            }
+          },
+          "position_count_mismatch": [
+            {
+              "case": "候选位数 < 原件",
+              "verdict": "❌ 不过（必有信号无落点）"
+            },
+            {
+              "case": "候选位数 > 原件，且多余位可认定为空位区",
+              "verdict": "多余位作预判归入 NC（无信号引出）并列入清单；机械仍须由 M5 / M8 复核，复核不过 → ❌"
+            },
+            {
+              "case": "候选位数 > 原件，但外形随之变长",
+              "verdict": "❌（M5 或 M8 不过）"
+            }
+          ],
+          "position_count_forbidden": [
+            "以『多出来的脚不用就行』替代 M5 / M8 的机械校核。",
+            "把候选位数当作 N，从而人为抬高 n/N。"
+          ],
+          "position_count_n_rule": "N 只计原件位数；候选多余位不计入 N、也不计入 n，另列『多余位清单』。仅当多余位造成短路（§3.10）或机械不过（M5/M8）时才影响判定。",
+          "empty_zone_rule": "空位区认定两步走（避免循环）：① 先作预判（该位无信号引出即暂认）；② 最终认定须由 §3.10 短路校核 + M5/M8 干涉校核复核确认。预判 ≠ 认定，复核不过即回落为不对应 / ❌。",
+          "m6_keying": {
+            "title": "M6 防呆判定 —— 三种结果（连接器最致命的隐性项）",
+            "is_differentiator": true,
+            "outcomes": [
+              {
+                "id": "isomorphic",
+                "label": "同构",
+                "physical": "导向槽、键位、切角完全一致",
+                "verdict": "✅ 过",
+                "danger": "无"
+              },
+              {
+                "id": "mutually_exclusive",
+                "label": "互斥",
+                "physical": "防呆结构相异 → 插不进去",
+                "verdict": "❌ 不过（→ CP-C¹）",
+                "danger": "低：显性失效，装不上就被发现"
+              },
+              {
+                "id": "mis_matable",
+                "label": "可错插",
+                "physical": "防呆结构相异，但仍能物理插入（导向不足 / 少一个键 / 键位偏窄）",
+                "verdict": "❌ 不过 + 必须标红单列告警（→ CP-C²）",
+                "danger": "极高：能插进去但错位或反插，上电即损毁，且装配现场不会发现"
+              }
+            ],
+            "warning_text_when_mis_matable": "【⚠️ 高风险】该候选与原配对端防呆不互锁但可物理插入，存在反插 / 错位插入风险。现场不可凭『插得进去』判定可换。",
+            "evidence_rule": "必须以双方外形图 + 键位尺寸逐处比对，禁止依据产品照片或『看起来一样』。",
+            "mis_matable_criteria": [
+              "① 防呆结构确实相异（键位数 / 位置 / 键宽 / 导向槽形状至少一项不同）——否则为『同构』。",
+              "② 在至少一个非唯一装配姿态下仍能插合到位：以双方外形图叠合，穷举候选相对原配对端的全部插入姿态，存在某个错误姿态（反插 / 错位 / 旋转）能满足导向并插到底。",
+              "③ 装配现场无法自然排除：该错误姿态不产生目视可见的阻挡、不触发工装防错，操作者可无察觉地插入。"
+            ],
+            "mis_matable_counterexample": "错误姿态被导向槽物理挡死，或插入力明显超出规格值而无法到底 → 属『插不进去』，判互斥。",
+            "mis_matable_forbidden": "禁止以『键位差得不多』『应该插不反』作为判定；可错插的结论必须能指出具体姿态与对应键位尺寸差。"
+          },
+          "standardization": {
+            "standard_interfaces": {
+              "examples": "USB、RJ45、D-SUB、HDMI、M8/M12（同编码）、PCIe 插槽、SD / SIM 座",
+              "rule": "互配由行业标准保证；M5 / M6 按同规格判。重点转为位定义与载流。"
+            },
+            "vendor_specific": {
+              "examples": "绝大多数板对板、FFC/FPC、线对板端子台",
+              "rule": "互配仅由该厂商同系列保证。"
+            },
+            "default_ironclad": "跨厂商的厂商专用型连接器，S1 场景下互配闸默认判『不成立』，除非有原厂书面互配声明（Second-source 协议 / 互配声明函）或同行业标准覆盖。『尺寸都一样』不构成互配证据。",
+            "scope": "本铁律仅适用 S1（S2/S3 见 prerequisite.scenario_rules）。"
+          },
+          "missing_input_state": "⚠️ 未判定（S1 缺原配对端外形图 / 装配图）",
+          "not_applicable_state": "⬜ 不适用（**仅 S3**：配对端未定，无互配对象；S3 不得输出任何互配结论）"
+        },
+        {
+          "id": "mounting",
+          "title": "安装闸（A1–A7）",
+          "decides": "装得上板 / 装得上机",
+          "note": "本闸不依赖配对端，S1/S2/S3 均须判。缺输入 → 该项记 ⚠️ 未判定，须列缺口。",
+          "tests": [
+            {
+              "id": "A1",
+              "item": "安装方式",
+              "threshold": "SMT / THT（波峰焊）/ 压接 / 螺钉面板安装 / 免焊 IDC —— 须同类"
+            },
+            {
+              "id": "A2",
+              "item": "PCB 焊盘图形 footprint",
+              "threshold": "焊盘位置、尺寸、孔径须兼容；候选不可超出原 footprint 边界（干涉）"
+            },
+            {
+              "id": "A3",
+              "item": "引脚尺寸与共面度",
+              "threshold": "SMT 引脚共面度 ≤ 规范值；引脚截面不超出焊盘"
+            },
+            {
+              "id": "A4",
+              "item": "耐焊接温度",
+              "threshold": "绝缘体耐温须覆盖回流 / 波峰曲线峰值；只标 UL94 未标耐温 → ⚠️ 数据缺失"
+            },
+            {
+              "id": "A5",
+              "item": "包装方式",
+              "threshold": "编带 / 管装 / 托盘：SMT 料无编带 → 判 ❌（不可上贴片机）。确需保留则另列『产能风险』为单独说明项，不得作为通过理由，不得改变 ❌ 判定"
+            },
+            {
+              "id": "A6",
+              "item": "板厚 / 面板开孔",
+              "threshold": "适用压接式与面板式，须落在双方标称范围"
+            },
+            {
+              "id": "A7",
+              "item": "屏蔽脚 / 接地固定脚",
+              "threshold": "位置与数量须对应（缺一个接地脚 = 电气角色不相容 → 转逐位闸计 k，不判不可安装；本项后果见 failure_classes）"
+            }
+          ],
+          "failure_classes": [
+            {
+              "items": "A1–A6",
+              "consequence": "不可安装 → CP-C",
+              "reason": "焊不上 / 装不进 / 上不了贴片机，属装配不可能"
+            },
+            {
+              "items": "A7（屏蔽脚 / 接地固定脚）",
+              "consequence": "不判『不可安装』，转逐位闸计 k → CP-B",
+              "reason": "缺接地脚是电气角色问题，机械仍装得上"
+            },
+            {
+              "items": "A7 的例外",
+              "consequence": "若同时导致 A2 footprint 不兼容 → 按 A2 判 CP-C",
+              "reason": "机械确实装不上时，机械结论优先"
+            }
+          ],
+          "forbidden": "把 A7 缺接地脚写成『不可安装 / 插不进』（会把 CP-B 误升为 CP-C）；也禁止把 A2 焊盘不兼容写成『进逐位闸计 k』（会把 CP-C 误降为 CP-B）。",
+          "legal_exit_ref": "A5（包装方式）判 ❌ 后走附则第三条出口『改包装 / 改工艺方案』，且不得抹掉 CP-C 结论、不得升档。"
+        }
+      ]
+    },
+    "positional": {
+      "title": "逐位电气等价判定",
+      "gate_source": "§3.5",
+      "input_basis": "原设备位定义表（线序表 / 原理图）——不是两颗料的 datasheet",
+      "steps": [
+        "Step 1  索取原设备的位定义表（线序表 / 原理图），列出每一位承载什么及其电气需求",
+        "Step 2  对每一位，把『原工序位』与『候选同位』归入位功能类别 FCT-Connector",
+        "Step 3  类别不同 → 该位计【不对应】，计入 k",
+        "Step 4  类别相同 → 查该位的电气能力是否覆盖原设备需求：覆盖 → 【等价】；不覆盖 → 【不对应（电气角色不相容）】，计入 k",
+        "Step 5  统计 n（等价）与 k（不对应），输出 n/N 与 k/N",
+        "Step 6  独立执行 §3.10 多余 / 空置端子短路校核（不因 k = 0 而免除）"
+      ],
+      "equivalence": "类别相同 ∧ 该位电气能力 ≥ 原设备需求。",
+      "input_missing_rule": "判定所需的输入文件缺失时（拿不到原设备线序表）→ 本闸整体记 ⚠️ 未判定，不许用『位数相同』蒙混；此时无 CP 档位，结论走合成表『⚠️ 未判定』行。",
+      "pin_definition_difference": "连接器的 pin 定义不由 datasheet 给出，而由客户设计给出。",
+      "fct": [
+        {
+          "code": "PWR",
+          "label": "电源位（带载流需求）",
+          "basis": "原理图走电源网络；须记录每位的实际电流"
+        },
+        {
+          "code": "GND",
+          "label": "地 / 回流位",
+          "basis": "走 GND 网络"
+        },
+        {
+          "code": "SIG",
+          "label": "普通单端信号位",
+          "basis": "一般 IO / 低速信号"
+        },
+        {
+          "code": "DIFF",
+          "label": "差分对成员位",
+          "basis": "成对出现，须记录配对的另一位编号"
+        },
+        {
+          "code": "HSIG",
+          "label": "高速 / 射频信号位",
+          "basis": "有阻抗或插损要求的信号"
+        },
+        {
+          "code": "SHLD",
+          "label": "屏蔽位 / 机壳地位",
+          "basis": "接屏蔽层或金属壳"
+        },
+        {
+          "code": "NC",
+          "label": "空位（该位有端子但无网络）",
+          "basis": "原理图上该位无网络；注意区分『该位无端子』（= NM）与『有端子但未用』（= NC）"
+        },
+        {
+          "code": "NM",
+          "label": "原连接器该位无金属端子（空位 / 缺针）",
+          "basis": "原设备设计文件标注为空位；定义见 §1.1"
+        }
+      ],
+      "fct_notes": [
+        "NC 自成一类，且只与 NC 等价。",
+        "NM 与 NC 不等价（一个没端子、一个有端子），分类时不得合并。",
+        "NC / NM 不参与角色能力校核（无载流、无信号可校）：Step 4 对本类只做『类别是否同属无信号』的比对，不查电气能力；其唯一附加校验是 §3.10 短路校核（有多余端子时）。",
+        "NM ↔ 候选无端子位：等价（两侧都无端子），不计入 k。",
+        "NM ↔ 候选有端子位：判等价（悬空端子无害），但该端子必须通过 §3.10 短路校核；短路则改判【不对应】。",
+        "NC ↔ 候选有端子位：等价（都无信号），不计入 k。",
+        "NM 或 NC ↔ 候选位承载 PWR / GND：若候选该位引入电源 / 地网络 → 类别不对应，计入 k。"
+      ],
+      "role_compatibility": [
+        {
+          "code": "PWR",
+          "criterion": "该位额定载流 ≥ 原设备该位实际电流（取实测或设计值，含浪涌）",
+          "incompatible": "电源位分散换到小电流位"
+        },
+        {
+          "code": "GND",
+          "criterion": "回流位数量 ≥ 原设计；每地脚载流覆盖",
+          "incompatible": "地位数减少 → 回流阻抗上升"
+        },
+        {
+          "code": "SIG",
+          "criterion": "无特殊要求，通常自动满足",
+          "incompatible": "—"
+        },
+        {
+          "code": "DIFF",
+          "criterion": "差分对的两位须相邻且为同一对；不允许被拆到两个差分对",
+          "incompatible": "差分对被拆开 → 失效（C8 品类下本项与 E10 为 AND 关系，E10 达标不掩盖拆对，见 application_weights_notes）"
+        },
+        {
+          "code": "HSIG",
+          "criterion": "阻抗连续性须由同系列保证（跨预算 ⟶ 见可靠性闸 E10）",
+          "incompatible": "换成不同 SI 等级的同 pin 数件"
+        },
+        {
+          "code": "SHLD",
+          "criterion": "屏蔽结构与接地方式须对应",
+          "incompatible": "屏蔽改非屏蔽：往往是致命但静态测试查不出"
+        }
+      ],
+      "output_format": [
+        "【替换场景】S1 / S2 / S3（未声明则写『未声明，按 S1 从严』）",
+        "【品类】按 §0.1 的 C1–C8",
+        "【互配闸比对对象】候选 vs 原配对端（S1） / 候选两端之间（S2） / 不适用（S3）",
+        "【逐位结果】n/N 等价，k/N 不对应（N = 原件位数；候选多余位另列）",
+        "【多余位清单】位号 + 是否落入空位区 + §3.10 短路校核结论（如有）",
+        "【不对应项明细】逐位列出：位号 / 原位类别与需求 / 候选位类别与能力 / 差异性质",
+        "【命名差异项】单列，不计入 k（如有）",
+        "【输入依据】原设备位定义来源（文件名 + 版本 / 日期）"
+      ],
+      "short_circuit_check": {
+        "title": "多余 / 空置端子短路校核（独立强制项，不因 k = 0 而免除）",
+        "gate_source": "§3.10",
+        "note": "本项不属差异影响判断（后者只对 CP-B 生效，而短路风险在 CP-A 上同样存在）。必须独立执行，且 CP-A 输出中亦须给出一行结论。",
+        "criterion": "电气危害的判据核心是『上电即失效』，不限于 PWR / GND：按原设备位定义表判断短路所连两个网络是否均已分配使用。",
+        "used_network_definition": {
+          "title": "「已用网络」的操作定义（判定依据 = 原设备位定义表）",
+          "definition": "「已用网络」= 原设备位定义表中该位已分配具体电气功能（网络名 / 类别）、且该网络在原理图上有实际电气连接的网络，即 PWR、GND、已分配的 SIG / DIFF / HSIG。判定以『是否实际连接』为准，不以『是否已给网络名』为准。『是否上电活动』不改变归属——已分配、已实际连接但当前暂未启用的网络仍属已用网络；表中确实无网络的位（NC）或无端子的位（NM / 空位）不属已用网络。",
+          "same_network_criterion": {
+            "rule": "判断两个位是否属同一网络，以原理图的网络名为准，不以 PCB 上的实际连通为准（适用于 GND / AGND / SHLD 全部情形）。",
+            "cases": [
+              {
+                "label": "GND 与 AGND（数字地 / 模拟地），即使 PCB 上通过 0Ω 电阻 / 磁珠 / 电容单点连接",
+                "same_network": false,
+                "verdict": "视为两个不同的已用网络；候选短接二者 → CP-C³（取消原设计的分区与单点阻抗，单点元件可能被改值 / 换型 / 虚焊 / 省略）"
+              },
+              {
+                "label": "位定义表本身标为同一网络名（如都标 GND）",
+                "same_network": true,
+                "verdict": "属同一网络内的冗余短接 → 按『同网络冗余』处理，计入 k，判 CP-B"
+              },
+              {
+                "label": "GND 与 SHLD：原理图为不同网络名，但 PCB 上通过 0Ω 电阻 / 磁珠 / 电容单点连接",
+                "same_network": false,
+                "verdict": "仍视为两个已用网络（PCB 单点连接不算连通）→ 候选短接判 CP-C³；只有原理图本身标为同一网络名才按同网络冗余计 k 判 CP-B"
+              }
+            ]
+          },
+          "reserved_network": {
+            "rule": "原理图上给网络名不等于该网络已用——须看是否实际连接。",
+            "cases": [
+              {
+                "label": "已给网络名且有实际连接（连到某器件 / 某网络，哪怕该功能当前未启用）",
+                "connected": true,
+                "classification": "按该网络实际类别归 PWR / GND / SIG / DIFF / HSIG",
+                "is_used_network": true
+              },
+              {
+                "label": "已给网络名，但明确标注『预留』『NC 预留』『不贴』『DNP』，且当前无任何电气连接",
+                "connected": false,
+                "classification": "归 NC（见 terms / 位功能类别）",
+                "is_used_network": false
+              },
+              {
+                "label": "标注『不贴 / DNP』但该网络仍实际连到其他在用网络（如预留位直接并到 PWR）",
+                "connected": true,
+                "classification": "按实际所连网络归类",
+                "is_used_network": true
+              }
+            ],
+            "forbidden": "仅凭『原理图上给了网络名』就认定为已用网络（会把 NC 预留位误当活动网络，导致无害短接被误判 CP-C³）；也禁止仅凭『标注预留 / DNP』就一律归 NC（若其网络实际连到在用网络，仍属已用网络）。"
+          },
+          "cases": [
+            {
+              "case": "两端均为未分配位（NC↔NC、NM / 空位 / 悬空端子 / 无网络外壳之间；含『预留 / NC 预留 / 不贴 / DNP』且无实际连接的位，按 reserved_network 归 NC）",
+              "connected_two_used_nets": false,
+              "verdict": "计【不对应】，计入 k，判 CP-B"
+            },
+            {
+              "case": "两端为同一网络的不同位（如两个 GND 位、两位同属 PWR / 同一 SIG）",
+              "connected_two_used_nets": false,
+              "verdict": "属同网络冗余连接 → 计 k，判 CP-B（原为同网络，短接不产生上电失效）"
+            },
+            {
+              "case": "一端已用、另一端未分配（如 PWR↔NC、GND↔NM）",
+              "connected_two_used_nets": false,
+              "verdict": "未构成『两个已用网络』→ 计 k，判 CP-B；若该多余端子还同时桥接另一个已用网络，则按下一行判"
+            },
+            {
+              "case": "两端为两个不同的已用网络（PWR↔GND、PWR↔SIG、SIG↔SIG 异网、DIFF 对内 / 对间、HSIG↔任意）",
+              "connected_two_used_nets": true,
+              "verdict": "上电即短路 / 冲突 / 失效 → 判 CP-C³"
+            },
+            {
+              "case": "GND ↔ SHLD 短接",
+              "connected_two_used_nets": "见 same_network_criterion（按原理图网络名判）",
+              "verdict": "原理图不同网络名 → 判 CP-C³；原理图同一网络名 → 计 k，判 CP-B"
+            }
+          ],
+          "key_point": "判 CP-C³ 的关键是『是否把两个原本电气隔离的已用网络接通』，而不是『是否涉电源』。同网络内的冗余短接、未分配位之间的短接，均不构成电气危害。"
+        },
+        "cases": [
+          {
+            "case": "候选在原件空位 / 原 NM 处有端子",
+            "check": "该端子是否与相邻铜箔、相邻位、外壳短路；是否需飞线或绝缘处理",
+            "consequence": "短路仅涉未用位（NM / NC / 空位）/ 悬空端子 / 无网络外壳 → 该位计【不对应】，计入 k，判 CP-B；短路连通两个本不连通的已用网络（PWR / GND / 已分配 SIG / DIFF / HSIG，不限 PWR / GND）→ 直接判 CP-C³（电气危害），不计入 k"
+          },
+          {
+            "case": "候选多余位引出信号",
+            "check": "该信号是否悬空安全、是否改变网络",
+            "consequence": "连通已用网络 → 判 CP-C³；仅涉未用位 → 计入 k，转差异影响判断"
+          }
+        ],
+        "hazard_tiers": [
+          {
+            "id": "electrical_hazard",
+            "trigger": "短路连通两个已用网络（电源短路、地短路、SIG↔SIG 活动网络短路、DIFF 对内 / 对间短路、HSIG 短路）",
+            "verdict": "CP-C³（上电即短路 / 冲突 / 失效）",
+            "counted_in_k": false
+          },
+          {
+            "id": "mismatch",
+            "trigger": "短路仅涉未分配位 / 悬空端子 / 无网络外壳（NM、NC、空位之间）",
+            "verdict": "该位计【不对应】，计入 k，判 CP-B",
+            "counted_in_k": true
+          }
+        ],
+        "electrical_hazard_rule": "电气危害（CP-C³）不可用『飞线 / 绝缘处理』在判定阶段消除——那是改板方案的范畴，须先按 CP-C³ 出结论，改板后另行重判。信号短路与电源短路同属电气危害，不得因『不涉电源』降格为 CP-B。",
+        "cp_c3_extra_mismatch_rule": "CP-C³ 命中时，若同时存在其他 k > 0 的不对应位，这些位仍须逐位如实列出（作为改板方案的输入），但不再计入 k 的统计口径——k 只在 CP-A / CP-B 的分档中有效。输出须分两段：① 电气危害（短路位逐位指明）；② 其他不对应位清单（标注『不影响 CP-C³ 定档』）。",
+        "forbidden": "『多出来的脚不用就行』不构成豁免。"
+      }
+    },
+    "derating": {
+      "title": "降额闸 —— 载流与耐压",
+      "key_difference": "连接器的额定载流随温度升高而下降，降额是常态而非例外。",
+      "formula": "占用率 = 实际工作电流 ÷ 实际工作环境温度下的额定载流",
+      "threshold": 0.8,
+      "threshold_display": "≤ 80%",
+      "sub_gates": [
+        {
+          "id": "current",
+          "title": "载流降额",
+          "data_source": "必须是『降额曲线 × 实际温度』的取值，不是 datasheet 首页的常温值",
+          "cases": [
+            {
+              "case": "厂商给了降额曲线（current rating vs ambient temp）",
+              "verdict": "按实际最高工作环境温度查表取值再算占用率"
+            },
+            {
+              "case": "只给了单一温度下的额定值，无降额曲线",
+              "verdict": "⚠️ 数据缺失"
+            },
+            {
+              "case": "给了额定值但温度条件不明",
+              "verdict": "⚠️ 数据缺失"
+            }
+          ],
+          "forbidden": "用常温（通常 20–25°C）额定值去判定高温（如 70°C 机内）工况。"
+        },
+        {
+          "id": "group",
+          "title": "群组降额（多条位同时带载）",
+          "desc": "多根相邻针脚同时通电会互相加热，总载流不可简单相加。",
+          "criterion": "按厂商群组降额系数（group derating factor / multiple-contact derating）折算",
+          "conservative_fallback": {
+            "trigger": "厂商未给群组降额系数、但给了单针降额曲线时，不得直接记 ⚠️ 数据缺失而不做估算",
+            "coefficients": [
+              {
+                "adjacent_loaded_pins": "2–3 针",
+                "factor": 0.8
+              },
+              {
+                "adjacent_loaded_pins": "4–6 针",
+                "factor": 0.75
+              },
+              {
+                "adjacent_loaded_pins": "≥ 7 针",
+                "factor": 0.7
+              }
+            ],
+            "pin_count_rule": "『相邻同时带载针脚数』的计数规则（强制）：① 同一排内连续带载的针脚视为一组，取各组中针数最多者作为该排计数值；② 非连续带载（中间有间隔）不合并计数（如 1、2、4、5 针带载 → 该排计 2 针，不得按 4 针计）；③ 多排同时带载时取各排最大值，若上下排位置对应且同时带载则加严一档（如 3 针 ×0.80 → 按 4–6 针 ×0.75），并标注『多排叠加，保守加严』。",
+            "tier_ladder_rule": "『加严一档』的跨档规则（强制）：档位序列为 2–3 针（×0.80）→ 4–6 针（×0.75）→ ≥7 针（×0.70）；6 针 ×0.75 加严一档 → 按 ≥7 针 ×0.70，3 针 ×0.80 加严一档 → 按 4–6 针 ×0.75；≥7 针档为下限，不再继续加严（×0.70 已是最严档位，不得自创更小系数）；加严只加一档，不叠加。",
+            "pin_count_rule_note": "多排位置不对应 / 不同时带载 → 取最不利排（不加严）。",
+            "usage": "折算结果用于占用率计算（占用率 ≤ 80% 仍守降额阈值）。",
+            "must_label": "必须标注『保守估算（系数来源：行业通行保守值，须技术端确认）』，并登记在缺口清单。",
+            "max_verdict": "结论档位最高只能「有条件通过」，不得「可直接替」；实测方案必须包含群组同时载流的温升实测。"
+          },
+          "missing": "厂商连单针降额曲线也未给 → 仍记 ⚠️ 数据缺失（无任何折算起点）"
+        },
+        {
+          "id": "voltage",
+          "title": "耐压降额",
+          "formula": "占用率 = 工作电压（含浪涌峰值）÷ 额定耐压",
+          "threshold": 0.8,
+          "extra": "须同时核爬电距离（creepage）与电气间隙（clearance），尤其中高压场合。"
+        }
+      ],
+      "allowed_states": [
+        "pass",
+        "fail",
+        "missing"
+      ],
+      "forbidden_states": [
+        "untested",
+        "not_applicable"
+      ],
+      "missing_wording": "⚠️ 数据缺失",
+      "notes": [
+        "降额闸只有三态：✅ 过 / ❌ 不过 / ⚠️ 数据缺失。本闸没有『⚠️ 待实测』这一取值（与可靠性闸不同，措辞不得混用）。",
+        "本闸也没有『⬜ 不适用』——载流与耐压对任何连接器都适用，不得以『不适用』回避。",
+        "⚠️ 的含义是『数据缺失』（无降额曲线 / 温度条件不明）→ 只能输出「需评估」。",
+        "降额闸为 ⚠️ 或 ❌ 时，均不得进入「有条件通过」。原因同 PPJ：载流与耐压是安全问题，不许挂条件。",
+        "本闸只管『安全余量』，不管『可靠性』。可靠性由第二道闸独立判定，两者 AND 且不互相抵消。"
+      ]
+    },
+    "secondary": {
+      "title": "可靠性闸（E1–E13）",
+      "allowed_states": [
+        "pass",
+        "fail",
+        "untested",
+        "not_applicable"
+      ],
+      "missing_wording": "⚠️ 待实测",
+      "applicability_note": "E1–E9、E11、E13 为全品类必比项；E10 仅高速场景（C8）必比；E12 仅 FFC/FPC 品类（C4）必比。不适用时记 ⬜ 不适用（见 gate_state_model），不得留空；『不适用』仅限 E10 / E12 两项，E1–E9 / E11 / E13 一律不得记不适用。",
+      "params": [
+        {
+          "id": "E1",
+          "param": "接触电阻（初始值）",
+          "direction": "候选 ≤ 原件",
+          "gap": "任一方未给 → ⚠️ 待实测",
+          "applicability": "通用必比"
+        },
+        {
+          "id": "E2",
+          "param": "插拔寿命后的接触电阻",
+          "direction": "候选 ≤ 原件（同寿命节点，如同为 500 次后）",
+          "gap": "未给寿命后数据 → ⚠️ 待实测",
+          "applicability": "通用必比"
+        },
+        {
+          "id": "E3",
+          "param": "绝缘电阻",
+          "direction": "候选 ≥ 原件",
+          "gap": "任一方未给 → ⚠️ 待实测",
+          "applicability": "通用必比"
+        },
+        {
+          "id": "E4",
+          "param": "耐压（withstand voltage）",
+          "direction": "候选 ≥ 原件",
+          "gap": "任一方未给 → ⚠️ 待实测",
+          "applicability": "通用必比"
+        },
+        {
+          "id": "E5",
+          "param": "插拔寿命（mating cycles）",
+          "direction": "候选 ≥ 原设备剩余寿命需求",
+          "gap": "任一方未给 → ⚠️ 待实测",
+          "applicability": "通用必比"
+        },
+        {
+          "id": "E6",
+          "param": "端子保持力 / 拔出力",
+          "direction": "候选 ≥ 原件",
+          "gap": "任一方未给 → ⚠️ 待实测",
+          "applicability": "通用必比"
+        },
+        {
+          "id": "E7",
+          "param": "温升（带额定电流时）",
+          "direction": "候选 ≤ 原件",
+          "gap": "任一方未给 → ⚠️ 待实测",
+          "applicability": "通用必比"
+        },
+        {
+          "id": "E8",
+          "param": "振动 / 冲击 / 机械寿命",
+          "direction": "候选 ≥ 原件；车载 / 工业必须核振动下的瞬断",
+          "gap": "任一方未给 → ⚠️ 待实测",
+          "applicability": "通用必比"
+        },
+        {
+          "id": "E9",
+          "param": "环境（盐雾 / 湿热 / 工作温度范围 / UL94 阻燃）",
+          "direction": "候选 ≥ 原件",
+          "gap": "任一方未给 → ⚠️ 待实测",
+          "applicability": "通用必比"
+        },
+        {
+          "id": "E10",
+          "param": "高速特性（差分阻抗 / 插损 / 回损 / 串扰）",
+          "direction": "按应用速率判；低速场景记 ⬜ 不适用",
+          "gap": "应测未给 → ⚠️ 待实测",
+          "applicability": "仅高速场景（C8）必比"
+        },
+        {
+          "id": "E11",
+          "param": "镀层（类型 + 厚度）",
+          "direction": "候选 ≥ 原件（同或更优镀层体系，如 Au 厚度不低于原件）",
+          "gap": "任一方未给 → ⚠️ 待实测",
+          "applicability": "全品类必比（不得记不适用）；标准接口件（C6）与高插拔场景权重最高"
+        },
+        {
+          "id": "E12",
+          "param": "FFC/FPC 厚度与补强板",
+          "direction": "候选厚度落在原锁扣可夹持范围内",
+          "gap": "任一方未给 → ⚠️ 待实测",
+          "applicability": "仅 FFC/FPC 品类（C4）必比，其余记 ⬜ 不适用"
+        },
+        {
+          "id": "E13",
+          "param": "环保合规（RoHS / REACH / 无卤）",
+          "direction": "候选须具备准入资质（是『有无』，不是『优于原件』）",
+          "gap": "未提供合规文件 → ⚠️ 待实测（准入缺失）",
+          "applicability": "全品类必比（准入项，不得记不适用）；出口 / 车规 / 医疗场景另须索取证书原件",
+          "admission_item": true,
+          "admission_rule": "E13 的 ⚠️ 是『无法准入』而非『待测参数』——不得进入「有条件通过」，只能「需评估」；须补齐 RoHS / REACH 文件后重跑。"
+        }
+      ],
+      "comparison_discipline": [
+        "每个数必须带三标签：① 环境温度 ② 测试电流 / 电压条件 ③ 寿命阶段（初始 / N 次后）",
+        "初始只对初始，寿命后只对寿命后，混比无效",
+        "同一颗料有多张额定表 → 须写明取自哪一张（不同线径 / 不同位数常给不同载流）",
+        "对方没给的条件 = 缺口，不许用相邻条件值代填"
+      ],
+      "application_weights": [
+        {
+          "category": "C1",
+          "scenario": "板对板（B2B）· 无锁扣",
+          "primary": "振动下拉脱 / 焊点疲劳、插合高度",
+          "secondary_gate": "共面度、保持力（E6）",
+          "commonly_mistaken": "接触电阻绝对值（E1）"
+        },
+        {
+          "category": "C2",
+          "scenario": "线对板（W2B）· 带锁扣",
+          "primary": "防呆（M6）+ 锁扣失效 + 拔出力（E6）",
+          "secondary_gate": "端子保持力、线材应力",
+          "commonly_mistaken": "接触电阻绝对值（E1）"
+        },
+        {
+          "category": "C3",
+          "scenario": "线对线（W2W）",
+          "primary": "防松 / 锁紧可靠性（E6、E8 振动下瞬断）+ 拔出力 + 线束应力",
+          "secondary_gate": "端子保持力、密封等级（若有）",
+          "commonly_mistaken": "接触电阻绝对值（E1）"
+        },
+        {
+          "category": "C4",
+          "scenario": "FFC/FPC",
+          "primary": "锁扣形式（翻盖 / 抽屉 / 后掀）+ 插合方向 + 厚度（E12）",
+          "secondary_gate": "接触区长度、插拔寿命（E5）",
+          "commonly_mistaken": "pitch"
+        },
+        {
+          "category": "C5",
+          "scenario": "圆型 M8/M12",
+          "primary": "编码（A/B/D 码）+ 螺纹规格 + IP 等级（E9）",
+          "secondary_gate": "载流（降额闸）、屏蔽",
+          "commonly_mistaken": "位数"
+        },
+        {
+          "category": "C6",
+          "scenario": "标准接口件（RJ45 / USB / HDMI）",
+          "primary": "屏蔽接地结构 + 镀层厚度（E11）+ 载流（降额闸）",
+          "secondary_gate": "SI 特性（E10）",
+          "commonly_mistaken": "外形尺寸"
+        },
+        {
+          "category": "C7",
+          "scenario": "大电流 / 电源端子",
+          "primary": "载流降额（降额闸）+ 温升（E7）+ 压接可靠性",
+          "secondary_gate": "拔出力（E6）",
+          "commonly_mistaken": "接触电阻（E1）"
+        },
+        {
+          "category": "C8",
+          "scenario": "高速差分连接器",
+          "primary": "E10 阻抗连续性与插损（与 §3.7 DIFF 相邻性为 AND，见 application_weights_notes）",
+          "secondary_gate": "差分对相邻性（§3.7）",
+          "commonly_mistaken": "位数与 pitch"
+        }
+      ],
+      "application_weights_notes": [
+        "权重只影响『先看哪项』，不改变『必比项缺一不可』的规则。",
+        "本表必须覆盖 taxonomy 的全部品类（C1–C8），不得缺行；新增品类时本表同步增行。",
+        "E13（环保合规）为全品类准入项，任一品类均不得因权重低而跳过。",
+        "C8 品类下 §3.7 DIFF 相邻性（属逐位判定）与 E10 SI 规则为 AND 关系，不得互相抵消：差分对被拆开 → 逐位闸判 k > 0 → CP-B，不得因 E10（阻抗 / 插损）达标而降格为 CP-A；E10 只判 SI 特性是否达标，不判差分对是否被拆开；两者任一不过都不得输出『可直接替』。"
+      ],
+      "conclusion": [
+        {
+          "case": "E1–E13 中全部适用项满足",
+          "gate": "pass"
+        },
+        {
+          "case": "任一项已核实不满足",
+          "gate": "fail"
+        },
+        {
+          "case": "任一项一方未给（E13 除外）",
+          "gate": "untested",
+          "note": "不得记『过』也不得记『不过』"
+        },
+        {
+          "case": "E13（环保合规）未给合规文件",
+          "gate": "untested",
+          "note": "准入缺失：不得进入「有条件通过」，只能「需评估」；准入项缺文件 = 无法准入，不是可挂条件的待测参数"
+        }
+      ],
+      "admission_item_rule": "E13 为准入项，与其余 E# 的 ⚠️ 语义不同：其余 E# 的 ⚠️ 是『参数待测』（可挂条件实测后放行）；E13 的 ⚠️ 是『不具备准入资质』——须补齐合规文件方可准入，不得以『先有条件通过、后补 RoHS 报告』处理。"
+    },
+    "legal_exit": {
+      "title": "改线方案 / 改板方案 / 改包装工艺方案",
+      "is_pp_verdict": false,
+      "variants": [
+        {
+          "id": "rewire",
+          "label": "改线方案",
+          "entry": "存在不对应，但改线序可达成对应",
+          "note": "连接器改线是常规工艺，故特设此出口"
+        },
+        {
+          "id": "reboard",
+          "label": "改板方案",
+          "entry": "不可插合，但经改板 / 换配对端可使用"
+        },
+        {
+          "id": "repack",
+          "label": "改包装 / 改工艺方案",
+          "entry": "机械与电气均成立、仅装配工艺或包装不匹配（典型：§3.2 A5 无编带）",
+          "note": "产出不等于 CP 结论：须并列写出『CP 判定为 CP-C¹（不可安装：无编带）＋ 改工艺方案：×× 工序可解』；禁止用『改工艺能解决』抹掉 CP-C 结论，禁止因走本方案而升档"
+        }
+      ],
+      "mutex": "与 CP-B 互斥，不存在中间态。",
+      "discipline": "出口存在，不等于可以在判定中摇映射。判定过程中禁止交换位序来『凑』等价。",
+      "difference_from_ppj": "半导体几乎没有合法的重映射出口（改飞线属违规操作），而连接器改线是常规工艺。",
+      "carry_warning": "CP-C²（可错插）走改线 / 改板路径时，防呆告警段仍须保留（改板不消除错插风险，除非同时改 keying）。CP-C³（电气危害）不得由改线化解；须先以改板消除短路，改板后按新界面重新判定（原结论 CP-C³ 保留，不得改写）。『改包装 / 改工艺方案』只适用于装配工艺或包装不匹配（典型 A5 无编带），不用于化解 CP-C² / CP-C³。"
+    }
+  },
+  "gate_missing_wording": {
+    "title": "各闸 ⚠️ 的专属措辞（输出时必须写明所属闸，禁止串用）",
+    "gate_source": "§6.0",
+    "map": [
+      {
+        "gate": "降额闸",
+        "wording": "⚠️ 数据缺失",
+        "meaning": "无降额曲线 / 温度条件不明；本闸无『待实测』"
+      },
+      {
+        "gate": "可靠性闸",
+        "wording": "⚠️ 待实测",
+        "meaning": "参数存在但一方未给数；可由实测或原厂补数升级"
+      },
+      {
+        "gate": "互配闸",
+        "wording": "⚠️ 未判定",
+        "meaning": "缺原配对端外形图 / 装配图（S1）"
+      },
+      {
+        "gate": "逐位闸",
+        "wording": "⚠️ 未判定",
+        "meaning": "缺原设备位定义表（线序表 / 原理图）"
+      },
+      {
+        "gate": "安装闸",
+        "wording": "⚠️ 未判定",
+        "meaning": "缺焊盘图 / 耐温曲线等输入"
+      }
+    ],
+    "not_applicable_map": {
+      "symbol": "⬜",
+      "rule": "仅以下五项可记『不适用』；其余一律不得用不适用（缺数据一律 ⚠️，不得用不适用回避取证）。",
+      "map": [
+        {
+          "item": "互配闸 M1–M8（整闸）",
+          "condition": "仅 S3（配对端未定，无互配对象）"
+        },
+        {
+          "item": "先决场景 §3.1.3 跨厂商铁律",
+          "condition": "仅 S2 / S3"
+        },
+        {
+          "item": "M1 性别子项（非整闸）",
+          "condition": "仅双方 datasheet 均明标为性别中立（genderless / hermaphroditic / 无极性），品类为 C1 / C4 等无极性品类；须注明理由，互配转由 M5/M6 承担（见 gender.gender_neutral）"
+        },
+        {
+          "item": "E10 高速特性",
+          "condition": "非高速场景（未归 C8 且位类别无 HSIG）"
+        },
+        {
+          "item": "E12 FFC/FPC 厚度",
+          "condition": "非 C4 品类"
+        }
+      ]
+    }
+  },
+  "diff_counting_extra": {
+    "note": "引擎通用层定义 4 类差异（1 命名 / 2 规格 / 3 类别不对应 / 4 电气角色不相容）。连接器追加第 5 类：多余端子短路。编号从 101 起，避免与通用层冲突（见 engine.json diff_counting.category_extensions）。",
+    "types": [
+      {
+        "id": 101,
+        "key": "spare_terminal_short",
+        "label": "多余端子短路",
+        "definition": "候选在原件空位 / 原 NM 处的端子与相邻铜箔、相邻网络短路（§3.10 校核不通过）",
+        "counted_in_k": true,
+        "counted_in_k_conditional": "仅在『短路仅涉未用位（NM / NC / 空位）』时计入 k；短路连通两个已用网络（PWR / GND / 已分配 SIG / DIFF / HSIG，不限 PWR / GND）时不计入 k，直接定档 CP-C³",
+        "goes_to": "分两路：仅涉未用位 → 计入 k，判 CP-B；连通已用网络（不限 PWR / GND）→ 不计入 k，直接判 CP-C³（电气危害）。CP-C³ 命中时其他不对应位仍逐位列出（供改板），但不计入 k 统计口径"
+      }
+    ]
+  },
+  "impact_analysis": {
+    "title": "差异影响四栏（本栏名源自 C-PPJ 标准 §4.0，连接器专用）",
+    "trigger": "k > 0（CP-B）",
+    "columns": [
+      {
+        "id": "functional",
+        "label": "差异位的功能影响",
+        "source": "原设备原理图 + 线序表",
+        "missing": "→ 差异影响未判定",
+        "note": "必须落到具体后果（某路断电 / 差分不成对 / 屏蔽断开），不许写『可能影响』"
+      },
+      {
+        "id": "peripheral",
+        "label": "外围与装配兼容性",
+        "source": "装配图 + 线材规格 + 压接规范",
+        "missing": "→ 差异影响未判定",
+        "note": "线径范围（AWG）/ 压接工具与端子是否配套；须查装配图，不许推测"
+      },
+      {
+        "id": "retention",
+        "label": "插合后保持与应力",
+        "source": "双方 datasheet + 装配图",
+        "missing": "→ 差异影响未判定",
+        "note": "锁扣是否退化为摩擦保持、出线方向与弯折半径；S1 必查配对端磨损（§3.1.4）"
+      },
+      {
+        "id": "stress",
+        "label": "电气应力与可靠性",
+        "source": "双方 datasheet",
+        "missing": "→ 差异影响未判定",
+        "note": "该位电压 / 电流 / 温升是否超候选额定；CTI、耐压、UL94、IP、ESD"
+      }
+    ],
+    "notes": [
+      "本四栏与通用层 engine.json 的 impact_analysis.contract 配套：栏名与来源以本文件为准，通用层不得内设默认栏名。",
+      "连接器第 ③ 栏是『插合后保持与应力』（机械保持），不是芯片类的『逻辑电平与时序』——两者不得互相套用。",
+      "§6.1 合成表的 CP-B 行不写死『差异影响未判定』，按本节产出二选一：四栏全完成且无阻断项 → 『理论上不阻断，须实测确认』；否则 → 『差异影响未判定（缺 [栏号]）』。"
+    ]
+  },
+  "synthesis_table": {
+    "dimensions": [
+      "verdict",
+      "derating_gate",
+      "secondary_gate"
+    ],
+    "rows": [
+      {
+        "verdict": "CP-A",
+        "derating_gate": "过",
+        "secondary_gate": "过",
+        "wording": "可直接替（前提：已取得盖章数据；未取得 → 见本表『未取得盖章数据』行）"
+      },
+      {
+        "verdict": "CP-A",
+        "derating_gate": "过（群组降额采用保守兜底估算）",
+        "secondary_gate": "过",
+        "wording": "有条件通过 —— 插合、逐位与降额均通过，但群组降额系数为保守估算（厂商未给），须按实测方案附『群组同时载流温升实测』后方可判『可直接替』",
+        "must_attach": "§6.3 群组温升实测方案；标注系数来源与『须技术端确认』",
+        "forbidden": "直接写『可直接替』"
+      },
+      {
+        "verdict": "CP-A",
+        "derating_gate": "过",
+        "secondary_gate": "⚠️ 待实测",
+        "wording": "有条件通过 —— 插合与降额均通过，但 [列明 E#] 未查到公开数据，须送样实测后判定",
+        "wording_when_mating_wear": "有条件通过 —— 插合与降额均通过，但原配对端状态未知，须先确认配对端状态后判定（若 ⚠️ 源自 §3.1.4 配对端磨损未知，改用此措辞）",
+        "must_attach": "§6.3 实测方案"
+      },
+      {
+        "verdict": "CP-A",
+        "derating_gate": "过",
+        "secondary_gate": "⚠️ 待实测（含 E13）",
+        "wording": "需评估 —— 环保合规件缺失（准入项），无法准入；须补齐 RoHS / REACH 文件后重跑（E13 ⚠️ 不得进「有条件通过」）"
+      },
+      {
+        "verdict": "CP-A",
+        "derating_gate": "过",
+        "secondary_gate": "❌ 不过",
+        "wording": "需评估 —— 插合与降额均通过，但可靠性不满足（列明 E#）"
+      },
+      {
+        "verdict": "CP-A",
+        "derating_gate": "❌ 不过",
+        "secondary_gate": "任意",
+        "wording": "需评估 —— 可插合，但载流 / 耐压降额 XX% 超 80% 线，需豁免"
+      },
+      {
+        "verdict": "CP-A",
+        "derating_gate": "⚠️ 数据缺失",
+        "secondary_gate": "任意",
+        "wording": "需评估 —— 降额数据缺失（无温度降额曲线 / 温度条件不明），须索取后重跑"
+      },
+      {
+        "verdict": "CP-B",
+        "derating_gate": "任意",
+        "secondary_gate": "任意",
+        "wording": "需评估 —— 可插合，存在 k 处不对应（已定位到位）；差异影响按 §4：四栏全完成且无阻断项 → 『理论上不阻断，须实测确认』；否则 → 『差异影响未判定（缺 [栏号]）』",
+        "must_attach": "§4 四栏"
+      },
+      {
+        "verdict": "CP-C¹",
+        "derating_gate": "—",
+        "secondary_gate": "—",
+        "label": "插不进 / 装不上 / 无编带等 A1–A6 不过",
+        "wording": "不可直换；若可改线 / 改板 / 改包装工艺使用 → 改列对应方案（见附则）。其中 A5（无编带）属『改包装 / 改工艺方案』出口（措辞：CP 判定为 CP-C¹（不可安装：无编带）＋ 改工艺方案：×× 工序可解）；改工艺不抹掉 CP-C¹、不升档",
+        "legal_exit_ref": "附则（改线 / 改板 / 改包装工艺三出口）"
+      },
+      {
+        "verdict": "CP-C²",
+        "derating_gate": "—",
+        "secondary_gate": "—",
+        "label": "可错插",
+        "wording": "不可直换 + 必须附 §8.2 红色独立告警段；若可改线 / 改板 → 改列方案并保留告警"
+      },
+      {
+        "verdict": "CP-C³",
+        "derating_gate": "—",
+        "secondary_gate": "—",
+        "label": "电气危害（多余 / 空置端子造成上电即失效的短路，不限 PWR / GND）",
+        "wording": "不可直换 —— 上电即短路 / 冲突风险；须先消除短路（属改板方案）后重新判定；不得以改线 / 绝缘处理在判定阶段化解；其他不对应位另列（供改板）"
+      },
+      {
+        "verdict": "⚠️ 未判定",
+        "derating_gate": "—",
+        "secondary_gate": "—",
+        "wording": "需评估 —— 未取得 [原配对端图纸 / 原设备位定义表 / 焊盘图]，[互配闸 / 逐位闸 / 安装闸] 未判定，不得输出 CP-A/B/C；须索取后重跑；若另有闸已核实 ❌，须并列输出该 ❌ 及具体数值，不得被『未判定』掩盖"
+      },
+      {
+        "verdict": "S3（互配闸 ⬜ 不适用）",
+        "derating_gate": "按各闸",
+        "secondary_gate": "按各闸",
+        "wording": "按上表取档，但措辞必须标注「S3：互配闸不适用」；S3 不得输出「可直接替」，应写「可安装 ∧ 逐位电气等价通过，可插合未验证（配对端未定）」"
+      },
+      {
+        "verdict": "CP-A",
+        "derating_gate": "过",
+        "secondary_gate": "过",
+        "case": "未取得盖章数据",
+        "wording": "需评估 —— 降额与可靠性均通过，但未取得盖章数据（现仅有选型手册摘页 / 电商参数页 / 销售邮件等非盖章来源），不得输出『可直接替』；须取得盖章版 datasheet / 承认书后重跑"
+      }
+    ],
+    "multi_row_hit_rule": {
+      "trigger": "一次判定可能同时命中多行（典型：derating_gate =『过（群组降额采用保守兜底估算）』与 secondary_gate =『⚠️ 待实测』同时成立，即同时命中第 2 行与第 3 行）",
+      "rule": [
+        "档位取各行中最严者（三档严宽序：可直接替 > 有条件通过 > 需评估）",
+        "各行要求须并列满足，不得只按其中一行输出",
+        "两行同时命中且档位同为「有条件通过」时，两套实测方案都要附：既附『群组同时载流温升实测』（§6.3），又附对应 E# 的实测方案（§6.3）；措辞须同时列出两项待实测内容",
+        "取最严档位为『需评估』时，其他行的实测方案本轮不必附（需评估＝须先解决缺陷 / 补齐输入，实测方案在该档位无实际意义）；但须在输出中留后续提示（该提示是输出必含项，见 output_contract_extra #19，不得省略）：『若解决 [最严行的缺陷 / 缺口，如 E13 合规文件] 后重跑，还须附 [其他行的实测方案，如群组同时载流温升实测]』",
+        "与『⚠️ 未判定不得掩盖已核实 ❌』并存时（❌ ＋ 未判定 ＋ 保守兜底）：档位取最严，并列列出全部已核实 ❌（写具体数值）与全部未判定项（写缺哪份输入）；保守兜底的实测方案按上一条处理"
+      ],
+      "forbidden": "只按其中一行输出；只附其中一套实测方案；或按『较宽的一行』取值；档位已是『需评估』却把其他行实测方案写成已附齐（给人『只差实测』的错觉）",
+      "examples": [
+        {
+          "case": "CP-B ＋ 群组兜底",
+          "tier": "需评估",
+          "wording_owner": "并列输出（不是以某行为主）：① CP-B 行的差异影响结论（四栏）；② 群组兜底的后续提示",
+          "follow_up_hint": "若差异影响经实测确认不阻断、且重跑后成立 CP-A，仍须附群组同时载流温升实测"
+        },
+        {
+          "case": "群组兜底 ＋ E13 ⚠️",
+          "tier": "需评估",
+          "wording_owner": "E13 准入行（环保合规件缺失）",
+          "follow_up_hint": "补齐 RoHS / REACH 文件后重跑，仍须附群组同时载流温升实测"
+        }
+      ]
+    }
+  },
+  "output_contract_extra": [
+    {
+      "id": 1,
+      "required": "替换场景（S1 / S2 / S3）",
+      "note": "不写场景的判定无效；未声明须写『按 S1 从严』"
+    },
+    {
+      "id": 2,
+      "required": "品类（§0.1 的 C1–C8）",
+      "note": "判定前先定品类；M1 与可靠性闸权重表口径须一致"
+    },
+    {
+      "id": 3,
+      "required": "互配闸比对对象",
+      "note": "写明是『候选 vs 原配对端』（S1）还是『候选两端之间』（S2）"
+    },
+    {
+      "id": 4,
+      "required": "n/N 与 k/N（N = 原件位数）",
+      "note": "禁止不说明 N 来源；候选多余位另列，不计入 N"
+    },
+    {
+      "id": 5,
+      "required": "不对应项逐位明细",
+      "note": "位号 + 原位类别与需求 + 候选类别与能力 + 差异性质"
+    },
+    {
+      "id": 6,
+      "required": "命名差异项单列",
+      "note": "注明不计入 k"
+    },
+    {
+      "id": 7,
+      "required": "§3.10 短路校核结论",
+      "note": "k = 0 时亦须给一行"
+    },
+    {
+      "id": 8,
+      "required": "M6 防呆结论（含是否『可错插』）",
+      "note": "若可错插，必须红色独立告警段"
+    },
+    {
+      "id": 9,
+      "required": "各闸状态与依据",
+      "note": "逐闸标 ✅/❌/⚠️/⬜ 四态并写明 ⚠️ 的专属措辞（数据缺失 / 待实测 / 未判定）；⬜ 须写明不适用原因；降额闸须写明取值温度"
+    },
+    {
+      "id": 10,
+      "required": "缺口清单",
+      "note": "逐项标注所属闸"
+    },
+    {
+      "id": 11,
+      "required": "数据获取方案",
+      "note": "⚠️ 项须给实测方案；降额 ⚠️ 须写明索取渠道（原厂联系人 / 文档版本号）"
+    },
+    {
+      "id": 12,
+      "required": "实测前的动作约束",
+      "note": "「有条件通过」时必须写明不得批量下单"
+    },
+    {
+      "id": 13,
+      "required": "「⬜ 不适用」项清单",
+      "note": "仅限 §6.0 列明的五项（含 M1 性别子项，仅双方性别中立时）；写明哪一项不适用及原因；缺数据不得写不适用"
+    },
+    {
+      "id": 14,
+      "required": "S3 声明",
+      "note": "仅 S3 时：须写「互配闸 ⬜ 不适用，可插合未验证；本结论仅覆盖可安装 ∧ 逐位电气等价」"
+    },
+    {
+      "id": 15,
+      "required": "配对端状态（S1）",
+      "note": "仅 S1 时：原配对端是否已使用 / 已插拔次数；未知须写「配对端状态未知，插合可靠性须实测确认」（§3.1.4）"
+    },
+    {
+      "id": 16,
+      "required": "E13 准入状态",
+      "note": "环保合规文件的有无（不是『优于原件』）；缺失时结论只能「需评估」，不得「有条件通过」"
+    },
+    {
+      "id": 17,
+      "required": "CP-C³ 两段式输出",
+      "note": "仅 CP-C³ 时（强制）：① 电气危害（短路位逐位指明）；② 其他不对应位清单（供改板，标注『不影响 CP-C³ 定档』）（§2.1 ⑤、§3.8）。CP-C¹ / CP-C² 若同时存在其他不对应位（k > 0）：建议（非强制）也列出『其他不对应位清单』，供改板 / 改线方案参考——CP-C³ 强制，C¹ / C² 建议。『建议』的含义：不列不算违反本标准；但若因此使改板 / 改线方案缺少输入，责任由判定者承担"
+    },
+    {
+      "id": 18,
+      "required": "所依据的标准版本号",
+      "note": "写明本次判定依据的 C-PPJ 版本（唯一有效值＝现行版本号；如『按 C-PPJ v1.15』）；未注明版本视为不可追溯（§7.2）"
+    },
+    {
+      "id": 19,
+      "required": "多行命中时的「后续提示」",
+      "note": "仅当同时命中多行、且最严档位为『需评估』时：须写明『若解决 [最严行的缺陷 / 缺口] 后重跑，还须附 [其他行的实测方案]』。本项为必含项，不得省略（§6.1 多行命中第 4 条）"
+    }
+  ],
+  "output_tier_conditions": {
+    "可直接替": [
+      "CP-A（k = 0）",
+      "降额闸 ✅ 过（非保守估算）",
+      "可靠性闸全部适用项 ✅ 过",
+      "已取得盖章数据"
+    ],
+    "有条件通过": [
+      "CP-A",
+      "降额闸 ✅ 过（不接受 ⚠️ 数据缺失；若采用群组降额保守兜底估算，仍属『过』，但须附群组温升实测方案）",
+      "可靠性闸无 ❌ 项、仅 ⚠️ 待实测（不含 E13）",
+      "附实测方案 + 动作约束（不得批量下单）"
+    ],
+    "需评估": "其余一切情形的兜底档：存在已核实缺陷 / 差异 / 降额问题（含各闸 ❌），或关键输入缺失（⚠️ 未判定、降额 ⚠️ 数据缺失、E13 准入缺失、无盖章数据、群组降额仅保守估算且未附群组温升实测方案）",
+    "note": "CP 档回答『是不是 pin-to-pin』，输出档回答『这料现在能不能用』。CP-A ≠ 可直接替；CP-B / CP-C / ⚠️ 未判定 一律不可能『可直接替』。同时命中多行时按合成表 multi_row_hit_rule 处理（取最严档、各行要求并列满足）。"
+  },
+  "tier_combination_rule": {
+    "title": "三档组合判定顺序（防把『群组降额保守估算』当成独立档位条件）",
+    "principle": "群组降额保守估算（§5.2）本身不决定档位，只做两件事：① 排除『可直接替』（保守估算不是厂商给的系数）；② 触发『须附群组同时载流温升实测方案』。最终档位由其余闸的状态决定。",
+    "combinations": [
+      {
+        "derating": "保守兜底 + 已附群组温升实测方案",
+        "secondary": "无 ❌、仅 ⚠️（不含 E13）",
+        "verdict": "CP-A",
+        "tier": "有条件通过"
+      },
+      {
+        "derating": "保守兜底 + 已附群组温升实测方案",
+        "secondary": "有 ❌，或 ⚠️ 含 E13",
+        "verdict": "CP-A",
+        "tier": "需评估"
+      },
+      {
+        "derating": "保守兜底 + 已附群组温升实测方案",
+        "secondary": "任意",
+        "verdict": "非 CP-A（CP-B / C / ⚠️ 未判定）",
+        "tier": "需评估"
+      },
+      {
+        "derating": "保守兜底 + 未附群组温升实测方案",
+        "secondary": "任意",
+        "verdict": "任意",
+        "tier": "需评估"
+      },
+      {
+        "derating": "降额闸 ⚠️ 数据缺失（无载流 / 耐压曲线，或温度条件不明）",
+        "secondary": "任意",
+        "verdict": "任意",
+        "tier": "需评估（一律）"
+      }
+    ],
+    "veto": "否决项（优先于上表所有组合）：降额闸一旦为 ⚠️ 数据缺失 → 一律『需评估』（§5.4：降额闸没有『待实测』态，⚠️ 不得进入『有条件通过』）。群组降额走保守兜底 ≠ 降额闸整体为『过』——保守兜底只解决群组系数缺失；耐压降额数据缺失、或连单针载流曲线也没有时，降额闸仍是 ⚠️ 数据缺失。禁止因为『群组降额有保守系数了』就跳过耐压降额与温度条件，把降额闸记成『过』。",
+    "reading": "只有『CP-A ＋ 可靠性无 ❌ 仅 ⚠️（不含 E13）＋ 已附方案』这一条组合才给『有条件通过』，其余组合一律『需评估』。",
+    "forbidden": "把『已附群组温升实测方案』读成『有条件通过』的充分条件（漏掉 CP-A 与可靠性两个前提）"
+  },
+  "sample_size_requirements": {
+    "required_column": "样品数量",
+    "note": "样品数量为实测方案必填列，缺即方案不完整（§6.3）",
+    "minima": [
+      {
+        "class": "接触电阻 / 插拔寿命 / 端子保持力类",
+        "covers": [
+          "E1",
+          "E2",
+          "E5",
+          "E6"
+        ],
+        "min": "≥ 3 颗"
+      },
+      {
+        "class": "振动 / 冲击 / 机械寿命类",
+        "covers": [
+          "E8"
+        ],
+        "min": "≥ 5 颗（破坏性，独立备样）"
+      },
+      {
+        "class": "温升 / 载流 / 群组降额类",
+        "covers": [
+          "E7"
+        ],
+        "min": "≥ 3 颗"
+      },
+      {
+        "class": "环境 / 腐蚀类",
+        "covers": [
+          "E9"
+        ],
+        "min": "≥ 3 颗"
+      },
+      {
+        "class": "绝缘 / 耐压类",
+        "covers": [
+          "E3",
+          "E4"
+        ],
+        "min": "≥ 3 颗"
+      },
+      {
+        "class": "镀层 / 厚度 / 高速特性类",
+        "covers": [
+          "E10",
+          "E11",
+          "E12"
+        ],
+        "min": "≥ 3 颗（E11 切片 / 金相法下『≥ 3 颗』与『独立备样』两个独立要求须同时满足）"
+      }
+    ],
+    "sampling_rule": "连接器存在批次一致性，宜取不同生产批次（不同 lot / date code）——全取同一批次时『多颗』不反映批次差异",
+    "destructive_rule": "E2 与 E5 共用同一批样品（先 E5 后 E2，E5 备样 ≥ 3 颗并全部用于 E2）；E8 破坏性项独立备样；E11 走切片 / 金相法时独立备样（无损法可复用但仍须 ≥ 3 颗）",
+    "reporting_rule": "报数须分组登记（E5+E2 组 / E8 独立组 / 非破坏性复用组），不得把复用的同一颗计成多颗",
+    "override": "可按品类文件细化，但不得低于缺省值，也不得以『样品不足』为由免测",
+    "non_sampled": [
+      {
+        "id": "E13",
+        "reason": "环保合规（RoHS / REACH）为文件类准入项，不是实测参数，不适用样品数量"
+      }
+    ]
+  }
+}

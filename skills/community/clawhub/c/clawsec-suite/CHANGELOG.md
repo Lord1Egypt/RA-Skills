@@ -1,5 +1,50 @@
 # Changelog
 
+## [0.1.16] - 2026-07-14
+
+### Fixed
+
+- Preserved the release-path policy helper required by the manual ClawHub republish flow after it checks out a release tag.
+- Published the corrected signed Suite package under a new immutable version instead of attempting to replace the existing `0.1.15` registry entry.
+
+### Changed
+
+- Added dependency-closure coverage for every current workflow helper carried across the tag-checkout boundary.
+- Kept tests and other excluded development files out of the ClawHub package while retaining the five signed advisory trust artifacts.
+
+## [0.1.15] - 2026-07-13
+
+### Fixed
+
+- Published ClawHub packages from the verified, signed GitHub release payload instead of the raw source directory.
+- Preserved `.sig` and `.pem` advisory trust files that ClawHub's client extension allowlist otherwise omitted.
+- Made ClawHub publication blocking and verified every published file hash and size before reporting success.
+
+### Changed
+
+- Enforced the complete five-file embedded advisory trust set in release staging and published-package verification.
+- Required changed skill releases to advance the core version by at least a patch so an already released version cannot be reused.
+
+## [0.1.14] - 2026-07-13
+
+### Fixed
+
+- Included the embedded feed signing public key in the signed advisory checksum manifest generated for both PR simulations and tag releases.
+- Exercised the packaged local fallback through the runtime checksum-verification path so releases fail before publication if any required trust artifact is absent from the manifest.
+
+## [0.1.13] - 2026-07-13
+
+### Fixed
+
+- Evaluated every clause in comma- and whitespace-separated advisory comparator sets instead of silently ignoring upper bounds.
+- Preserved SemVer prerelease precedence so stable and later prerelease builds are not falsely reported as vulnerable.
+- Rejected malformed or partially parsed ranges instead of deriving a result from a valid prefix.
+
+### Added
+
+- Added full consolidated-feed validation and cross-consumer range-conformance coverage shared with Hermes and NanoClaw.
+- Added canonical feed and signature propagation so Suite releases and source installs no longer retain a stale fallback mirror.
+
 ## [0.1.12] - 2026-06-23
 
 ### Changed

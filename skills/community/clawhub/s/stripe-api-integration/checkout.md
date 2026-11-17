@@ -1,4 +1,27 @@
-# Checkout Sessions — Stripe API
+# Checkout — Hosted Sessions, Payment Links, Embedded
+
+**Read `## Catalog` and `## Integration Shape` in `~/Clawic/data/stripe-api-integration/memory.md`** (or their boxes) before building a session: the price ids in use and whether this integration creates the customer before Checkout or lets Checkout create one.
+
+**Contents:** [Which Hosted Surface](#which-hosted-surface) · [The Event Contract](#the-event-contract) · [Checkout Modes](#checkout-modes) · [Complete Checkout Flow](#complete-checkout-flow) · [Custom Fields](#custom-fields) · [Trial Periods](#trial-periods) · [Quantity Adjustable](#quantity-adjustable) · [Metadata](#metadata) · [Embedded Checkout](#embedded-checkout) · [Session Expiration](#session-expiration) · [Recovery](#recovery) · [Common Patterns](#common-patterns)
+
+## Which Hosted Surface
+
+| Surface | Fits | Cost of choosing it |
+|---|---|---|
+| Payment Link | A price you sell the same way to everyone; no backend at all | No per-customer logic, no dynamic amounts |
+| Hosted Checkout Session | Anything server-driven: dynamic carts, per-customer trials, tax, promotion codes | A redirect away from your domain |
+| Embedded Checkout | Keeping the customer on your page while Stripe still owns the payment fields | Slightly more integration, same PCI scope |
+| Elements | The payment step is inside a flow you fully control | You rebuild wallets, local methods, SCA handling and address collection |
+
+Default to hosted Checkout and move down the list only when a concrete requirement forces it: it carries wallets, local payment methods, SCA, address and tax collection, promotion codes and adaptive layout, all maintained by someone else (`SKILL.md`, Where Experts Disagree).
+
+## The Event Contract
+
+- `checkout.session.completed` means the session finished, **not** that money arrived. Check `payment_status`: `paid` for synchronous methods, `unpaid` when a bank-based method is still settling.
+- For asynchronous methods, fulfillment belongs on `checkout.session.async_payment_succeeded`, and the failure path on `checkout.session.async_payment_failed` (`payment-methods.md`).
+- `checkout.session.expired` is the recovery hook: the customer left, and you have their email if you collected it.
+- Session metadata does not reach the PaymentIntent or the Subscription. Set `payment_intent_data[metadata]` and `subscription_data[metadata]` explicitly, or the surviving object has no link to your order (`api-mechanics.md`).
+- Create the customer before the session when you need the record to be stable — letting Checkout create one per purchase is the fastest way to duplicate customers (`customers.md`).
 
 ## Checkout Modes
 
@@ -189,3 +212,16 @@ curl "https://api.stripe.com/v1/checkout/sessions?status=expired&limit=100" \
 -d "shipping_address_collection[allowed_countries][0]=US"
 -d "shipping_address_collection[allowed_countries][1]=CA"
 ```
+
+## Conversion Details That Are Not Cosmetic
+
+- **Collect the email early.** Without it, an expired session is unrecoverable; with it, abandoned-checkout recovery is a list you can email.
+- **`allow_promotion_codes` shows a code field.** On a page with no active campaign it invites customers to leave and search for a code that does not exist — enable it when you are actually running one.
+- **Ask for the address only where you need it**: tax calculation, physical shipping, or fraud signals. Each extra required field costs completions.
+- **Set the locale or let it follow the browser**; a checkout in the wrong language converts like a broken page.
+- **Expiry is a lever**: shorter sessions create urgency and strand slow buyers; the default day is right for most, and anything under an hour needs a reason.
+- **Return to a page that confirms what happened**, driven by the event and not by the redirect — the redirect can be lost, and the payment still succeeded.
+
+---
+
+**Write in the same turn**: the surface chosen (Payment Link, hosted, embedded, Elements) and the customer-creation order go to `## Integration Shape` in `~/Clawic/data/stripe-api-integration/memory.md`; any price or promotion code created for the flow goes to `## Catalog`; a checkout configuration that measurably converted better is `artifacts/decision-checkout.md` with its `## Boxes` line.

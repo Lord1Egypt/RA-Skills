@@ -1,44 +1,57 @@
-## Description: <br>
-Command-line tool to manage contacts, tasks, notes, deals, events, and communications via the Follow Up Boss API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+CLI for interacting with the Follow Up Boss API. Manage people, notes, tasks, events, deals, webhooks, and more.
 
-## Publisher: <br>
-[danielfoch](https://clawhub.ai/user/danielfoch) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[danielfoch](https://clawhub.ai/user/danielfoch)
 
-## Use Case: <br>
-Developers and operators use this skill to run Follow Up Boss CRM commands from an agent workflow, including retrieving account data and managing people, tasks, notes, deals, events, communications, and webhooks. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The CLI can create, update, complete, or delete CRM records and webhooks in Follow Up Boss. <br>
-Mitigation: Review mutating commands and JSON payloads before running them against production CRM data. <br>
-Risk: The skill requires a Follow Up Boss API key that can grant account access. <br>
-Mitigation: Use a limited API key where available and keep FUB_API_KEY out of shared logs, transcripts, and committed files. <br>
-Risk: Text and email commands log communications but do not send messages. <br>
-Mitigation: Use Follow Up Boss sending features or approved integrations when an actual outbound message is required. <br>
-Risk: Follow Up Boss API rate limits may reject excessive requests. <br>
-Mitigation: Throttle repeated requests and retry only after the relevant rate-limit window. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/danielfoch/follow-up-boss) <br>
-- [Follow Up Boss API base URL](https://api.followupboss.com/v1) <br>
+## Use Case:
 
+External users and developers use this skill to manage Follow Up Boss CRM records and activity from a Node.js CLI. It supports reading and modifying people, notes, tasks, events, deals, communications logs, webhooks, sources, users, and global search results through the Follow Up Boss API.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, API calls, Text] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands require FUB_API_KEY and may print Follow Up Boss API responses as formatted JSON.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can read and modify Follow Up Boss CRM data.
+
+Mitigation: Install it only where the agent is authorized to access CRM data and use the least-privileged API key available.
+
+Risk: Delete and update operations, including webhook deletion, can change production CRM behavior.
+
+Mitigation: Require explicit human approval before running destructive or mutating commands.
+
+Risk: The skill depends on a Follow Up Boss API key stored in the environment.
+
+Mitigation: Avoid broad credential exposure and keep production credentials out of shared agent environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/danielfoch/skills/follow-up-boss)
+- [Follow Up Boss API v1 endpoint](https://api.followupboss.com/v1)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, JSON]
+
+**Output Format:** [Markdown usage guidance, shell commands, and JSON CLI output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires FUB_API_KEY; optional FUB_SYSTEM_KEY and FUB_SYSTEM_NAME headers are supported.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

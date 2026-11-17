@@ -1,0 +1,93 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.local/academic-pdf-translation/workspace.schema.json",
+  "title": "Academic PDF Translation Workspace Contracts",
+  "oneOf": [
+    {
+      "title": "Workspace Root",
+      "type": "object",
+      "required": [
+        "schema_version",
+        "kind",
+        "created_at",
+        "batch_naming",
+        "batch_directories"
+      ],
+      "properties": {
+        "schema_version": {"const": "2.0"},
+        "kind": {
+          "const": "academic-pdf-translation-workspace-root"
+        },
+        "created_at": {"type": "string", "minLength": 1},
+        "batch_naming": {
+          "const": "YYYYMMDD-HHMMSS_<count>篇_<title>"
+        },
+        "batch_directories": {
+          "const": {
+            "input": "input",
+            "output": "output",
+            "work": ".work",
+            "jobs": ".work/jobs"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    {
+      "title": "Translation Batch",
+      "type": "object",
+      "required": [
+        "schema_version",
+        "kind",
+        "created_at",
+        "title",
+        "source_count",
+        "status",
+        "directories",
+        "sources"
+      ],
+      "properties": {
+        "schema_version": {"const": "2.0"},
+        "kind": {"const": "academic-pdf-translation-batch"},
+        "created_at": {"type": "string", "minLength": 1},
+        "title": {"type": "string", "minLength": 1},
+        "source_count": {"type": "integer", "minimum": 1},
+        "status": {
+          "enum": ["created", "processing", "partial", "completed"]
+        },
+        "directories": {
+          "const": {
+            "input": "input",
+            "output": "output",
+            "work": ".work",
+            "jobs": ".work/jobs"
+          }
+        },
+        "sources": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": [
+              "sequence",
+              "original_path",
+              "input_path",
+              "sha256"
+            ],
+            "properties": {
+              "sequence": {"type": "integer", "minimum": 1},
+              "original_path": {"type": "string", "minLength": 1},
+              "input_path": {"type": "string", "minLength": 1},
+              "sha256": {
+                "type": "string",
+                "pattern": "^[a-f0-9]{64}$"
+              }
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "additionalProperties": false
+    }
+  ]
+}

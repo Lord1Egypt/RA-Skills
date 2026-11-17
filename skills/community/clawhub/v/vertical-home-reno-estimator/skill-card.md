@@ -1,45 +1,68 @@
-## Description: <br>
-Home Reno Estimator helps agents estimate residential renovation costs from floor area, finish level, and city, then produce a structured budget report with line-item ranges, uncertainty notes, and data-source context. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Home Reno Estimator helps an agent collect home area, renovation grade, and city, run a Python estimator, and produce a structured residential renovation cost estimate report.
 
-## Publisher: <br>
-[nic-yuan](https://clawhub.ai/user/nic-yuan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nic-yuan](https://clawhub.ai/user/nic-yuan)
 
-## Use Case: <br>
-External homeowners, renovation planners, and agents use this skill to create fast residential renovation budget estimates for Chinese cities from area, finish grade, and location. The result is useful for early budget planning, contractor comparison, and identifying cost uncertainty before obtaining formal quotes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-China <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The package includes marketing, payment, sharing, and unrelated business-guidance material beyond the core estimator. <br>
-Mitigation: Install only when that collateral is desired; otherwise review the package contents and use only the estimator workflow. <br>
-Risk: Users may disclose sensitive renovation details, budgets, contractor documents, contact details, or report screenshots while using or sharing outputs. <br>
-Mitigation: Avoid posting exact addresses, contact details, budgets, contractor documents, or report screenshots publicly. <br>
-Risk: Payment, sharing, referral, or off-platform messaging instructions may influence user behavior outside the estimator task. <br>
-Mitigation: Treat those instructions as optional and require explicit user consent before taking any payment, sharing, referral, or off-platform messaging action. <br>
+## Use Case:
 
+External homeowners and agents assisting homeowners use this skill to estimate residential renovation budgets for Chinese cities and understand major cost drivers before seeking local quotes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nic-yuan/vertical-home-reno-estimator) <br>
-- [Data sources](references/data-sources.md) <br>
-- [Renovation price data](references/price-data-2024.md) <br>
-- [Sample output](SAMPLE-OUTPUT.md) <br>
+### Deployment Geography for Use:
 
+China
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, shell commands, guidance] <br>
-**Output Format:** [Markdown report with tabular cost ranges, caveats, next-step guidance, and JSON estimator data from a local Python script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and three user inputs: area, renovation grade, and city; estimates are advisory ranges rather than binding quotes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: Bundled business and marketing documents expand the package beyond a simple renovation estimate skill.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the extra documents before installation and remove materials that are not needed for the estimator use case.
+
+Risk: The security evidence flags under-scoped shell execution and a vulnerable shell=True test helper.
+
+Mitigation: Fix or remove the shell=True helper before running tests with any external input, and review shell commands before execution.
+
+Risk: The evidence warns against automatic background update behavior for this package.
+
+Mitigation: Keep the skill limited to explicit user estimation requests and do not enable unattended update jobs.
+
+Risk: Collecting renovation details in public comments can expose home-related personal information.
+
+Mitigation: Ask users to provide details in an appropriate private channel and collect only the area, renovation grade, and city needed for estimation.
+
+Risk: The estimator produces reference ranges rather than a professional quote.
+
+Mitigation: Present results as planning guidance and direct users to compare local contractor quotes before making budget or contract decisions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/nic-yuan/skills/vertical-home-reno-estimator)
+- [Data Sources](artifact/references/data-sources.md)
+- [Price Data and FAQ](artifact/references/price-data-2024.md)
+- [Estimator Script](artifact/scripts/estimate.py)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, JSON, Shell commands, Guidance]
+
+**Output Format:** [Markdown report with JSON estimator data]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires area, renovation grade, and city; estimates are reference ranges and not binding quotes.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

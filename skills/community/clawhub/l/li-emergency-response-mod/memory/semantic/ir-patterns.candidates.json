@@ -1,0 +1,62 @@
+{
+  "meta": {
+    "name": "ir-patterns.candidates",
+    "generated_at": "2026-04-29T03:15:02.923729+00:00",
+    "source": "retrospect_ir.py"
+  },
+  "candidates": [
+    {
+      "id": "cand-20260429_031502-01",
+      "created_at": "2026-04-29T03:15:02.923530+00:00",
+      "source": {
+        "incident_name": null,
+        "scope": null,
+        "rules": null
+      },
+      "title": "（待命名）本次事件通用经验模板",
+      "one_liner": "（待补全）一句话经验：我如何从告警→证据→处置→复盘形成闭环。",
+      "category": "IR-General",
+      "pattern": {
+        "phase": "triage",
+        "signal_action": null,
+        "signal_reason": null,
+        "target_hint": null
+      },
+      "vbr": {
+        "minimal_steps": [
+          "（待补全）步骤1",
+          "（待补全）步骤2"
+        ],
+        "expected_evidence": [
+          "（待补全）证据要求"
+        ]
+      },
+      "containment_play": [
+        "（待补全）最小影响隔离/封禁策略（含回滚）"
+      ],
+      "counterexamples": [
+        "（待补全）反例/不适用场景"
+      ],
+      "fix_suggestion": [
+        "（待补全）修复建议"
+      ],
+      "iocs_snapshot": {
+        "ip": [],
+        "domain": [],
+        "url": [],
+        "hash": [],
+        "process": [],
+        "file": [],
+        "registry": [],
+        "user": []
+      },
+      "evidence_paths": [],
+      "review": {
+        "status": "candidate",
+        "reviewer": null,
+        "reviewed_at": null,
+        "decision": null
+      }
+    }
+  ]
+}

@@ -1,48 +1,67 @@
-## Description: <br>
-Professional financial analysis and investment advisory skill with institutional-grade valuation capabilities for stocks, funds, ETFs, market reviews, valuation modeling, macro analysis, geopolitical impact assessment, news intelligence, and HTML report generation with real-time data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Professional financial analysis and investment advisory skill with institutional-grade valuation capabilities for analyzing stocks, funds, ETFs, market reviews, valuation models, macroeconomic context, geopolitical impact, news intelligence, and HTML report generation with real-time data.
 
-## Publisher: <br>
-[frankxia2013](https://clawhub.ai/user/frankxia2013) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[frankxia2013](https://clawhub.ai/user/frankxia2013)
 
-## Use Case: <br>
-External users and agents use this skill to gather market and fundamentals data, calculate technical, risk, and valuation metrics, compare investments, assess macro and news context, and produce structured investment analysis reports. Outputs that include investment recommendations require independent review before use. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release evidence reports an unexplained encrypted backup file. <br>
-Mitigation: Review or remove the encrypted backup file before installing or running the skill. <br>
-Risk: The skill can install Python dependencies and contact multiple third-party financial, news, and social or trend data sources. <br>
-Mitigation: Run it in an isolated Python environment with network access appropriate for the intended data sources. <br>
-Risk: The skill can generate high-impact investment recommendations. <br>
-Mitigation: Treat outputs as analysis support only and independently verify data, assumptions, and suitability before making financial decisions. <br>
+## Use Case:
 
+External users and agents use this skill to collect market data, calculate technical and risk metrics, perform valuation and macro analysis, and produce investment research reports. The skill is intended for informational financial analysis workflows, not as a substitute for personalized financial advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/frankxia2013/financial-advisor) <br>
-- [Publisher profile](https://clawhub.ai/user/frankxia2013) <br>
-- [Financial Data Sources Configuration](references/data-sources.md) <br>
-- [Financial Indicators Reference](references/financial-indicators.md) <br>
-- [Macro Event Analysis Framework](references/macro-event-framework.md) <br>
-- [Trading Discipline and Decision Dashboard](references/trading-discipline.md) <br>
-- [Valuation Analysis Methodology](references/valuation-analysis.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Files, Guidance] <br>
-**Output Format:** [Markdown workflow guidance with inline shell commands, plus generated CSV, JSON, and HTML report files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write local financial_data directories and reports, use web search, and contact third-party financial, news, and trend data sources.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The artifact includes an opaque encrypted backup file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove the encrypted backup file before installing or redistributing the skill.
+
+Risk: The workflow may install Python dependencies and run scripts that fetch third-party market and news data.
+
+Mitigation: Run the skill in an isolated environment, pin and review dependencies, and confirm third-party data-source terms before use.
+
+Risk: Generated HTML reports may include externally loaded chart assets or insufficiently escaped content.
+
+Mitigation: Open generated reports in a sandboxed or offline context until HTML escaping and CDN integrity are reviewed.
+
+Risk: The skill can produce actionable-looking investment recommendations from volatile or delayed data.
+
+Mitigation: Treat outputs as informational research, validate data freshness and assumptions, and require qualified human review before financial decisions.
+
+## Reference(s):
+
+- [ClawHub Financial Advisor Skill Page](https://clawhub.ai/frankxia2013/skills/financial-advisor)
+- [Scripts Guide](SCRIPTS_GUIDE.md)
+- [Financial Data Sources Configuration](references/data-sources.md)
+- [Financial Indicators Reference](references/financial-indicators.md)
+- [Professional Valuation Analysis Methodology](references/valuation-analysis.md)
+- [Macroeconomic and Event-Driven Analysis Framework](references/macro-event-framework.md)
+- [Trading Discipline and Decision Dashboard](references/trading-discipline.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with shell commands, plus generated CSV, JSON, and HTML report files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include local financial data files, calculated metrics, AI analysis JSON, and interactive HTML reports based on third-party market and news data.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

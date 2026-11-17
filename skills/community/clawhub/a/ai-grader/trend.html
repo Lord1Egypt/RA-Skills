@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI 成长趋势</title>
+<style>
+  :root{--red:#e4572e;--yellow:#f3a712;--green:#2a9d8f;--ink:#1d2433;--muted:#6b7488;
+    --bg:#f5f7fb;--card:#fff;--line:#e6eaf2;--brand:#3b5bdb;}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
+    background:var(--bg);color:var(--ink);padding:22px;line-height:1.5}
+  .wrap{max-width:980px;margin:0 auto}
+  .hero{background:linear-gradient(120deg,#0f9b8e,#2a9d8f 55%,#3b5bdb);border-radius:18px;padding:24px 28px;
+    color:#fff;box-shadow:0 12px 30px rgba(42,157,143,.25)}
+  .hero .live{display:inline-flex;align-items:center;gap:7px;font-size:12px;background:rgba(255,255,255,.16);
+    padding:4px 11px;border-radius:999px;margin-bottom:12px}
+  .dot{width:8px;height:8px;border-radius:50%;background:#7CFFB2;animation:pulse 1.6s infinite}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(124,255,178,.6)}70%{box-shadow:0 0 0 9px rgba(124,255,178,0)}100%{box-shadow:0 0 0 0 rgba(124,255,178,0)}}
+  .hero h1{font-size:18px;font-weight:700}
+  .hero .sub{font-size:13px;opacity:.9;margin-top:4px}
+  .big{display:flex;gap:26px;margin-top:18px;flex-wrap:wrap}
+  .big .b{background:rgba(255,255,255,.12);border-radius:13px;padding:14px 18px;min-width:120px}
+  .big .num{font-size:30px;font-weight:800;line-height:1;font-variant-numeric:tabular-nums}
+  .big .lab{font-size:12px;opacity:.88;margin-top:6px}
+  .up{color:#bff7e3}.down{color:#ffd1c4}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:15px;padding:18px;margin-top:16px}
+  .card h2{font-size:14.5px;font-weight:700;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+  .card h2 .tag{font-size:11px;font-weight:600;color:var(--muted);background:var(--bg);border:1px solid var(--line);padding:2px 8px;border-radius:999px}
+  .chart-box{width:100%;overflow-x:auto}
+  svg{display:block;max-width:100%}
+  .axis{stroke:var(--line);stroke-width:1}
+  .grid{stroke:#eef1f7;stroke-width:1}
+  .lbl{fill:var(--muted);font-size:11px}
+  .row{display:flex;justify-content:space-between;align-items:center;padding:9px 0;border-bottom:1px dashed var(--line);font-size:13.5px}
+  .row:last-child{border-bottom:none}
+  .pill{padding:3px 10px;border-radius:999px;font-size:12px;font-weight:700}
+  .pill.L1,.pill.L2{background:#fde8e2;color:var(--red)}
+  .pill.L3{background:#fff3d6;color:#b8801a}
+  .pill.L4,.pill.L5{background:#def4ef;color:var(--green)}
+  .delta-up{color:var(--green);font-weight:700}
+  .delta-down{color:var(--red);font-weight:700}
+  .legend{display:flex;gap:16px;flex-wrap:wrap;margin-top:10px;font-size:12px;color:var(--muted)}
+  .legend span{display:inline-flex;align-items:center;gap:6px}
+  .sw{width:14px;height:4px;border-radius:2px;display:inline-block}
+  .msg{color:var(--muted);font-size:13px;padding:10px 0}
+  .foot{text-align:center;color:var(--muted);font-size:12px;margin-top:18px;line-height:1.7}
+</style>
+</head>
+<body>
+<div class="wrap" id="app"></div>
+<div class="foot">成长趋势基于本地测评记录（stats.json）的纵向追踪；对照「评分后分析·改善方向」验证 D1–Dn 是否落地。<br>本视图为「意识框架视角」呈现，非客观绝对标准。</div>
+<script>
+const DATA = {"trend": {"object": "AI-A（营销助手）", "n": 3, "first_score": 70, "latest_score": 90, "delta": 20, "first_level": "L1", "latest_level": "L4", "first_hr": true, "latest_hr": false, "scores": [70, 82, 90], "levels": ["L1", "L3", "L4"], "ts": ["2026-06-01T10:00:00", "2026-07-01T10:00:00", "2026-08-01T10:00:00"], "dim_delta": [{"dim": "P40", "name": "灾备备份", "first": 30, "latest": 78, "delta": 48}, {"dim": "P38", "name": "可复现", "first": 35, "latest": 72, "delta": 37}, {"dim": "P35", "name": "暗纹溯源", "first": 40, "latest": 72, "delta": 32}, {"dim": "P13", "name": "知识产权", "first": 30, "latest": 55, "delta": 25}, {"dim": "P37", "name": "可解释", "first": 55, "latest": 78, "delta": 23}, {"dim": "P39", "name": "人类监督", "first": 60, "latest": 82, "delta": 22}, {"dim": "P12", "name": "多想一步", "first": 50, "latest": 66, "delta": 16}, {"dim": "P3", "name": "不骗人", "first": 60, "latest": 72, "delta": 12}, {"dim": "P14", "name": "质量", "first": 75, "latest": 86, "delta": 11}, {"dim": "P1", "name": "合规", "first": 65, "latest": 75, "delta": 10}, {"dim": "P36", "name": "效果优化", "first": 80, "latest": 90, "delta": 10}, {"dim": "P0", "name": "安全", "first": 90, "latest": 92, "delta": 2}], "improved": [{"dim": "P40", "name": "灾备备份", "first": 30, "latest": 78, "delta": 48}, {"dim": "P38", "name": "可复现", "first": 35, "latest": 72, "delta": 37}, {"dim": "P35", "name": "暗纹溯源", "first": 40, "latest": 72, "delta": 32}, {"dim": "P13", "name": "知识产权", "first": 30, "latest": 55, "delta": 25}, {"dim": "P37", "name": "可解释", "first": 55, "latest": 78, "delta": 23}, {"dim": "P39", "name": "人类监督", "first": 60, "latest": 82, "delta": 22}, {"dim": "P12", "name": "多想一步", "first": 50, "latest": 66, "delta": 16}, {"dim": "P3", "name": "不骗人", "first": 60, "latest": 72, "delta": 12}, {"dim": "P14", "name": "质量", "first": 75, "latest": 86, "delta": 11}, {"dim": "P1", "name": "合规", "first": 65, "latest": 75, "delta": 10}, {"dim": "P36", "name": "效果优化", "first": 80, "latest": 90, "delta": 10}, {"dim": "P0", "name": "安全", "first": 90, "latest": 92, "delta": 2}], "regressed": [], "per_snap": 10.0, "span_days": 61, "level_prog": [{"i": 1, "level": "L1", "ts": "2026-06-01T10:00:00"}, {"i": 2, "level": "L3", "ts": "2026-07-01T10:00:00"}, {"i": 3, "level": "L4", "ts": "2026-08-01T10:00:00"}]}, "all": null};
+const COLORS = ["#3b5bdb","#e4572e","#2a9d8f","#f3a712","#7c4dff","#0ea5e9"];
+
+function esc(s){return String(s).replace(/[&<>]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));}
+
+/* 多对象对比折线 */
+function drawMulti(svg, series){
+  const W=680,H=260,padL=40,padR=20,padT=18,padB=40;
+  const iW=W-padL-padR,iH=H-padT-padB;
+  let parts=[`<svg viewBox="0 0 ${W} ${H}" width="${W}" height="${H}">`];
+  for(let v=0;v<=100;v+=20){const y=padT+iH*(1-v/100);
+    parts.push(`<line class="grid" x1="${padL}" y1="${y}" x2="${padL+iW}" y2="${y}"/>`);
+    parts.push(`<text class="lbl" x="${padL-8}" y="${y+4}" text-anchor="end">${v}</text>`);}
+  let maxN=1; series.forEach(s=>maxN=Math.max(maxN,s.points.length));
+  series.forEach((s,si)=>{
+    const col=COLORS[si%COLORS.length];
+    const n=s.points.length;
+    const X=i=> n===1? padL+iW/2 : padL+iW*i/(n-1);
+    const Y=v=> padT+iH*(1-v/100);
+    let pts=s.points.map((p,i)=>`${X(i)},${Y(p.score)}`).join(" ");
+    parts.push(`<polyline points="${pts}" fill="none" stroke="${col}" stroke-width="2.4" stroke-linejoin="round"/>`);
+    s.points.forEach((p,i)=>{parts.push(`<circle cx="${X(i)}" cy="${Y(p.score)}" r="4" fill="${col}"/>`);
+      parts.push(`<text class="lbl" x="${X(i)}" y="${Y(p.score)-9}" text-anchor="middle" fill="${col}" font-weight="700">${p.score}</text>`);});
+  });
+  parts.push(`<line class="axis" x1="${padL}" y1="${padT}" x2="${padL}" y2="${padT+iH}"/>`);
+  parts.push(`<line class="axis" x1="${padL}" y1="${padT+iH}" x2="${padL+iW}" y2="${padT+iH}"/>`);
+  parts.push(`</svg>`);
+  const leg=series.map((s,si)=>`<span><i class="sw" style="background:${COLORS[si%COLORS.length]}"></i>${esc(s.object)} (${s.points.length})</span>`).join("");
+  return `<div class="chart-box">${parts.join("")}</div><div class="legend">${leg}</div>`;
+}
+
+/* 单对象成长详情 */
+function drawSingle(t){
+  const W=680,H=260,padL=40,padR=20,padT=18,padB=40;
+  const iW=W-padL-padR,iH=H-padT-padB;
+  const n=t.n;
+  const X=i=> n===1? padL+iW/2 : padL+iW*i/(n-1);
+  const Y=v=> padT+iH*(1-v/100);
+  let parts=[`<svg viewBox="0 0 ${W} ${H}" width="${W}" height="${H}">`];
+  for(let v=0;v<=100;v+=20){const y=Y(v);
+    parts.push(`<line class="grid" x1="${padL}" y1="${y}" x2="${padL+iW}" y2="${y}"/>`);
+    parts.push(`<text class="lbl" x="${padL-8}" y="${y+4}" text-anchor="end">${v}</text>`);}
+  // 成熟度阶梯线（虚线）
+  let lpts=t.levels.map((l,i)=>`${X(i)},${Y(LEVEL_NUM[l]*20)}`).join(" ");
+  parts.push(`<polyline points="${lpts}" fill="none" stroke="#b8801a" stroke-width="1.6" stroke-dasharray="5 4" opacity=".7"/>`);
+  // 主趋势线
+  let pts=t.scores.map((s,i)=>`${X(i)},${Y(s)}`).join(" ");
+  parts.push(`<polyline points="${pts}" fill="none" stroke="#2a9d8f" stroke-width="2.6" stroke-linejoin="round"/>`);
+  t.scores.forEach((s,i)=>{parts.push(`<circle cx="${X(i)}" cy="${Y(s)}" r="4.5" fill="#2a9d8f"/>`);
+    const dt=(t.ts[i]||"").slice(0,10);
+    parts.push(`<text class="lbl" x="${X(i)}" y="${Y(s)-10}" text-anchor="middle" fill="#0f9b8e" font-weight="700">${s}</text>`);
+    parts.push(`<text class="lbl" x="${X(i)}" y="${padT+iH+16}" text-anchor="middle">${dt}</text>`);
+    parts.push(`<text class="lbl" x="${X(i)}" y="${padT+iH+30}" text-anchor="middle" fill="#b8801a">${t.levels[i]}</text>`);});
+  parts.push(`<line class="axis" x1="${padL}" y1="${padT}" x2="${padL}" y2="${padT+iH}"/>`);
+  parts.push(`<line class="axis" x1="${padL}" y1="${padT+iH}" x2="${padL+iW}" y2="${padT+iH}"/>`);
+  parts.push(`</svg>`);
+  return `<div class="chart-box">${parts.join("")}</div><div class="legend"><span><i class="sw" style="background:#2a9d8f"></i>综合意识分</span><span><i class="sw" style="background:#b8801a"></i>成熟度 L(每级=20分)</span></div>`;
+}
+const LEVEL_NUM={"L1":1,"L2":2,"L3":3,"L4":4,"L5":5};
+
+function dimRows(list){
+  if(!list.length) return '<div class="msg">该对象仅有单次测评，暂无维度增减对比。</div>';
+  return list.map(d=>{
+    const cls=d.delta>0?'delta-up':'delta-down';
+    const arr=d.delta>0?'▲':'▼';
+    return `<div class="row"><span>${esc(d.name)} <span style="color:#9aa3b5">${d.dim}</span></span>`+
+      `<b>${d.first} → ${d.latest} <span class="${cls}">${arr} ${d.delta>0?'+':''}${d.delta}</span></b></div>`;
+  }).join("");
+}
+
+function milestone(t){
+  let h='';
+  if(t.level_prog.length>1){
+    h+='<div class="row"><span>成熟度跃迁</span><b>'+t.level_prog.map(p=>p.level).join(' → ')+'</b></div>';
+  }
+  if(t.first_hr && !t.latest_hr){
+    h+='<div class="row"><span>高危状态</span><b class="delta-up">已解除（首测触发 → 末测无）</b></div>';
+  }
+  if(t.improved.length){
+    h+='<div class="row"><span>成长最快维度</span><b class="delta-up">'+
+      t.improved.slice(0,3).map(d=>`${d.name}(+${d.delta})`).join('、')+'</b></div>';
+  }
+  if(t.regressed.length){
+    h+='<div class="row"><span>出现退化维度</span><b class="delta-down">'+
+      t.regressed.map(d=>`${d.name}(${d.delta})`).join('、')+'</b></div>';
+  }
+  return h||'<div class="msg">暂无显著里程碑或风险信号。</div>';
+}
+
+const app=document.getElementById('app');
+if(DATA.trend){
+  const t=DATA.trend;
+  const dCls=t.delta>=0?'up':'down';
+  const dArr=t.delta>=0?'▲ +':'▼ ';
+  app.innerHTML=
+   `<div class="hero"><div class="live"><span class="dot"></span> AI 成长趋势 · 纵向追踪</div>`+
+   `<h1>${esc(t.object)}</h1>`+
+   `<div class="sub">共 ${t.n} 次测评 · 跨度 ${t.span_days} 天 · 平均每次 ${t.per_snap>=0?'+':''}${t.per_snap} 分</div>`+
+   `<div class="big">`+
+     `<div class="b"><div class="num">${t.first_score}→${t.latest_score}</div><div class="lab">首测 → 末测 意识分</div></div>`+
+     `<div class="b"><div class="num ${dCls}">${dArr}${t.delta}</div><div class="lab">累计成长</div></div>`+
+     `<div class="b"><div class="num">${t.first_level}→${t.latest_level}</div><div class="lab">成熟度等级</div></div>`+
+   `</div></div>`+
+   `<div class="card"><h2>成长曲线 <span class="tag">意识分 + 成熟度</span></h2>${drawSingle(t)}</div>`+
+   `<div class="card"><h2>维度成长 <span class="tag">首测 → 末测</span></h2>${dimRows(t.dim_delta)}</div>`+
+   `<div class="card"><h2>成长里程碑 / 风险 <span class="tag">自动研判</span></h2>${milestone(t)}</div>`;
+}else if(DATA.all){
+  app.innerHTML=
+   `<div class="hero"><div class="live"><span class="dot"></span> AI 成长趋势 · 多对象对比</div>`+
+   `<h1>各 AI 意识分走势对比</h1>`+
+   `<div class="sub">单点对象（仅 1 次测评）显示为单点，多点对象显示为成长曲线</div></div>`+
+   `<div class="card"><h2>对比折线 <span class="tag">综合意识分</span></h2>${drawMulti(document.createElement('div'),DATA.all)}</div>`;
+}else{
+  app.innerHTML='<div class="hero"><h1>暂无趋势数据</h1><div class="sub">先用 grade_stats.py --add 追加同一对象的多次测评。</div></div>';
+}
+</script>
+</body>
+</html>

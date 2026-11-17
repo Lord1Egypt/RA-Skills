@@ -36,6 +36,7 @@ Usage: pixcli image <prompt> [options]
 | `seedream-v5` | fal | Fast + quality, commercial-ready |
 | `nano-banana-pro` | google | Best consistency, text rendering, multi-image |
 | `nano-banana-2` | google | Fast iteration, cheap, great for concepting |
+| `nano-banana-2-lite` | google | Cheapest + lowest latency (~$0.04/image flat) — drafts, bulk/batch simple assets |
 | `imagen-4` | google | Highest quality |
 | `imagen-4-fast` | google | Fast variant of Imagen 4 |
 | `gpt-image-2` | openai-direct | Best text rendering in images |
@@ -117,7 +118,7 @@ Usage: pixcli video <prompt> [options]
 | `--no-enrich` | flag | — | Skip prompt enrichment |
 | `--extend` | flag | `false` | Extend source video instead of I2V |
 
-**How it works:** Without `--from`, generates text-to-video. With `--from` pointing to an image, generates image-to-video (I2V). With `--from` pointing to a video and `--extend`, extends the source clip. The API auto-selects the best model unless `--model` is specified.
+**How it works:** Without `--from`, generates text-to-video. With `--from` pointing to an image, generates image-to-video (I2V). With `--from` pointing to a video and `--extend`, extends the source clip — unless the prompt is an edit instruction ("make it anime", "remove the person", "change X"), which routes to `gemini-omni-flash-edit`, the best video-to-video editor (restyle, change content, remove things while preserving scene coherence; keep the instruction to one simple sentence). The API auto-selects the best model unless `--model` is specified.
 
 **Models:**
 
@@ -128,6 +129,10 @@ Usage: pixcli video <prompt> [options]
 | `veo-3.1-lite` | google-veo | Budget variant of Veo 3.1 |
 | `seedance-2-t2v` | fal | ByteDance cinematic motion, T2V |
 | `seedance-2-i2v` | fal | ByteDance cinematic motion, I2V |
+| `gemini-omni-flash-t2v` | fal (Google) | Cheap + fast Google T2V with native audio (~$0.13/s 720p, 3-10s, 16:9 or 9:16) — also picked when the prompt mentions "omni" |
+| `gemini-omni-flash-i2v` | fal (Google) | Cheap + fast Google I2V with native audio + lip-sync |
+| `gemini-omni-flash-ref` | fal (Google) | Multi-image reference-to-video — bind refs in the prompt with `<IMAGE_REF_0>`, `<IMAGE_REF_1>`… tags |
+| `gemini-omni-flash-edit` | fal (Google) | Video-to-video edit (restyle/change an existing clip) |
 | `kling-v3-pro-i2v` | fal | Cinematic I2V, best quality |
 | `wan-v2-i2v` | fal | Budget I2V, good motion |
 | `minimax-i2v` | fal | Fast I2V |
@@ -424,7 +429,7 @@ Usage: pixcli sfx <prompt> [options]
 
 ## Publishing Flags
 
-These flags are available on all generation commands (`image`, `edit`, `video`, `voice`, `music`, `sfx`, `dialogue`, `tryon`). They publish the output asset to a shareable URL on `https://pixcli.shellbot.sh`. **`podcast` publishes public + permanent by default** (use `--private` / `--no-publish` to opt out).
+These flags are available on all generation commands (`image`, `edit`, `video`, `voice`, `music`, `sfx`, `dialogue`, `tryon`). They publish the output asset to a shareable URL on `https://pixcli.hilo.cx`. **`podcast` publishes public + permanent by default** (use `--private` / `--no-publish` to opt out).
 
 ## `pixcli publish <id>` — Change share visibility
 
@@ -452,13 +457,13 @@ API: `POST /api/v1/publish` with `{ "job_id" | "asset", "scope": "public"|"priva
 | `--publish` | flag | `false` | Publish the asset to a public shareable URL (no auth required to fetch) |
 | `--publish-private` | flag | `false` | Publish privately — requires your API key to fetch the asset |
 | `--publish-ttl <days>` | int | `60` | How long the published URL stays live (max 365 days). **All published URLs expire.** |
-| `--publish-name <name>` | string | auto | Slug for the published URL. Published URLs follow the pattern: `https://pixcli.shellbot.sh/p/<slug>-<id>` |
+| `--publish-name <name>` | string | auto | Slug for the published URL. Published URLs follow the pattern: `https://pixcli.hilo.cx/p/<slug>-<id>` |
 
 **Example:**
 ```bash
 pixcli image "Hero product shot on marble, dramatic lighting" \
   -q high --publish --publish-name "hero-shot" --publish-ttl 90 -o hero.png
-# → https://pixcli.shellbot.sh/p/hero-shot-abc123
+# → https://pixcli.hilo.cx/p/hero-shot-abc123
 ```
 
 > All published assets expire. Set `--publish-ttl` appropriately for your use case.
@@ -472,7 +477,7 @@ These apply to all commands:
 | Option | Description |
 |--------|-------------|
 | `--key <api_key>` | Override `METERKEY_API_KEY` environment variable |
-| `--api-url <url>` | Override `PIXCLI_API_URL` (default: `https://pixcli.shellbot.sh`) |
+| `--api-url <url>` | Override `PIXCLI_API_URL` (default: `https://pixcli.hilo.cx`) |
 | `--version` | Show CLI version |
 | `--help` | Show help |
 
@@ -498,9 +503,9 @@ When using `--json`, output goes to stdout:
   "model": "flux-pro",
   "cost": 100000,
   "elapsed_ms": 12340,
-  "canva_url": "https://pixcli.shellbot.sh/c/link/<one-time-token>",
+  "canva_url": "https://pixcli.hilo.cx/c/link/<one-time-token>",
   "published": [
-    { "kind": "image", "url": "https://pixcli.shellbot.sh/p/hero-shot-abc123", "scope": "public", "expires_at": "2026-08-10T00:00:00Z" }
+    { "kind": "image", "url": "https://pixcli.hilo.cx/p/hero-shot-abc123", "scope": "public", "expires_at": "2026-08-10T00:00:00Z" }
   ]
 }
 ```

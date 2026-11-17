@@ -1,0 +1,757 @@
+{
+  "_meta": {
+    "name": "patterns_en",
+    "source": "Wikipedia:Signs of AI writing (2026-08 版) + 2026 公开写作研究",
+    "notes": "词表命中仅代表统计倾向；term_guards 保护正当学术用法。weight=每个命中的分值。"
+  },
+  "model_artifacts": [
+    {
+      "pattern": "oaicite",
+      "desc": "ChatGPT citation residue"
+    },
+    {
+      "pattern": "turn0search[0-9]+",
+      "desc": "ChatGPT search-citation residue"
+    },
+    {
+      "pattern": "contentreference",
+      "desc": "ChatGPT citation residue"
+    },
+    {
+      "pattern": "\\[cite:\\s*[0-9,\\s-]+\\]",
+      "desc": "Gemini citation residue"
+    },
+    {
+      "pattern": "\\[span_[0-9]+\\]\\(start_span\\)",
+      "desc": "Gemini span residue"
+    },
+    {
+      "pattern": "grok[_-]?card",
+      "desc": "Grok card residue"
+    },
+    {
+      "pattern": "attached_file[_0-9]*",
+      "desc": "Perplexity attachment residue"
+    },
+    {
+      "pattern": ":::writing[\\s\\S]{0,200}?:::",
+      "desc": "unclassified writing fence"
+    },
+    {
+      "pattern": "\\[INST\\]|<\\|im_start\\|>|<\\|end_of\\|>",
+      "desc": "template marker leak"
+    }
+  ],
+  "chatbot_artifacts": [
+    {
+      "pattern": "(as an ai( language model)?|as a (large )?language model|i('?m| am) an ai( language model)?)\\s*,?\\s*(i|my|we)\\s+(am|was|cannot|can'?t|could ?n'?t|do ?n'?t|lack|apologize|have)",
+      "desc": "AI self-declaration (self-referential)"
+    },
+    {
+      "pattern": "\\bhope (this|that) helps\\b",
+      "desc": "客服式收尾（无主语变体）"
+    },
+    {
+      "pattern": "i (hope this|hope that) helps",
+      "desc": "客服式收尾"
+    },
+    {
+      "pattern": "great question",
+      "desc": "客套开场"
+    },
+    {
+      "pattern": "certainly[!,] here (is|are)",
+      "desc": "顺从式开场"
+    },
+    {
+      "pattern": "of course[!,] here (is|are)",
+      "desc": "顺从式开场"
+    },
+    {
+      "pattern": "here (is|are) the (revised|rewritten|rephrased|improved) (version|text|essay|paragraph)",
+      "desc": "交付式开场"
+    },
+    {
+      "pattern": "let me know if you (need|want|have)",
+      "desc": "客服式收尾"
+    },
+    {
+      "pattern": "feel free to (modify|adjust|reach out)",
+      "desc": "客服式收尾"
+    },
+    {
+      "pattern": "i cannot fulfill|against my (guidelines|programming)",
+      "desc": "拒答残留"
+    }
+  ],
+  "knowledge_cutoff": [
+    {
+      "pattern": "as of my last (knowledge )?(update|training)",
+      "desc": "知识截止"
+    },
+    {
+      "pattern": "(my|our) knowledge cutoff",
+      "desc": "知识截止"
+    },
+    {
+      "pattern": "up until (my|the) (knowledge cutoff|last update)",
+      "desc": "知识截止"
+    },
+    {
+      "pattern": "i don't have (access to|information about|real-?time)",
+      "desc": "能力声明"
+    }
+  ],
+  "vocabulary": [
+    {
+      "w": "delve",
+      "alt": "examine / look closely at",
+      "weight": 1.2
+    },
+    {
+      "w": "delving",
+      "alt": "examining",
+      "weight": 1.2
+    },
+    {
+      "w": "tapestry",
+      "alt": "mix / weave (用具体名词)",
+      "weight": 1.5
+    },
+    {
+      "w": "testament",
+      "alt": "proof / sign",
+      "weight": 1.4
+    },
+    {
+      "w": "underscore",
+      "alt": "highlight / stress",
+      "weight": 1.2
+    },
+    {
+      "w": "underscores",
+      "alt": "highlights",
+      "weight": 1.2
+    },
+    {
+      "w": "underscored",
+      "alt": "highlighted",
+      "weight": 1.2
+    },
+    {
+      "w": "bolster",
+      "alt": "support / strengthen",
+      "weight": 1.1
+    },
+    {
+      "w": "garner",
+      "alt": "get / earn",
+      "weight": 1.3
+    },
+    {
+      "w": "intricate",
+      "alt": "complex / detailed",
+      "weight": 1.0
+    },
+    {
+      "w": "intricacies",
+      "alt": "details",
+      "weight": 1.1
+    },
+    {
+      "w": "meticulous",
+      "alt": "careful / thorough",
+      "weight": 1.1
+    },
+    {
+      "w": "meticulously",
+      "alt": "carefully",
+      "weight": 1.1
+    },
+    {
+      "w": "vibrant",
+      "alt": "lively / busy",
+      "weight": 1.1
+    },
+    {
+      "w": "seamless",
+      "alt": "smooth",
+      "weight": 1.0
+    },
+    {
+      "w": "seamlessly",
+      "alt": "smoothly",
+      "weight": 1.0
+    },
+    {
+      "w": "holistic",
+      "alt": "complete / overall",
+      "weight": 0.9
+    },
+    {
+      "w": "synergy",
+      "alt": "teamwork / combined effect",
+      "weight": 1.2
+    },
+    {
+      "w": "paramount",
+      "alt": "critical / top",
+      "weight": 1.1
+    },
+    {
+      "w": "myriad",
+      "alt": "many",
+      "weight": 1.2
+    },
+    {
+      "w": "plethora",
+      "alt": "many / too many",
+      "weight": 1.3
+    },
+    {
+      "w": "realm",
+      "alt": "field / area",
+      "weight": 1.0
+    },
+    {
+      "w": "landscape",
+      "alt": "field / situation（学术搭配见 term_guards）",
+      "weight": 1.0
+    },
+    {
+      "w": "navigate",
+      "alt": "handle / deal with（动词义）",
+      "weight": 0.7
+    },
+    {
+      "w": "foster",
+      "alt": "encourage / build",
+      "weight": 1.0
+    },
+    {
+      "w": "fostering",
+      "alt": "encouraging",
+      "weight": 1.0
+    },
+    {
+      "w": "leverage",
+      "alt": "use（动词）",
+      "weight": 1.0
+    },
+    {
+      "w": "leveraging",
+      "alt": "using",
+      "weight": 1.0
+    },
+    {
+      "w": "utilize",
+      "alt": "use",
+      "weight": 0.9
+    },
+    {
+      "w": "utilizes",
+      "alt": "uses",
+      "weight": 0.9
+    },
+    {
+      "w": "utilized",
+      "alt": "used",
+      "weight": 0.9
+    },
+    {
+      "w": "utilizing",
+      "alt": "using",
+      "weight": 0.9
+    },
+    {
+      "w": "crucial",
+      "alt": "key / central（降低频次即可）",
+      "weight": 0.6
+    },
+    {
+      "w": "pivotal",
+      "alt": "key（试验搭配见 term_guards）",
+      "weight": 1.0
+    },
+    {
+      "w": "robust",
+      "alt": "strong / solid（统计搭配见 term_guards）",
+      "weight": 0.7
+    },
+    {
+      "w": "ever-evolving",
+      "alt": "changing",
+      "weight": 1.2
+    },
+    {
+      "w": "ever-changing",
+      "alt": "changing",
+      "weight": 1.2
+    },
+    {
+      "w": "revolutionize",
+      "alt": "change greatly",
+      "weight": 1.2
+    },
+    {
+      "w": "unlock",
+      "alt": "open / reveal（隐喻义）",
+      "weight": 0.8
+    },
+    {
+      "w": "embark",
+      "alt": "start / begin",
+      "weight": 1.1
+    },
+    {
+      "w": "showcase",
+      "alt": "show / present",
+      "weight": 1.0
+    },
+    {
+      "w": "boast",
+      "alt": "have（表拥有时）",
+      "weight": 0.9
+    },
+    {
+      "w": "boasts",
+      "alt": "has（表拥有时）",
+      "weight": 0.9
+    },
+    {
+      "w": "harness",
+      "alt": "use / apply",
+      "weight": 0.9
+    },
+    {
+      "w": "crucially",
+      "alt": "importantly",
+      "weight": 0.9
+    },
+    {
+      "w": "notably",
+      "alt": "（高频时改具体陈述）",
+      "weight": 0.5
+    },
+    {
+      "w": "glean",
+      "alt": "learn / gather",
+      "weight": 1.2
+    },
+    {
+      "w": "amass",
+      "alt": "collect",
+      "weight": 1.0
+    },
+    {
+      "w": "endeavor",
+      "alt": "effort / try",
+      "weight": 1.0
+    },
+    {
+      "w": "unwavering",
+      "alt": "steady",
+      "weight": 1.2
+    },
+    {
+      "w": "indelible",
+      "alt": "lasting",
+      "weight": 1.2
+    },
+    {
+      "w": "interplay",
+      "alt": "interaction",
+      "weight": 0.9
+    },
+    {
+      "w": "multifaceted",
+      "alt": "complex / many-sided",
+      "weight": 1.0
+    },
+    {
+      "w": "nuanced",
+      "alt": "subtle / detailed（高频时降）",
+      "weight": 0.7
+    },
+    {
+      "w": "commitment to",
+      "alt": "（宣传腔）",
+      "weight": 0.8
+    },
+    {
+      "w": "causal",
+      "alt": "（Grok 高频词；仅统计，慎改）",
+      "weight": 0.3
+    },
+    {
+      "w": "empirical",
+      "alt": "（Grok 高频词；仅统计，慎改）",
+      "weight": 0.3
+    },
+    {
+      "w": "game-changer",
+      "alt": "major advance",
+      "weight": 1.2
+    },
+    {
+      "w": "game changer",
+      "alt": "major advance",
+      "weight": 1.2
+    }
+  ],
+  "term_guards": [
+    {
+      "term": "landscape",
+      "allow_before": [
+        "mutational",
+        "genomic",
+        "genetic",
+        "immune",
+        "tumor",
+        "tumour",
+        "thermal",
+        "evolutionary",
+        "adaptive",
+        "antigenic",
+        "epidemiologic",
+        "methylation",
+        "proteomic",
+        "transcriptomic",
+        "signaling",
+        "risk",
+        "treatment",
+        "therapeutic",
+        "regulatory",
+        "clinical",
+        "policy",
+        "mutation"
+      ]
+    },
+    {
+      "term": "pivotal",
+      "allow_after": [
+        "trial",
+        "trials",
+        "study",
+        "studies",
+        "phase"
+      ]
+    },
+    {
+      "term": "robust",
+      "allow_after": [
+        "regression",
+        "standard error",
+        "estimator",
+        "estimation",
+        "statistic",
+        "cluster",
+        "control",
+        "protocol",
+        "after",
+        "to adjustment",
+        "across"
+      ]
+    },
+    {
+      "term": "navigate",
+      "allow_before": [
+        "gps",
+        "navigation"
+      ]
+    },
+    {
+      "term": "leverage",
+      "allow_before": [
+        "financial",
+        "operating",
+        "operational",
+        "debt"
+      ],
+      "allow_after": [
+        "ratio",
+        "multiple"
+      ]
+    },
+    {
+      "term": "crucial",
+      "allow_after": [
+        "ligament"
+      ]
+    },
+    {
+      "term": "harness",
+      "allow_before": [
+        "safety",
+        "horse",
+        "climbing"
+      ]
+    }
+  ],
+  "regex_signals": [
+    {
+      "cat": "en_inflation",
+      "label": "意义拔高（significance inflation）",
+      "weight": 1.2,
+      "pattern": "serves? as a testament to|stands? as a testament|pivotal (moment|role)|indelible mark|underscor(e|es|ing) (the|its) (importance|significance)|cannot be overstated|marks? a significant milestone|a new era of|in the annals of|shed(s|ding)? light on the intricate|rich (cultural )?heritage",
+      "show_hits": true
+    },
+    {
+      "cat": "en_copula",
+      "label": "系动词回避（serves as / stands as）",
+      "weight": 0.6,
+      "pattern": "\\b(serves?|served) as (a|an|the)\\b|\\b(stands?|stood) as (a|an|the)\\b|\\brepresents? a (significant|notable|key|powerful)",
+      "show_hits": true
+    },
+    {
+      "cat": "en_promo",
+      "label": "宣传腔（promotional tone）",
+      "weight": 0.9,
+      "pattern": "\\bnestled\\b|in the heart of|breathtaking|stunning views|must-see|hidden gem|pristine|picturesque|vibrant (culture|community|city|atmosphere)|diverse array|wide (range|array) of (options|services|products)|state-of-the-art (facilities|amenities)|cutting-?edge (technology|solutions)",
+      "show_hits": true
+    },
+    {
+      "cat": "en_vague",
+      "label": "模糊归因（vague attribution）",
+      "weight": 0.9,
+      "pattern": "(experts|critics|observers|researchers) (say|said|argue|argued|believe|note|notes|suggest)|industry reports (say|suggest|indicate)|it is widely (believed|accepted|regarded)|many (believe|argue|consider)|some (argue|believe|suggest)|sources (say|suggest|close to)",
+      "show_hits": true
+    },
+    {
+      "cat": "en_ing",
+      "label": "表层 -ing 尾挂（superficial -ing）",
+      "weight": 0.7,
+      "pattern": ",? (highlighting|underscoring|reflecting|emphasizing|demonstrating|illustrating|contributing to|reinforcing|signaling) (the|its|their)\\b|providing (valuable )?insights into|offering a (glimpse|window) into|paving the way for",
+      "show_hits": true
+    },
+    {
+      "cat": "en_para",
+      "label": "负向平行句（not only…but also）",
+      "weight": 0.8,
+      "pattern": "not only .{3,60},? but also|not just .{3,60},? but |it('s| is) not (just|only|merely) about.{2,40},? it('s| is) about|rather than (a|an|merely) .{3,40},? it is",
+      "show_hits": true
+    },
+    {
+      "cat": "en_chal",
+      "label": "挑战/展望公式段（challenges formula）",
+      "weight": 0.9,
+      "pattern": "[Dd]espite (these|the|its) (challenges|obstacles|hurdles)|[Ff]uture (outlook|prospects) (look|appear|seem)|[Oo]nly time will tell|[Tt]he future of .{2,30} (looks|appears|seems) (bright|promising)|[Aa]s .{2,30} continues to (evolve|grow|develop)",
+      "show_hits": true
+    },
+    {
+      "cat": "en_filler",
+      "label": "填充短语（filler phrases）",
+      "weight": 0.6,
+      "pattern": "in order to\\b|due to the fact that|it is (important|worth) (to note|noting) that\\b|in today'?s (fast-?paced |modern |digital )?world|in the (digital age|realm of)|when it comes to\\b|at the end of the day|plays? a (crucial|vital|key|significant) role in",
+      "show_hits": true
+    },
+    {
+      "cat": "markdown",
+      "label": "Markdown 残留（纯文本语境）",
+      "weight": 0.8,
+      "pattern": "^#{1,6} \\S|\\*\\*[^*\\n]{2,60}\\*\\*|^[-*] \\[ \\] ",
+      "show_hits": true
+    }
+  ],
+  "auto_fixes": [
+    {
+      "pattern": "\\*\\*([^*\\n]+)\\*\\*",
+      "replacement": "\\1",
+      "note": "去加粗"
+    },
+    {
+      "pattern": "(?<!\\w)__([^_\\n]+)__(?!\\w)",
+      "replacement": "\\1",
+      "note": "去加粗"
+    },
+    {
+      "pattern": "(?m)^#{1,6}\\s+",
+      "replacement": "",
+      "note": "去标题井号"
+    },
+    {
+      "pattern": "`([^`\\n]+)`",
+      "replacement": "\\1",
+      "note": "去行内代码标记"
+    },
+    {
+      "pattern": "\\[cite:\\s*[0-9,\\s-]+\\]",
+      "replacement": "",
+      "note": "Gemini 引用残留"
+    },
+    {
+      "pattern": "\\[span_[0-9]+\\]\\(start_span\\)",
+      "replacement": "",
+      "note": "Gemini span 残留"
+    },
+    {
+      "pattern": "\\boaicite\\b[\"'\\[{ ]*[0-9]*",
+      "replacement": "",
+      "note": "ChatGPT residue"
+    },
+    {
+      "pattern": "turn0search[0-9]+",
+      "replacement": "",
+      "note": "ChatGPT 残留"
+    },
+    {
+      "pattern": "contentreference[^\\s\\]]*",
+      "replacement": "",
+      "note": "ChatGPT 残留"
+    },
+    {
+      "pattern": "grok[_-]?card",
+      "replacement": "",
+      "note": "Grok 残留"
+    },
+    {
+      "pattern": "attached_file[_0-9]*",
+      "replacement": "",
+      "note": "Perplexity 残留"
+    },
+    {
+      "pattern": "\\bin order to\\b",
+      "replacement": "to",
+      "note": "filler"
+    },
+    {
+      "pattern": "\\bdue to the fact that\\b",
+      "replacement": "because",
+      "note": "filler"
+    },
+    {
+      "pattern": "\\butilize\\b",
+      "replacement": "use",
+      "note": "大词换小词"
+    },
+    {
+      "pattern": "\\butilizes\\b",
+      "replacement": "uses",
+      "note": "大词换小词"
+    },
+    {
+      "pattern": "\\butilized\\b",
+      "replacement": "used",
+      "note": "大词换小词"
+    },
+    {
+      "pattern": "\\butilizing\\b",
+      "replacement": "using",
+      "note": "大词换小词"
+    },
+    {
+      "pattern": "\\bleverage\\b",
+      "replacement": "use",
+      "note": "大词换小词"
+    },
+    {
+      "pattern": "\\bdelve into\\b",
+      "replacement": "examine",
+      "note": "AI 词"
+    },
+    {
+      "pattern": "\\bdelves into\\b",
+      "replacement": "examines",
+      "note": "AI 词"
+    },
+    {
+      "pattern": "\\bDelving into\\b",
+      "replacement": "Examining",
+      "note": "AI 词"
+    },
+    {
+      "pattern": "\\bdelving into\\b",
+      "replacement": "examining",
+      "note": "AI 词"
+    },
+    {
+      "pattern": "\\bleveraging\\b",
+      "replacement": "using",
+      "note": "大词换小词"
+    },
+    {
+      "pattern": "\\bleverages\\b",
+      "replacement": "uses",
+      "note": "大词换小词"
+    },
+    {
+      "pattern": "\\bleveraged\\b",
+      "replacement": "used",
+      "note": "大词换小词"
+    },
+    {
+      "pattern": "\\bunderscore\\b",
+      "replacement": "highlight",
+      "note": "AI 词"
+    },
+    {
+      "pattern": "\\bunderscores\\b",
+      "replacement": "highlights",
+      "note": "AI 词"
+    },
+    {
+      "pattern": "\\bunderscored\\b",
+      "replacement": "highlighted",
+      "note": "AI 词"
+    },
+    {
+      "pattern": "\\bplays\\s+an?\\s+(?:crucial|vital|key|significant|important)\\s+role\\s+in\\b",
+      "replacement": "is central to",
+      "note": "系动词回避（第三人称单数）"
+    },
+    {
+      "pattern": "\\bplay\\s+an?\\s+(?:crucial|vital|key|significant|important)\\s+role\\s+in\\b",
+      "replacement": "are central to",
+      "note": "系动词回避（复数/过去时主语）"
+    },
+    {
+      "pattern": "\\bIt is important to note that\\b\\s*",
+      "replacement": "",
+      "note": "填充语删除"
+    },
+    {
+      "pattern": "\\bIt is worth noting that\\b\\s*",
+      "replacement": "",
+      "note": "填充语删除"
+    },
+    {
+      "pattern": "\\bplays? a (crucial|vital|key|significant) role in\\b",
+      "replacement": "is central to",
+      "note": "系动词回避"
+    },
+    {
+      "pattern": "\\b(Underscores?|underscored)\\b",
+      "replacement": "highlight",
+      "note": "AI 词（词形由调用方按主语修正）"
+    },
+    {
+      "pattern": "\\[\\[\\s*\\]\\]",
+      "replacement": "",
+      "note": "残留空括号清理"
+    }
+  ],
+  "aggressive_fixes": [
+    {
+      "pattern": "(?<!\\d)\\s[—–]\\s(?!\\d)",
+      "replacement": ", ",
+      "note": "破折号降噪"
+    },
+    {
+      "pattern": "\\bin today'?s (fast-?paced |modern |digital )?world,?\\s*",
+      "replacement": "",
+      "note": "空泛开场删除"
+    },
+    {
+      "pattern": "\\bat the end of the day,?\\s*",
+      "replacement": "",
+      "note": "空泛过渡删除"
+    },
+    {
+      "pattern": "\\s+([,.!?;])",
+      "replacement": "\u0001",
+      "note": "删除残留后的悬挂空格"
+    }
+  ],
+  "curly_quote_fix": true,
+  "_filler_note": "auto_fixes 是语法安全的机械替换；-ing 尾挂、平行句、宣传腔等需按 style_guide_en.md 人工/agent 深改。"
+}

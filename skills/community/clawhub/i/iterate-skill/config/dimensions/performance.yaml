@@ -1,0 +1,8 @@
+# Performance review dimension
+name: "性能"
+name_en: "Performance"
+priority: high
+focus: |
+  N+1 queries, unbounded caches/queues, retain cycles, main-thread blocking.
+  O(n²) or worse algorithms, redundant computation, large allocations in loops.
+  Startup bottlenecks, synchronous I/O in async paths.

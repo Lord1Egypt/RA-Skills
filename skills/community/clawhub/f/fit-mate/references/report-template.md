@@ -1,19 +1,8 @@
-# Weekly PDF Report Template
+# Weekly Report Template
 
 ## Structure
 
 Use only the sections that contain real signal. Omit empty or low-value sections instead of filling the report with placeholders.
-Design for a professional PDF, not a chat transcript dump.
-
-## Layout Direction
-
-- Start from a clean one-page presentation, but allow the canvas height or page count to expand when Chinese copy or coach commentary genuinely needs more room.
-- Use a restrained, professional visual style: white or light neutral background, dark text, and one or two muted accent colors.
-- Use simple icons for weight, training, nutrition, hydration, sleep, and recovery.
-- Prefer compact charts and scorecards over long prose blocks.
-- If the renderer supports it, use small line or bar charts. If it does not, use clean text scorecards and omit the unsupported visual.
-- Nutrition, hydration, and sleep notes must wrap inside their cards. Expand the card height instead of letting text clip outside the frame.
-- Do not force the `Coach Verdict` block to match the height of adjacent cards. Let it grow naturally and extend the PDF if needed.
 
 ```
 Weekly Report — Week of [date range]
@@ -25,20 +14,16 @@ Here's your week in review.
 ---
 
 Body Progress
-- [weight icon] weekly summary card
 - Week start: XX.X kg
 - Week end: XX.X kg
 - Weekly change: [+/- X.X kg]
-- [small weight trend chart if enough data points exist]
 [Coach's comment — celebrate, explain plateau, or reassure on fluctuation]
 
 ---
 
 Training Scorecard
-- [training icon] adherence card
 - Sessions: X completed (vs X planned if reliably known)
 - Time: X hours X minutes
-- [completion bar or score if supported]
 
 Highlights:
 - [1-2 standout wins only]
@@ -46,21 +31,12 @@ Highlights:
 ---
 
 Nutrition Compliance
-- [nutrition icon] summary card
 - [1 short food summary]
 - [1 actionable nutrition note]
 
 ---
 
-Hydration And Sleep
-- [hydration icon] target-hit summary
-- [sleep icon] average sleep and lowest night
-- [small bars or compact scorecards if supported]
-
----
-
 Biometrics (if watch data)
-- [recovery icon] recovery card
 - Resting HR: XX bpm (trend)
 - HRV: XX ms (trend)
 - Sleep: X.X hours avg (lowest night: X.Xh)
@@ -69,7 +45,7 @@ Biometrics (if watch data)
 ---
 
 Coach Rex's Verdict
-[Personal, data-specific conclusion. Keep it as short or as detailed as the week's signal requires, and expand the layout instead of compressing the copy.]
+[2-3 short, personal, data-specific sentences. THE HEART of the report.]
 
 ---
 
@@ -125,7 +101,5 @@ Next Week
 - Omit empty sections instead of writing placeholders or generic filler
 - If a section can be said in one line, prefer one line
 - Keep the verdict to `2-3` short sentences
-- Keep charts small and summary-oriented; one useful chart is better than five decorative ones
-- Only show icons or chart blocks when they help scanning speed and professionalism
 - Do not paste meal-by-meal logs, set-by-set workout history, raw watch dumps, or long motivational filler
 - If data is missing, state that briefly instead of padding the report

@@ -1,42 +1,58 @@
-## Description: <br>
-AI-powered SEO content analysis and optimization for Google ranking and AI search visibility. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+SEO Optimizer Pro analyzes HTML or plain text for readability, keyword density, technical SEO structure, and AI search optimization, then generates model-backed recommendations through the user's chosen AI provider.
 
-## Publisher: <br>
-[vedantsingh60](https://clawhub.ai/user/vedantsingh60) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vedantsingh60](https://clawhub.ai/user/vedantsingh60)
 
-## Use Case: <br>
-Content marketers, SEO professionals, documentation teams, and ecommerce or publishing teams use this skill to analyze existing content, generate SEO and AEO recommendations, and prepare optimization reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Analyzed content may be transmitted to the selected third-party AI provider. <br>
-Mitigation: Review the chosen provider's data handling terms and test with non-sensitive sample content before analyzing confidential, regulated, or proprietary material. <br>
-Risk: The artifact contains conflicting privacy statements about external transmission. <br>
-Mitigation: Treat claims of no external transmission as unreliable until the publisher resolves the documentation conflict. <br>
-Risk: Provider API calls may consume paid quota. <br>
-Mitigation: Use the intended provider API key only, monitor provider usage, and configure billing limits where available. <br>
+## Use Case:
 
+Content marketers, SEO professionals, documentation teams, and ecommerce publishers use this skill to audit existing content and generate SEO and AEO recommendations for search ranking and AI-answer visibility.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/vedantsingh60/seo-optimizer-pro) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, guidance] <br>
-**Output Format:** [Formatted SEO analysis reports with metrics, keyword findings, optimization suggestions, AEO recommendations, and optional JSON-style result objects.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a provider API key and sends analyzed content excerpts to the selected AI provider.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.8 (source: server release metadata, manifest.yaml, SKILL.md, and seo_optimizer.py) <br>
+Risk: Analyzed content excerpts are sent to the selected third-party AI provider, and the artifact contains conflicting privacy statements.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use non-sensitive content unless the privacy wording is corrected and the selected provider's data handling terms have been reviewed.
+
+Risk: Installing every listed provider SDK increases dependency surface beyond what most users need.
+
+Mitigation: Install only the SDK required for the chosen model provider.
+
+Risk: SEO and AEO recommendations may be inaccurate or may not improve rankings.
+
+Mitigation: Review recommendations before publishing and validate changes against the user's SEO strategy and analytics.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/vedantsingh60/skills/seo-optimizer-pro)
+- [Publisher profile](https://clawhub.ai/user/vedantsingh60)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, guidance]
+
+**Output Format:** [Markdown-style text reports and structured Python or JSON-compatible analysis objects]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses content excerpts with the selected AI provider and returns SEO metrics, optimization suggestions, AEO recommendations, and estimated impact.]
+
+## Skill Version(s):
+
+1.0.8 (source: server release metadata, manifest.yaml, seo_optimizer.py)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

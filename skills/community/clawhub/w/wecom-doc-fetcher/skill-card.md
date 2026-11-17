@@ -1,38 +1,53 @@
-## Description: <br>
-Fetches WeChat Work developer documentation pages and converts their authenticated SPA content into clean Markdown files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches WeChat Work developer documentation pages through an authenticated session and converts the returned content into clean Markdown for local use.
 
-## Publisher: <br>
-[mouzhi](https://clawhub.ai/user/mouzhi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[mouzhi](https://clawhub.ai/user/mouzhi)
 
-## Use Case: <br>
-Developers and technical writers use this skill to save authorized WeChat Work API documentation pages as local Markdown, including pages whose content is loaded by a client-side application. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Session cookies can grant access to authenticated WeChat Work documentation and should be treated as secrets. <br>
-Mitigation: Use only authorized documents, keep cookies out of commits, screenshots, shared logs, and shell history, and prefer an isolated Python environment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mouzhi/wecom-doc-fetcher) <br>
-- [WeChat Work developer documentation](https://developer.work.weixin.qq.com/document/path/*) <br>
+## Use Case:
 
+Developers and technical writers use this skill to save authenticated WeChat Work developer documentation pages as Markdown, especially for Obsidian or local knowledge-base workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python and shell command examples; generated agent outputs may include Markdown files converted from documentation pages.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use a URL, optional output file path, optional doc_id, and optional session cookies.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill handles live WeChat Work session cookies in plaintext workflows.
+
+Mitigation: Use short-lived, least-privileged sessions; avoid pasting real cookies into source files or shell history; remove or rotate exposed cookies.
+
+Risk: The local script contacts developer.work.weixin.qq.com using the user's authenticated session.
+
+Mitigation: Run it only in a trusted local environment, preferably inside a virtual environment with pinned dependency versions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mouzhi/skills/wecom-doc-fetcher)
+- [WeChat Work developer documentation](https://developer.work.weixin.qq.com/document/path/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local Markdown files or stdout text from fetched WeChat Work documentation content.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

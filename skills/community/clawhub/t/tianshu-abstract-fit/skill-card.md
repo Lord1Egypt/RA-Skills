@@ -1,40 +1,52 @@
-## Description: <br>
-Checks abstract length and organizes draft sentences into rough background, methods, results, and conclusion Markdown slots for human revision. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Checks approximate Chinese and English abstract length and roughly fills background, method, results, and conclusion draft slots in sentence order for manual revision.
 
-## Publisher: <br>
-[wangshengli0421](https://clawhub.ai/user/wangshengli0421) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[wangshengli0421](https://clawhub.ai/user/wangshengli0421)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External students and writers use this skill to check whether a thesis or course-report abstract is roughly within a target length and to create a four-part draft structure for later editing.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The abstract sections are heuristic and may be inaccurate or unsuitable for academic submission as written.
+
+Mitigation: Manually review and rewrite the generated structure against the target school, journal, or course format before submitting.
+
+Risk: The tool reads user-provided text or a local file path, so users may accidentally process sensitive draft content.
+
+Mitigation: Use only intended local files or pasted text, and review the input path before running the script.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Students and academic writers use this skill to check a draft abstract against a rough character limit and arrange it into common academic abstract sections before manual editing. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The section split is heuristic and may produce incomplete or misleading academic structure. <br>
-Mitigation: Review and rewrite each generated section before using it in coursework, thesis, or report submissions. <br>
-Risk: The file input mode reads the local file path selected by the user. <br>
-Mitigation: Run it only on abstract text or draft files intentionally chosen for this task. <br>
+**Output Format:** [Markdown with section headings, bullets, and quote blocks]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wangshengli0421/tianshu-abstract-fit) <br>
+**Other Properties Related to Output:** [Reads user-provided abstract text or a local file path and uses an optional maximum character count.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with a character count and four quoted section blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Heuristic sentence-order segmentation; the draft should be reviewed and rewritten before academic submission.] <br>
+1.0.0 (source: server release evidence and artifact/clawhub.json)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and clawhub.json) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

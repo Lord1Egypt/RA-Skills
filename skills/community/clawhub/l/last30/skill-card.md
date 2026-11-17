@@ -1,43 +1,57 @@
-## Description: <br>
-Researches a topic across Reddit, X/Twitter, Hacker News, YouTube, Polymarket, and web search from the last 30 days, then synthesizes a grounded, cited briefing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deep research across Reddit, X/Twitter, Hacker News, YouTube, Polymarket, and the web from the last 30 days that synthesizes findings into a grounded, cited briefing for trends, competitive analysis, latest-topic research, and tool or product comparisons.
 
-## Publisher: <br>
-[ralph-oei](https://clawhub.ai/user/ralph-oei) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ralph-oei](https://clawhub.ai/user/ralph-oei)
 
-## Use Case: <br>
-Developers, analysts, and operators use this skill to research recent trends, news, recommendations, and product comparisons across multiple public sources and produce a concise cited briefing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Research topics are sent to external services including Brave Search, Reddit, Hacker News, YouTube search, Polymarket, and optionally X/Twitter. <br>
-Mitigation: Avoid submitting confidential topics, and use the skill only when the listed services are acceptable for the research context. <br>
-Risk: Optional X/Twitter credentials are passed to the local `bird` executable when AUTH_TOKEN and CT0 are set. <br>
-Mitigation: Leave AUTH_TOKEN and CT0 unset unless X/Twitter search is required, and verify the `bird` executable on PATH before providing session credentials. <br>
-Risk: Briefings are saved to ~/Documents/Last30Days/ by default. <br>
-Mitigation: Use a controlled save directory when needed and review or remove saved reports that contain sensitive research topics. <br>
+## Use Case:
 
+Developers, analysts, and other external users can use this skill to gather recent multi-source research on trends, news, competitive questions, recommendations, and product comparisons. It produces a cited briefing from public discussion, search, video, prediction-market, and web sources.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ralph-oei/last30) <br>
-- [Publisher profile: ralph-oei](https://clawhub.ai/user/ralph-oei) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, guidance] <br>
-**Output Format:** [Markdown briefing by default, with optional compact text or JSON output from script emit modes.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports are saved to ~/Documents/Last30Days/ by default and support quick, balanced, and deep result limits.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release metadata and artifact _meta.json; SKILL.md frontmatter says 1.1.0) <br>
+Risk: Research topics are sent to external services used by the skill.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid confidential, regulated, or sensitive topics unless the destination services are approved for that use.
+
+Risk: X search uses session cookie values that are passed to a local command.
+
+Mitigation: Enable X search only when needed, use low-sensitivity accounts where possible, and revoke or rotate session credentials after use.
+
+Risk: Research reports are saved automatically under ~/Documents/Last30Days.
+
+Mitigation: Review saved reports before sharing and choose an alternate save directory when local persistence is not appropriate.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/ralph-oei/skills/last30)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, JSON, Files, Guidance]
+
+**Output Format:** [Markdown briefing with cited sections and optional JSON result payload]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Auto-saves a Markdown report under ~/Documents/Last30Days unless a different save directory is supplied.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

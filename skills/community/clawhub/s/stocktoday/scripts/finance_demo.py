@@ -21,9 +21,9 @@ import pandas as pd
 sys.path.insert(0, os.path.dirname(__file__) if "__file__" in dir() else ".")
 
 try:
-    from proxy_demo import get_client
+    from proxy_demo import get_client, enable_utf8_stdout
 except ImportError:
-    from scripts.proxy_demo import get_client
+    from scripts.proxy_demo import get_client, enable_utf8_stdout
 
 
 def full_finance_snapshot(pro: "ts.pro_api", ts_code: str, period: str) -> dict:
@@ -74,6 +74,7 @@ def trend_8_quarters(pro: "ts.pro_api", ts_code: str) -> pd.DataFrame:
 # ============================================================
 
 if __name__ == "__main__":
+    enable_utf8_stdout()
     pro = get_client()
     print(f"✅ 拉财务快照: 600519.SH / 20241231")
 

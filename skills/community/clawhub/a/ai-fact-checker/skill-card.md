@@ -1,42 +1,53 @@
-## Description: <br>
-AI Fact Checker helps agents extract factual claims from text, search the web for corroborating evidence, score confidence, and produce a correction-oriented fact-check report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI Fact Checker verifies factual claims in AI-generated text by extracting checkable statements, searching the web, assigning confidence scores, and suggesting corrections.
 
-## Publisher: <br>
-[rudagebil11-jpg](https://clawhub.ai/user/rudagebil11-jpg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rudagebil11-jpg](https://clawhub.ai/user/rudagebil11-jpg)
 
-## Use Case: <br>
-External users and developers use this skill to check AI-generated or user-provided text for factual claims, compare those claims against web search results, and receive a concise confidence-scored Markdown report with suggested corrections. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Text submitted for checking is sent to web search, which can expose secrets, private documents, personal data, or proprietary content. <br>
-Mitigation: Use the skill only on content that is acceptable to share with search providers, and add explicit user notice and consent before running checks on sensitive text. <br>
-Risk: The current implementation invokes a shell command using user-provided claim text, which creates command-injection risk for crafted input. <br>
-Mitigation: Replace shell-string execution with a structured API call or execFile-style invocation before running the skill on untrusted text. <br>
-Risk: Fact-check scores are based on keyword overlap against search snippets and can miss nuance, stale sources, or contradictory evidence. <br>
-Mitigation: Treat the Markdown report as review guidance and manually verify high-impact claims against authoritative sources. <br>
+## Use Case:
 
+External users and developers use this skill to check factual claims in AI-generated answers, documents, or short statements. It produces a structured fact-checking report with per-claim confidence scores, source links, and correction guidance.
 
-## Reference(s): <br>
-- [Ai Fact Checker ClawHub release](https://clawhub.ai/rudagebil11-jpg/ai-fact-checker) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown fact-check report with confidence scores, verdicts, source links, and suggested corrections.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses web search results as evidence and returns concise claim-level and overall assessments.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: ClawHub release evidence) <br>
+Risk: Text submitted for checking is passed to online search, which can expose secrets or confidential material.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Warn users not to submit secrets or confidential text, and route sensitive claims through an approved internal search or review process.
+
+Risk: The scanner reports that checked text can become shell command execution through the script's current command construction.
+
+Mitigation: Review before installing, replace shell string interpolation with an argument-array API such as execFileSync, and add input length and timeout controls.
+
+## Reference(s):
+
+- [Ai Fact Checker ClawHub page](https://clawhub.ai/rudagebil11-jpg/skills/ai-fact-checker)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown fact-checking report with confidence scores, verdicts, source links, and corrections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires web search access; no additional API key is described in the artifact.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

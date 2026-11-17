@@ -1,49 +1,63 @@
-## Description: <br>
-Convert Markdown text to beautiful Xiaohongshu (XHS) style card images with 5 themes, deterministic browser screenshot rules, auto-pagination, smart title extraction, and AI-generated decorative backgrounds. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert Markdown text to beautiful Xiaohongshu (XHS) style card images with 5 themes, deterministic browser screenshot rules, auto-pagination, smart title extraction, and AI-generated decorative backgrounds.
 
-## Publisher: <br>
-[zhang122994917](https://clawhub.ai/user/zhang122994917) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhang122994917](https://clawhub.ai/user/zhang122994917)
 
-## Use Case: <br>
-Developers and content automation users use this skill to turn Markdown articles or plain text into XHS-ready multi-page PNG card images with controlled pagination, themes, and optional decorative AI backgrounds. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Markdown content or derived prompts may be processed by configured external AI or image providers. <br>
-Mitigation: Disable AI backgrounds or cloud upload for private material and use scoped API keys. <br>
-Risk: Unpinned Python dependency ranges can reduce deployment reproducibility. <br>
-Mitigation: Pin dependency versions before production deployment. <br>
-Risk: Generated card images can clip or overflow if browser rendering is not stabilized. <br>
-Mitigation: Follow the bundled browser screenshot contract, including font readiness checks, stable card geometry, element-only screenshots, and output-size validation. <br>
+## Use Case:
 
+Developers and content creators use this skill to convert Markdown articles or plain text into Xiaohongshu-style multi-page PNG card images with controlled themes, pagination, and screenshot sizing.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/zhang122994917/xhs-md2pic) <br>
-- [Publisher profile](https://clawhub.ai/user/zhang122994917) <br>
-- [API Reference](references/api-reference.md) <br>
-- [Browser Screenshot Spec](references/browser-screenshot-spec.md) <br>
-- [Theme Color Palettes](references/themes.md) <br>
-- [Input Schema](templates/input-schema.json) <br>
-- [DashScope image synthesis API](https://dashscope.aliyuncs.com/api/v1/services/aigc/text2image/image-synthesis) <br>
-- [Gemini generateContent API](https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, code, configuration, guidance] <br>
-**Output Format:** [JSON describing generated XHS card images, including page metadata and either image URLs or data URIs.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces ordered PNG card pages with title, theme, total page count, dimensions, byte size, and upload status when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence) <br>
+Risk: User Markdown may be rendered as active browser HTML without documented sanitization or network blocking.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use sanitized HTML, block scripts and unexpected network requests, and render shared or untrusted content in an isolated browser context.
+
+Risk: The skill can use external LLM or image-generation services and optional OSS upload.
+
+Mitigation: Confirm provider use is acceptable, scope API and OSS credentials narrowly, and disable AI backgrounds or upload paths when they are not needed.
+
+Risk: Dependencies are listed as open version ranges.
+
+Mitigation: Pin and scan dependencies before production deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhang122994917/skills/xhs-md2pic)
+- [Input schema](templates/input-schema.json)
+- [Browser screenshot spec](references/browser-screenshot-spec.md)
+- [Theme color palettes](references/themes.md)
+- [Image generation API reference](references/api-reference.md)
+- [DashScope Wanx image synthesis API](https://dashscope.aliyuncs.com/api/v1/services/aigc/text2image/image-synthesis)
+- [Gemini generateContent API](https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent)
+
+## Skill Output:
+
+**Output Type(s):** [Images, JSON metadata, Files]
+
+**Output Format:** [PNG card images with JSON page metadata, URLs, or data URIs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Default output is one or more 1125x1500 PNG cards at export_scale=3; optional OSS upload can return page URLs.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

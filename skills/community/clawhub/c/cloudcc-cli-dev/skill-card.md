@@ -1,47 +1,68 @@
-## Description: <br>
-CloudCC CLI Dev helps agents break down CloudCC CRM customization requirements and use cloudcc-cli (`cc`) to create, pull, and publish custom objects, fields, menus, applications, backend classes, schedules, triggers, and Vue custom components. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+CloudCC CRM development CLI assistant for requirements breakdown, solution selection, and CloudCC asset creation, pull, and publish workflows using cloudcc-cli.
 
-## Publisher: <br>
-[androidxhm](https://clawhub.ai/user/androidxhm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[androidxhm](https://clawhub.ai/user/androidxhm)
 
-## Use Case: <br>
-Developers and CloudCC implementation teams use this skill to translate CRM business requirements into concrete CloudCC assets and execute the supporting `cc` CLI workflows. It supports planning, environment setup, object and field modeling, backend logic, scheduled jobs, triggers, and Vue custom component work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can install a global `cloudcc-cli` package, which may change the local developer environment or introduce package supply-chain risk. <br>
-Mitigation: Use a verified or pinned `cloudcc-cli` package before installation and prefer a controlled developer environment. <br>
-Risk: `cc` create, publish, and upload workflows can modify CloudCC CRM assets when run with developer credentials. <br>
-Mitigation: Use a non-production CloudCC environment first, confirm the target org and environment, review affected assets, and define a rollback plan before execution. <br>
-Risk: Developer credentials and safety tokens may be exposed if copied into generated output, code, or commits. <br>
-Mitigation: Use least-privilege credentials, keep secrets out of generated files and source control, and review outputs before publishing or committing. <br>
+## Use Case:
 
+Developers and engineers use this skill to translate CloudCC CRM customization requests into delivery plans and to operate cloudcc-cli workflows for objects, fields, menus, applications, backend classes, schedulers, triggers, and Vue custom components.
 
-## Reference(s): <br>
-- [Requirements Breakdown](artifact/REQUIREMENTS_BREAKDOWN.md) <br>
-- [Install and Bootstrap](artifact/INSTALL_AND_BOOTSTRAP.md) <br>
-- [Objects and Fields](artifact/OBJECTS_AND_FIELDS.md) <br>
-- [Backend Code](artifact/BACKEND_CODE.md) <br>
-- [Vue Custom Component](artifact/VUE_CUSTOM_COMPONENT.md) <br>
-- [CLI Cheatsheet](artifact/CLI_CHEATSHEET.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with command snippets, configuration notes, and code guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include CloudCC asset plans, generated code snippets, and `cc` command sequences for the selected workflow.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill can guide installation of an unpinned global cloudcc-cli package, including sudo-based installation on macOS.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sudo npm installation where possible, pin and verify the cloudcc-cli package before use, and install only when CloudCC CRM development tooling is intentionally required.
+
+Risk: The skill can guide pull and publish operations that affect CloudCC CRM assets using developer credentials.
+
+Mitigation: Use least-privileged CloudCC credentials, work in a development or staging org first, and require a human diff and review before pull or publish commands.
+
+Risk: CloudCC developer keys, safety marks, secret keys, open secret keys, or tokens could be exposed through generated configuration or committed files.
+
+Mitigation: Do not include real secrets in output, code, or commits; keep local configuration private and ignore secret-bearing configuration files in source control.
+
+Risk: Pull operations and snippet synchronization can overwrite local logic inside the publishable source regions.
+
+Mitigation: Keep publishable backend logic only inside the documented source markers, remove local-only debug code before synchronization, and review diffs after pull operations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/androidxhm/skills/cloudcc-cli-dev)
+- [SKILL.md](artifact/SKILL.md)
+- [REQUIREMENTS_BREAKDOWN.md](artifact/REQUIREMENTS_BREAKDOWN.md)
+- [INSTALL_AND_BOOTSTRAP.md](artifact/INSTALL_AND_BOOTSTRAP.md)
+- [OBJECTS_AND_FIELDS.md](artifact/OBJECTS_AND_FIELDS.md)
+- [BACKEND_CODE.md](artifact/BACKEND_CODE.md)
+- [VUE_CUSTOM_COMPONENT.md](artifact/VUE_CUSTOM_COMPONENT.md)
+- [CLI_CHEATSHEET.md](artifact/CLI_CHEATSHEET.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell command examples, code snippets, and configuration instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include CloudCC asset plans, command sequences, generated code snippets, and review checklists.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

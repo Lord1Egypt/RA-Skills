@@ -1,42 +1,55 @@
-## Description: <br>
-Show bilingual learning tips while OpenClaw is thinking, with 75 tips covering AI interaction, prompt engineering, productivity, and wisdom across Telegram, Feishu, WhatsApp, and other OpenClaw-supported platforms. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Shows bilingual learning tips while OpenClaw is thinking, with 75 tips covering AI interaction, prompt engineering, productivity, and wisdom across Telegram, Feishu, WhatsApp, and other platforms.
 
-## Publisher: <br>
-[dongsheng123132](https://clawhub.ai/user/dongsheng123132) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[dongsheng123132](https://clawhub.ai/user/dongsheng123132)
 
-## Use Case: <br>
-External OpenClaw users and developers use this skill to show short bilingual learning tips while an AI response is being generated or when a user explicitly asks for tips. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill adds tip messages during normal chats, which may be unwanted in some conversations. <br>
-Mitigation: Install only when waiting-time tips are desired, and choose zh-only or en-only modes if bilingual output is not appropriate. <br>
-Risk: Platform bot examples require messaging accounts, bot tokens, or WhatsApp authentication files. <br>
-Mitigation: Run examples only with accounts you control and keep bot tokens and WhatsApp authentication files private. <br>
+## Use Case:
 
+OpenClaw users and developers use this skill to show short bilingual learning tips during AI response wait time or when a user asks for tips. It supports chat experiences across Telegram, Feishu/Lark, WhatsApp, Discord, Slack, and other OpenClaw-supported platforms.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/dongsheng123132/waiting-tips) <br>
-- [README](README.md) <br>
-- [Skill definition](SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Configuration] <br>
-**Output Format:** [Plain text or Markdown tip messages, plus JavaScript helper code and platform adapter configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports emoji, card, zh-only, and en-only display styles; count is bounded from 1 to 5 tips per call.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter, package.json, server release metadata) <br>
+Risk: Optional Telegram, Feishu, and WhatsApp bot examples use messaging credentials and local WhatsApp authentication state.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat bot tokens, app secrets, and local auth state as sensitive; keep them out of source control and pin dependencies when adapting examples.
+
+Risk: Waiting tips are short educational prompts and may not match every organization's communication or AI-use policy.
+
+Mitigation: Review and customize the text files in artifact/tips before deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/dongsheng123132/skills/waiting-tips)
+- [README](artifact/README.md)
+- [Skill Definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Plain text or Markdown-formatted bilingual tip messages]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Optional style and count parameters select emoji, card, Chinese-only, English-only, and one-to-five-tip outputs.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, package.json, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

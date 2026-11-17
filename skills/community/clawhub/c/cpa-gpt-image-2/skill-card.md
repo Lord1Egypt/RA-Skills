@@ -1,43 +1,53 @@
-## Description: <br>
-Use a text model such as gpt-5.4 with the image_generation tool over an OpenAI-compatible /v1/responses endpoint, matching the CPA blog example. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use a text model such as gpt-5.4 with the image_generation tool over an OpenAI-compatible /v1/responses endpoint, matching the CPA blog example.
 
-## Publisher: <br>
-[shiftshen](https://clawhub.ai/user/shiftshen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shiftshen](https://clawhub.ai/user/shiftshen)
 
-## Use Case: <br>
-Developers and agents use this skill to generate image files through an OpenAI-compatible Responses API by calling a text model with the image_generation tool. It is useful when a gateway expects the CPA blog request pattern instead of direct gpt-image-2 model calls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts and API credentials are sent to the configured image-generation endpoint. <br>
-Mitigation: Use only trusted endpoints, prefer explicit IMAGE_GEN_BASE_URL and IMAGE_GEN_KEY values, and use scoped or disposable API keys where possible. <br>
-Risk: Generated images are written to the requested local output path. <br>
-Mitigation: Choose an output path where directory creation and file overwriting are acceptable. <br>
-Risk: Prompt content may be sensitive when sent to the configured provider. <br>
-Mitigation: Avoid including secrets, personal data, or confidential material in image prompts. <br>
+## Use Case:
 
+Developers and agents use this skill to generate image files by calling an OpenAI-compatible Responses API with a text model and the image_generation tool. It is intended for environments where direct gpt-image-2 model calls are not exposed by the gateway.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/shiftshen/cpa-gpt-image-2) <br>
-- [Publisher profile](https://clawhub.ai/user/shiftshen) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, API Calls, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [PNG, JPEG, or WebP image files plus Markdown guidance and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads endpoint, model, and credential settings from environment variables; writes the first base64 image returned by the configured Responses API endpoint.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Credentials may be sent to an unintended or unencrypted endpoint if the base URL and API key are mismatched or fall back from local configuration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted HTTPS endpoints, set the matching base URL and API key explicitly, and avoid relying on fallback credentials from models.json.
+
+Risk: Image prompts and generated output may contain sensitive information that leaves the local environment.
+
+Mitigation: Do not include secrets or sensitive data in prompts unless the endpoint and output path are approved.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/shiftshen/skills/cpa-gpt-image-2)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Image file output with Markdown and shell command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes the first base64 image returned by the Responses API to a caller-provided output path.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,60 @@
-## Description: <br>
-Use when you need to route a user query to the best specialized skill; AgentOctopus semantically matches queries against installed skills, executes the top match, and falls back to a direct LLM answer when no skill fits. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AgentOctopus routes a natural-language query to the best installed specialized skill, executes the selected skill, and falls back to a direct LLM answer when no skill fits.
 
-## Publisher: <br>
-[leiw5173](https://clawhub.ai/user/leiw5173) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[leiw5173](https://clawhub.ai/user/leiw5173)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and agent operators use AgentOctopus to route user requests across installed skills, manage skill installation and updates, and configure CLI or gateway access for skill execution.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can install, overwrite, update, evolve, and execute skills from remote sources with limited documented trust controls.
+
+Mitigation: Install only from trusted publishers and reviewed sources; prefer pinned versions and review replacements before using overwrite or update paths.
+
+Risk: Arbitrary cloud sync URLs or forced overwrites can change the local skill set or routing behavior.
+
+Mitigation: Avoid arbitrary cloud URLs, use dry-run or check modes first, and reserve --force for reviewed replacements.
+
+Risk: Opt-in evolution can alter skill descriptions, triggers, or instructions based on usage signals.
+
+Mitigation: Keep evolution disabled unless adaptive behavior is intended, and review proposed risky changes plus rollback history before approval.
+
+Risk: Credentials may be exposed if real API keys are pasted directly into shell commands.
+
+Mitigation: Use the configured secrets file or interactive setup flow, and avoid entering real keys in command lines that may be stored in shell history.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and agent operators use Agentoctopus to route natural language tasks to installed specialized skills, manage the local skill registry, and fall back to a configured LLM when no skill fits. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on an external global AgentOctopus CLI that can execute, install, overwrite, update, and modify other skills. <br>
-Mitigation: Install only if you trust the external AgentOctopus npm package and review downstream package behavior before using sync, update, force, or gateway exposure. <br>
-Risk: The skill requires sensitive LLM credentials and stores secrets under the local AgentOctopus configuration directory. <br>
-Mitigation: Use least-privilege API keys, protect ~/.agentoctopus/.env, and rotate credentials if that file or host is exposed. <br>
-Risk: Opt-in skill evolution can propose or automatically apply changes to skill files based on usage signals. <br>
-Mitigation: Keep evolution disabled unless intentional, review proposed changes and rollback history, and scan skills before deployment. <br>
+**Output Format:** [Markdown with inline shell commands, TypeScript examples, and JSON request or response shapes]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/leiw5173/agentoctopus) <br>
+**Other Properties Related to Output:** [May include routed skill responses, direct LLM fallback answers, setup guidance, masked configuration summaries, and error guidance.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text or Markdown responses from the selected skill or LLM fallback, with CLI status output and configuration guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May execute installed skills, manage local skill state, or answer directly through the configured LLM.] <br>
+1.3.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.3.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

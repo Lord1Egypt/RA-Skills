@@ -1,43 +1,62 @@
-## Description: <br>
-Fetches public Weibo real-time hot search trends anonymously through Chrome or Edge CDP and saves the results as a Markdown table. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Anonymously fetches Weibo real-time hot search rankings without a Weibo account and saves the results as a Markdown file.
 
-## Publisher: <br>
-[kazeMace](https://clawhub.ai/user/kazeMace) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kazemace](https://clawhub.ai/user/kazemace)
 
-## Use Case: <br>
-Developers and external users can ask an agent to collect the current public Weibo hot search list without a Weibo login and save ranked results, heat values, tags, and search links in a local Markdown file. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill launches and controls a local Chrome or Edge browser through a debugging port. <br>
-Mitigation: Install and run it only in environments where local browser automation is acceptable, and review the browser profile and debug-port settings before use. <br>
-Risk: The browser profile may retain session state if a user logs into Weibo during automation. <br>
-Mitigation: Use a dedicated empty browser profile and avoid logging into Weibo unless persistent session data is intentional. <br>
-Risk: The skill can terminate browser debugging processes associated with its profile. <br>
-Mitigation: Check that the configured profile is not used for other work before allowing automatic browser-process cleanup. <br>
+## Use Case:
 
+External users and developers can use this skill to collect the current Weibo hot search list without account credentials and generate a dated Markdown table for monitoring, reporting, or downstream review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kazeMace/weibo-hot-search-anonymous) <br>
-- [Weibo public hot search page](https://weibo.com/newlogin?tabtype=search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown table file with console status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires bun or npx and a local Chrome, Chromium, or Microsoft Edge installation; writes to a dated Markdown file by default or to the path passed with --output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata; artifact frontmatter lists 1.1.0) <br>
+Risk: The skill can control Chrome or Edge through CDP and may terminate browser debugging processes associated with its profile.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it with a dedicated throwaway browser profile and avoid using it on workstations that have other Chrome or Edge automation sessions.
+
+Risk: The scanner reports that the skill may ask for login despite its anonymous-use positioning.
+
+Mitigation: Do not log into a personal Weibo account through this skill; stop execution if a login prompt blocks collection.
+
+Risk: The npx fallback can download and execute a runtime at use time.
+
+Mitigation: Prefer a trusted preinstalled Bun runtime and avoid the unpinned npx fallback in controlled environments.
+
+Risk: Collection depends on Weibo page structure and may fail or produce incomplete results after site changes.
+
+Mitigation: Review generated Markdown for completeness and rerun or update selectors when the page no longer exposes expected hot search elements.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kazemace/skills/weibo-hot-search-anonymous)
+- [Weibo hot search page](https://weibo.com/newlogin?tabtype=search)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown file with a ranked table of hot search terms, heat values, labels, and links.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Chrome, Chromium, or Microsoft Edge plus a Bun runtime; supports optional output path and browser profile settings.]
+
+## Skill Version(s):
+
+1.0.3 (source: server-resolved release metadata; artifact frontmatter says 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

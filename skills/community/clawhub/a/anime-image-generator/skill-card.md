@@ -1,51 +1,68 @@
-## Description: <br>
-Generate high-quality anime style illustrations. Use when the user asks for anime, light novel covers, or japanese animation style art. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate high-quality anime style illustrations. Use when the user asks for anime, light novel covers, or japanese animation style art.
 
-## Publisher: <br>
-[632657122](https://clawhub.ai/user/632657122) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[632657122](https://clawhub.ai/user/632657122)
 
-## Use Case: <br>
-Developers and creative users use this skill to generate anime-style illustrations, light novel cover art, and Japanese animation style image assets through a WeryAI-backed image generation workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts and referenced images are sent to WeryAI for generation. <br>
-Mitigation: Use the skill only with prompts and images intended for that third-party service; avoid private reference images unless upload is expected. <br>
-Risk: The skill depends on IMAGE_GEN_API_KEY and can persist local setup state. <br>
-Mitigation: Prefer an environment variable or a gitignored local secret file, and never echo or commit the API key. <br>
-Risk: Setup may request runtime or package installation before generation. <br>
-Mitigation: Review installation requests before approving them, especially in shared or production workspaces. <br>
-Risk: Security evidence flagged setup and upload behavior as requiring review. <br>
-Mitigation: Review the skill behavior and generated commands before deployment, with particular attention to uploads, local config writes, and package installation. <br>
+## Use Case:
 
+External users and developers use this skill to generate anime-style illustrations, light novel covers, and Japanese animation style art through a WeryAI-backed image generation workflow.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/632657122/anime-image-generator) <br>
-- [WeryAI platform notes](references/weryai-platform.md) <br>
-- [Style presets](references/style-presets.md) <br>
-- [First-time setup](references/config/first-time-setup.md) <br>
-- [Model registry schema](references/config/model-registry-schema.md) <br>
-- [Preferences schema](references/config/preferences-schema.md) <br>
-- [WeryAI API keys](https://weryai.com/api/keys) <br>
-- [WeryAI call history](https://weryai.com/api/history) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Files] <br>
-**Output Format:** [Markdown guidance with CLI commands, local configuration updates, generated image files, and optional JSON task summaries.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires IMAGE_GEN_API_KEY and local Node/npm plus either bun or npx; image generation sends prompts and referenced images to WeryAI.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2026.3.23 (source: server-resolved release metadata) <br>
+Risk: Credential-handling risk from providing this skill a WeryAI API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide the key through a protected environment or secret store, avoid command-line API key arguments, and persist it only when explicitly needed.
+
+Risk: Runtime-execution risk from running a Bun-based CLI.
+
+Mitigation: Review or pin the runtime before using the generate script, and install the skill only when this execution model is acceptable.
+
+Risk: Optional webhook URLs and local image-skill config can expand data exposure or local write behavior.
+
+Mitigation: Avoid webhook URLs unless required, review the destination before use, and keep project or home configuration scoped to this skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/632657122/skills/anime-image-generator)
+- [Gateway Alignment Notes](references/weryai-platform.md)
+- [Style Presets](references/style-presets.md)
+- [First-Time Setup](references/config/first-time-setup.md)
+- [Model Registry Schema](references/config/model-registry-schema.md)
+- [Preferences Schema](references/config/preferences-schema.md)
+- [WeryAI API introduction](https://docs.weryai.com/en)
+- [WeryAI text-to-image API](https://docs.weryai.com/api-reference/image-generation/submit-text-to-image-task)
+- [WeryAI image-to-image API](https://docs.weryai.com/api-reference/image-generation/submit-image-to-image-task)
+- [WeryAI task status API](https://docs.weryai.com/api-reference/tasks/query-task-details)
+- [WeryAI API keys](https://weryai.com/api/keys)
+- [WeryAI call history](https://weryai.com/api/history)
+
+## Skill Output:
+
+**Output Type(s):** [Files, API Calls, Shell commands, Configuration instructions]
+
+**Output Format:** [Downloaded image files with optional JSON summaries and Markdown-facing guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires IMAGE_GEN_API_KEY and may write local image-skill configuration.]
+
+## Skill Version(s):
+
+2026.3.23 (source: server release metadata; SKILL.md frontmatter reports 0.5.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

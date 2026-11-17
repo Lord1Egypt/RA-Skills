@@ -1,37 +1,53 @@
-## Description: <br>
-Security-first skill vetting for AI agents. Use before installing any skill from ClawdHub, GitHub, or other sources. Checks for red flags, permission scope, and suspicious patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Security-first skill vetting for AI agents. Use before installing any skill from ClawdHub, GitHub, or other sources. Checks for red flags, permission scope, and suspicious patterns.
 
-## Publisher: <br>
-[h-harry](https://clawhub.ai/user/h-harry) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[h-harry](https://clawhub.ai/user/h-harry)
 
-## Use Case: <br>
-Developers, security reviewers, and agent users use this skill to vet third-party skills before installation by checking source trust, code behavior, permission scope, and risk level. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The server security verdict is suspicious because related ClawHub and Convex helper workflow skills may launch nested review automation with broad filesystem authority and sandbox bypass. <br>
-Mitigation: Install only after manual review, prefer helper execution without yolo or full-access review modes, and require explicit confirmation before actions that affect live services or publish public proof. <br>
+## Use Case:
 
+Developers and agent users use this skill to review third-party or unknown agent skills before installation by checking source reputation, code red flags, permission scope, and risk level.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Guidance, Markdown, Shell commands] <br>
-**Output Format:** [Markdown guidance with checklists, a vetting report template, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a human-readable skill vetting report; does not execute scanner logic itself.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill may encourage agents to inspect candidate skill files and perform GitHub lookups while reviewing GitHub-hosted skills.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run reviews within normal workspace and network policies, and treat the resulting recommendations as advisory security guidance.
+
+Risk: The checklist is intentionally conservative and may flag or discourage some skills that are acceptable after deeper review.
+
+Mitigation: Use human approval for high-risk or disputed installation decisions rather than treating the checklist as an automatic authority.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/h-harry/skills/skill-vetter-1)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown vetting report with checklist items and optional shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a security review summary with red flags, permission needs, risk level, verdict, and notes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

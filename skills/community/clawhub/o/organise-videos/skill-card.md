@@ -1,42 +1,54 @@
-## Description: <br>
-Organize a video folder by cleaning non-video files, removing short or low-quality videos, and classifying videos into numbered subfolders using AI vision analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Organize a video folder by cleaning non-video files, removing short/bad videos, and classifying videos into numbered subfolders using AI vision analysis.
 
-## Publisher: <br>
-[lemondepat](https://clawhub.ai/user/lemondepat) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lemondepat](https://clawhub.ai/user/lemondepat)
 
-## Use Case: <br>
-People managing local video folders use this skill to clean a selected folder, identify short or poor-quality clips, and sort remaining videos into language-matched category folders after reviewing the proposed actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can move or delete files in the selected folder. <br>
-Mitigation: Review file lists and proposed actions before execution, keep backups for important videos, and prefer moving files to _misc or _rejected when uncertain. <br>
-Risk: Representative frames from videos may expose sensitive content during AI vision analysis. <br>
-Mitigation: Use the skill only on folders whose contents are acceptable for frame extraction and analysis, and clean up temporary frames after analysis. <br>
-Risk: AI quality checks and category labels may be inaccurate. <br>
-Mitigation: Review the summary table and proposed folder structure before allowing files to be moved or deleted. <br>
+## Use Case:
 
+External users use this skill to reorganize local video folders by removing or isolating unwanted files, analyzing representative frames, and moving videos into clear category folders. It is useful when a video collection needs quick cleanup and content-based grouping before review, editing, or archiving.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lemondepat/organise-videos) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with shell command snippets and summary tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces folder action plans, category labels, confirmation prompts, and final folder structure summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can move or delete files in the user-provided video folder.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review every deletion or move prompt carefully, and prefer moving files to _misc or _rejected when unsure.
+
+Risk: Extracted video frames may contain sensitive visual content and are written to a temporary frame directory during analysis.
+
+Mitigation: Avoid using the skill on highly sensitive videos unless frame extraction is handled in a private per-run temporary directory and cleaned up after analysis.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lemondepat/skills/organise-videos)
+- [Publisher profile](https://clawhub.ai/user/lemondepat)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with summary tables, user prompts, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces folder organization plans, category labels, quality notes, and file move or deletion commands for user-approved execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

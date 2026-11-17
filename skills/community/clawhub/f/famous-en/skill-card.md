@@ -1,39 +1,53 @@
-## Description: <br>
-Famous provides 48 human-AI collaboration thought experiments about delegation, trust, boundaries, responsibility, memory, and co-evolution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Famous is an English-language thought-experiment skill that helps agents present, search, compare, and narrate 48 scenarios about human-AI collaboration, trust, delegation, boundaries, responsibility, memory, and evolution.
 
-## Publisher: <br>
-[wanyview1](https://clawhub.ai/user/wanyview1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wanyview1](https://clawhub.ai/user/wanyview1)
 
-## Use Case: <br>
-External users can use this content skill to explore human-AI collaboration scenarios through structured thought experiments, including command-driven listing, search, comparison, and story-style prompts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill provides philosophical and collaboration examples that may not fit every operational or organizational context. <br>
-Mitigation: Review the thought experiments and examples against the intended audience, use case, and internal AI guidance before relying on them. <br>
+## Use Case:
 
+External users and developers can use this skill to explore human-AI collaboration through guided thought experiments, including random selection, listing, keyword search, comparison, and story-style narration. It is suited for reflection, discussion, training, and governance conversations rather than automated action.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wanyview1/famous-en) <br>
-- [Publisher profile](https://clawhub.ai/user/wanyview1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown text with structured thought experiment prompts and command responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Markdown-only content skill; no tool, credential, command execution, data access, or persistent permission requests are described in the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill discusses sensitive AI governance topics such as delegation, memory, consent, responsibility, and decision authority.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the outputs as reflective thought experiments and apply human review before turning any scenario or insight into operational policy.
+
+Risk: Users may over-apply fictional scenarios to high-stakes legal, medical, financial, employment, or safety decisions.
+
+Mitigation: Treat the material as discussion guidance and consult qualified domain experts before using it in high-stakes contexts.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wanyview1/skills/famous-en)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain text responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Interactive command-driven selection, search, comparison, and story-style narrative over a fixed collection of 48 thought experiments.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

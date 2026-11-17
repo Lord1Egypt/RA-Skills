@@ -1,43 +1,59 @@
-## Description: <br>
-Create a new OpenClaw agent via exec (openclaw agents add) and configure its identity + operating rules by editing the new workspace files (IDENTITY.md, AGENTS.md). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create a new OpenClaw agent via exec (openclaw agents add) and configure its identity + operating rules by editing the new workspace files (IDENTITY.md, AGENTS.md).
 
-## Publisher: <br>
-[xiguazhiPrince](https://clawhub.ai/user/xiguazhiPrince) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiguazhiprince](https://clawhub.ai/user/xiguazhiprince)
 
-## Use Case: <br>
-Developers and operators use this skill to create an isolated OpenClaw agent, configure its identity, and append role-specific operating rules based on the user's requested purpose and constraints. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide creation of a persistent OpenClaw agent and workspace. <br>
-Mitigation: Review the agent name, workspace path, optional bind/model flags, and the proposed command before confirming execution. <br>
-Risk: Workspace edits could change identity or operating rules in ways the user did not intend. <br>
-Mitigation: Review the appended IDENTITY.md and AGENTS.md content and keep default template text intact. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to create a new isolated OpenClaw agent, confirm the CLI action, and configure the agent's identity, role, task, and operating rules in its workspace.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xiguazhiPrince/add-openclaw-agent) <br>
-- [Multi-Agent Routing](/concepts/multi-agent) <br>
-- [Agent workspace](/concepts/agent-workspace) <br>
-- [OpenClaw agents CLI](/cli/agents) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and file-editing instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user confirmation before agent creation and focuses configuration changes on IDENTITY.md and AGENTS.md.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill creates persistent OpenClaw agents and writes operating rules into workspace files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the final agent name, workspace path, optional flags, and IDENTITY.md or AGENTS.md content before allowing execution or file edits.
+
+Risk: Shell command arguments for agent creation may be unsafe if names, paths, or flags are not checked carefully.
+
+Mitigation: Use the non-interactive command only after explicit user confirmation, and verify normalized agent IDs, workspace paths, and optional flags before execution.
+
+Risk: Identity and operating-rule files can persist sensitive or unintended content.
+
+Mitigation: Avoid storing secrets in IDENTITY.md, AGENTS.md, or related workspace files.
+
+## Reference(s):
+
+- [Multi-Agent Routing](/concepts/multi-agent)
+- [Agent workspace](/concepts/agent-workspace)
+- [Agents CLI](/cli/agents)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and configuration file edits]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user confirmation before running agent creation commands; may edit persistent workspace files after creation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

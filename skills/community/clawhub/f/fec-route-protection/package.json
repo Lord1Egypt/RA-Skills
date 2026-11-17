@@ -1,7 +1,7 @@
 {
   "name": "@bovinphang/fec-route-protection",
-  "version": "2.5.0",
-  "description": "Use when implementing or reviewing frontend route protection, auth guards, RBAC, permission routes, login state handling, redirects, middleware, React Router, Next.js, Vue Router, or Nuxt route middleware; Chinese triggers include 路由保护, 权限路由, 登录态.",
+  "version": "2.9.0",
+  "description": "Use when implementing or reviewing frontend route protection, auth guards, RBAC, permission routes, login state handling, redirects, middleware, React Router, Next.js, Vue Router, or Nuxt route middleware; Chinese triggers include route protection, permission routing, login state.",
   "type": "module",
   "license": "MIT",
   "author": {

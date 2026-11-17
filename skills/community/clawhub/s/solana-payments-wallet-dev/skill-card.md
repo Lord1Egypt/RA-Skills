@@ -1,50 +1,72 @@
-## Description: <br>
-Guides developers building stablecoin payment flows and wallet integrations on Solana using light-token, Privy, Solana wallet adapters, and optional nullifier-based duplicate action prevention. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides developers building Solana stablecoin payment flows and wallet integrations with light-token, including receive and send flows, balances, history, client-side signing, and optional nullifiers to prevent duplicate execution.
 
-## Publisher: <br>
-[tilo-14](https://clawhub.ai/user/tilo-14) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[tilo-14](https://clawhub.ai/user/tilo-14)
 
-## Use Case: <br>
-Developers use this skill to plan and implement Solana payment and wallet flows, including receiving and sending tokens, displaying balances and history, signing transactions, and preventing duplicate payment execution. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Payment or wallet guidance can affect real Solana funds if token, amount, recipient, network, or signing details are wrong. <br>
-Mitigation: Start on devnet and review every token, amount, recipient, network, and signing request before using real funds. <br>
-Risk: Privy signing examples involve sensitive treasury credentials and external signing requests. <br>
-Mitigation: Keep Privy treasury credentials server-side in a secrets manager, send them only to official Privy signing endpoints, and avoid exposing them to frontends or agent-wide environments. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [zkCompression documentation](https://www.zkcompression.com) <br>
-- [Payments docs](https://zkcompression.com/light-token/toolkits/for-payments) <br>
-- [Wallets docs](https://zkcompression.com/light-token/toolkits/for-wallets) <br>
-- [Payments and wallets examples](https://github.com/Lightprotocol/examples-light-token/tree/main/toolkits/payments-and-wallets) <br>
-- [Nullifier program](https://github.com/Lightprotocol/nullifier-program/) <br>
-- [stateless.js API docs](https://lightprotocol.github.io/light-protocol/stateless.js/index.html) <br>
-- [compressed-token API docs](https://lightprotocol.github.io/light-protocol/compressed-token/index.html) <br>
-- [payments.md](references/payments.md) <br>
-- [wallets.md](references/wallets.md) <br>
-- [sign-with-adapter.md](references/sign-with-adapter.md) <br>
-- [sign-with-privy.md](references/sign-with-privy.md) <br>
-- [nullifiers.md](references/nullifiers.md) <br>
+## Use Case:
 
+Developers and engineers use this skill to plan and implement Solana stablecoin payments and wallet UX using light-token, wallet adapters, Privy signing, and nullifier patterns for duplicate-action prevention.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with TypeScript, Rust, shell, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Solana transaction construction guidance, environment setup notes, and wallet signing review steps.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Payment, transfer, wrap, and unwrap examples can affect real funds.
+
+Mitigation: Review generated transactions before signing and validate recipient, mint, amount, decimals, cluster, and serialized transaction contents.
+
+Risk: Privy signing flows involve app secrets and treasury authorization keys.
+
+Mitigation: Keep Privy credentials in server-side secret storage only and verify signing requests are sent only to Privy's official endpoints.
+
+Risk: Unpinned skill or npm dependency versions can change behavior between installs.
+
+Mitigation: Pin the skill source and npm dependencies before production use.
+
+Risk: Generating a fresh random nullifier ID during retries can bypass duplicate-action protection.
+
+Mitigation: Use a deterministic or persisted operation identifier for nullifier retries.
+
+## Reference(s):
+
+- [Payments](references/payments.md)
+- [Wallets](references/wallets.md)
+- [Signing with wallet adapters](references/sign-with-adapter.md)
+- [Signing with Privy](references/sign-with-privy.md)
+- [Nullifier PDAs](references/nullifiers.md)
+- [ZK Compression documentation](https://www.zkcompression.com)
+- [Light-token payments documentation](https://zkcompression.com/light-token/toolkits/for-payments)
+- [Light-token wallets documentation](https://zkcompression.com/light-token/toolkits/for-wallets)
+- [Light Protocol stateless.js API documentation](https://lightprotocol.github.io/light-protocol/stateless.js/index.html)
+- [Light Protocol compressed-token API documentation](https://lightprotocol.github.io/light-protocol/compressed-token/index.html)
+- [Light Protocol nullifier program package](https://www.npmjs.com/package/@lightprotocol/nullifier-program)
+- [Light Protocol examples for payments and wallets](https://github.com/Lightprotocol/examples-light-token/tree/main/toolkits/payments-and-wallets)
+- [Light Protocol audit reports](https://github.com/Lightprotocol/light-protocol/tree/main/audits)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown with TypeScript, Rust, shell, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include transaction-building and signing guidance that must be reviewed before use with real funds.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

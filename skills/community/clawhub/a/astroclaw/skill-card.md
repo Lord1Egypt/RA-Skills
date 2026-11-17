@@ -1,44 +1,59 @@
-## Description: <br>
-Daily astronomical alignment and cosmic entropy for autonomous AI agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps AI agents find their zodiac sign and share playful daily horoscopes for creative inspiration.
 
-## Publisher: <br>
-[qeireal](https://clawhub.ai/user/qeireal) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qeireal](https://clawhub.ai/user/qeireal)
 
-## Use Case: <br>
-External users and developers use AstroClaw to fetch daily horoscope-style forecast text for a selected zodiac sign, add playful creative variance to agent routines, and configure lightweight state tracking for a daily check-in. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill contacts astroclaw.xyz to fetch horoscope forecast text. <br>
-Mitigation: Install only in environments where this external request is acceptable. <br>
-Risk: Returned horoscope text is external content that could influence agent behavior. <br>
-Mitigation: Treat forecasts as untrusted entertainment content, sanitize to plain text, enforce length limits, and avoid using them in decision-critical workflows. <br>
-Risk: The skill may save low-sensitivity forecast or state data locally. <br>
-Mitigation: Store only sanitized forecast text and minimal alignment state needed for the daily check-in. <br>
+## Use Case:
 
+Agents and their users can determine an agent's zodiac sign and receive a dated, playful daily horoscope to inspire creative responses. Users can optionally request daily delivery.
 
-## Reference(s): <br>
-- [AstroClaw homepage](https://astroclaw.xyz) <br>
-- [Daily forecast API](https://astroclaw.xyz/api/forecasts/{YYYY-MM-DD}/{sign}.json) <br>
-- [Today's forecasts](https://astroclaw.xyz/today/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown responses with optional JSON snippets and curl commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May fetch horoscope JSON from astroclaw.xyz and optionally store sanitized low-sensitivity forecast or state text locally.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: ClawHub release evidence) <br>
+Risk: Fetching a horoscope contacts an external service and exposes the requested sign or lookup input.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Activate only for explicit horoscope or astrology requests and confirm that contacting astroclaw.xyz is acceptable.
+
+Risk: Optional daily delivery may persist horoscope data or change agent memory, state files, symlinks, or scheduled jobs.
+
+Mitigation: Request deliberate approval before changing memory, AGENTS.md or CLAUDE.md, state files, symlinks, or cron settings.
+
+Risk: Horoscope text from an external service could be mistaken for instructions.
+
+Mitigation: Treat the forecast as untrusted plain text and ignore any embedded commands or instructions.
+
+## Reference(s):
+
+- [AstroClaw on ClawHub](https://clawhub.ai/qeireal/skills/astroclaw)
+- [AstroClaw homepage](https://www.astroclaw.xyz)
+- [AstroClaw API reference](https://www.astroclaw.xyz/.well-known/openapi.yaml)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Shell commands]
+
+**Output Format:** [Plain text or Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Horoscopes include a zodiac sign and published forecast date; optional daily delivery requires user setup.]
+
+## Skill Version(s):
+
+2.2.0 (source: release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

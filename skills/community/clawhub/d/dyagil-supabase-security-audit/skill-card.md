@@ -1,44 +1,60 @@
-## Description: <br>
-Audits Supabase and Vercel projects for RLS coverage, privilege escalation, cross-customer data leaks, anonymous exposure, magic-link flow correctness, and HTTP security headers, then points agents to hotfix templates for confirmed issues. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audits Supabase and Vercel projects for RLS coverage, privilege escalation, cross-customer data leaks, anonymous exposure, magic-link correctness, and HTTP security headers.
 
-## Publisher: <br>
-[dyagil](https://clawhub.ai/user/dyagil) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dyagil](https://clawhub.ai/user/dyagil)
 
-## Use Case: <br>
-Developers and engineers use this skill to audit Supabase-backed applications before exposing customer-facing surfaces, after auth or RLS migrations, and when investigating security concerns. It helps interpret findings and select documented SQL hotfixes for common access-control failures. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses powerful database credentials and live database probes. <br>
-Mitigation: Run it first in staging or with temporary least-privilege credentials, and explicitly approve credential access and live probes before use. <br>
-Risk: The audit depends on the pg package and database transport settings. <br>
-Mitigation: Pin and verify the pg dependency and enable proper TLS verification before production use. <br>
-Risk: The hotfix SQL changes database access-control behavior. <br>
-Mitigation: Treat the hotfix as a manual migration that receives normal code review, environment testing, and rollback planning. <br>
+## Use Case:
 
+Developers and engineers use this skill to audit Supabase and Vercel applications before customer exposure, after auth or RLS migrations, or when investigating security concerns. It helps identify access-control gaps and points agents to related hotfix guidance.
 
-## Reference(s): <br>
-- [Threat patterns](references/threat-patterns.md) <br>
-- [Audit runner](scripts/audit.js) <br>
-- [Role-lock hotfix SQL](scripts/hotfix-role-lock.sql) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with command examples, audit findings, and SQL hotfix templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May require Supabase credentials, a reachable pg dependency, live database probes, and manual review before applying migration SQL.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and skill frontmatter) <br>
+Risk: The skill requires powerful Supabase secrets and database credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Narrow when the skill runs, remove unused service-role key requirements where possible, and prefer a dedicated least-privileged audit database role.
+
+Risk: Dependency loading and database connectivity can weaken the audit environment.
+
+Mitigation: Use pinned project-local dependencies and enable PostgreSQL certificate verification before running against sensitive environments.
+
+Risk: Live probes use caller identifiers supplied at runtime.
+
+Mitigation: Validate probe identifiers as UUIDs or parameterize claim handling before running live privilege-escalation and data-isolation probes.
+
+## Reference(s):
+
+- [Threat Patterns](references/threat-patterns.md)
+- [Audit Runner](scripts/audit.js)
+- [Role Lock Hotfix SQL](scripts/hotfix-role-lock.sql)
+- [ClawHub Skill Page](https://clawhub.ai/dyagil/skills/dyagil-supabase-security-audit)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, SQL, and audit findings]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Findings are grouped by audit area and summarized by pass, warning, and critical counts.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

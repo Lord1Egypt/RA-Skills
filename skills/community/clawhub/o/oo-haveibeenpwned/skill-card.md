@@ -1,45 +1,55 @@
-## Description: <br>
-Have I Been Pwned connector for searching and reading breach, paste, data-class, subscription, and latest-breach data through the OOMOL oo CLI instead of calling the API directly. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search Have I Been Pwned for breach and paste exposure data, and retrieve breach and subscription information.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-External users and developers use this skill to query Have I Been Pwned through an OOMOL-connected account for breach records, latest breach data, subscription status, data classes, paste exposures, and breached-account searches. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires connecting a Have I Been Pwned API key through OOMOL as an intermediary. <br>
-Mitigation: Install only when that intermediary model is acceptable, and connect credentials only through the intended OOMOL account. <br>
-Risk: First-time setup includes curl-to-bash and PowerShell install commands. <br>
-Mitigation: Prefer the official install guide, inspect installer scripts before execution, and verify the source. <br>
-Risk: Breach and paste searches may reveal sensitive information about email addresses. <br>
-Mitigation: Query email addresses only when the user explicitly asks for those accounts to be checked. <br>
+## Use Case:
 
+People and teams use this skill to check email addresses for known breach or paste exposures and to review breach details, data classes, and subscription status.
 
-## Reference(s): <br>
-- [Have I Been Pwned homepage](https://haveibeenpwned.com/) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [oo CLI install guide](https://cli.oomol.com/install-guide.md) <br>
-- [ClawHub skill page](https://clawhub.ai/oomol/oo-haveibeenpwned) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API calls, JSON, Markdown, Configuration guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the oo CLI, an OOMOL account, and a connected Have I Been Pwned API key for live connector actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: release evidence and SKILL.md frontmatter) <br>
+Risk: First-time setup runs a downloaded CLI installer, and the linked CLI documents broader persistent changes to agent skills.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and independently verify the installer before use; decide whether managed skill changes are acceptable and consult the CLI's OO_SKILLS_SYNC_DISABLED control.
+
+Risk: Email addresses submitted for lookups are shared through OOMOL with Have I Been Pwned.
+
+Mitigation: Submit only email addresses you intend to share with those services, and limit access to returned exposure details.
+
+## Reference(s):
+
+- [Have I Been Pwned](https://haveibeenpwned.com/)
+- [Have I Been Pwned API documentation](https://haveibeenpwned.com/API/v3)
+- [oo CLI](https://github.com/oomol-lab/oo-cli)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Text]
+
+**Output Format:** [Structured breach and paste exposure data with concise natural-language summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results can contain sensitive personal information.]
+
+## Skill Version(s):
+
+1.0.5 (source: server-resolved release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

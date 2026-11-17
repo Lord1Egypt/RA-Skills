@@ -1,42 +1,56 @@
-## Description: <br>
-Use this skill to confirm and submit ChartGen requests for data analysis, charts, dashboards, diagrams, presentations, and reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyse Data helps agents use ChartGen to analyze spreadsheet or text requests and produce charts, dashboards, diagrams, reports, and PPT outputs.
 
-## Publisher: <br>
-[chartgen-ai](https://clawhub.ai/user/chartgen-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chartgen-ai](https://clawhub.ai/user/chartgen-ai)
 
-## Use Case: <br>
-Developers and end users use this skill to route spreadsheet or text analysis requests through ChartGen, then receive summarized insights and generated visual or document artifacts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends confirmed prompts and selected spreadsheet files to ChartGen as an external cloud processor. <br>
-Mitigation: Review each confirmation prompt and avoid uploading spreadsheets or prompts that cannot be shared with ChartGen. <br>
-Risk: The skill requires a sensitive ChartGen API key. <br>
-Mitigation: Use a dedicated ChartGen API key and do not expose it in prompts, logs, or generated output. <br>
+## Use Case:
 
+External users and developers use this skill to route data analysis, charting, dashboard, diagram, report, and presentation generation requests through ChartGen. It supports text-only analysis and spreadsheet uploads for CSV, TSV, XLS, and XLSX files.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chartgen-ai/analyse-data) <br>
-- [ChartGen API setup](https://chartgen.ai/chat) <br>
-- [ChartGen service](https://chartgen.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance, Files] <br>
-**Output Format:** [Markdown guidance with inline shell commands, JSON result summaries, and local artifact file paths.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js >= 14 and CHARTGEN_API_KEY; supported uploads are CSV, TSV, XLS, and XLSX files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: ClawHub release evidence) <br>
+Risk: User prompts and supported spreadsheet files may be sent to the external ChartGen service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only when sharing that data with ChartGen is approved, and avoid secrets, regulated data, or sensitive business data unless policy permits it.
+
+Risk: The release evidence reports unsafe execution and download patterns that deserve review before installation.
+
+Mitigation: Prefer runtimes that pass tool arguments without shell interpolation and restrict outbound downloads to trusted ChartGen origins.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/chartgen-ai/skills/analyse-data)
+- [ChartGen API Setup](https://chartgen.ai/chat)
+- [ChartGen Service](https://chartgen.ai)
+- [Skill Upgrade Procedure](references/upgrade-skill.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, files, guidance]
+
+**Output Format:** [Markdown responses with JSON tool results and generated artifact file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May return text_reply, edit_url, image paths, PPT previews and downloads, or spreadsheet/file downloads depending on the ChartGen task result.]
+
+## Skill Version(s):
+
+1.0.4 (source: release evidence and tool version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

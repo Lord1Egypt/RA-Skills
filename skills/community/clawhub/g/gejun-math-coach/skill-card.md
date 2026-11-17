@@ -1,44 +1,56 @@
-## Description: <br>
-Gejun Math Coach is a Chinese Gaokao math tutoring skill that uses Socratic questioning, seven tutoring scenarios, a Three-One reflection protocol, GO-ON variation strategies, and calculation checks to help students work through math problems. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Gejun Math Coach is a Chinese high-school math tutoring agent that guides students through problem analysis, worked solutions, multiple methods, variants, error diagnosis, Socratic questioning, and a Three-One reflection protocol.
 
-## Publisher: <br>
-[abill6688](https://clawhub.ai/user/abill6688) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[abill6688](https://clawhub.ai/user/abill6688)
 
-## Use Case: <br>
-Students preparing for Chinese Gaokao mathematics and tutors supporting them use this skill for problem decomposition, full solutions, multiple methods, variations, general methods, error diagnosis, and Socratic guided practice. It can work from built-in seed problems or optional knowledge-base retrieval and includes a post-problem reflection loop to strengthen transfer. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Important math answers or worked examples may be incorrect. <br>
-Mitigation: Verify important answers independently and rely on the skill's calculation-checking workflow before using results for study decisions. <br>
-Risk: The optional voice feature can run local TTS and playback commands for current tutoring text. <br>
-Mitigation: Use the text-only mode unless the user is comfortable with the displayed local commands and the installed voice-coach dependency. <br>
+## Use Case:
 
+External learners and educators use this skill for Chinese high-school math coaching, including Gaokao-style problem solving, concept decomposition, alternative solution comparison, variant generation, and error diagnosis. The agent emphasizes guided reasoning and post-solution reflection rather than only returning final answers.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/abill6688/gejun-math-coach) <br>
-- [SKILL.md](SKILL.md) <br>
-- [Three-One Reflection Protocol](references/reflection-protocol.md) <br>
-- [Workflow Templates](references/workflow-templates.md) <br>
-- [Scenario Examples](references/examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown tutoring responses with worked math, Socratic questions, reflection prompts, checklists, and optional bash snippets for local voice playback.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only core behavior; optional knowledge-base IDs can extend retrieval, and optional voice playback depends on local voice-coach tooling.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-5.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The optional voice workflow writes conversation-derived audio to a shared predictable temporary path.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat voice playback as opt-in, use a private unique temporary file, and clean up generated audio after playback.
+
+Risk: Broad trigger keywords may activate the skill when a user did not intend to use the math coach.
+
+Mitigation: Narrow trigger keywords or invoke the skill explicitly in environments where broad activation is undesirable.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/abill6688/skills/gejun-math-coach)
+- [Workflow Templates](references/workflow-templates.md)
+- [Examples](references/examples.md)
+- [Three-One Reflection Protocol](references/reflection-protocol.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown tutoring dialogue with math notation, structured feedback, and optional shell commands for voice playback]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language responses; optional voice integration; no fixed token cap specified]
+
+## Skill Version(s):
+
+5.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

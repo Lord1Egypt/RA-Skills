@@ -1,48 +1,63 @@
-## Description: <br>
-Use this skill for diffraction and scattering data processing with pyFAI, including calibration guidance, 1D and 2D integration, batch and streaming workflows, GIWAXS or fiber maps, profiles, sector integration, corrections, and Python or pyFAI setup. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill for diffraction and scattering data processing with pyFAI, including PONI inspection, 1D and 2D integration, GIWAXS/fiber maps, sector and cake workflows, large HDF5/Eiger handling, uncertainty-aware integration, corrections, and pyFAI environment setup.
 
-## Publisher: <br>
-[tianyima96](https://clawhub.ai/user/tianyima96) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tianyima96](https://clawhub.ai/user/tianyima96)
 
-## Use Case: <br>
-Developers, beamline users, and scientific data analysts use this skill to inspect .poni geometry files, choose pyFAI integration modes, run diffraction or scattering integrations, and process detector datasets with corrections and streaming output. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Environment setup can install or upgrade Python packages for pyFAI workflows. <br>
-Mitigation: Run the installer in a project directory or virtual environment you control and review the packages before installation. <br>
-Risk: Diffraction and scattering analysis may read detector, mask, dark, flat, and correction files supplied by the user. <br>
-Mitigation: Provide only the local data and correction files intended for the analysis. <br>
-Risk: Incorrect geometry, units, mode selection, or correction settings can produce misleading scientific outputs. <br>
-Mitigation: Confirm the .poni file, integration mode, units, corrections, and output format before using generated results. <br>
+## Use Case:
 
+External researchers, beamline scientists, and developers use this skill to inspect PONI geometry and run pyFAI-based diffraction/scattering integrations for EDF, TIFF, HDF5, Eiger, and NPY detector data. It supports command generation and workflow guidance for radial, azimuthal, sector, cake, and GIWAXS/fiber outputs.
 
-## Reference(s): <br>
-- [Quick Start](references/quickstart.md) <br>
-- [Mode Guide](references/modes.md) <br>
-- [Streaming for Large Datasets](references/streaming.md) <br>
-- [pyFAI Calibration Tutorial](http://www.silx.org/pub/pyFAI/video/Calibration_15mn.mp4) <br>
-- [pyFAI Journal of Applied Crystallography DOI](https://doi.org/10.1107/S1600576715004306) <br>
-- [fabio Journal of Applied Crystallography DOI](https://doi.org/10.1107/S0021889813000150) <br>
-- [silx Zenodo DOI](https://doi.org/10.5281/zenodo.591709) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance, Files] <br>
-**Output Format:** [Markdown guidance with inline shell commands and optional generated CSV, HDF5, NPZ, PNG, and JSONL files from bundled scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Bundled runners emit JSONL progress, write a manifest.jsonl file, and process large detector datasets frame by frame when used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The environment helper can install Python packages into a local virtual environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the default pyFAI-related packages or trusted package names only, and do not run the helper with administrator privileges.
+
+Risk: Integration commands read user-selected detector data and write derived files to the selected output directory.
+
+Mitigation: Run commands only on intended input paths, choose an explicit output directory, and review generated manifests and per-frame outputs before sharing results.
+
+Risk: Incorrect mode, unit, HDF5 dataset path, channel, or correction settings can produce misleading scientific outputs.
+
+Mitigation: Confirm mode, units, corrections, dataset path, and output format before execution, especially for GIWAXS/fiber and large Eiger/HDF5 workflows.
+
+## Reference(s):
+
+- [Quick Start](references/quickstart.md)
+- [Mode Guide](references/modes.md)
+- [Streaming for Large Datasets](references/streaming.md)
+- [pyFAI calibration tutorial](http://www.silx.org/pub/pyFAI/video/Calibration_15mn.mp4)
+- [pyFAI paper DOI](https://doi.org/10.1107/S1600576715004306)
+- [fabio paper DOI](https://doi.org/10.1107/S0021889813000150)
+- [silx Zenodo DOI](https://doi.org/10.5281/zenodo.591709)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, Python command templates, and JSONL-oriented workflow descriptions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated commands may create a local Python virtual environment and may write per-frame CSV, HDF5, NPZ, manifest.jsonl, and JSONL progress outputs when run by the user.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

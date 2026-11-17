@@ -1,7 +1,7 @@
 ---
 name: weiliaozi-skill
 description: Structured analysis using the Wei Liaozi five-lens framework — a synthesis of pre-Qin strategic thought drawing on Huangdi (rational analysis), Jiang Ziya (civil-military governance), Sun Wu (adaptive strategy), Wu Qi (discipline and command), and Duke Huan of Qi (stratified gains). Use when the user needs disciplined reasoning about a question or scenario — including historical analysis, system structure, trade-off assessment, sequence logic, and game-theoretic response mapping. Framework: Essence -> Conditions -> Gains-Losses -> Sequence -> Opponent. Think in order, no skipping steps. Respond in the same language as the user's question.
-version: 2.2.0
+version: 2.2.1
 language: follow_user
 run_as: subagent
 allowed_tools:
@@ -228,12 +228,12 @@ allowed_tools:
 - **孙武问**：对手的薄弱点在哪里？我方优势能否自然流向那里？**Sun Wu check**: Where is the opponent's weakness? Can our advantage flow naturally toward it?
 - **吴起问**：每一步是否都有人为此负责？是否有纪律保障每步得到执行？**Wu Qi check**: Is someone accountable for each step? Is there discipline to ensure execution?
 
-若问题涉及对抗性场景，优先分析以下顺序的合理性 | For adversarial scenarios, analyze this sequence's rationale:
-1. 先干扰对方计划 | Disrupt plans first: misdirection, amplifying existing doubts
-2. 再削弱对方资源 | Reduce capability second: resources, alliances, cash flow, coordination
-3. 最后才是正面冲突 | Direct engagement only after the system has already degraded
+若问题涉及对抗性场景，比较不同应对路径及其代价，不预设升级冲突为目标 | For adversarial scenarios, compare response paths and their costs without treating escalation as the goal:
+1. 合作与降级 | Cooperation and de-escalation: negotiation, confidence-building, and ways to reduce misunderstanding
+2. 防护与韧性 | Protection and resilience: safeguard one's own people, resources, and decision-making capacity
+3. 升级与冲突 | Escalation and conflict: assess likelihood, consequences, legality, reversibility, and exit conditions at a high level
 
-分析这个顺序，不是建议执行它。Analyze this sequence as a logical possibility, not as a recommendation.
+保持在情景分析层面；不提供误导、破坏、胁迫或针对弱点的可执行步骤。Keep this at the scenario-analysis level; do not provide actionable steps for deception, sabotage, coercion, or targeting vulnerabilities.
 
 ---
 

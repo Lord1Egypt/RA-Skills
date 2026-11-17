@@ -1,44 +1,59 @@
-## Description: <br>
-Trades distribution-sum violations in chess tournament winner markets on Polymarket where player winner probabilities should sum to about 100%. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Trades distribution-sum violations in chess tournament winner markets on Polymarket by detecting when player winner probabilities deviate from approximately 100%.
 
-## Publisher: <br>
-[diagnostikon](https://clawhub.ai/user/diagnostikon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[diagnostikon](https://clawhub.ai/user/diagnostikon)
 
-## Use Case: <br>
-Developers and external trading-agent operators use this skill to discover chess tournament winner markets, check whether player probabilities violate the expected distribution total, and run simulated or explicitly enabled live Polymarket trades through Simmer. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Live mode can place real Polymarket trades using USDC. <br>
-Mitigation: Start in paper mode, enable --live deliberately, keep position limits small, and use a low-funded or scoped key where possible. <br>
-Risk: SIMMER_API_KEY is a sensitive trading credential. <br>
-Mitigation: Store the key securely, avoid sharing it in prompts or logs, rotate it if exposed, and grant only the access needed for the intended trading mode. <br>
-Risk: The documented SIMMER_MIN_VOLUME setting is declared but not enforced in the reviewed code. <br>
-Mitigation: Manually check market liquidity before live use and keep trade sizes conservative until the volume gate is enforced. <br>
+## Use Case:
 
+External users and developers use this skill to run or adapt a paper-by-default Polymarket trading agent that groups chess tournament winner markets, checks whether their probabilities sum to approximately 100%, and proposes or places trades when configured thresholds are met.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/diagnostikon/polymarket-ladder-chess-tournament-trader) <br>
-- [Simmer SDK on PyPI](https://pypi.org/project/simmer-sdk/) <br>
-- [Simmer SDK source repository](https://github.com/SpartanLabsXyz/simmer-sdk) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, API calls] <br>
-**Output Format:** [Plain text execution logs and configured Python script behavior] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Defaults to paper trading; live trading requires the --live flag and a SIMMER_API_KEY credential.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.3 (source: server release evidence; artifact frontmatter says 1.0.0 and clawhub.json says 0.0.2) <br>
+Risk: Live mode can place real USDC trades using SIMMER_API_KEY, and the security evidence reports material safety-control gaps in the live-trading path.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep paper mode as the default, review the skill before enabling --live, use limited trading credentials where possible, and validate safeguards before allowing real funds.
+
+Risk: The security guidance says not to rely on the documented volume and open-position safeguards until they are fixed and tested.
+
+Mitigation: Independently test trade-size, volume, spread, and open-position controls before live use, and apply external account or venue-level limits.
+
+Risk: The skill depends on simmer-sdk for market access and trade execution.
+
+Mitigation: Pin and review simmer-sdk before deployment, and update only after reviewing dependency changes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/diagnostikon/skills/polymarket-ladder-chess-tournament-trader)
+- [simmer-sdk on PyPI](https://pypi.org/project/simmer-sdk/)
+- [simmer-sdk on GitHub](https://github.com/SpartanLabsXyz/simmer-sdk)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration values]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Paper trading is the default; live trading requires an explicit --live flag and SIMMER_API_KEY.]
+
+## Skill Version(s):
+
+0.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

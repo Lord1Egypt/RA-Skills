@@ -1,47 +1,58 @@
-## Description: <br>
-Drafts, revises, standardizes, summarizes, and exports Chinese official documents and formal administrative texts with document-type templates, fact-bound drafting rules, and optional Word export. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+公文写作 helps agents draft, revise, summarize, standardize, and export Chinese official documents and formal administrative materials using document-type rules, fact boundaries, and layout profiles.
 
-## Publisher: <br>
-[zhaohui-yang](https://clawhub.ai/user/zhaohui-yang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhaohui-yang](https://clawhub.ai/user/zhaohui-yang)
 
-## Use Case: <br>
-Employees, external users, and developers use this skill to draft or refine Chinese official documents, administrative reports, notices, briefings, speeches, work plans, and related formal materials. It is most useful when the output needs a fixed document structure, formal agency tone, placeholders for missing facts, Markdown delivery, or optional .docx export. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated official, policy, legal, private, or public-facing documents may be incomplete, inaccurate, or unsuitable for formal use without review. <br>
-Mitigation: Review generated documents before official use and verify facts, dates, sources, legal references, private information, and policy-sensitive content with an authorized reviewer. <br>
-Risk: The optional font download script can retrieve third-party font assets. <br>
-Mitigation: Run font download or installation scripts only after accepting the source and licensing of the fonts, or use approved local fonts instead. <br>
-Risk: Saved drafts or exported Word files may contain sensitive document content. <br>
-Mitigation: Specify an appropriate output path for sensitive documents and handle generated files according to the user's confidentiality and retention requirements. <br>
+## Use Case:
 
+Employees, external users, and agents use this skill to prepare Chinese official-document drafts, administrative reports, briefings, notices, requests, replies, meeting minutes, speeches, work plans, and similar formal texts. It is suited for structure selection, formal wording, placeholder-based fact handling, Markdown drafts, and optional Word export before human review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhaohui-yang/official-document-drafting) <br>
-- [Project homepage](https://github.com/zhaohui-yang/official-document-drafting) <br>
-- [Document types reference](artifact/references/document-types.md) <br>
-- [Layout rules reference](artifact/references/layout-rules.md) <br>
-- [Style rules reference](artifact/references/style-rules.md) <br>
-- [Font usage reference](artifact/references/font-usage.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown drafts by default, with optional Word .docx files and shell commands for validation, font setup, or export when requested.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses placeholders for missing facts and requires human review before official, legal, sensitive, private, or public-facing use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The optional font workflow downloads mutable font binaries without integrity checks and can install fonts persistently for the user.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer trusted local fonts, verify downloaded font hashes independently, and review the font scripts before running them.
+
+Risk: Official or administrative drafts can create policy, legal, confidentiality, privacy, or operational risk if unverified facts are treated as final text.
+
+Mitigation: Keep missing information as placeholders or marked for verification, and require review by authorized personnel before formal use or external submission.
+
+## Reference(s):
+
+- [Project homepage](https://github.com/zhaohui-yang/official-document-drafting)
+- [ClawHub skill page](https://clawhub.ai/zhaohui-yang/skills/official-document-drafting)
+- [文种说明](references/document-types.md)
+- [字体速查](references/font-usage.md)
+- [版式规范](references/layout-rules.md)
+- [行文规范](references/style-rules.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, files, shell commands, guidance]
+
+**Output Format:** [Markdown drafts with optional DOCX files and shell commands for validation or export]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses placeholders for missing facts and requires human review for official, policy-sensitive, legal-sensitive, confidential, privacy-sensitive, or externally submitted documents.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

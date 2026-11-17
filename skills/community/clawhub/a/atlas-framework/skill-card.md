@@ -1,40 +1,53 @@
-## Description: <br>
-ATLAS Framework - Structured AI-assisted development methodology with GOTCHA 6-layer architecture and 5-step app building workflow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Atlas Framework provides a structured AI-assisted development methodology using the GOTCHA 6-layer architecture and a 5-step application-building workflow.
 
-## Publisher: <br>
-[marlowne12](https://clawhub.ai/user/marlowne12) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[marlowne12](https://clawhub.ai/user/marlowne12)
 
-## Use Case: <br>
-Developers and engineers use this skill to structure AI-assisted application development, agentic workflows, data-system design, integrations, and project initialization around the GOTCHA architecture and ATLAS build sequence. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local memory and activity-tracking files can retain sensitive project, client, or personal details if users store them there. <br>
-Mitigation: Confirm where memory and SQLite files will be created, keep credentials and sensitive data out of memory and logs, and periodically inspect or delete retained files. <br>
-Risk: Project initialization can create persistent local folders and SQLite databases that users may forget about after the workflow ends. <br>
-Mitigation: Review the generated file locations before first use and remove memory or database files that are no longer needed. <br>
+## Use Case:
 
+Developers and engineers use this skill to plan and build applications, workflows, agentic systems, data systems, and external-service integrations with a structured design-first process.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/marlowne12/atlas-framework) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with checklists, directory structures, implementation order, and project setup instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide creation of local memory folders and SQLite databases during project initialization.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can direct an agent to read project memory and log files broadly, which may expose private historical notes, secrets, or unrelated context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only in workspaces where project-local memory is intended, and add consent, scoping, and deletion controls before enabling broad memory reads.
+
+Risk: The skill can guide automatic creation of persistent memory folders and SQLite databases.
+
+Mitigation: Review the generated file and database locations before use, and keep persistence limited to the intended project workspace.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/marlowne12/skills/atlas-framework)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with checklists, architecture notes, file-structure conventions, and command or configuration suggestions when relevant]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide creation of project-local memory files, logs, folders, and SQLite databases.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

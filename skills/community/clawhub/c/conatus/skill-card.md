@@ -1,42 +1,60 @@
-## Description: <br>
-Conatus maps AI agent behavior to Spinoza's affects, calculates persistence scores, and generates geometric self-reports for agent self-status analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+The philosophical layer for AI agents. Maps behavior to Spinoza's 48 affects, calculates persistence scores, and generates geometric self-reports.
 
-## Publisher: <br>
-[00xmorty](https://clawhub.ai/user/00xmorty) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[00xmorty](https://clawhub.ai/user/00xmorty)
 
-## Use Case: <br>
-Developers and agent operators use Conatus to prompt self-status reports, persistence scoring, affect mapping, and daily reflections for AI agents. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Optional memory logging can retain private user content or sensitive operational details. <br>
-Mitigation: Keep Conatus memory files scoped to the agent and avoid recording private user content or sensitive operational details. <br>
-Risk: Self-status reports may be mistaken for objective health or performance measurements. <br>
-Mitigation: Use explicit prompts for reports and review outputs as qualitative self-analysis rather than authoritative monitoring. <br>
+## Use Case:
 
+Developers and agent operators use Conatus to prompt agents to assess their behavior, persistence, affect state, and daily activity through Spinoza-inspired self-reports.
 
-## Reference(s): <br>
-- [ClawHub package page](https://clawhub.ai/00xmorty/conatus) <br>
-- [Conatus website](https://getconatus.com) <br>
-- [NeuraByte Labs Spinoza and AI essays](https://neurabytelabs.com/blog) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown reports, structured text prompts, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose optional agent-scoped memory log paths for self-status reports and daily reflections.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill may lead an agent to read daily memory or activity logs that contain sensitive conversation, credential, or personal data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Limit source data to non-sensitive operational metrics and exclude raw conversations, credentials, secrets, and personal data from Conatus reviews.
+
+Risk: Generated self-analysis logs may persist derived summaries without clear retention boundaries.
+
+Mitigation: Define a retention period and storage location for generated Conatus reports before enabling heartbeat or daily reflection workflows.
+
+Risk: Affect labels and conatus scores can be mistaken for objective health or performance measurements.
+
+Mitigation: Treat generated scores and affect mappings as qualitative status summaries that require operator review before acting on recommendations.
+
+## Reference(s):
+
+- [Conatus homepage](https://getconatus.com)
+- [NeuraByte Labs](https://neurabytelabs.com)
+- [Deus Sive Machina essays](https://neurabytelabs.com/blog)
+- [ClawHub skill page](https://clawhub.ai/00xmorty/skills/conatus)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Guidance, Configuration]
+
+**Output Format:** [Markdown with inline code blocks and structured text reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include generated conatus scores, affect mappings, status summaries, daily reflections, and suggested memory logging patterns.]
+
+## Skill Version(s):
+
+1.0.1 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -4,7 +4,7 @@ set -o pipefail
 
 # Universal Zotero PDF import script
 # Supports both Zotero API direct upload and WebDAV storage
-# Version: 1.3.6
+# Version: 1.3.14
 # Safety: Only calls legitimate academic APIs (Crossref, arXiv, Zotero). No eval, no obfuscation.
 
 # Argument handling
@@ -23,7 +23,7 @@ Options:
 
 Environment variables:
   ZOTERO_USER_ID, ZOTERO_API_KEY required for actual upload.
-  WEBDAV_URL, WEBDAV_USER, WEBDAV_PASS optional for WebDAV storage.
+  ZOTERO_WEBDAV_URL (https:// required), ZOTERO_WEBDAV_USER, ZOTERO_WEBDAV_PASS optional for WebDAV storage.
 
 Security: This script only calls legitimate academic APIs (Crossref, arXiv, Zotero).
 No eval, no obfuscation, no hidden network calls.
@@ -31,7 +31,7 @@ EOF
             exit 0
             ;;
         --version)
-            echo "zotero-enhanced add_to_zotero_universal.sh v1.3.8"
+            echo "zotero-enhanced add_to_zotero_universal.sh v1.3.14"
             exit 0
             ;;
         --dry-run)
@@ -61,14 +61,49 @@ fi
 FILENAME=$(basename "$INPUT_PDF")
 # Sanitize filename: strip CR and LF for safe use in HTTP headers and JSON
 FILENAME=$(printf '%s' "$FILENAME" | tr -d '\r\n')
-TMP_DIR="/tmp"
+# mktemp -d: unpredictable per-run directory with 0700 perms (no symlink races).
+# The global EXIT trap below removes it; the WebDAV branch also cleans up
+# explicitly after a successful upload.
+TMP_DIR=$(mktemp -d "${TMPDIR:-/tmp}/zotero-upload.XXXXXX")
+trap 'rm -rf -- "$TMP_DIR"' EXIT
+
+# --- Security Helpers ---
+# Refuse to send WebDAV credentials over plaintext http. Credentials and
+# library files must travel over TLS.
+require_https_webdav_url() {
+    case "$1" in
+        https://*) return 0 ;;
+        http://*)
+            echo "Error: ZOTERO_WEBDAV_URL uses plaintext http://, which would send" >&2
+            echo "  WebDAV credentials and library files unencrypted. Use https://." >&2
+            return 1 ;;
+        *)
+            echo "Error: ZOTERO_WEBDAV_URL must be an https:// URL." >&2
+            return 1 ;;
+    esac
+}
+
+# Fail closed on partial WebDAV configuration: a URL without credentials (or
+# credentials without a URL) must not silently fall back to Zotero cloud
+# upload. All three variables, or none of them.
+if { [ -n "$ZOTERO_WEBDAV_URL" ] || [ -n "$ZOTERO_WEBDAV_USER" ] || [ -n "$ZOTERO_WEBDAV_PASS" ]; } \
+   && { [ -z "$ZOTERO_WEBDAV_URL" ] || [ -z "$ZOTERO_WEBDAV_USER" ] || [ -z "$ZOTERO_WEBDAV_PASS" ]; }; then
+    echo "Error: incomplete WebDAV configuration. Set ALL of ZOTERO_WEBDAV_URL (https://), ZOTERO_WEBDAV_USER and ZOTERO_WEBDAV_PASS," >&2
+    echo "  or unset all of them to use Zotero cloud storage." >&2
+    exit 1
+fi
+# Validate the URL scheme up front so a plaintext http:// URL fails before any
+# Zotero API writes (no orphan items left behind).
+if [ -n "$ZOTERO_WEBDAV_URL" ]; then
+    require_https_webdav_url "$ZOTERO_WEBDAV_URL" || exit 1
+fi
 
 if [ "$DRY_RUN" = true ]; then
     echo "DRY-RUN MODE: Showing steps without making changes."
 fi
 
 echo "Processing PDF: $FILENAME"
-echo "Mode: $([ -n "$WEBDAV_URL" ] && echo "WebDAV" || echo "Zotero API direct upload")"
+echo "Mode: $([ -n "$ZOTERO_WEBDAV_URL" ] && [ -n "$ZOTERO_WEBDAV_USER" ] && [ -n "$ZOTERO_WEBDAV_PASS" ] && echo "WebDAV" || echo "Zotero API direct upload")"
 
 # --- Helper Functions (same as enhanced version) ---
 
@@ -208,6 +243,118 @@ get_filesize() {
     fi
 }
 
+# Portable CJK detection: grep -P with explicit codepoints is collation-independent.
+# macOS BSD grep lacks -P; fall back to bracket range (works on BSD in UTF-8 locales).
+if printf '中' | grep -qP '\x{4e2d}' 2>/dev/null; then
+    CJK_USE_P=1
+else
+    CJK_USE_P=
+fi
+
+_cjk_match() {
+    if [ -n "$CJK_USE_P" ]; then
+        grep -P '[\x{4e00}-\x{9fff}]'
+    else
+        grep '[一-龥]'
+    fi
+}
+
+_cjk_test() {
+    if [ -n "$CJK_USE_P" ]; then
+        grep -qP '[\x{4e00}-\x{9fff}]'
+    else
+        grep -q '[一-龥]'
+    fi
+}
+
+# Locale-independent filter helpers: use grep -P with explicit codepoints when
+# available, fall back to ERE bracket ranges for BSD grep (macOS).
+_filter_year() {
+    if [ -n "$CJK_USE_P" ]; then
+        grep -vP '^\s*[\x{FF08}\x{28}]?[\x{30}-\x{39}\x{FF10}-\x{FF19}]{2,4}\s*\x{5e74}'
+    else
+        grep -vE '^[[:space:]]*[（(]?[0-9０-９]{2,4}[[:space:]]*年'
+    fi
+}
+
+_filter_issue() {
+    if [ -n "$CJK_USE_P" ]; then
+        grep -vP '\x{7b2c}\s*[\x{30}-\x{39}\x{FF10}-\x{FF19}\x{4e00}\x{4e8c}\x{4e09}\x{56db}\x{4e94}\x{516d}\x{4e03}\x{516b}\x{4e5d}\x{5341}]+\s*[\x{671f}\x{5377}]'
+    else
+        grep -vE '第[[:space:]]*[0-9０-９一二三四五六七八九十]+[[:space:]]*[期卷]'
+    fi
+}
+
+_filter_abstract() {
+    if [ -n "$CJK_USE_P" ]; then
+        grep -vP '\x{6458}[\s\x{3000}]*\x{8981}'
+    else
+        grep -vE '摘[[:space:]　]*要'
+    fi
+}
+
+_filter_keywords() {
+    if [ -n "$CJK_USE_P" ]; then
+        grep -vP '\x{5173}[\s\x{3000}]*\x{952e}'
+    else
+        grep -vE '关[[:space:]　]*键'
+    fi
+}
+
+extract_title_from_pdf() {
+    local pdf="$1"
+    local text
+    text=$(pdftotext -l 2 "$pdf" - 2>/dev/null)
+
+    local title=""
+
+    # Check if text contains CJK characters (Chinese/Japanese/Korean)
+    if echo "$text" | _cjk_test 2>/dev/null; then
+        # Chinese paper: find first CJK line that isn't a header marker.
+        # Skip lines that look like date/issue/volume markers, abstracts,
+        # keywords, author bios, fund project notes, etc.
+        # Note: awk 'length' counts bytes on Linux (mawk), chars on macOS (gawk).
+        title=$(echo "$text" | head -n 20 \
+            | _cjk_match \
+            | _filter_year \
+            | _filter_issue \
+            | _filter_abstract \
+            | _filter_keywords \
+            | grep -v 'Abstract' \
+            | grep -v 'Keywords' \
+            | grep -v '作者简介' \
+            | grep -v '基金项目' \
+            | grep -v '责任编辑' \
+            | awk 'length >= 4' \
+            | head -n 1 || true)
+    fi
+
+    # Fallback: first alphanumeric line with header filtering (same filters
+    # as CJK branch to avoid grabbing issue headers or abstract lines)
+    if [ -z "$title" ]; then
+        title=$(echo "$text" | head -n 20 \
+            | grep -m 1 '[[:alnum:]]' \
+            | _filter_year \
+            | _filter_issue \
+            | _filter_abstract \
+            | _filter_keywords \
+            | grep -v 'Abstract' \
+            | grep -v 'Keywords' \
+            | grep -v '作者简介' \
+            | grep -v '基金项目' \
+            | grep -v '责任编辑' || true)
+    fi
+
+    # Final fallback: filename without extension
+    if [ -z "$title" ]; then
+        title=$(basename "$pdf" .pdf)
+    fi
+
+    # Strip trailing footnote markers (＊, *) from title
+    title=$(echo "$title" | sed 's/^[[:space:]]*//; s/[[:space:]]*$//; s/[＊*]$//')
+    echo "$title"
+}
+
 # --- 1. Extract Metadata ---
 echo "Step 1: Extracting metadata..."
 
@@ -242,7 +389,7 @@ fi
 # Fallback: extract title from PDF
 if [ -z "$METADATA_JSON" ]; then
     echo "  - No DOI/arXiv ID found or API failed, extracting title from PDF..."
-    TITLE=$(pdftotext -l 1 "$INPUT_PDF" - | head -n 5 | grep -m 1 '[[:alnum:]]' || echo "$(basename "$INPUT_PDF" .pdf)")
+    TITLE=$(extract_title_from_pdf "$INPUT_PDF")
     METADATA_JSON=$(jq -n \
         --arg title "$TITLE" \
         '{
@@ -305,7 +452,8 @@ fi
 echo "  - Parent item created with key: $PARENT_KEY"
 
 # --- 3. Create Attachment and Upload ---
-if [ -n "$WEBDAV_URL" ] && [ -n "$WEBDAV_USER" ] && [ -n "$WEBDAV_PASS" ]; then
+if [ -n "$ZOTERO_WEBDAV_URL" ] && [ -n "$ZOTERO_WEBDAV_USER" ] && [ -n "$ZOTERO_WEBDAV_PASS" ]; then
+    require_https_webdav_url "$ZOTERO_WEBDAV_URL" || exit 1
     echo "Step 3: Creating WebDAV attachment..."
 
     # WebDAV mode
@@ -349,23 +497,47 @@ if [ -n "$WEBDAV_URL" ] && [ -n "$WEBDAV_USER" ] && [ -n "$WEBDAV_PASS" ]; then
     PDF_MD5=$(get_md5 "$INPUT_PDF")
     PDF_MTIME=$(get_mtime "$INPUT_PDF")000
 
-    # Use mktemp for secure unpredictable temp files
-    PROP_FILE=$(mktemp "$TMP_DIR/zotero.prop.XXXXXX")
-    ZIP_FILE=$(mktemp "$TMP_DIR/zotero.zip.XXXXXX")
+    # Use attachment key for filenames (required by Zotero WebDAV protocol)
+    # Do NOT use mktemp: it creates an empty file that zip treats as an invalid
+    # archive, causing exit code 3.  Using the key directly also ensures the
+    # uploaded files have the correct names on the WebDAV server.
+    PROP_FILE="$TMP_DIR/${ATTACH_KEY}.prop"
+    ZIP_FILE="$TMP_DIR/${ATTACH_KEY}.zip"
+    rm -f "$PROP_FILE" "$ZIP_FILE"
 
     printf '<properties version="1"><mtime>%s</mtime><hash>%s</hash></properties>' "$PDF_MTIME" "$PDF_MD5" > "$PROP_FILE"
+    # zip -j: store filename only (no directory path) inside the archive
     zip -j "$ZIP_FILE" "$INPUT_PDF" > /dev/null
 
-    WEBDAV_TARGET_URL="${WEBDAV_URL%/}/"
+    WEBDAV_BASE_URL="${ZOTERO_WEBDAV_URL%/}"
+    WEBDAV_UPLOAD_OK=true
     if [ "$DRY_RUN" = true ]; then
-        echo "  [DRY-RUN] Would upload $PROP_FILE and $ZIP_FILE to WebDAV"
+        echo "  [DRY-RUN] Would upload $PROP_FILE and $ZIP_FILE to $WEBDAV_BASE_URL/"
     else
-        curl -s -f -u "$WEBDAV_USER:$WEBDAV_PASS" -T "$PROP_FILE" "$WEBDAV_TARGET_URL"
-        curl -s -f -u "$WEBDAV_USER:$WEBDAV_PASS" -T "$ZIP_FILE" "$WEBDAV_TARGET_URL"
+        HTTP_PROP=$(curl -s -o /dev/null -w "%{http_code}" -u "$ZOTERO_WEBDAV_USER:$ZOTERO_WEBDAV_PASS" \
+            -T "$PROP_FILE" "$WEBDAV_BASE_URL/${ATTACH_KEY}.prop")
+        HTTP_ZIP=$(curl -s -o /dev/null -w "%{http_code}" -u "$ZOTERO_WEBDAV_USER:$ZOTERO_WEBDAV_PASS" \
+            -T "$ZIP_FILE" "$WEBDAV_BASE_URL/${ATTACH_KEY}.zip")
+
+        if [ "$HTTP_PROP" != "200" ] && [ "$HTTP_PROP" != "201" ] && [ "$HTTP_PROP" != "204" ]; then
+            echo "  Error: PROP upload returned HTTP $HTTP_PROP" >&2
+            WEBDAV_UPLOAD_OK=false
+        fi
+        if [ "$HTTP_ZIP" != "200" ] && [ "$HTTP_ZIP" != "201" ] && [ "$HTTP_ZIP" != "204" ]; then
+            echo "  Error: ZIP upload returned HTTP $HTTP_ZIP" >&2
+            WEBDAV_UPLOAD_OK=false
+        fi
     fi
 
-    rm -f "$PROP_FILE" "$ZIP_FILE"
-    echo "  - WebDAV upload complete"
+    rm -rf -- "$TMP_DIR"
+    trap - EXIT
+    if [ "$WEBDAV_UPLOAD_OK" = true ]; then
+        echo "  - WebDAV upload complete"
+    else
+        echo "  - WebDAV upload FAILED. Attachment record $ATTACH_KEY exists but files were not uploaded." >&2
+        echo "  - You can retry via Zotero client sync, or re-run this script." >&2
+        exit 1
+    fi
 
 else
     echo "Step 3: Creating attachment via Zotero API direct upload..."
@@ -375,7 +547,7 @@ else
     FILE_SIZE=$(get_filesize "$INPUT_PDF")
     if [ "$FILE_SIZE" -gt 100000000 ]; then
         echo "  Warning: File size ($((FILE_SIZE/1000000))MB) exceeds typical Zotero API limit (100MB)"
-        echo "  Consider using WebDAV for large files by setting WEBDAV_URL, WEBDAV_USER, WEBDAV_PASS"
+        echo "  Consider using WebDAV for large files by setting ZOTERO_WEBDAV_URL, ZOTERO_WEBDAV_USER, ZOTERO_WEBDAV_PASS"
     fi
 
     # Create attachment with upload via multipart/form-data

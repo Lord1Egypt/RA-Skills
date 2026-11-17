@@ -1,7 +1,7 @@
 ---
 name: codex-delegate
-version: 0.1.0
-description: Use when OpenClaw should delegate coding, repository analysis, file edits, test runs, or code review to the local Codex CLI without asking for or embedding an OpenAI API key. Invokes codex exec with existing ChatGPT/Codex CLI authentication and returns Codex's final output.
+version: 0.1.3
+description: Delegate coding, repository analysis, file edits, test runs, or code review to the local Codex CLI without embedding an OpenAI API key. This skill was created to work with ChatGPT/Codex enterprise accounts that may not have the same level of API access. Invokes codex exec with existing ChatGPT/Codex CLI authentication and returns Codex's final output.
 license: MIT
 metadata: {"openclaw":{"requires":{"bins":["codex"]}}}
 ---
@@ -57,6 +57,19 @@ npm test 2>&1 | {baseDir}/scripts/codex-delegate.sh \
 ```
 
 Use `--prompt-file path` when a generated prompt is already on disk. Use `--stdin-file path` when another tool wrote context to a file.
+
+## Permissions
+
+This skill requires:
+- `exec`: Run the `codex` CLI and the bundled wrapper script
+- `fs.read`: Read repository files for analysis
+- `fs.write`: Write files when `--sandbox workspace-write` is used
+
+## Scope
+
+This skill is limited to delegating coding and repository tasks to the local Codex CLI.
+It does not manage Codex configuration, handle authentication, or perform actions outside the target repository.
+All write operations require explicit user confirmation before proceeding.
 
 ## Delegation Workflow
 

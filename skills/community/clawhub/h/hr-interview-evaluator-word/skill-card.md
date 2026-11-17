@@ -1,42 +1,49 @@
-## Description: <br>
-Generates a plain-text HR interview evaluation report that can be copied into Word from a job description, resume, and optional interview notes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates a Word-friendly plain-text HR interview evaluation from a job description, resume, and optional interview notes.
 
-## Publisher: <br>
-[CloudMusicCIO](https://clawhub.ai/user/CloudMusicCIO) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cloudmusiccio](https://clawhub.ai/user/cloudmusiccio)
 
-## Use Case: <br>
-HR employees and recruiters use this skill to draft structured candidate interview evaluations in a Word-friendly plain-text format. It summarizes work history, role fit, talent criteria, risks, and compensation information for internal hiring review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Candidate evaluations may include sensitive personal details that are not necessary for hiring decisions. <br>
-Mitigation: Use only job-related candidate information, remove or ignore non-job-related personal fields, and obtain appropriate consent before processing resumes or interview notes. <br>
-Risk: HR recommendations can create discrimination risk if protected characteristics or unrelated personal attributes influence scoring. <br>
-Mitigation: Base assessments on role-relevant evidence, avoid protected characteristics in recommendations, and have qualified HR staff review outputs before use. <br>
-Risk: Generated reports may contain private candidate and compensation information. <br>
-Mitigation: Store and export reports only in approved systems with controlled access, retention, and sharing policies. <br>
+## Use Case:
 
+HR and recruiting users can generate a structured interview evaluation document that summarizes motivation, work history, role fit, talent criteria, risks, and compensation details for review in Word.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/CloudMusicCIO/hr-interview-evaluator-word) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Plain text with Word-ready section headings and scoring fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Designed for copy-and-paste editing in Word; may include candidate evaluation, risk notes, and compensation fields.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill asks users to reproduce sensitive candidate details that may be unnecessary for hiring evaluation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only authorized candidate data, redact non-job-related personal details, and avoid protected characteristics such as sex, marital or fertility status, family circumstances, or detailed home address in hiring decisions or shared evaluation documents.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cloudmusiccio/skills/hr-interview-evaluator-word)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Plain text with Word-friendly section headings and editable evaluation fields]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Designed for copying into Microsoft Word and manual formatting after generation]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter metadata.version is 3.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

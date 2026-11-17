@@ -1,41 +1,54 @@
-## Description: <br>
-Cycling Tracker helps agents log rides, analyze average speed, plan cycling routes, and summarize training activity. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tracks cycling activity, analyzes ride speed, plans routes, and summarizes training progress.
 
-## Publisher: <br>
-[kaising-openclaw1](https://clawhub.ai/user/kaising-openclaw1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kaising-openclaw1](https://clawhub.ai/user/kaising-openclaw1)
 
-## Use Case: <br>
-Cyclists and fitness-focused users can ask an agent to record ride distance and time, calculate average speed, plan routes by distance and type, review training plans, and generate ride statistics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The scanner evidence is clean, but the security summary says the actual skill contents were not available for a full check. <br>
-Mitigation: Review the visible artifact files before installation and confirm the skill only performs expected cycling tracking, speed analysis, route planning, and statistics tasks. <br>
-Risk: The skill presents shell-command examples and declares a curl binary requirement. <br>
-Mitigation: Inspect generated or suggested shell commands before running them, and avoid granting credentials, network access, or broad local file access unless required for the intended task. <br>
+## Use Case:
 
+Cyclists and fitness users use this skill to log ride distance and time, calculate ride speed, plan routes by distance and type, and review training or monthly activity statistics.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kaising-openclaw1/cycling-tracker) <br>
-- [Publisher profile](https://clawhub.ai/user/kaising-openclaw1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and concise guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference the skill's CLI-style cycling commands for logging, speed analysis, route planning, and statistics.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and _meta.json) <br>
+Risk: Installing with npx clawhub@latest may use an installer version that has not been reviewed for this release.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin the ClawHub installer to a reviewed version before installation.
+
+Risk: The package declares a curl binary requirement.
+
+Mitigation: Verify why curl is required before deployment and review any network behavior in the target environment.
+
+## Reference(s):
+
+- [Cycling Tracker ClawHub Skill](https://clawhub.ai/kaising-openclaw1/skills/cycling-tracker)
+- [Publisher Profile](https://clawhub.ai/user/kaising-openclaw1)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces cycling-tracking command examples, route-planning guidance, speed analysis prompts, training-plan guidance, and statistical reporting guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -15,8 +15,8 @@ Use Context Intake before building an OKKI action when the request contains any 
 - A file, attachment, PDF, spreadsheet, website, report, browser/web research, or another skill's output.
 - More than about 20 imported rows, a long pasted brief, or a long email draft.
 - Ambiguous target references such as "these", "the above", "latest", "the recommended ones", or old row selections.
-- Multiple actions in one turn, such as research plus unlock, unlock plus contacts, draft plus send, or profile extraction plus save.
-- Any paid unlock, contact search, email send, Profile write, or local state write that depends on external or prior-turn context.
+- Multiple actions in one turn, such as research plus unlock, unlock plus email drafting, draft plus send, or profile extraction plus save.
+- Any paid unlock, email send, Profile write, or local state write that depends on external or prior-turn context.
 
 ## Digest Rules
 
@@ -33,7 +33,6 @@ Digest families:
 
 - `company_discovery_digest`: merchant offer, target geography, buyer route, exclusions, count, unknowns.
 - `unlock_selection_digest`: selection handles, rows, reasons, excluded rows, batch refs.
-- `contact_search_digest`: company scope, role/title, geography, email requirement, credit scope.
 - `email_draft_digest`: recipient set, value proposition, tone, offer facts, language, forbidden claims.
 - `email_send_digest`: frozen recipient refs, final content refs, confirmation state.
 - `profile_update_digest`: source-labeled candidate fields, save scope, rejected fields.
@@ -87,7 +86,6 @@ node scripts/okki-envelope.js validate --file /private/tmp/okki-go-context/envel
 | `company_discovery` | Supported search fields only; at least one keyword field or valid batch plan. |
 | `prepare_unlock` | Current `selection_handle + rows` or processed selection-set file; no raw IDs/domains. |
 | `unlock_companies` | Frozen plan plus explicit confirmation for the current target fingerprint. |
-| `contact_search` | Supported contact fields, size cap, and first-session credit confirmation. |
 | `draft_email` | Recipient/source refs and sourced offer facts; no send implied. |
 | `send_email` | Frozen recipients, final content refs, and explicit recipient plus content confirmation. |
 | `profile_update` | Source-labeled candidate fields and explicit save confirmation for inferred/imported data. |
@@ -104,4 +102,4 @@ After any OKKI wrapper succeeds, respond from only:
 - the user's latest request,
 - minimal digest facts needed for a one-sentence explanation.
 
-Do not rebuild, filter, reorder, renumber, summarize, or replace the script-owned primary structure. For company discovery, show `display_table_markdown` first. For unlock, show `unlock_details_markdown`. For contact search, email send, email status, Profile updates, and balance, use the script-provided rows, counts, task IDs, paths, warnings, and summaries.
+Do not rebuild, filter, reorder, renumber, summarize, or replace the script-owned primary structure. For company discovery, show `display_table_markdown` first. For unlock, show `unlock_details_markdown`. For email send, email status, Profile updates, and balance, use the script-provided rows, counts, task IDs, paths, warnings, and summaries.

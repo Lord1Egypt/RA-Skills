@@ -1,42 +1,55 @@
-## Description: <br>
-Generates Douyin short-video title suggestions in multiple Chinese content styles, with simple estimated view, engagement, and recommendation metrics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Douyin video title ideas in multiple styles to help creators improve audience attention, views, and engagement.
 
-## Publisher: <br>
-[yyq56565656](https://clawhub.ai/user/yyq56565656) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yyq56565656](https://clawhub.ai/user/yyq56565656)
 
-## Use Case: <br>
-External Douyin creators, marketers, and content operators use this skill to generate batches of Chinese short-video title options by topic, style, audience, and trend term. The reported view, engagement, and recommendation values should be treated as directional, unvalidated estimates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The PowerShell wrapper can evaluate user-supplied text as commands. <br>
-Mitigation: Run the Python script directly with trusted inputs, or replace Invoke-Expression with structured argument passing before using the wrapper. <br>
-Risk: The skill reports view, engagement, recommendation, and algorithm-optimization estimates that are not supported by validation evidence. <br>
-Mitigation: Treat these metrics as illustrative copywriting hints and validate title performance with real platform analytics before relying on them. <br>
+## Use Case:
 
+External content creators, social media operators, and brand marketing teams use this skill to draft Douyin title options for a topic and compare style-specific estimated performance signals.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/yyq56565656/douyin-title-generator-v2) <br>
-- [README](artifact/README.md) <br>
-- [Skill definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands] <br>
-**Output Format:** [Plain text or Markdown-style report with generated titles and estimated metrics] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Randomized local output; performance estimates are illustrative and should not be treated as real forecasts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: evidence.release.version and SKILL.md frontmatter) <br>
+Risk: The PowerShell wrapper can turn crafted title inputs into local command execution.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer running the Python script directly with trusted inputs, or replace Invoke-Expression with argument-array process invocation before accepting untrusted text.
+
+Risk: Generated performance estimates may be mistaken for guaranteed platform outcomes.
+
+Mitigation: Review titles before publishing and treat estimated views, engagement, and recommendation weight as illustrative signals.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yyq56565656/skills/douyin-title-generator-v2)
+- [README](artifact/README.md)
+- [Product overview](artifact/产品介绍.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, files]
+
+**Output Format:** [Markdown-like text report with generated titles and estimated views, engagement, and recommendation weight; optional exported text file.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Randomized title selection; direct Python use requires no additional package dependencies.]
+
+## Skill Version(s):
+
+2.0.0 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

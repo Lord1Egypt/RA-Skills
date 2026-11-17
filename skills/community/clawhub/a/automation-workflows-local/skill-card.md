@@ -1,41 +1,56 @@
-## Description: <br>
-Design and implement no-code automation workflows that save time, reduce manual work, and connect business tools for solopreneurs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Design and implement automation workflows to save time and scale operations as a solopreneur.
 
-## Publisher: <br>
-[larry-at](https://clawhub.ai/user/larry-at) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[larry-at](https://clawhub.ai/user/larry-at)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and solopreneurs use this skill to identify repetitive business tasks, choose no-code automation tools, design workflows, test automations, and maintain them over time.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Automation workflows can affect customer emails, public posts, invoices, payment updates, or bulk CRM changes if enabled without review.
+
+Mitigation: Add human review before enabling workflows that publish content, contact customers, change financial records, or update many business records.
+
+Risk: Connected business tools may expose sensitive data or broad account permissions.
+
+Mitigation: Grant the smallest available permissions and test first with non-sensitive or limited data.
+
+Risk: Incorrect field mapping, duplicate triggers, or failed actions can create wrong records or missed follow-up tasks.
+
+Mitigation: Test each trigger and action, include edge cases, configure failure notifications, and review workflow logs regularly.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Solopreneurs and small-business operators use this skill to identify repetitive work, select no-code automation tools, design trigger/action workflows, test automations, and maintain them over time. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [guidance, markdown, configuration]
 
-## Known Risks and Mitigations: <br>
-Risk: Automations may use connected accounts with broad access to business systems. <br>
-Mitigation: Use least-privilege OAuth connections and review tool permissions before enabling workflows. <br>
-Risk: Workflow designs may affect customers, public posts, CRM status, or money movement if enabled without review. <br>
-Mitigation: Require human review before activating workflows that send customer communications, move money, update CRM status, or publish publicly. <br>
-Risk: Incorrect field mapping or insufficient testing can copy or expose unnecessary customer data. <br>
-Mitigation: Test with non-production or clearly marked test data and minimize copied customer fields. <br>
+**Output Format:** [Markdown guidance with checklists, comparison tables, workflow templates, troubleshooting notes, and example automation designs.]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [No executable code is produced by the skill.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, configuration] <br>
-**Output Format:** [Markdown guidance with workflow templates, checklists, comparison tables, and example automation designs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only guidance; no tools, scripts, API calls, or credentials are executed by the skill itself.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

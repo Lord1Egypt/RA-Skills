@@ -1,46 +1,64 @@
-## Description: <br>
-LibTV Skill Pro helps agents generate, edit, monitor, download, and export AI images and videos through LibTV, with dry-run previews, model routing, batch jobs, workflow templates, project/session utilities, and structured errors. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+LibTV Skill Pro helps agents generate, edit, monitor, download, and export image and video work through the LibTV AI creation platform.
 
-## Publisher: <br>
-[qiuxiangxiang](https://clawhub.ai/user/qiuxiangxiang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qiuxiangxiang](https://clawhub.ai/user/qiuxiangxiang)
 
-## Use Case: <br>
-External users, developers, and creative operators use this skill to route prompts and media to LibTV for image/video generation, edits, batch production, monitoring, downloads, and export reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires LIBTV_ACCESS_KEY and sends prompts, reference URLs, and uploaded media to LibTV. <br>
-Mitigation: Use a revocable API key, keep it out of logs, and install only when LibTV is trusted for the content being submitted. <br>
-Risk: OPENAPI_IM_BASE or IM_BASE_URL can change the API endpoint used by the scripts. <br>
-Mitigation: Leave these variables unset for normal use, or verify they point to a trusted endpoint before running commands. <br>
-Risk: Paid generation commands can consume LibTV credits. <br>
-Mitigation: Run dry-run previews before paid generation and confirm the prompt, model, ratio, resolution, duration, and batch size. <br>
-Risk: Optional HTML exports can render untrusted session content unsafely in a browser. <br>
-Mitigation: Avoid opening HTML exports from untrusted sessions until the escaping issue is fixed; prefer JSON, Markdown, or URL-only exports when reviewing untrusted content. <br>
+## Use Case:
 
+External users and developers use this skill to route image and video creation requests to LibTV, including text-to-image, text-to-video, reference-based edits, batch jobs, polling, downloads, and report exports.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/qiuxiangxiang/libtv-skill-pro) <br>
-- [Publisher Profile](https://clawhub.ai/user/qiuxiangxiang) <br>
-- [LibTV Platform](https://www.liblib.tv) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, JSON, files] <br>
-**Output Format:** [JSON responses, shell command guidance, Markdown or HTML exports, URLs, and downloaded media files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generation commands may create remote LibTV sessions, project URLs, media URLs, local project/session history files, and downloaded image or video assets.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.4.4 (source: server release evidence) <br>
+Risk: The security summary flags unsafe network and file-write behavior in download and export helpers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated download and export paths before execution, and run the skill only for deliberate LibTV work from a trusted publisher.
+
+Risk: A LibTV access key is required for live operations.
+
+Mitigation: Keep LIBTV_ACCESS_KEY secret and avoid placing it in prompts, logs, shared shell history, or exported reports.
+
+Risk: Direct URL downloads can fetch untrusted content and filename prefixes can affect local write paths.
+
+Mitigation: Avoid the direct --urls download option with untrusted URLs, avoid path-like filename prefixes, and write outputs to an intended directory.
+
+Risk: Uploaded source media and exported HTML reports may contain private or active content.
+
+Mitigation: Upload private media only when intended, and treat exported HTML reports as untrusted files unless their source session is trusted.
+
+## Reference(s):
+
+- [LibTV Skill Pro on ClawHub](https://clawhub.ai/qiuxiangxiang/skills/libtv-skill-pro)
+- [qiuxiangxiang publisher profile](https://clawhub.ai/user/qiuxiangxiang)
+- [LibTV AI creation platform](https://www.liblib.tv)
+- [Original LibTV ClawHub skill](https://clawhub.ai/haofanwang/libtv-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands; scripts return JSON and can save downloaded media files or exported Markdown, HTML, or JSON reports.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and LIBTV_ACCESS_KEY for live LibTV operations; dry-run mode can preview generation requests without calling the service.]
+
+## Skill Version(s):
+
+0.4.4 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

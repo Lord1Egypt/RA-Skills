@@ -1,40 +1,53 @@
-## Description: <br>
-Use when configuring OpenClaw chat channels to send an immediate acknowledgement before the main reply starts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when configuring OpenClaw chat channels to send an immediate acknowledgement before the main reply starts. Supports Feishu and DingTalk, includes bilingual Chinese-English guidance, and requires the acknowledgement language to follow the active conversation language.
 
-## Publisher: <br>
-[sallyxie2026](https://clawhub.ai/user/sallyxie2026) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sallyxie2026](https://clawhub.ai/user/sallyxie2026)
 
-## Use Case: <br>
-Developers and operators configuring OpenClaw chat bots use this skill to add short, language-matched receipt acknowledgements before the full response in Feishu or DingTalk. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A visible acknowledgement can imply receipt before the full response has completed. <br>
-Mitigation: Keep acknowledgement text limited to receipt and active processing, and preserve normal error handling for the full response path. <br>
-Risk: Acknowledgements sent in the wrong language can create a confusing user experience. <br>
-Mitigation: Select acknowledgement text from the pool matching the active conversation language or the most recent user message language. <br>
+## Use Case:
 
+Developers and bot operators use this skill to configure OpenClaw Feishu and DingTalk channels so users receive a short acknowledgement before the full agent response. The skill helps standardize responsive bilingual acknowledgement behavior while keeping normal reply routing intact.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sallyxie2026/openclaw-immediate-ack) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, configuration, text] <br>
-**Output Format:** [Markdown guidance with bilingual acknowledgement text examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution, installation steps, or credential handling are included.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: An extra immediate acknowledgement before each full response may be unwanted or inconsistent with the norms of a Feishu or DingTalk workspace.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm with bot owners that the acknowledgement behavior is desired and appropriate for the target channel before installing.
+
+Risk: Users may misunderstand a short acknowledgement as task completion if the wording is too final.
+
+Mitigation: Use acknowledgement text that clearly means the bot received the message and is thinking, and keep the full response on the normal reply pipeline.
+
+## Reference(s):
+
+- [OpenClaw Immediate Ack on ClawHub](https://clawhub.ai/sallyxie2026/skills/openclaw-immediate-ack)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, configuration, text]
+
+**Output Format:** [Markdown guidance with acknowledgement text examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Bilingual Chinese-English acknowledgement pools for Feishu and DingTalk channel behavior.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata, released 2026-03-11)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

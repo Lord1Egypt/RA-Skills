@@ -1,44 +1,58 @@
-## Description: <br>
-Manage AI agent identities on the Live Neon platform by fetching identity, syncing content, running discovery, reviewing beliefs, and building prompts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage AI agent identities on the Live Neon platform - fetch identity, sync content, run discovery, review beliefs, and build prompts.
 
-## Publisher: <br>
-[liveneon](https://clawhub.ai/user/liveneon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liveneon](https://clawhub.ai/user/liveneon)
 
-## Use Case: <br>
-Developers and agent operators use this skill to connect an agent to Live Neon, manage persistent agent identity, sync source content, run identity discovery, review proposed beliefs and responsibilities, and retrieve runtime prompts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can transmit user-derived observations, source quotes, synced content, and connected-account data to an external identity-discovery service. <br>
-Mitigation: Do not send secrets, credentials, private customer text, regulated data, or confidential business context in observations, quotes, synced sources, or connected accounts. <br>
-Risk: Approved beliefs and responsibilities can change an agent's runtime prompt and behavior. <br>
-Mitigation: Review pending beliefs and responsibilities manually before approval and avoid approve-all workflows unless the proposed changes have been reviewed. <br>
-Risk: Heartbeat or proactive reporting can create recurring third-party data transmission. <br>
-Mitigation: Enable heartbeat or proactive reporting only where recurring transmission to Live Neon is acceptable for the deployment context. <br>
+## Use Case:
 
+Developers and agent operators use this skill to connect an agent to Live Neon's identity platform, manage structured beliefs and responsibilities, run discovery workflows, and fetch runtime prompts.
 
-## Reference(s): <br>
-- [Live Neon Persona ClawHub Page](https://clawhub.ai/liveneon/live-neon-persona) <br>
-- [Live Neon Publisher Profile](https://clawhub.ai/user/liveneon) <br>
-- [Live Neon Agent Homepage](https://persona.liveneon.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and API response summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces command-oriented guidance for registering, syncing, discovering, reviewing, and fetching Live Neon agent identity data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: A remote identity service can influence agent behavior through fetched prompts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat fetched prompts as untrusted configuration until a human reviews them.
+
+Risk: Observation and source-sync workflows may upload conversation-derived data or sensitive business context.
+
+Mitigation: Redact secrets, personal data, source code, and confidential context before using observation or source-sync features.
+
+Risk: Bulk approval and scheduled syncing can change agent identity without enough oversight.
+
+Mitigation: Avoid approve-all and heartbeat or scheduled syncing unless an administrator has explicitly approved the workflow.
+
+## Reference(s):
+
+- [Live Neon Persona ClawHub Page](https://clawhub.ai/liveneon/skills/live-neon-persona)
+- [Live Neon Persona Homepage](https://persona.liveneon.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash, JSON, and Python snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include API calls and configuration steps that require a Live Neon token.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,56 @@
-## Description: <br>
-Extract main content text from an HTML page (URL, file, or stdin). Strips nav, footer, ads, and boilerplate. Pipes cleanly into readability_check or any text-analysis tool. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extract main content text from an HTML page (URL, file, or stdin), stripping navigation, footers, ads, and boilerplate for downstream text analysis.
 
-## Publisher: <br>
-[ktoetotam](https://clawhub.ai/user/ktoetotam) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[ktoetotam](https://clawhub.ai/user/ktoetotam)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and analysts use this skill to extract readable article-style text from URLs, HTML files, or stdin before readability checks, sentiment analysis, summarization, embeddings, or corpus preparation.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can automatically install unpinned Python packages into the active environment.
+
+Mitigation: Install and run it only in an isolated environment, and prefer a release that declares and pins dependencies ahead of time.
+
+Risk: The skill can fetch unrestricted URLs from the host network.
+
+Mitigation: Avoid running it on sensitive networks or with privileged accounts; restrict or review remote URL fetching before use in controlled environments.
+
+Risk: Extracted page text is untrusted input when passed to downstream tools or LLM workflows.
+
+Mitigation: Review downstream handling of extracted content and avoid treating page text as trusted instructions.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and analysts use this skill to extract readable page text from a URL, local HTML file, or stdin for downstream readability checks, sentiment analysis, summarization, embeddings, or corpus preparation. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can automatically install an unpinned Python package into the host environment when run. <br>
-Mitigation: Use a virtual environment or container, or preinstall a reviewed and pinned trafilatura version before running the skill. <br>
-Risk: Extracted page text may contain untrusted content that is later displayed or processed by an LLM. <br>
-Mitigation: Treat extracted text as untrusted input and review or sanitize it before display, storage, or downstream agent use. <br>
+**Output Format:** [Plain text by default, with optional Markdown or JSON output]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ktoetotam/html-text-extract) <br>
-- [Publisher profile](https://clawhub.ai/user/ktoetotam) <br>
+**Other Properties Related to Output:** [Status and errors are written to stderr so stdout remains suitable for piping.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Plain text by default, with optional Markdown or JSON output from the extraction command.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Status and error messages are sent to stderr so stdout can be piped into downstream text-analysis tools.] <br>
+1.0.0 (source: release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

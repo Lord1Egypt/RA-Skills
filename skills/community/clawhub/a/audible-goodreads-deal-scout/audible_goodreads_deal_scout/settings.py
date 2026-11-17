@@ -1,11 +1,12 @@
 from __future__ import annotations
 
+import json
 from pathlib import Path
 from typing import Any
 from zoneinfo import ZoneInfo, ZoneInfoNotFoundError
 
-from .constants import DEFAULT_DELIVERY_POLICY, DEFAULT_FRESHNESS_DAYS, DEFAULT_THRESHOLD, SUPPORTED_PRIVACY_MODES
-from .shared import normalize_space, parse_int_value, prompt, read_json
+from .constants import DEFAULT_DELIVERY_POLICY, DEFAULT_FRESHNESS_DAYS, DEFAULT_THRESHOLD
+from .shared import normalize_space
 
 
 def marketplace_specs() -> dict[str, dict[str, str]]:
@@ -54,6 +55,10 @@ def marketplace_specs() -> dict[str, dict[str, str]]:
 
 
 SUPPORTED_MARKETPLACES = marketplace_specs()
+
+
+class ConfigError(ValueError):
+    pass
 
 
 def skill_root() -> Path:
@@ -133,11 +138,26 @@ def config_template(**overrides: Any) -> dict[str, Any]:
 
 
 def load_config(config_path: Path | None) -> tuple[Path, dict[str, Any]]:
-    path = (config_path or default_config_path()).resolve()
-    payload = read_json(path, config_template())
+    path = (config_path or default_config_path()).expanduser().resolve()
+    if not path.exists():
+        return path, config_template()
+    try:
+        payload = json.loads(path.read_text(encoding="utf-8"))
+    except Exception as exc:
+        raise ConfigError(f"Config file at {path} is not readable JSON: {exc}") from exc
     if not isinstance(payload, dict):
-        payload = config_template()
+        raise ConfigError(f"Config file at {path} must contain a JSON object.")
     return path, {**config_template(), **payload}
+
+
+def resolve_configured_path(config_path: Path, value: Any) -> Path | None:
+    normalized = normalize_space(str(value or ""))
+    if not normalized:
+        return None
+    path = Path(normalized).expanduser()
+    if not path.is_absolute():
+        path = config_path.parent / path
+    return path.resolve()
 
 
 def resolve_notes_text(notes_file: str | None, inline_notes: str | None) -> str:

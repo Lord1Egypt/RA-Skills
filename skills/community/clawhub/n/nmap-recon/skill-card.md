@@ -1,41 +1,53 @@
-## Description: <br>
-Perform authorized network reconnaissance and port scanning with Nmap to find open ports, detect services, identify vulnerabilities, and enumerate targets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Performs authorized network reconnaissance and port scanning with Nmap to find open ports, detect services, identify vulnerabilities, and enumerate targets.
 
-## Publisher: <br>
-[nsahal](https://clawhub.ai/user/nsahal) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[nsahal](https://clawhub.ai/user/nsahal)
 
-## Use Case: <br>
-Security practitioners and developers use this skill to prepare Nmap commands and interpret scan outputs during authorized network reconnaissance, service discovery, and vulnerability checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Nmap scans are active network actions and can be misused against targets the user is not authorized to test. <br>
-Mitigation: Confirm ownership or written permission for each target before scanning, and avoid public, production, or third-party infrastructure without approval. <br>
-Risk: Aggressive timing, sudo-based scans, vulnerability scripts, and exploit or auth NSE categories can increase operational impact. <br>
-Mitigation: Use exact target scopes, start with conservative scan profiles when appropriate, and review privileged or aggressive commands before running them. <br>
+## Use Case:
 
+Security practitioners and developers use this skill to draft and interpret Nmap commands for authorized network reconnaissance, port scanning, service detection, and vulnerability checks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nsahal/nmap-recon) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/nsahal) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands should be reviewed before execution and limited to explicitly authorized targets.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release and artifact/skill.json) <br>
+Risk: The skill can provide broad, privileged, or evasive network-scanning commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm authorization before each scan and avoid sudo or stealth/evasion modes unless they are explicitly needed.
+
+Risk: Generated scan commands may be run against an unintended or invalid target.
+
+Mitigation: Require an explicit target and validate targets as hostnames, IP addresses, or CIDR ranges before execution.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/nsahal/skills/nmap-recon)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Markdown, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an explicit target and authorization review before executing generated commands.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.release.version and artifact/skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

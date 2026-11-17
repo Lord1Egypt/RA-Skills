@@ -506,7 +506,7 @@ x509: certificate signed by unknown authority
 
 2. Ensure no spaces in token:
    ```bash
-   export GITLAB_TOKEN=glpat-xxxxxxxxxxxxxxxxxxxx
+   export GITLAB_TOKEN=REDACTED-SECRET
    ```
 
 3. Token should not be quoted in export:

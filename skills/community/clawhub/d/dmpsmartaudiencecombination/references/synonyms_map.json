@@ -1,0 +1,187 @@
+{
+  "version": "2026-09-01",
+  "description": "同义词/别称映射表：用于第一层Query扩展，提升中文标签召回率。仅扩展查询词，不直接生成标签。",
+  "rules": {
+    "match_mode": "contains",
+    "output_fields": [
+      "expand_terms",
+      "default_recommendation",
+      "rationale",
+      "need_confirm_fields"
+    ]
+  },
+  "items": [
+    {
+      "trigger": "精致女孩",
+      "expand_terms": [
+        "女性",
+        "18-24岁",
+        "25-34岁",
+        "新锐白领",
+        "品质生活",
+        "悦己消费",
+        "护肤",
+        "美妆",
+        "彩妆",
+        "高消费"
+      ],
+      "default_recommendation": {
+        "demographics": {
+          "gender": "female",
+          "age": [
+            "20-34"
+          ]
+        },
+        "priority": {
+          "gender": "MUST",
+          "age": "PREFERRED"
+        }
+      },
+      "need_confirm_fields": [
+        "gender",
+        "age"
+      ],
+      "rationale": "行业常用口语表达，通常指女性、偏20-34岁，并伴随护肤美妆/悦己消费倾向。"
+    },
+    {
+      "trigger": "宝妈",
+      "expand_terms": [
+        "女性",
+        "已婚",
+        "已婚已育",
+        "有小孩",
+        "母婴",
+        "育儿",
+        "亲子"
+      ],
+      "default_recommendation": {
+        "demographics": {
+          "gender": "female",
+          "marital_parenting": "已婚已育"
+        },
+        "priority": {
+          "gender": "MUST",
+          "marital_parenting": "MUST"
+        }
+      },
+      "need_confirm_fields": [
+        "marital_parenting"
+      ],
+      "rationale": "‘宝妈’通常指女性且已育，但孩子年龄段可能影响圈选，建议确认是否限定婴幼儿/学龄等。"
+    },
+    {
+      "trigger": "高净值",
+      "expand_terms": [
+        "高收入",
+        "中高收入",
+        "高消费",
+        "轻奢",
+        "奢侈品",
+        "品质生活"
+      ],
+      "default_recommendation": {
+        "demographics": {
+          "income_level": [
+            "高收入",
+            "中高收入"
+          ],
+          "consumption_tendency": "高消费"
+        },
+        "priority": {
+          "income_level": "PREFERRED",
+          "consumption_tendency": "PREFERRED"
+        }
+      },
+      "need_confirm_fields": [
+        "income_level",
+        "consumption_tendency"
+      ],
+      "rationale": "‘高净值’在标签体系中通常需拆解为收入层级+消费倾向，并可用轻奢/奢侈品偏好辅助。"
+    },
+    {
+      "trigger": "一二线",
+      "expand_terms": [
+        "一二线城市",
+        "一线",
+        "二线",
+        "一线城市",
+        "二线城市",
+        "城市级别",
+        "城市等级"
+      ],
+      "default_recommendation": {
+        "demographics": {
+          "city_level": [
+            "一线",
+            "二线"
+          ]
+        },
+        "priority": {
+          "city_level": "PREFERRED"
+        }
+      },
+      "need_confirm_fields": [
+        "city_level"
+      ],
+      "rationale": "用户表达‘一二线’时，召回应显式补充为‘一线/二线/城市级别’等可命中词。"
+    },
+    {
+      "trigger": "新一线",
+      "expand_terms": [
+        "新一线城市",
+        "一二线城市",
+        "城市级别"
+      ],
+      "default_recommendation": {
+        "demographics": {
+          "city_level": [
+            "一线",
+            "新一线"
+          ]
+        },
+        "priority": {
+          "city_level": "PREFERRED"
+        }
+      },
+      "need_confirm_fields": [
+        "city_level"
+      ],
+      "rationale": "用户常把‘一二线/新一线’混用，建议给出默认并允许一键确认。"
+    },
+    {
+      "trigger": "最近活跃",
+      "expand_terms": [
+        "近30天活跃",
+        "近60天活跃",
+        "高活跃"
+      ],
+      "default_recommendation": {
+        "activity": {
+          "active_window": "近30天"
+        },
+        "priority": {
+          "active_window": "PREFERRED"
+        }
+      },
+      "need_confirm_fields": [
+        "active_window"
+      ],
+      "rationale": "‘最近活跃’需要落到具体窗口（30/60天等），默认近30天并可一键确认。"
+    },
+    {
+      "trigger": "母婴",
+      "expand_terms": [
+        "准妈妈",
+        "备孕",
+        "孕期",
+        "孕妈妈",
+        "新妈",
+        "老妈",
+        "育儿",
+        "亲子",
+        "母婴",
+        "孕婴"
+      ]
+    }
+  ]
+}

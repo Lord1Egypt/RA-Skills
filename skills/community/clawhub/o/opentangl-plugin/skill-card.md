@@ -1,42 +1,59 @@
-## Description: <br>
-OpenTangl Plugin adds OpenTangl lifecycle tools to OpenClaw so an agent can inspect queues, propose tasks, run workflows, audit cross-repo wiring, and manage merge activity from chat. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenTangl Plugin connects OpenClaw agents to OpenTangl lifecycle tools for queue review, task proposal, workflow execution, autopilot runs, wiring audits, and merge pipeline management.
 
-## Publisher: <br>
-[8co](https://clawhub.ai/user/8co) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[8co](https://clawhub.ai/user/8co)
 
-## Use Case: <br>
-Developers and engineering teams use this plugin to operate an OpenTangl workspace from OpenClaw, including viewing task state, proposing and executing development work, running workflows, auditing wiring, and managing pull-request merge flows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The plugin can expose powerful OpenTangl automation, including repository changes, commits, pull requests, and merges. <br>
-Mitigation: Start with read-only tools, enable mutating tools deliberately, use preview or run modes where available, and keep branch protections or human review in place before allowing PR creation or merges. <br>
-Risk: Misconfigured OpenTangl workspaces or credentials can cause tool failures or automation against the wrong project. <br>
-Mitigation: Confirm the configured workspace path, required API key environment variables, and project registry before enabling mutating tools. <br>
+## Use Case:
 
+Developers and engineering teams use this plugin to operate OpenTangl from an OpenClaw chat session, including reviewing queues, proposing or executing tasks, running workflows, auditing multi-repo wiring, and managing PR merge flows.
 
-## Reference(s): <br>
-- [OpenTangl Plugin on ClawHub](https://clawhub.ai/8co/opentangl-plugin) <br>
-- [OpenTangl Documentation](https://opentangl.com) <br>
-- [Publisher Profile](https://clawhub.ai/user/8co) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [OpenClaw tool responses containing text or markdown, with configuration examples and command output from OpenTangl.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only tools are available by default; mutating tools require explicit allowlist configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence) <br>
+Risk: High-impact automation can change repositories, create commits and PRs, run merge flows, or prune queue state when mutating tools are enabled.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Enable mutating tools only for trusted workspaces, review proposed actions before execution, and run with least-privilege repository and GitHub permissions.
+
+Risk: The plugin may use an unpinned npx tsx fallback in the user's environment if a trusted OpenTangl binary is not configured.
+
+Mitigation: Configure an explicit trusted bin path to a preinstalled OpenTangl executable and avoid relying on the npx fallback.
+
+Risk: The plugin operates with access to the configured workspace, git/GitHub tools, and AI-provider credentials.
+
+Mitigation: Use a dedicated workspace and least-privilege account, scope credentials narrowly, and install only where OpenClaw is intended to operate OpenTangl.
+
+## Reference(s):
+
+- [OpenTangl documentation](https://opentangl.com)
+- [OpenTangl Plugin on ClawHub](https://clawhub.ai/8co/skills/opentangl-plugin)
+- [8co publisher profile](https://clawhub.ai/user/8co)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [OpenClaw tool responses as text or Markdown, often containing command output, code changes, workflow results, configuration snippets, or PR and merge guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May trigger OpenTangl actions that read repository state, write queue files, run workflows, create commits, open PRs, wait for CI, merge, or escalate depending on enabled tools and user configuration.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

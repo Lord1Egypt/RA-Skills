@@ -1,38 +1,53 @@
-## Description: <br>
-Helps agents plan and optimize YouTube ad campaigns across TrueView, Bumper, and Discovery formats. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents in planning and optimizing YouTube advertising campaigns across TrueView, Bumper, and Discovery formats.
 
-## Publisher: <br>
-[kostja94](https://clawhub.ai/user/kostja94) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kostja94](https://clawhub.ai/user/kostja94)
 
-## Use Case: <br>
-Marketing teams, founders, and agents use this skill to choose YouTube ad formats, shape creative specs, add targeting notes, and prepare campaign launch checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may use local project-context files that contain sensitive value proposition or audience information. <br>
-Mitigation: Review project-context content for sensitive information before using it to generate YouTube ad recommendations. <br>
+## Use Case:
 
+External users and marketing teams use this skill to choose YouTube ad formats, shape creative requirements, note targeting considerations, and prepare campaign launch checklists.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kostja94/youtube-ads) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown recommendations and checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May draw on local project context when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and skill frontmatter) <br>
+Risk: The skill can activate on broad video-ad phrasing and may read limited project-context sections when present.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill's invocation scope before installation and keep project-context files limited to information suitable for campaign guidance.
+
+Risk: Campaign guidance may be incomplete for regulated industries, regional advertising restrictions, or account-specific Google Ads settings.
+
+Mitigation: Have a qualified reviewer validate recommendations against the advertiser's policies, regional requirements, and account configuration before launch.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/kostja94/skills/youtube-ads)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown guidance with recommendations, notes, and checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May read limited project context sections for value proposition and audience when those files exist; does not run code or change ad accounts.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release evidence and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,56 @@
-## Description: <br>
-Drive business growth with partnerships, market expansion, deal-making, and commercial strategy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Drive business growth with partnerships, market expansion, deal-making, and commercial strategy.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Founders, executives, and operators use this skill as business development support for partnerships, market expansion, deal negotiation, revenue diversification, and commercial strategy decisions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Business strategy guidance can be incomplete or unsuitable for a specific contract, pricing decision, expansion plan, partnership, or financial commitment. <br>
-Mitigation: Use the skill as decision support and obtain qualified legal, financial, or executive review before acting on material commercial decisions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Partnership Frameworks](artifact/partnerships.md) <br>
-- [Market Expansion Playbooks](artifact/expansion.md) <br>
-- [Deal Negotiation Tactics](artifact/deals.md) <br>
-- [Revenue Strategy](artifact/revenue.md) <br>
+## Use Case:
 
+Employees and external business leaders use this skill for business development leadership, including partnership strategy, market expansion planning, deal negotiation preparation, and revenue diversification.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only business strategy reference; no code, credentials, system access, persistence, or hidden behavior identified by security evidence.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Business strategy work may involve sensitive company financials, customer lists, partner discussions, or negotiation details.
+
+Mitigation: Treat those materials as sensitive and share only the minimum needed for the task.
+
+Risk: Deal, partnership, revenue, or expansion guidance may influence binding contracts, financial commitments, or compliance obligations.
+
+Mitigation: Have qualified legal or finance reviewers handle binding contracts and compliance decisions before action is taken.
+
+## Reference(s):
+
+- [Partnership Frameworks](partnerships.md)
+- [Market Expansion Playbooks](expansion.md)
+- [Deal Negotiation Tactics](deals.md)
+- [Revenue Strategy](revenue.md)
+- [Chief Business Officer on ClawHub](https://clawhub.ai/ivangdavila/skills/cbo)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Business strategy guidance may include partnership, expansion, deal negotiation, revenue, and market-positioning recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

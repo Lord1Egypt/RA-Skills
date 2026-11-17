@@ -1,46 +1,60 @@
-## Description: <br>
-Read-only Api3 feed discovery, readiness, coverage, and purchase-planning skill for downstream agent projects. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Read-only Api3 feed discovery, readiness, coverage, and purchase-planning skill for downstream agent projects.
 
-## Publisher: <br>
-[daav3](https://clawhub.ai/user/daav3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[daav3](https://clawhub.ai/user/daav3)
 
-## Use Case: <br>
-Developers and agents use this skill to discover or verify API3 decentralized data feeds, inspect readiness and runway state, and prepare reviewable activation or contract-call plans without giving the skill signer authority. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated calldata, browser plans, contract addresses, values, or pricing outputs could be wrong for the intended chain or stale by the time they are used. <br>
-Mitigation: Verify every generated detail against trusted API3 sources and the intended chain before passing it to a wallet, browser flow, or separate executor. <br>
-Risk: Users may confuse planning output with authority to execute or with completed funding. <br>
-Mitigation: Treat plans and calldata as review material only, and require a fresh post-action check before claiming that a feed was funded or activated. <br>
-Risk: Supplying private keys or seed phrases would create unnecessary credential exposure for a read-only planning tool. <br>
-Mitigation: Do not provide signer material; use a separate wallet or executor for any transaction after human review. <br>
+## Use Case:
 
+Developers and agent builders use this skill to discover and verify Api3 decentralized data feeds, inspect activation or runway state, audit chain coverage, and prepare reviewable browser or contract-call plans without giving the skill wallet authority.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/daav3/api3-feed-manager-readonly) <br>
-- [Publisher Profile](https://clawhub.ai/user/daav3) <br>
-- [Project Homepage](https://github.com/daav3/agentic-lending-project) <br>
-- [API3 Market](https://market.api3.org) <br>
-- [API3 Market Pricing Data](https://api3dao.github.io/data-feeds/market/dapi-pricing) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [JSON or CSV CLI output with reviewable transaction call details, calldata, browser plans, and diagnostics.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only output; the skill does not accept signer material or submit transactions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: package.json and release evidence) <br>
+Risk: Generated contract targets, values, or calldata may be stale or unsuitable if used directly for execution.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review every generated target, value, and calldata field, then run a fresh post-action check before handing details to a wallet or executor.
+
+Risk: RPC or public network data may be unavailable, stale, or supplied by an untrusted endpoint.
+
+Mitigation: Use trusted RPC endpoints and scope installation to read-only network access.
+
+Risk: Supply-chain assurance is weaker because dependencies are declared with version ranges and no committed lockfile is present in the artifact.
+
+Mitigation: Prefer a release with pinned dependencies and a committed lockfile for stronger assurance.
+
+## Reference(s):
+
+- [Project homepage](https://github.com/daav3/agentic-lending-project)
+- [ClawHub skill page](https://clawhub.ai/daav3/skills/api3-feed-manager-readonly)
+- [Api3 Market](https://market.api3.org)
+- [Api3 dAPI pricing data](https://api3dao.github.io/data-feeds/market/dapi-pricing)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON-like command results and reviewable contract-call details]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only outputs; generated calldata and browser plans are review material for a separate human operator, wallet, or executor.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

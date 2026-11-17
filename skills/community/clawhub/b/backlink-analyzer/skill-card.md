@@ -1,46 +1,61 @@
-## Description: <br>
-Analyzes backlink profiles for link quality, toxicity, competitive gaps, and link-building opportunities. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Profiles backlink quality and AI-assistant referral traffic for a domain, producing source-tagged off-site signal reports with recommended link-building, disavow-review, or monitoring actions.
 
-## Publisher: <br>
-[aaron-he-zhu](https://clawhub.ai/user/aaron-he-zhu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aaron-he-zhu](https://clawhub.ai/user/aaron-he-zhu)
 
-## Use Case: <br>
-External SEO practitioners, marketers, and developers use this skill to audit backlink profiles, evaluate toxic-link risk, compare competitors, and draft link-building or disavow follow-ups. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Incorrect toxic-link classification or unnecessary disavow recommendations can harm search performance. <br>
-Mitigation: Treat disavow files as drafts, manually verify flagged domains, attempt removal where appropriate, and back up existing Google Search Console files before upload. <br>
-Risk: Saved monitoring notes may expose confidential SEO strategy, competitor analysis, or campaign data. <br>
-Mitigation: Review saved memory notes before sharing or committing them, and remove confidential strategy, domains, contacts, or competitor details. <br>
-Risk: Outreach drafts may be generic, misleading, or noncompliant if sent without review. <br>
-Mitigation: Personalize each message, use honest sender identity and intent, keep opt-out paths clear, and review drafts before sending. <br>
+## Use Case:
 
+Developers, marketers, and SEO/GEO analysts use this skill to evaluate a domain's off-site signals from backlink exports, referring-domain data, GA4/GSC exports, or server logs. It supports backlink profile review, toxic-link triage, competitor link-gap analysis, and AI-assistant referral monitoring.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/aaron-he-zhu/backlink-analyzer) <br>
-- [Project Homepage](https://github.com/aaron-he-zhu/seo-geo-claude-skills) <br>
-- [Analysis Templates](references/analysis-templates.md) <br>
-- [Link Quality Rubric](references/link-quality-rubric.md) <br>
-- [Outreach Templates](references/outreach-templates.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown reports, tables, draft outreach messages, and optional disavow-file entries.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should be treated as drafts for human review before outreach, search-console changes, or saved monitoring notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-9.9.9 (source: evidence release metadata and artifact frontmatter) <br>
+Risk: The skill may process private analytics exports, Search Console data, or server logs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Share only the needed slice of data and redact user identifiers before analysis.
+
+Risk: Optional connector command references may depend on local scripts from outside the released artifact.
+
+Mitigation: Use connector commands only when those local scripts are present and have been reviewed.
+
+Risk: Monitoring saves can retain sensitive traffic summaries or follow-up items.
+
+Mitigation: Save memory only with user approval and limit saved content to monitoring summaries and action items.
+
+## Reference(s):
+
+- [Backlink Analysis Templates](artifact/references/backlinks-analysis-templates.md)
+- [Link Quality Rubric](artifact/references/link-quality-rubric.md)
+- [Outreach Templates](artifact/references/outreach-templates.md)
+- [Cloudflare Radar AI Insights](https://radar.cloudflare.com/ai-insights)
+- [Project Homepage](https://github.com/aaron-he-zhu/aaron-marketing-skills)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports with source-tagged metrics, tables, and optional shell command snippets.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include a reusable monitoring handoff summary when the user approves saving results.]
+
+## Skill Version(s):
+
+19.0.0 (source: server release evidence and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

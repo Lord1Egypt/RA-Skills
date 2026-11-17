@@ -1,46 +1,57 @@
-## Description: <br>
-Creates hand-drawn illustration prompts and generated image assets in multiple sketch, watercolor, vector, doodle infographic, and technical diagram styles, with optional delivery through Feishu. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates hand-drawn illustration prompts and images in multiple styles for flowcharts, product explainers, PPT visuals, tutorials, knowledge diagrams, and infographics, then can send generated images to Feishu.
 
-## Publisher: <br>
-[dadaniya99](https://clawhub.ai/user/dadaniya99) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dadaniya99](https://clawhub.ai/user/dadaniya99)
 
-## Use Case: <br>
-Employees, external users, and developers can use this skill to turn article outlines, product explanations, process descriptions, and educational concepts into concise illustration plans, prompt packs, and generated hand-drawn images for presentations, tutorials, knowledge cards, and infographics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts and generated images may be processed by external image generation services. <br>
-Mitigation: Avoid sensitive or proprietary content unless the configured image API provider and account terms are acceptable. <br>
-Risk: The scripts read shared local credentials for image generation and Feishu delivery. <br>
-Mitigation: Review credential sources before use, prefer scoped credentials, and rotate any exposed or unintended keys. <br>
-Risk: Generated images can be sent to a default hardcoded Feishu recipient. <br>
-Mitigation: Review or change the Feishu open_id in scripts/send_to_feishu.sh before running delivery commands. <br>
+## Use Case:
 
+External users and developers use this skill to plan, prompt, generate, iterate, and optionally deliver Chinese-labeled hand-drawn illustrations for presentations, tutorials, product explanations, knowledge posters, and information graphics.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/dadaniya99/sketch-illustration) <br>
-- [Style Reference](references/styles.md) <br>
-- [Prompt Guide](references/prompt-guide.md) <br>
-- [Image Assistant Workflow](references/image-assistant-workflow.md) <br>
-- [API Configuration](references/api-config.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, image files] <br>
-**Output Format:** [Markdown guidance with prompt blocks, JSONL request examples, shell commands, and generated PNG image files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated images are written to local files and may be sent through Feishu when the delivery script is used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release evidence) <br>
+Risk: Generated images and prompts may leave the local environment through configured image generation services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when external image generation is intended, and avoid sending sensitive or confidential content in prompts.
+
+Risk: The Feishu send path uses local app credentials and includes a hard-coded default recipient.
+
+Mitigation: Verify the recipient for every send, remove the default open_id before deployment, and grant only scoped Feishu credentials to a trusted sender.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dadaniya99/skills/sketch-illustration)
+- [Style options](artifact/references/styles.md)
+- [Prompt guide](artifact/references/prompt-guide.md)
+- [Image assistant workflow](artifact/references/image-assistant-workflow.md)
+- [API configuration](artifact/references/api-config.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with prompt blocks, command examples, and generated image files when executed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Image generation can use configured external image APIs and Feishu delivery credentials.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

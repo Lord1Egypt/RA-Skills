@@ -1,42 +1,55 @@
-## Description: <br>
-Submit a vibe-coded startup to The Vibe VC, register project details, connect diligence integrations, relay human verification instructions, and use public newsletter or contact endpoints. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+The Vibe VC helps an agent submit a vibe-coded startup to The Vibe VC, connect diligence integrations, and relay required human verification instructions.
 
-## Publisher: <br>
-[oliversum-ch](https://clawhub.ai/user/oliversum-ch) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oliversum-ch](https://clawhub.ai/user/oliversum-ch)
 
-## Use Case: <br>
-Founders, operators, and their agents use this skill to prepare a startup submission for The Vibe VC, send the registration payload with explicit human consent, and keep diligence evidence current through integrations. It also helps relay the required human verification post instructions after registration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can disclose startup, contact, repository, analytics, billing, or investor information to The Vibe VC endpoints. <br>
-Mitigation: Run only with explicit human approval, review the dry-run payload first, and omit secrets or personal data that is not intended for disclosure. <br>
-Risk: Integration connections may expose operational evidence surfaces such as repositories, workspaces, analytics, or billing systems. <br>
-Mitigation: Use least-privilege access, prefer read-only or guest access where possible, and confirm the base URL before making API calls. <br>
+## Use Case:
 
+External founders and their agents use this skill to prepare and submit startup registration details to The Vibe VC, connect diligence surfaces such as repositories, analytics, or billing, and relay required human verification instructions.
 
-## Reference(s): <br>
-- [Vibe VC API + workflow reference](references/vibevc-api.md) <br>
-- [Canonical Vibe VC skill reference](https://vibevc.md/skill.md) <br>
-- [The Vibe VC](https://vibevc.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, API calls, Configuration] <br>
-**Output Format:** [Markdown guidance with CLI commands and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The helper supports a dry-run mode to review the outbound payload before sending startup, contact, or integration details.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Sensitive founder, project, repository, analytics, billing, and contact details may be disclosed to Vibe VC endpoints.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Get explicit human consent, review dry-run output before submission, keep requests limited to documented Vibe VC HTTPS hosts, and omit secrets or private contact data unless intentionally shared.
+
+Risk: The skill relays remote social-post instructions for LinkedIn or X.
+
+Mitigation: Have the human manually review and approve any social-post wording before publishing.
+
+## Reference(s):
+
+- [Vibe VC API + workflow reference](references/vibevc-api.md)
+- [Canonical Vibe VC skill reference](https://vibevc.md/skill.md)
+- [The Vibe VC public site](https://vibevc.md/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May perform HTTPS API calls to Vibe VC endpoints when the human consents; dry-run mode can print payloads before submission.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

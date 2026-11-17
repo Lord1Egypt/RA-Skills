@@ -1,43 +1,55 @@
-## Description: <br>
-Configures ExDoc for Elixir projects including mix.exs setup, extras, groups, cheatsheets, and livebooks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Configures ExDoc for Elixir projects including mix.exs setup, extras, groups, cheatsheets, and livebooks.
 
-## Publisher: <br>
-[anderskev](https://clawhub.ai/user/anderskev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[anderskev](https://clawhub.ai/user/anderskev)
 
-## Use Case: <br>
-Developers and engineers use this skill to add or revise ExDoc documentation configuration in Elixir projects, including dependencies, extras, grouping, formatters, and documentation-build checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Proposed documentation configuration may add incorrect dependency versions, output paths, or stale extras paths. <br>
-Mitigation: Run mix deps.get, verify each extras and groups_for_extras path exists, then run mix docs and confirm the generated index.html exists. <br>
-Risk: Custom HTML or JavaScript added to ExDoc pages can introduce unwanted analytics behavior, clipboard behavior, or other browser-side effects. <br>
-Mitigation: Review all before_closing_head_tag and before_closing_body_tag additions before publishing generated documentation. <br>
+## Use Case:
 
+Developers and engineers use this skill to configure ExDoc documentation generation for Elixir projects, including dependency setup, extras, module and document grouping, cheatsheets, Livebooks, and successful documentation builds.
 
-## Reference(s): <br>
-- [ExDoc Configuration Skill](https://clawhub.ai/anderskev/exdoc-config) <br>
-- [Advanced Configuration](artifact/references/advanced-config.md) <br>
-- [Extras Formats](artifact/references/extras-formats.md) <br>
-- [Makeup Syntax Highlighting](https://hexdocs.pm/makeup) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Elixir configuration examples and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose changes to mix.exs, documentation extras, grouping, static assets, and ExDoc build commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.1 (source: server release metadata) <br>
+Risk: Generated ExDoc custom JavaScript, such as analytics or clipboard behavior, could conflict with a project's privacy or user-notice requirements.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review custom head and body injections before installing or publishing the generated documentation.
+
+Risk: Incorrect extras, asset paths, or dependency setup could make ExDoc builds fail or produce incomplete documentation.
+
+Mitigation: Run mix deps.get, verify all referenced paths exist, and run mix docs before claiming the documentation configuration is complete.
+
+## Reference(s):
+
+- [Advanced Configuration](references/advanced-config.md)
+- [Extras Formats](references/extras-formats.md)
+- [Makeup syntax highlighting](https://hexdocs.pm/makeup)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Elixir configuration snippets and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides agents to verify dependency resolution, real extra paths, and generated documentation output before claiming success.]
+
+## Skill Version(s):
+
+1.2.1 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

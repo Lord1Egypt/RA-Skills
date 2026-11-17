@@ -1,41 +1,58 @@
-## Description: <br>
-安全的自动任务迭代和优化系统 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A safe automatic task iteration and optimization system.
 
-## Publisher: <br>
-[nidhov01](https://clawhub.ai/user/nidhov01) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nidhov01](https://clawhub.ai/user/nidhov01)
 
-## Use Case: <br>
-Developers and workflow authors use this skill to run local task steps with quality checks, retries, and task history for report generation, code analysis, file processing, and similar iterative workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read local files and overwrite files in the current project. <br>
-Mitigation: Run it only in a dedicated workspace, review planned task steps before execution, and inspect file changes afterward. <br>
-Risk: Task results are retained in ~/.ai_iteration_log.db and may include sensitive content. <br>
-Mitigation: Avoid using the skill around secrets or private directories and periodically delete the task history database when retained content is no longer needed. <br>
+## Use Case:
 
+Developers and automation users use this skill to run task steps with quality scoring, retry loops, and history logging for workflows such as report generation, code analysis, and local file processing.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nidhov01/04) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/nidhov01) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Python dictionaries, text logs, local files, and Markdown or code snippets produced by agent task steps.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill can create or overwrite files in the current project and stores task history in ~/.ai_iteration_log.db.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill can read user-specified local files and return file contents.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it in a dedicated workspace and avoid pointing it at secrets, credentials, or private files.
+
+Risk: The skill can write files within the current working directory.
+
+Mitigation: Run it only in a workspace where generated or overwritten files are acceptable, and review task steps before execution.
+
+Risk: Task and result history can be persisted in plaintext at ~/.ai_iteration_log.db.
+
+Mitigation: Delete or protect the SQLite log when sensitive content may have been processed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nidhov01/skills/04)
+- [Publisher profile](https://clawhub.ai/user/nidhov01)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline Python and shell code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May read user-specified local files, write within the current directory, and persist task and result history to a local SQLite database.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

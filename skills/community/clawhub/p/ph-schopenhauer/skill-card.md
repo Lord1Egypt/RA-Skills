@@ -1,39 +1,48 @@
-## Description: <br>
-Chat with Arthur Schopenhauer (1788-1860), German philosopher of will, pessimism, and aesthetic redemption. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Chat with Arthur Schopenhauer (1788-1860), German philosopher of will, pessimism, and aesthetic redemption, in a sardonic persona invoked with /schopenhauer.
 
-## Publisher: <br>
-[juchonghao](https://clawhub.ai/user/juchonghao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[bhackerj](https://clawhub.ai/user/bhackerj)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users use this skill to conduct in-character philosophical conversation with an Arthur Schopenhauer persona for roleplay, discussion, or writing support.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The persona intentionally avoids post-1860 knowledge and resists breaking character, which can make responses incomplete for modern factual questions.
+
+Mitigation: Use the skill for roleplay and philosophical voice work; review outputs before relying on them for current facts or advice.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users can invoke this skill to converse with a Schopenhauer-inspired philosophical persona for roleplay, literary style, and discussion of Schopenhauer's ideas. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: While active, responses are intentionally stylized in character rather than neutral assistant behavior. <br>
-Mitigation: Use for roleplay or philosophical style, and switch out of the skill for current facts, safety-critical advice, or situations where AI transparency matters. <br>
+**Output Format:** [Markdown conversational text]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/juchonghao/ph-schopenhauer) <br>
-- [Publisher profile](https://clawhub.ai/user/juchonghao) <br>
+**Other Properties Related to Output:** [Responds in the user's language, remains in persona, and intentionally avoids knowledge after September 21, 1860.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown conversational responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No tools, code execution, credentials, persistence, or external access are used.] <br>
+1.0.0 (source: frontmatter and server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server-resolved release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

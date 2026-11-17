@@ -1,41 +1,58 @@
-## Description: <br>
-Look up credit card rewards eligibility for merchants by checking MCC codes and card bonus categories. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Look up credit card rewards eligibility for merchants by checking MCC codes and card bonus categories.
 
-## Publisher: <br>
-[gibtang](https://clawhub.ai/user/gibtang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gibtang](https://clawhub.ai/user/gibtang)
 
-## Use Case: <br>
-External users use this skill to identify a merchant's MCC and compare credit card bonus eligibility, rewards rates, spend caps, and exclusions before choosing a card. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Merchant, domain, or MCC lookup queries are sent to check-mcc.com. <br>
-Mitigation: Avoid entering unnecessary personal transaction details or sensitive account information in lookup queries. <br>
-Risk: Rewards recommendations may be incomplete or outdated. <br>
-Mitigation: Verify important rewards decisions, exclusions, and spend caps with the card issuer before acting. <br>
+## Use Case:
 
+External users use this skill to identify a merchant's MCC and compare credit card rewards eligibility for that merchant. It supports merchant lookup by domain, name search, MCC-based card eligibility checks, and MCC validation for SG and US regions.
 
-## Reference(s): <br>
-- [CheckMCC API base URL](https://check-mcc.com) <br>
-- [ClawHub CheckMCC listing](https://clawhub.ai/gibtang/check-mcc) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown summary of MCC, merchant category, eligible cards, rewards rates, spend caps, conditions, and lookup errors.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include card eligibility details returned by the CheckMCC API for SG or US regions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: release evidence) <br>
+Risk: Merchant names, domains, MCCs, and region selections may be sent to check-mcc.com.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid submitting sensitive merchant context, and disclose external API use before relying on the lookup.
+
+Risk: Default-region documentation is inconsistent between the skill configuration and usage text.
+
+Mitigation: Ask the user to specify SG or US explicitly until the default-region documentation is corrected.
+
+Risk: Rewards output may be incomplete or change over time.
+
+Mitigation: Treat card eligibility and rewards details as guidance, and verify important financial decisions with card issuer terms.
+
+## Reference(s):
+
+- [CheckMCC Skill Page](https://clawhub.ai/gibtang/skills/check-mcc)
+- [CheckMCC API Base URL](https://check-mcc.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with concise merchant, MCC, category, eligibility, reward, cap, and condition details.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include eligible and ineligible card lists, clarification prompts for ambiguous merchants, and error guidance when lookups fail.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

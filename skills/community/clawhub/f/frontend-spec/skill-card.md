@@ -1,40 +1,58 @@
-## Description: <br>
-企业级前端开发规范 Skill，包含命名、目录、CSS/JS/TS、Vue/React、Git、构建、性能、安全完整规范。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language frontend development standards skill covering project structure, naming, HTML, CSS/SCSS, JavaScript/TypeScript, Vue, React, Git, build, performance, and security practices.
 
-## Publisher: <br>
-[adeline18](https://clawhub.ai/user/adeline18) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[adeline18](https://clawhub.ai/user/adeline18)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to answer frontend standards questions and align project structure, naming, HTML, CSS, JavaScript, TypeScript, Vue, React, Git, formatting, performance, and security practices. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may provide frontend standards or workflow guidance that teams apply directly to projects. <br>
-Mitigation: Review generated guidance against the team's framework, security, accessibility, and production requirements before adoption. <br>
-Risk: Security evidence advises reviewing commands before running privileged moderation, publishing, or full-access review helpers. <br>
-Mitigation: Review any suggested privileged actions before execution and grant access only to the repositories, sessions, projects, or credentials required for the task. <br>
+## Use Case:
 
+Frontend developers and engineering teams use this skill as a quick reference for team coding standards, project organization, framework conventions, Git commit messages, performance practices, and basic frontend security guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/adeline18/frontend-spec) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Configuration] <br>
-**Output Format:** [Markdown guidance with inline code and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata and SKILL.md frontmatter) <br>
+Risk: The skill provides broad frontend standards that may not match a team's framework versions, accessibility requirements, or security controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the guidance against the target project's engineering standards before adopting it as policy.
+
+Risk: Chinese-language triggers and content may be less useful in multilingual environments if invoked unintentionally.
+
+Mitigation: Use narrower triggers or explicit language preferences when installing the skill.
+
+Risk: Security guidance is high-level and should not be treated as a complete application security review.
+
+Mitigation: Pair the skill's recommendations with project-specific threat modeling, code review, and security testing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/adeline18/skills/frontend-spec)
+- [Publisher profile](https://clawhub.ai/user/adeline18)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Configuration]
+
+**Output Format:** [Markdown text with frontend examples and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only guidance; no executable behavior is described.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

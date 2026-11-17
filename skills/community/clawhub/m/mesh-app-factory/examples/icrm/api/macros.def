@@ -1,0 +1,68 @@
+{
+    "is_owner":{
+        "name": "chk_right_info",
+        "comment":"确认对数据有owner权限",
+        "type": "dataexists",
+        "db": "crm",
+        "errorCode":"NO_RIGHT",
+        "errorInfo":"no right",
+        "sql":"select 1 from power where account='@{#tokenAcc}'
+               and did=#DID# and type='#TYPE#'
+               and endT>@{NOW|unit60000} and power='O'"
+    },
+    
+    "has_right":{
+        "name" : "chk_right_info",
+        "comment":"确认对数据有任意权限，包括主权限、工作流参与权限、分享权限",
+        "errorCode":"NO_RIGHT",
+        "errorInfo":"no right",
+        "type": "dataexists",
+        "db": "crm",
+        "sql": "select 1 from power where account='@{#tokenAcc}'
+            and type='#TYPE#' and did=#DID# and endT>@{NOW|unit60000}"
+    },
+    
+    "is_contact_owner":{
+        "name" : "check_right_info",
+        "comment":"确认对联系人是否有owner权限，如果是客户的owner，对联系人也是owner",
+        "errorCode":"NO_RIGHT",
+        "errorInfo":"no right",
+        "type": "dataexists",
+        "db": "crm",
+        "sql":"select 1 from power where account='@{#tokenAcc}'
+               and type='CT' and did=#DID# 
+               and endT>@{NOW|unit60000} and power='O'
+              union
+              select 1 from contacts c,power p
+               where c.id=#DID# and p.account='@{#tokenAcc}'
+                 and p.type='CU' and p.did=c.customer
+                 and p.endT>@{NOW|unit60000} and p.power='O'"
+    },
+    
+    "check_accounts":{
+        "name":"check_accounts",
+        "comment":"检查帐号是否都存在",
+        "type" : "call",
+        "service": "user",
+        "method":"POST",
+        "url":"/user/userid",
+        "tokenSign":"APP",
+        "parameters":"{\"accounts\":#ACCLIST#}"
+    },
+    
+    "is_prj_stakeholder" : {
+        "name" : "prj_info",
+        "type" : "call",
+        "method" : "GET",
+        "tokenSign" : "APP",
+        "cache" : "#PID#",
+        "comment" : "查询帐号在项目中的角色",
+        "service" : "iproject",
+        "url" : "/role?id=#PID#&account=@{#tokenAcc}",
+        "onSuccess" : {
+            "errorCode":"NO_RIGHT",
+            "errorInfo":"not stakeholder",
+            "condition":"@{CONDITION|!role,'s.==','L'}||@{CONDITION|!role,'s.==','O'}"
+        }
+    }
+}

@@ -1,38 +1,52 @@
-## Description: <br>
-Folder Counter helps agents count files in a selected folder and summarize file-type distribution before indexing or other file-scale decisions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Counts files in a local folder and can summarize the distribution of file types before an indexing workflow.
 
-## Publisher: <br>
-[xjkvbnwe](https://clawhub.ai/user/xjkvbnwe) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[xjkvbnwe](https://clawhub.ai/user/xjkvbnwe)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and operators use this skill to estimate the number of files in a local directory and decide whether a folder is small enough to index directly or needs filtering or a slower background workflow.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The documented PowerShell command references a count_files.ps1 script that is not included in the inspected package.
+
+Mitigation: Confirm the script exists in the deployment environment or replace the command with a reviewed local counting command before use.
+
+Risk: Counting very large folders can take a long time, especially when collecting file type distribution.
+
+Mitigation: Use the fast count-only mode first and narrow the folder or filter file types before detailed analysis.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and operators use this skill to estimate the number of files and file-type mix in a directory before deciding whether and how to index it. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill examples reference a PowerShell helper script that was not included in the reviewed artifact. <br>
-Mitigation: Inspect the installed count_files.ps1 script before running it, and only execute it against folders you intend to analyze. <br>
+**Output Format:** [Markdown with PowerShell command examples and plain-text file count summaries]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xjkvbnwe/folder-counter) <br>
+**Other Properties Related to Output:** [May include total file counts, a file extension breakdown, and indexing guidance based on folder size.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with PowerShell command examples and text summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include total file counts, file-type distribution, and indexing guidance based on folder size.] <br>
+1.0.0 (source: release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

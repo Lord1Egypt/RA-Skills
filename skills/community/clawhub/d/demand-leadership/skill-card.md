@@ -1,43 +1,52 @@
-## Description: <br>
-Demand Leadership helps agents coach B2B strategy users through diagnosing and improving whether customers adopt their problem framing before entering price, feature, or RFP comparisons. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps teams assess customer positioning and develop behavior-based moves that make their problem framing distinctive.
 
-## Publisher: <br>
-[deciqai](https://clawhub.ai/user/deciqai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[deciqai](https://clawhub.ai/user/deciqai)
 
-## Use Case: <br>
-External business, product, marketing, and sales strategy users use this skill to diagnose whether they are fulfilling existing demand or defining the customer's decision frame. The skill guides users toward a behavior-based demand leadership stage map, a 60-day stage-up move, and concrete success indicators. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Stage diagnosis can be misleading if based on marketing content or self-assessment rather than customer behavior. <br>
-Mitigation: Require evidence from customer behavior, including when customers first contact the company and whether they use the company's terminology in their own documents. <br>
-Risk: The positioning guidance may be over-applied to commodity, regulated, consumer mass-market, or pre-customer contexts. <br>
-Mitigation: Follow the skill's do-not-use conditions and avoid Stage 2 or Stage 3 claims where the problem definition is fixed or customer intelligence is not yet available. <br>
+## Use Case:
 
+Founders, product leaders, and B2B sales or marketing teams use this skill to diagnose commodity positioning and plan customer-behavior changes that help buyers adopt their problem framing.
 
-## Reference(s): <br>
-- [Sources - demand-leadership](references/sources.md) <br>
-- [McKinsey's Construction of the Trusted Advisor Position (1930s-1960s)](examples/mckinsey-trusted-advisor-1930s-1960s.md) <br>
-- [The World's Newest Profession](https://www.cambridge.org/9780521812832) <br>
-- [Value Innovation: The Strategic Logic of High Growth](https://hbr.org/1997/01/value-innovation-the-strategic-logic-of-high-growth) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Analysis] <br>
-**Output Format:** [Markdown with structured diagnostic questions and a stage map template] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes hard-stop coaching prompts that require user responses before advancing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Positioning recommendations may rely on unsupported assumptions about customer needs or expose confidential customer information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use customer information you are authorized to share, keep confidential details out of retained failure-pattern notes, and review proposed strategies before implementing them.
+
+## Reference(s):
+
+- [Christopher McKenna, The World's Newest Profession (Cambridge University Press)](https://www.cambridge.org/9780521812832)
+- [Kim and Mauborgne, Value Innovation (Harvard Business Review)](https://hbr.org/1997/01/value-innovation-the-strategic-logic-of-high-growth)
+- [Demand Leadership overview (deciqAI)](https://www.deciqai.com/c/demand-leadership)
+- [ClawHub skill page](https://clawhub.ai/deciqai/skills/demand-leadership)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Guidance, Markdown]
+
+**Output Format:** [Markdown demand leadership stage map with evidence, positioning diagnosis, a 60-day move, and a customer-behavior success indicator.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide the user one question at a time and wait for their response.]
+
+## Skill Version(s):
+
+1.0.5 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

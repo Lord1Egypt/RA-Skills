@@ -1,44 +1,60 @@
-## Description: <br>
-Audits local skill packages or archives with a built-in Rust scanner, with optional delegation to a user-configured external scanner. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audits local skill packages or archives with auto, native, or external scanner engines and can optionally enable LLM-assisted semantic review.
 
-## Publisher: <br>
-[cyzlmh](https://clawhub.ai/user/cyzlmh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cyzlmh](https://clawhub.ai/user/cyzlmh)
 
-## Use Case: <br>
-Developers and security reviewers use this skill before installing local skills, archives, or release bundles to run a quick local scan and review findings, completeness, and risk level. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow depends on a local scanner binary that must be trusted before execution. <br>
-Mitigation: Build from source when possible, or verify the release checksum before running the binary. <br>
-Risk: Optional report upload can send a structured findings report and supplied instance identifier to a configured endpoint. <br>
-Mitigation: Leave upload disabled unless the endpoint is intentional and trusted; review the configured upload URL before use. <br>
-Risk: Optional external-engine mode delegates scanning to another local tool. <br>
-Mitigation: Enable external-engine mode only for a trusted local scanner and review its configuration before use. <br>
+## Use Case:
 
+Developers and engineers use this skill before installing local skills, archives, or release bundles to review scanner findings and risk level. It helps inspect target files locally by default, with optional configured report upload or LLM review.
 
-## Reference(s): <br>
-- [Gitee Releases](https://gitee.com/random_player/cmic-skill-scanner/releases) <br>
-- [v0.9.0 SHA256SUMS](https://gitee.com/random_player/cmic-skill-scanner/raw/main/releases/v0.9.0/SHA256SUMS) <br>
-- [Source Repository](https://gitee.com/random_player/cmic-skill-scanner.git) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, files, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and optional local report files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Optional report upload and external-engine behavior are disabled unless explicitly configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.9.0 (source: release evidence) <br>
+Risk: Downloaded binaries require trust in the release host and may not match the reviewed source.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Build from source when possible, or verify the published SHA-256 checksum before running a binary.
+
+Risk: The default auto engine may execute a locally resolved external scanner with the current user's permissions.
+
+Mitigation: Use `--engine native` when you want to prevent external scanner execution.
+
+Risk: Optional LLM review or report upload can send scan data to a configured endpoint.
+
+Mitigation: Use `--use-llm` and `--upload-url` only with trusted endpoints and scan only directories intended for inspection.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/cyzlmh/skills/cmic-skill-scanner)
+- [Gitee Releases](https://gitee.com/random_player/cmic-skill-scanner/releases)
+- [Release SHA256SUMS](https://gitee.com/random_player/cmic-skill-scanner/raw/main/releases/v0.11.1/SHA256SUMS)
+- [Gitee Source Repository](https://gitee.com/random_player/cmic-skill-scanner.git)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown reports with inline shell commands and risk findings]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can write local report files to an output directory; optional upload and LLM review require explicit endpoint configuration.]
+
+## Skill Version(s):
+
+0.11.1 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

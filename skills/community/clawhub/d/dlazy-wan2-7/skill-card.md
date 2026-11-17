@@ -1,45 +1,51 @@
-## Description: <br>
-Tongyi Wanxiang 2.7 video model that supports text-to-video, first/last-frame-to-video, and reference-to-video generation through the dLazy CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+通义万相 2.7 视频模型 —— 单一模型支持文生视频、图生视频、首尾帧视频及参考图生成视频。
 
-## Publisher: <br>
-[dlazyai](https://clawhub.ai/user/dlazyai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dlazyai](https://clawhub.ai/user/dlazyai)
 
-## Use Case: <br>
-External users and developers use this skill to request dLazy-hosted Wan2.7 video generation from prompts, images, videos, first and last frames, or audio inputs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends prompts, parameters, and referenced local media to the third-party dLazy cloud service. <br>
-Mitigation: Use it only when third-party video generation is intended, avoid sending sensitive prompts or media, and review service terms before use. <br>
-Risk: The skill requires a dLazy API key stored in local configuration or supplied through an environment variable. <br>
-Mitigation: Protect the API key, restrict local config file access, and rotate or revoke the key from the dLazy dashboard when needed. <br>
-Risk: Broad video-generation trigger wording could route generic generation requests to this third-party provider unintentionally. <br>
-Mitigation: Invoke the skill with explicit product wording such as Dlazy Wan2.7 or dlazy wan2.7 when routing work to this provider. <br>
+## Use Case:
 
+Developers use this skill to generate videos from text prompts, reference media, or specified first and last frames through the dLazy CLI.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/dlazyai/dlazy-wan2-7) <br>
-- [dLazy CLI Homepage](https://github.com/dlazyai/cli) <br>
-- [@dlazy/cli npm Package](https://www.npmjs.com/package/@dlazy/cli) <br>
-- [dLazy Website](https://dlazy.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated media is returned by the dLazy service as hosted output URLs; asynchronous runs may return a generation task identifier for later polling.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: frontmatter and server release metadata) <br>
+Risk: The partial scan has medium confidence, with unresolved local references and a reported mismatch between the advertised video-generation purpose and the CLI login behavior it observed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before installing, check that the CLI setup supports the advertised video-generation function and review the whitespace finding in the Chinese instructions.
+
+## Reference(s):
+
+- [dLazy CLI repository (linked in skill metadata)](https://github.com/dlazy-ai/cli)
+- [@dlazy/cli on npm](https://www.npmjs.com/package/@dlazy/cli)
+- [dLazy](https://dlazy.com)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Files]
+
+**Output Format:** [JSON result with generated media URLs and task status]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Resolution and duration are configurable; tasks can run asynchronously.]
+
+## Skill Version(s):
+
+1.3.40 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

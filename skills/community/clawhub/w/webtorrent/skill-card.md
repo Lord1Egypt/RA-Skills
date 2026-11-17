@@ -1,43 +1,57 @@
-## Description: <br>
-Use WebTorrent to implement streaming BitTorrent client functionality in Node.js and the browser, including torrent downloading, seeding, magnet links, streaming media playback, and peer-to-peer transfer via WebRTC in browsers and TCP/UDP in Node.js. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use WebTorrent to implement streaming BitTorrent client functionality in Node.js and the browser, including torrent downloading, seeding, magnet links, streaming media playback, and peer-to-peer transfer.
 
-## Publisher: <br>
-[openlark](https://clawhub.ai/user/openlark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[openlark](https://clawhub.ai/user/openlark)
 
-## Use Case: <br>
-Developers and engineers use this skill to add WebTorrent-based downloading, seeding, browser peer-to-peer transfer, and streaming media playback to Node.js or browser applications. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: BitTorrent and WebTorrent activity can expose users to peer-to-peer privacy, legal, and content-trust risks. <br>
-Mitigation: Use legal torrents, obtain explicit consent before seeding local files, and treat downloaded content as untrusted. <br>
-Risk: Peer discovery, seeding, and upload behavior may be broader than a deployment needs. <br>
-Mitigation: Limit or disable DHT, tracker, LSD, or upload behavior when not required, and set download paths deliberately. <br>
-Risk: Unpinned global or CDN package installs can introduce dependency supply-chain uncertainty. <br>
-Mitigation: Pin production dependencies and prefer controlled package installation paths over ad hoc global or CDN installs. <br>
+## Use Case:
 
+Developers and engineers use this skill to implement WebTorrent-based download, seeding, magnet link, browser P2P, and streaming media workflows in Node.js or browser applications.
 
-## Reference(s): <br>
-- [WebTorrent Complete API Reference](references/api-reference.md) <br>
-- [WebTorrent skill page](https://clawhub.ai/openlark/webtorrent) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown with JavaScript, HTML, and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Provides implementation guidance for WebTorrent APIs, CLI usage, browser and Node.js environment differences, and safe torrent handling practices.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Torrent and P2P activity can download or seed content and may expose network identifiers to peers or trackers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when torrent behavior is intentional, require clear user consent before seeding, and confirm that selected content is authorized to share.
+
+Risk: Dependency installation through npm, global CLI installs, or unversioned CDN imports can introduce supply-chain risk.
+
+Mitigation: Pin and review npm dependencies, avoid global installs where possible, and prefer versioned package or CDN references.
+
+Risk: Unbounded downloads or broad file selection can consume storage, bandwidth, or memory.
+
+Mitigation: Set explicit download paths, file-selection rules, storage strategy, and upload/download limits before running torrent workflows.
+
+## Reference(s):
+
+- [WebTorrent Complete API Reference](references/api-reference.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with JavaScript and shell code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes API usage patterns, environment notes, and torrent client configuration options.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

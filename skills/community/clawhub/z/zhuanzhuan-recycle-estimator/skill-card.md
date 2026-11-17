@@ -1,46 +1,58 @@
-## Description: <br>
-Supports Zhuanzhuan recycle valuation requests across product categories by using images, text, model details, specifications, and condition information to provide reference trade-in prices. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Zhuanzhuan Recycle Estimator helps an agent identify pre-owned goods from text or images and return a reference trade-in price with follow-up questions when key details are missing.
 
-## Publisher: <br>
-[chenjinxinlove](https://clawhub.ai/user/chenjinxinlove) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chenjinxinlove](https://clawhub.ai/user/chenjinxinlove)
 
-## Use Case: <br>
-External users and agent operators use this skill to estimate the recycle or resale value of pre-owned goods such as phones, tablets, laptops, audio devices, cameras, and home appliances. The skill helps identify missing details, ask clarifying questions, and provide non-binding reference price ranges before a user proceeds to Zhuanzhuan Recycle. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Item descriptions and photos may be sent to Zhuanzhuan for valuation. <br>
-Mitigation: Install only if this data sharing is acceptable for the intended users and environment. <br>
-Risk: The image argument can upload arbitrary local files as images. <br>
-Mitigation: Do not pass unrelated local file paths as --image, and review image inputs before execution. <br>
-Risk: A custom base URL can redirect valuation payloads to another destination. <br>
-Mitigation: Avoid --base-url unless the destination is fully trusted. <br>
-Risk: Session and IP-related state can persist between valuation sessions. <br>
-Mitigation: Reset state between unrelated valuation sessions in shared or sensitive environments. <br>
+## Use Case:
 
+External users and support agents use this skill to estimate recycle values for phones, tablets, laptops, electronics, and small appliances before deciding whether to proceed through Zhuanzhuan Recycle.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chenjinxinlove/zhuanzhuan-recycle-estimator) <br>
-- [Publisher profile](https://clawhub.ai/user/chenjinxinlove) <br>
-- [Zhuanzhuan valuation endpoint](https://zai.zhuanzhuan.com/zai/find_mate/v1/openclaw/recycle-skill/valuate) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown or concise user-facing text with optional shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include recognized item details, reference price ranges, missing fields, clarification options, and next-step guidance; estimates are not binding offers.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Valuation text and product photos are sent to the Zhuanzhuan service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when users consent to sharing product descriptions or photos, and avoid uploading arbitrary local files.
+
+Risk: Caller-controlled base URLs could route data or responses through an untrusted endpoint.
+
+Mitigation: Do not use --base-url except with a trusted approved endpoint.
+
+Risk: Remote reply text can influence final agent responses.
+
+Mitigation: Treat service-generated reply text as untrusted when maintaining or wrapping this skill, and review outputs before surfacing them in higher-risk workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chenjinxinlove/skills/zhuanzhuan-recycle-estimator)
+- [Publisher profile](https://clawhub.ai/user/chenjinxinlove)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown or plain text responses with optional shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include follow-up questions, structured choices, and reference valuation ranges; estimates are not binding offers.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter lists 1.0.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

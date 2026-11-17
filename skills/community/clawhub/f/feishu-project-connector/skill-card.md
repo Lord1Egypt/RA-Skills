@@ -1,41 +1,56 @@
-## Description: <br>
-Connects agents to Meego (Feishu Project) through an MCP service with OAuth authentication for querying and managing work items, views, and related project data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connects an agent to Meego (Feishu Project) through an MCP service with OAuth authentication for querying and managing work items, views, and related project data.
 
-## Publisher: <br>
-[wadxm](https://clawhub.ai/user/wadxm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wadxm](https://clawhub.ai/user/wadxm)
 
-## Use Case: <br>
-Developers and agents use this skill to authenticate with Feishu Project/Meego and query or manage project work items, todos, and views through the Meego MCP service. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses OAuth credentials and may write approved credentials to ~/.mcporter/credentials.json, especially during remote OAuth setup. <br>
-Mitigation: Prefer browser OAuth when possible; use the remote credential-copy flow only with explicit user confirmation and keep credentials only in ~/.mcporter/credentials.json. <br>
-Risk: The skill relies on installing or running the @lark-project/meego-mcporter npm package. <br>
-Mitigation: Confirm trust in the npm package before installing or executing it, and grant only the Feishu Project account permissions needed for the task. <br>
+## Use Case:
 
+Developers and teams using Feishu Project can let an agent authenticate through MCP to query to-dos, views, and work items, and assist with creating, updating, or transitioning work items.
 
-## Reference(s): <br>
-- [@lark-project/meego-mcporter npm package](https://www.npmjs.com/package/@lark-project/meego-mcporter) <br>
-- [Feishu Project OAuth help](https://project.feishu.cn/b/helpcenter/1ykiuvvj/1n3ae9b4) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline shell commands and JSON configuration references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js, npx, the @lark-project/meego-mcporter package, and OAuth credentials managed at ~/.mcporter/credentials.json.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.10 (source: server release and SKILL.md frontmatter) <br>
+Risk: OAuth credential files may be exposed if the remote OAuth proxy flow requires the agent to read or write authorized credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer browser OAuth where possible; when remote OAuth is necessary, require explicit user confirmation, avoid placing credential contents in chat or logs, and keep credentials only in ~/.mcporter/credentials.json.
+
+Risk: Using unpinned npx commands can execute a newer @lark-project/meego-mcporter package than the one reviewed.
+
+Mitigation: Install or invoke a pinned, verified package version before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wadxm/skills/feishu-project-connector)
+- [@lark-project/meego-mcporter npm package](https://www.npmjs.com/package/@lark-project/meego-mcporter)
+- [Feishu Project local authorization documentation](https://project.feishu.cn/b/helpcenter/1ykiuvvj/1n3ae9b4)
+- [Feishu Project MCP server endpoint](https://project.feishu.cn/mcp_server/v1)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON configuration references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides OAuth setup and MCP calls; generated outputs may include commands that write or read the local mcporter credential cache.]
+
+## Skill Version(s):
+
+1.0.10 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

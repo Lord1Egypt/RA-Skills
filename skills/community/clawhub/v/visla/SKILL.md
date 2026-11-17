@@ -1,7 +1,7 @@
 ---
 name: visla
-description: Creates AI-generated videos from text scripts, URLs, or PPT/PDF documents using Visla. Use when the user asks to generate a video, turn a webpage into a video, or convert a PPT/PDF into a video, or when the user asks to check Visla account credits/balance.
-argument-hint: <script|url|doc|account|avatar|voice> [script|URL|file]
+description: Creates AI-generated videos from text scripts, URLs, PPT/PDF documents, or AI-generated visuals (AIGC) using Visla. Use when the user asks to generate a video, turn a webpage into a video, convert a PPT/PDF into a video, create a video with AI-generated visuals/storyboards/motion video, or check Visla account credits/balance.
+argument-hint: <script|url|doc|idea|visual|speech|aigc|aigc-styles|aigc-status|aigc-image|aigc-motion|account|avatar|voice> [args]
 metadata:
   clawdbot:
     emoji: ""
@@ -13,9 +13,11 @@ metadata:
 
 # Visla Video Generation
 
-**Version: 260501-1423**
+**Version: 260811-1640**
 
-Create AI-generated videos from text scripts, web URLs, or documents (PPT/PDF) using Visla's OpenAPI.
+Create AI-generated videos from text scripts, web URLs, documents (PPT/PDF), or AI-generated visuals (AIGC) using Visla's
+OpenAPI. AIGC generates original storyboard images and motion videos for each scene with AI instead of matching stock
+footage.
 
 ## Before You Start
 
@@ -62,47 +64,44 @@ $env:VISLA_API_KEY = "your_key"
 $env:VISLA_API_SECRET = "your_secret"
 ```
 
-**Scripts**: `scripts/visla_cli.py` (Python), `scripts/visla_cli.sh` (Bash)
+**Script**: `scripts/visla_cli.py` — pure Python standard library (**no third-party dependencies**, no
+`pip install`). Runs out-of-the-box on macOS, Linux, and Windows with Python 3.7+.
 
 ## Platform Execution
 
-Default strategy:
+The CLI is a single cross-platform Python script.
 
-- Prefer **Bash** on macOS when dependencies are available (the Bash CLI avoids Python SSL-stack issues on some macOS
-  setups).
-- Prefer **Python** when you're already using a well-configured Python (or when Bash dependencies are missing).
+**Python command differs by platform** — the interpreter is launched differently:
 
-**Bash (recommended on macOS; also works on Linux-like environments)**:
+| Platform | Command |
+|----------|---------|
+| macOS / Linux | `python3` |
+| Windows | `python` (or `py -3` if `python` is not on PATH) |
+
+On Windows, `python3` usually does not exist — always use `python` (or `py -3`). All examples below use
+`python3`; substitute `python` on Windows. When unsure, detect first: `python3 --version 2>/dev/null || python --version`.
+
+**macOS / Linux**:
 
 ```bash
 # With user consent, you may source ~/.config/visla/.credentials
 export VISLA_API_KEY="your_key"
 export VISLA_API_SECRET="your_secret"
-./scripts/visla_cli.sh <command>
-```
-
-**Python (cross-platform)**:
-
-```bash
-python3 scripts/visla_cli.py --key "your_key" --secret "your_secret" <command>
+python3 scripts/visla_cli.py <command>
 # Or, credentials are auto-detected from ~/.config/visla/.credentials (with user consent):
 python3 scripts/visla_cli.py <command>
 ```
 
-**Windows native** (PowerShell/CMD without Bash; Python):
+**Windows** (PowerShell/CMD):
 
 ```powershell
-# PowerShell
 $env:VISLA_API_KEY = "your_key"
 $env:VISLA_API_SECRET = "your_secret"
 python scripts/visla_cli.py <command>
 ```
 
-Windows note:
+Windows notes:
 
-- The agent should prefer running the **Python CLI** on Windows unless it has verified a Bash environment (WSL/Git Bash)
-  is available.
-- For simple scripts, pass directly: `python scripts/visla_cli.py script "Scene 1: ..."`
 - For multi-line or complex scripts, use stdin with `-` (recommended, no temp files):
   ```powershell
   @"
@@ -110,12 +109,10 @@ Windows note:
   Scene 2: ...
   "@ | python scripts/visla_cli.py script -
   ```
-- If you have Python Launcher installed, `py -3 scripts/visla_cli.py <command>` may work better than `python`.
 - Credentials:
-    - The Python CLI auto-detects `~/.config/visla/.credentials` when present.
-    - On Windows the default path is typically: `%USERPROFILE%\\.config\\visla\\.credentials`.
+    - The CLI auto-detects `~/.config/visla/.credentials` when present.
+    - On Windows the default path is typically: `%USERPROFILE%\.config\visla\.credentials`.
 
-Note: do not print credentials. Prefer environment variables or auto-detected credentials with explicit user consent.
 
 ## Commands
 
@@ -127,12 +124,17 @@ Note: do not print credentials. Prefer environment variables or auto-detected cr
 | `/visla idea <text-or-@file>`     | Create video from an idea                         |
 | `/visla visual <file> [file ...]` | Create video from visual resources (images/videos), supports multiple files |
 | `/visla speech <file> [file ...]` | Create video from speech (audio/video file), supports multiple files |
+| `/visla aigc-styles`              | List available AIGC visual styles                 |
+| `/visla aigc <script-or-@file>`   | Create AIGC video with AI-generated visuals (storyboard images + motion videos) |
+| `/visla aigc-status <projectUuid>`| Show per-scene AIGC status (storyboard + motion video progress) |
+| `/visla aigc-image <projectUuid>` | Generate/regenerate storyboard images for scenes  |
+| `/visla aigc-motion <projectUuid>`| Generate/regenerate motion videos for scenes      |
 | `/visla account`                  | Show account info and credit balance              |
 | `/visla avatar`                   | List available AI avatars                         |
 | `/visla voice`                    | List available AI voices                          |
 
 **Important**: For `avatar` and `voice` commands:
-- **Run the full CLI command** (`./visla_cli.sh avatar` or `./visla_cli.sh voice`).
+- **Run the full CLI command** (`python3 scripts/visla_cli.py avatar` or `python3 scripts/visla_cli.py voice`).
 - **You may filter** the output before presenting to the user:
   - For `avatar`: remove `Thumbnail:` lines
   - For `voice`: remove `URL:` lines
@@ -168,6 +170,29 @@ Note: do not print credentials. Prefer environment variables or auto-detected cr
 | Parameter             | Description                                                     |
 |-----------------------|-----------------------------------------------------------------|
 | `--function <func>`   | Speech to video function: `SPEECH_TO_VIDEO_SUMMARY` or `SPEECH_TO_VIDEO_FULL_LENGTH` |
+
+#### aigc command specific
+| Parameter             | Description                                                     |
+|-----------------------|-----------------------------------------------------------------|
+| `--style <style>`     | AIGC visual style (run `aigc-styles` to list; e.g. `cinematic`, `photorealistic`, `anime`, `flat_vector`). Omit to let AI pick. |
+| `--auto-motion`       | Automatically generate motion videos after storyboards (default) |
+| `--no-auto-motion`    | Stop after storyboard images; review, then run `aigc-motion`   |
+| `--to-clip`           | Create and auto-export to a clip in a single step              |
+| `--webpage <url>`     | Add a webpage URL as reference material (repeatable)           |
+| `--doc <file>`        | Add a PDF/PPT as reference material (repeatable)               |
+| `--media <file>`      | Add an image/video/audio as reference material (repeatable)    |
+
+#### aigc-image / aigc-motion command specific
+| Parameter             | Description                                                     |
+|-----------------------|-----------------------------------------------------------------|
+| `--scene <id>`        | Scene ID (repeatable, required; get IDs from `aigc-status`)    |
+| `--prompt <text>`     | Override the prompt for the selected scene(s)                  |
+| `--aspect-ratio <r>`  | `landscape` / `portrait` / `square`                            |
+| `--ref <url\|id>`     | Reference image: a URL or an asset entity ID (repeatable, up to 3) |
+| `--force`             | Force regeneration (aigc-image: override scenes that already have a motion video; aigc-motion: overwrite existing motion videos) |
+| `--mode <m>`          | (aigc-motion) `prompt_to_video` / `first_frame_to_video` / `first_and_last_frame_to_video` / `ingredients_to_video`. Must match the number of `--ref` images. |
+| `--audio` / `--no-audio` | (aigc-motion) Enable/disable generated audio                  |
+| `--model <model>`     | (aigc-motion) Generation model (default: `veo_3.1`)            |
 
 All other options (aspect_ratio, pace, burn_subtitles, footage_options, bgm_options, etc.) can be set in the config
 file.
@@ -223,7 +248,7 @@ All video options can be stored in a JSON config file (nested structure matches 
 
 CLI arguments (avatar, voice) override config file values.
 
-Source of truth for the exact CLI surface: run `scripts/visla_cli.sh --help` or `python3 scripts/visla_cli.py --help`.
+Source of truth for the exact CLI surface: run `python3 scripts/visla_cli.py --help`.
 
 ## Script Format
 
@@ -245,6 +270,38 @@ The `script`, `url`, `doc`, `idea`, `visual`, and `speech` commands execute the 
 2. Poll until generation completes (may take a few minutes)
 3. Auto-export and return download link
 
+## AIGC Video (AI-Generated Visuals)
+
+The `aigc` command uses the AIGC pipeline: instead of matching your script to stock footage, Visla **generates
+original visuals for each scene** — a storyboard image first, then an animated motion video clip. Browse visual styles
+first with `aigc-styles`. (AIGC generation is credit- and time-heavier than stock-footage creation.)
+
+Two control modes, set by `--auto-motion` / `--no-auto-motion`:
+
+- **Automatic (default)** — storyboard images **and** motion videos are generated end-to-end, then the video is
+  auto-exported. One-shot, like the other commands:
+  `/visla aigc "Scene 1: ..." --style cinematic`
+- **Manual (`--no-auto-motion`)** — generates storyboard images only, then reports each scene's image and the project
+  UUID. Review the frames, optionally regenerate any you dislike, then generate motion videos yourself:
+  `/visla aigc "Scene 1: ..." --style anime --no-auto-motion` → `/visla aigc-status <uuid>` →
+  `/visla aigc-motion <uuid> --scene <id>`
+
+Add `--to-clip` to create and auto-export to a clip in a single step (the clip is populated when the pipeline finishes).
+
+### Scene-level operations
+
+Use these after an AIGC project exists (the project UUID is printed by `aigc`):
+
+- `aigc-status <projectUuid>` — per-scene status: storyboard + motion video progress, image/video links, and scene IDs.
+- `aigc-image <projectUuid> --scene <id> [--scene ...]` — generate/regenerate storyboard images. Pass `--force` to
+  regenerate scenes that already have a motion video.
+- `aigc-motion <projectUuid> --scene <id> [--scene ...]` — generate/regenerate motion videos. Choose `--mode` to match
+  the number of reference images (`prompt_to_video`=0, `first_frame_to_video`=1, `first_and_last_frame_to_video`=2).
+  Use `--force` to overwrite existing motion videos.
+
+> Scene IDs come from the `aigc-status` output. Both endpoints pre-check credits and reject early if the workspace
+> balance is insufficient.
+
 **Execution Instructions**:
 
 - Inform user that video generation takes some time
@@ -252,12 +309,13 @@ The `script`, `url`, `doc`, `idea`, `visual`, and `speech` commands execute the 
 
 ### Timeout Guidance
 
-- This workflow typically takes **3-10 minutes**, but can take **up to ~30 minutes** in the worst case. Set the
-  task/command `timeout` to **>= 30 minutes** (Windows defaults are often ~10 minutes and need to be increased). If you
-  cannot change the timeout, warn the user up front and, on timeout, ask whether to continue or switch to a step-by-step
-  run.
+- This workflow typically takes **3-10 minutes**, but can take **up to ~30 minutes** in the worst case. AIGC videos
+  (storyboard images **plus** motion videos) are heavier — allow **up to ~30-45 minutes** in the worst case. Set the
+  task/command `timeout` to **>= 30 minutes** for stock-footage videos and **>= 45 minutes** for AIGC (Windows defaults
+  are often ~10 minutes and need to be increased). If you cannot change the timeout, warn the user up front and, on
+  timeout, ask whether to continue or switch to a step-by-step run.
 - If timeout occurs, the CLI returns `project_uuid` in the output. Inform the user they can manually check project
-  status and continue later using the Visla web interface or API.
+  status and continue later using the Visla web interface or API (e.g. `aigc-status <projectUuid>`).
 
 ## Examples
 
@@ -275,6 +333,18 @@ The `script`, `url`, `doc`, `idea`, `visual`, and `speech` commands execute the 
 /visla speech interview.m4a
 /visla speech podcast.mp3 audio1.mp3 audio2.mp3
 /visla speech podcast.mp3 --function SPEECH_TO_VIDEO_SUMMARY
+
+# AIGC: AI-generated visuals (browse styles first)
+/visla aigc-styles
+/visla aigc "Scene 1: A robot waving hello." --style flat_vector
+/visla aigc @script.txt --style cinematic --to-clip
+
+# AIGC manual mode: storyboards first, review, then motion videos
+/visla aigc "Scene 1: ..." --style anime --no-auto-motion
+/visla aigc-status 1536918152879824988
+/visla aigc-image 1536918152879824988 --scene 1536919353067339776 --prompt "Brighter lighting"
+/visla aigc-motion 1536918152879824988 --scene 1536919353067339776 --scene 1536919353067339777
+
 /visla account
 /visla avatar
 /visla voice
@@ -303,8 +373,8 @@ The `script`, `url`, `doc`, `idea`, `visual`, and `speech` commands execute the 
 
 ## Output Format
 
-- **Start**: Display "Visla Skill v260501-1423" when skill begins
-- **End**: Display "Visla Skill v260501-1423 completed" when skill finishes
+- **Start**: Display "Visla Skill v260811-1640" when skill begins
+- **End**: Display "Visla Skill v260811-1640 completed" when skill finishes
 
 ## Security
 

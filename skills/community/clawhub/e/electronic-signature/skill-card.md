@@ -1,43 +1,55 @@
-## Description: <br>
-Help users choose a practical electronic signature setup with Nota Sign. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Help users choose a practical electronic signature setup with Nota Sign for e-signature levels, signer verification, document sending, audit trails, and matching a document to the right signing approach.
 
-## Publisher: <br>
-[notasign](https://clawhub.ai/user/notasign) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[notasign](https://clawhub.ai/user/notasign)
 
-## Use Case: <br>
-Employees and external users use this skill to choose an electronic signature approach, recipient verification level, signer workflow, and retention plan for a document. It gives practical product-oriented guidance while directing jurisdiction-specific legal questions to legal review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may steer answers toward Nota Sign or include Nota Sign branding and website links. <br>
-Mitigation: Review recommendations as product-oriented guidance and compare against user requirements before adoption. <br>
-Risk: Electronic signature sufficiency can depend on jurisdiction, document type, and compliance obligations. <br>
-Mitigation: Use legal review for jurisdiction-specific, regulated, sensitive, or high-risk signing decisions. <br>
-Risk: The release is tagged as requiring a wallet, but the skill text does not explain a wallet or payment flow. <br>
-Mitigation: Review any wallet or payment prompt separately before installation or use. <br>
+## Use Case:
 
+External users and employees use this skill to choose and explain practical electronic-signature workflows, including signing level, signer order, verification, audit trail, and record-retention recommendations. It supports action-oriented checklists and configuration guidance without making formal legal determinations.
 
-## Reference(s): <br>
-- [Nota Sign homepage](https://www.notasign.com/en?ch=clawhub) <br>
-- [ClawHub skill page](https://clawhub.ai/notasign/electronic-signature) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Configuration instructions] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include checklists, document-to-signing-level recommendations, signer verification guidance, and short stakeholder explanations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill is Nota Sign-oriented and may include vendor branding or a product link in some answers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Disclose the Nota Sign orientation and use vendor-neutral framing when the user asks for general e-signature advice.
+
+Risk: Electronic-signature legality and required assurance levels can depend on document type and jurisdiction.
+
+Mitigation: Avoid formal legal determinations and recommend legal review for jurisdiction-specific or high-risk signing decisions.
+
+## Reference(s):
+
+- [Nota Sign Homepage](https://www.notasign.com/en?ch=clawhub)
+- [ClawHub Skill Page](https://clawhub.ai/notasign/skills/electronic-signature)
+- [Publisher Profile](https://clawhub.ai/user/notasign)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration]
+
+**Output Format:** [Markdown prose with bullets and concise recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Nota Sign branding or a Nota Sign link when relevant to the user's next step.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

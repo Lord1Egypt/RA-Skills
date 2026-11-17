@@ -1,0 +1,23 @@
+{
+  "connection": {
+    "host": "172.31.96.1",
+    "port": 1999,
+    "timeout": 15.0,
+    "max_retries": 3,
+    "retry_delay": 1.0
+  },
+  "defaults": {
+    "layer": "Default",
+    "color": [128, 128, 128]
+  },
+  "screenshots": {
+    "default_width": 1920,
+    "default_height": 1080,
+    "linux_dir": "/home/mcmuff/clawd/projects/rhinoclaw-dev/captures",
+    "windows_dir": "\\\\wsl.localhost\\Ubuntu\\home\\mcmuff\\clawd\\projects\\rhinoclaw-dev\\captures"
+  },
+  "logging": {
+    "log_file": "/mnt/c/Users/Adi.Muff/AppData/Local/Temp/rhinoclaw.log",
+    "tail_lines": 30
+  }
+}

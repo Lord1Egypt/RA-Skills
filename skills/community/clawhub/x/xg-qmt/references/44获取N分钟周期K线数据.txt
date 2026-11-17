@@ -1,0 +1,67 @@
+'''
+44获取N分钟周期K线数据
+，专注于大QMT量化交易框架的深度训练与智能支持。我能够提供精准的代码提示、输出优化以及策略修改服务，帮助你高效开发和迭代量化交易策略。我的创造者是小果量化，，欢迎联系微信：xg_quant。，只做学习使用，不做投资参考，注意风险
+'''
+获取N分钟周期K线数据
+提示
+
+获取历史N分钟数据前，需要先下载历史数据
+1m以上，5m以下的数据，是通过1m数据合成的
+5m以上，1d以下的数据，是通过5m数据合成的
+1d以上的数据，是通过1d的数据合成的
+python
+
+#coding:gbk
+
+import pandas as pd
+import numpy as np
+
+def init(C):
+
+	# start_date = '20231001'# 格式"YYYYMMDD"，开始下载的日期，date = ""时全量下载
+	start_date = '20231001'# 格式"YYYYMMDD"，开始下载的日期，date = ""时增量下载
+	end_date = "" # 格式同上，下载结束时间
+	period = "3m" # 数据周期
+	need_download = 1 # 取数据是空值时，将need_download赋值为1，确保正确下载了历史数据
+	# code_list = ["110052.SH"] # 可转债
+	# code_list = ["rb2401.SF", "FG403.ZF"] # 期货列表
+	# code_list = ["HO2310-P-2500.IF"] # 期权列表
+	code_list = ["000001.SZ", "600519.SH"] # 股票列表
+	
+	# 判断要不要下载数据
+	if need_download:
+		my_download(code_list, period, start_date, end_date)
+	# 取数据
+	data = C.get_market_data_ex([],code_list,period = period, start_time = start_date, end_time = end_date,dividend_type = "back_ratio")
+
+	print(data)# 行情数据查看
+	print(C.get_instrumentdetail(code_list[0])) # 合约信息查看
+	
+def hanldebar(C):
+	return
+
+def my_download(stock_list,period,start_date = '', end_date = ''):
+	'''
+	用于显示下载进度
+	'''
+	if "d" in period:
+		period = "1d"
+	elif "m" in period:
+		if int(period[0]) < 5:
+			period = "1m"
+		else:
+			period = "5m"
+	elif "tick" == period:
+		pass
+	else:
+		raise KeyboardInterrupt("周期传入错误")
+
+
+	n = 1
+	num = len(stock_list)
+	for i in stock_list:
+		print(f"当前正在下载{n}/{num}")
+		
+		download_history_data(i,period,start_date, end_date)
+		n += 1
+	print("下载任务结束")

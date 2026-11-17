@@ -1,44 +1,58 @@
-## Description: <br>
-Auto-log trades with context, track outcomes, generate calibration reports to improve trading. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Auto-log trades with context, track outcomes, generate calibration reports to improve trading.
 
-## Publisher: <br>
-[simmer](https://clawhub.ai/user/simmer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[simmer](https://clawhub.ai/user/simmer)
 
-## Use Case: <br>
-External users and developers use this skill to sync Simmer prediction-market trades, inspect trade history, update outcomes, export CSV data, and generate daily, weekly, or monthly performance reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires access to Simmer trade history through SIMMER_API_KEY. <br>
-Mitigation: Store SIMMER_API_KEY as a secret and install only when access to Simmer trade history is acceptable. <br>
-Risk: Synced trade history and enriched trade context are stored locally and CSV exports may contain sensitive trading information. <br>
-Mitigation: Keep the data directory private and review CSV exports before sharing them. <br>
-Risk: Changing SIMMER_API_URL can send authenticated requests to a different endpoint. <br>
-Mitigation: Do not override SIMMER_API_URL unless the endpoint is trusted. <br>
+## Use Case:
 
+External users and developers use this skill to sync Simmer prediction-market trades, maintain a local trade journal, review outcomes, and generate trading performance reports.
 
-## Reference(s): <br>
-- [Prediction Trade Journal on ClawHub](https://clawhub.ai/simmer/prediction-trade-journal) <br>
-- [Simmer publisher profile](https://clawhub.ai/user/simmer) <br>
-- [Simmer API base URL](https://api.simmer.markets) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, code] <br>
-**Output Format:** [CLI text output, Markdown setup guidance, local JSON storage, and optional CSV exports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SIMMER_API_KEY and writes trade history under the skill's local data directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.13 (source: server release metadata) <br>
+Risk: SIMMER_API_KEY may be sent to an environment-selected API host if SIMMER_API_URL is controlled by untrusted configuration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only where SIMMER_API_URL cannot be set by untrusted configuration, or remove or lock that override to the official Simmer API host before using the API key.
+
+Risk: The artifact declares an unused, unpinned simmer-sdk dependency.
+
+Mitigation: Remove the unused dependency or pin it to a reviewed version before installing in managed environments.
+
+Risk: Local journal files and CSV exports can contain sensitive financial trading records.
+
+Mitigation: Treat data/trades.json, data/context.json, and exported CSVs as sensitive records; restrict access and avoid committing or sharing them.
+
+## Reference(s):
+
+- [Prediction Trade Journal ClawHub listing](https://clawhub.ai/simmer/skills/prediction-trade-journal)
+- [Simmer API base URL](https://api.simmer.markets)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, Python integration snippets, terminal reports, JSON trade storage, and CSV exports.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SIMMER_API_KEY for API-backed sync and stores trade records locally.]
+
+## Skill Version(s):
+
+1.1.13 (source: server release evidence; artifact frontmatter reports 1.1.8)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

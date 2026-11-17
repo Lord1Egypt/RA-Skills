@@ -1,41 +1,54 @@
-## Description: <br>
-Detects and scores prompt injection attempts in text, outputting severity, action, and matched rules without external calls or secret handling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Detects and scores prompt injection attempts in text, outputting severity, action, and matched rules without external calls or secret handling.
 
-## Publisher: <br>
-[edmonddantesj](https://clawhub.ai/user/edmonddantesj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[edmonddantesj](https://clawhub.ai/user/edmonddantesj)
 
-## Use Case: <br>
-Developers and security teams use this skill to locally screen user-provided text for prompt-injection patterns before passing content into agent workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The scanner uses lightweight heuristic rules and may miss new prompt-injection variants or flag benign text. <br>
-Mitigation: Use the result as a screening signal alongside review, policy checks, and other security controls rather than as a complete security boundary. <br>
-Risk: The JSON output may be sensitive when it describes or fingerprints confidential input text. <br>
-Mitigation: Keep analysis local and avoid sharing output externally when the analyzed input contains sensitive information. <br>
+## Use Case:
 
+Developers and security reviewers use this skill to locally screen text for lightweight prompt-injection indicators and receive a severity, recommended action, reasons, and matched detector rule IDs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/edmonddantesj/aoi-prompt-injection-sentinel) <br>
-- [AOI skills issue tracker](https://github.com/edmonddantesj/aoi-skills/issues) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON] <br>
-**Output Format:** [JSON] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes severity, action, reasons, matched rule ids, and an input fingerprint.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release metadata, artifact _meta.json, artifact package.json) <br>
+Risk: The scanner is a simple heuristic detector and may miss novel, obfuscated, or context-dependent prompt-injection attempts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it as a local screening aid and keep human or policy review in place for higher-risk workflows.
+
+Risk: The JSON result includes a deterministic hash of the input text.
+
+Mitigation: Avoid feeding highly sensitive text unless storing or sharing a local result containing that fingerprint is acceptable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/edmonddantesj/skills/aoi-prompt-injection-sentinel)
+- [Support issues](https://github.com/edmonddantesj/aoi-skills/issues)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, guidance]
+
+**Output Format:** [JSON written to stdout]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes severity, action, reasons, matched rule IDs, and a deterministic SHA-256 fingerprint of the analyzed input.]
+
+## Skill Version(s):
+
+0.1.2 (source: server release evidence, package.json, and _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

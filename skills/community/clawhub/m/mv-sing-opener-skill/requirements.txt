@@ -1,0 +1,12 @@
+# mv-sing-opener-skill 依赖（Python 3.9+）
+# 安装：pip install -r requirements.txt
+
+# 出片（generate_video.py）唯一的 pip 依赖
+requests>=2.28
+
+# 非 pip 依赖：
+# - ffmpeg / ffprobe：出片后裁/补精确秒、合并（macOS: brew install ffmpeg）
+# - 上传目标：/var/www/public/mv（本机没有就到服务器/容器跑，--dry-run 可预览）
+# - 出片网关：scripts/config.json 的 gateway_base（默认 http://127.0.0.1:4000，
+#   可用环境变量 VIDEO_GATEWAY_BASE 覆盖）
+# - 出图接口：.env 的 NEWAPI_IMAGE_*

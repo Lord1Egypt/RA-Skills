@@ -1,43 +1,61 @@
-## Description: <br>
-Converts MCP servers into standalone skill packages with zero runtime MCP dependency. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts MCP servers into standalone skill packages so agents can call generated Bash-based capabilities without keeping an MCP process running.
 
-## Publisher: <br>
-[JalanChao](https://clawhub.ai/user/JalanChao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jalanchao](https://clawhub.ai/user/jalanchao)
 
-## Use Case: <br>
-Developers and agent users use this skill to convert an MCP server or pasted MCP tool schema into a ready-to-use standalone skill package. It helps inspect tool schemas, infer equivalent shell commands or helper scripts, separate public configuration from secrets, and register the generated skill with supported agent environments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can inspect or run untrusted MCP server code while discovering tool schemas and source behavior. <br>
-Mitigation: Use trusted MCP servers in a clean sandbox and review generated commands before testing or registration. <br>
-Risk: Generated skills may include inferred shell commands, helper scripts, and live read-only command tests that were not validated against source code. <br>
-Mitigation: Review all inferred commands and skip automatic live tests unless the target, inputs, and side effects are understood. <br>
-Risk: The workflow can persist generated agent skills and secrets-related files. <br>
-Mitigation: Keep secrets in gitignored secrets.json files, use least-privilege tokens, and manually review generated skill files before registration. <br>
+## Use Case:
 
+Developers and agent operators use this skill to replace a registered or command-based MCP server with a generated skill package. It supports tool-schema extraction, command drafting, configuration and secrets scaffolding, and optional agent registration.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/JalanChao/mcp-to-skill) <br>
-- [Publisher profile](https://clawhub.ai/user/JalanChao) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown skill files with JSON configuration, optional helper scripts, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May generate gitignored secrets templates and registration commands for supported agent frameworks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may run inferred shell commands or test generated read-only commands against destinations that have not been reviewed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Inspect each generated command and destination before execution, and test only in a sandbox or controlled environment.
+
+Risk: The inspector can fetch source packages for MCP servers, which may expose the agent to untrusted package content.
+
+Mitigation: Use only trusted MCP servers, pin or verify package sources before fetching, and isolate package inspection from sensitive environments.
+
+Risk: Generated skills may be registered in persistent agent locations before their behavior has been fully reviewed.
+
+Mitigation: Review and scan generated skill files before registration, and require explicit user approval for persistent agent configuration changes.
+
+Risk: Generated plaintext secrets files can create credential handling risk.
+
+Mitigation: Prefer environment variables or a secret manager, keep secrets files out of version control, and commit only sanitized example files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jalanchao/skills/mcp-to-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown instructions with inline shell commands and generated package files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce config files, secrets templates, helper scripts, and registration guidance for the generated skill.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
 """SignalRadar unified CLI entrypoint.
 
-Commands: doctor, add, list, show, remove, run, config, schedule, digest, onboard
+Commands: doctor, discover, add, list, show, remove, run, config, schedule, digest, onboard
 Single source of truth: ~/.signalradar/config/watchlist.json
 """
 
 from __future__ import annotations
 
-__version__ = "1.2.0"
+__version__ = "1.5.8"
 
 import argparse
 import json
@@ -52,7 +52,10 @@ from config_utils import (
 )
 from decide_threshold import check_entry, safe_name
 from discover_entries import (
+    DISCOVER_DEFAULT_LIMIT,
+    DISCOVER_MAX_LIMIT,
     ONBOARDING_URLS,
+    discover_events,
     extract_probability,
     fetch_market_current_result,
     fetch_price_history_points,
@@ -62,7 +65,13 @@ from discover_entries import (
     resolve_event,
     summarize_trend,
 )
-from route_delivery import context_lines, deliver_digest, deliver_hit, severity_for_event
+from route_delivery import (
+    context_lines,
+    deliver_digest,
+    deliver_hit,
+    mask_target,
+    severity_for_event,
+)
 
 
 # ---------------------------------------------------------------------------
@@ -128,11 +137,25 @@ def _reply_route_path() -> Path:
 # Reply-route capture & persistence
 # ---------------------------------------------------------------------------
 
-def _capture_reply_route() -> None:
-    """If OpenClaw reply-route env vars are present, persist them."""
+def _capture_reply_route(config_override: str = "") -> None:
+    """Persist the OpenClaw reply route — only when that channel is in use.
+
+    Earlier versions wrote this file on every CLI invocation whenever the env
+    vars happened to be set, so running `list` or `config` was enough to leave
+    a record of the channel, target, account and thread on disk. Routing state
+    is only needed by the `openclaw` delivery adapter, so it is captured only
+    when that adapter is the configured one.
+    """
     channel = os.environ.get("OPENCLAW_REPLY_CHANNEL", "").strip()
     target = os.environ.get("OPENCLAW_REPLY_TARGET", "").strip()
     if not channel or not target:
+        return
+    try:
+        cfg = _load_config(config_override)
+    except Exception:  # noqa: BLE001
+        return
+    primary = str(cfg.get("delivery", {}).get("primary", {}).get("channel", "") or "").strip()
+    if primary != "openclaw":
         return
     route: dict[str, Any] = {
         "schema_version": 1,
@@ -149,20 +172,57 @@ def _capture_reply_route() -> None:
     p = _reply_route_path()
     p.parent.mkdir(parents=True, exist_ok=True)
     p.write_text(json.dumps(route, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    try:
+        os.chmod(p, 0o600)
+    except OSError:
+        pass
+
+
+REPLY_ROUTE_TTL_DAYS = 30
 
 
 def _load_reply_route() -> dict[str, Any] | None:
-    """Load stored reply route. Returns None if missing."""
+    """Load the stored reply route, expiring it after REPLY_ROUTE_TTL_DAYS.
+
+    This file holds the channel, target, account and thread the background job
+    would message. Keeping that indefinitely means the ability to send to a
+    conversation outlives any interaction with it, so it is aged out and the
+    stale copy deleted rather than left on disk. `schedule clear-route` removes
+    it immediately.
+    """
     p = _reply_route_path()
     if not p.exists():
         return None
     try:
         data = json.loads(p.read_text(encoding="utf-8"))
-        if data.get("channel") and data.get("target"):
-            return data
-        return None
     except Exception:
         return None
+    if not (data.get("channel") and data.get("target")):
+        return None
+    captured = str(data.get("captured_at", "")).strip()
+    if captured:
+        try:
+            when = datetime.fromisoformat(captured.replace("Z", "+00:00"))
+            if when.tzinfo is None:
+                when = when.replace(tzinfo=timezone.utc)
+            if (datetime.now(timezone.utc) - when).days > REPLY_ROUTE_TTL_DAYS:
+                _clear_reply_route()
+                return None
+        except ValueError:
+            pass
+    return data
+
+
+def _clear_reply_route() -> bool:
+    """Delete the stored reply route. Returns True if a file was removed."""
+    p = _reply_route_path()
+    try:
+        if p.exists():
+            p.unlink()
+            return True
+    except OSError:
+        pass
+    return False
 
 
 # ---------------------------------------------------------------------------
@@ -197,6 +257,62 @@ def _cron_log_path() -> Path:
     return _user_data_root() / "cache" / "cron.log"
 
 
+def _ensure_cron_log_private() -> None:
+    """Pre-create the cron log 0600.
+
+    The crontab line appends with `>> log 2>&1`; a shell-created file gets the
+    default umask (0644). Run output can carry delivery diagnostics, so the
+    file is created ahead of time with restrictive permissions.
+    """
+    log_path = _cron_log_path()
+    try:
+        log_path.parent.mkdir(parents=True, exist_ok=True)
+        log_path.touch(exist_ok=True)
+        os.chmod(log_path, 0o600)
+    except OSError:
+        pass
+
+
+# 日志轮转（2026-08-30，GCP 部署实证：cron.log 无限 append 5 个月长到 922MB，
+# signal_events.jsonl 同期长到 293MB，把一台 20GB 磁盘吃到 90%）。
+#
+# 根因：`_cron_command_line()` 用 shell `>>` 重定向到 cron.log，`check_entry()`
+# 给每次巡检的每个 watchlist 条目都追加一行到 signal_events.jsonl（不只是命中
+# 的条目）——两者都从未设计过任何上限，是 skill 本身的设计缺口，与具体部署无关。
+#
+# 轮转策略：按大小阈值重命名（不做原地截断）。原因：`cron.log` 的目标文件早在
+# python 进程启动前就已经被 shell `>>` 打开并绑定到当前 inode 上——本次调用内
+# 原地截断没有意义。重命名只影响"下一次" cron 调用 shell 重新 `>>` 打开时拿到
+# 的是全新文件，这正是需要的效果（每次 cron 调用都是独立进程，各自新开 fd）。
+_LOG_ROTATE_MAX_BYTES = 20 * 1024 * 1024  # 20MB：约等于当前观测增速下几天的量，
+                                            # 足够排障，远小于把磁盘写满的风险
+_LOG_ROTATE_KEEP = 1  # 只留一份 .1 备份，诊断够用，不重新引入无界增长
+
+
+def _rotate_log_if_needed(path: Path, max_bytes: int = _LOG_ROTATE_MAX_BYTES,
+                           keep: int = _LOG_ROTATE_KEEP) -> None:
+    """超过 max_bytes 就把 path 轮转为 path.1（若已存在 .1 先丢弃，keep=1 时）。
+
+    轮转失败（权限/磁盘异常等）不应该阻断本次巡检主流程，吞掉异常继续跑，
+    但吞掉之前不重新抛出——这个函数本身只做维护性工作，不是巡检的核心职责。
+    """
+    try:
+        if not path.exists() or path.stat().st_size < max_bytes:
+            return
+        for idx in range(keep, 0, -1):
+            backup = path.with_name(f"{path.name}.{idx}")
+            if idx == keep:
+                if backup.exists():
+                    backup.unlink(missing_ok=True)
+            else:
+                older = path.with_name(f"{path.name}.{idx + 1}")
+                if backup.exists():
+                    backup.rename(older)
+        path.rename(path.with_name(f"{path.name}.1"))
+    except OSError:
+        pass
+
+
 def _digest_state_path() -> Path:
     return _user_data_root() / "cache" / "digest_state.json"
 
@@ -210,6 +326,12 @@ def _safe_copy_file(src: Path, dst: Path) -> bool:
         return False
     dst.parent.mkdir(parents=True, exist_ok=True)
     shutil.copy2(src, dst)
+    # copy2 preserves the shipped file's mode (0644). User data may hold a
+    # webhook credential, so restrict it regardless of where it came from.
+    try:
+        os.chmod(dst, 0o600)
+    except OSError:
+        pass
     return True
 
 
@@ -236,6 +358,12 @@ def _ensure_user_data_ready() -> list[str]:
         config_dir.mkdir(parents=True, exist_ok=True)
         baseline_dir.mkdir(parents=True, exist_ok=True)
         events_dir.mkdir(parents=True, exist_ok=True)
+        # User data root holds config (webhook credential) and the audit log.
+        for _d in (_user_data_root(), config_dir, baseline_dir.parent, baseline_dir, events_dir):
+            try:
+                os.chmod(_d, 0o700)
+            except OSError:
+                pass
 
         migrated = False
         legacy_config_dir = SKILL_ROOT / "config"
@@ -307,6 +435,30 @@ def _config_key_exists(key: str, merged: dict[str, Any]) -> bool:
     return found or _is_dynamic_config_key(key)
 
 
+def _system_timezone_name() -> str:
+    """Best-effort IANA name for this machine's timezone, else 'UTC'.
+
+    Used when profile.timezone is unset. The previous default hard-coded
+    Asia/Shanghai, which silently shifted every schedule and digest for users
+    who never chose that zone.
+    """
+    tz_env = os.environ.get("TZ", "").strip()
+    if tz_env:
+        return tz_env
+    try:
+        link = os.path.realpath("/etc/localtime")
+        if "/zoneinfo/" in link:
+            return link.split("/zoneinfo/", 1)[1]
+    except OSError:
+        pass
+    return "UTC"
+
+
+def _effective_timezone(config: dict[str, Any]) -> str:
+    configured = str(config.get("profile", {}).get("timezone", "") or "").strip()
+    return configured or _system_timezone_name()
+
+
 _SUPPORTED_DELIVERY_CHANNELS = {"openclaw", "file", "webhook"}
 _SUPPORTED_LANGUAGES = {"zh", "en"}
 _SUPPORTED_DIGEST_FREQUENCIES = {"off", "daily", "weekly", "biweekly"}
@@ -339,7 +491,7 @@ def _format_user_time(value: str, config: dict[str, Any]) -> str:
         return value
     if ZoneInfo is None:
         return value
-    timezone_name = str(config.get("profile", {}).get("timezone", "UTC") or "UTC")
+    timezone_name = _effective_timezone(config)
     try:
         local_dt = dt.astimezone(ZoneInfo(timezone_name))
     except Exception:
@@ -432,7 +584,7 @@ def _parse_local_time_string(value: str) -> tuple[int, int] | None:
 
 
 def _local_now(config: dict[str, Any]) -> datetime:
-    timezone_name = str(config.get("profile", {}).get("timezone", "UTC") or "UTC")
+    timezone_name = _effective_timezone(config)
     if ZoneInfo is None:
         return datetime.now(timezone.utc)
     try:
@@ -1500,11 +1652,18 @@ def _scheduler_run_command(output_mode: str) -> str:
 
 def _openclaw_scheduler_prompt() -> str:
     command = _scheduler_run_command("openclaw")
+    # Scoped to this job's own output only. An earlier version told the agent
+    # how to format its reply in absolute terms ("reply with exactly ... and
+    # nothing else", "no markdown, no commentary"), which is output control
+    # propagating from a scheduled job into the agent's session — the audit read
+    # it as instruction hijacking. The need is narrow: the check's stdout is
+    # already user-facing text, so it should be relayed rather than rewritten.
     return (
-        "Run the scheduled SignalRadar background check for this workspace.\n"
-        f"Use Bash exactly once with this command:\n{command}\n"
-        "If stdout is exactly HEARTBEAT_OK, reply with exactly HEARTBEAT_OK and nothing else.\n"
-        "Otherwise reply with stdout exactly, no markdown, no commentary, no preface."
+        "Run this workspace's scheduled SignalRadar check.\n"
+        f"Use Bash once with this command:\n{command}\n"
+        "Its stdout is already the message for the user; relay it as-is rather "
+        "than summarising or reformatting it. A stdout of HEARTBEAT_OK means "
+        "there is nothing to report for this run."
     )
 
 
@@ -1558,6 +1717,7 @@ def _push_message(text: str) -> dict[str, Any]:
 
 def _cron_command_line() -> str:
     """Build the crontab command that runs SignalRadar."""
+    _ensure_cron_log_private()
     log_path = _cron_log_path()
     # Only add --push when delivery channel is openclaw (needs reply route).
     # For webhook/file channels, deliver_hit()/deliver_digest() handle delivery directly.
@@ -1707,14 +1867,20 @@ def _remove_cron() -> tuple[bool, str]:
             jobs = json.loads(result.stdout)
             if isinstance(jobs, list):
                 for job in jobs:
-                    if "SignalRadar" in str(job.get("name", "")):
-                        job_id = job.get("id", "")
-                        if job_id:
-                            subprocess.run(
-                                ["openclaw", "cron", "delete", str(job_id)],
-                                capture_output=True, text=True, timeout=15
-                            )
-                            removed_any = True
+                    # Exact name match only. A substring test on "SignalRadar"
+                    # deletes any job the USER named with that word in it — e.g.
+                    # "SignalRadar weekly backup" — and `schedule disable` would
+                    # remove it silently. Only the job this skill created, under
+                    # the exact name it created it with, is ours to delete.
+                    if str(job.get("name", "")).strip() != _OPENCLAW_CRON_NAME:
+                        continue
+                    job_id = job.get("id", "")
+                    if job_id:
+                        subprocess.run(
+                            ["openclaw", "cron", "delete", str(job_id)],
+                            capture_output=True, text=True, timeout=15
+                        )
+                        removed_any = True
     except (FileNotFoundError, json.JSONDecodeError, Exception):
         pass  # openclaw not available, skip
 
@@ -1754,7 +1920,12 @@ def _check_cron_status() -> dict[str, Any]:
             jobs = json.loads(result.stdout)
             if isinstance(jobs, list):
                 for job in jobs:
-                    if "SignalRadar" in str(job.get("name", "")):
+                    # Exact name match, same as removal. The previous round fixed
+                    # the DELETE path and left this one substring-matching, so a
+                    # user job named with "SignalRadar" in it still showed up as
+                    # this skill's schedule — wrong status, and the wrong thing
+                    # for any later management action to act on.
+                    if str(job.get("name", "")).strip() == _OPENCLAW_CRON_NAME:
                         status["enabled"] = True
                         status["driver"] = "openclaw"
                         # Parse interval from every field
@@ -1790,14 +1961,44 @@ def _check_cron_status() -> dict[str, Any]:
     return status
 
 
-def _ensure_auto_monitoring(interval: int = 10, config_override: str = "", quiet: bool = False, driver: str = "auto") -> dict[str, Any]:
+def _ensure_auto_monitoring(interval: int = 10, config_override: str = "", quiet: bool = False, driver: str = "auto", assume_yes: bool = False) -> dict[str, Any]:
     """Check if cron exists; if not, set it up. Idempotent.
+
+    schedule.auto_enable (default true) is checked HERE, in the single shared
+    entry point for *implicit* installation, rather than at each call site —
+    `add`, `onboard finalize` and interactive onboarding all route through
+    this function, and gating them one by one leaves whichever one is added
+    next unguarded. Explicit `signalradar.py schedule N` does not come through
+    here and keeps its own authorization semantics: asking for a schedule is
+    consent to installing one.
 
     When delivery.primary.channel == openclaw and the resolved driver is
     crontab (which uses --push), warn if no reply route is stored while still
     enabling monitoring. Explicit --driver openclaw bypasses this warning
     (platform announce path).
     """
+    auto_cfg = _load_config(config_override)
+    explicit = auto_cfg.get("schedule", {}).get("auto_enable")
+    if explicit is None:
+        # Unset means "ask". Installing a crontab entry changes the machine in a
+        # way that outlives the conversation, so a plain `add` no longer does it
+        # silently. Automation has no one to ask, so --yes keeps the old path:
+        # invoking a non-interactive flag IS the consent.
+        allowed = bool(assume_yes)
+        reason = ("Auto-monitoring not enabled: installing a background crontab entry needs your "
+                  "go-ahead. Enable with 'signalradar.py schedule 10', or set "
+                  "'config schedule.auto_enable true' to allow it automatically from now on.")
+    else:
+        allowed = bool(explicit)
+        reason = ("schedule.auto_enable is false — run 'signalradar.py schedule 10' to enable manually.")
+    if not allowed:
+        return {
+            "auto_enabled": False,
+            "interval_minutes": interval,
+            "needs_consent": explicit is None,
+            "reason": reason,
+        }
+
     cron_status = _check_cron_status()
     if cron_status["enabled"]:
         return {
@@ -1922,7 +2123,7 @@ def cmd_doctor(args: argparse.Namespace) -> int:
         check(
             "webhook_url_configured",
             webhook_ok,
-            target[:80] if webhook_ok else "not configured — use: signalradar.py config delivery.primary.target <URL>",
+            mask_target(target) if webhook_ok else "not configured — use: signalradar.py config delivery.primary.target <URL>",
         )
     cache_dir = _user_data_root() / "cache"
     check("cache_dir_writable", cache_dir.exists() and os.access(cache_dir, os.W_OK), str(cache_dir))
@@ -2197,6 +2398,7 @@ def cmd_add(args: argparse.Namespace) -> int:
             interval=10,
             config_override=getattr(args, "config", ""),
             quiet=output_json,
+            assume_yes=bool(getattr(args, "yes", False)),
         )
 
     if output_json:
@@ -2226,18 +2428,63 @@ def cmd_add(args: argparse.Namespace) -> int:
 # cmd_config
 # ---------------------------------------------------------------------------
 
+# A `target` leaf anywhere under `delivery` holds a webhook URL, i.e. a bearer
+# credential. The invariant is stated on the LEAF NAME plus its subtree, not on
+# an enumerated list of full dotted paths: an enumeration silently misses a
+# parent-level read (`config delivery`), every element of the `fallback` array,
+# and whatever key is added next.
+_SECRET_LEAF_NAMES = {"target"}
+_SECRET_SUBTREE_ROOTS = {"delivery"}
+
+
+def _is_secret_path(path: str) -> bool:
+    parts = [p for p in path.split(".") if p]
+    if not parts:
+        return False
+    return parts[-1] in _SECRET_LEAF_NAMES and parts[0] in _SECRET_SUBTREE_ROOTS
+
+
+def _mask_config_value(key: str, value: Any) -> Any:
+    """Mask credential-bearing config values before they reach stdout.
+
+    Handles scalars, and recurses into dicts and lists so that a read of a
+    PARENT key (`config delivery`, `config delivery.primary`) and every entry
+    of the `delivery.fallback` array are covered by the same exit.
+    """
+    if isinstance(value, dict):
+        return {k: _mask_config_value(f"{key}.{k}" if key else k, v) for k, v in value.items()}
+    if isinstance(value, list):
+        # List elements inherit the parent path: delivery.fallback[i].target
+        # must be treated exactly like delivery.fallback.target.
+        return [_mask_config_value(key, v) for v in value]
+    if _is_secret_path(key) and isinstance(value, str):
+        return mask_target(value)
+    return value
+
+
+def _mask_config_secrets(config: dict[str, Any]) -> dict[str, Any]:
+    """Return a copy of a config dict with every secret leaf masked, at any depth."""
+    return {k: _mask_config_value(k, v) for k, v in config.items()}
+
+
 def cmd_config(args: argparse.Namespace) -> int:
+    # Fold trailing positionals back into `value` so that
+    #   config delivery webhook <url>   ==   config delivery "webhook <url>"
+    extra = [str(x) for x in (getattr(args, "extra", None) or [])]
+    if extra:
+        args.value = " ".join([str(args.value)] + extra) if args.value is not None else " ".join(extra)
     cfg_path = _config_path(args.config)
     user_cfg = load_json_config(cfg_path)
     merged = deep_merge(DEFAULT_CONFIG, user_cfg)
 
     # No key specified: show current config
     if not args.key:
+        display = _mask_config_secrets(merged)
         if args.output == "json":
-            _json_print(merged)
+            _json_print(display)
         else:
             print("Current config:\n")
-            for k, v in sorted(merged.items()):
+            for k, v in sorted(display.items()):
                 if isinstance(v, dict):
                     print(f"  {k}:")
                     for k2, v2 in sorted(v.items()):
@@ -2254,14 +2501,24 @@ def cmd_config(args: argparse.Namespace) -> int:
         val = str(args.value).strip()
         if val.startswith("webhook ") or val.startswith("webhook\t"):
             url = val.split(None, 1)[1].strip()
-            if not url.startswith("http://") and not url.startswith("https://"):
-                print("Error: Webhook URL must start with http:// or https://")
+            low = url.lower()
+            if not low.startswith(("http://", "https://")):
+                print("Error: Webhook URL must start with https://")
+                return 1
+            if low.startswith("http://") and os.environ.get(
+                "SIGNALRADAR_ALLOW_INSECURE_WEBHOOK", ""
+            ).strip() not in {"1", "true", "yes"}:
+                print(
+                    "Error: plain HTTP webhook refused. The URL is itself a credential and\n"
+                    "       alerts would travel in the clear. Use https://, or set\n"
+                    "       SIGNALRADAR_ALLOW_INSECURE_WEBHOOK=1 if you accept that."
+                )
                 return 1
             set_nested_value(user_cfg, "delivery.primary.channel", "webhook")
             set_nested_value(user_cfg, "delivery.primary.target", url)
             save_json_config(cfg_path, user_cfg)
             print(f"🔄 Set delivery.primary.channel = webhook")
-            print(f"🔄 Set delivery.primary.target = {url}")
+            print(f"🔄 Set delivery.primary.target = {mask_target(url)}")
             print(f"✅ Saved to {cfg_path}")
             return 0
 
@@ -2271,10 +2528,13 @@ def cmd_config(args: argparse.Namespace) -> int:
         if not found:
             print(f"Unknown key: {key}")
             return 1
+        # Both branches go through the same masking exit: a parent read
+        # (`config delivery`) returns a dict and must not bypass it.
+        masked = _mask_config_value(key, value)
         if isinstance(value, (dict, list)):
-            print(json.dumps(value, ensure_ascii=False, indent=2))
+            print(json.dumps(masked, ensure_ascii=False, indent=2))
         else:
-            print(f"{key}: {value}")
+            print(f"{key}: {masked}")
         return 0
 
     if not _config_key_exists(key, merged):
@@ -2290,7 +2550,7 @@ def cmd_config(args: argparse.Namespace) -> int:
     set_nested_value(user_cfg, key, parsed_value)
     save_json_config(cfg_path, user_cfg)
 
-    print(f"🔄 Set {key} = {parsed_value}")
+    print(f"🔄 Set {key} = {_mask_config_value(key, parsed_value)}")
     print(f"✅ Saved to {cfg_path}")
     if key == "check_interval_minutes":
         print("📎 Note: this updates the display value only. Use 'signalradar.py schedule N' to change actual monitoring frequency.")
@@ -2401,6 +2661,11 @@ def cmd_schedule(args: argparse.Namespace) -> int:
         return 0
 
     # Disable
+    if action == "clear-route":
+        removed = _clear_reply_route()
+        print("Stored reply route deleted." if removed else "No stored reply route.")
+        return 0
+
     if action == "disable":
         ok, msg = _remove_cron()
         print(msg)
@@ -2410,7 +2675,7 @@ def cmd_schedule(args: argparse.Namespace) -> int:
     try:
         interval = int(action)
     except ValueError:
-        print(f"Error: Invalid argument '{action}'. Use a number (minutes) or 'disable'.")
+        print(f"Error: Invalid argument '{action}'. Use a number (minutes), 'disable', or 'clear-route'.")
         return 1
 
     if interval < 5:
@@ -2651,6 +2916,90 @@ def cmd_show(args: argparse.Namespace) -> int:
 
 
 # ---------------------------------------------------------------------------
+# cmd_discover (v1.3.0) — read-only, stateless, user-initiated only
+# ---------------------------------------------------------------------------
+
+def _format_discover_money(value: Any) -> str | None:
+    try:
+        result = float(value)
+    except (TypeError, ValueError, OverflowError):
+        return None
+    if result != result or result in (float("inf"), float("-inf")):
+        return None
+    return f"${result:,.0f}"
+
+
+def cmd_discover(args: argparse.Namespace) -> int:
+    query = str(getattr(args, "query", "") or "").strip()
+    results, error = discover_events(query=query, limit=args.limit)
+
+    request_id = str(uuid.uuid4())
+    run_ts = _utc_now()
+
+    if error:
+        if args.output == "json":
+            _json_print({
+                "status": "ERROR",
+                "request_id": request_id,
+                "ts": run_ts,
+                "query": query,
+                "results": [],
+                "errors": [error],
+            })
+        else:
+            print(f"Could not discover markets: {error.get('message', 'Unknown error')} ({error.get('code', 'SR_SOURCE_UNAVAILABLE')})")
+        return 1
+
+    results = results or []
+    if args.output == "json":
+        _json_print({
+            "status": "OK",
+            "request_id": request_id,
+            "ts": run_ts,
+            "query": query,
+            "results": results,
+            "errors": [],
+        })
+        return 0
+
+    if not results:
+        if query:
+            print(f"No open markets matched '{query}'.")
+            print("Tip: try broader English keywords, or run 'discover' with no query for trending markets.")
+        else:
+            print("No trending markets returned by Polymarket API right now.")
+        return 0
+
+    label = f"'{query}'" if query else "trending"
+    print(f"Found {len(results)} open market event(s) for {label}:\n")
+    for index, item in enumerate(results, start=1):
+        print(f"  {index}. {item.get('title', '?')}")
+        context_bits: list[str] = []
+        top_markets = item.get("top_markets") or []
+        if len(top_markets) == 1 and item.get("market_count", 0) <= 1:
+            context_bits.append(f"{top_markets[0].get('probability')}% Yes")
+        vol = _format_discover_money(item.get("volume_24h"))
+        if vol:
+            context_bits.append(f"24h vol {vol}")
+        liq = _format_discover_money(item.get("liquidity"))
+        if liq:
+            context_bits.append(f"liquidity {liq}")
+        if item.get("end_date"):
+            context_bits.append(f"ends {item.get('end_date')}")
+        if context_bits:
+            print(f"     {' · '.join(context_bits)}")
+        market_count = item.get("market_count") or 0
+        if market_count > 1 and top_markets:
+            top = top_markets[0]
+            print(f"     {market_count} markets (top: {top.get('question', '?')} — {top.get('probability')}%)")
+        print(f"     URL: {item.get('url', '')}")
+        print()
+
+    print("Tip: add one to monitoring with: signalradar.py add <url>")
+    return 0
+
+
+# ---------------------------------------------------------------------------
 # cmd_digest
 # ---------------------------------------------------------------------------
 
@@ -2835,6 +3184,9 @@ def _write_last_run(status: str, checked: int, hits_count: int,
 
 
 def cmd_run(args: argparse.Namespace) -> int:
+    # 每次巡检开头先做轮转体检（详见 _rotate_log_if_needed 头注释）。
+    _rotate_log_if_needed(_cron_log_path())
+    _rotate_log_if_needed(_audit_log_path())
     wl = load_watchlist(_watchlist_path())
     entries = wl.get("entries", [])
     config = _load_config(args.config)
@@ -3117,14 +3469,14 @@ def cmd_run(args: argparse.Namespace) -> int:
                     for fb in delivery.get("fallback", [])
                     if isinstance(fb, dict)
                 ]
-                from route_delivery import attempt_delivery, utc_now as _utc
+                from route_delivery import attempt_delivery, envelope_route_block, utc_now as _utc
                 envelope = {
                     "schema_version": "1.1.0",
                     "delivery_id": f"del:multi:{request_id}",
                     "request_id": request_id,
                     "idempotency_key": f"sr:multi:{request_id}:{hash(msg) % 100000}",
                     "severity": severity_for_event(sorted_hits[0]),
-                    "route": {"primary": route_primary, "fallback": fallback_routes},
+                    "route": envelope_route_block(route_primary, fallback_routes),
                     "human_text": msg,
                     "machine_payload": {"hit_count": len(sorted_hits)},
                     "ts": _utc().isoformat().replace("+00:00", "Z"),
@@ -3558,6 +3910,7 @@ def _onboard_finalize(args: argparse.Namespace) -> int:
         interval=10,
         config_override=config_override,
         quiet=True,
+        assume_yes=bool(getattr(args, "yes", False)),
     )
 
     # Check route readiness for background push warning
@@ -3593,7 +3946,7 @@ def _onboard_finalize(args: argparse.Namespace) -> int:
         ]
         webhook_setup["examples"] = {
             "telegram": "https://api.telegram.org/bot<TOKEN>/sendMessage?chat_id=<CHAT_ID>",
-            "slack": "https://hooks.slack.com/services/YOUR/WEBHOOK/URL",
+            "slack": "REDACTED-SECRET",
             "discord": "https://discord.com/api/webhooks/YOUR/WEBHOOK/URL",
         }
 
@@ -3781,7 +4134,8 @@ def _onboarding(args: argparse.Namespace) -> int:
 
     # Auto-monitoring: enable after successful onboarding
     if added:
-        _ensure_auto_monitoring(interval=10, config_override=getattr(args, "config", ""))
+        _ensure_auto_monitoring(interval=10, config_override=getattr(args, "config", ""),
+                                assume_yes=bool(getattr(args, "yes", False)))
 
     return 0
 
@@ -3808,7 +4162,7 @@ def _normalize_argv(argv: list[str]) -> list[str]:
     Moves global flags that appear before the subcommand to after it,
     so argparse subparsers can parse them correctly.
     """
-    commands = {"doctor", "add", "list", "show", "remove", "run", "config", "schedule", "digest"}
+    commands = {"doctor", "discover", "add", "list", "show", "remove", "run", "config", "schedule", "digest", "onboard"}
     # Find subcommand position
     cmd_idx = None
     for i, arg in enumerate(argv):
@@ -3842,8 +4196,8 @@ def _normalize_argv(argv: list[str]) -> list[str]:
 
 
 def _emit_startup_notices(args: argparse.Namespace) -> None:
-    # Capture reply route from OpenClaw foreground env if present
-    _capture_reply_route()
+    # Capture reply route only when the openclaw delivery adapter is active
+    _capture_reply_route(getattr(args, "config", ""))
 
     notices = _ensure_user_data_ready()
     if not notices:
@@ -3864,6 +4218,14 @@ def main() -> int:
     p_doc = sub.add_parser("doctor", help="Check runtime health")
     p_doc.add_argument("--output", choices=["text", "json"], default="text")
     p_doc.add_argument("--config", default="", help="Path to config JSON")
+
+    # discover
+    p_disc = sub.add_parser("discover", help="Discover open markets by keyword or trending (read-only)")
+    p_disc.add_argument("query", nargs="?", default="", help="Keywords (English), or omit for trending markets")
+    p_disc.add_argument("--limit", type=int, default=DISCOVER_DEFAULT_LIMIT,
+                        help=f"Max events to return (1-{DISCOVER_MAX_LIMIT}, default {DISCOVER_DEFAULT_LIMIT})")
+    p_disc.add_argument("--output", choices=["text", "json"], default="text")
+    p_disc.add_argument("--config", default="", help="Path to config JSON")
 
     # add
     p_add = sub.add_parser("add", help="Add market(s) by Polymarket URL")
@@ -3894,12 +4256,17 @@ def main() -> int:
     p_cfg = sub.add_parser("config", help="View or change settings")
     p_cfg.add_argument("key", nargs="?", default="", help="Setting name (e.g. check_interval_minutes)")
     p_cfg.add_argument("value", nargs="?", default=None, help="New value")
+    # Extra positionals so the documented shortcut form works unquoted:
+    #   config delivery webhook <url>      (3 positionals)
+    # Previously only the quoted form parsed, and the unquoted form — which is
+    # what SKILL.md tells the agent to run — died with "unrecognized arguments".
+    p_cfg.add_argument("extra", nargs="*", default=[], help=argparse.SUPPRESS)
     p_cfg.add_argument("--output", choices=["text", "json"], default="text")
     p_cfg.add_argument("--config", default="", help="Path to config JSON")
 
     # schedule
     p_sched = sub.add_parser("schedule", help="Manage auto-monitoring schedule")
-    p_sched.add_argument("action", nargs="?", default="", help="Interval in minutes, or 'disable'")
+    p_sched.add_argument("action", nargs="?", default="", help="Interval in minutes, 'disable', or 'clear-route'")
     p_sched.add_argument("--driver", choices=["auto", "crontab", "openclaw"], default="auto",
                          help="Scheduling driver (default: auto, prefers OpenClaw)")
     p_sched.add_argument("--output", choices=["text", "json"], default="text")
@@ -3931,12 +4298,17 @@ def main() -> int:
     p_run.add_argument("--config", default="", help="Path to config JSON")
 
     args = parser.parse_args(_normalize_argv(sys.argv[1:]))
-    _emit_startup_notices(args)
+    # discover is contractually read-only/stateless: skip user-data bootstrap
+    # (dir creation + reply-route capture) so it leaves zero footprint.
+    if args.command != "discover":
+        _emit_startup_notices(args)
 
     # Dispatch
     cmd = args.command
     if cmd == "doctor":
         return cmd_doctor(args)
+    elif cmd == "discover":
+        return cmd_discover(args)
     elif cmd == "add":
         return cmd_add(args)
     elif cmd == "list":

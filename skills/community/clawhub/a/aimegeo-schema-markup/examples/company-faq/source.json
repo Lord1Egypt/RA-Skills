@@ -1,0 +1,17 @@
+{
+  "sample_kind": "synthetic_demo_not_a_live_page",
+  "organization": {
+    "name": "青禾资料库（演示）",
+    "url": "https://example.org/",
+    "description": "提供企业资料整理与检索服务。"
+  },
+  "faq_page_url": "https://example.org/faq",
+  "faqs": [
+    {"question": "公司提供什么服务？", "answer": "提供企业资料整理与检索服务。"},
+    {"question": "资料可以导出吗？", "answer": "支持导出 UTF-8 编码的 JSON 文件。"},
+    {"question": "如何更新公司简介？", "answer": "由资料管理员提交新版本并保留修改记录。"},
+    {"question": "可以在离线环境使用吗？", "answer": "已导出的资料可在离线环境读取。"},
+    {"question": "价格和服务评分在哪里查看？", "answer": "当前资料未公开价格和服务评分，请联系资料管理员确认。"}
+  ],
+  "unknown": {"price": null, "ratingValue": null, "datePublished": null}
+}

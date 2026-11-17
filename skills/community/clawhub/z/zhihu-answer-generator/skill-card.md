@@ -1,45 +1,50 @@
-## Description: <br>
-生成知乎高质量回答，包含专业论证 + 数据支撑 + 引流技巧。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates structured Zhihu-style answers with professional argumentation, data or case support, image suggestions, topic tags, and optional soft promotion.
 
-## Publisher: <br>
-[kaising050708](https://clawhub.ai/user/kaising050708) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kaising050708](https://clawhub.ai/user/kaising050708)
 
-## Use Case: <br>
-External content creators and marketers use this skill to draft Chinese Zhihu answers with structured arguments, data or case support, image suggestions, topic tags, and optional soft lead-generation copy. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Promotional or lead-generation framing may violate Zhihu platform rules or applicable advertising norms. <br>
-Mitigation: Review generated calls to action for transparency, remove deceptive engagement prompts, and confirm compliance with platform and advertising requirements before posting. <br>
-Risk: Generated arguments, data points, examples, or personal-experience claims may be unsupported or misleading. <br>
-Mitigation: Verify every cited statistic, case, and experience claim against reliable sources, and revise the answer so it reflects only substantiated information. <br>
-Risk: High-volume use can produce spam-like content patterns. <br>
-Mitigation: Use the draft as an editorial starting point, customize it for the specific question and audience, and avoid bulk posting substantially similar answers. <br>
+## Use Case:
 
+External content creators and marketers use this skill to draft Chinese Zhihu answers from a topic or question, with selectable answer angle, length, and optional traffic-generation section.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kaising050708/zhihu-answer-generator) <br>
-- [Publisher profile](https://clawhub.ai/user/kaising050708) <br>
-- [Artifact support URL](https://github.com/xiaokai-ai/zhihu-answer-generator) <br>
-- [Artifact docs URL](https://clawhub.ai/skills/zhihu-answer-generator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a structured Zhihu answer draft with optional image suggestions, topic tags, data-source notes, and soft promotional copy.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact frontmatter) <br>
+Risk: Generated Zhihu answers may contain unsupported statistics, case studies, screenshots, earnings claims, testimonials, or platform-policy-sensitive promotion.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify factual claims, examples, screenshots, testimonials, and platform-policy compliance before publishing generated content.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kaising050708/skills/zhihu-answer-generator)
+- [Publisher profile](https://clawhub.ai/user/kaising050708)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown answer template with headings, separators, image suggestions, topic tags, and data-source bullets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Configurable by question or topic, answer angle, word count up to 5000, traffic-generation preference, and industry or domain.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

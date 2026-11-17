@@ -1,47 +1,60 @@
-## Description: <br>
-Inspect PhantomBuster agents, automations, launches, and workflow data via the PhantomBuster API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Inspect PhantomBuster agents, automations, launches, and workflow data via the PhantomBuster API.
 
-## Publisher: <br>
-[hith3sh](https://clawhub.ai/user/hith3sh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hith3sh](https://clawhub.ai/user/hith3sh)
 
-## Use Case: <br>
-Developers and operators use this skill to inspect PhantomBuster agents, automations, launches, and output data, then manage or trigger workflows through ClawLink-mediated PhantomBuster API tools after confirmation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires brokered access to a PhantomBuster account through ClawLink. <br>
-Mitigation: Install only when the user trusts ClawLink to handle PhantomBuster account access and verify the connected integration before using tools. <br>
-Risk: Launching, updating, creating, or deleting automations can affect real PhantomBuster workflows and third-party rate limits. <br>
-Mitigation: Use the required preview and explicit confirmation flow before any action that changes or triggers automations. <br>
-Risk: PhantomBuster launch output may contain account or workflow data from the connected account. <br>
-Mitigation: Limit requests to the needed agents, launches, and output fields, and avoid exposing returned data beyond the user's intended task. <br>
+## Use Case:
 
+External users and developers use this skill to inspect PhantomBuster account activity, review launch output, and manage automation workflows through ClawLink-backed PhantomBuster API tools.
 
-## Reference(s): <br>
-- [PhantomBuster API Documentation](https://hub.phantombuster.com/reference) <br>
-- [PhantomBuster](https://phantombuster.com/) <br>
-- [ClawLink](https://claw-link.dev/?utm_source=clawhub&utm_medium=referral&utm_content=phantombuster-automation) <br>
-- [ClawLink Docs](https://docs.claw-link.dev/openclaw) <br>
-- [ClawLink Verification](https://claw-link.dev/verify) <br>
-- [ClawHub Skill Page](https://clawhub.ai/hith3sh/phantombuster-automation) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, API calls, Markdown] <br>
-**Output Format:** [Markdown with inline shell commands and JSON parameters] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include PhantomBuster account data, automation run details, and launch output returned through ClawLink tools.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release metadata) <br>
+Risk: Authenticated PhantomBuster write, delete, or launch actions can affect the connected account and third-party systems.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review previews carefully and require explicit user confirmation before any write, delete, or automation launch.
+
+Risk: The skill depends on a ClawLink plugin connection that makes authenticated PhantomBuster API calls.
+
+Mitigation: Confirm the ClawLink plugin source is trusted and verify the PhantomBuster connection before using account data or automation tools.
+
+Risk: Automation launches may consume PhantomBuster or third-party service rate limits.
+
+Mitigation: Confirm the target automation and intended effect before launch, and use backoff when rate limits are encountered.
+
+## Reference(s):
+
+- [PhantomBuster API Documentation](https://hub.phantombuster.com/reference)
+- [PhantomBuster](https://phantombuster.com/)
+- [ClawLink Docs](https://docs.claw-link.dev/openclaw)
+- [PhantomBuster Automation Skill Page](https://clawhub.ai/hith3sh/skills/phantombuster-automation)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON tool parameters]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May call authenticated PhantomBuster tools through ClawLink after connection setup and user confirmation for write actions.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

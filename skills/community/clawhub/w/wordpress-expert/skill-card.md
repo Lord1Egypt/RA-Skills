@@ -1,50 +1,62 @@
-## Description: <br>
-Enables OpenClaw agents to manage WordPress content, media, settings, plugins, themes, WooCommerce, Elementor, REST workflows, and code under wp-content. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enable WordPress superpowers for OpenClaw. Your Developer, Content Manager, Author, Security Specialists, Contributor, Subscriber and Admin and more.
 
-## Publisher: <br>
-[realM1lF](https://clawhub.ai/user/realM1lF) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[realm1lf](https://clawhub.ai/user/realm1lf)
 
-## Use Case: <br>
-Developers, site owners, and administrators use this skill to connect an OpenClaw agent to an existing WordPress site, configure credentials and tools, and perform content, site administration, plugin/theme, WooCommerce, and Elementor tasks with least-privilege safeguards. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is intended to operate on WordPress sites using sensitive application-password credentials and optional write-capable tools. <br>
-Mitigation: Use a dedicated least-privilege WordPress application password, keep secrets out of chat, Git, screenshots, and backups, and store credentials only in environment or OpenClaw configuration. <br>
-Risk: Optional WP-CLI, media, and plugin-file tools can make broad or destructive changes when enabled. <br>
-Mitigation: Start on staging, allow only the specific tools and WP-CLI prefixes needed, back up the site before destructive or broad write operations, and require explicit approval for deletes, database drops, theme switches, or wide-ranging updates. <br>
-Risk: The companion plugin and optional MU helper expand the trusted code and access surface beyond the text-only skill bundle. <br>
-Mitigation: Review the separate wordpress-site-tools plugin before installing it and copy optional MU helper code only from a trusted full source checkout when that helper is needed. <br>
+## Use Case:
 
+Site owners, developers, and operators use this skill to guide an OpenClaw agent through WordPress content, media, plugin, theme, WooCommerce, Elementor, REST, and wp-content work on an existing site. It supports REST-based workflows by default, with optional WP-CLI and file-level workflows when the environment is configured for them.
 
-## Reference(s): <br>
-- [WordPress Expert README](artifact/README.md) <br>
-- [Connect WordPress to OpenClaw](artifact/references/CONNECTING.md) <br>
-- [Before install: trust, credentials, and blast radius](artifact/references/PRE_INSTALL_AND_TRUST.md) <br>
-- [Safety and defaults](artifact/references/SAFETY.md) <br>
-- [Tools: decision tree](artifact/references/TOOLING.md) <br>
-- [WP-CLI allowlist presets](artifact/references/WPCLI_PRESETS.md) <br>
-- [OpenClaw integration policy](artifact/references/OPENCLAW_INTEGRATION.md) <br>
-- [OpenClaw WordPress companion plugin](https://github.com/realM1lF/openclaw-wordpress-tool) <br>
-- [ClawHub listing](https://clawhub.ai/realM1lF/wordpress-expert) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with command snippets, JSON/JSON5 configuration examples, REST/WP-CLI instructions, and code-oriented WordPress development guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May depend on configured WordPress REST credentials, optional WP-CLI access, and optional companion plugin tools.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.12 (source: ClawHub release metadata; artifact metadata.version reports 1.1.1) <br>
+Risk: The recommended companion plugin installation can pull unpinned external code before granting powerful WordPress access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the companion plugin source and dependencies before installation, preferably from a pinned commit or release.
+
+Risk: WordPress credentials, WP-CLI, media upload, and plugin-file tools can have broad site impact if enabled on production.
+
+Mitigation: Start on staging, use a dedicated least-privilege WordPress application-password user, allow only required tools, and keep backups with a clear rollback path.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/realm1lf/skills/wordpress-expert)
+- [Metadata OpenClaw homepage](https://github.com/realM1lF/openclaw-wordpress-tool)
+- [README](README.md)
+- [Skill instructions](SKILL.md)
+- [Before install: trust, credentials, and blast radius](references/PRE_INSTALL_AND_TRUST.md)
+- [Connect WordPress to OpenClaw](references/CONNECTING.md)
+- [Tools: decision tree](references/TOOLING.md)
+- [Safety and defaults](references/SAFETY.md)
+- [Plugin development under OpenClaw](references/PLUGIN_DEV_PLAYBOOK.md)
+- [Reference index](references/OVERVIEW.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown with inline code and shell command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce WordPress REST, WP-CLI, plugin file, and configuration guidance depending on the user's allowed tools and site setup.]
+
+## Skill Version(s):
+
+1.0.12 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

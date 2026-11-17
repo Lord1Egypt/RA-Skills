@@ -1,10 +1,16 @@
 ---
 name: poyo-omni-flash
 description: Omni Flash video generation on PoYo / poyo.ai via `https://api.poyo.ai/api/generate/submit`; use for `omni-flash`, text-to-video, single-image video, three-image reference fusion, video-input generation, 720p, 1080p, 4k, duration control, aspect ratio control, polling, and webhooks.
-metadata: {"openclaw":{"homepage":"https://docs.poyo.ai/api-manual/video-series/omni-flash","requires":{"bins":["curl"],"env":["POYO_API_KEY"]},"primaryEnv":"POYO_API_KEY"}}
+metadata: {"openclaw":{"homepage":"https://poyo.ai/models/omni-flash","requires":{"bins":["curl"],"env":["POYO_API_KEY"]},"primaryEnv":"POYO_API_KEY"}}
 ---
 
 # PoYo Omni Flash Video Generation
+
+## PoYo Links
+
+- Model page: <https://poyo.ai/models/omni-flash>
+- API docs: <https://docs.poyo.ai/api-manual/video-series/omni-flash>
+- API key page: <https://poyo.ai/dashboard/api-key>
 
 Use this skill for Omni Flash video jobs on PoYo. It helps agents prepare text-to-video, image-to-video, three-image reference fusion, and video-input payloads, submit async tasks, and explain polling or webhook follow-up.
 

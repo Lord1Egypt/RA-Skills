@@ -1,45 +1,60 @@
-## Description: <br>
-Analyze and reclaim macOS disk space through intelligent cleanup recommendations. This skill should be used when users report disk space issues, need to clean up their Mac, or want to understand what's consuming storage. Focus on safe, interactive analysis with user confirmation before any deletions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze and reclaim macOS disk space through intelligent cleanup recommendations.
 
-## Publisher: <br>
-[wusuiling-if](https://clawhub.ai/user/wusuiling-if) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wusuiling-if](https://clawhub.ai/user/wusuiling-if)
 
-## Use Case: <br>
-External users and developers use this skill to investigate macOS disk usage, identify cleanup candidates, and receive conservative, confirmation-based cleanup commands and reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Cleanup commands or helper scripts can permanently delete broad local paths. <br>
-Mitigation: Review every target before execution, prefer analysis-only use, use Trash or backups for recoverability, and avoid running deletion helpers on home, system, project-root, credential, or important-data directories. <br>
-Risk: Commands involving sudo or broad rm -rf patterns can remove system-wide or user data beyond the intended cleanup target. <br>
-Mitigation: Avoid sudo unless the user explicitly accepts the administrator-level impact, narrow commands to specific confirmed paths, and require a dry-run or manual review before cleanup. <br>
-Risk: Docker and development-environment cleanup can remove databases, volumes, caches, or build artifacts that may be expensive or impossible to recreate. <br>
-Mitigation: List exact objects, inspect database-like volumes, avoid broad prune commands, and delete only specifically confirmed objects. <br>
+## Use Case:
 
+External users and developers use this skill to diagnose macOS storage usage, identify safe cleanup candidates, and prepare user-confirmed cleanup actions for caches, application remnants, large files, and development tooling.
 
-## Reference(s): <br>
-- [macOS Cleanup Targets Reference](references/cleanup_targets.md) <br>
-- [Mole Integration Guide](references/mole_integration.md) <br>
-- [Safety Rules for macOS Cleanup](references/safety_rules.md) <br>
-- [Mole](https://github.com/tw93/Mole) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks and cleanup reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires explicit user review before deletion; may include analysis-only recommendations, dry-run previews, and manually executed cleanup commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Cleanup workflows can permanently remove useful user or system data if deletion guidance is followed too casually.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer preview-only analysis, Finder Trash or backups, and exact per-item deletion only after the user understands the impact.
+
+Risk: Broad deletion commands or Docker prune workflows can remove valuable caches, stopped containers, or database volumes.
+
+Mitigation: List every cleanup target, inspect Docker objects and database volumes individually, and require explicit confirmation for each risky item.
+
+Risk: Commands that require sudo or broad filesystem access increase the impact of a mistake.
+
+Mitigation: Keep analysis read-only by default, avoid unattended sudo cleanup, and ask the user to run only reviewed commands.
+
+## Reference(s):
+
+- [macOS Cleanup Targets Reference](references/cleanup_targets.md)
+- [Mole Integration Guide](references/mole_integration.md)
+- [Safety Rules for macOS Cleanup](references/safety_rules.md)
+- [Mole](https://github.com/tw93/Mole)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown reports with inline shell commands and optional text or JSON summaries from helper scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Cleanup recommendations should be previewed, explained, and confirmed by the user before deletion.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

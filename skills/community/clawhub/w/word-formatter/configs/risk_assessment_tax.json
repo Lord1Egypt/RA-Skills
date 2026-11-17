@@ -1,0 +1,324 @@
+{
+  "page": {
+    "size": "A4",
+    "orientation": "portrait",
+    "margins_cm": {
+      "top": 2.54,
+      "bottom": 2.54,
+      "left": 2.8,
+      "right": 2.6
+    }
+  },
+  "styles": {
+    "Normal": {
+      "font_cn": "宋体",
+      "font_en": "Times New Roman",
+      "size_pt": 12,
+      "bold": false,
+      "color_rgb": "#1A1A1A",
+      "line_spacing_rule": "multiple",
+      "line_spacing": 1.5,
+      "space_before_pt": 0,
+      "space_after_pt": 0,
+      "first_line_indent_chars": 2,
+      "alignment": "justify"
+    },
+    "Heading 1": {
+      "font_cn": "黑体",
+      "font_en": "Arial",
+      "size_pt": 16,
+      "bold": true,
+      "color_rgb": "#000000",
+      "line_spacing_rule": "multiple",
+      "line_spacing": 1.5,
+      "space_before_pt": 17,
+      "space_after_pt": 16,
+      "first_line_indent_chars": 0,
+      "alignment": "left"
+    },
+    "Heading 2": {
+      "font_cn": "黑体",
+      "font_en": "Arial",
+      "size_pt": 14,
+      "bold": true,
+      "color_rgb": "#000000",
+      "line_spacing_rule": "multiple",
+      "line_spacing": 1.5,
+      "space_before_pt": 13,
+      "space_after_pt": 13,
+      "first_line_indent_chars": 0,
+      "alignment": "left"
+    },
+    "Heading 3": {
+      "font_cn": "黑体",
+      "font_en": "Arial",
+      "size_pt": 12,
+      "bold": true,
+      "color_rgb": "#000000",
+      "line_spacing_rule": "multiple",
+      "line_spacing": 1.5,
+      "space_before_pt": 13,
+      "space_after_pt": 13,
+      "first_line_indent_chars": 0,
+      "alignment": "left"
+    },
+    "Note": {
+      "font_cn": "宋体",
+      "font_en": "Times New Roman",
+      "size_pt": 10.5,
+      "bold": false,
+      "color_rgb": "#595959",
+      "line_spacing_rule": "multiple",
+      "line_spacing": 1.5,
+      "space_before_pt": 4,
+      "space_after_pt": 0,
+      "first_line_indent_chars": 0,
+      "alignment": "justify"
+    },
+    "Heading 4": {
+      "font_cn": "宋体",
+      "font_en": "Times New Roman",
+      "size_pt": 12,
+      "bold": true,
+      "color_rgb": "#000000",
+      "line_spacing_rule": "multiple",
+      "line_spacing": 1.5,
+      "space_before_pt": 8,
+      "space_after_pt": 6,
+      "first_line_indent_chars": 0,
+      "alignment": "left"
+    },
+    "Heading 5": {
+      "font_cn": "宋体",
+      "font_en": "Times New Roman",
+      "size_pt": 12,
+      "bold": true,
+      "color_rgb": "#333333",
+      "line_spacing_rule": "multiple",
+      "line_spacing": 1.5,
+      "space_before_pt": 6,
+      "space_after_pt": 4,
+      "first_line_indent_chars": 0,
+      "alignment": "left"
+    },
+    "Heading 6": {
+      "font_cn": "宋体",
+      "font_en": "Times New Roman",
+      "size_pt": 12,
+      "bold": false,
+      "italic": true,
+      "color_rgb": "#333333",
+      "line_spacing_rule": "multiple",
+      "line_spacing": 1.5,
+      "space_before_pt": 4,
+      "space_after_pt": 2,
+      "first_line_indent_chars": 0,
+      "alignment": "left"
+    }
+  },
+  "table": {
+    "font_cn": "宋体",
+    "font_en": "Times New Roman",
+    "size_pt": 10.5,
+    "style": "three_line",
+    "header_bold": true,
+    "color_rgb": "#1A1A1A",
+    "header_color_rgb": "#000000",
+    "alignment": "center",
+    "zebra": false,
+    "fill_color": null
+  },
+  "figures": {
+    "caption_font_cn": "宋体",
+    "caption_size_pt": 9,
+    "caption_alignment": "center",
+    "width_cm": 15,
+    "max_width_cm": 17,
+    "min_width_cm": 11,
+    "alignment": "center",
+    "numbering": "per_chapter",
+    "image_spacing_before_pt": 6,
+    "image_spacing_after_pt": 12,
+    "image_border": true,
+    "image_border_color": "#C0C0C0",
+    "image_border_width_pt": 0.5,
+    "caption_spacing_before_pt": 4,
+    "caption_spacing_after_pt": 12,
+    "caption_color_rgb": "#595959"
+  },
+  "numbering_scheme": [
+    "一、",
+    "（一）",
+    "1.",
+    "（1）"
+  ],
+  "cleanup": {
+    "remove_fullwidth_spaces": true,
+    "normalize_empty_paragraphs": true
+  },
+  "design_language": {
+    "summary": "严肃、专业、简洁；仅以黑/白/灰为基调，不使用任何彩色（含深蓝、深红等均禁用），强调处一律用加粗或灰度层次区分，杜绝高饱和度与渐变。",
+    "palette": {
+      "ink": "#1A1A1A",
+      "heading": "#000000",
+      "note": "#595959"
+    },
+    "rule": "标题/正文/注释以字号与灰度层次区分；表格用三线表或全线表，表头加粗、无填色、无斑马纹、无彩色。"
+  },
+  "doc_type": "风险评估报告类（财税专项）",
+  "standard": "锚定《企业内部控制基本规范》+ 税务风险管理指引 + 财税合规体检逻辑（增值税 / 企业所得税 / 个人所得税 / 发票 / 社保 / 税收优惠）。按税种风险识别→评估→应对逻辑重建骨架，视觉统一为正式报告语言。",
+  "structure": [
+    "封面 / 评估范围与依据",
+    "评估说明（目标、税种范围、方法论）",
+    "一、税务治理与内控环境",
+    "二、税种风险识别（增值税 / 企业所得税 / 个税 / 发票 / 社保 / 税收优惠）",
+    "三、财税风险评估（按税种 × 可能性 × 影响，风险矩阵）",
+    "四、重大财税风险分析",
+    "五、风险应对与整改建议",
+    "六、剩余风险与监控",
+    "七、评估结论与建议",
+    "附件（税种风险清单、风险矩阵表）"
+  ],
+  "common_diagrams": [
+    "财税风险评估流程（流程图）",
+    "税种风险矩阵（以表格呈现）"
+  ],
+  "manual_checks": [
+    "配色自检：全篇仅黑/白/灰，强调处用加粗或灰度层次区分，无任何彩色，无高饱和色",
+    "表格确为三线表（仅顶线/表头下细线/底线），无竖线、无填色、无斑马纹",
+    "字体层级：标题黑体加粗、正文宋体、注释灰色小字，三者区分清晰",
+    "封面：机构标识、报告名称、委托方、出具日期、密级/保密声明齐全",
+    "目录层级不超过三级，页码正确（Word 中按 F9 刷新域）",
+    "页眉含机构名称或报告简称，页脚页码格式统一",
+    "图表编号连续，图题在下、表题在上",
+    "免责声明 / 使用限制条款完整",
+    "税种风险应覆盖：收入确认与增值税、成本费用税前扣除、个税代扣、发票合规、社保缴纳、税收优惠适用",
+    "风险矩阵以「可能性 × 影响」二维表呈现，严禁高饱和色块",
+    "整改建议须具体到税种、业务环节与责任部门"
+  ],
+  "header_footer": {
+    "header_text": "财税风险评估报告",
+    "header_alignment": "right",
+    "header_font_cn": "宋体",
+    "header_font_en": "Times New Roman",
+    "header_size_pt": 9,
+    "header_color_rgb": "#595959",
+    "header_border": false,
+    "footer_mode": "page_of",
+    "footer_alignment": "center",
+    "footer_font_cn": "宋体",
+    "footer_font_en": "Times New Roman",
+    "footer_size_pt": 9,
+    "footer_color_rgb": "#595959",
+    "show_page_number": true,
+    "different_odd_even": false,
+    "header_client": "示例股份有限公司"
+  },
+  "cover": {
+    "title": "财税风险评估报告",
+    "subtitle": "（2025年度）",
+    "client": "示例股份有限公司",
+    "issuer": "【尽调机构名称】",
+    "date": "【报告日期】",
+    "title_font_cn": "黑体",
+    "title_font_en": "Arial",
+    "title_size_pt": 22,
+    "subtitle_size_pt": 14,
+    "client_size_pt": 16,
+    "info_size_pt": 12,
+    "color_rgb": "#000000",
+    "client_in_title": true
+  },
+  "template_text": {
+    "disclaimer": "本财税风险评估报告（以下简称“本报告”）系基于【公司名称】提供的财务与税务资料、纳税申报信息及访谈记录，依据现行税收法律法规及行业通行方法编制，仅供贵方税务合规管理与决策参考。\n\n我们对所依据资料的真实性、完整性不作独立审计验证；受资料范围与评估方法所限，本报告不保证揭示全部税务风险，亦不构成税务意见或鉴证结论。\n\n本报告因使用不当产生的责任与出具方无关。",
+    "preamble": "为系统识别【公司名称】（以下简称“公司”）在增值税、企业所得税、个人所得税、发票、社保及税收优惠等方面的潜在税务风险，评估其税务合规水平并提出改进建议，特开展本次财税风险评估。本报告供公司管理层及财税负责人参考。",
+    "abstract_title": "摘要",
+    "abstract_guide": "摘要应概括整体税务健康度、最重大的 2–3 项税务风险（如收入确认时点、进项抵扣、个税代扣、优惠资格可持续性），并给出优先整改方向。",
+    "abstract_placeholder": "【示例】公司整体税务合规状况【良好 / 存在改善空间】。重大风险集中于：①部分收入确认与开票时点不一致；②研发费用加计扣除归集口径需规范；③高新技术企业优惠资格面临复核。建议优先整改前述事项。",
+    "body_sections": [
+      {
+        "title": "一、评估背景与范围",
+        "guide": "说明评估目的、涵盖税种与期间、资料来源。",
+        "subs": [
+          {
+            "title": "（一）评估目的",
+            "guide": "明确本次财税风险评估的目标。"
+          },
+          {
+            "title": "（二）评估范围与依据",
+            "guide": "列示涵盖税种、期间及所依据的税收法规。"
+          }
+        ]
+      },
+      {
+        "title": "二、评估方法与流程",
+        "guide": "说明资料审阅、申报比对、指标测算、访谈等评估方法。"
+      },
+      {
+        "title": "三、增值税风险评估",
+        "guide": "评估销售收入确认与纳税义务发生时点、进项抵扣合规性、简易计税适用等。"
+      },
+      {
+        "title": "四、企业所得税风险评估",
+        "guide": "评估收入/成本归集、资产税务处理、加计扣除、关联交易转让定价等。",
+        "subs": [
+          {
+            "title": "（一）收入与成本",
+            "guide": "关注跨期确认、视同销售、成本扣除凭证。"
+          },
+          {
+            "title": "（二）税收优惠与加计",
+            "guide": "关注研发费用、残保金等优惠归集口径与备查资料。"
+          }
+        ]
+      },
+      {
+        "title": "五、个人所得税与代扣代缴",
+        "guide": "评估工资薪金、劳务报酬、股东分红、股权激励等代扣代缴合规性。"
+      },
+      {
+        "title": "六、发票与凭证合规",
+        "guide": "评估虚开发票风险、进项发票真实性、凭证完整性。"
+      },
+      {
+        "title": "七、社保与人力成本合规",
+        "guide": "评估社保基数合规性、劳务派遣/灵活用工税务处理。"
+      },
+      {
+        "title": "八、税收优惠适用性与可持续性",
+        "guide": "评估高新、小微、软件企业等优惠资格持续满足条件情况。",
+        "table": {
+          "caption": "表8-1 税收优惠风险清单（示例）",
+          "headers": [
+            "优惠事项",
+            "适用条件",
+            "现存缺口",
+            "风险等级",
+            "建议"
+          ],
+          "rows": [
+            [
+              "高新技术企业",
+              "研发占比/人员占比",
+              "【】",
+              "【】",
+              "【】"
+            ],
+            [
+              "研发费用加计",
+              "归集口径",
+              "【】",
+              "【】",
+              "【】"
+            ]
+          ]
+        }
+      },
+      {
+        "title": "九、重大税务风险汇总与应对建议",
+        "guide": "汇总重大税务风险，提出整改优先级与具体行动。"
+      }
+    ],
+    "closing": "（以下无正文）\n\n出具机构：【尽调机构名称】\n报告日期：【报告日期】"
+  }
+}

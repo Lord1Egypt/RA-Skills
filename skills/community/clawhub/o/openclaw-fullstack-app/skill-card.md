@@ -1,41 +1,61 @@
-## Description: <br>
-Generate fullstack application scaffolds with selectable frontend, backend, database, deployment, API, authentication, and CI/CD components. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate fullstack applications with OpenClaw, including frontend, backend, database, and deployment scaffolding.
 
-## Publisher: <br>
-[Sunshine-del-ux](https://clawhub.ai/user/Sunshine-del-ux) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[sunshine-del-ux](https://clawhub.ai/user/sunshine-del-ux)
 
-## Use Case: <br>
-Developers and engineers use this skill to scaffold complete fullstack application projects with chosen frontend, backend, database, and deployment files. It is suited for starting a project structure that can be reviewed, customized, and hardened before production deployment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create or modify project files in the target directory. <br>
-Mitigation: Use a new or empty directory unless intentionally adding generated files to an existing project, and review the created files before committing or deploying them. <br>
-Risk: Generated deployment and environment settings may need production hardening. <br>
-Mitigation: Review generated environment, Docker, and deployment settings before production use. <br>
+## Use Case:
 
+Developers and engineers use this skill to generate starter fullstack application projects with selectable frontend, backend, database, Docker, CI/CD, authentication, and API scaffolding.
 
-## Reference(s): <br>
-- [Openclaw Fullstack App on ClawHub](https://clawhub.ai/Sunshine-del-ux/openclaw-fullstack-app) <br>
-- [Publisher profile](https://clawhub.ai/user/Sunshine-del-ux) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Files, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Project files and Markdown usage guidance with shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated scaffold contents depend on the requested app name, frontend, backend, and database choices.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact metadata) <br>
+Risk: The generator can overwrite files in the target project directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only in a new empty directory or a disposable workspace, then review the generated files before merging them into an existing project.
+
+Risk: Generated Docker configuration can use an arbitrary database image and weak default credentials.
+
+Mitigation: Replace database images with trusted pinned images and change generated credentials before deployment or committing the project.
+
+Risk: Generated backend examples include permissive CORS settings.
+
+Mitigation: Restrict CORS origins, methods, and credentials handling to the intended deployment environment before production use.
+
+Risk: Untrusted generator arguments can affect created paths and generated configuration.
+
+Mitigation: Use trusted project, frontend, backend, and database arguments only, and inspect the generated Docker Compose file before running services.
+
+## Reference(s):
+
+- [Openclaw Fullstack App release page](https://clawhub.ai/sunshine-del-ux/skills/openclaw-fullstack-app)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Generated project files with command-line status output and documentation snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates frontend, backend, Docker Compose, CI/CD, and documentation directories for a generated application.]
+
+## Skill Version(s):
+
+1.0.0 (source: artifact/_meta.json and release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

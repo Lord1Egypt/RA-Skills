@@ -1,42 +1,55 @@
-## Description: <br>
-Roco Kingdom World offline data tool. Local JSON queries for pets, skills, and items. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Roco Kingdom World offline data tool. Local JSON queries for pets, skills, and items.
 
-## Publisher: <br>
-[imnotriv3r](https://clawhub.ai/user/imnotriv3r) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[imnotriv3r](https://clawhub.ai/user/imnotriv3r)
 
-## Use Case: <br>
-External users and game-focused agents use this skill to query bundled Roco Kingdom World reference data for pets, skills, items, dungeons, regions, natures, marks, quests, and formations without network access. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Running bundled local Node.js code from a third-party publisher. <br>
-Mitigation: Install only from a trusted publisher and review or scan before execution; the security evidence reports no network access, credential handling, persistence, elevated privileges, or destructive behavior. <br>
-Risk: Responses may reflect bundled static game data or strategy notes that become stale after game updates. <br>
-Mitigation: Use the skill's local queries for grounded answers and verify patch-sensitive recommendations against current game sources. <br>
+## Use Case:
 
+External users and agents use this skill to answer Roco Kingdom:World reference questions with local data for pets, skills, items, dungeons, regions, marks, natures, quests, and formations.
 
-## Reference(s): <br>
-- [Rocom ClawHub listing](https://clawhub.ai/imnotriv3r/rocom) <br>
-- [Game Knowledge](references/game-knowledge.md) <br>
-- [Data Manifest](MANIFEST.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text terminal output and concise Markdown guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Local-only Node.js queries over bundled static JSON; no network access, credential handling, persistence, or destructive behavior was identified in the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.5.0 (source: server release metadata) <br>
+Risk: Bundled game reference data can become stale or differ from the live game.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Check the bundled data sync timestamp and validate time-sensitive gameplay recommendations against current game sources.
+
+Risk: The artifact identifies Bilibili WIKI as the game data source with CC BY-NC-SA 4.0 terms, which may impose obligations separate from the release package license.
+
+Mitigation: Review source-data terms before redistributing the bundled data or using it in contexts with license restrictions.
+
+## Reference(s):
+
+- [Rocom ClawHub skill page](https://clawhub.ai/imnotriv3r/skills/rocom)
+- [Data Manifest](MANIFEST.md)
+- [Game Knowledge Reference](references/game-knowledge.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown and terminal text from local JSON lookups]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js and reads bundled static JSON data locally.]
+
+## Skill Version(s):
+
+1.5.0 (source: server release evidence and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

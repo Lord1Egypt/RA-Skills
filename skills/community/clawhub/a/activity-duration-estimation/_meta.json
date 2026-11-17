@@ -1,6 +1,26 @@
 {
-  "ownerId": "kn75zfd51df61ajdyqtgvrs1hx84s4q6",
-  "slug": "activity-duration-estimation",
+  "name": "activity-duration-estimation",
   "version": "1.11.7",
-  "publishedAt": 1782382790990
+  "author": "wUwproject",
+  "description": "活动历时估算 + WBS工作分解 + 项目文档生成 + 经济效益分析 + 挣值管理（Activity Duration Estimation & WBS & Project Docs & Economic Analysis & EVM）—— 支持三点估算/蒙特卡洛四种方法 + WBS项目规划与分解 + 项目文档双模式生成（手动空模版/逐节自动）+ ROI/NPV/IRR/BCR 经济效益分析 + PV/EV/AC/SPI/CPI 挣值管理。三库隔离架构：shared.db + economic.db + evm.db。输出自包含HTML评估报告、经济效益分析报告和挣值分析报告。",
+  "tags": [
+    "duration-estimation",
+    "pert",
+    "monte-carlo",
+    "project-management",
+    "semantic-analysis",
+    "html-report",
+    "wbs",
+    "work-breakdown",
+    "project-docs",
+    "settings",
+    "knowledge-base",
+    "economic-analysis",
+    "evm",
+    "earned-value"
+  ],
+  "data_dir": "skills/.standardization/activity-duration-estimation/data/",
+  "triggers": [
+    "活动历时估算/三点估算/PERT/蒙特卡洛模拟/工期估算/任务历时/概率估算/β分布/正态分布/历时分析/WBS/WBS分解/项目规划/工作分解/项目分解/分解任务/立项申请书/结项报告/相关方登记册/风险登记册/项目文档/项目模板/经济效益分析/投资回报/ROI/NPV/IRR/BCR/投资回收期/可行性分析/项目经济效益/折现分析/多折现率对比/挣值管理/EVM/PV/EV/AC/SPI/CPI/成本绩效/进度偏差/挣得值/EAC/挣值分析"
+  ]
 }

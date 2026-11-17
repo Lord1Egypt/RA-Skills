@@ -1,43 +1,56 @@
-## Description: <br>
-Design, analyze, optimize and evolve database schemas for schema design, SQL versus NoSQL selection, normalization review, index planning, migration generation, and EXPLAIN plan interpretation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Designs, analyzes, optimizes, and evolves database schemas for schema creation, SQL/NoSQL selection, schema review, index strategy, migrations, and EXPLAIN interpretation.
 
-## Publisher: <br>
-[felix-antonio-sl](https://clawhub.ai/user/felix-antonio-sl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[felix-antonio-sl](https://clawhub.ai/user/felix-antonio-sl)
 
-## Use Case: <br>
-Developers and engineers use this skill to design or review database schemas, choose an appropriate database engine, plan indexes, generate migrations with rollback, and interpret query plans. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated schema, index, or migration guidance can be incorrect for a live workload or engine-specific behavior. <br>
-Mitigation: Review proposed DDL, indexes, and migration scripts against the target database and test them before production use. <br>
-Risk: Destructive migration steps can cause data loss if applied without preparation. <br>
-Mitigation: Take a logical backup before destructive changes and require a rollback path for every migration. <br>
+## Use Case:
 
+Developers and engineers use this skill to design or review database schemas, choose SQL or NoSQL engines, plan indexes, generate migrations with rollback, and interpret EXPLAIN plans.
 
-## Reference(s): <br>
-- [database-designer reference](references/database-design-reference.md) <br>
-- [Database Selection Decision Tree](references/database_selection_decision_tree.md) <br>
-- [Index Strategy Patterns](references/index_strategy_patterns.md) <br>
-- [Database Normalization Guide](references/normalization_guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with SQL, Mermaid ERD, Prisma, JSON Schema, or shell command blocks as requested] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Emits one primary artifact per response and notes trade-offs, information loss, indexing recommendations, and migration next steps when applicable.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: Generated migrations may include destructive SQL such as DROP TABLE or DROP COLUMN.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat migrations as drafts, review all SQL before applying it, make logical backups, and use least-privileged database roles.
+
+Risk: Generated SQL may be injectable or have weak rollback safeguards when built from untrusted schema JSON.
+
+Mitigation: Avoid running migrations from untrusted schema JSON and manually validate rollback plans before execution.
+
+## Reference(s):
+
+- [database-designer reference](references/database-design-reference.md)
+- [Database Selection Decision Tree](references/database_selection_decision_tree.md)
+- [Index Strategy Patterns](references/index_strategy_patterns.md)
+- [Database Normalization Guide](references/normalization_guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with SQL, Mermaid ERD, Prisma schema, JSON Schema, JSON, and shell command blocks as applicable.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Emits one primary artifact per response unless the user asks for multiple formats; companion scripts can print results to stdout or write requested output files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

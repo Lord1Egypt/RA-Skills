@@ -1,0 +1,13 @@
+{
+  "ownerId": "583963",
+  "slug": "mobile-listing",
+  "version": "1.5.3",
+  "workflow": "listing",
+  "focus": "mobile",
+  "outputTemplate": "ops_listing",
+  "requiredCapabilities": [
+    "product-detail",
+    "reviews"
+  ],
+  "releaseWave": 2
+}

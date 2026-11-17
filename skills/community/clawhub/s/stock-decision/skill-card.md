@@ -1,46 +1,57 @@
-## Description: <br>
-Comprehensive stock decision analysis combining technical indicators (MA, MACD, KDJ, RSI, DMI), macro environment assessment (industry cycle, governance, macro economy), and historical backtesting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Comprehensive stock decision analysis combining technical indicators, macro environment assessment, and historical backtesting to produce buy/sell recommendations with stop-loss and take-profit levels.
 
-## Publisher: <br>
-[pfbao](https://clawhub.ai/user/pfbao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pfbao](https://clawhub.ai/user/pfbao)
 
-## Use Case: <br>
-External users and agent operators use this skill to generate stock decision reports for named stocks or ticker codes, including technical indicator checks, macro context, historical backtesting, risk levels, and stop-loss or take-profit guidance. Outputs should be treated as analytical support rather than investment advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Crafted stock names or ticker codes can be passed into local shell commands. <br>
-Mitigation: Use only plain stock names or standard ticker codes, validate inputs before execution, and replace shell=True calls with argument arrays. <br>
-Risk: The skill depends on westock-data and web search results for market data and macro context. <br>
-Mitigation: Verify the westock-data dependency before use, avoid private portfolio details in prompts, and independently confirm market data and macro findings. <br>
-Risk: Stock recommendations, backtests, and macro analysis can be misleading or stale. <br>
-Mitigation: Treat outputs as analytical support, not investment advice, and review risk levels, assumptions, and disclaimers before acting. <br>
+## Use Case:
 
+External users and agents use this skill to analyze stock names or codes with technical indicators, macro context, backtesting, risk labels, and stop-loss/take-profit guidance. The artifact states that its output is for reference only and does not constitute investment advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/pfbao/stock-decision) <br>
-- [README](artifact/README.md) <br>
-- [Skill definition](artifact/SKILL.md) <br>
-- [Implementation notes](artifact/IMPLEMENTATION.md) <br>
-- [Changelog](artifact/CHANGELOG.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, code, guidance] <br>
-**Output Format:** [Markdown reports with inline shell commands and JSON snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May call local Python scripts and the westock-data dependency; macro analysis may query web search results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Normal stock inputs can reach unsafe shell execution if a stock name or code contains shell syntax.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before installation or use, change subprocess calls to argument-list execution and enforce strict stock-symbol validation.
+
+Risk: Macro analysis performs external Bing searches and may disclose queried company, ticker, or industry terms.
+
+Mitigation: Confirm that external search is acceptable for the operating environment and avoid sensitive watchlists or confidential investment workflows.
+
+Risk: The financial-analysis scope is broad, and generated recommendations may be incorrect, stale, or misleading.
+
+Mitigation: Treat outputs as decision support only, verify market data and source findings independently, and preserve the artifact's non-investment-advice disclaimer.
+
+## Reference(s):
+
+- [ClawHub Stock-Decision Skill Page](https://clawhub.ai/pfbao/skills/stock-decision)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown reports with text sections, shell command examples, and JSON-like macro analysis output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes technical scores, buy/sell posture, risk level, stop-loss/take-profit levels, macro adjustment coefficients, and backtest summaries.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter and changelog list 2.4.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

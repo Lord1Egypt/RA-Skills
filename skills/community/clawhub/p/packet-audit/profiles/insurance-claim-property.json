@@ -1,0 +1,97 @@
+{
+  "id": "insurance-claim-property",
+  "title": "Property insurance claim packet",
+  "date_order": "mdy",
+  "money_tolerance": 0.01,
+  "review_note": "Insurers publish their own claim requirements and change them; this profile covers the documents most home and contents policies ask for. Check the policy schedule and the insurer's claim page before submitting.",
+  "classify": [
+    {
+      "type": "policy",
+      "ext": [".txt", ".md", ".docx", ".pdf"],
+      "content": ["policy schedule", "policy number", "sum insured", "excess"]
+    },
+    {
+      "type": "invoices",
+      "ext": [".txt", ".md", ".docx", ".pdf"],
+      "content": ["invoice", "receipt", "total due", "amount due", "subtotal"]
+    },
+    {
+      "type": "proof_of_ownership",
+      "ext": [".txt", ".md", ".docx", ".pdf"],
+      "content": ["serial number", "purchase date", "model number", "warranty"]
+    },
+    {
+      "type": "claim_form",
+      "ext": [".txt", ".md", ".docx", ".pdf"],
+      "content": ["claim form", "claim number", "description of loss", "date of loss"]
+    },
+    {
+      "type": "evidence_photo",
+      "ext": [".png", ".jpg", ".jpeg", ".tif", ".tiff", ".bmp", ".webp", ".heic"],
+      "filename": ["photo", "damage", "img[-_ ]?[0-9]+"]
+    },
+    {
+      "type": "policy",
+      "filename": ["policy"]
+    },
+    {"type": "invoices", "filename": ["invoice", "receipt"]},
+    {"type": "proof_of_ownership", "filename": ["receipt", "warranty", "serial"]},
+    {"type": "claim_form", "filename": ["claim"]}
+  ],
+  "fields": {
+    "full_name": {
+      "label": "Policyholder name",
+      "normalizer": "name",
+      "patterns": [
+        {"regex": "^[ \\t]*(?:policyholder|insured name|full name|name)[ \\t]*[:\\-][ \\t]*([A-Za-z][A-Za-z' .\\-]{1,60})$"}
+      ]
+    },
+    "policy_number": {
+      "label": "Policy number",
+      "normalizer": "text",
+      "patterns": [
+        {"regex": "^[ \\t]*(?:policy number|policy no\\.?|policy)[ \\t]*[:\\-][ \\t]*([A-Za-z0-9\\-]{3,30})$"}
+      ]
+    },
+    "loss_date": {
+      "label": "Date of loss",
+      "normalizer": "date",
+      "patterns": [
+        {"regex": "^[ \\t]*(?:date of loss|loss date|incident date)[ \\t]*[:\\-][ \\t]*([0-9]{1,4}[./\\-][0-9]{1,2}[./\\-][0-9]{1,4})$"}
+      ]
+    },
+    "claim_amount": {
+      "label": "Claimed amount",
+      "normalizer": "money",
+      "patterns": [
+        {"regex": "^[ \\t]*(?:total claimed|amount claimed|claim amount|total)[ \\t]*[:\\-][ \\t]*[$€£]?[ \\t]*([0-9][0-9,. ]*)$"}
+      ]
+    },
+    "invoice_total": {
+      "label": "Invoice total",
+      "normalizer": "money",
+      "patterns": [
+        {"regex": "^[ \\t]*(?:invoice total|total due|amount due|total)[ \\t]*[:\\-][ \\t]*[$€£]?[ \\t]*([0-9][0-9,. ]*)$"}
+      ]
+    }
+  },
+  "document_fields": {
+    "policy": ["full_name", "policy_number"],
+    "claim_form": ["full_name", "policy_number", "loss_date", "claim_amount"],
+    "invoices": ["invoice_total"],
+    "proof_of_ownership": ["full_name"]
+  },
+  "required": [
+    {"type": "policy", "label": "policy schedule"},
+    {"type": "claim_form", "label": "completed claim form"},
+    {"type": "invoices", "label": "invoice or receipt for the loss", "alternates": ["proof_of_ownership"]},
+    {"type": "evidence_photo", "label": "photographs of the damage"}
+  ],
+  "validity": [],
+  "consistency": [
+    {"field": "full_name", "primary": "policy", "severity": "error"},
+    {"field": "policy_number", "primary": "policy", "severity": "error"},
+    {"field": "loss_date", "primary": "claim_form", "severity": "error"},
+    {"field": "invoice_total", "primary": "invoices", "severity": "warning"}
+  ]
+}

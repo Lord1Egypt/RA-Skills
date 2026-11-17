@@ -1,50 +1,64 @@
-## Description: <br>
-Statistical profiling and quality assessment of datasets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Statistical profiling and quality assessment of datasets.
 
-## Publisher: <br>
-[cyberforexblockchain](https://clawhub.ai/user/cyberforexblockchain) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cyberforexblockchain](https://clawhub.ai/user/cyberforexblockchain)
 
-## Use Case: <br>
-External developers and data teams use this skill to send dataset input to the NEXUS service for statistical profiling and quality assessment after satisfying the required payment flow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Dataset contents are sent to a third-party NEXUS API for processing. <br>
-Mitigation: Do not use the skill with secrets, proprietary data, personal data, or regulated records unless provider terms, retention practices, and data handling controls have been reviewed. <br>
-Risk: Paid remote calls can create spend or payment exposure. <br>
-Mitigation: Use sandbox credentials for testing, set payment limits, and require explicit approval for paid requests. <br>
-Risk: The scanner did not identify clear auto-invocation or spend guardrails. <br>
-Mitigation: Configure agent policy so profiling requests and payment-bearing calls require deliberate user intent before execution. <br>
+## Use Case:
 
+Developers and agent operators use this skill to send dataset text or dataset descriptions to the NEXUS service for statistical profiling and quality assessment, with payment proof credentials when required.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cyberforexblockchain/nexus-data-profile) <br>
-- [NEXUS platform](https://ai-service-hub-15.emergent.host) <br>
-- [x402 discovery](https://ai-service-hub-15.emergent.host/api/mpp/x402) <br>
-- [MPP discovery](https://ai-service-hub-15.emergent.host/api/mpp/discover) <br>
-- [AP2 configuration](https://ai-service-hub-15.emergent.host/api/ap2/config) <br>
-- [XRPL configuration](https://ai-service-hub-15.emergent.host/api/xrpl/config) <br>
-- [Stablecoin registry](https://ai-service-hub-15.emergent.host/api/mpp/stablecoins) <br>
-- [Stellar payment information](https://ai-service-hub-15.emergent.host/api/mpp/stellar) <br>
-- [A2A agent card](https://ai-service-hub-15.emergent.host/.well-known/agent.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Analysis] <br>
-**Output Format:** [JSON object containing a service response string] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a network request to the NEXUS API and a valid payment proof or supported payment credential.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: frontmatter and release evidence) <br>
+Risk: User-provided text or dataset content is sent to a third-party remote service for processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid submitting secrets, regulated personal data, or proprietary datasets unless the user trusts the provider and has authorization.
+
+Risk: The skill depends on a payment proof flow for paid remote requests.
+
+Mitigation: Confirm payment credentials, selected network, and expected request cost before using the skill with production workflows.
+
+Risk: Returned profiling or quality assessment results may be incomplete or unsuitable for high-stakes decisions without review.
+
+Mitigation: Review service output before relying on it for operational, compliance, financial, or safety-impacting decisions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/cyberforexblockchain/skills/nexus-data-profile)
+- [NEXUS Agent-as-a-Service Platform](https://ai-service-hub-15.emergent.host)
+- [NEXUS Data Profile Endpoint](https://ai-service-hub-15.emergent.host/api/original-services/data-profile)
+- [x402 Discovery](https://ai-service-hub-15.emergent.host/api/mpp/x402)
+- [MPP Discovery](https://ai-service-hub-15.emergent.host/api/mpp/discover)
+- [AP2 Configuration](https://ai-service-hub-15.emergent.host/api/ap2/config)
+- [XRPL Configuration](https://ai-service-hub-15.emergent.host/api/xrpl/config)
+- [Stablecoin Registry](https://ai-service-hub-15.emergent.host/api/mpp/stablecoins)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, guidance]
+
+**Output Format:** [JSON object containing a result string, typically surfaced to the agent as text or Markdown guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Remote HTTPS service response; no local filesystem or shell output.]
+
+## Skill Version(s):
+
+2.1.0 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

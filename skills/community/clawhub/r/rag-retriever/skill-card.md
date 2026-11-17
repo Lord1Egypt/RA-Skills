@@ -1,49 +1,69 @@
-## Description: <br>
-Rag Retriever provides a RAG retrieval system with document chunking, vector and keyword search, source citations, context assembly, and Chinese tokenization support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Rag Retriever provides a JavaScript RAG retrieval system with document chunking, local or API-based embeddings, LanceDB vector storage, BM25/vector hybrid search, Chinese tokenization, and citation-aware context generation.
 
-## Publisher: <br>
-[yuyonghao-123](https://clawhub.ai/user/yuyonghao-123) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yuyonghao-123](https://clawhub.ai/user/yuyonghao-123)
 
-## Use Case: <br>
-Developers and agent builders use this skill to index local documents, retrieve relevant chunks, and produce cited RAG context or prompts for downstream language model workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Indexed documents and embedding caches are stored locally. <br>
-Mitigation: Use the skill only with files approved for local indexing and clear local LanceDB or cache directories when material should no longer be retained. <br>
-Risk: Optional OpenAI embeddings can send document chunks and queries to OpenAI. <br>
-Mitigation: Use local/simple or local Transformers embedding modes for private material, and enable OpenAI embeddings only when external processing is acceptable. <br>
-Risk: Transformers mode may download model files from hf-mirror.com. <br>
-Mitigation: Review or change the model endpoint before use in environments with restricted network or model-source requirements. <br>
-Risk: Retrieval quality depends on the embedding provider, tokenizer, chunking, and available indexed content. <br>
-Mitigation: Evaluate results on representative documents and review cited context before using retrieved content in downstream answers. <br>
+## Use Case:
 
+Developers and agent builders use this skill to index local documents or code, retrieve relevant passages across English and Chinese corpora, and prepare source-linked context for RAG answers.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/yuyonghao-123/rag-retriever) <br>
-- [LanceDB Documentation](https://lancedb.github.io/lancedb/) <br>
-- [Jieba Tokenizer](https://github.com/napi-rs/jieba) <br>
-- [Transformers.js](https://huggingface.co/blog/transformersjs-v4) <br>
-- [Xenova all-MiniLM-L6-v2](https://huggingface.co/Xenova/all-MiniLM-L6-v2) <br>
-- [Cross-Encoder Reranking](https://sbert.net/examples/cross_encoder/applications/README.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JavaScript examples, shell commands, JSON-like configuration, retrieval results, citations, and RAG prompt text.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read local files, persist local indexes and embedding caches, and optionally call OpenAI embeddings or download Transformers model files when those providers are enabled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata and package.json) <br>
+Risk: Indexed corpora can contain secrets, credentials, personal data, or proprietary text that may be stored locally or embedded.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review source documents before ingestion, avoid sensitive corpora unless storage and embedding paths are approved, and remove local indexes and caches when they are no longer needed.
+
+Risk: Optional external embedding/model sources can introduce data-transfer and supply-chain risk.
+
+Mitigation: Use the local/simple embedding path for sensitive data, require explicit approval before enabling OpenAI embeddings, and pin and verify model artifacts before use.
+
+Risk: The hardcoded Hugging Face mirror can fetch model artifacts from an under-disclosed endpoint.
+
+Mitigation: Make the mirror opt-in or replace it with an approved model source, and document the endpoint used for model downloads.
+
+Risk: Retrieved document text can contain prompt-injection content.
+
+Mitigation: Treat retrieved passages as untrusted evidence with citations, not as instructions for the agent to follow.
+
+Risk: Vulnerable transitive dependencies can affect runtime security.
+
+Mitigation: Update vulnerable dependencies and re-run dependency and security checks before deploying in sensitive environments.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/yuyonghao-123/skills/rag-retriever)
+- [LanceDB Documentation](https://lancedb.github.io/lancedb/)
+- [Transformers.js](https://huggingface.co/blog/transformersjs-v4)
+- [Xenova all-MiniLM-L6-v2](https://huggingface.co/Xenova/all-MiniLM-L6-v2)
+- [jieba Tokenizer](https://github.com/napi-rs/jieba)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown and plain text retrieval context with source citations, plus JavaScript API examples and CLI commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May persist indexed content, vector data, vocabulary files, and embedding caches under configured local data paths.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata, target metadata, and package.json; artifact/SKILL.md lists 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

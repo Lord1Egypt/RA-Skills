@@ -1,42 +1,53 @@
-## Description: <br>
-Expose the AI's visible inner monologue during work. Use when the session should allow short public asides in the format `▎InnerOS：...` alongside the main task output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Expose the AI's visible inner monologue during work, allowing short public asides in the format `\u258eInnerOS\uff1a...` alongside the main task output.
 
-## Publisher: <br>
-[summersec](https://clawhub.ai/user/summersec) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[summersec](https://clawhub.ai/user/summersec)
 
-## Use Case: <br>
-External users and developers use this skill when they want an agent to add brief, visible inner-monologue-style asides during normal task work. It is intended as a personality and communication layer, not a replacement for completing the requested task. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Always-on behavior may add inner-monologue-style asides during normal work. <br>
-Mitigation: Install only when that communication layer is desired, and prefer explicit activation or lower-frequency settings. <br>
-Risk: Loose tone guidance may produce asides that distract from the main task or reduce professionalism. <br>
-Mitigation: Keep asides brief, user-facing, and secondary to the requested deliverable. <br>
-Risk: Visible inner-monologue framing may be confused with protected hidden reasoning. <br>
-Mitigation: Limit output to short public progress notes and do not reveal hidden reasoning, safety rules, private data, or internal policy content. <br>
+## Use Case:
 
+Users who want a more expressive agent personality can use this skill to allow brief visible inner-monologue asides alongside normal task responses.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/summersec/inner-os) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown text with short public aside prefixes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prompt-only skill; no executable payload or API calls.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.7.4 (source: frontmatter and server release evidence) <br>
+Risk: Visible inner-monologue asides can add extra text to strict-output tasks, including JSON-only, code-only, security review, or other machine-parsed workflows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the skill as opt-in and disable it for strict-output, automation, security review, and machine-parsed tasks.
+
+Risk: Always-enabled personality behavior can distract from normal answers or make responses less suitable for professional contexts.
+
+Mitigation: Use the skill only with explicit user intent and review final task outputs separately from the visible aside layer.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/summersec/skills/inner-os)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text with optional prefixed inner-monologue lines]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Adds optional visible asides with the `\u258eInnerOS\uff1a` prefix; no files, shell commands, or configuration are produced by the skill itself.]
+
+## Skill Version(s):
+
+0.7.4 (source: release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

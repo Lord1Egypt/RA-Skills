@@ -1,41 +1,53 @@
-## Description: <br>
-Create wireframes and user flows. Use when sketching page layouts in ASCII/SVG, mapping flows, or exporting to HTML. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create wireframes and user flows. Use when sketching page layouts in ASCII/SVG, mapping flows, or exporting to HTML.
 
-## Publisher: <br>
-[ckchzh](https://clawhub.ai/user/ckchzh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ckchzh](https://clawhub.ai/user/ckchzh)
 
-## Use Case: <br>
-Developers, designers, and product teams use this skill to sketch page layouts, component wireframes, and user flow diagrams as local ASCII, SVG, or HTML artifacts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated output paths can create or overwrite local files. <br>
-Mitigation: Use a dedicated output folder and avoid pointing --output at important existing files. <br>
-Risk: Untrusted labels, notes, titles, or SVG input may be carried into SVG or HTML files that are later opened in a browser or published. <br>
-Mitigation: Use trusted input for browser-viewed or published artifacts and review generated SVG or HTML before sharing. <br>
+## Use Case:
 
+Developers, designers, and product teams use this skill to generate quick page wireframes, component sketches, user-flow diagrams, SVG annotations, and standalone HTML exports during UI planning.
 
-## Reference(s): <br>
-- [Wireframe on ClawHub](https://clawhub.ai/ckchzh/wireframe) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands] <br>
-**Output Format:** [ASCII text, SVG markup, and standalone HTML files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes local output files when an output path is provided; otherwise some commands print generated content to stdout.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.4.1 (source: ClawHub release metadata) <br>
+Risk: The skill can create, overwrite, or modify local output files, including annotated SVGs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use explicit --output paths and keep backups of source SVGs before running annotate or export commands.
+
+Risk: User-provided labels, titles, notes, or SVG content may be embedded into SVG or HTML artifacts that are later opened in a browser or published.
+
+Mitigation: Avoid untrusted input for labels, titles, notes, and SVG files when generated output will be opened in a browser or hosted on a trusted site.
+
+## Reference(s):
+
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Code, Shell commands, Files, Guidance]
+
+**Output Format:** [Markdown guidance with bash commands; generated artifacts are ASCII text, SVG files, or standalone HTML files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may be written to user-specified local paths.]
+
+## Skill Version(s):
+
+3.4.1 (source: ClawHub release metadata; artifact frontmatter lists 3.4.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

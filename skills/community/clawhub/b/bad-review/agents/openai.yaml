@@ -1,0 +1,4 @@
+interface:
+  display_name: "亚马逊差评分析 · 负面评论根因拆解"
+  short_description: "差评根因拆解：质量、物流、描述不符按频次排序"
+  default_prompt: "使用 $amazon-bad-review-analysis 分析一个 Amazon ASIN 的差评，找出退货与差评根因。"

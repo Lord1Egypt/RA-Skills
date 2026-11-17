@@ -1,43 +1,59 @@
-## Description: <br>
-Summarizes public Pinduoduo product and event pages for prices, promotions, reviews, and lightweight comparisons without ordering or bypassing platform controls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides summarized price, review, promotion, specification, and comparison information for public Pinduoduo product and event pages without placing orders or bypassing platform controls.
 
-## Publisher: <br>
-[mike47512](https://clawhub.ai/user/mike47512) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mike47512](https://clawhub.ai/user/mike47512)
 
-## Use Case: <br>
-External users and analysts use this skill to summarize public Pinduoduo listings and event pages, compare similar products by price, promotion, brand, and specs, and keep results limited to lightweight public-page analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may provide credentials, private order details, or other non-public account information. <br>
-Mitigation: Use the skill only with public Pinduoduo pages and do not provide credentials, private order data, or account-specific information. <br>
-Risk: Requests to automate purchases, bypass platform controls, reverse interfaces, or collect data at high volume can violate platform rules. <br>
-Mitigation: Keep use lightweight, avoid batch collection, and decline ordering, protection-bypass, reverse-engineering, or app-automation requests. <br>
-Risk: Prices, promotions, and review counts can change after a page is summarized. <br>
-Mitigation: Include the collection time in summaries and verify current product details before relying on them. <br>
+## Use Case:
 
+External users and agents use this skill to summarize public Pinduoduo product and event pages, compare similar products, and extract visible pricing, promotion, review, brand, and specification details for light analysis.
 
-## Reference(s): <br>
-- [Pinduoduo homepage](https://www.pinduoduo.com/) <br>
-- [ClawHub skill page](https://clawhub.ai/mike47512/pinduoduo) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown summaries and comparison notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable output; summaries should note collection time for time-sensitive price or promotion information.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: Prices, promotions, availability, and review counts can change after the skill summarizes a page.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify time-sensitive commercial details at the source before acting on them and include collection time when summarizing.
+
+Risk: Bulk collection or automated requests may violate platform rules or trigger platform controls.
+
+Mitigation: Use user-selected pages or keywords, avoid batch scraping, and follow Pinduoduo platform rules.
+
+Risk: The web experience may expose less product data than the app experience.
+
+Mitigation: Treat missing web data as incomplete and ask the user for opened page content when needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mike47512/skills/pinduoduo)
+- [Pinduoduo homepage](https://www.pinduoduo.com/)
+- [ClawHub publisher profile](https://clawhub.ai/user/mike47512)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or concise text summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include product links, image URLs, price ranges, review counts, promotion notes, specifications, comparison bullets, and collection time when available.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

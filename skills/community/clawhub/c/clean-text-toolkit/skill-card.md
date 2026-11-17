@@ -1,42 +1,56 @@
-## Description: <br>
-Local text cleanup and inspection toolkit for extracting structured text items, redacting common PII and secret patterns, normalizing text, processing lines, counting words, generating diffs, rendering simple templates, creating slugs, converting Markdown, and stripping or extracting HTML using only the Python standard library. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Local text cleanup and inspection toolkit that helps agents extract structured items, redact PII-like patterns, normalize text, inspect lines and word counts, compare text, render simple templates, generate slugs, and process Markdown or HTML using Python 3 standard library scripts with no remote calls.
 
-## Publisher: <br>
-[gopendrasharma89-tech](https://clawhub.ai/user/gopendrasharma89-tech) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[gopendrasharma89-tech](https://clawhub.ai/user/gopendrasharma89-tech)
 
-## Use Case: <br>
-Developers and agents use this skill to run local command-line text cleanup, inspection, redaction, normalization, diffing, Markdown, HTML, slug, and template utilities without remote calls or third-party Python dependencies. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The utilities read from and may write to local paths selected by the user, which can expose, transform, or overwrite sensitive files if used on the wrong target. <br>
-Mitigation: Run commands only against intended input and output paths, preferably on copies of sensitive files when testing transformations. <br>
-Risk: PII and token redaction patterns are heuristic and may miss unusual formats or over-match high-recall token-like strings. <br>
-Mitigation: Review redaction counts and a sample of redacted output before sharing results outside the intended environment. <br>
+## Use Case:
 
+Developers and agents use this skill to clean, inspect, transform, redact, and compare local text files before passing the results into downstream workflows.
 
-## Reference(s): <br>
-- [Clean Text Toolkit on ClawHub](https://clawhub.ai/gopendrasharma89-tech/clean-text-toolkit) <br>
-- [Clean CSV Toolkit companion skill](https://clawhub.ai/gopendrasharma89-tech/clean-csv-toolkit) <br>
-- [OpenClaw Prompt Shield companion skill](https://clawhub.ai/gopendrasharma89-tech/openclaw-prompt-shield) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands; utilities emit plain text, JSON, JSONL, TSV, HTML, diffs, or UTF-8 output files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs locally with python3; no third-party dependencies or remote calls are reported.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.4.0 (source: server release metadata and SKILL.md) <br>
+Risk: HTML sanitization and Markdown-to-HTML output may not make untrusted content safe for browser or web application use.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the toolkit for local text processing, and pass untrusted HTML through a maintained allowlist sanitizer before rendering it in a browser or web app.
+
+Risk: The scripts can write or overwrite caller-specified output paths.
+
+Mitigation: Review output paths before execution and run commands in a working directory where overwrites are acceptable.
+
+## Reference(s):
+
+- [Clean Text Toolkit ClawHub skill page](https://clawhub.ai/gopendrasharma89-tech/skills/clean-text-toolkit)
+- [Clean Text Toolkit OpenClaw homepage](https://clawhub.ai/gopendrasharma89-tech/clean-text-toolkit)
+- [Clean CSV Toolkit companion skill](https://clawhub.ai/gopendrasharma89-tech/clean-csv-toolkit)
+- [OpenClaw Prompt Shield companion skill](https://clawhub.ai/gopendrasharma89-tech/openclaw-prompt-shield)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline shell commands and local script guidance; scripts can produce plain text, JSON, JSONL, TSV, HTML, and diff output.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are local file or stdout results from Python 3 standard library utilities; some operations write or overwrite caller-specified paths.]
+
+## Skill Version(s):
+
+0.4.0 (source: server release metadata and SKILL.md body)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

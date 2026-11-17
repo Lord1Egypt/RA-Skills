@@ -1,43 +1,54 @@
-## Description: <br>
-Validate npm package references in markdown, YAML, and config files against the live npm registry to catch hallucinated, slopsquatted, or security-held packages before installation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Validate npm package references in markdown, YAML, and config files against the live npm registry before installing or using them.
 
-## Publisher: <br>
-[mattschaller](https://clawhub.ai/user/mattschaller) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[mattschaller](https://clawhub.ai/user/mattschaller)
 
-## Use Case: <br>
-Developers and maintainers use slopcheck before installing, committing, or reviewing AI-generated documentation and configuration files that mention npm packages. It helps identify nonexistent package names and npm security holds before those references are trusted. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Running the recommended npx command executes external npm package code. <br>
-Mitigation: Use a trusted or pinned slopcheck version when provenance matters, and review the command before execution. <br>
-Risk: Registry checks can disclose private or internal package names to the npm registry. <br>
-Mitigation: Avoid scanning files with private package names unless the scope is limited or the documented ignore option is used. <br>
-Risk: A package existing on npm does not prove that it is safe, compatible, or appropriate to install. <br>
-Mitigation: Treat slopcheck as an existence check and use package security tools for dependency risk, version, and malware review. <br>
+## Use Case:
 
+Developers and engineers use this skill to scan AI-generated documentation, configuration, and repository files for npm package references before installing or committing them. It helps identify package names that are missing from npm or held by the registry for security reasons.
 
-## Reference(s): <br>
-- [slopcheck documentation](https://github.com/mattschaller/slopcheck) <br>
-- [ClawHub release page](https://clawhub.ai/mattschaller/slopcheck) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, JSON] <br>
-**Output Format:** [Markdown guidance with shell command examples and optional JSON CLI output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The CLI reports verified packages, missing packages, security holds, source locations, and exit codes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: evidence.release.version and SKILL.md metadata) <br>
+Risk: The primary examples run an unpinned npm CLI through npx, which can execute package code that was not part of the reviewed artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer a pinned and reviewed package version such as slopcheck@0.1.2 and run it in a constrained environment without unrelated secrets.
+
+Risk: The skill validates package existence and registry security holds, but it does not determine whether an existing npm package is safe, compatible, or correctly versioned.
+
+Mitigation: Use dependency security and compatibility tools for package.json, lock files, malicious-package review, and version validation before installation or deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/mattschaller/skills/slopcheck)
+- [slopcheck documentation](https://github.com/mattschaller/slopcheck)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, JSON, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and optional JSON scan output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports package existence results, security holds, source file locations, and exit-code interpretation.]
+
+## Skill Version(s):
+
+0.1.2 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

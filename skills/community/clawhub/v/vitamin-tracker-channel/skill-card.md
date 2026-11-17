@@ -1,42 +1,57 @@
-## Description: <br>
-Manages vitamin and supplement reminders across configurable daily time slots by syncing OpenClaw cron jobs from a workspace VITAMINS.md schedule. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage vitamin and supplement reminders across configurable daily time slots with OpenClaw cron jobs.
 
-## Publisher: <br>
-[cdmichaelb](https://clawhub.ai/user/cdmichaelb) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cdmichaelb](https://clawhub.ai/user/cdmichaelb)
 
-## Use Case: <br>
-External users use this skill to maintain a personal supplement schedule and create or refresh reminder cron jobs that post to a configured OpenClaw channel. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The update script removes matching vitamin reminder cron jobs before recreating them. <br>
-Mitigation: Review existing OpenClaw cron jobs with vitamin reminder names and run the script only when replacement is intended. <br>
-Risk: Reminder delivery depends on the configured channel ID and timezone. <br>
-Mitigation: Confirm VITAMIN_CHANNEL_ID and VITAMIN_TIMEZONE before creating or refreshing the schedule. <br>
+## Use Case:
 
+External users and developers use this skill to maintain a local supplement schedule and sync it into channel reminder cron jobs. It is suited for adding, removing, or rescheduling vitamin reminders in a configured OpenClaw workspace.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cdmichaelb/vitamin-tracker-channel) <br>
-- [README](artifact/README.md) <br>
-- [Update script](artifact/scripts/update_vitamin_crons.py) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and configuration values] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates OpenClaw cron job definitions from a user-maintained VITAMINS.md schedule; does not write data files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release evidence) <br>
+Risk: Running the update script changes persistent OpenClaw cron state by removing existing vitamin reminder jobs and recreating them.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the configured schedule before syncing and back up or inspect existing vitamin reminder jobs when preservation matters.
+
+Risk: Reminder content is read from the local VITAMINS.md schedule file and may be posted to the configured channel.
+
+Mitigation: Keep VITAMINS.md writable only by trusted users and verify VITAMIN_CHANNEL_ID before creating cron jobs.
+
+Risk: Cron delivery posts reminders to the configured channel and requires network access when the cron job fires.
+
+Mitigation: Install only when channel-based supplement reminders are intended and monitor the configured OpenClaw cron entries after changes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cdmichaelb/skills/vitamin-tracker-channel)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces cron-management guidance and reminder text based on a user-maintained VITAMINS.md schedule.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

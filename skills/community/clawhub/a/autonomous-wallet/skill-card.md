@@ -1,46 +1,62 @@
-## Description: <br>
-Autonomous Wallet helps AI agents operate a local crypto wallet through natural-language intents, transaction execution, self-healing retries, and guardian-based recovery workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents operate an autonomous crypto wallet through natural-language blockchain intents, wallet configuration, self-healing transaction handling, and guardian-based recovery workflows.
 
-## Publisher: <br>
-[ZhenStaff](https://clawhub.ai/user/ZhenStaff) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhenstaff](https://clawhub.ai/user/zhenstaff)
 
-## Use Case: <br>
-External developers and agent builders use this skill to configure wallet credentials, check balances, execute transfers or DeFi intents, simulate transactions, and manage social recovery for EVM-chain wallets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: An agent may initiate irreversible transfers, swaps, approvals, staking, or recovery actions with real funds. <br>
-Mitigation: Use a dedicated low-balance wallet, test on testnets first, require simulation and explicit human confirmation before mainnet actions, and configure daily limits. <br>
-Risk: Private keys or seed phrases may be exposed if entered into chat, shell history, or persistent environment files. <br>
-Mitigation: Prefer hardware wallets or secure signers, avoid pasting seed phrases or private keys into prompts or shell commands, and keep credentials out of persistent files where possible. <br>
-Risk: Automated retry and gas adjustment behavior can increase cost or repeat unintended transactions. <br>
-Mitigation: Set maximum gas and spending limits, inspect dry-run output, and keep transaction simulation enabled before execution. <br>
+## Use Case:
 
+Developers and AI-agent operators use this skill to set up and guide wallet actions such as balance checks, transfers, swaps, staking, DeFi automation, recovery setup, and safety configuration across EVM networks. It is most relevant when an agent needs command, code, or configuration guidance for local wallet operations that may control real funds.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/ZhenStaff/autonomous-wallet) <br>
-- [Publisher profile](https://clawhub.ai/user/ZhenStaff) <br>
-- [Source repository](https://github.com/ZhenRobotics/openclaw-autonomous-wallet) <br>
-- [npm package](https://www.npmjs.com/package/openclaw-autonomous-wallet) <br>
-- [Documentation](https://docs.openclaw.ai/wallet) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, code, JSON] <br>
-**Output Format:** [Markdown guidance with shell commands, configuration examples, TypeScript snippets, and JSON transaction results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce commands that initialize wallets, import credentials, execute blockchain intents, simulate transactions, and configure spending or recovery controls.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can guide actions that expose wallet secrets to a globally installed npm package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the npm package source and release provenance, pin the package version, and avoid pasting real mnemonics or private keys into commands or exported environment variables.
+
+Risk: Generated commands can move real funds through transfers, approvals, staking, swaps, or recovery operations.
+
+Mitigation: Use a disposable testnet wallet first and require simulation plus explicit human approval before any mainnet transaction or recovery action.
+
+Risk: Local wallet automation may grant broad signing authority to an agent or CLI session.
+
+Mitigation: Prefer hardware-wallet or isolated signing flows, enforce spending limits, and keep recovery guardians and timelocks reviewed before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhenstaff/skills/autonomous-wallet)
+- [Publisher profile](https://clawhub.ai/user/zhenstaff)
+- [GitHub repository listed in artifact](https://github.com/ZhenRobotics/openclaw-autonomous-wallet)
+- [npm package listed in artifact](https://www.npmjs.com/package/openclaw-autonomous-wallet)
+- [Documentation listed in artifact](https://docs.openclaw.ai/wallet)
+- [Issue tracker listed in artifact](https://github.com/ZhenRobotics/openclaw-autonomous-wallet/issues)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, TypeScript snippets, JSON configuration examples, and structured JSON output examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include wallet secrets, RPC endpoints, transaction intents, recovery settings, and safety configuration that require human review before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,22 @@
+{
+  "skill": "ocas-look",
+  "version": "1.0.0",
+  "description": "Evaluation test cases for ocas-look",
+  "evals": [
+    {
+      "input": "Look at this flyer image and tell me about the event",
+      "expected_output": "Extracts event details (date, time, location, description) from flyer",
+      "description": "Event extraction from flyer"
+    },
+    {
+      "input": "What are the macros in this meal photo?",
+      "expected_output": "Estimates macronutrient content from food photo",
+      "description": "Macro estimation"
+    },
+    {
+      "input": "Where is this place? Should I save it?",
+      "expected_output": "Identifies location and provides recommendation",
+      "description": "Place identification"
+    }
+  ]
+}

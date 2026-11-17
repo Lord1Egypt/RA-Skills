@@ -1,48 +1,58 @@
-## Description: <br>
-ClawGator Superpowers provides a complete software development workflow for brainstorming, planning, systematic execution, test-driven development, debugging, code review, and git worktrees. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Framework pengembangan perangkat lunak lengkap untuk tim ClawGator. Brainstorming, planning, eksekusi sistematis, TDD, debugging, code review, dan git worktrees. Trigger otomatis sebelum memulai proyek atau perubahan kode.
 
-## Publisher: <br>
-[renggap](https://clawhub.ai/user/renggap) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[renggap](https://clawhub.ai/user/renggap)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to guide software changes through brainstorming, planning, isolated git worktrees, TDD, debugging, code review, and final verification. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill has broad automatic influence over development sessions and can steer major code changes before implementation. <br>
-Mitigation: Review the activation rules and keep human approval checkpoints before enabling it in important repositories. <br>
-Risk: The skill can propose repo-changing commands, worktree setup, dependency installation, build or test commands, and branch finishing actions. <br>
-Mitigation: Inspect commands before execution, run them in isolated worktrees when possible, and require verification output before merge or release actions. <br>
-Risk: The startup hook and project-controlled workflow files can affect agent behavior with limited confirmation. <br>
-Mitigation: Review hooks, plugin configuration, and skill files before installation or updates. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to guide software development work through brainstorming, planning, test-driven development, systematic debugging, code review, verification, and git worktree workflows.
 
-## Reference(s): <br>
-- [ClawGator Superpowers on ClawHub](https://clawhub.ai/renggap/clawgator-superpowers) <br>
-- [README.md](README.md) <br>
-- [OpenClaw Plugin Manifest](openclaw.plugin.json) <br>
-- [Testing Superpowers Skills](docs/testing.md) <br>
-- [Superpowers for Codex](docs/README.codex.md) <br>
-- [Superpowers for OpenCode](docs/README.opencode.md) <br>
-- [obra/superpowers](https://github.com/obra/superpowers) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with inline code, shell commands, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce plans, design notes, review feedback, debugging hypotheses, verification steps, and repository-changing command suggestions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: package.json, openclaw.plugin.json, README.md, release metadata) <br>
+Risk: The skill installs broad session-start instructions that can steer agent behavior before the user explicitly requests the workflow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or disable startup hook and context-injection behavior before deployment, and install only where this development workflow is intended to actively steer sessions.
+
+Risk: Documented setup and cleanup commands may modify or delete local skill or plugin paths.
+
+Mitigation: Review dependency, build, installation, and cleanup commands before approving them, especially commands that target local extension directories.
+
+## Reference(s):
+
+- [ClawGator Superpowers ClawHub Page](https://clawhub.ai/renggap/skills/clawgator-superpowers)
+- [README](README.md)
+- [Testing Superpowers Skills](docs/testing.md)
+- [Superpowers for Codex](docs/README.codex.md)
+- [Superpowers for OpenCode](docs/README.opencode.md)
+- [OpenClaw Documentation](https://docs.openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with inline code blocks, shell commands, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can write development plans and design documents when the workflow calls for persistent artifacts.]
+
+## Skill Version(s):
+
+1.0.0 (source: package.json and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

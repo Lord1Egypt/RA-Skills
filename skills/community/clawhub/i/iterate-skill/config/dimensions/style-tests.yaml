@@ -1,0 +1,8 @@
+# Style & Tests review dimension
+name: "风格与测试"
+name_en: "Style & Tests"
+priority: medium
+focus: |
+  Functions >80 lines, cyclomatic complexity >15, nesting >3 levels.
+  Magic numbers/strings, dead code, missing tests, undocumented public APIs.
+  Linter violations, inconsistent naming, duplicated logic.

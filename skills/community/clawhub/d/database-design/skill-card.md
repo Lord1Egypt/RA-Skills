@@ -1,41 +1,54 @@
-## Description: <br>
-Database Design helps with database schema design, normalization, indexing strategy, migration scripts, test data, and ER diagram descriptions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Database Design helps developers draft database table designs, normalization guidance, indexing strategies, migration scripts, seed data, and ER diagram descriptions.
 
-## Publisher: <br>
-[bytesagain3](https://clawhub.ai/user/bytesagain3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain3](https://clawhub.ai/user/bytesagain3)
 
-## Use Case: <br>
-Developers and engineers use this skill to draft database designs, generate SQL schema and migration examples, plan indexes, create seed data, and describe ER diagrams for database work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated migration SQL or database-design guidance may be incorrect or unsafe for a production database. <br>
-Mitigation: Review generated SQL and migration plans before applying them to a real database. <br>
-Risk: A bundled helper stores command history locally, which may expose sensitive command arguments or file paths. <br>
-Mitigation: Avoid passing secrets or sensitive file paths as command-line arguments. <br>
-Risk: Multiple bundled shell helpers can make it unclear which script provides the database-design command. <br>
-Mitigation: Verify which installed script is being invoked before relying on its output. <br>
+## Use Case:
 
+Developers and engineers use this skill for quick database design tasks, including schema drafting, normalization, index planning, migration generation, seed data generation, and ER diagram descriptions for terminal or automation workflows.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with SQL and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include SQL DDL, CREATE INDEX statements, ALTER TABLE migrations, seed INSERT statements, and text ER diagrams.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: release evidence and frontmatter) <br>
+Risk: Generated SQL or database design guidance may be incorrect or unsafe if applied directly to a live database.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated schemas, indexes, migrations, and seed statements in a controlled environment before applying them to production systems.
+
+Risk: One artifact script records command arguments locally in plain text.
+
+Mitigation: Avoid passing secrets, private dataset identifiers, or sensitive file paths to the database-design command, especially in automation.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/bytesagain3/skills/database-design)
+- [BytesAgain Homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance]
+
+**Output Format:** [Markdown or terminal text with SQL and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces database design guidance, SQL statements, migration drafts, seed data, and text ER diagram descriptions for user review.]
+
+## Skill Version(s):
+
+2.0.0 (source: release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

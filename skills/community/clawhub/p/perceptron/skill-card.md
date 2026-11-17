@@ -1,46 +1,62 @@
-## Description: <br>
-Image and video analysis powered by Isaac vision models, including visual Q&A, object detection, OCR, captioning, counting, and grounded spatial reasoning with boxes, points, and polygons. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Perceptron helps agents analyze images and video frames with visual Q&A, object detection, OCR, captioning, counting, and grounded spatial outputs such as boxes, points, and polygons.
 
-## Publisher: <br>
-[Subraiz](https://clawhub.ai/user/Subraiz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[subraiz](https://clawhub.ai/user/subraiz)
 
-## Use Case: <br>
-Developers and agents use this skill to analyze images or extracted video frames with Perceptron vision models for visual question answering, object detection, OCR, captioning, counting, structured outputs, and spatial annotations. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Selected images, videos, URLs, and model outputs may be sent to the external Perceptron API for analysis. <br>
-Mitigation: Use this skill only with content approved for external processing, and avoid private IDs, receipts, proprietary footage, medical or legal material, and confidential screens unless authorized. <br>
-Risk: The skill requires a Perceptron API key. <br>
-Mitigation: Store the API key in an environment variable or secret manager, and do not hardcode, commit, or log it. <br>
-Risk: Detailed reasoning traces and model outputs may expose sensitive visual context. <br>
-Mitigation: Avoid exposing raw reasoning traces or detailed model outputs in normal logs or user-facing interfaces. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Perceptron Skill Page](https://clawhub.ai/Subraiz/perceptron) <br>
-- [Perceptron Documentation](https://docs.perceptron.inc/) <br>
-- [Perceptron API Reference](https://docs.perceptron.inc/api-reference/endpoint/chat-completions) <br>
-- [Capabilities Reference](references/capabilities.md) <br>
-- [Prompting Reference](references/prompting.md) <br>
-- [API Reference](references/api.md) <br>
+## Use Case:
 
+Developers and agents use Perceptron to inspect user-provided images, image URLs, and extracted video frames for descriptions, OCR, detection, spatial localization, and structured visual analysis.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python and shell command examples; CLI output can be plain text, Markdown, or JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include normalized spatial annotations such as boxes, points, polygons, and optional pixel-coordinate conversions.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Images, videos, prompts, OCR outputs, and URLs are sent to Perceptron's external service.
+
+Mitigation: Use only data approved for that service; avoid regulated, confidential, or internal-only content without approval.
+
+Risk: PERCEPTRON_API_KEY exposure could grant access to the external service.
+
+Mitigation: Keep the API key scoped and private, use environment variables, and do not commit secrets.
+
+Risk: The external SDK package or service behavior may change after installation.
+
+Mitigation: Use a virtual environment and pin and review the perceptron package version before deployment.
+
+## Reference(s):
+
+- [Perceptron Docs](https://docs.perceptron.inc/)
+- [Perceptron API Reference](https://docs.perceptron.inc/api-reference/endpoint/chat-completions)
+- [Perceptron Capabilities Reference](https://docs.perceptron.inc/capabilities/)
+- [Perceptron Prompting Reference](https://docs.perceptron.inc/best-practices/prompting-reference)
+- [Capabilities Reference](references/capabilities.md)
+- [Prompting Reference](references/prompting.md)
+- [API Reference](references/api.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Code, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown prose with Python and shell examples; CLI output may be plain text or JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires PERCEPTRON_API_KEY and sends selected media, prompts, OCR outputs, and URLs to the external Perceptron service.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

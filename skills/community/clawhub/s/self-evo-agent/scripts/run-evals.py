@@ -297,7 +297,7 @@ def main() -> int:
         skill_dir / "benchmarks/suite.json",
         [
             "pre-task-risk-diagnosis",
-            "post-task-diagnosis-and-training",
+            "post-taREDACTED-SECRET",
             "evaluation-and-promotion",
             "agenda-review",
         ],

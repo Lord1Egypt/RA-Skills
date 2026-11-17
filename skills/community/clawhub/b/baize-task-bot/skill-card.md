@@ -1,43 +1,58 @@
-## Description: <br>
-Baize Task Bot helps operators query outbound-call tasks, lines, scripts, and templates from local JSON data and perform approved write actions against the Baize outbound-call platform API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Baize Task Bot helps outbound-call operations teams query task, line, script, and template data and perform Baize platform actions for AI outbound campaigns.
 
-## Publisher: <br>
-[Richard-collab](https://clawhub.ai/user/Richard-collab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[richard-collab](https://clawhub.ai/user/richard-collab)
 
-## Use Case: <br>
-Operations teams using the Baize outbound-call platform use this skill to inspect task, line, script, and template state, parse natural-language operation requests into structured instructions, and execute confirmed task or account changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can give an agent live authority to start outbound calls, change task execution, and create accounts. <br>
-Mitigation: Require explicit human confirmation before every start, resume, concurrency, line, region, ratio, or account action. <br>
-Risk: A broad BAIZE_TOKEN could allow unintended operational changes. <br>
-Mitigation: Use a least-privilege BAIZE_TOKEN scoped to the specific Baize operations and accounts needed. <br>
-Risk: Incorrect task or line identifiers could cause changes to the wrong outbound-call operation. <br>
-Mitigation: Verify task and line IDs through query tools before approving writes. <br>
-Risk: Sending operations to an unsafe endpoint could expose credentials or affect an unintended Baize environment. <br>
-Mitigation: Keep BAIZE_BASE_URL local or HTTPS-only and confirm the target environment before use. <br>
+## Use Case:
 
+Operations staff and administrators use this skill to inspect AI outbound-call tasks, lines, scripts, templates, and concurrency, parse natural-language operation requests into structured instructions, and carry out approved campaign or account changes in Baize.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON] <br>
-**Output Format:** [Plain text status messages and JSON instruction arrays] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May perform authenticated Baize API writes when action tools are invoked.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Write actions can start, stop, resume, or modify outbound-call campaigns and create accounts using a shared Baize API token.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in a controlled Baize operations environment with an HTTPS-only BAIZE_BASE_URL, a least-privileged BAIZE_TOKEN, and external approval controls for every write action.
+
+Risk: Campaign starts, concurrency changes, line changes, regional blocking changes, and account creation are high-impact operations with weak in-skill safeguards.
+
+Mitigation: Require confirmation enforcement in the agent workflow or Baize server before executing these operations, and avoid broad admin tokens until role checks are in place.
+
+Risk: Local task and line data used for lookup or natural-language instruction parsing may be stale relative to the live Baize platform.
+
+Mitigation: Refresh the bundled JSON data and verify resolved task IDs, line IDs, and account scope before executing any write operation.
+
+## Reference(s):
+
+- [Skill documentation](artifact/SKILL.md)
+- [ClawHub skill page](https://clawhub.ai/richard-collab/skills/baize-task-bot)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Guidance]
+
+**Output Format:** [Plain text summaries and JSON instruction arrays]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Single response per tool call; action tools return Baize success or error messages.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,59 @@
-## Description: <br>
-Pulls recent 1-7 day IM chat history for a bound Egatee account and returns grouped conversation summaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches the last 1 to 7 days of Egatee IM chat history with an API key and returns grouped chat summaries.
 
-## Publisher: <br>
-[ahoyoshi](https://clawhub.ai/user/ahoyoshi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ahoyoshi](https://clawhub.ai/user/ahoyoshi)
 
-## Use Case: <br>
-Developers and operators use this skill to retrieve recent authorized IM chat history from Egatee and inspect grouped peer summaries for review, reporting, or follow-up. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill retrieves private IM chat history for the account bound to the Egatee API key. <br>
-Mitigation: Install and run it only when authorized to access that account's conversations, and treat generated summaries as private chat data. <br>
-Risk: Credential handling is review-worthy because the skill depends on EGATEE_CHAT_API_KEY and can optionally use custom endpoints or an auth token. <br>
-Mitigation: Use a least-privileged Egatee API key, avoid UAT or custom base URLs unless the endpoint is trusted, and do not set EGATEE_AUTH_TOKEN unless required. <br>
+## Use Case:
 
+Developers and operators with authorized Egatee access use this skill to retrieve recent bound IM-account chat records and produce a compact per-peer summary for review.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ahoyoshi/egatee-chat-summary) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, JSON, Markdown, Analysis] <br>
-**Output Format:** [JSON object containing meta and peer_summaries; artifact also contains a helper for readable Markdown summaries.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires EGATEE_CHAT_API_KEY and supports day range, page size, maximum pages, timeout, and optional Egatee endpoint settings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill handles private chat history and account credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only where the Egatee API key is controlled, chat processing is authorized, and outputs are treated as private data.
+
+Risk: Local environment loading and endpoint overrides can redirect requests or expose credentials if configuration is not controlled.
+
+Mitigation: Use trusted, locked-down environment configuration; avoid run.sh unless .env is trusted, and set EGATEE_NOTIFY_BASE_URL only to approved HTTPS Egatee hosts.
+
+Risk: Optional EGATEE_AUTH_TOKEN and debug behavior may increase credential or data exposure risk.
+
+Mitigation: Avoid EGATEE_AUTH_TOKEN unless required and keep debug or request-tracing settings limited to authorized troubleshooting.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ahoyoshi/skills/egatee-chat-summary)
+- [Egatee production API host](https://api.egatee.com)
+- [Egatee UAT API host](http://api.uat.egatee.net)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [JSON containing meta and peer_summaries, with optional human-readable Markdown report behavior in the artifact code]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires EGATEE_CHAT_API_KEY and supports day, page size, max pages, timeout, and optional Egatee endpoint configuration.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

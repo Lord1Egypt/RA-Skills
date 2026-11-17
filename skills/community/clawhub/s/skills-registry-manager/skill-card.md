@@ -1,46 +1,57 @@
-## Description: <br>
-Skill Registry Manager helps Claude Code users list, subscribe to, and install skills from local and remote registries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manages and installs Claude Code skills from local and subscribed registries.
 
-## Publisher: <br>
-[gavinyao](https://clawhub.ai/user/gavinyao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gavinyao](https://clawhub.ai/user/gavinyao)
 
-## Use Case: <br>
-Developers and Claude Code users use this skill to manage a reusable skill registry, review available skills, subscribe to shared registries, and install selected skills into global or project-level skill directories. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can fetch remote registries and guide installation of skills from npx, git, or local sources. <br>
-Mitigation: Use only trusted registries and repositories, inspect the resolved skill source, and confirm each remote fetch and install command before execution. <br>
-Risk: Subscription paths and install commands may include user-controlled strings or shell-sensitive characters. <br>
-Mitigation: Avoid subscription paths containing shell metacharacters and review expanded paths and commands before running them. <br>
-Risk: Installed skills may broaden an agent's behavior after installation. <br>
-Mitigation: Keep installed skills inspectable, pinned when possible, and removable; review security scan results before deployment. <br>
+## Use Case:
 
+Developers use this skill to list, subscribe to, and install Claude Code skills from registry YAML files. It supports local, git, and npx installation sources with dependency handling.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/gavinyao/skills-registry-manager) <br>
-- [Publisher Profile](https://clawhub.ai/user/gavinyao) <br>
-- [Claude Code Documentation](https://docs.anthropic.com/en/docs/claude-code) <br>
-- [Default Registry Subscription](https://raw.githubusercontent.com/gavinyao/awesome-skills/main/registry.yaml) <br>
-- [registry.example.yaml](registry.example.yaml) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown tables and prose with inline shell commands and YAML configuration references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose remote fetches, local file reads, and skill installation commands that should be reviewed before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server-resolved release metadata) <br>
+Risk: Registry files can direct the agent to fetch mutable remote registries or install skills through npx, git, or local copy.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review every registry URL and skill source before use, and prefer pinned, trusted versions or commits.
+
+Risk: Installing entries from untrusted registries can change local or global agent behavior.
+
+Mitigation: Prefer project-local installs for evaluation and avoid entries whose final source cannot be validated.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gavinyao/skills/skills-registry-manager)
+- [Claude Code documentation](https://docs.anthropic.com/en/docs/claude-code)
+- [Default awesome-skills registry](https://raw.githubusercontent.com/gavinyao/awesome-skills/main/registry.yaml)
+- [registry.yaml](artifact/registry.yaml)
+- [registry.example.yaml](artifact/registry.example.yaml)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown tables, prompts, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose local or global skill installation actions based on registry entries.]
+
+## Skill Version(s):
+
+1.1.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

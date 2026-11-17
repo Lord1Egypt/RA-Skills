@@ -1,45 +1,60 @@
-## Description: <br>
-24/7 security monitoring for your OpenClaw agent that detects prompt injection attacks, malicious skills, and data exfiltration attempts, then delivers plain-English alerts when suspicious activity is found. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+RevSec Shield monitors an OpenClaw agent for prompt injection, malicious skills, configuration changes, and data exfiltration indicators, then sends plain-English alerts through WhatsApp.
 
-## Publisher: <br>
-[revupai](https://clawhub.ai/user/revupai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[revupai](https://clawhub.ai/user/revupai)
 
-## Use Case: <br>
-External users and developers use RevSec Shield to register an OpenClaw agent with RevSec, keep background monitoring active, poll for security alerts, and check recent threat status. It is intended for ongoing monitoring and alert delivery after first-time setup. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Creates persistent background automation that runs every 5 minutes. <br>
-Mitigation: Install only when continuous monitoring is intended, and remove the revsec:alert-poll cron job if you stop using the skill. <br>
-Risk: Sends local agent metadata, including hostname, model, and skill inventory, to a third-party RevSec service. <br>
-Mitigation: Confirm you are comfortable with this metadata sharing before setup and review the RevSec account destination. <br>
-Risk: Uses REVSEC_API_KEY for authenticated API access. <br>
-Mitigation: Store the key only in the OpenClaw runtime environment and avoid setup steps that print or log the key. <br>
+## Use Case:
 
+External developers and OpenClaw users use this skill to install continuous security monitoring, register agent metadata with RevSec, poll for alerts, and request manual protection summaries.
 
-## Reference(s): <br>
-- [RevSec Shield on ClawHub](https://clawhub.ai/revupai/revsec-shield) <br>
-- [RevSec homepage](https://revsec.revt2d.com) <br>
-- [RevSec personal dashboard](https://revsec.revt2d.com/personal) <br>
-- [RevSec signup](https://revsec.revt2d.com/signup) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown and plain-text status or alert messages, with shell commands and configuration snippets during setup or troubleshooting] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires REVSEC_API_KEY and may create a recurring OpenClaw cron job named revsec:alert-poll.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: The skill silently creates and repairs a persistent five-minute OpenClaw background task.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the scheduled cron job before installation and confirm how to disable the job and remove local state if monitoring is turned off.
+
+Risk: The skill makes recurring outbound calls to RevSec and shares identifying agent metadata such as hostname, model, and installed-skill names.
+
+Mitigation: Use the skill only when that metadata sharing is acceptable for the agent environment and account policy.
+
+Risk: The setup flow may expose the REVSEC_API_KEY if it prints the environment variable while checking configuration.
+
+Mitigation: Check or edit the setup flow so the API key presence is verified without echoing the secret value.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/revupai/skills/revsec-shield)
+- [RevSec homepage](https://revsec.revt2d.com)
+- [RevSec dashboard](https://revsec.revt2d.com/personal)
+- [RevSec signup](https://revsec.revt2d.com/signup)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and plain text with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local state and a recurring OpenClaw cron job during setup.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

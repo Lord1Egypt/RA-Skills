@@ -1,44 +1,55 @@
-## Description: <br>
-Generates a comprehensive crypto market report using CoinMarketCap MCP data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates a comprehensive crypto market report using CoinMarketCap MCP data.
 
-## Publisher: <br>
-[bryan-cmc](https://clawhub.ai/user/bryan-cmc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[bryan-cmc](https://clawhub.ai/user/bryan-cmc)
 
-## Use Case: <br>
-External users, analysts, and developers use this skill to ask an agent for crypto market snapshots, sentiment, BTC and ETH anchors, leverage context, trending narratives, and upcoming catalysts from CoinMarketCap MCP data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires configuring CoinMarketCap MCP with a CMC API key. <br>
-Mitigation: Install only when comfortable storing the API key in MCP settings and limit key access according to local credential-handling practices. <br>
-Risk: Crypto market reports can be mistaken for financial advice. <br>
-Mitigation: Treat generated reports as market information and review them before making financial decisions. <br>
-Risk: Broad crypto-market questions may invoke the skill. <br>
-Mitigation: Review the skill trigger behavior before deployment and use explicit user intent where needed. <br>
+## Use Case:
 
+External users and developers use this skill to generate concise or full crypto market reports covering market health, BTC and ETH anchors, technicals, leverage, trending narratives, and upcoming catalysts from CoinMarketCap MCP data.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/bryan-cmc/market-report-using-cmc-mcp) <br>
-- [CoinMarketCap MCP endpoint](https://mcp.coinmarketcap.com/mcp) <br>
-- [CoinMarketCap API key portal](https://pro.coinmarketcap.com/login) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Analysis, API Calls, Configuration] <br>
-**Output Format:** [Markdown market report with optional JSON MCP configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May return a partial report when individual CoinMarketCap MCP tools are unavailable.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: Using the skill sends relevant market-summary prompts to the configured CoinMarketCap MCP service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and invoke the skill only when that data flow is acceptable, preferably through an explicit request such as /market-report.
+
+Risk: A report may be incomplete if one or more CoinMarketCap MCP tools fail.
+
+Mitigation: Use the skill's partial-report behavior and clearly note unavailable sections before relying on the report.
+
+## Reference(s):
+
+- [CoinMarketCap MCP endpoint](https://mcp.coinmarketcap.com/mcp)
+- [CoinMarketCap API key login](https://pro.coinmarketcap.com/login)
+- [ClawHub skill page](https://clawhub.ai/bryan-cmc/skills/market-report-using-cmc-mcp)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown market report with structured sections and concise bullets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May provide a partial report when one or more CoinMarketCap MCP tools are unavailable.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,53 @@
-## Description: <br>
-AI-powered context management for OpenClaw sessions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-powered context management for OpenClaw sessions.
 
-## Publisher: <br>
-[quincygunter](https://clawhub.ai/user/quincygunter) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[quincygunter](https://clawhub.ai/user/quincygunter)
 
-## Use Case: <br>
-Developers and OpenClaw operators use this skill to inspect session context usage, generate AI summaries, and compress long-running sessions while preserving backups. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read and summarize OpenClaw session history, which may include sensitive conversation content. <br>
-Mitigation: Install only where session-history access is acceptable and review generated summaries before using them to continue work. <br>
-Risk: The --replace flow resets a session after creating a backup. <br>
-Mitigation: Run the non-destructive summarize command first, verify the summary, and use --replace only for sessions that can be reset from the saved backup. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to inspect session context usage, generate AI summaries, and compress long sessions by backing up, resetting, and reinjecting summarized context.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/quincygunter/qui-context-manager) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash command examples; invoked workflows can create Markdown summaries and JSONL backups.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires OpenClaw gateway access, jq, and SKILLBOSS_API_KEY for AI summarization.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Compression can back up full OpenClaw session files and store generated summaries on disk, which may preserve sensitive conversation content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only on sessions whose backup storage is protected, avoid sessions containing secrets, and clean up stored backups and summaries according to local retention needs.
+
+Risk: Replacement mode deletes the active session JSONL after making a backup, so an incorrect target or failed restore path can disrupt the current session.
+
+Mitigation: Run read-only summarization first, confirm the target session key, and keep the generated backup available before relying on replacement mode.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/quincygunter/skills/qui-context-manager)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and generated summary files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create AI summary, session backup, transcript, and legacy summary files under memory/compressed/ when compression runs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

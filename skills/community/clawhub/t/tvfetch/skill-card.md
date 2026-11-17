@@ -1,43 +1,57 @@
-## Description: <br>
-Fetches TradingView market data, including historical OHLCV bars, live price streams, symbol search, technical indicators, and statistical analysis for stocks, crypto, forex, futures, indices, and commodities. <br>
+## Description:
 
-This skill is for research and development only. <br>
+Fetch TradingView market data, including historical OHLCV bars, live price streams, symbol search, technical indicators, and statistical analysis for stocks, crypto, forex, futures, indices, and commodities.
 
-## Publisher: <br>
-[tarun-khatri](https://clawhub.ai/user/tarun-khatri) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tarun-khatri](https://clawhub.ai/user/tarun-khatri)
 
-## Use Case: <br>
-Developers, analysts, and market-data users use TVFetch to fetch or stream TradingView market data, export OHLCV datasets, and generate technical-analysis summaries through an agent workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: TradingView session tokens may be stored under ~/.tvfetch/.env and local .env files can influence authentication. <br>
-Mitigation: Prefer anonymous mode when possible, avoid --token on shared systems, review ~/.tvfetch/.env permissions, and avoid running from untrusted project directories. <br>
-Risk: The skill contacts TradingView and optional fallback market-data providers and writes cache data under ~/.tvfetch. <br>
-Mitigation: Use it only in environments where those outbound connections and local cache writes are acceptable, and review network and cache policy before deployment. <br>
-Risk: The artifact states that use of the reverse-engineered TradingView protocol may violate TradingView terms. <br>
-Mitigation: Confirm applicable TradingView and fallback-provider terms before operational use, especially outside personal or educational workflows. <br>
+## Use Case:
 
+Developers, analysts, and trading researchers use this skill to fetch market data, stream live prices, resolve TradingView symbols, compute indicators, compare assets, and export data for analysis or backtesting.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tarun-khatri/tvfetch) <br>
-- [Project homepage](https://github.com/tarun-khatri/tvfetch) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance, Files] <br>
-**Output Format:** [Markdown responses with tables, inline shell commands, JSON summaries, and optional CSV, JSON, or Parquet files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use anonymous mode, optional TradingView session tokens, local SQLite caching under ~/.tvfetch, and user-selected export paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, frontmatter, pyproject.toml, CHANGELOG) <br>
+Risk: The skill can use and locally store a TradingView browser token.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer anonymous mode or environment variables over saved tokens, avoid passing tokens in shell commands, and review token storage before installation.
+
+Risk: The skill runs a SessionStart hook that performs automatic configuration, credential, cache-directory, and network checks.
+
+Mitigation: Review or disable the startup hook if automatic credential checks or network probes are not desired.
+
+Risk: The skill contacts TradingView and fallback data providers and writes cache/config files under the user's home directory.
+
+Mitigation: Install only in environments where these network calls and local file writes are acceptable, and configure cache paths explicitly when needed.
+
+## Reference(s):
+
+- [Project homepage](https://github.com/tarun-khatri/tvfetch)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Files]
+
+**Output Format:** [Markdown summaries with tables, inline shell commands, code snippets, and optional CSV, JSON, or Parquet files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include market-data warnings, source attribution, authentication mode, cache status, and export paths]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, pyproject.toml, CHANGELOG, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

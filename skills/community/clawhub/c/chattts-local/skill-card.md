@@ -1,41 +1,64 @@
-## Description: <br>
-Converts Chinese text into natural-sounding local speech with ChatTTS, including controls for speed, pitch, emotion, and repeatable voice seeds. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ChatTTS Local converts text, especially Chinese text, into local speech audio using the ChatTTS model, with configurable generation parameters.
 
-## Publisher: <br>
-[wodecanyun66-spec](https://clawhub.ai/user/wodecanyun66-spec) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wodecanyun66-spec](https://clawhub.ai/user/wodecanyun66-spec)
 
-## Use Case: <br>
-Developers and agent operators use this skill to generate Chinese voice replies, document narration, notification audio, and long-text speech from local ChatTTS models. It is suited to workflows that need an agent to invoke local text-to-speech scripts and return a generated audio file reference. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: First use can install unpinned Python packages and download ChatTTS model files. <br>
-Mitigation: Run it in an isolated virtual environment or container, preinstall trusted pinned dependencies, and verify downloaded model artifacts before use. <br>
-Risk: The skill is presented as local, but setup and first use can require network access for model downloads. <br>
-Mitigation: Treat it as network-dependent until setup is complete, review allowed download endpoints, and cache approved model files for offline operation. <br>
+## Use Case:
 
+External users and developers use this skill to generate local Chinese text-to-speech audio for QQ voice replies, document narration, notification audio, or long text narration without an API key.
 
-## Reference(s): <br>
-- [ChatTTS model on Hugging Face](https://huggingface.co/2Noise/ChatTTS) <br>
-- [Hugging Face mirror used by artifact scripts](https://hf-mirror.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, files] <br>
-**Output Format:** [Markdown guidance with bash commands and qqvoice file references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [References generated WAV or MP3 speech files; documented sample rate is 24000 Hz.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: First use can install unpinned Python packages.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and pin dependencies before installation, and run the skill in a dedicated virtual environment.
+
+Risk: Model files may be downloaded from hf-mirror.com without artifact-level verification.
+
+Mitigation: Manually download model artifacts from trusted sources where possible and verify checksums before use.
+
+Risk: The skill is framed as local-only, but first use may require network downloads.
+
+Mitigation: Preinstall and verify required model files before using the skill in restricted or production environments.
+
+Risk: Advertised voice controls may not meet the needs of a specific workflow.
+
+Mitigation: Test required speed, pitch, seed, and sampling behavior before relying on generated audio.
+
+## Reference(s):
+
+- [chattts_local ClawHub listing](https://clawhub.ai/wodecanyun66-spec/skills/chattts-local)
+- [wodecanyun66-spec publisher profile](https://clawhub.ai/user/wodecanyun66-spec)
+- [2Noise ChatTTS model repository](https://huggingface.co/2Noise/ChatTTS)
+- [Hugging Face mirror used by model download scripts](https://hf-mirror.com)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Text, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Audio files such as WAV or MP3, file paths wrapped in <qqvoice> tags, and Markdown with inline shell commands for setup or invocation.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated audio uses a 24000 Hz sample rate; long text is recommended to be split into segments under 500 Chinese characters.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

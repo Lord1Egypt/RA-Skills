@@ -1,57 +1,74 @@
-## Description: <br>
-FitBuddy helps an agent log fitness, diet, weight, exercise, hydration, macro targets, progress reports, reminders, and optional restaurant nutrition data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+FitBuddy is a fitness and diet tracking assistant that helps an agent record meals, weight, exercise, and hydration; calculate BMR, TDEE, calories, and macros; generate progress reports and charts; and manage reminder-driven check-ins.
 
-## Publisher: <br>
-[promisewhh](https://clawhub.ai/user/promisewhh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[promisewhh](https://clawhub.ai/user/promisewhh)
 
-## Use Case: <br>
-External users and their agents use this skill to maintain local fitness, diet, weight, hydration, and exercise logs, calculate calorie and macro targets, generate progress summaries, and receive reminders. It can also guide meal planning and optional restaurant nutrition lookup when the user enables those integrations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Fitness, diet, weight, and health-condition data may be sensitive even when stored locally. <br>
-Mitigation: Keep fitbuddy-data local, avoid sharing records or screenshots, and review local retention or deletion expectations before use. <br>
-Risk: Cron reminders and third-party messaging channels can send fitness or meal content outside the local workspace. <br>
-Mitigation: Review reminder schedules and channel configuration before enabling them, and disable external channels when private reminders are not acceptable. <br>
-Risk: Optional MCP or messaging integrations require tokens that could be exposed through screenshots, logs, or version control. <br>
-Mitigation: Store tokens only in local configuration, redact them from logs and screenshots, and do not commit them to source control. <br>
-Risk: Fitness and nutrition recommendations may be unsuitable for users with medical conditions or specialized dietary needs. <br>
-Mitigation: Use the skill's conservative guardrails and seek qualified medical or nutrition advice before relying on the guidance for health-sensitive decisions. <br>
+## Use Case:
 
+External users and individuals use FitBuddy through an agent to track nutrition, body weight, exercise, hydration, and fitness progress. The skill supports setup, daily logging, macro-aware recommendations, reminders, and weekly or monthly reporting.
 
-## Reference(s): <br>
-- [ClawHub FitBuddy Release Page](https://clawhub.ai/promisewhh/fitbuddy) <br>
-- [README](README.md) <br>
-- [Initialization Guide](references/init-guide.md) <br>
-- [Nutrition Guide](references/nutrition-guide.md) <br>
-- [Nutrition Formulas](references/nutrition.md) <br>
-- [Exercise Reference](references/exercise.md) <br>
-- [Training Plan Reference](references/training-plan.md) <br>
-- [Budget Meals Reference](references/budget-meals.md) <br>
-- [Reports and Charts Reference](references/reports.md) <br>
-- [Reminder Logic](references/reminder-logic.md) <br>
-- [Reminder Channel Configuration](references/channels.md) <br>
-- [McDonald's MCP Integration](references/mcd-integration.md) <br>
-- [McDonald's MCP](https://open.mcd.cn/mcp) <br>
-- [DingTalk Developer Console](https://open-dev.dingtalk.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance, JSON files, Charts] <br>
-**Output Format:** [Markdown responses with inline shell commands, JSON snippets, local JSON records, and generated chart image files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores profile, food database, daily records, user patterns, and generated charts under fitbuddy-data; optional reminders and MCP integrations require user configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.1 (source: server release metadata) <br>
+Risk: The skill stores sensitive fitness and health information locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the stored profile and records before use, restrict filesystem access to the intended fitbuddy-data directory, and avoid sharing those files unnecessarily.
+
+Risk: Persistent reminders and configured messaging channels may expose reminder content or continue running longer than intended.
+
+Mitigation: Review reminder schedules and channel configuration during setup, disable unneeded reminders, and limit message content sent through external channels.
+
+Risk: The documented device approval flow can approve the latest pending device without confirming its identity.
+
+Mitigation: Verify the exact OpenClaw device identity before granting write permissions; do not rely on approve-latest behavior.
+
+Risk: Untrusted dates, output paths, or dependency installs can create local file handling or environment risk.
+
+Mitigation: Validate dates and output paths before invoking scripts, keep writes within the skill data directory, and use pinned dependencies in an isolated environment.
+
+## Reference(s):
+
+- [FitBuddy ClawHub skill page](https://clawhub.ai/promisewhh/skills/fitbuddy)
+- [README](README.md)
+- [Skill instructions](SKILL.md)
+- [Initialization guide](references/init-guide.md)
+- [Nutrition calculation reference](references/nutrition.md)
+- [Nutrition Q&A guide](references/nutrition-guide.md)
+- [Exercise guide](references/exercise.md)
+- [Training plan guide](references/training-plan.md)
+- [Budget meal guide](references/budget-meals.md)
+- [Reports and charts guide](references/reports.md)
+- [Reminder logic](references/reminder-logic.md)
+- [Reminder channel configuration](references/channels.md)
+- [McDonald's MCP integration](references/mcd-integration.md)
+- [McDonald's MCP endpoint](https://open.mcd.cn/mcp)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance, files]
+
+**Output Format:** [User-facing text and Markdown, JSON records and command outputs, shell commands for setup, configuration snippets, and optional PNG chart files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Maintains local profile, food database, daily record, pattern, and chart files under fitbuddy-data when used as documented.]
+
+## Skill Version(s):
+
+2.1.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

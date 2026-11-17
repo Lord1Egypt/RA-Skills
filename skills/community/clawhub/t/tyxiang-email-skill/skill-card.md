@@ -1,42 +1,50 @@
-## Description: <br>
-Upgraded to https://clawhub.ai/tyxiang/ai-agent-email-skill and no longer maintains this version. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This deprecated email-skill release points users to the replacement ai-agent-email-skill and is no longer maintained.
 
-## Publisher: <br>
-[tyxiang](https://clawhub.ai/user/tyxiang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tyxiang](https://clawhub.ai/user/tyxiang)
 
-## Use Case: <br>
-Developers and external users encounter this release as a deprecated email-skill entry that redirects them to the current maintained ClawHub skill. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may install an unmaintained release instead of the current skill. <br>
-Mitigation: Use this release only as a redirect notice and install the maintained skill linked in the description. <br>
-Risk: ClawScan guidance notes maintainer/developer workflow skills may involve broad local tooling or account-impacting actions when explicitly invoked. <br>
-Mitigation: Install only when the publisher and intended workflow are trusted, and review the skill instructions before use. <br>
+## Use Case:
 
+External developers and agents use this release to recognize that tyxiang-email-skill is deprecated and to follow the replacement skill link before relying on email automation behavior.
 
-## Reference(s): <br>
-- [Current maintained email skill](https://clawhub.ai/tyxiang/ai-agent-email-skill) <br>
-- [ClawHub skill page](https://clawhub.ai/tyxiang/tyxiang-email-skill) <br>
-- [Publisher profile](https://clawhub.ai/user/tyxiang) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown] <br>
-**Output Format:** [Markdown guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Deprecated release; points users to the maintained successor skill.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: Users may mistake this deprecated stub for a maintained email automation skill.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat it only as a pointer to the replacement skill, and review the replacement separately before installation or use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tyxiang/skills/tyxiang-email-skill)
+- [Replacement ai-agent-email-skill](https://clawhub.ai/tyxiang/ai-agent-email-skill)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown]
+
+**Output Format:** [Markdown text with a replacement skill URL]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable behavior; points to a separately reviewed replacement skill.]
+
+## Skill Version(s):
+
+1.0.3 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

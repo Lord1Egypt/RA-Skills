@@ -1,38 +1,51 @@
-## Description: <br>
-Financial governance for OpenClaw agents. Tracks API spend, enforces budget limits, detects runaway loops, delivers cost briefings. Reads session .jsonl logs locally. 100% private. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Financial governance for OpenClaw agents that tracks API spend, enforces budget limits, detects runaway loops, delivers cost briefings, and reads session .jsonl logs locally.
 
-## Publisher: <br>
-[AnouarTrust](https://clawhub.ai/user/AnouarTrust) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[anouartrust](https://clawhub.ai/user/anouartrust)
 
-## Use Case: <br>
-OpenClaw users and developers use this skill to review local session spending, compare model costs, enforce daily or monthly budgets, and spot runaway or unusually expensive sessions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill reads local OpenClaw session logs, which may contain more context than cost fields. <br>
-Mitigation: Use it only in environments where reading those local logs is acceptable, and avoid sharing generated reports if session names or model usage reveal sensitive work. <br>
-Risk: The budget command creates or updates a local budgets.json file with spending limits. <br>
-Mitigation: Review the configured daily and monthly limits after changes, and remove the local budget file if stored budget state should be reset. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
+
+Developers and teams using OpenClaw use this skill to review local agent spend, compare costs by period and model, enforce daily or monthly budgets, and identify expensive or anomalous sessions.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill reads OpenClaw session logs to calculate spend, which may expose local conversation metadata, model usage, timestamps, and cost records to the agent running the skill.
+
+Mitigation: Use the skill only when local session-log access is acceptable, and prefer limiting analysis to a specific agent or time range when the environment supports it.
+
+Risk: The skill persists budget settings in a local budgets.json file.
+
+Mitigation: Review or clear the local budget file when saved daily or monthly budget settings should no longer apply.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Configuration] <br>
-**Output Format:** [Markdown-like cost reports with aligned summaries, warnings, progress bars, and local JSON budget configuration.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads local .jsonl session logs and may write budget settings to ~/.openclaw/workspace/trustlog-guard/budgets.json.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence and SKILL.md frontmatter) <br>
+**Output Type(s):** [text, markdown, configuration, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown-style cost reports, budget status summaries, anomaly alerts, and local JSON budget configuration.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports are based on local OpenClaw session logs and include USD totals, message counts, model breakdowns, projections, warnings, and optimization tips.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

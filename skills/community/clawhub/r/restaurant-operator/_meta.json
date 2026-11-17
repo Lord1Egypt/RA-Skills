@@ -1,6 +1,30 @@
 {
-  "ownerId": "kn7fzrpz1j6m4evc3qr6jyapkd82x2r2",
+  "name": "Restaurant Operator",
   "slug": "restaurant-operator",
   "version": "1.0.0",
-  "publishedAt": 1774754631844
+  "description": "Complete restaurant management skill combining Chef Brain (culinary) with Operator Brain (business operations). Recipe scaling, inventory prediction, menu engineering, staff scheduling.",
+  "author": "El Rudo Larios LLC",
+  "category": "business",
+  "tags": ["restaurant", "food", "inventory", "menu", "chef", "operations", "hospitality"],
+  "pricing": {
+    "intro": 9.99,
+    "pro": 14.99,
+    "enterprise": 49.99
+  },
+  "features": [
+    "Recipe creation and scaling",
+    "Ingredient substitution engine",
+    "Predictive inventory management",
+    "Menu engineering (COGS analysis)",
+    "Staff scheduling optimization",
+    "Food safety compliance (HACCP/ServSafe)"
+  ],
+  "integrations": [
+    "Toast POS",
+    "Square POS",
+    "Weather APIs",
+    "Reservation systems"
+  ],
+  "agentRequired": true,
+  "agentName": "ratatouille"
 }

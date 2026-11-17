@@ -1,45 +1,58 @@
-## Description: <br>
-Automatically downloads student homework from QQ email, extracts ZIP submissions, grades code against assignment templates with AI, and generates an Excel grade report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Downloads homework ZIP attachments from QQ email, grades programming submissions against templates with AI assistance, and writes an Excel grade report.
 
-## Publisher: <br>
-[yaouuu](https://clawhub.ai/user/yaouuu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yaouuu](https://clawhub.ai/user/yaouuu)
 
-## Use Case: <br>
-Teachers use this skill to collect homework submitted as QQ email ZIP attachments, match submissions to an assignment template, produce AI-generated scores and comments, and export the results to Excel. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires access to a QQ mailbox and downloads unread ZIP attachments. <br>
-Mitigation: Use a dedicated mailbox or app-specific authorization code and limit the mailbox to homework submissions intended for grading. <br>
-Risk: Downloaded homework archives are untrusted input and may contain unsafe paths or unexpected files. <br>
-Mitigation: Run the skill in an isolated working directory and only use a revised or reviewed version that validates ZIP contents and sanitizes filenames before extraction. <br>
-Risk: Student submissions and reference answers are sent to an external AI provider for grading. <br>
-Mitigation: Confirm that sharing this data with the AI provider is allowed by the course, institution, and applicable privacy requirements before use. <br>
-Risk: The artifact contains local code execution behavior for grading Python files. <br>
-Mitigation: Remove or sandbox local code execution before using the skill with untrusted student submissions. <br>
+## Use Case:
 
+Teachers who collect programming homework through QQ email can use this skill to download unread ZIP attachments, match submissions to an assignment, request AI-assisted grading against a template, and produce a spreadsheet of scores and comments.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yaouuu/homework-gader-skill) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/yaouuu) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Code, API Calls] <br>
-**Output Format:** [JSON response containing the generated Excel file path, with an .xlsx report written to disk] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires assignment_id, QQ email account, QQ email authorization code, assignment templates, and an AI provider API key.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and skill.yaml) <br>
+Risk: The skill handles QQ email credentials and mailbox content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only a dedicated QQ mailbox with an app-specific authorization code, and avoid running the skill where unrelated host credentials or sensitive files are accessible.
+
+Risk: The skill processes untrusted ZIP attachments and student submissions.
+
+Mitigation: Process mail only from trusted senders, run in an isolated workspace, and fix ZIP download and extraction handling before production use.
+
+Risk: Student submissions can influence AI-assisted grading and generated comments.
+
+Mitigation: Review generated scores and feedback before relying on or sharing the grades.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yaouuu/skills/homework-gader-skill)
+- [Publisher profile](https://clawhub.ai/user/yaouuu)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Text]
+
+**Output Format:** [JSON object containing an Excel file path; generated report is an .xlsx file.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The report contains student names, student IDs, assignment numbers, scores, and brief grading comments when available.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and skill.yaml)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

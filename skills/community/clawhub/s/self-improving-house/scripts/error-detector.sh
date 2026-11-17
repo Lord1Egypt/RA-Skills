@@ -1,5 +1,6 @@
 #!/bin/bash
 # Domotics Self-Improvement Issue Detector Hook
+# Inspects CLAUDE_TOOL_OUTPUT in-process only. Never writes tool output, secrets, or transcripts to disk.
 # Scans tool output for high-signal domotics patterns.
 # Reminder-only; does not execute physical actions.
 

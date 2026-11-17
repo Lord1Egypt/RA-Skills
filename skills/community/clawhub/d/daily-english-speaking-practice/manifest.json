@@ -1,0 +1,9 @@
+{
+  "name": "daily-english-speaking-practice",
+  "display_name": "日常英语口语练习",
+  "description": "生活化英语口语陪练，支持自由对话与情景角色扮演，温和纠错，侧重流利地道表达，可切换难度并复盘实用短语",
+  "version": "1.0.0",
+  "author": "温筱桐",
+  "tags": ["英语口语", "日常口语", "口语练习", "角色扮演", "情景对话", "Oral English", "Speaking Practice", "地道表达"],
+  "trigger_keywords": ["日常英语口语", "口语练习", "英语陪练", "情景对话", "角色扮演练口语", "练口语", "英语对话练习"]
+}

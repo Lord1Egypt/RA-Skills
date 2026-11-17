@@ -1,46 +1,61 @@
-## Description: <br>
-基于技术形态筛选A股股票池，支持VCP、RPS强势股、创新高、高股息等多种形态，并可按涨跌幅、动量、强度等维度排序。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+虾皮A股选股器 helps agents screen A-share stocks by technical patterns such as VCP, RPS, new highs, high dividends, and multi-condition filters, then summarize findings in a structured Markdown report.
 
-## Publisher: <br>
-[ksky521](https://clawhub.ai/user/ksky521) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ksky521](https://clawhub.ai/user/ksky521)
 
-## Use Case: <br>
-External users and agents use this skill to query DaxiAPI stock-pattern data, screen China A-share candidates by technical patterns and secondary filters, and produce a structured screening report with risk notes and a disclaimer. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on a DaxiAPI token that may be tied to a paid account. <br>
-Mitigation: Store the token in a secure environment variable or protected config file, avoid exposing it in chat, screenshots, or shell history, and rotate it if disclosed. <br>
-Risk: The skill invokes the `daxiapi-cli` npm package to fetch market data. <br>
-Mitigation: Install and run it only in environments where DaxiAPI and the package are trusted. <br>
-Risk: Technical-pattern screening can produce misleading investment conclusions if treated as financial advice. <br>
-Mitigation: Keep the report's risk notes and disclaimer, avoid absolute predictions, and review results before making investment decisions. <br>
+## Use Case:
 
+External users and agents use this skill to query DAXIAPI stock-pattern data, apply secondary filters, and produce concise A-share screening analysis for technical, momentum, trend, and value-oriented workflows.
 
-## Reference(s): <br>
-- [CLI 命令参考](references/cli-commands.md) <br>
-- [形态类型说明](references/pattern-types.md) <br>
-- [Token 配置指南](references/token-setup.md) <br>
-- [DaxiAPI](https://daxiapi.com) <br>
-- [ClawHub skill page](https://clawhub.ai/ksky521/xiapi-screener) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs stock-screening summaries, ranked tables, risk notes, and a non-investment-advice disclaimer.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: The skill runs a mutable npm CLI through latest-version commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned, reviewed DAXIAPI CLI version and execute it in a restricted environment.
+
+Risk: DAXIAPI token setup examples can expose tokens in shell history, source code, config files, or agent logs.
+
+Mitigation: Avoid entering real tokens directly in command lines or source code, do not print token config files into logs, and rotate any token that may have been exposed.
+
+Risk: Stock-screening output may be mistaken for financial advice or may rely on stale market data.
+
+Mitigation: Include the data date, source command, risk notes, and a clear disclaimer that generated analysis is for reference only and not investment advice.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ksky521/skills/xiapi-screener)
+- [DAXIAPI](https://daxiapi.com)
+- [CLI command reference](references/cli-commands.md)
+- [Token setup guide](references/token-setup.md)
+- [Pattern type reference](references/pattern-types.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash commands and tabular stock-screening analysis]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports should include data date, source command, key metrics, risk notes, and a disclaimer that the analysis is not investment advice.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

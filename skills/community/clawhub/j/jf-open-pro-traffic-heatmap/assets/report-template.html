@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>人流热力图报告</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif; background: #f5f6fa; color: #333; }
+  .header { background: #1a1a2e; color: #fff; padding: 20px 32px; }
+  .header h1 { font-size: 20px; font-weight: 600; }
+  .header .date-range { font-size: 13px; color: #aaa; margin-top: 4px; }
+  .controls { display: flex; align-items: center; gap: 12px; padding: 14px 32px; background: #fff; border-bottom: 1px solid #e0e0e0; flex-wrap: wrap; }
+  .tab { padding: 6px 16px; border-radius: 6px; font-size: 13px; cursor: pointer; border: 1px solid #ddd; background: #fff; transition: all 0.2s; }
+  .tab.active { background: #1a73e8; color: #fff; border-color: #1a73e8; }
+  .tab:hover:not(.active) { background: #f0f0f0; }
+  .spacer { flex: 1; }
+  .date-input { padding: 5px 10px; border: 1px solid #ddd; border-radius: 4px; font-size: 12px; }
+  .preset { padding: 5px 12px; border-radius: 4px; font-size: 12px; cursor: pointer; border: 1px solid #ddd; background: #fff; }
+  .preset.active { color: #1a73e8; border-color: #1a73e8; background: #e8f0fe; }
+  .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 14px; padding: 16px 32px; }
+  .card { background: #fff; border-radius: 8px; padding: 16px; border: 1px solid #e8e8e8; }
+  .card .label { font-size: 11px; color: #888; text-transform: uppercase; letter-spacing: 0.5px; }
+  .card .value { font-size: 28px; font-weight: 700; margin-top: 6px; }
+  .card .sub { font-size: 11px; color: #aaa; margin-top: 2px; }
+  .viz { display: grid; grid-template-columns: 1.5fr 1fr; gap: 14px; padding: 0 32px 24px; align-items: stretch; }
+  .viz-panel { background: #fff; border-radius: 8px; border: 1px solid #e8e8e8; overflow: hidden; display: flex; flex-direction: column; }
+  .viz-panel .title { padding: 12px 16px; font-size: 13px; font-weight: 600; border-bottom: 1px solid #f0f0f0; flex-shrink: 0; }
+  .heatmap-container { position: relative; background: #1a1a2e; flex: 1; display: flex; align-items: center; justify-content: center; }
+  .heatmap-container img { width: 100%; height: 100%; object-fit: contain; display: block; }
+  .legend { position: absolute; bottom: 10px; right: 12px; display: flex; align-items: center; gap: 4px; }
+  .legend-bar { width: 80px; height: 10px; border-radius: 5px; background: linear-gradient(90deg, #ffffb2, #fd8d3c, #bd0026); }
+  .legend span { font-size: 10px; color: #ccc; }
+  .chart-container { padding: 20px; flex: 1; display: flex; align-items: center; }
+  .chart-container canvas { width: 100% !important; }
+  .history-section { padding: 0 32px 32px; }
+  .history-section .section-title { font-size: 14px; font-weight: 600; margin-bottom: 12px; color: #333; }
+  .history-list { display: flex; flex-direction: column; gap: 10px; }
+  .history-item { display: flex; align-items: center; gap: 14px; background: #fff; border-radius: 8px; border: 1px solid #e8e8e8; padding: 12px 16px; transition: border-color 0.2s; }
+  .history-item:hover { border-color: #1a73e8; }
+  .history-thumb { width: 120px; height: 68px; border-radius: 4px; object-fit: cover; flex-shrink: 0; background: #f0f0f0; }
+  .history-info { flex: 1; min-width: 0; }
+  .history-time { font-size: 13px; font-weight: 600; color: #333; }
+  .history-summary { font-size: 12px; color: #666; margin-top: 3px; }
+  .history-badge { display: inline-block; padding: 2px 8px; border-radius: 10px; font-size: 11px; font-weight: 600; flex-shrink: 0; }
+  .history-badge.has-data { background: #e8f5e9; color: #2e7d32; }
+  .history-badge.no-data { background: #fafafa; color: #999; }
+  .summary-section { padding: 16px 32px; }
+  .summary-card { background: #fff; border-radius: 8px; border: 1px solid #e8e8e8; padding: 20px 24px; }
+  .summary-card .summary-title { font-size: 14px; font-weight: 600; color: #1a1a2e; margin-bottom: 12px; display: flex; align-items: center; gap: 6px; }
+  .summary-card .summary-title::before { content: ''; display: inline-block; width: 4px; height: 16px; background: #1a73e8; border-radius: 2px; }
+  .summary-card .summary-text { font-size: 13px; line-height: 1.8; color: #444; white-space: pre-wrap; }
+  .generated-at { font-size: 11px; color: #aaa; padding: 0 32px 16px; text-align: right; }
+  @media (max-width: 768px) {
+    .cards { grid-template-columns: repeat(2, 1fr); }
+    .viz { grid-template-columns: 1fr; }
+    .history-thumb { width: 80px; height: 45px; }
+  }
+</style>
+</head>
+<body>
+<div class="header">
+  <h1>人流热力图报告</h1>
+  <div class="date-range" id="dateRange"></div>
+</div>
+<div class="controls">
+  <div id="cameraTabs" style="display:flex;gap:6px;"></div>
+  <div class="spacer"></div>
+  <button class="preset" data-days="1" onclick="setPreset(this,1)">日</button>
+  <button class="preset active" data-days="7" onclick="setPreset(this,7)">周</button>
+  <button class="preset" data-days="30" onclick="setPreset(this,30)">月</button>
+</div>
+<div class="cards" id="statsCards"></div>
+<div class="viz">
+  <div class="viz-panel">
+    <div class="title" id="heatmapTitle">热力图</div>
+    <div class="heatmap-container">
+      <img id="heatmapImg" src="" alt="heatmap">
+      <div class="legend"><div class="legend-bar"></div><span>低 → 高</span></div>
+    </div>
+  </div>
+  <div class="viz-panel">
+    <div class="title">按10分钟流量分布</div>
+    <div class="chart-container"><canvas id="hourlyChart"></canvas></div>
+  </div>
+</div>
+<div class="summary-section" id="summarySection" style="display:none;">
+  <div class="summary-card">
+    <div class="summary-title">本次总结</div>
+    <div class="summary-text" id="summaryText"></div>
+  </div>
+</div>
+<div class="history-section">
+  <div class="section-title" id="historyTitle">采集处理记录</div>
+  <div class="history-list" id="historyList"></div>
+</div>
+<div class="generated-at" id="generatedAt"></div>
+
+<script>
+var REPORT_DATA = __REPORT_DATA__;
+var currentCamera = REPORT_DATA.cameras[0].id;
+
+function getCameraData() {
+  return REPORT_DATA.cameras.find(function(c) { return c.id === currentCamera; });
+}
+
+function renderTabs() {
+  var container = document.getElementById('cameraTabs');
+  container.innerHTML = '';
+  REPORT_DATA.cameras.forEach(function(cam) {
+    var tab = document.createElement('div');
+    tab.className = 'tab' + (cam.id === currentCamera ? ' active' : '');
+    tab.textContent = cam.name;
+    tab.onclick = function() { currentCamera = cam.id; render(); };
+    container.appendChild(tab);
+  });
+}
+
+function renderStats() {
+  var cam = getCameraData();
+  var s = cam.stats;
+  var hotCell = s.hottest_cell ? 'Grid(' + s.hottest_cell.col + ',' + s.hottest_cell.row + ')' : '-';
+  var avgPerRound = s.capture_rounds > 0 ? (s.total_detections / s.capture_rounds).toFixed(1) : '0';
+
+  // 本小时平均：取当前小时对应的 time_series 条目求均值
+  var now = new Date();
+  var currentHour = String(now.getHours()).padStart(2, '0');
+  var series = cam.time_series || [];
+  var currentHourEntries = series.filter(function(d) {
+    return d.time && d.time.substring(0, 2) === currentHour;
+  });
+  var currentHourAvg;
+  if (currentHourEntries.length > 0) {
+    var sum = currentHourEntries.reduce(function(acc, d) { return acc + d.count; }, 0);
+    currentHourAvg = (sum / currentHourEntries.length).toFixed(1);
+  } else {
+    // 回退：所有 time_series 条目的均值
+    currentHourAvg = series.length > 0
+      ? (series.reduce(function(acc, d) { return acc + d.count; }, 0) / series.length).toFixed(1)
+      : '0';
+  }
+
+  var cards = [
+    { label: '总检测人次', value: s.total_detections, sub: 'person-occurrences', color: '#1a73e8' },
+    { label: '平均检测人次', value: avgPerRound, sub: 'per capture round', color: '#7b1fa2' },
+    { label: '本小时平均人次', value: currentHourAvg, sub: 'current hour avg', color: '#00897b' },
+    { label: '高峰时段', value: s.peak_hour + ':00', sub: 'highest traffic', color: '#e53935' },
+    { label: '最热区域', value: hotCell, sub: '', color: '#ff9800' },
+    { label: '采集轮次', value: s.capture_rounds, sub: 'capture rounds', color: '#43a047' }
+  ];
+  document.getElementById('statsCards').innerHTML = cards.map(function(c) {
+    return '<div class="card"><div class="label">' + c.label + '</div><div class="value" style="color:' + c.color + '">' + c.value + '</div><div class="sub">' + c.sub + '</div></div>';
+  }).join('');
+}
+
+function renderHeatmap() {
+  var cam = getCameraData();
+  document.getElementById('heatmapTitle').textContent = '热力图 — ' + cam.name;
+  document.getElementById('heatmapImg').src = 'data:image/png;base64,' + cam.heatmap_base64;
+}
+
+function renderChart() {
+  var cam = getCameraData();
+  var canvas = document.getElementById('hourlyChart');
+  var ctx = canvas.getContext('2d');
+  var container = canvas.parentElement;
+  canvas.width = container.clientWidth;
+  canvas.height = Math.max(container.clientHeight, 280);
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  var series = cam.time_series || cam.hourly || [];
+  if (series.length === 0) {
+    ctx.fillStyle = '#999'; ctx.font = '14px sans-serif'; ctx.textAlign = 'center';
+    ctx.fillText('暂无数据', canvas.width / 2, canvas.height / 2);
+    return;
+  }
+
+  var maxCount = Math.max.apply(null, series.map(function(d) { return d.count; }));
+  if (maxCount === 0) maxCount = 1;
+
+  var barWidth = (canvas.width - 50) / series.length;
+  var chartHeight = canvas.height - 50;
+  var startX = 40;
+
+  // Y 轴刻度
+  ctx.font = '10px sans-serif';
+  ctx.textAlign = 'right';
+  for (var i = 0; i <= 4; i++) {
+    var y = 10 + chartHeight - (chartHeight * i / 4);
+    ctx.fillStyle = '#999';
+    ctx.fillText(Math.round(maxCount * i / 4), startX - 4, y + 3);
+    ctx.strokeStyle = '#eee'; ctx.beginPath(); ctx.moveTo(startX, y); ctx.lineTo(canvas.width - 10, y); ctx.stroke();
+  }
+
+  // 找峰值索引
+  var peakIdx = 0;
+  for (var j = 1; j < series.length; j++) {
+    if (series[j].count > series[peakIdx].count) peakIdx = j;
+  }
+
+  // 计算标签显示间隔：最多显示 8 个标签
+  var labelInterval = Math.max(1, Math.ceil(series.length / 8));
+
+  series.forEach(function(d, idx) {
+    var x = startX + idx * barWidth + 2;
+    var barH = (d.count / maxCount) * chartHeight;
+    var y = 10 + chartHeight - barH;
+    ctx.fillStyle = (idx === peakIdx) ? '#1565c0' : '#90caf9';
+    ctx.fillRect(x, y, barWidth - 4, barH);
+
+    // X 轴标签
+    if (idx % labelInterval === 0 || idx === series.length - 1) {
+      var label = d.time || (d.hour + ':00');
+      ctx.save();
+      ctx.translate(x + barWidth / 2, canvas.height - 22);
+      ctx.rotate(-Math.PI / 6);
+      ctx.fillStyle = '#999'; ctx.textAlign = 'right'; ctx.font = '10px sans-serif';
+      ctx.fillText(label, 0, 0);
+      ctx.restore();
+    }
+  });
+}
+
+function setPreset(btn, days) {
+  document.querySelectorAll('.preset').forEach(function(b) { b.classList.remove('active'); });
+  btn.classList.add('active');
+}
+
+function renderSummary() {
+  var summary = REPORT_DATA.summary || '';
+  var section = document.getElementById('summarySection');
+  var textEl = document.getElementById('summaryText');
+  if (summary && section && textEl) {
+    textEl.textContent = summary;
+    section.style.display = '';
+  } else if (section) {
+    section.style.display = 'none';
+  }
+}
+
+function renderHistory() {
+  var cam = getCameraData();
+  var records = cam.history || [];
+  var container = document.getElementById('historyList');
+  document.getElementById('historyTitle').textContent = '采集处理记录 — ' + cam.name + '（共 ' + records.length + ' 条）';
+
+  if (records.length === 0) {
+    container.innerHTML = '<div style="color:#999;font-size:13px;padding:8px 0;">暂无处理记录</div>';
+    return;
+  }
+
+  container.innerHTML = records.map(function(rec) {
+    var ts = rec.timestamp.replace('T', ' ').substring(0, 19);
+    var count = rec.person_count;
+    var badgeClass = count > 0 ? 'has-data' : 'no-data';
+    var badgeText = count > 0 ? count + ' 人' : '无人';
+    var summary = rec.summary || (count > 0 ? '检测到 ' + count + ' 个头部，已写入热力网格' : '本轮未检测到人员活动');
+    var thumbHtml = rec.thumbnail
+      ? '<img class="history-thumb" src="data:image/jpeg;base64,' + rec.thumbnail + '" alt="capture">'
+      : '<div class="history-thumb"></div>';
+    return '<div class="history-item">'
+      + thumbHtml
+      + '<div class="history-info"><div class="history-time">' + ts + '</div>'
+      + '<div class="history-summary">' + summary + '</div></div>'
+      + '<span class="history-badge ' + badgeClass + '">' + badgeText + '</span>'
+      + '</div>';
+  }).join('');
+}
+
+function render() {
+  document.getElementById('dateRange').textContent = REPORT_DATA.start + ' ~ ' + REPORT_DATA.end;
+  var genEl = document.getElementById('generatedAt');
+  if (genEl && REPORT_DATA.generated_at) {
+    genEl.textContent = '报告生成时间: ' + REPORT_DATA.generated_at;
+  }
+  renderTabs();
+  renderStats();
+  renderHeatmap();
+  renderChart();
+  renderSummary();
+  renderHistory();
+}
+
+render();
+window.addEventListener('resize', renderChart);
+</script>
+</body>
+</html>

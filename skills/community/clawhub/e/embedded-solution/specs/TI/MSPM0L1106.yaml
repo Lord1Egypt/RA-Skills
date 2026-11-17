@@ -1,0 +1,104 @@
+part: MSPM0L1106
+link_status: verified_2026-07-01 (datasheet-pdf-extracted)
+expected_family: "TI MSPM0L1106 \u2014 Cost-Down Cortex-M0+ MCU (single OPA, 1\xD7 I\xB2C)"
+main_page: https://www.ti.com/product/MSPM0L1106
+datasheet_path_expected: datasheets/mspm0l1106.pdf
+datasheet_source_url: https://www.ti.com/lit/ds/symlink/mspm0l1106.pdf
+created_at: '2026-06-30T10:24:00+08:00'
+specs:
+  family: "MSPM0L (MSPM0 platform \u2014 low-power tier; cost-down of MSPM0L1306)"
+  cores:
+  - Arm Cortex-M0+ @ up to 32 MHz
+  memory:
+    flash_kb_options:
+    - 32
+    - 64
+    sram_kb: 4
+  power:
+    voltage_v_min: 1.62
+    voltage_v_max: 3.6
+    modes:
+    - mode: RUN
+      current: "71 \xB5A/MHz (CoreMark)"
+    - mode: STOP @ 4 MHz
+      current: "151 \xB5A"
+    - mode: STOP @ 32 kHz
+      current: "44 \xB5A"
+    - mode: STANDBY
+      current: "1.0 \xB5A"
+      notes: "32-kHz timer + SRAM/registers retention + 32 MHz wake-up 3.2 \xB5s"
+    - mode: SHUTDOWN
+      current: 61 nA
+      notes: IO wake-up capability
+  analog:
+    adc_12bit_1_68msps: yes (up to 10 external channels)
+    adc_vref_selectable: 1.4 V or 2.5 V (internal)
+    gpamp: 1
+    temperature_sensor: integrated
+  digital:
+    dma_controller: 3-channel
+    event_fabric: 3-channel
+    timers: 4x 16-bit GP (8 PWM total, STANDBY-capable)
+    watchdog: windowed
+  communication:
+    uart: 2 (one LIN/IrDA/DALI/Smart Card/Manchester; STANDBY-compatible)
+    i2c: 1
+    spi: 1 (up to 16 Mbit/s)
+  clocks:
+    sysosc: "4-32 MHz, \xB11.2% accuracy"
+    lfosc: "32 kHz, \xB13% accuracy"
+  data_integrity:
+    crc: yes (CRC-16 or CRC-32)
+  io:
+    gpio_count_max: 28
+    open_drain_5v_tolerant: 2
+  debug:
+    swd: 2-pin
+  operating_temp_c_min: -40
+  operating_temp_c_max: 105
+  package_options:
+  - type: VQFN (RHB)
+    pins: 32
+  - type: VSSOP (DGS)
+    pins: 28
+  - type: VQFN (RGE)
+    pins: 24
+  - type: VSSOP (DGS)
+    pins: 20
+  - type: SOT (DYY)
+    pins: 16
+  - type: WQFN (RTR)
+    pins: 16
+  family_members:
+  - part: MSPM0L1105
+    flash_kb: 32
+    sram_kb: 4
+  - part: MSPM0L1106
+    flash_kb: 64
+    sram_kb: 4
+  dev_tools:
+    launchpad: LP-MSPM0L1306 (compatible)
+    sdk: MSP Software Development Kit
+  use_cases:
+  - Cost-sensitive wireless sensor MCU (companion to CC2340R5 etc.)
+  - Smoke detectors, water/gas meters, smart locks
+  - Cost-optimized replacement for MSPM0L1306 when OPA + extended temp not needed
+unverified:
+- exact flash endurance / retention
+- exact GPAMP bandwidth / slew rate
+- exact peak currents per mode across temperature
+- exact SPI max clock on each package variant
+notes:
+- "New yaml entry on 2026-06-30 \u2014 extracted from ti.com MSPM0L1106 product page via Firecrawl (240,125 bytes raw)."
+- "Family differentiator vs MSPM0L1306 (existing yaml round 2): L1106 drops one zero-drift chopper OPA, drops one I\xB2C interface,\
+  \ and limits temperature range to +105\xB0C (vs +125\xB0C on L1306). Otherwise identical power profile (61 nA SHUTDOWN,\
+  \ 5 lp modes)."
+- "Use case: pick L1106 for cost-sensitive 5 lp-mode MCU; pick L1306 when zero-drift chopper OPA needed for precision sensing\
+  \ (e.g. CGM current measurement) or +125 \xB0C industrial temp needed."
+- 'Verified 2026-07-01 via pdfplumber against mspm0l1106.pdf: 23/23 spec fields matched (100%). Source: ti.com/lit/ds/symlink/<pn>.pdf
+  (vendor-direct download, no auth required).'
+extracted_at: '2026-06-30T10:24:00+08:00'
+extraction_method: firecrawl-extract (keyed) of ti.com product page + manual enrich
+extraction_source: references/semiconductor-vendor/TI/firecrawl-snapshots/MSPM0L1106-family_clean.md
+extraction_source_raw: references/semiconductor-vendor/TI/firecrawl-snapshots/MSPM0L1106-family_raw.md
+extraction_credits_used: 1

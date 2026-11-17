@@ -1,39 +1,52 @@
-## Description: <br>
-Thoroughly audit Tasks.md + Flatnotes for drift and accuracy; use GitHub (gh CLI) as source of truth to detect stale notes/cards and missing links. Produces a report and an optional fix plan. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Thoroughly audit Tasks.md + Flatnotes for drift and accuracy; use GitHub (gh CLI) as source of truth to detect stale notes/cards and missing links. Produces a report and an optional fix plan.
 
-## Publisher: <br>
-[branexp](https://clawhub.ai/user/branexp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[branexp](https://clawhub.ai/user/branexp)
 
-## Use Case: <br>
-Developers and engineers use this skill to audit a local Tasks.md and Flatnotes workflow against GitHub pull request state, identify stale or missing project records, and produce a report with an optional fix plan. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The auditor reads local Tasks.md and Flatnotes directories, which may contain private project names, paths, task titles, and planning details. <br>
-Mitigation: Set TASKS_ROOT and FLATNOTES_ROOT only to directories intended for audit, and review generated tmp reports before sharing them. <br>
-Risk: GitHub checks use the locally authenticated gh account, so results depend on that account's repository access and identity. <br>
-Mitigation: Confirm the active gh authentication context before running the audit. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/branexp/flatnotes-tasksmd-github-audit) <br>
+## Use Case:
 
+Developers and workspace maintainers use this skill to audit Tasks.md board hygiene, Flatnotes project completeness, and GitHub pull request reconciliation before deciding whether to update notes or task cards.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, shell commands, guidance] <br>
-**Output Format:** [Markdown and JSON audit reports with shell command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Report files are written under tmp/ when the bundled auditor is run with --write.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill reads configured Tasks.md and Flatnotes directories and may use an authenticated gh CLI session to query GitHub.
+
+Mitigation: Install only when those local data sources and GitHub access are appropriate, and review the generated report before asking an agent to apply fixes.
+
+Risk: Applying proposed fixes could alter task or note content.
+
+Mitigation: Use report-only mode by default; require an explicit request before applying fixes and ask first for renames or deletion of content.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/branexp/skills/flatnotes-tasksmd-github-audit)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance]
+
+**Output Format:** [Markdown report and JSON report, with optional fix-plan guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes audit reports under tmp/ when requested; GitHub checks are skipped if gh is unauthenticated.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

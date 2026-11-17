@@ -1,39 +1,50 @@
-## Description: <br>
-Provides Vue 3 Composition API quick-reference guidance and best practices for Vue 3, TypeScript, and <script setup>, including common composable patterns, VueUse recommendations, reactivity pitfalls, component communication, and performance tips. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a Chinese-language quick reference and examples for Vue 3 Composition API patterns, VueUse helpers, component communication, and performance tips, with code oriented around `<script setup>` and TypeScript.
 
-## Publisher: <br>
-[chenxiaoyu0124-web](https://clawhub.ai/user/chenxiaoyu0124-web) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chenxiaoyu0124-web](https://clawhub.ai/user/chenxiaoyu0124-web)
 
-## Use Case: <br>
-Developers and engineers use this skill for concise Vue 3 Composition API guidance, TypeScript-friendly <script setup> examples, VueUse function selection, component communication patterns, and common reactivity or performance pitfalls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Code snippets may be copied into production without project-specific review. <br>
-Mitigation: Review examples against the target Vue version, TypeScript configuration, application state model, and production requirements before use. <br>
-Risk: Browser storage and clipboard examples can affect user-facing app behavior and privacy expectations. <br>
-Mitigation: Use VueUse storage and clipboard utilities only when needed, and validate consent, data sensitivity, and browser behavior in the target application. <br>
+## Use Case:
 
+Developers and engineering teams use this skill as a Chinese-language Vue 3 Composition API reference when writing TypeScript components with `<script setup>`, selecting VueUse helpers, or checking reactive-state and component-communication patterns.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code] <br>
-**Output Format:** [Markdown with TypeScript and Vue code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Static coding reference; review snippets before production use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: Generated Vue examples may recommend browser localStorage or clipboard APIs through VueUse helpers, which can affect privacy expectations or user experience.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated application code before use and require explicit product decisions for persisted data, clipboard access, and related user notices.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chenxiaoyu0124-web/skills/vue3-composition-helper)
+- [ClawHub publisher profile](https://clawhub.ai/user/chenxiaoyu0124-web)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Guidance]
+
+**Output Format:** [Markdown with Vue and TypeScript code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language guidance; examples default to Vue 3 `<script setup lang="ts">` patterns.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence and clawhub.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

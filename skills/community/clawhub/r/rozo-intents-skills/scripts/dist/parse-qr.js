@@ -26,6 +26,7 @@ const EVM_TOKEN_CONTRACTS = {
     // USDT
     "0xdac17f958d2ee523a2206206994597c13d831ec7": { symbol: "USDT", chainId: 1 },
     "0xfd086bc7cd5c481dcc9c85ebe478a1c0b69fcbb9": { symbol: "USDT", chainId: 42161 },
+    "0xfde4c96c8593536e31f229ea8f37b2ada2699bb2": { symbol: "USDT", chainId: 8453 },
     "0x55d398326f99059ff775485246999027b3197955": { symbol: "USDT", chainId: 56 },
     "0xc2132d05d31c914a87c6611c10748aeb04b58e8f": { symbol: "USDT", chainId: 137 },
 };

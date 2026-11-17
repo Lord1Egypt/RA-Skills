@@ -1,46 +1,61 @@
-## Description: <br>
-Explore and analyze Api3 data feeds using public data, including provider coverage, aggregation composition, latest prices, on-chain versus off-chain staleness, provider deviations, and exchange spot-price comparisons. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Explores and analyzes Api3 data feeds using public data by listing provider coverage, showing aggregation composition, fetching latest prices, comparing provider deviations, checking on-chain freshness, and cross-checking exchange spot prices.
 
-## Publisher: <br>
-[metobom](https://clawhub.ai/user/metobom) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[api3dao](https://clawhub.ai/user/api3dao)
 
-## Use Case: <br>
-Developers and analysts use this skill to inspect Api3 dAPI health, provider coverage, feed freshness, price deviations, and on-chain versus off-chain gaps using public data sources. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill makes outbound requests to public Api3, blockchain RPC, and exchange endpoints. <br>
-Mitigation: Run it in an environment where network access to expected public endpoints is acceptable and review endpoint access before deployment. <br>
-Risk: Results depend on live third-party data that can be stale, unavailable, or divergent across sources. <br>
-Mitigation: Run scripts fresh for each question, report timestamps and data age, and treat exchange comparisons as advisory checks rather than a source of truth. <br>
-Risk: Dependency behavior can change at install time because the package manifest uses a latest-version dependency. <br>
-Mitigation: Pin and review dependency versions before production use. <br>
+## Use Case:
 
+Developers, data engineers, and protocol operators use this skill to inspect Api3 dAPI provider coverage, aggregation participants, current feed values, stale timestamps, and divergence from public exchange spot prices.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/metobom/api3-data-feed-explorer) <br>
-- [Api3 Signed API public endpoint example](https://signed-api.api3.org/public/0xBA910Eb2867977A0a651FE3D2607237ff4116B1C) <br>
-- [Binance ticker price API](https://api.binance.com/api/v3/ticker/price?symbol=BTCUSDT) <br>
-- [Coinbase spot price API](https://api.coinbase.com/v2/prices/BTC-USD/spot) <br>
-- [Kraken public ticker API](https://api.kraken.com/0/public/Ticker?pair=XBTUSD) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with command examples and tabular analysis] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports depend on fresh public Api3, blockchain RPC, and exchange responses.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server evidence and SKILL.md frontmatter; package.json reports 1.0.0) <br>
+Risk: Public outbound requests may expose queried feed names, chain aliases, and asset pairs to Api3, RPC providers, and exchange APIs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run the skill only in environments where those public requests are acceptable, and avoid using sensitive or confidential query patterns.
+
+Risk: Unpinned or non-repeatable dependency installation can change script behavior between installs.
+
+Mitigation: Pin dependencies and use a lockfile before production or repeated operational use.
+
+Risk: Feed health conclusions can be misleading if data is stale, provider coverage is sparse, or exchange spot references differ from the feed's source of truth.
+
+Mitigation: Run the scripts fresh for each question, report UTC timestamps and data age, flag sparse aggregation or stale providers, and treat exchange composites as sanity checks rather than authoritative feed values.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/api3dao/skills/api3-data-feed-explorer)
+- [Api3 Signed API Public Endpoint](https://signed-api.api3.org/public/0xBA910Eb2867977A0a651FE3D2607237ff4116B1C)
+- [Binance Ticker Price API](https://api.binance.com/api/v3/ticker/price?symbol=BTCUSDT)
+- [Coinbase Spot Price API](https://api.coinbase.com/v2/prices/BTC-USD/spot)
+- [Kraken Ticker API](https://api.kraken.com/0/public/Ticker?pair=XBTUSD)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, code, guidance]
+
+**Output Format:** [Markdown with shell command snippets and tabular analysis]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports UTC timestamps, provider values, freshness, deviations, and concise health guidance from fresh public-data queries.]
+
+## Skill Version(s):
+
+0.1.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

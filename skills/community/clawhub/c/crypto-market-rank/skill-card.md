@@ -1,45 +1,53 @@
-## Description: <br>
-Crypto market rankings and leaderboards for querying trending tokens, top searched tokens, Binance Alpha tokens, tokenized stocks, social hype sentiment ranks, smart money inflow token rankings, top meme token rankings from Pulse launchpad, and top trader PnL leaderboards. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Crypto market rankings and leaderboards for querying trending tokens, top searched tokens, Binance Alpha tokens, tokenized stocks, social hype sentiment ranks, smart money inflow token rankings, top meme token rankings from Pulse launchpad, and top trader PnL leaderboards.
 
-## Publisher: <br>
-[Awessh](https://clawhub.ai/user/Awessh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[awessh](https://clawhub.ai/user/awessh)
 
-## Use Case: <br>
-External users and developers use this skill to query public crypto market rankings, social sentiment leaderboards, smart money inflow rankings, meme token rankings, and public wallet-address PnL leaderboards across supported chains. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Queries are sent to Binance Web3 public endpoints and may include user-selected parameters. <br>
-Mitigation: Avoid entering private information in query parameters and use the skill only for public market lookup workflows. <br>
-Risk: Address-level leaderboard results may expose public wallet-address performance profiles. <br>
-Mitigation: Do not use wallet-address data for harassment, doxxing, identity inference, or other abusive profiling. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Awessh/crypto-market-rank) <br>
-- [Publisher profile](https://clawhub.ai/user/Awessh) <br>
-- [Social Hype Leaderboard API](https://web3.binance.com/bapi/defi/v1/public/wallet-direct/buw/wallet/market/token/pulse/social/hype/rank/leaderboard) <br>
-- [Unified Token Rank API](https://web3.binance.com/bapi/defi/v1/public/wallet-direct/buw/wallet/market/token/pulse/unified/rank/list) <br>
-- [Smart Money Inflow Rank API](https://web3.binance.com/bapi/defi/v1/public/wallet-direct/tracker/wallet/token/inflow/rank/query) <br>
-- [Meme Rank API](https://web3.binance.com/bapi/defi/v1/public/wallet-direct/buw/wallet/market/token/pulse/exclusive/rank/list) <br>
-- [Address PnL Rank API](https://web3.binance.com/bapi/defi/v1/public/wallet-direct/market/leaderboard/query) <br>
+## Use Case:
 
+External users and developers use this skill to research crypto token rankings, social buzz, smart money inflows, meme token rankings, and top trader PnL leaderboards across supported chains.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, API Calls, Guidance] <br>
-**Output Format:** [Markdown with API endpoint descriptions and curl examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include public token, market, social sentiment, smart money, meme, and wallet leaderboard data returned by Binance Web3 public endpoints.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill surfaces third-party crypto market rankings, trader PnL, address analytics, and sentiment data that could be mistaken for financial advice.
+
+Mitigation: Present results as third-party market data for research, and tell users to independently verify data and avoid treating rankings or leaderboards as investment recommendations.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/awessh/skills/crypto-market-rank)
+- [Binance Web3 Social Hype Leaderboard API](https://web3.binance.com/bapi/defi/v1/public/wallet-direct/buw/wallet/market/token/pulse/social/hype/rank/leaderboard)
+- [Binance Web3 Unified Token Rank API](https://web3.binance.com/bapi/defi/v1/public/wallet-direct/buw/wallet/market/token/pulse/unified/rank/list)
+- [Binance Web3 Smart Money Inflow Rank API](https://web3.binance.com/bapi/defi/v1/public/wallet-direct/tracker/wallet/token/inflow/rank/query)
+- [Binance Web3 Meme Rank API](https://web3.binance.com/bapi/defi/v1/public/wallet-direct/buw/wallet/market/token/pulse/exclusive/rank/list)
+- [Binance Web3 Address PnL Rank API](https://web3.binance.com/bapi/defi/v1/public/wallet-direct/market/leaderboard/query)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and structured summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include third-party crypto token, wallet leaderboard, social hype, sentiment, and market ranking data returned from Binance Web3 public endpoints.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata; artifact metadata.version is 2.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

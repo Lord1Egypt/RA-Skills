@@ -1,0 +1,24 @@
+flowchart TD
+  subgraph earth [Earth first]
+    analog["Analogs: cold, heat, vacuum, closed air"]
+    labs["ECLSS 93% then 98%, Sabatier, crop lab"]
+  end
+  subgraph machines [Machines]
+    robots["Robotic landers and relays"]
+    isru["ISRU pilots"]
+  end
+  subgraph moon [Moon]
+    ice["South-pole ice, LCROSS-class resource"]
+    crewMoon["Short crew sorties after analogs"]
+  end
+  subgraph life [Biology]
+    sim["Simulant grow-out, perchlorates included"]
+    farm["Greenhouses, not open-air sprinkling"]
+  end
+  subgraph mars [Mars windows ~26 months]
+    cargo["Cargo and dust-storm survival"]
+    pilot["Oxygen pilot, far past MOXIE grams"]
+    crew["Crew conjunction, then a dependent outpost"]
+  end
+  seed["Ember: 5 years local surplus and a real archive"]
+  analog --> labs --> robots --> ice --> crewMoon --> sim --> farm --> cargo --> pilot --> crew --> seed

@@ -1,42 +1,55 @@
-## Description: <br>
-Use when OpenClaw should learn how to install SilicaClaw bridge skills, check bridge connectivity, verify owner-forward runtime settings, and troubleshoot why broadcast learning or owner delivery is not ready yet. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when OpenClaw should learn how to install SilicaClaw bridge skills, check bridge connectivity, verify owner-forward runtime settings, and troubleshoot why broadcast learning or owner delivery is not ready yet.
 
-## Publisher: <br>
-[chinasong](https://clawhub.ai/user/chinasong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chinasong](https://clawhub.ai/user/chinasong)
 
-## Use Case: <br>
-OpenClaw users and developers use this skill to install the local SilicaClaw bridge skills, verify bridge readiness, configure owner-forward runtime values, and identify the next setup step before using broadcast or monitoring workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local setup may install bridge skills or reference commands from an untrusted SilicaClaw project. <br>
-Mitigation: Use the skill only with a trusted local SilicaClaw CLI/project and review skills added under `~/.openclaw/workspace/skills/` before deployment. <br>
-Risk: Owner-forward settings could send notifications to an unintended channel, target, or command. <br>
-Mitigation: Set `OPENCLAW_OWNER_FORWARD_CMD`, `OPENCLAW_OWNER_CHANNEL`, and `OPENCLAW_OWNER_TARGET` only to destinations and commands the owner controls. <br>
+## Use Case:
 
+Developers and operators use this skill to install and verify a local SilicaClaw bridge for OpenClaw, then diagnose setup, connectivity, runtime, or owner-forward delivery blockers before moving to broadcast or monitoring workflows.
 
-## Reference(s): <br>
-- [Runtime Setup](references/runtime-setup.md) <br>
-- [Troubleshooting](references/troubleshooting.md) <br>
-- [Owner Dialogue Cheatsheet (Chinese)](references/owner-dialogue-cheatsheet-zh.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May recommend local SilicaClaw CLI commands and owner-forward environment variable settings; does not produce executable payloads.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2026.3.20-beta.1 (source: server release metadata and manifest.json) <br>
+Risk: Installing bundled skills changes OpenClaw's workspace skills persistently.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the local silicaclaw CLI is trusted before running openclaw-skill-install.
+
+Risk: Owner-forward settings can send private notifications to an unintended channel or command path.
+
+Mitigation: Review OPENCLAW_OWNER_FORWARD_CMD, OPENCLAW_OWNER_CHANNEL, and OPENCLAW_OWNER_TARGET before enabling owner delivery.
+
+## Reference(s):
+
+- [Runtime Setup](references/runtime-setup.md)
+- [Troubleshooting](references/troubleshooting.md)
+- [Owner Dialogue Cheatsheet (Chinese)](references/owner-dialogue-cheatsheet-zh.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and environment variable examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Concise owner-facing setup diagnosis and one recommended next action]
+
+## Skill Version(s):
+
+2026.3.20-beta.1 (source: manifest.json and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

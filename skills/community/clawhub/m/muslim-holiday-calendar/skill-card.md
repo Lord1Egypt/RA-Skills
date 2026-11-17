@@ -1,42 +1,54 @@
-## Description: <br>
-Provides Islamic holiday calendar lookups, holiday countdowns, Friday checks, and holiday information as local JSON output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a local Islamic holiday calendar lookup for major observances such as Ramadan, Eid al-Fitr, Eid al-Adha, Islamic New Year, Mawlid al-Nabi, and Arafat Day, with bilingual English and Chinese skill documentation.
 
-## Publisher: <br>
-[darbling](https://clawhub.ai/user/darbling) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[darbling](https://clawhub.ai/user/darbling)
 
-## Use Case: <br>
-External users and developers can use this skill to run a local calendar helper for approximate Islamic holiday dates, upcoming observances, countdowns, Friday checks, and basic holiday facts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Islamic holiday dates are approximate and can vary by local moon sighting or religious authority. <br>
-Mitigation: Verify important observances with a trusted local authority before relying on the dates for planning. <br>
-Risk: Documentation examples mention commands that do not match the script's implemented command names. <br>
-Mitigation: Use the script's implemented commands: holidays, next-holiday, countdown, is-friday, and info. <br>
+## Use Case:
 
+External users and developers can use this skill to ask an agent for command-line guidance or code-oriented assistance with listing stored Islamic holiday dates, finding the next known holiday, checking countdowns, and retrieving basic holiday information. It is suitable for lightweight calendar lookup workflows that can tolerate a static date table.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/darbling/muslim-holiday-calendar) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [muslim_calendar.py](artifact/scripts/muslim_calendar.py) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with command-line examples; the bundled script prints JSON] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Local Python script; no network access or sensitive credentials are required by the evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: The security summary reports that the release advertises Hijri conversion and Ashura support that the code does not provide.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Describe the skill as a static holiday lookup unless those capabilities are implemented and validated.
+
+Risk: The security guidance says the holiday data is an incomplete static lookup for a few Islamic holidays from 2024-2030.
+
+Mitigation: Check a trusted calendar source before using results for Hijri conversion, Ashura dates, or important observance planning.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/darbling/skills/muslim-holiday-calendar)
+- [Publisher profile](https://clawhub.ai/user/darbling)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown or plain text with shell command examples and JSON-oriented command output guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The bundled script returns JSON for supported commands and uses a static holiday dataset covering 2024-2030.]
+
+## Skill Version(s):
+
+1.1.0 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

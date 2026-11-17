@@ -63,9 +63,9 @@ After order → query order status. After close → query positions.
 ## Security
 - WRITE operations require **"CONFIRM"**
 - Always show liquidation price before opening leveraged positions
-- "Not financial advice. Trading carries significant risk of loss."
 
 ## References
-- `references/bingx-api-reference.md` — 59 endpoints, Python signature, full params
+- `references/bingx-api-reference.md` — 63 endpoints, Python signature, full params
+- `references/stock-perps.md` — US stock perps (`NCSK<T>2USD-USDT` names), contract `status: 25` = opening forbidden, closes still allowed
 
 ---

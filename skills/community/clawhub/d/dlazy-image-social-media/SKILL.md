@@ -1,10 +1,10 @@
 ---
-name: image-social-media
-version: 1.2.0
+name: dlazy-image-social-media
+version: 1.3.7
 description: A structured skill for multi-platform social-media content creation, covering Instagram, TikTok, YouTube, LinkedIn, Xiaohongshu, and more. The goal: outputs that satisfy each platform's nati
 triggers:
   - Social Media Designer (Multi-Platform Optimization)
-metadata: {"clawdbot":{"emoji":"🤖","requires":{"bins":["npm","npx"]},"install":"npm install -g @dlazy/cli@latest","installAlternative":"npx @dlazy/cli@latest","homepage":"https://github.com/dlazyai/cli","source":"https://github.com/dlazyai/cli","author":"dlazyai","license":"see-repo","npm":"https://www.npmjs.com/package/@dlazy/cli","configLocation":"~/.dlazy/config.json","apiEndpoints":["api.dlazy.com","files.dlazy.com"]},"openclaw":{"systemPrompt":"当你需要使用此技能时，请严格遵循此技能提供的指南进行规划和执行。你可以通过调用 dlazy CLI 的各类生成模型（如 dlazy seedream-4.5 等）来完成实际的图片渲染。注意：Windows PowerShell 中不允许使用 `&` 或 `&&` 进行命令串联或后台运行，请单独且同步地执行命令。"}}
+metadata: {"clawdbot":{"emoji":"🤖","requires":{"bins":["npm","npx"]},"install":"npm install -g @dlazy/cli@1.2.3","installAlternative":"npx @dlazy/cli@1.2.3","homepage":"https://github.com/dlazy-ai/cli","source":"https://github.com/dlazy-ai/cli","author":"dlazyai","license":"see-repo","npm":"https://www.npmjs.com/package/@dlazy/cli","configLocation":"~/.dlazy/config.json","apiEndpoints":["api.dlazy.com","files.dlazy.com"]},"openclaw":{"systemPrompt":"当你需要使用此技能时，请严格遵循此技能提供的指南进行规划和执行。你可以通过调用 dlazy CLI 的各类生成模型（如 dlazy seedream-4.5 等）来完成实际的图片渲染。注意：Windows PowerShell 中不允许使用 `&` 或 `&&` 进行命令串联或后台运行，请单独且同步地执行命令。"}}
 ---
 
 ## 身份验证 (Authentication)
@@ -37,7 +37,7 @@ CLI 会把 key 保存在你的用户配置目录（macOS/Linux 上为 `~/.dlazy/
 
 ## 关于与来源 (Provenance)
 
-- **CLI 源代码**: [github.com/dlazyai/cli](https://github.com/dlazyai/cli)
+- **CLI 源代码**: [github.com/dlazy-ai/cli](https://github.com/dlazy-ai/cli)
 - **维护者**: dlazyai
 - **npm 包名**: `@dlazy/cli`（本技能 install 字段固定到 `1.0.9` 版本）
 - **官网**: [dlazy.com](https://dlazy.com)
@@ -45,10 +45,10 @@ CLI 会把 key 保存在你的用户配置目录（macOS/Linux 上为 `~/.dlazy/
 如果你不希望在系统上长期保留一个全局 CLI，可以按需运行：
 
 ```bash
-npx @dlazy/cli@latest <command>
+npx @dlazy/cli@1.2.3 <command>
 ```
 
-如选择全局安装，技能的 `metadata.clawdbot.install` 字段已固定到 `npm install -g @dlazy/cli@latest`。安装前建议先到 GitHub 仓库审阅源码。
+如选择全局安装，技能的 `metadata.clawdbot.install` 字段已固定到 `npm install -g @dlazy/cli@1.2.3`。安装前建议先到 GitHub 仓库审阅源码。
 
 ## 工作原理 (How It Works)
 
@@ -60,7 +60,7 @@ npx @dlazy/cli@latest <command>
 
 这是标准的 SaaS 调用模式；技能本身不会越权访问网络或文件系统，所有动作都由 dLazy CLI 完成。
 
-# Social Media Designer (Multi-Platform Optimization)
+# 社交媒体配图设计 Social Media Design
 
 [English](./SKILL.md) · [中文](./SKILL-cn.md)
 
@@ -163,14 +163,14 @@ When the user is unsatisfied, prioritize:
 
 ## Platform Specs and Visual Style
 
-| Platform                | Format                                            | Visual Style                                                 |
-| ----------------------- | ------------------------------------------------- | ------------------------------------------------------------ |
-| Instagram               | Feed 1:1 or 4:5 (recommended) / Story, Reels 9:16 | Polished, poster-like, high resolution                       |
-| TikTok / YouTube Shorts | 9:16, subject centered or left                    | Authentic, high-energy, native feel, text-dense              |
-| LinkedIn                | 4:5 or PDF carousel                               | Clean, corporate, infographic, blue-gray palette             |
-| YouTube thumbnail       | 16:9                                              | High contrast, exaggerated expressions, big-title (≤5 words) |
-| Xiaohongshu             | 3:4                                               | Collage style, heavy emoji, headline overlay                 |
-| Carousel general        | Up to 20 pages, all same ratio                    | Series-level consistency first                               |
+| Platform | Format | Visual Style |
+| --- | --- | --- |
+| Instagram | Feed 1:1 or 4:5 (recommended) / Story, Reels 9:16 | Polished, poster-like, high resolution |
+| TikTok / YouTube Shorts | 9:16, subject centered or left | Authentic, high-energy, native feel, text-dense |
+| LinkedIn | 4:5 or PDF carousel | Clean, corporate, infographic, blue-gray palette |
+| YouTube thumbnail | 16:9 | High contrast, exaggerated expressions, big-title (≤5 words) |
+| Xiaohongshu | 3:4 | Collage style, heavy emoji, headline overlay |
+| Carousel general | Up to 20 pages, all same ratio | Series-level consistency first |
 
 ## Safe Area and Whitespace Rules
 
@@ -202,12 +202,12 @@ Each output includes:
 - Delivered content (in-image text + caption)
 - Next-step suggestions (variant / adaptation / iteration)
 
+
 ## 🛠️ 执行与生成指南 (CRITICAL EXECUTION INSTRUCTIONS)
 
 **你是可以执行终端命令的智能 Agent！**
 
 **【严格禁止行为】**
-
 - 严禁：将提示词保存到任何文件中（如 txt, md）。
 - 严禁：要求用户自己去第三方平台（如 Midjourney）生成图片。
 - 严禁：一次性批量生成所有图片，或一次性执行多个命令。

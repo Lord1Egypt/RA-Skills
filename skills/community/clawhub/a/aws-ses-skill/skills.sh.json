@@ -1,0 +1,9 @@
+{
+  "$schema": "https://skills.sh/schemas/skills.sh.schema.json",
+  "groupings": [
+    {
+      "title": "Email & Messaging",
+      "skills": ["aws-ses"]
+    }
+  ]
+}

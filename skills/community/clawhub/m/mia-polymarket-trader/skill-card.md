@@ -1,42 +1,53 @@
-## Description: <br>
-AI agent for automated prediction market trading on Polymarket. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI agent for automated prediction market trading on Polymarket.
 
-## Publisher: <br>
-[ArubikU](https://clawhub.ai/user/ArubikU) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[arubiku](https://clawhub.ai/user/arubiku)
 
-## Use Case: <br>
-External users use this skill to analyze Polymarket prediction markets, identify arbitrage opportunities, and prepare or execute automated trades under stated portfolio limits. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Wallet-level credentials and private keys may authorize irreversible transactions. <br>
-Mitigation: Use only a dedicated low-balance wallet and avoid providing a primary wallet private key. <br>
-Risk: Live automated trade authority can cause financial loss if analysis, limits, or execution are wrong. <br>
-Mitigation: Require manual confirmation or dry-run mode before live trades, and enforce the stated 5% per-trade limit, 20% stop-loss, and daily reporting. <br>
-Risk: Implementation provenance is unavailable for this release. <br>
-Mitigation: Verify the actual `mia-polymarket` command from a trusted source and review the publisher-supplied code and credential handling before installation. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/ArubikU/mia-polymarket-trader) <br>
-- [Polymarket](https://polymarket.com) <br>
+## Use Case:
 
+External users and developers use this skill to analyze Polymarket markets, detect arbitrage opportunities, and prepare or execute automated trades with configured risk limits.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include market analysis, trade command examples, and wallet/API credential setup guidance; live trading should require human review.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill supports automated real-money prediction-market trading.
+
+Mitigation: Require explicit confirmation and hard value limits before any live trade.
+
+Risk: The setup asks users to expose a wallet private key to an unspecified command-line tool.
+
+Mitigation: Use only a dedicated low-value wallet, avoid exposing a main wallet private key, and verify the exact mia-polymarket executable and source before installing.
+
+## Reference(s):
+
+- [Mia Polymarket Trader on ClawHub](https://clawhub.ai/arubiku/skills/mia-polymarket-trader)
+- [Polymarket](https://polymarket.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash commands and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include market analysis, trading commands, wallet/API configuration steps, and risk-control guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

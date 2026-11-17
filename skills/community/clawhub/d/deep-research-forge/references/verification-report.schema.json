@@ -1,0 +1,263 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:skill-hub:deep-research-forge:verification-report.schema",
+  "title": "Verification Report",
+  "description": "Evidence verification report from Evidence-Verifier, determining pass/fail/hold verdict",
+  "type": "object",
+  "required": [
+    "task_id",
+    "verifier_role",
+    "cycle_number",
+    "verdict",
+    "verified_dimensions"
+  ],
+  "properties": {
+    "task_id": {
+      "type": "string",
+      "description": "Research task ID being verified"
+    },
+    "verifier_role": {
+      "type": "string",
+      "description": "Verifier role performing this verification"
+    },
+    "cycle_number": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Current cycle number in Researcher-Verifier loop"
+    },
+    "verdict": {
+      "type": "string",
+      "enum": ["pass", "fail", "hold"],
+      "description": "Verification verdict: pass (accepted), fail (retry needed), hold (need more info or conflict resolution)"
+    },
+    "verified_dimensions": {
+      "type": "object",
+      "properties": {
+        "source_reliability": {
+          "type": "object",
+          "required": ["status"],
+          "properties": {
+            "status": {
+              "enum": ["pass", "fail", "hold"]
+            },
+            "note": {
+              "type": "string"
+            },
+            "score": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 10
+            }
+          }
+        },
+        "recency": {
+          "type": "object",
+          "required": ["status"],
+          "properties": {
+            "status": {
+              "enum": ["pass", "fail", "hold"]
+            },
+            "note": {
+              "type": "string"
+            },
+            "oldest_evidence_date": {
+              "type": "string",
+              "format": "date"
+            }
+          }
+        },
+        "completeness": {
+          "type": "object",
+          "required": ["status"],
+          "properties": {
+            "status": {
+              "enum": ["pass", "fail", "hold"]
+            },
+            "note": {
+              "type": "string"
+            },
+            "coverage_percentage": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 100
+            }
+          }
+        },
+        "independence": {
+          "type": "object",
+          "required": ["status"],
+          "properties": {
+            "status": {
+              "enum": ["pass", "fail", "hold"]
+            },
+            "note": {
+              "type": "string"
+            },
+            "independent_sources_count": {
+              "type": "integer",
+              "minimum": 0
+            }
+          }
+        },
+        "corroboration": {
+          "type": "object",
+          "required": ["status"],
+          "properties": {
+            "status": {
+              "enum": ["pass", "fail", "hold"]
+            },
+            "note": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "description": "Verification results for each quality dimension"
+    },
+    "confirmed_evidence_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Evidence IDs that passed verification"
+    },
+    "rejected_evidence_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Evidence IDs that failed verification"
+    },
+    "flagged_evidence_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Evidence IDs that need further verification or conflict resolution"
+    },
+    "evidence_gaps": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "List of evidence gaps that need to be filled"
+    },
+    "conflict_summary": {
+      "type": "object",
+      "properties": {
+        "conflicts": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["conflict_id", "severity", "auto_resolvable"],
+            "properties": {
+              "conflict_id": {
+                "type": "string"
+              },
+              "conflict_type": {
+                "enum": [
+                  "time_difference",
+                  "observation_angle",
+                  "methodology",
+                  "interest_bias",
+                  "source_genealogy"
+                ]
+              },
+              "severity": {
+                "enum": ["low", "medium", "high", "critical"]
+              },
+              "auto_resolvable": {
+                "type": "boolean"
+              },
+              "reason": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "total_conflicts": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "auto_resolvable_count": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "retry_patch": {
+      "type": "object",
+      "description": "Guidance for Researcher to retry (required when verdict is fail)",
+      "properties": {
+        "priority_tasks": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Priority tasks for retry"
+        },
+        "search_hints": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Suggested search keywords or source hints"
+        },
+        "focus_areas": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Areas that need more focus"
+        },
+        "avoid": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Things to avoid in retry"
+        }
+      }
+    },
+    "confidence_impact": {
+      "type": "string",
+      "description": "How this verification affects overall confidence (e.g., 'from high to medium')"
+    },
+    "recommendation": {
+      "type": "string",
+      "description": "Recommended next action"
+    },
+    "verification_evidence": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "dimension": {
+            "type": "string"
+          },
+          "evidence": {
+            "type": "string"
+          },
+          "reference": {
+            "type": "string"
+          }
+        }
+      },
+      "description": "Evidence supporting verification decisions"
+    },
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "verified_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "verification_duration_ms": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    }
+  },
+  "additionalProperties": false
+}

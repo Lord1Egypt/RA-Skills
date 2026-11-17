@@ -1,41 +1,61 @@
-## Description: <br>
-Documentation and capabilities reference for Moss semantic search. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Documentation and capabilities reference for Moss semantic search APIs, SDKs, and integration patterns.
 
-## Publisher: <br>
-[CoderOMaster](https://clawhub.ai/user/CoderOMaster) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[coderomaster](https://clawhub.ai/user/coderomaster)
 
-## Use Case: <br>
-Developers and engineers use this skill to understand Moss semantic search APIs, SDK methods, authentication, indexing workflows, document lifecycle operations, and integration patterns for retrieval in agents. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Project credentials may be exposed if copied into client code, shared logs, or public examples. <br>
-Mitigation: Protect Moss project keys, keep them out of client-side code and logs, and use environment or secret management controls. <br>
-Risk: Sensitive content could be indexed, synced, searched, or deleted without clear user intent. <br>
-Mitigation: Confirm whether retrieval and sync stay local or use cloud services, and require clear user intent before indexing sensitive content or deleting documents. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Moss documentation](https://docs.usemoss.dev) <br>
-- [Moss LLM documentation index](https://docs.usemoss.dev/llms.txt) <br>
-- [ClawHub skill page](https://clawhub.ai/CoderOMaster/moss-semantic) <br>
+## Use Case:
 
+Developers and engineers use this skill to understand Moss semantic search capabilities, SDK methods, authentication, integration patterns, and operational workflows for retrieval-enabled agents.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with API references, code snippets, shell commands, configuration details, and workflow guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only reference output; no executable tool calls are declared by the skill artifact.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Moss project credentials could be exposed if copied into logs, prompts, source control, or shared configuration.
+
+Mitigation: Store project keys in a secret manager or protected environment variables and avoid placing credentials in prompts or committed files.
+
+Risk: Documents and user queries sent through retrieval workflows may contain private or sensitive information.
+
+Mitigation: Review document, query, and automatic context-injection flows for privacy requirements before enabling them in an agent.
+
+Risk: Delete operations can remove indexes or documents that may be needed for retention, audit, or recovery.
+
+Mitigation: Confirm backup, retention, and recovery requirements before using index or document deletion workflows.
+
+Risk: Unpinned Moss SDK packages may change behavior over time.
+
+Mitigation: Pin package versions and review dependency updates before deploying the skill in a production agent environment.
+
+## Reference(s):
+
+- [Moss documentation](https://docs.usemoss.dev)
+- [Moss LLM documentation index](https://docs.usemoss.dev/llms.txt)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown documentation with tables, code blocks, shell command examples, and concise guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only output; no executable artifacts are produced by the skill itself.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

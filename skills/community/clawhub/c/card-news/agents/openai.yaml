@@ -1,0 +1,4 @@
+interface:
+  display_name: "Card News"
+  short_description: "Recent material changes for one US credit card"
+  default_prompt: "Use $card-news to summarize the latest news on Capital One Venture X."

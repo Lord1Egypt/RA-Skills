@@ -1,38 +1,52 @@
-## Description: <br>
-Guides agents through data pipeline ingestion, orchestration, idempotency, data quality, SLAs, observability, and lineage for batch and streaming workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deep data pipeline workflow\u2014ingestion, orchestration, idempotency, data quality, SLAs, observability, and lineage.
 
-## Publisher: <br>
-[mike47512](https://clawhub.ai/user/mike47512) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[mike47512](https://clawhub.ai/user/mike47512)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and data engineers use this skill to design, debug, and harden batch or streaming data pipelines across ingestion, orchestration, quality, observability, lineage, and operations.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: An agent may apply the workflow to user-provided pipeline details without enough project-specific validation.
+
+Mitigation: Review recommendations against the actual data contracts, SLAs, access controls, and operational ownership before implementation.
+
+Risk: Checklist guidance can miss environment-specific constraints for ETL, ELT, or streaming platforms.
+
+Mitigation: Validate proposed orchestration, idempotency, monitoring, and lineage choices with the target platform and team runbooks.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and data engineers use this skill to design, debug, and harden batch or streaming ETL/ELT pipelines with explicit SLAs, source contracts, idempotent transforms, orchestration, monitoring, lineage, and operations practices. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [guidance, markdown, configuration]
 
-## Known Risks and Mitigations: <br>
-Risk: Guidance generated from the skill could influence production code, infrastructure changes, or data access decisions. <br>
-Mitigation: Review generated production code, infrastructure changes, and data access decisions separately before use. <br>
+**Output Format:** [Markdown guidance with structured checklists and implementation considerations]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mike47512/data-pipelines) <br>
+**Other Properties Related to Output:** [Guidance-only workflow; no code execution, private-data access, or system modification behavior is described in the security evidence.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance and checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution, credentials, persistence, privileged access, or external tool use requested by the skill.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

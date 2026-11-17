@@ -1,44 +1,57 @@
-## Description: <br>
-OpenClaw Dashboard monitors active OpenClaw agent sessions, token usage, system status, and can format status summaries for Feishu or a local dashboard. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitors OpenClaw agent sessions, token usage, runtime metadata, and active-session status with text, Feishu card, and optional web dashboard views.
 
-## Publisher: <br>
-[youhaveamydream-spec](https://clawhub.ai/user/youhaveamydream-spec) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[youhaveamydream-spec](https://clawhub.ai/user/youhaveamydream-spec)
 
-## Use Case: <br>
-Developers and OpenClaw operators use this skill to inspect multi-agent session activity, token consumption, and runtime metadata, and to share status summaries in Feishu when appropriate. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Feishu status cards may expose session names, token usage, node/system details, channel, model, and runtime metadata to chat participants. <br>
-Mitigation: Use /status-card only in Feishu conversations approved to receive operational metadata. <br>
-Risk: The skill runs the local OpenClaw status command to collect runtime information. <br>
-Mitigation: Install and run it only where the local OpenClaw CLI is trusted and expected to disclose status output. <br>
-Risk: The optional browser dashboard loads third-party assets. <br>
-Mitigation: Treat dashboard.html as networked content and review or allowlist external browser assets before use. <br>
+## Use Case:
 
+Developers and operators use this skill to inspect OpenClaw runtime health, token consumption, and active agent sessions, and to share concise status updates in Feishu when configured.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/youhaveamydream-spec/xc-openclaw-dashboard) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact skill overview](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, configuration] <br>
-**Output Format:** [Markdown-like status text, Feishu interactive card JSON, and optional browser dashboard configuration.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Status summaries may include session names, token usage, node details, channel, model, runtime metadata, and timestamps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Status outputs can disclose operational metadata including token usage, active session labels, node/channel, model, OS, and runtime.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the Feishu card output only in trusted chats and review status content before sharing outside the operating team.
+
+Risk: The optional web dashboard may need hardening before exposure beyond a local trusted environment.
+
+Mitigation: Run the dashboard only on trusted local networks unless access control, transport security, and data handling have been reviewed.
+
+## Reference(s):
+
+- [OpenClaw Dashboard ClawHub page](https://clawhub.ai/youhaveamydream-spec/skills/xc-openclaw-dashboard)
+- [Publisher profile](https://clawhub.ai/user/youhaveamydream-spec)
+- [README.md](artifact/README.md)
+- [SKILL.md](artifact/SKILL.md)
+- [Author link from artifact](https://github.com/xc66o)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, configuration, guidance]
+
+**Output Format:** [Plain text and Markdown status summaries, Feishu interactive-card JSON, and optional HTML dashboard output.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reads local OpenClaw status data and may expose operational metadata such as token usage, active session labels, node/channel, model, OS, and runtime.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact config.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

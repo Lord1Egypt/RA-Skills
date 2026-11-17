@@ -1,43 +1,58 @@
-## Description: <br>
-Run web, multi-source, or last-30-days research through AIsa for search, synthesis, competitor scans, trend discovery, and structured retrieval. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run web, multi-source, or last-30-days research through AIsa for search, synthesis, competitor scans, trend discovery, research-ready outputs, and structured retrieval.
 
-## Publisher: <br>
-[baofeng-tech](https://clawhub.ai/user/baofeng-tech) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[baofeng-tech](https://clawhub.ai/user/baofeng-tech)
 
-## Use Case: <br>
-Developers, researchers, and agent users use this skill to run AIsa-backed Perplexity Sonar searches and convert recent or multi-source retrieval into summaries, comparisons, competitor scans, trend discovery, or research briefs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires the sensitive AISA_API_KEY credential for API access. <br>
-Mitigation: Provide the key through the environment only, avoid committing it to skill files or logs, and rotate it if exposed. <br>
-Risk: Search results or provider timeouts can lead to incomplete or stale research output. <br>
-Mitigation: Report unavailable providers or timeouts explicitly and avoid claiming sources that were not queried. <br>
-Risk: The available scanner context was clean but did not deeply verify artifact-specific behavior. <br>
-Mitigation: Review the shipped SKILL.md, README.md, and script permissions before deployment. <br>
+## Use Case:
 
+Developers and agents use this skill to run AIsa-backed web research, multi-source retrieval, recent-signal scans, comparison research, and research brief generation.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/baofeng-tech/aisa-perplexity-sonar-search) <br>
-- [AIsa API Endpoint](https://api.aisa.one/apis/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with CLI examples and JSON API responses from the bundled search client] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and AISA_API_KEY for AIsa-backed API access; the search client prints structured JSON and returns nonzero status for failed API responses.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Research queries and optional system prompts are sent to AIsa's API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not include passwords, private customer data, confidential internal instructions, or other sensitive content unless policy allows sending it to AIsa.
+
+Risk: The skill requires an AISA_API_KEY for API access.
+
+Mitigation: Store the API key securely and verify trust in AIsa before installation and use.
+
+Risk: Long-running deep research requests can time out or fail.
+
+Mitigation: Use narrower prompts, retry later, or switch to a faster Sonar mode when deep research is unavailable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/baofeng-tech/skills/aisa-perplexity-sonar-search)
+- [AIsa API endpoint](https://api.aisa.one/apis/v1)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with optional JSON API responses and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires AISA_API_KEY; sends the query and optional system prompt to AIsa Sonar endpoints.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

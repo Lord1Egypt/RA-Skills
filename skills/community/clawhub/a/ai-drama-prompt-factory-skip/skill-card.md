@@ -1,51 +1,64 @@
-## Description: <br>
-AI Drama Prompt Factory converts a novel or story idea into structured Chinese prompt packages for short-drama production, including planning, design, scripts, diagnostics, storyboard image prompts, video prompts, audio specifications, and API JSON. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ai Drama Prompt Factory.Skip helps agents turn a novel or original story idea into a structured short-drama prompt package with planning, character and scene design, scripts, diagnostics, storyboard prompts, video prompts, audio specifications, and API-ready JSON outputs.
 
-## Publisher: <br>
-[huang-shao](https://clawhub.ai/user/huang-shao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[huang-shao](https://clawhub.ai/user/huang-shao)
 
-## Use Case: <br>
-Creators, developers, and production teams use this skill to turn source fiction or original short-drama ideas into a structured prompt package for downstream image, video, and audio generation tools. It supports staged planning, character and scene design, script generation, adaptation diagnostics, and final JSON prompt assembly. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Bundled document tools can broadly index local files outside the intended story-material scope. <br>
-Mitigation: Run the skill only in a dedicated project folder containing the novel or story files needed for the task. <br>
-Risk: Generated index files may contain sensitive source-story content or private material from indexed folders. <br>
-Mitigation: Treat generated indexes as sensitive artifacts and delete them when they are no longer needed. <br>
-Risk: The skill generates prompt packages for downstream media tools, so outputs may need editorial and rights review before production use. <br>
-Mitigation: Review generated scripts, prompts, and source adaptation choices before submitting them to external image, video, or audio systems. <br>
+## Use Case:
 
+External creators and developers use this skill to convert source novels or original short-drama ideas into staged project files and JSON prompt packages for downstream image, video, and audio generation tools. The skill produces prompt data only and does not generate media directly.
 
-## Reference(s): <br>
-- [Skill source](SKILL.md) <br>
-- [API output schema](references/api-schema.md) <br>
-- [Assembly rules](references/assembly-rules.md) <br>
-- [Planning guide](references/planning-guide.md) <br>
-- [Design guide](references/design-guide.md) <br>
-- [Script generation guide](references/script-generation-guide.md) <br>
-- [Diagnosis guide](references/diagnosis-guide.md) <br>
-- [Continuity guide](references/continuity-guide.md) <br>
-- [Platform adapters](references/platform-adapters.md) <br>
-- [ClawHub release page](https://clawhub.ai/huang-shao/ai-drama-prompt-factory-skip) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown, JSON, and Chinese natural-language prompt text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces project manifests, episode prompt packages, role and scene configuration, storyboard image prompts, video prompts, audio specifications, and optional Markdown storyboard tables.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The bundled document indexing and retrieval helpers can read and persist more local story or source content than the creative workflow clearly scopes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep indexing limited to the intended story or source directory, and review or delete generated index files before sharing or deployment.
+
+Risk: Generated indexes or prompt packages may contain private file paths, content-derived keywords, or user-provided story material.
+
+Mitigation: Avoid processing confidential or rights-restricted source material unless the deployment has appropriate data handling and review controls.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/huang-shao/skills/ai-drama-prompt-factory-skip)
+- [API output schema](references/api-schema.md)
+- [Assembly rules](references/assembly-rules.md)
+- [Continuity guide](references/continuity-guide.md)
+- [Design guide](references/design-guide.md)
+- [Diagnosis guide](references/diagnosis-guide.md)
+- [Document reader guide](references/doc-reader-guide.md)
+- [Manga drama guide](references/manga-drama-guide.md)
+- [Planning guide](references/planning-guide.md)
+- [Platform adapters](references/platform-adapters.md)
+- [Prompt examples](references/prompt-examples.md)
+- [Script generation guide](references/script-generation-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance plus JSON project files, prompt packages, configuration objects, and optional shell command examples.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-first workflow; prompt packages can include storyboard_prompt, video_prompt, and audio_spec fields, while final media generation remains out of scope.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

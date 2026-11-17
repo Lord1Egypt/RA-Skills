@@ -1,43 +1,60 @@
-## Description: <br>
-Notion记账财务数据分析技能，自动读取支出收入流水表，全量翻页获取数据，100%解析relation类别字段，按年月类别标签多维分析并生成Markdown财务报告。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes Notion accounting data by reading expense and income data sources, resolving relation-based categories, summarizing finances by time period, category, tag, and large expenses, and generating a Markdown financial report.
 
-## Publisher: <br>
-[jimislg](https://clawhub.ai/user/jimislg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jimislg](https://clawhub.ai/user/jimislg)
 
-## Use Case: <br>
-Notion accounting users use this skill to fetch expense and income records, resolve relation-based categories, analyze trends by month, category, tag, and large transactions, and generate a Markdown finance report. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a Notion integration token and accesses private financial records. <br>
-Mitigation: Use a dedicated Notion integration connected only to the required accounting data sources, and avoid pasting tokens into shared chats or shell history. <br>
-Risk: The generated finance report can contain sensitive personal financial information and is written under /workspace. <br>
-Mitigation: Protect access to the workspace report, review it before sharing, and delete it when no longer needed. <br>
-Risk: Incorrect data_source_id values or missing Notion page connections can lead to incomplete or unintended data analysis. <br>
-Mitigation: Confirm the exact expense and income data_source_id values and verify the Notion integration has access only to the intended pages before running. <br>
+## Use Case:
 
+External Notion accounting users and agents use this skill to fetch personal or household finance records from Notion, resolve category relations, and produce a readable Markdown financial analysis report.
 
-## Reference(s): <br>
-- [Notion integrations](https://www.notion.so/my-integrations) <br>
-- [ClawHub skill page](https://clawhub.ai/jimislg/notion-accounting-analysis) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Text, Shell commands, Guidance] <br>
-**Output Format:** [Markdown report with console text and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The bundled script writes a yearly finance report to /workspace/<year>_finance_report.md when run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: release metadata) <br>
+Risk: The skill handles a Notion bearer token for access to financial data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated least-privilege Notion integration shared only with the required accounting databases, and avoid placing the token directly in shell history or shared logs.
+
+Risk: The generated /workspace finance report may contain sensitive personal or household financial records.
+
+Mitigation: Treat the report as sensitive local data and delete, redact, or restrict access to it when it is no longer needed.
+
+Risk: Financial summaries can be incomplete or misleading if Notion relation pages are inaccessible or database fields do not match the expected schema.
+
+Mitigation: Review unresolved relation IDs and grant the Notion integration access only to the needed pages before relying on the report.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/jimislg/skills/notion-accounting-analysis)
+- [ClawHub publisher profile](https://clawhub.ai/user/jimislg)
+- [Notion integrations setup](https://www.notion.so/my-integrations)
+- [Notion search API endpoint referenced by artifact](https://api.notion.com/v1/search)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown report with console summaries and setup guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes a yearly finance report to /workspace when the bundled Node.js script is run.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release metadata; artifact frontmatter says 1.0.4)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

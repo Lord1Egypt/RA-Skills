@@ -1,40 +1,54 @@
-## Description: <br>
-Helps agents query and manage Sanity CMS content via GROQ queries and the Sanity HTTP API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query and manage Sanity CMS content via GROQ queries and the Sanity HTTP API.
 
-## Publisher: <br>
-[dwhite-oss](https://clawhub.ai/user/dwhite-oss) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dwhite-oss](https://clawhub.ai/user/dwhite-oss)
 
-## Use Case: <br>
-Developers and content operators use this skill to fetch, query, create, update, publish, and delete Sanity Content Lake documents through GROQ and HTTP API examples. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A Sanity API token or Authorization header could be exposed in logs, prompts, or shared command output. <br>
-Mitigation: Use the least-privileged token needed for the task and avoid printing, logging, or sharing token-bearing curl commands. <br>
-Risk: Create, update, publish, or delete examples can mutate production content when run with an Editor token. <br>
-Mitigation: Confirm mutation intent before execution, prefer staging datasets for testing, and use Viewer tokens for read-only work. <br>
+## Use Case:
 
+Developers and content operators use this skill to query Sanity datasets, inspect GROQ results, and prepare Sanity Content Lake create, update, publish, delete, and asset-management operations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dwhite-oss/sanity) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with curl command examples, GROQ snippets, and environment variable configuration.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SANITY_PROJECT_ID, SANITY_DATASET, and SANITY_API_TOKEN environment variables.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill includes direct create, update, publish, and delete operations for CMS content without explicit confirmation or rollback safeguards.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit confirmation before mutation operations and review planned changes before applying them.
+
+Risk: Using an Editor token against a production dataset can modify or delete live content.
+
+Mitigation: Use least-privilege Sanity tokens, prefer Viewer tokens for read-only work, and test changes against non-production datasets before using production.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dwhite-oss/skills/sanity)
+- [Publisher profile](https://clawhub.ai/user/dwhite-oss)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with bash, JSON, and GROQ code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes Sanity environment variable guidance and HTTP API request examples.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

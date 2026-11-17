@@ -1,46 +1,62 @@
-## Description: <br>
-Generates stock investment reports, financial charts, investment logs, alerts, and natural-language investment-assistant interactions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates stock investment analysis reports, financial charts, investment journal content, alerts, and natural-language investment assistant responses.
 
-## Publisher: <br>
-[wuritu](https://clawhub.ai/user/wuritu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wuritu](https://clawhub.ai/user/wuritu)
 
-## Use Case: <br>
-External users and developers use this skill to generate premarket, postmarket, weekly, and stock-specific reports; render financial charts and dashboards; manage investment journals; configure alerts; and answer natural-language market questions. Outputs should be treated as informational analysis rather than professional financial advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may process sensitive investment records through persistent logs, scheduled alerts, and external channel notifications. <br>
-Mitigation: Enable cron jobs, memory logging, and channel pushes only after reviewing what data will be stored or sent and confirming the destination channels are appropriate. <br>
-Risk: Generated buy/sell prices, stop-losses, targets, and market conclusions may be mistaken for regulated financial advice. <br>
-Mitigation: Present outputs as informational analysis, retain disclaimers, and require user or professional review before acting on trading decisions. <br>
-Risk: The runtime imports unbundled local stock_data_adapter code, so behavior depends on code outside the packaged artifact. <br>
-Mitigation: Review and trust the local stock_data_adapter implementation before installation or execution. <br>
+## Use Case:
 
+Developers and external users use this skill to generate pre-market, post-market, weekly, and individual-stock reports, render supporting market charts, maintain investment logs, configure alerts, and answer follow-up investment questions. Outputs are informational and should not be treated as financial advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wuritu/stock-reporting-interaction) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [Report generator](artifact/tools/report_generator.py) <br>
-- [Chart renderer](artifact/tools/chart_renderer.py) <br>
-- [Interactive dashboard](artifact/canvas/dashboard.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown reports, JSON result objects, PNG chart files, HTML dashboard updates, shell commands, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and STOCK_DATA_API_KEY; imports local stock_data_adapter code from the surrounding environment.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and openclaw metadata) <br>
+Risk: The security review says the skill may store sensitive investment records in persistent memory without enough scoping or cleanup controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit confirmation before memory writes, define retention and cleanup expectations, and avoid storing account credentials or unnecessary personal financial details.
+
+Risk: The security review says the skill may modify agent-level instructions, create recurring scheduled jobs, and send reports through channels.
+
+Mitigation: Require explicit confirmation for cron jobs, instruction changes, and channel delivery; review schedules and recipients before enabling them.
+
+Risk: The security review calls for verifying the external stock_data_adapter source.
+
+Mitigation: Confirm the adapter package or local source before use and restrict access to the required STOCK_DATA_API_KEY.
+
+Risk: The security review identifies dashboard HTML injection as an issue before use in shared or untrusted environments.
+
+Mitigation: Sanitize dashboard data before rendering and avoid injecting untrusted strings into HTML.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wuritu/skills/stock-reporting-interaction)
+- [Publisher profile](https://clawhub.ai/user/wuritu)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports, generated chart files, dashboard HTML, shell commands, and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and STOCK_DATA_API_KEY for stock data access.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and openclaw metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

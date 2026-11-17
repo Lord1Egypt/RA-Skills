@@ -1,0 +1,29 @@
+{
+	"type": "function",
+	"function": {
+		"name": "_bpmn_create_instance",
+		"description": "Create and start a workflow process instance. ⚠️ Step 1: Call _bpmn_process_define_list to get the workflow definition ID; Step 2: Call _bpmn_get_process_define to get the workflow definition details, then construct the request parameters according to the returned configuration.",
+		"parameters": {
+			"type": "object",
+			"properties": {
+				"moduleId": {
+					"type": "string",
+					"description": "The workflow module ID."
+				},
+				"processDefineId": {
+					"type": "string",
+					"description": "The workflow process definition ID. It must be obtained from the processDefine.id returned by calling _bpmn_query_process_define_list. Note this is not the procDefId field returned from instance list."
+				},
+				"record": {
+					"type": "object",
+					"description": "Form data. Required if startSetting.enableStartForm is true. Key-value pairs format, and the key should be the field object's key, not the field id. When startSetting.enableStartForm is true, only fields with visible=true and editable=true in the tableFieldSettingList of the bpmnStartSetting object returned by _bpmn_get_process_define can be filled in."
+				},
+				"varMap": {
+					"type": "object",
+					"description": "Input variables for the process instance, key-value pairs format, optional."
+				}
+			},
+			"required": ["moduleId", "processDefineId"]
+		}
+	}
+}

@@ -1,39 +1,57 @@
-## Description: <br>
-A token management and model stabilization skill that applies the Zown Atomic Pipeline to help agents avoid Gemini TPM rate limits through context pruning, single-step execution, and cooldown guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A high-fidelity token management and model stabilization skill that implements the Zown "Atomic Pipeline" to reduce Gemini token-per-minute rate limit issues during heavy engineering, multi-step code generation, or 429 recovery workflows.
 
-## Publisher: <br>
-[GTOVD](https://clawhub.ai/user/GTOVD) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[gtovd](https://clawhub.ai/user/gtovd)
 
-## Use Case: <br>
-External developers and agent operators use this skill to manage Gemini-heavy engineering or Q&A sessions by pruning context, executing one verifiable step at a time, and applying cooldowns when rate-limit thresholds are reached. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill directs agents to modify persistent memory or identity files, which can alter future agent behavior without clear user intent. <br>
-Mitigation: Review proposed file changes before they are applied and keep backups or diffs for any MEMORY.md, SOUL.md, or IDENTITY.md updates. <br>
-Risk: The skill tells agents to run an unprovided local cooldown script and use the Gemini CLI, which could execute local commands or send data outside the current session. <br>
-Mitigation: Inspect and explicitly approve the exact command and any data it can access or transmit before running scripts or CLI prompts. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/GTOVD/zown-gemini-governor) <br>
+## Use Case:
 
+Developers and agent operators use this skill to guide agents through token-conscious task execution, context pruning, cooldown decisions, and Gemini-focused Q&A workflows when rate limits or large prompts are a concern.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown prose with inline shell commands and file-change guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May direct agents to edit memory or identity files and to run local cooldown or Gemini CLI commands.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can cause an agent to edit persistent memory or identity files.
+
+Mitigation: Require explicit user approval before any memory, identity, or long-lived context file is created, summarized, compacted, or overwritten.
+
+Risk: The skill can route prompts through an external Gemini CLI.
+
+Mitigation: Confirm what content will be sent externally before invoking the CLI, and avoid sending secrets, private code, or regulated data.
+
+Risk: The skill refers to running an unbundled cooldown script.
+
+Mitigation: Do not run referenced scripts unless they are present, reviewed, and approved in the local workspace.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gtovd/skills/zown-gemini-governor)
+- [Publisher profile](https://clawhub.ai/user/gtovd)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands]
+
+**Output Format:** [Markdown guidance with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May ask an agent to summarize memory files, pause execution, or use an external Gemini CLI; supervise those actions before execution.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

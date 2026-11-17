@@ -1,53 +1,72 @@
-## Description: <br>
-Uses the Stove Protocol Taker API to validate, lock, unlock, fill, reject, and query taker-side orders and fill records with API key authentication. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use the Stove Protocol Taker API to validate, lock, unlock, fill, reject, and query Taker orders and fill records with API-key authenticated requests.
 
-## Publisher: <br>
-[zschen211](https://clawhub.ai/user/zschen211) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zschen211](https://clawhub.ai/user/zschen211)
 
-## Use Case: <br>
-External developers, brokers, and custodian institutions use this skill to operate Stove Protocol taker workflows, including order validation, locking, unlocking, filling, rejection, order queries, fill queries, and WebSocket event interpretation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can perform live order actions with production credentials, including lock, unlock, fill, reject, and cancellation-result workflows. <br>
-Mitigation: Use test credentials first, require explicit user approval before live state-changing actions, and prefer least-privilege production API keys. <br>
-Risk: API keys may be exposed if real credentials are passed in command lines, logs, transcripts, or WebSocket URLs. <br>
-Mitigation: Use secret handling where available, avoid printing full credentials, and redact keys in examples and responses. <br>
-Risk: The security scan reports that the skill lacks strong safeguards against accidental production use. <br>
-Mitigation: Default operational reviews to the test environment and confirm environment, order hash, quantity, and action before executing production requests. <br>
+## Use Case:
 
+External developers and Taker operations teams use this skill to call Stove Protocol order workflows, inspect order and fill data, and plan WebSocket subscriptions for real-time Taker events.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/zschen211/stove-taker-api) <br>
-- [Taker API](references/Taker API.md) <br>
-- [API Authorization](references/API Authorization.md) <br>
-- [Validate Order](references/Validate Order.md) <br>
-- [Lock Order](references/Lock Order.md) <br>
-- [Unlock Order](references/Unlock Order.md) <br>
-- [Fill Order](references/Fill Order.md) <br>
-- [Cancellation Response](references/Cancellation Response.md) <br>
-- [Query Orders](references/Query Orders.md) <br>
-- [Query Fill Records](references/Query Fill Records.md) <br>
-- [Discover New Orders](references/Discover New Orders.md) <br>
-- [WebSocket Real-time Push](references/WebSocket Real-time Push.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [API responses are printed to stdout; live actions require user-supplied Stove Taker API credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: Live order actions such as lock, unlock, fill, and reject can affect real trading workflows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use test credentials first and require explicit human approval before any state-changing operation.
+
+Risk: API credentials can leak when passed on command lines, logs, shell history, or WebSocket URLs.
+
+Mitigation: Keep credentials in approved secret storage, redact them from examples and logs, and avoid placing real keys directly in commands or URLs.
+
+Risk: Custom base URLs can send credentials and order requests to unverified endpoints.
+
+Mitigation: Use only verified Stove production or test endpoints unless a trusted operator has approved the custom endpoint.
+
+Risk: Large or broad order queries can expose more data than intended or place avoidable load on the API.
+
+Mitigation: Use scoped filters and conservative pagination limits before increasing query size.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zschen211/skills/stove-taker-api)
+- [Taker API](artifact/references/Taker API.md)
+- [API Authorization](artifact/references/API Authorization.md)
+- [Validate Order](artifact/references/Validate Order.md)
+- [Lock Order](artifact/references/Lock Order.md)
+- [Unlock Order](artifact/references/Unlock Order.md)
+- [Fill Order](artifact/references/Fill Order.md)
+- [Cancellation Response](artifact/references/Cancellation Response.md)
+- [Query Orders](artifact/references/Query Orders.md)
+- [Query Fill Records](artifact/references/Query Fill Records.md)
+- [Discover New Orders](artifact/references/Discover New Orders.md)
+- [WebSocket Real-time Push](artifact/references/WebSocket Real-time Push.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance, JSON]
+
+**Output Format:** [Markdown guidance with shell command examples and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses API-key authenticated network calls to configured Stove Protocol production, test, or custom endpoints.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

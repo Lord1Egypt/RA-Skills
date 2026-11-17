@@ -1,40 +1,54 @@
-## Description: <br>
-Index YouTube channel videos and transcripts for semantic search. Use when user says "index YouTube", "add YouTube channel", "update video index", or "index transcripts". Works with solograph MCP (if available) or standalone via yt-dlp. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Index YouTube channel videos and transcripts for semantic search.
 
-## Publisher: <br>
-[fortunto2](https://clawhub.ai/user/fortunto2) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[fortunto2](https://clawhub.ai/user/fortunto2)
 
-## Use Case: <br>
-Developers and knowledge workers use this skill to index YouTube channel transcripts into a local searchable knowledge base, either through solograph MCP or a yt-dlp fallback. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: YouTube requests and optional browser-cookie access can expose authenticated browsing context or trigger rate limiting. <br>
-Mitigation: Use ordinary public channel handles or URLs by default, allow browser-cookie access only when authenticated YouTube requests are explicitly intended, and reduce limits or add sleep intervals when rate limited. <br>
-Risk: Transcript downloads and generated summaries may be incomplete when videos lack subtitles or metadata is sparse. <br>
-Mitigation: Review the docs/youtube/ output and generated index before relying on indexed results. <br>
+## Use Case:
 
+Developers and knowledge workers use this skill to collect YouTube channel transcripts, summarize video content, and make the resulting notes searchable through solograph MCP or local transcript files.
 
-## Reference(s): <br>
-- [ClawHub listing for Index Youtube](https://clawhub.ai/fortunto2/solo-index-youtube) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and local file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports indexed video counts, transcript availability, chapter-marker counts, index location, and search instructions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: skill metadata and release evidence) <br>
+Risk: The setup flow may execute third-party Python packages without pinned versions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an isolated environment and pin package versions before running setup or indexing commands.
+
+Risk: Using browser cookies can expose an authenticated Chrome session to yt-dlp.
+
+Mitigation: Avoid --cookies-from-browser chrome unless authenticated access is intentional and approved for the account being used.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fortunto2/skills/solo-index-youtube)
+- [Publisher profile](https://clawhub.ai/user/fortunto2)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create a local Markdown index and transcript text files when used in standalone mode.]
+
+## Skill Version(s):
+
+2.0.0 (source: server evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

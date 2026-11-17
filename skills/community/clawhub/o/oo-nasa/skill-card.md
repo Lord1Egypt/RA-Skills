@@ -1,45 +1,55 @@
-## Description: <br>
-NASA (nasa.gov). Use this skill for ANY NASA request — searching and reading data. Whenever a task involves NASA, use this skill instead of calling the API directly. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search and read NASA data through an OOMOL-connected NASA service.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-External users and developers use this skill to query NASA data through the OOMOL-connected NASA service, including Astronomy Picture of the Day, near-Earth object data, EPIC imagery metadata, and DONKI space weather datasets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires sensitive credentials through the OOMOL-connected NASA service. <br>
-Mitigation: Use the server-side credential flow and avoid exposing raw tokens in prompts, shell history, or generated files. <br>
-Risk: The security summary notes that scanner and telemetry evidence are clean but deeper validation was limited by artifact availability. <br>
-Mitigation: Review the visible skill instructions and requested permissions before installation or production use. <br>
-Risk: Connector schemas can change over time, which may make stale payloads fail or produce unexpected results. <br>
-Mitigation: Inspect the live action schema with `oo connector schema` before constructing each action payload. <br>
+## Use Case:
 
+External users and developers can retrieve NASA information, including near-Earth object data, space-weather events, EPIC imagery metadata, and Astronomy Picture of the Day information, through a connected account.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/oomol/oo-nasa) <br>
-- [NASA homepage](https://www.nasa.gov) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [oo CLI install guide](https://cli.oomol.com/install-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON payload examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May return JSON data from NASA connector actions via the oo CLI.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server evidence and skill frontmatter) <br>
+Risk: The fallback setup pipes a remote installer into a shell, which may run unverified code with local permissions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the installer and use a separately reviewed, version-pinned CLI installation; check automatic skill-install settings.
+
+Risk: NASA requests pass through OOMOL and may require account credit.
+
+Mitigation: Confirm the NASA connection and OOMOL account requirements before relying on the service.
+
+## Reference(s):
+
+- [NASA API Documentation](https://api.nasa.gov/)
+- [NASA](https://www.nasa.gov)
+- [oo CLI](https://github.com/oomol-lab/oo-cli)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON]
+
+**Output Format:** [Structured JSON responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responses include returned data and execution metadata.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

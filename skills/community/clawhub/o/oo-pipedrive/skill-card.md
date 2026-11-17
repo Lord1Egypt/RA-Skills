@@ -1,43 +1,57 @@
-## Description: <br>
-Pipedrive lets an agent operate Pipedrive CRM through the OOMOL connector to read, create, update, and delete records such as deals, persons, organizations, activities, pipelines, and stages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use a connected Pipedrive account to read and search CRM records and create, update, or delete activities, deals, organizations, and people.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Employees, external users, and developers with connected OOMOL and Pipedrive accounts use this skill to retrieve, search, create, update, and delete CRM records from an agent workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can access sensitive Pipedrive CRM data through OOMOL-connected credentials. <br>
-Mitigation: Install only when agent access to Pipedrive data is intended, and review requested data access before execution. <br>
-Risk: The skill can create, update, or delete CRM records. <br>
-Mitigation: Require explicit user approval for the exact payload and expected effect before write or destructive actions. <br>
+## Use Case:
 
+Pipedrive users and teams can use this skill to manage CRM records through their connected account, including looking up existing information and making requested changes.
 
-## Reference(s): <br>
-- [ClawHub Pipedrive skill page](https://clawhub.ai/oomol/oo-pipedrive) <br>
-- [Pipedrive homepage](https://www.pipedrive.com) <br>
-- [OOMOL oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [OOMOL CLI install guide](https://cli.oomol.com/install-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration guidance] <br>
-**Output Format:** [Markdown instructions with inline shell commands and JSON payload guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Connector responses are JSON objects containing data and execution metadata.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and release evidence) <br>
+Risk: Setup instructions may run downloaded software from the internet without independent verification.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and independently verify the CLI installer before running it; avoid executing a downloaded script unchecked.
+
+Risk: Connecting Pipedrive entrusts OOMOL with credential handling and access to business data; the skill can also change or delete records.
+
+Mitigation: Review the account access being granted, confirm the exact payload and effect before writes, and get explicit approval for the target before deletion.
+
+## Reference(s):
+
+- [Pipedrive skill page](https://clawhub.ai/oomol/skills/oo-pipedrive)
+- [Pipedrive](https://www.pipedrive.com)
+- [Pipedrive API documentation](https://developers.pipedrive.com/docs/api/v1)
+- [oo CLI repository](https://github.com/oomol-lab/oo-cli)
+- [oo CLI installation guide](https://cli.oomol.com/install-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [API calls, JSON, Text]
+
+**Output Format:** [Structured Pipedrive record data and natural-language summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Available data varies by action; write actions require confirmation and deletions require explicit approval.]
+
+## Skill Version(s):
+
+1.0.6 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

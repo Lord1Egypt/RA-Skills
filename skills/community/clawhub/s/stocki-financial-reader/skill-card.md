@@ -1,52 +1,73 @@
-## Description: <br>
-Institutional-grade financial data skill for OpenClaw. Real-time quotes, financials, valuation time series, OHLCV history, industry membership, consensus forecasts, composite analysis. Covers cn/hk/us markets and stock/index/etf/futures/crypto. For structured market/financial data, use this skill. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Institutional-grade financial data skill for OpenClaw that retrieves real-time quotes, financials, valuation time series, OHLCV history, industry membership, consensus forecasts, and composite analysis across cn/hk/us markets and multiple asset types.
 
-## Publisher: <br>
-[17817942676](https://clawhub.ai/user/17817942676) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[17817942676](https://clawhub.ai/user/17817942676)
 
-## Use Case: <br>
-External OpenClaw and ClawBot users use this skill to retrieve structured market and financial data through the Stocki gateway, including quotes, OHLCV history, fundamentals, valuation panels, industry membership, market calendars, and consensus data. It is a data retrieval and analysis aid, not an investment advice or transaction execution tool. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends market-data queries and API-key authenticated requests to the configured Stocki gateway. <br>
-Mitigation: Install only when the Stocki service is trusted, keep STOCKI_API_KEY out of source code and chat logs, rotate exposed keys, and avoid sending personal or confidential context in financial queries. <br>
-Risk: Optional setup diagnostics contact the configured gateway to verify authentication and reachability. <br>
-Mitigation: Run diagnostics only when ready to test the configured gateway and report their exit codes without retrying automatically. <br>
-Risk: Returned financial data may be delayed, adjusted upstream, or insufficient for a requested decision. <br>
-Mitigation: Relay only data present in real responses, preserve non-advisory wording, and have users verify independently before making financial decisions. <br>
+## Use Case:
 
+Developers and external OpenClaw agent users use this skill to retrieve and summarize structured market and financial data from Stocki for quotes, OHLCV, financial statements, valuation panels, industry and index membership, consensus forecasts, and composite company analysis. It is not for investment advice or transaction execution.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/17817942676/stocki-financial-reader) <br>
-- [Install and setup](INSTALL.md) <br>
-- [Market calendar](references/market-calendar.md) <br>
-- [Realtime quote](references/realtime-quote.md) <br>
-- [Price history](references/price-history.md) <br>
-- [Industry and symbols](references/industry-and-symbols.md) <br>
-- [Fundamentals panel](references/fundamentals-panel.md) <br>
-- [Consensus and target](references/consensus-and-target.md) <br>
-- [Financial context](references/financial-context.md) <br>
-- [Metric resolver](references/metric-resolver.md) <br>
-- [Name resolver](references/name-resolver.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, API calls, Shell commands, Configuration] <br>
-**Output Format:** [Markdown responses with structured market-data summaries and optional bash commands for setup diagnostics] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires STOCKI_GATEWAY_URL and STOCKI_API_KEY; data returned by the Stocki gateway is governed separately from the MIT-0 skill code.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.4.0 (source: SKILL.md frontmatter and server-resolved release metadata) <br>
+Risk: The documented installer executes a remote shell script.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the installer before use, prefer a version-pinned or otherwise inspectable install path, and run it only if SkillHub is trusted.
+
+Risk: STOCKI_API_KEY can be sent to any configured gateway URL.
+
+Mitigation: Set STOCKI_GATEWAY_URL only to https://skill.stocki.com.cn or a trusted local development gateway, avoid remote http:// endpoints, and rotate the key if it may have reached an untrusted service.
+
+Risk: Financial queries, symbols, date ranges, and credentials are sent to the configured Stocki service.
+
+Mitigation: Avoid including sensitive personal data in requests and confirm the Stocki service terms for the intended data use.
+
+Risk: Returned financial data may be delayed, incomplete, adjusted, or misunderstood as advice.
+
+Mitigation: Present outputs as non-advisory data, preserve freshness and availability warnings, and require independent verification before decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/17817942676/skills/stocki-financial-reader)
+- [README](README.md)
+- [Install and setup](INSTALL.md)
+- [Market calendar](references/market-calendar.md)
+- [Realtime quote](references/realtime-quote.md)
+- [Price history](references/price-history.md)
+- [Industry and symbols](references/industry-and-symbols.md)
+- [Fundamentals panel](references/fundamentals-panel.md)
+- [Consensus and target](references/consensus-and-target.md)
+- [Financial context](references/financial-context.md)
+- [Metric resolver](references/metric-resolver.md)
+- [Name resolver](references/name-resolver.md)
+- [Stocki gateway service](https://skill.stocki.com.cn)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown responses with structured financial figures, request examples, setup commands, and diagnostic guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include tabular financial data, API request payloads, diagnostic exit codes, and non-advisory caveats.]
+
+## Skill Version(s):
+
+0.4.0 (source: SKILL.md frontmatter and ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

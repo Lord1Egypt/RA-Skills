@@ -2,5 +2,11 @@
   "ownerId": "kn79cfn6dqnrh1ex13bzvsvrbs833g87",
   "slug": "novada-search",
   "version": "1.0.8",
-  "publishedAt": 1774392237804
+  "requiredEnv": {
+    "NOVADA_API_KEY": {
+      "description": "Novada Scraper API key. Get free at https://novada.com",
+      "required": true
+    }
+  },
+  "publishedAt": 1774092631339
 }

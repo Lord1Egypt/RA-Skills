@@ -2,11 +2,14 @@
 
 ## Overview
 
-A command-line interface for interacting with Character Select Stand Alone App (SAA) via WebSocket connections. Supports both ComfyUI and WebUI backends for AI image generation.
+A command-line interface for interacting with Character Select Stand Alone App (SAA) via WebSocket connections. Supports both ComfyUI and WebUI backends for AI image generation, and the AI Prompt panel APIs (Remote / Local LLM) for polishing prompts.
 
 **Author:** mirabarukaso  
 **License:** MIT  
+**Version:** 1.3.0  
 **Project:** https://github.com/mirabarukaso/character_select_stand_alone_app
+
+Image generation requires SAA **2.9.0+**. AI Prompt (`--ai-prompt`, `--list-ai-templates`) requires SAA **2.11.0+**.
 
 ## Prerequisites
 
@@ -15,6 +18,7 @@ Before using this tool, ensure the following:
 1. **SAA Backend Running**: The Stand Alone App must be running and accessible
 2. **SAAC Feature Enabled**: The SAA Client (SAAC) feature must be enabled in the backend
 3. **Network Access**: Ensure you can reach the SAA backend via WebSocket
+4. **AI Prompt (optional)**: In the SAA AI Prompt panel, set `Backend` to `Remote` or `Local` and fill URL/key — or pass `--ai-interface` / `--ai-url` / `--ai-key` on the CLI
 
 For detailed setup instructions, visit the [project repository](https://github.com/mirabarukaso/character_select_stand_alone_app).
 
@@ -78,6 +82,30 @@ python saa-agent.py \
   --overlap-ratio 20
 ```
 
+### AI Prompt Example (SAA 2.11.0+)
+
+Image generation does **not** call the language model. Polish a brief first, then pass the result to `--positive` yourself.
+
+```bash
+python saa-agent.py \
+  --ws-address "ws://127.0.0.1:51028" \
+  --ai-prompt \
+  --ai-template "tag-brief" \
+  --brief "sunset villa, palm trees, golden hour"
+```
+
+List templates stored on the host (`settings/ai/templates.json`):
+
+```bash
+python saa-agent.py \
+  --ws-address "ws://127.0.0.1:51028" \
+  --list-ai-templates
+```
+
+Built-in template ids: `tag-brief` (Tag scene), `natural-brief` (Natural scene), `character-natural` (Character natural).
+
+`--ai-interface`, `--ai-url`, and `--ai-key` inherit from the host AI Prompt panel when omitted. Overwrite / Append into host prompt boxes remains UI-only.
+
 ## Command-Line Parameters
 
 ### Required Parameters
@@ -89,10 +117,10 @@ python saa-agent.py \
 ### Connection Settings
 
 - `--api-address`: API address (default: `127.0.0.1:58188`)
-- `--api-interface`: Backend interface - `ComfyUI` or `WebUI` (default: `ComfyUI`)
+- `--api-interface`: Backend interface - `ComfyUI` or `WebUI` / Forge Neo (default: `ComfyUI`)
 - `--username`: Username for authentication (default: `saac_user`)
 - `--password`: Password for authentication (default: empty)
-- `--timeout`: Connection timeout in seconds (default: 600)
+- `--timeout`: Connection timeout in seconds (default: 120; AI Prompt raises the wait automatically when needed)
 
 ### Generation Parameters
 
@@ -114,6 +142,25 @@ python saa-agent.py \
 - `--image-ratio`: Left/right split ratio 0-100 (default: 50)
 - `--overlap-ratio`: Overlap between regions 0-100 (default: 20)
 
+### AI Prompt (SAA 2.11.0+)
+
+These options call the same host APIs as the AI Prompt panel (`remoteAI` / `localAI`). They do **not** generate an image.
+
+- `--ai-prompt`: Run LLM completion and print the result
+- `--list-ai-templates`: List host templates and exit
+- `--brief`: User text sent to the model (required with `--ai-prompt`)
+- `--ai-template`: Template id or name (e.g. `tag-brief`, `Natural scene`)
+- `--ai-interface`: `Remote` or `Local` (default: host `ai_interface`)
+- `--ai-url`: Remote base URL or Local `/chat/completions` URL (default: host)
+- `--ai-key`: Remote API key (default: host)
+- `--ai-model`: Model id (default: template or host `remote_ai_model`)
+- `--ai-system-prompt`: Override template system prompt
+- `--ai-timeout`: LLM timeout in seconds (default: template)
+- `--ai-temperature`: Temperature (default: template)
+- `--ai-max-tokens`: `max_tokens` / `n_predict` (default: template)
+
+Do not confuse `--ai-interface` with `--api-interface` (ComfyUI / WebUI).
+
 ### High-Resolution Fix (HiResFix)
 
 **⚠️ Warning:** HiResFix significantly increases generation time. Only use if you have sufficient GPU performance.
@@ -129,8 +176,8 @@ python saa-agent.py \
 - `--refiner`: Enable refiner model
 - `--refiner-model`: Refiner model name (default: None)
 - `--refiner-ratio`: Switch ratio for refiner (default: 0.4)
-- `--vpred`: VPred setting for main model - 0 (auto), 1 (vpred), 2 (no vpred)
-- `--refiner-vpred`: VPred setting for refiner
+- `--vpred`: Main model v-prediction - 0 auto, 1 on, 2 on+ZSNR, 3 off
+- `--refiner-vpred`: Refiner v-prediction, same values as `--vpred`
 
 ### Output Options
 
@@ -151,8 +198,10 @@ Error: ComfyUI is busy, cannot run new generation, please try again later.
 ```
 
 **This means:**
-- Another process is currently using the SAA backend, OR
-- The backend is locked due to a previous error
+- Another job is using this same API address, OR
+- That address is locked due to a previous error
+
+The busy lock is per backend address. A different ComfyUI or WebUI address can still generate.
 
 **What to do:**
 1. Wait 20-60 seconds for the current generation to complete
@@ -203,6 +252,19 @@ python saa-agent.py \
   --verbose
 ```
 
+### AI Prompt Test
+
+```bash
+python saa-agent.py \
+  --ws-address "ws://127.0.0.1:51028" \
+  --ai-prompt \
+  --ai-template "tag-brief" \
+  --brief "simple test scene, rainy street" \
+  --verbose
+```
+
+Successful output is wrapped with `AI_PROMPT_RESULT_START` / `AI_PROMPT_RESULT_END`.
+
 ## Exit Codes
 
 The tool returns standard exit codes:
@@ -210,7 +272,7 @@ The tool returns standard exit codes:
 - `0`: Success
 - `1`: Connection error
 - `2`: Authentication error
-- `3`: Generation error
+- `3`: Generation or AI Prompt error
 - `4`: Timeout error
 - `5`: Invalid parameters
 - `99`: Unknown error
@@ -225,18 +287,16 @@ The tool returns standard exit codes:
   `ipndm`, `ipndm_v`, `deis`, `res_multistep`, `res_multistep_cfg_pp`, `res_multistep_ancestral`, 
   `res_multistep_ancestral_cfg_pp`, `gradient_estimation`, `er_sde`, `seeds_2`, `seeds_3`
 
-
-### WebUI Samplers
+### ComfyUI Schedulers
   `normal`, `karras`, `exponential`, `sgm_uniform`, `simple`, `ddim_uniform`, 
   `beta`, `linear_quadratic`, `kl_optimal`
 
-### Schedulers
-**ComfyUI:** 
+### WebUI Samplers
   `Euler a`, `Euler`, `DPM++ 2M`, `DPM++ SDE`, `DPM++ 2M SDE`, `DPM++ 2M SDE Heun`, 
   `DPM++ 2S a`, `DPM++ 3M SDE`, `LMS`, `Heun`, `DPM2`, `DPM2 a`, `DPM fast`, 
   `DPM adaptive`, `Restart`    
 
-**WebUI:** 
+### WebUI Schedulers
   `Automatic`, `Uniform`, `Karras`, `Exponential`, `Polyexponential`, `SGM Uniform`, 
   `KL Optimal`, `Align Your Steps`, `Simple`, `Normal`, `DDIM`, `Beta`
 

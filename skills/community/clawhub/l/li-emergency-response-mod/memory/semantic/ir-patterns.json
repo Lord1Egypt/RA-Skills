@@ -1,0 +1,14 @@
+{
+  "meta": {
+    "name": "ir-patterns",
+    "version": 1,
+    "updated_at": null,
+    "governance": {
+      "policy": "人工审核合并（防污染）",
+      "default_vbr_required": true,
+      "default_preserve_evidence_first": true
+    }
+  },
+  "patterns": []
+}
+

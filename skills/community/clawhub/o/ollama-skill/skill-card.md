@@ -1,42 +1,59 @@
-## Description: <br>
-Use when user wants to integrate Ollama into coding agents, IDEs, or agent harnesses. Supports local/on-prem/Docker deployment, Ollama Cloud, OpenAI/Anthropic-compatible endpoints, streaming, structured outputs, embeddings, tool calling, and web search. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Integrates Ollama into coding agents, IDEs, and agent harnesses through local, on-premises, Docker, Ollama Cloud, and OpenAI/Anthropic-compatible API paths.
 
-## Publisher: <br>
-[waiyannyeinnaing](https://clawhub.ai/user/waiyannyeinnaing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[waiyannyeinnaing](https://clawhub.ai/user/waiyannyeinnaing)
 
-## Use Case: <br>
-Developers and engineers use this skill to wire Ollama into coding agents, IDE integrations, and backend agent harnesses across local, on-prem, Docker, and Ollama Cloud deployments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Install metadata declares purchase and crypto capabilities that do not match the Ollama integration guidance. <br>
-Mitigation: Before installing, confirm those capabilities are intended or remove them if they affect platform permissions. <br>
-Risk: Remote Ollama endpoints and OLLAMA_API_KEY can send prompts or code to a cloud provider. <br>
-Mitigation: Use localhost or trusted hosts for sensitive work, reserve OLLAMA_API_KEY for intended cloud calls, and handle it as a secret. <br>
+## Use Case:
 
+Developers and engineers use this skill to add Ollama runtime integration to agent harnesses, IDE extensions, and application backends. It helps configure chat, streaming, structured outputs, embeddings, tool calling, web search, and provider-compatible client paths.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/waiyannyeinnaing/ollama-skill) <br>
-- [Ollama API](https://ollama.com/api) <br>
-- [Ollama](https://ollama.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with code snippets, shell commands, and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include runnable examples, environment variable guidance, adapter code, and local/cloud switching notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata, _meta.json, package.json) <br>
+Risk: The Docker setup can expose an unauthenticated Ollama API on port 11434 beyond the local machine.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Bind Ollama to 127.0.0.1 when possible, avoid exposing port 11434 to untrusted networks, and review network configuration before deployment.
+
+Risk: Cloud mode and web search can send prompt, query, or workload data off-device.
+
+Mitigation: Use local or on-premises deployment for sensitive data, keep cloud API key handling separate from local configuration, and disclose off-device data flow to users.
+
+Risk: Dependencies and the container image are not pinned to exact versions in the artifact examples.
+
+Mitigation: Pin package and container versions for repeatable installs, then rescan before production use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/waiyannyeinnaing/skills/ollama-skill)
+- [Ollama API](https://ollama.com/api)
+- [Artifact skill source](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline code blocks, configuration snippets, and runnable example commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference local or cloud Ollama endpoints and example files; outputs should avoid secrets.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata, package.json, artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

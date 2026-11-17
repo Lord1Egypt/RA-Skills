@@ -1,0 +1,16 @@
+{
+  "name": "markdown-indexer",
+  "version": "1.0.0",
+  "description": "Scan a directory of Markdown files, extract titles/headings/frontmatter, build a searchable index JSON, and output a concise summary report.",
+  "emoji": "📑",
+  "requires": {
+    "bins": ["jq"]
+  },
+  "install": [
+    {
+      "id": "jq",
+      "kind": "system",
+      "label": "Install jq (apt install jq or brew install jq)"
+    }
+  ]
+}

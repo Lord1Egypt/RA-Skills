@@ -1,40 +1,62 @@
-## Description: <br>
-A collection of 48 expert software testing skills that supports the full testing lifecycle, from requirements analysis and test design to AI collaboration, execution monitoring, quality metrics, test cases, and reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Orchestrates QA analysis of requirement documents into traceable test cases, coverage reports, and risk assessments.
 
-## Publisher: <br>
-[kokxi](https://clawhub.ai/user/kokxi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kokxi](https://clawhub.ai/user/kokxi)
 
-## Use Case: <br>
-QA practitioners, developers, and test leads use this skill to turn requirements or project files into structured testing workflows, test-case sets, scenario analysis, and testing reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The artifact references external GitHub install scripts and repository content that are not included in this release artifact. <br>
-Mitigation: Inspect any external repository files or scripts before running them, especially installation scripts. <br>
-Risk: Generated test cases or reports may miss product-specific constraints or misread incomplete requirements. <br>
-Mitigation: Review outputs against the source requirements and project context before using them for release decisions. <br>
+## Use Case:
 
+QA engineers and developers use this skill to turn written requirements, attachments, or URLs into test scenarios, traceable test cases, coverage analysis, and reports. The full workflow depends on separately available companion skills.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kokxi/qa-test-skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands] <br>
-**Output Format:** [Markdown with optional inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces QA workflow guidance, test-case sets, and testing reports from user-provided requirements or project materials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: server release metadata) <br>
+Risk: Referenced documents or URLs may expose sensitive information or lead the agent to read unintended files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted documents, scope permitted paths and directories, and confirm URL fetches before analysis.
+
+Risk: Installing companion skills via an unreviewed package command may run untrusted code.
+
+Mitigation: Inspect and pin the installation source before running the suggested npx command.
+
+Risk: The workflow may execute a local validation command without adequate confirmation.
+
+Mitigation: Review the validation script and its input path, and approve local command execution before running it.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/kokxi/skills/qa-test-skills)
+- [Workflow details](artifact/references/workflow-detail.md)
+- [Input routing](artifact/references/routing.md)
+- [Output format](artifact/references/format.md)
+- [Workflow enforcement](artifact/references/enforcement.md)
+- [Depth benchmarks](artifact/references/depth-benchmarks.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Text, Guidance]
+
+**Output Format:** [Markdown analysis and reports plus UTF-8 CSV test cases]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Nine-column CSV; unique test-case IDs and requirement/scenario traceability; coverage is limited to supplied requirements.]
+
+## Skill Version(s):
+
+1.8.0 (source: server release and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

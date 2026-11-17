@@ -1,6 +1,7 @@
 {
   "ownerId": "kn74rbpexnxpj31ha3qp6ye75s84svds",
   "slug": "roundtable-pai",
-  "version": "1.6.5",
-  "publishedAt": 1776402232537
+  "version": "1.3.1",
+  "publishedAt": 1776234999878,
+  "description": "圆桌派 - OpenClaw 对话版三人圆桌技能，保留原始 A/B/C/D/E 玩法语义，仅增强停顿与状态机执行稳定性"
 }

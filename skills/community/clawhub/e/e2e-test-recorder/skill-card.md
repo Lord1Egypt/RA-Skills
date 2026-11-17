@@ -1,43 +1,65 @@
-## Description: <br>
-Records browser interactions for end-to-end tests and generates videos or GIFs with configurable encoding and annotations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Records browser interactions for end-to-end tests and generates videos or GIFs with configurable encoding and annotations.
 
-## Publisher: <br>
-[13770626440](https://clawhub.ai/user/13770626440) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[13770626440](https://clawhub.ai/user/13770626440)
 
-## Use Case: <br>
-Developers and test engineers use this skill to record browser-driven end-to-end test flows and produce shareable MP4, GIF, or WebM evidence with optional annotations, watermarks, and test reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Recordings may capture credentials, personal data, or sensitive application state. <br>
-Mitigation: Use dummy accounts and sanitized data when recording, and review generated recordings before sharing. <br>
-Risk: Bundled publishing scripts can use GitHub tokens, create public repositories, push code, tag releases, and force-push. <br>
-Mitigation: Install in an isolated test project and avoid running auto-release, github-api-release, or deploy scripts unless publishing is intended and the GitHub token and git push behavior are fully understood. <br>
+## Use Case:
 
+Developers and QA engineers use this skill to record browser-based end-to-end test flows, produce demonstration recordings, and generate supporting configuration or command examples for test automation.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/13770626440/e2e-test-recorder) <br>
-- [Puppeteer documentation](https://pptr.dev/) <br>
-- [puppeteer-screen-recorder](https://github.com/adrielcodeco/puppeteer-screen-recorder) <br>
-- [FFmpeg](https://ffmpeg.org/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with JavaScript, JSON, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide local scripts that create MP4, GIF, WebM, and JSON report files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: Browser recording can capture credentials, private user data, or production information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use sanitized test sites and test accounts, and do not record real passwords or private production data.
+
+Risk: The skill weakens Chromium isolation when launching Puppeteer.
+
+Mitigation: Keep Chromium sandboxing enabled unless execution is isolated in a disposable container.
+
+Risk: CLI inputs such as JSON configs and media filenames may reach script execution or file-writing paths.
+
+Mitigation: Run only trusted configs and output paths, and review or patch the Node scripts before installation.
+
+Risk: Bundled release tooling handles GitHub tokens and includes force-push behavior.
+
+Mitigation: Avoid the release scripts unless their token handling and git operations have been reviewed for the intended environment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/13770626440/skills/e2e-test-recorder)
+- [README](README.md)
+- [Installation Guide](INSTALLATION.md)
+- [Skill Documentation](SKILL.md)
+- [Release Notes](RELEASE_NOTES.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JavaScript and shell command snippets; CLI runs can produce MP4, GIF, WebM, and JSON report files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local recording, log, and report files when its scripts are executed.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

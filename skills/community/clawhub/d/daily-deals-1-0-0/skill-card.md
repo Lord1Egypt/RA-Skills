@@ -1,45 +1,55 @@
-## Description: <br>
-Generates concise daily shopping-deal reports from configured deal sources and can deliver them through console, webhook, or Feishu channels. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates concise daily deal reports from Chinese ecommerce deal sources and can push the results to configured messaging channels.
 
-## Publisher: <br>
-[gf1023456](https://clawhub.ai/user/gf1023456) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gf1023456](https://clawhub.ai/user/gf1023456)
 
-## Use Case: <br>
-External users and deal-tracking operators use this skill to convert scraped or saved shopping-source data into scheduled daily deal reports and notifications. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global, with source coverage centered on Chinese shopping platforms. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Bundled Feishu scripts include hardcoded credentials and a fixed recipient. <br>
-Mitigation: Remove embedded credentials and recipient IDs, rotate exposed credentials, and require users to provide delivery settings through local configuration or environment variables. <br>
-Risk: Scheduled or automatic notification runs can send generated reports to unintended destinations. <br>
-Mitigation: Run report generation manually and inspect the output before enabling cron or push commands; keep default delivery console-only until destinations are explicitly configured. <br>
-Risk: Deal reports are generated from scraped or saved source data and may be stale or inaccurate. <br>
-Mitigation: Verify price, availability, seller, and promotion terms at the linked source before purchasing or acting on a report. <br>
+## Use Case:
 
+External users and developers who track ecommerce discounts use this skill to collect deal snapshots, rank notable offers, generate a daily markdown or text report, and optionally schedule or push that report to messaging channels.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/gf1023456/daily-deals-1-0-0) <br>
-- [SMZDM deal source](https://www.smzdm.com/) <br>
-- [Shihuo deal source](https://www.shihuo.cn/) <br>
-- [Feishu Open Platform](https://open.feishu.cn/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown-like plain text reports with product titles, prices, source links, statistics, and delivery instructions.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write a local daily-report.txt file and send report text to configured channels; Feishu delivery requires credential and recipient review before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.5 (source: server release metadata) <br>
+Risk: Embedded Feishu credentials and a fixed recipient can expose secrets or send deal reports to an unintended account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove the embedded credentials, rotate the exposed secret, and require all Feishu destinations to come from user-controlled configuration or environment variables before running or scheduling the skill.
+
+Risk: Installing dependencies without a reviewed lockfile or pinned versions can pull unreviewed package changes.
+
+Mitigation: Use a reviewed lockfile or pinned dependency set before running npm install.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/gf1023456/skills/daily-deals-1-0-0)
+- [SMZDM deal source](https://faxian.smzdm.com/h3s183t0f0c0p1/)
+- [Shihuo deal source](https://www.shihuo.cn/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown or plain-text deal reports with shell commands and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports may be printed locally, written to files, or pushed to configured messaging channels.]
+
+## Skill Version(s):
+
+0.1.5 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

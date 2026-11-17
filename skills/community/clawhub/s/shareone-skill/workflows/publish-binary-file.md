@@ -1,8 +1,8 @@
 # 发布二进制文件
 
-当用户要发布 PDF、PPTX、PPT、Word、图片、zip 或其他二进制文件时读取本文件。发布前必须已经完成 `environment-and-credentials.md`。
+当用户要发布 PDF、PPTX、PPT 或 Word 文档时读取本文件。发布前必须已经完成 `environment-and-credentials.md`。
 
-适用文件类型包括但不限于：`.pdf`、`.ppt`、`.pptx`、`.doc`、`.docx`、`.png`、`.jpg`、`.jpeg`、`.gif`、`.zip`。
+适用文件类型：`.pdf`、`.ppt`、`.pptx`、`.doc`、`.docx`。
 
 如果用户说“发布这个 pptx / PPT / 演示文稿 / presentation”，必须使用本 workflow，不要读取 `publish-text-page.md`。发布命令统一是 `publish.js`，脚本会自动识别二进制文件并走直传通道。
 
@@ -15,9 +15,11 @@
 - 如果文件不存在，停止并告知用户。
 - 提取用户可能要求的密码 (`password`)、水印 (`watermark`) 和自定义短链接后缀 (`slug`)。服务端会根据文件名自动生成可读的 slug，客户端无需主动设置。只有用户明确说”链接叫 xxx / 自定义短链接 xxx / URL 后缀 xxx”时才用 `--slug` 覆盖。
 
-## 2. 发布前安全确认
+## 2. 发布前安全自检
 
-发布前安全提示由入口 `SKILL.md` 统一描述：**创建新分享链接**前必须展示安全提示并获得用户明确回复“同意”或 `agree`；对本会话中已确认链接的后续更新不需要重复确认。
+发布前安全自检由入口 `SKILL.md` 统一描述：**创建新分享链接**前由 Agent 自行检查内容是否明显违规；自检通过后直接继续发布，不要展示安全提示，也不要等待用户回复“同意”或 `agree`。
+
+二进制文件自检只看用户请求、文件名、扩展名和显式参数。不要为了自检提取 PDF/PPT/Word 正文、OCR、转换格式、生成预览或解析文件内部内容；直接走上传脚本，服务端审核负责深度内容检查。已有链接的后续设置更新按对应规则直接执行。
 
 ## 3. 首次发布二进制文件
 
@@ -25,7 +27,7 @@
 
 由于二进制文件可能较大，ShareOne 采用直传云存储方式，支持 S3 或 Azure。脚本会自动根据服务端返回的 `upload_type` 判断走 S3 表单上传还是 Azure PUT 直传。
 
-首次发布 `.pptx`、`.ppt`、`.pdf`、Word、图片、zip 等二进制文件时，执行：
+首次发布 `.pptx`、`.ppt`、`.pdf` 或 Word 文档时，执行：
 
 ```bash
 node scripts/publish.js "<FILE_PATH>" [--password "OPTIONAL_PASSWORD"] [--watermark "OPTIONAL_WATERMARK"] [--slug "OPTIONAL_SLUG"]

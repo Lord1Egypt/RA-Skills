@@ -1,42 +1,57 @@
-## Description: <br>
-Manages Baidu Netdisk files by listing directories, searching files, and creating folders through the Baidu Netdisk REST API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manages Baidu Netdisk files by listing directories, searching files, and creating folders using user-configured Baidu AppID and OAuth access token credentials.
 
-## Publisher: <br>
-[382108113](https://clawhub.ai/user/382108113) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[382108113](https://clawhub.ai/user/382108113)
 
-## Use Case: <br>
-Developers and agents use this skill to inspect and manage Baidu Netdisk contents after configuring a Baidu App ID and OAuth access token. It supports listing paths, searching filenames, and creating directories in a connected cloud storage account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger phrases could cause the agent to access or change Baidu Netdisk content when the user did not clearly intend it. <br>
-Mitigation: Invoke the skill only for explicit Baidu Netdisk requests, confirm exact paths before directory creation, and use the least-privileged Baidu OAuth token available. <br>
-Risk: Listing and search results can expose sensitive filenames or folder structure. <br>
-Mitigation: Review prompts and outputs before sharing them, and avoid using tokens tied to accounts that contain sensitive cloud storage contents. <br>
+## Use Case:
 
+External users and developers use this skill to manage Baidu Netdisk accounts from an agent workflow, including listing files, searching by keyword, and creating remote directories.
 
-## Reference(s): <br>
-- [Baidu Netdisk Open Platform Documentation](https://pan.baidu.com/union/doc/) <br>
-- [ClawHub Skill Page](https://clawhub.ai/382108113/baidu-netdisk-eva) <br>
-- [Publisher Profile](https://clawhub.ai/user/382108113) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration guidance] <br>
-**Output Format:** [Plain text command output with Markdown configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires BAIDU_APP_ID and BAIDU_NETDISK_TOKEN environment variables and sends requests to the Baidu Netdisk API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence.release.version and artifact/skill.json) <br>
+Risk: The skill uses a user-supplied OAuth token to access a Baidu Netdisk account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and configure it only for accounts where agent access is intended, and keep BAIDU_NETDISK_TOKEN scoped and stored as an environment variable.
+
+Risk: List and search results can reveal private file and directory metadata.
+
+Mitigation: Treat command output as private account metadata and avoid sharing it in public logs or transcripts.
+
+Risk: The mkdir command creates remote directories in the connected account.
+
+Mitigation: Confirm directory paths before execution and review remote account changes after use.
+
+## Reference(s):
+
+- [Baidu Netdisk Open Platform documentation](https://pan.baidu.com/union/doc/)
+
+## Skill Output:
+
+**Output Type(s):** [text, configuration]
+
+**Output Format:** [Plain text command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include private file names, directory names, sizes, and remote directory creation status from the user's Baidu Netdisk account.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, artifact/skill.json, artifact/SKILL.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,59 @@
-## Description: <br>
-Track AI agent usage and costs with Drip metered billing for aggregate LLM usage, tool calls, agent runs, and other metered usage. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Track AI agent usage and costs with Drip metered billing. Use when you need to record aggregate LLM usage, tool calls, agent runs, or other metered usage for billing.
 
-## Publisher: <br>
-[lucas-309](https://clawhub.ai/user/lucas-309) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[lucas-309](https://clawhub.ai/user/lucas-309)
 
-## Use Case: <br>
-Developers and agent operators use this skill to add Drip usage tracking to AI agents, LLM calls, tool invocations, API requests, and customer or workflow billing attribution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends usage and billing telemetry to Drip, which may be inappropriate for environments that should not emit metered agent activity. <br>
-Mitigation: Install only when billing telemetry is intended, and scope emitted meters, customers, workflows, and run events to the operational data required. <br>
-Risk: Metadata fields are transmitted as provided and could expose raw prompts, secrets, PII, source code, or request bodies if misused. <br>
-Mitigation: Use a strict metadata allowlist and redaction policy, and send only sanitized operational context such as model names, tool names, status codes, latency, and hashed identifiers. <br>
-Risk: Over-privileged Drip API keys or an untrusted API base URL could broaden the impact of misuse. <br>
-Mitigation: Prefer pk_test_ or pk_live_ keys, avoid sk_ keys unless admin operations are required, and keep DRIP_BASE_URL pointed at a trusted Drip endpoint. <br>
+## Use Case:
 
+Developers and operators use this skill to add Drip metered billing telemetry to AI agents, LLM calls, tool invocations, and customer workflows.
 
-## Reference(s): <br>
-- [Drip SDK API Reference](references/API.md) <br>
-- [@drip-sdk/node npm package](https://www.npmjs.com/package/@drip-sdk/node) <br>
-- [ClawHub release page](https://clawhub.ai/lucas-309/drip-billing) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline TypeScript, Python, JSON, and shell code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires DRIP_API_KEY and a trusted DRIP_BASE_URL for telemetry emission.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: ClawHub release evidence) <br>
+Risk: The skill can give an agent billing and customer-operation authority.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use pk_test_ for testing or a least-privileged pk_live_ key for production, avoid sk_ keys unless admin operations are required, and require human approval for billing or customer-changing actions.
+
+Risk: The skill documents npm/npx package execution with an API key.
+
+Mitigation: Pin package versions instead of using unversioned npm/npx commands and verify the package source before installation.
+
+Risk: Telemetry metadata may contain sensitive data if callers pass raw user or system content.
+
+Mitigation: Use a strict metadata allowlist and redaction policy; do not send PII, secrets, raw prompts, model outputs, request bodies, file contents, or source code.
+
+## Reference(s):
+
+- [Drip SDK API Reference](references/API.md)
+- [Drip SDK npm package](https://www.npmjs.com/package/@drip-sdk/node)
+- [ClawHub skill page](https://clawhub.ai/lucas-309/skills/drip-billing)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell, JSON, TypeScript, and Python snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires DRIP_API_KEY and a trusted DRIP_BASE_URL; guidance emphasizes sanitized metadata and least-privileged keys.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

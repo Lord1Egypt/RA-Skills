@@ -1,38 +1,53 @@
-## Description: <br>
-Helps agents discover installable skills and guide users through searching, evaluating, and installing relevant skill packages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps users discover and install agent skills when they ask questions like "how do I do X", "find a skill for X", "is there a skill that can...", or express interest in extending capabilities.
 
-## Publisher: <br>
-[rumengkai](https://clawhub.ai/user/rumengkai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[rumengkai](https://clawhub.ai/user/rumengkai)
 
-## Use Case: <br>
-Developers and agent users use this skill when they want to find existing skills for a task, compare relevant options, and receive installation guidance for the Skills CLI. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill may guide users toward global installation of third-party skills without a clear confirmation boundary. <br>
-Mitigation: Inspect recommended skill sources before installing, avoid unattended global installs, and use install commands that allow confirmation. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/rumengkai/find-slills) <br>
-- [Skills CLI catalog](https://skills.sh/) <br>
+## Use Case:
 
+Developers and agent users use this skill to discover relevant installable skills, run Skills CLI searches, and present install options when a request may map to an existing skill.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline shell commands and links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include install commands and third-party skill links for user review.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill recommends broad-triggered, unpinned remote installs of other skills, including global no-confirm installs.
+
+Mitigation: Review installs manually, prefer pinned CLI versions and exact skill revisions, use local or scoped installs when possible, and avoid no-confirm global installs for untrusted skills.
+
+Risk: Search results and install candidates can come from third-party publishers.
+
+Mitigation: Confirm the source and publisher before installation and prefer visible confirmation steps that identify the package being installed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/rumengkai/skills/find-slills)
+- [Skills directory](https://skills.sh/)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands]
+
+**Output Format:** [Markdown with inline bash commands and links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include skill names, install commands, and links to skill pages.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

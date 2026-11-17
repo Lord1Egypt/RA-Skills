@@ -1,39 +1,54 @@
-## Description: <br>
-AI GIF generation powered by CellCog for reaction GIFs, product loops, cinemagraphs, and social media animations created from scratch rather than converted from existing video. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI GIF generator powered by CellCog. Reaction GIFs, product loops, cinemagraphs, social media animations. Seamless looping, platform-optimized for Discord, Twitter, Slack, WhatsApp. Created from scratch, not converted.
 
-## Publisher: <br>
-[nitishgargiitd](https://clawhub.ai/user/nitishgargiitd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cellcog](https://clawhub.ai/user/cellcog)
 
-## Use Case: <br>
-Developers, creative teams, marketers, and other external users use this skill to ask CellCog to generate optimized GIFs and companion MP4 sources for reactions, product showcases, cinemagraphs, UI demos, and social media content. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a CellCog API key and may send prompts, task context, or media requests to CellCog. <br>
-Mitigation: Use a revocable CELLCOG_API_KEY and avoid sending secrets, regulated data, private customer content, or proprietary media unless CellCog policies and organizational rules allow it. <br>
+## Use Case:
 
+People using supported coding and agent tools can ask CellCog to create original reaction, product, cinemagraph, social media, art, or UI demonstration GIFs. They can specify style, motion, loop, duration, and target platform, and request an MP4 source alongside the GIF.
 
-## Reference(s): <br>
-- [Gif Cog on ClawHub](https://clawhub.ai/nitishgargiitd/gif-cog) <br>
-- [CellCog](https://cellcog.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, API Calls, Code, Files] <br>
-**Output Format:** [Markdown guidance with Python snippets and generated GIF/MP4 file references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3, the cellcog package, and CELLCOG_API_KEY] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release metadata) <br>
+Risk: Prompts are submitted to CellCog for external processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Submit only prompts you are authorized to share with CellCog.
+
+Risk: The separately installed CellCog core skill and SDK are outside this artifact's single-file security assessment, and service charges may apply.
+
+Mitigation: Review the core skill and SDK, prefer reviewed dependency versions, and consider service charges before use.
+
+## Reference(s):
+
+- [CellCog](https://cellcog.ai)
+- [GIF Generator on ClawHub](https://clawhub.ai/cellcog/skills/gif-generator-cellcog)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, API calls, GIF and MP4 media files]
+
+**Output Format:** [Markdown instructions and prompt-driven GIF image with optional MP4 video source]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The request can specify visual style, animation, loop, duration, aspect ratio, and target platform; platform-aware optimization is described in the skill.]
+
+## Skill Version(s):
+
+1.0.11 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

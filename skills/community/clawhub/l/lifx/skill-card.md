@@ -1,47 +1,62 @@
-## Description: <br>
-Control LIFX smart lights via natural language. Toggle, set colors/brightness, activate scenes, create gradients on multi-zone devices. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Control LIFX smart lights via natural language. Toggle, set colors/brightness, activate scenes, create gradients on multi-zone devices.
 
-## Publisher: <br>
-[Stillstellung](https://clawhub.ai/user/Stillstellung) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-GPL-3.0 <br>
+## Publisher:
 
+[stillstellung](https://clawhub.ai/user/stillstellung)
 
-## Use Case: <br>
-External users and developers use this skill to let an OpenClaw agent discover and control LIFX smart lights, including rooms, scenes, brightness, colors, and multi-zone gradients. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+GPL-3.0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores a local LIFX token and personalized home-light context. <br>
-Mitigation: Keep .lifx-token and generated SKILL.md private, restrict file permissions, and avoid sharing generated device context. <br>
-Risk: An agent with this skill can control the user's LIFX lights. <br>
-Mitigation: Install only when agent-driven smart-light control is acceptable, and review commands before execution in sensitive environments. <br>
-Risk: Instruction-like light, room, or scene names could influence agent behavior. <br>
-Mitigation: Use plain, non-instructional names for lights, groups, and scenes. <br>
-Risk: The published artifact references SKILL.md.template, but that file is not included in the package evidence. <br>
-Mitigation: Verify the package includes the template before relying on setup.sh to regenerate SKILL.md. <br>
+## Use Case:
 
+External users and developers use this skill to let an OpenClaw agent control LIFX smart lights, rooms, scenes, and multi-zone gradients through natural-language requests.
 
-## Reference(s): <br>
-- [LIFX HTTP API](https://api.lifx.com/docs/) <br>
-- [LIFX token settings](https://cloud.lifx.com/settings) <br>
-- [OpenClaw](https://github.com/openclaw/openclaw) <br>
-- [LIFX](https://www.lifx.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, API Calls, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands and JSON API payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a LIFX API token and may read or generate local device context for rooms, lights, scenes, and multi-zone devices.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release metadata) <br>
+Risk: The skill can control connected LIFX smart lights using a reusable LIFX API token.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when that level of smart-home control is acceptable, and prefer providing the token through an environment secret.
+
+Risk: setup.sh can store the LIFX token on disk in .lifx-token.
+
+Mitigation: Keep .lifx-token private, do not commit or copy it, and rely on LIFX_TOKEN where possible.
+
+Risk: LIFX device or scene names may be written into persistent agent context.
+
+Mitigation: Review generated SKILL.md before use and avoid device or scene names containing Markdown, newlines, or instruction-like text.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/stillstellung/skills/lifx)
+- [Publisher Profile](https://clawhub.ai/user/stillstellung)
+- [LIFX HTTP API](https://api.lifx.com/docs/)
+- [LIFX Token Settings](https://cloud.lifx.com/settings)
+- [OpenClaw](https://github.com/openclaw/openclaw)
+- [LIFX](https://www.lifx.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, JSON]
+
+**Output Format:** [Markdown guidance with inline bash commands and JSON script output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a LIFX API token via LIFX_TOKEN or local .lifx-token; setup can generate a personalized SKILL.md with local device context.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release evidence and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

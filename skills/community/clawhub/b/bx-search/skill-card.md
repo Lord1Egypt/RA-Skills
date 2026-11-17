@@ -1,45 +1,61 @@
-## Description: <br>
-Web search using the Brave Search CLI (`bx`) for current information, documentation lookup, troubleshooting research, RAG grounding, news, media, local places, and AI-synthesized answers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides agent-facing web search, RAG grounding, news, images, videos, local places, and AI-synthesized answers through the Brave Search CLI (`bx`).
 
-## Publisher: <br>
-[brave-skills](https://clawhub.ai/user/brave-skills) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[brave-skills](https://clawhub.ai/user/brave-skills)
 
-## Use Case: <br>
-Agents and developers use this skill to route web-search and research tasks through the Brave Search CLI for grounded current information, documentation lookup, troubleshooting, and synthesized answers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search queries may disclose secrets, confidential text, or sensitive context to the Brave Search API. <br>
-Mitigation: Use a dedicated Brave Search API key and avoid sending secrets or confidential text in search queries. <br>
-Risk: Precise local-place or location searches may reveal sensitive location context. <br>
-Mitigation: Use coarse location terms when possible and review queries before submitting precise latitude, longitude, city, or address data. <br>
-Risk: Remote installers and downloaded binaries can introduce supply-chain risk. <br>
-Mitigation: Inspect or verify the installer and binary source before installation. <br>
+## Use Case:
 
+Developers and agent operators use this skill to route external search, documentation lookup, troubleshooting research, news, media, local-place lookup, and RAG grounding tasks through Brave Search CLI.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/brave-skills/bx-search) <br>
-- [Brave Search API](https://brave.com/search/api/) <br>
-- [Skill repository metadata](https://github.com/brave/brave-search-skills/tree/main/clawhub/bx-search) <br>
-- [Issue tracker](https://github.com/brave/brave-search-skills/issues) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON response examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires `bx` and `BRAVE_SEARCH_API_KEY`; search tasks may return JSON search results, token-budgeted context, or streaming answer chunks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.0 (source: release metadata and SKILL.md frontmatter) <br>
+Risk: Search queries routed through `bx` may disclose secrets, private code, or sensitive context to Brave Search.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use `bx` only for queries intended for Brave Search and avoid sending secrets or private code in search prompts.
+
+Risk: The skill documents remote-script installation commands that execute downloaded shell or PowerShell content.
+
+Mitigation: Do not run the pipe-to-shell or Invoke-Expression install commands directly; prefer verified, pinned release artifacts with checksums or signatures.
+
+Risk: The skill broadly redirects search behavior through a local third-party executable.
+
+Mitigation: Review the skill before installing and keep the built-in search tool available unless intentionally choosing Brave for the task.
+
+## Reference(s):
+
+- [Brave Search API](https://brave.com/search/api/)
+- [Brave Search Skills Repository](https://github.com/brave/brave-search-skills/tree/main/clawhub/bx-search)
+- [Brave Search Skills Issues](https://github.com/brave/brave-search-skills/issues)
+- [Brave Search API Registration](https://api-dashboard.search.brave.com/register)
+- [Brave Goggles Quickstart](https://github.com/brave/goggles-quickstart)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown instructions with shell command examples and JSON response shapes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the `bx` executable and `BRAVE_SEARCH_API_KEY`; context results can be token-budgeted with CLI flags.]
+
+## Skill Version(s):
+
+1.4.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

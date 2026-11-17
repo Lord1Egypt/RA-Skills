@@ -1,38 +1,55 @@
-## Description: <br>
-Scrape employee data from a logged-in SAP SuccessFactors browser session using browser automation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scrapes employee data from a logged-in SAP SuccessFactors browser session using browser automation when a user provides an employee ID and asks for SuccessFactors profile details.
 
-## Publisher: <br>
-[VenkataLokesh-dot](https://clawhub.ai/user/VenkataLokesh-dot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[venkatalokesh-dot](https://clawhub.ai/user/venkatalokesh-dot)
 
-## Use Case: <br>
-Employees or authorized HR operators use this skill to look up SuccessFactors employee profile details from an already logged-in browser session when they provide an employee ID. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can expose sensitive SuccessFactors HR profile data through an agent-operated logged-in browser session. <br>
-Mitigation: Install and run it only with organizational authorization, use a least-privilege account or session, and request only the exact fields needed. <br>
-Risk: Broad profile scraping may include compensation, personal contact, documents, performance, goals, or leave information beyond the user's immediate need. <br>
-Mitigation: Avoid those categories unless separately approved, and stop when the requested visible fields have been collected. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
+
+Authorized HR or business users use this skill to look up SAP SuccessFactors employee profile details by employee ID from an already-authenticated browser session. It is intended for scoped employee data retrieval from the UI, not API access.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can collect broad sensitive employee data from a user's logged-in SuccessFactors session without strong scope controls.
+
+Mitigation: Use only by authorized HR or business users, and limit collection to the specific employee fields explicitly requested.
+
+Risk: Employee profile areas may include compensation, documents, performance, leave, home contact details, or screenshots that require stronger authorization.
+
+Mitigation: Do not access or return those categories unless clear authorization and a business need are established.
+
+Risk: Browser automation may expose restricted or hidden fields if the user navigates beyond the requested scope.
+
+Mitigation: Respect UI restrictions, report restricted fields as restricted, and avoid navigating beyond SuccessFactors or beyond the requested profile details.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with browser automation instructions and structured employee profile results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns only fields visible in the authorized SuccessFactors UI session.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-0.1.0 (source: server-resolved release metadata) <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown or plain text grouped by employee profile section, with tables for batch lookups.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Only fields found in the visible authorized UI should be returned; restricted or hidden values should be reported as restricted.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

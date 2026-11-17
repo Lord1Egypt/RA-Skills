@@ -1,40 +1,53 @@
-## Description: <br>
-Git Helper guides agents through status checks, staging, commits, pushes, pulls, rebases, diffs, logs, and branch operations using safe Git workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Git Helper supports safe Git workflows for status checks, staging, Conventional Commit messages, pushes, pulls, rebases, logs, diffs, and branch operations.
 
-## Publisher: <br>
-[dougchambes](https://clawhub.ai/user/dougchambes) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dougchambes](https://clawhub.ai/user/dougchambes)
 
-## Use Case: <br>
-Developers and engineers use this skill to help agents operate Git repositories consistently, including checking status, staging changes, composing conventional commits, synchronizing branches, and handling rebases or merges with explicit safeguards. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Git commands can change repository state, branch history, or remotes if followed without review. <br>
-Mitigation: Review git status, diffs, staged files, target branch, and remote before allowing commits, pushes, rebases, hard resets, or force pushes. <br>
-Risk: History-rewriting or destructive operations can disrupt shared work. <br>
-Mitigation: Require explicit user approval for destructive or history-rewriting actions and avoid force pushes unless the user authorizes them. <br>
+## Use Case:
 
+Developers and engineering agents use Git Helper to perform common Git repository tasks with consistent checks, commit message conventions, and safeguards around history-changing operations.
 
-## Reference(s): <br>
-- [Git Workflows Reference](references/workflows.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, markdown] <br>
-**Output Format:** [Markdown with inline Git shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No generated files are required; destructive or history-rewriting Git operations require explicit user approval.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Destructive Git commands can discard local work or rewrite repository history if approved carelessly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review branch state and command intent before reset, rebase, hard reset, or force push operations; require explicit permission for destructive actions.
+
+Risk: Force pushes and rebases can disrupt shared branches.
+
+Mitigation: Use safer workflows such as status checks, backup branches, and force-with-lease only when the user confirms the branch is safe to rewrite.
+
+## Reference(s):
+
+- [Git Workflows Reference](references/workflows.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Markdown]
+
+**Output Format:** [Markdown with inline Git commands and command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

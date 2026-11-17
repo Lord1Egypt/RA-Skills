@@ -1,40 +1,50 @@
-## Description: <br>
-Guides agents through Reddit advertising strategy, including subreddit and interest targeting, native ad formats, community-aware copy, and performance optimization for B2B SaaS, developer tools, and niche products. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create, edit, and report on Reddit ads through the AdKit MCP connector, including campaigns, ad groups, ads, account defaults, and results.
 
-## Publisher: <br>
-[jeannen](https://clawhub.ai/user/jeannen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jeannen](https://clawhub.ai/user/jeannen)
 
-## Use Case: <br>
-External marketers, founders, and growth teams use this skill to plan Reddit ad campaigns for B2B SaaS, developer tools, and niche products, including targeting, copy angles, campaign structure, and moderation-aware optimization. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Running real Reddit campaigns can involve ad spend, account access, OAuth tokens, customer email lists, or advertising pixels. <br>
-Mitigation: Keep credentials, audience uploads, tracking pixels, and budget approvals under direct user control unless a trusted tool is intentionally granted access. <br>
-Risk: Subreddit-targeted ads can conflict with community rules or attract visible negative engagement. <br>
-Mitigation: Review subreddit rules before targeting, use community-aware copy, monitor comments and downvotes, and pause campaigns that show negative engagement. <br>
+## Use Case:
 
+Advertisers and marketing teams use the skill to manage Reddit campaign structure, ads, account settings, and reporting through AdKit.
 
-## Reference(s): <br>
-- [AdKit homepage](https://adkit.so) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Analysis, Markdown] <br>
-**Output Format:** [Markdown prose, lists, and tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only strategy recommendations; no code execution or credential handling.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The security evidence reports that account defaults may be changed without explicit approval; these changes could affect advertising identity, tracking, or billing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before updating account defaults, explain that the change applies immediately and get the user's explicit approval of the profile, pixel, and funding instrument to be selected.
+
+## Reference(s):
+
+- [AdKit for Reddit Ads](https://adkit.so/features/ads-mcp/reddit)
+- [Reddit Ads API documentation](https://ads-api.reddit.com/docs/v3/)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Configuration instructions, Guidance, Shell commands]
+
+**Output Format:** [Markdown guidance with API request payloads and occasional shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Instructions for an agent to manage Reddit ads and report results through AdKit.]
+
+## Skill Version(s):
+
+2.0.1 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

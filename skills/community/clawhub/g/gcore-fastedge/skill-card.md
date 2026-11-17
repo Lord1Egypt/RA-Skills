@@ -1,46 +1,56 @@
-## Description: <br>
-Builds, compiles, and deploys WebAssembly HTTP apps to Gcore FastEdge edge computing using the Rust SDK. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents build, compile, configure, and deploy Rust WebAssembly HTTP apps to Gcore FastEdge.
 
-## Publisher: <br>
-[geri4](https://clawhub.ai/user/geri4) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[geri4](https://clawhub.ai/user/geri4)
 
-## Use Case: <br>
-Developers and engineers use this skill to scaffold Rust WebAssembly HTTP apps, build Wasm artifacts, upload binaries, and create or update Gcore FastEdge apps with configuration for environment variables, secrets, and KV storage. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Upload, create, update, and release commands can publish a selected Wasm binary to a live Gcore FastEdge endpoint. <br>
-Mitigation: Confirm app names, app IDs, binary IDs, and the target Wasm artifact before running deployment commands. <br>
-Risk: GCORE_API_KEY is required for upload and deployment and could grant access to Gcore resources if exposed. <br>
-Mitigation: Treat the key as sensitive, keep it out of logs and shared shells, and rotate it after suspected exposure. <br>
-Risk: A shadowed or overridden Rust toolchain can affect build output or cause misleading build failures. <br>
-Mitigation: Run the helper from a trusted repository and clean shell environment, and verify CARGO and RUSTC resolve through rustup before building. <br>
+## Use Case:
 
+Developers and engineers use this skill to scaffold, build, upload, and release Rust WebAssembly HTTP applications on Gcore FastEdge. It also guides app configuration for environment variables, encrypted secrets, and edge storage.
 
-## Reference(s): <br>
-- [ClawHub Gcore FastEdge skill page](https://clawhub.ai/geri4/skills/gcore-fastedge) <br>
-- [Gcore FastEdge docs](https://gcore.com/docs/fastedge) <br>
-- [Gcore FastEdge LLM API reference](https://gcore.com/docs/fastedge/llms.txt) <br>
-- [Gcore Edge Storage API](https://gcore.com/docs/api-reference/fastedge/edge-storage/create-a-new-edge-store) <br>
-- [Gcore API tokens](https://accounts.gcore.com/account-settings/api-tokens) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with Rust, TOML, JSON, bash, and Python command examples.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide use of a bundled Rust starter template and Python build/deploy helper.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: The bundled update helper can unintentionally wipe existing app configuration on a live Gcore deployment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid using the helper for existing production apps until it preserves full app configuration or shows a complete diff; when updating, re-send environment variables, secrets, stores, name, binary, and status.
+
+Risk: Build, upload, and deploy commands can publish artifacts to live FastEdge endpoints when a valid Gcore API token is present.
+
+Mitigation: Use a least-privileged Gcore API token, run builds in a minimal environment, and confirm the artifact, app name, binary id, and app id before upload or deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/geri4/skills/gcore-fastedge)
+- [Gcore FastEdge docs](https://gcore.com/docs/fastedge)
+- [Gcore FastEdge API reference for LLMs](https://gcore.com/docs/fastedge/llms.txt)
+- [Gcore edge storage API](https://gcore.com/docs/api-reference/fastedge/edge-storage/create-a-new-edge-store)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline code, shell commands, configuration snippets, and API examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May invoke local build commands and Gcore FastEdge API calls when the user chooses deployment steps.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,11 +1,11 @@
 # EDMT\_IndicatorMarkerType enum
 
-指示标记类型
+Indicator marker type
 
 ## Signature
 
 ```typescript
-declare enum EDMT_IndicatorMarkerType 
+enum EDMT_IndicatorMarkerType
 ```
 
 ## Enumeration Members
@@ -14,96 +14,68 @@ declare enum EDMT_IndicatorMarkerType
 
 Member
 
-
 </th><th>
 
 Value
 
-
 </th><th>
 
 Description
-
 
 </th></tr></thead>
 <tbody><tr><td>
 
 ARC
 
-
 </td><td>
 
-`"arc"`
-
+`'arc'`
 
 </td><td>
-
-圆弧
-
 
 </td></tr>
 <tr><td>
 
 CIRCLE
 
-
 </td><td>
 
-`"circle"`
-
+`'circle'`
 
 </td><td>
-
-圆形
-
 
 </td></tr>
 <tr><td>
 
 LINE
 
-
 </td><td>
 
-`"line"`
-
+`'line'`
 
 </td><td>
-
-线段
-
 
 </td></tr>
 <tr><td>
 
 POINT
 
-
 </td><td>
 
-`"point"`
-
+`'point'`
 
 </td><td>
-
-点
-
 
 </td></tr>
 <tr><td>
 
 RECTANGLE
 
-
 </td><td>
 
-`"rectangle"`
-
+`'rectangle'`
 
 </td><td>
-
-矩形
-
 
 </td></tr>
 </tbody></table>

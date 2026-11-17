@@ -1,0 +1,7 @@
+{
+  "name": "zoho-social-mcp",
+  "version": "1.0.2",
+  "description": "Connect your agent to Zoho Social via MCP. Browse portals, brands, and channels, inspect drafts and schedules, upload media, and query the Social action catalog using mcporter.",
+  "author": "SprintCX",
+  "license": "MIT"
+}

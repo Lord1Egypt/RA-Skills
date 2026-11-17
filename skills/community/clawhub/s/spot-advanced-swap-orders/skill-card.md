@@ -1,51 +1,67 @@
-## Description: <br>
-Use for gasless non-custodial EVM market, limit, TWAP, stop-loss, take-profit, delayed-start swaps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use for gasless non-custodial EVM market, limit, TWAP, stop-loss, take-profit, delayed-start swaps.
 
-## Publisher: <br>
-[eranp-orbs](https://clawhub.ai/user/eranp-orbs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[eranp-orbs](https://clawhub.ai/user/eranp-orbs)
 
-## Use Case: <br>
-External users and agents use this skill to prepare, sign, submit, query, and cancel non-custodial Spot swap orders on supported EVM chains. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill helps prepare and submit live DeFi orders that require wallet approvals and signatures. <br>
-Mitigation: Before approving or signing, verify the chain, token addresses, spender or verifying contract, amounts, recipient, deadline, slippage, triggers, and relay URL. <br>
-Risk: Signed payloads and typed data can authorize token movement for the exact order. <br>
-Mitigation: Avoid storing signed payloads where others can read them, keep retries tied to the exact populated typed data, and do not rebuild an ambiguous submission until its status is resolved. <br>
-Risk: Changing output.recipient away from the swapper can send proceeds to another address. <br>
-Mitigation: Keep output.recipient equal to the swapper unless the user explicitly confirms a different recipient address. <br>
+## Use Case:
 
+External users and developers use this skill to turn swap intent into normalized params, EIP-712 typed data, approval guidance, signatures, relay submissions, order queries, and exact-match cancellation for supported EVM chains.
 
-## Reference(s): <br>
-- [Skill Page](https://clawhub.ai/eranp-orbs/spot-advanced-swap-orders) <br>
-- [Quickstart](references/quickstart.md) <br>
-- [Params](references/params.md) <br>
-- [Template, Sign, And Submit](references/sign.md) <br>
-- [Lifecycle](references/lifecycle.md) <br>
-- [Examples](references/examples.md) <br>
-- [Common Token Addressbook](assets/token-addressbook.md) <br>
-- [RePermit Template](assets/repermit.template.json) <br>
-- [Security Audit Report](https://github.com/orbs-network/spot/blob/master/Audit-AstraSec.pdf) <br>
-- [Spot Config](https://github.com/orbs-network/spot/blob/master/config.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON payloads, JavaScript snippets, and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces locally populated EIP-712 typed data, relay payload guidance, approval guidance, signing commands, and order lifecycle instructions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.5.5 (source: server release evidence and package.json) <br>
+Risk: The skill can help prepare and submit real token swap orders.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review every chain, token, amount, limit, deadline, recipient, allowance, and relay destination before approving, signing, or submitting.
+
+Risk: Changed order fields can make a previous signature unsafe or invalid for the current intent.
+
+Mitigation: Do not reuse signatures after changing order fields; sign only the exact populated typed data intended for submission.
+
+Risk: Token approval can authorize spend of the input token.
+
+Mitigation: Use the default exact approval for input.maxAmount unless the user explicitly chooses a standing approval for repeat use.
+
+## Reference(s):
+
+- [Quickstart](references/quickstart.md)
+- [Params](references/params.md)
+- [Template, Sign, And Submit](references/sign.md)
+- [Lifecycle](references/lifecycle.md)
+- [Examples](references/examples.md)
+- [RePermit Template](assets/repermit.template.json)
+- [Common Token Addressbook](assets/token-addressbook.md)
+- [Security Audit Report](https://github.com/orbs-network/spot/blob/master/Audit-AstraSec.pdf)
+- [Supported Chains Configuration](https://github.com/orbs-network/spot/blob/master/config.json)
+- [Order Submission Relay](https://agents-sink.orbs.network/orders/new)
+- [Order Query Relay](https://agents-sink.orbs.network/orders)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON payload examples, shell commands, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces locally populated order parameters, EIP-712 typed-data guidance, approval instructions, signed relay payload guidance, query commands, and cancellation steps.]
+
+## Skill Version(s):
+
+2.5.5 (source: evidence.release.version and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

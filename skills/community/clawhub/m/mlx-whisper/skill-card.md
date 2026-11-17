@@ -1,42 +1,53 @@
-## Description: <br>
-Local speech-to-text with MLX Whisper (Apple Silicon optimized, no API key). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Local speech-to-text with MLX Whisper (Apple Silicon optimized, no API key).
 
-## Publisher: <br>
-[Kevin37Li](https://clawhub.ai/user/Kevin37Li) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[kevin37li](https://clawhub.ai/user/kevin37li)
 
-## Use Case: <br>
-Developers and end users use this skill to run local speech-to-text, translation, and subtitle generation workflows with MLX Whisper on Apple Silicon Macs. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The workflow depends on the mlx-whisper pip package and selected Hugging Face model sources. <br>
-Mitigation: Install only from trusted package and model sources, and pin or review the selected package and model before use in managed environments. <br>
-Risk: Model downloads can be large and are cached locally. <br>
-Mitigation: Confirm sufficient disk space and manage the Hugging Face cache according to local retention and storage policies. <br>
-Risk: Audio or video inputs may contain sensitive speech or personal information. <br>
-Mitigation: Only process media files that are approved for local transcription or translation on the target machine. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [MLX Whisper examples](https://github.com/ml-explore/mlx-examples/tree/main/whisper) <br>
-- [ClawHub release page](https://clawhub.ai/Kevin37Li/mlx-whisper) <br>
+## Use Case:
 
+Developers and users on Apple Silicon Macs use this skill to transcribe local audio, translate speech to English, and generate SRT subtitle files with the mlx_whisper command-line tool.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance centers on local CLI transcription, translation, subtitle generation, model selection, and installation requirements.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill installs an unpinned Python command-line dependency with pip.
+
+Mitigation: Install in an isolated environment and prefer a pinned, reviewed mlx-whisper package version when available.
+
+Risk: Whisper models are downloaded on first use and cached locally.
+
+Mitigation: Use approved model sources and account for local cache storage under ~/.cache/huggingface/.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kevin37li/skills/mlx-whisper)
+- [MLX Whisper project reference](https://github.com/ml-explore/mlx-examples/tree/main/whisper)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the mlx_whisper command-line binary; expected downstream outputs include transcription text, translation text, or SRT subtitle files.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

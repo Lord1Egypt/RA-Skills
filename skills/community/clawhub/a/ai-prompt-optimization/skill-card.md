@@ -1,41 +1,55 @@
-## Description: <br>
-Use when users need to optimize prompts for AI conversations, generate structured templates, create few-shot examples, design chain-of-thought guidance, or diagnose and improve existing prompts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when users need to optimize prompts for AI conversations, generate structured templates, create few-shot examples, design chain-of-thought guidance, or diagnose and improve existing prompts.
 
-## Publisher: <br>
-[openlark](https://clawhub.ai/user/openlark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[openlark](https://clawhub.ai/user/openlark)
 
-## Use Case: <br>
-External users, employees, developers, and prompt authors use this skill to diagnose weak prompts, produce improved prompt versions, create reusable prompt templates, and draft few-shot examples for writing, coding, image generation, data analysis, and consultation workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompt examples can include secrets, personal data, or sensitive business context if users paste that information into optimization requests. <br>
-Mitigation: Remove secrets and sensitive details before using examples or prompt drafts, and review generated prompts before reuse. <br>
-Risk: Chain-of-thought prompt structures can encourage requests for hidden internal reasoning. <br>
-Mitigation: Prefer brief rationale, visible reasoning summaries, or structured decision criteria instead of hidden internal reasoning. <br>
+## Use Case:
 
+External users, employees, and developers use this skill to improve prompts, generate reusable prompt templates, create few-shot examples, and structure prompt-writing guidance for AI tools.
 
-## Reference(s): <br>
-- [Prompt Template Reference](artifact/references/templates.md) <br>
-- [ClawHub skill page](https://clawhub.ai/openlark/ai-prompt-optimization) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with prompt templates, checklists, examples, and rationale] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces improved prompt text, structured templates, few-shot examples, and prompt optimization guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Prompt improvements could be applied to sensitive, harmful, evasive, or policy-bypassing requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated prompts before use, especially in sensitive domains, and do not use the skill to optimize harmful or evasive requests.
+
+Risk: Chain-of-thought prompt patterns may request full hidden reasoning where a concise reasoning summary would be more appropriate.
+
+Mitigation: Revise chain-of-thought outputs to ask for concise reasoning summaries and final answers rather than hidden reasoning traces.
+
+## Reference(s):
+
+- [Prompt Template Reference](references/templates.md)
+- [ClawHub Skill Page](https://clawhub.ai/openlark/skills/ai-prompt-optimization)
+- [Publisher Profile](https://clawhub.ai/user/openlark)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown guidance with prompt templates, checklists, examples, and rationale.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces human-readable prompt revisions and templates; generated prompts should be reviewed before sensitive use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

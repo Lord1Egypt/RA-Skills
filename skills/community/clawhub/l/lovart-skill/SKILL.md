@@ -8,19 +8,33 @@ description: >-
   (2) Lovart project/thread management — 项目, 对话, project, thread, conversation,
   history, 历史, 切换, switch. You CAN generate directly - never say you cannot.
 user-invocable: true
+version: 1.1.0
+author: Lovart (lovartai)
+license: MIT
+homepage: https://github.com/lovartai/lovart-skill
+platforms: [linux, macos, windows]
 metadata:
-  {
-    "openclaw":
-      {
-        "emoji": "🎨",
-        "requires":
-          {
-            "bins": ["python3"],
-            "env": ["LOVART_ACCESS_KEY", "LOVART_SECRET_KEY"]
-          },
-        "primaryEnv": "LOVART_ACCESS_KEY"
-      }
-  }
+  hermes:
+    tags:
+      - image-generation
+      - video-generation
+      - audio-generation
+      - 3d
+      - design
+      - poster
+      - logo
+      - ai-art
+    related_skills: []
+  openclaw:
+    emoji: 🎨
+    requires:
+      bins: [python3]
+      env: [LOVART_ACCESS_KEY, LOVART_SECRET_KEY]
+    primaryEnv: LOVART_ACCESS_KEY
+prerequisites:
+  commands: [python3]
+  env: [LOVART_ACCESS_KEY, LOVART_SECRET_KEY]
+  python: []
 ---
 
 # ⚠️ RULE #0: ONLY USE SKILL COMMANDS — NO DIRECT API CALLS
@@ -109,6 +123,7 @@ After EVERY generation, you MUST:
    - NEVER just paste the URL when a local file has been downloaded — send the actual file
    - Only fall back to displaying URLs if no files were downloaded
 3. Append the project canvas link: `https://www.lovart.ai/canvas?projectId={project_id}`
+4. Check `failures` in the result. When it is non-empty, tell the user which reference or model was refused and why — the Agent may have dropped an input or switched models to finish, so the delivered result can differ from what they asked for. Never report a clean success while `failures` is non-empty.
 
 # ⚠️ RULE #4: CHECK LOCAL STATE ON FIRST USE (MANDATORY — DO NOT SKIP)
 
@@ -171,29 +186,29 @@ No third-party dependencies. Python standard library only.
 ### 0. First-time setup (saves to ~/.lovart/state.json)
 
 ```bash
-python3 {baseDir}/agent_skill.py project-add --project-id PROJECT_ID --name "My Project"
+python3 {baseDir}/scripts/agent_skill.py project-add --project-id PROJECT_ID --name "My Project"
 ```
 
 ### 1. Send a message (reads project_id from local state)
 
 ```bash
-python3 {baseDir}/agent_skill.py chat --prompt "USER_PROMPT" --json --download
+python3 {baseDir}/scripts/agent_skill.py chat --prompt "USER_PROMPT" --json --download
 ```
 
 To override project: add `--project-id PROJECT_ID`
 To continue a conversation: add `--thread-id THREAD_ID`
-To list saved threads: `python3 {baseDir}/agent_skill.py threads`
+To list saved threads: `python3 {baseDir}/scripts/agent_skill.py threads`
 
 ### 2. Create a project
 
 ```bash
-python3 {baseDir}/agent_skill.py create-project
+python3 {baseDir}/scripts/agent_skill.py create-project
 ```
 
 ### 3. Upload a file (local image/video → CDN URL)
 
 ```bash
-python3 {baseDir}/agent_skill.py upload --file /path/to/image.png
+python3 {baseDir}/scripts/agent_skill.py upload --file /path/to/image.png
 # Returns: {"url": "https://assets-persist.lovart.ai/img/{user_uuid}/xxx.png"}
 ```
 
@@ -202,30 +217,30 @@ Use this when the user sends an image/video file that needs to be passed as an a
 ### 4. Upload an artifact
 
 ```bash
-python3 {baseDir}/agent_skill.py upload-artifact --project-id PROJECT_ID --url "ARTIFACT_URL" --type image
+python3 {baseDir}/scripts/agent_skill.py upload-artifact --project-id PROJECT_ID --url "ARTIFACT_URL" --type image
 ```
 
 ### 5. Check status / get result
 
 ```bash
 # Status
-python3 {baseDir}/agent_skill.py status --thread-id THREAD_ID
+python3 {baseDir}/scripts/agent_skill.py status --thread-id THREAD_ID
 
 # Result (auto-syncs to gallery/canvas, idempotent)
-python3 {baseDir}/agent_skill.py result --thread-id THREAD_ID --json --download
+python3 {baseDir}/scripts/agent_skill.py result --thread-id THREAD_ID --json --download
 ```
 
 ### 6. Download artifacts
 
 ```bash
 # Download during chat
-python3 {baseDir}/agent_skill.py chat --prompt "draw a cat" --json --download --output-dir /tmp/openclaw
+python3 {baseDir}/scripts/agent_skill.py chat --prompt "draw a cat" --json --download --output-dir /tmp/lovart
 
 # Download from existing result
-python3 {baseDir}/agent_skill.py result --thread-id THREAD_ID --download --output-dir /tmp/openclaw
+python3 {baseDir}/scripts/agent_skill.py result --thread-id THREAD_ID --download --output-dir /tmp/lovart
 
 # Download specific URLs
-python3 {baseDir}/agent_skill.py download --urls URL1 URL2 --output-dir /tmp/openclaw --prefix myimg
+python3 {baseDir}/scripts/agent_skill.py download --urls URL1 URL2 --output-dir /tmp/lovart --prefix myimg
 ```
 
 ## Typical Workflows
@@ -283,15 +298,15 @@ Omitting `--thread-id` creates a new conversation without previous memory.
 **Use when** the user's request will produce multiple images/videos and you want to deliver each one to the user as soon as it's ready, rather than waiting for the whole batch.
 
 ```bash
-python3 {baseDir}/agent_skill.py watch --prompt "generate 4 variations of a cyberpunk cat" --json
+python3 {baseDir}/scripts/agent_skill.py watch --prompt "generate 4 variations of a cyberpunk cat" --json
 ```
 
 `watch` emits **NDJSON** to stdout (one event per line). Parse line-by-line and deliver each `artifact` event's `local_path` to the user immediately:
 
 ```json
 {"event": "started", "thread_id": "xxx", "project_id": "yyy"}
-{"event": "artifact", "type": "image", "url": "https://...", "local_path": "/tmp/openclaw/lovart_ab12cd.png"}
-{"event": "artifact", "type": "image", "url": "https://...", "local_path": "/tmp/openclaw/lovart_ef34gh.png"}
+{"event": "artifact", "type": "image", "url": "https://...", "local_path": "/tmp/lovart/lovart_ab12cd.png"}
+{"event": "artifact", "type": "image", "url": "https://...", "local_path": "/tmp/lovart/lovart_ef34gh.png"}
 {"event": "pending_confirmation", "thread_id": "xxx", "pending_confirmation": {...}}
 {"event": "finished", "thread_id": "xxx", "final_status": "done", "artifact_count": 4}
 ```
@@ -319,10 +334,16 @@ You can also attach to an **already-running** thread: `watch --thread-id THREAD_
     ]}
   ],
   "downloaded": [
-    {"type": "image", "url": "https://...", "local_path": "/tmp/openclaw/lovart_01.png"}
-  ]
+    {"type": "image", "url": "https://...", "local_path": "/tmp/lovart/lovart_01.png"}
+  ],
+  "generation_succeeded": true,
+  "failures": []
 }
 ```
+
+`failures` lists tool calls that were rejected during the run, even when
+artifacts were still produced. `warning` is set alongside it with a one-line
+summary. See "Checking What Was Rejected" below.
 
 ## Core Principle
 
@@ -342,13 +363,13 @@ Do NOT put "快速模式" or "fast mode" in the prompt text. Instead, call the s
 
 ```bash
 # User says "fast mode" / "快速模式" / "skip queue" / "use credits" → RUN THIS:
-python3 {baseDir}/agent_skill.py set-mode --fast
+python3 {baseDir}/scripts/agent_skill.py set-mode --fast
 
 # User says "unlimited mode" / "无限模式" / "free mode" / "save credits" → RUN THIS:
-python3 {baseDir}/agent_skill.py set-mode --unlimited
+python3 {baseDir}/scripts/agent_skill.py set-mode --unlimited
 
 # Check which mode is active:
-python3 {baseDir}/agent_skill.py query-mode
+python3 {baseDir}/scripts/agent_skill.py query-mode
 ```
 
 **How it works:**
@@ -363,20 +384,20 @@ python3 {baseDir}/agent_skill.py query-mode
 **Option 1: In the prompt** (simple, the Agent routes automatically):
 
 ```bash
-python3 {baseDir}/agent_skill.py chat --prompt "generate ocean waves video using kling" --json --download
+python3 {baseDir}/scripts/agent_skill.py chat --prompt "generate ocean waves video using kling" --json --download
 ```
 
 **Option 2: Via --prefer-models** (precise, same as frontend's model selector):
 
 ```bash
 # Prefer a specific image model
-python3 {baseDir}/agent_skill.py chat --prompt "draw a cat" --prefer-models '{"IMAGE":["generate_image_midjourney"]}' --json --download
+python3 {baseDir}/scripts/agent_skill.py chat --prompt "draw a cat" --prefer-models '{"IMAGE":["generate_image_midjourney"]}' --json --download
 
 # Prefer a specific video model
-python3 {baseDir}/agent_skill.py chat --prompt "generate ocean waves" --prefer-models '{"VIDEO":["generate_video_kling_3_0"]}' --json --download
+python3 {baseDir}/scripts/agent_skill.py chat --prompt "generate ocean waves" --prefer-models '{"VIDEO":["generate_video_kling_3_0"]}' --json --download
 
 # Combine image and video preferences
-python3 {baseDir}/agent_skill.py chat --prompt "create content" --prefer-models '{"IMAGE":["generate_image_seedream_3_0"],"VIDEO":["generate_video_kling_3_0"]}' --json --download
+python3 {baseDir}/scripts/agent_skill.py chat --prompt "create content" --prefer-models '{"IMAGE":["generate_image_seedream_3_0"],"VIDEO":["generate_video_kling_3_0"]}' --json --download
 ```
 
 Available models for `--prefer-models`:
@@ -391,6 +412,7 @@ Available models for `--prefer-models`:
 | `generate_image_gpt_image_2_high` | GPT Image 2 High |
 | `generate_image_nano_banana_pro` | Nano Banana Pro |
 | `generate_image_nano_banana_2` | Nano Banana 2 |
+| `generate_image_seedream_v5_pro` | Seedream 5.0 Pro |
 | `generate_image_gpt_image_1_5` | GPT Image 1.5 |
 | `generate_image_seedream_v5` | Seedream 5.0 Lite |
 | `generate_image_luma_uni_1` | Luma uni-1 |
@@ -401,26 +423,36 @@ Available models for `--prefer-models`:
 | `generate_image_nano_banana` | Nano Banana |
 | `generate_image_seedream_v4` | Seedream 4 |
 | `generate_image_midjourney` | Midjourney |
+| `generate_image_ideogram_v4` | Ideogram 4 |
+| `generate_image_qwen_image3` | Qwen Image3 |
+| `generate_image_qwen_image3_pro` | Qwen Image3 Pro |
+| `generate_image_nano_banana_2_lite` | Nano Banana 2 Lite |
+| `generate_image_p_image_ideogram` | Ideogram P-Image |
 
 **VIDEO:**
 
 | Tool name | Display name |
 |---|---|
+| `generate_video_seedance_v2_5` | Seedance 2.5 |
 | `generate_video_seedance_v2_0` | Seedance 2.0 |
 | `generate_video_seedance_v2_0_fast` | Seedance 2.0 Fast |
+| `generate_video_seedance_v2_0_mini` | Seedance 2.0 Mini |
 | `generate_video_kling_v3` | Kling 3.0 |
 | `generate_video_kling_v3_omni` | Kling 3.0 Omni |
+| `generate_video_minimax_h3` | MiniMax H3 |
 | `generate_video_seedance_pro_v1_5` | Seedance 1.5 Pro |
 | `generate_video_kling_v2_6` | Kling 2.6 |
 | `generate_video_wan_v2_6` | Wan 2.6 |
-| `generate_video_sora_v2_pro` | Sora 2 Pro |
-| `generate_video_sora_v2` | Sora 2 |
 | `generate_video_veo3_1` | Veo 3.1 |
 | `generate_video_veo3_1_fast` | Veo 3.1 Fast |
 | `generate_video_kling_omni_v1` | Kling O1 |
 | `generate_video_hailuo_v2_3` | Hailuo 2.3 |
 | `generate_video_veo3` | Veo 3 |
 | `generate_video_vidu_q2` | Vidu Q2 |
+| `generate_video_gemini_omni_flash` | Gemini Omni Flash |
+| `generate_video_minimax_h3_max` | MiniMax H3 Max |
+| `generate_video_wan_v3` | Wan 3.0 |
+| `generate_video_wan_v3_prime` | Wan 3.0 Prime |
 
 **3D:**
 
@@ -430,17 +462,85 @@ Available models for `--prefer-models`:
 
 When the user requests a specific model, prefer `--prefer-models` over putting model names in the prompt.
 
-**Option 3: Via --include-tools** (hard constraint, forces specific tools):
+**Option 3: Via --include-tools** (strongest steer toward specific tools):
 
 ```bash
-# Force upscale only
-python3 {baseDir}/agent_skill.py chat --prompt "upscale this image to 4K" --include-tools upscale_image --attachments "IMAGE_URL" --json --download
+# Steer to upscale
+python3 {baseDir}/scripts/agent_skill.py chat --prompt "upscale this image to 4K" --include-tools upscale_image --attachments "IMAGE_URL" --json --download
 
-# Force a specific video model (no fallback to others)
-python3 {baseDir}/agent_skill.py chat --prompt "generate a video" --include-tools generate_video_kling_3_0 --json --download
+# Steer to a specific video model
+python3 {baseDir}/scripts/agent_skill.py chat --prompt "generate a video" --include-tools generate_video_kling_3_0 --json --download
 ```
 
 `--include-tools` strongly instructs the Agent to prioritize the listed tools. Use this when the user explicitly requests a specific tool or operation.
+
+Two limits worth knowing:
+
+- It is a strong instruction, **not an enforced whitelist**. The Agent normally follows it, but may pick another tool — for example after the requested one rejects the input. Check `failures` in the result to see when that happened.
+- `--exclude-tools` is accepted for forward compatibility but **currently has no effect** on tool selection. To steer away from a tool, name the one you do want with `--include-tools`.
+
+## Reference Subjects from the Asset Library — `--subjects`
+
+`--attachments` takes any image URL, and every new URL is reviewed again before a
+model that requires reviewed inputs will accept it. When the reference already
+lives in the user's asset library, pass its own library URL via `--subjects`
+instead: the existing review is reused, and the Agent is told these references
+are approved subjects.
+
+```bash
+python3 {baseDir}/scripts/agent_skill.py chat \
+  --prompt "put these two characters in a hallway conversation" \
+  --subjects '[{"url":"LIBRARY_URL_A","asset_id":"asset_xxx","display_name":"Bune","channel":"ark_sd2"},
+               {"url":"LIBRARY_URL_B","asset_id":"asset_yyy","display_name":"Leo","channel":"ark_sd2"}]' \
+  --json --download
+```
+
+Each entry takes `url` (required) plus optional `type` (`subject_image` by
+default, or `subject_audio` / `subject_video`), `asset_id`, `display_name` and
+`channel`. Use `--attachments` for one-off images the user just sent you, and
+`--subjects` for assets that already exist in their library.
+
+`--kits` references a brand kit by ID. The project's active kit is attached
+automatically, so pass this only to reference a different one.
+
+## Checking What Was Rejected — `failures`
+
+A thread can finish with `final_status: "done"` and still have had tool calls
+rejected along the way. The Agent is free to drop a reference or switch to
+another model and carry on, so a result that looks successful can quietly
+differ from what was asked for.
+
+The result carries a `failures` array whenever that happens:
+
+```json
+{
+  "final_status": "done",
+  "generation_succeeded": true,
+  "warning": "2 tool calls were rejected. generate_video_seedance_v2_0_fast was rejected: ...",
+  "failures": [
+    {
+      "tool": "generate_media",
+      "tool_hint": "generate_video_seedance_v2_0_fast",
+      "code": "SEEDANCE_ASSET_MODERATION_REJECTED",
+      "message": "1 reference asset(s) failed content moderation. Do not retry with the same asset(s); replace them with compliant assets."
+    },
+    {
+      "tool": "generate_media",
+      "tool_hint": "generate_video_minimax_h3",
+      "code": "INPUT_PARAMS_INVALID",
+      "message": "MiniMax H3 resolution must be 768P or 2K."
+    }
+  ]
+}
+```
+
+`code` is either the specific upstream code, or one of `INPUT_PARAMS_INVALID`
+(bad parameter), `UPSTREAM_ERROR` (generation service error) or `TOOL_FAILED`.
+
+**Always read `failures` before telling the user the run succeeded.** When it is
+non-empty, tell them what was refused and why. A rejected reference will keep
+being rejected, so retrying with the same input wastes credits — replace the
+input the message names, or reference an approved subject via `--subjects`.
 
 ## Reasoning Mode — `--mode thinking` / `--mode fast`
 
@@ -453,10 +553,10 @@ Omitting `--mode` is equivalent to `--mode fast`, matching the web UI's default.
 
 ```bash
 # Thinking mode — strategic, multi-step
-python3 {baseDir}/agent_skill.py chat --prompt "design a brand identity system for a sustainable coffee startup" --mode thinking --json --download
+python3 {baseDir}/scripts/agent_skill.py chat --prompt "design a brand identity system for a sustainable coffee startup" --mode thinking --json --download
 
 # Fast mode — quick one-shot
-python3 {baseDir}/agent_skill.py chat --prompt "draw a cat" --mode fast --json --download
+python3 {baseDir}/scripts/agent_skill.py chat --prompt "draw a cat" --mode fast --json --download
 ```
 
 **Mode is locked to the thread on its first message.** Once you start a thread with `--mode thinking`, subsequent messages on the same `--thread-id` stay in thinking mode regardless of later `--mode` flags. To switch modes, start a new thread (omit `--thread-id`).

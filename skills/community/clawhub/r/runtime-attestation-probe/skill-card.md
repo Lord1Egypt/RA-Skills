@@ -1,41 +1,56 @@
-## Description: <br>
-Helps validate that agent behavior at runtime matches declared capabilities and constraints, detecting divergence that may only activate during execution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps validate that agent behavior at runtime matches the capabilities and constraints declared in its attestation, detecting divergence between claimed and observed behavior during execution.
 
-## Publisher: <br>
-[andyxinweiminicloud](https://clawhub.ai/user/andyxinweiminicloud) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[andyxinweiminicloud](https://clawhub.ai/user/andyxinweiminicloud)
 
-## Use Case: <br>
-Developers, security reviewers, and platform operators use this skill to compare declared skill attestations with observed runtime behavior. It supports reviews for capability boundary violations, conditional activation, data flow differences, side effects, and attestation drift. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Runtime probing may execute unsafe behavior in the target skill being tested. <br>
-Mitigation: Run probes only in isolated sandboxes with no real credentials, production data, or production system access. <br>
-Risk: Probe results may miss conditional behavior that requires untested runtime triggers. <br>
-Mitigation: Vary execution environments and treat clean results as limited to the tested conditions. <br>
-Risk: Testing skills or environments without authorization can create operational or compliance issues. <br>
-Mitigation: Probe only skills and environments you are authorized to test. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/andyxinweiminicloud/runtime-attestation-probe) <br>
+## Use Case:
 
+Developers, security reviewers, and trust-and-safety teams use this skill to evaluate whether an agent skill's runtime behavior matches its declared attestation. It supports review of capability boundaries, conditional activation, data handling, side effects, and attestation drift.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, shell commands] <br>
-**Output Format:** [Markdown guidance and structured runtime attestation report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include capability boundary findings, conditional behavior patterns, data flow checks, side effect inventory, drift score, verdict, and recommended actions.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Runtime probing may execute untrusted or destructive skill behavior.
+
+Mitigation: Run probes only in isolated sandboxes with test credentials and non-production data.
+
+Risk: Conditional behavior may require runtime conditions that are absent from the probe environment.
+
+Mitigation: Use varied controlled environments and treat clean results as coverage-limited rather than proof of absence.
+
+Risk: Legitimate environment-dependent behavior can resemble suspicious conditional activation.
+
+Mitigation: Require human review of surfaced behavioral differences before classifying them as malicious or functional.
+
+## Reference(s):
+
+- [Runtime Attestation Probe on ClawHub](https://clawhub.ai/andyxinweiminicloud/skills/runtime-attestation-probe)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown report guidance with structured verdicts and scores]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a runtime attestation report with boundary findings, conditional behavior patterns, data-flow checks, side-effect inventory, drift score, and a verdict.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

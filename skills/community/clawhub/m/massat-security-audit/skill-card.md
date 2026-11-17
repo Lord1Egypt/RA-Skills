@@ -1,43 +1,56 @@
-## Description: <br>
-Security audit for multi-agent AI systems - OWASP ASI01-ASI10. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pays for a security audit of an AI agent or MCP server against OWASP Agentic Security ASI01–ASI10 using BlindOracle's public API.
 
-## Publisher: <br>
-[craigmbrown](https://clawhub.ai/user/craigmbrown) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[craigmbrown](https://clawhub.ai/user/craigmbrown)
 
-## Use Case: <br>
-Developers and security teams use this skill to request BlindOracle MASSAT audits of multi-agent systems against OWASP ASI01-ASI10 before deployment, after major changes, or for compliance reporting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send repository URLs or system details to an external security-audit API. <br>
-Mitigation: Confirm the target information is approved for external review before running the audit. <br>
-Risk: The full audit path uses an optional x402 payment flow. <br>
-Mitigation: Use the free quick scan unless intentionally approving the paid full audit and its payment header. <br>
+## Use Case:
 
+Developers and security teams use this skill to request audits of agents or MCP servers and review signed findings before trusting them. The results are self-assessed tooling, not a compliance certification.
 
-## Reference(s): <br>
-- [Massat Security Audit on ClawHub](https://clawhub.ai/craigmbrown/massat-security-audit) <br>
-- [MASSAT Framework](https://github.com/craigmbrown/massat-framework) <br>
-- [BlindOracle Marketplace](https://craigmbrown.com/blindoracle/) <br>
-- [Whitepaper: Security Auditing a 94-Agent Fleet](https://craigmbrown.com/blindoracle/blog/agent-security-crisis.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API calls, JSON, Guidance] <br>
-**Output Format:** [Markdown with curl examples and JSON response structure] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes free quick-scan guidance and an optional paid x402 full-audit path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Audit calls and other service actions may require payment through x402 or a starter-credit note.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Check the live service prices and review the exact payment quote and target before authorizing a call.
+
+Risk: MASSAT scores are self-assessed tooling and do not establish compliance.
+
+Mitigation: Use the report as an audit aid; obtain an accredited assessor's determination for compliance decisions.
+
+## Reference(s):
+
+- [ClawHub release](https://clawhub.ai/craigmbrown/skills/massat-security-audit)
+- [BlindOracle service prices and availability](https://api.craigmbrown.com/v1/services)
+- [BlindOracle remote MCP server](https://api.craigmbrown.com/v1/mcp)
+- [BlindOracle listings](https://craigmbrown.com/blindoracle/listings/)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, API calls, Text]
+
+**Output Format:** [Markdown instructions with shell-command and JSON examples; audit findings are returned by the service as a signed report.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes audit findings and verification details returned by the service.]
+
+## Skill Version(s):
+
+1.1.0 (source: server-resolved release metadata, artifact frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

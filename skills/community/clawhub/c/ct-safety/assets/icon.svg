@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 104 104" width="100%">
+  <defs>
+    <!-- ct-* 系列通用：圆弧角方框柔和投影 -->
+    <filter id="logoShadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="2.5" stdDeviation="2.5" flood-color="#1C6DD0" flood-opacity="0.30"/>
+    </filter>
+  </defs>
+
+  <!-- 整体圆弧角方框（含柔和投影） -->
+  <rect x="-52" y="-52" width="104" height="104" rx="20" fill="#EAF2FB" stroke="#C5DCF5" stroke-width="0.5" transform="translate(52,52)" filter="url(#logoShadow)"/>
+
+  <!-- 左上角统一文字（ct-* 系列通用） -->
+  <g transform="translate(7,13)">
+    <text font-family="'Arial Black','Helvetica Neue',Arial,sans-serif" font-size="16" font-weight="900" font-style="italic" fill="#1C6DD0" stroke="#1C6DD0" stroke-width="0.25" paint-order="stroke" stroke-linejoin="round">Clinical</text>
+    <text y="12" font-family="'Arial Black','Helvetica Neue',Arial,sans-serif" font-size="16" font-weight="900" font-style="italic" fill="#1C6DD0" stroke="#1C6DD0" stroke-width="0.25" paint-order="stroke" stroke-linejoin="round">Trial</text>
+  </g>
+
+  <!-- ct-safety：药物安全 + 信号检测（盾牌 + 雷达信号同心弧，放大居中版） -->
+  <g transform="translate(54,66.5) scale(1.2) translate(-54,-66.5)">
+    <!-- 盾牌（药物警戒 / 安全），边框加粗至 3 -->
+    <path d="M54 38 L78 48 L78 67 C78 82 66 91 54 95 C42 91 30 82 30 67 L30 48 Z"
+          fill="#EAF2FB" stroke="#1C6DD0" stroke-width="3" stroke-linejoin="round"/>
+    <!-- 信号雷达（同心弧 + 中心点，橙红警示 = disproportionality 信号），红圈加粗 -->
+    <g fill="none" stroke="#D85A30" stroke-linecap="round">
+      <circle cx="54" cy="63" r="19" stroke-width="2" opacity="0.3"/>
+      <circle cx="54" cy="63" r="14" stroke-width="2.4" opacity="0.55"/>
+      <circle cx="54" cy="63" r="8" stroke-width="2.8" opacity="0.85"/>
+    </g>
+    <circle cx="54" cy="63" r="3.5" fill="#D85A30"/>
+  </g>
+</svg>

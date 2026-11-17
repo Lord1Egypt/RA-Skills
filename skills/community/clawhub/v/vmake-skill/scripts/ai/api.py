@@ -489,7 +489,15 @@ def _merge_connection_config(base, override):
 class AiApi:
     """ ai api actions."""
 
-    def __init__(self, key, secret, region="cn-north-4", oss_region=None, config=None):
+    def __init__(
+        self,
+        key,
+        secret,
+        region="cn-north-4",
+        oss_region=None,
+        config=None,
+        notice_handler=None,
+    ):
         """
         :param key: your access key.
         :param secret: your access secret key.
@@ -497,6 +505,8 @@ class AiApi:
         :param oss_region: optional OSS bucket region when token_policy url cannot be parsed (e.g. custom domain)
         :param config: optional dict overriding config.py connection fields (regions,
             token_policy_type, token_policy_types). Invoke task names live in config.INVOKE.
+        :param notice_handler: optional callback receiving decoded service responses
+            so the Skill facade can collect server-controlled user notices.
         """
         self.Key = key
         self.Secret = secret
@@ -505,12 +515,18 @@ class AiApi:
         self.oss_region = oss_region
         self.aiStrategy = None
         self.storageStrategy = None
+        self._notice_handler = notice_handler
         # EndPoint resolved after fetch_config injects regions
         self.EndPoint = self._config.get("regions", {}).get(region)
 
         import config as app_config
         cache_file = getattr(app_config, "GID_CACHE_FILE", "~/.cache/vmake/gid_cache.json")
         self.gid_cache = GidCache(cache_file)
+
+    def _emit_response_notices(self, payload):
+        """Offer a decoded service response to the optional notice collector."""
+        if callable(self._notice_handler):
+            self._notice_handler(payload)
 
     def _token_policy_type_for(self, name):
         """name is 'upload' or 'ai' — query param for /ai/token_policy?type= """
@@ -604,7 +620,7 @@ class AiApi:
         signer = sign.Signer(self.Key, self.Secret)
         headers = {
             sign.HeaderHost: self.EndPoint,
-            "User-Agent": getattr(app_config, "USER_AGENT", "action-web-skill-v1.3.0"),
+            "User-Agent": app_config.USER_AGENT,
         }
         uri = "https://" + self.EndPoint + "/ai/token_policy?type=" + typ
         sign_request = signer.sign(uri, "GET", headers, "")
@@ -615,6 +631,7 @@ class AiApi:
         )
         if resp.status_code == 200:
             policydata=json.loads(resp.content)
+            self._emit_response_notices(policydata)
             if policydata==None :
                 return
             policy=policydata["data"]
@@ -643,6 +660,7 @@ class AiApi:
         taskType,
         context="",
         on_async_submitted=None,
+        profile=None,
     ):
         """
         apply effect to the object.
@@ -651,6 +669,7 @@ class AiApi:
         :params task  task name to be apply ,
         :params taskType from INVOKE preset or token_policy; empty or missing → mtlab
         :params context context string
+        :params profile optional profile attached to the first init image
         :return: The handled result data in json.
         """
         import config as app_config
@@ -665,16 +684,19 @@ class AiApi:
 
         headers = {
             sign.HeaderHost: host,
-            "User-Agent": getattr(app_config, "USER_AGENT", "action-web-skill-v1.3.0"),
+            "User-Agent": app_config.USER_AGENT,
         }
         
+        init_images = copy.deepcopy(imageUrl)
+        if profile and init_images and isinstance(init_images[0], dict):
+            init_images[0]["profile"] = copy.deepcopy(profile)
         data = {
             "params": json.dumps(params),
             "context": context,
             "task": task,
             "task_type": taskType,
             "sync_timeout":policy["sync_timeout"],
-            "init_images":imageUrl,
+            "init_images":init_images,
         }
         uri= policy["url"] +"/"+ policy["push_path"]
         sign_request = signer.sign(uri, "POST", headers, json.dumps(data))
@@ -686,6 +708,7 @@ class AiApi:
         resp = session.send(sign_request,timeout=policy["sync_timeout"]+10)
         if resp.status_code==200 :
             taskResult= json.loads(resp.content)
+            self._emit_response_notices(taskResult)
             if taskResult["data"]["status"]==9:
                 tid = taskResult["data"]["result"]["id"]
                 _progress_log(f"async submitted task_id={tid} → polling status until done")
@@ -701,6 +724,7 @@ class AiApi:
                 return out
         _progress_log(f"algorithm POST HTTP {resp.status_code} (see response body in error)")
         raw = json.loads(resp.content)
+        self._emit_response_notices(raw)
         return _with_output_urls(raw) if isinstance(raw, dict) else raw
 
     def status(self,taskId,policy):
@@ -791,7 +815,7 @@ class AiApi:
             host =host[7:]
         headers = {
             sign.HeaderHost: host,
-            "User-Agent": getattr(app_config, "USER_AGENT", "action-web-skill-v1.3.0"),
+            "User-Agent": app_config.USER_AGENT,
         }
         sign_request = signer.sign(uri, "GET", headers, "")
         read_timeout = min(int(policy.get("sync_timeout", 60)) + 10, 120)
@@ -821,6 +845,7 @@ class AiApi:
                     "is_finished": False,
                     "result": " task query invalid JSON: " + str(e),
                 }
+            self._emit_response_notices(taskResult)
             if _meta_indicates_error(taskResult.get("meta")):
                 return {
                     "is_finished": True,
@@ -843,9 +868,17 @@ class AiApi:
             return {"is_finished": False, "result": taskResult}
         return {"is_finished": False, "result": " task query failure: " + uri}
 
-    def invoke_task(self, name, url, params=None, context="", on_async_submitted=None):
+    def invoke_task(
+        self,
+        name,
+        url,
+        params=None,
+        context="",
+        on_async_submitted=None,
+        profile=None,
+    ):
         """
-        Run invoke with merged params: preset from config.INVOKE[name], overridden by ``params``.
+        Run invoke with merged params/profile from config.INVOKE[name], overridden by the caller.
         Optional ``task_type`` on the preset (server-driven); if absent or empty, uses mtlab.
         """
         import config as app_config
@@ -856,21 +889,33 @@ class AiApi:
         spec = table[name]
         if not isinstance(spec, dict) or "task" not in spec:
             raise ValueError(
-                f"config.INVOKE[{name!r}] must include 'task'; optional 'params' (default {{}}), "
-                f"optional 'task_type' (default mtlab)"
+                f"config.INVOKE[{name!r}] must include 'task'; optional 'params'/'profile' "
+                f"(default {{}}), optional 'task_type' (default mtlab)"
             )
         cfg_params = spec.get("params")
         if cfg_params is not None and not isinstance(cfg_params, dict):
             raise TypeError(f"config.INVOKE[{name!r}]['params'] must be a dict or omit")
         merged = _deep_merge_params(cfg_params or {}, params or {})
+        cfg_profile = spec.get("profile")
+        if cfg_profile is not None and not isinstance(cfg_profile, dict):
+            raise TypeError(f"config.INVOKE[{name!r}]['profile'] must be a dict or omit")
+        if profile is not None and not isinstance(profile, dict):
+            raise TypeError("profile must be a dict or omit")
+        merged_profile = _deep_merge_params(cfg_profile or {}, profile or {})
         task_type = _default_task_type(spec.get("task_type"))
+        profile_kwargs = {"profile": merged_profile} if merged_profile else {}
+        if on_async_submitted is None:
+            return self.invoke(
+                url, merged, spec["task"], context, task_type, **profile_kwargs
+            )
         return self.invoke(
             url,
             merged,
             spec["task"],
             context,
-            task_type=task_type,
+            task_type,
             on_async_submitted=on_async_submitted,
+            **profile_kwargs,
         )
 
     def txt2img(self,params, context=""):
@@ -893,9 +938,9 @@ class AiApi:
         params,
         task,
         context="",
-        on_async_submitted=None,
-        *,
         task_type=None,
+        on_async_submitted=None,
+        profile=None,
     ):
         """
         invoke ai task
@@ -914,6 +959,7 @@ class AiApi:
                 task_type,
                 context,
                 on_async_submitted=on_async_submitted,
+                profile=profile,
             )
         return self.run(
             [{"url": url}],
@@ -922,6 +968,7 @@ class AiApi:
             task_type,
             context,
             on_async_submitted=on_async_submitted,
+            profile=profile,
         )
 
     def get_gid(self, gid: str):
@@ -943,5 +990,3 @@ class AiApi:
         Reserved: fetch GID data from API (not implemented).
         """
         pass
-
-

@@ -1,74 +1,48 @@
 # AI Sentinel - ClawHub Skill
 
-This folder contains the ClawHub skill package for AI Sentinel. It provides an interactive setup wizard that helps OpenClaw users integrate prompt injection protection into their gateway.
+This folder contains the ClawHub skill package for AI Sentinel. It provides an interactive setup wizard that installs and configures the `ai-sentinel` OpenClaw plugin (published on npm) for prompt injection protection.
 
 ## Folder Structure
 
 ```
-packages/clawhub-skill/
+ai-sentinel/
 ├── SKILL.md        # Skill entry point (required by ClawHub)
-├── CHANGELOG.md    # Version history (required by ClawHub publish form)
+├── CHANGELOG.md    # Version history
+├── skill-card.md   # Registry skill card (risks, use case, outputs)
 └── README.md       # This file (developer reference)
 ```
 
+## Declarations (must match SKILL.md frontmatter)
+
+The security scanner compares registry metadata against SKILL.md content and flags mismatches. Current declarations:
+
+| Field              | Value |
+|--------------------|-------|
+| Optional env vars  | `AI_SENTINEL_API_KEY` (Pro tier only) |
+| Required config    | `openclaw.config.ts` |
+| External services  | `https://api.zetro.ai` (Pro tier only) |
+| Installed packages | `ai-sentinel` (npm, via `openclaw plugins install`) |
+| Files written      | `.env`, `.gitignore`, `~/.openclaw/openclaw.json` (all with explicit user confirmation) |
+
 ## Publishing to ClawHub
 
-1. Go to the ClawHub publish page
-2. Fill in the **required form fields**:
+```bash
+clawhub publish . --slug ai-sentinel --version <X.Y.Z> --changelog "<summary>"
+```
 
-   | Field        | Value                                       |
-   |--------------|---------------------------------------------|
-   | Slug         | `ai-sentinel`                               |
-   | Display name | `AI Sentinel - Prompt Injection Firewall`   |
-   | Version      | `1.2.0`                                     |
-   | Tags         | `security`, `prompt-injection`, `firewall`, `middleware` |
-
-3. Fill in **registry metadata fields** (these must match what SKILL.md declares, or the security scan will flag a mismatch):
-
-   | Registry Field       | Value |
-   |----------------------|-------|
-   | Required env vars    | `AI_SENTINEL_API_KEY` (optional, Pro tier only) |
-   | Required config      | `openclaw.config.ts` |
-   | External services    | `https://api.zetro.ai` (Pro tier only) |
-   | Installed packages   | `ai-sentinel-sdk` |
-   | Files written        | `openclaw.config.ts`, `.env`, `data/`, `.gitignore` |
-
-4. Upload this entire `clawhub-skill/` folder
-5. Paste the contents of `CHANGELOG.md` into the Changelog field
-6. Submit
-
-**Important:** If the registry form does not have dedicated fields for env vars / external services / config paths, add them to the description or notes field. The OpenClaw security scanner compares registry metadata against SKILL.md content and flags mismatches.
+Versioning tracks the `ai-sentinel` npm plugin version the skill installs. Before publishing a skill update that references new plugin features, ensure the plugin is published to npm first (`npm view ai-sentinel version`).
 
 ## Testing
 
-To manually test the skill before publishing:
+To manually test before publishing:
 
-1. Open an OpenClaw project that has `openclaw.config.ts`
-2. Copy `SKILL.md` into the project's `.openclaw/skills/` directory (or wherever the local skill override path is)
+1. Open an OpenClaw project with `openclaw.config.ts`
+2. Copy this folder into the project's skills directory
 3. Invoke the skill and walk through the setup wizard
-4. Verify:
-   - `ai-sentinel-sdk` is installed in `node_modules`
-   - `openclaw.config.ts` has the sentinel middleware wired up
-   - `npx openclaw sentinel test "Ignore all previous instructions"` returns a `blocked` action
-   - `npx openclaw sentinel test "Hello, how are you?"` returns an `allowed` action
-   - `npx openclaw sentinel status` displays the correct tier and config
+4. Verify per SKILL.md Step 7: plugin listed in `openclaw plugins list`, initialization line in gateway logs, a known injection pattern is detected, and benign messages pass through
 
-## Updating
+## Related Files (monorepo)
 
-When releasing a new version:
-
-1. Update the version in `SKILL.md` header (the `**Version:**` field)
-2. Add a new section to `CHANGELOG.md` with the changes
-3. Re-upload the folder to ClawHub with the new version number in the publish form
-
-## Dependencies
-
-The skill instructs users to install `ai-sentinel-sdk` (published to npm). Ensure the SDK is published and up-to-date before publishing a new skill version that references new SDK features.
-
-## Related Files
-
-- `packages/sdk-node/` - The `ai-sentinel-sdk` Node.js package
-- `packages/sdk-node/src/middleware/openclaw.ts` - OpenClaw middleware implementation
-- `packages/sdk-node/src/types.ts` - `SentinelConfig` interface (the config shape the skill generates)
-- `packages/sdk-node/src/cli/index.ts` - CLI commands referenced in the test step
-- `.claude/commands/setup-sentinel.md` - The older Python SDK setup wizard (separate from this skill)
+- `packages/ai-sentinel/` - The OpenClaw plugin published to npm (hooks, scanner, patterns)
+- `packages/ai-sentinel/src/scanner/patterns.ts` - The 42 detection patterns across 7 categories
+- `packages/ai-sentinel/src/scanner/preprocess.ts` - Obfuscation-resistant preprocessing

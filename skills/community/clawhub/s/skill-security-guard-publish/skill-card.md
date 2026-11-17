@@ -1,45 +1,56 @@
-## Description: <br>
-Scans third-party agent skills for malicious code patterns, sensitive-data exposure, unsafe file operations, and network activity before installation or release. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Skill Security Guard scans third-party AI skills for malicious code, sensitive data exposure, risky file operations, and suspicious network behavior.
 
-## Publisher: <br>
-[sukimgit](https://clawhub.ai/user/sukimgit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sukimgit](https://clawhub.ai/user/sukimgit)
 
-## Use Case: <br>
-Developers, skill users, and administrators use this skill to statically scan Python-based OpenClaw or ClawHub skills for suspicious code, unsafe file access, network activity, and potential secret exposure before installation, publication, or audit. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release is flagged suspicious because it includes under-disclosed live network probing and firewall-inspection helpers. <br>
-Mitigation: Review the code before installation, run it only in a controlled environment, and avoid using network-checking helpers against systems you do not own or have permission to test. <br>
-Risk: Scan reports may include snippets, paths, or matched strings from sensitive files. <br>
-Mitigation: Scan only intended skill directories and keep generated reports private unless they have been reviewed and redacted. <br>
-Risk: Broad scans can traverse personal or unrelated folders and surface data outside the intended review scope. <br>
-Mitigation: Pass a specific skill directory as the scan target and avoid running the scanner on home directories, repositories with unrelated secrets, or shared systems. <br>
+## Use Case:
 
+Developers, skill users, and administrators use this skill to statically scan Python-based skills before installation, release, or periodic audit.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sukimgit/skill-security-guard-publish) <br>
-- [Publisher profile](https://clawhub.ai/user/sukimgit) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact skill definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with bash examples and plain text scan reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports include risk scores, risk levels, matched patterns, affected files, and review guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Bundled network checker modules are broader than the stated static skill-scanning purpose and could expose local network or firewall details if imported or invoked.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or remove the network checker modules before installation, and run the skill only in a restricted environment unless those modules are needed and trusted.
+
+Risk: Static scan reports can include false positives or incomplete findings.
+
+Mitigation: Treat results as review prompts and manually inspect flagged code before approving or rejecting a skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sukimgit/skills/skill-security-guard-publish)
+- [Publisher profile](https://clawhub.ai/user/sukimgit)
+- [README](artifact/README.md)
+- [Skill definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Console text report with risk scores, findings, and review guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static analysis only; scans target Python skill files without executing them.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

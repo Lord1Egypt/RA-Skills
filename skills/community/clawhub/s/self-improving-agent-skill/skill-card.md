@@ -1,47 +1,62 @@
-## Description: <br>
-Self-Improving Agent helps an agent learn from completed tasks, errors, session summaries, and explicit self-improvement requests by extracting reusable patterns, proposing skill updates, and tracking confidence. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps an agent learn from task experience by capturing patterns, errors, feedback, and proposed updates to memory and skill guidance.
 
-## Publisher: <br>
-[initail](https://clawhub.ai/user/initail) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[initail](https://clawhub.ai/user/initail)
 
-## Use Case: <br>
-Developers and agent operators use this skill to capture task experience, abstract lessons into reusable patterns, and propose improvements to skills or agent memory after meaningful work, failures, or explicit self-improvement prompts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Durable learning records may capture task context, project details, or sensitive information. <br>
-Mitigation: Use explicit opt-in triggers for sensitive work, avoid secrets, and periodically inspect or delete the memory/self-improving files. <br>
-Risk: Proposed skill or memory updates can change future agent behavior or introduce incorrect guidance. <br>
-Mitigation: Review every proposed change and require explicit user approval before applying writes to skills or agent memory. <br>
-Risk: Patterns inferred from limited experience can overgeneralize. <br>
-Mitigation: Track confidence, prefer repeated evidence before broadening a pattern, and revise or retire low-confidence guidance. <br>
+## Use Case:
 
+Developers and agent users use this skill to make an agent extract reusable lessons from completed tasks, errors, and user feedback, then propose memory or skill updates for review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/initail/self-improving-agent-skill) <br>
-- [Appendix](references/appendix.md) <br>
-- [SimpleMem: Efficient Lifelong Memory for LLM Agents](https://arxiv.org/html/2601.02553v1) <br>
-- [A Survey on the Memory Mechanism of Large Language Model Agents](https://dl.acm.org/doi/10.1145/3748302) <br>
-- [Lifelong Learning of LLM based Agents](https://arxiv.org/html/2501.07278v1) <br>
-- [Evo-Memory: DeepMind's Benchmark](https://shothota.medium.com/evo-memory-deepminds-new-benchmark) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown, JSON examples, and structured proposed changes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose file writes for skill updates or memory records; artifact guidance requires explicit user confirmation before applying those changes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill can retain long-term records of tasks, errors, feedback, and reusable patterns.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in workspaces where this retention is acceptable, and avoid sensitive project context unless retention controls are tightened.
+
+Risk: The skill can propose persistent changes to memory and skill behavior.
+
+Mitigation: Review every proposed memory or skill update before applying it, and preserve the documented user confirmation gate.
+
+Risk: Incorrect lessons could become persistent guidance for future agent behavior.
+
+Mitigation: Validate proposed patterns, corrections, and confidence changes before reuse, especially after errors or negative feedback.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/initail/skills/self-improving-agent-skill)
+- [Appendix](artifact/references/appendix.md)
+- [SimpleMem: Efficient Lifelong Memory for LLM Agents](https://arxiv.org/html/2601.02553v1)
+- [A Survey on the Memory Mechanism of Large Language Model Agents](https://dl.acm.org/doi/10.1145/3748302)
+- [Lifelong Learning of LLM based Agents](https://arxiv.org/html/2501.07278v1)
+- [Evo-Memory: DeepMind's Benchmark](https://shothota.medium.com/evo-memory-deepminds-new-benchmark)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON and code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose memory records, pattern entries, validation reports, and skill update drafts that require user review before persistent changes.]
+
+## Skill Version(s):
+
+0.2.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

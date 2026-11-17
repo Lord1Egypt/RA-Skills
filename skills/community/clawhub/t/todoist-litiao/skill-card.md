@@ -1,45 +1,59 @@
-## Description: <br>
-Manage tasks and projects in Todoist. Use when user asks about tasks, to-dos, reminders, or productivity. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage tasks and projects in Todoist. Use when user asks about tasks, to-dos, reminders, or productivity.
 
-## Publisher: <br>
-[litiao1224](https://clawhub.ai/user/litiao1224) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[litiao1224](https://clawhub.ai/user/litiao1224)
 
-## Use Case: <br>
-External users and agents use this skill to inspect, create, update, complete, search, and delete Todoist tasks, projects, labels, and comments through the Todoist CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: An agent may unintentionally create, update, complete, or delete Todoist tasks because the skill exposes task-changing commands. <br>
-Mitigation: Require explicit user confirmation before any create, update, complete, reopen, move, or delete command is executed. <br>
-Risk: Deleting or modifying the wrong task can occur if a task ID is selected from an ambiguous search result. <br>
-Mitigation: Review task details and confirm the exact task ID before destructive or state-changing commands, especially delete. <br>
-Risk: The Todoist API token gives access to the user's Todoist account. <br>
-Mitigation: Install only for workflows that need Todoist account access and keep TODOIST_API_TOKEN scoped to trusted agent environments. <br>
+## Use Case:
 
+External users and agent developers use this skill to inspect, create, search, update, complete, reopen, move, and delete Todoist tasks, projects, labels, and comments through the Todoist CLI.
 
-## Reference(s): <br>
-- [Todoist](https://todoist.com) <br>
-- [Todoist API Token Settings](https://todoist.com/app/settings/integrations/developer) <br>
-- [ClawHub Skill Page](https://clawhub.ai/litiao1224/todoist-litiao) <br>
-- [ClawHub Publisher Profile](https://clawhub.ai/user/litiao1224) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces Todoist CLI commands and setup guidance; task-changing actions should be confirmed before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can cause account-changing actions such as completing, reopening, moving, updating, or deleting Todoist tasks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation before running commands that modify or delete Todoist data.
+
+Risk: The skill requires a Todoist API token, and token handling examples can lead to accidental exposure in shell history or logs.
+
+Mitigation: Store the token in a reviewed secret mechanism or environment variable and avoid typing the raw token directly into shell history.
+
+Risk: The installation example allows a semver range for the global Todoist CLI package.
+
+Mitigation: Use an exact reviewed todoist-ts-cli version before enabling the skill in an agent environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/litiao1224/skills/todoist-litiao)
+- [Todoist homepage](https://todoist.com)
+- [Todoist developer integrations settings](https://todoist.com/app/settings/integrations/developer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Todoist CLI commands and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the todoist binary and TODOIST_API_TOKEN for account access.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

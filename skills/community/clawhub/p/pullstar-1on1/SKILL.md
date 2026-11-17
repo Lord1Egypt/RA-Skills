@@ -1,6 +1,6 @@
 ---
 name: skills
-description: Generate a ready-to-use 1-on-1 brief for any engineer on your team — from their GitHub activity, in seconds. Spots patterns like high output but low review participation, large PR sizes suggesting batching, and cross-repo collaboration signals.
+description: Generate a 1-on-1 brief from GitHub activity. Fully deterministic pipeline — 5 tool calls, zero sub-agent spawns.
 license: MIT
 ---
 
@@ -120,21 +120,29 @@ python run_brief.py --login jsmith --api-mode rest    # force REST API (default:
 
 ---
 
-## Agent Flow
+## Agent Flow (Deterministic — No Sub-Agents)
 
-`run_brief.py` runs the deterministic pipeline (ingest → score → prepare) and then prints an explicit instruction block. The agent must complete the final two steps:
+**The entire pipeline runs in the agent's main session.** Use `exec` for Python scripts and do the LLM inference inline — the agent itself is the LLM. Never spawn sub-agents.
 
 ```
-============================================================
-PIPELINE COMPLETE — AGENT ACTION REQUIRED
-============================================================
-
-  1. Read:   .pullstar/llm_input_jsmith.json
-  2. Extract the "system" and "user" fields
-  3. Call your LLM with those as the system prompt and user message
-  4. Write the response to .pullstar/llm_output_jsmith.json
-  5. Run:    python scripts/agent_finalize_1on1.py --login jsmith
+1. exec:    python run_brief.py --login <login> [flags]
+2. read:    .pullstar/llm_input_<login>.json
+3. write:   .pullstar/llm_output_<login>.json  (produce the brief inline as the LLM)
+4. exec:    python scripts/agent_finalize_1on1.py --login <login>
+5. read:    .pullstar/output_<login>.json       (quality gate: verify meaningful data)
+6. (done — present the brief)
 ```
+
+### Why Inline
+
+- **Zero sub-agent overhead.** No spawn latency, no polling, no completion-event complexity.
+- **Deterministic tool count.** Exactly 5 tool calls: exec → read → write → exec → read.
+- **Faster end-to-end.** All steps run sequentially in one session with no context-fork tax.
+- **The agent IS the LLM.** Creating a sub-agent to call the same model for inference adds nothing.
+
+### Quality Gate
+
+After step 4, read `output_<login>.json` and verify the brief has meaningful data. If `total_score` is 0 or the brief contains phrases like "no activity" / "no contributions" / "no PRs merged" / "insufficient data", respond with a graceful fallback message instead of presenting an empty brief.
 
 ---
 
@@ -226,23 +234,17 @@ Use `--api-mode rest` to fall back to the legacy REST API.
 
 ## For Agent Developers
 
-### Subagent Best Practices (Don't Be a Nervous Parent)
+### Deterministic Pattern (Mandatory)
 
-When using `sessions_spawn` for the LLM inference step:
+The brief pipeline is fully deterministic. There is exactly one correct execution path:
 
-**✅ Do:**
-- Spawn once with the task to read `llm_input_{login}.json` and write `llm_output_{login}.json`
-- Trust the "auto-announces on completion" behavior — you'll get a completion event
-- Handle the result when the event arrives
+```
+exec(run_brief.py) → read(llm_input) → write(llm_output) → exec(agent_finalize) → read(output/quality gate)
+```
 
-**❌ Don't:**
-- Poll `subagents list` in a tight loop waiting for completion
-- Spawn multiple subagents for the same task
-- Check status every few seconds — it's wasteful
+**❌ Never spawn sub-agents for this pipeline.** The agent itself performs the LLM inference step — delegating to a sub-agent is redundant, adds latency, and creates thrash. The pipeline completes in 5 tool calls. If you're tempted to spawn a sub-agent, ask yourself: "Am I running a Python script or doing LLM inference?" If the answer is "Python script," use `exec`. If the answer is "LLM inference," do it inline.
 
-**Why:** Subagents are lightweight (no full OpenClaw context, isolated environment), but polling defeats the purpose of push-based completion. The system will tell you when it's done.
-
-**Recovery:** If a subagent fails, you can always generate the brief directly in the main session — the JSON contract is simple and documented above.
+**Recovery:** If `run_brief.py` exits non-zero, the GitHub user likely doesn't exist or the token is invalid. Respond with the graceful fallback message; do not retry or spawn alternative paths.
 
 ---
 

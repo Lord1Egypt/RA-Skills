@@ -10,6 +10,7 @@ import json
 import sqlite3
 import subprocess
 import os
+import shutil
 import urllib.request
 import urllib.parse
 import urllib.error
@@ -996,6 +997,83 @@ class QuickerConnector:
         with open(output_path, 'w', encoding='utf-8') as f:
             json.dump(data, f, ensure_ascii=False, indent=2)
 
+    def export_icons(self, out_dir: str, size: int = 48, max_workers: int = 8) -> dict:
+        """
+        批量导出动作图标为独立 PNG 文件（去重 + 并发解析 + 本地缓存优先）。
+
+        输出 `<三位序号>_<动作名>_<图标短key>.png` 与 `icons_manifest.json`。
+
+        Args:
+            out_dir: 图标输出目录
+            size: 图标像素尺寸
+            max_workers: 并发线程数
+
+        Returns:
+            统计 dict：{"total","unique","files","from_cache","downloaded",
+            "rendered","local","missing","elapsed_sec","out_dir","items"}
+
+        Raises:
+            ValueError: size 不是 >= 1 的整数
+        """
+        import sys as _sys
+        _sys.path.insert(0, str(Path(__file__).resolve().parent))
+        from icon_exporter import export_icons
+
+        return export_icons(
+            self.read_actions(),
+            out_dir,
+            size=size,
+            max_workers=max_workers,
+            log=lambda _m: None,
+        )
+
+    def export_to_excel(
+        self,
+        output_path: str,
+        icon_size: int = 48,
+        with_icons: bool = True,
+        icon_mode: str = "embedded",
+        icons_dir: Optional[str] = None,
+        max_workers: int = 8,
+    ) -> dict:
+        """
+        导出动作列表到 Excel（.xlsx），「图标」列写入真实图标图片。
+
+        图标来源：
+        - http(s) 图标：优先命中 Quicker 本地缓存（ImageCache，SHA1(URL).png），离线可用
+        - fa:Style_Name 字体图标：用 Quicker 自带 FontAwesome5 SVG 数据栅格化渲染
+        - 其余留空
+
+        Args:
+            output_path: 输出 .xlsx 路径
+            icon_size:   图标像素尺寸（默认 48）
+            with_icons:  总开关，False 等价于 icon_mode="none"（向后兼容）
+            icon_mode:   embedded=嵌入图片（默认）/ path=图标列只写文件路径 / none=不处理
+            icons_dir:   图标文件导出目录（给出时先批量导出图标文件）
+            max_workers: 图标解析并发线程数
+
+        Returns:
+            统计 dict：{"total","with_icon","no_icon","output","icon_mode", ...}
+
+        Raises:
+            ValueError: icon_mode 非法或 icon_size < 1
+            PermissionError: 目标文件被占用（原文件不会被破坏）
+        """
+        import sys as _sys
+        _sys.path.insert(0, str(Path(__file__).resolve().parent))
+        from export_actions_excel import export_actions_to_excel
+
+        return export_actions_to_excel(
+            self.read_actions(),
+            output_path,
+            icon_size=icon_size,
+            with_icons=with_icons,
+            icon_mode=icon_mode,
+            icons_dir=icons_dir,
+            max_workers=max_workers,
+            log=lambda _m: None,
+        )
+
     def read_all(self) -> List[QuickerAction]:
         """读取所有动作（兼容性别名）"""
         return self.read_actions()
@@ -1107,6 +1185,398 @@ def require_initialized():
         raise SystemExit(1)
 
 
+# ============================================================
+# 数据维护：export 目录配置映射（v1.3.0 新增）
+# 映射知识库: data/quicker_export_map.json（功能→文件→字段 三级索引）
+# ============================================================
+
+DEFAULT_EXPORT_ROOT = r"G:\Data\Tools\Quicker\export"
+DEFAULT_MAP_PATH = str(Path(__file__).parent.parent / "data" / "quicker_export_map.json")
+
+
+class QuickerExportMap:
+    """
+    维护工具全量备份（export 目录）的配置映射读写器。
+
+    用法：
+        qm = QuickerExportMap()                       # 自动读 config.json 的 export_root + 映射
+        qm.locate("扩展热键")                          # 定位：功能 → 文件类型/字段/实际文件
+        qm.read_config("扩展热键")                     # 读取当前值 → (文件路径, 值)
+        qm.update_config("左键增强", new_value)        # 修改并写回（自动 .bak 备份）
+        qm.find_action("视频旋转修复版")               # actions\\ 下按 ID/名称定位动作文件
+        qm.read_action_data("<动作ID>")               # 读取并解析动作 Data（步骤/变量）
+        qm.list_actions()                             # 列出全部动作
+    """
+
+    def __init__(self, export_root: Optional[str] = None, map_path: Optional[str] = None):
+        """
+        Args:
+            export_root: 维护工具备份目录；None 时依次读 config.json export_root → 默认路径
+            map_path:    映射 JSON 路径；None 时用技能 data/ 下的知识库映射
+        """
+        self.export_root = export_root or self._resolve_export_root()
+        self.map_path = Path(map_path) if map_path else Path(DEFAULT_MAP_PATH)
+        self._map = self._load_map()
+        self._files = self._index_files()
+
+    # ---------- 初始化 ----------
+
+    @staticmethod
+    def _resolve_export_root() -> str:
+        """从 config.json 读取 export_root，不存在则用默认路径"""
+        cfg = get_config()
+        root = cfg.get("export_root", "")
+        if root and Path(root).exists():
+            return root
+        return DEFAULT_EXPORT_ROOT
+
+    def _load_map(self) -> Dict[str, Any]:
+        if not self.map_path.exists():
+            raise FileNotFoundError(f"配置映射不存在: {self.map_path}")
+        with open(self.map_path, "r", encoding="utf-8") as f:
+            return json.load(f)
+
+    def _index_files(self) -> Dict[str, List[str]]:
+        """建立 file_type.id → 实际文件路径列表 的索引（按 pattern 匹配）"""
+        index = {}
+        root = Path(self.export_root)
+        for ft in self._map.get("file_types", []):
+            pattern = ft.get("pattern", "")
+            rel_dir = pattern.split("\\")[0] if "\\" in pattern else ""
+            pat = pattern.split("\\")[-1] if "\\" in pattern else pattern
+            base = root / rel_dir if rel_dir else root
+            matches = list(base.glob(pat)) if base.exists() else []
+            index[ft["id"]] = [str(m) for m in matches]
+        return index
+
+    # ---------- 定位 ----------
+
+    def locate(self, feature: str) -> Dict[str, Any]:
+        """
+        按功能关键词定位配置。
+
+        Args:
+            feature: 功能关键词（如"扩展热键""轮盘菜单""左键增强""定时任务"）
+
+        Returns:
+            {"feature", "file", "json_path", "writable", "match", "files"}
+
+        Raises:
+            KeyError: 映射中找不到该功能
+        """
+        feature_lower = feature.lower()
+        for entry in self._map.get("config_index", []):
+            if feature_lower in entry["feature"].lower():
+                return {
+                    "feature": entry["feature"],
+                    "file": entry["file"],
+                    "json_path": entry.get("json_path", "$root"),
+                    "writable": entry.get("writable", False),
+                    "match": entry.get("match"),
+                    "files": self._files.get(entry["file"], []),
+                }
+        raise KeyError(
+            f"映射中找不到功能: {feature}。可用关键词：{', '.join(self.list_features()[:10])} 等"
+        )
+
+    def list_features(self) -> List[str]:
+        """列出映射支持的所有可定位功能"""
+        return [e["feature"] for e in self._map.get("config_index", [])]
+
+    def _resolve_config_file(self, entry: Dict[str, Any]) -> str:
+        """把 config_index 条目解析到具体文件；match 用于多文件类型（如按 exe）过滤"""
+        files = entry.get("files") or self._files.get(entry["file"], [])
+        match = entry.get("match")
+        if match and files:
+            key = match.replace("<exe>", "")
+            files = [f for f in files if key in Path(f).name]
+        if not files:
+            raise FileNotFoundError(
+                f"未找到配置文件: file={entry['file']} match={entry.get('match')}（目录: {self.export_root}）"
+            )
+        return files[0]
+
+    # ---------- 读取 ----------
+
+    def read_config(self, feature: str):
+        """
+        读取某项配置的当前值。
+
+        Returns:
+            (文件路径, 提取的值)
+        """
+        entry = self.locate(feature)
+        path = self._resolve_config_file(entry)
+        with open(path, "r", encoding="utf-8") as f:
+            data = json.load(f)
+        jp = entry["json_path"]
+        if jp == "$root":
+            return path, data
+        return path, self._json_get(data, jp)
+
+    # ---------- 修改 ----------
+
+    def update_config(self, feature: str, value: Any, backup: bool = True):
+        """
+        修改配置并写回。
+
+        Args:
+            feature: 功能关键词
+            value:   新值（覆盖 json_path 指向的字段；$root 时覆盖整个文件内容）
+            backup:  是否先备份原文件为 <文件>.bak
+
+        Returns:
+            (文件路径, True)
+        """
+        entry = self.locate(feature)
+        path = self._resolve_config_file(entry)
+        with open(path, "r", encoding="utf-8") as f:
+            data = json.load(f)
+        jp = entry["json_path"]
+        if jp == "$root":
+            data = value
+        else:
+            self._json_set(data, jp, value)
+        if backup:
+            shutil.copy2(path, path + ".bak")
+        with open(path, "w", encoding="utf-8") as f:
+            json.dump(data, f, ensure_ascii=False, indent=2)
+        return path, True
+
+    # ---------- 导入（导回）方案 ----------
+
+    @staticmethod
+    def _file_id_of_name(name: str) -> Optional[str]:
+        """按文件名判断属于哪个 file_type（用于导回决策）"""
+        n = name.replace("\\", "/").split("/")[-1]
+        if n == "_action_adorn.json":
+            return "action_adorn"
+        if n.startswith("state_"):
+            return "state"
+        if n.startswith("actionpage_"):
+            return "actionpage"
+        if n.startswith("common_exe_"):
+            return "exe_common"
+        if n.startswith("common_shared_subprogram_"):
+            return "shared_subprogram"
+        if n.startswith("common_user_settings"):
+            return "settings"
+        if n.startswith("common_user_gestures"):
+            return "gestures"
+        if n.startswith("common_user_mouseActions"):
+            return "mouse_actions"
+        if n.startswith("common_user_powerKeys"):
+            return "power_keys"
+        if n.startswith("common_user_preferences"):
+            return "preferences"
+        if n.startswith("common_user_favorBlocks"):
+            return "favor_blocks"
+        if n.startswith("action_") or "/actions/" in name.replace("\\", "/"):
+            return "action"
+        return None
+
+    def _import_info(self, file_id: str):
+        """从映射取 file_type 的 import_mode + import_method"""
+        for ft in self._map.get("file_types", []):
+            if ft["id"] == file_id:
+                return ft.get("import_mode", "batch"), ft.get("import_method", "")
+        return "batch", ""
+
+    def get_import_plan(self, items) -> Dict[str, Any]:
+        """
+        根据修改内容生成导入（导回）方案：判断单文件导回还是批量导入。
+
+        Args:
+            items: 修改项列表。每项可以是：
+                - 功能关键词（如"扩展热键""左键增强"）——走 config_index 匹配
+                - 文件路径或文件名（如 "actions\\action_5479d192-...json"、"common_user_settings.json"）
+                - 动作 ID 或动作名称（定位到 actions\\ 文件）
+
+        Returns:
+            {
+              "mode": "single" | "batch",     # 全部可单文件= single；含设置类= batch
+              "plans": [ {item, kind, file_id, mode, method} ... ],
+              "steps": [ ... ],                # 具体操作步骤
+              "impact": "影响范围说明",
+              "warning": "风险提示"
+            }
+        """
+        plans = []
+        for item in items:
+            item = (item or "").strip()
+            if not item:
+                continue
+            # 1) 功能关键词 → config_index
+            try:
+                entry = self.locate(item)
+                mode = entry.get("import_mode") or self._import_info(entry["file"])[0]
+                method = entry.get("import_method") or self._import_info(entry["file"])[1]
+                plans.append({"item": item, "kind": "feature", "file_id": entry["file"],
+                              "mode": mode, "method": method})
+                continue
+            except KeyError:
+                pass
+            # 2) 文件名 → file_type
+            file_id = self._file_id_of_name(item)
+            if file_id is None:
+                # 3) 动作 ID / 名称
+                try:
+                    self.find_action(item)
+                    file_id = "action"
+                except Exception:
+                    raise KeyError(
+                        f"无法识别修改项: {item}（既不是已知功能关键词，也不是映射文件或动作）"
+                    )
+            mode, method = self._import_info(file_id)
+            plans.append({"item": item, "kind": "file", "file_id": file_id,
+                          "mode": mode, "method": method})
+
+        if not plans:
+            raise ValueError("items 为空，无法生成导入方案")
+
+        has_batch = any(p["mode"] == "batch" for p in plans)
+        mode = "batch" if has_batch else "single"
+        guide = self._map.get("import_guide", {})
+
+        if mode == "single":
+            steps = [p["method"] for p in plans]
+            impact = "影响范围：仅涉及修改的文件/动作本身，不影响其它配置。"
+            warning = "导入动作时 ID 相同会覆盖原动作；如需保留旧版，先在 Quicker 中改名或导出备份。"
+        else:
+            steps = list(guide.get("batch_workflow", []))
+            impact = "影响范围：批量分享导入；常规数据对同账号为覆盖式，请只勾选本次必要数据。"
+            warning = guide.get("note", "批量导入常规数据会覆盖同账号已有设置，必须先导出再导入。")
+
+        return {
+            "mode": mode,
+            "plans": plans,
+            "steps": steps,
+            "impact": impact,
+            "warning": warning,
+        }
+
+    # ---------- 动作 ----------
+
+    def find_action(self, action_id_or_name: str) -> str:
+        """
+        在 actions\\ 下按动作 ID 或名称定位动作文件。
+
+        Returns:
+            动作文件路径
+        """
+        actions_dir = Path(self.export_root) / "actions"
+        if not actions_dir.exists():
+            raise FileNotFoundError(f"actions 目录不存在: {actions_dir}")
+        target = (action_id_or_name or "").strip()
+        if not target:
+            raise ValueError("action_id_or_name 不能为空")
+        for f in actions_dir.glob("action_*.json"):
+            if target in f.stem:
+                return str(f)
+        raise FileNotFoundError(f"在 {actions_dir} 未找到动作: {target}")
+
+    def list_actions(self) -> List[tuple]:
+        """
+        列出 actions\\ 下所有动作。
+
+        Returns:
+            [(动作ID, 标题, 文件路径), ...]（按文件名排序）
+        """
+        actions_dir = Path(self.export_root) / "actions"
+        result = []
+        if actions_dir.exists():
+            for f in sorted(actions_dir.glob("action_*.json")):
+                rest = f.stem[len("action_"):]
+                aid, _, title = rest.partition("_")
+                result.append((aid, title, str(f)))
+        return result
+
+    def read_action(self, action_id_or_name: str) -> Dict[str, Any]:
+        """读取动作定义（外层元数据，Data 仍为 JSON 字符串）"""
+        path = self.find_action(action_id_or_name)
+        with open(path, "r", encoding="utf-8") as f:
+            return json.load(f)
+
+    def read_action_data(self, action_id_or_name: str):
+        """
+        读取并解析动作 Data（步骤/变量定义）。
+
+        Returns:
+            (动作元数据 dict, 解析后的 Data dict)
+        """
+        action = self.read_action(action_id_or_name)
+        raw = action.get("Data")
+        if not raw:
+            raise ValueError(f"动作 {action.get('Id')} 没有 Data")
+        return action, json.loads(raw)
+
+    # ---------- 工具 ----------
+
+    @staticmethod
+    def _json_get(obj: Any, json_path: str) -> Any:
+        """按 'A.B.C' 式路径取值（'[]' 仅作标记忽略）。
+
+        自动解析嵌套的 JSON 字符串字段（如 settings 的 HotKeysData 本身是字符串，
+        但内部又是 JSON），对调用方透明返回解析后的对象。
+        """
+        segs = [s for s in json_path.replace("[]", "").split(".") if s]
+        cur = obj
+        for seg in segs:
+            if isinstance(cur, str):
+                s = cur.strip()
+                if s.startswith("{") or s.startswith("["):
+                    try:
+                        cur = json.loads(cur)
+                    except Exception:
+                        raise KeyError(f"字段 {seg} 是非法 JSON 字符串（路径 {json_path}）")
+                else:
+                    raise KeyError(f"字段路径经过非 JSON 字符串: {seg}（路径 {json_path}）")
+            if isinstance(cur, dict) and seg in cur:
+                cur = cur[seg]
+            else:
+                raise KeyError(f"字段不存在: {seg}（路径 {json_path}）")
+        return cur
+
+    @staticmethod
+    def _json_set(obj: Any, json_path: str, value: Any) -> None:
+        """按 'A.B.C' 式路径写值（'[]' 仅作标记忽略）。
+
+        若路径途经嵌套 JSON 字符串字段（如 HotKeysData），修改后自动把该字段重新
+        序列化为 JSON 字符串写回，保持原始文件结构不变。
+        """
+        segs = [s for s in json_path.replace("[]", "").split(".") if s]
+        if not segs:
+            raise ValueError(f"无效路径: {json_path}")
+
+        def is_json_str(v: Any) -> bool:
+            return isinstance(v, str) and v.strip().startswith(("{", "["))
+
+        def walk(cur: Any, idx: int) -> Any:
+            if isinstance(cur, str):
+                if is_json_str(cur):
+                    try:
+                        cur = json.loads(cur)
+                    except Exception:
+                        raise KeyError(f"字段 {segs[idx]} 是非法 JSON 字符串（路径 {json_path}）")
+                else:
+                    raise KeyError(f"字段路径经过非 JSON 字符串: {segs[idx]}（路径 {json_path}）")
+            if idx == len(segs) - 1:
+                if not isinstance(cur, dict):
+                    raise KeyError(f"字段不存在: {segs[idx]}（路径 {json_path}）")
+                cur[segs[idx]] = value
+                return cur
+            if not isinstance(cur, dict) or segs[idx] not in cur:
+                raise KeyError(f"字段不存在: {segs[idx]}（路径 {json_path}）")
+            orig = cur[segs[idx]]
+            new_child = walk(orig, idx + 1)
+            if is_json_str(orig):
+                new_child = json.dumps(new_child, ensure_ascii=False)
+            cur[segs[idx]] = new_child
+            return cur
+
+        walk(obj, 0)
+
+
 # 测试代码
 def test():
     """测试 QuickerConnector"""
@@ -1159,5 +1629,57 @@ def test():
         traceback.print_exc()
 
 
+def test_export_map():
+    """测试 QuickerExportMap（数据维护/配置映射）"""
+    print("=" * 60)
+    print("测试 QuickerExportMap（数据维护）")
+    print("=" * 60)
+    try:
+        qm = QuickerExportMap()
+        print(f"\nexport_root: {qm.export_root}")
+        print(f"映射: {qm.map_path}")
+
+        # 1. 定位
+        info = qm.locate("扩展热键")
+        print(f"\nlocate('扩展热键') → file={info['file']}, json_path={info['json_path']}, writable={info['writable']}")
+
+        # 2. 读取
+        path, hotkeys = qm.read_config("扩展热键")
+        print(f"read_config('扩展热键') → {path}")
+        if isinstance(hotkeys, list):
+            print(f"  ActionHotkeys 数量: {len(hotkeys)}")
+            for h in hotkeys[:3]:
+                print(f"  - {h.get('Title')} [{h.get('Keys')}] → {h.get('ActionId')}")
+
+        # 3. 动作定位
+        p1 = qm.find_action("5479d192")
+        p2 = qm.find_action("视频旋转修复版")
+        print(f"\nfind_action('5479d192') → {p1}")
+        print(f"find_action('视频旋转修复版') → {p2}")
+
+        # 4. 动作 Data 解析
+        action, data = qm.read_action_data("5479d192")
+        print(f"\nread_action_data('5479d192') → Title={action.get('Title')}, 变量数={len(data.get('Variables', []))}, 步骤数={len(data.get('Steps', []))}")
+
+        # 5. 全量清单
+        acts = qm.list_actions()
+        print(f"\nlist_actions() → 共 {len(acts)} 个动作")
+
+        # 6. 所有可定位功能
+        feats = qm.list_features()
+        print(f"\n可定位功能 {len(feats)} 项:")
+        for f in feats:
+            print(f"  - {f}")
+
+        print("\n" + "=" * 60)
+        print("QuickerExportMap 测试完成")
+        print("=" * 60)
+    except Exception as e:
+        print(f"\nQuickerExportMap 测试失败: {e}")
+        import traceback
+        traceback.print_exc()
+
+
 if __name__ == "__main__":
     test()
+    test_export_map()

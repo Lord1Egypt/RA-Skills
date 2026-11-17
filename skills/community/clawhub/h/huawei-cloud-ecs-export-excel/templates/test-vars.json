@@ -1,0 +1,48 @@
+{
+  "skill_name": "huawei-cloud-ecs-export-excel",
+  "region": "cn-north-4",
+  "test_cases": [
+    {
+      "id": "TC-01",
+      "name": "Export xlsx report (default format)",
+      "command": "python3 scripts/list_ecs_export_excel.py --region {region} --output /tmp/ecs_instances_{region}.xlsx --summary",
+      "expected": "Prints generated .xlsx path; workbook has header (名称/ID/状态/规格/vCPU/内存/可用区/私网IP/公网IP) + data rows + summary row",
+      "type": "readonly",
+      "executor": "script"
+    },
+    {
+      "id": "TC-02",
+      "name": "Table output (script)",
+      "command": "python3 scripts/list_ecs_export_excel.py --region {region} --format table",
+      "expected": "Aligned full-field table with name/id/status/flavor/availability_zone/IP columns",
+      "type": "readonly",
+      "executor": "sdk"
+    },
+    {
+      "id": "TC-03",
+      "name": "Instance list as JSON (script)",
+      "command": "python3 scripts/list_ecs_export_excel.py --region {region} --format json",
+      "expected": "JSON array of complete ECS ServerDetail objects",
+      "type": "readonly",
+      "executor": "sdk"
+    },
+    {
+      "id": "TC-04",
+      "name": "Empty result produces no file",
+      "command": "python3 scripts/list_ecs_export_excel.py --region {region} --format xlsx --output /tmp/nonexistent_dir_empty/ecs.xlsx",
+      "expected": "No ECS instances → friendly message, exit 0, no .xlsx created",
+      "type": "readonly",
+      "executor": "sdk"
+    },
+    {
+      "id": "TC-05",
+      "name": "Argument help (syntax)",
+      "command": "python3 scripts/list_ecs_export_excel.py --help",
+      "expected": "argparse help printed, exit 0",
+      "type": "syntax",
+      "executor": "sdk"
+    }
+  ],
+  "env_vars_required": ["HUAWEI_ACCESS_KEY", "HUAWEI_SECRET_KEY"],
+  "notes": "只读操作（ListServersDetails），无资源创建/修改/删除风险；Excel 仅在本机生成，绝不写回云端。CLI 主路径使用 hcloud ECS ListServersDetails；SDK 回退使用 huaweicloudsdkecs v2；openpyxl 缺失时运行 scripts/ensure_env.py 自动安装。"
+}

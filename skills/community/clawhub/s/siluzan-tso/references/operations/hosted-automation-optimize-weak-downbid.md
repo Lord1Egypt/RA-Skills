@@ -59,7 +59,7 @@ siluzan-tso ad list -a <mediaCustomerId> --start <YYYY-MM-DD> --end <YYYY-MM-DD>
 
 ## 最终操作
 
-**下调组目标 CPA**（数值单位与 `ad groups --json-out ./snap` 一致，见 `references/google-ads/google-ads.md`「广告组编辑」）：
+**下调组目标 CPA**（数值单位与 `ad groups --json-out ./snap` 一致，见 `references/google-ads/google-ads-write.md`「广告组编辑」）：
 
 ```bash
 siluzan-tso ad adgroup-edit -a <mediaCustomerId> --id <adGroupId> --target-cpa <新值>

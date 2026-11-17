@@ -1,41 +1,49 @@
-## Description: <br>
-Route AI agent compute tasks to the cheapest viable backend, supporting local inference with Ollama, cloud GPU execution with Vast.ai, and quantum hardware with Wukong 72Q. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Routes AI agent compute tasks to the cheapest viable backend across local inference (Ollama), cloud GPU (Vast.ai), and quantum hardware (Wukong 72Q).
 
-## Publisher: <br>
-[adjusternwachukwu-bot](https://clawhub.ai/user/adjusternwachukwu-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[adjusternwachukwu-bot](https://clawhub.ai/user/adjusternwachukwu-bot)
 
-## Use Case: <br>
-Developers and agent operators use this skill to choose where an AI compute task should run, check backend availability, and optionally execute workloads through local, cloud GPU, or quantum routes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Executing a job may send prompts, payloads, or model inputs to a third-party compute-routing service. <br>
-Mitigation: Use route, backend status, health, or stats checks before execute, and do not send secrets, private prompts, proprietary data, credentials, or regulated data unless the provider is trusted and approved for that data. <br>
-Risk: Routing work to cloud GPU or quantum backends may create cost, billing, or data-handling exposure beyond local execution. <br>
-Mitigation: Review the selected backend and expected cost before execution, and prefer local or recommendation-only routes when the task does not require remote compute. <br>
+## Use Case:
 
+Developers and agent operators use Edge Router to choose among local, cloud GPU, and quantum compute backends, check availability, and execute workloads with cost-aware routing.
 
-## Reference(s): <br>
-- [Edge Router API](https://edge-router.gpupulse.dev/api/v1) <br>
-- [ClawHub Skill Page](https://clawhub.ai/adjusternwachukwu-bot/edge-router) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, API Calls] <br>
-**Output Format:** [Markdown with inline bash code blocks and API endpoint descriptions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May recommend route, status, stats, health, or execute API calls for local, cloud GPU, and quantum backends.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and target metadata) <br>
+Risk: Public API routing can send prompts, payloads, datasets, or workloads to external compute providers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sending secrets, private prompts, proprietary datasets, or regulated data unless the service and external routing path are approved; use localhost for local-only testing.
+
+## Reference(s):
+
+- [Edge Router API](https://edge-router.gpupulse.dev/api/v1)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Describes API calls for routing, execution, backend status, statistics, and health checks.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

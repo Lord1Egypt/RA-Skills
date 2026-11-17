@@ -1,0 +1,84 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agent-slim/layout.schema.json",
+  "title": "Agent Slim layout description",
+  "description": "Optional file that tells the audit where an agent keeps its resident context, skills, sessions and logs. Every path is relative to the audited home. Omitting a field falls back to the vendor defaults.",
+  "type": "object",
+  "additionalProperties": true,
+  "required": ["hot"],
+  "properties": {
+    "host": {
+      "type": "string",
+      "description": "Label reported in audit output; use whatever the agent calls itself.",
+      "default": "custom",
+      "maxLength": 64
+    },
+    "hot": {
+      "type": "array",
+      "description": "Files injected every turn or at startup. This is the layer whose reduction shows up in per-turn token cost.",
+      "maxItems": 200,
+      "items": {
+        "oneOf": [
+          {
+            "type": "string",
+            "description": "Shorthand for {path, category: instructions, loadedWhen: every-turn}."
+          },
+          {
+            "type": "object",
+            "required": ["path"],
+            "additionalProperties": true,
+            "properties": {
+              "path": {
+                "type": "string",
+                "description": "Home-relative path. Absolute paths and '..' segments are rejected.",
+                "minLength": 1
+              },
+              "category": {
+                "type": "string",
+                "enum": ["instructions", "rules", "memory", "tools", "docs"],
+                "default": "instructions",
+                "description": "Grouping only; it does not change which actions are allowed."
+              },
+              "loadedWhen": {
+                "type": "string",
+                "default": "every-turn",
+                "maxLength": 64,
+                "description": "Free-form trigger label, e.g. every-turn or startup-memory-summary."
+              }
+            }
+          }
+        ]
+      }
+    },
+    "skillRoots": {
+      "type": "array",
+      "maxItems": 200,
+      "items": {"type": "string"},
+      "description": "Directories scanned for SKILL.md-like entries. Defaults to [\"skills\"]."
+    },
+    "ruleRoots": {
+      "type": "array",
+      "maxItems": 200,
+      "items": {"type": "string"},
+      "description": "Directories whose markdown files may be pulled in by a resident rule file. Defaults to [\"rules\"]."
+    },
+    "sessionRoots": {
+      "type": "array",
+      "maxItems": 200,
+      "items": {"type": "string"},
+      "description": "Cold-layer conversation directories. Counted as disk only, never as token savings."
+    },
+    "logRoots": {
+      "type": "array",
+      "maxItems": 200,
+      "items": {"type": "string"},
+      "description": "Cold-layer log and trace directories."
+    },
+    "backupRoots": {
+      "type": "array",
+      "maxItems": 200,
+      "items": {"type": "string"},
+      "description": "Directories holding duplicate backups. Only byte-identical duplicates can be quarantined without per-item confirmation."
+    }
+  }
+}

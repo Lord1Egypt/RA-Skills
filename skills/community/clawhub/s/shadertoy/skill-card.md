@@ -1,46 +1,57 @@
-## Description: <br>
-Write, explain, debug, and port ShaderToy-style fragment shaders. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Write, explain, debug, and port ShaderToy-style fragment shaders for tasks involving mainImage, fragCoord, ShaderToy built-ins, channels, buffers, and migration to WebGL, Three.js, React Three Fiber, or browser canvas demos.
 
-## Publisher: <br>
-[jvy](https://clawhub.ai/user/jvy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jvy](https://clawhub.ai/user/jvy)
 
-## Use Case: <br>
-Developers and engineers use this skill to write, troubleshoot, explain, and port ShaderToy fragment shaders that rely on mainImage, ShaderToy built-ins, channels, buffers, or feedback passes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can activate automatically for ShaderToy-like prompts. <br>
-Mitigation: Review automatic invocations when prompts mention ShaderToy concepts but the task may require a broader shader or rendering workflow. <br>
-Risk: The bundled Node helper prints shell-driven guidance and should be reviewed before use in sensitive environments. <br>
-Mitigation: Inspect scripts/shadertoy.js before running helper commands and treat generated commands or checklists as proposals. <br>
-Risk: Feedback or buffer-dependent ShaderToy effects can be misrepresented as single-pass shaders. <br>
-Mitigation: Identify Image and Buffer A/B/C/D pass dependencies before porting and plan render targets or ping-pong buffers where needed. <br>
+## Use Case:
 
+Developers and engineers use this skill to write, explain, debug, and port ShaderToy-style fragment shaders while preserving ShaderToy-specific concepts such as mainImage, built-ins, channels, buffers, and feedback passes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jvy/shadertoy) <br>
-- [ShaderToy built-ins](references/builtins.md) <br>
-- [ShaderToy porting](references/porting.md) <br>
-- [Buffers and feedback](references/buffers-feedback.md) <br>
-- [ShaderToy feedback export notes](assets/shadertoy-feedback-notes.txt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown, code blocks, JSON command output, and concise implementation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose Node helper commands for built-in maps, channel triage, porting checklists, debug checklists, and scaffold recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Generated shader or browser demo code can be incorrect, visually misleading, or fail at runtime when copied into ShaderToy, WebGL, Three.js, React Three Fiber, or a browser canvas.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated shader and demo code before running it, test with simple visible outputs first, and validate ShaderToy built-ins, channels, buffers, and uniforms one step at a time.
+
+Risk: A multi-pass or feedback-based ShaderToy effect may be treated as a single-pass effect, producing blank, unstable, or incomplete output.
+
+Mitigation: Identify Buffer A/B/C/D usage, previous-frame dependencies, pass ordering, and render-target or ping-pong buffer requirements before porting.
+
+## Reference(s):
+
+- [ShaderToy Built-ins](references/builtins.md)
+- [ShaderToy Porting](references/porting.md)
+- [Buffers and Feedback](references/buffers-feedback.md)
+- [ShaderToy feedback export notes](assets/shadertoy-feedback-notes.txt)
+- [ShaderToy single-pass demo](assets/shadertoy-single-pass-demo/index.html)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown, code blocks, shell commands, JSON helper output, and concise guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include corrected ShaderToy fragment shaders, built-in-to-uniform mappings, porting plans, debug checklists, and scaffold recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

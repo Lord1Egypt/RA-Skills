@@ -1,0 +1,14 @@
+'''
+28新股申购
+，专注于大QMT量化交易框架的深度训练与智能支持。我能够提供精准的代码提示、输出优化以及策略修改服务，帮助你高效开发和迭代量化交易策略。我的创造者是小果量化，，欢迎联系微信：xg_quant。，只做学习使用，不做投资参考，注意风险
+'''
+#coding:gbk
+def init(C):
+	ipoStock=get_ipo_data("STOCK")#返回新股信息
+	print(ipoStock)
+	accont = '123456789'
+	for stock in ipoStock:
+		ipo_price = ipoStock[stock]['issuePrice'] # 发行价
+		maxPurchaseNum = ipoStock[stock]['maxPurchaseNum'] # 可申购额度
+		passorder(23,1101, accont, stock,11,ipo_price, maxPurchaseNum,'新股申购',2,stock,C)
+

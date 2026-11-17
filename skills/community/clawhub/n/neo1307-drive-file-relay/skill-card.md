@@ -1,39 +1,54 @@
-## Description: <br>
-Copy a local file into Google Drive for desktop so it can be downloaded from a phone when the phone is not on the same LAN, with size and SHA256 verification after copy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Copy (relay) a local file from this machine into Google Drive for desktop (GoogleDriveFS) so it can be downloaded from a phone when the phone is not on the same LAN.
 
-## Publisher: <br>
-[neo1307](https://clawhub.ai/user/neo1307) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[neo1307](https://clawhub.ai/user/neo1307)
 
-## Use Case: <br>
-External users and agents use this skill to relay a specific local file into Google Drive for desktop when direct phone access to the PC or local network is unavailable, then verify the copied file by size and SHA256. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can copy local files into Google Drive, which may expose unintended or sensitive data. <br>
-Mitigation: Use it only for a specific file the user intentionally wants copied, and confirm the exact source path and destination folder before copying. <br>
-Risk: The referenced PowerShell helper script is not included in the artifact, while the command uses execution-policy bypass. <br>
-Mitigation: Do not run the PowerShell command unless the helper script is supplied from a trusted source and reviewed before execution. <br>
+## Use Case:
 
+External users and developers use this skill to copy a known local file into a Google Drive for desktop folder so it can be retrieved from a phone, with source and destination size and SHA256 verification.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Files, Markdown, Guidance] <br>
-**Output Format:** [Markdown with PowerShell command guidance and a file verification report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports source path, destination path, byte and MB size, and SHA256 after copy.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The reviewed artifact refers to a PowerShell relay script that is not included.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or supply `scripts/drive_relay.ps1` before use and confirm it only copies the intended file to the expected Google Drive folder.
+
+Risk: A file could be copied to the wrong Google Drive account or destination folder.
+
+Mitigation: Verify the detected Drive mount, destination folder, copied file size, and SHA256 before treating the transfer as complete.
+
+## Reference(s):
+
+- [Drive File Relay on ClawHub](https://clawhub.ai/neo1307/skills/neo1307-drive-file-relay)
+- [neo1307 ClawHub publisher profile](https://clawhub.ai/user/neo1307)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Guidance, Files]
+
+**Output Format:** [Markdown with inline PowerShell command and verification details]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports source path, destination path, size in bytes and MB, and SHA256 after copy verification.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

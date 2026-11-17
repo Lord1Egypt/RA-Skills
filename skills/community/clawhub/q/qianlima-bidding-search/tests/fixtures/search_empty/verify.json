@@ -1,0 +1,8 @@
+{
+  "code": 200,
+  "msg": "",
+  "data": {
+    "userId": "mock-user",
+    "memberType": "paid"
+  }
+}

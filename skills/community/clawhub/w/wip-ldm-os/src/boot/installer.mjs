@@ -142,13 +142,20 @@ export function configureSessionStartHook() {
   if (!settings.hooks) settings.hooks = {};
   if (!Array.isArray(settings.hooks.SessionStart)) settings.hooks.SessionStart = [];
 
-  // Find existing boot-hook entry
-  const existingIdx = settings.hooks.SessionStart.findIndex((entry) => {
+  const isBootEntry = (entry) => {
     const hooks = entry?.hooks;
     if (!Array.isArray(hooks)) return false;
     return hooks.some((h) =>
       h?.command?.includes('boot-hook') || h?.command?.includes('shared/boot')
     );
+  };
+
+  // Find ALL boot-hook entries. Duplicate registrations accumulate across
+  // installs (10 copies observed 2026-07-04, each running the boot script
+  // once per session), so this owns the whole set, not just the first.
+  const ownedIdxs = [];
+  settings.hooks.SessionStart.forEach((entry, i) => {
+    if (isBootEntry(entry)) ownedIdxs.push(i);
   });
 
   const hookEntry = {
@@ -160,16 +167,32 @@ export function configureSessionStartHook() {
     }],
   };
 
-  if (existingIdx >= 0) {
-    // Update in place
-    settings.hooks.SessionStart[existingIdx] = hookEntry;
-    return 'SessionStart hook updated in settings.json';
-  } else {
-    // Append
-    settings.hooks.SessionStart.push(hookEntry);
-    writeJSON(CC_SETTINGS, settings);
-    return 'SessionStart hook added to settings.json';
+  // Collapse duplicates beyond the first. Walk right-to-left so earlier
+  // indices stay valid while splicing.
+  let removed = 0;
+  for (let j = ownedIdxs.length - 1; j >= 1; j--) {
+    settings.hooks.SessionStart.splice(ownedIdxs[j], 1);
+    removed++;
   }
+
+  if (ownedIdxs.length > 0) {
+    const idx = ownedIdxs[0];
+    const identical =
+      JSON.stringify(settings.hooks.SessionStart[idx]) === JSON.stringify(hookEntry);
+    if (identical && removed === 0) {
+      // Nothing to change; do not touch the file.
+      return 'SessionStart hook already configured';
+    }
+    settings.hooks.SessionStart[idx] = hookEntry;
+    writeJSON(CC_SETTINGS, settings);
+    return removed > 0
+      ? `SessionStart hook updated in settings.json (removed ${removed} duplicate entr${removed === 1 ? 'y' : 'ies'})`
+      : 'SessionStart hook updated in settings.json';
+  }
+
+  settings.hooks.SessionStart.push(hookEntry);
+  writeJSON(CC_SETTINGS, settings);
+  return 'SessionStart hook added to settings.json';
 }
 
 // ── Registry ──

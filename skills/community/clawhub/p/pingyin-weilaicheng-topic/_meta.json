@@ -1,6 +1,7 @@
 {
-  "ownerId": "kn7d8yy38b5bwzywey75x0nzk582bn79",
+  "ownerId": "self",
   "slug": "pingyin-weilaicheng-topic",
   "version": "1.0.0",
-  "publishedAt": 1775005760295
+  "publishedAt": 1743465600000,
+  "source": "local"
 }

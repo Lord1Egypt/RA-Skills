@@ -1,42 +1,57 @@
-## Description: <br>
-Provides isolated NVIDIA OpenShell sandboxes for code execution, security scans, debugging, and test runs with resource and network restrictions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides guidance for using NVIDIA OpenShell sandboxes to run code, security scans, debugging sessions, and tests in isolated execution environments.
 
-## Publisher: <br>
-[sabatech-dev](https://clawhub.ai/user/sabatech-dev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sabatech-dev](https://clawhub.ai/user/sabatech-dev)
 
-## Use Case: <br>
-Developers and specialist coding, security, debugging, and QA agents use this skill to run commands, tests, scans, and troubleshooting steps inside named OpenShell sandboxes instead of directly on the host. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill directs agents to execute arbitrary commands, security scans, and tests inside OpenShell sandboxes. <br>
-Mitigation: Install only in trusted OpenShell environments, verify the CLI and gateway, and explicitly approve security scans or other sensitive command execution. <br>
-Risk: Network policy changes or file transfers between host and sandbox can expand access beyond the intended isolated workflow. <br>
-Mitigation: Keep network access restricted by default, review policy changes before applying them, and approve sandbox file transfers deliberately. <br>
-Risk: Sandbox behavior depends on the configured image, sandbox policies, and local OpenShell setup. <br>
-Mitigation: Verify the image source, sandbox policies, and resource limits before relying on the sandbox for isolation. <br>
+## Use Case:
 
+Developers, security engineers, debugging agents, and QA agents use this skill to route code execution, security scans, bug reproduction, and test runs through named OpenShell sandboxes with resource and network restrictions.
 
-## Reference(s): <br>
-- [Alfred OpenShell Sandbox ClawHub page](https://clawhub.ai/sabatech-dev/alfred-openshell-sandbox) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No bundled executable code; the skill guides an agent to invoke an existing OpenShell CLI and sandbox setup.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Sandbox administration commands can affect named environments, including deletion or policy changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm sandbox names before destructive operations and only loosen network policies when necessary for the task.
+
+Risk: Files copied out of isolated sandboxes may contain untrusted or task-generated content.
+
+Mitigation: Review copied files before using them on the host or in downstream workflows.
+
+Risk: Users may misapply the guide without OpenShell operational familiarity.
+
+Mitigation: Install only when users are comfortable with OpenShell sandbox administration and can validate sandbox status before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sabatech-dev/skills/alfred-openshell-sandbox)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes sandbox names, command examples, file transfer patterns, policy notes, resource limits, troubleshooting guidance, and architecture notes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

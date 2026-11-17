@@ -1,39 +1,49 @@
-## Description: <br>
-Use the Google Fonts API to add fonts to web pages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use the Google Fonts API to add fonts to web pages.
 
-## Publisher: <br>
-[openlark](https://clawhub.ai/user/openlark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[openlark](https://clawhub.ai/user/openlark)
 
-## Use Case: <br>
-Developers use this skill for concise guidance on adding Google Fonts to web pages, building font CSS URLs, controlling font loading, and applying supported font effects. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Web pages built from the examples may request font resources from Google. <br>
-Mitigation: Review network and privacy requirements before using the examples, and only load external font resources when acceptable for the site. <br>
-Risk: Sensitive text placed in the Google Fonts text= URL parameter can be exposed in a request URL. <br>
-Mitigation: Do not put sensitive or user-specific strings in Google Fonts URL parameters. <br>
+## Use Case:
 
+Developers use this skill as a concise reference for adding Google Fonts to web pages and constructing font CSS URLs with family, style, weight, subset, text, display, and effect parameters.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code] <br>
-**Output Format:** [Markdown with HTML and CSS snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance; examples may reference Google-hosted font resources.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Projects with strict privacy, compliance, or content-security-policy requirements may not permit browser requests to Google-hosted font resources.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review project policy before applying the guidance, and use self-hosted fonts or adjusted CSP rules when third-party font requests are not allowed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/openlark/skills/google-web-fonts)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Configuration]
+
+**Output Format:** [Markdown with HTML, CSS, and URL examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Provides Google Fonts stylesheet URL patterns and CSS usage examples; no tool execution is required.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

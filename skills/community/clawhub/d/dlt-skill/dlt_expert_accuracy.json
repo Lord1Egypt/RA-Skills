@@ -1,0 +1,434 @@
+{
+  "_meta": {
+    "note": "专家战绩自算 vs 随机基线; 不采信平台自报命中率",
+    "scored_rule": "每期开奖后用系统自身抓到的专家推荐 vs 实际开奖独立打分",
+    "last_updated": "2026-08-19 20:12"
+  },
+  "records": [
+    {
+      "period": 26088,
+      "actual_front": [
+        3,
+        9,
+        11,
+        24,
+        27
+      ],
+      "actual_back": [
+        5,
+        11
+      ],
+      "experts": {
+        "嘲风": {
+          "front_hits": 1,
+          "back_hits": 1
+        },
+        "五百走势": {
+          "front_hits": 0,
+          "back_hits": 0
+        },
+        "狼哥归来": {
+          "front_hits": 0,
+          "back_hits": 0
+        },
+        "杨海珠": {
+          "front_hits": 0,
+          "back_hits": 0
+        },
+        "黑白吉他": {
+          "front_hits": 1,
+          "back_hits": 0
+        },
+        "飘零小筑": {
+          "front_hits": 2,
+          "back_hits": 0
+        },
+        "头条组一": {
+          "front_hits": 1,
+          "back_hits": 0
+        },
+        "头条组二": {
+          "front_hits": 0,
+          "back_hits": 1
+        },
+        "头条组三": {
+          "front_hits": 1,
+          "back_hits": 0
+        },
+        "头条组四": {
+          "front_hits": 0,
+          "back_hits": 0
+        },
+        "头条组五": {
+          "front_hits": 2,
+          "back_hits": 1
+        },
+        "徐芬领": {
+          "front_hits": 1,
+          "back_hits": 0
+        },
+        "崔现东": {
+          "front_hits": 1,
+          "back_hits": 0
+        },
+        "云龙": {
+          "front_hits": 1,
+          "back_hits": 1
+        },
+        "刘爱洋": {
+          "front_hits": 1,
+          "back_hits": 1
+        },
+        "金大玄": {
+          "front_hits": 2,
+          "back_hits": 0
+        }
+      },
+      "baseline": {
+        "front_hits": 0.688,
+        "back_hits": 0.374
+      },
+      "expert_count": 16
+    },
+    {
+      "period": 26089,
+      "actual_front": [
+        3,
+        7,
+        12,
+        14,
+        26
+      ],
+      "actual_back": [
+        5,
+        11
+      ],
+      "experts": {
+        "嘲风": {
+          "front_hits": 2,
+          "back_hits": 1
+        },
+        "五百走势": {
+          "front_hits": 1,
+          "back_hits": 0
+        },
+        "狼哥归来": {
+          "front_hits": 1,
+          "back_hits": 0
+        },
+        "杨海珠": {
+          "front_hits": 0,
+          "back_hits": 0
+        },
+        "黑白吉他": {
+          "front_hits": 2,
+          "back_hits": 0
+        },
+        "飘零小筑": {
+          "front_hits": 1,
+          "back_hits": 0
+        },
+        "头条组一": {
+          "front_hits": 0,
+          "back_hits": 0
+        },
+        "头条组二": {
+          "front_hits": 1,
+          "back_hits": 1
+        },
+        "头条组三": {
+          "front_hits": 1,
+          "back_hits": 0
+        },
+        "头条组四": {
+          "front_hits": 1,
+          "back_hits": 0
+        },
+        "头条组五": {
+          "front_hits": 0,
+          "back_hits": 1
+        },
+        "徐芬领": {
+          "front_hits": 0,
+          "back_hits": 0
+        },
+        "崔现东": {
+          "front_hits": 0,
+          "back_hits": 0
+        },
+        "云龙": {
+          "front_hits": 1,
+          "back_hits": 1
+        },
+        "刘爱洋": {
+          "front_hits": 2,
+          "back_hits": 1
+        },
+        "金大玄": {
+          "front_hits": 1,
+          "back_hits": 0
+        }
+      },
+      "baseline": {
+        "front_hits": 0.716,
+        "back_hits": 0.334
+      },
+      "expert_count": 16
+    },
+    {
+      "period": 26090,
+      "actual_front": [
+        9,
+        14,
+        17,
+        19,
+        24
+      ],
+      "actual_back": [
+        2,
+        9
+      ],
+      "experts": {
+        "嘲风": {
+          "front_hits": 1,
+          "back_hits": 0
+        },
+        "五百走势": {
+          "front_hits": 1,
+          "back_hits": 0
+        },
+        "狼哥归来": {
+          "front_hits": 0,
+          "back_hits": 0
+        },
+        "杨海珠": {
+          "front_hits": 0,
+          "back_hits": 1
+        },
+        "黑白吉他": {
+          "front_hits": 2,
+          "back_hits": 0
+        },
+        "飘零小筑": {
+          "front_hits": 0,
+          "back_hits": 2
+        },
+        "头条组一": {
+          "front_hits": 0,
+          "back_hits": 1
+        },
+        "头条组二": {
+          "front_hits": 0,
+          "back_hits": 1
+        },
+        "头条组三": {
+          "front_hits": 1,
+          "back_hits": 0
+        },
+        "头条组四": {
+          "front_hits": 1,
+          "back_hits": 0
+        },
+        "头条组五": {
+          "front_hits": 2,
+          "back_hits": 0
+        },
+        "徐芬领": {
+          "front_hits": 2,
+          "back_hits": 1
+        },
+        "崔现东": {
+          "front_hits": 2,
+          "back_hits": 0
+        },
+        "云龙": {
+          "front_hits": 0,
+          "back_hits": 0
+        },
+        "刘爱洋": {
+          "front_hits": 0,
+          "back_hits": 1
+        },
+        "金大玄": {
+          "front_hits": 1,
+          "back_hits": 0
+        }
+      },
+      "baseline": {
+        "front_hits": 0.71,
+        "back_hits": 0.372
+      },
+      "expert_count": 16
+    },
+    {
+      "period": 26091,
+      "actual_front": [
+        3,
+        4,
+        7,
+        12,
+        32
+      ],
+      "actual_back": [
+        1,
+        2
+      ],
+      "experts": {
+        "嘲风": {
+          "front_hits": 2,
+          "back_hits": 0
+        },
+        "五百走势": {
+          "front_hits": 1,
+          "back_hits": 1
+        },
+        "狼哥归来": {
+          "front_hits": 1,
+          "back_hits": 1
+        },
+        "杨海珠": {
+          "front_hits": 0,
+          "back_hits": 1
+        },
+        "黑白吉他": {
+          "front_hits": 1,
+          "back_hits": 0
+        },
+        "飘零小筑": {
+          "front_hits": 2,
+          "back_hits": 1
+        },
+        "头条组一": {
+          "front_hits": 0,
+          "back_hits": 0
+        },
+        "头条组二": {
+          "front_hits": 0,
+          "back_hits": 1
+        },
+        "头条组三": {
+          "front_hits": 1,
+          "back_hits": 0
+        },
+        "头条组四": {
+          "front_hits": 0,
+          "back_hits": 1
+        },
+        "头条组五": {
+          "front_hits": 0,
+          "back_hits": 0
+        },
+        "徐芬领": {
+          "front_hits": 0,
+          "back_hits": 1
+        },
+        "崔现东": {
+          "front_hits": 0,
+          "back_hits": 1
+        },
+        "云龙": {
+          "front_hits": 1,
+          "back_hits": 0
+        },
+        "刘爱洋": {
+          "front_hits": 2,
+          "back_hits": 0
+        },
+        "金大玄": {
+          "front_hits": 0,
+          "back_hits": 0
+        }
+      },
+      "baseline": {
+        "front_hits": 0.706,
+        "back_hits": 0.312
+      },
+      "expert_count": 16
+    },
+    {
+      "period": 26092,
+      "actual_front": [
+        12,
+        16,
+        19,
+        29,
+        33
+      ],
+      "actual_back": [
+        7,
+        9
+      ],
+      "experts": {
+        "嘲风": {
+          "front_hits": 2,
+          "back_hits": 0
+        },
+        "五百走势": {
+          "front_hits": 0,
+          "back_hits": 0
+        },
+        "狼哥归来": {
+          "front_hits": 0,
+          "back_hits": 0
+        },
+        "杨海珠": {
+          "front_hits": 0,
+          "back_hits": 0
+        },
+        "黑白吉他": {
+          "front_hits": 1,
+          "back_hits": 1
+        },
+        "飘零小筑": {
+          "front_hits": 0,
+          "back_hits": 1
+        },
+        "头条组一": {
+          "front_hits": 2,
+          "back_hits": 1
+        },
+        "头条组二": {
+          "front_hits": 0,
+          "back_hits": 0
+        },
+        "头条组三": {
+          "front_hits": 1,
+          "back_hits": 0
+        },
+        "头条组四": {
+          "front_hits": 1,
+          "back_hits": 0
+        },
+        "头条组五": {
+          "front_hits": 0,
+          "back_hits": 0
+        },
+        "徐芬领": {
+          "front_hits": 1,
+          "back_hits": 0
+        },
+        "崔现东": {
+          "front_hits": 1,
+          "back_hits": 0
+        },
+        "云龙": {
+          "front_hits": 1,
+          "back_hits": 0
+        },
+        "刘爱洋": {
+          "front_hits": 2,
+          "back_hits": 1
+        },
+        "金大玄": {
+          "front_hits": 0,
+          "back_hits": 1
+        }
+      },
+      "baseline": {
+        "front_hits": 0.688,
+        "back_hits": 0.298
+      },
+      "expert_count": 16
+    }
+  ]
+}

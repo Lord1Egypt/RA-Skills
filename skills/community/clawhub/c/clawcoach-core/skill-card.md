@@ -1,40 +1,57 @@
-## Description: <br>
-AI health coach with dual personality modes that tracks nutrition, provides data-driven coaching, and helps users stay accountable. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI health coach with dual personality modes (Supportive Mentor or Savage Roaster). Tracks nutrition from food photos, provides data-driven coaching, and holds you accountable.
 
-## Publisher: <br>
-[authoredniko](https://clawhub.ai/user/authoredniko) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[authoredniko](https://clawhub.ai/user/authoredniko)
 
-## Use Case: <br>
-Users and developers use this skill as a conversational health coach for meal logging, daily macro summaries, meal suggestions, persona switching, and nutrition accountability. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill stores diet, profile, and meal-history data under ~/.clawcoach/. <br>
-Mitigation: Install only if local storage of this health-related data is acceptable, and avoid entering sensitive medical or eating-disorder information unless external processing and retention behavior are clear. <br>
-Risk: The skill includes a privacy claim that conflicts with its API-backed LLM requirement. <br>
-Mitigation: Review the configured LLM backend and companion setup and food-analysis skills before relying on the full workflow. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawCoach Core on ClawHub](https://clawhub.ai/authoredniko/clawcoach-core) <br>
-- [Publisher Profile](https://clawhub.ai/user/authoredniko) <br>
+## Use Case:
 
+External users use this skill as a conversational health coach to track meals, review daily calories and macros, receive meal suggestions, and choose between supportive or accountability-focused coaching personas.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown conversational responses with concise data summaries and coaching guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads and writes ClawCoach profile and food-log data under ~/.clawcoach/ and requires ANTHROPIC_API_KEY for the configured LLM backend.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill stores personal profile and food-log data locally in ~/.clawcoach/.
+
+Mitigation: Review the local data directory before installation and avoid entering information that should not be retained on the device.
+
+Risk: The Savage Roaster persona uses blunt accountability humor that may not suit every user.
+
+Mitigation: Use the Supportive Mentor persona when a gentler tone is preferred, and rely on the built-in limits against body-image, distress-related, or discriminatory mocking.
+
+Risk: The listed distress and eating-disorder support numbers are United States resources.
+
+Mitigation: Users outside the United States should identify appropriate local emergency or crisis resources before relying on the skill for support guidance.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/authoredniko/skills/clawcoach-core)
+- [ClawCoach homepage](https://github.com/clawcoach/clawcoach)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown conversational responses with local JSON profile and food-log updates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses concise coaching replies, shows calories and macros, and may update persona and local profile state.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

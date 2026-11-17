@@ -1,45 +1,59 @@
-## Description: <br>
-Mi-MemoryStack is a personalized memory framework that retrieves and stores user memories so an agent can preserve user context across conversations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Mi-MemoryStack helps an OpenClaw agent retrieve and save user memory across conversations through Python command-line tools and a background queue.
 
-## Publisher: <br>
-[Nikol-coder](https://clawhub.ai/user/Nikol-coder) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nikol-coder](https://clawhub.ai/user/nikol-coder)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to add cross-session memory retrieval and asynchronous memory saving for agents that need user preferences, identity context, and conversation continuity. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can automatically store and send user IDs and conversation text to an API endpoint configured in the source files. <br>
-Mitigation: Use only an endpoint you control, move secrets out of code, add explicit opt-in and opt-out controls, redact sensitive content, and define retention and deletion behavior before deployment. <br>
-Risk: The skill can replace core OpenClaw workspace instructions and make memory retrieval and saving mandatory in every turn. <br>
-Mitigation: Review and narrow or remove the bundled workspace instruction overrides before deployment, and ensure users can disable memory behavior when appropriate. <br>
-Risk: The release security verdict is suspicious because the behavior requires careful review even though it is not clearly malicious. <br>
-Mitigation: Install only after source review and security review, then monitor daemon activity and API calls during operation. <br>
+## Use Case:
 
+Developers and operators use this skill to add persistent user-memory retrieval and saving to an OpenClaw agent workflow. It is intended for agents that need conversational continuity, user preferences, or identity context across turns.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/Nikol-coder/mi-memorystack) <br>
-- [Installation guide](artifact/安装教程.md) <br>
-- [Workspace instruction template](artifact/xiugai/AGENTS.md) <br>
-- [Persona template](artifact/xiugai/SOUL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown instructions with shell commands and JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May start a background memory daemon, write local queue files, and call a configured API endpoint for memory search and save operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Conversation turns may be sent to a remote memory service on every interaction.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only a trusted HTTPS endpoint, require explicit opt-in, and define retention and deletion controls before deployment.
+
+Risk: API tokens and endpoint configuration may be placed directly in source files.
+
+Mitigation: Move tokens out of source files, restrict file permissions, and load secrets from a managed runtime secret store or environment variables.
+
+Risk: Installation can replace workspace-wide agent instructions and start a persistent background worker.
+
+Mitigation: Review exact diffs before installation, keep rollback backups, and deploy first in an isolated workspace.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nikol-coder/skills/mi-memorystack)
+- [Skill definition](artifact/SKILL.md)
+- [Installation guide](artifact/安装教程.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON examples and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include commands that start a persistent memory daemon, queue user conversation content, or call remote memory APIs.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata and user changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

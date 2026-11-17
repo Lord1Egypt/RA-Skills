@@ -1,43 +1,54 @@
-## Description: <br>
-Personal Fitness Coach provides fitness and nutrition coaching personas for meal planning, macro management, workout programming, and progress tracking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides fitness and nutrition coaching guidance, meal planning, macro calculations, workout programming, and progress logging through reference materials and local scripts.
 
-## Publisher: <br>
-[ekintkara](https://clawhub.ai/user/ekintkara) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ekintkara](https://clawhub.ai/user/ekintkara)
 
-## Use Case: <br>
-External users use this skill to get structured fitness and nutrition guidance, including meal planning, macro calculations, workout programming, and local meal or workout logs. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can collect sensitive health, diet, injury, body-composition, meal, and workout details in local logs. <br>
-Mitigation: Review before installing in shared environments; avoid entering details that should not be stored locally, and inspect or remove local fitness logs when they are no longer needed. <br>
-Risk: The skill presents medical-adjacent coaching through real-sounding dietitian and trainer personas. <br>
-Mitigation: Treat the coaches as AI personas rather than verified licensed professionals, and seek qualified medical or fitness advice for health conditions, injuries, or clinical nutrition decisions. <br>
-Risk: The helper scripts accept dates and write files without documented path validation, deletion, or export guidance. <br>
-Mitigation: Use normal YYYY-MM-DD dates and the scripts' intended meal or workout logging workflows until path validation and log management guidance are added. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Calorie Guide](references/calorie-guide.md) <br>
-- [Exercise Database](references/exercise-database.md) <br>
-- [ClawHub skill page](https://clawhub.ai/ekintkara/personal-fitness-coach) <br>
+## Use Case:
 
+External users use this skill for personal fitness and nutrition coaching, including macro-aware meal planning, workout programming, progressive overload tracking, and daily logs.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, JSON, Configuration] <br>
-**Output Format:** [Markdown guidance with optional shell commands and JSON-backed local logs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Helper scripts write meal and workout logs under the user's local OpenClaw workspace.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The included log scripts may read or overwrite unintended JSON files if the date argument is not a real YYYY-MM-DD value.
+
+Mitigation: Use only real YYYY-MM-DD dates and review or patch date validation before relying on the logging tools.
+
+Risk: The skill stores fitness and nutrition logs locally under the user's home directory.
+
+Mitigation: Install and run the scripts only when local storage of those logs is acceptable.
+
+## Reference(s):
+
+- [Common Food Calorie & Macro Reference](artifact/references/calorie-guide.md)
+- [Exercise Database](artifact/references/exercise-database.md)
+- [Personal Fitness Coach on ClawHub](https://clawhub.ai/ekintkara/skills/personal-fitness-coach)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with optional Python command examples and JSON fitness logs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or read local fitness logs under the user's home directory when its scripts are executed.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

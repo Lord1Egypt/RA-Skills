@@ -1,152 +1,63 @@
 ---
 name: "dr-agent-backup"
-description: "Backup and restore Daniel agents with git."
+description: "Set up, audit, repair, or restore a six-hour Azure DevOps workspace backup."
 ---
 
 # DR. Agent Backup
 
 Use when setting up, auditing, repairing, or restoring backup continuity for a Daniel-owned agent.
 
-Goal: agent memory and workspace state should survive VM loss or migration. Restore should be boring: clone/pull the repo, restore secrets separately, verify the agent starts, and reindex memory if needed.
+## Outcome
 
-## Core Policy
+One deterministic, non-LLM systemd user timer is the only process allowed to commit and push workspace backups. Every six hours it stages safe restore-relevant files, commits when needed, and pushes to the approved Azure DevOps remote. A failed run invokes one rate-limited failure notifier. Conversational agents and health checks never run an independent `git push`.
 
-1. Back up agent-owned workspace files to a Daniel-owned Azure DevOps git repository.
-2. Commit after meaningful memory or workspace changes.
-3. Never commit secrets, tokens, local credential stores, runtime logs, caches, databases, or bulky generated state unless explicitly approved.
-4. Treat git as continuity for human-readable source of truth, not a full machine image.
-5. Secrets and auth must be restored through the proper secret manager, env file, or provider login flow.
+## Required design
 
-## What To Track
+1. Use Pattern B1: a manifest-backed runner, not an agent/LLM or OpenClaw cron.
+2. Use one `systemd --user` timer with `OnBootSec=5min`, `OnUnitActiveSec=6h`, `AccuracySec=5min`, and `Persistent=true`.
+3. Make the runner load its manifest and credential contract at run time, set `GIT_TERMINAL_PROMPT=0`, and use the approved askpass helper.
+4. Stage only allowlisted restore-relevant paths. Exclude credentials, env files, auth profiles, databases, logs, caches, media, raw transcripts, dreaming/reflection output, temporary/download/archive files, generated artifacts, and state migrations.
+5. Scan staged names and text for high-risk credential patterns before committing.
+6. Commit only intentional staged changes, push the approved existing remote and branch, write a local ledger outside Git, and exit non-zero on any credential, staging, commit, remote, or push failure.
+7. Wire `OnFailure=` to one deterministic notifier. It sends an immediate concise failure message, suppresses identical repeats for 24 hours, and never sends success messages.
+8. Do not run a scheduled health monitor by default. Add one only when its distinct detection value is documented and it cannot push or commit.
 
-Default include list:
+## Ownership rule
 
-- `AGENTS.md`
-- `SOUL.md`
-- `USER.md`
-- `TOOLS.md`
-- `MEMORY.md`
-- `HEARTBEAT.md` when present
-- `memory/**/*.md`
-- `memory/**/*.json` only when it is intentional durable state
-- `context_pipeline/**`
-- `automation/**` excluding runtime outputs and secrets
-- `skills/**` for workspace-local skills
-- `doc_reviews/**` when used as active review state
-- Project notes and templates Daniel expects to restore
+The backup runner exclusively owns routine Git commit/push for the workspace. Agents may edit approved durable files but must leave them for the next runner. Do not use plain `git push` from an agent runtime; it does not inherit the runner's credential contract and creates false backup failures.
 
-Default exclude list:
+## Preflight
 
-- API keys, tokens, passwords, OAuth files, cookies, auth profiles
-- `.env`, `*.env`, `gateway.systemd.env`, and backups of env files
-- SQLite databases and WAL/SHM files unless explicitly approved
-- `node_modules/`, package caches, build outputs
-- raw session transcripts unless Daniel explicitly wants them tracked
-- inbound/outbound media files unless intentionally curated
-- temporary files, logs, downloads, generated archives
+Before enabling or manually running a new or repaired runner:
 
-## Setup Workflow
+1. Confirm the existing approved Azure DevOps remote, branch, credential method, and valid provider target for failure notifications.
+2. Inspect `git status --short` and classify each restore-relevant dirty path as intentional durable content, intentional deletion, generated/runtime artifact, or unresolved.
+3. Keep raw session exports and state-migration artifacts untracked; do not broadly exclude curated daily memory files.
+4. Refuse to arm a runner over unresolved or sensitive content. Correct the manifest, exclusions, or worktree first.
+5. Verify the credential file exists with mode `600`, required key names are present without exposing values, and the askpass helper is executable.
 
-1. Confirm the Azure DevOps organization, project, and repo name.
-2. Confirm credential method:
-   - SSH deploy key
-   - Azure DevOps PAT stored outside git
-   - existing authenticated git credential helper
-3. Initialize or connect the workspace repo.
-4. Add a `.gitignore` that blocks secrets and runtime state.
-5. Run a dry-run status review before the first commit.
-6. Make the initial commit with a clear message.
-7. Push to Azure DevOps.
-8. Record the repo URL and restore notes in local memory or an approved ops file.
+## Setup and repair
 
-## Commit Policy
+1. Audit the existing manifest, runner, installed service/timer, failure handler, Git remote/branch, and worktree.
+2. Create or repair the manifest, runner, local ledger, service, timer, failure notifier, and focused tests.
+3. Validate JSON, Python/shell syntax, unit rendering, and `systemd-analyze --user verify`.
+4. Dry-run notification rendering without live delivery.
+5. Run one real backup after preflight is clean; verify its commit/push, ledger, and remote alignment.
+6. Install and enable the timer; verify it is enabled/active and has a next trigger.
+7. Retire duplicate backup timers, health checks, or agent-driven push paths after confirming the new owner is live.
 
-Commit after meaningful changes to:
+## Default tracked scope
 
-- long-term memory
-- daily memory logs that contain decisions or restore-relevant facts
-- agent instructions or identity files
-- automation manifests and scripts
-- local skills or proposal-derived workflow files
-- context pipeline files
-- important operational notes
+Include: `AGENTS.md`, `SOUL.md`, `USER.md`, `TOOLS.md` when present, `MEMORY.md`, comments-only `HEARTBEAT.md`, curated `memory/**/*.md` and intentional durable JSON, `context_pipeline/**`, `automation/**` excluding runtime output, workspace-local `skills/**`, and active `doc_reviews/**/*.md`.
 
-Do not commit after every tiny transient log line if it adds noise. Batch related memory edits when they happen in one task.
+## Approval boundaries
 
-Recommended commit message style:
+Ask Daniel before creating a repo or remote, changing credentials/PATs or access controls, using a new notification target or changing its cooldown, committing sensitive/customer data, deleting history, or rewriting commits.
 
-```text
-memory: capture gateway restore and embedding fix
-agent: update baseline behavior notes
-backup: add Azure DevOps restore procedure
-skill: revise agent baseline proposal
-```
+## Shared release
 
-## Before Commit Checklist
+This is a shared fleet skill. Follow the shared-skill source-of-truth rule in `dr-agent-baseline`: after a behavior change, publish a new ClawHub version, verify the registry resolves it, then install/apply that exact release on each in-scope agent. Do not present a local Workshop or workspace revision as canonical.
 
-Run these checks before committing:
+## Completion evidence
 
-1. `git status --short`
-2. Inspect changed files.
-3. Check that no secret-bearing files are staged.
-4. If adding `.gitignore`, confirm it covers known OpenClaw secrets and runtime state.
-5. Commit only intentional files.
-
-If a secret appears staged, stop and unstage it. Do not rely on later cleanup.
-
-## Restore Workflow
-
-1. Install OpenClaw and baseline system packages.
-2. Clone the Azure DevOps repo into the expected workspace path.
-3. Restore secret files/env/auth using the approved secret path, not git.
-4. Install/enable required plugins and skills.
-5. Verify gateway service and lingering if this is a Linux user service.
-6. Run memory status and reindex if needed:
-
-```bash
-openclaw memory status --index
-openclaw memory index --force
-```
-
-7. Verify channels and delivery targets.
-8. Run a small end-to-end DM test.
-9. Commit any restore-specific notes that are useful for next time.
-
-## Agent Behavior
-
-Agents should run safe git checks and commits themselves when they have access.
-
-Ask Daniel before:
-
-- creating a new Azure DevOps repo
-- adding credentials or PATs
-- pushing to a new remote for the first time
-- changing access controls
-- committing files that may contain private/customer data beyond normal memory notes
-- deleting history or rewriting commits
-
-## Audit Workflow
-
-For an existing agent, audit backup health by checking:
-
-- Is the workspace a git repo?
-- Is the remote Azure DevOps and reachable?
-- Is `.gitignore` strong enough?
-- Are there uncommitted memory/workspace changes?
-- When was the last successful push?
-- Are secrets absent from tracked files?
-- Is there a documented restore path?
-
-Report the result as:
-
-- status
-- risks
-- next action
-
-Keep it short unless Daniel asks for full detail.
-
-## Boundaries
-
-This skill does not replace VM snapshots or system-level backups. It protects the agent's durable working memory and configuration source, not every runtime artifact.
-
-This skill does not store secrets in git.
+Report the runner and timer state, next trigger, real commit/push and remote alignment, notification policy, tracked/excluded scope, validation results, and any limitation. For a skill revision, also report the ClawHub version and verified fleet-application status. This skill does not replace VM snapshots or system backups.

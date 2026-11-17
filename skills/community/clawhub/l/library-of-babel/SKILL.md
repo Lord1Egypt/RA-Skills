@@ -170,3 +170,7 @@ Pure Python 3 standard library — no external dependencies required.
 cd library-of-babel
 python3 demo.py
 ```
+
+---
+
+Built by Joseph Voelbel / High Noon Office. Questions or want to build on this? josephvoelbel.com/contact

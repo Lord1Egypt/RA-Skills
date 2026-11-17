@@ -1,43 +1,58 @@
-## Description: <br>
-发票认证技能。税局登录、发票勾选认证、抵扣统计。适用于进项发票勾选、认证、统计等税务操作场景。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+发票认证技能。税局扫码登录、登录企业查询、发票勾选认证、抵扣统计。适用于进项发票勾选、认证、统计等税务操作场景。
 
-## Publisher: <br>
-[zxt](https://clawhub.ai/user/zxt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zxt](https://clawhub.ai/user/zxt)
 
-## Use Case: <br>
-Tax and finance operators use this skill to log in to electronic tax systems, check invoice certification status, submit or cancel invoice certification, and request or revoke deduction statistics. It supports workflows that require an API key for the skill.quandianfapiao.com service and tax-account credentials for some actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles sensitive tax credentials, API keys, and invoice certification actions. <br>
-Mitigation: Avoid sharing apiKeys or passwords in chat or command-line history; prefer short-lived or manually supplied credentials and confirm invoice certification or statistics actions before execution. <br>
-Risk: The skill can persist login details in a local .session file for automatic re-login. <br>
-Mitigation: Remove the saved .session file after use, especially on shared machines or managed workstations. <br>
-Risk: The skill depends on the third-party skill.quandianfapiao.com service for tax-invoice API operations. <br>
-Mitigation: Review the service relationship, data handling expectations, and account authorization before using it with production tax data. <br>
+## Use Case:
 
+External tax and finance users use this skill to log in to the electronic tax bureau, inspect enterprise and invoice certification status, submit or cancel invoice certification, and manage deduction statistics.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/zxt/invoice-cert) <br>
-- [中兴通简税Skill平台](https://skill.quandianfapiao.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and command-line text output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May call remote tax-invoice APIs and print JSON-formatted API responses or concise status summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill asks for a tax API key and may persist it in shell settings.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Configure the API key outside chat when possible and confirm who can read any persistent shell-profile storage.
+
+Risk: The skill can perform sensitive tax actions such as certification changes and deduction statistics operations.
+
+Mitigation: Confirm the target enterprise, tax period, invoice list, and requested action before running state-changing commands.
+
+Risk: The security verdict recommends review before installation because the provider receives enterprise tax data and API-key authority.
+
+Mitigation: Install only when the provider is trusted with the relevant enterprise tax data and API access.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/zxt/skills/invoice-cert)
+- [中兴通简税 Skill platform](https://skill.quandianfapiao.com/)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, API Calls, Markdown, Configuration, Guidance]
+
+**Output Format:** [Human-readable text and JSON-formatted command output, with QR-code image paths or links when login is required]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May perform state-changing tax actions after API-key configuration; successful business operations should identify the target enterprise.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

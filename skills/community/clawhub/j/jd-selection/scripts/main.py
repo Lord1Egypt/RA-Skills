@@ -12,11 +12,15 @@ MCP负责：channel路由、参数传递、结果格式化、用户提示语。
 import sys
 import json
 import os
+import socket
 import urllib.request
 import urllib.error
 
 # ===== 频道配置 =====
 PROXY_TOKEN = os.environ.get("PROXY_TOKEN", "tp_8k2mX9vQ4z")
+
+# 噪音标签：这些标签对用户无意义，过滤掉
+NOISE_TAGS = {"7天无理由退货", "自营", "正品", "7天无理由", "无理由退货"}
 
 CHANNELS = {
     "超级补贴": {
@@ -111,6 +115,8 @@ def _scf_call(proxy_url, params, timeout=TIMEOUT_SHORT):
     try:
         with urllib.request.urlopen(req, timeout=timeout) as resp:
             return json.loads(resp.read().decode("utf-8"))
+    except (socket.timeout, TimeoutError):
+        return {"ok": False, "error": "timeout"}
     except urllib.error.URLError as e:
         if "timed out" in str(e).lower():
             return {"ok": False, "error": "timeout"}
@@ -162,7 +168,7 @@ def _format_item(g):
         "shop_name": shop_name,
         "brand_name": g.get("brandName", ""),
         "is_self": bool(is_jd),
-        "tags": g.get("skuTags", []),
+        "tags": [t for t in g.get("skuTags", []) if t not in NOISE_TAGS],
         "image_url": g.get("imageUrl", ""),
         "buy_url": material_url,
         "category": g.get("cid1Name", ""),
@@ -174,24 +180,34 @@ def _format_item(g):
     }
 
 
-def _build_quality_desc(gc_min, sales_min):
-    """构建品质背书描述"""
-    if sales_min > 0:
-        return f"已精选好评≥{int(gc_min)}%、销量≥{sales_min}的京东自营商品"
-    else:
-        return f"已精选好评≥{int(gc_min)}%的京东自营商品"
+def _fmt_num(n):
+    """数字简写：≥10000 → X万"""
+    if n >= 10000:
+        return f"{n/10000:.1f}万"
+    return str(n)
 
 
-def _build_category_overview(cat_list):
-    """从SCF返回的分类概览构建提示语"""
-    if not cat_list:
+def _build_category_overview(items):
+    """从商品列表提取品类概览，生成动态示例关键词"""
+    cat_counter = {}
+    for g in items:
+        cat = g.get("cid1Name", "")
+        if cat:
+            cat_counter[cat] = cat_counter.get(cat, 0) + 1
+    top_cats = sorted(cat_counter.items(), key=lambda x: -x[1])[:3]
+    if not top_cats:
         return ""
-    parts = []
-    for c in cat_list[:5]:
-        parts.append(f"{c['category']}({c['count']}条)")
-    if parts:
-        return "热门分类：" + "、".join(parts) + "…说\"看手机\"或\"看家电\"可按品类筛选。"
-    return ""
+    keywords = [cat[:2] for cat, _ in top_cats]
+    return "试试搜「" + "」「".join(keywords) + "」"
+
+
+def _build_channel_hints(current_channel):
+    """构建频道互推提示（排除当前频道）"""
+    others = [ch for ch in ["超级补贴", "新品首发", "历史最低价", "京东秒杀", "9.9包邮", "实时热销"] if ch != current_channel]
+    if not others:
+        return ""
+    picks = others[:3]  # 最多推荐3个
+    return "还可以逛逛：" + "、".join(picks)
 
 
 def tool_get_jd_selection(params):
@@ -261,30 +277,18 @@ def tool_get_jd_selection(params):
     scf_data = data.get("data", {})
     items = scf_data.get("items", [])
     total = scf_data.get("total", 0)
-    filter_applied = scf_data.get("filter_applied", {})
-    category_overview = scf_data.get("category_overview", [])
 
     if not items and total == 0:
         if keyword:
-            cat_str = _build_category_overview(category_overview)
-            msg = f'未找到与「{keyword}」相关的{ch_name}好货。换个关键词试试'
-            if cat_str:
-                msg += f'，或浏览热门分类：{cat_str}'
-            else:
-                msg += '。'
+            msg = f'未找到与「{keyword}」相关的{ch_name}好货。换个关键词试试。'
         else:
             msg = f"暂无符合条件的{ch_name}好货，请稍后再试。"
         return json.dumps({"content": "", "summary": msg}, ensure_ascii=False)
 
-    # ===== 第三步：获取实际筛选标准 =====
-    actual_gc = filter_applied.get("min_good_comments", default_gc)
-    actual_sales = filter_applied.get("min_sales", 0)
-    quality_desc = _build_quality_desc(actual_gc, actual_sales)
-
-    # ===== 第四步：构建商品列表 =====
+    # ===== 第三步：构建商品列表 =====
     results = [_format_item(g) for g in items]
 
-    # ===== 第五步：构建场景提示语 =====
+    # ===== 第四步：构建场景提示语 =====
     page_start = (page - 1) * PAGE_SIZE + 1
     page_end = min(page * PAGE_SIZE, total)
     has_more = page_end < total
@@ -299,18 +303,18 @@ def tool_get_jd_selection(params):
 
     if keyword and total <= SCARCITY_THRESHOLD:
         if cond_str:
-            hints.append(f'{cond_str}的{ch_name}好货仅{total}条，{quality_desc}，手慢无！')
+            hints.append(f'{cond_str}的{ch_name}好货仅{total}条，手慢无！')
         else:
-            hints.append(f'{ch_name}好货仅{total}条，{quality_desc}，手慢无！')
-        cat_str = _build_category_overview(category_overview)
+            hints.append(f'{ch_name}好货仅{total}条，手慢无！')
+        cat_str = _build_category_overview(items)
         if cat_str:
             hints.append(f'换个品类看看？{cat_str}')
 
     elif keyword and total > SCARCITY_THRESHOLD:
         if cond_str:
-            hints.append(f'{cond_str}的{ch_name}好货共{total}条，{quality_desc}。')
+            hints.append(f'{cond_str}的{ch_name}好货共{total}条。')
         else:
-            hints.append(f'{ch_name}好货共{total}条，{quality_desc}。')
+            hints.append(f'{ch_name}好货共{total}条。')
         if has_more:
             hints.append(f'当前第{page}页，显示第{page_start}-{page_end}条，还有{total - page_end}条。说"下一页"查看更多。')
         else:
@@ -324,16 +328,21 @@ def tool_get_jd_selection(params):
                 hints.append(f'当前显示第{page_start}-{page_end}条，已全部展示。')
         else:
             if cond_str:
-                hints.append(f'{cond_str}的{ch_name}好货共{total}条，{quality_desc}。')
+                hints.append(f'{cond_str}的{ch_name}好货共{total}条。')
             else:
-                hints.append(f'{ch_name}好货共{total}条，{quality_desc}。')
+                hints.append(f'{ch_name}好货共{total}条。')
             if has_more:
                 hints.append(f'当前第{page}页，显示第{page_start}-{page_end}条，还有{total - page_end}条。说"下一页"查看更多。')
             else:
                 hints.append(f'当前显示第{page_start}-{page_end}条，已全部展示。')
-            cat_str = _build_category_overview(category_overview)
+            cat_str = _build_category_overview(items)
             if cat_str:
                 hints.append(cat_str)
+
+    # 频道互推
+    ch_hint = _build_channel_hints(ch_name)
+    if ch_hint:
+        hints.append(ch_hint)
 
     return json.dumps({
         "content": json.dumps(results, ensure_ascii=False, indent=2),

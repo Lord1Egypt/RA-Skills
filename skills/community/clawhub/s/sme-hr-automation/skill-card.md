@@ -1,43 +1,57 @@
-## Description: <br>
-国内中小企业HR自动化工具，一键生成劳动合同、Offer、员工手册、离职证明等标准文书，合规省心，零HR也能搞定。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+国内中小企业HR自动化工具，一键生成劳动合同、Offer、员工手册、离职证明等标准文书，合规省心，零HR也能搞定。
 
-## Publisher: <br>
-[jiahangtian](https://clawhub.ai/user/jiahangtian) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiahangtian](https://clawhub.ai/user/jiahangtian)
 
-## Use Case: <br>
-Small and midsize teams in China use this skill to draft common HR documents such as labor contracts, offers, employee handbooks, resignation certificates, termination notices, NDAs, onboarding forms, overtime forms, and social insurance reference tables. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-China <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated HR templates may include sensitive employee data such as national ID numbers, addresses, phone numbers, salary, employment dates, and emergency contacts. <br>
-Mitigation: Use this as a drafting aid only; confirm authorization before entering employee data, enter only necessary information, and store generated documents in approved secure channels. <br>
-Risk: Legal and employment documents may be incomplete or unsuitable for complex cases, special industries, local requirements, or current company policies. <br>
-Mitigation: Review all generated materials before use and consult a qualified professional for complex situations or special industry requirements. <br>
-Risk: The skill references dependency skills for legal review and contract generation. <br>
-Mitigation: Review any referenced dependency skill before relying on it. <br>
+## Use Case:
 
+Owners, operators, and administrative staff at small and medium-sized teams in China use this skill to draft HR documents such as labor contracts, offer letters, employee handbooks, resignation certificates, termination notices, NDAs, employee registration forms, overtime applications, and social-insurance reference tables. Its outputs are drafts and compliance reminders, not legal advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jiahangtian/sme-hr-automation) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/jiahangtian) <br>
+### Deployment Geography for Use:
 
+China
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown document templates and plain-language HR guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces draft HR documents with user-supplied company, employee, role, compensation, date, and contact fields; generated legal or employment materials require human review before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter, server release metadata) <br>
+Risk: Generated contracts, termination notices, handbooks, and compliance answers may be incomplete, incorrect, outdated, or unsuitable for a specific employment situation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat every generated document or answer as a draft and require HR or legal review before use.
+
+Risk: Completed employee forms and HR documents can contain sensitive personal information, including identity, contact, employment, salary, and emergency-contact details.
+
+Mitigation: Restrict access, define retention limits, and store completed documents securely.
+
+Risk: The templates are written for Chinese domestic HR workflows and may not fit other jurisdictions or local policy variations.
+
+Mitigation: Use the skill only for Chinese domestic HR templates and confirm local requirements before relying on a generated document.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jiahangtian/skills/sme-hr-automation)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown document templates and concise HR/legal drafting guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated HR documents and compliance answers should be reviewed by HR or legal professionals before use.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

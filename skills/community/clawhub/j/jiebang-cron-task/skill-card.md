@@ -1,44 +1,58 @@
-## Description: <br>
-AI Agent定时任务管理工具，通过自然语言创建、查询、完成、删除定时任务，查看执行日志，并使用预设模板创建常用任务。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI Agent定时任务管理工具 - 通过自然语言创建、查询、完成、删除定时任务，查看执行日志和使用预设模板。支持Cron表达式、失败重试、模板快捷创建。
 
-## Publisher: <br>
-[jiebang-tools](https://clawhub.ai/user/jiebang-tools) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiebang-tools](https://clawhub.ai/user/jiebang-tools)
 
-## Use Case: <br>
-External users and agent developers use this skill to manage scheduled reminders and cron-like task workflows through the Jiebang external task service. It supports creating, listing, completing, deleting, and reviewing scheduled tasks and logs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Task names, schedules, tags, execution status, and log messages are sent to the external jiebang.site task service. <br>
-Mitigation: Do not include sensitive task content unless sharing it with the service is acceptable. <br>
-Risk: Create, completion, failure, and delete commands can change remote task state. <br>
-Mitigation: Confirm the intended task and action before allowing the agent to run state-changing commands. <br>
-Risk: The API key is stored in a local .jiebang_api_key file after registration. <br>
-Mitigation: Remove or rotate the key when the skill is no longer used, and avoid exposing the file in shared workspaces. <br>
+## Use Case:
 
+Agents and developers use this skill to create, query, complete, delete, and audit scheduled tasks through a Python command-line workflow backed by the Jiebang cron-task service.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jiebang-tools/jiebang-cron-task) <br>
-- [Jiebang task service](https://www.jiebang.site) <br>
-- [Jiebang cron task API](https://www.jiebang.site/api/cron-task) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands; the skill's commands return JSON objects.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Command results include status and data/result fields, or an error field on failure.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Scheduled-task names, descriptions, tags, and completion messages are sent to a third-party service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not include secrets, customer data, or sensitive operational details in scheduled-task content unless the service has been approved for that data.
+
+Risk: The skill stores a bearer API key in a plaintext file under the skill directory.
+
+Mitigation: Use it only in environments where local files are protected, rotate the key if the workspace is shared, and prefer safer credential storage before wider deployment.
+
+Risk: The security evidence reports an undeclared networking dependency.
+
+Mitigation: Review and pin runtime dependencies before installation or production use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jiebang-tools/skills/jiebang-cron-task)
+- [Jiebang cron-task API](https://www.jiebang.site/api/cron-task)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, API calls]
+
+**Output Format:** [JSON responses from Python CLI commands, with shell command guidance for agent use]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Task operations use cron expressions, task identifiers, status values, optional retry counts, optional tags, and optional completion messages.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

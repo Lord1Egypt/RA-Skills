@@ -1,44 +1,59 @@
-## Description: <br>
-Use this skill whenever the user wants to do anything with PDF files, including reading or extracting text and tables, merging, splitting, rotating, watermarking, creating PDFs, filling forms, encrypting or decrypting PDFs, extracting images, and OCR on scanned PDFs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides guidance and helper scripts for reading, extracting, combining, splitting, modifying, filling, securing, and OCR-processing PDF files.
 
-## Publisher: <br>
-[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Proprietary <br>
+## Publisher:
 
+[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk)
 
-## Use Case: <br>
-Developers and external users use this skill to inspect, transform, generate, and fill PDF documents with Python libraries and command-line tools. It supports both fillable PDF forms and non-fillable forms that require coordinate-based annotations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Proprietary
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads local PDF documents and can create derived files that may contain sensitive document content. <br>
-Mitigation: Use copies for important documents and avoid processing sensitive PDFs unless the local environment and output location are appropriate. <br>
-Risk: The skill includes guidance for decrypting or removing protection from PDFs. <br>
-Mitigation: Only decrypt or remove protection from PDFs that the user is authorized to access. <br>
-Risk: Coordinate-based filling of non-fillable forms can place annotations incorrectly if bounding boxes are inaccurate. <br>
-Mitigation: Validate bounding boxes and review generated validation images before relying on filled forms. <br>
+## Use Case:
 
+Developers, engineers, and document-processing agents use this skill to inspect, transform, create, secure, OCR, and fill PDF documents with Python libraries and command-line tools.
 
-## Reference(s): <br>
-- [PDF form handling guide](forms.md) <br>
-- [PDF processing advanced reference](reference.md) <br>
-- [ClawHub release page](https://clawhub.ai/yang1002378395-cmyk/pdf-processor-cn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Shell commands, Configuration, Files] <br>
-**Output Format:** [Markdown guidance with inline Python and shell examples, plus generated PDF, PNG, JSON, and text files when scripts are run] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Local file operations may read source PDFs and create derived PDF, image, JSON, text, or spreadsheet outputs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: PDF workflows can expose sensitive or unauthorized documents.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only on PDFs the user is authorized to process and handle generated outputs according to the document sensitivity.
+
+Risk: Repair, decryption, form filling, and overwrite-style workflows can alter document contents.
+
+Mitigation: Prefer writing outputs to new files and keep backups before making irreversible document changes.
+
+Risk: OCR and PDF-processing dependencies can introduce supply-chain or environment risk.
+
+Mitigation: Install optional dependencies in an isolated environment with reviewed and pinned versions when possible.
+
+## Reference(s):
+
+- [PDF Processing Guide](artifact/SKILL.md)
+- [PDF Form Processing Guide](artifact/forms.md)
+- [PDF Processing Advanced Reference](artifact/reference.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with code blocks, shell commands, and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May lead an agent to create derived PDF, image, text, spreadsheet, or JSON files when the referenced tools and scripts are run.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

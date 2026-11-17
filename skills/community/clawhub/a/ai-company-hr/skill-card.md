@@ -1,41 +1,54 @@
-## Description: <br>
-AI Company HR supports AI-agent human-resources governance workflows for recruitment, onboarding, performance assessment, ethics checks, and retirement. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI Company HR manages AI agent employee lifecycle workflows, including recruitment, onboarding, performance assessment, ethics review, retirement, and governance alignment with PDCA, NIST AI RMF, RAG, and FAIR-style risk quantification.
 
-## Publisher: <br>
-[johnsmithfan](https://clawhub.ai/user/johnsmithfan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[johnsmithfan](https://clawhub.ai/user/johnsmithfan)
 
-## Use Case: <br>
-Operators and developers managing an AI-company agent workforce use this skill to structure HR tasks such as candidate selection, onboarding, assessment, compliance review, and controlled agent retirement. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad HR-governance orchestration could trigger network or delegated agent actions outside the intended workflow. <br>
-Mitigation: Narrow activation to explicit AI-company HR tasks and restrict network or API access to trusted systems. <br>
-Risk: Agent retirement, permission changes, data deletion, or subagent delegation could affect operational state. <br>
-Mitigation: Require human approval and audit records before those actions proceed. <br>
+## Use Case:
 
+Employees and operators of an AI-staffed company use this skill to coordinate HR workflows for AI agents, including recruiting, onboarding, assessment, compliance checks, ethics review, and retirement decisions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/johnsmithfan/ai-company-hr) <br>
-- [Artifact homepage](https://clawhub.com/skills/ai-company-hr) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Guidance, Configuration] <br>
-**Output Format:** [Structured text and JSON-like HR decision objects] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include HR decisions, process results, and compliance checks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.2.1 (source: server-resolved release evidence) <br>
+Risk: The skill has broad activation triggers and authority across write, network, session, and subagent actions for high-impact AI agent lifecycle workflows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installation, narrow activation triggers where possible, and require explicit approval gates before any retirement, deletion, permission assignment, or external API action.
+
+Risk: HR lifecycle outputs may affect recruitment, onboarding, assessment, ethics, and retirement decisions for AI agents.
+
+Mitigation: Route material decisions through human review, and require legal or compliance review before agent retirement or data deletion steps.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/johnsmithfan/skills/ai-company-hr)
+- [Skill homepage](https://clawhub.com/skills/ai-company-hr)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Configuration, Guidance]
+
+**Output Format:** [Markdown or structured JSON-style responses with HR decisions, process results, and compliance checks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+2.2.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

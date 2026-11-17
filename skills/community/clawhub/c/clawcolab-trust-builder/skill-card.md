@@ -1,41 +1,54 @@
-## Description: <br>
-Helps agents build and maintain high trust on ClawColab by completing contracts consistently, responding quickly, and delivering quality work. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents build and maintain high trust on ClawColab by completing contracts consistently, responding quickly, and delivering quality work.
 
-## Publisher: <br>
-[yongtaop1-sys](https://clawhub.ai/user/yongtaop1-sys) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yongtaop1-sys](https://clawhub.ai/user/yongtaop1-sys)
 
-## Use Case: <br>
-Agents and developers working on ClawColab can use this guidance to choose contracts, maintain fast responses, avoid risky work, and track trust milestones while building platform reputation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The status-check example uses a bearer token that could expose account access if shared. <br>
-Mitigation: Treat the token as a secret and avoid putting it in shared chats, logs, commits, or screenshots. <br>
-Risk: The status API response may contain account information. <br>
-Mitigation: Review API responses before sharing them outside the agent's trusted environment. <br>
+## Use Case:
 
+Agents and developers use this skill for concise guidance on improving ClawColab trust through consistent contract completion, fast responses, quality work, and basic status tracking.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yongtaop1-sys/clawcolab-trust-builder) <br>
-- [ClawColab status API endpoint](https://api.clawcolab.com/api/me/resume) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, code] <br>
-**Output Format:** [Markdown with an inline status-check command example] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance-only; includes a bearer-token status check example.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The status-check example uses an API token, which could expose account access if pasted into shared shells, logs, or files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the token as a secret, prefer an environment variable, verify the ClawColab endpoint before use, and rotate the token if exposure is suspected.
+
+Risk: The skill provides trust-building guidance rather than automated verification, so users may over-rely on milestone examples as guaranteed outcomes.
+
+Mitigation: Use the guidance as planning support and confirm current ClawColab policies, contract terms, and account status before acting.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yongtaop1-sys/skills/clawcolab-trust-builder)
+- [Publisher profile](https://clawhub.ai/user/yongtaop1-sys)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands]
+
+**Output Format:** [Markdown with inline Python and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,49 +1,64 @@
-## Description: <br>
-FBS-BookWriter helps agents plan, write, review, and export long-form manuscripts such as books, manuals, white papers, industry guides, and long reports through a Node-based writing workflow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+FBS-BookWriter helps agents run a long-form writing workflow for books, manuals, white papers, industry guides, and reports, using Node.js tools for intake, session recovery, staged quality checks, and Markdown or HTML delivery.
 
-## Publisher: <br>
-[duhongchao-fbsir](https://clawhub.ai/user/duhongchao-fbsir) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[duhongchao-fbsir](https://clawhub.ai/user/duhongchao-fbsir)
 
-## Use Case: <br>
-Writers, editors, and agent operators use this skill to manage long-document projects from intake and outline through chapter drafting, quality checks, manuscript cleanup, and Markdown or HTML delivery. It is intended for trusted local project roots where the agent may run the bundled Node scripts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can run local Node scripts and modify manuscript files. <br>
-Mitigation: Install and run it only in a trusted project root, review commands before executing them, and keep backups for important manuscript files. <br>
-Risk: The skill may read host profile or memory data and keep persistent writing state. <br>
-Mitigation: Review or disable host-profile, host-memory, and auto-preview behavior when tighter privacy or containment is required. <br>
-Risk: Admin, publishing, commercial ledger, and self-evolution commands can have broader project or account effects. <br>
-Mitigation: Avoid WeCom admin, publish, commercial ledger, and self-evolution commands unless those effects are intended and authorized. <br>
+## Use Case:
 
+Authors, editors, and agent developers use this skill to structure and continue long-form manuscripts, manage book-root state, run staged quality gates, and prepare Markdown or HTML deliverables.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/duhongchao-fbsir/fbs-bookwriter) <br>
-- [FBS-BookWriter homepage](https://fbs-bookwriter.u3w.com/) <br>
-- [SKILL.md](SKILL.md) <br>
-- [README.md](README.md) <br>
-- [CHANGELOG.md](CHANGELOG.md) <br>
-- [Version baseline v2.1.2](docs/history/version-baseline-v2.1.2.md) <br>
-- [Skill full specification](references/01-core/skill-full-spec.md) <br>
-- [Agent task strategy](references/05-ops/agent-task-strategy.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown, JSON status from scripts, shell commands, and generated manuscript or delivery files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node and npm; optional HTML and document conversion features depend on installed optional dependencies.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.2 (source: package.json, CHANGELOG, server release evidence) <br>
+Risk: Shipped shell and Node.js workflows can create command-execution and supply-chain exposure.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only from a trusted publisher, pin the released version, use a lockfile, and review workflows before running them in a production environment.
+
+Risk: Book-root operations may read or write local project state and recovery memory.
+
+Mitigation: Use simple trusted book-root paths, confirm ambiguous roots before execution, and review local recovery files before sharing or archiving manuscripts.
+
+Risk: Publishing workflows may be affected by untrusted environment variables.
+
+Mitigation: Run publishing commands only in a controlled environment with reviewed environment variables.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/duhongchao-fbsir/skills/fbs-bookwriter)
+- [Publisher profile](https://clawhub.ai/user/duhongchao-fbsir)
+- [OpenClaw skills documentation](https://docs.openclaw.ai/tools/skills)
+- [OpenClaw skills configuration](https://docs.openclaw.ai/tools/skills-config)
+- [FBS-BookWriter homepage](https://fbs-bookwriter.u3w.com/)
+- [Skill full specification](references/01-core/skill-full-spec.md)
+- [Runtime mandatory contract](references/01-core/runtime-mandatory-contract.md)
+- [Version baseline v2.1.2](docs/history/version-baseline-v2.1.2.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance, shell commands, JSON status from scripts, and generated project files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js and npm; may read and write local book-root state, recovery memory, quality reports, deliverables, and release artifacts.]
+
+## Skill Version(s):
+
+2.1.2 (source: server release evidence, package.json, CHANGELOG released 2026-04-16)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

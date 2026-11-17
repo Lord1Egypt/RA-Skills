@@ -1,45 +1,61 @@
-## Description: <br>
-A Maldives island-planning assistant that collects trip preferences, searches travel guidance and product listings, and produces a structured island recommendation report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps users choose Maldives resort islands by collecting travel preferences, searching travel guidance, checking Fliggy product availability, and producing a structured island-selection report.
 
-## Publisher: <br>
-[miracleaaa](https://clawhub.ai/user/miracleaaa) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[miracleaaa](https://clawhub.ai/user/miracleaaa)
 
-## Use Case: <br>
-External travelers and travel-planning agents use this skill to compare Maldives resort islands against trip type, preferred activities, transport preferences, and budget. It guides the user through requirements collection and produces a decision-ready Markdown report with ranked recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may run an external npm CLI for FlyAI product lookup and send travel preferences to search or product services. <br>
-Mitigation: Use the product lookup only in workspaces where external service calls are acceptable, and skip the lookup for sensitive trip details. <br>
-Risk: The skill saves a local report file and can export that report to PDF. <br>
-Mitigation: Check the output filename and location before export, and avoid writing reports into directories containing important files with similar names. <br>
-Risk: Travel prices, availability, reviews, and resort policies can change after a report is generated. <br>
-Mitigation: Treat generated recommendations as planning guidance and verify prices, booking terms, and travel requirements with current booking sources before purchase. <br>
+## Use Case:
 
+External travel-planning users and agents use this skill to narrow Maldives resort choices from a user's trip type, priorities, transportation preference, and budget, then produce a decision-ready recommendation report.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/miracleaaa/maldives-island-picker) <br>
-- [Demand collection reference](artifact/references/intent-collection.md) <br>
-- [Island report template](artifact/references/report-template.md) <br>
-- [PDF export script documentation](artifact/scripts/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Shell commands, Guidance] <br>
-**Output Format:** [Markdown report with tables, product links, image embeds, and optional PDF export command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill normally saves a local Markdown report and can use a helper script to convert that report to PDF when requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: ClawHub release evidence) <br>
+Risk: The skill may run an unpinned external npm CLI for travel product lookup.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin or pre-approve the CLI version before use, and review the command before execution.
+
+Risk: The skill defaults to saving generated reports into the active workspace.
+
+Mitigation: Confirm the target filename and location before file creation, especially in workspaces with important existing files.
+
+Risk: PDF export processes Markdown content and should only be used with trusted inputs.
+
+Mitigation: Run the PDF exporter only on trusted Markdown in a restricted environment with reviewed dependencies.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/miracleaaa/skills/maldives-island-picker)
+- [Intent collection reference](references/intent-collection.md)
+- [Report template](references/report-template.md)
+- [Fliggy](https://www.fliggy.com/)
+- [Ctrip](https://www.ctrip.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, files, guidance]
+
+**Output Format:** [Markdown report with tables, product links, images, source notes, optional shell commands, and optional PDF export.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Defaults to saving a dated Markdown report in the active workspace; PDF export is available when requested and dependencies are installed.]
+
+## Skill Version(s):
+
+1.0.3 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

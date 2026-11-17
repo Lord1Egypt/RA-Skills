@@ -1,0 +1,378 @@
+{
+  "version": "2.0.0",
+  "meta": {
+    "threshold": 0.12,
+    "houses": ["gryffindor", "slytherin", "ravenclaw", "hufflepuff"],
+    "tie_break_priority": ["ravenclaw", "gryffindor", "slytherin", "hufflepuff"],
+    "max_weight": 3,
+    "default_option": "B",
+    "paper_size": 11,
+    "papers_file": "papers.json",
+    "notes": "questions 是题库（pool），不是考卷：每张卷从题库里抽 paper_size 道不重复的题，题目顺序与选项顺序都打乱，见 data/papers.json。cap[house] = 卷内各题中该院可获得最高权重之和；只要每题四院峰值都等于 max_weight，任何一张卷的 cap 都必然等于 paper_size × max_weight（当前 33），四院天然配平。tie_break_priority 顺序可直接改，改后同一份答案仍恒定得同一结果。"
+  },
+  "questions": [
+    {
+      "id": 1,
+      "scene": "魔药课",
+      "stem": "邻座把独角兽角粉倒成了豪猪刺，坩埚开始冒紫烟。教授背对着全班在写板书，只有你看见了。",
+      "default": "B",
+      "options": [
+        {"key": "A", "text": "立刻出声叫住教授，不管多少人会回头看你", "weights": {"gryffindor": 3, "hufflepuff": 1}},
+        {"key": "B", "text": "不吭声，抢在爆锅前自己伸手把它按灭", "weights": {"slytherin": 3, "gryffindor": 1}},
+        {"key": "C", "text": "先看清是哪一步出错的，再低声告诉邻座，让他自己决定喊不喊人", "weights": {"hufflepuff": 3, "ravenclaw": 3}}
+      ]
+    },
+    {
+      "id": 2,
+      "scene": "魁地奇看台",
+      "stem": "雨大得像有人在天上倒水，你支持的队落后一百分。旁边一个低年级学生冻得发抖，攥着一条湿透的围巾，一直没走。",
+      "default": "B",
+      "options": [
+        {"key": "A", "text": "把防水斗篷脱给他，自己淋着，把球看完", "weights": {"hufflepuff": 3, "gryffindor": 3}},
+        {"key": "B", "text": "先把斗篷给他，再去问看台管理员有没有多余的毯子", "weights": {"hufflepuff": 2, "slytherin": 3}},
+        {"key": "C", "text": "拉他一起挪到有顶棚的角落，换个位置接着看", "weights": {"ravenclaw": 3, "gryffindor": 2}}
+      ]
+    },
+    {
+      "id": 3,
+      "scene": "图书馆禁书区",
+      "stem": "禁书区某一页上有一道咒语，能立刻解决你眼下的麻烦。页边有一行很潦草的小字：用过的人，后来都不太一样了。",
+      "default": "B",
+      "options": [
+        {"key": "A", "text": "先把那行小字翻完，弄明白「不太一样」是什么意思", "weights": {"ravenclaw": 3, "hufflepuff": 1}},
+        {"key": "B", "text": "直接试。眼下的麻烦先解决，后面的事后面再说", "weights": {"slytherin": 3, "gryffindor": 3}},
+        {"key": "C", "text": "合上书，去找一个真正懂这门咒语的人当面问", "weights": {"hufflepuff": 3, "gryffindor": 2}}
+      ]
+    },
+    {
+      "id": 4,
+      "scene": "公共休息室",
+      "stem": "凌晨两点，你发现室友在拆一封家里寄来的信，信纸上有撕过又粘回去的痕迹。他抬头，看见你了。",
+      "default": "B",
+      "options": [
+        {"key": "A", "text": "走过去在他旁边坐下，什么也不问，就陪着", "weights": {"hufflepuff": 3, "gryffindor": 1}},
+        {"key": "B", "text": "摆摆手表示自己什么都没看见，然后关上门走开", "weights": {"ravenclaw": 3, "slytherin": 2}},
+        {"key": "C", "text": "第二天找个没人的时候，当面问他要不要帮忙", "weights": {"gryffindor": 3, "slytherin": 3}}
+      ]
+    },
+    {
+      "id": 5,
+      "scene": "霍格莫德",
+      "stem": "你在蜂蜜公爵门口捡到一个鼓鼓的钱袋。街上的钟敲了四下——五点前你得回学校，而失主显然刚走过这条街。",
+      "default": "B",
+      "options": [
+        {"key": "A", "text": "站在原地一直等，等到有人回来找", "weights": {"hufflepuff": 3, "ravenclaw": 1}},
+        {"key": "B", "text": "交给店主，留一张字条写清楚是在哪捡的", "weights": {"ravenclaw": 3, "hufflepuff": 2}},
+        {"key": "C", "text": "沿街追上去，找出那个最像刚丢东西的人", "weights": {"gryffindor": 3, "slytherin": 3}}
+      ]
+    },
+    {
+      "id": 6,
+      "scene": "有求必应屋",
+      "stem": "门为你开了，里面正是你最想要的那样东西。可门内地板上还躺着一个人，脸色发白，看样子找了很久都没找到这扇门。",
+      "default": "B",
+      "options": [
+        {"key": "A", "text": "先把他扶进去，哪怕这扇门从此对你不那么灵", "weights": {"hufflepuff": 3, "gryffindor": 2}},
+        {"key": "B", "text": "先把他送到校医室，回头自己再来试一次", "weights": {"slytherin": 3, "ravenclaw": 1}},
+        {"key": "C", "text": "去叫人来，两个人一起把这件事处理掉", "weights": {"gryffindor": 3, "ravenclaw": 3}}
+      ]
+    },
+    {
+      "id": 7,
+      "scene": "禁林边缘",
+      "stem": "你和同伴在禁林边缘踩到一串很新的脚印，方向朝里。海格说过今天谁都不许进林子。",
+      "default": "B",
+      "options": [
+        {"key": "A", "text": "顺着脚印往里走一小段，看看有没有人需要帮忙", "weights": {"gryffindor": 3, "ravenclaw": 1}},
+        {"key": "B", "text": "回头报告，让更懂行的人来处理", "weights": {"ravenclaw": 3, "slytherin": 3}},
+        {"key": "C", "text": "留在原地做记号，等同伴去叫人，自己守着", "weights": {"hufflepuff": 3, "gryffindor": 2}}
+      ]
+    },
+    {
+      "id": 8,
+      "scene": "霍格沃茨特快",
+      "stem": "车厢里只剩三个位置：一张旁边两个人你不太熟；一张空着，但邻座有人在哭；还有一张坐着你一直想认识的人和他的一群朋友。",
+      "default": "B",
+      "options": [
+        {"key": "A", "text": "坐到那个哭的人旁边", "weights": {"hufflepuff": 3, "gryffindor": 1}},
+        {"key": "B", "text": "坐到那群人中间，先把自己介绍一遍", "weights": {"slytherin": 3, "gryffindor": 3}},
+        {"key": "C", "text": "一个人坐那张空位，先看看书", "weights": {"ravenclaw": 3, "hufflepuff": 2}}
+      ]
+    },
+    {
+      "id": 9,
+      "scene": "大礼堂",
+      "stem": "开学宴上，名单念到一个名字，全场都笑了。那个新生站在原处，手指一直在抠袍子。",
+      "default": "B",
+      "options": [
+        {"key": "A", "text": "带头鼓掌，一直鼓到别人也跟着鼓起来", "weights": {"gryffindor": 3, "hufflepuff": 2}},
+        {"key": "B", "text": "不看那边，安静地等下一项流程走完", "weights": {"ravenclaw": 3, "slytherin": 3}},
+        {"key": "C", "text": "记住这个名字，事后找个机会跟他说句话", "weights": {"hufflepuff": 3, "slytherin": 1}}
+      ]
+    },
+    {
+      "id": 10,
+      "scene": "厨房旁走廊",
+      "stem": "家养小精灵塞给你一块刚出炉的蛋糕，说是他偷偷多做的。走廊尽头，费尔奇的手电光扫过来了。",
+      "default": "B",
+      "options": [
+        {"key": "A", "text": "抓过蛋糕就跑，边跑边回头道谢", "weights": {"gryffindor": 3, "slytherin": 1}},
+        {"key": "B", "text": "把蛋糕塞回他手里，站在原地等费尔奇走过来", "weights": {"ravenclaw": 3, "hufflepuff": 3}},
+        {"key": "C", "text": "拉上他一起躲进旁边的壁龛，等光过去", "weights": {"slytherin": 3, "gryffindor": 2}}
+      ]
+    },
+    {
+      "id": 11,
+      "scene": "天文塔",
+      "stem": "天文塔上，你最好的朋友告诉你，他打算去做一件很危险的事，并且要你替他保密。你已经替他保密过一次了。",
+      "default": "B",
+      "options": [
+        {"key": "A", "text": "答应他，但这次要他讲清每一个细节", "weights": {"slytherin": 3, "hufflepuff": 2}},
+        {"key": "B", "text": "不答应。你直接告诉他，这件事你会说出去", "weights": {"gryffindor": 3, "ravenclaw": 2}},
+        {"key": "C", "text": "先答应下来，然后自己想办法把风险按住", "weights": {"hufflepuff": 3, "ravenclaw": 3}}
+      ]
+    },
+    {
+      "id": 12,
+      "scene": "药草学温室",
+      "stem": "温室里那盆曼德拉草到了要换盆的时候，谁蹲下去都得先戴好耳罩。你的耳罩在打铃时被踩裂了一条缝。全班都在看你什么时候动手。",
+      "default": "B",
+      "options": [
+        {"key": "A", "text": "先摘下来，用手按住裂口，照样蹲下去把这盆换完", "weights": {"gryffindor": 3, "hufflepuff": 1}},
+        {"key": "B", "text": "举手报告耳罩坏了，等助教从仓库拿一副新的来", "weights": {"ravenclaw": 3, "slytherin": 1}},
+        {"key": "C", "text": "拉着旁边的同学一起去隔壁借两副，坏的这只等有人问起再说", "weights": {"hufflepuff": 3, "slytherin": 3}}
+      ]
+    },
+    {
+      "id": 13,
+      "scene": "猫头鹰棚屋",
+      "stem": "你托猫头鹰寄出去的信，三天没有回音。今天你在猫头鹰棚屋的角落里找到它，脚上还绑着那封信，翅膀上多了一道新伤。它不肯看你。",
+      "default": "B",
+      "options": [
+        {"key": "A", "text": "先把它抱去校医室，信的事回头再说", "weights": {"hufflepuff": 3, "gryffindor": 1}},
+        {"key": "B", "text": "解开信看看是不是自己把地址写错了，再决定下一步", "weights": {"ravenclaw": 3, "slytherin": 1}},
+        {"key": "C", "text": "当场再写一封，换一只猫头鹰寄出去，同时把这只的事告诉海格", "weights": {"gryffindor": 3, "slytherin": 3}}
+      ]
+    },
+    {
+      "id": 14,
+      "scene": "校医室门口",
+      "stem": "你在校医室门口撞见一个低年级学生坐在长椅上，胳膊打上了石膏。他反复说自己是摔的，可袖口那道烧痕还没消。",
+      "default": "B",
+      "options": [
+        {"key": "A", "text": "坐下来陪着，等他愿意自己开口", "weights": {"hufflepuff": 3, "gryffindor": 1}},
+        {"key": "B", "text": "去把值班的教授叫来，让懂行的人看看那道痕", "weights": {"ravenclaw": 3, "hufflepuff": 2}},
+        {"key": "C", "text": "什么也不说，回去自己把这种烧痕查清楚，再回来当面问他", "weights": {"slytherin": 3, "gryffindor": 3}}
+      ]
+    },
+    {
+      "id": 15,
+      "scene": "挂毯后的走廊",
+      "stem": "你在挂毯后面发现一条走廊，尽头有一扇没有把手的门。你说出想要什么，它就会开。这时你听见身后有人跟上来了，脚步声很轻。",
+      "default": "B",
+      "options": [
+        {"key": "A", "text": "把门敞着，回头喊一声，让后面的人一起进来", "weights": {"gryffindor": 3, "hufflepuff": 2}},
+        {"key": "B", "text": "先进去，把门带上，等自己想清楚再决定要不要告诉别人", "weights": {"slytherin": 3, "ravenclaw": 1}},
+        {"key": "C", "text": "退到一边，等那个人先过去，看清是谁再说", "weights": {"ravenclaw": 3, "hufflepuff": 3}}
+      ]
+    },
+    {
+      "id": 16,
+      "scene": "学院杯积分榜",
+      "stem": "学院杯的积分榜挂在礼堂门口。你所在的学院因为一件事被扣了一大笔分，而扣分的真正原因，只有你和另外两个人知道。",
+      "default": "B",
+      "options": [
+        {"key": "A", "text": "把事实说出来，哪怕有人会因此恨你", "weights": {"gryffindor": 3, "ravenclaw": 3}},
+        {"key": "B", "text": "先找那个人谈，让他自己去找院长把这件事认下来", "weights": {"slytherin": 3, "hufflepuff": 2}},
+        {"key": "C", "text": "什么也不说，带头去把分一点一点挣回来", "weights": {"hufflepuff": 3, "gryffindor": 2}}
+      ]
+    },
+    {
+      "id": 17,
+      "scene": "圣诞舞会前夜",
+      "stem": "舞会前一晚，你邀请的那个人回话说他已经答应了别人。第二天早上，他在走廊里拦住你，说其实他更想跟你去。",
+      "default": "B",
+      "options": [
+        {"key": "A", "text": "说没关系，那就一起去，别人怎么想是别人的事", "weights": {"gryffindor": 3, "hufflepuff": 1}},
+        {"key": "B", "text": "先说清楚这样会让第三个人很难受，让他把那边处理好再谈", "weights": {"hufflepuff": 3, "ravenclaw": 2}},
+        {"key": "C", "text": "什么也不表态，看他自己怎么选", "weights": {"slytherin": 3, "ravenclaw": 3}}
+      ]
+    },
+    {
+      "id": 18,
+      "scene": "决斗练习场",
+      "stem": "练习对决，你的搭档明显比你强。第三回合开始前，他小声说他会放慢一点，让你别输得太难看。全班都在看着。",
+      "default": "B",
+      "options": [
+        {"key": "A", "text": "拒绝。让他全力来，输了也认", "weights": {"gryffindor": 3, "ravenclaw": 1}},
+        {"key": "B", "text": "接受，但把话说在前面：下一轮要真打", "weights": {"slytherin": 3, "hufflepuff": 2}},
+        {"key": "C", "text": "干脆换成跟别人一组，顺手把旁边那个没人搭手的同学拉上", "weights": {"ravenclaw": 3, "hufflepuff": 3}}
+      ]
+    },
+    {
+      "id": 19,
+      "scene": "图书馆借书台",
+      "stem": "你要借的那本书，馆里只剩一本，你已经等了两个月。排在你前面的低年级学生说，他要这本书是因为家里出了事，需要查一样东西。",
+      "default": "B",
+      "options": [
+        {"key": "A", "text": "让他先借，自己再等一轮", "weights": {"hufflepuff": 3, "gryffindor": 3}},
+        {"key": "B", "text": "问清楚他要查什么，先帮他把东西查出来，书还是按排队来", "weights": {"ravenclaw": 3, "hufflepuff": 1}},
+        {"key": "C", "text": "跟他一起去查，查完把书让给他，但这次要他答应按时还", "weights": {"slytherin": 3, "ravenclaw": 1}}
+      ]
+    },
+    {
+      "id": 20,
+      "scene": "占卜课教室",
+      "stem": "占卜课上，老师让你看一枚茶叶渣，说里面有个不祥的形状。你什么也没看到。全班都在等你开口。",
+      "default": "B",
+      "options": [
+        {"key": "A", "text": "照实说自己什么都没看见", "weights": {"gryffindor": 3, "ravenclaw": 1}},
+        {"key": "B", "text": "顺着老师的意思编一个像样的说法，把这节课带过去", "weights": {"slytherin": 3, "hufflepuff": 3}},
+        {"key": "C", "text": "说自己没把握，请老师示范一遍怎么看", "weights": {"ravenclaw": 3, "gryffindor": 2}}
+      ]
+    },
+    {
+      "id": 21,
+      "scene": "飞行课草坪",
+      "stem": "飞行课上，一个同学的扫帚不受控地往上飘，他已经离地四五米，两只手都在抖。老师背对着大家在捡球。",
+      "default": "B",
+      "options": [
+        {"key": "A", "text": "喊老师，同时自己起飞去接他", "weights": {"gryffindor": 3, "ravenclaw": 1}},
+        {"key": "B", "text": "先飞到他下方，让他松手落到你这边", "weights": {"slytherin": 3, "gryffindor": 1}},
+        {"key": "C", "text": "先去叫人，然后站在下面让他知道有人看着", "weights": {"hufflepuff": 3, "ravenclaw": 3}}
+      ]
+    },
+    {
+      "id": 22,
+      "scene": "塔楼宿舍熄灯后",
+      "stem": "熄灯之后，室友带着一身寒气翻窗回来，外套上有血。他是从禁林那边过来的。他让你别问。",
+      "default": "B",
+      "options": [
+        {"key": "A", "text": "不问，先帮他把血擦掉，外套收起来", "weights": {"hufflepuff": 3, "slytherin": 2}},
+        {"key": "B", "text": "要他今晚把话说清楚，否则明天一早就去找级长", "weights": {"gryffindor": 3, "ravenclaw": 2}},
+        {"key": "C", "text": "什么也不做，但记住这件事，明天自己去禁林那边看看", "weights": {"ravenclaw": 3, "slytherin": 3}}
+      ]
+    },
+    {
+      "id": 23,
+      "scene": "三把扫帚酒吧",
+      "stem": "在酒吧里，你听见隔壁桌在编排一个你认识的人，说的有一半是真的，另一半是编的。他们没注意到你。",
+      "default": "B",
+      "options": [
+        {"key": "A", "text": "直接走过去，当面告诉他们另一半是编的", "weights": {"gryffindor": 3, "ravenclaw": 1}},
+        {"key": "B", "text": "坐着听完，回去把这件事原样告诉那个人", "weights": {"hufflepuff": 3, "slytherin": 2}},
+        {"key": "C", "text": "记住说话的是哪几个人，回头挑一个最会传话的把话递回去", "weights": {"slytherin": 3, "ravenclaw": 3}}
+      ]
+    },
+    {
+      "id": 24,
+      "scene": "考试周自习区",
+      "stem": "期末考试的复习笔记，你借给了一个同学，他答应第二天还。第三天了，他说笔记丢了，而考试就在明天。",
+      "default": "B",
+      "options": [
+        {"key": "A", "text": "先不追究，把自己脑子里还记得的整理一份给他", "weights": {"hufflepuff": 3, "gryffindor": 1}},
+        {"key": "B", "text": "问他笔记到底去哪了，把这件事弄明白再谈别的", "weights": {"ravenclaw": 3, "slytherin": 1}},
+        {"key": "C", "text": "去把笔记找回来，顺便想清楚以后还借不借给他", "weights": {"gryffindor": 3, "slytherin": 3}}
+      ]
+    },
+    {
+      "id": 25,
+      "scene": "级长会议",
+      "stem": "会上有人提议，把犯小错的低年级学生的名字报上去扣分，这样自己学院的排名就稳了。你是唯一一个有异议的人，偏偏会议纪要由你写。",
+      "default": "B",
+      "options": [
+        {"key": "A", "text": "当场说反对，并且要求把反对意见一起写进纪要", "weights": {"gryffindor": 3, "ravenclaw": 2}},
+        {"key": "B", "text": "先不表态，散会之后单独去找那个提议的人谈", "weights": {"slytherin": 3, "hufflepuff": 1}},
+        {"key": "C", "text": "在纪要里把两边的理由都写清楚，让读到的人自己判断", "weights": {"ravenclaw": 3, "hufflepuff": 3}}
+      ]
+    },
+    {
+      "id": 26,
+      "scene": "神奇动物保护课",
+      "stem": "课上要照顾一只受了伤的鹰头马身有翼兽。它认人，只肯让一个人靠近。轮到你的搭档时，它开始烦躁。",
+      "default": "B",
+      "options": [
+        {"key": "A", "text": "自己先上前把它安抚下来，让搭档在旁边看着", "weights": {"gryffindor": 3, "ravenclaw": 1}},
+        {"key": "B", "text": "让搭档退开，自己去问教授还有没有别的办法", "weights": {"ravenclaw": 3, "slytherin": 1}},
+        {"key": "C", "text": "跟搭档一起慢慢靠近，让那只兽看见是两个人", "weights": {"hufflepuff": 3, "slytherin": 3}}
+      ]
+    },
+    {
+      "id": 27,
+      "scene": "移动楼梯上",
+      "stem": "楼梯突然转了向，把你和两个不认识的一年级学生送到一个没来过的楼层。走廊尽头的门上有锁，锁在动。",
+      "default": "B",
+      "options": [
+        {"key": "A", "text": "带着他们一起去找认得路的人，路上不分开", "weights": {"hufflepuff": 3, "gryffindor": 1}},
+        {"key": "B", "text": "先自己试那把锁，成了再叫他们过来", "weights": {"slytherin": 3, "gryffindor": 3}},
+        {"key": "C", "text": "研究锁转动的规律，找出不用钥匙也稳妥的走法", "weights": {"ravenclaw": 3, "hufflepuff": 1}}
+      ]
+    },
+    {
+      "id": 28,
+      "scene": "下雪的门厅",
+      "stem": "下大雪，门厅里堆着全校的行李。一个陌生学生的箱子散了，东西撒了一地。广播正在催大家上车。",
+      "default": "B",
+      "options": [
+        {"key": "A", "text": "停下来帮他捡，错过这趟车也没关系", "weights": {"hufflepuff": 3, "gryffindor": 1}},
+        {"key": "B", "text": "一边帮他捡，一边叫住门口的人，问车能不能等一下", "weights": {"gryffindor": 3, "ravenclaw": 3}},
+        {"key": "C", "text": "先把自己的行李放上车，再回来帮他", "weights": {"slytherin": 3, "hufflepuff": 1}}
+      ]
+    },
+    {
+      "id": 29,
+      "scene": "魔咒课教室",
+      "stem": "魔咒课上练一个你试了六遍都没成功的咒语。同学有一半已经过关走了。教授说，下课之前每个人都要再试一次。",
+      "default": "B",
+      "options": [
+        {"key": "A", "text": "第七遍就当第一遍，认认真真再来", "weights": {"gryffindor": 3, "hufflepuff": 1}},
+        {"key": "B", "text": "先看别人是怎么成功的，找出自己卡在哪一步", "weights": {"ravenclaw": 3, "slytherin": 1}},
+        {"key": "C", "text": "先换个更简单的过关，回头再补这个", "weights": {"slytherin": 3, "hufflepuff": 3}}
+      ]
+    },
+    {
+      "id": 30,
+      "scene": "湖边",
+      "stem": "你一个人在湖边坐着。有人走过来坐在你旁边，什么也没说，就这样坐了十分钟。你其实正想一个人待着。",
+      "default": "B",
+      "options": [
+        {"key": "A", "text": "直说你想一个人待一会儿", "weights": {"gryffindor": 3, "ravenclaw": 1}},
+        {"key": "B", "text": "什么也不说，陪他一起坐着", "weights": {"hufflepuff": 3, "slytherin": 1}},
+        {"key": "C", "text": "先问他是不是出了什么事，听他讲完再决定走不走", "weights": {"ravenclaw": 3, "slytherin": 3}}
+      ]
+    },
+    {
+      "id": 31,
+      "scene": "圣诞假期的宿舍",
+      "stem": "圣诞假期你留校，整层宿舍只剩你和一个不太熟的学长。他半夜来敲门，说想借你的炉火坐一会儿，不问缘由。",
+      "default": "B",
+      "options": [
+        {"key": "A", "text": "让他进来，炉火拨旺一点，什么也不问", "weights": {"hufflepuff": 3, "gryffindor": 3}},
+        {"key": "B", "text": "让他进来，但先问他是不是出了什么事", "weights": {"ravenclaw": 3, "hufflepuff": 2}},
+        {"key": "C", "text": "先让他进来，同时留个心眼看他状态对不对", "weights": {"slytherin": 3, "ravenclaw": 2}}
+      ]
+    },
+    {
+      "id": 32,
+      "scene": "猪头酒吧后门",
+      "stem": "在酒吧后门，一个陌生人说他能帮你弄到你想要的那样东西，不用走正规渠道，代价是替他带一样东西进学校。",
+      "default": "B",
+      "options": [
+        {"key": "A", "text": "当场拒绝，回头把这件事告诉能管事的人", "weights": {"gryffindor": 3, "hufflepuff": 2}},
+        {"key": "B", "text": "不答应也不拒绝，先弄清他要带的是什么", "weights": {"ravenclaw": 3, "slytherin": 2}},
+        {"key": "C", "text": "什么也不接，走开，回去提醒身边的人都当心这个人", "weights": {"hufflepuff": 3, "slytherin": 3}}
+      ]
+    },
+    {
+      "id": 33,
+      "scene": "石像前的走廊",
+      "stem": "走廊中间的石像挡住了通道。它说要回答一个问题才让过，问题是你上一次撒谎是什么时候，对谁撒的。",
+      "default": "B",
+      "options": [
+        {"key": "A", "text": "照实说，把那次撒谎原原本本讲出来", "weights": {"gryffindor": 3, "hufflepuff": 1}},
+        {"key": "B", "text": "编一个无关紧要的小谎，先过去再说", "weights": {"slytherin": 3, "gryffindor": 1}},
+        {"key": "C", "text": "先问它为什么问这个，答不上就绕远路走另一条通道", "weights": {"ravenclaw": 3, "hufflepuff": 3}}
+      ]
+    }
+  ]
+}

@@ -1,43 +1,61 @@
-## Description: <br>
-Use when upgrading OpenClaw, running an OpenClaw upgrade, changing OpenClaw versions, selecting latest vs stable OpenClaw releases, or recovering from partial OpenClaw upgrades where gateway, config, plugins, channels, agents, or runtime availability must remain reliable. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Assess OpenClaw releases, upgrade an installation, or recover a failed update using verified backups, official durable handoff and runtime evidence.
 
-## Publisher: <br>
-[skillmelody](https://clawhub.ai/user/skillmelody) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[skillmelody](https://clawhub.ai/user/skillmelody)
 
-## Use Case: <br>
-Developers and operators use this skill to plan, execute, and recover OpenClaw upgrades with verified backups, release-risk review, gateway/runtime checks, and plugin compatibility validation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may inspect local OpenClaw configuration, service status, plugin versions, and logs that can expose sensitive operational details. <br>
-Mitigation: Keep inspection local, avoid publishing logs or configuration, and review confirmation prompts before sharing or acting on collected evidence. <br>
-Risk: Upgrade, restart, rollback, daemon, sudo, cleanup, reinstall, and configuration changes can disrupt a running OpenClaw gateway or user workflows. <br>
-Mitigation: Require a verified backup and separate explicit approval for each mutation or recovery action before execution. <br>
-Risk: Version-sensitive OpenClaw commands or plugin-host version skew can make an upgrade appear complete while runtime routes still fail. <br>
-Mitigation: Discover current command semantics, compare CLI and running gateway versions, check official plugin versions against the host, and verify critical paths with runtime probes. <br>
+## Use Case:
 
+OpenClaw administrators and developers use this skill to assess a release, carry out an authorized upgrade, or recover from an interrupted update. It guides target selection, recovery preparation, runtime checks, and reporting of verified results.
 
-## Reference(s): <br>
-- [OpenClaw Verified Upgrade on ClawHub](https://clawhub.ai/skillmelody/upgrade-openclaw-safely) <br>
-- [Publisher profile](https://clawhub.ai/user/skillmelody) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Markdown] <br>
-**Output Format:** [Markdown guidance with confirmation prompts, evidence tables, and command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user approval before upgrade, restart, rollback, cleanup, reinstall, daemon edits, sudo, or configuration mutation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Upgrade work can interrupt services or leave the installation only partially verified.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the exact target, interruption plan, recovery limits, permitted checks, and stability window; report incomplete critical verification clearly.
+
+Risk: Recovery backups can contain credentials and other sensitive local state.
+
+Mitigation: Keep backups local and protected, verify their scope and integrity, and follow the agreed retention policy.
+
+## Reference(s):
+
+- [Native updater and target selection](references/native-updater.md)
+- [Migration, backup coverage, and runtime](references/migration-and-runtime.md)
+- [Verification and retention](references/verification-and-retention.md)
+- [Transaction contract](references/transaction-contract.md)
+- [Recovery contract](references/recovery-contract.md)
+- [OpenClaw update CLI documentation](https://docs.openclaw.ai/cli/update)
+- [OpenClaw updating guide](https://docs.openclaw.ai/install/updating)
+- [OpenClaw backup CLI documentation](https://docs.openclaw.ai/cli/backup)
+- [ClawHub release page](https://clawhub.ai/skillmelody/skills/upgrade-openclaw-safely)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Guidance, Shell commands]
+
+**Output Format:** [Markdown operational report with verification findings and commands where useful]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Context-dependent upgrade or recovery status, evidence, and remaining actions]
+
+## Skill Version(s):
+
+2.0.0 (source: SKILL.md frontmatter, ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

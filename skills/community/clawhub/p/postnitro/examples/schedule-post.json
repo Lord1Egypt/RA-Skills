@@ -1,0 +1,13 @@
+{
+  "status": "SCHEDULED",
+  "scheduledAt": "2026-12-31T13:00:00Z",
+  "designId": "<designId from carousel generate/import --wait>",
+  "selectedAccounts": ["<socialAccountId>"],
+  "postContent": {
+    "common": "New carousel is live 🚀 Save this one for later. #remotework #productivity"
+  },
+  "linkedinPostSettings": {
+    "postType": "document",
+    "postTitle": "Remote Work, Done Right"
+  }
+}

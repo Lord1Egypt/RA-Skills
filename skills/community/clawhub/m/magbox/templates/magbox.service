@@ -1,0 +1,23 @@
+# Edit the absolute paths; install as a user service (references/deploy.md).
+[Unit]
+Description=MagBox two-way local file bridge
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/node /ABSOLUTE/PATH/TO/magbox-server.mjs
+Environment=MAGBOX_BIND=127.0.0.1
+Environment=MAGBOX_PORT=9900
+# LAN opt-in: replace the bind above with a specific private interface address.
+# Optional client-facing DNS names:
+# Environment=MAGBOX_HOSTS=agent-host.local
+# 0.0.0.0 listens on all IPv4 interfaces and also needs explicit MAGBOX_HOSTS.
+# Environment=MAGBOX_TO_AGENT=/home/YOUR_USER/Inbox
+# Environment=MAGBOX_FROM_AGENT=/home/YOUR_USER/Outbox
+Restart=on-failure
+RestartSec=5
+UMask=0077
+NoNewPrivileges=true
+
+[Install]
+WantedBy=default.target

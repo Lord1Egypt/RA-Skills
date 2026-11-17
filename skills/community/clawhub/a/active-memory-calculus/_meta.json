@@ -1,6 +1,58 @@
 {
-  "ownerId": "kn78tmpsm3jqmdzjc8fa5dzdcn83s0kp",
-  "slug": "active-memory-calculus",
-  "version": "1.0.1",
-  "publishedAt": 1776000631039
+  "name": "active-memory-calculus",
+  "version": "1.0.0",
+  "description": "Active Memory and Dreaming System for Calculus Teaching - Auto-remember student preferences, track concept mastery, and generate learning insights without manual triggers",
+  "author": "daigxok",
+  "homepage": "https://github.com/daigxok/active-memory-calculus",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/daigxok/active-memory-calculus.git"
+  },
+  "requires": {
+    "openclaw": ">=2026.4.10",
+    "env": [
+      "CALCULUS_MEMORY_PATH",
+      "DREAM_INTERVAL"
+    ],
+    "bins": [
+      "python3",
+      "node"
+    ],
+    "skills": [
+      "calculus-concept-visualizer",
+      "derivation-animator",
+      "error-analyzer"
+    ]
+  },
+  "tags": [
+    "active-memory",
+    "calculus",
+    "higher-mathematics",
+    "adaptive-learning",
+    "knowledge-tracking",
+    "dreaming-system",
+    "education",
+    "ai-memory",
+    "personalization",
+    "latest"
+  ],
+  "category": "education",
+  "license": "MIT",
+  "platforms": [
+    "linux",
+    "macos",
+    "windows"
+  ],
+  "config": {
+    "CALCULUS_MEMORY_PATH": {
+      "description": "Directory path for storing memory data",
+      "default": "~/obsidian/calculus-memory",
+      "prompt": "Where should we store calculus learning memory data?"
+    },
+    "DREAM_INTERVAL": {
+      "description": "Dreaming system heartbeat interval",
+      "default": "20m",
+      "prompt": "How often should the dreaming system process learning sessions? (e.g., 15m, 20m, 30m, 1h)"
+    }
+  }
 }

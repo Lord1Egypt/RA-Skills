@@ -1,50 +1,65 @@
-## Description: <br>
-Agent Ops provides runtime monitoring and recovery guidance for AI coding agent sessions, including rate-limit recovery, context usage estimation, stale-session recovery, checkpoint and rollback patterns, token budgets, and model fallback. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent Ops provides runtime monitoring and recovery patterns for AI coding-agent sessions, including context token checks, rate-limit recovery, stale-session handling, checkpoint and rollback guidance, token budgeting, and model fallback guidance.
 
-## Publisher: <br>
-[lanyasheng](https://clawhub.ai/user/lanyasheng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lanyasheng](https://clawhub.ai/user/lanyasheng)
 
-## Use Case: <br>
-Developers and operators use this skill to manage active AI coding agent sessions, recover from rate limits or stale sessions, protect repositories before risky shell commands, and keep context and model usage under control. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Optional daemon and transcript-recovery patterns can read sensitive transcripts, thinking blocks, or recovered notes. <br>
-Mitigation: Scope recovery to known sessions, redact archived material, set retention limits, and avoid storing raw transcripts or thinking blocks. <br>
-Risk: Rate-limit recovery can send keys to tmux panes and may resume the wrong prompt if enabled broadly. <br>
-Mitigation: Do not enable global recovery; re-check pane contents, confirm the session is still rate-limited, and block confirmation prompts before sending keys. <br>
-Risk: Checkpoint and rollback hooks can mutate repository state when destructive commands fail. <br>
-Mitigation: Limit hooks to trusted repositories, require confirmation for destructive commands, log actions, and inspect checkpoints before applying rollback. <br>
+## Use Case:
 
+Developers and agent operators use this skill to monitor long-running coding-agent sessions, recover from rate limits or stale sessions, manage context pressure, and prepare rollback patterns before risky shell operations.
 
-## Reference(s): <br>
-- [Rate Limit Recovery Pattern](references/04-rate-limit.md) <br>
-- [Context Usage Estimation Pattern](references/05-context-estimation.md) <br>
-- [Stale Session Daemon Pattern](references/17-stale-session-daemon.md) <br>
-- [Checkpoint and Rollback Pattern](references/19-checkpoint-rollback.md) <br>
-- [Token Budget Pattern](references/20-token-budget.md) <br>
-- [Model Fallback Pattern](references/21-model-fallback.md) <br>
-- [Claude Code Hooks Documentation](https://code.claude.com/docs/en/hooks) <br>
-- [Oh My Claude Code](https://github.com/Yeachan-Heo/oh-my-claudecode) <br>
-- [Continuous Claude v3](https://github.com/parcadei/Continuous-Claude-v3) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline shell commands and code snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes one shell script for transcript token usage and operational patterns for hooks, cron, tmux, and git checkpoint workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: release evidence and artifact metadata) <br>
+Risk: Transcript scavenging or stale-session recovery can retain sensitive session content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Enable those patterns only with explicit opt-in, private file permissions, secret redaction, and retention limits.
+
+Risk: Automatic rollback or recovery hooks can change repository or session state unexpectedly.
+
+Mitigation: Review each hook before enabling it, require confirmation before state-changing actions, and test rollback and error handling in a disposable repository.
+
+Risk: Rate-limit recovery can send input to an active tmux pane at the wrong time.
+
+Mitigation: Re-check the pane content immediately before sending input and block recovery when confirmation, deletion, overwrite, or force-push prompts are visible.
+
+## Reference(s):
+
+- [Rate Limit Detection and Recovery](references/04-rate-limit.md)
+- [Lightweight Context Usage Estimation](references/05-context-estimation.md)
+- [Stale Session Daemon](references/17-stale-session-daemon.md)
+- [Git Checkpoint and Auto Rollback](references/19-checkpoint-rollback.md)
+- [Token Budget Per Subtask](references/20-token-budget.md)
+- [Auto Model Fallback](references/21-model-fallback.md)
+- [Claude Code Hooks Documentation](https://code.claude.com/docs/en/hooks)
+- [Oh My ClaudeCode](https://github.com/Yeachan-Heo/oh-my-claudecode)
+- [Continuous Claude v3](https://github.com/parcadei/Continuous-Claude-v3)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Bash snippets and one shell script.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The included context-usage script prints an input-token count when available and otherwise emits no output.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata and artifact metadata.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

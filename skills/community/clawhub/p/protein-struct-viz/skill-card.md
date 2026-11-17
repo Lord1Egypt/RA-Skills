@@ -1,44 +1,54 @@
-## Description: <br>
-Generates PyMOL scripts that highlight specific protein residues in PDB structures for molecular visualization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate PyMOL scripts to highlight specific protein residues in PDB structures.
 
-## Publisher: <br>
-[aipoch-ai](https://clawhub.ai/user/aipoch-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aipoch-ai](https://clawhub.ai/user/aipoch-ai)
 
-## Use Case: <br>
-Developers, bioinformatics researchers, and structural biology users use this skill to generate local PyMOL scripts that load protein structures, apply visualization settings, and highlight residues or functional sites. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated `.pml` files may contain user-provided residue, color, path, or filename values. <br>
-Mitigation: Use trusted inputs, keep output filenames inside the project workspace, and review generated scripts before running them in PyMOL. <br>
-Risk: Using a PDB ID can create a PyMOL fetch command that retrieves a structure externally. <br>
-Mitigation: Use local PDB files when external retrieval is not intended, or confirm that the selected PDB ID and network access are acceptable before execution. <br>
-Risk: Generated visualization scripts can overwrite or create local files at the requested output path. <br>
-Mitigation: Choose explicit workspace-local output paths and inspect the generated path before executing downstream PyMOL commands. <br>
+## Use Case:
 
+Developers, computational biologists, and structural biology users use this skill to generate PyMOL scripts that load protein structures, highlight selected residues, and apply visualization settings for analysis or publication-ready images.
 
-## Reference(s): <br>
-- [PyMOL Command Reference](references/pymol_commands.md) <br>
-- [ClawHub Release Page](https://clawhub.ai/aipoch-ai/protein-struct-viz) <br>
-- [Publisher Profile](https://clawhub.ai/user/aipoch-ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Files, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and generated plain text PyMOL .pml script content] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated scripts are intended for local review and execution in PyMOL; no Python package dependencies are required by the generator.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and frontmatter) <br>
+Risk: Generated .pml files are executable PyMOL scripts built from weakly validated PDB, residue, style, and color inputs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated scripts before opening them in PyMOL and use only trusted PDB IDs, local paths, residue specifications, and color values.
+
+Risk: The script can write output to arbitrary paths supplied through the output filename.
+
+Mitigation: Direct output to a known workspace filename and add strict path containment before broad deployment.
+
+## Reference(s):
+
+- [PyMOL Command Reference](references/pymol_commands.md)
+- [ClawHub release page](https://clawhub.ai/aipoch-ai/skills/protein-struct-viz)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Files, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with generated PyMOL .pml script content and command-line usage]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated scripts may load local PDB files or fetch four-character PDB IDs when executed in PyMOL.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

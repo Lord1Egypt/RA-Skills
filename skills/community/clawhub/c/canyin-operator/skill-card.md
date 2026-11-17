@@ -1,42 +1,55 @@
-## Description: <br>
-Canyin Skill is a Chinese small-restaurant operations assistant that helps with site selection, menu design, launch planning, delivery-platform operations, private-channel customer acquisition, and basic financial analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Chinese-language small restaurant operations assistant that helps users plan site selection, menu design, opening preparation, delivery-platform operations, private-domain customer acquisition, and financial analysis workflows.
 
-## Publisher: <br>
-[katherine0325](https://clawhub.ai/user/katherine0325) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[katherine0325](https://clawhub.ai/user/katherine0325)
 
-## Use Case: <br>
-External small-restaurant founders, delivery merchants, and owner-operated shops use this skill to evaluate locations, choose categories, structure menus and pricing, improve delivery-platform performance, build private customer channels, and estimate break-even operations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Suggested review incentives, group messaging, or delivery-platform tactics may conflict with platform rules or local advertising laws. <br>
-Mitigation: Confirm the relevant platform policies and local advertising requirements before using those tactics. <br>
-Risk: Financial, pricing, and site-selection outputs are planning guidance rather than professional legal, tax, or platform-policy advice. <br>
-Mitigation: Validate assumptions against current costs, platform terms, and qualified professional advice before making business decisions. <br>
+## Use Case:
 
+External small restaurant founders, delivery merchants, and owner-operated food shops use this skill to structure launch and operations decisions for categories such as milk tea, fried chicken, malatang, braised chicken rice, deli food, and breakfast shops.
 
-## Reference(s): <br>
-- [Canyin Skill on ClawHub](https://clawhub.ai/katherine0325/canyin-operator) <br>
-- [引流话术参考](references/引流话术参考.md) <br>
-- [菜单设计参考](references/菜单设计参考.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance with checklists, scoring models, formulas, templates, and example scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Plain-text guidance only; no executable code, credential use, hidden automation, or system access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Marketing, review-incentive, and customer outreach scripts may conflict with local law or delivery-platform rules if used verbatim.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and adapt scripts to local regulations and platform policies before using them with real customers.
+
+Risk: Operational formulas and benchmark ranges may not reflect a specific shop's costs, market, or contractual terms.
+
+Mitigation: Validate assumptions with current rent, labor, food-cost, platform-fee, and order-volume data before making business decisions.
+
+## Reference(s):
+
+- [Canyin Skill ClawHub Page](https://clawhub.ai/katherine0325/skills/canyin-operator)
+- [引流话术参考](references/引流话术参考.md)
+- [菜单设计参考](references/菜单设计参考.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown guidance, checklists, scoring models, tables, and reusable customer-facing scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language operational guidance with no executable code, tool calls, or sensitive-data access.]
+
+## Skill Version(s):
+
+1.0.0 (source: server evidence release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

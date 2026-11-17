@@ -1,40 +1,53 @@
-## Description: <br>
-Guides agents through incremental TypeScript strictness adoption, including compiler flags, typing boundaries, narrowing, generics, utility types, CI guardrails, and safe refactors. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deep TypeScript strictness workflow for incremental enablement, compiler flags, typing boundaries, narrowing, generics, utility types, and safe refactors.
 
-## Publisher: <br>
-[clawkk](https://clawhub.ai/user/clawkk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[clawkk](https://clawhub.ai/user/clawkk)
 
-## Use Case: <br>
-Developers and engineering agents use this skill to plan and execute incremental TypeScript strict-mode migrations, reduce unsafe any usage, harden IO boundaries, and keep type-safety regressions out of CI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Proposed TypeScript configuration, CI gates, or large refactors can change build behavior or block releases. <br>
-Mitigation: Review proposed tsconfig, CI, and refactor changes before applying them; roll them out incrementally and run type checks and tests before merge. <br>
-Risk: Guidance can be less accurate if the agent assumes the wrong TypeScript version, build tool, or monorepo layout. <br>
-Mitigation: Confirm the TypeScript version, build tool, and package layout before planning strictness changes. <br>
+## Use Case:
 
+Developers and engineers use this skill to plan and execute incremental TypeScript strictness adoption, reduce `any`, improve IO boundary typing, and add CI guardrails in large or legacy TypeScript codebases.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/clawkk/typescript-strict) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration instructions, Code] <br>
-**Output Format:** [Markdown with inline TypeScript, configuration, and shell examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose TypeScript compiler flags, validation patterns, CI guardrails, and incremental refactor steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Compiler flag or TypeScript configuration changes can affect many packages and block builds when applied broadly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Capture a baseline `tsc --noEmit` error count, apply stricter flags by package or path, and review changes before merging.
+
+Risk: Recommended CI or lint guardrails can disrupt existing development workflows if enabled all at once.
+
+Mitigation: Introduce gates incrementally, start with changed-code checks where appropriate, and require human review for CI configuration changes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/clawkk/skills/typescript-strict)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline code, shell commands, checklists, and configuration recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

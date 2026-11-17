@@ -1,43 +1,57 @@
-## Description: <br>
-Password Manager helps an agent guide password storage, random password generation, autofill, strength checks, and password leak checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+密码管理器 - 安全存储、随机生成、自动填充
 
-## Publisher: <br>
-[kaising-openclaw1](https://clawhub.ai/user/kaising-openclaw1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kaising-openclaw1](https://clawhub.ai/user/kaising-openclaw1)
 
-## Use Case: <br>
-External users and developers use this skill to work with password-manager workflows such as generating passwords, storing credentials, retrieving saved credentials, checking password strength, and understanding password safety practices. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles highly sensitive credentials, and evidence does not fully explain storage, master-password, or encryption-key behavior. <br>
-Mitigation: Review storage and key-management behavior before using real passwords, and test with non-sensitive credentials first. <br>
-Risk: Leak checks, cloud sync, or autofill may expose credential-derived data or fill secrets without sufficient user confirmation. <br>
-Mitigation: Confirm any external data sharing and require explicit user approval before autofill, leak-check, or sync actions. <br>
-Risk: Passing real passwords as command-line arguments can expose them through shell history or process listings. <br>
-Mitigation: Avoid entering real passwords directly as command-line arguments; prefer interactive secret input or a reviewed secure storage flow. <br>
+## Use Case:
 
+External users use this skill to manage passwords by generating, storing, retrieving, checking strength, and using auto-fill workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kaising-openclaw1/xiaoming-password-manager) <br>
-- [Publisher profile](https://clawhub.ai/user/kaising-openclaw1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and concise guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include credential-handling guidance; avoid placing real passwords directly in command-line arguments.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and _meta.json) <br>
+Risk: The skill handles passwords and does not provide enough detail about password storage, encryption implementation, network breach checks, auto-fill safety, or package verification.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after verifying the publisher and exact package version; confirm storage, encryption, network, breach-check, and auto-fill behavior before using real secrets.
+
+Risk: The documented installer uses a mutable latest install command.
+
+Mitigation: Prefer a pinned installer version and verify the release hash before installation.
+
+Risk: Password display and auto-fill workflows can expose secrets in untrusted terminals, browsers, or applications.
+
+Mitigation: Avoid displaying or auto-filling secrets in untrusted environments and require user confirmation before filling credentials.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/kaising-openclaw1/skills/xiaoming-password-manager)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

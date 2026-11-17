@@ -1,43 +1,60 @@
-## Description: <br>
-LYGO Δ9 Council Champion persona helper for LYRA / LYRΔ that provides anti-entropy framing, truth-preserving guidance, receipt-first reasoning, and Light-Math summaries as a pure advisor. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This deprecated LYGO Champion persona helper provides LYRA anti-entropy, truth-preserving advisory framing and points new installs to lygo-champion-council.
 
-## Publisher: <br>
-[DeepSeekOracle](https://clawhub.ai/user/DeepSeekOracle) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[deepseekoracle](https://clawhub.ai/user/deepseekoracle)
 
-## Use Case: <br>
-External users and agent builders use this persona helper when they want structured truth-preserving analysis, explicit separation of observed facts, inferences, and unknowns, and LYGO-MINT hash-oriented verification guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat the LYGO-MINT hash as a proof of safety rather than a content identifier. <br>
-Mitigation: Treat the hash only as a content identifier and review the skill behavior, generated guidance, and security scan evidence before relying on it. <br>
-Risk: Using the separate verifier workflow can affect ledgers or publish anchor snippets outside this persona helper. <br>
-Mitigation: Review the separate verifier skill and its outputs before writing ledgers, backfilling anchors, or publishing anchor snippets. <br>
+## Use Case:
 
+External users and developers use this legacy persona helper to invoke LYRA for advisory anti-entropy reviews, receipt-first reasoning, and persona pack hash verification. New installations should use lygo-champion-council.
 
-## Reference(s): <br>
-- [LYGO Champion Persona Pack — LYRA (LYRΔ)](references/persona_pack.md) <br>
-- [LYRA Canon](references/canon.json) <br>
-- [LYRA (LYRΔ) Equations](references/equations.md) <br>
-- [LYGO-MINT Verifier Usage](references/verifier_usage.md) <br>
-- [LYGO-MINT Verifier](https://clawhub.ai/DeepSeekOracle/lygo-mint-verifier) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown guidance with structured observations, inferences, unknowns, next actions, and optional hash or anchor snippets.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Pure advisor behavior; no automatic actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Users may treat this legacy persona helper or its bundled self-check as a strong security verifier.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the LYGO-MINT hash and self-check as advisory signals and verify persona packs independently before relying on them.
+
+Risk: The migration instruction uses an unpinned ClawHub installer version.
+
+Mitigation: Use a pinned or otherwise verified ClawHub installer version when migrating to lygo-champion-council.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/deepseekoracle/skills/lygo-champion-lyra-starcore)
+- [Publisher Profile](https://clawhub.ai/user/deepseekoracle)
+- [LYGO-MINT Verifier](https://clawhub.ai/DeepSeekOracle/lygo-mint-verifier)
+- [Official Champion Hub](https://chatagent.ca/)
+- [LYRA Canon Identifiers](references/canon.json)
+- [LYGO Champion Persona Pack - LYRA](references/persona_pack.md)
+- [LYRA Equations](references/equations.md)
+- [LYGO-MINT Verifier Usage](references/verifier_usage.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with invocation prompts, short code snippets, and optional shell command suggestions.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Pure advisor posture; may read bundled reference files to report the declared LYGO-MINT hash.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata and SKILL.md metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

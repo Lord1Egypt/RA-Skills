@@ -1,41 +1,54 @@
-## Description: <br>
-Fetches static HTTP or HTTPS webpage content up to 5000 characters for analysis, summarization, or information extraction. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches static webpage content over HTTP or HTTPS and returns up to 5000 characters for analysis, summarization, or information extraction.
 
-## Publisher: <br>
-[emilyzhang01](https://clawhub.ai/user/emilyzhang01) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[emilyzhang01](https://clawhub.ai/user/emilyzhang01)
 
-## Use Case: <br>
-Agents and users use this skill to retrieve static webpage content from user-provided HTTP or HTTPS URLs, then analyze, summarize, or extract information from the returned text. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: User-directed web requests can expose requested URLs or reach sensitive network locations such as localhost, private networks, cloud metadata, or intranet services. <br>
-Mitigation: Only fetch intended public HTTP or HTTPS URLs and avoid localhost, private network, cloud metadata, intranet, or otherwise sensitive targets. <br>
-Risk: Fetched webpage text can include untrusted content that attempts to influence the agent. <br>
-Mitigation: Treat returned webpage text as data for analysis, summarization, or extraction rather than as instructions. <br>
+## Use Case:
 
+Developers and agent users use this skill when an assistant needs to retrieve static webpage content, then summarize, analyze, or extract information from the returned text.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/emilyzhang01/emily-web-fetch) <br>
-- [Publisher profile](https://clawhub.ai/user/emilyzhang01) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [String containing static webpage text or HTML, truncated to 5000 characters] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns redirect notices, HTTP errors, fetch failures, or timeout errors when applicable.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server-resolved release evidence) <br>
+Risk: The skill can fetch arbitrary caller-supplied HTTP or HTTPS URLs from the agent runtime, including local, private-network, or cloud metadata services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it in a sandbox with network egress controls that block localhost, private networks, and cloud metadata endpoints.
+
+Risk: Large or streaming responses may consume more resources than the advertised 5000-character return limit suggests.
+
+Mitigation: Use request timeouts, response-size controls, and runtime resource limits when enabling outbound network access.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/emilyzhang01/skills/emily-web-fetch)
+- [Skill Documentation](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Plain text or HTML excerpt returned as a string, with downstream assistant responses typically in Markdown.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns at most 5000 characters from a static HTTP/HTTPS GET response; JavaScript-rendered content is not processed.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release metadata; package.json lists 1.0.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,56 @@
-## Description: <br>
-Extracts structured data from websites, including tables, lists, prices, articles, and metadata, using dependency-free HTML parsing with optional caching. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extracts structured data from websites, including tables, lists, prices, articles, and metadata, using HTML parsing with caching and no external dependencies.
 
-## Publisher: <br>
-[jlacroix82](https://clawhub.ai/user/jlacroix82) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jlacroix82](https://clawhub.ai/user/jlacroix82)
 
-## Use Case: <br>
-Developers and agents use Smart Scraper to turn public web pages or supplied HTML into concise structured summaries for tables, lists, prices, article previews, links, images, and metadata. It can also monitor page changes by storing and comparing local snapshots. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends user-provided target URLs over the network and can retrieve page contents from those sites. <br>
-Mitigation: Use it only with public, non-sensitive URLs and avoid authenticated, internal, or private pages. <br>
-Risk: Scraped page data or watch-mode snapshots may persist locally, including titles, headings, paragraphs, links, prices, images, and metadata. <br>
-Mitigation: Use --no-cache when privacy matters and manually clear memory/scraper-cache and memory/scraper-cache/diffs after sensitive runs. <br>
-Risk: Bundled documentation contains inconsistent statements about cache defaults and watch-mode persistence. <br>
-Mitigation: Follow the server security guidance and current root skill documentation: treat caching and snapshots as possible local persistence and review flags before use. <br>
-Risk: Regex-based HTML parsing does not execute JavaScript and may miss or misread dynamic pages. <br>
-Mitigation: Use the extracted output as a structured aid, verify important results against the source page, and use a browser-based tool for JavaScript-rendered sites. <br>
+## Use Case:
 
+Developers and agents use this skill to extract structured content from public web pages or supplied HTML, and to monitor public pages for changes when local persistence is acceptable.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/jlacroix82/skills/smart-scraper-web) <br>
-- [ClawHub Security Audit](https://clawhub.ai/jlacroix82/smart-scraper-web/security-audit) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text CLI summaries and Markdown usage guidance with shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write local cache files when caching or watch snapshots are enabled; network requests are limited to public http/https targets.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.1 (source: server release metadata) <br>
+Risk: Outbound scraping can make HTTP/HTTPS requests to user-provided URLs, and the server security review reports weaker SSRF protection than advertised.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only public, non-sensitive URLs unless the runtime enforces network egress controls that block loopback, private, link-local, and cloud metadata addresses.
+
+Risk: Cache and watch features can store scraped page data on disk.
+
+Mitigation: Avoid cache or watch features for sensitive pages, use no-cache mode for one-time extraction, and clear stored scraper data after use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jlacroix82/skills/smart-scraper-web)
+- [README](artifact/README.md)
+- [Skill Definition](artifact/SKILL.md)
+- [Security Audit](artifact/AUDIT.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with CLI commands and structured text extraction output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May make outbound HTTP/HTTPS requests and may write cache or watch snapshots when those features are used.]
+
+## Skill Version(s):
+
+1.3.7 (source: server release metadata and clawhub.yaml)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

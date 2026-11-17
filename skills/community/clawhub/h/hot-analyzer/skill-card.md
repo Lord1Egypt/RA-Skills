@@ -1,48 +1,62 @@
-## Description: <br>
-Hot Analyzer fetches public hot-list data from multiple Chinese platforms and analyzes potential sentiment effects on bonds, Shenwan industries, directly related securities, and futures. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches trending topics from multiple public platforms and analyzes likely positive or negative effects on rates, credit, Shenwan industries, related securities, and futures.
 
-## Publisher: <br>
-[bianchunhui](https://clawhub.ai/user/bianchunhui) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bianchunhui](https://clawhub.ai/user/bianchunhui)
 
-## Use Case: <br>
-External users, analysts, and developers use this skill to collect public trend data, merge related hot-list items, score market relevance, and draft concise market-impact analysis. The analysis covers rate bonds, credit bonds, Shenwan industries, directly related listed instruments, and futures products. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill contacts public hot-list endpoints operated by Toutiao, Baidu, Weibo, Douyin, and Zhihu. <br>
-Mitigation: Run it only in environments where those outbound requests are acceptable and review network policy before use. <br>
-Risk: The skill saves fetched public trend data and generated reports in the current workspace. <br>
-Mitigation: Use a workspace where local raw JSON, state, grouping, HTML, and Markdown analysis files are expected and can be reviewed or removed. <br>
-Risk: The skill generates financial-market conclusions from trend data and LLM reasoning. <br>
-Mitigation: Treat conclusions as analysis rather than trading advice, and review market-impact claims before relying on them. <br>
+## Use Case:
 
+Developers and market analysts use Hot Analyzer to collect public trending-topic data, merge duplicate events, rank finance-relevant signals, and draft market-impact analysis for bonds, industries, securities, and futures.
 
-## Reference(s): <br>
-- [Hot Analyzer on ClawHub](https://clawhub.ai/bianchunhui/hot-analyzer) <br>
-- [Publisher Profile](https://clawhub.ai/user/bianchunhui) <br>
-- [Toutiao Hot Board](https://www.toutiao.com/) <br>
-- [Baidu Realtime Hot Board](https://top.baidu.com/) <br>
-- [Weibo Hot Search](https://weibo.com/) <br>
-- [Douyin Hot Search](https://www.douyin.com/) <br>
-- [Zhihu Hot List](https://www.zhihu.com/hot) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Code, Shell commands, Configuration, Files] <br>
-**Output Format:** [Markdown report, JSON intermediate files, shell commands, Python code, and an HTML report file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates local workspace files such as raw platform JSON, state.json, pending.json, groups.json, and hot_analysis_report.html.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill makes public web requests to trending-topic APIs that may be unavailable, incomplete, rate-limited, or structurally changed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the fetched raw JSON and generated rankings before relying on the report.
+
+Risk: The workflow creates or overwrites several files in the working directory.
+
+Mitigation: Run the skill in a new empty folder and inspect generated paths before execution.
+
+Risk: Generated market analysis can be time-sensitive, incomplete, or misleading if treated as investment advice.
+
+Mitigation: Use the analysis as informational context only and verify conclusions against current market data and professional judgment.
+
+## Reference(s):
+
+- [Hot Analyzer on ClawHub](https://clawhub.ai/bianchunhui/skills/hot-analyzer)
+- [Toutiao Hot Board](https://www.toutiao.com/hot-event/hot-board/?origin=toutiao_pc)
+- [Baidu Realtime Hot Board](https://top.baidu.com/api/board?tab=realtime)
+- [Weibo Hot Search](https://weibo.com/ajax/side/hotSearch)
+- [Douyin Hot Search](https://www.iesdouyin.com/web/api/v2/hotsearch/billboard/word/)
+- [Zhihu Hot Topics](https://www.zhihu.com/hot)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown report with shell commands, JSON intermediate files, and an HTML report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates or updates working-directory files including raw platform JSON captures, state.json, pending.json, groups.json, compute.py, and hot_analysis_report.html.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,55 @@
-## Description: <br>
-When a user asks to understand a concept through a fable or story, this skill explains complex ideas with a fable, technical explanation, everyday analogy, or layered teaching flow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps an agent explain unfamiliar concepts through fable-style stories, everyday analogies, or progressively deeper explanations.
 
-## Publisher: <br>
-[54lynnn](https://clawhub.ai/user/54lynnn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[54lynnn](https://clawhub.ai/user/54lynnn)
 
-## Use Case: <br>
-External users, employees, and developers use this skill to turn unfamiliar or technical concepts into memorable fable-style explanations, everyday analogies, or progressively deeper teaching sequences. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad explanation requests may activate the skill and produce concept guidance that is incomplete or misleading if the underlying concept is uncertain. <br>
-Mitigation: Follow the artifact guidance to verify unclear concept definitions before explaining and ask for confirmation when the user provides only a broad domain. <br>
-Risk: The artifact suggests installing Knowledge RAG as a companion skill, which is a separate plugin decision. <br>
-Mitigation: Treat companion plugin installation as optional and review that plugin independently before use. <br>
+## Use Case:
 
+External users, educators, and developers use this skill to turn difficult concepts into memorable stories or analogies, then connect the story back to the technical definition and key mappings.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/54lynnn/fable-explainer) <br>
-- [source-video.md](references/source-video.md) <br>
-- [Bilibili source video](https://www.bilibili.com/video/BV15UG16nEuD) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Guidance, Text] <br>
-**Output Format:** [Markdown with a fable, concept reveal, technical explanation, and story-to-concept mapping] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include optional follow-up prompts for applications, related concepts, or deeper explanation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: frontmatter and server release evidence) <br>
+Risk: The optional Knowledge RAG companion is referenced by name without a pinned version or digest.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the separate package and publisher before installing it, and pin or otherwise verify the companion package before use.
+
+Risk: Story-based explanations can oversimplify or misstate unfamiliar technical concepts.
+
+Mitigation: Check uncertain definitions against authoritative sources before producing the final explanation, especially for high-stakes or specialized topics.
+
+## Reference(s):
+
+- [Source Video](references/source-video.md)
+- [Bilibili source video](https://www.bilibili.com/video/BV15UG16nEuD)
+- [ClawHub skill page](https://clawhub.ai/54lynnn/skills/fable-explainer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown narrative with concept reveal, technical explanation, and story-to-concept mapping]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Primarily Chinese-language explanations; may include optional follow-up prompts for applications, related concepts, or deeper treatment.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

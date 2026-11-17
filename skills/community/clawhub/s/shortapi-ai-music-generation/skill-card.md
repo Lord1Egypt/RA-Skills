@@ -1,47 +1,61 @@
-## Description: <br>
-Helps agents discover ShortAPI music generation models, fetch model-specific input schemas, create music generation jobs, and poll for results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill as an entry point to discover, select, and fetch specific integration parameters for all supported AI music generation models.
 
-## Publisher: <br>
-[IsDyh01](https://clawhub.ai/user/IsDyh01) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[isdyh01](https://clawhub.ai/user/isdyh01)
 
-## Use Case: <br>
-Developers and external users use this skill to integrate ShortAPI-backed music generation into agent workflows. It guides the agent to retrieve the selected model schema, submit a generation job with SHORTAPI_KEY, poll for completion, and present returned media. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, lyrics, and job metadata are sent to ShortAPI. <br>
-Mitigation: Use the skill only when that data sharing is acceptable, and avoid placing secrets or sensitive data in prompts or callback URLs. <br>
-Risk: A leaked SHORTAPI_KEY could allow unauthorized use of the ShortAPI account. <br>
-Mitigation: Keep SHORTAPI_KEY in the environment and include it only in the Authorization header for ShortAPI requests. <br>
-Risk: Rendering returned media URLs inline could expose users to unsafe or unexpected content if URLs are not checked. <br>
-Mitigation: Verify returned URLs point to authorized shortapi.ai or known CDN domains before rendering media markup. <br>
-Risk: Long-running generation jobs could lead to excessive polling. <br>
-Mitigation: Stop polling after the documented 5-minute limit and notify the user if the job has not completed. <br>
+## Use Case:
 
+External developers and agents use this skill to discover supported ShortAPI music generation models, fetch model-specific schemas, construct valid requests, and poll for generated music results.
 
-## Reference(s): <br>
-- [ShortAPI Homepage](https://shortapi.ai) <br>
-- [ShortAPI Music Job Creation Endpoint](https://api.shortapi.ai/api/v1/job/create) <br>
-- [ShortAPI Suno V5 Model Skill Document](https://shortapi.ai/api/skill/suno/suno-v5/generate) <br>
-- [ClawHub Skill Page](https://clawhub.ai/IsDyh01/shortapi-ai-music-generation) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, API calls, Configuration, Markdown] <br>
-**Output Format:** [Markdown with JSON payloads, shell commands, and inline media markup when results are available] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SHORTAPI_KEY and may produce audio preview markup for returned ShortAPI media URLs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: Prompts, job requests, and status queries are sent to ShortAPI using SHORTAPI_KEY.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use this skill only when ShortAPI is an intended service provider, keep SHORTAPI_KEY in the environment, and avoid exposing credentials in prompts, callbacks, or generated payloads.
+
+Risk: Generated media URLs may be rendered inline in environments with strict content or HTML policies.
+
+Mitigation: Review result URLs before inline rendering and allow only authorized shortapi.ai or known CDN domains with sanitized media tags.
+
+Risk: Asynchronous music generation jobs can lead to excessive polling if not bounded.
+
+Mitigation: Stop background polling after five minutes and notify the user if the job has not completed.
+
+## Reference(s):
+
+- [ShortAPI homepage](https://shortapi.ai)
+- [ClawHub skill page](https://clawhub.ai/isdyh01/skills/shortapi-ai-music-generation)
+- [ShortAPI job creation endpoint](https://api.shortapi.ai/api/v1/job/create)
+- [ShortAPI model skill document endpoint](https://shortapi.ai/api/skill/suno/suno-v5/generate)
+- [ShortAPI job query endpoint](https://api.shortapi.ai/api/v1/job/query?id=$JOB_ID)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown with JSON and bash examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SHORTAPI_KEY and uses bounded polling for asynchronous music generation jobs.]
+
+## Skill Version(s):
+
+1.0.3 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

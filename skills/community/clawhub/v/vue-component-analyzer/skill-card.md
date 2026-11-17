@@ -1,41 +1,55 @@
-## Description: <br>
-Analyzes Vue 2 and Vue 3 projects from an entry file to map component dependencies, component paths, and props. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes Vue 2 and Vue 3 project component dependencies from an entry file, recursively maps component hierarchy, and reports component names, file paths, and props.
 
-## Publisher: <br>
-[baozaibuding](https://clawhub.ai/user/baozaibuding) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[baozaibuding](https://clawhub.ai/user/baozaibuding)
 
-## Use Case: <br>
-Developers and frontend engineers use this skill to understand Vue application structure, troubleshoot component dependencies, and document component props across Vue 2 and Vue 3 projects. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads local Vue source files while analyzing dependency structure. <br>
-Mitigation: Run it only against the repository or entry file intended for analysis, and review generated reports before sharing them. <br>
+## Use Case:
 
+Developers and engineers use this skill to understand Vue application structure, inspect component dependency relationships, and generate component maps for architecture review or troubleshooting.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/baozaibuding/vue-component-analyzer) <br>
-- [Skill definition](artifact/SKILL.md) <br>
-- [Implementation guide](artifact/implementation.md) <br>
-- [Examples](artifact/examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Code, Guidance] <br>
-**Output Format:** [Markdown reports, JSON component trees, and Mermaid graph code] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads local Vue source files to build component dependency maps; no network, persistence, credential, or mutation behavior was reported by security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill recursively reads Vue project source files to build the component map.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only on repositories the user is comfortable having the agent inspect, and keep the analysis scoped to the intended project.
+
+Risk: Generated component maps can be incomplete or inaccurate for unresolved aliases, dynamic components, missing files, or complex TypeScript patterns.
+
+Mitigation: Review the Markdown, JSON, or Mermaid output against the source project before relying on it for architecture or refactoring decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/baozaibuding/skills/vue-component-analyzer)
+- [Implementation guide](artifact/implementation.md)
+- [Examples](artifact/examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, JSON, Code, Guidance]
+
+**Output Format:** [Markdown tree, JSON structure, and Mermaid chart]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes component names, file paths, props, async markers, and circular dependency markers when detected.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

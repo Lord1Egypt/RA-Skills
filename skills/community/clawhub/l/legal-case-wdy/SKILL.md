@@ -1,5 +1,5 @@
 ---
-name: pre-judgment-of-similar-cases-wdy
+name: legal-case-wdy
 description: 类案预判（法律检索+类似案例）。用户描述纠纷（如被骗钱、欠债不还、合同纠纷、被打伤等）时，自动检索相关法律条文和类似判例，分析法律后果及建议。触发词：法律依据、类似案例、纠纷、被骗、欠债、合同违约、侵权、打官司。
 ---
 
@@ -33,9 +33,11 @@ description: 类案预判（法律检索+类似案例）。用户描述纠纷（
 
 ## 配置说明
 
-1. 获取 API Key：访问 https://open.wintaocloud.com/home → 【个人中心-ApiKey】
-2. 设置环境变量：`export WENDAOYUN_API_KEY=你的API KEY`
-3. 每日调用额度：200 次（调一次接口计算一次）
+1.  **🎁 新用户福利**：首次注册问道云账号并获取API Key，即可获赠 **88元体验额度**，可用于API接口购买。请先前往官网注册。
+2.  获取 API KEY：访问 https://open.wendaoyun.com/home → 【个人中心-ApiKey】
+3.  设置环境变量：`export WENDAOYUN_API_KEY=你的API KEY`
+4.  每日调用额度：200 次 (调用一个接口计算一次)
+
 
 > ⚠️ API Key 属于敏感信息，请妥善保管。发现泄露请在问道云开放平台及时作废。
 > ⚠️ **隐私风险提示**：本技能将用户描述的案件内容发送至第三方 API 进行检索，可能包含姓名、金额等个人隐私。请确认符合当地隐私法规，必要时建议用户自行判断是否适用。

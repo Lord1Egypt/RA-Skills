@@ -1,44 +1,58 @@
-## Description: <br>
-Automatically enforces workspace file size limits, archives stale or bloated files, and organizes root contents to maintain efficient AI agent context. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically enforces workspace file size limits, archives stale or oversized files, and organizes root contents to keep AI agent context efficient.
 
-## Publisher: <br>
-[casperzinou](https://clawhub.ai/user/casperzinou) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[casperzinou](https://clawhub.ai/user/casperzinou)
 
-## Use Case: <br>
-Developers and AI agent operators use this skill to keep long-running agent workspaces lean by trimming boot files, archiving stale notes, and moving misplaced root files into archive locations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The cleanup workflow can automatically change, move, trim, or delete important workspace files without an interactive review step. <br>
-Mitigation: Review the target workspace path and back up AGENTS.md, MEMORY.md, STATE.md, USER.md, and memory notes before enabling scheduled or unattended runs. <br>
-Risk: The bundled script uses a hardcoded /root/.openclaw/workspace path and may affect the wrong workspace if reused unchanged. <br>
-Mitigation: Update the workspace path for the intended environment and test manually before installing cron automation. <br>
-Risk: Automatic deletion of very small memory files and trimming of boot files can remove useful context. <br>
-Mitigation: Prefer archive-only behavior or a dry-run review step for critical workspaces, and inspect archive output after initial runs. <br>
+## Use Case:
 
+Developers and agent operators use this skill to keep long-running AI workspaces lean by moving root-level clutter, trimming boot files, archiving stale memory notes, and logging cleanup results.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/casperzinou/talonforge-workspace-hygiene) <br>
-- [Skill Instructions](artifact/SKILL.md) <br>
-- [Workspace Hygiene Script](artifact/workspace-hygiene.sh) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with shell command and cron examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May append a workspace hygiene report to the current daily note when the bundled shell script is run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can automatically change agent memory and instruction files, which may alter future agent context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit approval or protected-section parsing before changing AGENTS.md or MEMORY.md, and review resulting diffs before reuse.
+
+Risk: The cleanup script can permanently delete very small Markdown files.
+
+Mitigation: Replace deletion with quarantine or archive behavior and keep backups before scheduled runs.
+
+Risk: A fixed workspace path and ordinary move operations can archive files from the wrong workspace or overwrite existing archive files.
+
+Mitigation: Make the workspace path configurable and use collision-safe archive names before installation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/casperzinou/skills/talonforge-workspace-hygiene)
+- [Publisher profile](https://clawhub.ai/user/casperzinou)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and a bash cleanup script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces cleanup reports and may write archive or log files when scheduled or invoked.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,38 +1,52 @@
-## Description: <br>
-Synchronizes selected text, links, and tagged content from an agent session to Flomo notes through a user-configured webhook. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+快速同步内容到flomo笔记，支持自动标签识别、内容格式化。
 
-## Publisher: <br>
-[ranhuang](https://clawhub.ai/user/ranhuang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[ranhuang](https://clawhub.ai/user/ranhuang)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and developers use this skill to send plain text, links, and tagged content to a configured flomo webhook so the content is saved as a flomo note.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Selected note text is sent to the webhook URL configured in ~/.flomo_token.
+
+Mitigation: Use the skill only with notes appropriate for that flomo destination, and verify the webhook URL before sending private or business-sensitive content.
+
+Risk: The ~/.flomo_token file contains a webhook credential.
+
+Mitigation: Protect the file like a password and restrict local file permissions.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Agents and users use this skill to save intended note text, links, and hashtagged content to Flomo without leaving the agent workflow. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Shell commands, Configuration guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends selected note content to the webhook URL stored in ~/.flomo_token. <br>
-Mitigation: Keep ~/.flomo_token private, verify it contains only the intended Flomo webhook, and avoid syncing secrets or sensitive notes unless that destination is acceptable. <br>
+**Output Format:** [Plain text status messages with shell command invocation guidance]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ranhuang/ye-flomo-sync) <br>
+**Other Properties Related to Output:** [Requires a flomo webhook URL stored in ~/.flomo_token and jq/curl availability for script execution.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration] <br>
-**Output Format:** [Plain text status messages from a shell script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a local ~/.flomo_token webhook file plus curl and jq at runtime.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

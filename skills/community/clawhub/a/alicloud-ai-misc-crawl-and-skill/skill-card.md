@@ -1,41 +1,55 @@
-## Description: <br>
-Refresh the Model Studio models crawl and regenerate derived summaries and `skills/ai/**` skills when the models list or generated skills must be updated. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Refreshes an Alibaba Cloud Model Studio model crawl and builds derived model summaries and coverage guidance for related AI skills.
 
-## Publisher: <br>
-[cinience](https://clawhub.ai/user/cinience) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cinience](https://clawhub.ai/user/cinience)
 
-## Use Case: <br>
-Developers and maintainers use this skill to crawl Alibaba Cloud Model Studio documentation, rebuild model summaries, and regenerate related local AI skill files and coverage reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow writes generated files and may update `skills/ai/**`, which can create broad workspace changes. <br>
-Mitigation: Run it in a branch or disposable workspace and review generated output before committing or publishing. <br>
-Risk: The crawl step uses a network package and live Alibaba Cloud documentation, so results can change over time. <br>
-Mitigation: Pin or verify the crawler package when repeatability matters and keep crawl artifacts with key parameters for review. <br>
+## Use Case:
 
+Developers and maintainers use this skill to refresh Alibaba Cloud Model Studio model listings, produce structured summaries, and inspect coverage for related AI skills.
 
-## Reference(s): <br>
-- [Alibaba Cloud Model Studio Models](https://help.aliyun.com/zh/model-studio/models) <br>
-- [ClawHub Skill Release](https://clawhub.ai/cinience/alicloud-ai-misc-crawl-and-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash commands plus generated Markdown, JSON, and local skill files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generates crawl summaries, a structured model list, a skill coverage report, and updates under `skills/ai/**`.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence; artifact frontmatter says 1.0.0) <br>
+Risk: The workflow asks agents to run an unpinned third-party npx crawler package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin and review the crawler package version, and run it in a workspace without secrets or broad filesystem access.
+
+Risk: The release security summary says the skill overstates its skill-regeneration behavior because the included script currently produces a coverage report.
+
+Mitigation: Treat generated coverage as review guidance and verify any skill changes manually before relying on them.
+
+## Reference(s):
+
+- [Alibaba Cloud Model Studio Models](https://help.aliyun.com/zh/model-studio/models)
+- [Source List](references/sources.md)
+- [ClawHub Skill Page](https://clawhub.ai/cinience/skills/alicloud-ai-misc-crawl-and-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with shell commands; generated artifacts include Markdown and JSON files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Python 3, Node.js, and network access when running the crawler workflow.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata; artifact frontmatter says 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

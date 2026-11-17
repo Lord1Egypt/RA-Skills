@@ -1,42 +1,58 @@
-## Description: <br>
-Provides entertainment-style Liuyao Bagua fortune readings from birth-date inputs, including Bazi pillars, five-element analysis, yearly hexagram interpretation, and practical fortune suggestions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Chinese-language entertainment fortune-telling from birth dates by running a local Python script for Bazi pillars, five-element analysis, and yearly hexagram interpretation.
 
-## Publisher: <br>
-[Ray1012](https://clawhub.ai/user/Ray1012) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ray1012](https://clawhub.ai/user/ray1012)
 
-## Use Case: <br>
-External users and agents use this skill to generate entertainment-oriented Chinese Liuyao Bagua and Bazi readings from a complete birth date. It can return zodiac information, four pillars, five-element scores, a yearly hexagram interpretation, and fortune-oriented advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger wording may cause the skill to run on casual mentions of career, wealth, destiny, or birth dates. <br>
-Mitigation: Ask for confirmation before running the script when the user's intent is ambiguous. <br>
-Risk: Birth dates can be personal data, especially when they belong to someone other than the requester. <br>
-Mitigation: Avoid processing another person's birth date without permission. <br>
-Risk: Fortune-style output can be mistaken for factual or professional advice. <br>
-Mitigation: Present results as entertainment-only and avoid using them for medical, legal, financial, employment, or other consequential decisions. <br>
+## Use Case:
 
+External users can ask for Chinese-language entertainment fortune readings based on complete birth dates. The agent uses the skill to run the bundled local script and present a report covering basic birth information, Bazi pillars, yearly hexagram reading, five-element scores, and practical fortune advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Ray1012/liuyao-bagua) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown or plain text report with an optional inline Python command] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs locally from birth year, month, day, and optional target year; the artifact defaults the target year to 2026.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Fortune-telling output could be mistaken for factual, financial, career, or life guidance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present results as entertainment only and avoid treating the generated report as decision advice.
+
+Risk: Activation wording may catch broad career, finance, or destiny questions where entertainment fortune-telling is not intended.
+
+Mitigation: Confirm the user wants a Chinese-language fortune reading before running the script for ambiguous requests.
+
+Risk: Full reports require complete birth date inputs.
+
+Mitigation: Ask for birth year, month, and day before producing a full Bazi and hexagram report.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ray1012/skills/liuyao-bagua)
+- [Publisher profile](https://clawhub.ai/user/ray1012)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown text with a local shell command and pasted fortune report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language output; requires a complete birth year, month, and day for full reports]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

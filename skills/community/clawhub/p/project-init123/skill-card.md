@@ -1,43 +1,62 @@
-## Description: <br>
-Automates initialization of Gitea research project repositories by collecting repository details, creating the repository, writing a standard directory structure and Markdown documents, assigning collaborators, opening startup issues, and sending email notifications. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically initializes Gitea research project repositories by collecting repository details, creating a standard directory structure, adding README.md, CONTRIBUTING.md, member profiles, collaborator permissions, startup issues, and email notifications.
 
-## Publisher: <br>
-[myd2002](https://clawhub.ai/user/myd2002) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[myd2002](https://clawhub.ai/user/myd2002)
 
-## Use Case: <br>
-Developers, researchers, and project coordinators use this skill to standardize new Gitea research repositories with starter documentation, collaboration rules, member profiles, repository permissions, startup issues, and notifications. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill administers a Gitea organization using a powerful personal access token. <br>
-Mitigation: Use a least-privilege bot token scoped only to the intended organization and install the skill only where repository administration is expected. <br>
-Risk: The sample configuration uses a non-HTTPS Gitea endpoint and the setup flow stores the token locally in plaintext. <br>
-Mitigation: Change GITEA_URL to a trusted HTTPS endpoint before configuration and protect the local environment file; the setup script sets file permissions to 600. <br>
-Risk: The skill can call an external email skill through EMAIL_SKILL_PATH. <br>
-Mitigation: Review EMAIL_SKILL_PATH before use and point it only to a trusted email skill configuration. <br>
+## Use Case:
 
+Developers and research teams use this skill to create or initialize Gitea project repositories with a consistent collaboration structure, baseline documentation, member profiles, starter issues, and notifications.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/myd2002/project-init123) <br>
-- [Publisher profile](https://clawhub.ai/user/myd2002) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Configuration] <br>
-**Output Format:** [Conversational text plus generated Markdown repository files, member profile files, and issue content] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses Gitea API calls and an external email skill when configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and _meta.json) <br>
+Risk: The skill requires a Gitea personal access token that can create repositories, write files, manage collaborators, and create issues.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a minimally scoped bot token, rotate it regularly, store it only in the protected configuration file, and review token permissions before installation.
+
+Risk: Default configuration examples use plain HTTP for the Gitea server.
+
+Mitigation: Use HTTPS for production or shared organizations and verify the configured Gitea URL before running setup.
+
+Risk: Conversation state is stored in a shared temporary file.
+
+Mitigation: Use per-user or per-session protected state before deploying in a multi-user environment.
+
+Risk: The setup script installs Python dependencies into the active environment.
+
+Mitigation: Install dependencies in an isolated environment and review dependency changes before running setup on production hosts.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/myd2002/skills/project-init123)
+- [Publisher profile](https://clawhub.ai/user/myd2002)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown conversation responses, generated repository files, Gitea API changes, and setup/configuration instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires node and python3; repository initialization depends on configured Gitea and email credentials.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

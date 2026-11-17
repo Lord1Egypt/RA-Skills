@@ -1,39 +1,53 @@
-## Description: <br>
-Squad de 16 agentes implementando os frameworks de Alex Hormozi para negocios - offers, leads, pricing, sales, content, hooks, launch, retention, scaling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Hormozi Squad provides a 16-agent business coaching workflow for offers, lead generation, pricing, sales, content, launches, retention, scaling, audits, copy, workshops, and strategic advice.
 
-## Publisher: <br>
-[engsathiago](https://clawhub.ai/user/engsathiago) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[engsathiago](https://clawhub.ai/user/engsathiago)
 
-## Use Case: <br>
-External users and business operators use this skill to coordinate specialized agents for offer creation, lead generation, pricing, sales, content, launch planning, retention, scaling, and business audits. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Business strategy outputs may be incorrect or unsuitable for real pricing, advertising, sales, or financial decisions. <br>
-Mitigation: Treat outputs as advisory and review recommendations with appropriate business, legal, finance, or marketing stakeholders before acting on them. <br>
+## Use Case:
 
+External users and business operators use this skill to route business growth requests to specialized agents for offer design, lead generation, pricing, sales, launch planning, retention, scaling, audits, copywriting, workshops, and strategic advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/engsathiago/xquads-hormozi-squad) <br>
-- [OpenClaw homepage](https://github.com/synkra/xquads) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text business strategy guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only outputs; no code execution, credential access, hidden automation, or destructive behavior indicated by security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Business coaching outputs may be incomplete or unsuitable for a specific market, legal, financial, or operational context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review recommendations against the user's business facts and obtain qualified professional review before relying on high-impact pricing, sales, legal, or financial decisions.
+
+Risk: Broad activation examples may route ambiguous requests to the wrong specialized agent.
+
+Mitigation: Use explicit task names or the hormozi-chief orchestrator for triage when the user's business goal is unclear.
+
+## Reference(s):
+
+- [Project homepage](https://github.com/synkra/xquads)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration]
+
+**Output Format:** [Markdown guidance with short task routing examples and business framework outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Portuguese-forward business coaching content with no executable code in the inspected artifact.]
+
+## Skill Version(s):
+
+1.0.0 (source: skill.json and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

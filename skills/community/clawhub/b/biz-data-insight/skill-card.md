@@ -1,45 +1,59 @@
-## Description: <br>
-商业数据洞察连接业务数据源，帮助用户查询数据并生成分析报告和可视化看板。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+商业数据洞察 — 连接业务数据源，自动生成数据分析报告和看板.
 
-## Publisher: <br>
-[hanjing5024064](https://clawhub.ai/user/hanjing5024064) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hanjing5024064](https://clawhub.ai/user/hanjing5024064)
 
-## Use Case: <br>
-Business analysts, operators, and data-facing teams use this skill to connect configured business data sources, ask natural-language analytics questions, and produce recurring Markdown reports with tables, summaries, and Mermaid charts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read rows from configured databases or local files, including sensitive business, financial, or personal data. <br>
-Mitigation: Use read-only, least-privilege credentials or sanitized reporting views, and avoid broad production datasets unless the data is approved for analysis. <br>
-Risk: Generated SQL may select more data than the user intended. <br>
-Mitigation: Review the SQL before confirming execution and keep result limits appropriate for the subscription tier and data sensitivity. <br>
-Risk: Database credentials or datasource URIs may expose sensitive access details. <br>
-Mitigation: Provide passwords through environment variables, avoid sharing secrets in chat, and rotate credentials if they are accidentally disclosed. <br>
+## Use Case:
 
+Business operators, analysts, and developers use this skill to connect local business data sources, ask natural-language analytics questions, and generate recurring Markdown reports with tables, Mermaid charts, anomaly notes, and business recommendations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hanjing5024064/biz-data-insight) <br>
-- [Publisher profile](https://clawhub.ai/user/hanjing5024064) <br>
-- [Report templates](references/report-templates.md) <br>
-- [Mermaid chart guide](references/mermaid-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with tables, Mermaid code blocks, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may vary by subscription tier; paid workflows add deeper analysis, anomaly notes, and larger result limits.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill can expose database credentials through connection strings or command-line arguments.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use least-privileged read-only datasource accounts and pass passwords through protected environment variables instead of chat text, command lines, or connection URIs.
+
+Risk: Exploration and query outputs may contain raw or sensitive business records.
+
+Mitigation: Limit query scope, review outputs before sharing, and redact sensitive fields in reports or interactive results.
+
+Risk: Reports generated from untrusted or incomplete data can produce misleading business conclusions.
+
+Mitigation: Review generated reports and anomaly explanations before using them for operational decisions or external distribution.
+
+## Reference(s):
+
+- [Report Templates](artifact/references/report-templates.md)
+- [Mermaid Chart Guide](artifact/references/mermaid-guide.md)
+- [ClawHub Skill Page](https://clawhub.ai/hanjing5024064/skills/biz-data-insight)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports with tables and Mermaid chart blocks, JSON command results, and guided shell commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language interaction by default; output may include raw query rows, aggregate statistics, anomaly summaries, and environment-variable setup guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

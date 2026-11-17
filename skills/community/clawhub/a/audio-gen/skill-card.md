@@ -1,38 +1,53 @@
-## Description: <br>
-Generates audiobooks, podcasts, and educational audio by drafting scripts and converting approved text into MP3 narration with ElevenLabs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates audiobooks, podcasts, and educational audio content by drafting a script and converting it to an MP3 with ElevenLabs text-to-speech.
 
-## Publisher: <br>
-[udiedrichsen](https://clawhub.ai/user/udiedrichsen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[udiedrichsen](https://clawhub.ai/user/udiedrichsen)
 
-## Use Case: <br>
-External users and developers use this skill to turn a requested topic, story, lesson, or podcast idea into an AI-written script and then an MP3 narration after user approval. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Approved script text is sent to Anthropic and ElevenLabs, which can expose sensitive, proprietary, or regulated content to external providers. <br>
-Mitigation: Use only content that is acceptable under those providers' data handling terms, and avoid sensitive, proprietary, or regulated inputs unless those terms have been reviewed and approved. <br>
-Risk: Audio generation can incur Anthropic and ElevenLabs provider costs. <br>
-Mitigation: Review the generated script before text-to-speech conversion and confirm provider credits, quotas, and cost expectations before generating longer audio. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+Users and developers use this skill to create short-form narrated content such as audiobook chapters, podcast episodes, and educational audio lessons from a requested topic, length, and style.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown script preview, shell command guidance, and MEDIA path for an MP3 audio file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires ANTHROPIC_API_KEY and ELEVENLABS_API_KEY; creates audio only after user approval of the script.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated script text or topic-derived filenames may be placed into a shell command.
+
+Mitigation: Use only trusted prompts, or change execution to pass arguments without a shell and sanitize all generated filenames before audio generation.
+
+Risk: Audio files may be written to a shared temporary path.
+
+Mitigation: Store generated audio in a private temporary directory with restrictive permissions and remove files when no longer needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/udiedrichsen/skills/audio-gen)
+- [Project homepage](https://github.com/clawdbot/clawdbot)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, files, guidance]
+
+**Output Format:** [Markdown response with generated script text, optional shell command invocation, and a MEDIA path for an MP3 audio file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires ANTHROPIC_API_KEY and ELEVENLABS_API_KEY; the artifact describes MP3 output saved under /tmp.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

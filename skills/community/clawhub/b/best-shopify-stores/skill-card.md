@@ -1,40 +1,55 @@
-## Description: <br>
-Discover the best Shopify stores with PPSPY by filtering stores by traffic, revenue, language, region, theme, and single-product characteristics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Discover the best Shopify stores with PPSPY by filtering stores by traffic, revenue, language, region, theme, and single-product characteristics.
 
-## Publisher: <br>
-[fanyanggod](https://clawhub.ai/user/fanyanggod) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fanyanggod](https://clawhub.ai/user/fanyanggod)
 
-## Use Case: <br>
-External users and commerce researchers use this skill to find, compare, and inspect Shopify stores through PPSPY signals such as traffic, revenue, theme, region, language, and single-product structure. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill installs and runs the third-party ppspy-mcp-server@1.0.1 npm package locally and passes it a PPSPY API key. <br>
-Mitigation: Install only after trusting PPSPY and the npm package, use a rotatable or limited PPSPY API key when possible, and monitor PPSPY credit usage after first use. <br>
+## Use Case:
 
+External users and developers use this skill to find and compare Shopify stores by revenue, traffic, region, language, theme, and single-product store signals for ecommerce research and competitive analysis.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fanyanggod/best-shopify-stores) <br>
-- [PPSPY homepage](https://www.ppspy.com) <br>
-- [PPSPY API management](https://api.ppspy.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline commands and MCP tool-backed Shopify store results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires npm and a PPSPY_API_KEY; PPSPY account credits may be consumed by store search calls.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact frontmatter states 1.0.0) <br>
+Risk: The skill installs and runs a third-party global npm package that receives a PPSPY API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the PPSPY service and npm package before installation, use a limited or revocable API key when available, and run the MCP server in an isolated environment.
+
+Risk: PPSPY API calls may consume account credits.
+
+Mitigation: Monitor PPSPY credit usage and account billing while using store search workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fanyanggod/skills/best-shopify-stores)
+- [PPSPY](https://www.ppspy.com)
+- [PPSPY API management](https://api.ppspy.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Plain text or Markdown summaries of PPSPY Shopify store search and detail results.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results depend on PPSPY account access, API availability, and account credit balance.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter says 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

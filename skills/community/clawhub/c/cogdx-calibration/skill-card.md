@@ -1,42 +1,60 @@
-## Description: <br>
-Runs a paid Cerebratech CogDx calibration audit on an AI agent's sample outputs to compare stated confidence with actual correctness using statistical calibration metrics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run a calibration audit on an AI agent's confidence estimates through the Cerebratech CogDx API using statistical metrics such as Brier scores and calibration curves.
 
-## Publisher: <br>
-[drkavner](https://clawhub.ai/user/drkavner) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[drkavner](https://clawhub.ai/user/drkavner)
 
-## Use Case: <br>
-External developers and agent operators use this skill to prepare calibration audit requests, interpret confidence-calibration metrics, and identify retraining targets before relying on agent uncertainty estimates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected agent prompts, responses, correctness labels, and confidence scores are sent to a paid external Cerebratech API. <br>
-Mitigation: Remove secrets, personal data, proprietary prompts, and regulated data from samples before running an audit. <br>
-Risk: The audit can deduct credits or require an x402 payment. <br>
-Mitigation: Review and approve any x402 payment signature or credit deduction deliberately before submitting the request. <br>
+## Use Case:
 
+Developers and external agent operators use this skill to submit labeled prompt/response samples and confidence scores to CogDx for calibration analysis before deployment or after noticing overconfidence or underconfidence.
 
-## Reference(s): <br>
-- [CogDx Calibration Audit API Reference](references/api.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/drkavner/cogdx-calibration) <br>
-- [CogDx API Catalog](https://api.cerebratech.ai/catalog) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, markdown] <br>
-**Output Format:** [Markdown with HTTP examples and JSON request and response snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May describe paid external API calls and required sample-output fields.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Prompt and response samples, correctness labels, and wallet or payment identifiers may be sent to Cerebratech/CogDx.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Get explicit user approval before balance checks or audit requests, and exclude customer data, secrets, proprietary prompts, regulated records, and sensitive model outputs unless provider privacy, retention, and payment terms are verified.
+
+Risk: The audit is a paid third-party API call that may use x402 payment or credit balance.
+
+Mitigation: Confirm the intended wallet or payment method, expected charge, and authorization before making a request.
+
+Risk: Calibration conclusions depend on the quality and size of submitted labeled samples.
+
+Mitigation: Use validated ground truth labels and the documented minimum of 10 samples, with 50 to 200 samples preferred for more reliable results.
+
+## Reference(s):
+
+- [CogDx Calibration Audit API Reference](references/api.md)
+- [CogDx Calibration Audit endpoint](https://api.cerebratech.ai/calibration_audit)
+- [CogDx API catalog](https://api.cerebratech.ai/catalog)
+- [ClawHub skill page](https://clawhub.ai/drkavner/skills/cogdx-calibration)
+
+## Skill Output:
+
+**Output Type(s):** [API calls, Analysis, Guidance, JSON, Shell commands]
+
+**Output Format:** [Markdown guidance with HTTP request examples and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May require a paid CogDx API call and sends calibration samples plus wallet or payment identifiers to a third-party service.]
+
+## Skill Version(s):
+
+1.0.1 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

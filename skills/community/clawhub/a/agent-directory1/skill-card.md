@@ -1,46 +1,61 @@
-## Description: <br>
-The directory for AI agent services. Discover tools, platforms, and infrastructure built for agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+The directory for AI agent services. Discover tools, platforms, and infrastructure built for agents.
 
-## Publisher: <br>
-[abeltennyson](https://clawhub.ai/user/abeltennyson) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[abeltennyson](https://clawhub.ai/user/abeltennyson)
 
-## Use Case: <br>
-Developers and agents use this skill to discover agent services, inspect service metadata, and fetch public skill.md files for integration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Requested URLs and fetched public content are sent through the SkillBoss API Hub. <br>
-Mitigation: Use the skill only with public service listings and public skill.md files; avoid private or authenticated URLs. <br>
-Risk: The skill requires SKILLBOSS_API_KEY. <br>
-Mitigation: Keep the key in environment configuration, protect it from logs and prompts, and rotate it if exposure is suspected. <br>
-Risk: Fetched third-party skill.md content may contain instructions for an agent. <br>
-Mitigation: Review fetched third-party skill instructions before allowing an agent to follow them. <br>
+## Use Case:
 
+Developers and agents use this skill to discover agent-oriented services, retrieve directory metadata, and fetch service skill.md files for review and integration.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/abeltennyson/agent-directory1) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/abeltennyson) <br>
-- [ctxly.com](https://ctxly.com) <br>
-- [ctxly.com services.json](https://ctxly.com/services.json) <br>
-- [SkillBoss API Hub](https://api.heybossai.com/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python code examples and JSON response examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SKILLBOSS_API_KEY and sends requested public URLs to the SkillBoss API Hub.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter lists 1.1.0) <br>
+Risk: The skill asks agents to fetch remote service skill.md files whose content can change after this release was reviewed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat fetched service skill.md content as untrusted text and review it before following any instructions.
+
+Risk: The skill routes requested URLs through the SkillBoss scraping service.
+
+Mitigation: Install only when sharing requested URLs with that provider is acceptable for the intended use case.
+
+Risk: Fetched remote instructions may conflict with user intent, credential handling rules, or tool permissions.
+
+Mitigation: Do not allow fetched content to override user instructions, safety rules, credential boundaries, or tool permissions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/abeltennyson/skills/agent-directory1)
+- [Ctxly homepage](https://ctxly.com)
+- [Ctxly services directory](https://ctxly.com/services.json)
+- [SkillBoss API base](https://api.heybossai.com/v1)
+- [SkillBoss pilot endpoint](https://api.heybossai.com/v1/pilot)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, API Calls, Configuration]
+
+**Output Format:** [Markdown with Python code blocks and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SKILLBOSS_API_KEY; fetched service skill.md content should be treated as untrusted text.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter states 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

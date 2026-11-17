@@ -1,47 +1,59 @@
-## Description: <br>
-国泰海通证券-灵犀市场热榜查询skill，支持涨跌幅、成交额、成交量、换手率、当日资金净流入等市场排行榜查询。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+国泰海通证券-灵犀市场热榜查询 skill supports A-share market ranking queries for price movement, turnover, volume, turnover rate, market capitalization, valuation, volume ratio, and same-day capital net inflow.
 
-## Publisher: <br>
-[gtht-tech](https://clawhub.ai/user/gtht-tech) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gtht-tech](https://clawhub.ai/user/gtht-tech)
 
-## Use Case: <br>
-External users can ask an agent for A-share market ranking lists such as gainers, losers, turnover, volume, amplitude, valuation, and same-day capital inflow rankings. The skill maps supported rank-list requests to the configured ranklist gateway after API key authorization. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires brokerage API credentials and may save the API key in local workspace-adjacent files. <br>
-Mitigation: Use a limited, revocable API key where possible, keep the workspace private, and remove or rotate the key after use. <br>
-Risk: The artifact claims Guotai Haitong official status, while server evidence does not prove the publisher is NVIDIA or validate that affiliation. <br>
-Mitigation: Verify the publisher's Guotai Haitong affiliation through an official channel before installation or production use. <br>
-Risk: Authorization uses QR/API-key flows and may involve localhost proxy behavior. <br>
-Mitigation: Review the authorization flow in a controlled workspace before use, especially on shared machines or shared agent environments. <br>
-Risk: The skill can fall back to a related financial-search skill when rank-list parameters cannot answer a request. <br>
-Mitigation: Confirm installed companion skills and data boundaries before enabling cross-skill fallback in production workflows. <br>
+## Use Case:
 
+External users and agents use this skill to retrieve and format A-share market ranking lists from GuoTai HaiTong Lingxi, including gainers, losers, volume, turnover, turnover rate, and same-day capital net inflow rankings. The skill requires brokerage API authorization before market data calls.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gtht-tech/lingxi-ranklist-skill) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/gtht-tech) <br>
-- [Lingxi API key activity](https://apicdn.app.gtht.com/web2/jh-news-skill/?fullscreen=1#/?share=1&sourceApp=lingxi&webEnv=web2&islingxishare=1) <br>
-- [Ranklist gateway endpoint](https://zx.app.gtja.com:8443/mcp/hq-20200002) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, API calls, guidance] <br>
-**Output Format:** [Markdown responses with inline Node.js commands and ranked market-data results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a locally stored API key before market-data requests; results should preserve requested ranking order and avoid truncating returned entries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact frontmatter reports 0.0.9) <br>
+Risk: The skill may request brokerage API authorization and save the resulting API key locally in plaintext.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only from a trusted publisher, run in a single-user environment, restrict permissions on stored gtht-entry.json files, redact logs, and rotate or clear the key if exposure is suspected.
+
+Risk: The skill uses a MAC-derived device identifier during QR authorization and contacts GTHT gateway and authorization endpoints.
+
+Mitigation: Use only in environments where those endpoints and identifiers are acceptable, and apply outbound gateway allowlisting and network monitoring before broader deployment.
+
+Risk: The security evidence flags weak credential scoping and unsafe logging or storage practices.
+
+Mitigation: Review logs and stored credential files carefully, and deploy only after credential redaction, file permissions, and gateway allowlisting have been verified.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gtht-tech/skills/lingxi-ranklist-skill)
+- [GuoTai HaiTong ranklist gateway](https://zx.app.gtja.com:8443/mcp/hq-20200002)
+- [GuoTai HaiTong Lingxi API key authorization activity](https://apicdn.app.gtht.com/web2/jh-news-skill/?fullscreen=1#/?share=1&sourceApp=lingxi&webEnv=web2&islingxishare=1)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, API calls, Guidance]
+
+**Output Format:** [Markdown text with ranked market results and inline shell command examples when authorization or gateway calls are needed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a locally stored brokerage API key before market data queries; rankings are scoped to the A-share market endpoint.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter reports 0.0.9)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

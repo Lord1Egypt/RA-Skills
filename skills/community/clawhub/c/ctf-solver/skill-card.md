@@ -1,41 +1,51 @@
-## Description: <br>
-CTF Solver guides Codex through evidence-driven triage and solution of Capture The Flag challenges across web, pwn, reverse engineering, cryptography, forensics, steganography, OSINT, and misc categories. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when Codex needs to analyze, triage, or solve Capture The Flag (CTF) challenges and adjacent lab tasks such as web exploitation, binary exploitation, reverse engineering, cryptography, forensics, steganography, OSINT, or misc puzzle solving.
 
-## Publisher: <br>
-[mshzy](https://clawhub.ai/user/mshzy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mshzy](https://clawhub.ai/user/mshzy)
 
-## Use Case: <br>
-Developers and security learners use this skill to triage and solve authorized CTF and lab challenges, choose category-specific tactics, preserve reproducible notes, and prepare writeups. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Security evidence says the skill expands use beyond authorized targets. <br>
-Mitigation: Use only for authorized CTFs, local challenge files, and explicit lab environments; update the skill wording to require explicit authorization. <br>
-Risk: Security evidence says the skill treats unknown binaries, services, and public exploit snippets as trusted input. <br>
-Mitigation: Treat unknown inputs as untrusted, preserve originals, use sandboxing and least privilege, and review exploit snippets before execution. <br>
+## Use Case:
 
+Developers and CTF participants use this skill to triage challenge artifacts, choose category-specific solving tactics, preserve reproducible notes, and prepare writeups for authorized CTF or lab work.
 
-## Reference(s): <br>
-- [Category Playbooks](references/category-playbooks.md) <br>
-- [Tooling and Artifacts](references/tooling-and-artifacts.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and code snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include challenge notes, hypotheses, commands, exploit or solve script snippets, decoded artifacts, and writeup structure.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can steer an agent toward unsafe remote interaction or unsafe handling of adversarial files if used beyond authorized CTFs, labs, or user-owned targets.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only for authorized CTFs, labs, or user-owned targets; treat unknown binaries, services, and exploit snippets as untrusted and review remote actions before execution.
+
+## Reference(s):
+
+- [Category Playbooks](references/category-playbooks.md)
+- [Tooling and Artifacts](references/tooling-and-artifacts.md)
+- [CTF Solver on ClawHub](https://clawhub.ai/mshzy/skills/ctf-solver)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands]
+
+**Output Format:** [Markdown with inline shell commands and code snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include hypotheses, triage notes, solver snippets, exploit steps, and writeup structure.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

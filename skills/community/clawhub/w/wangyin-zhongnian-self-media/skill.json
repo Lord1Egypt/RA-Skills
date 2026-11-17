@@ -1,0 +1,13 @@
+{
+  "name": "wangyin-zhongnian-self-media",
+  "displayName": "网瘾中年的自媒体技能",
+  "version": "1.1.0",
+  "description": "微信公众号「网瘾中年」单账号专用内容生产与发布全流程 AI 技能：选题评估、创作简报、爆款公式匹配、正文写作、去AI味精修、AIGC合规守门、封面生成、草稿箱推送、数据复盘九个环节。基于 yanhua1010/self-media-content-workflow（MIT）改造。",
+  "author": "Eric（网瘾中年）",
+  "license": "MIT",
+  "homepage": "https://github.com/Shun1989/wangyin-zhongnian-self-media",
+  "repository": "https://github.com/Shun1989/wangyin-zhongnian-self-media",
+  "keywords": ["wechat", "公众号", "自媒体", "内容生产", "自动化", "合规守门", "草稿箱"],
+  "runtime": ["workbuddy", "openclaw", "claude-code", "codex", "cursor"],
+  "tags": ["self-media", "wechat-publisher", "content-workflow", "aigc-compliance"]
+}

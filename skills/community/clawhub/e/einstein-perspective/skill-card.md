@@ -1,41 +1,59 @@
-## Description: <br>
-Einstein Perspective helps agents analyze scientific and theoretical questions using thought experiments, symmetry reasoning, simplifying assumptions, and empirical validation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Einstein Perspective gives an agent a Chinese-language theoretical-physics reasoning frame based on thought experiments, symmetry thinking, simplicity, theoretical aesthetics, and empirical validation.
 
-## Publisher: <br>
-[sjj2026](https://clawhub.ai/user/sjj2026) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sjj2026](https://clawhub.ai/user/sjj2026)
 
-## Use Case: <br>
-External users and agents use this skill to explore scientific research, theory building, physics questions, and innovation prompts through an Einstein-inspired reasoning framework. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Scientific claims, historical claims, and quotations may be incomplete or inaccurate if used as authoritative reference material. <br>
-Mitigation: Verify scientific statements, quotations, and historical details against trusted primary or scholarly sources before relying on them. <br>
-Risk: The artifact includes publisher contact and payment details that could be misused for unsolicited contact or payments. <br>
-Mitigation: Do not contact or pay the listed publisher details unless the user independently trusts and intends that interaction. <br>
+## Use Case:
 
+External users and developers can invoke this skill when they want an agent to analyze scientific research, theory-building, physics questions, or innovation problems through an Einstein-inspired thought-experiment framework.
 
-## Reference(s): <br>
-- [Einstein research reference](references/research.md) <br>
-- [ClawHub skill page](https://clawhub.ai/sjj2026/einstein-perspective) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance and structured reasoning steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable code; outputs should be treated as reasoning aid content rather than authoritative scientific reference.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release metadata) <br>
+Risk: The skill uses broad activation wording for scientific and theoretical questions, which may shape responses when that perspective was not intended.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Invoke it explicitly only when an Einstein-style reasoning perspective is desired.
+
+Risk: The skill content is primarily Chinese-language, which may be difficult for users who do not read Chinese to audit before installation.
+
+Mitigation: Have a Chinese-reading reviewer inspect the content and expected behavior before use in a governed environment.
+
+Risk: Einstein-inspired analysis can be useful for framing ideas but may still produce incorrect or misleading scientific guidance.
+
+Mitigation: Review scientific conclusions against authoritative domain sources before relying on them.
+
+## Reference(s):
+
+- [Einstein Perspective research notes](artifact/references/research.md)
+- [ClawHub skill page](https://clawhub.ai/sjj2026/skills/einstein-perspective)
+- [Publisher profile](https://clawhub.ai/user/sjj2026)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or conversational text in Chinese, often structured as reasoning steps, heuristics, or analysis.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No shell commands, code execution, credential access, persistence, or data-handling behavior are indicated by the security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

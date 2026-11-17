@@ -1,45 +1,64 @@
-## Description: <br>
-Multi-model AI debate platform. Submit a topic and multiple AIs deliberate across rounds, producing structured insights and a polished research report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Multi-model AI debate platform. Submit a topic and multiple AIs deliberate across rounds, producing structured insights and a polished research report.
 
-## Publisher: <br>
-[DreamArc77](https://clawhub.ai/user/DreamArc77) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dreamarc77](https://clawhub.ai/user/dreamarc77)
 
-## Use Case: <br>
-External users and developers use this skill to send research, analysis, debate, or investigation topics to LLM Conclave, where multiple AI models deliberate across rounds and return structured conclusions and reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends user-provided topics to an external AI-debate service and may spend account credits. <br>
-Mitigation: Require explicit confirmation before each debate, including model choice, estimated credit cost, locale, and external data sharing. <br>
-Risk: The skill requests a bearer API key and the evidence notes unclear secret-handling limits. <br>
-Mitigation: Provide the API key only through a secure secret mechanism, do not store it in long-term memory or logs, and rotate it if it was pasted into ordinary chat. <br>
-Risk: The artifact asks agents to remember a broad trigger for research, analysis, debate, or investigation topics. <br>
-Mitigation: Do not accept the broad long-term memory trigger as written; treat LLM Conclave use as an explicit per-session user decision. <br>
+## Use Case:
 
+External users and developers use this skill to submit research or analysis topics to LLM Conclave, run multi-model debate sessions, and retrieve structured insights or Markdown reports.
 
-## Reference(s): <br>
-- [LLM Conclave homepage](https://llmconclave.com) <br>
-- [LLM Conclave skill source](https://llmconclave.com/skill.md) <br>
-- [LLM Conclave package metadata](https://llmconclave.com/skill.json) <br>
-- [ClawHub skill page](https://clawhub.ai/DreamArc77/llmconclave) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API calls, Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown and text responses with API request examples and report links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Debate runs use Server-Sent Events, bearer authentication, model selection, round count, locale, and credit balance checks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter reports 1.2.0) <br>
+Risk: The skill sends research topics, API key usage, credit balance, and generated reports to llmconclave.com.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for topics and reports suitable for that external service, and avoid sending sensitive or confidential material.
+
+Risk: The skill asks for broad persistent routing for research, analysis, debate, and investigation requests.
+
+Mitigation: Require explicit per-request approval before using LLM Conclave, especially for broad or ambiguous research tasks.
+
+Risk: The skill describes remote re-fetching behavior when versions do not match.
+
+Mitigation: Use a reviewed, integrity-pinned skill version instead of mutable remote re-fetching.
+
+Risk: Debate sessions can consume credits and duplicate retries may waste the user's balance.
+
+Mitigation: Check balance before starting, use idempotency keys, and do not automatically retry slow or failed debate requests.
+
+## Reference(s):
+
+- [LLM Conclave homepage](https://llmconclave.com)
+- [LLM Conclave API base](https://llmconclave.com/api)
+- [ClawHub skill page](https://clawhub.ai/dreamarc77/skills/llmconclave)
+- [Publisher profile](https://clawhub.ai/user/dreamarc77)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with API request examples, SSE handling instructions, and report links or Markdown report content.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include public report URLs, authenticated raw Markdown report downloads, credit and balance information, and model debate summaries.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter reports 1.2.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

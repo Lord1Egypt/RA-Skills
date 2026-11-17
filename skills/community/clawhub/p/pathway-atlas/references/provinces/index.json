@@ -1,0 +1,448 @@
+{
+  "schema_version": "1.0",
+  "verified_at": "2026-08-24",
+  "coverage_note": "截至2026-08-24，教育部确认已有29个省级地区实施新高考；西藏、新疆仍处于旧模式最后一年，因此未纳入本目录。",
+  "mode_authority_urls": [
+    "https://hudong.moe.gov.cn/jyb_xwfb/xw_zt/moe_357/2026/2026_zt08/mtbd/202606/t20260608_1439867.html",
+    "https://hudong.moe.gov.cn/jyb_xwfb/xw_zt/moe_357/2024/2024_zt12/wd/gkwd_zlhz/202406/t20240603_1133733.html",
+    "https://hudong.moe.gov.cn/jyb_xxgk/xxgk_jyta/jyta_xueshengsi/201911/t20191126_409732.html",
+    "https://hudong.moe.gov.cn/jyb_xwfb/s5147/202109/t20210916_563605.html"
+  ],
+  "provinces": [
+    {
+      "province": "北京",
+      "aliases": [
+        "北京",
+        "北京市"
+      ],
+      "mode": "3+3",
+      "authority_name": "北京教育考试院",
+      "official_roots": [
+        "https://www.bjeea.cn/"
+      ],
+      "mode_source_url": "https://hudong.moe.gov.cn/jyb_xxgk/xxgk_jyta/jyta_xueshengsi/201911/t20191126_409732.html",
+      "verified_at": "2026-08-24",
+      "notes": "官网及机构名称已核验；维护时年度复核域名与改革模式。"
+    },
+    {
+      "province": "天津",
+      "aliases": [
+        "天津",
+        "天津市"
+      ],
+      "mode": "3+3",
+      "authority_name": "天津市教育招生考试院",
+      "official_roots": [
+        "https://jy.tj.gov.cn/"
+      ],
+      "mode_source_url": "https://hudong.moe.gov.cn/jyb_xxgk/xxgk_jyta/jyta_xueshengsi/201911/t20191126_409732.html",
+      "verified_at": "2026-08-24",
+      "notes": "截至2026-08-24，考试院canonical主机www.zhaokao.net的HTTPS可用性未证实；自动发现从市教委HTTPS根开始，其正文可发现高考和招考资讯。"
+    },
+    {
+      "province": "上海",
+      "aliases": [
+        "上海",
+        "上海市"
+      ],
+      "mode": "3+3",
+      "authority_name": "上海市教育考试院",
+      "official_roots": [
+        "https://www.shmeea.edu.cn/"
+      ],
+      "mode_source_url": "https://hudong.moe.gov.cn/jyb_xxgk/xxgk_jyta/jyta_xueshengsi/201911/t20191126_409732.html",
+      "verified_at": "2026-08-24",
+      "notes": "官网及机构名称已核验；维护时年度复核域名与改革模式。"
+    },
+    {
+      "province": "浙江",
+      "aliases": [
+        "浙江",
+        "浙江省"
+      ],
+      "mode": "3+3",
+      "authority_name": "浙江省教育考试院",
+      "official_roots": [
+        "https://www.zjzs.net/"
+      ],
+      "mode_source_url": "https://hudong.moe.gov.cn/jyb_xxgk/xxgk_jyta/jyta_xueshengsi/201911/t20191126_409732.html",
+      "verified_at": "2026-08-24",
+      "notes": "官网及机构名称已核验；维护时年度复核域名与改革模式。"
+    },
+    {
+      "province": "山东",
+      "aliases": [
+        "山东",
+        "山东省"
+      ],
+      "mode": "3+3",
+      "authority_name": "山东省教育招生考试院",
+      "official_roots": [
+        "https://www.sdzk.cn/"
+      ],
+      "mode_source_url": "https://hudong.moe.gov.cn/jyb_xxgk/xxgk_jyta/jyta_xueshengsi/201911/t20191126_409732.html",
+      "verified_at": "2026-08-24",
+      "notes": "官网及机构名称已核验；维护时年度复核域名与改革模式。"
+    },
+    {
+      "province": "海南",
+      "aliases": [
+        "海南",
+        "海南省"
+      ],
+      "mode": "3+3",
+      "authority_name": "海南省考试局",
+      "official_roots": [
+        "https://ea.hainan.gov.cn/"
+      ],
+      "mode_source_url": "https://hudong.moe.gov.cn/jyb_xxgk/xxgk_jyta/jyta_xueshengsi/201911/t20191126_409732.html",
+      "verified_at": "2026-08-24",
+      "notes": "官网及机构名称已核验；维护时年度复核域名与改革模式。"
+    },
+    {
+      "province": "河北",
+      "aliases": [
+        "河北",
+        "河北省"
+      ],
+      "mode": "3+1+2",
+      "authority_name": "河北省教育考试院",
+      "official_roots": [
+        "https://www.hebeea.edu.cn/"
+      ],
+      "mode_source_url": "https://hudong.moe.gov.cn/jyb_xxgk/xxgk_jyta/jyta_xueshengsi/201911/t20191126_409732.html",
+      "verified_at": "2026-08-24",
+      "notes": "官网及机构名称已核验；维护时年度复核域名与改革模式。"
+    },
+    {
+      "province": "山西",
+      "aliases": [
+        "山西",
+        "山西省"
+      ],
+      "mode": "3+1+2",
+      "authority_name": "山西省招生考试管理中心",
+      "official_roots": [
+        "https://jyt.shanxi.gov.cn/"
+      ],
+      "mode_source_url": "https://hudong.moe.gov.cn/jyb_xwfb/xw_zt/moe_357/2024/2024_zt12/wd/gkwd_zlhz/202406/t20240603_1133733.html",
+      "verified_at": "2026-08-24",
+      "notes": "截至2026-08-24，考试机构canonical主机www.sxkszx.cn仅HTTP，未纳入安全根目录；gkpt是服务页，也不作为发现根。改从省教育厅HTTPS根发现高考信息。"
+    },
+    {
+      "province": "内蒙古",
+      "aliases": [
+        "内蒙古",
+        "内蒙古自治区"
+      ],
+      "mode": "3+1+2",
+      "authority_name": "内蒙古自治区教育考试院",
+      "official_roots": [
+        "https://www.nm.zsks.cn/"
+      ],
+      "mode_source_url": "https://hudong.moe.gov.cn/jyb_xwfb/xw_zt/moe_357/2024/2024_zt12/wd/gkwd_zlhz/202406/t20240603_1133733.html",
+      "verified_at": "2026-08-24",
+      "notes": "官网机构职责页已核验；维护时年度复核域名与改革模式。"
+    },
+    {
+      "province": "辽宁",
+      "aliases": [
+        "辽宁",
+        "辽宁省"
+      ],
+      "mode": "3+1+2",
+      "authority_name": "辽宁省高中等教育招生考试委员会办公室",
+      "official_roots": [
+        "https://www.lnzsks.com/"
+      ],
+      "mode_source_url": "https://hudong.moe.gov.cn/jyb_xxgk/xxgk_jyta/jyta_xueshengsi/201911/t20191126_409732.html",
+      "verified_at": "2026-08-24",
+      "notes": "辽宁省教育厅直属单位页已确认机构与官网；维护时年度复核。"
+    },
+    {
+      "province": "吉林",
+      "aliases": [
+        "吉林",
+        "吉林省"
+      ],
+      "mode": "3+1+2",
+      "authority_name": "吉林省教育考试院",
+      "official_roots": [
+        "https://www.jleea.com.cn/"
+      ],
+      "mode_source_url": "https://hudong.moe.gov.cn/jyb_xwfb/s5147/202109/t20210916_563605.html",
+      "verified_at": "2026-08-24",
+      "notes": "官网及机构名称已核验；维护时年度复核域名与改革模式。"
+    },
+    {
+      "province": "黑龙江",
+      "aliases": [
+        "黑龙江",
+        "黑龙江省"
+      ],
+      "mode": "3+1+2",
+      "authority_name": "黑龙江省招生考试院",
+      "official_roots": [
+        "https://www.hljea.org.cn/"
+      ],
+      "mode_source_url": "https://hudong.moe.gov.cn/jyb_xwfb/s5147/202109/t20210916_563605.html",
+      "verified_at": "2026-08-24",
+      "notes": "官网及机构名称已核验；维护时年度复核域名与改革模式。"
+    },
+    {
+      "province": "江苏",
+      "aliases": [
+        "江苏",
+        "江苏省"
+      ],
+      "mode": "3+1+2",
+      "authority_name": "江苏省教育考试院",
+      "official_roots": [
+        "https://www.jseea.cn/"
+      ],
+      "mode_source_url": "https://hudong.moe.gov.cn/jyb_xxgk/xxgk_jyta/jyta_xueshengsi/201911/t20191126_409732.html",
+      "verified_at": "2026-08-24",
+      "notes": "官网及机构名称已核验；维护时年度复核域名与改革模式。"
+    },
+    {
+      "province": "安徽",
+      "aliases": [
+        "安徽",
+        "安徽省"
+      ],
+      "mode": "3+1+2",
+      "authority_name": "安徽省教育招生考试院",
+      "official_roots": [
+        "https://www.ahzsks.cn/"
+      ],
+      "mode_source_url": "https://hudong.moe.gov.cn/jyb_xwfb/s5147/202109/t20210916_563605.html",
+      "verified_at": "2026-08-24",
+      "notes": "官网及机构名称已核验；维护时年度复核域名与改革模式。"
+    },
+    {
+      "province": "福建",
+      "aliases": [
+        "福建",
+        "福建省"
+      ],
+      "mode": "3+1+2",
+      "authority_name": "福建省教育考试院",
+      "official_roots": [
+        "https://www.eeafj.cn/"
+      ],
+      "mode_source_url": "https://hudong.moe.gov.cn/jyb_xxgk/xxgk_jyta/jyta_xueshengsi/201911/t20191126_409732.html",
+      "verified_at": "2026-08-24",
+      "notes": "官网及机构名称已核验；维护时年度复核域名与改革模式。"
+    },
+    {
+      "province": "江西",
+      "aliases": [
+        "江西",
+        "江西省"
+      ],
+      "mode": "3+1+2",
+      "authority_name": "江西省教育考试院",
+      "official_roots": [
+        "https://jyt.jiangxi.gov.cn/"
+      ],
+      "mode_source_url": "https://hudong.moe.gov.cn/jyb_xwfb/s5147/202109/t20210916_563605.html",
+      "verified_at": "2026-08-24",
+      "notes": "截至2026-08-24，考试院canonical主机www.jxeea.cn仅HTTP，未纳入安全根目录；jxgk是业务系统，也不作为发现根。改从省教育厅HTTPS根发现考试信息，维护者应年度复查考试院主站。"
+    },
+    {
+      "province": "河南",
+      "aliases": [
+        "河南",
+        "河南省"
+      ],
+      "mode": "3+1+2",
+      "authority_name": "河南省教育考试院",
+      "official_roots": [
+        "https://www.haeea.cn/"
+      ],
+      "mode_source_url": "https://hudong.moe.gov.cn/jyb_xwfb/xw_zt/moe_357/2024/2024_zt12/wd/gkwd_zlhz/202406/t20240603_1133733.html",
+      "verified_at": "2026-08-24",
+      "notes": "主站在部分核验请求中返回访问限制；河南省教育厅已确认该官网，维护时复核可用性。"
+    },
+    {
+      "province": "湖北",
+      "aliases": [
+        "湖北",
+        "湖北省"
+      ],
+      "mode": "3+1+2",
+      "authority_name": "湖北省教育考试院",
+      "official_roots": [
+        "https://www.hbea.edu.cn/"
+      ],
+      "mode_source_url": "https://hudong.moe.gov.cn/jyb_xxgk/xxgk_jyta/jyta_xueshengsi/201911/t20191126_409732.html",
+      "verified_at": "2026-08-24",
+      "notes": "官网及机构名称已核验；维护时年度复核域名与改革模式。"
+    },
+    {
+      "province": "湖南",
+      "aliases": [
+        "湖南",
+        "湖南省"
+      ],
+      "mode": "3+1+2",
+      "authority_name": "湖南省教育考试院",
+      "official_roots": [
+        "https://jyt.hunan.gov.cn/jyt/sjyt/hnsjyksy/"
+      ],
+      "mode_source_url": "https://hudong.moe.gov.cn/jyb_xxgk/xxgk_jyta/jyta_xueshengsi/201911/t20191126_409732.html",
+      "verified_at": "2026-08-24",
+      "notes": "省教育厅考试院子站及机构名称已核验；维护时年度复核。"
+    },
+    {
+      "province": "广东",
+      "aliases": [
+        "广东",
+        "广东省"
+      ],
+      "mode": "3+1+2",
+      "authority_name": "广东省教育考试院",
+      "official_roots": [
+        "https://eea.gd.gov.cn/"
+      ],
+      "mode_source_url": "https://hudong.moe.gov.cn/jyb_xxgk/xxgk_jyta/jyta_xueshengsi/201911/t20191126_409732.html",
+      "verified_at": "2026-08-24",
+      "notes": "官网及机构名称已核验；维护时年度复核域名与改革模式。"
+    },
+    {
+      "province": "广西",
+      "aliases": [
+        "广西",
+        "广西壮族自治区"
+      ],
+      "mode": "3+1+2",
+      "authority_name": "广西壮族自治区招生考试院",
+      "official_roots": [
+        "https://www.gxeea.cn/"
+      ],
+      "mode_source_url": "https://hudong.moe.gov.cn/jyb_xwfb/s5147/202109/t20210916_563605.html",
+      "verified_at": "2026-08-24",
+      "notes": "官网及机构名称已核验；维护时年度复核域名与改革模式。"
+    },
+    {
+      "province": "重庆",
+      "aliases": [
+        "重庆",
+        "重庆市"
+      ],
+      "mode": "3+1+2",
+      "authority_name": "重庆市教育考试院",
+      "official_roots": [
+        "https://www.cqksy.cn/"
+      ],
+      "mode_source_url": "https://hudong.moe.gov.cn/jyb_xxgk/xxgk_jyta/jyta_xueshengsi/201911/t20191126_409732.html",
+      "verified_at": "2026-08-24",
+      "notes": "官网及机构名称已核验；维护时年度复核域名与改革模式。"
+    },
+    {
+      "province": "四川",
+      "aliases": [
+        "四川",
+        "四川省"
+      ],
+      "mode": "3+1+2",
+      "authority_name": "四川省教育考试院",
+      "official_roots": [
+        "https://www.sceea.cn/"
+      ],
+      "mode_source_url": "https://hudong.moe.gov.cn/jyb_xwfb/xw_zt/moe_357/2024/2024_zt12/wd/gkwd_zlhz/202406/t20240603_1133733.html",
+      "verified_at": "2026-08-24",
+      "notes": "官网及机构名称已核验；维护时年度复核域名与改革模式。"
+    },
+    {
+      "province": "贵州",
+      "aliases": [
+        "贵州",
+        "贵州省"
+      ],
+      "mode": "3+1+2",
+      "authority_name": "贵州省招生考试院",
+      "official_roots": [
+        "https://zsksy.guizhou.gov.cn/"
+      ],
+      "mode_source_url": "https://hudong.moe.gov.cn/jyb_xwfb/s5147/202109/t20210916_563605.html",
+      "verified_at": "2026-08-24",
+      "notes": "官网及机构名称已核验；维护时年度复核域名与改革模式。"
+    },
+    {
+      "province": "云南",
+      "aliases": [
+        "云南",
+        "云南省"
+      ],
+      "mode": "3+1+2",
+      "authority_name": "云南省招生考试院",
+      "official_roots": [
+        "https://www.ynzs.cn/"
+      ],
+      "mode_source_url": "https://hudong.moe.gov.cn/jyb_xwfb/xw_zt/moe_357/2024/2024_zt12/wd/gkwd_zlhz/202406/t20240603_1133733.html",
+      "verified_at": "2026-08-24",
+      "notes": "官网及机构名称已核验；维护时年度复核域名与改革模式。"
+    },
+    {
+      "province": "陕西",
+      "aliases": [
+        "陕西",
+        "陕西省"
+      ],
+      "mode": "3+1+2",
+      "authority_name": "陕西省教育考试院",
+      "official_roots": [
+        "https://www.sneea.cn/"
+      ],
+      "mode_source_url": "https://hudong.moe.gov.cn/jyb_xwfb/xw_zt/moe_357/2024/2024_zt12/wd/gkwd_zlhz/202406/t20240603_1133733.html",
+      "verified_at": "2026-08-24",
+      "notes": "官网及机构名称已核验；维护时年度复核域名与改革模式。"
+    },
+    {
+      "province": "甘肃",
+      "aliases": [
+        "甘肃",
+        "甘肃省"
+      ],
+      "mode": "3+1+2",
+      "authority_name": "甘肃省教育考试院",
+      "official_roots": [
+        "https://www.ganseea.cn/"
+      ],
+      "mode_source_url": "https://hudong.moe.gov.cn/jyb_xwfb/s5147/202109/t20210916_563605.html",
+      "verified_at": "2026-08-24",
+      "notes": "官网及机构名称已核验；维护时年度复核域名与改革模式。"
+    },
+    {
+      "province": "青海",
+      "aliases": [
+        "青海",
+        "青海省"
+      ],
+      "mode": "3+1+2",
+      "authority_name": "青海省教育招生考试院",
+      "official_roots": [
+        "https://www.qhjyks.com/"
+      ],
+      "mode_source_url": "https://hudong.moe.gov.cn/jyb_xwfb/xw_zt/moe_357/2024/2024_zt12/wd/gkwd_zlhz/202406/t20240603_1133733.html",
+      "verified_at": "2026-08-24",
+      "notes": "官网及机构名称已核验；维护时年度复核域名与改革模式。"
+    },
+    {
+      "province": "宁夏",
+      "aliases": [
+        "宁夏",
+        "宁夏回族自治区"
+      ],
+      "mode": "3+1+2",
+      "authority_name": "宁夏教育考试院",
+      "official_roots": [
+        "https://www.nxjyks.cn/"
+      ],
+      "mode_source_url": "https://hudong.moe.gov.cn/jyb_xwfb/xw_zt/moe_357/2024/2024_zt12/wd/gkwd_zlhz/202406/t20240603_1133733.html",
+      "verified_at": "2026-08-24",
+      "notes": "官网及机构名称已核验；维护时年度复核域名与改革模式。"
+    }
+  ]
+}

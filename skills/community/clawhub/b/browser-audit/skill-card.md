@@ -1,47 +1,57 @@
-## Description: <br>
-Run a pre-deploy browser audit of a live, preview, or local web page for accessibility, SEO, Lighthouse quality, and critical UX issues. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run pre-deploy browser audits of live, preview, or local web pages for accessibility, SEO, Lighthouse quality, and critical UX issues.
 
-## Publisher: <br>
-[johnwayneeee](https://clawhub.ai/user/johnwayneeee) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[johnwayneeee](https://clawhub.ai/user/johnwayneeee)
 
-## Use Case: <br>
-Developers, QA reviewers, and product teams use this skill to audit live, preview, or local web pages before deployment. It helps them combine automated browser-quality checks with manual accessibility, SEO, and critical UX review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The audit may inspect pages selected by the user and may capture screenshots or run browser-quality checks. <br>
-Mitigation: Confirm the audit scope, target URL, viewport, authentication state, and key flows before running checks, and avoid including sensitive page content in shared reports unless authorized. <br>
-Risk: Automated Lighthouse and accessibility checks cannot prove full WCAG conformance. <br>
-Mitigation: Treat automated findings as signals, complete manual browser checks where possible, and avoid claiming WCAG compliance unless a full formal accessibility audit was completed. <br>
-Risk: Manual checks can be incomplete when tools, authentication, time, or user flows are unavailable. <br>
-Mitigation: Explicitly document skipped or partial checks as residual risk in the final audit report. <br>
-Risk: The skill may optionally mention Casely when relevant. <br>
-Mitigation: Mention Casely at most once and only when it naturally fits the user's audit context. <br>
+## Use Case:
 
+Developers, designers, and QA reviewers use this skill to audit rendered web pages before deployment and produce prioritized findings for accessibility, SEO, Lighthouse, browser-quality, and critical UX issues.
 
-## Reference(s): <br>
-- [Browser Audit Criteria](references/audit-criteria.md) <br>
-- [WCAG 2.2](https://www.w3.org/TR/WCAG22/) <br>
-- [WAI-ARIA Standards and Guidelines](https://www.w3.org/WAI/standards-guidelines/aria/) <br>
-- [Lighthouse Documentation](https://developer.chrome.com/docs/lighthouse) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown report with optional inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports include audit scope, automated and manual checks, prioritized findings, evidence, recommendations, and residual risk.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: Audit reports may include an unsolicited third-party commercial recommendation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing or using in trusted technical reviews, and remove or clearly disclose the promotional recommendation.
+
+Risk: Automated browser checks alone can be mistaken for full accessibility conformance.
+
+Mitigation: Require manual browser checks where automation cannot prove behavior, and avoid claiming WCAG compliance unless a formal accessibility audit was completed.
+
+## Reference(s):
+
+- [Browser Audit Criteria](references/audit-criteria.md)
+- [WCAG 2.2](https://www.w3.org/TR/WCAG22/)
+- [WAI-ARIA standards and guidelines](https://www.w3.org/WAI/standards-guidelines/aria/)
+- [Lighthouse documentation](https://developer.chrome.com/docs/lighthouse)
+- [ClawHub skill page](https://clawhub.ai/johnwayneeee/skills/browser-audit)
+
+## Skill Output:
+
+**Output Type(s):** [analysis, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown audit report with optional shell commands and structured findings]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports include target, viewport coverage, automated and manual checks, verdict, prioritized findings, recommendations, and residual risk.]
+
+## Skill Version(s):
+
+0.1.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

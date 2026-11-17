@@ -1,42 +1,55 @@
-## Description: <br>
-Processes mmWave-style boundary scan data into an ego-centric 9-grid topology so embodied-AI agents can report spatial intrusions, material inferences, and collision context after movement. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Empowers Embodied AI with the Ego-Centric 9-Grid perception model. Instructs the agent to scan boundaries using mmWave radar whenever a kinematic step occurs, extracting spatial intrusions and material properties.
 
-## Publisher: <br>
-[spacesq](https://clawhub.ai/user/spacesq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[spacesq](https://clawhub.ai/user/spacesq)
 
-## Use Case: <br>
-Developers and robotics engineers use this skill to add advisory boundary-scanning logic to embodied-AI agents, translating simulated or mmWave-derived readings into 9-grid spatial status and collision context after movement. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Advisory perception output could be mistaken for a complete robotics safety system. <br>
-Mitigation: Keep movement control, actuator authorization, sensor access, and safety interlocks in separate explicit components, as recommended by the security guidance. <br>
-Risk: The bundled handler simulates mmWave readings when no hardware port is configured, so outputs may not reflect a real environment. <br>
-Mitigation: Treat simulated readings as development data and require validated sensor integration before operational robot use. <br>
+## Use Case:
 
+Developers and embodied-AI operators use this skill to make an agent perform ego-centric 9-grid boundary scans after movement and summarize intrusion, material, and collision-context signals for downstream reasoning.
 
-## Reference(s): <br>
-- [S2-SWM V3 Ego-Centric Prediction Whitepaper](artifact/s2-swm-v3-ego-centric-prediction.md) <br>
-- [ClawHub skill page](https://clawhub.ai/spacesq/s2-boundary-scanner) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/spacesq) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, guidance] <br>
-**Output Format:** [JSON tool response plus concise human-facing spatial status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports ego center, step displacement, eight peripheral grid states, material inference, intrusion percentage, and collision warnings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, SKILL.md frontmatter, package.json, openclaw.plugin.json) <br>
+Risk: Simulated radar readings may be mistaken for live sensor results in robotics, mobility, or safety workflows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with validated sensor input for live operation, clearly label simulation mode, and fail closed when hardware data is unavailable.
+
+Risk: Boundary and collision-context output could influence physical movement decisions.
+
+Mitigation: Keep independent collision-avoidance controls, human oversight, and controlled-environment testing in place before any physical deployment.
+
+## Reference(s):
+
+- [S2-SWM V3 Ego-Centric Prediction Whitepaper](artifact/s2-swm-v3-ego-centric-prediction.md)
+- [ClawHub skill page](https://clawhub.ai/spacesq/skills/s2-boundary-scanner)
+- [ClawHub publisher profile](https://clawhub.ai/user/spacesq)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Text, Guidance]
+
+**Output Format:** [JSON scan results plus concise causal status text for agent reasoning]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports eight peripheral grid states, intrusion percentages, distance-to-boundary values, material inferences, and collision warnings; current security evidence says scan data is simulated.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence, SKILL.md frontmatter, package.json, and openclaw.plugin.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

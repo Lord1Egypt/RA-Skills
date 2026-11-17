@@ -6,7 +6,8 @@ import random
 
 def resolve_skill_check(d20_result: int, components: dict, dc: int,
                         skill_name: str, character_name: str,
-                        advantage: str = None) -> dict:
+                        advantage: str = None, dc_label: str = "DC",
+                        hit_style: bool = False) -> dict:
     """
     技能检定完整结算：展示 d20 + 每项加值明细 → 合计 → 通过与失败
 
@@ -61,7 +62,7 @@ def resolve_skill_check(d20_result: int, components: dict, dc: int,
         adv_tag = "（优势）"
     elif advantage == "dis":
         adv_tag = "（劣势）"
-    action_line = f"【{skill_name}检定{adv_tag}】{character_name}：请投{skill_name}检定，DC {dc}"
+    action_line = f"【{skill_name}检定{adv_tag}】{character_name}：请投{skill_name}检定，{dc_label} {dc}"
     detail_lines.append(action_line)
 
     # d20结果行
@@ -79,21 +80,22 @@ def resolve_skill_check(d20_result: int, components: dict, dc: int,
     detail_lines.append(bonus_str)
 
     # 合计行
+    ok_text, fail_text = ("命中", "未命中") if hit_style else ("成功", "失败")
     success_str = ""
     if critical == "nat1":
-        success_str = "❌ 失败（自然1）"
+        success_str = f"❌ {fail_text}（自然1）"
     elif critical == "nat20":
-        success_str = "✅ 成功（自然20）"
+        success_str = f"✅ {ok_text}（自然20）"
     else:
-        success_str = f"✅ 成功" if grand_total >= dc else f"❌ 失败"
+        success_str = f"✅ {ok_text}" if grand_total >= dc else f"❌ {fail_text}"
 
     success = (grand_total >= dc) if not critical else (critical == "nat20")
 
-    formula_str = f"  → {d20_result} + {total_bonus} = {grand_total}（DC {dc}）{success_str}"
+    formula_str = f"  → {d20_result} + {total_bonus} = {grand_total}（{dc_label} {dc}）{success_str}"
     detail_lines.append(formula_str)
 
     # 单行总结
-    summary_line = f"{character_name}（{skill_name}{total_bonus:+d}）：d20={d20_result}，合计 {grand_total}（DC {dc}）{success_str}"
+    summary_line = f"{character_name}（{skill_name}{total_bonus:+d}）：d20={d20_result}，合计 {grand_total}（{dc_label} {dc}）{success_str}"
 
     return {
         "d20": d20_result,
@@ -150,7 +152,9 @@ def check_hit_v2(d20_result: int, components: dict, defender_ac: int,
         components=components,
         dc=defender_ac,
         skill_name=f"攻击({weapon_name})" if weapon_name else "攻击",
-        character_name=attacker_name
+        character_name=attacker_name,
+        dc_label="AC",
+        hit_style=True,
     )
     # 转译为命中判断
     result["hit"] = result["success"]

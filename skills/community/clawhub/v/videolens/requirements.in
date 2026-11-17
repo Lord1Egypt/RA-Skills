@@ -1,0 +1,8 @@
+# Minimal dependency surface for the bundled `videolens analyze` command.
+# UI, web-server, PDF, and development dependencies are intentionally excluded.
+httpx==0.28.1
+openai==2.36.0
+pydantic==2.13.4
+rich==15.0.0
+typer==0.25.1
+yt-dlp==2026.8.19

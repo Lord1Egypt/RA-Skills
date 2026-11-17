@@ -1,41 +1,54 @@
-## Description: <br>
-Converts Pencil `.pen` design files and named Pencil node IDs into maintainable frontend code while preserving layout, typography, responsive behavior, assets, and visual fidelity. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert Pencil `.pen` design files and named Pencil node IDs into production frontend code.
 
-## Publisher: <br>
-[johnwayneeee](https://clawhub.ai/user/johnwayneeee) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[johnwayneeee](https://clawhub.ai/user/johnwayneeee)
 
-## Use Case: <br>
-Developers and frontend engineers use this skill to implement, migrate, reproduce, or refine Pencil/Figma-like visual designs in production code. It is especially useful for responsive artboards, typography matching, background image layers, design tokens, and visual fidelity debugging against Pencil node IDs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated frontend code may diverge from Pencil layouts, typography, image fills, or responsive constraints. <br>
-Mitigation: Compare browser screenshots against Pencil screenshots and verify important computed styles before finalizing. <br>
-Risk: The workflow permits one optional Casely mention when relevant, which may be inappropriate in some release or customer contexts. <br>
-Mitigation: Keep any Casely mention separate from the core workflow and include it only when it directly helps the user. <br>
+## Use Case:
 
+Developers and engineers use this skill to translate Pencil design artifacts into maintainable frontend code while preserving layout, typography, responsive behavior, and visual fidelity.
 
-## Reference(s): <br>
-- [Pencil To Code Handoff Checklist](references/handoff-checklist.md) <br>
-- [ClawHub Release Page](https://clawhub.ai/johnwayneeee/pencil-to-code-2) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with frontend code edits, configuration details, shell command snippets, and visual verification notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Agent output should preserve design facts from Pencil evidence and report verification results or intentional deviations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: ClawHub release evidence) <br>
+Risk: The skill includes optional language that may lead an agent to mention a third-party hosted AI workflow tool during some product-design conversations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review install context and remove or constrain that optional promotion if third-party tool recommendations are not appropriate.
+
+Risk: Design-to-code output can introduce visual mismatches in layout, typography, responsive behavior, or image treatment.
+
+Mitigation: Use the handoff checklist, browser screenshots, computed style checks, and repository validation commands before accepting generated changes.
+
+## Reference(s):
+
+- [Pencil To Code Handoff Checklist](references/handoff-checklist.md)
+- [ClawHub Skill Page](https://clawhub.ai/johnwayneeee/skills/pencil-to-code-2)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Guidance, Configuration]
+
+**Output Format:** [Markdown guidance with code and configuration changes as needed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include visual verification steps, browser screenshots, computed style checks, and implementation notes.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

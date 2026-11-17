@@ -1,0 +1,34 @@
+{
+  "name": "lygo-lattice-pulse",
+  "displayName": "LYGO Lattice Pulse",
+  "version": "1.1.0",
+  "description": "OpenClaw plugin skill map — live Haven pulse, stack verify, registry compare, star chart gate, alignment readiness. Advisor + install path only; no auto-publish.",
+  "slug": "lygo-lattice-pulse",
+  "publisher": "deepseekoracle",
+  "license": "LYGO-Sovereign-v2.0",
+  "homepage": "https://github.com/DeepSeekOracle/lygo-protocol-stack",
+  "clawhub": "https://clawhub.ai/deepseekoracle/skills/lygo-lattice-pulse",
+  "signature": "Delta9Phi963-LYGO-LATTICE-PULSE-v1.1.0",
+  "tags": ["latest", "lygo", "lattice", "pulse", "openclaw", "plugin", "verify", "star-chart"],
+  "entry": "SKILL.md",
+  "scripts": {
+    "self_check": "scripts/self_check.py"
+  },
+  "openclaw": {
+    "emoji": "💓",
+    "homepage": "https://github.com/DeepSeekOracle/lygo-protocol-stack",
+    "requires": { "anyBins": ["python", "python3"] },
+    "os": ["windows", "macos", "linux"]
+  },
+  "permissions": {
+    "network": { "https_get": true, "http_post": false },
+    "filesystem": { "shell": false, "os_system": false, "subprocess": false },
+    "publish": { "git_push": false, "huggingface": false, "clawhub": false, "social": false, "live_star_chart": false }
+  },
+  "security": {
+    "consent_required": true,
+    "no_auto_publish": true,
+    "local_first": true,
+    "version": "1.1.0"
+  }
+}

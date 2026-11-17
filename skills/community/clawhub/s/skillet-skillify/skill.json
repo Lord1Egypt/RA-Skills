@@ -1,0 +1,8 @@
+{
+  "id": "skillify",
+  "version": "0.1.0",
+  "tests": [
+    "bash ../../../tests/lint-skills.sh skillify"
+  ],
+  "trust_level": "workspace"
+}

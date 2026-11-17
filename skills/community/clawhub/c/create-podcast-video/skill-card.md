@@ -1,46 +1,65 @@
-## Description: <br>
-Generates vertical podcast-style videos from user-provided scripts by creating two-speaker podcast audio with ListenHub MCP, looping a template video with ffmpeg, and producing a concise content analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates short vertical podcast videos from provided copy by generating two-speaker podcast audio with ListenHub MCP, looping a template video with ffmpeg, and producing a brief content analysis.
 
-## Publisher: <br>
-[jackyken](https://clawhub.ai/user/jackyken) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jackyken](https://clawhub.ai/user/jackyken)
 
-## Use Case: <br>
-Content creators and agent users use this skill to turn Chinese podcast or short-video scripts into vertical MP4 videos with generated two-speaker audio, selected background templates, and reusable promotional copy. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow requires a ListenHub API key and installation of an external MCP package. <br>
-Mitigation: Use a revocable ListenHub API key and review the MCP package before installing it. <br>
-Risk: User scripts and source content may be sent to the ListenHub service for podcast generation. <br>
-Mitigation: Avoid submitting confidential or sensitive scripts to the service. <br>
-Risk: Incorrect speaker IDs, language settings, template files, or output locations can produce unwanted media or files in the wrong place. <br>
-Mitigation: Confirm language, speaker IDs, template video files, and output directory before generating media. <br>
+## Use Case:
 
+Content creators and operators use this skill to turn written Chinese podcast or short-video copy into a vertical video with generated two-speaker audio, a selected background template, and marketing-oriented content analysis.
 
-## Reference(s): <br>
-- [CreateVideo Skill Page](https://clawhub.ai/jackyken/create-podcast-video) <br>
-- [ListenHub MCP Calling Guide](references/listenhub-guide.md) <br>
-- [Explosive Dialogue Copywriting Template](references/copywriting-explosive-dialogue.md) <br>
-- [Copywriting Template Reference](references/copywriting-template.md) <br>
-- [ListenHub Website](https://marswave.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Files, Guidance] <br>
-**Output Format:** [Markdown status summary with shell commands, generated MP4 and MP3 files, and a text content-analysis file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates a dated task directory containing template media, generated podcast audio, the final MP4 video, and content analysis.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The workflow installs and configures an unpinned third-party ListenHub MCP server.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin and review the MCP package version before use, and install it only if the ListenHub publisher is trusted.
+
+Risk: The workflow sends user-provided video copy to ListenHub for podcast generation.
+
+Mitigation: Use the service only for content suitable for third-party processing and avoid sending confidential or sensitive copy.
+
+Risk: The workflow requires a ListenHub API key in persistent MCP configuration.
+
+Mitigation: Use a narrowly scoped API key, rotate it when needed, and avoid running the workflow as root.
+
+Risk: Generated titles or filenames may be used in shell commands and output paths.
+
+Mitigation: Sanitize generated filenames before creating or merging video files.
+
+## Reference(s):
+
+- [CreateVideo - Podcast to Video ClawHub page](https://clawhub.ai/jackyken/skills/create-podcast-video)
+- [ListenHub MCP guide](references/listenhub-guide.md)
+- [Copywriting template reference](references/copywriting-template.md)
+- [Explosive dialogue copywriting structure](references/copywriting-explosive-dialogue.md)
+- [ListenHub website](https://marswave.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands, file paths, and generated content-analysis text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces guidance for creating task directories, generating podcast audio, combining audio with template video, and saving content analysis.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

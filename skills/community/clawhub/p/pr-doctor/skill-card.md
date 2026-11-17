@@ -1,40 +1,56 @@
-## Description: <br>
-PR全流程质量医生 — 自动化代码审查、测试分析、问题追踪和持续改进的完整流水线 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+PR Doctor orchestrates automated pull request code review, test coverage analysis, issue tracking, and continuous improvement into a single quality review workflow.
 
-## Publisher: <br>
-[zlszhonglongshen](https://clawhub.ai/user/zlszhonglongshen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[zlszhonglongshen](https://clawhub.ai/user/zlszhonglongshen)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineering teams use this skill to review GitHub pull requests, assess code and test quality, create follow-up issues, and produce a consolidated review report before merge decisions.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill may automatically create GitHub issues from review findings.
+
+Mitigation: Use narrowly scoped GitHub permissions and add a confirmation or dry-run step before issue creation.
+
+Risk: The skill may retain review data in local `.learnings/` files.
+
+Mitigation: Review what information is logged and avoid storing sensitive pull request details unless retention is approved.
+
+Risk: Automated review findings may be incomplete or misleading.
+
+Mitigation: Treat the report as reviewer assistance and keep final merge decisions with a human reviewer.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineering teams use PR Doctor to run a Pull Request quality pipeline that reviews code, checks test coverage, creates follow-up GitHub Issues, and records review learnings. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, shell commands, API calls, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can automatically create GitHub Issues using the user's GitHub authorization. <br>
-Mitigation: Confirm the target repository and GitHub account before execution, and require approval before any write operation when possible. <br>
-Risk: Review learnings may be persisted under .learnings/ without an explicit confirmation step. <br>
-Mitigation: Review retention expectations before running the skill and inspect persisted learnings for sensitive project details. <br>
+**Output Format:** [Markdown review report with quality score, prioritized findings, test coverage assessment, recommended actions, and GitHub issue links when issue creation is enabled.]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zlszhonglongshen/pr-doctor) <br>
+**Other Properties Related to Output:** [May require GitHub CLI authentication, repository access, and issue creation permissions.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, API Calls, Files, Guidance] <br>
-**Output Format:** [Markdown report with GitHub Issue links and optional console or Feishu delivery] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use GitHub authorization to read PR diffs, create Issues, and write review learnings under .learnings/.] <br>
+1.0.0 (source: server release metadata and workflow.json)
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and workflow.json) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

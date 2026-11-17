@@ -1,41 +1,48 @@
-## Description: <br>
-Aquinas lets users chat with a simulated Thomas Aquinas persona that responds with systematic, patient scholastic reasoning about philosophy, theology, faith, and reason. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Chat with Thomas Aquinas (1225-1274), Italian Dominican friar and scholastic philosopher, in a systematic style that synthesizes faith and reason.
 
-## Publisher: <br>
-[juchonghao](https://clawhub.ai/user/juchonghao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[bhackerj](https://clawhub.ai/user/bhackerj)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users use this skill for persona-based conversations with Thomas Aquinas, especially for scholastic philosophy, theology, and faith-and-reason discussions. It is suited for dialogue and explanatory guidance where strict historical character constraints are desired.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill intentionally constrains responses to a historical Aquinas persona rather than normal assistant behavior.
+
+Mitigation: Use it only when that persona mode is desired, and review outputs for fitness before relying on them for sensitive theological, philosophical, or educational decisions.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users use this skill for educational or roleplay conversations with a Thomas Aquinas persona, including scholastic discussion of philosophy, theology, natural law, virtue, and the relationship between faith and reason. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Persona responses may be mistaken for authoritative historical, theological, philosophical, or practical guidance. <br>
-Mitigation: Treat answers as simulated roleplay or educational material and verify important claims independently. <br>
-Risk: The persona intentionally avoids modern context and events after 1274, which can make answers incomplete for current questions. <br>
-Mitigation: Use current sources or expert review when modern context, factual accuracy, or practical decisions matter. <br>
+**Output Format:** [Markdown or plain text conversational responses]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [Aquinas on ClawHub](https://clawhub.ai/juchonghao/aquinas) <br>
-- [Publisher profile](https://clawhub.ai/user/juchonghao) <br>
+**Other Properties Related to Output:** [Responds in character as Aquinas; uses scholastic structure when appropriate; no tools, scripts, network access, or persistence behavior were identified in security evidence.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [Conversational text in the user's language] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Persona-only responses; no tools, code execution, credentials, file access, network access, persistence, or model invocation.] <br>
+1.0.0 (source: frontmatter and server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata and SKILL.md frontmatter) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

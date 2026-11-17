@@ -1,41 +1,59 @@
-## Description: <br>
-OpenStartMenuInk scans Windows Start Menu shortcuts, caches them locally, and opens matching applications by name using fuzzy matching. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically scans Windows Start Menu shortcuts and opens applications by name with fuzzy matching on user command.
 
-## Publisher: <br>
-[Flychicks](https://clawhub.ai/user/Flychicks) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[flychicks](https://clawhub.ai/user/flychicks)
 
-## Use Case: <br>
-Windows users and assistants use this skill to launch installed Start Menu applications from natural-language or text requests without manually finding shortcuts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill scans Windows Start Menu shortcut folders and stores installed-application shortcut names in a local cache. <br>
-Mitigation: Install only on devices where local shortcut inventory caching is acceptable, and review or clear the cache if installed-application information is sensitive. <br>
-Risk: Fuzzy matching can open an unintended application when the requested name is ambiguous. <br>
-Mitigation: Use specific application names and confirm the target before relying on approximate matches. <br>
+## Use Case:
 
+Windows users use this skill to let an agent refresh a cached Start Menu shortcut list and open installed applications from natural-language app names.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Flychicks/openstartmenuink) <br>
-- [OpenClaw documentation](https://docs.openclaw.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Text with shell-command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Windows-only; uses fuzzy app-name matching and a locally cached shortcut index.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence, SKILL.schema.json) <br>
+Risk: Ambiguous fuzzy matching can open an unintended application.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the matched application name before launching when the requested name is short or ambiguous.
+
+Risk: The skill needs filesystem access to scan Start Menu shortcut directories and maintain a local cache.
+
+Mitigation: Limit use to trusted Windows environments and keep the scan scope to Start Menu shortcut locations.
+
+Risk: The published artifact appears incomplete because the manifest points to main.ps1 but the artifact only includes documentation and schema files.
+
+Mitigation: Verify that the executable PowerShell entrypoint is present before relying on the skill in an agent workflow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/flychicks/skills/openstartmenuink)
+- [Publisher profile](https://clawhub.ai/user/flychicks)
+- [OpenClaw documentation](https://docs.openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Windows-only; depends on PowerShell and filesystem access to Start Menu shortcut directories.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and SKILL.schema.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

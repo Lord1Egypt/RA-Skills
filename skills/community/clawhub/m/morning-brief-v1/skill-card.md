@@ -1,45 +1,62 @@
-## Description: <br>
-Fetches current international, technology, gaming, science, and framework-update headlines from public RSS feeds and presents them as a concise morning briefing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Morning Brief fetches current international, technology, science, gaming, and release headlines from selected RSS feeds and presents them as a concise briefing with clickable Markdown links.
 
-## Publisher: <br>
-[amadeus9169](https://clawhub.ai/user/amadeus9169) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[amadeus9169](https://clawhub.ai/user/amadeus9169)
 
-## Use Case: <br>
-Agents use this skill when a user asks for a morning brief, daily briefing, or quick snapshot of world events. It fetches selected public RSS and Atom feeds, preserves source links, and helps present a concise Chinese news briefing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill makes network requests to public news and release feeds and preserves clickable third-party links. <br>
-Mitigation: Run it only when live feed access is expected, review the configured feed URLs, and treat clicked source links as external content. <br>
-Risk: The artifact documentation lists different Python packages than the script imports. <br>
-Mitigation: Install and verify the packages used by the script, including httpx and feedparser, before relying on the command-line workflow. <br>
+## Use Case:
 
+Users who want a quick morning or daily world briefing can use this skill to collect current headlines from selected RSS feeds and return them as readable Markdown links. The skill is especially oriented toward Chinese-language briefings while preserving source URLs for follow-up reading.
 
-## Reference(s): <br>
-- [Morning Brief on ClawHub](https://clawhub.ai/amadeus9169/morning-brief-v1) <br>
-- [BBC World RSS Feed](https://feeds.bbci.co.uk/news/world/rss.xml) <br>
-- [Solidot RSS Feed](https://www.solidot.org/index.rss) <br>
-- [Polygon RSS Feed](https://www.polygon.com/rss/index.xml) <br>
-- [ScienceDaily Science RSS Feed](https://www.sciencedaily.com/rss/top/science.xml) <br>
-- [OpenClaw Releases Feed](https://github.com/joargp/openclaw/releases.atom) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown headings and bullet links, with command-line usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Fetches public RSS or Atom feeds over the network and supports an optional headline limit in the script.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill makes outbound requests to public news and release feeds.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only where outbound feed access is acceptable and review or restrict feed URLs according to local policy.
+
+Risk: The briefing includes clickable links to external article content.
+
+Mitigation: Treat links as external content and verify destinations before opening, sharing, or relying on them.
+
+Risk: Output is Chinese-language by default.
+
+Mitigation: Review the generated brief for the intended audience or adjust the skill instructions when another language is required.
+
+## Reference(s):
+
+- [Morning Brief on ClawHub](https://clawhub.ai/amadeus9169/skills/morning-brief-v1)
+- [BBC World RSS feed](https://feeds.bbci.co.uk/news/world/rss.xml)
+- [Solidot RSS feed](https://www.solidot.org/index.rss)
+- [Polygon RSS feed](https://www.polygon.com/rss/index.xml)
+- [ScienceDaily science RSS feed](https://www.sciencedaily.com/rss/top/science.xml)
+- [OpenClaw releases feed](https://github.com/joargp/openclaw/releases.atom)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown briefing with section headers and clickable headline links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs Chinese-language briefing text by default and preserves original article URLs as Markdown links.]
+
+## Skill Version(s):
+
+0.1.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

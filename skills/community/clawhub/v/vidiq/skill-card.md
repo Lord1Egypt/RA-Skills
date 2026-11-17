@@ -1,41 +1,53 @@
-## Description: <br>
-AI-powered video intelligence - download, analyze, clip, GIF from any URL. Supports YouTube, TikTok, Instagram, X. Uses ffmpeg + yt-dlp. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-powered video intelligence for downloading, analyzing, clipping, and creating GIFs from URLs or local video files using ffmpeg and yt-dlp.
 
-## Publisher: <br>
-[cassh100k](https://clawhub.ai/user/cassh100k) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cassh100k](https://clawhub.ai/user/cassh100k)
 
-## Use Case: <br>
-Developers and agents use this skill to inspect, download, sample, clip, convert, and summarize videos from supported URLs or local files. It supports AI video analysis workflows by extracting frames that can be sent to a vision model for content understanding. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security review reports that the tool evaluates video metadata as code while processing arbitrary media. <br>
-Mitigation: Review before installing and prefer a fixed version that replaces eval-based frame-rate parsing with safe fraction parsing. <br>
-Risk: Downloaded videos, extracted frames, audio, clips, and mosaics are cached under /tmp/vidiq. <br>
-Mitigation: Use only media you are allowed to download or process and clear /tmp/vidiq after handling sensitive or private videos on shared systems. <br>
+## Use Case:
 
+Developers and agents use VidIQ to inspect videos, download supported URL sources, extract frames, audio, clips, GIFs, and mosaics, and prepare frames for vision-model analysis.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cassh100k/vidiq) <br>
-- [Publisher profile](https://clawhub.ai/user/cassh100k) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, code, guidance] <br>
-**Output Format:** [Markdown with inline bash commands and generated media file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires ffmpeg and yt-dlp. Outputs may include video metadata, extracted frames, clips, GIFs, MP3 audio, scene-change timestamps, mosaics, and cached files under /tmp/vidiq.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The provided security evidence reports input-validation and temporary-file safety issues that could expose files or run unintended commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted arguments and non-sensitive media, review commands before execution, validate numeric inputs, and use a private permission-restricted cache with clear cleanup behavior.
+
+Risk: The artifact script downloads external video URLs and processes local media with ffmpeg and yt-dlp.
+
+Mitigation: Use trusted URLs and media sources, keep ffmpeg and yt-dlp patched, and avoid running the skill against sensitive or untrusted files without sandboxing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cassh100k/skills/vidiq)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Files, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands, textual video metadata, and generated media file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires ffmpeg and yt-dlp; generated media is written under /tmp/vidiq/ by the artifact script.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

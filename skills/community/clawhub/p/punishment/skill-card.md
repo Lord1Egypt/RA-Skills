@@ -1,45 +1,55 @@
-## Description: <br>
-Tracks user praise, criticism, and abuse signals to adjust a persistent score and record feedback history for behavior improvement. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tracks user praise, criticism, and abuse as feedback events that adjust a persistent local score and can guide future agent behavior.
 
-## Publisher: <br>
-[xiaoke8698](https://clawhub.ai/user/xiaoke8698) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiaoke8698](https://clawhub.ai/user/xiaoke8698)
 
-## Use Case: <br>
-Developers and OpenClaw users can use this skill to let an agent classify explicit user feedback, update a satisfaction-style score, and retain feedback history for later behavior adjustment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can store feedback reasons or exact user statements in long-term memory. <br>
-Mitigation: Require explicit confirmation before writing feedback records, avoid verbatim quotes, and review retained entries for sensitive content. <br>
-Risk: Persistent score history may remain after the user expects temporary feedback to expire. <br>
-Mitigation: Periodically inspect or delete ~/.openclaw/workspace/memory/reward_punishment.json and any MEMORY.md entries according to local retention needs. <br>
-Risk: Automatic classification of praise, criticism, or abuse may mislabel user intent. <br>
-Mitigation: Treat classifications as reviewable feedback signals and allow users to correct or remove mistaken records. <br>
+## Use Case:
 
+External users and agent developers use this skill to record explicit praise, criticism, or abuse signals as a persistent feedback score. It helps an agent summarize feedback history and adjust future behavior based on stored local records.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/xiaoke8698/punishment) <br>
-- [Publisher Profile](https://clawhub.ai/user/xiaoke8698) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, text, shell commands, configuration] <br>
-**Output Format:** [Markdown instructions with command-line text output and JSON memory records] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes persistent local score history and may create permanent memory entries when the host agent follows the skill guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can record ordinary user comments, reasons, timestamps, and feedback labels into long-term local memory without clear consent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation before recording feedback, store only minimal structured summaries, and provide review and deletion controls.
+
+Risk: Persistent feedback history may retain sensitive or misleading comments longer than users expect.
+
+Mitigation: Review records before deployment, avoid storing raw comments when a summary is sufficient, and periodically delete or redact unnecessary entries.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xiaoke8698/skills/punishment)
+- [README.md](artifact/README.md)
+- [SKILL.md](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, JSON]
+
+**Output Format:** [Markdown or plain text with optional shell commands and JSON-backed local state]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May append persistent feedback history to MEMORY.md and store score history in reward_punishment.json.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; README states 2.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

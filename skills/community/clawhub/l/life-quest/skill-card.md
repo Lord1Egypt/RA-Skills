@@ -1,43 +1,56 @@
-## Description: <br>
-Life Quest helps users manage life goals and prioritize main and side quests through a role-playing-game framing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+人生游戏的任务指引系统。将人生比作没有保存/载入功能的RPG游戏，帮助用户管理人生主线任务和支线任务。
 
-## Publisher: <br>
-[shaopanguo](https://clawhub.ai/user/shaopanguo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shaopanguo](https://clawhub.ai/user/shaopanguo)
 
-## Use Case: <br>
-External users use Life Quest for general life-planning support: setting a main life goal, evaluating side tasks by relevance and urgency, and getting direction when they feel unsure what to do next. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Life goals or preference notes may include sensitive personal, medical, financial, legal, or highly private details. <br>
-Mitigation: Avoid saving highly private details in the local user-profile file and keep notes general when possible. <br>
-Risk: The skill provides planning guidance that could be mistaken for professional medical, financial, or legal advice. <br>
-Mitigation: Treat outputs as general planning support and consult qualified professionals for regulated or high-stakes decisions. <br>
+## Use Case:
 
+External users use this Chinese-language skill to frame life planning as an RPG quest system, set or revisit a main life goal, rank daily side quests by relevance and urgency, and get direction when they feel uncertain about what to do next.
 
-## Reference(s): <br>
-- [Life Quest ClawHub page](https://clawhub.ai/shaopanguo/life-quest) <br>
-- [Motivation Library](references/motivation-library.md) <br>
-- [Quest Templates](references/quest-templates.md) <br>
-- [User Profile](references/user-profile.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown conversational guidance with prioritized task lists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable output; may reference local goal notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may activate on broad phrases about feeling lost or uncertain.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review activation behavior and treat its output as general life-planning guidance rather than professional counseling or crisis support.
+
+Risk: The skill is designed to store a local profile and main quest in its references.
+
+Mitigation: Review, edit, or clear the local user-profile reference if persistent personal goal notes are not desired.
+
+## Reference(s):
+
+- [Life Quest Skill Page](https://clawhub.ai/shaopanguo/skills/life-quest)
+- [Motivation Library](references/motivation-library.md)
+- [Quest Templates](references/quest-templates.md)
+- [User Profile](references/user-profile.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Chinese-language Markdown-style task rankings and short planning guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include prioritized task lists, relevance and urgency labels, main-quest reminders, and brief encouragement.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

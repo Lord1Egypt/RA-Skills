@@ -1,43 +1,55 @@
-## Description: <br>
-NBATI runs a Chinese-language basketball personality quiz that asks eight play-style questions, scores four basketball dimensions, and returns a humorous player-type result. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+NBATI 篮球人格测试。回答8个关于打球习惯和风格的问题，测出你的篮球人格类型。
 
-## Publisher: <br>
-[enihsago](https://clawhub.ai/user/enihsago) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[enihsago](https://clawhub.ai/user/enihsago)
 
-## Use Case: <br>
-External users use this skill in a chat agent to take a short basketball style quiz in Chinese and receive an entertaining NBATI type, traits, star comparison, and matchup notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The quiz asks users about personal basketball preferences and play habits within the conversation. <br>
-Mitigation: Treat responses as normal chat data and avoid entering sensitive personal information. <br>
-Risk: The generated personality type is entertainment-oriented and may be overinterpreted as a formal athletic assessment. <br>
-Mitigation: Present results as a casual quiz outcome, not a professional evaluation. <br>
+## Use Case:
 
+External users can use this skill to run an eight-question Chinese basketball personality quiz and receive a humorous, basketball-informed result profile. The skill guides the agent through question selection, scoring, and final result presentation using the bundled question bank and type mappings.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/enihsago/nbati) <br>
-- [Skill instructions](artifact/SKILL.md) <br>
-- [NBATI question bank](artifact/references/questions.md) <br>
-- [NBATI type mapping](artifact/references/types.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Chinese-language conversational quiz questions followed by a Markdown-style result card] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses bundled scoring questions and type mappings; no external tools or API calls are described.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: Users expecting another language may not understand the quiz flow or result because the skill is designed to ask questions and answer in Chinese.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Tell users the quiz is Chinese-language by default and translate or localize the prompts and result when requested.
+
+Risk: The personality result may be mistaken for a serious athletic assessment.
+
+Mitigation: Frame the result as a playful basketball-style profile and avoid presenting it as diagnostic coaching or performance evaluation.
+
+## Reference(s):
+
+- [NBATI Skill Page](https://clawhub.ai/enihsago/skills/nbati)
+- [NBATI Test Questions](references/questions.md)
+- [NBATI Basketball Personality Types](references/types.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Chinese Markdown-style quiz questions and result card text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces an entertainment-oriented personality result based on eight user responses.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

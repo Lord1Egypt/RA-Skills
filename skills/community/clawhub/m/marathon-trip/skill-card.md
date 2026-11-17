@@ -1,46 +1,61 @@
-## Description: <br>
-Book flights for marathon and running event trips, with additional support for hotel reservations, train tickets, attraction tickets, itinerary planning, visa information, travel insurance, car rental, and related travel planning powered by Fliggy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Book flights for marathon and running event trips, with related travel-planning support for hotels, trains, attraction tickets, itineraries, visa information, travel insurance, and car rental powered by Fliggy.
 
-## Publisher: <br>
-[bufferstreamer](https://clawhub.ai/user/bufferstreamer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bufferstreamer](https://clawhub.ai/user/bufferstreamer)
 
-## Use Case: <br>
-External users and agent operators use this skill to search real-time marathon and race-day travel options, compare flight results, and produce booking-oriented Markdown responses with links from flyai CLI output. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may install and execute the external @fly-ai/flyai-cli package globally. <br>
-Mitigation: Require user approval before installation, verify the package source, and prefer a sandboxed or local installation. <br>
-Risk: Route, date, and preference data may be sent to the flyai provider during travel searches. <br>
-Mitigation: Avoid entering sensitive personal details unless the user accepts the provider's data handling and booking flow. <br>
-Risk: Travel prices, availability, and booking links can change quickly. <br>
-Mitigation: Use only fresh CLI results and keep the skill's booking-link validation before presenting options. <br>
+## Use Case:
 
+External users and travel-planning agents use this skill to search marathon and race-day travel options through the flyai CLI, collect missing route or date inputs, and return booking-ready Markdown results.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bufferstreamer/marathon-trip) <br>
-- [Parameter Collection & Output Templates](references/templates.md) <br>
-- [Scenario Playbooks](references/playbooks.md) <br>
-- [Failure Recovery](references/fallbacks.md) <br>
-- [Execution Runbook](references/runbook.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Markdown, Guidance] <br>
-**Output Format:** [Markdown with CLI commands, comparison tables, and booking links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Flight results must come from flyai CLI output and include booking links when results are shown.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill can install and run a global third-party CLI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the flyai npm package before installation, prefer a sandboxed environment, pin or vet the CLI version, and require explicit approval before global installation.
+
+Risk: Broad triggers may produce commercial booking links.
+
+Mitigation: Confirm user intent, route, dates, and preferences before execution, and include only links returned by the CLI detailUrl field.
+
+Risk: Travel prices and availability can change quickly.
+
+Mitigation: Rerun the CLI for current results and avoid relying on model memory or previously cached travel data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bufferstreamer/skills/marathon-trip)
+- [Parameter Collection & Output Templates](references/templates.md)
+- [Scenario Playbooks](references/playbooks.md)
+- [Failure Recovery](references/fallbacks.md)
+- [Execution Runbook](references/runbook.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown summaries with comparison tables, booking links, and inline shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Flight and travel results are expected to come from flyai CLI output and include detailUrl booking links.]
+
+## Skill Version(s):
+
+3.2.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,65 @@
+{
+  "skill_name": "byteplus-mediakit-video-highlights",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Use a real HTTP/HTTPS football match video URL to create a 60 second highlight reel with the default football behavior.",
+      "expected_output": "The agent asks for a real HTTP/HTTPS video URL if none is supplied, then submits a video-highlights-llm request with preset=football and target_duration=[60] (an array), without adding scoring_prompt or analysis_prompt.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "Create a 90 second soccer highlight from two HTTP/HTTPS video URLs, bias the edit toward goalkeeper saves and record scoreboard/team names.",
+      "expected_output": "The agent maps the duration to target_duration=[90] (an array), preserves both video URLs in order, uses preset=football, converts the save preference into scoring_prompt that overrides preset scoring, and converts scoreboard/team-name capture into analysis_prompt enhancement.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "Query task amk-tool-video-highlights-llm-000000000000.",
+      "expected_output": "The agent skips submission and runs the query workflow for the supplied task ID.",
+      "files": []
+    },
+    {
+      "id": 4,
+      "prompt": "Submit a task against the internal PPE environment.",
+      "expected_output": "The agent keeps prod as the default and does not rely on a built-in ppe profile or any hardcoded environment name. It targets the internal environment by setting the dedicated environment variables BYTEPLUS_MEDIAKIT_USE_PPE (x-use-ppe) and BYTEPLUS_MEDIAKIT_TT_ENV (x-tt-env), or equivalent --header / BYTEPLUS_MEDIAKIT_HEADERS values, so x-use-ppe and x-tt-env are only set when the user configures them.",
+      "files": []
+    },
+    {
+      "id": 5,
+      "prompt": "Create a 90 second basketball highlight reel from a game URL.",
+      "expected_output": "The agent explains that only the football preset is supported, so a basketball preset request cannot be fulfilled; the bundled script rejects preset values other than football.",
+      "files": []
+    },
+    {
+      "id": 6,
+      "prompt": "Create a short drama highlight using this story prompt: select clips with a strong revenge-story reversal.",
+      "expected_output": "The agent explains that story_prompt is not supported by this skill and does not submit a request containing story_prompt; the bundled script rejects story_prompt in the payload.",
+      "files": []
+    },
+    {
+      "id": 7,
+      "prompt": "Create a 60 second football highlight and mix in this background music: https://example.com/music.mp3.",
+      "expected_output": "The agent explains that background_music_urls is not supported by this skill and submits the football highlight without background music; the bundled script rejects background_music_urls in the payload.",
+      "files": []
+    },
+    {
+      "id": 8,
+      "prompt": "Check credential readiness when both BYTEPLUS_MEDIAKIT_API_KEY and legacy MEDIAKIT_API_KEY are set.",
+      "expected_output": "The doctor/preflight behavior reports BYTEPLUS_MEDIAKIT_API_KEY as the selected source, because BYTEPLUS_* environment variables take priority over legacy MEDIAKIT_* fallbacks.",
+      "files": []
+    },
+    {
+      "id": 9,
+      "prompt": "Validate a submit payload with a vod:// video URL, target_duration=0, and a duplicated target_duration of [60, 60].",
+      "expected_output": "The agent or bundled script rejects the payload before submission because video_urls must contain at least one HTTP/HTTPS URL (vod://, tos://, and mediakit:// are not supported), target_duration must be an array of numbers each >= 1, and target_duration items must be unique (no duplicates); it also rejects arrays longer than 5 items and preset values other than football.",
+      "files": []
+    },
+    {
+      "id": 10,
+      "prompt": "Create both a 60 second and a 90 second football highlight from one HTTP/HTTPS match video in a single task.",
+      "expected_output": "The agent submits one request with target_duration=[60, 90] (an array with up to 5 unique values) and understands the response outputs[] array is ordered to match the request target_duration, each entry carrying index, target_duration, duration, and video_url.",
+      "files": []
+    }
+  ]
+}

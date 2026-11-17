@@ -1,42 +1,61 @@
-## Description: <br>
-Pill Reminder helps an OpenClaw agent set up scheduled medication or supplement reminders, track took or did-not-take responses, issue refill alerts, and produce printable adherence logs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Sends scheduled medication reminders with tracking, supports multiple users, refill alerts, and generates adherence reports.
 
-## Publisher: <br>
-[bgoodwinstudio](https://clawhub.ai/user/bgoodwinstudio) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bgoodwinstudio](https://clawhub.ai/user/bgoodwinstudio)
 
-## Use Case: <br>
-External users and caregivers use this skill to configure medication reminders, maintain local pill schedules and adherence logs, and prepare printable summaries for medical appointments. It supports reminder and tracking workflows only and is not medical advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Medication schedules, reminder messages, and adherence logs may contain sensitive health information. <br>
-Mitigation: Use private direct-message channels, avoid shared groups for family medical information, and remove schedules and logs when they are no longer needed. <br>
-Risk: Reminder setup errors could lead to missed, duplicated, or mistimed reminder messages. <br>
-Mitigation: Review generated cron reminders and the local pills.md schedule after setup or medication changes. <br>
-Risk: Users could mistake reminder and adherence text for medical guidance. <br>
-Mitigation: Keep the not-medical-advice disclaimer visible and consult a doctor or pharmacist for medication decisions. <br>
+## Use Case:
 
+External users and caregivers use this skill to schedule medication or supplement reminders, record took or missed-dose responses, monitor refill counts, and produce adherence reports for medical visits. It is for reminder and tracking support only, not medical advice.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/bgoodwinstudio/pill-reminder) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown, plain text reminders, local markdown configuration and log files, and scheduled command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates and updates local pills.md and pill-log.md files; reminder delivery depends on the user's configured chat channel and cron setup.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence release.version and artifact SKILL.md) <br>
+Risk: Medication names, profile names, refill counts, and adherence replies may be exposed through configured chat channels.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use private or tightly controlled channels, avoid broad group chats, and redact sensitive details before sharing configuration or logs.
+
+Risk: The skill handles sensitive medication tracking without enough privacy controls or channel scoping.
+
+Mitigation: Confirm channel membership and authorization before displaying configuration, logs, or medication reminders.
+
+Risk: Reminder and missed-dose text could be mistaken for medical guidance.
+
+Mitigation: Keep the not-medical-advice disclaimer visible and direct users to a doctor or pharmacist for medication decisions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/bgoodwinstudio/skills/pill-reminder)
+- [README](artifact/README.md)
+- [Skill Instructions](artifact/SKILL.md)
+- [Pill Configuration Template](artifact/pills-template.md)
+- [Adherence Log Template](artifact/pill-log-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with plain-text chat replies, command examples, scheduled reminder messages, and generated adherence reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update local pills.md and pill-log.md files and schedule per-dose reminders through cron.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

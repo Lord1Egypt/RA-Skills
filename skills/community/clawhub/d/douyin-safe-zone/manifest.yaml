@@ -1,0 +1,12 @@
+name: douyin-safe-zone
+slug: douyin-safe-zone
+display_name: 抖音安全区
+description: 规划抖音视频、图文与封面的参考安全区，并生成可配置的透明叠层。默认尺寸为项目参考值，不代表平台官方规范。
+version: 1.0.0
+license: MIT-0
+tags:
+  - douyin
+  - video-design
+  - safe-area
+  - chinese
+self_test: python3 scripts/self_test.py

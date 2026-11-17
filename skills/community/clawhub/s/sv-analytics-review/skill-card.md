@@ -1,43 +1,60 @@
-## Description: <br>
-Provides a structured framework to analyze short video metrics, extract insights, and plan data-driven content improvements. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a structured framework to analyze short video metrics, extract insights, and plan data-driven content improvements.
 
-## Publisher: <br>
-[harrylabsj](https://clawhub.ai/user/harrylabsj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harrylabsj](https://clawhub.ai/user/harrylabsj)
 
-## Use Case: <br>
-Content creators, social media managers, marketing analysts, and agency strategists use this skill to review short-video performance, compare results across videos or platforms, and convert metrics into the next content plan. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may be triggered for broad video or content-review prompts. <br>
-Mitigation: Confirm the user wants short-video analytics guidance before applying the framework. <br>
-Risk: Insights are suggestions and may not guarantee performance improvements. <br>
-Mitigation: Use recommendations as hypotheses, compare them with the user's own metrics, and validate changes through iteration or A/B testing. <br>
-Risk: User analytics data may include sensitive business or audience information. <br>
-Mitigation: Ask users to provide only the data needed for the review and avoid requesting platform credentials or direct API access. <br>
+## Use Case:
 
+Content creators, social media managers, marketing analysts, and agency strategists use this skill to review short-video performance data, compare videos or platforms, diagnose underperformance, and turn metrics into content experiments.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/harrylabsj/sv-analytics-review) <br>
-- [Publisher profile](https://clawhub.ai/user/harrylabsj) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown guidance with review templates, comparative analysis matrices, and action-plan recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Document-only informational guidance; users manually provide analytics data and review recommendations before acting.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: release evidence) <br>
+Risk: Generic trigger keywords may cause the skill to be invoked for broad performance or content review requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Route or invoke it only when the user is asking for short-video analytics, metric interpretation, or content improvement planning.
+
+Risk: Users may paste private platform analytics, audience data, or business-sensitive campaign details.
+
+Mitigation: Ask users to provide only the metrics needed for the review and to omit personal, credential, or sensitive business information.
+
+Risk: Metric-based recommendations may be incomplete or fail to improve future content performance.
+
+Mitigation: Treat recommendations as hypotheses, compare them with the user's goals, and validate them against later analytics before standardizing a content approach.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/harrylabsj/skills/sv-analytics-review)
+- [SKILL.md](artifact/SKILL.md)
+- [README.md](artifact/README.md)
+- [ACCEPTANCE.md](artifact/ACCEPTANCE.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Analysis]
+
+**Output Format:** [Markdown or structured text with review frameworks, comparative matrices, and action plans]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires manually supplied analytics data; no API access, credential handling, or persistent processing is included.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,52 @@
-## Description: <br>
-Performs AI analysis on input video clips/image content and generates a smooth, natural scene description. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Performs AI analysis on input video clips and image content and generates a smooth, natural scene description.
 
-## Publisher: <br>
-[18072937735](https://clawhub.ai/user/18072937735) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[18072937735](https://clawhub.ai/user/18072937735)
 
-## Use Case: <br>
-Developers and end users use this skill to submit clear images, video clips, or media URLs for multimodal visual analysis, scene summarization, and historical report lookup. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Media files, media URLs, and account-linked analysis data may be sent to lifeemergence.com services. <br>
-Mitigation: Review data sensitivity, network policy, and service terms before using the skill with private, regulated, or confidential media. <br>
-Risk: The skill may create or reuse a local default identity and retrieve cloud history or report links tied to that identity. <br>
-Mitigation: Use the skill only in workspaces where identity reuse is acceptable, and review generated report links before sharing output. <br>
-Risk: Authentication tokens may be stored in a workspace SQLite database. <br>
-Mitigation: Limit workspace access, rotate credentials if exposure is suspected, and remove local state before handing the workspace to another user. <br>
+## Use Case:
 
+Users and developers can analyze supported images or video clips to produce scene descriptions and structured visual reports, or request a list of prior reports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/18072937735/skills/smyx-visual-summary-analysis) <br>
-- [Skill demo](https://lifeemergence.com/sample.html) <br>
-- [Visual summary API documentation](references/api_doc.md) <br>
-- [Analysis API documentation](skills/smyx_analysis/references/api_doc.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration] <br>
-**Output Format:** [Natural-language scene summaries, structured report text, Markdown tables for history, and optional JSON or file output.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Accepts local media paths or public media URLs; documented formats include jpg, jpeg, png, mp4, avi, and mov with a 10 MB limit.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: server release metadata; SKILL.md frontmatter lists 1.0.5) <br>
+Risk: ClawScan rates this release suspicious with high confidence, reporting account, credential, and report-history features beyond the stated visual-analysis purpose. The scan evidence is partial.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Consider avoiding installation unless the capability is needed. Before use, review the account, credential, and report-history behavior and submit only media and account data appropriate for the service.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/18072937735/skills/smyx-visual-summary-analysis)
+- [Skill demonstration](https://lifeemergence.com/sample.html)
+- [API interface documentation](references/api_doc.md)
+- [Analysis API errors and response formats](skills/smyx_analysis/references/api_doc.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON]
+
+**Output Format:** [Natural-language scene description and structured analysis report; Markdown table for report history]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include recognized scene elements, visible text, recommendations, and report links.]
+
+## Skill Version(s):
+
+1.0.21 (source: server-resolved release metadata; artifact SKILL.md declares 1.0.24)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

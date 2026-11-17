@@ -1,46 +1,59 @@
-## Description: <br>
-Clawd Cursor lets an OpenClaw agent control Windows or macOS desktop apps through natural-language tasks, including opening apps, clicking, typing, navigating browsers, filling forms, and visually checking UI state. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI desktop agent that lets an OpenClaw agent control Windows and macOS apps through local desktop and browser automation.
 
-## Publisher: <br>
-[Sieyer](https://clawhub.ai/user/Sieyer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[sieyer](https://clawhub.ai/user/sieyer)
 
-## Use Case: <br>
-Developers and external OpenClaw users use this skill to let an agent operate desktop and browser UIs when direct APIs or CLI tools are unavailable. It is intended for user-requested, supervised desktop tasks, form interactions, cross-app workflows, and visual verification. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can give an agent broad visibility into the user's screen and control over desktop applications. <br>
-Mitigation: Use it only for user-requested tasks, supervise sensitive workflows, and prefer direct APIs, file access, browser tools, or CLI commands when they can complete the task. <br>
-Risk: The local controller may be started hidden and can operate apps through the local desktop session. <br>
-Mitigation: Confirm how the controller starts and stops, verify it is bound to localhost, and abort or stop it when desktop automation is no longer needed. <br>
-Risk: Screenshots and UI text may be sent to a configured cloud AI provider when not using a local provider. <br>
-Mitigation: Prefer local Ollama mode for sensitive work and choose any cloud provider intentionally before allowing screen or app data to be processed. <br>
-Risk: Sensitive or destructive actions such as sending messages, purchases, deletion, or financial workflows can affect real user accounts. <br>
-Mitigation: Require explicit user confirmation for safety-gated actions and do not self-approve confirmations. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/Sieyer/clawd-cursor-0-6-0) <br>
-- [Publisher profile](https://clawhub.ai/user/Sieyer) <br>
-- [Clawd Cursor homepage](https://clawdcursor.com) <br>
-- [Clawd Cursor source repository](https://github.com/AmrDab/clawd-cursor) <br>
+## Use Case:
 
+Developers and agent users use this skill to automate user-requested desktop, browser, form-filling, visual verification, and cross-app workflows when a direct API, CLI, or file operation is not available.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with REST API examples, shell commands, and configuration steps.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include local REST API calls and confirmation prompts for safety-gated desktop actions.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter version 0.6.0) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill enables a local service to see and operate the user's desktop and browser.
+
+Mitigation: Install only when desktop-control access is acceptable, use a local provider such as Ollama for private screens, and require explicit user confirmation before sensitive app use.
+
+Risk: The reviewed artifact may depend on mutable remote code and agent-started local services.
+
+Mitigation: Prefer a version pinned to a reviewed commit with locked dependencies, and require confirmation before starting or using the service.
+
+Risk: Chrome remote debugging can expose browser control if enabled unnecessarily.
+
+Mitigation: Keep Chrome remote debugging disabled unless it is intentionally needed for the current task.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sieyer/skills/clawd-cursor-0-6-0)
+- [Publisher profile](https://clawhub.ai/user/sieyer)
+- [Clawd Cursor homepage](https://clawdcursor.com)
+- [Skill-declared source link](https://github.com/AmrDab/clawd-cursor)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, API calls, Code]
+
+**Output Format:** [Markdown with inline shell, PowerShell, JavaScript, and REST examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May issue local REST requests to a desktop-control service and CDP browser automation commands when the service is running.]
+
+## Skill Version(s):
+
+0.6.0 (source: SKILL.md frontmatter; ClawHub release version 1.0.0 from server metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

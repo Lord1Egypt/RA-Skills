@@ -1,45 +1,62 @@
-## Description: <br>
-AI Job Hunter Pro helps agents match resumes to job listings, generate application materials, run dry-run application workflows, and track job-search progress. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-powered job search assistant with RAG-based resume-JD matching, automated application pipeline, and status tracking.
 
-## Publisher: <br>
-[MeteorYF](https://clawhub.ai/user/MeteorYF) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[meteoryf](https://clawhub.ai/user/meteoryf)
 
-## Use Case: <br>
-External users and job seekers use this skill to search job listings, compare roles against a resume, generate reviewable cover letters and ATS suggestions, and track application status across a job-search funnel. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles sensitive resume, profile, and application-tracking data in local files and databases. <br>
-Mitigation: Run it in a dedicated environment, protect the local Chroma and SQLite data directories, and avoid sharing generated data files. <br>
-Risk: Generated cover letters can include hard-coded Disney, Amazon, and UCL claims that may not apply to the user. <br>
-Mitigation: Review every generated application material and remove or replace any claim that is not true for the applicant. <br>
-Risk: Application automation can submit materials to job platforms if run outside dry-run mode. <br>
-Mitigation: Keep dry-run and explicit confirmation enabled, verify each application before submission, and respect platform rate limits. <br>
-Risk: Browser-based platform integrations may depend on logged-in sessions and platform anti-automation rules. <br>
-Mitigation: Treat browser sessions as sensitive, monitor blocks or errors, pause when platforms object, and use manual fallback when needed. <br>
+## Use Case:
 
+External users and job seekers use this skill to match resumes against job descriptions, draft tailored application materials, track job-search progress, and review proposed applications before submission.
 
-## Reference(s): <br>
-- [AI Job Hunter Pro on ClawHub](https://clawhub.ai/MeteorYF/ai-job-hunter-pro) <br>
-- [Platform Integration Notes](references/platform_notes.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON-formatted script outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local profile data, a local vector database, a SQLite application tracker, generated cover letters, ATS suggestions, and dashboard data files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: server release metadata) <br>
+Risk: The skill stores sensitive profile, resume, feedback, and application history data locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat local profile, vector database, feedback, and tracker files as sensitive and restrict filesystem access to trusted users.
+
+Risk: Generated cover letters, resume highlights, or application records may contain incorrect or misleading claims.
+
+Mitigation: Use dry-run mode, inspect every generated application artifact, and require explicit user confirmation before submission.
+
+Risk: Dashboard or job data handling may expose users to unsafe URLs or untrusted job JSON.
+
+Mitigation: Avoid opening the dashboard with untrusted job data until URL handling and third-party script loading have been reviewed.
+
+Risk: Dependency and scraping behavior may change across job platforms or local environments.
+
+Mitigation: Install dependencies in a locked environment, respect platform rate limits, and fall back to manual review when a platform blocks or errors.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/meteoryf/skills/ai-job-hunter-pro)
+- [Platform integration notes](references/platform_notes.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands, JSON configuration examples, generated application text, and status summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May generate cover letters, resume highlights, job match explanations, tracker reports, and local configuration guidance.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

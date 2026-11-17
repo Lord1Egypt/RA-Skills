@@ -1,40 +1,57 @@
-## Description: <br>
-Runs lightweight self-audits of OpenClaw behavior, finds repeated failures, proposes safe config and process improvements, and tracks changes after incidents, silent-bot periods, rate-limit spikes, or weekly maintenance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Runs lightweight self-audits of OpenClaw behavior, finds repeated failures, proposes safe config/process improvements, and tracks what changed.
 
-## Publisher: <br>
-[utromaya-code](https://clawhub.ai/user/utromaya-code) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[utromaya-code](https://clawhub.ai/user/utromaya-code)
 
-## Use Case: <br>
-Developers and operators maintaining OpenClaw use this skill to audit reliability incidents, group repeated failures, propose minimal reversible fixes, and record weekly improvement outcomes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Automatic restarts, session cleanup, or configuration tuning could disrupt active OpenClaw service or make reliability worse if applied without review. <br>
-Mitigation: Review proposed fixes before relying on them in production, keep a rollback path for configuration edits, and apply one reversible change per cycle. <br>
-Risk: Audit reports may include sensitive information from logs or configuration context. <br>
-Mitigation: Follow the skill guardrail to avoid exposing secrets in reports and require explicit approval for credential rotation, deletion, or other high-impact actions. <br>
+## Use Case:
 
+Developers and operators use this skill to audit OpenClaw reliability after incidents, repeated errors, configuration changes, silent-bot periods, rate-limit spikes, or scheduled weekly maintenance. It helps group failures, identify likely root causes, propose minimal reversible fixes, and track resulting changes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/utromaya-code/self-improver-lite-ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline bash commands, audit summaries, and action checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include proposed low-risk maintenance actions, approval-gated changes, rollback notes, and weekly audit records.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Automatic service restarts or persistent configuration changes could affect production OpenClaw availability or behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require the agent to show the exact restart, cleanup, or configuration change before applying it, and keep a rollback path such as backing up old configuration before edits.
+
+Risk: Operational reports could expose secrets or sensitive runtime details.
+
+Mitigation: Keep secrets out of reports and review collected logs before sharing audit summaries.
+
+Risk: Multiple changes in one cycle can make it hard to determine which change affected reliability.
+
+Mitigation: Prefer one change per cycle and record the change, measured impact, rollback path, and next action.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/utromaya-code/skills/self-improver-lite-ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include weekly audit summaries, proposed reversible fixes, rollback notes, and approval requests for higher-impact actions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

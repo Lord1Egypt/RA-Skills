@@ -1,45 +1,64 @@
-## Description: <br>
-Configures multiple independent OpenClaw gateway instances with separate agents, workspaces, bots, cross-agent communication, and multi-port management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Configures and runs multiple independent OpenClaw gateway instances with separate agents, workspaces, ports, and optional Feishu bot identities for multi-agent collaboration.
 
-## Publisher: <br>
-[pikaqiuyaya](https://clawhub.ai/user/pikaqiuyaya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pikaqiuyaya](https://clawhub.ai/user/pikaqiuyaya)
 
-## Use Case: <br>
-Developers and operators use this skill to create and run multiple isolated OpenClaw gateway instances for separate agents, teams, workspaces, and Feishu-connected bots. It is intended for multi-agent task routing, independent bot identities, and local gateway operations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security summary reports an embedded shared API key and plaintext local secrets in generated configuration. <br>
-Mitigation: Remove and rotate the embedded key before trusted use, and store secrets with local access controls or a secret manager rather than committing or copying them in plaintext. <br>
-Risk: The security guidance calls out copied skills and memory during gateway setup. <br>
-Mitigation: Review selected skills and memory files before copying them into new agent workspaces, and avoid copying sensitive or unrelated data. <br>
-Risk: The security guidance calls out public IP-discovery requests and persistent user-level services. <br>
-Mitigation: Review outbound IP lookup behavior and generated systemd user services before running the wizard in production or sensitive environments. <br>
+## Use Case:
 
+Developers and operators use this skill to create isolated OpenClaw gateway instances for separate agents, workspaces, and bot identities. It supports multi-agent task distribution and autonomous status reporting through Feishu when that channel is configured.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/pikaqiuyaya/setup-multi-gateway) <br>
-- [OpenClaw documentation](https://docs.openclaw.ai) <br>
-- [feishu-agent-send skill](https://clawhub.com/skills/feishu-agent-send) <br>
-- [ClawHub skill marketplace](https://clawhub.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with shell commands, JSON configuration examples, and JavaScript snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide creation of local OpenClaw gateway configuration, workspace copies, and user-level systemd services.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata) <br>
+Risk: Unsafe credential handling can expose API keys, model configuration secrets, or Feishu application secrets.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat generated model and Feishu configuration files as secret-bearing files, restrict local access, and rotate any embedded API key before use.
+
+Risk: The wizard creates long-running user systemd services from supplied gateway settings.
+
+Mitigation: Run it only on machines where persistent OpenClaw gateway services are expected, then review generated service files before enabling or starting them.
+
+Risk: Unvalidated gateway names and suggested values can affect generated paths, service names, tokens, and configuration values.
+
+Mitigation: Use a fixed gateway name containing only letters, numbers, underscores, or hyphens, and do not accept values from untrusted sources.
+
+Risk: Broad Feishu permissions can grant more access than a deployment needs.
+
+Mitigation: Grant only the Feishu scopes required for the intended bot workflow and avoid importing broad permission bundles by default.
+
+## Reference(s):
+
+- [Setup Multi Gateway on ClawHub](https://clawhub.ai/pikaqiuyaya/skills/setup-multi-gateway)
+- [OpenClaw documentation](https://docs.openclaw.ai)
+- [feishu-agent-send skill](https://clawhub.com/skills/feishu-agent-send)
+- [ClawHub skill marketplace](https://clawhub.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, JSON configuration examples, and an interactive Node.js setup wizard]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces user-facing setup steps and may create OpenClaw configuration files, workspace directories, Feishu channel settings, and user systemd service files when the wizard is executed.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

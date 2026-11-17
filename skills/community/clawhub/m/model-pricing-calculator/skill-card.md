@@ -1,46 +1,60 @@
-## Description: <br>
-This skill fetches AI model pricing data from multiple API platforms, calculates model ratios, completion ratios, and group ratios with a unified pricing formula, and outputs standardized JSON. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill fetches AI model pricing data from multiple API platforms, calculates model ratios, completion ratios, and group ratios with a unified pricing formula, and outputs standardized JSON.
 
-## Publisher: <br>
-[zhengmengkaizmk](https://clawhub.ai/user/zhengmengkaizmk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhengmengkaizmk](https://clawhub.ai/user/zhengmengkaizmk)
 
-## Use Case: <br>
-Developers and operators use this skill to gather pricing from configured AI API platforms, compute standardized pricing ratios, and compare current results with a saved snapshot. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill fetches pricing from configured external API endpoints, so results depend on the trustworthiness and availability of those sources. <br>
-Mitigation: Review references/pricing_urls.json before running and keep only pricing sources you trust. <br>
-Risk: A normal run overwrites the bundled latest pricing snapshot. <br>
-Mitigation: Use --no-snapshot when you do not want data/latest_snapshot.json updated. <br>
-Risk: Providing an output directory can replace fixed result filenames in that directory. <br>
-Mitigation: Choose --output-dir carefully and use a dedicated directory for generated pricing files. <br>
+## Use Case:
 
+Developers and operators use this skill to collect pricing data from configured AI API platforms, normalize it into model, completion, and group ratios, and review changes against a local snapshot.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhengmengkaizmk/model-pricing-calculator) <br>
-- [Pricing rules](references/pricing_rules.md) <br>
-- [Pricing URL configuration](references/pricing_urls.json) <br>
-- [12AI pricing page](https://new.12ai.org/pricing) <br>
-- [PackyAPI pricing page](https://www.packyapi.com/pricing) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Configuration, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands plus standardized JSON blocks and optional JSON snapshot files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can overwrite data/latest_snapshot.json unless --no-snapshot is used; can write model_ratios.json, completion_ratios.json, and group_ratios.json when --output-dir is provided.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill contacts configured pricing endpoints during fetch operations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review references/pricing_urls.json before running and only use endpoints you trust.
+
+Risk: Full runs can overwrite data/latest_snapshot.json with newly fetched pricing data.
+
+Mitigation: Use --no-snapshot when persistence is not desired or review snapshot changes before committing them.
+
+Risk: The script prints multiple labeled JSON blocks rather than one parseable JSON document.
+
+Mitigation: Post-process the labeled sections separately instead of treating stdout as a single JSON object.
+
+## Reference(s):
+
+- [Pricing Rules](artifact/model-pricing-calculator/references/pricing_rules.md)
+- [Pricing URL Configuration](artifact/model-pricing-calculator/references/pricing_urls.json)
+- [12AI Pricing](https://new.12ai.org/pricing)
+- [PackyAPI Pricing](https://www.packyapi.com/pricing)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and labeled JSON blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Full runs may update data/latest_snapshot.json unless --no-snapshot is used.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

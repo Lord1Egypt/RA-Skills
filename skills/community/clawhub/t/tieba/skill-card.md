@@ -1,40 +1,52 @@
-## Description: <br>
-A Baidu Tieba operations assistant for forum moderation, content planning, community engagement, sentiment monitoring, and basic data analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Baidu Tieba operations assistant for forum administration, content operations, community engagement, and public sentiment analysis.
 
-## Publisher: <br>
-[zhangifonly](https://clawhub.ai/user/zhangifonly) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[zhangifonly](https://clawhub.ai/user/zhangifonly)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Community operators, moderators, and Baidu Tieba bar owners use this skill to draft forum rules, plan content, guide newcomer onboarding, monitor community sentiment, and manage moderation workflows.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill may recommend moderation actions such as deleting posts or banning users.
+
+Mitigation: Keep final moderation decisions under human control and align actions with the community's rules and applicable Baidu Tieba platform policy.
+
+Risk: Community-management guidance may be unsuitable for a specific forum context if applied without review.
+
+Mitigation: Adapt recommendations to the community's published rules, local norms, and current moderation priorities before using them.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Community managers and Baidu Tieba bar owners use this skill to plan moderation workflows, posting standards, activities, newcomer onboarding, crisis handling, and community metrics. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Moderation guidance could be applied too broadly or inconsistently when deleting posts, banning users, or responding to disputes. <br>
-Mitigation: Keep moderation decisions under human review and apply the community's rules and Baidu platform policy before taking action. <br>
-Risk: Community operations and public-sentiment advice may be incomplete for a specific Tieba community or current platform policy. <br>
-Mitigation: Review recommendations against current local context, platform rules, and moderator judgment before publishing or enforcing them. <br>
+**Output Format:** [Markdown or plain text advisory guidance]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhangifonly/tieba) <br>
+**Other Properties Related to Output:** [No code execution, install behavior, persistence, or hidden data access identified in security evidence.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Text] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Advisory community operations guidance; no code execution, credential access, persistence, or hidden execution behavior is reported.] <br>
+1.0.0 (source: frontmatter and release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence and SKILL.md frontmatter) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

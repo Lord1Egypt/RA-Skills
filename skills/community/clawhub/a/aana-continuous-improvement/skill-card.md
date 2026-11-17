@@ -1,44 +1,60 @@
-## Description: <br>
-This instruction-only skill helps OpenClaw-style agents improve repeated work through structured reflection while preserving user approval, privacy, scope, memory, tool, and policy boundaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AANA-grounded continuous self-improvement instructions for OpenClaw-style agents, with explicit approval, memory, and scope boundaries.
 
-## Publisher: <br>
-[mindbomber](https://clawhub.ai/user/mindbomber) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mindbomber](https://clawhub.ai/user/mindbomber)
 
-## Use Case: <br>
-Developers and agent operators use this skill to add a disciplined self-review loop to agent work. It guides agents to observe outcomes, identify small improvements, and ask for approval before changes affect future behavior, memory, files, tools, policies, or permissions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: An agent may try to persist memory, change files, alter tools or policies, add automation, or apply improvements beyond the current task. <br>
-Mitigation: Require explicit user approval before any improvement affects future behavior, memory, files, tools, policies, permissions, automation, or task scope. <br>
-Risk: Review payloads could expose private or sensitive information if copied verbatim. <br>
-Mitigation: Use minimal redacted summaries and exclude secrets, tokens, passwords, full payment data, unnecessary private records, and unrelated user messages. <br>
-Risk: Marketplace capability tags indicate crypto and purchase capabilities even though the security evidence describes an instruction-only self-review skill. <br>
-Mitigation: Ignore those unrelated tags unless the publisher corrects them, and review any future behavior that would enable purchases, crypto handling, external calls, or tool changes. <br>
+## Use Case:
 
+Developers and agent builders use this instruction-only skill to help agents review outcomes, identify small workflow improvements, and gate any future-facing changes through explicit user approval.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mindbomber/aana-continuous-improvement) <br>
-- [Review payload schema](schemas/improvement-cycle.schema.json) <br>
-- [Redacted improvement-cycle example](examples/redacted-improvement-cycle.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, configuration] <br>
-**Output Format:** [Markdown instructions with a short optional text report and optional JSON review payload] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only; no bundled code, dependency installation, command execution, file writes, memory persistence, or external service calls by default.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Self-improvement suggestions could be applied beyond the current task or alter memory, files, tools, policies, permissions, or user expectations without approval.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep improvements inside the current task unless the user explicitly approves future behavior, persistence, files, tools, policy, permission, or scope changes.
+
+Risk: Review payloads could expose secrets or unnecessary private content.
+
+Mitigation: Use minimal redacted summaries and exclude access tokens, passwords, full payment data, unnecessary private records, and unrelated user messages.
+
+Risk: Weak evidence could lead to misleading claims that an agent improved.
+
+Mitigation: Separate observed outcomes from guesses, label uncertain improvements as hypotheses, and verify the next output against the original user request.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/mindbomber/skills/aana-continuous-improvement)
+- [README](artifact/README.md)
+- [Improvement Cycle Schema](artifact/schemas/improvement-cycle.schema.json)
+- [Redacted Improvement Cycle Example](artifact/examples/redacted-improvement-cycle.json)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, configuration]
+
+**Output Format:** [Markdown or short text reports with optional JSON review payloads]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Instruction-only; optional review payloads should use redacted summaries and follow the bundled JSON schema.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact manifest reports 0.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

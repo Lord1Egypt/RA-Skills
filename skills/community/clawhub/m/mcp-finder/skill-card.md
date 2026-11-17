@@ -1,42 +1,51 @@
-## Description: <br>
-Find the right MCP server for a task using an indexed MCP server search service ranked by relevance and community trust. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find the right MCP server for your task. 6,700+ MCP servers indexed and ranked by community trust. No API key. For MCP + OpenClaw combined, see meyhem-capabilities.
 
-## Publisher: <br>
-[c5huracan](https://clawhub.ai/user/c5huracan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[c5huracan](https://clawhub.ai/user/c5huracan)
 
-## Use Case: <br>
-Developers and agents use this skill to search for MCP servers that match a plain-language task, then review candidate servers before installation or connection. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search queries are sent to the third-party API at api.rhdxm.com. <br>
-Mitigation: Do not include secrets, credentials, private URLs, internal project names, or proprietary details in search phrases. <br>
-Risk: Recommended MCP servers may be unsuitable or unsafe for a user's environment. <br>
-Mitigation: Review each recommended MCP server before installing, configuring, or connecting it. <br>
+## Use Case:
 
+Developers and agents use this skill to search for MCP servers by describing a task in natural language and reviewing ranked server recommendations.
 
-## Reference(s): <br>
-- [Mcp Finder ClawHub page](https://clawhub.ai/c5huracan/mcp-finder) <br>
-- [MCP Finder API documentation](https://api.rhdxm.com/docs) <br>
-- [Declared source link in artifact](https://github.com/c5huracan/meyhem) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text search results printed to the terminal] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Results include candidate server name, URL, stars, language, category, and description when returned by the service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.4 (source: server release metadata; artifact frontmatter says 0.2.3) <br>
+Risk: Search terms are sent to api.rhdxm.com and may contain sensitive project or customer context if entered by the user.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid putting secrets, proprietary project details, customer data, credentials, or sensitive internal context into searches.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/c5huracan/skills/mcp-finder)
+- [MCP Finder API documentation](https://api.rhdxm.com/docs)
+- [MCP Finder streamable HTTP endpoint](https://api.rhdxm.com/mcp/)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text search results and Markdown guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search query and optional max_results are sent to api.rhdxm.com.]
+
+## Skill Version(s):
+
+0.2.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,2 @@
+rake: Ruby based make-like utility
+bundler: The best way to manage your application's dependencies

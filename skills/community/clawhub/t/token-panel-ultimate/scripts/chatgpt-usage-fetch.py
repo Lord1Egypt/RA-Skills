@@ -1,15 +1,26 @@
 #!/usr/bin/env python3
 """
 ChatGPT Usage Fetcher
-Probes OpenAI API rate limits by model via minimal API calls.
-Extracts x-ratelimit-* headers to show remaining capacity.
+Reports OpenAI rate-limit capacity per model.
+
+HOW THE NUMBERS ARE OBTAINED — read this before using --probe. OpenAI publishes remaining
+capacity only in the x-ratelimit-* response headers, so there is no passive way to read
+it: the only way to see your headroom is to MAKE A REAL REQUEST. --probe sends a
+1-token chat completion to each model in PROBE_MODELS. That is a genuine, billable API
+call against your account, it appears in your usage history, and it consumes a sliver of
+quota. Because a dashboard spending your quota unasked is a surprise, probing is OFF by
+default: without --probe this script reports the documented subscription caps and no
+network call is made.
 
 Usage:
-    ./chatgpt-usage-fetch.py              # Print usage
+    ./chatgpt-usage-fetch.py              # Documented caps only — no network calls
+    ./chatgpt-usage-fetch.py --probe      # Live rate-limit headroom (billable probe)
     ./chatgpt-usage-fetch.py --update     # Update chatgpt-usage.json
     ./chatgpt-usage-fetch.py --json       # Output raw JSON
 
-Requires: OPENAI_API_KEY env var
+Credential:
+    python3 secretstore.py --login openai      # sealed in your OS keychain
+    python3 secretstore.py --logout openai
 """
 
 import json
@@ -19,6 +30,11 @@ import urllib.request
 import urllib.error
 from datetime import datetime
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+import secretstore
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from _secure_write import write_private_json  # owner-only JSON writes
 
 USAGE_JSON_PATH = Path.home() / '.openclaw/workspace/memory/chatgpt-usage.json'
 
@@ -39,14 +55,15 @@ PLUS_LIMITS = {
 
 
 def get_api_key():
-    key = os.environ.get('OPENAI_API_KEY')
-    if not key:
-        env_path = Path.home() / '.openclaw/.env'
-        if env_path.exists():
-            for line in env_path.read_text().splitlines():
-                if line.startswith('OPENAI_API_KEY='):
-                    key = line.split('=', 1)[1].strip()
-                    break
+    """Return this tool's OpenAI key from the keychain-backed store.
+
+    Earlier versions read OPENAI_API_KEY straight from the environment and could be
+    pointed at an env-style file to scrape. Both are gone: the credential comes from
+    secretstore, which means the keychain, its warned 0600 fallback, or the namespaced
+    TOKEN_PANEL_OPENAI_KEY variable. A generic OPENAI_API_KEY set for some other tool is
+    used only if you opt in with TOKEN_PANEL_ALLOW_PROVIDER_ENV=1.
+    """
+    key, _source = secretstore.get_secret('openai')
     return key
 
 
@@ -187,27 +204,41 @@ def print_usage(output):
     print("╚══════════════════════════════════════════════╝\n")
 
 
+PROBE_NOTICE = (
+    "Live rate-limit headroom needs a real request: --probe sends one 1-token chat\n"
+    "completion per model in PROBE_MODELS. Those are billable calls against your\n"
+    "account. Re-run with --probe to allow it; without it, only the documented\n"
+    "subscription caps below are shown and nothing leaves this machine."
+)
+
+
 def main():
     args = sys.argv[1:]
-    api_key = get_api_key()
+    probe_enabled = '--probe' in args
 
-    if not api_key:
-        print("❌ No OPENAI_API_KEY found.", file=sys.stderr)
-        sys.exit(1)
-
-    # Probe each model
     probes = {}
-    for model in PROBE_MODELS:
-        probes[model] = probe_model(api_key, model)
+    if probe_enabled:
+        api_key = get_api_key()
+        if not api_key:
+            print(
+                "❌ No OpenAI credential stored for this tool.\n"
+                "   Store one:  python3 secretstore.py --login openai",
+                file=sys.stderr,
+            )
+            sys.exit(1)
+        for model in PROBE_MODELS:
+            probes[model] = probe_model(api_key, model)
+    else:
+        print(PROBE_NOTICE, file=sys.stderr)
 
     output = build_output(probes)
+    output["probed"] = probe_enabled
 
     if '--json' in args:
         print(json.dumps(output, indent=2))
     elif '--update' in args:
-        USAGE_JSON_PATH.parent.mkdir(parents=True, exist_ok=True)
-        with open(USAGE_JSON_PATH, 'w') as f:
-            json.dump(output, f, indent=2)
+        # Reports your plan and rate limits — owner-only, never through a symlink.
+        write_private_json(USAGE_JSON_PATH, output)
         print(f"✓ Updated {USAGE_JSON_PATH}")
         for model, info in output["models"].items():
             pct = info.get("utilization_pct")

@@ -1,47 +1,63 @@
-## Description: <br>
-Solo Leveling is a life RPG skill that turns real-world habits into an agent-managed progression system with stats, ranks, daily quests, dungeons, titles, and proof-based accountability. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Solo Leveling is a life RPG skill that turns real-world habits into configurable quests, stats, ranks, dungeons, titles, and proof-based accountability.
 
-## Publisher: <br>
-[anmolmoses](https://clawhub.ai/user/anmolmoses) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[anmolmoses](https://clawhub.ai/user/anmolmoses)
 
-## Use Case: <br>
-External users use this skill to have an agent configure and run a gamified habit tracker for fitness, learning, sleep, creative work, and other recurring goals. The agent issues quests, asks for proof, records XP and stat changes, generates status reports, and can propose scheduled reminders. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The release includes bundled personal configuration and player history. <br>
-Mitigation: Remove the bundled Annu config and player or quest history before using the skill for a new user. <br>
-Risk: The skill can set up recurring cron-based reminders and accountability checks. <br>
-Mitigation: Review the exact cron entries, timezone conversions, and removal steps before allowing scheduled jobs. <br>
-Risk: Optional Twilio and ElevenLabs integrations can place phone calls using user-provided credentials. <br>
-Mitigation: Add credentials only when phone-call reminders are desired, and store those credentials outside shared workspaces. <br>
-Risk: The ElevenLabs call path can upload generated reminder audio to transfer.sh for Twilio playback. <br>
-Mitigation: Disable that upload path or replace it with private storage before sending sensitive reminder content. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/anmolmoses/solo-leveling) <br>
-- [Publisher profile](https://clawhub.ai/user/anmolmoses) <br>
-- [Game mechanics reference](references/game-mechanics.md) <br>
-- [Configuration template](references/config-template.json) <br>
-- [Preset configurations](references/presets/) <br>
+## Use Case:
 
+External users use this skill to turn personal habits and goals into daily quests, status checks, XP, ranks, and weekly challenges. It supports configurable routines for fitness, coding, studying, creative work, sleep, and other recurring goals.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance, API calls] <br>
-**Output Format:** [Markdown-style agent messages, JSON configuration and state files, Python CLI output, shell commands, and optional Twilio or ElevenLabs API call results.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Maintains local player and quest-log JSON state; optional phone-call reminders require user-provided Twilio and ElevenLabs credentials.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Under-disclosed phone-call automation and persistent scheduled jobs could contact users or continue reminders without clear consent.
+
+Mitigation: Remove or clearly disable call scripts and cron setup by default, and require explicit opt-in before enabling phone calls or scheduled jobs.
+
+Risk: Audio, proof material, or habit-tracking data may be sent to external services or temporary public hosting.
+
+Mitigation: Document each external service used and require explicit opt-in before public uploads, proof collection, or sending data to Twilio, ElevenLabs, transfer.sh, or messaging platforms.
+
+Risk: Packaged runtime data can expose prior player state or quest history.
+
+Mitigation: Delete packaged personal runtime data such as solo-leveling-data/player.json and solo-leveling-data/quest-log.json before release or installation.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/anmolmoses/skills/solo-leveling)
+- [Game Mechanics Reference](references/game-mechanics.md)
+- [Configuration Template](references/config-template.json)
+- [Balanced Preset](references/presets/balanced.json)
+- [Developer Preset](references/presets/developer.json)
+- [Fitness Preset](references/presets/fitness.json)
+- [Student Preset](references/presets/student.json)
+- [Creative Preset](references/presets/creative.json)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown and text responses with JSON configuration files and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May update local JSON player state and quest logs; call, upload, proof-collection, and scheduled-job behavior should require explicit user opt-in.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

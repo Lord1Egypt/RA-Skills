@@ -1,41 +1,58 @@
-## Description: <br>
-Automates literature research by searching arXiv, summarizing papers, creating Obsidian notes, and reporting concise research digests. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Research Pipeline automates literature discovery, paper summarization, Obsidian note creation, and brief research digests for Chopin's academic work.
 
-## Publisher: <br>
-[shaopanguo](https://clawhub.ai/user/shaopanguo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shaopanguo](https://clawhub.ai/user/shaopanguo)
 
-## Use Case: <br>
-Researchers working on formation control, event-triggered communication, and multi-agent systems use this skill to run recurring literature searches, summarize relevant papers, and maintain literature notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Unattended research updates can create Obsidian notes or send Feishu digests to an unintended location or recipient. <br>
-Mitigation: Confirm the Obsidian vault or folder, Feishu recipient, and delegated tool permissions before enabling scheduled execution. <br>
-Risk: Paper summaries and relevance judgments can omit nuance or overstate usefulness for a research agenda. <br>
-Mitigation: Review summarized papers and links before relying on them for academic decisions or adding them to permanent notes. <br>
+## Use Case:
 
+Researchers and academic agents use this skill to find recent papers, summarize their relevance, create Obsidian literature notes, maintain a research topic tracker, and report concise updates.
 
-## Reference(s): <br>
-- [Research Pipeline on ClawHub](https://clawhub.ai/shaopanguo/research-pipeline) <br>
-- [Research Topics Profile](references/research-topics.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown notes and concise text digests] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can create one Obsidian note per paper and a brief Feishu digest when delegated integrations are available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The workflow can write research notes and send Feishu digests without clear user opt-in or destination scoping.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Configure the skill to ask before writing notes or sending messages, and restrict destinations to explicitly approved Obsidian vault paths and Feishu recipients.
+
+Risk: Research topics, paper selections, and Obsidian vault links may expose private academic interests or work in progress.
+
+Mitigation: Review the skill before installation and use only approved research topics, vault locations, and sharing channels.
+
+Risk: Recurring cron use may repeatedly search and report on topics beyond the user's current intent.
+
+Mitigation: Limit scheduled runs to approved topics and require review of tracker changes before expanding or changing the monitored scope.
+
+## Reference(s):
+
+- [Research Topics Profile](references/research-topics.md)
+- [ClawHub Skill Page](https://clawhub.ai/shaopanguo/skills/research-pipeline)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Guidance]
+
+**Output Format:** [Markdown notes, tracker updates, and concise text digests]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create one Obsidian note per paper, update a research topic tracker, and send a brief Feishu digest when configured.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

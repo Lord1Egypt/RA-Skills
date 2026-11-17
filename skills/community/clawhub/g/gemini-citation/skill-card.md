@@ -1,41 +1,62 @@
-## Description: <br>
-Conduct evidence-based research with exact, accurate APA citations using the Gemini API's Google Search grounding feature for factual research summaries, literature reviews, and source-linked evidence. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Conduct evidence-based research with exact, accurate APA citations using the Gemini API's 'scientific citation' (Google Search grounding) feature.
 
-## Publisher: <br>
-[guoxh](https://clawhub.ai/user/guoxh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[guoxh](https://clawhub.ai/user/guoxh)
 
-## Use Case: <br>
-Developers, researchers, and research assistants use this skill to run Gemini-powered research queries that return APA-formatted answers and auditable source URLs. It is suited for literature reviews, fact-checking, and academic writing workflows that need cited, search-grounded evidence. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Research prompts are sent to Google's Gemini API using a Gemini API key. <br>
-Mitigation: Avoid entering secrets, personal data, proprietary material, or regulated information unless the deployment policy permits it. <br>
-Risk: Generated citations and claims may be incomplete or incorrect even when search grounding is enabled. <br>
-Mitigation: Manually verify important claims against the returned source URLs before relying on the output. <br>
+## Use Case:
 
+Researchers, research assistants, developers, and writers use this skill to run grounded Gemini research queries and receive cited summaries, literature-review support, fact-checking output, or structured source lists.
 
-## Reference(s): <br>
-- [Google AI Studio API key setup](https://aistudio.google.com/app/apikey) <br>
-- [Gemini Citation on ClawHub](https://clawhub.ai/guoxh/gemini-citation) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown text or JSON with generated answer text and source metadata] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires GEMINI_API_KEY and sends research prompts to Google's Gemini API with Google Search grounding enabled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: Research queries are sent to Gemini and Google Search grounding.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only where sharing the query with Gemini and Google Search grounding is acceptable.
+
+Risk: The GEMINI_API_KEY environment variable is required for API access.
+
+Mitigation: Keep the key private, scope it appropriately, and avoid committing it to skill files or logs.
+
+Risk: The google-genai dependency may change behavior over time.
+
+Mitigation: Pin or review the dependency before deployment.
+
+Risk: Grounded citations improve traceability but do not guarantee factual correctness.
+
+Mitigation: Manually verify important citations and source claims before relying on the output.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/guoxh/skills/gemini-citation)
+- [Google AI Studio API keys](https://aistudio.google.com/app/apikey)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown or JSON from a Python CLI, with grounded source titles and URLs when available.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3, google-genai, and GEMINI_API_KEY; supports model selection and text or JSON output.]
+
+## Skill Version(s):
+
+1.0.3 (source: evidence.json release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

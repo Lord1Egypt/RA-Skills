@@ -1,39 +1,54 @@
-## Description: <br>
-Implement Audit Trail Logs using OrbCafe UI (CStandardPage). Enterprise-grade React component with built-in best practices. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Implement Audit Trail Logs using OrbCafe UI (CStandardPage). Enterprise-grade React component with built-in best practices.
 
-## Publisher: <br>
-[SHENRUIYANG](https://clawhub.ai/user/SHENRUIYANG) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shenruiyang](https://clawhub.ai/user/shenruiyang)
 
-## Use Case: <br>
-Developers use this skill to add an Audit Trail Logs page to React or Next.js applications with OrbCafe UI's CStandardPage component. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill instructs users to install the third-party orbcafe-ui npm package. <br>
-Mitigation: Confirm orbcafe-ui is the intended dependency, review its npm metadata and maintainers, and pin a known version for production use. <br>
+## Use Case:
 
+Developers use this skill to add an Audit Trail Logs page to React or Next.js projects with OrbCafe UI's CStandardPage component.
 
-## Reference(s): <br>
-- [orbcafe-ui npm package](https://www.npmjs.com/package/orbcafe-ui) <br>
-- [ClawHub skill page](https://clawhub.ai/SHENRUIYANG/audit-trail-logs) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown with npm or pnpm install commands and a TypeScript React example] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes guidance to install a third-party npm package.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill instructs users to install a third-party package whose behavior may change across releases.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the orbcafe-ui package, pin an exact version, and use a lockfile before adding it to a project.
+
+Risk: Package installation in an elevated or shared environment can increase supply-chain impact if the dependency is compromised.
+
+Mitigation: Install in a normal least-privileged project environment and review dependency changes before deployment.
+
+## Reference(s):
+
+- [orbcafe-ui NPM package](https://www.npmjs.com/package/orbcafe-ui)
+- [Audit Trail Logs ClawHub page](https://clawhub.ai/shenruiyang/skills/audit-trail-logs)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash and TypeScript code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides package installation and a minimal CStandardPage implementation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

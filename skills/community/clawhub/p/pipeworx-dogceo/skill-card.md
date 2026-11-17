@@ -1,41 +1,54 @@
-## Description: <br>
-Random dog photos by breed — 120+ breeds with sub-breeds from the Dog CEO API <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Random dog photos by breed -- 120+ breeds with sub-breeds from the Dog CEO API.
 
-## Publisher: <br>
-[brucegutman](https://clawhub.ai/user/brucegutman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[brucegutman](https://clawhub.ai/user/brucegutman)
 
-## Use Case: <br>
-External users and developers use this skill to retrieve random or breed-specific dog image URLs and breed lists for chatbots, UI placeholders, pet-themed responses, and reference-photo workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Dog image and breed queries are sent to a remote Pipeworx gateway. <br>
-Mitigation: Use only for non-sensitive image lookup workflows and avoid sending confidential context in tool arguments. <br>
-Risk: The sample MCP configuration installs mcp-remote@latest at runtime. <br>
-Mitigation: Pin mcp-remote to a reviewed version for reproducible deployments. <br>
+## Use Case:
 
+External users and developers use this skill to retrieve random or breed-specific dog image URLs, list supported breeds and sub-breeds, and add reference or placeholder dog photos to agent workflows.
 
-## Reference(s): <br>
-- [Pipeworx Dog CEO Pack](https://pipeworx.io/packs/dogceo) <br>
-- [Pipeworx Dog CEO MCP Gateway](https://gateway.pipeworx.io/dogceo/mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with bash and JSON examples; MCP tool responses return dog image URLs or breed lists as text.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl for the documented API example and can be configured through mcp-remote for MCP clients.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The MCP setup runs a mutable npm package through npx and mcp-remote, increasing local execution risk for a simple image lookup skill.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, prefer a pinned and reviewed mcp-remote version, and run the skill in a constrained environment.
+
+Risk: Requests are routed through Pipeworx, so prompts or tool arguments may be sent to a third-party service.
+
+Mitigation: Avoid sending secrets, credentials, personal data, or sensitive prompts through this skill.
+
+## Reference(s):
+
+- [Pipeworx Dog CEO homepage](https://pipeworx.io/packs/dogceo)
+- [Pipeworx Dog CEO MCP endpoint](https://gateway.pipeworx.io/dogceo/mcp)
+
+## Skill Output:
+
+**Output Type(s):** [text, configuration]
+
+**Output Format:** [URLs, breed lists, and MCP configuration JSON]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl for direct examples; MCP setup uses a remote Pipeworx endpoint.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

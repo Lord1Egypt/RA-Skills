@@ -1,42 +1,58 @@
-## Description: <br>
-Access 988+ datasets from the City of Calgary open data portal, with commands to search, fetch, export, and analyze municipal datasets through the Socrata SODA API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Access 988+ datasets from the City of Calgary open data portal; search, fetch, and analyze city data on transit, environment, government, demographics, business, and more.
 
-## Publisher: <br>
-[raychanpmp](https://clawhub.ai/user/raychanpmp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[raychanpmp](https://clawhub.ai/user/raychanpmp)
 
-## Use Case: <br>
-Developers, analysts, civic technologists, and agents use this skill to discover Calgary open datasets, inspect dataset metadata, and retrieve records for analysis or export. It supports JSON, CSV, and GeoJSON workflows for transit, environment, government, demographics, health, business, and related municipal data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill makes outbound requests to data.calgary.ca and may be affected by service availability, rate limits, or upstream data changes. <br>
-Mitigation: Use the optional Socrata app token for higher limits, keep query limits scoped, and verify important results against the City of Calgary Open Data Portal. <br>
-Risk: User-supplied SODA query filters, selections, and ordering can produce incorrect, overly broad, or misleading extracts. <br>
-Mitigation: Review dataset metadata and column names before running filtered fetches, start with small limits, and validate exported CSV or GeoJSON before using it in downstream analysis. <br>
+## Use Case:
 
+External users, developers, and analysts use this skill to discover City of Calgary open datasets, inspect dataset metadata, and fetch public records through the Socrata API for analysis or export.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/raychanpmp/calgary-opendata) <br>
-- [City of Calgary Open Data Portal](https://data.calgary.ca) <br>
-- [Popular & Useful Calgary Open Data Datasets](references/datasets.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands; command results may be JSON, CSV, GeoJSON, or plain text.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses optional SOCRATA_APP_TOKEN for Socrata API rate-limit handling and caches the dataset catalogue locally for one hour.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server-resolved release evidence) <br>
+Risk: The skill can run a bundled Python CLI that contacts data.calgary.ca.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review planned commands before execution and allow network access only when the task requires live City of Calgary data.
+
+Risk: The optional SOCRATA_APP_TOKEN is sent to the City of Calgary Socrata API when configured.
+
+Mitigation: Use the token only when needed for rate-limit handling and avoid sharing sensitive or broad-scope credentials.
+
+Risk: The CLI may create a local cache of the public dataset catalog.
+
+Mitigation: Inspect or remove the script-local cache when cache retention is not desired.
+
+## Reference(s):
+
+- [City of Calgary Open Data Portal](https://data.calgary.ca)
+- [Popular & Useful Calgary Open Data Datasets](references/datasets.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON, CSV, or GeoJSON data outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May contact data.calgary.ca and may create a small local cache; SOCRATA_APP_TOKEN is optional.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence, released 2026-03-31)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

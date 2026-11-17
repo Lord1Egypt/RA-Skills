@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """商品综合数据查询服务
 
-通过 1688 Skills 网关调用 MCP 工具 `get_offer_data`，一次性返回商品的：
+通过 1688 Skills 网关调用 MCP 工具 `alibaba.1688.get.offer.data`，一次性返回商品的：
     profile / performance / huopan / search_issues / purchase_factors
     / sycm_anomaly / ad_analysis / hotwords / hot_items
 """
@@ -25,8 +25,8 @@ ALLOWED_MODULES = {
     "all",
 }
 
-# MCP 工具网关路径（code = get_offer_data，版本固定 1.0.0）
-_API_PATH = "/api/get_offer_data/1.0.0"
+# MCP 工具网关路径（code = alibaba.1688.get.offer.data，版本固定 1.0.0）
+_API_PATH = "/api/alibaba.1688.get.offer.data/1.0.0"
 
 
 def _normalize_modules(modules: Optional[Union[str, Iterable[str]]]) -> str:
@@ -58,13 +58,20 @@ def _normalize_modules(modules: Optional[Union[str, Iterable[str]]]) -> str:
     return ",".join(deduped)
 
 
-def get_offer_data(offer_id: str, modules: Optional[Union[str, Iterable[str]]] = "all") -> dict:
+def get_offer_data(
+    offer_id: str,
+    modules: Optional[Union[str, Iterable[str]]] = "all",
+    login_id: str = None,
+    timeout: int = 120,
+    deadline=None,
+) -> dict:
     """获取商品综合数据。
 
     Args:
         offer_id: 1688 商品 ID（字符串）
         modules:  数据模块，可传字符串（逗号分隔）或可迭代对象。
                   默认 "all"，即拉取全部维度。
+        login_id: 目标店铺的 loginId（多店场景），不传则使用当前登录态。
 
     Returns:
         网关返回的 data 字段（dict 结构，按模块组织）。
@@ -76,8 +83,10 @@ def get_offer_data(offer_id: str, modules: Optional[Union[str, Iterable[str]]] =
         "offer_id": str(offer_id).strip(),
         "modules": _normalize_modules(modules),
     }
+    if login_id:
+        payload["NEWTON_SHOP_LOGIN_ID"] = login_id
 
-    data = api_post(_API_PATH, payload, timeout=120)
+    data = api_post(_API_PATH, payload, timeout=timeout, _deadline=deadline)
 
     if data is None:
         raise ServiceError("商品数据为空，请确认 offer_id 是否归属当前账号")

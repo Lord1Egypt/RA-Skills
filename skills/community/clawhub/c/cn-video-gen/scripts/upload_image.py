@@ -11,7 +11,7 @@ import urllib.error
 import os
 
 IMGURL_UID = os.environ.get("IMGURL_UID", "rrbhyq")
-IMGURL_TOKEN = os.environ.get("IMGURL_TOKEN", "sk-Um9dYCP0yGsGUjER3jH88T3ybd1S0n2GgByDOyfq8zISWi6H604qtGn7N3Bza")
+IMGURL_TOKEN = os.environ.get("IMGURL_TOKEN", "REDACTED-SECRET")
 IMGURL_API = "https://www.imgurl.org/api/v2/upload"
 
 

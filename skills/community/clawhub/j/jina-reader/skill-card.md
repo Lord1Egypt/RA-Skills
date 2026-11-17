@@ -1,41 +1,54 @@
-## Description: <br>
-Jina Reader extracts clean web content through the Jina AI Reader API for URL-to-markdown reading, web search with full content, and fact-check grounding without exposing the host server IP. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Web content extraction via Jina AI Reader API. Three modes: read (URL to markdown), search (web search + full content), ground (fact-checking). Extracts clean content without exposing server IP.
 
-## Publisher: <br>
-[ericsantos](https://clawhub.ai/user/ericsantos) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ericsantos](https://clawhub.ai/user/ericsantos)
 
-## Use Case: <br>
-Developers and agents use this skill to fetch clean web content, run Jina-powered search, and fact-check statements while keeping the host server's IP out of direct target-site requests. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Requested URLs, search queries, CSS selectors, and fact-check text are sent to Jina AI's external service. <br>
-Mitigation: Avoid secrets, private intranet links, regulated data, personal data, credentials, and confidential business material unless that third-party processing is acceptable. <br>
-Risk: The skill can use a JINA_API_KEY credential from the environment or local config. <br>
-Mitigation: Store the API key securely and keep ~/.config/jina/api_key readable only by the local user. <br>
+## Use Case:
 
+Developers and agents use this skill to retrieve clean web page content, perform web searches with extracted result content, and fact-check statements through Jina AI Reader endpoints.
 
-## Reference(s): <br>
-- [Jina Reader](https://jina.ai/reader) <br>
-- [ClawHub skill page](https://clawhub.ai/ericsantos/jina-reader) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, guidance] <br>
-**Output Format:** [Shell output as Markdown, plain text, or JSON] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl and jq. May use JINA_API_KEY from the environment or ~/.config/jina/api_key.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.2 (source: server release evidence) <br>
+Risk: Submitted URLs, search terms, page targets, and fact-check statements are sent to Jina AI for third-party processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not use the skill with private intranet URLs, secrets, regulated data, or confidential research topics unless third-party processing is approved.
+
+Risk: API keys can be exposed on shared systems if stored or handled casually.
+
+Mitigation: Prefer JINA_API_KEY from an environment variable or a managed secret store, and keep file-based credentials restricted to the local user.
+
+## Reference(s):
+
+- [Jina Reader](https://jina.ai/reader)
+- [ClawHub Skill Page](https://clawhub.ai/ericsantos/skills/jina-reader)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, guidance]
+
+**Output Format:** [Markdown, plain text, or JSON returned by the Jina AI Reader API wrapper]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl and jq; may use JINA_API_KEY from the environment or ~/.config/jina/api_key.]
+
+## Skill Version(s):
+
+0.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

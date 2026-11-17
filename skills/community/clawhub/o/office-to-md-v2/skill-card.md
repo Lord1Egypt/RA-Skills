@@ -1,41 +1,61 @@
-## Description: <br>
-Converts PDF, DOC, DOCX, and PPTX office documents to Markdown with legacy .doc extraction support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert PDF, DOC, DOCX, and PPTX office documents to Markdown with legacy .doc text extraction and basic formatting preservation.
 
-## Publisher: <br>
-[Lkyyyy320](https://clawhub.ai/user/Lkyyyy320) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[lkyyyy320](https://clawhub.ai/user/lkyyyy320)
 
-## Use Case: <br>
-Developers and engineers use this skill to convert office documents into Markdown so agents can read, summarize, analyze, or process document content in text-oriented workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The security scan reports automatic Python package installation and raw shell commands on user-controlled file paths. <br>
-Mitigation: Use trusted documents and safely named paths; prefer preinstalling python-pptx and replacing shell-string execution with argument-array execution before deployment. <br>
-Risk: Converted document text, preview output, file paths, errors, and stack traces may expose confidential document information. <br>
-Mitigation: Run the skill only where logs and output locations are controlled, and avoid confidential documents unless those controls are in place. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/Lkyyyy320/office-to-md-v2) <br>
-- [OpenClaw office-to-md documentation](https://docs.openclaw.ai/skills/office-to-md) <br>
+## Use Case:
 
+Developers and agent users use this skill to convert office documents into Markdown for reading, analysis, and downstream agent workflows. It is most relevant when extracting text from PDFs, Word documents, legacy .doc files, or PowerPoint presentations.
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, text, files] <br>
-**Output Format:** [Markdown files with JSON or console status output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes a .md file next to the source document and may include preview text, output path, file type, and conversion statistics.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata; artifact package metadata lists 2.0.0 and nested converter metadata lists 1.0.0) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: PPTX conversion may run shell commands from crafted filenames.
+
+Mitigation: Convert only trusted PPTX files in a constrained workspace, normalize filenames before conversion, and do not run the skill with privileged accounts.
+
+Risk: The skill may install Python packages automatically during conversion.
+
+Mitigation: Install dependencies explicitly in a controlled environment before use and restrict unexpected package installation during conversion.
+
+Risk: Converted Markdown, previews, logs, or agent responses may expose source document content.
+
+Mitigation: Avoid confidential files unless logs and agent responses are controlled, and handle generated Markdown as document content.
+
+Risk: Generated .md files may collide with existing Markdown files beside the source document.
+
+Mitigation: Check for existing .md output paths before conversion and run the skill in a workspace where overwrites can be reviewed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lkyyyy320/skills/office-to-md-v2)
+- [OpenClaw Office to Markdown documentation](https://docs.openclaw.ai/skills/office-to-md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown files with console text and structured conversion status objects]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes a .md file next to the input document; the wrapper can also return converted Markdown, a preview, file type, and line, character, and word statistics.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

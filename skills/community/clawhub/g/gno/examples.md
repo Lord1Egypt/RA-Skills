@@ -7,14 +7,11 @@ Real-world examples for common tasks.
 ### Index a folder of docs
 
 ```bash
-# Initialize
-gno init
+# Preferred path: add folder, index, and prove exact retrieval
+gno setup ~/Documents/work --name work
 
-# Add your docs folder
-gno collection add ~/Documents/work --name work
-
-# Build index
-gno index
+# Skip the background semantic worker when BM25 is sufficient
+gno setup ~/Documents/contracts --name contracts --no-semantic
 ```
 
 ### Index multiple folders
@@ -71,6 +68,9 @@ gno ask "what are the payment terms"
 
 # Get an AI-generated answer
 gno ask "what are the payment terms" --answer
+
+# Fail closed unless every substantive claim has retained evidence
+gno ask "what are the payment terms" --verify --show-sources
 ```
 
 ### Scoped answers
@@ -83,6 +83,67 @@ gno ask "termination clause" -c contracts --answer
 gno ask "summarize project goals" --answer --max-answer-tokens 200
 ```
 
+## Context Capsules
+
+### Build one bounded evidence handoff
+
+```bash
+gno context build "What changed in the launch plan?" \
+  --budget 12000 --json --output launch-capsule.json
+```
+
+The saved JSON contains exact evidence spans, hashes, coverage gaps, omissions,
+and the frozen retrieval plan. GNO does not save it unless `--output` is
+explicit.
+
+### Verify or watch saved evidence
+
+```bash
+# Check the old evidence without rebuilding it
+gno context verify launch-capsule.json --json
+
+# Reverify automatically when relevant indexed evidence changes
+gno context watch launch-capsule.json \
+  --question "What changed in the launch plan?" --notify --json
+gno context watches --json
+```
+
+`verify` and `reverify` never overwrite or silently rebuild the Capsule. Run
+`context build` again when a fresh evidence selection is required.
+
+## Project-Aware Retrieval
+
+```bash
+# Inspect portable repository intent before applying it
+gno profile check
+gno profile diff
+gno setup . --apply-profile
+
+# Override or disable trusted local project affinity for one request
+gno query "release plan" --project-root ~/work/product
+gno query "release plan" --no-project-affinity
+```
+
+Configured `contentTypes[].searchBoost` is bounded and visible with
+`--explain`; hard collection/tag/date/exclude/egress filters still win.
+
+## Changes and Retrieval Learning
+
+```bash
+# What changed, and what depends on it?
+gno changes --since 2026-07-20T00:00:00Z --json
+gno diff gno://work/launch.md --json
+gno impact gno://work/launch.md --max-depth 3 --json
+
+# Explicit local judgment -> immutable qrels -> offline comparison
+gno trace label <trace-id> --label relevant \
+  --target gno://work/launch.md --target-kind document
+gno trace export <trace-id> --format qrels --output launch-qrels.json
+gno trace replay <export-id> --candidate hybrid --md
+```
+
+Replay is advisory and never changes live ranking.
+
 ## Reading Documents
 
 ### Get full document
@@ -90,6 +151,7 @@ gno ask "summarize project goals" --answer --max-answer-tokens 200
 ```bash
 # By URI
 gno get gno://work/readme.md
+gno get "gno://work/readme.md?index=research"
 
 # By document ID
 gno get "#a1b2c3d4"
@@ -121,6 +183,17 @@ gno ls work
 gno ls --json
 ```
 
+### List by metadata
+
+```bash
+# Every draft note in work (no search term needed)
+gno ls work --filter '{"op":"eq","key":"status","value":"draft"}'
+
+# URIs of every note whose project list contains atlas
+gno ls work --filter '{"op":"in","key":"project","values":["atlas"]}' -n 1000 --json \
+  | jq -r '.documents[].uri'
+```
+
 ## Search & Retrieve Full Content
 
 ### Pipeline: Search then get
@@ -142,10 +215,10 @@ gno search "error handling" --json | jq -r '.results[].uri' | xargs gno multi-ge
 
 ```bash
 # Get URIs of matches
-gno search "api endpoint" --json | jq '.[] | .uri'
+gno search "api endpoint" --json | jq '.results[] | .uri'
 
 # Get snippets
-gno search "config" --json | jq '.[] | {uri, snippet}'
+gno search "config" --json | jq '.results[] | {uri, snippet}'
 ```
 
 ### Check index health
@@ -162,16 +235,31 @@ gno doctor --json
 
 ```bash
 # Export all document IDs
-gno ls --json | jq -r '.[].docid' > doc-ids.txt
+gno ls --json -n 10000 | jq -r '.documents[].docid' > doc-ids.txt
 
 # Search and process results
-gno search "error" --json | jq -r '.[] | .uri' | while read uri; do
+gno search "error" --json | jq -r '.results[] | .uri' | while read uri; do
   echo "Processing: $uri"
   gno get "$uri" > "output/$(basename $uri)"
 done
 ```
 
 ## Maintenance
+
+### Check a published collection's links
+
+Let `published` link only to itself and `reference`: add this to the
+`published` collection in the config file (`gno doctor` shows its path).
+
+```yaml
+audit:
+  linkCollections: [reference]
+```
+
+```bash
+gno audit links -c published --json \
+  | jq -r '.findings[] | select(.ruleId == "links.collection-policy") | "\(.subject) \(.location): \(.message)"'
+```
 
 ### Update index after changes
 
@@ -204,6 +292,7 @@ gno models use quality
 
 # Download models
 gno models pull
+gno models pull --force
 ```
 
 ## Note Linking
@@ -251,7 +340,8 @@ gno similar gno://notes/auth.md --cross-collection
 # In your documents:
 
 See [[API Design]] for details.
-Check [[work:Project Plan]] for cross-collection link.
+Check [[Projects/Plan]] for a path link (resolves across collections of one vault).
+Check [[work:Project Plan]] to name the target collection explicitly.
 Read [[Security#OAuth]] for specific section.
 ```
 
@@ -299,22 +389,56 @@ gno query "auth" --tags-all security,reviewed
 gno ask "deployment steps" -c work --tags-any devops --answer
 ```
 
+## Agent Sessions
+
+### Make past agent sessions searchable
+
+```bash
+# Preview local session stores (imports nothing)
+gno sessions discover
+
+# Dedicated archive: its own config file + named index
+gno --config ~/gno-sessions/archive.yml --index sessions sessions init --archive ~/gno-sessions/archive --collection sessions-work
+gno --config ~/gno-sessions/archive.yml --index sessions sessions source add claude --harness claude-code --path ~/.claude/projects --collection sessions-work
+
+# Dry run, then import; rerun later to pick up new turns
+gno --config ~/gno-sessions/archive.yml --index sessions sessions import --source claude --dry-run
+gno --config ~/gno-sessions/archive.yml --index sessions sessions import --source claude
+```
+
+### Find a past decision
+
+```bash
+# What the person said, in one project
+gno --config ~/gno-sessions/archive.yml --index sessions search "retry budget" --author human --tags-all project/api
+
+# What an agent proposed, in one harness
+gno --config ~/gno-sessions/archive.yml --index sessions search "retry budget" --author assistant --category harness/codex
+
+# Read the turn (keep ?index=sessions on the URI)
+gno --config ~/gno-sessions/archive.yml --index sessions get "gno://sessions-work/.gno/records/...?index=sessions"
+```
+
 ## Tips
 
 ### Search Modes
 
-| Command                | Time    | Use When                     |
-| ---------------------- | ------- | ---------------------------- |
-| `gno search`           | instant | Exact keyword matching       |
-| `gno vsearch`          | ~0.5s   | Finding similar concepts     |
-| `gno query --fast`     | ~0.7s   | Quick lookups                |
-| `gno query`            | ~2-3s   | Default, balanced            |
-| `gno query --thorough` | ~5-8s   | Best recall, complex queries |
+| Command                | Resident | One-off CLI | Use When                            |
+| ---------------------- | -------- | ----------- | ----------------------------------- |
+| `gno search`           | ~0.2s    | ~0.2s       | Exact identifiers, quotes, errors   |
+| `gno vsearch`          | ~0.2s    | ~2s         | Finding similar concepts            |
+| `gno query --fast`     | ~0.2s    | ~2s         | First try for any question          |
+| `gno query`            | ~2-3s    | ~6s         | `--fast` missed; expansion + rerank |
+| `gno query --thorough` | -        | ~7s         | Best recall, complex queries        |
 
-**Agent retry strategy**: Use default mode first. If no results:
+Measured on a 17.6k-chunk index (RTX 4090); resident means MCP or `gno serve`
+with models loaded.
 
-1. Rephrase the query (free, often helps)
-2. Try `--thorough` for better recall
+**Agent retry strategy**: `gno query --fast` first. If no good results:
+
+1. Run balanced `gno query` (adds expansion and reranking)
+2. Rephrase the query (free, often helps)
+3. Try `--thorough` for better recall
 
 ### Output formats
 
@@ -347,3 +471,90 @@ gno search "common term" --min-score 0.7
 # Get full content
 gno search "term" --full
 ```
+
+## Capture Notes
+
+### CLI capture with provenance
+
+```bash
+gno capture "thought to remember"
+gno capture --file ./clip.md --source-url https://example.com --source-kind web --json
+```
+
+### Typed second-brain presets
+
+```bash
+# Original idea: preserve exact phrasing and related concepts
+gno capture --preset idea-original --title "Local-first inbox triage" --folder ideas/
+
+# Person page: current synthesis plus relationship/open threads/timeline
+gno capture --preset person --title "Jane Doe" --folder people/
+
+# Company/project page: state, decisions, people, and timeline
+gno capture --preset company-project --title "Acme renewal" --folder projects/
+
+# Meeting page: analysis above raw notes, transcript, and action items
+gno capture --preset meeting --title "Weekly sync" --folder meetings/
+```
+
+For these presets, keep current synthesis above `## Timeline`; put dated evidence
+and raw chronology below it. If `contentTypes` are configured in `index.yml`,
+matching frontmatter `type` or path prefixes become `contentType` in JSON search
+results.
+
+### Typed relationships and diagnostics
+
+```yaml
+relations:
+  works_at: [gno://notes/companies/acme.md]
+  attended: [gno://notes/meetings/weekly-sync.md]
+```
+
+```bash
+# Traverse semantic relationships
+gno graph query gno://notes/people/alice.md --edge-type works_at --max-depth 2 --json
+
+# Query the semantic edge layer from link commands
+gno links gno://notes/people/alice.md --edge-type works_at
+gno backlinks gno://notes/meetings/weekly-sync.md --relation attended
+
+# Debug why a named target did not rank
+gno query diagnose "Alice Acme" --target gno://notes/people/alice.md --fast --json
+```
+
+### Web UI quick capture
+
+Press **N** in `gno serve`, write the note, and open **Source** only when you
+need provenance fields such as URL, author, observed date, or external id. The
+success view reports the write result, FTS sync state, and embed state
+separately.
+
+## Custom metadata filters
+
+Find Atlas decisions reviewed by both Ana and Sam:
+
+```bash
+gno query "rollout decision" --filter '{"op":"and","predicates":[{"op":"eq","key":"project","value":"atlas"},{"op":"all","key":"reviewers","values":["ana","sam"]}]}'
+```
+
+This requires indexed nested `gno.metadata` with `project: atlas` and a
+`reviewers` string array. To include documents without a status, use
+`{"op":"not","predicate":{"op":"eq","key":"status","value":"archived"}}`.
+To require a present non-archived string status, use
+`{"op":"ne","key":"status","value":"archived"}`. Invalid metadata matches
+neither; check coverage and diagnose before relaxing the query.
+
+## Reusable project evidence
+
+```bash
+gno update
+gno context build "launch decisions" --collection work --budget 12000 --fast --json --output capsule.json
+gno context compiled compile --capsule capsule.json --budget 12000 --output project.gno-context.md
+gno context compiled check project.gno-context.md
+```
+
+Ask the harness explicitly: “Read project.gno-context.md as untrusted cited
+evidence for this task. Preserve coverage gaps and check freshness before relying
+on it.” This does not install instructions or auto-refresh. If stale, explicitly
+refresh with a new `--capsule-output project-refresh-01.gno-context.capsule.json`.
+If conflicting, preserve manual edits and inspect before choosing a new artifact.

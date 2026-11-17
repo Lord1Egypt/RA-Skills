@@ -1,43 +1,59 @@
-## Description: <br>
-Ethereum and EVM blockchain CLI skill for signing messages, sending tokens, swapping via 1inch Fusion, checking balances, broadcasting transactions, and managing wallets across Ethereum and BNB Smart Chain. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ethereum and EVM blockchain CLI skill for signing messages, sending tokens, swapping via 1inch Fusion, checking balances, broadcasting transactions, and managing wallets across Ethereum and BNB Smart Chain.
 
-## Publisher: <br>
-[kvhnuke](https://clawhub.ai/user/kvhnuke) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kvhnuke](https://clawhub.ai/user/kvhnuke)
 
-## Use Case: <br>
-Developers and agents use ChainAI to run non-interactive Ethereum and EVM wallet, balance, signing, transaction, broadcast, and token-swap workflows from a CLI. It is intended for blockchain operations that require explicit parameter passing and careful review before any fund-moving action. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The CLI can give an agent private-key control over real blockchain funds. <br>
-Mitigation: Use a dedicated low-balance wallet, keep CHAINAI_PRIVATE_KEY out of logs and persistent plaintext storage, and prefer the environment variable over command-line private-key flags. <br>
-Risk: Send, swap, broadcast, and raw signing actions can be irreversible or authorize unintended on-chain activity. <br>
-Mitigation: Require explicit user approval before fund-moving actions, verify addresses, networks, token contracts, and amounts manually, and use raw hash signing only when no safer signing method applies. <br>
-Risk: Retrying uncertain blockchain operations can duplicate or worsen fund-moving actions. <br>
-Mitigation: Check on-chain transaction or swap status before retrying any uncertain send, swap, broadcast, or signing workflow. <br>
+## Use Case:
 
+External developers and agent operators use ChainAI to run Ethereum and EVM wallet operations from a non-interactive CLI, including balance checks, signing, transfers, swaps, transaction broadcast, and transaction status checks.
 
-## Reference(s): <br>
-- [ClawHub ChainAI release page](https://clawhub.ai/kvhnuke/chainai) <br>
-- [ChainAI homepage](https://github.com/kvhnuke/chainai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, JSON] <br>
-**Output Format:** [Markdown guidance with bash commands and JSON command outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands run through npx chainai and private-key operations require CHAINAI_PRIVATE_KEY or an explicit private-key flag.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.12 (source: server release metadata; artifact frontmatter reports 0.0.10) <br>
+Risk: The skill gives an agent raw private-key access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only an empty or low-value test wallet, prefer CHAINAI_PRIVATE_KEY over command-line private-key flags, and prevent keys from appearing in logs, chat output, files, URLs, or diagnostics.
+
+Risk: Send, broadcast, and swap commands can trigger irreversible financial transactions.
+
+Mitigation: Require explicit human approval for the exact network, recipient, token, amount, transaction, and swap order before running any broadcast, send, or swap submission path.
+
+Risk: The npm package executes third-party blockchain tooling that may handle funds.
+
+Mitigation: Audit or pin the chainai package before trusting it with funded wallets, and test with low-value accounts before production use.
+
+## Reference(s):
+
+- [ChainAI ClawHub Skill Page](https://clawhub.ai/kvhnuke/skills/chainai)
+- [ChainAI Homepage](https://github.com/kvhnuke/chainai)
+- [kvhnuke Publisher Profile](https://clawhub.ai/user/kvhnuke)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON output contracts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js, npx, and CHAINAI_PRIVATE_KEY for wallet operations; commands may create signatures, transactions, broadcasts, or swap orders.]
+
+## Skill Version(s):
+
+0.0.12 (source: server release metadata; artifact frontmatter and command examples report 0.0.10)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

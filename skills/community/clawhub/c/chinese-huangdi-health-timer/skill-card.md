@@ -1,41 +1,57 @@
-## Description: <br>
-Provides 12 traditional Chinese medicine energy cycles with three daily wellness tips in Chinese or English, defaulting to the Asia/Shanghai timezone. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides traditional Chinese medicine body-clock cycles with time-based meridian names and concise wellness tips.
 
-## Publisher: <br>
-[amazingTest](https://clawhub.ai/user/amazingTest) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[amazingtest](https://clawhub.ai/user/amazingtest)
 
-## Use Case: <br>
-External users and agent operators use this skill to generate time-of-day Huangdi-style wellness reminders mapped to 12 traditional meridian cycles. The guidance should be treated as lifestyle content, not medical advice. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Wellness tips may be mistaken for medical advice. <br>
-Mitigation: Present outputs as general lifestyle reminders and avoid relying on them for diagnosis, treatment, or urgent health decisions. <br>
-Risk: The broad "health" trigger may activate the skill in unrelated health conversations. <br>
-Mitigation: Use the skill when Huangdi-style wellness reminders are desired and review generated tips for relevance before sharing them. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/amazingTest/chinese-huangdi-health-timer) <br>
-- [Artifact skill description](artifact/SKILL.md) <br>
-- [Artifact health tips data](artifact/health-tips.json) <br>
+## Use Case:
 
+External users and wellness-focused agent workflows use this skill to identify the current Huangdi body-clock cycle and present short, general wellness tips. The content should be treated as wellness information, not medical guidance.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown with structured time-cycle wellness tips] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces three non-repeating tips for the active cycle; output may vary by language and timezone settings.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Users may mistake the wellness tips for medical guidance.
+
+Mitigation: Present the tips as general wellness content and direct medical questions to qualified professionals.
+
+Risk: Broad triggers such as "health" may activate the skill in unrelated conversations.
+
+Mitigation: Use narrower Huangdi or body-clock trigger phrases when broad activation is not desired.
+
+Risk: English-language users may expect English output while the bundled tips are Chinese.
+
+Mitigation: Set expectations that bundled tips are Chinese or add a translation step before presenting them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/amazingtest/skills/chinese-huangdi-health-timer)
+- [Publisher profile](https://clawhub.ai/user/amazingtest)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain text wellness-tip response]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses 12 two-hour cycles and three short tips per cycle; content is non-executable.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

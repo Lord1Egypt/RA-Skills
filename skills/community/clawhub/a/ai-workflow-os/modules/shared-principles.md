@@ -1,15 +1,16 @@
 # Shared Principles / 共享原则
 
-- Keep workflows bilingual but do not duplicate unnecessary text.
-- Prefer structured records over long narrative logs.
-- Separate planning, execution memory, research intake, and knowledge synthesis.
-- Do not archive or upload sensitive content without confirmation.
-- Keep provenance and audit trails for decisions.
-- When uncertain, stage and ask for review instead of permanently archiving.
+Use these rules for every fallback or combined route:
 
-- 保持双语，但不要无意义重复。
-- 优先使用结构化记录，而不是冗长叙述。
-- 区分规划、执行记忆、资料接入和知识综合。
-- 未经确认，不归档或上传敏感内容。
-- 对重要决策保留来源和审计记录。
-- 不确定时先暂存并请求审核，不直接永久归档。
+1. Assign one owner to each state surface; do not create competing target, status, research, loop, or acceptance files.
+2. Prefer current authority and current evidence over historical status text.
+3. Separate facts, source statements, interpretations, assumptions, recommendations, and Owner decisions.
+4. No evidence means no completion or acceptance claim.
+5. `Developer Complete`, `Verified`, and `Accepted` are distinct.
+6. Do not change targets, Non-Goals, architecture/data boundaries, production, credentials, or irreversible behavior without clear authority.
+7. Do not archive or upload sensitive content without confirmation.
+8. Preserve provenance, exact verification outcomes, residual risk, and audit history.
+9. When uncertain, use `cannot-confirm`, stage for review, or mark `TBD - Owner Confirmation Required`.
+10. Keep bilingual resources available, but answer in the user's language rather than duplicating every sentence.
+
+所有回退或组合流程都必须遵守：一个状态面只有一个权威写入者；当前权威和当前证据优先；没有证据不宣称完成；Developer Complete、Verified、Accepted 分开；重要边界变化必须由 Owner 明确确认；敏感资料不自动归档或上传；不确定时使用 `cannot-confirm`、暂存审核或 `TBD - Owner Confirmation Required`。

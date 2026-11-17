@@ -1,47 +1,62 @@
-## Description: <br>
-Prepares users for upcoming meetings or events by selecting a next-day calendar event, researching the topic and participants, producing an executive summary, and generating a 3-5 minute audio briefing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Prepare a user for an upcoming meeting or event by listing next-day calendar events, prompting for a selection, researching the topic and participants, producing an executive summary, and generating a fully produced 3-5 minute audio briefing.
 
-## Publisher: <br>
-[sourishkrout](https://clawhub.ai/user/sourishkrout) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sourishkrout](https://clawhub.ai/user/sourishkrout)
 
-## Use Case: <br>
-Employees and external-facing teams use this skill to prepare for customer, investor, executive, partner, or event meetings with concise research, participant notes, recommended questions, and an audio briefing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow may use calendar metadata and selected meeting details. <br>
-Mitigation: Use pasted or sanitized event summaries for confidential meetings and limit attendee details to what is needed for preparation. <br>
-Risk: Research and audio generation may involve external services. <br>
-Mitigation: Use Contextual.ai and the selected audio provider only when their data handling is acceptable for the meeting contents. <br>
-Risk: Participant or topic research can become misleading if claims are weakly sourced. <br>
-Mitigation: Ground material claims in credible sources, label low-confidence inferences, and avoid unsupported speculation or rumor-based profiling. <br>
+## Use Case:
 
+Employees and external-facing teams use this skill to prepare for high-stakes meetings by selecting a next-day calendar event, researching the topic and public participant context, and receiving a concise written prep package plus a 3-5 minute audio briefing.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/sourishkrout/imposter-smasher) <br>
-- [Workflow Rubric](references/workflow-rubric.md) <br>
-- [Source Credibility Rubric](references/source-credibility-rubric.md) <br>
-- [Executive Summary Template](references/executive-summary-template.md) <br>
-- [Audio Brief Template](references/audio-brief-template.md) <br>
-- [Implementation Notes](references/implementation-notes.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, audio] <br>
-**Output Format:** [Markdown executive summaries, plain-text narration scripts, JSON audio manifests, MP3 or WAV audio artifacts, and artifact paths or links.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Targets a 3-5 minute spoken runtime and includes source citations and confidence labels where evidence is weak.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The workflow may expose next-day calendar details and selected meeting context to Contextual.ai and an audio provider such as ElevenLabs or Chatterbox.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for meetings approved for those third-party data flows, and avoid confidential meetings unless the user has approval.
+
+Risk: Meeting research may include weak or stale public information about topics or participants.
+
+Mitigation: Apply the source credibility rubric, cite attributable sources, distinguish facts from inferences, and lower confidence when evidence is weak.
+
+Risk: Generated prep guidance could create overconfident or misleading meeting recommendations.
+
+Mitigation: Keep the briefing concise, include explicit risks and unknowns, and require user review before acting on recommendations.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/sourishkrout/skills/imposter-smasher)
+- [Workflow Rubric](references/workflow-rubric.md)
+- [Source Credibility Rubric](references/source-credibility-rubric.md)
+- [Executive Summary Template](references/executive-summary-template.md)
+- [Audio Brief Template](references/audio-brief-template.md)
+- [Implementation Notes](references/implementation-notes.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, audio, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown executive summary, plain-text audio script, JSON audio manifest, and MP3 or WAV audio artifact paths or links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Targets a 180-300 second spoken briefing and labels confidence for uncertain claims.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -20,7 +20,6 @@
 // See SECURITY_SCAN_NOTES.md ("Shell command execution").
 
 const fs = require('fs');
-const path = require('path');
 const { spawnSync } = require('child_process');
 
 function runSkillCli(options) {
@@ -29,7 +28,9 @@ function runSkillCli(options) {
     throw new TypeError('runSkillCli: skillDir is required');
   }
 
-  const { normalizeSkillMetadata } = require('./skills');
+  /** @type {Record<string, (...args: any[]) => any>} */
+  const skillsApi = require('./skills');
+  const { normalizeSkillMetadata } = skillsApi;
   const skill = normalizeSkillMetadata(skillDir);
   if (!fs.existsSync(skill.cliEntry)) {
     throw new Error(`技能 ${skill.id} 缺少 CLI 入口: ${skill.cliEntry}`);

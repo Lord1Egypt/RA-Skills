@@ -16,9 +16,11 @@ Pulls your sleep, heart rate, HRV, calendar, and weather — then composes a bri
 
 1. Install prerequisites: `uv` and `jq`
 2. Authorize: `uv tool run fulcra-api auth login` (one-time, the user approves; the CLI can create the account if needed). Fulcra accounts include 5 GB of storage free forever and do not require an API key. For remote agents, surface only the printed device URL and code to the intended user in chat through the active trusted user channel; never send access tokens or credential files.
-3. Install or place `fulcra-context` next to this skill, or set `FULCRA_CONTEXT_SCRIPTS=/path/to/fulcra-context/scripts`
+3. Optional: set `FULCRA_CONTEXT_SCRIPTS=/path/to/local/service/scripts` only if your host provides a local `fulcra_data_service.py`; the published `fulcra-context` skill is docs-first and does not ship helper scripts.
 4. Collect data: `python3 collect_briefing_data.py --location "Your+City"`
 5. Agent reads the JSON and composes a briefing using the tone rules in SKILL.md
+
+The collector runs `data-updates` when available and includes only a compact freshness summary. Treat it as a stale-data diagnostic, not as sleep/calendar facts.
 
 Users who want biometrics, location, calendar, and other phone-collected context can install the [Context iOS app](https://apps.apple.com/app/id1633037434) and sign in with the same account. The app uses the same free storage and is no longer subscription gated. Android is coming soon.
 
@@ -41,4 +43,4 @@ Pair with `fulcra-annotations` when a morning workflow should write user-approve
 - [Fulcra Platform](https://fulcradynamics.com)
 - [Context iOS App](https://apps.apple.com/app/id1633037434)
 - [Python Client](https://github.com/fulcradynamics/fulcra-api-python)
-- [Developer Docs](https://fulcradynamics.github.io/developer-docs/)
+- [Developer Docs](https://docs.fulcradynamics.com)

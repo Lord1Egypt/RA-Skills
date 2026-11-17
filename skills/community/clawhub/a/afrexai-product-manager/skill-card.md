@@ -1,40 +1,54 @@
-## Description: <br>
-Complete product management system for discovery, prioritization, roadmapping, metrics, and cross-functional leadership. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Complete product management system for discovery, prioritization, roadmapping, metrics, and cross-functional leadership.
 
-## Publisher: <br>
-[1kalin](https://clawhub.ai/user/1kalin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[1kalin](https://clawhub.ai/user/1kalin)
 
-## Use Case: <br>
-Product managers, founders, and cross-functional product teams use this skill to structure strategy, discovery, prioritization, roadmaps, specifications, launch plans, metrics, stakeholder updates, and product health reviews. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Broad activation language may cause the skill to apply its product-management framework to ordinary product or planning prompts. <br>
-Mitigation: Invoke it explicitly with /pm prompts when that framework is desired, and use a narrower skill for specialized workflows. <br>
-Risk: Product recommendations may be incomplete or misleading when used without current customer evidence, market data, metrics, or organizational constraints. <br>
-Mitigation: Treat outputs as drafts and validate them with user research, product analytics, stakeholder review, and any required legal or compliance checks before execution. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Product Management OS on ClawHub](https://clawhub.ai/1kalin/afrexai-product-manager) <br>
-- [AfrexAI Context Packs](https://afrexai-cto.github.io/context-packs/) <br>
+## Use Case:
 
+Product managers, founders, and product teams use this skill to structure product strategy, discovery, prioritization, roadmaps, specifications, launches, metrics, and stakeholder communication.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown prose with YAML templates, checklists, scorecards, and structured product-management frameworks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Content-only guidance with no external tools or runtime dependencies.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill has broad activation wording and may be applied in general product conversations.
+
+Mitigation: Use explicit prompts when you want this product-management framework applied, and state when you do not want the framework used.
+
+Risk: Product recommendations may be incomplete or unsuitable if the agent lacks current customer, market, legal, or business context.
+
+Mitigation: Review outputs against current business goals, customer evidence, stakeholder constraints, and applicable legal or compliance requirements before making product decisions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/1kalin/skills/afrexai-product-manager)
+- [Publisher Profile](https://clawhub.ai/user/1kalin)
+- [AfrexAI Context Packs](https://afrexai-cto.github.io/context-packs/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown and structured text with YAML-style templates and checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution, external tool calls, credentials, or persistent behavior are described in the security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

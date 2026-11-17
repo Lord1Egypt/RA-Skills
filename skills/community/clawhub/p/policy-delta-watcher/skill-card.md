@@ -1,52 +1,65 @@
-## Description: <br>
-Compares old and new policies or procedures and drafts a structured summary of the main changes, business impacts, process impacts, documents to update, training suggestions, and open questions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Compares old and new policies or procedures and drafts a structured impact report covering key changes, business impacts, process impacts, documentation updates, training suggestions, and open questions.
 
-## Publisher: <br>
-[52YuanChangXing](https://clawhub.ai/user/52YuanChangXing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[52yuanchangxing](https://clawhub.ai/user/52yuanchangxing)
 
-## Use Case: <br>
-Employees, compliance teams, operations teams, and developers use this skill to turn old and new policy materials plus affected-team context into reviewable Markdown or JSON change briefs. It is intended for policy, diff, governance, and compliance workflows, not legal determinations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Policy inputs may contain sensitive or personal information. <br>
-Mitigation: Use only inputs appropriate for the workspace and redact sensitive material before processing when required. <br>
-Risk: The generated brief may omit context or overstate impacts when source materials are incomplete. <br>
-Mitigation: Review the output as a draft and resolve the listed open questions before using it for process, documentation, or training changes. <br>
-Risk: Running the bundled helper with --output can replace an existing file at the chosen path. <br>
-Mitigation: Choose an intentional output path or run with --dry-run/stdout first to inspect the result. <br>
-Risk: The skill is not intended to provide legal determinations. <br>
-Mitigation: Route legal conclusions or binding compliance interpretations to qualified reviewers. <br>
+## Use Case:
 
+Employees, external reviewers, developers, and operations teams can use this skill to turn old and new policy material plus affected-team context into a reviewable policy-change impact brief. It is intended for drafting structured analysis, not for making final legal or compliance determinations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/52YuanChangXing/policy-delta-watcher) <br>
-- [Publisher profile](https://clawhub.ai/user/52YuanChangXing) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [resources/spec.json](artifact/resources/spec.json) <br>
-- [resources/template.md](artifact/resources/template.md) <br>
-- [examples/example-input.md](artifact/examples/example-input.md) <br>
-- [examples/example-output.md](artifact/examples/example-output.md) <br>
-- [tests/smoke-test.md](artifact/tests/smoke-test.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, JSON, Text, Files, Shell commands, Guidance] <br>
-**Output Format:** [Structured Markdown by default, with optional JSON wrapping from the local script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The local helper accepts --input, --output, --format, --limit, and --dry-run; using --output may replace an existing file at the selected path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Drafted policy-delta reports may be mistaken for legal, compliance, or operational approval.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated reports with responsible legal, compliance, or process owners before relying on them for decisions.
+
+Risk: Policy inputs can contain sensitive business, personal, or regulated information.
+
+Mitigation: Provide specific policy documents or excerpts, redact sensitive material where practical, and avoid broad folders or sensitive repositories.
+
+Risk: Incomplete source material can lead to missed affected teams, edge cases, or required documentation updates.
+
+Mitigation: Resolve the generated open questions and validate affected teams, process changes, and document updates before execution.
+
+Risk: The local helper script writes an output file when an output path is supplied.
+
+Mitigation: Use dry-run or stdout for review first, and confirm the output path before writing files.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/52yuanchangxing/skills/policy-delta-watcher)
+- [SKILL.md](artifact/SKILL.md)
+- [README.md](artifact/README.md)
+- [Specification](artifact/resources/spec.json)
+- [Output Template](artifact/resources/template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands, guidance]
+
+**Output Format:** [Markdown report by default; optional JSON wrapper when the local script is run with --format json.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Structured report sections include main changes, business impact, process impact, documents to update, training suggestions, and open questions.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

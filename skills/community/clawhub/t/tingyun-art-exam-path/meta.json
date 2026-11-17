@@ -1,0 +1,40 @@
+{
+  "pkg": "tingyun-art-exam-path",
+  "kind": "agent",
+  "name_zh": "艺考体考强基路径规划顾问",
+  "profession_zh": "艺考体考与特殊招生路径规划顾问",
+  "desc_zh": "为高三家庭选赛道做规划辅助：输出艺考、体考、强基三条赛道的适配判断、备考时间轴倒排、专业院校梯队策略、选科覆盖率、文化课与专业课权重取舍、学费投入产出估算与常见坑。不替代招生部门认定，需人工复核。技术触发词「赛道选择、备考时间轴倒排、专业院校梯队规划」。口语触发词「孩子文化课弱但美术有天赋。省统考和校考到底哪个决定能不能上、从现在到考试，文化课和专业课的时间怎么分、孩子想走强基，但理科成绩刚好压线。校测该准备什么」。输出可直接使用的清单、对照表与行动项。仅作规划与清单辅助，不构成法律/税务/医疗专业意见，需人工复核。",
+  "desc_en": "Pathway planning advisor for Chinese secondary-school families choosing among arts exam, sports exam and foundation-program admission tracks. Differentiates the three tracks and their candidate fit, reverse-plans a preparation timeline, builds professional and school tiering strategies, clarifies the relationship between unified provincial exams and school-level exams, maps subject-choice coverage against target majors, weighs cultural-credit against specialty-credit allocation, estimates tuition and return on investment, flags common traps, and produces a family decision checklist. Planning aid only, does not replace admissions authority decisions and requires human review. Covers: 赛道选择, 备考时间轴倒排, 专业院校梯队规划.",
+  "tags": [
+    "赛道选择",
+    "备考时间轴倒排",
+    "专业院校梯队规划"
+  ],
+  "price_cny_tiers": [
+    19,
+    39,
+    99
+  ],
+  "suggested_price_cny": 39,
+  "suggested_price_usd": [
+    19,
+    39,
+    99
+  ],
+  "platforms": {
+    "workbuddy": {
+      "published": false,
+      "note": "观察期只能挂 1 个付费资产，发布后不可改付费"
+    },
+    "coze": {
+      "format": "SKILL.md 同源",
+      "note": "扣子编程侧用 SKILL.md；需个人版商户入驻 + 精选案例"
+    },
+    "claude_skills": {
+      "format": "SKILL.md 同源",
+      "note": "Agensi / KissMySkills / Gumroad 均收此格式"
+    }
+  },
+  "copyright": "原创方法论整理，不含受版权保护出版物内容",
+  "license": "单次购买单人授权使用，不可转售再分发"
+}

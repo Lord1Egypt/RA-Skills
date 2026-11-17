@@ -1,0 +1,3 @@
+{"id":"q-definition","question":"核心概念是什么，适用范围是什么？","expected_pages":["concept-stable-id"],"must_cite":true,"allow_unknown":false,"risk":"medium","tags":["definition"]}
+{"id":"q-current-state","question":"当前有效方案是什么，旧方案为什么弃用？","expected_pages":["decision-stable-id"],"must_cite":true,"allow_unknown":false,"risk":"high","tags":["decision","freshness"]}
+{"id":"q-unknown","question":"Wiki 尚未覆盖的事实是什么？","expected_pages":[],"must_cite":false,"allow_unknown":true,"risk":"high","tags":["abstention"]}

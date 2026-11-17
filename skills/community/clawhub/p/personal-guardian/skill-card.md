@@ -1,45 +1,61 @@
-## Description: <br>
-Personal Guardian is a personal emergency-response agent that assesses SOS, vital-sign, location, and device signals to coordinate escalation, notifications, location sharing, recording, emergency-call, broadcast, and incident-review workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Personal Guardian is an emergency-assistance agent that assesses personal safety signals and drafts escalation plans for location sharing, recording, emergency-contact notification, and preauthorized emergency calls.
 
-## Publisher: <br>
-[aaalenwow](https://clawhub.ai/user/aaalenwow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aaalenwow](https://clawhub.ai/user/aaalenwow)
 
-## Use Case: <br>
-External users and developers use this skill to model, configure, or simulate personal emergency response flows that escalate from risk detection to contact notification, location sharing, emergency-service outreach, and incident review. Real emergency integrations require explicit authorization, local-law review, and tested cancellation paths before use. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global; emergency-calling, privacy, health-data, and broadcast behavior must be localized to the user's jurisdiction before real-world deployment. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad autonomous access to microphones, cameras, health data, location, calling, messaging, social broadcast, nearby broadcast, and drone channels could expose sensitive information or trigger unwanted actions. <br>
-Mitigation: Keep all real integrations disabled by default and enable each channel only after explicit user configuration, consent, and authorization checks. <br>
-Risk: False alarms or mistaken escalation could notify contacts, call emergency services, or broadcast user location unnecessarily. <br>
-Mitigation: Test cancellation and override flows, verify emergency-call authorization, and require localized escalation rules before connecting live phone, SMS, or emergency-service channels. <br>
-Risk: Incident audio, location traces, contacts, and health signals are sensitive and may persist after an emergency. <br>
-Mitigation: Use local encrypted storage where possible and define clear retention, review, export, and deletion rules before deployment. <br>
-Risk: The artifact references 120/110 and jurisdiction-specific emergency behavior that may not match the user's location. <br>
-Mitigation: Localize emergency numbers, dispatch wording, privacy requirements, and permitted broadcast channels for each deployment geography. <br>
+## Use Case:
 
+External users and developers use this skill to simulate, design, or integrate personal emergency workflows that classify SOS, vitals, location, and device signals into response levels and produce response plans or incident records.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/aaalenwow/personal-guardian) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/aaalenwow) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and structured text with optional shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May describe simulated emergency actions, escalation levels, contact workflows, and incident records; real-world execution requires authorized integrations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata and OpenClaw metadata) <br>
+Risk: The skill describes autonomous use of sensitive channels such as phone, messaging, microphone, contacts, location, social posting, and sensors.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit per-channel preauthorization, recipient allowlists, cancellation controls, and audit logs before granting any real device or communications access.
+
+Risk: Emergency calls and rescue workflows may be configured for the wrong locale or emergency-number scheme.
+
+Mitigation: Verify locale, jurisdiction, emergency numbers, and escalation policy before enabling any emergency-call or broadcast behavior.
+
+Risk: Simulated actions may be presented as if they were active real-world actions.
+
+Mitigation: Label simulation mode clearly and block real calls, messages, recording, or broadcasts unless production authorization and configuration checks pass.
+
+Risk: Incident data may include highly sensitive location, audio, health, and contact information.
+
+Mitigation: Define retention, deletion, encryption, and post-incident review rules before collecting or sharing incident data.
+
+## Reference(s):
+
+- [Personal Guardian on ClawHub](https://clawhub.ai/aaalenwow/skills/personal-guardian)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown/text guidance with optional JSON incident records and Python CLI command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may describe emergency actions that require explicit user authorization, correct locale configuration, and clear simulation labeling before any real-world use.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata and OpenClaw metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

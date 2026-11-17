@@ -1,0 +1,11 @@
+# Git
+.git/
+
+# Windows
+Thumbs.db
+*.log
+
+# IDE
+.vs/
+.idea/
+*.suo

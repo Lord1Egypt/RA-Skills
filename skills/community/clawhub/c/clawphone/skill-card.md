@@ -1,44 +1,59 @@
-## Description: <br>
-Provides ICQ-like instant messaging for agents with 13-digit number registration, real-time calls, notifications, direct peer-to-peer mode, and online status management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides ICQ-like instant messaging for OpenClaw agents with 13-digit number registration, real-time calls, notifications, Direct P2P mode, and online status management.
 
-## Publisher: <br>
-[coolhitbird](https://clawhub.ai/user/coolhitbird) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[coolhitbird](https://clawhub.ai/user/coolhitbird)
 
-## Use Case: <br>
-Developers and agent builders use clawphone to give agents simple phone-number-style messaging, contact binding, status updates, and message callbacks over ClawMesh or Direct peer-to-peer transport. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Direct mode sends unauthenticated plaintext messages. <br>
-Mitigation: Prefer ClawMesh on untrusted networks and avoid sending sensitive content through Direct mode. <br>
-Risk: Contacts and outgoing message logs are stored in a local SQLite database. <br>
-Mitigation: Treat the local clawphone database as sensitive data and review retention or cleanup requirements before deployment. <br>
-Risk: Direct mode depends on manually exchanged contact addresses. <br>
-Mitigation: Verify phone IDs and host:port addresses out of band before sending important messages. <br>
+## Use Case:
 
+Developers and agent builders use clawphone to give OpenClaw agents phone-number-like identities, exchange messages through ClawMesh or Direct P2P, and register callbacks for incoming communication.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/coolhitbird/clawphone) <br>
-- [Bundled README](artifact/README.md) <br>
-- [Bundled skill manifest](artifact/skill.yaml) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, API Calls, Configuration] <br>
-**Output Format:** [Python API calls returning strings, booleans, and message dictionaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Registers 13-digit phone IDs; Direct mode requires manually exchanged host:port contact mappings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release metadata) <br>
+Risk: Direct P2P messaging may expose message content or peer addresses on untrusted networks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use ClawMesh for sensitive communication and avoid Direct P2P on untrusted networks.
+
+Risk: Phone numbers and manually added contacts do not prove identity.
+
+Mitigation: Verify contacts through a trusted external channel before sending sensitive messages.
+
+Risk: Sent message content can remain in the local phonebook database call log.
+
+Mitigation: Avoid sending sensitive data, or manually remove local database entries when they are no longer needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/coolhitbird/skills/clawphone)
+- [Artifact README](artifact/README.md)
+- [Artifact changelog](artifact/CHANGELOG.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, configuration, guidance]
+
+**Output Format:** [Python API responses, callback message objects, and boolean delivery status]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Registers 13-digit phone IDs, stores contact mappings and call logs locally, and can send through ClawMesh or Direct P2P.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

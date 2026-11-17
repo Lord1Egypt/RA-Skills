@@ -1,43 +1,59 @@
-## Description: <br>
-Enterprise-grade OpenClaw skill for cleaning up orphaned subagent processes, archiving transcripts to SuperMemory, and freeing disk space without losing work. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enterprise-grade OpenClaw skill for cleaning up orphaned subagent processes, archiving transcripts to SuperMemory, and freeing disk space without losing work.
 
-## Publisher: <br>
-[LvcidPsyche](https://clawhub.ai/user/LvcidPsyche) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[lvcidpsyche](https://clawhub.ai/user/lvcidpsyche)
 
-## Use Case: <br>
-Developers and operations teams use this skill to inspect OpenClaw subagent sessions, preview cleanup candidates, archive transcripts, and remove orphaned session files using configurable retention policies. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The release instructs users to run a cleanup script that is not present in the artifact, and that script would delete and possibly archive private session data. <br>
-Mitigation: Review or obtain the missing implementation from a trusted source before running it; start with dry-run mode and keep independent backups. <br>
-Risk: Cleanup options such as forced deletion or cleanup without archival can cause data loss. <br>
-Mitigation: Avoid --force and --no-archive unless data loss has been explicitly accepted; confirm retention thresholds and deletion counts before enabling scheduled cleanup. <br>
-Risk: Archival can send session transcripts to external storage or SuperMemory, which may expose private session content. <br>
-Mitigation: Confirm exactly what session data will be archived, verify archive destination settings, and enable external archival only after reviewing data handling requirements. <br>
+## Use Case:
 
+Developers and operators use this skill to identify orphaned OpenClaw subagent sessions, preserve transcripts through archival, and clean old session files according to configurable retention policies.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/LvcidPsyche/swarm-janitor) <br>
-- [Configuration reference](references/config.yaml) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands and YAML configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce cleanup reports in text, JSON, or CSV when the referenced implementation is available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill promotes deleting OpenClaw session data, including force and no-archive usage patterns.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run dry-run first, verify the session path and retention settings, keep separate backups, and avoid force or no-archive modes unless the data is already protected.
+
+Risk: The reviewed package does not include the Python cleanup script referenced by the documentation.
+
+Mitigation: Confirm the cleanup script source and behavior before deployment, and do not run substitute scripts without review.
+
+Risk: Transcript archival may involve SuperMemory credentials or external storage destinations.
+
+Mitigation: Protect SUPERMEMORY_API_KEY, choose an approved archive destination, and verify archived transcripts before deletion.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/lvcidpsyche/skills/swarm-janitor)
+- [Configuration Reference](references/config.yaml)
+- [Project Homepage](https://github.com/openclawdad/swarm-janitor)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and YAML configuration]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3; documented execution may produce cleanup reports, logs, archived transcripts, and deleted session files.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

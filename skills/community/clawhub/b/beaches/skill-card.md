@@ -1,41 +1,53 @@
-## Description: <br>
-Find nearby beaches when a user asks for beaches near them. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Finds nearby beaches when a user asks for beaches near them.
 
-## Publisher: <br>
-[CodeKungfu](https://clawhub.ai/user/CodeKungfu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[codekungfu](https://clawhub.ai/user/codekungfu)
 
-## Use Case: <br>
-Developers and agents use this skill to answer beach discovery requests from an authorized user location and return standardized POI-style results for travel planning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Precise location data can reveal sensitive user whereabouts. <br>
-Mitigation: Request location only when needed, prefer approximate coordinates when possible, and avoid retaining precise location history. <br>
-Risk: Beach search implementations may depend on external location or POI providers that can be unavailable or rate-limited. <br>
-Mitigation: Handle provider failures and rate limits explicitly, and use short-lived caching for repeated location and category queries. <br>
+## Use Case:
 
+External users and developers use this skill to list beaches near a user-provided location with radius, limit, and optional filters for travel discovery and route planning.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/CodeKungfu/beaches) <br>
-- [Artifact SKILL.md](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or structured text describing nearby beach POI results, filters, and error states] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include location, radius, limit, filters, beach category, privacy guidance, and rate-limit handling.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Beach lookup requires user location data, which can expose precise coordinates if retained or reused unnecessarily.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Request location permission before lookup and avoid retaining exact coordinates beyond what is needed for the search.
+
+Risk: Repeated location-based searches may increase privacy exposure or trigger provider rate limits.
+
+Mitigation: Use short-term caching for location, category, and radius combinations and apply rate limiting.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/codekungfu/skills/beaches)
+
+## Skill Output:
+
+**Output Type(s):** [text, guidance, configuration]
+
+**Output Format:** [Markdown or structured POI response guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses location, radius, result limit, and optional filters such as open_now, min_rating, and keywords.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,60 @@
-## Description: <br>
-Interact with the Trakt API to manage your watchlist, collection, ratings, and discover content. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Interact with the Trakt API to manage your watchlist, collection, ratings, and discover content.
 
-## Publisher: <br>
-[d-meagher](https://clawhub.ai/user/d-meagher) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[d-meagher](https://clawhub.ai/user/d-meagher)
 
-## Use Case: <br>
-External users and developers use this skill to guide an agent through Trakt.tv API operations for watchlists, watch history, collections, ratings, search, and content discovery. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The agent can read and change the user's Trakt account when OAuth credentials are configured. <br>
-Mitigation: Ask the agent to confirm before removals, ratings, watch-history changes, or bulk updates. <br>
-Risk: Client secrets, access tokens, and refresh tokens can expose the user's Trakt account if shared or committed. <br>
-Mitigation: Treat these credentials as passwords, avoid sharing terminal output or committing OpenClaw config, and revoke or rotate tokens if exposed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/d-meagher/trakt-tv) <br>
-- [Trakt.tv](https://trakt.tv) <br>
-- [Trakt OAuth Applications](https://trakt.tv/oauth/applications) <br>
+## Use Case:
 
+OpenClaw users and developers use this skill to let agents issue Trakt API requests for watchlists, viewing history, collections, ratings, search, trending content, popular content, and recommendations.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash, curl, and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses Trakt API credentials and OAuth tokens supplied through environment variables.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill gives the agent read and write access to Trakt account data through OAuth-authenticated API requests.
+
+Mitigation: Review account-changing commands before execution and revoke or rotate tokens if access is no longer needed.
+
+Risk: The OAuth helper stores and prints client secrets, access tokens, and refresh tokens.
+
+Mitigation: Run the helper only in a private terminal, avoid shared or recorded sessions, restrict OpenClaw config permissions, and never commit token-bearing config.
+
+Risk: Leaked Trakt client secrets, access tokens, or refresh tokens could allow unauthorized account access.
+
+Mitigation: Treat all Trakt credentials as sensitive and revoke or rotate them immediately if exposure is suspected.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/d-meagher/skills/trakt-tv)
+- [Trakt homepage](https://trakt.tv)
+- [Trakt API Documentation](https://trakt.docs.apiary.io/)
+- [Trakt OAuth Applications](https://trakt.tv/oauth/applications)
+- [AgentSkills Specification](https://agentskills.io/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces Trakt API curl commands and setup guidance that use user-provided OAuth credentials.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

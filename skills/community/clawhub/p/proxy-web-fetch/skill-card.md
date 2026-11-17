@@ -1,41 +1,57 @@
-## Description: <br>
-Fetches a specific web page URL through a configured OpenClaw Manager Web Fetch Proxy and returns parsed page content as Markdown or plain text with metadata. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches a specific web page URL through a configured OpenClaw Manager proxy and returns parsed Markdown or plain text with optional metadata, image, and link summary controls.
 
-## Publisher: <br>
-[whyhit2005](https://clawhub.ai/user/whyhit2005) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[whyhit2005](https://clawhub.ai/user/whyhit2005)
 
-## Use Case: <br>
-Developers and agents use this skill to read a known web page URL, convert the page to Markdown or text, and optionally include page metadata, images, link summaries, or image summaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: User-selected URLs are sent through the configured OpenClaw Manager Web Fetch Proxy. <br>
-Mitigation: Use only a trusted proxy and avoid private documents, secret-bearing links, tokenized URLs, localhost or private-network addresses, and regulated content unless appropriate logging, retention, and network controls are in place. <br>
-Risk: The skill depends on WEB_FETCH_PROXY_URL and curl being available. <br>
-Mitigation: Configure WEB_FETCH_PROXY_URL and verify curl is installed before enabling the skill for agent workflows. <br>
+## Use Case:
 
+Developers and agents use this skill to fetch a known web page by URL and convert its content into Markdown or plain text for reading, summarization, or extraction workflows. It is for direct URL fetching, not keyword web search.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/whyhit2005/proxy-web-fetch) <br>
-- [Publisher profile](https://clawhub.ai/user/whyhit2005) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, shell commands, configuration] <br>
-**Output Format:** [JSON response containing parsed page content, metadata, and Markdown or plain-text body content.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl and WEB_FETCH_PROXY_URL; supports timeout, cache, image retention, GFM, image summary, and link summary options.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: Secret-bearing, internal, regulated, or credential-token URLs could expose sensitive page content to the configured proxy.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only an approved and trusted OpenClaw Manager Web Fetch Proxy, and avoid those URLs unless the proxy is approved for that data.
+
+Risk: The shell wrapper is a convenience interface with weak validation for options such as timeout and return format.
+
+Mitigation: Use normal trusted option values, review commands before execution, and prefer direct proxy calls or stronger wrappers for automation.
+
+Risk: Fetched web content is untrusted and may contain instructions or misleading text that should not automatically control agent behavior.
+
+Mitigation: Treat fetched content as data, review it before acting on it, and keep agent/system instructions separate from page content.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/whyhit2005/skills/proxy-web-fetch)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance]
+
+**Output Format:** [JSON response containing parsed page content in Markdown or plain text, page metadata, and optional image or link summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl and WEB_FETCH_PROXY_URL; supports timeout, cache, image retention, GFM, image summary, and link summary options.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

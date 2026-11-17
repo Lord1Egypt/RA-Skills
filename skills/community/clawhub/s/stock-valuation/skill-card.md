@@ -1,44 +1,64 @@
-## Description: <br>
-Generates comprehensive company valuation reports as polished HTML/PDF using market data, qualitative research, charts, and valuation frameworks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates comprehensive company valuation reports as polished HTML/PDF from market data, peer comparisons, qualitative research, charts, and valuation models.
 
-## Publisher: <br>
-[xliucs](https://clawhub.ai/user/xliucs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[xliucs](https://clawhub.ai/user/xliucs)
 
-## Use Case: <br>
-External users and analysts use this skill to generate deep-dive stock valuation reports for a public company ticker, including quantitative data collection, qualitative research synthesis, valuation scenarios, and deliverable HTML/PDF reports. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The generated Buy/Sell labels, price targets, technical signals, and options sentiment may be mistaken for financial advice. <br>
-Mitigation: Treat outputs as informational analysis only and review conclusions before making investment decisions. <br>
-Risk: The workflow may prompt for or receive portfolio details or personal financial information. <br>
-Mitigation: Do not provide personal financial information, user-identifiable information, or portfolio position data when using the skill. <br>
-Risk: The skill creates local data, cache, chart, HTML, and PDF files under /tmp. <br>
-Mitigation: Review and clean generated local files when reports are no longer needed, especially on shared systems. <br>
-Risk: The skill uses unpinned third-party Python dependencies and public web or market data sources. <br>
-Mitigation: Run in a controlled environment and review dependency versions and source reliability before production use. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xliucs/stock-valuation) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/xliucs) <br>
+## Use Case:
 
+External users, developers, and analysts use this skill to produce deep-dive company valuation reports for a ticker by combining quantitative pipeline outputs with required qualitative research. It is not intended for quick price checks, daily watchlist alerts, real-time trading signals, or personalized financial advice.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files, analysis] <br>
-**Output Format:** [HTML/PDF valuation report with supporting JSON data, embedded charts, and agent-facing command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates local report and cache files under /tmp; chart images are embedded as base64 in generated HTML.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-3.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated reports may expose local files or unsafe web-sourced content.
+
+Mitigation: Run the skill only in a constrained environment with no sensitive local files or credentials available to the agent.
+
+Risk: Untrusted input JSON may influence generated HTML reports.
+
+Mitigation: Avoid untrusted input JSON and require path validation for chart files before report generation.
+
+Risk: HTML report content may include unsafe web-sourced material.
+
+Mitigation: Use HTML escaping or templating with autoescape, and disable JavaScript during PDF rendering.
+
+Risk: Generated valuation reports could be misread as financial advice.
+
+Mitigation: Treat generated reports as informational and review conclusions before relying on them.
+
+Risk: Runtime dependencies are not pinned.
+
+Mitigation: Pin dependencies before safer installation or deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xliucs/skills/stock-valuation)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown instructions with bash commands, JSON examples, and generated HTML/PDF report files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generates /tmp ticker data JSON, research JSON, chart images, HTML reports, and optional PDF reports.]
+
+## Skill Version(s):
+
+3.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

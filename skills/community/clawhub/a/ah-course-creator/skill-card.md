@@ -1,41 +1,51 @@
-## Description: <br>
-Helps design, structure, and produce online courses, including curriculum development, learning design, module planning, assessment design, and video lesson scripting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Course Creator helps agents design, structure, and produce online courses, including curriculum plans, lesson scripts, assessments, platform setup, and launch strategy.
 
-## Publisher: <br>
-[mtsatryan](https://clawhub.ai/user/mtsatryan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mtsatryan](https://clawhub.ai/user/mtsatryan)
 
-## Use Case: <br>
-External course creators, instructional designers, educators, and content teams use this skill to plan online course architecture, write lesson scripts, design assessments, shape engagement strategies, and prepare launch workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad course-related activation wording may cause the skill to be invoked for more course-planning requests than intended. <br>
-Mitigation: Review and narrow the activation wording if the agent should only use this skill for specific course-design tasks. <br>
-Risk: Generated curriculum, assessment, scripting, or launch guidance may be incomplete or unsuitable for a specific audience or subject area. <br>
-Mitigation: Have a qualified human review course plans, learning objectives, assessments, scripts, and platform setup before publishing. <br>
+## Use Case:
 
+External course creators, instructional designers, educators, and training teams use this skill to plan course architecture, learning objectives, lesson scripts, assessments, engagement strategies, and launch workflows.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/mtsatryan/ah-course-creator) <br>
-- [Course Creator code examples](references/examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Configuration] <br>
-**Output Format:** [Markdown guidance with structured outlines, checklists, workflow steps, and TypeScript-style templates or examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces course-planning and lesson-production content for human review; it does not execute code or access external services.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated course material may include inaccurate educational content, platform-policy mismatches, or overstated marketing claims.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated curricula, scripts, platform recommendations, and launch copy for factual accuracy, policy fit, and claim substantiation before publishing.
+
+## Reference(s):
+
+- [Course Creator examples](references/examples.md)
+- [ClawHub skill page](https://clawhub.ai/mtsatryan/skills/ah-course-creator)
+- [Publisher profile](https://clawhub.ai/user/mtsatryan)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown with structured course plans, templates, scripts, and example code snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces instructional design guidance and launch suggestions; users should review factual claims, platform-policy fit, and marketing claims before publishing.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

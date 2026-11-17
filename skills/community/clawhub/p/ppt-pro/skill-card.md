@@ -1,51 +1,64 @@
-## Description: <br>
-PPT Pro guides an agent through a full presentation workflow, from requirements research and outline planning to HTML slide generation and optional editable PPTX conversion. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Professional PPT presentation generation assistant that guides an agent through research, outline planning, slide-by-slide content planning, HTML slide design, and optional conversion to editable PPTX.
 
-## Publisher: <br>
-[in12hacker](https://clawhub.ai/user/in12hacker) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[in12hacker](https://clawhub.ai/user/in12hacker)
 
-## Use Case: <br>
-Developers and presentation authors use this skill to turn a topic, source material, or outline into structured slide plans, HTML presentation pages, preview files, and PPTX outputs. It is intended for report decks, training materials, product introductions, roadshow decks, and other presentation workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can run local Python and Node.js scripts, install pip or npm packages, and use browser rendering. <br>
-Mitigation: Run it in a disposable or project-scoped workspace and review commands before execution. <br>
-Risk: Generated planning and HTML content could carry incorrect, misleading, or untrusted presentation material. <br>
-Mitigation: Review generated planning JSON and avoid feeding untrusted HTML into the conversion pipeline. <br>
-Risk: The WPS helper may make persistent WPS configuration changes. <br>
-Mitigation: Use the WPS helper only when those local configuration changes are acceptable. <br>
-Risk: Some helper paths may read files outside the intended reference folder. <br>
-Mitigation: Run the skill with only the project files needed for the presentation and inspect outputs before reuse. <br>
+## Use Case:
 
+External users, employees, and developers use this skill to turn topics, outlines, or source materials into polished presentation decks with structured research, planning, HTML slide generation, and PPTX export support.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/in12hacker/ppt-pro) <br>
-- [PPTX editable pipeline rules](references/pptx-pipeline.md) <br>
-- [Execution rules](references/execution-rules.md) <br>
-- [Quality checks](references/quality-checks.md) <br>
-- [Planning schema](references/planning.schema.json) <br>
-- [Resource registry](references/resource-registry.md) <br>
-- [Image generation guidance](references/image-generation.md) <br>
-- [WPS testing notes](WPS_TESTING.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown guidance, JSON planning data, HTML slide files, preview HTML, PNG assets, and PPTX files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use Python, Node.js, browser rendering, local package installation, and optional WPS-based validation depending on available tools and selected pipeline.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-9.7.0 (source: release evidence and SKILL.md metadata; pyproject.toml reports 9.6.0) <br>
+Risk: Local conversion tooling may run Python and Node scripts, install dependencies, and drive browser automation during deck packaging.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated workspace or container and review generated slide HTML before packaging.
+
+Risk: Converting untrusted HTML or documents may expose local files or execute unsafe conversion behavior.
+
+Mitigation: Avoid untrusted inputs and inspect source materials before running conversion scripts.
+
+Risk: Optional WPS setup includes sudo package installation from an external archive.
+
+Mitigation: Run WPS installation steps only after verifying the package source and hash.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/in12hacker/skills/ppt-pro)
+- [PPTX pipeline](references/pptx-pipeline.md)
+- [Execution rules](references/execution-rules.md)
+- [Quality checks](references/quality-checks.md)
+- [Resource registry](references/resource-registry.md)
+- [Planning schema](references/planning.schema.json)
+- [WPS Office validation notes](WPS_TESTING.md)
+- [WPS Office 11.1.0.11719 archive](https://github.com/peeweep/gentoo-go-deps/releases/tag/wps-office_11.1.0.11719)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance, JSON planning artifacts, HTML slide files, shell commands, and optional PPTX output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Python 3 and Node.js for the automated packaging and PPTX conversion paths.]
+
+## Skill Version(s):
+
+9.7.0 (source: frontmatter, server release metadata; pyproject.toml reports 9.6.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

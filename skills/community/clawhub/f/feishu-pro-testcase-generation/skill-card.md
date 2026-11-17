@@ -1,42 +1,53 @@
-## Description: <br>
-Converts requirement documents, form-field rules, approval workflow definitions, and UI notes into structured test cases for validation, approvals, state transitions, permission boundaries, and business branches. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Turns requirement documents, form field rules, approval workflow definitions, and UI notes into structured test cases for form validation, approval flows, state transitions, permission isolation, and business branch testing.
 
-## Publisher: <br>
-[Lens-lzy](https://clawhub.ai/user/Lens-lzy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lens-lzy](https://clawhub.ai/user/lens-lzy)
 
-## Use Case: <br>
-QA engineers, product teams, and developers use this skill to turn PRDs, form rules, workflow definitions, state machines, roles, permissions, and UI behavior into reviewable Markdown test scenarios and executable test cases. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated test cases may reflect omissions or ambiguity in the user's requirements. <br>
-Mitigation: Review the Markdown tables and resolve the generated requirement-confirmation questions before using the cases for release decisions. <br>
-Risk: User-provided PRDs, workflow definitions, screenshots, and business rules may contain proprietary information. <br>
-Mitigation: Use normal data-handling controls and avoid exporting to Feishu, cloud storage, or local files unless the destination is approved. <br>
-Risk: Optional export behavior can place generated content outside the chat context if the user explicitly requests it and tools are available. <br>
-Mitigation: Confirm the target document, cloud folder, or file path before export and do not treat unsupported tool calls as completed. <br>
+## Use Case:
 
+QA engineers, product teams, and developers use this Chinese-language skill to convert PRDs, business rules, form definitions, approval flows, UI notes, screenshots, and module descriptions into executable test scenario and test case tables. It is intended for structured test design, review, and ambiguity discovery before implementation or release.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Lens-lzy/feishu-pro-testcase-generation) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown tables with scenario overviews, test case details, and requirement-confirmation questions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May optionally propose Feishu, cloud-drive, or local-file export only when the environment provides those tools and the user requests export.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill may answer in Chinese by default.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it for Chinese-language QA workflows or explicitly request another output language when needed.
+
+Risk: The skill can propose Feishu document creation, cloud upload, or local file writing when matching tools are available and requested.
+
+Mitigation: Ask for those output actions only when they are intended, and review generated test cases before storing or sharing them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lens-lzy/skills/feishu-pro-testcase-generation)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown tables with optional clarification questions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create Feishu documents, upload files, or write local files only when the environment provides the requested tool and the user explicitly asks for that output.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

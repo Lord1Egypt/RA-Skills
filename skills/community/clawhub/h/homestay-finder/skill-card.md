@@ -1,43 +1,55 @@
-## Description: <br>
-特色民宿搜索与AI智能推荐，覆盖景区民宿、古镇客栈、乡村精品民宿，多旅游平台数据直连，零配置即装即用。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+特色民宿搜索与AI智能推荐，覆盖景区民宿、古镇客栈、乡村精品民宿，多旅游平台数据直连，零配置即装即用。暑期避暑民宿推荐，古镇乡村特色住宿搜索
 
-## Publisher: <br>
-[travel-skills](https://clawhub.ai/user/travel-skills) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[travel-skills](https://clawhub.ai/user/travel-skills)
 
-## Use Case: <br>
-External travel users use this skill to search and compare distinctive homestays, inns, and boutique stays by destination, dates, points of interest, price, and natural-language preferences. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Homestay destinations, dates, nearby points of interest, budget, and preference text are sent to the skill's cloud proxy and travel providers. <br>
-Mitigation: Avoid using the skill for sensitive travel plans and review privacy requirements before deployment. <br>
-Risk: Any PROXY_TOKEN environment variable in the runtime is sent to the proxy endpoints. <br>
-Mitigation: Use a scoped proxy token only when needed and avoid placing unrelated secrets in the runtime environment. <br>
-Risk: Travel prices and availability can change after results are returned. <br>
-Mitigation: Confirm price, availability, and booking terms on the linked provider page before purchasing. <br>
+## Use Case:
 
+External travelers use this skill to search Chinese homestays and inns by destination, keyword, attraction, dates, price, and sorting preference, then review prices, ratings, addresses, images, and booking links. The skill is also presented as offering natural-language homestay recommendations, but release security evidence says that recommendation behavior is currently unreliable.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/travel-skills/skills/homestay-finder) <br>
-- [Publisher profile](https://clawhub.ai/user/travel-skills) <br>
+### Deployment Geography for Use:
 
+China
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-formatted travel recommendations with prices, ratings, addresses, images, source labels, and booking links when available] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Results are generated from external travel proxy responses and may change with provider availability and pricing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.4 (source: server release evidence; artifact frontmatter reports 1.2.3) <br>
+Risk: Lodging search terms, destinations, and travel dates are sent through a disclosed cloud proxy.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when that routing is acceptable, avoid entering sensitive travel details, and review the disclosed data flow before deployment.
+
+Risk: The release security summary says the AI recommendation command is broken and some recommendation or multi-platform comparison claims are unreliable.
+
+Mitigation: Treat recommendation output and comparison claims as advisory, prefer structured search behavior, and verify lodging details and prices on the linked booking platform.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/travel-skills/skills/homestay-finder)
+- [Publisher profile](https://clawhub.ai/user/travel-skills)
+- [Disclosed cloud proxy endpoint](https://1439498936-0junm3maxj.ap-guangzhou.tencentscf.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown-formatted Chinese lodging search results with prices, ratings, addresses, optional images, booking links, source notes, and related travel prompts.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search results are capped at up to 15 deduplicated listings and prices are real-time estimates that should be verified on the booking page.]
+
+## Skill Version(s):
+
+1.2.19 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

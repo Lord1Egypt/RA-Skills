@@ -1,38 +1,54 @@
-## Description: <br>
-Self-Improvement Engine for AI agents that records mistakes, turns them into behavior rules, and uses them to reduce repeated errors. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Self-improvement guidance for an AI agent that records mistakes, turns lessons into rules, and checks those rules before future work.
 
-## Publisher: <br>
-[aptratcn](https://clawhub.ai/user/aptratcn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aptratcn](https://clawhub.ai/user/aptratcn)
 
-## Use Case: <br>
-Developers and agent operators use this skill to help an AI agent log mistakes, derive durable working rules, and check those rules before repeating similar work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks agents to maintain long-lived mistake logs and behavior rules that may retain sensitive user content or incorrect lessons. <br>
-Mitigation: Review memory/mistakes.json and WORK_RULES.md regularly, keep sensitive content out of logs, and require explicit confirmation before converting a correction into a permanent rule. <br>
+## Use Case:
 
+Developers and agent operators can use this skill to prompt an AI agent to keep cross-session records of mistakes, learned rules, and self-audit checks intended to reduce repeated errors.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/aptratcn/xiaobai-self-improve) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, JSON, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with JSON examples and shell command references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update memory/mistakes.json and WORK_RULES.md when adopted by an agent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill encourages persistent mistake logs and learned rules that may retain sensitive task details across sessions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated memory files regularly and avoid storing secrets, personal data, or sensitive operational details.
+
+Risk: User corrections may become permanent operating rules without clear consent or deletion controls.
+
+Mitigation: Require explicit approval before adding a correction as a permanent rule, and provide a review path for editing or removing learned rules.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aptratcn/skills/xiaobai-self-improve)
+- [Publisher profile](https://clawhub.ai/user/aptratcn)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with JSON and shell-command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May ask the agent to create or update persistent memory files such as memory/mistakes.json and WORK_RULES.md.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

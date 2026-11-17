@@ -1,43 +1,54 @@
-## Description: <br>
-Guide treadmill buyers through targeted questions on body profile, usage, space, and region to determine exact motor CHP, belt size, and weight capacity, with brand-neutral guidance and no sales bias. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guide treadmill buyers through targeted questions on body profile, usage, space, and region to determine exact motor CHP, belt size, and weight capacity, with brand-neutral recommendations and no sales bias.
 
-## Publisher: <br>
-[arbazex](https://clawhub.ai/user/arbazex) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[arbazex](https://clawhub.ai/user/arbazex)
 
-## Use Case: <br>
-External buyers use this skill to complete a structured treadmill buying consultation, calculate fit and safety-critical specifications, and receive concise product research starting points matched to their needs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Product suggestions may be outdated or unavailable, and listed specifications, pricing, warranties, certifications, or regional availability may change. <br>
-Mitigation: Treat suggested models as research starting points and verify current product details with retailers or manufacturers before buying. <br>
-Risk: The consultation asks for body profile, location, space, and health-related context that may be personal. <br>
-Mitigation: Share only the details needed for fit and safety guidance, and avoid unnecessary personal or medical information. <br>
-Risk: Incomplete or inaccurate user inputs can lead to unsuitable treadmill specifications. <br>
-Mitigation: Confirm key measurements, user weight, height, room dimensions, electrical requirements, and safety certifications before relying on the recommendation. <br>
+## Use Case:
 
+External users use this skill to make informed treadmill buying decisions by sharing body profile, intended use, space, region, and connectivity preferences. The agent produces a structured consultation, calculated spec requirements, buyer warnings, and up to five matching product suggestions.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/arbazex/treadmill-buying-consultant) <br>
-- [Publisher Profile](https://clawhub.ai/user/arbazex) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown consultation questions, structured recommendations, buyer warnings, and product suggestions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces advisory shopping guidance only; users should verify current product specifications, pricing, warranties, certifications, and local availability before purchase.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The consultation asks for body measurements, joint-health context, city or country, and room details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Share only the approximate personal and location detail needed to calculate treadmill specs and regional electrical or certification requirements.
+
+Risk: Outdated or incorrect product specifications could lead to a poor buying decision.
+
+Mitigation: Treat product suggestions as starting points and verify current model specifications, availability, certifications, and warranty terms with an authorized retailer before purchase.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/arbazex/skills/treadmill-buying-consultant)
+- [Project homepage](https://github.com/arbazex/fitness-equipment-buying-consultants/tree/master/treadmill-buying-consultant)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Analysis, Markdown]
+
+**Output Format:** [Conversational text followed by structured Markdown recommendation lists and product suggestions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Asks for personal and space details before producing calculated treadmill specifications; product suggestions are capped at five.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

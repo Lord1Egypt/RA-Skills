@@ -14,9 +14,9 @@ Requires: APPLE_MUSIC_DEV_TOKEN (for artist mode).
 """
 
 import sys
-if sys.version_info < (3, 9):
+if sys.version_info < (3, 10):
     sys.exit(
-        f"ERROR: Python 3.9+ is required (you have "
+        f"ERROR: Python 3.10+ is required (you have "
         f"{sys.version_info.major}.{sys.version_info.minor}). Please upgrade."
     )
 
@@ -25,7 +25,7 @@ import json
 from pathlib import Path
 
 from _common import call_api, load_profile
-from typing import Optional, Union
+from share_code import load_profile_arg
 
 SCRIPT_DIR = Path(__file__).parent
 
@@ -73,7 +73,7 @@ def genre_overlap_score(genres_a: list[dict], genres_b: list[dict]) -> float:
 
 # ── Artist Compatibility ─────────────────────────────────────────
 
-def resolve_artist(sf: str, query: str) -> Optional[dict]:
+def resolve_artist(sf: str, query: str) -> dict | None:
     """Search for an artist by name and return their catalog data."""
     from _common import search_artist
     found = search_artist(sf, query)
@@ -220,7 +220,7 @@ def main():
 
     p_profile = sub.add_parser("profile", help="Compare two profiles")
     p_profile.add_argument("profile_a", help="Path to first taste profile JSON")
-    p_profile.add_argument("profile_b", help="Path to second taste profile JSON")
+    p_profile.add_argument("profile_b", help="Path to second taste profile JSON, or a taste code (amdj1:...)")
 
     args = parser.parse_args()
 
@@ -230,7 +230,7 @@ def main():
         result = artist_compatibility(profile, args.storefront, artist_query)
     elif args.mode == "profile":
         profile_a = load_profile(args.profile_a)
-        profile_b = load_profile(args.profile_b)
+        profile_b = load_profile_arg(args.profile_b)
         result = profile_compatibility(profile_a, profile_b)
     else:
         parser.print_help()

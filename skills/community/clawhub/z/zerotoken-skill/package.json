@@ -1,13 +1,28 @@
 {
   "name": "zerotoken-skill",
-  "version": "1.4.0",
+  "version": "1.17.0",
   "files": [
     "SKILL.md",
     "README.md",
     "CHANGELOG.md",
-    "agents/"
+    "references/",
+    "scripts/",
+    "docs/",
+    "agents/",
+    "assets/"
   ],
   "description": "Default token-efficient assistant discipline for solving tasks with minimal precise prompts, concise context, and short actionable outputs.",
+  "scripts": {
+    "check": "python scripts/zt.py check"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/phoenixlucky/zerotoken-skill.git"
+  },
+  "homepage": "https://clawhub.ai/phoenixlucky/zerotoken-skill",
+  "bugs": {
+    "url": "https://github.com/phoenixlucky/zerotoken-skill/issues"
+  },
   "author": "phoenixlucky",
   "license": "GPL-3.0",
   "keywords": [

@@ -1,0 +1,7 @@
+interface:
+  display_name: "Transactional Game Analysis"
+  short_description: "Analyze conversations and break game loops"
+  default_prompt: "Use $transactional-game-analysis to analyze this two-person conversation and suggest ways to break the loop."
+
+policy:
+  allow_implicit_invocation: true

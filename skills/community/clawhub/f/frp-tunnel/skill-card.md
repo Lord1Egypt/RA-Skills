@@ -1,47 +1,60 @@
-## Description: <br>
-Share local development servers via self-hosted frp tunnel with custom domains and auto HTTPS. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Shares local development servers through a self-hosted frp tunnel with custom domains and automatic HTTPS.
 
-## Publisher: <br>
-[darwin7381](https://clawhub.ai/user/darwin7381) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[darwin7381](https://clawhub.ai/user/darwin7381)
 
-## Use Case: <br>
-Developers and engineers use this skill to expose selected local development servers through a self-hosted frp tunnel with custom domains and HTTPS for demos, client review, and mobile testing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Publishing a tunnel can expose selected local services to the public internet. <br>
-Mitigation: Expose only intended services and avoid tunneling sensitive, unauthenticated, or debug-only local applications. <br>
-Risk: The setup uses broad root SSH access and DNS credentials. <br>
-Mitigation: Avoid passphrase-less root SSH where possible and store a least-privilege Cloudflare token with strict permissions. <br>
-Risk: An exposed frp dashboard can leak operational details or control surfaces. <br>
-Mitigation: Restrict or disable the frp dashboard before using the tunnel in shared or public environments. <br>
-Risk: Downloaded binaries are installed into privileged paths. <br>
-Mitigation: Verify downloaded binaries before installation and replace all hardcoded IPs, domains, tunnel names, and paths with environment-specific values. <br>
+## Use Case:
 
+Developers and engineers use this skill to configure and operate a self-hosted frp, Caddy, Cloudflare DNS, and VPS tunnel for sharing local development services over HTTPS.
 
-## Reference(s): <br>
-- [frp releases](https://github.com/fatedier/frp/releases) <br>
-- [Hetzner Cloud](https://www.hetzner.com/cloud/) <br>
-- [Skill page](https://clawhub.ai/darwin7381/frp-tunnel) <br>
-- [Publisher profile](https://clawhub.ai/user/darwin7381) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline shell, TOML, Caddyfile, and TypeScript code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces operational setup and troubleshooting guidance; users must replace environment-specific IPs, domains, paths, tunnel names, and credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can give an agent long-lived privileged access to a VPS.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a non-root VPS user with limited sudo, avoid passphrase-free root keys, and keep SSH access scoped to the tunnel host.
+
+Risk: The setup exposes internet-facing services and an frp dashboard.
+
+Mitigation: Restrict or disable the dashboard, expose only services intended for public access, and verify each tunnel before sharing its URL.
+
+Risk: Downloaded binaries and DNS credentials are part of the setup path.
+
+Mitigation: Verify downloaded binaries before installation and store the Cloudflare token with stricter file permissions or systemd credentials.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/darwin7381/skills/frp-tunnel)
+- [Setup guide](artifact/setup-guide.md)
+- [frp releases](https://github.com/fatedier/frp/releases)
+- [Hetzner Cloud](https://www.hetzner.com/cloud/)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown with inline shell and configuration code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes operational checks for tunnel availability and VPS troubleshooting.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

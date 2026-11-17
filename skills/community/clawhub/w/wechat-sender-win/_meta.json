@@ -1,6 +1,7 @@
 {
-  "ownerId": "kn721bweqfkwchdh5ja74e45bx82wwhc",
-  "slug": "wechat-sender-win",
-  "version": "1.0.1",
-  "publishedAt": 1776053884434
+  "name": "wechat-sender-win",
+  "version": "1.0.0",
+  "description": "微信消息自动发送工具（Windows 版）",
+  "owner": "a-shu",
+  "license": "MIT"
 }

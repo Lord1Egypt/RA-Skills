@@ -1,6 +1,39 @@
 {
-  "ownerId": "kn76fgt7sahtzjeg6xydwned5s82pv8e",
-  "slug": "pengjschina-meeting-transcriber",
+  "name": "meeting-transcriber",
   "version": "1.0.0",
-  "publishedAt": 1775116944731
+  "description": "基于FunASR的实时会议转录技能，支持中文语音识别、实时转录、文件保存和环境管理。",
+  "author": "OpenClaw User",
+  "homepage": "https://github.com/alibaba-damo-academy/FunASR",
+  "license": "MIT",
+  "keywords": ["meeting", "transcription", "speech-to-text", "chinese", "funasr"],
+  "clawdbot": {
+    "emoji": "🎙️",
+    "requires": {
+      "bins": ["python", "conda"],
+      "files": ["D:/dev/python/voiceFunAsr/vocie_mic_fixed_gbk.py"],
+      "conda_environment": "audioProject"
+    },
+    "execution": {
+      "method": "conda_run",
+      "main_script": "transcriber.py",
+      "working_directory": "D:\\dev\\python\\voiceFunAsr",
+      "timeout_seconds": 300,
+      "conda_env": "audioProject"
+    },
+    "commands": {
+      "start_transcription": "开始会议转录",
+      "stop_transcription": "停止转录",
+      "check_environment": "检查转录环境",
+      "setup_environment": "设置转录环境",
+      "view_records": "查看会议记录",
+      "open_latest": "打开最新会议纪要",
+      "openclaw_transcribe": "OpenClaw专用转录"
+    },
+    "troubleshooting": {
+      "output_not_showing": "使用批处理文件: start_meeting.bat",
+      "encoding_issues": "脚本已修复编码问题",
+      "timeout_issues": "超时时间已设置为300秒",
+      "audio_not_working": "检查麦克风权限和设备"
+    }
+  }
 }

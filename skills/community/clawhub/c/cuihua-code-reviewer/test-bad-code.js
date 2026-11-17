@@ -1,7 +1,7 @@
 // Test file with intentional issues for code-reviewer to detect
 
 // ISSUE 1: Hardcoded API key (CRITICAL)
-const API_KEY = "sk-1234567890abcdef1234567890abcdef";
+const API_KEY = "REDACTED-SECRET";
 
 // ISSUE 2: SQL Injection (CRITICAL)
 function getUserById(userId) {

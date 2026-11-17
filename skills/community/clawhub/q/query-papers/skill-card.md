@@ -1,40 +1,62 @@
-## Description: <br>
-Searches a user's personal Gitea paper-kb knowledge base with two-stage retrieval and returns grounded Chinese answers with source links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Retrieves relevant paper-kb knowledge-base content from a user's Gitea repository and helps produce Chinese answers with source links.
 
-## Publisher: <br>
-[myd2002](https://clawhub.ai/user/myd2002) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[myd2002](https://clawhub.ai/user/myd2002)
 
-## Use Case: <br>
-Agents use this skill to answer a registered user's questions about content stored in a personal paper-kb repository. It lists the catalog, reads relevant pages, and composes Chinese responses with source links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires an admin-level Gitea token, which can create, read, and write repository data if exposed or over-scoped. <br>
-Mitigation: Install only for a controlled Gitea server, use the least-privileged token that works, keep .env out of source control, restrict file permissions, and rotate the token if exposure is suspected. <br>
-Risk: User search questions are automatically saved to log.md and may include sensitive research interests or project details. <br>
-Mitigation: Inform users before use and change the skill to disable, redact, or periodically purge query logging when retention is not required. <br>
+## Use Case:
 
+Developers and end users use this skill to search a personal Gitea-backed research knowledge base, read relevant pages, and answer questions with cited links. It is oriented toward stored papers, surveys, open-source projects, technical documents, experiment notes, and meeting notes.
 
-## Reference(s): <br>
-- [Query Papers ClawHub page](https://clawhub.ai/myd2002/query-papers) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Chinese Markdown with source links and JSON-producing helper commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Two-stage retrieval output; user queries may be written to log.md.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.1 (source: server release evidence) <br>
+Risk: The skill requests a Gitea site-admin token.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use least-privilege credentials scoped only to the repositories and read operations needed for knowledge-base lookup.
+
+Risk: The configured Gitea URL may use plain HTTP.
+
+Mitigation: Require HTTPS for the Gitea endpoint before production or commercial use.
+
+Risk: User questions may be persisted in query logs.
+
+Mitigation: Make query logging explicit and optional, and avoid logging sensitive prompts or personal data.
+
+Risk: Dependencies are specified with lower bounds rather than pinned versions.
+
+Mitigation: Install pinned dependencies in an isolated virtual environment and review updates before deployment.
+
+## Reference(s):
+
+- [Query Papers on ClawHub](https://clawhub.ai/myd2002/skills/query-papers)
+- [Publisher profile](https://clawhub.ai/user/myd2002)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Chinese Markdown answer with source links and inline shell commands for knowledge-base access]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses per-user context and Gitea-backed knowledge-base pages; query logging may persist user questions.]
+
+## Skill Version(s):
+
+2.1.1 (source: server release metadata and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

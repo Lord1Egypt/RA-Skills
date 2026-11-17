@@ -1,41 +1,51 @@
-## Description: <br>
-Dex Aggregator provides reference documentation for DEX routing algorithms, 1inch Fusion mode, CowSwap batch auctions, sandwich attack protection, and swap API endpoints. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+DEX aggregation reference - routing algorithms, 1inch Fusion mode, CowSwap batch auctions, sandwich attack protection, and swap API endpoints.
 
-## Publisher: <br>
-[bytesagain-lab](https://clawhub.ai/user/bytesagain-lab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain-lab](https://clawhub.ai/user/bytesagain-lab)
 
-## Use Case: <br>
-Developers, integrators, and DeFi operators use this skill to retrieve concise DEX aggregation references, troubleshooting guidance, security notes, migration guidance, and quick API or router lookup material. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: DEX router addresses, API endpoints, and chain details in reference output can become outdated. <br>
-Mitigation: Verify current values with official project documentation before using them in transactions or integrations. <br>
-Risk: Token approval examples could be applied too broadly, especially unlimited approvals. <br>
-Mitigation: Prefer exact or time-limited approvals, review spender addresses before signing, and revoke unused allowances. <br>
+## Use Case:
 
+Developers, engineers, and DeFi operators use this skill to retrieve plain-text reference guidance on DEX aggregators, routing behavior, swap standards, troubleshooting, security practices, migration paths, API endpoints, chain IDs, and router addresses.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bytesagain-lab/dex-aggregator) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Plain text reference documentation with Markdown headings emitted by a Bash command.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No API keys, credentials, network access, wallet access, or external API calls are required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-4.0.0 (source: server evidence and SKILL.md frontmatter) <br>
+Risk: DEX endpoints, router addresses, and swap guidance can become outdated or incorrect for real-fund transactions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify endpoints, router addresses, token contracts, approvals, and financial assumptions against official project documentation before using the guidance with real funds.
+
+## Reference(s):
+
+- [Dex Aggregator on ClawHub](https://clawhub.ai/bytesagain-lab/skills/dex-aggregator)
+- [bytesagain-lab publisher profile](https://clawhub.ai/user/bytesagain-lab)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, shell commands]
+
+**Output Format:** [Plain-text reference documentation with Markdown-style headings emitted by shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No API calls, credentials, network access, file writes, or persistence are indicated by the artifact or server security evidence.]
+
+## Skill Version(s):
+
+4.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

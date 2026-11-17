@@ -1,46 +1,55 @@
-## Description: <br>
-Control D (controld.com). Use this skill for ANY Control D request: reading, creating, updating, and deleting data through the OOMOL Control D connector. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Control D (controld.com) skill for reading, creating, updating, and deleting Control D data through an OOMOL-connected account.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-External users and developers use this skill to inspect Control D profiles and manage custom DNS profile rules through an OOMOL-connected account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can change persistent Control D DNS profile rules. <br>
-Mitigation: Confirm the exact write payload and expected filtering effect with the user before running actions tagged [write]. <br>
-Risk: The skill can delete Control D profile rules. <br>
-Mitigation: Require explicit user approval for destructive actions and confirm the target rule before deletion. <br>
-Risk: The skill depends on OOMOL-connected credentials and the oo CLI provider. <br>
-Mitigation: Install and use it only when the user intends to let an agent manage Control D through OOMOL, and run the remote oo CLI installer only when OOMOL is trusted as the provider. <br>
+## Use Case:
 
+Users and agents manage Control D profiles, service catalogs, and root-folder DNS rules through an OOMOL-connected account.
 
-## Reference(s): <br>
-- [Control D homepage](https://controld.com) <br>
-- [OOMOL oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [oo CLI install guide](https://cli.oomol.com/install-guide.md) <br>
-- [ClawHub skill page](https://clawhub.ai/oomol/oo-control-d) <br>
-- [OOMOL publisher profile](https://clawhub.ai/user/oomol) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance, JSON] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May return Control D profile, rule, service, IP, datacenter, and execution metadata from oo CLI calls.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release metadata) <br>
+Risk: Setup instructions include remote CLI installation, while installer and server-side connector behavior are unverified.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review setup first, install a verified pinned CLI release yourself, and review automatic skill synchronization.
+
+Risk: DNS rule changes can create, replace, or delete settings.
+
+Mitigation: Keep explicit user approval for DNS changes and confirm the target and effect before acting.
+
+## Reference(s):
+
+- [Control D homepage](https://controld.com)
+- [Control D API documentation](https://docs.controld.com/reference/get-started)
+- [oo CLI repository](https://github.com/oomol-lab/oo-cli)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Shell commands, Guidance]
+
+**Output Format:** [JSON API responses and concise Markdown guidance with shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Control D profile and DNS rule actions; write operations require user approval.]
+
+## Skill Version(s):
+
+1.0.6 (source: frontmatter, server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

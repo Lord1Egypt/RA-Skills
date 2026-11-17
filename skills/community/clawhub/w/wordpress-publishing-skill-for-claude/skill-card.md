@@ -1,46 +1,59 @@
-## Description: <br>
-Publish content directly to WordPress sites via REST API with full Gutenberg block support, category selection, SEO tag generation, preview workflows, and markdown or HTML conversion. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Publish content directly to WordPress sites via REST API with full Gutenberg block support, including post and page publishing, category selection, SEO tag generation, preview workflows, and Markdown or HTML conversion to Gutenberg blocks.
 
-## Publisher: <br>
-[Asif2BD](https://clawhub.ai/user/Asif2BD) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-GPL v3 <br>
+## Publisher:
 
+[asif2bd](https://clawhub.ai/user/asif2bd)
 
-## Use Case: <br>
-Developers, editors, and publishing teams use this skill to convert markdown or HTML into Gutenberg blocks and create, preview, schedule, or publish WordPress posts and pages through the WordPress REST API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+GPL v3
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can perform live WordPress write operations, including publishing, updating, deleting content, and creating categories or tags. <br>
-Mitigation: Install only for WordPress sites you control, default to draft and preview workflows, and require explicit confirmation before publishing, updating, deleting, or creating taxonomy entries. <br>
-Risk: The skill handles WordPress application passwords and authenticated REST API access. <br>
-Mitigation: Use a least-privilege WordPress application password, avoid passing credentials directly in shell commands, and verify the site URL before connecting. <br>
-Risk: Generated Gutenberg content may render differently from the source markdown or HTML after conversion. <br>
-Mitigation: Preview draft posts, validate Gutenberg block structure, and verify the rendered page before making content public. <br>
+## Use Case:
 
+Developers, content teams, and site operators use this skill to prepare, preview, publish, update, schedule, and verify WordPress content through the WordPress REST API. It is intended for workflows that need Gutenberg block output from Markdown or HTML and managed category/tag handling.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/Asif2BD/wordpress-publishing-skill-for-claude) <br>
-- [Publisher profile](https://clawhub.ai/user/Asif2BD) <br>
-- [Gutenberg blocks reference](references/gutenberg-blocks.md) <br>
-- [WordPress REST API Handbook](https://developer.wordpress.org/rest-api/) <br>
-- [WordPress Core Blocks Reference](https://developer.wordpress.org/block-editor/reference-guides/core-blocks/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, API calls] <br>
-**Output Format:** [Markdown guidance, Python examples, shell commands, and Gutenberg-compatible HTML blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or modify WordPress posts, pages, categories, tags, and media when used with live credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill handles powerful WordPress credentials and can publish or modify live content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated least-privileged WordPress account, avoid passing application passwords on the command line, and confirm every live publish, update, or delete action.
+
+Risk: Generated or imported content may include untrusted HTML or links that could create site security or content-integrity issues.
+
+Mitigation: Publish drafts first, review previews, and sanitize untrusted HTML and links before approving publication.
+
+Risk: Incorrect category, tag, scheduling, or status choices can expose content prematurely or place it in the wrong site context.
+
+Mitigation: Use draft or pending status for review, verify category and tag selections, and check scheduled publication dates before changing content status.
+
+## Reference(s):
+
+- [WordPress REST API Handbook](https://developer.wordpress.org/rest-api/)
+- [Gutenberg Block Reference](https://developer.wordpress.org/block-editor/reference-guides/core-blocks/)
+- [Gutenberg Blocks Reference](references/gutenberg-blocks.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration instructions, API Calls]
+
+**Output Format:** [Markdown guidance with Python and shell command examples, plus generated Gutenberg block markup for WordPress content.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or modify WordPress posts, pages, categories, tags, and media when used with valid WordPress credentials.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release metadata; artifact frontmatter and changelog report 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

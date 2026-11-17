@@ -1,61 +1,72 @@
-## Description: <br>
-特看视频 lets an agent generate and edit videos, images, digital avatars, voiceovers, cloned voices, backgrounds, product model images, and board-organized media workflows from natural-language requests. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+特看视频 lets an agent create and edit AI-generated videos, images, digital avatar videos, speech audio, voice clones, product model images, and background-removed assets from natural-language requests.
 
-## Publisher: <br>
-[wxjhhhh](https://clawhub.ai/user/wxjhhhh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Apache 2.0 <br>
+## Publisher:
 
+[wxjhhhh](https://clawhub.ai/user/wxjhhhh)
 
-## Use Case: <br>
-External creators, marketers, educators, and developers use this skill to ask an agent for AI-generated media assets and multi-step creative production workflows. The skill is suited for creating videos, images, avatars, voiceovers, cloned voices, product visuals, and organized board results through Tekan/TopView service scripts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores Tekan/TopView credentials locally after browser authorization. <br>
-Mitigation: Install only when the user accepts local credential storage; use the provided logout flow or remove saved credentials when access is no longer needed. <br>
-Risk: Selected images, audio, and video files can be uploaded to an external AI media service. <br>
-Mitigation: Avoid uploading sensitive files and confirm that the user intends to send the selected media to Tekan/TopView before generation. <br>
-Risk: Voice cloning and face or avatar generation can affect consent, likeness, and impersonation expectations. <br>
-Mitigation: Get clear consent before using a person's face or voice, and avoid workflows that impersonate people without authorization. <br>
-Risk: Board and custom voice deletion commands can remove user-managed assets. <br>
-Mitigation: Verify board IDs, task IDs, and voice IDs with the user before deleting boards or cloned voices. <br>
-Risk: Webhook URLs may send task-completion data to destinations outside the user's control. <br>
-Mitigation: Use webhook URLs only when the destination is trusted and needed for the workflow. <br>
+## Use Case:
 
+External users and content teams use this skill to ask an agent for AI media creation workflows such as text-to-video, image-to-video, AI image generation and editing, digital presenter videos, text-to-speech, voice cloning, background removal, product model images, and board-based result management.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/wxjhhhh/tekan) <br>
-- [Publisher Profile](https://clawhub.ai/user/wxjhhhh) <br>
-- [Tekan Video](https://video.tekan.cn) <br>
-- [README](README.md) <br>
-- [Auth Module](references/auth.md) <br>
-- [Video Generation Module](references/video_gen.md) <br>
-- [AI Image Module](references/ai_image.md) <br>
-- [Avatar4 Module](references/avatar4.md) <br>
-- [Product Avatar Module](references/product_avatar.md) <br>
-- [Remove Background Module](references/remove_bg.md) <br>
-- [Text2Voice Module](references/text2voice.md) <br>
-- [Voice Module](references/voice.md) <br>
-- [Board Module](references/board.md) <br>
-- [User Module](references/user.md) <br>
-- [Model Mapping](references/model_mapping.md) <br>
-- [Error Handling Guide](references/error_handling.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown guidance with shell commands and service-generated media URLs or downloaded files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include links to Tekan boards for viewing, editing, and downloading generated results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: The skill accesses a Tekan account, saves credentials locally, and uses paid media-generation credits.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation before login or paid generation, check account credit status where appropriate, and use logout to remove ~/.tekan/credentials.json when access is no longer needed.
+
+Risk: Media prompts, images, audio, and identity material may be uploaded to Tekan or TopView services for generation and cloning workflows.
+
+Mitigation: Confirm user intent before uploading personal, sensitive, or third-party media, especially for avatar and voice-cloning tasks.
+
+Risk: Voice cloning, saved avatars, board deletion, and custom voice deletion can affect user identity assets or stored work.
+
+Mitigation: Ask for explicit confirmation before voice cloning, saved-avatar actions, board deletion, or custom voice deletion.
+
+Risk: The security review notes broad auto-activation and branded login-message behavior that may surprise users.
+
+Mitigation: Keep activation tied to clear user requests for Tekan media workflows and present login steps only when account authorization is needed.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/wxjhhhh/skills/tekan)
+- [Publisher Profile](https://clawhub.ai/user/wxjhhhh)
+- [特看视频](https://video.tekan.cn)
+- [Agent Skills Specification](https://agentskills.io/specification)
+- [README](artifact/README.md)
+- [Authentication Reference](artifact/references/auth.md)
+- [Video Generation Reference](artifact/references/video_gen.md)
+- [AI Image Reference](artifact/references/ai_image.md)
+- [Avatar Reference](artifact/references/avatar4.md)
+- [Voice Reference](artifact/references/voice.md)
+- [Board Reference](artifact/references/board.md)
+- [Error Handling Reference](artifact/references/error_handling.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python command examples, generated media links, local files, and JSON responses when requested.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated media and board links depend on an authenticated Tekan account, available credits, uploaded user media, selected models, and remote service task completion.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

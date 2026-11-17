@@ -1,51 +1,64 @@
-## Description: <br>
-Troubleshoot Golang programs systematically - find and fix the root cause. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Troubleshoot Golang programs systematically - find and fix the root cause. Use when encountering bugs, crashes, deadlocks, or unexpected behavior in Go code. Covers debugging methodology, common Go pitfalls, test-driven debugging, pprof setup and capture, Delve debugger, race detection, GODEBUG tracing, and production debugging. Start here for any 'something is wrong' situation. Not for interpreting profiles or benchmarking (-> See `samber/cc-skills-golang@golang-benchmark` skill) or applying optimization patterns (-> See `samber/cc-skills-golang@golang-performance` skill).
 
-## Publisher: <br>
-[samber](https://clawhub.ai/user/samber) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[samber](https://clawhub.ai/user/samber)
 
-## Use Case: <br>
-Developers and engineers use this skill to debug Go bugs, crashes, deadlocks, flaky behavior, performance symptoms, and production incidents with a root-cause-first workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Debugging workflows can expose API keys, database URLs, Authorization headers, cookies, request bodies, or response bodies. <br>
-Mitigation: Redact secrets and sensitive payload data before sharing logs, traces, profiles, or command output. <br>
-Risk: Production pprof or Delve access can reveal sensitive runtime information or increase operational exposure. <br>
-Mitigation: Keep pprof and Delve access authenticated, network-restricted, temporary, and disabled when troubleshooting is complete. <br>
+## Use Case:
 
+Developers and engineers use this skill to investigate Go bugs, crashes, hangs, race conditions, performance symptoms, build failures, and production incidents with a root-cause-first workflow.
 
-## Reference(s): <br>
-- [Golang Troubleshooting on ClawHub](https://clawhub.ai/samber/golang-troubleshooting) <br>
-- [Project homepage](https://github.com/samber/cc-skills-golang) <br>
-- [General Debugging Methodology](references/methodology.md) <br>
-- [Common Go Bugs](references/common-go-bugs.md) <br>
-- [Test-Driven Debugging](references/testing-debug.md) <br>
-- [Concurrency Debugging](references/concurrency-debug.md) <br>
-- [Performance Troubleshooting](references/performance-debug.md) <br>
-- [pprof Reference](references/pprof.md) <br>
-- [Diagnostic Tools](references/diagnostic-tools.md) <br>
-- [Production Debugging](references/production-debug.md) <br>
-- [Compilation Issues](references/compilation.md) <br>
-- [Code Review Red Flags](references/code-review-flags.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline code and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose Go diagnostics, tests, code edits, profiling commands, debugger commands, and configuration changes for the user's project.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.2 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Production debugging guidance can expose secrets, sensitive traffic, logs, profiles, database contents, or environment values if used without safeguards.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit approval for pprof captures, full HTTP dumps, database queries, and environment inspection; redact secrets, restrict log and profile access, and use HTTPS or tunnels for remote diagnostics.
+
+Risk: The skill can guide code edits and Go, git, and Delve command execution during troubleshooting.
+
+Mitigation: Review proposed changes and commands before execution, run diagnostics in least-privilege environments when possible, and pin installed tool versions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/samber/skills/golang-troubleshooting)
+- [Project homepage](https://github.com/samber/cc-skills-golang)
+- [General Debugging Methodology](references/methodology.md)
+- [Common Go Bugs](references/common-go-bugs.md)
+- [Test-Driven Debugging](references/testing-debug.md)
+- [Concurrency Debugging](references/concurrency-debug.md)
+- [Performance Troubleshooting](references/performance-debug.md)
+- [pprof Reference](references/pprof.md)
+- [Diagnostic Tools](references/diagnostic-tools.md)
+- [Production Debugging](references/production-debug.md)
+- [Compilation Issues](references/compilation.md)
+- [Code Review Red Flags](references/code-review-flags.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown with inline code and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May recommend Go, git, Delve, pprof, race-detector, linter, logging, and production diagnostic workflows.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

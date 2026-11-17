@@ -1,42 +1,53 @@
-## Description: <br>
-Akshare Integrated helps agents use AKShare-based stock data workflows to retrieve market data, screen equities, score opportunities, and describe risk controls across multiple stock markets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides multi-market stock screening and risk-control suggestions using AKShare real-time data, intelligent scoring, and dynamic weighting.
 
-## Publisher: <br>
-[haosongyi-star](https://clawhub.ai/user/haosongyi-star) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[haosongyi-star](https://clawhub.ai/user/haosongyi-star)
 
-## Use Case: <br>
-Developers and analysts use this skill to ask an agent for AKShare-backed market data retrieval, stock screening, scoring, and risk-control guidance for A-share, Hong Kong, and U.S. equities. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can produce confident BUY, HOLD, REDUCE, SELL, position-size, stop-loss, and take-profit guidance that may be mistaken for personalized financial advice. <br>
-Mitigation: Treat outputs as research support only, require human review, and do not use the skill to place trades or make automated investment decisions. <br>
-Risk: The artifact describes use of AKShare, pandas, numpy, and a stock-selector-akshare command or module, but the release artifact does not include implementation code. <br>
-Mitigation: Verify package sources and installed commands before use, and review dependency provenance in the target environment. <br>
-Risk: Market data from free or third-party data sources may be delayed, unavailable outside trading hours, rate limited, or intermittently fail. <br>
-Mitigation: Use caching, retries, source validation, and freshness checks before relying on generated analysis. <br>
+## Use Case:
 
+Developers and market-analysis users can use this skill to have an agent gather AKShare stock data, run multi-factor scoring, and produce informational screening, position-sizing, and risk-control guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/haosongyi-star/akshare-integrated) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with shell, Python, API, and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include stock ratings, position suggestions, stop-loss and take-profit guidance, caching guidance, and operational cautions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill can produce BUY, SELL, and position-size outputs that may be mistaken for financial advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as informational only and independently verify investment assumptions, data freshness, and suitability before acting.
+
+Risk: The skill depends on live AKShare data and Python packages that may change or fail at runtime.
+
+Mitigation: Install dependencies in an isolated environment with pinned versions, monitor data freshness, and validate fallback behavior before use.
+
+## Reference(s):
+
+- [Akshare Integrated ClawHub page](https://clawhub.ai/haosongyi-star/skills/akshare-integrated)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with shell commands, Python snippets, API examples, and JSON result examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include stock actions, scores, position suggestions, real-time price fields, evidence levels, and risk-control thresholds.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

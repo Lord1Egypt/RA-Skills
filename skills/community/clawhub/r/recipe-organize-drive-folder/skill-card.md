@@ -1,41 +1,50 @@
-## Description: <br>
-Create a Google Drive folder structure and move files into the right locations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create a Google Drive folder structure and move files into the right locations.
 
-## Publisher: <br>
-[googleworkspace-bot](https://clawhub.ai/user/googleworkspace-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[googleworkspace-bot](https://clawhub.ai/user/googleworkspace-bot)
 
-## Use Case: <br>
-Agents use this recipe to create Google Drive project folders, add subfolders, move existing files into the right locations, and verify the resulting folder structure. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The recipe can move Google Drive files into different folders. <br>
-Mitigation: Confirm the active gws account, list the affected files, and verify FILE_ID, FOLDER_ID, and OLD_PARENT_ID values before running move commands. <br>
-Risk: A mistaken parent folder ID can create or verify the folder structure in the wrong Drive location. <br>
-Mitigation: Check the intended parent folder and verify the final structure with a Drive file listing after changes. <br>
+## Use Case:
 
+Employees, external users, and developers use this recipe to create Google Drive folders, move existing files into the right folders, and verify the resulting folder structure with Google Workspace commands.
 
-## Reference(s): <br>
-- [Recipe Organize Drive Folder on ClawHub](https://clawhub.ai/googleworkspace-bot/recipe-organize-drive-folder) <br>
-- [googleworkspace-bot publisher profile](https://clawhub.ai/user/googleworkspace-bot) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline shell commands and JSON command parameters] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the gws binary and the gws-drive skill.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.12 (source: server release metadata) <br>
+Risk: The recipe can persistently reorganize Google Drive contents by creating folders and moving files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the file ID, old parent folder ID, and destination folder ID before running move commands, and list affected files first when practical.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/googleworkspace-bot/skills/recipe-organize-drive-folder)
+- [Publisher profile](https://clawhub.ai/user/googleworkspace-bot)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the gws command-line tool and the gws-drive skill.]
+
+## Skill Version(s):
+
+1.0.12 (source: ClawHub release metadata; skill metadata version 0.22.5)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

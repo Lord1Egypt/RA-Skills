@@ -1,50 +1,69 @@
-## Description: <br>
-This skill helps agents write, deploy, and interact with GenLayer Python smart contracts featuring LLM calls, web access, and blockchain-consensus-safe non-determinism. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents write, deploy, and interact with GenLayer Python smart contracts that use LLM calls, web access, and consensus-safe non-determinism.
 
-## Publisher: <br>
-[acastellana](https://clawhub.ai/user/acastellana) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[acastellana](https://clawhub.ai/user/acastellana)
 
-## Use Case: <br>
-Developers and engineers use this skill to draft GenLayer Intelligent Contracts, choose SDK patterns, prepare deployment commands, and reason about equivalence principles for LLM and web-enabled smart contracts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Generated deployment or write commands can affect blockchain state or target the wrong network or account. <br>
-Mitigation: Review commands before running them, use localnet or testnet first, and verify the active network and account before deploy or write operations. <br>
-Risk: Examples involving private keys, LLM calls, or web rendering can expose secrets or sensitive data if copied without review. <br>
-Mitigation: Do not paste real private keys into shells, do not send secrets or personal data to LLM or web-render examples, and prefer safer APIs and pinned dependencies for production. <br>
-Risk: LLM and web-enabled contract logic can produce incorrect or misleading guidance if prompts, outputs, or equivalence principles are poorly chosen. <br>
-Mitigation: Validate outputs against expected schemas, constrain user-controlled prompt input, and review equivalence principle choices before deployment. <br>
+## Use Case:
 
+Developers and engineers use this skill to generate GenLayer Intelligent Contract code, follow SDK and CLI patterns, deploy to local or test networks, and reason about LLM or web-enabled contract consensus behavior.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/acastellana/genlayer-dev) <br>
-- [GenLayer SDK API Reference](references/sdk-api.md) <br>
-- [Equivalence Principles - In-Depth Guide](references/equivalence-principles.md) <br>
-- [GenLayer Contract Examples](references/examples.md) <br>
-- [GenLayer Deployment Guide](references/deployment.md) <br>
-- [GenVM Internals](references/genvm-internals.md) <br>
-- [GenLayer Documentation](https://docs.genlayer.com) <br>
-- [GenLayer SDK](https://sdk.genlayer.com) <br>
-- [GenLayer Studio](https://studio.genlayer.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown guidance with inline Python and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance; review generated commands, active network, account, and secrets handling before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Copy-ready deploy, write, and account commands can affect contracts, balances, or wallet accounts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user approval before deploy, write, or account operations; prefer localnet or low-value test accounts.
+
+Risk: Private keys or sensitive account material could be exposed through command arguments or agent logs.
+
+Mitigation: Do not paste production private keys into command arguments; use safer secret-handling workflows outside the skill guidance.
+
+Risk: LLM prompts, user text, URLs, and fetched webpages may leave the local environment or influence generated contract behavior.
+
+Mitigation: Treat those inputs as untrusted data, validate outputs against expected schemas, and review contract logic before deployment.
+
+Risk: Unpinned dependencies or skill revisions can change generated behavior over time.
+
+Mitigation: Pin GenLayer dependencies and the skill revision before use in security-sensitive workflows.
+
+## Reference(s):
+
+- [GenLayer SDK API Reference](artifact/references/sdk-api.md)
+- [Equivalence Principles - In-Depth Guide](artifact/references/equivalence-principles.md)
+- [GenLayer Contract Examples](artifact/references/examples.md)
+- [GenLayer Deployment Guide](artifact/references/deployment.md)
+- [GenVM Internals](artifact/references/genvm-internals.md)
+- [GenLayer Docs](https://docs.genlayer.com)
+- [GenLayer SDK](https://sdk.genlayer.com)
+- [GenLayer Studio](https://studio.genlayer.com)
+- [GenLayer GitHub](https://github.com/genlayerlabs)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python code examples, shell command snippets, and configuration notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces agent-facing development guidance; the skill itself does not execute commands or deploy contracts.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release metadata; artifact frontmatter and changelog state 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

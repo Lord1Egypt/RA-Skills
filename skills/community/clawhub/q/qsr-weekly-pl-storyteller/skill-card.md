@@ -1,40 +1,58 @@
-## Description: <br>
-Turns weekly restaurant KPIs into a plain-English financial narrative about what happened, why it matters, and what to do next. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Turns weekly restaurant KPIs into a plain-English financial narrative: what happened, why it matters, and what to do about it.
 
-## Publisher: <br>
-[mcphersonai](https://clawhub.ai/user/mcphersonai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mcphersonai](https://clawhub.ai/user/mcphersonai)
 
-## Use Case: <br>
-Restaurant and franchise operators use this skill to turn weekly sales, labor, food cost, traffic, catering, waste, and overtime metrics into a concise operating narrative. It supports weekly reviews, trend comparisons, monthly rollups, and one recommended focus item for the next week. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+CC-BY-NC-4.0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can store restaurant financial and operational metrics in agent memory for trend comparisons. <br>
-Mitigation: Use anonymized or minimum-needed numbers where possible, and review the agent platform's memory controls so confidential reports can be deleted or kept out of long-term memory. <br>
-Risk: Generated P&L narratives and recommendations may be wrong if weekly inputs are incomplete, mistyped, or missing business context. <br>
-Mitigation: Review the source KPI values and treat the focus recommendation as decision support rather than a substitute for operator judgment. <br>
+## Use Case:
 
+Restaurant and franchise operators use this skill to convert weekly sales, labor, food cost, customer, catering, waste, and overtime metrics into a concise operational finance report with one focus item for the next week.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mcphersonai/qsr-weekly-pl-storyteller) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown narrative report with KPI summary, trend comparison, and one focus recommendation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses operator-supplied restaurant metrics and can build a running weekly archive when memory is enabled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Weekly sales, labor, food cost, waste, overtime, and related restaurant performance data may be retained in conversation memory for trend reporting.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Enter only the operational data needed for the report and avoid confidential or unnecessary details.
+
+Risk: The skill includes an external Observa publisher link outside the P&L reporting workflow.
+
+Mitigation: Review the external link separately before visiting it or adopting any related service.
+
+Risk: Generated financial narratives can be misleading when the operator provides incomplete or inaccurate KPI inputs.
+
+Mitigation: Review the report against source KPIs before sharing it with managers, owners, or district leadership.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mcphersonai/skills/qsr-weekly-pl-storyteller)
+- [Observa Getting Started](https://mcphersonai.com/observa/getting-started?utm_source=clawhub&utm_medium=skill&utm_campaign=observa-getting-started&utm_content=qsr-weekly-pl-storyteller)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown narrative report or concise conversational summary]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses user-provided weekly KPI values and retained conversation memory for week-over-week, rolling, monthly, and optional year-over-year comparisons.]
+
+## Skill Version(s):
+
+1.0.3 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

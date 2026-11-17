@@ -1,7 +1,7 @@
 ---
 name: remind-me
 description: Set reminders using natural language. Automatically creates one-time cron jobs and logs to markdown.
-metadata: {"clawdbot":{"emoji":"⏰","requires":{"bins":["bash","date","jq","openclaw"]},"config":{"TO":{"required":true,"prompt":"What is your recipient ID? (e.g. Telegram chat ID — send /start to @userinfobot to find it)"},"CHANNEL":{"required":false,"default":"telegram","prompt":"Delivery channel? (telegram / slack / etc.)"},"TIMEZONE":{"required":true,"prompt":"What is your timezone? (e.g. Europe/Kyiv, America/New_York — see https://en.wikipedia.org/wiki/List_of_tz_database_time_zones)"},"REMINDERS_FILE":{"required":false,"default":"~/reminders.md","prompt":"Where to store the reminder log? (default: ~/reminders.md)"}}}}
+metadata: {"clawdbot":{"emoji":"⏰","requires":{"bins":["bash","date","jq"]},"config":{"TO":{"required":true,"prompt":"What is your recipient ID? (e.g. Telegram chat ID — send /start to @userinfobot to find it)"},"CHANNEL":{"required":false,"default":"telegram","prompt":"Delivery channel? (telegram / slack / etc.)"},"TIMEZONE":{"required":true,"prompt":"What is your timezone? (e.g. Europe/Warsaw, America/New_York — see https://en.wikipedia.org/wiki/List_of_tz_database_time_zones)"},"REMINDERS_FILE":{"required":false,"default":"~/reminders.md","prompt":"Where to store the reminder log? (default: ~/reminders.md)"}}}}
 ---
 
 # Remind Me
@@ -89,23 +89,21 @@ During installation, the bot will auto-detect what it can and ask for the rest:
 
 | Variable | Auto-detected? | Description |
 |----------|---------------|-------------|
+| `CLAWDBOT_DIR` | ✅ yes | Set to the bot's own install directory |
 | `TIMEZONE` | ❌ **must ask** | Affects cron scheduling — cannot be guessed reliably |
-| `TO` | ❌ **must ask** | Recipient ID — cannot be guessed |
-| `CHANNEL` | ✅ default `telegram` | Ask only if user wants a different channel |
 | `REMINDERS_FILE` | ✅ default `~/reminders.md` | Ask only if user wants a custom path |
+| `CHANNEL` | ✅ default `telegram` | Ask only if user wants a different channel |
+| `TO` | ❌ **must ask** | Recipient ID — cannot be guessed |
 
 **Bot setup flow:**
-1. Ask: *"What is your timezone?"* (e.g. `Europe/Kyiv` — see [tz database](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones))
-2. Ask: *"What is your recipient ID?"* (e.g. Telegram chat ID — user can get it via @userinfobot)
-3. Write answers into `config.env` in the skill directory
-4. Scripts source `config.env` automatically on every run
+1. Auto-set `CLAWDBOT_DIR` to its own directory
+2. Ask: *"What is your timezone?"* (e.g. `Europe/Warsaw` — see [tz database](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones))
+3. Ask: *"What is your recipient ID?"* (e.g. Telegram chat ID — user can get it via @userinfobot)
+4. Save all vars to skill config so scripts don't need flags each time
 
-**config.env** (generated during setup):
+After setup, scripts are called without any flags:
 ```bash
-TIMEZONE="Europe/Kyiv"
-TO="463113011"
-CHANNEL="telegram"
-REMINDERS_FILE="/home/clawd/reminders.md"
+CLAWDBOT_DIR=... TIMEZONE=... CHANNEL=telegram TO=<id> bash create-reminder.sh "message" "when"
 ```
 
 ## Manual Commands
@@ -123,7 +121,7 @@ cron rm <job-id>
 
 ## Agent Implementation
 
-Scripts load `config.env` automatically — no flags needed at runtime.
+Use the env vars set during setup — no flags needed at runtime.
 
 ### One-Time Reminders
 
@@ -142,8 +140,7 @@ bash "$SKILL_DIR/create-recurring.sh" "Y" "every X"
 ```
 
 Both scripts automatically:
-1. Source `config.env` from the skill directory
-2. Parse the time/schedule (always outputs ISO 8601 timestamp for `--at`)
-3. Call `openclaw cron add` with the parsed schedule
-4. Log to `$REMINDERS_FILE`
-5. Return confirmation with job ID
+1. Parse the time/schedule
+2. Create a cron job (one-time with `--at` or recurring with `--every`/`--cron`)
+3. Log to `$REMINDERS_FILE`
+4. Return confirmation with job ID

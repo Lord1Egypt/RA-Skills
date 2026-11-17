@@ -16,7 +16,7 @@ Use this skill when the user wants upcoming-meeting prep, same-day meeting intel
 
 ## Workflow
 
-1. Get calendar events for the requested window with the Fulcra CLI or API.
+1. Verify auth and get calendar events for the requested window with the Fulcra CLI or API.
 2. Qualify only meaningful meetings:
    - include external meetings with attendees plus a meeting link or non-home location
    - exclude solo blocks, personal appointments, health appointments, family events, internal-only events, and standing non-meeting blocks
@@ -29,6 +29,34 @@ Use this skill when the user wants upcoming-meeting prep, same-day meeting intel
    - public research only when allowed and useful
 5. Fail closed when context is too thin. Do not post filler. Return a short diagnostic privately or say no reliable briefing could be generated.
 6. Save output only when the user asks or a local workflow has an explicit destination.
+
+## Fulcra Calendar Preflight
+
+Use the current CLI surfaces before building a briefing:
+
+```bash
+uv tool run fulcra-api user-info
+uv tool run fulcra-api data-updates "1 day"
+uv tool run fulcra-api calendar-events "1 day"
+uv tool run fulcra-api calendars
+```
+
+Before using new auth or calendar options, inspect live help:
+
+```bash
+uv tool run fulcra-api auth login --help
+uv tool run fulcra-api calendar-events --help
+uv tool run fulcra-api data-updates --help
+```
+
+GitHub main may contain unreleased CLI options. Live `uv tool run fulcra-api ... --help` is the authority for commands the user can run now.
+
+When `data-updates` is available, use it as a calendar freshness preflight for the requested meeting window before attendee research. It is a summary signal only:
+
+- If `data-updates` shows calendar changes and `calendar-events` returns events, proceed with normal qualification.
+- If `data-updates` shows no calendar changes but `calendar-events` returns events, proceed; already-synced calendar state can still be valid.
+- If both are empty, say no qualifying meetings were found or calendar sync may be missing, depending on `calendars` and user context.
+- Do not start public web research until a real meeting target is confirmed.
 
 ## Output
 
@@ -47,10 +75,15 @@ Keep briefings concise and useful:
 - Do not expose real calendar details, locations, private CRM notes, or attendee contact details in public examples.
 - Do not assume a local CRM path, local scripts, private credentials, or Arc-specific infrastructure.
 - Keep auth tokens out of chat. Device-code URLs are okay only when the user explicitly needs to authenticate.
+- In group channels, summarize only safe metadata unless the user explicitly approves real calendar details.
+- Public examples and tests must use synthetic events and synthetic attendees.
 
 ## Generic Integration Notes
 
 - Preferred CLI base command: `uv tool run fulcra-api`.
+- If `calendar-events` returns empty, distinguish no meetings from missing sync/auth/data-source issues before generating a briefing.
+- Use `data-updates` when available to check whether calendar data changed in the requested window; do not treat update counts as meeting facts.
+- Use data availability/source diagnostics where configured, or ask the user to confirm Context app/calendar sync.
 - Use a configured CRM path only if one is provided, for example `FULCRA_MEETING_CRM_DIR`.
 - Use a configured output path only if one is provided, for example `FULCRA_MEETING_BRIEFINGS_DIR`.
 - Local Arc scripts may be useful examples, but ClawHub users should not need `projects/meeting-briefer/` or Arc's private CRM.

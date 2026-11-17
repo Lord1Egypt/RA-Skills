@@ -1,41 +1,55 @@
-## Description: <br>
-BotStar helps agents read, create, update, publish, and delete BotStar bots, attributes, CMS entities, CMS items, and audience user attributes through an OOMOL-connected account. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Operate BotStar through an OOMOL-connected account to read, create, update, delete, and publish bots and related data.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and operators use this skill to manage BotStar bots, CMS content, bot attributes, and audience user data from an agent workflow. It supports both read-only inspection and state-changing BotStar operations when the user confirms the intended payload and effect. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Write, publish, or delete actions can alter live BotStar bots, CMS data, or user attributes. <br>
-Mitigation: Review the exact payload and intended effect with the user before approving write, publish, or destructive actions. <br>
-Risk: BotStar connector access is brokered through OOMOL, so account trust and connection state affect what the skill can do. <br>
-Mitigation: Install only when the user trusts OOMOL to broker the BotStar connection and resolve authentication, scope, or billing issues before retrying failed actions. <br>
+## Use Case:
 
+Developers and BotStar administrators use this skill with an OOMOL-connected account to inspect bots, users, attributes, and CMS data, or to create, update, delete, and publish BotStar content.
 
-## Reference(s): <br>
-- [BotStar homepage](https://botstar.com) <br>
-- [OOMOL oo CLI](https://github.com/oomol-lab/oo-cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON payload examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prompts agents to inspect live action schemas before building BotStar payloads and to require confirmation for write or destructive actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill metadata) <br>
+Risk: The documented CLI installation runs downloaded code whose full effects were not verified.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and approve installation separately, preferably using a verified fixed release, and check automatic skill synchronization before running it.
+
+Risk: BotStar write, publish, and delete actions can change connected account data.
+
+Mitigation: Use an appropriately limited connected account and confirm the exact target and effect before these actions.
+
+## Reference(s):
+
+- [BotStar homepage](https://botstar.com)
+- [BotStar API documentation](https://apis.botstar.com/docs/)
+- [oo CLI repository](https://github.com/oomol-lab/oo-cli)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Guidance, Shell commands]
+
+**Output Format:** [BotStar action results and data, with concise Markdown guidance and shell command examples.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Output depends on the requested BotStar action.]
+
+## Skill Version(s):
+
+1.0.4 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

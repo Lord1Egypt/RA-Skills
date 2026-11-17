@@ -1,41 +1,57 @@
-## Description: <br>
-Adapts Chinese content for Juejin, Zhihu, Xiaohongshu, and WeChat MP with platform-specific formatting, SEO suggestions, titles, tags, and publishing guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Adapts Chinese-language content for Juejin, Zhihu, Xiaohongshu, and WeChat MP with platform-specific formatting, SEO suggestions, tags, and posting guidance.
 
-## Publisher: <br>
-[karmyweng](https://clawhub.ai/user/karmyweng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[karmyweng](https://clawhub.ai/user/karmyweng)
 
-## Use Case: <br>
-Chinese content creators and agents use this skill to turn one draft into platform-specific versions for Juejin, Zhihu, Xiaohongshu, and WeChat MP. It helps prepare formatted text, HTML, titles, tags, summaries, cover suggestions, and SEO or posting tips before the user reviews and publishes manually. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated titles, tags, timing suggestions, and engagement-oriented copy may be inaccurate, exaggerated, or unsuitable for the target audience. <br>
-Mitigation: Review and edit all generated copy, tags, and posting guidance before publishing. <br>
-Risk: Generated WeChat HTML may need correction before use, and security guidance notes that one WeChat formatter script appears to contain a syntax error. <br>
-Mitigation: Preview and validate WeChat HTML in the editor before posting, and treat the skill as a formatting helper rather than publishing automation. <br>
+## Use Case:
 
+Chinese-language creators, marketers, and developer advocates use this skill to transform one source article into platform-specific drafts for Juejin, Zhihu, Xiaohongshu, and WeChat MP. It also provides title, tag, image, SEO, and posting-time recommendations for preparing content before manual publication.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/karmyweng/chinese-content-adapter) <br>
-- [Publisher profile](https://clawhub.ai/user/karmyweng) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown, plain text, JSON-like dictionaries, and WeChat HTML snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces platform-specific content variants, SEO suggestions, tags, summaries, cover suggestions, and posting tips; it does not auto-publish.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: WeChat output may include unsafe HTML when generated from untrusted Markdown or HTML input.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the generated WeChat HTML before pasting it into a source-mode editor, and sanitize untrusted third-party content before processing.
+
+Risk: The skill is specialized for Chinese-platform content workflows and may produce irrelevant guidance outside that scope.
+
+Mitigation: Use it only for Juejin, Zhihu, Xiaohongshu, and WeChat MP preparation workflows.
+
+Risk: Installing the latest package without a pinned version can make future behavior depend on a newer release.
+
+Mitigation: Prefer a pinned installer version when one is available.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/karmyweng/skills/chinese-content-adapter)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, HTML, Guidance, Configuration]
+
+**Output Format:** [JSON-style dictionaries containing platform-adapted text, Markdown content, WeChat HTML, tags, image suggestions, SEO recommendations, and posting guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill does not publish content automatically; users review and publish the generated drafts themselves.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

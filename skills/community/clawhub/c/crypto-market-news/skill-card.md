@@ -1,46 +1,61 @@
-## Description: <br>
-Fetches recent cryptocurrency market news from public RSS feeds and helps agents summarize headline sentiment and market-relevance signals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetch real-time crypto and market news from major sources for market news requests, token-specific updates, and market overviews before trading decisions.
 
-## Publisher: <br>
-[samuelhsin](https://clawhub.ai/user/samuelhsin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[samuelhsin](https://clawhub.ai/user/samuelhsin)
 
-## Use Case: <br>
-Agents use this skill when a user asks for recent crypto market news, token-specific headlines, or a broad market overview before making their own trading decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill makes outbound requests to public news feeds. <br>
-Mitigation: Run it only in environments where network access to the configured RSS sources is acceptable. <br>
-Risk: The hours argument has a minor input-validation caveat. <br>
-Mitigation: Provide simple numeric lookback values such as 24 or 48 hours. <br>
-Risk: Headline sentiment and trading-impact notes can be mistaken for financial advice. <br>
-Mitigation: Treat the output as news context only and verify important claims before making financial decisions. <br>
+## Use Case:
 
+External users and agents use this skill to fetch recent crypto headlines, filter them by token or topic, and turn the results into concise market summaries. It is useful for situational awareness before trade-related discussions, but its sentiment labels should remain informational.
 
-## Reference(s): <br>
-- [ClawHub listing: Crypto Market News](https://clawhub.ai/samuelhsin/crypto-market-news) <br>
-- [CoinDesk RSS feed](https://feeds.feedburner.com/CoinDesk) <br>
-- [CoinTelegraph RSS feed](https://cointelegraph.com/rss) <br>
-- [Decrypt RSS feed](https://decrypt.co/feed) <br>
-- [CryptoSlate RSS feed](https://cryptoslate.com/feed/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown or plain text with shell command snippets, headline summaries, links, and sentiment notes.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Fetches up to five recent matching articles per configured RSS source; requires curl and python3 at execution time.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: The skill makes outbound requests to public crypto-news RSS feeds.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review network access expectations before installation and restrict execution to environments where public RSS requests are acceptable.
+
+Risk: Headlines and sentiment summaries may be incomplete, stale, or unsuitable as trading advice.
+
+Mitigation: Treat generated summaries as informational only and verify source articles before making financial decisions.
+
+Risk: Broad trigger language may activate the skill for general market-news requests.
+
+Mitigation: Narrow trigger language when deployment should only handle explicit crypto-news requests.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/samuelhsin/skills/crypto-market-news)
+- [CoinDesk RSS feed](https://feeds.feedburner.com/CoinDesk)
+- [CoinTelegraph RSS feed](https://cointelegraph.com/rss)
+- [Decrypt RSS feed](https://decrypt.co/feed)
+- [CryptoSlate RSS feed](https://cryptoslate.com/feed/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown summaries with headlines, source links, and sentiment labels; shell output from RSS fetches]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Optional keyword and lookback-hours arguments; no API key required.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

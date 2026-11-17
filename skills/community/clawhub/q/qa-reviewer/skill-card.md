@@ -1,44 +1,62 @@
-## Description: <br>
-Provides code review, test execution, issue tracking, and quality report workflows for C++, Python, and JavaScript projects. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides QA guidance, local code review checks, test-running scripts, and report templates for C++, Python, and JavaScript projects.
 
-## Publisher: <br>
-[SamuelPang](https://clawhub.ai/user/SamuelPang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[samuelpang](https://clawhub.ai/user/samuelpang)
 
-## Use Case: <br>
-Developers and QA engineers use this skill to review local project code, discover and run tests, track quality issues, and produce Markdown review and test reports before acceptance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The included shell scripts scan local project files and the test script may execute the target project's build and test commands. <br>
-Mitigation: Inspect the scripts before use and run them only on trusted codebases or in an isolated workspace. <br>
-Risk: Generated review and test reports may be incomplete or misleading if treated as final QA decisions. <br>
-Mitigation: Use generated reports as review aids and have a qualified reviewer verify findings, test results, and acceptance status. <br>
+## Use Case:
 
+Developers and QA engineers use this skill to review project code, run local test suites, track issues, and create QA reports during development and acceptance.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/SamuelPang/qa-reviewer) <br>
-- [Skill Documentation](SKILL.md) <br>
-- [Workflow Documentation](docs/workflow.md) <br>
-- [Checklist Documentation](docs/checklist.md) <br>
-- [Best Practices Documentation](docs/best_practices.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown reports, Markdown templates, shell command guidance, and code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [When scripts are run, they may create CODE_REVIEW_*.md and TEST_RESULT_*.md files in the target project.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, package.json, README.md) <br>
+Risk: The skill's QA guidance and generated report text are primarily Chinese-language.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only where Chinese-language QA guidance is acceptable, or translate generated reports before sharing them with teams that require another language.
+
+Risk: The local scripts write markdown report files and may create test build directories in the target project.
+
+Mitigation: Run the scripts against the intended project directory, preferably on a clean branch or disposable workspace, and review generated files before committing them.
+
+Risk: The test runner can execute project-defined CMake or pytest behavior.
+
+Mitigation: Review the target project's test configuration before invoking run_tests.sh and use an isolated environment when project tests are not yet trusted.
+
+## Reference(s):
+
+- [Skill documentation](SKILL.md)
+- [Workflow guide](docs/workflow.md)
+- [QA checklist](docs/checklist.md)
+- [QA best practices](docs/best_practices.md)
+- [Code review report template](templates/code_review.md)
+- [Test report template](templates/test_report.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands]
+
+**Output Format:** [Markdown reports, checklists, report templates, and shell command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Local scripts may create CODE_REVIEW_*.md, TEST_RESULT_*.md, and test build directories in the target project.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, package.json, README.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

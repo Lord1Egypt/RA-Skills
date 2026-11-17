@@ -1,0 +1,1 @@
+Targeted app installs now run the LDM OS self-update preflight too. Real installs update the installer first when a newer selected track is available, while dry runs warn about installer version skew without changing anything.

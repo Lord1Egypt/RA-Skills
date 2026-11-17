@@ -1,45 +1,59 @@
-## Description: <br>
-High-rigor, multi-agent scholarly writing framework based on the PaperOrchestra methodology. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+High-rigor, multi-agent scholarly writing framework based on the PaperOrchestra methodology.
 
-## Publisher: <br>
-[symbolscience](https://clawhub.ai/user/symbolscience) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[symbolscience](https://clawhub.ai/user/symbolscience)
 
-## Use Case: <br>
-External users, developers, and research teams use this skill to scaffold and guide high-rigor academic manuscript projects through interview, planning, literature strategy, modular drafting, and review phases. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The scaffold creates local project files that may later contain sensitive research content. <br>
-Mitigation: Run scaffold.sh only in an intended new directory and review generated files before adding sensitive research. <br>
-Risk: The artifact references external Emergence Science discovery endpoints. <br>
-Mitigation: Verify the referenced API and content index before allowing an agent to use external discovery endpoints. <br>
-Risk: Academic-writing assistance can introduce unsupported claims or citation errors. <br>
-Mitigation: Use the skill's verification loop to check candidate papers by DOI or arXiv identifiers before adding them to the citation bank. <br>
+## Use Case:
 
+External researchers, scholarly authors, and agent developers use this skill to structure manuscript projects, capture research ideas, plan literature searches, draft sections, and refine claims against verifiable evidence.
 
-## Reference(s): <br>
-- [PaperOrchestra arXiv paper](https://arxiv.org/abs/2604.05018) <br>
-- [ClawHub skill page](https://clawhub.ai/symbolscience/emergence-paper-orchestra) <br>
-- [Emergence Science OpenAPI description](https://api.emergence.science/openapi.json) <br>
-- [Emergence Science content index](https://api.emergence.science/content/index.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with shell commands and generated project files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a local academic-writing scaffold with idea.md, metadata.json, README.md, section folders, asset folders, and notes folders.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server-resolved release metadata; artifact frontmatter declares 1.0.0) <br>
+Risk: Interview and research notes may be persisted into local project files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated workspace and avoid entering confidential research material unless local persistence is acceptable.
+
+Risk: The skill mutates the local filesystem through its scaffold script.
+
+Mitigation: Review the scaffold script before execution and run it only with simple project directory names in an intended workspace.
+
+Risk: The artifact references an external Emergence API that is not clearly documented in the evidence.
+
+Mitigation: Review the referenced API endpoints and organizational data-handling requirements before using the skill with sensitive projects.
+
+## Reference(s):
+
+- [PaperOrchestra: A Multi-Agent Framework for Automated AI Research Paper Writing](https://arxiv.org/abs/2604.05018)
+- [Emergence Science OpenAPI schema](https://api.emergence.science/openapi.json)
+- [Emergence Science content index](https://api.emergence.science/content/index.json)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with inline shell commands, JSON planning structures, and generated project files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local project files such as idea.md, metadata.json, content.md, README.md, and section drafts.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence; artifact frontmatter and manifest list 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

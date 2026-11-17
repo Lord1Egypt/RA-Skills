@@ -1,43 +1,53 @@
-## Description: <br>
-Automatically switches between cloud and local LLMs when rate limits occur, with explicit user confirmation before local code generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically switches between cloud and local LLMs when rate limits occur, with explicit user confirmation before local code generation.
 
-## Publisher: <br>
-[dhardie](https://clawhub.ai/user/dhardie) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[dhardie](https://clawhub.ai/user/dhardie)
 
-## Use Case: <br>
-Developers and agent operators use this skill to keep agents responsive during cloud LLM rate limits by switching to a local Ollama fallback while requiring confirmation before local-model code tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can change agent LLM profiles and persist the active cloud or local mode across new agents. <br>
-Mitigation: Review the active mode with /llm status and use /llm switch cloud or /llm switch local when operators need to control the profile explicitly. <br>
-Risk: Local model fallback can affect code quality compared with the default cloud model. <br>
-Mitigation: Keep confirmation required for local code tasks and require operators to provide the configured confirmation phrase before proceeding. <br>
-Risk: Any user message containing the configured confirmation phrase is treated as approval for local-model code tasks. <br>
-Mitigation: Limit use of the confirmation phrase to deliberate approvals and adjust the configured phrase if a deployment needs a more specific approval token. <br>
+## Use Case:
 
+Developers and operators use this skill to keep OpenClaw agents available when cloud LLM providers hit rate limits by switching new agents to a local Ollama model. It makes local code-generation work visible by requiring a confirmation phrase before code-oriented tasks proceed in local mode.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dhardie/llm-supervisor-agent) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/dhardie) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Configuration, Guidance] <br>
-**Output Format:** [Markdown command replies and notifications with LLM profile configuration changes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Persists cloud or local mode and uses the configured local model and confirmation phrase.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: skill.json and server release metadata) <br>
+Risk: Local-mode code tasks may proceed without a deliberate user approval because the confirmation gate is weak.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the confirmation phrase as a best-effort control; review local-mode code work before execution and prefer cloud mode for production code changes until the gate is hardened.
+
+Risk: A weaker local model may reduce code-generation quality after automatic fallback from cloud LLMs.
+
+Mitigation: Use `/llm status` to confirm the active mode, switch back to cloud with `/llm switch cloud` for sensitive code work, and review generated changes before applying them.
+
+## Reference(s):
+
+- [LLM Supervisor ClawHub release](https://clawhub.ai/dhardie/skills/llm-supervisor-agent)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown-formatted command replies and notifications]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can update agent LLM profile selection between cloud Anthropic and local Ollama modes; local code tasks depend on a configurable confirmation phrase.]
+
+## Skill Version(s):
+
+0.2.0 (source: server release and skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

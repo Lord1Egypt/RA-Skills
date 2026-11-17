@@ -1,40 +1,53 @@
-## Description: <br>
-Search Geizhals.at (Austria) with HTTP-only autocomplete and detail-page parsing, without browser automation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search Geizhals.at (Austria) with HTTP-only autocomplete and detail-page parsing for quick, best-effort price checks without browser automation.
 
-## Publisher: <br>
-[rolandkakonyi](https://clawhub.ai/user/rolandkakonyi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[rolandkakonyi](https://clawhub.ai/user/rolandkakonyi)
 
-## Use Case: <br>
-External users and developers use this skill to run quick, best-effort Geizhals.at price checks for Austrian product listings and receive candidate detail URLs, prices, shops, offer counts, and confidence metadata. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill contacts Geizhals.at and may store fetched public page content in a local cache. <br>
-Mitigation: Use a dedicated cache directory when tighter control is needed and keep result limits small. <br>
-Risk: Unofficial HTML parsing can miss prices, shops, or offer counts when Geizhals.at page structure changes or rate-limits requests. <br>
-Mitigation: Treat results as best-effort, review the returned confidence and source fields, and verify important prices against the linked detail page. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Geizhals.at](https://geizhals.at) <br>
-- [ClawHub skill page](https://clawhub.ai/rolandkakonyi/geizhals-at) <br>
+## Use Case:
 
+External users and developers use this skill to search Geizhals.at product candidates and retrieve price-oriented result records, including cheapest observed price, shop, offer count, confidence, source, and detail URL.
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, shell commands] <br>
-**Output Format:** [Plain text table or JSON records from a command-line search script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Each result includes schema_version, name, detail_url, min_price_eur, shop, offer_count, price_confidence, price_source, and error fields.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.1 (source: pyproject.toml and server release evidence) <br>
+Global, with Austria-focused Geizhals.at results.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Returned search data may steer the scraper to request non-Geizhals URLs and cache the responses.
+
+Mitigation: Review before installing in environments with private-network or metadata-service access; prefer a version that allowlists https://geizhals.at, accepts only relative Geizhals paths, validates redirects, and makes cache behavior clear or optional.
+
+Risk: The unofficial HTTP scraper can return incomplete or stale price data when Geizhals page structure, rate limiting, or autocomplete behavior changes.
+
+Mitigation: Treat price output as best-effort, inspect price_confidence and price_source, keep request volume low, and verify important purchases against the linked detail page.
+
+## Reference(s):
+
+- [Geizhals.at](https://geizhals.at)
+- [ClawHub skill page](https://clawhub.ai/rolandkakonyi/skills/geizhals-at)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, guidance]
+
+**Output Format:** [JSON records or plain-text price summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Records include schema_version, name, detail_url, min_price_eur, shop, offer_count, price_confidence, price_source, and error.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata and pyproject.toml)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,49 +1,59 @@
-## Description: <br>
-Generates USMLE Step 1 and Step 2 CK style clinical cases with patient history, physical findings, diagnostics, multiple-choice questions, and answer explanations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate USMLE Step 1 and Step 2 CK style clinical cases for medical education and board exam preparation.
 
-## Publisher: <br>
-[aipoch-ai](https://clawhub.ai/user/aipoch-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aipoch-ai](https://clawhub.ai/user/aipoch-ai)
 
-## Use Case: <br>
-Medical educators, learners, and exam-preparation authors use this skill to generate structured USMLE-style practice vignettes, answer choices, explanations, and learning objectives for educational review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated medical education content may contain clinical inaccuracies or outdated guidance. <br>
-Mitigation: Review generated cases against authoritative medical sources and do not use them for diagnosis or treatment. <br>
-Risk: Setup instructions include an unexplained dependency entry named main. <br>
-Mitigation: Verify or remove the dependency before running pip install -r requirements.txt. <br>
-Risk: The skill executes local Python code to generate cases. <br>
-Mitigation: Run the script in a controlled workspace and review output files before relying on them. <br>
+## Use Case:
 
+External learners, educators, and developers use this skill to generate fictional USMLE Step 1 and Step 2 CK practice vignettes, multiple-choice questions, explanations, and learning objectives for medical education review.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/aipoch-ai/usmle-case-generator) <br>
-- [Guidelines](references/guidelines.md) <br>
-- [USMLE patterns](references/usmle_patterns.md) <br>
-- [Medical specialty topics](references/topics.json) <br>
-- [Case templates](references/case_templates.json) <br>
-- [Sample input](references/sample_input.json) <br>
-- [Sample output](references/sample_output.json) <br>
-- [Runtime requirements](references/requirements.txt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, guidance] <br>
-**Output Format:** [Plain text, Markdown, or JSON clinical case scenarios with multiple-choice questions and explanations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs can vary by USMLE step, specialty topic, condition, difficulty, count, format, and answer-key inclusion.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The root installation instructions can pull an unnecessary unpinned package named main.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not run the documented pip install step unless the dependency file is removed, replaced, or reviewed and pinned.
+
+Risk: Generated clinical cases may contain inaccuracies and are not patient-care advice.
+
+Mitigation: Use outputs only as fictional educational practice material and have qualified medical reviewers verify clinical details before high-stakes use.
+
+## Reference(s):
+
+- [USMLE Case Generator Guidelines](references/guidelines.md)
+- [USMLE Question Patterns and Strategies](references/usmle_patterns.md)
+- [Medical Specialty Topics](references/topics.json)
+- [Case Structure Templates](references/case_templates.json)
+- [Sample Input](references/sample_input.json)
+- [Sample Output](references/sample_output.json)
+- [ClawHub Skill Page](https://clawhub.ai/aipoch-ai/skills/usmle-case-generator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, guidance]
+
+**Output Format:** [Plain text, JSON, or Markdown clinical vignette with multiple-choice question and optional answer key.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include generated case metadata, patient vignette sections, answer options, explanation, and learning objectives.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

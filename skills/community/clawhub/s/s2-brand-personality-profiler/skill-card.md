@@ -1,44 +1,59 @@
-## Description: <br>
-S2 中国品牌个性量表演算模型。基于向忠宏 2010 年创立的“5维度-18层面-51人格”中国品牌个性量表，通过品牌搜索投影算法，为品牌进行精准的本土化人格定位。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+S2 中国品牌个性量表演算模型。基于向忠宏 2010 年创立的“5维度-18层面-51人格”中国品牌个性量表，通过品牌搜索投影算法，为品牌进行精准的本土化人格定位。
 
-## Publisher: <br>
-[spacesq](https://clawhub.ai/user/spacesq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[spacesq](https://clawhub.ai/user/spacesq)
 
-## Use Case: <br>
-External brand strategists, marketers, and agents use this skill to profile a brand against a Chinese-market 5-dimension, 18-facet, 51-trait brand personality model and produce n-value analysis, personality classification, and consumer fit recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Brand personality scores may be simulated or search-derived and mistaken for validated market research. <br>
-Mitigation: Clarify the data source and method before relying on results, and treat outputs as decision support rather than conclusive measurement. <br>
-Risk: n-value interpretation can be misleading without industry-average or competitor context. <br>
-Mitigation: Provide two or three core competitors or an explicit industry baseline before requesting the analysis. <br>
-Risk: The framework is localized for Chinese-market brand personality signals and may not transfer cleanly to other markets. <br>
-Mitigation: Confirm the target language and market scope before using recommendations for non-Chinese audiences. <br>
+## Use Case:
 
+Brand strategists, marketers, and agents use this skill to analyze Chinese-market brand personality against the 5-18-51 model, estimate n-value deviations from industry averages, and produce positioning and audience-fit recommendations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/spacesq/s2-brand-personality-profiler) <br>
-- [README.md](artifact/README.md) <br>
-- [skill.md](artifact/skill.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown analysis report with optional Python evaluator code] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports include n-value extremes, personality classification, and China-market consumer adaptation recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Numeric brand-personality scores may be based on web search results or simulated semantic estimates and can be mistaken for verified measurements.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Label estimates clearly, preserve sources for any search-derived counts, and have a human analyst review conclusions before using them for brand or marketing decisions.
+
+Risk: The model is tailored to Chinese brand-personality constructs, which may limit its fit for brands or audiences outside that market context.
+
+Mitigation: Use the output as Chinese-market positioning guidance and validate interpretations against local market research when applying it to other regions.
+
+Risk: The skill may answer in Chinese by default, which can reduce reviewer understanding for non-Chinese-speaking teams.
+
+Mitigation: Request the final report in the reviewer team's working language when needed and retain the original Chinese trait labels for traceability.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/spacesq/skills/s2-brand-personality-profiler)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/spacesq)
+- [Artifact README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown analysis report with n-value findings, personality classification, and audience-fit recommendations.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use web search or simulated semantic estimates; numeric outputs should be treated as analytic approximations.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

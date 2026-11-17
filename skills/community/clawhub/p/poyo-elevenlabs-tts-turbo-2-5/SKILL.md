@@ -1,10 +1,16 @@
----
+﻿---
 name: poyo-elevenlabs-tts-turbo-2-5
 description: Generate speech on PoYo / poyo.ai via `https://api.poyo.ai/api/generate/submit`; use for `elevenlabs-tts-turbo-2-5`, text-to-speech, voice selection, speech speed, stability, similarity boost, style, timestamps, language code, async task submission, callbacks, and task status retrieval.
-metadata: {"openclaw":{"homepage":"https://docs.poyo.ai/api-manual/music-series/elevenlabs-tts-turbo-2-5","requires":{"bins":["curl"],"env":["POYO_API_KEY"]},"primaryEnv":"POYO_API_KEY"}}
+metadata: {"openclaw":{"homepage":"https://poyo.ai/models/elevenlabs-tts-turbo-2-5","requires":{"bins":["curl"],"env":["POYO_API_KEY"]},"primaryEnv":"POYO_API_KEY"}}
 ---
 
 # PoYo ElevenLabs TTS Turbo 2.5
+## PoYo Links
+
+- Model page: <https://poyo.ai/models/elevenlabs-tts-turbo-2-5>
+- API docs: <https://docs.poyo.ai/api-manual/music-series/elevenlabs-tts-turbo-2-5>
+- API key page: <https://poyo.ai/dashboard/api-key>
+
 
 Use this skill for `elevenlabs-tts-turbo-2-5` jobs on PoYo. It helps agents prepare text-to-speech payloads, tune voice and delivery fields, submit async tasks, and explain result retrieval through PoYo task status.
 

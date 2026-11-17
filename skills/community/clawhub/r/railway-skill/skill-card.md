@@ -1,41 +1,56 @@
-## Description: <br>
-Deploy and manage applications on Railway.app, including projects, services, logs, environment variables, and databases. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deploy and manage applications on Railway.app. Use for deploying projects, managing services, viewing logs, setting environment variables, and managing databases. Railway is a modern cloud platform for deploying apps with zero configuration.
 
-## Publisher: <br>
-[leicao-me](https://clawhub.ai/user/leicao-me) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[leicao-me](https://clawhub.ai/user/leicao-me)
 
-## Use Case: <br>
-Developers and operators use this skill to ask an agent for Railway CLI guidance when deploying projects, linking services, managing environments, checking logs, setting variables, and working with databases. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide production infrastructure actions such as deploys, SSH or remote commands, database changes, domain changes, and deletes. <br>
-Mitigation: Require explicit approval before high-impact Railway commands, and confirm the active project, environment, and service before execution. <br>
-Risk: Broad Railway access can increase blast radius if an agent runs commands in the wrong account or environment. <br>
-Mitigation: Use least-privileged Railway access where possible and review generated commands before running them. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Railway Documentation](https://docs.railway.com) <br>
-- [Railway CLI Reference](https://docs.railway.com/reference/cli-api) <br>
-- [Railway Templates](https://railway.app/templates) <br>
+## Use Case:
 
+Developers and operators use this skill to ask an agent for Railway CLI guidance for deploying projects, managing services, reading logs, configuring variables, and provisioning databases.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash and YAML code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the Railway CLI binary and appropriate Railway access before commands can be run.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Railway deploys, deletes, database commands, and secret reads can affect real projects and production data.
+
+Mitigation: Require explicit confirmation before production deploys, deletion, database operations, or secret reads; prefer staging and read-only database access where possible.
+
+Risk: Environment-variable output may expose secrets.
+
+Mitigation: Redact environment-variable values before sharing logs or agent output, and use Railway credentials with only the permissions needed.
+
+## Reference(s):
+
+- [Railway](https://railway.app)
+- [Railway Documentation](https://docs.railway.com)
+- [Railway CLI Reference](https://docs.railway.com/reference/cli-api)
+- [Railway Templates](https://railway.app/templates)
+- [Railway CLI GitHub](https://github.com/railwayapp/cli)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with inline bash and YAML code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Railway CLI commands that affect live services; users should review commands before execution.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

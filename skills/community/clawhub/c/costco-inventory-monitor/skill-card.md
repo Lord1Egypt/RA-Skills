@@ -1,43 +1,61 @@
-## Description: <br>
-Monitor Costco inventory by ZIP and run it safely with OpenClaw cron. Keep secrets outside the skill directory. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitor Costco inventory by ZIP and run it safely with OpenClaw cron. Keep secrets outside the skill directory.
 
-## Publisher: <br>
-[cweiping](https://clawhub.ai/user/cweiping) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cweiping](https://clawhub.ai/user/cweiping)
 
-## Use Case: <br>
-External users and developers use this skill to configure and run repeatable Costco product availability checks by ZIP code, write snapshot and report files, and schedule monitoring with OpenClaw cron. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: High-frequency Costco monitoring through residential proxies may cause blocks, terms-of-service issues, and proxy costs. <br>
-Mitigation: Use the skill only with authorization, set a conservative polling interval, and review or remove residential proxy and block-recovery guidance before scheduling runs. <br>
-Risk: Proxy credentials can be exposed in command-line arguments, generated output, logs, or snapshots. <br>
-Mitigation: Keep real secrets outside the skill directory in a restricted environment file, avoid placing real proxy passwords on command lines, and restrict access to logs and snapshot files. <br>
-Risk: Blocked, CAPTCHA, or ambiguous Costco responses can produce unknown or misleading availability results. <br>
-Mitigation: Treat blocked or ambiguous responses as unknown, review reports before acting on them, and avoid alerting until repeated checks confirm the condition. <br>
+## Use Case:
 
+Developers and operators use this skill to configure recurring Costco product availability checks across ZIP codes and produce status reports for downstream notification channels.
 
-## Reference(s): <br>
-- [Costco Inventory Monitoring Standard](references/costco-inventory-standard.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/cweiping/costco-inventory-monitor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands plus JSON, JSONL, and plain-text report files when executed.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces monitoring plans, runnable check commands, structured snapshots, state files, logs, and a latest report file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: Recurring proxy-based web checks may be inappropriate if used without authorization or at an excessive polling rate.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only for authorized monitoring, keep polling frequency modest, and disable the OpenClaw cron job when monitoring is no longer needed.
+
+Risk: Credential-bearing proxy URLs can be exposed in command output, logs, or configuration files.
+
+Mitigation: Store real secrets outside the skill directory, restrict secret file permissions, and avoid printing or logging proxy URLs that contain credentials.
+
+Risk: Product URLs are accepted from configuration and are not restricted to approved Costco hosts.
+
+Mitigation: Restrict product URLs to approved Costco domains before running checks.
+
+Risk: Access-denied, CAPTCHA, or parser failures can create ambiguous inventory signals.
+
+Mitigation: Treat blocked or ambiguous responses as unknown, preserve diagnostic excerpts, and alert only after repeated failures.
+
+## Reference(s):
+
+- [Costco Inventory Monitoring Standard](references/costco-inventory-standard.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, code, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, environment configuration, JSON/JSONL snapshots, and plain-text reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Runtime checks may write latest_report.txt, monitor.log, snapshots.jsonl, and state.json to configured output paths.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

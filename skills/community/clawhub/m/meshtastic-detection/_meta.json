@@ -1,6 +1,10 @@
 {
-  "ownerId": "kn7dk4b858acgt2vtasv9tj4a580n66g",
+  "owner": "odensu",
   "slug": "meshtastic-detection",
-  "version": "0.1.1",
-  "publishedAt": 1772787246234
+  "displayName": "Meshtastic Detection Sensor alert receiver — LoRa USB serial, JSONL storage, real-time notifications.",
+  "latest": {
+    "version": "0.1.0",
+    "publishedAt": null
+  },
+  "history": []
 }

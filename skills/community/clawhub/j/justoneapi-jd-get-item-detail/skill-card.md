@@ -1,40 +1,52 @@
-## Description: <br>
-Call GET /api/jd/get-item-detail/v1 for JD.com Product Details through JustOneAPI with itemId. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Call GET /api/jd/get-item-detail/v1 for JD.com Product Details through JustOneAPI with itemId.
 
-## Publisher: <br>
-[justoneapi](https://clawhub.ai/user/justoneapi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[justoneapi](https://clawhub.ai/user/justoneapi)
 
-## Use Case: <br>
-External developers and ecommerce analysts use this skill to retrieve JD.com product detail data by item ID for catalog analysis, product monitoring, and ecommerce research. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The vendor API uses token-in-query authentication, so full request URLs can expose the JustOneAPI token in logs, shell history, monitoring, or screenshots. <br>
-Mitigation: Use a scoped, revocable JustOneAPI token and avoid running the skill where full URLs may be captured in shared logs, shell history, monitoring, or screenshots. <br>
+## Use Case:
 
+Developers and ecommerce analysts use this skill to retrieve JD.com product detail data by item ID, including pricing, images, and shop information, for catalog analysis, product monitoring, and ecommerce research.
 
-## Reference(s): <br>
-- [JustOneAPI Homepage](https://api.justoneapi.com) <br>
-- [JustOneAPI Dashboard](https://dashboard.justoneapi.com/en/login?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_jd_get_item_detail&utm_content=project_link) <br>
-- [JustOneAPI Usage Guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_jd_get_item_detail&utm_content=project_link) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance, json] <br>
-**Output Format:** [Markdown guidance with an inline shell command and JSON API response data] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires node, JUST_ONE_API_TOKEN, and a JD.com itemId; documented usage returns a short endpoint-specific summary before raw JSON.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The JustOneAPI token is sent as a query parameter for JD.com product-detail lookups.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a narrowly scoped or revocable token, avoid sharing token values in chat or logs, and rotate the token if request URLs may have been captured by infrastructure logs.
+
+## Reference(s):
+
+- [JustOneAPI homepage](https://api.justoneapi.com)
+- [Just One API Usage Guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_jd_get_item_detail&utm_content=project_link)
+- [Just One API Dashboard](https://dashboard.justoneapi.com/en/login?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_jd_get_item_detail&utm_content=project_link)
+- [ClawHub skill page](https://clawhub.ai/justoneapi/skills/justoneapi-jd-get-item-detail)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown summary followed by raw JSON, or formatted JSON from the helper script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a JustOneAPI token and an itemId query parameter.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

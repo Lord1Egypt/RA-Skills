@@ -1,0 +1,6 @@
+{
+  "name": "pursekeeper-skill-scripts",
+  "private": true,
+  "description": "Scripts for the pursekeeper ClawHub skill: a Nano wallet with no node, and an x402 exact client for nano:mainnet.",
+  "dependencies": { "nanocurrency": "^2.5.0" }
+}

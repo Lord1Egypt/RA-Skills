@@ -1,0 +1,31 @@
+{
+  "version": 1,
+  "jobs": [
+    {
+      "skill": "gitlab-agent",
+      "job": {
+        "name": "GitLab Agent",
+        "description": "Process assigned GitLab work using the GitLab Agent skill.",
+        "enabled": false,
+        "deleteAfterRun": false,
+        "schedule": {
+          "kind": "every",
+          "everyMs": 900000
+        },
+        "sessionTarget": "isolated",
+        "wakeMode": "now",
+        "payload": {
+          "kind": "agentTurn",
+          "message": "Read skill `gitlab-agent` and run.",
+          "thinking": "xhigh",
+          "timeoutSeconds": 3600,
+          "model": "openai/gpt-6.1-sol"
+        },
+        "delivery": {
+          "mode": "none",
+          "bestEffort": false
+        }
+      }
+    }
+  ]
+}

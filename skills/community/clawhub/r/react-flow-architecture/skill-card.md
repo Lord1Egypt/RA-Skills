@@ -1,38 +1,49 @@
-## Description: <br>
-Architectural guidance for building node-based UIs with React Flow. Use when designing flow-based applications, making decisions about state management, integration patterns, or evaluating whether React Flow fits a use case. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Architectural guidance for building node-based UIs with React Flow. Use when designing flow-based applications, making decisions about state management, integration patterns, or evaluating whether React Flow fits a use case.
 
-## Publisher: <br>
-[anderskev](https://clawhub.ai/user/anderskev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[anderskev](https://clawhub.ai/user/anderskev)
 
-## Use Case: <br>
-Developers and engineers use this skill to decide whether React Flow fits node-based UI work and to plan architecture for flow editors, workflow builders, diagrams, and data pipeline visualizations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated app code or architecture recommendations may mishandle sensitive flow data when using browser storage or API autosave patterns. <br>
-Mitigation: Review generated code before production use and apply appropriate data handling controls for flow data that may contain sensitive business information. <br>
+## Use Case:
 
+Developers and engineers use this skill to decide whether React Flow fits a node-based UI and to choose architecture patterns for state management, persistence, integrations, layout, and performance scaling.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/anderskev/react-flow-architecture) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code] <br>
-**Output Format:** [Markdown guidance with TypeScript and React code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable helper scripts or hidden access requests are included in the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release evidence) <br>
+Risk: Generated React Flow implementations may persist unintended flow data or call the wrong backend endpoint when using localStorage or auto-save examples.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated application code before use and confirm stored flow data, persistence scope, and API endpoint behavior match the intended application.
+
+## Reference(s):
+
+- [React Flow Architecture Skill Page](https://clawhub.ai/anderskev/skills/react-flow-architecture)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown guidance with TypeScript and React code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Provides architecture recommendations, trade-off comparisons, and implementation examples for React Flow applications.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

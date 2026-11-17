@@ -1,50 +1,59 @@
-## Description: <br>
-desearch-skill helps agents submit Zeelin Deep Research jobs, monitor them asynchronously, confirm outlines, and save completed research as Markdown reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Desearch Skill helps agents submit Zeelin Deep Research tasks asynchronously, monitor completion, and save the resulting research report as Markdown.
 
-## Publisher: <br>
-[angelandpeiqi](https://clawhub.ai/user/angelandpeiqi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[angelandpeiqi](https://clawhub.ai/user/angelandpeiqi)
 
-## Use Case: <br>
-Agents and OpenClaw users use this skill to launch long-running Zeelin research tasks without blocking the active session. It is intended for generating deep research reports from a user-specified topic, thinking mode, and search range. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Research queries and task content are sent to Zeelin. <br>
-Mitigation: Use the skill only for content that is acceptable to process through Zeelin, and avoid submitting confidential or regulated data unless an appropriate agreement and review are in place. <br>
-Risk: The Zeelin API key may be stored locally in plaintext. <br>
-Mitigation: Prefer environment-based secrets where possible, restrict permissions on local configuration files, and remove the key when the skill is no longer needed. <br>
-Risk: The skill can create recurring OpenClaw cron jobs for background checks. <br>
-Mitigation: Review active cron jobs after each run and remove the zeelin-check job if a task fails, times out, or is no longer needed. <br>
-Risk: Completion details may be sent to a fixed DingTalk recipient without user-scoped control. <br>
-Mitigation: Reconfigure or remove the DingTalk recipient before use, and verify notifications are routed only to the intended user or team. <br>
-Risk: Packaged report and status files may contain prior research content or session metadata. <br>
-Mitigation: Delete bundled report, status, and notification files before installing or redistributing the skill. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/angelandpeiqi/desearch-skill) <br>
-- [Publisher profile](https://clawhub.ai/user/angelandpeiqi) <br>
-- [Zeelin Deep Research](https://desearch.zeelin.cn) <br>
-- [Zeelin API configuration guide](references/config.md) <br>
-- [Asynchronous task handling guide](references/async-pattern.md) <br>
-- [Installation guide](INSTALL.md) <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to run long-running Zeelin research jobs without keeping the agent session blocked, then retrieve saved Markdown reports and status updates.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown reports, JSON status files, and terminal text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates saved research reports and status files; may create recurring OpenClaw cron checks while a task is active.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Research queries are sent to the Zeelin Deep Research API.
+
+Mitigation: Submit only research topics and data that are appropriate for Zeelin processing, and review data handling expectations before use.
+
+Risk: The skill can store the Zeelin API key plainly in a local OpenClaw configuration file.
+
+Mitigation: Protect the local configuration file, remove keys when no longer needed, and rotate any key that may have been exposed.
+
+Risk: The skill creates an OpenClaw cron notification targeting a hard-coded DingTalk recipient.
+
+Mitigation: Change or remove the notification target before use and confirm task metadata is sent only to the intended recipient.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/angelandpeiqi/skills/desearch-skill)
+- [Zeelin API configuration guide](artifact/references/config.md)
+- [Zeelin asynchronous task pattern](artifact/references/async-pattern.md)
+- [Zeelin Deep Research service](https://desearch.zeelin.cn)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Text, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown research reports with JSON status metadata and command-line output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Submits asynchronous research tasks, writes status files, and saves completed reports under the skill reports directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

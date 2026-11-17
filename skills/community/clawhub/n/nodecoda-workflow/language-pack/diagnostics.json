@@ -1,0 +1,188 @@
+{
+  "language": "nodecoda/1",
+  "pack_version": "1.0.0",
+  "generated_from": [
+    "references/diagnostics.md",
+    "references/diagnostics-map.md"
+  ],
+  "shape": {
+    "fields": [
+      "code",
+      "severity",
+      "message",
+      "location.file",
+      "location.line",
+      "location.column",
+      "location.node_id",
+      "location.path"
+    ],
+    "severity": [
+      "error",
+      "warning",
+      "info",
+      "hint"
+    ],
+    "max_per_build": 100
+  },
+  "categories": [
+    {
+      "category": "syntax",
+      "stage": "L1",
+      "codes": [
+        "SYNTAX_UNEXPECTED_TOKEN",
+        "SYNTAX_UNTERMINATED_STRING",
+        "SYNTAX_ERROR"
+      ],
+      "repair_direction": "改 Source 语法",
+      "doc": "references/language-reference.md"
+    },
+    {
+      "category": "scope",
+      "stage": "L2",
+      "codes": [
+        "UNDEFINED_SYMBOL",
+        "SHADOWED_BINDING",
+        "DUPLICATE_DECL",
+        "UNRESOLVED_REFERENCE"
+      ],
+      "repair_direction": "检查名字拼写/声明顺序",
+      "doc": "references/language-reference.md"
+    },
+    {
+      "category": "type",
+      "stage": "L2",
+      "codes": [
+        "TYPE_MISMATCH",
+        "INCOMPATIBLE_TYPES",
+        "MISSING_RETURN",
+        "FIELD_NOT_FOUND"
+      ],
+      "repair_direction": "对齐声明类型，补全分支返回值",
+      "doc": "references/language-reference.md"
+    },
+    {
+      "category": "effect",
+      "stage": "L2",
+      "codes": [
+        "UNINITIALIZED_READ",
+        "NONEXHAUSTIVE_PATTERNS"
+      ],
+      "repair_direction": "显式初始化，补全分支",
+      "doc": "references/language-reference.md"
+    },
+    {
+      "category": "capability",
+      "stage": "L2",
+      "codes": [
+        "CAPABILITY_BLOCKED",
+        "TARGET_FEATURE_UNSUPPORTED",
+        "OPERATION_POLICY"
+      ],
+      "repair_direction": "不改 Source，改设计或换目标",
+      "doc": "references/target-capabilities.md"
+    },
+    {
+      "category": "response_contract",
+      "stage": "L2",
+      "codes": [
+        "RESPONSE_CONTRACT_VIOLATION",
+        "YIELD_OUTSIDE_LOOP"
+      ],
+      "repair_direction": "调整 return/output/answer 写法",
+      "doc": "references/language-reference.md"
+    },
+    {
+      "category": "target_validation",
+      "stage": "L4",
+      "codes": [
+        "TARGET_INCOMPATIBLE",
+        "TARGET_NOT_LOWERABLE"
+      ],
+      "repair_direction": "不改 Source，降级设计或换目标",
+      "doc": "references/target-capabilities.md"
+    },
+    {
+      "category": "codegen",
+      "stage": "L4",
+      "codes": [
+        "CODEGEN_ERROR",
+        "ARTIFACT_INVALID",
+        "LOWERING_INVARIANT"
+      ],
+      "repair_direction": "视为服务 bug，留 Build ID 报告",
+      "doc": "references/diagnostics.md"
+    }
+  ],
+  "empirical": [
+    {
+      "code": "SYNTAX_ERROR",
+      "excerpt": "Expected declaration, got AT_CONVERSATION",
+      "cause": "@conversation 放在 const/type/function 之后",
+      "fix": "移到 @mode 之后、const 之前",
+      "ref": "G1"
+    },
+    {
+      "code": "FIELD_NOT_FOUND",
+      "excerpt": "Field 'text' not found on file type",
+      "cause": "file 变量直接访问 .text",
+      "fix": "用 extract_text(doc).text",
+      "ref": "G2"
+    },
+    {
+      "code": "TARGET_NOT_LOWERABLE",
+      "excerpt": "extract_text requires a selector-backed scalar file with a declared extractable extension",
+      "cause": "file<> 未声明可提取扩展名",
+      "fix": "类型写 file<document; .pdf>",
+      "ref": "G3"
+    },
+    {
+      "code": "TARGET_NOT_LOWERABLE",
+      "excerpt": "conversation variable set operation only supports scalar literal values",
+      "cause": "给会话变量赋动态值",
+      "fix": "只赋标量字面量",
+      "ref": "G4"
+    },
+    {
+      "code": "TYPE_MISMATCH",
+      "excerpt": "Map value has incompatible type Type(file); expected Type(string)",
+      "cause": "把整个 file 变量当 LLM content",
+      "fix": "先 extract_text 再喂 LLM",
+      "ref": "G6"
+    },
+    {
+      "code": "OPERATION_POLICY",
+      "excerpt": "Operation 'llm' does not support timeout",
+      "cause": "策略白名单:llm 无 timeout(http 有)",
+      "fix": "llm 用 with default(...) 或 attempt;http 可 with timeout(30s)",
+      "ref": "G9"
+    },
+    {
+      "code": "LOWERING_INVARIANT",
+      "excerpt": "Condition expression BinaryExpr is not directly lowerable",
+      "cause": "if 比较左侧为 2 级字段",
+      "fix": "左侧绑 1 级局部变量再比较",
+      "ref": "G10"
+    },
+    {
+      "code": "LOWERING_INVARIANT",
+      "excerpt": "Validated expression has no physical producer selector",
+      "cause": "三元结果变量在 if 分支模板串插值",
+      "fix": "三元只在非分支上下文",
+      "ref": "G10"
+    },
+    {
+      "code": "LOWERING_INVARIANT",
+      "excerpt": "Validated calculation identifier 'greeting' has no value",
+      "cause": "会话变量模板串插值",
+      "fix": "直接作 answer 参数/条件判断",
+      "ref": "G11"
+    },
+    {
+      "code": "SYNTAX_ERROR",
+      "excerpt": "Expected parallel-for error mode, got KW_CONTINUE",
+      "cause": "on_error 用了非白名单词",
+      "fix": "用 terminate/keep_null/remove_failed",
+      "ref": "G12"
+    }
+  ]
+}

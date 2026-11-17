@@ -1,47 +1,65 @@
-## Description: <br>
-Automates Midjourney Alpha image generation through an authenticated browser session, including prompt submission, V8-oriented prompt defaults, result collection, and local downloads. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Auto Midjourney helps an agent use a user's authenticated Midjourney Alpha web session to submit imagine prompts, refine V8 prompt syntax, check job state when configured, and download generated image assets.
 
-## Publisher: <br>
-[Standed](https://clawhub.ai/user/Standed) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[standed](https://clawhub.ai/user/standed)
 
-## Use Case: <br>
-Developers and creative operators use this skill to submit user-triggered Midjourney Alpha image jobs, refine prompts, collect generated assets, and run conservative batch workflows through a logged-in browser session. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires access to a logged-in Midjourney browser session and can depend on sensitive session cookies. <br>
-Mitigation: Use a dedicated Chrome profile, keep MJ_COOKIE out of chats and repositories, and review environment files and logs before sharing them. <br>
-Risk: Browser-control helpers can access data available to the authenticated session. <br>
-Mitigation: Review helper scripts before live use and avoid running raw eval or fetch helpers directly unless their session access is understood. <br>
-Risk: Automated generation can create accidental bursts, duplicate submits, or account-policy exposure if used without limits. <br>
-Mitigation: Keep generation user-triggered, set explicit rate limits, and review output directories after each run. <br>
+## Use Case:
 
+Developers and creative operators use Auto Midjourney to prepare prompts, submit user-triggered Midjourney Alpha imagine jobs through an authenticated browser session, verify results, and download image assets for downstream creative workflows.
 
-## Reference(s): <br>
-- [Auto Midjourney ClawHub Listing](https://clawhub.ai/Standed/auto-midjourney) <br>
-- [Midjourney Alpha](https://alpha.midjourney.com) <br>
-- [API Notes](references/api-notes.md) <br>
-- [Operating Model](references/operating-model.md) <br>
-- [Prompt Craft](references/prompt-craft.md) <br>
-- [System Requirements](references/system-requirements.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown status summaries with inline shell commands and JSON-producing helper scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May download generated image assets locally when the user enables result collection.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: ClawHub release evidence) <br>
+Risk: The skill requires access to a logged-in Midjourney browser session and session cookies.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if comfortable granting that access, use a dedicated browser profile, and keep the .env file private.
+
+Risk: Weak destination controls can increase exposure if custom endpoint URLs are misused.
+
+Mitigation: Avoid custom endpoint URLs unless they are fully trusted and review configuration before live submits.
+
+Risk: Diagnostics and logs may include account or prompt data.
+
+Mitigation: Review generated output, logs, and downloaded files before sharing them.
+
+Risk: Running authenticated browser automation on shared or untrusted machines can expose the user's account session.
+
+Mitigation: Run the skill only on trusted local machines and avoid shared environments.
+
+## Reference(s):
+
+- [ClawHub Skill Listing](https://clawhub.ai/standed/skills/auto-midjourney)
+- [Midjourney Alpha API Notes](references/api-notes.md)
+- [Operating Model](references/operating-model.md)
+- [Prompt Craft](references/prompt-craft.md)
+- [System Requirements](references/system-requirements.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands; helper scripts may emit JSON and write downloaded image files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses the user's authenticated Midjourney Alpha browser session and local configuration.]
+
+## Skill Version(s):
+
+0.1.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,59 @@
-## Description: <br>
-Trade skills with university students using credits instead of cash. Search trades, post offers, accept matches, and earn credits on Bartrd. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Bartrd helps university students trade skills using credits instead of cash.
 
-## Publisher: <br>
-[Xploreicon](https://clawhub.ai/user/Xploreicon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xploreicon](https://clawhub.ai/user/xploreicon)
 
-## Use Case: <br>
-Students and their agents use this skill to search skill trades, post offers or requests, accept matches, check credit balances, and request credit-based AI services on Bartrd. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can post trades, accept matches, or spend Bartrd credits after user approval. <br>
-Mitigation: Review trade details, match IDs, and credit costs before confirming any account-changing or credit-spending action. <br>
-Risk: The skill requires a Bartrd API key for account access. <br>
-Mitigation: Store BARTRD_API_KEY in a secure environment or secrets configuration and do not commit or share it. <br>
+## Use Case:
 
+External users and student-facing agents use this skill to search skill trades, post offers or requests, accept confirmed matches, check credit balances, and request credit-priced AI services through Bartrd.
 
-## Reference(s): <br>
-- [ClawHub Bartrd Skill Page](https://clawhub.ai/Xploreicon/bartrd) <br>
-- [Bartrd Website](https://getbartrd.com) <br>
-- [Bartrd API Base URL](https://getbartrd.com/api/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API calls, Text, Guidance] <br>
-**Output Format:** [Markdown or text responses with Bartrd API requests and returned account or trade information] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires BARTRD_API_KEY; account-changing and credit-spending actions require explicit user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Posting trades, accepting matches, and requesting AI services can change account state or spend credits.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Show the user the planned action or credit cost and require explicit confirmation before proceeding.
+
+Risk: The skill requires a Bartrd API key that can access the user's Bartrd account.
+
+Mitigation: Install only with a Bartrd account, keep BARTRD_API_KEY in the agent configuration, and avoid exposing it in prompts or outputs.
+
+Risk: Credit operations are final according to the skill instructions.
+
+Mitigation: Review trade posts, match acceptances, and AI service requests carefully before confirmation.
+
+## Reference(s):
+
+- [Bartrd website](https://getbartrd.com)
+- [Bartrd API base URL](https://getbartrd.com/api/v1)
+- [ClawHub skill page](https://clawhub.ai/xploreicon/skills/bartrd)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Text, Markdown, Code, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown summaries with API-derived values, confirmation prompts, and generated text or code when requested]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires BARTRD_API_KEY; trade-changing and credit-spending actions require explicit user confirmation.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

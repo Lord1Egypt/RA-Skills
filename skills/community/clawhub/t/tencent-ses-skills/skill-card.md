@@ -1,47 +1,63 @@
-## Description: <br>
-Tencent Cloud SES skill for sending email, managing sender domains and addresses, querying delivery status, managing templates, and diagnosing DNS authentication issues through Tencent Cloud APIs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents use Tencent Cloud Simple Email Service to manage sender domains, sender addresses, templates, email sending, delivery status checks, and DNS authentication diagnostics.
 
-## Publisher: <br>
-[tencent-adm](https://clawhub.ai/user/tencent-adm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tencent-adm](https://clawhub.ai/user/tencent-adm)
 
-## Use Case: <br>
-Developers and operators use this skill to automate Tencent Cloud SES email workflows, including sender-domain verification, sender-address setup, template or custom-content email sending, delivery-status checks, and SPF, DKIM, DMARC, and MX diagnostics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires Tencent Cloud API credentials and the security evidence warns that users may be asked to provide SecretId or SecretKey in chat. <br>
-Mitigation: Do not paste SecretId or SecretKey into chat; configure credentials through environment variables or a secret manager using a dedicated low-scope CAM subaccount. <br>
-Risk: The skill can send email and create or modify SES resources such as domains, sender addresses, and templates. <br>
-Mitigation: Require dry-run previews and explicit user confirmation before sending email or creating, updating, or deleting SES resources. <br>
-Risk: Leaked or overprivileged cloud credentials could affect Tencent Cloud resources or incur costs. <br>
-Mitigation: Use least-privilege CAM access, enable IP restrictions where possible, rotate keys, and avoid main-account credentials. <br>
+## Use Case:
 
+Developers and operators use this skill to configure Tencent Cloud SES resources, send template-based or custom emails, inspect delivery status, and troubleshoot DNS authentication records.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tencent-adm/tencent-ses-skills) <br>
-- [Tencent Cloud SES API reference](references/api_reference.md) <br>
-- [Mail domain DNS authentication guide](references/dns_guide.md) <br>
-- [SES skill security setup guide](references/security_setup_guide.md) <br>
-- [Tencent Cloud SES product documentation](https://cloud.tencent.com/document/product/1288) <br>
-- [Tencent Cloud CAM IP restriction documentation](https://cloud.tencent.com/document/product/598/38037) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON script output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [SES and DNS scripts produce JSON to stdout and diagnostic logs to stderr; write actions should use dry-run previews and explicit user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release metadata) <br>
+Risk: Tencent Cloud API credentials could be exposed if pasted into chat or stored in workspace files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Configure credentials directly in a local environment or secret manager, avoid sharing SecretId or SecretKey in chat, and rotate keys if exposure is suspected.
+
+Risk: The skill can perform high-impact email and SES account actions, including sends and resource changes.
+
+Mitigation: Require dry-run previews and explicit user confirmation before sends, creates, updates, or deletes, and verify domains, templates, recipients, and sender addresses from live account queries.
+
+Risk: Broad permissions, insecure endpoints, or unpinned dependencies increase account and supply-chain exposure.
+
+Mitigation: Use a narrowly scoped CAM policy with IP restrictions where possible, keep HTTPS endpoints, avoid untrusted SES endpoints, and install dependencies in a pinned isolated environment.
+
+## Reference(s):
+
+- [Tencent SES skill page](https://clawhub.ai/tencent-adm/skills/tencent-ses-skills)
+- [Tencent Cloud SES API Reference](references/api_reference.md)
+- [Mail Domain DNS Authentication Guide](references/dns_guide.md)
+- [SES Skill Security Setup Guide](references/security_setup_guide.md)
+- [Tencent Cloud SES product documentation](https://cloud.tencent.com/document/product/1288)
+- [Tencent Cloud SendEmail API documentation](https://cloud.tencent.com/document/product/1288/51034)
+- [Tencent Cloud sender domain DNS verification documentation](https://cloud.tencent.com/document/product/1288/60652)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, JSON]
+
+**Output Format:** [Markdown guidance with shell commands and JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Write operations should be previewed with dry-run and require explicit user confirmation.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

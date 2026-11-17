@@ -1,38 +1,51 @@
-## Description: <br>
-Plan and manage taxes effectively as a solopreneur to minimize liability and avoid penalties. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Plan and manage taxes effectively as a solopreneur to minimize liability and avoid penalties.
 
-## Publisher: <br>
-[JK-0001](https://clawhub.ai/user/JK-0001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jk-0001](https://clawhub.ai/user/jk-0001)
 
-## Use Case: <br>
-External solopreneurs and small-business operators use this skill for U.S.-focused educational tax planning, including quarterly estimated taxes, deductions, S-Corp considerations, year-end planning, and deciding when to consult a CPA. <br>
-
-### Deployment Geography for Use: <br>
-United States <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Tax rates, deadlines, deduction limits, and entity-structure thresholds can change or vary by jurisdiction. <br>
-Mitigation: Verify current requirements with IRS and state sources or a qualified CPA before acting on the guidance. <br>
-Risk: The skill provides informational tax-planning guidance and is not professional tax advice. <br>
-Mitigation: Consult a qualified CPA for decisions that affect filings, elections, penalties, or business structure. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
+
+External users and solopreneurs use this skill for educational U.S. tax planning guidance, including quarterly estimated payments, deductions, S-Corp election considerations, year-end planning, and when to consult a CPA.
+
+### Deployment Geography for Use:
+
+United States
+
+## Known Risks and Mitigations:
+
+Risk: Tax guidance may be incomplete, outdated, or unsuitable for a user's jurisdiction or business structure.
+
+Mitigation: Treat the skill as general education, verify current IRS and state rules, and consult a CPA before acting.
+
+Risk: Broad tax-related triggers may invoke the skill in conversations where professional advice is expected.
+
+Mitigation: Keep responses framed as educational guidance and direct users to a qualified tax professional for specific advice.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown] <br>
-**Output Format:** [Markdown tax-planning guidance with examples, checklists, and decision criteria] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Educational content only; users should verify current tax rates, deadlines, thresholds, and entity-structure decisions with IRS/state sources or a qualified CPA before acting.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release metadata) <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown educational guidance with checklists, examples, and calculation snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [General education only; users should verify current IRS and state rules and consult a CPA for their jurisdiction and business structure.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,55 @@
-## Description: <br>
-Get current weather and forecasts via open-meteo.com with optional fallback to wttr.in if available. No API key required. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Get current weather and forecasts via open-meteo.com with optional fallback to wttr.in if available. No API key required.
 
-## Publisher: <br>
-[vdiogov](https://clawhub.ai/user/vdiogov) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[vdiogov](https://clawhub.ai/user/vdiogov)
 
-## Use Case: <br>
-External users and agents use this skill to answer weather, forecast, temperature, or rain-probability questions for a location using public weather APIs. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Weather lookups may send exact private coordinates or sensitive locations to Open-Meteo or wttr.in. <br>
-Mitigation: Avoid exact private coordinates or sensitive locations when privacy is a concern. <br>
-Risk: Fallback requests to wttr.in may use non-HTTPS endpoints in the artifact examples. <br>
-Mitigation: Prefer HTTPS endpoints where available. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Open-Meteo](https://open-meteo.com/) <br>
-- [Open-Meteo API docs](https://open-meteo.com/en/docs) <br>
-- [ClawHub skill page](https://clawhub.ai/vdiogov/weather-open-meteo) <br>
-- [Publisher profile](https://clawhub.ai/user/vdiogov) <br>
+## Use Case:
 
+External users, developers, and agents use this skill to answer current weather, forecast, temperature, and rain-probability requests for a provided location. It uses Open-Meteo as the primary public weather source and wttr.in as an optional fallback.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, API calls, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and weather summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl and jq; queries Open-Meteo and may fall back to wttr.in.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.5 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Weather lookups send searched locations to external weather services.
+
+Mitigation: Avoid using private or sensitive locations unless external API sharing is acceptable.
+
+Risk: The wttr.in fallback examples include plaintext HTTP or scheme-less URLs.
+
+Mitigation: Prefer the HTTPS Open-Meteo examples and change wttr.in fallback URLs to explicit https:// before use.
+
+## Reference(s):
+
+- [Weather Open-Meteo Skill Page](https://clawhub.ai/vdiogov/skills/weather-open-meteo)
+- [vdiogov Publisher Profile](https://clawhub.ai/user/vdiogov)
+- [Open-Meteo](https://open-meteo.com/)
+- [Open-Meteo API Documentation](https://open-meteo.com/en/docs)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with inline bash commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl and jq; no API key required.]
+
+## Skill Version(s):
+
+0.1.5 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

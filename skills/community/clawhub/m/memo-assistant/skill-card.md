@@ -1,40 +1,57 @@
-## Description: <br>
-Classifies user memos and appends them to categorized Markdown files under ~/.memo when triggered by /private-secretary or /ps commands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Classifies user memos and appends them to category-specific Markdown files under ~/.memo when triggered by /private-secretary or /ps commands.
 
-## Publisher: <br>
-[tristanchenxm](https://clawhub.ai/user/tristanchenxm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tristanchenxm](https://clawhub.ai/user/tristanchenxm)
 
-## Use Case: <br>
-External users use this skill as a personal memo assistant to classify notes into categories such as Tech, Work, Life, Inspiration, and Others, then save them as local Markdown entries. It also supports reorganizing existing memos under ~/.memo when the user asks to rearrange them. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Memos are saved as plaintext under ~/.memo. <br>
-Mitigation: Use the skill only for notes suitable for local plaintext storage, or store the memo directory in an encrypted location. <br>
-Risk: The suggested shell write step can treat memo text as executable shell syntax. <br>
-Mitigation: Review commands before execution and replace the write step with a safely quoted file-writing method before using arbitrary pasted content. <br>
+## Use Case:
 
+External users use this skill as a personal memo assistant to classify short notes and keep them organized in local Markdown files. It is intended for memo capture and reorganization through the /private-secretary or /ps commands.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tristanchenxm/memo-assistant) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown entries appended to local files with shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes categorized memo files under ~/.memo.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The documented shell write command can execute user-provided memo text as shell code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Rewrite memo storage to pass content literally without shell interpolation before using this skill with untrusted or sensitive content.
+
+Risk: Memo text is written under ~/.memo and can persist across sessions.
+
+Mitigation: Avoid recording sensitive content unless local retention is acceptable, and review the stored Markdown files when removing retained notes.
+
+Risk: The rearrange behavior may rewrite existing local memos.
+
+Mitigation: Clarify the rearrange workflow with user confirmation and rollback or backup behavior before reorganizing stored notes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tristanchenxm/skills/memo-assistant)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands]
+
+**Output Format:** [Markdown memo entries appended by shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Categorizes memo content as Tech, Work, Life, Inspiration, or Others and stores entries under ~/.memo.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

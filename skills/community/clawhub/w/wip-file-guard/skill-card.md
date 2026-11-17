@@ -1,44 +1,53 @@
-## Description: <br>
-Hook that blocks destructive edits to protected identity files for Claude Code CLI and OpenClaw. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Hook that blocks destructive edits to protected identity files. For Claude Code CLI and OpenClaw.
 
-## Publisher: <br>
-[parkertoddbrooks](https://clawhub.ai/user/parkertoddbrooks) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[parkertoddbrooks](https://clawhub.ai/user/parkertoddbrooks)
 
-## Use Case: <br>
-Developers and engineers use this skill to install or configure a local guard that prevents agents from overwriting or destructively trimming protected identity, memory, and instruction files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The persistent local hook can block legitimate edits to protected identity, memory, or instruction files. <br>
-Mitigation: Review protected filenames and path patterns before installation, and document how to disable or adjust the hook when legitimate maintenance is needed. <br>
-Risk: Installing the wrong package or version could apply unexpected guard behavior. <br>
-Mitigation: Verify the npm package name, publisher, and version before installation. <br>
+## Use Case:
 
+Developers and agent operators use this skill to install and configure a file-edit guard that blocks overwrites or destructive edits to protected identity, memory, and shared-context files.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/parkertoddbrooks/wip-file-guard) <br>
-- [ClawHub Publisher Profile](https://clawhub.ai/user/parkertoddbrooks) <br>
-- [npm Package](https://www.npmjs.com/package/@wipcomputer/wip-file-guard) <br>
-- [GitHub Repository](https://github.com/wipcomputer/wip-file-guard) <br>
-- [Manual Install and Customization Reference](REFERENCE.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline JSON and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local hook setup guidance and guard behavior descriptions; runtime guard decisions are emitted as allow or deny responses.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.9.72 (source: server release metadata) <br>
+Risk: The security review marks this release as suspicious because broad path exceptions and fail-open behavior need review before installation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and scan the skill before deployment; address path canonicalization, malformed protected-file events, and test/documentation alignment with the intended policy.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/parkertoddbrooks/skills/wip-file-guard)
+- [Publisher profile](https://clawhub.ai/user/parkertoddbrooks)
+- [Project homepage](https://github.com/wipcomputer/wip-file-guard)
+- [npm package](https://www.npmjs.com/package/@wipcomputer/wip-file-guard)
+- [Manual install and reference](REFERENCE.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, code]
+
+**Output Format:** [Markdown with shell and JSON configuration blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can produce hook configuration and command-line usage guidance for Claude Code, OpenClaw, and direct CLI use.]
+
+## Skill Version(s):
+
+1.9.72 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

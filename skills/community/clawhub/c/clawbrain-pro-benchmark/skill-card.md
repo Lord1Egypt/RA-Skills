@@ -1,42 +1,54 @@
-## Description: <br>
-ClawBrain Benchmark helps evaluate an OpenClaw agent across 205 real-world scenarios and compare results against the ClawBrain v1.0 orchestration engine. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tests OpenClaw performance across 205 real-world scenarios and compares results against the ClawBrain v1.0 orchestration engine.
 
-## Publisher: <br>
-[michaelfeng](https://clawhub.ai/user/michaelfeng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[michaelfeng](https://clawhub.ai/user/michaelfeng)
 
-## Use Case: <br>
-Developers and teams using OpenClaw use this skill to run benchmark-style evaluations covering file operations, search, messaging, terminal workflows, multi-step tasks, error recovery, ambiguous prompts, and visual understanding. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The benchmark may run commands, use network requests, and exercise broad tool workflows. <br>
-Mitigation: Run it only in an intentional benchmark session, preferably in a disposable or sandboxed workspace. <br>
-Risk: The skill text may not define explicit confirmation prompts, dry-run behavior, or limits around messaging and service-management actions. <br>
-Mitigation: Review the skill text before use and add operational limits or confirmation requirements in the host agent policy. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to benchmark agent behavior across file operations, search, terminal work, messaging, multi-step tasks, error recovery, ambiguous instructions, and vision understanding.
 
-## Reference(s): <br>
-- [ClawBrain OpenClaw model comparison report](https://clawbrain.dev/blog/openclaw-model-comparison) <br>
-- [ClawHub skill page](https://clawhub.ai/michaelfeng/clawbrain-pro-benchmark) <br>
-- [Publisher profile](https://clawhub.ai/user/michaelfeng) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown or text responses with possible shell command execution] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May require curl and may exercise network requests, command execution, and other tool workflows during benchmarking.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The skill is described as a benchmark that may involve terminal commands, file edits, web fetching, and messaging tests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installing and run benchmark activity only in a disposable or clearly bounded environment.
+
+Risk: Messaging and file-operation tests could affect external recipients or local workspace content if executed with broad permissions.
+
+Mitigation: Limit credentials, confirm outbound messaging targets, and restrict file-system access before running tests.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/michaelfeng/skills/clawbrain-pro-benchmark)
+- [OpenClaw model comparison report](https://clawbrain.dev/blog/openclaw-model-comparison)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown or text benchmark guidance and results, potentially with shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl according to ClawHub metadata.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence; target metadata agrees)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,57 @@
-## Description: <br>
-Clonev generates cloned-voice speech from a short WAV voice sample and input text using Coqui XTTS v2 across 14+ languages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Clonev generates cloned-voice speech from a 6-30 second WAV voice sample and text using Coqui XTTS v2.
 
-## Publisher: <br>
-[instant-picture](https://clawhub.ai/user/instant-picture) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[instant-picture](https://clawhub.ai/user/instant-picture)
 
-## Use Case: <br>
-External users, developers, and automation agents use Clonev to generate OGG speech files that mimic a provided voice sample for personal messages, notifications, or multilingual text-to-speech workflows where the voice owner has consented. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Voice cloning can enable impersonation or fraud-sensitive messages. <br>
-Mitigation: Use the skill only for your own voice or voices where you have explicit permission, and disclose when audio is synthetic. <br>
-Risk: Voice samples and generated audio may remain in the tool's working directory after use. <br>
-Mitigation: Manually delete copied samples and generated audio from the working directory when finished. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [CloneV Complete Reference Guide](references/complete-guide.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/instant-picture/clonev) <br>
+## Use Case:
 
+External users, developers, and agent operators use Clonev to generate OGG speech audio in a target voice from authorized voice samples, supplied text, and a language code.
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Guidance] <br>
-**Output Format:** [OGG audio file path returned as a shell string] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires text, a WAV voice sample, and a language code; generates a single OGG audio file.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Voice recordings are sensitive biometric data and may be copied into a persistent voice-samples directory.
+
+Mitigation: Use only your own voice or voices with explicit permission, and delete retained samples under the configured voice-samples directory after use.
+
+Risk: Generated speech can be misused for third-party impersonation or deception.
+
+Mitigation: Avoid celebrity or third-party impersonation, restrict use to authorized voices, and disclose synthetic audio where appropriate.
+
+Risk: The skill runs a mutable Docker image for voice synthesis.
+
+Mitigation: Pin and harden the Docker image before production use.
+
+## Reference(s):
+
+- [Complete Reference Guide](references/complete-guide.md)
+- [Clonev ClawHub Skill Page](https://clawhub.ai/instant-picture/skills/clonev)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Files, Audio]
+
+**Output Format:** [Shell command invocation returning an OGG audio file path]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires text, a WAV voice sample path, and a language code.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

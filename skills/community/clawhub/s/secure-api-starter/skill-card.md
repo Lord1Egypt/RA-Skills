@@ -1,38 +1,53 @@
-## Description: <br>
-Provides a secure API starter guide covering authentication, authorization, rate limiting, input validation, logging, and structured error handling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Production-ready secure API template with authentication, authorization, rate limiting, input validation, logging, and structured error handling.
 
-## Publisher: <br>
-[Sunshine-del-ux](https://clawhub.ai/user/Sunshine-del-ux) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[sunshine-del-ux](https://clawhub.ai/user/sunshine-del-ux)
 
-## Use Case: <br>
-Developers and engineers use this skill as a concise starter reference for building Node.js and TypeScript APIs with common security controls such as JWT, API keys, OAuth2, RBAC, rate limiting, validation, logging, and structured errors. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The artifact references ./create-api.sh commands, but the package does not include that script. <br>
-Mitigation: Treat the commands as guidance only; before running any create-api.sh script, confirm it came from a trusted source and review its contents. <br>
+## Use Case:
 
+Developers use this skill to start secure Node.js and TypeScript API projects with common authentication, authorization, rate limiting, validation, logging, and error-handling patterns.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Sunshine-del-ux/secure-api-starter) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance; referenced helper scripts must be verified before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and artifact/_meta.json) <br>
+Risk: External template scripts or source obtained outside this artifact may introduce unreviewed behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify any create-api.sh script or template source separately before installing or running it.
+
+Risk: Request and response logging can capture secrets or personal data if configured broadly.
+
+Mitigation: Configure logging to redact credentials, tokens, and personal data before deployment.
+
+## Reference(s):
+
+- [Secure Api Starter on ClawHub](https://clawhub.ai/sunshine-del-ux/skills/secure-api-starter)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only starter guidance; verify any obtained scripts or templates separately before installation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

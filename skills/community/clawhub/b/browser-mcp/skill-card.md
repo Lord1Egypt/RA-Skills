@@ -1,42 +1,55 @@
-## Description: <br>
-Automates Chrome browser navigation, search, page inspection, screenshots, and element interactions through Chrome DevTools MCP for OpenClaw/QClaw workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Browser MCP helps an agent control Chrome through the Chrome DevTools MCP protocol for website navigation, page inspection, element interaction, form filling, screenshots, and SSRF allowlist configuration.
 
-## Publisher: <br>
-[nasvip](https://clawhub.ai/user/nasvip) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nasvip](https://clawhub.ai/user/nasvip)
 
-## Use Case: <br>
-Developers and agent operators use this skill to let an agent drive a Chrome browser for website navigation, search, form interaction, screenshots, and multi-step page workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can operate an already logged-in Chrome session. <br>
-Mitigation: Use a dedicated low-privilege Chrome profile and require explicit confirmation before submitting forms, posting content, changing account settings, or using authenticated sites. <br>
-Risk: Chrome DevTools remote debugging can expose browser control if port 9222 is reachable from a network. <br>
-Mitigation: Keep DevTools bound to localhost and do not expose port 9222 on a network. <br>
-Risk: Overly broad SSRF allowlists can allow unintended browsing targets. <br>
-Mitigation: Keep SSRF allowlists narrow and review allowed domains before deployment. <br>
+## Use Case:
 
+Developers and automation users use this skill to let an agent operate a Chrome profile for browsing, search, page review, screenshots, and multi-step web workflows in OpenClaw or QClaw. It is especially relevant when controlled browser access and explicit SSRF allowlist configuration are required.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nasvip/browser-mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with command and JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill guides browser actions and configuration rather than producing standalone application files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: An agent using this skill can see logged-in browser pages and act with that Chrome profile's account privileges.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated automation profile and require explicit confirmation before form submission, account changes, purchases, or other state-changing actions.
+
+Risk: Exposing Chrome DevTools Protocol beyond localhost or allowing wildcard origins can make the browser controllable from unintended network paths.
+
+Mitigation: Keep remote debugging bound to localhost, avoid wildcard origins, and do not expose the debugging port directly to a network.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nasvip/skills/browser-mcp)
+- [README.md](artifact/README.md)
+- [SKILL.md](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown instructions with inline browser actions, shell commands, and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May result in browser navigation, screenshots, page snapshots, form interactions, and configuration changes when used by an agent with browser tooling.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

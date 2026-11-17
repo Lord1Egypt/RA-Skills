@@ -1,0 +1,68 @@
+{
+  "skill_description": "Guide an AI agent on how to use autoresearch to optimize skill prompts. The agent should correctly explain the workflow, create proper eval definitions, formulate correct CLI commands, interpret results, and know when NOT to use autoresearch.",
+  "system_context": "You are an AI assistant with access to the autoresearch tool. When the user asks about optimizing skills or prompts, follow the instructions in your skill definition to help them.",
+  "test_inputs": [
+    {
+      "name": "optimize_skill_chinese",
+      "input": "我的 brain-search skill 搜索结果总是缺少来源链接，帮我优化一下这个 skill 的 prompt"
+    },
+    {
+      "name": "write_eval_criteria",
+      "input": "I want to optimize my weekly-report skill. The reports are often too long and miss action items. How do I write the eval.json for this?"
+    },
+    {
+      "name": "interpret_results",
+      "input": "autoresearch 跑完了，结果：baseline 45%, experiment 3 到了 72%, experiment 8 到了 91% 然后就停了。这个结果怎么解读？我要怎么做？"
+    },
+    {
+      "name": "should_not_use",
+      "input": "My ingest skill crashes when I upload a PDF file larger than 10MB. Can you run autoresearch to fix it?"
+    }
+  ],
+  "evals": [
+    {
+      "type": "rule",
+      "name": "no_hallucinated_flags",
+      "rule": "not_contains",
+      "values": ["--optimize", "--auto-fix", "--improve", "--tune", "--benchmark", "--score"],
+      "description": "Must not invent CLI flags that don't exist"
+    },
+    {
+      "type": "rule",
+      "name": "no_wrong_provider_names",
+      "rule": "not_contains",
+      "values": ["--provider google", "--provider gemini", "--provider claude", "--provider gpt"],
+      "description": "Provider names are minimax/openai/anthropic only — not model names"
+    },
+    {
+      "type": "llm",
+      "name": "cli_command_accuracy",
+      "question": "Evaluate the CLI command usage in the response: (1) If the user asks to optimize a skill or run autoresearch, the response MUST include a CLI command with both '--target' and '--evals' flags pointing to specific file paths. (2) If the user asks about interpreting results or asks about a code bug, the response should NOT necessarily include a full CLI command — that's fine. (3) If a CLI command IS present, verify it uses only valid flags: --target, --evals, --provider, --model, --runs, --max-experiments, --dashboard, --output-dir, --timeout, --verbose.",
+      "pass_description": "Optimization requests include correct CLI with --target and --evals. Result interpretation and code bug questions are not penalized for lacking CLI commands. Any CLI commands shown use only valid flags.",
+      "fail_description": "Optimization request is missing CLI command or missing --target/--evals. Or a CLI command uses invalid/hallucinated flags."
+    },
+    {
+      "type": "llm",
+      "name": "appropriate_response",
+      "question": "Does the response appropriately handle the user's request? (1) For optimization requests: outlines the workflow (create eval.json → run autoresearch → review results), mentions eval definitions. (2) For eval writing questions: shows correct eval JSON structure with 'type' and 'name' fields, uses valid rule types (regex, banned_phrases, word_count, contains, not_contains) or llm type with 'question'/'pass_description'/'fail_description'. (3) For result interpretation: explains what the scores and convergence mean, suggests concrete next steps (apply the prompt, review the mutations, adjust evals). (4) For code bug reports: clearly states autoresearch is NOT the right tool and suggests fixing the code/debugging instead.",
+      "pass_description": "Response matches the request type with specific, actionable guidance. Each scenario gets the right kind of help.",
+      "fail_description": "Response mismatches: suggests autoresearch for a code bug, gives vague advice, omits eval workflow for optimization requests, or fails to interpret scores when asked."
+    },
+    {
+      "type": "llm",
+      "name": "eval_json_correctness",
+      "question": "If the response includes eval JSON examples: (1) Does each eval have both 'type' and 'name' fields? (2) Do rule evals use one of: regex, banned_phrases, word_count, contains, not_contains? (3) Do LLM evals have 'question', 'pass_description', and 'fail_description' fields (NOT 'pass'/'fail')? (4) Are the evals tailored to the user's specific problem, not just generic examples? If no eval JSON is shown (e.g., for result interpretation or code bug questions), this eval passes automatically.",
+      "pass_description": "Eval JSON is well-formed with correct field names, OR no eval JSON is needed for this type of question. Evals are relevant to the user's stated problem.",
+      "fail_description": "Eval JSON uses wrong field names (e.g., 'pass' instead of 'pass_description'), invalid rule types, missing required fields, or is clearly generic copy-paste unrelated to the user's problem."
+    },
+    {
+      "type": "llm",
+      "name": "workflow_completeness",
+      "question": "For optimization and eval-writing requests: does the response cover the full autoresearch workflow? Check for: (1) Creating eval.json with test_inputs and evals, (2) Running the CLI command, (3) Reviewing/interpreting results. For result interpretation: does it explain scores AND suggest next steps? For code bugs: does it redirect away from autoresearch clearly? A complete response covers all relevant steps, not just one.",
+      "pass_description": "Response covers all relevant workflow steps for the given request type. Nothing critical is missing.",
+      "fail_description": "Response covers only part of the workflow (e.g., shows eval JSON but forgets the run command, or shows the command but skips eval creation)."
+    }
+  ],
+  "runs_per_experiment": 3,
+  "max_experiments": 15
+}

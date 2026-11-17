@@ -1,44 +1,54 @@
-## Description: <br>
-Self-hosted RAG connector for local document ingestion, hybrid semantic and keyword search, source citations, and OpenClaw integration through a local ClawRAG service. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ClawRAG connects an agent to a self-hosted RAG and memory system with document ingestion, hybrid semantic and keyword search, source citations, and local deployment through Docker.
 
-## Publisher: <br>
-[2dogsandanerd](https://clawhub.ai/user/2dogsandanerd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[2dogsandanerd](https://clawhub.ai/user/2dogsandanerd)
 
-## Use Case: <br>
-Developers and engineers use this skill to connect an agent to a self-hosted ClawRAG service for local retrieval, memory, document search, and cited answers across project knowledge collections. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Docker-based setup may start local services with persistent vector data. <br>
-Mitigation: Review the Docker Compose configuration before startup and confirm how to stop containers and delete stored vector data. <br>
-Risk: Ingested documents may contain secrets or sensitive information. <br>
-Mitigation: Avoid ingesting secrets unless necessary and prefer local-only models for sensitive documents. <br>
-Risk: The release depends on an external repository and npm package. <br>
-Mitigation: Install only after reviewing and trusting the referenced GitHub repository and @clawrag/mcp-server package. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawRAG Skill Page](https://clawhub.ai/2dogsandanerd/clawrag) <br>
-- [ClawRAG Documentation](https://github.com/2dogsandanerd/ClawRag#readme) <br>
-- [ClawRAG Issues](https://github.com/2dogsandanerd/ClawRag/issues) <br>
-- [@clawrag/mcp-server Package](https://www.npmjs.com/package/@clawrag/mcp-server) <br>
+## Use Case:
 
+Developers and agent users use this skill to deploy a local ClawRAG service and connect it to OpenClaw through an MCP server for private document search and retrieval-augmented memory.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline bash code blocks and configuration instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces agent-facing setup and usage guidance for Docker, OpenClaw MCP configuration, and local ClawRAG service verification.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata and artifact metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The setup path uses mutable Docker and npm dependencies that can execute changed third-party code.
+
+Mitigation: Review before installing, pin repository commits, container image digests, and the exact @clawrag/mcp-server version, and inspect Docker Compose, Dockerfiles, mounts, ports, and environment handling.
+
+Risk: Local containers and the MCP process may access files, ports, or credentials beyond what the workflow needs.
+
+Mitigation: Run with limited privileges and avoid exposing unrelated API keys or private files to containers or the MCP process.
+
+## Reference(s):
+
+- [ClawRAG ClawHub Page](https://clawhub.ai/2dogsandanerd/skills/clawrag)
+- [ClawRAG Documentation](https://github.com/2dogsandanerd/ClawRag#readme)
+- [@clawrag/mcp-server Package](https://www.npmjs.com/package/@clawrag/mcp-server)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Provides setup, verification, and connection steps for a local Docker and MCP deployment.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

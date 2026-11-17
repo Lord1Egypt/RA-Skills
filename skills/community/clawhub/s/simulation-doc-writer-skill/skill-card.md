@@ -1,43 +1,58 @@
-## Description: <br>
-Write, revise, or review Chinese documentation for communication simulation programs, including simulation manuals, model descriptions, experiment and reproduction guides, paper-to-code comparisons, and MATLAB file and function inventories. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Writes, revises, and reviews Chinese documentation for communication simulation programs, including model descriptions, reproduction guides, MATLAB file/function inventories, and paper-to-code comparisons.
 
-## Publisher: <br>
-[orbisz](https://clawhub.ai/user/orbisz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[orbisz](https://clawhub.ai/user/orbisz)
 
-## Use Case: <br>
-Developers, researchers, and communication engineers use this skill to produce or review Chinese documentation for communication simulation code, especially MATLAB projects and paper-to-code reproduction work. It helps map algorithms, models, metrics, files, functions, parameters, outputs, and reproduction steps to concrete implementation evidence. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The artifact contains a self-evolution mechanism that asks the agent to write diary entries and propose changes to the skill after failed executions. <br>
-Mitigation: Disable or ignore the self-evolution steps unless the user explicitly asks for persistent diary files or skill-change proposals. <br>
-Risk: The artifact disagrees about whether generated documentation should use .txt or .md output. <br>
-Mitigation: Confirm the desired output extension before creating files, and prefer the explicit user request when it conflicts with the artifact text. <br>
-Risk: The skill can create documentation from code, papers, logs, and plots, so unsupported assumptions could become misleading technical guidance. <br>
-Mitigation: Separate confirmed facts from assumptions, mark uncertain items as 待确认, and require source-backed mappings for algorithms, files, functions, parameters, and results. <br>
+## Use Case:
 
+Developers, researchers, and communication-system engineers use this skill to produce Chinese engineering documentation for wireless, optical, satellite, radar, modulation/coding, channel-modeling, link-level, system-level, MATLAB, Python, or C++ simulation code. It helps map papers to implementation files, document MATLAB scripts and functions, identify simulation-environment files, and produce reproducibility guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/orbisz/simulation-doc-writer-skill) <br>
-- [Chinese communication simulation documentation template](references/communication-simulation-doc-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Chinese plain text or Markdown documentation with tables, checklists, runnable commands, and verification guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [For MATLAB projects, the intended output covers every .m file and every function; generated files may require a user-confirmed save location and output extension.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: The skill includes a self-evolution mechanism that can ask the agent to write diary files and propose edits to its own instructions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or remove the self-evolution section before installation unless persistent self-review notes and proposed instruction changes are intended.
+
+Risk: Artifact files disagree about whether the generated documentation should be plain text .txt or Markdown .md.
+
+Mitigation: Clarify the expected output format before use; prefer the SKILL.md plain-text .txt requirement unless the user explicitly requests Markdown.
+
+Risk: README installation examples mention npx-based installation without a pinned package or version.
+
+Mitigation: Review and pin any npx-based installation workflow before using it in automated or managed environments.
+
+## Reference(s):
+
+- [Chinese communication simulation documentation template](references/communication-simulation-doc-template.md)
+- [ClawHub skill page](https://clawhub.ai/orbisz/skills/simulation-doc-writer-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, shell commands]
+
+**Output Format:** [Chinese technical documentation with tables, runnable commands, verification steps, and reproduction guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill expects generated program documentation to be saved as a plain-text .txt file unless the user explicitly requests another export.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

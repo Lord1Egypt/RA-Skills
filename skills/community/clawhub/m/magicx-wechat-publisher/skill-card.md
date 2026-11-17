@@ -1,46 +1,57 @@
-## Description: <br>
-Publishes completed Markdown or text articles to a WeChat Official Account draft box by converting them to compliant HTML, uploading images, and submitting the draft; it does not generate article content. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts completed Markdown or text into WeChat public-account HTML, uploads images, and submits the result to the WeChat draft box without generating article content.
 
-## Publisher: <br>
-[youyouyoumagic](https://clawhub.ai/user/youyouyoumagic) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[youyouyoumagic](https://clawhub.ai/user/youyouyoumagic)
 
-## Use Case: <br>
-External publishers and developers use this skill to prepare finished article content and image files for WeChat Official Account publication. It helps an agent produce WeChat-compatible HTML, upload assets, submit a draft, and tell the user to review it before publishing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: WeChat account secrets may be stored in a plaintext local configuration file. <br>
-Mitigation: Prefer passing credentials at runtime; if credentials are saved, protect and exclude artifact/scripts/.wechat-config.json from backups and version control. <br>
-Risk: Selected article content and images are uploaded to WeChat during draft creation. <br>
-Mitigation: Install and use the skill only when uploading that content to WeChat is intended, and review the created draft before publishing. <br>
-Risk: The skill includes a fixed footer and disclaimer rule that may not match every account. <br>
-Mitigation: Remove or customize the fixed “有用AI” footer and disclaimer behavior before using it for a different publisher. <br>
+## Use Case:
 
+External users and agents with access to a WeChat official account use this skill to prepare an already-written article for WeChat and submit it as a reviewable draft.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/youyouyoumagic/magicx-wechat-publisher) <br>
-- [WeChat access token endpoint](https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid={APPID}&secret={SECRET}) <br>
-- [WeChat image upload endpoint](https://api.weixin.qq.com/cgi-bin/media/uploadimg?access_token={TOKEN}) <br>
-- [WeChat permanent image material endpoint](https://api.weixin.qq.com/cgi-bin/material/add_material?type=image&access_token={TOKEN}) <br>
-- [WeChat draft add endpoint](https://api.weixin.qq.com/cgi-bin/draft/add?access_token=${accessToken}) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and generated WeChat HTML submitted through WeChat APIs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires WeChat Official Account credentials and sends selected article content and images to WeChat; the resulting draft should be reviewed in the WeChat backend before publication.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill handles reusable WeChat official-account AppID/AppSecret credentials and can save them to a local config file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only where that credential access is acceptable, protect the config file, avoid --save-config unless needed, never commit it, and rotate any secret exposed through local files or command history.
+
+Risk: Article HTML and images are sent to WeChat/Tencent APIs during upload.
+
+Mitigation: Review article content, images, account permissions, and destination account before running uploads.
+
+Risk: Generated drafts may include maintainer branding in the footer or author fields.
+
+Mitigation: Review the WeChat draft, especially footer and author fields, before publishing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/youyouyoumagic/skills/magicx-wechat-publisher)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown instructions with inline HTML and bash/Node.js commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces WeChat-compatible HTML and may submit drafts through WeChat/Tencent APIs.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

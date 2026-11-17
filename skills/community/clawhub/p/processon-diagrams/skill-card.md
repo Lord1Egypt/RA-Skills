@@ -1,38 +1,53 @@
-## Description: <br>
-Deprecated compatibility alias for ProcessOn diagrams that redirects users from `processon-diagrams` to the renamed `processon-diagramgen` skill. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This deprecated compatibility alias tells agents that `processon-diagrams` has been renamed to `processon-diagramgen` and should no longer be used as the primary ProcessOn diagram workflow.
 
-## Publisher: <br>
-[halloweb](https://clawhub.ai/user/halloweb) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[halloweb](https://clawhub.ai/user/halloweb)
 
-## Use Case: <br>
-Agents and users use this alias only for migration guidance when older prompts or workflows mention `processon-diagrams`; it tells them to use `processon-diagramgen` instead. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: This deprecated alias does not contain the active diagram generation workflow. <br>
-Mitigation: Use it as migration guidance only, and review and install `processon-diagramgen` before relying on diagram generation behavior. <br>
+## Use Case:
 
+Developers and external users use this alias to preserve backward compatibility when older prompts or workflows mention `processon-diagrams`. The skill guides the agent to notify users about the rename and continue with `processon-diagramgen` instead.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/halloweb/processon-diagrams) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Guidance] <br>
-**Output Format:** [Markdown or plain text migration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Does not produce files, code, shell commands, or diagrams.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release metadata) <br>
+Risk: Users may expect this alias to perform the full diagram generation workflow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Tell users that `processon-diagrams` is deprecated and continue with the separate `processon-diagramgen` skill.
+
+Risk: The behavior of actual diagram generation is outside this compatibility alias.
+
+Mitigation: Review and trust the separate `processon-diagramgen` skill before relying on redirected diagram generation behavior.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/halloweb/skills/processon-diagrams)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Deprecated alias guidance only; actual diagram generation behavior is delegated to the separate `processon-diagramgen` skill.]
+
+## Skill Version(s):
+
+1.0.1 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

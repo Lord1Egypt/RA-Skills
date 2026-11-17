@@ -1,42 +1,53 @@
-## Description: <br>
-Plan and track international moves with visa timelines, document checklists, and country-specific guides. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Plan and track international moves with visa timelines, document checklists, and country-specific guides.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-People planning or executing an international move use this skill to organize relocation phases, document readiness, visa timelines, destination research, and reminders across the move. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Relocation notes can include sensitive personal, family, document, and timeline details saved locally under ~/expat/. <br>
-Mitigation: Keep the folder private, avoid storing passport numbers or exact document locations, and delete old files when the move is complete. <br>
-Risk: Immigration, tax, healthcare, banking, and registration requirements change and may vary by personal circumstances. <br>
-Mitigation: Verify requirements with current official sources before acting on guidance or deadlines. <br>
-Risk: Activation and reminder preferences may be remembered across sessions. <br>
-Mitigation: Review saved preferences and notes periodically, especially on shared or managed machines. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/expat) <br>
-- [Skill homepage](https://clawic.com/skills/expat) <br>
+## Use Case:
 
+External users planning or executing an international move use this skill to organize relocation phases, visa and document timelines, country research, and move-related reminders.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Conversational guidance and Markdown notes, checklists, timelines, and country research files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local relocation notes under ~/expat/.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may save sensitive relocation, visa, family, and document-location details in local plaintext Markdown files.
+
+Mitigation: Avoid storing passport numbers, visa identifiers, scans, exact document locations, or unnecessary family details, and periodically inspect and delete ~/expat/ files that are no longer needed.
+
+Risk: Immigration, tax, healthcare, banking, and registration rules change frequently and can affect legal or financial outcomes.
+
+Mitigation: Verify country-specific requirements against current official government, embassy, tax authority, healthcare, or banking sources before acting.
+
+## Reference(s):
+
+- [Expat Companion on ClawHub](https://clawhub.ai/ivangdavila/skills/expat)
+- [Expat Companion Homepage](https://clawic.com/skills/expat)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Configuration]
+
+**Output Format:** [Markdown notes, checklists, timelines, and conversational guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create and update local Markdown files under ~/expat/; no API calls or required binaries are declared.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

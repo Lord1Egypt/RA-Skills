@@ -1,45 +1,53 @@
-## Description: <br>
-Generates AI creator briefings from recent X activity and can draft or publish summary posts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically collects recent public X posts from configured AI creators, filters and summarizes them into bilingual briefings, drafts an English post, and can publish the result to X.
 
-## Publisher: <br>
-[kelcey2023](https://clawhub.ai/user/kelcey2023) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kelcey2023](https://clawhub.ai/user/kelcey2023)
 
-## Use Case: <br>
-Creators, operators, and social media teams use this skill to monitor selected AI accounts, summarize notable X activity, and prepare bilingual briefings or short posts. It is intended for recurring AI trend tracking and publishing workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated posts may be published publicly to X without a separate review step. <br>
-Mitigation: Run in draft-only mode by removing publishing flags or the publish step, then review the generated post before manually publishing. <br>
-Risk: Cron configuration can make the workflow publish unattended on a recurring schedule. <br>
-Mitigation: Do not enable cron unless scheduled public posting is intended; disable or remove the cron task when reviewing outputs manually. <br>
-Risk: Publishing depends on a separate autopost skill and whatever X account it is configured to use. <br>
-Mitigation: Inspect the autopost skill and confirm the target account before allowing publishing. <br>
+## Use Case:
 
+Creators, operators, and analysts use this skill to monitor selected AI creator accounts on X, turn recent public posts into concise Chinese and English briefings, draft short update posts, and optionally schedule publishing and archiving.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kelcey2023/zeelin-x-creator-briefing) <br>
-- [Skill documentation](SKILL.md) <br>
-- [README](README.md) <br>
-- [Creator configuration](config/creators.yaml) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown briefings, short text post drafts, JSON run metadata, and command examples.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write dated briefing and tweet-draft files, archive generated reports, and optionally publish to X when publishing is enabled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: ClawHub release evidence) <br>
+Risk: Generated posts can be published to X automatically without a human review step.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Change the runner and scheduled jobs to draft-only, review the final post text manually, and confirm which authenticated posting account will publish.
+
+Risk: Briefings are based on scraped public X content, so results may be incomplete or affected by access limits and page changes.
+
+Mitigation: Use conservative schedules and check each generated briefing for omissions, stale links, and inaccurate summaries before publishing or reusing it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kelcey2023/skills/zeelin-x-creator-briefing)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Shell commands, Configuration]
+
+**Output Format:** [Markdown briefing files, plain-text tweet drafts, JSON run metadata, and shell command workflows]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can auto-publish when publishing is enabled; generated outputs are date-stamped and intended for review before posting.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

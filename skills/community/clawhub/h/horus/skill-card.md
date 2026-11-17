@@ -1,41 +1,63 @@
-## Description: <br>
-Register, track, and validate state observations against declared constraints without assuming universal truth or enforcing physical laws. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Register, track, and validate state observations against declared constraints without assuming universal truth or enforcing physical laws.
 
-## Publisher: <br>
-[uniaolives](https://clawhub.ai/user/uniaolives) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-CC0 1.0 Universal (Public Domain) <br>
+## Publisher:
 
+[uniaolives](https://clawhub.ai/user/uniaolives)
 
-## Use Case: <br>
-Developers and AI system designers use this skill as a reference protocol and implementation guide for registering observations, declaring constraints, recording non-blocking violations, projecting state, and exporting audit traces. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+CC0 1.0 Universal
 
-## Known Risks and Mitigations: <br>
-Risk: Exported traces can include sensitive coordinates, observer identifiers, or user-supplied metadata. <br>
-Mitigation: Avoid putting secrets, private identifiers, or sensitive operational details in metadata unless redaction and access controls are added. <br>
-Risk: The release is a reference protocol, not a complete secure audit system, and traces should not be treated as tamper-proof by default. <br>
-Mitigation: Use checksum or signature verification before relying on exported traces for integrity-sensitive workflows. <br>
+## Use Case:
 
+Developers and AI-system designers use this skill as a protocol guide and reference implementation for observation registration, constraint declaration, violation logging, projection, and audit-trace export in distributed intelligence systems.
 
-## Reference(s): <br>
-- [CS-RV Protocol Whitepaper](artifact/CS-RV_Protocol_Whitepaper.md) <br>
-- [CS-RV Implementation Guide](artifact/skills.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Guidance] <br>
-**Output Format:** [Markdown documents with Python reference code blocks and protocol guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include JSON audit-trace examples; exported traces can contain user-supplied metadata.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-7.7.7 (source: ClawHub release evidence) <br>
+Risk: Reference Python uses assert-based validation, which can be disabled in optimized runtime modes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Replace asserts with explicit runtime validation before using the reference implementation in production.
+
+Risk: Predicate evaluation failures may be swallowed during constraint checking, reducing audit visibility.
+
+Mitigation: Record predicate evaluation failures in the violation or audit log with enough context for review.
+
+Risk: Exported traces can contain state coordinates, observer identifiers, metadata, constraints, and violations.
+
+Mitigation: Add privacy controls, pseudonymous identifiers, and access checks before exporting or sharing traces.
+
+Risk: The artifact includes integrity and determinism claims that may need reconciliation with actual export behavior.
+
+Mitigation: Validate checksum generation, timestamp handling, and deterministic serialization against deployment requirements.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/uniaolives/skills/horus)
+- [CS-RV Protocol Whitepaper](artifact/CS-RV_Protocol_Whitepaper.md)
+- [CS-RV Implementation Guide](artifact/skills.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance]
+
+**Output Format:** [Markdown with Python and shell code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes protocol guidance, migration notes, tests, and JSON audit-trace examples.]
+
+## Skill Version(s):
+
+7.7.7 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

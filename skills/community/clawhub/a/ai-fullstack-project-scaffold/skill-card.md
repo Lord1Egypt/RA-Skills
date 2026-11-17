@@ -1,43 +1,58 @@
-## Description: <br>
-Generates full-stack project scaffolds from a natural-language requirement, including project code, Makefile tasks, task planning, and Docker configuration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI fullstack project scaffold turns a natural-language project request into a runnable project structure with code framework, Makefile, task tracking, and Docker deployment configuration.
 
-## Publisher: <br>
-[zlszhonglongshen](https://clawhub.ai/user/zlszhonglongshen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zlszhonglongshen](https://clawhub.ai/user/zlszhonglongshen)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to initialize new full-stack projects or add bootstrap tooling to existing repositories. It turns a project name, stack, description, and optional port into a runnable scaffold with source files, build commands, task documents, and container configuration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated Makefile, Docker, and source files may contain unsuitable commands, settings, or business logic for the target environment. <br>
-Mitigation: Review the generated files before running commands, committing changes, or deploying the project. <br>
-Risk: Existing-project mode may add or modify files in the current repository. <br>
-Mitigation: Run the skill in a new directory or on a version-controlled branch, then inspect the resulting diff. <br>
-Risk: The skill requires sensitive Kimi Code CLI credentials. <br>
-Mitigation: Keep credentials in the local CLI or secret store, avoid writing them into generated files, and rotate them if exposed. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to initialize or extend fullstack projects from a short requirements description. It coordinates planning, code generation, Makefile generation, and Docker configuration for Node.js, Python, Go, and Java stacks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zlszhonglongshen/ai-fullstack-project-scaffold) <br>
-- [Publisher profile](https://clawhub.ai/user/zlszhonglongshen) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Project files, Markdown documents, Makefile targets, Docker configuration, and command examples.] <br>
-**Output Parameters:** [1D; required projectName, stack, and description, with optional port.] <br>
-**Other Properties Related to Output:** [Requires the dependent skills and a configured Kimi Code CLI API key; generated files should be reviewed before execution or deployment.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact frontmatter) <br>
+Risk: The skill writes many local project files, including source code, Makefile, Dockerfile, docker-compose.yml, and configuration files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it in a new or clean directory when possible and review generated files before running commands or committing changes.
+
+Risk: Generated source, build files, and Docker configuration may not match production security or business requirements.
+
+Mitigation: Review generated code and deployment configuration, then adjust and scan them before production use.
+
+Risk: Existing-project mode may create conflicts or overwrite expectations because conflict handling is not clearly documented.
+
+Mitigation: Use version control or a backup before running against an existing project and inspect the resulting diff before continuing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zlszhonglongshen/skills/ai-fullstack-project-scaffold)
+- [Publisher profile](https://clawhub.ai/user/zlszhonglongshen)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Files, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Project files and Markdown with shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a project directory that may include source code, Makefile, Dockerfile, docker-compose.yml, .dockerignore, README.md, package or dependency files, and task planning documents.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and workflow.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

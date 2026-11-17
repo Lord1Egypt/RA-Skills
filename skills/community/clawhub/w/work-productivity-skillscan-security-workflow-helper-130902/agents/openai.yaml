@@ -1,0 +1,7 @@
+interface:
+  display_name: "SkillScan Security Workflow Helper"
+  short_description: "Reviews skill folders for security, dependency, and activation risks."
+  default_prompt: "Use $work-productivity-skillscan-security-workflow-helper to scan this skill folder before activation or publishing."
+
+policy:
+  allow_implicit_invocation: true

@@ -1,7 +1,7 @@
 ---
 name: youtube-channel-management
 description: "YouTube Channel Management: Upload File Manager videos, update video metadata, privacy, localizations, thumbnails, captions, playlists, playlist items, channel sections, channel branding, watermarks, and discover YouTube categories/capabilities. Use when an agent needs youtube channel management, youtube api, upload youtube shorts or standard videos from file manager; update titles, descriptions, tags, privacy, add video to playlist, playlist id through AgentPMT-hosted remote tool calls."
-version: 1.0.0
+version: 1.0.1
 homepage: https://www.agentpmt.com/marketplace/youtube-api
 compatibility: "Agent instructions for AgentPMT-hosted remote tool calls. Follow this skill body for supported account, wallet, and setup routes. No local command runtime is declared."
 metadata: {"author":"agentpmt","openclaw":{"homepage":"https://www.agentpmt.com/marketplace/youtube-api"}}
@@ -9,7 +9,7 @@ metadata: {"author":"agentpmt","openclaw":{"homepage":"https://www.agentpmt.com/
 # YouTube Channel Management
 
 ## Freshness
-Last updated: `2026-06-24`.
+Last updated: `2026-10-13`.
 
 If the current date is more than 7 days after the last updated date, reinstall this skill from skills.sh or ClawHub before relying on endpoints, schemas, setup steps, or examples.
 
@@ -224,8 +224,6 @@ Returns supported API-backed features and unsupported Studio-only surfaces.
 - and delete captions; create and manage playlists and playlist items; manage channel sections for connected video organization; update safe channel branding fields; set or unset channel watermarks; discover categories and API capability limits.
 
 ## Related Product Skills
-- File Storage - 10MB or less: ../file-storage-10mb-or-less (ClawHub: `file-storage-10mb-or-less`, page: https://clawhub.ai/agentpmt/file-storage-10mb-or-less; skills.sh: `npx skills add AgentPMT/agent-skills --skill file-storage-10mb-or-less`)
-- File Storage - Over 10MB: ../file-storage-over-10mb (ClawHub: `file-storage-over-10mb`, page: https://clawhub.ai/agentpmt/file-storage-over-10mb; skills.sh: `npx skills add AgentPMT/agent-skills --skill file-storage-over-10mb`)
 - File Management: ../file-management (ClawHub: `file-management`, page: https://clawhub.ai/agentpmt/file-management; skills.sh: `npx skills add AgentPMT/agent-skills --skill file-management`)
 
 ## Categories And Industries
@@ -244,15 +242,15 @@ x402 availability: not enabled for this product.
 - `delete_playlist` (action slug: `delete-playlist`): Delete a playlist. Price: `25` credits. Parameters: `playlist_id`.
 - `delete_video` (action slug: `delete-video`): Delete a YouTube video by ID. Price: `25` credits. Parameters: `video_id`.
 - `download_caption` (action slug: `download-caption`): Download a caption track and save it to AgentPMT File Manager. Price: `25` credits. Parameters: `caption_format`, `caption_id`, `output_filename`, `translation_language`.
-- `get_my_channel` (action slug: `get-my-channel`): Fetch channel details for the connected account or a supplied channel ID. Price: `25` credits. Parameters: `channel_id`.
-- `get_playlist` (action slug: `get-playlist`): Fetch a playlist by ID. Price: `25` credits. Parameters: `playlist_id`.
-- `get_video` (action slug: `get-video`): Fetch a YouTube video by ID with supported read parts. Price: `25` credits. Parameters: `video_id`.
-- `get_youtube_capabilities` (action slug: `get-youtube-capabilities`): Return supported and unsupported YouTube public API capabilities. Price: `25` credits. Parameters: none.
-- `list_captions` (action slug: `list-captions`): List caption tracks associated with a video. Price: `25` credits. Parameters: `video_id`.
-- `list_channel_sections` (action slug: `list-channel-sections`): List channel sections for the connected account, a channel, or a section ID. Price: `25` credits. Parameters: `channel_id`, `channel_section_id`.
-- `list_playlist_items` (action slug: `list-playlist-items`): List items in a playlist. Price: `25` credits. Parameters: `max_results`, `page_token`, `playlist_id`.
-- `list_playlists` (action slug: `list-playlists`): List playlists for the connected YouTube channel. Price: `25` credits. Parameters: `max_results`, `page_token`.
-- `list_video_categories` (action slug: `list-video-categories`): List supported YouTube video categories for a region. Price: `25` credits. Parameters: `hl`, `region_code`.
+- `get_my_channel` (action slug: `get-my-channel`): Fetch channel details for the connected account or a supplied channel ID. Price: `3` credits. Parameters: `channel_id`.
+- `get_playlist` (action slug: `get-playlist`): Fetch a playlist by ID. Price: `3` credits. Parameters: `playlist_id`.
+- `get_video` (action slug: `get-video`): Fetch a YouTube video by ID with supported read parts. Price: `3` credits. Parameters: `video_id`.
+- `get_youtube_capabilities` (action slug: `get-youtube-capabilities`): Return supported and unsupported YouTube public API capabilities. Price: `3` credits. Parameters: none.
+- `list_captions` (action slug: `list-captions`): List caption tracks associated with a video. Price: `3` credits. Parameters: `video_id`.
+- `list_channel_sections` (action slug: `list-channel-sections`): List channel sections for the connected account, a channel, or a section ID. Price: `3` credits. Parameters: `channel_id`, `channel_section_id`.
+- `list_playlist_items` (action slug: `list-playlist-items`): List items in a playlist. Price: `3` credits. Parameters: `max_results`, `page_token`, `playlist_id`.
+- `list_playlists` (action slug: `list-playlists`): List playlists for the connected YouTube channel. Price: `3` credits. Parameters: `max_results`, `page_token`.
+- `list_video_categories` (action slug: `list-video-categories`): List supported YouTube video categories for a region. Price: `3` credits. Parameters: `hl`, `region_code`.
 - `remove_playlist_item` (action slug: `remove-playlist-item`): Remove a playlist item by playlistItem ID. Price: `25` credits. Parameters: `playlist_item_id`.
 - `remove_video_from_playlist` (action slug: `remove-video-from-playlist`): Remove one or all playlist items matching a video ID from a playlist. Price: `25` credits. Parameters: `playlist_id`, `remove_all`, `video_id`.
 - `set_channel_watermark` (action slug: `set-channel-watermark`): Set a channel watermark from an AgentPMT File Manager image. Price: `25` credits. Parameters: `channel_id`, `target_channel_id`, `watermark_content_type`, `watermark_duration_ms`, `watermark_file_id`, `watermark_offset_ms`, `watermark_timing_type`.

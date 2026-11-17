@@ -1,45 +1,61 @@
-## Description: <br>
-Protect AI agents from email-based attacks including prompt injection, sender spoofing, malicious attachments, and social engineering. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Protects AI agents that process email by providing sender verification, content sanitization, attachment policy checks, and threat detection for common email providers.
 
-## Publisher: <br>
-[ivaavimusic](https://clawhub.ai/user/ivaavimusic) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivaavimusic](https://clawhub.ai/user/ivaavimusic)
 
-## Use Case: <br>
-Developers and agent operators use this skill to add email-security checks before an agent reads email content, acts on email-based commands, or handles attachments. It supports sender verification, content sanitization, threat detection, and provider-specific guidance for Gmail, AgentMail, Proton Mail, and generic IMAP/SMTP systems. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Owner or admin emails may trigger broad agent actions without enough confirmation controls. <br>
-Mitigation: Configure owner, admin, and trusted sender lists before use, require confirmation for command execution and destructive actions, and avoid relying on SPF or DKIM alone for privileged commands. <br>
-Risk: Attachments saved from email remain untrusted files even after parsing. <br>
-Mitigation: Apply strict attachment type policies, scan saved files before use, and treat all saved attachments as untrusted until independently reviewed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ivaavimusic/email-security) <br>
-- [Owner Configuration](artifact/references/owner-config.md) <br>
-- [Security Policies](artifact/references/security-policies.md) <br>
-- [Threat Patterns](artifact/references/threat-patterns.md) <br>
-- [Gmail Provider Guide](artifact/references/provider-gmail.md) <br>
-- [AgentMail Provider Guide](artifact/references/provider-agentmail.md) <br>
-- [Generic Email Provider Guide](artifact/references/provider-generic.md) <br>
+## Use Case:
 
+Developers and agent operators use this skill to add a defensive review layer before agents read, parse, or act on email content. It is intended for workflows that need sender checks, message sanitization, attachment restrictions, and prompt-injection screening across Gmail, AgentMail, Proton Mail, and generic IMAP/SMTP providers.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration, JSON] <br>
-**Output Format:** [Markdown guidance with inline shell commands, configuration examples, and JSON-capable script outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes scripts for parsing email, sanitizing content, and verifying senders.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence release.version) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Email senders may gain high-impact command authority if email-triggered actions are treated as trusted automation.
+
+Mitigation: Require independent confirmation and provider-verified authentication before send, delete, forward, rule-changing, or other destructive actions are executed.
+
+Risk: Sender verification can fail open or misclassify commented examples as privileged users.
+
+Mitigation: Review authorization parsing before deployment and keep owner, admin, trusted, and blocked sender lists explicit and tested.
+
+Risk: Full-content logging can expose sensitive raw email data.
+
+Mitigation: Use secured evidence storage, retention controls, and limited logging for raw messages and blocked or flagged content.
+
+## Reference(s):
+
+- [Owner Configuration](references/owner-config.md)
+- [Security Policies](references/security-policies.md)
+- [Threat Patterns](references/threat-patterns.md)
+- [Gmail Provider Guide](references/provider-gmail.md)
+- [AgentMail Provider Guide](references/provider-agentmail.md)
+- [Generic Email Provider Guide](references/provider-generic.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, Python snippets, and JSON or YAML configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Helper scripts may emit JSON for parsed messages, sender verification results, and sanitization findings.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

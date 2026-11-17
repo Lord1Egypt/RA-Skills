@@ -1,39 +1,54 @@
-## Description: <br>
-Deduplication reference - exact matching, fuzzy matching, hash-based dedup, bloom filters, and data quality. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deduplication reference - exact matching, fuzzy matching, hash-based dedup, bloom filters, and data quality for removing duplicate records, files, or data entries.
 
-## Publisher: <br>
-[xueyetianya](https://clawhub.ai/user/xueyetianya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xueyetianya](https://clawhub.ai/user/xueyetianya)
 
-## Use Case: <br>
-Developers, data engineers, and data quality practitioners use this skill as a quick reference for choosing deduplication strategies, commands, SQL patterns, and validation checks for records, files, and ETL pipelines. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: File deduplication and SQL examples may include destructive deletion or link-replacement commands when applied manually. <br>
-Mitigation: Verify paths and queries, test on copies, and keep backups before running deletion, hard-link, symlink, storage-level deduplication, or SQL DELETE commands. <br>
+## Use Case:
 
+Developers, data engineers, and operators use this skill as a concise reference for choosing and applying exact, fuzzy, file-level, SQL, command-line, and probabilistic deduplication techniques.
 
-## Reference(s): <br>
-- [Dedupe on ClawHub](https://clawhub.ai/xueyetianya/dedupe) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, code, guidance] <br>
-**Output Format:** [Markdown-style reference text with inline shell, SQL, and code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prints reference material for selected deduplication topics; it does not automatically scan, delete, persist, or transmit data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Destructive deduplication examples could delete files or database rows if copied directly into a live environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Start with read-only detection commands, work on backups or staging copies, and review delete, auto-delete, hardlink, symlink, and SQL DELETE commands before execution.
+
+Risk: Incorrect duplicate criteria can merge or remove legitimate distinct records.
+
+Mitigation: Define deduplication keys and keep strategy before execution, test on a subset, log removed duplicates, and validate counts and spot checks afterward.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xueyetianya/skills/dedupe)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown-style reference text with command, SQL, and code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Command-specific reference sections selected by script argument.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

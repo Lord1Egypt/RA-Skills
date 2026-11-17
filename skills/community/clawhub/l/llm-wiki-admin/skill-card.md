@@ -1,45 +1,55 @@
-## Description: <br>
-Manages an Obsidian-backed LLM Wiki knowledge base by initializing projects, ingesting source material into Markdown wiki pages, answering wiki-based queries, and running wiki health checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manages a persistent Obsidian-backed LLM wiki by initializing projects, ingesting source material into Markdown pages, answering wiki-based queries, and linting wiki health.
 
-## Publisher: <br>
-[mebusw](https://clawhub.ai/user/mebusw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mebusw](https://clawhub.ai/user/mebusw)
 
-## Use Case: <br>
-External users and knowledge workers use this skill to create and maintain persistent Obsidian wiki projects from articles, notes, papers, meetings, and other source material. It supports project setup, source ingestion, wiki-based question answering, and lint-style health checks while preserving raw source files as the reference record. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read source files and update wiki pages in an Obsidian vault. <br>
-Mitigation: Use a dedicated wiki folder, review planned writes before ingestion, and keep raw source files read-only. <br>
-Risk: Wiki pages may contain incorrect synthesis or unresolved contradictions from source material. <br>
-Mitigation: Review ingestion summaries, preserve source citations, and keep contradictions explicitly marked rather than silently merged. <br>
-Risk: The skill depends on the separate /obsidian integration for file operations. <br>
-Mitigation: Install and trust the /obsidian integration before use, and confirm vault paths before allowing writes. <br>
+## Use Case:
 
+Developers, researchers, and knowledge workers use this skill to turn notes, papers, articles, and meeting records into an Obsidian wiki that preserves sources, cross-links concepts, records contradictions, and supports later queries.
 
-## Reference(s): <br>
-- [Skill README](README.md) <br>
-- [Ingest Logic Reference](references/ingest-logic.md) <br>
-- [Scenario Templates Reference](references/templates.md) <br>
-- [Andrej Karpathy LLM Wiki Concept](https://x.com/karpathy/status/1793562750870294638) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown guidance and Markdown wiki file content] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose or update multiple wiki pages and append operation logs through the required Obsidian integration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill manages persistent Obsidian wiki files and may summarize or log sensitive material if used on a broad or sensitive vault area.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated project folder and avoid pointing the workflow at vault areas containing material that should not be summarized or logged.
+
+Risk: Generated wiki updates can introduce inaccurate summaries, broken links, or unresolved contradictions in project knowledge.
+
+Mitigation: Review planned ingest changes before writing, keep raw source files read-only, preserve contradictory claims with source notes, and run lint checks before relying on the wiki.
+
+## Reference(s):
+
+- [LLM Wiki concept by Andrej Karpathy](https://x.com/karpathy/status/1793562750870294638)
+- [Ingest workflow reference](references/ingest-logic.md)
+- [Scenario templates reference](references/templates.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Configuration, Guidance]
+
+**Output Format:** [Conversational guidance and Markdown wiki files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an Obsidian vault and the /obsidian skill; raw source files are documented as read-only.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

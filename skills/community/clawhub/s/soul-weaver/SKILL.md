@@ -221,7 +221,7 @@ Each template includes 10 configuration files:
 ### Usage Instructions
 ```javascript
 const result = await skills.soulWeaver.handler({
-  apiKey: 'sk-your-actual-token-here',  // ← Replace with your actual token
+  apiKey: 'REDACTED-SECRET',  // ← Replace with your actual token
   apiEndpoint: 'https://sora2.wboke.com/api/v1/template',
   aiName: 'YourAI_Name',
   templateId: 'template-name',

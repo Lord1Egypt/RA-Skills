@@ -1,13 +1,13 @@
 ---
 name: dlazy-start
-version: 2.0.0
-description: AI 编排器（Claude Code / Cursor / Codex / Copilot）驱动 @dlazy/cli 的快速上手手册。覆盖安装、鉴权、能力探测、调用云端/本地工具、轮询异步任务,以及常见故障恢复。
+version: 2.0.6
+description: "AI 编排器（Claude Code / Cursor / Codex / Copilot）驱动 @dlazy/cli 的快速上手手册。覆盖安装、鉴权、能力探测、调用云端/本地工具、轮询异步任务,以及常见故障恢复。"
 triggers:
   - dLazy CLI 智能体上手手册
-metadata: {"clawdbot":{"emoji":"🎬","requires":{"bins":["npm","npx"]},"install":"npm install -g @dlazy/cli","installAlternative":"npx @dlazy/cli","homepage":"https://dlazy.com","source":"https://github.com/dlazyai/cli","author":"dlazyai","license":"AGPL-3.0-or-later","npm":"https://www.npmjs.com/package/@dlazy/cli","configLocation":"~/.dlazy/config.json","apiEndpoints":["api.dlazy.com","files.dlazy.com"]},"openclaw":{"systemPrompt":"你正在为用户操作 @dlazy/cli。先探测:跑 `dlazy tools list` 看可用工具,`dlazy tools describe <名字>` 看单工具的 input/output schema 和成本。调用形态:`dlazy <工具名> --input @file.json`(或加 `--output json` 拿机读 envelope)。异步任务用 `dlazy status <generateId>` 轮询。需要本地 runtime 时跑 `dlazy doctor remotion --install` 或 `dlazy doctor yt-dlp --install`。在没用 `dlazy tools list` 核实之前,绝不声称某工具存在。"}}
+metadata: {"clawdbot":{"emoji":"🎬","requires":{"bins":["npm","npx"]},"install":"npm install -g @dlazy/cli","installAlternative":"npx @dlazy/cli","homepage":"https://dlazy.com","source":"https://github.com/dlazy-ai/cli","author":"dlazyai","license":"AGPL-3.0-or-later","npm":"https://www.npmjs.com/package/@dlazy/cli","configLocation":"~/.dlazy/config.json","apiEndpoints":["api.dlazy.com","files.dlazy.com"]},"openclaw":{"systemPrompt":"你正在为用户操作 @dlazy/cli。先探测:跑 `dlazy tools list` 看可用工具,`dlazy tools describe <名字>` 看单工具的 input/output schema 和成本。调用形态:`dlazy <工具名> --input @file.json`(或加 `--format json` 拿机读 envelope)。异步任务用 `dlazy status <generateId>` 轮询。需要本地 runtime 时跑 `dlazy doctor remotion --install` 或 `dlazy doctor yt-dlp --install`。在没用 `dlazy tools list` 核实之前,绝不声称某工具存在。"}}
 ---
 
-# dlazy-start — 智能体上手手册
+# 智能体上手手册 Start
 
 [English](./SKILL.md) · [中文](./SKILL-cn.md)
 
@@ -37,7 +37,7 @@ dlazy auth login
 
 备选鉴权:`dlazy auth set YOUR_API_KEY`,或设 `DLAZY_API_KEY` 环境变量。配置存在 `~/.dlazy/config.json`(Windows:`%USERPROFILE%\.dlazy\`)。
 
-所有命令都接受的全局 flag:`--api-key`、`--base-url`、`--verbose`、`--output <json|url|text>`、`--refresh-manifest`、`-l/--lang <locale>`。
+所有命令都接受的全局 flag:`--api-key`、`--base-url`、`--verbose`、`--format <json|url|text>`、`--refresh-manifest`、`-l/--lang <locale>`。
 
 ---
 
@@ -72,7 +72,7 @@ dlazy doctor yt-dlp --install --proxy http://127.0.0.1:1087
 dlazy gpt-image-2 --prompt "黄昏中的赛博朋克猫"
 
 # JSON 输入文件(复杂结构推荐)
-dlazy video_compose --input @work/compose.json --output json
+dlazy video_compose --input @work/compose.json --format json
 
 # 干跑校验(不发远程调用,不扣额度)
 dlazy seedance-2-0 --input @plan.json --dry-run
@@ -86,9 +86,10 @@ dlazy <工具名> --help
 
 输出模式:
 
-- `--output text`(默认) —— 人读 envelope
-- `--output json` —— 每次调用一行 JSON;用 `jq` 解析
-- `--output url` —— 单一素材产物时,直接给纯 URL
+- `--format json`(默认) —— 机读 envelope;用 `jq` 解析
+- `--format url` —— 单一素材产物时,直接给纯 URL
+- `--format text` —— 人读文本载荷
+- `--save <path>` —— 直接把素材下载到本地路径(自动 mkdir + 重试)
 
 ---
 
@@ -98,7 +99,7 @@ dlazy <工具名> --help
 
 ```bash
 dlazy status <generateId>
-dlazy status <generateId> --output json
+dlazy status <generateId> --format json
 ```
 
 反复轮询直到 `succeeded`(payload 里带素材 URL)或 `failed`(带 `error.code` + `error.message`)。
@@ -143,7 +144,7 @@ dlazy status <generateId> --output json
 安装         npm install -g @dlazy/cli && dlazy auth login
 探测         dlazy tools list  |  dlazy tools describe <名字>
 本地 runtime  dlazy doctor remotion --install   (或 yt-dlp)
-调用         dlazy <工具名> --input @file.json --output json
+调用         dlazy <工具名> --input @file.json --format json
 干跑         dlazy <工具名> --input @file.json --dry-run
 轮询         dlazy status <generateId>
 帮助         dlazy --help  |  dlazy <工具名> --help

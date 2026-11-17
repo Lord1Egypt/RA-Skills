@@ -1,44 +1,61 @@
-## Description: <br>
-Controls XiaoAI speakers through Home Assistant and Xiaomi Miot for text-to-speech, text command execution, URL audio playback, and optional XiaoAI-to-OpenClaw voice bridging. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Controls XiaoAI speakers through Home Assistant and Xiaomi Miot for spoken announcements, text directives, URL audio playback, and an optional XiaoAI voice-to-OpenClaw bridge.
 
-## Publisher: <br>
-[believe3344](https://clawhub.ai/user/believe3344) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[believe3344](https://clawhub.ai/user/believe3344)
 
-## Use Case: <br>
-Developers and advanced smart-home users use this skill to route OpenClaw requests to XiaoAI speakers through Home Assistant for announcements, device-oriented text commands, and audio playback. Users who enable the optional bridge can forward whitelisted XiaoAI voice requests back to OpenClaw main for handling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The optional bridge can forward XiaoAI-originated text without built-in authentication. <br>
-Mitigation: Run it only on a trusted, firewalled host; bind it to localhost or a private interface; add authentication before wider exposure; and keep whitelist rules restrictive. <br>
-Risk: Voice-derived or Home Assistant conversation text may be saved locally and forwarded to OpenClaw main. <br>
-Mitigation: Avoid sending sensitive speech through the bridge, review local logs and status files, and set retention or cleanup practices that match the deployment's privacy needs. <br>
+## Use Case:
 
+External users and developers with Home Assistant and Xiaomi Miot setups use this skill to let agents speak through XiaoAI, send XiaoAI text commands, play URL audio, and optionally route whitelisted XiaoAI voice requests into OpenClaw.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/believe3344/xiaoai-ha-control) <br>
-- [Bridge setup guide](references/bridge-setup.md) <br>
-- [Home Assistant installation](https://www.home-assistant.io/installation/) <br>
-- [HACS installation](https://www.hacs.xyz/docs/use/download/download/) <br>
-- [Xiaomi Miot integration](https://github.com/al-one/hass-xiaomi-miot) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May invoke Home Assistant service calls and optionally forward whitelisted voice text to OpenClaw main when configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: The optional bridge can expose an unauthenticated network path into the main OpenClaw agent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Bind the bridge to localhost or a trusted interface, add authentication before broader access, do not expose port 8765 publicly, and restrict the agent/tools used for bridge requests.
+
+Risk: The skill can control XiaoAI and Home Assistant-connected smart-home behavior.
+
+Mitigation: Run the downlink say/exec/play path first, review commands before automation, and keep bridge forwarding limited by a whitelist.
+
+Risk: Voice transcripts, Home Assistant tokens, and bridge status or log files may contain private household data or secrets.
+
+Mitigation: Protect `.env`, log, and status files; avoid publishing runtime files; and rotate the Home Assistant token if it is exposed.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/believe3344/skills/xiaoai-ha-control)
+- [bridge-setup.md](references/bridge-setup.md)
+- [Home Assistant Installation](https://www.home-assistant.io/installation/)
+- [HACS Download](https://www.hacs.xyz/docs/use/download/download/)
+- [Xiaomi Miot Integration](https://github.com/al-one/hass-xiaomi-miot)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may depend on local Home Assistant entities, Xiaomi Miot behavior, and optional bridge configuration.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

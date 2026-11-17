@@ -1,46 +1,64 @@
-## Description: <br>
-Fin Advisor helps individual investors analyze, compare, and discuss mutual fund products using retrieved fund data and compliance-oriented risk reminders. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fin Advisor helps personal investors analyze, compare, and evaluate funds using external fund-data services and compliance-oriented response rules.
 
-## Publisher: <br>
-[Lovelcp](https://clawhub.ai/user/Lovelcp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lovelcp](https://clawhub.ai/user/lovelcp)
 
-## Use Case: <br>
-External users and agents use this skill to support fund-focused investment conversations, including fund analysis, comparison, screening, fee checks, market context, and compliance-aware decision support. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may store investment-related user preferences in USER.md. <br>
-Mitigation: Require user consent for preference storage, keep stored profile fields minimal, and provide a clear process to review or delete saved preferences. <br>
-Risk: Financial query text may be sent to an external slot-filling service. <br>
-Mitigation: Disclose the outbound service path before use, avoid sending sensitive personal details, and allow the service to be disabled or run in mock mode where appropriate. <br>
-Risk: The skill supports investment decision conversations where output could be mistaken for personal financial advice. <br>
-Mitigation: Keep recommendations tied to retrieved data, avoid explicit buy or sell instructions, and include the required risk notice for recommendation, trading decision, or portfolio adjustment scenarios. <br>
+## Use Case:
 
+External users and agents use this skill to answer fund-analysis, fund-comparison, fee, market-news, recommendation, and trading-decision questions for personal investors. It is designed for fund-related topics and includes compliance prompts for investment-advice scenarios.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/Lovelcp/fin-advisor) <br>
-- [Compliance rules](artifact/references/compliance.md) <br>
-- [Fund advisory domain knowledge](artifact/references/domain-knowledge.md) <br>
-- [Output guide](artifact/references/output-guide.md) <br>
-- [Tool guide](artifact/references/tool-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown responses with tables, cited fund data, and risk notices where investment advice or trading decisions are discussed.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Fund data is expected to come from configured data tools; the skill directs the agent not to calculate financial metrics independently.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: The security review reports that the skill may store financial preferences or profile details in USER.md without enough consent or scoping.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user consent before saving financial preferences, keep stored profile data minimal, and provide a clear way to update or remove saved preferences.
+
+Risk: The security review reports shell and external-service patterns, including a slot-filling service URL and token path, without enough transport or host restrictions.
+
+Mitigation: Restrict external calls to trusted HTTPS hosts, remove or tightly scope slot-filling service configuration before deployment, and prefer structured MCP invocation over shell command strings for user-provided fund names or search text.
+
+Risk: The skill provides fund recommendations and trading-decision support, which can create misleading or unsuitable financial guidance if data is stale, incomplete, or over-interpreted.
+
+Mitigation: Use only authoritative fund-data service results, preserve required data context, avoid independent calculations or future-performance predictions, and include the required investment-risk disclaimer.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lovelcp/skills/fin-advisor)
+- [Compliance rules](references/compliance.md)
+- [Fund advisory domain knowledge](references/domain-knowledge.md)
+- [Output guide](references/output-guide.md)
+- [Tool guide](references/tool-guide.md)
+- [Professional persona](references/personas/professional.md)
+- [Friendly persona](references/personas/friendly.md)
+- [Data-driven persona](references/personas/data-driven.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown responses with tables, citations, fund-analysis prose, and risk disclosures]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Financial data should include timestamp, metric name, value, and subject; advice-oriented responses should include risk disclaimers.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

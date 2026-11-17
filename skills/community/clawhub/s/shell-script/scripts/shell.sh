@@ -91,7 +91,7 @@ TOTAL_SIZE=\$(du -sh "\$BACKUP_DEST" | cut -f1)
 log "📊 当前备份数: \$TOTAL, 总大小: \$TOTAL_SIZE"
 
 # ---- 可选：通知 ----
-# curl -s -X POST "https://hooks.slack.com/services/YOUR/WEBHOOK" \\
+# curl -s -X POST "REDACTED-SECRET" \\
 #   -H 'Content-type: application/json' \\
 #   -d "{\"text\": \"✅ 备份完成: \$BACKUP_FILE (\$SIZE)\"}"
 

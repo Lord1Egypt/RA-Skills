@@ -7,10 +7,12 @@
 
 | 项目 | 内容 |
 | --- | --- |
-| 当前适配 SDK | `dg-lightning-sdk` `1.0.5` |
+| 当前适配 SDK | `dg-lightning-sdk` `1.0.6` |
 | 最低运行时 | JDK 1.8+ |
 | 初始化入口 | `MerConfig` + `BasePay.initWithMerConfig()` |
 | 主要调用方式 | `Factory.Payment.Common()` |
+
+`dg-lightning-sdk 1.0.6` 的 `BasePay.debug` 默认是 `true`，底层会输出私钥、签名和请求数据。所有初始化必须在任何 `initWithMerConfig(s)` 或业务请求前执行一次 `BasePay.debug = false;`，不得在并发请求中临时切换。
 
 ## 先看哪些文件
 

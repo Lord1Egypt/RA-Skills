@@ -9,28 +9,14 @@ from .exceptions import AuthenticationError
 
 
 def build_client() -> discogs_client.Client:
-    """Build an authenticated Discogs client from stored credentials.
+    """Build a Discogs client using the configured personal access token.
 
-    Supports both personal access token and OAuth modes.
-    Raises AuthenticationError if no credentials are stored.
+    Raises AuthenticationError if no token is configured.
     """
     tokens = check_auth()
     if not tokens:
         raise AuthenticationError(
-            "Not authenticated. Run 'discogs-sync auth' first."
+            "Not authenticated. Set DISCOGS_USER_TOKEN or run 'discogs-sync auth'."
         )
 
-    if tokens.get("auth_mode") == "token":
-        client = discogs_client.Client(
-            USER_AGENT,
-            user_token=tokens["user_token"],
-        )
-    else:
-        client = discogs_client.Client(
-            USER_AGENT,
-            consumer_key=tokens["consumer_key"],
-            consumer_secret=tokens["consumer_secret"],
-            token=tokens["access_token"],
-            secret=tokens["access_token_secret"],
-        )
-    return client
+    return discogs_client.Client(USER_AGENT, user_token=tokens["user_token"])

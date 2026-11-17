@@ -1,41 +1,54 @@
-## Description: <br>
-Helps teams plan UX research, analyze user behavior, validate design decisions, and turn findings into actionable product recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+UX Researcher helps agents plan user research, analyze user behavior, validate product decisions, and turn findings into actionable design recommendations.
 
-## Publisher: <br>
-[zhouqkt](https://clawhub.ai/user/zhouqkt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhouqkt](https://clawhub.ai/user/zhouqkt)
 
-## Use Case: <br>
-Product, design, and research teams use this agent to structure research plans, personas, usability testing protocols, journey maps, and evidence-based recommendations. It emphasizes accessibility research, inclusive participant recruitment, privacy-aware data handling, and validation through qualitative and quantitative methods. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill could be invoked too broadly for tasks that do not need UX research guidance. <br>
-Mitigation: Invoke it only when UX research, usability testing, user behavior analysis, or product validation expertise is explicitly needed. <br>
-Risk: Research workflows may involve participant data, consent, and privacy obligations. <br>
-Mitigation: Review generated study plans against organizational privacy, consent, and data-handling requirements before collecting or storing real participant information. <br>
+## Use Case:
 
+Product, design, research, and engineering teams use this agent to create research plans, personas, usability test protocols, journey maps, findings summaries, and evidence-based product recommendations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhouqkt/agency-ux-researcher) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/zhouqkt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown research plans, templates, protocols, findings summaries, and recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Does not require binaries or installation commands according to artifact metadata.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Research outputs may include or request sensitive participant information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only consented participant data, minimize personal details in prompts and outputs, and follow the organization's privacy and research governance process.
+
+Risk: Research recommendations can be misleading if based on weak samples, biased recruitment, or unvalidated assumptions.
+
+Mitigation: Review methodology, sample criteria, and conclusions before acting on recommendations, and triangulate findings across qualitative and quantitative evidence.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/zhouqkt/skills/agency-ux-researcher)
+- [Publisher Profile](https://clawhub.ai/user/zhouqkt)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown and structured research guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces research plans, personas, testing protocols, analysis summaries, and recommendation frameworks.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

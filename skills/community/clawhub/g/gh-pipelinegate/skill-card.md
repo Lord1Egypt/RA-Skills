@@ -1,41 +1,57 @@
-## Description: <br>
-PipelineGate chains Green Helix tools into multi-step pipelines for scanning text and skills, checking scope and environment readiness, validating JSON, diffing text, and converting JSON or YAML. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pipelinegate chains Green Helix tools into configurable multi-step pipelines for scanning text, scanning skills, checking scope, validating JSON, diffing text, checking environments, and converting JSON or YAML.
 
-## Publisher: <br>
-[mirni](https://clawhub.ai/user/mirni) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mirni](https://clawhub.ai/user/mirni)
 
-## Use Case: <br>
-Developers and engineers use PipelineGate to run configured sequences of Green Helix checks and utility steps through a local pipeline API. It is suited for composing repeatable security, validation, diff, environment-readiness, and JSON/YAML conversion workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill exposes a local pipeline service that executes submitted pipeline steps. <br>
-Mitigation: Keep the uvicorn server bound to localhost and use it only with trusted callers. <br>
-Risk: The check-env step can reveal whether requested environment variables are present or missing. <br>
-Mitigation: Use check-env only with variable names you are comfortable revealing as present or absent. <br>
-Risk: Pipeline execution depends on Green Helix modules imported by the runtime. <br>
-Mitigation: Confirm the Green Helix modules are supplied by a trusted runtime before deployment. <br>
+## Use Case:
 
+Developers and engineers use Pipelinegate to run ordered Green Helix tool checks through a local API and collect step-by-step results for security, validation, comparison, environment readiness, and format conversion workflows.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Text, Analysis] <br>
-**Output Format:** [JSON API responses with per-step result objects] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Pipelines accept 1 to 20 ordered steps; stop_on_error controls whether execution halts on the first failed step.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: A local PipelineGate API exposed beyond localhost could accept untrusted pipeline payloads.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the service bound to localhost, or place authentication and request limits in front of it.
+
+Risk: Pipeline payloads may contain text, skill content, schemas, or environment requirements that users did not intend to disclose.
+
+Mitigation: Avoid sending secrets in pipeline payloads and keep inputs bounded to the intended review material.
+
+Risk: Unpinned dependencies can change behavior between installations.
+
+Mitigation: Pin and review dependencies before production use.
+
+## Reference(s):
+
+- [Pipelinegate on ClawHub](https://clawhub.ai/mirni/skills/gh-pipelinegate)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON API examples; API responses are JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Pipeline responses include success, total_steps, completed_steps, and per-step results.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

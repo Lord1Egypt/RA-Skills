@@ -1,0 +1,6 @@
+interface:
+  display_name: "Dataify Capability Router"
+  short_description: "Route outcomes to the right Dataify capabilities"
+  default_prompt: "Use $dataify-router to choose and run the smallest Dataify workflow for my request."
+policy:
+  allow_implicit_invocation: true

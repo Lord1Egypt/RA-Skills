@@ -1,0 +1,17 @@
+name: skill-subtraction
+display_name: Skill Subtraction
+short_description: Check installed AI skills and recommend keep / archive / uninstall to keep your skill set lean.
+default_prompt: |
+  When the user asks to check installed or archived skills, check which skills they have installed,
+  clean up or subtract skills, decide which skills to keep or delete, declutter their
+  skill list, or find redundant or duplicate skills, use the skill-subtraction skill:
+
+  1. Scope: auto-detect language from user input (Chinese -> `--lang zh`, English -> `--lang en`, ask only if truly ambiguous). Independently determine report depth: use inspection summary or detailed inspection report when explicitly requested; otherwise ask which one the user wants before scanning.
+  2. Scan: run `python3 scripts/audit_skills.py --lang <zh|en>` to collect metadata for all installed skills. For a detailed inspection report, always add `--archives`; use `--archive-dir <path>` for a specified archive directory.
+  3. Classify & score: apply the six-metric scoring in SKILL.md (usage frequency 25,
+     necessity 20, current relevance 20, enabled status 15, maintenance 10, unique
+     value 10); read references/evaluation_framework.md for complex scenarios.
+  4. Recommend: map scores to keep / archive / uninstall using the decision matrix
+     and special rules.
+  5. Report: for an inspection summary, give the decision overview. For a detailed inspection report, strictly use only the Chinese template for Chinese input or only the English template for English input, including each skill's agent placement, scoring details, and archived inventory immediately after suggested archive. Output both only when the user explicitly requests bilingual output.
+  6. Cleanup: ask for explicit user confirmation before uninstalling or archiving anything.

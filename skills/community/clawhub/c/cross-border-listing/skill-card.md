@@ -1,40 +1,52 @@
-## Description: <br>
-跨境 Listing 生成器 helps agents draft multi-platform, multilingual e-commerce listings for Amazon, Temu, Shopee, Lazada, AliExpress, and TikTok Shop, including SEO titles, bullet points, product descriptions, search terms, pricing guidance, image suggestions, and compliance reminders. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+跨境 Listing 生成器 helps agents create multi-platform, multilingual e-commerce listings for Amazon, Temu, Shopee, Lazada, AliExpress, and TikTok Shop, including SEO titles, bullet points, product descriptions, search terms, pricing suggestions, image guidance, and compliance reminders.
 
-## Publisher: <br>
-[jiuwu2495](https://clawhub.ai/user/jiuwu2495) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[jiuwu2495](https://clawhub.ai/user/jiuwu2495)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External sellers, marketplace operators, and listing teams use this skill to draft or optimize localized product listings across major cross-border e-commerce platforms. It is intended to turn product details into platform-specific markdown sections for titles, selling points, descriptions, keywords, pricing guidance, image suggestions, and review warnings.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The artifact references platform policy and compliance files that are not present in the release package.
+
+Mitigation: Confirm the intended reference files are installed or have the agent proceed from current marketplace policies before operational use.
+
+Risk: Generated pricing, keyword, and compliance guidance may be incomplete or stale for a live marketplace listing.
+
+Mitigation: Review pricing assumptions, platform policies, and applicable market compliance requirements before publishing.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External sellers, marketplace operators, and e-commerce teams use this skill to draft or optimize localized product listings across major cross-border marketplaces. It is intended as a drafting aid, with users reviewing platform policy, certification, pricing, and trademark assumptions before publishing. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Drafted listings may contain outdated platform-policy, certification, country, language, or pricing assumptions. <br>
-Mitigation: Confirm the target marketplace, country, language, platform policy, certifications, and pricing assumptions before publishing. <br>
-Risk: Listing drafts may include competitor brand names or protected trademarks in unsafe contexts. <br>
-Mitigation: Avoid competitor brand names and protected trademarks unless authorized, and review generated search terms and copy before use. <br>
+**Output Format:** [Markdown with platform-specific listing sections]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub listing: 跨境 Listing 生成器](https://clawhub.ai/jiuwu2495/cross-border-listing) <br>
+**Other Properties Related to Output:** [May include pricing suggestions, SEO keywords, image recommendations, quality warnings, and compliance reminders when supported by the user's product details.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Text, Guidance] <br>
-**Output Format:** [Markdown sections with titles, bullet points, descriptions, keywords, pricing guidance, image suggestions, quality checks, and compliance reminders] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may vary by target marketplace, market, language, product category, and available product information.] <br>
+1.0.1 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,59 @@
-## Description: <br>
-A multi-role stock research skill that uses MCP tools to gather market data and produce technical, fundamental, macro, sentiment, trading, risk, and final director analysis for A-share and US stocks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Multi-role AI stock research team that analyzes A-share and U.S. stocks with technical, fundamental, macro, sentiment, bull-bear debate, trading strategy, risk review, and a director verdict with a composite score.
 
-## Publisher: <br>
-[charonling](https://clawhub.ai/user/charonling) <br>
+This skill is for demonstration purposes and not for production usage.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[charonling](https://clawhub.ai/user/charonling)
 
-## Use Case: <br>
-External users and developers use this skill to request structured stock research reports, quick stock summaries, or comparisons across A-share and US equities. The skill is intended to support research workflows and does not replace professional financial advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The setup flow installs Python packages and registers a persistent local MCP server. <br>
-Mitigation: Review setup.sh before installation on managed or sensitive machines, and uninstall the MCP server when the skill is no longer needed. <br>
-Risk: Generated trading recommendations may be incomplete, stale, or unsuitable for a user's financial circumstances. <br>
-Mitigation: Treat generated reports as research support only and verify conclusions with current market data and qualified financial judgment before acting. <br>
-Risk: Market data comes from external package-backed sources and may fail, lag, or return partial data. <br>
-Mitigation: Preserve the skill's behavior of disclosing data retrieval failures and continuing only from available evidence. <br>
+## Use Case:
 
+External users and analysts use this skill to request A-share or U.S. stock analysis, quick stock summaries, or side-by-side comparisons. It drafts structured research reports with data collection, analyst viewpoints, trading posture, risk review, and a final composite score.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/charonling/stock-research-team) <br>
-- [Python package requirements](references/requirements.txt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown research reports with structured role sections and inline setup commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated reports include market-data-backed analysis, trading posture, risk review, a composite score, and a financial-advice disclaimer.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter, changelog, server release metadata) <br>
+Risk: The setup script installs Python packages and persistently registers a local stock-analyzer MCP server in supported AI clients.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review setup.sh before running it, install only in trusted environments, and remove the server with uninstall.sh when it is no longer needed.
+
+Risk: publish.sh can initialize a repository and push the full skill contents to a public GitHub repository if run intentionally.
+
+Mitigation: Do not run publish.sh unless public publication is intended, and review repository contents before using it.
+
+Risk: Generated stock reports may include market scores, price targets, stop-loss levels, and trading suggestions that can be mistaken for investment advice.
+
+Mitigation: Treat reports as informational only and verify market data and recommendations with qualified financial review before acting.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/charonling/skills/stock-research-team)
+- [Python requirements](references/requirements.txt)
+- [HTML report template](assets/report-template.html)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown report with structured analyst sections, scores, trading posture, risk factors, and disclaimer text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports may include stock scores, price targets, stop-loss levels, and generated timestamps.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, changelog, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

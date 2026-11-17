@@ -153,6 +153,8 @@ graph LR
 
 After emitting the map, scout returns to its normal Phase 6 (Generate Report) with the zoom-out section as the primary output.
 
+> The Mermaid map is a working artifact for a stuck agent. When a polished visual is needed for docs or a handoff, `diagram` can redraw the same graph as editorial HTML — `suggested_next: diagram`.
+
 ### Phase 5: Codebase Map (Optional)
 
 When called by `cook`, `team`, `onboard`, or `autopsy` (skills that need full project understanding), generate a structured codebase map:
@@ -306,7 +308,7 @@ Known failure modes for this skill. Check these before declaring done.
 **Scope guardrail**: Do not expand the scan to unrelated modules or write files beyond `.rune/codebase-map.md` unless explicitly delegated by the parent agent.
 
 ---
-> **Rune Skill Mesh** — 64 skills, 204 connections + 40 signals, 14 extension packs
+> **Rune Skill Mesh** — 66 skills, 248 connections + 45 signals, 14 extension packs
 > [Landing Page](https://rune-kit.github.io/rune) · [Source](https://github.com/rune-kit/rune) (MIT)
-> **Rune Pro** ($49 lifetime) — product, sales, data-science, support packs → [rune-kit/rune-pro](https://github.com/rune-kit/rune-pro)
+> **Rune Pro** ($49 lifetime) — 9 domain packs + context intelligence → [rune-kit/rune-pro](https://github.com/rune-kit/rune-pro)
 > **Rune Business** ($149 lifetime) — finance, legal, HR, enterprise-search packs → [rune-kit/rune-business](https://github.com/rune-kit/rune-business)

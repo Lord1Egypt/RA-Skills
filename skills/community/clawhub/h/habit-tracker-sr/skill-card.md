@@ -1,39 +1,59 @@
-## Description: <br>
-Tracks daily habits through agent conversation with streaks, reminders, weekly reports, and accountability. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Track daily habits through agent conversation. Streaks, reminders, weekly reports. Did you exercise today? With accountability.
 
-## Publisher: <br>
-[TheShadowRose](https://clawhub.ai/user/TheShadowRose) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[theshadowrose](https://clawhub.ai/user/theshadowrose)
 
-## Use Case: <br>
-Users use this skill to log daily habits through conversation, check completion status, track streaks, and generate weekly progress reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Habit logs can contain personal routine data stored on the user's local system. <br>
-Mitigation: Use a trusted storage location, avoid recording sensitive details, and maintain independent backups for important habit data. <br>
+## Use Case:
 
+External users and developers use this skill to log daily habits through conversation, check streaks, and generate simple completion reports without switching to a separate habit-tracking app.
 
-## Reference(s): <br>
-- [HabitTracker ClawHub listing](https://clawhub.ai/TheShadowRose/habit-tracker-sr) <br>
-- [OpenClaw](https://github.com/openclaw/openclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Conversational text, Markdown examples, YAML configuration, and JavaScript object outputs for logs and reports.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores habit entries in a local JSON file configured by the dataFile option.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Habit data is stored locally in a JSON file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if local storage is acceptable for the user's habit data and maintain independent backups of important data.
+
+Risk: A date-key validation bug affects use with untrusted inputs.
+
+Mitigation: Avoid exposing the library directly to untrusted inputs until the date-key validation bug is fixed.
+
+Risk: Advertised reminder and trend-analysis features may not be fully implemented.
+
+Mitigation: Do not rely on reminders or trend analysis unless those capabilities are separately verified in the deployment environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/theshadowrose/skills/habit-tracker-sr)
+- [README](README.md)
+- [License](LICENSE.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with YAML configuration examples and JavaScript code]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local habit log summaries, streak information, check-in status, and weekly report data.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

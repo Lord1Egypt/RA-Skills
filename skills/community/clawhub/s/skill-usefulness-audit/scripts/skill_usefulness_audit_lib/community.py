@@ -128,7 +128,7 @@ def community_prior_score(entry: dict[str, object] | None) -> tuple[float | None
     breakdown: dict[str, float] = {}
     rating = coerce_float(entry.get("rating"))
     if rating is not None:
-        component = clamp(rating / 5.0, 0.0, 1.0) * 0.30
+        component = clamp(rating / COMMUNITY_RATING_MAX, 0.0, 1.0) * COMMUNITY_WEIGHT_RATING
         score += component
         confidence += 0.15
         breakdown["rating"] = round(component, 3)
@@ -137,50 +137,47 @@ def community_prior_score(entry: dict[str, object] | None) -> tuple[float | None
     if volume is None:
         volume = coerce_int(entry.get("downloads"))
     if volume is not None:
-        component = clamp(math.log1p(volume) / math.log1p(5000), 0.0, 1.0) * 0.20
+        component = clamp(math.log1p(volume) / math.log1p(COMMUNITY_CURRENT_VOLUME_SATURATION), 0.0, 1.0) * COMMUNITY_WEIGHT_CURRENT_VOLUME
         score += component
         confidence += 0.15
         breakdown["current_installs_or_downloads"] = round(component, 3)
 
     installs_all_time = coerce_int(entry.get("installs_all_time"))
     if installs_all_time is not None:
-        component = clamp(math.log1p(installs_all_time) / math.log1p(20000), 0.0, 1.0) * 0.10
+        component = clamp(math.log1p(installs_all_time) / math.log1p(COMMUNITY_ALL_TIME_SATURATION), 0.0, 1.0) * COMMUNITY_WEIGHT_ALL_TIME_INSTALLS
         score += component
         confidence += 0.10
         breakdown["installs_all_time"] = round(component, 3)
 
     trending = coerce_int(entry.get("trending_7d"))
     if trending is not None:
-        component = clamp(math.log1p(trending) / math.log1p(250), 0.0, 1.0) * 0.15
+        component = clamp(math.log1p(trending) / math.log1p(COMMUNITY_TRENDING_SATURATION), 0.0, 1.0) * COMMUNITY_WEIGHT_TRENDING
         score += component
         confidence += 0.15
         breakdown["trending_7d"] = round(component, 3)
 
     stars = coerce_int(entry.get("stars"))
     if stars is not None:
-        component = clamp(math.log1p(stars) / math.log1p(250), 0.0, 1.0) * 0.10
+        component = clamp(math.log1p(stars) / math.log1p(COMMUNITY_STARS_SATURATION), 0.0, 1.0) * COMMUNITY_WEIGHT_STARS
         score += component
         confidence += 0.10
         breakdown["stars"] = round(component, 3)
 
     comments_count = coerce_int(entry.get("comments_count"))
     if comments_count is not None:
-        component = clamp(math.log1p(comments_count) / math.log1p(100), 0.0, 1.0) * 0.05
+        component = clamp(math.log1p(comments_count) / math.log1p(COMMUNITY_COMMENTS_SATURATION), 0.0, 1.0) * COMMUNITY_WEIGHT_COMMENTS
         score += component
         confidence += 0.10
         breakdown["comments_count"] = round(component, 3)
 
     last_updated_days = days_since(entry.get("last_updated"))
     if last_updated_days is not None:
-        if last_updated_days <= 180:
-            maintenance = 1.0
-        elif last_updated_days <= 365:
-            maintenance = 0.7
-        elif last_updated_days <= 730:
-            maintenance = 0.4
-        else:
-            maintenance = 0.1
-        component = maintenance * 0.10
+        maintenance = COMMUNITY_MAINTENANCE_STALE_SCORE
+        for max_days, band_score in COMMUNITY_MAINTENANCE_BANDS:
+            if last_updated_days <= max_days:
+                maintenance = band_score
+                break
+        component = maintenance * COMMUNITY_WEIGHT_MAINTENANCE
         score += component
         confidence += 0.15
         breakdown["maintenance"] = round(component, 3)

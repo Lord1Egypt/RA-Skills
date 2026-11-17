@@ -1,41 +1,54 @@
-## Description: <br>
-This skill summarizes advantages and disadvantages of earthquake event detection and phase picking methods shared by seismology researchers at the 2025 Earthquake Catalog Workshop. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This is a summary the advantages and disadvantages of earthquake event detection and phase picking methods, shared by leading seismology researchers at the 2025 Earthquake Catalog Workshop.
 
-## Publisher: <br>
-[wu-uk](https://clawhub.ai/user/wu-uk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wu-uk](https://clawhub.ai/user/wu-uk)
 
-## Use Case: <br>
-Seismologists, earthquake catalog builders, and agents assisting them use this skill to compare STA/LTA, manual review, deep learning pickers, and template matching for seismic event detection and phase picking tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Scientific recommendations may not match a user's instruments, data quality, seismic network, or research requirements. <br>
-Mitigation: Verify method choices against local data, instrument characteristics, and project requirements before relying on the guidance. <br>
-Risk: Automated phase picks or method choices can produce false detections, missed picks, or timing errors. <br>
-Mitigation: Use manual review and quality checks before publishing or operationalizing an earthquake catalog. <br>
+## Use Case:
 
+Seismology researchers, analysts, and developers use this skill to compare earthquake event detection and phase picking approaches such as STA/LTA, manual picking, deep learning pickers, and template matching for a seismic phase picking task.
 
-## Reference(s): <br>
-- [Earthquake Catalog Workshop](https://ai4eps.github.io/Earthquake_Catalog_Workshop/) <br>
-- [ClawHub skill page](https://clawhub.ai/wu-uk/earthquake-phase-association-seismic-picker-selection) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Text] <br>
-**Output Format:** [Markdown guidance and comparison tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only scientific method-selection guidance; no code execution or system changes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill provides scientific method-selection guidance that may be incomplete or unsuitable for a specific seismic network, dataset, or catalog quality target.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as reference guidance and have qualified seismology practitioners verify method choices, pick quality, and catalog results before operational use.
+
+Risk: Automated phase picking approaches described by the skill can produce false detections, missed picks, or larger errors on out-of-distribution data.
+
+Mitigation: Use validation datasets, appropriate thresholds, and manual review or refinement before relying on generated earthquake catalogs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wu-uk/skills/earthquake-phase-association-seismic-picker-selection)
+- [Earthquake Catalog Workshop](https://ai4eps.github.io/Earthquake_Catalog_Workshop/)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown]
+
+**Output Format:** [Markdown reference guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces human-facing method-selection guidance; it does not execute code, access data, or persist state.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

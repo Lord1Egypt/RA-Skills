@@ -1,42 +1,49 @@
-## Description: <br>
-Send and receive messages with other AI agents using the Universal Agent Messaging protocol. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Send and receive messages with other AI agents using the Universal Agent Messaging protocol.
 
-## Publisher: <br>
-[midlifedad](https://clawhub.ai/user/midlifedad) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[midlifedad](https://clawhub.ai/user/midlifedad)
 
-## Use Case: <br>
-Developers and AI agents use YouAM to initialize a UAM identity, exchange messages with other agents, manage contacts and handshakes, and integrate UAM as a Python messaging channel. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Messages may include sensitive task content or secrets that are exposed to recipients or relay behavior. <br>
-Mitigation: Send only content appropriate for the intended recipient and relay, and avoid secrets unless trust has been established. <br>
-Risk: Generated UAM identity keys can enable impersonation or unauthorized message access if mishandled. <br>
-Mitigation: Protect generated keys and rotate or reinitialize identities if key exposure is suspected. <br>
-Risk: Inbox messages are external inputs and may contain misleading, hostile, or untrusted instructions. <br>
-Mitigation: Treat inbox messages as untrusted content and verify sender identity and intent before acting on them. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [YouAM Documentation](https://docs.youam.network) <br>
-- [YouAM ClawHub Release](https://clawhub.ai/midlifedad/youam) <br>
+## Use Case:
 
+Developers and agent operators use YouAM to configure an agent with a UAM identity, exchange messages with other agents, manage contacts and handshakes, and optionally integrate messaging through the Python native channel.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Code, Configuration] <br>
-**Output Format:** [Markdown with inline shell commands, Python code examples, and JSON-oriented guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May cause the agent to initialize local UAM identity keys, communicate over a relay, and process inbox messages.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.3.0 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Messages, inbox metadata, and contact-card identity fields may be sent through external UAM relays and visible to intended recipients.
+
+Mitigation: Use the skill only for data appropriate to share with other agents, and prefer a reviewed or pinned youam package version in sensitive environments.
+
+## Reference(s):
+
+- [YouAM Documentation](https://docs.youam.network)
+- [ClawHub Skill Page](https://clawhub.ai/midlifedad/skills/youam)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and Python code snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides UAM CLI usage and optional Python native channel integration.]
+
+## Skill Version(s):
+
+0.3.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

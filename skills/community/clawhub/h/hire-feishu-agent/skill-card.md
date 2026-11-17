@@ -1,43 +1,55 @@
-## Description: <br>
-Guides users through adding a Feishu channel agent to OpenClaw by collecting app credentials and preparing the required openclaw.json account, agent, and binding configuration snippets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides an agent through collecting Feishu bot details and preparing OpenClaw configuration snippets to add a new Feishu-routed agent.
 
-## Publisher: <br>
-[XRovis](https://clawhub.ai/user/XRovis) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xrovis](https://clawhub.ai/user/xrovis)
 
-## Use Case: <br>
-Developers and operators use this skill to configure a new Feishu bot-backed OpenClaw agent. It helps collect the required agent ID, display name, Feishu App ID, and App Secret, then presents copy-ready JSON changes for accounts, agents, and bindings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Feishu App Secret values can be exposed if pasted into shared chats, logs, or committed configuration files. <br>
-Mitigation: Use a dedicated minimal-permission Feishu app and avoid sharing or committing real secrets. <br>
-Risk: Incorrect edits to openclaw.json can disrupt existing Feishu accounts, agents, or routing bindings. <br>
-Mitigation: Back up openclaw.json, append only the new account, agent, and binding entries, and review the final merged config before restarting the gateway. <br>
-Risk: Persistent routing changes can continue sending Feishu messages to the new agent after testing. <br>
-Mitigation: Record the added account, agent, and binding identifiers so they can be removed cleanly later. <br>
+## Use Case:
 
+Developers and OpenClaw operators use this skill to add a Feishu bot account, agent entry, and DM binding to openclaw.json without overwriting existing configuration.
 
-## Reference(s): <br>
-- [OpenClaw Feishu agent configuration schema](artifact/schema.md) <br>
-- [Hire Feishu Agent on ClawHub](https://clawhub.ai/XRovis/hire-feishu-agent) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with JSON snippets and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces copy-ready configuration snippets for openclaw.json and a restart command reminder.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Feishu app secrets may be exposed if pasted into chat or retained in transcripts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use least-privilege Feishu credentials, avoid production secrets in chat, and replace placeholders locally where possible.
+
+Risk: Persistent OpenClaw gateway configuration changes can break routing or expose credentials if the file is edited carelessly.
+
+Mitigation: Back up and validate ~/.openclaw/openclaw.json, append entries without overwriting existing accounts or bindings, restrict file permissions, and restart the gateway only when ready.
+
+## Reference(s):
+
+- [OpenClaw Feishu configuration schema](artifact/schema.md)
+- [OpenClaw Feishu configuration template](artifact/template.json)
+- [ClawHub skill page](https://clawhub.ai/xrovis/skills/hire-feishu-agent)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with JSON snippets and a shell restart command]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Prompts for Feishu app credentials and emits copy-ready OpenClaw configuration fragments.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

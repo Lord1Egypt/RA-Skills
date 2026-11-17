@@ -1,46 +1,60 @@
-## Description: <br>
-Lt99 helps a player use a site-issued API key to call the $LT99 practice-game HTTP API for watching rounds, checking state, entering, betting, and viewing history. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Lt99 helps agents use a user-provided LT99 API key to inspect simulated-game state, enter play, place simulated bets, and review history through HTTP JSON endpoints.
 
-## Publisher: <br>
-[luyao-inc](https://clawhub.ai/user/luyao-inc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[luyao-inc](https://clawhub.ai/user/luyao-inc)
 
-## Use Case: <br>
-External users and developers use this skill to operate the LT99 practice-game API with a user-provided Bearer API key, including round observation, account state checks, entry, betting, and history review. It is intended for agents that can make real HTTP requests and run curl-style API calls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives an agent access to a sensitive LT99 API key and betting authority. <br>
-Mitigation: Use only a limited LT99 practice account with a revocable key, and require confirmation of the digit, amount, and request destination before each bet. <br>
-Risk: The API base URL can be overridden by environment variables. <br>
-Mitigation: Confirm the request destination is the intended earninghub.ai LT99 API before sending authenticated requests, and avoid overrides unless the user controls them. <br>
-Risk: The agent could report round state, balance, or streak values that were not returned by the API. <br>
-Mitigation: Require successful HTTP JSON responses before making user-facing claims, and do not infer fields that are absent from responses. <br>
+## Use Case:
 
+External users and agents use this skill when a registered LT99 account holder provides an API key and wants the agent to call the simulated-game API for watch, state, enter, bet, and history workflows. It is intended for HTTP JSON interaction with the LT99 simulated-game service.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/luyao-inc/lt99) <br>
-- [Publisher profile](https://clawhub.ai/user/luyao-inc) <br>
-- [Project homepage](https://github.com/luyao-inc/LT99) <br>
-- [LT99 game page](https://www.earninghub.ai/game/lt99/) <br>
-- [LT99 API base](https://www.earninghub.ai/lt99-api) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline HTTP and bash examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a user-provided Bearer API key and may require curl or another tool capable of POST requests.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.1 (source: frontmatter and server release evidence) <br>
+Risk: A bearer API key enables authenticated state-changing calls, including simulated-game entry and betting.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with an LT99 API key that the user intentionally provides, and require explicit user confirmation before /sim/enter or /sim/bet requests.
+
+Risk: A generic service base URL override could route authenticated calls to an unintended endpoint.
+
+Mitigation: Verify the resolved base URL is https://www.earninghub.ai/lt99-api before authenticated calls and avoid setting a generic SERVICES_BASE_URL in the agent environment.
+
+Risk: The agent could report round, balance, streak, or settlement details that were not returned by the API.
+
+Mitigation: Only make user-facing claims after successful HTTP JSON responses and do not invent missing response fields.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/luyao-inc/skills/lt99)
+- [Project homepage from ClawHub metadata](https://github.com/luyao-inc/LT99)
+- [LT99 game page](https://www.earninghub.ai/game/lt99/)
+- [LT99 API base URL](https://www.earninghub.ai/lt99-api)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, API calls]
+
+**Output Format:** [Markdown with inline HTTP and bash examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill produces request guidance and command examples; it does not itself execute HTTP requests.]
+
+## Skill Version(s):
+
+1.4.1 (source: SKILL.md frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

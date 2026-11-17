@@ -1,44 +1,64 @@
-## Description: <br>
-The operator skill suite for the agentic web: it helps resolved.sh operators audit page quality, craft A2A agent cards, optimize data products, register paid service endpoints, publish monetized content, and distribute to registries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+The rstack skill suite helps resolved.sh operators audit and improve page quality, A2A agent cards, data products, paid service endpoints, monetized content, and external distribution listings.
 
-## Publisher: <br>
-[hichana](https://clawhub.ai/user/hichana) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hichana](https://clawhub.ai/user/hichana)
 
-## Use Case: <br>
-Developers and resolved.sh operators use this skill suite to improve and monetize agent-native listings by auditing their presence, generating page and A2A agent-card content, configuring data products and paid services, publishing content, and preparing registry submissions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide live resolved.sh business, publishing, price, paywall, service, and listing changes. <br>
-Mitigation: Review every generated curl payload, resource ID, price, publication state, email address, service endpoint, and paywall setting before executing commands. <br>
-Risk: The workflow uses sensitive values such as RESOLVED_SH_API_KEY and webhook_secret. <br>
-Mitigation: Keep API keys and webhook secrets out of chat logs, source control, screenshots, and generated artifacts. <br>
-Risk: Temporary rstack files may contain account, listing, or secret-bearing data. <br>
-Mitigation: Clean up temporary rstack files after use when they contain account details or secrets. <br>
+## Use Case:
 
+External developers and resolved.sh operators use this skill suite to assess and improve agent-native businesses by generating scorecards, page and agent-card content, marketplace/service/content commands, and registry listing artifacts.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/hichana/resolved-sh-rstack) <br>
-- [rstack documentation](https://github.com/resolved-sh/rstack) <br>
-- [resolved.sh](https://resolved.sh) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with JSON examples, code snippets, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include scorecards, prioritized action lists, generated curl commands, A2A agent-card JSON, webhook verification snippets, and registry submission text.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: Generated shell commands may change live resolved.sh account resources.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review each generated curl command before execution and use a least-privilege resolved.sh API key.
+
+Risk: Untrusted user values may be inserted into shell snippets or JSON payloads.
+
+Mitigation: Serialize values safely as JSON and quote shell variables before running generated commands.
+
+Risk: API keys and webhook secrets may be exposed through shared temp files, terminal output, or logs.
+
+Mitigation: Keep secrets out of shared logs, redact outputs before sharing, and avoid storing webhook secrets in shared temporary paths.
+
+Risk: Global auto-confirmed installation can obscure the exact code being installed.
+
+Mitigation: Install only after reviewing the exact source version, preferably pinned to an immutable commit or trusted release artifact.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hichana/skills/resolved-sh-rstack)
+- [resolved.sh](https://resolved.sh)
+- [rstack documentation](https://github.com/resolved-sh/rstack)
+- [Artifact README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with JSON and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include ready-to-run curl commands, generated configuration payloads, webhook verification snippets, and distribution submission text.]
+
+## Skill Version(s):
+
+1.0.2 (source: ClawHub release evidence; artifact metadata reports 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

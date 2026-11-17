@@ -1,40 +1,54 @@
-## Description: <br>
-AI-powered codebase analysis for generating architecture docs, onboarding guides, and key-flow walkthroughs for any project. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-powered codebase analysis - generate architecture docs, onboarding guides, and key-flow walkthroughs for any project.
 
-## Publisher: <br>
-[charlie-morrison](https://clawhub.ai/user/charlie-morrison) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[charlie-morrison](https://clawhub.ai/user/charlie-morrison)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to inspect an unfamiliar repository and produce onboarding documentation, architecture summaries, key-flow walkthroughs, setup steps, and gotchas. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated onboarding guides can expose secrets, internal hostnames, service names, or other sensitive configuration details found in a repository. <br>
-Mitigation: Review the generated guide before sharing it and redact real secrets, tokens, internal hostnames, and sensitive service details. <br>
-Risk: The skill asks an agent to inspect repository contents for documentation. <br>
-Mitigation: Use it only on repositories you are comfortable having an agent analyze. <br>
+## Use Case:
 
+Developers and engineers use this skill to analyze an unfamiliar repository and produce onboarding documentation covering architecture, key flows, dependencies, entry points, configuration, testing, deployment, and gotchas.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/charlie-morrison/codebase-onboarder) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown onboarding guide with tables and optional command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Summarizes repository structure, entry points, dependencies, data layer, API surface, configuration, tests, CI/CD, key flows, and gotchas.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Repository summaries may include sensitive configuration details, environment names, or internal infrastructure information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated onboarding output before sharing it and redact any credentials or sensitive internal details.
+
+Risk: Generated architecture or workflow explanations may be incomplete or inaccurate for complex repositories.
+
+Mitigation: Have a knowledgeable maintainer review the onboarding guide before relying on it for project decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/charlie-morrison/skills/codebase-onboarder)
+- [Publisher profile](https://clawhub.ai/user/charlie-morrison)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown onboarding guide with tables and optional inline shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The output is intended for human review before sharing, especially sections that summarize configuration, environment variables, or internal infrastructure.]
+
+## Skill Version(s):
+
+1.0.1 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,53 @@
-## Description: <br>
-Income Brain is a self-improving income agent that scans market demand, identifies high-value skill gaps, generates new SKILL.md files, and deploys them across marketplaces. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Income Brain guides an agent to identify marketplace demand, generate income-oriented SKILL.md files with code, publish them across commercial platforms, track results, and iterate from earnings data.
 
-## Publisher: <br>
-[ssidharhubble](https://clawhub.ai/user/ssidharhubble) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ssidharhubble](https://clawhub.ai/user/ssidharhubble)
 
-## Use Case: <br>
-Developers and marketplace operators use this skill to research demand, generate monetizable agent skills, publish them across platforms, and refine future skills from earnings and listing outcomes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill aims to research, generate, save, and publish monetized skills without clearly requiring user approval or limiting write and deployment targets. <br>
-Mitigation: Use it only in a disposable workspace or with explicit dry-run controls; review generated skills before approving any target platform action. <br>
-Risk: Publishing or syncing could use platform credentials or affect external listings. <br>
-Mitigation: Do not provide platform credentials or permit publishing until each generated skill and target platform action has been reviewed and approved. <br>
+## Use Case:
 
+Developers and independent skill publishers use this skill to plan and generate marketplace-oriented agent skills, publish listings across platforms, and improve future releases based on demand and earnings signals.
 
-## Reference(s): <br>
-- [Income Brain ClawHub listing](https://clawhub.ai/ssidharhubble/income-brain) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with generated skill files, code, commands, and configuration notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose marketplace publishing actions and file writes that require review before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release evidence) <br>
+Risk: The skill may prompt an agent to publish, update, or retry commercial marketplace listings without clear approval boundaries.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user approval before every file write, account connection, listing publication, marketplace edit, or retry action.
+
+Risk: Marketplace automation can affect real accounts, credentials, listings, and buyer-facing content.
+
+Mitigation: Use a controlled workspace and preview destinations, listing content, retry behavior, and rollback steps before connecting real accounts or credentials.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ssidharhubble/skills/income-brain)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with generated SKILL.md content, code snippets, shell commands, and configuration steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose marketplace publishing actions, file writes, retries, and weekly updates that require explicit user approval.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

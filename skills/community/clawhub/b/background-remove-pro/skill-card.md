@@ -1,43 +1,54 @@
-## Description: <br>
-Bg Remove removes image backgrounds with AI models, supporting single-image and batch processing that outputs transparent PNG files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Removes image backgrounds using AI models and writes transparent PNG outputs for single images or batches.
 
-## Publisher: <br>
-[SxLiuYu](https://clawhub.ai/user/SxLiuYu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sxliuyu](https://clawhub.ai/user/sxliuyu)
 
-## Use Case: <br>
-Designers, ecommerce operators, content creators, and developers use this skill to remove backgrounds from product, portrait, and general images. It supports single-file and folder workflows, optional model selection, alpha matting, and controlled output naming for transparent PNG results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The AI model may download on first use, which can introduce network access in otherwise controlled environments. <br>
-Mitigation: Preload required models or use local model paths when offline or tightly controlled network behavior is required. <br>
-Risk: Using --force can overwrite existing output files. <br>
-Mitigation: Use explicit input and output paths and avoid --force unless overwriting is intentional. <br>
-Risk: The skill depends on Python image-processing packages and writes generated files to disk. <br>
-Mitigation: Install dependencies only in environments where those packages are acceptable, and review output locations before running batch jobs. <br>
+## Use Case:
 
+Developers and agents use this skill to remove backgrounds from product, portrait, ID, and other image files, including batch workflows that need transparent PNG assets.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/SxLiuYu/background-remove-pro) <br>
-- [Publisher profile](https://clawhub.ai/user/SxLiuYu) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Guidance] <br>
-**Output Format:** [PNG image files with transparent alpha channels, plus command-line status text and usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs default to PNG files with a _nobg suffix unless configured otherwise; batch mode can preserve original base filenames.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and artifact metadata) <br>
+Risk: The skill processes local image files and writes output files, so an incorrect input or output path could expose or overwrite unintended files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it with limited filesystem access, review input and output paths before execution, and use overwrite mode only when replacement is intended.
+
+Risk: The skill depends on third-party Python packages and may download model artifacts on first use.
+
+Mitigation: Pin and verify dependency versions and model artifacts before using it in stricter or production environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sxliuyu/skills/background-remove-pro)
+- [Publisher profile](https://clawhub.ai/user/sxliuyu)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Shell commands, Guidance]
+
+**Output Format:** [Transparent PNG files with command-line status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs default to PNG files with a _nobg suffix unless an output path or keep-name option is supplied.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,51 @@
-## Description: <br>
-This released skill is a merged redirect that tells users to install feifei-learning-commander v3.5.1 for parent-child communication and academic tutoring features. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This merged redirect skill points users to feifei-learning-commander v3.5.1 for parent-child communication guidance, academic tutoring, knowledge-network support, reminders, and writing polish.
 
-## Publisher: <br>
-[simonstang](https://clawhub.ai/user/simonstang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[simonstang](https://clawhub.ai/user/simonstang)
 
-## Use Case: <br>
-External users and families who find this legacy release use it to identify the replacement Feifei Learning Commander skill and install the fuller parent-child communication and tutoring experience. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The replacement skill is a different, fuller release and may have permissions or behavior not present in this redirect skill. <br>
-Mitigation: Review feifei-learning-commander separately before running the npx install command. <br>
+## Use Case:
 
+External parents and education-focused users use this skill as a redirect to the full Feifei Learning Commander skill for parent-child communication support, family education guidance, tutoring, progress reminders, and related learning workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/simonstang/feifei-parent-child-comm) <br>
-- [Publisher profile](https://clawhub.ai/user/simonstang) <br>
-- [Replacement skill page](https://clawhub.ai/skill/feifei-learning-commander) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Redirect-style guidance only; the security summary says this small skill does not run code itself.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.5.1 (source: server release evidence and frontmatter) <br>
+Risk: The artifact redirects users to a separate downstream skill through an unpinned install command.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin and review the ClawHub installer and feifei-learning-commander version before installation, and review the downstream skill separately.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/simonstang/skills/feifei-parent-child-comm)
+- [Merged full skill page](https://clawhub.ai/skill/feifei-learning-commander)
+- [Artifact metadata repository link](https://github.com/SimonsTang/feifei-learning-commander)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands]
+
+**Output Format:** [Markdown guidance with an inline shell install command]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Redirect stub; review the downstream feifei-learning-commander skill separately before use.]
+
+## Skill Version(s):
+
+3.5.1 (source: SKILL.md frontmatter, artifact _meta.json, server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

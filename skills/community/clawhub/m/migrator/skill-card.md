@@ -1,44 +1,58 @@
-## Description: <br>
-Securely migrate OpenClaw Agent config, memory, and skills to a new machine. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Securely migrate OpenClaw Agent config, memory, and skills to a new machine.
 
-## Publisher: <br>
-[wenjie2024](https://clawhub.ai/user/wenjie2024) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[wenjie2024](https://clawhub.ai/user/wenjie2024)
 
-## Use Case: <br>
-Developers and engineers use this skill to export encrypted OpenClaw agent state from one machine and restore it on another while preserving configuration, memory, skills, and path metadata. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Migration archives can contain sensitive OpenClaw state such as configuration, memory, skills, and authentication material. <br>
-Mitigation: Use strong unique passwords, keep .oca archives private, and avoid exposing passwords through shell history where possible. <br>
-Risk: Importing an archive can overwrite files under the selected destination, including a user's home directory. <br>
-Mitigation: Back up existing OpenClaw files and restore first to a temporary destination before importing into the home directory. <br>
-Risk: Archives from untrusted sources may restore unwanted or unsafe agent state. <br>
-Mitigation: Import only archives the user created or fully trusts, and review restored content before relying on it. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to export sensitive agent state into an encrypted archive and restore it on another machine. It supports migrations involving OpenClaw configuration, memory, skills, workspace paths, and host environment metadata.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/wenjie2024/migrator) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and configuration details] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference encrypted .oca archives, destination paths, source directories, and password handling practices.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata, package.json, README.md) <br>
+Risk: Restore can write files before archive integrity is fully verified.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted .oca archives, restore into a controlled destination first, and fix the restore integrity issue before relying on this skill for important agent state.
+
+Risk: Backup passwords can be exposed when passed directly on the command line.
+
+Mitigation: Avoid command-line passwords; use an environment variable or another secret-handling method that does not persist in shell history or process logs.
+
+Risk: .oca archives may contain sensitive agent configuration, memory, skills, and credentials.
+
+Mitigation: Treat archives as highly sensitive files, restrict access, and transfer or store them only through trusted encrypted channels.
+
+## Reference(s):
+
+- [README.md](README.md)
+- [ClawHub skill page](https://clawhub.ai/wenjie2024/skills/migrator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, files, guidance]
+
+**Output Format:** [Markdown with inline bash commands and references to encrypted .oca archive files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The described workflow creates password-protected archives and can restore OpenClaw state into a target directory when the commands are executed.]
+
+## Skill Version(s):
+
+1.1.0 (source: package.json and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,11 @@
+{
+  "purpose": "TLDs whose rdap lookups were NOT independently re-confirmed in the 2026-07-27 sweep because a self-inflicted high-concurrency burst tripped an IP-level rate-limit ban on the shared Identity Digital / CentralNic RDAP backends (HTTP 429, Retry-After ~82000s / ~23h). These are expected to PASS (URL construction is correct); they simply weren't re-confirmed this session.",
+  "status": "RESOLVED — all 333 re-validated 2026-07-28 (323 PASS, 10 KNOWN-ISSUE connection-reset); queue drained. Independent one-at-a-time live retry of the 10 KNOWN-ISSUE TLDs 2026-07-28 confirmed the label holds: 0 recovered / 10 still Errno-104 Connection-reset at the rdap.org proxy (registry-side authoritative-RDAP TLS RST), no 429 — persistent registry-side issue, not our bug.",
+  "captured_utc": "2026-07-27T03:00:00Z",
+  "ban_expected_clear_utc": "2026-07-28T00:00:00Z (approx; ~23h after the burst)",
+  "count": 0,
+  "how_to_resume": "Re-run `python3 scripts/recon.py rdap <target>` for each entry ONE-AT-A-TIME with polite spacing (>=1.5s gap, honor Retry-After). Do NOT run concurrently — concurrency is what caused the ban. Reclassify PASS / graceful-unsupported / FAIL and fold results into docs/tld-target-test-results.md, then drop resolved entries from this file.",
+  "tlds": [],
+  "last_resumed_utc": "2026-07-28T15:42:35Z",
+  "resolved_utc": "2026-07-28"
+}

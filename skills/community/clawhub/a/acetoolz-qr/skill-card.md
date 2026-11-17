@@ -1,43 +1,54 @@
-## Description: <br>
-Generate QR codes for any URL or text instantly using AceToolz. Returns a hosted image URL ready to share in chat. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate QR codes for any URL or text instantly using AceToolz and return a hosted image URL ready to share in chat.
 
-## Publisher: <br>
-[acetoolz](https://clawhub.ai/user/acetoolz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[acetoolz](https://clawhub.ai/user/acetoolz)
 
-## Use Case: <br>
-External users and agents use this skill to generate QR codes for URLs or text and return a hosted QR image link that can be shared in chat. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: QR payload content is sent to AceToolz and returned as a hosted image URL. <br>
-Mitigation: Avoid encoding secrets, private internal links, access tokens, Wi-Fi passwords, or sensitive personal data unless sharing that content with AceToolz is acceptable. <br>
-Risk: Very long content can reduce QR code reliability and may exceed the skill's stated 2,000 character limit. <br>
-Mitigation: Ask the user to shorten the content or use a URL shortener before generating the QR code. <br>
+## Use Case:
 
+External users and agents use this skill to generate a QR code for supplied text or a URL and return a shareable hosted image link.
 
-## Reference(s): <br>
-- [AceToolz QR Generator](https://www.acetoolz.com/generate/tools/qr-generator) <br>
-- [AceToolz QR Generator API](https://www.acetoolz.com/api/openclaw/qr-generator) <br>
-- [ClawHub Skill Page](https://clawhub.ai/acetoolz/acetoolz-qr) <br>
-- [AceToolz Publisher Profile](https://clawhub.ai/user/acetoolz) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, API Calls, Guidance] <br>
-**Output Format:** [Markdown response with a hosted QR image URL and optional shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns qr_image_url as the primary shareable output; qr_data_url may be used only on platforms that support base64 data URLs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release evidence) <br>
+Risk: The content or URL to encode is sent to AceToolz for QR generation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not use the skill for passwords, tokens, private internal links, or sensitive personal data unless third-party handling is acceptable.
+
+Risk: The primary result is a hosted image URL controlled by the third-party service.
+
+Mitigation: Review the generated link before sharing it in contexts where persistence, branding, or external hosting matters.
+
+## Reference(s):
+
+- [AceToolz QR Generator](https://www.acetoolz.com/generate/tools/qr-generator)
+- [ClawHub Skill Page](https://clawhub.ai/acetoolz/skills/acetoolz-qr)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown response with a hosted QR image URL and optional data URL details]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Calls the AceToolz QR API with content and size parameters; primary user-facing result is qr_image_url.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

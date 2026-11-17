@@ -1,0 +1,19 @@
+{
+    "tool_name": "batch_factor_analysis", 
+    "feature_days": 5, 
+    "factor_dict": {
+        "换手率": "out = d['换手率']", 
+        "换手率-自由流通股": "out = d['换手率-自由流通股']", 
+        "量比": "out = d['量比']", 
+        "市盈率": "out = d['市盈率']", 
+        "市盈率TTM": "out = d['市盈率TTM']", 
+        "市净率": "out = d['市净率']", 
+        "市销率": "out = d['市销率']", 
+        "市销率TTM": "out = d['市销率TTM']", 
+        "股息率": "out = d['股息率']", 
+        "股息率TTM": "out = d['股息率TTM']", 
+        "总市值": "out = d['总市值']", 
+        "流通市值": "out = d['流通市值']"
+        }, 
+    "save_path": "output\\factor-stock_daily.xlsx"
+}

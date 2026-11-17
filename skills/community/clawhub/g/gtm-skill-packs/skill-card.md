@@ -1,46 +1,61 @@
-## Description: <br>
-Full B2B GTM skill suite for iCustomer Audience Loop covering ICP definition, account research, FIRE lead scoring, prospecting, meeting prep, outbound strategy, and inbound routing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Full B2B GTM skill suite for iCustomer Audience Loop covering ICP definition, account research, lead scoring with the FIRE framework, prospecting, meeting prep, outbound strategy, and inbound routing.
 
-## Publisher: <br>
-[davidslavich](https://clawhub.ai/user/davidslavich) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[davidslavich](https://clawhub.ai/user/davidslavich)
 
-## Use Case: <br>
-External GTM, sales, marketing, and growth teams use this skill to define ICPs, research accounts, score and prioritize leads, build prospect lists, prepare meetings, and design outbound or inbound GTM motions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may direct an agent to sync prospect data into external ad or outreach systems without clear approval or rollback controls. <br>
-Mitigation: Before any push or sync to LinkedIn Ads, Smartlead, or similar systems, require the agent to show the exact records, fields, destination account, expected side effects, and rollback plan, then obtain explicit approval. <br>
+## Use Case:
 
+Sales, marketing, and growth teams use this skill pack to define ICPs, research accounts, score and prioritize pipeline, build prospect lists, prepare meetings, and create inbound or outbound GTM motions.
 
-## Reference(s): <br>
-- [GTM Account Research](references/gtm-account-research.md) <br>
-- [GTM ICP Definition](references/gtm-icp-definition.md) <br>
-- [GTM Inbound Strategy](references/gtm-inbound-strategy.md) <br>
-- [GTM Meeting Prep](references/gtm-meeting-prep.md) <br>
-- [GTM Outbound Strategy](references/gtm-outbound-strategy.md) <br>
-- [GTM Prospecting](references/gtm-prospecting.md) <br>
-- [GTM Qualification Scoring](references/gtm-qualification-scoring.md) <br>
-- [iCustomer Website](https://icustomer.ai) <br>
-- [ClawHub Skill Listing](https://clawhub.ai/davidslavich/gtm-skill-packs) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown briefs, scoring tables, prospect lists, outreach sequences, and GTM strategy documents] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Some workflows require current web research and should flag unverified signals.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: Prospect lists, audience syncs, campaign changes, or analytics pulls may move GTM data into external services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation that shows the destination service, account, records, fields, and expected changes before any upload, sync, campaign change, or analytics pull.
+
+Risk: Account research and prospecting can include named contacts and business signals that may be sensitive or subject to privacy rules.
+
+Mitigation: Keep use local by default and avoid storing or exporting named contacts unless the data is necessary, public, and allowed by the user's privacy and compliance requirements.
+
+## Reference(s):
+
+- [GTM ICP Definition](references/gtm-icp-definition.md)
+- [GTM Account Research](references/gtm-account-research.md)
+- [GTM Qualification Scoring](references/gtm-qualification-scoring.md)
+- [GTM Prospecting](references/gtm-prospecting.md)
+- [GTM Meeting Prep](references/gtm-meeting-prep.md)
+- [GTM Outbound Strategy](references/gtm-outbound-strategy.md)
+- [GTM Inbound Strategy](references/gtm-inbound-strategy.md)
+- [iCustomer](https://icustomer.ai)
+- [ClawHub skill page](https://clawhub.ai/davidslavich/skills/gtm-skill-packs)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown briefs, tables, rubrics, routing rules, campaign sequences, and ready-to-send outreach copy]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Some workflows require web search access for current account, prospect, attendee, and buying-signal research.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

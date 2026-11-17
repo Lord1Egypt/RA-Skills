@@ -1,41 +1,58 @@
-## Description: <br>
-Run Kilo CLI via background process for programmatic control. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run Kilo CLI via background process for programmatic control.
 
-## Publisher: <br>
-[codewithnathan97](https://clawhub.ai/user/codewithnathan97) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[nathansebhastian](https://clawhub.ai/user/nathansebhastian)
 
-## Use Case: <br>
-Developers and engineers use this skill to run Kilo CLI as a supervised background coding agent for code generation, pull request review, issue fixing, and GitHub workflow support. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Background coding agents can execute commands and make GitHub changes with the user's token. <br>
-Mitigation: Use the narrowest possible GitHub token, supervise sessions, and review generated comments, pushes, and pull requests before publishing. <br>
-Risk: Agent output or session logs may expose secrets, private prompts, internal URLs, or sensitive implementation details. <br>
-Mitigation: Run in an isolated temporary clone or worktree and remove sensitive content from PR text, comments, and logs before sharing. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to launch and monitor Kilo CLI coding tasks, PR reviews, issue fixes, and GitHub workflow work from an OpenClaw environment.
 
-## Reference(s): <br>
-- [Kilo CLI Coding Agent on ClawHub](https://clawhub.ai/codewithnathan97/kilocli-coding-agent) <br>
-- [GitHub CLI installation](https://github.com/cli/cli#installation) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and PR review text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include generated code changes, GitHub PR comments, branch or worktree instructions, and session monitoring guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.9 (source: frontmatter, claw.json, server release metadata) <br>
+Risk: Autonomous Kilo CLI subprocesses may make repository changes or create GitHub output that the user did not fully inspect.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review all diffs, generated files, PRs, and comments before pushing or publishing changes.
+
+Risk: A broad GitHub token can grant more repository or workflow access than a task needs.
+
+Mitigation: Use a fine-grained, repository-scoped GitHub token and avoid actions:write unless the current task requires it.
+
+Risk: PR bodies, comments, prompts, logs, private paths, or internal context may expose sensitive information.
+
+Mitigation: Sanitize generated GitHub content and session logs before posting or sharing them.
+
+## Reference(s):
+
+- [Kilo CLI Coding Agent on ClawHub](https://clawhub.ai/nathansebhastian/skills/kilocli-coding-agent)
+- [GitHub CLI installation](https://github.com/cli/cli#installation)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May require Kilo CLI, git, GitHub CLI, tmux, and a repository-scoped GITHUB_TOKEN.]
+
+## Skill Version(s):
+
+0.0.9 (source: release metadata, SKILL.md frontmatter, claw.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

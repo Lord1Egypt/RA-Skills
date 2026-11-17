@@ -1,40 +1,54 @@
-## Description: <br>
-A dive trip planning assistant that gathers travel dates, budget, certification level, destination and marine-life preferences, then searches flyai for flights, hotels, dive shops and booking links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Plans dive trips by collecting travel dates, budget, certification level, destination or marine-life goals, then using flyai to compare flights, hotels, dive shops, and booking links in a structured report.
 
-## Publisher: <br>
-[rayzougit](https://clawhub.ai/user/rayzougit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rayzougit](https://clawhub.ai/user/rayzougit)
 
-## Use Case: <br>
-External users use this skill to plan dive trips through a guided conversation, compare itinerary options across budget tiers, and review flight, hotel and dive-shop recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks for travel preferences and uses flyai for travel search, so users may share trip details with an external service. <br>
-Mitigation: Share only information needed for planning and avoid sensitive identity, passport or payment details in the planning conversation. <br>
-Risk: Generated flight, hotel and dive-shop links point to external booking sites and may vary in accuracy, availability or trustworthiness. <br>
-Mitigation: Verify each destination, operator reputation, booking URL and final price before paying or relying on the itinerary. <br>
+## Use Case:
 
+External travelers and dive planners use this skill to plan scuba trips around dates, departure city, budget, certification level, party size, lodging needs, flight preferences, and desired marine life. It produces itinerary, flight, hotel, dive shop, budget-tier, and booking-link recommendations for user review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/rayzougit/dive-trip-planner) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown report with conversational prompts, comparison tables, itinerary details and booking links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces multi-budget recommendations and Top 10 flight and hotel lists when enough travel details are available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill asks for trip details such as dates, budget, party size, lodging needs, certification level, and travel preferences before using flyai for travel search.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Users should avoid sharing sensitive information they do not want used for travel search and should prefer releases that clearly disclose third-party queries before lookup.
+
+Risk: Travel prices, availability, booking links, dive conditions, and operator details can change after the skill generates a plan.
+
+Mitigation: Users should verify prices, availability, safety requirements, cancellation terms, and certification fit directly with the booking provider or dive operator before purchase.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/rayzougit/skills/dive-trip-planner)
+- [Publisher profile](https://clawhub.ai/user/rayzougit)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown report with conversational prompts, itinerary sections, comparison tables, and booking links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include prices, dates, travel options, dive shop recommendations, maps, media references, and Top 10 flight and hotel lists when available.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

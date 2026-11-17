@@ -1,18 +1,23 @@
 ---
 name: zoho-crm-mcp
-description: Connect your OpenClaw agent to Zoho CRM via MCP. Search contacts, list accounts, query records with COQL, and manage CRM data using mcporter. Includes ready-to-use Python scripts for common CRM operations.
+version: 1.4.0
+description: Connect your agent to Zoho CRM via MCP. Search contacts, list accounts, query records with COQL, and manage CRM data using mcporter. Includes ready-to-use Python scripts with pagination and custom-field support for common CRM operations.
 ---
 
 # Zoho CRM MCP
 
-Connect your OpenClaw agent to Zoho CRM through the Model Context Protocol (MCP). This skill provides everything you need to search, read, and manage CRM data using `mcporter`.
+Connect your agent to Zoho CRM through the Model Context Protocol (MCP). This skill provides everything you need to search, read, and manage CRM data using `mcporter`.
+
+## Source Repository
+
+GitHub source: [sprintberlin/openclaw-zoho-crm-mcp-skill](https://github.com/sprintberlin/openclaw-zoho-crm-mcp-skill)
 
 ## Requirements
 
 | Requirement | Details |
 |---|---|
 | Zoho CRM MCP Server | A configured endpoint from [mcp.zoho.eu](https://mcp.zoho.eu) |
-| mcporter | MCP client CLI (pre-installed with OpenClaw) |
+| mcporter | MCP client CLI (bundled with OpenClaw; elsewhere install via `npm i -g mcporter`) |
 | Environment variable | `ZOHO_MCP_URL` must be set (see below) |
 
 ### Environment Variable Setup
@@ -96,6 +101,29 @@ mcporter call "$ZOHO_MCP_URL.ZohoCRM_executeCOQLQuery" --args "$(< /tmp/zoho_coq
 
 Ready-to-use scripts for common CRM operations. All scripts require `ZOHO_MCP_URL` to be set.
 
+The bundled Python scripts call `mcporter` directly through `subprocess.run([...])` and do not invoke a shell. This avoids shell expansion of the credential-bearing `ZOHO_MCP_URL`.
+
+`list_contacts.py` and `list_accounts.py` paginate automatically (they follow `more_records` until the full result set is retrieved) and normalize the different Zoho CRM MCP response shapes, so large modules are never silently truncated.
+
+### Custom fields and filters
+
+Every Zoho org has different custom fields. Instead of hard-coding them, the list scripts accept:
+
+- `--fields F1,F2,...` — request any Zoho field **API names** (comma-separated), including org-specific custom fields (e.g. `Google_Drive_URL`, `Trello_URL`). Unknown fields appear under their API name in the table header.
+- `--where "<COQL clause>"` (`list_accounts.py` only) — override the default WHERE filter, e.g. `--where "Google_Drive_URL != ''"`.
+
+```bash
+# Contacts with custom columns
+python3 scripts/list_contacts.py --fields First_Name,Last_Name,Email,Designation
+
+# Accounts filtered on a custom field, showing custom columns
+python3 scripts/list_accounts.py \
+  --where "Google_Drive_URL != ''" \
+  --fields Account_Name,Website,Google_Drive_URL,Trello_URL,Trello_ID
+```
+
+Use `getFields` (see below) to discover the exact API names of your custom fields.
+
 ### list_contacts.py - Search and list contacts
 ```bash
 # All contacts as table
@@ -139,8 +167,8 @@ python3 scripts/search_records.py Contacts --coql "Email != ''" --json
 
 ## mcporter Usage Patterns
 
-### Always use temp files for JSON arguments
-Shell escaping breaks with inline JSON. Always write to a temp file:
+### Use temp files for shell-based JSON arguments
+When calling `mcporter` directly from a shell, escaping can break inline JSON. Write arguments to a temp file:
 ```bash
 cat << 'EOF' > /tmp/args.json
 {
@@ -220,7 +248,7 @@ SELECT Id, Account_Name, Billing_City FROM Accounts WHERE Billing_City = 'Berlin
 
 ## Troubleshooting
 
-### "ZOHO_MCP_URL nicht gesetzt" / "ZOHO_MCP_URL not set"
+### "ZOHO_MCP_URL not set"
 Set the environment variable with your MCP endpoint URL. See "Environment Variable Setup" above.
 
 ### "Mandatory query param module is not present"

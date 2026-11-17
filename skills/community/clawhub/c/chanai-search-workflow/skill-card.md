@@ -1,53 +1,66 @@
-## Description: <br>
-External web search workflow for Chinese and global public-web information. Use when searching news, flights, prices, products, docs, tutorials, community posts, websites, PDFs, research, or other external information. Classify intent first, detect dynamic real-time topics, choose domestic-first or global-first search routes, prioritize human-usable sites, generate starter URLs, apply fallback strategy, and report reliability. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+External web search workflow for Chinese and global public-web information. Use when searching news, flights, prices, products, docs, tutorials, community posts, websites, PDFs, research, or other external information.
 
-## Publisher: <br>
-[cfyuanyi](https://clawhub.ai/user/cfyuanyi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cfyuanyi](https://clawhub.ai/user/cfyuanyi)
 
-## Use Case: <br>
-Agents and developers use this skill to plan public-web searches across Chinese and global sources, especially when a query needs intent classification, route selection, fallback search paths, and reliability reporting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search queries may expose sensitive secrets, private identifiers, or confidential business terms to public search providers. <br>
-Mitigation: Use the skill only for non-sensitive public web searches and remove secrets or private terms before querying. <br>
-Risk: Fallback guidance can lead to shell-based fetching with user-controlled URLs. <br>
-Mitigation: Require explicit user approval before shell fetching and validate URLs and inputs before execution. <br>
-Risk: Examples include admin, password, cache, or exposed-credential search patterns that can be misused. <br>
-Mitigation: Avoid those examples in normal use and keep searches focused on legitimate public information needs. <br>
-Risk: Dynamic search results for prices, inventory, tickets, flights, hotels, finance, or news can become stale quickly. <br>
-Mitigation: Treat public search as preliminary discovery and rely on official or real-time pages before making final claims. <br>
+## Use Case:
 
+Developers and agents use this skill to plan public-web searches, choose Chinese domestic, global, or mixed routes, generate starter URLs, apply dynamic-information guardrails, and report reliability.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/cfyuanyi/chanai-search-workflow) <br>
-- [Publisher Profile](https://clawhub.ai/user/cfyuanyi) <br>
-- [Dynamic Information Rules](references/dynamic-info.md) <br>
-- [Source Priorities](references/priorities.md) <br>
-- [Intent Classification](references/intent-classification.md) <br>
-- [Fallback Strategy](references/fallbacks.md) <br>
-- [Reliability Scoring](references/reliability-scoring.md) <br>
-- [Reporting Template](references/reporting-template.md) <br>
-- [Domestic Search Guidance](references/domestic-search.md) <br>
-- [International Search Guidance](references/international-search.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, markdown, configuration] <br>
-**Output Format:** [JSON planning output and Markdown search reports with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes generated starter URLs, route recommendations, dynamic-topic cautions, and planning-stage reliability scores.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may steer searches toward Chinese search services and public third-party search URLs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for public-web discovery and avoid submitting secrets, private text, account data, or sensitive itinerary details to search services.
+
+Risk: The fallback guidance includes shell-based curl fetching for public search pages.
+
+Mitigation: Do not permit exec plus curl for ordinary searching unless the environment and query have been reviewed for data exposure risk.
+
+Risk: Search results for flights, prices, inventory, bookings, tickets, finance, and news can be stale or incomplete.
+
+Mitigation: Treat public search as preliminary discovery and rely on real-time, official, or transaction-adjacent pages before making final decisions.
+
+## Reference(s):
+
+- [Dynamic Information Boundary Rules](artifact/references/dynamic-info.md)
+- [Source Priorities](artifact/references/priorities.md)
+- [Intent Classification](artifact/references/intent-classification.md)
+- [Direct Site URL Templates](artifact/references/direct-templates.md)
+- [Reusable Search Patterns](artifact/references/use-cases.md)
+- [Fallback Strategy](artifact/references/fallbacks.md)
+- [Reliability Scoring](artifact/references/reliability-scoring.md)
+- [Reporting Template](artifact/references/reporting-template.md)
+- [Chinese-Site Search Guidance](artifact/references/domestic-search.md)
+- [Global-Site Search Guidance](artifact/references/international-search.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, markdown, text]
+
+**Output Format:** [JSON search plans and Markdown report text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes intent, route, dynamic subtype, starter URLs, source priority, reliability score, and reporting guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.json release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

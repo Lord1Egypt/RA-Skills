@@ -1,41 +1,54 @@
-## Description: <br>
-Review who attended a Google Meet conference and for how long. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Review who attended a Google Meet conference and for how long.
 
-## Publisher: <br>
-[googleworkspace-bot](https://clawhub.ai/user/googleworkspace-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[googleworkspace-bot](https://clawhub.ai/user/googleworkspace-bot)
 
-## Use Case: <br>
-Workspace administrators and team operators use this recipe to review Google Meet attendance by listing conference records, participants, and participant session details with the Google Workspace CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The recipe can expose Google Meet attendance records available to the configured Google Workspace account. <br>
-Mitigation: Use an account that is authorized to review the target meeting records and confirm the records are appropriate to inspect before running the commands. <br>
-Risk: The workflow depends on the local `gws` binary and `gws-meet` skill. <br>
-Mitigation: Install `gws` and `gws-meet` only from trusted sources before using the recipe. <br>
+## Use Case:
 
+Employees and workspace administrators use this recipe to review recent Google Meet conference attendance, participant lists, and session durations using an authenticated Google Workspace CLI account.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/googleworkspace-bot/recipe-review-meet-participants) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/googleworkspace-bot) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the Google Workspace CLI binary `gws` and the `gws-meet` skill; uses the permissions of the configured Google Workspace account.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.12 (source: server release metadata; artifact metadata version 0.22.5) <br>
+Risk: Meeting attendance data may reveal private participant identities and timing information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with accounts authorized to query the relevant Google Meet conference records, and review attendance details before sharing them outside the intended audience.
+
+Risk: The recipe depends on the configured gws account and may expose any conference records that account can access.
+
+Mitigation: Configure gws with least-privilege Google Workspace access appropriate for the review task.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/googleworkspace-bot/skills/recipe-review-meet-participants)
+- [ClawHub publisher profile](https://clawhub.ai/user/googleworkspace-bot)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces read-only Google Meet attendance review steps for an authenticated gws account.]
+
+## Skill Version(s):
+
+1.0.12 (source: server release metadata; artifact metadata version 0.22.5)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

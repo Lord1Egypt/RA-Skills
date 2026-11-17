@@ -1,42 +1,54 @@
-## Description: <br>
-Generate videos using Seedance models. Invoke when user wants to create videos from text prompts, images, or reference materials. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate videos using Seedance models from text prompts, images, videos, audio, or other reference materials.
 
-## Publisher: <br>
-[volcengine-skills](https://clawhub.ai/user/volcengine-skills) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[volcengine-skills](https://clawhub.ai/user/volcengine-skills)
 
-## Use Case: <br>
-Developers and content creators use this skill to ask an agent to generate Seedance videos from text prompts, first or last frame images, and reference image, video, or audio URLs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may prompt the agent to store video-provider API keys in a workspace environment file. <br>
-Mitigation: Use a scoped provider API key through the platform secret manager and avoid committing or sharing workspace environment files. <br>
-Risk: Prompts and media URLs are sent to the configured remote video provider for processing. <br>
-Mitigation: Avoid private prompts or sensitive media URLs unless the user accepts provider-side processing for that content. <br>
+## Use Case:
 
+Developers and agents use this skill to create Seedance videos from text, image, video, and audio inputs, then return generated video URLs and task status details to the user.
 
-## Reference(s): <br>
-- [Skill instructions](artifact/SKILL.md) <br>
-- [Video generation implementation](artifact/scripts/video_generate.py) <br>
-- [ClawHub release page](https://clawhub.ai/volcengine-skills/byted-seedance-video-generate) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with video embeds, downloadable video URLs, JSON status objects, and optional shell commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May return success, partial_success, error, or pending task status with video URLs, error details, or task IDs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: API keys may be exposed if an agent writes them into workspace files or sends them to an unintended configurable endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Preconfigure API keys through a secure secret mechanism, avoid workspace credential files, and verify ARK_BASE_URL or MODEL_VIDEO_API_BASE before use.
+
+Risk: Prompts, signed media URLs, and private reference assets are sent to the configured video service.
+
+Mitigation: Do not submit confidential prompts, signed URLs, or private assets unless the configured provider, account controls, and data handling are trusted.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/volcengine-skills/skills/byted-seedance-video-generate)
+- [Publisher profile](https://clawhub.ai/user/volcengine-skills)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, API calls]
+
+**Output Format:** [Markdown with video embeds, JSON task results, and optional shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns generated video URLs, local file path guidance when available, task IDs for pending jobs, and error details for failed jobs.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

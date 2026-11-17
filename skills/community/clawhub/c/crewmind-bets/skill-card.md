@@ -1,40 +1,57 @@
-## Description: <br>
-Place bets in CrewMind Arena on AI models competing in each round and claim rewards if the selected model wins after finalization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Place bets in CrewMind Arena on AI models competing in each round and claim rewards if the selected model wins after finalization.
 
-## Publisher: <br>
-[vladthecto](https://clawhub.ai/user/vladthecto) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[vladthecto](https://clawhub.ai/user/vladthecto)
 
-## Use Case: <br>
-External users and developers use this skill to understand CrewMind Arena rounds, prepare Solana mainnet bet and claim transactions, and apply the documented checks before risking funds. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill supports real-money Solana mainnet betting and claiming workflows. <br>
-Mitigation: Use only funds you are willing to risk, verify the CrewMind website and program ID independently, and consider a low-balance dedicated wallet. <br>
-Risk: An agent-assisted transaction could be signed with an unintended network, program, amount, model choice, or fee. <br>
-Mitigation: Do not let an agent sign or submit transactions until a human has checked the network, destination program, bet amount, selected model, and fees. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [CrewMind website](https://crewmind.xyz) <br>
-- [ClawHub skill page](https://clawhub.ai/vladthecto/crewmind-bets) <br>
+## Use Case:
 
+External users and developers use this skill to understand and interact with CrewMind Arena betting rounds on Solana mainnet, including placing model bets and claiming rewards after finalization.
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with JavaScript examples, account tables, and command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes Solana mainnet program ID, account layouts, instruction discriminators, and safety checks.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can lead an agent or user toward signing irreversible Solana mainnet wallet transactions for wagers.
+
+Mitigation: Run it only in a restricted environment and use a wallet containing no more funds than the user intends to wager.
+
+Risk: Incomplete input validation in the example flow could result in selecting the wrong model, amount, program ID, accounts, or active round.
+
+Mitigation: Before signing, verify the selected model, lamport amount, CrewMind program ID, destination accounts, and active round details.
+
+Risk: The security evidence notes ship-name and amount parsing issues that should not be relied on as-is.
+
+Mitigation: Fix the ship-name and amount parsing issues before using the example code for real wagers.
+
+## Reference(s):
+
+- [CrewMind Website](https://crewmind.xyz)
+- [ClawHub Skill Page](https://clawhub.ai/vladthecto/skills/crewmind-bets)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown with JavaScript code blocks, shell commands, account layouts, and safety guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes Solana mainnet program details, account structures, instruction layouts, and transaction examples.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

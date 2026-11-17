@@ -1,41 +1,58 @@
-## Description: <br>
-Summarize Pro helps agents turn long documents, contracts, articles, papers, and reports into structured summaries, key clauses, findings, comparisons, and action items. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Summarize Pro helps agents summarize long documents, contracts, articles, research papers, reports, and multi-document sets into structured, concise outputs.
 
-## Publisher: <br>
-[yezhaowang888-stack](https://clawhub.ai/user/yezhaowang888-stack) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yezhaowang888-stack](https://clawhub.ai/user/yezhaowang888-stack)
 
-## Use Case: <br>
-Managers, researchers, project managers, legal reviewers, and other document-heavy users can use this skill to extract the core points from long-form material. It is intended for structured document summarization, contract clause review, paper summaries, multi-document comparisons, and follow-up task lists. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release metadata and artifact metadata disagree on slug and version. <br>
-Mitigation: Confirm the intended ClawHub package name and version before installing or distributing this release. <br>
-Risk: Summaries of contracts, legal material, confidential reports, or long documents may omit or compress important details. <br>
-Mitigation: Provide only documents the agent is allowed to process, split very long documents when needed, and verify extracted summaries, clauses, and risk points against the original text. <br>
+## Use Case:
 
+Managers, researchers, project managers, and legal reviewers use this skill to turn long text documents into executive summaries, contract-term extracts, paper summaries, action lists, and multi-document comparisons.
 
-## Reference(s): <br>
-- [Summarize Pro ClawHub skill page](https://clawhub.ai/yezhaowang888-stack/huimai-smart-document-processing) <br>
-- [Publisher profile](https://clawhub.ai/user/yezhaowang888-stack) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown summaries with structured sections, clause lists, comparisons, and action items] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include highlighted key data, contract risk points, paper problem-method-finding-contribution summaries, and multi-document comparisons.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release evidence and artifact changelog, released 2026-05-03 in artifact changelog) <br>
+Risk: The reviewed release is suspicious because its install command names a different package than the reviewed ClawHub package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm that summarize-pro is the same reviewed package and publisher as huimai-summarizer before installing or following the install command.
+
+Risk: Legal, contract, and long-document summaries can omit or misstate important source details.
+
+Mitigation: Verify extracted terms, risk points, and action items against the original document before relying on them.
+
+Risk: The skill states that scanned PDFs are unsupported and very long documents may compress later sections.
+
+Mitigation: Use text-layer PDFs where possible and split documents longer than about 50 pages into smaller sections for review.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yezhaowang888-stack/skills/huimai-smart-document-processing)
+- [Publisher profile](https://clawhub.ai/user/yezhaowang888-stack)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or structured plain text summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include contract clauses, risk points, research problem-method-conclusion-contribution summaries, action lists, highlighted key data, and multi-document comparisons.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata and artifact changelog, released 2026-05-03)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

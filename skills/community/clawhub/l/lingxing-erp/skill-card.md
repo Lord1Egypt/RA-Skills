@@ -1,41 +1,49 @@
-## Description: <br>
-领星 ERP integrates OpenClaw with Lingxing ERP to query order data, with configuration for Lingxing API credentials and endpoint selection. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Integrates with Lingxing ERP to query today's orders, product inventory, and product lists through OpenClaw.
 
-## Publisher: <br>
-[wengjianmin19850412](https://clawhub.ai/user/wengjianmin19850412) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wengjianmin19850412](https://clawhub.ai/user/wengjianmin19850412)
 
-## Use Case: <br>
-Developers and operators use this skill to connect an agent to Lingxing ERP and retrieve today's order data through the configured Lingxing OpenAPI credentials. The artifact describes inventory and product-list use cases, but this release's executable implementation exposes only the today-orders function. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires Lingxing ERP API credentials and can send requests to the configured BASE_URL. <br>
-Mitigation: Use least-privilege Lingxing keys, keep credentials out of prompts and logs, and keep BASE_URL pointed to the official or another trusted Lingxing endpoint. <br>
-Risk: The release description advertises inventory and product-list queries that are not implemented in the executable artifact. <br>
-Mitigation: Treat this version as an order-query skill unless the missing functions are added and reviewed in a later release. <br>
+## Use Case:
 
+External users and developers can use this skill to connect an agent to Lingxing ERP for order lookup and product inventory or product list queries.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wengjianmin19850412/lingxing-erp) <br>
-- [Publisher profile](https://clawhub.ai/user/wengjianmin19850412) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON] <br>
-**Output Format:** [JSON object returned from the Lingxing ERP API] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns paginated order data for the current local date; exact fields depend on the Lingxing ERP API response.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill.json) <br>
+Risk: Configurable BASE_URL can send ERP authentication data to an arbitrary host if misconfigured or tampered with.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep BASE_URL fixed to the legitimate Lingxing API host, restrict configuration changes, and use trusted least-privilege Lingxing API keys stored as protected secrets.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/wengjianmin19850412/skills/lingxing-erp)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON]
+
+**Output Format:** [JSON API response data]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires ACCESS_KEY, SECRET_KEY, and BASE_URL configuration; the order lookup supports page and page_size parameters.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact/skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

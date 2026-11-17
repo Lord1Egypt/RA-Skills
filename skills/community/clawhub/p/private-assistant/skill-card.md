@@ -1,47 +1,57 @@
-## Description: <br>
-Personal bookkeeping, memo/journal, reminder, and spending-insight assistant for Hermes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Personal bookkeeping, memo/journal, reminder, and spending-insight assistant for Hermes.
 
-## Publisher: <br>
-[askdjoashdasd](https://clawhub.ai/user/askdjoashdasd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[askdjoashdasd](https://clawhub.ai/user/askdjoashdasd)
 
-## Use Case: <br>
-External users use this Hermes skill to record income, expenses, notes, reflections, and reminders, then query summaries and spending insights from local records. It is suited for personal productivity workflows that need concise bookkeeping and reminder management. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores personal finance records, notes, and reminder metadata locally in the Hermes data directory. <br>
-Mitigation: Install only when local storage of this information is acceptable, and avoid saving secrets or other highly sensitive content. <br>
-Risk: Vague update or delete requests such as 'last' can affect the wrong local record. <br>
-Mitigation: Review the target record before confirming ambiguous update or delete actions. <br>
-Risk: Cron reminders and digest subscriptions can continue running after they are no longer useful. <br>
-Mitigation: Periodically review scheduled reminders and digest subscriptions, and disable entries that are no longer needed. <br>
+## Use Case:
 
+Hermes users use this skill to record income, expenses, notes, reflections, and reminders, then query summaries or receive low-distraction spending insights based on local JSONL records.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/askdjoashdasd/private-assistant) <br>
-- [Publisher Profile](https://clawhub.ai/user/askdjoashdasd) <br>
-- [Data Model](references/data-model.md) <br>
-- [Interaction Rules](references/interaction-rules.md) <br>
-- [Insight Rules](references/insight-rules.md) <br>
-- [Insight Templates](references/insight-templates.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Concise text or Markdown with inline shell commands and JSON payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Single-message responses; helper scripts create or update local JSON and JSONL records.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Scheduled reminders can later run agent prompts containing raw memo text.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, keep use to a private trusted Hermes profile, and avoid setting reminders from copied or untrusted text until reminder prompt isolation is hardened.
+
+Risk: Finance and journal entries are stored locally.
+
+Mitigation: Use only where local storage is acceptable and protect the Hermes profile data directory according to the user's privacy requirements.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/askdjoashdasd/skills/private-assistant)
+- [Data Model](references/data-model.md)
+- [Interaction Rules](references/interaction-rules.md)
+- [Insight Rules](references/insight-rules.md)
+- [Insight Templates](references/insight-templates.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Concise user-facing text with inline shell command guidance and JSON-backed local record operations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are intended as single-message Hermes replies; scheduled insight tasks may intentionally return [SILENT] for low-signal periods.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

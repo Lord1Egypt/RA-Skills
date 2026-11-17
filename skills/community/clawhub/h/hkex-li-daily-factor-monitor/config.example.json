@@ -1,0 +1,41 @@
+{
+  "_comment": "Reference config for hkex_li_daily_factor_monitor. Copy to your config directory (see SKILL.md) and edit. Every URL / keyword / tab identifier lives here so the code below never hard-codes them.",
+
+  "hkex_base_url": "https://www1.hkexnews.hk",
+
+  "hkex_search_endpoint": "/search/titleSearchServlet.do",
+  "_hkex_search_endpoint_note": "HKEXnews title-search JSON servlet. We query a recent DATE WINDOW (not the servlet's title= param, which needs exact document-type codes and returns 0 for free text) and then filter the returned records client-side. This is resilient to HKEX category-code drift.",
+
+  "hkex_search_params": {
+    "sortDir": "0",
+    "sortByOptions": "DateTime",
+    "category": "0",
+    "market": "SEHK",
+    "stockId": "-1",
+    "documentType": "-1",
+    "searchType": "0",
+    "t": "-1",
+    "lang": "EN",
+    "rowRange": "2000"
+  },
+  "_hkex_search_params_note": "Passed verbatim as the query string; fromDate/toDate are added at run time from days_back. rowRange=2000 comfortably covers a multi-day SEHK window.",
+
+  "headline_keyword": "Daily Targeted Leverage Factor",
+  "_headline_keyword_note": "Case-insensitive substring matched against each record's TITLE. This is the L&I daily-factor announcement headline.",
+
+  "category_keyword": "Matters relating to Collective Investment Schemes",
+  "_category_keyword_note": "Case-insensitive substring matched against each record's LONG_TEXT (the HKEXnews headline category = 'OTHERS (FUNDS, ETC)' -> 'Announcements and Notices - [Matters relating to Collective Investment Schemes]'). Second gate so unrelated hits on the headline keyword are dropped.",
+
+  "product_type": "L&I",
+
+  "days_back": 7,
+  "_days_back_note": "Recent HKEXnews window to scan. Default 7. run_mode is 'latest' unless overridden.",
+
+  "run_mode": "latest",
+  "_run_mode_note": "'latest' = keep only the single most-recent matching announcement per manager/PDF set (default). 'all' = keep every matching announcement in the window.",
+
+  "tmp_dir": "/tmp/hkex_li_daily_factor_monitor",
+  "_tmp_dir_note": "Scratch dir for downloaded PDFs. ALL files here are deleted at the end of every run (HKEX PDFs are copyright; nothing is retained). Override with HKEX_LI_MONITOR_HOME/work if /tmp is locked down.",
+
+  "user_agent": "Mozilla/5.0 (compatible; hkex-li-daily-factor-monitor)"
+}

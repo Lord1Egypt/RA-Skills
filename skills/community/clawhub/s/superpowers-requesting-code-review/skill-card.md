@@ -1,44 +1,53 @@
-## Description: <br>
-Use when completing tasks, implementing major features, or before merging to verify work meets requirements. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Request code reviews with precise context after tasks, major features, or before merges to catch issues early and ensure code meets requirements.
 
-## Publisher: <br>
-[demo112](https://clawhub.ai/user/demo112) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[demo112](https://clawhub.ai/user/demo112)
 
-## Use Case: <br>
-Developers and coding agents use this skill to request focused code reviews after tasks, major features, bug fixes, refactors, or before merging. It provides a repeatable prompt template for reviewing a git range against requirements and categorizing findings by severity. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Security evidence reports that related autoreview behavior may launch nested reviewers with broad filesystem access and sandbox bypass. <br>
-Mitigation: Install only if the publisher is trusted, and prefer --no-yolo or AUTOREVIEW_YOLO=0 before using autoreview workflows. <br>
-Risk: Fallback reviewers may receive repository diffs. <br>
-Mitigation: Use the skill only with repositories and git ranges whose diffs are appropriate to share with the selected reviewer. <br>
-Risk: Security guidance warns that moderation commands can affect public skills, users, roles, and tokens. <br>
-Mitigation: Use moderation commands only with explicit targets, reasons, and confirmation. <br>
+## Use Case:
 
+Developers and engineering agents use this skill to request structured code reviews for completed tasks, feature work, bug fixes, refactors, and pre-merge changes. It guides reviewers to compare code changes against requirements, assess readiness, and categorize issues by severity.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/demo112/superpowers-requesting-code-review) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [code-reviewer.md](artifact/code-reviewer.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands] <br>
-**Output Format:** [Markdown instructions with inline shell commands and a structured review template] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces reviewer prompts and severity-categorized code review guidance; does not execute commands by itself.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Review guidance can miss issues or produce incorrect feedback if the reviewer is given incomplete requirements or the wrong git range.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide the intended requirements, base SHA, head SHA, and a concise implementation summary before acting on the review.
+
+Risk: The workflow inspects git diffs and may expose repository code to a reviewer subagent.
+
+Mitigation: Use it only in repositories where code review by the configured agent or subagent is permitted.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/demo112/skills/superpowers-requesting-code-review)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and review templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces code review request guidance and a structured review report format; no hidden install, persistence, credential, network, or destructive behavior was found in security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

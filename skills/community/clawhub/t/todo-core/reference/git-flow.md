@@ -1,0 +1,34 @@
+# Git flow and conflicts
+
+Loaded by `/todo-continue` and by `/todo-update` when it claims or releases. Part of the `todo` core skill.
+
+## Git flow
+
+One branch per node: `todo/<ID>-<slug>`. Slug: lowercase the title, turn punctuation into spaces (`calc.py` becomes the two words `calc` and `py`), drop the words a, an, the, to, of, and, for, with, keep the first 4 words that remain, join them with hyphens (nothing left means `task`). The base branch is defined in the core ("Git mode").
+
+- **Order for the first node of a tree** (each step only after the previous one succeeded):
+  1. Read `git show <base>:TODO.md` (a base without `TODO.md` means no claim). If the root's `State:` already names a branch, stop and report it. Record whether the selected root is absent from that committed base but present in the main checkout's uncommitted backlog; carry those edits into the claim. Never reuse a `todo/<ID>-…` branch that is not yours.
+  2. From the base, create and switch to the root branch (`git switch -c todo/<ROOT-ID>-<slug>`). If it already exists (an unpublished claim from an earlier run): when it is a **bare claim branch** (below) checked out in no worktree, delete it with `git branch -D` and create it again; otherwise stop and report it, suggesting to rename it (`git branch -m`) and rerun.
+  3. **Tree claim commit** on it, staging only backlog files (core "Backlog files", by explicit path): the root gets `State: branch todo/<ROOT-ID>-<slug> from <base>; next: build children` (leaf root: `next: start <ROOT-ID>`); the marker stays `[ ]`. Subject `chore(backlog): claim <ROOT-ID> on <branch>`.
+  4. **Publish it:** `git switch <base> && git merge --ff-only <root branch>`, as its own command; read the result. On success, `git switch <root branch>` and go on.
+  5. If the fast-forward failed (another session claimed the root, or the base only moved), read `reference/git-flow-edge.md`, "Failed fast-forward", and follow it.
+  6. Only now create the remaining ancestor branches top-down, each from its parent's branch, then the node's branch (for a leaf root, the root branch is the node's branch).
+- **Bare claim branch:** `git log <base>..<branch>` shows exactly one `claim <ROOT-ID>` commit, `git diff --name-only <base> <branch>` lists only `TODO.md`, and that diff changes only the root's `State:` line. Only such a branch may be force-deleted.
+- **Branch chain.** A root branches from the base, a child from its parent's branch. Ancestors get `State: branch <name> from <parent branch>; next: build children` (written in the leaf's start commit) until they complete.
+- **Read claims from the base.** A tree branch only knows its own claim, so take every root's claim from `git show <base>:TODO.md` too (core "Which node is next"). If a claimed branch no longer exists in this clone, the claim is stale: `/todo-update <ROOT-ID> --status ready` releases it.
+- **Sharing is git's job.** The claim is a local commit. The skills never fetch, pull or push; how a claim reaches other clones is your usual flow.
+- **Start commit on the node's branch.** Switch to the branch, set `[/]`, write `State:`, commit `chore(backlog): start <ID>` (with pending backlog edits). If `todo/<ID>-<slug>` already exists and is this node's (it holds the node's earlier work), switch to it instead of creating it.
+- **`--worktree`.** Read `reference/git-flow-edge.md`, "`--worktree`", and follow it.
+- **Clean tree.** Untracked files, backlog files (core) and generated files (`__pycache__`, `*.pyc`, `dist/`, `build/`, `target/`, `node_modules/`, `*.log`) do not count. Any other change: stop and offer commit, stash or `--worktree`.
+- **Staging.** Explicit paths only: `git add <path>…`, then `git commit -- <path>…` (so nothing staged earlier rides along): the node's files and the backlog files a skill changed. Never `git add -A`, `.` or `-p`. Pending edits that earlier todo-* commands made to backlog files belong in the next claim or start commit (core "Backlog files"); ask only about edits no todo-* skill made.
+- **Commits.** Subject `<type>(<scope>): <title>`: the scope is the package name in a monorepo, otherwise the module or top-level directory of the main code change, never `tests` (`calc.py` with its test: `calc`); title lowercase, no final period. Node commits have the body `Refs: <ID>`, `Red: <first failing assertion>` (leaves that started red), `Reviewed: subagent, spec <ok|fail> quality <ok|fail>, <n> findings fixed` (or `Reviewed: self, <n> findings fixed`) and any `Checked:` lines (`/todo-continue` step 10); backlog commits (`chore(backlog): …`) have no body except `Refs:` and `Includes:` on a drain and the plan on `chore(backlog): plan <ID>`.
+- **Concluding a merge** after resolving conflicts: `git commit --no-edit`.
+- **Merging.** A verified node is committed on its branch, then merged `--no-ff` into its parent's branch with the message `Merge <ID> into <PARENT-ID>` and its branch deleted with `git branch -d` (with a worktree, as `/todo-continue` step 10 item 3 says). A root: `Merge <ROOT-ID> into <base>`.
+- **Refresh before a root lands.** After the root's integration step (a leaf root: after its own verify) and before the drain, `git merge <base>` into the root branch with the message `Merge <base> into <ROOT-ID>` (already up to date: no commit, nothing to rerun). If it brought changes, rerun `Done when` and the full regression; block the root if red.
+- **Root.** Drain it, then merge into the base only with `--merge`, from the main checkout and only when it is clean, backlog files included (otherwise print the commands and say what to commit or stash first); if the base moved since the refresh (`git merge-base --is-ancestor <base> <root branch>` fails), refresh and verify again first, and if that is red, report it, print the merge commands and do not merge. Without `--merge`, print `git switch <base> && git merge --no-ff -m "Merge <ROOT-ID> into <base>" <root branch> && git branch -d <root branch>` (plus `git worktree remove <path>` first when there is one) and the push-and-pull-request alternative, and run none of them.
+- **Where backlog edits go.** `/todo-add`, `/todo-init` and `/todo-plan` leave their edits uncommitted (core "Backlog files"); `/todo-update` commits only its own claim, release, ready, block, drop and revert changes, and only on a `todo/` branch except the claim release. New roots (a `--from` follow-up without `--parent` is one) are added only on the base; children of the tree with `--parent` can be added on the tree's branch.
+- **Revert** a bad merge: `/todo-update <ID> --status revert` (it prints the user's `git revert` steps).
+
+## Git conflicts
+
+On any conflict, read `reference/git-flow-edge.md`, "Git conflicts", before resolving. Never take one side wholesale (`--ours`/`--theirs`) on TODO.md or CHANGELOG.md.

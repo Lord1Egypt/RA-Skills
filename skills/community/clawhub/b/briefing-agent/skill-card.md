@@ -1,42 +1,52 @@
-## Description: <br>
-Reads recent emails, filters actionable content, summarizes important messages, drafts routine replies, and flags items that need review in a morning briefing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reads emails, filters key information, summarizes important messages, drafts routine replies, and flags items needing attention in a clear morning briefing.
 
-## Publisher: <br>
-[emanxchan](https://clawhub.ai/user/emanxchan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[emanxchan](https://clawhub.ai/user/emanxchan)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+People who receive routine email can use this skill to turn recent Gmail messages into a concise briefing, draft short professional replies, and identify messages that need review or a decision.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill reads Gmail messages and can prepare or send replies through the named workflow.
+
+Mitigation: Use it only with intended Gmail access, confirm the configured recipients and tools, and keep reply sending behind human review.
+
+Risk: Briefings and draft replies may contain private, financial, legal, or personal email content.
+
+Mitigation: Review sensitive items before forwarding, sending, or sharing outside the intended supervisor workflow.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and operators use this skill to prepare a concise morning email briefing for supervisor review, including action items, FYI messages, and routine draft replies. It is intended for an Ebi/E-man workflow where drafted replies are reviewed before sending. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read private Gmail content and summarize or draft replies from mailbox data. <br>
-Mitigation: Confirm the intended Gmail account, limit mailbox scopes where possible, and install only for the intended Ebi/E-man email workflow. <br>
-Risk: Email summaries or draft reply content may be routed through Ebi, AgentMail, or Telegram delivery channels. <br>
-Mitigation: Verify that each downstream channel is authorized for email content before use. <br>
-Risk: A draft reply could be sent without the mailbox owner's explicit approval. <br>
-Mitigation: Require mailbox-owner approval before any reply is sent. <br>
+**Output Format:** [Markdown briefing with categorized bullet points and concise draft replies]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/emanxchan/briefing-agent) <br>
+**Other Properties Related to Output:** [Draft replies are intended for review before sending.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Text, Guidance] <br>
-**Output Format:** [Markdown briefing with categorized bullet points and short draft replies] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Routine draft replies are flagged for approval before sending.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

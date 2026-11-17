@@ -1540,6 +1540,33 @@ def mark_presence_schedule_alerted(state: dict, today: str, now_epoch: int):
     health["last_alert_at"] = now_epoch
 
 
+def earliest_required_event_minute(config: dict) -> int | None:
+    life_schedule = config.get("life_schedule", {}) if isinstance(config.get("life_schedule"), dict) else {}
+    day_schedule = life_schedule.get("day_schedule", {}) if isinstance(life_schedule.get("day_schedule"), dict) else {}
+    required_events = day_schedule.get("required_events", []) if isinstance(day_schedule.get("required_events"), list) else []
+    minutes = []
+    for event in required_events:
+        if not isinstance(event, dict):
+            continue
+        time_text = clean_text(event.get("time"))
+        if not time_text:
+            continue
+        try:
+            minutes.append(parse_hhmm(time_text))
+        except Exception:
+            continue
+    return min(minutes) if minutes else None
+
+
+def should_defer_schedule_failure(config: dict, reason: str, hour_min: int) -> bool:
+    if reason not in {"missing_day_schedule", "stale_day_schedule"}:
+        return False
+    earliest_required = earliest_required_event_minute(config)
+    if earliest_required is None:
+        return False
+    return hour_min < earliest_required
+
+
 def append_life_log(config: dict, mode: str, now_epoch: int, claims, tags, source_day: str):
     path = get_life_log_path(config)
     if not path:
@@ -1849,6 +1876,12 @@ def main():
     current_event = current_event_context.get("current_event")
     if not current_event:
         reason = current_event_context.get("skip_reason") or "no_matching_day_schedule_event"
+        if should_defer_schedule_failure(config, reason, hour_min):
+            update_presence_schedule_health(state, "schedule_not_due_yet", now_epoch, today)
+            if not args.dry_run:
+                save_json(state_file, state)
+            print(json.dumps({"status": "skip", "reason": "schedule_not_due_yet"}, ensure_ascii=False))
+            return
         health = update_presence_schedule_health(state, reason, now_epoch, today)
         if should_notify_presence_schedule_failure(health, today):
             mark_presence_schedule_alerted(state, today, now_epoch)

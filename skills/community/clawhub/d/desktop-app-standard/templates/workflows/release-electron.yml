@@ -1,0 +1,222 @@
+name: release
+on:
+  push:
+    tags: ['v*']
+  workflow_dispatch:
+    inputs:
+      tag: { description: 'Existing tag to rebuild. Dispatch on that tag ref, e.g. v1.2.3', required: true }
+permissions:
+  contents: read
+concurrency:
+  group: release-${{ inputs.tag || github.ref_name }}
+  cancel-in-progress: false
+env:
+  TAG: ${{ inputs.tag || github.ref_name }}
+
+jobs:
+  validate:
+    runs-on: ubuntu-22.04
+    outputs:
+      version: ${{ steps.version.outputs.version }}
+      commit: ${{ steps.version.outputs.commit }}
+    steps:
+      - uses: actions/checkout@v7
+        with: { ref: 'refs/tags/${{ env.TAG }}' }
+      - id: version
+        name: Tag is the single version source
+        shell: bash
+        run: |
+          [[ "$TAG" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]] || { echo "::error::$TAG must be stable vX.Y.Z; configure channel manifests before enabling prereleases"; exit 1; }
+          v="${TAG#v}"; pkg=$(node -p "require('./package.json').version")
+          [ "$pkg" = "$v" ] || { echo "::error::version mismatch: package.json $pkg != tag $v"; exit 1; }
+          commit=$(git rev-parse HEAD)
+          event_commit=$(git rev-parse --verify "$GITHUB_SHA^{commit}") || { echo "::error::Dispatch this workflow on the target tag ref"; exit 1; }
+          [[ "$commit" == "$event_commit" ]] || { echo "::error::Tag and workflow event point to different commits"; exit 1; }
+          echo "commit=$commit" >> "$GITHUB_OUTPUT"
+          echo "version=$v" >> "$GITHUB_OUTPUT"
+      - uses: actions/setup-node@v7
+        with: { node-version: 26, cache: npm }
+      - run: npm ci                     # Yarn 1: yarn install --frozen-lockfile · Yarn 4: corepack enable + yarn install --immutable
+      # Copy delivery-checks.mjs to .github/scripts; select the actual effective builder config.
+      - run: node .github/scripts/delivery-checks.mjs --installer electron-builder.yml
+      - name: Verify installed Electron release majors
+        run: |
+          npm ls --depth=0 --json > "$RUNNER_TEMP/npm-tree.json"
+          node <<'NODE'
+          const { dependencies } = require(process.env.RUNNER_TEMP + '/npm-tree.json');
+          const targets = require('./.github/desktop-version-targets.json').npm;
+          for (const name of ['electron', 'electron-builder', 'electron-updater']) {
+            const major = targets[name];
+            const version = dependencies?.[name]?.version;
+            if (!/^\d+\.\d+\.\d+$/.test(version) || Number(version.split('.')[0]) !== major) {
+              throw new Error(name + ': expected stable ' + major + '.x, installed ' + version);
+            }
+            console.log(name, version);
+          }
+          NODE
+      - run: node node_modules/electron/install.js       # Electron >= 42: no postinstall download any more (yarn: yarn run install-electron)
+      - run: npm run lint && npm run typecheck && npm test
+
+  build:
+    needs: validate
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - { os: windows-latest, name: win,   args: '--win --x64 --arm64' }   # one NSIS installer + one latest.yml for both arches
+          - { os: macos-latest,   name: mac,   args: '--mac --x64 --arm64' }   # zip is required by the macOS updater (see electron-builder.yml)
+          - { os: ubuntu-22.04,   name: linux, args: '--linux --x64 --arm64' } # AppImage is the auto-updating format; native modules need an arm runner instead
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v7
+        with: { ref: '${{ needs.validate.outputs.commit }}' }
+      - uses: actions/setup-node@v7
+        with: { node-version: 26, cache: npm }
+      - run: npm ci
+      - run: node node_modules/electron/install.js
+      - run: npm run build               # renderer/main bundling
+      - name: Build
+        shell: bash
+        env:
+          MAC_CSC_LINK: ${{ runner.os == 'macOS' && secrets.MAC_CSC_LINK || '' }}
+          MAC_CSC_KEY_PASSWORD: ${{ runner.os == 'macOS' && secrets.MAC_CSC_KEY_PASSWORD || '' }}
+          MAC_CSC_IDENTITY: ${{ runner.os == 'macOS' && secrets.MAC_CSC_IDENTITY || '' }}
+          APPLE_ID: ${{ runner.os == 'macOS' && secrets.APPLE_ID || '' }}
+          APPLE_APP_SPECIFIC_PASSWORD: ${{ runner.os == 'macOS' && secrets.APPLE_APP_SPECIFIC_PASSWORD || '' }}
+          APPLE_TEAM_ID: ${{ runner.os == 'macOS' && secrets.APPLE_TEAM_ID || '' }}
+          AZURE_TENANT_ID: ${{ runner.os == 'Windows' && secrets.AZURE_TENANT_ID || '' }}
+          AZURE_CLIENT_ID: ${{ runner.os == 'Windows' && secrets.AZURE_CLIENT_ID || '' }}
+          AZURE_CLIENT_SECRET: ${{ runner.os == 'Windows' && secrets.AZURE_CLIENT_SECRET || '' }}
+        run: |
+          set -euo pipefail
+          export CSC_IDENTITY_AUTO_DISCOVERY=false
+          if [ -n "$MAC_CSC_LINK" ]; then
+            export CSC_LINK="$MAC_CSC_LINK"
+            export CSC_KEY_PASSWORD="$MAC_CSC_KEY_PASSWORD"
+          fi
+          if [ -n "$MAC_CSC_IDENTITY" ]; then
+            export CSC_IDENTITY="$MAC_CSC_IDENTITY"
+          fi
+          if [ -n "$APPLE_ID" ]; then
+            export APPLE_ID
+            export APPLE_APP_SPECIFIC_PASSWORD
+            export APPLE_TEAM_ID
+          fi
+          npx electron-builder ${{ matrix.args }} --publish never
+      - uses: actions/upload-artifact@v7
+        with:
+          name: dist-${{ matrix.name }}
+          if-no-files-found: error
+          path: |
+            dist/*.exe
+            dist/*.dmg
+            dist/*.zip
+            dist/*.AppImage
+            dist/*.deb
+            dist/*.rpm
+            dist/*.blockmap
+            dist/latest*.yml
+
+  publish:
+    needs: [validate, build]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    env:
+      GH_TOKEN: ${{ github.token }}
+      REPO: ${{ github.repository }}
+      VERSION: ${{ needs.validate.outputs.version }}
+      COMMIT: ${{ needs.validate.outputs.commit }}
+    steps:
+      - uses: actions/download-artifact@v8
+        with: { pattern: 'dist-*', path: staging }
+      - name: Collect the three builds without overwriting assets
+        shell: bash
+        run: |
+          set -euo pipefail
+          shopt -s nullglob
+          mkdir dist
+          for os in win mac linux; do
+            files=(staging/dist-"$os"/*)
+            (( ${#files[@]} )) || { echo "::error::Missing artifacts for $os"; exit 1; }
+            for file in "${files[@]}"; do
+              name=${file##*/}
+              [[ -f "$file" && ! -e "dist/$name" ]] || { echo "::error::Unexpected or duplicate asset: $name"; exit 1; }
+              mv -- "$file" "dist/$name"
+            done
+          done
+      - name: Apply electron-builder's asset renaming (space → dash)
+        run: |
+          set -euo pipefail
+          cd dist
+          for f in *; do
+            if [ -f "$f" ] && [[ "$f" == *" "* ]]; then
+              dest="${f// /-}"
+              [ ! -e "$dest" ] || { echo "::error::asset rename collision: $dest"; exit 1; }
+              mv -- "$f" "$dest"
+            fi
+          done
+      - name: Verify every updater manifest and the files it points to
+        run: |
+          set -euo pipefail
+          cd dist
+          shopt -s nullglob
+          verify_arches() {
+            local expected=$1 name arch x64=0 arm64=0
+            shift
+            for name in "$@"; do
+              if [[ "$name" =~ (^|[._-])(aarch64|arm64)([._-]|$) ]]; then arch=arm64
+              elif [[ "$name" =~ (^|[._-])(x86_64|x64|amd64)([._-]|$) ]]; then arch=x64
+              elif [[ "$name" =~ (^|[._-])(ia32|x86|i[3-6]86|arm|armhf|armv[5-8][a-z]*|universal)([._-]|$) ]]; then
+                echo "::error::unexpected architecture in $name"; return 1
+              else arch=x64
+              fi
+              if [[ "$arch" == arm64 ]]; then arm64=1; else x64=1; fi
+            done
+            case "$expected:$x64:$arm64" in both:1:1|x64:1:0|arm64:0:1) return 0;; esac
+            echo "::error::expected $expected, found: $*"; return 1
+          }
+          for m in latest.yml latest-mac.yml latest-linux.yml latest-linux-arm64.yml; do
+            yq -o=json '.' "$m" > "$RUNNER_TEMP/feed.json"
+            jq -e --arg v "$VERSION" '.version == $v and (.files | type == "array" and length > 0)' "$RUNNER_TEMP/feed.json" >/dev/null
+            jq -er '.files[] | [.url, .sha512] | @tsv' "$RUNNER_TEMP/feed.json" > "$RUNNER_TEMP/feed.tsv"
+            carriers=()
+            while IFS=$'\t' read -r name digest; do
+              [[ -n "$name" && "$name" != */* && -f "$name" && -n "$digest" ]] || { echo "::error::$m invalid asset: $name"; exit 1; }
+              actual=$(openssl dgst -sha512 -binary < "$name" | openssl base64 -A)
+              [[ "$actual" == "$digest" ]] || { echo "::error::$m SHA512 mismatch: $name"; exit 1; }
+              case "$m/$name" in
+                latest.yml/*[Ss]etup*.exe|latest-mac.yml/*.zip|latest-linux*.yml/*.AppImage) carriers+=("$name");;
+              esac
+            done < "$RUNNER_TEMP/feed.tsv"
+            (( ${#carriers[@]} )) || { echo "::error::$m has no updatable artifact"; exit 1; }
+            case "$m" in
+              latest-mac.yml) verify_arches both "${carriers[@]}";;
+              latest-linux-arm64.yml) verify_arches arm64 "${carriers[@]}";;
+              latest-linux.yml) verify_arches x64 "${carriers[@]}";;
+            esac
+          done
+          for ext in dmg deb rpm; do
+            verify_arches both *."$ext"
+          done
+      - name: SHA256SUMS (LF, generated on Linux)
+        run: |
+          set -euo pipefail
+          cd dist
+          rm -f SHA256SUMS
+          find . -maxdepth 1 -type f ! -name 'SHA256SUMS' -print0 | sort -z | xargs -0 -r sha256sum > SHA256SUMS
+          cat SHA256SUMS
+      - uses: softprops/action-gh-release@v3
+        with:
+          tag_name: ${{ env.TAG }}
+          draft: false
+          make_latest: legacy
+          fail_on_unmatched_files: true
+          generate_release_notes: true
+          files: dist/*
+          body: |
+            Choose the installer for your OS and architecture.
+            Windows: NSIS .exe. macOS: .dmg. Linux: .AppImage, .deb or .rpm.
+            macOS .zip and latest*.yml are required by automatic updates.
+            Portable packages use manual updates. Verify downloads with SHA256SUMS.
+            Code-signing status is recorded in each platform build log.

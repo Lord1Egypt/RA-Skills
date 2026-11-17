@@ -1,0 +1,4 @@
+interface:
+  display_name: "Galleon DeFi Derivatives"
+  short_description: "Plan and reconcile DeFi derivatives exposure"
+  default_prompt: "Use $galleon-defi-derivatives to assess perpetuals, options and funding-rate derivatives using official tools, bounded risk plans and venue-specific settlement evidence."

@@ -1,43 +1,62 @@
-## Description: <br>
-WeChat Tietu Draft helps an agent create simplified WeChat Official Account image-text draft posts from UTF-8 .txt files through a logged-in Chrome session. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates simplified WeChat Official Account tietu-style drafts from UTF-8 .txt files by guiding an agent through Chrome CDP setup, login checks, draft creation, and error feedback.
 
-## Publisher: <br>
-[punkin6](https://clawhub.ai/user/punkin6) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[punkin6](https://clawhub.ai/user/punkin6)
 
-## Use Case: <br>
-External users and automation developers use this skill to turn simple UTF-8 text files into WeChat Official Account tietu-style drafts for image-led posts. It is intended for fast draft creation after the user has prepared Chrome and a logged-in WeChat Official Account session. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can control a logged-in WeChat Official Account session. <br>
-Mitigation: Use a dedicated Chrome profile and review every generated draft before publishing. <br>
-Risk: The skill can force-kill local processes on the configured Chrome debugging port. <br>
-Mitigation: Run it on a dedicated port and avoid sharing the machine or port with unrelated browser automation. <br>
-Risk: Local logs, screenshots, or temporary Chrome profile directories may contain sensitive WeChat session details. <br>
-Mitigation: Delete generated logs, screenshots, and temporary profile directories after use. <br>
+## Use Case:
 
+External creators or operators managing WeChat Official Accounts use this skill to create image-forward simplified drafts from plain text files while receiving environment checks and troubleshooting guidance.
 
-## Reference(s): <br>
-- [WeChat Official Account Platform](https://mp.weixin.qq.com) <br>
-- [ClawHub skill page](https://clawhub.ai/punkin6/wechat-tietu-draft) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Terminal status messages, logs, and WeChat draft content created from text input] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Accepts UTF-8 .txt input and reports staged execution status for environment setup, login readiness, draft creation, and failures.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill controls a logged-in WeChat Official Account browser session and can create remote drafts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only in an account and Chrome profile intended for this workflow, and review draft content in WeChat before publication.
+
+Risk: Runtime logs and mp_login_screenshot.png may contain sensitive account, session, or draft information.
+
+Mitigation: Treat generated logs and screenshots as sensitive files and delete them after each run.
+
+Risk: The startup flow can force-kill processes on the selected local debugging port.
+
+Mitigation: Review or change the port-killing behavior and use an isolated Chrome debugging port before running the skill.
+
+Risk: The dependency declaration is broad.
+
+Mitigation: Install dependencies in an isolated Python environment and pin reviewed package versions for operational use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/punkin6/skills/wechat-tietu-draft)
+- [WeChat Official Account platform](https://mp.weixin.qq.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text status messages with shell commands and troubleshooting guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates remote WeChat draft content from one UTF-8 .txt file; runtime logs and screenshots may contain account or draft data.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

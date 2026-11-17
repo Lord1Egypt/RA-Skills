@@ -1,0 +1,82 @@
+{
+  "meta": {
+    "root": "https://api.we-media.cn",
+    "auth_header": "X-API-Key",
+    "source_header": "X-WM-Source",
+    "official_site": "https://api.we-media.cn"
+  },
+  "endpoints": [
+    {
+      "key": "ch-info",
+      "name": "视频号作品资料",
+      "cat": "ch",
+      "method": "POST",
+      "path": "/openapi/wechat-native-channel-info/videos/info",
+      "price": 0.21,
+      "params": [
+        "url",
+        "shortUri"
+      ],
+      "purpose": "标题/账号/时间/媒体/互动",
+      "param_types": {
+        "url": "string",
+        "shortUri": "string"
+      },
+      "product_slug": "wechat-native-channel-info"
+    },
+    {
+      "key": "ch-resolve",
+      "name": "视频号作品解析",
+      "cat": "ch",
+      "method": "POST",
+      "path": "/openapi/wechat-native-channel-resolve/videos/resolve",
+      "price": 0.07,
+      "params": [
+        "url",
+        "shortUri"
+      ],
+      "purpose": "链接解析为 objectId",
+      "param_types": {
+        "url": "string",
+        "shortUri": "string"
+      },
+      "product_slug": "wechat-native-channel-resolve"
+    },
+    {
+      "key": "ch-share-url",
+      "name": "视频号分享链接",
+      "cat": "ch",
+      "method": "POST",
+      "path": "/openapi/wechat-native-channel-share-url/videos/share-url",
+      "price": 0.07,
+      "params": [
+        "objectId",
+        "objectNonceId",
+        "exportId"
+      ],
+      "purpose": "生成分享链接",
+      "param_types": {
+        "objectId": "string",
+        "objectNonceId": "string",
+        "exportId": "string"
+      },
+      "product_slug": "wechat-native-channel-share-url"
+    },
+    {
+      "key": "ch-export-to-object",
+      "name": "export 转作品",
+      "cat": "ch",
+      "method": "POST",
+      "path": "/openapi/wechat-native-channel-export-object/videos/export-to-object",
+      "price": 0.035,
+      "params": [
+        "exportId"
+      ],
+      "purpose": "短期ID转稳定ID",
+      "param_types": {
+        "exportId": "string"
+      },
+      "product_slug": "wechat-native-channel-export-object"
+    }
+  ]
+}

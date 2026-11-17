@@ -1,45 +1,62 @@
-## Description: <br>
-Manage linkding bookmarks - save URLs, search, tag, organize, and retrieve your personal bookmark collection. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage linkding bookmarks - save URLs, search, tag, organize, and retrieve your personal bookmark collection.
 
-## Publisher: <br>
-[daveonkels](https://clawhub.ai/user/daveonkels) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[daveonkels](https://clawhub.ai/user/daveonkels)
 
-## Use Case: <br>
-Developers, operators, and Linkding users use this skill to save, search, tag, organize, archive, delete, and retrieve bookmarks from a configured Linkding instance through the clinkding CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can access and change bookmark data in the configured Linkding instance. <br>
-Mitigation: Install only after trusting the clinkding CLI source and review create, update, archive, delete, upload, and download actions before approving them. <br>
-Risk: A Linkding API token is required for authenticated use. <br>
-Mitigation: Protect the API token and prefer environment variables or configuration files with appropriate local access controls. <br>
-Risk: Automatic URL summarization can expose private, internal, or token-bearing URLs to the summarization tool. <br>
-Mitigation: Avoid automatic summarization for sensitive URLs unless sharing that URL with the summarization tool is acceptable. <br>
+## Use Case:
 
+External users and developers use this skill to let an agent manage a personal linkding bookmark library from the terminal, including saving URLs, searching bookmarks, organizing tags and bundles, and retrieving unread items.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/daveonkels/clinkding) <br>
-- [clinkding GitHub repository](https://github.com/daveonkels/clinkding) <br>
-- [clinkding releases](https://github.com/daveonkels/clinkding/releases) <br>
-- [Linkding project](https://github.com/sissbruecker/linkding) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands, configuration snippets, and CLI output guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can request JSON or plain-text CLI output for scripting and agent parsing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: The skill can guide an agent to run destructive bookmark operations such as delete, archive, and batch updates.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review affected bookmark IDs and command intent before allowing delete, archive, asset deletion, or batch-update commands to run.
+
+Risk: The clinkding CLI requires access to a linkding API token.
+
+Mitigation: Use a revocable token, avoid exposing it in shared logs, and prefer environment or config storage appropriate for the host system.
+
+Risk: The release provenance is unavailable in server evidence.
+
+Mitigation: Verify the clinkding source and release before installation, and prefer a pinned version or checksum-verified binary.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/daveonkels/skills/clinkding)
+- [clinkding GitHub repository](https://github.com/daveonkels/clinkding)
+- [linkding GitHub repository](https://github.com/sissbruecker/linkding)
+- [clinkding releases](https://github.com/daveonkels/clinkding/releases)
+- [Homebrew formula](daveonkels/tap/clinkding)
+- [Go module](github.com/daveonkels/clinkding@latest)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance, JSON, Text]
+
+**Output Format:** [Markdown with inline bash code blocks and command-output guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce bookmark data in human-readable tables, JSON, or plain text depending on selected clinkding flags.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

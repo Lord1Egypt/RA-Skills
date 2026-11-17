@@ -1,41 +1,59 @@
-## Description: <br>
-Stock Value Scanner Free helps an agent score a small set of U.S. stocks using value-oriented technical factors and return JSON-style watch, hold, or buy signals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scans 11 U.S. stocks for pullback and value-style signals using five technical factors, then returns scores, action labels, and recent backtest examples.
 
-## Publisher: <br>
-[sg345662365-oss](https://clawhub.ai/user/sg345662365-oss) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sg345662365-oss](https://clawhub.ai/user/sg345662365-oss)
 
-## Use Case: <br>
-External users and developers use this skill to ask an agent for value-style stock scan signals across a limited U.S. ticker set. The output is useful for screening and review workflows, not as standalone investment advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may over-rely on generated stock signals or sample backtest-style data as investment advice. <br>
-Mitigation: Treat outputs as informational screening signals only, verify market data independently, and apply appropriate financial review before acting. <br>
-Risk: The skill covers a limited ticker set and depends on a single stated market data source. <br>
-Mitigation: Confirm coverage and prices against authoritative sources and supplement the scan with broader market, portfolio, and risk analysis. <br>
+## Use Case:
 
+External users and agents use this skill to screen a fixed watchlist of U.S. stocks for technical pullback signals and JSON-formatted action labels. It supports market monitoring workflows, not standalone investment decisions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sg345662365-oss/stock-value-scanner-free) <br>
-- [Publisher profile](https://clawhub.ai/user/sg345662365-oss) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown instructions with bash examples and JSON signal examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Signals include symbol, score, and action fields; market data and sample backtest values should be independently verified.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and skill frontmatter) <br>
+Risk: Market scores and buy, watch, or hold labels could be mistaken for financial advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as informational screening signals only, review the underlying market data and assumptions, and require independent investment analysis before acting.
+
+Risk: The skill describes daily automatic backtest behavior, which may create recurring activity in the host environment.
+
+Mitigation: Confirm whether the installed skill creates a schedule, and keep the schedule disabled or explicitly controlled unless recurring runs are intended.
+
+Risk: Signals depend on a fixed watchlist and Yahoo Finance data, so coverage or data availability may be incomplete.
+
+Mitigation: Validate symbols, prices, and results against another market data source before using the output in decision workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sg345662365-oss/skills/stock-value-scanner-free)
+- [ClawHub publisher profile](https://clawhub.ai/user/sg345662365-oss)
+- [Repository declared in skill metadata](https://github.com/sgready/vane-signals)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, guidance]
+
+**Output Format:** [Markdown usage guidance with shell command snippets and JSON signal objects.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs fixed-watchlist stock scores and action labels based on Yahoo Finance data; no API key is described.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

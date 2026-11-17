@@ -1,43 +1,56 @@
-## Description: <br>
-Youtube Comment Manager helps agents list, search, reply to, update, delete, and moderate YouTube comment threads through AgentPMT-hosted tool calls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Youtube Comment Manager helps agents list, search, reply to, edit, delete, and moderate YouTube comments through AgentPMT-hosted remote tool calls.
 
-## Publisher: <br>
-[agentpmt](https://clawhub.ai/user/agentpmt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[agentpmt](https://clawhub.ai/user/agentpmt)
 
-## Use Case: <br>
-Creators, community managers, and agents use this skill to review YouTube comment threads, answer audience questions, search comments, and moderate held-for-review or likely-spam queues on connected channels. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Connected Google OAuth access can allow posting, deletion, moderation, and bans on YouTube comments. <br>
-Mitigation: Install only if this access is acceptable for the connected channel, and keep tool inputs scoped to the comment-management task. <br>
-Risk: Deleting comments, rejecting comments in bulk, posting replies, or banning authors can affect channel discussions; bans cannot be reversed from this tool. <br>
-Mitigation: Use human review before destructive or bulk moderation actions, and reverse author bans through YouTube Studio when needed. <br>
+## Use Case:
 
+Creators, community managers, and agents use this skill to triage YouTube comments, respond to viewer questions, search discussion threads, and moderate held-for-review or likely-spam queues on connected channels.
 
-## Reference(s): <br>
-- [AgentPMT marketplace page](https://www.agentpmt.com/marketplace/youtube-comment-manager) <br>
-- [ClawHub skill page](https://clawhub.ai/agentpmt/youtube-comment-manager) <br>
-- [Generated action schema](artifact/schema.md) <br>
-- [AgentPMT account MCP/REST setup](https://clawhub.ai/agentpmt/agentpmt-account-mcp-rest-api-setup) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, API Calls, Configuration] <br>
-**Output Format:** [Markdown instructions with JSON call examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Remote tool responses are JSON wrappers around YouTube comment, thread, and moderation payloads.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: The skill can post replies, delete comments, reject comments, bulk moderate queues, and ban authors for the connected Google account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit approval before write, delete, reject, bulk moderation, or ban_author actions, and keep requested operations scoped to the minimum necessary comments.
+
+Risk: The release evidence reports mutable setup and live-instruction paths that users should review carefully.
+
+Mitigation: Prefer pinned or reviewed setup-skill versions and review live schemas or instructions before using the skill in production workflows.
+
+## Reference(s):
+
+- [Generated action schema](artifact/schema.md)
+- [ClawHub skill page](https://clawhub.ai/agentpmt/skills/youtube-comment-manager)
+- [AgentPMT marketplace page](https://www.agentpmt.com/marketplace/youtube-comment-manager)
+- [AgentPMT account MCP/REST setup](https://clawhub.ai/agentpmt/agentpmt-account-mcp-rest-api-setup)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, API Calls, JSON, configuration]
+
+**Output Format:** [Markdown guidance with JSON tool-call examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs describe AgentPMT-hosted YouTube comment actions and response handling; tool responses wrap YouTube Data API payloads as JSON.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

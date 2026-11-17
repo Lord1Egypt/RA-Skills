@@ -1,45 +1,59 @@
-## Description: <br>
-AI-assisted PDF field extraction skill that identifies document types, extracts text or OCR content, and produces structured Excel or JSON outputs for invoices, contracts, receipts, bank statements, licenses, ID documents, shipping forms, and general documents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pdf Field Extractor helps an agent extract structured fields from PDFs, including invoices, contracts, receipts, bank statements, licenses, ID documents, shipping forms, and generic documents, with Excel or JSON outputs.
 
-## Publisher: <br>
-[qiji0802](https://clawhub.ai/user/qiji0802) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qiji0802](https://clawhub.ai/user/qiji0802)
 
-## Use Case: <br>
-Developers and workflow users use this skill to turn uploaded PDFs into structured fields for review, export, and batch processing. It is intended for document extraction tasks such as invoice capture, contract term extraction, receipt parsing, bank statement parsing, ID or license extraction, and custom field extraction. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive PDF content such as IDs, contracts, invoices, or bank statements may be sent to an external AI API during field extraction. <br>
-Mitigation: Use only documents approved for the configured provider, redact sensitive fields when possible, and prefer local-only processing or explicit privacy disclosure for sensitive workflows. <br>
-Risk: The skill requires sensitive AI provider credentials for extraction calls. <br>
-Mitigation: Use a scoped API key, avoid sharing credentials in prompts or files, and rotate keys if they may have been exposed. <br>
-Risk: The server security verdict is suspicious because privacy warnings and consent controls are not prominent for sensitive document processing. <br>
-Mitigation: Review before installing, confirm the configured API destination, and require clear user consent before processing regulated or confidential documents. <br>
+## Use Case:
 
+Developers and agent operators use this skill to turn user-provided PDFs into structured records for review, export, and downstream workflow automation. It is suited for document intake tasks where fields must be extracted from text PDFs or OCR-processed scanned PDFs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/qiji0802/pdf-field-extractor) <br>
-- [Document type identification reference](references/doc_types.md) <br>
-- [AI field extraction prompt templates](references/prompts.md) <br>
-- [Tier configuration and limits](scripts/tier_config.py) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Files, Configuration guidance] <br>
-**Output Format:** [Excel (.xlsx), JSON, extracted text, and optional summary message content] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use local OCR and a configured OpenAI-compatible AI provider; output availability and volume are governed by the configured tier limits.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: Sensitive PDF contents may be sent to the configured model endpoint during field extraction.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted HTTPS endpoints and process identity, banking, or confidential business documents only when the data-handling requirements allow remote AI processing.
+
+Risk: API keys may be exposed to a configurable outside endpoint if endpoint settings are untrusted.
+
+Mitigation: Avoid custom or untrusted api_base values and do not reuse an API key with unrelated providers.
+
+Risk: Generated Excel or JSON outputs may contain sensitive or incorrect extracted fields.
+
+Mitigation: Review generated files before sharing or using them in downstream workflows.
+
+## Reference(s):
+
+- [Document Type Identification Reference](artifact/references/doc_types.md)
+- [AI Field Extraction Prompt Templates](artifact/references/prompts.md)
+- [Tier Configuration](artifact/scripts/tier_config.py)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, files]
+
+**Output Format:** [Markdown guidance with Python snippets; extraction results may be written as Excel (.xlsx) or JSON files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses user-configured model credentials and endpoint settings; OCR may be used for scanned PDFs.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

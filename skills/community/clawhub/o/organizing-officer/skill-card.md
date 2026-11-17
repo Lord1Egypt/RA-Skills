@@ -1,44 +1,56 @@
-## Description: <br>
-Organizing Officer provides organization-building and management consulting guidance for organization diagnosis, talent management, culture building, strategic alignment, executive assessment, and organizational capability improvement. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Chinese-language organizational consulting skill that uses the Chief Organizing Officer methodology to provide organization diagnosis, talent management, culture building, strategy alignment, executive assessment, and organizational capability guidance.
 
-## Publisher: <br>
-[brandon-zhanghaodong](https://clawhub.ai/user/brandon-zhanghaodong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[brandon-zhanghaodong](https://clawhub.ai/user/brandon-zhanghaodong)
 
-## Use Case: <br>
-HR, organization development, and leadership teams use this skill to diagnose organizational systems, evaluate executive capability, translate culture into management practices, and plan organization capability improvements. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may share unnecessary personal employee data, compensation details, or confidential strategy while seeking organizational or HR advice. <br>
-Mitigation: Minimize sensitive inputs and redact personal or confidential details that are not required for the analysis. <br>
-Risk: Organizational recommendations can affect personnel, compliance, legal, or strategic decisions. <br>
-Mitigation: Have qualified human experts review major personnel, compliance, legal, and strategy decisions before acting. <br>
+## Use Case:
 
+HR, organization development leaders, executives, and advisors use this skill to diagnose organizational systems, plan organization structures and talent practices, evaluate executive teams, and translate culture into management principles and operating behavior.
 
-## Reference(s): <br>
-- [Ten Organizational Systems](references/ten_systems.md) <br>
-- [Upper, Middle, Lower Three Paths](references/three_paths.md) <br>
-- [True Executive](references/true_executive.md) <br>
-- [Organizational Performance V-Model](references/v_model.md) <br>
-- [ClawHub skill page](https://clawhub.ai/brandon-zhanghaodong/organizing-officer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, text] <br>
-**Output Format:** [Markdown or structured text guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution; organizational and HR recommendations should be reviewed by qualified human experts before major personnel, compliance, or legal decisions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Personnel, management, and organization recommendations may be incomplete or unsuitable for real workplace decisions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as advisory input and review them with responsible HR, legal, and business stakeholders before action.
+
+Risk: The skill content is primarily Chinese-language, which may reduce clarity for users expecting another language.
+
+Mitigation: Ask the agent to respond in the preferred language when using the skill.
+
+## Reference(s):
+
+- [Ten Organizational Systems](references/ten_systems.md)
+- [Upper, Middle, Lower Three Paths](references/three_paths.md)
+- [True Executive](references/true_executive.md)
+- [Organizational Performance V-Model](references/v_model.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Text, Markdown]
+
+**Output Format:** [Markdown advisory response]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Primarily Chinese-language organizational consulting guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

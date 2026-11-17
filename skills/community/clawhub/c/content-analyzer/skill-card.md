@@ -1,45 +1,57 @@
-## Description: <br>
-Analyze Xiaohongshu notes and Douyin videos or creator profiles via the TikHub API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze Xiaohongshu (小红书) notes and Douyin (抖音) videos.
 
-## Publisher: <br>
-[dizhu](https://clawhub.ai/user/dizhu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dizhu](https://clawhub.ai/user/dizhu)
 
-## Use Case: <br>
-External users and social media analysts use this skill to summarize Xiaohongshu and Douyin posts or creator profiles, interpret engagement metrics, and extract actionable content strategy takeaways. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can make unexpected network requests when handling crafted Xiaohongshu or Douyin URLs. <br>
-Mitigation: Use the skill only with trusted platform URLs and review the resolved request target before relying on the result. <br>
-Risk: The analysis script clears proxy environment variables for its HTTP requests. <br>
-Mitigation: Deploy only where direct outbound requests to the supported platforms and TikHub API are acceptable. <br>
-Risk: Douyin profile analysis is search-based and may not represent a verified account feed. <br>
-Mitigation: Treat Douyin profile results as approximate and confirm important account-level conclusions manually. <br>
-Risk: The skill requires a TikHub API token to fetch content data. <br>
-Mitigation: Use a token with acceptable scope and cost exposure, and rotate it if it may have been exposed. <br>
+## Use Case:
 
+External users and developers use this skill to analyze Xiaohongshu notes, Douyin videos, and creator profiles. It summarizes content, interprets engagement metrics, identifies viral patterns, and suggests actionable content improvements.
 
-## Reference(s): <br>
-- [Content Analyzer on ClawHub](https://clawhub.ai/dizhu/content-analyzer) <br>
-- [TikHub API](https://api.tikhub.io) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown analysis generated from JSON returned by the analysis script.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The script accepts a target URL and optional maximum post count for profile analysis.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill runs a local Python script and makes outbound network requests to TikHub.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the script before installation, disclose third-party data flow to users, and run it only in environments where outbound TikHub requests are acceptable.
+
+Risk: Unsafe URL handling and redirect behavior could let untrusted links trigger broader local or network access than users expect.
+
+Mitigation: Use strict URL and redirect validation before execution and limit accepted inputs to the documented Xiaohongshu and Douyin URL patterns.
+
+Risk: Network configuration changes may bypass expected proxy behavior.
+
+Mitigation: Review or modify the script so it respects configured proxy policies in the deployment environment.
+
+## Reference(s):
+
+- [Content Analyzer Skill Page](https://clawhub.ai/dizhu/skills/content-analyzer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown analysis based on JSON returned by the local analysis script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Single-post outputs include summaries, engagement interpretation, and takeaways; profile outputs include creator positioning, strategy patterns, viral patterns, and recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

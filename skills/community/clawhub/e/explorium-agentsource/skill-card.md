@@ -1,47 +1,66 @@
-## Description: <br>
-B2B prospecting via Explorium AgentSource API. Requires EXPLORIUM_API_KEY. Find companies, prospects, enrich with firmographics/contacts, track events, export CSV. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Finds and exports B2B companies or contacts using the Explorium AgentSource API, with support for filters, enrichments, event signals, and CSV export.
 
-## Publisher: <br>
-[yossigolan](https://clawhub.ai/user/yossigolan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yossigolan](https://clawhub.ai/user/yossigolan)
 
-## Use Case: <br>
-Sales, marketing, growth, and market research users use this skill to find B2B companies or prospects, preview market size and sample records, enrich selected entities, inspect events, and export confirmed results to CSV. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Interactive setup can expose an Explorium API key in terminal output or shell history on shared, logged, or screen-shared terminals. <br>
-Mitigation: Set EXPLORIUM_API_KEY in a private terminal or use the CLI config command only in a trusted local session; avoid interactive setup on shared or recorded terminals. <br>
-Risk: Prospecting, enrichment, and matching results may include sensitive company or contact data written to predictable /tmp/agentsource_*.json files. <br>
-Mitigation: Treat result files as sensitive, delete them after use, restrict local machine access, and confirm that contact enrichment and outreach comply with applicable privacy and legal obligations. <br>
-Risk: Optional call_reasoning can transmit the user's natural-language query to Explorium as request metadata. <br>
-Mitigation: Use call_reasoning only after user consent; omit it when query text should not be logged by the remote service. <br>
+## Use Case:
 
+Sales, marketing, and go-to-market teams use this skill through an agent to turn natural-language prospecting requests into AgentSource API searches, preview market size and samples, enrich records, retrieve event signals, and export confirmed results to CSV.
 
-## Reference(s): <br>
-- [Explorium AgentSource API key setup](https://developers.explorium.ai/reference/setup/getting_your_api_key) <br>
-- [Explorium AgentSource API endpoint](https://api.explorium.ai/v1/) <br>
-- [Filter reference](references/filters.md) <br>
-- [Enrichment reference](references/enrichments.md) <br>
-- [Events reference](references/events.md) <br>
-- [ClawHub release page](https://clawhub.ai/yossigolan/explorium-agentsource) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown guidance with inline shell commands; CLI operations write JSON result files and can export CSV files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires EXPLORIUM_API_KEY; optional call_reasoning sends the user's query text to Explorium when explicitly used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: The skill handles an Explorium AgentSource API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Set EXPLORIUM_API_KEY outside chat and avoid entering secrets where terminal output is logged; if using saved config, keep ~/.agentsource/config.json protected with owner-only permissions.
+
+Risk: Prospecting, matching, enrichment, and events workflows can process customer lists or personal contact data.
+
+Mitigation: Use the skill only with appropriate consent and data handling approval, and send only the fields needed for the requested search, match, enrichment, or export.
+
+Risk: Search filters, entity IDs, optional call_reasoning, and imported CSV records may be sent to Explorium's remote API.
+
+Mitigation: Review the request before execution and omit call_reasoning unless the user explicitly agrees to send natural-language query context.
+
+Risk: Result files under /tmp/agentsource_*.json can contain prospecting results or contact data.
+
+Mitigation: Remove or protect temporary result files after use, especially on shared machines or when processing customer lists.
+
+## Reference(s):
+
+- [Filter Reference](artifact/references/filters.md)
+- [Enrichment Reference](artifact/references/enrichments.md)
+- [Events Reference](artifact/references/events.md)
+- [Explorium AgentSource API Key Setup](https://developers.explorium.ai/reference/setup/getting_your_api_key)
+- [Explorium AgentSource API Endpoint](https://api.explorium.ai/v1/)
+- [ClawHub Skill Page](https://clawhub.ai/yossigolan/skills/explorium-agentsource)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, API calls, CSV files]
+
+**Output Format:** [Markdown guidance with inline shell commands, JSON result file paths, and CSV export paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires EXPLORIUM_API_KEY; writes API result data to /tmp/agentsource_*.json; free-text call_reasoning is opt-in]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata and plugin.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

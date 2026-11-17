@@ -1,0 +1,58 @@
+{
+  "name": "@redreplier/openclaw-plugin",
+  "version": "0.5.0",
+  "description": "RedReplier plugin for OpenClaw: monitor Reddit, Hacker News, X, Bluesky and Facebook for keyword mentions",
+  "license": "MIT",
+  "author": "RedReplier <contact@redreplier.com> (https://redreplier.com)",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist",
+    "openclaw.plugin.json",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "prepublishOnly": "npm run build"
+  },
+  "peerDependencies": {
+    "openclaw": ">=2026.8.0"
+  },
+  "dependencies": {
+    "@sinclair/typebox": "^0.34.52"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "openclaw": "2026.8.1",
+    "typescript": "^5.6.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RedReplier/redreplier-openclaw.git",
+    "directory": "openclaw-plugin"
+  },
+  "homepage": "https://redreplier.com",
+  "keywords": [
+    "openclaw",
+    "openclaw-plugin",
+    "clawhub",
+    "redreplier",
+    "reddit",
+    "hacker-news",
+    "bluesky",
+    "lead-generation",
+    "social-listening"
+  ],
+  "openclaw": {
+    "extensions": [
+      "./dist/index.js"
+    ],
+    "compat": {
+      "pluginApi": ">=2026.8.0"
+    },
+    "build": {
+      "openclawVersion": "2026.8.1"
+    }
+  }
+}

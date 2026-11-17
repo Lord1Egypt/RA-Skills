@@ -1,45 +1,63 @@
-## Description: <br>
-Provides local maintenance scripts for OpenClaw Gateway health monitoring, safe restarts, proxy switching, log cleanup, and operational notifications. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides local maintenance scripts for monitoring and maintaining OpenClaw Gateway health, proxy connectivity, safe restarts, and log cleanup.
 
-## Publisher: <br>
-[jesson1222-ship-it](https://clawhub.ai/user/jesson1222-ship-it) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jesson1222-ship-it](https://clawhub.ai/user/jesson1222-ship-it)
 
-## Use Case: <br>
-Developers and operators use this skill to deploy and run local OpenClaw maintenance scripts across macOS, Linux, or NAS environments. It helps monitor Gateway health, respond to proxy-related queue backlog, restart services, and clean OpenClaw logs. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The maintenance scripts can restart OpenClaw Gateway, switch proxy nodes, clean logs, and send Telegram notifications when configured and scheduled. <br>
-Mitigation: Review and create the .env file manually, run check.sh first, and enable LaunchAgent, systemd, or cron only after accepting the operational behavior. <br>
-Risk: Proxy switching depends on a configured Clash or Mihomo API and secret. <br>
-Mitigation: Set CLASH_API and CLASH_SECRET explicitly, verify access to the local API, and keep the secret out of shared logs or prompts. <br>
-Risk: Log cleanup deletes OpenClaw log files older than the configured retention window or larger than the configured size limit. <br>
-Mitigation: Confirm the log directory and retention policy before scheduling cleanup on production machines. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/jesson1222-ship-it/openclaw-maintenance) <br>
-- [README.md](artifact/README.md) <br>
-- [README-proxy-health.md](artifact/README-proxy-health.md) <br>
-- [AGENT.md](artifact/AGENT.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
+## Use Case:
 
+Developers and operators use this skill to deploy and operate OpenClaw maintenance scripts that monitor Gateway availability, respond to proxy or queue issues, perform safe restarts, and clean local logs across macOS, Linux, and NAS environments.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance, Markdown] <br>
-**Output Format:** [Markdown guidance with shell command examples and configuration notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local operational steps for installing, configuring, checking, and scheduling maintenance scripts.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Linux systemd guidance can create a root-level watchdog that runs a script from a user-writable home directory.
+
+Mitigation: Install the service under the intended least-privilege user or move scripts to a root-owned path before enabling systemd.
+
+Risk: .env values may contain CLASH_SECRET and notification targets.
+
+Mitigation: Restrict file permissions, avoid committing secrets, and rotate exposed credentials before deployment.
+
+Risk: The scripts can automatically restart OpenClaw Gateway and switch proxy nodes.
+
+Mitigation: Review thresholds, endpoints, notification settings, and cooldown behavior in a staging or maintenance window before production use.
+
+Risk: The log cleanup script deletes old or oversized OpenClaw log files.
+
+Mitigation: Confirm retention requirements and back up logs that may be needed for incident review before scheduling cleanup.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jesson1222-ship-it/skills/openclaw-maintenance)
+- [README](artifact/README.md)
+- [Proxy Health Monitor README](artifact/README-proxy-health.md)
+- [Agent Quickstart](artifact/AGENT.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes operational scripts for local installation, health checks, proxy switching, safe restart, and log cleanup.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

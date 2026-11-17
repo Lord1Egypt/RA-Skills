@@ -1,43 +1,58 @@
-## Description: <br>
-Chatbot Engine provides multi-turn dialogue, intent recognition, context management, and knowledge-base retrieval for conversational applications. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Chatbot Engine supports multi-turn dialogue, intent recognition, context management, and knowledge-base retrieval for chatbot applications.
 
-## Publisher: <br>
-[kaiyuelv](https://clawhub.ai/user/kaiyuelv) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kaiyuelv](https://clawhub.ai/user/kaiyuelv)
 
-## Use Case: <br>
-Developers and engineers use this skill to build chatbot workflows that classify user intent, manage multi-turn dialogue state, retrieve knowledge-base answers, and optionally connect to LLM providers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Dependency versions are not pinned, which can introduce supply-chain or compatibility drift. <br>
-Mitigation: Install from a trusted package index and pin reviewed dependency versions before production deployment. <br>
-Risk: Optional OpenAI or Anthropic providers can send prompts and recent conversation context outside the local environment. <br>
-Mitigation: Use the mock or local provider for private testing, and enable external providers only after reviewing data-sharing requirements. <br>
-Risk: Chat sessions and knowledge-base content may contain sensitive information if saved to shared paths. <br>
-Mitigation: Avoid shared storage for sensitive sessions or knowledge bases, and sanitize content before persistence. <br>
+## Use Case:
 
+Developers and engineers use this skill to add chatbot behavior, intent classification, multi-turn dialogue state, knowledge-base retrieval, and optional LLM-backed responses to agent applications.
 
-## Reference(s): <br>
-- [Project homepage](https://github.com/openclaw/chatbot-engine) <br>
-- [ClawHub skill page](https://clawhub.ai/kaiyuelv/chatbot-engine) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Plain text responses, Python code snippets, and Markdown instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use mock, local, OpenAI, or Anthropic providers; optional context history and knowledge-base content can affect responses.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Prompts and conversation context may be sent to OpenAI or Anthropic when those providers are enabled.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Enable external LLM providers only after privacy review and user disclosure, and keep mock or local providers for development where appropriate.
+
+Risk: Unreviewed dependency versions can introduce supply-chain or compatibility risk.
+
+Mitigation: Install in an isolated environment and pin, scan, and review dependencies before production use.
+
+Risk: Custom regex intent definitions or plugin objects can change chatbot behavior in unsafe or unexpected ways.
+
+Mitigation: Limit intent configuration and plugin registration to trusted administrators and review behavior before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kaiyuelv/skills/chatbot-engine)
+- [Project homepage](https://github.com/openclaw/chatbot-engine)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and Python code with inline shell commands and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce chatbot text responses, intent labels, extracted entities, retrieved knowledge-base answers, and optional LLM-provider responses.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

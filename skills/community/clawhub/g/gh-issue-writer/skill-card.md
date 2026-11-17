@@ -1,41 +1,54 @@
-## Description: <br>
-Draft well-structured GitHub issues from a description, error, or idea, with support for bug reports, feature requests, enhancements, tasks, and optional user-directed submission through GitHub tooling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Draft well-structured GitHub issues from a description, error, or idea. Supports bug reports, feature requests, enhancements, and tasks. Optionally submits directly via the GitHub CLI or API. Use when someone says "write a GitHub issue", "open an issue for", "file a bug", "create a feature request", or describes a problem that needs to be tracked.
 
-## Publisher: <br>
-[djc00p](https://clawhub.ai/user/djc00p) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[djc00p](https://clawhub.ai/user/djc00p)
 
-## Use Case: <br>
-Developers and project maintainers use this skill to turn brief problem reports, ideas, or error messages into structured GitHub issues with clear titles, labels, metadata suggestions, and review-ready issue bodies. When explicitly approved, it can help submit the issue through the GitHub CLI or GitHub API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can prepare labels, titles, issue bodies, and target repository details that may be incorrect or disclose sensitive project information if submitted without review. <br>
-Mitigation: Review the full issue title, body, labels, and target repository before approving submission. <br>
-Risk: Optional GitHub issue submission uses GitHub credentials through the GitHub CLI or GH_TOKEN. <br>
-Mitigation: Use a least-privileged GitHub token and only approve submission after confirming the destination repository and issue content. <br>
+## Use Case:
 
+Developers use this skill to turn a bug, feature idea, enhancement, or task into a clear GitHub issue with a suitable title, structured body, and suggested labels. They can review the draft and optionally submit it to a repository after confirming the destination and issue details.
 
-## Reference(s): <br>
-- [GitHub Issue Template Documentation](https://docs.github.com/en/communities/using-templates-to-encourage-useful-issues-and-pull-requests) <br>
-- [ClawHub Skill Page](https://clawhub.ai/djc00p/gh-issue-writer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, API Calls, Guidance] <br>
-**Output Format:** [Markdown with optional shell commands and JSON API payload examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Drafting works without credentials; submission requires GitHub CLI authentication or a GH_TOKEN fallback.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: An issue may disclose sensitive logs or credentials or be published to a repository with unintended visibility.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the destination repository and its visibility, inspect the complete issue, remove sensitive information, and confirm the details before publishing.
+
+Risk: The documented Python API fallback references re.fullmatch without importing re.
+
+Mitigation: Add the missing re import before using the Python fallback.
+
+## Reference(s):
+
+- [GitHub Issue Writer on ClawHub](https://clawhub.ai/djc00p/skills/gh-issue-writer)
+- [GitHub issue templates documentation](https://docs.github.com/en/communities/using-templates-to-encourage-useful-issues-and-pull-requests)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Guidance]
+
+**Output Format:** [Markdown issue drafts with optional submission guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Issue type, repository, details, and optional labels or assignment depend on the user's context.]
+
+## Skill Version(s):
+
+1.0.2 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,53 @@
-## Description: <br>
-Bmi Tracker helps users calculate BMI, assess BMI ranges, receive improvement suggestions, and manage BMI history and target goals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+BMI tracking skill for BMI calculation, health assessment, improvement suggestions, history, and goal setting.
 
-## Publisher: <br>
-[kaising-openclaw1](https://clawhub.ai/user/kaising-openclaw1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kaising-openclaw1](https://clawhub.ai/user/kaising-openclaw1)
 
-## Use Case: <br>
-External users use this skill to calculate BMI, review BMI categories, receive general improvement suggestions, and track BMI history and target goals. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: History and goal tracking may involve height, weight, BMI, and target values. <br>
-Mitigation: Check where those values are stored, who can access them, and how to delete them before using tracking features. <br>
-Risk: The artifact declares a curl requirement without explaining network use. <br>
-Mitigation: Review any requested network commands before running them and avoid sending health-related values to unexpected endpoints. <br>
-Risk: BMI assessments and improvement suggestions can be mistaken for individualized medical advice. <br>
-Mitigation: Treat outputs as general wellness information and consult a qualified professional for medical decisions. <br>
+## Use Case:
 
+External users and developers use this skill to calculate BMI, assess BMI categories, track BMI history, and set target BMI goals from the command line.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and concise text guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill may surface BMI category labels, history views, and target-goal guidance; check local storage behavior before using history or goal tracking.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: The skill tracks BMI history and goals, which may reveal sensitive health-related information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid entering sensitive health details unless storage location, retention, and deletion behavior are understood.
+
+Risk: Installation uses the ClawHub installer and may execute installed skill behavior on the user's machine.
+
+Mitigation: Install only from a trusted ClawHub source and consider using a pinned installer version when available.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/kaising-openclaw1/skills/bmi-tracker)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and concise text guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include BMI category assessment, improvement suggestions, history views, and goal-setting guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

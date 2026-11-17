@@ -1,41 +1,54 @@
-## Description: <br>
-Provides spreadsheet creation, editing, analysis, formatting, visualization, and formula recalculation workflows for XLSX, XLSM, CSV, and TSV files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides spreadsheet creation, editing, analysis, formatting, visualization, and formula recalculation workflows for files such as .xlsx, .xlsm, .csv, and .tsv.
 
-## Publisher: <br>
-[lnj22](https://clawhub.ai/user/lnj22) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Proprietary <br>
+## Publisher:
 
+[lnj22](https://clawhub.ai/user/lnj22)
 
-## Use Case: <br>
-Developers, analysts, and spreadsheet modelers use this skill to create, inspect, modify, format, and verify spreadsheet workbooks while preserving formulas and workbook conventions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Proprietary. LICENSE.txt has complete terms
 
-## Known Risks and Mitigations: <br>
-Risk: Formula recalculation can write a persistent LibreOffice Basic macro into the user's normal LibreOffice profile. <br>
-Mitigation: Run recalculation in a disposable environment or back up the LibreOffice macro folder and important spreadsheets before use. <br>
-Risk: Spreadsheet changes can create or modify workbook files and affect business-critical models. <br>
-Mitigation: Review generated workbook changes, preserve backups, and verify reported formula errors before relying on outputs. <br>
+## Use Case:
 
+Employees, external users, and developers use this skill to create, modify, analyze, and verify spreadsheet workbooks while preserving formulas, formatting, and source documentation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lnj22/pdf-excel-diff-xlsx) <br>
-- [Publisher profile](https://clawhub.ai/user/lnj22) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python snippets, shell commands, and spreadsheet file instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide creation or modification of workbook files and formula recalculation checks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server-resolved release metadata) <br>
+Risk: The formula recalculation helper can persistently modify the user's global LibreOffice macro profile.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing or running; prefer an updated version that uses an isolated temporary LibreOffice profile, verifies any macro it invokes, and avoids overwriting existing macros.
+
+Risk: The recalculation workflow saves workbook changes after running LibreOffice formula recalculation.
+
+Mitigation: Run on a copy or confirmed target workbook, and ask before modifying existing workbooks or application configuration.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lnj22/skills/pdf-excel-diff-xlsx)
+- [Publisher profile](https://clawhub.ai/user/lnj22)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, files, guidance]
+
+**Output Format:** [Markdown guidance with Python and shell snippets, generated spreadsheet files, and JSON formula-recalculation results.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May run LibreOffice to recalculate formulas and return workbook error summaries.]
+
+## Skill Version(s):
+
+0.1.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

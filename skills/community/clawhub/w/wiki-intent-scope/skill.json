@@ -1,0 +1,38 @@
+{
+  "name": "wiki-intent-scope",
+  "version": "0.1.0",
+  "description": "解析客户自由表述，识别研究对象、管理问题、研究意图、研究口径、风险和待确认项，内部调用 wiki-normalize，输出聊天摘要、人类可读 scope.md 与机器可读 scope.json，作为 Wiki 研究项目的任务启动节点。",
+  "entrypoint": "SKILL.md",
+  "role": "orchestrator",
+  "inputs": [
+    { "name": "client_request", "type": "string", "required": true, "description": "客户原始自由表述" }
+  ],
+  "outputs": [
+    { "name": "chat_summary", "type": "text", "description": "聊天摘要：假设、待确认项、追问建议" },
+    { "name": "scope.md", "type": "markdown", "description": "人类可读的任务界定文档" },
+    {
+      "name": "scope.json",
+      "type": "json",
+      "description": "机器可读的任务界定交接文件",
+      "fields": [
+        "client_request",
+        "normalize",
+        "boundary_precheck",
+        "problem_transform",
+        "research_intent",
+        "scope_caliber",
+        "conclusion_risk",
+        "framework_depth",
+        "handoff_record"
+      ]
+    }
+  ],
+  "dependencies": ["wiki-normalize"],
+  "used_by": ["wiki-framework-builder"],
+  "resources": {
+    "references": ["references/intent_taxonomy.md", "references/output_contract.md"],
+    "scripts": [],
+    "agents": ["agents/openai.yaml"]
+  },
+  "tags": ["intent", "scope-definition", "task-framing"]
+}

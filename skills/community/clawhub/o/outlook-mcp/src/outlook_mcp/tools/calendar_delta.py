@@ -30,9 +30,22 @@ def _clamp(value: int, low: int, high: int) -> int:
 def _format_event_delta(raw: dict) -> dict:
     """Build the wire-shape event summary from a raw Graph JSON event.
 
-    Mirrors ``calendar_read._format_event_summary`` field-for-field so
-    callers don't have to branch on whether a given dict came from a
-    delta call or a regular list call.
+    Mirrors ``calendar_read._format_event_summary`` key-for-key, so callers
+    don't have to branch on whether a given dict came from a delta call or a
+    regular list call. That is not a promise made in prose: it is pinned by
+    ``test_calendar_delta.py::…::test_both_summaries_carry_the_same_keys``,
+    which compares the two key sets, so a field added to either side fails
+    until it is added to both. The sentence used to stand alone and was false
+    for ``type`` — issue #69, and #63 one module over.
+
+    Key-for-key is a statement about this function, not about the tool's
+    output: ``format_delta_item`` appends ``is_deleted`` to every live item it
+    formats, and returns a tombstone as ``{id, is_deleted: True}`` without
+    calling this at all.
+
+    Neither ``type`` nor ``show_as`` needs a ``$select`` change on this path:
+    the delta endpoint is called without one, so Graph returns every property
+    and both are already in the raw JSON.
     """
     start_node = raw.get("start") or {}
     end_node = raw.get("end") or {}
@@ -57,6 +70,8 @@ def _format_event_delta(raw: dict) -> dict:
         "organizer": sanitize_output(organizer_node.get("name") or ""),
         "response_status": response_node.get("response") or "",
         "is_online": bool(raw.get("isOnlineMeeting")),
+        "type": raw.get("type") or "",
+        "show_as": raw.get("showAs") or "",
     }
 
 
@@ -66,6 +81,7 @@ async def list_events_delta(
     end: str | None,
     page_size: int = 50,
     delta_token: str | None = None,
+    timezone: str = "UTC",
 ) -> dict:
     """List calendar-view changes within ``[start, end]`` since the last token.
 
@@ -76,6 +92,9 @@ async def list_events_delta(
             ignored when ``delta_token`` is set (the cursor already
             encodes the window).
         end: ISO 8601 window end. Same as ``start``.
+        timezone: IANA zone that zone-less ``start``/``end`` values are
+            interpreted in. Defaults to UTC; the server passes
+            ``config.timezone``.
         page_size: Items per Graph page (1-100). Mapped to
             ``Prefer: odata.maxpagesize=N`` — Graph rejects ``$top`` on
             this endpoint.
@@ -97,8 +116,8 @@ async def list_events_delta(
                 "(ISO 8601 datetimes) on the first call — Graph's "
                 "/me/calendarView/delta endpoint has no whole-calendar sync."
             )
-        safe_start = validate_datetime(start)
-        safe_end = validate_datetime(end)
+        safe_start = validate_datetime(start, timezone)
+        safe_end = validate_datetime(end, timezone)
         initial_url = urljoin(GRAPH_BASE, "me/calendarView/delta")
         initial_url = (
             f"{initial_url}?startDateTime={quote(safe_start, safe='')}"
@@ -110,6 +129,7 @@ async def list_events_delta(
         initial_url=initial_url,
         delta_token=delta_token,
         page_size=page_size,
+        resource="calendar",
         headers={"Prefer": f"odata.maxpagesize={page_size}"},
     )
 

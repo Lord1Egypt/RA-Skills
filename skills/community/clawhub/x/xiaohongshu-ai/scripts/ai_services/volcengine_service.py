@@ -15,7 +15,7 @@ DEFAULT_WATERMARK = os.getenv("XHS_VOLCENGINE_WATERMARK", "false").lower() in {"
 def require_api_key() -> str:
     api_key = os.getenv("ARK_API_KEY")
     if not api_key:
-        raise RuntimeError("缺少 ARK_API_KEY。请先 export ARK_API_KEY='你的火山引擎 Ark API Key'")
+        raise RuntimeError("缺少 ARK_API_KEY 环境变量，请在运行前完成配置")
     return api_key
 
 

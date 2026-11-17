@@ -1,0 +1,16 @@
+slug: notification-triage
+name: notification-triage
+owner: jlacroix82
+description: Classify, score, prioritize, and batch notifications. ⚠️ Auto-creates persistent per-source rules on first classification (a single misclassification persists forever). Ignored notifications are silently dropped but logged to dropped.json. Digest clears digest.json, not batch.json. Destructive ops require --force. All writes are atomic. Hard caps: batch≤5000, dropped≤1000, digest≤1000.
+version: 1.1.3
+type: skill
+author: OpenClaw
+license: MIT
+keywords:
+  - notification
+  - triage
+  - classification
+  - priority
+  - agent
+entry: SKILL.md
+dependencies: []

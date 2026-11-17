@@ -1,43 +1,58 @@
-## Description: <br>
-Provides patient-facing post-surgery rehabilitation exercise guidance from existing exercise entries, formatted for structured display and Markdown guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates postoperative rehabilitation exercise guidance from exercise details, returning structured fields and Markdown text for patient-facing rendering.
 
-## Publisher: <br>
-[unisound-llm](https://clawhub.ai/user/unisound-llm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[unisound-llm](https://clawhub.ai/user/unisound-llm)
 
-## Use Case: <br>
-Patients, care teams, or OpenClaw integrators use this skill to turn existing rehabilitation exercise details into structured instructions, precautions, and user-facing Markdown guidance. It is intended to display guidance from an existing plan and does not replace in-person clinical assessment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Medical-context inputs and extracted document content are sent to an external model API. <br>
-Mitigation: Use only after privacy, retention, and compliance review; avoid patient identifiers or protected health information unless consent and secure handling are in place. <br>
-Risk: The skill broadly processes documents and images before generating guidance. <br>
-Mitigation: Run preprocessing in a sandboxed environment, install only the parsers needed for the chosen input types, and review extracted content before submission. <br>
-Risk: Generated rehabilitation guidance may be inappropriate if the source plan is incomplete, outdated, or not patient-specific. <br>
-Mitigation: Use the output as display guidance for an existing rehabilitation plan and have qualified clinical staff review care decisions and patient-specific changes. <br>
+## Use Case:
 
+External ClawHub users can use this skill to transform postoperative rehabilitation exercise entries into readable action guidance, frequency, duration, and precautions. It should be used with appropriate clinical review and not as a substitute for a clinician's rehabilitation plan.
 
-## Reference(s): <br>
-- [CareKit instructions task view reference](https://github.com/carekit-apple/CareKit) <br>
-- [ClawHub skill page](https://clawhub.ai/unisound-llm/unisound-exercise-guidance) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, guidance] <br>
-**Output Format:** [UTF-8 JSON containing structured exercise fields and Markdown natural-language guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an appkey for the remote u1-insuremed model; optional preprocessing supports JSON, CSV, Excel, text, PDF, Word, and image inputs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: The skill may generate patient-facing rehabilitation guidance from incomplete exercise inputs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require clinical review before using outputs for real rehabilitation decisions, and treat generated frequency, duration, intensity, and precautions as draft guidance only.
+
+Risk: Sensitive medical content may be sent to a remote API.
+
+Mitigation: Do not submit identifiable medical records unless the API endpoint, authorization process, and data-handling controls have been approved.
+
+Risk: The runtime may fall back to unaudited shared Python preprocessing code.
+
+Mitigation: Review and approve the local preprocessing path and any shared-code fallback before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/unisound-llm/skills/unisound-exercise-guidance)
+- [CareKit](https://github.com/carekit-apple/CareKit)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [UTF-8 JSON with structured data and Markdown text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes exercise name, rehabilitation phase, instruction, frequency, duration, precautions, status, and generated text.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence; artifact _meta.json reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

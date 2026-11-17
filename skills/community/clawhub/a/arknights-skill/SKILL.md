@@ -1,41 +1,67 @@
 ---
 name: arknights-skill
-description: Answer Arknights questions about operator roles, skill mechanics, investment planning, story context, terminology, and stage strategy; read and maintain a local structured Doctor profile so advice can adapt to the user's roster and progress; clearly separate fresh version checks from non-current judgment.
-compatibility: Compatible with Agent Skills clients, including Codex and Claude Code. Includes the local script `scripts/memory.py` and requires no external credentials. Questions about the current version, latest events, or latest strength assessments require live lookup; when offline, clearly state that conclusions are not current.
+description: >
+  Use when the user asks about Arknights operators, skills, masteries, modules,
+  stages, lore, terms, or resource planning. Do NOT use for other games,
+  non-Arknights gacha advice, or real-time event schedules (requires live
+  lookup). On invocation it reads and updates a local Doctor profile stored
+  only on this machine (~/.config/arknights-skill/doctor-profile.json);
+  profile data is never transmitted.
+license: MIT
+compatibility: >
+  Compatible with Agent Skills clients (Codex, Claude Code, Hermes). Requires
+  shell access for the bundled Python script (`scripts/memory.py`). No external
+  credentials needed. Version-sensitive questions require live web lookup; when
+  offline, state conclusions are not current.
 allowed-tools: shell
 metadata:
-  openclaw:
-    homepage: https://github.com/morandot/arknights-skill
+  version: "1.7.0"
+  homepage: https://github.com/morandot/arknights-skill
+  openclaw-homepage: https://github.com/morandot/arknights-skill
+  author: moran
 ---
 
 # Arknights Guide
 
 A dedicated skill for Arknights questions. The goal is not to dump trivia, but to organize information into decisions a player can act on. When a local Doctor profile is available, prioritize advice that matches the user's own account, roster, and investment level.
 
+<HARD-GATE>
+Do NOT answer any Arknights question without first attempting to read the local Doctor profile. See Rule 0 below.
+</HARD-GATE>
+
 ## When To Use
 
 Use this skill when the user asks about:
 
-- Operator basics, roles, branches, or availability
+- **Operator evaluation**: roles, branches, worth building, availability
   - _"银灰值不值得练？"_ / _"Is SilverAsh worth building?"_
-- Skills, talents, modules, potentials, masteries, and elite promotion value
+- **Skills & investment**: skills, talents, modules, potential, masteries, elite promotion
   - _"银灰专精哪个技能？"_ / _"Which SilverAsh skill to mastery?"_
-- Whether an operator is worth building, who to build first, or how to allocate resources
+- **Resource planning**: who to raise first, allocation, raise-or-skip
   - _"新手该先练谁？"_ / _"Who should a new player raise first?"_
-- Squad composition, main story, event, or high-difficulty stage strategy
+- **Stage strategy**: main story, event, high-difficulty stages
   - _"OF-F4 怎么打？"_ / _"How to clear OF-F4?"_
-- Worldbuilding, factions, character relationships, or story summaries
+- **Comparison**: side-by-side operator analysis
+  - _"银灰和棘刺谁更好？"_ / _"SilverAsh vs Thorns?"_
+- **Lore & story**: worldbuilding, factions, character relationships, story summaries
   - _"整合运动的背景是什么？"_ / _"What is Reunion's backstory?"_
-- Game terminology
+- **Terminology**: game terms and mechanics explanation
   - _"暖机是什么意思？"_ / _"What does warm-up mean?"_
-- Version environment, event summaries, or current strength assessments
+- **Version environment**: current strength assessments, event summaries
   - _"当前版本谁最强？"_ / _"Who is strongest in the current version?"_
-- Comparing two or more operators
-  - _"银灰和棘刺谁更好？"_ / _"SilverAsh vs Thorns, who is better?"_
+
+### When NOT To Use
+
+- Other games or gacha games — this skill only covers Arknights
+- Pull rate calculations, banner probability — live data needed, not a calculator tool
+- Real-time event schedules or server status — always require live lookup
+- Account binding, login issues, payment problems — these are customer service topics
 
 ## Core Rules
 
-### 0. Use The Local Doctor Profile
+### 0. Use The Local Doctor Profile (Mandatory)
+
+**HARD-GATE: You MUST attempt to read the profile before answering.**
 
 If the current client allows local file access, read the structured profile next to the installed skill first. Do not assume the current working directory is the skill directory. Resolve the script path with this fallback:
 
@@ -54,14 +80,16 @@ The user can also set `ARKNIGHTS_MEMORY_DIR` to use a different local directory.
 
 If neither `$CLAUDE_SKILL_DIR` nor `$SKILL_DIR` is set, search `~/.hermes/skills` or `~/.config/arknights-skill` for the directory containing `memory.py`.
 
-When answering:
+**When answering:**
 
 - Prefer known Doctor level, server, resource state, goals, preferences, owned operators, and operator investment from the profile.
 - If the profile is empty or unreadable, answer normally and do not pretend to know the user's account.
 - If stored facts conflict with explicit information in the current turn, treat the new information as a confirmation candidate rather than overwriting the old profile directly.
 - Reply in the user's language unless they ask for another language.
 
-After answering, extract only explicitly provided facts from the user's current turn and update the profile:
+**Post-answer gate: Update the profile only when the user provided new facts.**
+
+If the user's current turn explicitly provided account or operator facts, extract only those explicitly provided facts and update the profile after answering. If the turn contained no new explicit facts, skip the update:
 
 ```bash
 python3 "$CLAUDE_SKILL_DIR/scripts/memory.py" update --patch-json '{"operators":{"SilverAsh":{"owned":true,"elite":2,"level":60,"masteries":{"3":3}}}}'
@@ -82,7 +110,7 @@ Do not write:
 
 When a downgrade or conflicting fact appears, the script writes to `pending_confirmations`. Do not manually overwrite those fields. If useful, ask the user briefly at the end to confirm.
 
-Pending confirmations can be resolved manually:
+**Resolving pending confirmations:**
 
 ```bash
 # Apply a pending downgrade / conflict
@@ -152,14 +180,15 @@ Treat these questions as freshness-critical by default:
 - "What is new on CN / JP / Global?"
 - "Which skill should I mastery in the current environment?"
 
-Rules:
+Checklist for version-sensitive questions:
 
-- If live web access is available, search before answering.
-- Preferred search keywords (adapt to user language):
-  - Chinese: `明日方舟 {operator_name} 强度 {current_version}`, NGA 明日方舟版, PRTS Wiki
-  - English: `Arknights {operator_name} guide {current_version}`, Gamepress, Arknights Wiki
-- If no search was performed, explicitly state that the conclusion is based on non-current knowledge.
-- Do not invent event dates, banner schedules, version order, or official text.
+1. Check if live web access is available
+2. ❌ No access → explicitly state "this conclusion is NOT based on current version data" and answer from general knowledge
+3. ✅ Access → search before answering
+   - Preferred search keywords (adapt to user language):
+     - Chinese: `明日方舟 {operator_name} 强度 {current_version}`, NGA 明日方舟版, PRTS Wiki
+     - English: `Arknights {operator_name} guide {current_version}`, Gamepress, Arknights Wiki
+4. Do not invent event dates, banner schedules, version order, or official text
 
 ### 4. Control Spoilers
 
@@ -170,9 +199,9 @@ When the user did not ask for spoilers, default to Level 0-1:
 - Level 2: moderate spoilers, enough to summarize key conflicts
 - Level 3: full spoilers, including endings and core reveals
 
-When the user explicitly asks for the full story, start with:
+When the user explicitly asks for the full story, start with a spoiler warning:
 
-`Full spoilers below.`
+> **Full spoilers below.**
 
 ### 5. Make Guides Executable
 
@@ -245,6 +274,15 @@ Default structure:
 5. Failure points
 6. Lower-investment substitutes
 
+### Terminology
+
+Default structure:
+
+1. Definition
+2. Practical meaning
+3. Example
+4. Common confusion
+
 ### Comparison
 
 Default structure:
@@ -254,6 +292,17 @@ Default structure:
 3. Each operator's weaknesses
 4. Scenario-by-scenario comparison
 5. Investment advice
+
+## Common Pitfalls
+
+Avoid these when answering:
+
+- **Inventing stats**: Never invent module multipliers, skill percentages, or talent values. State "I don't have the exact multiplier" if unsure.
+- **Presenting old versions as current**: A 6-month-old meta assessment is outdated. Always caveat stale knowledge.
+- **Copying squads without substitution**: If recommending a squad, always explain which roles are essential and what substitutes work.
+- **Equating rarity with power**: A 5-star can outperform a 6-star in specific niches. Evaluate by role fit, not star count.
+- **Assuming universal access**: Not everyone has every 6-star. Check profile; if unavailable, default to F2P-friendly advice.
+- **Over-promising banner value**: Banner evaluation depends on account roster and goals. Never say "must-pull" universally.
 
 ## Agent Configuration (optional)
 
@@ -287,6 +336,8 @@ Do not:
 - Give only a copied squad without explaining substitution logic
 - Present old-version conclusions as current-version facts
 - Store personal account memory anywhere except the local profile, and never in the public repository or release package
+- Recommend pulling based solely on strength without considering the user's roster gaps
+- Repeat the entire profile before answering — use it silently for personalization
 
 ## Final Goal
 

@@ -212,7 +212,7 @@ await test("proxy: forbidden endpoint → forbidden_endpoint", async () => {
   const { proxy } = await import(join(root, "actions", "proxy.js"));
   const res = await proxy({
     args: { endpoint: "/api/v1/admin/delete-everything", method: "POST" },
-    secrets: { ZHENINSURE_API_KEY: "sk_live_12345678901234567890123456789012" },
+    secrets: { ZHENINSURE_API_KEY: "REDACTED-SECRET" },
   });
   assertMatch(res, { success: false, error: "forbidden_endpoint" });
   assert.ok(res.message.includes("端点不可用"));
@@ -222,7 +222,7 @@ await test("proxy: wrong method for endpoint → forbidden_endpoint", async () =
   const { proxy } = await import(join(root, "actions", "proxy.js"));
   const res = await proxy({
     args: { endpoint: "/api/v1/skill/chat/conversations", method: "GET" },
-    secrets: { ZHENINSURE_API_KEY: "sk_live_12345678901234567890123456789012" },
+    secrets: { ZHENINSURE_API_KEY: "REDACTED-SECRET" },
   });
   assertMatch(res, { success: false, error: "forbidden_endpoint" });
 });
@@ -238,7 +238,7 @@ await test("proxy: 200 OK → success with cost", async () => {
 
   const res = await proxy({
     args: { endpoint: "/api/v1/skill/chat/conversations", method: "POST" },
-    secrets: { ZHENINSURE_API_KEY: "sk_live_12345678901234567890123456789012" },
+    secrets: { ZHENINSURE_API_KEY: "REDACTED-SECRET" },
   });
 
   assertMatch(res, { success: true, cost: "Free" });
@@ -248,7 +248,7 @@ await test("proxy: 200 OK → success with cost", async () => {
   // verify request headers
   const [url, init] = _mockLastArgs;
   assert.ok(url.includes("/api/v1/skill/chat/conversations"));
-  assert.strictEqual(init.headers.Authorization, "Bearer sk_live_12345678901234567890123456789012");
+  assert.strictEqual(init.headers.Authorization, "Bearer REDACTED-SECRET");
   assert.ok(init.headers["User-Agent"].includes("ZhenInsure-Skill"));
   assert.ok(init.signal);
 
@@ -262,7 +262,7 @@ await test("proxy: 200 with non-JSON body → success with raw_body", async () =
 
   const res = await proxy({
     args: { endpoint: "/api/v1/skill/chat/handoff", method: "POST", body: {} },
-    secrets: { ZHENINSURE_API_KEY: "sk_live_12345678901234567890123456789012" },
+    secrets: { ZHENINSURE_API_KEY: "REDACTED-SECRET" },
   });
 
   assertMatch(res, { success: true });
@@ -277,7 +277,7 @@ await test("proxy: 401 Unauthorized → unauthorized + action link", async () =>
 
   const res = await proxy({
     args: { endpoint: "/api/v1/skill/chat/messages", method: "POST", body: { conversation_id: "c", content: "hi" } },
-    secrets: { ZHENINSURE_API_KEY: "sk_live_12345678901234567890123456789012" },
+    secrets: { ZHENINSURE_API_KEY: "REDACTED-SECRET" },
   });
 
   assertMatch(res, { success: false, error: "unauthorized", status: 401 });
@@ -293,7 +293,7 @@ await test("proxy: 402 Payment Required → insufficient_balance + recharge acti
 
   const res = await proxy({
     args: { endpoint: "/api/v1/skill/chat/messages", method: "POST", body: {} },
-    secrets: { ZHENINSURE_API_KEY: "sk_live_12345678901234567890123456789012" },
+    secrets: { ZHENINSURE_API_KEY: "REDACTED-SECRET" },
   });
 
   assertMatch(res, { success: false, error: "insufficient_balance", status: 402 });
@@ -309,7 +309,7 @@ await test("proxy: 403 with balance hint → insufficient_balance", async () => 
 
   const res = await proxy({
     args: { endpoint: "/api/v1/skill/chat/messages", method: "POST", body: {} },
-    secrets: { ZHENINSURE_API_KEY: "sk_live_12345678901234567890123456789012" },
+    secrets: { ZHENINSURE_API_KEY: "REDACTED-SECRET" },
   });
 
   assertMatch(res, { success: false, error: "insufficient_balance" });
@@ -323,7 +323,7 @@ await test("proxy: 403 without balance hint → forbidden", async () => {
 
   const res = await proxy({
     args: { endpoint: "/api/v1/skill/chat/conversations", method: "POST" },
-    secrets: { ZHENINSURE_API_KEY: "sk_live_12345678901234567890123456789012" },
+    secrets: { ZHENINSURE_API_KEY: "REDACTED-SECRET" },
   });
 
   assertMatch(res, { success: false, error: "forbidden" });
@@ -337,7 +337,7 @@ await test("proxy: 429 Rate Limit → rate_limited", async () => {
 
   const res = await proxy({
     args: { endpoint: "/api/v1/skill/chat/messages", method: "POST", body: {} },
-    secrets: { ZHENINSURE_API_KEY: "sk_live_12345678901234567890123456789012" },
+    secrets: { ZHENINSURE_API_KEY: "REDACTED-SECRET" },
   });
 
   assertMatch(res, { success: false, error: "rate_limited" });
@@ -352,7 +352,7 @@ await test("proxy: 500 Server Error → server_error", async () => {
 
   const res = await proxy({
     args: { endpoint: "/api/v1/skill/chat/messages", method: "POST", body: {} },
-    secrets: { ZHENINSURE_API_KEY: "sk_live_12345678901234567890123456789012" },
+    secrets: { ZHENINSURE_API_KEY: "REDACTED-SECRET" },
   });
 
   assertMatch(res, { success: false, error: "server_error" });
@@ -367,7 +367,7 @@ await test("proxy: 418 I'm a teapot → api_error (fallback)", async () => {
 
   const res = await proxy({
     args: { endpoint: "/api/v1/skill/chat/messages", method: "POST", body: {} },
-    secrets: { ZHENINSURE_API_KEY: "sk_live_12345678901234567890123456789012" },
+    secrets: { ZHENINSURE_API_KEY: "REDACTED-SECRET" },
   });
 
   assertMatch(res, { success: false, error: "api_error", status: 418 });
@@ -385,7 +385,7 @@ await test("proxy: network failure → network_error with message", async () => 
 
   const res = await proxy({
     args: { endpoint: "/api/v1/skill/chat/messages", method: "POST", body: {} },
-    secrets: { ZHENINSURE_API_KEY: "sk_live_12345678901234567890123456789012" },
+    secrets: { ZHENINSURE_API_KEY: "REDACTED-SECRET" },
   });
 
   assertMatch(res, { success: false, error: "network_error" });
@@ -400,7 +400,7 @@ await test("proxy: timeout → timeout error", async () => {
 
   const res = await proxy({
     args: { endpoint: "/api/v1/skill/chat/messages", method: "POST", body: {} },
-    secrets: { ZHENINSURE_API_KEY: "sk_live_12345678901234567890123456789012" },
+    secrets: { ZHENINSURE_API_KEY: "REDACTED-SECRET" },
   });
 
   assertMatch(res, { success: false, error: "timeout" });
@@ -420,7 +420,7 @@ await test("proxy: config overrides baseUrl", async () => {
   await proxy({
     config: { ZHENINSURE_BASE_URL: "https://staging.zhenins.com" },
     args: { endpoint: "/api/v1/skill/chat/conversations", method: "POST" },
-    secrets: { ZHENINSURE_API_KEY: "sk_live_12345678901234567890123456789012" },
+    secrets: { ZHENINSURE_API_KEY: "REDACTED-SECRET" },
   });
 
   const [url] = _mockLastArgs;
@@ -436,7 +436,7 @@ await test("proxy: trailing slashes stripped from baseUrl", async () => {
   await proxy({
     config: { ZHENINSURE_BASE_URL: "https://api.zhenins.com/" },
     args: { endpoint: "/api/v1/skill/chat/conversations", method: "POST" },
-    secrets: { ZHENINSURE_API_KEY: "sk_live_12345678901234567890123456789012" },
+    secrets: { ZHENINSURE_API_KEY: "REDACTED-SECRET" },
   });
 
   const [url] = _mockLastArgs;
@@ -452,7 +452,7 @@ await test("proxy: env overrides baseUrl via process.env", async () => {
 
   await proxy({
     args: { endpoint: "/api/v1/skill/chat/conversations", method: "POST" },
-    secrets: { ZHENINSURE_API_KEY: "sk_live_12345678901234567890123456789012" },
+    secrets: { ZHENINSURE_API_KEY: "REDACTED-SECRET" },
   });
 
   const [url] = _mockLastArgs;
@@ -466,7 +466,7 @@ await test("proxy: missing endpoint → missing_endpoint", async () => {
   const { proxy } = await import(join(root, "actions", "proxy.js"));
   const res = await proxy({
     args: { method: "POST" },
-    secrets: { ZHENINSURE_API_KEY: "sk_live_12345678901234567890123456789012" },
+    secrets: { ZHENINSURE_API_KEY: "REDACTED-SECRET" },
   });
   assertMatch(res, { success: false, error: "missing_endpoint" });
 });
@@ -485,7 +485,7 @@ await test("proxy: cost table covered for all allowed endpoints", async () => {
     queueFetchResponse(200, { ok: true });
     const res = await proxy({
       args: { endpoint: c.ep, method: c.method, body: {} },
-      secrets: { ZHENINSURE_API_KEY: "sk_live_12345678901234567890123456789012" },
+      secrets: { ZHENINSURE_API_KEY: "REDACTED-SECRET" },
     });
     assert.strictEqual(res.cost, c.expCost, `Expected cost ${c.expCost} for ${c.ep}`);
   }

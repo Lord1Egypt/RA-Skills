@@ -1,42 +1,61 @@
-## Description: <br>
-A Skill for searching hotels and querying prices via AIGoHotel MCP (searchHotels / getHotelDetail / getHotelSearchTags). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI Go Hotel helps agents search hotels, compare prices, inspect room-rate details, and fetch hotel tag metadata through the AIGoHotel MCP service.
 
-## Publisher: <br>
-[qiao101660](https://clawhub.ai/user/qiao101660) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[qiao101660](https://clawhub.ai/user/qiao101660)
 
-## Use Case: <br>
-External users and travel-assistant agents use this skill to search hotels by destination, dates, budget, ratings, guests, and tags, then summarize live room-rate details and cancellation-policy information returned by the AIGoHotel MCP service. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The packaged MCP configuration includes a bearer token for the remote AIGoHotel service, and the security evidence says it should be treated as an exposed shared credential. <br>
-Mitigation: Replace the packaged token with a scoped, revocable authentication mechanism before deployment and avoid treating the bundled token as private or account-specific. <br>
-Risk: Hotel prices, availability, booking links, and cancellation policies are real-time travel data that can change after the tool call. <br>
-Mitigation: Present returned prices and policies as current at response time, do not fabricate missing values, and direct users to verify final terms before booking. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [AI Go Hotel ClawHub listing](https://clawhub.ai/qiao101660/aihotel) <br>
-- [README_EN.md](artifact/README_EN.md) <br>
-- [AIGoHotel API key application](https://mcp.agentichotel.cn/apply) <br>
-- [Model Context Protocol](https://modelcontextprotocol.io/) <br>
+## Use Case:
 
+Travel-focused agents use this skill to help users find hotels by destination, dates, rating, guests, budget, tags, and brands, then summarize real-time prices, room options, cancellation policies, and booking links returned by the MCP tools.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, API calls, configuration, guidance] <br>
-**Output Format:** [Markdown summaries with structured MCP request and response data] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Hotel prices, availability, booking links, and cancellation policies are live service results and may change.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The packaged MCP configuration includes a reusable bearer token.
+
+Mitigation: Remove or rotate the packaged token before use and configure per-user secrets outside the artifact.
+
+Risk: Hotel search queries may contain sensitive travel details.
+
+Mitigation: Avoid sending unnecessary sensitive personal details in raw hotel queries and review data-sharing expectations before use.
+
+Risk: The optional local server setup is not pinned to a reviewed revision with locked dependencies.
+
+Mitigation: Run the local server only from a pinned, reviewed source revision with locked dependencies.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/qiao101660/skills/aihotel)
+- [Publisher profile](https://clawhub.ai/user/qiao101660)
+- [AIGoHotel MCP endpoint](https://mcp.aigohotel.com/mcp)
+- [MCP standard](https://modelcontextprotocol.io/)
+- [AIGoHotel API key application](https://mcp.agentichotel.cn/apply)
+- [Artifact README](artifact/README_EN.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, API calls, configuration, guidance]
+
+**Output Format:** [Markdown with structured hotel summaries and JSON-style MCP call guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include real-time hotel availability, prices, room-rate details, cancellation policy summaries, and booking links when returned by the MCP service.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

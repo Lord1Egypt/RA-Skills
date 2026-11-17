@@ -1,45 +1,60 @@
-## Description: <br>
-Modern Node.js IMAP client library guidance for email integration, covering authentication, mailbox locking, streaming fetches, async iterators, reconnection strategies, proxy support, and provider-specific configuration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Modern Node.js IMAP client library guidance for email integration, covering authentication, mailbox locking, streaming fetches, async iterators, reconnection strategies, proxy support, and provider-specific configurations.
 
-## Publisher: <br>
-[openlark](https://clawhub.ai/user/openlark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[openlark](https://clawhub.ai/user/openlark)
 
-## Use Case: <br>
-Developers and engineers use this skill to write Node.js IMAP integrations with ImapFlow, including connecting to providers, fetching and searching messages, managing mailboxes, handling IDLE notifications, and using provider-specific authentication. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated code may expose mailbox credentials or OAuth tokens if they are hard-coded, logged, or stored insecurely. <br>
-Mitigation: Use app-specific passwords or scoped OAuth tokens, keep secrets outside source code, and avoid logging authentication values. <br>
-Risk: Generated mailbox operations can move, delete, expunge, flag, append, or otherwise change email data. <br>
-Mitigation: Require explicit user confirmation before write or destructive actions and preview affected message ranges before execution. <br>
-Risk: Fetching broad message ranges or full message sources can disclose more email content than needed. <br>
-Mitigation: Fetch the smallest needed message range and fields, and prefer envelope, headers, or targeted body parts over full sources when possible. <br>
+## Use Case:
 
+Developers and engineers use this skill when building IMAP-backed email features such as connecting to mail providers, fetching and searching messages, managing mailboxes, handling Gmail labels, and monitoring mailboxes with IDLE.
 
-## Reference(s): <br>
-- [ImapFlow API Reference](references/api_reference.md) <br>
-- [IMAP Connection Configurations](references/connection.md) <br>
-- [IMAP Search Key Reference](references/searching.md) <br>
-- [Proton Mail Bridge](https://proton.me/mail/bridge) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, configuration] <br>
-**Output Format:** [Markdown with JavaScript code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only output; generated code may access or change mailbox data when executed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can guide broad mailbox reads and monitoring of sensitive email content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation before mailbox reads or IDLE monitoring, and scope operations to the minimum mailbox, query, and message range needed.
+
+Risk: The skill includes mailbox changes such as delete, expunge, move, rename, and flag updates that can be irreversible or disruptive.
+
+Mitigation: Require explicit confirmation before destructive or state-changing mailbox operations, and prefer UID-scoped dry-run previews where practical.
+
+Risk: The skill shows authentication patterns using OAuth tokens and app passwords.
+
+Mitigation: Store credentials in a secrets manager or environment-specific secret store, and avoid hardcoding tokens, app passwords, or proxy credentials in generated code.
+
+## Reference(s):
+
+- [ImapFlow API Reference](references/api_reference.md)
+- [IMAP Connection Configurations](references/connection.md)
+- [IMAP Search Key Reference](references/searching.md)
+- [Proton Mail Bridge](https://proton.me/mail/bridge)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, code, configuration]
+
+**Output Format:** [Markdown guidance with JavaScript code examples and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces implementation guidance for IMAP connection, authentication, search, mailbox management, message fetching, IDLE monitoring, and provider-specific setup.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,58 @@
-## Description: <br>
-Generates PizzINT reports that summarize Pentagon Pizza Index signals, DOUGHCON levels, pizza shop activity, PolyPulse threats, prediction-market signals, and OSINT updates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+PizzINT Monitor gathers public PizzINT signals and formats a geopolitical OSINT-style status report with NEH, DOUGHCON, pizza shop activity, PolyPulse, Polymarket, and OSINT summary sections.
 
-## Publisher: <br>
-[kai157isme-lgtm](https://clawhub.ai/user/kai157isme-lgtm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kai157isme-lgtm](https://clawhub.ai/user/kai157isme-lgtm)
 
-## Use Case: <br>
-Agents use this skill to inspect PizzINT-related signals and produce concise OSINT-style status reports for users tracking geopolitical risk indicators. The reports are for situational awareness and should not be treated as authoritative military, political, financial, or safety advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: PizzINT outputs are speculative OSINT indicators and may be mistaken for authoritative geopolitical, military, financial, or safety advice. <br>
-Mitigation: Present reports as situational awareness only, preserve uncertainty language, and require independent verification before decisions or actions. <br>
-Risk: The live PizzINT site is client-side rendered, so script-only fetching can miss or misread current data. <br>
-Mitigation: Use browser-based capture for live readings and rely on the parser only after data has been captured or when validating already available data. <br>
-Risk: Broad geopolitical prompts may activate the skill when a user did not intend to run a PizzINT report. <br>
-Mitigation: Narrow activation to explicit PizzINT, pizza index, Pentagon Pizza, or equivalent monitoring requests. <br>
+## Use Case:
 
+Agents use this skill to collect or parse public PizzINT data and produce a concise geopolitical monitoring report. It is intended for informal OSINT correlation and should not be used as authoritative intelligence, investment advice, or a basis for operational decisions.
 
-## Reference(s): <br>
-- [PizzINT live site](https://pizzint.watch/) <br>
-- [ClawHub release page](https://clawhub.ai/kai157isme-lgtm/pizzint-monitor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown report with tables, status labels, warnings, and optional shell command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports include logic checks for NEH thresholds, DOUGHCON levels, threat labels, and source contradictions when data is available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server-resolved release metadata) <br>
+Risk: The generated threat report may be mistaken for authoritative intelligence or decision guidance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the report as informal OSINT correlation and verify findings against primary sources before making financial, operational, or safety decisions.
+
+Risk: Real-time data collection can fail or be incomplete because pizzint.watch is client-side rendered.
+
+Mitigation: Use a browser-based capture path when current data is required and report unavailable values explicitly instead of inferring them.
+
+Risk: Broad geopolitical trigger terms and risk labels may overstate weak correlations.
+
+Mitigation: Preserve the skill's logic checks, keep threshold statements tied to observed values, and disclose correlation-versus-causation limits in the report.
+
+## Reference(s):
+
+- [PizzINT live data source](https://pizzint.watch/)
+- [ClawHub skill release page](https://clawhub.ai/kai157isme-lgtm/skills/pizzint-monitor)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown report with tables, status summaries, source notes, and logic validation warnings]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are primarily Chinese-language and may include geopolitical risk labels, threshold checks, browser-captured data notes, and warnings when live data cannot be retrieved.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

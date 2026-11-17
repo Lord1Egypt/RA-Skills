@@ -1,5 +1,5 @@
 ---
-name: crypto-cog
+name: crypto-research-cellcog
 description: "AI crypto research and analysis powered by CellCog. Token deep-dives, on-chain metrics, DeFi protocol breakdowns, wallet portfolio reviews, market sentiment, whitepaper analysis, smart contract evaluation. Comprehensive crypto intelligence from a single prompt."
 metadata:
   openclaw:
@@ -12,9 +12,9 @@ author: CellCog
 homepage: https://cellcog.ai
 dependencies: [cellcog]
 ---
-# Crypto Cog - Deep Research for a 24/7 Market
+# Crypto Research - Deep Research for a 24/7 Market
 
-**The market never sleeps, and neither does your analysis.** #1 on DeepResearch Bench (Apr 2026) applied to crypto.
+**The market never sleeps, and neither does your analysis.** #1 on DeepResearch Bench (October 2026) applied to crypto.
 
 Crypto moves fast. Narratives shift overnight. New protocols launch daily. You need research depth that keeps pace with a market that never closes. CellCog brings the same deep reasoning that tops financial research benchmarks — now applied to tokens, DeFi, on-chain data, and the entire Web3 landscape. From degen plays to institutional due diligence, one prompt covers it all.
 
@@ -28,7 +28,7 @@ result = client.create_chat(
     prompt="[your task prompt]",
     notify_session_key="agent:main:main",
     task_label="my-task",
-    chat_mode="agent",
+    chat_mode="team",
 )
 ```
 
@@ -39,7 +39,7 @@ client = CellCogClient(agent_provider="openclaw|cursor|claude-code|codex|...")
 result = client.create_chat(
     prompt="[your task prompt]",
     task_label="my-task",
-    chat_mode="agent",
+    chat_mode="team",
 )
 print(result["message"])
 ```
@@ -132,19 +132,17 @@ Due diligence on new projects:
 
 ---
 
-## Chat Mode for Crypto
+## Choosing Mode & Tier
 
-| Scenario | Recommended Mode |
-|----------|------------------|
-| Quick price checks, simple token lookups, basic metrics | `"agent"` |
-| Deep token analysis, DeFi research, ecosystem mapping, portfolio strategy | `"agent team"` |
-| Institutional due diligence, high-stakes portfolio decisions, regulatory analysis | `"agent team max"` |
+**Use `chat_mode="team"` — this is exactly what Agent Team exists for.** Deep research is THE Team use case: multi-source synthesis, cross-validation, citation verification, multiple reasoning passes.
 
-**Use `"agent team"` for most crypto research.** The crypto space requires synthesizing information from many sources — protocol docs, on-chain data, market analysis, social sentiment. Agent team mode delivers the multi-source depth that serious crypto research demands.
+| Scenario | Recommended |
+|----------|-------------|
+| Token analysis, DeFi research, ecosystem mapping | `chat_mode="team"` (default tier `"core"`) |
+| Institutional due diligence, high-stakes portfolio decisions | `chat_mode="team", chat_tier="max"` (requires >=2,000 credits) |
+| Quick lookups, simple summaries | `chat_mode="agent"` |
 
-**Use `"agent"` for quick lookups** — current prices, basic metrics, or simple factual questions.
-
-**Use `"agent team max"` for institutional-grade crypto work** — fund-level due diligence, high-stakes portfolio rebalancing, regulatory compliance research, or any crypto analysis where significant capital is at risk. All settings maxed for the deepest reasoning. Requires ≥2,000 credits.
+Legacy names `"agent team"` / `"agent team max"` still work forever (they map to team core / team max).
 
 ---
 
@@ -217,6 +215,7 @@ Due diligence on new projects:
 
 ## If CellCog is not installed
 
-Run `/cellcog-setup` (or `/cellcog:cellcog-setup` depending on your tool) to install and authenticate.
-**OpenClaw users:** Run `clawhub install cellcog` instead.
+**Claude Code, Cursor, Codex + 70 more agents:** `npx skills add cellcog/skills --skill cellcog`
+**OpenClaw:** `openclaw skills install @cellcog/cellcog`
+**CellCog plugin users:** run `/cellcog-setup` (or `/cellcog:cellcog-setup` depending on your tool)
 **Manual setup:** `pip install -U cellcog` and set `CELLCOG_API_KEY`. See the **cellcog** skill for SDK reference.

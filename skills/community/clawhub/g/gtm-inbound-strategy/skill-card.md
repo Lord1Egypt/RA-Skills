@@ -1,39 +1,54 @@
-## Description: <br>
-Design inbound GTM systems, including lead routing logic, PLG activation flows, nurture tracks, and ICP-based triage. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Design inbound GTM systems for lead routing logic, PLG activation flows, nurture tracks, and ICP-based triage.
 
-## Publisher: <br>
-[davidslavich](https://clawhub.ai/user/davidslavich) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[davidslavich](https://clawhub.ai/user/davidslavich)
 
-## Use Case: <br>
-Marketing, sales, RevOps, and GTM teams use this skill to design inbound lead routing, PLG activation flows, nurture tracks, ICP triage, and handoff SLAs from lead capture through conversion. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated routing rules, lead scores, nurture sequences, or SLAs may be inaccurate or misaligned with live sales and marketing operations. <br>
-Mitigation: Review and adapt outputs with sales, marketing, and RevOps owners before applying them to production workflows. <br>
+## Use Case:
 
+GTM, marketing, sales, and revenue operations teams use this skill to design or optimize inbound lead capture, routing, PLG activation, nurture tracks, and handoff SLAs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/davidslavich/gtm-inbound-strategy) <br>
-- [iCustomer](https://icustomer.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown planning brief with routing logic, activation flow, nurture tracks, and SLA details.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution or credentials; generated GTM rules should be reviewed before operational use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release and skill frontmatter) <br>
+Risk: Users may paste sensitive customer, lead, or account data into the agent while using the GTM planning workflow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use anonymized or minimized lead attributes unless the user explicitly intends that data to be processed for GTM planning.
+
+Risk: Routing thresholds, nurture cadences, or SLAs may be wrong for a specific market, product, or sales motion.
+
+Mitigation: Have GTM owners review and adapt thresholds, cadences, and ownership rules before operational use.
+
+## Reference(s):
+
+- [iCustomer Website](https://icustomer.ai)
+- [ClawHub Skill Page](https://clawhub.ai/davidslavich/skills/gtm-inbound-strategy)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Guidance]
+
+**Output Format:** [Markdown GTM plan with routing logic, activation flow, nurture tracks, and handoff SLAs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution required]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

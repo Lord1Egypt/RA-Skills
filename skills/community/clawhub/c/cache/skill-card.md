@@ -1,43 +1,59 @@
-## Description: <br>
-Manage a local key-value cache store using bash and Python for caching API responses, session data, or computed results with TTL support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage a local key-value cache store using bash and Python, with TTL support for API responses, session data, and computed results.
 
-## Publisher: <br>
-[xueyetianya](https://clawhub.ai/user/xueyetianya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xueyetianya](https://clawhub.ai/user/xueyetianya)
 
-## Use Case: <br>
-Developers and agents use this skill to store, retrieve, search, import, export, and manage local cache entries with TTL metadata during repeated workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Cache entries are stored locally in plaintext under ~/.cache-tool. <br>
-Mitigation: Avoid storing API keys, tokens, credentials, or sensitive session data in the cache. <br>
-Risk: Export operations write cache contents to a user-specified path. <br>
-Mitigation: Export only to paths that are intended to be created or overwritten. <br>
-Risk: Import operations can replace existing cache entries with matching keys. <br>
-Mitigation: Treat import files as trusted input and review them before importing. <br>
+## Use Case:
 
+Developers and agents use this skill to store, retrieve, search, export, import, and expire local cache entries during workflows that benefit from reusable temporary data.
 
-## Reference(s): <br>
-- [Cache on ClawHub](https://clawhub.ai/xueyetianya/cache) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Configuration] <br>
-**Output Format:** [Raw stdout values for get operations; JSON objects for other cache commands; Markdown usage guidance in the skill documentation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Cache data is stored locally under ~/.cache-tool with TTL metadata, tags, import/export support, and configurable defaults.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata) <br>
+Risk: The cache may store tokens, session data, private API responses, or personal information in plaintext local files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Cache only data that is acceptable to store in plaintext, avoid secrets and personal information, and review local file permissions before use.
+
+Risk: Exported cache backups may expose cached data if placed in shared folders or source control.
+
+Mitigation: Keep exports in private locations and exclude cache backups from repositories and shared workspaces.
+
+Risk: The flush command can delete cache entries without confirmation.
+
+Mitigation: Export or inspect important cache entries before running flush, especially when using broad patterns or no pattern.
+
+## Reference(s):
+
+- [Cache ClawHub listing](https://clawhub.ai/xueyetianya/skills/cache)
+- [Publisher profile](https://clawhub.ai/user/xueyetianya)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, configuration, guidance, text, JSON]
+
+**Output Format:** [Markdown guidance with inline bash commands; command results are raw text or JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores cache data locally in plaintext files under ~/.cache-tool.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release evidence; artifact files identify tool version 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

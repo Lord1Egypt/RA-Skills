@@ -1,42 +1,58 @@
-## Description: <br>
-Search and add movies to Radarr, with support for collections and search-on-add behavior. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search and add movies to Radarr, including collection support and search-on-add options.
 
-## Publisher: <br>
-[frannunpal](https://clawhub.ai/user/frannunpal) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[frannunpal](https://clawhub.ai/user/frannunpal)
 
-## Use Case: <br>
-External users and developers use this skill to search Radarr, check whether movies already exist, add individual movies or full collections, and remove library entries through Radarr API calls. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can use a Radarr API key to modify the user's Radarr library. <br>
-Mitigation: Install only when the publisher and artifact are trusted, and use Radarr credentials with the minimum access needed for the intended workflow. <br>
-Risk: The remove command can delete media files when --delete-files is used. <br>
-Mitigation: Confirm the selected movie and deletion intent before running removal commands that include --delete-files. <br>
-Risk: The add-collection workflow can enable persistent monitoring and future automatic collection additions. <br>
-Mitigation: Review collection additions and Radarr collection monitoring settings after use, especially when adding a full collection. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/frannunpal/radarr-fixed) <br>
-- [Original Radarr skill](https://clawhub.com/jordyvandomselaar/radarr) <br>
+## Use Case:
 
+External users and home media operators use this skill to search Radarr, present TMDB-linked movie results, add individual movies or collections, and remove library entries after confirmation.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and command output text or JSON from Radarr] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl, jq, and Radarr credentials via configuration file or environment variables.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.4 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can mutate a Radarr library by adding movies, adding collections, monitoring collections, and removing movies.
+
+Mitigation: Review requested actions before execution and use a Radarr API key whose permissions are appropriate for library changes.
+
+Risk: The remove flow can delete media files when the delete-files option is used.
+
+Mitigation: Require explicit user confirmation before removal and separate confirmation before any file deletion.
+
+Risk: Collection add behavior can enable monitoring and future auto-adds.
+
+Mitigation: Confirm collection scope and monitoring behavior with the user before adding a collection.
+
+## Reference(s):
+
+- [Radarr Fixed ClawHub Page](https://clawhub.ai/frannunpal/skills/radarr-fixed)
+- [Original Radarr Skill](https://clawhub.com/jordyvandomselaar/radarr)
+- [TMDB Movie Links](https://themoviedb.org/movie/ID)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, JSON, Configuration]
+
+**Output Format:** [Markdown guidance with shell commands and command output text or JSON]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl, jq, a Radarr URL, and a Radarr API key with library mutation access.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

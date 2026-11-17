@@ -1,40 +1,54 @@
-## Description: <br>
-Prepare and publish a git release tag by inspecting the repo's release convention, bumping affected package versions, validating release builds, committing the release prep, pushing the branch, and pushing a new tag. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Prepare and publish a git release tag by inspecting the repo's release convention, bumping affected package versions, validating release builds, committing the release prep, pushing the branch, and pushing a new tag.
 
-## Publisher: <br>
-[femto](https://clawhub.ai/user/femto) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[femto](https://clawhub.ai/user/femto)
 
-## Use Case: <br>
-Developers and release engineers use this skill to prepare version bumps, run release validations, commit release prep, and push annotated git tags that may trigger publishing workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can make real repository changes and trigger release automation. <br>
-Mitigation: Before allowing it to push, confirm the repository, branch, version, changed files, remote, tag name, and expected CI/CD or package-publishing effects. <br>
-Risk: Incorrect release preparation can include unrelated changes, use the wrong tag pattern, or publish from an unvalidated build. <br>
-Mitigation: Review the release plan, stage only release files, run the builds required by the tag-triggered workflow, and do not create or push the tag while required builds are failing. <br>
+## Use Case:
 
+Developers and release engineers use this skill to prepare version bumps, validate release builds, commit release preparation changes, and push annotated git tags that may trigger release workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/femto/new-tag) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown summary with shell commands and release metadata] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports bumped packages and versions, validation commands, commit SHA, pushed tag name, and residual release risk.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata) <br>
+Risk: The skill can prepare remote release-triggering actions by pushing a branch and git tag.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require the agent to show the target branch, commit SHA, tag name, changed files, affected packages, and likely workflows before explicitly approving any branch or tag push.
+
+Risk: A tag push may trigger GitHub Actions or package publishing before the release is ready.
+
+Mitigation: Run the builds required by the tag-triggered workflow and do not approve tag creation or tag push while required validation is failing.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/femto/skills/new-tag)
+- [Publisher Profile](https://clawhub.ai/user/femto)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Code, Configuration]
+
+**Output Format:** [Markdown summary with release details and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include bumped packages, new versions, validation commands, commit SHA, pushed tag name, and residual release risk.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

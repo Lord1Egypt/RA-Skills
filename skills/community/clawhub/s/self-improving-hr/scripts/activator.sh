@@ -16,6 +16,6 @@ After completing this HR task, evaluate if extractable knowledge emerged:
 - Benefits or payroll process error? → HR_PROCESS_ISSUES.md (process_inefficiency)
 
 NEVER log PII (names, SSNs, salaries, medical info). Always anonymize.
-If recurring pattern (3+ occurrences): promote to policy doc or compliance calendar.
+If a recurring pattern (3+ occurrences): propose promotion to policy doc or compliance calendar.; apply only after explicit user approval.
 </hr-self-improvement-reminder>
 EOF

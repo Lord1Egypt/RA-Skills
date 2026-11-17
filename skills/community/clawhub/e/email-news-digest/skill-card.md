@@ -1,42 +1,57 @@
-## Description: <br>
-Summarize recent emails, generate a thematic image, and send a formatted HTML email report with the summary and image. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Summarize recent emails, generate a thematic image, and send a formatted HTML email report with the summary and image.
 
-## Publisher: <br>
-[matthewxfz3](https://clawhub.ai/user/matthewxfz3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[matthewxfz3](https://clawhub.ai/user/matthewxfz3)
 
-## Use Case: <br>
-Employees, external users, and developers use this skill to turn recent Gmail messages matching a query into a concise email digest with a generated image and formatted HTML report. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The workflow reads Gmail content and sends email automatically, which can expose confidential messages or send a digest to unintended recipients. <br>
-Mitigation: Use only trusted Gmail accounts and recipient lists, keep Gmail queries narrow, and add a dry-run or confirmation step before sending confidential digests. <br>
-Risk: The current summarizer uses a canned placeholder summary that may not reflect the retrieved email content. <br>
-Mitigation: Treat generated summaries as unreliable until content-based summarization is implemented and review the digest before sending. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Email Filters Reference](references/email-filters.md) <br>
-- [HTML Email Template](references/html-template.html) <br>
-- [ClawHub Skill Page](https://clawhub.ai/matthewxfz3/email-news-digest) <br>
-- [Publisher Profile](https://clawhub.ai/user/matthewxfz3) <br>
+## Use Case:
 
+External users and developers use this skill to turn a targeted Gmail query into an email digest with a structured summary, generated image, and formatted HTML report sent to chosen recipients.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples; generated artifacts include JSON summary data, HTML email content, and an attached image.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The digest workflow accepts a recipient list, Gmail search query, and image prompt.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill needs Gmail mailbox access and can send outbound email to supplied recipients.
+
+Mitigation: Use narrowly targeted Gmail queries and trusted recipient lists only, and review recipients before execution.
+
+Risk: The current summarizer is a placeholder and may send digest content that is unrelated to the selected email.
+
+Mitigation: Avoid confidential, regulated, or business-critical mail until a true input-based summarizer and preview or confirmation step are added.
+
+Risk: Temporary files and generated artifacts may contain decoded email content or report material during processing.
+
+Mitigation: Run the skill only in trusted environments and improve temporary-file handling before use with sensitive mailbox content.
+
+## Reference(s):
+
+- [Email Filters Reference](references/email-filters.md)
+- [HTML Email Template](references/html-template.html)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Text, Markdown, Files, Configuration]
+
+**Output Format:** [Markdown guidance with inline bash commands; runtime output includes a generated image file, structured summary JSON, and an HTML email body.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires recipient addresses, a Gmail search query, and an image prompt.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

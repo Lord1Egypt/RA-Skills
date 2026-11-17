@@ -15,7 +15,7 @@ content.
 
 If the user has not sent the content yet, use short wording:
 
-你现在这条内容做完了吗？可以直接把标题、封面/图片、正文或口播稿发给我。我先帮你做发布前最后检查：内容是否清楚、封面辨识度、标题点击率、前三行/前三秒痛点，以及 10 个关键词有没有自然埋进去。
+你现在这条内容做完了吗？可以直接把标题、封面/图片、正文或口播稿发给我。我先帮你做发布前最后检查：小红书风控、内容是否清楚、封面辨识度、标题点击率、前三行/前三秒痛点，以及 10 个关键词有没有自然埋进去。
 
 If the user already sent enough material, proceed directly.
 
@@ -42,7 +42,34 @@ If the user only asks for publishing keywords, route to
 If the user already published the note, route to
 `post-publish-data-review-workflow.md`.
 
-## Six Checks
+## Seven Checks
+
+### 0. Xiaohongshu Compliance Risk Gate
+
+Use `xhs-platform-management-risk-baseline.md` and then
+`xhs-content-compliance-risk-gate.md` before judging polish.
+
+First check the management baseline:
+
+- public value first: the note gives useful content inside Xiaohongshu
+- product name later: brand/product/course/service does not dominate title,
+  cover, or opening before user value is clear
+- no diversion action: no WeChat, link, QR code, group, private-domain, or
+  comment-gated resource mechanics in the publishable Xiaohongshu version
+
+Then scan whether the draft contains:
+
+- off-platform diversion: WeChat, VX, private domain, group, QR code, external
+  links, other platforms, "主页有链接", or disguised contact wording
+- WeChat/private-contact guidance: "加微信", "私信微信", "评论区留微信",
+  "进群", "拉群", "报价私聊"
+- incentivized comment interaction: "评论区扣 1", "留言关键词发你",
+  "评论领取", "点赞收藏后发资料", "关注 + 私信"
+- exaggerated promises or unsupported sensitive claims, especially in medical,
+  health, finance, education, parenting, income, employment, or legal topics
+
+If found, mark the note as not ready until the risky line is rewritten. Do not
+leave the risky CTA in the final replacement copy.
 
 ### 1. Content Clarity
 
@@ -140,10 +167,11 @@ Use this structure:
    - say whether it is ready to publish, needs small edits, or needs a bigger
      rewrite before posting.
 
-2. 发布前 6 项检查
+2. 发布前 7 项检查
 
 | 检查项 | 判断 | 建议 |
 | --- | --- | --- |
+| 小红书风控 | 通过 / 建议改写 / 不建议发布 | 公开价值、产品名位置、导流动作、互动引导 |
 | 内容清楚度 | 通过 / 小改 / 重写 | ... |
 | 出图/页面完成度 | ... | ... |
 | 封面辨识度 | ... | ... |
@@ -163,6 +191,7 @@ Give only the changed parts:
 - revised cover copy, if cover needs work
 - revised first 3 lines or first 3 seconds, if opening needs work
 - final 10 keywords, if keyword field needs work
+- safer body/comment/CTA wording, if the compliance gate finds risky wording
 
 5. 发布后回流
 
@@ -174,7 +203,7 @@ End with:
 
 - Do not promise the note will go viral.
 - Do not run keyword or benchmark searches unless the user asks for external
-  references and confirms the credit scope.
+  references and confirm the research scope.
 - Do not rewrite the full note if only the final gate is needed.
 - Do not evaluate cover quality if the user has not provided cover copy,
   reference image, generated image, or page outline; ask for it or mark it as

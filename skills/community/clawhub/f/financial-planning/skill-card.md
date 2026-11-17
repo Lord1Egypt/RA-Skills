@@ -1,39 +1,48 @@
-## Description: <br>
-Plan and manage solopreneur business finances with budgets, cash-flow forecasts, P&L planning, targets, tax planning, and monthly review routines. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Plan and manage the finances of a solopreneur business with budgeting, cash flow forecasting, financial targets, expense tracking, and financial dashboards.
 
-## Publisher: <br>
-[JK-0001](https://clawhub.ai/user/JK-0001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jk-0001](https://clawhub.ai/user/jk-0001)
 
-## Use Case: <br>
-Solopreneurs and their advisors use this skill to set up lightweight business finance planning, forecast cash flow, define targets, prepare for taxes, and run a monthly financial review. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Financial and tax planning guidance may be incomplete, outdated, or unsuitable for a user's jurisdiction. <br>
-Mitigation: Verify tax rates, deadlines, legal obligations, and major financial decisions with current official sources or a qualified professional. <br>
-Risk: Users may enter sensitive revenue, expense, cash-flow, or tax numbers while working through the planning templates. <br>
-Mitigation: Treat entered financial numbers as sensitive and avoid sharing unnecessary personal or business financial details. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/JK-0001/financial-planning) <br>
+## Use Case:
 
+External users and solopreneurs use this skill to create practical business budgets, cash flow forecasts, financial targets, monthly review routines, and tax-planning habits without accounting expertise.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Text] <br>
-**Output Format:** [Markdown guidance with budget, cash-flow, and review templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Informational financial planning guidance only; it does not execute code, access credentials, or export data.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill includes finance and tax planning percentages that may be mistaken for professional accounting or legal advice.
+
+Mitigation: Treat the guidance as general planning support and review tax, legal, and accounting decisions with a qualified professional for the user's jurisdiction.
+
+## Reference(s):
+
+- [Financial Planning Skill Page](https://clawhub.ai/jk-0001/skills/financial-planning)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown]
+
+**Output Format:** [Markdown guidance with planning templates and checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Provides general budgeting, cash flow, financial target, and tax planning guidance; not professional accounting or legal advice.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,61 @@
-## Description: <br>
-Generates cryptocurrency trading signals from Bollinger Band Breakout or RSI Reversal strategies and records signal output for optional alerting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate crypto trading signals with BB Breakout or RSI Reversal strategies and prepare alerts for Discord, Telegram, or custom channels.
 
-## Publisher: <br>
-[nititepfirm](https://clawhub.ai/user/nititepfirm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[nititepfirm](https://clawhub.ai/user/nititepfirm)
 
-## Use Case: <br>
-Developers and trading-bot operators use this skill to generate technical-analysis signals for configured crypto pairs and timeframes. The output can be reviewed directly, saved as JSON, or connected to a separate messaging wrapper for alerts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on the local Python environment and a /root/quant-trading-bot path. <br>
-Mitigation: Verify those local paths and dependencies are trusted before installing or scheduling the skill. <br>
-Risk: Discord or Telegram alerts may not be sent by the skill alone. <br>
-Mitigation: Add or verify a separate OpenClaw messaging wrapper before relying on external notifications. <br>
-Risk: Scheduled execution can repeatedly fetch market data and update local signal output. <br>
-Mitigation: Enable cron or other recurring execution only when repeated runs are intended. <br>
-Risk: Generated trading signals may be mistaken for financial advice. <br>
-Mitigation: Treat generated signals as informational technical-analysis output and review them before acting. <br>
+## Use Case:
 
+Developers and trading automation users use this skill to generate indicator-based crypto market signals across configured symbols and intervals, then review or route the resulting alerts.
 
-## Reference(s): <br>
-- [Signal Generator ClawHub Page](https://clawhub.ai/nititepfirm/signal-generator) <br>
-- [README](artifact/README.md) <br>
-- [Skill Documentation](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, configuration] <br>
-**Output Format:** [Console text plus JSON signal records in last_signal.json] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses configured symbol, strategy, intervals, targets, and filters; Discord or Telegram delivery requires a separate messaging wrapper.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: The skill adds a root-level quant-trading-bot path and may rely on that environment at runtime.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it in a dedicated, unprivileged Python environment and remove or replace the root-path dependency before installation.
+
+Risk: Scheduled execution can repeatedly fetch market data and write trading signals without interactive review.
+
+Mitigation: Review configuration before enabling cron or other schedulers, and monitor generated signals before routing them to alert channels.
+
+Risk: Discord or Telegram alert targets can reveal trading activity or channel identifiers.
+
+Mitigation: Use only intended private channels and verify alert wrappers before enabling external notifications.
+
+Risk: Python dependencies are declared with broad minimum versions.
+
+Mitigation: Pin and review dependencies such as pandas, numpy, and ccxt in the deployment environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nititepfirm/skills/signal-generator)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON]
+
+**Output Format:** [Console text and JSON signal records]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Signals include strategy, price, long and short flags, indicator values, interval, and timestamp.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, package.json, README.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,243 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://xiaozhi-skills.openclaw.dev/schemas/handover-protocol.schema.json",
+  "title": "XiaozhiMultiAgentHandoverProtocol",
+  "x-distributed-to": "xiaozhi-math-gradient-trainer",
+  "x-skill-scope": {
+    "note": "本副本随 xiaozhi-math-gradient-trainer 分发，已按其 SKILL.md 裁剪：只保留正文在非否定语境下提到的交接类型（共 2 项，删去 0 个顶层字段）。完整定义在归属技能处。读/写权限与授权位以 SKILL.md 为准。",
+    "paths": [
+      "subject_profile_writeback",
+      "reminder_enqueue"
+    ]
+  },
+  "description": "小智伴学多智能体协作与数据流转协议 (2.1.1)。sender/recipient 覆盖全库 58 个 SKILL；词表以 shared/vocab.md 为唯一来源。",
+  "type": "object",
+  "properties": {
+    "sessionId": {
+      "description": "当前会话的唯一ID标识，用于跟踪跨智能体对话流",
+      "type": "string"
+    },
+    "protocolVersion": {
+      "description": "协议版本，与仓库版本一致（当前 2.12.7）",
+      "type": "string",
+      "enum": [
+        "2.12.7"
+      ]
+    },
+    "handoverType": {
+      "description": "subject_profile_writeback=写入学习DNA subjectExtensions/extensions；reminder_enqueue=向IM提醒入队（唯一允许的提醒方式，需 consent.reminderConsent）",
+      "type": "string",
+      "enum": [
+        "subject_profile_writeback",
+        "reminder_enqueue"
+      ]
+    },
+    "sender": {
+      "description": "发送数据的源SKILL名称",
+      "type": "string",
+      "enum": [
+        "xiaozhi-math-gradient-trainer"
+      ]
+    },
+    "recipient": {
+      "description": "接收数据的目标SKILL名称",
+      "type": "string",
+      "enum": [
+        "xiaozhi-im-reminder",
+        "xiaozhi-learning-dna"
+      ]
+    },
+    "payload": {
+      "description": "数据负载主体，结构根据 handoverType 动态变化",
+      "type": "object",
+      "properties": {
+        "profileData": {
+          "description": "DNA回写专属结构。handoverType 为 subject_profile_writeback 时必填",
+          "type": "object",
+          "properties": {
+            "updateTarget": {
+              "type": "string",
+              "enum": [
+                "subject_extension"
+              ]
+            },
+            "subjectExtensionPatch": {
+              "type": "object",
+              "description": "subject_extension 时：只允许本学科分支 subjectExtensions.math，且只写 subtypes、gradientLevel、trainingLog",
+              "properties": {
+                "math": {
+                  "type": "object",
+                  "properties": {
+                    "subtypes": {
+                      "type": "array"
+                    },
+                    "gradientLevel": {
+                      "type": "object"
+                    },
+                    "trainingLog": {
+                      "type": "array"
+                    }
+                  },
+                  "additionalProperties": false
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "updateTarget"
+          ]
+        },
+        "reminderData": {
+          "description": "提醒专属结构。handoverType 为 reminder_enqueue 时必填",
+          "type": "object",
+          "properties": {
+            "reminderId": {
+              "type": "string"
+            },
+            "type": {
+              "type": "string",
+              "enum": [
+                "error_review"
+              ]
+            },
+            "scheduledTime": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "content": {
+              "type": "string"
+            },
+            "targetKnowledgePoint": {
+              "type": "string"
+            },
+            "priority": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 5,
+              "description": "1 最高。IM提醒按 shared/vocab.md §9 合并为每日摘要"
+            },
+            "mergeable": {
+              "type": "boolean",
+              "default": true,
+              "description": "是否可并入每日合并摘要；false 表示申请即时提醒（每日最多 1 条）"
+            },
+            "dueDate": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          "required": [
+            "reminderId",
+            "type",
+            "scheduledTime",
+            "content"
+          ]
+        }
+      }
+    },
+    "timestamp": {
+      "description": "ISO-8601格式的时间戳",
+      "type": "string",
+      "format": "date-time"
+    },
+    "consent": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "发送方在发送前核对过的授权位快照（来自 dna-profile meta.consentStatus，见 shared/vocab.md §8）。接收方必须再次核对；任一相关位为 false 时丢弃该交接并告知用户",
+      "properties": {
+        "crossSkillSharing": {
+          "type": "boolean",
+          "const": true,
+          "description": "跨 SKILL 共享授权。任何交接都必须为 true：为 false 的交接不得发出，接收方收到即丢弃并告知用户（shared/vocab.md §8）"
+        },
+        "reminderConsent": {
+          "type": "boolean",
+          "description": "提醒授权。handoverType=reminder_enqueue 时必须为 true"
+        },
+        "verifiedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "crossSkillSharing"
+      ]
+    }
+  },
+  "required": [
+    "sessionId",
+    "protocolVersion",
+    "handoverType",
+    "sender",
+    "recipient",
+    "consent",
+    "payload",
+    "timestamp"
+  ],
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "handoverType": {
+            "enum": [
+              "subject_profile_writeback"
+            ]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "payload": {
+            "required": [
+              "profileData"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "handoverType": {
+            "enum": [
+              "reminder_enqueue"
+            ]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "payload": {
+            "required": [
+              "reminderData"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "handoverType": {
+            "const": "reminder_enqueue"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "consent": {
+            "properties": {
+              "reminderConsent": {
+                "const": true
+              }
+            },
+            "required": [
+              "reminderConsent"
+            ]
+          }
+        }
+      }
+    }
+  ]
+}

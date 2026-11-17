@@ -1,41 +1,54 @@
-## Description: <br>
-Generates presentations by extracting visual style from a reference PPT or PDF template and recreating slides from scratch using PptxGenJS. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate presentations by extracting visual style from a reference template and recreating slides from scratch using PptxGenJS.
 
-## Publisher: <br>
-[wujiaming88](https://clawhub.ai/user/wujiaming88) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wujiaming88](https://clawhub.ai/user/wujiaming88)
 
-## Use Case: <br>
-Developers, employees, and presentation creators use this skill to turn a reference deck or PDF style into new PPTX presentations with matching layouts, typography, colors, and placeholders. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Uploaded or local presentation templates may contain confidential content and can be saved in the workspace for reuse. <br>
-Mitigation: Use non-confidential templates when possible, and delete retained templates plus extracted style files after the deck is generated. <br>
-Risk: The workflow runs local document-conversion and extraction scripts over user-provided presentation files. <br>
-Mitigation: Process trusted files in a controlled workspace and review the generated presentation before sharing or publishing it. <br>
+## Use Case:
 
+Developers and presentation authors use this skill to create new PPTX decks that match a supplied PPTX or PDF template's visual style, including template discovery, style extraction, placeholder handling, and large-deck generation.
 
-## Reference(s): <br>
-- [PPT from Template on ClawHub](https://clawhub.ai/wujiaming88/ppt-from-template) <br>
-- [Style Schema](references/style-schema.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown guidance with YAML style data, PptxGenJS JavaScript, shell commands, and generated PPTX files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses reference templates up to 50 MB, targets generated PPTX output under 20 MB, and may use image or video placeholders to control file size.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release evidence) <br>
+Risk: The skill scans the workspace template folder and may reuse saved PPTX templates.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use templates from trusted sources and confirm the selected template when a generic PPT request could match template-based generation.
+
+Risk: The skill runs local document-conversion tools on presentation files.
+
+Mitigation: Process only trusted PPTX/PDF inputs and keep conversion dependencies available and maintained.
+
+## Reference(s):
+
+- [Style Schema](artifact/references/style-schema.md)
+- [ClawHub Skill Page](https://clawhub.ai/wujiaming88/skills/ppt-from-template)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, files, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, YAML style configuration, JavaScript/PptxGenJS code, and generated PPTX files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Template files are limited to 50 MB and generated PPTX output targets less than 20 MB.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

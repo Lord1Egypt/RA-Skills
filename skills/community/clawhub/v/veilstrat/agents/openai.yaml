@@ -1,0 +1,14 @@
+interface:
+  display_name: VeilStrat
+  short_description: Find AI adoption signals and research target accounts
+  default_prompt: Use $veilstrat to find companies with recent AI adoption signals
+    and explain why each fits my target market.
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true

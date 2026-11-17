@@ -1,42 +1,59 @@
-## Description: <br>
-Generates a nightly A-share market review with portfolio tracking, technical analysis, sector commentary, candidate stocks, and a next-day trading plan. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Stock Daily Review generates scheduled A-share market closing reports with market overview, portfolio tracking, technical analysis, sector review, watchlist ideas, and next-day action plans.
 
-## Publisher: <br>
-[lkx161](https://clawhub.ai/user/lkx161) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lkx161](https://clawhub.ai/user/lkx161)
 
-## Use Case: <br>
-Short-term A-share investors and agent operators use this skill to draft daily market summaries, review holdings, track technical signals, and prepare a next-day action plan. It is informational and should not be treated as investment advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks for private portfolio details and may send reports to WeChat without clearly documented privacy controls. <br>
-Mitigation: Review before installing, use minimal or test portfolio data first, and confirm how credentials, report delivery, and data redaction are handled. <br>
-Risk: The skill depends on other stock-analysis skills and produces trading recommendations that may be incomplete or incorrect. <br>
-Mitigation: Review dependency skills separately and treat generated analysis as informational rather than investment advice. <br>
-Risk: The artifact describes an automatic nightly task that could continue sending reports after setup. <br>
-Mitigation: Verify the schedule, delivery destination, and disable procedure before enabling the skill in a live environment. <br>
+## Use Case:
 
+External users and agents can use this skill to prepare a daily A-share market review, monitor configured holdings, summarize technical signals, and draft next-day trading considerations. The generated report is informational and should not be treated as personalized investment advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lkx161/a-stock-daily-review) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown report with JSON configuration examples and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces financial analysis and trading-plan guidance that requires human review before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata) <br>
+Risk: Portfolio holdings and cost-basis data may be sensitive because the configured portfolio is used in generated reports and may be delivered to WeChat.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Only configure portfolio data you are comfortable including in generated reports and downstream delivery channels.
+
+Risk: Dependency skills can affect the market data, analysis, and generated recommendations.
+
+Mitigation: Verify dependency skills before installation and prefer pinned or reviewed versions.
+
+Risk: Generated market commentary and action plans may be inaccurate or unsuitable for a user's financial situation.
+
+Mitigation: Treat outputs as informational analysis, review them before use, and do not rely on them as investment advice.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lkx161/skills/a-stock-daily-review)
+- [README.md](artifact/README.md)
+- [SKILL.md](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown report with market summaries, portfolio tables, technical analysis, recommendations, and action-plan sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Scheduled daily report intended for WeChat delivery after portfolio configuration.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

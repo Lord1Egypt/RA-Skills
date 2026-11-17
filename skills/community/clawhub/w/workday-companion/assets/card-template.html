@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{title}}</title>
+  <style>{{css}}</style>
+</head>
+<body>
+  <main class="card route-{{route}}" style="--ratio: {{ratio_css}};">
+    <header class="meta">
+      <span class="module">{{module}} · {{time_label}}</span>
+      <span class="corner">{{corner}}</span>
+    </header>
+    <h1 class="title">{{title}}</h1>
+    <section class="reason">
+      <div class="label">依据</div>
+      <div class="text">{{reason}}</div>
+    </section>
+    <section class="action">
+      <div class="label">现在做</div>
+      <div class="text">{{action}}</div>
+    </section>
+    <section class="tags">{{tags}}</section>
+    <footer class="footer">
+      <span>{{footer}}</span>
+      <span>WORKDAY COMPANION</span>
+    </footer>
+  </main>
+</body>
+</html>

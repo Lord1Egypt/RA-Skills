@@ -1,43 +1,59 @@
-## Description: <br>
-Generates marketing video scripts and videos through Xiaonian AI from a user's requirement, returning the generated script and final video URL. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+营销视频生成服务，通过小念AI的视频模块快速生成营销视频：当用户说"快速生成视频/生成一个视频/做个视频/把这个需求直接生成视频"并希望通过小念AI生成结果而不是手动编写时使用。
 
-## Publisher: <br>
-[yc556600](https://clawhub.ai/user/yc556600) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yc556600](https://clawhub.ai/user/yc556600)
 
-## Use Case: <br>
-Marketing teams and agents use this skill when a user wants a marketing-video request turned directly into a generated video through Xiaonian AI instead of manually writing the script and production steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends video requirements and optional image URLs to xiaonian.cc, with unclear account and data-handling boundaries. <br>
-Mitigation: Use only when the user accepts sending that content to xiaonian.cc, and avoid submitting confidential requirements or private image URLs unless the service terms and retention practices are understood. <br>
-Risk: The release uses an embedded dashboard access token. <br>
-Mitigation: Rotate and remove the embedded token before broader use, and require credentials supplied explicitly by the user or deployment environment. <br>
-Risk: Generated videos can be downloaded to a local path selected by the caller. <br>
-Mitigation: Write downloads only to explicit, trusted output paths and review the resulting file before sharing or deploying it. <br>
+## Use Case:
 
+External users and agents use this skill to turn a marketing video request into a generated script and video through Xiaonian AI's video API. The skill returns the generated script, task status, final video URL, and optionally a downloaded local video file.
 
-## Reference(s): <br>
-- [Video Gen API](references/video-api.md) <br>
-- [Xiaonian dashboard API](https://xiaonian.cc/employee-console/dashboard/v2/api) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, files] <br>
-**Output Format:** [JSON containing the generated script, task ID, video URL, and optional downloaded file path.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May download the generated video to a caller-provided local path when requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The skill ships with and automatically uses a reusable bearer token.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require each user to provide their own secret at runtime and remove any shared token from the release artifact.
+
+Risk: The bearer token can be sent to a configured server outside the intended service.
+
+Mitigation: Restrict the API origin to the intended Xiaonian HTTPS endpoint before use.
+
+Risk: Marketing or business details submitted in prompts may be sent to the video-generation API.
+
+Mitigation: Avoid sensitive campaign or business inputs until authentication and endpoint handling are fixed and reviewed.
+
+## Reference(s):
+
+- [Video Gen API](artifact/references/video-api.md)
+- [ClawHub skill page](https://clawhub.ai/yc556600/skills/video-quick-gen)
+- [Xiaonian dashboard service](https://xiaonian.cc)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Files]
+
+**Output Format:** [JSON containing task state, generated script text, video URL, and optional local download path]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May download the generated video to a local file when an output path is provided.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

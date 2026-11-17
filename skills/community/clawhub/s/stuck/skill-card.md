@@ -1,41 +1,54 @@
-## Description: <br>
-Generate a structured help-request document when stuck with AI coding by scanning selected conversation sessions, extracting errors and failed attempts, and outputting HELP_REQUEST.md. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates a structured help-request document for stalled AI coding work by using selected conversation sessions to extract errors, failed attempts, and context.
 
-## Publisher: <br>
-[buzuweidao](https://clawhub.ai/user/buzuweidao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[buzuweidao](https://clawhub.ai/user/buzuweidao)
 
-## Use Case: <br>
-Developers use this skill when an AI coding session is stuck and they need a concise handoff document for another person or agent. It guides the user through selecting relevant conversations, summarizing errors and failed attempts, and creating a structured HELP_REQUEST.md. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected AI coding-session histories may contain secrets, private code, personal data, local paths, or email addresses. <br>
-Mitigation: Select only sessions relevant to the stuck issue and review HELP_REQUEST.md carefully before sharing, committing, or sending it to another agent. <br>
-Risk: Conversation summaries can omit context or preserve misleading failed attempts. <br>
-Mitigation: Use the built-in confirmation step to correct missing errors, failed approaches, and project context before generating the final document. <br>
+## Use Case:
 
+Developers and engineers use this skill when AI coding assistance is stuck and they need a concise HELP_REQUEST.md for another human or AI reviewer. It guides the user through selecting relevant chat sessions, extracting errors and failed attempts, and producing a handoff document.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/buzuweidao/stuck) <br>
-- [Skill homepage](https://github.com/buzuweidao/skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown file plus conversational guidance and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces HELP_REQUEST.md after user confirmation and applies basic redaction for API-key patterns, user paths, and email addresses.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill can discover local AI coding chat histories across multiple tools and may expose unrelated private conversation data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the listed sessions before selection, choose only conversations related to the current problem, and avoid sharing the generated HELP_REQUEST.md until it has been checked for sensitive content.
+
+Risk: Generated summaries and HELP_REQUEST.md content may include paths, prompts, errors, emails, or code snippets from prior chats.
+
+Mitigation: Use the built-in redaction behavior and manually review the final document for secrets, private identifiers, and unrelated context before handing it to another reviewer.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/buzuweidao/skills/stuck)
+- [Project homepage](https://github.com/buzuweidao/skills)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown document with interactive prompts and command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generates HELP_REQUEST.md after the user selects relevant conversation sessions; summaries may include paths, prompts, errors, and code snippets from prior chats.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,53 @@
-## Description: <br>
-Control NordVPN on Linux via the `nordvpn` CLI for connecting, disconnecting, selecting countries, cities, or groups, reading status, changing settings, and managing allowlist entries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Control NordVPN on Linux via the `nordvpn` CLI (connect/disconnect, choose country/city/group, read status, tweak settings, manage allowlist). Use for automation that needs region routing or temporary VPN tunneling.
 
-## Publisher: <br>
-[maciekish](https://clawhub.ai/user/maciekish) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[maciekish](https://clawhub.ai/user/maciekish)
 
-## Use Case: <br>
-Developers and operators use this skill to guide an agent in operating a local NordVPN Linux CLI session for region routing, temporary VPN tunneling, connection verification, settings changes, and allowlist management. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent to change VPN state, routing, connectivity, privacy settings, and allowlist behavior through the local NordVPN CLI. <br>
-Mitigation: Review requested connection, settings, and allowlist changes before execution, then verify the resulting state with `nordvpn status` and `nordvpn settings`. <br>
-Risk: Using an unexpected or untrusted `nordvpn` binary could affect routing and privacy behavior. <br>
-Mitigation: Verify the NordVPN CLI comes from NordVPN or a trusted package source, and use the expected binary path when the install method requires it. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [NordVPN homepage](https://nordvpn.com/) <br>
-- [ClawHub NordVPN skill page](https://clawhub.ai/maciekish/nordvpn) <br>
+## Use Case:
 
+Developers and automation operators use this skill to manage local Linux NordVPN CLI connections, inspect VPN status, select routing locations, and adjust related settings from agent workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should preserve human review for login, settings, allowlist, and connection changes.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: VPN connection, disconnection, kill switch, protocol, autoconnect, and allowlist changes can disrupt active network sessions, especially over SSH or on shared systems.
+
+Mitigation: Run disruptive NordVPN actions only with explicit user intent and verify status after changes.
+
+Risk: NordVPN account or status output may contain sensitive operational details if copied into logs or shared transcripts.
+
+Mitigation: Avoid exposing raw account and status output beyond what is needed to complete the task.
+
+## Reference(s):
+
+- [NordVPN](https://nordvpn.com/)
+- [ClawHub NordVPN Skill](https://clawhub.ai/maciekish/skills/nordvpn)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks and concise status or troubleshooting guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include command sequences for local VPN connection, disconnection, status checks, settings, and allowlist changes.]
+
+## Skill Version(s):
+
+1.0.2 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

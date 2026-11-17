@@ -109,7 +109,7 @@ npx @vincentai/cli@latest secret set-value --key-id <KEY_ID> --value '{"username
 For simple string types (`API_KEY`, `SSH_KEY`, `OAUTH_TOKEN`):
 
 ```bash
-npx @vincentai/cli@latest secret set-value --key-id <KEY_ID> --value "sk-my-third-party-api-key"
+npx @vincentai/cli@latest secret set-value --key-id <KEY_ID> --value "REDACTED-SECRET"
 ```
 
 ### 4. Write to .env File

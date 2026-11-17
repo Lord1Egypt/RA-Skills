@@ -1,44 +1,50 @@
-## Description: <br>
-Design typed ontologies and lightweight knowledge graphs for agent workflows. Use when the user needs entity and relationship modeling, schema decisions, controlled vocabularies, graph migration plans, validation rules, or structured memory design. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps AI-agent users and skill teams turn work-productivity, ontology, typed knowledge, or graph-related requests into practical workflows and concrete artifacts, then check the result against the user's requirements.
 
-## Publisher: <br>
-[kyro-ma](https://clawhub.ai/user/kyro-ma) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kyro-ma](https://clawhub.ai/user/kyro-ma)
 
-## Use Case: <br>
-Developers, skill authors, maintainers, and agent users use this skill to turn unstructured notes, tool outputs, and workflow records into typed schemas, lightweight knowledge graphs, validation rules, migration plans, sample records, and query patterns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad wording in secondary documentation could cause use outside ontology, typed-schema, knowledge-graph, or structured-memory planning. <br>
-Mitigation: Invoke the skill explicitly by name for those modeling tasks and confirm domain scope, target questions, and storage format before applying its outputs. <br>
-Risk: Generated schemas or migration plans can preserve incorrect assumptions from messy source notes. <br>
-Mitigation: Require provenance, confidence fields, validation rules, and reviewed sample records before using structured data downstream. <br>
+## Use Case:
 
+AI-agent users, skill authors, maintainers, and teams use this skill to plan and produce practical workflows, checklists, documentation, code, or analysis for work-productivity and ontology-style tasks.
 
-## Reference(s): <br>
-- [Requirement Plan](references/requirement-plan.md) <br>
-- [ClawHub skill page](https://clawhub.ai/kyro-ma/work-productivity-ontology-typed-workflow-helper) <br>
-- [Ontology demand signal](https://clawhub.ai/skills/ontology) <br>
-- [CozoDB agent primitives discussion](https://news.ycombinator.com/item?id=48605896) <br>
-- [Supacrawl MCP common issue](https://github.com/poodle64/supacrawl/issues/141) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown with schema drafts, glossaries, validation checklists, migration plans, sample records, and query examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only helper; no code execution, credential access, persistence, or hidden install behavior was identified in security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence) <br>
+Risk: Broad activation keywords may cause the skill to trigger for unrelated requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Check that the request fits the skill's work-productivity or ontology workflow scope; tighten trigger terms if unrelated activations occur.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kyro-ma/skills/work-productivity-ontology-typed-workflow-helper)
+- [Requirement Plan](artifact/references/requirement-plan.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance, Analysis]
+
+**Output Format:** [Primarily Markdown; may include code or configuration when requested.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Tailored to the user's request; may include reusable workflows or checklists.]
+
+## Skill Version(s):
+
+0.20261117.40425 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

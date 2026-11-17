@@ -1,48 +1,59 @@
-## Description: <br>
-Transcribe pre-recorded audio files or URLs with Gladia for asynchronous transcription, diarization, subtitles, PII redaction, translation, named entity recognition, summarization, chapterization, and audio-to-LLM workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents in transcribing pre-recorded audio or video with Gladia, including optional speaker identification, subtitles, translation, summarization, and PII redaction.
 
-## Publisher: <br>
-[gladiaio](https://clawhub.ai/user/gladiaio) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gladiaio](https://clawhub.ai/user/gladiaio)
 
-## Use Case: <br>
-Developers and external teams use this skill to add Gladia pre-recorded audio and video transcription workflows, including batch jobs, polling, result retrieval, diarization, subtitles, redaction, translation, and summarization. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Audio recordings may contain confidential, regulated, or third-party information before they are sent to Gladia or downstream callback and LLM destinations. <br>
-Mitigation: Use the skill only when authorized to process the recordings with Gladia and any configured webhook, callback, or audio-to-LLM destination. <br>
-Risk: Deleting the wrong transcription job can remove remote job data. <br>
-Mitigation: Confirm job identifiers before delete operations and prefer explicit job lookup before destructive actions. <br>
-Risk: Raw REST polling without backoff can waste requests and trigger rate limits. <br>
-Mitigation: Prefer the official SDK polling behavior or use callbacks/webhooks; if raw REST is required, apply exponential backoff. <br>
+## Use Case:
 
+Developers and other users building batch transcription workflows use this skill to submit recorded media, retrieve transcripts and optional analyses, and manage asynchronous jobs through Gladia.
 
-## Reference(s): <br>
-- [Delivery and Response Reference](references/delivery-and-response.md) <br>
-- [Managing Pre-Recorded Jobs](references/managing-jobs.md) <br>
-- [Transcription Options Reference](references/transcription-options.md) <br>
-- [Pre-recorded quickstart](https://docs.gladia.io/chapters/pre-recorded-stt/quickstart) <br>
-- [Audio intelligence overview](https://docs.gladia.io/chapters/pre-recorded-stt/audio-intelligence) <br>
-- [API reference: pre-recorded init](https://docs.gladia.io/api-reference/v2/pre-recorded/init) <br>
-- [ClawHub skill page](https://clawhub.ai/gladiaio/gladia-pre-recorded-transcription) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with TypeScript and Python examples, REST endpoint references, and JSON response shapes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include SDK-first implementation guidance, raw REST fallback steps, polling settings, callback configuration, and job-management commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Recorded media or media URLs sent to Gladia may contain confidential, regulated, or personally identifying information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the recording can be shared before submission; enable PII redaction or avoid optional analysis features when unnecessary.
+
+Risk: Transcription callbacks can deliver job information to an untrusted endpoint.
+
+Mitigation: Use only webhook endpoints you control and trust.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/gladiaio/skills/gladia-pre-recorded-transcription)
+- [Pre-recorded transcription quickstart](https://docs.gladia.io/chapters/pre-recorded-stt/quickstart)
+- [Audio intelligence overview](https://docs.gladia.io/chapters/pre-recorded-stt/audio-intelligence)
+- [Pre-recorded API reference](https://docs.gladia.io/api-reference/v2/pre-recorded/init)
+- [Transcription options](artifact/references/transcription-options.md)
+- [Managing jobs](artifact/references/managing-jobs.md)
+- [Delivery and response](artifact/references/delivery-and-response.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Configuration instructions]
+
+**Output Format:** [Markdown with JavaScript or Python examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May describe transcripts, subtitles, job results, and optional audio analyses.]
+
+## Skill Version(s):
+
+1.0.3 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

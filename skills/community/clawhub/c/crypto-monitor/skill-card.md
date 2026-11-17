@@ -1,46 +1,62 @@
-## Description: <br>
-Crypto Monitor helps agents monitor cryptocurrency prices, on-chain activity, whale transactions, trending tokens, and airdrop opportunities. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cryptocurrency market monitoring with real-time prices, on-chain data, whale tracking, and alerting.
 
-## Publisher: <br>
-[clawto](https://clawhub.ai/user/clawto) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[clawto](https://clawhub.ai/user/clawto)
 
-## Use Case: <br>
-External users and crypto-focused agents use this skill to fetch market prices, trending tokens, whale activity, and airdrop leads from public crypto APIs. It supports market monitoring and research workflows, not custody of funds or execution of trades. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill makes external public crypto API requests, so responses can be unavailable, delayed, rate limited, or inaccurate. <br>
-Mitigation: Confirm time-sensitive market or on-chain information with authoritative sources before acting on it. <br>
-Risk: The skill can attempt to install jq automatically if it is missing. <br>
-Mitigation: Review or remove the automatic jq installation behavior before running in locked-down or production environments. <br>
-Risk: Crypto workflows may invite requests for seed phrases, private keys, wallet credentials, or exchange credentials. <br>
-Mitigation: Do not provide wallet seed phrases, private keys, or exchange credentials to this skill. <br>
+## Use Case:
 
+External users and developers use this skill to retrieve cryptocurrency market prices, review whale-transfer activity, identify trending tokens, and check airdrop information through shell-based API queries.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/clawto/crypto-monitor) <br>
-- [CoinGecko API](https://api.coingecko.com/api/v3) <br>
-- [DeFiLlama airdrops API](https://api.llama.fi/airdrops) <br>
-- [Whale Alert API](https://api.whale-alert.io/v1/transactions) <br>
-- [Etherscan API](https://api.etherscan.io/api) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, JSON, CSV, Guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and script outputs in text, JSON, or CSV.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs can include live market data from public crypto APIs and may depend on third-party rate limits or availability.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The security scan reports that one script can automatically modify the host system by attempting package installation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing and run in a low-privilege environment; install dependencies explicitly rather than allowing automatic package changes.
+
+Risk: The security scan reports that multiple shell options can be abused to run unintended commands before numeric arguments are validated.
+
+Mitigation: Validate and constrain option values before passing them to scripts, especially numeric flags such as limits, thresholds, and watch intervals.
+
+Risk: The skill depends on live cryptocurrency and airdrop data from external APIs that can be unavailable, rate-limited, stale, or misleading.
+
+Mitigation: Treat outputs as informational, verify market and airdrop claims independently, and avoid using responses as the sole basis for financial or wallet actions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/clawto/skills/crypto-monitor)
+- [ClawHub publisher profile](https://clawhub.ai/user/clawto)
+- [CoinGecko API endpoint](https://api.coingecko.com/api/v3)
+- [DeFiLlama airdrops endpoint](https://api.llama.fi/airdrops)
+- [Whale Alert transactions endpoint](https://api.whale-alert.io/v1/transactions)
+- [Etherscan API endpoint](https://api.etherscan.io/api)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with shell commands and text, JSON, or CSV script output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses live third-party cryptocurrency APIs and may be subject to provider availability, data freshness, and rate limits.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

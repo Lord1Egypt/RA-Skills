@@ -1,40 +1,54 @@
-## Description: <br>
-Read a line from standard input into a variable. Use for interactive shell prompts and script input handling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Read a line from standard input into a variable. Use for interactive shell prompts and script input handling.
 
-## Publisher: <br>
-[dinghaibin](https://clawhub.ai/user/dinghaibin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dinghaibin](https://clawhub.ai/user/dinghaibin)
 
-## Use Case: <br>
-Developers and engineers use this skill to capture a single line of interactive standard input for scripts and shell-style prompts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Password or silent-input usage may expose sensitive entries because the documented no-echo behavior is not supported by the implementation. <br>
-Mitigation: Do not use this skill for passwords or other sensitive input unless the implementation is corrected and reviewed for true no-echo option handling. <br>
-Risk: Option behavior may not match the documented prompt, timeout, and silent-mode flags. <br>
-Mitigation: Review behavior before installing in workflows that depend on shell-like read options. <br>
+## Use Case:
 
+Developers and agents use this skill to capture one line of interactive input for shell prompts and scripts.
 
-## Reference(s): <br>
-- [Read Tool on ClawHub](https://clawhub.ai/dinghaibin/read-tool) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text or Markdown with shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces single-line input capture guidance; implementation currently echoes input even where silent input is documented.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Password and silent-input claims are misleading and could expose secrets in plaintext.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not use this skill for passwords, API keys, tokens, or other secrets unless the implementation is fixed to use secure no-echo input and avoid writing sensitive values to stdout.
+
+Risk: Prompt, timeout, and silent-mode options may not behave as documented.
+
+Mitigation: Review and test option behavior before relying on the skill in interactive scripts or production workflows.
+
+## Reference(s):
+
+- [Read Tool on ClawHub](https://clawhub.ai/dinghaibin/skills/read-tool)
+- [dinghaibin publisher profile](https://clawhub.ai/user/dinghaibin)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text and Markdown usage guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reads one line from standard input and writes the captured value to standard output.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

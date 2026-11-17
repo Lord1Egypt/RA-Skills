@@ -1,41 +1,57 @@
-## Description: <br>
-Run a structured end-of-session closeout that checks repo hygiene, refreshes a master task list, appends a closeout block to daily memory, and verifies automation health. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run a read-only end-of-session audit of the current workspace and report what still needs attention.
 
-## Publisher: <br>
-[jkfaris94](https://clawhub.ai/user/jkfaris94) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jkfaris94](https://clawhub.ai/user/jkfaris94)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to run an end-of-session workspace closeout, summarize repository and task status, and record next-session context. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Workspace-local scripts or hooks may execute during closeout and do more than bookkeeping. <br>
-Mitigation: Run only in trusted workspaces, and inspect or disable scripts/build-master-todo.py and scripts/closeout-hooks.sh before use in an untrusted repository. <br>
-Risk: The closeout process writes session notes and may refresh task files in the workspace. <br>
-Mitigation: Review generated memory and task-list changes before committing or sharing them. <br>
+## Use Case:
 
+Developers and agent operators use this skill at explicit session closeout time to check task, repository, project-document, and automation hygiene before recording the session outcome.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/jkfaris94/session-closeout) <br>
-- [OpenClaw](https://github.com/openclaw/openclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration] <br>
-**Output Format:** [Plain text key=value summary and Markdown closeout block] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May append to memory/YYYY-MM-DD.md and can source workspace-local hooks when present.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The audit output can expose local workspace paths or dirty repository names.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and redact the generated summary before sharing it outside the workspace.
+
+Risk: The skill reports unfinished work such as stale TODOs, dirty repositories, missing task files, and stale project docs but does not fix them.
+
+Mitigation: Treat findings as prompts for separate, reviewed actions rather than automatic commits, file creation, or cleanup.
+
+Risk: Automation health is reported as not verified.
+
+Mitigation: Check cron or other automation status manually when that matters for the closeout.
+
+## Reference(s):
+
+- [OpenClaw](https://github.com/openclaw/openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text key=value audit lines with agent-facing summary guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only audit output may include local workspace paths and dirty repository names.]
+
+## Skill Version(s):
+
+1.1.1 (source: evidence release metadata and README changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

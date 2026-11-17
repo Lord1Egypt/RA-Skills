@@ -1,45 +1,61 @@
-## Description: <br>
-Manage Solana wallets, launch tokens, run coordinated buys, volume bots, and wallet operations through the GANK trading terminal API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Solana wallets, launch pump.fun tokens, run coordinated buys, volume bots, copy trades, and related GANK trading terminal API operations.
 
-## Publisher: <br>
-[pissdart](https://clawhub.ai/user/pissdart) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[pissdart](https://clawhub.ai/user/pissdart)
 
-## Use Case: <br>
-Developers and traders use this skill to let an agent prepare and execute GANK API workflows for Solana token launches, multi-wallet buys and sells, volume sessions, copy trading, market-data lookup, and wallet transfer or recovery operations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can direct live Solana trading and wallet-control operations, including automated buys, volume bots, wallet draining, clean-funds flows, copy trading, launches, and transfers. <br>
-Mitigation: Use a dedicated low-balance account and API key, manually approve every trade or wallet operation, and verify destination wallets and amounts before execution. <br>
-Risk: Exposure of the GANK API key can enable authenticated wallet and trading actions. <br>
-Mitigation: Keep the key out of chat and logs, store it only in the configured secret or environment location, and rotate it if exposure is suspected. <br>
-Risk: Automated or coordinated trading actions may execute with unintended financial or market effects. <br>
-Mitigation: Review generated parameters such as token mint, wallet list, SOL amount, duration, intensity, slippage, and fee settings before sending requests. <br>
+## Use Case:
 
+External users and developers use this skill to let an agent operate the GANK Solana trading terminal API for wallet management, token launches, coordinated trading, copy trading, volume sessions, market data, and position monitoring.
 
-## Reference(s): <br>
-- [ClawHub package page](https://clawhub.ai/pissdart/gank-solana-bundler) <br>
-- [GANK homepage](https://gank.dev) <br>
-- [Artifact skill instructions](artifact/SKILL.md) <br>
-- [Artifact examples](artifact/examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Shell commands, Configuration, API calls] <br>
-**Output Format:** [Markdown with JSON, TypeScript, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a GANK API key; generated actions can affect live Solana wallets, trades, token launches, and transfers.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata; artifact skill.json says 1.0.0) <br>
+Risk: The skill can cause an agent to perform live crypto trading and wallet operations with real funds.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use test wallets first, prefer low-balance or tightly scoped keys where available, and require manual confirmation before trading or wallet actions.
+
+Risk: The GANK API key can authorize sensitive trading and wallet activity if exposed.
+
+Mitigation: Store the key only in the configured secret location or environment variable, and keep it out of prompts, logs, and generated examples.
+
+Risk: Wallet drain, fund-routing, volume-bot, copy-trade, sweep, buy, and sell actions are high-impact operations.
+
+Mitigation: Require explicit user confirmation before these actions and review each request against the intended wallet, token, amount, route, and duration.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/pissdart/skills/gank-solana-bundler)
+- [GANK](https://gank.dev)
+- [README.md](artifact/README.md)
+- [SKILL.md](artifact/SKILL.md)
+- [examples.md](artifact/examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with API endpoint descriptions, JSON payloads, shell setup commands, and TypeScript examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a GANK API key supplied through GANK_API_KEY or the skill configuration.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

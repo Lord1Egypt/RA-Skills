@@ -1,42 +1,56 @@
-## Description: <br>
-Paper2diagram analyzes research paper PDFs, extracts method and architecture details, writes an academic-review-style summary, and generates paper-style diagrams through configured Gemini and nano_banana gateways. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Paper2diagram helps an agent analyze research paper PDFs, extract methods and structures, produce academic-review-style summaries, and generate paper-style diagrams through configured Gemini and nano_banana gateways.
 
-## Publisher: <br>
-[qbc-oio](https://clawhub.ai/user/qbc-oio) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qbc-oio](https://clawhub.ai/user/qbc-oio)
 
-## Use Case: <br>
-Researchers and technical teams use this skill to turn local research PDFs into structured method summaries and generated figures for reports, reviews, and slide preparation. It is best suited for method or architecture papers, especially in computer vision, medical imaging, and representation learning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected PDFs or extracted paper content may be sent to the user's configured Gemini and Banana gateways. <br>
-Mitigation: Use only trusted and approved gateways, and avoid unpublished, proprietary, or regulated papers unless those gateways are authorized for that data. <br>
-Risk: The workflow depends on separate local code and configured gateway credentials that are not bundled in the skill description. <br>
-Mitigation: Review the workflow repository before running it, use a virtual environment or container, and keep API keys scoped to the intended gateway use. <br>
-Risk: Generated diagrams and summaries can misrepresent paper methods or results. <br>
-Mitigation: Have a knowledgeable reviewer compare outputs against the source PDF before using them in reports, publications, or presentations. <br>
+## Use Case:
 
+Researchers, developers, and external users use this skill to ask an agent to analyze local academic PDFs, summarize methods and findings, and produce diagram assets for reports or slides.
 
-## Reference(s): <br>
-- [Paper2diagram ClawHub listing](https://clawhub.ai/qbc-oio/paper2diagram) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and file-path outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce structured paper_analysis text, drawing prompts, online image links, and local image paths under outputs/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: The packaged artifact does not include the executable workflow, and the skill tells users to clone and run an unspecified external repository.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the external repository and dependencies before installation or execution, and do not run unreviewed code in a trusted environment.
+
+Risk: PDF content and prompts may be processed by the configured LLM and image gateways.
+
+Mitigation: Use only trusted gateways, avoid confidential or unpublished PDFs unless data-sharing obligations allow it, and keep API keys scoped separately from installation steps.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/qbc-oio/skills/paper2diagram)
+- [ClawHub homepage](https://clawhub.ai/)
+- [Example Gemini gateway endpoint](https://api.dongli.work/v1beta)
+- [Example image gateway endpoint](https://api.dongli.work)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, files]
+
+**Output Format:** [Markdown or structured text with shell commands, image links, and local file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce 3-5 image files under outputs/ and temporary image links from the configured gateway.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

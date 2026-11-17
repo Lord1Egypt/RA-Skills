@@ -1,45 +1,58 @@
-## Description: <br>
-Self-Improving OpenClaw helps OpenClaw agents capture corrections, errors, feature requests, and recurring patterns in local workspace learning files, then review and promote stable patterns into tiered memory. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Log corrections, errors, feature requests, and recurring patterns into structured workspace learning files, then promote stable patterns into tiered memory and OpenClaw workspace files.
 
-## Publisher: <br>
-[muhamadbasim](https://clawhub.ai/user/muhamadbasim) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[muhamadbasim](https://clawhub.ai/user/muhamadbasim)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to maintain a local learning loop for agent corrections, command failures, requested capabilities, and recurring workflow patterns. It supports private workspace memory review, promotion, demotion, archival, and transparent application of learned patterns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local workspace memory may retain corrections, preferences, errors, and recurring patterns longer than intended. <br>
-Mitigation: Install only when persistent local memory is desired, periodically inspect .learnings and .self-improving, and archive or remove entries according to the documented workflow. <br>
-Risk: Promoted memory could influence future agent behavior through AGENTS.md, SOUL.md, TOOLS.md, or MEMORY.md. <br>
-Mitigation: Review promotions before relying on them long term, especially when entries affect operational rules, user preferences, or tool behavior. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to maintain a structured local learning loop for corrections, errors, feature requests, recurring patterns, and heartbeat review. It helps agents capture raw lessons, review recurrence, and promote stable patterns into workspace memory files.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/muhamadbasim/self-improving-openclaw) <br>
-- [Project homepage](https://github.com/muhamadbasim/oktoclaw) <br>
-- [Logging format](references/logging-format.md) <br>
-- [Promotion and demotion rules](references/promotion-rules.md) <br>
-- [Heartbeat review procedure](references/heartbeat-review.md) <br>
-- [Workspace layout](references/workspace-layout.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and workspace file templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates and updates local workspace learning and memory files when used by an agent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Conversation-derived content may become persistent agent memory or behavior without adequate review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit approval before promoting entries into HOT.md, AGENTS.md, SOUL.md, TOOLS.md, or MEMORY.md.
+
+Risk: Raw learning entries may contain untrusted, sensitive, or incorrect content.
+
+Mitigation: Treat raw entries as untrusted until reviewed, redact secrets, avoid sensitive personal data, and keep memory files in private local workspaces.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/muhamadbasim/skills/self-improving-openclaw)
+- [OpenClaw Homepage](https://github.com/muhamadbasim/oktoclaw)
+- [Logging Format](references/logging-format.md)
+- [Promotion and Demotion Rules](references/promotion-rules.md)
+- [Heartbeat Review Procedure](references/heartbeat-review.md)
+- [Workspace Layout](references/workspace-layout.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and workspace file templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Initializes and maintains local workspace memory files under .learnings/ and .self-improving/.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

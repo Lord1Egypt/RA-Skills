@@ -1,41 +1,54 @@
-## Description: <br>
-Analyzes uploaded text files by extracting entities, generating relationship information, and producing character or document profiles. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Zeelin Text Analysis uploads local text files to the Zeelin service, submits asynchronous text analysis jobs, polls for completion, and formats extracted entities, relationship graphs, and character profiles as Markdown.
 
-## Publisher: <br>
-[liyayong000-sketch](https://clawhub.ai/user/liyayong000-sketch) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liyayong000-sketch](https://clawhub.ai/user/liyayong000-sketch)
 
-## Use Case: <br>
-Developers and external users can use this skill to send local text documents to the Zeelin analysis service and receive structured analysis results as Markdown. It is intended for document, novel, or text-processing workflows that need entity extraction, relationship summaries, and profile organization. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uploads selected documents and an App-Key to an unencrypted raw-IP service with unclear privacy and retention controls. <br>
-Mitigation: Install only if you trust the Zeelin service, avoid confidential or regulated files, use a restricted or easily rotated key, and verify whether an HTTPS endpoint and privacy policy are available. <br>
-Risk: Generated Markdown analysis results may remain on disk. <br>
-Mitigation: Review generated files before sharing them and delete outputs that contain sensitive or regulated content. <br>
+## Use Case:
 
+Developers and external users use this skill to send local novels or documents to Zeelin for text analysis, then receive structured Markdown summaries of entities, relationships, and character profiles.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/liyayong000-sketch/zeelin-text-analysis) <br>
-- [Zeelin service website](https://skills.zeelin.cn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Files, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown analysis report with API request examples and JSON configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce an .md result file after polling an external analysis task.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: The skill sends uploaded documents and the Zeelin App-Key through a plaintext HTTP service endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid entering a real App-Key until the service uses HTTPS with a verified domain, and rotate any App-Key previously used through the plaintext endpoint.
+
+Risk: Documents are sent to the Zeelin service and OSS storage, with privacy and retention controls not established in the evidence.
+
+Mitigation: Use only documents that are acceptable to send to the provider, and do not submit confidential material unless the provider documents acceptable security and retention terms.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/liyayong000-sketch/skills/zeelin-text-analysis)
+- [Zeelin platform](https://skills.zeelin.cn)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with configuration JSON and inline shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces an md file-style analysis view after the external task succeeds; results should be based only on fields returned by the Zeelin service.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

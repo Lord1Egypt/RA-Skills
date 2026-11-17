@@ -1,43 +1,56 @@
-## Description: <br>
-Patterns and techniques for adding governance, safety, and trust controls to AI agent systems. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Patterns for adding safety, trust, and policy enforcement to AI agent systems.
 
-## Publisher: <br>
-[boleyn](https://clawhub.ai/user/boleyn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[boleyn](https://clawhub.ai/user/boleyn)
 
-## Use Case: <br>
-Developers and engineers use this skill to design governance controls for AI agents that call tools, coordinate with other agents, or operate in production and sensitive workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The included Python snippets are educational examples, not production-ready compliance controls. <br>
-Mitigation: Harden audit durability, failure handling, policy composition semantics, and test coverage before using the patterns for sensitive or regulated agents. <br>
-Risk: Governance guidance can affect agent access-control and audit decisions if adopted without review. <br>
-Mitigation: Review policies, fail-closed behavior, and audit retention against organizational requirements before deployment. <br>
+## Use Case:
 
+Developers and engineers use this skill to design governance controls for AI agents that call external tools, operate in multi-agent systems, or handle sensitive workflows. It provides patterns for policy enforcement, intent classification, trust scoring, audit trails, and framework integration.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/boleyn/agent-governance) <br>
-- [Agent-OS Governance Engine](https://github.com/imran-siddique/agent-os) <br>
-- [AgentMesh Integrations](https://github.com/imran-siddique/agentmesh-integrations) <br>
-- [OWASP Top 10 for LLM Applications](https://owasp.org/www-project-top-10-for-large-language-model-applications/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Configuration] <br>
-**Output Format:** [Markdown with Python and YAML code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes reference patterns, examples, and implementation checklists that require adaptation before production use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Security-control examples may be materially unsafe or misleading if copied directly into production.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and adapt the examples before production use, treating them as conceptual patterns rather than production-ready controls.
+
+Risk: The file path check, rate limiting, structured argument validation, and audit storage examples are called out by the security scan as insufficient for sensitive agents.
+
+Mitigation: Use path-aware containment, request-scoped rate limits, recursive structured-argument validation, and non-overwriting or append-only audit storage.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/boleyn/skills/agent-governance)
+- [Agent-OS Governance Engine](https://github.com/imran-siddique/agent-os)
+- [AgentMesh Integrations](https://github.com/imran-siddique/agentmesh-integrations)
+- [OWASP Top 10 for LLM Applications](https://owasp.org/www-project-top-10-for-large-language-model-applications/)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Configuration]
+
+**Output Format:** [Markdown with inline Python, YAML, and checklist examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces governance patterns and example snippets rather than executable deployment artifacts.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

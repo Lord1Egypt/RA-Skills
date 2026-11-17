@@ -1,55 +1,66 @@
-## Description: <br>
-Build and maintain Raycast extensions using the Raycast API. Triggers on @raycast/api, List, Grid, Detail, Form, AI.ask, LocalStorage, Cache, showToast, and BrowserExtension. Use this repo's references/api/*.md files as the primary source of truth for component specs and API usage. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build and maintain Raycast extensions using React, TypeScript, and the Raycast API.
 
-## Publisher: <br>
-[xaif](https://clawhub.ai/user/xaif) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[xaif](https://clawhub.ai/user/xaif)
 
-## Use Case: <br>
-Developers and agent users use this skill to build, fix, and maintain Raycast extensions with React, TypeScript, and @raycast/api components. It guides component selection, implementation patterns, feedback, persistence, restricted API access checks, and citation of the relevant local API reference. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated Raycast extensions may read private clipboard text, browser tabs, selected files or text, OAuth tokens, or form passwords. <br>
-Mitigation: Review generated extensions before use, add explicit user disclosure or confirmation before private content is sent to AI or external services, and avoid persistent storage for secrets unless a secure user-controlled mechanism is used. <br>
-Risk: AI or external-service examples may move user-provided content outside the local extension context. <br>
-Mitigation: Use environment access checks, handle failures visibly, and require user confirmation for sensitive content flows. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xaif/raycast) <br>
-- [Raycast Extensions Skill](artifact/SKILL.md) <br>
-- [Raycast Extension Examples](artifact/examples.md) <br>
-- [List Reference](artifact/references/api/list.md) <br>
-- [Grid Reference](artifact/references/api/grid.md) <br>
-- [Detail Reference](artifact/references/api/detail.md) <br>
-- [Form Reference](artifact/references/api/form.md) <br>
-- [Action Panel Reference](artifact/references/api/action-panel.md) <br>
-- [Actions Reference](artifact/references/api/actions.md) <br>
-- [AI Reference](artifact/references/api/ai.md) <br>
-- [Browser Extension Reference](artifact/references/api/browser-extension.md) <br>
-- [Clipboard Reference](artifact/references/api/clipboard.md) <br>
-- [Environment Reference](artifact/references/api/environment.md) <br>
-- [Caching Reference](artifact/references/api/caching.md) <br>
-- [Storage Reference](artifact/references/api/storage.md) <br>
-- [Toast Reference](artifact/references/api/toast.md) <br>
-- [HUD Reference](artifact/references/api/hud.md) <br>
+## Use Case:
 
+Developers and engineers use this skill to implement or fix Raycast extensions by choosing the right Raycast UI component, consulting local API references, and producing concise React and TypeScript guidance.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Guidance, Configuration instructions] <br>
-**Output Format:** [Markdown with TypeScript and TSX code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May cite local Raycast API reference files used to produce the guidance.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated Raycast extension code may handle passwords, clipboard contents, browser data, OAuth tokens, LocalStorage, or Cache values in ways that expose sensitive data.
+
+Mitigation: Review generated code before use, require explicit user consent before accessing sensitive sources, and redact sensitive values before display, storage, clipboard operations, or AI prompts.
+
+Risk: Examples involving selected files, file writes, or trash actions may lead an agent to modify local files without enough confirmation.
+
+Mitigation: Require a user confirmation step for file-modifying behavior and verify target paths before writing, overwriting, deleting, or moving files.
+
+## Reference(s):
+
+- [ClawHub Raycast Skill Page](https://clawhub.ai/xaif/skills/raycast)
+- [List Reference](references/api/list.md)
+- [Grid Reference](references/api/grid.md)
+- [Detail Reference](references/api/detail.md)
+- [Form Reference](references/api/form.md)
+- [Actions Reference](references/api/actions.md)
+- [AI Reference](references/api/ai.md)
+- [Browser Extension Reference](references/api/browser-extension.md)
+- [Clipboard Reference](references/api/clipboard.md)
+- [OAuth Reference](references/api/oauth.md)
+- [Storage Reference](references/api/storage.md)
+- [Caching Reference](references/api/caching.md)
+- [Toast Reference](references/api/toast.md)
+- [HUD Reference](references/api/hud.md)
+- [Environment Reference](references/api/environment.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance]
+
+**Output Format:** [Markdown with TypeScript and TSX code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should cite the specific local Raycast API reference files used.]
+
+## Skill Version(s):
+
+1.0.0 (source: server evidence release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

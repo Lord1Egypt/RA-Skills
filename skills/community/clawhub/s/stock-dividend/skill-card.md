@@ -1,43 +1,54 @@
-## Description: <br>
-Analyze dividend metrics for stocks via AIsa API. Provides yield, payout ratio, growth CAGR, safety score (0-100), income rating, and Dividend Aristocrat/King status. Use when the user asks about dividends, income investing, or dividend safety. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze dividend metrics for stocks via AIsa API, including yield, payout ratio, growth CAGR, safety score, income rating, and Dividend Aristocrat/King status.
 
-## Publisher: <br>
-[bibaofeng](https://clawhub.ai/user/bibaofeng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bibaofeng](https://clawhub.ai/user/bibaofeng)
 
-## Use Case: <br>
-External users and agents use this skill to request dividend-focused analysis for one or more stock tickers, including yield, payout, growth, safety score, income rating, and dividend aristocrat or king status. The output is informational and should not be treated as investment advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires an AIsa API key and sends requested ticker symbols and prompts to AIsa or a configured custom AISA_BASE_URL. <br>
-Mitigation: Use the skill only with an approved AIsa endpoint and provide credentials only in environments where sending those requests is acceptable. <br>
-Risk: Dividend analysis may be incorrect, incomplete, stale, or unsuitable for a user's financial situation. <br>
-Mitigation: Treat outputs as informational analysis, verify material data independently, and avoid using the result as investment advice. <br>
+## Use Case:
 
+External users and developers use this skill to request dividend income analysis for one or more stock tickers, including safety scoring, payout analysis, growth metrics, and ranked comparisons. The reports are informational and should be verified before making financial decisions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bibaofeng/stock-dividend) <br>
-- [Publisher profile](https://clawhub.ai/user/bibaofeng) <br>
-- [AIsa homepage](https://aisa.one) <br>
-- [AIsa API endpoint](https://api.aisa.one/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, guidance] <br>
-**Output Format:** [Markdown report by default, or structured JSON when invoked with --output json] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires ticker symbols as input and sends requests to the configured AIsa API endpoint.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence and frontmatter) <br>
+Risk: The skill can send the required AIsa API key to a custom endpoint if AISA_BASE_URL is set.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Set AISA_BASE_URL only to an endpoint you control and trust, or leave it unset to use the default AIsa endpoint.
+
+Risk: Dividend reports may contain incorrect or incomplete financial data or analysis.
+
+Mitigation: Treat generated reports as informational and verify financial data independently before acting on it.
+
+## Reference(s):
+
+- [ClawHub Stock Dividend listing](https://clawhub.ai/bibaofeng/skills/stock-dividend)
+- [AIsa homepage](https://aisa.one)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, guidance]
+
+**Output Format:** [Markdown dividend analysis report with tables and an optional JSON summary]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires AISA_API_KEY; optional AISA_BASE_URL and AISA_MODEL change the API endpoint and model used.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

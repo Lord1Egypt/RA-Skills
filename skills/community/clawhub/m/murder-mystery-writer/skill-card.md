@@ -1,47 +1,63 @@
-## Description: <br>
-Murder Mystery Writer helps agents create and review Chinese-language murder mystery scripts, including worldbuilding, characters, clues, timelines, game mechanics, DM materials, optional visual assets, and interactive HTML review pages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+创作高质量剧本杀（谋杀之谜）剧本的全流程工具。支持所有类型：推理本（本格/变格）、情感本、恐怖本、欢乐本、阵营本、机制本、混合本。支持4-10人规模，包含完整的世界观构建、角色设计、线索系统、时间线编排、核心诡计设计、反转设计、多结局机制。
 
-## Publisher: <br>
-[zjoe2111](https://clawhub.ai/user/zjoe2111) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zjoe2111](https://clawhub.ai/user/zjoe2111)
 
-## Use Case: <br>
-Writers, game designers, and facilitators use this skill to draft or review 4-10 player murder mystery games across reasoning, emotional, horror, comedy, faction, mechanism, and hybrid formats for online or offline play. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated visualization HTML may expose private scripts, hidden goals, or solution data if shared directly with players. <br>
-Mitigation: Use generated visualization HTML as an author or DM review artifact, and remove or split private and solution content before player-facing distribution. <br>
+## Use Case:
 
+External users and writers use this skill to draft, improve, and review Chinese-language murder mystery scripts for online, offline, or hybrid play. It guides worldbuilding, character design, clue systems, timelines, tricks, host materials, playtesting, and optional visual assets.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/zjoe2111/murder-mystery-writer) <br>
-- [Skill Instructions](artifact/SKILL.md) <br>
-- [Worldbuilding Guide](artifact/references/worldbuilding.md) <br>
-- [Character Design Guide](artifact/references/characters.md) <br>
-- [Clue System Guide](artifact/references/clues.md) <br>
-- [Trick Design Guide](artifact/references/tricks.md) <br>
-- [Output Format Guide](artifact/references/output-format.md) <br>
-- [Image Generation Guide](artifact/references/image-generation-guide.md) <br>
-- [Visualization Template](artifact/references/visualization-template.html) <br>
-- [Baibian Detective Submission Guide](artifact/references/submission-baibianddz.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown narrative and structured templates, with optional HTML and image-generation prompts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include separate player scripts, DM guides, clue cards, relationship maps, timelines, review checklists, and optional visualization artifacts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release evidence) <br>
+Risk: The optional HTML visualization template has browser-code risks when generated from untrusted prompts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid generating or sharing the optional HTML visualization from untrusted prompts until text rendering is fixed, D3 is pinned or bundled, and network loading is disclosed.
+
+Risk: The skill may create intense emotional, horror, death, family trauma, or betrayal themes.
+
+Mitigation: Add content warnings before presenting or distributing scripts that use these themes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zjoe2111/skills/murder-mystery-writer)
+- [Worldbuilding guide](references/worldbuilding.md)
+- [Character design guide](references/characters.md)
+- [Clue system guide](references/clues.md)
+- [Core trick design guide](references/tricks.md)
+- [Output format guide](references/output-format.md)
+- [Reasoning process guide](references/reasoning-process.md)
+- [Game mechanics guide](references/game-mechanics.md)
+- [Playtesting guide](references/playtesting.md)
+- [Image generation guide](references/image-generation-guide.md)
+- [Visualization template](references/visualization-template.html)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown and structured text, with optional HTML visualization templates and image-generation prompts.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Primarily Chinese-language output; may include character scripts, clue cards, public information, DM handbooks, timelines, review checklists, asset prompts, and optional browser-ready HTML.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

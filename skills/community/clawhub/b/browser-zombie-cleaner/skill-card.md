@@ -1,38 +1,52 @@
-## Description: <br>
-Detect and clean up zombie browser processes left by OpenClaw's browser tool after Gateway restarts, with detect-only reporting by default and optional scoped termination. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Detects orphaned OpenClaw browser processes and can optionally terminate them after user, origin, orphan status, and age checks.
 
-## Publisher: <br>
-[guoqunabc](https://clawhub.ai/user/guoqunabc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[guoqunabc](https://clawhub.ai/user/guoqunabc)
 
-## Use Case: <br>
-Developers and operators use this skill to identify orphaned OpenClaw browser processes, review memory impact, and optionally terminate only scoped stale browser sessions during cleanup or health checks. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The script can terminate browser processes when --kill is used. <br>
-Mitigation: Run detect-only first, review the listed PIDs, and use --kill only for orphaned OpenClaw browser sessions you intend to close. <br>
-Risk: Changing the process match pattern can expand which browser processes are considered candidates. <br>
-Mitigation: Keep the default .openclaw/browser/ pattern unless intentionally broadening scope, and review results before enabling termination. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+Developers and operators use this skill to inspect and clean up browser processes left behind after OpenClaw Gateway restarts, especially when memory use is high or browser processes are accumulating.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with inline bash commands; the cleanup script can emit text logs or JSON summaries.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Default execution is detect-only; process termination requires --kill and records actions to a local audit log.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Kill mode can be widened enough to close unrelated browser processes.
+
+Mitigation: Run the default detect mode first, avoid overriding --pattern, and use --kill only after reviewing the listed processes as OpenClaw browser leftovers.
+
+Risk: The local shell script can terminate browser process groups with SIGTERM and SIGKILL.
+
+Mitigation: Run it as the regular user, keep a conservative --min-age value, and review the audit log at the configured log path before using it unattended.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/guoqunabc/skills/browser-zombie-cleaner)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash commands and optional JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The bundled script reports detected browser process counts, zombie counts, memory estimates, action mode, and zombie details; it can also emit JSON with --json.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

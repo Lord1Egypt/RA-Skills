@@ -1,41 +1,50 @@
-## Description: <br>
-Story Deslop detects and reduces AI-like patterns in Chinese web-novel prose so drafts read more natural and less templated. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+诊断并修订网文中的表达、叙事用笔与故事因果问题，同时保留作者文风和已确定的剧情。
 
-## Publisher: <br>
-[worldwonderer](https://clawhub.ai/user/worldwonderer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[worldwonderer](https://clawhub.ai/user/worldwonderer)
 
-## Use Case: <br>
-Writers and editors use this skill to review Chinese web-novel drafts, identify AI-like wording or rhythm, and optionally rewrite text files to reduce templated phrasing while preserving story intent. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can modify user-provided prose files, which may overwrite drafts or change creative intent. <br>
-Mitigation: Use version control or backups before editing, review diffs after changes, and use detection-only wording when a report is needed without file changes. <br>
+## Use Case:
 
+面向创作中文网文的作者与编辑，用于按指定范围检查文本的表达、场景笔墨和故事因果，并在授权范围内修改正文、保留作者文风与既定剧情。
 
-## Reference(s): <br>
-- [Story Deslop on ClawHub](https://clawhub.ai/worldwonderer/skills/story-deslop) <br>
-- [OpenClaw source metadata](https://github.com/worldwonderer/oh-story-claudecode) <br>
-- [Anti-AI writing reference](references/anti-ai-writing.md) <br>
-- [Banned words reference](references/banned-words.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown reports, rewritten prose, and optional local script output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May edit user-provided prose files unless used in detection-only mode.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.8 (source: ClawHub release evidence) <br>
+Risk: Inspection was partial, so behavior of some referenced scripts is not fully confirmed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the remaining referenced scripts before installing or using the skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/worldwonderer/skills/story-deslop)
+- [Project link declared in skill metadata](https://github.com/zenstory-ai/oh-story-claudecode)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Text, Markdown]
+
+**Output Format:** [Chinese-language Markdown diagnosis and revised prose]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill may return a diagnosis only or revise supplied prose within the requested scope and authorization.]
+
+## Skill Version(s):
+
+1.1.52 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

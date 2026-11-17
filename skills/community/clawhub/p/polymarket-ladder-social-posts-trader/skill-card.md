@@ -1,43 +1,59 @@
-## Description: <br>
-Trades distribution-sum violations and local anomaly signals in social media post-count range markets on Polymarket. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Trades distribution-sum violations in social media post-count range markets on Polymarket, where range bins for the same person and date range should sum to about 100%, and detects local anomalies where a bin deviates sharply from its neighbors.
 
-## Publisher: <br>
-[diagnostikon](https://clawhub.ai/user/diagnostikon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[diagnostikon](https://clawhub.ai/user/diagnostikon)
 
-## Use Case: <br>
-External traders and developers use this skill to evaluate and automate a configurable Polymarket strategy for social media post-count range markets. It supports paper trading by default and can place live USDC trades only when explicitly launched in live mode. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Live mode can place real Polymarket trades using USDC. <br>
-Mitigation: Keep the skill in paper mode until reviewed, and use live mode only when prepared for real trades. <br>
-Risk: SIMMER_API_KEY grants trading authority and is a sensitive credential. <br>
-Mitigation: Store the key securely and use the least-privileged Simmer key available. <br>
-Risk: Automated strategy settings can create unintended position or liquidity exposure. <br>
-Mitigation: Review tunables such as max position, max open positions, minimum volume, spread, and trade thresholds before live trading. <br>
+## Use Case:
 
+External traders and agent operators use this skill to scan Polymarket social media post-count range markets, identify distribution-sum violations or neighbor-bin anomalies, and produce paper or live trade actions through the Simmer SDK.
 
-## Reference(s): <br>
-- [Simmer SDK on PyPI](https://pypi.org/project/simmer-sdk/) <br>
-- [Simmer SDK GitHub repository](https://github.com/SpartanLabsXyz/simmer-sdk) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and Python runtime output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SIMMER_API_KEY; defaults to paper trading unless live mode is explicitly enabled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.3 (source: server release evidence) <br>
+Risk: Live mode can place real Polymarket trades and expose funded accounts to financial loss.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the skill in paper mode unless live trading is intentional, cap funded account exposure to money the operator is prepared to risk, and use the SIMMER_MAX_POSITION, SIMMER_MIN_TRADE, and SIMMER_MAX_POSITIONS tunables conservatively.
+
+Risk: The authoritative security summary states that some documented risk controls are incomplete or unenforced.
+
+Mitigation: Independently verify market grouping logic, volume and liquidity checks, position exposure limits, and the exact Simmer SDK version before enabling live trading.
+
+Risk: SIMMER_API_KEY grants trading authority and is a high-value credential.
+
+Mitigation: Store the key only in the intended runtime secret store, restrict its account permissions and funding where possible, and rotate it if it may have been exposed.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/diagnostikon/skills/polymarket-ladder-social-posts-trader)
+- [simmer-sdk on PyPI](https://pypi.org/project/simmer-sdk/)
+- [simmer-sdk GitHub Repository](https://github.com/SpartanLabsXyz/simmer-sdk)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Console text and trade instructions produced by a Python command-line script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SIMMER_API_KEY and tunable trading thresholds; defaults to paper trading unless --live is supplied.]
+
+## Skill Version(s):
+
+0.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

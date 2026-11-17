@@ -1,45 +1,54 @@
-## Description: <br>
-OpenClaw skill that provides a WordPress REST API CLI for posts, pages, categories, tags, users, and custom requests using plain HTTP. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw skill that provides a WordPress REST API CLI for posts, pages, categories, tags, users, and custom requests using plain HTTP.
 
-## Publisher: <br>
-[akkualle](https://clawhub.ai/user/akkualle) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[akkualle](https://clawhub.ai/user/akkualle)
 
-## Use Case: <br>
-Developers and operators use this skill to automate WordPress REST API workflows for content, taxonomy, user lookups, and custom requests through a Node.js CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create, update, delete, or publish WordPress content when supplied credentials permit those actions. <br>
-Mitigation: Use a dedicated low-privilege WordPress application password, prefer draft status for content changes, and require human review before publishing or deleting. <br>
-Risk: The users commands and raw request command may expose sensitive site data or perform broad API operations. <br>
-Mitigation: Limit the WordPress account role to the minimum required permissions and require human approval before reading user data or running custom requests. <br>
-Risk: Credential handling mistakes could leak WordPress application passwords, basic tokens, or JWTs. <br>
-Mitigation: Provide credentials through environment variables, avoid logging tokens, and do not commit credential files. <br>
+## Use Case:
 
+Developers and automation agents use this skill to manage WordPress posts, pages, categories, tags, user reads, and custom REST API requests from a Node.js CLI.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/akkualle/akkualle-wordpress-api) <br>
-- [Publisher profile](https://clawhub.ai/user/akkualle) <br>
-- [WordPress REST API Guide](assets/wordpress-rest-api-guide.md) <br>
-- [Environment variable example](env_example.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON CLI output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses environment variables for WordPress base URL and credentials; CLI exits non-zero on errors.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: The CLI can create, edit, or delete live WordPress content when provided credentials with sufficient permissions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated low-privilege WordPress account, stage changes as drafts first, and review delete or raw request commands before execution.
+
+Risk: WordPress credentials may be sent over non-HTTPS if WP_BASE_URL is misconfigured.
+
+Mitigation: Configure only an HTTPS WP_BASE_URL and avoid logging or committing tokens, application passwords, or JWTs.
+
+## Reference(s):
+
+- [WordPress REST API Guide](assets/wordpress-rest-api-guide.md)
+- [ClawHub Skill Page](https://clawhub.ai/akkualle/skills/akkualle-wordpress-api)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, JSON examples, and CLI output as JSON]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The CLI writes JSON to stdout and uses non-zero exit codes on errors.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata, _meta.json, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

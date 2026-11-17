@@ -1,44 +1,59 @@
-## Description: <br>
-Competitive ad intelligence skill for fetching, analyzing, and reporting on competitor ads across Meta, Google Ads Transparency Center, and LinkedIn Ad Library. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Competitive ad intelligence skill for fetching, analyzing, and reporting on competitor ads across Meta, Google Ads Transparency Center, and LinkedIn Ad Library.
 
-## Publisher: <br>
-[abhishekj9621](https://clawhub.ai/user/abhishekj9621) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[abhishekj9621](https://clawhub.ai/user/abhishekj9621)
 
-## Use Case: <br>
-Marketing teams, ecommerce operators, and analysts use this skill to research competitor ads across Meta, Google, and LinkedIn, compare creative messaging, and decide whether to use quick public scraping or deeper API-backed workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may guide an agent to make web requests to ad platforms and named third-party API providers for competitor research. <br>
-Mitigation: Use Phase 1 for public lookups when possible, and use API keys only with providers the user trusts. <br>
-Risk: Sensitive competitor or investigation terms may be sent to selected platforms or API services. <br>
-Mitigation: Avoid sensitive investigation terms unless the user is comfortable disclosing them to the chosen platform or provider. <br>
-Risk: Public ad libraries do not expose private performance metrics such as exact spend, CTR, conversions, or ROAS. <br>
-Mitigation: Present unavailable metrics as limitations and avoid implying that public ad-library data provides private campaign performance. <br>
+## Use Case:
 
+Marketing teams, ecommerce operators, and developers use this skill to research competitor advertising across public Meta, Google, and LinkedIn ad libraries, then summarize campaign patterns and normalized ad records.
 
-## Reference(s): <br>
-- [Meta (Facebook / Instagram) Ad Intelligence](references/meta.md) <br>
-- [Google Ads Transparency Center - Ad Intelligence](references/google.md) <br>
-- [LinkedIn Ad Library - Ad Intelligence](references/linkedin.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown summary report plus normalized JSON, with optional code snippets, shell commands, and API setup guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes platform limitations, recommended next steps, and phase selection guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill uses public ad-library scraping and third-party API providers, which may be subject to platform terms, provider policies, and service changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm platform terms and organizational policy before use, prefer official APIs where available, and run scraping workflows only in approved contexts.
+
+Risk: Competitor names, domains, page IDs, and API credentials may be sent to named external providers during deeper collection workflows.
+
+Mitigation: Share only approved inputs with external providers, keep API credentials scoped to the task, and avoid running the workflow in environments that contain unrelated secrets.
+
+Risk: Unpinned dependencies and browser-based scraping can introduce supply-chain or runtime exposure.
+
+Mitigation: Pin dependencies before installation and run browser scraping in a restricted environment.
+
+## Reference(s):
+
+- [Meta (Facebook / Instagram) Ad Intelligence](artifact/references/meta.md)
+- [Google Ads Transparency Center - Ad Intelligence](artifact/references/google.md)
+- [LinkedIn Ad Library - Ad Intelligence](artifact/references/linkedin.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown summary report with normalized JSON ad records and optional code or shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports include data limitations, phase recommendations, and next-step guidance for API keys or provider choices.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

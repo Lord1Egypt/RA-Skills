@@ -1,39 +1,52 @@
-## Description: <br>
-Handle Clawdbot operations in Nix mode (configuration management, environment detection). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Handle Clawdbot operations in Nix mode (configuration management, environment detection).
 
-## Publisher: <br>
-[Chronicuser21](https://clawhub.ai/user/Chronicuser21) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[chronicuser21](https://clawhub.ai/user/chronicuser21)
 
-## Use Case: <br>
-Developers and operators use this skill to help Clawdbot recognize Nix-managed environments, respect immutable installation paths, and give appropriate configuration and troubleshooting guidance. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The agent may give unsuitable dependency or setup advice if a user's Nix-mode environment variables or paths differ from the expected setup. <br>
-Mitigation: Confirm that CLAWDBOT_NIX_MODE and the relevant configuration and state paths match the local Nix-managed environment before applying guidance. <br>
-Risk: Auto-install or self-modification suggestions can conflict with immutable Nix-managed installations. <br>
-Mitigation: Use Nix package management for dependency changes and avoid agent-directed auto-install flows in Nix mode. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Chronicuser21/nix-mode) <br>
+## Use Case:
 
+Developers and agents operating Clawdbot in Nix-managed environments use this skill to detect Nix mode, avoid unsupported auto-install flows, and provide configuration and troubleshooting guidance.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Configuration instructions] <br>
-**Output Format:** [Markdown or plain text guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only; no automatic installation steps are declared.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: An agent could attempt auto-installation or self-modification even though Nix-managed installations are intended to be immutable.
+
+Mitigation: Respect Nix mode, avoid auto-install flows, and direct dependency changes through Nix package management.
+
+Risk: Incorrect Nix environment or path handling could lead to misleading configuration guidance.
+
+Mitigation: Check CLAWDBOT_NIX_MODE and distinguish Nix store, configuration, and state paths before advising remediation.
+
+## Reference(s):
+
+- [Nix Mode ClawHub Skill Page](https://clawhub.ai/chronicuser21/skills/nix-mode)
+
+## Skill Output:
+
+**Output Type(s):** [text, guidance, configuration]
+
+**Output Format:** [Markdown guidance with inline environment variable and path names]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

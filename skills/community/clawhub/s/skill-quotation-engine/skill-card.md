@@ -1,40 +1,58 @@
-## Description: <br>
-智能报价引擎 — 根据设备清单和工时自动生成报价单 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates quotation data for live event projects from equipment lists, labor inputs, transportation costs, insurance, management fees, and tax.
 
-## Publisher: <br>
-[zimuge-doudou](https://clawhub.ai/user/zimuge-doudou) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zimuge-doudou](https://clawhub.ai/user/zimuge-doudou)
 
-## Use Case: <br>
-Event production teams and developers use this skill to generate local quotation estimates from show equipment, labor, transport, insurance, management, and tax inputs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated quotation exports can overwrite an existing file if the same path is selected. <br>
-Mitigation: Choose export paths deliberately and review the generated JSON before relying on it. <br>
-Risk: The skill documentation references PDF export, but the available artifact evidence shows JSON export behavior. <br>
-Mitigation: Verify the available export method before depending on PDF output. <br>
+## Use Case:
 
+Event production teams and agents use this skill to calculate quote components for live show projects and generate reviewable quotation summaries or JSON records.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zimuge-doudou/skill-quotation-engine) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, files] <br>
-**Output Format:** [Plain text summaries, JSON quotation objects, and optional JSON export files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Local quotation calculator; generated JSON exports are written only to user-selected paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release metadata) <br>
+Risk: Generated financial totals may be inaccurate if quantities, rates, durations, or tax assumptions are wrong.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review quote outputs before using them as business documents and validate all pricing inputs against the project contract or rate card.
+
+Risk: The workflow is documented and implemented primarily in Chinese, which may cause review or operational errors for teams that do not use Chinese-language quotation workflows.
+
+Mitigation: Install only where Chinese-language quotation output is acceptable or add localization and reviewer checks before deployment.
+
+Risk: JSON export writes to a caller-provided filepath, so unsuitable paths could overwrite local files in the execution environment.
+
+Mitigation: Constrain export paths to approved working directories and add filepath validation before production use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/zimuge-doudou/skills/skill-quotation-engine)
+- [Publisher Profile](https://clawhub.ai/user/zimuge-doudou)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, JSON]
+
+**Output Format:** [Python dictionary or JSON quotation data, with optional plain-text summary output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Financial totals are generated from supplied equipment, labor, transportation, insurance, management, and tax inputs and should be reviewed before business use.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter reports 1.0 and __init__.py reports 2.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

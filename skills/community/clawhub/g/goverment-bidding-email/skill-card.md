@@ -1,44 +1,58 @@
-## Description: <br>
-Generates Excel reports for Chinese government procurement opportunities and sends them by SMTP email for the govb workflow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Excel reports for Chinese government procurement opportunities and sends them by SMTP email for the govb business workflow.
 
-## Publisher: <br>
-[zhangpengle](https://clawhub.ai/user/zhangpengle) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhangpengle](https://clawhub.ai/user/zhangpengle)
 
-## Use Case: <br>
-Operations teams tracking Chinese government procurement opportunities use this skill to fetch daily or date-specific bidding data, filter by keywords, generate an Excel workbook, and email the report to configured recipients. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends real procurement-report emails with attachments. <br>
-Mitigation: Verify EMAIL_TO and EMAIL_CC before each production run and use the --to option for test delivery. <br>
-Risk: SMTP credentials are required for email delivery. <br>
-Mitigation: Use a dedicated SMTP account or app password and store the .env file only in trusted locations. <br>
-Risk: A .env file in the current working directory can override the expected mail settings. <br>
-Mitigation: Run the skill from a trusted directory and review the active .env values before sending reports. <br>
-Risk: The full workflow depends on the separate govb-fetcher package. <br>
-Mitigation: Review and install the govb-fetcher dependency before relying on generated reports. <br>
+## Use Case:
 
+Business users and agents use this skill to fetch Chinese government procurement opportunity data, filter it by date or keywords, produce an Excel summary, and send the report to configured recipients.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhangpengle/goverment-bidding-email) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with command examples and configuration details] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill can trigger real SMTP email delivery with an Excel attachment when configured and executed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.4 (source: server release evidence) <br>
+Risk: The skill sends real email using stored SMTP credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify SMTP recipients and sender settings before each send, protect the EMAIL_* configuration file, and test with an override recipient before operational use.
+
+Risk: The runtime depends on an unbundled govb_fetcher component that was not available for review.
+
+Mitigation: Install only from a trusted source and pin dependencies before using the skill in production.
+
+Risk: The configuration loader checks the current working directory for .env before the user config directory.
+
+Mitigation: Run the skill from a trusted working directory or use a fixed, user-private configuration path.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhangpengle/skills/goverment-bidding-email)
+- [Publisher profile](https://clawhub.ai/user/zhangpengle)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, files]
+
+**Output Format:** [Plain text guidance and CLI commands; runtime output includes SMTP email and Excel files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires EMAIL_* configuration, govb-email and govb-fetcher commands, and an available govb_fetcher runtime component.]
+
+## Skill Version(s):
+
+0.1.4 (source: server release evidence; artifact metadata declares 0.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,58 @@
-## Description: <br>
-Efficient DOM monitoring system for real-time content detection in web browsers using MutationObserver, IntersectionObserver, and intelligent debouncing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Dom Observer Pro helps agents configure browser DOM monitoring with MutationObserver and IntersectionObserver to detect and extract dynamic page content efficiently.
 
-## Publisher: <br>
-[raghulpasupathi](https://clawhub.ai/user/raghulpasupathi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[raghulpasupathi](https://clawhub.ai/user/raghulpasupathi)
 
-## Use Case: <br>
-Developers and engineers use this skill to add configurable browser DOM monitoring for dynamic content detection, extraction, moderation, and browser-extension workflows. It is suited for pages where targeted selectors, throttling, and explicit extraction settings are needed to control performance and privacy impact. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: DOM monitoring can read page content, including sensitive text, images, and links if configured broadly. <br>
-Mitigation: Limit target selectors and host permissions, avoid monitoring sensitive pages, and disable image or link extraction unless it is required. <br>
-Risk: Collected page content can create privacy, consent, retention, or telemetry obligations. <br>
-Mitigation: Define clear consent, retention, and telemetry rules before deployment. <br>
-Risk: The npm package and dependencies introduce supply-chain risk before use. <br>
-Mitigation: Review the package source and dependencies before installing or deploying it. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Dom Observer Pro ClawHub page](https://clawhub.ai/raghulpasupathi/dom-observer-pro) <br>
-- [Artifact skill documentation](artifact/SKILL.md) <br>
+## Use Case:
 
+Developers and agents use this skill to monitor changing browser content, tune selector-based observation, and extract text, image, or link data from dynamic web pages.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, code] <br>
-**Output Format:** [Markdown with inline shell commands, JSON configuration, and code references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes selector, observer, performance, and extraction settings for browser DOM monitoring.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: artifact metadata and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: DOM monitoring and extraction can collect sensitive page content or user behavior data when applied broadly.
+
+Mitigation: Limit monitoring to specific sites and selectors, avoid private or sensitive pages, and obtain user consent for behavior tracking or content collection.
+
+Risk: Image and link extraction may capture more data than the intended use case requires.
+
+Mitigation: Disable image and link extraction unless they are explicitly needed for the deployment.
+
+Risk: Browser or extension installation can depend on an unverified package version.
+
+Mitigation: Pin and verify the npm package version before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/raghulpasupathi/skills/dom-observer-pro)
+- [Publisher profile](https://clawhub.ai/user/raghulpasupathi)
+- [npm package](https://www.npmjs.com/package/@raghulpasupathi/dom-observer-pro)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with JSON configuration and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include selector lists, extraction settings, performance tuning guidance, and browser monitoring code examples.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

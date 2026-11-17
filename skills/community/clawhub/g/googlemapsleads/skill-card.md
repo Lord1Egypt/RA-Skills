@@ -1,42 +1,59 @@
-## Description: <br>
-Generate qualified B2B leads from Google Maps by defining an ICP, extracting matching businesses, scoring and qualifying leads, and exporting ready-to-outreach lists. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate qualified B2B leads from Google Maps. Define your ICP, extract matching businesses, score and qualify leads, export ready-to-outreach lists.
 
-## Publisher: <br>
-[gmapsscraper](https://clawhub.ai/user/gmapsscraper) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gmapsscraper](https://clawhub.ai/user/gmapsscraper)
 
-## Use Case: <br>
-External users and sales teams use this skill to plan Google Maps lead searches, run a third-party scraping job, score contactability signals, deduplicate results, and prepare outreach-ready lead lists. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a gmapsscraper.io API key and sends lead-search criteria to that third-party service. <br>
-Mitigation: Use a dedicated API key, scope and rotate it where possible, and avoid submitting sensitive or confidential target criteria. <br>
-Risk: Exported business contact data may be used for outreach subject to privacy, platform, and anti-spam requirements. <br>
-Mitigation: Review Google Maps, privacy, anti-spam, and outreach compliance requirements before exporting emails or starting cold outreach. <br>
+## Use Case:
 
+External sales, marketing, and business development users use this skill to define an ideal customer profile, run Google Maps lead searches through gmapsscraper.io, score and deduplicate matching businesses, and prepare outreach lists.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/gmapsscraper/googlemapsleads) <br>
-- [GMapsScraper homepage](https://gmapsscraper.io) <br>
-- [GMapsScraper pricing](https://gmapsscraper.io/#pricing) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash/curl snippets and CSV export expectations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires GMAPS_SCRAPER_API_KEY and curl; sends lead-search criteria to gmapsscraper.io.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and artifact frontmatter) <br>
+Risk: Generated shell command templates can be risky when untrusted or oddly formatted search terms are interpolated into JSON payloads.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review commands before execution and build API payloads with validated inputs or a proper JSON encoder.
+
+Risk: The workflow sends targeting criteria and lead/contact data to gmapsscraper.io.
+
+Mitigation: Use only if the data-sharing model is acceptable, and confirm privacy and anti-spam obligations before outreach.
+
+Risk: The workflow requires GMAPS_SCRAPER_API_KEY.
+
+Mitigation: Store the API key in an environment variable or secrets manager, and avoid logging or committing it.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/gmapsscraper/skills/googlemapsleads)
+- [gmapsscraper.io](https://gmapsscraper.io)
+- [gmapsscraper.io Jobs API Endpoint](https://gmapsscraper.io/api/v1/jobs)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks and lead-scoring tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce CSV-oriented lead-list guidance for export after API job results are available.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

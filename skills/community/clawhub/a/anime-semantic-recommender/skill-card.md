@@ -1,45 +1,56 @@
-## Description: <br>
-Use for Chinese-first, source-grounded anime recommendations when the user asks for anime similar to something they watched, describes nuanced taste, wants feedback-driven refinement, or cares about story texture, romance dynamics, emotional aftertaste, pacing, relationship patterns, and avoidances rather than only genre tags. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use for Chinese-first, source-grounded anime recommendations when the user asks for anime similar to something they watched, describes nuanced taste, wants feedback-driven refinement, or cares about story texture, romance dynamics, emotional aftertaste, pacing, relationship patterns, and avoidances rather than only genre tags.
 
-## Publisher: <br>
-[kamiender](https://clawhub.ai/user/kamiender) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kamiender](https://clawhub.ai/user/kamiender)
 
-## Use Case: <br>
-External users and developers use this skill to produce compact, Chinese-first anime recommendations that match a user's described viewing experience, explain similarities and differences, and refine results from feedback. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Anime facts, availability, episode counts, or adaptation status can be inaccurate if the skill relies on memory or low-quality search results. <br>
-Mitigation: Use the skill's source-grounding workflow: check official pages, Bangumi, AniList, MAL/Jikan, or TMDb as appropriate, and separate verified facts from inference when sources are unavailable. <br>
-Risk: The optional experimental local CLI/cache/feedback path can store watch history, preference feedback, API cache data, and possible Bangumi or AniList tokens locally. <br>
-Mitigation: Keep the lightweight recommendation workflow as the default, and only use the local CLI/cache/feedback features when the user explicitly requests them and accepts local data storage. <br>
-Risk: Broad anime preference requests may activate the skill and produce Chinese-first answers when the user expected a different language or style. <br>
-Mitigation: Confirm language and recommendation style when the user's preference is unclear, and adapt the output language to the user's request. <br>
+## Use Case:
 
+Anime viewers and recommendation agents use this skill to turn nuanced Chinese-language taste descriptions, anchor works, and feedback into source-grounded anime recommendations. It is especially useful when relationship dynamics, emotional texture, pacing, avoidances, and post-watch feeling matter more than genre tags alone.
 
-## Reference(s): <br>
-- [Anime Semantic Recommender repository](https://github.com/KAMIENDER/anime-semantic-recommender) <br>
-- [ClawHub skill page](https://clawhub.ai/kamiender/anime-semantic-recommender) <br>
-- [Lightweight recommendation methodology](docs/simple-methodology.md) <br>
-- [Technical plan and optional local CLI design](docs/technical-plan.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, text, shell commands] <br>
-**Output Format:** [Markdown or plain text recommendation lists with optional inline shell commands for the experimental local CLI] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Default responses are compact Chinese-first recommendation explanations; optional local CLI features may produce JSON when explicitly requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Optional local CLI, cache, or profile features may store anime history, preference feedback, or possible Bangumi/AniList tokens on the local machine.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use those optional local features only on machines where local preference data and tokens can be stored appropriately, especially on shared or backed-up systems.
+
+Risk: Anime recommendations can become misleading when release details, adaptation status, or availability are not checked against reliable sources.
+
+Mitigation: Follow the skill's source-grounding workflow and separate verified facts from memory or inference when high-quality sources are unavailable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kamiender/skills/anime-semantic-recommender)
+- [Project homepage](https://github.com/KAMIENDER/anime-semantic-recommender)
+- [Simple methodology](docs/simple-methodology.md)
+- [Technical plan](docs/technical-plan.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown prose with ranked recommendation lists and caveats]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-first responses with source-grounding notes when browsing or factual verification is used]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

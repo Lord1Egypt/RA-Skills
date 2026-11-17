@@ -1,0 +1,438 @@
+{
+  "version": "2.4.0",
+  "source_id": "cnki",
+  "status": "blocked",
+  "checked_at": "2026-10-09T08:59:16.712Z",
+  "entry": {
+    "url": "https://www.cnki.net/",
+    "final_url": "https://kns.cnki.net/verify/home?ident=d3624d",
+    "title": "安全验证",
+    "status": "captcha_required",
+    "http_status": 200,
+    "checked_at": "2026-10-09T08:59:16.712Z",
+    "identity": {
+      "declared_name": "中国知网 CNKI",
+      "hostname": "kns.cnki.net",
+      "domain_matches": true
+    },
+    "links": [],
+    "frames": []
+  },
+  "controls": [],
+  "recipes": [
+    {
+      "id": "cnki:record-lookup",
+      "source_id": "cnki",
+      "task_kind": "record-lookup",
+      "status": "blocked",
+      "parameters": [
+        "title_or_identifier",
+        "author",
+        "institution",
+        "date_or_year",
+        "resource_type",
+        "target_field"
+      ],
+      "instructions": [
+        "使用本题实体或唯一标识查找；在真实结果容器内匹配题名、作者、机构、年份或ID，打开详情读取目标字段。"
+      ],
+      "transitions": {},
+      "entry_url": "https://www.cnki.net/",
+      "controls": [],
+      "pending": [
+        "结果容器、完成标志与页面打开方式仍需真实查询确认"
+      ],
+      "result_items": {
+        "status": "pending",
+        "locator": null,
+        "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+      },
+      "record_identity": {
+        "status": "pending",
+        "fields": []
+      },
+      "detail_fields": {
+        "status": "pending",
+        "fields": []
+      },
+      "completion": {
+        "status": "pending",
+        "ready": null,
+        "empty": null,
+        "loading": null,
+        "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+      },
+      "retrieval_channels": [
+        {
+          "id": "doi-url-resolution",
+          "kind": "official-api",
+          "owner": "DOI Foundation",
+          "method": "GET",
+          "url_template": "https://doi.org/api/handles/{doi}?type=URL",
+          "documentation": [
+            "https://www.doi.org/the-identifier/resources/factsheets/doi-resolution-documentation"
+          ],
+          "use_when": "已知DOI但缺少正确落地地址；已有正确官方记录时跳过解析，不先逐个探测元数据库。",
+          "verification": {
+            "status": "sample_verified",
+            "checked_at": "2026-10-10T03:49:56.212802+00:00",
+            "http_status": 200,
+            "scope": "一条校赛给定DOI的URL解析；不验证期刊、作者或任何正文答案"
+          },
+          "field_paths": [
+            "responseCode",
+            "handle",
+            "values[].type",
+            "values[].data.value"
+          ],
+          "constraints": [
+            "响应handle与本题DOI相符且responseCode成功；URL仅定位，需在目标记录读所问字段。",
+            "多条URL没有默认排名含义，按官方身份与实际可读取字段选路。",
+            "不从DOI后缀猜期刊或日期，Crossref无记录不证明DOI不存在。"
+          ],
+          "fallback": "用https://doi.org/{doi}或题目指定库的唯一标识检索；失败不是文章不存在。",
+          "evidence_scope": "resolution_only"
+        }
+      ],
+      "status_scope": "browser"
+    },
+    {
+      "id": "cnki:statistics-ranking",
+      "source_id": "cnki",
+      "task_kind": "statistics-ranking",
+      "status": "blocked",
+      "parameters": [
+        "query_terms",
+        "fields",
+        "boolean_relation",
+        "match_mode",
+        "start_year",
+        "end_year",
+        "resource_type",
+        "fund",
+        "sort_field",
+        "sort_direction",
+        "rank_or_threshold"
+      ],
+      "instructions": [
+        "把本题条件逐一填入已观察字段或该库自己的专业语法；清除上题筛选；核对结果回显、资源类型、年份、匹配方式、排序及统计口径。"
+      ],
+      "transitions": {},
+      "entry_url": "https://www.cnki.net/",
+      "controls": [],
+      "pending": [
+        "结果容器、完成标志与页面打开方式仍需真实查询确认"
+      ],
+      "result_items": {
+        "status": "pending",
+        "locator": null,
+        "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+      },
+      "record_identity": {
+        "status": "pending",
+        "fields": []
+      },
+      "detail_fields": {
+        "status": "pending",
+        "fields": []
+      },
+      "completion": {
+        "status": "pending",
+        "ready": null,
+        "empty": null,
+        "loading": null,
+        "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+      }
+    },
+    {
+      "id": "cnki:product-capability",
+      "source_id": "cnki",
+      "task_kind": "product-capability",
+      "status": "blocked",
+      "parameters": [
+        "product",
+        "client_platform",
+        "feature",
+        "menu_or_setting"
+      ],
+      "instructions": [
+        "先按retrieval_channels选择覆盖本题缺口的官方API/指南；原status只描述浏览器。指南不能支持当前数量或排名，受阻渠道不重复预检；需要界面时再执行下列浏览器步骤。",
+        "先确认网页版/桌面版/插件的具体产品和版本，再打开本题功能菜单或官方帮助读取选项；不提交生成、付费或个人信息。"
+      ],
+      "transitions": {},
+      "entry_url": "https://www.cnki.net/",
+      "controls": [],
+      "pending": [
+        "结果容器、完成标志与页面打开方式仍需真实查询确认"
+      ],
+      "result_items": {
+        "status": "pending",
+        "locator": null,
+        "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+      },
+      "record_identity": {
+        "status": "pending",
+        "fields": []
+      },
+      "detail_fields": {
+        "status": "pending",
+        "fields": []
+      },
+      "completion": {
+        "status": "pending",
+        "ready": null,
+        "empty": null,
+        "loading": null,
+        "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+      },
+      "status_scope": "browser",
+      "retrieval_channels": [
+        {
+          "id": "cnki-helpcenter",
+          "kind": "official-help",
+          "url": "http://service.cnki.net/helpcenter/",
+          "use_when": "中国知网官方帮助中心入口；因正文不可读取，本轮未确认其具体产品或 KNS 版本覆盖。",
+          "verification": {
+            "status": "body_unverified",
+            "checked_at": "2026-10-10",
+            "time_precision": "date",
+            "scope": "2026-10-10 尝试读取；没有可读取的正文版本信息。"
+          },
+          "supported_questions": [],
+          "not_covered": [
+            "所有字段代码和语法结论",
+            "精确/模糊匹配规则",
+            "当前检索结果数量或排名",
+            "具体记录",
+            "馆藏及全文授权"
+          ],
+          "limitations": [
+            "未读到任何官方帮助正文；本轮没有验证 KNS8 字段代码、匹配方式或专业语法。"
+          ],
+          "fallback": "先使用已观察到的真实帮助中心入口；当前 Web 读取受阻时停止重试，不将候选 KNS8 路径或搜索摘要当成规则证据。"
+        }
+      ]
+    },
+    {
+      "id": "cnki:official-guidance",
+      "source_id": "cnki",
+      "task_kind": "official-guidance",
+      "status": "blocked",
+      "parameters": [
+        "topic",
+        "official_publisher",
+        "version",
+        "target_statement"
+      ],
+      "instructions": [
+        "先按retrieval_channels选择覆盖本题缺口的官方API/指南；原status只描述浏览器。指南不能支持当前数量或排名，受阻渠道不重复预检；需要界面时再执行下列浏览器步骤。",
+        "优先发布机构的当前原文/官方帮助，核查完整陈述及版本，不引用题库答案作为依据。"
+      ],
+      "transitions": {},
+      "entry_url": "https://www.cnki.net/",
+      "controls": [],
+      "pending": [
+        "结果容器、完成标志与页面打开方式仍需真实查询确认"
+      ],
+      "result_items": {
+        "status": "pending",
+        "locator": null,
+        "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+      },
+      "record_identity": {
+        "status": "pending",
+        "fields": []
+      },
+      "detail_fields": {
+        "status": "pending",
+        "fields": []
+      },
+      "completion": {
+        "status": "pending",
+        "ready": null,
+        "empty": null,
+        "loading": null,
+        "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+      },
+      "status_scope": "browser",
+      "retrieval_channels": [
+        {
+          "id": "cnki-helpcenter",
+          "kind": "official-help",
+          "url": "http://service.cnki.net/helpcenter/",
+          "use_when": "中国知网官方帮助中心入口；因正文不可读取，本轮未确认其具体产品或 KNS 版本覆盖。",
+          "verification": {
+            "status": "body_unverified",
+            "checked_at": "2026-10-10",
+            "time_precision": "date",
+            "scope": "2026-10-10 尝试读取；没有可读取的正文版本信息。"
+          },
+          "supported_questions": [],
+          "not_covered": [
+            "所有字段代码和语法结论",
+            "精确/模糊匹配规则",
+            "当前检索结果数量或排名",
+            "具体记录",
+            "馆藏及全文授权"
+          ],
+          "limitations": [
+            "未读到任何官方帮助正文；本轮没有验证 KNS8 字段代码、匹配方式或专业语法。"
+          ],
+          "fallback": "先使用已观察到的真实帮助中心入口；当前 Web 读取受阻时停止重试，不将候选 KNS8 路径或搜索摘要当成规则证据。"
+        }
+      ]
+    },
+    {
+      "id": "cnki:citation-export",
+      "source_id": "cnki",
+      "task_kind": "citation-export",
+      "status": "blocked",
+      "parameters": [
+        "record_identifier",
+        "citation_style",
+        "export_format"
+      ],
+      "instructions": [
+        "打开本题记录的引用/导出入口，读取当前支持的格式和样式；不得沿用示例引文。"
+      ],
+      "transitions": {},
+      "entry_url": "https://www.cnki.net/",
+      "controls": [],
+      "pending": [
+        "结果容器、完成标志与页面打开方式仍需真实查询确认"
+      ],
+      "result_items": {
+        "status": "pending",
+        "locator": null,
+        "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+      },
+      "record_identity": {
+        "status": "pending",
+        "fields": []
+      },
+      "detail_fields": {
+        "status": "pending",
+        "fields": []
+      },
+      "completion": {
+        "status": "pending",
+        "ready": null,
+        "empty": null,
+        "loading": null,
+        "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+      }
+    },
+    {
+      "id": "cnki:search-syntax",
+      "source_id": "cnki",
+      "task_kind": "search-syntax",
+      "status": "not_observed",
+      "status_scope": "browser",
+      "parameters": [
+        "resource_type",
+        "field",
+        "matching_mode",
+        "target_rule"
+      ],
+      "instructions": [
+        "先按题目资源类型、篇名/第一作者等具体字段读知网当前帮助；精确/模糊、首页默认范围不能套维普或万方规则。指南当前正文未核验，相关缺口保留待核验。"
+      ],
+      "retrieval_channels": [
+        {
+          "id": "cnki-helpcenter",
+          "kind": "official-help",
+          "url": "http://service.cnki.net/helpcenter/",
+          "use_when": "中国知网官方帮助中心入口；因正文不可读取，本轮未确认其具体产品或 KNS 版本覆盖。",
+          "verification": {
+            "status": "body_unverified",
+            "checked_at": "2026-10-10",
+            "time_precision": "date",
+            "scope": "2026-10-10 尝试读取；没有可读取的正文版本信息。"
+          },
+          "supported_questions": [],
+          "not_covered": [
+            "所有字段代码和语法结论",
+            "精确/模糊匹配规则",
+            "当前检索结果数量或排名",
+            "具体记录",
+            "馆藏及全文授权"
+          ],
+          "limitations": [
+            "未读到任何官方帮助正文；本轮没有验证 KNS8 字段代码、匹配方式或专业语法。"
+          ],
+          "fallback": "先使用已观察到的真实帮助中心入口；当前 Web 读取受阻时停止重试，不将候选 KNS8 路径或搜索摘要当成规则证据。"
+        }
+      ]
+    }
+  ],
+  "blockers": [
+    {
+      "kind": "captcha_required",
+      "detail": "需在当前可见页面人工验证或授权；未确认可用检索。"
+    }
+  ],
+  "provenance": {
+    "catalog_source_id": "cnki",
+    "quiz_entries": [
+      "quiz-entry-083"
+    ],
+    "example_ids": [
+      "2025-M31-Q1",
+      "2025-M34-Q1",
+      "2025-M36-Q1",
+      "2025-M47-Q1",
+      "2026-M31-Q1",
+      "2026-M34-Q1",
+      "2026-M36-Q1",
+      "2026-M46-Q2",
+      "2026-M47-Q1",
+      "PT1-Q2",
+      "PT1-Q4",
+      "PT1-Q5",
+      "PT1-Q12",
+      "PT1-Q19",
+      "PT1-Q27",
+      "PT1-Q34",
+      "KH-Q022",
+      "KH-Q025",
+      "KH-Q033",
+      "KH-Q045",
+      "KH-Q058",
+      "KH-Q059",
+      "KH-Q073",
+      "KH-Q080",
+      "KH-Q089"
+    ],
+    "method": "参数化操作学习；不分发整题、答案或解析",
+    "audit": {
+      "checked_at": "2026-10-09T08:59:16.712Z",
+      "browser": "Google Chrome",
+      "api": "Playwright JavaScript library",
+      "snapshot": "validation/site-audit-v24/cnki-search-entry.json",
+      "original_entry_snapshot": "validation/site-audit-v24/cnki-entry.json",
+      "identity_limit": "匹配来源域名不等于核验所有内容；查询未执行时不得声称检索验证完成。",
+      "published_url_policy": "动态验证码、登录回跳和会话令牌不固化为流程入口；原始现场快照仅在validation留存。"
+    }
+  },
+  "result_items": {
+    "status": "pending",
+    "locator": null,
+    "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+  },
+  "record_identity": {
+    "status": "pending",
+    "fields": []
+  },
+  "detail_fields": {
+    "status": "pending",
+    "fields": []
+  },
+  "completion": {
+    "status": "pending",
+    "ready": null,
+    "empty": null,
+    "loading": null,
+    "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+  },
+  "status_scope": "browser"
+}

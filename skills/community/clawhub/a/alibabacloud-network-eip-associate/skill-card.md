@@ -1,50 +1,70 @@
-## Description: <br>
-Allocate Elastic IP Addresses (EIPs) and bind them to existing Alibaba Cloud resources across ECS instances, ENIs, CLB, NAT Gateway, HAVIP, and IP addresses, with allocation, binding, verification, and cleanup guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Allocates Elastic IP Addresses (EIPs) and binds them to existing Alibaba Cloud resources, including ECS instances, ENIs, CLB, NAT Gateway, HAVIP, and direct IP address bindings.
 
-## Publisher: <br>
-[sdk-team](https://clawhub.ai/user/sdk-team) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sdk-team](https://clawhub.ai/user/sdk-team)
 
-## Use Case: <br>
-Cloud engineers and developers use this skill to allocate or select an Alibaba Cloud EIP, bind it to a user-specified existing resource, verify the association, and handle cleanup when binding fails. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent through Alibaba Cloud networking operations that allocate, bind, unbind, or release EIPs and may incur cost or disrupt access. <br>
-Mitigation: Use a dedicated least-privilege RAM user or short-lived credentials, isolate the Aliyun CLI profile, test in non-production where possible, and require manual confirmation before bind, unbind, release, create, or delete actions. <br>
-Risk: Supporting references include broader VPC, ECS, NAT, and ALB create/delete commands beyond the core EIP association workflow. <br>
-Mitigation: Treat broader create/delete references as review-only material unless deliberately operating in a disposable environment. <br>
-Risk: Credential handling is required for Aliyun CLI access. <br>
-Mitigation: Avoid root credentials, do not echo or expose access keys, prefer temporary credentials or role-based access, and scope permissions to the documented EIP operations. <br>
+## Use Case:
 
+External developers and cloud operators use this skill to guide Aliyun CLI workflows for allocating or selecting an EIP, associating it with an existing Alibaba Cloud resource, verifying the binding, and handling cleanup after failed binds.
 
-## Reference(s): <br>
-- [ClawHub skill release page](https://clawhub.ai/sdk-team/alibabacloud-network-eip-associate) <br>
-- [Acceptance Criteria](references/acceptance-criteria.md) <br>
-- [EIP CLI Command Reference](references/cli-commands.md) <br>
-- [Aliyun CLI Installation & Configuration Guide](references/cli-installation-guide.md) <br>
-- [EIP Associate RAM Permission Policies](references/ram-policies.md) <br>
-- [Related APIs and CLI Commands](references/related-apis.md) <br>
-- [Success Verification Method](references/verification-method.md) <br>
-- [Alibaba Cloud AssociateEipAddress API](https://api.aliyun.com/document/Vpc/2016-04-28/AssociateEipAddress) <br>
-- [Alibaba Cloud EIP Console](https://vpc.console.aliyun.com/eip) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline bash commands and Alibaba Cloud CLI command templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Aliyun CLI 3.3.3 or later, an up-to-date CLI plugin set, an authenticated Alibaba Cloud profile, explicit user-provided region and resource IDs, and confirmation before allocation or cleanup actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.1-beta.2 (source: server release evidence) <br>
+Risk: CLI setup guidance may encourage piping a remote install script to a shell.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a verified package-manager install or pinned signed Aliyun CLI release before running the skill workflow.
+
+Risk: Automatic Aliyun CLI plugin installation can make persistent environment changes.
+
+Mitigation: Enable plugin auto-install only in an approved environment and review installed plugin versions before use.
+
+Risk: Broad RAM credentials could allow higher-impact cloud operations than needed for EIP association.
+
+Mitigation: Use tightly scoped RAM credentials limited to required EIP, validation, and cleanup actions for the target resources.
+
+Risk: Linked acceptance and related API references include cloud creation and deletion operations outside the main EIP bind workflow.
+
+Mitigation: Restrict production use to EIP-only operations and require explicit user confirmation before any release or deletion command.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/sdk-team/skills/alibabacloud-network-eip-associate)
+- [ClawHub publisher profile](https://clawhub.ai/user/sdk-team)
+- [EIP CLI Command Reference](references/cli-commands.md)
+- [Aliyun CLI Installation and Configuration Guide](references/cli-installation-guide.md)
+- [EIP Associate RAM Permission Policies](references/ram-policies.md)
+- [EIP Batch Associate Cloud Resources - Related APIs and CLI Commands](references/related-apis.md)
+- [EIP Batch Associate Cloud Resources - Success Verification Method](references/verification-method.md)
+- [Acceptance Criteria: alibabacloud-network-eip-associate](references/acceptance-criteria.md)
+- [AssociateEipAddress API documentation](https://api.aliyun.com/document/Vpc/2016-04-28/AssociateEipAddress)
+- [Aliyun CLI official documentation](https://help.aliyun.com/zh/cli/)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces Aliyun CLI command sequences and checks; execution requires user-provided Alibaba Cloud resource IDs, region, credentials, and confirmation for allocation or cleanup actions.]
+
+## Skill Version(s):
+
+0.0.1-beta.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

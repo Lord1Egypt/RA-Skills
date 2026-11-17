@@ -1,0 +1,85 @@
+part: nRF54L15
+link_status: verified_2026-07-02 (datasheet-pdf-extracted)
+expected_family: nRF54L (BLE SoC, ultra-low power Cortex-M33)
+main_page: https://www.nordicsemi.com/Products/nRF54L15
+datasheet_path_expected: ../../embedded_dev/nordic/datasheet/nRF54L15_datasheet.pdf
+created_at: '2026-06-21T10:46:00+08:00'
+specs:
+  ble_version: '6.0'
+  ram: 256 KB
+  coremark: 503
+  coremark_per_mw_3v: 193
+  rx_sensitivity_dbm:
+    ble_1m: -96
+    ieee_802_15_4: -101
+  tx_power_dbm:
+    csp_max: 8
+    qfn_max: 7
+  operating_voltage_v: 1.7 to 3.6
+  cores:
+  - Arm Cortex-M33 @ 128 MHz with TrustZone
+  - 128 MHz RISC-V coprocessor (SoftPeripherals support)
+  flash: 1.5 MB (NVM)
+  protocols:
+    bluetooth_le:
+    - Channel Sounding (BLE 6.0)
+    - Bluetooth Mesh with NLC profiles
+    - Bluetooth PAwR (Periodic Advertising with Responses) + ESL
+    - 4 Mbps proprietary mode
+    matter: yes (over BLE + 802.15.4)
+    thread: yes (IEEE 802.15.4)
+    zigbee: yes (IEEE 802.15.4)
+    proprietary_2_4_ghz: yes (4 Mbps mode, low latency)
+    ecosystems:
+    - Amazon Sidewalk
+    - Google Find Hub
+    - Apple Find My
+    - nRF Cloud (FOTA, device management)
+  security:
+    features:
+    - Secure Boot
+    - Secure Firmware Update
+    - Secure Storage
+    - TrustZone trusted execution environment
+    - Cryptographic accelerator
+    - Side-channel leakage protection
+    - Tamper detection
+  peripherals_highlights:
+  - 1x high-speed SPI/UART
+  - 4x SPI/TWI/UART
+  - ADC (up to 14-bit with oversampling)
+  - I2S, PDM, NFC, PWM, QDEC
+  - "Global RTC (System-OFF capable, down to 0.8 \u03BCA @ 3.0 V)"
+  package_options:
+  - CSP47
+  - QFN52
+  - QFN48
+  - QFN40
+  fem_compatible: nRF21540 RF front-end module (BLE/mesh/2.4GHz proprietary/Thread/Zigbee)
+unverified:
+- nRF54L15 specific CoreMark vs series 503 (page lists series-level figure)
+- exact PMIC companion part numbers
+- exact package pin counts for QFN40
+notes:
+- "Promoted from placeholder to verified on 2026-06-28 (datasheet). Enriched on 2026-06-30 with marketing-level protocols/security/peripherals\
+  \ from nordicsemi.com product page via Firecrawl \u2014 fills protocol + ecosystem layer not present in datasheet spec block."
+- nRF54L15 is the mainstream variant of the nRF54L Series (2024).
+- 'Use case: BLE peripherals, wearables, Matter-over-Thread smart home, asset tracking (Apple Find My / Google Find Hub),
+  medical. Pairs with nRF7002 companion for Matter over Wi-Fi.'
+- 'Re-labeled verified_2026-07-02 via keyword-split pdfplumber verify (LARGE PDF 11.6MB, scanned first 100 pages): 27/41 spec
+  fields matched (66%). Replaces pre-v0.4.1 tag.'
+extracted_at: '2026-06-28T09:21:22+08:00'
+extracted_from_pages:
+- 1
+- 2
+- 3
+- 4
+- 5
+- 6
+- 7
+- 8
+- 9
+- 10
+- 11
+- 12
+extraction_method: pdfplumber Key Features / General Description

@@ -1,37 +1,49 @@
-## Description: <br>
-Helps users customize Claude Code keybindings, rebind shortcuts, add chords, or edit `~/.claude/keybindings.json` safely. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps users customize Claude Code keybindings safely by merging requested shortcut changes into existing keybinding configuration while preserving unrelated bindings.
 
-## Publisher: <br>
-[wimi321](https://clawhub.ai/user/wimi321) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wimi321](https://clawhub.ai/user/wimi321)
 
-## Use Case: <br>
-Developers and Claude Code users use this skill to safely update keybinding configuration by merging requested shortcut changes, preserving existing bindings, and explaining conflicts or terminal limitations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A review helper associated with the release can launch a nested Codex review with full local access and approval bypass by default. <br>
-Mitigation: Install only if the publisher is trusted; prefer the documented `--no-yolo` or `AUTOREVIEW_YOLO=0` option and require explicit confirmation before running moderation, publishing, or review-helper commands. <br>
+## Use Case:
 
+Developers and Claude Code users use this skill to request shortcut rebinding, unbinding, or chord creation while preserving existing keybindings and surfacing reserved-shortcut conflicts.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [configuration, guidance, text] <br>
-**Output Format:** [Markdown with keybinding configuration guidance and conflict explanations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include merged keybinding configuration suggestions for `~/.claude/keybindings.json`.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: OS, terminal, or Claude Code reserved shortcuts may not behave as requested or may conflict with existing bindings.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the proposed merged keybinding changes and any conflict explanations before saving them.
+
+## Reference(s):
+
+- [Keybindings Customizer ClawHub page](https://clawhub.ai/wimi321/skills/keybindings-customizer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown with configuration snippets and conflict explanations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Proposed merged changes should be reviewed before applying them to the user's keybindings file.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

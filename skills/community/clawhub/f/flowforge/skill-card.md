@@ -1,47 +1,67 @@
-## Description: <br>
-Autonomously breaks coding tasks into spec, plan, code, and QA phases, executing heavy work via Claude Code with multi-account rate-limit rotation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+FlowForge autonomously breaks coding tasks into spec, plan, code, and QA phases, executing heavy work via Claude Code with multi-account rate-limit rotation.
 
-## Publisher: <br>
-[windseeker1111](https://clawhub.ai/user/windseeker1111) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[windseeker1111](https://clawhub.ai/user/windseeker1111)
 
-## Use Case: <br>
-Developers use FlowForge to turn a task or GitHub issue into a specification, implementation plan, code changes, and QA report while Claude Code performs the coding work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives Claude Code broad authority to edit repositories and run planned verification commands. <br>
-Mitigation: Use it in a disposable clone or container on a clean branch, inspect the generated plan, and review diffs before trusting results. <br>
-Risk: Project context may be sent to Claude Code during autonomous coding phases. <br>
-Mitigation: Avoid running it on repositories containing secrets or sensitive data unless that exposure is acceptable for the environment. <br>
-Risk: Account rotation relies on locally saved Claude credential files. <br>
-Mitigation: Protect saved credential JSON files, inspect forge.env and account configuration before use, and remove credentials that are no longer needed. <br>
+## Use Case:
 
+Developers and engineering teams use FlowForge to turn feature, refactor, migration, investigation, or bug-fix tasks into a structured spec, plan, implementation, and QA workflow executed through Claude Code.
 
-## Reference(s): <br>
-- [OpenClaw](https://github.com/openclaw/openclaw) <br>
-- [FlowForge Spec Writer Prompt](references/spec-prompt.md) <br>
-- [FlowForge Planner Prompt](references/planner-prompt.md) <br>
-- [FlowForge Coder Prompt](references/coder-prompt.md) <br>
-- [FlowForge QA Prompt](references/qa-prompt.md) <br>
-- [FlowForge Generic Rubric](references/rubric-prompt.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown files, JSON plans, code changes, shell command output, and progress logs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates a timestamped forge workspace with spec.md, implementation_plan.json, qa_report.md, project-context.md, and progress.log.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: The skill can modify repositories and run generated commands autonomously.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only in an isolated disposable environment and review planned changes before using results in a production repository.
+
+Risk: Claude Code permission checks are disabled during the pipeline.
+
+Mitigation: Use least-privilege workspaces and accounts, and inspect the skill scripts before installation or execution.
+
+Risk: Untrusted GitHub issues, repositories, or sourced workspace configuration can influence command execution.
+
+Mitigation: Avoid untrusted inputs and treat task descriptions, repository files, and workspace configuration as executable-risk material.
+
+Risk: Copied Claude credential files are persisted for account rotation.
+
+Mitigation: Treat saved credentials as bearer credentials, restrict file permissions, and avoid mounting personal credentials into the runtime environment.
+
+## Reference(s):
+
+- [FlowForge ClawHub Skill Page](https://clawhub.ai/windseeker1111/skills/flowforge)
+- [README](README.md)
+- [Spec Prompt](references/spec-prompt.md)
+- [Planner Prompt](references/planner-prompt.md)
+- [Coder Prompt](references/coder-prompt.md)
+- [QA Prompt](references/qa-prompt.md)
+- [Rubric Prompt](references/rubric-prompt.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown, JSON, shell command output, and generated or modified repository files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates a timestamped forge workspace containing clarifications, a specification, an implementation plan, a QA report, a session handoff note, and progress logs.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

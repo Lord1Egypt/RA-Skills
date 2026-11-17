@@ -1,0 +1,43 @@
+slug: api-proxy
+name: api-gateway
+owner: jlacroix82
+description: Smart proxy for external API calls with retry, caching, circuit breaker, and rate limiting. PERSISTS: API keys (chmod 0600 plaintext in keys.json), request/response cache metadata, and request logs. Network: outbound HTTPS only, with a strict provider-domain allowlist. Caches metadata by default; full response bodies are opt-in per provider. WARNING: Requests transmit prompts, request bodies, headers, and responses to third-party API providers. Keys apply allowlist to all sources (env-var or disk-stored).
+version: 1.1.8
+type: skill
+author: OpenClaw
+license: MIT
+keywords:
+  - api
+  - proxy
+  - gateway
+  - circuit-breaker
+  - caching
+  - rate-limit
+  - allowlist
+  - security
+capabilities:
+  - network
+  - filesystem
+  - environment
+entry: SKILL.md
+dependencies: []
+permissions:
+  - name: network.outbound
+    description: Outbound HTTPS to provider allowlist domains
+  - name: filesystem.read-write
+    description: Read/write data files in memory/api-gateway/ (keys.json chmod 0600)
+  - name: environment.read
+    description: Read PROVIDER_API_KEY environment variables
+data_retention:
+  cache: 'metadata-only by default; full body opt-in per provider'
+  log: 'coarse: provider, status class, timestamp only — no endpoint paths or query strings stored'
+  keys: 'plaintext on disk with chmod 0600; env var override supported'
+security_notes:
+  - 'WARNING: Requests transmit prompts, request bodies, headers, and responses to third-party API providers. Do not route sensitive/regulated data through the gateway.'
+  - 'Allowlist enforced for ALL keys (env-var and disk-stored) — both refuse auth if hostname not in allowlist'
+  - 'Keys stored as plain text in JSON with chmod 0600 (POSIX)'
+  - 'Request log stores only provider, status class, timestamp — no endpoint paths or query strings'
+  - 'For production, integrate with a secrets manager for API key storage'
+  - 'Use --call --dry-run before executing important calls'
+  - 'Clear logs/cache for sensitive work: --log --clear and --cache --clear'
+  - 'Masked output prevents accidental exposure in logs'

@@ -1,44 +1,59 @@
-## Description: <br>
-WhatsLink queries metadata for public download, magnet, or torrent links and reports a concise summary with screenshot URLs without downloading or opening content. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+WhatsLink queries public download, magnet, and torrent links through WhatsLink to summarize metadata and, when present, screenshot URLs without downloading or opening the content.
 
-## Publisher: <br>
-[violin321](https://clawhub.ai/user/violin321) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[violin321](https://clawhub.ai/user/violin321)
 
-## Use Case: <br>
-Developers and agents use this skill to inspect public, non-sensitive links through the WhatsLink metadata API before deciding whether content is worth opening or downloading. It is intended for summaries of names, file types, sizes, counts, and optional screenshot URLs, not for downloading target content. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Submitting a private, signed, tokenized, internal, or confidential URL would disclose that link to WhatsLink or the configured compatible endpoint. <br>
-Mitigation: Use the skill only with public, non-sensitive URLs and reject links that contain tokens, credentials, internal hosts, or confidential material. <br>
-Risk: Screenshot URLs returned by the metadata service can expose sensitive visual content. <br>
-Mitigation: Default behavior lists screenshot URLs without downloading or opening them; use --no-screenshots or --max-screenshots 0 when screenshot exposure is not appropriate. <br>
-Risk: The metadata API may return unknown, empty, incomplete, or failed results. <br>
-Mitigation: Report only the returned metadata and avoid inferring file contents when the service does not identify useful information. <br>
+## Use Case:
 
+External users and developers use this skill to inspect public, non-sensitive URLs before opening or downloading them. It reports metadata such as content type, name, size, file count, and screenshot URLs when WhatsLink returns them.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/violin321/whatslink) <br>
-- [WhatsLink homepage](https://whatslink.info/) <br>
-- [WhatsLink API endpoint](https://whatslink.info/api/v1/link) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, shell commands, guidance] <br>
-**Output Format:** [Human-readable text summary or JSON from the helper script, with guidance that may include shell commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Default summaries list screenshot URLs without downloading or opening them; --json returns the raw WhatsLink API response.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server-resolved release metadata and helper user-agent) <br>
+Risk: Submitting a URL to WhatsLink discloses that link to an external lookup service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only public, non-sensitive URLs and do not submit signed links, internal resources, document-sharing URLs, tokens, API keys, sessions, or credentials.
+
+Risk: Returned screenshot URLs may expose sensitive information from the target content.
+
+Mitigation: List screenshot URLs only when appropriate, and do not download, open, or forward screenshots unless the user explicitly requests it and the URL is safe to handle.
+
+Risk: WhatsLink may return unknown, incomplete, or empty metadata.
+
+Mitigation: Report unknown results as unavailable metadata and avoid inferring file contents beyond the API response.
+
+## Reference(s):
+
+- [WhatsLink](https://whatslink.info/)
+- [WhatsLink API endpoint](https://whatslink.info/api/v1/link)
+- [ClawHub skill page](https://clawhub.ai/violin321/skills/whatslink)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance]
+
+**Output Format:** [Human-readable metadata summary or raw JSON response]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May list screenshot URLs by default; does not download, open, or forward target content.]
+
+## Skill Version(s):
+
+0.1.1 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,58 @@
-## Description: <br>
-A visual directory tree generator that creates a collapsible HTML report of a local folder and supports delivery through Telegram. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A security-hardened visual directory tree generator that creates a collapsible HTML visualization of local folders with XSS protection and shell-injection defenses, designed for mobile viewing via Telegram.
 
-## Publisher: <br>
-[sdsds222](https://clawhub.ai/user/sdsds222) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sdsds222](https://clawhub.ai/user/sdsds222)
 
-## Use Case: <br>
-Developers and end users use this skill to inspect or share a local folder structure as a self-contained HTML report. It is intended for cases where the folder path, names, timestamps, and sizes are acceptable to send through Telegram. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local folder paths, names, timestamps, and sizes may be shared externally through Telegram. <br>
-Mitigation: Use only on folders whose metadata is acceptable to send through Telegram, and confirm the target folder and chat destination before delivery. <br>
-Risk: Sensitive directories could expose private project or system structure. <br>
-Mitigation: Avoid sensitive directories unless there is explicit per-use consent or a local-only workflow is added. <br>
-Risk: The Telegram bot token can grant access to send reports if mishandled. <br>
-Mitigation: Keep the token protected as an environment variable and do not ask users to paste it into chat. <br>
+## Use Case:
 
+Developers and technical users use this skill to inspect local directories by generating a self-contained collapsible HTML report and, when configured, delivering it via Telegram for mobile viewing.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sdsds222/folder-visualizer-html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [HTML report file path with supporting command and delivery guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js and a Telegram bot token environment variable for Telegram delivery.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.10 (source: server release evidence) <br>
+Risk: The skill can send folder names, paths, file sizes, and modification dates to Telegram while its privacy note says no third-party upload occurs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only on directories whose metadata can be shared through Telegram; make Telegram export opt-in and correct the privacy statement before release.
+
+Risk: Directory metadata may expose sensitive project structure, confidential file names, or private local paths.
+
+Mitigation: Review the target directory before execution and avoid sensitive home directories, secret stores, and confidential repositories.
+
+Risk: Recursive traversal may cover symlinks or very large directory trees without explicit limits.
+
+Mitigation: Skip or constrain symlinks and add traversal depth or item limits before using the skill on broad paths.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sdsds222/skills/folder-visualizer-html)
+- [Publisher profile](https://clawhub.ai/user/sdsds222)
+
+## Skill Output:
+
+**Output Type(s):** [text, files, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and a generated self-contained HTML report file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js and a Telegram bot token for Telegram delivery; generated local reports should be deleted after delivery.]
+
+## Skill Version(s):
+
+1.0.10 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

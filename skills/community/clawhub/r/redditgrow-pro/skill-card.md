@@ -1,43 +1,58 @@
-## Description: <br>
-RedditGrow Pro is a prompt-only toolkit of 13 agents for Reddit-first marketing, research, content planning, promotion, engagement, account health, social listening, conversion copy, localization, CRO, niche research, and email marketing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+RedditGrow Pro is a prompt toolkit of 13 AI agents for Reddit-first marketing, research, content planning, promotion, account health, social listening, and conversion copy workflows.
 
-## Publisher: <br>
-[leiyuriy-byte](https://clawhub.ai/user/leiyuriy-byte) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leiyuriy-byte](https://clawhub.ai/user/leiyuriy-byte)
 
-## Use Case: <br>
-Indie hackers, solo SaaS founders, e-commerce entrepreneurs, agencies, and growth teams use this skill to draft Reddit-native marketing material, research niches and competitors, plan content calendars, assess account health, adapt copy for markets, and build launch or email sequences. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Marketing drafts may create transparency or platform-rule issues if treated as automatic posting advice. <br>
-Mitigation: Review all outputs before use, disclose product affiliation, follow each subreddit's rules, and treat recommendations as draft material. <br>
-Risk: Competitor and social-listening analysis could become intrusive or sensitive if applied beyond public market insights. <br>
-Mitigation: Keep analysis limited to public, non-sensitive, non-harassing information and avoid targeting individuals. <br>
-Risk: Bumping stale threads or overusing promotional content can trigger moderator or spam-filter action. <br>
-Mitigation: Use value-first participation, avoid stale-thread visibility tactics, and keep promotional activity within community norms. <br>
+## Use Case:
 
+Indie hackers, solo SaaS founders, e-commerce entrepreneurs, and agencies use this skill to generate Reddit-native research, posts, calendars, promotion plans, engagement responses, account-health audits, social-listening reports, and marketing copy.
 
-## Reference(s): <br>
-- [ClawHub listing: RedditGrow Pro](https://clawhub.ai/leiyuriy-byte/redditgrow-pro) <br>
-- [ClawHub publisher profile: leiyuriy-byte](https://clawhub.ai/user/leiyuriy-byte) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown prompt outputs, tables, checklists, campaign plans, drafts, reports, and recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prompt-only; produces draft marketing and research guidance for human review rather than automated posting or account access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Promotional posting or product mentions may violate subreddit rules or create undisclosed advertising risk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review each target subreddit's rules, disclose affiliation on product mentions, keep posts value-first, and approve drafts manually before posting.
+
+Risk: DM-oriented outreach and scaled engagement can be perceived as spam or unwanted solicitation.
+
+Mitigation: Avoid unsolicited DMs, do not automate or scale outreach, and use the skill only for manually reviewed community participation.
+
+Risk: Social listening and quote reuse can expose Reddit user content or account observations beyond the original context.
+
+Mitigation: Anonymize or minimize any saved quotes and account observations, avoid unnecessary identifiers, and verify that reuse is appropriate for the intended audience.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/leiyuriy-byte/skills/redditgrow-pro)
+- [Publisher profile](https://clawhub.ai/user/leiyuriy-byte)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown and structured text with plans, templates, checklists, tables, drafts, and risk notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution; outputs require human review before posting, outreach, or reuse of Reddit user content.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact changelog lists v1.0 on 2026-03-31)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

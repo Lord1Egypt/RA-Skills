@@ -1,6 +1,15 @@
 {
-  "ownerId": "kn715kn2x2xfdrw942g8968h1x878cg1",
-  "slug": "xiaomo-bounty-hunter",
+  "name": "github-bounty-hunter",
   "version": "1.0.0",
-  "publishedAt": 1779528308867
+  "description": "Find legitimate GitHub bounties by filtering out farm/scam repositories, tracking competition, and monitoring payment history.",
+  "author": "xiaomomini",
+  "license": "MIT",
+  "keywords": ["github", "bounty", "automation", "opportunity-discovery", "agent"],
+  "repository": "https://github.com/xiaomomini/github-bounty-hunter",
+  "openclaw": {
+    "requires": {
+      "bins": ["gh"],
+      "skills": ["github"]
+    }
+  }
 }

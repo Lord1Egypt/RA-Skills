@@ -1,43 +1,62 @@
-## Description: <br>
-Scores the novelty of biological targets using literature-style metrics and trend analysis. <br>
+## Description:
 
-This skill is for demonstration purposes and not for production usage. <br>
+Score the novelty of biological targets through literature mining and trend analysis.
 
-## Publisher: <br>
-[Lyla0921](https://clawhub.ai/user/Lyla0921) <br>
+This skill is for demonstration purposes and not for production usage.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lyla0921](https://clawhub.ai/user/lyla0921)
 
-## Use Case: <br>
-Developers and bioinformatics or pharma analysts can run a CLI-style workflow to produce target novelty reports for biological targets. Current evidence says the implementation generates simulated literature metrics, so outputs should be treated as exploratory rather than evidence for scientific, portfolio, or business decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users could mistake simulated target novelty scores for evidence-based literature analysis. <br>
-Mitigation: Clearly label generated reports as simulated or exploratory unless real PubMed/PMC retrieval and output provenance are implemented and verified. <br>
-Risk: Report output paths are user-controlled. <br>
-Mitigation: Review or constrain output paths before use in shared or automated environments. <br>
-Risk: Dependency evidence is inconsistent with the documented retrieval features. <br>
-Mitigation: Pin and reconcile dependencies before deployment, especially if real PubMed, PMC, pandas, requests, or Biopython integrations are added. <br>
+## Use Case:
 
+Developers and bioinformatics users can run the skill as a Python CLI to produce synthetic target novelty scores and text, JSON, or CSV reports for exploratory evaluation of a scoring workflow.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/Lyla0921/target-novelty-scorer) <br>
-- [NCBI E-utilities endpoint referenced by artifact](https://eutils.ncbi.nlm.nih.gov/entrez/eutils) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, CSV, files] <br>
-**Output Format:** [Plain text report, JSON object, CSV row, or saved report file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [CLI parameters include target, database selector, analysis year range, output path, output format, and verbose mode.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata; artifact frontmatter reports 1.0.0) <br>
+Risk: Scores and reports may be synthetic demonstration output rather than real PubMed or PMC evidence.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat generated reports as illustrative only and verify findings against authoritative biomedical literature before research decisions.
+
+Risk: Report writing accepts user-provided output paths.
+
+Mitigation: Use reviewed relative output paths inside the workspace and avoid arbitrary or absolute paths.
+
+Risk: CSV exports from untrusted target inputs may be unsafe to open in spreadsheet software.
+
+Mitigation: Inspect or sanitize CSV output before opening it in spreadsheet software.
+
+Risk: The dependency set should be reviewed before use in a research environment.
+
+Mitigation: Use a fixed, reviewed dependency set in a controlled environment before running the skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lyla0921/skills/target-novelty-scorer)
+- [NCBI E-utilities API endpoint](https://eutils.ncbi.nlm.nih.gov/entrez/eutils)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, CSV]
+
+**Output Format:** [Text, JSON, or CSV report from a CLI command]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes target-level novelty score, confidence, score breakdown, metadata, and interpretation; output may be printed to stdout or written to a user-provided file path.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence; artifact frontmatter says 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

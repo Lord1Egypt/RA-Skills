@@ -1,0 +1,211 @@
+version: mock-retail-1.0
+domain: 零售电商·销售运营
+datasets:
+- name: orders
+  source: orders
+  cn: 订单事实表
+  grain: 一行一笔订单
+  primary_key: order_id
+  ai:
+    instructions: 能答订单量/GMV/退款相关统计；必带时间围栏（order_date）；不答客户隐私明细
+  fields:
+  - name: order_id
+    role: pk
+    cn: 订单号
+  - name: order_date
+    role: time
+    cn: 下单日期
+  - name: channel
+    role: dim
+    cn: 销售渠道
+    enum: &id001
+    - 线上
+    - 线下
+    - 直播
+  - name: status
+    role: dim
+    cn: 订单状态
+    enum: &id002
+    - 已完成
+    - 已退款
+    - 待付款
+  - name: amount
+    role: measure
+    cn: 订单金额
+  - name: customer_id
+    role: fk
+    cn: 客户编号
+  ontology_ref: 订单
+- name: customers
+  source: customers
+  cn: 客户维度表
+  grain: 一行一个客户
+  primary_key: customer_id
+  ai:
+    instructions: 能答客户分层/地域分布；身份证等隐私字段不存在于本表
+  fields:
+  - name: customer_id
+    role: pk
+    cn: 客户编号
+  - name: level
+    role: dim
+    cn: 会员等级
+    enum: &id003
+    - 普通
+    - 银卡
+    - 金卡
+  - name: region
+    role: dim
+    cn: 大区
+    enum:
+    - 华东
+    - 华北
+    - 华南
+    - 西南
+  - name: register_date
+    role: time
+    cn: 注册日期
+  ontology_ref: 客户
+relationships:
+- from: orders
+  to: customers
+  join_key: customer_id
+  cardinality: N:1
+  traversable: true
+  ontology_ref: 客户->订单:下单
+concepts:
+- term: 高价值客户
+  synonyms:
+  - 金卡客户
+  expand:
+    dataset: customers
+    field: level
+    values:
+    - 金卡
+metrics:
+- id: order_count
+  name: 已完成订单数
+  synonyms:
+  - 订单量
+  - 成交订单数
+  - 订单总数
+  type: count
+  dataset: orders
+  structured: true
+  status: 已发布
+  expr: COUNT(*)
+  filters:
+  - field: status
+    values:
+    - 已完成
+  time_field: order_date
+  unit: 笔
+  caliber:
+    note: 仅统计已完成状态订单
+    basis: mock 内部约定
+- id: gmv
+  name: 成交总额
+  synonyms:
+  - GMV
+  - 销售额
+  - 总成交额
+  - 卖了多少钱
+  type: sum
+  dataset: orders
+  structured: true
+  status: 已发布
+  expr: SUM(amount)
+  filters:
+  - field: status
+    values:
+    - 已完成
+  time_field: order_date
+  unit: 元
+  caliber:
+    note: 已完成订单金额合计
+    basis: mock 内部约定
+- id: refund_rate
+  name: 退款率
+  synonyms:
+  - 订单退款率
+  - 退款比例
+  - 退货率
+  type: ratio
+  dataset: orders
+  structured: true
+  status: 已发布
+  numerator:
+    expr: SUM(CASE WHEN status = '已退款' THEN 1 ELSE 0 END)
+  denominator:
+    expr: COUNT(*)
+  time_field: order_date
+  unit: '%'
+  caliber:
+    note: 退款订单占全部订单比例（SUM/SUM 加权，禁行级平均）
+    basis: mock 内部约定
+  on_zero_denominator: 'null'
+- id: gold_customer_count
+  name: 金卡客户数
+  synonyms:
+  - 高价值客户数
+  - 金卡会员数
+  - 金卡客户有多少
+  type: count
+  dataset: customers
+  structured: true
+  status: 已发布
+  expr: COUNT(*)
+  filters:
+  - field: level
+    values:
+    - 金卡
+  time_field: register_date
+  unit: 人
+  caliber:
+    note: 会员等级为金卡的客户数
+    basis: mock 内部约定
+ontology:
+  entities:
+  - name: 订单
+    attributes:
+    - name: 销售渠道
+      value_type: enum
+      values: *id001
+    - name: 订单状态
+      value_type: enum
+      values: *id002
+    note: 一行一笔订单
+    uid: ent_order
+    evidence:
+      source: user_provided
+  - name: 客户
+    attributes:
+    - name: 会员等级
+      value_type: enum
+      values: *id003
+    note: 一行一个客户
+    uid: ent_customer
+    evidence:
+      source: user_provided
+  relations:
+  - from: 客户
+    to: 订单
+    predicate: 下单
+    mapping: equi_key
+templates:
+- id: refund_orders
+  name: 退款订单明细
+  dataset: orders
+  columns:
+  - order_id
+  - customer_id
+  - amount
+  - order_date
+  extra_where: status = '已退款'
+  time_field: order_date
+  synonyms:
+  - 退款单列表
+  - 哪些订单退款了
+  - 退款明细
+  note: 按 order_date 倒序，默认最多 100 行
+  status: 已发布

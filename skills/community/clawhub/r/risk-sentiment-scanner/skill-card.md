@@ -1,42 +1,58 @@
-## Description: <br>
-Scans public news, announcements, regulatory information, and financial signals for named companies, then produces structured credit-risk sentiment reports with risk levels, factors, alerts, and recommended actions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scans public news, announcements, and regulatory information for listed companies and produces structured credit-risk sentiment reports.
 
-## Publisher: <br>
-[yukirang](https://clawhub.ai/user/yukirang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yukirang](https://clawhub.ai/user/yukirang)
 
-## Use Case: <br>
-Developers, analysts, and business teams use this skill to batch-review company watchlists for public sentiment and credit risk, especially when they need structured JSON reports, high-risk alerts, and follow-up review cadence suggestions. Outputs should be treated as draft research and verified against source material before business, credit, compliance, or investment decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The executable helper can produce low-risk reports without fetched news evidence. <br>
-Mitigation: Treat generated reports as draft research, require fetched source evidence for real assessments, and verify source URLs before using the output. <br>
-Risk: Outputs may be used for credit, compliance, investment, or other high-impact business decisions. <br>
-Mitigation: Do not rely on the skill as a formal credit rating; route material decisions through qualified financial, legal, or compliance review. <br>
-Risk: Scheduled scans and report sharing can include outdated watchlists or unintended Feishu destinations. <br>
-Mitigation: Review watchlists before scheduled scans and confirm sharing destinations before publishing reports. <br>
+## Use Case:
 
+Developers, analysts, and business users can use this skill to batch review enterprises for public sentiment and credit-risk signals, then receive company-level ratings, summaries, and recommended review cadence.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yukirang/risk-sentiment-scanner) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, markdown, files, guidance] <br>
-**Output Format:** [Structured JSON reports, markdown summaries, and chat guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can save dated risk reports and produce high-risk alert summaries; reports should retain source URLs when fetched evidence is available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The scanner can generate low-risk company reports when no source evidence is collected.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require evidence collection to fail closed, include source URLs and timestamps, and block risk ratings when no sources are found.
+
+Risk: Credit, procurement, investment, or business workflows could over-rely on generated risk scores.
+
+Mitigation: Require human review and professional financial due diligence before using reports for material decisions.
+
+Risk: Reports may be saved or exported outside the chat workflow.
+
+Mitigation: Require explicit approval before saving reports, exporting to Feishu, or enabling scheduled monitoring.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yukirang/skills/risk-sentiment-scanner)
+- [ClawHub publisher profile](https://clawhub.ai/user/yukirang)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, JSON, Markdown, Guidance]
+
+**Output Format:** [Structured JSON report with optional Markdown report output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes company-level risk ratings, risk scores, trend labels, positive and negative factors, red flags, recommended actions, review frequency, source URLs when collected, and high-risk alerts.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,38 +1,51 @@
-## Description: <br>
-Create precise incident timelines from logs and notes. Use when handling development work that needs repeatable steps, quality gates, and practical outputs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create precise incident timelines from logs and notes. Use when handling development work that needs repeatable steps, quality gates, and practical outputs.
 
-## Publisher: <br>
-[xammarie](https://clawhub.ai/user/xammarie) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[xammarie](https://clawhub.ai/user/xammarie)
 
-## Use Case: <br>
-Developers and incident responders use this skill to turn logs, notes, constraints, and available artifacts into evidence-backed timelines, ranked findings, action plans, and checklists. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill is an advisory planning playbook and may be mistaken for a rigorous incident-forensics timeline tool. <br>
-Mitigation: Use it to structure incident notes and next actions, then validate facts against source logs and review recommendations before operational decisions. <br>
-Risk: Logs and notes may contain secrets, credentials, or sensitive personal data. <br>
-Mitigation: Sanitize credentials, tokens, and sensitive personal data before providing incident artifacts to an agent. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
+
+Developers and operators use this skill to convert logs, notes, constraints, and task artifacts into evidence-backed incident timelines, ranked findings, action plans, risks, mitigations, and checklists.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can produce broad development plans rather than only incident chronology, which may cause over-activation or outputs that are less specific than an incident timeline workflow requires.
+
+Mitigation: Use it with prompts and review criteria that explicitly request incident chronology, evidence sources, timestamps, assumptions, and acceptance checks.
+
+Risk: Generated findings, commands, or checklists could be incomplete or misleading if the supplied logs and notes are incomplete.
+
+Mitigation: Review the output against the source artifacts before executing commands or assigning owners and deadlines.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with summaries, ranked findings, action plans, risks, mitigations, checklists, and commands where useful] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Five-line maximum situation summary; evidence-backed claims; explicit assumptions, tradeoffs, owners, ETAs, and fallback paths where applicable] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+**Output Type(s):** [text, markdown, shell commands, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown with concise summaries, ranked findings, action plans, risk mitigations, and exact checklists or commands where useful]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Situation summary is capped at 5 lines by the skill artifact.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

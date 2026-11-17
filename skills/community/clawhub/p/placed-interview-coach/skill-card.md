@@ -1,43 +1,56 @@
-## Description: <br>
-Helps users practice mock, system design, technical, and behavioral interviews using the Placed career platform. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Placed Interview Coach helps users practice technical, system design, and behavioral interviews through the Placed career platform API.
 
-## Publisher: <br>
-[ajitsingh25](https://clawhub.ai/user/ajitsingh25) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ajitsingh25](https://clawhub.ai/user/ajitsingh25)
 
-## Use Case: <br>
-Interview candidates and career-focused users use this skill to run mock interview sessions, get feedback, practice system design cases, generate behavioral questions, and save STAR stories for reuse. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Interview-preparation content and saved STAR stories may include confidential employer, client, or personal details sent to Placed. <br>
-Mitigation: Avoid submitting confidential or sensitive details, and review answers and saved stories before sending them to the service. <br>
-Risk: The skill stores a Placed API key locally in ~/.config/placed/credentials. <br>
-Mitigation: Use a dedicated or revocable API key, protect the credentials file, and remove it when access is no longer needed. <br>
+## Use Case:
 
+External users and developers use this skill to run mock technical, system design, and behavioral interview practice with Placed, including question generation, answer feedback, STAR story preparation, and session review.
 
-## Reference(s): <br>
-- [Placed Interview Coach API Reference](references/api-guide.md) <br>
-- [Placed homepage](https://placed.exidian.tech) <br>
-- [ClawHub skill page](https://clawhub.ai/ajitsingh25/placed-interview-coach) <br>
-- [Publisher profile](https://clawhub.ai/user/ajitsingh25) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and API response text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses the PLACED_API_KEY credential to call Placed interview-coaching API tools.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata; artifact frontmatter says 1.0.0) <br>
+Risk: The skill may persist the user's Placed API key in a plaintext shell credentials file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Set PLACED_API_KEY through the environment or a secret manager; if a local credentials file is used, restrict file permissions and use only on a trusted machine.
+
+Risk: Interview materials and answers may be sent to the external Placed API.
+
+Mitigation: Avoid submitting sensitive resumes, proprietary interview content, or confidential personal information unless the user accepts the service's handling of that data.
+
+## Reference(s):
+
+- [Placed Homepage](https://placed.exidian.tech)
+- [Placed API Key Settings](https://placed.exidian.tech/settings/api)
+- [Placed Interview Coach API Reference](artifact/references/api-guide.md)
+- [ClawHub Skill Page](https://clawhub.ai/ajitsingh25/skills/placed-interview-coach)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown text with inline shell commands and JSON API payloads]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Placed API key; responses may include interview questions, feedback, story-bank entries, and session identifiers.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata; artifact frontmatter lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

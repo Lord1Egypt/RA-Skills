@@ -1,42 +1,54 @@
-## Description: <br>
-菜根谭智慧 helps an agent provide reflective guidance drawn from the classical Chinese text Cai Gen Tan for self-cultivation, interpersonal judgment, mindset adjustment, and balanced decision-making. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+菜根谭智慧 provides Chinese philosophical reflection based on the late-Ming aphorism collection Caigentan, covering self-cultivation, interpersonal conduct, reputation, calmness, and life perspective.
 
-## Publisher: <br>
-[taro291](https://clawhub.ai/user/taro291) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[taro291](https://clawhub.ai/user/taro291)
 
-## Use Case: <br>
-External users can use this skill as a reflective classical-wisdom aid for self-cultivation, interpersonal conflict, workplace mindset, stress management, and value clarification. It should not be treated as medical, mental-health, legal, or workplace authority. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat reflective aphorism guidance as mental-health, medical, legal, or workplace authority. <br>
-Mitigation: Frame responses as classical-wisdom reflection and direct medical, legal, workplace, or serious distress situations to appropriate qualified support. <br>
-Risk: Broad mood and stress triggers may activate the skill during serious emotional distress. <br>
-Mitigation: Keep responses supportive and non-diagnostic, and prioritize appropriate support resources when a user appears to be in serious distress. <br>
-Risk: Classical aphorisms can be overgeneralized, taken out of context, or applied too passively. <br>
-Mitigation: Preserve context, mention limits, and balance reflective guidance with the user's concrete situation and practical safeguards. <br>
+## Use Case:
 
+External users and agent builders use this skill to generate concise Caigentan-based reflections, quotations, and practical guidance for self-cultivation, interpersonal conflicts, workplace pressure, and values clarification. It is for general philosophical reflection, not mental health care or crisis support.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/taro291/skills/caigentan-wisdom) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or conversational text with aphorisms, interpretation, cautions, and practical next steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No shell commands, code execution, data collection, or external API calls indicated by evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release evidence; artifact frontmatter says 1.2) <br>
+Risk: Users may treat philosophical coping prompts as mental health support.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present the skill as general reflection only and direct users with serious anxiety, depression, self-harm thoughts, insomnia, or crisis needs to professional or emergency support.
+
+Risk: Caigentan aphorisms can be over-applied as passive retreat, excessive tolerance, or absolute rules.
+
+Mitigation: Frame guidance as context-dependent reflection, preserve personal boundaries, and encourage balancing Caigentan with more active or professional support when the situation requires it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/taro291/skills/caigentan-wisdom)
+- [Publisher profile](https://clawhub.ai/user/taro291)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown prose with quotations, interpretation, and practical steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No tool calls, code execution, shell commands, or configuration files are produced by the artifact.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

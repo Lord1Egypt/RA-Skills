@@ -1,44 +1,61 @@
-## Description: <br>
-基于原题生成新题面、验证器及完整测试数据，自动套用 testlib 标准模板。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates rewritten C++ competitive-programming problem statements, testlib-based validators, generators, and complete test data from an original problem and standard solution.
 
-## Publisher: <br>
-[sirwym](https://clawhub.ai/user/sirwym) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sirwym](https://clawhub.ai/user/sirwym)
 
-## Use Case: <br>
-Developers and competitive programming problem setters use this skill to turn an existing C++ algorithm problem and standard solution into a rewritten problem statement, testlib-based validator, generator, and complete test data package. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can run generated or user-provided native C++ code inside a broadly mounted Docker workspace. <br>
-Mitigation: Use a disposable workspace with no credentials or important projects, review generated C++ before execution, and mount only the files needed for the contest-data build. <br>
-Risk: The workflow depends on a local cpp-sandbox Docker image. <br>
-Mitigation: Verify the image source and checksum before loading it, and stop if the expected sandbox image is missing or untrusted. <br>
+## Use Case:
 
+Developers and competitive-programming problem setters use this skill to turn an existing problem and C++ standard solution into a new contest-style problem package with generated tests, validation code, and packaged outputs.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/sirwym/cpp-problem-generator) <br>
-- [Docker Sandbox Releases](https://github.com/sirwym/cpp-problem-generator/releases/latest) <br>
-- [testlib Manual](artifact/references/testlib-manual.md) <br>
-- [Problem Backgrounds](artifact/references/backgrounds.md) <br>
-- [freeproblemset FPS Format](https://github.com/zhblue/freeproblemset) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown problem statements, C++ source files, shell commands, JSON build results, and generated archive metadata] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces generated contest assets in the active workspace through a Docker-based C++ sandbox workflow.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: The skill asks users to run third-party Docker code and generated C++ against a broadly mounted workspace.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only in a clean dedicated workspace with no secrets, verify or rebuild the Docker image where possible, and avoid mounting unrelated project files.
+
+Risk: Generated problem, validator, generator, and shell-command content can be incorrect or unsafe if accepted without review.
+
+Mitigation: Review generated files and commands before execution, keep validators strict, and scan the resulting package before deployment.
+
+Risk: The server security verdict is suspicious due to unverified Docker execution and untrusted C++ behavior.
+
+Mitigation: Prefer additional Docker isolation such as no network access, a non-root user, read-only inputs, and a separate writable output directory.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/sirwym/skills/cpp-problem-generator)
+- [testlib manual](references/testlib-manual.md)
+- [background catalog](references/backgrounds.md)
+- [generation pipeline script](scripts/generate.py)
+- [Docker sandbox release page referenced by the skill](https://github.com/sirwym/cpp-problem-generator/releases/latest)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with C++ source files, shell commands, generated test data, ZIP packaging, and metadata files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces contest assets such as problem.md, gen.cpp, valid.cpp, std.cpp-derived outputs, test data, meta.json, and a packaged archive when the Docker workflow succeeds.]
+
+## Skill Version(s):
+
+1.2.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

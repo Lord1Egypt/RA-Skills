@@ -1,30 +1,33 @@
 # E2E Testing with Playwright
 
-> When to read: when authoring Playwright end-to-end tests — directory layout, fixtures, page objects, network mocking, CI integration.
+> When to read: when authoring Playwright end-to-end tests: directory layout, fixtures, page objects, network mocking, CI integration.
 
 ## Directory Structure
 
 ```
-e2e/
+project-root/
 ├── playwright.config.ts
-├── fixtures/
-│   ├── auth.fixture.ts
-│   └── test-data.fixture.ts
-├── pages/
-│   ├── base.page.ts
-│   └── <page-name>.page.ts
-├── tests/
-│   ├── auth/
-│   │   └── login.spec.ts
-│   └── smoke/
-│       └── critical-paths.spec.ts
-└── utils/
-    └── api-helpers.ts
+└── e2e/
+    ├── fixtures/
+    │   ├── auth.fixture.ts
+    │   └── test-data.fixture.ts
+    ├── pages/
+    │   ├── base.page.ts
+    │   └── <page-name>.page.ts
+    ├── tests/
+    │   ├── auth/
+    │   │   └── login.spec.ts
+    │   └── smoke/
+    │       └── critical-paths.spec.ts
+    └── utils/
+        └── api-helpers.ts
 ```
 
 Naming: tests `<feature>.spec.ts`, page objects `<page>.page.ts`, fixtures `<concern>.fixture.ts`.
 
 ## Configuration
+
+Keep this config at the project root and run the CLI from that root. Playwright resolves `testDir` relative to the config file. For a nested config, adjust its relative directories and pass `--config <path>` explicitly.
 
 ```typescript
 import { defineConfig, devices } from '@playwright/test';
@@ -36,6 +39,9 @@ export default defineConfig({
   retries: process.env.CI ? 2 : 0,
   workers: process.env.CI ? 1 : undefined,
   reporter: 'html',
+  expect: {
+    toHaveScreenshot: { animations: 'disabled' },
+  },
   use: {
     baseURL: 'http://localhost:5173',
     trace: 'on-first-retry',
@@ -59,7 +65,7 @@ export default defineConfig({
 
 ## Page Object Model
 
-Tests never use selectors directly -- page objects encapsulate all locators and actions.
+Tests never use selectors directly; page objects encapsulate all locators and actions.
 
 ```typescript
 // e2e/pages/base.page.ts
@@ -68,17 +74,20 @@ import { type Page, type Locator } from '@playwright/test';
 export abstract class BasePage {
   constructor(protected readonly page: Page) {}
   abstract goto(): Promise<void>;
-  async waitForLoad() { await this.page.waitForLoadState('networkidle'); }
+  abstract readonly ready: Locator;
+  async waitForLoad() { await this.ready.waitFor(); }
   get toast(): Locator { return this.page.getByRole('alert'); }
 }
 
 // e2e/pages/users.page.ts
 export class UsersPage extends BasePage {
+  readonly ready: Locator;
   readonly createButton: Locator;
   readonly searchInput: Locator;
 
   constructor(page: Page) {
     super(page);
+    this.ready = page.getByRole('heading', { name: /users/i });
     this.createButton = page.getByRole('button', { name: /create/i });
     this.searchInput = page.getByRole('searchbox', { name: /search/i });
   }
@@ -89,8 +98,9 @@ export class UsersPage extends BasePage {
   }
 
   async searchFor(query: string) {
+    const resp = this.page.waitForResponse('**/api/users?*');
     await this.searchInput.fill(query);
-    await this.page.waitForResponse('**/api/users?*');
+    await resp;
   }
 }
 ```
@@ -109,16 +119,22 @@ Rules: locators as public readonly properties, actions as async methods with int
 
 Never use CSS selectors, XPath, or DOM structure selectors. When adding `data-testid`, use `<action>-<entity>-<type>` pattern: `create-user-btn`.
 
+## Filling Inputs
+
+Prefer `locator.fill(value)` to `page.keyboard.type()`. Synthesised keystrokes drop characters intermittently under a browser-attached session (CDP against an already-running browser), and the driver reports the full string as typed while the DOM holds a short value, so the assertion that would catch it is the one nobody writes. Rich-text editors whose state lives outside the element's `value` (ProseMirror, Slate, TipTap) ignore programmatic writes and still need `type()`; there, assert `input_value()` (or the editor's own serialized content) after typing and retry on a short read.
+
 ## Wait Strategies
 
-Never use `waitForTimeout` or `setTimeout`. Use explicit conditions:
+Never use `waitForTimeout` or `setTimeout`. Do not use `waitForLoadState('networkidle')` as a readiness signal; Playwright's API docs mark it discouraged for testing and point to web assertions instead. Start a `waitForResponse` before the action that triggers the request, or a fast response is missed. Use explicit conditions:
 
 ```typescript
 await page.getByRole('heading', { name: 'Dashboard' }).waitFor();
 await page.waitForURL('/dashboard');
-await page.waitForResponse(
+const resp = page.waitForResponse(
   (r) => r.url().includes('/api/users') && r.status() === 200,
 );
+await page.getByRole('button', { name: /load/i }).click();
+await resp;
 await page.getByTestId('spinner').waitFor({ state: 'hidden' });
 ```
 
@@ -147,7 +163,6 @@ Tests receive auth state via `storageState` in config projects.
 - Tests create own data via API helpers (faster than UI), clean up in `finally` blocks
 - Mock responses with `page.route('**/api/path', route => route.fulfill({ ... }))`
 - Simulate errors with `route.abort('failed')`
-- Wait for responses: `const resp = page.waitForResponse('**/api/users'); await click; await resp;`
 
 ## Flaky Test Fixes
 
@@ -155,10 +170,12 @@ Tests receive auth state via `storageState` in config projects.
 |-------|-----|
 | Hardcoded waits | Explicit wait conditions |
 | Shared test data | Each test creates its own |
-| Animations | `animations: 'disabled'` in config |
+| Animations | Wait for the actual interaction result; for screenshot assertions, use `expect.toHaveScreenshot.animations: 'disabled'` as configured above |
 | Race conditions | Wait for API responses before assertions |
 
-**Quarantine workflow** -- confirm flakiness before quarantining:
+The screenshot animation option affects screenshot assertions. It does not disable application animations during interaction tests.
+
+**Quarantine workflow**: confirm flakiness before quarantining:
 ```bash
 npx playwright test --repeat-each=10 path/to/test.spec.ts  # Confirm flakiness
 npx playwright test --retries=3 path/to/test.spec.ts       # Check if retries help

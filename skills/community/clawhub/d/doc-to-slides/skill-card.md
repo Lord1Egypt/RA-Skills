@@ -1,44 +1,59 @@
-## Description: <br>
-Convert documents or text into PDF slide presentations via the Ruyi Converter API at nyoi.io. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert documents or text into PDF slide presentations via the Ruyi Converter API at nyoi.io.
 
-## Publisher: <br>
-[lisiting01](https://clawhub.ai/user/lisiting01) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lisiting01](https://clawhub.ai/user/lisiting01)
 
-## Use Case: <br>
-External users and agents use this skill to turn plain text, markdown, document URLs, or uploaded document content into PDF slide decks. It is suited for creating presentations, pitch decks, and visual summaries through the nyoi.io Ruyi Converter API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: User-provided notes, documents, URLs, and generated slide outputs are sent to nyoi.io and related storage infrastructure. <br>
-Mitigation: Use the skill only for content that can be processed by that provider, and review privacy, retention, and access-control practices before sending regulated or highly confidential material. <br>
-Risk: API keys, job IDs, webhook secrets, and pre-signed download links can grant access to jobs or generated files. <br>
-Mitigation: Treat these values as private, avoid exposing them in public logs or chat transcripts, and resend or refresh download links only through trusted channels. <br>
-Risk: Generated PDF download links are time-limited and may expire before delivery. <br>
-Mitigation: Deliver the PDF as a file or media attachment when possible, and re-query the job endpoint for a fresh URL if the original link expires. <br>
+## Use Case:
 
+External users and agents use this skill to turn notes, markdown, PDFs, DOCX files, TXT files, or other presentation source material into PDF slide decks through a third-party conversion service.
 
-## Reference(s): <br>
-- [Ruyi Converter API Reference](references/api-reference.md) <br>
-- [Ruyi Converter API](https://www.nyoi.io) <br>
-- [ClawHub skill page](https://clawhub.ai/lisiting01/doc-to-slides) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with JSON and shell command examples; final user-facing artifact is a PDF slide deck attachment.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports text, file URL, base64 file, title, language, upload, job polling, webhook, and PDF download workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: Presentation source material is sent to the third-party nyoi.io service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid confidential, regulated, or proprietary documents unless the service provider's retention and access controls are acceptable.
+
+Risk: API keys, job IDs, and generated download links are sensitive and may expose submitted content or results.
+
+Mitigation: Treat credentials, job identifiers, and pre-signed URLs as secrets; do not print full credentials or links unless necessary for delivery.
+
+Risk: Download links expire after 2 hours, while the API reference states files are not deleted when links expire.
+
+Mitigation: Deliver the PDF as a file attachment promptly and request a fresh job artifact URL if the original link expires.
+
+## Reference(s):
+
+- [Doc2Slides ClawHub Listing](https://clawhub.ai/lisiting01/skills/doc-to-slides)
+- [Ruyi Converter API Reference](references/api-reference.md)
+- [Ruyi Converter Service](https://www.nyoi.io)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Shell commands, Guidance]
+
+**Output Format:** [PDF slide deck delivered as a file attachment, with Markdown guidance and inline shell command examples for the agent workflow]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The generated PDF is exposed through a pre-signed download link that is valid for 2 hours; large jobs can take up to 30 minutes.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,55 @@
-## Description: <br>
-Creates correctly structured OpenClaw skills with YAML frontmatter, _meta.json metadata, local setup guidance, and optional ClawHub publishing steps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates OpenClaw skills with the correct YAML frontmatter, _meta.json metadata, file structure, and optional ClawHub publishing steps.
 
-## Publisher: <br>
-[yejay7](https://clawhub.ai/user/yejay7) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yejay7](https://clawhub.ai/user/yejay7)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to create, validate, and optionally publish local OpenClaw skills with the expected SKILL.md and _meta.json structure. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated or edited skill files can contain incorrect metadata, invalid examples, or instructions that do not match the user's intended skill behavior. <br>
-Mitigation: Review SKILL.md and _meta.json before use, confirm YAML and JSON validity, and check that names, descriptions, tags, and examples match the intended skill. <br>
-Risk: Optional login and publish commands can share a skill publicly if they are run unintentionally. <br>
-Mitigation: Run ClawHub login and publish commands only when publication is intended, and confirm the slug, version, tags, account, and skill contents before publishing. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to create or repair local OpenClaw skill packages and prepare optional ClawHub publication with required metadata and validation checks.
 
-## Reference(s): <br>
-- [OpenClaw Skill Creator on ClawHub](https://clawhub.ai/yejay7/create-skill-openclaw) <br>
-- [OpenClaw documentation](https://docs.openclaw.ai) <br>
-- [ClawHub skills directory](https://clawhub.ai/skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with YAML, JSON, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Review generated skill files before use or publishing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: _meta.json and server release evidence) <br>
+Risk: The guide includes unpinned ClawHub CLI examples for login and publishing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned, trusted ClawHub CLI version before authentication or publishing.
+
+Risk: Generated skill files or publish commands could contain mistakes before they are loaded or shared.
+
+Mitigation: Review SKILL.md, _meta.json, and publish arguments before restarting the gateway or publishing.
+
+## Reference(s):
+
+- [OpenClaw Skill Creator on ClawHub](https://clawhub.ai/yejay7/skills/create-skill-openclaw)
+- [OpenClaw Documentation](https://docs.openclaw.ai)
+- [ClawHub Skills Directory](https://clawhub.ai/skills)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with YAML, JSON, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces Spanish-language instructions for local OpenClaw skill creation and optional ClawHub publishing.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

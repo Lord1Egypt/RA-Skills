@@ -1,43 +1,55 @@
-## Description: <br>
-iaworker analyzes image, video, or camera input and produces step-by-step guidance for physical repair, debugging, assembly, and inspection tasks with optional spoken output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Intelligent Automation Worker analyzes image, video, or live camera inputs and generates structured physical-task guidance with optional visual and TTS delivery.
 
-## Publisher: <br>
-[yinleunglai](https://clawhub.ai/user/yinleunglai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yinleunglai](https://clawhub.ai/user/yinleunglai)
 
-## Use Case: <br>
-External users and developers use iaworker to turn images, videos, or live camera input into structured operating steps for repair, debugging, assembly, and inspection workflows. The skill is best treated as an assistant for guided task preparation and review, not as an authoritative visual diagnosis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated repair or diagnostic steps may be incomplete, generic, or incorrect for safety-critical physical tasks. <br>
-Mitigation: Require human verification before acting on guidance, especially for vehicles, electrical systems, structural parts, or other hazardous work. <br>
-Risk: Online text-to-speech may send spoken text to an external service when the default gTTS engine is used. <br>
-Mitigation: Disable speech or configure offline TTS when guidance may include private, sensitive, or regulated details. <br>
-Risk: Camera, image, and video analysis requires access to local media or live camera input. <br>
-Mitigation: Use only media the operator is authorized to process and review local privacy expectations before enabling live camera workflows. <br>
+## Use Case:
 
+Developers and external users use this skill to inspect physical-task inputs, draft step-by-step repair, debugging, assembly, or inspection guidance, and optionally deliver those steps through terminal markdown and speech.
 
-## Reference(s): <br>
-- [iaworker ClawHub release page](https://clawhub.ai/yinleunglai/iaworker) <br>
-- [iaworker task guide](artifact/references/task-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown, terminal text, generated step objects, and optional audio playback] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write generated steps to a Markdown file and may speak step summaries through TTS when enabled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may overstate visual diagnosis reliability while producing physical repair or inspection guidance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat generated diagnosis and repair steps as generic guidance, verify observations manually, and require expert review for vehicle, electrical, structural, or other high-risk work.
+
+Risk: Spoken output defaults to an online TTS service, which can expose task details to a third-party service.
+
+Mitigation: Disable speech or switch TTS to the offline pyttsx3 engine before handling sensitive images, videos, locations, equipment details, or user information.
+
+## Reference(s):
+
+- [iaworker ClawHub skill page](https://clawhub.ai/yinleunglai/skills/iaworker)
+- [yinleunglai ClawHub publisher profile](https://clawhub.ai/user/yinleunglai)
+- [Task guide](references/task-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown and terminal text with structured numbered steps, optional saved markdown files, and optional spoken TTS delivery]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [TTS is enabled in configuration and defaults to online gTTS with offline pyttsx3 available as an alternative.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

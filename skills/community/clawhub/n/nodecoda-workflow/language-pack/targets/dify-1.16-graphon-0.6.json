@@ -1,0 +1,153 @@
+{
+  "target_profile": "dify-1.16-graphon-0.6",
+  "language_identity": "nodecoda/1",
+  "generated_from": [
+    "references/target-capabilities.md"
+  ],
+  "supported": [
+    {
+      "construct": "llm(model, opts)",
+      "node": "LLM",
+      "notes": "temperature/max_tokens 直传"
+    },
+    {
+      "construct": "http(method, url, opts)",
+      "node": "HTTP Request",
+      "notes": "body/headers 全支持"
+    },
+    {
+      "construct": "tool(\"name\", \"action\", params)",
+      "node": "Tool",
+      "notes": "工具需先在 Dify 配置"
+    },
+    {
+      "construct": "knowledge(\"ds-id\", query, opts)",
+      "node": "Knowledge Retrieval",
+      "notes": "多 ds 逗号分隔"
+    },
+    {
+      "construct": "extract<T>(model, text, opts)",
+      "node": "Parameter Extractor",
+      "notes": "仅 prompt strategy"
+    },
+    {
+      "construct": "extract_text(doc)",
+      "node": "document-extractor",
+      "notes": "file 需声明可提取扩展名"
+    },
+    {
+      "construct": "foreign code python3(...)",
+      "node": "Code (Python)",
+      "notes": "声明类型是唯一权威"
+    },
+    {
+      "construct": "std.v1.rag_answer(...)",
+      "node": "RAG 复合",
+      "notes": "参数必须字面量"
+    },
+    {
+      "construct": "std.v1.fetch_and_summarize(...)",
+      "node": "HTTP+LLM 复合",
+      "notes": "参数必须字面量"
+    },
+    {
+      "construct": "if/else",
+      "node": "IF/ELSE",
+      "notes": "每分支独立节点"
+    },
+    {
+      "construct": "parallel { ... }",
+      "node": "Parallel",
+      "notes": "命名/无名都支持"
+    },
+    {
+      "construct": "for (x in xs) { yield x }",
+      "node": "Iteration",
+      "notes": "收集 yield 数组"
+    },
+    {
+      "construct": "answer(...)",
+      "node": "Answer",
+      "notes": "仅 advanced-chat"
+    },
+    {
+      "construct": "@conversation T",
+      "node": "Variable Assigner 链",
+      "notes": "多个 assigner 串联"
+    },
+    {
+      "construct": "output(\"key\", value)",
+      "node": "多端点输出",
+      "notes": "配合 return final"
+    },
+    {
+      "construct": "attempt{success/failure}",
+      "node": "错误处理分支",
+      "notes": "包装任意单操作"
+    },
+    {
+      "construct": "with retry(max:, interval:)",
+      "node": "节点级重试",
+      "notes": "仅 llm/http"
+    }
+  ],
+  "partial": [
+    {
+      "construct": "main 参数类型",
+      "limit": "仅 string/int/float/bool/file<>；不接受 string[]/map<string,T>"
+    },
+    {
+      "construct": "extract<T> 字段类型",
+      "limit": "仅 string/float/bool/string[]/float[]/bool[]"
+    },
+    {
+      "construct": "foreign code 输入输出",
+      "limit": "不支持 file 类型"
+    },
+    {
+      "construct": "@conversation 默认值",
+      "limit": "仅字面量"
+    },
+    {
+      "construct": "std.v1.* 参数",
+      "limit": "全部必须字符串字面量"
+    },
+    {
+      "construct": "retry",
+      "limit": "extract<T> 不支持（E1045）"
+    },
+    {
+      "construct": "filter/take/split",
+      "limit": "lowering 后是显式循环节点，大数组慎用"
+    }
+  ],
+  "unsupported": [
+    {
+      "construct": "自定义 Dify 节点类型",
+      "alternative": "用 tool(...) 包装，或在 Dify 端配置"
+    },
+    {
+      "construct": "跨 Dify 应用调用",
+      "alternative": "HTTP + Service API"
+    },
+    {
+      "construct": "任意 LLM provider 切换",
+      "alternative": "Dify 端先配 Model Provider，Source 只用模型 id"
+    },
+    {
+      "construct": "在 Source 塞 Dify 私有变量",
+      "alternative": "extract<T> 输出后再在 Dify 端处理"
+    },
+    {
+      "construct": "文件输入输出到非 Dify 存储",
+      "alternative": "http 走对象存储 API"
+    }
+  ],
+  "capability_gate": {
+    "diagnostics": [
+      "CAPABILITY_BLOCKED",
+      "TARGET_FEATURE_UNSUPPORTED"
+    ],
+    "correct_response": "改设计不改 Source；禁止用低级构造套娃硬堆"
+  }
+}

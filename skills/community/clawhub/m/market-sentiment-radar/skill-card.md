@@ -1,43 +1,57 @@
-## Description: <br>
-Market Sentiment Radar analyzes A-share market conditions, sentiment cycles, sector money flow, and cross-market signals to produce a market health report with portfolio exposure guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A股市场环境与情绪研究。用于盘前简报、大盘体检、板块轮动和跨市场信息整理。先核验数据来源与日期；证据不足时不判定周期、不评分。不用于自动荐股或下单。
 
-## Publisher: <br>
-[georgetao730](https://clawhub.ai/user/georgetao730) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[georgetao730](https://clawhub.ai/user/georgetao730)
 
-## Use Case: <br>
-External users and developers use this skill to assess whether current A-share market conditions favor trading, defensive positioning, or reduced exposure. It produces a high-level market environment report rather than individual stock recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can produce concrete trading exposure guidance while some market commentary may be under-sourced. <br>
-Mitigation: Verify market, sector, and macro claims independently and treat position sizing as educational commentary rather than investment advice. <br>
-Risk: Suggested trading-tool follow-ups could influence real-money trading decisions if followed automatically. <br>
-Mitigation: Require explicit human review before using this skill or linked tools to place trades, manage positions, or allocate real capital. <br>
-Risk: Reports depend on current market data availability and may be stale, incomplete, or partly estimated when data retrieval is limited. <br>
-Mitigation: Confirm the AKShare data timestamp and rerun or stop analysis when data retrieval fails or market inputs cannot be independently confirmed. <br>
+## Use Case:
 
+Developers and market researchers use this skill to generate Chinese-language China A-share market environment notes from dated public index data. It supports pre-market or post-close review, source/date checking, and explicit handling of missing evidence rather than automated trading decisions.
 
-## Reference(s): <br>
-- [Sentiment Cycles](references/sentiment-cycles.md) <br>
-- [Position Mapping](references/position-mapping.md) <br>
+### Deployment Geography for Use:
 
+Global, with market coverage focused on China A-share public market data.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown market health report with command-line usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes market cycle classification, risk level, sector commentary, cross-market commentary, and position sizing guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: Public market-data requests through AKShare may be unavailable, delayed, or incomplete.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review reported source dates, missing fields, and errors before using the report, and stop market conclusions when data is unavailable.
+
+Risk: Market research output may be mistaken for trading advice or authorization for account actions.
+
+Mitigation: Use the output for information only, avoid automatic trading or portfolio changes, and require separate explicit authorization for any account action.
+
+## Reference(s):
+
+- [Data and Analysis Method](references/research-method.md)
+- [Risk Boundaries](references/position-mapping.md)
+- [AKShare index data documentation](https://akshare.akfamily.xyz/data/index/index.html)
+- [Eastmoney market data source](https://quote.eastmoney.com/)
+- [Sina Finance market data source](https://finance.sina.com.cn/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Guidance]
+
+**Output Format:** [Chinese plain-text market research report, with optional JSON output when --json is used.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only output; reports source dates, missing data, and errors, and states that the result is not investment advice.]
+
+## Skill Version(s):
+
+1.3.2 (source: server release evidence and script VERSION)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,123 @@
+{
+  "version": "2.4.0",
+  "source_id": "iflytek-paper",
+  "status": "blocked",
+  "checked_at": "2026-10-09T09:03:01.532Z",
+  "entry": {
+    "url": "https://paper.iflytek.com/",
+    "final_url": "https://paper.iflytek.com/",
+    "title": "星火科研助手",
+    "status": "network_error",
+    "http_status": null,
+    "checked_at": "2026-10-09T09:03:01.532Z",
+    "identity": {
+      "declared_name": "星火科研助手",
+      "hostname": "paper.iflytek.com",
+      "domain_matches": true
+    },
+    "links": [],
+    "frames": []
+  },
+  "controls": [],
+  "recipes": [
+    {
+      "id": "iflytek-paper:product-capability",
+      "source_id": "iflytek-paper",
+      "task_kind": "product-capability",
+      "status": "blocked",
+      "parameters": [
+        "product",
+        "client_platform",
+        "feature",
+        "menu_or_setting"
+      ],
+      "instructions": [
+        "先确认网页版/桌面版/插件的具体产品和版本，再打开本题功能菜单或官方帮助读取选项；不提交生成、付费或个人信息。"
+      ],
+      "transitions": {},
+      "entry_url": "https://paper.iflytek.com/",
+      "controls": [],
+      "pending": [
+        "结果容器、完成标志与页面打开方式仍需真实查询确认"
+      ],
+      "result_items": {
+        "status": "pending",
+        "locator": null,
+        "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+      },
+      "record_identity": {
+        "status": "pending",
+        "fields": []
+      },
+      "detail_fields": {
+        "status": "pending",
+        "fields": []
+      },
+      "completion": {
+        "status": "pending",
+        "ready": null,
+        "empty": null,
+        "loading": null,
+        "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+      }
+    }
+  ],
+  "blockers": [
+    {
+      "kind": "network_error",
+      "attempt": 1,
+      "detail": "page.goto: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"https://paper.iflytek.com/\", waiting until \"domcontentloaded\"\u001b[22m\n"
+    },
+    {
+      "kind": "network_error",
+      "attempt": 2,
+      "detail": "page.goto: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"https://paper.iflytek.com/\", waiting until \"domcontentloaded\"\u001b[22m\n"
+    },
+    {
+      "kind": "network_error",
+      "attempt": 3,
+      "detail": "page.goto: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"https://paper.iflytek.com/\", waiting until \"domcontentloaded\"\u001b[22m\n"
+    }
+  ],
+  "provenance": {
+    "catalog_source_id": "iflytek-paper",
+    "quiz_entries": [
+      "quiz-entry-009"
+    ],
+    "example_ids": [
+      "2025-M05-Q1",
+      "2026-M05-Q1",
+      "PT1-Q43"
+    ],
+    "method": "参数化操作学习；不分发整题、答案或解析",
+    "audit": {
+      "checked_at": "2026-10-09T09:03:01.532Z",
+      "browser": "Google Chrome",
+      "api": "Playwright JavaScript library",
+      "snapshot": "validation/site-audit-v24/iflytek-paper-partial.json",
+      "original_entry_snapshot": "validation/site-audit-v24/iflytek-paper-partial.json",
+      "identity_limit": "匹配来源域名不等于核验所有内容；查询未执行时不得声称检索验证完成。",
+      "published_url_policy": "动态验证码、登录回跳和会话令牌不固化为流程入口；原始现场快照仅在validation留存。"
+    }
+  },
+  "result_items": {
+    "status": "pending",
+    "locator": null,
+    "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+  },
+  "record_identity": {
+    "status": "pending",
+    "fields": []
+  },
+  "detail_fields": {
+    "status": "pending",
+    "fields": []
+  },
+  "completion": {
+    "status": "pending",
+    "ready": null,
+    "empty": null,
+    "loading": null,
+    "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+  }
+}

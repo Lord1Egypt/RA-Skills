@@ -1,39 +1,48 @@
-## Description: <br>
-Detect, diagnose, and fix flaky tests by analyzing CI history, timing-sensitive behavior, shared state, race conditions, and environment dependencies, then proposing targeted fixes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Detect, diagnose, and fix flaky tests by analyzing CI history, test timing, shared state, race conditions, and environment dependencies, then provide targeted fixes.
 
-## Publisher: <br>
-[charlie-morrison](https://clawhub.ai/user/charlie-morrison) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[charlie-morrison](https://clawhub.ai/user/charlie-morrison)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and test engineers use this skill to find non-deterministic tests, classify likely causes such as timing, shared state, order dependence, network calls, or environment assumptions, and draft targeted fixes or quarantine plans.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The example multi-run shell workflow uses fixed /tmp paths that can collide with other users or stale files on shared systems.
+
+Mitigation: Run the workflow in a private mktemp directory and avoid elevated privileges, as recommended by the security guidance.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use this skill to investigate intermittent test failures in CI and local test runs, classify likely causes, and produce fix, quarantine, or stability-report guidance. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Commands may inspect CI history, download test artifacts, or run test suites in the active repository. <br>
-Mitigation: Run only in the intended repository, review commands before execution, and treat downloaded CI artifacts as potentially sensitive. <br>
-Risk: Generated fixes, skips, or quarantine changes may hide product defects or reduce test coverage if applied unreviewed. <br>
-Mitigation: Require code review and stable verification before committing generated changes. <br>
+**Output Format:** [Markdown reports with inline shell commands and code snippets]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [May include proposed test fixes and quarantine recommendations.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose test fixes, quarantine changes, and reports; review before execution or commit.] <br>
+1.0.1 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

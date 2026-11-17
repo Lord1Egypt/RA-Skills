@@ -1,45 +1,59 @@
-## Description: <br>
-Use this skill when users want to add a Feishu agent for OpenClaw, including guided prompt flows and one-command generation of the matching OpenClaw configuration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps OpenClaw users add a Feishu-connected agent through a guided prompt flow or a generated one-command setup path.
 
-## Publisher: <br>
-[cyecho-io](https://clawhub.ai/user/cyecho-io) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cyecho-io](https://clawhub.ai/user/cyecho-io)
 
-## Use Case: <br>
-OpenClaw users and developers use this skill to add a Feishu-connected agent, collect the required app credentials, preview the planned changes, update local OpenClaw configuration, and initialize a workspace when requested. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Feishu App Secret can be exposed when supplied with the --app-secret command-line flag. <br>
-Mitigation: Prefer the interactive hidden prompt or another protected secret method, and avoid pasting secrets into shell history. <br>
-Risk: The execution script can make persistent changes to local OpenClaw configuration and workspace files. <br>
-Mitigation: Run --dry-run first, review the preview, and rely on the generated backup before applying changes. <br>
-Risk: Agent-to-agent collaboration may broaden the new bot's interaction surface if enabled by default. <br>
-Mitigation: Use --disable-agent-to-agent unless the Feishu agent needs collaboration with other agents. <br>
+## Use Case:
 
+OpenClaw users and developers use this skill to add a Feishu bot-backed agent without manually editing OpenClaw configuration. It collects the agent name, purpose, app credentials, and setup preferences, previews the plan, then runs the bundled configurator or provides a ready-to-run command.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cyecho-io/feishu-agent-add) <br>
-- [Publisher profile](https://clawhub.ai/user/cyecho-io) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash command examples and optional JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write persistent local OpenClaw configuration and workspace files when the execution script is run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill handles Feishu App Secret values during setup.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer interactive secret entry, avoid pasting secrets into command lines or shared chats, and review generated configuration before use.
+
+Risk: The security summary says the skill deserves review before installation because it handles secrets and user-supplied agent instructions.
+
+Mitigation: Review the skill before installing, run with --dry-run first, and inspect generated SOUL.md and BOOTSTRAP.md files before using the new agent.
+
+Risk: Agent-to-agent access may broaden what the new agent can reach.
+
+Mitigation: Disable agent-to-agent access unless the workflow specifically requires it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cyecho-io/skills/feishu-agent-add)
+- [README](artifact/README.md)
+- [SKILL](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON summaries from the setup script when requested]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or preview OpenClaw configuration entries, Feishu account bindings, workspace files, and next-step guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

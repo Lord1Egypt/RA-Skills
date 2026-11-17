@@ -1,43 +1,60 @@
-## Description: <br>
-Seedream Ppt Maker generates image-based PPT decks from Markdown content using Baoyu layout and style templates with Seedream 5.0 image generation and an optional interactive confirmation workflow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates image-based PowerPoint decks from Markdown content using the Baoyu layout framework and Seedream 5.0, with an optional step-by-step confirmation workflow to reduce revisions and API quota use.
 
-## Publisher: <br>
-[cindypapa](https://clawhub.ai/user/cindypapa) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cindypapa](https://clawhub.ai/user/cindypapa)
 
-## Use Case: <br>
-Developers and presentation creators use this skill to turn structured Markdown content into image-heavy PPTX decks. It helps choose layouts and styles, preview prompts, generate images through Seedream, and assemble the final presentation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The install check prints part of the Seedream API key, which can expose sensitive credentials in shared terminals, logs, CI output, or support transcripts. <br>
-Mitigation: Remove API-key printing before running the check in shared environments, or run it only in a private local terminal where output will not be captured. <br>
-Risk: Presentation content and generated prompts are sent to Volcengine Seedream for remote image generation. <br>
-Mitigation: Use the skill only with content approved for that service boundary, and prefer the interactive confirmation flow for sensitive or business material. <br>
+## Use Case:
 
+External users and developers use this skill to turn structured Markdown content into image-based PPT presentations. It can recommend layout and style combinations, preview prompts, call Seedream image generation, and assemble generated images into a PowerPoint file.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cindypapa/seedream-ppt-maker) <br>
-- [Project homepage](https://github.com/Cindypapa/baoyu-seedream-ppt) <br>
-- [Baoyu layout system](https://github.com/JimLiu/baoyu-skills) <br>
-- [Volcengine](https://www.volcengine.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Files] <br>
-**Output Format:** [Markdown guidance with Python shell commands; generated artifacts include JSON configuration, prompt Markdown, PNG images, and PPTX files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3, baoyu-infographic, python-pptx, requests, and a Volcengine Seedream API key.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: Presentation content can be sent to Volces/Seedream during image generation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid confidential or regulated content unless the user accepts third-party processing by that service.
+
+Risk: Seedream calls use the configured API key and can consume paid quota.
+
+Mitigation: Use the interactive confirmation flow to review layout, style, and prompts before generation.
+
+Risk: The install checker prints a prefix of the stored API key.
+
+Mitigation: Remove key-prefix logging or avoid running the checker in shared, recorded, or captured terminals.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cindypapa/skills/seedream-ppt-maker)
+- [Source homepage](https://github.com/Cindypapa/baoyu-seedream-ppt)
+- [Baoyu layout system](https://github.com/JimLiu/baoyu-skills)
+- [Volcengine](https://www.volcengine.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Files]
+
+**Output Format:** [Markdown guidance with inline shell commands, configuration snippets, and generated file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated project folders may contain config.json, prompt text files, PNG images, and a PPTX presentation.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

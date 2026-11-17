@@ -1,46 +1,63 @@
-## Description: <br>
-Aggregates and deduplicates RSS/Atom feeds, scores and clusters articles by importance, and generates concise daily digests with source attribution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Aggregates and deduplicates RSS and Atom feeds, ranks and clusters articles by importance, and generates concise daily digests with source attribution.
 
-## Publisher: <br>
-[calvinxhk](https://clawhub.ai/user/calvinxhk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[calvinxhk](https://clawhub.ai/user/calvinxhk)
 
-## Use Case: <br>
-Developers and external users use this skill to manage RSS/Atom subscriptions, remove duplicate coverage, rank important stories, and produce structured daily news digests or feed health reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Fetching untrusted RSS or Atom feed URLs can expose the agent to unwanted redirects or private-network targets. <br>
-Mitigation: Subscribe only to trusted feed URLs, avoid localhost or private-network URLs, and validate redirect targets before keeping feed URL changes. <br>
-Risk: Persistent feed-source changes after redirects can alter the set of sources being monitored. <br>
-Mitigation: Require confirmation or validation before permanently updating subscribed feed URLs. <br>
-Risk: Low-quality or malformed feeds can produce misleading digest rankings or incomplete items. <br>
-Mitigation: Preserve source attribution, skip malformed items, use source credibility and corroboration signals, and surface feed health issues in the report. <br>
+## Use Case:
 
+External users and developers use this skill to manage RSS subscriptions, discover and parse feeds, reduce duplicate coverage, prioritize important articles, and produce structured digests or feed health reports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/calvinxhk/botlearn-rss-manager) <br>
-- [RSS/Atom feed formats, XML parsing, and content extraction](knowledge/domain.md) <br>
-- [RSS manager best practices](knowledge/best-practices.md) <br>
-- [RSS manager anti-patterns](knowledge/anti-patterns.md) <br>
-- [RSS manager strategy](strategies/main.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Structured Markdown digest or feed management report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes source attribution, importance scores, topic clusters, trend indicators, and feed health notes when applicable.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill.md frontmatter; package manifests list 0.1.0) <br>
+Risk: The skill can direct broad outbound fetching of third-party feed and article URLs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Restrict accepted URLs to http and https, block localhost, private network, and metadata-service addresses, validate redirects and discovered feed URLs, and limit response size, redirects, and request duration.
+
+Risk: Feed redirects can cause stored feed URLs to change silently.
+
+Mitigation: Require user confirmation before permanently changing stored feed URLs, and log moved, gone, or unhealthy feeds in the feed health report.
+
+Risk: Deduplication, clustering, and importance scoring can misclassify articles or over-prioritize weak sources.
+
+Mitigation: Keep source attribution visible, explain scoring and clustering signals for important items, and allow user review or correction of source authority and topic preferences.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/calvinxhk/skills/botlearn-rss-manager)
+- [README](artifact/README.md)
+- [Skill definition](artifact/skill.md)
+- [RSS Manager Strategy](artifact/strategies/main.md)
+- [Feed Formats, Parsing, and Content Extraction](artifact/knowledge/domain.md)
+- [RSS Manager Best Practices](artifact/knowledge/best-practices.md)
+- [RSS Manager Anti-Patterns](artifact/knowledge/anti-patterns.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Configuration]
+
+**Output Format:** [Markdown or structured text digests and feed-management reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes source attribution, importance scores, topic clusters, trend indicators, and feed health details when available.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

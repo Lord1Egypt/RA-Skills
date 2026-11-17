@@ -1,37 +1,54 @@
-## Description: <br>
-Self Memory Manager helps Claude monitor context usage, archive important work notes, summarize progress, and maintain a local memory folder. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps an agent manage conversational context, archive important task information, create daily summaries, and maintain a local work folder.
 
-## Publisher: <br>
-[hyk234](https://clawhub.ai/user/hyk234) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hyk234](https://clawhub.ai/user/hyk234)
 
-## Use Case: <br>
-Agent users use this skill to keep long-running Claude sessions organized by prompting context archiving, saving task progress, and retrieving prior notes from a local workspace. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill directs the agent to save account or API details and copy an OpenClaw configuration file into a desktop notes folder, which can expose secrets or sensitive configuration. <br>
-Mitigation: Remove the config-copy command, prohibit saving secrets, tokens, account details, and raw configuration files, and require explicit approval before writing to or searching the memory folder. <br>
+## Use Case:
 
+Developers and agent users can use this skill to monitor context pressure, decide when to archive work, and retrieve concise local task memory across sessions.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline shell commands and folder structure examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local-memory workflow guidance and may propose file reads or writes in the configured notes folder.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Long-lived local memory files can retain sensitive account, API, or project information beyond the current session.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Archive only redacted task summaries, avoid credentials and account details, and require explicit user confirmation before writing to or recalling from the archive.
+
+Risk: The skill text includes a command to copy an OpenClaw configuration file into the archive folder.
+
+Mitigation: Do not copy raw configuration files; extract only non-sensitive notes after checking that tokens, API keys, and account identifiers are absent.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hyk234/skills/self-memory-manager)
+- [ClawHub publisher profile](https://clawhub.ai/user/hyk234)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with local file paths and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce or update local long-lived memory notes when the user approves archival behavior.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

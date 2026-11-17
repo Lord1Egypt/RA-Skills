@@ -1,0 +1,10 @@
+@startuml
+class Animal {
+  + name: String
+  + sound(): void
+}
+class Dog {
+  + fetch(): void
+}
+Animal <|-- Dog
+@enduml

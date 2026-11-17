@@ -1,38 +1,49 @@
-## Description: <br>
-Camera settings, composition, lighting, editing workflow, and genre-specific techniques. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Camera settings, composition, lighting, editing workflow, and genre-specific techniques.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Photographers and creative practitioners use this skill as a concise field guide for exposure, focus, composition, lighting, genre-specific camera settings, editing workflow, gear choices, and file management. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Users may manually delete personal photos while following culling advice. <br>
-Mitigation: Keep normal backups before deleting photos and verify the selected files before removal. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/photography) <br>
-- [Publisher profile](https://clawhub.ai/user/ivangdavila) <br>
+## Use Case:
 
+External users and photography practitioners use this skill as a concise reference for camera setup, composition, lighting choices, RAW editing workflow, file management, and genre-specific shooting techniques.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown] <br>
-**Output Format:** [Markdown text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Photography guidance only; no code execution, credential use, persistence, or hidden behavior.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: General photography guidance may be applied to situations that require context-specific professional judgment.
+
+Mitigation: Treat the guidance as technique reference material and review camera settings, lighting, and editing decisions against the specific shoot conditions and quality requirements.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ivangdavila/skills/photography)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/ivangdavila)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Configuration]
+
+**Output Format:** [Markdown text with concise photography recommendations and workflow checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution, external access, persistence, or tool calls are described by the evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

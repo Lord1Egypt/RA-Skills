@@ -1,43 +1,59 @@
-## Description: <br>
-Brave Search MCP Server connects AI agents to Brave Search for web, image, video, news, local point-of-interest search, and AI-powered summarization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Brave Search MCP Server connects agents to Brave Search for web, image, video, news, and local point-of-interest search with API-backed summarization.
 
-## Publisher: <br>
-[BuddhaSource](https://clawhub.ai/user/BuddhaSource) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[buddhasource](https://clawhub.ai/user/buddhasource)
 
-## Use Case: <br>
-Developers and agent builders use this skill to add Brave-powered current-information search, media discovery, news lookup, local place search, and search-result summarization to MCP-capable agents. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Search queries, precise locations, and other submitted content may be sent to Brave Search during use. <br>
-Mitigation: Avoid sending secrets, confidential business data, or precise personal locations unless the user intends to share them with Brave Search. <br>
-Risk: Installation may run npm packages or code from external sources. <br>
-Mitigation: Confirm the npm package or repository is Brave-controlled and pin a known version before deployment. <br>
-Risk: The skill requires a Brave API key. <br>
-Mitigation: Use a dedicated key, store it in the MCP client's environment, and rotate it if exposed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/BuddhaSource/brave-search-mcp) <br>
-- [Brave Search API](https://brave.com/search/api/) <br>
-- [Brave Search](https://search.brave.com) <br>
+## Use Case:
 
+Developers and agent users use this skill to connect agents to Brave Search for web, image, video, news, local point-of-interest search, fact checking, research, and content discovery.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with search-result text, links, and inline configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires BRAVE_API_KEY for live Brave Search API access] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The install path can run mutable external npm or GitHub code.
+
+Mitigation: Pin the MCP package version or Git commit, avoid auto-fetching latest code with npx on each run, and review updates before deployment.
+
+Risk: Search queries and local search locations are sent to Brave's API.
+
+Mitigation: Avoid sending sensitive searches or precise locations unless that data sharing is acceptable for the deployment.
+
+Risk: The MCP server requires an API key at runtime.
+
+Mitigation: Store BRAVE_API_KEY in the MCP client's secret or environment management system and run the server with least privilege.
+
+## Reference(s):
+
+- [Brave Search API](https://brave.com/search/api/)
+- [Official Brave Search MCP Server](https://github.com/brave/brave-search-mcp-server)
+- [Brave Search](https://search.brave.com)
+- [ClawHub Skill Page](https://clawhub.ai/buddhasource/skills/brave-search-mcp)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Brave Search API key for runtime use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

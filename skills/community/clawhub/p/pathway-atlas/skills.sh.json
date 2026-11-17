@@ -1,0 +1,10 @@
+{
+  "$schema": "https://skills.sh/schemas/skills.sh.schema.json",
+  "groupings": [
+    {
+      "title": "看清升学选择，知道下一步怎么走",
+      "description": "面向学生和家长，一题一问了解个人情况，查证公开资料，讲清学校、专业、多元路径和准备行动。",
+      "skills": ["pathway-atlas"]
+    }
+  ]
+}

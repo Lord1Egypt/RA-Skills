@@ -1,43 +1,57 @@
-## Description: <br>
-Complete AI brand-visibility toolkit via MentionsAPI.com for checking brand mentions, ranks, and citations across major AI answer surfaces, discovering queries to track, comparing brands or queries, and monitoring changes over time. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Complete AI brand-visibility toolkit via MentionsAPI.com. Four tools \u2014 check mentions/ranks/citations across ChatGPT, Claude, Gemini, Perplexity, Google AI Overviews/AI Mode, and Bing Copilot; discover queries to track; compare two brands or queries; and watch for changes over time.
 
-## Publisher: <br>
-[nikhonit](https://clawhub.ai/user/nikhonit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nikhonit](https://clawhub.ai/user/nikhonit)
 
-## Use Case: <br>
-Marketing, SEO/GEO, and competitive-intelligence teams use this skill to measure whether specific brands appear in AI-generated answers, discover visibility queries, compare competitors, and set up monitored change alerts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: MentionsAPI calls require a live API key and may consume paid credits. <br>
-Mitigation: Use the skill only for explicit AI-visibility requests, confirm the brand and query when intent is ambiguous, and monitor wallet balance before repeated or scheduled calls. <br>
-Risk: watch_brand sends brand-visibility data to a configured webhook and relies on a shared secret. <br>
-Mitigation: Use an HTTPS endpoint you control, verify HMAC signatures on every delivery, reject unsigned or replayed requests, and store or rotate webhook_secret like a password. <br>
+## Use Case:
 
+External users and developers use this skill to measure a brand's visibility in AI-generated answers, discover tracking queries, compare brand or query performance, and monitor mention, rank, or citation changes over time.
 
-## Reference(s): <br>
-- [MentionsAPI homepage](https://mentionsapi.com) <br>
-- [MentionsAPI check API documentation](https://mentionsapi.com/docs/api/check) <br>
-- [MentionsAPI OpenAPI specification](https://mentionsapi.com/openapi.json) <br>
-- [MentionsAPI recipes](https://mentionsapi.com/docs/recipes) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, configuration, guidance] <br>
-**Output Format:** [JSON-like Python dictionaries with concise text guidance for setup and error handling] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires MENTIONSAPI_KEY; usage can consume MentionsAPI credits, and watch_brand requires a user-controlled HTTPS webhook with a securely handled secret.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill requires a MentionsAPI key and paid API calls, so use can expose account credentials and consume wallet balance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if comfortable providing a MentionsAPI key, confirm user intent before credit-consuming calls, and monitor account balance.
+
+Risk: The persistent watch_brand monitor can send sensitive brand-visibility data to unsafe webhook destinations and may create ongoing charges.
+
+Mitigation: Use only an HTTPS webhook endpoint you control, use a strong secret, verify HMAC signatures, reject replayed deliveries, rotate leaked secrets, and confirm how to disable monitors.
+
+## Reference(s):
+
+- [MentionsAPI Homepage](https://mentionsapi.com)
+- [MentionsAPI Endpoint Reference](https://mentionsapi.com/docs/api/check)
+- [MentionsAPI OpenAPI Specification](https://mentionsapi.com/openapi.json)
+- [MentionsAPI Recipes](https://mentionsapi.com/docs/recipes)
+- [ClawHub Skill Page](https://clawhub.ai/nikhonit/skills/mentions-full)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Analysis, Guidance]
+
+**Output Format:** [JSON-compatible Python dictionaries with API responses and error objects]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires MENTIONSAPI_KEY and consumes MentionsAPI credits for paid calls.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata and target metadata; artifact frontmatter says 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

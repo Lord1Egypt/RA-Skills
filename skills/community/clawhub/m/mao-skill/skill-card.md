@@ -1,44 +1,57 @@
-## Description: <br>
-Mao Skill helps agents answer questions about Mao Zedong's writings, Mao Zedong Thought, historical context, concepts, and related theoretical development. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language research skill that helps agents analyze Mao Zedong writings, Mao Zedong Thought, historical context, concepts, and related theoretical frameworks.
 
-## Publisher: <br>
-[boboy-j](https://clawhub.ai/user/boboy-j) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[boboy-j](https://clawhub.ai/user/boboy-j)
 
-## Use Case: <br>
-Students, researchers, educators, and general readers can use this skill to request structured explanations, close readings, concept comparisons, and historical background for Mao Zedong's writings. It is best treated as a study aid whose citations and historical claims should be checked against primary editions or independent scholarship. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Historical claims, citations, or volume placement may be inaccurate or incomplete. <br>
-Mitigation: Verify important claims against primary editions and independent scholarship before relying on them. <br>
-Risk: The skill uses a fixed interpretive stance that may limit neutrality on contested historical or political questions. <br>
-Mitigation: Ask for multiple scholarly perspectives and review sensitive conclusions with qualified human judgment. <br>
+## Use Case:
 
+Developers and end users use this skill to support Chinese-language study and research workflows for Mao Zedong writings, including close reading, theory mapping, historical background analysis, concept clarification, and comparative analysis.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/boboy-j/mao-skill) <br>
-- [README.md](README.md) <br>
-- [SKILL.md](SKILL.md) <br>
-- [mao-knowledge-base.md](mao-knowledge-base.md) <br>
-- [output-templates.md](output-templates.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown research responses, structured outlines, comparison tables, and citation-oriented reading notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only skill; no code execution or data access is described in the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and README.md) <br>
+Risk: The skill presents Mao Zedong writings through a specific interpretive framework, which may not cover all scholarly perspectives by default.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask for explicit viewpoint balance, alternate scholarly perspectives, and clear separation between source text, historical context, and interpretation.
+
+Risk: The skill may default to Chinese-language templates and responses.
+
+Mitigation: Specify the desired language, audience, citation style, and output template before using the skill in multilingual workflows.
+
+## Reference(s):
+
+- [README.md](artifact/README.md)
+- [SKILL.md](artifact/SKILL.md)
+- [mao-knowledge-base.md](artifact/mao-knowledge-base.md)
+- [output-templates.md](artifact/output-templates.md)
+- [ClawHub skill page](https://clawhub.ai/boboy-j/skills/mao-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Chinese-language Markdown or structured text responses, often using analysis templates for close reading, theory mapping, background analysis, concept clarification, and comparative study.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responses are expected to cite source works, include historical context, and prefer Chinese-language templates unless the user requests otherwise.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

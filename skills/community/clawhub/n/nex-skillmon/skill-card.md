@@ -1,44 +1,63 @@
-## Description: <br>
-Nex Skillmon monitors installed OpenClaw skills, estimates usage costs, identifies stale or flagged skills, checks for updates, and exports health reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Nex Skillmon helps OpenClaw users monitor installed skills, track estimated API costs, detect stale or flagged skills, check for updates, and export skill health reports.
 
-## Publisher: <br>
-[nexaiguy](https://clawhub.ai/user/nexaiguy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nexaiguy](https://clawhub.ai/user/nexaiguy)
 
-## Use Case: <br>
-Developers, power users, and teams managing OpenClaw skill installations use this skill to inventory skills, review health and security signals, estimate API costs, manage budgets, and produce Markdown or JSON reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill inventories installed skills and update or check commands may send installed skill names to the configured ClawHub API. <br>
-Mitigation: Review before installing in sensitive environments, use a narrow skills directory, and run network-backed checks only when sharing skill names with ClawHub is acceptable. <br>
-Risk: Configuration values are stored and logged locally, which could expose tokens, passwords, or internal endpoints if users place them in the config command. <br>
-Mitigation: Avoid storing secrets or internal endpoints with the config command and review local files under ~/.nex-skillmon/ before sharing reports or logs. <br>
-Risk: Security evidence marks the release for review rather than clean approval because VirusTotal was pending and artifact behavior includes local inventory and remote checks. <br>
-Mitigation: Review and scan the artifact before deployment, especially in sensitive environments. <br>
+## Use Case:
 
+External users, developers, and teams managing multiple OpenClaw skills use this skill to inventory their skill ecosystem, review health and usage signals, estimate costs, identify stale or flagged skills, and generate JSON or Markdown reports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nexaiguy/nex-skillmon) <br>
-- [Publisher profile](https://clawhub.ai/user/nexaiguy) <br>
-- [Project homepage](https://nex-ai.be) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, shell commands, configuration, guidance] <br>
-**Output Format:** [CLI text output with optional Markdown or JSON report exports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and local configuration for SKILLS_BASE_DIR and CLAWHUB_API_URL. Stores monitoring data locally under ~/.nex-skillmon/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: Installed skill names, skill paths, usage data, and local configuration values may be sensitive.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installing or running it, especially on shared machines or systems with sensitive skill metadata.
+
+Risk: Update and security-check commands may make outbound requests to api.clawhub.dev.
+
+Mitigation: Use those commands only when outbound ClawHub requests are acceptable for the environment.
+
+Risk: Scanning skill directories that contain symlinks or unexpected paths can weaken filesystem boundaries.
+
+Mitigation: Point SKILLS_BASE_DIR only at intended skill directories and inspect shared or symlink-heavy directories before scanning.
+
+Risk: Local configuration files may expose secrets if users place credentials in this tool's config.
+
+Mitigation: Do not store secrets in Nex Skillmon configuration values.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/nexaiguy/skills/nex-skillmon)
+- [Publisher profile](https://clawhub.ai/user/nexaiguy)
+- [Nex AI homepage](https://nex-ai.be)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Terminal text, Markdown summaries, JSON exports, and Markdown report exports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May read local skill metadata and usage records, store monitoring data under the user's home directory, and call ClawHub update or security endpoints when those commands are used.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

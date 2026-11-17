@@ -1,40 +1,49 @@
-## Description: <br>
-Clipboard History helps users create a lightweight local clipboard history utility that saves up to 50 copied text snippets for search and restore. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+剪贴板历史 helps an agent provide Python guidance for saving, searching, and restoring a local clipboard history of up to 50 copied text entries.
 
-## Publisher: <br>
-[534422530](https://clawhub.ai/user/534422530) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[534422530](https://clawhub.ai/user/534422530)
 
-## Use Case: <br>
-Developers and end users can use this skill to generate Python guidance for saving, searching, clearing, and restoring clipboard snippets. It is most useful for local productivity workflows where copied text needs to be recovered without relying on a cloud clipboard service. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Clipboard snippets can include passwords, tokens, personal data, or confidential work and may be saved locally if the sample code is run or adapted. <br>
-Mitigation: Use the skill only on trusted machines, avoid capturing sensitive clipboard contents, clear saved history when needed, and do not store secrets. <br>
-Risk: The optional monitoring sample continuously polls clipboard contents when explicitly enabled. <br>
-Mitigation: Leave monitoring disabled unless continuous capture is intended, stop it when the task is complete, and avoid running it during sensitive workflows. <br>
+## Use Case:
 
+External users and developers use this skill to help implement and operate a lightweight local clipboard-history utility for recovering recently copied text, searching saved entries, and optionally monitoring clipboard changes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/534422530/laosi-clipboard-history) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown with Python and JSON code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include optional local clipboard polling guidance and local JSON history storage behavior.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: ClawHub release metadata; artifact frontmatter lists 1.0.0) <br>
+Risk: Local clipboard history can retain sensitive copied text in plaintext when monitoring is enabled.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid monitoring while copying passwords, API keys, private links, or confidential documents, and clear the stored history regularly.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/534422530/skills/laosi-clipboard-history)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown with Python and JSON code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Provides local clipboard-history sample code and optional polling-mode guidance; no API calls.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata; artifact frontmatter says 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

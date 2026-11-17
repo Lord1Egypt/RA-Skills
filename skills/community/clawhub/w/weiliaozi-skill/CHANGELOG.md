@@ -4,7 +4,17 @@ All notable changes to this project will be documented in this file.
 
 The format is based on Keep a Changelog, with versions tracked in a practical project-oriented style.
 
-## [2.2.0] - 2026-04-28
+## [2.2.1] - 2026-09-24
+
+### Security
+- Removed `reasonix.toml`, which granted unrestricted Bash access despite the skill's read-only analysis purpose.
+- Stopped tracking local `.reasonix/` session metadata and `.codegraph/` runtime state; added both directories to `.gitignore`.
+- Replaced the fixed adversarial disruption sequence with high-level comparison of cooperation, resilience, and escalation risks.
+
+### Fixed
+- Included `weiliaozi.png` in the package file list so the README image is present in published packages.
+
+## [2.2.0] - 2026-07-01
 
 ### Added
 - **Intellectual Heritage section** in `SKILL.md`: traces each of the five lenses back to its pre-Qin source — Huangdi, Jiang Ziya, Sun Wu, Wu Qi, and Duke Huan of Qi

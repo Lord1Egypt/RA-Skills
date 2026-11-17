@@ -30,20 +30,20 @@ Default safe starting point: `projectId` + a short, structured prompt. Then add 
 Use this for any workflow that may end in code retrieval:
 
 1. generate or edit one candidate screen
-2. retrieve and review the visual output first (`fetch_screen_image` when available, otherwise equivalent visual artifact)
+2. retrieve and review the visual output first (`download_file` with the screen's `screenshot.name`)
 3. gather explicit user approval or precise revision instructions
 4. repeat until one direction is clearly accepted
-5. only then retrieve code (`fetch_screen_code` when available) or move to export
+5. only then retrieve code (`download_file` with `htmlCode.name`) or move to export
 
-If an edit returns a different screen id, treat the returned screen as the new candidate and inspect that screen before further edits. Do not keep editing the older source screen by accident.
+If an edit returns a different screen id, treat the returned screen as the new candidate and inspect that screen before further edits. Do not keep editing the older source screen by accident. If it returns the same screen (a small text edit can), download its HTML and confirm the change was saved before relying on it.
 
 ### Workflow B1.5: extract the handoff pack
 
 Use this immediately after approval, before implementation work starts:
 
 1. retrieve the accepted screen with `get_screen`
-2. capture or save the screenshot artifact referenced by `screenshot.downloadUrl`
-3. capture or save the exported HTML referenced by `htmlCode.downloadUrl` when present
+2. save the screenshot via `download_file` with `screenshot.name`
+3. save the exported HTML via `download_file` with `htmlCode.name` when present
 4. keep the project `DESIGN.md` / design-system definition with the same pack
 5. record the screen id, width, height, and device type next to those artifacts
 

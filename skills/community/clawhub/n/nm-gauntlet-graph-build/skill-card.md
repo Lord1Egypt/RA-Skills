@@ -1,41 +1,50 @@
-## Description: <br>
-Builds or updates the code knowledge graph via tree-sitter AST and SQLite. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Builds or updates the code knowledge graph via tree-sitter AST and SQLite
 
-## Publisher: <br>
-[athola](https://clawhub.ai/user/athola) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[athola](https://clawhub.ai/user/athola)
 
-## Use Case: <br>
-Developers and engineers use this skill to build or incrementally update a local SQLite knowledge graph for a selected codebase before search, blast-radius analysis, or flow tracing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads the selected codebase and creates a local .gauntlet/graph.db index. <br>
-Mitigation: Run it only on codebases the agent is allowed to inspect, and review local workspace policies before indexing sensitive repositories. <br>
-Risk: The build command depends on a graph_build.py script referenced through CLAUDE_PLUGIN_ROOT that is not included in this skill artifact. <br>
-Mitigation: Confirm CLAUDE_PLUGIN_ROOT points to the expected Gauntlet plugin installation before running the command. <br>
+## Use Case:
 
+Developers use this skill to build or update a structural knowledge graph for a codebase before searching it or analyzing change impact.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-gauntlet-graph-build) <br>
-- [Gauntlet plugin homepage](https://github.com/athola/claude-night-market/tree/master/plugins/gauntlet) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance, JSON] <br>
-**Output Format:** [Markdown with inline shell commands and JSON result summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates or updates a local .gauntlet/graph.db SQLite index and reports parsed files, graph nodes, graph edges, and duration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.9.13 (source: server release metadata) <br>
+Risk: The security review was partial; some `.gauntlet/graph.db` references were unavailable for review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before installing, confirm that `.gauntlet/graph.db` matches your intended use and review the skill’s behavior in your environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-gauntlet-graph-build)
+- [Project page](https://github.com/athola/claude-night-market/tree/master/plugins/gauntlet)
+
+## Skill Output:
+
+**Output Type(s):** [Files, JSON, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands, a JSON build report, and a SQLite graph database]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Builds or updates `.gauntlet/graph.db` in the selected codebase; uses an incremental update when a graph already exists.]
+
+## Skill Version(s):
+
+1.10.3 (source: frontmatter, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

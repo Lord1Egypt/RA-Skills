@@ -1,43 +1,53 @@
-## Description: <br>
-Professional career roadmap platform that generates personalized learning paths for embedded systems engineering roles based on individual assessment data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Professional career roadmap platform that generates personalized learning paths for embedded systems engineering roles based on individual assessment data.
 
-## Publisher: <br>
-[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd)
 
-## Use Case: <br>
-Developers, engineers, students, and career changers use this skill to generate embedded systems career roadmaps from experience, skills, goals, session, and timestamp inputs. It can also retrieve specialization options and learning paths for embedded systems engineering. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Roadmap generation sends career background, skills, goals, session identifiers, timestamps, and optional user identifiers to an external API provider. <br>
-Mitigation: Submit only information appropriate for the provider, avoid optional identifiers such as userId unless needed, and review the provider's privacy practices before sharing sensitive career details. <br>
-Risk: Generated career guidance may be incomplete, outdated, or poorly matched to a user's local job market or constraints. <br>
-Mitigation: Review roadmap recommendations against current employer, education, certification, and regional requirements before relying on them for career planning. <br>
+## Use Case:
 
+Developers, embedded systems engineers, firmware engineers, IoT professionals, and career changers use this skill to generate personalized embedded systems engineering learning roadmaps, review available specialization paths, and retrieve structured learning paths.
 
-## Reference(s): <br>
-- [ClawHub Skill Listing](https://clawhub.ai/krishnakumarmahadevan-cmd/toolweb-embedded-systems) <br>
-- [Embedded Systems API Docs](https://api.mkkpro.com:8093/docs) <br>
-- [Embedded Systems API Route](https://api.mkkpro.com/career/embedded-systems) <br>
-- [ToolWeb](https://toolweb.in) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, JSON, Guidance] <br>
-**Output Format:** [JSON responses containing personalized roadmap phases, specialization recommendations, skill gaps, and learning resources.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user-provided assessment data for roadmap generation; optional userId can link requests to a user profile.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and OpenAPI info.version) <br>
+Risk: Career background, skills, goals, session identifiers, timestamps, and optional user ID may be sent to an external roadmap service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide only the career information needed for the roadmap and avoid sensitive personal, employer-confidential, or unnecessary identifying details unless the provider's privacy terms are acceptable.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/krishnakumarmahadevan-cmd/skills/toolweb-embedded-systems)
+- [OpenAPI Specification](artifact/openapi.json)
+- [API Documentation](https://api.mkkpro.com:8093/docs)
+- [Kong Route](https://api.mkkpro.com/career/embedded-systems)
+- [ToolWeb](https://toolweb.in)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, guidance]
+
+**Output Format:** [Markdown guidance and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Roadmap responses may include phases, specialization recommendations, skill gaps, and resource suggestions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and OpenAPI info.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

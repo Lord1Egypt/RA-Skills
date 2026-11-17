@@ -1,42 +1,56 @@
-## Description: <br>
-Skill Release Audit is a report-only static auditor that checks AI agent skill packages for syntax, feature coverage, edge-case handling, data-safety, dependency, and documentation issues before release. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Skill Release Audit is a pre-publish quality and safety auditor for AI agent skills that runs static checks for syntax, feature coverage, edge cases, data safety, dependencies, and documentation.
 
-## Publisher: <br>
-[songhonglei](https://clawhub.ai/user/songhonglei) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[songhonglei](https://clawhub.ai/user/songhonglei)
 
-## Use Case: <br>
-Developers and skill maintainers use it as a pre-publish gate for SKILL.md-based agent skills. It produces structured findings and suggested fixes without editing or publishing the target skill. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The optional dependency installer can fetch and execute packages inferred from a skill being audited. <br>
-Mitigation: Avoid --auto-install unless the audited skill is trusted; review install commands first and use an isolated environment. <br>
-Risk: Audit findings and suggested fixes may be incomplete or require judgment before changing a skill. <br>
-Mitigation: Review the full report before acting and require explicit confirmation before modifying files. <br>
+## Use Case:
 
+Developers and skill publishers use this skill as a final local release gate before publishing or updating agent skills. It reports machine-checkable quality, safety, dependency, metadata, and documentation issues without editing files or publishing.
 
-## Reference(s): <br>
-- [Dependency Detection Patterns](references/dep-patterns.md) <br>
-- [Skill Registry / Hub Specifications](references/hub-specs.md) <br>
-- [Portable Safe Paths for Skill Data](references/safe-paths.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown-style terminal report with module findings and suggested fixes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Report-only by default; optional dependency installation is enabled only when requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata and SKILL.md body) <br>
+Risk: The optional --auto-install mode can change the active Python environment and may fetch dependencies for the skill being audited.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the default report-only mode for untrusted skills, and enable --auto-install only after explicitly consenting to dependency installation.
+
+Risk: Audit findings and suggested fixes can be wrong or incomplete for a specific release context.
+
+Mitigation: Review the full report before changing files; the skill's documented behavior requires explicit user confirmation before edits.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/songhonglei/skills/skill-release-audit)
+- [Dependency Detection Patterns](references/dep-patterns.md)
+- [Skill Registry / Hub Specifications](references/hub-specs.md)
+- [Safe Data Path Guidelines for Skills](references/safe-paths.md)
+
+## Skill Output:
+
+**Output Type(s):** [analysis, markdown, JSON, shell commands, guidance]
+
+**Output Format:** [Structured console or JSON report with suggested fixes and optional Markdown guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Default mode is report-only; --format json emits machine-readable evidence, and fixes require explicit user confirmation.]
+
+## Skill Version(s):
+
+1.2.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

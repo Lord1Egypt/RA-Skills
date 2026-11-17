@@ -1,43 +1,58 @@
-## Description: <br>
-Kalshi Odds Scanner Pro scans live sportsbook and Kalshi market prices to identify sports-market edge plays and can optionally place Kelly-sized Kalshi orders. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scans Kalshi sports markets against sportsbook odds to identify potential edge plays and optionally execute Kelly-sized Kalshi orders.
 
-## Publisher: <br>
-[themsquared](https://clawhub.ai/user/themsquared) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[themsquared](https://clawhub.ai/user/themsquared)
 
-## Use Case: <br>
-Developers and traders use this skill to set up and run a Python scanner that compares sportsbook-implied probabilities with Kalshi sports markets. It supports scan-only review and optional live order execution when the operator explicitly enables buying. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The scanner can place live real-money Kalshi orders when run with the buy option. <br>
-Mitigation: Run in scan-only mode first, require an explicit confirmation step before live execution, and set per-run spend limits. <br>
-Risk: The artifact includes hardcoded-looking API credentials. <br>
-Mitigation: Remove embedded credentials, rotate any exposed keys, and configure credentials through local secrets or environment-specific files. <br>
-Risk: Trading recommendations may be wrong or stale because they depend on external odds and market APIs. <br>
-Mitigation: Review each proposed trade against current market data and account constraints before placing orders. <br>
+## Use Case:
 
+Developers and traders use this skill to configure and run a Python scanner that compares Kalshi market prices with sportsbook-implied probabilities for NBA, NCAAB, NHL, and MLB markets. It is intended to surface candidate trades for review and can place live orders when explicitly run with buying enabled.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/themsquared/kalshi-odds-scanner-pro) <br>
-- [The Odds API](https://the-odds-api.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python code and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May call external sportsbook and Kalshi APIs and may place live orders only when invoked with the buy option.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The script can place live Kalshi orders with minimal safeguards.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review all candidate plays manually, avoid --buy until the strategy and order payloads are understood, and use a dedicated low-balance Kalshi account or strict account limits.
+
+Risk: The artifact ships hardcoded Odds API and Kalshi identifiers.
+
+Mitigation: Replace hardcoded identifiers before use and manage credentials through environment-specific secret handling.
+
+Risk: The script depends on local Python packages and external APIs.
+
+Mitigation: Install dependencies in an isolated environment with pinned versions and confirm API behavior before allowing order execution.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/themsquared/skills/kalshi-odds-scanner-pro)
+- [The Odds API](https://the-odds-api.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, API calls]
+
+**Output Format:** [Markdown setup and usage guidance, Python code, shell commands, and terminal text tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can make network API calls and place live Kalshi orders when the script is run with --buy.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, released 2026-03-22)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,57 @@
-## Description: <br>
-File Sender packages workspace files into ZIP archives, stores a human-readable description, and notifies a Manager service for user delivery. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Packages workspace files into ZIP archives, writes a companion description, and notifies the Manager service for user delivery.
 
-## Publisher: <br>
-[whyhit2005](https://clawhub.ai/user/whyhit2005) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[whyhit2005](https://clawhub.ai/user/whyhit2005)
 
-## Use Case: <br>
-Developers and agents use this skill to package completed workspace deliverables and send them to users with a short description. It is intended for local workspace files, not remote web content. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can proactively package workspace files without explicit per-send user confirmation. <br>
-Mitigation: Require the agent to show the exact path being packaged and obtain confirmation before running the send script. <br>
-Risk: Broad directories may include secrets or unintended files. <br>
-Mitigation: Package only narrow, reviewed paths and avoid directories that may contain credentials, private data, or unrelated project files. <br>
-Risk: Delivered files and descriptions are persisted in .file-outbox. <br>
-Mitigation: Periodically clean .file-outbox when deliveries contain sensitive material. <br>
-Risk: Delivery depends on a trusted Manager service and injected file-push token. <br>
-Mitigation: Use the skill only in environments where the Manager URL and injected token are trusted. <br>
+## Use Case:
 
+Developers and agent operators use this skill to package generated workspace deliverables and make them available to the user with a short human-readable description.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/whyhit2005/file-sender) <br>
-- [Publisher profile](https://clawhub.ai/user/whyhit2005) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Text, Shell commands] <br>
-**Output Format:** [ZIP archive with companion plain-text description and terminal status output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl, zip, and Manager-injected OpenClaw environment variables; enforces /home/node/workspace scope and a 500MB ZIP size limit.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and artifact metadata) <br>
+Risk: The skill can package and deliver workspace files without a direct user request.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit confirmation of the exact source path and description before running the delivery script.
+
+Risk: Path boundary weaknesses could send more workspace content than intended.
+
+Mitigation: Fix the workspace boundary check and review resolved paths before delivery.
+
+Risk: Predictable temporary response-file handling could affect notification behavior.
+
+Mitigation: Use a unique temporary response file and clean it up after each Manager notification attempt.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/whyhit2005/skills/file-sender)
+
+## Skill Output:
+
+**Output Type(s):** [files, text, shell commands]
+
+**Output Format:** [ZIP archive, plain-text description file, and command-line status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl, zip, and Manager-provided OpenClaw environment variables; generated ZIP files are capped at 500MB and retained in .file-outbox.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

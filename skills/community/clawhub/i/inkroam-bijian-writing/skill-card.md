@@ -1,43 +1,59 @@
-## Description: <br>
-Bijian AI Writing Expert collects topic, viewpoints, and reference material, calls the Bijian AI platform, and returns publication-ready article content. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Collects a topic, viewpoints, and reference material, calls the Bijian AI writing service, and returns a publish-ready article.
 
-## Publisher: <br>
-[bytearch1990-beep](https://clawhub.ai/user/bytearch1990-beep) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytearch1990-beep](https://clawhub.ai/user/bytearch1990-beep)
 
-## Use Case: <br>
-External content creators and agents use this skill to draft articles through Bijian AI. The skill guides collection of a topic, 3-5 viewpoint points, and reference material, then generates, polls, and retrieves article content. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill relies on local credentials for an external service. <br>
-Mitigation: Store credentials only in the workspace configuration file, restrict file permissions, and rotate the token if it is exposed. <br>
-Risk: Generated article content may be incomplete, inaccurate, or unsuitable for publication. <br>
-Mitigation: Review the full generated article and source material before publication; this skill is scoped to writing and does not publish content. <br>
+## Use Case:
 
+External users and content creators use this skill to draft public-facing articles for channels such as WeChat public accounts by providing a topic, key viewpoints, and reference material.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/bytearch1990-beep/inkroam-bijian-writing) <br>
-- [Bijian API token page](https://sso.aizmjx.com/home/apikey) <br>
-- [Bijian space page](https://bj.aizmjx.com/space) <br>
-- [Bijian API base URL](https://bj.aizmjx.com/api) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, API Calls, Guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and generated article text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a workspace configuration file for API credentials and can poll generation status before returning article details.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill loads workspace configuration as shell code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only a trusted, private .bijian_config file, avoid workspace-supplied configs, and do not place shell commands in the config.
+
+Risk: Tokens and article content can be sent to an unpinned API destination.
+
+Mitigation: Keep the API URL pinned to the legitimate Bijian HTTPS endpoint and use a limited-scope token when available.
+
+Risk: Reference material may include confidential notes, credentials, unpublished business material, or private documents.
+
+Mitigation: Do not provide sensitive material unless you intend to send it to Bijian.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bytearch1990-beep/skills/inkroam-bijian-writing)
+- [Bijian API key page](https://sso.aizmjx.com/home/apikey)
+- [Bijian writing space page](https://bj.aizmjx.com/space)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance, Writing guidance]
+
+**Output Format:** [Markdown article content with setup commands and generation status summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include article title, word count, cover-image status, preview text, and next-step guidance.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

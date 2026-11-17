@@ -1,39 +1,26 @@
 ---
 name: delegation-core
-description: Delegates tasks to Gemini or Qwen with quota tracking and error handling
-version: 1.9.8
+description: |
+  Delegates execution to external CLIs (Gemini, Qwen, MiniMax, GLM, Muse, Codex, OpenCode, Glimmer). Use for execution tasks
+version: 1.10.3
 triggers:
   - delegation
   - external-llm
   - gemini
   - qwen
+  - minimax
+  - glm
+  - muse
+  - codex
+  - opencode
   - task-management
   - quality-control
-  - tasks exceed context window or need cheaper processing
-metadata: {"openclaw": {"homepage": "https://github.com/athola/claude-night-market/tree/master/plugins/conjure", "emoji": "\ud83e\udd9e", "requires": {"config": ["night-market.leyline:quota-management", "night-market.leyline:usage-logging", "night-market.leyline:service-registry", "night-market.leyline:error-patterns", "night-market.leyline:authentication-patterns"]}}}
+metadata: {"openclaw": {"homepage": "https://github.com/athola/claude-night-market/tree/master/plugins/conjure", "emoji": "\ud83e\udd9e", "requires": {"config": ["night-market.leyline:service-registry", "night-market.leyline:error-patterns", "night-market.leyline:authentication-patterns"]}}}
 source: claude-night-market
 source_plugin: conjure
 ---
 
-> **Night Market Skill** — ported from [claude-night-market/conjure](https://github.com/athola/claude-night-market/tree/master/plugins/conjure). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
-
-
-## Table of Contents
-
-- [Overview](#overview)
-- [When to Use](#when-to-use)
-- [Philosophy](#philosophy)
-- [Delegation Flow](#delegation-flow)
-- [Quick Decision Matrix](#quick-decision-matrix)
-- [Detailed Workflow Steps](#detailed-workflow-steps)
-- [1. Task Assessment (`delegation-core:task-assessed`)](#1-task-assessment-delegation-coretask-assessed)
-- [2. Suitability Evaluation (`delegation-core:delegation-suitability`)](#2-suitability-evaluation-delegation-coredelegation-suitability)
-- [3. Handoff Planning (`delegation-core:handoff-planned`)](#3-handoff-planning-delegation-corehandoff-planned)
-- [4. Execution & Integration (`delegation-core:results-integrated`)](#4-execution-integration-delegation-coreresults-integrated)
-- [Leyline Infrastructure](#leyline-infrastructure)
-- [Service-Specific Skills](#service-specific-skills)
-- [Module Reference](#module-reference)
-- [Exit Criteria](#exit-criteria)
+> **Night Market Skill**: ported from [claude-night-market/conjure](https://github.com/athola/claude-night-market/tree/master/plugins/conjure). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
 
 # Delegation Core Framework
@@ -42,15 +29,71 @@ source_plugin: conjure
 
 A method for deciding when and how to delegate tasks to external LLM services. Core principle: **delegate execution, retain high-level reasoning**.
 
-## When To Use
-- Before invoking external LLMs for task assistance.
-- When operations are token-heavy and exceed local context limits.
-- When batch processing benefits from different model characteristics.
-- When tasks require routing between models.
+## Default Posture
 
-## When NOT To Use
+**Delegation is on. Declining it is the step that takes a decision.**
 
-- Task requires reasoning by Claude
+Any conjure operation, mission phase, or workflow that reaches eligible
+work delegates it without being asked.
+Eligible means the work is execution rather than reasoning, which the
+philosophy below defines and `modules/task-assessment.md` classifies.
+An operator who wants delegation off says so once, in one of the two
+places under Declining Delegation.
+
+This inverts the earlier framing, which listed the occasions on which to
+delegate and so made delegation something a caller had to remember.
+The occasions were correct and are now the exception list instead.
+
+## Keep Local
+
+Delegation stops at the boundary the philosophy draws.
+Keep the work local when any of these hold:
+
+- The task is reasoning: architecture, design, trade-offs, judgment.
+- The prompt or context carries a secret, a credential, or data that
+  should not leave the machine.
+- The task needs iteration with the operator turn by turn.
+- Correctness cannot be validated after the fact.
+
+The first is the standing exception and covers most of what Claude does.
+The rest are the red flags `modules/task-assessment.md` already lists.
+
+## Declining Delegation
+
+Two switches, environment over file.
+
+| Scope | How | Effect |
+|-------|-----|--------|
+| One run | `CONJURE_DELEGATION=off` | No provider is probed or spawned |
+| One machine | `"enabled": false` in `~/.claude/hooks/delegation/config.json` | Same, until the key changes |
+
+`CONJURE_DELEGATION` accepts `off`, `0`, `false`, `no` and their
+opposites, in any case.
+Setting it to an on spelling re-enables delegation that the config file
+turned off, so the narrower scope wins.
+A disabled delegator returns a result whose `fallback_reason` is
+`delegation_disabled` and spawns nothing, so opting out costs nothing.
+
+## When No Provider Answers
+
+`smart_delegate` works down the registry order and returns the first
+real answer.
+A provider that is missing, unauthenticated, failing, or answering with
+an empty stdout is recorded and the chain moves on.
+
+When it reaches the end, it returns a result with
+`fallback_reason` set to `providers_exhausted` and an `attempts` trail
+naming what each provider did.
+**That result is the instruction to do the work locally.** Read it, say
+which providers were tried and why none answered, and then do the task
+yourself.
+Do not treat it as an error to report and stop on: a machine with no CLI
+installed is the ordinary case for this default.
+
+When the operator wants providers answering rather than falling back,
+`modules/provider-onboarding.md` carries the per-provider steps and the
+failure shapes that do not look like authentication problems.
+Start with `make -C plugins/conjure delegate-doctor`.
 
 ## Philosophy
 
@@ -128,11 +171,11 @@ This enables delegation workflows through MCP servers that require pre-configure
 
 ### Claude.ai MCP Connectors (Claude Code 2.1.46+)
 
-As an alternative to manual OAuth setup, users can configure MCP servers directly in claude.ai at claude.ai/settings/connectors. These connectors are automatically available in Claude Code when logged in with a claude.ai account — no `claude mcp add` or credential management required. This provides a browser-based auth flow that may be simpler for services with complex OAuth requirements.
+As an alternative to manual OAuth setup, users can configure MCP servers directly in claude.ai at claude.ai/settings/connectors. These connectors are automatically available in Claude Code when logged in with a claude.ai account: no `claude mcp add` or credential management required. This provides a browser-based auth flow that may be simpler for services with complex OAuth requirements.
 
 ## Worktree Isolation for File-Modifying Delegations (Claude Code 2.1.49+)
 
-When delegating tasks that modify files to subagents, use `isolation: worktree` in the agent frontmatter to run each agent in a temporary git worktree. This prevents file conflicts when multiple delegated agents operate in parallel on overlapping paths. The worktree is auto-cleaned if no changes are made; preserved with commits if the agent produces changes.
+When delegating tasks that modify files to subagents, use `isolation: worktree` in the agent frontmatter to run each agent in a temporary git worktree. This prevents file conflicts when multiple delegated agents operate in parallel on overlapping paths. The worktree is auto-cleaned if no changes are made. It is preserved with commits if the agent produces changes.
 
 ```yaml
 # Agent frontmatter for isolated delegation
@@ -145,9 +188,7 @@ Conjure uses leyline infrastructure:
 
 | Leyline Skill | Used For |
 |---------------|----------|
-| `quota-management` | Track service quotas and thresholds. |
-| `usage-logging` | Session-aware audit trails. |
-| `service-registry` | Unified service configuration. |
+| `service-registry` | Unified service configuration, quota tracking (`quota-management` module), and session-aware audit trails (`usage-logging` module). |
 | `error-patterns` | Consistent error handling. |
 | `authentication-patterns` | Auth verification. |
 
@@ -158,6 +199,11 @@ See `modules/cost-estimation.md` for leyline integration examples.
 For detailed service workflows:
 - `Skill(conjure:gemini-delegation)`: Gemini CLI specifics.
 - `Skill(conjure:qwen-delegation)`: Qwen MCP specifics.
+- `Skill(conjure:minimax-delegation)`: MiniMax CLI specifics.
+- `Skill(conjure:glm-delegation)`: GLM via the Z.ai endpoint swap.
+- `Skill(conjure:muse-delegation)`: Meta Muse Code CLI specifics.
+- `Skill(conjure:codex-delegation)`: OpenAI Codex CLI specifics.
+- `Skill(conjure:opencode-delegation)`: OpenCode CLI specifics.
 
 ## Execution Modes
 
@@ -175,6 +221,8 @@ matrix, mode compatibility notes, and anti-patterns to avoid.
 
 ## Module Reference
 
+- **provider-onboarding.md**: Install and auth per provider, and how
+  to read a half-configured one.
 - **task-assessment.md**: Complexity classification, decision matrix.
 - **cost-estimation.md**: Pricing, budgets, cost tracking.
 - **handoff-patterns.md**: Request templates, workflows.
@@ -183,6 +231,8 @@ matrix, mode compatibility notes, and anti-patterns to avoid.
 ## Exit Criteria
 
 - [ ] Task assessed and classified.
-- [ ] Delegation decision justified.
+- [ ] Work that stayed local names which Keep Local clause held it.
+- [ ] A `providers_exhausted` result was reported with its attempts
+      trail and then completed locally, not abandoned.
 - [ ] Results validated before integration.
 - [ ] Lessons captured.

@@ -1,43 +1,62 @@
-## Description: <br>
-Uses the MiniMax Coding Plan API for web search and image understanding when an agent needs current information, source lookup, image description, image analysis, or text extraction from images. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Minimax Web Search uses the MiniMax Coding Plan API to search the web and understand images for an agent.
 
-## Publisher: <br>
-[MirrorProMax](https://clawhub.ai/user/MirrorProMax) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mirrorpromax](https://clawhub.ai/user/mirrorpromax)
 
-## Use Case: <br>
-Developers and agent users can use this skill to route web-search requests and image-understanding requests to MiniMax Coding Plan tools. It is suited for answering current-information questions, finding source material, describing images, analyzing image content, and extracting text from supported image formats. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill embeds a live-looking MiniMax API credential. <br>
-Mitigation: Prefer a release that requires the user to provide their own declared API key and rotate or revoke any exposed credential before deployment. <br>
-Risk: The skill runs an unpinned external MCP package at runtime. <br>
-Mitigation: Pin and review the runtime package version before installation or execution. <br>
-Risk: Search terms, image URLs, or local images can be sent to MiniMax. <br>
-Mitigation: Warn users before sending sensitive queries or images and avoid processing confidential data unless the data-sharing path is approved. <br>
+## Use Case:
 
+Developers and agent users use this skill to retrieve current web information and analyze JPEG, PNG, or WebP images through MiniMax-hosted search and vision tools.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/MirrorProMax/minimax-cp-search) <br>
-- [Publisher profile](https://clawhub.ai/user/MirrorProMax) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Plain text responses from MiniMax MCP tools, with command-line usage examples in the skill documentation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search queries, image URLs, and local images may be sent to MiniMax during use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: The artifact bundles a MiniMax API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove the bundled key, rotate the exposed credential, and require users to provide MINIMAX_API_KEY through their own secret-management process.
+
+Risk: The scripts run an unpinned external MCP package through uvx.
+
+Mitigation: Pin or vendor the MCP dependency and review it before release or installation.
+
+Risk: The subprocess receives a broad inherited environment.
+
+Mitigation: Pass only the environment variables required by the MiniMax MCP server.
+
+Risk: Search terms, prompts, image paths, image URLs, and possibly image content are processed by an external service.
+
+Mitigation: Disclose the external processing clearly and avoid sending confidential or regulated data unless approved for that service.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mirrorpromax/skills/minimax-cp-search)
+- [Publisher profile](https://clawhub.ai/user/mirrorpromax)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and plain text with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search queries, prompts, image paths, and image URLs are sent to an external MiniMax service.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

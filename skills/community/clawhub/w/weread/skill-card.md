@@ -1,42 +1,55 @@
-## Description: <br>
-WeRead (微信读书) lets an agent query a user's bookshelf, reading progress, highlights, notes, reviews, chapters, and local note exports through an authenticated WeRead session. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+WeRead (微信读书) lets an agent query a user's WeRead bookshelf, reading progress, highlights, notes, reviews, chapters, and export or sample reading notes.
 
-## Publisher: <br>
-[ChenyqThu](https://clawhub.ai/user/ChenyqThu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chenyqthu](https://clawhub.ai/user/chenyqthu)
 
-## Use Case: <br>
-External users and developers use this skill to let an OpenClaw agent inspect and export their own WeRead reading history, notes, highlights, and reading statistics for search, review, and morning-report workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a local WeRead web session cookie and stores it at ~/.weread/cookie, so anyone with access to that file may be able to access the user's WeRead session. <br>
-Mitigation: Treat the cookie like a password, keep owner-only file permissions, prefer manual cookie entry or a dedicated browser profile, and delete the cookie when the integration is no longer needed. <br>
-Risk: Exported notes and reading history under ~/.weread/ can contain private reading activity, highlights, and annotations. <br>
-Mitigation: Do not share exported files unless intended, and delete local exports when they are no longer needed. <br>
+## Use Case:
 
+External users and developers use this skill to let an OpenClaw agent retrieve, review, export, and reuse their personal WeRead reading data. It supports bookshelf lookup, reading statistics, note and highlight retrieval, daily review selection, and local JSON export.
 
-## Reference(s): <br>
-- [ClawHub WeRead Skill Page](https://clawhub.ai/ChenyqThu/weread) <br>
-- [WeRead Web](https://weread.qq.com) <br>
-- [OpenClaw](https://github.com/nicepkg/openclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands; skill scripts emit JSON or plain text.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can create local WeRead cookie and export files under ~/.weread/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill stores a live WeRead login cookie and can access private reading history.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat ~/.weread/cookie like a password: keep it private, avoid committing or syncing it, and delete or rotate it if exposed.
+
+Risk: Normal use sends authenticated requests to WeRead/Tencent services.
+
+Mitigation: Install only when that remote data flow is acceptable for the account, and review privacy expectations before use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/chenyqthu/skills/weread)
+- [WeRead Web App](https://weread.qq.com)
+- [OpenClaw Project](https://github.com/nicepkg/openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Files, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [JSON command output and local JSON files, with optional plaintext note selections and Markdown-style setup guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include private bookshelf, reading progress, highlights, notes, reviews, and locally exported reading data.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

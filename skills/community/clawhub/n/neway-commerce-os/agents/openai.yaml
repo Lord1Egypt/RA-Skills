@@ -1,3 +1,3 @@
 interface:
   display_name: "Neway Commerce OS"
-  short_description: "Generate a full-stack commerce site skeleton with React, Vite, Hono, AI sales assistant, Stripe-style checkout, and EdgeOne deployment."
+  short_description: "Generate and verify a full-stack commerce storefront from one prompt — React + Vite + Hono, cart, wishlist, three-step checkout, admin dashboard, AI sales concierge, EdgeOne deployment. Every build must pass 29 hard gates (no emoji, even px >= 12, lucide icons, currency and data-contract consistency) before delivery."

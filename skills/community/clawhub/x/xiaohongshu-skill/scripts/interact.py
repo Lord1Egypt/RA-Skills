@@ -1,20 +1,27 @@
 """
 小红书互动模块（点赞 / 取消点赞 / 收藏 / 取消收藏）
 
-基于 xiaohongshu-mcp/like_favorite.go 翻译
-整合 xiaohongshu-ops 的安全互动理念（人性化延迟、频率检测、批次冷却）
+Reference: xiaohongshu-mcp/like_favorite.go (Apache-2.0). See THIRD_PARTY_NOTICES.md.
+安全互动校验：人性化延迟、频率检测、批次冷却
 """
 
 import json
+import random
 import sys
 import time
-import random
-from typing import Optional, Dict, Any, Tuple
+from typing import Any, Dict
 
-from .client import XiaohongshuClient, DEFAULT_COOKIE_PATH
 from ._utils import make_feed_url
+from .client import DEFAULT_COOKIE_PATH, XiaohongshuClient
+from .selectors import (
+    INTERACT_COLLECT_ACTIVE_CONTRACT,
+    INTERACT_COLLECT_BUTTON_CONTRACT,
+    INTERACT_LIKE_ACTIVE_CONTRACT,
+    INTERACT_LIKE_BUTTON_CONTRACT,
+    INTERACT_RATE_LIMIT_TOAST_CONTRACT,
+)
 
-# 互动安全常量（来自 xiaohongshu-ops）
+# 互动安全常量
 PRE_CLICK_DELAY_MIN = 1.0     # 点击前延迟下限（秒）
 PRE_CLICK_DELAY_MAX = 2.5     # 点击前延迟上限（秒）
 POST_CLICK_COOLDOWN_MIN = 5   # 点击后冷却下限（秒）
@@ -27,11 +34,12 @@ BATCH_COOLDOWN_MAX = 30       # 批次冷却上限（秒）
 class InteractAction:
     """互动动作（点赞、收藏）"""
 
-    # CSS 选择器
-    LIKE_SELECTOR = '.interact-container .left .like-wrapper'
-    LIKE_ACTIVE_SELECTOR = '.interact-container .left .like-wrapper.active, .interact-container .left .like-wrapper.liked'
-    COLLECT_SELECTOR = '.interact-container .left .collect-wrapper'
-    COLLECT_ACTIVE_SELECTOR = '.interact-container .left .collect-wrapper.active, .interact-container .left .collect-wrapper.collected'
+    # CSS 选择器（兼容常量从契约派生，契约是唯一事实源）
+    LIKE_SELECTOR = INTERACT_LIKE_BUTTON_CONTRACT.primary
+    LIKE_ACTIVE_SELECTOR = INTERACT_LIKE_ACTIVE_CONTRACT.primary
+    COLLECT_SELECTOR = INTERACT_COLLECT_BUTTON_CONTRACT.primary
+    COLLECT_ACTIVE_SELECTOR = INTERACT_COLLECT_ACTIVE_CONTRACT.primary
+    RATE_LIMIT_SELECTORS = INTERACT_RATE_LIMIT_TOAST_CONTRACT.selectors
 
     def __init__(self, client: XiaohongshuClient):
         self.client = client
@@ -102,20 +110,14 @@ class InteractAction:
 
     def _check_rate_limit(self) -> bool:
         """
-        检测是否触发了互动频率限制（来自 ops 安全理念）
+        检测是否触发了互动频率限制
 
         Returns:
             True 表示被限流
         """
         page = self.client.page
         try:
-            rate_limit_selectors = [
-                'div.d-toast:has-text("频繁")',
-                'div.d-toast:has-text("操作太快")',
-                'div.d-toast:has-text("稍后再试")',
-                'div.d-toast:has-text("限制")',
-            ]
-            for sel in rate_limit_selectors:
+            for sel in self.RATE_LIMIT_SELECTORS:
                 toast = page.locator(sel)
                 if toast.count() > 0 and toast.first.is_visible():
                     toast_text = toast.first.text_content()

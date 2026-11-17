@@ -1,44 +1,56 @@
-## Description: <br>
-A clinical pharmacology skill handbook based on People's Medical Publishing House Pharmacology, 10th Edition, covering 180 core pharmacology skills. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A clinical pharmacology skill handbook based on the People's Medical Publishing House Pharmacology 10th Edition, providing 180 modules for drug mechanisms, rational medication use, adverse reaction management, dosing considerations, and treatment strategy reference.
 
-## Publisher: <br>
-[xllgreen](https://clawhub.ai/user/xllgreen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xllgreen](https://clawhub.ai/user/xllgreen)
 
-## Use Case: <br>
-External medical students, resident physicians, clinical pharmacists, and pharmacology educators use this skill as an educational or clinician-reviewed reference for drug mechanisms, rational medication use, adverse reaction management, special population dosing, anti-infective and antitumor strategies, and related pharmacology topics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may provide high-risk pharmacology, dosing, emergency treatment, or drug interaction guidance that could be misused as standalone medical advice. <br>
-Mitigation: Use outputs only as educational or clinician-reviewed reference material, and require qualified clinician oversight for diagnosis, prescribing, dosing, emergency care, and patient-facing workflows. <br>
-Risk: The safety boundaries for contraindications and dosing are inconsistent or under-scoped across the skill pack. <br>
-Mitigation: Verify recommendations against current official guidelines, local protocols, drug labeling, and qualified pharmacology specialists before clinical use. <br>
+## Use Case:
 
+Medical students, resident physicians, clinical pharmacists, and pharmacology educators use this skill as educational or clinician-reviewed reference material for pharmacology concepts, medication selection factors, adverse effects, interactions, and dosing-related study workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xllgreen/pharmacology-pmph-10edition) <br>
-- [Publisher profile](https://clawhub.ai/user/xllgreen) <br>
-- [Project homepage](https://github.com/xllgreen/pharmacology-pmph-10edition) <br>
-- [English README](README_EN.md) <br>
-- [Skill registry](SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or conversational text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Educational pharmacology reference output; clinical use requires qualified clinician review and current guideline or labeling checks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: High-risk pharmacology content may be mistaken for independent medical diagnosis, prescribing, dosing, emergency treatment, pregnancy medication, chemotherapy, anticoagulation, insulin, or poisoning-care advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as textbook study material or clinician-reviewed reference only, and verify against qualified medical oversight, current official guidelines, and local protocols before clinical use.
+
+Risk: The source content does not consistently enforce clinician-only safety boundaries.
+
+Mitigation: Deploy system-level medical safety policies requiring escalation to qualified clinicians for diagnosis, prescribing, dosing, emergency care, and self-treatment decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xllgreen/skills/pharmacology-pmph-10edition)
+- [Project homepage from metadata/clawdis](https://github.com/xllgreen/pharmacology-pmph-10edition)
+- [README_EN.md](artifact/README_EN.md)
+- [SKILL.md](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown and structured prose]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Educational pharmacology reference output; no executable payload or tool calls are declared.]
+
+## Skill Version(s):
+
+1.0.0 (source: artifact frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

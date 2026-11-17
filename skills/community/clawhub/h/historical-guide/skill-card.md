@@ -1,49 +1,66 @@
-## Description: <br>
-Historical Guide helps an agent present museum objects through the voice and style of Chinese historical figures such as Li Bai, Su Shi, and Confucius. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+博物馆讲解器升级版：召唤李白、苏轼、孔子等历史人物讲解文物。支持「让李白讲这个」「换成苏轼」等自然对话，沉浸式了解文物本身。
 
-## Publisher: <br>
-[yangmingchen1994-dotcom](https://clawhub.ai/user/yangmingchen1994-dotcom) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yangmingchen1994-dotcom](https://clawhub.ai/user/yangmingchen1994-dotcom)
 
-## Use Case: <br>
-External users and agent developers use this skill to create conversational museum-guide responses, switch between historical-persona narrators, and explain artifacts with persona-specific style and reference profiles. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Museum queries and conversation text are sent to the configured model provider. <br>
-Mitigation: Use a trusted API_BASE and avoid entering sensitive personal data. <br>
-Risk: A configured API key is required for model calls. <br>
-Mitigation: Use a least-privilege API key and keep it in environment variables or a protected local configuration file. <br>
-Risk: Generated out-of-library persona files are synthetic and may be inaccurate or malformed. <br>
-Mitigation: Review or delete generated files in references/ before relying on them. <br>
+## Use Case:
 
+Museum visitors, educators, and agents use this skill to guide Chinese-language artifact conversations through historical-persona narration, including switching among known figures and answering follow-up questions in character.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yangmingchen1994-dotcom/historical-guide) <br>
-- [kongzi.json](references/kongzi.json) <br>
-- [libai.json](references/libai.json) <br>
-- [liqingzhao.json](references/liqingzhao.json) <br>
-- [sushi.json](references/sushi.json) <br>
-- [wangxizhi.json](references/wangxizhi.json) <br>
-- [zhangqian.json](references/zhangqian.json) <br>
-- [zhugeliang.json](references/zhugeliang.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown-style conversational text with optional shell commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May call a configured model API and may save generated persona profiles under references/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.8 (source: server release evidence) <br>
+Risk: The security summary reports that automatic persona generation can persist model-generated files with insufficient validation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Disable or gate dynamic persona generation in sensitive environments, validate generated persona IDs and schemas, and prevent path traversal or unintended overwrites before saving persona files.
+
+Risk: The security guidance calls for trusted API endpoints and protected credentials.
+
+Mitigation: Use only trusted HTTPS API endpoints and keep API keys in environment variables or a secret manager rather than in scripts/config.json.
+
+Risk: The security guidance notes that Chinese-language behavior should be expected.
+
+Mitigation: Deploy where Chinese-language museum-guide responses are intended and review outputs for the target audience and setting.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yangmingchen1994-dotcom/skills/historical-guide)
+- [OpenClaw configuration metadata](artifact/SKILL.md)
+- [Required API configuration file](artifact/scripts/config.json)
+- [Kongzi persona reference](artifact/references/kongzi.json)
+- [Li Bai persona reference](artifact/references/libai.json)
+- [Li Qingzhao persona reference](artifact/references/liqingzhao.json)
+- [Su Shi persona reference](artifact/references/sushi.json)
+- [Wang Xizhi persona reference](artifact/references/wangxizhi.json)
+- [Zhang Qian persona reference](artifact/references/zhangqian.json)
+- [Zhuge Liang persona reference](artifact/references/zhugeliang.json)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Chinese-language text and Markdown with optional shell commands and JSON configuration]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May call a configured chat-completions API and may persist generated persona JSON files under references/.]
+
+## Skill Version(s):
+
+1.1.8 (source: server evidence release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

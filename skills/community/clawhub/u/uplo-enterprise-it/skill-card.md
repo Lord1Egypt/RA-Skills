@@ -1,44 +1,55 @@
-## Description: <br>
-AI-powered enterprise IT intelligence spanning DevOps, cybersecurity, and engineering. Unified search across infrastructure, security, and architecture documentation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-powered enterprise IT intelligence spanning DevOps, cybersecurity, and engineering. Unified search across infrastructure, security, and architecture documentation.
 
-## Publisher: <br>
-[RooJenkins](https://clawhub.ai/user/RooJenkins) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[roojenkins](https://clawhub.ai/user/roojenkins)
 
-## Use Case: <br>
-Developers, SREs, security analysts, and enterprise IT teams use this skill to search infrastructure, cybersecurity, architecture, incident, and compliance documentation through a configured UPLO knowledge base. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can retrieve sensitive infrastructure, security, and architecture documentation from the configured UPLO instance. <br>
-Mitigation: Install it only with scoped MCP credentials, confirm classification-tier enforcement, and match access to the user's team and clearance. <br>
-Risk: Operational recommendations may be incomplete or stale when the underlying knowledge base has gaps or outdated entries. <br>
-Mitigation: Check current directives and source context before acting, and use knowledge-gap or outdated-entry reporting for missing or stale documentation. <br>
-Risk: The supplied security telemetry reports no issues but notes low-confidence review conditions. <br>
-Mitigation: Review the skill files and requested MCP access before installation, as recommended by the security guidance. <br>
+## Use Case:
 
+Developers, SREs, security analysts, and enterprise IT teams use this skill to search and connect infrastructure, cybersecurity, architecture, incident, and compliance knowledge. It supports operational lookups, incident triage, audit preparation, directive retrieval, and documentation gap reporting through UPLO-backed MCP tools.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/RooJenkins/uplo-enterprise-it) <br>
-- [UPLO](https://uplo.ai) <br>
-- [UPLO Schemas](https://uplo.ai/schemas) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown responses with inline tool calls and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a configured UPLO MCP server and should respect identity context and classification tiers.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and skill.json) <br>
+Risk: The skill can export broad organizational infrastructure, security, and engineering context into an agent session.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated least-privilege UPLO token and require human approval before calling export_org_context.
+
+Risk: The MCP server is launched through an unpinned external npm package.
+
+Mitigation: Prefer a pinned, reviewed package version and install only after trusting the UPLO service and MCP package supply chain.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/roojenkins/skills/uplo-enterprise-it)
+- [UPLO](https://uplo.ai)
+- [UPLO schemas](https://uplo.ai/schemas)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline tool calls, shell commands, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference UPLO search results, organizational context, directives, and documentation quality signals subject to configured access controls.]
+
+## Skill Version(s):
+
+1.0.0 (source: skill.json and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

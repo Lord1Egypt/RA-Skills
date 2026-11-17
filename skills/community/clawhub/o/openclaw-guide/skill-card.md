@@ -1,44 +1,59 @@
-## Description: <br>
-Authoritative OpenClaw guidance and documentation lookup. Provides accurate information about OpenClaw capabilities, configuration, and usage based on official sources (docs.openclaw.ai and github.com/openclaw/openclaw). Use when users ask about OpenClaw features, setup, configuration, troubleshooting, or any OpenClaw-related topics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw Guide provides authoritative OpenClaw documentation lookup and guidance about capabilities, configuration, usage, setup, troubleshooting, and related topics using official OpenClaw documentation and source code.
 
-## Publisher: <br>
-[Linux2010](https://clawhub.ai/user/Linux2010) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[linux2010](https://clawhub.ai/user/linux2010)
 
-## Use Case: <br>
-Developers, operators, and OpenClaw users use this skill to answer questions about OpenClaw setup, configuration, architecture, troubleshooting, and workflows from official documentation and source references. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill may use web searches or fetches to answer OpenClaw questions, so responses can depend on the availability and current content of official sources. <br>
-Mitigation: Review cited documentation or source links before acting on configuration, setup, or troubleshooting guidance. <br>
-Risk: The optional GitHub helper script may use a local GitHub CLI if an agent or user chooses to run it. <br>
-Mitigation: Run helper scripts only in an environment where GitHub CLI access and repository queries are expected and permitted. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [OpenClaw official documentation](https://docs.openclaw.ai) <br>
-- [OpenClaw source repository](https://github.com/openclaw/openclaw) <br>
-- [OpenClaw community](https://discord.com/invite/clawd) <br>
-- [Common OpenClaw queries](references/common_queries.md) <br>
-- [OpenClaw documentation structure](references/docs_structure.md) <br>
-- [ClawHub skill page](https://clawhub.ai/Linux2010/openclaw-guide) <br>
+## Use Case:
 
+Developers, operators, and OpenClaw users use this skill to answer questions about OpenClaw features, setup, configuration, architecture, troubleshooting, and best practices using official documentation and source code.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration, code] <br>
-**Output Format:** [Markdown with links and inline code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May cite official OpenClaw documentation or source links when available.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill uses web access to retrieve OpenClaw documentation and source-code information.
+
+Mitigation: Allow network access only to the expected official OpenClaw documentation and repository domains when deploying in a restricted environment.
+
+Risk: The bundled GitHub helper can inherit local GitHub CLI authentication if executed.
+
+Mitigation: Run the helper with a low-privilege or unauthenticated GitHub CLI setup when possible.
+
+## Reference(s):
+
+- [OpenClaw Official Documentation](https://docs.openclaw.ai)
+- [OpenClaw Source Repository](https://github.com/openclaw/openclaw)
+- [OpenClaw Community](https://discord.com/invite/clawd)
+- [OpenClaw Channel Guide](https://docs.openclaw.ai/guides/channels)
+- [OpenClaw Skills Guide](https://docs.openclaw.ai/guides/skills)
+- [OpenClaw Agents Architecture](https://docs.openclaw.ai/architecture/agents)
+- [OpenClaw Common Queries and Solutions](references/common_queries.md)
+- [OpenClaw Documentation Structure](references/docs_structure.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands]
+
+**Output Format:** [Markdown with links and optional inline code or shell command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Answers should cite official OpenClaw documentation or source code and acknowledge unavailable information.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

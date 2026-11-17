@@ -1,42 +1,55 @@
-## Description: <br>
-Chinese Compliance Checker helps agents assess global privacy, data transfer, app store, payment, content moderation, and AI Act readiness for Chinese products expanding overseas. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Global compliance checker for Chinese products expanding overseas, covering privacy, data transfer, platform review, payment, content moderation, and AI regulatory readiness across major markets.
 
-## Publisher: <br>
-[lm203688](https://clawhub.ai/user/lm203688) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lm203688](https://clawhub.ai/user/lm203688)
 
-## Use Case: <br>
-Developers, product teams, and compliance reviewers use this skill to triage overseas-launch requirements for Chinese apps, SaaS, e-commerce, content, AI, or payment products and to produce a compliance audit report with gaps and remediation steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Compliance findings may be incomplete, outdated, or mistaken legal guidance. <br>
-Mitigation: Treat outputs as an initial checklist and verify current requirements with qualified counsel in each target market. <br>
-Risk: Optional API and web app paths may send user-submitted product, compliance, or marketing details to an external Tencent-hosted service with limited data-handling disclosure. <br>
-Mitigation: Do not submit confidential product plans, customer data, legal drafts, unpublished marketing copy, or sensitive data-flow details unless the service operator, privacy terms, retention, and jurisdictional handling have been reviewed. <br>
+## Use Case:
 
+External product, legal, compliance, and launch teams use this skill to generate preliminary international compliance checklists, gap analysis, and remediation roadmaps for apps, SaaS products, and services expanding from China into overseas markets. It is a checklist and planning aid, not a substitute for qualified legal review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lm203688/chinese-compliance-checker) <br>
-- [Compliance regulations API endpoint](https://1341839497-2yuxt6z58d.ap-guangzhou.tencentscf.com) <br>
-- [Compliance web app](https://1341839497-jv04655vcs.ap-shanghai.tencentscf.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown compliance audit report with tables, checklists, and a remediation roadmap; optional CLI output from regulations.sh.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Informational compliance support only; optional API and web app paths may send submitted content to an external service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: release evidence) <br>
+Risk: The skill appears purpose-aligned but may overstate its compliance-audit capabilities.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as preliminary checklists and confirm all findings with qualified counsel in each target market before launch or filing decisions.
+
+Risk: The skill promotes external compliance API and web app services without enough data-handling disclosure.
+
+Mitigation: Verify who operates the service and review privacy, retention, and confidentiality terms before sending sensitive product, user-data, legal, or marketing information.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lm203688/skills/chinese-compliance-checker)
+- [Regulations API service](https://1341839497-2yuxt6z58d.ap-guangzhou.tencentscf.com)
+- [Compliance web app](https://1341839497-jv04655vcs.ap-shanghai.tencentscf.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown compliance reports, JSON quick-check reports, and CLI text output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use an external compliance API or web app; avoid submitting sensitive product plans, user-data maps, legal documents, or marketing drafts unless the service's privacy and retention terms are acceptable.]
+
+## Skill Version(s):
+
+2.1.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

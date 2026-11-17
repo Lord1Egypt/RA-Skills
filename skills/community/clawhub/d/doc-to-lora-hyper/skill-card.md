@@ -1,47 +1,66 @@
-## Description: <br>
-Doc-to-LoRA internalizes a document into Gemma 2 2B by generating LoRA adapter weights so an agent can answer questions without putting the document in the prompt. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Doc-to-LoRA internalizes a document into Gemma 2 2B by generating a LoRA adapter so an agent can answer questions about the document without including it in the prompt.
 
-## Publisher: <br>
-[Manojbhat09](https://clawhub.ai/user/Manojbhat09) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[manojbhat09](https://clawhub.ai/user/manojbhat09)
 
-## Use Case: <br>
-Developers and agent users on Apple Silicon Macs use this skill to internalize document text into a local Doc-to-LoRA adapter and query it with PyTorch or MLX. It is best suited for factual document recall rather than deep multi-hop reasoning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Checkpoint loading can deserialize Python objects from model files. <br>
-Mitigation: Load checkpoints only from trusted sources, avoid arbitrary checkpoint paths, and verify or pin downloaded model revisions where possible. <br>
-Risk: Setup and model download steps depend on external repositories, Python packages, and a HuggingFace token. <br>
-Mitigation: Install only from a trusted doc-to-lora repository, review dependency changes before setup, and use a limited HuggingFace token. <br>
-Risk: Generated adapters and result files may preserve information from sensitive input documents. <br>
-Mitigation: Handle adapters and JSON/text outputs with the same access controls and retention rules as the source documents. <br>
+## Use Case:
 
+Developers and AI agent users use this skill on Apple Silicon Macs to internalize supplied documents or text into Doc-to-LoRA adapters and query them through PyTorch or MLX workflows.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/Manojbhat09/doc-to-lora-hyper) <br>
-- [Doc-to-LoRA Architecture](references/ARCHITECTURE.md) <br>
-- [Doc-to-LoRA paper](https://arxiv.org/abs/2602.15902) <br>
-- [Gemma 2 2B Instruct base model](https://huggingface.co/google/gemma-2-2b-it) <br>
-- [SakanaAI Doc-to-LoRA weights](https://huggingface.co/SakanaAI/doc-to-lora) <br>
-- [uv package manager](https://docs.astral.sh/uv/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Text, JSON, Files] <br>
-**Output Format:** [Markdown guidance with bash examples; scripts emit plain-text answers, optional JSON result files, and adapter directories.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Default answer generation is capped at 256 new tokens unless changed by the user; generated adapters and result files may contain sensitive document-derived information.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release and skill metadata) <br>
+Risk: Checkpoint loading can execute unsafe Python objects when an untrusted Doc-to-LoRA checkpoint is used.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Load only official or hash-verified checkpoints, and keep the default SakanaAI/doc-to-lora source unless the replacement is trusted.
+
+Risk: Setup runs local repository installation logic and installs dependencies, which can introduce code-execution risk in an untrusted clone.
+
+Mitigation: Install only in a trusted Doc-to-LoRA repository clone, inspect install_mac.sh before setup, and prefer pinned or locked dependencies.
+
+Risk: HF_TOKEN is required for gated Gemma access and is a sensitive credential.
+
+Mitigation: Use a minimally scoped Hugging Face token, keep it out of logs and shared shell history, and remove it from the environment when setup is complete.
+
+Risk: The unpinned npx install path can fetch code whose exact source revision is not fixed.
+
+Mitigation: Avoid the npx path unless the installer and source revision are trusted.
+
+## Reference(s):
+
+- [Doc-to-LoRA paper](https://arxiv.org/abs/2602.15902)
+- [Doc-to-LoRA architecture](references/ARCHITECTURE.md)
+- [Gemma 2 2B base model](https://huggingface.co/google/gemma-2-2b-it)
+- [SakanaAI Doc-to-LoRA weights](https://huggingface.co/SakanaAI/doc-to-lora)
+- [uv package manager](https://docs.astral.sh/uv/)
+- [ClawHub skill page](https://clawhub.ai/manojbhat09/skills/doc-to-lora-hyper)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash commands; script outputs are plain text answers or optional JSON result files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Targets macOS on Apple Silicon, requires python3, uv, HF_TOKEN, local Doc-to-LoRA repository files, and trusted model checkpoints.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

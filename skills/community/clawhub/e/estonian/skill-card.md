@@ -1,37 +1,51 @@
-## Description: <br>
-Write Estonian that sounds human. Not formal, not robotic, not AI-generated. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Write Estonian that sounds human. Not formal, not robotic, not AI-generated.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users and developers use this skill to make Estonian prose sound more natural, casual, and native-like by adjusting formality, understatement, particles, fillers, and common reactions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill defaults Estonian output toward casual, understated language and may suggest informal fillers or slang that could be inappropriate in formal, professional, or sensitive contexts. <br>
-Mitigation: Review the audience and context before using the output; request a formal register when writing for professional, elderly, official, or sensitive audiences. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/estonian) <br>
+## Use Case:
+
+Writers, translators, and agents use this skill to make Estonian text sound more natural, casual, and native-like. It guides tone, formality, pronoun choice, particles, fillers, and understated reactions.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Casual wording and the informal sina register may be inappropriate for official, professional, elderly, or highly formal audiences.
+
+Mitigation: Ask explicitly for a formal register and review the generated Estonian before using it in official communications.
+
+Risk: Style guidance includes casual intensifiers, fillers, and some blunt expressions that may not fit every brand or audience.
+
+Mitigation: Review tone and vocabulary for the target audience, especially in customer-facing or regulated communications.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Natural-language guidance or revised prose in text or Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution, credentials, external tools, or persistent data access are requested by the skill.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Natural-language guidance for generated Estonian text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Defaults toward casual Estonian and the informal sina register unless a formal register is requested.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

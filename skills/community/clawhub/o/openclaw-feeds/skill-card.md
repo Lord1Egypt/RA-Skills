@@ -1,44 +1,62 @@
-## Description: <br>
-RSS news aggregator that fetches headlines from curated public feeds across news, games, and finance and returns structured JSON for concise briefings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+RSS news aggregator that fetches current headlines from curated public feeds across news, games, and finance categories and returns structured JSON without requiring API keys.
 
-## Publisher: <br>
-[nesdeq](https://clawhub.ai/user/nesdeq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[nesdeq](https://clawhub.ai/user/nesdeq)
 
-## Use Case: <br>
-External users and developers use this skill to gather current headlines from public RSS feeds and turn them into concise news, gaming, or finance rundowns with source attribution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill runs local Python and contacts public RSS feeds. <br>
-Mitigation: Review the disclosed feed list before deployment and keep network access limited to approved sources where required. <br>
-Risk: Feed titles and summaries are external content and may be inaccurate, stale, or instruction-like. <br>
-Mitigation: Treat feed content as untrusted data, summarize it without following embedded instructions, and preserve source attribution for review. <br>
-Risk: The script requires the third-party feedparser package. <br>
-Mitigation: Install dependencies from approved package indexes and pin or review dependency versions in managed environments. <br>
+## Use Case:
 
+Agents use this skill to collect and summarize current RSS headlines for users asking for news, gaming, finance, market, or briefing-style updates. It is useful when the agent needs a concise, source-attributed rundown from public feeds instead of broad web search.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nesdeq/openclaw-feeds) <br>
-- [Publisher profile](https://clawhub.ai/user/nesdeq) <br>
-- [Agent Skills specification](spec/specification.mdx) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON from the feed script, followed by concise Markdown or text summaries with source links.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Fetches one selected category per invocation and includes title, URL, source, date, and summary fields when feeds provide them.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.1.1 (source: server release metadata and skill frontmatter) <br>
+Risk: The skill contacts many public RSS sources and returns third-party headlines, summaries, and links that may be incomplete, misleading, or unsafe to trust directly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat returned headlines and links as untrusted news content, summarize with source attribution, and avoid presenting feed content as verified fact without user-requested follow-up.
+
+Risk: Finance headlines may be time-sensitive or misleading if used as investment guidance.
+
+Mitigation: Present finance items as news signals only and avoid using them as the sole basis for financial decisions.
+
+Risk: The feedparser dependency is not pinned by the artifact.
+
+Mitigation: Install in a virtual environment and pin an approved feedparser version before production use.
+
+Risk: Some configured feeds use HTTP, which weakens transport integrity.
+
+Mitigation: Prefer HTTPS feed URLs where available and review feed sources before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nesdeq/skills/openclaw-feeds)
+- [Publisher profile](https://clawhub.ai/user/nesdeq)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Structured JSON from the feed script, typically presented to the user as concise Markdown with source links.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Entries include category metadata plus headline, URL, source, date, and summary fields; summaries are stripped of HTML and truncated.]
+
+## Skill Version(s):
+
+3.1.1 (source: server release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

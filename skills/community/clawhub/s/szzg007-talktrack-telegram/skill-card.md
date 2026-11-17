@@ -1,41 +1,54 @@
-## Description: <br>
-Manages marketing and sales talk tracks for multiple product lines and helps draft Telegram replies, analyze conversations, and optimize sales scripts for the JudyMoss persona. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manages JudyMoss Telegram sales talktracks, drafts customer replies, analyzes conversations, and supports ongoing talktrack optimization.
 
-## Publisher: <br>
-[szzg007](https://clawhub.ai/user/szzg007) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[szzg007](https://clawhub.ai/user/szzg007)
 
-## Use Case: <br>
-Sales and operations users can ask an agent to create JudyMoss-style Telegram replies, maintain categorized talk tracks, score customer intent, and suggest next steps for product conversations. The skill is aimed at commercial outreach workflows that need human review before customer-facing messages are sent. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can drive customer outreach and store or reuse customer conversations without clear approval, privacy, or retention controls. <br>
-Mitigation: Use dedicated least-privilege Telegram and Feishu credentials, require human review before outbound customer messages, and define storage, anonymization, retention, deletion, and sharing rules for customer conversation data. <br>
-Risk: Auto-learning, cloud sync, and follow-up behavior may propagate unsuitable sales language or create unsolicited customer contact. <br>
-Mitigation: Disable or bound auto-learning and cloud sync unless explicitly needed, review learned talk tracks before use, and set clear limits for follow-up timing and frequency. <br>
+## Use Case:
 
+Sales operators and agents managing JudyMoss Telegram conversations use this skill to generate product-specific talktracks, draft replies, analyze purchase intent, and maintain a reusable sales-talktrack library.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/szzg007/szzg007-talktrack-telegram) <br>
-- [szzg007 publisher profile](https://clawhub.ai/user/szzg007) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Configuration, Guidance] <br>
-**Output Format:** [Markdown and plain text guidance with example configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include sales scripts, Telegram reply drafts, conversation analysis, follow-up guidance, and environment variable examples.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Telegram conversations may contain personal, customer, pricing, or business-sensitive data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review data handling before installation, require explicit user approval for memory and synchronization, and define clear retention and deletion rules.
+
+Risk: Automatic learning from customer chats may update talktracks without clear consent or operator control.
+
+Mitigation: Configure conversation memory, auto-learning, Feishu sync, and learned talktrack updates to require explicit approval before changes are retained or reused.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/szzg007/skills/szzg007-talktrack-telegram)
+- [ClawHub publisher profile](https://clawhub.ai/user/szzg007)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown and plain-text sales replies with optional configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include product line, sales scenario, customer type, persona, tone, reply length, and conversation history.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,58 @@
-## Description: <br>
-Automates B2B cold email outreach by sourcing Apollo leads, verifying addresses with Hunter.io, and uploading verified contacts to an Instantly campaign. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates B2B cold email outreach by processing Apollo lead exports, verifying email addresses with Hunter.io, and uploading verified leads to Instantly campaigns with personalization.
 
-## Publisher: <br>
-[Zero2Ai-hub](https://clawhub.ai/user/Zero2Ai-hub) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[zero2ai-hub](https://clawhub.ai/user/zero2ai-hub)
 
-## Use Case: <br>
-Sales, growth, and revenue operations users can use this skill to turn Apollo lead exports into verified Instantly campaign leads with basic personalization and a three-email outreach sequence. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can send contact data to third-party services and bulk add leads to an outreach campaign with little built-in review. <br>
-Mitigation: Review the CSV, target campaign, and applicable permission to contact leads before running the upload. <br>
-Risk: Hunter.io and Instantly API keys are required for normal operation. <br>
-Mitigation: Keep API keys out of shared files and logs, use a local config file, and rotate keys if they are exposed. <br>
-Risk: Bulk uploads can affect a live outreach campaign. <br>
-Mitigation: Test with a small CSV first and add a dry-run or confirmation step before importing larger lead lists. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Zero2Ai-hub/skill-cold-email-outreach) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Skill instructions](artifact/SKILL.md) <br>
+## Use Case:
 
+Growth teams and sales operators use this skill to configure and run a B2B cold email pipeline that turns Apollo lead data into verified Instantly campaign uploads. It is intended for users who are authorized to process prospect contact data and operate outbound email campaigns.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, code, guidance] <br>
-**Output Format:** [Markdown instructions and Node.js command-line output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Processes CSV lead data, verifies email status through Hunter.io, and uploads verified leads to Instantly.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill processes and uploads prospect contact data to external services.
+
+Mitigation: Use it only with authorized lead data, review applicable privacy and anti-spam obligations, and test with a small CSV before uploading at scale.
+
+Risk: API keys are required for Hunter.io and Instantly, and the artifact uses a local configuration file pattern.
+
+Mitigation: Keep API keys out of the repository, add a strong ignore rule for local config files, and prefer an environment or secret-management workflow for shared use.
+
+Risk: Email verification failures may allow leads through if Hunter.io returns a non-200 response.
+
+Mitigation: Change the verification step to fail closed on Hunter errors and require explicit confirmation before uploading verified leads to Instantly.
+
+## Reference(s):
+
+- [Cold Email Outreach ClawHub Skill Page](https://clawhub.ai/zero2ai-hub/skills/skill-cold-email-outreach)
+- [Artifact README](artifact/README.md)
+- [Artifact Skill Documentation](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline JavaScript configuration and shell commands, plus CLI status output from the provided scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces setup steps, campaign configuration guidance, customizable email sequence code, and command-line upload summaries.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -18,9 +18,9 @@ Settings mechanics: [provider-settings.md](./provider-settings.md). JSON recipes
 | Single photo | Yes | One uploaded image via `-m` |
 | Multi-photo carousel | Yes | Multiple `-m` attachments in one post |
 | Reel (MP4 video) | Yes | Single `.mp4` → Page video API; Facebook surfaces eligible uploads as Reels |
-| Follow-up comments | Yes | See [facebook-follow-up-comment.json](./examples/facebook-follow-up-comment.json) |
+| Facebook Stories | Yes | `post_type: story` or `facebook.postType: story`; image or MP4 required; each attachment → its own Story |
+| Follow-up comments | Yes | `facebook.replies` — optional one image per reply (feed posts only; not Stories) |
 | Page analytics | Yes | `analytics:platform` and `analytics:post` |
-| Facebook Stories | No | Feed, photos, video/Reels, and comments only |
 | Personal profile / Groups | No | Pages you manage via Graph API only |
 
 ## Agent tasks
@@ -32,7 +32,9 @@ Settings mechanics: [provider-settings.md](./provider-settings.md). JSON recipes
 | Post a photo | [facebook-with-image.json](./examples/facebook-with-image.json) |
 | Post multiple photos | [facebook-multi-photo.json](./examples/facebook-multi-photo.json) |
 | Publish a Reel from MP4 | [facebook-reel.json](./examples/facebook-reel.json) |
+| Publish a Story (image or MP4) | [facebook-story.json](./examples/facebook-story.json) |
 | Add a comment after the post goes live | [facebook-follow-up-comment.json](./examples/facebook-follow-up-comment.json) |
+| Add a comment with one image after publish | [facebook-follow-up-comment-with-image.json](./examples/facebook-follow-up-comment-with-image.json) |
 | See what the Page supports | `openquok integrations:settings "$FB_ID"` |
 | Track Page performance | [Discover integration](#discover-integration) → `analytics:platform` |
 
@@ -42,10 +44,49 @@ Flat JSON on `--settings` or inside `--providerSettingsByIntegrationId` for the 
 
 | Key | Values | When |
 | --- | --- | --- |
+| `post_type` / `postType` | `post` (default) or `story` | Feed/Reel vs Story surface |
+| `facebook.postType` | `post` or `story` | Same as `post_type` (web composer bucket; API accepts both) |
 | `url` | `https://…` string | Text-only post with link-preview card |
 | `facebook.url` | `https://…` | Same as `url` (web composer bucket; API accepts both) |
+| `facebook.replies` | `[{ "id": "…", "message": "…", "delaySeconds": 60, "media": [...] }]` | Follow-up comments after publish (feed posts only; nested bucket in JSON) |
 
-**Rules:** Link `url` applies only when **no** media is attached. With `-m`, the post uses attached photos or video instead of a link card.
+**Rules:** Link `url` applies only when **no** media is attached and post type is `post`. With `-m`, the post uses attached photos or video instead of a link card. **Stories** require at least one image or MP4; each attachment publishes as its own Story. Follow-up `replies` are not supported for Stories.
+
+### Follow-up comments (`facebook.replies`)
+
+Same-account comments on the main post use the **`facebook`** bucket — not `threads.replies`.
+
+Each reply row:
+
+```json
+{
+  "id": "reply-1",
+  "message": "First comment on the post",
+  "delaySeconds": 60,
+  "media": [{ "id": "<media-id>", "path": "https://cdn.example.com/reply.jpg" }]
+}
+```
+
+- `delaySeconds` — wait after the previous part publishes (`0` = immediately after the prior step).
+- `media` — optional. Max **one image** per reply; **no video**. Upload first (Rule 2) before referencing `id` / `path`. Omit `media` for text-only comments.
+
+Text-only recipe: [facebook-follow-up-comment.json](./examples/facebook-follow-up-comment.json). With one image on a reply row: [facebook-follow-up-comment-with-image.json](./examples/facebook-follow-up-comment-with-image.json). Mechanics: [provider-settings.md](./provider-settings.md#scheduled-follow-up-replies).
+
+**Follow-up with one image** (upload first, then nest under `facebook.replies`):
+
+```bash
+REPLY_MEDIA=$(openquok upload ./comment-image.jpg | jq -c '[{id: .data.id, path: (.data.path // .data.filePath)}]')
+
+openquok posts:create \
+  -s "2026-01-01T12:00:00Z" \
+  -c "Main post" \
+  -i "$FB_ID" \
+  --providerSettingsByIntegrationId "$(jq -nc --arg id "$FB_ID" --argjson media "$REPLY_MEDIA" '
+    { ($id): { facebook: { replies: [
+      { id: "reply-1", message: "See the chart in this comment", delaySeconds: 60, media: $media }
+    ] } } }
+  ')"
+```
 
 ## Run an example
 

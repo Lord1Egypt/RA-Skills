@@ -1,41 +1,54 @@
-## Description: <br>
-Prints a time-based Chinese greeting for an optional name as JSON. <br>
+## Description:
 
-This skill is for demonstration purposes and not for production usage. <br>
+Returns a Chinese time-based greeting as JSON for agent use.
 
-## Publisher: <br>
-[yuboon](https://clawhub.ai/user/yuboon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yuboon](https://clawhub.ai/user/yuboon)
 
-## Use Case: <br>
-Developers and agents can use this sample skill to return a simple localized greeting with the provided name and current time. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The install example is generic and may not identify the intended package or publisher. <br>
-Mitigation: Confirm the ClawHub skill page and publisher handle yuboon before installing. <br>
-Risk: The skill runs local Python from the package. <br>
-Mitigation: Review the bundled script before execution and run it only in an appropriate local environment. <br>
+## Use Case:
 
+Developers and agents can use this skill as a simple hello-world example that returns localized Chinese greeting JSON based on the current time and an optional name.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yuboon/my-first-skill-0311) <br>
-- [Skill homepage](https://example.com/hello-world-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands] <br>
-**Output Format:** [JSON object printed to stdout] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes greeting, name, ISO timestamp, and message; accepts an optional name argument.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence, target metadata, frontmatter) <br>
+Risk: The release is quarantined for low quality and may need moderation review before listing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the short skill documentation, placeholder install and homepage values, and release quality signals before publishing.
+
+Risk: The skill emits Chinese greeting text, which may not match every agent workflow or locale.
+
+Mitigation: Install it only when Chinese greeting output is appropriate for the intended workflow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yuboon/skills/my-first-skill-0311)
+- [Hello World skill homepage](https://example.com/hello-world-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands]
+
+**Output Format:** [JSON object printed to standard output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes greeting, name, ISO timestamp, and message fields.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

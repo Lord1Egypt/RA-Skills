@@ -1,6 +1,17 @@
 {
-  "ownerId": "kn7badb19az0v9pbpeqa6k3nv183ssd9",
-  "slug": "openclawkit-excel",
+  "ownerId": "wanghao",
+  "slug": "excel-toolkit",
   "version": "1.0.1",
-  "publishedAt": 1774675688299
+  "publishedAt": 1772384880000,
+  "description": "Excel文件操作工具套件，提供基础的Excel文件读写、数据处理和报表生成功能",
+  "keywords": ["excel", "spreadsheet", "data", "analysis", "report"],
+  "license": "MIT",
+  "author": {
+    "name": "浩哥",
+    "email": "512975801@qq.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wanghao20150901/openclawkit-excel.git"
+  }
 }

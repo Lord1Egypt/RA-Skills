@@ -1,6 +1,6 @@
 {
   "name": "agent-chronicle",
-  "version": "0.7.0",
+  "version": "0.8.0",
   "description": "AI-powered diary generation for agents - creates rich, reflective journal entries with Quote Hall of Fame, Curiosity Backlog, Decision Archaeology, Relationship Evolution, mood analytics, weekly digests, and On This Day resurfacing. Works best with Claude models.",
   "author": "robbyczgw-cla",
   "tags": [

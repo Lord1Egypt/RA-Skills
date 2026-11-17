@@ -1,42 +1,60 @@
-## Description: <br>
-Analyzes OpenClaw token usage and cost from local session logs, identifies high-cost patterns such as long conversations, frequent cron runs, large context, and expensive models, and produces cost optimization guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes OpenClaw token usage and costs, identifies high-consumption patterns such as long conversations, frequent cron jobs, and large contexts, and produces cost reports with optimization recommendations.
 
-## Publisher: <br>
-[dagangtj](https://clawhub.ai/user/dagangtj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
+
+[dagangtj](https://clawhub.ai/user/dagangtj)
+
+### License/Terms of Use:
+
+MIT
+
+## Use Case:
+
+Developers and engineers using OpenClaw use this skill to review local session costs, find expensive usage patterns, and generate recommendations for model choice, context management, cron frequency, and local-model usage.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill reads local OpenClaw conversation logs from a sensitive memory path.
+
+Mitigation: Run it only in a trusted local environment, review the generated report before sharing it, and confirm the log directory scope before execution.
+
+Risk: The documented data-access path does not match the script behavior.
+
+Mitigation: Confirm the actual log path used by the installed version and update local documentation or configuration before relying on results.
+
+Risk: The documentation includes a broad cleanup command that can delete persistent memory Markdown files.
+
+Mitigation: List matching files and create backups before any deletion; avoid the cleanup command unless deletion is intentional.
+
+Risk: Cron examples can schedule recurring cost checks.
+
+Mitigation: Add cron jobs only when recurring analysis is desired and review their frequency and output location.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to inspect local conversation logs, estimate model and token costs, and generate practical recommendations for lowering recurring AI usage costs. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The analyzer reads local OpenClaw conversation logs, which may contain sensitive conversation content. <br>
-Mitigation: Run it only in a trusted local workspace and review the generated report location and file permissions before sharing results. <br>
-Risk: Optimization suggestions may include model-switching, cron, fallback, Ollama, or cleanup commands that change local configuration or delete old memory files if copied manually. <br>
-Mitigation: Review each suggested command before running it, and avoid destructive cleanup commands unless the target files have been backed up or confirmed unnecessary. <br>
-Risk: Cost estimates depend on the model pricing table bundled in the script and can become stale. <br>
-Mitigation: Verify current model prices before making budget decisions or editing the script's pricing table. <br>
+**Output Format:** [Markdown report and console text with command recommendations]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/dagangtj/oc-cost-analyzer) <br>
+**Other Properties Related to Output:** [Generates local cost summaries and a Markdown cost-analysis report; no network output is described.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance] <br>
-**Output Format:** [Console text and a Markdown cost analysis report with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The report is written locally to the OpenClaw workspace memory directory when the analyzer command is run.] <br>
+1.0.1 (source: ClawHub release metadata; artifact files report 1.0.0)
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

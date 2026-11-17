@@ -1,42 +1,54 @@
-## Description: <br>
-Downloads YouTube videos, cover art, optional simplified Chinese hard subtitles, and a short music-media review into a per-video folder. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps an agent handle YouTube download requests by preparing yt-dlp and ffmpeg workflows for MP4 video, thumbnails, optional burned-in subtitles, and a short music-media review.
 
-## Publisher: <br>
-[copfee](https://clawhub.ai/user/copfee) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[copfee](https://clawhub.ai/user/copfee)
 
-## Use Case: <br>
-External users and content reviewers use this skill to download YouTube media they are permitted to save, optionally burn simplified Chinese subtitles, and generate a concise music-focused recommendation note. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow can download media from YouTube that the user may not have rights to save or reuse. <br>
-Mitigation: Use the skill only for videos the user is allowed to download and process. <br>
-Risk: The workflow depends on local yt-dlp and ffmpeg binaries. <br>
-Mitigation: Install yt-dlp and ffmpeg from trusted sources before running the generated commands. <br>
-Risk: Video downloads and subtitle burn-in can consume significant disk space and processing time. <br>
-Mitigation: Run the skill from the intended output folder and confirm adequate disk space before transcoding. <br>
+## Use Case:
 
+External users and agent operators use this skill when they provide YouTube links and want downloadable video assets, subtitle handling, cover art, and a concise music-oriented interpretation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/copfee/youtube-download-review) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Files, Markdown, Guidance] <br>
-**Output Format:** [Per-video folder containing MP4 video files, JPG cover art, optional SRT subtitles, a Markdown review, and a terminal summary.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires local yt-dlp and ffmpeg; may create large media files during download and transcoding.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: release evidence) <br>
+Risk: Untrusted YouTube URLs and title-derived filenames may be placed into shell commands and local output paths.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted links, pass URLs and filenames as process arguments where possible, sanitize title-derived paths, and review output paths before running commands.
+
+Risk: The skill can download media into the current workspace and burn translated subtitles into video files.
+
+Mitigation: Install only when this behavior is expected, work in an appropriate directory, and require explicit user confirmation before burning subtitles.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/copfee/skills/youtube-download-review)
+- [Publisher profile](https://clawhub.ai/user/copfee)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Files, Guidance]
+
+**Output Format:** [Markdown and terminal-facing text with inline shell commands and generated media file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces per-video output directories containing MP4 files, a JPG thumbnail, optional SRT subtitles, and a recommendation markdown file when executed by an agent with yt-dlp and ffmpeg available.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

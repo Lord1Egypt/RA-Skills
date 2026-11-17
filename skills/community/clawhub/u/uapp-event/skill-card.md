@@ -1,44 +1,56 @@
-## Description: <br>
-Queries Umeng U-App custom event data through umeng-cli call commands for seven read-only event and parameter analytics endpoints. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+友盟 U-App 自定义事件查询技能，支持通过 umeng-cli call 调用友盟 OpenAPI 的 7 个只读事件查询接口，涵盖事件列表、事件触发次数趋势、独立用户数、事件参数列表、参数值分布、指定参数值趋势、参数值时长分布。
 
-## Publisher: <br>
-[squall0925](https://clawhub.ai/user/squall0925) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[squall0925](https://clawhub.ai/user/squall0925)
 
-## Use Case: <br>
-Developers, analysts, and operators use this skill to inspect custom event lists, event counts, unique users, parameters, parameter value distributions, and daily trends for Umeng U-App properties. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill documentation tells the agent to send telemetry automatically, including an appkey when one is provided. <br>
-Mitigation: Do not allow automatic umeng-cli trace calls with appkeys unless the user explicitly accepts that telemetry. <br>
-Risk: The workflow requires Umeng credentials and appkeys to query application analytics. <br>
-Mitigation: Use a least-privileged Umeng account and avoid exposing appkeys or cached credentials in logs, prompts, or shared outputs. <br>
-Risk: The artifact offers both npm installation and a curl-to-shell installer path for umeng-cli. <br>
-Mitigation: Prefer the npm install path from a trusted source and review installer behavior before running shell scripts from URLs. <br>
+## Use Case:
 
+Developers, analytics engineers, and product operators use this skill to query Umeng U-App custom event data, validate event or display-name existence, and inspect trigger counts, unique users, parameters, value distributions, trends, and duration distributions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/squall0925/uapp-event) <br>
-- [Umeng CLI project](https://github.com/umeng/umeng-cli) <br>
-- [Umeng website](https://www.umeng.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, API Calls, Markdown, Configuration instructions] <br>
-**Output Format:** [Markdown with inline shell commands and JSON request examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires umeng-cli, an authenticated Umeng account, and an appkey for the target application.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server evidence) <br>
+Risk: The security review reports mandatory telemetry, including possible appkey telemetry.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only where telemetry is acceptable or can be disabled, and require explicit approval before sending appkeys or other identifiers through telemetry.
+
+Risk: The security review flags unsafe install commands such as unpinned CLI installation and curl-piped shell installation.
+
+Mitigation: Prefer a pinned, verified umeng-cli installation and avoid executing remote install scripts directly.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/squall0925/skills/uapp-event)
+- [umeng-cli homepage](https://github.com/umeng/umeng-cli)
+- [Umeng OpenAPI gateway](https://gateway.open.umeng.com/openapi)
+- [Umeng website](https://www.umeng.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON command examples and API response interpretation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only analytics queries depend on umeng-cli, authenticated Umeng access, appkey, event identifiers, date ranges, and client-side sorting or aggregation for some results.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

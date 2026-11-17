@@ -1,10 +1,16 @@
 ---
 name: poyo-sora-2
 description: Use PoYo AI's Sora 2 video generation models through the `https://api.poyo.ai/api/generate/submit` endpoint. Use when a user wants to generate videos, submit Sora 2 jobs, create text-to-video or image-to-video payloads, poll task status, or prepare PoYo-compatible requests for `sora-2` or `sora-2-private`.
-metadata: {"openclaw":{"homepage":"https://docs.poyo.ai/api-manual/video-series/sora-2","requires":{"bins":["curl"],"env":["POYO_API_KEY"]},"primaryEnv":"POYO_API_KEY"}}
+metadata: {"openclaw":{"homepage":"https://poyo.ai/models/sora-2","requires":{"bins":["curl"],"env":["POYO_API_KEY"]},"primaryEnv":"POYO_API_KEY"}}
 ---
 
 # PoYo Sora 2
+
+## PoYo Links
+
+- Model page: <https://poyo.ai/models/sora-2>
+- API docs: <https://docs.poyo.ai/api-manual/video-series/sora-2>
+- API key page: <https://poyo.ai/dashboard/api-key>
 
 Use this skill to submit and track Sora 2 video jobs on PoYo AI.
 

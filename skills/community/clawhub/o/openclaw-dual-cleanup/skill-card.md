@@ -1,46 +1,65 @@
-## Description: <br>
-OpenClaw Dual Cleanup helps agents preview and run OpenClaw session, cache, and physical file cleanup to address stale session files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw Dual Cleanup helps agents inspect and clean stale OpenClaw session indexes, session files, caches, and temporary files.
 
-## Publisher: <br>
-[ltap266](https://clawhub.ai/user/ltap266) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ltap266](https://clawhub.ai/user/ltap266)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to inspect, preview, and run cleanup of stale OpenClaw session indexes, physical session files, and cache files across Windows, macOS, and Linux. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The cleanup behavior can delete local OpenClaw session and cache files using broad matching. <br>
-Mitigation: Run dry-run mode first, review the exact files selected for deletion, and keep backups for data that must be retained. <br>
-Risk: Force mode and scheduled automation can remove files without interactive confirmation. <br>
-Mitigation: Avoid force mode and cron/startup/heartbeat automation until the deletion scope has been validated in the target environment. <br>
-Risk: Running with elevated privileges can expand the deletion impact beyond the normal user workspace. <br>
-Mitigation: Run as the normal user and avoid sudo or Administrator privileges unless there is a specific, reviewed need. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to preview, run, or configure cleanup of accumulated OpenClaw session data and caches. It is intended for maintenance workflows where stale session files consume disk space or remain after index cleanup.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/ltap266/openclaw-dual-cleanup) <br>
-- [Publisher profile](https://clawhub.ai/user/ltap266) <br>
-- [README.md](README.md) <br>
-- [Test usage guide](test-usage.md) <br>
-- [CHANGELOG.md](CHANGELOG.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline shell commands and console output summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include dry-run previews, cleanup reports, and configuration guidance for scheduled cleanup.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release evidence) <br>
+Risk: Broad cleanup rules may delete session, cache, or temporary files that the user still needs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run in dry-run mode first and inspect the candidate file list before allowing deletion.
+
+Risk: Force mode bypasses interactive confirmation and increases the impact of an incorrect file match.
+
+Mitigation: Use force mode only after validating the same command in dry-run mode with the intended age threshold.
+
+Risk: Cron or boot-time automation can repeatedly run a destructive maintenance task without fresh review.
+
+Mitigation: Do not enable scheduled or boot-time examples unless the cleanup scope and retention window have been reviewed.
+
+Risk: Elevated privileges can expand deletion impact beyond the user's normal OpenClaw data.
+
+Mitigation: Run without sudo or administrator privileges so cleanup remains limited to the user's accessible files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ltap266/skills/openclaw-dual-cleanup)
+- [README](artifact/README.md)
+- [Skill definition](artifact/SKILL.md)
+- [Cleanup script](artifact/scripts/clean-sessions-dual.py)
+- [Changelog](artifact/CHANGELOG.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, text]
+
+**Output Format:** [Markdown guidance with shell command examples and cleanup reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose dry-run, interactive, or force cleanup modes before deleting local session and cache files.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release metadata and target metadata; artifact docs include older 2.0.0 and 1.3.0 labels)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

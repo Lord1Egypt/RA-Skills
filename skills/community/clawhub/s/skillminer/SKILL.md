@@ -1,40 +1,20 @@
 ---
 name: skillminer
-version: 0.5.3
-emoji: ⚒️
-description: "Suggest reusable skills from recurring patterns in local memory files. Human review gate, drafts only to skills/_pending/, local-first runner with optional external fallback. Triggers on \"skill forge\", \"propose a skill\", \"what skills should I have\", \"skill candidates\", \"what patterns have I been doing\", \"forge me a skill\"."
+version: 0.6.0
+emoji: "\u2692\ufe0f"
+description: "Suggest reusable skills from recurring patterns in local memory files. Human review gate, drafts only to skills/_pending/, local-first runner with optional external fallback. Triggers on \"skill forge\", \"propose a skill\", \"what skills should I have\", \"skill candidates\", \"what patterns have I been doing\", \"forge me a skill\", \"forge show\", \"forge accept\", \"forge reject\", \"forge promote\"."
 metadata:
   openclaw:
     requires:
-      env: []
-      bins: ["jq", "bash", "date", "git", "openclaw", "flock"]
-      config: []
-    primaryEnv: null
-    capabilities:
-      network: false
-      subprocess: ["bash", "jq", "git", "openclaw", "claude"]
-      writesTo: ["state/", "skills/_pending/", "skills/_rejected/"]
-      readsFrom: ["memory/"]
-    note: "The skill auto-detects its install location. CLAWD_DIR is an optional path config (not a credential) — defaults to ~/clawd if unset; used only for workspace memory files plus skills/_pending/ output. The default runner is openclaw (local only, no data leaves the host). FORGE_RUNNER=claude is an optional external fallback that uses Claude CLI and sends prompt data to Anthropic's API; leaving it unset keeps all data local. Never activates skills automatically."
-triggers:
-  - "skill forge"
-  - "skill candidates"
-  - "what patterns have I been doing"
-  - "forge me a skill"
-  - "forge show"
-  - "forge accept"
-  - "forge reject"
-  - "forge defer"
-  - "forge silence"
-  - "forge unsilence"
-  - "forge promote"
-  - "forge review"
-  - "skill candidates zeigen"
-  - "was hat skillminer gefunden"
-  - "annehmen als skill"
-  - "ablehnen skill"
-  - "letzen skillminer scan"
-  - "letzten skillminer scan"
+      bins: ["jq", "bash", "date", "git", "openclaw"]
+    note: "jq is required by the scan scripts; install it if the skill reports missing binaries. CLAWD_DIR is an optional path (not a credential) and defaults to the OpenClaw workspace. The default runner is openclaw and keeps all data on the host; FORGE_RUNNER=claude is an optional external fallback that sends prompt data to Anthropic. The skill never activates a generated skill on its own."
+    envVars:
+      - name: CLAWD_DIR
+        required: false
+        description: "Workspace path to scan. Defaults to the OpenClaw workspace."
+      - name: FORGE_RUNNER
+        required: false
+        description: "Optional external runner. Unset keeps everything local."
 ---
 
 # skillminer ⚒️
@@ -66,20 +46,42 @@ morning write  drafts a SKILL.md into skills/_pending/<slug>/
 
 Nothing goes live automatically. You stay in control at every step.
 
+## Relationship to the built-in Skill Workshop
+
+OpenClaw 2.0 ships automatic self-learning and a system-owned skill review job:
+
+```
+skill-collection-review   every 7d   main
+```
+
+It proposes skills too. skillminer differs in three ways: it reads your memory files
+rather than session behaviour, it writes drafts to `skills/_pending/` instead of creating
+anything live, and every candidate passes an explicit accept/reject ledger. Running both
+is fine - they draw on different signals - but expect overlapping suggestions. Check what
+is scheduled with `openclaw automations list`.
+
 ## Quick start
 
 ```bash
 openclaw skills install skillminer
-cd "${CLAWD_DIR:-$HOME/clawd}/skills/skillminer"
+cd ~/.openclaw/workspace/skills/skillminer     # or "$CLAWD_DIR/skills/skillminer"
 bash setup.sh
-CLAWD_DIR="${CLAWD_DIR:-$HOME/clawd}" bash scripts/run-nightly-scan.sh
+bash scripts/run-nightly-scan.sh
 ```
 
-If the manual scan looks good, add the printed scheduler jobs using the dispatcher prompts.
+If the manual scan looks good, add the printed scheduler jobs with
+`openclaw automations add`.
+
+`jq` must be on PATH. Without it OpenClaw marks the skill as needing setup, which also
+means the model cannot see it and the slash command does not exist - the skill is simply
+absent with no message in the chat. `openclaw skills info skillminer` shows which binary
+is missing.
 
 ## Environment
 
-- `CLAWD_DIR` — optional, defaults to `~/clawd`
+- `CLAWD_DIR` - optional. Defaults to the OpenClaw workspace, which is
+  `~/.openclaw/workspace` on OpenClaw 2.0. Older installs used `~/clawd`; set this
+  explicitly if your memory files live somewhere else.
 - `FORGE_RUNNER` — defaults to `openclaw` (local). Set to `claude` only if you accept that prompt data leaves the host.
 
 ## Commands

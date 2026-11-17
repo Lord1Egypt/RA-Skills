@@ -1,38 +1,54 @@
-## Description: <br>
-Firewalld reference tool. Use when working with firewalld in sysops contexts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Firewalld reference tool. Use when working with firewalld in sysops contexts.
 
-## Publisher: <br>
-[bytesagain1](https://clawhub.ai/user/bytesagain1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain1](https://clawhub.ai/user/bytesagain1)
 
-## Use Case: <br>
-Developers, operators, and systems engineers use this skill as a quick reference for firewalld concepts, common workflows, troubleshooting, security considerations, migration checklists, and cheatsheets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Firewall guidance can affect network access if a user applies it incorrectly on a real system. <br>
-Mitigation: Review any suggested firewall commands or operational advice before use, and test changes in a controlled environment. <br>
+## Use Case:
 
+Developers and sysops practitioners use this skill to ask an agent for quick firewalld reference material, troubleshooting checklists, and command-oriented guidance.
 
-## Reference(s): <br>
-- [Publisher homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown text printed by a shell script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Static reference output; the script prints guidance and does not apply firewall changes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: The skill is a generic firewalld reference stub and may provide incomplete or inaccurate operational guidance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Validate guidance against official firewalld documentation and test changes before applying them to production systems.
+
+Risk: Canned troubleshooting or security guidance could be mistaken for environment-specific firewall policy advice.
+
+Mitigation: Treat output as a checklist or starting point and require review by a qualified operator before changing firewall rules.
+
+## Reference(s):
+
+- [Firewalld skill page](https://clawhub.ai/bytesagain1/skills/firewalld)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown-like text emitted by shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Canned reference sections are selected by command.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

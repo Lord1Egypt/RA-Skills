@@ -1,40 +1,55 @@
-## Description: <br>
-Create price watch tasks and receive IM notifications when freight rates are available. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create price watch tasks and receive IM notifications when freight rates are available.
 
-## Publisher: <br>
-[bobofrivia](https://clawhub.ai/user/bobofrivia) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bobofrivia](https://clawhub.ai/user/bobofrivia)
 
-## Use Case: <br>
-Freight and logistics users use this skill to create ocean freight price-watch tasks, confirm route and target-price details, and receive recurring notifications when matching rates are available. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Misconfigured Eyun server URL, company ID, or notification target could send freight-rate data to an unintended service or channel. <br>
-Mitigation: Confirm the Eyun server URL, company ID, channel, and recipient are trusted and approved before installing or running the skill. <br>
-Risk: The skill can register a recurring polling cron that continues sending rate notifications after setup. <br>
-Mitigation: Review the eyun-watch-poll cron after setup and remove it if recurring polling or external chat delivery is not desired. <br>
+## Use Case:
 
+External operators and logistics agents use this skill to create ocean-freight price watch tasks, register polling for watch results, and notify users when freight rates are available.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bobofrivia/eyun-watch) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text guidance with shell commands and JSON request examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May configure a recurring OpenClaw cron job for freight-rate polling and approved channel notifications.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release metadata; artifact frontmatter reports 0.2.0) <br>
+Risk: The skill can create an indefinite recurring OpenClaw cron task that runs shell execution.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review installation before production use, document ownership of eyun-watch-poll, and define procedures to list, audit, expire, or remove the cron when no watches remain.
+
+Risk: The skill polls an external Eyun endpoint and sends freight-rate notifications to an external channel.
+
+Mitigation: Use only a trusted Eyun endpoint over HTTPS, validate EYUN_BASE_URL and EYUN_COMPANY_ID, and restrict notifications to an approved channel and recipient.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bobofrivia/skills/eyun-watch)
+- [README.md](artifact/README.md)
+- [SKILL.md](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, API calls, Guidance]
+
+**Output Format:** [Plain text and Markdown with inline shell commands and JSON request payloads]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [User-facing replies and notifications are primarily in Chinese; operation requires EYUN_BASE_URL, EYUN_COMPANY_ID, curl, and an approved notification channel.]
+
+## Skill Version(s):
+
+1.1.1 (source: ClawHub release metadata; artifact frontmatter lists 0.2.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

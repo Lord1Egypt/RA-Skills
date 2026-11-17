@@ -1,42 +1,54 @@
-## Description: <br>
-Accessibility testing and remediation using the axe MCP Server for web pages, components, forms, navigation, modals, tables, images, and other user-facing markup. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Accessibility testing and remediation using the axe MCP Server for web pages and UI code.
 
-## Publisher: <br>
-[dylanb](https://clawhub.ai/user/dylanb) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[dylanb](https://clawhub.ai/user/dylanb)
 
-## Use Case: <br>
-Developers and engineers use this skill while creating or modifying UI code to scan live pages for accessibility violations and request remediation guidance for specific issues. It can also guide static accessibility review when no live page is available. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill runs a Dockerized axe MCP server and uses networked Deque axe services. <br>
-Mitigation: Use it only where Docker execution and Deque axe MCP network usage are approved, and consider pinning the Docker image to a specific version or digest. <br>
-Risk: Accessibility scans and remediation requests may involve page URLs, HTML, or issue details that could be sensitive. <br>
-Mitigation: Avoid scanning confidential pages or sending sensitive HTML unless the provider data flow is approved for that content. <br>
-Risk: The skill requires an Axe API key and remediation calls consume the organization's AI credits. <br>
-Mitigation: Use a rotatable API key, scope access according to organizational policy, and monitor usage for expected credit consumption. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Axe MCP Server product page](https://www.deque.com/axe/mcp-server/) <br>
-- [ClawHub skill page](https://clawhub.ai/dylanb/axe-devtools) <br>
+## Use Case:
 
+Developers and engineers use this skill to scan live or local web pages for accessibility violations and request remediation guidance while creating or modifying UI code.
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Shell commands, Guidance, Code] <br>
-**Output Format:** [JSON-RPC responses and text remediation guidance with code fix suggestions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Analyze requires a URL; remediation requires a rule ID, element HTML, issue remediation text, and optionally a page URL.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-4.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill runs an unpinned Docker image and passes AXE_API_KEY into the container.
+
+Mitigation: Use a digest-pinned image, restrict Docker access, and rotate the Axe API key if command logging or Docker inspection may expose it.
+
+Risk: Tested page URLs, HTML snippets, and remediation text may be sent to the Axe MCP service.
+
+Mitigation: Scan only approved content and avoid sensitive internal pages unless that use is explicitly approved.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dylanb/skills/axe-devtools)
+- [Deque axe MCP Server](https://www.deque.com/axe/mcp-server/)
+- [Deque support portal](https://support.deque.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands, JSON-RPC scan output, and code fix suggestions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Analyze output contains violation data; remediation output can include general_description, remediation, and code_fix fields.]
+
+## Skill Version(s):
+
+4.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

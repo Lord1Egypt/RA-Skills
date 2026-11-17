@@ -321,13 +321,7 @@ def _fill_publish_form(
     # 从正文末尾提取 hashtag 并合并到 tags
     content, tags = _extract_hashtags_from_content(content, tags)
 
-    # 标题——填写前先校验长度，超限直接报错（由 AI 重新生成标题）
-    from title_utils import calc_title_length
-
-    title_len = calc_title_length(title)
-    if title_len > 20:
-        raise TitleTooLongError(str(title_len), "20")
-
+    # 标题
     page.input_text(TITLE_INPUT, title)
     time.sleep(0.5)
     _check_title_max_length(page)

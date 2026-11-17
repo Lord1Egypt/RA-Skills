@@ -1,42 +1,52 @@
-## Description: <br>
-LinkedIn API integration with a single agntdata API key (Bearer token). Fetch company profiles, jobs, people, posts, and professional network insights. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+LinkedIn API integration with a single superagnt API key (Bearer token). Fetch company profiles, jobs, people, posts, and professional network insights. Use this skill when users want LinkedIn data for sales, recruiting, or enrichment.
 
-## Publisher: <br>
-[jaencarrodine](https://clawhub.ai/user/jaencarrodine) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[superagnt](https://clawhub.ai/user/superagnt)
 
-## Use Case: <br>
-External developers and agent builders use this skill to call agntdata's LinkedIn endpoints for sales research, recruiting workflows, account enrichment, job and company research, and professional network intelligence. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires AGNTDATA_API_KEY, a sensitive bearer token for a third-party API. <br>
-Mitigation: Store the key in the environment only, avoid committing it, and prefer scoped or revocable credentials when available. <br>
-Risk: LinkedIn-derived profile, company, job, and post data can include personal or professional information. <br>
-Mitigation: Query and retain only the data needed for the user's task, and confirm that the planned use meets legal, platform, and privacy obligations. <br>
+## Use Case:
 
+External users, sales and recruiting agents use this skill to retrieve LinkedIn company, job, profile, post, and professional network data for enrichment and research.
 
-## Reference(s): <br>
-- [agntdata LinkedIn API Reference](https://agnt.mintlify.app/apis/social/linkedin) <br>
-- [agntdata Documentation](https://agnt.mintlify.app) <br>
-- [ClawHub Skill Listing](https://clawhub.ai/jaencarrodine/agntdata-linkedin) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with curl commands and JSON API response expectations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl and AGNTDATA_API_KEY; API responses are structured JSON from agntdata LinkedIn endpoints.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.15 (source: frontmatter and server release evidence) <br>
+Risk: Requests send a superagnt API key to its external API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the integration only if you trust superagnt with the key, and keep the key in the designated environment variable rather than exposing it in logs or responses.
+
+## Reference(s):
+
+- [LinkedIn Data documentation](https://superagnt.com/r/ch-linkedin-data-docs)
+- [LinkedIn Data API](https://api.superagnt.com/v1/data/linkedin)
+- [LinkedIn MCP server](https://mcp.superagnt.com/mcp/linkedin)
+- [ClawHub listing](https://clawhub.ai/superagnt/skills/linkedin-data)
+
+## Skill Output:
+
+**Output Type(s):** [API calls, JSON, Guidance]
+
+**Output Format:** [Structured JSON data and concise research summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results depend on the requested LinkedIn data and API endpoint.]
+
+## Skill Version(s):
+
+2.0.14 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

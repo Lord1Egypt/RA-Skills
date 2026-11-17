@@ -1,9 +1,8 @@
 ---
 name: cue-post-loan-monitoring
 description: >
-  用 Cue 跑「贷后监测」场景的深度研究：多源公开数据交叉、结论带来源。
-  Run Cue deep research for the "Post-Loan Monitoring" scenario.
-  触发 Triggers: 贷后监测、企业尽调、信披与监管 / post-loan monitoring, borrower risk watch
+  用 Cue 跑「贷后监测」场景的深度研究：扫一遍授信客户名单，盯被执行、诉讼、评级下调与经营异动等风险信号。覆盖企业重大事件追踪、存量客户风险预警、股权质押风险核查、贷后风险体检、司法执行与资产处置深挖等核心搭子，按紧迫度排序，产出带证据链、可每日跟进的贷后风险预警底稿。
+
 license: MIT
 metadata:
   source: cuecue.cn/playbook
@@ -47,6 +46,14 @@ metadata:
 5. **回报**：把带来源链接的报告交给用户，不去掉来源、不杜撰。
 
 ## 前置
-- Cue 账号 API key（cue CLI 登录后在 `~/.cue/config.json`，runner 自动读）；新账号送免费积分（注册 50 + 每天 10），可先免费试。
+
+- **Cue API Key**：打开 <https://cuecue.cn/hub/api-key> 注册获取（cue CLI 登录后 key 存在 `~/.cue/config.json`，runner 自动读）。新用户注册一次性送 **500 积分**，之后每天再免费送 **10 积分**。
 - `git` + `python3`（自举 runner 用；runner 仅标准库）。
 - 跑深度研究**消耗 credits**；只覆盖公开数据，不替代尽调/法律/核保。
+
+## 积分不够用怎么办
+
+- **邀请好友**：打开 <https://cuecue.cn/>，点击页面**左下角**获取你的**专属邀请链接**，邀请好友加入，**每邀请一位再得 500 积分**。
+- **充值**：前往 <https://cuecue.cn/pay> 充值（首次充值有优惠）。
+- **等免费额度**：也可以等次日免费额度。
+- 加好积分后用**相同命令重跑即可，不会重复计费**。

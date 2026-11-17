@@ -1,24 +1,11 @@
 from __future__ import annotations
 
-import html
-import json
 import re
 from datetime import datetime
 from typing import Any
 
-from .audible_fetch import (
-    AUDIBLE_FETCH_HEADERS,
-    CURL_META_MARKER,
-    SUPPORTED_AUDIBLE_FETCH_BACKENDS,
-    AudibleBlockedError,
-    AudibleFetchError,
-    AudibleFetchResult,
-    curl_available,
-    decode_response_bytes,
-    fetch_text_with_final_url,
-    validate_audible_fetch_url,
-)
 from .constants import PRICE_TOKEN_RE, PROMOTION_MARKERS
+from .html_extract import has_schema_type, iter_json_objects, meta_content, parse_json_scripts
 from .shared import normalize_space, normalized_key, parse_localized_price, split_author_roles, strip_html, truncate_text
 
 
@@ -31,49 +18,30 @@ class NoActivePromotionError(RuntimeError):
 
 
 def _parse_json_ld_blocks(html_text: str) -> list[Any]:
-    payloads: list[Any] = []
-    for match in re.finditer(r'<script[^>]+type="application/ld\+json"[^>]*>(.*?)</script>', html_text, re.I | re.S):
-        raw = html.unescape((match.group(1) or "").strip())
-        if not raw:
-            continue
-        try:
-            payloads.append(json.loads(raw))
-        except Exception:
-            continue
-    return payloads
+    return parse_json_scripts(html_text, "application/ld+json")
 
 
 def _flatten_json_ld_items(html_text: str) -> list[dict[str, Any]]:
     items: list[dict[str, Any]] = []
     for payload in _parse_json_ld_blocks(html_text):
-        candidates = payload if isinstance(payload, list) else [payload]
-        for item in candidates:
-            if isinstance(item, dict):
-                items.append(item)
+        items.extend(iter_json_objects(payload))
     return items
 
 
 def _find_json_ld_product(html_text: str) -> dict[str, Any] | None:
     for item in _flatten_json_ld_items(html_text):
-        if item.get("@type") == "Product":
+        if has_schema_type(item, "Product"):
             return item
     return None
 
 
 def _extract_audible_metadata_blocks(html_text: str) -> list[dict[str, Any]]:
     blocks: list[dict[str, Any]] = []
-    matches = re.findall(
-        r'<adbl-product-metadata[^>]*>.*?<script type="application/json">(.*?)</script>',
-        html_text,
-        re.I | re.S,
-    )
-    for raw_match in matches:
-        try:
-            payload = json.loads(html.unescape((raw_match or "").strip()))
-        except Exception:
-            continue
-        if isinstance(payload, dict):
-            blocks.append(payload)
+    matches = re.findall(r"<adbl-product-metadata\b[^>]*>(.*?)</adbl-product-metadata>", html_text, re.I | re.S)
+    for block in matches:
+        for payload in parse_json_scripts(block, "application/json"):
+            if isinstance(payload, dict):
+                blocks.append(payload)
     return blocks
 
 
@@ -125,9 +93,13 @@ def _extract_json_ld_authors(html_text: str) -> list[str]:
 
 
 def _parse_audible_summary(html_text: str) -> str:
-    match = re.search(r'<adbl-text-block[^>]+slot="summary"[^>]*>(.*?)</adbl-text-block>', html_text, re.I | re.S)
+    match = re.search(
+        r"<adbl-text-block\b(?=[^>]*\bslot\s*=\s*['\"]summary['\"])[^>]*>(.*?)</adbl-text-block>",
+        html_text,
+        re.I | re.S,
+    )
     if match:
-        return strip_html(match.group(1))
+        return re.sub(r"\s+([.,;:!?])", r"\1", strip_html(match.group(1)))
     return ""
 
 
@@ -181,7 +153,11 @@ def parse_audible_chip_genres(html_text: str) -> list[str]:
 
 
 def _parse_audible_author_fallback(html_text: str) -> str:
-    matches = re.findall(r'<a href="/author/[^"]+">([^<]+)</a>', html_text, re.I)
+    matches = re.findall(
+        r"<a\b(?=[^>]*\bhref\s*=\s*['\"][^'\"]*/author/[^'\"]+['\"])[^>]*>(.*?)</a>",
+        html_text,
+        re.I | re.S,
+    )
     if matches:
         return normalize_space(strip_html(matches[0]))
     match = re.search(r"By:\s*</span>\s*<a[^>]*>([^<]+)</a>", html_text, re.I | re.S)
@@ -271,7 +247,7 @@ def parse_audible_deal(html_text: str, final_url: str, requested_url: str) -> di
     metadata = _merge_audible_metadata(_extract_audible_metadata_blocks(html_text))
     title = normalize_space(str(product_json.get("name") or ""))
     if not title:
-        title_match = re.search(r"<h1[^>]*>\s*([^<]+?)\s*</h1>", html_text, re.I | re.S)
+        title_match = re.search(r"<h1\b[^>]*>(.*?)</h1>", html_text, re.I | re.S)
         title = normalize_space(strip_html(title_match.group(1) if title_match else ""))
     if not title:
         raise AudibleParseError("failed to parse Audible title")
@@ -293,8 +269,7 @@ def parse_audible_deal(html_text: str, final_url: str, requested_url: str) -> di
     year = _parse_release_year(str(metadata.get("releaseDate") or "")) or _parse_release_year(str(product_json.get("datePublished") or ""))
     cover_url = normalize_space(str(product_json.get("image") or ""))
     if not cover_url:
-        meta_image = re.search(r'<meta property="og:image" content="([^"]+)"', html_text, re.I)
-        cover_url = html.unescape(meta_image.group(1)) if meta_image else ""
+        cover_url = meta_content(html_text, property_name="og:image")
 
     genres: list[str] = []
     for label in list(metadata.get("categories") or []) + parse_audible_chip_genres(html_text):
@@ -304,8 +279,8 @@ def parse_audible_deal(html_text: str, final_url: str, requested_url: str) -> di
 
     product_id = normalize_space(str(product_json.get("productID") or ""))
     if not product_id:
-        match = re.search(r"/pd/(?:[^/]+/)?([A-Z0-9]{10})", final_url)
-        product_id = match.group(1) if match else ""
+        match = re.search(r"/pd/(?:[^/]+/)?([A-Z0-9]{10})(?:[/?#]|$)", final_url, re.I)
+        product_id = match.group(1).upper() if match else ""
 
     return {
         "productId": product_id or normalized_key(title, ascii_only=True),

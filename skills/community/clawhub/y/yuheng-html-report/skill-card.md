@@ -1,40 +1,53 @@
-## Description: <br>
-Generates polished visual HTML report pages from user-provided data and can deploy them for direct viewing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates polished visual HTML report pages from user-provided data.
 
-## Publisher: <br>
-[horizoncove](https://clawhub.ai/user/horizoncove) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[horizoncove](https://clawhub.ai/user/horizoncove)
 
-## Use Case: <br>
-Developers, analysts, and operators use this skill to turn text, table, or JSON data into a styled HTML report with sections such as KPI summaries, cards, timelines, tables, tag clouds, quotes, and badges. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated reports may be deployed publicly with user-provided content. <br>
-Mitigation: Treat deployment output as public, review generated content before hosting it, and avoid sensitive personal, business, or internal data unless explicit deployment approval is added. <br>
-Risk: Broad trigger phrases may cause the skill to create or deploy HTML pages when the user only intended a draft report. <br>
-Mitigation: Confirm whether deployment is desired before publishing and keep generated HTML reviewable before hosting. <br>
+## Use Case:
 
+External users and developers use this skill to turn supplied text, table, or JSON data into a styled HTML report with visual sections such as KPI bars, tables, timelines, cards, tags, quotes, and badges.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/horizoncove/yuheng-html-report) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Code, Files, Shell commands, Guidance] <br>
-**Output Format:** [HTML files with brief Markdown status and a deployment link] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May save an index.html file and return a public deployment URL when deployment is performed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill can turn user data into a public HTML report link without clear confirmation or safety checks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation before publishing generated reports, especially when the input may contain private or sensitive data.
+
+Risk: Generated HTML may include untrusted or unsanitized user-provided content.
+
+Mitigation: Sanitize untrusted data before inserting it into HTML and review the generated page before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/horizoncove/skills/yuheng-html-report)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Files, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [HTML, Markdown guidance, and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a ready-to-deploy HTML page and deployment link when deployment is available.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

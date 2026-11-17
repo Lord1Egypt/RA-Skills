@@ -1,47 +1,64 @@
-## Description: <br>
-cairn is a local-first hybrid indexing and retrieval skill for user-selected code, documents, web pages, PDFs, and raw text using FTS5 search, vector embeddings, and a SQLite-backed knowledge graph. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+cairn gives agents and developers a local-first hybrid index for intentionally collected code, documents, web pages, PDFs, and raw text, combining full-text search, vector retrieval, and a knowledge graph in one SQLite database.
 
-## Publisher: <br>
-[mrsirg97-rgb](https://clawhub.ai/user/mrsirg97-rgb) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mrsirg97-rgb](https://clawhub.ai/user/mrsirg97-rgb)
 
-## Use Case: <br>
-Developers and engineers use cairn to curate a local retrieval index over intentionally selected project materials, then query passages, entities, tags, and graph paths through CLI or MCP tools. It is suited for local grounding and code or document exploration where the operator controls what enters the index. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Selected local files are indexed into a local SQLite database and may be retrievable later by agents connected to the MCP server. <br>
-Mitigation: Index only intended sources, isolate sensitive content with a separate dbPath, and connect only agents that should be able to query that index. <br>
-Risk: Agent-driven ingestion can add local paths unless deployment controls restrict the allowed source locations. <br>
-Mitigation: Set CAIRN_ALLOWED_ROOTS to approved absolute paths and rely on host-side approval for MCP add or refresh calls. <br>
-Risk: Web ingestion and embedded-runtime model downloads can create network egress. <br>
-Mitigation: Set CAIRN_OFFLINE=1 for strict or air-gapped deployments and pre-cache required models when using the embedded runtime. <br>
+## Use Case:
 
+Developers and external users use cairn to curate local knowledge sources and let an agent search, inspect graph relationships, answer with retrieved context, and maintain the index through CLI or MCP workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mrsirg97-rgb/cairn) <br>
-- [Publisher profile](https://clawhub.ai/user/mrsirg97-rgb) <br>
-- [npm package](https://www.npmjs.com/package/cairn-index) <br>
-- [Project source link from skill metadata](https://github.com/mrsirg97-rgb/cairn) <br>
-- [Design documentation](https://github.com/mrsirg97-rgb/cairn/blob/main/docs/design.md) <br>
-- [Setup documentation](https://github.com/mrsirg97-rgb/cairn/blob/main/docs/setup.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text and Markdown responses from CLI and MCP tools, with shell commands and configuration examples in documentation.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include ranked retrieval hits, indexed source lists, entity graph results, shortest paths, tag lists, and ingestion or refresh status summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.2 (source: server release evidence and skill frontmatter) <br>
+Risk: The MCP ingest surface can persistently index unintended local or internal network data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use CAIRN_ALLOWED_ROOTS, run cairn in a contained account or directory, avoid adding untrusted URLs, and require host-side approval for MCP ingestion.
+
+Risk: The path allowlist is defense-in-depth rather than a complete security boundary until symlink and refresh revalidation gaps are fixed.
+
+Mitigation: Treat CAIRN_ALLOWED_ROOTS as an additional guard, keep indexed sources in a dedicated directory, and avoid relying on it as the only control for sensitive data.
+
+Risk: Strict no-egress or air-gapped deployments can be affected by user-initiated web ingestion or first-use embedded model downloads.
+
+Mitigation: Set CAIRN_OFFLINE=1, pre-cache required models before deployment, and use an embedded runtime configuration that references local model files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mrsirg97-rgb/skills/cairn)
+- [Source repository](https://github.com/mrsirg97-rgb/cairn)
+- [npm package](https://www.npmjs.com/package/cairn-index)
+- [Source skill definition](https://github.com/mrsirg97-rgb/cairn/blob/main/clawhub/SKILL.md)
+- [Documentation](https://github.com/mrsirg97-rgb/cairn/tree/main/docs)
+- [Design documentation](https://github.com/mrsirg97-rgb/cairn/blob/main/docs/design.md)
+- [Graph documentation](https://github.com/mrsirg97-rgb/cairn/blob/main/docs/graph.md)
+- [Setup documentation](https://github.com/mrsirg97-rgb/cairn/blob/main/docs/setup.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and structured tool responses containing ranked text chunks, source metadata, graph entities, paths, tags, and setup commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs depend on user-curated index contents and local runtime configuration.]
+
+## Skill Version(s):
+
+1.2.2 (source: frontmatter, agent.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

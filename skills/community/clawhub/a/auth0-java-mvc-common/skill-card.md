@@ -1,49 +1,65 @@
-## Description: <br>
-Use when adding Auth0 login, logout, and callback handling to Java Servlet web applications - integrates com.auth0:mvc-auth-commons SDK for server-side Java apps using javax.servlet with session-based authentication. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Adds Auth0 login, logout, callback handling, and session-based authentication guidance for Java Servlet web applications using com.auth0:mvc-auth-commons.
 
-## Publisher: <br>
-[auth0](https://clawhub.ai/user/auth0) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[auth0](https://clawhub.ai/user/auth0)
 
-## Use Case: <br>
-Developers and engineers use this skill to add Auth0 Regular Web Application login, logout, callback handling, and session-based route protection to Java Servlet web applications. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may guide an agent to handle Auth0 domains, client IDs, client secrets, and OAuth-related credentials. <br>
-Mitigation: Keep provider secrets in environment variables or managed secret stores, ensure generated .env files are ignored by version control, and review outputs before committing. <br>
-Risk: The skill may propose Auth0 CLI actions, dependency changes, and environment variable writes. <br>
-Mitigation: Review package installs, provider CLI commands, application URI changes, and configuration writes before approving execution. <br>
+## Use Case:
 
+Developers use this skill to add Auth0 Regular Web Application login flows to Java Servlet apps, configure mvc-auth-commons, and generate servlet and filter code for login, callback, logout, protected routes, Organizations, and custom domains.
 
-## Reference(s): <br>
-- [Auth0 Java MVC Common Skill](https://clawhub.ai/auth0/auth0-java-mvc-common) <br>
-- [Auth0 Agent Skills Homepage](https://github.com/auth0/agent-skills) <br>
-- [Auth0 Java Web App Quickstart](https://auth0.com/docs/quickstart/webapp/java) <br>
-- [Auth0 Java MVC Common SDK Repository](https://github.com/auth0/auth0-java-mvc-common) <br>
-- [Auth0 Universal Login](https://auth0.com/docs/authenticate/login/auth0-universal-login) <br>
-- [Authorization Code Flow](https://auth0.com/docs/get-started/authentication-and-authorization-flow/authorization-code-flow) <br>
-- [Auth0 Organizations](https://auth0.com/docs/manage-users/organizations) <br>
-- [Setup Guide](references/setup.md) <br>
-- [Integration Guide](references/integration.md) <br>
-- [API Reference](references/api.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with Java, XML, Gradle, properties, and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose Auth0 CLI actions and environment variable changes that require user review before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and skill metadata) <br>
+Risk: Copy-paste authentication examples may create weaker login security if used without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated authentication code before production use and require session ID rotation immediately after successful callback validation.
+
+Risk: Callback and logout URLs derived from untrusted request data can lead to incorrect redirects or host-header related issues.
+
+Mitigation: Derive callback and logout base URLs from trusted configuration and keep exact Auth0 callback and logout allowlists.
+
+Risk: Auth0 client secrets may be written to local files during setup.
+
+Mitigation: Write secrets only to user-approved locations, ensure .env is gitignored, and use production secret management outside local development.
+
+## Reference(s):
+
+- [Setup Guide](references/setup.md)
+- [Integration Guide](references/integration.md)
+- [API Reference](references/api.md)
+- [Auth0 Agent Skills Repository](https://github.com/auth0/agent-skills)
+- [Auth0 Java MVC Common SDK Repository](https://github.com/auth0/auth0-java-mvc-common)
+- [Auth0 Java Web App Quickstart](https://auth0.com/docs/quickstart/webapp/java)
+- [Auth0 Universal Login](https://auth0.com/docs/authenticate/login/auth0-universal-login)
+- [Authorization Code Flow](https://auth0.com/docs/get-started/authentication-and-authorization-flow/authorization-code-flow)
+- [Auth0 Organizations](https://auth0.com/docs/manage-users/organizations)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with Java, XML, Gradle, Maven, properties, and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include dependency snippets, Auth0 CLI commands, environment variable configuration, servlet code, and security guidance.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

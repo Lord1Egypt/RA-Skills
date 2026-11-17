@@ -1,40 +1,58 @@
-## Description: <br>
-Records meal descriptions with the Xiaoka Health API, including breakfast, lunch, dinner, snacks, and today's food log, and returns calorie details and diet suggestions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Records meals in Xiaoka Health through its API, including meal type, calorie details, food-item details, and daily food-log summaries.
 
-## Publisher: <br>
-[baojuqiang](https://clawhub.ai/user/baojuqiang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[baojuqiang](https://clawhub.ai/user/baojuqiang)
 
-## Use Case: <br>
-External users use this skill to bind a Xiaoka Health account, send food descriptions to the Xiaoka Health service, record meals, and review today's logged intake. The skill is intended for personal diet logging workflows that need API-backed calorie and ingredient details. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Meal descriptions and diet details may be sent to the Xiaoka Health remote API because the skill has broad auto-trigger behavior for food-related messages. <br>
-Mitigation: Install only when intentional food logging is desired, use explicit logging phrases, and avoid casual food discussion while the skill is enabled. <br>
-Risk: A local Xiaoka Health API key is stored for account binding and could continue to authorize requests after the user stops using the skill. <br>
-Mitigation: Delete or revoke the stored API key when the skill is no longer needed or if account binding should be reset. <br>
+## Use Case:
 
+External users who track meals with Xiaoka Health use this skill to bind an API key, log breakfast, lunch, dinner, snacks, and other food entries, and review today's calorie totals and food details.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/baojuqiang/xiaoka-foodlog-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and terminal text with inline shell commands and API response summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl and jq; stores a local API key credential for Xiaoka Health account binding.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill stores an API key locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when local credential storage is acceptable, keep the credential file private, and remove the credential if account access should be revoked.
+
+Risk: Environment variables can redirect the script to a different API endpoint.
+
+Mitigation: Use the default Xiaoka Health endpoint and avoid running the skill where untrusted processes can set XIAOKA_API_BASE or XIAOKA_API.
+
+Risk: Food entries are sent to Xiaoka Health for logging and calorie analysis.
+
+Mitigation: Use the skill only when the user is comfortable sharing dietary entries with Xiaoka Health, and prefer explicit food-log commands over casual meal mentions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/baojuqiang/skills/xiaoka-foodlog-skill)
+- [Xiaoka Health API endpoint](https://cal-cn.ishuohua.cn)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text and JSON-derived summaries with shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl and jq; stores a local API key for authenticated requests.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

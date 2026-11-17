@@ -1,0 +1,29 @@
+# Appointment Scheduling Rules - starting point
+# Copy this file, replace every empty value with your own data, keep the field names.
+business_name: ""
+service_types:
+  - ""
+booking:
+  notice_period_hours: ""
+  booking_channel: ""
+  deposit_required: "yes or no"
+  deposit_amount_usd: ""
+cancellation:
+  fee_usd: ""
+  fee_waived_if: ""
+  reschedule_window_hours: ""
+no_show:
+  fee_usd: ""
+  waiver_rule: ""
+reminders:
+  email_days_before: ""
+  text_days_before: ""
+  sender_name: ""
+  sender_postal_address: ""
+  opt_out_line: ""
+  stop_keyword: "STOP"
+  consent_source: ""
+state_items:
+  - ""
+open_items:
+  - ""

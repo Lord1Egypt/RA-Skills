@@ -1,43 +1,53 @@
-## Description: <br>
-Complete automated development pipeline for one-person companies that coordinates requirements, SwiftUI development, and QA skills from a natural language app idea. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Auto Dev Pipeline coordinates PRD generation, SwiftUI iOS development, and QA skills to turn a natural language app idea into requirements, generated code, and tests.
 
-## Publisher: <br>
-[tc1993](https://clawhub.ai/user/tc1993) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tc1993](https://clawhub.ai/user/tc1993)
 
-## Use Case: <br>
-Solo developers and small teams use this skill to turn a natural language iOS app idea into a structured PRD, generated SwiftUI project, and QA test package. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can produce requirements, source code, tests, and reports on disk without manual intervention. <br>
-Mitigation: Review generated PRDs, code, tests, and reports before building, publishing, or relying on them. <br>
-Risk: App prompts or generated project files may accidentally include sensitive information. <br>
-Mitigation: Avoid entering secrets in app prompts and inspect outputs before sharing or committing them. <br>
-Risk: The workflow depends on referenced PRD, development, and QA skills. <br>
-Mitigation: Confirm those dependent skills are trusted and appropriate for the project before running the pipeline. <br>
+## Use Case:
 
+Independent developers and solo founders use this skill to automate an iOS app workflow from a plain-language idea through PRD, SwiftUI project generation, and QA/test outputs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tc1993/auto-dev-pipeline) <br>
-- [Publisher profile](https://clawhub.ai/user/tc1993) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown guidance and generated project files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates PRD documents, SwiftUI project code, test suites, reports, and summaries on disk.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Generated app requirements, code, and tests may be incomplete or unsuitable for a real project.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the PRD, generated SwiftUI project, and QA outputs before using them in production or deployment work.
+
+Risk: The workflow can spawn downstream skills, create files and directories, and incur runtime cost.
+
+Mitigation: Run it in a bounded workspace, monitor outputs, and confirm cost-sensitive settings before starting a full pipeline.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tc1993/skills/auto-dev-pipeline)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown summaries plus generated PRD, SwiftUI project, configuration, and test artifacts.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates staged output under PRD, development, and QA deliverable directories; generated code and tests should be reviewed before real project use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

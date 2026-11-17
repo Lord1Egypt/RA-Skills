@@ -1,0 +1,4 @@
+interface:
+  display_name: "Markdown Images to R2"
+  short_description: "Safely plan and apply Markdown image URL publishing"
+  default_prompt: "Use $md-img-r2 to inspect local Markdown images and create a dry-run publishing plan."

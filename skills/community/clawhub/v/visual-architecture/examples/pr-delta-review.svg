@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="993.5" height="316.0" viewBox="-11.5 82.0 993.5 316.0" role="img" aria-label="PR Delta Review Map">
+  <defs>
+    <pattern id="grid" width="120" height="80" patternUnits="userSpaceOnUse">
+      <path d="M 120 0 L 0 0 0 80" fill="none" stroke="#e5e7eb" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect x="-11.5" y="82.0" width="993.5" height="316.0" fill="#f8fafc"/>
+  <g id="mode-backdrop">
+    <rect x="-11.5" y="82.0" width="331.2" height="316.0" fill="#eef6ff" opacity="0.55"/>
+    <line x1="319.7" y1="82.0" x2="319.7" y2="398.0" stroke="#cbd5e1" stroke-width="1" opacity="0.7"/>
+    <text x="6.5" y="108.0" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="11" font-weight="800" fill="#475569">BASE</text>
+    <rect x="319.7" y="82.0" width="331.2" height="316.0" fill="#f6f8fb" opacity="0.55"/>
+    <line x1="650.8" y1="82.0" x2="650.8" y2="398.0" stroke="#cbd5e1" stroke-width="1" opacity="0.7"/>
+    <text x="337.7" y="108.0" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="11" font-weight="800" fill="#475569">HEAD</text>
+    <rect x="650.8" y="82.0" width="331.2" height="316.0" fill="#eef6ff" opacity="0.55"/>
+    <line x1="982.0" y1="82.0" x2="982.0" y2="398.0" stroke="#cbd5e1" stroke-width="1" opacity="0.7"/>
+    <text x="668.8" y="108.0" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="11" font-weight="800" fill="#475569">REVIEW</text>
+    <rect x="-1.5" y="364.0" width="81.0" height="22" rx="6" fill="#f97316" opacity="0.18" stroke="#f97316" stroke-width="1"/>
+    <text x="11.5" y="379.0" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="11" font-weight="800" fill="#f97316">PR DELTA</text>
+  </g>
+  <g id="arrows">
+    <path d="M 211.5 160.0 L 240.0 160.0 L 240.0 240.0 L 264.5 240.0" fill="none" stroke="#2563eb" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+    <polygon points="255.5,234.6 264.5,240.0 255.5,245.4" fill="#2563eb"/>
+    <path d="M 211.5 320.0 L 240.0 320.0 L 240.0 240.0 L 264.5 240.0" fill="none" stroke="#2563eb" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+    <polygon points="255.5,234.6 264.5,240.0 255.5,245.4" fill="#2563eb"/>
+    <path d="M 455.5 240.0 L 480.0 240.0 L 480.0 160.0 L 503.0 160.0" fill="none" stroke="#475569" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" stroke-dasharray="6 6"/>
+    <polygon points="494.0,154.6 503.0,160.0 494.0,165.4" fill="#475569"/>
+    <path d="M 455.5 240.0 L 480.0 240.0 L 480.0 320.0 L 492.5 320.0" fill="none" stroke="#475569" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" stroke-dasharray="6 6"/>
+    <polygon points="483.5,314.6 492.5,320.0 483.5,325.4" fill="#475569"/>
+    <path d="M 697.0 160.0 L 720.0 160.0 L 720.0 240.0 L 738.0 240.0" fill="none" stroke="#16a34a" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" stroke-dasharray="10 8"/>
+    <polygon points="729.0,234.6 738.0,240.0 729.0,245.4" fill="#16a34a"/>
+    <path d="M 707.5 320.0 L 720.0 320.0 L 720.0 240.0 L 738.0 240.0" fill="none" stroke="#16a34a" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" stroke-dasharray="10 8"/>
+    <polygon points="729.0,234.6 738.0,240.0 729.0,245.4" fill="#16a34a"/>
+  </g>
+  <g id="nodes">
+    <g class="node-shape" data-node-id="base">
+    <path d="M 28.5 134.0 A 91.5 12.0 0 0 1 211.5 134.0 L 211.5 186.0 A 91.5 12.0 0 0 1 28.5 186.0 Z" fill="#f8fafc" stroke="#14532d" stroke-width="2"/>
+    <ellipse cx="120.0" cy="134.0" rx="91.5" ry="12.0" fill="#f8fafc" stroke="#14532d" stroke-width="2"/>
+    <path d="M 28.5 186.0 A 91.5 12.0 0 0 0 211.5 186.0" fill="none" stroke="#14532d" stroke-width="2"/>
+    </g>
+    <g class="node-shape" data-node-id="head">
+    <path d="M 28.5 294.0 A 91.5 12.0 0 0 1 211.5 294.0 L 211.5 346.0 A 91.5 12.0 0 0 1 28.5 346.0 Z" fill="#f8fafc" stroke="#14532d" stroke-width="2"/>
+    <ellipse cx="120.0" cy="294.0" rx="91.5" ry="12.0" fill="#f8fafc" stroke="#14532d" stroke-width="2"/>
+    <path d="M 28.5 346.0 A 91.5 12.0 0 0 0 211.5 346.0" fill="none" stroke="#14532d" stroke-width="2"/>
+    </g>
+    <g class="node-shape" data-node-id="delta">
+    <polygon points="286.5,202.0 433.5,202.0 455.5,240.0 433.5,278.0 286.5,278.0 264.5,240.0" fill="#f8fafc" stroke="#0f172a" stroke-width="2"/>
+    </g>
+    <g class="node-shape" data-node-id="boundary">
+    <polygon points="525.0,122.0 675.0,122.0 697.0,160.0 675.0,198.0 525.0,198.0 503.0,160.0" fill="#f8fafc" stroke="#0f172a" stroke-width="2"/>
+    </g>
+    <g class="node-shape" data-node-id="deps">
+    <polygon points="514.5,282.0 685.5,282.0 707.5,320.0 685.5,358.0 514.5,358.0 492.5,320.0" fill="#f8fafc" stroke="#0f172a" stroke-width="2"/>
+    </g>
+    <g class="node-shape" data-node-id="review">
+    <rect x="738.0" y="202.0" width="204.0" height="76.0" rx="12" fill="#ffffff" stroke="#1f2937" stroke-width="2"/>
+    </g>
+  </g>
+  <g id="labels">
+    <rect x="210.5" y="160.0" width="59.0" height="24.0" rx="6" fill="#dbeafe" stroke="#ffffff" stroke-width="2"/>
+    <text x="240.0" y="176.0" text-anchor="middle" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="12" font-weight="600" fill="#1d4ed8">before</text>
+    <rect x="213.0" y="296.0" width="54.0" height="24.0" rx="6" fill="#dbeafe" stroke="#ffffff" stroke-width="2"/>
+    <text x="240.0" y="312.0" text-anchor="middle" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="12" font-weight="600" fill="#1d4ed8">after</text>
+    <rect x="443.5" y="188.0" width="73.0" height="24.0" rx="6" fill="#e2e8f0" stroke="#ffffff" stroke-width="2"/>
+    <text x="480.0" y="204.0" text-anchor="middle" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="12" font-weight="600" fill="#334155">security</text>
+    <rect x="447.0" y="268.0" width="66.0" height="24.0" rx="6" fill="#e2e8f0" stroke="#ffffff" stroke-width="2"/>
+    <text x="480.0" y="284.0" text-anchor="middle" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="12" font-weight="600" fill="#334155">imports</text>
+    <rect x="683.5" y="160.0" width="73.0" height="24.0" rx="6" fill="#dcfce7" stroke="#ffffff" stroke-width="2"/>
+    <text x="720.0" y="176.0" text-anchor="middle" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="12" font-weight="600" fill="#166534">findings</text>
+    <rect x="687.0" y="296.0" width="66.0" height="24.0" rx="6" fill="#dcfce7" stroke="#ffffff" stroke-width="2"/>
+    <text x="720.0" y="312.0" text-anchor="middle" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="12" font-weight="600" fill="#166534">receipt</text>
+    <text x="120.0" y="156.0" text-anchor="middle" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="18" font-weight="600" fill="#14532d">Base Snapshot</text>
+    <text x="120.0" y="178.0" text-anchor="middle" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13" font-weight="500" fill="#475569">current main</text>
+    <text x="120.0" y="316.0" text-anchor="middle" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="18" font-weight="600" fill="#14532d">Head Snapshot</text>
+    <text x="120.0" y="338.0" text-anchor="middle" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13" font-weight="500" fill="#475569">PR branch</text>
+    <text x="360.0" y="236.0" text-anchor="middle" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="18" font-weight="600" fill="#0f172a">Delta Engine</text>
+    <text x="360.0" y="258.0" text-anchor="middle" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13" font-weight="500" fill="#475569">added/removed/moved</text>
+    <text x="600.0" y="156.0" text-anchor="middle" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="18" font-weight="600" fill="#0f172a">Boundary Check</text>
+    <text x="600.0" y="178.0" text-anchor="middle" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13" font-weight="500" fill="#475569">new crossings</text>
+    <text x="600.0" y="316.0" text-anchor="middle" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="18" font-weight="600" fill="#0f172a">Dependency Check</text>
+    <text x="600.0" y="338.0" text-anchor="middle" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13" font-weight="500" fill="#475569">new services</text>
+    <text x="840.0" y="236.0" text-anchor="middle" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="18" font-weight="600" fill="#111827">Review Artifact</text>
+    <text x="840.0" y="258.0" text-anchor="middle" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13" font-weight="500" fill="#475569">comment-ready</text>
+  </g>
+</svg>

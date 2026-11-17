@@ -1,0 +1,194 @@
+/* ============================================================
+   easy-html 可视化组件库（A 方案）
+   纯 CSS/SVG 数据可视化组件：大数字卡、进度条/环、横向对比条、
+   占比环形、流程箭头、时间轴、标签云、信息条。
+   配色优先用主题暴露的 CSS 变量（--primary / --text-main / --surface /
+   --border-color / --text-muted），主题缺变量时用中性兜底，深浅主题都安全。
+   只写视觉+必要布局，不写死品牌色。
+   ============================================================ */
+
+:root {
+  /* 兜底变量（主题若已定义 --primary 等会覆盖）*/
+  --eh-accent: var(--primary, #2563EB);
+  --eh-accent-soft: var(--primary-light, rgba(37,99,235,0.12));
+  --eh-track: var(--border-color, rgba(128,128,128,0.18));
+  --eh-muted: var(--text-muted, #888);
+}
+
+/* ── 大数字卡 KPI（带趋势 + 可选迷你火花线）── */
+[data-role="stat-grid"] {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 18px;
+  margin: 22px 0;
+}
+.eh-kpi {
+  padding: 22px 20px;
+  border-radius: 16px;
+  border: 1px solid var(--eh-track);
+  box-shadow: 0 1px 2px rgba(0,0,0,0.04), 0 1px 3px rgba(0,0,0,0.06);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.eh-kpi .eh-kpi-label { font-size: 13px; color: var(--eh-muted); font-weight: 500; }
+.eh-kpi .eh-kpi-value { font-size: 30px; font-weight: 850; line-height: 1.1; letter-spacing: -0.5px; font-variant-numeric: tabular-nums; }
+.eh-kpi .eh-kpi-unit { font-size: 15px; font-weight: 650; margin-left: 2px; }
+.eh-kpi .eh-kpi-trend { font-size: 13px; font-weight: 750; display: inline-flex; align-items: center; gap: 3px; font-variant-numeric: tabular-nums; }
+.eh-kpi .eh-up { color: #16A34A; }
+.eh-kpi .eh-down { color: #DC2626; }
+.eh-kpi .eh-spark { margin-top: 4px; height: 28px; width: 100%; }
+.eh-kpi .eh-spark path { fill: none; stroke: var(--eh-accent); stroke-width: 2; }
+
+/* ── 进度条（横向）── */
+.eh-progress { margin: 14px 0; }
+.eh-progress .eh-pg-head { display: flex; justify-content: space-between; font-size: 13.5px; margin-bottom: 6px; font-weight: 600; }
+.eh-progress .eh-pg-track { height: 10px; border-radius: 99px; background: var(--eh-track); overflow: hidden; }
+.eh-progress .eh-pg-fill { height: 100%; border-radius: 99px; background: var(--eh-accent); }
+
+/* ── 进度环（SVG 圆环）── */
+.eh-ring { display: inline-flex; flex-direction: column; align-items: center; gap: 8px; margin: 10px; }
+.eh-ring svg { transform: rotate(-90deg); }
+.eh-ring .eh-ring-track { fill: none; stroke: var(--eh-track); }
+.eh-ring .eh-ring-fill { fill: none; stroke: var(--eh-accent); stroke-linecap: round; }
+.eh-ring .eh-ring-label { font-size: 13px; color: var(--eh-muted); font-weight: 500; }
+.eh-ring .eh-ring-pct { font-size: 22px; font-weight: 800; }
+
+/* ── 图表容器（Chart.js canvas 定高，配合 chart_helper.js）──
+   趋势数据用折线/面积图、对比数据用柱状图，比血条更专业。
+   canvas 必须放在定高容器里（Chart.js maintainAspectRatio:false）。 */
+.eh-chart-box { position: relative; width: 100%; height: 300px; margin: 20px 0 8px; }
+.eh-chart-box.eh-chart-sm { height: 240px; }
+.eh-chart-box.eh-chart-lg { height: 360px; }
+.eh-chart-box canvas { display: block; width: 100% !important; height: 100% !important; }
+
+/* ── 横向对比条（排名/对比，比表格直观）──
+   设计语言：细轨道(10px) + 柔圆角 + 渐变填充 + 填充末端高光圆点收尾，
+   数值/名称在条外独立列，等宽对齐。精致、雅致、不"游戏血条"。 */
+.eh-bars { margin: 22px 0; display: flex; flex-direction: column; gap: 16px; }
+.eh-bars .eh-bar-row {
+  display: grid;
+  grid-template-columns: 116px 1fr 64px;
+  align-items: center;
+  gap: 16px;
+}
+.eh-bars .eh-bar-name {
+  font-size: 13px;
+  font-weight: 600;
+  text-align: right;
+  letter-spacing: 0.01em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  opacity: 0.92;
+}
+/* 轨道：细、柔、极淡底色 */
+.eh-bars .eh-bar-track {
+  position: relative;
+  height: 10px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--eh-accent, currentColor) 8%, var(--eh-track, rgba(128,128,128,0.12)));
+  overflow: visible;
+}
+/* 填充：渐变 + 末端高光圆点 */
+.eh-bars .eh-bar-fill {
+  position: relative;
+  height: 100%;
+  border-radius: 999px;
+  min-width: 6px;
+  background-image: linear-gradient(90deg,
+    color-mix(in srgb, var(--eh-accent, currentColor) 55%, transparent),
+    var(--eh-accent, currentColor));
+  box-shadow: 0 1px 4px color-mix(in srgb, var(--eh-accent, currentColor) 28%, transparent);
+  transition: width 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+/* 填充末端高光圆点（收尾点缀）*/
+.eh-bars .eh-bar-fill::after {
+  content: "";
+  position: absolute;
+  right: -1px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 0 0 2px var(--eh-accent, currentColor), 0 1px 3px rgba(0,0,0,0.18);
+  opacity: 0.95;
+}
+/* 数值：条外右侧，主题强调色，等宽数字对齐 */
+.eh-bars .eh-bar-val {
+  font-size: 13px;
+  font-weight: 700;
+  text-align: left;
+  font-variant-numeric: tabular-nums;
+  color: var(--eh-accent, currentColor);
+  white-space: nowrap;
+}
+/* 兼容：若数值仍写在 fill 内（旧写法兜底），隐藏内嵌 span 避免被压住 */
+.eh-bars .eh-bar-fill > span { display: none; }
+
+/* ── 占比环形（donut，纯 SVG，多段）── */
+.eh-donut { display: flex; align-items: center; gap: 24px; flex-wrap: wrap; margin: 18px 0; }
+.eh-donut svg { transform: rotate(-90deg); flex-shrink: 0; }
+.eh-donut .eh-donut-legend { display: flex; flex-direction: column; gap: 8px; font-size: 13.5px; }
+.eh-donut .eh-lg-item { display: flex; align-items: center; gap: 8px; }
+.eh-donut .eh-lg-dot { width: 11px; height: 11px; border-radius: 3px; flex-shrink: 0; }
+.eh-donut .eh-lg-val { font-weight: 700; margin-left: auto; padding-left: 16px; }
+
+/* ── 流程箭头（横向步骤，比文字列表直观）── */
+.eh-flow { display: flex; flex-wrap: wrap; align-items: stretch; gap: 8px; margin: 20px 0; }
+.eh-flow .eh-flow-step {
+  flex: 1; min-width: 130px; padding: 16px 14px; border-radius: 12px;
+  border: 1px solid var(--eh-track); position: relative; font-size: 13.5px; line-height: 1.5;
+}
+.eh-flow .eh-flow-num {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 24px; height: 24px; border-radius: 7px; background: var(--eh-accent-soft);
+  color: var(--eh-accent); font-weight: 800; font-size: 13px; margin-bottom: 8px;
+}
+.eh-flow .eh-flow-step:not(:last-child)::after {
+  content: "›"; position: absolute; right: -10px; top: 50%; transform: translateY(-50%);
+  font-size: 22px; color: var(--eh-muted); font-weight: 700; z-index: 1;
+}
+
+/* ── 时间轴（竖向，节点+线）── */
+.eh-timeline { margin: 20px 0; padding-left: 8px; }
+.eh-timeline .eh-tl-item { position: relative; padding: 0 0 22px 28px; border-left: 2px solid var(--eh-track); }
+.eh-timeline .eh-tl-item:last-child { border-left-color: transparent; padding-bottom: 0; }
+.eh-timeline .eh-tl-item::before {
+  content: ""; position: absolute; left: -7px; top: 2px; width: 12px; height: 12px;
+  border-radius: 50%; background: var(--eh-accent); border: 2px solid var(--surface, #fff);
+}
+.eh-timeline .eh-tl-time { font-size: 12.5px; color: var(--eh-muted); font-weight: 600; }
+.eh-timeline .eh-tl-title { font-size: 15px; font-weight: 700; margin: 2px 0 4px; }
+.eh-timeline .eh-tl-desc { font-size: 13.5px; line-height: 1.6; }
+
+/* ── 标签云（权重用字号体现）── */
+.eh-tagcloud { display: flex; flex-wrap: wrap; gap: 10px; margin: 18px 0; align-items: center; }
+.eh-tagcloud .eh-tag {
+  padding: 5px 14px; border-radius: 99px; border: 1px solid var(--eh-track);
+  background: var(--eh-accent-soft); font-weight: 600;
+}
+
+/* ── 信息高亮条（左侧色条 callout 变体）── */
+.eh-infobar {
+  display: flex; gap: 14px; align-items: flex-start; padding: 16px 20px;
+  border-radius: 12px; border: 1px solid var(--eh-track);
+  border-left: 4px solid var(--eh-accent); margin: 18px 0; font-size: 14.5px; line-height: 1.7;
+}
+.eh-infobar .eh-infobar-icon { font-size: 22px; line-height: 1; flex-shrink: 0; }
+
+/* ── 对比双栏（VS 卡片）── */
+.eh-vs { display: grid; grid-template-columns: 1fr auto 1fr; gap: 16px; align-items: center; margin: 20px 0; }
+.eh-vs .eh-vs-card { padding: 20px; border-radius: 14px; border: 1px solid var(--eh-track); }
+.eh-vs .eh-vs-mid { font-size: 18px; font-weight: 800; color: var(--eh-muted); }
+
+/* ── 响应式 ── */
+@media (max-width: 600px) {
+  .eh-bars .eh-bar-row { grid-template-columns: 78px 1fr 52px; gap: 10px; }
+  .eh-bars .eh-bar-name { font-size: 12px; }
+  .eh-flow .eh-flow-step:not(:last-child)::after { display: none; }
+  .eh-vs { grid-template-columns: 1fr; }
+  .eh-vs .eh-vs-mid { text-align: center; }
+}

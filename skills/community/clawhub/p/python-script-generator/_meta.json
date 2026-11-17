@@ -1,6 +1,9 @@
 {
-  "ownerId": "kn754w8negkve53dntzhycyd0h82565k",
-  "slug": "python-script-generator",
+  "schema_version": "1",
+  "name": "python-script-generator",
   "version": "1.0.0",
-  "publishedAt": 1772457135887
+  "description": "生成 Python 脚本",
+  "author": {"name": "Sunshine-del-ux"},
+  "keywords": ["python", "script", "generator", "cli"],
+  "license": "MIT"
 }

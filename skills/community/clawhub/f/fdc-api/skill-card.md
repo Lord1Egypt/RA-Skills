@@ -1,43 +1,59 @@
-## Description: <br>
-Interact with the USDA FoodData Central (FDC) API to search for foods and retrieve detailed nutritional information. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search USDA FoodData Central for foods and retrieve detailed nutrition information using the USDA FDC API.
 
-## Publisher: <br>
-[patello](https://clawhub.ai/user/patello) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[patello](https://clawhub.ai/user/patello)
 
-## Use Case: <br>
-External users and developers use this skill to search USDA FoodData Central by food name, retrieve FDC IDs, and display detailed nutrition information for specific foods. It is useful for nutrition lookup and comparison workflows that can operate against USDA's English-language, US-focused data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-United States-focused data; global use where USDA FoodData Central coverage is appropriate. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a USDA FDC API key stored in the local OpenClaw environment. <br>
-Mitigation: Keep the OpenClaw configuration private, avoid committing or sharing the key, and rotate it if exposed. <br>
-Risk: Food lookup results are constrained by USDA FoodData Central's English-language, US-focused coverage and may omit non-US branded products. <br>
-Mitigation: Use results with that coverage limitation in mind and verify nutrition data against authoritative sources for regulated, clinical, or high-impact decisions. <br>
-Risk: The USDA API enforces request limits and may return rate-limit or authentication errors. <br>
-Mitigation: Handle 403, 429, 404, and 400 responses as surfaced by the scripts, and wait before retrying after rate-limit responses. <br>
+## Use Case:
 
+External users and agents use this skill to search for foods, retrieve FDC IDs, and fetch formatted nutrition details from the USDA FoodData Central database.
 
-## Reference(s): <br>
-- [USDA FoodData Central API](https://api.nal.usda.gov/fdc/v1) <br>
-- [USDA FoodData Central API Key Signup](https://fdc.nal.usda.gov/api-key-signup) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Markdown, API calls, Guidance] <br>
-**Output Format:** [Markdown tables and concise command-line status messages] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl, jq, and a user-provided FDC_API_KEY; food detail output limits nutrient rows to keep responses manageable.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Food search terms and the FDC API key are sent to the USDA FoodData Central API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated FDC API key and avoid submitting sensitive search terms.
+
+Risk: The database is English-language and US-focused, so non-English searches or international branded foods may return incomplete results.
+
+Mitigation: Use English search terms and verify nutrition details against local product labels when regional accuracy matters.
+
+Risk: USDA API rate limits can interrupt lookups.
+
+Mitigation: Keep request volume within the documented USDA limits and wait before retrying after HTTP 429 responses.
+
+## Reference(s):
+
+- [USDA FoodData Central API](https://api.nal.usda.gov/fdc/v1)
+- [USDA FoodData Central API Key Signup](https://fdc.nal.usda.gov/api-key-signup)
+- [ClawHub Skill Page](https://clawhub.ai/patello/skills/fdc-api)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown tables, text status messages, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl, jq, and FDC_API_KEY; food detail output is capped to the first 50 nutrients unless filtered.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

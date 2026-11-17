@@ -1,46 +1,56 @@
-## Description: <br>
-Contribute to the OpenClaw core repository using the repo's own CONTRIBUTING.md rules. Use when working in `openclaw/openclaw` or a fork to triage issues, plan a focused fix, choose the right validation commands, prepare AI-assisted PRs, route changes to the right subsystem maintainers, or avoid breaking OpenClaw contribution norms. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Contribute to the OpenClaw core repository using the repo's own CONTRIBUTING.md rules.
 
-## Publisher: <br>
-[manjaroblack](https://clawhub.ai/user/manjaroblack) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[manjaroblack](https://clawhub.ai/user/manjaroblack)
 
-## Use Case: <br>
-Developers and engineers use this skill when contributing to `openclaw/openclaw` or a fork to plan focused fixes, choose validation commands, prepare AI-assisted PRs, and route changes to maintainers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Recommended build or test commands may not fit a dirty, unusual, or outdated OpenClaw checkout. <br>
-Mitigation: Review the repository state and generated recommendations before running commands. <br>
-Risk: The optional PR-body generator writes Markdown to the path supplied with `--output`. <br>
-Mitigation: Use `--output` only with an intended destination and review the generated PR body before submission. <br>
-Risk: OpenClaw contribution norms can change after this skill release. <br>
-Mitigation: Start with the target repo's root `CONTRIBUTING.md` and treat it as the source of truth. <br>
+## Use Case:
 
+Developers and contributors use this skill when working in openclaw/openclaw or a fork to triage issues, plan focused fixes, choose validation commands, prepare AI-assisted PRs, and route work to appropriate maintainers.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/manjaroblack/openclaw-contributor) <br>
-- [OpenClaw Contributor Repository](https://github.com/manjaroblack/openclaw-contributor-skill) <br>
-- [OpenClaw Contribution Checklist](references/contributing-checklist.md) <br>
-- [OpenClaw PR Template Guide](references/pr-template.md) <br>
-- [Example Perplexity Check Plan](references/example-perplexity-check-plan.txt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Code, JSON] <br>
-**Output Format:** [Markdown guidance with optional generated PR-body Markdown and JSON validation plans] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May run bundled Python scripts against a local OpenClaw git checkout to recommend checks or draft PR text.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: release evidence and changelog) <br>
+Risk: The skill may recommend local git and project validation commands that take time or run against the wrong checkout if the repository path is incorrect.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the target OpenClaw checkout, inspect the recommended commands, and run only the checks appropriate for the intended change.
+
+Risk: Generated PR text or maintainer routing hints may be incomplete or unsuitable for a specific contribution.
+
+Mitigation: Review generated PR bodies, AI-assistance disclosures, testing notes, and maintainer hints before publishing.
+
+## Reference(s):
+
+- [OpenClaw Contributor ClawHub Page](https://clawhub.ai/manjaroblack/skills/openclaw-contributor)
+- [OpenClaw Contribution Checklist](references/contributing-checklist.md)
+- [OpenClaw PR Template Guide](references/pr-template.md)
+- [Example Perplexity Check Plan](references/example-perplexity-check-plan.txt)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, markdown, configuration, code]
+
+**Output Format:** [Markdown guidance with inline shell commands and optional generated PR-body Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May emit JSON validation recommendations when the bundled recommender is run with --json.]
+
+## Skill Version(s):
+
+0.1.1 (source: evidence.release.version and artifact/CHANGELOG.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

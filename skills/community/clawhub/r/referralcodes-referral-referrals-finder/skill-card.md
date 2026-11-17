@@ -1,44 +1,53 @@
-## Description: <br>
-Finds up to 3 active referral links or codes for a requested brand using live data from ReferralCodes.com. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Finds up to 3 active referral links or codes for a requested brand using live ReferralCodes.com data.
 
-## Publisher: <br>
-[ashlexham](https://clawhub.ai/user/ashlexham) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ashlexham](https://clawhub.ai/user/ashlexham)
 
-## Use Case: <br>
-External users and agents use this skill to find current referral links, referral codes, invite links, signup bonuses, and similar offers for a specific brand, company, or service. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Returned referral links or codes can affect purchases, signup terms, financial products, crypto services, travel, or other incentives. <br>
-Mitigation: Check the destination, offer terms, and brand domain before using a returned referral link or code. <br>
-Risk: A brand or domain query may be sent to ReferralCodes.com to retrieve live results. <br>
-Mitigation: Only query brand names or domains that are appropriate to share with ReferralCodes.com. <br>
+## Use Case:
 
+External users and agents use this skill to look up referral links, invite codes, signup offers, referral discounts, and refer-a-friend bonuses for a specific brand, company, or service.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ashlexham/referralcodes-referral-referrals-finder) <br>
-- [ReferralCodes public referrals API](https://referralcodes.com/api/agent/public-referrals?shop_url={shop_url}) <br>
-- [ReferralCodes data feed](https://referralcodes.com/data-feed) <br>
-- [ReferralCodes how it works](https://referralcodes.com/how-it-works) <br>
-- [ReferralCodes agents](https://referralcodes.com/agents) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown response with referral links or codes and brief offer text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns up to 3 referrals and should not fabricate offers when none are returned.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: Referral lookups disclose the requested brand or domain to ReferralCodes.com and may return third-party referral links or codes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid using the skill for confidential vendor research, internal project names, or sensitive targets unless that disclosure and third-party link handling are acceptable.
+
+## Reference(s):
+
+- [ReferralCodes Public Referrals API](https://referralcodes.com/api/agent/public-referrals?shop_url={shop_url})
+- [ReferralCodes Data Feed](https://referralcodes.com/data-feed)
+- [ReferralCodes How It Works](https://referralcodes.com/how-it-works)
+- [ReferralCodes Agents](https://referralcodes.com/agents)
+- [ClawHub Skill Page](https://clawhub.ai/ashlexham/skills/referralcodes-referral-referrals-finder)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, API calls, guidance]
+
+**Output Format:** [Concise Markdown or plain text containing referral links or codes and offer text.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns up to 3 referral results when available; does not fabricate offers when no referrals are found.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

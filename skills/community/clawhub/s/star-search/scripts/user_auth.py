@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""实战 55 用户系统 (2026-06-15)
+"""v20.55 用户系统 (2026-06-15)
 - phone + password 注册/登录
 - HMAC token (12h 过期)
 - 简单 quota tracking (100/天 免费 / 1000/月 基础 / 10000/年 Pro)
@@ -17,7 +17,7 @@ from typing import Optional, Dict, List
 from pathlib import Path
 
 USERS_FILE = Path('/home/ubuntu/star-search/users.json')
-SECRET = b'star-search-stardust-2026'  # 实战 55: HMAC 密钥 (生产用 env)
+SECRET = b'star-search-<system-name>-2026'  # v20.55: HMAC 密钥 (生产用 env)
 TOKEN_TTL = 12 * 3600  # 12h
 
 # 简单 bcrypt-like: sha256 多次 + salt (生产换 bcrypt/argon2)

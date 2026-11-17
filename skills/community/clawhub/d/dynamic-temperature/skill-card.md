@@ -1,40 +1,56 @@
-## Description: <br>
-Dynamic LLM temperature selection based on task type for scheduling, communication, creative writing, and irreversible actions, balancing precision where needed with warmth where appropriate. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Dynamic Temperature helps agents choose an LLM temperature for scheduling, communication, creative writing, irreversible actions, and other task types.
 
-## Publisher: <br>
-[netanel-abergel](https://clawhub.ai/user/netanel-abergel) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[netanel-abergel](https://clawhub.ai/user/netanel-abergel)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Agents and developers use this guidance-only skill to classify tasks and choose a corresponding model temperature. It keeps irreversible or factual work deterministic while allowing warmer communication and creative drafting where appropriate.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: A broad temperature policy can affect many task types if copied into agent configuration or identity.
+
+Mitigation: Review the desired task categories and apply config or frontmatter changes deliberately.
+
+Risk: Irreversible actions such as sending messages or deleting data may be over-automated if temperature guidance is treated as permission to act.
+
+Mitigation: Keep explicit confirmation requirements for sending, deleting, posting, or other irreversible actions.
+
+Risk: The artifact is deprecated because the behavior was merged into SOUL.md; using it only as a triggered skill may miss cases where temperature policy should always apply.
+
+Mitigation: Prefer the maintained SOUL.md temperature guide for global behavior, or document when this standalone skill should be invoked.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Agent builders and operators use this guidance to choose task-appropriate model temperatures for deterministic actions, scheduling, analysis, routine communication, briefings, and creative writing. It is especially relevant when configuring agent defaults or documenting per-skill temperature expectations. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Temperature guidance may be missed when treated as a triggered skill even though the artifact says the behavior should apply broadly. <br>
-Mitigation: Review whether the rules should live in a core identity or configuration file before relying on the skill for global behavior. <br>
-Risk: Incorrect temperature choices can reduce precision for irreversible or sensitive actions such as sending messages, posting, deleting data, or destructive commands. <br>
-Mitigation: Use deterministic settings for irreversible actions and require confirmation before sending, posting, deleting, or executing destructive operations. <br>
+**Output Format:** [Markdown guidance with task-to-temperature tables and decision rules]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/netanel-abergel/dynamic-temperature) <br>
+**Other Properties Related to Output:** [No code execution; recommends temperature values from 0.0 to 0.8.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Configuration] <br>
-**Output Format:** [Markdown guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only; does not install code, request secrets, or perform actions on its own.] <br>
+1.0.2 (source: ClawHub release evidence)
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

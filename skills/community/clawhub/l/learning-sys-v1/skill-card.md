@@ -1,49 +1,64 @@
-## Description: <br>
-Provides an AI learning workflow for knowledge maps, deep-dive notes, implementation recaps, weekly reviews, mastery scoring, and learning-health checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps OpenClaw users turn AI research, coding work, and weekly study activity into structured learning notes, recaps, knowledge maps, and mastery reports.
 
-## Publisher: <br>
-[onlyloveher](https://clawhub.ai/user/onlyloveher) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[onlyloveher](https://clawhub.ai/user/onlyloveher)
 
-## Use Case: <br>
-Developers and technical learners use this skill to turn AI research, code changes, and project work into structured notes, knowledge-map updates, weekly reviews, and mastery reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Weekly review may collect memory logs, notes, PRs, or code-change summaries that include private work. <br>
-Mitigation: Review the data sources before running review mode, limit it to intended workspace paths, and remove sensitive content from notes before generating a weekly summary. <br>
-Risk: The workflow includes a Feishu summary-sending step without clear destination or approval controls in the artifact. <br>
-Mitigation: Remove or manually gate the Feishu sending step until the destination, payload, and approval process are explicit. <br>
-Risk: The --quick mode and automated weekly cron use can skip confirmation before reading workspace activity or changing learning files. <br>
-Mitigation: Avoid --quick and cron automation until the operator has confirmed the files read, files written, and any outbound sharing behavior. <br>
+## Use Case:
 
+Developers and AI practitioners use this skill to organize learning plans, create deep-dive notes, recap implementation work, update an AI knowledge map, and generate weekly learning reviews.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/onlyloveher/learning-sys-v1) <br>
-- [OpenClaw](https://github.com/openclaw/openclaw) <br>
-- [Deep Dive Template](references/deep-dive-template.md) <br>
-- [Knowledge Map Rules](references/knowledge-map-rules.md) <br>
-- [Quality Checklist](references/quality-checklist.md) <br>
-- [Recap Template](references/recap-template.md) <br>
-- [Weekly Review Guide](references/weekly-review-guide.md) <br>
-- [Weekly Review Template](references/weekly-review-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and generated note, review, report, and JSON outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read and update local OpenClaw workspace notes, memory logs, knowledge maps, deep-dive notes, and weekly review files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: target metadata and release evidence) <br>
+Risk: The skill can read local OpenClaw memory logs and learning notes while producing summaries, health reports, and mastery scores.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in an intended OpenClaw workspace and review the notes and memory files that will be summarized.
+
+Risk: Weekly review behavior may send summaries through Feishu without clear confirmation.
+
+Mitigation: Disable sending or explicitly confirm the recipient and message contents before running weekly review workflows.
+
+Risk: The --quick option can skip confirmation checkpoints.
+
+Mitigation: Avoid --quick until the files, planned changes, and communication steps have been reviewed.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/onlyloveher/skills/learning-sys-v1)
+- [OpenClaw](https://github.com/openclaw/openclaw)
+- [Deep Dive Template](artifact/references/deep-dive-template.md)
+- [Knowledge Map Rules](artifact/references/knowledge-map-rules.md)
+- [Quality Checklist](artifact/references/quality-checklist.md)
+- [Recap Template](artifact/references/recap-template.md)
+- [Weekly Review Guide](artifact/references/weekly-review-guide.md)
+- [Weekly Review Template](artifact/references/weekly-review-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown notes, checklists, reports, shell commands, and optional JSON mastery-score output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May read local OpenClaw notes and memory logs when producing health reports, weekly reviews, and mastery scores.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and skill.yaml; artifact _meta.json lists 0.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

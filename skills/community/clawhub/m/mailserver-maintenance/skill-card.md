@@ -1,43 +1,58 @@
-## Description: <br>
-Provides operational runbooks for starting, stopping, checking, and troubleshooting a docker-mailserver deployment, its SMTP relay path, and mail queue issues. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a runbook for starting, stopping, checking, and troubleshooting docker-mailserver, its cloud SMTP relay, and deferred mail queues.
 
-## Publisher: <br>
-[axelhu](https://clawhub.ai/user/axelhu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[axelhu](https://clawhub.ai/user/axelhu)
 
-## Use Case: <br>
-System administrators and mailserver operators use this skill to guide an agent through docker-mailserver health checks, relay control, queue inspection, and incident troubleshooting. It is intended for environments where the operator owns the mailserver and remote relay being administered. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent through live mailserver, remote relay, shutdown, restart, and queue-flush operations. <br>
-Mitigation: Install only for mail infrastructure you own or administer, and require explicit operator confirmation before disruptive actions. <br>
-Risk: The runbook includes a hardcoded external email health-check target. <br>
-Mitigation: Replace it with a controlled test mailbox or require confirmation before sending any test message. <br>
-Risk: The SSH configuration disables strict host key checking. <br>
-Mitigation: Configure host key verification before use and document the expected Docker and SSH prerequisites. <br>
+## Use Case:
 
+Developers and operators use this skill to maintain a docker-mailserver deployment, inspect mail queues and logs, and manage a cloud SMTP relay during service checks or delivery failures.
 
-## Reference(s): <br>
-- [Mailserver architecture reference](references/architecture.md) <br>
-- [ClawHub skill page](https://clawhub.ai/axelhu/mailserver-maintenance) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline bash and PowerShell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Operational guidance should be reviewed before execution on live mail infrastructure.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata and artifact _meta.json) <br>
+Risk: The skill can affect production mail services through Docker mailserver and cloud relay start, stop, retry, and queue operations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in the intended mailserver environment, review commands before execution, and schedule disruptive operations through the normal operations process.
+
+Risk: The documented relay access uses administrator SSH and disabled strict host-key verification.
+
+Mitigation: Replace administrator SSH with a least-privileged account, enable strict host-key verification, and declare the required credential and SSH config paths before use.
+
+Risk: The end-to-end test sends outbound email to a real address.
+
+Mitigation: Redirect test delivery to a controlled sink address or remove the live outbound test in environments where external email is inappropriate.
+
+## Reference(s):
+
+- [Mailserver Architecture Reference](references/architecture.md)
+- [ClawHub Skill Page](https://clawhub.ai/axelhu/skills/mailserver-maintenance)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash and PowerShell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

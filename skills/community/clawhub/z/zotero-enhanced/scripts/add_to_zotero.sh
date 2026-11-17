@@ -15,14 +15,14 @@ Add a PDF to Zotero library via WebDAV.
 
 Environment variables:
   ZOTERO_USER_ID, ZOTERO_API_KEY required.
-  WEBDAV_URL, WEBDAV_USER, WEBDAV_PASS required for WebDAV upload.
+  ZOTERO_WEBDAV_URL (https:// required), ZOTERO_WEBDAV_USER, ZOTERO_WEBDAV_PASS required for WebDAV upload.
 
-Version: zotero-enhanced add_to_zotero.sh v1.3.8
+Version: zotero-enhanced add_to_zotero.sh v1.3.14
 EOF
         exit 0
         ;;
     --version)
-        echo "zotero-enhanced add_to_zotero.sh v1.3.8"
+        echo "zotero-enhanced add_to_zotero.sh v1.3.14"
         exit 0
         ;;
 esac
@@ -32,17 +32,43 @@ esac
 : "${ZOTERO_API_KEY:?ZOTERO_API_KEY not set}"
 : "${ZOTERO_USER_ID:?ZOTERO_USER_ID not set}"
 
-# WebDAV is optional for this script - will use cloud storage if not provided
-: "${WEBDAV_URL:=}"
-: "${WEBDAV_USER:=}"
-: "${WEBDAV_PASS:=}"
+# WebDAV is required for this script. It has no Zotero cloud upload path;
+# for cloud storage use add_to_zotero_universal.sh.
+: "${ZOTERO_WEBDAV_URL:=}"
+: "${ZOTERO_WEBDAV_USER:=}"
+: "${ZOTERO_WEBDAV_PASS:=}"
+
+if [ -z "$ZOTERO_WEBDAV_URL" ] || [ -z "$ZOTERO_WEBDAV_USER" ] || [ -z "$ZOTERO_WEBDAV_PASS" ]; then
+    echo "Error: this script uploads the PDF via WebDAV only. Set ZOTERO_WEBDAV_URL (https://), ZOTERO_WEBDAV_USER and ZOTERO_WEBDAV_PASS." >&2
+    echo "  For Zotero cloud storage, use scripts/add_to_zotero_universal.sh (direct upload supported)." >&2
+    exit 1
+fi
 
 INPUT_PDF="$1"
 [ -f "$INPUT_PDF" ] || { echo "Error: PDF file not found at '$INPUT_PDF'"; exit 1; }
 
 FILENAME=$(basename "$INPUT_PDF")
 FILENAME=$(printf "%s" "$FILENAME" | tr -d "\r\n")
-TMP_DIR="/tmp"
+
+# --- Security Helpers ---
+# Refuse to send WebDAV credentials over plaintext http. Credentials and
+# library files must travel over TLS.
+require_https_webdav_url() {
+    case "$1" in
+        https://*) return 0 ;;
+        http://*)
+            echo "Error: ZOTERO_WEBDAV_URL uses plaintext http://, which would send" >&2
+            echo "  WebDAV credentials and library files unencrypted. Use https://." >&2
+            return 1 ;;
+        *)
+            echo "Error: ZOTERO_WEBDAV_URL must be an https:// URL." >&2
+            return 1 ;;
+    esac
+}
+
+# mktemp -d: unpredictable per-run directory with 0700 perms (no symlink races)
+TMP_DIR=$(mktemp -d "${TMPDIR:-/tmp}/zotero-upload.XXXXXX")
+trap 'rm -rf -- "$TMP_DIR"' EXIT
 
 echo "Processing PDF: $FILENAME"
 
@@ -99,23 +125,20 @@ echo "  - Created $PROP_FILE"
 zip -j "$ZIP_FILE" "$INPUT_PDF" > /dev/null
 echo "  - Created $ZIP_FILE"
 
-# --- 5. Upload to WebDAV (if configured) ---
-if [ -n "$WEBDAV_URL" ] && [ -n "$WEBDAV_USER" ] && [ -n "$WEBDAV_PASS" ]; then
-    echo "Step 5: Uploading files to WebDAV..."
-    WEBDAV_TARGET_URL="${WEBDAV_URL%/}/"
+# --- 5. Upload to WebDAV ---
+require_https_webdav_url "$ZOTERO_WEBDAV_URL" || exit 1
+echo "Step 5: Uploading files to WebDAV..."
+WEBDAV_TARGET_URL="${ZOTERO_WEBDAV_URL%/}/"
 
-    curl -s -f -u "$WEBDAV_USER:$WEBDAV_PASS" -T "$PROP_FILE" "$WEBDAV_TARGET_URL"
-    echo "  - Uploaded .prop file"
+curl -s -f -u "$ZOTERO_WEBDAV_USER:$ZOTERO_WEBDAV_PASS" -T "$PROP_FILE" "$WEBDAV_TARGET_URL"
+echo "  - Uploaded .prop file"
 
-    curl -s -f -u "$WEBDAV_USER:$WEBDAV_PASS" -T "$ZIP_FILE" "$WEBDAV_TARGET_URL"
-    echo "  - Uploaded .zip file"
-else
-    echo "Step 5: WebDAV not configured - skipping upload (file stored in Zotero cloud)"
-fi
+curl -s -f -u "$ZOTERO_WEBDAV_USER:$ZOTERO_WEBDAV_PASS" -T "$ZIP_FILE" "$WEBDAV_TARGET_URL"
+echo "  - Uploaded .zip file"
 
 # --- 6. Cleanup ---
 echo "Step 6: Cleaning up temporary files..."
-rm "$PROP_FILE" "$ZIP_FILE"
+rm -rf -- "$TMP_DIR"
 echo "  - Removed temp files"
 
 echo "Success! Document '$FILENAME' added to Zotero."

@@ -1,42 +1,54 @@
-## Description: <br>
-Provides a ClawHub document-processing skill that claims PDF, Word, Excel, text analysis, information extraction, summarization, classification, and format-conversion workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a JavaScript document-processing API that claims to parse, extract, summarize, analyze, classify, and convert common document formats, but the implementation evidence shows mocked outputs rather than real file parsing.
 
-## Publisher: <br>
-[yezhaowang888-stack](https://clawhub.ai/user/yezhaowang888-stack) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yezhaowang888-stack](https://clawhub.ai/user/yezhaowang888-stack)
 
-## Use Case: <br>
-Developers and agent builders use this skill to prototype document parsing, key information extraction, content analysis, summarization, classification, and format conversion in OpenClaw workflows. The current implementation should be treated cautiously because the security evidence says it returns mock and random results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The implementation presents AI document processing but the security evidence says it returns mock and random results. <br>
-Mitigation: Use only for experimentation or replace it with real parsing, extraction, analysis, and conversion logic before relying on document outputs. <br>
-Risk: Accuracy-sensitive workflows such as contracts, financial records, legal review, and compliance could be misled by placeholder outputs. <br>
-Mitigation: Do not use it for those workflows until the implementation is clearly labeled as a demo or validated against real source documents. <br>
+## Use Case:
 
+Developers and agent builders can use this skill as a document-processing interface for document parsing, information extraction, text analysis, summarization, classification, and conversion workflows. Review carefully before operational use because the security review identifies fabricated processing results.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yezhaowang888-stack/smart-document-processing) <br>
-- [Artifact skill documentation](artifact/SKILL.md) <br>
-- [Artifact package metadata](artifact/package.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, configuration, guidance] <br>
-**Output Format:** [JSON objects and text or Markdown summaries, with configuration examples and JavaScript usage guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Current behavior may include mocked extracted text, random metadata, random sentiment and readability scores, arrays of table data, and conversion result objects.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: The security review says the skill materially misrepresents document-processing results by returning fabricated content instead of reading files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not use the skill for real contracts, reports, compliance documents, or decisions until the publisher replaces mocked outputs with real parsing and documents limits.
+
+Risk: The security guidance identifies the implementation as mock or incomplete.
+
+Mitigation: Review behavior in a controlled environment and require explicit documentation for file access, privacy handling, and conversion constraints before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yezhaowang888-stack/skills/smart-document-processing)
+- [Publisher profile](https://clawhub.ai/user/yezhaowang888-stack)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [JavaScript objects, JSON-like results, Markdown examples, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns simulated document metadata, extracted text, tables, summaries, classifications, conversion status, and analysis objects.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

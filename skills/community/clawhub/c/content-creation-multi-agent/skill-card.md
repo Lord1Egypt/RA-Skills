@@ -1,45 +1,61 @@
-## Description: <br>
-Content Creation Multi Agent provides six OpenClaw content agents for knowledge collection, copywriting, social posts, ecommerce video scripts, image prompt generation, and Seedance video prompting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Content Creation Multi Agent coordinates six content-focused agents for knowledge search, copywriting, e-commerce video scripts, image material generation, and Seedance prompt design.
 
-## Publisher: <br>
-[jiebao360](https://clawhub.ai/user/jiebao360) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiebao360](https://clawhub.ai/user/jiebao360)
 
-## Use Case: <br>
-Content creators, marketers, ecommerce operators, and OpenClaw users use this skill to route content work across specialized agents for research notes, articles, social copy, product video scripts, image prompts, and AI video prompts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad local-file access can expose personal or sensitive material during note and research workflows. <br>
-Mitigation: Use a constrained workspace, avoid broad Documents or Downloads access, and do not provide sensitive files as source material. <br>
-Risk: Feishu credentials may be written into generated configuration files. <br>
-Mitigation: Use least-privilege credentials, protect generated config files, and rotate credentials after setup or testing. <br>
-Risk: Automation scripts can change local services or publish repositories when run intentionally. <br>
-Mitigation: Review shell scripts before execution and avoid GitHub publish/create scripts unless repository publication and credential effects are desired. <br>
+## Use Case:
 
+Content teams, marketers, and OpenClaw users use this skill to configure a Feishu-connected multi-agent workflow for articles, social posts, product video scripts, image prompts and assets, and Seedance video prompts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jiebao360/content-creation-multi-agent) <br>
-- [OpenClaw documentation](https://docs.openclaw.ai) <br>
-- [Feishu Open Platform](https://open.feishu.cn) <br>
-- [Doubao](https://www.doubao.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Configuration, Guidance] <br>
-**Output Format:** [Markdown/text responses, JSON configuration files, and Doubao or Seedance prompts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May generate local setup documents and bot configuration files; image workflows depend on configured Doubao integration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Installer and setup scripts can clone or update repositories, set executable permissions, write files under OpenClaw workspace paths, and restart the OpenClaw gateway.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review scripts locally before execution, avoid curl|bash installation, and test in a non-production OpenClaw workspace first.
+
+Risk: The bot configuration flow requests Feishu App ID and App Secret and writes them into local bot configuration files.
+
+Mitigation: Do not paste secrets into chat, keep generated bot configs out of indexed or shared folders, and rotate any secret that may have been exposed.
+
+Risk: Publishing scripts can change Git remotes, Git credential storage, repository contents, and public GitHub state.
+
+Mitigation: Run publishing scripts only after reviewing their effects, use a least-privilege token, and avoid running them from unrelated repositories.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jiebao360/skills/content-creation-multi-agent)
+- [Publisher profile](https://clawhub.ai/user/jiebao360)
+- [OpenClaw documentation](https://docs.openclaw.ai)
+- [Feishu Open Platform](https://open.feishu.cn)
+- [Doubao](https://www.doubao.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, shell commands, guidance, prompts, images]
+
+**Output Format:** [Markdown, plain text, JSON configuration, shell commands, and generated prompts or assets depending on the selected agent.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs vary by agent role; the package can also generate local bot configuration and setup documentation.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

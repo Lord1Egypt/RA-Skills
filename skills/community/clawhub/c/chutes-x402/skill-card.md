@@ -1,48 +1,62 @@
-## Description: <br>
-Build a pay-per-inference proxy for Bittensor Chutes AI. Accept USDC payments for decentralized AI inference using x402. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build a pay-per-inference proxy for Bittensor Chutes AI and accept USDC payments for decentralized AI inference using x402.
 
-## Publisher: <br>
-[primer-dev](https://clawhub.ai/user/primer-dev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[primer-dev](https://clawhub.ai/user/primer-dev)
 
-## Use Case: <br>
-Developers and AI service operators use this skill to scaffold and configure a Chutes AI proxy that accepts USDC payments through x402 and forwards paid inference requests to Bittensor Chutes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill installs and runs third-party x402 or Primer packages and generated project code. <br>
-Mitigation: Review the package source, generated files, and dependency changes before running or deploying the proxy. <br>
-Risk: The proxy requires a Chutes API key and wallet address and is intended to process paid inference requests. <br>
-Mitigation: Use dedicated credentials, start with low payment limits, and verify pricing and wallet configuration before accepting real payments. <br>
-Risk: The artifact notes approximate token estimation, pre-payment only, and no streaming support. <br>
-Mitigation: Document these limits for users and test expected request sizes, prices, and non-streaming behavior before production use. <br>
+## Use Case:
 
+Developers, AI agent operators, and API resellers use this skill to scaffold and configure a paid proxy that forwards requests to Bittensor Chutes AI while collecting USDC payments through x402.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/primer-dev/chutes-x402) <br>
-- [Chutes AI](https://chutes.ai) <br>
-- [Bittensor](https://bittensor.com) <br>
-- [x402 Protocol](https://x402.org) <br>
-- [x402 Bittensor documentation](https://x402.org/docs/bittensor.html) <br>
-- [Primer Systems](https://primer.systems) <br>
-- [Primer Systems x402 repository](https://github.com/primer-systems/x402) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Code] <br>
-**Output Format:** [Markdown guidance with inline shell commands, environment variables, API endpoint descriptions, and scaffolded project instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include setup commands for Node.js, Python, Cloudflare Workers, Docker, and other deployment targets.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill asks users to run unpinned third-party package and scaffolding commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or pin the referenced x402 packages and generated dependencies before installing or deploying.
+
+Risk: The generated proxy requires Chutes API keys, wallet addresses, and payment configuration.
+
+Mitigation: Use low-privilege or throwaway keys during testing, keep .env files out of version control and screenshots, and use platform secret managers for deployment.
+
+Risk: The generated project may handle paid inference requests and customer-facing payment behavior.
+
+Mitigation: Review generated code and pricing configuration before adding real API credentials, wallet details, or production payment settings.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/primer-dev/skills/chutes-x402)
+- [Chutes AI](https://chutes.ai)
+- [Bittensor](https://bittensor.com)
+- [x402 Protocol](https://x402.org)
+- [x402 Bittensor documentation](https://x402.org/docs/bittensor.html)
+- [Primer Systems](https://primer.systems)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline bash commands, code snippets, tables, and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance may include generated project scaffolding steps for Node.js/TypeScript or Python and environment variable setup for Chutes and wallet configuration.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

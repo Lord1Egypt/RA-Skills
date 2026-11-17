@@ -1,42 +1,56 @@
-## Description: <br>
-Analyzes stocks and crypto assets through AISA and returns scores, BUY/HOLD/SELL-style signals, confidence, and risk notes when users request ticker analysis, asset comparison, or market-position assessment. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes stocks and crypto assets through AISA, returning scores, BUY/HOLD/SELL signals, confidence, and risk notes.
 
-## Publisher: <br>
-[bibaofeng](https://clawhub.ai/user/bibaofeng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[bibaofeng](https://clawhub.ai/user/bibaofeng)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and developers use this skill to request live-data stock or cryptocurrency analysis, compare tickers, and summarize market position with scores, signals, confidence, and risks. It is informational only and not financial advice.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: AISA_BASE_URL can redirect the AISA API key and analysis request to another compatible endpoint.
+
+Mitigation: Keep AISA_BASE_URL unset unless intentionally using a trusted endpoint; run in a minimal environment with only the required AISA_API_KEY.
+
+Risk: Generated financial analysis may be incorrect or misleading.
+
+Mitigation: Treat outputs as informational, verify data independently, and do not use the skill as financial advice.
+
+Risk: The Python dependency range is broad and may change behavior over time.
+
+Mitigation: Pin dependencies before routine or managed use.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users and developers use this skill to analyze user-requested stock or crypto tickers through AISA, compare assets, and summarize signals, confidence, and risks. Outputs are informational market analysis and should not be treated as financial advice. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Ticker symbols and analysis prompts are sent to AISA for processing. <br>
-Mitigation: Use the skill only when sharing those requested tickers and prompts with AISA is acceptable. <br>
-Risk: The skill requires a user-provided AISA_API_KEY and can use a custom AISA_BASE_URL. <br>
-Mitigation: Use a dedicated API key, keep it out of prompts and logs, and leave AISA_BASE_URL unset unless the endpoint is intentionally trusted. <br>
-Risk: The output may include investment signals, targets, stops, and market commentary. <br>
-Mitigation: Treat results as informational market analysis, verify material facts independently, and do not treat the output as financial advice. <br>
+**Output Format:** [Markdown analysis by default, with optional fenced JSON summary from the bundled Python client]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bibaofeng/stock-analysis-zh) <br>
+**Other Properties Related to Output:** [Requires AISA_API_KEY and python3; may send ticker symbols and generated analysis prompts to an external AISA-compatible API.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Guidance] <br>
-**Output Format:** [Markdown market analysis with an optional fenced JSON summary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes ticker-level scores, signal, confidence, price context, targets, stops, comparison summaries, and risk flags when available.] <br>
+1.0.0 (source: server release and skill frontmatter)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

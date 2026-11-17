@@ -1,6 +1,15 @@
 {
-  "ownerId": "kn7egw93kajavr3tpgn3tfww0s82t9ft",
-  "slug": "g0atbot-twitter-threads",
-  "version": "1.0.0",
-  "publishedAt": 1773439791089
+  "name": "twitter-thread-generator",
+  "description": "AI-powered Twitter thread creator. Turn any topic into engaging viral threads.",
+  "price": 12,
+  "category": "content",
+  "tags": ["twitter", "thread", "social-media", "content"],
+  "requires": {
+    "env": ["OPENAI_API_KEY"],
+    "bins": []
+  },
+  "documentation": {
+    "setup_time": "10 minutes",
+    "difficulty": "beginner"
+  }
 }

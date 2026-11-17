@@ -1,44 +1,61 @@
-## Description: <br>
-Interactive guide for integrating MobTech ShareSDK into Android projects through a six-step workflow with user confirmation before project changes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Interactive guide for integrating MobTech ShareSDK into Android projects with 6-step workflow.
 
-## Publisher: <br>
-[haodongling](https://clawhub.ai/user/haodongling) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[haodongling](https://clawhub.ai/user/haodongling)
 
-## Use Case: <br>
-Developers and engineers use this skill to integrate MobTech ShareSDK into Android apps, including Gradle setup, platform devInfo configuration, privacy consent callbacks, share code insertion, and project documentation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can propose and apply edits to Android project files, including Gradle configuration, privacy callbacks, and sharing code. <br>
-Mitigation: Use a git branch, review diffs before applying changes, and approve Gradle sync only for a trusted project. <br>
-Risk: The integration workflow handles MobTech app keys, app secrets, and platform credentials. <br>
-Mitigation: Do not paste live secrets into chat, and keep generated credential files out of public repositories. <br>
+## Use Case:
 
+Android developers use this skill to integrate MobTech ShareSDK into an Android project through a confirmation-driven workflow that configures Gradle, platform credentials, privacy authorization, sharing code, and project documentation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/haodongling/android-sharesdk-integration) <br>
-- [Mob documentation center](https://www.mob.com/wiki/list) <br>
-- [Mob SDK download center](https://www.mob.com/download) <br>
-- [Mob SDK compliance guide](https://www.mob.com/wiki/detailed?wiki=421&id=717) <br>
-- [Mob Android Maven repository](https://mvn.mob.com/android) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with code blocks, shell commands, configuration snippets, and generated project files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May generate an Excel configuration template and SHARESDK_README.md in the user's Android project after confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: ClawHub release metadata) <br>
+Risk: The workflow handles MobTech and social-platform app secrets while generating Android configuration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use placeholder or local-only credentials during agent-assisted edits, keep real secrets out of committed files and chat logs, and review generated Gradle configuration before saving.
+
+Risk: The workflow can modify Android build files and run dependency downloads.
+
+Mitigation: Require explicit user confirmation for file edits and Gradle execution, run in a clean branch or restricted build environment, and review diffs before building.
+
+Risk: Mutable or poorly scoped dependency sources can change what Gradle downloads.
+
+Mitigation: Use a pinned, verified MobSDK plugin version, prefer documented vendor repositories, and avoid the alternate legacy Maven repository unless separately verified.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/haodongling/skills/android-sharesdk-integration)
+- [Mob Documentation Center](https://www.mob.com/wiki/list)
+- [Mob SDK Download Center](https://www.mob.com/download)
+- [Mob SDK Compliance Guide](https://www.mob.com/wiki/detailed?wiki=421&id=717)
+- [Mob Maven Repository](https://mvn.mob.com/android)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Gradle, Java, shell command, Excel template, and README content]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user confirmation before modifying project files or running Gradle commands.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,53 @@
-## Description: <br>
-Convert CSV files to professionally formatted Excel workbooks with Chinese character support, automatic formatting, and multi-sheet capabilities. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts one or more CSV files into formatted Excel workbooks, with encoding detection for Chinese text and optional multi-sheet output.
 
-## Publisher: <br>
-[xuanguan2020](https://clawhub.ai/user/xuanguan2020) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[xuanguan2020](https://clawhub.ai/user/xuanguan2020)
 
-## Use Case: <br>
-Developers, analysts, and agent users use this skill to convert one or more CSV files into formatted Excel workbooks, including multi-sheet reports and files containing Chinese or other non-ASCII text. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The converter reads local CSV files and writes an Excel workbook to the requested path. <br>
-Mitigation: Provide only the intended input files and output path, and review the generated workbook before sharing it. <br>
-Risk: The script depends on openpyxl from the Python package ecosystem. <br>
-Mitigation: Install openpyxl from a trusted package index or approved internal mirror before running the conversion. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xuanguan2020/csvtoexcel) <br>
-- [Publisher profile](https://clawhub.ai/user/xuanguan2020) <br>
+## Use Case:
 
+Developers, analysts, and business users use this skill to convert individual CSV files or combine multiple CSV files into formatted Excel workbooks for reporting and review.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown guidance with shell commands and generated Excel workbook files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local CSV inputs and writes .xlsx workbook files; requires openpyxl to be installed.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: CSV files from untrusted sources may contain formula-like cells that remain active when the generated workbook is opened.
+
+Mitigation: Review or sanitize untrusted CSV content before conversion and inspect the workbook before sharing it.
+
+Risk: The converter depends on the local openpyxl package.
+
+Mitigation: Install it in a virtual environment and pin the dependency version when reproducibility matters.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xuanguan2020/skills/csvtoexcel)
+- [Publisher profile](https://clawhub.ai/user/xuanguan2020)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Code, Files, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks and generated Excel workbook files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces .xlsx workbooks from selected local CSV files; generated spreadsheets may preserve formula-like cells from source CSV data.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

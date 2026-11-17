@@ -1,43 +1,58 @@
-## Description: <br>
-Research a topic via web search, auto-match a GIF with gifgrep, and log structured notes to Bear using a customizable template. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Research a topic via web search, auto-match a GIF with gifgrep, and log structured notes to Bear using a customizable template.
 
-## Publisher: <br>
-[terrycarter1985](https://clawhub.ai/user/terrycarter1985) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[terrycarter1985](https://clawhub.ai/user/terrycarter1985)
 
-## Use Case: <br>
-Developers, researchers, and knowledge workers use this skill to gather web research for a topic, select a related GIF, and create a structured Bear note from a template. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security review reports under-disclosed persistence through Bear notes and fallback Markdown files. <br>
-Mitigation: Review topics and generated note content before use, and avoid sensitive research topics unless this persistence is acceptable. <br>
-Risk: The security guidance says research topics may be sent to external search and GIF tools. <br>
-Mitigation: Do not use confidential topics, templates, or tags unless external disclosure is acceptable. <br>
-Risk: The security guidance flags an unpinned grizzly dependency. <br>
-Mitigation: Pin and review the grizzly dependency before installing in controlled environments. <br>
+## Use Case:
 
+Researchers, developers, and productivity-focused users use this skill to gather web search results for a topic, attach a related GIF, and create a structured Bear note from a customizable template.
 
-## Reference(s): <br>
-- [Research Logger on ClawHub](https://clawhub.ai/terrycarter1985/terrycarter1985-research-logger) <br>
-- [grizzly Go module](https://github.com/tylerwince/grizzly) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Files] <br>
-**Output Format:** [Markdown note content with shell command status output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates a Bear note through grizzly; falls back to a Markdown file under /tmp when note creation fails.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact frontmatter reports 1.0.0) <br>
+Risk: Template, fetched web content, and local path handling may expose users to unsafe note content or unintended file access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Escape template replacements, validate fetched URLs, and constrain template paths before routine use.
+
+Risk: Fallback note storage and Bear note creation behavior may not reliably preserve user intent when note creation fails.
+
+Mitigation: Use private temporary storage and fix the Bear fallback control flow before relying on the fallback output.
+
+Risk: The grizzly dependency is installed from a moving latest version.
+
+Mitigation: Pin the grizzly module version and review dependency changes before installation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/terrycarter1985/skills/terrycarter1985-research-logger)
+- [grizzly install module](https://github.com/tylerwince/grizzly)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown note content with source links and GIF media references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create a Bear note through grizzly or write fallback Markdown content to local temporary storage.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

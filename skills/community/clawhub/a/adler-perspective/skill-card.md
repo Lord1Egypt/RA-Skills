@@ -1,48 +1,63 @@
-## Description: <br>
-Adler Perspective helps an agent respond through an Alfred Adler-inspired individual psychology lens for interpersonal relationships, family education, inferiority and growth, life meaning, and psychological development. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese Adlerian psychology perspective skill that helps an agent answer in an Alfred Adler-inspired educational roleplay voice about purpose, inferiority and growth, social interest, separation of tasks, relationships, family education, life meaning, and psychological growth.
 
-## Publisher: <br>
-[baodirewolf](https://clawhub.ai/user/baodirewolf) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[baodirewolf](https://clawhub.ai/user/baodirewolf)
 
-## Use Case: <br>
-External users and agent operators use this skill to frame reflective conversations with Adlerian concepts such as teleology, inferiority and striving, social interest, separation of tasks, and early memories. It is suitable for educational perspective-taking and roleplay, not diagnosis, treatment, crisis support, or licensed mental health care. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may mistake the roleplay perspective for licensed mental health support. <br>
-Mitigation: Present it as an educational Adlerian perspective tool and route crisis, diagnosis, treatment, and sensitive clinical decisions to qualified human professionals. <br>
-Risk: Adlerian teleology can be applied in ways that overemphasize individual responsibility or imply victim blame. <br>
-Mitigation: Keep responses bounded by the skill's stated limitations and acknowledge environmental, structural, and clinical factors when giving reflective guidance. <br>
-Risk: Roleplay may imply the agent is Alfred Adler himself. <br>
-Mitigation: Maintain a clear first-use disclaimer that the response is based on public Adlerian materials and is not Adler himself. <br>
+## Use Case:
 
+External users can use this skill for reflective, educational conversations framed through Adlerian individual psychology concepts. It is best suited for perspective-taking and personal-growth framing, not diagnosis, therapy, medical advice, or crisis support.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/baodirewolf/adler-perspective) <br>
-- [阿尔弗雷德·阿德勒著作与核心心智模型研究](references/research/01-writings.md) <br>
-- [阿德勒对话与即兴思维研究](references/research/02-conversations.md) <br>
-- [阿德勒表达DNA与写作风格研究](references/research/03-expression-dna.md) <br>
-- [阿德勒的外部视角、批评评价与同侪比较](references/research/04-external-views.md) <br>
-- [阿德勒的关键决策和转折点](references/research/05-decisions.md) <br>
-- [阿尔弗雷德·阿德勒完整时间线 (1870-1937)](references/research/06-timeline.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or plain conversational text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only responses; no code execution, credentials, persistence, or external tool access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Mental-health-adjacent advice may be mistaken for diagnosis, therapy, medical advice, or crisis support.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat responses as reflective Adlerian framing only, and direct users with depression, trauma, crisis, serious distress, or treatment questions to qualified professional support.
+
+Risk: The persona asks the agent to speak as Adler with a doctor's judgment, which can make outputs sound more authoritative than the evidence supports.
+
+Mitigation: Keep clear that this is an Alfred Adler-inspired perspective based on public materials, not Alfred Adler himself or a licensed clinician speaking to the user.
+
+Risk: The purpose-oriented framing can overemphasize individual agency and create victim-blaming interpretations.
+
+Mitigation: Balance agency-oriented reflections with attention to environment, constraints, safety, and the user's lived context.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/baodirewolf/skills/adler-perspective)
+- [阿尔弗雷德·阿德勒著作与核心心智模型研究](references/research/01-writings.md)
+- [阿德勒对话与即兴思维研究](references/research/02-conversations.md)
+- [阿德勒表达DNA与写作风格研究](references/research/03-expression-dna.md)
+- [阿德勒的外部视角、批评评价与同侪比较](references/research/04-external-views.md)
+- [阿德勒的关键决策和转折点](references/research/05-decisions.md)
+- [阿尔弗雷德·阿德勒完整时间线 (1870-1937)](references/research/06-timeline.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Chinese Markdown prose in an Adler-inspired roleplay voice]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code, shell commands, credentials, APIs, or external tools detected in the artifact.]
+
+## Skill Version(s):
+
+1.0.0 (source: server evidence release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

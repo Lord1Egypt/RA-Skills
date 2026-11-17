@@ -1,44 +1,54 @@
-## Description: <br>
-Driftling Buddy adds a compact, non-human companion that reacts to a user's real work, renders bilingual terminal cards, tracks local progress, and grows a collection over time. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Driftling Buddy adds a bilingual, non-human companion system that reacts to a user's work, renders compact buddy cards, grows stats, and maintains a personalized collection over time.
 
-## Publisher: <br>
-[taojinkai](https://clawhub.ai/user/taojinkai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[taojinkai](https://clawhub.ai/user/taojinkai)
 
-## Use Case: <br>
-Developers and external users use this skill to add a lightweight companion layer to normal agent sessions, including progress-aware terminal cards, collection mechanics, bilingual flavor, and local continuity across sessions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Buddy progress and activity-derived notes can be saved locally, which may expose sensitive personal, client, or secret information if those details are placed in buddy context. <br>
-Mitigation: Review or redirect BUDDY_STATE_FILE before use and avoid placing sensitive information in buddy context. <br>
-Risk: The companion layer can add whimsical status text around serious work, which may distract from warnings, failures, or uncertainty. <br>
-Mitigation: Keep the buddy output compact, reduce whimsy for urgent or high-stakes tasks, and never let buddy text hide warnings or unresolved risk. <br>
+## Use Case:
 
+External users and developers use this skill to add a lightweight, persistent companion experience to normal agent sessions while keeping the underlying task work primary. It supports progress/status cards, collectible buddy unlocks, bilingual flavor text, and local collection state.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/taojinkai/driftling-buddy) <br>
-- [Publisher profile](https://clawhub.ai/user/taojinkai) <br>
-- [README](artifact/README.md) <br>
-- [Skill source](artifact/SKILL.md) <br>
-- [Changelog](artifact/CHANGELOG.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with terminal-card text and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local JSON state for buddy collection and growth; supports Chinese, English, and mixed-language output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The skill can keep a local, behavior-derived companion history that may include sensitive task details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use explicit slash commands, avoid sensitive details in buddy names or context fields, set BUDDY_STATE_FILE to an isolated path when needed, and inspect or remove ~/.buddy_mode_state.json to clear saved data.
+
+Risk: The security summary flags unsafe state and terminal handling that users should review before installation.
+
+Mitigation: Review the skill before installing, run the included local checks, and treat generated companion text as status output rather than executable commands.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/taojinkai/skills/driftling-buddy)
+- [Publisher profile](https://clawhub.ai/user/taojinkai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with terminal-style companion cards and optional shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May persist local companion state in a default or user-selected state file.]
+
+## Skill Version(s):
+
+1.0.2 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

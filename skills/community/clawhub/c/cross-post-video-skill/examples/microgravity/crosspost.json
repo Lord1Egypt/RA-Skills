@@ -1,0 +1,62 @@
+{
+  "timezone": "America/New_York",
+  "accounts": [
+    {
+      "name": "TikTok",
+      "platform": "TIKTOK",
+      "socialAccountId": "example-tiktok-account-id",
+      "handle": "@example.orbit",
+      "privacyLevel": "PUBLIC_TO_EVERYONE",
+      "allowComment": true,
+      "allowDuet": false,
+      "allowStitch": false,
+      "privacyOptions": [
+        "PUBLIC_TO_EVERYONE",
+        "MUTUAL_FOLLOW_FRIENDS",
+        "SELF_ONLY"
+      ],
+      "max_video_s": 600
+    },
+    {
+      "name": "Reels",
+      "platform": "INSTAGRAM",
+      "socialAccountId": "example-instagram-account-id",
+      "handle": "@example.orbit"
+    },
+    {
+      "name": "Shorts",
+      "platform": "YOUTUBE",
+      "privacy": "public",
+      "madeForKids": false,
+      "category": "28"
+    }
+  ],
+  "videos": [
+    {
+      "id": "microgravity",
+      "file": "clips/microgravity.mp4",
+      "cover": "covers/microgravity.jpg",
+      "when": "2027-01-12 18:00",
+      "own_video": true,
+      "audio": "original",
+      "ai_generated": false,
+      "promotional": "no",
+      "text": {
+        "TIKTOK": "Why astronauts work out for hours every day\nWithout gravity, bone and muscle waste away. The treadmill, the bike and the weights are how they keep both.\nFootage: NASA.\n#astronaut #spacestation #nasa",
+        "INSTAGRAM": "Astronauts on the space station exercise for hours every day.\n\nIn microgravity the body stops carrying its own weight, and bone and muscle are lost. A treadmill with a harness, a bike and a resistance machine are how crews hold on to both until they are back on Earth.\n\nFootage: NASA.\n#spacestation #nasa #microgravity #astronaut",
+        "YOUTUBE": {
+          "title": "Why astronauts exercise for hours every day in space",
+          "description": "In microgravity the body stops carrying its own weight, so bone and muscle waste away unless crews train every day.\nFootage: NASA, \"What Are the Dangers of Going to Space? We Asked a NASA Expert\".\n#astronaut #spacestation #nasa",
+          "tags": [
+            "space station",
+            "ISS",
+            "microgravity",
+            "astronaut exercise",
+            "NASA",
+            "bone loss"
+          ]
+        }
+      }
+    }
+  ]
+}

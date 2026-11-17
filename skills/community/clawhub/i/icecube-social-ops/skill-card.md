@@ -1,44 +1,63 @@
-## Description: <br>
-IceCube Social Ops helps an agent plan and operate X/Twitter and Xiaohongshu social accounts, including login preparation, publishing schedules, engagement handling, and daily reporting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+IceCube Social Ops manages login, publishing, engagement, and reporting workflows for X/Twitter and Xiaohongshu social accounts after one-time account authorization.
 
-## Publisher: <br>
-[ares521521-design](https://clawhub.ai/user/ares521521-design) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ares521521-design](https://clawhub.ai/user/ares521521-design)
 
-## Use Case: <br>
-Developers, creators, and operators can use this skill to guide an agent through social account setup, content generation, scheduled publishing, engagement triage, and operational reporting for X/Twitter and Xiaohongshu. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks an agent to use live social account sessions and may post, reply, follow, or handle direct messages publicly. <br>
-Mitigation: Use an isolated browser profile containing only the intended accounts and require human draft review before posts, replies, follows, or direct messages. <br>
-Risk: Autonomous operation could continue beyond the operator's intended platform, action, or timing boundaries. <br>
-Mitigation: Define explicit platform, action, rate, schedule, and stop conditions before enabling autonomous operation. <br>
-Risk: Stored or reusable browser sessions can expose sensitive social account access. <br>
-Mitigation: Avoid saving reusable cookies and revoke or refresh sessions when account operation is complete. <br>
+## Use Case:
 
+External social account operators use this skill to run scheduled publishing, engagement handling, login checks, and operational reporting for X/Twitter and Xiaohongshu accounts.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ares521521-design/icecube-social-ops) <br>
-- [ares521521-design Publisher Profile](https://clawhub.ai/user/ares521521-design) <br>
-- [Xiaohongshu Creator Platform](https://creator.xiaohongshu.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with tables, checklists, schedules, reports, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include social post drafts, account operation checklists, engagement response guidance, and daily operations reports.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill asks for broad logged-in browser control over real social accounts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated browser profile or isolated account, avoid normal browsing sessions, and avoid saving raw cookies unless the security impact is understood.
+
+Risk: The artifact defaults to automatic public posting and message handling after one-time authorization.
+
+Mitigation: Require manual approval for posts, replies, follows, and direct-message responses at first, then expand automation only after behavior is reviewed.
+
+Risk: Engagement tracking and direct-message handling can capture private messages or personal data.
+
+Mitigation: Avoid logging private messages unless users have consented and retention rules are defined.
+
+Risk: Automated posting, replies, and follows can trigger platform policy, spam, or rate-limit issues.
+
+Mitigation: Respect platform rules, keep conservative posting intervals, pause on rate limits, and review generated content for sensitive or prohibited terms.
+
+## Reference(s):
+
+- [ClawHub skill page for IceCube Social Ops](https://clawhub.ai/ares521521-design/skills/icecube-social-ops)
+- [ares521521-design ClawHub publisher profile](https://clawhub.ai/user/ares521521-design)
+- [Xiaohongshu Creator Platform](https://creator.xiaohongshu.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, operational checklists, and report templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes posting schedules, approval posture, platform limits, and a daily social operations report structure.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

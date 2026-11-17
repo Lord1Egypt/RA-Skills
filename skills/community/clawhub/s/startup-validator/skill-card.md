@@ -1,44 +1,59 @@
-## Description: <br>
-Structures early startup validation with commands for idea validation, competitive analysis, and MVP planning plus a standardized reporting template. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Startup validation before you build: structured validate, compete, and mvp commands plus a reporting template for startup ideas, competitive landscape, MVP scope, and early PMF thinking.
 
-## Publisher: <br>
-[codekungfu](https://clawhub.ai/user/codekungfu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[codekungfu](https://clawhub.ai/user/codekungfu)
 
-## Use Case: <br>
-Founders, indie hackers, and startup teams use this skill to structure early validation for an idea, competitive landscape, MVP scope, and product-market-fit thinking before building. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Startup ideas, market details, or strategy entered on the command line may be saved in the skill's local JSON file. <br>
-Mitigation: Avoid passing secrets, API keys, confidential strategy, or sensitive customer information as command arguments. <br>
-Risk: The skill can structure validation work but is not an automated market validator or a substitute for user judgment. <br>
-Mitigation: Treat outputs as planning templates, ground analysis in real user-provided or external data, and mark missing data as unavailable. <br>
+## Use Case:
 
+Founders, indie hackers, and startup-focused developers use this skill to structure early validation, compare competitors, and scope an MVP before building.
 
-## Reference(s): <br>
-- [Startup Validator Guide](references/startup_validator_guide.md) <br>
-- [ClawHub release page](https://clawhub.ai/codekungfu/startup-validator) <br>
-- [YC: The real product/market fit](https://www.ycombinator.com/library/5z-the-real-product-market-fit) <br>
-- [Pre-build idea validator use case](https://github.com/hesamsheikh/awesome-openclaw-usecases/blob/main/usecases/pre-build-idea-validator.md) <br>
-- [Market research product factory use case](https://github.com/hesamsheikh/awesome-openclaw-usecases/blob/main/usecases/market-research-product-factory.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports with JSON command responses and inline shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes command records to a local JSON data file when the bundled CLI helper is used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: User-provided startup ideas and market details may be silently recorded in the local data file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the local data retention behavior before use, avoid entering sensitive proprietary details, and clear stored records when they are no longer needed.
+
+Risk: The command names imply a full validation workflow, but the bundled script mainly records inputs and returns status metadata.
+
+Mitigation: Treat command output as a workflow scaffold and require separate market research, user interviews, and competitive evidence before making business decisions.
+
+## Reference(s):
+
+- [Startup Validator Guide](references/startup_validator_guide.md)
+- [YC: The Real Product/Market Fit](https://www.ycombinator.com/library/5z-the-real-product-market-fit)
+- [Pre-build Idea Validator Use Case](https://github.com/hesamsheikh/awesome-openclaw-usecases/blob/main/usecases/pre-build-idea-validator.md)
+- [Market Research Product Factory Use Case](https://github.com/hesamsheikh/awesome-openclaw-usecases/blob/main/usecases/market-research-product-factory.md)
+- [Hacker News Discussion](https://news.ycombinator.com/item?id=41986396)
+- [Reddit r/startups Related Thread](https://www.reddit.com/r/startups/comments/1055d61yyz/idea_validator_ai/)
+- [ClawHub Skill Page](https://clawhub.ai/codekungfu/skills/startup-validator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown report template with JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The bundled commands append local JSON records and return status, command, record, total_records, and reference_urls fields.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

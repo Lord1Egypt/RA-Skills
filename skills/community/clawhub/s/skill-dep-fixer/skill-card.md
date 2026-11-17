@@ -1,39 +1,54 @@
-## Description: <br>
-Generates a Node.js CLI tool that scans OpenClaw skill dependency declarations and can report or fix missing npm, pip, Homebrew, and system binary dependencies. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates a Node.js CLI tool that scans installed OpenClaw skills for missing npm, pip, Homebrew, and system dependencies and optionally fixes supported packages.
 
-## Publisher: <br>
-[christianteohx](https://clawhub.ai/user/christianteohx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[christianteohx](https://clawhub.ai/user/christianteohx)
 
-## Use Case: <br>
-Developers and agents use this skill to generate a CLI that checks installed OpenClaw skills for missing dependency declarations and optionally installs fixable dependencies after review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Fix or upgrade modes can change local Homebrew, npm, or pip packages. <br>
-Mitigation: Run dry-run or targeted checks first, then review proposed package actions before using fix or upgrade commands. <br>
-Risk: Dependency installation may pull packages from untrusted or unexpected sources. <br>
-Mitigation: Prefer trusted package sources or verified releases when accepting installation actions. <br>
+## Use Case:
 
+Developers and engineers use this skill to generate a CLI that checks OpenClaw skill dependency declarations, reports missing tools, and installs fixable npm, pip, or Homebrew dependencies.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [code, shell commands, markdown, guidance] <br>
-**Output Format:** [Markdown with JavaScript code and shell command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include dry-run, fix, JSON, report, and targeted skill-check command options for the generated CLI.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.9 (source: server-resolved release metadata) <br>
+Risk: The generated workflow can install global packages or an unverified latest-release binary.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use dry-run first, inspect each proposed package, avoid elevated privileges, and prefer pinned or verified installation methods.
+
+Risk: Dependency fixes may be based on declarations from skills that have not been reviewed.
+
+Mitigation: Install only dependencies declared by trusted skills and review the skill before installing or running fixes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/christianteohx/skills/skill-dep-fixer)
+- [Project homepage](https://github.com/christianteohx/skill-dep-fixer)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown with JavaScript code and shell command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated CLI supports dry-run, fix, skill-specific, JSON, report, and help modes.]
+
+## Skill Version(s):
+
+2.0.9 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,57 @@
-## Description: <br>
-Swedish double-entry bookkeeping via Accounted (app.gnubok.se), covering bank transaction categorization, invoicing, VAT, payroll, reports, and month-end close with staged human approval for writes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Swedish double-entry bookkeeping via Accounted (app.gnubok.se), covering bank transaction categorization, invoices, VAT, payroll, reports, and month-end close with every write staged for human approval.
 
-## Publisher: <br>
-[mattssonn](https://clawhub.ai/user/mattssonn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mattssonn](https://clawhub.ai/user/mattssonn)
 
-## Use Case: <br>
-External users, developers, and small-business operators use this skill to connect an OpenClaw agent to Accounted/Gnubok for Swedish bookkeeping workflows such as categorizing bank transactions, creating invoices, preparing VAT reports, and closing accounting periods. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can access sensitive Swedish bookkeeping data and may request accounting write scopes. <br>
-Mitigation: Use hosted OAuth or a sandbox/test key first, grant only required scopes, and review every staged operation preview before approval. <br>
-Risk: Incorrect approvals could affect invoices, VAT filings, payroll, reports, or accounting period close workflows. <br>
-Mitigation: Confirm the company, period, amounts, and Swedish jurisdiction before approving operations, especially high-risk Skatteverket submissions. <br>
-Risk: API keys or OAuth grants can expose financial-system access if over-scoped or mishandled. <br>
-Mitigation: Prefer hosted OAuth when possible, keep grants read-only by default, and add write scopes only for the specific workflow being performed. <br>
+## Use Case:
 
+External users, developers, and small-business operators use this skill to connect an OpenClaw agent to Accounted for Swedish bookkeeping workflows, including transaction categorization, invoicing, VAT reporting, payroll, reconciliation, and month-end close. It is aimed at accounting assistance where ledger-changing operations remain staged until a human reviews and approves them.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mattssonn/accounted) <br>
-- [Accounted OpenClaw homepage](https://github.com/erp-mafia/accounted-openclaw) <br>
-- [Accounted](https://app.gnubok.se) <br>
-- [Connect with Claude / MCP docs](https://app.gnubok.se/docs/api/connect-claude) <br>
-- [gnubok-mcp package](https://www.npmjs.com/package/gnubok-mcp) <br>
+### Deployment Geography for Use:
 
+Sweden
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, text] <br>
-**Output Format:** [Markdown with inline shell commands and JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides MCP setup and staged accounting workflows; write operations require user review and approval before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Mutable remote playbooks could influence accounting workflows after installation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat loaded playbooks as workflow suggestions and keep the documented per-operation approval rule in force for every accounting change.
+
+Risk: The API-key npx bridge can expose sensitive accounting access if the package source or version is not verified.
+
+Mitigation: Prefer hosted OAuth with read-only scopes, grant only required write scopes, use a sandbox company first, and verify or pin gnubok-mcp when the bridge is required.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mattssonn/skills/accounted)
+- [Project homepage](https://github.com/erp-mafia/accounted-openclaw)
+- [Accounted](https://app.gnubok.se)
+- [Accounted MCP connection docs](https://app.gnubok.se/docs/api/connect-claude)
+- [gnubok-mcp npm package](https://www.npmjs.com/package/gnubok-mcp)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs include workflow steps, setup commands, operation previews, approval guidance, and troubleshooting notes.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

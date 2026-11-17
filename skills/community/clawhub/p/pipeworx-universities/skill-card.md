@@ -1,40 +1,50 @@
-## Description: <br>
-Search worldwide universities by name or country and retrieve institution names, locations, domains, and website URLs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search worldwide universities by name or country and retrieve institution names, locations, domains, and website URLs.
 
-## Publisher: <br>
-[b-gutman](https://clawhub.ai/user/b-gutman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[b-gutman](https://clawhub.ai/user/b-gutman)
 
-## Use Case: <br>
-External users and agents use this skill to search public university records by institution name, country, or both, then return matching institution metadata for research, enrichment, or lookup workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: University search terms are sent to Pipeworx's hosted MCP gateway. <br>
-Mitigation: Avoid using sensitive private research queries unless that external data flow is acceptable. <br>
+## Use Case:
 
+Agent users and developers use this skill to look up university records through a Pipeworx-hosted MCP service. It supports searches by institution name, country, or both when an agent needs university names, country details, domains, and web page URLs.
 
-## Reference(s): <br>
-- [ClawHub Pipeworx universities skill page](https://clawhub.ai/b-gutman/pipeworx-universities) <br>
-- [Publisher profile](https://clawhub.ai/user/b-gutman) <br>
-- [Pipeworx universities MCP gateway](https://gateway.pipeworx.io/universities/mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, API calls, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with MCP configuration and JSON-style university search results.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Results include university name, country, ISO country code, state or province where available, domain names, and web page URLs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: University search queries are sent to the listed Pipeworx-hosted MCP endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid entering sensitive personal data as search terms and review the disclosed endpoint before installation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/b-gutman/skills/pipeworx-universities)
+- [Pipeworx universities MCP endpoint](https://gateway.pipeworx.io/universities/mcp)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with bash and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The remote tool returns university names, countries, ISO country codes, state/province values when available, domains, and web page URLs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

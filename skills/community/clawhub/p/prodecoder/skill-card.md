@@ -1,41 +1,54 @@
-## Description: <br>
-Prodecoder analyzes viral content from major Chinese platforms, including visual hooks, copywriting patterns, sensitivity checks, and reusable report guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deeply analyzes viral content patterns across Chinese social platforms, including safety-oriented sensitivity checks, visual psychology breakdowns, and reusable content prompts.
 
-## Publisher: <br>
-[gyy929-dwls](https://clawhub.ai/user/gyy929-dwls) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gyy929-dwls](https://clawhub.ai/user/gyy929-dwls)
 
-## Use Case: <br>
-Content creators and operations teams use this skill to review public content URLs and produce structured Markdown breakdowns of platform, visual, copywriting, and compliance patterns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can surface moderation or traffic-limit evasion patterns and generate reusable imitation guidance. <br>
-Mitigation: Use it only for compliant content review or defensive analysis, and do not apply bypass or imitation guidance to evade platform rules. <br>
-Risk: User-provided URLs may expose content that was not intended for analysis. <br>
-Mitigation: Provide only public, intended URLs and review generated reports before reuse. <br>
+## Use Case:
 
+Content creators, operators, and marketing analysts use this skill to analyze public social-media URLs from platforms such as Douyin, Xiaohongshu, Bilibili, and WeChat, then generate structured Markdown reports with content mechanics, visual hooks, safety checks, and replication prompts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gyy929-dwls/prodecoder) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/gyy929-dwls) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [JSON analysis framework that guides a structured Markdown report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Accepts a public content URL and returns platform classification, analysis prompts, and sensitivity notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and script header) <br>
+Risk: The skill may contact submitted URLs through a browser agent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not submit private, authenticated, or sensitive links.
+
+Risk: The skill can analyze tactics for bypassing platform limits or moderation signals.
+
+Mitigation: Use the output for review and compliance awareness, not to bypass moderation, ranking, or rate-limiting rules.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gyy929-dwls/skills/prodecoder)
+- [Publisher profile](https://clawhub.ai/user/gyy929-dwls)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Analysis, Code, Guidance]
+
+**Output Format:** [Structured Markdown report with JSON-backed analysis framework]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May analyze submitted URLs through a browser agent; users should avoid private or authenticated links.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and script header)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

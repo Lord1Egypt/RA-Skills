@@ -1,0 +1,24 @@
+name: selfmedia-newsletter-draft-cn
+slug: selfmedia-newsletter-draft-cn
+display_name: 周刊编辑草稿
+description: 将用户筛选的链接、笔记、受众和栏目格式编排为可编辑中文周刊，提供带来源链接的导语、条目摘要与编辑说明，适用于内容策展、社群周报与品牌通讯。仅使用用户材料；缺少链接、受众或栏目时明确列出缺项，不采集未授权名单或执行群发。
+version: 1.0.1
+icon: icon-512.png
+repository: https://github.com/xxjrq/selfmedia-newsletter-draft-cn
+license: MIT-0
+tags:
+  - newsletter
+  - chinese-writing
+  - content-curation
+  - markdown
+trigger_words:
+  - 周刊草稿
+  - 编辑周报
+  - newsletter draft
+interface:
+  display_name: 周刊编辑草稿
+  short_description: 将已选素材整理成带来源、可编辑并可继续发布的中文周刊草稿
+  default_prompt: 请根据我提供的链接、笔记、受众和栏目格式，生成带来源链接的中文周刊草稿；若资料不足，请先列出缺项。
+  icon_small: icon-512.png
+  icon_large: icon-512.png
+self_test: bash scripts/self-test.sh

@@ -1,39 +1,53 @@
-## Description: <br>
-Perform a complete monthly financial reconciliation - review all transactions, match invoices, check outstanding payments, and prepare for tax filing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Perform a complete monthly financial reconciliation - review all transactions, match invoices, check outstanding payments, and prepare for tax filing.
 
-## Publisher: <br>
-[stanlee000](https://clawhub.ai/user/stanlee000) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[stanlee000](https://clawhub.ai/user/stanlee000)
 
-## Use Case: <br>
-Business users and accounting operators use this skill to close a monthly bookkeeping period in Norman Finance by reviewing transactions, reconciling invoices, checking receipts, preparing tax information, and summarizing outstanding actions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can make real bookkeeping changes in a Norman Finance account, including categorizing and verifying transactions, linking invoices and attachments, and preparing tax workflows. <br>
-Mitigation: Review each proposed category, verification, invoice match, reminder, attachment link, and tax preview before approving changes or submission. <br>
-Risk: Monthly reconciliation may rely on incomplete or unclear records, such as missing receipts or uncertain transaction categories. <br>
-Mitigation: Flag missing receipts or unclear categories for user review before marking transactions verified or closing the month. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Norman Finance](https://norman.finance) <br>
+## Use Case:
 
+Employees and finance operators use this skill to close a monthly accounting period by reviewing transactions, reconciling invoices and payments, checking receipts, preparing tax overviews, and summarizing outstanding actions.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Text, API Calls] <br>
-**Output Format:** [Markdown summary with interactive confirmations and Norman Finance tool calls] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the norman-finance MCP integration and explicit user confirmation for tax submission.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can modify accounting records and initiate finance workflows through the Norman Finance MCP.
+
+Mitigation: Confirm the target month and review each proposed categorization, verification, reminder, and tax action before allowing the skill to proceed.
+
+Risk: Month-end reconciliation may produce incorrect bookkeeping outcomes if missing receipts, unclear categories, or unpaid invoices are accepted without review.
+
+Mitigation: Require user review for flagged missing information and outstanding items before marking the period complete.
+
+## Reference(s):
+
+- [Norman Finance](https://norman.finance)
+- [ClawHub skill page](https://clawhub.ai/stanlee000/skills/norman-monthly-reconciliation)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, text, API Calls]
+
+**Output Format:** [Markdown guidance with proposed finance actions and summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user confirmation before sensitive final actions such as tax submission.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

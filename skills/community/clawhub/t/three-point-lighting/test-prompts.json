@@ -1,0 +1,52 @@
+{
+  "skill": "three-point-lighting",
+  "version": "0.1.0",
+  "source_book": "纽约摄影学院摄影教程 — 美国纽约摄影学院",
+  "darwin_compatible": true,
+  "test_cases": [
+    {
+      "id": "should-trigger-01",
+      "type": "should_trigger",
+      "prompt": "摄影室怎么布光拍人像？",
+      "expected_behavior": "调用 three-point-lighting，讲解三步式布光流程",
+      "notes": "正面场景：棚拍布光"
+    },
+    {
+      "id": "should-trigger-02",
+      "type": "should_trigger",
+      "prompt": "主灯和辅助灯的功率比例怎么设？",
+      "expected_behavior": "调用 three-point-lighting，讲解光比控制（1:1/4:1/9:1）",
+      "notes": "正面场景：光比控制"
+    },
+    {
+      "id": "should-trigger-03",
+      "type": "should_trigger",
+      "prompt": "three point lighting setup for portrait",
+      "expected_behavior": "调用 three-point-lighting，系统讲解主灯/辅助灯/背景灯的设置",
+      "notes": "正面场景：三点布光"
+    },
+    {
+      "id": "should-not-trigger-01",
+      "type": "should_not_trigger",
+      "prompt": "户外人像用什么光线方向？",
+      "expected_behavior": "不应调用 three-point-lighting，应调用 natural-light-direction",
+      "notes": "跨 skill 混淆诱饵：自然光方向问题"
+    },
+    {
+      "id": "should-not-trigger-02",
+      "type": "should_not_trigger",
+      "prompt": "推荐一款摄影灯",
+      "expected_behavior": "纯器材推荐，不应调用方法论 skill",
+      "notes": "诱饵：器材推荐"
+    },
+    {
+      "id": "edge-01",
+      "type": "edge_case",
+      "prompt": "只用一盏灯怎么拍人像？",
+      "expected_behavior": "边界模糊——单灯布光是三步式的简化版。可部分调用但需说明完整流程",
+      "notes": "边界：单灯 vs 三灯"
+    }
+  ],
+  "minimum_pass_rate": 0.8,
+  "notes": "至少 3 条 should_trigger + 2 条 should_not_trigger + 1 条 edge_case。"
+}

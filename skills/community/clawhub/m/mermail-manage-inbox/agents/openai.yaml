@@ -1,0 +1,11 @@
+interface:
+  display_name: "Manage Mermail Inbox"
+  short_description: "Read, search, clean up, and organize inbox messages"
+  default_prompt: "Use $mermail-manage-inbox for ordinary inbox search, cleanup, labels, folders, attachments, and thread review, not OTP or mailbox provisioning."
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "mermail"
+      description: "Mermail workspace and mailbox MCP server"
+      transport: "streamable_http"
+      url: "https://console.mermail.app/mcp"

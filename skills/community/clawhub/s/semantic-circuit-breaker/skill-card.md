@@ -1,40 +1,53 @@
-## Description: <br>
-Provides guidance for designing a semantic circuit breaker that protects LLM-backed APIs by evaluating response content quality instead of only status codes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents in designing semantic circuit breakers that protect downstream services by monitoring response meaning, consistency, factuality, and toxicity rather than only transport errors.
 
-## Publisher: <br>
-[kingofzhao](https://clawhub.ai/user/kingofzhao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kingofzhao](https://clawhub.ai/user/kingofzhao)
 
-## Use Case: <br>
-Developers and engineers use this skill to design quality safeguards for LLM APIs and downstream services. It helps reason about semantic drift, inconsistency, factual errors, toxicity spikes, and state transitions for degraded responses. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Future implementations that intercept traffic, log responses, call embedding providers, or connect fact-checking systems could expose sensitive request or response content. <br>
-Mitigation: Review added integrations for privacy, retention, access controls, and operational safeguards before deployment. <br>
-Risk: Semantic thresholds and factuality checks can create false positives or false negatives that block useful responses or allow poor-quality output through. <br>
-Mitigation: Calibrate thresholds with representative traffic, test fallback behavior, and keep monitoring or review paths for high-impact use cases. <br>
+## Use Case:
 
+Developers and engineers use this skill to reason about quality safeguards for LLM APIs and similar services, especially when responses may be syntactically valid but semantically wrong, drifting, inconsistent, factually incorrect, or harmful.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kingofzhao/semantic-circuit-breaker) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code] <br>
-**Output Format:** [Markdown with conceptual guidance and Python pseudocode] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance-only; no executable files, service access, or runtime integration are included in this release.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The artifact is Chinese-language documentation, which may be unsuitable for teams that require English-only operational guidance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when Chinese-language documentation is acceptable for the workflow, or translate and review the guidance before use.
+
+Risk: The skill provides conceptual guidance and illustrative pseudocode rather than a production implementation.
+
+Mitigation: Treat generated recommendations and code sketches as design input, then review, test, and adapt them before deploying a semantic circuit breaker.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kingofzhao/skills/semantic-circuit-breaker)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code]
+
+**Output Format:** [Markdown guidance with illustrative Python pseudocode]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only skill; inspected artifact does not execute code or request local or external data access.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

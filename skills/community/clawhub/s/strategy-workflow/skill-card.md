@@ -1,48 +1,68 @@
-## Description: <br>
-Comprehensive strategy development workflow from ideation to validation for creating trading strategies, running backtests, parameter optimization, and walk-forward validation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Comprehensive strategy development workflow from ideation to validation, including trading strategy creation, backtesting, parameter optimization, and walk-forward validation.
 
-## Publisher: <br>
-[ahuserious](https://clawhub.ai/user/ahuserious) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ahuserious](https://clawhub.ai/user/ahuserious)
 
-## Use Case: <br>
-Developers, quantitative researchers, and trading-system operators use this skill to move from strategy hypothesis through GPU-accelerated backtesting, optimization, validation, and reporting. The workflow is intended to guide agent-assisted execution of trading research and operational runbooks. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The workflow can encourage high-authority operations such as persistent watchdogs, worker kill/relaunch behavior, startup hooks, and autonomous remediation. <br>
-Mitigation: Require explicit human approval before launching watchdogs, startup hooks, or autonomous repair loops, and run them only in an isolated machine or disposable cloud instance. <br>
-Risk: The artifact includes SSH/SCP and cloud execution paths that may affect remote systems or expose credentials and data. <br>
-Mitigation: Review every remote command and referenced script before use, avoid root SSH unless required, and keep credentials and trading data out of agent-visible logs. <br>
-Risk: The workflow references private documentation ingest, backups, exports, and state/log artifacts. <br>
-Mitigation: Get approval before ingesting private documentation or exporting artifacts, and limit retained logs and backups to the minimum required for reproducibility. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Strategy Generation Reference](artifact/references/strategy_generation.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/ahuserious/strategy-workflow) <br>
-- [VectorBT Documentation](https://vectorbt.dev/) <br>
-- [NautilusTrader Documentation](https://nautilustrader.io/) <br>
-- [Optuna Documentation](https://optuna.readthedocs.io/) <br>
-- [QuantStats Repository](https://github.com/ranaroussi/quantstats) <br>
-- [TradingView Bollinger Bands Reference](https://www.tradingview.com/support/solutions/43000501840/) <br>
-- [TradingView CCI Stochastic Reference](https://www.tradingview.com/script/XZyG5SOx-CCI-Stochastic-and-a-quick-lesson-on-Scalping-Trading-Systems/) <br>
+## Use Case:
 
+Developers and quantitative trading practitioners use this skill to turn strategy hypotheses into backtestable implementations, optimization runs, validation plans, and performance reports.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with inline shell commands, configuration examples, and code snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose local or remote execution steps, watchdog operation, and state/log artifact review.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server-resolved release metadata; artifact frontmatter reports 2.0.0) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill directs high-autonomy watchdogs, worker relaunches, process repair behavior, and persistent state/log writes.
+
+Mitigation: Run only in a bounded workspace or container, limit Bash/Write/Edit permissions, require approval for launching or killing processes, and avoid persistent watchdog auto-starts unless explicitly needed.
+
+Risk: The workflow includes SSH, SCP, cloud GPU setup, API-oriented infrastructure steps, and backup/data-transfer behavior.
+
+Mitigation: Use least-privilege credentials, scope SSH/API access to the target environment, and require explicit approval before copying data or running remote commands.
+
+Risk: Trading optimization outputs can be overfit or financially misleading if validation gates are skipped.
+
+Mitigation: Enforce pre-flight data checks, minimum trade counts, walk-forward and out-of-sample validation, Monte Carlo stress testing, and human review before treating results as trading guidance.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ahuserious/skills/strategy-workflow)
+- [Strategy Generation Reference](references/strategy_generation.md)
+- [VectorBT Documentation](https://vectorbt.dev/)
+- [NautilusTrader Docs](https://nautilustrader.io/)
+- [Optuna Documentation](https://optuna.readthedocs.io/)
+- [QuantStats](https://github.com/ranaroussi/quantstats)
+- [TradingView Bollinger Bands Reference](https://www.tradingview.com/support/solutions/43000501840/)
+- [TradingView CCI Stochastic Reference](https://www.tradingview.com/script/XZyG5SOx-CCI-Stochastic-and-a-quick-lesson-on-Scalping-Trading-Systems/)
+- [TradingView PVSRA Volume Suite Reference](https://www.tradingview.com/script/UcbR9FIH-Traders-Reality-PVSRA-Volume-Suite/)
+- [TradingView Traders Reality Library Reference](https://www.tradingview.com/script/8zgJTM9u-Traders-Reality-Lib/)
+- [Ray Documentation](https://docs.ray.io/en/latest/index.html)
+- [Auto-sklearn](https://github.com/automl/auto-sklearn)
+- [Auto-PyTorch](https://github.com/automl/Auto-PyTorch)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with inline code blocks, shell commands, configuration paths, and report-generation instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce backtest plans, strategy and configuration code, validation commands, optimization settings, and tearsheet/report instructions.]
+
+## Skill Version(s):
+
+0.1.0 (source: server-resolved release metadata; artifact frontmatter lists 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

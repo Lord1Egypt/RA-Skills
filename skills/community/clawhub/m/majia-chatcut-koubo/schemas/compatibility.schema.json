@@ -1,0 +1,107 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/maojiebc/majia-chatcut-koubo/schemas/compatibility.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "host", "status", "observedAt", "toolSchemaHash", "capabilities", "requiredProbes"],
+  "properties": {
+    "$schema": {"type": "string"},
+    "$comment": {"type": "string"},
+    "schemaVersion": {"const": "1.0.0"},
+    "host": {"const": "chatcut"},
+    "status": {"enum": ["unverified", "validated", "stale"]},
+    "observedAt": {"type": ["string", "null"], "format": "date-time"},
+    "toolSchemaHash": {"type": "string", "minLength": 1},
+    "capabilities": {
+      "type": "object", "additionalProperties": false,
+      "required": ["maskCoordinateOriginY", "circleRadiusSemantic", "propertyOverridesMode", "fxLaneExecutionOrder", "exportFpsBehavior"],
+      "properties": {
+        "maskCoordinateOriginY": {"enum": ["unknown", "top", "bottom"]},
+        "circleRadiusSemantic": {"enum": ["unknown", "radius-over-min-dimension", "diameter-over-min-dimension"]},
+        "propertyOverridesMode": {"enum": ["unknown", "patch", "replace"]},
+        "fxLaneExecutionOrder": {"enum": ["unknown", "ascending", "descending", "creation-order"]},
+        "exportFpsBehavior": {"enum": ["unknown", "timeline", "explicit-export-setting", "host-dependent"]}
+      }
+    },
+    "requiredProbes": {
+      "type": "array",
+      "minItems": 5,
+      "maxItems": 5,
+      "uniqueItems": true,
+      "allOf": [
+        {
+          "contains": {"type": "object", "required": ["id"], "properties": {"id": {"const": "mask-origin"}}},
+          "minContains": 1,
+          "maxContains": 1
+        },
+        {
+          "contains": {"type": "object", "required": ["id"], "properties": {"id": {"const": "circle-radius"}}},
+          "minContains": 1,
+          "maxContains": 1
+        },
+        {
+          "contains": {"type": "object", "required": ["id"], "properties": {"id": {"const": "effect-order"}}},
+          "minContains": 1,
+          "maxContains": 1
+        },
+        {
+          "contains": {"type": "object", "required": ["id"], "properties": {"id": {"const": "property-override-mode"}}},
+          "minContains": 1,
+          "maxContains": 1
+        },
+        {
+          "contains": {"type": "object", "required": ["id"], "properties": {"id": {"const": "export-fps"}}},
+          "minContains": 1,
+          "maxContains": 1
+        }
+      ],
+      "items": {
+        "type": "object", "additionalProperties": false, "required": ["id", "status", "evidence"],
+        "properties": {
+          "id": {"enum": ["mask-origin", "circle-radius", "effect-order", "property-override-mode", "export-fps"]},
+          "status": {"enum": ["not-run", "passed", "failed"]},
+          "evidence": {"type": "string"}
+        }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "type": "object",
+        "required": ["status"],
+        "properties": {"status": {"const": "validated"}}
+      },
+      "then": {
+        "type": "object",
+        "properties": {
+          "observedAt": {"type": "string", "format": "date-time"},
+          "toolSchemaHash": {
+            "type": "string",
+            "pattern": "^sha256:[0-9a-f]{64}$"
+          },
+          "capabilities": {
+            "type": "object",
+            "properties": {
+              "maskCoordinateOriginY": {"not": {"const": "unknown"}},
+              "circleRadiusSemantic": {"not": {"const": "unknown"}},
+              "propertyOverridesMode": {"not": {"const": "unknown"}},
+              "fxLaneExecutionOrder": {"not": {"const": "unknown"}},
+              "exportFpsBehavior": {"not": {"const": "unknown"}}
+            }
+          },
+          "requiredProbes": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "status": {"const": "passed"},
+                "evidence": {"type": "string", "pattern": "\\S"}
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

@@ -1,40 +1,53 @@
-## Description: <br>
-Capture meeting summaries and action items from voice or text. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Capture meeting summaries and action items from voice or text.
 
-## Publisher: <br>
-[atiati82](https://clawhub.ai/user/atiati82) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[atiati82](https://clawhub.ai/user/atiati82)
 
-## Use Case: <br>
-Team members and employees use this skill to turn meeting notes into structured records, save action items in PostgreSQL, and receive a concise German confirmation summary. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Meeting notes may contain sensitive business or personal information that is stored in PostgreSQL. <br>
-Mitigation: Use only an approved database with retention and access policies suitable for the meeting content. <br>
-Risk: Database writes are triggered from broad voice or text cues and have under-specified write controls. <br>
-Mitigation: Use a dedicated least-privilege PostgreSQL role and add a confirmation step before writing records. <br>
+## Use Case:
 
+Employees and teams use this skill to turn voice or text meeting notes into structured meeting records, decisions, and action items. The skill stores the extracted records in PostgreSQL and replies with a German summary.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/atiati82/andara-meeting-minutes) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands] <br>
-**Output Format:** [German structured Markdown summary with PostgreSQL psql command execution] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses DATABASE_URL and writes meeting records and action items to PostgreSQL.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill writes potentially sensitive meeting content to PostgreSQL.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with clear storage, retention, and review controls; avoid confidential meetings until those controls are established.
+
+Risk: The skill uses unsafe SQL templates and provides limited user control before saving content.
+
+Mitigation: Use a dedicated least-privilege PostgreSQL account, parameterized or safely escaped inserts, and an explicit confirmation step before saving meeting content.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/atiati82/skills/andara-meeting-minutes)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands]
+
+**Output Format:** [German structured Markdown summary with PostgreSQL psql command steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes meeting and action item records to PostgreSQL when DATABASE_URL is configured.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

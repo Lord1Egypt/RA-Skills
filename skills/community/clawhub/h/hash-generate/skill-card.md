@@ -1,38 +1,49 @@
-## Description: <br>
-Hash, HMAC, encode/decode, UUID generation, and hash identification. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Hash, HMAC, encode/decode, UUID generation, and hash identification.
 
-## Publisher: <br>
-[CutTheMustard](https://clawhub.ai/user/CutTheMustard) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[cutthemustard](https://clawhub.ai/user/cutthemustard)
 
-## Use Case: <br>
-External users and developers use this skill to compute hashes and HMACs, encode or decode text, generate UUIDs, and identify likely hash algorithms. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The service receives the exact input submitted for hashing or encoding, which can expose secrets or private text. <br>
-Mitigation: Do not submit passwords, API keys, private documents, or other sensitive material; use a local hash command for sensitive inputs. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/CutTheMustard/hash-generate) <br>
-- [Hash service homepage](https://hash.agentutil.net) <br>
+## Use Case:
 
+Developers and technical users use this skill to generate hashes and HMACs, encode or decode common formats, generate UUIDs, and identify possible hash algorithms.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON] <br>
-**Output Format:** [Plain text or JSON results from the hash service] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include hash value, algorithm, encoding, input length, request ID, and service URL.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Inputs are processed by a third-party API, so sensitive material could be exposed outside the user's local environment.
+
+Mitigation: Do not send passwords, API keys, private keys, recovery phrases, proprietary data, or other secrets unless remote processing has been explicitly approved; use local tools for sensitive inputs.
+
+## Reference(s):
+
+- [Hash Generate on ClawHub](https://clawhub.ai/cutthemustard/skills/hash-generate)
+- [Hash Agent Utility](https://hash.agentutil.net)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Markdown with JSON and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May return hash values, HMACs, encoded or decoded strings, UUIDs, hash-identification results, request metadata, and service information.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

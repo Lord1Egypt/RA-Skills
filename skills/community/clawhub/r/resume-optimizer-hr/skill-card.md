@@ -1,40 +1,53 @@
-## Description: <br>
-A resume optimization agent for recent graduates that analyzes a target job description, checks ATS fit, applies STAR-based rewrites, and drafts an improved resume. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+应届毕业生简历优化助手，根据目标岗位描述(JD)分析并优化简历，提供ATS友好性检查和STAR法则量化。
 
-## Publisher: <br>
-[3492027682](https://clawhub.ai/user/3492027682) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[3492027682](https://clawhub.ai/user/3492027682)
 
-## Use Case: <br>
-External job seekers and students use this skill to compare a resume against a target job description, identify gaps, improve keyword fit, rewrite experience with STAR framing, and produce an ATS-oriented resume draft. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Resume text can contain personal information. <br>
-Mitigation: Provide only details you are comfortable sharing and avoid unnecessary sensitive personal data. <br>
-Risk: Generated resume wording may overstate or misrepresent a candidate's experience. <br>
-Mitigation: Review the optimized draft before use and keep claims, metrics, and STAR examples accurate and supportable. <br>
+## Use Case:
 
+External users, especially students and early-career job applicants, use this skill to compare a resume against a target job description, identify gaps, improve ATS keyword alignment, rewrite experience with STAR-style structure, and produce an optimized resume draft.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/3492027682/resume-optimizer-hr) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown sections with a match score, strengths, gaps, optimization suggestions, and a revised resume draft] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include rewritten resume content and rationale for changes; users should review all claims for accuracy.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Resume and job-description inputs may contain sensitive personal or career information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when comfortable sharing that content with the agent, and omit unnecessary sensitive details where possible.
+
+Risk: Generated resume edits may introduce inaccurate or unsupported claims, especially quantified results.
+
+Mitigation: Review all suggested changes against the user's actual experience and remove or rewrite claims that are not supported.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/3492027682/skills/resume-optimizer-hr)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with structured sections for match analysis, optimization suggestions, and an optimized resume draft]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include a match score, strengths, gaps, keyword suggestions, STAR-style rewrites, ATS formatting suggestions, revised resume text, and reasons for changes.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

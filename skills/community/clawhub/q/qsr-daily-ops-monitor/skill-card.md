@@ -1,42 +1,59 @@
-## Description: <br>
-Monitors restaurant daily operations with three structured checks per day for opening, mid-shift, and closing compliance, then tracks patterns over time. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Daily operational compliance monitoring for restaurant and franchise operators. Three structured check-ins per day - opening, mid-shift, and closing - with pattern tracking.
 
-## Publisher: <br>
-[blake27mc](https://clawhub.ai/user/blake27mc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-CC-BY-NC-4.0 <br>
+## Publisher:
 
+[mcphersonai](https://clawhub.ai/user/mcphersonai)
 
-## Use Case: <br>
-Restaurant and franchise operators use this skill to run daily operational compliance check-ins, log food safety and sanitation results, and surface weekly patterns for follow-up. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+CC-BY-NC-4.0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores ongoing check history with employee or respondent details. <br>
-Mitigation: Define who may respond to checks and receive weekly summaries, tell staff what will be logged, minimize personal notes, and set a retention and deletion practice. <br>
-Risk: Scheduled checks may continue after the workflow is no longer needed. <br>
-Mitigation: Disable scheduled checks when the operational monitoring workflow ends. <br>
+## Use Case:
 
+Restaurant general managers, shift leaders, franchise operators, and owner-operators use this skill to run opening, mid-shift, and closing checks, log operational exceptions, and surface weekly compliance patterns.
 
-## Reference(s): <br>
-- [Qsr Daily Ops Monitor ClawHub listing](https://clawhub.ai/blake27mc/qsr-daily-ops-monitor) <br>
-- [blake27mc publisher profile](https://clawhub.ai/user/blake27mc) <br>
-- [Creative Commons Attribution-NonCommercial 4.0 International](https://creativecommons.org/licenses/by-nc/4.0/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown check prompts, status summaries, setup confirmations, and weekly operational summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores ongoing check history including date, check type, pass count, failed items, respondent, and notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and artifact frontmatter) <br>
+Risk: The skill stores operational notes linked to respondents, which can create privacy and employee-relations concerns.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Define who may access logs and weekly summaries, tell shift leads what is recorded, set retention and deletion rules, and use role or shift identifiers when individual names are not needed.
+
+Risk: The skill complements restaurant compliance practices but does not replace required corporate forms, audits, or local health-code obligations.
+
+Mitigation: Keep mandated documentation and inspection workflows in place, and review the skill's food-safety guidance against local requirements before operational use.
+
+Risk: Routine check-ins can be rubber-stamped if staff perceive the workflow as surveillance or paperwork.
+
+Mitigation: Introduce the workflow as a support tool, review exception notes for quality, and use weekly pattern summaries to confirm checks are being physically verified.
+
+## Reference(s):
+
+- [QSR Daily Ops Monitor on ClawHub](https://clawhub.ai/mcphersonai/skills/qsr-daily-ops-monitor)
+- [McPherson AI](https://mcphersonai.com)
+- [Observa Getting Started](https://mcphersonai.com/observa/getting-started?utm_source=clawhub&utm_medium=skill&utm_campaign=observa-getting-started&utm_content=qsr-daily-ops-monitor)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Conversational text and Markdown summaries with structured check logs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces setup prompts, daily check results, operational notes, pattern alerts, and weekly summaries.]
+
+## Skill Version(s):
+
+1.0.4 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

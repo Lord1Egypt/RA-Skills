@@ -1,40 +1,49 @@
-## Description: <br>
-技能创建指南 - 创建/发布ClawHub技能的完整指南，含模板、最佳实践和发布流程 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+技能创建指南，帮助创建和发布 ClawHub 技能，包含模板、最佳实践和发布流程。
 
-## Publisher: <br>
-[534422530](https://clawhub.ai/user/534422530) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[534422530](https://clawhub.ai/user/534422530)
 
-## Use Case: <br>
-Developers and skill authors use this guide to create and publish ClawHub skills with a SKILL.md structure, a publish command, and best practices for descriptions, examples, tags, versioning, and activation phrases. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad Chinese activation phrases may cause the guide to appear during general conversations about skill templates or publishing. <br>
-Mitigation: Use the guide intentionally for skill creation and publishing workflows, and ignore or disable it when discussing unrelated template or publishing topics. <br>
-Risk: The guide includes a sample publish command that can publish a skill if run with real paths and credentials. <br>
-Mitigation: Run publish commands only after reviewing the target skill, slug, name, version, and tags. <br>
+## Use Case:
 
+Developers and skill authors use this skill to create and publish ClawHub skills with a basic SKILL.md structure, a publishing command pattern, and a concise best-practice checklist.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/534422530/laosi-skill-guide) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Bilingual English and Chinese guidance; no code execution, installs, persistence, credentials, or data access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The guide uses broad Chinese-language activation phrases and skill-creation guidance that may not fit every workspace convention.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the guide matches local skill authoring and publishing conventions before installation or reuse.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/534422530/skills/laosi-skill-guide)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with an inline shell command example]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code or sensitive access is indicated by the security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

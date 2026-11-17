@@ -1,6 +1,24 @@
 {
-  "ownerId": "kn72a3kqhw330jbwe6g1q9hen582whqp",
+  "name": "productivity-automation-kit",
   "slug": "productivity-automation-kit",
   "version": "1.0.0",
-  "publishedAt": 1774068392025
+  "description": "效率自动化工具箱 — 自动化工作流模板 + 日程管理助手 + 任务提醒工具 + 数据整理自动化",
+  "author": "swarm-coder",
+  "homepage": "",
+  "license": "MIT",
+  "tags": ["automation", "workflow", "productivity", "scheduling", "task-management", "data-automation", "efficiency"],
+  "features": [
+    "自动化工作流模板",
+    "日程管理助手",
+    "任务提醒工具",
+    "数据整理自动化"
+  ],
+  "integrates": [
+    "automation-workflows",
+    "afrexai-business-automation",
+    "productivity",
+    "personal-productivity"
+  ],
+  "created": "2026-03-21",
+  "platform": "openclaw"
 }

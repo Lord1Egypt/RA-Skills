@@ -1,0 +1,39 @@
+{
+  "mode": "webhook_fixtures",
+  "sample": {
+    "events": [
+      {
+        "id": "one",
+        "payload": {
+          "n": 1
+        }
+      },
+      {
+        "id": "one",
+        "payload": {
+          "n": 1
+        }
+      },
+      {
+        "id": "two",
+        "payload": {
+          "n": 2
+        }
+      }
+    ]
+  },
+  "expected": {
+    "uniqueEvents": 2,
+    "duplicateIds": [
+      "one"
+    ]
+  },
+  "invalid": {
+    "events": [
+      {
+        "id": "",
+        "payload": {}
+      }
+    ]
+  }
+}

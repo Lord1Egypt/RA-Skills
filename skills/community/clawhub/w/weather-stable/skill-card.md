@@ -1,43 +1,56 @@
-## Description: <br>
-Stable weather skill for OpenClaw. Designed for reliable same-day weather queries with predictable output, Chinese city support, and automation-friendly plain/json modes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Stable weather skill for OpenClaw. Designed for reliable same-day weather queries with predictable output, Chinese city support, and automation-friendly plain/json modes.
 
-## Publisher: <br>
-[paceycrognale](https://clawhub.ai/user/paceycrognale) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[paceycrognale](https://clawhub.ai/user/paceycrognale)
 
-## Use Case: <br>
-Developers, automation builders, and agent operators use this skill to retrieve same-day weather for a single city in predictable plain text, pretty terminal text, or JSON output. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: City names or geocoded locations are sent to Open-Meteo over the network. <br>
-Mitigation: Use only locations appropriate for disclosure to Open-Meteo and review outbound-network policy before deployment. <br>
-Risk: Weather results depend on Open-Meteo availability and returned data. <br>
-Mitigation: Handle command failures in automation and verify high-impact weather decisions with an authoritative source. <br>
+## Use Case:
 
+Developers and automation builders use this skill to retrieve same-day city weather for OpenClaw agents, chatbots, daily summaries, logs, and structured workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/paceycrognale/weather-stable) <br>
-- [Open-Meteo](https://open-meteo.com/) <br>
-- [Open-Meteo Geocoding API](https://geocoding-api.open-meteo.com/v1/search) <br>
-- [Open-Meteo Forecast API](https://api.open-meteo.com/v1/forecast) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, guidance] <br>
-**Output Format:** [Plain text, pretty terminal text, or JSON emitted by a Python command-line script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and outbound access to Open-Meteo; no API key is required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and release notes) <br>
+Risk: City lookups for non-preset locations are sent to Open-Meteo services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Document the external data flow and restrict allowed Open-Meteo domains in privacy-sensitive environments.
+
+Risk: Weather output is limited to same-day, single-city results and uses fixed China-oriented language and timezone settings.
+
+Mitigation: Use it only for same-day city checks unless locale, timezone, and multi-day behavior are reviewed or extended.
+
+## Reference(s):
+
+- [Weather Stable ClawHub release](https://clawhub.ai/paceycrognale/skills/weather-stable)
+- [Open-Meteo](https://open-meteo.com/)
+- [Open-Meteo Geocoding API](https://geocoding-api.open-meteo.com/v1/search)
+- [Open-Meteo Forecast API](https://api.open-meteo.com/v1/forecast)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON]
+
+**Output Format:** [Plain text, formatted terminal text, or JSON weather output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Single-city same-day weather lookup; requires python3 and outbound access to Open-Meteo]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and RELEASE_NOTES.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

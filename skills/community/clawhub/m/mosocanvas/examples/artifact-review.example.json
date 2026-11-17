@@ -1,0 +1,34 @@
+{
+  "schema": "moso.artifact-review/0.1",
+  "id": "example-pilot-independent-review",
+  "artifact_ref": "codex://artifact/example-pilot",
+  "spec_ref": "visual-spec.example.json",
+  "reviewer": {
+    "kind": "fresh-context-agent",
+    "independent_from_generation": true,
+    "actual_artifact_inspected": true,
+    "reviewed_at": "2026-07-28T00:40:00Z"
+  },
+  "blind_pass": {
+    "prompt_hidden": true,
+    "first_read": "A familiar room interrupted by a small reflected interval.",
+    "eye_path": ["human hand", "table edge", "reflected interval", "camera axis"],
+    "inferred_narrative": "The reflection appears to anticipate the person's action.",
+    "observed_anomalies": ["the reflected relation is slightly earlier than the visible action"]
+  },
+  "spec_pass": {
+    "carrier": [],
+    "composition": [],
+    "narrative": [],
+    "color_light": [],
+    "material_physics": [],
+    "ai_residue": [],
+    "spec_fit": []
+  },
+  "decision": {
+    "recommendation": "user-judgment",
+    "release_authorized": false,
+    "priority_improvement": "Keep the reflection peripheral when expanding the series.",
+    "remaining_risks": ["later frames may literalize the observer"]
+  }
+}

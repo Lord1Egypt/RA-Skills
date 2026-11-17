@@ -1,7 +1,8 @@
 #!/usr/bin/env node
 /**
  * HTM (Den Haag public transport, "Mijn HTM") CLI wrapper — reads credentials
- * from environment variables: HTM_LOGIN, HTM_PASSWORD
+ * from environment variables: HTM_LOGIN, HTM_PASSWORD, and optionally
+ * HTM_BIRTHDATE_<tokenId> (YYYY-MM-DD) for age-based products on that pass
  *
  * Usage: node htm.mjs <command> [args]
  *
@@ -44,17 +45,19 @@ if (process.argv[1] === fileURLToPath(import.meta.url)) {
 //      sets the .AspNetCore.Cookies session cookie used by every API below.
 // ---------------------------------------------------------------------------
 
-function extract(html, re, what) {
+function extract(html, re, what, flow = 'Login') {
   const m = html.match(re);
-  if (!m) throw new Error(`Login flow changed: could not find ${what}`);
+  if (!m) throw new Error(`${flow} flow changed: could not find ${what}`);
   return m[1];
 }
+
+/** `name=value` pairs from a response's Set-Cookie headers. */
+const setCookiePairs = r => r.headers.getSetCookie().map(sc => sc.split(';', 1)[0]);
 
 export async function login(user = LOGIN, password = PASSWORD) {
   const jar = new Map();
   const saveCookies = r => {
-    for (const sc of r.headers.getSetCookie()) {
-      const kv = sc.split(';', 1)[0];
+    for (const kv of setCookiePairs(r)) {
       const eq = kv.indexOf('=');
       jar.set(kv.slice(0, eq).trim(), kv.slice(eq + 1).trim());
     }
@@ -131,38 +134,43 @@ export async function apiGet(session, path, query = {}) {
 }
 
 // ---------------------------------------------------------------------------
-// Order/cart API (www.htm.nl/v3/order/*)
+// Order/cart API (www.htm.nl/v3/order/*, /v3/pad/*)
 //
-// Unlike everything above, these endpoints require an `X-API-Key` header in
-// addition to the session cookie. The key is hardcoded in HTM's own frontend
-// bundle under the name TEMP_EXPOSED_API_ORDER_V3_KEY — see README.md. There
-// is no guarantee HTM keeps honoring it; orderApiCall() below turns a
-// 401/403 from this group into an error that says so explicitly, so that a
-// revoked key fails loudly and distinguishably instead of as a generic HTTP
-// error.
+// Same session cookie as above, but mutating calls are also protected by
+// ASP.NET Core antiforgery: a cookie + RequestVerificationToken header pair
+// scraped from a server-rendered page, fetched lazily once per session.
+// Without it they answer a bare 400. See README.md.
 // ---------------------------------------------------------------------------
 
-const ORDER_API_KEY = 'be3fb314-eabf-4a20-b672-da3ff062750e'; // TEMP_EXPOSED_API_ORDER_V3_KEY
+const CART_URL = 'https://www.htm.nl/winkelwagen/';
+
+async function fetchAntiforgery(session) {
+  const r = await fetch(CART_URL, { headers: { Cookie: session, 'User-Agent': UA } });
+  const cookies = setCookiePairs(r).filter(kv => kv.startsWith('.AspNetCore.Antiforgery.'));
+  if (cookies.length === 0) throw new Error(`Order flow changed: no antiforgery cookie from ${CART_URL}`);
+  const token = extract(await r.text(), /antiForgeryToken\s*:\s*'([^']+)'/, 'antiforgery token', 'Order');
+  return { cookie: [session, ...cookies].join('; '), token };
+}
+
+const antiforgeryBySession = new Map();
+
+function antiforgery(session) {
+  if (!antiforgeryBySession.has(session)) antiforgeryBySession.set(session, fetchAntiforgery(session));
+  return antiforgeryBySession.get(session);
+}
 
 export async function orderApiCall(session, method, path, body) {
+  const headers = { Cookie: session, 'User-Agent': UA, Accept: 'application/json', 'Content-Type': 'application/json' };
+  if (method !== 'GET') {
+    const af = await antiforgery(session);
+    headers.Cookie = af.cookie;
+    headers.RequestVerificationToken = af.token;
+  }
   const r = await fetch(`https://www.htm.nl${path}`, {
     method,
-    headers: {
-      Cookie: session,
-      'User-Agent': UA,
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
-      'X-API-Key': ORDER_API_KEY,
-    },
+    headers,
     body: body ? JSON.stringify(body) : undefined,
   });
-  if (r.status === 401 || r.status === 403) {
-    throw new Error(
-      `Order API key rejected (HTTP ${r.status} for ${method} ${path}). HTM likely revoked/rotated ` +
-      `the internal order API key (TEMP_EXPOSED_API_ORDER_V3_KEY) this command depends on — see README.md. ` +
-      `passes/products/reizen are unaffected, only reorder needs this key.`
-    );
-  }
   if (!r.ok) throw new Error(`HTTP ${r.status} for ${method} ${path}`);
   return r.json();
 }
@@ -417,24 +425,28 @@ export async function regioAdvies(session, tokenIds, from, to, ageProfile = 'Adu
 // requires interactive bank authorization no script can do. Returns a
 // checkoutUrl to open in a browser and pay manually.
 //
-// HTM caps how far in advance you can set a custom start date: the API
-// rejects a validFrom more than ~30 days out with a clear validation error
-// ("The start date is too far in the future..."), which surfaces as-is.
+// HTM caps how far in advance you can set a custom start date: a validFrom
+// more than 30 days out gets a validation remark ("The start date is too far
+// in the future..."), which surfaces as-is.
 // ---------------------------------------------------------------------------
 
-export async function reorder(session, tokenId, productId, validFrom) {
+export async function reorder(session, tokenId, productId, validFrom, birthdate) {
   tokenId = Number(tokenId);
   productId = Number(productId);
+  const isThisPass = t => t.ovPayTokenId === tokenId;
 
   const tokens = await apiGet(session, '/v1/PortalCustomer/OvPayToken');
-  const token = tokens.find(t => t.ovPayTokenId === tokenId);
+  const token = tokens.find(isThisPass);
   if (!token) throw new Error(`No pass found with id ${tokenId}`);
   const tokenTypeId = token.tokenType?.tokenTypeId;
 
-  // Reuse any existing line for this product rather than adding a new one each
-  // call, so re-running reorder() (e.g. to change the date) is idempotent and
-  // never piles up duplicate billable lines on the same draft order.
-  const matchLine = order => order.orderLines.find(l => l.productId === productId);
+  // Reuse any existing line for this product+pass (or for this product with no
+  // pass attached yet) rather than adding a new one each call, so re-running
+  // reorder() (e.g. to change the date) is idempotent and never piles up
+  // duplicate billable lines on the same draft order. Lines for the same
+  // product on another pass (e.g. a sibling's) are left alone.
+  const matchLine = order => order.orderLines.find(l =>
+    l.productId === productId && (l.customerTokens ?? []).every(isThisPass));
 
   let order = await orderApiCall(session, 'POST', '/v3/order/initialize', { orderLines: [{ productId }] });
   let line = matchLine(order);
@@ -446,7 +458,7 @@ export async function reorder(session, tokenId, productId, validFrom) {
   // Re-attaching a token that's already on the line doesn't replace it — it adds
   // a second, duplicate customerTokens entry, which then makes the next PATCH
   // (date change) fail with a 500. Only attach if it isn't there yet.
-  const alreadyAttached = line.customerTokens?.some(t => t.ovPayTokenId === tokenId);
+  const alreadyAttached = line.customerTokens?.some(isThisPass);
   if (!alreadyAttached) {
     order = await orderApiCall(session, 'POST', `/v3/order/orderline/${line.orderLineId}/token`, {
       tokenTypeId,
@@ -458,12 +470,25 @@ export async function reorder(session, tokenId, productId, validFrom) {
     order = await orderApiCall(session, 'PATCH', `/v3/order/orderline/${line.orderLineId}`, { validFrom });
   }
 
+  // Age-based products (e.g. Regio Vrij "Reductie") need the pass owner's
+  // birthdate on every order, even though it's registered on the card — see README.md.
+  const lineIn = o => o.orderLines.find(l => l.orderLineId === line.orderLineId);
+  const needsBirthdate = lineIn(order).validations?.some(v => v.code === 'OVPAY_TOKEN_PAD_BIRTHDATE_REQUIRED');
+  if (needsBirthdate && birthdate) {
+    const customerToken = lineIn(order).customerTokens.find(isThisPass);
+    const padId = customerToken.personalAccountData?.personalAccountDataId;
+    const [method, id] = padId ? ['PATCH', padId] : ['POST', customerToken.customerTokenId];
+    order = await orderApiCall(session, method, `/v3/pad/customertokens/${id}/personalaccountdata`, { birthdate });
+  }
+
   // Only this line's own validation matters — the draft order may carry other,
   // unrelated lines (e.g. an abandoned earlier attempt) that shouldn't block us.
-  const finalLine = order.orderLines.find(l => l.orderLineId === line.orderLineId);
-  const errors = finalLine?.validationErrors ?? [];
+  // `validations` (type "Remark") block checkout just like `validationErrors`.
+  const finalLine = lineIn(order);
+  const errors = [...(finalLine?.validationErrors ?? []), ...(finalLine?.validations ?? [])];
   if (errors.length > 0) {
-    throw new Error(errors.map(e => e.detail).join('; '));
+    const hint = needsBirthdate && !birthdate ? ` (set HTM_BIRTHDATE_${tokenId}=YYYY-MM-DD)` : '';
+    throw new Error(errors.map(e => e.detail).join('; ') + hint);
   }
 
   return {
@@ -475,7 +500,7 @@ export async function reorder(session, tokenId, productId, validFrom) {
     validUntil: finalLine.validUntil,
     totalAmount: order.totalAmount / 100,
     currency: 'EUR',
-    checkoutUrl: 'https://www.htm.nl/winkelwagen/',
+    checkoutUrl: CART_URL,
   };
 }
 
@@ -521,7 +546,8 @@ if (process.argv[1] === fileURLToPath(import.meta.url)) {
       }
       case 'reorder': {
         const [tokenId, productId, validFrom] = rest;
-        console.log(JSON.stringify(await reorder(session, tokenId, productId, validFrom)));
+        const birthdate = process.env[`HTM_BIRTHDATE_${tokenId}`];
+        console.log(JSON.stringify(await reorder(session, tokenId, productId, validFrom, birthdate)));
         break;
       }
     }

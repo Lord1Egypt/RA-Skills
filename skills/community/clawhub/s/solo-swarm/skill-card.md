@@ -1,43 +1,58 @@
-## Description: <br>
-Swarm launches three parallel research agents focused on market, user, and technical analysis to investigate an idea and synthesize findings into a research report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Launches three parallel research agents focused on market, user, and technical analysis to investigate an idea and produce research.md.
 
-## Publisher: <br>
-[fortunto2](https://clawhub.ai/user/fortunto2) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[fortunto2](https://clawhub.ai/user/fortunto2)
 
-## Use Case: <br>
-Developers, founders, and agent users use Swarm to research product or project ideas quickly from market, user, and technical perspectives. It is suited for coordinated idea investigation, competitor discovery, user-sentiment review, feasibility analysis, and GO / NO-GO / PIVOT recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill grants agents broad Bash, web search, web fetch, local session search, knowledge-base search, and project-code search capabilities. <br>
-Mitigation: Review and approve the plan before deep research begins, restrict Bash unless commands are explicitly approved, and specify which local sources may be searched. <br>
-Risk: The generated docs/research.md report may include private project, local knowledge-base, or past-session information when those search tools are enabled. <br>
-Mitigation: Review docs/research.md before sharing it outside the project and remove private, confidential, or unrelated local context. <br>
-Risk: Market, user, and technical findings may rely on unverified web results or public comments. <br>
-Mitigation: Check source links and distinguish quoted sentiment from validated evidence before using the GO / NO-GO / PIVOT recommendation for decisions. <br>
+## Use Case:
 
+Developers and product builders use this skill to rapidly research an idea from market, user, and technical perspectives, then synthesize the findings into a repository research report with a GO, NO-GO, or PIVOT recommendation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fortunto2/solo-swarm) <br>
-- [SearXNG Docker Tavily adapter](https://github.com/fortunto2/searxng-docker-tavily-adapter) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown research synthesis with task coordination notes and a docs/research.md report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses three coordinated research perspectives and may use web search, web fetch, optional solograph MCP search tools, and local project or session search when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.6.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: The skill can search prior conversations, project metadata, and code across available projects when Solograph or similar internal search tools are connected.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run it only in environments where that access is acceptable, and scope or disable internal search tools unless a specific project or session needs them.
+
+Risk: The workflow writes docs/research.md in the current repository.
+
+Mitigation: Review the generated report and repository diff before accepting or sharing the results.
+
+Risk: Bash access may broaden what the agent can inspect or execute during research.
+
+Mitigation: Disable Bash for routine use unless shell access is required for the investigation.
+
+## Reference(s):
+
+- [Swarm ClawHub release](https://clawhub.ai/fortunto2/skills/solo-swarm)
+- [SearXNG Tavily adapter](https://github.com/fortunto2/searxng-docker-tavily-adapter)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown research report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes docs/research.md in the current project when the workflow completes.]
+
+## Skill Version(s):
+
+1.6.0 (source: release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

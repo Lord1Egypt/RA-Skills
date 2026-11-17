@@ -1,44 +1,59 @@
-## Description: <br>
-提供Word文档中文格式标准化功能，统一标题、正文、图片和图表格式，确保符合中文排版规范。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Chinese Word document formatting standardization for titles, headings, body text, images, charts, and tables using Microsoft YaHei and consistent spacing, alignment, indentation, and page settings.
 
-## Publisher: <br>
-[lmtea1981](https://clawhub.ai/user/lmtea1981) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lmtea1981](https://clawhub.ai/user/lmtea1981)
 
-## Use Case: <br>
-Employees, external users, and developers use this skill to standardize Chinese Word documents for business documents, academic papers, reports, and other documents that need consistent typography and layout. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill intentionally changes Word document formatting and layout, which may alter important documents in ways the user did not expect. <br>
-Mitigation: Keep a backup of the original document and review the formatted output before using it as the final version. <br>
-Risk: If no output path is supplied, the script chooses its own timestamped output filename, which may be less predictable in automated workflows. <br>
-Mitigation: Provide an explicit output filename when predictable file paths are required. <br>
-Risk: The skill depends on python-docx from the Python package ecosystem. <br>
-Mitigation: Install dependencies only from a trusted Python environment. <br>
+## Use Case:
 
+Employees, external users, and document automation developers can use this skill to standardize Chinese .docx documents for enterprise documents, academic papers, reports, and similar materials. It is intended for workflows where consistent typography, paragraph spacing, indentation, image alignment, table formatting, and Chinese punctuation conventions are needed.
 
-## Reference(s): <br>
-- [Format Standard](references/format_standard.md) <br>
-- [Usage Guide](references/usage_guide.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/lmtea1981/word-cn-format) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Code, Guidance, Files] <br>
-**Output Format:** [Markdown guidance with shell commands and a generated .docx file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Formats a user-selected .docx document locally and writes a separate output file when an output path is provided.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The formatting script writes a new Word document and may not preserve every complex layout or special construct exactly as expected.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it on a copy of important documents, review the generated file, and manually adjust complex elements such as footnotes, endnotes, cross-references, image captions, or unusual styles.
+
+Risk: The skill depends on python-docx for document processing.
+
+Mitigation: Install dependencies in a controlled environment and consider pinning python-docx to a reviewed version before operational use.
+
+Risk: The output relies on Microsoft YaHei for the intended Chinese typography.
+
+Mitigation: Confirm the target system has Microsoft YaHei or an approved substitute installed before relying on the rendered appearance.
+
+## Reference(s):
+
+- [Word Chinese Formatting Standard](artifact/references/format_standard.md)
+- [Word Chinese Formatting Usage Guide](artifact/references/usage_guide.md)
+- [ClawHub Skill Page](https://clawhub.ai/lmtea1981/skills/word-cn-format)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and Python script usage]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces or updates .docx output files through the provided formatting script when executed by the user or agent.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

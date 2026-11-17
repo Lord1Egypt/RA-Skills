@@ -1,45 +1,68 @@
-## Description: <br>
-Write full-length technical books using multi-agent AI orchestration, with parallel research, writing, and review agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Write a full-length technical book using multi-agent AI orchestration, spawning parallel research, writing, and review agents to produce 60K-100K+ word manuscripts and revise individual chapters.
 
-## Publisher: <br>
-[chunhualiao](https://clawhub.ai/user/chunhualiao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[chunhualiao](https://clawhub.ai/user/chunhualiao)
 
-## Use Case: <br>
-Developers, technical authors, and engineering teams use this skill to plan, draft, review, integrate, and polish long-form technical books from a topic or source repository. It is also intended for revising individual chapters while preserving the broader manuscript workflow. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The workflow can run for a long time while reading repositories, writing many files, spawning subagents, and calling external AI or research services. <br>
-Mitigation: Run it in a clean working directory with an explicit budget and review each phase checkpoint before continuing. <br>
-Risk: The workflow may access provider keys or work with private and sensitive repositories. <br>
-Mitigation: Use only approved repositories and credentials, avoid exporting secrets, and confirm any external-service use before sending content outside the workspace. <br>
-Risk: The workflow may overwrite chapters, create pull requests, merge changes, push to git, or publish generated material. <br>
-Mitigation: Review remotes, diffs, and generated manuscripts before any destructive file update, merge, push, or publishing action. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/chunhualiao/git-repo-to-book) <br>
-- [Publisher Profile](https://clawhub.ai/user/chunhualiao) <br>
-- [OpenClaw Documentation](https://docs.openclaw.ai) <br>
-- [Reference Implementation: openclaw-paradigm-book](https://github.com/chunhualiao/openclaw-paradigm-book) <br>
-- [DeepWiki API](https://api.deepwiki.com/v1/chat) <br>
+## Use Case:
 
+Developers, technical authors, and engineering teams use this skill to plan, research, draft, review, and publish long-form technical books from a topic or source repository. It also supports revising individual chapters and re-integrating them into a manuscript.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown manuscripts, JSON metadata, project files, and optional HTML export] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces chapter files, research notes, review notes, merged manuscripts, metadata, and optional HTML output for agent-driven book projects.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and skill.yml) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The workflow can keep running later through its cron safety-net behavior.
+
+Mitigation: Disable the cron safety-net behavior unless it is explicitly needed, and review WORKLOG.md before any resumed work.
+
+Risk: API keys may be exposed to child processes or subagents.
+
+Mitigation: Avoid exporting global API keys to all subagents; scope credentials to only the providers required for the current run.
+
+Risk: The workflow can broadly commit or push repository changes.
+
+Mitigation: Run it in a dedicated repository or branch, then review git status and diffs before any commit or push.
+
+Risk: DeepWiki use may disclose private source material.
+
+Mitigation: Use public repositories with DeepWiki, or get explicit approval before sending private source material to that service.
+
+Risk: Optional dependencies can affect reproducibility.
+
+Mitigation: Pin optional dependencies and tools such as markdown2 or pandoc when repeatable output is required.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/chunhualiao/skills/git-repo-to-book)
+- [OpenClaw](https://openclaw.ai)
+- [OpenClaw Docs](https://docs.openclaw.ai)
+- [The OpenClaw Paradigm Reference Implementation](https://github.com/chunhualiao/openclaw-paradigm-book)
+- [Model Context Protocol](https://modelcontextprotocol.io)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown files, JSON metadata, optional HTML, and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces chapter files, research notes, review files, polished manuscripts, metadata, optional HTML export, and git project history.]
+
+## Skill Version(s):
+
+1.0.0 (source: skill.yml, release evidence, CHANGELOG released 2026-02-28)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

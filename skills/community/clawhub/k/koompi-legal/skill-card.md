@@ -1,43 +1,54 @@
-## Description: <br>
-Use for law firm and legal practice operations, including case management, document drafting, client communication, billing, court deadlines, discovery workflows, compliance tracking, and matter lifecycle management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use for law firm and legal practice operations, including case management, document drafting, client communication, billing, court deadlines, discovery workflows, compliance tracking, and matter lifecycle management.
 
-## Publisher: <br>
-[rithythul](https://clawhub.ai/user/rithythul) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rithythul](https://clawhub.ai/user/rithythul)
 
-## Use Case: <br>
-Legal professionals and law firm operations teams use this skill to coordinate matter intake, conflict checks, deadline tracking, document drafting, client communications, billing, discovery workflows, trust-account checks, and compliance reminders. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Legal guidance may be incomplete, jurisdiction-specific, or unsuitable for filing or client communication. <br>
-Mitigation: Require qualified human review before filings, client communications, trust-account activity, or jurisdiction-specific legal conclusions. <br>
-Risk: Connected case, calendar, email, billing, or document systems may expose confidential client data if access is broader than necessary. <br>
-Mitigation: Limit connected systems to necessary scopes and maintain legal-practice access controls. <br>
-Risk: Operational reminders can miss or misstate court deadlines or statutes of limitation if source matter data is incomplete. <br>
-Mitigation: Cross-check deadlines against official court calendars and matter systems, and assign both primary and backup responsibility. <br>
+## Use Case:
 
+Law firm staff and legal practitioners use this skill to organize matter lifecycle work, deadline tracking, document drafting, client communications, billing, discovery, legal research, and compliance workflows. It is intended as operational guidance that still requires qualified legal review.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/rithythul/koompi-legal) <br>
-- [Publisher profile](https://clawhub.ai/user/rithythul) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or structured plain text with checklists, templates, reminders, and drafting guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable output; legal work product and operational actions require qualified human review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: Confidential or privileged legal information may be exposed if the skill is used in an unapproved environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and use the skill only in environments approved for confidential legal work, and avoid providing privileged, regulated, or unnecessary personal data unless authorized.
+
+Risk: Incorrect deadlines, citations, filings, trust-account actions, conflict checks, or client communications could create legal or professional harm.
+
+Mitigation: Have a qualified human verify deadlines, citations, filings, trust-account actions, conflict checks, and client-facing communications before relying on them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/rithythul/skills/koompi-legal)
+- [Publisher profile](https://clawhub.ai/user/rithythul)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain text legal-operations guidance, templates, checklists, and draft communications]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Non-executable guidance; users should verify legal content before relying on it.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence; artifact frontmatter lists 0.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

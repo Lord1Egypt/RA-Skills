@@ -1,42 +1,54 @@
-## Description: <br>
-Setup and guide for full remote control of a Windows PC from an Android device over the internet via SSH tunneling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Setup and guide for full remote control of a Windows PC from an Android device over the internet via SSH tunneling.
 
-## Publisher: <br>
-[jarbcs1-prog](https://clawhub.ai/user/jarbcs1-prog) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jarbcs1-prog](https://clawhub.ai/user/jarbcs1-prog)
 
-## Use Case: <br>
-External users and developers use this skill to configure remote desktop access from an Android device to their own Windows 10/11 Pro or Enterprise PC through an SSH tunnel. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Enabling remote access can expose a Windows PC to unauthorized access if SSH, firewall, or router settings are misconfigured. <br>
-Mitigation: Prefer Tailscale or ZeroTier over public port forwarding, use SSH keys instead of passwords where possible, and review firewall and router changes before applying them. <br>
-Risk: Saving Windows credentials on a shared or untrusted Android device can disclose account access. <br>
-Mitigation: Avoid saving Windows credentials on shared or untrusted Android devices and install only when configuring access to a PC you own or administer. <br>
+## Use Case:
 
+External users and technical operators use this skill to configure Android-to-Windows remote desktop access through an SSH tunnel instead of exposing RDP directly to the internet.
 
-## Reference(s): <br>
-- [Skill page](https://clawhub.ai/jarbcs1-prog/windows-android-ssh-remote-control) <br>
-- [Windows PC Setup for SSH and RDP](references/windows_setup.md) <br>
-- [Android Setup for SSH Tunneling and RDP](references/android_setup.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline PowerShell commands and configuration steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only workflow; no hidden automation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: Remote-access setup can expose a Windows PC to internet-facing SSH and credential risks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer Tailscale or another VPN instead of public port forwarding; use SSH keys, strong account passwords, and avoid saving Windows credentials where they are not needed.
+
+Risk: Incorrect RDP or SSH configuration can prevent connection or weaken access controls.
+
+Mitigation: Review Windows Remote Desktop, OpenSSH Server, firewall, and Android tunnel settings before relying on the connection.
+
+## Reference(s):
+
+- [Windows PC Setup for SSH and RDP](references/windows_setup.md)
+- [Android Setup for SSH Tunneling and RDP](references/android_setup.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown with inline PowerShell commands and configuration steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Manual setup guidance only; the bundled script and template files are placeholders.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

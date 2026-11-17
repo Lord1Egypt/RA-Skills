@@ -1,46 +1,66 @@
-## Description: <br>
-Use APIDot async workflow for AI generation APIs, including task submission, task_id handling, polling API, task status API, callback_url, webhook API, retry guidance, idempotent webhook handling, image generation, video generation, music generation, and 3D generation based on APIDot docs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use APIDot async workflow for AI generation APIs, including task submission, task_id handling, polling API, task status API, callback_url, webhook API, retry guidance, idempotent webhook handling, image generation, video generation, music generation, and 3D generation based on APIDot docs.
 
-## Publisher: <br>
-[jiehao71727](https://clawhub.ai/user/jiehao71727) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiehao71727](https://clawhub.ai/user/jiehao71727)
 
-## Use Case: <br>
-Developers and engineers use this skill to design APIDot async generation integrations that persist task IDs, choose polling or webhook delivery, handle retries, and manage result state for image, video, music, and 3D workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Using this skill may lead an agent to help build workflows that depend on an APIDot API key. <br>
-Mitigation: Keep API keys server-side in environment variables or a backend secret manager, and never place them in browser code, public repos, logs, screenshots, or chat output. <br>
-Risk: Webhook and polling workflows may expose prompts, source media URLs, final result URLs, or callback URLs through logs or misrouted records. <br>
-Mitigation: Avoid logging sensitive workflow data, verify task ownership before attaching results, reconcile polling and webhook events by task_id, and make webhook handlers idempotent. <br>
-Risk: Live API calls from uncontrolled environments can leak credentials or create unintended tasks. <br>
-Mitigation: Make live API calls only from a controlled backend environment after the user explicitly asks for them. <br>
+## Use Case:
 
+Developers and engineers use this skill to design APIDot async generation integrations across image, video, music, and 3D workflows. It helps route implementation questions to task submission, task_id persistence, polling, webhook delivery, retry, and idempotent callback guidance.
 
-## Reference(s): <br>
-- [APIDot Docs](https://apidot.ai/docs) <br>
-- [APIDot Quickstart](https://apidot.ai/docs/quickstart) <br>
-- [APIDot Webhooks](https://apidot.ai/docs/webhooks) <br>
-- [APIDot Models](https://apidot.ai/models) <br>
-- [APIDot Examples](https://github.com/APIDotAI/apidot-examples) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Configuration] <br>
-**Output Format:** [Markdown guidance with code or configuration examples when requested] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance; no executable files, bundled clients, automatic network calls, or stored credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: APIDOT_API_KEY could be exposed if copied into browser code, logs, screenshots, public repositories, or chat output.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep APIDOT_API_KEY in server-side environment variables or a backend secret manager, and avoid logging credentials.
+
+Risk: Live APIDot requests may run unintentionally during integration work.
+
+Mitigation: Only make live APIDot calls when the user explicitly requests them and provides a safe server-side environment.
+
+Risk: Prompts, source media URLs, result URLs, or callback URLs may contain private workflow data.
+
+Mitigation: Avoid logging prompts, private media URLs, final result URLs, and callback URLs unless the application has an explicit retention and access-control policy.
+
+Risk: Model-specific API fields, status names, pricing, availability, or failure behavior may change.
+
+Mitigation: Use current APIDot docs and model pages for model-specific request fields and current product details.
+
+## Reference(s):
+
+- [APIDot Docs](https://apidot.ai/docs)
+- [APIDot Webhooks](https://apidot.ai/docs/webhooks)
+- [APIDot Quickstart](https://apidot.ai/docs/quickstart)
+- [APIDot Models](https://apidot.ai/models)
+- [APIDot Examples](https://github.com/APIDotAI/apidot-examples)
+- [Apidot Async Workflow on ClawHub](https://clawhub.ai/jiehao71727/skills/apidot-async-workflow)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, configuration]
+
+**Output Format:** [Markdown guidance with links and optional code or configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only; does not execute API calls or store credentials.]
+
+## Skill Version(s):
+
+1.0.1 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

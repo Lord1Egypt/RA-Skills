@@ -1,40 +1,55 @@
-## Description: <br>
-AI-native behavior benchmark with 48 scenarios across 3 difficulty levels, 144 questions, and 8 scoring dimensions for evaluating what an AI should do rather than what it can do. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-native behavior benchmark for evaluating whether an AI should act, how far it should go, and when it should stop across 144 Chinese-language scenarios and 8 scoring dimensions.
 
-## Publisher: <br>
-[wanyview1](https://clawhub.ai/user/wanyview1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wanyview1](https://clawhub.ai/user/wanyview1)
 
-## Use Case: <br>
-Developers, evaluators, and AI safety reviewers use MayuBench to test model behavior in boundary cases such as uncertainty, refusal quality, privacy, agent boundaries, and metacognition. It supports manual scoring, automated judge-model scoring, and Arena-style evaluation sessions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Automated evaluation can send benchmark prompts, model responses, or user-provided test data to external judge models. <br>
-Mitigation: Use automated Arena-style evaluation only in deliberate test sessions, and avoid sending private user data to external judge models unless that evaluation setup has been reviewed. <br>
+## Use Case:
 
+External users, developers, and evaluators use this skill to run MayuBench prompts and rubrics for assessing AI behavior quality across uncertainty, safety, memory, agency boundaries, communication, human-AI relationship, and metacognition scenarios.
 
-## Reference(s): <br>
-- [MayuBench source homepage](https://github.com/kaidimi/mayubench) <br>
-- [ClawHub release page](https://clawhub.ai/wanyview1/mayubench) <br>
-- [MayuBench_v1.0.md](artifact/MayuBench_v1.0.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown benchmark prompts, rubrics, scoring guidance, and pseudocode for automated evaluation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only benchmark; no code execution, installation, or data access by the skill itself.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and release metadata) <br>
+Risk: Arena-style automatic evaluation may score conversations when the skill is enabled for that purpose.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use automatic or arena-style evaluation only when the user intends conversations to be evaluated against MayuBench; otherwise use the manual Markdown test flow.
+
+Risk: Benchmark results can be misleading if prompts are not run in independent sessions or if rubric scoring is applied inconsistently.
+
+Mitigation: Run scenarios in isolated sessions and review MayuScore outputs against the included rubrics before comparing models.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wanyview1/skills/mayubench)
+- [Publisher profile](https://clawhub.ai/user/wanyview1)
+- [Project homepage](https://github.com/kaidimi/mayubench)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown benchmark prompts, scoring rubrics, and evaluation guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language benchmark content with optional manual, automated, or arena-style evaluation flows.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

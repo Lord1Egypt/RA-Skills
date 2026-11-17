@@ -1,42 +1,57 @@
-## Description: <br>
-Fetch and aggregate semiconductor and chip industry news from IC技术圈 (iccircle.com) RSS feeds. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetch and aggregate semiconductor and chip industry news from IC技术圈 (iccircle.com) RSS feeds.
 
-## Publisher: <br>
-[billchen1020](https://clawhub.ai/user/billchen1020) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[billchen1020](https://clawhub.ai/user/billchen1020)
 
-## Use Case: <br>
-Developers, analysts, and semiconductor industry readers use this skill to fetch current chip and semiconductor news from predefined RSS sources and present the results with source headers, timestamps, and links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill contacts public third-party RSS endpoints when asked to fetch semiconductor news. <br>
-Mitigation: Install and run it only in environments where outbound RSS requests to the listed news sites are allowed, controlled, or logged. <br>
+## Use Case:
 
+Developers, analysts, and other external users use this skill to fetch recent semiconductor, chip industry, EDA, and related technology news from predefined RSS sources.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/billchen1020/iccircle-news) <br>
-- [IC技术圈 RSS feed](https://iccircle.com/feed) <br>
-- [VLSI Blogs aggregate RSS feed](https://vlsiblogs.com/aggrss) <br>
-- [IT之家 RSS feed](https://www.ithome.com/rss/) <br>
-- [36氪 RSS feed](https://www.36kr.com/feed) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands] <br>
-**Output Format:** [Formatted plain text with source headers, timestamps, and links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No arguments; uses predefined RSS sources and semiconductor keyword filters.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata) <br>
+Risk: The skill contacts iccircle.com, vlsiblogs.com, ithome.com, and 36kr.com to fetch RSS feeds.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run it only in environments where outbound requests to those news sources are acceptable.
+
+Risk: The output is primarily Chinese formatted news and may include broader technology items from filtered RSS sources.
+
+Mitigation: Review the returned items before relying on them, and narrow the configured feed list if strictly semiconductor-only or IC技术圈-only content is required.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/billchen1020/skills/iccircle-news)
+- [IC技术圈 RSS Feed](https://iccircle.com/feed)
+- [VLSI Blogs Aggregate RSS](https://vlsiblogs.com/aggrss)
+- [IT之家 RSS Feed](https://www.ithome.com/rss/)
+- [36氪 RSS Feed](https://www.36kr.com/feed)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Formatted text suitable for Markdown presentation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Prints source headers, timestamps, and links from predefined RSS feeds.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

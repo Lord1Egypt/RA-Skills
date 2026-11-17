@@ -1,44 +1,58 @@
-## Description: <br>
-Professional fundraising advisory skill for startups - AI-powered project assessment, pitch deck generation, valuation analysis, investor matching, and PDF processing (financial statements, OCR, reports). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Professional fundraising advisory skill for startups - AI-powered project assessment, pitch deck generation, valuation analysis, investor matching, and PDF processing (financial statements, OCR, reports).
 
-## Publisher: <br>
-[ZhenStaff](https://clawhub.ai/user/ZhenStaff) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[zhenstaff](https://clawhub.ai/user/zhenstaff)
 
-## Use Case: <br>
-Startup founders and investors use this skill to prepare fundraising materials, assess investment readiness, estimate valuation ranges, match investors, and generate investment-analysis deliverables from structured company and financial information. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles confidential fundraising and financial details, including optional PDF financial documents. <br>
-Mitigation: Use it only with data you are comfortable processing locally, and avoid providing unnecessary sensitive company or deal information. <br>
-Risk: Generated reports may be saved locally by default and can contain sensitive company, valuation, investor, or deal information. <br>
-Mitigation: Review the output directory before use, disable PDF generation when not needed, and remove, restrict, or encrypt generated reports. <br>
-Risk: Valuation, investor matching, and fundraising recommendations are advisory estimates rather than legal, accounting, or investment advice. <br>
-Mitigation: Review outputs with qualified financial, legal, accounting, or investment professionals before relying on them for decisions. <br>
+## Use Case:
 
+External startup founders and investors use this skill to structure fundraising analysis, generate pitch deck and business plan materials, estimate valuation ranges, match investor profiles, and prepare investment memo or due diligence guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ZhenStaff/fundraising-advisor) <br>
-- [Publisher profile](https://clawhub.ai/user/ZhenStaff) <br>
-- [Project homepage from ClawHub metadata](https://github.com/ZhenRobotics/openclaw-fa) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and structured text with optional generated PDF reports and local files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May process local PDF inputs and can save generated fundraising, valuation, and investment memo reports to an output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter, pyproject.toml, package.json, ClawHub release metadata) <br>
+Risk: The skill may process confidential fundraising data or financial statements.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an isolated workspace, redact unnecessary sensitive information, and review generated materials before storing or sharing them.
+
+Risk: PDF or report generation may save sensitive output files to paths influenced by company names.
+
+Mitigation: Choose explicit safe output paths, sanitize file names, and disable automatic PDF generation when it is not needed.
+
+Risk: Generated valuations, investor recommendations, and due diligence materials can be incomplete or misleading if inputs are stale or partial.
+
+Mitigation: Treat outputs as advisory drafts and validate financial assumptions, market data, investor fit, legal issues, and accounting details with qualified reviewers.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhenstaff/skills/fundraising-advisor)
+- [Project homepage from ClawHub metadata](https://github.com/ZhenRobotics/openclaw-fa)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown with structured sections and optional code or shell command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce fundraising assessments, pitch deck outlines, business plans, valuation summaries, investor matching lists, outreach strategies, investment memos, due diligence checklists, and optional local report files.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence, SKILL.md frontmatter, pyproject.toml, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

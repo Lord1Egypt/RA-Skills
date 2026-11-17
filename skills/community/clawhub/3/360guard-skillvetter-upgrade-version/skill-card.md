@@ -1,44 +1,58 @@
-## Description: <br>
-360Guard provides a comprehensive security review workflow for evaluating agent skills before installation, including static checks, behavior detection, dependency auditing, and automated scan scripts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+360Guard provides a checklist-driven security review workflow and local scan scripts for evaluating agent skills before installation or use.
 
-## Publisher: <br>
-[robinc913](https://clawhub.ai/user/robinc913) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[robinc913](https://clawhub.ai/user/robinc913)
 
-## Use Case: <br>
-Developers and agent operators use this skill to review ClawHub, GitHub, or other third-party skills before installation and to produce advisory security findings for manual approval decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Pattern-based scans can miss malicious behavior or produce incomplete findings. <br>
-Mitigation: Manually inspect important files and treat automated results as advisory rather than a final security decision. <br>
-Risk: Scan reports may include local paths, code snippets, or findings from the target skill directory. <br>
-Mitigation: Run scans against a copied or clearly scoped skill directory and review generated reports before sharing them. <br>
-Risk: The full scan writes a report file into the scanned skill directory. <br>
-Mitigation: Use a disposable copy of the target skill when preserving the original directory matters. <br>
+## Use Case:
 
+Developers, engineers, and agent operators use this skill to review unknown or higher-risk skills before installation, combining manual checklist guidance with local quick, full, or Node.js scans.
 
-## Reference(s): <br>
-- [360Guard ClawHub page](https://clawhub.ai/robinc913/360guard-skillvetter-upgrade-version) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [CHANGELOG.md](artifact/CHANGELOG.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance and terminal scan reports with risk levels, file locations, snippets, and recommended actions.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Scanner scripts are advisory and may return process exit codes to distinguish critical, high, medium, and no-obvious-risk findings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and changelog) <br>
+Risk: The skill can report a clean result even when its simple scanners miss relevant executable files or patterns.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat scan output as heuristic triage only and require manual review or stronger security tooling before approving high-risk skills.
+
+Risk: Example workflows for ClawHub and GitHub downloads can contact external services and clone or fetch untrusted code.
+
+Mitigation: Run scans on local copies when possible, use network access deliberately, and inspect downloaded artifacts before execution.
+
+Risk: The scanner writes full-scan reports into the scanned skill directory.
+
+Mitigation: Scan disposable copies or review generated report files before keeping or publishing the scanned directory.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/robinc913/skills/360guard-skillvetter-upgrade-version)
+- [Publisher profile](https://clawhub.ai/user/robinc913)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown reports and terminal scan output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports classify findings by risk level and may include file paths, line numbers, snippets, and scan exit codes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and CHANGELOG, released 2026-03-13)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

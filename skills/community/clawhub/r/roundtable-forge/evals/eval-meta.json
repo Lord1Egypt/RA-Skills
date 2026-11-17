@@ -1,0 +1,6 @@
+{
+  "router_command": "python scripts/route_request.py --text {prompt}",
+  "fixture_command": "python scripts/run_eval_fixture.py --eval-id {eval_id}",
+  "minimum_assertion_coverage": 0.8,
+  "note": "Routing and negative-boundary cases are executable. Deterministic Memory lint, renderer, precedence, checklist, and compatibility cases use runner=fixture. Full Memory generation, handoff quality, and production-quality authorship remain runner=manual because they require a host/LLM judge."
+}

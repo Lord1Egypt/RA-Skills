@@ -1,39 +1,53 @@
-## Description: <br>
-EO Ability: Memory provides proactive cross-session memory for user preferences, project context, supervisor requirements, and formatting rules. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+EO Ability: Memory provides proactive cross-session memory for user preferences, mentor requirements, project context, and formatting rules.
 
-## Publisher: <br>
-[467718584](https://clawhub.ai/user/467718584) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[467718584](https://clawhub.ai/user/467718584)
 
-## Use Case: <br>
-Developers and agent users use this skill to preserve and retrieve relevant preferences, project context, and work requirements across conversations when operating EO memory workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Cross-session memory may save or reload sensitive personal, confidential, or regulated information without clear consent or scope. <br>
-Mitigation: Confirm where memories are stored, whether automatic saving and loading can be disabled, and avoid storing secrets, credentials, health, financial, legal, personal, or confidential business information unless explicit controls are in place. <br>
-Risk: Users may not know how to inspect or delete saved memories. <br>
-Mitigation: Verify inspection and deletion controls before use and periodically review stored memories for stale or unnecessary content. <br>
+## Use Case:
 
+External agents and developers use this skill to save, load, search, update, and forget memory entries so user preferences, academic research context, administrative context, and formatting requirements can carry across sessions.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance, configuration] <br>
-**Output Format:** [Markdown and structured memory operation examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce or retrieve memory entries containing user preferences, project context, tags, and related records.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Cross-session memory can retain privacy-sensitive information, including user preferences, project context, negotiations, or research details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm where persistent memories and indexes are stored, review retention and deletion controls, and avoid saving secrets, regulated data, credentials, or confidential negotiations without explicit retention and access controls.
+
+Risk: Persistent memories may be loaded into later sessions outside the intended project or context.
+
+Mitigation: Scope memory use by project where supported and review, delete, or disable stored memories when they are no longer relevant.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/467718584/skills/eo-ability-memory)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown with TypeScript interface examples and inline command-style examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Memory operations described include save, load, search, forget, and update; persistent cross-session behavior depends on EO plugin support.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

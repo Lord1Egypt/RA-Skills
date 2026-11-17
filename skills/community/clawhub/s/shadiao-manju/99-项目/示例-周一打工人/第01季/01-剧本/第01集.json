@@ -1,0 +1,324 @@
+{
+  "title": "已读",
+  "season": 1,
+  "episode": 1,
+  "durationTarget": 48,
+  "hook": "老板规定：消息三分钟内必须回，超时算态度问题",
+  "reversal": "老板被大老板拉进群，自己也只能回「已读」，才发现这功能是他自己定的",
+  "unsaid": "我不想回你",
+  "characters": [
+    {
+      "name": "阿强",
+      "persona": "认真的执行者",
+      "voice": "云希-清亮少年",
+      "gender": "male"
+    },
+    {
+      "name": "老板",
+      "persona": "一本正经定离谱规则",
+      "voice": "云扬-沉稳男声",
+      "gender": "male"
+    }
+  ],
+  "scenes": [
+    {
+      "id": "S1",
+      "title": "宣布规则",
+      "background": "会议室",
+      "actors": [
+        "阿强",
+        "老板"
+      ],
+      "camera": {
+        "x": 0.5,
+        "y": 0.52,
+        "zoom": 0.88
+      },
+      "positions": {
+        "阿强": 0.29,
+        "老板": 0.7
+      }
+    },
+    {
+      "id": "S2",
+      "title": "开始执行",
+      "background": "会议室",
+      "actors": [
+        "阿强",
+        "老板"
+      ],
+      "camera": {
+        "x": 0.5,
+        "y": 0.52,
+        "zoom": 0.98
+      },
+      "positions": {
+        "阿强": 0.29,
+        "老板": 0.7
+      }
+    },
+    {
+      "id": "S3",
+      "title": "升级",
+      "background": "会议室",
+      "actors": [
+        "阿强",
+        "老板"
+      ],
+      "camera": {
+        "x": 0.5,
+        "y": 0.52,
+        "zoom": 0.92
+      },
+      "positions": {
+        "阿强": 0.29,
+        "老板": 0.7
+      }
+    },
+    {
+      "id": "S4",
+      "title": "反转",
+      "background": "会议室",
+      "actors": [
+        "阿强",
+        "老板"
+      ],
+      "camera": {
+        "x": 0.5,
+        "y": 0.52,
+        "zoom": 0.95
+      },
+      "positions": {
+        "阿强": 0.29,
+        "老板": 0.7
+      }
+    }
+  ],
+  "lines": [
+    {
+      "seq": 1,
+      "speaker": "老板",
+      "type": "dialogue",
+      "text": "宣布个新规定。",
+      "emotion": "得意",
+      "sfx": "叮",
+      "scene": "S1"
+    },
+    {
+      "seq": 2,
+      "speaker": "老板",
+      "type": "dialogue",
+      "text": "以后所有消息，三分钟内必须回。",
+      "emotion": "平静",
+      "sfx": "",
+      "scene": "S1"
+    },
+    {
+      "seq": 3,
+      "speaker": "阿强",
+      "type": "dialogue",
+      "text": "三分钟？我在开会呢。",
+      "emotion": "无语",
+      "sfx": "",
+      "scene": "S1"
+    },
+    {
+      "seq": 4,
+      "speaker": "老板",
+      "type": "dialogue",
+      "text": "开会也要回。这说明你重视。",
+      "emotion": "得意",
+      "sfx": "",
+      "scene": "S1"
+    },
+    {
+      "seq": 5,
+      "speaker": "阿强",
+      "type": "dialogue",
+      "text": "明白。",
+      "emotion": "平静",
+      "sfx": "",
+      "scene": "S1"
+    },
+    {
+      "seq": 6,
+      "speaker": "旁白",
+      "type": "narration",
+      "text": "第二天，全公司都学会了。",
+      "emotion": "平静",
+      "sfx": "",
+      "scene": "S1"
+    },
+    {
+      "seq": 7,
+      "speaker": "旁白",
+      "type": "narration",
+      "text": "群里一片「已读」。",
+      "emotion": "平静",
+      "sfx": "",
+      "scene": "S1"
+    },
+    {
+      "seq": 8,
+      "speaker": "老板",
+      "type": "dialogue",
+      "text": "我说的是回话，不是已读。",
+      "emotion": "愤怒",
+      "sfx": "",
+      "scene": "S2"
+    },
+    {
+      "seq": 9,
+      "speaker": "阿强",
+      "type": "dialogue",
+      "text": "已读也是回。您看到了。",
+      "emotion": "平静",
+      "sfx": "",
+      "scene": "S2"
+    },
+    {
+      "seq": 10,
+      "speaker": "老板",
+      "type": "dialogue",
+      "text": "昨晚十点，谁在群里？",
+      "emotion": "愤怒",
+      "sfx": "",
+      "scene": "S2"
+    },
+    {
+      "seq": 11,
+      "speaker": "老板",
+      "type": "dialogue",
+      "text": "谁在加班！",
+      "emotion": "愤怒",
+      "sfx": "",
+      "scene": "S2"
+    },
+    {
+      "seq": 12,
+      "speaker": "阿强",
+      "type": "dialogue",
+      "text": "已读。",
+      "emotion": "平静",
+      "sfx": "",
+      "scene": "S2"
+    },
+    {
+      "seq": 13,
+      "speaker": "旁白",
+      "type": "narration",
+      "text": "下午，老板被大老板拉进了群。",
+      "emotion": "平静",
+      "sfx": "",
+      "scene": "S2"
+    },
+    {
+      "seq": 14,
+      "speaker": "老板",
+      "type": "dialogue",
+      "text": "我马上回。",
+      "emotion": "得意",
+      "sfx": "",
+      "scene": "S3"
+    },
+    {
+      "seq": 15,
+      "speaker": "旁白",
+      "type": "narration",
+      "text": "他打了三百字，全删了。",
+      "emotion": "平静",
+      "sfx": "",
+      "scene": "S3"
+    },
+    {
+      "seq": 16,
+      "speaker": "旁白",
+      "type": "narration",
+      "text": "最后回了一个已读。",
+      "emotion": "平静",
+      "sfx": "",
+      "scene": "S3"
+    },
+    {
+      "seq": 17,
+      "speaker": "老板",
+      "type": "dialogue",
+      "text": "这功能谁发明的？",
+      "emotion": "无语",
+      "sfx": "",
+      "scene": "S3"
+    },
+    {
+      "seq": 18,
+      "speaker": "阿强",
+      "type": "dialogue",
+      "text": "您。",
+      "emotion": "平静",
+      "sfx": "",
+      "scene": "S3"
+    },
+    {
+      "seq": 19,
+      "speaker": "老板",
+      "type": "dialogue",
+      "text": "我什么时候？",
+      "emotion": "惊讶",
+      "sfx": "",
+      "scene": "S3"
+    },
+    {
+      "seq": 20,
+      "speaker": "阿强",
+      "type": "dialogue",
+      "text": "三分钟必须回的那天。",
+      "emotion": "平静",
+      "sfx": "",
+      "scene": "S4"
+    },
+    {
+      "seq": 21,
+      "speaker": "旁白",
+      "type": "narration",
+      "text": "第二天，规定取消了。",
+      "emotion": "平静",
+      "sfx": "",
+      "scene": "S4"
+    },
+    {
+      "seq": 22,
+      "speaker": "老板",
+      "type": "dialogue",
+      "text": "以后……可以不回。",
+      "emotion": "无语",
+      "sfx": "乌鸦",
+      "scene": "S4"
+    },
+    {
+      "seq": 23,
+      "speaker": "阿强",
+      "type": "dialogue",
+      "text": "那我早就想回了。",
+      "emotion": "平静",
+      "sfx": "",
+      "scene": "S4"
+    },
+    {
+      "seq": 24,
+      "speaker": "老板",
+      "type": "dialogue",
+      "text": "回什么？",
+      "emotion": "惊讶",
+      "sfx": "",
+      "scene": "S4"
+    },
+    {
+      "seq": 25,
+      "speaker": "阿强",
+      "type": "dialogue",
+      "text": "不回。",
+      "emotion": "平静",
+      "sfx": "",
+      "scene": "S4"
+    }
+  ]
+}

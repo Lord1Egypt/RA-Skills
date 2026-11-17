@@ -1,42 +1,54 @@
-## Description: <br>
-Reference tool for devtools that covers intro, quickstart, patterns, debugging, performance, security, migration, and cheat-sheet guidance for Wakatime Lite. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reference tool for devtools that provides quick lookup documentation for Wakatime Lite concepts, best practices, and implementation patterns.
 
-## Publisher: <br>
-[bytesagain1](https://clawhub.ai/user/bytesagain1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain1](https://clawhub.ai/user/bytesagain1)
 
-## Use Case: <br>
-Developers and engineers use this skill as an offline reference for Wakatime Lite concepts, quickstart steps, common patterns, debugging, performance, security, migration, and cheat-sheet guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release includes an executable shell script, so future versions could add network access, credential use, installers, or file-changing behavior. <br>
-Mitigation: Review the release diff and security summary before upgrading, especially for any added network, credential, installer, or file-writing behavior. <br>
-Risk: The reference content is generic and may be incomplete for production Wakatime Lite decisions. <br>
-Mitigation: Validate operational guidance against project-specific requirements and authoritative documentation before applying it to production workflows. <br>
+## Use Case:
 
+Developers and engineers use this skill to retrieve plain-text Wakatime Lite reference material for introductory guidance, quickstart steps, patterns, debugging, performance, security, migration, and cheat-sheet workflows.
 
-## Reference(s): <br>
-- [Wakatime Lite on ClawHub](https://clawhub.ai/bytesagain1/wakatime-lite) <br>
-- [bytesagain1 publisher profile](https://clawhub.ai/user/bytesagain1) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Plain-text and Markdown reference documentation printed by shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Offline static reference output; no API keys, credentials, external API calls, or network access reported by evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.3 (source: server-resolved release and SKILL.md frontmatter) <br>
+Risk: Users may mistake the skill for a real Wakatime integration and provide secrets or operational credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat it as a static reference script; it does not need credentials, and users should not provide secrets to it.
+
+Risk: The reference output may contain general guidance that is not specific to a user's production environment.
+
+Mitigation: Review the plain-text recommendations before applying them to production systems or compliance-sensitive workflows.
+
+## Reference(s):
+
+- [ClawHub Wakatime Lite Skill Page](https://clawhub.ai/bytesagain1/skills/wakatime-lite)
+- [BytesAgain Homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Plain-text reference documentation with Markdown headings and lists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No external API calls, credentials, network access, persistence, or hidden behavior are indicated by the security evidence.]
+
+## Skill Version(s):
+
+2.0.3 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

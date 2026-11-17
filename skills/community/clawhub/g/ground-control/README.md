@@ -4,13 +4,9 @@
 
 ## 🛠️ Installation
 
-### 1. Ask OpenClaw (Recommended)
-Tell OpenClaw: *"Install the ground-control skill."* The agent will handle the installation and configuration automatically.
-
-### 2. Manual Installation (CLI)
-If you prefer the terminal, run:
+Install the owner-qualified release:
 ```bash
-clawhub install ground-control
+openclaw skills install @jonathanjing/ground-control
 ```
 
 ## The Problem
@@ -21,9 +17,9 @@ OpenClaw upgrades can silently change your configuration. A new version might re
 
 **ground-control** is a two-part system:
 
-1. **MODEL_GROUND_TRUTH.md** — A single file that declares what your system *should* look like: which models are registered, what every cron job runs, which channels are active.
+1. **MODEL_GROUND_TRUTH.md** — An index file that declares what your system *should* look like: which models are registered, what every cron job runs, which channels are active. Detailed configs are in `refs/ground-truth/*.md`.
 
-2. **post-upgrade-verify.md** — A 5-phase automated verification that compares your running system against the ground truth and auto-repairs drift.
+2. **post-upgrade-verify.md** — A 5-phase verification that compares your running system against the ground truth. It reports drift by default and changes runtime state only after explicit operator approval.
 
 ```
 ┌─────────────────────────────────────────────┐
@@ -40,9 +36,9 @@ OpenClaw upgrades can silently change your configuration. A new version might re
                    │  drift?
                    ▼
               ┌────┴────┐
-              │ Phase 1  │  Config Integrity    → auto-fix
+              │ Phase 1  │  Config Integrity    → report / approve
               │ Phase 2  │  API Key Liveness    → report only
-              │ Phase 3  │  Cron Integrity      → auto-fix
+              │ Phase 3  │  Cron Integrity      → report / approve
               │ Phase 4  │  Session Smoke Test  → report only
               │ Phase 5  │  Channel Liveness    → report only
               └────┬────┘
@@ -55,24 +51,24 @@ OpenClaw upgrades can silently change your configuration. A new version might re
 
 ## Design Philosophy
 
-> **OpenClaw maintains itself. We only verify the result.**
+> **OpenClaw maintains itself. Ground Control verifies the result and keeps repair decisions human-controlled.**
 
 - All checks use OpenClaw's native tools (`gateway config.get`, `cron list`, `sessions_spawn`, `message`)
 - No external scripts, no manual curl, no bypassing the runtime
-- Auto-repair for config and cron drift (Phases 1 & 3)
+- Report-only by default for config and cron drift; repairs require explicit approval
 - Report-only for API keys and channels (Phases 2 & 5) — these need human judgment
 - Ground truth is the single source of truth — change config, update ground truth
 
 ## The 5 Phases
 
 ### Phase 1: Config Integrity
-Compares `gateway config.get` output against GROUND_TRUTH. Checks primary model, registered models, compaction mode, context pruning, heartbeat interval, ACP config, and channel policies. **Auto-fixes drift** via `gateway config.patch`.
+Compares `gateway config.get` output against GROUND_TRUTH. Checks primary model, registered models, compaction mode, context pruning, heartbeat interval, ACP config, and channel policies. **Reports drift by default.** Run `gateway config.patch` only after showing the exact non-secret change and receiving approval.
 
 ### Phase 2: LLM Provider Liveness
 Tests each LLM provider by spawning a minimal `sessions_spawn` request through OpenClaw's own routing layer. No API keys are read, no curl commands are executed, no env vars are accessed. **Reports only** — provider issues need human intervention.
 
 ### Phase 3: Cron Integrity
-Compares `cron list` against GROUND_TRUTH's recurring job definitions. Checks model, schedule, delivery target, and enabled status. **Auto-fixes drift** via `cron update`. Ignores one-shot (`deleteAfterRun`) jobs. Enforces the "no Opus in cron" rule.
+Compares `cron list` against GROUND_TRUTH's recurring job definitions. Checks model, schedule, delivery target, and enabled status. **Reports drift by default.** Run `cron update` only after operator approval. Ignores one-shot (`deleteAfterRun`) jobs.
 
 ### Phase 4: Session Smoke Test
 Spawns a single isolated Flash session with a trivial task. If it responds, the session system works. **Reports only.**
@@ -100,7 +96,7 @@ Add this block to your `AGENTS.md` so the agent reminds you to update ground tru
 ```markdown
 ## 🔒 GROUND_TRUTH Sync Rule
 
-**Every time config changes (model/cron/channel/acp), remind to sync `MODEL_GROUND_TRUTH.md`.**
+**Every time config changes (model/cron/channel/acp), remind to sync `MODEL_GROUND_TRUTH.md` and corresponding `refs/ground-truth/*.md` sub-files.**
 - After modification → ask: "Want me to update GROUND_TRUTH too?"
 - If yes → update immediately
 - If no → log as todo in daily diary
@@ -127,15 +123,15 @@ See `scripts/UPGRADE_SOP.md` for the complete pre/during/post upgrade procedure.
 📦 Version: v2026.3.2 (from v2026.3.1)
 ⏱️ 2026-03-02 11:34 PST
 
-Phase 1: Config Integrity     ⚠️ AUTO-FIXED 9/9
-  ❌→✅ removed stale model, updated aliases
+Phase 1: Config Integrity     ⚠️ DRIFT 2
+  approval required: remove stale model, update aliases
 Phase 2: Provider Liveness    ✅ 5/6
   X/Twitter: ⚠️ free tier limit
 Phase 3: Cron Integrity       ✅ 17/17 recurring jobs
 Phase 4: Session Smoke Test   ✅
 Phase 5: Channel Liveness     ✅ Discord | ⏭️ WhatsApp
 
-Overall: ⚠️ DEGRADED (auto-fixed)
+Overall: ⚠️ DEGRADED (approval required)
 ```
 
 ## Cost
@@ -162,13 +158,15 @@ ground-control/
 
 This skill does **not** read API keys, environment variables, or any secrets. Phase 2 tests LLM providers exclusively through OpenClaw's `sessions_spawn` — the routing layer handles authentication internally. Non-LLM provider checks (Brave, Notion, etc.) are intentionally out of scope.
 
-### Auto-fix Scope
+### Repair Scope
 
-Phases 1 (config) and 3 (cron) can auto-patch your runtime. Controls:
-- `--dry-run` disables all auto-fix (report-only mode)
-- If >3 fields need fixing, the agent pauses for human confirmation
-- Every fix logs before/after values in the report
-- Phases 2 and 5 are **never** auto-fixed
+All phases are report-only by default. For Phases 1 (config) and 3 (cron), the agent may propose a bounded repair, but it must:
+
+- show the exact non-secret fields or cron attributes that would change;
+- request explicit operator approval before any mutation;
+- record the approved action and verification result;
+- never print secret before/after values;
+- keep provider and channel changes report-only.
 
 ## License
 

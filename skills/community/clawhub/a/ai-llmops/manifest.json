@@ -1,0 +1,76 @@
+{
+  "schema": "ownership-attestation/1.0",
+  "package": "AI模型资产管理",
+  "version": "1.0.0",
+  "author": "注册老炮",
+  "year": "2026",
+  "timestamp_utc": "2026-08-27T17:16:08.420750+00:00",
+  "timestamp_local": "2026-08-28T01:16:08.420760",
+  "package_fingerprint_sha256": "23666a0129226b1c6fb9e35a0eb2fc190ba4d15c9385b4752b97b7c6b5fdcaad",
+  "files": [
+    {
+      "path": "LICENSE.md",
+      "sha256": "e8a66e30b55e997de5fca2cb78bbf2bdabd1a50bc739145dcac48e08b748843d"
+    },
+    {
+      "path": "SECURITY_AUDIT.md",
+      "sha256": "94f3428a60832c68fa9c92da674a8b3b5b1f82a4d67adb4a976a3105bbb74ede"
+    },
+    {
+      "path": "SKILL.md",
+      "sha256": "6752a3d25963aa0e857b2e0d11832517e16dca8c896901395ffc2a675c73080f"
+    },
+    {
+      "path": "references/01-资产全景与台账.md",
+      "sha256": "bff44bc808283fa00b4a1a9c10655e863f9d2a2407ee324658096bede6bc05a7"
+    },
+    {
+      "path": "references/02-模型卡与注册.md",
+      "sha256": "57e97b3d658256460c47b809ba21fb1b248826d7581ca006748e8541e350433a"
+    },
+    {
+      "path": "references/03-版本管理.md",
+      "sha256": "948b5abefac4d9d162fe132da2868db9390c12f6da6ea694f270d2abc83eca21"
+    },
+    {
+      "path": "references/04-上线下线管理.md",
+      "sha256": "b8f353f44069d166d5e674cd417d1e18e9c547d7a1695a6850350edd201b7c04"
+    },
+    {
+      "path": "references/05-漂移监控.md",
+      "sha256": "9c7173ec85354aeb715db06ba3b100dbdbe5dfdee2e3ee9f98553b5053803e0b"
+    },
+    {
+      "path": "references/06-成本治理.md",
+      "sha256": "0a3177a1d04faec897cd55dee80e1f8e2cabd19ad8beb28ff703e2d16f4f9e65"
+    },
+    {
+      "path": "references/07-治理制度与流程.md",
+      "sha256": "104d0c1c77f18f106f4eb2b3725b7cebd614b9c84d55b4d72725a3f2f326ad23"
+    },
+    {
+      "path": "references/08-FAQ.md",
+      "sha256": "7a6b9c6a5631955269dc8b015b655047a632846e0ee4fc480c891e321398198f"
+    },
+    {
+      "path": "tools/llmops_toolkit.py",
+      "sha256": "97747216a1f8c67cc4adc7b9ea43ea0c039df1e9ea1877f358fa82bc9277c46f"
+    },
+    {
+      "path": "verify/gen_security_radar.py",
+      "sha256": "5cdc040be0c227dbc02554ce143f1ff2c519c55b6d7abb68d8e9c3fc126c7b90"
+    },
+    {
+      "path": "verify/llmops_quality_test.py",
+      "sha256": "c8af216df74bed9766c6a202fd5806602c0c87acfcfeaeb52fc4b1e9cc70ede4"
+    },
+    {
+      "path": "verify/security-radar.svg",
+      "sha256": "f90ad0bfc3e2d087ca76f52705eedc80f8280326c15fa48a45f1be7caa1a82f2"
+    },
+    {
+      "path": "verify/security_results.json",
+      "sha256": "5c03694e3cb836cfbbfdbc78832eda390aa0ba6bd4ec7115673677a292cf4543"
+    }
+  ]
+}

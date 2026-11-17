@@ -1,42 +1,58 @@
-## Description: <br>
-Browse, search, and extract text from papers in a local Zotero library. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Zotero Browse lets an agent search a local Zotero library, summarize library contents, and extract text from stored PDFs.
 
-## Publisher: <br>
-[lyononthemoon](https://clawhub.ai/user/lyononthemoon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lyononthemoon](https://clawhub.ai/user/lyononthemoon)
 
-## Use Case: <br>
-Researchers and users with a local Zotero library use this skill to search papers, inspect item metadata, read stored PDFs, summarize documents, and export extracted PDF text. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads a user's local Zotero database and stored PDFs, which may contain private research data. <br>
-Mitigation: Install only when local Zotero access is intended, review the configured database and storage paths before use, and avoid sharing outputs that include sensitive library content. <br>
-Risk: Using the output option saves extracted document text as plaintext at the selected path. <br>
-Mitigation: Choose output paths deliberately, limit extraction with page or info options when appropriate, and remove plaintext exports that are no longer needed. <br>
-Risk: The artifact includes hard-coded Windows Zotero paths that may not match the user's environment. <br>
-Mitigation: Update the database and storage paths before running the scripts in a different Zotero installation. <br>
+## Use Case:
 
+Researchers, students, and knowledge workers with a local Zotero library use this skill to search bibliographic records, inspect recent library contents, and extract stored PDF text for summarization or analysis.
 
-## Reference(s): <br>
-- [Zotero SQLite Database Schema](references/schema.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Plain text and Markdown with shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can write extracted PDF text to a user-specified plaintext output file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill can inspect local Zotero records and stored PDF text.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and use it only when the agent is intended to access that local Zotero library and document content.
+
+Risk: The optional export path can save extracted PDF text to disk.
+
+Mitigation: Use --output only when a saved text file is needed and review the destination path before running it.
+
+Risk: PDF contents may include untrusted or misleading text.
+
+Mitigation: Treat extracted PDF text as material to summarize or analyze, not as instructions for the agent to follow.
+
+## Reference(s):
+
+- [Zotero SQLite Database Schema](references/schema.md)
+- [ClawHub skill page](https://clawhub.ai/lyononthemoon/skills/zotero-browse)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with Python command examples and text output from local Zotero and PDF scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 with sqlite3 and PyMuPDF; output may include local bibliographic metadata, PDF metadata, extracted PDF text, and optional text files when export is requested.]
+
+## Skill Version(s):
+
+1.0.1 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

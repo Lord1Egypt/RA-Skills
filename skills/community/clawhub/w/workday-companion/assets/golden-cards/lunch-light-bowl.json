@@ -1,0 +1,13 @@
+{
+  "module": "午饭判官",
+  "route": "lunch-receipt",
+  "time_label": "12:00",
+  "title": "判了：轻碗通行",
+  "reason": "想轻一点，别拖下午",
+  "action": "找清爽简餐方向",
+  "tags": ["轻一点", "快出餐"],
+  "corner": "给候选",
+  "footer": "今天先这么过。",
+  "alt_text": "午饭判官。判了：轻碗通行。想轻一点，别拖下午。现在做：找清爽简餐方向。",
+  "share_safe": true
+}

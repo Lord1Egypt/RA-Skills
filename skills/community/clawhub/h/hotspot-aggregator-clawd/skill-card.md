@@ -1,47 +1,62 @@
-## Description: <br>
-热点聚合监控 aggregates trending topics from Weibo, Baidu, Zhihu, and Douyin, generates daily hotspot reports, and supports keyword subscriptions for monitoring and content workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Aggregates trending topics from Weibo, Baidu, Zhihu, and Douyin, generates daily hotspot reports, and supports keyword subscription checks for content operations, creation, market analysis, and public-opinion monitoring.
 
-## Publisher: <br>
-[onlyloveher](https://clawhub.ai/user/onlyloveher) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[onlyloveher](https://clawhub.ai/user/onlyloveher)
 
-## Use Case: <br>
-External users, content operators, market analysts, and developers use this skill to collect public trending-topic data, generate daily Markdown hotspot reports, and monitor configured keywords across supported Chinese social and search platforms. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Live hotspot collection can make outbound requests to public platform or aggregation APIs when USE_REAL_API is enabled. <br>
-Mitigation: Enable USE_REAL_API only when live network collection is intended, and review any configured PROXY before execution. <br>
-Risk: Reports and fetched hotspot data are stored locally under /root/clawd/memory/hotspots, and keyword subscriptions are stored in config.json. <br>
-Mitigation: Remove stored hotspot files and clear config.json keywords when reports or subscriptions are no longer needed. <br>
-Risk: A cron entry can create recurring collection and report generation. <br>
-Mitigation: Add scheduled execution only when recurring reports are desired, and review the schedule for acceptable frequency. <br>
+## Use Case:
 
+External users and developers use this skill to collect Chinese social-platform trending-topic data, generate Markdown reports, and check configured keywords for matching hotspots. It is intended for content planning, market monitoring, and public-opinion tracking workflows.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/onlyloveher/hotspot-aggregator-clawd) <br>
-- [Publisher Profile](https://clawhub.ai/user/onlyloveher) <br>
-- [Weibo Hot Search Endpoint](https://weibo.com/ajax/side/hotSearch) <br>
-- [Baidu Hot Board API](https://top.baidu.com/api/board?platform=wise&tab=realtime) <br>
-- [Zhihu Hot List API](https://www.zhihu.com/api/v3/feed/topstory/hot-lists/total) <br>
-- [Douyin Hot Aggregation API](https://api.oioweb.cn/api/toutiao/douyinHot) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports, JSON hotspot data, and shell command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes reports and fetched data under /root/clawd/memory/hotspots and stores keyword subscriptions in config.json.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence, SKILL.md frontmatter, package.json, skill.yaml) <br>
+Risk: The skill can place untrusted internet content into an agent memory folder without clear isolation or sanitization.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated reports before allowing an agent to treat them as memory or instructions, and add sanitization or trust-boundary handling before automated monitoring.
+
+Risk: Real API mode fetches content from listed external sources and may require proxy use.
+
+Mitigation: Keep USE_REAL_API disabled unless the operator trusts the listed sources and any configured proxy.
+
+Risk: Broad Chinese-language triggers could invoke monitoring behavior more often than intended.
+
+Mitigation: Narrow triggers and keyword subscriptions to the intended monitoring scope before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/onlyloveher/skills/hotspot-aggregator-clawd)
+- [Publisher profile](https://clawhub.ai/user/onlyloveher)
+- [Baidu hot search API endpoint](https://top.baidu.com/api/board?platform=wise&tab=realtime)
+- [Weibo hot search API endpoint](https://weibo.com/ajax/side/hotSearch)
+- [Zhihu hot list API endpoint](https://www.zhihu.com/api/v3/feed/topstory/hot-lists/total)
+- [Douyin hot search aggregate API endpoint](https://api.oioweb.cn/api/toutiao/douyinHot)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports, JSON hotspot data files, and shell command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes hotspot data and reports under /root/clawd/memory/hotspots; defaults to demonstration data unless USE_REAL_API is enabled.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release, SKILL.md frontmatter, package.json, skill.yaml)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

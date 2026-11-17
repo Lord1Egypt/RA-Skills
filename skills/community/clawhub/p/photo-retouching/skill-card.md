@@ -1,44 +1,55 @@
-## Description: <br>
-Execute RunningHub ComfyUI workflows via API to submit tasks, query status, and retrieve results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Runs RunningHub ComfyUI workflows to submit photo retouching jobs, upload image inputs, monitor task status, and retrieve generated results.
 
-## Publisher: <br>
-[uiueux](https://clawhub.ai/user/uiueux) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[uiueux](https://clawhub.ai/user/uiueux)
 
-## Use Case: <br>
-Developers and automation users use this skill to submit, monitor, and retrieve results from RunningHub-hosted ComfyUI workflows, including workflows that accept uploaded images as inputs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected images, workflow inputs, and generated outputs are sent to RunningHub for processing. <br>
-Mitigation: Use the skill only with images and workflow data that may be shared with RunningHub, and review the service's data handling expectations before use. <br>
-Risk: The skill can save a RunningHub API key in a local config file. <br>
-Mitigation: Prefer environment variables or protect the local config file, avoid committing it, and rotate the API key if exposure is suspected. <br>
-Risk: The included Chrome DevTools automation script can control a browser session when remote debugging is enabled. <br>
-Mitigation: Prefer the documented API client path; run Chrome automation only with an intentionally started disposable browser profile. <br>
+## Use Case:
 
+Developers and external users use this skill to run RunningHub-hosted ComfyUI photo retouching or image transformation workflows from an agent, including image upload, task submission, status polling, and result retrieval.
 
-## Reference(s): <br>
-- [ClawHub Photo Retouching release](https://clawhub.ai/uiueux/photo-retouching) <br>
-- [RunningHub platform](https://www.runninghub.ai/) <br>
-- [RunningHub workflow URL pattern](https://www.runninghub.ai/#/workflow/WORKFLOW_ID) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with command examples, Python API snippets, JSON configuration, and task/result status text.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces RunningHub task identifiers, status responses, and output URLs when workflows complete.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The artifact includes Chrome DevTools automation that can control a local browser session.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or remove chrome_automation.py before use, and do not run it against a normal logged-in browser profile.
+
+Risk: API keys and uploaded images are sent to RunningHub workflows.
+
+Mitigation: Prefer RUNNINGHUB_API_KEY, avoid command-line API keys and saved-key storage, and treat uploaded images as shared with RunningHub.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/uiueux/skills/photo-retouching)
+- [RunningHub](https://www.runninghub.ai/)
+- [RunningHub OpenAPI v2 endpoint](https://www.runninghub.ai/openapi/v2)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, Python code snippets, and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce RunningHub task IDs, status JSON, image URLs, and local configuration when helper scripts are run.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

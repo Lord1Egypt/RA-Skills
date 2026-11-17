@@ -1,42 +1,55 @@
-## Description: <br>
-Professional SOP with Machine-Gated Planning, Native-CLI Config, and Audit-Hardened Private Sandbox Storage. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Professional SOP with Machine-Gated Planning, Native-CLI Config, and Audit-Hardened Private Sandbox Storage.
 
-## Publisher: <br>
-[chyern](https://clawhub.ai/user/chyern) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chyern](https://clawhub.ai/user/chyern)
 
-## Use Case: <br>
-Developers and engineering agents use this skill to structure multi-step work with planning gates, task tracking, approval records, configurable sub-agent use, and optional context snapshots. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can persist sensitive task context when snapshots are enabled. <br>
-Mitigation: Keep snapshots disabled unless the local runtime isolation and logging behavior are understood and acceptable. <br>
-Risk: The snapshot clear command may report success while leaving saved context on disk. <br>
-Mitigation: Do not rely on the clear command to remove sensitive saved context; manually inspect and remove stored snapshot files when handling sensitive work. <br>
+## Use Case:
 
+Developers and agent operators use this skill to apply a structured workflow for complex workspace tasks, including planning, approval gating, task tracking, autonomous execution, validation, and review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chyern/multi-step-workflow) <br>
-- [Publisher profile](https://clawhub.ai/user/chyern) <br>
-- [Agent-Skills repository](https://github.com/chyern/Agent-Skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, text, markdown] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write local JSON state files for approvals, task progress, and optional context snapshots.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-4.4.5 (source: server release metadata, SKILL.md frontmatter, manifest.json) <br>
+Risk: Optional snapshots may store raw task context, and the clear command may leave saved snapshot contents available.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep useSnapshots disabled unless task recovery is needed, avoid placing secrets in snapshots, and manually delete sensitive snapshot files until the clear behavior is fixed.
+
+Risk: The skill runs local Node.js scripts and writes approval and task state to project-specific temporary storage.
+
+Mitigation: Review the bundled scripts before deployment, use the skill only in trusted workspaces, and account for local temporary storage in endpoint security controls.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chyern/skills/multi-step-workflow)
+- [ClawHub publisher profile](https://clawhub.ai/user/chyern)
+- [Project homepage from ClawHub metadata](https://github.com/chyern/Agent-Skills)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown instructions with inline shell commands and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local JSON approval, task-tracking, and optional context-snapshot state through bundled Node.js scripts.]
+
+## Skill Version(s):
+
+4.4.5 (source: server release metadata and artifact manifest)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

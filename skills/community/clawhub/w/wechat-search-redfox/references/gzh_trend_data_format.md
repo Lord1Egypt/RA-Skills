@@ -17,7 +17,7 @@
 **请求头**：
 ```
 Content-Type: application/json
-X-API-Key: ak_c4fc9018ffb14ce4ae35dafd92f466c3
+X-API-Key: ak_xxxxxxxxxxxxxxxx
 ```
 
 ## 输入格式

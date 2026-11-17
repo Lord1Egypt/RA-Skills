@@ -17,7 +17,7 @@ Common tasks for this skill:
 - Read macroeconomic and market datasets
 - Export structured datasets for later analysis, comparison, or backtesting
 
-Start from the user's research goal, then decide whether to browse categories, search APIs, or call a known endpoint directly.
+Start from the user's research goal, then decide whether to read the API reference index and references or call a known endpoint directly.
 
 ## When To Use
 
@@ -58,8 +58,8 @@ If data access, time range, or endpoint capability is limited, say so clearly.
 Use this order:
 
 1. First decide whether the user needs quotes, financials, announcements and research, funds and indices, macro data, data export, or something outside this skill.
-2. If the endpoint is unclear, use `investoday-api list` to browse groups or `investoday-api search-api` to search by keyword.
-3. If the endpoint is clear but parameters are unclear, use `investoday-api search-api` to inspect usage, parameters, and examples.
+2. If the endpoint is unclear, read `docs/references-index.en.md`, locate the relevant reference by business category, and determine the endpoint from that document.
+3. If the endpoint is clear but parameters are unclear, read its reference document for usage, parameters, and examples.
 4. If both endpoint and parameters are clear, call `investoday-api <endpoint> [key=value ...]`.
 5. If results are empty or unavailable, state the query scope, time range, permission, or network limitation instead of inventing conclusions.
 
@@ -85,13 +85,6 @@ investoday-api init
 # Non-interactive one-shot initialization
 investoday-api init --api-key "<API_KEY>" --auto-update --skip-verify
 
-# Browse multi-level groups and leaf categories
-investoday-api list <group/subgroup/leaf>
-
-# Search APIs by keyword or tool id.
-# query and tool_ids can contain multiple values separated by English commas.
-investoday-api search-api query=<query> tool_ids=<tool_ids>
-
 # Fetch data
 investoday-api <endpoint> [key=value ...]
 
@@ -109,17 +102,6 @@ investoday-api init
 # Non-interactive one-shot initialization
 investoday-api init --api-key "<API_KEY>" --auto-update --skip-verify
 
-# List categories
-investoday-api list
-investoday-api list 沪深京数据
-investoday-api list 沪深京数据/公司行为/基本信息
-
-# Keyword search
-investoday-api search-api query=股票,基本面分析
-
-# Tool-id search
-investoday-api search-api tool_ids=list_stock_violation_penalt,list_stock_report_schema
-
 # Fetch data
 investoday-api search key=贵州茅台 type=11
 investoday-api stock/basic-info stockCode=600519
@@ -129,8 +111,8 @@ investoday-api industry-quote/realtime-v2 --method POST industryLevel=1 industry
 
 ## Usage Strategy
 
-- If the endpoint is unclear, use `list` or `search-api` to find it.
-- If the endpoint is clear but parameters are unclear, use `search-api` to get the usage details.
+- If the endpoint is unclear, read `docs/references-index.en.md`, locate the relevant business category, and open the corresponding reference document.
+- If the endpoint is clear but parameters are unclear, get the usage details from its reference document.
 - If both the endpoint and usage are clear, call it directly.
 - For POST endpoints where references separate `Query parameters` and `Body JSON parameters`, pass Query as `key=value` and Body as `--body-json`; do not pass array or object Body values as plain string parameters.
 
@@ -143,4 +125,4 @@ investoday-api industry-quote/realtime-v2 --method POST industryLevel=1 industry
 
 ## Supporting Docs
 
-- API reference index: `docs/references-index.en.md`
+- When the endpoint is unclear or needs to be located by business category, read `docs/references-index.en.md` first.

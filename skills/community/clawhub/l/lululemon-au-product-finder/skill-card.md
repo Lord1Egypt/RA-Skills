@@ -1,41 +1,56 @@
-## Description: <br>
-Find a product on the Lululemon Australia site from a natural-language clothing description and return structured details such as product name, variant colors, sizes, prices, URLs, and provenance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find a product on the Lululemon Australia site from a natural-language clothing description and return structured details such as product name, variant colors, sizes, prices, URLs, and provenance.
 
-## Publisher: <br>
-[ensonfun](https://clawhub.ai/user/ensonfun) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ensonfun](https://clawhub.ai/user/ensonfun)
 
-## Use Case: <br>
-External users and shopping or catalog-research agents use this skill to find Lululemon Australia products from fuzzy natural-language descriptions and return structured variant details from official sources. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The anti-bot fallback may reuse an existing browser session, which can expose logged-in browsing state if used carelessly. <br>
-Mitigation: Use an isolated or guest browser profile for fallback browsing, and only reuse a personal logged-in session with explicit approval. <br>
+## Use Case:
 
+External users and shopping assistants use this skill to find Lululemon Australia products from fuzzy clothing descriptions and return structured product, variant, price, size, URL, and field-source details.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ensonfun/lululemon-au-product-finder) <br>
-- [Lululemon Australia homepage](https://www.lululemon.com.au/en-au/home) <br>
-- [Lululemon AU Anti-Bot And Data Source Notes](references/anti-bot-and-sources.md) <br>
-- [Lululemon AU Fallback Ladder](references/fallback-ladder.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, guidance] <br>
-**Output Format:** [Structured JSON object, usually embedded in Markdown when explanation is needed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes field-level provenance, confidence, coverage, and official source URLs; partial results may use nulls or empty arrays.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence and artifact metadata) <br>
+Risk: The optional browser-session fallback may expose browser state to the agent during a shopping lookup.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use browser-session fallback only with a session the user is comfortable letting the agent access; prefer official search discovery and product pages first.
+
+Risk: Anti-bot blocks can force partial product answers based on official snippets or sibling variants.
+
+Mitigation: Return confidence, coverage, sources, and per-field provenance so users can distinguish product-page data from fallback-derived data.
+
+## Reference(s):
+
+- [Lululemon Australia homepage](https://www.lululemon.com.au/en-au/home)
+- [ClawHub skill page](https://clawhub.ai/ensonfun/skills/lululemon-au-product-finder)
+- [Lululemon AU Anti-Bot And Data Source Notes](references/anti-bot-and-sources.md)
+- [Lululemon AU Fallback Ladder](references/fallback-ladder.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Structured JSON-style product object with explanatory notes and source links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes per-field provenance, confidence, and coverage indicators for partial or fallback-derived product data.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

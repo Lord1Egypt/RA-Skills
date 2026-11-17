@@ -1,0 +1,4 @@
+interface:
+  display_name: "Remove AI slop"
+  short_description: "Remove AI writing habits while preserving meaning"
+  default_prompt: "Use $remove-ai-slop to edit this text into clear, direct prose without changing its meaning."

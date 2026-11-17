@@ -1,51 +1,66 @@
-## Description: <br>
-Internal Admin Playwright automates controlled access to internal admin panels with Python and Playwright, configurable L2TP/IPsec VPN access, domain whitelisting, Chinese command routing, and fixed menu workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates controlled access to internal admin panels with Python and Playwright, using configurable L2TP/IPsec VPN access, a domain whitelist, and preconfigured Chinese command routes.
 
-## Publisher: <br>
-[wulooongcha](https://clawhub.ai/user/wulooongcha) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wulooongcha](https://clawhub.ai/user/wulooongcha)
 
-## Use Case: <br>
-Authorized internal developers and operators use this skill to run predefined Playwright workflows against an internal admin panel, including VPN setup, login, menu navigation, and comment moderation flows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Bundled admin or VPN credentials may expose sensitive access if used as-is. <br>
-Mitigation: Remove and rotate bundled credentials before installation, and supply production secrets through approved environment variables or secret management. <br>
-Risk: Whitelist enforcement may not cover every request type, allowing supporting browser traffic outside the intended boundary. <br>
-Mitigation: Audit and tighten whitelist handling before use, especially for non-document requests and externally loaded resources. <br>
-Risk: VPN setup can modify system-wide routing and network services on the host. <br>
-Mitigation: Run VPN operations only on an isolated machine or container where route changes and service restarts are acceptable. <br>
-Risk: Debug logging, screenshots, and saved HTML may capture sensitive admin content. <br>
-Mitigation: Disable, redact, or securely retain debug artifacts according to the operating team's data-handling requirements. <br>
-Risk: Privileged moderation workflows can take admin actions automatically. <br>
-Mitigation: Restrict execution to authorized operators, keep command mappings under review, and test moderation rules before production use. <br>
+## Use Case:
 
+Internal operations and engineering teams use this skill to run preconfigured Playwright navigation and moderation workflows against an authorized internal admin panel after configuring VPN access, allowed hosts, and credentials.
 
-## Reference(s): <br>
-- [README](README.md) <br>
-- [Menu Map](references/menu_map.yaml) <br>
-- [Review Rules](references/rules.json) <br>
-- [Team Configuration Template](references/team-template.md) <br>
-- [VPN Configuration](references/vpn_config.yaml) <br>
-- [Domain Whitelist](references/whitelist.yaml) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and configuration file references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May run Playwright browser automation and VPN commands when invoked by an authorized agent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The release evidence reports packaged VPN or admin credentials and possible exposure of real secrets.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not use packaged credentials; rotate any real VPN or admin credentials that may have been exposed before installation or execution.
+
+Risk: The security assessment says the VPN helper can make broad host networking changes, including global /etc updates, default-route replacement, and broad process termination.
+
+Mitigation: Run only in a disposable or dedicated environment unless the VPN helper is rewritten to avoid global system changes and broad process termination.
+
+Risk: The security guidance identifies shell injection risk, OTP logging, and unsanitized debug captures.
+
+Mitigation: Review and harden command execution, disable sensitive debug logging, sanitize captured pages, and avoid storing OTPs or secrets in logs or debug artifacts.
+
+Risk: The skill can perform admin-panel and moderation actions with weak safeguards if commands or menu routes are misconfigured.
+
+Mitigation: Restrict use to authorized internal operators, keep command routes and allowlists under review, and require human approval before deploying changes to live admin workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wulooongcha/skills/internal-admin-playwright)
+- [Command route map](references/menu_map.yaml)
+- [Domain whitelist configuration](references/whitelist.yaml)
+- [VPN configuration](references/vpn_config.yaml)
+- [Team configuration template](references/team-template.md)
+- [Moderation rules](references/rules.json)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, configuration, guidance, text]
+
+**Output Format:** [Markdown with shell command examples, configuration guidance, and execution status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user-provided credentials, OTP, VPN settings, domain whitelist, and preconfigured command routes before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

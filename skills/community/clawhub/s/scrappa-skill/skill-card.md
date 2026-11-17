@@ -1,42 +1,54 @@
-## Description: <br>
-Access Scrappa's MCP server for Google, YouTube, Amazon, LinkedIn, Trustpilot, flights, hotels, and more via Model Context Protocol. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Access Scrappa's MCP server for Google, YouTube, Amazon, LinkedIn, Trustpilot, flights, hotels, and more via Model Context Protocol.
 
-## Publisher: <br>
-[userlip](https://clawhub.ai/user/userlip) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[userlip](https://clawhub.ai/user/userlip)
 
-## Use Case: <br>
-Developers and operators use this skill to configure Scrappa's MCP server and request search, scraping, translation, marketplace, travel, real estate, and review data through an agent. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: API-key-backed requests and search queries are sent to Scrappa's external MCP service. <br>
-Mitigation: Use a dedicated Scrappa API key where possible, avoid sending secrets or regulated private data, and review Scrappa's privacy and retention terms. <br>
-Risk: Returned web and scraping results can contain untrusted or misleading source material. <br>
-Mitigation: Review returned content before relying on it or using it in downstream agent actions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/userlip/scrappa-skill) <br>
-- [Scrappa Documentation](https://scrappa.co/docs) <br>
-- [Scrappa MCP Integration Guide](https://scrappa.co/docs/mcp-integration) <br>
-- [Scrappa Dashboard](https://scrappa.co/dashboard) <br>
+## Use Case:
 
+Developers and external users use this skill to configure agent access to Scrappa's MCP server and request search, scraping, translation, review, travel, real estate, marketplace, and job data through its listed tools.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with shell commands and JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Scrappa API key and external Scrappa MCP service access; returned web content should be treated as untrusted.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Requests sent through the skill are processed by Scrappa and relevant downstream services.
+
+Mitigation: Avoid submitting confidential business data, private URLs, sensitive personal information, or third-party profile lookups unless that processing is acceptable.
+
+Risk: The external Scrappa service requires an API key and may enforce account-specific rate limits.
+
+Mitigation: Configure credentials securely and review Scrappa plan limits before production use.
+
+## Reference(s):
+
+- [Scrappa Documentation](https://scrappa.co/docs)
+- [Scrappa MCP Integration Guide](https://scrappa.co/docs/mcp-integration)
+- [Scrappa Dashboard](https://scrappa.co/dashboard)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Scrappa API key; requests are sent to Scrappa's external MCP service and may be subject to plan rate limits.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

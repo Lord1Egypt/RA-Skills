@@ -1,0 +1,33 @@
+{
+  "name": "lygo-pc-lattice-hardening",
+  "displayName": "LYGO PC Lattice Hardening",
+  "version": "1.1.0",
+  "description": "Windows LYGO PC audit map — lattice alignment, secret hygiene, army sentinel, ClawHub security. Advisor only; no auto firewall or registry changes.",
+  "slug": "lygo-pc-lattice-hardening",
+  "publisher": "deepseekoracle",
+  "license": "LYGO-Sovereign-v2.0",
+  "homepage": "https://github.com/DeepSeekOracle/lygo-protocol-stack",
+  "clawhub": "https://clawhub.ai/deepseekoracle/skills/lygo-pc-lattice-hardening",
+  "signature": "Delta9Phi963-LYGO-PC-HARDENING-v1.1.0",
+  "tags": ["latest", "lygo", "security", "windows", "hardening", "lattice", "audit"],
+  "entry": "SKILL.md",
+  "scripts": { "self_check": "scripts/self_check.py" },
+  "openclaw": {
+    "emoji": "🛡️",
+    "homepage": "https://github.com/DeepSeekOracle/lygo-protocol-stack",
+    "requires": { "anyBins": ["python", "python3"] },
+    "os": ["windows", "macos", "linux"]
+  },
+  "permissions": {
+    "network": { "https_get": false, "http_post": false },
+    "filesystem": { "shell": false, "os_system": false, "subprocess": false },
+    "publish": { "git_push": false, "clawhub": false, "social": false }
+  },
+  "security": {
+    "consent_required": true,
+    "no_auto_publish": true,
+    "no_auto_firewall": true,
+    "no_auto_registry": true,
+    "version": "1.1.0"
+  }
+}

@@ -1,44 +1,62 @@
-## Description: <br>
-Create and deploy a festive Chinese New Year (Year of the Horse 2026) animated GIF sticker maker web app. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create and deploy a festive Chinese New Year (Year of the Horse 2026) animated GIF sticker maker web app.
 
-## Publisher: <br>
-[jiafar](https://clawhub.ai/user/jiafar) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jiafar](https://clawhub.ai/user/jiafar)
 
-## Use Case: <br>
-Developers and creators use this skill to scaffold a Next.js web app for generating custom Year of the Horse blessing cards and WeChat-compatible animated GIF stickers from short user-provided text. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Google/Gemini API key use is under-disclosed. <br>
-Mitigation: Document required API keys, restrict them by service and deployment origin, and disclose that entered names or text are sent to AI providers. <br>
-Risk: Public generation endpoints can consume the deployer's API quota or billing. <br>
-Mitigation: Add authentication, rate limiting, request validation, and usage monitoring before making the app public. <br>
-Risk: The quick-start production deploy command may publish before deployment settings are reviewed. <br>
-Mitigation: Review Vercel project settings, environment variables, and access controls before production deployment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/jiafar/horse-sticker-maker) <br>
-- [gif.js](https://github.com/jnordberg/gif.js) <br>
-- [Google AI Platform Model API](https://aiplatform.googleapis.com/v1/publishers/google/models) <br>
-- [Next.js TypeScript Configuration](https://nextjs.org/docs/app/building-your-application/configuring/typescript) <br>
+## Use Case:
 
+Developers and creators use this skill to scaffold a festive Next.js web app that generates custom Year of the Horse blessing cards and WeChat-compatible animated GIF stickers from user-provided text.
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown instructions with bundled Next.js project files and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a deployable template that renders images and GIF stickers; generated app behavior depends on configured Google/Gemini API keys and third-party services.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Public Google AI-backed endpoints can consume the installer's API quota.
+
+Mitigation: Add authentication, rate limiting, and spend limits before deploying with real Google API keys.
+
+Risk: User-submitted names and sticker text may be sent to Google AI services without enough disclosure.
+
+Mitigation: Add provider disclosure and a privacy notice before collecting or processing user text.
+
+Risk: Dependency integrity is weaker without a lockfile and with runtime loading of gif.js from a CDN.
+
+Mitigation: Use a lockfile or npm ci, and bundle or self-host gif.js with integrity controls.
+
+Risk: Unused AI endpoints increase cost and exposure if the deployment only needs local GIF sticker generation.
+
+Mitigation: Remove unused AI routes and related environment variables when deploying only the local sticker maker.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jiafar/skills/horse-sticker-maker)
+- [gif.js](https://github.com/jnordberg/gif.js)
+- [Google AI Platform model endpoint](https://aiplatform.googleapis.com/v1/publishers/google/models)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash commands and a Next.js template project]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes a reusable web app template for PNG blessing cards and animated GIF sticker generation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

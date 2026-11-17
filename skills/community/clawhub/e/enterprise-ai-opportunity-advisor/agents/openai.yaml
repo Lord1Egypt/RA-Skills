@@ -1,0 +1,4 @@
+interface:
+  display_name: "Enterprise AI Opportunity Advisor"
+  short_description: "Assess enterprise AI opportunities and create English reports"
+  default_prompt: "Use $enterprise-ai-opportunity-advisor to analyze my company materials and generate Markdown, HTML, and PDF reports."

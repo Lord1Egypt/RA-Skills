@@ -1,39 +1,63 @@
-## Description: <br>
-Automatic conversation backup system for Obsidian with incremental snapshots, hourly breakdowns, and formatted chat-style markdown. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatic conversation backup system for Obsidian with incremental snapshots, hourly breakdowns, and formatted chat-style markdown.
 
-## Publisher: <br>
-[Laserducktales](https://clawhub.ai/user/Laserducktales) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[laserducktales](https://clawhub.ai/user/laserducktales)
 
-## Use Case: <br>
-Developers and Clawdbot users use this skill to archive local conversation history into an Obsidian vault, create incremental or full Markdown snapshots, and organize conversations by hour. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Backups may contain secrets, private data, or proprietary conversation content. <br>
-Mitigation: Use a private, non-synced, or access-controlled Obsidian vault when conversations include sensitive information. <br>
-Risk: The monitoring script can read local Telegram credentials and send external token-threshold alerts. <br>
-Mitigation: Inspect or disable Telegram warning behavior unless external alerts are explicitly intended. <br>
+## Use Case:
 
+Developers and Clawdbot users use this skill to archive conversation transcripts into an Obsidian vault, including scheduled incremental backups, full snapshots, and hourly markdown breakdowns.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Files, Shell commands, Configuration] <br>
-**Output Format:** [Markdown files and shell-script driven configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces Obsidian-formatted conversation snapshots and local tracking files; Telegram alerts are optional but require local credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill handles sensitive conversation transcripts and writes them to an Obsidian vault.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it under a low-privilege account and treat the vault and generated markdown snapshots as sensitive data.
+
+Risk: The installer rewrites scripts using user-provided paths, and unsafe pasted paths could affect scheduled execution.
+
+Mitigation: Inspect install.sh before running it, use trusted local paths only, and verify generated script paths before enabling cron.
+
+Risk: The monitor can send token-status metadata through Telegram when alerts are configured.
+
+Mitigation: Disable Telegram alerting unless it is intentionally needed, and check existing Telegram configuration before running the monitor.
+
+Risk: Scheduled cron execution can repeatedly run misconfigured backup scripts in the background.
+
+Mitigation: Test the scripts manually after configuration and enable cron only after confirming the vault, session, and tracking directories are correct.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/laserducktales/skills/obsidian-conversation-backup)
+- [SKILL.md](artifact/SKILL.md)
+- [README.md](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, files, shell commands, configuration]
+
+**Output Format:** [Markdown transcripts and shell-based setup or backup commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces Obsidian-compatible markdown snapshots from local JSONL conversation sessions.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

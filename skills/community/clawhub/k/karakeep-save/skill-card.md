@@ -1,40 +1,51 @@
-## Description: <br>
-Save bookmarks to Karakeep (self-hosted bookmark manager). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Save bookmarks to Karakeep (self-hosted bookmark manager). Use when the user wants to save a URL, bookmark a link, or add something to their reading list.
 
-## Publisher: <br>
-[nickian](https://clawhub.ai/user/nickian) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[nickian](https://clawhub.ai/user/nickian)
 
-## Use Case: <br>
-External users and developers use this skill to save URLs and optional notes to a configured self-hosted Karakeep bookmark manager. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: A misconfigured or untrusted KARAKEEP_URL can send bookmark URLs and notes to an unintended server. <br>
-Mitigation: Configure only a trusted Karakeep instance, prefer HTTPS, and verify the URL before saving bookmarks. <br>
-Risk: KARAKEEP_API_KEY is a credential for the configured Karakeep instance. <br>
-Mitigation: Use a revocable API key, store it as an environment variable, and rotate or revoke it if exposed. <br>
-Risk: Saved bookmark URLs and notes are stored on the configured Karakeep server. <br>
-Mitigation: Avoid saving confidential URLs or notes unless they are intended to be stored on that server. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
+
+External users and developers use this skill to save links and optional notes to a configured self-hosted Karakeep bookmark manager.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill sends user-provided URLs and optional notes to the configured Karakeep server using an API key.
+
+Mitigation: Install only when this data transfer is intended, configure the destination Karakeep instance deliberately, and keep KARAKEEP_API_KEY scoped and private.
+
+Risk: Using a plain HTTP KARAKEEP_URL can expose the API key and bookmark data in transit.
+
+Mitigation: Use an https:// Karakeep URL except for tightly controlled local testing, and rotate the API key if it may have crossed an untrusted HTTP connection.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, text] <br>
-**Output Format:** [Markdown with inline bash commands and plain-text command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires KARAKEEP_URL, KARAKEEP_API_KEY, curl, and jq in the execution environment.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+**Output Type(s):** [text, shell commands, configuration, JSON]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown guidance with shell command examples and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires KARAKEEP_URL, KARAKEEP_API_KEY, curl, and jq; sends the supplied URL and optional note to the configured Karakeep server.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

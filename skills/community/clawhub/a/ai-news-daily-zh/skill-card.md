@@ -1,45 +1,64 @@
-## Description: <br>
-调用多引擎（SearXNG 与 Tavily）抓取当日 AI 情报，执行去重、战略分级与洞察提炼，最终生成 5-9 条高管级 AI 日报。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates a Chinese executive-style daily AI news briefing by using Tavily and optional SearXNG search, then deduplicating, ranking, summarizing, and adding concise strategic insight.
 
-## Publisher: <br>
-[davyzhou1977-sketch](https://clawhub.ai/user/davyzhou1977-sketch) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[davyzhou1977-sketch](https://clawhub.ai/user/davyzhou1977-sketch)
 
-## Use Case: <br>
-Operators, analysts, and teams use this skill to generate a concise Chinese AI news briefing for a target date. It supports manual use and scheduled daily runs when Tavily and, optionally, SearXNG search access are configured. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Outbound news searches may spend Tavily API quota and send query text to configured search services. <br>
-Mitigation: Install only when this behavior is intended, configure approved Tavily and SearXNG endpoints, protect API keys, and monitor quota usage. <br>
-Risk: Automatic daily execution can run without a human prompt, and run_daily.sh uses a hardcoded local proxy. <br>
-Mitigation: Enable cron only for intended daily briefings, review or remove the proxy settings, and check logs after scheduled runs. <br>
-Risk: Generated briefings can include stale or misleading news if source dates or search results are weak. <br>
-Mitigation: Keep the skill's date checks and source links intact, and review the briefing before making operational decisions. <br>
+## Use Case:
 
+External users, analysts, and operators use this skill to generate a same-day Chinese AI industry briefing with dated source links, concise summaries, and business-oriented insight. It is intended for daily manual use or scheduled OpenClaw runs when the required search tools and credentials are configured.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/davyzhou1977-sketch/ai-news-daily-zh) <br>
-- [Publisher profile](https://clawhub.ai/user/davyzhou1977-sketch) <br>
-- [Tavily](https://tavily.com) <br>
-- [OpenClaw documentation](https://docs.openclaw.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, guidance] <br>
-**Output Format:** [Feishu card JSON with a Markdown body, or simplified Markdown when card output is unavailable.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces 5-9 dated AI news items with title, category, linked source, summary, insight, and a short daily assessment.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.1 (source: server evidence and SKILL.md frontmatter) <br>
+Risk: The skill requires Tavily search access and can optionally use a SearXNG endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when those external search services are acceptable for the intended queries and operating environment.
+
+Risk: The installation guidance includes a troubleshooting command that can print the Tavily API key.
+
+Mitigation: Avoid commands that display secrets; verify credential presence without exposing the key value.
+
+Risk: The scheduled-run script sets HTTP and HTTPS proxy variables to 127.0.0.1:7897.
+
+Mitigation: Remove or explicitly configure the proxy unless the operator intentionally trusts that local service.
+
+Risk: A remote SearXNG endpoint may be configured over plain HTTP.
+
+Mitigation: Prefer HTTPS for remote SearXNG instances.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/davyzhou1977-sketch/skills/ai-news-daily-zh)
+- [Publisher profile](https://clawhub.ai/user/davyzhou1977-sketch)
+- [Tavily](https://tavily.com)
+- [OpenClaw documentation](https://docs.openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Chinese Markdown briefing or Feishu card JSON containing Markdown body text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Normally produces 5-9 dated AI news items with source links, short summaries, short insights, and a closing daily assessment.]
+
+## Skill Version(s):
+
+1.3.1 (source: server release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,51 @@
-## Description: <br>
-Decomposes complex physical tasks into atomic robot-executable subtasks from a scene image and natural-language task instruction. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Decomposes complex physical tasks from an image and natural language instruction into atomic subtasks for robot execution.
 
-## Publisher: <br>
-[nanaoisong](https://clawhub.ai/user/nanaoisong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nanaoisong](https://clawhub.ai/user/nanaoisong)
 
-## Use Case: <br>
-Developers and robotics practitioners use this skill to turn a physical scene image plus a task instruction into a sequential list of atomic robot actions with gripper choices. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated robot task steps may be incomplete, unsafe, or unsuitable for a real physical environment. <br>
-Mitigation: Review every generated step before using it with a real robot and require manual approval for execution. <br>
-Risk: New action-bank entries could introduce overly broad or unsafe future defaults. <br>
-Mitigation: Manually review action-bank additions for duplicates, scope, and safety before accepting them. <br>
+## Use Case:
 
+Developers and robotics practitioners use this skill to convert scene images plus high-level task instructions into sequential, gripper-specific robot subtasks.
 
-## Reference(s): <br>
-- [Atomic Action Bank](references/action-bank.md) <br>
-- [Task Decomposition Examples](references/examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown numbered list of robot subtasks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Each subtask uses an action-bank action and specifies left, right, or either gripper.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Action-bank changes can persistently expand the robot action vocabulary without explicit approval.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit approval, inspect proposed diffs, and avoid allowing routine decomposition requests to silently modify action definitions.
+
+## Reference(s):
+
+- [Atomic Action Bank](references/action-bank.md)
+- [Task Decomposition Examples](references/examples.md)
+- [ClawHub skill page](https://clawhub.ai/nanaoisong/skills/embodied-task-decomposition)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Configuration]
+
+**Output Format:** [Markdown numbered lists with optional action-bank entries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Subtasks use an action, target, optional location, and left/right/either gripper specification.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

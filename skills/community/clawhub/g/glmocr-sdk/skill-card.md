@@ -1,43 +1,58 @@
-## Description: <br>
-GLM-OCR-SDK helps agents extract text, tables, formulas, and structured regions from document images, PDFs, and scans using the GLM-OCR SDK. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+GLM-OCR-SDK helps agents parse document images, PDFs, scans, and screenshots with the GLM-OCR SDK, returning Markdown plus structured JSON regions with labels and bounding boxes.
 
-## Publisher: <br>
-[jaredforreal](https://clawhub.ai/user/jaredforreal) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jaredforreal](https://clawhub.ai/user/jaredforreal)
 
-## Use Case: <br>
-Developers and agents use this skill to parse invoices, scanned pages, reports, screenshots, and other document-like files into Markdown and structured JSON for downstream review, summarization, or data extraction. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Documents and OCR inputs may be sent to Zhipu's cloud service when using MaaS mode. <br>
-Mitigation: Use the skill only for documents approved for that service, and avoid confidential inputs unless cloud OCR use is authorized. <br>
-Risk: The ZHIPU_API_KEY credential is required for MaaS mode and may be exposed if passed or stored carelessly. <br>
-Mitigation: Prefer environment variables or a protected secret store, avoid command-line key exposure where possible, and do not commit .env files. <br>
-Risk: The skill depends on the external glmocr package. <br>
-Mitigation: Verify the glmocr package source before installing and use trusted package indexes or pinned versions when deploying. <br>
+## Use Case:
 
+Developers and agent builders use this skill when an agent needs to extract text, tables, formulas, or structured content from visual documents. It is intended for document OCR workflows, not real-time camera feeds, audio transcription, or non-document images.
 
-## Reference(s): <br>
-- [GLM-OCR SDK skill source](https://github.com/zai-org/GLM-OCR/tree/main/skills/sdk) <br>
-- [ClawHub skill page](https://clawhub.ai/jaredforreal/glmocr-sdk) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Files, Shell commands, Code, Configuration] <br>
-**Output Format:** [Markdown and JSON, with optional saved JSON, Markdown, cropped images, and layout visualization files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires ZHIPU_API_KEY for MaaS mode; CLI and Python API paths are documented.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata) <br>
+Risk: API keys may be exposed if passed on the command line or stored in a repository .env file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use protected environment variables or a secret manager, and avoid committing .env files.
+
+Risk: Cloud OCR mode sends submitted documents to Zhipu, which may be inappropriate for confidential material.
+
+Mitigation: Use self-hosted mode or avoid processing sensitive documents unless cloud processing is approved.
+
+Risk: OCR output can be incomplete or malformed, including model-returned JSON that remains a raw string.
+
+Mitigation: Check results for an error key and validate extracted JSON or Markdown before downstream use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jaredforreal/skills/glmocr-sdk)
+- [GLM-OCR SDK homepage](https://github.com/zai-org/GLM-OCR/tree/main/skills/sdk)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown, JSON, and CLI/Python usage guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires ZHIPU_API_KEY for cloud MaaS mode; saved results may include JSON, Markdown, cropped images, and optional layout visualizations.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

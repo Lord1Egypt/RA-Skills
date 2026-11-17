@@ -1,45 +1,57 @@
-## Description: <br>
-卖家之家(跨境电商)问答搜索。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+卖家之家(跨境电商)问答搜索
 
-## Publisher: <br>
-[mjzj-tec](https://clawhub.ai/user/mjzj-tec) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mjzj-tec](https://clawhub.ai/user/mjzj-tec)
 
-## Use Case: <br>
-External users and agents use this skill to search MJZJ Q&A content, list question categories, retrieve the user's own posted questions, and post new MJZJ questions through the supported API endpoints. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires the MJZJ_API_KEY credential for private actions, including posting questions and querying the user's own questions. <br>
-Mitigation: Install only when the agent should access MJZJ Q&A with the user's API key, and keep the credential scoped to this intended use. <br>
-Risk: Although labeled as search, the skill can post authenticated questions and includes money-related fields such as bountyMoney and watchMoney. <br>
-Mitigation: Require explicit user confirmation of title, content, categories, anonymity, deadline, images, bountyMoney, and watchMoney before any question is posted. <br>
-Risk: Large snowflake identifiers can lose precision if handled as numbers. <br>
-Mitigation: Pass and preserve all ID-like fields as strings, including id, categoryIds, position, and nextPosition. <br>
+## Use Case:
 
+External users and agents use this skill to search 卖家之家 Q&A categories and questions, post new questions, and retrieve the user's own posted questions through the documented service endpoints.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mjzj-tec/mjzj-ask) <br>
-- [MJZJ Ask](https://mjzj.com/ask) <br>
-- [MJZJ API key page](https://mjzj.com/user/agentapikey) <br>
-- [MJZJ manual question form](https://mjzj.com/ask/create) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, API calls, Configuration guidance] <br>
-**Output Format:** [Markdown with inline shell commands and API response summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include MJZJ question links and business error messages returned by the API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: Broad trigger rules may route generic question-search or posting requests to 卖家之家.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the user's intent before posting questions or using bounty and watch payment fields.
+
+Risk: Token-backed endpoints can access the user's account data or create questions with MJZJ_API_KEY.
+
+Mitigation: Install only when the agent is intended to access 卖家之家, keep MJZJ_API_KEY scoped to that purpose, and review token use before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mjzj-tec/skills/mjzj-ask)
+- [ClawHub publisher profile](https://clawhub.ai/user/mjzj-tec)
+- [卖家之家问答](https://mjzj.com/ask)
+- [卖家之家智能体 API KEY](https://mjzj.com/user/agentapikey)
+- [卖家之家发布问题](https://mjzj.com/ask/create)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and API guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May require MJZJ_API_KEY for token-backed account lookup and question posting.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

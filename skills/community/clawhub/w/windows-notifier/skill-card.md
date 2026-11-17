@@ -1,40 +1,57 @@
-## Description: <br>
-Send native Windows desktop notifications for local reminders, alerts, and background-attention events. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Send native Windows desktop notifications for local reminders, alerts, and background-attention events.
 
-## Publisher: <br>
-[dougzl](https://clawhub.ai/user/dougzl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dougzl](https://clawhub.ai/user/dougzl)
 
-## Use Case: <br>
-Agents use this skill to show local desktop popups for reminders, timers, alerts, and background-attention events when chat-only delivery may be missed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill runs local Node and PowerShell commands and may fetch npm dependencies on first use. <br>
-Mitigation: Install and run it only in trusted local environments where that command execution and dependency installation are acceptable. <br>
-Risk: Notification text may be visible in local desktop popups. <br>
-Mitigation: Avoid putting sensitive or confidential information in notification titles or messages. <br>
+## Use Case:
 
+Developers and agents use this skill to send local desktop notifications for reminders, timers, schedule alerts, notification tests, and attention-needed events when chat-only delivery may be missed.
 
-## Reference(s): <br>
-- [ClawHub Windows Notifier page](https://clawhub.ai/dougzl/windows-notifier) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with PowerShell and Node command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands pass notification title, message, timeout, sound, mode, and app name options to a local desktop notification helper.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: evidence.release.version) <br>
+Risk: Runtime dependency installation can fetch npm packages during first use.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in a reviewed environment; prefer a release that preinstalls pinned dependencies with npm ci and disables lifecycle scripts where possible.
+
+Risk: The Windows WPF path invokes PowerShell with execution-policy bypass.
+
+Mitigation: Limit activation to explicit local notification requests on trusted Windows hosts and review the PowerShell command path before deployment.
+
+Risk: Notification content may be visible on the local desktop.
+
+Mitigation: Keep titles and messages concise and avoid including secrets or sensitive data in notification text.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dougzl/skills/windows-notifier)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Guidance]
+
+**Output Format:** [Markdown with PowerShell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local notification invocation guidance; notification display behavior depends on the host operating system and available Windows WPF support.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release evidence; artifact package metadata reports 1.0.3)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

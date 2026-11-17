@@ -1,40 +1,50 @@
-## Description: <br>
-Redact text from PDF documents for blind review anonymization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Redact text from PDF documents for blind review anonymization
 
-## Publisher: <br>
-[lnj22](https://clawhub.ai/user/lnj22) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lnj22](https://clawhub.ai/user/lnj22)
 
-## Use Case: <br>
-Researchers, authors, and reviewers use this skill to redact identifying details from academic PDFs before blind review while preserving references and most original text. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Incorrect pattern selection may miss identifying information or redact non-identifying content. <br>
-Mitigation: Use full names and exact phrases, run redaction on copies of PDFs first, and manually review the output. <br>
-Risk: Overbroad redaction can damage the PDF or remove more content than intended. <br>
-Mitigation: Avoid page-level or region-level redactions, preserve the References section, and verify page count and retained text after saving. <br>
+## Use Case:
 
+Researchers, authors, and review coordinators use this skill to guide manual PDF anonymization before blind review by targeting specific identifying text while preserving references.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lnj22/paper-anonymizer-academic-pdf-redaction) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code] <br>
-**Output Format:** [Markdown with Python code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only skill; guides exact-match PDF redaction and post-redaction verification rather than directly producing files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The PDF redaction recipe can falsely report success while identifying information remains.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Manually inspect visible text, PDF properties, annotations, attachments, and generated output paths before sharing a redacted PDF.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lnj22/skills/paper-anonymizer-academic-pdf-redaction)
+- [ClawHub publisher profile](https://clawhub.ai/user/lnj22)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, code]
+
+**Output Format:** [Markdown with Python code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

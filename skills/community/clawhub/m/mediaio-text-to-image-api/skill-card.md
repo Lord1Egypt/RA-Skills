@@ -1,42 +1,60 @@
-## Description: <br>
-Generate AI images from text descriptions using Media.io OpenAPI. Provide a text prompt and receive a high-quality AI-generated image. Supports multiple models including Imagen 4, Seedream, and more. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate AI images from text descriptions using Media.io OpenAPI, including Imagen 4 and Soul Character models.
 
-## Publisher: <br>
-[wondershare-boop](https://clawhub.ai/user/wondershare-boop) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wondershare-boop](https://clawhub.ai/user/wondershare-boop)
 
-## Use Case: <br>
-Developers and agents use this skill to call Media.io text-to-image generation APIs from prompts, configure required API credentials, submit generation jobs, and check task results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The API router can call more than image-generation endpoints, including account credit inspection. <br>
-Mitigation: Review the configured API definitions before use and prefer a release that restricts callable operations to the image-generation and task-result endpoints needed for the workflow. <br>
-Risk: The skill requires a provider API key for outbound Media.io API calls. <br>
-Mitigation: Use a scoped or dedicated API key where available, store it only in the intended environment variable or secret store, and rotate it if exposed. <br>
+## Use Case:
 
+Developers and agent builders use this skill to configure Media.io text-to-image generation, submit prompts, and poll task results for generated image outputs.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/wondershare-boop/mediaio-text-to-image-api) <br>
-- [Media.io API documentation](https://platform.media.io/docs/) <br>
-- [Media.io developer portal](https://developer.media.io/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API calls, Code, Configuration guidance] <br>
-**Output Format:** [JSON API responses with Markdown and Python usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Media.io API key supplied through API_KEY or an explicit api_key argument.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The skill requires a Media.io API key and sends requests to Media.io.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it in a dedicated environment, use a scoped or replaceable API key where possible, and avoid sharing the key outside the runtime environment.
+
+Risk: The bundled router can query the account credits balance even though the main description focuses on text-to-image generation.
+
+Mitigation: Review whether the Credits API is needed before deployment and restrict or remove that invocation path when credit lookup is outside the intended use.
+
+Risk: Image generation and credit checks may consume or expose account-level Media.io usage information.
+
+Mitigation: Use an approved Media.io account, monitor credit usage, and confirm that prompts and generated content are appropriate for the account's policy obligations.
+
+## Reference(s):
+
+- [Media.io API documentation](https://platform.media.io/docs/)
+- [Media.io developer homepage](https://developer.media.io/)
+- [Media.io pricing and credits](https://developer.media.io/pricing.html)
+- [ClawHub skill page](https://clawhub.ai/wondershare-boop/skills/mediaio-text-to-image-api)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python and shell snippets; API invocations return JSON payloads.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Media.io API key and returns asynchronous task identifiers that must be checked through the task result API.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

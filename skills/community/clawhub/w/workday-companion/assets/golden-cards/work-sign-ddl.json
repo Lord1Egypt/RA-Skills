@@ -1,0 +1,13 @@
+{
+  "module": "今日工作签",
+  "route": "sign-strip",
+  "time_label": "09:30",
+  "title": "判了：ddl护航",
+  "reason": "任务压顶，先写结论",
+  "action": "开一个交付窗口",
+  "tags": ["ddl", "少开坑"],
+  "corner": "保命",
+  "footer": "今天先这么过。",
+  "alt_text": "今日工作签。判了：ddl护航。任务压顶，先写结论。现在做：开一个交付窗口。",
+  "share_safe": true
+}

@@ -1,0 +1,134 @@
+.weekend-shell {
+  background: var(--wf-50);
+}
+
+.weekend-page {
+  min-height: 100%;
+  padding: 20px 18px 28px;
+}
+
+.weekend-login {
+  min-height: 100%;
+  justify-content: center;
+  padding: 32px 24px;
+}
+
+.weekend-logo-placeholder {
+  display: block;
+  width: 58px;
+  height: 58px;
+  border: 2px solid var(--wf-700);
+  border-radius: 18px;
+  background:
+    linear-gradient(135deg, transparent 48%, var(--wf-700) 49%, var(--wf-700) 52%, transparent 53%),
+    var(--wf-100);
+}
+
+.weekend-section-heading {
+  margin-top: 8px;
+}
+
+.weekend-route-card {
+  overflow: hidden;
+  padding: 0;
+}
+
+.weekend-route-card__body {
+  padding: 14px;
+}
+
+.weekend-card-meta,
+.weekend-chip-row {
+  flex-wrap: wrap;
+}
+
+.weekend-map {
+  min-height: 480px;
+}
+
+.shanghai-map {
+  isolation: isolate;
+  background-color: var(--wf-200);
+  background-image: url('../assets/shanghai-map.svg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.shanghai-map > .wf-map-line {
+  display: none;
+}
+
+.shanghai-map .wf-map-marker {
+  z-index: 5;
+  background: var(--wf-white);
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.7);
+}
+
+.shanghai-map .wf-map-overlay {
+  z-index: 6;
+}
+
+.route-detail__hero {
+  margin: 0 -18px;
+  width: calc(100% + 36px) !important;
+}
+
+.route-detail__facts {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.route-detail__fact {
+  min-width: 0;
+  text-align: center;
+}
+
+.route-detail__fact-value {
+  display: block;
+  font-weight: 700;
+}
+
+.route-detail__fact-label {
+  display: block;
+  margin-top: 4px;
+  font-size: 12px;
+  color: var(--wf-600);
+}
+
+.itinerary__time {
+  min-width: 48px;
+  font-weight: 700;
+}
+
+.itinerary__event-card {
+  flex: 1;
+}
+
+.budget__table {
+  margin: 0 -4px;
+}
+
+.budget__member-stack {
+  flex-wrap: wrap;
+}
+
+.trip-confirm__total {
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.trips__status-row {
+  flex-wrap: wrap;
+}
+
+.profile__setting-row {
+  min-height: 48px;
+}
+
+.weekend-page .wf-steps-label {
+  font-size: 12px;
+}
+
+.weekend-page .wf-page-header {
+  align-items: flex-start;
+}

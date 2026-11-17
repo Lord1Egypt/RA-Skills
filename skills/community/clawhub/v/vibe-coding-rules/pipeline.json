@@ -1,0 +1,92 @@
+{
+  "version": "2.5.0",
+  "project": {
+    "name": "My Project",
+    "type": "web",
+    "port": 3000,
+    "host": "localhost",
+    "testUrl": "http://localhost:3000",
+    "testPagePath": "/"
+  },
+  "i18n": {
+    "language": "zh-CN",
+    "available": ["zh-CN", "en-US", "ja-JP"],
+    "note": "Chosen in Phase 0 of pipeline-init. All generated docs use this language."
+  },
+  "paths": {
+    "changelog": "docs/CHANGELOG/",
+    "changelogFormat": "docs/CHANGELOG/CHANGELOG-YYYY-MM-DD.md",
+    "devDocs": "docs/",
+    "tests": "tests/auto/",
+    "selfCheckRules": "docs/自检规则.md",
+    "publicDir": "public/",
+    "serverDir": "server/",
+    "desktopDir": "desktop/",
+    "expressRoutes": "server/routes/"
+  },
+  "architecture": {
+    "hasDualEntry": false,
+    "entryFiles": [],
+    "hasThreeLayerRegistration": false,
+    "toolDirectory": "",
+    "fallbackToolsFile": "",
+    "fallbackToolsConstant": "FALLBACK_TOOLS",
+    "truncationPoints": [],
+    "frontendDisplayMapFile": "",
+    "toolCount": 0
+  },
+  "init": {
+    "completed": false,
+    "projectName": "My Project",
+    "techStack": "",
+    "features": [],
+    "language": "zh-CN",
+    "createdAt": ""
+  },
+  "skills": {
+    "pipelineInit": { "enabled": true, "name": "pipeline-init" },
+    "principles": { "enabled": true, "name": "coding-principles" },
+    "safeTerminal": { "enabled": true, "name": "safe-terminal-executor" },
+    "selfCheck": { "enabled": true, "name": "self-check" },
+    "webTesting": { "enabled": true, "name": "web-testing" },
+    "changelog": { "enabled": true, "name": "changelog" }
+  },
+  "selfGrowth": {
+    "enabled": true,
+    "confidenceThresholds": {
+      "tier1_soft_rule": 3,
+      "tier2_hard_rule": 5,
+      "retire_after_false_positives": 3,
+      "demote_on_user_resist": -2,
+      "false_positive_penalty": -3
+    },
+    "antiBloat": {
+      "enabled": true,
+      "maxTotalRules": 30,
+      "maxHardRules": 15,
+      "maxObservations": 50,
+      "retiredArchiveThreshold": 20,
+      "softStalenessSessions": 10,
+      "note": "Prevents context bloat. When limits hit, lowest-confidence rules demoted first. Stale SOFT rules demoted if not triggered in N sessions."
+    },
+    "shareContact": {
+      "phone": "",
+      "projectName": "",
+      "note": "Opt-in: fill in your phone/project name to enable sharing. Empty = no share block output."
+    }
+  },
+  "dependencies": {
+    "playwright": false,
+    "tesseract": false,
+    "sharp": false
+  },
+  "testing": {
+    "domSelectors": {
+      "mainContainer": "#app",
+      "sidebar": "#sidebar",
+      "chatArea": ".chat-main"
+    },
+    "ocrPatterns": [],
+    "smokeTestCount": 0
+  }
+}

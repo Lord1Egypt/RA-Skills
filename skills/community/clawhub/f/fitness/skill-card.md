@@ -1,42 +1,59 @@
-## Description: <br>
-Auto-learns your fitness patterns. Absorbs data from wearables, conversations, and achievements. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Plans and progresses workout programs — strength, muscle building, cardio, endurance, and general conditioning — with quantified rules.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users use this skill to help an agent remember fitness sources, routines, preferences, correlations, flags, and achievements so coaching can adapt to the user's experience level and context. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can accumulate sensitive fitness, recovery, fatigue, injury, schedule, and achievement details across sessions. <br>
-Mitigation: Install only when that local memory behavior is acceptable, decide which sources the agent may use, and periodically review or delete ~/fitness/memory.md. <br>
-Risk: Fitness and injury-related suggestions could be mistaken for medical or injury-treatment advice. <br>
-Mitigation: Treat outputs as coaching support only and seek qualified medical guidance for pain, injury, rehabilitation, or health concerns. <br>
+## Use Case:
 
+External users and agents use this skill to design, adjust, and progress fitness training plans for strength, muscle gain, cardio, endurance, body composition, return-to-training, and limited-equipment scenarios. It also helps interpret workout logs and wearable readiness signals into concrete next-session guidance.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ivangdavila/fitness) <br>
-- [Fitness Data Sources](artifact/sources.md) <br>
-- [Fitness User Profiles](artifact/profiles.md) <br>
-- [Fitness Coaching Patterns](artifact/coaching.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown and conversational guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose or update local fitness memory in ~/fitness/memory.md when the agent applies the skill.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release evidence) <br>
+Risk: Sensitive workout and health details may be stored as plaintext local records.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when local persistence is acceptable; restrict file permissions, avoid cloud sync for the fitness data folder, and periodically review or delete stored records.
+
+Risk: Exercise guidance can be inappropriate when pain, illness, pregnancy, or cardiac, metabolic, or renal conditions are present.
+
+Mitigation: Apply the skill's red-flag and clinician-clearance gates before new vigorous programming, and keep guidance conservative when escalation criteria are present.
+
+Risk: Wearable readiness scores and trend data can be noisy or misleading.
+
+Mitigation: Base program changes on raw resting heart rate, sleep, logged performance, and the skill's canonical triggers rather than proprietary readiness scores alone.
+
+## Reference(s):
+
+- [ClawHub Fitness skill page](https://clawhub.ai/ivangdavila/skills/fitness)
+- [ClawHub publisher profile](https://clawhub.ai/user/ivangdavila)
+- [Clawic Fitness skill page](https://clawic.com/skills/fitness)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown guidance with structured training prescriptions and optional local configuration or log updates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or reuse plaintext fitness records under ~/Clawic/data/fitness/ when the host agent follows the skill's persistence guidance.]
+
+## Skill Version(s):
+
+1.0.4 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

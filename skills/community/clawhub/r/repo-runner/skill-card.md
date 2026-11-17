@@ -1,41 +1,56 @@
-## Description: <br>
-Bootstrap and run a GitHub project by following its docs (README/docs), with safeguards for untrusted install/run steps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Repo Runner helps an agent bootstrap and run a GitHub project locally by following project documentation while applying safeguards for untrusted install and run steps.
 
-## Publisher: <br>
-[zyl-hub](https://clawhub.ai/user/zyl-hub) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[zyl-hub](https://clawhub.ai/user/zyl-hub)
 
-## Use Case: <br>
-Developers and engineers use this skill to bootstrap GitHub or local projects for dev, build, or test workflows by following the repository's own documentation. It helps identify project types, dependencies, environment setup, run commands, and caveats while preserving confirmation steps for untrusted commands. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill helps run arbitrary user-chosen repositories, so dependency installs, postinstall hooks, Docker, or project commands may execute untrusted code. <br>
-Mitigation: Review every proposed command and approve installs, Docker use, and shell execution only for trusted repositories or isolated environments. <br>
-Risk: Repository setup may require environment variables or secrets. <br>
-Mitigation: Do not paste or store secrets in the agent transcript; provide required values out of band only after understanding why they are needed. <br>
-Risk: Suggested setup commands can be incorrect or unsafe if repository documentation is ambiguous. <br>
-Mitigation: Prefer documented commands, inspect generated suggestions before execution, and confirm before changing existing workspaces or pulling updates. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zyl-hub/repo-runner) <br>
+## Use Case:
 
+Developers and engineers use this skill when they give an agent a GitHub repository or local project folder and want it to identify documented setup, dependency, environment, and run steps before executing them locally.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports commands run, local URL or port, next steps, and known caveats.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may help run commands from untrusted repositories, including install or startup commands documented by the project.
+
+Mitigation: Review every command before execution and use an isolated container or disposable workspace without secrets.
+
+Risk: Repository setup may request environment variables or credentials.
+
+Mitigation: Do not expose real .env values or host credentials to projects you do not trust; provide required values out-of-band only after review.
+
+Risk: Remote execution patterns such as curl|bash can bypass normal review.
+
+Mitigation: Avoid curl|bash and similar remote execution patterns unless the user explicitly approves after inspecting the command source.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/zyl-hub/skills/repo-runner)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with command snippets and setup guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes exact commands run, local URLs or ports, next steps, and known caveats when available.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

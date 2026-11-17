@@ -1,47 +1,62 @@
-## Description: <br>
-Search premium cabin flights, including business class and first class, and compare comfort, lounge access, frequent flyer miles, and value across airlines using flyai CLI results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches premium cabin and first-class flights, compares comfort, lounge access, frequent flyer miles, and value, and formats flyai CLI results with booking links.
 
-## Publisher: <br>
-[dingtom336-gif](https://clawhub.ai/user/dingtom336-gif) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dingtom336-gif](https://clawhub.ai/user/dingtom336-gif)
 
-## Use Case: <br>
-External travelers and travel-planning agents use this skill to search premium cabin flight options, compare prices and amenities, and return booking-linked Markdown results from flyai CLI output. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill directs agents to install and run a global third-party CLI for travel search. <br>
-Mitigation: Review before installing, prefer a pinned or local CLI installation, and require explicit approval before global or sudo npm installs. <br>
-Risk: Travel search details may be sent to flyai/Fliggy and may be saved locally in an execution log. <br>
-Mitigation: Use only when sharing travel search details with flyai/Fliggy is acceptable, and disable or delete `.flyai-execution-log.json` when local query persistence is not desired. <br>
-Risk: Flight prices and availability can be stale or incorrect if the agent answers without live CLI output. <br>
-Mitigation: Require the agent to use flyai CLI output for results and avoid substituting model knowledge for real-time travel data. <br>
+## Use Case:
 
+External travelers and agents use this skill to collect trip parameters, run flyai flight searches for business or first class options, and return concise Markdown comparisons with booking links.
 
-## Reference(s): <br>
-- [Business Class Finder on ClawHub](https://clawhub.ai/dingtom336-gif/business-class-finder) <br>
-- [Publisher profile](https://clawhub.ai/user/dingtom336-gif) <br>
-- [templates.md](references/templates.md) <br>
-- [playbooks.md](references/playbooks.md) <br>
-- [fallbacks.md](references/fallbacks.md) <br>
-- [runbook.md](references/runbook.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with comparison tables, booking links, concise recommendations, and inline shell commands when setup or retry steps are needed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should be grounded in flyai CLI results and include booking links when flight results are shown.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill may install and run an unpinned flyai CLI, including fallback guidance that mentions sudo/global installation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after trusting the flyai CLI and package source, avoid sudo or global installation where possible, and run the skill in a constrained environment.
+
+Risk: The skill may persist raw travel queries to a local execution log.
+
+Mitigation: Warn users before logging travel queries, avoid collecting sensitive travel details where possible, and define log retention or deletion before deployment.
+
+Risk: Fallback behavior may relax travel constraints or add booking links that affect user decisions.
+
+Mitigation: Confirm relaxed constraints with the user and verify booking links before presenting them as actionable options.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/dingtom336-gif/skills/business-class-finder)
+- [Parent flyai Skill](https://github.com/alibaba-flyai/flyai-skill/tree/main/skills/flyai)
+- [Templates](references/templates.md)
+- [Playbooks](references/playbooks.md)
+- [Fallbacks](references/fallbacks.md)
+- [Runbook](references/runbook.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with comparison tables, booking links, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires flyai CLI output for travel results; raw JSON should not be returned to the user.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence; artifact frontmatter says 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

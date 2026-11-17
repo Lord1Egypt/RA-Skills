@@ -1,48 +1,65 @@
-## Description: <br>
-Find and qualify B2B prospects by searching companies and contacts by industry, size, technology stack, location, job title, and buying intent using Explorium AgentSource. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find and qualify B2B prospects instantly by searching companies and contacts by industry, size, tech stack, location, and job title, with optional contact enrichment and CSV export through Explorium AgentSource.
 
-## Publisher: <br>
-[haroExplorium](https://clawhub.ai/user/haroExplorium) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[haroexplorium](https://clawhub.ai/user/haroexplorium)
 
-## Use Case: <br>
-Sales, SDR, account executive, and go-to-market teams use this skill to build targeted prospect and account lists, estimate market size, enrich results, and export CSV files for outbound workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill uses an Explorium API key and can store it in local configuration. <br>
-Mitigation: Use only an approved API key, avoid sharing credentials in chat, and remove or rotate the key if access is no longer needed. <br>
-Risk: Bulk prospecting can collect and export personal contact data such as emails and phone numbers. <br>
-Mitigation: Use the skill only with a lawful basis and company policy approval, confirm scope before full fetches, and delete exported CSVs and temporary result files when they are no longer needed. <br>
-Risk: Search filters, entity IDs, and optional request metadata are sent to the Explorium API. <br>
-Mitigation: Avoid including confidential go-to-market strategy, customer names, or sensitive business context in prompts or request metadata unless approved for vendor sharing. <br>
-Risk: Server-resolved provenance is unavailable and the security evidence notes an unofficial author mismatch. <br>
-Mitigation: Review the publisher profile, artifact contents, and organization approval before installing or running the skill. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/haroExplorium/explorium-sales-prospecting) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/haroExplorium) <br>
-- [Explorium AgentSource API endpoint](https://api.explorium.ai/v1/) <br>
-- [Filter Reference](references/filters.md) <br>
-- [Events Reference](references/events.md) <br>
-- [Enrichment Reference](references/enrichments.md) <br>
+## Use Case:
 
+Sales, SDR, account executive, and go-to-market teams use this skill to define an ideal customer profile, discover matching companies and decision-makers, preview and qualify results, enrich contact or company data, and export prospecting lists.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and CSV export instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce local JSON result files in /tmp and CSV exports after user confirmation.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Prospecting filters, target companies, contact identifiers, and CSV-derived names, emails, or LinkedIn data may be sent to Explorium.
+
+Mitigation: Use the skill only with authorized prospecting data and avoid employee, customer, regulated, or confidential lists unless there is a lawful basis.
+
+Risk: The skill can save an Explorium API key in a local config file and use it for remote API calls.
+
+Mitigation: Prefer the EXPLORIUM_API_KEY environment variable, keep any saved config file owner-readable only, and rotate the key if it was exposed in chat, logs, or shared storage.
+
+Risk: API result files are written to /tmp/agentsource_*.json and CSV exports may be written to Downloads.
+
+Mitigation: Delete temporary result files and exported lists after use, and choose a controlled export location for sensitive prospecting data.
+
+Risk: Large fetches and enrichments can consume Explorium credits and retrieve broad contact datasets.
+
+Mitigation: Review market sizing, samples, enrichment choices, and cost estimates before approving full fetches or exports.
+
+## Reference(s):
+
+- [Filter Reference](references/filters.md)
+- [Events Reference](references/events.md)
+- [Enrichment Reference](references/enrichments.md)
+- [ClawHub skill page](https://clawhub.ai/haroexplorium/skills/explorium-sales-prospecting)
+- [Publisher profile](https://clawhub.ai/user/haroexplorium)
+- [Explorium AgentSource API endpoint](https://api.explorium.ai/v1/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, API calls, CSV files, guidance]
+
+**Output Format:** [Conversational guidance, markdown tables, shell commands, JSON result-file paths, and CSV exports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses an Explorium API key, writes API responses to /tmp/agentsource_*.json, and can export prospect or company lists to CSV after user confirmation.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

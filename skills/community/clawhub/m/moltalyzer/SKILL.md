@@ -1,12 +1,13 @@
 ---
 name: moltalyzer
-version: 2.4.1
+version: 5.0.1
 description: >-
-  Real-time intelligence feeds for AI agents. Flagship: Polymarket prediction-market
-  intelligence — short-window movers, calibrated whale entries, order-book microstructure, and
-  resolving-soon timing across ~42,000 markets. Plus Moltbook community sentiment, GitHub trends,
-  Pulse narrative intelligence, and a cross-source Master Intelligence Digest. Computed, not raw.
-  Free index + preview endpoints on every feed (no auth); deeper signals are pay-per-call via x402.
+  Moltbook community intelligence for AI agents — hourly digests of what the AI-agent community is
+  discussing (hot discussions, narratives, sentiment), plus a Viral Advisor that scores and rewrites
+  posts. Free index + preview endpoints on every digest (no auth); deeper history and the advisor are
+  pay-per-call via x402 (USDC on Base). (The product family split: GitHub trends → gitBeacon
+  (gitbeacon.dev); Master Intelligence + Pulse narratives → Signalis (signalis.dev); Polymarket
+  prediction-market intelligence → OrcaTrace (orcatrace.dev); the /api/bundle endpoint was retired.)
 homepage: https://moltalyzer.xyz
 metadata:
   openclaw:
@@ -21,28 +22,46 @@ metadata:
         label: "Install fetch (if needed)"
 ---
 
-# Moltalyzer — Real-Time Intelligence Feeds for AI Agents
+# Moltalyzer — Moltbook Community Intelligence for AI Agents
 
-API at `https://api.moltalyzer.xyz`. Real-time intelligence feeds for AI agents, **led by Polymarket prediction-market intelligence**. Every feed is free to poll — free `/index` plus preview endpoints (5 req/min per IP); deeper signals and history are pay-per-call via x402, with a small free API-key allowance on select routes.
+API at `https://api.moltalyzer.xyz`. Hourly digests of what the AI-agent community is discussing on
+[Moltbook](https://moltbook.com) — hot discussions, emerging narratives, and sentiment — plus the
+Viral Advisor (AI post-virality prediction + rewrite suggestions). Every digest is free to poll —
+free `/index` plus preview endpoints (5 req/min per IP); history and the advisor are pay-per-call via
+x402 (USDC on **Base only**, `eip155:8453`) — no account, no signup, no API key.
 
-Full API docs: [api.moltalyzer.xyz/docs](https://api.moltalyzer.xyz/docs) | OpenAPI spec: [api.moltalyzer.xyz/openapi.json](https://api.moltalyzer.xyz/openapi.json)
+Full API docs: [api.moltalyzer.xyz/api](https://api.moltalyzer.xyz/api) | OpenAPI spec: [api.moltalyzer.xyz/openapi.json](https://api.moltalyzer.xyz/openapi.json)
 
-## Intelligence Feeds
+**Discovery surfaces:** `GET /` (content-negotiated: HTML in a browser, JSON/markdown for agents), `/openapi.json`, `/llms.txt`, `/terms.txt` + `/terms.json`, `/discovery`, and `/.well-known/x402` (x402 route + price catalog).
 
-Polymarket is the flagship feed — the deepest product, with computed signal (whale calibration, order-book microstructure, resolution timing) rather than raw odds. Paid Polymarket routes: `/latest` $0.01 (or 3/day free with an API key, shared pool with `/signal`), `/signal` $0.01 (or 3/day free with an API key, shared with `/latest`), `/signals` $0.03, `/resolving` $0.02, `/whales` $0.05, `/digest` $0.10, `/digest/history` $0.05, `/research?market=<slug>` $1.00. Free no-auth Polymarket routes: `/index`, `/pulse`, `/digest/brief`, `/sample`.
+## Moved products (the 2026-07-10 split)
+
+Four feeds that used to live on Moltalyzer spun out into their own products. The old routes on this
+API now return a **308 Permanent Redirect** to their new homes (query string preserved, guaranteed
+live until **2026-09-08**), and `/api/bundle` is retired (**410 Gone**). Point your integrations at:
+
+| Former Moltalyzer feed | New home | Old route now redirects to |
+|------------------------|----------|----------------------------|
+| GitHub Trends | gitBeacon (gitbeacon.dev) | `/api/github/*` → `api.gitbeacon.dev/v1/*` |
+| Master Intelligence | Signalis (signalis.dev) | `/api/intelligence/*` → `api.signalis.dev/v1/intelligence/*` |
+| Pulse Narratives | Signalis (signalis.dev) | `/api/pulse/*` → `api.signalis.dev/v1/pulse/*` |
+| Polymarket Intelligence | OrcaTrace (orcatrace.dev) | `/api/polymarket/*` → `api.orcatrace.dev` |
+| Bundle (all feeds) | — retired — | `/api/bundle` → **410 Gone** |
+
+## The Moltbook Feed
+
+Moltalyzer analyzes thousands of AI agent posts per hour on Moltbook and distills them into an hourly
+community digest: hot discussions, emerging narratives, overall sentiment, and the full markdown
+digest. Poll the free `/index` to detect a new digest, read the free `/brief` for a summary, and
+fetch the free `/latest` (5 req/min) for the full analysis. Historical digests are pay-per-call.
 
 | Feed | What It Covers | Free Endpoint | Cadence |
 |------|---------------|---------------|---------|
-| **Polymarket (flagship)** | Movers + whale entries (hold-to-resolution calibrated) + microstructure + resolving-soon | `GET /api/polymarket/pulse` | ~10 min |
-| Master Intelligence | Cross-domain synthesis of all feeds | `GET /api/intelligence/latest` | 4 hours |
-| Moltbook Community | AI agent discourse & sentiment | `GET /api/moltbook/digests/latest` | 1 hour |
-| GitHub Trends | New repos, emerging tools, language trends | `GET /api/github/digests/latest` | 24 hours |
-| Pulse Narratives | Cross-source narrative lifecycle tracking | `GET /api/pulse/ai-business/digest/latest` | 4 hours |
-| Token Signals ⚠️ | On-chain signal detection & scoring — **TEMPORARILY OFFLINE** | `GET /api/tokens/latest` | 4 minutes |
+| Moltbook Community | AI agent discourse, narratives & sentiment | `GET /api/moltbook/digests/latest` | 1 hour |
 
-Free poll endpoints (`/index`, `/brief`, and the free `/latest` feeds — Moltbook, GitHub, Intelligence, Pulse): **5 req/min per IP, no auth needed.** Note: Polymarket `/latest` is **paid** ($0.01, or 3/day free with an API key) — its free no-auth routes are `/index`, `/pulse`, `/digest/brief`, and `/sample`.
+Free poll endpoints (`/index`, `/brief`, `/sample`, and the free `/latest` Moltbook digest): **5 req/min per IP, no auth needed.**
 
-> ⚠️ **Token Signals is temporarily offline** while its hybrid rule+LLM scoring migrates to self-hosted inference. Paid token endpoints (`/api/tokens/signal`, `/signals`, `/history`) return **503 with `status:"offline"` and no x402 charge**; free token endpoints (`/index`, `/latest`, `/sample`) stay up and carry `status:"offline"`. Poll `/api/tokens/index` — `status` returns to `"live"` on relaunch. The other five feeds are unaffected.
+> **Paid-compute reliability guarantee:** on the paid compute route (`POST /api/moltbook/advisor`), if payment settles but the result can't be delivered, a refund is **automatically queued**. Detect it via a `502` with body `{"refund":"queued"}`, or an `x-refund-queued: 1` header on non-2xx responses. You're only charged for delivered compute.
 
 ## Quick Start — Polling Pattern
 
@@ -52,24 +71,27 @@ The recommended integration pattern: poll cheap index endpoints, fetch full data
 // All free, no auth, no setup
 const BASE = "https://api.moltalyzer.xyz";
 
-// 1. Check index (unlimited, free) to detect new data
-const indexRes = await fetch(`${BASE}/api/intelligence/index`);
+// 1. Check index (unlimited, free) to detect a new digest
+const indexRes = await fetch(`${BASE}/api/moltbook/digests/index`);
 const { index, updatedAt } = await indexRes.json();
 
 // 2. If new, fetch brief (unlimited, free) for a quick summary
-const briefRes = await fetch(`${BASE}/api/intelligence/brief`);
+const briefRes = await fetch(`${BASE}/api/moltbook/digests/brief`);
 const brief = await briefRes.json();
-// brief.data: { title, executiveSummary, sentiment }
+// brief.data: { title, summary, topTopics, sentiment }
 
 // 3. If actionable, fetch latest (5 req/min, free) for full analysis
-const latestRes = await fetch(`${BASE}/api/intelligence/latest`);
+const latestRes = await fetch(`${BASE}/api/moltbook/digests/latest`);
 const latest = await latestRes.json();
-// latest.data: { fullAnalysis, crossDomainInsights, narratives, signals, ... }
+// latest.data: { hotDiscussions, narratives, fullDigest, sentiment, ... }
+
+// (Moved feeds: poll GitHub on api.gitbeacon.dev, Master Intelligence + Pulse on
+//  api.signalis.dev, and Polymarket on api.orcatrace.dev.)
 ```
 
 ## Endpoint Tiers
 
-Every feed has 3 tiers — index, brief, latest — designed for efficient polling:
+The Moltbook digest has 3 tiers — index, brief, latest — designed for efficient polling:
 
 | Tier | Rate Limit | Returns | Use For |
 |------|-----------|---------|---------|
@@ -80,24 +102,15 @@ Every feed has 3 tiers — index, brief, latest — designed for efficient polli
 ## Additional Free Endpoints
 
 ```typescript
-// Sample data (older snapshots, great for testing)
+// Sample data (older snapshot, great for testing)
 await fetch(`${BASE}/api/moltbook/sample`);      // 1 req/20min
-await fetch(`${BASE}/api/github/sample`);         // 1 req/20min
-await fetch(`${BASE}/api/polymarket/sample`);     // 1 req/20min
-await fetch(`${BASE}/api/tokens/sample`);         // 1 req/20min
-await fetch(`${BASE}/api/intelligence/sample`);   // 1 req/20min
-
-// Submit feedback on digest quality
-await fetch(`${BASE}/api/intelligence/feedback`, {
-  method: "POST",
-  headers: { "Content-Type": "application/json" },
-  body: JSON.stringify({ rating: "good", digestId: "..." }),
-});
 ```
 
-## Viral Advisor (Human-Facing Product)
+## Viral Advisor
 
-A human-facing post optimization tool built on the same intelligence feeds. Submit a post idea, get a complete ready-to-publish post with viral scoring and data-backed suggestions. `POST /api/moltbook/advisor` ($0.05, or 2/day free with an API key). (The agent-facing intelligence feeds above, led by Polymarket, are the core product.)
+A human-facing post-optimization tool built on the Moltbook community intelligence. Submit a post
+idea, get a complete ready-to-publish post with viral scoring and data-backed suggestions.
+`POST /api/moltbook/advisor` ($0.05, pay-per-call via x402).
 
 ```typescript
 const res = await fetch(`${BASE}/api/moltbook/advisor`, {
@@ -109,24 +122,43 @@ const data = await res.json();
 // data.viralScore, data.suggestedTitle, data.suggestedContent, data.suggestions
 ```
 
-> Advisor and other premium endpoints require payment. See [api.moltalyzer.xyz/docs](https://api.moltalyzer.xyz/docs) for pricing and payment options.
+> The advisor requires payment. See [api.moltalyzer.xyz/api](https://api.moltalyzer.xyz/api) for pricing and payment options.
+
+## Payments — x402 (USDC on Base only)
+
+Paid routes settle per call via **x402 V2**. The only accepted rail is **USDC on Base Mainnet** (`eip155:8453`) — no other network is accepted. No account, no signup, no API key required.
+
+Pay flow:
+1. Call the paid route with no payment → receive **HTTP 402**. The x402 V2 `PaymentRequirements` ride in the base64 `PAYMENT-REQUIRED` header; the JSON body mirrors the price + setup.
+2. Sign an **EIP-3009 `exact`** USDC authorization on Base for the `accepts[]` amount.
+3. Retry the same request with the payment in the `PAYMENT-SIGNATURE` (V2) or `X-PAYMENT` (legacy) header.
+
+Stock x402 clients (`@x402/fetch`, `@x402/axios`, python `x402`) do this automatically. Discover the machine-readable route + price catalog at `/.well-known/x402`.
+
+## Paid Endpoints (x402) — full price list
+
+| Endpoint | Price |
+|----------|-------|
+| `GET /api/moltbook/digests` | $0.02 |
+| `POST /api/moltbook/advisor` | $0.05 |
+
+> Prices for the moved feeds now live on their new homes: GitHub on gitBeacon (gitbeacon.dev),
+> Master Intelligence + Pulse on Signalis (signalis.dev), and Polymarket on OrcaTrace (orcatrace.dev).
+> The old moltalyzer routes 308-redirect there (guaranteed until 2026-09-08); `/api/bundle` is retired (410 Gone).
 
 ## Recommended Polling Intervals
 
 | Feed | Update Cadence | Poll `/index` Every | Fetch `/latest` When |
 |------|---------------|--------------------|--------------------|
-| Intelligence | 4 hours | 10 minutes | Index changes |
 | Moltbook | 1 hour | 5 minutes | Index changes |
-| GitHub | 24 hours | 6 hours | Index changes |
-| Polymarket | ~10 min | 15 minutes | Index changes |
-| Pulse | 4 hours | 15 minutes | Index changes |
-| Tokens ⚠️ offline | 4 minutes | 2 minutes (watch for `status:"live"`) | Index changes / relaunch |
 
 ## Error Handling
 
 - **429** — Rate limited. Respect `Retry-After` header (seconds to wait).
 - **503** — Data stale (pipeline issue). Response includes `retryAfter` field.
 - **404** — No data available yet.
+- **308** — A moved feed (github/intelligence/pulse/polymarket). Follow the `Location` header to the new home.
+- **410** — `/api/bundle` was retired in the split.
 
 All responses include `RateLimit-Remaining` and `RateLimit-Reset` headers.
 

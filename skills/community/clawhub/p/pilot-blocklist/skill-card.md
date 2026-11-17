@@ -1,41 +1,62 @@
-## Description: <br>
-Maintain and share blocklists of untrusted agents in Pilot Protocol networks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Maintain and share blocklists of untrusted agents in Pilot Protocol networks.
 
-## Publisher: <br>
-[teoslayer](https://clawhub.ai/user/teoslayer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[teoslayer](https://clawhub.ai/user/teoslayer)
 
-## Use Case: <br>
-Developers and operators of Pilot Protocol networks use this skill to create, update, list, and enforce persistent blocklists for agents that should not be trusted or allowed to connect. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+AGPL-3.0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can persistently revoke trust and block peers in a Pilot Protocol network. <br>
-Mitigation: Verify node IDs and hostnames before running commands, and use the skill only when the agent is allowed to modify trust and blocklist state. <br>
-Risk: Automated score-based blocking can remove peers without sufficient review or rollback planning. <br>
-Mitigation: Add manual review, dry-run output, a blocklist backup, and a clear recovery process before enabling automated enforcement. <br>
+## Use Case:
 
+Developers and operators of Pilot Protocol networks use this skill to create, maintain, enforce, and share persistent deny-lists for agents they consider malicious, compromised, or untrusted.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/teoslayer/pilot-blocklist) <br>
-- [Pilot Protocol homepage](https://pilotprotocol.network) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks and JSON blocklist examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires pilotctl, jq, the pilot-protocol skill, and a running Pilot Protocol daemon.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Persistent trust-revocation and reject commands can remove peers from trust relationships or block pending handshakes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review target hostnames and node IDs before execution, require manual confirmation for untrust or reject actions, and keep a recoverable backup of the blocklist.
+
+Risk: Automatic enforcement based on peer scores can block legitimate peers if inputs or thresholds are wrong.
+
+Mitigation: Run the workflow in a review-only mode first, document the threshold, and apply changes only after confirming each candidate.
+
+Risk: Shared temporary blocklist paths can create collision or tampering risk on multi-user systems.
+
+Mitigation: Use a unique secure temporary file in the blocklist directory and atomically replace the final blocklist after JSON validation.
+
+Risk: Hostname matching and command output parsing can affect the wrong peer if records are ambiguous.
+
+Mitigation: Use exact hostname matching, confirm the resolved node ID, and avoid acting when more than one peer record matches.
+
+## Reference(s):
+
+- [Pilot Protocol](https://pilotprotocol.network)
+- [ClawHub skill page](https://clawhub.ai/teoslayer/skills/pilot-blocklist)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks and command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces operational guidance for Pilot Protocol blocklist files and pilotctl commands.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

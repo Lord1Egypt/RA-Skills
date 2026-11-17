@@ -1,43 +1,61 @@
-## Description: <br>
-Shopify 店铺运营/诊断技能：从 Supabase 拉取店铺域名与 token，做装修/产品/结账/指标异常检测，并支持发布引流博文（唯一写操作）。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents operate and diagnose Shopify stores by auditing themes, products, checkout, and metrics, and by publishing Shopify blog posts only when explicitly confirmed.
 
-## Publisher: <br>
-[TaceyWong](https://clawhub.ai/user/TaceyWong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[taceywong](https://clawhub.ai/user/taceywong)
 
-## Use Case: <br>
-Store operators, ecommerce teams, and agents use this skill to retrieve Shopify store data, run read-only diagnostics for themes, products, checkout, and metrics, and publish traffic-driving blog posts only after explicit confirmation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks for business credentials, syncs Shopify tokens, and relies on a separate local CLI for sensitive store actions. <br>
-Mitigation: Install only from a trusted publisher, inspect or otherwise trust the CLI, verify credential and token cache handling, and confirm Shopify scopes before use. <br>
-Risk: Publishing blog posts is a write action that can affect a live storefront. <br>
-Mitigation: Manually review blog content and run publishing only with the documented explicit --confirm flag. <br>
+## Use Case:
 
+Store operators and agent workflows use this skill to inspect Shopify store health, retrieve store content, diagnose conversion and product issues, test checkout flow, monitor metric anomalies, and publish a blog post when a confirmed write action is intended.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/TaceyWong/icosmos-shopify) <br>
-- [Shopify GraphQL Admin API reference](https://shopify.dev/docs/api/admin-graphql/latest) <br>
-- [Shopify REST Admin API reference](https://shopify.dev/docs/api/admin-rest/latest) <br>
-- [Shopify Storefront API reference](https://shopify.dev/docs/api/storefront/latest) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, JSON, guidance] <br>
-**Output Format:** [Markdown guidance with CLI commands and JSON-oriented output descriptions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill recommends unified JSON output for content commands and masks sensitive fields by default.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.1 (source: release metadata) <br>
+Risk: The skill asks users to provide account credentials and cache privileged Shopify store tokens.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only after reviewing the release and verifying the icosmos-shopify executable; prefer scoped or short-lived credentials and confirm token cache location, deletion, and rotation procedures.
+
+Risk: Blog publishing is a Shopify write action.
+
+Mitigation: Require the documented --confirm flag, review the title and body before execution, and treat unconfirmed runs as dry-runs.
+
+Risk: Store diagnostics can involve sensitive store, order, or customer data.
+
+Mitigation: Keep sensitive diagnostics out of shared logs, rely on the documented masking behavior, and avoid exporting persistent credentials in system-wide environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/taceywong/skills/icosmos-shopify)
+- [Publisher profile](https://clawhub.ai/user/taceywong)
+- [Shopify GraphQL Admin API reference](https://shopify.dev/docs/api/admin-graphql/latest)
+- [Shopify REST Admin API reference](https://shopify.dev/docs/api/admin-rest/latest)
+- [Shopify Storefront API reference](https://shopify.dev/docs/api/storefront/latest)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with command examples and JSON output conventions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Shopify command outputs are expected to use JSON fields such as store_domain, api_version, meta, and data when available.]
+
+## Skill Version(s):
+
+0.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,58 @@
-## Description: <br>
-SoulKeeper audits agent identity rules, detects behavioral drift in transcripts, and produces context-aware reminders before an agent responds. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+SoulKeeper audits agent soul files into structured rules, scores conversation transcripts for behavioral drift, and surfaces context-aware reminders before an agent responds.
 
-## Publisher: <br>
-[cassh100k](https://clawhub.ai/user/cassh100k) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[cassh100k](https://clawhub.ai/user/cassh100k)
 
-## Use Case: <br>
-Developers and agent operators use SoulKeeper to convert SOUL.md, TOOLS.md, and AGENTS.md files into structured rules, check transcripts for drift, and request reminders before high-friction actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Reminder output may actively influence agent behavior around credentials, logged-in sessions, social posting, trading, browser automation, memory files, and permission checks. <br>
-Mitigation: Review and edit reminder content before use, and keep explicit confirmation gates for external posts, financial or account actions, secret access, and system changes. <br>
-Risk: The security verdict is suspicious because the skill includes broad action-oriented prompts such as not asking permission and using available tools. <br>
-Mitigation: Install only in controlled workspaces where the desired operating rules are understood, and scan or review the scripts before deployment. <br>
+## Use Case:
 
+Developers and agent operators use SoulKeeper to audit SOUL.md, TOOLS.md, and AGENTS.md into structured behavioral rules, detect drift in session transcripts, and inject reminders that keep agent behavior aligned with approved rules.
 
-## Reference(s): <br>
-- [SoulKeeper ClawHub page](https://clawhub.ai/cassh100k/soulkeeper) <br>
-- [Publisher profile](https://clawhub.ai/user/cassh100k) <br>
-- [Artifact SKILL.md](artifact/SKILL.md) <br>
-- [Artifact clawpkg.yaml](artifact/clawpkg.yaml) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and CLI text, with generated JSON rule files and drift reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses Python 3.8+ standard library scripts; audit.py can write soul_rules.json for later drift and reminder checks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact/clawpkg.yaml) <br>
+Risk: Context reminders can persistently shape agent behavior and may weaken normal confirmation habits if adopted without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and edit remind.py before use, and enable heartbeat integration only after the reminder rules are user-approved.
+
+Risk: Hard-coded credential paths and logged-in infrastructure claims can expose sensitive operational details.
+
+Mitigation: Remove credential paths and infrastructure claims from reminders before deployment.
+
+Risk: Transcript drift analysis may process private or sensitive conversation content.
+
+Mitigation: Redact transcripts before running drift analysis or storing generated reports.
+
+## Reference(s):
+
+- [SoulKeeper on ClawHub](https://clawhub.ai/cassh100k/skills/soulkeeper)
+- [Publisher profile](https://clawhub.ai/user/cassh100k)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, guidance, configuration]
+
+**Output Format:** [JSON rule files, plain-text or JSON drift reports, and reminder text suitable for agent context.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Python 3.8+ stdlib command-line tools; audit.py can write soul_rules.json, drift.py can return a nonzero exit code when a threshold is met, and remind.py can emit compact or heartbeat reminders.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence, artifact/clawpkg.yaml)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

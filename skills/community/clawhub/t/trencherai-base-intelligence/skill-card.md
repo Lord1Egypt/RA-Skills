@@ -1,45 +1,57 @@
-## Description: <br>
-TrencherAI provides paid x402 API guidance for scoring Base chain tokens with smart-money, launchpad, social, deployer, pattern, and liquidity signals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+TrencherAI provides paid Base chain token intelligence through x402-enabled API endpoints for scoring tokens, finding hot tokens, and reviewing smart money activity.
 
-## Publisher: <br>
-[soynull](https://clawhub.ai/user/soynull) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[soynull](https://clawhub.ai/user/soynull)
 
-## Use Case: <br>
-External developers and agents use this skill to query TrencherAI's paid Base-chain endpoints for token screening, hot-token feeds, and smart-money activity. Outputs can support monitoring and trading workflows, but financial actions should not rely solely on these scores. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: x402 requests spend USDC from the caller's wallet. <br>
-Mitigation: Use a dedicated low-balance wallet, strict per-call spending limits, and confirmation controls before enabling automated requests. <br>
-Risk: Automated trading decisions can over-rely on token scores. <br>
-Mitigation: Treat scores as decision support only and require independent review or additional safeguards before trades execute. <br>
-Risk: Payments could be sent to an unexpected recipient if endpoint metadata is not checked. <br>
-Mitigation: Verify the x402 pay-to address and Base network details before allowing the client to pay. <br>
+## Use Case:
 
+Developers and trading agents use this skill to call TrencherAI endpoints for Base chain token screening, market scanning, portfolio monitoring, smart money tracking, and automated trading inputs.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/soynull/trencherai-base-intelligence) <br>
-- [TrencherAI Website](https://aitrencher.xyz) <br>
-- [x402 Discovery](https://api.aitrencher.xyz/.well-known/x402.json) <br>
-- [ERC-8004 Agent Registry](https://www.8004scan.io/agents/base/29167) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with HTTP request examples, client-side x402 payment setup, and JSON response field descriptions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses paid USDC requests on Base through an x402-compatible client; no TrencherAI-side credentials are required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Agents with x402 wallet or Coinbase CDP payment capability may make repeated on-chain USDC payments without adequate spending controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a low-balance dedicated wallet, require explicit approval or strict budgets, pin the expected host, network, USDC contract, recipient, and maximum price, and avoid automated loops or retries.
+
+Risk: Token scores and BUY, WATCH, or SKIP recommendations may be used as automated trading inputs for volatile Base chain assets.
+
+Mitigation: Treat scores as advisory signals, apply independent checks before trading, and keep automated trading systems within explicit risk and spend limits.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/soynull/skills/trencherai-base-intelligence)
+- [TrencherAI website](https://aitrencher.xyz)
+- [x402 discovery document](https://api.aitrencher.xyz/.well-known/x402.json)
+- [ERC-8004 agent registry](https://www.8004scan.io/agents/base/29167)
+- [Coinbase CDP x402 facilitator](https://api.cdp.coinbase.com/platform/v2/x402)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, API Calls, Code, Configuration]
+
+**Output Format:** [Markdown with endpoint documentation, JavaScript examples, and JSON response examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes paid x402 request details for Base Mainnet USDC payments.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,51 @@
-## Description: <br>
-BlazeMeter Performance helps an agent inspect live BlazeMeter user, account, workspace, project, test, and test-detail data through the OOMOL `blaze_meter_performance` connector. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+BlazeMeter Performance (blazemeter.com). Use this skill for ANY BlazeMeter Performance request — searching and reading data. Whenever a task involves BlazeMeter Performance, use this skill instead of calling the API directly.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers, operators, and QA teams use this skill to let an agent query BlazeMeter Performance resources from an already connected OOMOL account. It supports read-only discovery of user profiles, accounts, workspaces, projects, tests, and individual test details. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The trigger wording is broad and may route ambiguous BlazeMeter-related requests to this skill. <br>
-Mitigation: Clarify ambiguous BlazeMeter requests before invoking the skill or running connector actions. <br>
-Risk: Future versions could add write or destructive BlazeMeter actions. <br>
-Mitigation: Review future releases before deployment and require explicit user confirmation for any write or destructive action. <br>
-Risk: The skill relies on live OOMOL and BlazeMeter account connectivity, so auth, connection, scope, or billing issues can block execution. <br>
-Mitigation: Use the documented first-time setup and troubleshooting paths only after a connector command fails with the matching error. <br>
+## Use Case:
 
+Developers and teams use this skill to search and read BlazeMeter account, workspace, project, performance test, and user profile information through their connected account.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/oomol/skills/oo-blaze-meter-performance) <br>
-- [OOMOL oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [oo CLI install guide](https://cli.oomol.com/install-guide.md) <br>
-- [BlazeMeter Performance homepage](https://www.blazemeter.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON connector payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Connector responses are returned as JSON with `data` and `meta.executionId` fields.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact frontmatter) <br>
+Risk: Setup instructions can prompt installation of unverified CLI software before the user separately approves it.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and approve the CLI installation separately, use a verified pinned release, and connect BlazeMeter with the minimum required scope.
+
+## Reference(s):
+
+- [BlazeMeter Performance](https://www.blazemeter.com/)
+- [BlazeMeter API documentation](https://help.blazemeter.com/apidocs)
+- [OOMOL oo CLI](https://github.com/oomol-lab/oo-cli)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, JSON, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON payloads; retrieved data may be returned as JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only account, workspace, project, performance test, and profile information.]
+
+## Skill Version(s):
+
+1.0.4 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

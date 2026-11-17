@@ -1,44 +1,57 @@
-## Description: <br>
-Connects agent workflows to FiBuKI.com for PSD2 bank transaction browsing, receipt matching, expense categorization, and business partner management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connect to European bank accounts via PSD2 Open Banking to browse transactions, match receipts to payments, categorize expenses, and manage business partners through FiBuKI.com.
 
-## Publisher: <br>
-[felixtosh](https://clawhub.ai/user/felixtosh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[felixtosh](https://clawhub.ai/user/felixtosh)
 
-## Use Case: <br>
-External users and business operators use this skill to let an agent inspect European bank transactions, match receipts or invoices, categorize expenses, import transactions, and manage partners through FiBuKI.com. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Europe <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives an agent broad access to sensitive banking transactions, receipts, invoices, and partner data. <br>
-Mitigation: Install only in agent environments trusted with financial data and revoke FIBUKI_API_KEY when access is no longer needed. <br>
-Risk: The skill can perform account-changing actions such as source deletion, file uploads, transaction imports or edits, partner/category changes, and bulk AI matching. <br>
-Mitigation: Require explicit user confirmation before destructive, bulk, or account-changing actions. <br>
+## Use Case:
 
+Businesses, bookkeepers, and agents working with European banking data use this skill to connect FiBuKI accounts, browse PSD2 transactions, match receipts and invoices to payments, categorize expenses, and manage partners.
 
-## Reference(s): <br>
-- [ClawHub Release Page](https://clawhub.ai/felixtosh/fibuki) <br>
-- [FiBuKI Homepage](https://fibuki.com) <br>
-- [FiBuKI Machine-Readable Docs](https://fibuki.com/llm.txt) <br>
-- [FiBuKI OpenAPI Spec](https://fibuki.com/api/openapi.json) <br>
-- [FiBuKI MCP Endpoint](https://fibuki.com/api/mcp/sse) <br>
+### Deployment Geography for Use:
 
+Europe
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, API calls, configuration] <br>
-**Output Format:** [Markdown guidance with HTTP API call instructions and structured tool arguments] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires FIBUKI_API_KEY and FiBuKI plan features for file upload and AI matching actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.15 (source: server release evidence) <br>
+Risk: The skill asks users to provide a FiBuKI financial API key during setup.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Enter the key only through a trusted secret or configuration UI, avoid pasting it into chat, and rotate or revoke the key if it may have been exposed.
+
+Risk: The delete_source action deletes an entire account source rather than an individual transaction.
+
+Mitigation: Require a clear account or source name and deliberate confirmation before allowing delete_source to run.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/felixtosh/skills/fibuki)
+- [FiBuKI homepage](https://fibuki.com)
+- [FiBuKI machine-readable docs](https://fibuki.com/llm.txt)
+- [FiBuKI OpenAPI spec](https://fibuki.com/api/openapi.json)
+- [FiBuKI MCP SSE endpoint](https://fibuki.com/api/mcp/sse)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown guidance with API endpoint, tool, and configuration details]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires FIBUKI_API_KEY for authenticated FiBuKI API access.]
+
+## Skill Version(s):
+
+0.1.15 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

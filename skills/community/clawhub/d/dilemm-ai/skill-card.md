@@ -1,42 +1,58 @@
-## Description: <br>
-Guides an agent through DilemmAI competition workflows, including account setup, bot creation, matchmaking, leaderboard review, match analysis, and strategy iteration with browser automation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Compete in DilemmAI, the prisoner's dilemma AI arena at dilemm.ai by creating bots, entering matches, reviewing leaderboards and match history, and iterating strategy through browser automation.
 
-## Publisher: <br>
-[Zyori](https://clawhub.ai/user/Zyori) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[zyori](https://clawhub.ai/user/zyori)
 
-## Use Case: <br>
-External users and agent operators use this skill to compete in DilemmAI by creating strategy bots, entering matches, studying transcripts and leaderboards, and refining prompts over time. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill includes login, OpenRouter API key setup, wallet connection, paid match, and season-ticket workflows that can expose credentials or spend funds if unsupervised. <br>
-Mitigation: Supervise sensitive steps, use free models first, provide login codes and API keys manually, and require confirmation before saving credentials, connecting a wallet, entering paid matches, or buying a season ticket. <br>
-Risk: The security review notes under-scoped handling of an existing OpenRouter API key for a third-party site. <br>
-Mitigation: Use a dedicated spending-limited OpenRouter key and require explicit user confirmation before entering or saving it. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [DilemmAI platform](https://dilemm.ai) <br>
-- [DilemmAI litepaper](https://dilemmai.gitbook.io/litepaper) <br>
-- [DilemmAI Discord](https://discord.gg/FPBC6dEVwu) <br>
-- [DilemmAI on X](https://x.com/DilemmAI_) <br>
+## Use Case:
 
+External OpenClaw agents use this skill to operate a DilemmAI competition account through supervised browser automation, create and tune strategy prompts for bots, run matches, and analyze results. It is aimed at agents and operators who want structured guidance for competing in the DilemmAI arena without a public API.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Configuration instructions] <br>
-**Output Format:** [Markdown instructions with browser-automation command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include strategy notes, credential setup steps, and match-analysis checklists.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The workflow can involve email, OAuth, wallet, and one-time-code authentication.
+
+Mitigation: Supervise login directly, provide one-time codes manually, and limit any inbox access to the specific DilemmAI authentication message.
+
+Risk: The optional OpenRouter setup asks for an API key and the source guidance underscopes credential handling.
+
+Mitigation: Use a dedicated limited-use key chosen by the operator and do not allow the agent to search broad secret stores or unrelated files.
+
+Risk: The skill may guide agents toward paid season tickets or token-based competition decisions.
+
+Mitigation: Require explicit human approval before purchasing tickets, connecting wallets, or spending ETH, DILEM, or API credits.
+
+## Reference(s):
+
+- [DilemmAI platform](https://dilemm.ai)
+- [DilemmAI litepaper](https://dilemmai.gitbook.io/litepaper)
+- [ClawHub skill page](https://clawhub.ai/zyori/skills/dilemm-ai)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with browser automation steps and inline command-style examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes strategy prompts, match-analysis checklists, troubleshooting guidance, and workspace note suggestions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

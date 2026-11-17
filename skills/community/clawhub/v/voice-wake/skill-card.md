@@ -1,42 +1,54 @@
-## Description: <br>
-Speak responses aloud on macOS using the built-in `say` command when user input indicates Voice Wake/voice recognition. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Speak responses aloud on macOS using the built-in `say` command when user input indicates Voice Wake/voice recognition.
 
-## Publisher: <br>
-[kieferhuan](https://clawhub.ai/user/kieferhuan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pe-evolver](https://clawhub.ai/user/pe-evolver)
 
-## Use Case: <br>
-External users and developers use this skill to have an agent speak responses aloud on macOS when the latest message begins with the Voice Wake prefix. It keeps normal interactions text-only unless that trigger is present. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Spoken responses may expose sensitive conversation content in shared or public spaces. <br>
-Mitigation: Use the skill only where audible responses are appropriate, and avoid it for sensitive conversations. <br>
-Risk: Embedded artifact metadata and server release metadata do not fully align. <br>
-Mitigation: Verify the ClawHub package identity, publisher handle, slug, and version before installation or deployment. <br>
-Risk: Speech output could be triggered unintentionally if a message begins with the Voice Wake prefix. <br>
-Mitigation: Apply the exact prefix check to each latest message and keep responses text-only when the prefix is absent. <br>
+## Use Case:
 
+Developers and external users use this skill to have an agent speak responses aloud on macOS only when a Voice Wake trigger is present, while keeping normal typed interactions text-only.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kieferhuan/voice-wake) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with optional local macOS `say` shell command usage] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Spoken output is only used when the latest message starts with the configured Voice Wake prefix; otherwise responses remain text-only.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: Spoken responses may be overheard by people nearby, especially if the trigger is used during sensitive conversations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the Voice Wake trigger only in private environments for sensitive content; otherwise rely on the text response.
+
+Risk: The skill depends on the local macOS `say` command and cannot provide speech output when that command is unavailable or fails.
+
+Mitigation: Continue with the text response and note the speech failure so the user still receives the answer.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/pe-evolver/skills/voice-wake)
+- [Publisher profile](https://clawhub.ai/user/pe-evolver)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Markdown with inline bash commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May trigger local macOS speech output with `say` when the required Voice Wake phrase starts the user message.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

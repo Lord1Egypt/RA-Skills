@@ -1,42 +1,56 @@
-## Description: <br>
-Summarize audit findings into a structured multi-dimensional scorecard for UI/UX, feedback, mechanics, scope completeness, maintainability, and live risk. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Summarize audit findings into a structured multi-dimensional scorecard for UI/UX, feedback, mechanics, scope completeness, maintainability, and live risk.
 
-## Publisher: <br>
-[mike007jd](https://clawhub.ai/user/mike007jd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mike007jd](https://clawhub.ai/user/mike007jd)
 
-## Use Case: <br>
-Developers and game teams use this skill to turn game audit findings into consistent, evidence-based scorecards and audit summaries for browser or project-local games. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may create or update project-local audit documentation, including existing scorecard or audit summary files. <br>
-Mitigation: Use it only in game projects where file reads and writes are acceptable, and review generated diffs before committing. <br>
+## Use Case:
 
+Developers and game teams use this skill to convert game audit findings into consistent scorecards and summaries. It is intended for assessing browser or project-based games across UX, feedback, mechanics, production readiness, maintainability, and live risk.
 
-## Reference(s): <br>
-- [Game Audit Scorecard on ClawHub](https://clawhub.ai/mike007jd/game-audit-scorecard) <br>
-- [Audit confidence and evidence reference](shared/reference/audit-confidence-and-evidence.md) <br>
-- [Audit scorecard template](shared/templates/audit-scorecard.md) <br>
-- [Audit scorecard schema](schemas/audit-scorecard.schema.json) <br>
-- [Usage examples](examples/usage.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, guidance] <br>
-**Output Format:** [Markdown audit summary and JSON scorecard files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces project-local audit outputs under docs/game-studio/audit/ when file access is available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: SKILL.md frontmatter and MANIFEST.yaml; release metadata version 1.0.0) <br>
+Risk: Generated audit scores or summaries may be incomplete or misleading if runtime evidence is limited.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the generated audit files before relying on them, and require clear evidence and confidence notes for important findings.
+
+Risk: Using shell or build access to gather evidence can broaden what the agent can inspect or change in a project.
+
+Mitigation: Install and run the skill only in the game project being assessed, with access limited to the intended workspace.
+
+## Reference(s):
+
+- [Game Audit Scorecard on ClawHub](https://clawhub.ai/mike007jd/skills/game-audit-scorecard)
+- [Audit Scorecard Schema](schemas/audit-scorecard.schema.json)
+- [Audit Confidence and Evidence](shared/reference/audit-confidence-and-evidence.md)
+- [Audit Scorecard Template](shared/templates/audit-scorecard.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [JSON scorecard and Markdown audit summary]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces or updates docs/game-studio/audit/scorecard.json and docs/game-studio/audit/audit-summary.md when used in a project.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

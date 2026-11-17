@@ -1,44 +1,62 @@
-## Description: <br>
-Provides local Python scripts and agent guidance for experimental orbital-scale climate modeling, near-term scenario comparison, East Asian monsoon projection, paleoclimate replay, and extreme-event warning exploration. <br>
+## Description:
 
-This skill is for research and development only. <br>
+地动仪气候模型 Dizhenyi Climate Model helps agents run and explain local Python workflows for orbital-scale climate modeling, near-term RCP scenario exploration, East Asian monsoon analysis, paleoclimate comparison, and extreme-event indicator checks.
 
-## Publisher: <br>
-[zxfei420](https://clawhub.ai/user/zxfei420) <br>
+This skill is for research and development only.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zxfei420](https://clawhub.ai/user/zxfei420)
 
-## Use Case: <br>
-Developers and climate-research users can use this skill to run local experimental climate-model scripts, compare RCP scenarios, inspect orbital and FEBE assumptions, and draft explanatory analysis. Outputs are for research and review, not policy, planning, safety, or operational climate decisions unless independently validated. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill contains overstated scientific claims and produces experimental climate-model outputs that could be mistaken for operational guidance. <br>
-Mitigation: Treat outputs as illustrative research material and independently validate any result before using it for policy, planning, safety, or operational climate decisions. <br>
-Risk: The bundled scripts depend on an unpinned numpy package. <br>
-Mitigation: Install and run the skill in a virtual environment and review dependency versions before execution. <br>
+## Use Case:
 
+Developers, researchers, and technical reviewers use this skill to run a local climate-analysis toolkit and interpret outputs about orbital forcing, FEBE response, RCP scenarios, East Asian monsoon behavior, paleoclimate comparisons, and extreme-event indicators. Outputs should be treated as illustrative research calculations rather than authoritative climate forecasts, warnings, or policy guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zxfei420/dizhendongyi-climate) <br>
-- [Core theory](references/core_theory.md) <br>
-- [Orbital parameter formulas](references/orbital_data.md) <br>
-- [Extreme-event warning framework](references/extreme_events.md) <br>
-- [Model verification cases](references/verification.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with Python and shell-command examples; local scripts emit terminal text and structured Python data.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Python with numpy; climate outputs should be reviewed as illustrative research material.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill may overstate the reliability of climate forecasts and warning-style outputs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat generated analyses as illustrative research calculations only; require independent domain review before using outputs for decisions, warnings, or policy guidance.
+
+Risk: Some scripts write result JSON files to fixed paths under /tmp.
+
+Mitigation: Run the skill as an unprivileged user in an isolated environment, avoid shared multi-user systems, and update scripts to use caller-controlled or unique output paths before broader deployment.
+
+Risk: Dependency resolution may vary if numpy is installed without pinning.
+
+Mitigation: Use a dedicated virtual environment and pin numpy to a reviewed version for reproducible execution.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/zxfei420/skills/dizhendongyi-climate)
+- [Publisher Profile](https://clawhub.ai/user/zxfei420)
+- [Core Theory](references/core_theory.md)
+- [Orbital Data](references/orbital_data.md)
+- [Extreme Events](references/extreme_events.md)
+- [Verification](references/verification.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and local script output summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill may guide agents to run Python scripts that print climate-analysis tables and write JSON result files.]
+
+## Skill Version(s):
+
+3.0.0 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

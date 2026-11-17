@@ -1,42 +1,55 @@
-## Description: <br>
-Audits software, agent, workflow, platform, and socio-technical system architectures through engineering cybernetics: stability, feedback loops, noise, delay, error control, damping, observability, adaptation, and safe evolution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audits software, agent, workflow, platform, and socio-technical system architectures through engineering cybernetics: stability, feedback loops, noise, delay, error control, damping, observability, adaptation, and safe evolution.
 
-## Publisher: <br>
-[xb19960921](https://clawhub.ai/user/xb19960921) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xb19960921](https://clawhub.ai/user/xb19960921)
 
-## Use Case: <br>
-Developers, architects, platform teams, and agent-system builders use this skill to review system behavior over time, diagnose instability, and choose prioritized improvements for feedback, damping, observability, adaptation, and safety boundaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Architecture reviews may include secrets, credentials, or sensitive production logs in user-provided context. <br>
-Mitigation: Use anonymized diagrams, summarized metrics, and redacted logs unless the user intentionally wants the model to process sensitive material. <br>
-Risk: Generated architecture guidance may be incorrect or too abstract for the user's actual system constraints. <br>
-Mitigation: Review recommendations against the real architecture and verify proposed gates, feedback loops, and safety boundaries before operational changes. <br>
+## Use Case:
 
+Developers, architects, and agent-system builders use this skill to review systems as controlled dynamic systems, diagnose instability patterns, and prioritize architecture changes that improve feedback, observability, damping, and adaptation.
 
-## Reference(s): <br>
-- [Control Principles](references/control-principles.md) <br>
-- [AgentOS / Multi-Agent Review Rubric](references/agentos-review-rubric.md) <br>
-- [ClawHub skill page](https://clawhub.ai/xb19960921/control-mirror) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with structured review sections, scorecards, prioritized actions, and verification criteria] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces diagnostic architecture-review guidance; users should avoid pasting secrets, credentials, or sensitive production logs unless intended for model processing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: The skill can produce architecture recommendations that may be incomplete or misleading if applied without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as review guidance and have qualified engineers validate recommendations before changing production systems.
+
+Risk: Some examples and one reference file are in Chinese, which may reduce usability for non-Chinese readers.
+
+Mitigation: Provide translation or reviewer support when teams need to inspect those examples and reference material.
+
+## Reference(s):
+
+- [AgentOS / Multi-Agent Review Rubric](references/agentos-review-rubric.md)
+- [Engineering Cybernetics Review Dimensions](references/control-principles.md)
+- [Control Mirror on ClawHub](https://clawhub.ai/xb19960921/skills/control-mirror)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Guidance]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces structured architecture review prose, scorecards, prioritized recommendations, and verification criteria.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

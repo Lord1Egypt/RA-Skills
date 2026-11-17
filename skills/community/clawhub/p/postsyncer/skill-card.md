@@ -1,48 +1,51 @@
-## Description: <br>
-Manages connected social media accounts through PostSyncer using REST and/or MCP for scheduling, posting, media management, comments, labels, campaigns, analytics, and platform-specific video cover workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage and analyze social media posts, media, comments, campaigns, and analytics across connected platforms through PostSyncer.
 
-## Publisher: <br>
-[abdulmejidshemsuawel](https://clawhub.ai/user/abdulmejidshemsuawel) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[abdulmejidshemsuawel](https://clawhub.ai/user/abdulmejidshemsuawel)
 
-## Use Case: <br>
-External users and developers use this skill to manage PostSyncer-connected social accounts, including scheduling or drafting posts, uploading media, replying to comments, organizing campaign assets, and checking analytics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a sensitive PostSyncer API token with access to connected social accounts. <br>
-Mitigation: Install only when PostSyncer is trusted, store POSTSYNCER_API_TOKEN securely, and use the narrowest token abilities needed. <br>
-Risk: The skill can post externally or publish content across social platforms. <br>
-Mitigation: Review posts before publishing and prefer drafts for new automations or uncertain content. <br>
-Risk: The skill can delete posts, media, folders, comments, labels, and connected accounts. <br>
-Mitigation: Require explicit confirmation before destructive operations and state the affected resource before execution. <br>
-Risk: The skill includes public X/Twitter analysis and analytics workflows that may affect how public content is interpreted. <br>
-Mitigation: Treat analysis outputs as decision support and review conclusions before using them for campaign, moderation, or customer-facing decisions. <br>
+## Use Case:
 
+External users managing connected social accounts can use this skill to schedule or publish content, organize media, manage comments and campaigns, and review analytics through PostSyncer. Accounts must already be connected in PostSyncer.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/abdulmejidshemsuawel/postsyncer) <br>
-- [PostSyncer OpenClaw and MCP](https://postsyncer.com/openclaw) <br>
-- [PostSyncer API documentation](https://docs.postsyncer.com/api-reference/introduction) <br>
-- [PostSyncer API authentication](https://docs.postsyncer.com/essentials/authentication) <br>
-- [PostSyncer dashboard](https://app.postsyncer.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, API Calls, Configuration] <br>
-**Output Format:** [Markdown with JSON and bash examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses POSTSYNCER_API_TOKEN and may produce PostSyncer REST or MCP request guidance for social media operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.2.1 (source: server release evidence and skill frontmatter) <br>
+Risk: The skill can perform account and other delete operations, and selected media may be sent to PostSyncer.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Limit token abilities to the operations you need; confirm deletion targets and review media and destinations before uploading or publishing.
+
+## Reference(s):
+
+- [PostSyncer API Reference](https://docs.postsyncer.com/api-reference/introduction)
+- [PostSyncer API Authentication](https://docs.postsyncer.com/essentials/authentication)
+- [PostSyncer MCP and OpenClaw setup](https://postsyncer.com/openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, API Calls, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown guidance with JSON API request examples and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Workflows require connected social accounts and a PostSyncer API token or an authorized MCP connection.]
+
+## Skill Version(s):
+
+2.2.2 (source: frontmatter, server-resolved release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

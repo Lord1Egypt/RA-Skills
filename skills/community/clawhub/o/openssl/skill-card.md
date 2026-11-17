@@ -1,40 +1,51 @@
-## Description: <br>
-Generate secure random strings, passwords, and cryptographic tokens using OpenSSL. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate secure random strings, passwords, and cryptographic tokens using OpenSSL. Use when creating passwords, API keys, secrets, or any secure random data.
 
-## Publisher: <br>
-[Asleep123](https://clawhub.ai/user/Asleep123) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[asleep123](https://clawhub.ai/user/asleep123)
 
-## Use Case: <br>
-Developers and operators use this skill to generate passwords, API keys, session tokens, and other random secrets with local OpenSSL commands. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated passwords, API keys, or tokens could be exposed if left in shared logs, screenshots, or chat history. <br>
-Mitigation: Generate secrets in a controlled local shell, avoid sharing command output, and move long-lived secrets directly into an approved secret store. <br>
-Risk: The commands depend on local OpenSSL availability and user review before execution. <br>
-Mitigation: Confirm OpenSSL is installed and review the command parameters before using generated values. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Asleep123/openssl) <br>
-- [Publisher profile](https://clawhub.ai/user/Asleep123) <br>
+## Use Case:
+
+Developers and engineers use this skill to choose OpenSSL commands for generating passwords, API keys, session tokens, and other secure random values.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The included 8-digit PIN command may be weak for authentication or recovery flows.
+
+Mitigation: Avoid relying on it for those flows unless it is replaced with a fixed-width, unbiased generator and paired with rate limits and expiration.
+
+Risk: Generated secrets can be exposed if copied into logs, command history, or shared chat transcripts.
+
+Mitigation: Review generated values locally and avoid storing or transmitting secrets outside the intended secret-management workflow.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline bash commands and command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands produce base64, hex, URL-safe, alphanumeric, or numeric random strings depending on the selected example.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+**Output Type(s):** [text, markdown, shell commands, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown with bash command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands are intended for local review and execution; no files, network calls, or API calls are produced by the skill itself.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

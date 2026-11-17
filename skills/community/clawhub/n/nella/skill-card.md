@@ -1,44 +1,60 @@
-## Description: <br>
-Nella provides codebase-aware search, indexing, context tracking, assumption management, and dependency checks for AI coding agents working in non-trivial repositories. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Nella provides codebase-aware search and indexing for non-trivial repositories, enabling symbol location, call tracing, dependency checks, and persistent session context.
 
-## Publisher: <br>
-[pablomanjarres](https://clawhub.ai/user/pablomanjarres) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pablomanjarres](https://clawhub.ai/user/pablomanjarres)
 
-## Use Case: <br>
-Developers and AI coding agents use Nella to ground repository questions in indexed code, find definitions and call sites, preserve session context, record assumptions, and check dependency drift before making or finalizing changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Repository snippets, search results, and usage metadata may be sent to configured remote embedding, reranking, or hosted MCP services. <br>
-Mitigation: Use local-only or tightly scoped provider settings for private repositories, and review remote service configuration before indexing sensitive code. <br>
-Risk: Tokens and persistent session context may be stored locally or written into agent configuration files. <br>
-Mitigation: Avoid broad credentials, rotate API keys if they are written to config files, and restrict local credential storage to trusted workspaces. <br>
-Risk: Self-hosted server mode can require sensitive service-role credentials and may expose an HTTP MCP endpoint if bound broadly. <br>
-Mitigation: Use service-role credentials only for deliberate self-hosting, keep hosted servers bound to localhost unless intentional, and pin the npm package version. <br>
+## Use Case:
 
+Developers and coding agents use Nella to index repositories, search code semantically or lexically, trace relationships, preserve session context, and check assumptions or dependency drift during codebase work.
 
-## Reference(s): <br>
-- [ClawHub Nella release page](https://clawhub.ai/pablomanjarres/nella) <br>
-- [Nella README](README.md) <br>
-- [Nella skill definition](SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with MCP tool calls, command examples, and JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce repository search results, session context summaries, recorded assumptions, dependency status, and setup guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.7 (source: server release metadata and package.json) <br>
+Risk: Repository indexing can expose sensitive code to external embedding services or hosted infrastructure.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Decide whether the target repository may be indexed before use; for sensitive code, use a reviewed, version-pinned local install and review .nellaignore exclusions before indexing.
+
+Risk: Credentials and telemetry may persist outside the repository.
+
+Mitigation: Disable telemetry if undesired and protect or remove ~/.nella/auth.json when not in use.
+
+Risk: Client setup can install mutable MCP configuration used by coding agents.
+
+Mitigation: Review generated client configuration before deployment and pin the package version where repeatability matters.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/pablomanjarres/skills/nella)
+- [Hosted Nella MCP endpoint](https://mcp.getnella.dev/mcp)
+- [README](README.md)
+- [Nella Skill Definition](SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown, text responses, JSON MCP payloads, and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May return indexed search results, session context, assumption status, and dependency drift summaries.]
+
+## Skill Version(s):
+
+0.2.7 (source: package.json, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

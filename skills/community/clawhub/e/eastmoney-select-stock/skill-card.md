@@ -1,43 +1,55 @@
-## Description: <br>
-Eastmoney Skills helps agents screen stocks from natural-language selection criteria, query stocks or listed companies in specified sectors, and retrieve sector or index constituents through Eastmoney's Miaoxiang stock-screening API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Screens and retrieves current stock, company, sector, and index information from East Money's Miaoxiang API based on natural-language selection criteria.
 
-## Publisher: <br>
-[QQK000](https://clawhub.ai/user/QQK000) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qqk000](https://clawhub.ai/user/qqk000)
 
-## Use Case: <br>
-External users and agent builders use this skill to turn Chinese natural-language stock-screening requests into Eastmoney API queries and local result files. It supports current stock, company, board, index constituent, and recommendation-style lookup workflows when an MX_APIKEY credential is available. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Stock-screening keywords are sent to Eastmoney's API. <br>
-Mitigation: Avoid including unrelated sensitive information in screening queries and use the skill only when sending those keywords to Eastmoney is acceptable. <br>
-Risk: Generated CSV, text description, and raw JSON files may contain sensitive query context or result sets. <br>
-Mitigation: Review the output directory after use and remove generated files when the query or results should not persist locally. <br>
-Risk: The skill requires an Eastmoney API key. <br>
-Mitigation: Store the key only in the MX_APIKEY environment variable and avoid embedding it in prompts, command history, source files, or shared output. <br>
+## Use Case:
 
+External users, developers, and financial analysts can use this skill to turn natural-language stock-screening questions into current East Money results and saved CSV, text, and JSON artifacts for review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/QQK000/eastmoney-select-stock) <br>
-- [Eastmoney Miaoxiang Skills page](https://marketing.dfcfs.com/views/finskillshub/indexuNdYscEA) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, CSV files, JSON files, shell commands, configuration guidance] <br>
-**Output Format:** [Terminal text plus local CSV, text description, and raw JSON files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires MX_APIKEY; sends stock-screening keywords to Eastmoney and writes results under /root/.openclaw/workspace/mx_data/output/ by default.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata) <br>
+Risk: Stock-screening queries and the MX_APIKEY credential are sent to the documented East Money endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only in a trusted runtime, keep the API key in the MX_APIKEY environment variable, and avoid sending sensitive personal or proprietary strategy details.
+
+Risk: Generated CSV files may be opened in spreadsheet software.
+
+Mitigation: Open generated CSV files with spreadsheet formula protections enabled or inspect them as plain text first.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/qqk000/skills/eastmoney-select-stock)
+- [East Money Miaoxiang skills page](https://marketing.dfcfs.com/views/finskillshub/indexuNdYscEA)
+- [East Money stock screening API endpoint](https://mkapi2.dfcfs.com/finskillshub/api/claw/stock-screen)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, configuration, files]
+
+**Output Format:** [Markdown guidance with command examples; runtime output is CSV, description text, and raw JSON files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires MX_APIKEY; writes generated stock-screening artifacts to /root/.openclaw/workspace/mx_data/output/ by default.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

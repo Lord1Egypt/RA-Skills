@@ -1,42 +1,53 @@
-## Description: <br>
-Collects insight signals from Hacker News, GitHub, Wikipedia, RSS, ArXiv, and extended search, then reports status, trends, or a collection-cycle result. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Auto Insight Engine collects public-source signals from Hacker News, GitHub, Wikipedia, RSS, ArXiv, and extended search, then uses NVIDIA NIM analysis and trend tracking to report insights.
 
-## Publisher: <br>
-[534422530](https://clawhub.ai/user/534422530) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[534422530](https://clawhub.ai/user/534422530)
 
-## Use Case: <br>
-Developers and operators can use this skill to run a local insight-collection cycle, inspect engine status, and review stored trend keywords. It is most appropriate where the local engine module and any external data sharing have been reviewed before deployment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill imports and delegates execution to a separate local auto_insight_engine module that is not bundled in the artifact. <br>
-Mitigation: Install only in an environment where that local module is trusted and reviewed before using run, status, or trends modes. <br>
-Risk: The skill describes broad network collection, third-party analysis, and knowledge-base ingestion with weak scoping and disclosure. <br>
-Mitigation: Confirm what data may be sent to external sources or NVIDIA NIM and what may be written into any knowledge base before deployment. <br>
-Risk: The artifact documentation contains unrelated Bilibili-learned sections mixed into the skill description. <br>
-Mitigation: Remove or split unrelated learned content before broad deployment so users can review the actual skill behavior clearly. <br>
+## Use Case:
 
+Developers and operators use this skill to run or inspect a local public-source insight collection engine, view engine status, and review tracked trends.
 
-## Reference(s): <br>
-- [ClawHub skill page: Auto Insight Engine](https://clawhub.ai/534422530/auto-insight-engine) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, guidance] <br>
-**Output Format:** [JSON object containing status, trends, run results, or error messages] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The artifact exposes run, status, and trends modes and may depend on a separate local auto_insight_engine module.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The wrapper imports and executes engine code from an external local directory that is not included in the package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only where that directory is administrator-controlled, reviewed, and least-privileged before running the skill.
+
+Risk: Insight collection and analysis may send collected data to NVIDIA NIM or write it into a knowledge base.
+
+Mitigation: Confirm data handling, retention, and knowledge-base write permissions before enabling collection cycles.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/534422530/skills/auto-insight-engine)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON]
+
+**Output Format:** [JSON-compatible status, trend, or run result data returned to the agent]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a reviewed local engine directory before running collection cycles.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

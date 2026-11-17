@@ -1,44 +1,63 @@
-## Description: <br>
-Trades Polymarket tennis prop-market constraint violations across Set 1 games, match games, total sets, set handicap, and set/match winner bundles, defaulting to paper trading unless live mode is explicitly enabled. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Trades cross-market constraint violations in tennis Set 1 Games O/U, Match Games O/U, Total Sets O/U, Set Handicap, and Set/Match Winner bundles on Polymarket.
 
-## Publisher: <br>
-[diagnostikon](https://clawhub.ai/user/diagnostikon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[diagnostikon](https://clawhub.ai/user/diagnostikon)
 
-## Use Case: <br>
-External agents and advanced trading operators use this skill to scan Polymarket tennis prop bundles for structural price inconsistencies and submit simulated or explicitly enabled live trades through Simmer. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Live mode can place real USDC trades on Polymarket when SIMMER_API_KEY is configured and --live is passed. <br>
-Mitigation: Keep the default paper trading mode until the strategy assumptions, market selection, and position-size tunables have been reviewed. <br>
-Risk: SIMMER_API_KEY grants trading authority and is a high-value credential. <br>
-Mitigation: Store the key only in the intended runtime secret store, avoid logging it, and rotate it if exposure is suspected. <br>
-Risk: Constraint signals may be wrong or stale if markets are parsed incorrectly or liquidity conditions change. <br>
-Mitigation: Use the configured minimum volume, spread, position, and violation thresholds, and review trade logs before enabling live execution. <br>
+## Use Case:
 
+External users and developers use this skill to identify and optionally trade pricing inconsistencies across related Polymarket tennis prop markets. It defaults to paper trading and requires explicit live mode for real Polymarket trades.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/diagnostikon/polymarket-bundle-tennis-set-match-trader) <br>
-- [Simmer SDK on PyPI](https://pypi.org/project/simmer-sdk/) <br>
-- [Simmer SDK source repository](https://github.com/SpartanLabsXyz/simmer-sdk) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, API calls] <br>
-**Output Format:** [Console log text with Simmer SDK trade API calls] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Defaults to paper trading; live trading requires --live and SIMMER_API_KEY.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.3 (source: server release metadata) <br>
+Risk: Live Polymarket execution can place real USDC trades when the --live flag is used.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the skill in paper mode unless the strategy, account limits, and live trading authority have been reviewed and approved.
+
+Risk: The skill relies on SIMMER_API_KEY as a high-value trading credential.
+
+Mitigation: Scope the credential tightly, rotate it if exposed, and avoid granting authority beyond the intended trading account.
+
+Risk: Security evidence says some live-trading safeguards are under-enforced.
+
+Mitigation: Enforce account-level caps for volume, open positions, pending orders, and total exposure outside the skill before live use.
+
+Risk: The skill depends on simmer-sdk for market discovery and trade execution.
+
+Mitigation: Pin and vet the simmer-sdk dependency before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/diagnostikon/skills/polymarket-bundle-tennis-set-match-trader)
+- [simmer-sdk on PyPI](https://pypi.org/project/simmer-sdk/)
+- [simmer-sdk on GitHub](https://github.com/SpartanLabsXyz/simmer-sdk)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, API Calls, Shell commands, Configuration]
+
+**Output Format:** [Text logs and trade API calls]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses SIMMER_API_KEY and tunable trading thresholds for position size, volume, spread, days to resolution, open positions, probability thresholds, and minimum violation.]
+
+## Skill Version(s):
+
+0.0.3 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

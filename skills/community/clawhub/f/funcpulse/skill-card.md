@@ -1,43 +1,60 @@
-## Description: <br>
-FuncPulse helps QA, product, and engineering teams map financial AI requirements, PRDs, test cases, and multi-repo code changes into traceability matrices that expose coverage gaps, missing compliance evidence, defect priorities, and acceptance risks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+FuncPulse maps financial AI requirements, PRDs, test cases, and multi-repository code changes into traceability matrices to identify coverage gaps, missing compliance evidence, defect priorities, and acceptance risks.
 
-## Publisher: <br>
-[start-fish](https://clawhub.ai/user/start-fish) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[start-fish](https://clawhub.ai/user/start-fish)
 
-## Use Case: <br>
-QA engineers, developers, and product teams use this skill to validate whether PRDs and test cases are covered by implementation changes, especially for financial AI, agent, model, and RAG workflows. It produces acceptance evidence such as coverage summaries, traceability matrices, defect lists, reproduction steps, and prioritized remediation guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Validation reports and repository metadata may contain proprietary, regulated, internal, or financial AI information and may be uploaded over plain HTTP without a clear consent gate. <br>
-Mitigation: Review generated reports before upload, use only data permitted to be sent to ai-testcase.jd.com, and prefer a local-only or HTTPS and consent-gated version for sensitive materials. <br>
+## Use Case:
 
+Developers, QA engineers, and product teams use FuncPulse to validate whether PRD requirements and test cases are covered by implementation changes across one or more repositories. It helps produce acceptance evidence, coverage analysis, defect prioritization, and standardized business test validation reports.
 
-## Reference(s): <br>
-- [Financial AI Validation Playbook](references/financial-ai-validation-playbook.md) <br>
-- [QA Analysis Methods](references/qa-analysis-methods.md) <br>
-- [Test Validation Report Template](references/test-validation-report.md) <br>
-- [Multi-Repo Analysis Guide](references/multi-repo-analysis.md) <br>
-- [Test Case Traceability Guide](references/test-case-traceability.md) <br>
-- [Code Change Test Coverage Guide](references/code-change-test-coverage.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown business validation report with traceability matrices, coverage summaries, defect lists, reproduction steps, and recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create report files under a reports directory and may upload generated validation reports to the configured report API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata and package.json; artifact/_meta.json lists 1.0.5) <br>
+Risk: Validation reports, defect details, traceability data, tester identity, and repository metadata may be uploaded to a fixed plaintext HTTP endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a local-only workflow or require HTTPS, redaction, and explicit approval before any report upload, especially for private, regulated, or proprietary projects.
+
+Risk: Generated QA analysis can be incomplete or incorrect if PRDs, test cases, repository paths, or diffs are missing or stale.
+
+Mitigation: Provide current requirements, test cases, repository context, and code changes, then have QA or engineering reviewers confirm coverage findings before acceptance decisions.
+
+## Reference(s):
+
+- [FuncPulse ClawHub skill page](https://clawhub.ai/start-fish/skills/funcpulse)
+- [Publisher profile](https://clawhub.ai/user/start-fish)
+- [Financial AI Validation Playbook](references/financial-ai-validation-playbook.md)
+- [Test Validation Report Template](references/test-validation-report.md)
+- [QA Analysis Methods](references/qa-analysis-methods.md)
+- [Multi-Repo Analysis Guide](references/multi-repo-analysis.md)
+- [Test Case Traceability Guide](references/test-case-traceability.md)
+- [Code Change Test Coverage Guide](references/code-change-test-coverage.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown validation reports with traceability matrices, coverage summaries, defect lists, remediation guidance, and optional shell commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports may include repository metadata, tester identity, test counts, coverage metrics, issues, recommendations, and remote report links when upload is enabled.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release evidence and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

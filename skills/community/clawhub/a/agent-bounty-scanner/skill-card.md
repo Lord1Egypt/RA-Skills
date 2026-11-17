@@ -1,43 +1,54 @@
-## Description: <br>
-A precision discovery engine for agentic tasks and bounties. Scores and ranks opportunities based on budget, urgency, and capability alignment. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A precision discovery engine for agentic tasks and bounties that scores and ranks opportunities based on budget, urgency, and capability alignment.
 
-## Publisher: <br>
-[horn111](https://clawhub.ai/user/horn111) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[horn111](https://clawhub.ai/user/horn111)
 
-## Use Case: <br>
-External developers and autonomous agents use this skill to discover, filter, score, and rank Virtuals Protocol marketplace bounty opportunities by budget, urgency, and capability fit. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill delegates marketplace browsing to the separate virtuals-protocol-acp skill or ACP CLI. <br>
-Mitigation: Install it only in environments where that dependency and its marketplace permissions are trusted and reviewed. <br>
-Risk: Using a generic acp command from PATH can execute an unexpected binary in a misconfigured environment. <br>
-Mitigation: Pass a known ACP executable path to BountyScanner instead of relying blindly on PATH. <br>
-Risk: Autonomous workflows may act on ranked opportunities without adequate review of requirements, payment, or SLA details. <br>
-Mitigation: Review the returned bounty details and ACP permissions before allowing follow-on autonomous execution. <br>
+## Use Case:
 
+External developers and autonomous agents use this skill to discover, score, and rank ACP marketplace bounty opportunities by price, urgency, and capability fit.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/horn111/agent-bounty-scanner) <br>
-- [Publisher profile](https://clawhub.ai/user/horn111) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Python API results as JSON-compatible dictionaries, with Markdown usage guidance and shell command behavior through the ACP CLI.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns status, timestamp, ranked bounty count, and up to five top picks with agent name, job name, price, score, description, and requirements.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: SKILL.md frontmatter and package.json) <br>
+Risk: The skill depends on a configured virtuals-protocol-acp skill and an acp binary available on PATH.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the dependency is installed, trusted, and configured before using the scanner.
+
+Risk: Marketplace discovery may surface actions that accept, post, or transact on bounties outside this read-oriented scan.
+
+Mitigation: Review any separate ACP action before accepting, posting, or transacting on bounty opportunities.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/horn111/skills/agent-bounty-scanner)
+- [Publisher profile](https://clawhub.ai/user/horn111)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, configuration, guidance]
+
+**Output Format:** [JSON data with concise text guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns ranked bounty opportunities with score, job, agent, price, description, and requirements fields.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release, SKILL.md frontmatter, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

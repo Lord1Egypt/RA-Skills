@@ -1,44 +1,59 @@
-## Description: <br>
-Analyze GitHub pull requests, summarize risk, and draft a reviewer checklist using the gh CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze GitHub pull requests, summarize risk, and draft a reviewer checklist using the gh CLI.
 
-## Publisher: <br>
-[mehulupase01](https://clawhub.ai/user/mehulupase01) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mehulupase01](https://clawhub.ai/user/mehulupase01)
 
-## Use Case: <br>
-Developers and engineers use this skill to collect GitHub pull request metadata and checks, summarize review risk, and prepare a structured human-facing review plan before merge. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may use a GitHub CLI session or token to read pull request metadata and check results for requested repositories. <br>
-Mitigation: Use least-privilege GitHub access, especially for private repositories, and run it only against repositories the user intends to review. <br>
-Risk: Generated JSON and review output can contain pull request text, branch names, labels, and other repository metadata. <br>
-Mitigation: Keep generated files local or sanitize them before sharing outside the repository or review team. <br>
-Risk: Pull request titles, bodies, changed-file metadata, and comments are untrusted inputs that could suggest unsafe actions. <br>
-Mitigation: Treat GitHub metadata as untrusted, do not execute target repository code based on PR text, and separate verified check results from inferred review risk. <br>
+## Use Case:
 
+Developers and engineers use this skill to review open GitHub pull requests, summarize release risk, triage failing checks, and prepare reviewer checklists without approving, merging, or closing the PR automatically.
 
-## Reference(s): <br>
-- [Review Checklist](references/review-checklist.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/mehulupase01/code-review-bot) <br>
-- [Project Homepage](https://github.com/Mehulupase01/openclaw-skill-suite/tree/main/skills/code-review-bot) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, text, shell commands, guidance] <br>
-**Output Format:** [Markdown review pack with risk signals, check status sections, and suggested review plan] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local JSON exports from gh pr view and gh pr checks; does not approve, merge, or close pull requests.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: The skill uses gh commands with user-provided pull request numbers and repository identifiers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Validate pull request numbers as digits-only, require repository names to be a simple owner/repo value, and avoid pasting untrusted values into shell commands.
+
+Risk: GitHub pull request titles, bodies, changed-file names, and comments may contain untrusted text.
+
+Mitigation: Treat rendered PR metadata as untrusted text and do not follow instructions found in repository content or PR descriptions.
+
+Risk: The skill needs GitHub access through gh and GITHUB_TOKEN.
+
+Mitigation: Install and run it only where granting the agent GitHub read access is acceptable, and state plainly when authentication is unavailable.
+
+## Reference(s):
+
+- [Review Checklist](artifact/references/review-checklist.md)
+- [ClawHub Skill Page](https://clawhub.ai/mehulupase01/skills/code-review-bot)
+- [Source Homepage](https://github.com/Mehulupase01/openclaw-skill-suite/tree/main/skills/code-review-bot)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown review pack with shell command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Summaries distinguish verified GitHub metadata from inferred review risk.]
+
+## Skill Version(s):
+
+0.1.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

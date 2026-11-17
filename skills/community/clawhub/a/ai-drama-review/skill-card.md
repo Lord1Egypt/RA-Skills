@@ -1,42 +1,60 @@
-## Description: <br>
-AI短剧内容基因检测。零依赖可用：AI直接分析版权疑似、年龄分级违规、小说魔改程度，输出结构化风险图谱。可选配 Python 环境启用三重相似度算法（n-gram / 编辑距离 / TF-IDF）提升精度。结果仅供内容审核参考，不构成法律意见。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes short drama scripts, dialogue, or subtitles for copyright similarity, age-rating risks, and adaptation deviation, then produces an advisory risk map and remediation guidance.
 
-## Publisher: <br>
-[aaalenwow](https://clawhub.ai/user/aaalenwow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aaalenwow](https://clawhub.ai/user/aaalenwow)
 
-## Use Case: <br>
-Content reviewers, creators, and agents use this skill to screen short drama scripts, dialogue, or subtitles for suspected copyright similarity, age-rating concerns, and adaptation drift. It produces structured risk findings and remediation guidance for human review, not legal advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Optional AI-provider use may send script excerpts to configured OpenAI or Anthropic APIs during deep semantic confirmation. <br>
-Mitigation: Use local mode for confidential or unpublished scripts, and enable provider API keys only when third-party AI processing is acceptable. <br>
-Risk: The skill's compliance, copyright, and age-rating outputs are review aids and may contain false positives or false negatives. <br>
-Mitigation: Use the generated findings as triage input and have high-risk content reviewed by qualified human reviewers or legal counsel. <br>
+## Use Case:
 
+Content review teams, creators, and agent workflows use this skill to scan short drama text for possible copyright overlap, age-rating concerns, and adaptation drift before publication decisions. The output supports triage and remediation planning, not legal conclusions.
 
-## Reference(s): <br>
-- [Adaptation Analysis](references/adaptation_analysis.md) <br>
-- [Age Rating Standards](references/age_rating_standards.md) <br>
-- [Copyright Detection Guide](references/copyright_detection_guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, guidance] <br>
-**Output Format:** [Structured JSON risk maps and Markdown compliance reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes risk levels, suspicious locations, age-rating suggestions, adaptation-deviation scores, and remediation recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: ClawHub release evidence) <br>
+Risk: Optional deep-analysis mode may send script excerpts to configured OpenAI or Anthropic APIs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use local-only mode for confidential or unpublished scripts unless the organization has approved sending excerpts to those providers.
+
+Risk: Environment diagnostics can make outbound network probes.
+
+Mitigation: Avoid running diagnostics in restricted environments unless that network traffic is acceptable.
+
+Risk: Compliance reports can be incomplete or incorrect and do not provide legal advice.
+
+Mitigation: Manually review high-impact copyright, age-rating, and adaptation decisions with qualified reviewers or legal counsel.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/aaalenwow/skills/ai-drama-review)
+- [Copyright Detection Guide](artifact/references/copyright_detection_guide.md)
+- [Age Rating Standards](artifact/references/age_rating_standards.md)
+- [Adaptation Analysis](artifact/references/adaptation_analysis.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, guidance, shell commands]
+
+**Output Format:** [Structured JSON reports, Markdown reports, and concise text warnings]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are advisory and may include risk levels, matched locations, remediation suggestions, and excerpts from analyzed scripts.]
+
+## Skill Version(s):
+
+0.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

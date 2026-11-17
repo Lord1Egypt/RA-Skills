@@ -1,44 +1,52 @@
-## Description: <br>
-Sends Markdown-formatted DingTalk group chat notifications through a configured bot webhook, with message types, mentions, and optional signed requests. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Send Markdown-formatted messages with message type labels and @mentions to DingTalk group chats through a bot webhook with optional signature verification.
 
-## Publisher: <br>
-[andrewqumm](https://clawhub.ai/user/andrewqumm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[andrewqumm](https://clawhub.ai/user/andrewqumm)
 
-## Use Case: <br>
-Developers and automation agents use this skill to push operational notifications, job status, alerts, and workflow updates into DingTalk group chats. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Webhook URLs and signing secrets are credentials that can let another party post into the configured DingTalk group. <br>
-Mitigation: Store the webhook and secret in environment variables or a protected config file, rotate them if exposed, and avoid including them in prompts or shared logs. <br>
-Risk: Notifications may disclose sensitive data to everyone in the target DingTalk group. <br>
-Mitigation: Send only non-sensitive operational content and review automated notification templates before enabling the skill in workflows. <br>
-Risk: Automated or @all messages can notify a broad audience unexpectedly. <br>
-Mitigation: Restrict @all usage to intentional alerting workflows and add human review or policy checks for high-volume automation. <br>
-Risk: Posting to an untrusted or non-HTTPS webhook could expose message content or credentials. <br>
-Mitigation: Use the official HTTPS DingTalk robot webhook and verify webhook configuration before deployment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/andrewqumm/dingtalk-push) <br>
-- [Publisher profile](https://clawhub.ai/user/andrewqumm) <br>
+## Use Case:
 
+Developers and automation operators use this skill to send task results, alerts, and operational notifications to DingTalk group chat robots. It supports direct CLI use and programmatic calls from other agent workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [API calls, Markdown, JSON] <br>
-**Output Format:** [DingTalk Markdown webhook messages with JSON success or error results.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports info, success, warning, and error message types, targeted mobile mentions, and @all notifications.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Configured webhooks can redirect selected message content to arbitrary or non-HTTPS endpoints.
+
+Mitigation: Require HTTPS DingTalk webhook URLs, store webhook and signing secrets as protected secrets, and review configuration before installation.
+
+Risk: Notification content and @all mentions can expose sensitive information or over-notify a DingTalk group.
+
+Mitigation: Review message content before sending sensitive data, avoid shared .dingtalk-push.json files, and require deliberate use of @all.
+
+## Reference(s):
+
+- [ClawHub DingTalk Push page](https://clawhub.ai/andrewqumm/skills/dingtalk-push)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown messages sent to DingTalk with JSON send results and optional command-line status output.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports message type, title, mobile-number mentions, @all, webhook configuration, and an optional signing secret.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

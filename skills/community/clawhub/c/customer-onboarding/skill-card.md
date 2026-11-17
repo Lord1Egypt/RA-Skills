@@ -1,39 +1,53 @@
-## Description: <br>
-Systematically onboard new clients with checklists, welcome sequences, milestone tracking, and success metrics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Systematically onboard new clients with checklists, welcome sequences, milestone tracking, success metrics, and risk detection for the first 90 days.
 
-## Publisher: <br>
-[1kalin](https://clawhub.ai/user/1kalin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[1kalin](https://clawhub.ai/user/1kalin)
 
-## Use Case: <br>
-Customer success teams, account managers, agency owners, and SaaS founders use this skill to create onboarding checklists, welcome sequences, kickoff agendas, success metrics, and risk flags for new client onboarding. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Onboarding materials may include confidential customer details. <br>
-Mitigation: Share only the customer information needed for drafting and review generated materials before sending them externally. <br>
-Risk: The README includes an external paid marketing link that is separate from the skill's runtime instructions. <br>
-Mitigation: Treat the external link as optional supporting material and review it separately before use. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Customer Onboarding on ClawHub](https://clawhub.ai/1kalin/customer-onboarding) <br>
+## Use Case:
 
+Customer success teams, account managers, agency owners, and SaaS founders use this skill to create onboarding checklists, welcome sequences, kickoff agendas, success metrics, and risk signals for new clients.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown checklists, email drafts, meeting agendas, metric definitions, and risk notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs include ownership and deadlines where applicable.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated client-facing onboarding emails or plans could contain inaccurate, incomplete, or unsuitable guidance for a specific customer.
+
+Mitigation: Review and tailor all generated customer-facing materials before sending or using them operationally.
+
+Risk: The README includes an external paid context-pack link that is not required for the skill to operate.
+
+Mitigation: Treat the link as optional promotional material and evaluate it separately before relying on it.
+
+## Reference(s):
+
+- [Customer Onboarding Skill Page](https://clawhub.ai/1kalin/skills/customer-onboarding)
+- [Industry Context Packs](https://afrexai-cto.github.io/context-packs/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with checklists, email drafts, meeting agendas, metrics, and risk notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated onboarding materials include owners and deadlines when applicable.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

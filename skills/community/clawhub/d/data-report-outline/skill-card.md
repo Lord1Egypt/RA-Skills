@@ -1,40 +1,56 @@
-## Description: <br>
-Transforms a research outline into a detailed report structure and execution plan with chapter content, data sources, analysis methods, and expected outputs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts a research outline into a detailed report structure and execution plan, specifying chapter content, data sources, analysis methods, and expected outputs.
 
-## Publisher: <br>
-[mingginwan](https://clawhub.ai/user/mingginwan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[mingginwan](https://clawhub.ai/user/mingginwan)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users, employees, and developers use this skill after research outlining to turn an outline into a concrete report plan with section goals, data sources, methods, deliverables, dependencies, and execution order.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The generated report plan may be saved to an unintended location.
+
+Mitigation: Review the generated file path before accepting the save location.
+
+Risk: The agent may continue from outlining into follow-up report execution before the user is ready.
+
+Mitigation: Choose parallel or sequential follow-up execution only when continued work beyond outlining is desired.
+
+Risk: Chinese-language workflow text may be unsuitable for users who cannot review the generated plan accurately.
+
+Mitigation: Install and use the skill only when the operator is comfortable reviewing Chinese-language report-structure guidance.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, analysts, and report authors use this skill after drafting a research outline to create a concrete Markdown report plan with section goals, data sources, analysis methods, dependencies, and execution order. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may save a Markdown report plan to an unintended location. <br>
-Mitigation: Specify and review the save path before use, and confirm the generated path before continuing. <br>
-Risk: Parallel research may share the outline across multiple agents when that is not appropriate for the material. <br>
-Mitigation: Use the parallel research option only when the outline can be shared across agents and the chapters are independent. <br>
+**Output Format:** [Markdown report-structure plan and execution handoff guidance]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [Report Outline ClawHub release](https://clawhub.ai/mingginwan/data-report-outline) <br>
+**Other Properties Related to Output:** [The skill directs the agent to save a dated report-structure file and offer parallel or sequential execution options.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown report structure and execution plan] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include a suggested file path and a choice between parallel research and sequential chapter writing.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

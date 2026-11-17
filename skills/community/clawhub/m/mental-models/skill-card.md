@@ -1,38 +1,48 @@
-## Description: <br>
-Applies a Munger-style latticework of mental models from multiple disciplines to analyze a problem and reduce single-framework bias. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Apply a Munger-style latticework of mental models from multiple disciplines to analyze a problem.
 
-## Publisher: <br>
-[wanikua](https://clawhub.ai/user/wanikua) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[wanikua](https://clawhub.ai/user/wanikua)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and developers use this skill to have an agent analyze a current question through mental models from physics, biology, psychology, economics, mathematics, history, and philosophy, then synthesize converging insights, risks, and recommended actions.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can shape an agent's reasoning and may lead to incomplete or misleading analysis if treated as a substitute for domain expertise.
+
+Mitigation: Use it as a thinking framework, review its conclusions against the user's context, and apply domain-specific verification for high-impact decisions.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users and developers use this skill to structure decisions or problem analysis through physics, biology, psychology, economics, mathematics, and history lenses. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can steer the agent toward longer structured analysis that may sound more certain than the available evidence supports. <br>
-Mitigation: Review recommendations against the user's actual evidence and treat model convergence as a prompt for judgment, not proof. <br>
+**Output Format:** [Markdown analysis with structured sections]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wanikua/mental-models) <br>
+**Other Properties Related to Output:** [Produces a multi-disciplinary reasoning framework and actionable recommendations; no code execution or tool access is requested.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Structured multi-model analysis across at least six disciplines.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

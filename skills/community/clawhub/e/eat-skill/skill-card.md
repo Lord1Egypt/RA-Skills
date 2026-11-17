@@ -1,47 +1,69 @@
-## Description: <br>
-干饭 skill helps users decide what to eat, discover nearby restaurants, plan routes, compare options, receive meal reminders, and generate restaurant-specific skills. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+干饭决策助手 helps users decide what to eat, discover nearby restaurants, navigate to restaurants, and generate restaurant-specific skill files.
 
-## Publisher: <br>
-[hash-panda](https://clawhub.ai/user/hash-panda) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hash-panda](https://clawhub.ai/user/hash-panda)
 
-## Use Case: <br>
-External users use this skill to quickly choose meals, adapt recommendations to taste, budget, time, weather, and scenario, and find or generate restaurant information for future use. Developers and agent users can also use its bundled scripts to search AMap, plan routes, schedule meal reminders, and create restaurant skill files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-China and regions supported by AMap/Gaode services <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores taste, location, budget, dietary preference, and meal history data locally. <br>
-Mitigation: Keep the profile minimal, avoid sensitive details, and review or delete local profile and history files when they are no longer needed. <br>
-Risk: Restaurant search and route planning can send location, search, and route information to AMap services. <br>
-Mitigation: Use a limited AMap Web Service key, keep it in the environment rather than a saved config file, and avoid sharing sensitive locations. <br>
-Risk: The skill can generate restaurant skill files and schedule local meal-reminder commands. <br>
-Mitigation: Review generated restaurant skills and scheduled commands before keeping, sharing, or enabling them. <br>
-Risk: The release evidence includes broad capability tags such as crypto and can-make-purchases that are not needed for normal meal recommendation use. <br>
-Mitigation: Do not grant purchase, crypto, or unrelated authority to this skill unless a separate review proves it is necessary. <br>
+## Use Case:
 
+External users and developers use this skill as a meal-decision assistant: it selects food categories, recommends restaurants, supports reminders, searches nearby places through AMap, plans routes, and can create restaurant-specific skill files from structured or POI data.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/hash-panda/eat-skill) <br>
-- [Command reference](docs/commands-detail.md) <br>
-- [AMap Web Service API](https://lbs.amap.com/api/webservice/summary) <br>
-- [AMap Web Service key setup](https://console.amap.com/dev/key/app) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, code, guidance] <br>
-**Output Format:** [Markdown-style agent responses with command snippets, JSON configuration, and generated skill files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write local profile/history data, schedule configuration, and restaurant skill files; may call AMap services when an API key is configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: ClawHub release metadata; artifact frontmatter and package.json report 0.3.0) <br>
+Risk: The skill stores a local food profile and meal history that can include location, taste, budget, diet, and restaurant history.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the generated profile before use, remove sensitive fields you do not want retained, and keep the profile in a trusted local workspace.
+
+Risk: Nearby search and route planning can send user-provided location, restaurant, and route data to AMap.
+
+Mitigation: Use AMap features only when comfortable sharing that data with the map provider, and avoid entering precise home or sensitive locations unless needed.
+
+Risk: Default weekday lunch and dinner reminders are enabled by the included schedule configuration.
+
+Mitigation: Disable or edit the scheduled reminders before installation if recurring execution is not desired.
+
+Risk: Restaurant skill generation from POI or YAML data can create files from untrusted input.
+
+Mitigation: Generate restaurant skills only from trusted data, review generated Markdown/YAML before installing or sharing it, and validate slugs and escaping before broader use.
+
+Risk: AMap API keys may be configured for map features.
+
+Mitigation: Prefer environment variables for API keys, avoid committing key files, and rotate credentials if they are exposed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hash-panda/skills/eat-skill)
+- [README_EN.md](README_EN.md)
+- [Command details](docs/commands-detail.md)
+- [AMap Web Service API overview](https://lbs.amap.com/api/webservice/summary)
+- [AMap Web Service key setup](https://lbs.amap.com/api/webservice/create-project-and-key)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown and plain text responses with optional JSON profile data, YAML restaurant data, generated Markdown skill files, and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use local profile/history files, scheduled reminder configuration, Node.js scripts, and AMap Web Service calls when an API key is available.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release metadata; artifact frontmatter and package.json report 0.3.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,53 @@
-## Description: <br>
-Scan networks to discover devices, gather MAC addresses, vendors, and hostnames. Includes safety checks to prevent accidental scanning of public networks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scan networks to discover devices, gather MAC addresses, vendors, and hostnames. Includes safety checks to prevent accidental scanning of public networks.
 
-## Publisher: <br>
-[florianbeer](https://clawhub.ai/user/florianbeer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[florianbeer](https://clawhub.ai/user/florianbeer)
 
-## Use Case: <br>
-Developers, network operators, and security auditors use this skill to inventory authorized private networks, identify devices, and produce network documentation from nmap and DNS results. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Malformed CIDR, DNS, or config inputs could run unintended local commands because scan parameters are used to build shell commands. <br>
-Mitigation: Review before installing, use only trusted network names, CIDRs, DNS values, and config files, and prefer --no-sudo unless MAC discovery is required. <br>
-Risk: Network scans can affect systems outside the user's authorization if targets are chosen carelessly. <br>
-Mitigation: Use only on networks you own or are authorized to scan, keep public-range blocking enabled, and maintain a blocklist for networks that should never be scanned. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/florianbeer/network-scanner) <br>
-- [Skill homepage](https://clawhub.com/skills/network-scanner) <br>
+## Use Case:
 
+Developers, engineers, and network administrators use this skill to discover devices on authorized local or private networks, collect hostnames, MAC addresses, vendors, and produce network inventory or audit output.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration] <br>
-**Output Format:** [Markdown table by default, with optional JSON output and configuration examples.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires nmap and dig; sudo is optional for MAC address discovery.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: ClawHub release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The security evidence reports unsafe command execution in the scanner.
+
+Mitigation: Review or patch the script before use, and do not run it with untrusted network names, CIDRs, DNS values, or config files.
+
+Risk: The security evidence reports weaker-than-advertised public-scan protections, especially around configured networks.
+
+Mitigation: Limit configured networks to authorized private ranges, keep blocklists current, and prefer --no-sudo until public-target checks are strengthened.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/florianbeer/skills/network-scanner)
+- [Skill homepage](https://clawhub.com/skills/network-scanner)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands, configuration]
+
+**Output Format:** [Markdown tables or JSON device inventories, with shell commands and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires nmap and dig; sudo is recommended for MAC address discovery but --no-sudo is available.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

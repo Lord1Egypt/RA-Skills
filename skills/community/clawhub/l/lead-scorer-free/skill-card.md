@@ -1,41 +1,61 @@
-## Description: <br>
-Scores lead domains from 0 to 100 by analyzing website, DNS, sitemap, and social-presence signals with customizable JSON scoring profiles. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scores leads from 0-100 by analyzing a domain's website, DNS, sitemap, and social presence with customizable JSON scoring profiles.
 
-## Publisher: <br>
-[psyduckler](https://clawhub.ai/user/psyduckler) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[psyduckler](https://clawhub.ai/user/psyduckler)
 
-## Use Case: <br>
-Sales, partnerships, and growth teams use this skill to qualify and prioritize lead domains, including single-domain checks, multi-domain runs, and CSV batch scoring. Developers can adjust JSON scoring profiles to emphasize the website, DNS, content, social, contact, or keyword signals that matter for their outreach workflow. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The script makes DNS and web requests to the domains supplied by the user. <br>
-Mitigation: Run it only against domains you intend to evaluate and avoid untrusted or internal targets unless private-address blocking is added. <br>
-Risk: The web fetch path disables normal TLS certificate verification. <br>
-Mitigation: Restore standard TLS certificate verification before relying on scores at scale or in production workflows. <br>
-Risk: Results can be written to a user-selected output path. <br>
-Mitigation: Choose output locations deliberately and review generated JSON before sharing it outside the scoring workflow. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/psyduckler/lead-scorer-free) <br>
+## Use Case:
 
+Sales, partnerships, and growth teams use this skill through an agent to qualify domains, prioritize outreach lists, and evaluate potential partners with configurable signal weights.
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, JSON, Files, Shell commands, Configuration] <br>
-**Output Format:** [JSON to stdout or a user-selected output file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes domain score, grade, per-signal evidence, raw collected data, and a summary; batch mode returns one result per domain.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill fetches websites and DNS records and may make unsafe network requests.
+
+Mitigation: Run it in an isolated environment, use it only for domains you are authorized to assess, and avoid internal or private-network hosts.
+
+Risk: The scanner disables normal HTTPS verification.
+
+Mitigation: Restore normal TLS verification before using the skill at scale.
+
+Risk: The skill can extract public contact details and write results to a user-specified destination.
+
+Mitigation: Review output destinations before execution and keep generated lead data in approved storage locations.
+
+Risk: The skill depends on dnspython.
+
+Mitigation: Pin the dnspython dependency before installation or production-style use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/psyduckler/skills/lead-scorer-free)
+- [Publisher profile](https://clawhub.ai/user/psyduckler)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance, json]
+
+**Output Format:** [Markdown guidance with shell commands and JSON lead-scoring results.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can write JSON results to a specified output file and can process CSV batches.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

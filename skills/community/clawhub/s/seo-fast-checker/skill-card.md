@@ -1,41 +1,58 @@
-## Description: <br>
-输入网址一键输出SEO诊断报告，检查标题/描述/Headers/关键词密度/图片alt/页面速度/移动端适配/Meta标签，输出可执行优化建议 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+输入网址一键输出SEO诊断报告，检查标题/描述/Headers/关键词密度/图片alt/页面速度/移动端适配/Meta标签，输出可执行优化建议。
 
-## Publisher: <br>
-[hyjaixiao](https://clawhub.ai/user/hyjaixiao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hyjaixiao](https://clawhub.ai/user/hyjaixiao)
 
-## Use Case: <br>
-Website owners, marketers, and developers use this skill to audit public web pages for SEO metadata, headings, image alt text, links, structured data, page size, mobile viewport settings, and actionable optimization guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Optional AI mode can send fetched page text to OpenAI or the configured model provider. <br>
-Mitigation: Use basic non-AI mode for sensitive, internal, authenticated, confidential, client-owned, or regulated pages; enable --ai only with approval to send page content to the provider. <br>
-Risk: The checker makes outbound requests to user-supplied URLs. <br>
-Mitigation: Install and run it only where outbound URL scanning is approved, and avoid targets you are not authorized to inspect. <br>
+## Use Case:
 
+Developers, site owners, and SEO operators use this skill to audit one or more public webpages and receive concise, actionable SEO recommendations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hyjaixiao/seo-fast-checker) <br>
-- [README.md](README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown SEO diagnostic report with optional AI-enhanced markdown analysis] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Fetches supplied URLs over HTTP(S); optional --ai mode uses OPENAI_API_KEY and OPENAI_MODEL.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill makes outbound HTTP requests to user-supplied URLs, and URL fetching is not limited to public sites.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only on public pages you control or are allowed to audit; avoid private, staging, intranet, localhost, cloud-metadata, or otherwise sensitive URLs.
+
+Risk: Optional AI mode can send fetched page text and the URL to OpenAI.
+
+Mitigation: Enable --ai only when the page content and URL are acceptable to share with OpenAI, and configure OPENAI_API_KEY deliberately for that mode.
+
+Risk: Dependencies are installed from package names without pinned versions.
+
+Mitigation: Pin and review dependencies before installation in production or commercial environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hyjaixiao/skills/seo-fast-checker)
+- [Publisher profile](https://clawhub.ai/user/hyjaixiao)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown SEO diagnostic report, printed to stdout or saved to a Markdown file.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Optional AI-enhanced analysis can be included when OPENAI_API_KEY and the OpenAI Python package are available.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

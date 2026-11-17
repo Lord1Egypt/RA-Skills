@@ -5,7 +5,7 @@ allowed-tools: [Bash(oo *)]
 metadata:
   title: "CodeRabbit"
   author: "OOMOL"
-  version: "1.0.1"
+  version: "1.0.6"
   services: ["coderabbit"]
   icon: "https://static.oomol.com/logo/third-party/coderabbit.png"
 ---
@@ -37,7 +37,7 @@ Each action is listed below with a one-line description; actions that change sta
 
 ## Available actions
 
-- `change_roles` — Bulk change CodeRabbit organization roles for up to 500 users.
+- `change_roles` — Bulk change CodeRabbit organization roles for up to 500 users. [destructive]
 - `create_role` — Create a CodeRabbit Enterprise custom role. [write]
 - `delete_role` — Delete a CodeRabbit Enterprise custom role when it is not assigned to users. [destructive]
 - `get_review_metrics` — Get CodeRabbit merged pull request review metrics for a date range with optional organization, repository, and user filters.
@@ -47,7 +47,7 @@ Each action is listed below with a one-line description; actions that change sta
 - `list_role_permissions` — List valid CodeRabbit role permission resource identifiers and access types for custom roles.
 - `list_roles` — List CodeRabbit built-in and Enterprise custom roles for the organization.
 - `list_users` — List CodeRabbit organization users with optional seat and role filters using cursor-based pagination.
-- `manage_seats` — Bulk assign or unassign CodeRabbit seats for up to 500 organization users.
+- `manage_seats` — Bulk assign or unassign CodeRabbit seats for up to 500 organization users. [destructive]
 - `update_role` — Update a CodeRabbit Enterprise custom role. [write]
 - `update_seat_assignment_mode` — Update the CodeRabbit seat assignment mode for a self-hosted Enterprise organization. [write]
 
@@ -80,11 +80,14 @@ These are **one-time** steps — do not repeat them on every call. Run a step on
 - **`scope_missing` / `credential_expired` / `app_not_ready` / `app_not_found`** — CodeRabbit is not connected, or the connection expired or lacks a scope. Connect once (auth type: API key) at:
 
   ```text
-  https://console.oomol.com/app-connections?provider=coderabbit
+  https://console.oomol.com/connections/coderabbit
   ```
 
-- **HTTP 402 / `OOMOL_INSUFFICIENT_CREDIT`** — billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+- **`OOMOL_INSUFFICIENT_CREDIT`** — OOMOL billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+
+- **HTTP 402 without `OOMOL_INSUFFICIENT_CREDIT`** — the third-party account itself has no active plan or credit. Report the provider error message as is; do not ask the user to recharge OOMOL.
 
 ## Resources
 
 - CodeRabbit homepage: https://www.coderabbit.ai
+- API documentation: https://docs.coderabbit.ai/api-reference

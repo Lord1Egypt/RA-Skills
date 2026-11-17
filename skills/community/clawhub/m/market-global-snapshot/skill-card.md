@@ -1,46 +1,59 @@
-## Description: <br>
-Generate a structured global market snapshot report including major stock indices and commodities. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates a structured global market snapshot covering major stock indices and commodities using public finance sources.
 
-## Publisher: <br>
-[jiediking](https://clawhub.ai/user/jiediking) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiediking](https://clawhub.ai/user/jiediking)
 
-## Use Case: <br>
-External users and agents use this skill to produce current global market summaries for major U.S., China, Japan, and India stock indices plus selected commodities. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated market prices may be delayed, unavailable, or parsed incorrectly from public finance websites. <br>
-Mitigation: Treat outputs as informational and verify important financial decisions independently against authoritative market data sources. <br>
-Risk: The skill makes web requests to public finance sites to retrieve current market data. <br>
-Mitigation: Install only where outbound web access to those public finance sites is acceptable. <br>
+## Use Case:
 
+External users and agents use this skill to assemble a current market snapshot for major U.S., China, Japan, and India stock indices plus gold, silver, crude oil, and copper. It supports daily market summaries where the agent fetches raw public finance data, calculates changes, and presents a concise report.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jiediking/market-global-snapshot) <br>
-- [Yahoo Finance chart endpoint](https://query1.finance.yahoo.com/v8/finance/chart/{TICKER}?interval=1d&range=5d) <br>
-- [Trading Economics United States stock market](https://tradingeconomics.com/united-states/stock-market) <br>
-- [Trading Economics China stock market](https://tradingeconomics.com/china/stock-market) <br>
-- [Trading Economics Japan stock market](https://tradingeconomics.com/japan/stock-market) <br>
-- [Trading Economics India stock market](https://tradingeconomics.com/india/stock-market) <br>
-- [Sina Finance quote endpoint](https://hq.sinajs.cn/list=sh000680) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown market snapshot with timestamped prices, changes, percentages, and availability notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Fetches public market data and returns partial results with N/A markers when sources fail.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.5 (source: server release evidence) <br>
+Risk: Live public finance sources may fail, rate limit, or change response formats, which can lead to N/A values or incomplete snapshots.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat results as informational market data and verify market-sensitive decisions against authoritative financial sources.
+
+Risk: Raw market payloads must be parsed and calculated by the agent, so parsing errors or incorrect close-price selection can misstate daily change.
+
+Mitigation: Use the documented close-array method for Yahoo Finance, follow the stated fallback order, and preserve N/A handling when payloads are unavailable or unparsable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jiediking/skills/market-global-snapshot)
+- [Yahoo Finance chart endpoint](https://query1.finance.yahoo.com/v8/finance/chart/{TICKER}?interval=1d&range=5d)
+- [Trading Economics United States stock market](https://tradingeconomics.com/united-states/stock-market)
+- [Trading Economics China stock market](https://tradingeconomics.com/china/stock-market)
+- [Trading Economics Japan stock market](https://tradingeconomics.com/japan/stock-market)
+- [Trading Economics India stock market](https://tradingeconomics.com/india/stock-market)
+- [Sina Finance market quote endpoint](https://hq.sinajs.cn/list=sh000680)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown market report with timestamped index and commodity rows]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes price, daily change, and percent change; unavailable items may be marked N/A when sources fail.]
+
+## Skill Version(s):
+
+0.1.5 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

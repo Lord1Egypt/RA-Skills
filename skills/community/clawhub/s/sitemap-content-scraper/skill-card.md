@@ -1,41 +1,58 @@
-## Description: <br>
-Discover website sitemaps from robots.txt and common sitemap locations, choose the right sitemap or content family such as docs, blog, help center, academy, or changelog, and scrape selected public pages into a local folder as Markdown plus a manifest. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Discover website sitemaps from robots.txt and common sitemap locations, choose the right sitemap or content family such as docs, blog, help center, academy, or changelog, and scrape selected public pages into a local folder as Markdown plus a manifest.
 
-## Publisher: <br>
-[quareth](https://clawhub.ai/user/quareth) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[quareth](https://clawhub.ai/user/quareth)
 
-## Use Case: <br>
-Developers and agents use this skill to discover public website sitemaps, choose a bounded content family, and scrape selected public pages into traceable local Markdown files plus a manifest. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill fetches public website pages and writes scraped content locally, so overly broad sitemaps or output paths can collect or store more material than intended. <br>
-Mitigation: Use a narrow sitemap or include filter, set a page limit for large sites, and choose an output folder intentionally before scraping. <br>
-Risk: Scraped page text is untrusted source material and may be incomplete on JavaScript-heavy pages. <br>
-Mitigation: Review the saved Markdown and manifest before relying on the corpus, and treat extracted content as untrusted input. <br>
+## Use Case:
 
+Developers and agents use this skill to discover public website sitemap inventories, select a content family such as documentation, blog, or help-center content, and scrape the selected public pages into a traceable local corpus.
 
-## Reference(s): <br>
-- [Sitemap Selection Reference](references/sitemap-selection.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/quareth/sitemap-content-scraper) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands; scraper output is Markdown files plus manifest.json.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and writes selected public pages to a user-chosen local output folder.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: Outbound scraping and local corpus writes can touch more content than intended if scope and limits are too broad.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted public sites, set a small explicit --limit, apply narrow include filters, and choose an output directory inside the workspace.
+
+Risk: Network safeguards and resource limits were flagged as weak by the authoritative security evidence.
+
+Mitigation: Avoid running the skill where internal services or cloud metadata endpoints are reachable until DNS rebinding and resource-limit issues are fixed.
+
+Risk: HTML-first extraction may produce weak or incomplete Markdown for heavily client-rendered pages.
+
+Mitigation: Review the generated Markdown and manifest, and warn users when saved content is empty, navigation-heavy, or missing the visible article body.
+
+## Reference(s):
+
+- [Sitemap Selection Reference](artifact/references/sitemap-selection.md)
+- [ClawHub skill page](https://clawhub.ai/quareth/skills/sitemap-content-scraper)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Files, Guidance]
+
+**Output Format:** [Markdown files, manifest JSON, and concise agent-facing status text with shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes one Markdown file per scraped page plus manifest.json containing saved, skipped, and failed page details.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,57 @@
-## Description: <br>
-Zillow Zestimate provides property valuation and rent Zestimate lookups through Zillapi.com with a single focused tool. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Looks up Zillow Zestimate, rent Zestimate, tax assessed value, and last sold price for a U.S. property through the ZillAPI service.
 
-## Publisher: <br>
-[nikhonit](https://clawhub.ai/user/nikhonit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zillapi](https://clawhub.ai/user/zillapi)
 
-## Use Case: <br>
-Home buyers, renters, real-estate professionals, and agents use this skill when a user explicitly asks for property valuation data, such as a Zestimate, rent Zestimate, tax-assessed value, or last sale price. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a Zillapi API key and sends property addresses or zpids to Zillapi for valuation lookups. <br>
-Mitigation: Store ZILLAPI_KEY as an environment secret and use the skill only when the user explicitly wants a valuation. <br>
-Risk: Incidental addresses or private property data could be sent to the external API if the skill is used too broadly. <br>
-Mitigation: Follow the activation guidance and avoid lookups for incidental addresses or private property data unless the user has requested valuation data. <br>
+## Use Case:
 
+External users and agents use this skill when they need a property valuation anchor from an address, zpid, or Zillow URL. It is intended for explicit valuation requests, not listing search, photos, school data, or cases where an address appears only incidentally.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/nikhonit/zillow-zestimate) <br>
-- [Zillapi](https://zillapi.com) <br>
-- [Zillapi signup](https://zillapi.com/signup) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, configuration, guidance] <br>
-**Output Format:** [JSON tool response with property valuation fields or structured error details.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires ZILLAPI_KEY and either a zpid or an address; zpid is preferred when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server evidence and frontmatter) <br>
+Risk: The skill sends user-provided property addresses or zpids to the ZillAPI service for valuation data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only when the user has explicitly requested a valuation lookup and is comfortable sharing that property information with ZillAPI.
+
+Risk: Calls require a ZillAPI API key and may consume API credits.
+
+Mitigation: Configure ZILLAPI_KEY only in trusted environments and confirm that a lookup is needed before calling the API.
+
+## Reference(s):
+
+- [ZillAPI homepage](https://zillapi.com)
+- [ZillAPI OpenAPI specification](https://zillapi.com/openapi.json)
+- [ZillAPI property API documentation](https://zillapi.com/api/properties/)
+- [ZillAPI hosted MCP server](https://api.zillapi.com/mcp)
+- [ClawHub skill page](https://clawhub.ai/zillapi/skills/zillow-zestimate)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Guidance]
+
+**Output Format:** [JSON object containing valuation data or a structured error object]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a ZILLAPI_KEY environment variable and either a zpid or address; address lookups first resolve a zpid before requesting valuation data.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata; artifact frontmatter reports 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

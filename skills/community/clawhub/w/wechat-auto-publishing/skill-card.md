@@ -1,54 +1,73 @@
-## Description: <br>
-Automates a local WeChat Official Account publishing workflow from environment setup and source gathering through article drafting, image preparation, draft submission, optional final publication, result archiving, scheduling, and alerting while keeping real secrets outside the package. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill helps operators build and run a local WeChat Official Account publishing workflow covering environment setup, source gathering, article drafting, image preparation, draft submission, optional final publication, scheduling, archiving, and security boundaries.
 
-## Publisher: <br>
-[16miku](https://clawhub.ai/user/16miku) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[16miku](https://clawhub.ai/user/16miku)
 
-## Use Case: <br>
-External operators, developers, and content teams use this skill to standardize and run a reproducible local WeChat Official Account article workflow, including draft-first production operation and optional scheduled automation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow can publish live content to a WeChat Official Account when configured with valid account credentials. <br>
-Mitigation: Use draft-only mode as the production default, require an explicit final-publish decision, and test first with a non-production or tightly controlled account. <br>
-Risk: The included fallback publish script logs part of the WeChat access token. <br>
-Mitigation: Remove the access_token log line before operational use and keep real secrets only in a protected local .env file. <br>
-Risk: Scheduled automation can repeatedly submit drafts or publications if cron entries are enabled without review. <br>
-Mitigation: Review cron entries before enabling them and isolate each account in its own working directory, .env file, title history, and log path. <br>
-Risk: API-based freepublish success may not match manual WeChat backend publication behavior or homepage visibility. <br>
-Mitigation: Treat technical API success separately from platform and operational success, and manually verify draft or publication visibility in the WeChat backend. <br>
+## Use Case:
 
+Content operators and developers use this skill to reproduce a local workflow for preparing WeChat Official Account articles, publishing them to draft, optionally submitting them for publication, and archiving results. It is aimed at reusable handoff and scheduled operations while keeping secrets outside the package.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/16miku/wechat-auto-publishing) <br>
-- [README](README.md) <br>
-- [Runbook](runbook.md) <br>
-- [Environment and Configuration](references/environment-and-config.md) <br>
-- [Source Gathering](references/source-gathering.md) <br>
-- [Writing Style](references/writing-style.md) <br>
-- [Image Strategy](references/image-strategy.md) <br>
-- [Publishing](references/publishing.md) <br>
-- [Scheduling and Alerting](references/scheduling-and-alerting.md) <br>
-- [Security Boundary](references/security-boundary.md) <br>
-- [Fallback publish script template](templates/publish.mjs) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, configuration templates, JavaScript script templates, and JSON result artifacts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local workflow scaffolding and operator-facing instructions; publishing actions require separately supplied WeChat credentials and local execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.0 (source: server-resolved release metadata) <br>
+Risk: The fallback publishing script can submit live content automatically.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Default production runs to draft-only and require an explicit confirmation or mode check before formal publication.
+
+Risk: Crafted Markdown image paths may cause unintended local files to be uploaded.
+
+Mitigation: Constrain image paths to the article directory, allowlist expected image filenames and extensions, and validate real image format before upload.
+
+Risk: Publishing logs can expose sensitive token prefixes or operational details.
+
+Mitigation: Remove token-prefix logging and store logs in protected, account-isolated directories.
+
+Risk: Scheduled jobs can mix credentials, logs, or outputs across accounts.
+
+Mitigation: Run automation under a least-privilege account with one isolated working directory, environment file, log, and result archive per WeChat account.
+
+Risk: External dependencies and local scripts may change behavior over time.
+
+Mitigation: Review and pin external dependencies before use, and inspect the publishing script before installation or scheduled execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/16miku/skills/wechat-auto-publishing)
+- [README](artifact/README.md)
+- [Runbook](artifact/runbook.md)
+- [Environment and Configuration](artifact/references/environment-and-config.md)
+- [Publishing](artifact/references/publishing.md)
+- [Image Strategy](artifact/references/image-strategy.md)
+- [Scheduling and Alerting](artifact/references/scheduling-and-alerting.md)
+- [Security Boundary](artifact/references/security-boundary.md)
+- [baoyu-skills dependency repository](https://github.com/jimliu/baoyu-skills)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance, shell commands, configuration templates, JavaScript publishing script, cron examples, and JSON result artifacts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local workflow instructions and templates; successful publishing runs may produce draft media IDs, publish IDs, article URLs, logs, and archived result JSON.]
+
+## Skill Version(s):
+
+3.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

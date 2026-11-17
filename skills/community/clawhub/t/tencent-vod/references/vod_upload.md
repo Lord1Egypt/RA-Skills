@@ -111,19 +111,19 @@
 
 #### 基础上传（自动推断媒体类型）
 ```bash
-python scripts/vod_upload.py upload --file /path/to/video.mp4
+python3 scripts/vod_upload.py upload --file /path/to/video.mp4
 ```
 
 #### 指定媒体名称
 ```bash
-python scripts/vod_upload.py upload \
+python3 scripts/vod_upload.py upload \
     --file /path/to/video.mp4 \
     --media-name "我的精彩视频"
 ```
 
 #### 指定媒体类型
 ```bash
-python scripts/vod_upload.py upload \
+python3 scripts/vod_upload.py upload \
     --file video.mov \
     --media-type mp4 \
     --media-name "转换格式"
@@ -131,63 +131,63 @@ python scripts/vod_upload.py upload \
 
 #### 上传时同时指定封面
 ```bash
-python scripts/vod_upload.py upload \
+python3 scripts/vod_upload.py upload \
     --file /path/to/video.mp4 \
     --cover-file /path/to/cover.jpg
 ```
 
 #### 指定分类
 ```bash
-python scripts/vod_upload.py upload \
+python3 scripts/vod_upload.py upload \
     --file /path/to/video.mp4 \
     --class-id 10
 ```
 
 #### 上传后自动执行任务流
 ```bash
-python scripts/vod_upload.py upload \
+python3 scripts/vod_upload.py upload \
     --file /path/to/video.mp4 \
     --procedure "LongVideoPreset"
 ```
 
 #### 指定存储园区
 ```bash
-python scripts/vod_upload.py upload \
+python3 scripts/vod_upload.py upload \
     --file /path/to/video.mp4 \
     --storage-region ap-beijing
 ```
 
 #### 指定存储路径（仅 FileID+Path 模式）
 ```bash
-python scripts/vod_upload.py upload \
+python3 scripts/vod_upload.py upload \
     --file /path/to/video.mp4 \
     --media-storage-path "/videos/2026-03/my-video.mp4"
 ```
 
 #### 透传上下文信息
 ```bash
-python scripts/vod_upload.py upload \
+python3 scripts/vod_upload.py upload \
     --file /path/to/video.mp4 \
     --source-context "client:app_v1"
 ```
 
 #### JSON 格式输出
 ```bash
-python scripts/vod_upload.py upload \
+python3 scripts/vod_upload.py upload \
     --file /path/to/video.mp4 \
     --json
 ```
 
 #### 详细输出
 ```bash
-python scripts/vod_upload.py upload \
+python3 scripts/vod_upload.py upload \
     --file /path/to/video.mp4 \
     --verbose
 ```
 
 #### dry-run 预览参数
 ```bash
-python scripts/vod_upload.py upload \
+python3 scripts/vod_upload.py upload \
     --file /path/to/video.mp4 \
     --media-name "我的视频" \
     --dry-run
@@ -199,14 +199,14 @@ python scripts/vod_upload.py upload \
 
 #### 上传音频文件
 ```bash
-python scripts/vod_upload.py upload \
+python3 scripts/vod_upload.py upload \
     --file /path/to/audio.mp3 \
     --media-name "背景音乐"
 ```
 
 #### 上传图片文件
 ```bash
-python scripts/vod_upload.py upload \
+python3 scripts/vod_upload.py upload \
     --file /path/to/image.jpg \
     --media-name "封面图片"
 ```
@@ -218,20 +218,20 @@ python scripts/vod_upload.py upload \
 #### 批量上传（使用 shell 循环）
 ```bash
 for f in /path/to/videos/*.mp4; do
-    python scripts/vod_upload.py upload --file "$f"
+    python3 scripts/vod_upload.py upload --file "$f"
 done
 ```
 
 #### 上传并保存结果到文件
 ```bash
-python scripts/vod_upload.py upload \
+python3 scripts/vod_upload.py upload \
     --file /path/to/video.mp4 \
     --json > upload_result.json
 ```
 
 #### 条件判断上传成功
 ```bash
-RESULT=$(python scripts/vod_upload.py upload --file video.mp4 --json)
+RESULT=$(python3 scripts/vod_upload.py upload --file video.mp4 --json)
 FILE_ID=$(echo "$RESULT" | jq -r '.commit.FileId')
 if [ "$FILE_ID" != "null" ]; then
     echo "上传成功，FileId: $FILE_ID"

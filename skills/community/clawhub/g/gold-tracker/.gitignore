@@ -1,0 +1,26 @@
+# 运行时数据（由脚本自动生成和维护）
+state.json
+config.yaml
+
+# 通知输出
+notifications/
+
+# 缓存
+cache/*
+!cache/.gitkeep
+
+# 日志与归档（运行时生成）
+logs/*
+!logs/.gitkeep
+archive/*
+!archive/.gitkeep
+alerts/*
+!alerts/.gitkeep
+
+# macOS
+.DS_Store
+
+# Python
+__pycache__/
+*.pyc
+*.pyo

@@ -1,41 +1,50 @@
-## Description: <br>
-AI-powered OSINT intelligence reports via API, with multiple RSS feeds across 15 categories, enriched analysis, domain reconnaissance, social lookup, and breach checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-powered OSINT intelligence reports via API, including categorized intelligence briefings, domain reconnaissance, social lookup, and breach checks.
 
-## Publisher: <br>
-[ahsan3274](https://clawhub.ai/user/ahsan3274) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ahsan3274](https://clawhub.ai/user/ahsan3274)
 
-## Use Case: <br>
-External users, OSINT analysts, and developers use this skill to let an agent request intelligence briefings, domain reconnaissance, social profile lookup, and breach checks from the hosted OSINT API. It is useful when an agent needs structured OSINT results without maintaining its own feed collection or enrichment pipeline. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Lookup targets, including domains, usernames, and email addresses for breach checks, are sent to the hosted OSINT API along with the OSINT_API_KEY. <br>
-Mitigation: Use the skill only for authorized investigations and avoid submitting sensitive client, employee, or third-party identifiers unless the provider's privacy, retention, and billing terms have been reviewed. <br>
-Risk: The skill depends on a third-party hosted API for availability, retention behavior, pricing, and response quality. <br>
-Mitigation: Confirm the API provider's terms before production use, monitor returned results for accuracy, and treat API failures or stale cached responses as normal operational conditions. <br>
+## Use Case:
 
+Developers, analysts, and security teams use this skill to retrieve OSINT briefings and run API-backed lookups for domains, usernames, and email breach exposure. It is intended for authorized investigations where sending targets to the hosted OSINT service is acceptable.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ahsan3274/osint-api) <br>
-- [OSINT API endpoint](https://osint.ahsan-tariq-ai.xyz/api/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON API responses and CLI text, with Markdown usage guidance and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires OSINT_API_KEY and sends authenticated HTTPS requests to osint.ahsan-tariq-ai.xyz for reports, categories, domain reconnaissance, social lookup, and breach checks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.9 (source: server release metadata) <br>
+Risk: OSINT targets and the bearer API key are sent to osint.ahsan-tariq-ai.xyz.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for authorized targets, avoid submitting sensitive third-party email addresses without permission, and rotate the API key if service behavior is unexpected.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ahsan3274/skills/osint-api)
+- [OSINT API base endpoint](https://osint.ahsan-tariq-ai.xyz/api/v1)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires OSINT_API_KEY and sends queries to osint.ahsan-tariq-ai.xyz.]
+
+## Skill Version(s):
+
+1.0.9 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

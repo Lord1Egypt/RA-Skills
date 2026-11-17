@@ -1,41 +1,54 @@
-## Description: <br>
-Provides structured investment research workflows for macro strategy, fixed income, industry and company analysis, quant factor review, asset allocation, convertible bonds, market sentiment, policy commentary, and related securities research reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides reusable frameworks for 34 financial research report types across macroeconomics, fixed income, companies and industries, investment strategy, and quantitative research.
 
-## Publisher: <br>
-[gechengling](https://clawhub.ai/user/gechengling) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gechengling](https://clawhub.ai/user/gechengling)
 
-## Use Case: <br>
-Investment research teams and analysts use this skill to draft market, macro, fixed income, equity, policy, factor, and allocation research outputs from current data and user-provided context. Outputs should be reviewed as research drafts and not treated as investment advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may ask the agent to use external market-data services, web search, uploaded files, sandboxed Python, or scheduled tasks while its metadata understates those behaviors. <br>
-Mitigation: Deploy only with explicit user confirmation for external data access, file access, code execution, notifications, and recurring reports. <br>
-Risk: Finance outputs may be incorrect, incomplete, outdated, or mistaken for investment advice. <br>
-Mitigation: Treat all outputs as research drafts, verify data sources and assumptions, and require qualified human review before using them in decisions. <br>
+## Use Case:
 
+Financial research professionals use the skill to structure reports and analysis from data available through their own authorized sources. Its outputs are research drafts that require qualified human review and do not constitute investment advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gechengling/investment-researcher-digital-employee) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/gechengling) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown research briefs, reports, tables, analytical guidance, and occasional code or shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Finance research drafts require human review and may depend on external market-data services, web search, uploaded files, sandboxed Python, or scheduled tasks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Research drafts may be misleading if the supplied data is stale, unsupported, or compared using inconsistent definitions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use authorized sources, state the data source and period, check definitions for consistency, and obtain qualified human review before applying conclusions.
+
+Risk: The security scan reported benign findings but could not fully inspect one security-relevant expression.
+
+Mitigation: Consider the stated review gap when deciding whether to install, and inspect the skill before use.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/gechengling/skills/investment-researcher-digital-employee)
+- [Publisher profile](https://clawhub.ai/user/gechengling)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Analysis, Markdown]
+
+**Output Format:** [Markdown research report outlines, analysis frameworks, and review checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Drafts should identify data sources and time periods and receive qualified human review before use.]
+
+## Skill Version(s):
+
+2.0.9 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

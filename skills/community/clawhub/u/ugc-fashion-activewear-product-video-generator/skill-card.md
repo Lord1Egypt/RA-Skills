@@ -1,39 +1,62 @@
-## Description: <br>
-UGC video generator for fashion and activewear brands that turns a single outfit image into TikTok and Instagram Reels-ready product videos in talking-head and voiceover styles. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates UGC-style fashion and activewear product videos for TikTok and Instagram Reels from a single outfit image, including talking-head and voiceover variants.
 
-## Publisher: <br>
-[dai-shuo](https://clawhub.ai/user/dai-shuo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dai-shuo](https://clawhub.ai/user/dai-shuo)
 
-## Use Case: <br>
-External fashion, activewear, ecommerce, and social media teams use this skill to create short-form product video prompts, media-generation commands, and voiceover scripts from an outfit image. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected outfit images and narration text may be sent to an external media or text-to-speech provider. <br>
-Mitigation: Review images, prompts, and scripts for sensitive content before running the skill, and use it only when sharing that content with the configured provider is acceptable. <br>
+## Use Case:
 
+External fashion, activewear, ecommerce, DTC, and social commerce teams use this skill to turn outfit images into short-form product video concepts and generation commands for TikTok, Instagram Reels, and related vertical video channels.
 
-## Reference(s): <br>
-- [IMA Studio homepage](https://imastudio.com) <br>
-- [ClawHub skill page](https://clawhub.ai/dai-shuo/ugc-fashion-activewear-product-video-generator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with image analysis, generated prompts, bash commands, media URLs, and script text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires IMA_API_KEY and imastudio-cli; uses vertical 9:16 image-to-video generation by default.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Outfit images are uploaded to a third-party IMA Studio service during normal use.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only non-sensitive images that the user is comfortable sending to IMA Studio.
+
+Risk: The skill requires the IMA_API_KEY credential.
+
+Mitigation: Store IMA_API_KEY in a secret-safe environment variable and avoid placing it in prompts, logs, or source files.
+
+Risk: Untrusted file paths, URLs, brand names, or prompt text could be unsafe if passed through shell interpolation.
+
+Mitigation: Invoke the CLI with structured arguments or carefully quoted parameters rather than interpolating untrusted text into a shell command.
+
+Risk: The package dependency is declared as a version range.
+
+Mitigation: Prefer a pinned imastudio-cli dependency and lockfile before deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/dai-shuo/skills/ugc-fashion-activewear-product-video-generator)
+- [IMA Studio](https://imastudio.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with media URLs, generated prompts, narration scripts, and CLI command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses IMA_API_KEY and imastudio-cli to upload images, create image-to-video tasks, and generate text-to-speech narration.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

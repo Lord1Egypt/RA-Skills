@@ -1,49 +1,58 @@
-## Description: <br>
-The father of value investing, author of The Intelligent Investor and Security Analysis, mentor to Warren Buffett. Focus on margin of safety, Mr. Market allegory, and defensive investment strategies. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides educational Benjamin Graham-style value-investing analysis focused on margin of safety, intrinsic value, defensive investing criteria, and investment-versus-speculation discipline.
 
-## Publisher: <br>
-[talentedleo](https://clawhub.ai/user/talentedleo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[talentedleo](https://clawhub.ai/user/talentedleo)
 
-## Use Case: <br>
-External users can use this skill for educational Benjamin Graham-style investing analysis, including margin-of-safety reasoning, defensive versus enterprising investor criteria, and structured stock assessment guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may mistake educational investing commentary for professional financial advice. <br>
-Mitigation: Treat outputs as educational guidance only, verify financial data independently, and consult qualified professionals before making investment decisions. <br>
-Risk: The skill includes investing-related capability tags that could be unsafe if connected to brokerage, payment, wallet, or automated trading authority. <br>
-Mitigation: Do not grant brokerage, payment, wallet, purchase, or automated trading permissions unless a separate reviewed workflow tightly constrains those actions. <br>
+## Use Case:
 
+External users and developers can use this skill to generate educational value-investing commentary, stock-analysis structure, and conservative buy/hold/avoid reasoning in the style of Benjamin Graham. It is not a substitute for personalized financial, legal, or tax advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/talentedleo/benjamin-graham-investing) <br>
-- [Benjamin Graham - Primary Writings](artifact/references/01-primary-writings.md) <br>
-- [Benjamin Graham - Conversations and Interviews](artifact/references/02-conversations-interviews.md) <br>
-- [Benjamin Graham - Expression DNA](artifact/references/03-expression-dna.md) <br>
-- [Benjamin Graham - External Views](artifact/references/04-external-views.md) <br>
-- [Benjamin Graham - Investment Decisions and Cases](artifact/references/05-investment-decisions.md) <br>
-- [Benjamin Graham - Complete Timeline](artifact/references/06-timeline.md) <br>
-- [The Intelligent Investor](https://en.wikipedia.org/wiki/The_Intelligent_Investor) <br>
-- [Security Analysis](https://en.wikipedia.org/wiki/Security_Analysis_(book)) <br>
-- [Benjamin Graham](https://en.wikipedia.org/wiki/Benjamin_Graham) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Analysis, Guidance] <br>
-**Output Format:** [Markdown-formatted educational investing analysis] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution; financial data and recommendations should be independently verified.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and artifact metadata) <br>
+Risk: Users may treat the skill's buy/hold/avoid language as personalized financial advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present outputs as educational commentary only and verify current market data, financial circumstances, tax considerations, and risk tolerance before acting.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/talentedleo/skills/benjamin-graham-investing)
+- [Primary writings reference](artifact/references/01-primary-writings.md)
+- [Conversations and interviews reference](artifact/references/02-conversations-interviews.md)
+- [Expression style reference](artifact/references/03-expression-dna.md)
+- [External views reference](artifact/references/04-external-views.md)
+- [Investment decisions reference](artifact/references/05-investment-decisions.md)
+- [Timeline reference](artifact/references/06-timeline.md)
+- [The Intelligent Investor](https://en.wikipedia.org/wiki/The_Intelligent_Investor)
+- [Security Analysis](https://en.wikipedia.org/wiki/Security_Analysis_(book))
+- [Benjamin Graham](https://en.wikipedia.org/wiki/Benjamin_Graham)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with structured investment-analysis sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Educational value-investing commentary; may include buy/hold/avoid language that should be verified against current market data and user risk tolerance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact/_meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

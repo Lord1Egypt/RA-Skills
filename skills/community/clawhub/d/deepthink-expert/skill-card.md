@@ -1,42 +1,53 @@
-## Description: <br>
-Deepthink Expert guides an assistant into structured multi-agent expert analysis for code review, feature development, complex decisions, and iterative debugging. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deepthink Expert provides a Chinese-language expert-analysis workflow for complex tasks, code review, feature planning, multi-expert decision support, and iterative debugging.
 
-## Publisher: <br>
-[softboypatrick](https://clawhub.ai/user/softboypatrick) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[softboypatrick](https://clawhub.ai/user/softboypatrick)
 
-## Use Case: <br>
-Developers and advanced agent users use this skill when a task benefits from multiple specialist perspectives, confidence scoring, cross-checking, or a staged workflow. It supports code review, architecture assessment, security review, feature planning, complex decision analysis, and supervised debugging loops. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can auto-trigger broad expert-analysis behavior for high-impact tasks. <br>
-Mitigation: Use it when structured analysis is desired, and treat expert labels and confidence scores as reasoning aids rather than professional advice. <br>
-Risk: Debugging guidance may propose diffs, tests, shell commands, or git-history inspection. <br>
-Mitigation: Review proposed changes, test commands, and repository-history access before allowing the assistant to act. <br>
-Risk: Multi-agent style analysis may consume more context and produce more elaborate output than needed. <br>
-Mitigation: Prefer the quick mode for routine tasks and request detailed analysis only when the extra review is useful. <br>
+## Use Case:
 
+Developers and other external users can use this skill to structure complex analysis, code review, architecture planning, feature work, security review, and debugging with confidence scoring and cross-checks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/softboypatrick/deepthink-expert) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown with structured analysis, confidence scores, and optional code or shell command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes quick and detailed analysis modes; debugging recommendations should be reviewed before changes are applied.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: The workflow may use more tokens and produce structured recommendations for high-stakes legal, medical, compliance, security, investment, or large financial decisions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit confirmation and independent professional review before acting on conclusions in high-stakes contexts.
+
+Risk: The skill changes analysis style and may produce incorrect or misleading guidance if its recommendations are executed without review.
+
+Mitigation: Review the generated analysis, code, and command suggestions before deployment or execution.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/softboypatrick/skills/deepthink-expert)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance]
+
+**Output Format:** [Markdown analysis report with concise or expanded sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include confidence scores, cross-validation notes, and recommended next actions.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata and SKILL.md frontmatter; artifact _meta.json lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

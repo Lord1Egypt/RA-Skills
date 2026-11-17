@@ -1,41 +1,59 @@
-## Description: <br>
-快手 Kim 即时通讯消息发送，支持 Webhook（群聊）和消息号（指定用户）两种方式，内置智能密钥加载和 fallback 机制，适用于通知、告警、日报等场景。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Kim Msg Skill sends Kuaishou Kim instant messages through group webhooks or direct message-account APIs, with credential loading from environment variables or documented local credential files.
 
-## Publisher: <br>
-[LeeGoDamn](https://clawhub.ai/user/LeeGoDamn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[leegodamn](https://clawhub.ai/user/leegodamn)
 
-## Use Case: <br>
-Developers and operators use this skill to send Kim/Kuaishou IM notifications, alerts, and daily reports to group chats via webhook or to named users through Kim message APIs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Message content and recipient identifiers are transmitted to Kim/Kuaishou systems. <br>
-Mitigation: Use only where Kim messaging is intended, and avoid sending secrets, regulated data, or sensitive reports unless organizational policy permits it. <br>
-Risk: The skill can load Kim credentials from environment variables or supported local credential files. <br>
-Mitigation: Review local Kim/OpenClaw secrets before use, keep credential files access-controlled, and remove stale credentials. <br>
+## Use Case:
 
+Developers and operators use this skill to send Kim notifications, alerts, daily reports, and direct messages from an agent workflow.
 
-## Reference(s): <br>
-- [Kim official website](https://kim.kuaishou.com/) <br>
-- [ClawHub release page](https://clawhub.ai/LeeGoDamn/kim-msg) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown or plain text messages sent through Kim, plus terminal status output and configuration instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Kim webhook or app credentials supplied through environment variables or supported local credential files] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata) <br>
+Risk: Message text is sent to Kim service endpoints.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sending highly sensitive content unless the deployment and Kim workspace policies permit it.
+
+Risk: Kim credentials are loaded from KIM_* environment variables or documented local credential files.
+
+Mitigation: Use tightly scoped Kim credentials, restrict credential-file permissions, and keep those files out of shared workspaces and source control.
+
+Risk: Tokens or secrets may appear in URL logs or local process arguments during sending.
+
+Mitigation: Run the skill only in trusted environments, limit command logging, and rotate credentials if exposure is suspected.
+
+## Reference(s):
+
+- [Kim official website](https://kim.kuaishou.com/)
+- [ClawHub skill page](https://clawhub.ai/leegodamn/skills/kim-msg)
+- [Publisher profile](https://clawhub.ai/user/leegodamn)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, API Calls, Markdown, Text]
+
+**Output Format:** [Markdown or plain text message content sent through shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Kim webhook or app credentials supplied through environment variables or documented local credential files.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

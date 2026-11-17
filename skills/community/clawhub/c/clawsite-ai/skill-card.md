@@ -1,44 +1,62 @@
-## Description: <br>
-Static website hosting for AI agents that deploy HTML, CSS, JavaScript, images, and other static files to a dedicated HTTPS Clawsite URL. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Static website hosting for AI agents with HTTPS, zip-based static asset deploys, atomic full-site replacement, and automatic CDN cache invalidation.
 
-## Publisher: <br>
-[dannylai999](https://clawhub.ai/user/dannylai999) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dannylai999](https://clawhub.ai/user/dannylai999)
 
-## Use Case: <br>
-Developers and agents use this skill to publish generated static websites, portfolios, link hubs, landing pages, and similar static content to a public URL. It guides deployment, cache purge, site listing, quota handling, and destructive delete workflows for Clawsite-hosted sites. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can publish generated files to a public Clawsite URL. <br>
-Mitigation: Keep secrets, private drafts, and unpublished material out of the deployment directory before creating the zip. <br>
-Risk: A deploy is an atomic full-site replacement and can remove files from the previous public site. <br>
-Mitigation: Confirm the intended site contents before deployment and verify quota or rate-limit errors without attempting destructive resets. <br>
-Risk: The configured API key can deploy, purge cache, list sites, and delete a site. <br>
-Mitigation: Protect CLAWSITE_API_KEY and require explicit user confirmation before deleting or fully replacing a site. <br>
+## Use Case:
 
+Developers and AI agents use this skill to publish generated static websites, portfolios, link hubs, and landing pages to a public ClawSite URL. It guides agents through authenticated deployment, quota checks, cache purging, and safe handling of destructive operations.
 
-## Reference(s): <br>
-- [Clawsite homepage](https://clawsite.ai) <br>
-- [ClawHub skill page](https://clawhub.ai/dannylai999/clawsite-ai) <br>
-- [Publisher profile](https://clawhub.ai/user/dannylai999) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration, API calls] <br>
-**Output Format:** [Markdown with shell commands, HTTP request examples, and JSON response examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires CLAWSITE_API_KEY and CLAWSITE_SITE_ID for authenticated site management.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: SKILL.md frontmatter and release evidence) <br>
+Risk: A misconfigured or attacker-controlled API endpoint could expose the ClawSite API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only documented ClawSite API hosts, confirm overrides before use, and avoid printing or embedding API keys in deployed static files.
+
+Risk: The skill can publish public content and includes a delete endpoint that permanently tombstones a site URL.
+
+Mitigation: Require explicit user confirmation before publishing public content or deleting a site, and explain that deletion is irreversible.
+
+Risk: The artifact includes production Terraform and Lambda operation commands that could affect live infrastructure when cloud credentials are present.
+
+Mitigation: Do not run backend infrastructure commands unless the user intends to operate the ClawSite service and the agent environment is authorized for that purpose.
+
+Risk: Deploy rate limits may return quota errors that could be mistaken for an account problem.
+
+Mitigation: On deploy quota errors, tell the user to wait for the rate limit window instead of deleting the site or re-registering.
+
+## Reference(s):
+
+- [ClawSite homepage](https://clawsite.ai)
+- [ClawHub skill page](https://clawhub.ai/dannylai999/skills/clawsite-ai)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and API request examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance may include public deployment URLs, quota status, and confirmation prompts for destructive actions.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

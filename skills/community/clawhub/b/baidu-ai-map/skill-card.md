@@ -1,47 +1,56 @@
-## Description: <br>
-百度地图 Agent Plan ，无需成为百度地图开发者，立即接入百度地图为 Agent 场景原生设计的地图能力，例如 AI 地点检索、AI 路线规划、地理编码与逆地理编码、天气查询、地图展示等开箱即用的工具。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+百度地图 Agent Plan ，无需成为百度地图开发者，立即接入百度地图为 Agent 场景原生设计的地图能力，例如 AI 地点检索、AI 路线规划、地理编码与逆地理编码、天气查询、地图展示等开箱即用的工具。
 
-## Publisher: <br>
-[baidu-maps](https://clawhub.ai/user/baidu-maps) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[baidu-maps](https://clawhub.ai/user/baidu-maps)
 
-## Use Case: <br>
-External users and developers use this skill to call Baidu Maps Agent Plan capabilities for place search, route planning, geocoding, reverse geocoding, weather lookup, and optional map visualization. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Map searches, addresses, routes, and precise coordinates are sent to Baidu Maps. <br>
-Mitigation: Use the skill only when the user intentionally wants Baidu Maps processing and avoid sending unnecessary sensitive location details. <br>
-Risk: The skill requires BAIDU_MAP_AUTH_TOKEN for authenticated API calls. <br>
-Mitigation: Keep the token in the environment, do not paste it into prompts or logs, and rotate it if exposure is suspected. <br>
-Risk: Repeated or broad map requests can consume Baidu Maps Agent Plan quota or billing. <br>
-Mitigation: Avoid duplicate requests with identical parameters and confirm expensive or ambiguous searches before running them. <br>
-Risk: MapRender can open a Baidu map page in a browser when visualization is requested. <br>
-Mitigation: Open generated map links only when the user explicitly asks to view results on a map. <br>
+## Use Case:
 
+External users and developers use this skill to let an agent call Baidu Maps Agent Plan APIs for place search, route planning, geocoding, reverse geocoding, weather lookup, and optional map visualization.
 
-## Reference(s): <br>
-- [Baidu AI Map on ClawHub](https://clawhub.ai/baidu-maps/baidu-ai-map) <br>
-- [Baidu Maps publisher profile](https://clawhub.ai/user/baidu-maps) <br>
-- [Baidu Maps](https://lbs.baidu.com) <br>
-- [Baidu Maps Agent Plan Console](https://lbs.baidu.com/apiconsole/agentplan) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with curl commands, environment setup, API response interpretation, and map display links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl and BAIDU_MAP_AUTH_TOKEN; API calls use Authorization: Bearer authentication.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.9 (source: server release metadata) <br>
+Risk: Map queries, addresses, coordinates, and the Baidu Maps authorization token are sent to Baidu's map APIs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when this data sharing is acceptable, keep the token in BAIDU_MAP_AUTH_TOKEN, and avoid exposing the token in prompts, logs, or shared outputs.
+
+Risk: Map visualization may open a browser window by default when the user asks to view results on a map.
+
+Mitigation: Use map visualization only for explicit visualization requests and disable or avoid browser opening where an interactive browser launch is not appropriate.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/baidu-maps/skills/baidu-ai-map)
+- [Baidu Maps Homepage](https://lbs.baidu.com)
+- [Baidu Maps Agent Plan Console](https://lbs.baidu.com/apiconsole/agentplan)
+- [Baidu Maps API Base URL](https://api.map.baidu.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline curl commands and API request parameters]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce Baidu Maps API calls and browser-opening map visualization links when explicitly requested by the user.]
+
+## Skill Version(s):
+
+1.0.9 (source: server release metadata; artifact frontmatter lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

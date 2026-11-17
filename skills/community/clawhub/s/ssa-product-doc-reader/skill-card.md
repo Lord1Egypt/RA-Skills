@@ -1,45 +1,65 @@
-## Description: <br>
-Product Doc Reader extracts structured product specifications, BOMs, model numbers, packaging codes, test requirements, and drawing metadata from product engineering drawing PDFs using text-first parsing with optional vision fallback. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extracts structured product data from engineering drawing PDFs, using pdftotext first and Vision processing as a fallback for layout-heavy content.
 
-## Publisher: <br>
-[cjboy007](https://clawhub.ai/user/cjboy007) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cjboy007](https://clawhub.ai/user/cjboy007)
 
-## Use Case: <br>
-Developers and operations users can use this skill to convert product engineering drawing PDFs into structured JSON and Markdown records for product databases, knowledge bases, BOM review, and batch document processing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Product drawing images may be sent to third-party AI APIs during vision analysis. <br>
-Mitigation: Use --text-only for confidential drawings unless third-party upload is approved. <br>
-Risk: A hard-coded API credential is present in the artifact. <br>
-Mitigation: Review and replace credential handling before use; provide user-controlled API credentials when vision analysis is required. <br>
-Risk: Batch cleanup paths can remove temporary directories. <br>
-Mitigation: Run batch workflows only with WORKSPACE and --temp-dir set to a safe disposable directory. <br>
+## Use Case:
 
+Developers and operations teams use this skill to extract BOMs, model numbers, drawing numbers, packaging specs, dimensions, test requirements, and Markdown knowledge-base entries from product engineering PDFs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cjboy007/ssa-product-doc-reader) <br>
-- [Publisher profile](https://clawhub.ai/user/cjboy007) <br>
-- [Artifact skill documentation](artifact/SKILL.md) <br>
-- [Development summary](artifact/DEVELOPMENT_SUMMARY.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [JSON and Markdown extraction reports, with optional stdout JSON from command-line scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Processes PDF input files and can write report files to a selected output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Engineering PDFs and BOM data may leave the local machine for third-party Vision processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use --text-only for confidential documents, or run Vision mode only with data and service approvals that match the deployment environment.
+
+Risk: The artifact includes unsafe credential behavior involving an embedded OpenRouter key.
+
+Mitigation: Remove and rotate the embedded key before use, and supply service credentials through approved environment variables or secret management.
+
+Risk: Batch cleanup behavior can be unsafe when pointed at arbitrary temporary directories.
+
+Mitigation: Run batch cleanup only against known controlled paths and review output directories before executing batch scripts.
+
+Risk: Broad agent configuration access could expose sensitive local settings.
+
+Mitigation: Limit the skill's filesystem access and avoid exposing broad agent configuration files during execution.
+
+## Reference(s):
+
+- [ClawHub skill page: Product Doc Reader](https://clawhub.ai/cjboy007/skills/ssa-product-doc-reader)
+- [Publisher profile: cjboy007](https://clawhub.ai/user/cjboy007)
+- [Artifact SKILL.md](artifact/SKILL.md)
+- [Development summary](artifact/DEVELOPMENT_SUMMARY.md)
+- [Hybrid extraction test report](artifact/examples/hybrid/TEST_REPORT.md)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Markdown, Files, Shell commands, Configuration]
+
+**Output Format:** [JSON and Markdown files, with optional JSON or Markdown emitted to stdout.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs can include extracted product names, model numbers, drawing numbers, packaging specs, BOM rows, tolerances, dimensions, test requirements, confidence, warnings, and batch summary Markdown.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

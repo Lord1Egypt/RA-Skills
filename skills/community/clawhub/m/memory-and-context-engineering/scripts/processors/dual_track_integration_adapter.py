@@ -4,6 +4,7 @@
 本模块提供双轨架构与现有系统的集成接口。
 """
 
+import asyncio
 from typing import Dict, List, Any, Optional
 from datetime import datetime
 from .optimized_dual_track_processor import OptimizedDualTrackProcessor, ProcessingResult

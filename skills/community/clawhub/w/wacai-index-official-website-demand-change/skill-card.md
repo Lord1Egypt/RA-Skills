@@ -1,39 +1,58 @@
-## Description: <br>
-Automates the Wacai official website demand-change workflow by preparing the target branch, writing and backing up productdemand.md, supporting code changes and checks, committing and pushing changes, and sending an Enterprise WeChat notification after a successful push. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates Wacai official website demand-change work by saving a supplied demand brief, preparing the target Git branch, guiding code changes, running checks, committing, pushing, and sending a WeCom notification after a successful push.
 
-## Publisher: <br>
-[shidengyun](https://clawhub.ai/user/shidengyun) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shidengyun](https://clawhub.ai/user/shidengyun)
 
-## Use Case: <br>
-Developers and maintainers use this skill to turn a pasted website-change demand, project path, and target branch into an executed repository workflow: branch preflight, demand-file update, implementation guidance, checks, git commit, push, and post-push notification. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can publish repository changes by committing all pending changes and pushing to the selected branch. <br>
-Mitigation: Run it only on an intended safe feature branch and require a human diff review before the commit-and-push step. <br>
-Risk: The skill can send repository metadata and change summaries to Enterprise WeChat through a bundled webhook. <br>
-Mitigation: Replace or remove the bundled webhook key and confirm that notification recipients are approved for the project details being sent. <br>
+## Use Case:
 
+Developers and site maintainers use this skill to turn a pasted official-website change request plus an explicit project path and branch into a prepared demand file, code-change workflow, commit, push, and post-push notification.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell command invocations and generated repository changes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write files, create git commits, push to the selected branch, and send an Enterprise WeChat notification.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Repository metadata and summary content may be sent to a hardcoded external WeCom webhook.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove the hardcoded webhook, load the webhook from a trusted secret source, and require explicit confirmation before sending notifications.
+
+Risk: The workflow can commit and push repository changes automatically.
+
+Mitigation: Require review of staged changes and explicit confirmation before git push, and keep the project path and target branch explicit for each run.
+
+Risk: Demand or summary file handling could affect files outside the intended target repository.
+
+Mitigation: Restrict demand and summary file paths to the target repository and reject paths that resolve outside that boundary.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/shidengyun/skills/wacai-index-official-website-demand-change)
+- [Publisher profile](https://clawhub.ai/user/shidengyun)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown status updates with shell commands and generated or modified project files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write or back up demand files, modify code, commit and push Git changes, and send a WeCom notification when the workflow succeeds.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,59 @@
-## Description: <br>
-Persist and retrieve structured data using the Lance columnar format. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Data Vault persists and retrieves structured data across sessions using the Lance columnar format for storage, querying, and analysis.
 
-## Publisher: <br>
-[vitorhugoze](https://clawhub.ai/user/vitorhugoze) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vitorhugoze](https://clawhub.ai/user/vitorhugoze)
 
-## Use Case: <br>
-Developers and agents use Data Vault to persist structured records across sessions, query stored data, track context, and maintain small local knowledge bases. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill provides agent-accessible local persistent storage and broad destructive operations. <br>
-Mitigation: Avoid storing secrets, personal data, credentials, or regulated information, and back up important datasets before update, delete, or drop operations. <br>
-Risk: Security evidence reports that the write path can store datasets outside the documented current-directory scope. <br>
-Mitigation: Use explicit simple dataset names and review or fix path validation and backup safeguards before relying on the skill for important data. <br>
-Risk: Lance locks field types after the first stored record. <br>
-Mitigation: Plan dataset schemas before the first append and keep subsequent values consistent with the initially inferred field types. <br>
+## Use Case:
 
+Developers and AI agents use this skill to create, append, update, read, back up, and delete local Lance datasets for structured data that should persist across sessions.
 
-## Reference(s): <br>
-- [Data Vault on ClawHub](https://clawhub.ai/vitorhugoze/data-vault) <br>
-- [Lance columnar format](https://github.com/lance-format/lance) <br>
-- [Lance documentation](https://lance.org) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Files, Shell commands] <br>
-**Output Format:** [JSON command responses and local Lance dataset files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands can create, read, update, delete, back up, count, and list local datasets.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.18 (source: frontmatter and server release evidence) <br>
+Risk: Dataset names may bypass the intended storage boundary.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only explicit, simple dataset names; the maintainer should validate dataset names consistently in write.py.
+
+Risk: Delete and drop commands can permanently change stored data.
+
+Mitigation: Back up datasets before destructive operations and add confirmation or recovery for destructive commands.
+
+Risk: Stored records may include secrets or regulated personal data.
+
+Mitigation: Avoid storing secrets or regulated personal data and limit entries to approved structured records.
+
+## Reference(s):
+
+- [Lance columnar format](https://github.com/lance-format/lance)
+- [Lance documentation](https://lance.org)
+- [Data Vault ClawHub page](https://clawhub.ai/vitorhugoze/skills/data-vault)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Shell commands, Guidance]
+
+**Output Format:** [JSON command responses with Markdown usage guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands operate on local Lance datasets and include status, data, and error fields.]
+
+## Skill Version(s):
+
+1.0.18 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

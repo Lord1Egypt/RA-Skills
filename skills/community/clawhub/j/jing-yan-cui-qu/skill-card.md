@@ -1,38 +1,49 @@
-## Description: <br>
-Experience distillation skill for reviewing work history, summarizing lessons, extracting reusable practices, and planning capability growth. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps users review work history, analyze work patterns, create reusable experience templates, and distill practical methodologies for future work.
 
-## Publisher: <br>
-[smxtx](https://clawhub.ai/user/smxtx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[smxtx](https://clawhub.ai/user/smxtx)
 
-## Use Case: <br>
-Employees, external users, and developers can use this skill to turn work sessions, project retrospectives, decisions, and lessons learned into structured Markdown records and reusable methods. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Work-session summaries may persist sensitive, regulated, personal, or confidential details in local memory. <br>
-Mitigation: Use the skill only when persistent reflection logs are desired; avoid recording sensitive details and periodically review or delete notes under /memories. <br>
+## Use Case:
 
+Employees, external users, and developers can use this skill to turn work sessions, project retrospectives, decisions, and learning activities into structured notes, reusable templates, and practical methods.
 
-## Reference(s): <br>
-- [Experience distillation templates](artifact/references/templates.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Guidance] <br>
-**Output Format:** [Markdown templates and structured reflection guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update persistent local notes under /memories when used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and artifact metadata) <br>
+Risk: The skill may persist sensitive work-session details in a local work-history archive without explicit consent, retention, or deletion controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only when local work-history storage is acceptable; add explicit save confirmation, redaction rules, and cleanup or deletion practices before using it with confidential, personnel, credential, or regulated data.
+
+## Reference(s):
+
+- [Experience Distillation Reference Guide](references/templates.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown notes, templates, checklists, and concise guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose or maintain a local /memories work-history archive when used as written.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

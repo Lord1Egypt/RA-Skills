@@ -1,41 +1,53 @@
-## Description: <br>
-Provides guidance for website logo placement, linking, sizing, alt text, accessibility, and AI product logo design considerations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents in optimizing logo placement, homepage linking, sizing, alt text, accessibility, and branding alignment for websites.
 
-## Publisher: <br>
-[kostja94](https://clawhub.ai/user/kostja94) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kostja94](https://clawhub.ai/user/kostja94)
 
-## Use Case: <br>
-Developers, designers, and website-building agents use this skill to choose logo placement patterns and produce implementation guidance for links, alt text, sizing, responsive behavior, and accessibility. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Project context files may contain secrets or unrelated private data that could be read while tailoring brand guidance. <br>
-Mitigation: Keep `.claude/project-context.md` and `.cursor/project-context.md` limited to non-sensitive brand and visual identity information before using the skill. <br>
-Risk: Logo placement or design guidance could conflict with official brand rules or trademark constraints. <br>
-Mitigation: Confirm final logo usage against the applicable brand guide, media kit, and trademark review process before publishing. <br>
+## Use Case:
 
+Designers, developers, and website-building agents use this skill to make logo placement and implementation choices that improve brand recognition, navigation behavior, accessibility, and responsive presentation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kostja94/logo-generator) <br>
-- [Alignify AI Logo Guide](https://alignify.co/insights/ai-logo-design) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown with implementation notes, HTML examples, and accessibility checklist items] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May tailor guidance from local project context files when present; no shell commands or account access are described by the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release evidence) <br>
+Risk: The skill may activate for broad logo-related requests and consult local project context files when present.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review local brand context before use and confirm that any project context files are appropriate for the agent to read.
+
+Risk: Branding recommendations may conflict with formal logo rules, media kits, or trademark constraints.
+
+Mitigation: Validate final logo placement, sizing, variants, and AI product logo ideas against the authoritative brand guide and trademark review process.
+
+## Reference(s):
+
+- [Alignify AI Logo Guide](https://alignify.co/insights/ai-logo-design)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code]
+
+**Output Format:** [Markdown guidance with optional HTML implementation notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include placement recommendations, implementation notes, accessibility checks, and optional AI product logo design suggestions.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

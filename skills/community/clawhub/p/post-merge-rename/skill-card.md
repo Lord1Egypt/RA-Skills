@@ -1,41 +1,50 @@
-## Description: <br>
-Post-merge branch renaming. Appends --merged-YYYY-MM-DD to preserve history. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Post-merge branch renaming. Appends --merged-YYYY-MM-DD to preserve history.
 
-## Publisher: <br>
-[parkertoddbrooks](https://clawhub.ai/user/parkertoddbrooks) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[parkertoddbrooks](https://clawhub.ai/user/parkertoddbrooks)
 
-## Use Case: <br>
-Developers and release engineers use this skill to identify merged Git branches and rename them with dated suffixes after merge while preserving branch history. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The script can delete old remote branch names after pushing renamed branches. <br>
-Mitigation: Run --dry-run first, confirm the repository and origin remote, and require explicit approval before non-dry-run execution. <br>
-Risk: Branch-name changes can disrupt CI, pull requests, links, audits, or protected workflows. <br>
-Mitigation: Use it only on intentionally merged branches and make remote deletion opt-in or team-approved where branch names are operationally significant. <br>
+## Use Case:
 
+Developers and release engineers use this skill to identify branches merged into main and rename them with a dated --merged-YYYY-MM-DD suffix while preserving branch history.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/parkertoddbrooks/post-merge-rename) <br>
-- [AI DevOps Toolbox](https://github.com/wipcomputer/wip-ai-devops-toolbox) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, guidance] <br>
-**Output Format:** [Markdown with bash commands and operational guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires git and bash; use --dry-run before changing branch names.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.9.72 (source: server release metadata) <br>
+Risk: The skill can delete old remote branch refs even though its documentation says it never deletes branches.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing or running in shared repositories; use --dry-run first and avoid production automation until the deletion behavior is explicit and verified.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/parkertoddbrooks/skills/post-merge-rename)
+- [AI DevOps Toolbox](https://github.com/wipcomputer/wip-ai-devops-toolbox)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Guidance]
+
+**Output Format:** [Plain text terminal output and Markdown usage guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May rename local branches, push new branch names, and delete old remote branch refs unless --dry-run is used.]
+
+## Skill Version(s):
+
+1.9.72 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

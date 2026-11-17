@@ -1,0 +1,398 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://xiaozhi-skills.openclaw.dev/schemas/solo-teacher-workspace.schema.json",
+  "title": "SoloTeacherWorkspace",
+  "x-distributed-to": "xiaozhi-teach-schedule-manager",
+  "x-skill-scope": {
+    "note": "本副本随 xiaozhi-teach-schedule-manager 分发，已按其 SKILL.md 的“读：/写：”声明裁剪：读 coursePackageLedger、lessonLogs、studentCards、teacherProfile；写 coursePackageLedger、lessonSchedule（同一键既读又写时，读/写各自的子字段列在 x-skill-scope.fields；各字段只留声明列出的子字段；删去 4 个顶层字段）。完整定义在归属技能处。",
+    "paths": [
+      "coursePackageLedger",
+      "lessonLogs",
+      "lessonSchedule",
+      "studentCards",
+      "teacherProfile"
+    ],
+    "reads": [
+      "coursePackageLedger",
+      "lessonLogs",
+      "studentCards",
+      "teacherProfile"
+    ],
+    "writes": [
+      "coursePackageLedger",
+      "lessonSchedule"
+    ],
+    "fields": {
+      "studentCards": {
+        "reads": [
+          "availability",
+          "alias",
+          "status",
+          "gradeBand"
+        ]
+      },
+      "teacherProfile": {
+        "reads": [
+          "deliveryChannels",
+          "serviceModes"
+        ]
+      },
+      "coursePackageLedger": {
+        "reads": [
+          "totalUnits",
+          "usedUnits",
+          "remainingUnits",
+          "startDate",
+          "expiryDate",
+          "pendingConfirmations"
+        ],
+        "writes": [
+          "totalUnits",
+          "startDate",
+          "expiryDate",
+          "renewalAttention"
+        ]
+      },
+      "lessonLogs": {
+        "reads": [
+          "consumeLessonUnits"
+        ]
+      },
+      "lessonSchedule": {
+        "writes": [
+          "lessonId",
+          "studentId",
+          "subject",
+          "startTime",
+          "durationMinutes",
+          "day_of_week",
+          "status",
+          "lessonGoal"
+        ]
+      }
+    }
+  },
+  "description": "独立教师工作空间数据结构。用于低敏记录学员卡、课表、课后记录、作业跟进、家长沟通、课时包和阶段证据。",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "teacherProfile": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "teacherId": {
+          "type": "string"
+        },
+        "serviceModes": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "一对一",
+              "小班"
+            ]
+          }
+        },
+        "deliveryChannels": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "线上",
+              "线下"
+            ]
+          }
+        }
+      },
+      "required": [
+        "teacherId"
+      ]
+    },
+    "studentCards": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/studentCard"
+      }
+    },
+    "lessonSchedule": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/lessonEvent"
+      }
+    },
+    "lessonLogs": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/lessonLog"
+      }
+    },
+    "coursePackageLedger": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/coursePackage"
+      }
+    }
+  },
+  "required": [
+    "teacherProfile"
+  ],
+  "$defs": {
+    "studentCard": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "studentId": {
+          "type": "string"
+        },
+        "alias": {
+          "type": "string",
+          "description": "低敏代号，不记录真实全名"
+        },
+        "availability": {
+          "type": "array",
+          "maxItems": 21,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "dayOfWeek": {
+                "type": "string",
+                "enum": [
+                  "周一",
+                  "周二",
+                  "周三",
+                  "周四",
+                  "周五",
+                  "周六",
+                  "周日"
+                ]
+              },
+              "startTime": {
+                "type": "string",
+                "pattern": "^([01][0-9]|2[0-3]):[0-5][0-9]$",
+                "description": "24 小时制 HH:MM"
+              },
+              "endTime": {
+                "type": "string",
+                "pattern": "^([01][0-9]|2[0-3]):[0-5][0-9]$",
+                "description": "24 小时制 HH:MM，须晚于 startTime"
+              }
+            },
+            "required": [
+              "dayOfWeek",
+              "startTime",
+              "endTime"
+            ]
+          },
+          "description": "学员每周可上课时间段，排课冲突检测的唯一依据。只记时间，不记原因（不写“周三要上钢琴课”）"
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "在读",
+            "暂停记录",
+            "已结课",
+            "待删除"
+          ],
+          "default": "在读",
+          "description": "暂停记录：不再写入任何新记录；待删除：等待老师确认后整卡删除"
+        },
+        "gradeBand": {
+          "type": "string",
+          "enum": [
+            "小学低段",
+            "小学中段",
+            "小学高段",
+            "初中",
+            "高中",
+            "未知"
+          ],
+          "description": "学段（shared/vocab.md §10）"
+        }
+      },
+      "required": [
+        "studentId",
+        "alias"
+      ]
+    },
+    "lessonEvent": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "lessonId": {
+          "type": "string"
+        },
+        "studentId": {
+          "type": "string"
+        },
+        "subject": {
+          "type": "string"
+        },
+        "startTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "durationMinutes": {
+          "type": "integer",
+          "minimum": 15
+        },
+        "day_of_week": {
+          "type": "string",
+          "enum": [
+            "周一",
+            "周二",
+            "周三",
+            "周四",
+            "周五",
+            "周六",
+            "周日",
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday",
+            "Sunday"
+          ],
+          "description": "兼容中英文的排课星期枚举，中文优先"
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "scheduled",
+            "completed",
+            "rescheduled",
+            "makeup",
+            "cancelled",
+            "absence",
+            "trial"
+          ],
+          "description": "trial=试听课"
+        },
+        "lessonGoal": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "lessonId",
+        "studentId",
+        "subject",
+        "startTime",
+        "status"
+      ]
+    },
+    "lessonLog": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "logId": {
+          "type": "string"
+        },
+        "lessonId": {
+          "type": "string"
+        },
+        "studentId": {
+          "type": "string"
+        },
+        "masteryStatus": {
+          "type": "string",
+          "enum": [
+            "已掌握",
+            "基本理解",
+            "仍需巩固",
+            "需要重讲",
+            "证据不足"
+          ]
+        },
+        "consumeLessonUnits": {
+          "type": "number",
+          "minimum": 0,
+          "description": "本节课消耗课时数。由 xiaozhi-teach-lesson-log 生成为待确认条目，老师确认后才写入课时台账；排课与课时管理、续费报告等其他 SKILL 只读"
+        },
+        "date": {
+          "type": "string",
+          "format": "date",
+          "description": "上课日期，用于仪表盘‘最近 N 条’规则"
+        }
+      },
+      "required": [
+        "logId",
+        "lessonId",
+        "studentId",
+        "date",
+        "masteryStatus"
+      ]
+    },
+    "coursePackage": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "packageId": {
+          "type": "string"
+        },
+        "studentId": {
+          "type": "string"
+        },
+        "totalUnits": {
+          "type": "number",
+          "minimum": 0
+        },
+        "usedUnits": {
+          "type": "number",
+          "minimum": 0
+        },
+        "remainingUnits": {
+          "type": "number",
+          "minimum": 0
+        },
+        "renewalAttention": {
+          "type": "boolean",
+          "default": false
+        },
+        "startDate": {
+          "type": "string",
+          "format": "date",
+          "description": "课时包起始日（可不填），与 expiryDate 一起用于‘起止超过 3 个月’提示"
+        },
+        "expiryDate": {
+          "type": "string",
+          "format": "date",
+          "description": "课时包到期日，用于‘到期前 7 天’提示"
+        },
+        "pendingConfirmations": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "lessonId": {
+                "type": "string",
+                "maxLength": 60
+              },
+              "units": {
+                "type": "number",
+                "minimum": 0
+              },
+              "generatedAt": {
+                "type": "string",
+                "format": "date-time"
+              }
+            },
+            "required": [
+              "lessonId",
+              "units"
+            ]
+          },
+          "description": "待老师确认的课时扣减条目；确认后才计入 usedUnits"
+        }
+      },
+      "required": [
+        "packageId",
+        "studentId",
+        "totalUnits",
+        "usedUnits",
+        "remainingUnits"
+      ]
+    }
+  }
+}

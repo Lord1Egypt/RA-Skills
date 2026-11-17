@@ -2,6 +2,8 @@
 
 Screen refresh rule: if the firmware displays OTA progress, WiFi state, IP addresses, voice state, or other status on the K10 screen, update only changed regions. Do not clear and redraw the whole screen in `loop()` unless full-screen refresh is measured above 30 fps; otherwise the display will visibly flicker.
 
+TTS compatibility rule: K10 speech synthesis is available only in the Chinese firmware. Keeping the `voice_data` partition intact is necessary for compatible TTS builds but does not make `ASR::setAsrSpeed()` / `ASR::speak()` available in English/international firmware.
+
 ## Table of Contents
 
 1. [Why HTTP OTA Instead of ArduinoOTA](#why-http-ota)

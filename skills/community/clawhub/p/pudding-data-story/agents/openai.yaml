@@ -1,0 +1,13 @@
+interface:
+  display_name: Pudding Data Story
+  short_description: Pudding-style interactive data storytelling
+  brand_color: '#F4A261'
+  default_prompt: Use $pudding-data-story to turn a sourced dataset into a reader-first
+    interactive visual essay.
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true

@@ -1,40 +1,53 @@
-## Description: <br>
-Official Supermetrics skill. Query marketing data from 100+ platforms including Google Analytics, Meta Ads, Google Ads, and LinkedIn. Requires API key. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Queries marketing data from 100+ platforms including Google Analytics, Meta Ads, Google Ads, and LinkedIn, using a required Supermetrics API key.
 
-## Publisher: <br>
-[bartschneider](https://clawhub.ai/user/bartschneider) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[bartschneider](https://clawhub.ai/user/bartschneider)
 
-## Use Case: <br>
-Marketing analysts, developers, and agents use this skill to discover Supermetrics data sources, accounts, fields, and query results from connected advertising and analytics platforms. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can query Supermetrics-connected marketing accounts using an API key. <br>
-Mitigation: Use a scoped or revocable API key where possible and confirm the target account, fields, and date range before running queries. <br>
-Risk: Filters or search text could expose unrelated sensitive information to the Supermetrics API. <br>
-Mitigation: Avoid placing unrelated secrets or confidential text in filters, search queries, or query parameters. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bartschneider/supermetrics-openclawd) <br>
-- [Supermetrics MCP endpoint](https://mcp.supermetrics.com) <br>
+## Use Case:
 
+Developers and analysts use this skill to discover Supermetrics data sources, accounts, fields, and to query connected marketing-platform reporting data.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python examples and JSON response objects] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SUPERMETRICS_API_KEY and returns success/error JSON dictionaries from API helper functions.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can query Supermetrics-connected marketing accounts and reporting data.
+
+Mitigation: Install and invoke it only for explicit Supermetrics or connected marketing-platform reporting tasks.
+
+Risk: The Supermetrics API key and returned account/report data are sensitive.
+
+Mitigation: Store the API key with appropriate access controls and avoid exposing returned data outside authorized workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bartschneider/skills/supermetrics-openclawd)
+- [Supermetrics MCP API endpoint](https://mcp.supermetrics.com)
+
+## Skill Output:
+
+**Output Type(s):** [API calls, JSON, Guidance]
+
+**Output Format:** [Python dictionaries containing success/data or success/error payloads]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SUPERMETRICS_API_KEY and may return connected-account and marketing-report data.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

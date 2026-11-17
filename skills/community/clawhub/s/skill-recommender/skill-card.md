@@ -1,40 +1,55 @@
-## Description: <br>
-Agent skill recommender. Input a user need, task description, or existing skill list; output best matching skills, install rationale, duplicate/merge candidates, and gaps for new skill briefs. Runtime-neutral and not tied to one agent platform. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent skill recommender. Input a user need, task description, or existing skill list; output best matching skills, install rationale, duplicate/merge candidates, and gaps for new skill briefs. Runtime-neutral and not tied to one agent platform.
 
-## Publisher: <br>
-[harrylabsj](https://clawhub.ai/user/harrylabsj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harrylabsj](https://clawhub.ai/user/harrylabsj)
 
-## Use Case: <br>
-Developers and skill maintainers use this skill to match user needs against an existing skill collection, rank candidate skills, and identify duplicate or merge candidates before installing or building new skills. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The helper scripts read SKILL.md files from the skills directory supplied by the user, so recommendations depend on the quality and trustworthiness of that local collection. <br>
-Mitigation: Use the skill only on skill collections intended for analysis, and review recommendations before installing, merging, or creating skills. <br>
+## Use Case:
 
+Developers and agents use this skill to find the best matching skills in an existing collection, identify duplicate or overlapping skills, and decide whether to reuse, extend, merge, or create a skill.
 
-## Reference(s): <br>
-- [Recommendation Rules](references/recommendation-rules.md) <br>
-- [Output Schema](references/output-schema.md) <br>
-- [Dedup / Avoid-Rebuild Mode](references/dedup-mode.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, guidance] <br>
-**Output Format:** [Markdown recommendations and optional JSON from bundled helper scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Ranked recommendations include match rationale, boundaries, secondary matches, overlap groups, and notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: ClawHub release metadata) <br>
+Risk: The local Node.js helpers read SKILL.md files from the skills directory supplied by the user.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the helpers only against intended skill directories and avoid pointing them at unrelated private workspaces.
+
+Risk: Recommendations are lightweight and keyword-based, with several templates and examples written in Chinese.
+
+Mitigation: Review ranked matches and rationale before acting on reuse, merge, or build-new decisions, especially for multilingual or ambiguous requests.
+
+## Reference(s):
+
+- [Recommendation Rules](references/recommendation-rules.md)
+- [Output Schema](references/output-schema.md)
+- [Dedup / Avoid-Rebuild Mode](references/dedup-mode.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance]
+
+**Output Format:** [Markdown responses and JSON from local helper scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include ranked scores, match labels, rationale, boundaries, overlap groups, and next-step guidance.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,63 @@
-## Description: <br>
-Generates WeChat comic articles from a comic type, topic, and count, then can publish the generated content to the WeChat Official Account draft box by executing local Python pipeline scripts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate WeChat comic articles and publish them to the WeChat Official Account draft box by executing local Python pipeline scripts.
 
-## Publisher: <br>
-[archibald80000-ai](https://clawhub.ai/user/archibald80000-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[archibald80000-ai](https://clawhub.ai/user/archibald80000-ai)
 
-## Use Case: <br>
-External creators and content operators use this skill to generate Chinese-language WeChat comic article packages from a supported comic type, topic, and count. It is also used to create WeChat Official Account draft-box entries for the latest generated task or a specified output directory. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generation commands can upload article images and create WeChat Official Account draft-box entries without a separate publish confirmation. <br>
-Mitigation: Use --skip_publish for generation-only runs, or require explicit operator confirmation before uploads and draft creation. <br>
-Risk: The skill requires model API keys and WeChat Official Account app credentials, and runtime files may contain tokens, outputs, logs, or publish results. <br>
-Mitigation: Keep config.json, output, logs, publish_result.json, and cached WeChat tokens private; do not include them in release packages or shared logs. <br>
+## Use Case:
 
+External creators and operators use this skill to generate a short WeChat comic article series from a comic type, topic, and count, then optionally create a draft in the WeChat Official Account draft box.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/archibald80000-ai/wechat-comic-factory) <br>
-- [Publisher profile](https://clawhub.ai/user/archibald80000-ai) <br>
-- [WeChat Official Account API base endpoint](https://api.weixin.qq.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Files] <br>
-**Output Format:** [Structured JSON script results, with generated Markdown, HTML, image assets, logs, and WeChat draft metadata written by the pipeline.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generation supports supported comic types, topic, count, skip-publish mode, latest-task publishing, and explicit output-directory publishing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can create real WeChat Official Account draft entries when credentials are configured.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a test account first, review generated HTML and article assets before publishing, and only run publish commands for explicitly intended tasks.
+
+Risk: Model-provider credentials, WeChat credentials, and cached WeChat access tokens are sensitive.
+
+Mitigation: Keep config.json, output files, logs, publish_result.json, and logs/wechat_access_token.json out of release packages and delete or protect local token caches after use.
+
+Risk: Publishing from untrusted task directories or remote image URLs can introduce unsuitable or unexpected content.
+
+Mitigation: Avoid publishing from untrusted task directories and inspect generated HTML, images, and draft metadata before creating a WeChat draft.
+
+Risk: Generated articles include default publisher branding unless the operator changes the configuration.
+
+Mitigation: Review and update defaults.publisher_name and defaults.publisher_tagline before production use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/archibald80000-ai/skills/wechat-comic-factory)
+- [Publisher profile](https://clawhub.ai/user/archibald80000-ai)
+- [WeChat Official Account API endpoint](https://api.weixin.qq.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Files]
+
+**Output Format:** [JSON status output with generated Markdown/HTML article assets and WeChat draft metadata.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates local task outputs and can create WeChat Official Account draft entries when valid provider and WeChat credentials are configured.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,58 @@
-## Description: <br>
-Edit PDFs with natural-language instructions using the nano-pdf CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Edit PDFs with natural-language instructions using the nano-pdf CLI.
 
-## Publisher: <br>
-[v585](https://clawhub.ai/user/v585) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[v585](https://clawhub.ai/user/v585)
 
-## Use Case: <br>
-Developers and document editors use this skill to ask an agent to edit a specific PDF page with a natural-language instruction through the nano-pdf CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: PDF page content, prompts, and related document context may be sent to Gemini, and Google Search may be used by the installed tool. <br>
-Mitigation: Review before installing for confidential, regulated, client, or business-sensitive PDFs; use copies of files and disable Google Search or context features where possible. <br>
-Risk: PDF edits may target the wrong page if page numbering differs between tool versions or configuration. <br>
-Mitigation: Sanity-check the output PDF and retry with the alternate page number convention if the result appears off by one. <br>
+## Use Case:
 
+Developers and document editors use this skill to ask an agent to invoke nano-pdf for natural-language edits to specific PDF pages, then inspect the generated PDF before sharing.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/v585/nano-pdf-cn) <br>
-- [nano-pdf on PyPI](https://pypi.org/project/nano-pdf/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance, Files] <br>
-**Output Format:** [Markdown with inline bash commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May instruct the agent to run nano-pdf against local PDF files and review the output PDF.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: Installing an unpinned third-party CLI can introduce supply-chain exposure.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a sandbox or pin and review a trusted nano-pdf version before use.
+
+Risk: PDF contents may pass through an external AI workflow.
+
+Mitigation: Avoid sensitive documents unless the workflow is approved for that data.
+
+Risk: Generated PDF edits may be incorrect or target the wrong page.
+
+Mitigation: Review the output PDF and retry with the alternate page numbering convention if needed.
+
+## Reference(s):
+
+- [Nano Pdf Cn on ClawHub](https://clawhub.ai/v585/skills/nano-pdf-cn)
+- [nano-pdf PyPI project](https://pypi.org/project/nano-pdf/)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the nano-pdf command to be installed; generated PDFs should be reviewed before distribution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

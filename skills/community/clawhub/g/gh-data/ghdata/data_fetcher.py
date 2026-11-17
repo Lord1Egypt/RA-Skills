@@ -16,7 +16,7 @@ def _market(code: str) -> str:
 
 def _call_eastmoney(code: str, report_name: str, sort_col: str = "REPORTDATE",
                     page_size: int = 5, filter_field: str = "SECURITY_CODE",
-                    extra_filters: str = "") -> list:
+                    extra_filters: str = "", sort_types: str = "-1") -> list:
     """通用东方财富 DataCenter API 调用
     
     参数:
@@ -26,13 +26,14 @@ def _call_eastmoney(code: str, report_name: str, sort_col: str = "REPORTDATE",
         page_size: 返回条数
         filter_field: 过滤字段名，默认SECURITY_CODE
         extra_filters: 额外过滤条件，如 '(NUMBERNEW="1")'
+        sort_types: 排序类型，默认-1（降序），多列用逗号分隔
     """
     filter_str = extra_filters + f'({filter_field}="{code}")' if filter_field else f'(SECURITY_CODE="{code}")'
     if not filter_field:
         filter_str = extra_filters
     params = {
         "sortColumns": sort_col,
-        "sortTypes": "-1",
+        "sortTypes": sort_types,
         "pageSize": page_size,
         "pageNumber": 1,
         "columns": "ALL",
@@ -156,12 +157,17 @@ def fetch_today_tick(code: str) -> Optional[list]:
     return None
 
 
-# ========== 4. 资金流向 ==========
+# ========== 4. 资金流向（三源级联降级）==========
 
 def fetch_money_flow(code: str, days: int = 10) -> list:
-    """东方财富 push2his 资金流向（日级）
-    返回 [{date, main_net, small_net, medium_net, large_net, super_net}]
     """
+    资金流向数据采集 — 三源级联降级
+    1) 东方财富 push2his（完整主力/大小单明细，2026-08 起可能 RemoteDisconnected）
+    2) 新浪 qsfx（全量历史，主力净额 r0_net，无大小单拆分）
+    3) 东方财富 push2delay（末级兜底，仅最新1天）
+    返回 [{date, main_net, small_net, medium_net, large_net, super_net, ...}] 尽量标准化的格式
+    """
+    # ----- 源1: 东方财富 push2his -----
     market = "1." if code.startswith(("6","9")) else "0."
     url = (f"https://push2his.eastmoney.com/api/qt/stock/fflow/daykline/get"
            f"?lmt={days}&klt=101&fields1=f1,f2,f3,f7"
@@ -174,25 +180,100 @@ def fetch_money_flow(code: str, days: int = 10) -> list:
         resp = urllib.request.urlopen(req, timeout=15)
         d = json.loads(resp.read())
         klines = d.get("data",{}).get("klines",[])
-        result = []
-        for k in klines:
-            parts = k.split(",")
-            if len(parts) >= 13:
-                result.append({
-                    "date": parts[0],
-                    "main_net": float(parts[1]) if parts[1] else 0,        # f52 主力净流入
-                    "small_net": float(parts[2]) if parts[2] else 0,       # f53 小单净流入
-                    "medium_net": float(parts[3]) if parts[3] else 0,      # f54 中单净流入
-                    "large_net": float(parts[4]) if parts[4] else 0,       # f55 大单净流入
-                    "super_net": float(parts[5]) if parts[5] else 0,       # f56 超大单净流入
-                    "main_pct": float(parts[6]) if len(parts) > 6 and parts[6] else 0,  # f57 主力占比
-                    "close": float(parts[11]) if len(parts) > 11 and parts[11] else 0,  # f62 收盘价
-                    "change_pct": float(parts[12]) if len(parts) > 12 and parts[12] else 0,  # f63 涨跌幅
-                })
-        return result
+        if klines:
+            result = []
+            for k in klines:
+                parts = k.split(",")
+                if len(parts) >= 13:
+                    result.append({
+                        "date": parts[0],
+                        "main_net": float(parts[1]) if parts[1] else 0,
+                        "small_net": float(parts[2]) if parts[2] else 0,
+                        "medium_net": float(parts[3]) if parts[3] else 0,
+                        "large_net": float(parts[4]) if parts[4] else 0,
+                        "super_net": float(parts[5]) if parts[5] else 0,
+                        "main_pct": float(parts[6]) if len(parts) > 6 and parts[6] else 0,
+                        "close": float(parts[11]) if len(parts) > 11 and parts[11] else 0,
+                        "change_pct": float(parts[12]) if len(parts) > 12 and parts[12] else 0,
+                        "source": "eastmoney",
+                    })
+            if result:
+                return result
     except Exception as e:
-        print(f"[money_flow] {code}: {e}")
-        return []
+        print(f"[money_flow] 东方财富 {code}: {e}")
+
+    # ----- 源2: 新浪 qsfx 资金流向（全量历史）-----
+    # 字段: opendate/trade/changeratio/netamount(总净额)/r0_net(主力净额)/r0_ratio
+    # 单位: 元；changeratio 为小数涨跌幅；无大小单拆分 → medium/large/super=0
+    try:
+        mk = _market(code)
+        url2 = ("https://vip.stock.finance.sina.com.cn/quotes_service/api/json_v2.php/"
+                f"MoneyFlow.ssl_qsfx_zjlrqs?page=1&num={days}&sort=opendate&asc=0&daima={mk}{code}")
+        req2 = urllib.request.Request(url2, headers={
+            "User-Agent":"Mozilla/5.0","Referer":"https://finance.sina.com.cn/"
+        })
+        resp2 = urllib.request.urlopen(req2, timeout=12)
+        text2 = resp2.read().decode("utf-8")
+        if text2 and not text2.startswith("null"):
+            items2 = json.loads(text2)
+            if items2:
+                result = []
+                for it in items2:
+                    main_net = float(it.get("r0_net") or 0)
+                    total_net = float(it.get("netamount") or 0)
+                    result.append({
+                        "date": str(it.get("opendate",""))[:10],
+                        "main_net": main_net,
+                        "small_net": total_net - main_net,
+                        "medium_net": 0,
+                        "large_net": 0,
+                        "super_net": 0,
+                        "main_pct": round(float(it.get("r0_ratio") or 0) * 100, 2),
+                        "close": float(it.get("trade") or 0),
+                        "change_pct": round(float(it.get("changeratio") or 0) * 100, 2),
+                        "source": "sina",
+                    })
+                if result:
+                    return result
+    except Exception as e:
+        print(f"[money_flow] 新浪 {code}: {e}")
+
+    # ----- 源3: 东方财富 push2delay（末级兜底，仅最新1天）-----
+    try:
+        url3 = (f"https://push2delay.eastmoney.com/api/qt/stock/fflow/daykline/get"
+                f"?lmt=0&klt=101&fields1=f1,f2,f3,f7"
+                f"&fields2=f51,f52,f53,f54,f55,f56,f57,f58,f59,f60,f61,f62,f63"
+                f"&secid={market}{code}")
+        req3 = urllib.request.Request(url3, headers={
+            "User-Agent":"Mozilla/5.0","Referer":"https://data.eastmoney.com/"
+        })
+        resp3 = urllib.request.urlopen(req3, timeout=12)
+        d3 = json.loads(resp3.read())
+        klines3 = d3.get("data",{}).get("klines",[])
+        if klines3:
+            result = []
+            for k in klines3[:days]:
+                parts = k.split(",")
+                if len(parts) >= 13:
+                    result.append({
+                        "date": parts[0],
+                        "main_net": float(parts[1]) if parts[1] else 0,
+                        "small_net": float(parts[2]) if parts[2] else 0,
+                        "medium_net": float(parts[3]) if parts[3] else 0,
+                        "large_net": float(parts[4]) if parts[4] else 0,
+                        "super_net": float(parts[5]) if parts[5] else 0,
+                        "main_pct": float(parts[6]) if len(parts) > 6 and parts[6] else 0,
+                        "close": float(parts[11]) if len(parts) > 11 and parts[11] else 0,
+                        "change_pct": float(parts[12]) if len(parts) > 12 and parts[12] else 0,
+                        "source": "eastmoney_delay",
+                    })
+            if result:
+                return result
+    except Exception as e:
+        print(f"[money_flow] 东方财富delay {code}: {e}")
+
+    # 全部失败
+    return []
 
 
 # ========== 5-8. 财务数据 ==========
@@ -219,13 +300,13 @@ def fetch_income_statement(code: str, top: int = 5) -> list:
     items = _call_eastmoney(code, "RPT_DMSK_FN_INCOME", sort_col="REPORT_DATE", page_size=top)
     return [{"date":i.get("REPORT_DATE","")[:10],"revenue":i.get("TOTAL_OPERATE_INCOME",0),
              "cost":i.get("TOTAL_OPERATE_COST",0),"gross_profit":i.get("OPERATE_PROFIT",0),
-             "net_profit":i.get("NET_PROFIT_ATSOPC",0)} for i in items]
+             "net_profit":i.get("PARENT_NETPROFIT",0)} for i in items]
 
 def fetch_cashflow(code: str, top: int = 5) -> list:
     """现金流量表（RPT_DMSK_FN_CASHFLOW）"""
     items = _call_eastmoney(code, "RPT_DMSK_FN_CASHFLOW", sort_col="REPORT_DATE", page_size=top)
-    return [{"date":i.get("REPORT_DATE","")[:10],"operate_net":i.get("NET_OPERATE_CASHFLOW",0),
-             "invest_net":i.get("NET_INVEST_CASHFLOW",0),"finance_net":i.get("NET_FINANCE_CASHFLOW",0),
+    return [{"date":i.get("REPORT_DATE","")[:10],"operate_net":i.get("NETCASH_OPERATE",0),
+             "invest_net":i.get("NETCASH_INVEST",0),"finance_net":i.get("NETCASH_FINANCE",0),
              "cash_equity":i.get("CASH_EQUITY",0)} for i in items]
 
 
@@ -244,21 +325,21 @@ def fetch_margin_trading(code: str, days: int = 10) -> list:
 def fetch_main_holdings(code: str) -> dict:
     """主力持仓（RPT_MAIN_ORGHOLD）
     返回 {date, total_holders, fund_sum, insurance_sum, securities_sum, qfii_sum}
+    HOLD_VALUE_RATIO 已废弃，改用 FREESHARES_RATIO（占流通股比）
     """
     items = _call_eastmoney(code, "RPT_MAIN_ORGHOLD", sort_col="HOLD_VALUE",
-                            page_size=10, filter_field="SECURITY_CODE")
+                            page_size=50, filter_field="SECURITY_CODE")
     if not items:
         return {}
-    # ORG_TYPE: 00=汇总 01=基金 02=QFII 03=社保 04=券商 05=保险 06=信托
+    # ORG_TYPE: 00=汇总 01=基金 02=QFII 03=社保 04=券商 05=保险 06=信托 07=其他
     result = {"date": items[0].get("REPORT_DATE","")[:10],
               "total_holders": 0, "fund_sum": 0, "insurance_sum": 0,
               "securities_sum": 0, "qfii_sum": 0}
     for i in items:
         ot = i.get("ORG_TYPE","")
-        hv = float(i.get("HOLD_VALUE",0) or 0)
-        hv_ratio = float(i.get("HOLD_VALUE_RATIO",0) or 0)
+        hv_ratio = float(i.get("FREESHARES_RATIO",0) or 0)
         if ot == "00" or not ot:
-            result["total_holders"] = hv_ratio  # 占总股本比例
+            result["total_holders"] = hv_ratio  # 占流通股比例
         elif ot == "01":
             result["fund_sum"] = hv_ratio
         elif ot == "05":
@@ -267,6 +348,35 @@ def fetch_main_holdings(code: str) -> dict:
             result["securities_sum"] = hv_ratio
         elif ot == "02":
             result["qfii_sum"] = hv_ratio
+    return result
+
+
+# ========== 10b. 前十大股东明细 ==========
+
+def fetch_top_holders(code: str, top: int = 10) -> list:
+    """前十大股东明细（RPT_DMSK_HOLDERS）
+    返回 [{holder_name, hold_num, hold_ratio, market_cap, direction, rank, holder_nature, shares_type}]
+    """
+    items = _call_eastmoney(code, "RPT_DMSK_HOLDERS", sort_col="END_DATE,RANK",
+                            page_size=top, filter_field="SECURITY_CODE",
+                            sort_types="-1,1")
+    if not items:
+        return []
+    # 取最新报告期的数据
+    latest_date = items[0].get("END_DATE","")
+    latest_items = [i for i in items if i.get("END_DATE","") == latest_date]
+    result = []
+    for i in latest_items:
+        result.append({
+            "holder_name": i.get("HOLDER_NAME",""),
+            "hold_num": i.get("HOLD_NUM",0),
+            "hold_ratio": float(i.get("HOLD_RATIO",0) or 0),
+            "market_cap": i.get("HOLDER_MARKET_CAP",0),
+            "direction": i.get("DIRECTION",""),
+            "rank": i.get("RANK",0),
+            "holder_nature": i.get("HOLDER_NATURE",""),
+            "shares_type": i.get("SHARES_TYPE",""),
+        })
     return result
 
 
@@ -294,15 +404,17 @@ def fetch_executive_change(code: str, top: int = 30) -> list:
              "price":i.get("CHANGE_PRICE",0)} for i in items]
 
 
-# ========== 13. 分红历史 ==========
+# ========== 13. 行业信息 ==========
+
+# ========== 14. 分红历史 ==========
 
 def fetch_dividend(code: str, top: int = 10) -> list:
     """分红配股（RPT_SHAREBONUS_DET）"""
     items = _call_eastmoney(code, "RPT_SHAREBONUS_DET", sort_col="PLAN_NOTICE_DATE",
                             page_size=top, filter_field="SECURITY_CODE")
     return [{"date":i.get("PLAN_NOTICE_DATE","")[:10],
-             "plan":i.get("SHARE_BONUS_IMPLICIT",0),
-             "bonus":i.get("CASH_DIVIDENT",0),
+             "plan":i.get("IMPL_PLAN_PROFILE", ""),
+             "bonus":i.get("PRETAX_BONUS_RMB",0),
              "transfer":i.get("CONVERT_OF_CAPITAL_RESERVE",0),
              "dividend":i.get("CASH_DIVIDENT_PER_SHARE",0)} for i in items]
 

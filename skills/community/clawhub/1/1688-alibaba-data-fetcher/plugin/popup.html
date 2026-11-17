@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>1688 Data Claw</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      width: 380px;
+      min-height: 480px;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      font-size: 13px;
+      color: #333;
+      background: #f5f5f5;
+    }
+
+    .header {
+      background: linear-gradient(135deg, #FF6A00 0%, #FF8C00 100%);
+      color: white;
+      padding: 16px 20px;
+      text-align: center;
+    }
+
+    .header h1 {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .header .subtitle {
+      font-size: 11px;
+      opacity: 0.9;
+    }
+
+    .status-bar {
+      background: white;
+      padding: 12px 16px;
+      border-bottom: 1px solid #e0e0e0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .status-indicator {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #ccc;
+    }
+
+    .status-dot.active { background: #4CAF50; }
+    .status-dot.error { background: #f44336; }
+    .status-dot.warning { background: #FF9800; }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      gap: 8px;
+      padding: 12px 16px;
+    }
+
+    .stat-card {
+      background: white;
+      border-radius: 8px;
+      padding: 12px;
+      text-align: center;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+
+    .stat-card .value {
+      font-size: 22px;
+      font-weight: 700;
+      color: #FF6A00;
+    }
+
+    .stat-card .label {
+      font-size: 11px;
+      color: #666;
+      margin-top: 2px;
+    }
+
+    .actions {
+      padding: 12px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .btn {
+      border: none;
+      border-radius: 6px;
+      padding: 10px 16px;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    .btn:hover { opacity: 0.9; transform: translateY(-1px); }
+    .btn:active { transform: translateY(0); }
+
+    .btn-primary {
+      background: #FF6A00;
+      color: white;
+    }
+
+    .btn-secondary {
+      background: white;
+      color: #333;
+      border: 1px solid #ddd;
+    }
+
+    .btn-danger {
+      background: #f44336;
+      color: white;
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 8px;
+    }
+
+    .btn-group .btn { flex: 1; }
+
+    .info-section {
+      background: white;
+      margin: 0 16px 12px;
+      border-radius: 8px;
+      padding: 12px;
+    }
+
+    .info-section h3 {
+      font-size: 12px;
+      font-weight: 600;
+      color: #666;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .info-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 4px 0;
+      font-size: 12px;
+      border-bottom: 1px solid #f0f0f0;
+    }
+
+    .info-row:last-child { border-bottom: none; }
+
+    .info-row .key { color: #666; }
+    .info-row .val { color: #333; font-weight: 500; }
+
+    .data-preview {
+      max-height: 120px;
+      overflow-y: auto;
+      background: #f8f8f8;
+      border-radius: 4px;
+      padding: 8px;
+      font-size: 11px;
+      font-family: 'Courier New', monospace;
+      white-space: pre-wrap;
+      word-break: break-all;
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 24px 16px;
+      color: #999;
+    }
+
+    .empty-state .icon {
+      font-size: 32px;
+      margin-bottom: 8px;
+    }
+
+    .toast {
+      position: fixed;
+      bottom: 16px;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background: #333;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 20px;
+      font-size: 12px;
+      opacity: 0;
+      transition: all 0.3s ease;
+      z-index: 1000;
+    }
+
+    .toast.show {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+    }
+
+    .loading-spinner {
+      display: inline-block;
+      width: 14px;
+      height: 14px;
+      border: 2px solid #fff;
+      border-top-color: transparent;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>1688 Data Claw</h1>
+    <div class="subtitle">数据采集器 v1.0.0</div>
+  </div>
+
+  <div class="status-bar">
+    <div class="status-indicator">
+      <div class="status-dot" id="statusDot"></div>
+      <span id="statusText">初始化中...</span>
+    </div>
+    <span id="pageType" style="font-size:11px;color:#999;">-</span>
+  </div>
+
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="value" id="sycmCount">0</div>
+      <div class="label">生意参谋</div>
+    </div>
+    <div class="stat-card">
+      <div class="value" id="workCount">0</div>
+      <div class="label">工作台</div>
+    </div>
+  </div>
+
+  <div class="actions">
+    <button class="btn btn-primary" id="btnClaw">
+      <span id="clawSpinner" style="display:none;"><span class="loading-spinner"></span></span>
+      <span id="clawText">立即采集当前页</span>
+    </button>
+
+    <div class="btn-group">
+      <button class="btn btn-danger" id="btnClear">清空数据</button>
+    </div>
+  </div>
+
+  <div class="info-section" id="pageInfo" style="display:none;">
+    <h3>当前页面</h3>
+    <div class="info-row">
+      <span class="key">页面类型</span>
+      <span class="val" id="currentPageType">-</span>
+    </div>
+    <div class="info-row" id="rowPageCount">
+      <span class="key">采集数量</span>
+      <span class="val" id="currentPageCount">-</span>
+    </div>
+    <div class="info-row" id="rowCompanyName" style="display:none;">
+      <span class="key">公司名</span>
+      <span class="val" id="currentCompanyName">-</span>
+    </div>
+    <div class="info-row" id="rowRank" style="display:none;">
+      <span class="key">店铺排名</span>
+      <span class="val" id="currentRank">-</span>
+    </div>
+    <div class="info-row" id="rowPayAmt" style="display:none;">
+      <span class="key">支付金额</span>
+      <span class="val" id="currentPayAmt">-</span>
+    </div>
+    <div class="info-row" id="rowItemCnt" style="display:none;">
+      <span class="key">在线商品</span>
+      <span class="val" id="currentItemCnt">-</span>
+    </div>
+    <div class="info-row" id="rowPullSales" style="display:none;">
+      <span class="key">动销商品</span>
+      <span class="val" id="currentPullSales">-</span>
+    </div>
+    <div class="info-row" id="rowRevealCnt" style="display:none;">
+      <span class="key">展现次数</span>
+      <span class="val" id="currentRevealCnt">-</span>
+    </div>
+    <div class="info-row" id="rowFlowPv" style="display:none;">
+      <span class="key">浏览量/访客</span>
+      <span class="val" id="currentFlowPv">-</span>
+    </div>
+    <div class="info-row" id="rowClickRate" style="display:none;">
+      <span class="key">点击转化率</span>
+      <span class="val" id="currentClickRate">-</span>
+    </div>
+    <div class="info-row" id="rowBounceRate" style="display:none;">
+      <span class="key">跳失率</span>
+      <span class="val" id="currentBounceRate">-</span>
+    </div>
+    <div class="info-row" id="rowMobileShare" style="display:none;">
+      <span class="key">无线端占比</span>
+      <span class="val" id="currentMobileShare">-</span>
+    </div>
+    <div class="info-row" id="rowWwResponse" style="display:none;">
+      <span class="key">3分钟响应率</span>
+      <span class="val" id="currentWwResponse">-</span>
+    </div>
+    <div class="info-row" id="rowWwSatisfaction" style="display:none;">
+      <span class="key">咨询满意度</span>
+      <span class="val" id="currentWwSatisfaction">-</span>
+    </div>
+    <div class="info-row" id="rowLgt48hGotRate" style="display:none;">
+      <span class="key">48H揽收率</span>
+      <span class="val" id="currentLgt48hGotRate">-</span>
+    </div>
+    <div class="info-row" id="rowLgtFulfillRate" style="display:none;">
+      <span class="key">履约率</span>
+      <span class="val" id="currentLgtFulfillRate">-</span>
+    </div>
+    <div class="info-row" id="rowLgtPlanAccRate" style="display:none;">
+      <span class="key">物流时效达成率</span>
+      <span class="val" id="currentLgtPlanAccRate">-</span>
+    </div>
+    <div class="info-row" id="rowLgtRfdFhRate" style="display:none;">
+      <span class="key">物流发货退款率</span>
+      <span class="val" id="currentLgtRfdFhRate">-</span>
+    </div>
+    <div class="info-row" id="rowQualityRfdRate" style="display:none;">
+      <span class="key">品质退款率</span>
+      <span class="val" id="currentQualityRfdRate">-</span>
+    </div>
+    <div class="info-row" id="rowQualityBadRate" style="display:none;">
+      <span class="key">商品品质差评率</span>
+      <span class="val" id="currentQualityBadRate">-</span>
+    </div>
+    <div class="info-row" id="rowNlhScore" style="display:none;">
+      <span class="key">新灯塔分</span>
+      <span class="val" id="currentNlhScore">-</span>
+    </div>
+    <div class="info-row" id="rowQualityScore" style="display:none;">
+      <span class="key">商品体验</span>
+      <span class="val" id="currentQualityScore">-</span>
+    </div>
+    <div class="info-row" id="rowRefundScore" style="display:none;">
+      <span class="key">售后体验</span>
+      <span class="val" id="currentRefundScore">-</span>
+    </div>
+    <div class="info-row" id="rowInquiry" style="display:none;">
+      <span class="key">询盘人数</span>
+      <span class="val" id="currentInquiry">-</span>
+    </div>
+    <div class="info-row" id="rowFlowSourceRecent7" style="display:none;">
+      <span class="key">近7天流量来源</span>
+      <span class="val" id="currentFlowSourceRecent7">-</span>
+    </div>
+    <div class="info-row" id="rowKeywordsRecent7" style="display:none;">
+      <span class="key">近7天入店关键词</span>
+      <span class="val" id="currentKeywordsRecent7">-</span>
+    </div>
+    <div class="info-row" id="rowTradePay" style="display:none;">
+      <span class="key">支付金额</span>
+      <span class="val" id="currentTradePay">-</span>
+    </div>
+    <div class="info-row" id="rowTradePayByr" style="display:none;">
+      <span class="key">支付买家数</span>
+      <span class="val" id="currentTradePayByr">-</span>
+    </div>
+    <div class="info-row" id="rowTradePayQty" style="display:none;">
+      <span class="key">支付商品件数</span>
+      <span class="val" id="currentTradePayQty">-</span>
+    </div>
+    <div class="info-row" id="rowTradePayRate" style="display:none;">
+      <span class="key">支付转化率</span>
+      <span class="val" id="currentTradePayRate">-</span>
+    </div>
+    <div class="info-row" id="rowTradePerAmt" style="display:none;">
+      <span class="key">客单价</span>
+      <span class="val" id="currentTradePerAmt">-</span>
+    </div>
+    <div class="info-row" id="rowTradeRefund" style="display:none;">
+      <span class="key">退款金额</span>
+      <span class="val" id="currentTradeRefund">-</span>
+    </div>
+    <div class="info-row" id="rowTradeRefundRate" style="display:none;">
+      <span class="key">退款占比</span>
+      <span class="val" id="currentTradeRefundRate">-</span>
+    </div>
+    <div class="info-row" id="rowTradeMord" style="display:none;">
+      <span class="key">支付订单数</span>
+      <span class="val" id="currentTradeMord">-</span>
+    </div>
+    <div class="info-row" id="rowTradeNewBuyer" style="display:none;">
+      <span class="key">支付新买家</span>
+      <span class="val" id="currentTradeNewBuyer">-</span>
+    </div>
+  </div>
+
+  <div class="info-section" id="openClawInfo">
+    <h3>OpenClaw API</h3>
+    <div class="info-row">
+      <span class="key">扩展ID</span>
+      <span class="val" id="extensionId">加载中...</span>
+    </div>
+    <div class="info-row">
+      <span class="key">API状态</span>
+      <span class="val" id="apiStatus">就绪</span>
+    </div>
+    <div style="margin-top:8px;">
+      <div class="data-preview" id="apiCode">chrome.runtime.sendMessage('EXTENSION_ID', { action: 'OPEN_CLAW_API', mode: 'full' })</div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

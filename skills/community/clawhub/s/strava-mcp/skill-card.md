@@ -1,41 +1,59 @@
-## Description: <br>
-Connect an MCP-compatible agent to local Strava activities, streams, routes, athlete stats, gear, and clubs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connect an MCP-compatible agent to local Strava activities, streams, routes, athlete stats, gear, and clubs. Use when an AI agent needs setup, usage, safety boundaries, or troubleshooting for Strava MCP.
 
-## Publisher: <br>
-[davidmosiah](https://clawhub.ai/user/davidmosiah) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[davidmosiah](https://clawhub.ai/user/davidmosiah)
 
-## Use Case: <br>
-External users and developers use this skill to install, configure, and troubleshoot Strava MCP for MCP-compatible agents while reviewing safety and privacy boundaries before live provider access. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: OAuth tokens and Strava GPS/location data can expose sensitive account or location information. <br>
-Mitigation: Keep tokens private, require explicit user consent for sensitive data access, and prefer connection status, manifest, privacy audit, doctor, or dry-run checks before live reads or writes. <br>
-Risk: Setup uses an npm package through npx and connects an agent to a Strava account. <br>
-Mitigation: Review the referenced package and project before running commands, then run it only in a trusted environment. <br>
+## Use Case:
 
+External developers and MCP-compatible agent users use this skill to install, configure, and safely operate Strava MCP for access to Strava activities, streams, routes, athlete stats, gear, and clubs. It helps agents provide setup guidance, usage prompts, privacy checks, and troubleshooting boundaries for Strava data workflows.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/davidmosiah/strava-mcp) <br>
-- [Strava Connector Docs](https://wellness.delx.ai/connectors/strava) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes setup guidance, safety checks, and troubleshooting prompts for Strava MCP.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence) <br>
+Risk: The setup flow runs a mutable, unpinned npm MCP package through npx.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin strava-mcp-unofficial to a reviewed exact version before deployment and review package changes before upgrading.
+
+Risk: The MCP process may handle OAuth tokens, GPS data, activity data, and other private Strava information.
+
+Mitigation: Limit the process's filesystem and environment access, avoid printing secrets or private payloads, and keep location-level data access opt-in.
+
+Risk: Live provider calls or writes could expose data or exceed Strava API expectations without explicit user consent.
+
+Mitigation: Prefer connection_status, manifest, doctor, privacy_audit, or dry-run surfaces before live calls, and require explicit consent for data access or writes.
+
+## Reference(s):
+
+- [Strava MCP repository](https://github.com/davidmosiah/strava-mcp)
+- [Strava connector documentation](https://wellness.delx.ai/connectors/strava)
+- [ClawHub skill page](https://clawhub.ai/davidmosiah/skills/strava-mcp)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include MCP client stdio configuration, setup commands, safety checks, and troubleshooting guidance.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

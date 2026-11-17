@@ -1,41 +1,54 @@
-## Description: <br>
-Deep-dive a target company and produce a structured account intelligence brief covering tech stack, buying signals, key personas, and a recommended engagement angle. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deep-dive a target company and produce a structured account intelligence brief covering tech stack, buying signals, key personas, and a recommended engagement angle.
 
-## Publisher: <br>
-[davidslavich](https://clawhub.ai/user/davidslavich) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[davidslavich](https://clawhub.ai/user/davidslavich)
 
-## Use Case: <br>
-Go-to-market and sales teams use this skill before outreach, first calls, demos, or ABM campaign planning to create a sourced account intelligence brief for a named company. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Account research may include named-person details, LinkedIn links, inferred pain points, or outreach-sensitive information. <br>
-Mitigation: Use public sources, verify each cited fact before outreach, and handle personal data according to privacy, anti-spam, and workplace policies. <br>
-Risk: Live web research can return outdated, incomplete, or misleading account signals. <br>
-Mitigation: Ground every signal in a traceable source, date time-sensitive findings, and mark unsupported details as unverified. <br>
+## Use Case:
 
+Sales, marketing, and account teams use this skill to prepare sourced account intelligence briefs before outreach, first calls, demos, meetings, or ABM campaigns.
 
-## Reference(s): <br>
-- [GTM Account Research on ClawHub](https://clawhub.ai/davidslavich/gtm-account-research) <br>
-- [iCustomer website](https://icustomer.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown account intelligence brief] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes sourced company snapshot, stack, buying signals, personas, gaps, and engagement angle.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact metadata) <br>
+Risk: Broad meeting-preparation prompts may trigger account research for the wrong or ambiguous company.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide a clear company name and confirm the target account before relying on the brief.
+
+Risk: People, buying-signal, and account-fit claims may be incomplete or stale because the skill depends on live web research.
+
+Mitigation: Review the cited sources and treat unsupported details as unverified before using them in outreach or sales planning.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/davidslavich/skills/gtm-account-research)
+- [iCustomer website](https://icustomer.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown account intelligence brief]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes sourced account signals and marks details as unverified when not directly observed.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

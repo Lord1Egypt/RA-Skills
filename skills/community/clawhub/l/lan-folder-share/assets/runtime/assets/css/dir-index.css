@@ -1,0 +1,296 @@
+/* Locale: zh-CN (documented in SKILL.md metadata) — part of "Lan Folder Share",
+ * a LAN knowledge-base tool for Chinese-speaking users; comments are Chinese by
+ * design. 语言声明：本文件面向中文用户，注释默认中文。
+ * ---------------------------------------------------------------------------
+ * 自动文件夹索引（auto-dir-index.js 渲染的「本目录内容」列表） */
+.kb-dir-index {
+  margin-top: 26px;
+  padding: 16px 18px;
+  border: 1px solid #e6eaf2;
+  border-radius: 10px;
+  background: #f7f9fc;
+}
+.kb-dir-index-head {
+  font-size: 13px;
+  color: #6b7280;
+  margin-bottom: 12px;
+  letter-spacing: .02em;
+}
+.kb-dir-index-pagetitle {
+  font-size: 22px;
+  font-weight: 700;
+  margin: 6px 0 16px;
+  color: #1f2937;
+}
+.kb-dir-index-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 8px;
+}
+.kb-dir-index-item a {
+  display: block;
+  padding: 10px 12px;
+  border: 1px solid #e6eaf2;
+  border-radius: 8px;
+  text-decoration: none;
+  color: #2b303a;
+  background: #fff;
+  transition: border-color .12s ease, color .12s ease, box-shadow .12s ease;
+}
+.kb-dir-index-item a:hover {
+  border-color: var(--theme-color, #4a6ee0);
+  color: var(--theme-color, #4a6ee0);
+  box-shadow: 0 2px 8px rgba(74, 110, 224, .12);
+}
+.kb-type-dir a { font-weight: 600; }
+
+/* ---------- 图片/视频平铺区（照片网格、视频内联） ---------- */
+.kb-dir-media {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 12px;
+  margin-top: 14px;
+}
+.kb-dir-media-card {
+  border: 1px solid #e6eaf2;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #fff;
+  cursor: zoom-in;
+  transition: border-color .12s ease, box-shadow .12s ease;
+}
+.kb-dir-media-card:hover {
+  border-color: var(--theme-color, #4a6ee0);
+  box-shadow: 0 3px 12px rgba(74, 110, 224, .15);
+}
+.kb-dir-media-card img {
+  width: 100%;
+  height: 130px;
+  object-fit: cover;
+  display: block;
+  background: #eef1f6;
+}
+.kb-dir-media-name {
+  padding: 6px 8px;
+  font-size: 12px;
+  color: #475569;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  user-select: none;
+}
+/* ---------- 单图目录：默认放大完整展示（无需手动点击放大） ----------
+ * 单图净化模式（.kb-dir-index-single）下，图片占满正文宽度、无卡片边框、
+ * 无底部文件名底条，仅保留"照片预览"小标题。文件名通过 alt / title 保留。 */
+.kb-dir-index-single {
+  margin-top: 12px;
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  background: transparent;
+}
+.kb-dir-index-single .kb-dir-index-head {
+  margin: 4px 0 10px;
+  color: #8a94a6;
+  font-size: 13px;
+}
+.kb-dir-single {
+  display: block;
+  margin: 0;
+}
+.kb-dir-single .kb-dir-media-card {
+  display: block;
+  cursor: zoom-in;
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  overflow: visible;          /* 不再裁切图，让原图等比完整显示 */
+}
+.kb-dir-single .kb-dir-media-card img {
+  width: 100%;
+  height: auto;              /* 不再裁剪成 130px 缩略图，全图完整展示 */
+  max-height: 84vh;          /* 超高图不撑爆视口 */
+  object-fit: contain;
+  display: block;
+  background: transparent;
+}
+.kb-dir-single .kb-dir-media-name { display: none; }  /* 单图净化：不显示底部文件名条 */
+.kb-dir-media-card.kb-type-video {
+  grid-column: 1 / -1;           /* 视频占整行 */
+  cursor: default;
+}
+.kb-dir-media-card.kb-type-video video {
+  width: 100%;
+  max-height: 460px;
+  display: block;
+  background: #000;
+}
+.kb-dir-media-card.kb-type-audio {
+  grid-column: 1 / -1;           /* 音频占整行 */
+  cursor: default;
+  padding: 14px 16px 4px;
+}
+.kb-dir-media-card.kb-type-audio audio {
+  width: 100%;
+  display: block;
+}
+
+/* ---------- 图片画廊预览（lightbox） ----------
+ * 遮罩空白处点击关闭；大图左右半区点击切换上一张/下一张；
+ * 键盘 ← / ↑ 上一张，→ / ↓ 下一张，Esc / ✕ 关闭。 */
+.kb-img-mask {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 28px;
+  background: rgba(10, 14, 24, .92);
+}
+.kb-img-box { position: relative; max-width: 94vw; max-height: 92vh; }
+.kb-img-box img {
+  position: absolute;               /* 绝对定位 + width/height 缩放，避免 transform 触发 Safari 合成层导致放大模糊 */
+  left: 0;
+  top: 0;
+  border-radius: 6px;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, .5);
+  display: block;
+  opacity: 0;                       /* 预载完成后淡入，避免切换闪白/半载 */
+  transition: opacity .16s ease;
+  image-rendering: -webkit-optimize-contrast;  /* Safari 缩放更锐利 */
+}
+.kb-img-box img.kb-loaded { opacity: 1; }
+.kb-img-meta {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -24px;
+  text-align: center;
+  font-size: 13px;
+  color: #cbd5e1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.kb-img-count {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  font-size: 13px;
+  color: #94a3b8;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: .3px;
+}
+.kb-img-close {
+  position: absolute;
+  top: -42px;
+  right: -2px;
+  width: 32px;
+  height: 32px;
+  font-size: 15px;
+  line-height: 1;
+  color: #e2e8f0;
+  background: rgba(255, 255, 255, .12);
+  border: 1px solid rgba(255, 255, 255, .25);
+  border-radius: 8px;
+  cursor: pointer;
+}
+.kb-img-close:hover { background: rgba(255, 255, 255, .25); color: #fff; }
+.kb-img-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  font-size: 22px;
+  line-height: 1;
+  color: #f1f5f9;
+  background: rgba(15, 23, 42, .5);
+  border: 1px solid rgba(255, 255, 255, .22);
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 0 4px;
+  transition: background .15s ease;
+}
+.kb-img-nav:hover { background: rgba(51, 65, 85, .82); color: #fff; }
+.kb-img-prev { left: 10px; }
+.kb-img-next { right: 10px; }
+@media (max-width: 640px) {
+  .kb-img-mask { padding: 16px; }
+  .kb-img-box img { max-height: 76vh; }
+  .kb-img-prev { left: 6px; }
+  .kb-img-next { right: 6px; }
+}
+
+/* ---------- 空页面缺省效果（无 README、无附件时的创意占位） ---------- */
+.kb-dir-empty {
+  margin-top: 26px;
+  padding: 52px 24px 46px;
+  border: 1px dashed #d5dde9;
+  border-radius: 14px;
+  background: linear-gradient(180deg, #fbfcfe 0%, #f6f8fc 100%);
+  text-align: center;
+}
+.kb-dir-empty-art {
+  margin-bottom: 16px;
+  animation: kb-empty-float 3.2s ease-in-out infinite;
+}
+.kb-dir-empty-art svg {
+  width: 150px;
+  height: auto;
+}
+@keyframes kb-empty-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-7px); }
+}
+.kb-dir-empty-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #374151;
+}
+.kb-dir-empty-sub {
+  margin-top: 10px;
+  font-size: 14px;
+  line-height: 1.8;
+  color: #6b7280;
+}
+.kb-dir-empty-btn {
+  margin-top: 22px;
+  padding: 9px 26px;
+  font-size: 14px;
+  color: #fff;
+  background: linear-gradient(135deg, #5b7cfa, #4a6ee0);
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(74, 110, 224, .28);
+  transition: transform .12s ease, box-shadow .12s ease;
+}
+.kb-dir-empty-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(74, 110, 224, .36);
+}
+.kb-dir-empty-tip {
+  margin-top: 14px;
+  font-size: 12px;
+  color: #9aa3b2;
+}
+/* 目录有 md 文档 / 子目录（左侧导航可见）但无 README、无附件时的轻提示 */
+.kb-dir-hint {
+  margin-top: 26px;
+  padding: 14px 18px;
+  border: 1px dashed #d5dde9;
+  border-radius: 10px;
+  background: #fbfcfe;
+  font-size: 13px;
+  color: #8a94a6;
+  text-align: center;
+}

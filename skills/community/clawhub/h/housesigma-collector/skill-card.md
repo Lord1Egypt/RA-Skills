@@ -1,40 +1,56 @@
-## Description: <br>
-Collects HouseSigma listing data through automated or manual workflows and saves it into a Hauscout SQLite database for dashboard updates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Collects HouseSigma listing data and stores it in a Hauscout SQLite database, supporting automated, profile-based, targeted, and manual collection workflows.
 
-## Publisher: <br>
-[sonim1](https://clawhub.ai/user/sonim1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[sonim1](https://clawhub.ai/user/sonim1)
 
-## Use Case: <br>
-Developers or operators maintaining the local Hauscout project use this skill to collect HouseSigma listings, manage search profiles, and update the SQLite-backed dashboard data. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can automatically modify a local SQLite database and publish those changes through Git and Vercel workflows. <br>
-Mitigation: Back up the SQLite database, confirm the Git remote and deployment target are intended for this data, and add a manual review step before pushing or deploying collected data. <br>
-Risk: The workflow depends on a local Hauscout project and collector script outside the skill artifact. <br>
-Mitigation: Use the skill only when you control the referenced Hauscout project and have reviewed the local collect.ts script. <br>
-Risk: Automated collection may trigger service rate limits or headless browsing blocks. <br>
-Mitigation: Keep request delays, review collection volume before scheduling cron runs, and use headed browser checks when blocked. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+Developers and operators maintaining a Hauscout property dashboard use this skill to collect HouseSigma listing data, update local SQLite records, manage search profiles, and schedule recurring collection runs.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash and SQL command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include local file paths and database commands that require review before execution.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Automated collection writes to the Hauscout SQLite database and could damage or overwrite important data if the database path or collected fields are wrong.
+
+Mitigation: Confirm the target database path, keep backups, and validate collected fields before writes.
+
+Risk: The workflow includes git commit and push steps for database updates, which could publish private, licensed, proprietary, or personal data to the configured remote repository.
+
+Mitigation: Review database contents and remote visibility before enabling git push or scheduled cron updates.
+
+Risk: Automated browsing against HouseSigma can trigger rate limits or blocking.
+
+Mitigation: Use conservative request pacing, troubleshoot with headed mode when needed, and confirm the collection pattern is acceptable for the target site.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sonim1/skills/housesigma-collector)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Code, Configuration guidance]
+
+**Output Format:** [Markdown with bash and SQL command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes local filesystem paths, database writes, browser automation options, cron scheduling guidance, and git publishing steps that should be verified before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

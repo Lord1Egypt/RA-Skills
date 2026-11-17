@@ -1,44 +1,59 @@
-## Description: <br>
-Automate WeChat Mini Program code upload, preview, npm build, and cloud deployments with CI/CD support using Node.js or CLI without opening DevTools. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automate WeChat Mini Program code upload, preview, npm build, and cloud deployments with CI/CD support using Node.js or CLI without opening DevTools.
 
-## Publisher: <br>
-[openlark](https://clawhub.ai/user/openlark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[openlark](https://clawhub.ai/user/openlark)
 
-## Use Case: <br>
-Developers and release engineers use this skill to automate WeChat Mini Program and mini game CI/CD workflows, including upload, preview QR generation, npm builds, and cloud deployment tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: WeChat upload private keys are deployment credentials and could be exposed through repositories, logs, or chat history. <br>
-Mitigation: Store keys in a CI secret manager, pass only paths or injected secret values at runtime, keep keys out of source control and chat logs, restrict access and IPs where possible, and rotate keys if exposed. <br>
-Risk: Upload, preview, cloud function, storage, and container deployment commands can change WeChat project or cloud resources. <br>
-Mitigation: Require explicit operator confirmation before execution and review app IDs, project paths, robot numbers, cloud environment IDs, and deployment settings for the intended target. <br>
-Risk: Cloud deployment workflows may upload unintended local files or dependencies. <br>
-Mitigation: Review project paths, cloud function paths, container build directories, and ignore patterns before deployment; prefer remote npm install when appropriate to avoid uploading local dependency folders. <br>
+## Use Case:
 
+Developers and release engineers use this skill to prepare WeChat Mini Program and mini game CI/CD workflows for upload, preview, npm build, cloud function deployment, cloud storage upload, and cloud container deployment.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/openlark/miniprogram-ci) <br>
-- [CLI Command Reference](references/cli.md) <br>
-- [Cloud Development API Reference](references/cloud.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with JavaScript and bash examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include commands and configuration values that require project paths, app IDs, private key paths, robot numbers, cloud environment IDs, and deployment settings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata) <br>
+Risk: The skill guides users through upload and cloud deployment actions that can affect live WeChat Mini Program resources.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit review of appid, robot, version, cloud environment, and deployment target before any upload or cloud deploy command runs.
+
+Risk: The workflow uses upload private keys and app identifiers that are sensitive deployment credentials.
+
+Mitigation: Keep private keys out of source control, restrict keys and IP allowlists, and use project-local credential handling.
+
+Risk: Some documented cloud storage and cloud container operations require mutable alpha package installs.
+
+Mitigation: Use a pinned, reviewed package version and avoid alpha tags for production deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/openlark/skills/miniprogram-ci)
+- [CLI Command Reference](references/cli.md)
+- [Cloud Development API Reference](references/cloud.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown with JavaScript and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes CI/CD setup guidance that may affect upload, preview, and cloud deployment targets.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

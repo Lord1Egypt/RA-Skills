@@ -1,48 +1,58 @@
-## Description: <br>
-Read files, manage comments, extract design tokens, download images, and create webhooks in Figma via the Figma REST API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Read files, manage comments, extract design tokens, download images, and create webhooks in Figma via the Figma REST API.
 
-## Publisher: <br>
-[hith3sh](https://clawhub.ai/user/hith3sh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hith3sh](https://clawhub.ai/user/hith3sh)
 
-## Use Case: <br>
-Designers, developers, and product teams use this skill to inspect Figma design files, export assets, manage comments and reactions, extract design tokens, and configure webhooks through an authenticated Figma connection. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses an authenticated Figma connection and can access files, comments, resources, and webhooks available to the connected account. <br>
-Mitigation: Install and connect it only for the intended Figma account, verify the live Figma integration before use, and rely on the documented scoped connection flow. <br>
-Risk: Write-capable operations can create, update, or delete comments, reactions, and webhooks. <br>
-Mitigation: Preview unfamiliar or write-capable calls, confirm the target resource and intended effect with the user, and execute only after the preview matches the request. <br>
-Risk: Some webhook operations require team admin permissions or edit access and can affect event delivery for a file, project, or team. <br>
-Mitigation: Confirm the webhook scope, endpoint, and permission level before creating, updating, or deleting webhooks. <br>
-Risk: Scanner guidance notes clean telemetry but recommends deliberate use of high-authority authenticated workflows and setup commands. <br>
-Mitigation: Review install, gateway, and authenticated tool commands before running them, especially in sensitive repositories or workspaces. <br>
+## Use Case:
 
+Developers, designers, and agents use this skill to inspect Figma design files, retrieve comments and assets, extract design tokens, generate Tailwind CSS configuration, and manage Figma webhooks through a connected Figma account.
 
-## Reference(s): <br>
-- [Figma API Overview](https://www.figma.com/developers/api) <br>
-- [Figma REST API Reference](https://www.figma.com/developers/api/rest) <br>
-- [Figma Webhooks](https://www.figma.com/developers/api/webhooks) <br>
-- [ClawLink Docs](https://docs.claw-link.dev/openclaw) <br>
-- [ClawLink Verification](https://claw-link.dev/verify) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance, API calls, Code] <br>
-**Output Format:** [Markdown guidance with bash command examples, JSON tool parameters, and returned Figma API data.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Tool calls may produce Figma file JSON, comments, webhook status, exported image files or URLs, design tokens, and Tailwind configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: server release evidence) <br>
+Risk: The skill relies on a third-party OAuth plugin with broad access to Figma files and actions available to the connected account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when the publisher and ClawLink service are trusted, and revoke the Figma OAuth connection and remove the plugin when it is no longer needed.
+
+Risk: Write-capable operations can create, update, or delete Figma comments, reactions, and webhooks.
+
+Mitigation: Confirm the target resource and intended effect before each write or destructive action.
+
+## Reference(s):
+
+- [Figma API Overview](https://www.figma.com/developers/api)
+- [Figma REST API Reference](https://www.figma.com/developers/api/rest)
+- [Figma Webhooks](https://www.figma.com/developers/api/webhooks)
+- [ClawLink](https://claw-link.dev/?utm_source=clawhub&utm_medium=referral&utm_content=figma-design)
+- [ClawLink Docs](https://docs.claw-link.dev/openclaw)
+- [ClawHub Skill Page](https://clawhub.ai/hith3sh/skills/figma-design)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, API Calls, Code, Configuration, Files]
+
+**Output Format:** [Markdown with inline shell commands, JSON tool parameters, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce downloaded image files, Figma JSON, design-token data, Tailwind CSS configuration, comments, webhook configuration, or operational guidance depending on the requested Figma task.]
+
+## Skill Version(s):
+
+1.0.6 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

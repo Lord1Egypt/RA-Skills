@@ -1,44 +1,58 @@
-## Description: <br>
-Read and triage Suricata IDS/IPS alerts from eve.json into structured threat reports with severity-ranked findings, attacker IPs, top triggered signatures, and recommended blocks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Read and triage Suricata IDS/IPS alerts from eve.json into a structured threat report with severity-ranked findings, attacker IPs, top triggered signatures, and recommended blocks.
 
-## Publisher: <br>
-[infectit007](https://clawhub.ai/user/infectit007) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[infectit007](https://clawhub.ai/user/infectit007)
 
-## Use Case: <br>
-Developers and security operators use this skill to summarize recent Suricata IDS/IPS alerts from eve.json into an actionable threat snapshot, including severity counts, top attacker IPs, top signatures, recommended response steps, and GREEN/YELLOW/RED status. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: IDS findings may be sent to Telegram or appended to local memory despite local-only privacy claims. <br>
-Mitigation: Enable Telegram delivery only when exporting IDS findings to a third party is approved, and restrict access to retained report files. <br>
-Risk: Broad log read permissions may expose Suricata security logs. <br>
-Mitigation: Prefer least-privilege access for the agent or service account instead of making logs broadly readable. <br>
-Risk: Recommended firewall block commands may disrupt legitimate traffic if applied without review. <br>
-Mitigation: Review attacker IPs, signatures, and business impact before applying block commands. <br>
-Risk: Daily scheduling can repeatedly transmit and retain sensitive security reports. <br>
-Mitigation: Add the cron job only when recurring reporting and retention are intended, and review secret handling for Telegram credentials. <br>
+## Use Case:
 
+Security operators, system administrators, and developers use this skill to summarize recent Suricata IDS/IPS alerts into an actionable threat report for daily monitoring or post-scan review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/infectit007/suricata-monitor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown threat report with Python and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include firewall block recommendations, Telegram delivery instructions, memory append instructions, and daily cron scheduling guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Suricata logs and generated threat reports may contain sensitive network, host, and alert details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat logs and reports as sensitive, restrict access to generated report files, and avoid forwarding them outside approved channels.
+
+Risk: The skill's local-only privacy claim conflicts with optional Telegram delivery, memory writes, and scheduled recurring execution.
+
+Mitigation: Make Telegram delivery, memory writes, and cron scheduling explicit opt-in steps, and verify the destination and retention policy before enabling them.
+
+Risk: Using chmod 644 on /var/log/suricata/eve.json can broaden access to security telemetry.
+
+Mitigation: Prefer group membership or ACL-based log access that grants the agent only the permissions it needs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/infectit007/skills/suricata-monitor)
+- [Publisher profile](https://clawhub.ai/user/infectit007)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown threat report with inline shell commands and optional Python snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Summarizes recent local Suricata eve.json alert records by severity, source IP, signature, and GREEN/YELLOW/RED status.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

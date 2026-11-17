@@ -1,44 +1,60 @@
-## Description: <br>
-Detects systematic inference-level biases in an AI agent's reasoning via the Cerebratech CogDx API using statistical pattern matching against known cognitive bias signatures. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Detects systematic inference-level biases in an AI agent's reasoning using the Cerebratech CogDx API.
 
-## Publisher: <br>
-[drkavner](https://clawhub.ai/user/drkavner) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[drkavner](https://clawhub.ai/user/drkavner)
 
-## Use Case: <br>
-Developers and agent operators use this skill to submit selected prompt and response samples for bias analysis, then review detected bias patterns, severity, retraining targets, and recommendations before deployment or after recurring failures. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected prompt and response samples are sent to Cerebratech for bias analysis. <br>
-Mitigation: Submit only examples you are authorized to share, and remove secrets, personal data, and regulated data before scanning. <br>
-Risk: The scan is a paid API call that may charge $0.10 or consume credits. <br>
-Mitigation: Confirm the payment or credit cost before running a scan, and use a limited wallet or credit balance. <br>
-Risk: Bias diagnoses and retraining recommendations may affect agent behavior in sensitive domains. <br>
-Mitigation: Treat the results as review input, validate proposed retraining changes, and apply domain-specific oversight before deployment. <br>
+## Use Case:
 
+Developers and AI agent operators use this skill to submit selected prompt/response samples and feedback to Cerebratech for bias-pattern analysis before deployment or after recurring reasoning failures.
 
-## Reference(s): <br>
-- [CogDx Bias Scan API Reference](references/api.md) <br>
-- [CogDx Detectable Bias Catalog](references/bias-catalog.md) <br>
-- [Cerebratech Bias Scan API](https://api.cerebratech.ai/bias_scan) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON API examples and shell-style HTTP request snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires selected prompt and response samples; minimum 10 outputs, recommended 30-100.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Prompt/response samples and feedback are sent to a paid third-party API and may contain secrets, personal data, regulated data, system prompts, or unrelated history.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the exact records before scanning, remove secrets and personal or regulated data, avoid system prompts and unrelated history, and submit only samples intended for Cerebratech.
+
+Risk: API usage can incur payment or consume credits.
+
+Mitigation: Confirm the destination, cost, wallet or payment method, and credit balance before each scan.
+
+Risk: Bias labels and retraining targets may be incomplete or unsuitable for high-stakes decisions without review.
+
+Mitigation: Treat results as review inputs, validate recommendations with domain experts, and verify post-retraining behavior before deployment.
+
+## Reference(s):
+
+- [CogDx Bias Scan ClawHub Page](https://clawhub.ai/drkavner/skills/cogdx-bias-scan)
+- [CogDx Bias Scan API Reference](references/api.md)
+- [CogDx Detectable Bias Catalog](references/bias-catalog.md)
+- [CogDx Bias Scan API Endpoint](https://api.cerebratech.ai/bias_scan)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command and JSON examples; the API response is JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires selected prompt/response samples, optional failure feedback, and x402 payment or credits for the third-party API.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata, released 2026-03-18)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

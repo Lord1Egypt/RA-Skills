@@ -1,47 +1,57 @@
-## Description: <br>
-A股三层选股模型 uses a three-stage funnel of quantitative screening, qualitative analysis, and timing guidance to help an agent evaluate China A-share stock candidates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A股三层选股模型用于按量化筛选、定性分析和择时操作生成A股候选标的与操作方案。
 
-## Publisher: <br>
-[danpian1](https://clawhub.ai/user/danpian1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[danpian1](https://clawhub.ai/user/danpian1)
 
-## Use Case: <br>
-Investors, analysts, and agents use this skill to scan China A-share markets, review candidates against quantitative and qualitative criteria, and draft informational watchlists or trading-plan suggestions with risk controls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global; market coverage is China A-shares. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can produce specific trading-plan suggestions that may be mistaken for personalized or regulated financial advice. <br>
-Mitigation: Treat outputs as informational drafts, verify assumptions independently, and have a qualified reviewer decide whether any action is appropriate. <br>
-Risk: Market data and screener results can be stale, incomplete, unavailable, or affected by endpoint changes. <br>
-Mitigation: Check data freshness and compare results against authoritative market and financial data before relying on the analysis. <br>
-Risk: The Python screener reaches external market-data endpoints during execution. <br>
-Mitigation: Run it only in environments where outbound network access to the listed data providers is expected and acceptable. <br>
+## Use Case:
 
+External users and analysts use this skill to screen A-share equities, review candidate fundamentals and catalysts, and draft markdown stock-selection summaries with risk controls.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/danpian1/a-stock-picker) <br>
-- [SKILL.md](SKILL.md) <br>
-- [Qualitative analysis framework](references/analysis-framework.md) <br>
-- [Quantitative screening rules](references/screening-rules.md) <br>
-- [Sina Finance market data endpoint](https://vip.stock.finance.sina.com.cn/quotes_service/api/json_v2.php) <br>
-- [Tencent K-line data endpoint](https://web.ifzq.gtimg.cn/appstock/app/fqkline/get) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown sections and tables, with optional Python screener execution output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include stock tickers, scores, buy ranges, stop-loss levels, target prices, position suggestions, and risk ratings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can produce precise trading recommendations even when documented safeguards are not fully enforced.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as screening leads only; require independent financial review, source-data checks, and explicit confirmation of stop-loss and position-sizing assumptions before action.
+
+Risk: Incomplete market scans or unavailable data can be presented as actionable candidate lists.
+
+Mitigation: Review scan coverage, skipped symbols, data freshness, and failed data calls before using any shortlist.
+
+## Reference(s):
+
+- [A股三层选股模型 ClawHub page](https://clawhub.ai/danpian1/skills/a-stock-picker)
+- [量化筛选规则](references/screening-rules.md)
+- [定性分析框架](references/analysis-framework.md)
+- [新浪财经行情接口](https://vip.stock.finance.sina.com.cn/quotes_service/api/json_v2.php)
+- [腾讯行情K线接口](https://web.ifzq.gtimg.cn/appstock/app/fqkline/get)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown tables and concise Chinese analysis, with optional terminal output from the screening script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include initial screening results, qualitative scores, buy ranges, stop-loss levels, targets, position sizing, and risk labels.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

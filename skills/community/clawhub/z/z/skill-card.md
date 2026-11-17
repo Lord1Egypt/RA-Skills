@@ -1,42 +1,53 @@
-## Description: <br>
-z is a passive monitoring and alerting skill that helps detect unauthorized crawling, scraping, and bulk extraction of skill definitions, prompt content, and instruction sets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Anti-skill-crawler defense system. Detects and mitigates unauthorized crawling, scraping, and bulk extraction of skill definitions, prompt content, and instruction sets.
 
-## Publisher: <br>
-[wscats](https://clawhub.ai/user/wscats) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wscats](https://clawhub.ai/user/wscats)
 
-## Use Case: <br>
-External developers and operators use z to monitor skill-access request metadata for signs of crawling or prompt scraping and receive alerts for manual review. The skill is passive: it reports suspicious patterns and leaves countermeasures to the operator. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on request metadata for passive monitoring, so deployments may expose or retain operational access patterns. <br>
-Mitigation: Check what request metadata is exposed and apply the minimum retention and access needed for detection. <br>
-Risk: Alerts and logs may contain sensitive operational signals about attempted crawling or scraping. <br>
-Mitigation: Confirm where alerts and logs are stored and restrict access to operators who need to review them. <br>
-Risk: Webhook or email alert channels can send monitoring information outside the local environment when enabled. <br>
-Mitigation: Review enabled alert channels before deployment and disable webhook or email delivery unless approved. <br>
+## Use Case:
 
+Developers and operators use this skill to passively monitor skill-access metadata for patterns consistent with bulk skill crawling or prompt scraping and to receive alerts for manual review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wscats/z) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON and YAML examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces passive detection guidance, alert report examples, and configuration examples; no executable code was found in the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The skill monitors request metadata patterns and may generate logs or alerts about access behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm this monitoring is acceptable for the deployment environment and limit access to metadata, logs, and alerts to authorized operators.
+
+Risk: Crawler detection can produce false positives that lead to unnecessary operational response.
+
+Mitigation: Keep countermeasures manual, review the alert evidence before acting, and tune thresholds such as detection sensitivity, analysis window, and cooldown.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wscats/skills/z)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Configuration, Guidance]
+
+**Output Format:** [Markdown with structured alert examples and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces passive detection summaries, operator alerts, audit log guidance, and recommended manual follow-up actions.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

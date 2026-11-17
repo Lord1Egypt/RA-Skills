@@ -1,44 +1,63 @@
-## Description: <br>
-Validates Lean Solidity IR, generates Solidity, compiles generated contracts to ABI and bytecode, encodes calls, and runs offline EVM simulations through AgentPMT-hosted remote tool calls. <br>
+## Description:
 
-This skill is for demonstration purposes and not for production usage. <br>
+Validates Lean Solidity IR, generates Solidity, compiles ABI and bytecode, encodes calls, and runs offline EVM simulations through AgentPMT-hosted remote tool calls.
 
-## Publisher: <br>
-[agentpmt](https://clawhub.ai/user/agentpmt) <br>
+This skill is for demonstration purposes and not for production usage.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[agentpmt](https://clawhub.ai/user/agentpmt)
 
-## Use Case: <br>
-Developers and engineers use this skill to move from Lean Solidity IR toward generated Solidity artifacts, then validate, compile, encode calls, and simulate contract behavior before any deployment workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: User code or sensitive blockchain credentials may be sent to hosted AgentPMT services. <br>
-Mitigation: Use only code and artifacts approved for AgentPMT processing, avoid production private keys, and prefer test accounts, throwaway keys, redacted payloads, or secret-reference mechanisms. <br>
-Risk: Generated Solidity, ABI, bytecode, calldata, or simulation results may be incomplete or unsuitable for production deployment. <br>
-Mitigation: Validate Lean inputs, inspect generated Solidity, compile and simulate before use, and require independent review or audit before deploying contracts. <br>
+## Use Case:
 
+Developers and engineers use this skill to fetch Lean templates, validate advanced Lean Solidity IR, generate Solidity, compile deployable artifacts, encode ABI calls, and simulate contract behavior before deployment.
 
-## Reference(s): <br>
-- [Action schema](schema.md) <br>
-- [AgentPMT marketplace page](https://www.agentpmt.com/marketplace/lean-proof-to-solidity-smart-contract-generator) <br>
-- [ClawHub skill page](https://clawhub.ai/agentpmt/skills/lean-proof-to-solidity-smart-contract-generator) <br>
-- [AgentPMT account MCP/REST setup](https://clawhub.ai/agentpmt/agentpmt-account-mcp-rest-api-setup) <br>
-- [What AgentPMT is](https://clawhub.ai/agentpmt/what-is-agentpmt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON request examples and remote tool outputs such as Solidity code, ABI, bytecode, calldata, diagnostics, and simulation results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include background task identifiers that must be polled before generated Solidity is available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The schema allows submitting a raw wallet private key and other sensitive blockchain materials to a remote service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not provide real private keys, mnemonics, signatures, account secrets, or payment headers; prefer fromAlias or test-only throwaway keys unless transfer handling has been reviewed and approved.
+
+Risk: Remote calls may expose proprietary contract logic or Lean source to AgentPMT-hosted infrastructure.
+
+Mitigation: Keep inputs scoped to the minimum needed and submit proprietary contract logic only after approving the data transfer and handling model.
+
+Risk: The artifact describes the Lean-to-Solidity mapping as proof of concept and not exhaustive.
+
+Mitigation: Review generated Solidity, compile outputs, and simulation behavior carefully, and require normal smart-contract testing and security review before deployment.
+
+Risk: The setup path includes unpinned npx installation commands.
+
+Mitigation: Verify the package, source, and version before using npx-based setup commands.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/agentpmt/skills/lean-proof-to-solidity-smart-contract-generator)
+- [AgentPMT marketplace page](https://www.agentpmt.com/marketplace/lean-proof-to-solidity-smart-contract-generator)
+- [Action schema](artifact/schema.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Code, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with JSON payload examples and generated Solidity, ABI, bytecode, calldata, diagnostics, or simulation result content.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Remote responses are treated as authoritative for each tool call; generation jobs may require polling by task id.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

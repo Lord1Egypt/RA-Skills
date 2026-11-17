@@ -1,11 +1,13 @@
 #!/usr/bin/env node
 const fs = require("fs");
 const path = require("path");
-const { createClient } = require("../lib/api.js");
+const { createClient: createApiClient } = require("../lib/api.js");
 
 const args = process.argv.slice(2);
 const command = args[0];
 const outputMode = { jsonOnly: false };
+let activeOptionState = null;
+let destructiveConfirmed = false;
 
 // ── Output helpers ──
 
@@ -46,7 +48,7 @@ function json(data) {
 function cliErrorMessage(err) {
   const message = err.message || String(err);
   if (err.code === "ECONNREFUSED") {
-    return "Cannot connect to RAGFlow server. Check RAGFLOW_URL in .env";
+    return "Cannot connect to RAGFlow server. Check the RAGFLOW_URL environment variable";
   }
   if (err.code === "ECONNRESET") {
     return "Connection reset by RAGFlow server. The server may be restarting";
@@ -55,7 +57,7 @@ function cliErrorMessage(err) {
     return "Request timed out. The server may be slow or unreachable";
   }
   if (message.includes("RAGFLOW_URL is required") || message.includes("RAGFLOW_API_KEY is required")) {
-    return `${message}. Configure .env file with RAGFLOW_URL and RAGFLOW_API_KEY`;
+    return `${message}. Set the RAGFLOW_URL and RAGFLOW_API_KEY environment variables`;
   }
   if (err.code) {
     return `API Error: ${message}`;
@@ -111,6 +113,7 @@ function commandErrorJsonPayload(err) {
     payload.retries = retries;
     payload.delete_chunk_diagnostics = details;
   }
+  if (err.response !== undefined) payload.response = err.response;
   return payload;
 }
 
@@ -166,6 +169,45 @@ function parseArgs(argv) {
   return opts;
 }
 
+function optionName(key) {
+  return `--${key.replace(/([A-Z])/g, "-$1").toLowerCase()}`;
+}
+
+function trackOptions(rawOptions) {
+  const consumed = new Set();
+  const options = new Proxy(rawOptions, {
+    get(target, key, receiver) {
+      if (typeof key === "string") consumed.add(key);
+      return Reflect.get(target, key, receiver);
+    },
+  });
+  activeOptionState = { rawOptions, consumed };
+  return options;
+}
+
+function validateUnusedOptions() {
+  if (!activeOptionState) return;
+  const { rawOptions, consumed } = activeOptionState;
+  const unused = Object.keys(rawOptions).find((key) => key !== "_" && !consumed.has(key));
+  if (unused) throw new Error(`Unknown option for ${command}: ${optionName(unused)}`);
+}
+
+function validateOptions(opts) {
+  if (opts._.length) throw new Error(`Unexpected positional argument: ${opts._[0]}`);
+}
+
+function createClient(options = {}) {
+  const client = createApiClient({ ...options, allowDestructive: destructiveConfirmed });
+  for (const method of ["request", "_streamRequest"]) {
+    const send = client[method].bind(client);
+    client[method] = (...requestArgs) => {
+      validateUnusedOptions();
+      return send(...requestArgs);
+    };
+  }
+  return client;
+}
+
 function listValue(value) {
   const values = Array.isArray(value) ? value : String(value).split(",");
   return values
@@ -202,6 +244,17 @@ function readStdinText() {
   });
 }
 
+function providerApiKey(opts, required = false) {
+  let value = process.env.RAGFLOW_PROVIDER_API_KEY;
+  if (opts.apiKeyFile) {
+    value = fs.readFileSync(path.resolve(process.cwd(), opts.apiKeyFile), "utf-8").trim();
+  }
+  if (required && !value) {
+    throw new Error("Missing provider API key. Set RAGFLOW_PROVIDER_API_KEY or use --api-key-file");
+  }
+  return value || undefined;
+}
+
 function uploadFileSpec(value) {
   const source = String(value);
   const eq = source.indexOf("=");
@@ -231,7 +284,7 @@ function questionFromMessages(messages) {
 
 function applyChatOptions(data, opts) {
   if (opts.datasets) data.dataset_ids = listValue(opts.datasets);
-  if (opts.llm || opts.llmId) data.llm_id = opts.llmId || opts.llm;
+  if (opts.llmId) data.llm_id = opts.llmId;
   if (opts.promptConfig) data.prompt_config = jsonOption(opts.promptConfig, "--prompt-config");
   if (opts.prompt) data.prompt_config = { ...(data.prompt_config || {}), system: opts.prompt };
   if (opts.similarityThreshold) data.similarity_threshold = Number(opts.similarityThreshold);
@@ -247,8 +300,8 @@ function boolOption(value, defaultValue = false) {
 }
 
 async function embedBeta(client, opts) {
-  if (opts.beta || opts.auth) {
-    return { beta: opts.beta || opts.auth, token: opts.token || "" };
+  if (opts.beta) {
+    return { beta: opts.beta, token: opts.token || "" };
   }
   const token = await client.ensureEmbedToken();
   if (!token || !token.beta) {
@@ -258,17 +311,30 @@ async function embedBeta(client, opts) {
 }
 
 function normalizeOrigin(value) {
-  let origin = (value || process.env.RAGFLOW_URL || "").trim().replace(/\/+$/, "");
+  let origin = (value || process.env.RAGFLOW_URL || "").trim();
   if (!origin) throw new Error("Missing origin. Set RAGFLOW_URL or pass --origin");
-  if (!/^[a-z][a-z0-9+.-]*:\/\//i.test(origin)) {
-    origin = `http://${origin}`;
+  if (!/^[a-z][a-z0-9+.-]*:\/\//i.test(origin)) origin = `http://${origin}`;
+  const parsed = new URL(origin);
+  if (!["https:", "http:"].includes(parsed.protocol) || parsed.username || parsed.password ||
+      parsed.pathname !== "/" || parsed.search || parsed.hash) {
+    throw new Error("Embed origin must be an HTTP(S) origin without credentials, path, query, or fragment");
   }
-  return origin;
+  return parsed.origin;
+}
+
+function escapeHtmlAttribute(value) {
+  return String(value).replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/'/g, "&#39;")
+    .replace(/</g, "&lt;").replace(/>/g, "&gt;");
+}
+
+function scriptString(value) {
+  return JSON.stringify(value).replace(/</g, "\\u003c").replace(/>/g, "\\u003e")
+    .replace(/\u2028/g, "\\u2028").replace(/\u2029/g, "\\u2029");
 }
 
 function appendEmbedQueryParams(src, opts, isAgent) {
-  if (opts.published || opts.release) src.searchParams.append("release", "true");
-  if (opts.hideAvatar || opts.visibleAvatar) src.searchParams.append("visible_avatar", "1");
+  if (opts.published) src.searchParams.append("release", "true");
+  if (opts.hideAvatar) src.searchParams.append("visible_avatar", "1");
   if (opts.locale) src.searchParams.append("locale", opts.locale);
   if (opts.userId) src.searchParams.append("userId", opts.userId);
   if (opts.data) {
@@ -289,7 +355,7 @@ function buildEmbedCode(opts, tokenInfo) {
     throw new Error("Provide exactly one of --chat or --agent");
   }
   const isAgent = Boolean(agentId);
-  const type = opts.type || opts.embedType || "fullscreen";
+  const type = opts.type || "fullscreen";
   if (!["fullscreen", "widget"].includes(type)) {
     throw new Error("--type must be fullscreen or widget");
   }
@@ -309,19 +375,28 @@ function buildEmbedCode(opts, tokenInfo) {
 
   const srcText = src.toString();
   const html = type === "widget"
-    ? `<iframe
-  src="${srcText}"
+    ? `<iframe id="ragflow-embed-launcher"
+  src="${escapeHtmlAttribute(srcText)}"
   style="position:fixed;bottom:0;right:0;width:100px;height:100px;border:none;background:transparent;z-index:9999"
   frameborder="0"
   allow="microphone;camera"
 ></iframe>
 <script>
 window.addEventListener('message',e=>{
-  if(e.origin!=='${origin}')return;
+  const allowedOrigin=${scriptString(origin)};
+  const launcher=document.getElementById('ragflow-embed-launcher');
+  const chat=document.getElementById('chat-win');
+  if(e.origin!==allowedOrigin || !e.source ||
+     (e.source!==launcher?.contentWindow && e.source!==chat?.contentWindow) ||
+     !e.data || typeof e.data!=='object')return;
   if(e.data.type==='CREATE_CHAT_WINDOW'){
-    if(document.getElementById('chat-win'))return;
+    if(chat || typeof e.data.src!=='string')return;
+    let target;
+    try{target=new URL(e.data.src,allowedOrigin);}catch{return;}
+    if(target.origin!==allowedOrigin || target.username || target.password ||
+       !['/chats/widget','/chats/share','/agent/share'].includes(target.pathname))return;
     const i=document.createElement('iframe');
-    i.id='chat-win';i.src=e.data.src;
+    i.id='chat-win';i.src=target.href;
     i.style.cssText='position:fixed;bottom:104px;right:24px;width:380px;height:500px;border:none;background:transparent;z-index:9998;display:none';
     i.frameBorder='0';i.allow='microphone;camera';
     document.body.appendChild(i);
@@ -332,7 +407,7 @@ window.addEventListener('message',e=>{
 });
 </script>`
     : `<iframe
-  src="${srcText}"
+  src="${escapeHtmlAttribute(srcText)}"
   style="width: 100%; height: 100%; min-height: 600px"
   frameborder="0"
 ></iframe>`;
@@ -350,7 +425,6 @@ window.addEventListener('message',e=>{
 
 function applyEmbeddedChatPayloadOptions(data, opts) {
   if (opts.session) data.session_id = opts.session;
-  if (opts.conversationId) data.conversation_id = opts.conversationId;
   if (opts.quote !== undefined) data.quote = boolOption(opts.quote);
   if (opts.stream !== undefined) data.stream = boolOption(opts.stream);
   if (opts.reasoning !== undefined) data.reasoning = boolOption(opts.reasoning);
@@ -361,21 +435,39 @@ function applyEmbeddedAgentPayloadOptions(data, opts) {
   if (opts.session) data.session_id = opts.session;
   if (opts.inputs) data.inputs = jsonOption(opts.inputs, "--inputs");
   if (opts.userId) data.user_id = opts.userId;
-  if (opts.published || opts.release) data.release = "true";
+  if (opts.published) data.release = "true";
   if (opts.stream !== undefined) data.stream = boolOption(opts.stream);
+}
+
+function embedCodeOptions(opts) {
+  return {
+    agent: opts.agent,
+    beta: opts.beta,
+    chat: opts.chat,
+    data: opts.data,
+    hideAvatar: opts.hideAvatar,
+    locale: opts.locale,
+    origin: opts.origin,
+    published: opts.published,
+    streaming: opts.streaming,
+    theme: opts.theme,
+    token: opts.token,
+    type: opts.type,
+    userId: opts.userId,
+  };
 }
 
 const MAX_PAGE_SIZE = 100;
 let pageSizeWarned = false;
 
-// RAGFlow v0.26.0 hard-caps page_size at 100 on all list endpoints
+// RAGFlow hard-caps page_size at 100 on all list endpoints
 // (validate_rest_api_page_size raises on larger values). Clamp client-side
 // and warn once so oversized requests do not error out on the server.
 function clampPageSize(value) {
   const n = Number(value);
   if (Number.isFinite(n) && n > MAX_PAGE_SIZE) {
     if (!pageSizeWarned) {
-      warn(`page_size capped at ${MAX_PAGE_SIZE} (RAGFlow v0.26.0 server limit)`);
+      warn(`page_size capped at ${MAX_PAGE_SIZE} (RAGFlow server limit)`);
       pageSizeWarned = true;
     }
     return MAX_PAGE_SIZE;
@@ -540,26 +632,49 @@ async function updateDocument(opts) {
   json(result);
 }
 
+function outputDocumentFile(result, output) {
+  if (!output) {
+    json(result);
+    return;
+  }
+  const destination = path.resolve(output);
+  fs.writeFileSync(destination, Buffer.from(result.content, "base64"), { flag: "wx" });
+  const { content, ...metadata } = result;
+  json({ ...metadata, path: destination });
+}
+
 async function downloadDocument(opts) {
   const client = createClient();
   const dataset = requireOpt(opts, "dataset");
   const id = requireOpt(opts, "id");
+  const output = opts.output;
   info(`Downloading document ${id}...`);
   const result = await client.downloadDocument(dataset, id);
-  ok(`Document downloaded`);
-  json(result);
+  outputDocumentFile(result, output);
 }
 
 async function previewDocument(opts) {
   const client = createClient();
   const id = requireOpt(opts, "id");
+  const output = opts.output;
   info(`Previewing document ${id}...`);
   const result = await client.previewDocument(id);
-  ok("Document preview fetched");
-  json(result);
+  outputDocumentFile(result, output);
 }
 
 // ── Parsing ──
+
+async function ingestDocuments(opts) {
+  const client = createClient();
+  const docIds = uniqueList(requireOpt(opts, "docIds"));
+  const run = Array.isArray(opts.run) ? opts.run[0] : (opts.run || "1");
+  const options = { run };
+  if (opts.delete !== undefined) options.delete = boolOption(opts.delete);
+  info(`Submitting ingestion action ${run} for ${docIds.length} document(s)...`);
+  const result = await client.ingestDocuments(docIds, options);
+  ok("Document ingestion request submitted");
+  json(result);
+}
 
 async function startParsing(opts) {
   const client = createClient();
@@ -609,13 +724,31 @@ async function listChunks(opts) {
     ["keywords", "keywords"],
     ["id", "id"],
   ]);
+  if (opts.chunkIds) params.chunk_ids = uniqueList(opts.chunkIds).join(",");
+  if (opts.available !== undefined) {
+    if (![true, false, "true", "false"].includes(opts.available)) {
+      throw new Error("--available accepts only true or false");
+    }
+    params.available = String(opts.available);
+  }
   const result = await client.listChunks(dataset, document, params);
-  if (Array.isArray(result) && result.length === 0) {
+  const chunks = Array.isArray(result?.chunks) ? result.chunks : [];
+  if (chunks.length === 0) {
     warn("No chunks found");
     if (!outputMode.jsonOnly) return;
   } else {
-    ok(`Found ${Array.isArray(result) ? result.length : "chunks"}`);
+    ok(`Found ${chunks.length} chunk(s)`);
   }
+  json(result);
+}
+
+async function getChunk(opts) {
+  const client = createClient();
+  const dataset = requireOpt(opts, "dataset");
+  const document = requireOpt(opts, "document");
+  const chunk = requireOpt(opts, "chunk");
+  const result = await client.getChunk(dataset, document, chunk);
+  ok(`Chunk fetched: ${chunk}`);
   json(result);
 }
 
@@ -669,13 +802,47 @@ async function updateChunk(opts) {
   const data = {};
   if (opts.content) data.content = opts.content;
   if (opts.keywords) data.important_keywords = listValue(opts.keywords);
+  if (opts.available !== undefined) {
+    if (![true, false, "true", "false"].includes(opts.available)) {
+      throw new Error("--available accepts only true or false");
+    }
+    data.available = opts.available === true || opts.available === "true" ? 1 : 0;
+  }
+  if (opts.imageUpdateMode !== undefined) data.image_update_mode = opts.imageUpdateMode;
+  const imageFile = opts.imageFile;
+  if (imageFile) {
+    if (data.image_update_mode === "remove") throw new Error("--image-file cannot be used with remove");
+    data.image_base64 = fs.readFileSync(imageFile).toString("base64");
+  }
   info(`Updating chunk ${chunk}...`);
   const result = await client.updateChunk(dataset, document, chunk, data);
   ok("Chunk updated");
   json(result);
 }
 
-// ── Retrieval ──
+// Document structure graph
+
+async function getDocumentGraph(opts) {
+  const client = createClient();
+  const dataset = requireOpt(opts, "dataset");
+  const document = requireOpt(opts, "document");
+  info(`Fetching structure graph for document ${document}...`);
+  const result = await client.getDocumentStructureGraph(dataset, document);
+  ok("Document structure graph fetched");
+  json(result);
+}
+
+async function deleteDocumentGraph(opts) {
+  const client = createClient();
+  const dataset = requireOpt(opts, "dataset");
+  const document = requireOpt(opts, "document");
+  info(`Deleting structure graph for document ${document}...`);
+  const result = await client.deleteDocumentStructureGraph(dataset, document);
+  ok("Document structure graph deleted");
+  json(result);
+}
+
+// Retrieval
 
 async function retrieve(opts) {
   const client = createClient();
@@ -689,7 +856,29 @@ async function retrieve(opts) {
   }
   if (opts.similarity) params.similarity_threshold = Number(opts.similarity);
   if (opts.topN) params.page_size = clampPageSize(opts.topN);
-  if (opts.topK) params.top_k = Number(opts.topK);
+  for (const [option, field] of [
+    ["page", "page"],
+    ["knnTopK", "knn_top_k"],
+    ["knnNumCandidates", "knn_num_candidates"],
+    ["rerankCandidatesCount", "rerank_candidates_count"],
+  ]) {
+    if (opts[option] === undefined) continue;
+    const value = Number(opts[option]);
+    if (opts[option] === true || !Number.isSafeInteger(value) || value <= 0) {
+      throw new Error(`${optionName(option)} must be a positive integer`);
+    }
+    params[field] = value;
+  }
+  if (params.knn_num_candidates !== undefined && params.knn_num_candidates < (params.knn_top_k ?? 1024)) {
+    throw new Error("--knn-num-candidates must be at least --knn-top-k (default 1024)");
+  }
+  if (params.rerank_candidates_count !== undefined && params.rerank_candidates_count < (params.page ?? 1) * (params.page_size ?? 30)) {
+    throw new Error("--rerank-candidates-count must be at least --page multiplied by --top-n (default 30)");
+  }
+  if (opts.docIds) params.document_ids = listValue(opts.docIds);
+  if (opts.metadataCondition) params.metadata_condition = jsonOption(opts.metadataCondition, "--metadata-condition");
+  if (opts.highlight !== undefined) params.highlight = boolOption(opts.highlight);
+  if (opts.includeKnowledgeCompilation !== undefined) params.include_knowledge_compilation = boolOption(opts.includeKnowledgeCompilation);
   if (opts.vectorWeight) params.vector_similarity_weight = Number(opts.vectorWeight);
   if (opts.rerank) params.rerank_id = opts.rerank;
   if (opts.keyword) params.keyword = true;
@@ -698,8 +887,21 @@ async function retrieve(opts) {
 
   info(`Searching: "${question}"`);
   const result = await client.retrieve(params);
-  const count = Array.isArray(result) ? result.length : 0;
+  const count = Array.isArray(result) ? result.length : (result?.chunks?.length ?? 0);
   ok(`Found ${count} result(s)`);
+  json(result);
+}
+
+async function updateMetadata(opts) {
+  const client = createClient();
+  const dataset = requireOpt(opts, "dataset");
+  const config = requireOpt(opts, "config");
+  const data = jsonOption(config, "--config");
+  if (!data.selector && !data.updates && !data.deletes) {
+    throw new Error("--config must include selector, updates, or deletes");
+  }
+  const result = await client.updateMetadata(dataset, data);
+  ok("Document metadata updated");
   json(result);
 }
 
@@ -707,13 +909,12 @@ async function retrieve(opts) {
 
 async function listConnectors(opts) {
   const client = createClient();
-  const dataset = requireOpt(opts, "dataset");
   const params = buildParams(opts, [
     ["page", "page", Number],
     ["pageSize", "page_size", Number],
   ]);
-  info(`Fetching connectors for dataset ${dataset}...`);
-  const result = await client.listConnectors(dataset, params);
+  info("Fetching connectors...");
+  const result = await client.listConnectors(params);
   if (Array.isArray(result) && result.length === 0) {
     warn("No connectors found");
     if (!outputMode.jsonOnly) return;
@@ -725,11 +926,10 @@ async function listConnectors(opts) {
 
 async function createConnector(opts) {
   const client = createClient();
-  const dataset = requireOpt(opts, "dataset");
   const config = requireOpt(opts, "config");
   const data = jsonOption(config, "--config");
-  info(`Creating connector for dataset ${dataset}...`);
-  const result = await client.createConnector(dataset, data);
+  info("Creating connector...");
+  const result = await client.createConnector(data);
   ok(`Connector created: ${result.id}`);
   json(result);
 }
@@ -865,6 +1065,27 @@ async function createSession(opts) {
   json(result);
 }
 
+async function getSession(opts) {
+  const client = createClient();
+  const chat = requireOpt(opts, "chat");
+  const session = requireOpt(opts, "session");
+  const result = await client.getSession(chat, session);
+  ok(`Session fetched: ${session}`);
+  json(result);
+}
+
+async function updateSession(opts) {
+  const client = createClient();
+  const chat = requireOpt(opts, "chat");
+  const session = requireOpt(opts, "session");
+  const data = opts.config ? jsonOption(opts.config, "--config") : {};
+  if (opts.name) data.name = opts.name;
+  if (!Object.keys(data).length) throw new Error("Provide --name or --config");
+  const result = await client.updateSession(chat, session, data);
+  ok(`Session updated: ${session}`);
+  json(result);
+}
+
 async function deleteSessions(opts) {
   const client = createClient();
   const chat = requireOpt(opts, "chat");
@@ -908,7 +1129,7 @@ async function chatSession(opts) {
   if (!data.question) {
     throw new Error("Missing required option: --question or --messages with a user message");
   }
-  if (opts.llmId || opts.llm) data.llm_id = opts.llmId || opts.llm;
+  if (opts.llmId) data.llm_id = opts.llmId;
   if (opts.temperature !== undefined) data.temperature = Number(opts.temperature);
   if (opts.topP !== undefined) data.top_p = Number(opts.topP);
   if (opts.frequencyPenalty !== undefined) data.frequency_penalty = Number(opts.frequencyPenalty);
@@ -1113,22 +1334,27 @@ async function deleteSystemToken(opts) {
 
 async function embedCode(opts) {
   const client = createClient();
-  const tokenInfo = await embedBeta(client, opts);
-  const result = buildEmbedCode(opts, tokenInfo);
+  const embedOpts = embedCodeOptions(opts);
+  validateUnusedOptions();
+  buildEmbedCode(embedOpts, { beta: "" }); // Validate before token discovery or creation.
+  const tokenInfo = await embedBeta(client, embedOpts);
+  const result = buildEmbedCode(embedOpts, tokenInfo);
   ok(`Embed code generated for ${result.from} ${result.id}`);
   json(result);
 }
 
 async function embedInfo(opts) {
   const client = createClient();
+  const chatId = opts.chat;
+  const agentId = opts.agent;
   const tokenInfo = await embedBeta(client, opts);
   let result;
-  if (opts.chat && !opts.agent) {
-    info(`Fetching embedded chat info for ${opts.chat}...`);
-    result = await client.getEmbeddedChatInfo(opts.chat, tokenInfo.beta);
-  } else if (opts.agent && !opts.chat) {
-    info(`Fetching embedded agent inputs for ${opts.agent}...`);
-    result = await client.getEmbeddedAgentInputs(opts.agent, tokenInfo.beta);
+  if (chatId && !agentId) {
+    info(`Fetching embedded chat info for ${chatId}...`);
+    result = await client.getEmbeddedChatInfo(chatId, tokenInfo.beta);
+  } else if (agentId && !chatId) {
+    info(`Fetching embedded agent inputs for ${agentId}...`);
+    result = await client.getEmbeddedAgentInputs(agentId, tokenInfo.beta);
   } else {
     throw new Error("Provide exactly one of --chat or --agent");
   }
@@ -1140,9 +1366,9 @@ async function embedChat(opts) {
   const client = createClient();
   const chatId = requireOpt(opts, "chat");
   const question = requireOpt(opts, "question");
-  const tokenInfo = await embedBeta(client, opts);
   const data = { question };
   applyEmbeddedChatPayloadOptions(data, opts);
+  const tokenInfo = await embedBeta(client, opts);
   if (!data.session_id) {
     info("Creating embedded chat session...");
     data.session_id = await client.ensureEmbeddedChatSession(chatId, tokenInfo.beta, data);
@@ -1157,9 +1383,9 @@ async function embedAgentChat(opts) {
   const client = createClient();
   const agentId = requireOpt(opts, "agent");
   const question = requireOpt(opts, "question");
-  const tokenInfo = await embedBeta(client, opts);
   const data = { id: agentId, query: question };
   applyEmbeddedAgentPayloadOptions(data, opts);
+  const tokenInfo = await embedBeta(client, opts);
   info(`Asking embedded agent: "${question}"`);
   const result = await client.embeddedAgentChat(agentId, tokenInfo.beta, data);
   ok("Embedded agent response received");
@@ -1170,68 +1396,67 @@ async function embedAgentChat(opts) {
 
 async function listModels(opts) {
   const client = createClient();
+  const includeDetails = boolOption(opts.includeDetails);
+  const groupBy = opts.groupBy || "type";
+  const includeUnavailable = boolOption(opts.all);
   const params = {};
-  if (opts.includeDetails) params.include_details = true;
-  info("Fetching available LLM models...");
+  if (opts.type) params.type = opts.type;
+  if (!["type", "factory"].includes(groupBy)) throw new Error("--group-by must be type or factory");
+  info("Fetching configured LLM models...");
   let result;
   try {
     result = await client.listModels(params);
   } catch (err) {
     if (err.status === 401 || err.code === 401 || /unauthor/i.test(err.message)) {
-      err.message = `${err.message}. Verify RAGFLOW_API_KEY is valid for /v1/llm/my_llms.`;
+      err.message = `${err.message}. Verify RAGFLOW_API_KEY is valid for /api/v1/models.`;
     }
     throw err;
   }
-
-  // Normalize and group models
-  const factories = result || {};
+  if (!Array.isArray(result)) throw new Error("Unexpected /api/v1/models response: expected a model array");
   const groups = [];
-  const groupBy = opts.groupBy || "type";
-  const includeUnavailable = opts.all;
-  
-  for (const [factoryName, factoryPayload] of Object.entries(factories)) {
-    if (factoryName.startsWith("__")) continue;
-    if (!factoryPayload || !factoryPayload.llm) continue;
-    const llms = factoryPayload.llm || [];
-    for (const llm of llms) {
-      const status = llm.status;
-      const isAvailable = status === 1 || status === "1" || status === true;
-      if (!includeUnavailable && !isAvailable) continue;
-      
-      const key = groupBy === "factory" ? factoryName : (llm.type || "unknown");
-      let group = groups.find(g => g.name === key);
-      if (!group) {
-        group = { name: key, models: [] };
-        groups.push(group);
-      }
-      
-      const model = {
-        id: llm.id,
-        name: llm.name,
-        type: llm.type,
-        factory: factoryName,
-        status: isAvailable ? "available" : "unavailable",
-      };
-      if (opts.includeDetails) {
-        model.used_token = llm.used_token;
-        if (llm.api_base) model.api_base = llm.api_base;
-        if (llm.max_tokens) model.max_tokens = llm.max_tokens;
-      }
-      group.models.push(model);
+  const seen = new Set();
+  for (const m of result) {
+    const factory = m.provider_name || "unknown";
+    const name = m.name || "";
+    if (!name) continue;
+    const instance = m.instance_name || "default";
+    const isAvailable = m.enable !== false && m.status !== "0" && m.status !== 0;
+    if (!includeUnavailable && !isAvailable) continue;
+    const types = Array.isArray(m.model_type) ? m.model_type : [m.model_type || "unknown"];
+    const type = types.join(",");
+    const key = JSON.stringify([m.tenant_id, factory, instance, name, type]);
+    if (seen.has(key)) continue;
+    seen.add(key);
+    const groupName = groupBy === "factory" ? factory : type;
+    let group = groups.find((g) => g.name === groupName);
+    if (!group) {
+      group = { name: groupName, models: [] };
+      groups.push(group);
     }
+    const model = {
+      id: m.model_id ?? "", name, type, factory, instance,
+      identifier: `${name}@${instance}@${factory}`,
+      status: m.enable === undefined && m.status === undefined ? "configured" : (isAvailable ? "available" : "unavailable"),
+    };
+    if (includeDetails) {
+      for (const field of ["tenant_id", "tenant_name", "provider_id", "instance_id", "rank"]) {
+        if (m[field] !== undefined) model[field] = m[field];
+      }
+    }
+    group.models.push(model);
   }
-  
+
   groups.sort((a, b) => a.name.localeCompare(b.name));
   for (const group of groups) {
     group.models.sort((a, b) => (a.name || "").localeCompare(b.name || ""));
   }
-  
+
   const totalModels = groups.reduce((sum, g) => sum + g.models.length, 0);
   ok(`Found ${totalModels} model(s) in ${groups.length} group(s)`);
   json({ groups, total: totalModels });
 }
 
-// ── Tenant Models (v0.26.0) ──
+// ── Tenant Models ──
 
 async function listAddedModels(opts) {
   const client = createClient();
@@ -1264,7 +1489,7 @@ async function setDefaultModel(opts) {
   json(result);
 }
 
-// ── Model Providers (v0.26.0) ──
+// ── Model Providers ──
 
 async function listProviders(opts) {
   const client = createClient();
@@ -1307,7 +1532,8 @@ async function listProviderModels(opts) {
   const client = createClient();
   const name = requireOpt(opts, "name");
   const params = {};
-  if (opts.apiKey) params.api_key = opts.apiKey;
+  const apiKey = providerApiKey(opts);
+  if (apiKey) params.api_key = apiKey;
   if (opts.baseUrl) params.base_url = opts.baseUrl;
   info(`Fetching available models for provider ${name}...`);
   const result = await client.listProviderModels(name, params);
@@ -1339,7 +1565,7 @@ async function createProviderInstance(opts) {
   const name = requireOpt(opts, "name");
   const data = {
     instance_name: requireOpt(opts, "instance"),
-    api_key: requireOpt(opts, "apiKey"),
+    api_key: providerApiKey(opts, true),
   };
   if (opts.baseUrl) data.base_url = opts.baseUrl;
   if (opts.region) data.region = opts.region;
@@ -1363,7 +1589,7 @@ async function deleteProviderInstances(opts) {
 async function verifyProvider(opts) {
   const client = createClient();
   const name = requireOpt(opts, "name");
-  const data = { api_key: requireOpt(opts, "apiKey") };
+  const data = { api_key: providerApiKey(opts, true) };
   if (opts.baseUrl) data.base_url = opts.baseUrl;
   if (opts.region) data.region = opts.region;
   if (opts.modelInfo) data.model_info = jsonOption(opts.modelInfo, "--model-info");
@@ -1433,6 +1659,38 @@ async function traceRaptor(opts) {
   json(result);
 }
 
+async function getKnowledgeGraph(opts) {
+  const client = createClient();
+  const dataset = requireOpt(opts, "dataset");
+  const result = await client.getKnowledgeGraph(dataset);
+  ok("Knowledge graph fetched");
+  json(result);
+}
+
+async function deleteKnowledgeGraph(opts) {
+  const client = createClient();
+  const dataset = requireOpt(opts, "dataset");
+  const result = await client.deleteKnowledgeGraph(dataset);
+  ok("Knowledge graph deleted");
+  json(result);
+}
+
+async function runGraphRag(opts) {
+  const client = createClient();
+  const dataset = requireOpt(opts, "dataset");
+  const result = await client.runGraphRag(dataset);
+  ok("GraphRAG construction started");
+  json(result);
+}
+
+async function traceGraphRag(opts) {
+  const client = createClient();
+  const dataset = requireOpt(opts, "dataset");
+  const result = await client.traceGraphRag(dataset);
+  ok(`GraphRAG status: ${result.status || "unknown"}`);
+  json(result);
+}
+
 // ── Command registry ──
 
 async function metadataSummary(opts) {
@@ -1449,6 +1707,13 @@ async function systemVersion() {
   const client = createClient();
   const result = await client.getSystemVersion();
   ok("System version fetched");
+  json(result);
+}
+
+async function systemHealth() {
+  const client = createClient();
+  const result = await client.getSystemHealth();
+  ok("System health fetched");
   json(result);
 }
 
@@ -1471,98 +1736,110 @@ async function setLogLevel(opts) {
 
 const COMMANDS = {
   // Dataset
-  "create-dataset":    { fn: createDataset,    group: "Dataset",   desc: "Create a dataset" },
-  "list-datasets":     { fn: listDatasets,     group: "Dataset",   desc: "List all datasets" },
-  "get-dataset":       { fn: getDataset,       group: "Dataset",   desc: "Get dataset details" },
-  "update-dataset":    { fn: updateDataset,    group: "Dataset",   desc: "Update a dataset" },
-  "delete-datasets":   { fn: deleteDatasets,   group: "Dataset",   desc: "Delete datasets" },
+  "create-dataset": { fn: createDataset, group: "Dataset", desc: "Create a dataset" },
+  "list-datasets": { fn: listDatasets, group: "Dataset", desc: "List all datasets" },
+  "get-dataset": { fn: getDataset, group: "Dataset", desc: "Get dataset details" },
+  "update-dataset": { fn: updateDataset, group: "Dataset", desc: "Update a dataset" },
+  "delete-datasets": { fn: deleteDatasets, group: "Dataset", desc: "Delete datasets" },
   // Document
-  "upload-documents":  { fn: uploadDocuments,  group: "Document",  desc: "Upload documents" },
-  "list-documents":    { fn: listDocuments,    group: "Document",  desc: "List documents" },
-  "get-document":      { fn: getDocument,      group: "Document",  desc: "Get document details" },
-  "update-document":   { fn: updateDocument,   group: "Document",  desc: "Update a document" },
-  "delete-documents":  { fn: deleteDocuments,  group: "Document",  desc: "Delete documents" },
+  "upload-documents": { fn: uploadDocuments, group: "Document", desc: "Upload documents" },
+  "list-documents": { fn: listDocuments, group: "Document", desc: "List documents" },
+  "get-document": { fn: getDocument, group: "Document", desc: "Get document details" },
+  "update-document": { fn: updateDocument, group: "Document", desc: "Update a document" },
+  "delete-documents": { fn: deleteDocuments, group: "Document", desc: "Delete documents" },
   "download-document": { fn: downloadDocument, group: "Document", desc: "Download a document" },
-  "preview-document":  { fn: previewDocument,  group: "Document", desc: "Preview a document inline by ID" },
+  "preview-document": { fn: previewDocument, group: "Document", desc: "Preview a document inline by ID" },
+  "ingest-documents": { fn: ingestDocuments, group: "Document", desc: "Start, cancel, or rerun ingestion-pipeline documents" },
   // Parsing
-  "start-parsing":     { fn: startParsing,     group: "Parsing",   desc: "Start document parsing" },
-  "stop-parsing":      { fn: stopParsing,      group: "Parsing",   desc: "Stop document parsing" },
-  "wait-parsing":      { fn: waitParsing,      group: "Parsing",   desc: "Wait for parsing to complete" },
+  "start-parsing": { fn: startParsing, group: "Parsing", desc: "Start document parsing" },
+  "stop-parsing": { fn: stopParsing, group: "Parsing", desc: "Stop document parsing" },
+  "wait-parsing": { fn: waitParsing, group: "Parsing", desc: "Wait for parsing to complete" },
   // Chunk
-  "list-chunks":       { fn: listChunks,       group: "Chunk",     desc: "List chunks" },
-  "add-chunk":         { fn: addChunk,         group: "Chunk",     desc: "Add a chunk" },
-  "update-chunk":      { fn: updateChunk,      group: "Chunk",     desc: "Update a chunk" },
-  "delete-chunks":     { fn: deleteChunks,     group: "Chunk",     desc: "Delete chunks" },
+  "list-chunks": { fn: listChunks, group: "Chunk", desc: "List chunks" },
+  "get-chunk": { fn: getChunk, group: "Chunk", desc: "Get one chunk by ID" },
+  "add-chunk": { fn: addChunk, group: "Chunk", desc: "Add a chunk" },
+  "update-chunk": { fn: updateChunk, group: "Chunk", desc: "Update a chunk" },
+  "delete-chunks": { fn: deleteChunks, group: "Chunk", desc: "Delete chunks" },
+  "get-document-graph": { fn: getDocumentGraph, group: "Chunk", desc: "Get a document structure graph" },
+  "delete-document-graph": { fn: deleteDocumentGraph, group: "Chunk", desc: "Delete a document structure graph" },
   // Retrieval
-  "retrieve":          { fn: retrieve,         group: "Retrieval", desc: "Retrieve from datasets" },
+  "retrieve": { fn: retrieve, group: "Retrieval", desc: "Retrieve from datasets" },
+  "update-metadata": { fn: updateMetadata, group: "Document", desc: "Batch update or delete document metadata" },
   // Connector
-  "list-connectors":   { fn: listConnectors,   group: "Connector", desc: "List connectors" },
-  "create-connector":  { fn: createConnector,  group: "Connector", desc: "Create a connector" },
-  "get-connector":     { fn: getConnector,     group: "Connector", desc: "Get connector details" },
-  "update-connector":  { fn: updateConnector,  group: "Connector", desc: "Update a connector" },
-  "delete-connector":  { fn: deleteConnector,  group: "Connector", desc: "Delete a connector" },
+  "list-connectors": { fn: listConnectors, group: "Connector", desc: "List connectors" },
+  "create-connector": { fn: createConnector, group: "Connector", desc: "Create a connector" },
+  "get-connector": { fn: getConnector, group: "Connector", desc: "Get connector details" },
+  "update-connector": { fn: updateConnector, group: "Connector", desc: "Update a connector" },
+  "delete-connector": { fn: deleteConnector, group: "Connector", desc: "Delete a connector" },
   // RAPTOR
-  "run-raptor":        { fn: runRaptor,        group: "RAPTOR",     desc: "Start RAPTOR processing" },
-  "trace-raptor":      { fn: traceRaptor,      group: "RAPTOR",     desc: "Trace RAPTOR progress" },
+  "run-raptor": { fn: runRaptor, group: "RAPTOR", desc: "Start RAPTOR processing" },
+  "trace-raptor": { fn: traceRaptor, group: "RAPTOR", desc: "Trace RAPTOR progress" },
+  "get-knowledge-graph": { fn: getKnowledgeGraph, group: "GraphRAG", desc: "Get a dataset knowledge graph" },
+  "delete-knowledge-graph": { fn: deleteKnowledgeGraph, group: "GraphRAG", desc: "Delete a dataset knowledge graph" },
+  "run-graphrag": { fn: runGraphRag, group: "GraphRAG", desc: "Start knowledge graph construction" },
+  "trace-graphrag": { fn: traceGraphRag, group: "GraphRAG", desc: "Trace knowledge graph construction" },
   // Chat Assistant
-  "list-chats":        { fn: listChatAssistants, group: "Chat",    desc: "List chat assistants" },
-  "create-chat":       { fn: createChatAssistant, group: "Chat",   desc: "Create a chat assistant" },
-  "get-chat":          { fn: getChatAssistant,  group: "Chat",      desc: "Get chat assistant details" },
-  "update-chat":       { fn: updateChatAssistant, group: "Chat",   desc: "Update a chat assistant" },
-  "patch-chat":        { fn: patchChatAssistant, group: "Chat",    desc: "Patch a chat assistant" },
-  "delete-chats":      { fn: deleteChatAssistants, group: "Chat",  desc: "Delete chat assistants" },
+  "list-chats": { fn: listChatAssistants, group: "Chat", desc: "List chat assistants" },
+  "create-chat": { fn: createChatAssistant, group: "Chat", desc: "Create a chat assistant" },
+  "get-chat": { fn: getChatAssistant, group: "Chat", desc: "Get chat assistant details" },
+  "update-chat": { fn: updateChatAssistant, group: "Chat", desc: "Update a chat assistant" },
+  "patch-chat": { fn: patchChatAssistant, group: "Chat", desc: "Patch a chat assistant" },
+  "delete-chats": { fn: deleteChatAssistants, group: "Chat", desc: "Delete chat assistants" },
   // Session
-  "list-sessions":     { fn: listSessions,     group: "Session",   desc: "List chat sessions" },
-  "create-session":    { fn: createSession,    group: "Session",   desc: "Create a chat session" },
-  "delete-sessions":   { fn: deleteSessions,   group: "Session",   desc: "Delete chat sessions" },
+  "list-sessions": { fn: listSessions, group: "Session", desc: "List chat sessions" },
+  "create-session": { fn: createSession, group: "Session", desc: "Create a chat session" },
+  "get-session": { fn: getSession, group: "Session", desc: "Get a chat session" },
+  "update-session": { fn: updateSession, group: "Session", desc: "Update a chat session" },
+  "delete-sessions": { fn: deleteSessions, group: "Session", desc: "Delete chat sessions" },
   // Chat conversation
-  "chat":              { fn: chat,             group: "Chat",      desc: "Chat with an assistant" },
-  "chat-session":      { fn: chatSession,      group: "Chat",      desc: "Chat with a session" },
+  "chat": { fn: chat, group: "Chat", desc: "Chat with an assistant" },
+  "chat-session": { fn: chatSession, group: "Chat", desc: "Chat with a session" },
   // Agent
-  "list-agents":       { fn: listAgents,        group: "Agent",     desc: "List agents", args: [], opts: ["page", "pageSize", "id", "name", "tags", "json"] },
-  "create-agent":      { fn: createAgent,       group: "Agent",     desc: "Create an agent" },
-  "get-agent":         { fn: getAgent,          group: "Agent",     desc: "Get agent details" },
-  "update-agent":      { fn: updateAgent,       group: "Agent",     desc: "Update an agent" },
-  "delete-agents":      { fn: deleteAgents,       group: "Agent",     desc: "Delete agents" },
-  "list-agent-sessions":  { fn: listAgentSessions,  group: "Agent", desc: "List agent sessions" },
+  "list-agents": { fn: listAgents, group: "Agent", desc: "List agents", args: [], opts: ["page", "pageSize", "id", "name", "tags", "json"] },
+  "create-agent": { fn: createAgent, group: "Agent", desc: "Create an agent" },
+  "get-agent": { fn: getAgent, group: "Agent", desc: "Get agent details" },
+  "update-agent": { fn: updateAgent, group: "Agent", desc: "Update an agent" },
+  "delete-agents": { fn: deleteAgents, group: "Agent", desc: "Delete agents" },
+  "list-agent-sessions": { fn: listAgentSessions, group: "Agent", desc: "List agent sessions" },
   "create-agent-session": { fn: createAgentSession, group: "Agent", desc: "Create an agent session" },
   "delete-agent-sessions": { fn: deleteAgentSessions, group: "Agent", desc: "Delete agent sessions" },
-  "list-agent-tags":   { fn: listAgentTags,     group: "Agent",     desc: "List agent tags" },
-  "update-agent-tags": { fn: updateAgentTags,   group: "Agent",     desc: "Update agent tags" },
+  "list-agent-tags": { fn: listAgentTags, group: "Agent", desc: "List agent tags" },
+  "update-agent-tags": { fn: updateAgentTags, group: "Agent", desc: "Update agent tags" },
   // Agent Chat
-  "agent-chat":        { fn: agentChat,        group: "Agent",     desc: "Chat with an agent" },
+  "agent-chat": { fn: agentChat, group: "Agent", desc: "Chat with an agent" },
   // Embedded website access
-  "list-system-tokens": { fn: listSystemTokens, group: "Embed",     desc: "List system/embed tokens" },
-  "create-system-token": { fn: createSystemToken, group: "Embed",   desc: "Create a system/embed token" },
-  "delete-system-token": { fn: deleteSystemToken, group: "Embed",   desc: "Delete a system/embed token" },
-  "embed-code":        { fn: embedCode,        group: "Embed",     desc: "Generate iframe/widget embed code" },
-  "embed-info":        { fn: embedInfo,        group: "Embed",     desc: "Get embedded chat or agent metadata" },
-  "embed-chat":        { fn: embedChat,        group: "Embed",     desc: "Chat through embedded chatbot route" },
-  "embed-agent-chat":  { fn: embedAgentChat,   group: "Embed",     desc: "Chat through embedded agentbot route" },
+  "list-system-tokens": { fn: listSystemTokens, group: "Embed", desc: "List system/embed tokens" },
+  "create-system-token": { fn: createSystemToken, group: "Embed", desc: "Create a system/embed token" },
+  "delete-system-token": { fn: deleteSystemToken, group: "Embed", desc: "Delete a system/embed token" },
+  "embed-code": { fn: embedCode, group: "Embed", desc: "Generate iframe/widget embed code" },
+  "embed-info": { fn: embedInfo, group: "Embed", desc: "Get embedded chat or agent metadata" },
+  "embed-chat": { fn: embedChat, group: "Embed", desc: "Chat through embedded chatbot route" },
+  "embed-agent-chat": { fn: embedAgentChat, group: "Embed", desc: "Chat through embedded agentbot route" },
   // LLM Models
-  "list-models":       { fn: listModels,       group: "Models",    desc: "List available LLM models" },
-  "list-added-models": { fn: listAddedModels,  group: "Models",    desc: "List tenant added models" },
+  "list-models": { fn: listModels, group: "Models", desc: "List available LLM models" },
+  "list-added-models": { fn: listAddedModels, group: "Models", desc: "List tenant added models" },
   "list-default-models": { fn: listDefaultModels, group: "Models", desc: "List tenant default models" },
-  "set-default-model": { fn: setDefaultModel,   group: "Models",    desc: "Set or clear a default model" },
+  "set-default-model": { fn: setDefaultModel, group: "Models", desc: "Set or clear a default model" },
   // Model Providers
-  "list-providers":    { fn: listProviders,    group: "Provider",  desc: "List configured or available providers" },
-  "get-provider":      { fn: getProvider,      group: "Provider",  desc: "Get provider details" },
-  "add-provider":      { fn: addProvider,      group: "Provider",  desc: "Add a provider for the tenant" },
-  "delete-provider":   { fn: deleteProvider,   group: "Provider",  desc: "Remove a provider" },
+  "list-providers": { fn: listProviders, group: "Provider", desc: "List configured or available providers" },
+  "get-provider": { fn: getProvider, group: "Provider", desc: "Get provider details" },
+  "add-provider": { fn: addProvider, group: "Provider", desc: "Add a provider for the tenant" },
+  "delete-provider": { fn: deleteProvider, group: "Provider", desc: "Remove a provider" },
   "list-provider-models": { fn: listProviderModels, group: "Provider", desc: "List a provider's available models" },
   "list-provider-instances": { fn: listProviderInstances, group: "Provider", desc: "List provider instances" },
   "get-provider-instance": { fn: getProviderInstance, group: "Provider", desc: "Get a provider instance" },
   "create-provider-instance": { fn: createProviderInstance, group: "Provider", desc: "Create a provider instance (API key)" },
   "delete-provider-instances": { fn: deleteProviderInstances, group: "Provider", desc: "Remove provider instances" },
-  "verify-provider":   { fn: verifyProvider,   group: "Provider",  desc: "Test a provider connection / API key" },
+  "verify-provider": { fn: verifyProvider, group: "Provider", desc: "Test a provider connection / API key" },
   "list-instance-models": { fn: listInstanceModels, group: "Provider", desc: "List models on a provider instance" },
   "add-instance-model": { fn: addInstanceModel, group: "Provider", desc: "Add a model to a provider instance" },
-  "set-model-status":  { fn: setModelStatus,   group: "Provider",  desc: "Enable or disable an instance model" },
+  "set-model-status": { fn: setModelStatus, group: "Provider", desc: "Enable or disable an instance model" },
   // Metadata / System
-  "metadata-summary":  { fn: metadataSummary,  group: "Document",  desc: "Summarize document metadata" },
-  "system-version":    { fn: systemVersion,    group: "System",    desc: "Get system version" },
-  "get-log-levels":    { fn: getLogLevels,     group: "System",    desc: "Get log levels" },
-  "set-log-level":     { fn: setLogLevel,      group: "System",    desc: "Set a log level" },
+  "metadata-summary": { fn: metadataSummary, group: "Document", desc: "Summarize document metadata" },
+  "system-version": { fn: systemVersion, group: "System", desc: "Get system version" },
+  "system-health": { fn: systemHealth, group: "System", desc: "Check system health" },
+  "get-log-levels": { fn: getLogLevels, group: "System", desc: "Get log levels" },
+  "set-log-level": { fn: setLogLevel, group: "System", desc: "Set a log level" },
 };
 
 function printHelp() {
@@ -1587,6 +1864,7 @@ ${C.bold}Common Options:${C.reset}
     --dataset           Dataset ID
     --files             File paths, or display-name=path entries
     --doc-ids           Document IDs (multiple values)
+    --run               Ingestion action: 1=start/rerun, 2=cancel
     --document          Document ID
     --content           Chunk content
     --chunk-ids         Chunk IDs (multiple values)
@@ -1596,7 +1874,7 @@ ${C.bold}Common Options:${C.reset}
     --session           Session ID
     --token-file        Read token from a file
     --token-stdin       Read token from stdin
-    --beta, --auth      Embed auth beta token
+    --beta              Embed auth beta token
     --origin            Public RAGFlow origin for embed code
     --type              Embed type: fullscreen or widget
     --theme             Embed theme: light or dark
@@ -1607,7 +1885,6 @@ ${C.bold}Common Options:${C.reset}
     --hide-avatar       Hide avatar in embedded page
     --data              Embed URL data JSON
     --inputs            Embedded agent begin inputs JSON
-    --conversation-id   Embedded chat conversation ID
     --llm-id            LLM model ID
     --question, -q      Question (for retrieve/chat)
     --datasets, -d      Dataset IDs for retrieval
@@ -1616,7 +1893,8 @@ ${C.bold}Common Options:${C.reset}
     --meta-fields       Document metadata JSON
     --similarity, -s    Similarity threshold (0-1)
     --top-n, -n         Number of results
-    --top-k, -k         Number of candidates
+    --knn-top-k        Retrieval vector-neighbor count
+    --top-k, -k         Chat assistant candidate count (not retrieval)
     --top-p             Top-p
     --vector-weight, -w Vector similarity weight (0-1)
     --temperature       Sampling temperature
@@ -1644,10 +1922,12 @@ ${C.bold}Common Options:${C.reset}
     --model-provider    Provider name (set-default-model)
     --model-instance    Instance name (set-default-model)
     --model-name        Model name (provider model commands)
-    --available         List system-available providers (list-providers)
+    --available         Provider discovery; true/false chunk availability
+    --image-file        Image file for update-chunk
+    --image-update-mode append, replace, or remove (update-chunk)
     --instance          Provider instance name
     --instances         Provider instance names (multiple values)
-    --api-key           Provider API key (create-provider-instance, verify-provider)
+    --api-key-file      Read provider API key from a file (recommended)
     --base-url          Provider base URL
     --region            Provider region
     --model-info        Provider model_info JSON (provider instance commands)
@@ -1658,6 +1938,7 @@ ${C.bold}Common Options:${C.reset}
     --prompt-config     Chat prompt configuration (JSON or @file)
     --pkg-name          Log package name
     --level             Log level
+    --confirm-destructive  Explicitly authorize deletion or destructive bulk changes
     --json              Print machine-readable JSON only
 
 `;
@@ -1667,7 +1948,7 @@ ${C.bold}Common Options:${C.reset}
 // ── Main ──
 
 async function main() {
-  const opts = parseArgs(args.slice(1));
+  const opts = trackOptions(parseArgs(args.slice(1)));
   outputMode.jsonOnly = Boolean(opts.json);
   if (!command || command === "help" || command === "--help" || command === "-h" || opts.help) {
     printHelp();
@@ -1691,7 +1972,14 @@ async function main() {
   }
 
   try {
+    validateOptions(opts);
+    const confirmation = opts.confirmDestructive;
+    if (confirmation !== undefined && ![true, "true", false, "false"].includes(confirmation)) {
+      throw new Error("--confirm-destructive accepts only true or false");
+    }
+    destructiveConfirmed = confirmation === true || confirmation === "true";
     await cmd.fn(opts);
+    validateUnusedOptions();
   } catch (err) {
     if (outputMode.jsonOnly) {
       json(commandErrorJsonPayload(err));

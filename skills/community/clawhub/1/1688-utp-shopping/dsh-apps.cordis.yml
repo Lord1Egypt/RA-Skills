@@ -1,0 +1,30 @@
+# DeepSeek Harness (DSH) MCP Apps 卡片版 overlay for 1688 UTP Shopping
+#
+# 与 dsh.cordis.yml 的区别：MCP 桥接走 mcp-apps-host 插件，渲染工具结果内嵌的
+# 交互式 HTML 卡片（搜品、购物车、下单确认均可在卡片内直接操作）。
+#
+# 前置：已在 web profile 安装 mcp-apps-host 插件（见 README「在 DeepSeek Harness (DSH) 中使用」）：
+#   dsh plugin --profile web add github:oriliz/dsh-mcp-apps-host
+#
+# 用法（在克隆的本仓库根目录下执行）：
+#   dsh web --patch dsh-apps.cordis.yml
+#
+# 注意：与 dsh.cordis.yml 二选一，两者注册同名 mcp__utp__* 工具，叠加会重复注册。
+
+# 让 skill-filesystem 发现本目录下的 SKILL.md
+- id: skill-filesystem
+  config:
+    customSkillDirs:
+      - !!js process.cwd()
+
+# 通过 mcp-apps-host 桥接 UTP MCP Server（含卡片渲染 + postMessage 桥）
+- insert:
+    - id: mcp-apps-host-utp
+      name: '@deepseek-ai/dsh-mcp-apps-host'
+      config:
+        transport: stdio
+        serverName: utp
+        command: npx
+        args: ['-y', '@ut-protocol/utp', 'mcp', 'serve']
+        cwd: !!js process.cwd()
+        toolCallTimeoutMs: 60000

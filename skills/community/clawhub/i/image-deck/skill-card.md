@@ -1,43 +1,58 @@
-## Description: <br>
-image-deck helps an agent create full-image slide decks, PPT-style presentations, single slides, and carousel pages with GPT Image 2 through Codex built-in image generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+image-deck helps agents create PowerPoint-style slide decks, single slides, and carousel presentations as full-slide raster images using Codex built-in image_gen (GPT Image 2), with planning, prompt review, sample approval, slide QA, and optional PPTX/PDF assembly.
 
-## Publisher: <br>
-[tseng71](https://clawhub.ai/user/tseng71) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tseng71](https://clawhub.ai/user/tseng71)
 
-## Use Case: <br>
-Developers and agent users use this skill when they want an image-generation workflow for slide decks where each page is a complete raster slide with text and visuals generated together. It is best suited for presentation, PPT, carousel, and deck requests that do not require editable PowerPoint text boxes, tables, or charts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill generates slides as complete raster images, so visible text, charts, and layout elements are not editable PowerPoint objects after generation. <br>
-Mitigation: Use it only when image-based slides are acceptable; route to a normal editable presentation workflow when editable text boxes, precise tables, or exact chart data are required. <br>
-Risk: Image-generation prompts and local work files may contain source material supplied by the user. <br>
-Mitigation: Review the inline prompt groups before approval, choose the language explicitly, and avoid sensitive source material unless it is appropriate for the image-generation workflow and local logs. <br>
-Risk: Generated in-image text may be inaccurate, unreadable, or mismatched to the selected content-density mode. <br>
-Mitigation: Inspect generated slides and regenerate any page with text errors, low readability, style drift, or density mismatch instead of overlaying corrections locally. <br>
+## Use Case:
 
+Developers and content-producing agents use this skill to plan and generate visual PPT, PowerPoint-style, slide deck, single-slide, and carousel deliverables where each page is a complete generated image. It is best suited for polished image-based presentations rather than editable charts, dense tables, or text-heavy slides that must remain editable.
 
-## Reference(s): <br>
-- [Prompt Patterns](references/prompt-patterns.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/tseng71/image-deck) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration, shell commands] <br>
-**Output Format:** [Markdown instructions with prompt templates, review checklists, and optional shell commands for installation or packaging] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides the agent to produce slide-by-slide design documents, image-generation prompts, generated slide images, image-generation logs, and optionally assembled PPTX or PDF files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.18 (source: server release evidence) <br>
+Risk: Generated deck pages are raster images, so slide text, charts, and dense tables are not fully editable after generation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use this skill for visual slide decks and route exact editable charts, dense tables, or editable text requirements to a normal presentation workflow.
+
+Risk: Prompt, research, and generation log files can contain source material from the user or generated deck plan.
+
+Mitigation: Treat these files as local work artifacts, review them before sharing, and remove sensitive source material when it is no longer needed.
+
+Risk: The optional PPTX slide-number helper has a reported XML input validation weakness for untrusted presentations or complex font names.
+
+Mitigation: Run the helper only on trusted PPTX files and use simple font names until validation is tightened.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tseng71/skills/image-deck)
+- [Prompt Patterns](references/prompt-patterns.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown planning guidance and prompts, generated raster slide image files, and optional PPTX/PDF presentation files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Slide images contain visible text inside the raster image; PPTX output is image-based and is not fully editable except for optional native slide-number fields.]
+
+## Skill Version(s):
+
+0.1.32 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

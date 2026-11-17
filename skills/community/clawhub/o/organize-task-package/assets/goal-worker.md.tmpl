@@ -1,0 +1,56 @@
+# Worker GOAL: {{TASK_TITLE}} / {{WORKER_LABEL}}
+
+## 1. Assignment
+
+- Worker ID: `{{WORKER_ID}}`
+- Default model: `gpt-5.6-sol/high`
+- Reviewer mode: `inherited_subagent` by default, using Worker model/reasoning; explicit `self_review` creates no subagent
+- Assigned parts: {{ASSIGNED_PARTS}}
+- Execution record: `../execution/{{WORKER_ID}}.md`
+- Review record: `../review/reviewer-{{WORKER_ID}}.md`
+- Coordination: `../coordination/lanes.md`
+- Document language: `{{DOCUMENT_LANGUAGE}}`.
+
+### 1.1 Session lineage
+
+- Planning/coordinator task ID: To fill.
+- Worker task ID: To create or reuse.
+- Worker session mode: `fork_current` (default) / `reuse_fixed` / `fresh`.
+- Worker fork source: To fill.
+- Reviewer task ID: To create or reuse.
+- Reviewer session mode: `isolated_subagent` with full pre-execution history (default) / `self_review` / other confirmed topology.
+- Reviewer source: full Worker history after task/code reading by default; To fill.
+- Pre-execution fork point: To fill.
+- Execution dispatch time: must be later than Reviewer fork point.
+- Worker requested model/reasoning, enforcement method/status, and receipt: To fill.
+- Reviewer requested model/reasoning, enforcement method/status, and receipt: To fill.
+
+## 2. Execution authorization
+
+- User authorization: `not_authorized`
+- Root `launch_config_status`: `not_proposed / proposed / confirmed`
+- Configuration provenance and confirmation receipt: see root `../GOAL.md` and `../coordination/lanes.md`.
+- Active Goal: `not_created`
+- Branch/worktree/baseline: see coordination record.
+
+## 3. Work-item state
+
+| Work item | Part | State | Design | Execution | Review receipt |
+| --- | --- | --- | --- | --- | --- |
+{{WORKER_POINT_ROWS}}
+
+## 4. Worker rules
+
+1. Write only the assigned lane; do not modify root GOAL or another Worker's records.
+2. After user authorization, read the assigned package/code and establish `READY_REVIEW` from the inherited Reviewer or `SELF_REVIEW_READY` for explicit self-review.
+3. Only then create an active Goal referencing this file's absolute path and start execution; report any configuration mismatch instead of silently falling back.
+4. For each completed item, update execution, mark `implemented_pending_review`, and invoke the configured review mode.
+5. Mark `approved` only after an explicit `REVIEW` or `SELF` receipt.
+6. Notify the Orchestrator about cross-lane issues, shared hotspots, pauses, or integration needs.
+
+## 5. Completion conditions
+
+- [ ] Every assigned item is `approved`.
+- [ ] The lane-level integrated audit passes.
+- [ ] Exact commit or artifact is recorded and the worktree is clean.
+- [ ] The Orchestrator has been notified that integration may begin.

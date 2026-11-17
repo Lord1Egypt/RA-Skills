@@ -54,7 +54,7 @@ send_message() {
     case "$ERROR" in
       *"No credentials"*)
         echo ""
-        echo "Run: agent-slackbot auth set xoxb-your-token"
+        echo "Run: agent-slackbot auth set REDACTED-SECRET"
         return 1
         ;;
       *"not_in_channel"*)
@@ -92,7 +92,7 @@ VALID=$(echo "$AUTH_STATUS" | jq -r '.valid // false')
 if [ "$VALID" != "true" ]; then
   echo -e "${RED}Not authenticated!${NC}"
   echo ""
-  echo "Run: agent-slackbot auth set xoxb-your-token"
+  echo "Run: agent-slackbot auth set REDACTED-SECRET"
   exit 1
 fi
 

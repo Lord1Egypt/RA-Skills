@@ -1,6 +1,6 @@
 {
-  "ownerId": "kn7e68xzm01gpx37rcmqtms3gs82t6vt",
-  "slug": "feishu-task-control",
-  "version": "1.0.1",
-  "publishedAt": 1773476109243
+  "name": "feishu-task-control",
+  "version": "1.0.0",
+  "updatedAt": "2026-03-14T02:00:00+08:00",
+  "homepage": "https://github.com/wd041216-bit/openclaw-skills"
 }

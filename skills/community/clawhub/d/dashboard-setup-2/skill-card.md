@@ -1,39 +1,54 @@
-## Description: <br>
-提供看板搭建的可落地指南与SOP。在开展看板搭建相关工作时调用。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+提供看板搭建的可落地指南与SOP。在开展看板搭建相关工作时调用。
 
-## Publisher: <br>
-[mikeclaw007](https://clawhub.ai/user/mikeclaw007) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mikeclaw007](https://clawhub.ai/user/mikeclaw007)
 
-## Use Case: <br>
-External operators, product teams, and data teams use this skill to plan and standardize dashboard setup work, including goals, metrics, SOPs, data integration, pilots, reviews, and knowledge-base updates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-China <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Dashboard setup may involve personal information or sensitive business data. <br>
-Mitigation: Apply normal privacy, access-control, and compliance limits around connected data sources and use data minimization when handling personal information. <br>
-Risk: Incorrect metric definitions or reporting cadence can mislead dashboard users. <br>
-Mitigation: Review business goals, KPI definitions, guardrail metrics, and reporting rhythm with the responsible owner before rollout. <br>
+## Use Case:
 
+Employees, operations teams, analysts, and dashboard implementers use this skill to turn business goals into dashboard SOPs, KPI definitions, data integration steps, pilot reviews, and reusable reporting artifacts.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, configuration] <br>
-**Output Format:** [Markdown guidance and checklist-style SOP text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution, credentials, hidden access, or background behavior are requested by the skill.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Generated dashboard SOPs may not match an organization's privacy, data-access, or compliance requirements.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated SOPs, KPI definitions, reporting structures, and data-access assumptions against internal policies and applicable regulations before applying them.
+
+Risk: The broad activation phrase may cause the skill to be invoked for loosely related dashboard planning tasks.
+
+Mitigation: Confirm the requested task is dashboard setup or dashboard SOP guidance before relying on the skill output.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mikeclaw007/skills/dashboard-setup-2)
+- [Publisher profile](https://clawhub.ai/user/mikeclaw007)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, configuration]
+
+**Output Format:** [Markdown guidance with SOPs, checklists, templates, reporting structures, and optional implementation notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should be reviewed for organization-specific privacy, data-access, and compliance requirements before use.]
+
+## Skill Version(s):
+
+0.1.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

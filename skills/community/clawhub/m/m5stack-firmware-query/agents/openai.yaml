@@ -1,0 +1,7 @@
+interface:
+  display_name: "M5Stack Firmware Query"
+  short_description: "查询 M5Stack 固件仓库，支持多种公开查询方式"
+  default_prompt: "Use $m5stack-firmware-query to query public M5Stack firmware data by keyword, device, category, functional intent, version, or ranking."
+
+policy:
+  allow_implicit_invocation: true

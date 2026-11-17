@@ -48,14 +48,17 @@ baw market-order swap --fromTokenQty 100 --fromToken 0x55d398326f99059fF77548524
 { "success": true, "data": { "orderId": "1234567890" } }
 ```
 
-### Important: an orderId does not mean the swap is complete
+### ⚠️ Mandatory: an orderId is NOT a completed swap — poll to a terminal state before reporting success
 
-A successful response with an `orderId` means the swap has been **submitted** — it does **not** mean it has been executed or confirmed on-chain. The order can still fail due to price movement exceeding slippage tolerance, insufficient liquidity, or network issues.
+A `success: true` response with an `orderId` means the swap has only been **submitted**. It does **NOT** mean the swap executed. The order can still end up `FAILED` on-chain (with `txHash: null`) due to slippage, insufficient liquidity, routing, or network issues. Treating `success: true` / `orderId` as "done" is a real failure mode — it makes you report a success that never happened.
 
-After receiving an `orderId`, always tell the user:
-1. The swap has been submitted and is **pending** execution.
-2. They can check its status with `market-order list`.
-3. They should verify the result before considering the swap complete.
+**You MUST do this after every `market-order swap` — do not skip it:**
+1. **Do NOT tell the user the swap succeeded yet.** At most say it has been *submitted* and you are confirming.
+2. **Poll `market-order list --orderId <orderId> --json` until `status` reaches a terminal state** (`FINISHED` or `FAILED`). `PENDING` is not terminal — keep polling.
+3. **Report based on the terminal status, not on the submit response:**
+   - `FINISHED` → report success, include `txHash` and actual received amount.
+   - `FAILED` → **tell the user it failed** (note `txHash` may be `null`); do not present it as success or leave it ambiguous. Suggest retrying or a different token if appropriate.
+   - Still `PENDING` after a reasonable wait (e.g. ~30s) → tell the user it is *still processing*, not that it succeeded; keep an eye on it or let them re-check with `market-order list`.
 
 ---
 

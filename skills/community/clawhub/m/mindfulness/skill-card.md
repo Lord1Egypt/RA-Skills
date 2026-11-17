@@ -1,46 +1,59 @@
-## Description: <br>
-Track mindfulness habits, run guided meditations, and improve calm focus with adaptive routines, reflective logs, and context-aware practice plans. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Track mindfulness habits, run guided meditations, and improve calm focus with adaptive routines, reflective logs, and context-aware practice plans.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users use this skill for mindfulness coaching support, guided meditation sessions, structured local practice logs, and adaptive routine recommendations. It is intended for self-regulation and habit support, not clinical diagnosis or treatment. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Local mindfulness logs may contain sensitive wellness or personal details. <br>
-Mitigation: Review proposed writes to ~/mindfulness/ before approving them and avoid storing highly sensitive medical, crisis, or private personal details unless intentionally needed. <br>
-Risk: Mindfulness coaching could be mistaken for clinical diagnosis or treatment. <br>
-Mitigation: Use the skill for self-regulation and habit support only; seek professional or emergency support for crisis, self-harm risk, severe distress, or clinical needs. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/mindfulness) <br>
-- [Setup - Mindfulness](setup.md) <br>
-- [Practice Modes - Mindfulness](practice-modes.md) <br>
-- [Guided Meditations - Mindfulness](guided-meditations.md) <br>
-- [Session Log Template - Mindfulness](session-log-template.md) <br>
-- [Recommendation Rules - Mindfulness](recommendation-rules.md) <br>
-- [Reflection Prompts - Mindfulness](reflection-prompts.md) <br>
-- [Memory Template - Mindfulness](memory-template.md) <br>
+## Use Case:
 
+External users use this skill to run short guided mindfulness practices, track sessions, and receive adaptive recommendations for building a sustainable routine. It supports coaching and habit formation, not clinical diagnosis or treatment.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Configuration] <br>
-**Output Format:** [Markdown and plain-language guided practice instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose local Markdown notes under ~/mindfulness/ only after user confirmation.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Mindfulness session logs, state ratings, routine plans, and recommendation notes may be retained locally in ~/mindfulness/.
+
+Mitigation: Confirm local file writes before saving, limit stored details to practice-relevant information, and adjust setup preferences for activation and proactive suggestions.
+
+Risk: Mindfulness coaching can be misread as clinical support during severe distress or crisis.
+
+Mitigation: Keep the skill scoped to practice support and direct crisis, self-harm risk, or severe distress to immediate professional or emergency support.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/mindfulness)
+- [Setup and activation flow](artifact/setup.md)
+- [Memory structure and templates](artifact/memory-template.md)
+- [Practice modes](artifact/practice-modes.md)
+- [Session log template](artifact/session-log-template.md)
+- [Guided meditations](artifact/guided-meditations.md)
+- [Recommendation rules](artifact/recommendation-rules.md)
+- [Reflection prompts](artifact/reflection-prompts.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown guidance with structured session logs, routine plans, reflections, and recommendation notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Instruction-only skill; optional local mindfulness notes are stored only after user confirmation.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,53 @@
-## Description: <br>
-Helps users check Tongji University MBA thesis archive and anonymized-submission formatting requirements, including covers, headers, directories, appendices, acknowledgements, figure and table labels, keywords, and file naming. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+同济大学MBA论文归档格式规范逐条核对助手，帮助用户核对归档版与隐名版论文的封面、目录、页眉、图表编号、关键词、致谢、附录和文件命名要求。
 
-## Publisher: <br>
-[wuxi304-collab](https://clawhub.ai/user/wuxi304-collab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wuxi304-collab](https://clawhub.ai/user/wuxi304-collab)
 
-## Use Case: <br>
-Students and reviewers use this skill to produce or review step-by-step formatting checklists for Tongji University MBA thesis archive and anonymized submissions. It provides guidance for common Word document formatting issues and final submission checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: University thesis formatting requirements may change or vary by program, cohort, or submission channel. <br>
-Mitigation: Verify the skill's guidance against current university instructions before final submission. <br>
-Risk: Thesis documents can contain personal details such as student IDs, advisor names, and complete thesis text. <br>
-Mitigation: Share only the information needed for the formatting task and avoid unnecessary personal or thesis content. <br>
+## Use Case:
 
+Students, reviewers, and support staff working on Tongji University MBA thesis submission use this skill to check archival and blind-review document formatting requirements. It provides module-by-module checklist guidance and targeted Word document troubleshooting notes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wuxi304-collab/tongji-thesis-archive) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/wuxi304-collab) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown checklists and concise instructional text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Chinese-language checklist items and document-formatting guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: release evidence) <br>
+Risk: The checklist is specific to Tongji University MBA thesis archiving and blind-review formatting, so it may be incorrect for other programs, universities, or submission cycles.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the current Tongji MBA submission requirements before relying on the checklist, and verify applicability before using it for any other thesis workflow.
+
+Risk: Word document formatting advice may miss document-specific layout issues introduced by templates, section breaks, text boxes, or cross-run text.
+
+Mitigation: Reopen the final document and manually verify each required section, date, heading, page, and file name after applying changes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wuxi304-collab/skills/tongji-thesis-archive)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown checklist and written guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Chinese-language thesis formatting checklists and Word document troubleshooting steps.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

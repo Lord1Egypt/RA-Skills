@@ -1,44 +1,54 @@
-## Description: <br>
-Bidirectional bridge between Pilot Protocol and Slack channels. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Bidirectional bridge between Pilot Protocol and Slack channels.
 
-## Publisher: <br>
-[teoslayer](https://clawhub.ai/user/teoslayer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[teoslayer](https://clawhub.ai/user/teoslayer)
 
-## Use Case: <br>
-Developers and engineers use this skill to connect Pilot agents with Slack workspaces for outbound notifications and inbound Slack event handling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+AGPL-3.0
 
-## Known Risks and Mitigations: <br>
-Risk: The Slack command interface can expose daemon status or peer information to chat participants. <br>
-Mitigation: Use the skill only in a trusted Slack workspace and restrict inbound events to approved channels and users. <br>
-Risk: Slack webhook URLs can grant message-posting access if disclosed. <br>
-Mitigation: Protect webhook URLs as secrets and rotate them if exposure is suspected. <br>
-Risk: The always-on bridge depends on an external relay implementation. <br>
-Mitigation: Inspect the relay implementation before running the bridge and avoid exposing sensitive daemon information by default. <br>
+## Use Case:
 
+Developers and agent builders use this skill to connect Pilot agents with Slack workspaces for outbound notifications and inbound Slack event streams.
 
-## Reference(s): <br>
-- [Pilot Protocol](https://pilotprotocol.network) <br>
-- [ClawHub skill page](https://clawhub.ai/teoslayer/pilot-slack-bridge) <br>
-- [Publisher profile](https://clawhub.ai/user/teoslayer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires pilotctl on PATH, a running Pilot daemon, a Slack webhook URL, and an HTTP relay service for inbound Slack events.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: A public Pilot daemon example can expose the bridge beyond the intended deployment boundary.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a controlled Slack workspace and private Pilot deployment; avoid the public daemon example unless strong authentication and network allowlisting are in place.
+
+Risk: Slack text can trigger operational lookups such as daemon status or peer lists without documented access controls.
+
+Mitigation: Restrict or remove Slack commands that return daemon status or peer lists unless workspace authorization and command access controls are documented.
+
+## Reference(s):
+
+- [Pilot Protocol](https://pilotprotocol.network)
+- [ClawHub skill page](https://clawhub.ai/teoslayer/skills/pilot-slack-bridge)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands assume pilotctl is installed, a Pilot daemon is running, and Slack webhook and relay services are configured.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

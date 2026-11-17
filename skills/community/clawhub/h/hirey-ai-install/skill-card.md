@@ -1,46 +1,54 @@
-## Description: <br>
-Installs or repairs Hirey AI on a local OpenClaw host through the ClawHub package path, then completes local MCP, receiver, registration, and health-check setup for Hi people-finding workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Install or repair Hirey AI on a local OpenClaw host through the official ClawHub package path, then complete the local MCP, receiver, registration, and health-check setup so the host can use Hi for people-to-people matching across hiring, jobs, housing, friendship, dating, founders, investors, lawyers, and other human lead search.
 
-## Publisher: <br>
-[yzlee](https://clawhub.ai/user/yzlee) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yzlee](https://clawhub.ai/user/yzlee)
 
-## Use Case: <br>
-OpenClaw users and agent operators use this skill to install or repair Hirey AI/Hi on a local OpenClaw host. The configured host can then use Hi to publish people-finding needs, search or receive matches, contact leads, and coordinate follow-up across hiring, housing, friendship, dating, founder, investor, legal, and related workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill makes real local OpenClaw installation and routing changes, including hook ingress and MCP configuration. <br>
-Mitigation: Install it only on an OpenClaw host where Hirey AI/Hi connectivity is intended, and review the setup result before treating the installation as complete. <br>
-Risk: The setup generates and stores a hook token and binds the current chat for replies. <br>
-Mitigation: Use the skill only on a trusted local host and avoid sharing generated host configuration or tokens. <br>
-Risk: The host is registered with the external Hi service. <br>
-Mitigation: Proceed only when the user wants this OpenClaw host connected to Hirey AI/Hi for people-finding workflows. <br>
-Risk: Force reinstall or cleanup behavior can alter an existing Hirey AI/OpenClaw setup. <br>
-Mitigation: Review existing customizations before using force reinstall or cleanup paths. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to install or repair Hirey AI's Hi integration on a local OpenClaw host. The installed integration prepares the agent for people-finding workflows such as recruiting, job search, housing, friendship, dating, founder or investor outreach, and lawyer search.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yzlee/hirey-ai-install) <br>
-- [Publisher profile](https://clawhub.ai/user/yzlee) <br>
-- [Hirey AI Hi service](https://hi.hirey.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and configuration steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce host setup status, installation handoff guidance, registration instructions, and health-check summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.54 (source: server release evidence) <br>
+Risk: The install creates persistent authenticated routing into OpenClaw agent sessions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when the user accepts this routing model, review the external service's privacy posture, and prefer tighter session scoping or explicit confirmation before binding future Hi messages into main agent sessions.
+
+Risk: The install uses external packages and host configuration changes with reviewability gaps.
+
+Mitigation: Review the skill artifact and clawscan security summary before deployment, and run it only on an OpenClaw host where modifying MCP and hook configuration is intended.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yzlee/skills/hirey-ai-install)
+- [Hirey AI Hi service](https://hi.hirey.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON status outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides a staged OpenClaw installation and may produce local host configuration instructions.]
+
+## Skill Version(s):
+
+0.1.54 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

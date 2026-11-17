@@ -9,7 +9,12 @@ nothing here can trade, move money, or modify account state.
 Usage:
   python sentiment_client.py sentiment NVDA
   python sentiment_client.py mood
-  python sentiment_client.py cluster-buys --days 7
+  python sentiment_client.py cluster-buys --days 30
+  python sentiment_client.py peers ZS
+  python sentiment_client.py mentions ZS --start 1787184000000 --end 1790467200000
+
+A free-tier preview is a slice of the window, not the window: shaped output keeps
+totalCount next to the rows so a slice is never read as a complete tally.
 """
 import argparse
 import json
@@ -19,25 +24,55 @@ import urllib.error
 import urllib.parse
 import urllib.request
 
-BASE = "https://app.sentisense.ai"
+API_ORIGIN = "https://app.sentisense.ai"
+
+
+class NoRedirect(urllib.request.HTTPRedirectHandler):
+    def redirect_request(self, req, fp, code, msg, headers, newurl):
+        return None
+
+
+def sentisense_api_url(path, params=None):
+    """Return a validated API URL at the one origin allowed to receive the key."""
+    url = urllib.parse.urljoin(API_ORIGIN + "/", path)
+    parsed = urllib.parse.urlparse(url)
+    if (parsed.scheme != "https" or parsed.hostname != "app.sentisense.ai"
+            or parsed.netloc != "app.sentisense.ai"
+            or parsed.username is not None or parsed.password is not None
+            or parsed.port is not None):
+        raise ValueError("API URL must use https://app.sentisense.ai with no credentials or port")
+    if params:
+        url += ("&" if parsed.query else "?") + urllib.parse.urlencode(params)
+    return url
 
 
 def get(path, **params):
-    """GET {BASE}{path} with the auth header; returns parsed JSON or exits non-zero."""
+    """GET the fixed API origin with the auth header; returns parsed JSON or exits non-zero."""
     params = {k: v for k, v in params.items() if v is not None}
-    url = BASE + path + ("?" + urllib.parse.urlencode(params) if params else "")
+    url = sentisense_api_url(path, params)
     key = os.environ.get("SENTISENSE_API_KEY")
     if not key:
         sys.exit("SENTISENSE_API_KEY is not set "
-                 "(free key: https://app.sentisense.ai/settings/developer)")
+                 "(free key: https://app.sentisense.ai/get-api-key)")
     req = urllib.request.Request(url, headers={"X-SentiSense-API-Key": key})
     try:
-        with urllib.request.urlopen(req, timeout=20) as r:
+        with urllib.request.build_opener(NoRedirect).open(req, timeout=20) as r:
             return json.load(r)
     except urllib.error.HTTPError as e:
         retry = e.headers.get("Retry-After")
         hint = f" (Retry-After: {retry}s)" if retry else ""
-        sys.exit(f"HTTP {e.code} on {path}{hint}")
+        detail = ""
+        try:
+            body = json.loads(e.read().decode("utf-8", "replace"))
+            if isinstance(body, dict):
+                detail = f": {body.get('error', '')} {body.get('message', '')}".rstrip()
+                names = [x.get("ticker") or x.get("urlSlug") or x.get("name")
+                         for x in body.get("suggestions") or [] if isinstance(x, dict)]
+                if names:
+                    detail += f" (suggestions: {', '.join(str(n) for n in names if n)})"
+        except (ValueError, OSError):
+            pass
+        sys.exit(f"HTTP {e.code} on {path}{hint}{detail}")
     except urllib.error.URLError as e:
         hint = ("  (CA certs missing: common on macOS python.org installs. Run the bundled "
                 "'Install Certificates.command', or use the system python3, or plain curl.)"
@@ -57,20 +92,80 @@ def rows(raw):
     return raw
 
 
+def get_all(path, page_size=500, **params):
+    """Walk a paged {isPreview, totalCount, data} feed to the end of its window.
+
+    One call is one page, not the window: keep requesting while
+    offset + len(data) < totalCount. A preview envelope stops after the first page,
+    since FREE keys cannot page past their slice. Returns the first envelope with
+    `data` holding every row."""
+    first = get(path, limit=page_size, offset=0, **params)
+    if not isinstance(first, dict) or "data" not in first or first.get("isPreview"):
+        return first
+    data, total = list(first["data"]), first.get("totalCount")
+    while isinstance(total, int) and len(data) < total:
+        page = get(path, limit=page_size, offset=len(data), **params)
+        batch = page.get("data", []) if isinstance(page, dict) else []
+        if not batch:
+            break
+        data.extend(batch)
+    return {**first, "data": data}
+
+
+def _returned(data):
+    """Rows actually returned: a list's length, or the calendar's data.earnings length."""
+    if isinstance(data, list):
+        return len(data)
+    if isinstance(data, dict) and isinstance(data.get("earnings"), list):
+        return len(data["earnings"])
+    return None
+
+
 def shaped(raw):
-    """Like rows(), but preserve free-tier preview flags so callers can tag truncated
-    data. When the envelope is a preview, keep isPreview/previewReason alongside data;
-    otherwise return the bare rows unchanged."""
-    if isinstance(raw, dict) and raw.get("isPreview") and "data" in raw:
-        return {"isPreview": True, "previewReason": raw.get("previewReason"), "data": raw["data"]}
+    """Like rows(), but keep what a caller needs to label a partial result.
+
+    A preview (or any envelope whose totalCount exceeds the rows returned) is a slice of
+    the window, not the window: keep isPreview, previewReason, totalCount and the returned
+    count beside data, with a note, so nobody tallies the slice as the whole window or
+    reads a missing row as an absence. A complete envelope returns the bare rows."""
+    if not (isinstance(raw, dict) and "data" in raw):
+        return rows(raw)
+    total, returned = raw.get("totalCount"), _returned(raw["data"])
+    partial = isinstance(total, int) and returned is not None and total > returned
+    if raw.get("isPreview") or partial:
+        out = {"isPreview": bool(raw.get("isPreview")), "previewReason": raw.get("previewReason"),
+               "totalCount": total, "returned": returned}
+        if partial:
+            meta = raw["data"].get("metadata") if isinstance(raw["data"], dict) else None
+            if isinstance(meta, dict) and meta.get("windowStart"):
+                out["note"] = (f"covers {meta.get('windowStart')} to {meta.get('windowEnd')} only: "
+                               f"{returned} of {total} matching events; the rest fall outside this "
+                               "window, they are not unscheduled")
+            else:
+                out["note"] = (f"slice: {returned} of {total} in the window; do not infer absence "
+                               "or a complete tally from it")
+        out["data"] = raw["data"]
+        return out
     return rows(raw)
 
 
 def sentiment_scalar(series):
-    """Latest polarity in [-1, 1]; the float is nested at metricValue.value.value."""
+    """Latest reading of a metric series, read from the flat top-level `value`.
+
+    Every point carries `value` alongside the nested `metricValue`, and it holds the scalar
+    for every metric type. Prefer it: the nested depth is not uniform, since a value metric
+    nests at metricValue.value.value while a count metric like `mentions` puts the integer
+    at metricValue.value. The nested read stays as a fallback for a point without `value`."""
     if not series:
         return None
-    return float(series[-1]["metricValue"]["value"]["value"])
+    point = series[-1]
+    flat = point.get("value")
+    if flat is not None:
+        return float(flat)
+    nested = (point.get("metricValue") or {}).get("value")
+    if isinstance(nested, dict):
+        nested = nested.get("value")
+    return None if nested is None else float(nested)
 
 
 def out(obj):
@@ -84,10 +179,27 @@ def metric(ticker, slug, start=None, end=None):
 
 def cmd_series(a, slug):
     series = metric(a.ticker, slug, getattr(a, "start", None), getattr(a, "end", None))
-    out({"metric": slug, "ticker": a.ticker.upper(),
-         "points": len(series) if isinstance(series, list) else None,
-         "latest": sentiment_scalar(series) if slug in ("sentiment", "sentisense") else
-                   (series[-1] if isinstance(series, list) and series else None)})
+    pts = series if isinstance(series, list) else []
+    last = pts[-1] if pts else {}
+    result = {"metric": slug, "ticker": a.ticker.upper(), "points": len(pts),
+              "latest": sentiment_scalar(pts), "latestTimestamp": last.get("timestamp")}
+    if slug == "sentisense":
+        # Direction lives on the sentisense series: that day's bull, bear and directional.
+        result["latestProperties"] = (last.get("metricValue") or {}).get("properties")
+    if getattr(a, "points", False):
+        result["series"] = [{"timestamp": p.get("timestamp"), "value": p.get("value"),
+                             "properties": (p.get("metricValue") or {}).get("properties")}
+                            for p in pts]
+    out(result)
+
+
+def cmd_peers(a):
+    """Curated peer slugs for workflow 6; each slug works as a metric handle."""
+    g = get(f"/api/v1/stocks/{urllib.parse.quote(a.ticker.upper(), safe='')}/graph", depth=1, cap=75)
+    names = {n.get("slug"): n.get("displayName") for n in g.get("nodes", [])}
+    peers = (g.get("groups") or {}).get("peers", [])
+    out({"ticker": g.get("ticker"), "root": g.get("root"), "truncated": g.get("truncated"),
+         "peers": [{"slug": p, "displayName": names.get(p)} for p in peers]})
 
 
 def cmd_mood(_a):
@@ -113,10 +225,12 @@ def cmd_mood(_a):
 
 
 def cmd_holders(a):
-    quarters = get("/api/v1/institutional/quarters")  # bare array, [0] is latest
+    quarters = get("/api/v1/institutional/quarters")  # bare array, newest first
     if not quarters:
         sys.exit("no institutional quarters available")
-    q = quarters[0].get("reportDate")
+    # Skip a quarter still filing (pending: true); fall back to [0] only if all are pending.
+    settled = [q for q in quarters if not q.get("pending")]
+    q = (settled or quarters)[0].get("reportDate")
     out(shaped(get(f"/api/v1/institutional/holders/{urllib.parse.quote(a.ticker.upper(), safe='')}", reportDate=q)))
 
 
@@ -135,8 +249,12 @@ def main():
         return sp
 
     # sentiment / score / mentions / social dominance time series
-    s = ticker_cmd("sentiment"); s.add_argument("--start"); s.add_argument("--end")
-    ticker_cmd("score"); ticker_cmd("mentions"); ticker_cmd("dominance")
+    for name in ("sentiment", "score", "mentions", "dominance"):
+        s = ticker_cmd(name)
+        s.add_argument("--start", help="epoch milliseconds")
+        s.add_argument("--end", help="epoch milliseconds")
+        s.add_argument("--points", action="store_true", help="print every point, not just the latest")
+    ticker_cmd("peers")
     simple("mood")
     # AI insights
     ticker_cmd("insights"); simple("market-insights"); ticker_cmd("insight-types")
@@ -148,6 +266,7 @@ def main():
     ticker_cmd("holders"); ticker_cmd("consensus")
     ticker_cmd("actions", ("--days", "90")); ticker_cmd("estimates")
     aa = simple("analyst-activity"); aa.add_argument("--days", default="7")
+    aa.add_argument("--action-types", default=None)  # CSV, e.g. UPGRADE,DOWNGRADE,INITIATE
     # calendar / news / stories / quotes
     ticker_cmd("earnings")
     ticker_cmd("news", ("--limit", "8"))
@@ -172,6 +291,8 @@ def main():
         cmd_series(a, "social_dominance")
     elif a.cmd == "mood":
         cmd_mood(a)
+    elif a.cmd == "peers":
+        cmd_peers(a)
     elif a.cmd == "insights":
         out(shaped(get(f"/api/v1/insights/stock/{TE}")))
     elif a.cmd == "market-insights":
@@ -183,7 +304,7 @@ def main():
     elif a.cmd == "insider":
         out(shaped(get(f"/api/v1/insider/trades/{TE}", lookbackDays=days)))
     elif a.cmd == "congress":
-        out(shaped(get("/api/v1/politicians/activity", lookbackDays=days)))
+        out(shaped(get_all("/api/v1/politicians/activity", lookbackDays=days)))
     elif a.cmd == "filings":
         out(shaped(get(f"/api/v1/politicians/filings/{TE}", lookbackDays=days)))
     elif a.cmd == "holders":
@@ -195,7 +316,8 @@ def main():
     elif a.cmd == "estimates":
         out(shaped(get(f"/api/v1/analyst/{TE}/estimates")))
     elif a.cmd == "analyst-activity":
-        out(shaped(get("/api/v1/analyst/activity", lookbackDays=days)))
+        out(shaped(get_all("/api/v1/analyst/activity", lookbackDays=days,
+                       actionTypes=getattr(a, "action_types", None))))
     elif a.cmd == "earnings":
         out(shaped(get("/api/v1/calendar/earnings", ticker=T)))
     elif a.cmd == "news":

@@ -1,0 +1,131 @@
+{
+  "standard": "ISO 9001:2015",
+  "templates": [
+    {"id": "QMS-PF-001", "name": "文件控制程序", "name_en": "Document Control Procedure", "clause": "7.5", "high_voltage_check": ["document_control"],
+     "sections": [
+       {"title": "1 目的", "title_en": "1 Purpose", "content": "对质量管理体系文件的编制、审批、发放、使用、更改、作废与回收进行有效控制，确保各部门使用文件的有效版本。"},
+       {"title": "2 适用范围", "title_en": "2 Scope", "content": "适用于{company}质量管理体系所有文件（管理手册、程序文件、作业指导书、记录表单及外来文件）的控制。"},
+       {"title": "3 职责", "title_en": "3 Responsibility", "content": "3.1 质量部：归口管理，维护《受控文件清单》。\n3.2 各部门：负责本部门文件的编制、初审与保管。\n3.3 管理者代表：批准程序文件与手册。"},
+       {"title": "4 工作程序", "title_en": "4 Procedure", "content": "4.1 文件分类与编号：按 QMS-PF-001-F01《文件编号规则》执行。\n4.2 编制与审批：编制人→部门负责人审核→管理者代表批准。\n4.3 发放：加盖“受控”章，登记《文件发放回收记录》。\n4.4 更改：填写《文件更改申请单》，审批后换版，旧版回收。\n4.5 作废：加盖“作废”章，留至少一份存档，其余销毁。\n4.6 外来文件：识别、登记、控制分发，跟踪换版。"},
+       {"title": "5 相关文件", "title_en": "5 Related Docs", "content": "QMS-PF-002 记录控制程序；文件编号规则。"},
+       {"title": "6 记录", "title_en": "6 Records", "content": "受控文件清单；文件发放回收记录；文件更改申请单。"}
+     ]},
+    {"id": "QMS-PF-002", "name": "记录控制程序", "name_en": "Record Control Procedure", "clause": "7.5", "high_voltage_check": ["record_control"],
+     "sections": [
+       {"title": "1 目的", "title_en": "1 Purpose", "content": "对质量记录的标识、贮存、保护、检索、保留和处置实施控制，提供产品与体系符合性的证据。"},
+       {"title": "2 适用范围", "title_en": "2 Scope", "content": "适用于{company}质量管理体系运行中形成的各类记录。"},
+       {"title": "3 职责", "title_en": "3 Responsibility", "content": "3.1 质量部：归口管理，制定《记录清单》明确保存期。\n3.2 各部门：按职责填写、收集、归档本部门的记录。"},
+       {"title": "4 工作程序", "title_en": "4 Procedure", "content": "4.1 记录填写：真实、清晰、及时，不得随意涂改（改错划改并签注）。\n4.2 标识与编目：按《记录清单》编号。\n4.3 贮存与保护：专柜/电子归档，防潮防火防丢失。\n4.4 检索：建立索引，便于快速调取。\n4.5 保留期：依法规与客户要求确定，到期评审后处置。"},
+       {"title": "5 相关文件", "title_en": "5 Related Docs", "content": "QMS-PF-001 文件控制程序。"},
+       {"title": "6 记录", "title_en": "6 Records", "content": "记录清单；记录归档台账。"}
+     ]},
+    {"id": "QMS-PF-003", "name": "人力资源控制程序", "name_en": "Human Resource Control Procedure", "clause": "7.2", "high_voltage_check": ["personnel_competence"],
+     "sections": [
+       {"title": "1 目的", "title_en": "1 Purpose", "content": "确保从事影响产品质量工作的人员具备相应能力，并通过培训与意识提升满足岗位要求。"},
+       {"title": "2 适用范围", "title_en": "2 Scope", "content": "适用于{company}所有与质量有关岗位的人员管理。"},
+       {"title": "3 职责", "title_en": "3 Responsibility", "content": "3.1 行政人事部：归口管理，建立岗位能力矩阵。\n3.2 各部门：提出培训需求，落实岗位能力要求。"},
+       {"title": "4 工作程序", "title_en": "4 Procedure", "content": "4.1 岗位胜任条件：编制《岗位说明书》与能力矩阵。\n4.2 能力评价：入职/转岗时评价，不足者培训或调配。\n4.3 培训实施：年度计划→实施→考核→记录。\n4.4 意识：宣贯质量方针、相关方要求与不符合后果。\n4.5 持证：特殊工种/关键岗位须持有效证件上岗。"},
+       {"title": "5 相关文件", "title_en": "5 Related Docs", "content": "岗位说明书；年度培训计划。"},
+       {"title": "6 记录", "title_en": "6 Records", "content": "员工能力矩阵；培训签到与考核记录；证书台账。"}
+     ]},
+    {"id": "QMS-PF-004", "name": "产品和服务要求控制程序", "name_en": "Requirements for Products/Services Procedure", "clause": "8.2", "high_voltage_check": [],
+     "sections": [
+       {"title": "1 目的", "title_en": "1 Purpose", "content": "确保充分理解与确认顾客要求，并在承诺前完成评审，避免能力与履约风险。"},
+       {"title": "2 适用范围", "title_en": "2 Scope", "content": "适用于{company}与顾客有关的过程（合同、订单、投标、口头要求）。"},
+       {"title": "3 职责", "title_en": "3 Responsibility", "content": "3.1 市场/销售部：归口，组织评审与顾客沟通。\n3.2 相关技术、生产、质量部门：参与评审。"},
+       {"title": "4 工作程序", "title_en": "4 Procedure", "content": "4.1 要求识别：明示与隐含要求、法规、交付与售后。\n4.2 评审时机：投标前、合同/订单接受前、要求变更时。\n4.3 评审内容：要求明确、与既往不一致已解决、组织有能力满足。\n4.4 记录与沟通：保留评审结果及与顾客的沟通记录。"},
+       {"title": "5 相关文件", "title_en": "5 Related Docs", "content": "设计和开发控制程序；生产和服务提供控制程序。"},
+       {"title": "6 记录", "title_en": "6 Records", "content": "合同评审表；顾客沟通记录；订单台账。"}
+     ]},
+    {"id": "QMS-PF-005", "name": "设计和开发控制程序", "name_en": "Design & Development Procedure", "clause": "8.3", "high_voltage_check": ["design_control"],
+     "sections": [
+       {"title": "1 目的", "title_en": "1 Purpose", "content": "对设计和开发过程实施系统控制，确保输出满足输入要求与顾客期望。"},
+       {"title": "2 适用范围", "title_en": "2 Scope", "content": "适用于{company}新产品/新工艺的设计和开发。"},
+       {"title": "3 职责", "title_en": "3 Responsibility", "content": "3.1 研发部：归口，编制设计计划。\n3.2 跨部门小组：参与评审、验证、确认。\n3.3 管理者代表：批准关键里程碑。"},
+       {"title": "4 工作程序", "title_en": "4 Procedure", "content": "4.1 策划：制定设计计划，明确阶段、职责、评审/验证/确认安排。\n4.2 输入：功能性能、法规、以前类似设计、接口，形成《设计输入清单》并评审。\n4.3 输出：图纸、BOM、规范，满足输入并可验证，形成《设计输出清单》。\n4.4 评审：阶段评审，识别问题并跟踪。\n4.5 验证：通过试验/比对确认输出满足输入。\n4.6 确认：在使用条件下确认满足预期用途。\n4.7 变更：评估影响，评审批准，保留变更记录。"},
+       {"title": "5 相关文件", "title_en": "5 Related Docs", "content": "文件控制程序；生产和服务提供控制程序。"},
+       {"title": "6 记录", "title_en": "6 Records", "content": "设计计划；设计输入/输出清单；评审/验证/确认报告；设计变更单。"}
+     ]},
+    {"id": "QMS-PF-006", "name": "采购及外部供方控制程序", "name_en": "Procurement & External Provider Procedure", "clause": "8.4", "high_voltage_check": [],
+     "sections": [
+       {"title": "1 目的", "title_en": "1 Purpose", "content": "确保外部提供的过程、产品和服务符合要求，并对供方实施有效评价与控制。"},
+       {"title": "2 适用范围", "title_en": "2 Scope", "content": "适用于{company}物料、外包与服务的采购及供方管理。"},
+       {"title": "3 职责", "title_en": "3 Responsibility", "content": "3.1 采购部：归口，组织供方评价。\n3.2 质量/技术部：参与供方能力与来料检验。"},
+       {"title": "4 工作程序", "title_en": "4 Procedure", "content": "4.1 供方选择与评价：资质、能力、质量、交付、价格，建立《合格供方名录》。\n4.2 控制方式与程度：依产品重要度分级管控（驻厂/定期审核/进货检验）。\n4.3 采购信息：明确规格、图样、验收准则。\n4.4 验证：进货检验或供方现场验证，保留记录。\n4.5 再评价：定期考核，不合格移出名录。"},
+       {"title": "5 相关文件", "title_en": "5 Related Docs", "content": "产品和服务的放行控制程序；不合格品控制程序。"},
+       {"title": "6 记录", "title_en": "6 Records", "content": "合格供方名录；供方评价表；采购订单；进货检验记录。"}
+     ]},
+    {"id": "QMS-PF-007", "name": "生产和服务提供控制程序", "name_en": "Production & Service Provision Procedure", "clause": "8.5", "high_voltage_check": ["production_control"],
+     "sections": [
+       {"title": "1 目的", "title_en": "1 Purpose", "content": "在受控条件下进行生产和服务提供，确保过程稳定与输出合格。"},
+       {"title": "2 适用范围", "title_en": "2 Scope", "content": "适用于{company}生产制造与现场服务的全过程。"},
+       {"title": "3 职责", "title_en": "3 Responsibility", "content": "3.1 生产部：归口，组织实施。\n3.2 质量部：过程监视与检验。\n3.3 设备部：设备工装维护。"},
+       {"title": "4 工作程序", "title_en": "4 Procedure", "content": "4.1 受控条件：作业指导书、合格设备、监视资源、人员资格、确认过程、放行准则。\n4.2 首件检验：批量前确认，合格方可量产。\n4.3 过程参数监控：对关键工序参数实施监视并记录。\n4.4 标识与可追溯：产品/状态标识，批次/序列号可追溯。\n4.5 顾客财产：登记、保护、异常报告。\n4.6 防护：搬运、贮存、包装、交付全过程防护。"},
+       {"title": "5 相关文件", "title_en": "5 Related Docs", "content": "产品和服务的放行控制程序；监视和测量资源控制程序。"},
+       {"title": "6 记录", "title_en": "6 Records", "content": "生产工单；首件检验记录；过程参数监控记录；产品标识卡。"}
+     ]},
+    {"id": "QMS-PF-008", "name": "监视和测量资源控制程序", "name_en": "Monitoring & Measuring Resources Procedure", "clause": "7.1.5", "high_voltage_check": [],
+     "sections": [
+       {"title": "1 目的", "title_en": "1 Purpose", "content": "确保监视和测量资源满足使用要求，量值可追溯至国家或国际标准。"},
+       {"title": "2 适用范围", "title_en": "2 Scope", "content": "适用于{company}检验、试验、计量设备与软件。"},
+       {"title": "3 职责", "title_en": "3 Responsibility", "content": "3.1 质量部：归口，建立计量台账与校准计划。\n3.2 使用部门：正确使用与日常维护。"},
+       {"title": "4 工作程序", "title_en": "4 Procedure", "content": "4.1 配备：依测量任务选择适宜资源。\n4.2 校准/检定：按期送外部或内部校准，贴合格/准用/停用标识。\n4.3 失效处理：发现偏离时评价以往结果有效性。\n4.4 防护：存放、搬运、使用环境符合要求。"},
+       {"title": "5 相关文件", "title_en": "5 Related Docs", "content": "文件和记录控制程序。"},
+       {"title": "6 记录", "title_en": "6 Records", "content": "计量器具台账；校准/检定证书；量值溯源图。"}
+     ]},
+    {"id": "QMS-PF-009", "name": "产品和服务的放行控制程序", "name_en": "Inspection & Release Procedure", "clause": "8.6", "high_voltage_check": ["inspection_release"],
+     "sections": [
+       {"title": "1 目的", "title_en": "1 Purpose", "content": "策划并实施监视和测量，在适当阶段验证产品要求已满足，未经授权不得放行。"},
+       {"title": "2 适用范围", "title_en": "2 Scope", "content": "适用于{company}进货、过程与最终产品的检验与放行。"},
+       {"title": "3 职责", "title_en": "3 Responsibility", "content": "3.1 质量部：归口，编制检验规范。\n3.2 授权检验员：实施检验并签字放行。"},
+       {"title": "4 工作程序", "title_en": "4 Procedure", "content": "4.1 策划：制定《检验规范》明确时机、抽样、准则、方法。\n4.2 进货检验：按规范对采购物资验证。\n4.3 过程检验：在工序间设置检验点。\n4.4 最终检验：成品交付前完成，形成《出厂检验报告》。\n4.5 放行授权：仅授权人员签字，记录可追溯。\n4.6 紧急放行：须审批并留可追溯标识，后续补检。"},
+       {"title": "5 相关文件", "title_en": "5 Related Docs", "content": "生产和服务提供控制程序；不合格品控制程序。"},
+       {"title": "6 记录", "title_en": "6 Records", "content": "进货检验单；过程检验单；出厂检验报告；授权签字名录。"}
+     ]},
+    {"id": "QMS-PF-010", "name": "不合格品控制程序", "name_en": "Nonconforming Output Control Procedure", "clause": "8.7", "high_voltage_check": ["nonconformity_control"],
+     "sections": [
+       {"title": "1 目的", "title_en": "1 Purpose", "content": "对不合格输出进行识别与控制，防止非预期使用或交付。"},
+       {"title": "2 适用范围", "title_en": "2 Scope", "content": "适用于{company}采购、生产、交付各阶段的不合格品。"},
+       {"title": "3 职责", "title_en": "3 Responsibility", "content": "3.1 质量部：归口，判定与组织评审。\n3.2 责任部门：实施处置。"},
+       {"title": "4 工作程序", "title_en": "4 Procedure", "content": "4.1 识别与标识：隔离、贴“不合格”标识。\n4.2 评审与处置：返工、返修、让步接收、降级、报废，须授权批准。\n4.3 让步接收：须顾客批准（适用时）。\n4.4 纠正后验证：返工/返修后重新检验。\n4.5 交付后不合格：通知、召回或补救，保留记录。"},
+       {"title": "5 相关文件", "title_en": "5 Related Docs", "content": "纠正措施控制程序；记录控制程序。"},
+       {"title": "6 记录", "title_en": "6 Records", "content": "不合格品报告；返工/返修单；让步接收审批单。"}
+     ]},
+    {"id": "QMS-PF-011", "name": "纠正措施控制程序", "name_en": "Corrective Action Procedure", "clause": "10.2", "high_voltage_check": ["nonconformity_control"],
+     "sections": [
+       {"title": "1 目的", "title_en": "1 Purpose", "content": "针对不合格（含顾客投诉、内审不符合）采取纠正措施，消除根因以防止再发生。"},
+       {"title": "2 适用范围", "title_en": "2 Scope", "content": "适用于{company}质量管理体系各过程的不合格处置。"},
+       {"title": "3 职责", "title_en": "3 Responsibility", "content": "3.1 质量部：归口，组织根因分析与验证。\n3.2 责任部门：实施纠正与纠正措施。"},
+       {"title": "4 工作程序", "title_en": "4 Procedure", "content": "4.1 评审不合格：核实事实与影响。\n4.2 根因分析：5Why/鱼骨图/8D，区分根本原因与表象。\n4.3 制定措施：针对根因，明确责任与时限。\n4.4 实施与验证：执行后验证有效性。\n4.5 标准化：更新文件/培训，防止再发生。\n4.6 记录与评审：重大措施提交管理评审。"},
+       {"title": "5 相关文件", "title_en": "5 Related Docs", "content": "内部审核控制程序；管理评审控制程序。"},
+       {"title": "6 记录", "title_en": "6 Records", "content": "纠正措施报告（8D）；措施验证记录；根因分析表。"}
+     ]},
+    {"id": "QMS-PF-012", "name": "内部审核控制程序", "name_en": "Internal Audit Procedure", "clause": "9.2", "high_voltage_check": ["internal_audit"],
+     "sections": [
+       {"title": "1 目的", "title_en": "1 Purpose", "content": "通过有计划的内部审核，确认体系是否符合策划、标准与组织要求，并有效实施与改进。"},
+       {"title": "2 适用范围", "title_en": "2 Scope", "content": "适用于{company}质量管理体系全部条款与部门。"},
+       {"title": "3 职责", "title_en": "3 Responsibility", "content": "3.1 质量部：归口，编制方案与计划。\n3.2 审核组：独立实施（审核员不审自己）。\n3.3 管理者代表：批准方案。"},
+       {"title": "4 工作程序", "title_en": "4 Procedure", "content": "4.1 审核方案：年度覆盖全部条款与部门。\n4.2 审核计划：明确范围、准则、日程、组员。\n4.3 实施：首次会→文件与现场取证→开具不符合项→末次会。\n4.4 报告：形成《内审报告》。\n4.5 跟踪：责任部门限期整改，验证关闭。\n4.6 记录归档。"},
+       {"title": "5 相关文件", "title_en": "5 Related Docs", "content": "纠正措施控制程序；管理评审控制程序。"},
+       {"title": "6 记录", "title_en": "6 Records", "content": "年度审核方案；审核计划；检查表；不符合报告；内审报告。"}
+     ]},
+    {"id": "QMS-PF-013", "name": "管理评审控制程序", "name_en": "Management Review Procedure", "clause": "9.3", "high_voltage_check": ["management_review"],
+     "sections": [
+       {"title": "1 目的", "title_en": "1 Purpose", "content": "由最高管理者评审体系的适宜性、充分性与有效性，确定改进与资源需求。"},
+       {"title": "2 适用范围", "title_en": "2 Scope", "content": "适用于{company}质量管理体系的管理评审。"},
+       {"title": "3 职责", "title_en": "3 Responsibility", "content": "3.1 管理者代表：归口，组织准备与跟踪。\n3.2 各部门：提供评审输入。\n3.3 最高管理者：主持并决议。"},
+       {"title": "4 工作程序", "title_en": "4 Procedure", "content": "4.1 频次：每年至少一次，重大变化可追加。\n4.2 输入：绩效与趋势、顾客满意、不符合与纠正措施、审核结果、风险机遇、改进建议。\n4.3 输出：体系与过程改进、资源需求、方针目标调整、潜在失效应对。\n4.4 决议跟踪：形成纪要，措施纳入纠正/改进计划并验证。"},
+       {"title": "5 相关文件", "title_en": "5 Related Docs", "content": "内部审核控制程序；纠正措施控制程序。"},
+       {"title": "6 记录", "title_en": "6 Records", "content": "管理评审计划；评审输入汇总；评审决议纪要；措施跟踪表。"}
+     ]},
+    {"id": "QMS-PF-014", "name": "质量目标管理程序", "name_en": "Quality Objectives Procedure", "clause": "6.2", "high_voltage_check": [],
+     "sections": [
+       {"title": "1 目的", "title_en": "1 Purpose", "content": "建立、分解、监视和评审质量目标，确保与方针一致并可测量、可实现。"},
+       {"title": "2 适用范围", "title_en": "2 Scope", "content": "适用于{company}各层级质量目标的制定与管理。"},
+       {"title": "3 职责", "title_en": "3 Responsibility", "content": "3.1 质量部：归口，汇总监测。\n3.2 各部门：制定并达成本部门目标。"},
+       {"title": "4 工作程序", "title_en": "4 Procedure", "content": "4.1 制定：与方针一致，可测量，分解到职能/层次，设定方法与时限。\n4.2 展开：纳入部门计划，资源保障。\n4.3 监视：定期统计分析，未达标时预警。\n4.4 评审：管理评审时评价达成与适宜性，必要时更新。"},
+       {"title": "5 相关文件", "title_en": "5 Related Docs", "content": "管理评审控制程序；绩效监视测量程序。"},
+       {"title": "6 记录", "title_en": "6 Records", "content": "质量目标分解表；目标达成统计表。"}
+     ]}
+  ]
+}

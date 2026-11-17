@@ -1,6 +1,14 @@
 {
-  "ownerId": "kn71vj2bggm64jqt6rtpx73z3x84a5ak",
+  "title": "MAI Transcribe",
   "slug": "mai-transcribe",
-  "version": "0.1.1",
-  "publishedAt": 1775513885846
+  "version": "0.1.0",
+  "summary": "Transcribe audio with Microsoft's MAI-Transcribe-1 model via Azure AI Speech.",
+  "license": "MIT",
+  "keywords": [
+    "azure",
+    "speech",
+    "transcription",
+    "mai",
+    "speech-to-text"
+  ]
 }

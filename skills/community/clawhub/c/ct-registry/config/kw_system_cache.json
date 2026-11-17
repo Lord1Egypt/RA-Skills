@@ -1,0 +1,2648 @@
+{
+  "ace633f89bbc3c00cb95451b521b5fa4": {
+    "base": "司美格鲁肽",
+    "intent": "disease",
+    "zh": [
+      "司美格鲁肽"
+    ],
+    "en": [
+      "semaglutide"
+    ],
+    "per_source": {
+      "ctgov": {
+        "lang": "en",
+        "keywords": [
+          "semaglutide"
+        ],
+        "note": "精确匹配 → 类别/靶点族枚举具体药名；裸类别易漏"
+      },
+      "who": {
+        "lang": "en",
+        "keywords": [
+          "semaglutide"
+        ],
+        "note": "同 CT.gov；结构化须填具体药名"
+      },
+      "cde": {
+        "lang": "zh",
+        "keywords": [
+          "司美格鲁肽"
+        ],
+        "note": "子串匹配，多词兜底"
+      },
+      "chictr": {
+        "lang": "zh",
+        "keywords": [
+          "司美格鲁肽"
+        ],
+        "note": "子串匹配，多词兜底"
+      }
+    },
+    "risks": [
+      "未识别为药物类别，按疾病/干预词直接中英互译检索"
+    ],
+    "confidence": {
+      "term_map": [
+        "semaglutide",
+        "司美格鲁肽"
+      ],
+      "alias": [],
+      "class_enum": [],
+      "speculative": []
+    }
+  },
+  "1632e38dbf9946d8ecd89c621af1283d": {
+    "base": "semaglutide",
+    "intent": "disease",
+    "zh": [
+      "司美格鲁肽"
+    ],
+    "en": [
+      "semaglutide"
+    ],
+    "per_source": {
+      "ctgov": {
+        "lang": "en",
+        "keywords": [
+          "semaglutide"
+        ],
+        "note": "精确匹配 → 类别/靶点族枚举具体药名；裸类别易漏"
+      },
+      "who": {
+        "lang": "en",
+        "keywords": [
+          "semaglutide"
+        ],
+        "note": "同 CT.gov；结构化须填具体药名"
+      },
+      "cde": {
+        "lang": "zh",
+        "keywords": [
+          "司美格鲁肽"
+        ],
+        "note": "子串匹配，多词兜底"
+      },
+      "chictr": {
+        "lang": "zh",
+        "keywords": [
+          "司美格鲁肽"
+        ],
+        "note": "子串匹配，多词兜底"
+      }
+    },
+    "risks": [
+      "未识别为药物类别，按疾病/干预词直接中英互译检索"
+    ],
+    "confidence": {
+      "term_map": [
+        "semaglutide",
+        "司美格鲁肽"
+      ],
+      "alias": [],
+      "class_enum": [],
+      "speculative": []
+    }
+  },
+  "13835b6f29a269e5f2137e08b6972bd4": {
+    "base": "GLP-1 RA",
+    "intent": "intervention",
+    "zh": [],
+    "en": [
+      "glp-1 ra"
+    ],
+    "per_source": {
+      "ctgov": {
+        "lang": "en",
+        "keywords": [
+          "glp-1 ra"
+        ],
+        "note": "精确匹配 → 类别/靶点族枚举具体药名；裸类别易漏"
+      },
+      "who": {
+        "lang": "en",
+        "keywords": [
+          "glp-1 ra"
+        ],
+        "note": "同 CT.gov；结构化须填具体药名"
+      },
+      "cde": {
+        "lang": "zh",
+        "keywords": [],
+        "note": "子串匹配，多词兜底"
+      },
+      "chictr": {
+        "lang": "zh",
+        "keywords": [],
+        "note": "子串匹配，多词兜底"
+      }
+    },
+    "risks": [
+      "未识别为药物类别，按疾病/干预词直接中英互译检索"
+    ],
+    "confidence": {
+      "term_map": [
+        "glp-1 ra"
+      ],
+      "alias": [],
+      "class_enum": [],
+      "speculative": []
+    }
+  },
+  "163e1d6ecfdad6a6a02f83a544afd766": {
+    "base": "Zolbetuximab",
+    "intent": "drug_class",
+    "zh": [
+      "Zolbetuxi单抗"
+    ],
+    "en": [
+      "zolbetuximab"
+    ],
+    "per_source": {
+      "ctgov": {
+        "lang": "en",
+        "keywords": [
+          "zolbetuximab"
+        ],
+        "note": "精确匹配 → 类别/靶点族枚举具体药名；裸类别易漏"
+      },
+      "who": {
+        "lang": "en",
+        "keywords": [
+          "zolbetuximab"
+        ],
+        "note": "同 CT.gov；结构化须填具体药名"
+      },
+      "cde": {
+        "lang": "zh",
+        "keywords": [
+          "Zolbetuxi单抗"
+        ],
+        "note": "子串匹配，多词兜底"
+      },
+      "chictr": {
+        "lang": "zh",
+        "keywords": [
+          "Zolbetuxi单抗"
+        ],
+        "note": "子串匹配，多词兜底"
+      }
+    },
+    "risks": [
+      "未识别为药物类别，按疾病/干预词直接中英互译检索"
+    ],
+    "confidence": {
+      "term_map": [
+        "Zolbetuxi单抗",
+        "zolbetuximab"
+      ],
+      "alias": [],
+      "class_enum": [],
+      "speculative": []
+    }
+  },
+  "2df3ac4eca241eb8ea772e0b2981d22c": {
+    "base": "佐妥昔单抗+恶心呕吐",
+    "intent": "drug_class",
+    "zh": [
+      "佐妥昔单抗+恶心呕吐"
+    ],
+    "en": [
+      "zolbetuximab + nausea/vomiting"
+    ],
+    "per_source": {
+      "ctgov": {
+        "lang": "en",
+        "keywords": [
+          "zolbetuximab + nausea/vomiting"
+        ],
+        "note": "精确匹配 → 类别/靶点族枚举具体药名；裸类别易漏"
+      },
+      "who": {
+        "lang": "en",
+        "keywords": [
+          "zolbetuximab + nausea/vomiting"
+        ],
+        "note": "同 CT.gov；结构化须填具体药名"
+      },
+      "cde": {
+        "lang": "zh",
+        "keywords": [
+          "佐妥昔单抗+恶心呕吐"
+        ],
+        "note": "子串匹配，多词兜底"
+      },
+      "chictr": {
+        "lang": "zh",
+        "keywords": [
+          "佐妥昔单抗+恶心呕吐"
+        ],
+        "note": "子串匹配，多词兜底"
+      }
+    },
+    "risks": [
+      "未识别为药物类别，按疾病/干预词直接中英互译检索"
+    ],
+    "confidence": {
+      "term_map": [
+        "zolbetuximab + nausea/vomiting",
+        "佐妥昔单抗+恶心呕吐"
+      ],
+      "alias": [],
+      "class_enum": [],
+      "speculative": []
+    }
+  },
+  "91f82e9f2070d26d8ace37a7339d4d71": {
+    "base": "佐妥昔单抗",
+    "intent": "drug_class",
+    "zh": [
+      "佐妥昔单抗"
+    ],
+    "en": [
+      "zolbetuximab"
+    ],
+    "per_source": {
+      "ctgov": {
+        "lang": "en",
+        "keywords": [
+          "zolbetuximab"
+        ],
+        "note": "精确匹配 → 类别/靶点族枚举具体药名；裸类别易漏"
+      },
+      "who": {
+        "lang": "en",
+        "keywords": [
+          "zolbetuximab"
+        ],
+        "note": "同 CT.gov；结构化须填具体药名"
+      },
+      "cde": {
+        "lang": "zh",
+        "keywords": [
+          "佐妥昔单抗"
+        ],
+        "note": "子串匹配，多词兜底"
+      },
+      "chictr": {
+        "lang": "zh",
+        "keywords": [
+          "佐妥昔单抗"
+        ],
+        "note": "子串匹配，多词兜底"
+      }
+    },
+    "risks": [
+      "未识别为药物类别，按疾病/干预词直接中英互译检索"
+    ],
+    "confidence": {
+      "term_map": [
+        "zolbetuximab",
+        "佐妥昔单抗"
+      ],
+      "alias": [],
+      "class_enum": [],
+      "speculative": []
+    }
+  },
+  "198dbccc4fda16f54ce53f202610d21d": {
+    "base": "克拉屈滨",
+    "intent": "intervention",
+    "zh": [
+      "克拉屈滨"
+    ],
+    "en": [
+      "Cladribine"
+    ],
+    "per_source": {
+      "ctgov": {
+        "lang": "en",
+        "keywords": [
+          "Cladribine"
+        ],
+        "note": "精确匹配 → 类别/靶点族枚举具体药名；裸类别易漏"
+      },
+      "who": {
+        "lang": "en",
+        "keywords": [
+          "Cladribine"
+        ],
+        "note": "同 CT.gov；结构化须填具体药名"
+      },
+      "cde": {
+        "lang": "zh",
+        "keywords": [
+          "克拉屈滨"
+        ],
+        "note": "子串匹配，多词兜底"
+      },
+      "chictr": {
+        "lang": "zh",
+        "keywords": [
+          "克拉屈滨"
+        ],
+        "note": "子串匹配，多词兜底"
+      }
+    },
+    "risks": [
+      "未识别为药物类别，按疾病/干预词直接中英互译检索",
+      "英文词来自在线翻译（'Cladribine'），未经人工验证，建议抽查"
+    ],
+    "confidence": {
+      "term_map": [
+        "克拉屈滨"
+      ],
+      "alias": [],
+      "class_enum": [],
+      "speculative": [],
+      "online": [
+        "Cladribine"
+      ]
+    }
+  },
+  "094a1d733862fcc928e1335ef0772400": {
+    "base": "osimertinib NSCLC",
+    "intent": "intervention",
+    "zh": [
+      "总体生存imerti替尼 非小细胞肺癌"
+    ],
+    "en": [
+      "osimertinib nsclc"
+    ],
+    "per_source": {
+      "ctgov": {
+        "lang": "en",
+        "keywords": [
+          "osimertinib nsclc"
+        ],
+        "note": "精确匹配 → 类别/靶点族枚举具体药名；裸类别易漏"
+      },
+      "who": {
+        "lang": "en",
+        "keywords": [
+          "osimertinib nsclc"
+        ],
+        "note": "同 CT.gov；结构化须填具体药名"
+      },
+      "cde": {
+        "lang": "zh",
+        "keywords": [
+          "总体生存imerti替尼 非小细胞肺癌"
+        ],
+        "note": "子串匹配，多词兜底"
+      },
+      "chictr": {
+        "lang": "zh",
+        "keywords": [
+          "总体生存imerti替尼 非小细胞肺癌"
+        ],
+        "note": "子串匹配，多词兜底"
+      }
+    },
+    "risks": [
+      "未识别为药物类别，按疾病/干预词直接中英互译检索"
+    ],
+    "confidence": {
+      "term_map": [
+        "osimertinib nsclc",
+        "总体生存imerti替尼 非小细胞肺癌"
+      ],
+      "alias": [],
+      "class_enum": [],
+      "speculative": []
+    }
+  },
+  "15920c1e35e96d64c7aa35c7485e4fe6": {
+    "base": "SGLT2 抑制剂（钠-葡萄糖共转运蛋白 2 抑制剂）对比安慰剂，对 2 型糖尿病患者主要不良心血管事件（MACE：心血管死亡 / 非致死性心肌梗死 / 非致死性卒中复合终点）发生率的影响",
+    "intent": "intervention",
+    "zh": [
+      "SGLT2 抑制剂（钠-葡萄糖共转运蛋白 2 抑制剂）对比安慰剂，对 2 型糖尿病患者主要不良心血管事件（MACE：心血管死亡 / 非致死性心肌梗死 / 非致死性卒中复合终点）发生率的影响"
+    ],
+    "en": [
+      "Effect of SGLT2 inhibitors (sodium-glucose co-transporter 2 inhibitors) versus placebo on the incidence of major adverse cardiovascular events (mace: composite endpoint of cardiovascular death/non-fatal myocardial infarction/non-fatal stroke) in patients with type 2 diabetes"
+    ],
+    "per_source": {
+      "ctgov": {
+        "lang": "en",
+        "keywords": [
+          "Effect of SGLT2 inhibitors (sodium-glucose co-transporter 2 inhibitors) versus placebo on the incidence of major adverse cardiovascular events (mace: composite endpoint of cardiovascular death/non-fatal myocardial infarction/non-fatal stroke) in patients with type 2 diabetes"
+        ],
+        "note": "精确匹配 → 类别/靶点族枚举具体药名；裸类别易漏"
+      },
+      "who": {
+        "lang": "en",
+        "keywords": [
+          "Effect of SGLT2 inhibitors (sodium-glucose co-transporter 2 inhibitors) versus placebo on the incidence of major adverse cardiovascular events (mace: composite endpoint of cardiovascular death/non-fatal myocardial infarction/non-fatal stroke) in patients with type 2 diabetes"
+        ],
+        "note": "同 CT.gov；结构化须填具体药名"
+      },
+      "cde": {
+        "lang": "zh",
+        "keywords": [
+          "SGLT2 抑制剂（钠-葡萄糖共转运蛋白 2 抑制剂）对比安慰剂，对 2 型糖尿病患者主要不良心血管事件（MACE：心血管死亡 / 非致死性心肌梗死 / 非致死性卒中复合终点）发生率的影响"
+        ],
+        "note": "子串匹配，多词兜底"
+      },
+      "chictr": {
+        "lang": "zh",
+        "keywords": [
+          "SGLT2 抑制剂（钠-葡萄糖共转运蛋白 2 抑制剂）对比安慰剂，对 2 型糖尿病患者主要不良心血管事件（MACE：心血管死亡 / 非致死性心肌梗死 / 非致死性卒中复合终点）发生率的影响"
+        ],
+        "note": "子串匹配，多词兜底"
+      }
+    },
+    "risks": [
+      "未识别为药物类别，按疾病/干预词直接中英互译检索",
+      "英文词来自在线翻译（'Effect of SGLT2 inhibitors (sodium-glucose co-transporter 2 inhibitors) versus placebo on the incidence of major adverse cardiovascular events (mace: composite endpoint of cardiovascular death/non-fatal myocardial infarction/non-fatal stroke) in patients with type 2 diabetes'），未经人工验证，建议抽查"
+    ],
+    "confidence": {
+      "term_map": [
+        "SGLT2 抑制剂（钠-葡萄糖共转运蛋白 2 抑制剂）对比安慰剂，对 2 型糖尿病患者主要不良心血管事件（MACE：心血管死亡 / 非致死性心肌梗死 / 非致死性卒中复合终点）发生率的影响"
+      ],
+      "alias": [],
+      "class_enum": [],
+      "speculative": [],
+      "online": [
+        "Effect of SGLT2 inhibitors (sodium-glucose co-transporter 2 inhibitors) versus placebo on the incidence of major adverse cardiovascular events (mace: composite endpoint of cardiovascular death/non-fatal myocardial infarction/non-fatal stroke) in patients with type 2 diabetes"
+      ]
+    }
+  },
+  "3e949b0aaa091cf78d8ad3acd1e76d84": {
+    "base": "SGLT2 抑制剂对比安慰剂，对 2 型糖尿病患者主要不良心血管事件（MACE）发生率的影响",
+    "intent": "intervention",
+    "zh": [
+      "SGLT2 抑制剂对比安慰剂，对 2 型糖尿病患者主要不良心血管事件（MACE）发生率的影响"
+    ],
+    "en": [
+      "Effect of SGLT2 inhibitors versus placebo on the incidence of major adverse cardiovascular events (mace) in patients with type 2 diabetes"
+    ],
+    "per_source": {
+      "ctgov": {
+        "lang": "en",
+        "keywords": [
+          "Effect of SGLT2 inhibitors versus placebo on the incidence of major adverse cardiovascular events (mace) in patients with type 2 diabetes"
+        ],
+        "note": "精确匹配 → 类别/靶点族枚举具体药名；裸类别易漏"
+      },
+      "who": {
+        "lang": "en",
+        "keywords": [
+          "Effect of SGLT2 inhibitors versus placebo on the incidence of major adverse cardiovascular events (mace) in patients with type 2 diabetes"
+        ],
+        "note": "同 CT.gov；结构化须填具体药名"
+      },
+      "cde": {
+        "lang": "zh",
+        "keywords": [
+          "SGLT2 抑制剂对比安慰剂，对 2 型糖尿病患者主要不良心血管事件（MACE）发生率的影响"
+        ],
+        "note": "子串匹配，多词兜底"
+      },
+      "chictr": {
+        "lang": "zh",
+        "keywords": [
+          "SGLT2 抑制剂对比安慰剂，对 2 型糖尿病患者主要不良心血管事件（MACE）发生率的影响"
+        ],
+        "note": "子串匹配，多词兜底"
+      }
+    },
+    "risks": [
+      "未识别为药物类别，按疾病/干预词直接中英互译检索",
+      "英文词来自在线翻译（'Effect of SGLT2 inhibitors versus placebo on the incidence of major adverse cardiovascular events (mace) in patients with type 2 diabetes'），未经人工验证，建议抽查"
+    ],
+    "confidence": {
+      "term_map": [
+        "SGLT2 抑制剂对比安慰剂，对 2 型糖尿病患者主要不良心血管事件（MACE）发生率的影响"
+      ],
+      "alias": [],
+      "class_enum": [],
+      "speculative": [],
+      "online": [
+        "Effect of SGLT2 inhibitors versus placebo on the incidence of major adverse cardiovascular events (mace) in patients with type 2 diabetes"
+      ]
+    }
+  },
+  "cf7bb4974357e9426e6bee2a1bd55a0e": {
+    "base": "某 ARB 类降压药对比安慰剂，对治疗 8 周后收缩压（SBP）降低值的影响",
+    "intent": "intervention",
+    "zh": [
+      "某 ARB 类降压药对比安慰剂，对治疗 8 周后收缩压（SBP）降低值的影响"
+    ],
+    "en": [
+      "Effect of an ARB antihypertensive agent versus placebo on systolic blood pressure (SBP) reduction after 8 weeks of treatment"
+    ],
+    "per_source": {
+      "ctgov": {
+        "lang": "en",
+        "keywords": [
+          "Effect of an ARB antihypertensive agent versus placebo on systolic blood pressure (SBP) reduction after 8 weeks of treatment"
+        ],
+        "note": "精确匹配 → 类别/靶点族枚举具体药名；裸类别易漏"
+      },
+      "who": {
+        "lang": "en",
+        "keywords": [
+          "Effect of an ARB antihypertensive agent versus placebo on systolic blood pressure (SBP) reduction after 8 weeks of treatment"
+        ],
+        "note": "同 CT.gov；结构化须填具体药名"
+      },
+      "cde": {
+        "lang": "zh",
+        "keywords": [
+          "某 ARB 类降压药对比安慰剂，对治疗 8 周后收缩压（SBP）降低值的影响"
+        ],
+        "note": "子串匹配，多词兜底"
+      },
+      "chictr": {
+        "lang": "zh",
+        "keywords": [
+          "某 ARB 类降压药对比安慰剂，对治疗 8 周后收缩压（SBP）降低值的影响"
+        ],
+        "note": "子串匹配，多词兜底"
+      }
+    },
+    "risks": [
+      "未识别为药物类别，按疾病/干预词直接中英互译检索",
+      "英文词来自在线翻译（'Effect of an ARB antihypertensive agent versus placebo on systolic blood pressure (SBP) reduction after 8 weeks of treatment'），未经人工验证，建议抽查"
+    ],
+    "confidence": {
+      "term_map": [
+        "某 ARB 类降压药对比安慰剂，对治疗 8 周后收缩压（SBP）降低值的影响"
+      ],
+      "alias": [],
+      "class_enum": [],
+      "speculative": [],
+      "online": [
+        "Effect of an ARB antihypertensive agent versus placebo on systolic blood pressure (SBP) reduction after 8 weeks of treatment"
+      ]
+    }
+  },
+  "1c2308c98c91abe3d36fabaa684d555b": {
+    "base": "PD-1 抑制剂对比化疗，对晚期非小细胞肺癌（NSCLC）总生存期（OS）的影响",
+    "intent": "drug_class",
+    "zh": [
+      "PD-1 抑制剂对比化疗，对晚期非小细胞肺癌（NSCLC）总生存期（OS）的影响",
+      "帕博利珠单抗",
+      "纳武利尤单抗",
+      "西米普利单抗"
+    ],
+    "en": [
+      "cemiplimab",
+      "nivolumab",
+      "pembrolizumab"
+    ],
+    "per_source": {
+      "ctgov": {
+        "lang": "en",
+        "keywords": [
+          "cemiplimab",
+          "nivolumab",
+          "pembrolizumab"
+        ],
+        "note": "精确匹配 → 类别/靶点族枚举具体药名；裸类别易漏"
+      },
+      "who": {
+        "lang": "en",
+        "keywords": [
+          "cemiplimab",
+          "nivolumab",
+          "pembrolizumab"
+        ],
+        "note": "同 CT.gov；结构化须填具体药名"
+      },
+      "cde": {
+        "lang": "zh",
+        "keywords": [
+          "PD-1 抑制剂对比化疗，对晚期非小细胞肺癌（NSCLC）总生存期（OS）的影响",
+          "帕博利珠单抗",
+          "纳武利尤单抗",
+          "西米普利单抗"
+        ],
+        "note": "子串匹配，多词兜底"
+      },
+      "chictr": {
+        "lang": "zh",
+        "keywords": [
+          "PD-1 抑制剂对比化疗，对晚期非小细胞肺癌（NSCLC）总生存期（OS）的影响",
+          "帕博利珠单抗",
+          "纳武利尤单抗",
+          "西米普利单抗"
+        ],
+        "note": "子串匹配，多词兜底"
+      }
+    },
+    "risks": [
+      "未识别为药物类别，按疾病/干预词直接中英互译检索"
+    ],
+    "confidence": {
+      "term_map": [
+        "PD-1 抑制剂对比化疗，对晚期非小细胞肺癌（NSCLC）总生存期（OS）的影响",
+        "cemiplimab",
+        "nivolumab",
+        "pembrolizumab",
+        "帕博利珠单抗",
+        "纳武利尤单抗",
+        "西米普利单抗"
+      ],
+      "alias": [],
+      "class_enum": [
+        "cemiplimab",
+        "nivolumab",
+        "pembrolizumab"
+      ],
+      "speculative": []
+    }
+  },
+  "c3356583b15a9a028e36f160cd076427": {
+    "base": "ACEI / ARB / CCB 对比安慰剂，对 SBP 达标率（<140/90）的影响的网状 Meta",
+    "intent": "intervention",
+    "zh": [
+      "ACEI / ARB / CCB 对比安慰剂，对 SBP 达标率（<140/90）的影响的网状 Meta"
+    ],
+    "en": [
+      "ACEI/ARB/CCB vs. placebo, effect on SBP compliance rate (< 140/90) Reticular Meta"
+    ],
+    "per_source": {
+      "ctgov": {
+        "lang": "en",
+        "keywords": [
+          "ACEI/ARB/CCB vs. placebo, effect on SBP compliance rate (< 140/90) Reticular Meta"
+        ],
+        "note": "精确匹配 → 类别/靶点族枚举具体药名；裸类别易漏"
+      },
+      "who": {
+        "lang": "en",
+        "keywords": [
+          "ACEI/ARB/CCB vs. placebo, effect on SBP compliance rate (< 140/90) Reticular Meta"
+        ],
+        "note": "同 CT.gov；结构化须填具体药名"
+      },
+      "cde": {
+        "lang": "zh",
+        "keywords": [
+          "ACEI / ARB / CCB 对比安慰剂，对 SBP 达标率（<140/90）的影响的网状 Meta"
+        ],
+        "note": "子串匹配，多词兜底"
+      },
+      "chictr": {
+        "lang": "zh",
+        "keywords": [
+          "ACEI / ARB / CCB 对比安慰剂，对 SBP 达标率（<140/90）的影响的网状 Meta"
+        ],
+        "note": "子串匹配，多词兜底"
+      }
+    },
+    "risks": [
+      "未识别为药物类别，按疾病/干预词直接中英互译检索",
+      "英文词来自在线翻译（'ACEI/ARB/CCB vs. placebo, effect on SBP compliance rate (< 140/90) Reticular Meta'），未经人工验证，建议抽查"
+    ],
+    "confidence": {
+      "term_map": [
+        "ACEI / ARB / CCB 对比安慰剂，对 SBP 达标率（<140/90）的影响的网状 Meta"
+      ],
+      "alias": [],
+      "class_enum": [],
+      "speculative": [],
+      "online": [
+        "ACEI/ARB/CCB vs. placebo, effect on SBP compliance rate (< 140/90) Reticular Meta"
+      ]
+    }
+  },
+  "585e539ea8de443e90aba629b8c8e0a4": {
+    "base": "某靶向药 A / 靶向药 B 对比安慰剂，对晚期实体瘤客观缓解率（ORR）的影响",
+    "intent": "intervention",
+    "zh": [
+      "某靶向药 A / 靶向药 B 对比安慰剂，对晚期实体瘤客观缓解率（ORR）的影响"
+    ],
+    "en": [
+      "Effect of a targeted drug A/targeted drug B versus placebo on the objective response rate (ORR) of advanced solid tumors"
+    ],
+    "per_source": {
+      "ctgov": {
+        "lang": "en",
+        "keywords": [
+          "Effect of a targeted drug A/targeted drug B versus placebo on the objective response rate (ORR) of advanced solid tumors"
+        ],
+        "note": "精确匹配 → 类别/靶点族枚举具体药名；裸类别易漏"
+      },
+      "who": {
+        "lang": "en",
+        "keywords": [
+          "Effect of a targeted drug A/targeted drug B versus placebo on the objective response rate (ORR) of advanced solid tumors"
+        ],
+        "note": "同 CT.gov；结构化须填具体药名"
+      },
+      "cde": {
+        "lang": "zh",
+        "keywords": [
+          "某靶向药 A / 靶向药 B 对比安慰剂，对晚期实体瘤客观缓解率（ORR）的影响"
+        ],
+        "note": "子串匹配，多词兜底"
+      },
+      "chictr": {
+        "lang": "zh",
+        "keywords": [
+          "某靶向药 A / 靶向药 B 对比安慰剂，对晚期实体瘤客观缓解率（ORR）的影响"
+        ],
+        "note": "子串匹配，多词兜底"
+      }
+    },
+    "risks": [
+      "未识别为药物类别，按疾病/干预词直接中英互译检索",
+      "英文词来自在线翻译（'Effect of a targeted drug A/targeted drug B versus placebo on the objective response rate (ORR) of advanced solid tumors'），未经人工验证，建议抽查"
+    ],
+    "confidence": {
+      "term_map": [
+        "某靶向药 A / 靶向药 B 对比安慰剂，对晚期实体瘤客观缓解率（ORR）的影响"
+      ],
+      "alias": [],
+      "class_enum": [],
+      "speculative": [],
+      "online": [
+        "Effect of a targeted drug A/targeted drug B versus placebo on the objective response rate (ORR) of advanced solid tumors"
+      ]
+    }
+  },
+  "843d24da6bca5e937315a62dde86b12a": {
+    "base": "侧向流抗原检测对比 RT-PCR 金标准，对新冠感染的诊断准确性合并",
+    "intent": "intervention",
+    "zh": [
+      "侧向流抗原检测对比 RT-PCR 金标准，对新冠感染的诊断准确性合并"
+    ],
+    "en": [
+      "Lateral flow antigen testing versus RT-PCR gold standard, combined diagnostic accuracy for COVID-19"
+    ],
+    "per_source": {
+      "ctgov": {
+        "lang": "en",
+        "keywords": [
+          "Lateral flow antigen testing versus RT-PCR gold standard, combined diagnostic accuracy for COVID-19"
+        ],
+        "note": "精确匹配 → 类别/靶点族枚举具体药名；裸类别易漏"
+      },
+      "who": {
+        "lang": "en",
+        "keywords": [
+          "Lateral flow antigen testing versus RT-PCR gold standard, combined diagnostic accuracy for COVID-19"
+        ],
+        "note": "同 CT.gov；结构化须填具体药名"
+      },
+      "cde": {
+        "lang": "zh",
+        "keywords": [
+          "侧向流抗原检测对比 RT-PCR 金标准，对新冠感染的诊断准确性合并"
+        ],
+        "note": "子串匹配，多词兜底"
+      },
+      "chictr": {
+        "lang": "zh",
+        "keywords": [
+          "侧向流抗原检测对比 RT-PCR 金标准，对新冠感染的诊断准确性合并"
+        ],
+        "note": "子串匹配，多词兜底"
+      }
+    },
+    "risks": [
+      "未识别为药物类别，按疾病/干预词直接中英互译检索",
+      "英文词来自在线翻译（'Lateral flow antigen testing versus RT-PCR gold standard, combined diagnostic accuracy for COVID-19'），未经人工验证，建议抽查"
+    ],
+    "confidence": {
+      "term_map": [
+        "侧向流抗原检测对比 RT-PCR 金标准，对新冠感染的诊断准确性合并"
+      ],
+      "alias": [],
+      "class_enum": [],
+      "speculative": [],
+      "online": [
+        "Lateral flow antigen testing versus RT-PCR gold standard, combined diagnostic accuracy for COVID-19"
+      ]
+    }
+  },
+  "cb9caf0f522be1c96620639b31553276": {
+    "base": "BCG 疫苗对比安慰剂/未接种，对结核病（TB）发病风险的影响",
+    "intent": "intervention",
+    "zh": [
+      "BCG 疫苗对比安慰剂/未接种，对结核病（TB）发病风险的影响"
+    ],
+    "en": [
+      "Effect of BCG Vaccine vs. Placebo/Unvaccinated on Risk of Tuberculosis (TB)"
+    ],
+    "per_source": {
+      "ctgov": {
+        "lang": "en",
+        "keywords": [
+          "Effect of BCG Vaccine vs. Placebo/Unvaccinated on Risk of Tuberculosis (TB)"
+        ],
+        "note": "精确匹配 → 类别/靶点族枚举具体药名；裸类别易漏"
+      },
+      "who": {
+        "lang": "en",
+        "keywords": [
+          "Effect of BCG Vaccine vs. Placebo/Unvaccinated on Risk of Tuberculosis (TB)"
+        ],
+        "note": "同 CT.gov；结构化须填具体药名"
+      },
+      "cde": {
+        "lang": "zh",
+        "keywords": [
+          "BCG 疫苗对比安慰剂/未接种，对结核病（TB）发病风险的影响"
+        ],
+        "note": "子串匹配，多词兜底"
+      },
+      "chictr": {
+        "lang": "zh",
+        "keywords": [
+          "BCG 疫苗对比安慰剂/未接种，对结核病（TB）发病风险的影响"
+        ],
+        "note": "子串匹配，多词兜底"
+      }
+    },
+    "risks": [
+      "未识别为药物类别，按疾病/干预词直接中英互译检索",
+      "英文词来自在线翻译（'Effect of BCG Vaccine vs. Placebo/Unvaccinated on Risk of Tuberculosis (TB)'），未经人工验证，建议抽查"
+    ],
+    "confidence": {
+      "term_map": [
+        "BCG 疫苗对比安慰剂/未接种，对结核病（TB）发病风险的影响"
+      ],
+      "alias": [],
+      "class_enum": [],
+      "speculative": [],
+      "online": [
+        "Effect of BCG Vaccine vs. Placebo/Unvaccinated on Risk of Tuberculosis (TB)"
+      ]
+    }
+  },
+  "a749570259e6be4d62778fec8a7b1cc6": {
+    "base": "强化康复路径（ERAS）对比常规护理，对术后 30 天死亡率的影响",
+    "intent": "intervention",
+    "zh": [
+      "强化康复路径（ERAS）对比常规护理，对术后 30 天死亡率的影响"
+    ],
+    "en": [
+      "Effect of Enhanced Rehabilitation Pathway (eras) on 30-day postoperative mortality compared to routine care"
+    ],
+    "per_source": {
+      "ctgov": {
+        "lang": "en",
+        "keywords": [
+          "Effect of Enhanced Rehabilitation Pathway (eras) on 30-day postoperative mortality compared to routine care"
+        ],
+        "note": "精确匹配 → 类别/靶点族枚举具体药名；裸类别易漏"
+      },
+      "who": {
+        "lang": "en",
+        "keywords": [
+          "Effect of Enhanced Rehabilitation Pathway (eras) on 30-day postoperative mortality compared to routine care"
+        ],
+        "note": "同 CT.gov；结构化须填具体药名"
+      },
+      "cde": {
+        "lang": "zh",
+        "keywords": [
+          "强化康复路径（ERAS）对比常规护理，对术后 30 天死亡率的影响"
+        ],
+        "note": "子串匹配，多词兜底"
+      },
+      "chictr": {
+        "lang": "zh",
+        "keywords": [
+          "强化康复路径（ERAS）对比常规护理，对术后 30 天死亡率的影响"
+        ],
+        "note": "子串匹配，多词兜底"
+      }
+    },
+    "risks": [
+      "未识别为药物类别，按疾病/干预词直接中英互译检索",
+      "英文词来自在线翻译（'Effect of Enhanced Rehabilitation Pathway (eras) on 30-day postoperative mortality compared to routine care'），未经人工验证，建议抽查"
+    ],
+    "confidence": {
+      "term_map": [
+        "强化康复路径（ERAS）对比常规护理，对术后 30 天死亡率的影响"
+      ],
+      "alias": [],
+      "class_enum": [],
+      "speculative": [],
+      "online": [
+        "Effect of Enhanced Rehabilitation Pathway (eras) on 30-day postoperative mortality compared to routine care"
+      ]
+    }
+  },
+  "521224f4a4dd82eddad628f7d69f1ee1": {
+    "base": "认知行为疗法（CBT）对比等候名单，对抑郁严重程度（不同量表）的影响",
+    "intent": "intervention",
+    "zh": [
+      "认知行为疗法（CBT）对比等候名单，对抑郁严重程度（不同量表）的影响"
+    ],
+    "en": [
+      "Cognitive Behavioral Therapy (CBT) vs. Waiting List, Impact on Depression Severity (Different Scales)"
+    ],
+    "per_source": {
+      "ctgov": {
+        "lang": "en",
+        "keywords": [
+          "Cognitive Behavioral Therapy (CBT) vs. Waiting List, Impact on Depression Severity (Different Scales)"
+        ],
+        "note": "精确匹配 → 类别/靶点族枚举具体药名；裸类别易漏"
+      },
+      "who": {
+        "lang": "en",
+        "keywords": [
+          "Cognitive Behavioral Therapy (CBT) vs. Waiting List, Impact on Depression Severity (Different Scales)"
+        ],
+        "note": "同 CT.gov；结构化须填具体药名"
+      },
+      "cde": {
+        "lang": "zh",
+        "keywords": [
+          "认知行为疗法（CBT）对比等候名单，对抑郁严重程度（不同量表）的影响"
+        ],
+        "note": "子串匹配，多词兜底"
+      },
+      "chictr": {
+        "lang": "zh",
+        "keywords": [
+          "认知行为疗法（CBT）对比等候名单，对抑郁严重程度（不同量表）的影响"
+        ],
+        "note": "子串匹配，多词兜底"
+      }
+    },
+    "risks": [
+      "未识别为药物类别，按疾病/干预词直接中英互译检索",
+      "英文词来自在线翻译（'Cognitive Behavioral Therapy (CBT) vs. Waiting List, Impact on Depression Severity (Different Scales)'），未经人工验证，建议抽查"
+    ],
+    "confidence": {
+      "term_map": [
+        "认知行为疗法（CBT）对比等候名单，对抑郁严重程度（不同量表）的影响"
+      ],
+      "alias": [],
+      "class_enum": [],
+      "speculative": [],
+      "online": [
+        "Cognitive Behavioral Therapy (CBT) vs. Waiting List, Impact on Depression Severity (Different Scales)"
+      ]
+    }
+  },
+  "934ca22eeb268b70fec1718b33ab9349": {
+    "base": "集束化护理干预对比常规护理，对 ICU 中心静脉导管相关血流感染（CLABSI）发生率的影喇",
+    "intent": "intervention",
+    "zh": [
+      "集束化护理干预对比常规护理，对 ICU 中心静脉导管相关血流感染（CLABSI）发生率的影喇"
+    ],
+    "en": [
+      "Clustered care interventions compared to routine care for the incidence of central venous catheter-associated bloodstream infections (CLABSI) in the ICU"
+    ],
+    "per_source": {
+      "ctgov": {
+        "lang": "en",
+        "keywords": [
+          "Clustered care interventions compared to routine care for the incidence of central venous catheter-associated bloodstream infections (CLABSI) in the ICU"
+        ],
+        "note": "精确匹配 → 类别/靶点族枚举具体药名；裸类别易漏"
+      },
+      "who": {
+        "lang": "en",
+        "keywords": [
+          "Clustered care interventions compared to routine care for the incidence of central venous catheter-associated bloodstream infections (CLABSI) in the ICU"
+        ],
+        "note": "同 CT.gov；结构化须填具体药名"
+      },
+      "cde": {
+        "lang": "zh",
+        "keywords": [
+          "集束化护理干预对比常规护理，对 ICU 中心静脉导管相关血流感染（CLABSI）发生率的影喇"
+        ],
+        "note": "子串匹配，多词兜底"
+      },
+      "chictr": {
+        "lang": "zh",
+        "keywords": [
+          "集束化护理干预对比常规护理，对 ICU 中心静脉导管相关血流感染（CLABSI）发生率的影喇"
+        ],
+        "note": "子串匹配，多词兜底"
+      }
+    },
+    "risks": [
+      "未识别为药物类别，按疾病/干预词直接中英互译检索",
+      "英文词来自在线翻译（'Clustered care interventions compared to routine care for the incidence of central venous catheter-associated bloodstream infections (CLABSI) in the ICU'），未经人工验证，建议抽查"
+    ],
+    "confidence": {
+      "term_map": [
+        "集束化护理干预对比常规护理，对 ICU 中心静脉导管相关血流感染（CLABSI）发生率的影喇"
+      ],
+      "alias": [],
+      "class_enum": [],
+      "speculative": [],
+      "online": [
+        "Clustered care interventions compared to routine care for the incidence of central venous catheter-associated bloodstream infections (CLABSI) in the ICU"
+      ]
+    }
+  },
+  "5bc890e05a8d651e6f8cbc3df9c51f99": {
+    "base": "受教育年限与综合健康评分（如 SF-36）之间相关性的合并",
+    "intent": "intervention",
+    "zh": [
+      "受教育年限与综合健康评分（如 SF-36）之间相关性的合并"
+    ],
+    "en": [
+      "Combination of correlation between years of education and overall health score (e.g. SF-36)"
+    ],
+    "per_source": {
+      "ctgov": {
+        "lang": "en",
+        "keywords": [
+          "Combination of correlation between years of education and overall health score (e.g. SF-36)"
+        ],
+        "note": "精确匹配 → 类别/靶点族枚举具体药名；裸类别易漏"
+      },
+      "who": {
+        "lang": "en",
+        "keywords": [
+          "Combination of correlation between years of education and overall health score (e.g. SF-36)"
+        ],
+        "note": "同 CT.gov；结构化须填具体药名"
+      },
+      "cde": {
+        "lang": "zh",
+        "keywords": [
+          "受教育年限与综合健康评分（如 SF-36）之间相关性的合并"
+        ],
+        "note": "子串匹配，多词兜底"
+      },
+      "chictr": {
+        "lang": "zh",
+        "keywords": [
+          "受教育年限与综合健康评分（如 SF-36）之间相关性的合并"
+        ],
+        "note": "子串匹配，多词兜底"
+      }
+    },
+    "risks": [
+      "未识别为药物类别，按疾病/干预词直接中英互译检索",
+      "英文词来自在线翻译（'Combination of correlation between years of education and overall health score (e.g. SF-36)'），未经人工验证，建议抽查"
+    ],
+    "confidence": {
+      "term_map": [
+        "受教育年限与综合健康评分（如 SF-36）之间相关性的合并"
+      ],
+      "alias": [],
+      "class_enum": [],
+      "speculative": [],
+      "online": [
+        "Combination of correlation between years of education and overall health score (e.g. SF-36)"
+      ]
+    }
+  },
+  "fb604f74132b8c24eb1c8bfb3154ba9c": {
+    "base": "SGLT2 抑制剂对比安慰剂，对慢性心衰患者心血管死亡风险的影响",
+    "intent": "intervention",
+    "zh": [
+      "SGLT2 抑制剂对比安慰剂，对慢性心衰患者心血管死亡风险的影响"
+    ],
+    "en": [
+      "Effect of SGLT2 inhibitors versus placebo on the risk of cardiovascular death in patients with chronic heart failure"
+    ],
+    "per_source": {
+      "ctgov": {
+        "lang": "en",
+        "keywords": [
+          "Effect of SGLT2 inhibitors versus placebo on the risk of cardiovascular death in patients with chronic heart failure"
+        ],
+        "note": "精确匹配 → 类别/靶点族枚举具体药名；裸类别易漏"
+      },
+      "who": {
+        "lang": "en",
+        "keywords": [
+          "Effect of SGLT2 inhibitors versus placebo on the risk of cardiovascular death in patients with chronic heart failure"
+        ],
+        "note": "同 CT.gov；结构化须填具体药名"
+      },
+      "cde": {
+        "lang": "zh",
+        "keywords": [
+          "SGLT2 抑制剂对比安慰剂，对慢性心衰患者心血管死亡风险的影响"
+        ],
+        "note": "子串匹配，多词兜底"
+      },
+      "chictr": {
+        "lang": "zh",
+        "keywords": [
+          "SGLT2 抑制剂对比安慰剂，对慢性心衰患者心血管死亡风险的影响"
+        ],
+        "note": "子串匹配，多词兜底"
+      }
+    },
+    "risks": [
+      "未识别为药物类别，按疾病/干预词直接中英互译检索",
+      "英文词来自在线翻译（'Effect of SGLT2 inhibitors versus placebo on the risk of cardiovascular death in patients with chronic heart failure'），未经人工验证，建议抽查"
+    ],
+    "confidence": {
+      "term_map": [
+        "SGLT2 抑制剂对比安慰剂，对慢性心衰患者心血管死亡风险的影响"
+      ],
+      "alias": [],
+      "class_enum": [],
+      "speculative": [],
+      "online": [
+        "Effect of SGLT2 inhibitors versus placebo on the risk of cardiovascular death in patients with chronic heart failure"
+      ]
+    }
+  },
+  "64e6088858ce385959de4af56efd6d9f": {
+    "base": "成人（≥18 岁）当前吸烟率的地区间合并",
+    "intent": "intervention",
+    "zh": [
+      "成人（≥18 岁）当前吸烟率的地区间合并"
+    ],
+    "en": [
+      "Interregional combination of current smoking rates in adults (≥ 18 years)"
+    ],
+    "per_source": {
+      "ctgov": {
+        "lang": "en",
+        "keywords": [
+          "Interregional combination of current smoking rates in adults (≥ 18 years)"
+        ],
+        "note": "精确匹配 → 类别/靶点族枚举具体药名；裸类别易漏"
+      },
+      "who": {
+        "lang": "en",
+        "keywords": [
+          "Interregional combination of current smoking rates in adults (≥ 18 years)"
+        ],
+        "note": "同 CT.gov；结构化须填具体药名"
+      },
+      "cde": {
+        "lang": "zh",
+        "keywords": [
+          "成人（≥18 岁）当前吸烟率的地区间合并"
+        ],
+        "note": "子串匹配，多词兜底"
+      },
+      "chictr": {
+        "lang": "zh",
+        "keywords": [
+          "成人（≥18 岁）当前吸烟率的地区间合并"
+        ],
+        "note": "子串匹配，多词兜底"
+      }
+    },
+    "risks": [
+      "未识别为药物类别，按疾病/干预词直接中英互译检索",
+      "英文词来自在线翻译（'Interregional combination of current smoking rates in adults (≥ 18 years)'），未经人工验证，建议抽查"
+    ],
+    "confidence": {
+      "term_map": [
+        "成人（≥18 岁）当前吸烟率的地区间合并"
+      ],
+      "alias": [],
+      "class_enum": [],
+      "speculative": [],
+      "online": [
+        "Interregional combination of current smoking rates in adults (≥ 18 years)"
+      ]
+    }
+  },
+  "ab136f345d9804200cfdf4dcf0ff6bea": {
+    "base": "慢性非特异性腰痛患者入组时视觉模拟评分（VAS 0–10）基线水平的合并",
+    "intent": "intervention",
+    "zh": [
+      "慢性非特异性腰痛患者入组时视觉模拟评分（VAS 0–10）基线水平的合并"
+    ],
+    "en": [
+      "Combination of visual analogue scores (VAS 0–10) at baseline at enrollment in patients with chronic nonspecific low back pain"
+    ],
+    "per_source": {
+      "ctgov": {
+        "lang": "en",
+        "keywords": [
+          "Combination of visual analogue scores (VAS 0–10) at baseline at enrollment in patients with chronic nonspecific low back pain"
+        ],
+        "note": "精确匹配 → 类别/靶点族枚举具体药名；裸类别易漏"
+      },
+      "who": {
+        "lang": "en",
+        "keywords": [
+          "Combination of visual analogue scores (VAS 0–10) at baseline at enrollment in patients with chronic nonspecific low back pain"
+        ],
+        "note": "同 CT.gov；结构化须填具体药名"
+      },
+      "cde": {
+        "lang": "zh",
+        "keywords": [
+          "慢性非特异性腰痛患者入组时视觉模拟评分（VAS 0–10）基线水平的合并"
+        ],
+        "note": "子串匹配，多词兜底"
+      },
+      "chictr": {
+        "lang": "zh",
+        "keywords": [
+          "慢性非特异性腰痛患者入组时视觉模拟评分（VAS 0–10）基线水平的合并"
+        ],
+        "note": "子串匹配，多词兜底"
+      }
+    },
+    "risks": [
+      "未识别为药物类别，按疾病/干预词直接中英互译检索",
+      "英文词来自在线翻译（'Combination of visual analogue scores (VAS 0–10) at baseline at enrollment in patients with chronic nonspecific low back pain'），未经人工验证，建议抽查"
+    ],
+    "confidence": {
+      "term_map": [
+        "慢性非特异性腰痛患者入组时视觉模拟评分（VAS 0–10）基线水平的合并"
+      ],
+      "alias": [],
+      "class_enum": [],
+      "speculative": [],
+      "online": [
+        "Combination of visual analogue scores (VAS 0–10) at baseline at enrollment in patients with chronic nonspecific low back pain"
+      ]
+    }
+  },
+  "4b0089f7988133a96e13b3300809f668": {
+    "base": "DHA omega-3 meta analysis",
+    "intent": "intervention",
+    "zh": [
+      "DHA omega-3 METa analysis"
+    ],
+    "en": [
+      "dha omega-3 meta analysis"
+    ],
+    "per_source": {
+      "ctgov": {
+        "lang": "en",
+        "keywords": [
+          "dha omega-3 meta analysis"
+        ],
+        "note": "精确匹配 → 类别/靶点族枚举具体药名；裸类别易漏"
+      },
+      "who": {
+        "lang": "en",
+        "keywords": [
+          "dha omega-3 meta analysis"
+        ],
+        "note": "同 CT.gov；结构化须填具体药名"
+      },
+      "cde": {
+        "lang": "zh",
+        "keywords": [
+          "DHA omega-3 METa analysis"
+        ],
+        "note": "子串匹配，多词兜底"
+      },
+      "chictr": {
+        "lang": "zh",
+        "keywords": [
+          "DHA omega-3 METa analysis"
+        ],
+        "note": "子串匹配，多词兜底"
+      }
+    },
+    "risks": [
+      "未识别为药物类别，按疾病/干预词直接中英互译检索"
+    ],
+    "confidence": {
+      "term_map": [
+        "DHA omega-3 METa analysis",
+        "dha omega-3 meta analysis"
+      ],
+      "alias": [],
+      "class_enum": [],
+      "speculative": []
+    }
+  },
+  "1cb6d9b12fd514630b0885ac0d04d7a2": {
+    "base": "DHA omega-3 对抑郁症疗效",
+    "intent": "intervention",
+    "zh": [
+      "DHA omega-3 对抑郁症疗效"
+    ],
+    "en": [
+      "DHA omega-3 for depression"
+    ],
+    "per_source": {
+      "ctgov": {
+        "lang": "en",
+        "keywords": [
+          "DHA omega-3 for depression"
+        ],
+        "note": "精确匹配 → 类别/靶点族枚举具体药名；裸类别易漏"
+      },
+      "who": {
+        "lang": "en",
+        "keywords": [
+          "DHA omega-3 for depression"
+        ],
+        "note": "同 CT.gov；结构化须填具体药名"
+      },
+      "cde": {
+        "lang": "zh",
+        "keywords": [
+          "DHA omega-3 对抑郁症疗效"
+        ],
+        "note": "子串匹配，多词兜底"
+      },
+      "chictr": {
+        "lang": "zh",
+        "keywords": [
+          "DHA omega-3 对抑郁症疗效"
+        ],
+        "note": "子串匹配，多词兜底"
+      }
+    },
+    "risks": [
+      "未识别为药物类别，按疾病/干预词直接中英互译检索",
+      "英文词来自在线翻译（'DHA omega-3 for depression'），未经人工验证，建议抽查"
+    ],
+    "confidence": {
+      "term_map": [
+        "DHA omega-3 对抑郁症疗效"
+      ],
+      "alias": [],
+      "class_enum": [],
+      "speculative": [],
+      "online": [
+        "DHA omega-3 for depression"
+      ]
+    }
+  },
+  "399d43d3419fe26266e4c934b7486153": {
+    "base": "aspirin for migraine prevention",
+    "intent": "intervention",
+    "zh": [
+      "aspirin for 偏头痛 部分缓解evention"
+    ],
+    "en": [
+      "aspirin for migraine prevention"
+    ],
+    "per_source": {
+      "ctgov": {
+        "lang": "en",
+        "keywords": [
+          "aspirin for migraine prevention"
+        ],
+        "note": "精确匹配 → 类别/靶点族枚举具体药名；裸类别易漏"
+      },
+      "who": {
+        "lang": "en",
+        "keywords": [
+          "aspirin for migraine prevention"
+        ],
+        "note": "同 CT.gov；结构化须填具体药名"
+      },
+      "cde": {
+        "lang": "zh",
+        "keywords": [
+          "aspirin for 偏头痛 部分缓解evention"
+        ],
+        "note": "子串匹配，多词兜底"
+      },
+      "chictr": {
+        "lang": "zh",
+        "keywords": [
+          "aspirin for 偏头痛 部分缓解evention"
+        ],
+        "note": "子串匹配，多词兜底"
+      }
+    },
+    "risks": [
+      "未识别为药物类别，按疾病/干预词直接中英互译检索"
+    ],
+    "confidence": {
+      "term_map": [
+        "aspirin for migraine prevention",
+        "aspirin for 偏头痛 部分缓解evention"
+      ],
+      "alias": [],
+      "class_enum": [],
+      "speculative": []
+    }
+  },
+  "7a1ab7d30802e3668f48057ffd11245f": {
+    "base": "test",
+    "intent": "intervention",
+    "zh": [],
+    "en": [
+      "test"
+    ],
+    "per_source": {
+      "ctgov": {
+        "lang": "en",
+        "keywords": [
+          "test"
+        ],
+        "note": "精确匹配 → 类别/靶点族枚举具体药名；裸类别易漏"
+      },
+      "who": {
+        "lang": "en",
+        "keywords": [
+          "test"
+        ],
+        "note": "同 CT.gov；结构化须填具体药名"
+      },
+      "cde": {
+        "lang": "zh",
+        "keywords": [],
+        "note": "子串匹配，多词兜底"
+      },
+      "chictr": {
+        "lang": "zh",
+        "keywords": [],
+        "note": "子串匹配，多词兜底"
+      }
+    },
+    "risks": [
+      "未识别为药物类别，按疾病/干预词直接中英互译检索"
+    ],
+    "confidence": {
+      "term_map": [
+        "test"
+      ],
+      "alias": [],
+      "class_enum": [],
+      "speculative": []
+    }
+  },
+  "12d3bf55942fd94fddd945c7621e0781": {
+    "base": "x",
+    "intent": "intervention",
+    "zh": [],
+    "en": [
+      "x"
+    ],
+    "per_source": {
+      "ctgov": {
+        "lang": "en",
+        "keywords": [
+          "x"
+        ],
+        "note": "精确匹配 → 类别/靶点族枚举具体药名；裸类别易漏"
+      },
+      "who": {
+        "lang": "en",
+        "keywords": [
+          "x"
+        ],
+        "note": "同 CT.gov；结构化须填具体药名"
+      },
+      "cde": {
+        "lang": "zh",
+        "keywords": [],
+        "note": "子串匹配，多词兜底"
+      },
+      "chictr": {
+        "lang": "zh",
+        "keywords": [],
+        "note": "子串匹配，多词兜底"
+      }
+    },
+    "risks": [
+      "未识别为药物类别，按疾病/干预词直接中英互译检索"
+    ],
+    "confidence": {
+      "term_map": [
+        "x"
+      ],
+      "alias": [],
+      "class_enum": [],
+      "speculative": []
+    }
+  },
+  "6966704e0b19f576d48eb3aa2cde1ee5": {
+    "base": "probe",
+    "intent": "intervention",
+    "zh": [
+      "部分缓解obe"
+    ],
+    "en": [
+      "probe"
+    ],
+    "per_source": {
+      "ctgov": {
+        "lang": "en",
+        "keywords": [
+          "probe"
+        ],
+        "note": "精确匹配 → 类别/靶点族枚举具体药名；裸类别易漏"
+      },
+      "who": {
+        "lang": "en",
+        "keywords": [
+          "probe"
+        ],
+        "note": "同 CT.gov；结构化须填具体药名"
+      },
+      "cde": {
+        "lang": "zh",
+        "keywords": [
+          "部分缓解obe"
+        ],
+        "note": "子串匹配，多词兜底"
+      },
+      "chictr": {
+        "lang": "zh",
+        "keywords": [
+          "部分缓解obe"
+        ],
+        "note": "子串匹配，多词兜底"
+      }
+    },
+    "risks": [
+      "未识别为药物类别，按疾病/干预词直接中英互译检索"
+    ],
+    "confidence": {
+      "term_map": [
+        "probe",
+        "部分缓解obe"
+      ],
+      "alias": [],
+      "class_enum": [],
+      "speculative": []
+    }
+  },
+  "89e50a723b657575fefed15517fc82e6": {
+    "base": "probe2",
+    "intent": "intervention",
+    "zh": [
+      "部分缓解obe2"
+    ],
+    "en": [
+      "probe2"
+    ],
+    "per_source": {
+      "ctgov": {
+        "lang": "en",
+        "keywords": [
+          "probe2"
+        ],
+        "note": "精确匹配 → 类别/靶点族枚举具体药名；裸类别易漏"
+      },
+      "who": {
+        "lang": "en",
+        "keywords": [
+          "probe2"
+        ],
+        "note": "同 CT.gov；结构化须填具体药名"
+      },
+      "cde": {
+        "lang": "zh",
+        "keywords": [
+          "部分缓解obe2"
+        ],
+        "note": "子串匹配，多词兜底"
+      },
+      "chictr": {
+        "lang": "zh",
+        "keywords": [
+          "部分缓解obe2"
+        ],
+        "note": "子串匹配，多词兜底"
+      }
+    },
+    "risks": [
+      "未识别为药物类别，按疾病/干预词直接中英互译检索"
+    ],
+    "confidence": {
+      "term_map": [
+        "probe2",
+        "部分缓解obe2"
+      ],
+      "alias": [],
+      "class_enum": [],
+      "speculative": []
+    }
+  },
+  "c512d71a0bfc1792a0c754a52e9b6325": {
+    "base": "probe3",
+    "intent": "intervention",
+    "zh": [
+      "部分缓解obe3"
+    ],
+    "en": [
+      "probe3"
+    ],
+    "per_source": {
+      "ctgov": {
+        "lang": "en",
+        "keywords": [
+          "probe3"
+        ],
+        "note": "精确匹配 → 类别/靶点族枚举具体药名；裸类别易漏"
+      },
+      "who": {
+        "lang": "en",
+        "keywords": [
+          "probe3"
+        ],
+        "note": "同 CT.gov；结构化须填具体药名"
+      },
+      "cde": {
+        "lang": "zh",
+        "keywords": [
+          "部分缓解obe3"
+        ],
+        "note": "子串匹配，多词兜底"
+      },
+      "chictr": {
+        "lang": "zh",
+        "keywords": [
+          "部分缓解obe3"
+        ],
+        "note": "子串匹配，多词兜底"
+      }
+    },
+    "risks": [
+      "未识别为药物类别，按疾病/干预词直接中英互译检索"
+    ],
+    "confidence": {
+      "term_map": [
+        "probe3",
+        "部分缓解obe3"
+      ],
+      "alias": [],
+      "class_enum": [],
+      "speculative": []
+    }
+  },
+  "b3979f6829e700378986952fde04b41f": {
+    "base": "aspirin migraine prevention",
+    "intent": "intervention",
+    "zh": [
+      "aspirin 偏头痛 部分缓解evention"
+    ],
+    "en": [
+      "aspirin migraine prevention"
+    ],
+    "per_source": {
+      "ctgov": {
+        "lang": "en",
+        "keywords": [
+          "aspirin migraine prevention"
+        ],
+        "note": "精确匹配 → 类别/靶点族枚举具体药名；裸类别易漏"
+      },
+      "who": {
+        "lang": "en",
+        "keywords": [
+          "aspirin migraine prevention"
+        ],
+        "note": "同 CT.gov；结构化须填具体药名"
+      },
+      "cde": {
+        "lang": "zh",
+        "keywords": [
+          "aspirin 偏头痛 部分缓解evention"
+        ],
+        "note": "子串匹配，多词兜底"
+      },
+      "chictr": {
+        "lang": "zh",
+        "keywords": [
+          "aspirin 偏头痛 部分缓解evention"
+        ],
+        "note": "子串匹配，多词兜底"
+      }
+    },
+    "risks": [
+      "未识别为药物类别，按疾病/干预词直接中英互译检索"
+    ],
+    "confidence": {
+      "term_map": [
+        "aspirin migraine prevention",
+        "aspirin 偏头痛 部分缓解evention"
+      ],
+      "alias": [],
+      "class_enum": [],
+      "speculative": []
+    }
+  },
+  "141a6edc79de9e0bbaa4f86e63bd3074": {
+    "base": "DHA omega-3 补充对抑郁症的疗效",
+    "intent": "intervention",
+    "zh": [
+      "DHA omega-3 补充对抑郁症的疗效"
+    ],
+    "en": [
+      "DHA omega-3 supplementation for depression"
+    ],
+    "per_source": {
+      "ctgov": {
+        "lang": "en",
+        "keywords": [
+          "DHA omega-3 supplementation for depression"
+        ],
+        "note": "精确匹配 → 类别/靶点族枚举具体药名；裸类别易漏"
+      },
+      "who": {
+        "lang": "en",
+        "keywords": [
+          "DHA omega-3 supplementation for depression"
+        ],
+        "note": "同 CT.gov；结构化须填具体药名"
+      },
+      "cde": {
+        "lang": "zh",
+        "keywords": [
+          "DHA omega-3 补充对抑郁症的疗效"
+        ],
+        "note": "子串匹配，多词兜底"
+      },
+      "chictr": {
+        "lang": "zh",
+        "keywords": [
+          "DHA omega-3 补充对抑郁症的疗效"
+        ],
+        "note": "子串匹配，多词兜底"
+      }
+    },
+    "risks": [
+      "未识别为药物类别，按疾病/干预词直接中英互译检索",
+      "英文词来自在线翻译（'DHA omega-3 supplementation for depression'），未经人工验证，建议抽查"
+    ],
+    "confidence": {
+      "term_map": [
+        "DHA omega-3 补充对抑郁症的疗效"
+      ],
+      "alias": [],
+      "class_enum": [],
+      "speculative": [],
+      "online": [
+        "DHA omega-3 supplementation for depression"
+      ]
+    }
+  },
+  "53c3f983158cb058ba60a0d8791c45fc": {
+    "base": "DHA omega-3 supplementation for depression",
+    "intent": "intervention",
+    "zh": [
+      "DHA omega-3 supplementation for 抑郁症"
+    ],
+    "en": [
+      "dha omega-3 supplementation for depression"
+    ],
+    "per_source": {
+      "ctgov": {
+        "lang": "en",
+        "keywords": [
+          "dha omega-3 supplementation for depression"
+        ],
+        "note": "精确匹配 → 类别/靶点族枚举具体药名；裸类别易漏"
+      },
+      "who": {
+        "lang": "en",
+        "keywords": [
+          "dha omega-3 supplementation for depression"
+        ],
+        "note": "同 CT.gov；结构化须填具体药名"
+      },
+      "cde": {
+        "lang": "zh",
+        "keywords": [
+          "DHA omega-3 supplementation for 抑郁症"
+        ],
+        "note": "子串匹配，多词兜底"
+      },
+      "chictr": {
+        "lang": "zh",
+        "keywords": [
+          "DHA omega-3 supplementation for 抑郁症"
+        ],
+        "note": "子串匹配，多词兜底"
+      }
+    },
+    "risks": [
+      "未识别为药物类别，按疾病/干预词直接中英互译检索"
+    ],
+    "confidence": {
+      "term_map": [
+        "DHA omega-3 supplementation for 抑郁症",
+        "dha omega-3 supplementation for depression"
+      ],
+      "alias": [],
+      "class_enum": [],
+      "speculative": []
+    }
+  },
+  "56cd49778b8a0bb0fca7da416a9e882c": {
+    "base": "DHA omega-3 supplementation for major depressive disorder: a systematic review and meta-analysis",
+    "intent": "intervention",
+    "zh": [
+      "DHA omega-3 supplementation for major de部分缓解essive disorder: a 系统评价 and 荟萃分析"
+    ],
+    "en": [
+      "dha omega-3 supplementation for major depressive disorder: a systematic review and meta-analysis"
+    ],
+    "per_source": {
+      "ctgov": {
+        "lang": "en",
+        "keywords": [
+          "dha omega-3 supplementation for major depressive disorder: a systematic review and meta-analysis"
+        ],
+        "note": "精确匹配 → 类别/靶点族枚举具体药名；裸类别易漏"
+      },
+      "who": {
+        "lang": "en",
+        "keywords": [
+          "dha omega-3 supplementation for major depressive disorder: a systematic review and meta-analysis"
+        ],
+        "note": "同 CT.gov；结构化须填具体药名"
+      },
+      "cde": {
+        "lang": "zh",
+        "keywords": [
+          "DHA omega-3 supplementation for major de部分缓解essive disorder: a 系统评价 and 荟萃分析"
+        ],
+        "note": "子串匹配，多词兜底"
+      },
+      "chictr": {
+        "lang": "zh",
+        "keywords": [
+          "DHA omega-3 supplementation for major de部分缓解essive disorder: a 系统评价 and 荟萃分析"
+        ],
+        "note": "子串匹配，多词兜底"
+      }
+    },
+    "risks": [
+      "未识别为药物类别，按疾病/干预词直接中英互译检索"
+    ],
+    "confidence": {
+      "term_map": [
+        "DHA omega-3 supplementation for major de部分缓解essive disorder: a 系统评价 and 荟萃分析",
+        "dha omega-3 supplementation for major depressive disorder: a systematic review and meta-analysis"
+      ],
+      "alias": [],
+      "class_enum": [],
+      "speculative": []
+    }
+  },
+  "e1eec3dc9116fa70a5e5ab00d08f7f83": {
+    "base": "益生菌治疗儿童腹泻的疗效",
+    "intent": "intervention",
+    "zh": [
+      "益生菌治疗儿童腹泻的疗效"
+    ],
+    "en": [
+      "Efficacy of probiotics in the treatment of diarrhea in children"
+    ],
+    "per_source": {
+      "ctgov": {
+        "lang": "en",
+        "keywords": [
+          "Efficacy of probiotics in the treatment of diarrhea in children"
+        ],
+        "note": "精确匹配 → 类别/靶点族枚举具体药名；裸类别易漏"
+      },
+      "who": {
+        "lang": "en",
+        "keywords": [
+          "Efficacy of probiotics in the treatment of diarrhea in children"
+        ],
+        "note": "同 CT.gov；结构化须填具体药名"
+      },
+      "cde": {
+        "lang": "zh",
+        "keywords": [
+          "益生菌治疗儿童腹泻的疗效"
+        ],
+        "note": "子串匹配，多词兜底"
+      },
+      "chictr": {
+        "lang": "zh",
+        "keywords": [
+          "益生菌治疗儿童腹泻的疗效"
+        ],
+        "note": "子串匹配，多词兜底"
+      }
+    },
+    "risks": [
+      "未识别为药物类别，按疾病/干预词直接中英互译检索",
+      "英文词来自在线翻译（'Efficacy of probiotics in the treatment of diarrhea in children'），未经人工验证，建议抽查"
+    ],
+    "confidence": {
+      "term_map": [
+        "益生菌治疗儿童腹泻的疗效"
+      ],
+      "alias": [],
+      "class_enum": [],
+      "speculative": [],
+      "online": [
+        "Efficacy of probiotics in the treatment of diarrhea in children"
+      ]
+    }
+  },
+  "1f40f37fcca78da215be815452bc0296": {
+    "base": "test omega depression",
+    "intent": "intervention",
+    "zh": [
+      "test omega 抑郁症"
+    ],
+    "en": [
+      "test omega depression"
+    ],
+    "per_source": {
+      "ctgov": {
+        "lang": "en",
+        "keywords": [
+          "test omega depression"
+        ],
+        "note": "精确匹配 → 类别/靶点族枚举具体药名；裸类别易漏"
+      },
+      "who": {
+        "lang": "en",
+        "keywords": [
+          "test omega depression"
+        ],
+        "note": "同 CT.gov；结构化须填具体药名"
+      },
+      "cde": {
+        "lang": "zh",
+        "keywords": [
+          "test omega 抑郁症"
+        ],
+        "note": "子串匹配，多词兜底"
+      },
+      "chictr": {
+        "lang": "zh",
+        "keywords": [
+          "test omega 抑郁症"
+        ],
+        "note": "子串匹配，多词兜底"
+      }
+    },
+    "risks": [
+      "未识别为药物类别，按疾病/干预词直接中英互译检索"
+    ],
+    "confidence": {
+      "term_map": [
+        "test omega depression",
+        "test omega 抑郁症"
+      ],
+      "alias": [],
+      "class_enum": [],
+      "speculative": []
+    }
+  },
+  "215a545e24f7dc959e86bc35d37a1b3e": {
+    "base": "DHA omega-3 for depression",
+    "intent": "intervention",
+    "zh": [
+      "DHA omega-3 for 抑郁症"
+    ],
+    "en": [
+      "dha omega-3 for depression"
+    ],
+    "per_source": {
+      "ctgov": {
+        "lang": "en",
+        "keywords": [
+          "dha omega-3 for depression"
+        ],
+        "note": "精确匹配 → 类别/靶点族枚举具体药名；裸类别易漏"
+      },
+      "who": {
+        "lang": "en",
+        "keywords": [
+          "dha omega-3 for depression"
+        ],
+        "note": "同 CT.gov；结构化须填具体药名"
+      },
+      "cde": {
+        "lang": "zh",
+        "keywords": [
+          "DHA omega-3 for 抑郁症"
+        ],
+        "note": "子串匹配，多词兜底"
+      },
+      "chictr": {
+        "lang": "zh",
+        "keywords": [
+          "DHA omega-3 for 抑郁症"
+        ],
+        "note": "子串匹配，多词兜底"
+      }
+    },
+    "risks": [
+      "未识别为药物类别，按疾病/干预词直接中英互译检索"
+    ],
+    "confidence": {
+      "term_map": [
+        "DHA omega-3 for 抑郁症",
+        "dha omega-3 for depression"
+      ],
+      "alias": [],
+      "class_enum": [],
+      "speculative": []
+    }
+  },
+  "885757816794bb8f48902d6edb0a47bc": {
+    "base": "DHA omega-3 补充对失眠的疗效",
+    "intent": "intervention",
+    "zh": [
+      "DHA omega-3 补充对失眠的疗效"
+    ],
+    "en": [
+      "DHA omega-3 supplementation for insomnia"
+    ],
+    "per_source": {
+      "ctgov": {
+        "lang": "en",
+        "keywords": [
+          "DHA omega-3 supplementation for insomnia"
+        ],
+        "note": "精确匹配 → 类别/靶点族枚举具体药名；裸类别易漏"
+      },
+      "who": {
+        "lang": "en",
+        "keywords": [
+          "DHA omega-3 supplementation for insomnia"
+        ],
+        "note": "同 CT.gov；结构化须填具体药名"
+      },
+      "cde": {
+        "lang": "zh",
+        "keywords": [
+          "DHA omega-3 补充对失眠的疗效"
+        ],
+        "note": "子串匹配，多词兜底"
+      },
+      "chictr": {
+        "lang": "zh",
+        "keywords": [
+          "DHA omega-3 补充对失眠的疗效"
+        ],
+        "note": "子串匹配，多词兜底"
+      }
+    },
+    "risks": [
+      "未识别为药物类别，按疾病/干预词直接中英互译检索",
+      "英文词来自在线翻译（'DHA omega-3 supplementation for insomnia'），未经人工验证，建议抽查"
+    ],
+    "confidence": {
+      "term_map": [
+        "DHA omega-3 补充对失眠的疗效"
+      ],
+      "alias": [],
+      "class_enum": [],
+      "speculative": [],
+      "online": [
+        "DHA omega-3 supplementation for insomnia"
+      ]
+    }
+  },
+  "4cc45c5a93a07996c830065412302374": {
+    "base": "测试主题",
+    "intent": "intervention",
+    "zh": [
+      "测试主题"
+    ],
+    "en": [
+      "Test subject"
+    ],
+    "per_source": {
+      "ctgov": {
+        "lang": "en",
+        "keywords": [
+          "Test subject"
+        ],
+        "note": "精确匹配 → 类别/靶点族枚举具体药名；裸类别易漏"
+      },
+      "who": {
+        "lang": "en",
+        "keywords": [
+          "Test subject"
+        ],
+        "note": "同 CT.gov；结构化须填具体药名"
+      },
+      "cde": {
+        "lang": "zh",
+        "keywords": [
+          "测试主题"
+        ],
+        "note": "子串匹配，多词兜底"
+      },
+      "chictr": {
+        "lang": "zh",
+        "keywords": [
+          "测试主题"
+        ],
+        "note": "子串匹配，多词兜底"
+      }
+    },
+    "risks": [
+      "未识别为药物类别，按疾病/干预词直接中英互译检索",
+      "英文词来自在线翻译（'Test subject'），未经人工验证，建议抽查"
+    ],
+    "confidence": {
+      "term_map": [
+        "测试主题"
+      ],
+      "alias": [],
+      "class_enum": [],
+      "speculative": [],
+      "online": [
+        "Test subject"
+      ]
+    }
+  },
+  "1866e5dd121208a244885602f8af061e": {
+    "base": "test topic",
+    "intent": "intervention",
+    "zh": [],
+    "en": [
+      "test topic"
+    ],
+    "per_source": {
+      "ctgov": {
+        "lang": "en",
+        "keywords": [
+          "test topic"
+        ],
+        "note": "精确匹配 → 类别/靶点族枚举具体药名；裸类别易漏"
+      },
+      "who": {
+        "lang": "en",
+        "keywords": [
+          "test topic"
+        ],
+        "note": "同 CT.gov；结构化须填具体药名"
+      },
+      "cde": {
+        "lang": "zh",
+        "keywords": [],
+        "note": "子串匹配，多词兜底"
+      },
+      "chictr": {
+        "lang": "zh",
+        "keywords": [],
+        "note": "子串匹配，多词兜底"
+      }
+    },
+    "risks": [
+      "未识别为药物类别，按疾病/干预词直接中英互译检索"
+    ],
+    "confidence": {
+      "term_map": [
+        "test topic"
+      ],
+      "alias": [],
+      "class_enum": [],
+      "speculative": []
+    }
+  },
+  "5e5936b9863e093d5327cbbbed0d6855": {
+    "base": "SGLT2 抑制剂在慢性肾脏病（CKD）中的肾保护与心血管获益",
+    "intent": "intervention",
+    "zh": [
+      "SGLT2 抑制剂在慢性肾脏病（CKD）中的肾保护与心血管获益"
+    ],
+    "en": [
+      "Kidney Protection and Cardiovascular Benefits of SGLT2 Inhibitors in Chronic Kidney Disease (CKD)"
+    ],
+    "per_source": {
+      "ctgov": {
+        "lang": "en",
+        "keywords": [
+          "Kidney Protection and Cardiovascular Benefits of SGLT2 Inhibitors in Chronic Kidney Disease (CKD)"
+        ],
+        "note": "精确匹配 → 类别/靶点族枚举具体药名；裸类别易漏"
+      },
+      "who": {
+        "lang": "en",
+        "keywords": [
+          "Kidney Protection and Cardiovascular Benefits of SGLT2 Inhibitors in Chronic Kidney Disease (CKD)"
+        ],
+        "note": "同 CT.gov；结构化须填具体药名"
+      },
+      "cde": {
+        "lang": "zh",
+        "keywords": [
+          "SGLT2 抑制剂在慢性肾脏病（CKD）中的肾保护与心血管获益"
+        ],
+        "note": "子串匹配，多词兜底"
+      },
+      "chictr": {
+        "lang": "zh",
+        "keywords": [
+          "SGLT2 抑制剂在慢性肾脏病（CKD）中的肾保护与心血管获益"
+        ],
+        "note": "子串匹配，多词兜底"
+      }
+    },
+    "risks": [
+      "未识别为药物类别，按疾病/干预词直接中英互译检索",
+      "英文词来自在线翻译（'Kidney Protection and Cardiovascular Benefits of SGLT2 Inhibitors in Chronic Kidney Disease (CKD)'），未经人工验证，建议抽查"
+    ],
+    "confidence": {
+      "term_map": [
+        "SGLT2 抑制剂在慢性肾脏病（CKD）中的肾保护与心血管获益"
+      ],
+      "alias": [],
+      "class_enum": [],
+      "speculative": [],
+      "online": [
+        "Kidney Protection and Cardiovascular Benefits of SGLT2 Inhibitors in Chronic Kidney Disease (CKD)"
+      ]
+    }
+  },
+  "a75df5753afe6550444c52f7550dbab4": {
+    "base": "是的发放",
+    "intent": "intervention",
+    "zh": [
+      "是的发放"
+    ],
+    "en": [
+      "Yes, distribute"
+    ],
+    "per_source": {
+      "ctgov": {
+        "lang": "en",
+        "keywords": [
+          "Yes, distribute"
+        ],
+        "note": "精确匹配 → 类别/靶点族枚举具体药名；裸类别易漏"
+      },
+      "who": {
+        "lang": "en",
+        "keywords": [
+          "Yes, distribute"
+        ],
+        "note": "同 CT.gov；结构化须填具体药名"
+      },
+      "cde": {
+        "lang": "zh",
+        "keywords": [
+          "是的发放"
+        ],
+        "note": "子串匹配，多词兜底"
+      },
+      "chictr": {
+        "lang": "zh",
+        "keywords": [
+          "是的发放"
+        ],
+        "note": "子串匹配，多词兜底"
+      }
+    },
+    "risks": [
+      "未识别为药物类别，按疾病/干预词直接中英互译检索",
+      "英文词来自在线翻译（'Yes, distribute'），未经人工验证，建议抽查"
+    ],
+    "confidence": {
+      "term_map": [
+        "是的发放"
+      ],
+      "alias": [],
+      "class_enum": [],
+      "speculative": [],
+      "online": [
+        "Yes, distribute"
+      ]
+    }
+  },
+  "9b0ea16ce7e54039d8601d4cb211b2a5": {
+    "base": "test: condition, population, intervention, comparison, outcome",
+    "intent": "intervention",
+    "zh": [],
+    "en": [
+      "test: condition, population, intervention, comparison, outcome"
+    ],
+    "per_source": {
+      "ctgov": {
+        "lang": "en",
+        "keywords": [
+          "test: condition, population, intervention, comparison, outcome"
+        ],
+        "note": "精确匹配 → 类别/靶点族枚举具体药名；裸类别易漏"
+      },
+      "who": {
+        "lang": "en",
+        "keywords": [
+          "test: condition, population, intervention, comparison, outcome"
+        ],
+        "note": "同 CT.gov；结构化须填具体药名"
+      },
+      "cde": {
+        "lang": "zh",
+        "keywords": [],
+        "note": "子串匹配，多词兜底"
+      },
+      "chictr": {
+        "lang": "zh",
+        "keywords": [],
+        "note": "子串匹配，多词兜底"
+      }
+    },
+    "risks": [
+      "未识别为药物类别，按疾病/干预词直接中英互译检索"
+    ],
+    "confidence": {
+      "term_map": [
+        "test: condition, population, intervention, comparison, outcome"
+      ],
+      "alias": [],
+      "class_enum": [],
+      "speculative": []
+    }
+  },
+  "7b5c3bfad44399814498ec63c96c88c6": {
+    "base": "omega-3 fatty acids for depression in adults",
+    "intent": "intervention",
+    "zh": [
+      "omega-3 fatty acids for 抑郁症 in adults"
+    ],
+    "en": [
+      "omega-3 fatty acids for depression in adults"
+    ],
+    "per_source": {
+      "ctgov": {
+        "lang": "en",
+        "keywords": [
+          "omega-3 fatty acids for depression in adults"
+        ],
+        "note": "精确匹配 → 类别/靶点族枚举具体药名；裸类别易漏"
+      },
+      "who": {
+        "lang": "en",
+        "keywords": [
+          "omega-3 fatty acids for depression in adults"
+        ],
+        "note": "同 CT.gov；结构化须填具体药名"
+      },
+      "cde": {
+        "lang": "zh",
+        "keywords": [
+          "omega-3 fatty acids for 抑郁症 in adults"
+        ],
+        "note": "子串匹配，多词兜底"
+      },
+      "chictr": {
+        "lang": "zh",
+        "keywords": [
+          "omega-3 fatty acids for 抑郁症 in adults"
+        ],
+        "note": "子串匹配，多词兜底"
+      }
+    },
+    "risks": [
+      "未识别为药物类别，按疾病/干预词直接中英互译检索"
+    ],
+    "confidence": {
+      "term_map": [
+        "omega-3 fatty acids for depression in adults",
+        "omega-3 fatty acids for 抑郁症 in adults"
+      ],
+      "alias": [],
+      "class_enum": [],
+      "speculative": []
+    }
+  },
+  "6b77958befb5d64466d99f77d5aaa682": {
+    "base": "maple syrup urine disease",
+    "intent": "intervention",
+    "zh": [],
+    "en": [
+      "maple syrup urine disease"
+    ],
+    "per_source": {
+      "ctgov": {
+        "lang": "en",
+        "keywords": [
+          "maple syrup urine disease"
+        ],
+        "note": "精确匹配 → 类别/靶点族枚举具体药名；裸类别易漏"
+      },
+      "who": {
+        "lang": "en",
+        "keywords": [
+          "maple syrup urine disease"
+        ],
+        "note": "同 CT.gov；结构化须填具体药名"
+      },
+      "cde": {
+        "lang": "zh",
+        "keywords": [],
+        "note": "子串匹配，多词兜底"
+      },
+      "chictr": {
+        "lang": "zh",
+        "keywords": [],
+        "note": "子串匹配，多词兜底"
+      }
+    },
+    "risks": [
+      "未识别为药物类别，按疾病/干预词直接中英互译检索"
+    ],
+    "confidence": {
+      "term_map": [
+        "maple syrup urine disease"
+      ],
+      "alias": [],
+      "class_enum": [],
+      "speculative": []
+    }
+  },
+  "cb938ab0f84bdd3b70612c4f476d1030": {
+    "base": "Zollinger-Ellison syndrome",
+    "intent": "intervention",
+    "zh": [],
+    "en": [
+      "zollinger-ellison syndrome"
+    ],
+    "per_source": {
+      "ctgov": {
+        "lang": "en",
+        "keywords": [
+          "zollinger-ellison syndrome"
+        ],
+        "note": "精确匹配 → 类别/靶点族枚举具体药名；裸类别易漏"
+      },
+      "who": {
+        "lang": "en",
+        "keywords": [
+          "zollinger-ellison syndrome"
+        ],
+        "note": "同 CT.gov；结构化须填具体药名"
+      },
+      "cde": {
+        "lang": "zh",
+        "keywords": [],
+        "note": "子串匹配，多词兜底"
+      },
+      "chictr": {
+        "lang": "zh",
+        "keywords": [],
+        "note": "子串匹配，多词兜底"
+      }
+    },
+    "risks": [
+      "未识别为药物类别，按疾病/干预词直接中英互译检索"
+    ],
+    "confidence": {
+      "term_map": [
+        "zollinger-ellison syndrome"
+      ],
+      "alias": [],
+      "class_enum": [],
+      "speculative": []
+    }
+  },
+  "00bc153f87a50bdcd65cbb33a75dd256": {
+    "base": "oncology",
+    "intent": "intervention",
+    "zh": [],
+    "en": [
+      "oncology"
+    ],
+    "per_source": {
+      "ctgov": {
+        "lang": "en",
+        "keywords": [
+          "oncology"
+        ],
+        "note": "精确匹配 → 类别/靶点族枚举具体药名；裸类别易漏"
+      },
+      "who": {
+        "lang": "en",
+        "keywords": [
+          "oncology"
+        ],
+        "note": "同 CT.gov；结构化须填具体药名"
+      },
+      "cde": {
+        "lang": "zh",
+        "keywords": [],
+        "note": "子串匹配，多词兜底"
+      },
+      "chictr": {
+        "lang": "zh",
+        "keywords": [],
+        "note": "子串匹配，多词兜底"
+      }
+    },
+    "risks": [
+      "未识别为药物类别，按疾病/干预词直接中英互译检索"
+    ],
+    "confidence": {
+      "term_map": [
+        "oncology"
+      ],
+      "alias": [],
+      "class_enum": [],
+      "speculative": []
+    }
+  },
+  "ecf75234c3edfd97bfef17d5578081af": {
+    "base": "osimertinib",
+    "intent": "drug",
+    "zh": [
+      "奥希替尼",
+      "泰瑞沙"
+    ],
+    "en": [
+      "osimertinib",
+      "tagrisso"
+    ],
+    "per_source": {
+      "ctgov": {
+        "lang": "en",
+        "keywords": [
+          "osimertinib",
+          "tagrisso"
+        ],
+        "note": "精确匹配 → 类别/靶点族枚举具体药名；裸类别易漏"
+      },
+      "who": {
+        "lang": "en",
+        "keywords": [
+          "osimertinib",
+          "tagrisso"
+        ],
+        "note": "同 CT.gov；结构化须填具体药名"
+      },
+      "cde": {
+        "lang": "zh",
+        "keywords": [
+          "奥希替尼",
+          "泰瑞沙"
+        ],
+        "note": "子串匹配，多词兜底"
+      },
+      "chictr": {
+        "lang": "zh",
+        "keywords": [
+          "奥希替尼",
+          "泰瑞沙"
+        ],
+        "note": "子串匹配，多词兜底"
+      }
+    },
+    "risks": [
+      "未识别为药物类别，按疾病/干预词直接中英互译检索"
+    ],
+    "confidence": {
+      "term_map": [
+        "osimertinib",
+        "tagrisso",
+        "奥希替尼",
+        "泰瑞沙"
+      ],
+      "alias": [],
+      "class_enum": [],
+      "speculative": []
+    }
+  },
+  "1e172c326e115f6b44b49324362aa209": {
+    "base": "non-small cell lung cancer",
+    "intent": "disease",
+    "zh": [
+      "NSCLC",
+      "非小细胞肺癌"
+    ],
+    "en": [
+      "non-small cell lung cancer"
+    ],
+    "per_source": {
+      "ctgov": {
+        "lang": "en",
+        "keywords": [
+          "non-small cell lung cancer"
+        ],
+        "note": "精确匹配 → 类别/靶点族枚举具体药名；裸类别易漏"
+      },
+      "who": {
+        "lang": "en",
+        "keywords": [
+          "non-small cell lung cancer"
+        ],
+        "note": "同 CT.gov；结构化须填具体药名"
+      },
+      "cde": {
+        "lang": "zh",
+        "keywords": [
+          "NSCLC",
+          "非小细胞肺癌"
+        ],
+        "note": "子串匹配，多词兜底"
+      },
+      "chictr": {
+        "lang": "zh",
+        "keywords": [
+          "NSCLC",
+          "非小细胞肺癌"
+        ],
+        "note": "子串匹配，多词兜底"
+      }
+    },
+    "risks": [
+      "未识别为药物类别，按疾病/干预词直接中英互译检索"
+    ],
+    "confidence": {
+      "term_map": [
+        "NSCLC",
+        "non-small cell lung cancer",
+        "非小细胞肺癌"
+      ],
+      "alias": [],
+      "class_enum": [],
+      "speculative": []
+    }
+  }
+}

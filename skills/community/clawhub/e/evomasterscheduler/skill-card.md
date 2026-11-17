@@ -1,45 +1,58 @@
-## Description: <br>
-Automates scheduled health checks, remediation, cleanup, backups, improvement analysis, upgrade checks, and security audits for an OpenClaw environment. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates daily health checks, fixes, memory cleanup, backups, improvements, upgrades, and security audits for the OpenClaw environment.
 
-## Publisher: <br>
-[blueworldmarketing](https://clawhub.ai/user/blueworldmarketing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[blueworldmarketing](https://clawhub.ai/user/blueworldmarketing)
 
-## Use Case: <br>
-Developers and operators use this skill to install and run recurring OpenClaw maintenance jobs for diagnosis, repair, backup, security review, and operational reporting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent scheduled jobs may continue changing system or workspace state after installation. <br>
-Mitigation: Review the cron entries before enabling them and document a clear removal path for every installed job. <br>
-Risk: Backup behavior can copy sensitive OpenClaw configuration, including environment files. <br>
-Mitigation: Exclude, encrypt, or tightly restrict backups of secret-bearing files before running the backup task. <br>
-Risk: Workspace-wide git staging and commits can capture unintended files. <br>
-Mitigation: Replace broad git staging with a narrow allowlist of files that are safe to commit. <br>
-Risk: Slack notifications may expose operational details from logs or local paths. <br>
-Mitigation: Disable or minimize notifications and verify that outbound messages do not contain sensitive data. <br>
+## Use Case:
 
+Developers and OpenClaw operators use this skill to install scheduled maintenance jobs for diagnostics, remediation, cleanup, backups, upgrade checks, and security audits. It is intended for environments where recurring access to OpenClaw configuration, workspace state, logs, gateway controls, Git repositories, and Slack notifications has been reviewed and approved.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/blueworldmarketing/evomasterscheduler) <br>
-- [Publisher profile](https://clawhub.ai/user/blueworldmarketing) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Files, Text] <br>
-**Output Format:** [Shell scripts and operational log or notification text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Installs persistent scheduled jobs and writes daily logs under the user's OpenClaw environment.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Unattended maintenance jobs can copy secrets, mutate repositories, delete logs, restart services, and send operational details to Slack.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review every scheduled job before installation, and disable or edit backup, Git commit, log deletion, restart, and Slack notification behavior unless explicitly approved.
+
+Risk: Backups can include OpenClaw configuration and .env files.
+
+Mitigation: Exclude secrets or require encryption, restricted access, and retention controls before allowing backups to copy sensitive files.
+
+Risk: Slack notifications can disclose operational paths, status, and security audit details.
+
+Mitigation: Use restricted Slack channels or webhooks and redact sensitive paths or status details before enabling notifications.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/blueworldmarketing/skills/evomasterscheduler)
+- [Skill documentation](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown documentation and Bash/Zsh scripts that install cron jobs, write log text, and send operational notifications.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates recurring OpenClaw maintenance tasks and daily log output under the user's OpenClaw log directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

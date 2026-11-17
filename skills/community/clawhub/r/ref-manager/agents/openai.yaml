@@ -1,0 +1,4 @@
+---
+display_name: 文献导入助手
+short_description: 从网页、PDF、文件夹提取文献信息，核对纠错后生成 EndNote 与 APA 文件。
+default_prompt: 帮我把这些网页、PDF 或文件夹里的文献提取、核对并导入 EndNote，同时生成一份 APA 格式的 Excel 对账表。

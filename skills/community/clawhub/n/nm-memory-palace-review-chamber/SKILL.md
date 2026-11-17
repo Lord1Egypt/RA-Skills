@@ -2,44 +2,13 @@
 name: review-chamber
 description: |
   Captures and retrieves PR-review findings in memory palaces. Use after PR review to store architectural decisions, patterns, and standards for future reference
-version: 1.9.8
+version: 1.10.3
 metadata: {"openclaw": {"homepage": "https://github.com/athola/claude-night-market/tree/master/plugins/memory-palace", "emoji": "\ud83e\udd9e", "requires": {"config": ["night-market.memory-palace:knowledge-intake", "night-market.sanctum:pr-review"]}}}
 source: claude-night-market
 source_plugin: memory-palace
 ---
 
-> **Night Market Skill** — ported from [claude-night-market/memory-palace](https://github.com/athola/claude-night-market/tree/master/plugins/memory-palace). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
-
-
-## Table of Contents
-
-- [Overview](#overview)
-- [Room Structure](#room-structure)
-- [Workflow Phases](#workflow-phases)
-- [Phase 1: Knowledge Detection](#phase-1:-knowledge-detection)
-- [Knowledge Detection Checklist](#knowledge-detection-checklist)
-- [Phase 2: Classification](#phase-2:-classification)
-- [Phase 3: Capture](#phase-3:-capture)
-- [Decision Title](#decision-title)
-- [Decision](#decision)
-- [Context (from PR discussion)](#context-(from-pr-discussion))
-- [Captured Knowledge](#captured-knowledge)
-- [Connected Concepts](#connected-concepts)
-- [Phase 4: Integration](#phase-4:-integration)
-- [Usage Examples](#usage-examples)
-- [Capture After PR Review](#capture-after-pr-review)
-- [Search Past Decisions](#search-past-decisions)
-- [Surface Relevant Knowledge](#surface-relevant-knowledge)
-- [Relevant Review Knowledge](#relevant-review-knowledge)
-- [Integration Points](#integration-points)
-- [With sanctum:pr-review](#with-sanctum:pr-review)
-- [With knowledge-intake](#with-knowledge-intake)
-- [With knowledge-locator](#with-knowledge-locator)
-- [Evaluation Rubric](#evaluation-rubric)
-- [Worth Capturing (Score ≥ 60)](#worth-capturing-(score-≥-60))
-- [Skip (Score < 60)](#skip-(score-<-60))
-- [CLI Reference](#cli-reference)
-- [Best Practices](#best-practices)
+> **Night Market Skill**: ported from [claude-night-market/memory-palace](https://github.com/athola/claude-night-market/tree/master/plugins/memory-palace). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
 
 # PR Review Chamber Skill
@@ -70,7 +39,6 @@ review-chamber/
 ├── standards/      # Quality bar examples and coding conventions
 └── lessons/        # Post-mortems and learnings
 ```
-**Verification:** Run the command with `--help` flag to verify availability.
 
 ## Workflow Phases
 
@@ -88,7 +56,6 @@ For each finding from sanctum:pr-review, evaluate:
 - [ ] **Durability**: Is this architectural (capture) or tactical (skip)?
 - [ ] **Connectivity**: Does it link to existing palace rooms?
 ```
-**Verification:** Run the command with `--help` flag to verify availability.
 
 ### Phase 2: Classification
 
@@ -134,7 +101,6 @@ Chose JWT tokens over server-side sessions.
 - [[auth-patterns]] - Updated with JWT best practices
 - [[security-adr-003]] - Referenced this decision
 ```
-**Verification:** Run the command with `--help` flag to verify availability.
 
 ### Phase 4: Integration
 
@@ -158,7 +124,6 @@ After capture, update related palace rooms:
 # Manual: Explicitly capture from PR
 /review-room capture 42 --room decisions
 ```
-**Verification:** Run the command with `--help` flag to verify availability.
 
 ### Search Past Decisions
 
@@ -172,7 +137,6 @@ After capture, update related palace rooms:
 # List recent entries
 /review-room list --limit 10 --room standards
 ```
-**Verification:** Run the command with `--help` flag to verify availability.
 
 ### Surface Relevant Knowledge
 
@@ -193,7 +157,6 @@ Starting work in `auth/` directory...
 **Known Patterns:**
 - [#38] Token refresh edge case → patterns/token-refresh-race
 ```
-**Verification:** Run the command with `--help` flag to verify availability.
 
 ## Integration Points
 
@@ -202,7 +165,6 @@ Starting work in `auth/` directory...
 The review-chamber integrates after Phase 6 (Generate Report):
 
 ```
-**Verification:** Run the command with `--help` flag to verify availability.
 Phase 6: Generate Report
     ↓
 [HOOK] Evaluate findings for knowledge capture
@@ -215,7 +177,6 @@ Phase 6: Generate Report
     ↓
 Phase 7: Post to GitHub
 ```
-**Verification:** Run the command with `--help` flag to verify availability.
 
 ### With knowledge-intake
 
@@ -239,7 +200,6 @@ python scripts/palace_manager.py search "authentication" \
   --room review-chamber \
   --type semantic
 ```
-**Verification:** Run `python --version` to verify Python environment.
 
 ## Evaluation Rubric
 
@@ -280,7 +240,6 @@ python scripts/palace_manager.py search "authentication" \
 # Statistics
 /review-room stats [--palace <palace_id>]
 ```
-**Verification:** Run the command with `--help` flag to verify availability.
 
 ## Best Practices
 
@@ -295,3 +254,16 @@ python scripts/palace_manager.py search "authentication" \
 - See `modules/capture-workflow.md` for detailed capture process
 - See `modules/evaluation-criteria.md` for knowledge worth assessment
 - See `modules/search-patterns.md` for query optimization
+
+## Exit Criteria
+
+- [ ] Knowledge detection checklist evaluated for each PR review
+      finding; findings scoring ≥ 60 are captured, < 60 are skipped
+- [ ] Each captured finding is routed to the correct room:
+      `decisions/`, `patterns/`, `standards/`, or `lessons/`
+- [ ] Every capture entry includes `source_pr`, `date`,
+      `palace_location`, and at least one `tag`
+- [ ] Bidirectional links added between the new entry and any related
+      existing palace rooms after capture
+- [ ] `palace_manager.py search "<topic>"` returns the captured entry
+      when queried by its tags or content after storage

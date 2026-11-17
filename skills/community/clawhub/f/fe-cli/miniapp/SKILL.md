@@ -283,6 +283,7 @@ Read the following reference files and adapt for mini-program environment:
 **Mini-program adaptations:**
 - `request.ts` uses Taro.request instead of fetch
 - `storage.ts` uses Taro Storage API
+- Token 安全：优先短时效凭证；持久化仅存最小权限 token，避免长期 Bearer token 明文落盘；敏感场景改用服务端会话
 - `format.ts` — same as shared, works in Taro
 - `validate.ts` — same as shared
 - Theme: skip `theme/` directory (mini-programs don't support CSS custom properties widely; use Taro theme config instead)

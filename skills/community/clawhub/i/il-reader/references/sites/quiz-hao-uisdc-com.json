@@ -1,0 +1,304 @@
+{
+  "version": "2.4.0",
+  "source_id": "quiz-hao-uisdc-com",
+  "status": "entry_observed",
+  "checked_at": "2026-10-09T09:06:39.141Z",
+  "entry": {
+    "url": "https://hao.uisdc.com",
+    "final_url": "https://hao.uisdc.com/",
+    "title": "优设导航官网 - 设计导航 - 国内专业设计师网站导航",
+    "status": "accessible",
+    "http_status": 200,
+    "checked_at": "2026-10-09T09:06:39.141Z",
+    "identity": {
+      "declared_name": "优设导航",
+      "hostname": "hao.uisdc.com",
+      "domain_matches": true
+    },
+    "links": [
+      {
+        "text": "最新AI课程",
+        "href": "https://pro.uisdc.com/",
+        "target": "_blank"
+      },
+      {
+        "text": "① AI 星踪岛上线星链提示词频道！海量生图 Prompt 支持搜索与一键复制",
+        "href": "https://www.uisdc.com/news",
+        "target": "_blank"
+      },
+      {
+        "text": "IconFont\n国内最著名的图标搜索及管理平台，超2300万个图标下载",
+        "href": "https://www.iconfont.cn/",
+        "target": "_blank"
+      },
+      {
+        "text": "AI星踪岛\n推荐！专业全面的AI人工智能学习平台，你关注的AI知识，都在这里",
+        "href": "https://aixzd.com/",
+        "target": "_blank"
+      },
+      {
+        "text": "星链AI提示词\n推荐！为专业创意人士提供极致提示词灵感，一键复用，快速出图",
+        "href": "https://nova.aixzd.com/",
+        "target": "_blank"
+      },
+      {
+        "text": "Paycor\n人事薪酬集中管！AI辅助更省心\n人力资源管理",
+        "href": "https://aixzd.com/paycor",
+        "target": "_blank"
+      },
+      {
+        "text": "Liner\nAI搜索有答案！出处点开就能查\nAI搜索",
+        "href": "https://aixzd.com/liner",
+        "target": "_blank"
+      },
+      {
+        "text": "SplitShire\n免费可商用的图片库，更有视频素材资源",
+        "href": "https://www.splitshire.com/",
+        "target": "_blank"
+      },
+      {
+        "text": "微软Bing图库\n推荐！帮你探索收集那些精美的图像，可按色彩检索",
+        "href": "https://cn.bing.com/images/trending",
+        "target": "_blank"
+      },
+      {
+        "text": "StockSnap\n推荐！专业的免费可商用照片图片素材资源库",
+        "href": "https://stocksnap.io/",
+        "target": "_blank"
+      },
+      {
+        "text": "500px\n致力于视觉摄影分享、发现的专业平台",
+        "href": "https://500px.com.cn/community/discover",
+        "target": "_blank"
+      },
+      {
+        "text": "Hot 专业权威！百万设计师都在用的AI工具导航",
+        "href": "https://hao.uisdc.com/ai/",
+        "target": "_blank"
+      },
+      {
+        "text": "PSDTuts+\nPhotoshop教程，从初学者到高级进阶，应有尽有",
+        "href": "https://design.tutsplus.com/",
+        "target": "_blank"
+      },
+      {
+        "text": "Notefolio\n韩国知名设计师平台！众多专业设计师分享创作经验和心路历程",
+        "href": "https://notefolio.net/",
+        "target": "_blank"
+      },
+      {
+        "text": "据意查句\n清华出品！AI 神器让你的文案立马变高级\nCN",
+        "href": "https://wantquotes.net/",
+        "target": "_blank"
+      },
+      {
+        "text": "Fountn\n推荐！可能是全球最大的设计师资源宝库",
+        "href": "https://fountn.design/",
+        "target": "_blank"
+      },
+      {
+        "text": "freebiesbug\n最新的免费设计资源",
+        "href": "https://freebiesbug.com/",
+        "target": "_blank"
+      },
+      {
+        "text": "矢量Logo下载\n超赞！知名Logo矢量资源下载",
+        "href": "https://worldvectorlogo.com/",
+        "target": "_blank"
+      },
+      {
+        "text": "字体家\n万款字体免费下载！专业提供正版授权字体下载",
+        "href": "https://www.zitijia.com/",
+        "target": "_blank"
+      },
+      {
+        "text": "MasterGo莫高设计\n推荐！海量免费资源，更专业的云端UI设计工具\nCN",
+        "href": "https://mastergo.com/?utm_source=youshe&utm_medium=wangzhidaohang&utm_campaign=shejigongju&utm_term=&utm_content=",
+        "target": "_blank"
+      },
+      {
+        "text": "Apple\n苹果官方设计文档！帮助你为任何 Apple 平台设计出色的体验",
+        "href": "https://developer.apple.com/design/human-interface-guidelines/",
+        "target": "_blank"
+      },
+      {
+        "text": "支付宝设计社区\n汇聚超多支付宝设计规范、资料、课程、经验及案例",
+        "href": "https://design.alipay.com/",
+        "target": "_blank"
+      },
+      {
+        "text": "Atlassian\n丰富的界面组件库，快速构建专业水平的产品界面",
+        "href": "https://atlassian.design/",
+        "target": "_blank"
+      },
+      {
+        "text": "Google\n为什么谷歌搜索结果的分页器里有很多个O？",
+        "href": "https://www.uisdc.com/hunter_product/google",
+        "target": "_blank"
+      }
+    ],
+    "frames": []
+  },
+  "controls": [
+    {
+      "tag": "input",
+      "type": "text",
+      "text": "优设网  国内专业创作者平台",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": "wd",
+      "id": "",
+      "css": "input[name=\"wd\"]",
+      "role": null,
+      "form_action": "https://www.baidu.com/s",
+      "locator": {
+        "css": "input[name=\"wd\"]"
+      },
+      "observed_url": "https://hao.uisdc.com/",
+      "observed_at": "2026-10-09T09:06:37.785Z"
+    },
+    {
+      "tag": "button",
+      "type": "submit",
+      "text": "百度一下",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": "https://www.baidu.com/s",
+      "locator": {
+        "role": "button",
+        "name": "百度一下",
+        "exact": true
+      },
+      "observed_url": "https://hao.uisdc.com/",
+      "observed_at": "2026-10-09T09:06:37.785Z"
+    }
+  ],
+  "recipes": [
+    {
+      "id": "quiz-hao-uisdc-com:record-lookup",
+      "source_id": "quiz-hao-uisdc-com",
+      "task_kind": "record-lookup",
+      "status": "entry_observed",
+      "parameters": [
+        "title_or_identifier",
+        "author",
+        "institution",
+        "date_or_year",
+        "resource_type",
+        "target_field"
+      ],
+      "instructions": [
+        "使用本题实体或唯一标识查找；在真实结果容器内匹配题名、作者、机构、年份或ID，打开详情读取目标字段。"
+      ],
+      "transitions": {},
+      "entry_url": "https://hao.uisdc.com/",
+      "controls": [
+        {
+          "tag": "input",
+          "type": "text",
+          "text": "优设网  国内专业创作者平台",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": "wd",
+          "id": "",
+          "css": "input[name=\"wd\"]",
+          "role": null,
+          "form_action": "https://www.baidu.com/s",
+          "locator": {
+            "css": "input[name=\"wd\"]"
+          },
+          "observed_url": "https://hao.uisdc.com/",
+          "observed_at": "2026-10-09T09:06:37.785Z"
+        },
+        {
+          "tag": "button",
+          "type": "submit",
+          "text": "百度一下",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": "https://www.baidu.com/s",
+          "locator": {
+            "role": "button",
+            "name": "百度一下",
+            "exact": true
+          },
+          "observed_url": "https://hao.uisdc.com/",
+          "observed_at": "2026-10-09T09:06:37.785Z"
+        }
+      ],
+      "pending": [
+        "结果容器、完成标志与页面打开方式仍需真实查询确认"
+      ],
+      "result_items": {
+        "status": "pending",
+        "locator": null,
+        "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+      },
+      "record_identity": {
+        "status": "pending",
+        "fields": []
+      },
+      "detail_fields": {
+        "status": "pending",
+        "fields": []
+      },
+      "completion": {
+        "status": "pending",
+        "ready": null,
+        "empty": null,
+        "loading": null,
+        "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+      }
+    }
+  ],
+  "blockers": [],
+  "provenance": {
+    "catalog_source_id": null,
+    "quiz_entries": [
+      "quiz-entry-115"
+    ],
+    "example_ids": [],
+    "method": "参数化操作学习；不分发整题、答案或解析",
+    "audit": {
+      "checked_at": "2026-10-09T09:06:39.141Z",
+      "browser": "Google Chrome",
+      "api": "Playwright JavaScript library",
+      "snapshot": "validation/site-audit-v24/quiz-hao-uisdc-com-entry.json",
+      "original_entry_snapshot": "validation/site-audit-v24/quiz-hao-uisdc-com-entry.json",
+      "identity_limit": "匹配来源域名不等于核验所有内容；查询未执行时不得声称检索验证完成。",
+      "published_url_policy": "动态验证码、登录回跳和会话令牌不固化为流程入口；原始现场快照仅在validation留存。"
+    }
+  },
+  "result_items": {
+    "status": "pending",
+    "locator": null,
+    "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+  },
+  "record_identity": {
+    "status": "pending",
+    "fields": []
+  },
+  "detail_fields": {
+    "status": "pending",
+    "fields": []
+  },
+  "completion": {
+    "status": "pending",
+    "ready": null,
+    "empty": null,
+    "loading": null,
+    "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+  }
+}

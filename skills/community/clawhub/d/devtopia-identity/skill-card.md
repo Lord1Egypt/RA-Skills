@@ -1,44 +1,62 @@
-## Description: <br>
-Devtopia Identity helps agents manage wallet-backed on-chain identity with Devtopia ID for registration, status checks, challenge proofs, local wallet management, and verified agent interactions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage wallet-backed on-chain agent identity with Devtopia ID for Base-chain registration, identity status checks, challenge proofs, wallet management, and verified agent interactions.
 
-## Publisher: <br>
-[npmrunspirit](https://clawhub.ai/user/npmrunspirit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[npmrunspirit](https://clawhub.ai/user/npmrunspirit)
 
-## Use Case: <br>
-Developers and agent operators use this skill to register wallet-backed agent identities on Base, manage local identity wallets, check verification status, and generate challenge-response proofs for authentication or coordination. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill asks users to trust an unspecified Devtopia CLI with wallet keys and permanent on-chain identity actions. <br>
-Mitigation: Install only when the Devtopia CLI is already trusted, use a fresh low-value wallet, protect the keystore file, and require explicit approval before imports, proof signing, marketplace registration, or on-chain transactions. <br>
-Risk: Private keys or keystore material could be exposed through chat, command arguments, or insecure storage. <br>
-Mitigation: Do not paste raw private keys into chat or command arguments; keep keystore backups encrypted and limit access to the local keystore path. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Challenge-Response Proofs](references/challenge-proofs.md) <br>
-- [Devtopia Docs](https://devtopia.net/docs) <br>
-- [Base Chain Docs](https://docs.base.org) <br>
-- [ECDSA P-256](https://en.wikipedia.org/wiki/Elliptic_Curve_Digital_Signature_Algorithm) <br>
-- [AES-256-GCM](https://en.wikipedia.org/wiki/Galois/Counter_Mode) <br>
-- [Challenge-Response Authentication](https://en.wikipedia.org/wiki/Challenge%E2%80%93response_authentication) <br>
+## Use Case:
 
+Developers and agent operators use this skill to register and manage wallet-backed Devtopia identities on Base, generate challenge-response proofs, and coordinate verified agent interactions.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash and JSON code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands may create or use a persistent local keystore and submit identity transactions on Base.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Private-key handling could expose wallet credentials if PEM keys are pasted into command lines or handled outside encrypted keystore workflows.
+
+Mitigation: Prefer encrypted keystore-file workflows, avoid command-line PEM private keys, and review wallet import/export steps before using the skill for real identities.
+
+Risk: Challenge-proof examples may produce insecure identity checks if verifiers do not enforce replay protections and request context.
+
+Mitigation: Require fresh single-use challenges, expiration, audience and action binding, and clear token issuance before accepting proofs.
+
+Risk: On-chain registration may be permanent and depends on external Devtopia CLI and Base-chain behavior.
+
+Mitigation: Confirm the Devtopia CLI, chain target, and registration consequences before minting or publishing an identity.
+
+## Reference(s):
+
+- [Challenge-Response Proofs](references/challenge-proofs.md)
+- [Devtopia Docs](https://devtopia.net/docs)
+- [Base Chain Docs](https://docs.base.org)
+- [ECDSA P-256](https://en.wikipedia.org/wiki/Elliptic_Curve_Digital_Signature_Algorithm)
+- [AES-256-GCM](https://en.wikipedia.org/wiki/Galois/Counter_Mode)
+- [Challenge-Response Authentication](https://en.wikipedia.org/wiki/Challenge%E2%80%93response_authentication)
+- [ClawHub Skill Page](https://clawhub.ai/npmrunspirit/skills/devtopia-identity)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Code, Configuration]
+
+**Output Format:** [Markdown with inline bash, JSON, JavaScript, and Solidity code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes wallet identity workflows, challenge-proof examples, and security handling guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

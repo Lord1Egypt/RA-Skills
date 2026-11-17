@@ -1,42 +1,57 @@
-## Description: <br>
-Computes portfolio risk and exposure metrics before sizing and rebalance decisions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Computes portfolio risk and exposure metrics before sizing and rebalance decisions.
 
-## Publisher: <br>
-[ndtchan](https://clawhub.ai/user/ndtchan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[teahann](https://clawhub.ai/user/teahann)
 
-## Use Case: <br>
-Developers, analysts, and portfolio reviewers use this skill to compute risk, concentration, correlation, benchmark sensitivity, and data-confidence context from local holdings and price-history CSV files before sizing or rebalance review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Portfolio holdings and price files can contain sensitive financial information. <br>
-Mitigation: Install only when comfortable sharing portfolio details with the agent environment and use local files intentionally. <br>
-Risk: Risk analytics can be mistaken for trading or rebalance instructions. <br>
-Mitigation: Treat output as risk-management context, verify holdings and prices independently, and do not use the skill to execute trades. <br>
-Risk: Missing benchmark data, short price history, or incomplete coverage can make beta, concentration, and confidence claims unreliable. <br>
-Mitigation: Downgrade confidence for incomplete inputs and avoid precise beta or relative-risk claims without aligned benchmark data. <br>
+## Use Case:
 
+External users and developers use this skill to compute portfolio volatility, drawdown, benchmark sensitivity, concentration, correlation, confidence, and data-gap metrics from local holdings and price-history CSV files before sizing or rebalance review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ndtchan/portfolio-analytics) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown analysis with structured portfolio metrics and optional JSON summary output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local CSV inputs and reports confidence, data gaps, and handoff fields for downstream review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Portfolio analytics may be mistaken for trade instructions or investment advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the output as risk-management context only and review results before making sizing, rebalance, or financial decisions.
+
+Risk: Incomplete, stale, or misaligned holdings, price, benchmark, sector, or liquidity data can produce misleading metrics.
+
+Mitigation: Validate required columns, aligned dates, complete weights, and the confidence and data-gap sections before relying on the metrics.
+
+Risk: The skill reads user-provided portfolio CSVs and writes a local JSON summary.
+
+Mitigation: Provide only intended local files and review the generated output directory contents.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/teahann/skills/portfolio-analytics)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, JSON, guidance]
+
+**Output Format:** [Markdown analysis with shell command guidance and a local JSON summary file.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user-provided local CSV inputs for holdings and price history; optional benchmark data enables beta and relative-risk metrics.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

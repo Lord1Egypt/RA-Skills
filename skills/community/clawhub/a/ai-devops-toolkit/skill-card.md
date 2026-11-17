@@ -1,42 +1,59 @@
-## Description: <br>
-AI DevOps Toolkit provides observability workflows for local Ollama Herd fleets, including health checks, request tracing, latency analysis, capacity planning, and SQLite-backed analytics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+DevOps observability toolkit for local AI fleet operations, covering request tracing, health checks, latency monitoring, capacity planning, and analytics backed by SQLite.
 
-## Publisher: <br>
-[twinsgeeks](https://clawhub.ai/user/twinsgeeks) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[twinsgeeks](https://clawhub.ai/user/twinsgeeks)
 
-## Use Case: <br>
-Developers and operations engineers use this skill to inspect local LLM fleet health, investigate failed or slow requests, analyze per-application usage, and plan capacity for Ollama Herd deployments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Operational commands could affect local fleet services, models, logs, or project data if run without review. <br>
-Mitigation: Review commands before execution, get explicit confirmation before service restarts or model changes, and avoid modifying ~/.fleet-manager contents unless the user requests it. <br>
-Risk: Fleet traces, tags, logs, and usage analytics may expose operational or application-level information. <br>
-Mitigation: Keep credentials scoped to the intended environment and avoid sharing command output that contains sensitive request, node, or usage details. <br>
+## Use Case:
 
+Developers and infrastructure engineers use this skill to inspect Ollama Herd fleet health, request traces, latency behavior, per-application usage, and capacity signals for local LLM operations.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/twinsgeeks/ai-devops-toolkit) <br>
-- [ollama-herd package](https://pypi.org/project/ollama-herd/) <br>
-- [ollama-herd project repository linked by the skill](https://github.com/geeks-accelerator/ollama-herd) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash, SQL, and curl command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a local Ollama Herd router and access to the documented SQLite database and JSONL log paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.1 (source: server release metadata) <br>
+Risk: Telemetry in local traces, logs, dashboards, and SQLite data can expose infrastructure details and usage patterns.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review telemetry before sharing it and keep access limited to appropriate operators.
+
+Risk: Installing an unpinned package can introduce unexpected dependency or behavior changes.
+
+Mitigation: Install in a virtual environment or dedicated low-privilege account, and pin and verify ollama-herd where possible.
+
+Risk: POST requests and other configuration-changing commands can alter the running local AI fleet.
+
+Mitigation: Require explicit operator approval before running configuration-changing commands.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/twinsgeeks/skills/ai-devops-toolkit)
+- [ollama-herd PyPI package](https://pypi.org/project/ollama-herd/)
+- [Ollama Herd repository](https://github.com/geeks-accelerator/ollama-herd)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands, SQL queries, curl requests, and operational guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference local SQLite telemetry, JSONL logs, and localhost Ollama Herd dashboard APIs.]
+
+## Skill Version(s):
+
+1.2.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

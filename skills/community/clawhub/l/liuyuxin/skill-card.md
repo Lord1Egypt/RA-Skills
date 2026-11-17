@@ -1,48 +1,68 @@
-## Description: <br>
-本地通推荐技能 - 利用互联网全域搜索，绕过商业评价平台，挖掘真正受当地人认可的地道去处。支持美食、小吃、酒店、景点、温泉、停车场等多种类型推荐。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Local Guide helps agents search for local recommendations such as food, lodging, attractions, hot springs, parking, coffee, shopping, and nightlife while prioritizing official and local-community sources over commercial review platforms.
 
-## Publisher: <br>
-[pythonmango](https://clawhub.ai/user/pythonmango) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pythonmango](https://clawhub.ai/user/pythonmango)
 
-## Use Case: <br>
-External users and agents use this skill to find local recommendations for food, snacks, hotels, attractions, hot springs, parking, and related places by searching official, local-media, and community sources while avoiding major commercial review platforms. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The search helper can execute user-influenced search text through a shell-based fallback path. <br>
-Mitigation: Review before installing, use only if the publisher is trusted, and replace the shell fallback with safe argument passing or a direct API call. <br>
-Risk: EXA and Feishu credentials are required or supported and could be exposed through shared dotfiles, prompts, or logs. <br>
-Mitigation: Store credentials securely, avoid committing or sharing real keys, and rotate any key that may have been exposed. <br>
-Risk: Feishu card delivery sends recommendation content to the configured Feishu workspace. <br>
-Mitigation: Configure Feishu only when that workspace is an appropriate destination for the generated recommendation content. <br>
-Risk: Local venue details such as hours, availability, prices, and parking rules may be outdated or incorrect. <br>
-Mitigation: Confirm important details with official or direct sources before relying on a recommendation. <br>
+## Use Case:
 
+External users and agents use this skill to produce local-place recommendations with addresses, phone numbers, hours, price ranges, reasons for recommendation, and practical cautions. It also supports optional Feishu card delivery when Feishu credentials and recipient context are available.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/pythonmango/liuyuxin) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/pythonmango) <br>
-- [EXA search engine](https://exa.ai) <br>
-- [EXA API keys dashboard](https://exa.ai/dashboard/api-keys) <br>
-- [OpenClaw](https://openclaw.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown recommendations with optional JSON for Feishu card delivery and inline shell commands for setup or sending cards] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Recommendations include source summaries, location details, prices or parking fees, hours, reasons, and cautions when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release metadata) <br>
+Risk: Unsafe shell-command paths could allow crafted search or card content to run local commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Patch shell execution before deployment by removing shell=True, passing command arguments as arrays, and avoiding shell echo for generated JSON.
+
+Risk: Feishu recipient and reply identifiers may be misdirected if they are not validated.
+
+Mitigation: Validate recipient ID formats and allowed targets before sending cards, and restrict Feishu app permissions to the minimum required scope.
+
+Risk: Long-term plaintext API keys in shell startup files can expose EXA or Feishu credentials.
+
+Mitigation: Store secrets in a managed secret store or short-lived environment injection mechanism instead of persistent shell profiles.
+
+Risk: Local recommendation details such as hours, prices, and business status may become stale.
+
+Mitigation: Tell users to confirm time-sensitive venue details before visiting, especially for phone numbers, hours, parking rates, and closures.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/pythonmango/skills/liuyuxin)
+- [Publisher profile](https://clawhub.ai/user/pythonmango)
+- [Exa search](https://exa.ai)
+- [Exa API keys dashboard](https://exa.ai/dashboard/api-keys)
+- [OpenClaw](https://openclaw.ai)
+- [Feishu tenant access token API](https://open.feishu.cn/open-apis/auth/v3/tenant_access_token/internal)
+- [Feishu send message API](https://open.feishu.cn/open-apis/im/v1/messages?receive_id_type={receive_id_type})
+- [Feishu reply message API](https://open.feishu.cn/open-apis/im/v1/messages/{reply_to}/reply)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown recommendations with optional JSON-formatted Feishu card payloads and shell commands for sending cards]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs include source notes, recommendation reasons, cautions, and venue details such as address, phone, hours, navigation address, price, parking rates, spaces, and charging availability when relevant.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release metadata; artifact/README.md lists 1.0.2)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,57 @@
-## Description: <br>
-wos-crawler helps agents guide a Web of Science literature crawling workflow and batch PDF download workflow through a local web UI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+WOS Crawler helps agents guide users through Web of Science literature searching, Excel export, and batch PDF downloading through a local Web UI.
 
-## Publisher: <br>
-[grizzlyccc](https://clawhub.ai/user/grizzlyccc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[grizzlyccc](https://clawhub.ai/user/grizzlyccc)
 
-## Use Case: <br>
-Developers, researchers, and agents use this skill to guide Web of Science searches, export crawled literature metadata to Excel, and coordinate batch PDF downloads from configured sources. The release evidence notes that the referenced executable code is missing, so users should verify the complete source before relying on the workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release describes WOS crawling and PDF downloading, but the referenced executable code is absent. <br>
-Mitigation: Review the publisher-provided full source before installing or running the skill, and do not rely on the workflow until the missing script behavior can be inspected. <br>
-Risk: The workflow may involve WOS or institutional credentials and persistent cookies. <br>
-Mitigation: Do not enter credentials until cookie storage, deletion, and browser-profile controls are documented; use an isolated browser profile where possible. <br>
-Risk: The workflow may contact external PDF services and perform bulk downloads. <br>
-Mitigation: Confirm allowed sources, crawl limits, output paths, and organizational policy before enabling downloads. <br>
+## Use Case:
 
+Developers and researchers use this skill to help agents start a local Web of Science and PDF workflow, prompt for WOS search criteria or an existing export, and guide users through PDF download results.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/grizzlyccc/wos-crawler) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Files] <br>
-**Output Format:** [Markdown with inline bash commands and workflow steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides local Web UI launch, WOS search setup, Excel export, output directory selection, and PDF folder review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.2 (source: ClawHub release metadata; artifact frontmatter says 1.0.0) <br>
+Risk: The release evidence says the main crawling script was removed, which may disable the core WOS crawling workflow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the installed package includes the expected Web UI and crawler implementation before relying on the skill.
+
+Risk: The security evidence says WOS session cookies may be saved locally.
+
+Mitigation: Use a dedicated virtual environment and review local cookie storage behavior before authenticating with institutional credentials.
+
+Risk: The security evidence flags institutional terms, copyright, and Sci-Hub access implications.
+
+Mitigation: Confirm the workflow complies with institutional access terms, copyright obligations, and local policy before downloading papers.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/grizzlyccc/skills/wos-crawler)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, guidance, configuration, files]
+
+**Output Format:** [Markdown guidance with inline shell commands and file workflow descriptions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide creation of Excel exports and downloaded PDF files through the local Web UI.]
+
+## Skill Version(s):
+
+1.1.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,59 @@
-## Description: <br>
-Autonomous prediction market agent - analyzes markets, researches news, and identifies trading opportunities. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Research Polymarket markets, whale flow and smart money; optionally trade a Polygon wallet behind deterministic risk guard-rails.
 
-## Publisher: <br>
-[Andretuta](https://clawhub.ai/user/Andretuta) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[andretuta](https://clawhub.ai/user/andretuta)
 
-## Use Case: <br>
-External users and developers use this skill to search Polymarket prediction markets, research related news, compare market odds with estimated probabilities, and receive trading recommendations or execute approved trades through the poly CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks for a raw wallet private key for Polymarket trading. <br>
-Mitigation: Use only a dedicated wallet with limited funds and review setup carefully before storing credentials. <br>
-Risk: The skill can enable real-money trades without per-trade confirmation when autonomous mode is enabled. <br>
-Mitigation: Keep autonomous mode disabled and manually confirm every trade before execution. <br>
-Risk: Dependencies are unpinned in requirements.txt and may change over time. <br>
-Mitigation: Prefer pinned dependency versions before setup or deployment. <br>
+## Use Case:
 
+External users and developers use this skill to research Polymarket prediction markets, inspect whale flow and trader performance, configure recurring read-only alerts, and optionally prepare guarded wallet operations when they explicitly choose to trade.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Andretuta/polymarket-agent) <br>
-- [Clawdis homepage](https://clawdhub.com/polymarket-agent) <br>
-- [Polymarket Gamma API](https://gamma-api.polymarket.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown analysis with CLI command suggestions and optional shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May call Polymarket APIs and trading commands when configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The skill can custody a Polygon wallet key and place real-money Polymarket orders.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated wallet funded only with money the user accepts losing, keep dry-run enabled while testing, rely on explicit confirmations and configured limits, review poly history, and use poly halt for unexpected behavior.
+
+Risk: Environment variables for wallet keys or passphrases may be exposed through child processes, logs, crash dumps, or host inspection.
+
+Mitigation: Prefer the encrypted keystore created by poly setup; use POLYMARKET_KEY or POLYMARKET_PASSPHRASE only when necessary and with explicit opt-in.
+
+Risk: Polymarket market text, trader names, news, and alert content may contain untrusted instructions or misleading signals.
+
+Mitigation: Treat external content as data, not instructions; never convert whale alerts or research findings into orders without a specific user-authorized trade.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/andretuta/skills/polymarket-agent)
+- [ClawHub security audit](https://clawhub.ai/andretuta/skills/polymarket-agent/security-audit)
+- [OpenClaw](https://openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and terminal-oriented text with inline shell commands and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Research output can include market summaries, order proposals, alert setup commands, wallet status, audit history, and risk-limit explanations.]
+
+## Skill Version(s):
+
+2.2.1 (source: server release, pyproject.toml, CHANGELOG)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

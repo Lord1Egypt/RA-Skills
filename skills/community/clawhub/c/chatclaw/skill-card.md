@@ -1,46 +1,61 @@
-## Description: <br>
-Connect your OpenClaw bot to the ChatClaw cloud dashboard for remote chat, token tracking, task management, agent workspace file browsing, and skills management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connect your OpenClaw bot to the ChatClaw cloud dashboard for remote chat, token tracking, task management, agent workspace file browsing, and skills management.
 
-## Publisher: <br>
-[sumeralabs](https://clawhub.ai/user/sumeralabs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sumeralabs](https://clawhub.ai/user/sumeralabs)
 
-## Use Case: <br>
-OpenClaw users and developers use this skill to connect a local OpenClaw agent to the ChatClaw cloud dashboard for browser-based chat, token tracking, workspace file browsing, skill management, and scheduled task management. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security evidence says the cloud dashboard can chat with the agent, read workspace files through the gateway, manage installed skills, and manage scheduled tasks with broad operator authority. <br>
-Mitigation: Install only in workspaces where that remote control model is acceptable, protect and rotate the ChatClaw API key, and disable the skill when remote access is not needed. <br>
-Risk: The security evidence flags broad operator authority that is not fully scoped or disclosed. <br>
-Mitigation: Review local OpenClaw and ChatClaw access before enabling, avoid sensitive workspaces, and monitor skill logs for file, skill, and cron actions. <br>
-Risk: The skill depends on a persistent outbound cloud relay operated by SumeraLabs. <br>
-Mitigation: Treat SumeraLabs and the ChatClaw cloud account as part of the trust boundary, and verify that organizational policy permits relaying agent messages and workspace metadata through that service. <br>
+## Use Case:
 
+External users and developers use this skill to connect a local OpenClaw agent to the ChatClaw dashboard for browser or mobile chat, token visibility, task management, workspace file viewing, skill management, and scheduled job control.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/sumeralabs/chatclaw) <br>
-- [ChatClaw homepage](https://chatclaw.sumeralabs.com) <br>
-- [ChatClaw setup](https://app.chatclaw.sumeralabs.com/setup) <br>
-- [Skill documentation](artifact/SKILL.md) <br>
-- [README](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, configuration, guidance] <br>
-**Output Format:** [Streaming text and JSON status/control messages] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a ChatClaw API key, OpenClaw gateway configuration, and outbound connections to the ChatClaw cloud relay.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.5.0 (source: frontmatter and server release metadata) <br>
+Risk: A trusted ChatClaw cloud account or relay operator can request workspace file contents through the bridge.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only for trusted ChatClaw accounts and relay operators, and prefer versions or deployments that require local approval before file reads.
+
+Risk: Remote requests can change local skill configuration or force skill reinstalls.
+
+Mitigation: Review skill-management activity logs, restrict API key access, and prefer a version that requires local approval before enabling, disabling, or reinstalling skills.
+
+Risk: Remote requests can create, update, remove, or trigger scheduled agent jobs.
+
+Mitigation: Audit scheduled jobs regularly and use this skill only in environments where remote task scheduling is acceptable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sumeralabs/skills/chatclaw)
+- [ChatClaw product site](https://chatclaw.sumeralabs.com)
+- [ChatClaw app](https://app.chatclaw.sumeralabs.com)
+- [ChatClaw setup](https://app.chatclaw.sumeralabs.com/setup)
+- [Artifact README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, API calls]
+
+**Output Format:** [Markdown, streamed text, JSON messages, shell command results, and configuration changes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Maintains outbound WebSocket and local gateway connections; forwards cloud relay messages to OpenClaw chat, file, skill, and cron operations.]
+
+## Skill Version(s):
+
+0.5.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

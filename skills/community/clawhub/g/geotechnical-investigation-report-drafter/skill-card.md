@@ -1,42 +1,59 @@
-## Description: <br>
-Guides geotechnical analysts through drafting a ten-section subsurface investigation report with field exploration logs, ASTM lab testing, ASCE 7 Site Class determination, foundation and earthwork recommendations, appendices, and engineer-of-record review gates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Drafts geotechnical investigation reports for building, infrastructure, and earthwork sites, guiding field exploration logging, ASTM lab testing, ASCE 7 Site Class analysis, and foundation and earthwork recommendations for licensed Geotechnical Engineer of Record review.
 
-## Publisher: <br>
-[archlab-space](https://clawhub.ai/user/archlab-space) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[archlab-space](https://clawhub.ai/user/archlab-space)
 
-## Use Case: <br>
-External geotechnical engineers, junior staff engineers, and supervised report-production analysts use this skill to prepare draft subsurface investigation reports for buildings, infrastructure, earthwork, foundations, pavements, and related geotechnical scopes. The draft is intended for review, correction, stamping, and sealing by a licensed Geotechnical Engineer of Record. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global, with United States defaults and user-confirmed controlling codes required outside the United States. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Draft report content could contain incorrect assumptions, calculations, recommendations, or citations if issued without expert review. <br>
-Mitigation: Require a licensed Geotechnical Engineer of Record to verify all assumptions, calculations, recommendations, and citations before any report is issued. <br>
-Risk: Project identifiers, coordinates, boring logs, lab data, and design loads may be confidential work product. <br>
-Mitigation: Handle project-specific inputs as confidential and do not send them to services the user has not authorized. <br>
-Risk: Unsupported soil descriptions, lab values, SPT N-values, groundwater observations, or boring-log content could mislead downstream design decisions. <br>
-Mitigation: Do not invent missing field or lab data; surface missing values as data gaps and require supporting field exploration and lab testing before recommendations are finalized. <br>
+## Use Case:
 
+Geotechnical engineers, junior staff engineers, report-production analysts, and supervised interns use this skill to draft a DRAFT subsurface investigation report from project, field exploration, laboratory, seismic, foundation, earthwork, and construction-observation inputs. The report remains draft until reviewed, verified, stamped, and sealed by the Geotechnical Engineer of Record.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/archlab-space/geotechnical-investigation-report-drafter) <br>
+### Deployment Geography for Use:
 
+United States by default; outside-US projects require confirmation of the controlling code.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown draft report with tables, appendices, and an unsigned stamp/seal block] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Draft-only output; assumptions, calculations, recommendations, citations, and project-specific data require Geotechnical Engineer of Record verification before issue.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server evidence and changelog, released 2026-05-28) <br>
+Risk: Draft geotechnical recommendations may be mistaken for sealed engineering judgment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep outputs labeled DRAFT and require licensed Geotechnical Engineer of Record verification, signature, stamp, and seal before issuance.
+
+Risk: Missing or unsupported field or laboratory data can lead to unreliable design parameters.
+
+Mitigation: Do not invent subsurface data; log data gaps and tie recommendations to supplied field/lab evidence and cited methods.
+
+Risk: Confidential project information may be exposed if shared beyond authorized systems.
+
+Mitigation: Use only project data the user is authorized to share and avoid transmitting owner identifiers, parcel-specific findings, or design loads to unauthorized services.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/archlab-space/skills/geotechnical-investigation-report-drafter)
+- [Skill README](artifact/README.md)
+- [Skill definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown draft report with tables, appendices, data-gap notes, and an unsigned stamp/seal block]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Draft only; requires licensed Geotechnical Engineer of Record review, verification, stamp, and seal before issuance.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata and changelog, released 2026-05-28)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

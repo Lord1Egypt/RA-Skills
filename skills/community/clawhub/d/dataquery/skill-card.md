@@ -1,41 +1,54 @@
-## Description: <br>
-Queries logistics index data by carrier, statistical date, metric, and region. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Queries logistics index data for carriers by statistical date, metric, and region.
 
-## Publisher: <br>
-[a-vb](https://clawhub.ai/user/a-vb) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[a-vb](https://clawhub.ai/user/a-vb)
 
-## Use Case: <br>
-Operations and logistics users can use this skill to request carrier index metrics, compare them with industry averages, and summarize recent metric trends for a selected date and region. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may query broad logistics index defaults when carrier, date, region, or metric are omitted. <br>
-Mitigation: Specify carrier, statistical date, province or region, and metric when a narrow result is required. <br>
-Risk: The referenced logistics index data may have access or reuse constraints for some organizations. <br>
-Mitigation: Confirm organizational permission to access and reuse the listed logistics index data before installation or operational use. <br>
+## Use Case:
 
+Operations analysts and logistics teams use this skill to query carrier logistics index values, industry averages, carrier rankings, and seven-day trend information for selected dates, metrics, and regions.
 
-## Reference(s): <br>
-- [Logistics Index Overview](http://jingwe.jdl.com/#/indexCenter/indexOverview) <br>
-- [Shipper Overview](http://jingwe.jdl.com/#/indexCenter/shipperOverview) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, analysis] <br>
-**Output Format:** [Markdown summary with metric comparisons and trend description] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include carrier, date, metric, region, industry average, ranking, difference from average, and a seven-day trend summary.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata) <br>
+Risk: The skill queries a referenced logistics index system that may require authorization.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and use it only where access to that system and the requested logistics data is authorized.
+
+Risk: Omitted filters can broaden the query to all carriers, national scope, previous-day data, or all logistics metrics.
+
+Mitigation: Provide explicit carrier, date, metric, and region filters when narrower results are required.
+
+## Reference(s):
+
+- [Jingwe Logistics Index Overview](http://jingwe.jdl.com/#/indexCenter/indexOverview)
+- [Jingwe Shipper Overview](http://jingwe.jdl.com/#/indexCenter/shipperOverview)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Analysis]
+
+**Output Format:** [Markdown with logistics index values, rankings, comparisons, and trend summary]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include a seven-day trend chart or chart description when supported by the agent interface.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

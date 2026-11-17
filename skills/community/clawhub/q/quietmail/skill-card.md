@@ -1,45 +1,63 @@
-## Description: <br>
-Provides AI agents with no-verification email sending and mailbox management through a REST API backed by mailcow infrastructure. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides AI agents with no-verification email accounts and a REST API for creating agent mailboxes, sending email, and listing sent or received messages.
 
-## Publisher: <br>
-[co1onnese](https://clawhub.ai/user/co1onnese) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[co1onnese](https://clawhub.ai/user/co1onnese)
 
-## Use Case: <br>
-Developers and agent builders use this skill to create agent email identities, send outbound email, and inspect sent or received mailbox data through a simple API. It is intended for agents that need operational email for notifications, reports, account signups, or similar automation workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill enables an agent to control an external email account and send broad outbound email. <br>
-Mitigation: Restrict approved recipients and sending volume, and require human approval before outbound mail is sent. <br>
-Risk: The release includes live-looking SMTP credentials and test scripts that can exercise real mail infrastructure. <br>
-Mitigation: Rotate or remove bundled SMTP credentials before use and avoid running live SMTP test scripts unless explicitly authorized. <br>
-Risk: quiet-mail API keys and mailbox passwords grant access to agent mailboxes. <br>
-Mitigation: Treat API keys and mailbox passwords as secrets, store them outside source code, and revoke or rotate them after exposure. <br>
+## Use Case:
 
+Developers and AI-agent operators use quiet-mail to provision agent-specific email identities and send, receive, or audit messages through a REST API backed by mailcow.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/co1onnese/quietmail) <br>
-- [API documentation](API.md) <br>
-- [README](README.md) <br>
-- [quiet-mail homepage](https://quiet-mail.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with curl, Python, Node.js, shell examples, and JSON API responses.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces operational instructions for creating agent mailboxes, sending email, listing messages, and handling API keys.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata, package.json, README changelog) <br>
+Risk: The release is flagged for review because it ships live-looking SMTP credentials and weak secret-storage defaults.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove and rotate embedded SMTP credentials, replace default database credentials, and store API keys and mailbox passwords with hashing or encryption before deployment.
+
+Risk: Unauthenticated agent creation and advertised unlimited sending can enable account and email abuse.
+
+Mitigation: Add real signup controls, sending quotas, rate limits, and operational abuse monitoring before exposing the service publicly.
+
+Risk: The bundled database defaults can expose sensitive API keys and mailbox credentials if deployed unchanged.
+
+Mitigation: Avoid public PostgreSQL exposure, restrict network access, and require deployment-specific database passwords.
+
+Risk: The security guidance calls out vulnerable dependencies as requiring review.
+
+Mitigation: Upgrade vulnerable dependencies and rerun security scanning before installation or production use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/co1onnese/skills/quietmail)
+- [quiet-mail homepage](https://quiet-mail.com)
+- [quiet-mail API service](https://api.quiet-mail.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON payload examples, curl commands, and Python or Node.js snippets.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide agents through API requests that create mailboxes, send email, and list sent or received messages.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata, package.json, and application configuration)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

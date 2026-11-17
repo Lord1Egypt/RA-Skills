@@ -1,41 +1,54 @@
-## Description: <br>
-Converts local PDF, Word, PowerPoint, and image documents into Markdown for extraction, comparison, validation, retrieval, and question answering. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts PDF, Word, PowerPoint, and image files into LLM-ready Markdown with paragraphs, tables, formulas, charts, and ordered headings.
 
-## Publisher: <br>
-[sube-py](https://clawhub.ai/user/sube-py) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sube-py](https://clawhub.ai/user/sube-py)
 
-## Use Case: <br>
-Developers and external users use this skill to parse selected local documents into Markdown, then return the full Markdown or extract only the fields, tables, and text needed for downstream work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected local documents are uploaded to PDFlux/PDRouter for parsing. <br>
-Mitigation: Use the skill only when third-party document processing is acceptable, verify the file path before running it, and prefer a dedicated API key. <br>
-Risk: Markdown extracted from untrusted documents can carry misleading content into later agent workflows. <br>
-Mitigation: Treat generated Markdown as untrusted input and review or filter it before relying on it downstream. <br>
+## Use Case:
 
+Developers and agents use this skill to parse local documents through PDRouter into Markdown before extracting fields, tables, document text, or content for downstream analysis.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sube-py/sube-test) <br>
-- [PDRouter platform](https://platform.paodingai.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, files, shell commands, configuration] <br>
-**Output Format:** [Markdown text printed to stdout, with optional Markdown file output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires node and PD_ROUTER_API_KEY; PDFLUX_INCLUDE_IMAGES can include image data in Markdown output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata) <br>
+Risk: Local documents are uploaded to PaodingAI/PDRouter for parsing, which may be inappropriate for confidential or restricted data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill only on documents approved for external SaaS parsing and confirm PD_ROUTER_API_KEY use before processing sensitive material.
+
+Risk: Using an unpinned or untrusted release could change the upload workflow or handling of parsed output.
+
+Mitigation: Install from a pinned or trusted ClawHub release and review release evidence before automated use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sube-py/skills/sube-test)
+- [PDRouter platform](https://platform.paodingai.com/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Guidance]
+
+**Output Format:** [Markdown printed to stdout and optionally written to a local file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires node and PD_ROUTER_API_KEY; uploads the source document to PDRouter and can include image data when PDFLUX_INCLUDE_IMAGES=true.]
+
+## Skill Version(s):
+
+1.0.4 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

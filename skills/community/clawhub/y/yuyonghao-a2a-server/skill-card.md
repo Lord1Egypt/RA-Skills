@@ -1,45 +1,60 @@
-## Description: <br>
-A WebSocket-based agent-to-agent communication server and client for agent registration, low-latency message forwarding, RPC calls, publish/subscribe channels, capability discovery, heartbeats, and offline message queues. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A2a Server provides a WebSocket-based agent-to-agent communication server and client for P2P messaging, RPC calls, pub/sub, capability discovery, heartbeats, and offline message queues.
 
-## Publisher: <br>
-[yuyonghao-123](https://clawhub.ai/user/yuyonghao-123) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yuyonghao-123](https://clawhub.ai/user/yuyonghao-123)
 
-## Use Case: <br>
-Developers and agent builders use this skill to run a local WebSocket hub that lets multiple agents register, discover each other by capability, exchange direct messages, perform RPC-style calls, and broadcast channel events. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release enables unauthenticated agent RPC, discovery, and message forwarding. <br>
-Mitigation: Use it only on localhost or fully trusted networks unless authentication, authorization, TLS or WSS, identity binding, and message signing are enforced externally. <br>
-Risk: Agent identifiers can be registered or overwritten by another connection. <br>
-Mitigation: Run only with trusted agents, isolate the server from untrusted clients, and add identity checks before allowing shared or network-accessible deployments. <br>
-Risk: Offline messages are stored in memory and delivered later without durable persistence. <br>
-Mitigation: Treat queued messages as best-effort local state, avoid sensitive payloads, and add a durable encrypted queue if reliability or confidentiality is required. <br>
+## Use Case:
 
+Developers use this skill to run a local WebSocket communication layer for multi-agent systems that need low-latency messaging, RPC, pub/sub notifications, and capability discovery.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/yuyonghao-123/yuyonghao-a2a-server) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact skill documentation](artifact/SKILL.md) <br>
-- [Test status](artifact/TEST-STATUS.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with JavaScript and shell code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes local server and client usage patterns, environment variables, and API examples.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata and package.json) <br>
+Risk: Unauthenticated WebSocket registration and relay can allow agent impersonation or untrusted message forwarding.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run only in a trusted local development environment, keep the WebSocket port off shared or public networks, and add authentication, authorization, message signing, TLS/WSS, payload limits, queue quotas, and rate limits before handling sensitive or privileged agent traffic.
+
+Risk: Offline messages are stored in memory and can be lost when the server restarts.
+
+Mitigation: Use the offline queue only for non-critical messages until durable storage such as Redis or another persistence layer is implemented.
+
+Risk: Test coverage is below the documented coverage target.
+
+Mitigation: Review and expand tests around connection timing, heartbeat timeout behavior, publish/subscribe delivery, and concurrent RPC behavior before production deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yuyonghao-123/skills/yuyonghao-a2a-server)
+- [README](artifact/README.md)
+- [Skill documentation](artifact/SKILL.md)
+- [Test status](artifact/TEST-STATUS.md)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown usage guidance with JavaScript examples and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The package exposes Node.js server and client APIs configured through constructor options and environment variables.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,65 @@
-## Description: <br>
-Bangladesh stock market data and analytics for DSE (Dhaka Stock Exchange), including prices, signals, EMA channels, and Fibonacci levels. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Bangladesh stock market data and analytics for DSE (Dhaka Stock Exchange) - prices, signals, EMA channels, Fibonacci levels.
 
-## Publisher: <br>
-[rashed-mamoon](https://clawhub.ai/user/rashed-mamoon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rashed-mamoon](https://clawhub.ai/user/rashed-mamoon)
 
-## Use Case: <br>
-External users and agents use this skill to query Bangladesh Dhaka Stock Exchange market data, news, price history, technical indicators, and trading analytics through the StockAI Live API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends a StockAI API key to stock-ai.live and may access portfolio data tied to that account. <br>
-Mitigation: Install only if you trust stock-ai.live, keep STOCKAI_API_KEY secret, and avoid committing .env or agent config files that contain credentials. <br>
-Risk: A portfolio command exists but is not clearly disclosed in the main instructions. <br>
-Mitigation: Limit use to expected commands unless portfolio access is intended, and review any portfolio output before sharing it. <br>
-Risk: Command outputs can include promotional signup or upgrade content. <br>
-Mitigation: Review generated JSON before relaying it to users, especially when neutral market-data output is expected. <br>
+## Use Case:
 
+Developers, agents, and market analysts use this skill to retrieve Dhaka Stock Exchange prices, market summaries, news, historical data, and tier-gated trading analytics from StockAI Live.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/rashed-mamoon/bd-stock-live) <br>
-- [StockAI Live](https://stock-ai.live) <br>
-- [StockAI Live Documentation](https://stock-ai.live/docs) <br>
-- [StockAI Live API Keys](https://stock-ai.live/api-keys) <br>
-- [StockAI Live Pricing](https://stock-ai.live/pricing) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance, JSON, Analysis] <br>
-**Output Format:** [Markdown guidance with shell commands; command output is JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires STOCKAI_API_KEY. Some command responses include promotional signup or upgrade content.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata) <br>
+Risk: The skill sends an API key and may access portfolio data tied to the StockAI Live account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when the StockAI Live service and account are trusted, keep STOCKAI_API_KEY private, and limit use to accounts with appropriate data access.
+
+Risk: Overriding STOCKAI_API_BASE can create API-key transport risk if an insecure http URL is used.
+
+Mitigation: Use the default HTTPS endpoint or set STOCKAI_API_BASE only to a trusted HTTPS stock-ai.live URL.
+
+Risk: Command outputs include promotional CTA fields in addition to requested market data.
+
+Mitigation: Treat fields such as _cta as promotional metadata and separate them from market data used for analysis or decisions.
+
+Risk: Trading signals, EMA channels, Fibonacci levels, and portfolio outputs may be mistaken for investment advice.
+
+Mitigation: Use the outputs as informational analytics and require human review before trading or portfolio decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/rashed-mamoon/skills/bd-stock-live)
+- [StockAI Live homepage](https://stock-ai.live)
+- [StockAI Live documentation](https://stock-ai.live/docs)
+- [StockAI Live API keys](https://stock-ai.live/api-keys)
+- [StockAI Live pricing](https://stock-ai.live/pricing)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Analysis, Guidance]
+
+**Output Format:** [JSON objects printed to stdout]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires STOCKAI_API_KEY; responses include requested market data or analytics and may include promotional CTA fields.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

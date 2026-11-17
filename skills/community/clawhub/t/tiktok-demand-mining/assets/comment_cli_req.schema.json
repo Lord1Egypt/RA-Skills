@@ -1,0 +1,23 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "title": "TikTok 视频评论 - 命令行入参",
+    "description": "url 会先规范成标准视频链接或纯数字 aweme_id。主页、sec_uid 和短链会直接失败。",
+    "required": ["url"],
+    "properties": {
+        "url": {
+            "type": "string",
+            "description": "https://www.tiktok.com/@用户名/video/数字id ，或纯数字 aweme_id。最长 255",
+            "minLength": 1,
+            "maxLength": 255
+        },
+        "limit": {
+            "type": "integer",
+            "description": "获取数量。技能硬上限 10000（按量）。包月 Token 超过 40 返回 PLAN_LIMIT（后端 errcode 14）",
+            "minimum": 1,
+            "maximum": 10000,
+            "default": 10
+        }
+    },
+    "additionalProperties": false
+}

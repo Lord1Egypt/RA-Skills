@@ -1,44 +1,71 @@
-## Description: <br>
-RevenueCat metrics, customer data, and documentation search. Use when querying subscription analytics, MRR, churn, customers, or RevenueCat docs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+RevenueCat metrics, customer data, and documentation search. Use when querying subscription analytics, MRR, churn, customers, or RevenueCat docs.
 
-## Publisher: <br>
-[jeiting](https://clawhub.ai/user/jeiting) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[jeiting](https://clawhub.ai/user/jeiting)
 
-## Use Case: <br>
-Developers and operators use this skill to query RevenueCat subscription analytics, customer records, project configuration, and API documentation while working with RevenueCat projects. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a RevenueCat API key, which may expose project, subscription, customer, or revenue data to the agent. <br>
-Mitigation: Use the least-privileged or read-only RevenueCat key available and expose broad customer data only when it is needed for the task. <br>
-Risk: The reference material includes POST, DELETE, refund, cancel, webhook, product, entitlement, offering, project, and balance-changing operations. <br>
-Mitigation: Require explicit human confirmation before using any referenced operation that can modify configuration, customer state, subscriptions, purchases, webhooks, products, entitlements, offerings, projects, refunds, cancellations, or balances. <br>
+## Use Case:
 
+Developers and operators use this skill to query RevenueCat subscription metrics, customers, products, purchases, and project documentation through local API references and a curl-based API helper.
 
-## Reference(s): <br>
-- [ClawHub RevenueCat skill page](https://clawhub.ai/jeiting/revenuecat) <br>
-- [RevenueCat documentation](https://www.revenuecat.com/docs) <br>
-- [RevenueCat documentation index for agents](https://www.revenuecat.com/docs/llms.txt) <br>
-- [RevenueCat Developer API v2 Reference](references/api-v2.md) <br>
-- [RevenueCat API v2 base URL](https://api.revenuecat.com/v2) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples, local API reference excerpts, and RevenueCat API response interpretation.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl and RC_API_KEY. The bundled shell wrapper issues GET requests to the RevenueCat API v2 base URL.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: The skill is primarily read-oriented but includes reference coverage for sensitive RevenueCat admin actions such as refunds, cancellations, deletes, and webhook changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a least-privilege or read-only RevenueCat API key where possible, and require explicit confirmation before using credentials that can perform admin actions.
+
+Risk: RevenueCat API credentials may expose project customer, subscription, and revenue data according to the key's permissions.
+
+Mitigation: Keep RC_API_KEY out of shared logs and prompts, rotate it if exposed, and scope it to the minimum RevenueCat project and permissions needed.
+
+## Reference(s):
+
+- [RevenueCat skill page](https://clawhub.ai/jeiting/skills/revenuecat)
+- [RevenueCat documentation](https://www.revenuecat.com/docs)
+- [RevenueCat documentation index](https://www.revenuecat.com/docs/llms.txt)
+- [RevenueCat Developer API v2 Reference](references/api-v2.md)
+- [Audit Log](references/audit-logs.md)
+- [Chart Dashboard Links](references/chart-links.md)
+- [Customer](references/customers.md)
+- [Entitlement](references/entitlements.md)
+- [Error Handling](references/error-handling.md)
+- [Integration](references/integrations.md)
+- [Charts & Metrics](references/metrics.md)
+- [Offering](references/offerings.md)
+- [Paywall](references/paywalls.md)
+- [Product](references/products.md)
+- [Project](references/projects.md)
+- [Purchase](references/purchases.md)
+- [Rate Limits](references/rate-limits.md)
+- [Subscription](references/subscriptions.md)
+- [Virtual Currency](references/virtual-currencies.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON API responses when commands are run]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl and RC_API_KEY; RevenueCat API key permissions determine accessible projects and actions.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

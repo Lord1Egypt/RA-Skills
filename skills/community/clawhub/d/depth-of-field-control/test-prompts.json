@@ -1,0 +1,52 @@
+{
+  "skill": "depth-of-field-control",
+  "version": "0.1.0",
+  "source_book": "纽约摄影学院摄影教程 — 美国纽约摄影学院",
+  "darwin_compatible": true,
+  "test_cases": [
+    {
+      "id": "should-trigger-01",
+      "type": "should_trigger",
+      "prompt": "怎么让照片背景更模糊？",
+      "expected_behavior": "调用 depth-of-field-control，讲解三因素（大孔径/长焦距/近距离）",
+      "notes": "正面场景：背景虚化需求"
+    },
+    {
+      "id": "should-trigger-02",
+      "type": "should_trigger",
+      "prompt": "风光摄影怎么设置才能让从近到远都清晰？",
+      "expected_behavior": "调用 depth-of-field-control，讲解小孔径+超焦距技术",
+      "notes": "正面场景：大景深需求"
+    },
+    {
+      "id": "should-trigger-03",
+      "type": "should_trigger",
+      "prompt": "为什么手机拍不出背景虚化效果？",
+      "expected_behavior": "调用 depth-of-field-control，解释手机镜头焦距极短导致天然景深大",
+      "notes": "正面场景：手机摄影景深问题"
+    },
+    {
+      "id": "should-not-trigger-01",
+      "type": "should_not_trigger",
+      "prompt": "怎么拍清楚快速运动的物体？",
+      "expected_behavior": "不应调用 depth-of-field-control，应调用 shutter-speed-motion",
+      "notes": "跨 skill 混淆诱饵：运动清晰是快门速度问题"
+    },
+    {
+      "id": "should-not-trigger-02",
+      "type": "should_not_trigger",
+      "prompt": "f/2.8是什么意思？",
+      "expected_behavior": "纯知识查询，不应调用方法论 skill",
+      "notes": "诱饵：术语解释"
+    },
+    {
+      "id": "edge-01",
+      "type": "edge_case",
+      "prompt": "我对焦对不准怎么办？",
+      "expected_behavior": "边界模糊——聚焦不准可能是对焦技术问题而非景深问题。不应直接调用，但可提及景深大可以增加聚焦容错",
+      "notes": "边界：聚焦失误 vs 景深控制"
+    }
+  ],
+  "minimum_pass_rate": 0.8,
+  "notes": "至少 3 条 should_trigger + 2 条 should_not_trigger + 1 条 edge_case。"
+}

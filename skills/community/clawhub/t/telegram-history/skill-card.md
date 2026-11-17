@@ -1,41 +1,53 @@
-## Description: <br>
-Fetch Telegram chat message history via MTProto user API (Telethon). Use when needing to read old messages from any Telegram chat, group, or forum topic that the bot API can't access. Supports fetching by chat ID, forum topic/thread, message count, pagination, and JSON output. Requires one-time user login with phone number + 2FA. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetch Telegram chat message history via MTProto user API (Telethon). Use when needing to read old messages from any Telegram chat, group, or forum topic that the bot API can't access. Supports fetching by chat ID, forum topic/thread, message count, pagination, and JSON output. Requires one-time user login with phone number + 2FA.
 
-## Publisher: <br>
-[rhlsthrm](https://clawhub.ai/user/rhlsthrm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[rhlsthrm](https://clawhub.ai/user/rhlsthrm)
 
-## Use Case: <br>
-Developers and analysts use this skill to log in with a Telegram user account and fetch message history from chats, groups, or forum topics that the Telegram Bot API cannot read. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill grants reusable access to the Telegram account used during login. <br>
-Mitigation: Install only if that account access is acceptable, use a trusted local terminal, and delete the session directory or revoke the Telegram session when finished. <br>
-Risk: Login codes and 2FA passwords can be exposed if copied into shell history, chats, files, or other messengers. <br>
-Mitigation: Handle login secrets only in a trusted local session and avoid placing them in persistent command history or external communication channels. <br>
-Risk: Fetched chat history may include private or sensitive messages. <br>
-Mitigation: Fetch only chats you are authorized to access and handle exported text or JSON according to the user's privacy and retention requirements. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Telegram API application setup](https://my.telegram.org/apps) <br>
+## Use Case:
 
+Developers and agent operators use this skill to retrieve account-accessible Telegram chat, group, or forum-topic history when Telegram Bot API history access is insufficient. It supports bounded history retrieval, pagination, sender metadata, and JSON output for downstream analysis.
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Terminal text or JSON arrays of Telegram message records] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Telethon, Telegram API credentials, and a reusable local Telegram user session under the skill directory.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can read and print private Telegram message history available to the logged-in user account.
+
+Mitigation: Use a dedicated Telegram account with access only to the required chats, limit requested chats and message counts, and review retrieved history before sharing or storing it.
+
+Risk: Telegram API credentials, session files, verification codes, or 2FA passwords could expose account access if handled insecurely.
+
+Mitigation: Protect or relocate api_credentials.json and session files, avoid passing 2FA passwords on the command line, and delete or revoke the Telegram session when work is complete.
+
+## Reference(s):
+
+- [Telegram API app credentials](https://my.telegram.org/apps)
+- [ClawHub skill page](https://clawhub.ai/rhlsthrm/skills/telegram-history)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Configuration instructions]
+
+**Output Format:** [Plain text or JSON message history, with Markdown setup and usage commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can include message IDs, timestamps, sender identifiers, sender names, usernames, reply targets, and message text.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

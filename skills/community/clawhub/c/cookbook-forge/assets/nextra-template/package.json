@@ -1,0 +1,29 @@
+{
+  "name": "{{BOOK_SLUG}}-site",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "prepare:diagrams": "node scripts/render-plantuml.mjs && node scripts/export-drawio.mjs",
+    "prepare:meta": "node scripts/build-meta.mjs",
+    "renumber": "node scripts/renumber-content.mjs",
+    "convert": "npm run prepare:diagrams && npm run prepare:meta && npm run renumber"
+  },
+  "dependencies": {
+    "next": "^14.2.15",
+    "nextra": "^3.2.4",
+    "nextra-theme-docs": "^3.2.4",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.12.12",
+    "@types/react": "^18.3.3",
+    "typescript": "^5.4.5"
+  },
+  "engines": {
+    "node": ">=18.17.0"
+  }
+}

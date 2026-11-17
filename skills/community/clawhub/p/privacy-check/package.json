@@ -1,0 +1,52 @@
+{
+  "name": "privacy-check",
+  "version": "1.0.1",
+  "description": "隐私敏感信息扫描器。检测15+种PII模式(身份证、手机号、邮箱、银行卡、信用卡、SSN、护照、驾驶证、微信号等)，支持JSON/CSV/HTML报告输出、白名单忽略、文件类型过滤。纯本地运行。",
+  "author": "ChengQian (成乾)",
+  "license": "MIT",
+  "keywords": [
+    "privacy",
+    "pii",
+    "敏感信息",
+    "数据合规",
+    "隐私检查",
+    "data-privacy",
+    "compliance",
+    "security",
+    "扫描",
+    "脱敏",
+    "gdpr",
+    "pipl",
+    "ccpa"
+  ],
+  "files": [
+    "SKILL.md",
+    "package.json",
+    "requirements.txt",
+    "CHANGELOG.md",
+    "README.md",
+    "scripts/"
+  ],
+  "scripts": {
+    "scan": "python3 scripts/scanner.py",
+    "scan-file": "python3 scripts/scanner.py --file",
+    "scan-dir": "python3 scripts/scanner.py --dir",
+    "scan-html": "python3 scripts/scanner.py --file --format html --output report.html"
+  },
+  "openclaw": {
+    "skill": true,
+    "category": "compliance",
+    "region": "global",
+    "dependencies": [],
+    "emoji": "🔍"
+  },
+  "security": {
+    "scanned": true,
+    "issues": 0,
+    "warnings": 0
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cqdev-ai/privacy-check"
+  }
+}

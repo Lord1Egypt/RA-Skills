@@ -142,7 +142,11 @@ def maybe_migrate(source_path, source_data, source_kind):
     should_copy = True
     if target.exists():
         try:
-            should_copy = source_path.stat().st_mtime > target.stat().st_mtime
+            target_data, _ = load_json(target)
+            if not valid_auth(target_data):
+                should_copy = True
+            else:
+                should_copy = source_path.stat().st_mtime > target.stat().st_mtime
         except Exception:
             should_copy = False
     if should_copy:
@@ -203,7 +207,9 @@ source_candidates = [item for item in source_candidates if item]
 for item in source_candidates:
     if not item.get("ok"):
         continue
-    source_path = Path(item.get("sourcePath") or item["path"])
+    if item.get("kind") == "pointer":
+        continue
+    source_path = Path(item["path"])
     source_kind = "legacy" if source_path.resolve() == legacy_path.resolve() else item["kind"]
     if source_kind in {"legacy", "explicit"}:
         migrated = maybe_migrate(source_path, item["data"], source_kind)

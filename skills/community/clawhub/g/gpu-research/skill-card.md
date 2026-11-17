@@ -1,41 +1,49 @@
-## Description: <br>
-A reference framework for understanding autonomous AI research pipelines and how AI can optimize ML training with fixed time budgets and metric-driven iteration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A reference framework for understanding autonomous AI research pipelines and how AI can optimize ML training with fixed time budgets and metric-driven iteration.
 
-## Publisher: <br>
-[tyronecoh](https://clawhub.ai/user/tyronecoh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tyronecoh](https://clawhub.ai/user/tyronecoh)
 
-## Use Case: <br>
-Developers, engineers, and AI practitioners use this documentation-only skill to understand autonomous AI research workflows, including fixed-budget experiments, metric-driven iteration, and single-file training-loop changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may mistake the skill for a runnable autonomous research agent. <br>
-Mitigation: Treat it as educational documentation only; the server security guidance states that no executable code is supported in the packaged artifact. <br>
-Risk: The packaged metadata declares a python3 requirement even though the artifact is documentation-only. <br>
-Mitigation: Do not assume python3 is needed for normal use unless a future release adds executable files or explicit commands. <br>
+## Use Case:
 
+Developers and technical learners use this skill as a reference guide for autonomous AI research workflows, including fixed-budget experiments, metric-driven iteration, and single-file training-loop scope.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tyronecoh/gpu-research) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/tyronecoh) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown] <br>
-**Output Format:** [Markdown reference guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only; no executable code or hidden access behavior was found in the packaged artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: The declared python3/Linux requirement may make the skill appear executable even though the artifact and security evidence show it is documentation-only.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it as reference material, and review any agent-proposed commands or code separately before running them.
+
+## Reference(s):
+
+- [Auto Research Agent on ClawHub](https://clawhub.ai/tyronecoh/skills/gpu-research)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown reference guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only skill; no executable behavior found in security evidence.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

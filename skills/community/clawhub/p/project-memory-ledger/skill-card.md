@@ -1,45 +1,59 @@
-## Description: <br>
-Project Memory Ledger helps agents maintain local Markdown engineering ledgers for invariants, decisions, changes, and traceable rollback, with optional Google Drive project-document scaffolding through gws. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Project Memory Ledger helps agents maintain a local-first engineering memory ledger with invariants, decisions, changes, evidence, rollback notes, and optional project document scaffolding.
 
-## Publisher: <br>
-[zcweah1981](https://clawhub.ai/user/zcweah1981) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zcweah1981](https://clawhub.ai/user/zcweah1981)
 
-## Use Case: <br>
-Developers and agent operators use this skill to preserve long-running project memory by recording rules, decisions, and changes with evidence and rollback notes. It supports local Markdown ledgers by default and can scaffold project documents in Google Drive when Drive mode is intentionally configured. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Drive mode can write ledger contents or project documents to Google Workspace. <br>
-Mitigation: Use backend=local unless Drive writes are intentional, and verify Drive folder and document IDs before running commands. <br>
-Risk: Ledger entries may contain secrets or sensitive internal project notes that could be synced to Drive. <br>
-Mitigation: Do not store secrets in ledger entries, and review content before enabling Drive mode or sharing generated documents. <br>
-Risk: Incorrect config paths, backend settings, or project IDs can write files or scaffold documents in the wrong workspace. <br>
-Mitigation: Start from the bundled default configuration, check paths and IDs, and validate setup with the local backend first. <br>
+## Use Case:
 
+Developers and engineering agents use this skill to keep durable project memory across sessions, including project invariants, decision logs, change logs, traceability, rollback notes, and PRD patch proposals.
 
-## Reference(s): <br>
-- [Project Memory Ledger on ClawHub](https://clawhub.ai/zcweah1981/project-memory-ledger) <br>
-- [README](README.md) <br>
-- [Default configuration](references/default_config.json) <br>
-- [Ledger templates](references/ledger_templates.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown ledger entries and files, JSON configuration, and command-line guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes local ledger files; Drive mode can create Google Drive folders and documents through an authenticated gws CLI.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.3 (source: server release metadata) <br>
+Risk: The security review says documented local-only behavior does not fully match the code, and some project names can steer writes outside intended locations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer backend=local, use a dedicated workspace path, review local_dir and projects_root_dir before use, and avoid untrusted project names.
+
+Risk: The optional Drive backend can create or update Google Drive resources and the security guidance says Drive query escaping needs review.
+
+Mitigation: Do not enable gws or Drive access until the local-only documentation mismatch, path containment, and Drive query escaping issues are fixed.
+
+Risk: The authoritative security verdict is suspicious.
+
+Mitigation: Review the code before installing, constrain where it can write, and run it with the least access needed for the selected backend.
+
+## Reference(s):
+
+- [Project Memory Ledger release page](https://clawhub.ai/zcweah1981/skills/project-memory-ledger)
+- [default_config.json](artifact/references/default_config.json)
+- [Ledger templates](artifact/references/ledger_templates.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown ledger entries, JSON command output, configuration JSON, and shell command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write local Markdown ledger files and, when configured for Drive, may create or update Google Drive documents through gws.]
+
+## Skill Version(s):
+
+0.1.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

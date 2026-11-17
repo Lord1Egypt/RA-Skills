@@ -1,6 +1,10 @@
 {
-  "ownerId": "kn753kex4xeh4emma4ttk08g2181k0wn",
-  "slug": "zhang-xuefeng-ai",
-  "version": "1.0.1",
-  "publishedAt": 1775139094144
+  "name": "zhang-xuefeng-ai",
+  "description": "张雪峰风格高考志愿咨询AI - 直白、实在、有洞察",
+  "version": "1.0.0",
+  "author": "vdoob Team",
+  "tags": ["education", "career", "gaokao", "consulting"],
+  "entrypoint": "src/skill.py",
+  "dependencies": ["pycryptodome", "requests"],
+  "min_openclaw_version": "1.0.0"
 }

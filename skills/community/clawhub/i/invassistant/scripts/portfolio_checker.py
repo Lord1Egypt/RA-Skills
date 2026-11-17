@@ -1,11 +1,10 @@
-# -*- coding: utf-8 -*-
 """
 InvAssistant — 持仓组合检查主程序
 读取配置文件，按策略类型分发检查逻辑，生成信号报告。
 
 用法:
   python portfolio_checker.py                  # 检查全部持仓
-  python portfolio_checker.py --detail TSLA    # 单标的详细分析
+  python portfolio_checker.py --detail AAPL    # 单标的详细分析
   python portfolio_checker.py --push           # 检查并推送结果
   python portfolio_checker.py --json           # 输出 JSON 格式
 
@@ -724,7 +723,7 @@ def do_push(config, report_text):
 
 def main():
     parser = argparse.ArgumentParser(description="InvAssistant 持仓信号检查")
-    parser.add_argument("--detail", metavar="SYMBOL", help="单标的详细分析 (如 TSLA)")
+    parser.add_argument("--detail", metavar="SYMBOL", help="单标的详细分析 (如 AAPL)")
     parser.add_argument("--push", action="store_true", help="检查完成后推送结果")
     parser.add_argument("--json", action="store_true", help="输出 JSON 格式")
     parser.add_argument("--config", help="配置文件路径")

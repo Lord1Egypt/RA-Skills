@@ -1,43 +1,60 @@
-## Description: <br>
-Register domain names via crypto payments (USDC, USDT, ETH, BTC), check availability, get pricing across 1000+ TLDs, and complete registration with on-chain stablecoin payments on Ethereum, Arbitrum, Base, or Optimism. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Register domain names via crypto payments (USDC, USDT, ETH, BTC). Check availability, get pricing across 1000+ TLDs, and complete registration with on-chain stablecoin payments on Ethereum, Arbitrum, Base, or Optimism.
 
-## Publisher: <br>
-[esokullu](https://clawhub.ai/user/esokullu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[esokullu](https://clawhub.ai/user/esokullu)
 
-## Use Case: <br>
-External users and developers use this skill to check domain availability, review pricing, guide crypto payment selection, register domains through LobsterDomains, and retrieve domain order details. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Using the skill can involve real cryptocurrency payments for domain registration. <br>
-Mitigation: Verify the LobsterDomains service, quoted price, payment chain, currency, receiving address, and transaction hash independently before registration. <br>
-Risk: Registrant contact details, transaction hashes, API keys, and returned OpenSRS credentials are sensitive. <br>
-Mitigation: Treat these values as sensitive, avoid retaining them in logs or files, and store returned domain management credentials in a password manager. <br>
+## Use Case:
 
+External users and developers use this skill to check domain availability, review pricing, and register domains after cryptocurrency payment. It is intended for workflows that need agent-guided domain registration with user-provided payment and registrant details.
 
-## Reference(s): <br>
-- [LobsterDomains homepage](https://lobsterdomains.xyz) <br>
-- [LobsterDomains API keys](https://lobsterdomains.xyz/api-keys) <br>
-- [LobsterDomains pricing](https://lobsterdomains.xyz/pricing) <br>
-- [ClawHub skill page](https://clawhub.ai/esokullu/lobsterdomains) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, API calls, Configuration guidance] <br>
-**Output Format:** [Markdown with HTTP examples, JSON request and response examples, and shell environment setup commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include domain availability, pricing, payment-chain guidance, order status, and sensitive OpenSRS management credentials returned by the service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill can handle OpenSRS management credentials that grant control over registered domains.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when credential handling in chat is acceptable, store received credentials in a password manager, and rotate or change domain management passwords after receipt.
+
+Risk: Broad order-history queries may expose credentials or domain registration data that are not needed for the current task.
+
+Mitigation: Query orders only when necessary and prefer domain-specific order lookups when investigating a particular registration.
+
+Risk: The workflow depends on domain registration contact details and cryptocurrency payment references.
+
+Mitigation: Confirm domain, pricing, chain, transaction hash, and registrant contact details with the user before registration.
+
+## Reference(s):
+
+- [LobsterDomains Homepage](https://lobsterdomains.xyz)
+- [LobsterDomains API Keys](https://lobsterdomains.xyz/api-keys)
+- [LobsterDomains Pricing](https://lobsterdomains.xyz/pricing)
+- [ClawHub Skill Page](https://clawhub.ai/esokullu/skills/lobsterdomains)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, API calls, JSON, markdown]
+
+**Output Format:** [Markdown with inline shell commands, API request examples, and JSON payloads or responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a LOBSTERDOMAINS_API_KEY environment variable and user-provided payment, transaction, contact, and domain details.]
+
+## Skill Version(s):
+
+1.0.1 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

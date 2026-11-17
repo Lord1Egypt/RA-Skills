@@ -1,41 +1,54 @@
-## Description: <br>
-Suno提示词工具 helps users generate structured Suno AI music prompts with bilingual guidance for styles, moods, instruments, tempo, vocals, themes, mastering, and eras. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps OpenClaw users create structured Suno AI music prompts with English prompt text and Chinese translations.
 
-## Publisher: <br>
-[aimusicalliance](https://clawhub.ai/user/aimusicalliance) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aimusicalliance](https://clawhub.ai/user/aimusicalliance)
 
-## Use Case: <br>
-External AI music creators, musicians, and content creators use this skill to turn music ideas into Suno-ready prompts with English prompt text and Chinese translation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger words such as "Prompt" may activate this skill when another prompt-related tool was intended. <br>
-Mitigation: Confirm that the requested task is Suno music prompt generation before applying the skill, and disable or reprioritize the skill if it conflicts with other prompt tools. <br>
-Risk: Installing from an external repository can expose users to source content that differs from the ClawHub package. <br>
-Mitigation: Prefer the ClawHub package for normal installation, and review the external source before installing from a GitHub repository. <br>
+## Use Case:
 
+External AI music creators, musicians, and content creators use this skill to turn music goals into structured Suno prompts covering genre, mood, instruments, tempo, vocals, scene, mastering, and era.
 
-## Reference(s): <br>
-- [ClawHub package page](https://clawhub.ai/aimusicalliance/suno-prompt-tool) <br>
-- [Project website](https://skill.sunoai.wiki) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with Suno prompt text and Chinese translation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated prompts are intended to include an English prompt followed by a Chinese translation when following the skill output rule.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: Broad trigger words may activate the skill for generic prompt requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the user wants Suno or music-prompt help before applying the skill.
+
+Risk: Generated output is designed to include Chinese translations, which may not fit every user's expected output language.
+
+Mitigation: Ask for the preferred language or output format when the user's request is ambiguous.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/aimusicalliance/skills/suno-prompt-tool)
+- [Project Website](https://skill.sunoai.wiki)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown prompt text with English prompt and Chinese translation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include prompt analysis and optimization suggestions; no code execution or private-data access is indicated by the security evidence.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

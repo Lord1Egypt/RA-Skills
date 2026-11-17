@@ -1,41 +1,54 @@
-## Description: <br>
-Complete spreadsheet methodology for data cleanup, transformation, analysis, dashboards, automation, and reporting across CSV, Excel, Google Sheets, and other tabular data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Complete spreadsheet methodology - data cleanup, transformation, analysis, dashboards, automation, and reporting for CSV, Excel, Google Sheets, or any tabular data.
 
-## Publisher: <br>
-[1kalin](https://clawhub.ai/user/1kalin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[1kalin](https://clawhub.ai/user/1kalin)
 
-## Use Case: <br>
-Employees, analysts, operations teams, accountants, marketers, sales teams, and other spreadsheet users use this skill to clean messy tabular data, transform datasets, analyze results, create dashboards, automate recurring reports, and convert spreadsheet formats. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated cleaning steps, reports, or automation guidance may affect private customer, financial, or business data. <br>
-Mitigation: Invoke the skill intentionally for tabular-data work and review generated cleaned files, reports, and automation steps before using or sharing them. <br>
-Risk: Spreadsheet transformations can introduce incorrect analysis when source data has missing values, duplicates, inconsistent types, or outliers. <br>
-Mitigation: Use the skill's intake assessment, cleaning log, quality checks, and validation checklist before relying on outputs for business decisions. <br>
+## Use Case:
 
+External users, analysts, founders, operations teams, accountants, marketers, and sales teams use this skill to clean tabular data, transform spreadsheet files, analyze datasets, build dashboards, and automate recurring reports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/1kalin/afrexai-spreadsheet-master) <br>
-- [AfrexAI Context Packs](https://afrexai-cto.github.io/context-packs/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with tables, checklists, templates, formulas, and code or shell snippets when useful] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Platform-agnostic guidance for CSV, Excel, Google Sheets, pandas, and other tabular workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Cleaning steps can overwrite files, remove rows, deduplicate records, or alter source spreadsheets if executed without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Work on copies, preview proposed cleaning actions, and require confirmation before overwriting files, deleting rows, deduplicating records, or changing source spreadsheets.
+
+Risk: Spreadsheet analyses can lead to incorrect decisions when source data quality, joins, formulas, or assumptions are wrong.
+
+Mitigation: Run intake checks, validation, cleaning logs, row-count checks, reconciliation, and sanity checks before relying on generated reports or dashboards.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/1kalin/skills/afrexai-spreadsheet-master)
+- [AfrexAI Context Packs](https://afrexai-cto.github.io/context-packs/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with structured checklists, tables, formulas, YAML templates, and code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce cleaning logs, formula recommendations, dashboard outlines, pandas snippets, conversion steps, and recurring report automation guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

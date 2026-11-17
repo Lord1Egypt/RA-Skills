@@ -1,38 +1,53 @@
-## Description: <br>
-设计框架自动生成套件（生图交付）：用户确认后自动生成概念图并私发给 Bot 主人 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+设计框架自动生成套件（生图交付）：用户确认后自动生成概念图并私发给 Bot 主人
 
-## Publisher: <br>
-[807209066](https://clawhub.ai/user/807209066) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[807209066](https://clawhub.ai/user/807209066)
 
-## Use Case: <br>
-Design automation users use this skill after confirmation to generate a concept image, send the design framework text and generated image privately to the bot owner, and notify the group that the request was accepted. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, design requirements, and generated concept images may be privately shared with the bot owner. <br>
-Mitigation: Install only when that sharing is acceptable; avoid confidential client work or proprietary designs unless consent, retention, access, and deletion practices are clearly documented. <br>
+## Use Case:
 
+Developers and automation operators use this skill as the final delivery step in a design-framework workflow: after confirmation, it generates a concept image, privately sends the design text and image to the bot owner, and posts a completion notice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/807209066/design-framework-generate) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, image, notifications] <br>
-**Output Format:** [Private text message, generated concept image, and group completion notification] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Concept image aspect ratio is extracted from the design framework text before generation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: User-derived design framework text and generated concept images may be privately sent to the bot owner through external messaging scripts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the companion design-framework-sender skill, recipient configuration, API credentials, and confirmation workflow before using confidential client or proprietary design material.
+
+Risk: The security evidence flags a loosely defined confirmation flow before external delivery.
+
+Mitigation: Require clear operator confirmation and verify the delivery recipient before enabling the workflow for sensitive design material.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/807209066/skills/design-framework-generate)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Images, Shell commands]
+
+**Output Format:** [Generated concept image plus private text/image messages and a completion notification]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Depends on the companion design-framework-sender scripts and a prior confirmation marker.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

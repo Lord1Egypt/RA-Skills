@@ -1,44 +1,55 @@
-## Description: <br>
-Query Belgian railway (NMBS/SNCB) schedules via the irail CLI for departures, route connections, train composition, and service disruption information. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query Belgian railway (NMBS/SNCB) schedules via the irail CLI for train departures, connections between stations, train compositions, and service disruptions.
 
-## Publisher: <br>
-[dedene](https://clawhub.ai/user/dedene) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[dedene](https://clawhub.ai/user/dedene)
 
-## Use Case: <br>
-Developers and agent users use this skill to answer Belgian rail travel questions by running the irail CLI against public NMBS/SNCB data. It supports live station boards, connections, stations, vehicles, train composition, and disruptions without requiring authentication. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on installing and trusting a third-party irail CLI package through Homebrew or Go. <br>
-Mitigation: Install only after reviewing the referenced package source and use normal caution for third-party command-line tools. <br>
-Risk: Repeated scripted calls can place unnecessary load on the public iRail API. <br>
-Mitigation: Add delays or reasonable rate limits when using the CLI in loops. <br>
-Risk: Rail schedule and disruption data is time-sensitive and can change after retrieval. <br>
-Mitigation: Refresh liveboard, connection, or disturbance queries before presenting time-critical travel guidance. <br>
+## Use Case:
 
+External users and agents use this skill to retrieve Belgian rail schedules, route connections, station liveboards, train composition details, vehicle information, and current service disruptions through the irail CLI.
 
-## Reference(s): <br>
-- [ClawHub Irail skill page](https://clawhub.ai/dedene/irail) <br>
-- [irail-cli homepage](https://github.com/dedene/irail-cli) <br>
-- [iRail API](https://api.irail.be/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance, Configuration] <br>
-**Output Format:** [Markdown with inline bash commands, JSON parsing examples, and concise operational guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include irail CLI commands with --json, jq filters, language flags, time/date options, and installation guidance; no credentials are required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact frontmatter metadata reports 1.1.0) <br>
+Risk: The skill depends on the third-party dedene irail CLI and its package sources.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Check the upstream project and installed version before use, and install only from package sources you trust.
+
+Risk: Rail queries are sent to the public iRail service.
+
+Mitigation: Limit queries to Belgian rail information you are comfortable sending to the public service.
+
+## Reference(s):
+
+- [ClawHub Irail Skill](https://clawhub.ai/dedene/skills/irail)
+- [dedene irail-cli](https://github.com/dedene/irail-cli)
+- [iRail API](https://api.irail.be/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and optional JSON CLI output guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses the public iRail API through the irail CLI; JSON output is recommended for agent parsing.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact metadata version: 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

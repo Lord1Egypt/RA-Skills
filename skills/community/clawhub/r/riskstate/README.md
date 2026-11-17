@@ -185,7 +185,7 @@ Drop [`SKILL.md`](SKILL.md) into your agent's repo. Compatible with Claude Code,
 npm install @riskstate/mcp-server
 ```
 
-Or run directly with `npx @riskstate/mcp-server`. Docker: `ghcr.io/likidodefi/riskstate-mcp`.
+Or run directly with `npx @riskstate/mcp-server`. Docker: `ghcr.io/riskstate/mcp`.
 
 One tool: `get_risk_policy` — same parameters as the REST API. Compatible with Claude Desktop, Claude Code, Cursor, and any MCP-compatible client. See [MCP README](https://riskstate.ai/docs/mcp) for full setup.
 

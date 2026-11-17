@@ -1,41 +1,54 @@
-## Description: <br>
-Qclaw helps agents organize public QQ Input Method website, download, feature, help, FAQ, policy, and release information. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Qclaw helps agents organize public QQ Input Method website, download, feature, help, FAQ, policy, and update-log information.
 
-## Publisher: <br>
-[CodeKungfu](https://clawhub.ai/user/CodeKungfu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[codekungfu](https://clawhub.ai/user/codekungfu)
 
-## Use Case: <br>
-External users and agents use this skill to collect and summarize public QQ Input Method product information, including platform support, version and download entrances, feature descriptions, permissions, privacy notes, FAQs, and update notices. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Download or version links may be unsafe or inaccurate if they are not checked against the official QQ Input Method site. <br>
-Mitigation: Verify download and version links against the official QQ Input Method website before installing software. <br>
-Risk: Summaries of permissions, privacy notes, or platform support may omit important source context. <br>
-Mitigation: Keep source links in the output and confirm sensitive claims against the official help, privacy, or permission pages. <br>
+## Use Case:
 
+External users and developers use this skill to summarize and organize public QQ Input Method product pages, platform/version entries, permissions and privacy information, FAQs, help pages, and official download links.
 
-## Reference(s): <br>
-- [QQ Input Method Official Website](https://qq.pinyin.cn/) <br>
-- [ClawHub Skill Page](https://clawhub.ai/CodeKungfu/iqclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or structured text summaries with source links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only output based on public information; no code execution or privileged access is requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: Download or privacy details could become stale or be copied from a non-official page.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify download links, permissions, and privacy details against the official QQ Input Method website before using them.
+
+Risk: The skill could be applied beyond its public-information boundary.
+
+Mitigation: Limit use to public QQ Input Method pages and do not request device control, private packages, system bypasses, or sensitive data.
+
+## Reference(s):
+
+- [QQ Input Method official homepage](https://qq.pinyin.cn/)
+- [ClawHub skill page](https://clawhub.ai/codekungfu/skills/iqclaw)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown summaries, lists, and link inventories]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should stay limited to public QQ Input Method information and official links.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

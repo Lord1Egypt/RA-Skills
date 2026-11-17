@@ -1,42 +1,49 @@
-## Description: <br>
-Captures a full-page screenshot of a local OpenClaw dashboard and returns a concise status report for robots, task activity, token usage, and gateway health. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Captures a full-page OpenClaw dashboard screenshot and sends a concise status report through QQBot.
 
-## Publisher: <br>
-[zzh19701008](https://clawhub.ai/user/zzh19701008) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zzh19701008](https://clawhub.ai/user/zzh19701008)
 
-## Use Case: <br>
-OpenClaw operators use this skill to check a local dashboard, capture the complete dashboard view, and share a status summary through the configured QQBot channel. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can automatically capture and send a full-page local dashboard image to a fixed QQBot destination. <br>
-Mitigation: Use only when the QQBot target is intended and the dashboard does not expose secrets or sensitive operational data. <br>
-Risk: The skill may start the local dashboard service, take screenshots, and send images externally without an explicit confirmation step. <br>
-Mitigation: Prefer review or confirmation before starting services, capturing screenshots, or sending dashboard images outside the local environment. <br>
+## Use Case:
 
+OpenClaw operators use this skill to check whether the local dashboard is running, capture a full-page dashboard image, and share current bot status, token usage, scheduled tasks, and gateway health through QQBot.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/zzh19701008/dashboard-screenshot) <br>
-- [Skill Instructions](artifact/SKILL.md) <br>
-- [Tool Notes](artifact/TOOLS.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown status summary with a dashboard screenshot attachment] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May start a local dashboard service, open a browser, capture a full-page PNG screenshot, and send it through the configured QQBot channel.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Dashboard screenshots can expose private operational details and may be sent automatically to a fixed QQBot recipient.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with an approved QQBot target, confirm the recipient before sending, and redact or avoid dashboards that contain sensitive operational data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zzh19701008/skills/dashboard-screenshot)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown status report with shell commands and a PNG dashboard screenshot file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The workflow may start a local dashboard service, use browser automation, save a full-page PNG screenshot, and send it through QQBot.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,52 @@
+{
+  "name": "beckmann-knowledge-graph-self-optimizer",
+  "version": "1.1.0",
+  "description": "Iterative self-optimization for knowledge graphs in 5 phases with 3 mandatory review gates and final merge + cleanup",
+  "main": "SKILL.md",
+  "author": "Beckmann",
+  "license": "MIT",
+  "type": "module",
+  "keywords": [
+    "knowledge-graph",
+    "self-optimization",
+    "graph-merger",
+    "knowledge-graph-optimizer",
+    "llm-tools",
+    "clawhub",
+    "subgraph-builder",
+    "relation-builder"
+  ],
+  "homepage": "https://github.com/beckmann/beckmann-knowledge-graph-self-optimizer#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/beckmann/beckmann-knowledge-graph-self-optimizer"
+  },
+  "bugs": {
+    "url": "https://github.com/beckmann/beckmann-knowledge-graph-self-optimizer/issues"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "files": [
+    "SKILL.md",
+    "README.md",
+    "CHANGELOG.md",
+    "Sub-Skills/*.md",
+    "HTML-Tools/*.html"
+  ],
+  "clawhub": {
+    "skill": "beckmann-knowledge-graph-self-optimizer",
+    "entry": "SKILL.md",
+    "language": "en",
+    "tags": [
+      "knowledge-graph",
+      "self-optimization",
+      "graph-merger",
+      "llm-tools"
+    ],
+    "requires": {
+      "browser": true,
+      "ai_model": "large-context"
+    }
+  }
+}

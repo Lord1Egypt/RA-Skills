@@ -1,39 +1,53 @@
-## Description: <br>
-Apply structured thinking and MECE principle to break down complex problems. Use at the start of any strategic analysis to organize thoughts and create compelling arguments. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Apply structured thinking and MECE principle to break down complex problems. Use at the start of any strategic analysis to organize thoughts and create compelling arguments.
 
-## Publisher: <br>
-[linuszz](https://clawhub.ai/user/linuszz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[linuszz](https://clawhub.ai/user/linuszz)
 
-## Use Case: <br>
-External users, employees, and developers can use this skill at the start of strategic analysis to organize a problem into a Pyramid Principle response with a conclusion, supporting arguments, evidence, and a MECE check. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Structured analyses may present conclusions more confidently than the available evidence supports. <br>
-Mitigation: Verify the conclusions and supporting evidence before relying on generated analysis. <br>
-Risk: The skill influences how an agent frames strategic recommendations. <br>
-Mitigation: Review generated recommendations for assumptions, completeness, and MECE coverage before use. <br>
+## Use Case:
 
+Employees, consultants, and analysts use this skill to structure complex strategic analysis with MECE logic and communicate recommendations in a conclusion-first pyramid format.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown analysis with structured sections and checklist items] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes situation, complication, question, answer, supporting arguments, evidence, and a MECE check.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can strongly shape an agent response into a consulting-style Pyramid Principle format even when a lighter answer is desired.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it for strategic analysis and communication tasks, and narrow the trigger wording if the structure is too intrusive.
+
+Risk: Strategic recommendations may be incomplete or misleading if supporting arguments and evidence are assumed rather than verified.
+
+Mitigation: Review the generated argument structure and validate important claims against trusted sources before using it for decisions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/linuszz/skills/pyramid-principle)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a structured pyramid analysis with situation, complication, question, answer, supporting arguments, evidence, and a MECE check.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">Imagine — OCAS art-direction engine</title>
+  <desc id="desc">Glitch / seam header. No literal words except ghost depth. Indigo field, displaced seam, chromatic-aberrated title.</desc>
+  <defs>
+    <radialGradient id="bg" cx="0.34" cy="0.40" r="0.95" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#1A1230"/>
+      <stop offset="0.55" stop-color="#0E0B18"/>
+      <stop offset="1" stop-color="#08070D"/>
+    </radialGradient>
+    <linearGradient id="acc" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#7C5CFF"/>
+      <stop offset="1" stop-color="#9B7BFF"/>
+    </linearGradient>
+    <linearGradient id="seam" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#C9B8FF" stop-opacity="0"/>
+      <stop offset="0.5" stop-color="#C9B8FF" stop-opacity="0.9"/>
+      <stop offset="1" stop-color="#C9B8FF" stop-opacity="0"/>
+    </linearGradient>
+    <pattern id="scan" width="4" height="4" patternUnits="userSpaceOnUse">
+      <rect width="4" height="1.4" y="0" fill="#000000" opacity="0.35"/>
+    </pattern>
+  </defs>
+
+  <!-- base field -->
+  <rect width="1600" height="900" fill="url(#bg)"/>
+
+  <!-- faint ghost word (depth, no bird/branch) -->
+  <text x="800" y="560" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="380" font-weight="800" fill="#FFFFFF" opacity="0.035">IMAGINE</text>
+
+  <!-- scattered datamosh blocks -->
+  <g opacity="0.5">
+    <rect x="210" y="190" width="90" height="10" fill="#7C5CFF" opacity="0.35"/>
+    <rect x="220" y="190" width="90" height="10" fill="#19E3FF" opacity="0.20"/>
+    <rect x="1230" y="700" width="140" height="12" fill="#7C5CFF" opacity="0.30"/>
+    <rect x="1242" y="700" width="140" height="12" fill="#FF2E63" opacity="0.18"/>
+    <rect x="980" y="120" width="60" height="8" fill="#9B7BFF" opacity="0.30"/>
+    <rect x="430" y="760" width="110" height="10" fill="#19E3FF" opacity="0.20"/>
+  </g>
+
+  <!-- ===== SEAM 1 (upper fracture) ===== -->
+  <rect x="0" y="296" width="1600" height="30" fill="#16112A"/>
+  <rect x="0" y="310" width="1600" height="2.5" fill="url(#seam)"/>
+  <g>
+    <rect x="120" y="300" width="160" height="9" fill="#7C5CFF" opacity="0.55"/>
+    <rect x="132" y="300" width="160" height="9" fill="#19E3FF" opacity="0.30"/>
+    <rect x="690" y="303" width="220" height="9" fill="#9B7BFF" opacity="0.45"/>
+    <rect x="980" y="300" width="120" height="9" fill="#FF2E63" opacity="0.25"/>
+    <rect x="1320" y="303" width="180" height="9" fill="#7C5CFF" opacity="0.40"/>
+  </g>
+
+  <!-- ===== SEAM 2 (lower fracture, subtler) ===== -->
+  <rect x="0" y="624" width="1600" height="22" fill="#120E22"/>
+  <rect x="0" y="634" width="1600" height="2" fill="url(#seam)" opacity="0.7"/>
+  <g opacity="0.4">
+    <rect x="300" y="628" width="120" height="7" fill="#9B7BFF"/>
+    <rect x="860" y="630" width="200" height="7" fill="#7C5CFF"/>
+    <rect x="1180" y="628" width="140" height="7" fill="#19E3FF"/>
+  </g>
+
+  <!-- scanline overlay (topmost, subtle) -->
+  <rect width="1600" height="900" fill="url(#scan)" opacity="0.5"/>
+</svg>

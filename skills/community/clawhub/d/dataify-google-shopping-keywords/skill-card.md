@@ -1,45 +1,59 @@
-## Description: <br>
-Collects Google Shopping product information by keyword through the Dataify Scraper API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Collect structured Google Shopping product records in bulk by keyword.
 
-## Publisher: <br>
-[dataify-server](https://clawhub.ai/user/dataify-server) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dataify-server](https://clawhub.ai/user/dataify-server)
 
-## Use Case: <br>
-External users and agent operators use this skill to prepare and confirm Google Shopping keyword collection parameters, then create Dataify collection tasks through the Dataify Builder API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security summary flags unrelated Instagram Reel scraping trigger phrases in an otherwise Google Shopping-focused skill. <br>
-Mitigation: Use the skill only for Dataify Google Shopping keyword collection and do not rely on it for Instagram Reel scraping. <br>
-Risk: Token-handling examples can expose credentials more than necessary, especially when tokens are passed as command-line arguments. <br>
-Mitigation: Prefer DATAIFY_API_TOKEN from the environment, avoid echoing tokens, and pass a user-provided token only after explicit confirmation. <br>
-Risk: A real API call creates a Dataify collection task using submitted parameters. <br>
-Mitigation: Review the Markdown confirmation table carefully and require explicit user approval before calling the API. <br>
+## Use Case:
 
+External users and developers use this skill to submit Dataify Google Shopping keyword collection tasks, wait for completion, and retrieve structured product records.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/dataify-server/dataify-google-shopping-keywords) <br>
-- [Dataify Dashboard](https://dashboard.dataify.com?utm_source=skill) <br>
-- [Dataify Login](https://dashboard.dataify.com/login?utm_source=skill) <br>
-- [Dataify Builder API Endpoint](https://scraperapi.dataify.com/builder?platform=1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown confirmation tables, inline shell commands, and JSON text from API helper responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires explicit user confirmation before real API calls and uses DATAIFY_API_TOKEN or a user-provided token for authenticated requests.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: ClawHub release evidence) <br>
+Risk: The security review flags mismatched localized instructions, token handling, and an unpinned helper-code import.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the localized Chinese instructions and the external dataify-task-operations dependency before installation.
+
+Risk: API tokens may be exposed if passed directly on the command line.
+
+Mitigation: Use a session-scoped DATAIFY_API_TOKEN or a secret manager, and never print token values.
+
+Risk: The helper task_runtime code is imported from an adjacent dataify-task-operations dependency.
+
+Mitigation: Verify the helper dependency comes from a trusted, pinned source before running the skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dataify-server/skills/dataify-google-shopping-keywords)
+- [Dataify Scraper API builder endpoint](https://scraperapi.dataify.com/builder?platform=1)
+- [Dataify dashboard](https://dashboard.dataify.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON collection results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May return a task ID and resume command if monitoring times out or is interrupted.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

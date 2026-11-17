@@ -1,40 +1,58 @@
-## Description: <br>
-Guides agents in designing, optimizing, and auditing hero sections for above-the-fold page experiences. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents in designing, optimizing, and auditing above-the-fold hero sections for conversion, accessibility, performance, and responsive layout.
 
-## Publisher: <br>
-[kostja94](https://clawhub.ai/user/kostja94) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kostja94](https://clawhub.ai/user/kostja94)
 
-## Use Case: <br>
-Developers, designers, and product teams use this skill to guide hero-section structure, copy, layout, visuals, accessibility, performance, and testing recommendations for web pages. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may use local project context files containing brand notes, audience details, or other internal context. <br>
-Mitigation: Review or remove `.claude/project-context.md` and `.cursor/project-context.md` before invoking the skill if that context should not be used. <br>
-Risk: Hero-section recommendations can affect public messaging, conversion flows, accessibility, and page performance. <br>
-Mitigation: Review generated recommendations against brand, accessibility, SEO, and performance requirements before publishing. <br>
+## Use Case:
 
+Developers, designers, and marketing teams use this skill to generate or review hero-section structure, copy, visual direction, accessibility checks, performance considerations, and testing recommendations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kostja94/hero-generator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown] <br>
-**Output Format:** [Markdown guidance with structured hero recommendations and checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read local project context files for value proposition, audience, and visual identity when they exist.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.1 (source: server release metadata and SKILL.md metadata) <br>
+Risk: The skill may activate for broad hero or above-the-fold design phrases.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review activation behavior before deployment so it routes only to intended hero-section design, audit, and optimization requests.
+
+Risk: The skill may read existing project context files when present.
+
+Mitigation: Provide only project context intended for design guidance, and review outputs before applying them to production work.
+
+Risk: Hero-section recommendations can affect public copy, accessibility, performance, and conversion behavior.
+
+Mitigation: Validate suggested layouts and copy against brand standards, accessibility requirements, LCP targets, and A/B test results before release.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/kostja94/skills/hero-generator)
+- [Publisher Profile](https://clawhub.ai/user/kostja94)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown guidance with structured checklists, copy suggestions, layout recommendations, and occasional implementation-oriented snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill is documentation-only and produces advisory content for agent responses.]
+
+## Skill Version(s):
+
+1.2.1 (source: server release metadata and SKILL.md metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

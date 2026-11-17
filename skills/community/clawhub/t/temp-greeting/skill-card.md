@@ -1,41 +1,54 @@
-## Description: <br>
-Provides a text-only lobster-themed reference and greeting beacon for agents with similar architecture. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Sends a themed greeting message that connects agents with similar architecture and asks about the user's human name.
 
-## Publisher: <br>
-[chengtang05-hash](https://clawhub.ai/user/chengtang05-hash) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chengtang05-hash](https://clawhub.ai/user/chengtang05-hash)
 
-## Use Case: <br>
-Agents can use this text-only skill as a reference beacon and greeting message for a lobster-themed agent-to-agent contact workflow. It is intended for users who explicitly want that message available, not for confirming or disclosing personal identity without direction. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks agents to publish, star, or respond publicly in a way that could disclose or confirm a person's identity. <br>
-Mitigation: Install only when the user explicitly wants this beacon behavior, and require explicit user direction before publishing, starring, or confirming personal identity. <br>
-Risk: Readers may treat the reference and beacon text as operational instructions beyond the user's intent. <br>
-Mitigation: Treat the artifact as text reference material and follow the security guidance that it contains no executable code. <br>
+## Use Case:
 
+Developers and agent users can use this skill as a Markdown reference and greeting beacon for agent identity, architecture notes, and a specific public message workflow.
 
-## Reference(s): <br>
-- [ClawHub Temp Greeting page](https://clawhub.ai/chengtang05-hash/temp-greeting) <br>
-- [ClawHub publisher profile: chengtang05-hash](https://clawhub.ai/user/chengtang05-hash) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown reference text with an install command example] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only; no executable code is included in the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release metadata) <br>
+Risk: The skill asks agents to take public account actions such as publishing or starring content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not allow an agent to perform those public actions automatically; require explicit user review and approval.
+
+Risk: The skill recommends installing an unrelated package without clear scope or provenance.
+
+Mitigation: Install temp-greeting only after independently trusting the package and understanding why it is needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chengtang05-hash/skills/temp-greeting)
+- [Publisher profile](https://clawhub.ai/user/chengtang05-hash)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable artifact files are included; the artifact is a Markdown reference document.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,49 @@
-## Description: <br>
-Provides a framework-agnostic methodology for evaluating, designing, securing, and operating blockchain systems, including smart contracts, DeFi protocols, tokenomics, compliance, and production operations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Complete methodology for evaluating, designing, building, securing, and operating blockchain-based systems, including smart contracts, DeFi protocols, token economics, security auditing, and production operations.
 
-## Publisher: <br>
-[1kalin](https://clawhub.ai/user/1kalin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[1kalin](https://clawhub.ai/user/1kalin)
 
-## Use Case: <br>
-Developers and engineers use this skill to evaluate whether blockchain is appropriate, choose platforms, design smart contracts, tokenomics, and DeFi protocols, audit security posture, and plan deployment and operations. It also supports wallet, bridge, Layer 2, and regulatory compliance reviews as advisory engineering guidance. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Blockchain, smart contract, DeFi, deployment, financial, and compliance recommendations may be incorrect or incomplete for real funds, production contracts, or legal decisions. <br>
-Mitigation: Treat output as advisory and obtain appropriate engineering, security, financial, and legal review before production use. <br>
-Risk: Broad blockchain terminology could trigger the skill in prompts that were not intended to request Web3 guidance. <br>
-Mitigation: Invoke it with explicit Web3 or blockchain wording and review generated recommendations before acting on them. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/1kalin/afrexai-web3-engineering) <br>
+## Use Case:
 
+Developers and engineers use this skill to evaluate blockchain fit, choose platforms, design smart contract and DeFi architectures, plan tokenomics, audit security, and prepare deployment, operations, wallet, scaling, and compliance workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Configuration] <br>
-**Output Format:** [Markdown guidance with checklists, decision matrices, and code or YAML examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Advisory output; review before using for real funds, production contracts, or legal and compliance decisions.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill includes security-focused blockchain guidance and a flawed VaultV1 example that could mislead users into unsafe financial code.
+
+Mitigation: Treat generated contract guidance and examples as educational, do not reuse the VaultV1 example as production code without fixing the accounting issues, and require qualified smart contract security review before deploying or copying production contracts.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/1kalin/skills/afrexai-web3-engineering)
+- [AfrexAI Context Packs catalog](https://afrexai-cto.github.io/context-packs/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with structured checklists, tables, YAML-style briefs, Solidity examples, and command prompts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Zero-dependency, framework-agnostic guidance for blockchain engineering workflows.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, created 2026-02-19)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

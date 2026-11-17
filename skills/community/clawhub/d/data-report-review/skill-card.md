@@ -1,37 +1,53 @@
-## Description: <br>
-Report Review helps an agent systematically check a nearly finished report for data accuracy, logical coherence, supported conclusions, audience fit, and clarity before declaring it complete. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reviews near-final reports with a checklist for data accuracy, logical coherence, supported conclusions, audience fit, and clarity.
 
-## Publisher: <br>
-[mingginwan](https://clawhub.ai/user/mingginwan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mingginwan](https://clawhub.ai/user/mingginwan)
 
-## Use Case: <br>
-Writers, analysts, and coding agents use this skill to perform a final quality review of data-heavy reports before delivery. It guides review of source traceability, calculations, reasoning chains, conclusion strength, audience fit, and expression quality. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Checklist output may create misplaced confidence if the underlying report data and citations are not actually verified. <br>
-Mitigation: Require source tracing for key numbers, recalculation of derived values, and a concise review summary before treating the report as complete. <br>
+## Use Case:
 
+Report authors and agents use this skill before publishing or declaring a report complete. It guides review of key figures, calculations, citations, reasoning, conclusions, audience fit, and writing quality.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown review checklist and summary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a structured review result covering data accuracy, logic, conclusion quality, audience fit, expression quality, and a modification summary when changes are needed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The checklist may not catch domain-specific legal, regulatory, statistical, or methodology issues outside the supplied report and evidence.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it as a final review aid and keep expert review for consequential reports or specialized domains.
+
+Risk: A review summary can be misleading if key sources, calculations, or unresolved issues are omitted from the input.
+
+Mitigation: Require traceable sources, recalculation of key figures, and documented open issues before accepting a completion statement.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mingginwan/skills/data-report-review)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Analysis]
+
+**Output Format:** [Markdown checklist and review summary]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language checklist; no code execution, network access, persistence, or hidden data handling is indicated by the security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

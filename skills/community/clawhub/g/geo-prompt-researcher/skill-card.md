@@ -1,43 +1,60 @@
-## Description: <br>
-Discover high-value AI search prompts your target audience uses on ChatGPT, Perplexity, Gemini, and Claude, and generate comprehensive prompt lists for GEO strategy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI Prompt Researcher helps generate prompt research reports for GEO strategy across ChatGPT, Perplexity, Gemini, and Claude.
 
-## Publisher: <br>
-[geoly-geo](https://clawhub.ai/user/geoly-geo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[geoly-geo](https://clawhub.ai/user/geoly-geo)
 
-## Use Case: <br>
-Marketing, content, and GEO strategy teams use this skill to research AI-search prompts for a brand, product category, audience, and competitor set. It helps identify discovery, comparison, how-to, definition, recommendation, and competitor-gap prompt opportunities for content planning and AI visibility monitoring. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: A user-specified output path can overwrite an existing file when running the included script. <br>
-Mitigation: Choose and review the output path before execution, and write reports to a dedicated working file or directory. <br>
-Risk: Documentation mentions advanced helper commands that may not be present in the artifact. <br>
-Mitigation: Inspect available scripts before relying on optional competitor, trending, or monitoring workflows. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Prompt Taxonomy](references/prompt-taxonomy.md) <br>
-- [AI Platform Guide](references/platform-guide.md) <br>
-- [Prompt Templates](references/prompt-templates.md) <br>
-- [Research Examples](references/examples.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/geoly-geo/geo-prompt-researcher) <br>
+## Use Case:
 
+Marketing, content, and GEO teams use this skill to generate and prioritize AI search prompts for a brand or category, identify competitor gaps, cluster prompt opportunities, and produce local research outputs.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown research report or JSON prompt list] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The included script can write to a user-specified output path; choose the path intentionally because an existing file may be overwritten.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: A user-specified output path can overwrite an existing local report file.
+
+Mitigation: Choose output filenames deliberately and review the target path before running the CLI with --output.
+
+Risk: Business context provided for prompt research may appear in generated local reports.
+
+Mitigation: Provide only brand, category, competitor, and audience details that are appropriate to include in the report.
+
+Risk: The documentation mentions advanced scripts that are not included in this artifact.
+
+Mitigation: Use the included scripts/research_prompts.py workflow unless additional scripts are obtained and verified separately.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/geoly-geo/skills/geo-prompt-researcher)
+- [Prompt Taxonomy](artifact/references/prompt-taxonomy.md)
+- [AI Platform Guide](artifact/references/platform-guide.md)
+- [Prompt Templates](artifact/references/prompt-templates.md)
+- [Research Examples](artifact/references/examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands, guidance]
+
+**Output Format:** [Markdown research report or JSON prompt list]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The included CLI can write output to stdout or to a user-specified local file.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

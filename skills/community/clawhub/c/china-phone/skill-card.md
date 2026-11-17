@@ -1,42 +1,59 @@
-## Description: <br>
-China Phone looks up the registered province, city, and carrier for Chinese mobile numbers using public lookup endpoints with offline prefix rules as a fallback. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Looks up the registered province, city, and carrier for Chinese mobile phone numbers using public lookup endpoints with offline prefix fallback.
 
-## Publisher: <br>
-[ToBeWin](https://clawhub.ai/user/ToBeWin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tobewin](https://clawhub.ai/user/tobewin)
 
-## Use Case: <br>
-External users and agents use this skill to validate Chinese mobile number format, identify registered province or city, and determine the carrier while masking the number in user-facing output. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Online lookups send queried phone numbers to public 360 or Taobao endpoints. <br>
-Mitigation: For sensitive numbers, ask before online lookup or use the offline prefix fallback. <br>
-Risk: Phone number carrier or location results may be inaccurate for number portability, virtual operators, or registered-location lookups. <br>
-Mitigation: Present results as number-segment attribution and note uncertainty when using fallback or virtual-operator rules. <br>
+## Use Case:
 
+External users and developers use this skill to validate Chinese mobile phone number format and return masked province, city, and carrier lookup results. It supports single or batch lookup workflows and can fall back to offline prefix rules when public lookup services are unavailable.
 
-## Reference(s): <br>
-- [China Phone ClawHub listing](https://clawhub.ai/ToBeWin/china-phone) <br>
-- [360 phone area lookup endpoint](https://cx.shouji.360.cn/phonearea.php?number={phone_number}) <br>
-- [Taobao mobile segment lookup endpoint](https://tcc.taobao.com/cc/json/mobile_tel_segment.htm?tel={phone_number}) <br>
+### Deployment Geography for Use:
 
+Global; lookup scope is Chinese mobile phone numbers.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, API Calls, Guidance] <br>
-**Output Format:** [Markdown or text response with masked phone number, location, carrier, and optional inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should decode escaped Unicode into readable Chinese and mask the middle four digits of phone numbers.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release metadata) <br>
+Risk: Queried phone numbers may be sent to public 360 and Taobao lookup services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for numbers the user has permission to check, and prefer the offline prefix fallback when an external lookup is not appropriate.
+
+Risk: Phone-number attribution may reflect the registered number segment rather than the user's current location or actual carrier.
+
+Mitigation: Present lookup results as registered segment information and note that number portability or roaming can make carrier and location results inaccurate.
+
+Risk: Raw endpoint responses can contain escaped Unicode or unmasked phone numbers.
+
+Mitigation: Parse responses before display, output natural Chinese text, and mask the middle four digits in user-facing results.
+
+## Reference(s):
+
+- [China Phone ClawHub release](https://clawhub.ai/tobewin/skills/china-phone)
+- [360 phone area lookup endpoint](https://cx.shouji.360.cn/phonearea.php?number={mobile_number})
+- [Taobao mobile segment lookup endpoint](https://tcc.taobao.com/cc/json/mobile_tel_segment.htm?tel={mobile_number})
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown or plain text lookup summaries with masked phone numbers and optional shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May call public 360 and Taobao lookup services; offline prefix fallback returns less precise carrier or location data.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

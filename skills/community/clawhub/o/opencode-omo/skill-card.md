@@ -1,43 +1,55 @@
-## Description: <br>
-Turn coding requests into completed work. Plan with Prometheus, execute with Atlas, and iterate with Sisyphus in OpenCode. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Turn coding requests into completed work. Plan with Prometheus, execute with Atlas, and iterate with Sisyphus in OpenCode.
 
-## Publisher: <br>
-[IISweetHeartII](https://clawhub.ai/user/IISweetHeartII) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[iisweetheartii](https://clawhub.ai/user/iisweetheartii)
 
-## Use Case: <br>
-Developers and engineers use this skill to run coding tasks through OpenCode with Oh-My-OpenCode workflows, including one-shot implementation, planning with Prometheus, execution with Atlas, and iteration with Sisyphus. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Agent-directed coding workflows can produce incorrect or unwanted code changes. <br>
-Mitigation: Use the skill in a git-controlled project and review, test, and approve agent-made changes before accepting them. <br>
-Risk: The artifact references local helper scripts that were not included in the reviewed artifact. <br>
-Mitigation: Inspect any local helper scripts before running them and verify that they match the documented OpenCode workflow. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/IISweetHeartII/opencode-omo) <br>
-- [Project homepage](https://github.com/IISweetHeartII/opencode-omo) <br>
-- [agent-selfie integration](https://clawhub.org/skills/agent-selfie) <br>
-- [gemini-image-gen integration](https://clawhub.org/skills/gemini-image-gen) <br>
-- [agentgram integration](https://clawhub.org/skills/agentgram) <br>
+## Use Case:
 
+Developers and engineers use this skill to run coding tasks through OpenCode and Oh-My-OpenCode workflows, including one-shot implementation, planning with Prometheus, and execution with Atlas through Sisyphus.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Assumes OpenCode, git, and ClawHub CLIs are installed when following commands.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.3.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The workflow may ask an agent to change code or run commands in a repository.
+
+Mitigation: Run it only in the intended repository and review proposed diffs and commands before accepting changes.
+
+Risk: The artifact references helper scripts that were not present in the submitted files.
+
+Mitigation: Confirm any referenced helper scripts are available and trustworthy before relying on those commands.
+
+## Reference(s):
+
+- [Opencode Omo ClawHub page](https://clawhub.ai/iisweetheartii/skills/opencode-omo)
+- [agent-selfie ClawHub integration](https://clawhub.org/skills/agent-selfie)
+- [gemini-image-gen ClawHub integration](https://clawhub.org/skills/gemini-image-gen)
+- [agentgram ClawHub integration](https://clawhub.org/skills/agentgram)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires OpenCode, git, and clawhub command-line tools; no bundled executable code was present in the artifact.]
+
+## Skill Version(s):
+
+0.3.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,123 +1,125 @@
 ---
 name: signalhire
-description: Prospect and enrich contacts via the SignalHire API (Search, Person and Credits)
-metadata:
-  openclaw:
-    # The skill only loads when a valid API key and callback URL are provided.  The
-    # primary environment variable is used to inject the secret without ever
-    # exposing it in the instructions.  The callback URL should point to the
-    # connector service exposed publicly via a tunnel or reverse proxy.
-    requires:
-      env: SIGNALHIRE_API_KEY,SIGNALHIRE_CALLBACK_URL
-    primaryEnv: SIGNALHIRE_API_KEY
+description: Interact with the SignalHire API to enrich and verify professional contacts. Use this skill when asked to find email addresses, phone numbers, or search for professional profiles and companies using SignalHire. Supports Person API for comprehensive profile/contact data and Search API for lead generation.
 ---
 
-# SignalHire skill instructions
+# SignalHire API Skill
 
-This skill exposes three high‑level capabilities to an OpenClaw agent.  Each
-capability corresponds to one of the REST endpoints documented by SignalHire.
-The agent should never call these endpoints directly; instead it must invoke
-one of the defined skill actions.  The following guidance summarises how the
-API works, including rate limits, concurrency limits and the asynchronous
-callback workflow.  All factual statements below are supported by the official
-SignalHire API documentation.
+This skill provides context and instructions for using the SignalHire API to retrieve contact information (emails, phone numbers, social media profiles) from a global database of professionals.
 
-## 1. Check remaining credits
+## Authentication
+To access the SignalHire API, an API key is required. The API key must be included in the `apikey` request header.
 
-Use this action to determine how many credits remain on the account.  The
-SignalHire API exposes a dedicated endpoint `GET /api/v1/credits` which returns
-the number of available credits as a JSON payload.  A valid API key must be
-included in the request headers.  When invoked successfully, the response
-contains a field called `credits` with the number of credits remaining【821841938681143†L505-L529】.  If the
-account is configured for “profiles without contacts”, the same endpoint can
-be called with a `withoutContacts=true` query parameter【821841938681143†L559-L566】.  Credits are also
-returned in the `X-Credits-Left` response header for every Person API call【821841938681143†L559-L566】.
+If the user hasn't provided their SignalHire API key in their request or environment, ask them to provide it before making API calls. Ensure it is kept secure and not exposed publicly.
 
-The agent **must call this action** before launching large enrichment jobs to
-avoid running out of credits mid‑operation.  If the number of remaining
-credits is lower than the number of items to be enriched, the job should be
-split or aborted gracefully.
+## Endpoints
 
-## 2. Search for profiles
+### 1. Person API
+Retrieves comprehensive profile and full contact details about a specific individual based on unique identifiers (e.g., LinkedIn® profile links, email addresses, phone numbers, or ID).
+- **Use Case:** Find a specific person's contact info.
+- **Rate Limit:** 600 items per minute.
+- **Callback URL:** The Person API is asynchronous — SignalHire POSTs the result to a callback URL you provide. See **Callback Setup** below.
 
-Use this action to find prospective candidates in the SignalHire database
-without consuming contact credits.  The Search API endpoint is
-`POST /api/v1/candidate/searchByQuery`【21055727237259†L100-L109】 and returns a list of profile summaries
-along with a `scrollId`.  The scrollId can be used to fetch additional pages
-via the Scroll Search endpoint (not shown here) until all results are
-exhausted.  Access to the Search API is granted only after contacting
-SignalHire support and is subject to a strict concurrency limit of **three
-simultaneous requests**【21055727237259†L110-L116】.  The agent must ensure that no more than three
-searchByQuery calls are inflight at any time.
+### 2. Search API
+Searches for individuals or companies using various filters (e.g., job title, location, industry). Returns a brief overview of information **without** contact details.
+- **Use Case:** Lead generation, talent acquisition, market research.
+- **Rate Limit:** 1 concurrent request.
 
-When performing a search, the request body should include fields such as
-`currentTitle`, `location`, `keywords`, `industry` and other filters as
-described in the documentation【21055727237259†L120-L177】.  The `size` parameter controls how many
-profiles are returned per page (default 10, maximum 100).  After retrieving the
-first page, the agent should immediately follow up with a scroll request
-within 15 seconds to avoid expiration of the `scrollId`.  The response from
-search is synchronous and will return immediately; no callback is needed.
+---
 
-## 3. Enrich contacts (Person API)
+## Callback Setup
 
-This action retrieves full contact information (emails, phones and social
-profiles) for up to 100 items per request.  The endpoint is
-`POST /api/v1/candidate/search`【821841938681143†L126-L134】.  Each item may be a LinkedIn profile URL,
-an email address, a phone number or a SignalHire profile UID【821841938681143†L120-L124】.  The
-request body **must** include a `callbackUrl` parameter; once the data is
-processed the API posts the results to this URL【821841938681143†L126-L134】.  A valid server
-listening on the callbackUrl must return HTTP status 200 to acknowledge
-successful receipt.  SignalHire retries up to three times if the callback
-endpoint cannot be reached or if it does not respond within a ten‑second
-timeout【821841938681143†L187-L198】.  Processing is complete only when all callback payloads have
-been received.
+The Person API is asynchronous: you submit a request with a `callbackUrl`, and SignalHire POSTs the enriched result to that URL when ready.
 
-The callback payload contains an array of objects, each with a `status` field
-indicating the outcome for that item: `success`, `failed`, `credits_are_over`,
-`timeout_exceeded` or `duplicate_query`【821841938681143†L239-L249】.  When the status is
-`success`, the payload also includes a `candidate` object with fields such as
-`fullName`, `emails`, `phones`, `location`, etc.  These results are
-persisted by the connector service into a CSV file; the agent should wait
-until the connector reports that the job is ready before consuming the data.
+### Requirements
+- A publicly reachable HTTPS endpoint that accepts POST requests with JSON body.
+- A **shared secret** in the callback URL as a query parameter (e.g. `?k=<secret>`), because SignalHire controls the outbound request and cannot set custom headers.
 
-The Person API is subject to rate limits: a maximum of **600 elements
-processed per minute**【821841938681143†L490-L503】.  The agent must implement throttling to ensure that the
-combined number of items in all Person API calls does not exceed this limit.
-Requests exceeding the limit will be rejected with HTTP status 429
-`Too Many Requests`【821841938681143†L500-L503】.  To maximise throughput, batch up to 100 items per
-request but do not exceed the global per‑minute quota.
+### Step 1 — Deploy a webhook receiver
+You need an HTTP server that:
+1. Accepts `POST /signalhire/callback?k=<secret>`
+2. Validates the `k` parameter against your stored secret
+3. Saves the JSON payload to a known file (e.g. `signalhire_result.json`) so the agent can read it back
 
-## General guidance for agents
+A minimal Flask example:
+```python
+import hmac, os
+from flask import Flask, request, jsonify
+import json
 
-1. **Do not hard‑code the API key or callback URL.**  Use the environment
-   variables injected by OpenClaw: `SIGNALHIRE_API_KEY` for authentication and
-   `SIGNALHIRE_CALLBACK_URL` for the Person API.  These values are supplied at
-   runtime and must not be echoed or leaked.
+app = Flask(__name__)
+SECRET = os.environ["SIGNALHIRE_WEBHOOK_SECRET"]
 
-2. **Always check remaining credits** before starting a large enrichment job.
-   Abort or split the job if credits are insufficient.
+@app.before_request
+def auth():
+    if request.method == "POST":
+        k = request.args.get("k", "")
+        if not hmac.compare_digest(k, SECRET):
+            return jsonify({"error": "unauthorized"}), 403
 
-3. **Respect rate and concurrency limits.**  No more than three concurrent
-   Search API requests【21055727237259†L110-L116】.  Do not send more than 600 items through the
-   Person API per minute【821841938681143†L490-L503】.  Implement exponential backoff on HTTP 429
-   responses.
+@app.route("/signalhire/callback", methods=["POST"])
+def callback():
+    payload = request.get_json()
+    with open("signalhire_result.json", "w") as f:
+        json.dump(payload, f, indent=2)
+    return jsonify({"status": "accepted"}), 200
 
-4. **Always include a valid callbackUrl** when calling the Person API and
-   ensure the connector service is reachable and responsive.  The callback
-   must return HTTP 200 within ten seconds or the result may be discarded【821841938681143†L187-L198】.
+if __name__ == "__main__":
+    app.run(host="127.0.0.1", port=8000)
+```
 
-5. **Wait for job completion**.  After submitting a Person API request, the
-   agent should poll the connector’s job endpoint (described in the README)
-   until it indicates that all results have been received.  Only then should
-   the agent proceed to process the CSV data.
+### Step 2 — Generate a shared secret
+```bash
+python3 -c "import secrets; print(secrets.token_urlsafe(32))"
+```
+Store this value as `SIGNALHIRE_WEBHOOK_SECRET` in your server's environment.
 
-6. **Handle all status values** from the callback.  For `failed`, `credits_are_over`,
-   `timeout_exceeded` and `duplicate_query`, no candidate data will be
-   available; log these cases and move on.
+### Step 3 — Set `SIGNALHIRE_CALLBACK_URL`
+Construct the full callback URL including the secret:
+```
+https://<your-domain>/signalhire/callback?k=<your-secret>
+```
+Store it as the environment variable `SIGNALHIRE_CALLBACK_URL`, or in a config file your agent reads. **Never hardcode it in source files** — rotate the secret by updating it in one place.
 
-7. **Comply with legal and privacy requirements.**  SignalHire ties API usage to
-   their Terms, Privacy and GDPR pages.  Always respect data‑subject rights
-   and opt‑out requests when storing or using contact data【821841938681143†L559-L566】.
+Example (shell / `.env` file):
+```
+SIGNALHIRE_CALLBACK_URL=https://your-domain.com/signalhire/callback?k=your-secret-here
+SIGNALHIRE_WEBHOOK_SECRET=your-secret-here
+```
 
-By following the above instructions, the agent can safely integrate SignalHire’s
-prospecting and enrichment capabilities into an OpenClaw workflow.
+### Step 4 — Use it in requests
+Read `SIGNALHIRE_CALLBACK_URL` from the environment at runtime and pass it as `callbackUrl` in every Person API request body. Do **not** hardcode the URL.
+
+```python
+import os
+callback_url = os.environ["SIGNALHIRE_CALLBACK_URL"]
+```
+
+### Step 5 — Read the result
+After submitting the enrichment request, poll or wait for `signalhire_result.json` to be written by your webhook server, then read and return the data to the user.
+
+---
+
+## Handling Responses & Credits
+
+### Credits
+The HTTP response headers provide the total remaining credits in the `X-Credits-Left` header. Always keep track of this if possible and alert the user if they are running low.
+
+### Common HTTP Status Codes
+- **200**: Request is completed successfully, data collected.
+- **201**: Request is accepted, server started collecting data.
+- **204**: Request is still in progress.
+- **401**: Authentication failed (invalid API key).
+- **402**: Out of credit limit.
+- **403**: Account disabled or querying unauthorized request status.
+- **406**: Requested more than the maximum allowed items (limit is 100).
+- **422**: Incorrect or malformed parameters.
+- **429**: Rate limit exceeded.
+
+## Execution Pattern
+When the user asks you to search for a contact or company using SignalHire:
+1. Verify you have the `apikey`.
+2. Determine if the goal is enrichment (Person API) or discovery (Search API).
+3. For Person API: read `SIGNALHIRE_CALLBACK_URL` from the environment; if unset, prompt the user to complete Callback Setup above before proceeding.
+4. Use the `exec` tool to run a `curl` or `fetch` script passing the `apikey` header (`-H "apikey: $API_KEY"`) and the `callbackUrl` in the request body.
+5. Wait for the callback to arrive, then read `signalhire_result.json` and return the findings to the user cleanly.

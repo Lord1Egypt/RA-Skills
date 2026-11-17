@@ -1,8 +1,12 @@
 ---
 name: sports-ticker
-version: 3.2.0
-description: Live sports alerts for Soccer, NFL, NBA, NHL, MLB, F1 and more. Real-time scoring with FREE ESPN API. Track any team from any major league worldwide.
-metadata: {"openclaw":{"requires":{"bins":["python3"],"note":"No API keys needed. Uses free ESPN API."}}}
+version: 3.3.0
+description: Live sports alerts for Soccer, NFL, NBA, NHL, MLB, F1 and more. Real-time scoring with the free ESPN API. Track any team from any major league worldwide.
+metadata:
+  openclaw:
+    requires:
+      bins: ["python3"]
+    note: "No API keys needed. Uses the free ESPN scoreboard API."
 ---
 
 # Sports Ticker
@@ -96,13 +100,22 @@ python3 scripts/schedule.py --json             # JSON output
 python3 scripts/auto_setup_crons.py            # All teams, next 7 days
 python3 scripts/auto_setup_crons.py --team spurs --days 14
 python3 scripts/auto_setup_crons.py --json     # Machine-readable
-python3 scripts/auto_setup_crons.py --commands # OpenClaw CLI commands
+python3 scripts/auto_setup_crons.py --commands # JSON with agent instructions (not CLI commands)
 
 # ESPN direct
 python3 scripts/espn.py leagues
 python3 scripts/espn.py scoreboard nba basketball
 python3 scripts/espn.py search "Chiefs" football
 ```
+
+## OpenClaw 2.0 Automations
+
+The generated cron configs become OpenClaw automations:
+
+- Primary command: `openclaw automations`. The old name `openclaw cron` still works as an alias.
+- The wake flag is `--wake`. There is no `--wake-mode` flag in 2.0.
+
+Exec in automations requires an approval grant in 2.0. The generated ticker automations run `python3 scripts/live_monitor.py` via exec; without an approved grant they fail silently. Grant approvals through the Control UI — without it, there is no error message.
 
 ## Alert Types
 

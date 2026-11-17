@@ -1,0 +1,112 @@
+{
+  "meta": {
+    "version": "1.0",
+    "date": "2026-09-18",
+    "role": "供 scripts/ask.py 使用的画像判断规则。规则解释见 references/profile-slots.md。",
+    "principle": "定制化靠可控的槽位与分支，不靠让模型自由发挥。所有判断都必须是可复现的字符串规则。"
+  },
+
+  "slots": {
+    "year": { "values": ["大一", "大二", "大三", "大四", "研究生"], "required": false, "default": null },
+    "school_tier": { "values": ["双一流", "普通本科", "民办", "专科"], "required": false, "default": null, "boundary": "只用于判断资源可得性，不用于查询具体校规" },
+    "major": { "values": ["理工", "文史", "经管", "医", "法", "艺体", "其他"], "required": false, "default": null },
+    "issue_type": { "values": ["决策型", "执行型", "关系型", "情绪型"], "required": false, "default": "执行型" },
+    "tried": { "type": "text", "required": false, "default": null },
+    "temperature": { "values": ["平稳", "焦虑", "崩溃", "危险"], "required": false, "default": "平稳", "never_ask": true }
+  },
+
+  "issue_type_rules": {
+    "decision": {
+      "type": "决策型",
+      "markers": ["该不该", "要不要", "值不值", "选哪个", "选 A 还是", "有没有必要", "值得吗", "是不是应该", "哪个更好"],
+      "response_shape": "框架优先，最后给一个倾向性建议"
+    },
+    "execution": {
+      "type": "执行型",
+      "markers": ["怎么做", "怎么办", "有什么办法", "如何", "步骤", "流程", "怎么申请", "怎么找"],
+      "response_shape": "清单优先，动作越具体越好"
+    },
+    "relationship": {
+      "type": "关系型",
+      "markers": ["他", "她", "他们", "室友", "同学", "老师", "爸妈", "我该怎么说", "怎么跟他", "关系"],
+      "response_shape": "先分清是谁的问题，再给话术和边界"
+    },
+    "emotional": {
+      "type": "情绪型",
+      "markers": ["难受", "烦死", "撑不住", "受不了", "好累", "想哭", "委屈", "没意思"],
+      "response_shape": "加厚①接住段，压缩③硬货段",
+      "note": "情绪型与其它类型同时命中时，情绪型优先"
+    }
+  },
+
+  "temperature_rules": {
+    "note": "按优先级从高到低匹配，命中即停",
+    "levels": [
+      {
+        "level": "危险",
+        "markers": ["不想活", "想死", "自杀", "轻生", "活不下去", "活着没意思", "活着没什么意思", "死了算了", "消失掉就好", "伤害自己", "自残", "割腕", "跳下去", "跳楼", "没有我更好", "最后一次", "遗书", "告别"],
+        "action": "HARD_STOP_CRISIS_PROTOCOL"
+      },
+      {
+        "level": "崩溃",
+        "markers": ["崩溃", "撑不住", "撑不下去", "受不了了", "绝望", "一片空白", "整个人废了", "每天都在哭", "喘不上气", "我完了", "彻底完了", "完蛋了", "没救了", "活着好累"],
+        "action": "serious_mode"
+      },
+      {
+        "level": "焦虑",
+        "markers": ["焦虑", "慌", "睡不着", "压力大", "烦躁", "发愁", "急死", "怎么办啊", "啊啊啊"],
+        "action": "normal_mode_with_care"
+      },
+      { "level": "平稳", "markers": [], "action": "normal_mode" }
+    ]
+  },
+
+  "tried_extraction": {
+    "note": "从文本中提取用户已尝试过的动作，避免给出重复建议",
+    "markers": ["我试过", "已经跟他说过", "说过了", "找过", "问过了", "都试了", "没用", "但是", "可是", "然而", "结果还是"],
+    "requirement": "若提取到 tried，回应中必须显式承认，且新建议必须在其之外"
+  },
+
+  "global_branches": {
+    "year": {
+      "大一": { "info_priority": "适应期与规则建立——现在立规矩成本最低；重点讲机制怎么运作", "tone": "多给背景，不假设他知道" },
+      "大二": { "info_priority": "选择期——分岔口最多，重点讲各项选择的实际成本", "tone": "正常" },
+      "大三": { "info_priority": "冲刺期——保研/考研/实习的时间窗开始关闭", "tone": "正常，可加压" },
+      "大四": { "info_priority": "收尾期——讲沉没成本与并行方案；很多事已经没有最优解，只有代价选择", "tone": "务实，少铺陈" },
+      "研究生": { "info_priority": "导师关系与科研节奏", "tone": "正常" },
+      "default": { "info_priority": "通用路径", "tone": "正常" }
+    },
+    "issue_type": {
+      "决策型": { "emphasis": ["框架", "判断标准", "倾向性建议"], "compress": ["共情"] },
+      "执行型": { "emphasis": ["动作清单", "具体到找谁、说什么"], "compress": ["背景解释"] },
+      "关系型": { "emphasis": ["责任划分", "话术", "边界"], "compress": ["道理"] },
+      "情绪型": { "emphasis": ["接住", "承认痛苦的真实性"], "compress": ["方案", "分析"] },
+      "default": { "emphasis": ["事实", "动作"], "compress": [] }
+    },
+    "temperature": {
+      "平稳": { "mode": "松弛模式", "meme_budget": 2, "emoji_budget": 2 },
+      "焦虑": { "mode": "正经模式", "meme_budget": 1, "emoji_budget": 1 },
+      "崩溃": { "mode": "严肃模式", "meme_budget": 0, "emoji_budget": 0 },
+      "危险": { "mode": "严肃模式", "meme_budget": 0, "emoji_budget": 0, "must_load": "references/crisis-protocol.md" },
+      "default": { "mode": "松弛模式", "meme_budget": 2, "emoji_budget": 2 }
+    }
+  },
+
+  "branch_resolution": {
+    "order": [
+      "1. 精确匹配 global_branches[slot][value]",
+      "2. 退回 global_branches[slot][\"default\"]",
+      "3. 退回 scenario 自身的通用内容",
+      "4. 退回五段式默认结构"
+    ],
+    "invariant": "任何一步都不能返回空；audit.py 会检查每个 slot 的每个 value 都有对应规则，且有 default 兜底"
+  },
+
+  "fill_policy": {
+    "max_rounds": 3,
+    "max_questions_per_round": 1,
+    "ask_location": "只允许在回应末尾，不允许打断正文",
+    "never_ask": ["temperature"],
+    "missing_slot_behavior": "走 default 分支，不追问；通用分支的回答质量必须足够高"
+  }
+}

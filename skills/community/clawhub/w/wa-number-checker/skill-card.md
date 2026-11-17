@@ -1,42 +1,59 @@
-## Description: <br>
-Query whether a phone number is registered on WhatsApp using a configured wa-check-api MCP service or the documented REST API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query whether a phone number is registered on WhatsApp, using the wa-check-api MCP service when configured or the documented REST API fallback.
 
-## Publisher: <br>
-[zhuqling](https://clawhub.ai/user/zhuqling) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhuqling](https://clawhub.ai/user/zhuqling)
 
-## Use Case: <br>
-Agents use this skill to answer whether a supplied phone number is registered on WhatsApp. It is intended for authorized single-number checks with E.164 or digits-only input and clear handling of API errors. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Checked phone numbers are sent to wa-check-api.whatsabot.com or the configured MCP service. <br>
-Mitigation: Use the skill only for numbers the user is authorized to check and avoid bulk or surveillance-style lookups. <br>
-Risk: The REST API requires an x-api-key credential. <br>
-Mitigation: Keep the API key out of prompts, logs, and shared code, and store it through the agent or environment's secret handling. <br>
+## Use Case:
 
+External users and developers use this skill to check whether a supplied phone number is registered on WhatsApp. It is useful for single-number verification workflows where the user has authorization to query the number and can provide the country code when needed.
 
-## Reference(s): <br>
-- [WhatsApp Number Checker API](references/api.md) <br>
-- [ClawHub skill page](https://clawhub.ai/zhuqling/wa-number-checker) <br>
-- [Publisher profile](https://clawhub.ai/user/zhuqling) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, API calls, shell commands, guidance] <br>
-**Output Format:** [Markdown or concise text with optional REST API examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns a WhatsApp registration status or a brief API error explanation based on the service response.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Queried phone numbers are sent to wa-check-api.whatsabot.com or a configured MCP service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for authorized checks and only in deployments where sending the number to that provider is acceptable.
+
+Risk: API keys are required for REST API use and could be exposed if placed directly in prompts, code, or logs.
+
+Mitigation: Store API keys in a protected secret store and avoid printing or sharing them.
+
+Risk: The capability could be misused for unauthorized or bulk number enumeration.
+
+Mitigation: Avoid checking numbers without authorization and apply retention, redaction, rate-limit, and abuse-control policies.
+
+## Reference(s):
+
+- [WhatsApp Number Checker API](references/api.md)
+- [wa-check-api service](https://wa-check-api.whatsabot.com)
+- [ClawHub skill page](https://clawhub.ai/zhuqling/skills/wa-number-checker)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance]
+
+**Output Format:** [Markdown or text responses with optional JSON, code, and cURL examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May call an MCP tool or external REST API and returns a registered/not registered interpretation plus concise error guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,9 @@
+[
+  {"id":"JY-M1","kind":"model","name":"character-driven causality","when":{"phase":["outline","scene","review"]},"requires":["character"],"hardness":"required","prompt":"让关键转折来自人物选择及其代价，而非作者任意推动。"},
+  {"id":"JY-M2","kind":"model","name":"concrete emotion","when":{"phase":["scene","draft","review"],"scene_types":["relationship","loss","choice"]},"requires":["emotional_change"],"hardness":"required","prompt":"用动作、物件、仪式或身体反应承载情感变化；必要时允许直接心理描写。"},
+  {"id":"JY-M3","kind":"model","name":"seek variation","when":{"phase":["outline","review"],"requires":["long_form"]},"hardness":"recommended","prompt":"避免重复同一冲突、解决方式和场景节奏，主动寻找变化。"},
+  {"id":"JY-M4","kind":"model","name":"hidden root","when":{"phase":["master-outline","arc-outline"],"scene_types":["long_arc"],"requires":["long_form"]},"hardness":"recommended","prompt":"为长篇建立贯穿始终的深层驱动力，并允许它在表层故事中逐步显形。"},
+  {"id":"JY-M5","kind":"model","name":"moral grayness","when":{"phase":["character","scene","review"],"scene_types":["conflict","choice"],"requires":["moral_choice"]},"hardness":"recommended","prompt":"允许人物在利益、责任和情感之间做不完美但可理解的选择。"},
+  {"id":"JY-M6","kind":"model","name":"indirect presentation","when":{"phase":["character","scene"],"scene_types":["relationship","revelation"],"requires":["other_observers"]},"hardness":"optional","prompt":"在适合的场景通过他人的观察、反应或误读展示人物，不把侧写当成全局禁令。"},
+  {"id":"JY-M7","kind":"model","name":"human truth over plausibility","when":{"phase":["world","outline","review"],"scene_types":["speculative"],"requires":["speculative_element"]},"hardness":"recommended","prompt":"幻想机制可以不现实，但人物的恐惧、欲望、选择和后果必须可信。"}
+]

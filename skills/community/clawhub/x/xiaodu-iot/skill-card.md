@@ -1,47 +1,64 @@
-## Description: <br>
-Controls Xiaodu smart speakers and IoT devices, including device discovery, status checks, voice commands, broadcasts, scenes, and batch smart-home actions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Controls Xiaodu smart speakers and IoT devices, including device discovery, status checks, voice commands, broadcasts, smart-home device actions, and scene triggers.
 
-## Publisher: <br>
-[vividlife](https://clawhub.ai/user/vividlife) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vividlife](https://clawhub.ai/user/vividlife)
 
-## Use Case: <br>
-Developers and smart-home operators use this skill to configure Xiaodu/DuerOS MCP access, inspect available devices, and issue controlled commands to speakers, lights, curtains, switches, and scenes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can trigger real smart-home actions, broadcasts, scenes, and privacy-sensitive device capabilities. <br>
-Mitigation: Require explicit confirmation before broadcasts, scenes, device control, or photo capture actions, and limit use to trusted Xiaodu/DuerOS integrations. <br>
-Risk: Access tokens, CUIDs, client IDs, device names, and logs can expose account or home information. <br>
-Mitigation: Store tokens and device IDs as secrets, avoid sharing terminal logs or screenshots, and rotate credentials when exposed. <br>
-Risk: The IoT MCP configuration runs an unpinned npx package. <br>
-Mitigation: Review and pin the package before use, and run it in a constrained environment with only the required token access. <br>
-Risk: The device update script can persist device information into MEMORY.md. <br>
-Mitigation: Disable or modify MEMORY.md updates before running update_devices.sh when persistent device records are not desired. <br>
+## Use Case:
 
+External users and developers use this skill to configure Xiaodu MCP access, discover authorized Xiaodu devices, send voice or broadcast commands, control supported smart-home devices, and trigger configured scenes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/vividlife/xiaodu-iot) <br>
-- [Xiaodu speaker MCP guide](artifact/references/xiaodu_mcp.md) <br>
-- [IoT device control API guide](artifact/references/iot_api.md) <br>
-- [Xiaodu DuerOS MCP endpoint](https://xiaodu.baidu.com/dueros_mcp_server/mcp/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user-provided DuerOS access tokens, device identifiers, and configured MCP servers before commands can affect devices.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can control real smart-home devices and trigger scenes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with Xiaodu devices the user is authorized to control, and review commands before execution, especially batch operations and scene triggers.
+
+Risk: The skill depends on a Xiaodu access token that can authorize device control.
+
+Mitigation: Store the token outside shared prompts or logs, rotate it regularly, and replace placeholder credentials only in the intended local configuration.
+
+Risk: The IoT MCP configuration uses an unpinned `npx -y` server command with the access token in its environment.
+
+Mitigation: Review and pin the MCP package before using a real token, or install a trusted version through a controlled package workflow.
+
+Risk: The device update script may persist household device state in workspace files and MEMORY.md.
+
+Mitigation: Disable or remove the MEMORY.md update and limit retained device inventory files unless persistent household state is explicitly desired.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/vividlife/skills/xiaodu-iot)
+- [Xiaodu Speaker MCP Configuration Guide](references/xiaodu_mcp.md)
+- [IoT Device Control API Guide](references/iot_api.md)
+- [Xiaodu DuerOS MCP Endpoint](https://xiaodu.baidu.com/dueros_mcp_server/mcp/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, JSON configuration snippets, and script examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May invoke mcporter commands against configured Xiaodu MCP servers and may write device lists or logs in the user's OpenClaw workspace.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and config_template.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

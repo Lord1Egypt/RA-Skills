@@ -1,54 +1,67 @@
-## Description: <br>
-Claude Agent SDK documentation — build production AI agents with Claude Code as a library in Python or TypeScript. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Claude Agent SDK documentation - build production AI agents with Claude Code as a library in Python or TypeScript.
 
-## Publisher: <br>
-[openlark](https://clawhub.ai/user/openlark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[openlark](https://clawhub.ai/user/openlark)
 
-## Use Case: <br>
-Developers and engineers use this skill as a Claude Code Agent SDK reference when building, configuring, or debugging Python and TypeScript agents. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Examples may involve powerful agent tool settings such as Bash access, MCP tool wildcards, or bypass-style permission modes. <br>
-Mitigation: Prefer narrow allowlists, block risky tools by default, and use bypass-style modes only in isolated environments. <br>
-Risk: SDK agents may require API tokens or other sensitive credentials. <br>
-Mitigation: Store credentials in secret managers or environment variables, avoid hardcoding tokens, and limit credential scope and lifetime. <br>
-Risk: Telemetry exports and session JSONL records can contain sensitive prompts, tool outputs, or file context. <br>
-Mitigation: Treat logs and session files as sensitive records, restrict access, and redact or retain them according to policy. <br>
-Risk: Guidance copied from reference examples can be misapplied in production agent deployments. <br>
-Mitigation: Review configurations before use, set max turn and budget limits, and deploy agents in sandboxed or containerized environments. <br>
+## Use Case:
 
+Developers and engineers use this skill as concise Claude Agent SDK reference material for building, configuring, debugging, securing, observing, and deploying Python or TypeScript agents.
 
-## Reference(s): <br>
-- [SDK overview](references/overview.md) <br>
-- [Quickstart](references/quickstart.md) <br>
-- [Agent loop](references/agent-loop.md) <br>
-- [Permissions](references/permissions.md) <br>
-- [Custom tools](references/custom-tools.md) <br>
-- [MCP integration](references/mcp.md) <br>
-- [Sessions](references/sessions.md) <br>
-- [Hosting and deployment](references/hosting.md) <br>
-- [Cost tracking](references/cost-tracking.md) <br>
-- [Python API reference](references/python.md) <br>
-- [TypeScript API reference](references/typescript.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reference guidance with Python and TypeScript code examples and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only skill; no executable scripts are included in the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Copyable examples can enable high-impact agent automation in real projects.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review examples before reuse, keep human approval for sensitive tool calls, and use least-privilege tool allow and deny rules.
+
+Risk: Unpinned MCP package execution such as npx @latest can introduce unreviewed code into an agent environment.
+
+Mitigation: Pin package versions and audit MCP servers before connecting them to production agents.
+
+Risk: Bash and bypassPermissions can permit broad system changes when copied into insufficiently isolated deployments.
+
+Mitigation: Use sandboxed containers or VMs, block dangerous tools where possible, and reserve bypassPermissions for isolated trusted environments.
+
+Risk: Session persistence, telemetry, and broad filesystem or token access can expose sensitive project data.
+
+Mitigation: Scope credentials and mounted files narrowly, protect or disable persistent session state for sensitive work, and route telemetry through approved controls.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/openlark/skills/claude-code-agent-sdk)
+- [Agent SDK Overview](artifact/references/overview.md)
+- [Quick Start](artifact/references/quickstart.md)
+- [Configuring Permissions](artifact/references/permissions.md)
+- [Hosting the Agent SDK](artifact/references/hosting.md)
+- [Python SDK API Reference](artifact/references/python.md)
+- [TypeScript SDK API Reference](artifact/references/typescript.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python, TypeScript, JSON, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only skill; outputs are reference guidance and copyable examples rather than executable skill code.]
+
+## Skill Version(s):
+
+1.0.1 (source: evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,55 @@
-## Description: <br>
-Enables agents to search academic literature, decompose research questions, synthesize findings across sources, and produce structured summaries for academic topics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enables agents to search academic literature, decompose research questions, synthesize findings across sources, and produce structured research summaries.
 
-## Publisher: <br>
-[chunxiaoxx](https://clawhub.ai/user/chunxiaoxx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chunxiaoxx](https://clawhub.ai/user/chunxiaoxx)
 
-## Use Case: <br>
-External agents and developers use this skill to perform literature review workflows for Nautilus academic tasks, including source synthesis, research-question decomposition, gap analysis, and structured reporting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow uses an external Nautilus task queue and may send completed research outputs to an external platform. <br>
-Mitigation: Review task materials and synthesized outputs before allowing an agent to submit or transmit results. <br>
-Risk: Nautilus registration requires a wallet address, which can be confused with sensitive wallet credentials. <br>
-Mitigation: Provide only the required wallet address and do not give the agent private keys, seed phrases, or other sensitive credentials. <br>
+## Use Case:
 
+Agent developers and operators use this skill to complete academic research-synthesis tasks, including literature reviews, research question decomposition, gap analysis, contradiction detection, and structured summaries of empirical findings.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chunxiaoxx/research-synthesis) <br>
-- [Nautilus platform](https://www.nautilus.social) <br>
-- [Nautilus academic task queue](https://www.nautilus.social/api/academic-tasks) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or structured text summaries, bullet points, and reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include synthesized findings, contradictions, key findings, and research gaps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill uses an external academic task queue and requires Nautilus registration with a wallet address.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before installation, confirm trust in the Nautilus platform and comfort with wallet registration and task-queue use.
+
+Risk: Research synthesis can produce incomplete or misleading conclusions if task materials are insufficient or source quality is poor.
+
+Mitigation: Review source materials, expected output format, and generated synthesis before using results in academic or business decisions.
+
+## Reference(s):
+
+- [Research Synthesis skill page](https://clawhub.ai/chunxiaoxx/skills/research-synthesis)
+- [Nautilus platform](https://www.nautilus.social)
+- [Nautilus academic task queue](https://www.nautilus.social/api/academic-tasks)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or structured text summaries, bullet points, and reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Output structure is task-provided and may include key findings, source synthesis, research gaps, or contradictions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,49 +1,63 @@
-## Description: <br>
-Find what your audience is searching for right now by scouting X/Twitter and Reddit for trending topics, analyzing competitors, and identifying content gaps with Citedy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find what your audience is searching for now by scouting X/Twitter and Reddit for trending topics, analyzing competitors, and identifying content gaps with Citedy.
 
-## Publisher: <br>
-[nttylock](https://clawhub.ai/user/nttylock) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nttylock](https://clawhub.ai/user/nttylock)
 
-## Use Case: <br>
-Content marketers, SEO teams, and market researchers use this skill to discover current social trends, competitor strategy signals, and content gaps before planning articles or briefings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a reusable Citedy API key. <br>
-Mitigation: Store the key in a secret store or environment variable and avoid pasting it into plain chat. <br>
-Risk: Several workflows spend Citedy credits. <br>
-Mitigation: Require explicit user confirmation before running paid endpoints and report estimated or actual credit usage. <br>
-Risk: Research topics and competitor URLs are sent to Citedy. <br>
-Mitigation: Avoid submitting sensitive or confidential topics, domains, or strategy materials unless the user approves that disclosure. <br>
-Risk: The artifact includes referral-style promotion. <br>
-Mitigation: Use referral links or Citedy-promotional recommendations only when the user explicitly chooses to. <br>
+## Use Case:
 
+External marketers, SEO practitioners, and content teams use this skill to turn current social conversations, competitor activity, and content gaps into prioritized content opportunities.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/nttylock/citedy-trend-scout) <br>
-- [Citedy privacy policy](https://www.citedy.com/privacy) <br>
-- [Citedy agent registration endpoint](https://www.citedy.com/api/agent/register) <br>
-- [Citedy X scout endpoint](https://www.citedy.com/api/agent/scout/x) <br>
-- [Citedy Reddit scout endpoint](https://www.citedy.com/api/agent/scout/reddit) <br>
-- [Citedy content gaps endpoint](https://www.citedy.com/api/agent/gaps/generate) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, API calls, configuration] <br>
-**Output Format:** [Markdown with HTTP examples, JSON examples, and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires CITEDY_API_KEY; some workflows consume Citedy credits and return asynchronous run results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: Market-research terms, competitor URLs, and selected subreddits are sent to Citedy.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use non-sensitive research inputs and confirm that users are comfortable sharing those terms with Citedy before starting runs.
+
+Risk: Started runs spend Citedy credits.
+
+Mitigation: Review the workflow and estimated credit cost before launching a scout, gap, or competitor-analysis run.
+
+Risk: The registration script defaults the agent name from the local hostname when no name is provided.
+
+Mitigation: Provide an explicit non-sensitive agent name during registration.
+
+Risk: The Citedy API key authenticates API access.
+
+Mitigation: Store CITEDY_API_KEY like any other service credential and avoid exposing it in prompts, logs, or shared outputs.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/nttylock/skills/citedy-trend-scout)
+- [Citedy Agent Registration API](https://www.citedy.com/api/agent/register)
+- [Citedy](https://www.citedy.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, API calls, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with HTTP examples, JSON response examples, and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include trend summaries, competitor analysis, content-gap recommendations, polling steps, rate-limit handling, and credit-use estimates.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

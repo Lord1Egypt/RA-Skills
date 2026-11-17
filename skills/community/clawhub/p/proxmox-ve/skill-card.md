@@ -1,43 +1,59 @@
-## Description: <br>
-Use Proxmox VE (PVE) through the `pvesh`, `qm`, and `pct` CLIs for cluster, node, VM, and LXC inspection plus routine lifecycle work. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use Proxmox VE through local PVE CLI commands and optional Python API helpers for cluster, node, VM, LXC, snapshot, and routine lifecycle administration.
 
-## Publisher: <br>
-[jimpang8](https://clawhub.ai/user/jimpang8) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jimpang8](https://clawhub.ai/user/jimpang8)
 
-## Use Case: <br>
-Developers and infrastructure operators use this skill to inspect Proxmox VE clusters, nodes, QEMU VMs, and LXC containers, and to perform routine lifecycle work after read-first checks and explicit confirmation for disruptive actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide privileged Proxmox administration and may propose disruptive VM or container actions. <br>
-Mitigation: Use least-privilege access, prefer read-only discovery first, and require explicit confirmation before stops, resets, rollbacks, deletes, or POST API actions. <br>
-Risk: The bundled remote API helper disables TLS certificate verification by default. <br>
-Mitigation: Enable TLS verification with valid certificates before using remote API scripts outside controlled local environments. <br>
-Risk: API token credentials are required for remote access. <br>
-Mitigation: Provide credentials through environment variables, avoid hardcoding or echoing secrets, and rotate tokens if exposure is suspected. <br>
+## Use Case:
 
+Developers and infrastructure operators use this skill to inspect Proxmox VE clusters, discover nodes and guests, check VM and container status, and perform routine lifecycle or snapshot tasks with read-first guardrails.
 
-## Reference(s): <br>
-- [Proxmox VE command and auth reference](references/commands-and-auth.md) <br>
-- [ClawHub skill page](https://clawhub.ai/jimpang8/proxmox-ve) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash commands, Python examples, JSON API output, and concise operational guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Proxmox CLI commands, API paths, environment-variable setup, and status-check summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence) <br>
+Risk: The bundled remote API helper sends powerful Proxmox API tokens while TLS verification is disabled by default.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer local pvesh, qm, and pct commands when possible; for remote API use, enable TLS verification or explicitly configure trusted certificates before using production tokens.
+
+Risk: Proxmox lifecycle and snapshot commands can stop, reboot, roll back, or delete guest state if used with the wrong target.
+
+Mitigation: Use read-only discovery first, confirm node, guest type, VMID, and exact disruptive action, then re-check status after the operation.
+
+Risk: Broad Proxmox credentials could expose cluster-wide administration capabilities.
+
+Mitigation: Use narrowly scoped Proxmox API tokens and avoid broad cluster-admin credentials for routine inspection or automation.
+
+## Reference(s):
+
+- [Proxmox VE skill page](https://clawhub.ai/jimpang8/skills/proxmox-ve)
+- [jimpang8 publisher profile](https://clawhub.ai/user/jimpang8)
+- [Proxmox VE command and auth reference](references/commands-and-auth.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands, Python examples, JSON API output guidance, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce Proxmox CLI commands, Python helper invocations, API paths, environment variable guidance, and status summaries.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

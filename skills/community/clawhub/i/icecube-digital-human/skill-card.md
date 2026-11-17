@@ -1,41 +1,56 @@
-## Description: <br>
-Guides agents through selecting and combining voice cloning, avatar cloning, and content generation services to plan AI digital-human videos. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+IceCube Digital Human guides agents through combining voice cloning, avatar cloning, and AI content generation to create labeled digital human videos from authorized source material.
 
-## Publisher: <br>
-[ares521521-design](https://clawhub.ai/user/ares521521-design) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[ares521521-design](https://clawhub.ai/user/ares521521-design)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External creators, course producers, and customer-service teams use this skill as a planning guide for selecting voice and avatar cloning tools, generating scripts, and producing digital human videos. Developers can use it to plan API-based workflows that combine voice IDs, avatar IDs, generated text, and publishing targets.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Voice, photo, or video samples may be uploaded to third-party cloning platforms and can include sensitive biometric data.
+
+Mitigation: Use only likenesses and media the user owns or is authorized to use, and review each vendor's retention, privacy, and deletion terms before upload.
+
+Risk: Generated digital human content can mislead audiences or be used to impersonate another person.
+
+Mitigation: Clearly label generated content as AI-created, avoid impersonation, and require explicit authorization before cloning any third-party voice or likeness.
+
+Risk: Commercial workflows may depend on external cloning and avatar vendors with changing pricing, terms, and content policies.
+
+Mitigation: Confirm vendor terms, costs, and acceptable-use policies before production use and before offering paid digital-human services.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Content creators, course instructors, and teams can use this skill to compare digital-human service combinations and plan workflows for voice cloning, avatar creation, script generation, and video publishing. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance, configuration]
 
-## Known Risks and Mitigations: <br>
-Risk: Voice and likeness samples can expose sensitive biometric and privacy data. <br>
-Mitigation: Use only the user's own likeness or material with documented consent, and review each provider's privacy, retention, deletion, and reuse terms before upload. <br>
-Risk: Generated digital-human videos can mislead viewers if presented as real footage. <br>
-Mitigation: Clearly label generated videos as AI-created before publishing and avoid impersonation or fraudulent uses. <br>
-Risk: Provider prices, feature names, and monetization estimates may change over time. <br>
-Mitigation: Confirm current provider terms, pricing, and platform policies before using the workflow commercially. <br>
+**Output Format:** [Markdown guidance with workflow steps, comparison tables, API workflow sketches, and checklist items]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [May include tool recommendations, cost estimates, workflow phases, and consent guidance for digital human production.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, configuration] <br>
-**Output Format:** [Markdown with tables, checklists, and workflow examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only; no automatic API calls or file writes.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

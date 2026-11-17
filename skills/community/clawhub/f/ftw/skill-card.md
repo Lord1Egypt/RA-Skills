@@ -1,49 +1,68 @@
-## Description: <br>
-PIV workflow orchestrator - Plan, Implement, Validate loop for systematic multi-phase software development. Use when building features phase-by-phase with PRPs, automated validation loops, or multi-agent orchestration. Supports PRD creation, PRP generation, codebase analysis, and iterative execution with validation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Piv orchestrates a Plan, Implement, Validate workflow for phase-based software development with PRD creation, PRP generation, codebase analysis, execution, validation, and debugging support.
 
-## Publisher: <br>
-[SmokeAlot420](https://clawhub.ai/user/SmokeAlot420) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[smokealot420](https://clawhub.ai/user/smokealot420)
 
-## Use Case: <br>
-Developers and engineers use Piv to plan, implement, validate, debug, and commit multi-phase software changes with PRDs, PRPs, codebase analysis, and role-specific agent workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can actively modify repository files and create commits. <br>
-Mitigation: Run it only in the intended project, keep a clean git state or backup first, and review file changes before accepting commits. <br>
-Risk: Generated PRDs and PRPs may direct agents to run commands or implement changes that do not match user intent. <br>
-Mitigation: Review generated PRDs and PRPs before execution, and approve shell commands and commits deliberately. <br>
-Risk: External research or helper-agent output may introduce incorrect assumptions into implementation plans. <br>
-Mitigation: Treat research and sub-agent summaries as claims to verify during validation, with the validator checking actual code and test results independently. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Piv ClawHub page](https://clawhub.ai/SmokeAlot420/ftw) <br>
-- [Project homepage](https://github.com/SmokeAlot420/ftw) <br>
-- [PIV discovery workflow](artifact/references/piv-discovery.md) <br>
-- [PRD creation guide](artifact/references/create-prd.md) <br>
-- [PRP generation guide](artifact/references/generate-prp.md) <br>
-- [Codebase analysis guide](artifact/references/codebase-analysis.md) <br>
-- [PIV executor role](artifact/references/piv-executor.md) <br>
-- [PIV validator role](artifact/references/piv-validator.md) <br>
-- [PIV debugger role](artifact/references/piv-debugger.md) <br>
+## Use Case:
 
+Developers and engineers use Piv to plan and execute multi-phase implementation work: discover requirements, create PRDs and PRPs, analyze a codebase, delegate execution, validation, and debugging, and track completion.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports, generated PRD/PRP files, code edits, shell command results, workflow updates, and git commit messages.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or modify repository files, run validation commands, spawn role-specific helper agents, and create git commits when the workflow passes validation.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can modify a target repository and run project-defined commands.
+
+Mitigation: Use it only on trusted repositories, and review proposed file changes and validation commands before execution.
+
+Risk: The skill can spawn sub-agents that perform execution, validation, and debugging work.
+
+Mitigation: Keep PRD and PRP scope explicit, then review each execution and verification summary before allowing the next phase.
+
+Risk: The skill can create branded git commits without enough user control.
+
+Mitigation: Do not allow automatic commits unless you approve the exact changed files and commit message first.
+
+## Reference(s):
+
+- [Piv ClawHub listing](https://clawhub.ai/smokealot420/skills/ftw)
+- [Publisher profile](https://clawhub.ai/user/smokealot420)
+- [Project homepage](https://github.com/SmokeAlot420/ftw)
+- [Codebase Analysis for Feature Planning](references/codebase-analysis.md)
+- [Create PRD](references/create-prd.md)
+- [Create BASE PRP](references/generate-prp.md)
+- [Execute BASE PRP](references/execute-prp.md)
+- [PIV Discovery](references/piv-discovery.md)
+- [PIV Executor Agent](references/piv-executor.md)
+- [PIV Validator Agent](references/piv-validator.md)
+- [PIV Debugger Agent](references/piv-debugger.md)
+- [Base PRP Template](assets/prp_base.md)
+- [Workflow Template](assets/workflow-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown responses, generated planning files, code edits, shell commands, and validation reports.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create PRDs, PRPs, workflow tracker files, repository commits, and validation summaries in the target project.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

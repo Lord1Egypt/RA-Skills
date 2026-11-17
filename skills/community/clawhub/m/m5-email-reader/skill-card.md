@@ -1,43 +1,58 @@
-## Description: <br>
-Reads email from POP3 mailboxes in a read-only mode, returning mailbox counts, recent subjects, full messages, message-by-index results, and subject keyword search results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reads mailbox messages over POP3 SSL in read-only mode, including message counts, recent subjects, full message bodies with attachment metadata, individual messages, and subject keyword search.
 
-## Publisher: <br>
-[yuyun2000](https://clawhub.ai/user/yuyun2000) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yuyun2000](https://clawhub.ai/user/yuyun2000)
 
-## Use Case: <br>
-External users and agents use this skill to inspect mailbox contents through POP3 SSL without deleting or modifying messages. It is useful for checking recent mail, finding messages by subject keyword, or reading specific messages after the user provides mailbox credentials. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Mailbox credentials can expose sensitive email contents to the agent and any process that can read the configured secret. <br>
-Mitigation: Use a revocable app-specific password or authorization code, scope it to the mailbox account, and revoke it after the task is complete. <br>
-Risk: Passing credentials on the command line or storing them in a plaintext .email_config file can leave secrets in shell history, process listings, or local files. <br>
-Mitigation: Prefer environment variables or a managed secret store, avoid command-line passwords, set local config permissions to 600, and remove stored credentials after use. <br>
-Risk: Email bodies, attachments, and verification codes are highly sensitive and may be surfaced in agent responses. <br>
-Mitigation: Ask for explicit user consent before reading messages, limit reads to the smallest necessary range, and redact or summarize sensitive content when presenting results. <br>
+## Use Case:
 
+External users and developers use this skill to let an agent inspect a configured mailbox and answer mail-reading requests such as recent mail summaries, message lookup, and subject search.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yuyun2000/m5-email-reader) <br>
-- [POP3 provider configuration reference](references/providers.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Text, Shell commands, Configuration guidance] <br>
-**Output Format:** [JSON from the Python script; natural-language summaries may be produced by the agent.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include email metadata, body text, attachment names and sizes; long bodies should be truncated by the agent when presenting to users.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Mailbox credentials may be exposed to the agent or stored in persistent configuration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a revocable app password or authorization code, avoid pasting real account passwords into chat, and avoid storing EMAIL_PASS in global OpenClaw configuration.
+
+Risk: Email body text is untrusted content and may contain instructions that conflict with the user's intent.
+
+Mitigation: Treat email content as data to summarize or quote, not instructions for the agent to obey.
+
+Risk: Full-message reads can expose sensitive email bodies and attachment metadata.
+
+Mitigation: Use the skill only with mailboxes the user is comfortable exposing and prefer subject listing before full-message reads.
+
+## Reference(s):
+
+- [Common POP3 Provider Configuration](artifact/references/providers.md)
+- [ClawHub Skill Page](https://clawhub.ai/yuyun2000/skills/m5-email-reader)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON command output for agent interpretation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Email bodies may be summarized or truncated by the agent; the script emits JSON for count, subjects, list, read, and search actions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

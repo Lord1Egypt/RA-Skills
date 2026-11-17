@@ -1,43 +1,55 @@
-## Description: <br>
-Operate Customer.io through an OOMOL-connected account for reading, creating, updating, deleting, and tracking customer data with the oo CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Operate Customer.io through an OOMOL-connected account.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and operators use this skill to inspect Customer.io action schemas and run customer profile and event operations through an OOMOL-connected account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Some Customer.io state-changing actions are not consistently tagged as write or destructive in the skill text. <br>
-Mitigation: Treat identify, suppress, unsuppress, merge, delete, and event-tracking actions as write operations; confirm the exact target, payload, and effect before execution. <br>
-Risk: Commands can affect live Customer.io workspace data. <br>
-Mitigation: Fetch the live action schema before building payloads and review the JSON payload with the user before running connector commands. <br>
+## Use Case:
 
+People working with Customer.io use this skill to manage customer profiles and events through their connected OOMOL account.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/oomol/skills/oo-customerio) <br>
-- [OOMOL oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [oo CLI install guide](https://cli.oomol.com/install-guide.md) <br>
-- [Customer.io homepage](https://customer.io/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline bash, PowerShell, text, and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses oo CLI schema and run commands; command responses are JSON with data and meta.executionId.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and SKILL.md metadata) <br>
+Risk: The setup guidance uses remote CLI installers without pinning a version and does not clearly disclose possible changes to other agent skills through automatic synchronization.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install a pinned, verified CLI yourself and review or disable automatic synchronization of other agent skills before enabling the skill.
+
+Risk: The skill operates on customer data through connected-account permissions.
+
+Mitigation: Review OOMOL's handling of customer data and the connected account's permissions; retain explicit approval for all writes and deletions.
+
+## Reference(s):
+
+- [Customer.io](https://customer.io/)
+- [Customer.io Track API documentation](https://docs.customer.io/integrations/api/track/)
+- [oo CLI repository](https://github.com/oomol-lab/oo-cli)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Shell commands, Guidance]
+
+**Output Format:** [JSON payloads and connector responses, with inline shell commands and guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Action schemas are checked before requests; writes and deletions require explicit user approval.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

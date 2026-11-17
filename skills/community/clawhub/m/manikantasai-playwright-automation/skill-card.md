@@ -1,44 +1,56 @@
-## Description: <br>
-Browser automation using Playwright API directly. Navigate websites, interact with elements, extract data, take screenshots, generate PDFs, record videos, and automate complex workflows. More reliable than MCP approach. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Browser automation using Playwright API directly to navigate websites, interact with elements, extract data, take screenshots, generate PDFs, record videos, and automate complex workflows.
 
-## Publisher: <br>
-[Manikantasai1987](https://clawhub.ai/user/Manikantasai1987) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[manikantasai1987](https://clawhub.ai/user/manikantasai1987)
 
-## Use Case: <br>
-Developers and automation engineers use this skill to guide browser automation with Playwright for navigation, interaction, data extraction, screenshots, PDFs, video recording, and authenticated workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can automate logged-in browser sessions and save sensitive page artifacts such as auth state, screenshots, PDFs, videos, traces, and downloads. <br>
-Mitigation: Use it only in trusted environments, keep generated artifacts out of source control, restrict file permissions, and delete sensitive artifacts when they are no longer needed. <br>
-Risk: The artifact includes passwordless administrator setup guidance for Playwright browser dependency installation. <br>
-Mitigation: Do not add NOPASSWD sudoers rules; run Playwright dependency installation manually with administrator review. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Manikantasai1987/manikantasai-playwright-automation) <br>
-- [Playwright documentation](https://playwright.dev) <br>
-- [Playwright API reference](https://playwright.dev/docs/api/class-playwright) <br>
-- [Playwright best practices](https://playwright.dev/docs/best-practices) <br>
-- [Playwright locators guide](https://playwright.dev/docs/locators) <br>
-- [Playwright trace viewer](https://trace.playwright.dev) <br>
+## Use Case:
 
+Developers and automation engineers use this skill to create Playwright-based browser workflows for navigation, interaction, data extraction, screenshots, PDFs, video recording, and browser configuration.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with JavaScript, Python, and shell code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide generation of browser artifacts such as screenshots, PDFs, videos, traces, downloads, and authentication state files.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Persistent passwordless root access for broad npx Playwright commands can expand privilege and supply-chain exposure.
+
+Mitigation: Avoid sudoers NOPASSWD rules, do not run unpinned npx commands as root, and pin Playwright through a locked project dependency.
+
+Risk: Browser automation can create sensitive screenshots, videos, downloads, cookies, tokens, or saved authentication state.
+
+Mitigation: Protect generated artifacts and authentication state files, restrict their retention and access, and review outputs before sharing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/manikantasai1987/skills/manikantasai-playwright-automation)
+- [Playwright Docs](https://playwright.dev)
+- [Playwright API Reference](https://playwright.dev/docs/api/class-playwright)
+- [Playwright Best Practices](https://playwright.dev/docs/best-practices)
+- [Playwright Locators Guide](https://playwright.dev/docs/locators)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JavaScript, Python, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include browser automation patterns, install commands, locator guidance, authentication examples, and artifact-handling guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

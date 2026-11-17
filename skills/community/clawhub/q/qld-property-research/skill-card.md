@@ -1,51 +1,65 @@
-## Description: <br>
-Detailed Queensland property due-diligence for a single street address using official sources, covering flood-map checks, nearest train-station access, main-road proximity, NBN infrastructure, cited findings, and a composite suitability score. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Detailed Queensland property due-diligence for a single street address using official sources only. Use when an agent needs to research a Queensland property beyond listing basics, including flood-map checks, nearest train-station access, main-road proximity, or a structured property report with cited findings and a composite suitability score.
 
-## Publisher: <br>
-[mhear22](https://clawhub.ai/user/mhear22) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mhear22](https://clawhub.ai/user/mhear22)
 
-## Use Case: <br>
-External users and agents use this skill to research a single Queensland property address with official-source evidence for NBN technology, flood exposure, main-road proximity, train access, and a caveated suitability score. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Queensland, Australia <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Property addresses, parcel details, and route coordinates may be sent to public government, NBN, and openrouteservice endpoints during advertised checks. <br>
-Mitigation: Use the skill only when those external lookups are acceptable for the address being researched, and avoid sensitive addresses unless sharing them with those services is permitted. <br>
-Risk: The optional walking-route check depends on an openrouteservice API key and third-party OSM-based routing rather than official government walking-route data. <br>
-Mitigation: Use a dedicated ORS_API_KEY, keep it in the runtime environment, and present openrouteservice route results as third-party walking analysis only. <br>
-Risk: Some Queensland councils or data sources may not provide current property-specific evidence for every scored section. <br>
-Mitigation: Emit a partial report, mark unsupported sections as unsupported with current official data, and omit the composite score when required evidence is unavailable. <br>
+## Use Case:
 
+External users and agents use this skill to screen one Queensland property address at a time for NBN technology, flood-map status, main-road proximity, train-station walking access, and a composite suitability score. It is intended for structured due-diligence reporting with concise citations and clear unsupported-data handling.
 
-## Reference(s): <br>
-- [QLD Property Research methodology](references/methodology.md) <br>
-- [QLD Property Research official sources](references/official-sources.md) <br>
-- [openrouteservice routing](references/openrouteservice.md) <br>
-- [ClawHub release page](https://clawhub.ai/mhear22/qld-property-research) <br>
-- [Find addresses | Queensland Government](https://www.qld.gov.au/environment/land/title/addressing/finding) <br>
-- [Using the Queensland Globe | Business Queensland](https://www.business.qld.gov.au/running-business/support-services/mapping-data-imagery/queensland-globe/using) <br>
-- [Plan your journey | Translink](https://translink.com.au/plan-your-journey) <br>
-- [Check address | nbn](https://www.nbnco.com.au/check-address) <br>
-- [FloodWise Property Report | Brisbane City Council](https://www.brisbane.qld.gov.au/building-and-planning/supporting-documents-and-online-tools/floodwise-property-report) <br>
-- [openrouteservice API](https://api.openrouteservice.org/) <br>
+### Deployment Geography for Use:
 
+Australia (Queensland)
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Structured Markdown report with cited findings, section scores, and source links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include partial-report markers when official data or openrouteservice configuration is unavailable.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: Property addresses and route coordinates may be sent to Queensland government or council services, NBN Co, and openrouteservice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for addresses you are comfortable checking through those services, and avoid submitting sensitive location data unless the user accepts that disclosure.
+
+Risk: openrouteservice requires an API key for walking-route checks.
+
+Mitigation: Keep ORS_API_KEY in the runtime environment and do not hard-code it in skill files, reports, or shared prompts.
+
+Risk: The report is a screening aid and may not capture legal, engineering, insurance, accessibility, or flood-risk nuances.
+
+Mitigation: Present findings with the skill's caveats, cite the official sources used, mark unsupported sections clearly, and direct users to qualified professional review for decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mhear22/skills/qld-property-research)
+- [QLD Property Research Methodology](references/methodology.md)
+- [QLD Property Research Official Sources](references/official-sources.md)
+- [openrouteservice Routing](references/openrouteservice.md)
+- [Find addresses | Queensland Government](https://www.qld.gov.au/environment/land/title/addressing/finding)
+- [Using the Queensland Globe | Business Queensland](https://www.business.qld.gov.au/running-business/support-services/mapping-data-imagery/queensland-globe/using)
+- [Plan your journey | Translink](https://translink.com.au/plan-your-journey)
+- [Check address | nbn](https://www.nbnco.com.au/check-address)
+- [openrouteservice API](https://api.openrouteservice.org/)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Shell commands, API Calls, Guidance]
+
+**Output Format:** [Structured Markdown report with cited findings, section scores, and optional helper-script JSON outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires one full Queensland street address; uses ORS_API_KEY for openrouteservice walking-route checks when configured.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

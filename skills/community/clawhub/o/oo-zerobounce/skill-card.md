@@ -1,42 +1,59 @@
-## Description: <br>
-ZeroBounce (zerobounce.net) lets agents read, create, and update ZeroBounce data through the OOMOL oo CLI connector instead of calling the API directly. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Operate ZeroBounce through an OOMOL-connected account to validate email addresses, review account data, and manage custom filter rules.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-External users and developers use this skill to validate email addresses, inspect ZeroBounce account activity and usage, check credit balance, and manage ZeroBounce filter rules through an OOMOL-connected account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The setup guidance includes a network-fetched shell installer for the oo CLI. <br>
-Mitigation: Install the oo CLI only from a trusted, verified OOMOL source and review the installer before execution. <br>
-Risk: The skill can create or update ZeroBounce custom allow/block filter rules. <br>
-Mitigation: Confirm the exact payload and expected effect with the user before running write actions. <br>
+## Use Case:
 
+Developers and operations teams use the skill to validate email addresses, review activity, usage, and credit balance, and manage custom filter rules in ZeroBounce.
 
-## Reference(s): <br>
-- [ZeroBounce homepage](https://www.zerobounce.net) <br>
-- [OOMOL oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [ClawHub ZeroBounce skill page](https://clawhub.ai/oomol/oo-zerobounce) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, guidance, text] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses live oo connector schemas before running actions; write actions require user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: release evidence and skill frontmatter) <br>
+Risk: Setup uses a remote installer whose behavior has not been verified, and the CLI can persistently install additional agent skills.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and install a verified oo CLI release separately. If you do not want additional skills installed, use the publisher-documented OO_SKILLS_SYNC_DISABLED=1 setting.
+
+Risk: Using the connected service sends submitted email addresses to ZeroBounce through OOMOL, which may have privacy or data-handling implications.
+
+Mitigation: Confirm that the intended email data may be processed through this OOMOL connection before running validation or activity actions.
+
+Risk: Creating or updating a custom filter rule changes ZeroBounce account state.
+
+Mitigation: Review the exact filter rule and its effect with the user and obtain confirmation before running the write action.
+
+## Reference(s):
+
+- [ZeroBounce](https://www.zerobounce.net)
+- [ZeroBounce Email Validation API Quickstart](https://www.zerobounce.net/docs/email-validation-api-quickstart/)
+- [oo CLI project](https://github.com/oomol-lab/oo-cli)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [JSON action responses and Markdown guidance with shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Actions can return email validation, account, activity, and filter-rule data; filter-rule changes require user confirmation.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

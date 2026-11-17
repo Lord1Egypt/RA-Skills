@@ -1,0 +1,13 @@
+{
+  "_chart_type": "upset",
+  "_command": "python3 scripts/gen_figure.py -t upset -d templates/upset.json -o upset.png --cjk",
+  "_note": "场景：五个组学平台（转录组/蛋白组/甲基化/eQTL/GWAS）各自鉴定出的差异基因，求跨平台交集。≥5 集合时 UpSet 是韦恩图（2~4 集合上限）的标准后继；交集按大小降序展示，top_n 控制前 N 个。",
+  "title": "五组学平台差异基因交集",
+  "sets": {
+    "转录组": ["TP53", "KRAS", "EGFR", "BRCA1", "MYC", "PTEN", "NRAS", "PIK3CA", "ALK"],
+    "蛋白组": ["TP53", "EGFR", "MYC", "AKT1", "KRAS", "ERBB2", "PTEN"],
+    "甲基化": ["TP53", "BRCA1", "CDKN2A", "MGMT", "PTEN", "RB1"],
+    "eQTL": ["KRAS", "PIK3CA", "PTEN", "AKT1", "MAP2K1", "EGFR"],
+    "GWAS": ["TP53", "BRCA1", "ERBB2", "ATM", "CHEK2", "PALB2"]
+  }
+}

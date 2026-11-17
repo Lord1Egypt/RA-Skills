@@ -1,47 +1,56 @@
-## Description: <br>
-Use static route analysis plus runtime cron delivery audit to validate OpenClaw cron notification wiring. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use static route analysis plus runtime cron delivery audit to validate OpenClaw cron notification wiring.
 
-## Publisher: <br>
-[pfrederiksen](https://clawhub.ai/user/pfrederiksen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pfrederiksen](https://clawhub.ai/user/pfrederiksen)
 
-## Use Case: <br>
-Developers and engineers use this skill to audit OpenClaw cron notification routing, compare static route checks with runtime delivery results, and identify mismatches or silent delivery failures. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The audit reads local OpenClaw cron configuration and a local runtime audit script. <br>
-Mitigation: Inspect the referenced local files before use and confirm they do not contain secrets or content you are unwilling to process locally. <br>
-Risk: The helper relies on openclaw-route-check from PATH or ROUTE_CHECK_BIN. <br>
-Mitigation: Verify that the resolved executable is the trusted openclaw-route-check binary before running the audit. <br>
-Risk: Some OpenClaw files may require elevated access depending on local installation permissions. <br>
-Mitigation: Avoid elevated privileges unless the required /root/.openclaw files genuinely require them. <br>
-Risk: The helper temporarily writes audit JSON files under /tmp. <br>
-Mitigation: Run it in an environment where temporary local audit outputs are acceptable and clean up temporary files if needed. <br>
+## Use Case:
 
+Developers and engineers use this skill to audit OpenClaw cron notification routing, compare static route checks with runtime delivery results, and identify mismatches or silent delivery failures without sending test messages.
 
-## Reference(s): <br>
-- [OpenClaw Route Audit ClawHub release](https://clawhub.ai/pfrederiksen/openclaw-route-audit) <br>
-- [openclaw-route-check repository](https://github.com/pfrederiksen/openclaw-route-check) <br>
-- [GitHub Publish Notes](references/github-publish-notes.md) <br>
-- [Publish Checklist](references/publish-checklist.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands; the bundled helper emits combined JSON audit results.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only audit posture; helper checks local prerequisites and temporarily writes audit JSON under /tmp.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata and skill.json) <br>
+Risk: The bundled audit script writes potentially sensitive cron routing results to predictable files in /tmp.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the helper script before use, run it only on a trusted single-user host, or modify it to use mktemp with restrictive permissions and cleanup.
+
+Risk: The audit reads local OpenClaw cron configuration and runtime delivery files that may contain sensitive routing details.
+
+Mitigation: Inspect the referenced local files before execution and avoid running as root unless required to read the OpenClaw files.
+
+## Reference(s):
+
+- [OpenClaw Route Check Repository](https://github.com/pfrederiksen/openclaw-route-check)
+- [GitHub Publish Notes](references/github-publish-notes.md)
+- [Publish Checklist](references/publish-checklist.md)
+- [ClawHub Skill Page](https://clawhub.ai/pfrederiksen/skills/openclaw-route-audit)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON audit output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include local file paths, route findings, delivery audit summaries, and proposed configuration changes.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence and skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

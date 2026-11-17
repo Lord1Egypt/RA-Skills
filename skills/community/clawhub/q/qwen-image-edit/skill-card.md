@@ -1,44 +1,59 @@
-## Description: <br>
-Qwen Image Edit helps agents generate and edit images through Alibaba Cloud's Qwen Image API, including text-to-image, single-image edits, style transfer, and multi-image fusion. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Qwen Image Edit helps agents generate and edit images with Alibaba Cloud DashScope Qwen Image models, including text-to-image, single- or multi-image editing, style transfer, and Chinese text-heavy commercial graphics.
 
-## Publisher: <br>
-[macwx](https://clawhub.ai/user/macwx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[macwx](https://clawhub.ai/user/macwx)
 
-## Use Case: <br>
-External users and developers use this skill to produce posters, covers, banners, promotional graphics, and edited images from Chinese or English prompts. It can also guide an agent to run the bundled helper script with local or URL image inputs when image editing or multi-image fusion is requested. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global, subject to Alibaba Cloud DashScope regional endpoint availability and the user's privacy, compliance, and data residency requirements. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, local images, and image URLs are sent to Alibaba Cloud DashScope for generation or editing. <br>
-Mitigation: Use only data approved for that third-party service, and avoid private, confidential, regulated, or otherwise sensitive images unless the user's compliance requirements allow it. <br>
-Risk: The skill requires sensitive DashScope credentials. <br>
-Mitigation: Provide credentials through a secure environment variable or runtime argument, avoid committing keys to files, and rotate keys if they are exposed. <br>
-Risk: The helper script includes an option to disable SSL verification. <br>
-Mitigation: Keep SSL verification enabled except for approved corporate proxy scenarios, and document any exception before use. <br>
+## Use Case:
 
+Developers and external users use this skill to ask an agent to generate image URLs or save generated and edited PNG files through Alibaba Cloud DashScope Qwen Image models. It is suited for posters, covers, banners, promotional graphics, text-to-image generation, image cleanup, style transfer, and multi-image fusion.
 
-## Reference(s): <br>
-- [Alibaba Cloud Qwen Image documentation](https://help.aliyun.com/zh/model-studio/text-to-image) <br>
-- [DashScope API key console](https://dashscope.console.aliyun.com/) <br>
-- [ClawHub release page](https://clawhub.ai/macwx/qwen-image-edit) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, files] <br>
-**Output Format:** [Markdown guidance with shell command examples, MEDIA_URL links or image embeds, and optional PNG files when saving is requested.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a DashScope API key; local image inputs are encoded and sent to the API; generated image URLs expire after 24 hours.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence and artifact _meta.json) <br>
+Risk: Prompts and selected local images may be sent to Alibaba Cloud/DashScope.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use approved prompts and images only, and avoid private or regulated content unless the service terms and retention rules fit the use case.
+
+Risk: The --no-verify-ssl option can disable TLS certificate verification.
+
+Mitigation: Keep SSL verification enabled except in controlled proxy environments with compensating network controls.
+
+Risk: Providing API keys on the command line can expose credentials through shell history or process listings.
+
+Mitigation: Prefer the DASHSCOPE_API_KEY environment variable and rotate any key that may have been exposed.
+
+## Reference(s):
+
+- [Alibaba Cloud Qwen Image documentation](https://help.aliyun.com/zh/model-studio/text-to-image)
+- [Qwen Image Edit on ClawHub](https://clawhub.ai/macwx/skills/qwen-image-edit)
+- [Publisher profile](https://clawhub.ai/user/macwx)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, files]
+
+**Output Format:** [Markdown image links, MEDIA_URL text lines, and optional PNG image files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated image URLs expire in 24 hours; local image inputs are base64 encoded before API upload.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

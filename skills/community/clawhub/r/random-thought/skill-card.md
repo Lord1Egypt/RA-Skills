@@ -1,41 +1,58 @@
-## Description: <br>
-Random Thought is an autonomous workspace reflection engine that selects files from a configurable corpus, writes reflective observations, and curates periodic digests that surface actionable patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Autonomous workspace reflection engine that picks a random file from a configurable corpus, writes a reflective observation about what is unresolved, half-finished, or interesting, and periodically curates digests that surface actionable patterns.
 
-## Publisher: <br>
-[jeremyknows](https://clawhub.ai/user/jeremyknows) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[jeremyknows](https://clawhub.ai/user/jeremyknows)
 
-## Use Case: <br>
-Developers, engineers, and knowledge workers use this skill to set up agent-driven workspace introspection, run one-off reflections on workspace files, and synthesize recurring themes into Markdown digests. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Scheduled runs can repeatedly read broad areas of a local workspace and persist derived reflections or history. <br>
-Mitigation: Start with a narrow watch directory, exclude secrets and private notes, and review the history and output directories before syncing or sharing them. <br>
-Risk: Documented corpus controls may not be fully enforced by the helper scripts. <br>
-Mitigation: Verify script behavior against the local configuration before enabling cron-driven execution. <br>
+## Use Case:
 
+Developers, engineers, and workspace maintainers use this skill to run one-off or scheduled agent reflections over codebases and notes, then synthesize recurring observations into concise digests. It is intended for workspace introspection, not code review, task management, or file summarization.
 
-## Reference(s): <br>
-- [Architecture: Why Random Thought Works This Way](references/architecture.md) <br>
-- [Random Thought on ClawHub](https://clawhub.ai/jeremyknows/random-thought) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and plain text with optional shell command snippets and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writer output is prose about a selected workspace file; curator output is a Markdown digest written to the configured output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: metadata, release evidence, and SKILL.md frontmatter) <br>
+Risk: The skill can repeatedly read random workspace files on a schedule, which may expose private notes, secrets, or sensitive project content in generated reflections.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only in workspaces where scheduled file reading is acceptable, keep sensitive files outside the scan scope, and review the effective corpus before enabling cron.
+
+Risk: The server security summary flags scoping and script-safety issues, including caution around documented exclude patterns.
+
+Mitigation: Verify the actual scan scope and exclusion behavior before deployment, then run the scripts manually before relying on scheduled execution.
+
+Risk: External posting or output destinations can disclose file-derived content.
+
+Mitigation: Route outputs to local files or trusted channels unless disclosure of reflected workspace content is acceptable.
+
+## Reference(s):
+
+- [Architecture: Why Random Thought Works This Way](references/architecture.md)
+- [ClawHub Skill Page](https://clawhub.ai/jeremyknows/skills/random-thought)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reflections and digests, plain-text selected file paths, bash commands, and JSON configuration examples.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writer outputs name the selected file path and end with a writer marker; curator outputs are date-based Markdown digests grouped by action items, patterns, and sparks.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

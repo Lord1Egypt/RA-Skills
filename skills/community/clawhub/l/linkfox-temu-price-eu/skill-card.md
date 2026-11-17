@@ -1,47 +1,70 @@
-## Description: <br>
-Temu Price EU helps agents work with Temu Europe price-management APIs through LinkFox, including price-order queries, batch SKU base-price changes, and recommended supplier or base price lookups. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill helps agents manage Temu Europe product pricing through LinkFox gateway scripts for price order queries, SKU base-price changes, and recommended or estimated base prices.
 
-## Publisher: <br>
-[linkfox-ai](https://clawhub.ai/user/linkfox-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[linkfox-ai](https://clawhub.ai/user/linkfox-ai)
 
-## Use Case: <br>
-External sellers, operators, and developers use this skill to query and update Temu EU product pricing through documented LinkFox gateway scripts and API references. It is intended for workflows that need Temu access tokens, LinkFox credentials, and careful review of live price-change requests. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles Temu seller credentials and LinkFox tokens for live pricing operations. <br>
-Mitigation: Install only when the publisher and LinkFox are trusted, pass short-lived tokens only when needed, and avoid saving production tokens locally. <br>
-Risk: The skill includes bulk SKU base-price change workflows that can affect live product pricing. <br>
-Mitigation: Manually review every bulk price-change payload, including goods IDs, SKU IDs, currency, and amount, before execution. <br>
-Risk: Token retrieval and listing utilities can expose sensitive credential context in logs or shared environments. <br>
-Mitigation: Do not run token retrieval or listing utilities in logged, shared, or untrusted environments. <br>
+## Use Case:
 
+External merchants, operators, and developer agents use this skill to query Temu EU pricing records, estimate recommended or base prices, and prepare SKU base-price updates through LinkFox-mediated Temu Partner EU APIs.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/linkfox-ai/linkfox-temu-price-eu) <br>
-- [API reference](references/api.md) <br>
-- [Access token guidance](references/access-token.md) <br>
-- [Partner EU catalog](references/partner-eu-catalog.md) <br>
-- [Interface document index](references/apis/README.md) <br>
-- [Temu Partner EU documentation](https://partner-eu.temu.com/documentation?menu_code=dfff38c23adf498d8a7cd55052bd3648) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, code] <br>
-**Output Format:** [Markdown guidance with Python command examples and JSON request payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include live API request payloads and commands that require LinkFox and Temu credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill can handle LinkFox and Temu credentials and may store Temu access tokens locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use least-privilege Temu tokens, avoid or lock down the local token store on shared machines, and review credential handling before installation.
+
+Risk: The skill includes scripts that can submit merchant SKU base-price changes.
+
+Mitigation: Require human review of goods IDs, SKU IDs, currencies, and new prices before running change scripts, then query pricing records afterward to verify the result.
+
+Risk: Generic proxy and file-download scripts broaden the skill beyond narrowly scoped pricing operations.
+
+Mitigation: Prefer the EU-specific pricing scripts, use generic proxy or downloader scripts only when necessary, and keep gateway endpoint environment variables pointed only at trusted LinkFox hosts.
+
+Risk: API responses may be written to local JSON files and can contain merchant or pricing data.
+
+Mitigation: Restrict workspace access, review retained response files, and remove sensitive local artifacts when they are no longer needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/linkfox-ai/skills/linkfox-temu-price-eu)
+- [linkfox-temu-price-eu API reference](references/api.md)
+- [Temu accessToken authorization and retrieval](references/access-token.md)
+- [Partner EU Price API catalog](references/partner-eu-catalog.md)
+- [Price API documentation index](references/apis/README.md)
+- [Price order query API](references/apis/bg-local-goods-priceorder-query.md)
+- [SKU base-price change API](references/apis/bg-local-goods-priceorder-change-sku-price.md)
+- [Base-price recommendation API](references/apis/temu-local-goods-baseprice-recommend.md)
+- [Recommended price query API](references/apis/temu-local-goods-recommendedprice-query.md)
+- [Temu Partner EU documentation](https://partner-eu.temu.com/documentation?menu_code=dfff38c23adf498d8a7cd55052bd3648)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, JSON, Files]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON request or response artifacts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Scripts may write full API responses to local JSON files and print either full responses or summaries depending on response size.]
+
+## Skill Version(s):
+
+1.0.6 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

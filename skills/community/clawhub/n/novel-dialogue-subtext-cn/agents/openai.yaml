@@ -1,0 +1,8 @@
+interface:
+  display_name: "人物对白潜台词改稿"
+  short_description: "保留小说既有事实，改写差异化人物对白并逐句拆解潜台词"
+  default_prompt: "使用 $novel-dialogue-subtext-cn 根据我提供的对白、人物目的和关系，保留事实改写对白并逐句说明潜台词。"
+  icon_small: "./icon-512.png"
+  icon_large: "./icon-512.png"
+policy:
+  allow_implicit_invocation: true

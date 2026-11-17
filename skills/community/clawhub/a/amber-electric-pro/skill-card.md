@@ -1,41 +1,50 @@
-## Description: <br>
-Access real-time electricity prices, 24-hour forecasts, and site details from Amber Electric. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Access real-time electricity prices, forecasts, and site details from Amber Electric, including current price data, 24-hour forecasts, and account site lists.
 
-## Publisher: <br>
-[kingmaxmmxweisun](https://clawhub.ai/user/kingmaxmmxweisun) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kingmaxmmxweisun](https://clawhub.ai/user/kingmaxmmxweisun)
 
-## Use Case: <br>
-External users and agents use this skill to read Amber Electric account sites, current electricity prices, and 24-hour price forecasts for energy-aware decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Australia <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The configured Amber API key allows the skill to read Amber site identifiers and electricity pricing data. <br>
-Mitigation: Configure AMBER_API_KEY only in trusted agent environments and rotate or revoke the key if the environment is no longer trusted. <br>
-Risk: Server evidence reports unavailable source provenance and a minor version mismatch between release evidence and artifact metadata. <br>
-Mitigation: Verify the publisher profile and package version before installing when source provenance is important. <br>
+## Use Case:
 
+External users and agents use this skill to retrieve Amber Electric site information, current wholesale electricity prices, and 24-hour price forecasts for an Amber Electric account.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kingmaxmmxweisun/amber-electric-pro) <br>
-- [Amber Electric API base endpoint](https://api.amber.com.au/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API calls, JSON, Configuration] <br>
-**Output Format:** [JSON responses from Amber Electric API endpoints] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires AMBER_API_KEY; site_id is required for current price and forecast actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence; artifact _meta.json lists 1.0.0) <br>
+Risk: The skill uses AMBER_API_KEY to read Amber Electric site, price, and forecast data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only for Amber Electric customers, store the token securely, and remove or rotate it when access is no longer needed.
+
+## Reference(s):
+
+- [Amber Electric API base URL](https://api.amber.com.au/v1)
+- [ClawHub skill page](https://clawhub.ai/kingmaxmmxweisun/skills/amber-electric-pro)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Guidance]
+
+**Output Format:** [JSON responses with brief error messages for missing or invalid parameters]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an AMBER_API_KEY credential and a site_id for price and forecast actions.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

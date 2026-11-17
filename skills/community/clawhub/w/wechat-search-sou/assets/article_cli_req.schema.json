@@ -15,7 +15,7 @@
         },
         "sort": {
             "type": "number",
-            "description": "排序方式: 0=不限 , 1=最新 , 2=最热",
+            "description": "排序方式: 0=综合 , 1=最新 , 2=最热",
             "default": 0,
             "enum": [
                 0,
@@ -36,7 +36,7 @@
         },
         "limit": {
             "type": "number",
-            "description": "搜索数量",
+            "description": "搜索数量。技能硬上限 1-10000；包月 Token 实际最多 20",
             "minimum": 1,
             "maximum": 10000,
             "default": 10

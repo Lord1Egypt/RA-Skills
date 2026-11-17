@@ -1,39 +1,48 @@
-## Description: <br>
-Save and retrieve read-later links, articles, notes, and ideas in a local markdown reading list with status filtering and auto-tagging. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Save and retrieve read-later links, articles, notes, and ideas in a markdown-based reading list.
 
-## Publisher: <br>
-[zhoujackie0609](https://clawhub.ai/user/zhoujackie0609) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[zhoujackie0609](https://clawhub.ai/user/zhoujackie0609)
 
-## Use Case: <br>
-External users and developers use this skill to maintain a local markdown-based reading list, save URLs or notes for later, search saved entries, and update item status. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Saved entries may include secrets, confidential notes, private URLs, or internal references in a local markdown file. <br>
-Mitigation: Avoid saving sensitive content unless local file storage is acceptable for the user's environment. <br>
-Risk: User-provided URLs may be fetched for automatic tagging. <br>
-Mitigation: Review URLs before saving private or internal links and disable or avoid fetching when network disclosure is a concern. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/zhoujackie0609/read-it-later) <br>
+## Use Case:
 
+External users use this skill to save links, article references, notes, and ideas for later reading, then list, search, filter, or update those saved items.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, files, guidance] <br>
-**Output Format:** [Markdown entries and concise text responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores and updates entries in read-it-later.md, preferring a workspace file when present and otherwise using ~/read-it-later.md.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Saving a URL may fetch that page for summarization or tagging, which can expose confidential, localhost, intranet, or token-bearing URLs.
+
+Mitigation: Use the skill only with URLs that are acceptable to fetch, and avoid confidential or credential-bearing links.
+
+## Reference(s):
+
+- [Read It Later on ClawHub](https://clawhub.ai/zhoujackie0609/skills/read-it-later)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown entries and concise natural-language responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores reading-list entries in read-it-later.md when the agent has file access.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

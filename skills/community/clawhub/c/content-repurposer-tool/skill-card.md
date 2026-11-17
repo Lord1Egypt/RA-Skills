@@ -1,39 +1,55 @@
-## Description: <br>
-Repurposes long-form content such as blog posts, articles, newsletters, and transcripts into platform-ready social posts, threads, newsletter snippets, and short summaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Repurpose long-form content (blog posts, articles, newsletters, YouTube transcripts) into platform-optimized social media posts, Twitter/X threads, LinkedIn posts, email newsletter snippets, and short-form summaries.
 
-## Publisher: <br>
-[charlie-morrison](https://clawhub.ai/user/charlie-morrison) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[charlie-morrison](https://clawhub.ai/user/charlie-morrison)
 
-## Use Case: <br>
-Content marketers, founders, writers, and communications teams use this skill to adapt a source URL, transcript, pasted text, or document into channel-specific drafts for social media, newsletters, Reddit, Hacker News, and short summaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read user-provided URLs or local files and generate persuasive publishing drafts that may be inaccurate or unsuitable if posted without review. <br>
-Mitigation: Only provide sources you are comfortable having read, and manually review generated drafts for accuracy, tone, and compliance before publishing. <br>
+## Use Case:
 
+External creators, marketers, and content teams use this skill to transform a single long-form source into concise, platform-specific social, newsletter, and summary drafts.
 
-## Reference(s): <br>
-- [Platform-Specific Formatting Guides](references/platform-guides.md) <br>
-- [ClawHub release page](https://clawhub.ai/charlie-morrison/content-repurposer-tool) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown sections containing source analysis and platform-specific draft text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs can be customized by platform, tone, audience, length, CTA, hashtags, emoji use, and language.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and STATUS.md) <br>
+Risk: Broad requests such as "create a thread" may trigger the skill when the user intended a simpler writing task.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the desired output platforms and source content before repurposing.
+
+Risk: Summarizing or transforming a URL or file path can expose content the user did not intend to repurpose.
+
+Mitigation: Use only user-provided URLs, text, or file paths that are clearly intended as source material.
+
+## Reference(s):
+
+- [Platform-Specific Formatting Guides](references/platform-guides.md)
+- [ClawHub skill listing](https://clawhub.ai/charlie-morrison/skills/content-repurposer-tool)
+- [Publisher profile](https://clawhub.ai/user/charlie-morrison)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown sections with content analysis and platform-specific draft copy]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Twitter/X threads, single posts, LinkedIn posts, Instagram captions, email newsletter snippets, Reddit posts, Hacker News titles or comments, and short summaries.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

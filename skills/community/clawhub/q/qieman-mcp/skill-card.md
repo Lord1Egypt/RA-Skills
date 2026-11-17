@@ -1,43 +1,58 @@
-## Description: <br>
-Connects agents to the Qieman MCP service through qieman-mcp-cli for fund lookup, financial news, portfolio analysis, risk analysis, backtesting, chart rendering, and PDF generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+qieman-mcp helps agents query fund, strategy, announcement, and financial-news data; analyze asset allocation, portfolios, risk backtests, and cash flow; and generate charts or PDFs.
 
-## Publisher: <br>
-[joey-lucky](https://clawhub.ai/user/joey-lucky) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[joey-lucky](https://clawhub.ai/user/joey-lucky)
 
-## Use Case: <br>
-External users and agent developers use this skill to retrieve Qieman finance data and perform fund, strategy, portfolio, risk, cash-flow, and market analysis through qieman-mcp-cli. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The setup workflow can involve login, SMS verification, agreement acceptance, and API-key storage. <br>
-Mitigation: Complete login, SMS verification, agreement acceptance, and API-key copying yourself outside the agent whenever possible. <br>
-Risk: The skill can process personal, household, portfolio, and other financial data. <br>
-Mitigation: Share only the financial data you intend to send to Qieman and avoid exposing raw API keys or SMS codes in chat unless you accept that risk. <br>
-Risk: The release security verdict is suspicious because of the amount of control requested during setup. <br>
-Mitigation: Install only after reviewing the skill and qieman-mcp-cli, and use it only if you trust the publisher and Qieman service. <br>
+## Use Case:
 
+External users and financial-application agents use this skill to access the qieman MCP service through qieman-mcp-cli for fund discovery, fund and strategy analysis, portfolio diagnostics, asset allocation analysis, market news lookup, chart rendering, and PDF generation.
 
-## Reference(s): <br>
-- [qieman-mcp ClawHub release page](https://clawhub.ai/joey-lucky/qieman-mcp) <br>
-- [且慢 MCP 初始化工作流](references/初始化工作流.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Analysis, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON CLI inputs; tool results may include structured text, chart URLs, and PDF URLs.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires qieman-mcp-cli and a configured API key; finance workflows may process user-provided portfolio, household, or financial data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: The setup flow can involve SMS login, API key handling, and personal profile details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Complete login and SMS verification directly with the provider, avoid sharing SMS codes or API keys in agent chat, and verify the configured API key locally before use.
+
+Risk: The initialization instructions recommend installing an unpinned global qieman-mcp-cli package.
+
+Mitigation: Install a pinned, verified CLI version from a trusted registry before enabling the skill in shared or production environments.
+
+Risk: Financial holdings, income, liabilities, family profile, and portfolio data may be sent to the external qieman MCP service.
+
+Mitigation: Treat submitted financial and household data as shared with that service and avoid sending sensitive data unless the user has approved that disclosure.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/joey-lucky/skills/qieman-mcp)
+- [Initialization workflow](references/初始化工作流.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and links to generated chart or PDF assets when tools return them]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May call an external qieman MCP service and may return financial analysis, tabular summaries, rendered chart URLs, or PDF URLs.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,55 @@
-## Description: <br>
-Call Hidream txt2img async API with exposed auth and request parameters for generating images from text prompts, building runnable Python command examples, enforcing allowed resolution values, and troubleshooting Hidream task polling/results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Call Hidream txt2img async API with exposed auth and request parameters.
 
-## Publisher: <br>
-[zhihui-chen-xx](https://clawhub.ai/user/zhihui-chen-xx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhihui-chen-xx](https://clawhub.ai/user/zhihui-chen-xx)
 
-## Use Case: <br>
-Developers and automation agents use this skill to submit Hidream text-to-image jobs, poll for completion, and return generated image URLs in a structured result. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts and bearer tokens are sent to Hidream when the script calls the txt2img API. <br>
-Mitigation: Use HIDREAM_AUTHORIZATION instead of inline tokens, avoid confidential prompts unless Hidream's data handling is acceptable, and review the API use before deployment. <br>
-Risk: The script polls an external image-generation service and may wait until timeout. <br>
-Mitigation: Set appropriate polling interval and timeout values for the environment and handle nonzero exit codes in automation. <br>
+## Use Case:
 
+Developers and agents use this skill to generate images from text prompts through Hidream's async txt2img API, including selecting allowed resolutions, supplying authorization, and polling task results.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhihui-chen-xx/hd-txt2img) <br>
-- [Hidream txt2img async API endpoint](https://www.hidreamai.com/api-pub/gw/v3/image/txt2img/async) <br>
-- [Publisher profile](https://clawhub.ai/user/zhihui-chen-xx) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, JSON] <br>
-**Output Format:** [Markdown guidance with runnable shell commands and JSON CLI output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Hidream bearer token; prompt, resolution, image count, version, request ID, polling interval, and timeout are configurable.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Prompts and API tokens are sent to Hidream when the skill is used.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run the skill only when that data sharing is acceptable for the intended prompts and account.
+
+Risk: Passing real API tokens directly in shell commands can expose them through shell history or process inspection.
+
+Mitigation: Set HIDREAM_AUTHORIZATION through a protected environment or secret manager, rotate any token previously pasted into history, and use limited-scope tokens where supported.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhihui-chen-xx/skills/hd-txt2img)
+- [ClawHub publisher profile](https://clawhub.ai/user/zhihui-chen-xx)
+- [Hidream txt2img async API endpoint](https://www.hidreamai.com/api-pub/gw/v3/image/txt2img/async)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with bash commands and JSON result examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include allowed resolution values, authorization setup, polling guidance, and structured task results with task_id, request_id, images, and errors.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

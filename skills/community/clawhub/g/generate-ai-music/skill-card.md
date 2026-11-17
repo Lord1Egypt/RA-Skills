@@ -1,42 +1,51 @@
-## Description: <br>
-AI music generation assistant powered by MakebestMusic for creating songs, music, and audio tracks from user prompts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate AI Music helps agents create vocal or instrumental AI-generated songs and audio tracks through MakeBestMusic and check generation status.
 
-## Publisher: <br>
-[sthk-mbm](https://clawhub.ai/user/sthk-mbm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sthk-mbm](https://clawhub.ai/user/sthk-mbm)
 
-## Use Case: <br>
-External users, content creators, and musicians use this skill to request vocal or instrumental music from MakebestMusic and check generation status until playable links are available. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Music prompts and generation requests are sent to MakebestMusic using the configured API key. <br>
-Mitigation: Install only if you trust the publisher and MakebestMusic, configure the API key through skill settings, and avoid confidential personal or business information in prompts. <br>
-Risk: The MBM_API_BASE environment variable can change the API endpoint used by the skill. <br>
-Mitigation: Leave MBM_API_BASE unset unless you know it points to a trusted MakebestMusic endpoint. <br>
+## Use Case:
 
+External users, content creators, musicians, and agents use this skill to turn song descriptions into vocal or instrumental AI-generated tracks and retrieve completion links.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sthk-mbm/generate-ai-music) <br>
-- [MakebestMusic](https://makebestmusic.com/?pid=PIDcLjhgCXUQ) <br>
-- [MakebestMusic API endpoint](https://api.makebestmusic.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON status/result payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an apiKey configured in skill settings; returns music IDs, generation status, and completion links when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact frontmatter reports 1.2.0) <br>
+Risk: The scripts can send the user's API key and prompts to a non-official endpoint if MBM_API_BASE is set or inherited from an untrusted environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill only where MBM_API_BASE is unset or trusted, avoid confidential prompt text, and rotate the MakeBestMusic key if it was used with a non-official endpoint.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sthk-mbm/skills/generate-ai-music)
+- [MakeBestMusic website](https://makebestmusic.com/?pid=PIDcLjhgCXUQ)
+- [MakeBestMusic API endpoint](https://api.makebestmusic.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, JSON]
+
+**Output Format:** [Markdown guidance with shell commands and JSON command results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generation requests return music IDs first, then status checks return pending, completed, or failed results with links when available.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter reports 1.2.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

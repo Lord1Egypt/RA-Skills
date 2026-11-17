@@ -1,47 +1,58 @@
-## Description: <br>
-Daily looksmaxxing slang tip + Clavicular news. Extremely online Gen Z energy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Daily looksmaxxing slang tip + Clavicular news. Extremely online Gen Z energy.
 
-## Publisher: <br>
-[jefftangx](https://clawhub.ai/user/jefftangx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[jefftangx](https://clawhub.ai/user/jefftangx)
 
-## Use Case: <br>
-External users and community managers use this skill to generate a daily social post pair: one looksmaxxing slang explanation and one Clavicular news or lore update with a source link. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can generate casual public posts that repeat or normalize self-harm slang, dangerous drug-regimen material, or risky body-modification advice. <br>
-Mitigation: Review the slang dictionary, lore, and templates before deployment; remove or quarantine unsafe terms and require safety framing for drug, self-harm, cosmetic injection, and body-modification topics. <br>
-Risk: Scheduled channel announcements can publish edgy generated content without human review. <br>
-Mitigation: Use private dry runs first and require human approval before enabling daily cron announcements to Telegram, Discord, Slack, or other public channels. <br>
+## Use Case:
 
+External users and community managers use this skill to generate a daily pair of posts: one looksmaxxing slang explanation and one Clavicular news or content update. The workflow is designed for OpenClaw invocation or scheduled posting, with source URLs included for news items.
 
-## Reference(s): <br>
-- [Clawvicular README](artifact/README.md) <br>
-- [Clawvicular Skill Specification](artifact/SKILL.md) <br>
-- [Looksmaxxing Slang Dictionary](artifact/references/slang-dictionary.md) <br>
-- [Clavicular Lore](artifact/references/clavicular-lore.md) <br>
-- [Content Templates](artifact/references/content-templates.md) <br>
-- [Sources Index](artifact/references/sources.md) <br>
-- [ClawHub Release Page](https://clawhub.ai/jefftangx/clawvicular) <br>
-- [Publisher Profile](https://clawhub.ai/user/jefftangx) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown social posts with source links, plus optional OpenClaw cron commands and state updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces two posts per run and may update sent-term state plus a sources index.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Unattended scheduled posting can surface unsafe medical, self-harm-adjacent, hateful, or body-image-harmful looksmaxxing material without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use review, filtering, and safety guidance before enabling cron announcements for public or group channels.
+
+Risk: The skill performs live web lookups and maintains local state and source archives.
+
+Mitigation: Install only when live lookup, persistent sent-term tracking, and source URL archiving are acceptable for the deployment context.
+
+## Reference(s):
+
+- [Clawvicular Skill Page](https://clawhub.ai/jefftangx/skills/clawvicular)
+- [OpenClaw](https://github.com/openclaw)
+- [Looksmaxxing Slang Dictionary](artifact/references/slang-dictionary.md)
+- [Clavicular Lore](artifact/references/clavicular-lore.md)
+- [Content Templates](artifact/references/content-templates.md)
+- [Sources Index](artifact/references/sources.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown posts with source links and optional shell command snippets for scheduling]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces two short posts, updates local sent-term state, and may append discovered URLs to the local sources index.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

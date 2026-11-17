@@ -1,48 +1,73 @@
-## Description: <br>
-Temu Ads US helps agents work with Temu Partner US advertising APIs through LinkFox gateway scripts for ad creation, modification, details, logs, ROAS prediction, eligible goods lookup, and mall-level reporting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Temu美国站-广告 helps agents use LinkFox gateway scripts and references for Temu US Partner Ads APIs, including ad creation, modification, detail queries, reporting, logs, ROAS prediction, and eligible-goods checks.
 
-## Publisher: <br>
-[linkfox-ai](https://clawhub.ai/user/linkfox-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[linkfox-ai](https://clawhub.ai/user/linkfox-ai)
 
-## Use Case: <br>
-External developers and commerce operators use this skill to guide and run Temu US advertising workflows, including campaign creation, budget and ROAS updates, ad status changes, reporting, and operational log review. It is intended for users who already have LinkFox gateway access and Temu seller advertising authorization. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-United States <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can trigger live Temu advertising spend actions, including ad creation, budget changes, ROAS changes, status updates, and deletion. <br>
-Mitigation: Require manual review of store, goodsId, budget, ROAS, status, and action intent before running create or modify commands. <br>
-Risk: The skill requires sensitive LinkFox and Temu seller advertising credentials. <br>
-Mitigation: Treat access tokens like passwords, avoid exposing them in shared shells or logs, and prefer short-lived or scoped operational practices where available. <br>
-Risk: The local token helper can store Temu access tokens in a plaintext file. <br>
-Mitigation: Avoid plaintext local storage when possible; if storeKey usage is necessary, restrict filesystem permissions and avoid raw-token listing in shared or logged environments. <br>
+## Use Case:
 
+External developers and marketplace operators use this skill to inspect and run Temu US advertising API calls through LinkFox for campaign creation, budget and ROAS changes, reporting, logs, file download, and credential onboarding.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/linkfox-ai/linkfox-temu-ads-us) <br>
-- [API Reference](references/api.md) <br>
-- [Access Token Guide](references/access-token.md) <br>
-- [Partner US Ads Catalog](references/partner-us-catalog.md) <br>
-- [Temu Partner US Ad Create Documentation](https://partner-us.temu.com/documentation?menu_code=1e72b5cceef545ec8f9652b9e56dd054&sub_menu_code=7bc9231776304158a895e41a816b7805) <br>
-- [Temu Partner US Ad Modify Documentation](https://partner-us.temu.com/documentation?menu_code=1e72b5cceef545ec8f9652b9e56dd054&sub_menu_code=0b7140898262428eb8a4b28609112651) <br>
-- [Temu Partner US Mall Reports Documentation](https://partner-us.temu.com/documentation?menu_code=1e72b5cceef545ec8f9652b9e56dd054&sub_menu_code=595f05856989480aa03abd58da203047) <br>
+### Deployment Geography for Use:
 
+United States
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance, API calls] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON payloads; helper scripts print JSON responses.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires LINKFOXAGENT_API_KEY and a Temu accessToken or storeKey for live gateway calls.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill handles LinkFox and Temu credentials that can read or change ad settings.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if LinkFox is trusted; prefer per-session credentials or a secure credential manager and rotate any exposed keys.
+
+Risk: The arbitrary proxy can perform broader Temu gateway calls than the named Ads scripts.
+
+Mitigation: Use named ads scripts for routine tasks and reserve the arbitrary proxy for intentional broader access.
+
+Risk: Saved linkfox/ outputs and shell profiles can expose operational or credential-adjacent data.
+
+Mitigation: Avoid committing linkfox/ outputs or shell profiles, and review saved response files before sharing a workspace.
+
+Risk: Onboarding support includes payment-order creation flows.
+
+Mitigation: Run billing order commands only when intentionally resolving a billing issue and after confirming the plan and payment method.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/linkfox-ai/skills/linkfox-temu-ads-us)
+- [API reference](artifact/references/api.md)
+- [Partner US Ads catalog](artifact/references/partner-us-catalog.md)
+- [Ads API document index](artifact/references/apis/README.md)
+- [Temu accessToken authorization](artifact/references/access-token.md)
+- [Authentication and billing onboarding](artifact/references/onboarding.md)
+- [Temu Partner documentation: temu.searchrec.ad.roas.pred](https://partner-us.temu.com/documentation?menu_code=1e72b5cceef545ec8f9652b9e56dd054&sub_menu_code=dfff26bad8e94ed5abaaf5cdade50c26)
+- [Temu Partner documentation: temu.searchrec.ad.reports.mall.query](https://partner-us.temu.com/documentation?menu_code=1e72b5cceef545ec8f9652b9e56dd054&sub_menu_code=595f05856989480aa03abd58da203047)
+- [Temu Partner documentation: temu.searchrec.ad.create](https://partner-us.temu.com/documentation?menu_code=1e72b5cceef545ec8f9652b9e56dd054&sub_menu_code=7bc9231776304158a895e41a816b7805)
+- [Temu Partner documentation: temu.searchrec.ad.detail.query](https://partner-us.temu.com/documentation?menu_code=1e72b5cceef545ec8f9652b9e56dd054&sub_menu_code=66db5438c37446f49c122829489ac6d4)
+- [Temu Partner documentation: temu.searchrec.ad.log.query](https://partner-us.temu.com/documentation?menu_code=1e72b5cceef545ec8f9652b9e56dd054&sub_menu_code=c2c5eda51c414e788bab914a297d1881)
+- [Temu Partner documentation: temu.searchrec.ad.goods.create.query](https://partner-us.temu.com/documentation?menu_code=1e72b5cceef545ec8f9652b9e56dd054&sub_menu_code=374d1f7fefdb4232b7b7a0239cb4465d)
+- [Temu Partner documentation: temu.searchrec.ad.modify](https://partner-us.temu.com/documentation?menu_code=1e72b5cceef545ec8f9652b9e56dd054&sub_menu_code=0b7140898262428eb8a4b28609112651)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, files]
+
+**Output Format:** [Markdown guidance with inline shell commands; scripts emit JSON to stdout and save response JSON files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Full API responses are saved under linkfox/<date>/<session>/data; large responses print summaries unless --inline is used.]
+
+## Skill Version(s):
+
+1.0.6 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

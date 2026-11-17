@@ -1,44 +1,61 @@
-## Description: <br>
-Operate Discord REST and Gateway workflows through UXC using Discord's OpenAPI schema, with bot-token guidance and documented OAuth2 limits. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Operate Discord HTTP API through UXC with Discord OpenAPI schema. Bot token recommended for full API access including messages and server management. OAuth2 user authentication available for limited profile operations only.
 
-## Publisher: <br>
-[jolestar](https://clawhub.ai/user/jolestar) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jolestar](https://clawhub.ai/user/jolestar)
 
-## Use Case: <br>
-Developers and agents use this skill to configure Discord authentication, discover schema-backed Discord operations, execute REST calls through UXC, and subscribe to Discord Gateway events with permission guardrails. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Discord bot tokens can grant broad powers, including message, server management, moderation, and administrative actions. <br>
-Mitigation: Use a dedicated low-permission bot, restrict it to specific servers and intents, verify OAuth scopes, and require explicit approval before posting, deleting, moderation, or administrative actions. <br>
-Risk: Discord Gateway subscriptions can persist live Discord events locally and may capture private data. <br>
-Mitigation: Avoid event logging unless needed, limit Gateway intents, enable privileged message-content access only when required, and tightly manage any NDJSON sink files. <br>
+## Use Case:
 
+Developers and operators use this skill to discover and execute Discord REST API operations through UXC, with bot-token setup guidance, OpenAPI schema mapping, and Gateway subscribe examples for inbound events.
 
-## Reference(s): <br>
-- [Usage Patterns](references/usage-patterns.md) <br>
-- [Discord API Documentation](https://discord.com/developers/docs) <br>
-- [Discord OAuth2 Documentation](https://discord.com/developers/topics/oauth2) <br>
-- [Discord API OpenAPI Spec](https://github.com/discord/discord-api-spec) <br>
-- [ClawHub Skill Page](https://clawhub.ai/jolestar/discord-openapi-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, API calls] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON request examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Agents may execute commands that return UXC JSON envelopes or write Discord Gateway events to NDJSON sink files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The OAuth2 flow uses a fixed client ID and broad scopes that may expose user account data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer a bot token controlled by the user, verify the OAuth application owner before use, and reduce OAuth scopes to only the data required.
+
+Risk: Discord bot tokens can enable message access, server management, moderation, and write operations according to the bot permissions granted.
+
+Mitigation: Grant the bot only the minimum Discord permissions needed and require explicit user confirmation before write, delete, update, or moderation operations.
+
+Risk: Gateway subscriptions and REST calls can capture or produce sensitive Discord messages and events.
+
+Mitigation: Store subscription sinks in a controlled location, limit privileged intents such as MESSAGE_CONTENT, and avoid collecting data unrelated to the task.
+
+## Reference(s):
+
+- [Usage patterns](references/usage-patterns.md)
+- [Discord API docs](https://discord.com/developers/docs)
+- [Discord OAuth2 documentation](https://discord.com/developers/topics/oauth2)
+- [Discord API OpenAPI spec](https://github.com/discord/discord-api-spec)
+- [ClawHub skill page](https://clawhub.ai/jolestar/skills/discord-openapi-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces operational guidance for UXC-based Discord API calls; execution still depends on user-provided Discord credentials and permissions.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

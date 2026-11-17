@@ -1,41 +1,58 @@
-## Description: <br>
-Load context from past sessions through temporal recall, topic search, and graph visualization, ending each recall with a single highest-leverage next action. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Load context from past sessions. Three modes: temporal (what did I work on yesterday/last week), topic (semantic search across sessions and notes), and graph (visual map of session-file relationships). Every recall ends with One Thing - the single highest-leverage next action.
 
-## Publisher: <br>
-[borodich](https://clawhub.ai/user/borodich) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[borodich](https://clawhub.ai/user/borodich)
 
-## Use Case: <br>
-Developers and agent users use this skill to recover useful context from prior workspace sessions, memory files, session state, and notes. It helps answer temporal or topic-based recall questions, produce relationship graphs when requested, and synthesize one concrete next action. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can surface sensitive information from local memory files, session state, and workspace notes. <br>
-Mitigation: Install it only in workspaces where that context is appropriate to recall, use explicit recall requests, and avoid broad topic queries in projects containing secrets or private notes. <br>
-Risk: Optional QMD indexing or graph output may expose more session context than intended. <br>
-Mitigation: Review optional indexing and generated graph output before using them with sensitive material. <br>
+## Use Case:
 
+Developers and engineers use Recall to recover project context from prior session memory, chat logs, session state, and notes. It supports temporal, topic, and graph-based recall and ends with a concrete next action.
 
-## Reference(s): <br>
-- [Recall skill page](https://clawhub.ai/borodich/personal-os-recall) <br>
-- [Publisher profile](https://clawhub.ai/user/borodich) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and optional generated HTML graph file references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference local memory files, session state, workspace notes, and optional recall graph output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: The skill can search broad private workspace history, chat logs, session state, and notes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for explicit recall requests and review returned excerpts before sharing or acting on them.
+
+Risk: Graph mode may generate HTML that exposes sensitive session or file relationship data.
+
+Mitigation: Review generated HTML before opening or distributing it when sensitive data may appear.
+
+Risk: Optional global QMD installation adds persistent third-party tooling to the environment.
+
+Mitigation: Avoid the optional global npm install unless the package has been independently trusted and pinned.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/borodich/skills/personal-os-recall)
+- [Publisher Profile](https://clawhub.ai/user/borodich)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and generated HTML file references for graph mode]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference local memory files, session state, workspace notes, and generated recall graph HTML.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

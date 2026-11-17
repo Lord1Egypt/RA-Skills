@@ -1,0 +1,79 @@
+[
+  {
+    "id": "pvc-waterproof-safety-rain-boots",
+    "name": "PVC Waterproof Safety Rain Boots",
+    "type": "PVC boots",
+    "materials": ["PVC"],
+    "applications": ["construction", "wet work", "industrial maintenance", "public works", "agriculture"],
+    "certification_keywords": ["S4", "S5", "steel toe", "protective midsole", "waterproof", "SRC", "oil resistant outsole"],
+    "buyer_fit": "Best for buyers needing waterproof, durable, cost-effective work boots for wet or muddy industrial environments.",
+    "oem_options": ["logo printing", "color selection", "outsole pattern", "packaging customization"],
+    "questions_to_ask": [
+      "Which S4 or S5 configuration is available for the target market?",
+      "Can the outsole compound meet the buyer's anti-slip and oil-resistance requirements?",
+      "What size run, color, logo, and packaging options affect MOQ and lead time?"
+    ],
+    "url": "https://reliablesafetyboots.com/pvc-boots",
+    "application_urls": [
+      "https://reliablesafetyboots.com/food-processing"
+    ]
+  },
+  {
+    "id": "lightweight-eva-cold-storage-boots",
+    "name": "Lightweight EVA Cold Storage Work Boots",
+    "type": "EVA boots",
+    "materials": ["EVA"],
+    "applications": ["cold storage", "food processing", "wet work", "light industrial", "cleaning"],
+    "certification_keywords": ["waterproof", "lightweight", "cold insulation", "anti slip", "washable"],
+    "buyer_fit": "Best for buyers prioritizing low weight, thermal comfort, and easy cleaning in cold or wet work areas.",
+    "oem_options": ["color selection", "lining options", "logo marking", "packaging customization"],
+    "questions_to_ask": [
+      "What temperature range is expected in the workplace?",
+      "Is a removable liner or thermal lining required?",
+      "Does the outsole need extra traction for wet tile or cold-room floors?"
+    ],
+    "url": "https://reliablesafetyboots.com/eva-boots",
+    "application_urls": [
+      "https://reliablesafetyboots.com/cold-storage-winter-work",
+      "https://reliablesafetyboots.com/food-processing"
+    ]
+  },
+  {
+    "id": "rubber-work-boots-industrial-buyers",
+    "name": "Rubber Work Boots for Industrial Buyers",
+    "type": "rubber boots",
+    "materials": ["rubber"],
+    "applications": ["construction", "industrial", "agriculture", "fishery", "outdoor work"],
+    "certification_keywords": ["waterproof", "durable outsole", "traction", "abrasion resistance", "chemical resistance"],
+    "buyer_fit": "Best for buyers needing flexible, durable boots with strong traction and better long-term wear resistance than basic PVC.",
+    "oem_options": ["rubber compound selection", "outsole design", "color selection", "private label packaging"],
+    "questions_to_ask": [
+      "Which rubber compound is recommended for the target climate and chemical exposure?",
+      "What outsole pattern is best for the buyer's terrain?",
+      "Can samples be tested for flexing, abrasion, and waterproof performance?"
+    ],
+    "url": "https://reliablesafetyboots.com/rubber-boots",
+    "application_urls": [
+      "https://reliablesafetyboots.com/fishery-aquaculture"
+    ]
+  },
+  {
+    "id": "oem-industrial-safety-shoes",
+    "name": "OEM Industrial Safety Shoes",
+    "type": "safety shoes",
+    "materials": ["leather", "mesh", "PU", "rubber"],
+    "applications": ["construction", "warehouse", "factory", "logistics", "industrial maintenance"],
+    "certification_keywords": ["steel toe", "composite toe", "puncture resistant midsole", "anti slip", "oil resistant", "ESD"],
+    "buyer_fit": "Best for importers and workwear brands needing OEM safety shoes with specification, style, packaging, and certification coordination.",
+    "oem_options": ["upper material selection", "toe cap selection", "midsole selection", "outsole tooling", "private label packaging"],
+    "questions_to_ask": [
+      "Which target safety standard applies in the buyer's market?",
+      "Is steel toe, composite toe, or puncture-resistant midsole required?",
+      "Which upper material, outsole, color, and packaging should be confirmed before sampling?"
+    ],
+    "url": "https://reliablesafetyboots.com/safety-shoes",
+    "application_urls": [
+      "https://reliablesafetyboots.com/mold-developing"
+    ]
+  }
+]

@@ -1,11 +1,10 @@
 ---
 name: nansen-trading
-description: Execute DEX swaps on Solana or Base, including cross-chain bridges. Use when buying or selling a token, getting a swap quote, or executing a trade.
+description: Execute DEX swaps on Solana or Base (including cross-chain bridges) and Hyperliquid perpetual trades. Use when buying or selling a token, getting a swap quote, executing a trade, or opening/closing/managing a perp position.
 metadata:
   openclaw:
     requires:
       env:
-        - NANSEN_API_KEY
         - NANSEN_WALLET_PASSWORD
       bins:
         - nansen
@@ -16,6 +15,11 @@ metadata:
         bins: [nansen]
 allowed-tools: Bash(nansen:*)
 ---
+## Authentication
+
+Nansen account API calls accept a selected `nansen:api` browser session or conventional API key with the same permissions. `NANSEN_API_KEY` takes precedence; optional `primaryEnv` preserves configured-key injection. Run `nansen auth status` for offline selection. Cached access expiry alone permits automatic renewal during an authorized task. Stop on anonymous selection, invalid state, blocked/uncertain renewal or actual auth failure; never drop a credential or fall back to anonymous x402 payment. Browser login does not grant wallet signing, privileged service identity or a persistent MCP integration key. Preserve all confirmation, signing, sanctions and geographic checks below. Browser login is enabled in production within the [documented platform scope](https://github.com/nansen-ai/nansen-cli/blob/main/docs/browser-login.md#preview-platform-scope).
+
+
 
 # Trade
 
@@ -54,7 +58,24 @@ For cross-chain swaps, each token is checked against its own chain (from vs `--c
 
 ```bash
 nansen trade execute --quote <quote-id>
+nansen trade execute --quote <quote-id> --dry-run   # preview only, nothing is broadcast
+nansen trade execute --quote <quote-id> --yes       # skip the confirmation prompt
 ```
+
+**`--dry-run`** runs every sign-free preflight available from the cached quote, its public signer address, and read-only RPC calls; prints the trade that *would* be sent (chain, tokens, amounts, recipient, approval, fees); and stops before wallet credentials or signing. No wallet password is needed, the quote is not consumed, and the command exits 0. Real execution still resolves and revalidates the live signer. On Base, preview also reads the current token allowance and runs the pre-broadcast revert simulation when no approval is outstanding.
+
+**Confirmation.** When stdin is an interactive terminal, `execute` prints the plan and asks `Broadcast this transaction? [y/N]` before broadcasting. Answering anything but `y`/`yes` aborts with exit code 1 and nothing signed. Pass `--yes` (`-y`), or set `NANSEN_YES=1`, to skip the question.
+
+**Agents and CI are unaffected:** when stdin is *not* a terminal (a pipe, a CI job, an agent shell) the command proceeds without prompting, exactly as before. `--yes` is accepted there and is simply a no-op, so it is safe to always pass it. The same flags and rules apply to `nansen bridge execute`.
+
+**Operator stop point (`NANSEN_REQUIRE_CONFIRM=1`).** If the user has set `NANSEN_REQUIRE_CONFIRM=1`, a non-terminal run without `--yes` fails with `CONFIRMATION_REQUIRED` (exit 1) before any request or signature. That means the user wants to approve each broadcast: show them the `--dry-run` plan, and only re-run with `--yes` after they say go. Do not unset the variable to get around it.
+
+### Exit codes (`trade execute`, `bridge execute`)
+
+| Code | Meaning |
+|------|---------|
+| `0` | Broadcast succeeded, or the dry run completed |
+| `1` | Declined at the confirmation prompt, or the execution failed |
 
 ## Cross-Chain Swap
 
@@ -101,6 +122,8 @@ nansen trade limit-order update --order <order-id> --trigger-price 85
 ```
 
 `--slippage-bps` is basis points (`300` = 3%, `100` = 1%); omit for auto.
+
+`create` and `cancel` take the same `--dry-run` and `--yes` as `trade execute`. `--dry-run` prints the order (or cancellation) plan from the arguments and the wallet's public address and exits 0, with no API request, signature or submission; a cancel preview does not request the one-time cancellation transaction. In an interactive terminal they ask before signing; agents and CI run unprompted, and `--yes` is a no-op there.
 
 ## Agent pattern
 
@@ -167,6 +190,8 @@ If the user says "$20 worth of X", use `--amount-unit usd` directly — no manua
 | `--wallet` | Wallet name (default: default wallet) |
 | `--quote-index` | Pin a specific quote by index (0-based) when multiple quotes were returned |
 | `--no-simulate` | Skip pre-broadcast simulation |
+| `--dry-run` | Validate and print what would be sent, then stop. Nothing is signed or broadcast |
+| `--yes`, `-y` | Skip the confirmation prompt (same as `NANSEN_YES=1`); no-op when stdin is not a terminal, unless `NANSEN_REQUIRE_CONFIRM=1` is set, which makes it required there |
 
 ### `trade bridge-status` flags
 
@@ -181,7 +206,9 @@ If the user says "$20 worth of X", use `--amount-unit usd` directly — no manua
 | Var | Purpose |
 |-----|---------|
 | `NANSEN_WALLET_PASSWORD` | **Required for `trade execute`.** Wallet encryption password — persisted in `~/.nansen/.env`. Source before executing: `source ~/.nansen/.env && nansen trade execute ...` |
-| `NANSEN_API_KEY` | API key (also set via `nansen login`) |
+| `NANSEN_API_KEY` | API key (also set via explicit `nansen login --human`; browser sessions are not wallet or RPC keys) |
+| `NANSEN_YES` | Set to `1` to skip the confirmation prompt of `trade execute`, `bridge execute`, `trade limit-order create`/`cancel` and `perp order`/`close`/`cancel`/`leverage`/`transfer`/`approve-builder-fee`, like `--yes` |
+| `NANSEN_REQUIRE_CONFIRM` | Set to `1` to make those same commands fail with `CONFIRMATION_REQUIRED`, before any request or signature, when stdin is not a terminal and neither `--yes` nor `NANSEN_YES=1` is given. `--dry-run` still works. Opt-in; unset keeps today's behaviour |
 
 > **Agents:** Never hold a wallet password only in session memory. If `NANSEN_WALLET_PASSWORD` is not in `~/.nansen/.env`, follow the setup flow in the nansen-wallet-manager skill Password Policy to generate and persist one before proceeding.
 
@@ -189,9 +216,81 @@ If the user says "$20 worth of X", use `--amount-unit usd` directly — no manua
 
 - Quotes expire after ~1 hour. If execute fails, get a fresh quote.
 - A wallet is required even for quotes (the API builds sender-specific transactions).
+- Compliance screen: `trade quote` and `trade execute` check the signing wallet (and any distinct `--to-wallet` destination) against the compliance blocklist through the Nansen API before requesting a quote or signing — the same fail-closed check `bridge` and `perp` run. A flagged address aborts with code `SANCTIONED`; if the screening call itself fails the command aborts with `SCREENING_UNAVAILABLE`. Nothing is signed or broadcast in either case.
 - ERC-20 swaps may require an approval step — execute handles this automatically.
+
+# Perp Trading
+
+Use `nansen perp` for Hyperliquid perpetual trading. Uses the same wallet and `NANSEN_WALLET_PASSWORD` as DEX trading; requires an **EVM** wallet. **Perp orders are irreversible once signed.**
+
+Subcommands: `order`, `cancel`, `close`, `leverage`, `transfer`, `approve-builder-fee`, `positions`, `orders`, `account`, `meta`.
+
+The asset is selected with `--symbol` (e.g. `BTC`, `ETH`); `--coin` is accepted as an alias. List tradable assets and their max leverage with `nansen perp meta` (use `--filter <text>` or `--all` to see beyond the first 20).
+
+## Preview and confirm (`--dry-run`, `--yes`)
+
+`order`, `close`, `cancel` and `leverage` have no quote step, so a typo in `--size` or `--price` would otherwise go straight to the exchange. Preview first:
+
+```bash
+nansen perp order --symbol ETH --side buy --size 0.1 --price 1600 --dry-run   # preview only, nothing is signed
+nansen perp order --symbol ETH --side buy --size 0.1 --price 1600 --yes       # skip the confirmation prompt
+```
+
+**`--dry-run`** runs the normal validation and read-only lookups (asset metadata, builder fee, open position, compliance screen), prints the plan (coin, side, rounded size, price and type, take-profit/stop-loss, estimated notional, leverage, builder fee) and exits 0. Nothing is signed or sent to Hyperliquid, no wallet password is needed, and the one-time builder-fee approval is not submitted. `close` also shows the worst fill price after slippage and the open position, `cancel` shows the open order it would cancel, `leverage` shows the new setting next to the asset maximum, `transfer` shows the direction and the exact USDC amount, and `approve-builder-fee` shows the builder address and maximum fee rate (or says the fee is already approved, with nothing to preview).
+
+**Exception: `close --dry-run` exits 1 with `NO_OPEN_POSITION` when the wallet has no open position in that coin.** That is a definite "nothing to close" answer, not a crash. If the position was opened moments ago, the positions data may not show it yet: retry after a few seconds. A real `close` skips this check and lets Hyperliquid decide; with a prompt, its plan shows a warning instead.
+
+**Confirmation.** When stdin is an interactive terminal, these commands (`order`, `close`, `cancel`, `leverage`, `transfer`, `approve-builder-fee`) print the plan and ask, for example, `Submit this order to Hyperliquid? [y/N]` before signing. Answering anything but `y`/`yes` exits 1 with nothing signed (code `CONFIRMATION_DECLINED`). Pass `--yes` (`-y`), or set `NANSEN_YES=1`, to skip the question.
+
+**When stdin is *not* a terminal** (agents, CI) the commands submit without prompting, exactly as before, and `--yes` is a no-op. **Exception:** if `NANSEN_REQUIRE_CONFIRM=1` is set, they fail with `CONFIRMATION_REQUIRED` (exit 1) before any request or signature unless `--yes` or `NANSEN_YES=1` is given; follow the operator stop point described above. These are the same rules as `trade execute` and `bridge execute`.
+
+## Open a position
+
+```bash
+# Limit long: 0.1 ETH at $1600
+nansen perp order --symbol ETH --side buy --size 0.1 --price 1600 --type limit
+
+# Market short with optional take-profit / stop-loss
+nansen perp order --symbol BTC --side sell --size 0.001 --price 95000 --type market \
+  --take-profit 90000 --stop-loss 98000
+```
+
+- `--side`: `buy`/`long` to open a long, `sell`/`short` to open a short.
+- `--size`: position size in base asset units (positive number).
+- `--price`: limit price (or mark price for market orders).
+- `--type`: `limit` (default) or `market`. `--tif`: `Gtc` (default), `Ioc`, `Alo`.
+- `--slippage`: decimal in `[0,1]` for market orders (default `0.03` = 3%).
+
+On success the command prints the Hyperliquid order id (`oid`) and the fill (size @ avg price). A resting (unfilled) order also prints a ready-to-run `nansen perp cancel --symbol <symbol> --oid <oid>`. Attached take-profit/stop-loss legs are labelled and each print their own `oid`.
+
+## Close / cancel
+
+```bash
+# Close: sell to close a long, buy to close a short (validated against your open position)
+nansen perp close --symbol ETH --size 0.1 --price 1600 --side sell
+
+# Cancel a resting order by id
+nansen perp cancel --symbol ETH --oid 123456
+```
+
+## Leverage, transfers & account
+
+```bash
+nansen perp leverage --symbol ETH --leverage 5 --margin-type cross   # or isolated
+nansen perp transfer --direction spot-to-perp --amount 25          # or perp-to-spot
+nansen perp positions
+nansen perp account     # account value, unrealized PnL, margin used, withdrawable, spot USDC
+```
+
+`--leverage` must be a whole integer and is capped at the asset's maximum (see `perp meta`).
+
+**Reading `perp positions`:** each line shows the leverage setting and margin mode before the liquidation price, e.g. `lev=1x cross liq=1.37`. The liquidation price is Hyperliquid's own figure. On cross margin it depends on the whole account's equity (fees, funding, losses on other cross positions), so a 1x position can still have a liquidation price near the market. `liq=n/a` means the exchange reports none.
+
+**Spot vs Perps:** perp trading draws from the **Perps** balance, but USDC sent to a wallet via Hyperliquid's **Send** lands in **Spot** (and shows as `Spot USDC` in `perp account`). Move it across with `perp transfer --direction spot-to-perp --amount <usdc>` before trading. (Deposits via the bridge land in Perps directly.)
 
 ## Source
 
 - npm: https://www.npmjs.com/package/nansen-cli
 - GitHub: https://github.com/nansen-ai/nansen-cli
+
+Browser login uses `nansen:api` with the same account API permissions as an API key, subject to existing plan/account/endpoint checks. Trading still requires a separately configured wallet and its signing authorization. Hosted simulation uses the selected credential only on the matching trusted Nansen API origin; arbitrary RPC endpoints never receive Nansen credentials.

@@ -1,0 +1,2034 @@
+{
+  "_note": "融资适配研判引擎机构底库。match_signals/veto_signals 为可执行规则：{field,op,value,label}，op ∈ eq/gte/lte/contains/in。字段对应项目画像 JSON（见 templates/01-项目画像表.md）。数据源：references/01-vc-institutions.md 与 02-gov-funds.md。",
+  "vc": [
+    {
+      "name": "红杉中国",
+      "stage": "Pre-A 至成长期",
+      "bet": "1000万-10亿元",
+      "why_you": "你的赛道在红杉的射程内且技术处于行业前列，适合走研究驱动的赛道路线",
+      "what_you_lack": "需要拿出行业前1-2名的技术领先性证据（论文/专利/头部客户验证），以及清晰的成长路径",
+      "apply_path": "官网 BP 提交 https://www.hongshan.com/；⚠官方未公开BP邮箱→走官网通道或FA引荐；主力靠 FA 推荐（可直接投递但命中率低）",
+      "match_signals": [
+        {
+          "field": "track",
+          "op": "in",
+          "value": [
+            "AI",
+            "人工智能",
+            "大模型",
+            "生物医药",
+            "医疗",
+            "新能源",
+            "储能",
+            "碳中和",
+            "消费",
+            "高端制造",
+            "半导体",
+            "自动驾驶"
+          ],
+          "label": "赛道属于 AI/生物医药/新能源/高端制造"
+        },
+        {
+          "field": "moat.tech_lead",
+          "op": "eq",
+          "value": true,
+          "label": "技术壁垒处于行业前1-2名"
+        },
+        {
+          "field": "round_size_wan",
+          "op": "gte",
+          "value": 10000,
+          "label": "本轮融资需求≥1亿元"
+        },
+        {
+          "field": "team.serial_founder",
+          "op": "eq",
+          "value": true,
+          "label": "创始人有连续创业经验"
+        },
+        {
+          "field": "team.bigtech_or_topschool",
+          "op": "eq",
+          "value": true,
+          "label": "团队有顶级技术背景"
+        }
+      ],
+      "veto_signals": [
+        {
+          "field": "track",
+          "op": "in",
+          "value": [
+            "纯模式创新",
+            "社区团购",
+            "O2O"
+          ],
+          "label": "纯模式创新、无技术壁垒"
+        },
+        {
+          "field": "moat.tech_lead",
+          "op": "eq",
+          "value": false,
+          "label": "技术壁垒不明显"
+        }
+      ]
+    },
+    {
+      "name": "高瓴创投（GL Ventures）",
+      "stage": "成长期至并购（创投覆盖早期）",
+      "bet": "成长期1-10亿美元；并购10-100亿；早期500万-5000万",
+      "why_you": "创始人产业背景深厚、经历过完整周期，赛道天花板极高，符合长周期重仓逻辑",
+      "what_you_lack": "需要证明创始人的产业积累深度与商业化路径清晰度，早期项目尤其看重\"投人\"",
+      "apply_path": "官网 https://www.hillhouseinvestment.cn/（中文站）/ https://www.hillhousecap.com/（英文站）；早期业务走高瓴创投品牌；微信公众号：高瓴创投；主要为 FA 推荐",
+      "match_signals": [
+        {
+          "field": "team.industry_veteran",
+          "op": "eq",
+          "value": true,
+          "label": "创始人有深厚产业背景"
+        },
+        {
+          "field": "market_size_yi",
+          "op": "gte",
+          "value": 100,
+          "label": "赛道天花板高（百亿级以上）"
+        },
+        {
+          "field": "track",
+          "op": "in",
+          "value": [
+            "医疗",
+            "创新药",
+            "医疗器械",
+            "半导体",
+            "硬科技",
+            "新能源",
+            "消费"
+          ],
+          "label": "赛道属医疗/硬科技/新能源/消费"
+        },
+        {
+          "field": "round_size_wan",
+          "op": "gte",
+          "value": 5000,
+          "label": "融资需求≥5000万"
+        }
+      ],
+      "veto_signals": [
+        {
+          "field": "team.industry_veteran",
+          "op": "eq",
+          "value": false,
+          "label": "创始人缺乏产业积累（PPT项目）"
+        }
+      ]
+    },
+    {
+      "name": "IDG资本",
+      "stage": "天使至并购全覆盖",
+      "bet": "百万-数亿美元",
+      "why_you": "赛道在半导体/新能源/AI/消费任一方向，且有国产替代逻辑或品牌力",
+      "what_you_lack": "需要清楚讲出技术壁垒与国产替代/全球化的具体路径",
+      "apply_path": "官网 BP 提交；通过 FA 推荐为主；关注其行业合伙人对口方向",
+      "match_signals": [
+        {
+          "field": "track",
+          "op": "in",
+          "value": [
+            "半导体",
+            "芯片",
+            "新能源",
+            "光伏",
+            "储能",
+            "AI",
+            "人工智能",
+            "消费",
+            "智能驾驶",
+            "机器人"
+          ],
+          "label": "赛道属半导体/新能源/AI/消费"
+        },
+        {
+          "field": "moat.tech_lead",
+          "op": "eq",
+          "value": true,
+          "label": "技术壁垒高且有国产替代逻辑"
+        },
+        {
+          "field": "traction.growth_pct",
+          "op": "gte",
+          "value": 50,
+          "label": "增长快速（消费类尤重）"
+        }
+      ],
+      "veto_signals": [
+        {
+          "field": "track",
+          "op": "in",
+          "value": [
+            "消费互联网",
+            "O2O",
+            "社区团购"
+          ],
+          "label": "纯模式创新、无技术壁垒的消费互联网"
+        }
+      ]
+    },
+    {
+      "name": "经纬创投",
+      "stage": "天使至B轮为主",
+      "bet": "500万-2亿人民币",
+      "why_you": "走反共识路线、执行力强的早期团队，符合经纬\"投人+产业数字化\"的偏好",
+      "what_you_lack": "需要展现极强的执行与迭代速度（数据说话），以及非共识的技术判断",
+      "apply_path": "官网 BP 提交；公众号：经纬创投；FA 推荐为主，接受直接投递",
+      "match_signals": [
+        {
+          "field": "track",
+          "op": "in",
+          "value": [
+            "硬科技",
+            "产业数字化",
+            "企业服务",
+            "医疗",
+            "前沿科技",
+            "AI",
+            "半导体"
+          ],
+          "label": "赛道属硬科技/产业数字化/医疗/前沿科技"
+        },
+        {
+          "field": "round_size_wan",
+          "op": "gte",
+          "value": 500,
+          "label": "融资需求≥500万"
+        },
+        {
+          "field": "round_size_wan",
+          "op": "lte",
+          "value": 20000,
+          "label": "融资需求≤2亿（早期为主）"
+        }
+      ],
+      "veto_signals": [
+        {
+          "field": "track",
+          "op": "in",
+          "value": [
+            "追风口",
+            "社区团购",
+            "O2O"
+          ],
+          "label": "追风口、无差异化壁垒"
+        }
+      ]
+    },
+    {
+      "name": "启明创投",
+      "stage": "早期至成长期",
+      "bet": "5000万-5亿人民币",
+      "why_you": "技术深耕型项目（学术+工程双强），且愿意接受多轮连续融资，符合启明长跑偏好",
+      "what_you_lack": "需要证明技术深度不是\"跟随型\"，而是有原创性或领先性",
+      "apply_path": "官网 BP 提交；FA 推荐；关注其医疗与TMT两个团队的对口",
+      "match_signals": [
+        {
+          "field": "track",
+          "op": "in",
+          "value": [
+            "AI",
+            "大模型",
+            "机器人",
+            "自动驾驶",
+            "半导体",
+            "医疗",
+            "创新药",
+            "医疗器械"
+          ],
+          "label": "赛道属AI/机器人/半导体/医疗技术深耕方向"
+        },
+        {
+          "field": "moat.tech_lead",
+          "op": "eq",
+          "value": true,
+          "label": "技术深度强（学术/工程双强）"
+        },
+        {
+          "field": "round_size_wan",
+          "op": "gte",
+          "value": 5000,
+          "label": "融资需求≥5000万"
+        }
+      ],
+      "veto_signals": [
+        {
+          "field": "track",
+          "op": "in",
+          "value": [
+            "消费",
+            "文娱",
+            "教育",
+            "房地产"
+          ],
+          "label": "非科技/医疗赛道"
+        }
+      ]
+    },
+    {
+      "name": "源码资本",
+      "stage": "Pre-A 至成长期",
+      "bet": "3000万-3亿人民币",
+      "why_you": "创始人是技术+商业复合型，赛道在AI+/具身智能/产业数字化，适合长期资本陪伴",
+      "what_you_lack": "需要补足商业嗅觉的证明（订单/客户/落地场景）",
+      "apply_path": "官网 BP 提交；FA 推荐；关注其\"码荟\"创业者社区",
+      "match_signals": [
+        {
+          "field": "track",
+          "op": "in",
+          "value": [
+            "AI",
+            "人工智能",
+            "具身智能",
+            "机器人",
+            "半导体",
+            "产业数字化",
+            "企业服务"
+          ],
+          "label": "赛道属AI+/具身智能/半导体/产业数字化"
+        },
+        {
+          "field": "round_size_wan",
+          "op": "gte",
+          "value": 3000,
+          "label": "融资需求≥3000万"
+        },
+        {
+          "field": "team.bigtech_or_topschool",
+          "op": "eq",
+          "value": true,
+          "label": "创始人技术背景强"
+        }
+      ],
+      "veto_signals": [
+        {
+          "field": "track",
+          "op": "in",
+          "value": [
+            "纯模式创新",
+            "社区团购",
+            "O2O"
+          ],
+          "label": "非科技创新类的纯模式创新"
+        }
+      ]
+    },
+    {
+      "name": "五源资本",
+      "stage": "天使至B轮",
+      "bet": "500万-2亿人民币",
+      "why_you": "稀缺型创始人（技术/资源/经验至少占一项）+ 赛道天花板百亿级以上，需要战略资源而非纯资金",
+      "what_you_lack": "需要证明自己的\"稀缺性\"——不是拥挤赛道里的平庸团队",
+      "apply_path": "官网 BP 提交；FA 推荐；五源看重创始人的\"非共识判断\"",
+      "match_signals": [
+        {
+          "field": "market_size_yi",
+          "op": "gte",
+          "value": 100,
+          "label": "赛道空间极大（百亿级以上）"
+        },
+        {
+          "field": "team.serial_founder",
+          "op": "eq",
+          "value": true,
+          "label": "创始人有稀缺性（连续创业/资深）"
+        },
+        {
+          "field": "team.industry_veteran",
+          "op": "eq",
+          "value": true,
+          "label": "创始人有行业资深背景"
+        }
+      ],
+      "veto_signals": [
+        {
+          "field": "team.bigtech_or_topschool",
+          "op": "eq",
+          "value": false,
+          "label": "创始人稀缺性不足（团队平庸）"
+        }
+      ]
+    },
+    {
+      "name": "高榕创投",
+      "stage": "种子至B轮",
+      "bet": "500万-1亿人民币",
+      "why_you": "你是所在赛道公认的头部或前三，团队沟通效率高、决策快",
+      "what_you_lack": "需要证明自己是赛道前三（市占/技术/口碑），而不是跟随者",
+      "apply_path": "官网 BP 提交；FA 推荐；高榕偏好创始人直接、高效沟通",
+      "match_signals": [
+        {
+          "field": "track",
+          "op": "in",
+          "value": [
+            "新消费",
+            "消费",
+            "AI",
+            "人工智能",
+            "创新药",
+            "医疗",
+            "智能硬件",
+            "机器人"
+          ],
+          "label": "赛道属新消费/AI/创新药/智能硬件"
+        },
+        {
+          "field": "moat.tech_lead",
+          "op": "eq",
+          "value": true,
+          "label": "赛道头部或前三"
+        },
+        {
+          "field": "round_size_wan",
+          "op": "gte",
+          "value": 500,
+          "label": "融资需求≥500万"
+        }
+      ],
+      "veto_signals": [
+        {
+          "field": "traction.paying_customers",
+          "op": "lte",
+          "value": 0,
+          "label": "毫无商业化验证的纯概念"
+        }
+      ]
+    },
+    {
+      "name": "真格基金",
+      "stage": "天使/种子至A轮",
+      "bet": "100万-3000万人民币",
+      "why_you": "早期阶段、创始人有极强学习与执行力，适合真格这个中国最大天使基金之一",
+      "what_you_lack": "需要展现创始人的格局与表达能力（真格很看重\"人\"）",
+      "apply_path": "官网 BP 提交；公众号：真格基金；接受直接投递与自荐",
+      "match_signals": [
+        {
+          "field": "round_size_wan",
+          "op": "lte",
+          "value": 3000,
+          "label": "处于种子/天使阶段，融资需求≤3000万"
+        },
+        {
+          "field": "track",
+          "op": "in",
+          "value": [
+            "AI",
+            "人工智能",
+            "企业服务",
+            "新消费",
+            "消费",
+            "教育",
+            "半导体"
+          ],
+          "label": "赛道属AI/企业服务/新消费"
+        },
+        {
+          "field": "team.bigtech_or_topschool",
+          "op": "eq",
+          "value": true,
+          "label": "创始人有名校/大厂背景或强学习力"
+        }
+      ],
+      "veto_signals": [
+        {
+          "field": "round_size_wan",
+          "op": "gte",
+          "value": 10000,
+          "label": "需要A轮以上大额融资"
+        }
+      ]
+    },
+    {
+      "name": "君联资本",
+      "stage": "早中期至成长期",
+      "bet": "5000万-5亿人民币",
+      "why_you": "卡脖子技术/原始创新/国家级战略方向，有科研院所成果转化背景，可做\"小巨人\"级陪跑",
+      "what_you_lack": "需要证明属于国家级战略方向并有原创技术，而非应用层跟随",
+      "apply_path": "官网 BP 提交；FA 推荐；君联偏好看高校/院所成果转化项目",
+      "match_signals": [
+        {
+          "field": "track",
+          "op": "in",
+          "value": [
+            "半导体",
+            "集成电路",
+            "新材料",
+            "高端装备",
+            "工业母机",
+            "生物医药",
+            "医疗",
+            "硬科技"
+          ],
+          "label": "赛道属卡脖子技术/国家战略方向"
+        },
+        {
+          "field": "moat.patents",
+          "op": "gte",
+          "value": 3,
+          "label": "有原创技术积累（专利/成果转化）"
+        },
+        {
+          "field": "round_size_wan",
+          "op": "gte",
+          "value": 5000,
+          "label": "融资需求≥5000万"
+        }
+      ],
+      "veto_signals": [
+        {
+          "field": "track",
+          "op": "in",
+          "value": [
+            "消费",
+            "文娱",
+            "模式创新"
+          ],
+          "label": "非国家战略级硬科技"
+        }
+      ]
+    },
+    {
+      "name": "达晨财智",
+      "stage": "Pre-A 至成长期",
+      "bet": "3000万-3亿人民币",
+      "why_you": "先进制造/医疗/新能源方向且已有收入基础，国产替代逻辑清晰，需要政府产业资源对接",
+      "what_you_lack": "需要有真实收入与国产替代的落地证据（不接受纯概念）",
+      "apply_path": "官网 BP 提交；FA 推荐；达晨有国资背景，可协助对接产业资源",
+      "match_signals": [
+        {
+          "field": "track",
+          "op": "in",
+          "value": [
+            "先进制造",
+            "高端装备",
+            "医疗",
+            "医疗器械",
+            "新能源",
+            "半导体",
+            "新材料"
+          ],
+          "label": "赛道属先进制造/医疗/新能源"
+        },
+        {
+          "field": "traction.revenue_wan",
+          "op": "gte",
+          "value": 500,
+          "label": "已有收入基础"
+        },
+        {
+          "field": "round_size_wan",
+          "op": "gte",
+          "value": 3000,
+          "label": "融资需求≥3000万"
+        }
+      ],
+      "veto_signals": [
+        {
+          "field": "traction.revenue_wan",
+          "op": "lte",
+          "value": 0,
+          "label": "无收入基础的纯早期概念项目"
+        }
+      ]
+    },
+    {
+      "name": "深创投",
+      "stage": "天使至成长期",
+      "bet": "1000万-3亿人民币",
+      "why_you": "注册地在深圳/粤港澳大湾区，赛道属深圳\"20+8\"产业政策方向，可获政府产业资源对接",
+      "what_you_lack": "如果不在大湾区，需要考虑落地深圳或找其外地子基金",
+      "apply_path": "官网 BP 提交；深圳各区引导基金通道；项目路演活动；投资经理直联",
+      "match_signals": [
+        {
+          "field": "registered_in",
+          "op": "contains",
+          "value": "深圳",
+          "label": "注册地在深圳/大湾区"
+        },
+        {
+          "field": "track",
+          "op": "in",
+          "value": [
+            "半导体",
+            "集成电路",
+            "新能源",
+            "生物医药",
+            "机器人",
+            "AI",
+            "新材料",
+            "智能网联汽车"
+          ],
+          "label": "赛道属深圳20+8产业政策方向"
+        },
+        {
+          "field": "round_size_wan",
+          "op": "gte",
+          "value": 1000,
+          "label": "融资需求≥1000万"
+        }
+      ],
+      "veto_signals": [
+        {
+          "field": "willing_to_relocate",
+          "op": "eq",
+          "value": false,
+          "label": "不在大湾区且不愿落地"
+        }
+      ]
+    },
+    {
+      "name": "今日资本",
+      "stage": "A轮至成长期",
+      "bet": "1亿-5亿人民币",
+      "why_you": "市场规模极大（百亿级以上）+ 已验证商业模式 + 高速增长，适合重仓",
+      "what_you_lack": "需要证明成长速度与商业模式的可复制性（核心合伙人风格：只投大市场+强增长）",
+      "apply_path": "官网 BP 提交；FA 推荐为主；今日资本出手少但单笔重",
+      "match_signals": [
+        {
+          "field": "market_size_yi",
+          "op": "gte",
+          "value": 300,
+          "label": "市场规模极大（百亿级以上）"
+        },
+        {
+          "field": "traction.growth_pct",
+          "op": "gte",
+          "value": 50,
+          "label": "高速增长"
+        },
+        {
+          "field": "round_size_wan",
+          "op": "gte",
+          "value": 10000,
+          "label": "融资需求≥1亿"
+        }
+      ],
+      "veto_signals": [
+        {
+          "field": "market_size_yi",
+          "op": "lte",
+          "value": 20,
+          "label": "市场规模天花板有限"
+        }
+      ]
+    },
+    {
+      "name": "鼎晖VGC（鼎晖投资）",
+      "stage": "成长期至并购",
+      "bet": "1亿-10亿人民币",
+      "why_you": "赛道趋势明确且你处于头部位置，工科背景团队，需要并购资金或综合平台赋能",
+      "what_you_lack": "需要证明趋势确定性（不接受尚在验证期的早期项目）",
+      "apply_path": "官网 BP 提交；FA 推荐；适合成长期与并购型交易",
+      "match_signals": [
+        {
+          "field": "round_size_wan",
+          "op": "gte",
+          "value": 10000,
+          "label": "融资需求≥1亿"
+        },
+        {
+          "field": "traction.revenue_wan",
+          "op": "gte",
+          "value": 3000,
+          "label": "已成长期（有规模收入）"
+        },
+        {
+          "field": "team.industry_veteran",
+          "op": "eq",
+          "value": true,
+          "label": "团队有工科/产业背景"
+        }
+      ],
+      "veto_signals": [
+        {
+          "field": "traction.revenue_wan",
+          "op": "lte",
+          "value": 0,
+          "label": "尚在验证期的早期项目"
+        }
+      ]
+    },
+    {
+      "name": "金沙江创投",
+      "stage": "天使至A轮",
+      "bet": "500万-5000万人民币",
+      "why_you": "颠覆性创新（而非渐进式改良）、商业化路径清晰、有可验证的基本面",
+      "what_you_lack": "需要有\"基本面\"数据（收入/复购/单位经济模型），不是靠概念驱动",
+      "apply_path": "官网 BP 提交；核心合伙人团队接受直接联系；FA 推荐",
+      "match_signals": [
+        {
+          "field": "track",
+          "op": "in",
+          "value": [
+            "AI",
+            "企业服务",
+            "消费",
+            "医疗科技",
+            "消费互联网"
+          ],
+          "label": "赛道属AI企业服务/消费/医疗科技"
+        },
+        {
+          "field": "round_size_wan",
+          "op": "lte",
+          "value": 5000,
+          "label": "融资需求≤5000万（聚焦早期）"
+        },
+        {
+          "field": "traction.paying_customers",
+          "op": "gte",
+          "value": 3,
+          "label": "有可验证的商业基本面"
+        }
+      ],
+      "veto_signals": [
+        {
+          "field": "track",
+          "op": "in",
+          "value": [
+            "人形机器人",
+            "具身智能"
+          ],
+          "label": "商业化不清的硬科技（其公开表态谨慎）"
+        }
+      ]
+    },
+    {
+      "name": "创新工场",
+      "stage": "天使至B轮",
+      "bet": "500万-5000万人民币",
+      "why_you": "科学家/技术专家转型创业，需要孵化资源（办公空间/技术/PR）而不只是钱",
+      "what_you_lack": "需要展现技术领先性与AI方向的契合度",
+      "apply_path": "官网 BP 提交；创新工场AI工程院资源对接；FA 推荐",
+      "match_signals": [
+        {
+          "field": "track",
+          "op": "in",
+          "value": [
+            "AI",
+            "人工智能",
+            "机器人",
+            "智能硬件",
+            "企业服务",
+            "大模型"
+          ],
+          "label": "赛道属AI/智能硬件/企业服务"
+        },
+        {
+          "field": "team.bigtech_or_topschool",
+          "op": "eq",
+          "value": true,
+          "label": "创始人是科学家/技术专家"
+        },
+        {
+          "field": "round_size_wan",
+          "op": "lte",
+          "value": 5000,
+          "label": "融资需求≤5000万（早中期）"
+        }
+      ],
+      "veto_signals": [
+        {
+          "field": "moat.tech_lead",
+          "op": "eq",
+          "value": false,
+          "label": "无技术深度的纯商业化团队"
+        }
+      ]
+    },
+    {
+      "name": "字节跳动战投（CVC）",
+      "stage": "早期至成长期",
+      "bet": "数亿-10亿元",
+      "why_you": "产品或技术能增强字节的内容生态/AI能力，且具备全球化增长潜力",
+      "what_you_lack": "需要说明与字节业务的协同点（纯财务项目不投）",
+      "apply_path": "通过业务协同切入（先做业务合作）；FA 推荐；战投部直接接触",
+      "match_signals": [
+        {
+          "field": "track",
+          "op": "in",
+          "value": [
+            "AI",
+            "大模型",
+            "内容",
+            "具身智能",
+            "机器人",
+            "消费",
+            "出海"
+          ],
+          "label": "能与字节内容生态/AI能力协同"
+        },
+        {
+          "field": "market_size_yi",
+          "op": "gte",
+          "value": 100,
+          "label": "有全球化用户增长潜力"
+        }
+      ],
+      "veto_signals": [
+        {
+          "field": "track",
+          "op": "in",
+          "value": [
+            "纯硬件",
+            "传统制造"
+          ],
+          "label": "与字节业务无协同"
+        }
+      ]
+    },
+    {
+      "name": "吉利资本（车企CVC）",
+      "stage": "早期至成长期",
+      "bet": "数亿-10亿元",
+      "why_you": "技术能服务智能驾驶/智能制造/智能座舱，或有明确产业落地场景",
+      "what_you_lack": "需要说明与汽车产业链的具体结合点",
+      "apply_path": "通过产业链合作切入（先做供应商/Tier1合作）；FA 推荐",
+      "match_signals": [
+        {
+          "field": "track",
+          "op": "in",
+          "value": [
+            "智能驾驶",
+            "具身智能",
+            "机器人",
+            "低空经济",
+            "eVTOL",
+            "智能制造",
+            "智能座舱"
+          ],
+          "label": "技术服务于智能驾驶/智能制造/具身智能"
+        },
+        {
+          "field": "round_size_wan",
+          "op": "gte",
+          "value": 3000,
+          "label": "融资需求≥3000万"
+        }
+      ],
+      "veto_signals": [
+        {
+          "field": "track",
+          "op": "in",
+          "value": [
+            "纯消费",
+            "文娱",
+            "教育"
+          ],
+          "label": "与汽车产业链无关联"
+        }
+      ]
+    },
+    {
+      "name": "阿里巴巴/阿里云战投（CVC）",
+      "stage": "早期至成长期",
+      "bet": "数亿-10亿元",
+      "why_you": "技术能与阿里云生态/电商物流体系协同，或有明确产业落地场景",
+      "what_you_lack": "需说明与阿里业务的协同点（纯财务项目不投）",
+      "apply_path": "通过业务合作切入（先做阿里云生态伙伴/供应商）；FA推荐",
+      "match_signals": [
+        {
+          "field": "track",
+          "op": "in",
+          "value": [
+            "AI",
+            "大模型",
+            "云计算",
+            "企业服务",
+            "物流",
+            "半导体",
+            "机器人"
+          ],
+          "label": "能与阿里云/电商生态协同"
+        },
+        {
+          "field": "moat.tech_lead",
+          "op": "eq",
+          "value": true,
+          "label": "技术有差异化"
+        }
+      ],
+      "veto_signals": [
+        {
+          "field": "track",
+          "op": "in",
+          "value": [
+            "文娱",
+            "教育",
+            "社区团购"
+          ],
+          "label": "与阿里业务无协同"
+        }
+      ]
+    },
+    {
+      "name": "腾讯投资（CVC）",
+      "stage": "早期至成长期",
+      "bet": "数亿-10亿元",
+      "why_you": "产品能与腾讯社交/游戏/云/内容生态协同，或有To C增长潜力",
+      "what_you_lack": "需说明与腾讯生态的结合点",
+      "apply_path": "通过业务合作切入；FA推荐；腾讯投资官网",
+      "match_signals": [
+        {
+          "field": "track",
+          "op": "in",
+          "value": [
+            "AI",
+            "游戏",
+            "内容",
+            "企业服务",
+            "消费",
+            "云计算",
+            "医疗"
+          ],
+          "label": "能与腾讯生态协同"
+        },
+        {
+          "field": "traction.paying_customers",
+          "op": "gte",
+          "value": 3,
+          "label": "有商业化验证"
+        }
+      ],
+      "veto_signals": [
+        {
+          "field": "track",
+          "op": "in",
+          "value": [
+            "房地产",
+            "传统制造"
+          ],
+          "label": "与腾讯业务无关联"
+        }
+      ]
+    },
+    {
+      "name": "华为哈勃（CVC）",
+      "stage": "早期至成长期",
+      "bet": "数千万-数亿元",
+      "why_you": "半导体/材料/设备等国产替代方向，能进入华为供应链体系",
+      "what_you_lack": "需技术过硬且能与华为供应链对接（哈勃以战略协同为主）",
+      "apply_path": "先进入华为供应链/生态；通过哈勃投资或其合作GP；产业链引荐",
+      "match_signals": [
+        {
+          "field": "track",
+          "op": "in",
+          "value": [
+            "半导体",
+            "集成电路",
+            "芯片",
+            "EDA",
+            "材料",
+            "半导体设备",
+            "光子",
+            "量子"
+          ],
+          "label": "属半导体/材料/设备国产替代方向"
+        },
+        {
+          "field": "moat.patents",
+          "op": "gte",
+          "value": 3,
+          "label": "技术积累扎实（专利）"
+        }
+      ],
+      "veto_signals": [
+        {
+          "field": "track",
+          "op": "in",
+          "value": [
+            "消费",
+            "文娱",
+            "餐饮"
+          ],
+          "label": "非半导体/材料/设备方向"
+        }
+      ]
+    },
+    {
+      "name": "宁德时代（晨道资本）（CVC）",
+      "stage": "早期至成长期",
+      "bet": "数千万-数亿元",
+      "why_you": "新能源/储能/电池材料方向，能与宁德时代产业链协同",
+      "what_you_lack": "需技术能接入电池产业链（上游材料/设备/回收）",
+      "apply_path": "通过产业链合作切入；晨道资本；产业方引荐",
+      "match_signals": [
+        {
+          "field": "track",
+          "op": "in",
+          "value": [
+            "新能源",
+            "储能",
+            "电池",
+            "材料",
+            "锂电",
+            "充电",
+            "碳中和"
+          ],
+          "label": "属新能源/储能/电池产业链"
+        },
+        {
+          "field": "moat.tech_lead",
+          "op": "eq",
+          "value": true,
+          "label": "技术有差异化"
+        }
+      ],
+      "veto_signals": [
+        {
+          "field": "track",
+          "op": "in",
+          "value": [
+            "消费",
+            "文娱",
+            "教育"
+          ],
+          "label": "与电池产业链无关"
+        }
+      ]
+    },
+    {
+      "name": "百度战投（CVC）",
+      "stage": "早期至成长期",
+      "bet": "数千万-数亿元",
+      "why_you": "AI/自动驾驶/大模型方向，能与百度AI生态（文心/萝卜快跑/智能云）协同",
+      "what_you_lack": "需能与百度AI技术栈形成协同",
+      "apply_path": "通过百度AI生态/智能云合作切入；FA推荐；百度风投（BV）",
+      "match_signals": [
+        {
+          "field": "track",
+          "op": "in",
+          "value": [
+            "AI",
+            "人工智能",
+            "自动驾驶",
+            "大模型",
+            "机器人",
+            "智能驾驶",
+            "云计算"
+          ],
+          "label": "属AI/自动驾驶/大模型方向"
+        },
+        {
+          "field": "moat.tech_lead",
+          "op": "eq",
+          "value": true,
+          "label": "技术有差异化"
+        }
+      ],
+      "veto_signals": [
+        {
+          "field": "track",
+          "op": "in",
+          "value": [
+            "消费",
+            "餐饮",
+            "文娱"
+          ],
+          "label": "与百度AI战略无关"
+        }
+      ]
+    }
+  ],
+  "gov": [
+    {
+      "name": "国家集成电路产业投资基金三期（大基金三期）",
+      "level": "国家级",
+      "size": "3440亿元",
+      "reflow": "无传统返投要求",
+      "why_you": "赛道是集成电路全产业链，属于国家最高优先级卡脖子方向，可直投或通过子基金",
+      "what_you_lack": "需要技术达到国内领先/填补空白，纯应用层或贸易型企业够不上",
+      "apply_path": "通过其子基金GP（如中芯聚源、华芯投资等）间接进入；或由地方国资平台推荐",
+      "match_signals": [
+        {
+          "field": "track",
+          "op": "in",
+          "value": [
+            "半导体",
+            "集成电路",
+            "芯片",
+            "EDA",
+            "半导体设备",
+            "材料"
+          ],
+          "label": "赛道属集成电路全产业链"
+        },
+        {
+          "field": "moat.tech_lead",
+          "op": "eq",
+          "value": true,
+          "label": "技术填补国内空白或国内领先"
+        }
+      ],
+      "veto_signals": [
+        {
+          "field": "track",
+          "op": "in",
+          "value": [
+            "消费",
+            "文娱",
+            "社区团购",
+            "餐饮"
+          ],
+          "label": "非集成电路方向"
+        }
+      ]
+    },
+    {
+      "name": "国家中小企业发展基金",
+      "level": "国家级",
+      "size": "357亿元（母基金）",
+      "reflow": "子基金设返投要求",
+      "why_you": "专精特新/科技型中小企业，处于种子期与初创期，是国家级少见的\"投小\"通道",
+      "what_you_lack": "需要有科技型中小企业或专精特新资质，纯服务业较难",
+      "apply_path": "通过其已设子基金GP申请；关注工信部中小企业发展促进中心渠道",
+      "match_signals": [
+        {
+          "field": "qualifications",
+          "op": "contains",
+          "value": "科技型",
+          "label": "具备科技型中小企业资质"
+        },
+        {
+          "field": "qualifications",
+          "op": "contains",
+          "value": "专精特新",
+          "label": "具备专精特新资质"
+        },
+        {
+          "field": "round_size_wan",
+          "op": "lte",
+          "value": 5000,
+          "label": "融资需求≤5000万（投早投小）"
+        }
+      ],
+      "veto_signals": [
+        {
+          "field": "track",
+          "op": "in",
+          "value": [
+            "房地产",
+            "餐饮",
+            "传统零售"
+          ],
+          "label": "非科技型中小企业"
+        }
+      ]
+    },
+    {
+      "name": "国家绿色发展基金",
+      "level": "国家级",
+      "size": "885亿元",
+      "reflow": "子基金1-2倍",
+      "why_you": "碳中和/清洁能源/环保方向，符合国家级绿色产业导向",
+      "what_you_lack": "需要环境效益可量化（碳减排量等）",
+      "apply_path": "通过其子基金GP；生态环境部与地方绿色产业通道推荐",
+      "match_signals": [
+        {
+          "field": "track",
+          "op": "in",
+          "value": [
+            "碳中和",
+            "清洁能源",
+            "环保",
+            "新能源",
+            "储能",
+            "光伏",
+            "节能"
+          ],
+          "label": "赛道属碳中和/清洁能源/环保"
+        },
+        {
+          "field": "moat.tech_lead",
+          "op": "eq",
+          "value": true,
+          "label": "技术有差异化"
+        }
+      ],
+      "veto_signals": [
+        {
+          "field": "track",
+          "op": "in",
+          "value": [
+            "消费",
+            "文娱",
+            "教育"
+          ],
+          "label": "非绿色产业方向"
+        }
+      ]
+    },
+    {
+      "name": "国家科技成果转化引导基金",
+      "level": "国家级",
+      "size": "183.5亿元",
+      "reflow": "子基金约1倍",
+      "why_you": "有高校/科研院所成果转化背景，属于硬科技成果转化项目",
+      "what_you_lack": "需要证明技术源头来自科研机构且已过实验室阶段",
+      "apply_path": "通过其子基金；高校技术转移中心、科技部成果转化通道",
+      "match_signals": [
+        {
+          "field": "moat.patents",
+          "op": "gte",
+          "value": 3,
+          "label": "有科研成果与专利支撑"
+        },
+        {
+          "field": "track",
+          "op": "in",
+          "value": [
+            "硬科技",
+            "半导体",
+            "新材料",
+            "生物医药",
+            "高端装备",
+            "量子",
+            "光子"
+          ],
+          "label": "赛道属硬科技成果转化"
+        }
+      ],
+      "veto_signals": [
+        {
+          "field": "moat.patents",
+          "op": "lte",
+          "value": 0,
+          "label": "无知识产权支撑"
+        }
+      ]
+    },
+    {
+      "name": "国家创业投资引导基金",
+      "level": "国家级",
+      "size": "2025年新设（科技部等七部门）",
+      "reflow": "聚焦种子期/初创期",
+      "why_you": "种子期/初创期硬科技，是2025年国家专门为\"投早投小\"新设的引导基金，窗口期红利",
+      "what_you_lack": "需要处于极早期且赛道属国家科技战略方向",
+      "apply_path": "关注科技部与地方科技主管部门发布的子基金遴选公告；通过GP申请",
+      "match_signals": [
+        {
+          "field": "round_size_wan",
+          "op": "lte",
+          "value": 3000,
+          "label": "处于种子期/初创期"
+        },
+        {
+          "field": "track",
+          "op": "in",
+          "value": [
+            "AI",
+            "半导体",
+            "生物医药",
+            "新能源",
+            "新材料",
+            "量子",
+            "硬科技",
+            "机器人"
+          ],
+          "label": "赛道属国家科技战略方向"
+        }
+      ],
+      "veto_signals": [
+        {
+          "field": "traction.revenue_wan",
+          "op": "gte",
+          "value": 10000,
+          "label": "已过初创期（更适合其他阶段基金）"
+        }
+      ]
+    },
+    {
+      "name": "地方引导基金（通用规则）",
+      "level": "省级/市级",
+      "size": "200亿-3100亿不等",
+      "reflow": "1-1.5倍（2024-2026普遍松绑，口径放宽到经营地/关联企业）",
+      "why_you": "赛道在当地重点产业目录内 + 能满足返投（落地/设子公司/关联企业）",
+      "what_you_lack": "通常卡在\"返投\"——要么迁注册地，要么在当地设实体、招人、下订单",
+      "apply_path": "当地发改委/工信局/科技局；地方国资平台（产投/建投/高新集团）；地方引导基金官网遴选公告",
+      "match_signals": [
+        {
+          "field": "willing_to_relocate",
+          "op": "eq",
+          "value": true,
+          "label": "愿意迁址或到当地设立实体"
+        },
+        {
+          "field": "locate_ok_in_zone",
+          "op": "eq",
+          "value": true,
+          "label": "愿意在当地落地研发/生产基地"
+        },
+        {
+          "field": "track",
+          "op": "in",
+          "value": [
+            "半导体",
+            "集成电路",
+            "生物医药",
+            "新能源",
+            "储能",
+            "AI",
+            "人工智能",
+            "新材料",
+            "低空经济",
+            "机器人",
+            "光子"
+          ],
+          "label": "赛道属当地重点产业目录"
+        },
+        {
+          "field": "rd.rd_ratio_pct",
+          "op": "gte",
+          "value": 4,
+          "label": "研发投入占比≥4%"
+        }
+      ],
+      "veto_signals": [
+        {
+          "field": "track",
+          "op": "in",
+          "value": [
+            "消费",
+            "文娱",
+            "餐饮",
+            "社区团购",
+            "房地产"
+          ],
+          "label": "不在当地产业目录内"
+        },
+        {
+          "field": "willing_to_relocate",
+          "op": "eq",
+          "value": false,
+          "label": "不愿迁址且无法满足返投"
+        }
+      ]
+    },
+    {
+      "name": "合肥产投/建投/高新（合肥模式）",
+      "level": "市级",
+      "size": "3000亿元+",
+      "reflow": "要求本地落地（以投带引：产能/研发/就业）",
+      "why_you": "新能源/显示/半导体/AI方向，且愿意把产能或研发落到合肥，接受\"以投带引\"逻辑",
+      "what_you_lack": "纯财务性项目很难拿；必须能给合肥带来产业链价值",
+      "apply_path": "合肥产投集团/合肥建投/合肥高新集团；合肥市投促局；产业链上下游引荐",
+      "match_signals": [
+        {
+          "field": "track",
+          "op": "in",
+          "value": [
+            "新能源",
+            "储能",
+            "显示",
+            "半导体",
+            "集成电路",
+            "AI",
+            "新能源汽车",
+            "新材料"
+          ],
+          "label": "赛道属合肥重点产业链"
+        },
+        {
+          "field": "local_capacity.can_build",
+          "op": "eq",
+          "value": true,
+          "label": "能在当地建产能/基地"
+        },
+        {
+          "field": "local_capacity.can_hire",
+          "op": "eq",
+          "value": true,
+          "label": "能在当地招人"
+        }
+      ],
+      "veto_signals": [
+        {
+          "field": "local_capacity.can_build",
+          "op": "eq",
+          "value": false,
+          "label": "无法在合肥落地产能"
+        },
+        {
+          "field": "track",
+          "op": "in",
+          "value": [
+            "文娱",
+            "消费",
+            "餐饮"
+          ],
+          "label": "非合肥产业链方向"
+        }
+      ]
+    },
+    {
+      "name": "苏州工业园区引导基金",
+      "level": "园区级",
+      "size": "500亿元+",
+      "reflow": "1-5倍分档（依子基金约定）",
+      "why_you": "生物医药/纳米/集成电路方向，愿意在苏州落地研发或生产基地（苏州IPO数量全国第一，退出通道好）",
+      "what_you_lack": "需要产业协同——要求临床/生产基地或研发中心落地",
+      "apply_path": "苏州工业园区引导基金管理中心；园区招商部门；生物医药产业园（BioBAY）",
+      "match_signals": [
+        {
+          "field": "track",
+          "op": "in",
+          "value": [
+            "生物医药",
+            "医疗器械",
+            "创新药",
+            "纳米",
+            "集成电路",
+            "半导体",
+            "AI"
+          ],
+          "label": "赛道属生物医药/纳米/集成电路"
+        },
+        {
+          "field": "locate_ok_in_zone",
+          "op": "eq",
+          "value": true,
+          "label": "愿意在苏州落地研发/生产基地"
+        }
+      ],
+      "veto_signals": [
+        {
+          "field": "locate_ok_in_zone",
+          "op": "eq",
+          "value": false,
+          "label": "不愿落地苏州"
+        }
+      ]
+    },
+    {
+      "name": "上海三大先导产业母基金",
+      "level": "省级",
+      "size": "890亿元",
+      "reflow": "本地投资为主",
+      "why_you": "集成电路/生物医药/AI三大先导产业，上海重点扶持方向",
+      "what_you_lack": "需要在上海有实体或接受本地投资要求",
+      "apply_path": "上海市国资委/经信委；上海国有资本投资公司；三大先导产业基金遴选通道",
+      "match_signals": [
+        {
+          "field": "track",
+          "op": "in",
+          "value": [
+            "集成电路",
+            "半导体",
+            "生物医药",
+            "医疗器械",
+            "AI",
+            "人工智能",
+            "大模型"
+          ],
+          "label": "赛道属上海三大先导产业"
+        },
+        {
+          "field": "registered_in",
+          "op": "contains",
+          "value": "上海",
+          "label": "注册地在上海"
+        },
+        {
+          "field": "locate_ok_in_zone",
+          "op": "eq",
+          "value": true,
+          "label": "愿意在上海落地"
+        }
+      ],
+      "veto_signals": [
+        {
+          "field": "track",
+          "op": "in",
+          "value": [
+            "消费",
+            "文娱",
+            "餐饮"
+          ],
+          "label": "非三大先导产业"
+        }
+      ]
+    },
+    {
+      "name": "北京市政府投资引导基金/中关村科创基金",
+      "level": "省级",
+      "size": "500亿元 / 300亿元",
+      "reflow": "1-2倍（按子基金约定）",
+      "why_you": "AI/医药/信息技术方向，注册地在北京或愿意落地，符合京津冀协同发展导向",
+      "what_you_lack": "需要北京的产业政策匹配与落地承诺",
+      "apply_path": "北京市发改委/科委；中关村发展集团；各区科创基金",
+      "match_signals": [
+        {
+          "field": "track",
+          "op": "in",
+          "value": [
+            "AI",
+            "人工智能",
+            "大模型",
+            "医药",
+            "生物医药",
+            "信息技术",
+            "半导体",
+            "量子"
+          ],
+          "label": "赛道属AI/医药/信息技术"
+        },
+        {
+          "field": "registered_in",
+          "op": "contains",
+          "value": "北京",
+          "label": "注册地在北京"
+        },
+        {
+          "field": "locate_ok_in_zone",
+          "op": "eq",
+          "value": true,
+          "label": "愿意在北京落地"
+        }
+      ],
+      "veto_signals": [
+        {
+          "field": "registered_in",
+          "op": "in",
+          "value": [
+            "境外",
+            "海外"
+          ],
+          "label": "不适合境内引导基金"
+        }
+      ]
+    },
+    {
+      "name": "深圳市政府引导基金",
+      "level": "市级",
+      "size": "3100亿元",
+      "reflow": "1-1.5倍（天使基金取消返投）",
+      "why_you": "新能源/半导体/生物医药方向，注册地在深圳/大湾区，可对接“20+8”产业集群",
+      "what_you_lack": "需满足返投或接受经营地/关联企业口径",
+      "apply_path": "深圳市引导基金投资有限公司；各区引导基金；市工信局/科创委",
+      "match_signals": [
+        {
+          "field": "registered_in",
+          "op": "contains",
+          "value": "深圳",
+          "label": "注册地在深圳"
+        },
+        {
+          "field": "track",
+          "op": "in",
+          "value": [
+            "新能源",
+            "半导体",
+            "集成电路",
+            "生物医药",
+            "AI",
+            "机器人",
+            "低空经济"
+          ],
+          "label": "赛道属深圳重点产业"
+        }
+      ],
+      "veto_signals": [
+        {
+          "field": "willing_to_relocate",
+          "op": "eq",
+          "value": false,
+          "label": "不在深圳且不愿落地"
+        }
+      ]
+    },
+    {
+      "name": "广州产业投资母基金/广州天使母基金",
+      "level": "市级",
+      "size": "3000亿元+",
+      "reflow": "1.5-2倍",
+      "why_you": "新能源汽车/半导体/AI方向，可落地广州或大湾区，天使母基金容忍亏损",
+      "what_you_lack": "需产业协同与落地承诺",
+      "apply_path": "广州产投集团；广州科技创新母基金；市工信局/科技局",
+      "match_signals": [
+        {
+          "field": "track",
+          "op": "in",
+          "value": [
+            "新能源汽车",
+            "半导体",
+            "AI",
+            "生物医药",
+            "新材料",
+            "储能"
+          ],
+          "label": "赛道属广州重点产业"
+        },
+        {
+          "field": "locate_ok_in_zone",
+          "op": "eq",
+          "value": true,
+          "label": "愿意在广州落地"
+        }
+      ],
+      "veto_signals": [
+        {
+          "field": "locate_ok_in_zone",
+          "op": "eq",
+          "value": false,
+          "label": "不愿落地广州"
+        }
+      ]
+    },
+    {
+      "name": "杭州科创基金",
+      "level": "市级",
+      "size": "300亿元+",
+      "reflow": "本地落地",
+      "why_you": "数字经济/AI/生物医药方向，可落杭州，符合城西科创大走廊定位",
+      "what_you_lack": "需落地研发或业务实体",
+      "apply_path": "杭州市科技局；杭州资本；各区科创基金",
+      "match_signals": [
+        {
+          "field": "track",
+          "op": "in",
+          "value": [
+            "数字经济",
+            "AI",
+            "人工智能",
+            "大模型",
+            "生物医药",
+            "云计算",
+            "机器人"
+          ],
+          "label": "赛道属杭州重点方向"
+        },
+        {
+          "field": "locate_ok_in_zone",
+          "op": "eq",
+          "value": true,
+          "label": "愿意在杭州落地"
+        }
+      ],
+      "veto_signals": [
+        {
+          "field": "locate_ok_in_zone",
+          "op": "eq",
+          "value": false,
+          "label": "不愿落地杭州"
+        }
+      ]
+    },
+    {
+      "name": "湖北省引导基金/长江产业投资集团",
+      "level": "省级",
+      "size": "400亿元+",
+      "reflow": "本地落地",
+      "why_you": "光电子/汽车/生命健康方向，可落地湖北（光谷产业链完整）",
+      "what_you_lack": "需产业协同与落地",
+      "apply_path": "长江产业投资集团；湖北省发改委/科技厅；光谷相关园区",
+      "match_signals": [
+        {
+          "field": "track",
+          "op": "in",
+          "value": [
+            "光电子",
+            "光子",
+            "汽车",
+            "生命健康",
+            "生物医药",
+            "半导体",
+            "新材料"
+          ],
+          "label": "赛道属湖北重点产业"
+        },
+        {
+          "field": "locate_ok_in_zone",
+          "op": "eq",
+          "value": true,
+          "label": "愿意在湖北落地"
+        }
+      ],
+      "veto_signals": [
+        {
+          "field": "locate_ok_in_zone",
+          "op": "eq",
+          "value": false,
+          "label": "不愿落地湖北"
+        }
+      ]
+    },
+    {
+      "name": "成都引导基金/成都产业投资集团",
+      "level": "市级",
+      "size": "500亿元+",
+      "reflow": "本地落地",
+      "why_you": "电子信息/生物医药/新经济方向，可落地成都",
+      "what_you_lack": "需落地实体与产业协同",
+      "apply_path": "成都产业投资集团；成都市科技局/经信局；高新区",
+      "match_signals": [
+        {
+          "field": "track",
+          "op": "in",
+          "value": [
+            "电子信息",
+            "集成电路",
+            "生物医药",
+            "AI",
+            "新经济",
+            "航空航天"
+          ],
+          "label": "赛道属成都重点产业"
+        },
+        {
+          "field": "locate_ok_in_zone",
+          "op": "eq",
+          "value": true,
+          "label": "愿意在成都落地"
+        }
+      ],
+      "veto_signals": [
+        {
+          "field": "locate_ok_in_zone",
+          "op": "eq",
+          "value": false,
+          "label": "不愿落地成都"
+        }
+      ]
+    },
+    {
+      "name": "国家制造业转型升级基金",
+      "level": "国家级",
+      "size": "1472亿元",
+      "reflow": "无传统返投比例要求（不设地域限制，通过投资行为带动产业布局）",
+      "why_you": "赛道属制造业重点方向（高端数控机床和机器人、航空航天装备、轨道交通装备、节能与新能源汽车、电力装备、农机装备、新材料、高性能医疗器械），可直投或经子基金进入，重点支持「专精特新」企业和制造业单项冠军",
+      "what_you_lack": "需为制造业细分龙头（卡片口径：营收 10 亿+）或「专精特新」小巨人、制造业单项冠军；纯软件/互联网企业、轻资产服务业、天使/Pre-A 轮早期项目不在其射程",
+      "apply_path": "基金官网 www.cm-fund.com 或管理团队直接对接；无固定窗口期，常年接受项目推荐",
+      "match_signals": [
+        {
+          "field": "track",
+          "op": "in",
+          "value": [
+            "高端装备",
+            "工业母机",
+            "数控机床",
+            "机器人",
+            "航空航天",
+            "轨道交通装备",
+            "新能源汽车",
+            "电力装备",
+            "农机装备",
+            "新材料",
+            "高性能医疗器械",
+            "医疗器械"
+          ],
+          "label": "赛道属制造业重点方向（高端装备/新材料/新能源汽车/电力装备等）"
+        },
+        {
+          "field": "qualifications",
+          "op": "in",
+          "value": [
+            "专精特新",
+            "单项冠军",
+            "小巨人"
+          ],
+          "label": "已获「专精特新」或制造业单项冠军认定"
+        },
+        {
+          "field": "traction.revenue_wan",
+          "op": "gte",
+          "value": 100000,
+          "label": "营收达 10 亿+（卡片所列制造业细分龙头量级）"
+        },
+        {
+          "field": "moat.tech_lead",
+          "op": "eq",
+          "value": true,
+          "label": "细分领域具有突出技术优势"
+        }
+      ],
+      "veto_signals": [
+        {
+          "field": "track",
+          "op": "in",
+          "value": [
+            "消费",
+            "文娱",
+            "餐饮",
+            "互联网",
+            "软件",
+            "轻资产服务"
+          ],
+          "label": "非制造业领域（纯软件/互联网、轻资产服务业）"
+        }
+      ]
+    },
+    {
+      "name": "国家军民融合产业投资基金",
+      "level": "国家级",
+      "size": "一期510亿元 + 二期596亿元（合计超1100亿元）",
+      "reflow": "无传统返投比例要求（产业投资导向，覆盖全国，优先支持军民融合属性项目）",
+      "why_you": "赛道属军民融合方向（航空发动机、卫星通信、无人机、军工电子、新材料、军民两用技术转化；二期新增人工智能、量子技术），直投为主、辅以子基金",
+      "what_you_lack": "需具备军民融合属性（军转民/民参军）与核心技术或资质（军工资质、国防专利等）；纯民用无军民融合属性、未取得军工资质的民参军企业、早期种子项目够不上",
+      "apply_path": "通过基金管理人直接对接，或经股东单位（军工央企、地方政府引导基金）推荐；无固定申报窗口",
+      "match_signals": [
+        {
+          "field": "track",
+          "op": "in",
+          "value": [
+            "航空发动机",
+            "航空航天",
+            "航空",
+            "航天",
+            "卫星",
+            "无人机",
+            "军工",
+            "军民融合",
+            "国防",
+            "雷达",
+            "兵器",
+            "船舶",
+            "人工智能",
+            "量子"
+          ],
+          "label": "赛道属军民融合方向（航空/航天/无人机/军工电子/新材料等）"
+        },
+        {
+          "field": "qualifications",
+          "op": "in",
+          "value": [
+            "军工资质",
+            "国防专利",
+            "武器装备"
+          ],
+          "label": "具备军工资质或国防专利等资质"
+        },
+        {
+          "field": "moat.tech_lead",
+          "op": "eq",
+          "value": true,
+          "label": "具备军民两用核心技术"
+        }
+      ],
+      "veto_signals": [
+        {
+          "field": "track",
+          "op": "in",
+          "value": [
+            "消费",
+            "文娱",
+            "餐饮",
+            "教育",
+            "房地产"
+          ],
+          "label": "纯民用、无军民融合属性"
+        }
+      ]
+    },
+    {
+      "name": "中央企业结构调整基金",
+      "level": "国家级",
+      "size": "1310亿元",
+      "reflow": "无传统返投比例要求（投资以央企及关联企业为主）",
+      "why_you": "服务于央企混改、战略性重组和专业化整合，重点支持央企「两非」业务剥离和「两资」处置，以及战略性新兴产业投资",
+      "what_you_lack": "需为央企或央企控股企业，或与央企有深度产业协同关系；与央企无关联的独立民企、早期创业企业、非战略性产业够不上",
+      "apply_path": "通过国新基金或央企集团内部推荐；无公开申报渠道",
+      "match_signals": [
+        {
+          "field": "qualifications",
+          "op": "in",
+          "value": [
+            "央企",
+            "国企",
+            "国有控股",
+            "国资"
+          ],
+          "label": "央企/央企控股企业，或与央企有深度产业协同关系"
+        },
+        {
+          "field": "track",
+          "op": "in",
+          "value": [
+            "战略性新兴产业",
+            "央企混改",
+            "专业化整合"
+          ],
+          "label": "处于央企混改/专业化整合或战略性新兴产业投资范围内"
+        }
+      ],
+      "veto_signals": [
+        {
+          "field": "track",
+          "op": "in",
+          "value": [
+            "消费",
+            "文娱",
+            "餐饮",
+            "教育",
+            "房地产"
+          ],
+          "label": "非战略性产业"
+        }
+      ]
+    },
+    {
+      "name": "无锡引导基金",
+      "level": "市级",
+      "size": "省级专项基金首批落地100亿元（集成电路专项母基金50亿元 + 生物医药专项母基金40亿元 + 未来产业天使基金10亿元）",
+      "reflow": "约 1-1.5 倍（省级专项基金要求项目在无锡落地）",
+      "why_you": "赛道属无锡重点产业（集成电路、生物医药、物联网、新能源、人工智能），母基金+直投并行，天使基金直投早期项目",
+      "what_you_lack": "需在无锡注册或有落地计划（集成电路、生物医药企业优先）；非 IC/生物医药/物联网方向、不愿在无锡注册的够不上",
+      "apply_path": "无锡市发改委；无锡产投集团；各子基金管理人",
+      "match_signals": [
+        {
+          "field": "track",
+          "op": "in",
+          "value": [
+            "集成电路",
+            "半导体",
+            "生物医药",
+            "创新药",
+            "医疗器械",
+            "物联网",
+            "新能源",
+            "人工智能"
+          ],
+          "label": "赛道属无锡重点产业（集成电路/生物医药/物联网/新能源/AI）"
+        },
+        {
+          "field": "locate_ok_in_zone",
+          "op": "eq",
+          "value": true,
+          "label": "愿意在无锡落地研发/生产基地"
+        },
+        {
+          "field": "willing_to_relocate",
+          "op": "eq",
+          "value": true,
+          "label": "愿意迁址或在无锡注册"
+        }
+      ],
+      "veto_signals": [
+        {
+          "field": "locate_ok_in_zone",
+          "op": "eq",
+          "value": false,
+          "label": "不愿在无锡落地"
+        },
+        {
+          "field": "track",
+          "op": "in",
+          "value": [
+            "消费",
+            "文娱",
+            "餐饮"
+          ],
+          "label": "非无锡重点产业方向"
+        }
+      ]
+    },
+    {
+      "name": "青岛引导基金",
+      "level": "市级",
+      "size": "百亿级（市级引导基金体系）",
+      "reflow": "约 1.5 倍（2025 年后有松绑趋势）",
+      "why_you": "赛道属青岛重点产业（智能制造、海洋经济、轨道交通、新能源、半导体、生物医药），青岛在海洋科技领域具有独特优势",
+      "what_you_lack": "需在青岛注册或有落地计划；非青岛重点产业方向、纯消费/服务业够不上",
+      "apply_path": "青岛市发改委；青岛创新投资集团；各子基金管理人",
+      "match_signals": [
+        {
+          "field": "track",
+          "op": "in",
+          "value": [
+            "智能制造",
+            "海洋经济",
+            "海洋科技",
+            "轨道交通",
+            "新能源",
+            "半导体",
+            "集成电路",
+            "生物医药"
+          ],
+          "label": "赛道属青岛重点产业（智能制造/海洋经济/轨道交通等）"
+        },
+        {
+          "field": "locate_ok_in_zone",
+          "op": "eq",
+          "value": true,
+          "label": "愿意在青岛落地研发/生产基地"
+        }
+      ],
+      "veto_signals": [
+        {
+          "field": "track",
+          "op": "in",
+          "value": [
+            "消费",
+            "文娱",
+            "餐饮"
+          ],
+          "label": "非青岛重点产业方向"
+        }
+      ]
+    },
+    {
+      "name": "安徽省级引导基金",
+      "level": "省级",
+      "size": "2000亿元（省级母基金下设14支主题基金）",
+      "reflow": "约 1-1.5 倍（合肥市层面以项目落地为核心条件）",
+      "why_you": "赛道属安徽战新产业方向（新能源汽车、集成电路、新型显示、人工智能、量子信息、先进光伏及新型储能、生物医药、智能家电），省级母基金以子基金方式运作",
+      "what_you_lack": "需在安徽注册或有落地计划（合肥模式下项目落地是核心条件），并有产业链带动效应；非战新产业方向、不愿迁入安徽的够不上",
+      "apply_path": "安徽省发改委；合肥产投集团；各子基金管理人",
+      "match_signals": [
+        {
+          "field": "track",
+          "op": "in",
+          "value": [
+            "新能源汽车",
+            "集成电路",
+            "半导体",
+            "新型显示",
+            "人工智能",
+            "量子信息",
+            "量子",
+            "光伏",
+            "储能",
+            "生物医药",
+            "智能家电"
+          ],
+          "label": "赛道属安徽战新产业方向（新能源汽车/集成电路/新型显示/AI 等）"
+        },
+        {
+          "field": "locate_ok_in_zone",
+          "op": "eq",
+          "value": true,
+          "label": "愿意在安徽（尤其合肥）落地研发/生产基地"
+        },
+        {
+          "field": "local_capacity.can_build",
+          "op": "eq",
+          "value": true,
+          "label": "能在当地建产能/基地（有产业链带动效应）"
+        }
+      ],
+      "veto_signals": [
+        {
+          "field": "track",
+          "op": "in",
+          "value": [
+            "消费",
+            "文娱",
+            "餐饮"
+          ],
+          "label": "非安徽重点产业方向"
+        },
+        {
+          "field": "willing_to_relocate",
+          "op": "eq",
+          "value": false,
+          "label": "不愿迁入安徽且不满足落地条件"
+        }
+      ]
+    }
+  ]
+}

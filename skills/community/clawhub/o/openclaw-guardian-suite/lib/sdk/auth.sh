@@ -37,11 +37,6 @@ _oc_check_deps() {
   return 0
 }
 
-_oc_is_interactive() {
-  # 返回 0（真）表示有真实终端，返回 1 表示非交互（Agent/CI/管道）
-  [ -t 0 ] && [ -t 1 ]
-}
-
 _oc_get_pay_hint() {
   # 向服务器请求推荐支付方式（服务器根据 Accept-Language + IP 自动判断）
   local hint
@@ -120,23 +115,19 @@ oc_require_license() {
     currency="USDT"
   fi
 
-  if _oc_is_interactive; then
-    read -r -t 30 -p "  按 Enter 确认，或输入 s 手动切换支付方式: " _switch_choice || true
-    if [ "${_switch_choice:-}" = "s" ]; then
-      echo "  请选择支付方式："
-      echo "    1) 支付宝（人民币）"
-      echo "    2) 数字钱包 USDT（CryptoMus）"
-      read -r -t 30 -p "  请输入 1 或 2 [默认 1]: " _manual_choice || true
-      if [ "${_manual_choice:-1}" = "2" ]; then
-        pay_method="crypto"
-        currency="USDT"
-      else
-        pay_method="alipay"
-        currency="CNY"
-      fi
+  read -r -p "  按 Enter 确认，或输入 s 手动切换支付方式: " _switch_choice
+  if [ "${_switch_choice:-}" = "s" ]; then
+    echo "  请选择支付方式："
+    echo "    1) 支付宝（人民币）"
+    echo "    2) 数字钱包 USDT（CryptoMus）"
+    read -r -p "  请输入 1 或 2 [默认 1]: " _manual_choice
+    if [ "${_manual_choice:-1}" = "2" ]; then
+      pay_method="crypto"
+      currency="USDT"
+    else
+      pay_method="alipay"
+      currency="CNY"
     fi
-  else
-    echo "  (非交互环境，使用默认支付方式：$pay_method)"
   fi
 
   # ── 4. 创建订单 ─────────────────────────────────────────
@@ -183,18 +174,6 @@ oc_require_license() {
 
   # ── 5. 展示支付信息 ─────────────────────────────────────
   echo ""
-  echo "  ╔══════════════════════════════════════════════════════════════╗"
-  echo "  ║   ⚠️  AI AGENT / 自动化脚本 必读                            ║"
-  echo "  ║                                                              ║"
-  echo "  ║   此步骤需要【人类操作】—— AI 无法自行完成支付。            ║"
-  echo "  ║   请将下方付款信息（金额 + 二维码/地址）完整发给您的        ║"
-  echo "  ║   Owner，由人类扫码或转账后，脚本将自动继续，请勿重试。    ║"
-  echo "  ║                                                              ║"
-  echo "  ║   HUMAN ACTION REQUIRED. You CANNOT pay this yourself.      ║"
-  echo "  ║   Send the payment info below to your human operator and    ║"
-  echo "  ║   wait — the script will auto-proceed after confirmation.   ║"
-  echo "  ╚══════════════════════════════════════════════════════════════╝"
-  echo ""
   if [ "$pay_method" = "alipay" ]; then
     local qr_content pay_url
     qr_content=$(_oc_json_get "$req_resp" "qr_content")
@@ -211,10 +190,8 @@ oc_require_license() {
       echo "  付款链接（浏览器打开）："
       echo "  $pay_url"
       if command -v open &>/dev/null && [ -n "$pay_url" ]; then
-        if _oc_is_interactive; then
-          read -r -t 15 -p "  是否自动打开浏览器？[Y/n] " ob || true
-          [ "${ob:-Y}" != "n" ] && [ "${ob:-Y}" != "N" ] && open "$pay_url" 2>/dev/null &
-        fi
+        read -r -p "  是否自动打开浏览器？[Y/n] " ob
+        [ "${ob:-Y}" != "n" ] && [ "${ob:-Y}" != "N" ] && open "$pay_url" 2>/dev/null &
       fi
     fi
 
@@ -241,7 +218,6 @@ oc_require_license() {
   # ── 6. 轮询等待（3s 间隔，最长 10min / 200次）────────────
   echo ""
   echo "  ⏳ 等待支付确认（最长 10 分钟）... Ctrl+C 可取消"
-  echo "  💡 AI Agent：请确认已将付款信息转发给您的 Owner，等待其完成支付即可，请勿中断。"
   local i=0
   while [ $i -lt 200 ]; do
     local st_resp status

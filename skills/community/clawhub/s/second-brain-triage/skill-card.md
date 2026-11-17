@@ -1,40 +1,52 @@
-## Description: <br>
-Intelligent information triage system based on Tiago Forte's PARA method (Projects/Areas/Resources/Archive) for automatic categorization and priority scoring. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Intelligent information triage system based on Tiago Forte's PARA method (Projects/Areas/Resources/Archive) for automatic categorization and priority scoring.
 
-## Publisher: <br>
-[harrylabsj](https://clawhub.ai/user/harrylabsj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[harrylabsj](https://clawhub.ai/user/harrylabsj)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and knowledge workers use this skill to classify notes, tasks, links, and saved content into PARA categories, score urgency, detect related items, and export triage reports.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: CSV exports generated from untrusted notes may be unsafe to open in spreadsheet software if CSV escaping is not fixed.
+
+Mitigation: Prefer JSON or Markdown exports for untrusted notes, or review and sanitize CSV content before opening it in spreadsheet software.
+
+Risk: The skill primarily emits Chinese-language triage labels and recommendations.
+
+Mitigation: Confirm that Chinese-language output is acceptable for the intended users before deployment.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Employees, external users, developers, and agents use this skill to organize notes, tasks, bookmarks, and exported content into PARA categories, assign urgency scores, detect related items, and produce triage reports. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Private notes, tasks, bookmarks, or exported content can be processed locally and included in generated reports. <br>
-Mitigation: Review selected inputs and output destinations before running the CLI, and treat generated reports as containing the same sensitivity as the source material. <br>
-Risk: Automatic PARA categories, urgency scores, and relatedness suggestions may be incomplete or incorrect for user-specific workflows. <br>
-Mitigation: Review triage results before acting on them or importing them into a knowledge-management system. <br>
+**Output Format:** [Markdown, JSON, CSV, JavaScript examples, and CLI commands]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/harrylabsj/second-brain-triage) <br>
+**Other Properties Related to Output:** [Reports include content type, PARA category, urgency score, tags, relatedness signals, and recommended actions.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, CSV, Guidance] <br>
-**Output Format:** [Structured triage summaries and optional JSON, Markdown, or CSV reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes PARA category labels, urgency scores, recommended actions, metadata, category statistics, and relatedness summaries when enabled.] <br>
+1.1.1 (source: server release metadata; artifact frontmatter v1.0.0 and package.json 1.0.1 differ)
 
-## Skill Version(s): <br>
-1.1.1 (source: server release evidence; artifact frontmatter states v1.0.0 and package metadata states 1.0.1) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,60 @@
-## Description: <br>
-Academic writing assistance skill for paragraph writing, language polishing, grammar checking, academic style optimization, and citation format checking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Academic writing assistance skill for paragraph writing, language polishing, grammar checking, academic style optimization, and citation format checking.
 
-## Publisher: <br>
-[earthwalking](https://clawhub.ai/user/earthwalking) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[earthwalking](https://clawhub.ai/user/earthwalking)
 
-## Use Case: <br>
-Students, researchers, and academic writers use this skill to draft academic paragraphs, polish prose, check grammar and style, review formatting, and format citations across common academic styles. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated citation, reference, or DOI guidance may be incomplete or inaccurate. <br>
-Mitigation: Verify citations, references, and DOI claims against authoritative sources before relying on them. <br>
-Risk: The artifact describes running an academic_writing.py script, but the release evidence only includes prompt and configuration files. <br>
-Mitigation: Do not run any separate academic_writing.py script unless that code is separately reviewed and trusted. <br>
-Risk: Broad writing-related triggers may activate the skill for generic writing requests. <br>
-Mitigation: Confirm the request is academic-writing related before applying the skill's citation or style guidance. <br>
+## Use Case:
 
+External users and developers use this skill to draft academic paragraphs, polish manuscripts, check academic style and formatting, and format citations across APA, AMA, Vancouver, IEEE, and Chicago styles.
 
-## Reference(s): <br>
-- [APA Style](https://apastyle.apa.org/) <br>
-- [AMA Manual of Style](https://www.amamanualofstyle.com/) <br>
-- [IEEE Author Center](https://ieeeauthorcenter.ieee.org/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown reports and revised academic text with citation and formatting feedback] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include polished text, modification suggestions, format-check reports, citation lists, and style-specific guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and artifact metadata) <br>
+Risk: Broad trigger keywords may activate the skill during ordinary writing requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review activation keywords before deployment and narrow them when the skill should only handle academic writing requests.
+
+Risk: Example Python commands reference an academic_writing.py script that is not included in the artifact.
+
+Mitigation: Treat the commands as illustrative unless the referenced script is supplied and reviewed separately.
+
+Risk: Chinese-first content may surprise users expecting English-only academic writing guidance.
+
+Mitigation: Tell users the skill is Chinese-first or adapt the skill text and examples for the intended audience before release.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/earthwalking/skills/academic-writing-assistant)
+- [APA Style](https://apastyle.apa.org/)
+- [AMA Manual of Style](https://www.amamanualofstyle.com/)
+- [IEEE Author Center](https://ieeeauthorcenter.ieee.org/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown reports, revised text, citation lists, and writing guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include format checks, revision rationale, citation completeness notes, and style-specific recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,37 +1,50 @@
-## Description: <br>
-Tracks and updates RPG-style XP, stats, levels, streaks, and achievements from real-life task completions with detailed XP calculations and bonuses. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tracks and updates RPG-style XP, stats, levels, streaks, and achievements based on real-life task completion.
 
-## Publisher: <br>
-[ryudi84](https://clawhub.ai/user/ryudi84) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ryudi84](https://clawhub.ai/user/ryudi84)
 
-## Use Case: <br>
-Individuals and productivity-focused agent users use this skill to gamify completed real-life tasks by recording progress, awarding XP, updating stat levels, tracking streaks, and surfacing achievements. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Accidental or unclear task logging can create incorrect XP, streak, achievement, or history entries. <br>
-Mitigation: Use clear wording when logging completed tasks and review or reset data/character.json when an entry should not affect progress. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ryudi84/sovereign-rpg-xp-engine) <br>
+## Use Case:
 
+External users and agents use this skill to turn completed real-life tasks into RPG-style progress updates, including XP awards, stat progression, streaks, and achievements.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files] <br>
-**Output Format:** [Markdown progress message with XP breakdowns, streak details, achievements, and JSON character-state updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Maintains local character state in data/character.json when available.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may retain personal progress data locally, including name, progress, streaks, achievements, and completed-task history.
+
+Mitigation: Review, delete, or reset data/character.json when that local history should no longer be retained.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ryudi84/skills/sovereign-rpg-xp-engine)
+- [Publisher profile](https://clawhub.ai/user/ryudi84)
+- [Artifact skill definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Configuration, Guidance]
+
+**Output Format:** [Markdown-style progress update with XP breakdowns, stat progress, streak status, and achievement notices]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May update local character state in data/character.json when used by an agent with filesystem access.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

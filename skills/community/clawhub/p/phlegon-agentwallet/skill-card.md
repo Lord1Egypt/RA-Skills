@@ -1,41 +1,62 @@
-## Description: <br>
-AgentWallet is a secure multi-chain wallet skill for AI agents that creates wallets, checks balances, and signs or broadcasts transactions across EVM chains, Solana, and TON while keeping private keys in the vault process. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AgentWallet is a secure multi-chain wallet skill for AI agents to create wallets, check balances, sign and broadcast transactions across EVM chains, Solana, and TON while keeping private keys in the vault process.
 
-## Publisher: <br>
-[Phlegonlabs](https://clawhub.ai/user/Phlegonlabs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[phlegonlabs](https://clawhub.ai/user/phlegonlabs)
 
-## Use Case: <br>
-External developers and operators use AgentWallet to let an AI agent manage multi-chain wallet workflows through the agentwallet CLI, including wallet creation, balance checks, transaction signing, x402 payment signing, and token transfers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can enable an AI agent to sign or send real blockchain payments without clear per-transaction approval safeguards. <br>
-Mitigation: Require explicit user approval for every transfer or signature, verify the npm package and source before use, and keep funds limited and segregated. <br>
-Risk: Unlocked wallet sessions or retained tokens can authorize wallet operations beyond the intended action. <br>
-Mitigation: Use short unlock sessions, pass session tokens instead of passwords, store tokens only as needed for the current task, and lock the wallet immediately afterward. <br>
+## Use Case:
 
+Developers and agent operators use AgentWallet to automate wallet creation, balance checks, transaction signing, transfers, x402 payment signing, and session-based wallet operations across supported chains.
 
-## Reference(s): <br>
-- [AgentWallet ClawHub page](https://clawhub.ai/Phlegonlabs/phlegon-agentwallet) <br>
-- [AgentWallet repository link from metadata](https://github.com/user/agentwallet) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [CLI-oriented guidance for JSON output, session tokens, wallet operations, transaction signing, and transfer execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Agents can sign or transfer assets with high-impact financial consequences.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit approval for each transaction and independently verify recipient, chain, token, and amount before signing or broadcasting.
+
+Risk: Blind signing or opaque transaction payloads can authorize unintended actions.
+
+Mitigation: Decode and review transaction intent before signing, and reject requests whose recipient, amount, network, or contract action cannot be verified.
+
+Risk: Long-lived sessions or exposed tokens can extend wallet authority beyond the intended task.
+
+Mitigation: Use short token lifetimes, keep credentials out of command arguments, and lock the wallet session immediately after use.
+
+Risk: Installing an unpinned wallet CLI package can introduce supply-chain risk.
+
+Mitigation: Use a pinned or verified package release and review the package before installing it in environments with real funds.
+
+## Reference(s):
+
+- [AgentWallet ClawHub skill page](https://clawhub.ai/phlegonlabs/skills/phlegon-agentwallet)
+- [AgentWallet source repository (declared metadata)](https://github.com/user/agentwallet)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON and bash command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces agent-facing CLI procedures and cautions; wallet commands can return JSON when --json is used.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.release.version and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

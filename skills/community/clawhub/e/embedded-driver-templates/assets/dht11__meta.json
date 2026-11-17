@@ -1,0 +1,8 @@
+{
+  "name": "dht11",
+  "desc": "DHT11 温湿度传感器驱动（可移植 C99，适配层分离）",
+  "version": "1.0.0",
+  "verified": "C 逻辑测试 13 项断言全通过（9 款合计 107 项 0 失败，gcc 16.2.0 -Wall -Wextra -O1 逐款零警告，2026-10-27 实跑）；未做上板实测",
+  "usage": "复制 dht11.h/dht11.c/dht11_port.h 进工程，在 dht11_port.h 按注释填 5 个接口（DWT 微秒延时是关键）",
+  "common_pitfalls": "delay_us 精度不足→读超时；上拉电阻缺失→全 FF；1 秒内多次读取→失败"
+}

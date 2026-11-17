@@ -1,44 +1,57 @@
-## Description: <br>
-AI-powered marketing asset generation workflow. Combines DuckDuckGo design inspiration search, Gemini Nano Banana Pro image generation, Feishu Drive cloud storage, and Slack team notifications. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-powered marketing asset generation workflow that combines DuckDuckGo design inspiration search, Gemini Nano Banana Pro image generation, Feishu Drive cloud storage, and Slack team notifications.
 
-## Publisher: <br>
-[terrycarter1985](https://clawhub.ai/user/terrycarter1985) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[terrycarter1985](https://clawhub.ai/user/terrycarter1985)
 
-## Use Case: <br>
-Marketing teams and agent users use this skill to research campaign inspiration, generate marketing images, store the assets in Feishu Drive, and notify a configured Slack channel. It is intended for automated asset workflows such as campaign banners, launch announcements, scheduled generation, event-triggered creation, localization, and A/B test variants. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Campaign prompts, generated images, Feishu file links, and research snippets are processed by external services and shared to configured Feishu and Slack destinations. <br>
-Mitigation: Install only when this external-sharing workflow is intended, avoid confidential unreleased material unless those services are approved for it, and use a narrow Slack channel and Feishu folder. <br>
-Risk: The workflow requires multiple service credentials for Gemini, Feishu, and Slack. <br>
-Mitigation: Use least-privilege API keys and bot tokens, store secrets outside source files, and rotate credentials if they are exposed. <br>
-Risk: Dependency versions are lower-bounded rather than pinned, which can change runtime behavior in production. <br>
-Mitigation: Pin and review dependency versions before production deployment. <br>
+## Use Case:
 
+Marketing teams and automation developers use this skill to research campaign design inspiration, generate marketing images, upload approved assets to Feishu Drive, and notify collaborators in Slack.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/terrycarter1985/marketing-asset-generator) <br>
-- [README](README.md) <br>
-- [Skill documentation](SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, API Calls, Text, Configuration] <br>
-**Output Format:** [PNG image files, Feishu file links, Slack notification messages, and Python dictionary workflow results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires configured Google Gemini, Feishu, and Slack credentials; generated assets and research snippets may be sent to external services and shared to the configured folder and channel.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Readable local files may be uploaded to Feishu Drive or Slack if arbitrary file paths are passed to upload methods.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Restrict uploads to the generated asset directory, avoid arbitrary file paths, and require explicit confirmation before sharing files to configured external channels.
+
+Risk: Generated marketing assets may be shared with the wrong Feishu folder or Slack channel if credentials or channel settings are misconfigured.
+
+Mitigation: Use a dedicated workspace, verify destination folder and channel IDs before execution, and keep credentials scoped to the intended marketing workflow.
+
+Risk: Unpinned dependencies may change behavior across installations.
+
+Mitigation: Pin dependency versions during deployment and review updates before reinstalling or running the workflow.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/terrycarter1985/skills/marketing-asset-generator)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Text, Configuration, Guidance]
+
+**Output Format:** [Python result object with generated asset file paths, Feishu links, and inspiration notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires configured Gemini, Feishu, and Slack credentials before use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

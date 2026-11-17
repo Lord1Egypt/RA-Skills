@@ -1,0 +1,13 @@
+{
+ "video": "behnken.mp4",
+ "campaign": "campaign.json",
+ "style": {"accent": "#FFD43B"},
+ "clips": [
+  {"id": "01", "account": "TikTok", "start": 488.6, "end": 519.7, "punch": true, "snap": false,
+   "hook": "Astronauts live Groundhog Day on purpose", "reframe": "auto"},
+  {"id": "02", "account": "Reels", "start": 213.0, "end": 234.4, "punch": true,
+   "hook": "Save the crew, not the mission", "reframe": "auto"},
+  {"id": "03", "account": "Shorts", "start": 70.9, "end": 99.95, "punch": true,
+   "hook": "His goal: future crews forget his name", "reframe": "auto"}
+ ]
+}

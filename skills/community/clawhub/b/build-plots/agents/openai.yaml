@@ -1,0 +1,4 @@
+interface:
+  display_name: "📊 Build Plots"
+  short_description: "Publication-ready charts with clear stories"
+  default_prompt: "Use $build-plots to turn this dataset into a clear, publication-ready chart and export PNG and vector PDF."

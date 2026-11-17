@@ -1,0 +1,52 @@
+{
+  "skill": "elliott-wave",
+  "version": "0.1.0",
+  "source_book": "期货市场技术分析 — 约翰·墨菲",
+  "darwin_compatible": true,
+  "test_cases": [
+    {
+      "id": "should-trigger-01",
+      "type": "should_trigger",
+      "prompt": "帮我数一下这只股票现在到底是第几浪？",
+      "expected_behavior": "激活 elliott-wave，讲数浪规则（5-3结构、4浪不重叠、调整必三浪）并强调须协同其它工具",
+      "notes": "数浪"
+    },
+    {
+      "id": "should-trigger-02",
+      "type": "should_trigger",
+      "prompt": "这波上涨中间那段特别长，是不是延长浪？",
+      "expected_behavior": "激活 elliott-wave，解释延长浪常出现在第3浪及数浪约束",
+      "notes": "延长浪"
+    },
+    {
+      "id": "should-trigger-03",
+      "type": "should_trigger",
+      "prompt": "五浪走完了，后面应该走什么浪、目标位怎么算？",
+      "expected_behavior": "激活 elliott-wave，讲三浪调整及用菲波纳奇38.2/50/61.8%测回撤与目标",
+      "notes": "调整浪+菲波纳奇"
+    },
+    {
+      "id": "should-not-trigger-01",
+      "type": "should_not_trigger",
+      "prompt": "商品市场有个 28 天的周期，是不是快到底了可以抄底？",
+      "expected_behavior": "不应激活本 skill（周期），应激活 time-cycles",
+      "notes": "跨 skill 混淆：应触发 time-cycles"
+    },
+    {
+      "id": "should-not-trigger-02",
+      "type": "should_not_trigger",
+      "prompt": "头肩顶颈线跌破了，是不是要反转了？",
+      "expected_behavior": "不应激活本 skill（反转形态），应激活 reversal-patterns",
+      "notes": "诱饵：反转形态"
+    },
+    {
+      "id": "edge-01",
+      "type": "edge_case",
+      "prompt": "这个走势我能数出好几种浪型，到底该信哪个？",
+      "expected_behavior": "激活本 skill 并提示不可死搬硬套(ce29)、同一走势可多解，须用菲波纳奇比例+趋势线+形态等多工具验证而非孤立定浪",
+      "notes": "边界：数浪多解性"
+    }
+  ],
+  "minimum_pass_rate": 0.8,
+  "notes": "should-not-trigger-01 指向 time-cycles；should-not-trigger-02 指向 reversal-patterns。"
+}

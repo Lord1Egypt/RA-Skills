@@ -1,6 +1,19 @@
 {
-  "ownerId": "kn76e2jbggz0ygc59zz8qybdbn82yp7k",
-  "slug": "brain-teaser-game",
-  "version": "1.0.1",
-  "publishedAt": 1773718255539
+  "name": "brainTeaser",
+  "version": "1.0.0",
+  "description": "多语言脑筋急转弯互动游戏 / Multi-language Brain Teaser Game / 多言語なぞなぞゲーム",
+  "description_zh": "多语言脑筋急转弯互动游戏，支持中文、英文、日文，拥有600+题库",
+  "description_en": "Multi-language brain teaser interactive game supporting Chinese, English, and Japanese with 600+ questions",
+  "description_ja": "多言語なぞなぞインタラクティブゲーム。中国語、英語、日本語に対応、600問以上収録",
+  "author": "OpenClaw",
+  "tags": ["game", "brain-teaser", "riddle", "multilingual", "interactive"],
+  "languages": ["zh", "en", "ja"],
+  "entry": "invoke.sh",
+  "requires": ["python3"],
+  "config": {
+    "ai_generation": {
+      "enabled": false,
+      "env_vars": ["BRAIN_TEASER_API_KEY", "BRAIN_TEASER_API_BASE", "BRAIN_TEASER_MODEL"]
+    }
+  }
 }

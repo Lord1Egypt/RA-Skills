@@ -1,48 +1,60 @@
-## Description: <br>
-API client for the Yunshang Aifei OA system that lets an agent query and update tasks, projects, users, reports, reimbursements, contracts, and business opportunities through encrypted REST calls without browser automation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Yunshang Aifei Cli Share provides a Python CLI and API client for Yunshang Aifei OA tasks, projects, reimbursements, personnel records, leads, and reports.
 
-## Publisher: <br>
-[wanxin0911](https://clawhub.ai/user/wanxin0911) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wanxin0911](https://clawhub.ai/user/wanxin0911)
 
-## Use Case: <br>
-Developers and operations users can use this skill to automate Yunshang Aifei OA workflows from an agent or terminal, including reading work items and business records and creating tasks or weekly-report comments. It is intended for users with authorized OA credentials and access to the relevant internal network. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can make broad authenticated changes to production OA business data. <br>
-Mitigation: Use the lowest-privilege OA account possible, prefer the test environment first, and review endpoint paths and payloads before using raw POST or PUT requests. <br>
-Risk: Session tokens are cached in local token files. <br>
-Mitigation: Restrict filesystem access to the skill directory and delete cached token files when access is no longer needed. <br>
-Risk: CAPTCHA images may be sent to DashScope for recognition. <br>
-Mitigation: Confirm that use of DashScope and the associated API key handling are acceptable for the organization before installing or running the skill. <br>
-Risk: The skill uses HTTP transport to reach internal OA environments. <br>
-Mitigation: Run it only from an approved trusted network where this transport is acceptable. <br>
+## Use Case:
 
+Developers and operations users can use this skill to query and update Yunshang Aifei OA records through CLI commands or Python API calls. It is intended for authenticated internal OA workflows such as checking tasks, projects, reimbursements, contracts, business opportunities, weekly reports, and creating task or comment records.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/wanxin0911/yunshang-aifei-cli-share) <br>
-- [Publisher Profile](https://clawhub.ai/user/wanxin0911) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [api-catalog.json](artifact/api-catalog.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance, shell commands, Python snippets, terminal text, and JSON for raw API calls] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May make authenticated HTTP requests to test or production OA environments and may cache session tokens locally.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can access production OA accounts and perform write actions that may change business records.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated low-privilege OA account and require separate confirmation before running production write actions such as task creation or weekly-report comments.
+
+Risk: Session tokens, OA credentials, and model-provider API keys could be exposed through local configuration or token storage.
+
+Mitigation: Protect local .env and token files, use a dedicated model-provider key, rotate credentials regularly, and avoid sharing workspaces that contain cached tokens.
+
+Risk: Transport or raw API usage could expose sensitive business, HR, or finance data or cause unintended operations.
+
+Mitigation: Avoid raw API commands for routine use, restrict execution to trusted networks, and fix HTTPS transport plus protected token storage before handling sensitive data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wanxin0911/skills/yunshang-aifei-cli-share)
+- [README.md](artifact/README.md)
+- [SKILL.md](artifact/SKILL.md)
+- [API catalog](artifact/api-catalog.json)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash, Python, JSON, and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May emit CLI output for OA records and API responses; users must supply local credentials and environment configuration.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

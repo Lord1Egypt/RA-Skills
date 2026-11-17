@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=900, initial-scale=1.0">
+    <title>GTC 2026 产业趋势 - 封面</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html, body {
+            width: 900px;
+            height: 383px;
+            min-height: 383px;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", sans-serif;
+            color: #fff;
+            overflow: hidden;
+        }
+        body {
+            background: linear-gradient(180deg, #1a1a2e 0%, #16213e 100%);
+            background-color: #0f0f1a;
+        }
+        .card {
+            width: 900px;
+            height: 383px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 35px;
+        }
+        .page-num {
+            position: absolute;
+            top: 15px;
+            right: 25px;
+            font-size: 120px;
+            font-weight: 800;
+            color: rgba(255,255,255,0.08);
+            line-height: 1;
+            z-index: 1;
+        }
+        .tag {
+            display: inline-block;
+            padding: 6px 18px;
+            background: rgba(239,68,68,0.2);
+            border: 1px solid rgba(239,68,68,0.5);
+            border-radius: 20px;
+            font-size: 14px;
+            color: #ef4444;
+            margin-bottom: 18px;
+            z-index: 10;
+        }
+        .title {
+            font-size: 56px;
+            font-weight: 800;
+            color: #fbbf24;
+            text-align: center;
+            margin-bottom: 14px;
+            z-index: 10;
+        }
+        .subtitle {
+            font-size: 20px;
+            color: rgba(255,255,255,0.6);
+            text-align: center;
+            margin-bottom: 28px;
+            z-index: 10;
+        }
+        .stats {
+            display: flex;
+            gap: 45px;
+            z-index: 10;
+        }
+        .stat-item { text-align: center; }
+        .stat-value {
+            font-size: 36px;
+            font-weight: 800;
+            color: #ef4444;
+        }
+        .stat-label {
+            font-size: 13px;
+            color: rgba(255,255,255,0.5);
+            margin-top: 6px;
+        }
+        .watermark {
+            position: absolute;
+            bottom: 15px;
+            right: 20px;
+            font-size: 13px;
+            color: rgba(255,255,255,0.3);
+            z-index: 10;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="page-num">01</div>
+        <div class="tag">产业趋势深度解读</div>
+        <h1 class="title">AI工业革命来了</h1>
+        <p class="subtitle">8个趋势将重塑未来十年 · 普通人如何应对</p>
+        <div class="stats">
+            <div class="stat-item">
+                <div class="stat-value">$1万亿</div>
+                <div class="stat-label">市场规模</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">350倍</div>
+                <div class="stat-label">算力跃升</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">100亿</div>
+                <div class="stat-label">AI助手</div>
+            </div>
+        </div>
+        <div class="watermark">GTC 2026 深度解读</div>
+    </div>
+</body>
+</html>

@@ -1,43 +1,57 @@
-## Description: <br>
-Track revenue across multiple Stripe accounts with automated daily reports, goal tracking, MRR/ARR metrics, and anomaly alerts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Track revenue across multiple Stripe accounts with automated daily reports, goal tracking, and anomaly alerts.
 
-## Publisher: <br>
-[son-of-poseidon](https://clawhub.ai/user/son-of-poseidon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[son-of-poseidon](https://clawhub.ai/user/son-of-poseidon)
 
-## Use Case: <br>
-Business operators, founders, finance teams, and agents use this skill to consolidate Stripe charges, refunds, subscriptions, MRR/ARR, goals, and anomaly signals across multiple accounts for daily and period-based revenue reviews. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads a local Stripe secret key and accesses financial data for configured accounts. <br>
-Mitigation: Use the most restricted read-only Stripe key available and keep ~/.config/stripe/api_key private with restrictive file permissions. <br>
-Risk: Generated reports may contain sensitive revenue and subscription information. <br>
-Mitigation: Limit report sharing to authorized recipients and review outputs before storing them in shared notes or systems. <br>
-Risk: Automated nightly execution can repeatedly access live Stripe data without a human initiating each run. <br>
-Mitigation: Enable the nightly cron only deliberately and review its schedule, target session, and payload before deployment. <br>
+## Use Case:
 
+External business operators and developers use this skill to pull Stripe revenue, refund, subscription, MRR, ARR, goal, and anomaly summaries across multiple accounts.
 
-## Reference(s): <br>
-- [Configuration template](references/config-template.json) <br>
-- [ClawHub skill page](https://clawhub.ai/son-of-poseidon/revenue-dashboard) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON, Markdown reports, summary text, shell commands, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports may include financial metrics, goal status, anomaly flags, and per-account Stripe details.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill reads a Stripe secret key and uses it to retrieve financial and subscription data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a restricted read-only Stripe key when possible and store the key with tight local file permissions.
+
+Risk: Automated or broad invocation can expose sensitive revenue data during ordinary revenue discussions.
+
+Mitigation: Narrow the skill trigger conditions and review automated nightly runs before sharing or storing their output.
+
+Risk: Running the skill on shared or heavily monitored machines can leak credentials or revenue details.
+
+Mitigation: Run it only in trusted environments with appropriate access controls and local monitoring expectations.
+
+## Reference(s):
+
+- [Configuration template](references/config-template.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [JSON, Markdown reports, brief text summaries, and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include financial totals, refund rates, transaction counts, growth comparisons, MRR, ARR, goal progress, and anomaly flags.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

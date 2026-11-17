@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <circle cx="64" cy="64" r="60" fill="#e85d04"/>
+  <path d="M36 70c-7 0-13-5-13-12s6-13 13-13c1-9 9-16 18-16 8 0 15 5 17 12 2-1 4-1 6-1 8 0 14 6 14 14 0 1 0 2-0.5 3H36z" fill="#ffffff"/>
+  <path d="M50 76 L64 62 L78 76 Z" fill="#ffc107"/>
+  <rect x="57" y="76" width="14" height="18" fill="#ffffff"/>
+  <text x="64" y="114" text-anchor="middle" font-size="13" fill="#ffffff" font-family="sans-serif" font-weight="bold">云铺</text>
+</svg>

@@ -1,49 +1,65 @@
-## Description: <br>
-Manages SEO/GEO project memory, including hot-cache, active work, archive tiers, wiki indexes, and privacy cleanup. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manages authorized HOT/WARM/COLD project memory for initialization, review, consolidation, archival, and subject erasure while preserving registry ownership and privacy controls.
 
-## Publisher: <br>
-[aaron-he-zhu](https://clawhub.ai/user/aaron-he-zhu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aaron-he-zhu](https://clawhub.ai/user/aaron-he-zhu)
 
-## Use Case: <br>
-External users, developers, and SEO teams use this skill to preserve project context across sessions, manage memory tiers, update wiki-derived memory views, and clean up stored personal data when requested. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Apache-2.0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create durable local project memory that may include sensitive business context or personal data. <br>
-Mitigation: Store only necessary information, avoid secrets and unnecessary personal data, and use the documented purge flow when deletion is required. <br>
-Risk: Archive, restore, wiki, and purge operations can change or remove local memory files. <br>
-Mitigation: Review proposed changes before applying them, confirm destructive operations explicitly, and keep audit records for privacy-related purges. <br>
-Risk: Automatic hook behavior may refresh derived memory surfaces or load hot-cache context across sessions. <br>
-Mitigation: Review hook configuration before enabling it and keep hot-cache content concise, current, and appropriate for automatic loading. <br>
+## Use Case:
 
+Developers and project operators use this skill to manage persistent project context across agent sessions, including memory initialization, lookup, consolidation, archival, and authorized erasure. It is intended for local working memory and does not replace canonical registry ownership.
 
-## Reference(s): <br>
-- [Memory Management Skill](https://clawhub.ai/aaron-he-zhu/memory-management) <br>
-- [Project Homepage](https://github.com/aaron-he-zhu/seo-geo-claude-skills) <br>
-- [Examples](references/examples.md) <br>
-- [Hot Cache Template](references/hot-cache-template.md) <br>
-- [Promotion and Demotion Rules](references/promotion-demotion-rules.md) <br>
-- [Update Triggers and Cross-Skill Integration](references/update-triggers-integration.md) <br>
-- [Wiki Layer Runbook](references/wiki-runbook.md) <br>
-- [GDPR / CCPA Purge Log Schema](references/gdpr-purge-log-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown instructions, plans, summaries, and proposed file updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces memory update plans, hot-cache changes, handoff summaries, archive guidance, wiki maintenance steps, and privacy purge records.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-9.9.9 (source: server release metadata and skill frontmatter) <br>
+Risk: Persistent local project memory can include sensitive project, personal, credential, or production data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only in repositories where persistent project context is acceptable, keep runtime memory out of normal commits, and avoid seeding raw personal data, credentials, or production exports.
+
+Risk: Writes, purges, and cross-project comparisons can affect local memory records beyond the intended scope.
+
+Mitigation: Confirm paths and subject scope before persistent writes or purges, use dry-run review when scope is ambiguous, and require explicit authorization for destructive or privacy-sensitive actions.
+
+Risk: Cached summaries or lower-authority memory notes may be stale or conflict with canonical registry facts.
+
+Mitigation: Treat cached memory as retrieval support only, preserve conflicts, and route canonical fact changes through the owning registry.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/aaron-he-zhu/skills/memory-management)
+- [Project Homepage](https://github.com/aaron-he-zhu/aaron-marketing-skills)
+- [Consolidation Pass](references/consolidation-pass.md)
+- [Memory Management Examples](references/examples.md)
+- [Erasure Operation Log Template](references/gdpr-purge-log-template.md)
+- [Glossary Template](references/glossary-template.md)
+- [Hot Cache Template](references/hot-cache-template.md)
+- [Promotion and Demotion Rules](references/promotion-demotion-rules.md)
+- [Update Triggers and Cross-Skill Integration](references/update-triggers-integration.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline commands, file path summaries, templates, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or modify authorized local memory files, archives, indexes, and tombstone records after explicit user authorization.]
+
+## Skill Version(s):
+
+19.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

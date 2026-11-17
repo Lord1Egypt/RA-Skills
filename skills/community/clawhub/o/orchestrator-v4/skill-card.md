@@ -1,45 +1,59 @@
-## Description: <br>
-Intelligent task orchestration system that scans project scope, plans subtasks, dispatches multiple AI workers in parallel, supports module-based splitting for large projects, adaptive timeouts, rolling dispatch, and user-directed interruption or redirection. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Orchestrator V4 scans a project, plans module-based subtasks, and coordinates multiple AI worker sessions for analysis or fix workflows with adaptive timeouts and progress handling.
 
-## Publisher: <br>
-[eviost](https://clawhub.ai/user/eviost) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[eviost](https://clawhub.ai/user/eviost)
 
-## Use Case: <br>
-Developers and engineers use this skill to plan, split, and coordinate complex analysis, code generation, debugging, research, and batch-fix tasks across multiple AI workers. It is intended for codebase-scale work where module-aware task planning, concurrency limits, progress reporting, and resumable user control are useful. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can automatically scan projects, spawn same-permission workers, and coordinate batch fixes across a codebase. <br>
-Mitigation: Use it only in version-controlled workspaces, review the generated plan before dispatch, and inspect diffs after each batch. <br>
-Risk: Fix mode can dispatch changes without strong built-in confirmation or rollback controls. <br>
-Mitigation: Require manual approval before fix-mode dispatch and keep rollback available through source control. <br>
-Risk: Project scans, plans, checkpoints, and logs can retain task context from sensitive workspaces. <br>
-Mitigation: Avoid secrets-heavy directories and disable or clear checkpoints and logs when persistent task context is not acceptable. <br>
+## Use Case:
 
+Developers and agent operators use this skill to split complex code analysis, debugging, research, and fix work into coordinated subagent tasks. It is intended for OpenClaw workflows that need project scanning, task planning, bounded parallel dispatch, progress reporting, and interruption handling.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/eviost/orchestrator-v4) <br>
-- [Publisher profile](https://clawhub.ai/user/eviost) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Skill definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown progress reports, JSON task plans, shell commands, and generated or modified workspace files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Plans include subtask descriptions, module keys, file-read caps, timeout estimates, and concurrency controls.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.2.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: The skill can scan broad project trees, which may expose sensitive files in the workspace.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only on trusted workspaces, filter or exclude secrets such as .env files, and start with plan-only or analysis mode before broader execution.
+
+Risk: The skill can spawn child agents with inherited authority and, in fix mode, lead to file modifications.
+
+Mitigation: Require explicit confirmation before spawning workers or applying fixes, review generated plans, and keep human oversight on write-capable tasks.
+
+Risk: The skill persists task context while coordinating multi-agent work.
+
+Mitigation: Avoid using it with sensitive projects unless persistence is acceptable, and review retained task context according to the workspace's data-handling expectations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/eviost/skills/orchestrator-v4)
+- [SKILL.md](SKILL.md)
+- [README.md](README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance, shell command examples, Python snippets, JSON task plans, progress tables, and written summary reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include bounded subagent prompts, timeout settings, max-parallel configuration, retry guidance, and generated analysis or fix plans.]
+
+## Skill Version(s):
+
+2.2.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

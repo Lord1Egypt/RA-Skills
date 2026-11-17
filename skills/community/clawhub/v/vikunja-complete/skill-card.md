@@ -1,44 +1,62 @@
-## Description: <br>
-Production-oriented Vikunja task/project management skill with deterministic commands and strong validation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Production-oriented Vikunja task/project management skill with deterministic commands and strong validation.
 
-## Publisher: <br>
-[KohlHammond](https://clawhub.ai/user/KohlHammond) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kohlhammond](https://clawhub.ai/user/kohlhammond)
 
-## Use Case: <br>
-Developers and agent operators use this skill to manage Vikunja tasks, projects, comments, labels, assignees, views, webhooks, attachments, filters, notifications, subscriptions, and API tokens from deterministic shell commands. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can operate on live Vikunja data, including task edits, bulk updates, webhook creation, attachment transfer, subscriptions, and API token management. <br>
-Mitigation: Use a least-privilege VIKUNJA_TOKEN, review commands before execution, and run the smoke test only against a test workspace. <br>
-Risk: Creating API tokens or webhooks can expose sensitive access or send events to untrusted endpoints. <br>
-Mitigation: Avoid shared logs when creating tokens and create webhooks only for trusted target URLs. <br>
-Risk: Attachment upload and download commands read and write local file paths. <br>
-Mitigation: Review attachment file paths before upload or download and prefer temporary test files during validation. <br>
+## Use Case:
 
+Developers and operators use this skill to have an agent manage Vikunja tasks, projects, comments, labels, assignees, views, buckets, webhooks, attachments, relations, filters, notifications, subscriptions, and API tokens through deterministic shell commands.
 
-## Reference(s): <br>
-- [Vikunja project site](https://vikunja.io/) <br>
-- [ClawHub skill release](https://clawhub.ai/KohlHammond/vikunja-complete) <br>
-- [Publisher profile](https://clawhub.ai/user/KohlHammond) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, JSON, Guidance] <br>
-**Output Format:** [Markdown with inline bash command examples and JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl, jq, VIKUNJA_URL, and VIKUNJA_TOKEN.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-4.0.0 (source: release evidence; bundled CLI and changelog report 0.4.0) <br>
+Risk: Credential and API token commands can expose or alter Vikunja access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a least-privileged token, protect VIKUNJA_TOKEN from shared logs, and review token create/delete commands before execution.
+
+Risk: Delete, bulk-update, and webhook commands can remove data or change external integrations.
+
+Mitigation: Review each delete, bulk-update, and webhook command before running it, especially against shared or production projects.
+
+Risk: Attachment commands can upload sensitive files or download content to sensitive paths.
+
+Mitigation: Avoid uploading sensitive local files and verify download destinations before executing attachment commands.
+
+Risk: The smoke test creates and modifies live Vikunja projects and tasks.
+
+Mitigation: Run the smoke test only against a test instance or disposable project, not production.
+
+## Reference(s):
+
+- [Vikunja project homepage](https://vikunja.io/)
+- [ClawHub skill page](https://clawhub.ai/kohlhammond/skills/vikunja-complete)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with bash command examples and JSON API output where available]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl, jq, VIKUNJA_URL, and VIKUNJA_TOKEN.]
+
+## Skill Version(s):
+
+4.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,59 @@
-## Description: <br>
-Initializes a new OpenClaw container by downloading a prebuilt toolchain archive, extracting it to /workspace, configuring PATH and related environment variables, and verifying installed development tools. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Bootstraps a new OpenClaw container by downloading a prebuilt toolchain archive, extracting it to /workspace, configuring environment variables, and verifying installed language tools.
 
-## Publisher: <br>
-[turinfohlen](https://clawhub.ai/user/turinfohlen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[turinfohlen](https://clawhub.ai/user/turinfohlen)
 
-## Use Case: <br>
-Developers and engineers use this skill to bootstrap language runtimes and build tools in fresh OpenClaw development containers with a single setup command. It also supports verifying the installed toolchain and listing available tools. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The setup flow downloads and extracts a large external executable archive into /workspace. <br>
-Mitigation: Use it mainly in fresh or disposable development containers, and only after trusting the TurinFohlen/openclaw-toolchain release identified in the evidence. <br>
-Risk: The setup flow changes shell startup behavior by adding toolchain paths and environment variables to ~/.bashrc when writable. <br>
-Mitigation: Review the generated /workspace/.toolchain_env and ~/.bashrc changes before relying on future shell sessions. <br>
+## Use Case:
 
+Developers and engineers use this skill to initialize a new container with common development toolchains and to verify or list those tools after setup.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/turinfohlen/toolchain-bootstrap) <br>
-- [OpenClaw Toolchain Repository](https://github.com/TurinFohlen/openclaw-toolchain) <br>
-- [Toolchain Archive Release](https://github.com/TurinFohlen/openclaw-toolchain/releases/download/v2.0/toolchain_v2.tar.gz) <br>
-- [Environment Template Reference](references/env-template.txt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Terminal status text with shell commands and environment variable configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes toolchain environment variables to /workspace/.toolchain_env and may append them to ~/.bashrc.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter, skill.toml, and server release evidence) <br>
+Risk: The skill downloads and extracts an unverified remote binary archive into /workspace.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only from a trusted release owner and prefer a version that verifies a pinned checksum or signature before extraction.
+
+Risk: The setup can persistently change shell startup behavior by appending toolchain environment variables to ~/.bashrc.
+
+Mitigation: Review environment changes before use and prefer opt-in PATH changes or a generated environment file that users source explicitly.
+
+Risk: The archive is extracted directly into the workspace without a staging or containment step.
+
+Mitigation: Extract into a staging directory first, inspect the contents, then move the expected toolchain files into place.
+
+## Reference(s):
+
+- [OpenClaw toolchain repository](https://github.com/TurinFohlen/openclaw-toolchain)
+- [toolchain_v2.tar.gz release archive](https://github.com/TurinFohlen/openclaw-toolchain/releases/download/v2.0/toolchain_v2.tar.gz)
+- [Environment template reference](references/env-template.txt)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash commands and configuration paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces command-oriented setup, verification, and environment configuration guidance for an OpenClaw agent.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, skill.toml, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

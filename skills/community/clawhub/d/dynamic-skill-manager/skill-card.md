@@ -1,40 +1,53 @@
-## Description: <br>
-Track and manage OpenClaw skills usage, find idle skills, and safely uninstall unused ones. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Track and manage OpenClaw skill usage, find idle skills, and safely uninstall unused skills.
 
-## Publisher: <br>
-[welkeyever](https://clawhub.ai/user/welkeyever) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[welkeyever](https://clawhub.ai/user/welkeyever)
 
-## Use Case: <br>
-Developers and agents use this skill to inspect installed OpenClaw skills, track skill usage, identify idle skills, and uninstall unused non-system skills. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can delete installed skills during uninstall operations. <br>
-Mitigation: Inspect the target skill name before uninstalling and back up any skill you may need to restore. <br>
-Risk: The skill stores usage context in a local usage log. <br>
-Mitigation: Do not pass secrets or sensitive task details as tracking context, and periodically review or delete ~/.openclaw/workspace/.skill-manager/. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Dynamic Skill Manager on ClawHub](https://clawhub.ai/welkeyever/dynamic-skill-manager) <br>
-- [OpenClaw project homepage](https://github.com/openclaw/openclaw) <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to inspect installed skills, track skill usage, identify idle skills, and manage skill cleanup. It is intended for local skill lifecycle management in an OpenClaw workspace.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and plain-text CLI output.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or modify a local skill registry, usage log, archive metadata, and installed skill directories under ~/.openclaw/workspace.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact frontmatter reports 0.2.0) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The uninstall workflow can remove local OpenClaw skill directories without a direct confirmation step.
+
+Mitigation: Verify the target skill directory manually before uninstalling and avoid running cleanup automatically.
+
+Risk: The server security summary reports a verified symlink flaw that could remove the wrong or protected skill.
+
+Mitigation: Fix the symlink handling issue before trusting the skill for routine removal, and use uninstall only after checking the resolved target directory.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/welkeyever/skills/dynamic-skill-manager)
+- [OpenClaw Homepage](https://github.com/openclaw/openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and script-generated text or JSON]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The included Python script can update a local skill registry, append usage logs, archive metadata, and remove local skill directories when uninstall is run.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter states 0.2.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

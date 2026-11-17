@@ -1,37 +1,48 @@
-## Description: <br>
-Project future using time series, derived demand, and expert opinion methods. Use for market sizing, growth projections, and revenue planning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Project future using time series, derived demand, and expert opinion methods. Use for market sizing, growth projections, and revenue planning.
 
-## Publisher: <br>
-[linuszz](https://clawhub.ai/user/linuszz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[linuszz](https://clawhub.ai/user/linuszz)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and business analysts use this skill to structure market sizing, growth projection, and revenue planning forecasts with time series, derived demand, or expert opinion methods.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Broad trigger terms may cause accidental activation in general analytics conversations.
+
+Mitigation: Review and narrow trigger terms before deployment if accidental activation would disrupt analytics workflows.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Business analysts, strategy teams, and operators use this skill to choose a forecasting method and present projections, scenarios, assumptions, and confidence intervals for market sizing, growth projections, or revenue planning. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Forecasts can mislead business or financial decisions when source data, assumptions, or confidence intervals are weak. <br>
-Mitigation: Review the source data, assumptions, and confidence intervals before relying on projections for planning or investment decisions. <br>
+**Output Format:** [Markdown forecasting analysis with tables, scenarios, confidence intervals, and assumptions]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [None]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown] <br>
-**Output Format:** [Markdown analysis with tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes methodology selection, projections, key drivers, scenarios, confidence intervals, and documented assumptions.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

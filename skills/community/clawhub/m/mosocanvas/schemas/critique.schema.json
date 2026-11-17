@@ -1,0 +1,94 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mosocanvas.local/schemas/critique-0.1.json",
+  "title": "MoSoCanvas Critique 0.1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "target",
+    "verdict",
+    "judgment_type",
+    "severity",
+    "claim",
+    "evidence",
+    "consequence",
+    "confidence",
+    "alternative_explanations",
+    "preserve",
+    "user_override"
+  ],
+  "properties": {
+    "id": { "type": "string", "minLength": 1 },
+    "spec_ref": { "type": "string", "minLength": 1 },
+    "target": { "type": "string", "minLength": 1 },
+    "verdict": { "enum": ["pass", "risk", "conflict", "blocker", "subjective"] },
+    "judgment_type": {
+      "enum": [
+        "technical",
+        "functional",
+        "intent_mismatch",
+        "contextual_cliche",
+        "preference",
+        "intentional_rule_break",
+        "unknown"
+      ]
+    },
+    "severity": { "type": "integer", "minimum": 0, "maximum": 3 },
+    "claim": { "type": "string", "minLength": 1 },
+    "evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["observed", "source_or_region"],
+      "properties": {
+        "observed": { "type": "string", "minLength": 1 },
+        "source_or_region": { "type": "string", "minLength": 1 }
+      }
+    },
+    "consequence": { "type": "string", "minLength": 1 },
+    "confidence": { "enum": ["low", "medium", "high"] },
+    "alternative_explanations": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 },
+      "uniqueItems": true
+    },
+    "preserve": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 },
+      "uniqueItems": true
+    },
+    "repairs": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "conservative": { "type": "string", "minLength": 1 },
+        "authored": { "type": "string", "minLength": 1 },
+        "experimental": { "type": "string", "minLength": 1 }
+      }
+    },
+    "verification": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 },
+      "uniqueItems": true
+    },
+    "user_override": { "enum": ["unasked", "accepted", "rejected", "user_insisted"] },
+    "known_tradeoff": { "type": "string", "minLength": 1 },
+    "preserve_intent": { "type": "boolean" }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "severity": { "minimum": 2 } }, "required": ["severity"] },
+      "then": {
+        "required": ["repairs"],
+        "properties": {
+          "repairs": { "required": ["conservative", "authored"] },
+          "alternative_explanations": { "minItems": 1 }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "user_override": { "const": "user_insisted" } } },
+      "then": { "required": ["known_tradeoff", "preserve_intent"] }
+    }
+  ]
+}

@@ -1,42 +1,59 @@
-## Description: <br>
-Book cover design with genre-specific conventions, typography rules, and AI image generation for fiction, non-fiction, print, ebook, audiobook, and cover mockup workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Book Cover Design helps agents create genre-appropriate book cover concepts with sizing guidance, typography rules, thumbnail checks, and AI image generation prompts.
 
-## Publisher: <br>
-[okaris](https://clawhub.ai/user/okaris) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[okaris](https://clawhub.ai/user/okaris)
 
-## Use Case: <br>
-Authors, self-publishers, designers, and agents use this skill to plan genre-appropriate book covers, generate cover art prompts with inference.sh, and check sizing, typography, and thumbnail readiness. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill uses an external inference.sh installer and CLI for cover-art generation. <br>
-Mitigation: Inspect the installer or use the manual checksum verification path before running it, and log in only with the intended inference.sh account. <br>
-Risk: AI-generated cover art may include unreliable or unreadable text. <br>
-Mitigation: Generate art or backgrounds first, then add title, subtitle, and author typography in a design tool. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Book Cover Design skill page](https://clawhub.ai/okaris/book-cover-design) <br>
-- [inference.sh](https://inference.sh) <br>
-- [inference.sh CLI installer](https://cli.inference.sh) <br>
-- [inference.sh CLI checksums](https://dist.inference.sh/cli/checksums.txt) <br>
+## Use Case:
 
+External creators, self-publishing authors, and publishing teams use this skill to plan ebook, print, audiobook, and mockup cover concepts that match genre expectations. It guides prompt generation, layout, typography, sizing, iteration, and print-readiness checks.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands] <br>
-**Output Format:** [Markdown with inline bash code blocks and JSON command inputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes genre guidance, sizing tables, typography rules, prompt examples, and inference.sh CLI commands.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.5 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill includes mutable remote installer and unpinned skill-install commands that can execute code or install unreviewed content.
+
+Mitigation: Review installer contents before execution and use independently verified versions, checksums, or signatures where available.
+
+Risk: Prompts or images sent to external AI services may include confidential manuscript details, unpublished artwork, or sensitive personal images.
+
+Mitigation: Remove confidential or sensitive material from prompts and review external service data handling terms before use.
+
+Risk: AI image models may render book-cover text unreliably.
+
+Mitigation: Generate cover art or backgrounds first, then add title, subtitle, and author typography in a design tool.
+
+## Reference(s):
+
+- [Inference.sh](https://inference.sh)
+- [Inference.sh CLI Installer](https://cli.inference.sh)
+- [Inference.sh CLI Checksums](https://dist.inference.sh/cli/checksums.txt)
+- [ClawHub Skill Page](https://clawhub.ai/okaris/skills/book-cover-design)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown with inline bash commands and JSON prompt examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include model-specific image generation prompts, cover sizing recommendations, typography guidance, and review checklists.]
+
+## Skill Version(s):
+
+0.1.5 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

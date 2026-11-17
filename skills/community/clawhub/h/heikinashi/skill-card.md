@@ -1,40 +1,50 @@
-## Description: <br>
-Heikinashi reference tool. Use when working with heikinashi in finance contexts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Heikinashi reference tool. Use when working with heikinashi in finance contexts.
 
-## Publisher: <br>
-[bytesagain3](https://clawhub.ai/user/bytesagain3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain3](https://clawhub.ai/user/bytesagain3)
 
-## Use Case: <br>
-Developers, analysts, and finance practitioners use this skill for quick local reference material, checklists, and command-driven guidance related to Heikin-Ashi finance contexts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill's finance content is generic boilerplate and may be inaccurate for Heikin-Ashi formulas, trading decisions, regulatory compliance, or financial advice. <br>
-Mitigation: Treat the output as educational reference text and verify formulas, compliance guidance, and decisions against authoritative financial sources before relying on them. <br>
+## Use Case:
 
+External users and developers use this skill for quick Heikinashi-oriented finance reference output, including overview notes, formulas, risks, glossary entries, and checklist-style guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bytesagain3/heikinashi) <br>
-- [Publisher profile](https://clawhub.ai/user/bytesagain3) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown-formatted CLI text and command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Local bash script with fixed subcommands; no API keys or network access indicated in evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata and SKILL.md frontmatter) <br>
+Risk: The skill provides generic finance and Heikinashi reference content that may be incomplete or inaccurate for trading, compliance, or risk decisions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only as a basic reference stub and independently verify formulas, interpretations, compliance requirements, and risk guidance before relying on the output.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bytesagain3/skills/heikinashi)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown text emitted by Bash command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Command-specific reference sections for intro, formulas, regulations, risks, instruments, strategies, glossary, and checklist output.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -11,21 +11,24 @@ All external calls are to **legitimate, public academic APIs**:
 | Crossref API | Fetch metadata for DOI‑identified papers | `https://api.crossref.org/` |
 | arXiv API | Fetch metadata for arXiv preprints | `https://export.arxiv.org/api/` |
 | Zotero API | Create items, upload/download files | `https://api.zotero.org/` |
-| WebDAV server | Optional file storage (user‑configured) | User‑supplied URL |
+| WebDAV server | Optional file storage (user‑configured) | User‑supplied **https://** URL (plaintext `http://` is refused) |
 
 No calls are made to unknown or untrusted endpoints.
 
 ## Data Handling
 - **Credentials** are passed via environment variables (never hard‑coded).
+- **WebDAV credentials are only sent over TLS**: every WebDAV script validates that `ZOTERO_WEBDAV_URL` starts with `https://` and refuses to run otherwise (no override).
+- **The Zotero API key is only sent to Zotero‑controlled hosts**: attachment download URLs are validated against an allowlist (`https://*.zotero.org`) before the key is attached; the key is never sent to URLs taken verbatim from item metadata.
 - **PDF content** is processed locally (`pdftotext`) for metadata extraction.
-- **No persistent storage** of credentials or sensitive data.
+- **No persistent storage** of credentials or sensitive data. One exception: `delete_note.sh --backup` optionally writes note content to `~/.zotero-backup/` (directory mode 0700, files 0600) at the user's explicit request.
 - **No network calls** beyond the explicitly listed academic APIs.
 
 ## Code Safety
 - **No `eval`**, `base64` decoding, or obfuscated code.
 - **No dynamic code generation** or shell injection.
-- **All scripts run with `set -euo pipefail`** for strict error handling.
-- **Temporary files** are cleaned up after each run.
+- **All scripts run with `set -e` and `set -o pipefail`** for strict error handling.
+- **Temporary files** are created in unpredictable per‑run directories (`mktemp -d`, mode 0700) and cleaned up via `EXIT` traps.
+- **Archive safety**: downloaded zip archives are scanned for path‑traversal entries (`../`, absolute paths) before extraction; API‑provided filenames are stripped of path components before use in file paths.
 
 ## Permission Model
 The skill requires:
@@ -48,4 +51,4 @@ If you discover a security vulnerability, please contact the skill maintainer vi
 
 ---
 
-*Last updated: 2026‑03‑30*
+*Last updated: 2026‑09‑16*

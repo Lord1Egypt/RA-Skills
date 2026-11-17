@@ -1,42 +1,52 @@
-## Description: <br>
-A community group-buying acquisition and retention skill that helps operators compare acquisition channels, run community operations SOPs, segment users, plan repurchase incentives, benchmark major platforms, and use a lightweight user-segmentation tool. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a community group-buying acquisition and retention playbook covering channel strategy, community operations SOPs, user segmentation, repeat-purchase incentives, platform comparisons, and supporting tools.
 
-## Publisher: <br>
-[nic-yuan](https://clawhub.ai/user/nic-yuan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[nic-yuan](https://clawhub.ai/user/nic-yuan)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Community group-buying platform operators and group managers use this skill to plan acquisition channels, run community retention workflows, segment users, and design reactivation and repeat-purchase tactics.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Marketing outreach, private messages, purchase-history segmentation, coupons, and reactivation campaigns can conflict with privacy laws, platform terms, consent requirements, or opt-out requests.
+
+Mitigation: Review campaigns with the appropriate privacy and platform-compliance controls before use, honor consent and opt-out status, and avoid using the templates for non-compliant outreach.
+
+Risk: Retention calculator labels or advisory metrics may be misunderstood as authoritative business or compliance measurements.
+
+Mitigation: Review metric labels and assumptions before relying on the outputs, and validate them against the operator's own analytics definitions.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Community-commerce operators and platform teams use this skill to plan customer acquisition, community engagement, user segmentation, retention, recall, and repeat-purchase workflows for community group-buying businesses. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global, with examples and platform references oriented toward Chinese community group-buying operations. <br>
+**Output Type(s):** [Guidance, Markdown, Code]
 
-## Known Risks and Mitigations: <br>
-Risk: Customer outreach plans may create privacy, consent, or anti-spam exposure when applied to real customer data. <br>
-Mitigation: Confirm consent or another lawful basis, honor opt-outs, maintain suppression lists, limit outreach frequency, and follow WeChat, platform, and anti-spam rules before real outreach. <br>
-Risk: User segmentation may expose customer identifiers or purchase history to an agent. <br>
-Mitigation: Use the minimum data needed, remove unnecessary identifiers, and avoid sharing detailed purchase history beyond what is required for segmentation. <br>
-Risk: Referral, coupon, and recall campaigns can overspend or be abused if launched without controls. <br>
-Mitigation: Cap rewards and invitations, release budgets in stages, and monitor abnormal account, device, or invitation patterns before scaling campaigns. <br>
+**Output Format:** [Markdown guidance with Python code snippets and reusable message templates]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [03 Acquisition Retention on ClawHub](https://clawhub.ai/nic-yuan/03-acquisition-retention) <br>
+**Other Properties Related to Output:** [Chinese-language advisory marketing playbook; review operational, privacy, consent, and platform-compliance details before use.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Guidance] <br>
-**Output Format:** [Markdown guidance with embedded Python code examples and reusable outreach templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes Chinese-language community-commerce operations playbooks, message templates, checklists, and a user segmentation analyzer.] <br>
+1.0.0 (source: server release metadata and artifact frontmatter)
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence and SKILL.md frontmatter) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

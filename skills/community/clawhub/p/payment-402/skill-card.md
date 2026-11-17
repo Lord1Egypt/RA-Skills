@@ -1,46 +1,57 @@
-## Description: <br>
-Access protected APIs and digital resources via the x402 "Payment Required" protocol on Base L2 by automating cryptographic handshakes and USDC micro-payments for pay-per-resource agentic billing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Access protected APIs and digital resources via the x402 Payment Required protocol on Base L2 by automating cryptographic handshakes and USDC micro-payments.
 
-## Publisher: <br>
-[paynodelabs](https://clawhub.ai/user/paynodelabs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[paynodelabs](https://clawhub.ai/user/paynodelabs)
 
-## Use Case: <br>
-Developers and agent operators use this skill to let an agent access x402-protected APIs and digital resources by checking wallet readiness, completing the payment challenge, and returning the protected response. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can automatically spend funds from a local private-key wallet. <br>
-Mitigation: Use a dedicated low-balance burner wallet, avoid primary wallet private keys, and require explicit approval or allowlisted budgets before paid requests. <br>
-Risk: An agent could pay an unintended or untrusted merchant. <br>
-Mitigation: Verify new merchants and confirm that the target URL, resource, and price match the user's objective before making a payment. <br>
-Risk: Mainnet use can spend real funds during testing or troubleshooting. <br>
-Mitigation: Test on sandbox or testnet endpoints first and move to mainnet only after the flow is verified. <br>
+## Use Case:
 
+Developers and agent operators use this skill to check wallet readiness, complete x402 payment challenges, and retrieve protected API resources that require USDC payment on Base networks.
 
-## Reference(s): <br>
-- [Sandbox & Testing](references/TESTING.md) <br>
-- [PayNode Documentation](https://github.com/PayNodeLabs/paynode-docs) <br>
-- [PayNode Hub](https://github.com/PayNodeLabs/paynode-web) <br>
-- [ClawHub skill page](https://clawhub.ai/paynodelabs/payment-402) <br>
-- [Publisher profile](https://clawhub.ai/user/paynodelabs) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, API Calls, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Bun and CLIENT_PRIVATE_KEY; can initiate blockchain payments through a burner wallet.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: package.json and server release metadata) <br>
+Risk: The skill can automatically sign blockchain payments with a raw private key, and spending safeguards are documented but not enforced in code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only a dedicated burner wallet with funds the operator is willing to risk, prefer testnet first, and add code-level spend limits or allowlists before autonomous use.
+
+Risk: Any request URL may become payment-capable, creating risk of payment to an unexpected merchant or for an unexpected amount.
+
+Mitigation: Verify the merchant, requested resource, network, and expected amount before first payment, and require human approval for higher-value or unfamiliar transactions.
+
+## Reference(s):
+
+- [Sandbox & Testing](references/TESTING.md)
+- [PayNode Documentation](https://github.com/PayNodeLabs/paynode-docs)
+- [PayNode Hub](https://github.com/PayNodeLabs/paynode-web)
+- [Base Sepolia MockUSDC Contract](https://sepolia.basescan.org/address/0x109AEddD656Ed2761d1e210E179329105039c784#writeContract)
+- [ClawHub Skill Page](https://clawhub.ai/paynodelabs/skills/payment-402)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown instructions with shell commands and JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Bun and CLIENT_PRIVATE_KEY; can call payment-protected HTTP endpoints and return retrieved resource data.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

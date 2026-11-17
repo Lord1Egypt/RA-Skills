@@ -1096,16 +1096,16 @@ class ImageGenerator:
         if provider == "unsplash":
             return bool(self.unsplash_access_key and self.unsplash_access_key != "your-unsplash-access-key-here")
         elif provider == "tongyi-wanxiang":
-            return bool(self.tongyi_api_key and self.tongyi_api_key != "sk-your-dashscope-api-key-here")
+            return bool(self.tongyi_api_key and self.tongyi_api_key != "REDACTED-SECRET")
         elif provider == "bailian":
-            return bool(self.bailian_api_key and self.bailian_api_key != "sk-your-bailian-api-key-here")
+            return bool(self.bailian_api_key and self.bailian_api_key != "REDACTED-SECRET")
         elif provider == "volcengine":
             return bool(self.volcengine_api_key and self.volcengine_api_key != "your-volcengine-api-key-here")
         elif provider == "baidu-yige":
             return bool(self.baidu_api_key and self.baidu_secret_key and 
                        self.baidu_api_key != "your-baidu-api-key-here")
         elif provider == "dall-e-3":
-            return bool(self.dalle_api_key and self.dalle_api_key != "sk-your-dalle-api-key-here")
+            return bool(self.dalle_api_key and self.dalle_api_key != "REDACTED-SECRET")
         elif provider == "placeholder":
             return True  # 占位图总是可用
         

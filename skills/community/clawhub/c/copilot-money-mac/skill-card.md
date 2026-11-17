@@ -1,38 +1,53 @@
-## Description: <br>
-Query and analyze personal finance data from the Copilot Money Mac app, including spending, transactions, account balances, budgets, and financial trends. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query and analyze personal finance data from the Copilot Money Mac app, including spending, transactions, account balances, budgets, and financial trends.
 
-## Publisher: <br>
-[chardigio](https://clawhub.ai/user/chardigio) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[chardigio](https://clawhub.ai/user/chardigio)
 
-## Use Case: <br>
-External users with Copilot Money on macOS use this skill to ask an agent focused questions about locally stored personal finance records, such as spending trends, transactions, balances, budgets, recurring payments, and investments. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can expose sensitive personal financial records to the agent session. <br>
-Mitigation: Ask narrow, date-limited questions, prefer scoped SELECT queries, avoid full table dumps, and treat returned data as sensitive financial information. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Copilot Money](https://copilot.money) <br>
-- [ClawHub Skill Page](https://clawhub.ai/chardigio/copilot-money-mac) <br>
+## Use Case:
 
+External users with Copilot Money on macOS use this skill to ask an agent questions about local transactions, balances, budgets, recurring expenses, investments, and spending trends.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, code, guidance] <br>
-**Output Format:** [Markdown with inline SQL and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local query guidance and analysis over Copilot Money SQLite and Firestore LevelDB cache data; returned financial data should be treated as sensitive.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can read and summarize sensitive local financial records from Copilot Money.
+
+Mitigation: Install only when that access is acceptable, ask specific questions, and avoid requests that dump raw database or cache contents.
+
+Risk: Financial answers may depend on local app sync state and available cache contents.
+
+Mitigation: Confirm Copilot Money has synced locally before relying on transaction, budget, balance, or investment summaries.
+
+## Reference(s):
+
+- [Copilot Money](https://copilot.money)
+- [ClawHub release page](https://clawhub.ai/chardigio/skills/copilot-money-mac)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, SQL, guidance]
+
+**Output Format:** [Markdown responses with SQL queries and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses local Copilot Money SQLite and Firestore LevelDB data; no external service transmission is described.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

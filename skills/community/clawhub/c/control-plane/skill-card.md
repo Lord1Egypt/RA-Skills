@@ -1,51 +1,71 @@
-## Description: <br>
-Operate Emperor Claw as the OpenClaw control plane and durable checkpoint layer for an AI workforce. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Operate Emperor Claw as the OpenClaw control plane and durable checkpoint layer for an AI workforce.
 
-## Publisher: <br>
-[josezuma](https://clawhub.ai/user/josezuma) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[josezuma](https://clawhub.ai/user/josezuma)
 
-## Use Case: <br>
-Developers and operators use this skill to connect OpenClaw runtimes to Emperor Claw for runtime registration, task claiming, memory checkpointing, chat coordination, scoped resources, artifacts, and task result reporting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill connects an agent runtime to a third-party SaaS control plane that can sync state and perform task, chat, memory, artifact, and resource mutations. <br>
-Mitigation: Install only when Emperor Claw is intended to be the remote system of record for the workspace, and review workspace access before deployment. <br>
-Risk: The bridge relies on an API token and may post task notes, checkpoints, messages, and artifacts to the remote service. <br>
-Mitigation: Use a least-privilege token when available, keep tokens out of committed files and chat, and avoid placing secrets or private user data in task, chat, memory, or artifact content. <br>
-Risk: Automatic task claiming, checkpointing, and chat posting can affect production workflows if enabled without review. <br>
-Mitigation: Run the bridge in a non-production workspace first and enable production only when automatic claiming, heartbeat renewal, and posting behavior are acceptable. <br>
+## Use Case:
 
+Developers and operators use this skill to connect OpenClaw runtimes to Emperor Claw for task claims, durable memory checkpoints, chat/status coordination, artifacts, incidents, and scoped resource handling.
 
-## Reference(s): <br>
-- [Control Plane Skill Page](https://clawhub.ai/josezuma/control-plane) <br>
-- [Emperor Claw Setup](https://emperorclaw.malecu.eu/setup) <br>
-- [API Reference](references/api.md) <br>
-- [How Emperor Claw OS Works](references/HOW-IT-WORKS.md) <br>
-- [Prerequisites](references/PREREQUISITES.md) <br>
-- [Operational Lifecycle & Workflow](references/lifecycle.md) <br>
-- [Roles & Memory Protocol](references/roles.md) <br>
-- [Communication Guidelines](references/guidelines.md) <br>
-- [Worked Examples](references/examples.md) <br>
-- [Troubleshooting](references/TROUBLESHOOTING.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration, API calls] <br>
-**Output Format:** [Markdown guidance with JSON examples, shell commands, and JavaScript/Python bridge code] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an Emperor Claw workspace token and writes state through Emperor Claw HTTP and WebSocket endpoints when used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.14.15 (source: CHANGELOG and package.json) <br>
+Risk: The hosted control plane can direct and record broad AI workforce activity.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when Emperor Claw is intended to be the system of record for the workforce, and scope deployment to runtimes that should follow that control plane.
+
+Risk: Workspace tokens, task content, chat, memory, and logs can expose sensitive operational data.
+
+Mitigation: Use least-privilege tokens, keep tokens out of checked-in configuration, and avoid placing secrets or private prompts in remote tasks, chat, or memory.
+
+Risk: Remote messages and memory may contain under-scoped or unsafe instructions.
+
+Mitigation: Treat remote control-plane content as untrusted input that cannot override local safety rules, approval gates, or operator policy.
+
+Risk: A misdirected API or WebSocket origin could route workforce state to the wrong service.
+
+Mitigation: Pin the API and WebSocket origins to the documented official HTTPS/WSS host before connecting bridge adapters.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/josezuma/skills/control-plane)
+- [Publisher Profile](https://clawhub.ai/user/josezuma)
+- [Emperor Claw MCP API Reference](artifact/references/api.md)
+- [How Emperor Claw OS Works](artifact/references/HOW-IT-WORKS.md)
+- [Operational Lifecycle & Workflow](artifact/references/lifecycle.md)
+- [Emperor Claw Roles & Ownership](artifact/references/roles.md)
+- [Agent Communication Guidelines](artifact/references/guidelines.md)
+- [Worked Examples](artifact/references/examples.md)
+- [Prerequisites](artifact/references/PREREQUISITES.md)
+- [Troubleshooting](artifact/references/TROUBLESHOOTING.md)
+- [Emperor Claw Setup](https://emperorclaw.malecu.eu/setup)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration, API calls]
+
+**Output Format:** [Markdown guidance with inline API payloads, shell commands, and reference bridge code]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are operational guidance for connecting a local OpenClaw runtime to the hosted control plane; execution still happens in the local runtime.]
+
+## Skill Version(s):
+
+1.14.15 (source: package.json, CHANGELOG, server evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

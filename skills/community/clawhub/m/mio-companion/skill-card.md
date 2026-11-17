@@ -1,41 +1,59 @@
-## Description: <br>
-Mio Companion learns local conversation habits, tracks todos and schedules, and returns proactive chat or task-management responses. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Mio Companion learns user habits, starts companion chats, extracts todos from conversation, and helps schedule time-management tasks.
 
-## Publisher: <br>
-[libaiqwq](https://clawhub.ai/user/libaiqwq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[libaiqwq](https://clawhub.ai/user/libaiqwq)
 
-## Use Case: <br>
-External users and agents use this companion to keep local memory of recent conversation context, infer habits, surface todos, and decide when to prompt proactive chats or task execution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores chat-derived context, inferred habits, todos, schedules, and recent logs in local workspace files. <br>
-Mitigation: Avoid sharing secrets with the skill, periodically review or delete the mio-companion-data directory, and limit use to trusted workspaces. <br>
-Risk: Scheduled proactive checks can initiate chats or surface tasks when the user expected manual-only behavior. <br>
-Mitigation: Disable cron/proactive triggers when only manual chat is desired and review generated todo or task actions before acting on them. <br>
+## Use Case:
 
+External users and developers use this companion skill to maintain conversational continuity, surface inferred todos, review habits, and receive scheduled chat or task prompts.
 
-## Reference(s): <br>
-- [Mio Companion on ClawHub](https://clawhub.ai/libaiqwq/mio-companion) <br>
-- [Publisher profile](https://clawhub.ai/user/libaiqwq) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, configuration, guidance] <br>
-**Output Format:** [JSON-like JavaScript objects with action, message, and data fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local habits, todos, schedule, and log JSON files under mio-companion-data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and config.json) <br>
+Risk: The skill stores recent chat content, habits, inferred todos, schedules, and logs in local plaintext JSON files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in workspaces where this local behavioral memory is acceptable, restrict access to the workspace data directory, and periodically review or delete stored files.
+
+Risk: The skill can infer todos from ordinary conversation and later return them as executable task proposals.
+
+Mitigation: Require explicit user confirmation before creating, scheduling, or executing any task returned by the skill.
+
+Risk: The security verdict is suspicious because user control over persistent memory and executable task surfacing is unclear.
+
+Mitigation: Review the skill before installation and keep host-level approval gates enabled for actions triggered by returned tasks.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/libaiqwq/skills/mio-companion)
+- [Publisher profile](https://clawhub.ai/user/libaiqwq)
+- [Artifact skill description](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, guidance, configuration]
+
+**Output Format:** [JSON action objects with text messages, habit reports, todo lists, or task proposals]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Persists local JSON files for habits, todos, schedules, and recent chat logs.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata and artifact config.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

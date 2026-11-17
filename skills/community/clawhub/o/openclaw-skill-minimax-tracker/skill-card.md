@@ -1,46 +1,59 @@
-## Description: <br>
-Tracks MiniMax API prompt usage for OpenClaw agents with progress bars, reset timing, persistent local storage, and reminder guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Track and monitor MiniMax API usage with real-time progress bars, automatic resets, and scheduled reminders for OpenClaw agents.
 
-## Publisher: <br>
-[QiaoTuCodes](https://clawhub.ai/user/QiaoTuCodes) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[qiaotucodes](https://clawhub.ai/user/qiaotucodes)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to record MiniMax prompt consumption after API calls, inspect remaining quota, and configure recurring reminders from local usage data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT License
 
-## Known Risks and Mitigations: <br>
-Risk: Usage counts and timestamps are stored on disk. <br>
-Mitigation: Use the tracker only where local usage history is acceptable, protect the workspace directory, and remove the JSON data file when retention is no longer needed. <br>
-Risk: The scheduled reminder example can create recurring agent activity. <br>
-Mitigation: Enable the schedule only when recurring checks are desired, review the payload before use, and disable the reminder when monitoring is no longer needed. <br>
-Risk: Usage totals can become inaccurate if API calls are not recorded or configuration values no longer match the active MiniMax plan. <br>
-Mitigation: Call the tracker consistently after MiniMax API use and update the configured quota and reset window when the plan changes. <br>
-Risk: Clone-based installation may fetch files that differ from the reviewed release artifact. <br>
-Mitigation: When installing from a Git repository instead of the reviewed package, verify the files match the reviewed artifact before deployment. <br>
+## Use Case:
 
+Developers and OpenClaw agent operators use this skill to record MiniMax prompt usage, check remaining quota, and configure periodic reminders around usage resets.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/QiaoTuCodes/openclaw-skill-minimax-tracker) <br>
-- [OpenClaw documentation](https://docs.openclaw.ai) <br>
-- [MiniMax platform](https://platform.minimaxi.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON configuration examples; runtime output is plain text status and progress lines.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Tracker commands write local JSON usage data under ~/.openclaw/workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The tracker creates or updates local usage state at ~/.openclaw/workspace/minimax_usage_data.json.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only in a workspace where local usage tracking is expected and review the file path before using the add command.
+
+Risk: Reminder configuration can trigger periodic status checks.
+
+Mitigation: Configure the schedule only when periodic MiniMax usage reminders are desired.
+
+Risk: Installing from a repository without verification can introduce unreviewed code changes.
+
+Mitigation: Prefer a reviewed release, pinned commit hash, or checksum-verified copy before installation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/qiaotucodes/skills/openclaw-skill-minimax-tracker)
+- [OpenClaw documentation](https://docs.openclaw.ai)
+- [MiniMax platform](https://platform.minimaxi.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands, Python snippets, JSON configuration examples, and command-line status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The runtime script can print compact or detailed usage status and can update a local JSON usage file.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

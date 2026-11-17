@@ -1,41 +1,55 @@
-## Description: <br>
-Helps an agent connect Enterprise WeChat to OpenClaw by generating an authorization link, waiting for user confirmation, polling for the bot credentials, writing local OpenClaw configuration, and restarting the gateway. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connects OpenClaw to Enterprise WeChat by generating a WeCom authorization link, waiting for user confirmation, polling for bot credentials, writing WeCom channel settings, and restarting the OpenClaw gateway.
 
-## Publisher: <br>
-[EaseLearnAI](https://clawhub.ai/user/EaseLearnAI) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[easelearnai](https://clawhub.ai/user/easelearnai)
 
-## Use Case: <br>
-Developers and operators use this skill when they need an agent to bind an Enterprise WeChat bot to OpenClaw. The skill guides the authorization-link flow, waits for the user to complete authorization in WeCom, then configures OpenClaw with the returned bot credentials. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores Enterprise WeChat bot credentials in the local OpenClaw configuration file. <br>
-Mitigation: Treat ~/.openclaw/openclaw.json as sensitive, restrict access to it, and install the skill only when binding Enterprise WeChat to OpenClaw is intended. <br>
-Risk: The setup flow restarts the OpenClaw gateway after credentials are written. <br>
-Mitigation: Run the skill in an environment where a gateway restart is acceptable and expected. <br>
+## Use Case:
 
+Developers and operators use this skill to connect an OpenClaw gateway to Enterprise WeChat/WeCom through an authorization-link flow and enable the WeCom channel after credentials are returned.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/EaseLearnAI/wecom-connect) <br>
-- [Enterprise WeChat authorization endpoint](https://work.weixin.qq.com/ai/qc/generate?source=wecom-cli&plat=3) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with shell commands and configuration updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces an authorization link for the user, may poll the WeCom result endpoint after user confirmation, and writes OpenClaw channel configuration when credentials are returned.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The WeCom bot secret is stored in the local OpenClaw configuration file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review local permissions for ~/.openclaw/openclaw.json and ask the agent to show the intended configuration change before it writes credentials.
+
+Risk: The OpenClaw gateway is restarted after the WeCom channel is enabled.
+
+Mitigation: Run the flow only when a gateway restart is acceptable and confirm the authorization step before polling, writing configuration, or restarting the gateway.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/easelearnai/skills/wecom-connect)
+- [WeCom Authorization Generation Endpoint](https://work.weixin.qq.com/ai/qc/generate?source=wecom-cli&plat=3)
+- [WeCom Authorization Result Endpoint](https://work.weixin.qq.com/ai/qc/query_result?scode=<scode>)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Markdown, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration fields]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write WeCom botId and secret settings to ~/.openclaw/openclaw.json and restart the OpenClaw gateway after user confirmation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,56 @@
-## Description: <br>
-Download videos from YouTube and other video platforms. Use when user needs to download videos for offline viewing, extract audio from videos, or save video metadata. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Download videos from YouTube and other video platforms. Use when user needs to download videos for offline viewing, extract audio from videos, or save video metadata.
 
-## Publisher: <br>
-[dinghaibin](https://clawhub.ai/user/dinghaibin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[dinghaibin](https://clawhub.ai/user/dinghaibin)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and external users use this skill to download online videos, extract audio, inspect available formats, and save video metadata for offline workflows.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The script can install an unpinned third-party yt-dlp package at runtime.
+
+Mitigation: Review the skill before installation and use a reviewed, pinned yt-dlp version in an isolated environment.
+
+Risk: The skill fetches remote media and writes video, audio, or metadata files locally.
+
+Mitigation: Run it with an explicit output path in an isolated workspace and review resulting files before reuse.
+
+Risk: Downloaded content may be subject to platform terms or third-party rights.
+
+Mitigation: Confirm permission to download and use the requested content before running the downloader.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and external users use this skill to download videos for offline viewing, extract audio, choose video quality or format, and inspect video metadata when they have rights to the content. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can install an unpinned yt-dlp package before running. <br>
-Mitigation: Install and pin yt-dlp in a controlled virtual environment before using the skill. <br>
-Risk: Downloading media can create legal, storage, and content-handling risk. <br>
-Mitigation: Review the URL, output path, file type, disk space, and rights to the content before running downloads. <br>
+**Output Format:** [Markdown with inline bash commands and local file outputs from the downloader script]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [May fetch remote media through yt-dlp and write video, audio, or metadata files to the local filesystem.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Files, Text, Guidance] <br>
-**Output Format:** [Python command-line invocation, stdout text, and local media files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Downloads video or audio files to a local output path and can print available formats or metadata.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

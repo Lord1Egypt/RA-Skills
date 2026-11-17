@@ -9,7 +9,7 @@ shift || true
 
 # Defaults
 PROMPT="${PROMPT:-Describe this image in detail}"
-MODEL="${MODEL:-gemini}"
+MODEL="${MODEL:-openai}"
 
 # Parse args
 while [[ $# -gt 0 ]]; do
@@ -30,21 +30,21 @@ while [[ $# -gt 0 ]]; do
 done
 
 if [[ -z "$IMAGE_INPUT" ]]; then
-  echo "Usage: analyze-image.sh <image_url_or_file> [--prompt \"...\"] [--model gemini]"
-  echo "Models: gemini, gemini-large, claude, openai (any vision-capable model)"
+  echo "Usage: analyze-image.sh <image_url_or_file> [--prompt \"...\"] [--model openai]"
+  echo "Models: openai (default, free), grok, kimi, gemini, claude (any vision-capable model)"
   exit 1
 fi
 
 # Build image_url content - support both URL and local file
 if [[ -f "$IMAGE_INPUT" ]]; then
   # Local file: convert to base64 data URL
-  MIME_TYPE="image/jpeg"
-  case "$IMAGE_INPUT" in
-    *.png) MIME_TYPE="image/png" ;;
-    *.gif) MIME_TYPE="image/gif" ;;
-    *.webp) MIME_TYPE="image/webp" ;;
+  # Detect the type from the content (extensions lie: image.sh saves JPEG even as .png)
+  MIME_TYPE=$(file -b --mime-type "$IMAGE_INPUT" 2>/dev/null)
+  case "$MIME_TYPE" in
+    image/jpeg|image/png|image/gif|image/webp) ;;
+    *) MIME_TYPE="image/jpeg" ;;
   esac
-  BASE64_DATA=$(base64 -w0 "$IMAGE_INPUT")
+  BASE64_DATA=$(base64 < "$IMAGE_INPUT" | tr -d '\n')
   IMAGE_URL="data:$MIME_TYPE;base64,$BASE64_DATA"
 else
   IMAGE_URL="$IMAGE_INPUT"

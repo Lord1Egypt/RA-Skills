@@ -1,0 +1,162 @@
+{
+  "lockVersion": 1,
+  "openxsys": "0.0.1-alpha.1",
+  "recorded": "2026-11-16",
+  "note": "Every dependency is pinned to an exact commit or version with a checksum. An entry is part of the bundled set only when review.status is 'approved'. Entries marked 'pending' are candidates: their pins and checksums are real (recorded on the date above) but nobody has yet read the pinned content in full. The installers skip pending entries unless --include-pending is passed. Review records live in evals/reviews/ in the repository.",
+  "integrity": {
+    "skills": "git: the installer fetches the exact commit by SHA and checks that the skill folder's git tree id equals 'tree'. Git verifies object content against these ids.",
+    "libraries": "sha256 of each file, as lowercase hex ('sha256') and as a Subresource Integrity value ('sri')."
+  },
+  "runtimes": {
+    "git": { "needed_for": "fetching pinned skills", "minimum": "2.27" },
+    "node": { "needed_for": "the skills CLI (>= 22.20) and Remotion video", "minimum": "22.20", "optional": true },
+    "python": { "needed_for": "Manim concept animation and the scripts inside the document skills", "minimum": "3.10", "optional": true }
+  },
+  "cli": {
+    "package": "skills",
+    "version": "1.8.1",
+    "source": "vercel-labs/skills",
+    "use": "npx skills@1.8.1 add <local path> --skill <name> -g -a <agent> -y --copy",
+    "review": { "status": "pending", "reviewer": null, "date": null, "record": null },
+    "telemetry": "disabled by the installers with DISABLE_TELEMETRY=1 and DO_NOT_TRACK=1",
+    "fallback": "when Node.js >= 22.20 is absent, the installers copy the verified skill folder into the host's skills directory themselves"
+  },
+  "skills": [
+    {
+      "id": "remotion",
+      "capability": "video",
+      "publisher": "Remotion (official)",
+      "source": "remotion-dev/skills",
+      "url": "https://github.com/remotion-dev/skills",
+      "commit": "7e541aa4d7361dfaca0780a565a47307eb7bdfbb",
+      "requires": ["node"],
+      "license": "Skill text: see repository. Remotion itself is free for individuals and small teams and requires a paid company license above a team-size threshold; the terms are shown at install and must be read at https://remotion.dev/license",
+      "skills": [
+        { "name": "remotion-best-practices", "path": "skills/remotion-best-practices", "tree": "c258c072991d762e93b946a8ac40bc8da4e04c70" },
+        { "name": "remotion-create", "path": "skills/remotion-create", "tree": "654e23e4e650828d87bb654590d12c4606c871db" },
+        { "name": "remotion-render", "path": "skills/remotion-render", "tree": "ae913883b7ae0ea1e06c3aa10409400d1cdfc0ab" },
+        { "name": "remotion-captions", "path": "skills/remotion-captions", "tree": "44c9f0c5259067161bb6740d3b780d986a462450" },
+        { "name": "remotion-license", "path": "skills/remotion-license", "tree": "0bb2e8c1d363a9d31879dc5893281209d618fbd2" }
+      ],
+      "review": { "status": "pending", "reviewer": null, "date": null, "record": null }
+    },
+    {
+      "id": "manim",
+      "capability": "concept and math animation",
+      "publisher": "vumichien (community)",
+      "source": "vumichien/manim-skill",
+      "url": "https://github.com/vumichien/manim-skill",
+      "commit": "70ccd68cf4dea135973f899b25fb408ddf5946c5",
+      "requires": ["python"],
+      "license": "See LICENSE in the repository (git blob d645695673349e3947e8e5ae42332d0ac3164cd7); to be confirmed at review",
+      "skills": [
+        { "name": "manim-video", "path": "skills/manim-video", "tree": "fa5db851cddcf283c4fdbaa2dd24bf23cccd70bf" }
+      ],
+      "review": { "status": "pending", "reviewer": null, "date": null, "record": null }
+    },
+    {
+      "id": "anthropic-design",
+      "capability": "visual design",
+      "publisher": "Anthropic (official)",
+      "source": "anthropics/skills",
+      "url": "https://github.com/anthropics/skills",
+      "commit": "1780c5e5a552fd4d1c9d6a7b0cab26b0c2bef064",
+      "requires": [],
+      "license": "See each skill's LICENSE.txt and THIRD_PARTY_NOTICES.md in the repository; to be confirmed at review",
+      "skills": [
+        { "name": "frontend-design", "path": "skills/frontend-design", "tree": "d79e2a5bb4df4a386c2adcdd9ab8709bba28c3f6" },
+        { "name": "canvas-design", "path": "skills/canvas-design", "tree": "95095faaee2ea943e85a5d1d562fde06841e835e" }
+      ],
+      "review": { "status": "pending", "reviewer": null, "date": null, "record": null }
+    },
+    {
+      "id": "anthropic-documents",
+      "capability": "documents and decks",
+      "publisher": "Anthropic (official)",
+      "source": "anthropics/skills",
+      "url": "https://github.com/anthropics/skills",
+      "commit": "1780c5e5a552fd4d1c9d6a7b0cab26b0c2bef064",
+      "requires": ["python"],
+      "license": "The document skills carry their own license terms, which differ from the repository's open-source examples; read each skill's LICENSE.txt. To be confirmed at review",
+      "skills": [
+        { "name": "pptx", "path": "skills/pptx", "tree": "81ad201d3ee5111d5993ddbf2affb26382610a86" },
+        { "name": "docx", "path": "skills/docx", "tree": "84c456b5e9fd63d1f9dd54ca504f9b0f18b0e8cb" },
+        { "name": "pdf", "path": "skills/pdf", "tree": "ff7f37394819e5fa311324f953e3c0053a12309d" },
+        { "name": "xlsx", "path": "skills/xlsx", "tree": "1dbe8eaf347f5e08b7ad80a546f9a0af95941ab2" }
+      ],
+      "review": { "status": "pending", "reviewer": null, "date": null, "record": null }
+    },
+    {
+      "id": "anthropic-webapp-testing",
+      "capability": "checking rendered work when the host has no browser tool",
+      "publisher": "Anthropic (official)",
+      "source": "anthropics/skills",
+      "url": "https://github.com/anthropics/skills",
+      "commit": "1780c5e5a552fd4d1c9d6a7b0cab26b0c2bef064",
+      "requires": ["python"],
+      "license": "See the skill's LICENSE.txt; to be confirmed at review",
+      "skills": [
+        { "name": "webapp-testing", "path": "skills/webapp-testing", "tree": "5ffb7dc66b9fd4c25c3e400a4c00da99a349b714" }
+      ],
+      "review": { "status": "pending", "reviewer": null, "date": null, "record": null }
+    }
+  ],
+  "libraries": [
+    {
+      "id": "d3", "package": "d3", "version": "7.9.2", "license": "ISC", "module": "classic",
+      "files": [
+        { "path": "dist/d3.min.js", "bytes": 280622, "sha256": "912111098ea99503a6f4967361d2bbdc9dbf58cf9c678c8e27e5b02d1a07f0c1", "sri": "sha256-kSERCY6plQOm9JZzYdK73J2/WM+cZ4yOJ+WwLRoH8ME=" }
+      ],
+      "review": { "status": "pending", "reviewer": null, "date": null, "record": null }
+    },
+    {
+      "id": "gsap", "package": "gsap", "version": "3.15.1", "license": "GSAP standard license (no charge; not an OSI open-source license); to be confirmed at review", "module": "classic",
+      "files": [
+        { "path": "dist/gsap.min.js", "bytes": 73357, "sha256": "3d1bea374ab1b703cc5c4105358eec63c4465efdc573931dc116e34a0a190c1b", "sri": "sha256-PRvqN0qxtwPMXEEFNY7sY8RGXv3Fc5MdwRbjSgoZDBs=" },
+        { "path": "dist/ScrollTrigger.min.js", "bytes": 44683, "sha256": "b5bb360661f478f0ff6ffa11500d8ce5e2b6aaf6f7288237cdca3aac9548035a", "sri": "sha256-tbs2BmH0ePD/b/oRUA2M5eK2qvb3KII3zco6rJVIA1o=" }
+      ],
+      "review": { "status": "pending", "reviewer": null, "date": null, "record": null }
+    },
+    {
+      "id": "scrollama", "package": "scrollama", "version": "3.2.0", "license": "MIT", "module": "classic",
+      "files": [
+        { "path": "build/scrollama.min.js", "bytes": 4768, "sha256": "17d8c6db877708006d0f22a42d030b192fa68a721292253ce70a7d85301e7433", "sri": "sha256-F9jG24d3CABtDyKkLQMLGS+minISkiU85wp9hTAedDM=" }
+      ],
+      "review": { "status": "pending", "reviewer": null, "date": null, "record": null }
+    },
+    {
+      "id": "katex", "package": "katex", "version": "0.19.1", "license": "MIT", "module": "classic",
+      "files": [
+        { "path": "dist/katex.min.js", "bytes": 273081, "sha256": "fa140498b8cfc8302cbe5e7cb1bdbc1f952bc38b3fa258ede09e73edbf9a74bc", "sri": "sha256-+hQEmLjPyDAsvl58sb28H5Urw4s/oljt4J5z7b+adLw=" },
+        { "path": "dist/katex.min.css", "bytes": 24793, "sha256": "00e0b094171b07f58422075f469b4feac2b2f7bce1aeec943c08da4d697f4dcf", "sri": "sha256-AOCwlBcbB/WEIgdfRptP6sKy97zhruyUPAjaTWl/Tc8=" },
+        { "path": "dist/contrib/auto-render.min.js", "bytes": 3486, "sha256": "e5372d199bcdae8b4de71d0f7ceba72a4ba12774a27c60a6f1f77d03b3228ee4", "sri": "sha256-5TctGZvNrotN5x0PfOunKkuhJ3SifGCm8fd9A7MijuQ=" }
+      ],
+      "review": { "status": "pending", "reviewer": null, "date": null, "record": null }
+    },
+    {
+      "id": "mermaid", "package": "mermaid", "version": "12.3.0", "license": "MIT", "module": "classic",
+      "files": [
+        { "path": "dist/mermaid.min.js", "bytes": 5537838, "sha256": "336df803d87a38b70a01e736e666c8f7601d2ce42f5e47c8fafe5d721074b9a3", "sri": "sha256-M234A9h6OLcKAec25mbI92AdLOQvXkfI+v5dchB0uaM=" }
+      ],
+      "review": { "status": "pending", "reviewer": null, "date": null, "record": null }
+    },
+    {
+      "id": "three", "package": "three", "version": "0.187.0", "license": "MIT", "module": "esm",
+      "files": [
+        { "path": "build/three.module.js", "bytes": 658900, "sha256": "104f56145899722094556490d787aae0617cc2fc3382f31df02d724ea1aee341", "sri": "sha256-EE9WFFiZciCUVWSQ14eq4GF8wvwzgvMd8C1yTqGu40E=" },
+        { "path": "build/three.core.js", "bytes": 1474799, "sha256": "613e370f76638fdef83926642bf256dc9615684922de1ce1f63a8583e5d78578", "sri": "sha256-YT43D3Zjj974OSZkK/JW3JYVaEki3hzh9jqFg+XXhXg=" }
+      ],
+      "review": { "status": "pending", "reviewer": null, "date": null, "record": null }
+    },
+    {
+      "id": "maplibre-gl", "package": "maplibre-gl", "version": "6.18.0", "license": "BSD-3-Clause", "module": "esm",
+      "files": [
+        { "path": "dist/maplibre-gl.mjs", "bytes": 1108914, "sha256": "1e0a68844041aec6621a10d4725c9970c3b19cf7e1605d98b01dbc993e1058b2", "sri": "sha256-HgpohEBBrsZiGhDUclyZcMOxnPfhYF2YsB28mT4QWLI=" },
+        { "path": "dist/maplibre-gl-worker.mjs", "bytes": 519547, "sha256": "c8998a2616612ebc7afc3a6f83e31ad1c5f6187550a018b4fd0561779c33015b", "sri": "sha256-yJmKJhZhLrx6/Dpvg+Ma0cX2GHVQoBi0/QVhd5wzAVs=" },
+        { "path": "dist/maplibre-gl.css", "bytes": 71596, "sha256": "a90798a1953017790e590f7e1bd35ff103a8a4263972cb47290b78adf86f8c20", "sri": "sha256-qQeYoZUwF3kOWQ9+G9Nf8QOopCY5cstHKQt4rfhvjCA=" }
+      ],
+      "review": { "status": "pending", "reviewer": null, "date": null, "record": null }
+    }
+  ],
+  "libraryBase": "https://cdn.jsdelivr.net/npm/{package}@{version}/{path}"
+}

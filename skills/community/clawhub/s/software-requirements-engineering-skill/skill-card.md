@@ -1,48 +1,64 @@
-## Description: <br>
-Book-aligned enterprise software requirements engineering skill that helps agents produce and review lifecycle requirements artifacts, including elicitation, analysis, SRS, validation, change control, traceability, governance, and risk management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides book-aligned enterprise software requirements engineering guidance based on Wiegers & Beatty, covering elicitation, analysis, specification, validation, management, traceability, and governance.
 
-## Publisher: <br>
-[laurent-zhu](https://clawhub.ai/user/laurent-zhu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[laurent-zhu](https://clawhub.ai/user/laurent-zhu)
 
-## Use Case: <br>
-Employees, external product teams, and developers use this skill to run structured requirements engineering for software projects. It supports full-lifecycle or phase-specific work such as business requirements, stakeholder analysis, elicitation, modeling, SRS drafting or review, validation, traceability, change control, and enterprise readiness. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Requirements inputs may contain sensitive business, compliance, security, or operational details. <br>
-Mitigation: Provide only project documents that are appropriate for agent analysis, and review generated summaries or requirements artifacts before sharing them. <br>
+## Use Case:
 
+Developers, product owners, business analysts, and requirements reviewers use this skill to turn project inputs into structured requirements artifacts and lifecycle guidance. It supports full-lifecycle and phase-specific work such as vision and scope, elicitation, modeling, SRS drafting, validation, traceability, change control, and enterprise governance.
 
-## Reference(s): <br>
-- [Requirements Analysis and Modeling Reference](references/analysis-modeling.md) <br>
-- [Requirements Elicitation Reference](references/elicitation.md) <br>
-- [Enterprise Governance Reference](references/enterprise-governance.md) <br>
-- [Lifecycle Reference](references/lifecycle.md) <br>
-- [Requirements Management Reference](references/management.md) <br>
-- [Process Improvement and Requirements Risk Reference](references/process-risk.md) <br>
-- [Project Classes Reference](references/project-classes.md) <br>
-- [SRS Reference](references/srs.md) <br>
-- [Templates Reference](references/templates.md) <br>
-- [Requirements Validation Reference](references/validation.md) <br>
-- [Wiegers & Beatty Core Method Reference](references/wiegers-beatty-core.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include structured requirement IDs, attributes, TBDs, decisions, trace links, validation gates, traceability matrices, and change or risk notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may ask to read project documents supplied by the user, which can include sensitive or unrelated material.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep sensitive or unrelated files out of scope unless they are needed for the requirements work.
+
+Risk: Generated requirements artifacts may contain assumptions or TBDs when project inputs are incomplete.
+
+Mitigation: Review assumptions, assign owners to TBDs, and validate requirements with stakeholders before baselining or implementation.
+
+## Reference(s):
+
+- [Wiegers & Beatty Core Method Reference](references/wiegers-beatty-core.md)
+- [Lifecycle Reference](references/lifecycle.md)
+- [Requirements Elicitation Reference](references/elicitation.md)
+- [Requirements Analysis and Modeling Reference](references/analysis-modeling.md)
+- [SRS Reference](references/srs.md)
+- [Requirements Validation Reference](references/validation.md)
+- [Requirements Management Reference](references/management.md)
+- [Project Classes Reference](references/project-classes.md)
+- [Enterprise Governance Reference](references/enterprise-governance.md)
+- [Process Risk Reference](references/process-risk.md)
+- [Templates Reference](references/templates.md)
+- [ClawHub skill page](https://clawhub.ai/laurent-zhu/skills/software-requirements-engineering-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown requirements artifacts, tables, checklists, and structured analysis notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include requirement IDs, traceability matrices, TBDs, risks, validation findings, and next-phase recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

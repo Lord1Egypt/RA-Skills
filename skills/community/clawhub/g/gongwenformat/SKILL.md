@@ -1,15 +1,15 @@
 ---
 name: gongwen-format
-description: Format, review, or rewrite Chinese official documents according to the requirements in GB/T 9704-2012 and the local file `公文标准格式.doc`. Use this skill for 公文排版, 公文格式审查, 通知/请示/报告/函/纪要/命令（令）规范化, or when converting a draft into standard党政机关公文格式.
+description: Format, review, or rewrite Chinese official documents (公文) to the GB/T 9704-2012 党政机关公文格式 standard. The full rulebook is bundled in references/formatting_guidelines.md. Use this skill for 公文排版, 公文格式审查, 通知/请示/报告/函/纪要/命令（令）规范化, or when converting a draft into standard 党政机关公文格式.
 ---
 
 # Gongwen Format
 
 ## Overview
 
-Use this skill to turn a draft into a compliant Chinese official document, or to review an existing document against the standard in `公文标准格式.doc`.
+Use this skill to turn a draft into a compliant Chinese official document, or to review an existing document against GB/T 9704-2012 (党政机关公文格式).
 
-Read [references/formatting_guidelines.md](references/formatting_guidelines.md) before making layout decisions. It contains the extracted rules from `公文标准格式.doc`.
+Read [references/formatting_guidelines.md](references/formatting_guidelines.md) before making layout decisions. It is the concise rulebook extracted from GB/T 9704-2012 and is the source of truth for this skill.
 
 ## When To Use
 
@@ -36,9 +36,11 @@ Read [references/formatting_guidelines.md](references/formatting_guidelines.md) 
    - 抄送、印发机关、印发日期
 3. Apply the layout rules in `references/formatting_guidelines.md`.
 4. If the source data is incomplete, do not invent factual elements such as 发文字号、密级、签发人、抄送机关. Mark them as missing and continue.
-5. When direct binary Word editing is not practical, output:
+5. Never drop, truncate, or substitute the source content. Preserve every paragraph and the original title; only change layout, not meaning.
+6. When a `.docx` is provided and in-place reformatting helps, run `scripts/format_gongwen_docx.py <input.docx> <output.docx>` to set page/margins/fonts/hierarchy/page numbers, then finish 版头/版记 in Word/WPS.
+7. When direct binary Word editing is not practical, output:
    - a normalized final text structure
-   - an explicit formatting checklist for Word/WPS execution
+   - an explicit formatting checklist for Word/WPS execution (see `scripts/gongwen_checklist.py`)
    - any unresolved missing metadata
 
 ## Output Requirements
@@ -58,10 +60,11 @@ For drafting or rewriting tasks, return:
 ## Rules To Enforce
 
 - Prefer explicit user or organization template rules over the generic national standard.
-- If no local rule conflicts, use the requirements extracted from `公文标准格式.doc`.
+- If no local rule conflicts, use the requirements in `references/formatting_guidelines.md` (GB/T 9704-2012).
 - Keep wording formal, concise, and administrative in tone.
-- Preserve factual content; do not silently rewrite policy meaning.
+- Preserve factual content; do not silently rewrite policy meaning, drop paragraphs, or replace the title.
 - Ensure the first page contains body text.
+- Use exactly one red separator line, in the 版头 (4 mm below the 发文字号). Do NOT add a red line between the title and the body.
 
 ### Hierarchy Numbering (层次序号)
 
@@ -88,5 +91,9 @@ Must use the following format (GB/T 9704-2012):
 
 ## Bundled Resources
 
-- [references/formatting_guidelines.md](references/formatting_guidelines.md): concise rulebook extracted from `公文标准格式.doc`
-- [scripts/gongwen_checklist.py](scripts/gongwen_checklist.py): prints a checklist for standard, letter, order, or minutes format
+- [references/formatting_guidelines.md](references/formatting_guidelines.md): concise rulebook extracted from GB/T 9704-2012
+- [scripts/format_gongwen_docx.py](scripts/format_gongwen_docx.py): reformats an existing `.docx` in place — applies A4 page setup, margins (天头 37mm / 订口 28mm), per-level fonts, and `— 1 —` page numbers. Usage: `python scripts/format_gongwen_docx.py input.docx output.docx`. It only touches 正文 layout; 版头/版记 are finished in Word/WPS.
+- [scripts/read_doc_text.py](scripts/read_doc_text.py): extracts plain text from a legacy binary `.doc` (Word 97-2003), which `python-docx` cannot read. Requires `olefile`. Usage: `python scripts/read_doc_text.py input.doc [output.txt]`.
+- [scripts/gongwen_checklist.py](scripts/gongwen_checklist.py): prints a checklist for `standard`, `letter`, `order`, or `minutes` format. Usage: `python scripts/gongwen_checklist.py --type standard`.
+
+Script dependencies: `pip install python-docx olefile` (`gongwen_checklist.py` needs no extra packages).

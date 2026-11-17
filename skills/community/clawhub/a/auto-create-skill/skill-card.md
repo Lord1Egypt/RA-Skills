@@ -1,40 +1,53 @@
-## Description: <br>
-Auto Create Skill helps agents identify repeatable workflows from conversation and generate or update reusable Skill files for later execution with key parameters. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Auto Create Skill identifies repeatable workflows from a conversation and generates or updates reusable Skill files so an agent can repeat the process with user-supplied parameters.
 
-## Publisher: <br>
-[zhangxilong-43](https://clawhub.ai/user/zhangxilong-43) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[zhangxilong-43](https://clawhub.ai/user/zhangxilong-43)
 
-## Use Case: <br>
-Developers and agent users use this skill to turn recurring conversational workflows into reusable Claude-compatible Skills, and to list or update Skills created by the workflow. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can create or modify persistent future agent behavior through generated Skills and broad trigger phrases. <br>
-Mitigation: Review generated Skill files, trigger phrases, and installation paths before enabling or sharing them. <br>
-Risk: Generated workflows may include high-impact repository actions such as editing code, deleting files, committing, or pushing. <br>
-Mitigation: Require explicit confirmation checkpoints for high-impact steps and inspect proposed commands before execution. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/zhangxilong-43/auto-create-skill) <br>
-- [Workflow skill template](references/workflow-skill-template.md) <br>
+## Use Case:
 
+Developers and agent users use this skill to turn repeated conversational workflows into structured Skill files, update previously generated skills, and manage a registry of those generated workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown skill files with inline shell commands and JSON registry entries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write SKILL.md files and registry JSON in supported Claude environments.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can create and edit persistent skill directories.
+
+Mitigation: Install only when persistent skill creation is intended, and review generated triggers, paths, AUTO steps, and shell commands before enabling generated skills.
+
+Risk: Generated workflows may include unsafe shell-style command templates or sensitive write, delete, commit, push, or installation actions.
+
+Mitigation: Require explicit confirmation before writes, deletes, commits, pushes, and installation into agent skill directories.
+
+## Reference(s):
+
+- [Workflow Skill Template](artifact/references/workflow-skill-template.md)
+- [ClawHub Skill Page](https://clawhub.ai/zhangxilong-43/skills/auto-create-skill)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown skill files with inline shell commands and configuration notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or modify persistent skill directories and registry JSON.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

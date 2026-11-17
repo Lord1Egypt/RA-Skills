@@ -1,43 +1,55 @@
-## Description: <br>
-AI-powered pet sleep quality analysis from a fixed bed or rest-area camera that sends videos to a remote service to estimate sleep and awake states, total sleep duration, roll-over or position-change counts, startle awakenings, and a 0-100 sleep-quality score. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes pet sleep footage to report sleep duration, position changes, awakenings, and a sleep-quality score.
 
-## Publisher: <br>
-[18072937735](https://clawhub.ai/user/18072937735) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[18072937735](https://clawhub.ai/user/18072937735)
 
-## Use Case: <br>
-External pet owners, animal-care staff, and developers use this skill to analyze fixed-camera pet sleep videos or video URLs, retrieve structured sleep-quality metrics, and list prior cloud-hosted reports. The outputs are sleep-health indicators only and are not medical diagnoses. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send pet monitoring videos and user identifiers to remote Life Emergence services. <br>
-Mitigation: Review privacy terms before use, avoid videos containing people or private spaces, and use a non-phone identifier if the service allows it. <br>
-Risk: The skill can create or log in accounts and store account tokens or profile data locally. <br>
-Mitigation: Use a dedicated service account or identifier where possible, restrict local file access, and clear stored tokens/profile data when the skill is no longer needed. <br>
-Risk: Sleep-quality outputs may suggest possible pain, anxiety, or disease but are not medical diagnoses. <br>
-Mitigation: Treat outputs as visual sleep indicators and consult a veterinarian for persistent or severe abnormalities. <br>
+## Use Case:
 
+Pet owners and caregivers use the skill to review nighttime camera footage, monitor sleep patterns, and retrieve past reports. Its findings are not a veterinary diagnosis.
 
-## Reference(s): <br>
-- [Pet Sleep Quality Analysis API Documentation](references/api_doc.md) <br>
-- [ClawHub Skill Listing](https://clawhub.ai/18072937735/smyx-sleep-quality-analysis-analysis) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown summaries, Markdown report tables, JSON API responses, and shell command invocations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write analysis results to a local output file when requested; requires an open-id and can send pet monitoring videos and user identifiers to a remote service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Pet camera footage and report history are sent to external LifeEmergence/Open API services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the service's privacy, retention, and deletion practices before using sensitive home, clinic, or boarding footage.
+
+Risk: The skill automatically creates or reuses a local identity and stores authentication tokens.
+
+Mitigation: Review account and token handling before installation and restrict access to local identity data.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/18072937735/skills/smyx-sleep-quality-analysis-analysis)
+- [Skill API documentation](references/api_doc.md)
+- [Skill demonstration](https://lifeemergence.com/sample.html)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON]
+
+**Output Format:** [Structured sleep-analysis text or JSON with report links; Markdown for report listings]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can save results to a file and retrieve historical reports.]
+
+## Skill Version(s):
+
+1.0.13 (source: server-resolved ClawHub release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

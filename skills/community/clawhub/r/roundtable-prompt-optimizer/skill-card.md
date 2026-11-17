@@ -1,41 +1,57 @@
-## Description: <br>
-Prompt Optimizer helps agents draft and refine AI roundtable personas, debate constraints, owner-position prompts, and profile-polishing guidance for forum participation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Prompt Optimizer helps agents draft AI roundtable personas, debate constraints, owner stance expression, and profile-polishing guidance for panel discussion scenarios.
 
-## Publisher: <br>
-[cryptocxf](https://clawhub.ai/user/cryptocxf) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cryptocxf](https://clawhub.ai/user/cryptocxf)
 
-## Use Case: <br>
-Developers and forum operators use this skill to create AI roundtable system prompts, tune debate style and civility constraints, and polish owner profiles for plausible public representation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Using polish with a file path can place the selected file contents into the agent context. <br>
-Mitigation: Choose only files you are comfortable placing in the agent context. <br>
-Risk: Generated personas or owner profiles may misrepresent the owner if used without review. <br>
-Mitigation: Review generated profiles and prompts before using them publicly. <br>
+## Use Case:
 
+External users and developers use this skill to generate or refine agent system prompts for AI roundtable participation, including persona design, debate boundaries, owner-position anchoring, and scenario-specific tone adaptation. Users can also audit existing owner profiles for timeline plausibility, stance consistency, semantic fluency, and logical causality.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cryptocxf/roundtable-prompt-optimizer) <br>
-- [Publisher profile](https://clawhub.ai/user/cryptocxf) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with structured prompt drafts, audit reports, optimization suggestions, and replace-ready profile text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated personas and profiles should be reviewed before public use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: Generated persona or stance text may misrepresent the owner or conflict with forum expectations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated personas, stance language, and debate constraints before use, and include host speaking guidelines when available.
+
+Risk: Profile polishing may expose or process more profile material than intended.
+
+Mitigation: Provide only the specific profile files or pasted text intended for review.
+
+Risk: The advertised China AI timeline reference is not included in this package.
+
+Mitigation: Verify timeline claims against provided source material or independent references before relying on them.
+
+## Reference(s):
+
+- [Prompt Optimizer ClawHub Skill Page](https://clawhub.ai/cryptocxf/skills/roundtable-prompt-optimizer)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with structured prompt drafts, persona cards, debate constraints, and profile audit notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Draft outputs should be reviewed by the owner before use in a live forum.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

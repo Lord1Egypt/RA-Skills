@@ -1,46 +1,60 @@
-## Description: <br>
-微信聊天窗口自动监控、翻译和智能回复工具，集成 Qwen 大语言模型和百度翻译 API。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates WeChat desktop monitoring, translation, MBTI-styled Qwen reply generation, and optional automatic reply sending on Windows.
 
-## Publisher: <br>
-[chaoyi001](https://clawhub.ai/user/chaoyi001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chaoyi001](https://clawhub.ai/user/chaoyi001)
 
-## Use Case: <br>
-External WeChat users and agent operators use this skill to monitor desktop WeChat conversations, generate MBTI-style Qwen responses, translate English replies into Chinese, and optionally send replies through the chat window. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read private WeChat chat content and send message text to configured AI and translation APIs. <br>
-Mitigation: Use it only with non-sensitive chats, verify endpoint URLs and API keys yourself, and avoid use where chat participants have not consented to third-party processing. <br>
-Risk: The skill can automatically send generated replies into WeChat. <br>
-Mitigation: Disable or avoid automatic sending unless replies are reviewed first. <br>
-Risk: The skill uses clipboard automation while handling chat content. <br>
-Mitigation: Run it in a controlled desktop session and avoid keeping unrelated sensitive data on the clipboard while it is active. <br>
+## Use Case:
 
+External Windows users use this skill to monitor WeChat Desktop conversations, generate concise MBTI-styled replies with Qwen, translate English responses into Chinese with Baidu Translate, and send replies through clipboard and UI automation.
 
-## Reference(s): <br>
-- [微信智能聊天(MBTI版) on ClawHub](https://clawhub.ai/chaoyi001/wechatwindowllmtranslate) <br>
-- [Publisher profile](https://clawhub.ai/user/chaoyi001) <br>
-- [OpenClaw homepage](https://github.com/openclaw/clawhub) <br>
-- [Qwen](https://github.com/QwenLM/Qwen) <br>
-- [Baidu Translate API](https://fanyi-api.baidu.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text chat replies, command-line status logs, and Markdown usage/configuration instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Replies are intended to be short and may be copied to the clipboard and sent through the active WeChat window.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: ClawHub release metadata) <br>
+Risk: The skill reads active WeChat messages and can send chat-derived content to external Qwen/Baidu-compatible services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use HTTPS-only endpoints, avoid sensitive chats, and run first with a low-risk chat or test account.
+
+Risk: Automatic reply sending can post incorrect or unintended messages into WeChat conversations.
+
+Mitigation: Prefer manual review before sending responses and keep the edge/keyboard stop mechanisms available while the skill runs.
+
+Risk: Interactive credential entry and runtime output may expose configured secrets.
+
+Mitigation: Provide credentials through environment configuration, keep secrets out of shared logs, and rotate exposed API keys.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chaoyi001/skills/wechatwindowllmtranslate)
+- [OpenClaw / ClawHub homepage](https://github.com/openclaw/clawhub)
+- [Qwen project](https://github.com/QwenLM/Qwen)
+- [Baidu Translate Open Platform](https://fanyi-api.baidu.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text chat replies plus Markdown setup guidance with inline shell commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Replies are length-limited by REPLY_COUNT and depend on the active Windows UI state plus configured Qwen and Baidu API services.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata; artifact files also mention 1.0.0, 1.0.9, and 1.0.10)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

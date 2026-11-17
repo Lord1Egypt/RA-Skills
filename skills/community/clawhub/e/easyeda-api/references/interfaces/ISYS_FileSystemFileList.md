@@ -1,11 +1,11 @@
 # ISYS\_FileSystemFileList interface
 
-文件系统文件路径
+File system file path
 
 ## Signature
 
 ```typescript
-interface ISYS_FileSystemFileList 
+interface ISYS_FileSystemFileList
 ```
 
 ## Properties
@@ -14,116 +14,92 @@ interface ISYS_FileSystemFileList
 
 Property
 
-
 </th><th>
 
 Modifiers
-
 
 </th><th>
 
 Type
 
-
 </th><th>
 
 Description
-
 
 </th></tr></thead>
 <tbody><tr><td>
 
 [fileName](./ISYS_FileSystemFileList.md)
 
-
 </td><td>
-
 
 </td><td>
 
 string
 
-
 </td><td>
 
-文件名（前后均无斜杠）
-
+File name (no slashes at the beginning or end)
 
 </td></tr>
 <tr><td>
 
 [fullPath](./ISYS_FileSystemFileList.md)
 
-
 </td><td>
-
 
 </td><td>
 
 string
 
-
 </td><td>
 
-完整路径，包含文件名的绝对路径
-
+Full path, an absolute path including the file name
 
 </td></tr>
 <tr><td>
 
 [isDirectory](./ISYS_FileSystemFileList.md)
 
-
 </td><td>
-
 
 </td><td>
 
 boolean
 
-
 </td><td>
 
-是否为目录
-
+Whether it is a directory
 
 </td></tr>
 <tr><td>
 
 [relativePath?](./ISYS_FileSystemFileList.md)
 
-
 </td><td>
-
 
 </td><td>
 
 string
 
-
 </td><td>
 
-_(Optional)_ 相对路径，不包含前面的传入路径和文件名（当没有传入路径时，不存在相对路径），且前后均无斜杠
-
+_(Optional)_ Relative path, not including the passed-in path and file name (when no path is passed in, there is no relative path), with no slashes at the beginning or end
 
 </td></tr>
 <tr><td>
 
 [subFiles?](./ISYS_FileSystemFileList.md)
 
-
 </td><td>
-
 
 </td><td>
 
 Array&lt;[ISYS\_FileSystemFileList](./ISYS_FileSystemFileList.md)<!-- -->&gt;
 
-
 </td><td>
 
-_(Optional)_ 目录子文件
-
+_(Optional)_ Sub-files of the directory
 
 </td></tr>
 </tbody></table>
@@ -136,7 +112,7 @@ _(Optional)_ 目录子文件
 
 # ISYS\_FileSystemFileList.fileName property
 
-文件名（前后均无斜杠）
+File name (no slashes at the beginning or end)
 
 ## Signature
 
@@ -148,7 +124,7 @@ fileName: string;
 
 # ISYS\_FileSystemFileList.fullPath property
 
-完整路径，包含文件名的绝对路径
+Full path, an absolute path including the file name
 
 ## Signature
 
@@ -160,7 +136,7 @@ fullPath: string;
 
 # ISYS\_FileSystemFileList.isDirectory property
 
-是否为目录
+Whether it is a directory
 
 ## Signature
 
@@ -172,7 +148,7 @@ isDirectory: boolean;
 
 # ISYS\_FileSystemFileList.relativePath property
 
-相对路径，不包含前面的传入路径和文件名（当没有传入路径时，不存在相对路径），且前后均无斜杠
+Relative path, not including the passed-in path and file name (when no path is passed in, there is no relative path), with no slashes at the beginning or end
 
 ## Signature
 
@@ -184,7 +160,7 @@ relativePath?: string;
 
 # ISYS\_FileSystemFileList.subFiles property
 
-目录子文件
+Sub-files of the directory
 
 ## Signature
 

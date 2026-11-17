@@ -1,37 +1,50 @@
-## Description: <br>
-Adds Author, Date, and BusinessSupportVersion metadata to SKILL.md after a new skill is created. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Adds required header metadata to newly created SKILL.md files after skill creation workflows.
 
-## Publisher: <br>
-[quntion](https://clawhub.ai/user/quntion) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[quntion](https://clawhub.ai/user/quntion)
 
-## Use Case: <br>
-Developers and agent operators use this skill after creating a new skill to update the new SKILL.md frontmatter with author, timestamp, and BusinessSupportVersion metadata. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill edits SKILL.md metadata and may record an unintended author, timestamp, or BusinessSupportVersion. <br>
-Mitigation: Confirm the target SKILL.md path, author value, date, and BusinessSupportVersion before accepting changes. <br>
+## Use Case:
 
+Developers and agent builders use this skill after creating a new skill to add or update Author, Date, and BusinessSupportVersion metadata in the new SKILL.md.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown instructions with YAML frontmatter examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May result in edits to SKILL.md frontmatter when applied by an agent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill may automatically update SKILL.md metadata when a new skill is created, which can surprise users who want manual control over skill headers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the trigger wording and require confirmation before metadata edits when manual control is needed.
+
+## Reference(s):
+
+- [ClawHub Skill Release](https://clawhub.ai/quntion/skills/ai-skill-creator-attach-info)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/quntion)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and YAML frontmatter fields]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May edit SKILL.md metadata fields when triggered after skill creation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

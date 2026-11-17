@@ -1,0 +1,22 @@
+# Enforce LF line endings in both the repository and working copies,
+# matching the .editorconfig requirement (end_of_line = lf).
+* text=auto eol=lf
+
+# Treat license text files as text (no CRLF conversion)
+LICENSE text eol=lf
+LICENSES/*.txt text eol=lf
+
+# Binaries: never normalise, never diff as text, never count as source.
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.pdf binary
+*.zip binary
+*.gz binary
+
+# Language statistics. CFF is YAML under a different extension; the audit
+# reports are generated output, not source.
+CITATION.cff linguist-language=YAML
+README_FOR_AI_Audit_Report* linguist-generated=true

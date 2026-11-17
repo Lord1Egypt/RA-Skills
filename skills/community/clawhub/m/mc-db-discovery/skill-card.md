@@ -1,39 +1,53 @@
-## Description: <br>
-Systematic workflow to locate and verify the Mission Control SQLite database when path assumptions fail, and reconcile frontend/backend schema mismatches. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Systematic workflow to locate and verify the Mission Control SQLite database when path assumptions fail, and reconcile frontend/backend schema mismatches.
 
-## Publisher: <br>
-[guillaumemaka](https://clawhub.ai/user/guillaumemaka) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[guillaumemaka](https://clawhub.ai/user/guillaumemaka)
 
-## Use Case: <br>
-Developers and engineers use this skill to find the actual Mission Control SQLite database path, confirm the database and schema, and resolve frontend/backend task column mismatches. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: SQLite inspection commands may display local Mission Control task contents. <br>
-Mitigation: Run the commands only in the intended project environment and avoid sharing query output that contains local task data. <br>
-Risk: Assuming the wrong database path or task column name can lead to incorrect troubleshooting conclusions. <br>
-Mitigation: Trace the database creation path and inspect the live schema before changing frontend types or backend code. <br>
+## Use Case:
 
+Developers and engineers use this skill to debug Mission Control SQLite database location, schema, and recent task data when frontend and backend assumptions diverge.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands] <br>
-**Output Format:** [Markdown checklist with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only local SQLite inspection workflow; no API keys or network calls indicated.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The workflow can inspect local Mission Control database paths and recent task records during debugging.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in trusted local workspaces and avoid sharing database query output that may contain sensitive task data.
+
+Risk: Schema reconciliation guidance may lead to frontend or backend changes that affect application behavior.
+
+Mitigation: Review proposed schema, type, and backend changes before applying them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/guillaumemaka/skills/mc-db-discovery)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Code]
+
+**Output Format:** [Markdown with inline shell commands and code identifiers]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include local SQLite inspection commands and schema reconciliation guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

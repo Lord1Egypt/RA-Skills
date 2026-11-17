@@ -1,40 +1,57 @@
-## Description: <br>
-Reports AI token usage and estimated costs for OpenClaw sessions, cron jobs, subagents, and model-level spend. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reports AI token usage and estimated costs for OpenClaw sessions, including current sessions, cron jobs, subagents, and date-based summaries.
 
-## Publisher: <br>
-[netanel-abergel](https://clawhub.ai/user/netanel-abergel) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[netanel-abergel](https://clawhub.ai/user/netanel-abergel)
 
-## Use Case: <br>
-Developers and operators use this skill to answer cost and usage questions for current or recent OpenClaw activity, including daily, weekly, session, cron, and subagent reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks the agent to shell-source a hidden local .context file, which can load unreviewed local configuration. <br>
-Mitigation: Install only in a trusted OpenClaw environment, review the .context file before use, and avoid shell-sourcing it when direct variable parsing is sufficient. <br>
-Risk: The skill can save daily token-history entries, which may preserve inaccurate or unintended cost data. <br>
-Mitigation: Require explicit confirmation before appending daily reports and review generated entries before relying on them. <br>
+## Use Case:
 
+OpenClaw operators use this skill to answer cost and token-usage questions for today, previous periods, or individual sessions, with estimates by session type and model.
 
-## Reference(s): <br>
-- [Usage Costs on ClawHub](https://clawhub.ai/netanel-abergel/usage-costs) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, code, configuration] <br>
-**Output Format:** [Markdown cost reports with inline shell and Python snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May append daily cost summaries to local token-history JSONL when explicitly used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and ClawHub release metadata) <br>
+Risk: The skill sources a local .context file, so a modified or untrusted context file could affect reported pricing or behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only where the external .context file is trusted, access-controlled, and protected from modification.
+
+Risk: The skill may append usage aggregates to token-history.jsonl while producing reports.
+
+Mitigation: Prefer read-only reporting by default and require explicit confirmation before persisting cost history.
+
+Risk: Provider-specific cost extraction may be incomplete for Google Gemini or OpenAI GPT sessions.
+
+Mitigation: Use provider billing dashboards when local usage records do not include authoritative cost fields.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/netanel-abergel/skills/usage-costs)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell and Python code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Cost estimates depend on local OpenClaw session, cron, and token-history data.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

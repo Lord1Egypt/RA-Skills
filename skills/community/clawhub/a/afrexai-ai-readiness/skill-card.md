@@ -1,42 +1,55 @@
-## Description: <br>
-Conduct a comprehensive AI readiness audit scoring 8 dimensions, identifying gaps, and delivering a prioritized 90-day actionable plan with budget estimates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Conducts a structured AI readiness audit that scores eight organizational dimensions, identifies gaps, and produces a prioritized 90-day action plan with budget estimates.
 
-## Publisher: <br>
-[1kalin](https://clawhub.ai/user/1kalin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[1kalin](https://clawhub.ai/user/1kalin)
 
-## Use Case: <br>
-CTOs, VPs of Engineering, COOs, and business leaders use this skill to assess organizational AI readiness, score gaps across operational dimensions, and produce a prioritized 90-day action plan before investing in AI initiatives. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Users may enter confidential business details, customer records, regulated data, credentials, or other sensitive information during the readiness assessment. <br>
-Mitigation: Use estimates and summaries where possible, and only provide sensitive or regulated data when the organization intentionally wants the agent to analyze it. <br>
-Risk: Business scoring, budget ranges, ROI timelines, and benchmark comparisons may be inaccurate for a specific organization or industry context. <br>
-Mitigation: Review scores and action plans with accountable business, security, compliance, and finance stakeholders before using them for investment decisions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/1kalin/afrexai-ai-readiness) <br>
-- [Industry context packs](https://afrexai-cto.github.io/context-packs/) <br>
-- [AI Revenue Calculator](https://afrexai-cto.github.io/ai-revenue-calculator/) <br>
-- [Agent Setup Wizard](https://afrexai-cto.github.io/agent-setup/) <br>
+## Use Case:
 
+Executives, technology leaders, and operations teams use this skill before AI investments, board strategy discussions, build-versus-buy decisions, and annual technology planning. It helps them score readiness, compare gaps, and plan near-term AI pilots or foundation work.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown assessment with weighted scoring, readiness rating, budget ranges, and a 90-day action plan] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only business assessment; no code execution, credential use, persistence, or hidden data sharing shown in security evidence.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Assessment inputs may include sensitive company data such as budgets, security posture, compliance obligations, or internal systems.
+
+Mitigation: Limit shared details to what is necessary for the assessment and review outputs before distributing them internally or externally.
+
+Risk: The artifact includes disclosed external commercial resources that may request payment or additional information.
+
+Mitigation: Review external links independently before purchasing resources or submitting business information.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/1kalin/skills/afrexai-ai-readiness)
+- [AfrexAI industry context packs](https://afrexai-cto.github.io/context-packs/)
+- [AI Revenue Calculator](https://afrexai-cto.github.io/ai-revenue-calculator/)
+- [Agent Setup Wizard](https://afrexai-cto.github.io/agent-setup/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown narrative with checklists, scoring tables, readiness ratings, budget ranges, ROI timelines, and a 90-day action plan]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include weighted scores across eight readiness dimensions and prioritized recommendations by time horizon.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

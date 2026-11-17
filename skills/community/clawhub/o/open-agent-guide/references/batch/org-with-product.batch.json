@@ -1,0 +1,129 @@
+[
+  {
+    "app_label": "catalog",
+    "model": "organization",
+    "submission_kind": "create",
+    "description": "Add Example AI and its hosted browser-automation product. Evidence: https://example.ai (organization), https://example.ai/browser (product), https://example.ai/trust lists SOC 2, https://example.ai/docs/mcp documents the MCP server, https://example.ai/partners documents the referral program.",
+    "payload": {
+      "name": "Example AI",
+      "slug": "example-ai",
+      "url": "https://example.ai",
+      "description": "Cloud browser-automation platform for AI agents.",
+      "products": {
+        "create": [
+          {
+            "name": "Example Browser",
+            "slug": "example-browser",
+            "url": "https://example.ai/browser",
+            "documentation_url": "https://example.ai/docs",
+            "description": "Managed headless-browser API with an MCP endpoint.",
+            "categories": { "add": ["browser-automation"] },
+            "compliance_certifications": { "add": ["soc-2"] },
+            "capabilities": {
+              "add": ["brand-asset-retrieval"],
+              "propose": [
+                {
+                  "name": "Web Navigation",
+                  "slug": "web-navigation",
+                  "description": "Navigate and act on live web pages programmatically."
+                }
+              ]
+            },
+            "jobs_to_be_done": {
+              "add": ["find-brand-assets"],
+              "propose": [
+                {
+                  "name": "Automate a browser workflow",
+                  "slug": "automate-browser-workflow",
+                  "description": "Drive a multi-step task through a real browser on an agent's behalf."
+                }
+              ]
+            },
+            "agent_skills": {
+              "propose": [
+                {
+                  "name": "Example Browser Skill",
+                  "slug": "example-browser-skill",
+                  "url": "https://example.ai/docs/agent-skill"
+                }
+              ]
+            },
+            "mcp_servers": {
+              "create": [
+                { "name": "Example Browser MCP", "url": "https://mcp.example.ai" }
+              ]
+            },
+            "referral_programs": {
+              "create": [
+                {
+                  "name": "Example Partner Program",
+                  "slug": "example-partner-program",
+                  "program_url": "https://example.ai/partners",
+                  "status": "active"
+                }
+              ]
+            },
+            "offers": {
+              "create": [
+                { "name": "Free", "slug": "free", "price_description": "Free plan for individual developers." },
+                { "name": "Pro", "slug": "pro", "pricing_options": [{"key": "monthly", "price_kind": "fixed", "amount": "49.00", "currency": "USD", "period": "month"}] },
+                { "name": "Enterprise", "slug": "enterprise", "price_description": "Custom pricing — contact sales." }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "app_label": "catalog",
+    "model": "organization",
+    "submission_kind": "create",
+    "description": "Add Example Labs and its open-source, self-hostable browser-automation library. Evidence: https://example-labs.dev (organization), https://example-labs.dev/kit (product), https://example-labs.dev/docs/sdk documents the SDK (Python + TypeScript, Apache-2.0), https://example-labs.dev/docs/cli documents the CLI.",
+    "payload": {
+      "name": "Example Labs",
+      "slug": "example-labs",
+      "url": "https://example-labs.dev",
+      "description": "Open-source tooling for browser-driving agents.",
+      "products": {
+        "create": [
+          {
+            "name": "Example Automation Kit",
+            "slug": "example-automation-kit",
+            "url": "https://example-labs.dev/kit",
+            "documentation_url": "https://example-labs.dev/docs",
+            "source_code_url": "https://github.com/example-labs/automation-kit",
+            "description": "Self-hostable library and CLI for driving a browser from an agent.",
+            "categories": { "add": ["browser-automation"] },
+            "developer_kits": {
+              "create": [
+                {
+                  "name": "Example Automation Kit SDK",
+                  "url": "https://example-labs.dev/docs/sdk",
+                  "programming_languages": { "add": ["python", "typescript"] },
+                  "licenses": { "add": ["apache-2.0"] }
+                }
+              ]
+            },
+            "command_line_interfaces": {
+              "create": [
+                {
+                  "name": "example-kit CLI",
+                  "slug": "example-kit",
+                  "url": "https://example-labs.dev/docs/cli"
+                }
+              ]
+            },
+            "dimension_applicability": [
+              {
+                "dimension": "trust",
+                "not_applicable": true,
+                "justification": "Example Automation Kit is an open-source library that users self-host; it operates no hosted service storing customer data and holds no third-party compliance attestations, so the trust dimension does not apply."
+              }
+            ]
+          }
+        ]
+      }
+    }
+  }
+]

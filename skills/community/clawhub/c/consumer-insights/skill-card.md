@@ -1,40 +1,57 @@
-## Description: <br>
-Analyze user feedback text to extract sentiment trends and customer needs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze user feedback text to extract sentiment trends and customer needs.
 
-## Publisher: <br>
-[findhappy7](https://clawhub.ai/user/findhappy7) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[findhappy7](https://clawhub.ai/user/findhappy7)
 
-## Use Case: <br>
-Business teams and market researchers use this skill to analyze feedback, identify sentiment trends and customer needs, and turn those findings into recommendations and implementation guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Feedback text may contain confidential business details, personal data, credentials, contracts, budgets, or regulated information. <br>
-Mitigation: Provide only the minimum feedback needed and redact sensitive information before using the skill. <br>
-Risk: Recommendations, plans, or business insights may be incomplete, overly broad, or inaccurate for a specific organization. <br>
-Mitigation: Treat outputs as drafts and have qualified reviewers validate them before operational, legal, financial, or customer-facing use. <br>
+## Use Case:
 
+Business and customer-experience teams use this skill to analyze user feedback, identify sentiment trends and customer needs, and turn findings into recommendations, deliverables, and implementation guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/findhappy7/consumer-insights) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces analysis, recommendations, implementation guidance, and best-practice notes from user-provided business context and feedback.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Users may paste sensitive internal business information, customer data, confidential documents, secrets, or regulated material into the skill.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only redacted feedback text and business context; remove secrets, personal data, confidential documents, and regulated material before use.
+
+Risk: The skill requests broad business documents and context beyond its stated customer feedback analysis purpose.
+
+Mitigation: Limit inputs to the minimum context needed for sentiment trends and customer-need analysis, and review the skill carefully before installation.
+
+Risk: Generated recommendations, documents, scripts, or plans may require business-specific or domain-specific validation.
+
+Mitigation: Have domain experts review and customize outputs before operational, compliance, legal, financial, or medical use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/findhappy7/skills/consumer-insights)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown text with analysis, recommendations, deliverables, and implementation guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include ready-to-use documents, scripts, or plans that require business-specific review and customization.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

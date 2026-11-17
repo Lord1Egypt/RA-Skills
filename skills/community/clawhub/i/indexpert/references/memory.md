@@ -1,6 +1,6 @@
 ---
 version: 1
-task-count-since-reflection: 0
+taREDACTED-SECRET: 0
 last-reflection: 2026-04-27
 reflection-threshold: 10
 ---

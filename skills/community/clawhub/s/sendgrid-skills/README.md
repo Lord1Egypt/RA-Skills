@@ -132,3 +132,7 @@ See skill-specific documentation:
 ## License
 
 MIT
+
+## Download History
+
+[![Download History](https://skill-history.com/chart/vince-winkintel/sendgrid-skills.svg)](https://skill-history.com/vince-winkintel/sendgrid-skills)

@@ -1,44 +1,61 @@
-## Description: <br>
-Semantic failure memory for AI agents: search past reasoning failures before acting, and record new failures and resolutions after they happen. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+FOSSIL provides semantic failure memory for AI agents, helping them search past reasoning failures before acting and record new failures with resolutions afterward.
 
-## Publisher: <br>
-[heyrtl](https://clawhub.ai/user/heyrtl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[heyrtl](https://clawhub.ai/user/heyrtl)
 
-## Use Case: <br>
-Developers and agent operators use this skill to add persistent failure memory to AI agent workflows, so agents can search known failure patterns before risky steps and record resolutions after failures. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill encourages storing task and failure details in a hosted persistent memory service, which can expose secrets, personal data, account identifiers, customer data, regulated information, or detailed file contents if users record them directly. <br>
-Mitigation: Use sanitized summaries for records, avoid sensitive or regulated data, and use a private or self-hosted deployment for sensitive work. <br>
-Risk: Persistent failure memory can return outdated or misleading resolutions that affect future agent behavior. <br>
-Mitigation: Review retrieved resolutions before acting and update records when a resolution is no longer correct. <br>
+## Use Case:
 
+Developers and agent operators use Fossil to add failure-memory workflows to OpenClaw agents, searching for similar past failures before risky steps and recording new failures and resolutions afterward.
 
-## Reference(s): <br>
-- [FOSSIL homepage](https://github.com/heyrtl/fossil) <br>
-- [FOSSIL docs](https://github.com/heyrtl/fossil/tree/main/docs) <br>
-- [FOSSIL protocol](https://github.com/heyrtl/fossil/blob/main/FOSSIL.md) <br>
-- [FOSSIL REST API health endpoint](https://fossil-api.hello-76a.workers.dev/health) <br>
-- [ClawHub skill page](https://clawhub.ai/heyrtl/fossil) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Configuration, Shell commands] <br>
-**Output Format:** [Markdown with JSON configuration snippets and tool-call examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide agents to send summarized task and failure details to a hosted FOSSIL service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: frontmatter and server release evidence) <br>
+Risk: Remote hosted memory service may receive task descriptions or failure summaries that include sensitive data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Sanitize descriptions and avoid recording secrets, personal data, customer details, raw prompts, filenames, or regulated information.
+
+Risk: The suggested AGENTS.md persistence block can cause future sessions to use remote failure memory by default.
+
+Mitigation: Add persistent guidance only when that behavior is intentional and scope it to appropriate projects.
+
+Risk: An unpinned npx package install can change behavior across installs.
+
+Mitigation: Pin the @openfossil/mcp package version before production use.
+
+## Reference(s):
+
+- [FOSSIL homepage](https://github.com/heyrtl/fossil)
+- [FOSSIL docs](https://github.com/heyrtl/fossil/tree/main/docs)
+- [FOSSIL protocol](https://github.com/heyrtl/fossil/blob/main/FOSSIL.md)
+- [FOSSIL REST API health endpoint](https://fossil-api.hello-76a.workers.dev/health)
+- [ClawHub release page](https://clawhub.ai/heyrtl/skills/fossil)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown instructions with JSON configuration and tool-call examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes MCP setup guidance and suggested failure-memory usage patterns.]
+
+## Skill Version(s):
+
+0.1.0 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,47 +1,58 @@
-## Description: <br>
-璃幽×次元解忧杂货店专属技能 - 数字动漫 IP 创作助手。用于角色设计、故事创作、SD 图像生成关键词优化、世界观设定扩展、小说章节创作。当需要创作璃幽 IP 相关内容、生成动漫角色图像、编写小说章节、整理设定时使用此技能。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Liyou Skill is a Chinese-language creative assistant for the Liyou digital anime IP, supporting character design, story drafting, Stable Diffusion prompt generation, worldbuilding, and novel organization.
 
-## Publisher: <br>
-[jay0609](https://clawhub.ai/user/jay0609) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jay0609](https://clawhub.ai/user/jay0609)
 
-## Use Case: <br>
-External creators and developers use this skill to produce Liyou IP character designs, story chapters, Stable Diffusion prompt keywords, worldbuilding notes, and local organization artifacts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can save, update, or sync novel and worldbuilding content to app data and local project notes without clear per-change approval. <br>
-Mitigation: Require explicit preview and approval before every save, update, or sync, and keep backups of affected creative notes or app data. <br>
-Risk: The included Python scripts can read Markdown folders and write prompt or table-of-contents files to user-selected paths. <br>
-Mitigation: Run the scripts only on folders you intentionally choose and review output paths before execution. <br>
+## Use Case:
 
+External creators and developers use this skill to create Liyou IP characters, chapters, worldbuilding notes, Stable Diffusion prompts, and local organization outputs for a Chinese-language anime storytelling project.
 
-## Reference(s): <br>
-- [Character Design](references/character-design.md) <br>
-- [Lore Database](references/lore-database.md) <br>
-- [SD Keywords](references/sd-keywords.md) <br>
-- [Story Structure](references/story-structure.md) <br>
-- [World Building](references/world-building.md) <br>
-- [Character Template](assets/templates/character-template.md) <br>
-- [Episode Template](assets/templates/episode-template.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/jay0609/liyou-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown prose with optional Python and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local Markdown notes, generated prompt files, and novel table-of-contents files when approved by the user.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can update Liyou Claw story and worldbuilding data and local lore files under broad creative triggers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated chapters and settings before allowing saves or updates.
+
+Risk: Included scripts can read or write local project folders when run by the user.
+
+Mitigation: Run the scripts only on dedicated project folders.
+
+## Reference(s):
+
+- [ClawHub Release Page](https://clawhub.ai/jay0609/skills/liyou-skill)
+- [Character Design Reference](artifact/references/character-design.md)
+- [Lore Database](artifact/references/lore-database.md)
+- [Stable Diffusion Keywords Reference](artifact/references/sd-keywords.md)
+- [Story Structure Reference](artifact/references/story-structure.md)
+- [Worldbuilding Reference](artifact/references/world-building.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown, plain text, Python script output, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include Chinese-language creative prose, Stable Diffusion positive and negative prompts, chapter tables of contents, and local Markdown files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

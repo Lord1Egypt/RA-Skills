@@ -1,44 +1,59 @@
-## Description: <br>
-Automated client reporting for agencies and freelancers using OpenClaw. Pull data from Google Analytics, Google Search Console, social media platforms, and custom sources to generate branded weekly/monthly reports. Auto-deliver via email or Slack. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates client reporting for agencies and freelancers by pulling analytics, search, social, and custom metrics, generating branded reports, and delivering them by email or Slack.
 
-## Publisher: <br>
-[reighlan](https://clawhub.ai/user/reighlan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[reighlan](https://clawhub.ai/user/reighlan)
 
-## Use Case: <br>
-Agencies and freelancers use this skill to set up client workspaces, pull analytics and search metrics, generate branded weekly or monthly reports, and deliver them through email or Slack. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Client configuration and service account credentials may expose sensitive analytics or delivery access if stored or shared carelessly. <br>
-Mitigation: Keep client configs and service account keys out of source control, restrict file permissions, and review the configuration model before installation. <br>
-Risk: Report delivery can send client data to unintended email recipients or Slack webhooks. <br>
-Mitigation: Validate report recipients and Slack webhooks before enabling delivery. <br>
-Risk: The scripts perform outbound network requests for metrics and delivery. <br>
-Mitigation: Use the skill only where outbound domains and client names are tightly controlled, especially on shared infrastructure. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Google Analytics 4 API Setup](references/ga4-setup.md) <br>
-- [Report Customization](references/report-customization.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/reighlan/client-reporting) <br>
-- [Publisher Profile](https://clawhub.ai/user/reighlan) <br>
+## Use Case:
 
+Agencies, freelancers, and external client-facing teams use this skill to set up reporting workspaces, collect marketing metrics, generate branded recurring reports, and deliver them to clients.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with bash commands, JSON configuration examples, and generated report files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can generate Markdown, HTML, and PDF-style client reports when configured with the required templates and conversion tooling.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Sensitive client reports, credentials, and local paths may be stored in configuration, cache, and report files.
+
+Mitigation: Use a trusted local workspace, keep configuration and report files under restrictive permissions, and prefer environment variables or a secret manager for API keys.
+
+Risk: Email or Slack delivery can send client data to unintended outbound destinations.
+
+Mitigation: Verify every recipient email address and Slack webhook before delivery, and avoid running delivery against untrusted client configurations.
+
+Risk: Client names, domains, webhook URLs, and local paths are not described as fully validated by the release evidence.
+
+Mitigation: Use safe client slugs, review domains and paths before execution, and add path validation, webhook allowlisting, and domain validation before broader deployment.
+
+## Reference(s):
+
+- [Google Analytics 4 API Setup](references/ga4-setup.md)
+- [Report Customization](references/report-customization.md)
+- [Google Cloud API Library](https://console.cloud.google.com/apis/library)
+- [ClawHub Skill Page](https://clawhub.ai/reighlan/skills/client-reporting)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples; generated reports may be Markdown, HTML, or PDF, with metrics stored as JSON files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates local client workspaces, config files, cached metrics, templates, and report files when its scripts are run.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,53 @@
-## Description: <br>
-Manage OmniFocus tasks through JavaScript for Automation scripts that add, list, search, complete, update, and summarize tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage OmniFocus tasks through macOS JavaScript for Automation scripts for adding, listing, searching, completing, updating, and reporting on tasks.
 
-## Publisher: <br>
-[shenzo1](https://clawhub.ai/user/shenzo1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[shenzo1](https://clawhub.ai/user/shenzo1)
 
-## Use Case: <br>
-External users and developers use this skill to let an agent review and manage OmniFocus tasks on macOS, including inbox triage, searching, status reporting, and user-directed task updates. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Task notes and search results can expose sensitive personal or work information to the agent. <br>
-Mitigation: Use the skill only when the agent may read OmniFocus task data, and avoid searching or displaying sensitive notes unless needed. <br>
-Risk: Completion and update scripts can change the wrong task when names are ambiguous because they act on matching task names. <br>
-Mitigation: List or search matching tasks first, confirm the intended task with the user, and then run completion or update commands. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [OmniFocus ClawHub Release](https://clawhub.ai/shenzo1/omnifocus) <br>
-- [OmniFocus Automation Guide](references/automation-guide.md) <br>
-- [OmniFocus JXA API Reference](references/jxa-api.md) <br>
+## Use Case:
 
+Employees, external users, and developers who use OmniFocus on macOS can use this skill to let an agent inspect task state and perform requested task-management actions such as adding, searching, completing, or updating tasks.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, code, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and parsed JSON task results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Task list and search outputs may include task names, notes, due dates, flags, projects, and tags.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can modify a live OmniFocus database by adding, completing, or updating tasks.
+
+Mitigation: Ask the agent to show matching tasks before write actions and confirm the exact target when task names are similar.
+
+Risk: Listing and searching tasks can expose sensitive personal or work information from task names and notes.
+
+Mitigation: Limit broad list or search requests when OmniFocus contains sensitive information, and avoid requesting notes unless needed.
+
+## Reference(s):
+
+- [OmniFocus Automation Guide](references/automation-guide.md)
+- [OmniFocus JXA API Reference](references/jxa-api.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON returned by helper scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires macOS with OmniFocus installed and running; read operations can include task names, notes, due dates, flags, projects, and tags.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,53 @@
-## Description: <br>
-Stores contact cards, manages contact groups, supports quick search, and exports contact data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manages contacts with business-card storage, grouping, fast search, bulk import and export, and birthday reminders.
 
-## Publisher: <br>
-[kaising-openclaw1](https://clawhub.ai/user/kaising-openclaw1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kaising-openclaw1](https://clawhub.ai/user/kaising-openclaw1)
 
-## Use Case: <br>
-External users use this skill to manage personal or business contacts, including adding contacts, grouping them, searching records, and exporting contact data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles contact export and cloud sync without clearly explaining how personal contact data is stored, shared, retained, or deleted. <br>
-Mitigation: Review storage, export, sync, retention, deletion, and consent requirements before installing or using the skill with real contact data. <br>
-Risk: Contact exports can expose third-party personal information if generated or shared without appropriate controls. <br>
-Mitigation: Limit exported files to approved formats and destinations, protect exported data, and confirm consent or another valid basis for storing and transmitting contact information. <br>
+## Use Case:
 
+External users and agents use this skill to manage contact records, organize them into groups, search contacts quickly, and import or export contact data in common formats.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kaising-openclaw1/xiaoming-contact-manager) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with CLI command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May describe CSV, VCF, or JSON contact export workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: Exported contact files may contain sensitive personal data such as names, phone numbers, email addresses, and relationship details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat exported contact files as sensitive data and store, share, and delete them according to the user's data-handling policy.
+
+Risk: The documented installer command uses a mutable latest package reference.
+
+Mitigation: Install only from a trusted ClawHub or npm source and prefer a pinned installer version when available.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kaising-openclaw1/skills/xiaoming-contact-manager)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Contact export behavior may produce CSV, VCF, or JSON files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,77 @@
+{
+  "artifactKind": "svg",
+  "generatedAt": "2026-09-01T00:41:50.293122+00:00",
+  "input": {
+    "bytes": 1925,
+    "path": "examples/agent-runtime.json",
+    "sha256": "4adc883c50030740dc1416d2fe999302f42c303acc255225babf7376721450d5"
+  },
+  "mode": "workflow",
+  "output": {
+    "bytes": 8548,
+    "path": "examples/agent-runtime.svg",
+    "sha256": "a8dd7bf6040bd0301d864cfc9289e9caefeb260f2ade36ad9a684d37a5b4978c"
+  },
+  "tool": "visual-architecture",
+  "validation": {
+    "errors": [],
+    "metrics": {
+      "edgeKinds": [
+        "control",
+        "memory-write",
+        "primary-data"
+      ],
+      "edges": 5,
+      "evidenceItems": 0,
+      "mode": "workflow",
+      "nodeKinds": [
+        "agent",
+        "memory",
+        "service"
+      ],
+      "nodes": 6,
+      "quality": {
+        "checks": [
+          {
+            "code": "quality.node.spacing",
+            "level": "warn",
+            "subjects": [
+              "brief",
+              "lessons"
+            ]
+          },
+          {
+            "code": "quality.node.spacing",
+            "level": "warn",
+            "subjects": [
+              "builder",
+              "receipt"
+            ]
+          },
+          {
+            "code": "quality.node.spacing",
+            "level": "warn",
+            "subjects": [
+              "artifact",
+              "validator"
+            ]
+          }
+        ],
+        "rating": "good",
+        "routeCrossings": 0,
+        "score": 76
+      },
+      "sourceBacked": false,
+      "sourceConfidence": {
+        "high": 0,
+        "low": 0,
+        "medium": 0,
+        "unspecified": 0
+      },
+      "theme": "classic"
+    },
+    "ok": true,
+    "warnings": []
+  },
+  "version": "1.8.0"
+}

@@ -1,0 +1,104 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 500">
+  <!--
+    架构图 SVG 模板
+    占位符说明：
+      {{BG_COLOR}}      — 背景色
+      {{TEXT_COLOR}}     — 正文色
+      {{TITLE_COLOR}}    — 标题色
+      {{SUBTITLE_COLOR}} — 副标题色
+      {{ACCENT_COLOR}}   — 主强调色
+      {{ACCENT2_COLOR}}  — 次强调色
+      {{ACCENT3_COLOR}}  — 第三强调色
+      {{BORDER_COLOR}}   — 边框/分割色
+      {{NODE_FILL}}      — 节点填充色
+      {{NODE_STROKE}}    — 节点描边色
+      {{ARROW_COLOR}}    — 箭头色
+      {{FONT_FAMILY}}    — 字体
+
+    使用时将 {{TITLE}} {{NODE_1}} 等替换为实际内容。
+    LLM 生成时参考此结构，自由增减节点。
+  -->
+
+  <defs>
+    <filter id="shadow" x="-5%" y="-5%" width="115%" height="115%">
+      <feDropShadow dx="2" dy="2" stdDeviation="3" flood-opacity="0.12"/>
+    </filter>
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="{{ARROW_COLOR}}"/>
+    </marker>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="900" height="500" fill="{{BG_COLOR}}" rx="6"/>
+
+  <!-- 标题 -->
+  <text x="450" y="38" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="20" font-weight="bold" fill="{{TITLE_COLOR}}">{{TITLE}}</text>
+
+  <!-- 顶层入口 -->
+  <rect x="350" y="55" width="200" height="45" rx="8"
+        fill="{{ACCENT_COLOR}}" fill-opacity="0.15" stroke="{{ACCENT_COLOR}}" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="450" y="83" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="14" font-weight="bold" fill="{{TEXT_COLOR}}">{{ENTRY_NODE}}</text>
+
+  <!-- 服务层（3个示例节点） -->
+  <rect x="60" y="140" width="220" height="100" rx="10"
+        fill="{{NODE_FILL}}" stroke="{{NODE_STROKE}}" stroke-width="2" filter="url(#shadow)"/>
+  <text x="170" y="170" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="14" font-weight="bold" fill="{{TEXT_COLOR}}">{{NODE_1}}</text>
+  <text x="170" y="195" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="11" fill="{{SUBTITLE_COLOR}}">{{NODE_1_DESC}}</text>
+  <text x="170" y="225" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="10" fill="{{ACCENT_COLOR}}">{{NODE_1_TECH}}</text>
+
+  <rect x="340" y="140" width="220" height="100" rx="10"
+        fill="{{NODE_FILL}}" stroke="{{NODE_STROKE}}" stroke-width="2" filter="url(#shadow)"/>
+  <text x="450" y="170" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="14" font-weight="bold" fill="{{TEXT_COLOR}}">{{NODE_2}}</text>
+  <text x="450" y="195" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="11" fill="{{SUBTITLE_COLOR}}">{{NODE_2_DESC}}</text>
+  <text x="450" y="225" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="10" fill="{{ACCENT_COLOR}}">{{NODE_2_TECH}}</text>
+
+  <rect x="620" y="140" width="220" height="100" rx="10"
+        fill="{{NODE_FILL}}" stroke="{{NODE_STROKE}}" stroke-width="2" filter="url(#shadow)"/>
+  <text x="730" y="170" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="14" font-weight="bold" fill="{{TEXT_COLOR}}">{{NODE_3}}</text>
+  <text x="730" y="195" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="11" fill="{{SUBTITLE_COLOR}}">{{NODE_3_DESC}}</text>
+  <text x="730" y="225" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="10" fill="{{ACCENT_COLOR}}">{{NODE_3_TECH}}</text>
+
+  <!-- 箭头（入口 → 服务） -->
+  <line x1="400" y1="100" x2="170" y2="140" stroke="{{ARROW_COLOR}}" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="450" y1="100" x2="450" y2="140" stroke="{{ARROW_COLOR}}" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="500" y1="100" x2="730" y2="140" stroke="{{ARROW_COLOR}}" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- 中间件层 -->
+  <rect x="300" y="280" width="300" height="42" rx="20"
+        fill="{{ACCENT2_COLOR}}" fill-opacity="0.15" stroke="{{ACCENT2_COLOR}}" stroke-width="1.5"/>
+  <text x="450" y="306" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="13" fill="{{TEXT_COLOR}}">{{MIDDLEWARE}}</text>
+
+  <!-- 存储层 -->
+  <rect x="100" y="370" width="180" height="55" rx="8"
+        fill="{{NODE_FILL}}" stroke="{{ACCENT3_COLOR}}" stroke-width="1.5"/>
+  <text x="190" y="395" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="12" font-weight="bold" fill="{{TEXT_COLOR}}">{{STORE_1}}</text>
+  <text x="190" y="413" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="10" fill="{{SUBTITLE_COLOR}}">{{STORE_1_DESC}}</text>
+
+  <rect x="360" y="370" width="180" height="55" rx="8"
+        fill="{{NODE_FILL}}" stroke="{{ACCENT3_COLOR}}" stroke-width="1.5"/>
+  <text x="450" y="395" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="12" font-weight="bold" fill="{{TEXT_COLOR}}">{{STORE_2}}</text>
+  <text x="450" y="413" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="10" fill="{{SUBTITLE_COLOR}}">{{STORE_2_DESC}}</text>
+
+  <rect x="620" y="370" width="180" height="55" rx="8"
+        fill="{{NODE_FILL}}" stroke="{{ACCENT3_COLOR}}" stroke-width="1.5"/>
+  <text x="710" y="395" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="12" font-weight="bold" fill="{{TEXT_COLOR}}">{{STORE_3}}</text>
+  <text x="710" y="413" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="10" fill="{{SUBTITLE_COLOR}}">{{STORE_3_DESC}}</text>
+</svg>

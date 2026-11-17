@@ -1,0 +1,34 @@
+{
+  "skill_name": "huawei-cloud-ecs-show",
+  "region": "cn-north-4",
+  "test_cases": [
+    {
+      "id": "TC-01",
+      "name": "ECS 服务可用性检查",
+      "command": "hcloud ECS --help",
+      "expected": "帮助信息正常输出，命令存在",
+      "type": "syntax",
+      "executor": "cli"
+    },
+    {
+      "id": "TC-02",
+      "name": "ECS ShowServer 操作可用性检查",
+      "command": "hcloud ECS ShowServer --help --cli-region={region}",
+      "expected": "ShowServer 操作存在，参数 --server_id 可用",
+      "type": "syntax",
+      "executor": "cli"
+    },
+    {
+      "id": "TC-03",
+      "name": "ECS ShowServer 只读查询单个实例详情",
+      "command": "hcloud ECS ShowServer --cli-region={region} --server_id={instance_id}",
+      "expected": "返回该实例详情 JSON（ID/名称/状态/规格/镜像/IP/可用区）；需提供真实 instance_id",
+      "type": "readonly",
+      "executor": "cli"
+    }
+  ],
+  "env_vars_required": [
+    "以 HUAWEI/HW/HWC 开头的环境变量中匹配 AK/SK 的键值对"
+  ],
+  "notes": "只读用例使用真实可用的 hcloud 只读命令（ECS ShowServer），区域 cn-north-4；TC-03 需要真实 instance_id（{instance_id} 占位符未替换时会标记为需人工验证，不产生伪失败）。缺 hcloud/凭据时用例跳过，不产生伪失败；真实只读验证由 QA 带外执行。"
+}

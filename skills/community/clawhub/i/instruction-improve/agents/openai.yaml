@@ -1,0 +1,4 @@
+interface:
+  display_name: "Amazon 使用说明改进"
+  short_description: "从评论疑问提炼说明书改进重点"
+  default_prompt: "使用 $amazon-instruction-improvement 根据 Amazon 评论疑问提出使用说明改进重点。"

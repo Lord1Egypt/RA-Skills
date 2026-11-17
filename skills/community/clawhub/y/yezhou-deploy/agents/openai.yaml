@@ -1,0 +1,4 @@
+interface:
+  display_name: "Yezhou Deploy"
+  short_description: "将 HTML、项目目录或 ZIP 部署到页舟并保持公开链接不变"
+  default_prompt: "使用 $yezhou-deploy 部署这个网页项目；如果项目已绑定，则更新原链接。"

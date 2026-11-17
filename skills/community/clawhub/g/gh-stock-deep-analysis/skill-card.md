@@ -1,40 +1,53 @@
-## Description: <br>
-Stock Deep Analysis Framework 4.1 produces detailed Markdown analysis reports for A-share, Hong Kong, and U.S. stocks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a structured stock-analysis framework for A-share, Hong Kong, and U.S. equities using current market, financial, news, filing, and research inputs.
 
-## Publisher: <br>
-[ghgh2026](https://clawhub.ai/user/ghgh2026) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ghgh2026](https://clawhub.ai/user/ghgh2026)
 
-## Use Case: <br>
-External users and developers use this skill to request structured stock analysis reports for A-share, Hong Kong, and U.S. equities. It gathers current market, financial, news, and industry signals, then formats a sourced Markdown report with valuation, risk, catalyst, and disclaimer sections. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad stock-name and ticker triggers may activate the skill unintentionally and may query external finance or search providers. <br>
-Mitigation: Use explicit stock-analysis requests and avoid including confidential portfolio details, internal research, account information, or trading instructions in prompts. <br>
-Risk: Generated stock analysis may be incomplete, stale, inaccurate, or mistaken for personalized financial advice. <br>
-Mitigation: Require current data with source dates, cross-check important claims against independent sources, and preserve the skill's disclaimer that outputs are for reference only and not investment advice. <br>
+## Use Case:
 
+External users and analysts use this skill to request structured stock reports by company name or ticker, covering market context, business breakdown, orders and capacity, financials, valuation, shareholder structure, risks, catalysts, and investment guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ghgh2026/gh-stock-deep-analysis) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Guidance] <br>
-**Output Format:** [Markdown stock analysis report with tables, citations, risk notes, and investment disclaimers] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses current finance and search data where tools are available; generated analysis should be treated as informational and reviewed before decisions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.5 (source: server release metadata) <br>
+Risk: Completed analyses may be saved locally, added to an analysis history index, published through Feishu Wiki, and announced to a specified Feishu group without clear user approval.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit confirmation and destination selection before any file write, document publication, Wiki move, or group message.
+
+Risk: The skill produces investment guidance such as ratings, target prices, stop-loss levels, and position suggestions that may be stale, incomplete, or unsuitable for a user's circumstances.
+
+Mitigation: Treat generated reports as informational, verify cited sources and dates, and retain the disclaimer that outputs do not constitute investment advice.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ghgh2026/skills/gh-stock-deep-analysis)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, text, guidance]
+
+**Output Format:** [Markdown stock analysis report with tables, source/date labels, risk analysis, and disclaimer text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language output; may include target prices, stop-loss levels, position suggestions, and cited data dates.]
+
+## Skill Version(s):
+
+1.1.6 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

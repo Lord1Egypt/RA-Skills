@@ -1,6 +1,9 @@
 {
-  "ownerId": "kn75rx6r43jt172mehz478r67n81zchx",
-  "slug": "mmag",
-  "version": "1.0.6",
-  "publishedAt": 1773311332336
+    "slug": "mmag",
+    "version": "1.0.6",
+    "publishedAt": 1740920400000,
+    "env": {
+        "MMAG_KEY": "The AES-256-CBC encryption key for memory layers.",
+        "MMAG_KEY_FILE": "Path to a file containing the MMAG encryption key (default: ~/.openclaw/skills/mmag/.key)."
+    }
 }

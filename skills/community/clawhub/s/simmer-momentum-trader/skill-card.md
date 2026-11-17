@@ -1,42 +1,53 @@
-## Description: <br>
-Momentum-based trading skill for Simmer prediction markets that detects probability momentum and divergence to generate YES/NO Polymarket trade signals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Momentum-based trading skill for Simmer prediction markets. Detects probability momentum and divergence to generate YES/NO trades on Polymarket. Remixable -- swap in your own signal source or combine with other indicators.
 
-## Publisher: <br>
-[mrjoeteam](https://clawhub.ai/user/mrjoeteam) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mrjoeteam](https://clawhub.ai/user/mrjoeteam)
 
-## Use Case: <br>
-Developers and trading automation users use this skill to monitor selected Simmer watchlist markets, evaluate a configurable probability-divergence signal, and dry-run or execute Polymarket YES/NO trades. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Running with live trading enabled can place real Polymarket trades. <br>
-Mitigation: Keep the skill in dry-run until the strategy and SDK behavior are reviewed, restrict MARKET_IDS, and use a small TRADE_AMOUNT. <br>
-Risk: The skill requires a Simmer API key. <br>
-Mitigation: Provide SIMMER_API_KEY through the environment only, avoid hardcoding credentials, and rotate the key if it is exposed. <br>
-Risk: Momentum and divergence signals can be wrong or perform poorly in volatile markets. <br>
-Mitigation: Review the default signal, threshold, market context checks, and trade amount before relying on the strategy. <br>
+## Use Case:
 
+Developers and market-automation users use this skill to monitor Simmer watchlist markets and generate or execute YES/NO Polymarket trades from a configurable momentum and divergence strategy.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/mrjoeteam/simmer-momentum-trader) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown setup guidance with Python command examples and terminal status output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires simmer-sdk, SIMMER_API_KEY, and selected market IDs; defaults to dry-run unless live trading is explicitly enabled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: The skill can place automated financial trades when live mode is enabled, and the authoritative security summary flags safety and accuracy gaps.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the strategy before installation, keep dry-run mode until validated, use conservative account limits, and only enable --live with a narrowly scoped Simmer API key.
+
+Risk: Unpinned dependencies, numeric configuration, and fail-open behavior can change trading behavior or allow orders under weak validation.
+
+Mitigation: Pin and review dependencies, validate threshold and trade amount settings, and consider fail-closed safeguards before scheduled or live use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mrjoeteam/skills/simmer-momentum-trader)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, API calls]
+
+**Output Format:** [Console text with optional Python execution and Simmer API trade requests]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Dry-run by default; live trading requires the --live flag and a SIMMER_API_KEY environment variable.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,61 @@
-## Description: <br>
-Batch-generates customer-support reply templates with consistent empathy statements, action statements, boundary language, and escalation prompts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Batch-generates customer support reply templates with a consistent empathetic tone, action statements, boundaries, and escalation prompts.
 
-## Publisher: <br>
-[52YuanChangXing](https://clawhub.ai/user/52YuanChangXing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[52yuanchangxing](https://clawhub.ai/user/52yuanchangxing)
 
-## Use Case: <br>
-Support teams, customer-success teams, and agents use this skill to turn issue types, brand tone, and prohibited phrasing into reviewable Markdown macro drafts with clear escalation and risk notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated support replies can contain incorrect commitments, unsuitable wording, or policy-sensitive guidance if used without review. <br>
-Mitigation: Review all generated macros before customer use and keep boundary, escalation, and risk notes in the final workflow. <br>
-Risk: Customer inputs may include personal or sensitive information. <br>
-Mitigation: Redact sensitive customer data where possible before using the skill or running the local helper. <br>
-Risk: The optional Python helper reads chosen inputs and can write an output file. <br>
-Mitigation: Run it only on input files and output paths intentionally selected by the operator. <br>
+## Use Case:
 
+Support, customer-success, and operations teams use this skill to draft reviewable customer service macro sets from issue types, brand voice, and prohibited wording. It is intended for template drafting and review workflows, not direct sending, publishing, or external system changes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/52YuanChangXing/support-macro-crafter) <br>
-- [Publisher profile](https://clawhub.ai/user/52YuanChangXing) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown or JSON, with optional local shell command usage for file-based generation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs include template directories, standard structure, empathy statements, action statements, escalation cues, risk notices, missing information, and next steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The local helper can read the input path selected by the user, which may include sensitive customer or private workspace content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a narrow, purpose-built input file and remove secrets or unnecessary personal data before running the skill.
+
+Risk: The local helper can write or overwrite the output file selected by the user.
+
+Mitigation: Use stdout, dry-run, or a dedicated workspace output path when reviewing generated macros.
+
+Risk: Generated customer support language could contain unsupported promises or wording that is not approved for the brand or policy context.
+
+Mitigation: Review generated macros before formal use and confirm missing facts, escalation rules, and prohibited wording.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/52yuanchangxing/skills/support-macro-crafter)
+- [README](artifact/README.md)
+- [Skill specification](artifact/resources/spec.json)
+- [Output template](artifact/resources/template.md)
+- [Example output](artifact/examples/example-output.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, guidance, files]
+
+**Output Format:** [Structured Markdown by default, with optional JSON output from the local helper script.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The local helper reads a user-selected input file or inline input and can write stdout or a user-selected output file; generated macros require human review before operational use.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

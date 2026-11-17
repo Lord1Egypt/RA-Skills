@@ -1,45 +1,59 @@
-## Description: <br>
-TextRazor (textrazor.com). Use this skill for ANY TextRazor request - searching and reading data. Whenever a task involves TextRazor, use this skill instead of calling the API directly. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use the OOMOL-connected oo CLI to analyze TextRazor content, extract entities, classify text, inspect account quota, and manage custom classifiers or dictionaries.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and agents use this skill to operate TextRazor through an OOMOL-connected account for account lookup, text analysis, classification, entity extraction, and managed TextRazor custom resources. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires access through an OOMOL-connected TextRazor account. <br>
-Mitigation: Install only when that account access is acceptable, and keep credentials managed through the connected account flow. <br>
-Risk: Some TextRazor classifier and dictionary manager actions can modify, overwrite, or delete resources. <br>
-Mitigation: Require explicit confirmation of the exact operation, payload, and target before running state-changing or destructive actions. <br>
-Risk: First-time setup examples include installing the oo CLI from a remote installer. <br>
-Mitigation: Prefer a verified package or reviewed installer path before running installation commands. <br>
+## Use Case:
 
+Developers use this skill to run supported TextRazor actions through an OOMOL-connected account. It supports text analysis, classification, entity extraction, account information, and custom classifier or dictionary management.
 
-## Reference(s): <br>
-- [ClawHub TextRazor skill page](https://clawhub.ai/oomol/oo-textrazor) <br>
-- [OOMOL publisher profile](https://clawhub.ai/user/oomol) <br>
-- [TextRazor homepage](https://www.textrazor.com) <br>
-- [OOMOL oo CLI](https://github.com/oomol-lab/oo-cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON command payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands call the OOMOL TextRazor connector and can return JSON data from TextRazor actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and release evidence) <br>
+Risk: Fallback setup runs downloaded code that has not been verified.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a reviewed, pinned CLI build before setup.
+
+Risk: The linked CLI may change other agents’ installed skills through automatic synchronization.
+
+Mitigation: Verify automatic skill synchronization is disabled if those changes are not wanted, and require explicit approval for deletions and overwrites.
+
+Risk: Submitted text passes through OOMOL to TextRazor.
+
+Mitigation: Send only text that is permitted to be processed by both services.
+
+## Reference(s):
+
+- [TextRazor API Documentation](https://www.textrazor.com/docs/rest)
+- [TextRazor](https://www.textrazor.com)
+- [OOMOL oo CLI](https://github.com/oomol-lab/oo-cli)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Shell commands, Guidance]
+
+**Output Format:** [JSON responses and concise text or Markdown guidance with shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Actions that change or delete data require confirmation; results depend on the connected TextRazor account.]
+
+## Skill Version(s):
+
+1.0.6 (source: frontmatter, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

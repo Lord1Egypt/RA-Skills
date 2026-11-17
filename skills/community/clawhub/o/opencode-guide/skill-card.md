@@ -1,47 +1,60 @@
-## Description: <br>
-Guides an OpenClaw agent in coordinating user-confirmed OpenCode tasks, launching them through callback helper scripts, and reporting asynchronous results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides OpenClaw agents to coordinate user-confirmed OpenCode work through callback scripts and report results without blocking the conversation.
 
-## Publisher: <br>
-[wangning823-arch](https://clawhub.ai/user/wangning823-arch) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangning823-arch](https://clawhub.ai/user/wangning823-arch)
 
-## Use Case: <br>
-Developers and operators use this skill to route code analysis, code changes, operations, and testing requests to specialized agents after user confirmation. It emphasizes asynchronous OpenCode execution with callbacks, local result capture, and concise user-facing status reporting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release installs executable helper scripts into ~/.openclaw/scripts. <br>
-Mitigation: Review the installed scripts before use and keep execute permissions limited to trusted local operators. <br>
-Risk: Task metadata and results are stored locally under ~/.openclaw/task-results and may be sent through OpenClaw callbacks. <br>
-Mitigation: Avoid placing secrets in task prompts, review callback destinations, and periodically clean stored task results. <br>
-Risk: The wrapper script accepts a broad shell command string for callback execution. <br>
-Mitigation: Prefer opencode-auto-callback.sh for normal use and reserve the wrapper for reviewed commands from trusted users. <br>
-Risk: Example session keys in documentation may be copied into unintended executions. <br>
-Mitigation: Replace examples with the current intended session key before running any callback command. <br>
+## Use Case:
 
+Developers and agent operators use this skill to delegate code analysis and modification tasks from OpenClaw to OpenCode only after user confirmation, while receiving asynchronous start and completion callbacks with task summaries.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/wangning823-arch/opencode-guide) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [OpenCode callback script documentation](artifact/scripts/README-opencode-callback.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown instructions with inline shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill may direct agents to create local task files, run helper scripts, and review locally stored task logs and result files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The package installs shared callback scripts automatically into the OpenClaw scripts directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the package lifecycle hooks and bundled scripts before installation, and install only in environments where OpenClaw-to-OpenCode delegation is intended.
+
+Risk: The bash-c wrapper can be unsafe when task text is untrusted.
+
+Mitigation: Avoid the bash-c wrapper for untrusted task text and prefer direct, reviewed callback-script invocation with trusted arguments.
+
+Risk: Session keys, task content, logs, and summaries may be sensitive and are written under ~/.openclaw/task-results and passed to the local callback mechanism.
+
+Mitigation: Protect session keys and task-result files, limit filesystem access to trusted users, and avoid including secrets in delegated task descriptions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wangning823-arch/skills/opencode-guide)
+- [README.md](README.md)
+- [SKILL.md](SKILL.md)
+- [OpenCode callback script README](scripts/README-opencode-callback.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with inline shell command examples and bundled bash callback scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Task results, logs, JSON output, and extracted summaries are written under ~/.openclaw/task-results by the bundled callback scripts.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

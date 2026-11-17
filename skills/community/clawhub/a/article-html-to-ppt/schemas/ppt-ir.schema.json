@@ -1,0 +1,170 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://meowclaw.local/article-html-to-ppt/ppt-ir.schema.json",
+  "title": "article-html-to-ppt PPT IR v2",
+  "type": "object",
+  "required": ["schema_version", "deck", "sources", "style_contract_ref", "asset_manifest_ref", "slides"],
+  "properties": {
+    "schema_version": {"const": "2.0"},
+    "deck": {
+      "type": "object",
+      "required": ["id", "title", "source_type", "audience", "purpose", "language", "aspect_ratio", "production_profile", "logical_slide_count"],
+      "properties": {
+        "id": {"type": "string"},
+        "title": {"type": "string", "minLength": 1},
+        "source_type": {"enum": ["article", "report", "design_spec", "meeting_notes", "mixed"]},
+        "audience": {"type": "string"},
+        "purpose": {"type": "string"},
+        "language": {"type": "string"},
+        "formality": {"type": "string"},
+        "presentation_context": {"enum": ["live", "document", "social", "workshop", "internal", "external"]},
+        "aspect_ratio": {"enum": ["16:9", "4:3", "9:16"]},
+        "production_profile": {"enum": ["fast", "standard", "premium"]},
+        "target_builder": {"type": "string"},
+        "logical_slide_count": {"type": "integer", "minimum": 1}
+      }
+    },
+    "sources": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["source_id", "type", "title"],
+        "properties": {
+          "source_id": {"type": "string", "pattern": "^[A-Za-z0-9_.:-]+$"},
+          "type": {"type": "string"},
+          "title": {"type": "string"},
+          "path": {"type": "string"},
+          "url": {"type": "string"}
+        }
+      }
+    },
+    "style_contract_ref": {"type": "string"},
+    "asset_manifest_ref": {"type": "string"},
+    "slides": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["id", "index", "slide_role", "title_role", "title", "message", "audience_question", "source_refs", "primary_expression", "supporting_expressions", "primary_anchor", "delivery_contract"],
+        "properties": {
+          "id": {"type": "string"},
+          "index": {"type": "integer", "minimum": 1},
+          "slide_role": {"enum": ["cover", "agenda", "section", "judgment", "data", "diagram", "reference", "closing", "instruction"]},
+          "title_role": {"enum": ["judgment", "navigation", "section", "instruction", "reference", "closing"]},
+          "title": {"type": "string", "minLength": 1},
+          "judgment": {"type": ["string", "null"]},
+          "message": {"type": "string"},
+          "audience_question": {"type": "string"},
+          "source_refs": {"type": "array", "items": {"$ref": "#/$defs/source_ref"}},
+          "primary_expression": {"enum": ["textual_argument", "structured_cards", "table_matrix", "data_visual", "relationship_visual", "conceptual_scene"]},
+          "primary_expression_reason": {"type": "string"},
+          "supporting_expressions": {
+            "type": "array",
+            "items": {"enum": ["interpretation", "kpi", "source_note", "risk_callout", "legend", "caption", "supporting_image"]}
+          },
+          "supporting_evidence": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["content", "source_refs"],
+              "properties": {
+                "content": {"type": "string", "minLength": 1},
+                "source_refs": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/source_ref"}}
+              }
+            }
+          },
+          "page_archetype": {"type": "string"},
+          "layout_intent": {"type": "string"},
+          "primary_anchor": {"type": "string", "minLength": 1},
+          "density": {"type": "object"},
+          "objects": {"type": "array", "items": {"$ref": "#/$defs/object"}},
+          "delivery_contract": {
+            "type": "object",
+            "required": ["preferred_route", "editable_core", "raster_allowance", "forbidden_raster"],
+            "properties": {
+              "preferred_route": {"$ref": "#/$defs/deliveryRoute"},
+              "editable_core": {"type": "array", "items": {"type": "string"}},
+              "raster_allowance": {"type": "array", "items": {"type": "string"}},
+              "forbidden_raster": {"type": "array", "items": {"type": "string"}}
+            }
+          },
+          "qa_expectations": {"type": "array", "items": {"type": "string"}}
+        }
+      }
+    }
+  },
+  "$defs": {
+    "deliveryRoute": {
+      "enum": ["native_ppt", "native_chart", "native_table", "native_diagram", "svg_component", "raster_component", "generated_image", "background_image", "hybrid_overlay", "unsupported"]
+    },
+    "source_ref": {
+      "type": "object",
+      "required": ["source_id", "locator", "claim_type"],
+      "properties": {
+        "source_id": {"type": "string"},
+        "locator": {"type": "string"},
+        "claim_type": {"enum": ["direct", "inferred", "calculated", "quoted", "background"]},
+        "note": {"type": "string"}
+      }
+    },
+    "object": {
+      "type": "object",
+      "required": ["id", "type", "semantic_role", "source_refs", "editability"],
+      "allOf": [
+        {
+          "if": {"properties": {"type": {"const": "diagram"}}},
+          "then": {
+            "oneOf": [
+              {"required": ["diagram_ir_ref"], "not": {"required": ["diagram_ir"]}},
+              {"required": ["diagram_ir"], "not": {"required": ["diagram_ir_ref"]}}
+            ]
+          }
+        }
+      ],
+      "properties": {
+        "id": {"type": "string"},
+        "type": {"enum": ["text", "shape", "table", "chart", "diagram", "image", "icon", "connector", "group"]},
+        "component_type": {"type": "string"},
+        "semantic_role": {"type": "string"},
+        "content": {},
+        "source_refs": {"type": "array", "items": {"$ref": "#/$defs/source_ref"}},
+        "layout": {"type": "object"},
+        "style_ref": {"type": "string"},
+        "asset_ref": {"type": "string"},
+        "diagram_ref": {"type": "string", "deprecated": true},
+        "diagram_ir_ref": {"type": "string"},
+        "diagram_ir": {"type": "object"},
+        "visual_component_plan": {
+          "type": "object",
+          "properties": {
+            "component_type": {"type": "string"},
+            "diagram": {"type": "object"},
+            "image": {"type": "object"},
+            "chart": {"type": "object"}
+          }
+        },
+        "delivery_preferences": {
+          "type": "object",
+          "properties": {
+            "preferred_route": {"$ref": "#/$defs/deliveryRoute"},
+            "allowed_fallbacks": {"type": "array", "items": {"$ref": "#/$defs/deliveryRoute"}}
+          }
+        },
+        "complexity": {
+          "type": "object",
+          "properties": {
+            "node_count": {"type": "integer", "minimum": 0},
+            "edge_count": {"type": "integer", "minimum": 0},
+            "series_count": {"type": "integer", "minimum": 0},
+            "category_count": {"type": "integer", "minimum": 0},
+            "row_count": {"type": "integer", "minimum": 0},
+            "column_count": {"type": "integer", "minimum": 0}
+          }
+        },
+        "editability": {"enum": ["native_required", "native_preferred", "raster_allowed", "raster_only"]},
+        "priority": {"enum": ["primary", "supporting", "annotation", "decorative"]}
+      }
+    }
+  }
+}

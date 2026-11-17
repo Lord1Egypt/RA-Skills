@@ -1,41 +1,55 @@
-## Description: <br>
-万向传动轴CAD图纸生成。当用户说"万向传动轴"、"生成万向传动轴图纸"、"做一个万向传动轴"、"driveshaft"时使用此 skill。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates CAD drawing workflows for universal driveshaft products by guiding users through product selection, parameter collection, calculation review, and guest production-sheet creation on jixietools.com.
 
-## Publisher: <br>
-[liv09370](https://clawhub.ai/user/liv09370) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liv09370](https://clawhub.ai/user/liv09370)
 
-## Use Case: <br>
-External users and mechanical-design practitioners use this skill to collect driveshaft parameters, call the JXT mechanical-parts API, review calculated values, and create a guest production sheet for CAD drawing generation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow sends driveshaft design parameters to jixietools.com. <br>
-Mitigation: Use the skill only for designs that can be shared with that third-party service, or confirm the service's access controls and retention terms before use. <br>
-Risk: The workflow creates guest-access production-sheet links. <br>
-Mitigation: Avoid entering confidential or proprietary mechanical designs unless the link sharing and access behavior is acceptable for the project. <br>
+## Use Case:
 
+External users and developers use this skill to collect driveshaft design parameters, call the JXT mechanical parts API, review calculated values, and create no-login guest production sheets for CAD drawing generation.
 
-## Reference(s): <br>
-- [Driveshaft skill page](https://clawhub.ai/liv09370/driveshaft) <br>
-- [JXT mechanical tools API base URL](https://jixietools.com/api/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, API calls, guidance] <br>
-**Output Format:** [Chinese Markdown guidance with curl commands, JSON responses, tables, and production-sheet links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides step-by-step user input, sends driveshaft parameters to jixietools.com, stores returned filenames and guest codes during the workflow, and polls production status.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact frontmatter reports 1.0.0) <br>
+Risk: User-supplied values could be unsafe if inserted literally into shell command templates.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use structured JSON serialization or a shell-free HTTP client before submitting user-entered values.
+
+Risk: No-login guest links may expose generated design outputs to anyone who receives the link.
+
+Mitigation: Share guest links only with intended recipients and avoid submitting sensitive design parameters unless this exposure is acceptable.
+
+## Reference(s):
+
+- [ClawHub Driveshaft skill page](https://clawhub.ai/liv09370/skills/driveshaft)
+- [Jixietools API base URL](https://jixietools.com/api/v1)
+- [Jixietools driveshaft product listing endpoint](https://jixietools.com/api/v1/products?category_id=8)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, API calls, Guidance]
+
+**Output Format:** [Markdown guidance with inline curl commands, JSON examples, and review tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses Chinese user-facing dialogue and stepwise confirmation before continuing the CAD drawing workflow.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

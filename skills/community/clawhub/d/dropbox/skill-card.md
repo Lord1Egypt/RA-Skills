@@ -1,47 +1,54 @@
-## Description: <br>
-Manage Dropbox files through an MCP server or Swift CLI for listing, searching, reading, uploading, downloading, deleting, and account lookup operations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Dropbox files securely with OAuth 2.0 PKCE via CLI or MCP server, supporting upload, download, search, delete, and account info operations.
 
-## Publisher: <br>
-[RyanLisse](https://clawhub.ai/user/RyanLisse) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[ryanlisse](https://clawhub.ai/user/ryanlisse)
 
-## Use Case: <br>
-Developers and agent operators use this skill to connect MCP clients or a Swift CLI to Dropbox for file-management workflows. It is suited to workflows where the operator is comfortable granting Dropbox read/write access and confirming transfer or destructive actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Dropbox credentials and read/write file access can expose or alter user data. <br>
-Mitigation: Grant only the required Dropbox scopes, store tokens securely, and require confirmation before uploads, downloads, deletes, overwrites, or sync operations. <br>
-Risk: The bundled setup guide references an unpinned npm MCP server that would receive Dropbox credentials. <br>
-Mitigation: Prefer the documented Swift Dropbook build path, and review any package before giving it Dropbox tokens. <br>
-Risk: Bulk transfer and sync commands can overwrite or delete files if paths or direction are wrong. <br>
-Mitigation: Validate paths first, use dry runs for sync-style operations, and confirm the source and destination before running rclone or destructive Dropbox actions. <br>
+## Use Case:
 
+Developers and agent operators use this skill to connect an MCP-capable agent or CLI workflow to Dropbox for listing, searching, uploading, downloading, deleting, reading text files, and account lookup.
 
-## Reference(s): <br>
-- [Dropbox MCP Setup Guide](artifact/references/mcp-setup.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/RyanLisse/dropbox) <br>
-- [Dropbox API Documentation](https://www.dropbox.com/developers/documentation) <br>
-- [rclone Dropbox Documentation](https://rclone.org/dropbox/) <br>
-- [RFC 7636 - Proof Key for Code Exchange](https://datatracker.ietf.org/doc/html/rfc7636) <br>
-- [RFC 9700 - OAuth 2.0 Security Best Current Practice](https://datatracker.ietf.org/doc/html/rfc9700) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with JSON configuration examples and inline shell commands; MCP tool responses may be JSON or text.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Dropbox app credentials and user confirmation for uploads, downloads, deletes, overwrites, and sync operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.json and server release evidence) <br>
+Risk: The skill can give an agent broad ability to read, change, upload, download, and delete Dropbox files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when that access is appropriate, use narrowly scoped Dropbox credentials, and review destructive or sensitive file operations before execution.
+
+Risk: Persistent Dropbox credentials may be exposed if legacy token setup or plaintext token files are used.
+
+Mitigation: Prefer the documented Swift and Keychain OAuth path, avoid the npx-based legacy setup unless the package is pinned and reviewed, and harden or avoid plaintext rclone token files.
+
+## Reference(s):
+
+- [Dropbox Manager on ClawHub](https://clawhub.ai/ryanlisse/skills/dropbox)
+- [MCP setup guide](references/mcp-setup.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown documentation with JSON MCP responses and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Dropbox application credentials and access scoped to the intended Dropbox account or files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact/SKILL.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

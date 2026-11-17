@@ -1,43 +1,58 @@
-## Description: <br>
-Ace competitions agent workflow - search, enter, track competitions. Uses browser automation for form filling, email verification, and competition entry. Integrates with competitions dashboard. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ace competitions agent workflow - search, enter, track competitions. Uses browser automation for form filling, email verification, and competition entry. Integrates with competitions dashboard.
 
-## Publisher: <br>
-[stefanferreira](https://clawhub.ai/user/stefanferreira) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[stefanferreira](https://clawhub.ai/user/stefanferreira)
 
-## Use Case: <br>
-External users and operators use this skill to discover online competitions, prepare and submit entries through browser automation, verify entries, and track competition status in a dashboard. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may submit real competition entries and complete verification workflows using contact details. <br>
-Mitigation: Require human approval before each submission and verification step, and use only dedicated competition email and phone credentials. <br>
-Risk: Competition tracking can expose personal data, screenshots, logs, dashboard records, and backups. <br>
-Mitigation: Restrict dashboard and API access, and define retention and deletion rules for screenshots, logs, backups, and personal data before use. <br>
-Risk: Scheduled automation can run repeated searches, verification checks, and dashboard updates without ongoing operator review. <br>
-Mitigation: Review the cron schedule and referenced helper scripts before installation, and keep scheduled jobs disabled until the operator confirms the workflow boundaries. <br>
+## Use Case:
 
+External users and developers use this skill to find online competitions, prepare automated entries, handle verification steps, and track outcomes in a competition dashboard.
 
-## Reference(s): <br>
-- [Ace Competitions ClawHub listing](https://clawhub.ai/stefanferreira/ace-competitions) <br>
-- [Publisher profile](https://clawhub.ai/user/stefanferreira) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Code, Configuration, Markdown] <br>
-**Output Format:** [Markdown with inline bash, Python, SQL, JSON, and cron examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce dashboard records, screenshots, verification tasks, and entry status updates when used with the referenced local automation components.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill describes unattended competition entry and verification across third-party sites.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require user approval before submitting each entry and avoid enabling scheduled jobs by default.
+
+Risk: The artifact includes hardcoded contact details and dashboard/API endpoints.
+
+Mitigation: Replace personal contact details with user-provided values and protect or disable dashboard/API outputs unless access control and retention are configured.
+
+Risk: The workflow depends on referenced scripts and automation components that are not included in the artifact.
+
+Mitigation: Confirm referenced scripts are trusted, pinned, and reviewed before execution.
+
+## Reference(s):
+
+- [Ace Competitions ClawHub skill page](https://clawhub.ai/stefanferreira/skills/ace-competitions)
+- [stefanferreira ClawHub publisher profile](https://clawhub.ai/user/stefanferreira)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline code, shell commands, SQL, and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces workflow instructions for browser automation, email verification, dashboard tracking, scheduled jobs, and error recovery.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

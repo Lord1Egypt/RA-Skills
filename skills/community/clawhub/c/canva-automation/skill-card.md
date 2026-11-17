@@ -1,42 +1,56 @@
-## Description: <br>
-Automate Canva tasks via Rube MCP (Composio): designs, exports, folders, brand templates, autofill. Always search tools first for current schemas. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates Canva tasks via Rube MCP (Composio), including designs, exports, folders, brand templates, autofill, and current-schema tool discovery.
 
-## Publisher: <br>
-[sohamganatra](https://clawhub.ai/user/sohamganatra) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[sohamganatra](https://clawhub.ai/user/sohamganatra)
 
-## Use Case: <br>
-Developers and operators use this skill to guide agents through Canva workflows such as listing designs, creating designs, uploading assets, exporting files, organizing folders, and autofilling brand templates through Rube MCP. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill guides an agent to operate on Canva content through an external Rube MCP connection. <br>
-Mitigation: Install and use it only when that external connection is intended and the Canva account has appropriate access for the task. <br>
-Risk: Asset URLs shared during uploads may expose private, internal, signed, or otherwise sensitive content to Canva or Rube. <br>
-Mitigation: Provide only asset URLs that are approved for sharing through the Canva/Rube workflow. <br>
-Risk: Generated Canva export download links can expose exported design content while they remain valid. <br>
-Mitigation: Treat export links as secrets and share or store them only in approved locations. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Rube MCP endpoint](https://rube.app/mcp) <br>
-- [Canva Automation on ClawHub](https://clawhub.ai/sohamganatra/canva-automation) <br>
+## Use Case:
 
+Developers and external users use this skill to guide agents through Canva design creation, browsing, asset upload, export, folder organization, and brand-template autofill workflows through Rube MCP.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with tool sequences, parameter notes, and workflow cautions.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance may result in third-party Canva and Rube MCP operations when followed by an agent with the required connection.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Canva OAuth access lets the agent act on Canva designs, assets, folders, exports, and brand-template workflows.
+
+Mitigation: Connect only the intended Canva account and review each upload, export, folder move, or autofill request before execution.
+
+Risk: Uploaded files, design contents, OAuth access, and generated export download links can expose sensitive third-party data.
+
+Mitigation: Treat these data flows as sensitive, share generated links only with intended recipients, and avoid uploading confidential assets unless the Canva/Rube connection is approved for that data.
+
+Risk: Upload, export, and autofill operations are asynchronous and may fail or return incomplete results if the job is not checked.
+
+Mitigation: Poll the relevant job status until a success or failed state is returned, then handle failures before using asset IDs, design IDs, or download URLs.
+
+## Reference(s):
+
+- [Rube MCP](https://rube.app/mcp)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, API calls, Configuration instructions]
+
+**Output Format:** [Markdown instructions with MCP tool sequences, parameter notes, and workflow guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Rube MCP and an active Canva OAuth connection.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,38 +1,49 @@
-## Description: <br>
-Generates XMind-format test case mind maps from structured test case data for ecommerce coupon, login, registration, order, and similar testing scenarios. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates XMind test-case mind map files from structured test case data, including modules, test points, cases, prerequisites, steps, expected results, and priority.
 
-## Publisher: <br>
-[Aicodem](https://clawhub.ai/user/Aicodem) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aicodem](https://clawhub.ai/user/aicodem)
 
-## Use Case: <br>
-Developers, QA engineers, and test teams use this skill to convert structured test-case JSON into local XMind mind-map files for planning, reviewing, and sharing test scenarios. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Provided test data is embedded in the generated .xmind file on disk. <br>
-Mitigation: Avoid including secrets or sensitive production data unless the output file is stored, shared, and retained appropriately. <br>
+## Use Case:
 
+Developers, QA engineers, and test teams use this skill to convert structured test case data into XMind-compatible mind maps for test planning and review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Aicodem/aicodem-xmind-testcase) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Configuration] <br>
-**Output Format:** [XMind ZIP file generated from JSON test case data] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs locally with Python standard library modules and embeds provided test data in the generated .xmind file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: The skill can be directed to overwrite arbitrary writable files through an underdocumented output path.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it in a dedicated output directory and validate or constrain the requested output_file path before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aicodem/skills/aicodem-xmind-testcase)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, configuration, guidance]
+
+**Output Format:** [JSON input guidance and generated .xmind files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces an XMind-compatible ZIP workbook and returns the output file path plus module, test point, and test case counts.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence, SKILL.md frontmatter, skill.yaml, _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

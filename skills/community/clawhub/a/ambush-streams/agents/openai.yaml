@@ -1,0 +1,13 @@
+interface:
+  display_name: "Manage Ambush Streams"
+  short_description: "Manage streams, processing, and delivery"
+  default_prompt: "Use $manage-ambush-streams to review and manage my Ambush streams, event processing, and delivery routes."
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "ambush-streams"
+      description: "Ambush Streams MCP server"
+      transport: "streamable_http"
+      url: "https://api.ambush.ai/mcp"
+policy:
+  allow_implicit_invocation: true

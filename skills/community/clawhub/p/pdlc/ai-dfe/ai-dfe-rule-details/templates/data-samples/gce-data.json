@@ -1,0 +1,49 @@
+{
+  "$schema": null,
+  "$schemaVersion": "1.0.0",
+  "$generatedBy": "AI-DFE",
+  "$generatedOn": "2026-06-22T12:00:00Z",
+  "$family": "pdlc",
+  "$package": "ai-gce",
+  "data": {
+    "projectName": "Sample System",
+    "currentPhase": "delivery",
+    "complianceTier": 2,
+    "startDate": "2026-06-22T12:00:00Z",
+    "complianceScore": 82,
+    "lastAudit": "2026-06-22T12:00:00Z",
+    "tierHistory": [
+      {
+        "tier": 1,
+        "activatedDate": "2026-06-22T12:00:00Z",
+        "activatedBy": "AI-GCE Full Generation",
+        "scoreAtActivation": null
+      }
+    ],
+    "nextTierReadiness": {
+      "tier": 3,
+      "criteriaMetCount": 2,
+      "criteriaTotalCount": 4,
+      "blockers": [
+        "No release candidate yet"
+      ]
+    },
+    "dashboard": {
+      "summary": "Tier 2, 82%",
+      "scoreHistory": []
+    },
+    "activeAgentCount": 8,
+    "agents": [
+      {
+        "id": "GCE-AG-01",
+        "agent": "compliance-audit-agent",
+        "type": "Audit",
+        "trigger": "CAA__",
+        "tier": 1,
+        "status": "Active"
+      }
+    ],
+    "lastAuditScore": 82,
+    "lastAuditRating": "compliant"
+  }
+}

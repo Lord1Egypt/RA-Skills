@@ -1,43 +1,59 @@
-## Description: <br>
-Generate speech audio from text using MiniMax speech-2.8-hd with voice controls, WAV file output, and optional real-time streaming playback. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate speech audio from text with MiniMax speech-2.8-hd, including selectable voices, speed, pitch, volume controls, WAV file output, and WebSocket streaming playback through ffplay.
 
-## Publisher: <br>
-[4833675](https://clawhub.ai/user/4833675) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[4833675](https://clawhub.ai/user/4833675)
 
-## Use Case: <br>
-Agents and developers use this skill to turn text into spoken audio through MiniMax TTS, either by saving WAV/MP3 output files or streaming playback during live chat workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles MiniMax API credentials and its setup flow can lead users to place secrets in skill files. <br>
-Mitigation: Prefer temporary environment variables or command-line secret handling, and rotate any API key already stored in the skill files. <br>
-Risk: The streaming playback path disables normal TLS verification. <br>
-Mitigation: Avoid streaming playback until TLS verification is restored; use reviewed file generation paths for sensitive use. <br>
+## Use Case:
 
+Developers and agent users use this skill to convert supplied text into MiniMax TTS audio, either as saved WAV/MP3 output or immediate streaming playback. It is suited for text-to-speech responses, narration, voice selection, and speech parameter tuning.
 
-## Reference(s): <br>
-- [MiniMax Speech T2A API Documentation](https://platform.minimaxi.com/docs/api-reference/speech-t2a-http) <br>
-- [MiniMax System Voice ID FAQ](https://platform.minimaxi.com/docs/faq/system-voice-id) <br>
-- [ClawHub Skill Page](https://clawhub.ai/4833675/minimax-tokenplan-tts) <br>
-- [FFmpeg Downloads](https://ffmpeg.org/download.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and generated WAV or MP3 audio files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3, network access, MINIMAX_API_KEY, and ffplay for streaming playback.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server evidence and frontmatter) <br>
+Risk: API credentials may be exposed if a real MiniMax API key is pasted into SKILL.md or committed into the Python scripts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an environment variable or secret store for MINIMAX_API_KEY, and review files before sharing or committing configured copies.
+
+Risk: Streaming playback weakens TLS protections and can be unsafe on untrusted networks or endpoints.
+
+Mitigation: Avoid streaming mode until TLS verification is fixed; use only trusted MiniMax base URLs and prefer non-streaming generation when secure transport cannot be confirmed.
+
+Risk: Input text is transmitted to a third-party TTS service.
+
+Mitigation: Do not send sensitive, confidential, or regulated text unless the MiniMax service terms and data handling are approved for that use.
+
+## Reference(s):
+
+- [MiniMax Speech T2A API Reference](https://platform.minimaxi.com/docs/api-reference/speech-t2a-http)
+- [MiniMax System Voice ID FAQ](https://platform.minimaxi.com/docs/faq/system-voice-id)
+- [ClawHub Skill Page](https://clawhub.ai/4833675/skills/minimax-tokenplan-tts)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands; scripts return file paths or streaming status on stdout and audio files on disk when saving is requested.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [TTS input text is limited to 10000 characters; generated file mode writes WAV output by default, and streaming mode can play via ffplay or optionally save MP3 audio.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata, SKILL.md frontmatter, CHANGELOG.md released 2026-04-05)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

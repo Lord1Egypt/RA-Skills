@@ -1,40 +1,53 @@
-## Description: <br>
-Distributed systems architect designing scalable microservice ecosystems. Masters service boundaries, communication patterns, and operational excellence in cloud-native environments. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Distributed systems architect for designing scalable microservice ecosystems across service boundaries, communication patterns, and operational excellence in cloud-native environments.
 
-## Publisher: <br>
-[mtsatryan](https://clawhub.ai/user/mtsatryan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mtsatryan](https://clawhub.ai/user/mtsatryan)
 
-## Use Case: <br>
-Developers, platform engineers, and architects use this skill to analyze service boundaries, communication patterns, resilience strategies, Kubernetes deployment design, service mesh configuration, observability, and production hardening for microservice ecosystems. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Architecture guidance may propose Kubernetes, CI/CD, cloud, or production deployment changes that are incomplete or unsuitable for a specific environment. <br>
-Mitigation: Review proposed designs and configuration changes with qualified engineers before applying them to production systems. <br>
-Risk: The skill is advisory and does not validate live infrastructure, credentials, service topology, or organizational requirements. <br>
-Mitigation: Validate recommendations against current system architecture, security policy, operational constraints, and test results. <br>
+## Use Case:
 
+Developers and platform engineers use this skill to plan microservice boundaries, communication patterns, resilience strategies, Kubernetes deployment, observability, and production hardening for cloud-native systems.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/mtsatryan/ah-microservices-architect) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, configuration] <br>
-**Output Format:** [Markdown with architecture guidance, checklists, JSON examples, and configuration recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces advisory design recommendations that should be reviewed before applying production Kubernetes, CI/CD, cloud, or deployment changes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Architecture proposals may include concrete Kubernetes, service mesh, secrets, or deployment changes that affect production systems.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review proposed infrastructure changes against environment requirements, security policy, and rollout procedures before applying them.
+
+Risk: Context-dependent architecture guidance may be incomplete for a specific system's reliability, latency, cost, or compliance constraints.
+
+Mitigation: Validate recommendations against current service ownership, data flows, SLOs, compliance obligations, and failure scenarios before adoption.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mtsatryan/skills/ah-microservices-architect)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with optional JSON and code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Architecture guidance and implementation proposals should be reviewed before applying infrastructure changes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,55 @@
-## Description: <br>
-Pearl Calc evaluates math expressions through a Pearl-backed paid calculator that charges $0.01 per expression. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pearl Calc is a paid calculator skill that evaluates math expressions through Pearl payments at $0.01 per expression.
 
-## Publisher: <br>
-[misteeka](https://clawhub.ai/user/misteeka) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[misteeka](https://clawhub.ai/user/misteeka)
 
-## Use Case: <br>
-Agents and users can submit simple math expressions and receive calculated results after Pearl payment setup and user approval. The skill is suited to paid calculator calls where the user understands that expressions are sent to a third-party service. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Using the skill may incur charges through Pearl. <br>
-Mitigation: Review the Pearl skill and payment setup before approval, and set spending limits or approved-skill controls. <br>
-Risk: Math expressions are transmitted to pearlcash.ai. <br>
-Mitigation: Avoid entering confidential financial, business, or personal values. <br>
-Risk: The skill installs a Node.js dependency before use. <br>
-Mitigation: Install only after reviewing the skill, package dependency, and payment behavior. <br>
+## Use Case:
 
+Agents and users can use Pearl Calc to evaluate math expressions when they accept the Pearl payment flow and the per-expression charge.
 
-## Reference(s): <br>
-- [Pearl Calc on ClawHub](https://clawhub.ai/misteeka/pearl-calc) <br>
-- [Pearl payment service](https://pearlcash.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration guidance] <br>
-**Output Format:** [Plain text result with Markdown setup and usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js, the @pearl-cash/client dependency, Pearl setup, network access to pearlcash.ai, and user-approved paid requests.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.9.20 (source: server release metadata) <br>
+Risk: Setup delegates to an external Pearl skill and mutable instructions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the Pearl skill, dependency installation, payment limits, and requested commands before approving setup.
+
+Risk: Calculator expressions are sent to a paid remote service.
+
+Mitigation: Avoid submitting sensitive formulas or private business data, and confirm the $0.01 per-expression charge before use.
+
+## Reference(s):
+
+- [Pearl](https://pearlcash.ai)
+- [Pearl Calc on ClawHub](https://clawhub.ai/misteeka/skills/pearl-calc)
+- [misteeka publisher profile](https://clawhub.ai/user/misteeka)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text calculator result with Markdown setup and usage commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js, Pearl setup, network access to pearlcash.ai, and user-approved paid execution.]
+
+## Skill Version(s):
+
+0.9.20 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

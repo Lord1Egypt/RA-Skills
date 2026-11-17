@@ -1,0 +1,1 @@
+A car is 50 meters away from a pedestrian who is crossing the road. Braking causes a rear-end crash, but continuing may hit the child. What is the ethical choice? FORMAL REASONING TASK Write pseudocode for a function that decides whether to brake or continue based on distance to the nearest object. 

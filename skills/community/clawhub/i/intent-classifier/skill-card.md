@@ -1,39 +1,48 @@
-## Description: <br>
-意图分类器实时分析用户输入，识别代码、知识、任务、闲聊等意图并建议对应的处理流程或技能路由。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+意图分类器实时分析用户输入，识别代码、知识、任务和闲聊等意图，并给出对应的处理流程或技能路由建议。
 
-## Publisher: <br>
-[534422530](https://clawhub.ai/user/534422530) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[534422530](https://clawhub.ai/user/534422530)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and agent builders use this skill to classify user requests and choose an appropriate downstream workflow or skill for code, knowledge, task, or chat intents.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Broad intent examples may classify polite requests or common phrases as actionable task intent.
+
+Mitigation: Use classifications as advisory routing signals and require explicit user confirmation before invoking downstream skills that can edit files, run commands, search private data, or store memories.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and agent builders use this skill to classify user requests and select an appropriate downstream skill or workflow for code work, knowledge questions, task execution, or chat. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Intent classifications or routing recommendations may be inaccurate or over-eager. <br>
-Mitigation: Treat classifications as suggestions and require explicit confirmation before any routed downstream skill runs commands, edits or deletes files, searches private memory, or performs multi-step automation. <br>
+**Output Format:** [Markdown intent-classification summary with confidence, triggering features, alternatives, and a routing recommendation]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/534422530/intent-classifier) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/534422530) <br>
+**Other Properties Related to Output:** [Advisory routing output only; it does not execute downstream actions.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown intent classification with confidence, trigger features, routing recommendation, and alternatives] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Classification is advisory and should be confirmed before downstream skills perform file, command, memory, or multi-step automation actions.] <br>
+1.0.0 (source: frontmatter and server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

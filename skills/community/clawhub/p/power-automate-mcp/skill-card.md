@@ -1,47 +1,62 @@
-## Description: <br>
-Foundation skill for connecting agents to Power Automate through FlowStudio MCP, covering authentication setup, reusable Python and Node.js helpers, tool discovery, and oversized-response handling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Foundation skill for Power Automate via FlowStudio MCP that covers auth setup, reusable Python and Node.js MCP helpers, tool discovery, and oversized-response handling.
 
-## Publisher: <br>
-[ninihen1](https://clawhub.ai/user/ninihen1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ninihen1](https://clawhub.ai/user/ninihen1)
 
-## Use Case: <br>
-Developers and engineers use this skill to set up FlowStudio MCP access for Power Automate, discover relevant tools, and prepare an agent to inspect, modify, debug, monitor, or govern flows through companion workflow skills. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a sensitive FlowStudio MCP token that can give an agent access to Power Automate resources. <br>
-Mitigation: Use least-privileged credentials, keep FLOWSTUDIO_MCP_TOKEN out of prompts and logs, and rotate or revoke the token when access is no longer needed. <br>
-Risk: Live flow operations can create, update, start, stop, cancel, resubmit, or trigger Power Automate flows. <br>
-Mitigation: Require explicit confirmation before any state-changing or live-run action, and verify the target environment and flow identifiers before execution. <br>
-Risk: Large MCP responses and temporary spill files may contain tenant, flow, run, connector, or payload data. <br>
-Mitigation: Treat spill files as sensitive, parse only the fields needed for the task, and summarize results rather than returning raw JSON unless explicitly required. <br>
+## Use Case:
 
+Developers and automation teams use this skill to connect an agent to a FlowStudio MCP server for Power Automate and prepare reliable auth, tool discovery, response parsing, and handoff to specialized build, debug, monitoring, or governance workflows.
 
-## Reference(s): <br>
-- [Power Automate Mcp on ClawHub](https://clawhub.ai/ninihen1/power-automate-mcp) <br>
-- [FlowStudio MCP](https://mcp.flowstudio.app) <br>
-- [MCP Bootstrap Quick Reference](artifact/references/MCP-BOOTSTRAP.md) <br>
-- [FlowStudio MCP Tool Response Catalog](artifact/references/tool-reference.md) <br>
-- [FlowStudio MCP Connection References](artifact/references/connection-references.md) <br>
-- [FlowStudio MCP Action Types Reference](artifact/references/action-types.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration, API calls] <br>
-**Output Format:** [Markdown with Python, Node.js, JSON, and command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference FlowStudio MCP tool schemas and large spill files; summarize sensitive or oversized outputs instead of echoing raw payloads.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.2 (source: server release metadata) <br>
+Risk: Agent access to FlowStudio MCP can expose or change Power Automate environments according to the permissions behind the configured token.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an account whose Power Platform permissions match the intended task and review proposed flow changes or run-control actions before execution.
+
+Risk: JWT/API keys are sensitive credentials that may be exposed through logs, transcripts, or copied examples.
+
+Mitigation: Keep tokens out of shared transcripts and logs, pass them only through the required x-api-key header, and rotate them if exposed.
+
+Risk: Large flow, connector, or run-output responses may include tenant data and can overwhelm an agent context.
+
+Mitigation: Parse spilled responses, extract only the fields needed for the task, and summarize results instead of echoing raw JSON.
+
+## Reference(s):
+
+- [MCP Bootstrap](references/MCP-BOOTSTRAP.md)
+- [FlowStudio MCP Tool Response Catalog](references/tool-reference.md)
+- [FlowStudio MCP Action Types Reference](references/action-types.md)
+- [FlowStudio MCP Connection References](references/connection-references.md)
+- [FlowStudio MCP](https://mcp.flowstudio.app)
+- [ClawHub Skill Page](https://clawhub.ai/ninihen1/skills/power-automate-mcp)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python, JavaScript, JSON, and command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a FlowStudio MCP subscription or compatible Power Automate MCP server; outputs should avoid exposing JWT/API keys or large raw tool responses.]
+
+## Skill Version(s):
+
+1.2.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,63 @@
-## Description: <br>
-SEO Ladders connects an MCP-compatible agent to SEO Ladders for website audits, keyword research, article generation, CMS publishing, and ranking and competitor tracking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Full SEO content automation via MCP. Audit websites, check Google rankings, discover site structure, auto-select keywords matched to your DR, research and swap keywords, generate full articles with images and JSON-LD, publish to WordPress or webhook, track keyword rankings and competitors - all from your terminal or IDE.
 
-## Publisher: <br>
-[kwesi-dev](https://clawhub.ai/user/kwesi-dev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kwesi-dev](https://clawhub.ai/user/kwesi-dev)
 
-## Use Case: <br>
-External developers, marketers, and SEO teams use this skill to let an MCP-compatible agent audit sites, research rankable keywords, generate SEO articles, publish content, and monitor ranking changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Website, keyword, ranking, and generated article data may be sent to SEO Ladders. <br>
-Mitigation: Use non-sensitive inputs where possible and configure a revocable or scoped SEO_LADDERS_API_KEY. <br>
-Risk: Generated SEO recommendations or articles may be inaccurate, outdated, or unsuitable for a brand. <br>
-Mitigation: Review audit findings, keyword choices, and generated content before relying on them or publishing. <br>
-Risk: CMS or webhook publishing can modify a public site. <br>
-Mitigation: Test with non-production CMS or webhook credentials first and require explicit approval before publishing. <br>
+## Use Case:
 
+External users and developers use this skill to connect an MCP-compatible agent to SEO Ladders for technical SEO audits, ranking checks, site discovery, keyword research, content planning, article generation, publishing, and refresh monitoring.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kwesi-dev/seo-ladders) <br>
-- [SEO Ladders](https://seoladders.com) <br>
-- [SEO Ladders MCP feature page](https://seoladders.com/features/mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown, HTML, JSON-style structured data, SEO audit reports, ranking data, and MCP configuration snippets.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Some operations return asynchronous job IDs that require polling before full results are available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill can publish content or invoke CMS webhooks through remote SEO automation tools.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require human approval before publishing, invoking webhooks, or making CMS changes, and use least-privileged CMS or webhook credentials.
+
+Risk: The skill can modify content calendar entries and perform update or delete actions.
+
+Mitigation: Configure the MCP client or agent to ask for confirmation before changing calendar entries or deleting/updating content.
+
+Risk: The skill can save generated content locally, which may place files in sensitive or synced repositories.
+
+Mitigation: Save generated files only to intended directories and avoid sensitive or synced repositories unless that storage is deliberate.
+
+Risk: Using the skill gives SEO Ladders API-key access to the MCP client and remote service.
+
+Mitigation: Install only when the remote service is trusted for the intended SEO workflow and protect the SEO_LADDERS_API_KEY as a secret.
+
+## Reference(s):
+
+- [Seo Ladders ClawHub Skill](https://clawhub.ai/kwesi-dev/skills/seo-ladders)
+- [SEO Ladders](https://seoladders.com)
+- [SEO Ladders MCP Features](https://seoladders.com/features/mcp)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown, HTML, JSON-like structured results, configuration snippets, and status text returned through MCP tools.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Some workflows are asynchronous and require polling job status before final results are available.]
+
+## Skill Version(s):
+
+1.2.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

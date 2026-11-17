@@ -1,45 +1,58 @@
-## Description: <br>
-Install, configure, operate, and productize OA monitoring and self-heal workflows for OpenClaw workspaces. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Install, configure, operate, and productize OA monitoring and self-heal workflows for OpenClaw workspaces.
 
-## Publisher: <br>
-[kisssam6886](https://clawhub.ai/user/kisssam6886) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kisssam6886](https://clawhub.ai/user/kisssam6886)
 
-## Use Case: <br>
-Developers and engineers use this skill to install, operate, troubleshoot, and package OA monitoring and self-heal workflows for OpenClaw workspaces. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may guide commands or changes that affect workspace configuration, services, deployment state, or files. <br>
-Mitigation: Review proposed commands before execution and verify changes with the smallest useful smoke test or API check. <br>
-Risk: Publishing machine-specific OA defaults could expose private paths, ports, usernames, agent rosters, ticket directories, or artifacts. <br>
-Mitigation: Template or remove machine-specific defaults before release and use the release-readiness checklist. <br>
-Risk: Command-mode self-heal fixers can apply the wrong remediation if command templates, placeholders, or target paths are not checked first. <br>
-Mitigation: Inspect fixer templates and target paths, prefer non-destructive remediation, and keep fallback ticketing enabled where available. <br>
+## Use Case:
 
+Developers and engineers use this skill to install and operate OA monitoring in OpenClaw workspaces, interpret dashboard and self-heal signals, refine OA dashboards, and prepare reusable skill or plugin packaging.
 
-## Reference(s): <br>
-- [Release Readiness](references/release-readiness.md) <br>
-- [Smoke Test](references/smoke-test.md) <br>
-- [ClawHub Listing](https://clawhub.ai/kisssam6886/openclaw-oa-operator) <br>
-- [Publisher Profile](https://clawhub.ai/user/kisssam6886) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and operational checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose workspace checks, configuration edits, dashboard verification steps, and release-readiness recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: The skill is command-oriented and may guide local command execution or workspace inspection.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only for OA-enabled OpenClaw workspaces where those actions are acceptable, and review proposed commands before running them.
+
+Risk: Self-heal command templates could perform unintended changes if placeholders or target paths are wrong.
+
+Mitigation: Inspect concrete command templates, placeholders, and target paths before allowing an agent to execute remediation steps.
+
+Risk: The smoke-test helper writes a temporary collection log under /tmp.
+
+Mitigation: Harden temporary log handling before using the script in shared or privileged environments.
+
+## Reference(s):
+
+- [Release Readiness](references/release-readiness.md)
+- [Smoke Test](references/smoke-test.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown with inline shell commands and checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include workspace-specific verification steps, release-readiness recommendations, and command templates for review before execution.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

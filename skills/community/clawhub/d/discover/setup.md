@@ -1,6 +1,6 @@
 # Setup - Discover
 
-Use this file when `~/discover/` is missing or empty.
+Use this file when `~/Clawic/data/discover/` is missing or empty.
 
 Answer the immediate question first, then install the future discovery behavior early so the skill knows what to keep exploring and how proactive it may be.
 
@@ -39,7 +39,7 @@ Before any recurring loop exists, clarify:
 
 Default to conservative behavior:
 - propose heartbeat tracks first
-- log quietly when nothing changed
+- log without comment when nothing changed
 - ask before any new recurring topic, schedule, or tool with cost
 
 ### 4. Prepare the AGENTS routing early
@@ -59,16 +59,16 @@ No novelty means `HEARTBEAT_OK`.
 ### 6. Create local state after the behavior path is accepted
 
 ```bash
-mkdir -p ~/discover/{findings,archive}
-touch ~/discover/{memory.md,watchlist.md,heartbeat-state.md}
-chmod 700 ~/discover ~/discover/findings ~/discover/archive
-chmod 600 ~/discover/{memory.md,watchlist.md,heartbeat-state.md}
+mkdir -p ~/Clawic/data/discover/{findings,archive}
+touch ~/Clawic/data/discover/{memory.md,watchlist.md,heartbeat-state.md}
+chmod 700 ~/discover ~/Clawic/data/discover/findings ~/Clawic/data/discover/archive
+chmod 600 ~/Clawic/data/discover/{memory.md,watchlist.md,heartbeat-state.md}
 ```
 
 If the files are empty:
-- initialize `~/discover/memory.md` from `memory-template.md`
-- initialize `~/discover/watchlist.md` from `watchlist-template.md`
-- initialize `~/discover/heartbeat-state.md` from `heartbeat-state.md`
+- initialize `~/Clawic/data/discover/memory.md` from `memory-template.md`
+- initialize `~/Clawic/data/discover/watchlist.md` from `watchlist-template.md`
+- initialize `~/Clawic/data/discover/heartbeat-state.md` from `heartbeat-state.md`
 
 ### 7. What to save
 

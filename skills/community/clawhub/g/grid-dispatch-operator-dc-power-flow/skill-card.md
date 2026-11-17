@@ -1,40 +1,52 @@
-## Description: <br>
-DC power flow analysis for power systems. Use when computing power flows using DC approximation, building susceptance matrices, calculating line flows and loading percentages, or performing sensitivity analysis on transmission networks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+DC power flow analysis for power systems. Use when computing power flows using DC approximation, building susceptance matrices, calculating line flows and loading percentages, or performing sensitivity analysis on transmission networks.
 
-## Publisher: <br>
-[wu-uk](https://clawhub.ai/user/wu-uk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[wu-uk](https://clawhub.ai/user/wu-uk)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and power-system engineers use this skill to apply DC power-flow approximations, build susceptance matrices, compute line flows and loading percentages, and prepare linear constraints for dispatch or contingency studies.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The executable helper reads a user-supplied power-network JSON file.
+
+Mitigation: Run it only on input data you intend to analyze.
+
+Risk: DC power flow is a linearized approximation and may not capture AC power-flow behavior.
+
+Mitigation: Confirm the documented DC assumptions are appropriate before using results for operational decisions.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Power-system engineers and grid-dispatch developers use this skill to compute DC approximations, build susceptance matrices, calculate line flows and loading percentages, and shape linear flow constraints for dispatch or contingency analysis. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [guidance, code, shell commands]
 
-## Known Risks and Mitigations: <br>
-Risk: Untrusted, malformed, or unexpectedly large network JSON can cause local script errors or unnecessary resource use. <br>
-Mitigation: Run the helper only on trusted network JSON files and review input size and structure before processing. <br>
-Risk: DC power-flow assumptions can misstate real AC-system behavior when lossless-line, flat-voltage, or small-angle approximations do not hold. <br>
-Mitigation: Treat results as linear approximations and validate operational decisions with appropriate AC power-flow analysis and engineering review. <br>
+**Output Format:** [Markdown with Python code blocks and shell command examples]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wu-uk/grid-dispatch-operator-dc-power-flow) <br>
+**Other Properties Related to Output:** [Includes an executable Python helper that reads a local power-network JSON file and requires NumPy.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with Python code snippets and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Provides local DC power-flow formulas, implementation guidance, and a helper script for MATPOWER-style network JSON.] <br>
+0.1.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-0.1.0 (source: ClawHub release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

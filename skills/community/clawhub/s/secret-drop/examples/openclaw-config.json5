@@ -1,0 +1,11 @@
+// Merge this entry into your existing OpenClaw configuration.
+// Do not replace the complete skills object or remove existing extraDirs.
+{
+  skills: {
+    load: {
+      extraDirs: [
+        "~/github_repos/openclaw-secret-drop",
+      ],
+    },
+  },
+}

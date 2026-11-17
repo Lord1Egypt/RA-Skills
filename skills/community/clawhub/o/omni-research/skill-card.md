@@ -1,42 +1,60 @@
-## Description: <br>
-Multi-source deep research using your own browser. Queries Perplexity, Grok, and Gemini in parallel via CDP - zero API keys, uses your existing subscriptions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Multi-source deep research using the user's browser sessions to query Perplexity, Grok, and Gemini in parallel and synthesize the results.
 
-## Publisher: <br>
-[lmanchu](https://clawhub.ai/user/lmanchu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[lmanchu](https://clawhub.ai/user/lmanchu)
 
-## Use Case: <br>
-Developers, researchers, and analysts use this skill to submit a research question to multiple logged-in browser-based AI services, collect their responses, and synthesize a concise comparison. It supports browser-based sources and an optional API-only source when configured. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can control a CDP-enabled browser profile that may already be logged into AI services. <br>
-Mitigation: Use a dedicated browser profile with only the needed accounts and keep CDP bound to localhost. <br>
-Risk: Prompts and collected browser-session text can be sent to the configured cliproxy endpoint for synthesis. <br>
-Mitigation: Inspect ~/.config/omni-research/config.json before running and configure only trusted local or approved endpoints. <br>
-Risk: The release under-discloses data movement to a configured API or proxy despite advertising zero API keys. <br>
-Mitigation: Review the scanner guidance and disclose the configured synthesis endpoint behavior to users before deployment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lmanchu/omni-research) <br>
-- [Publisher profile](https://clawhub.ai/user/lmanchu) <br>
+## Use Case:
 
+Developers, analysts, and researchers use this skill to gather and compare answers from multiple subscribed AI research services through an existing browser session, then receive a combined research summary.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown research summary with per-source sections; JSON output is available when requested.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include source-specific errors or rate-limit messages when a browser or API source cannot return a result.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill controls a logged-in Chromium browser through CDP, so it can interact with accounts available in that browser profile.
+
+Mitigation: Use a dedicated browser profile for this skill and keep unrelated sensitive accounts or confidential pages out of that profile.
+
+Risk: API mode or synthesis can send the query and extracted results to the configured proxy endpoint.
+
+Mitigation: Review ~/.config/omni-research/config.json before use and avoid submitting sensitive or confidential research topics.
+
+Risk: The security verdict is suspicious because browser-only and zero-key framing can obscure the data flow through configured proxy services.
+
+Mitigation: Review the skill and configuration before deployment, and restrict use to accounts and data approved for this workflow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lmanchu/skills/omni-research)
+- [Publisher profile](https://clawhub.ai/user/lmanchu)
+- [Perplexity](https://www.perplexity.ai/)
+- [Grok](https://grok.com/)
+- [Gemini](https://gemini.google.com/app)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown research report by default, or JSON containing the query and result when requested.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include per-source sections, errors or timeouts for unavailable sources, and a synthesized summary when multiple sources return results.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,59 @@
-## Description: <br>
-Free Hedera analytics API for token prices, holder data, market caps, volume tracking, and CoinGecko bridge market lookups. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Hedera Data API guides agents to query onlyflies.buzz endpoints for Hedera token prices, holder data, market caps, volume tracking, and CoinGecko bridge data.
 
-## Publisher: <br>
-[imaflytok](https://clawhub.ai/user/imaflytok) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[imaflytok](https://clawhub.ai/user/imaflytok)
 
-## Use Case: <br>
-Developers, analysts, and agents use this skill to discover Hedera token analytics endpoints, issue public API calls, and build dashboards, alerts, research workflows, or trading-signal prototypes from live and historical token data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Optional ClawSwarm registration creates an external agent or wallet-related profile. <br>
-Mitigation: Confirm the registration is intended and do not provide secrets, private keys, personal credentials, or wallet-sensitive data unless the service has been separately verified. <br>
-Risk: The skill relies on public external crypto market-data APIs whose responses may change or be unavailable. <br>
-Mitigation: Validate API responses before relying on them for dashboards, alerts, research, or trading-signal workflows. <br>
+## Use Case:
 
+Developers, data agents, and external builders use this skill to retrieve Hedera token analytics, inspect holder distributions, research Hedera DeFi activity, and wire market data into dashboards, alerts, or trading-signal workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/imaflytok/hedera-data) <br>
-- [onlyflies.buzz API base](https://onlyflies.buzz/api/v1) <br>
-- [onlyflies.buzz Hedera analytics platform](https://onlyflies.buzz) <br>
-- [ClawSwarm agent registration endpoint](https://onlyflies.buzz/clawswarm/api/v1/agents/register) <br>
-- [CoinGecko bridge price endpoint](https://onlyflies.buzz/clawswarm/api/v1/coingecko/price/bitcoin,ethereum) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, API Calls] <br>
-**Output Format:** [Markdown with inline bash and HTTP examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No API key is required for the documented public endpoints; optional ClawSwarm registration contacts an external service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: The skill depends on onlyflies.buzz as a third-party API provider.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the provider, applicable terms, and data handling expectations before using the endpoints in production workflows.
+
+Risk: The ClawSwarm registration command creates or connects an external agent identity with wallet, reputation, and coordination implications that are not fully detailed in the artifact.
+
+Mitigation: Do not run the registration command unless wallet custody, reputation scoring, coordination permissions, retention, and deletion options have been reviewed and accepted.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/imaflytok/skills/hedera-data)
+- [Publisher profile](https://clawhub.ai/user/imaflytok)
+- [Hedera Data API base URL](https://onlyflies.buzz/api/v1)
+- [Tracked tokens endpoint](https://onlyflies.buzz/api/v1/tokens)
+- [Top tokens endpoint](https://onlyflies.buzz/api/v1/tokens/top?limit=20)
+- [ClawSwarm agent registration endpoint](https://onlyflies.buzz/clawswarm/api/v1/agents/register)
+- [CoinGecko bridge price endpoint](https://onlyflies.buzz/clawswarm/api/v1/coingecko/price/bitcoin,ethereum)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, API Calls]
+
+**Output Format:** [Markdown with curl examples and endpoint descriptions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No API key is described for the analytics endpoints; ClawSwarm registration is a separate third-party action.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

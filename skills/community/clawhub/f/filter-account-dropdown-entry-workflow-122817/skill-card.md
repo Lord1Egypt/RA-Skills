@@ -1,42 +1,51 @@
-## Description: <br>
-Helps maintainers turn the Easy Books enhancement request to filter account choices by selected payment method into practical plans, checklists, analysis, code guidance, or implementation support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps maintainers and users plan, implement, or review an enhancement that filters account dropdown entries in a new entry form based on the selected payment method.
 
-## Publisher: <br>
-[kyro-ma](https://clawhub.ai/user/kyro-ma) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kyro-ma](https://clawhub.ai/user/kyro-ma)
 
-## Use Case: <br>
-Maintainers and users use this skill to convert a software enhancement request about filtering account dropdown entries by payment method into an actionable workflow, artifact, checklist, analysis, or implementation plan. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate on generic account, filter, dropdown, or form wording. <br>
-Mitigation: Confirm the user is asking about the account dropdown enhancement before applying the workflow. <br>
-Risk: The skill provides planning and implementation guidance that could be incorrect or incomplete for a specific codebase. <br>
-Mitigation: Review the generated guidance and test any resulting code changes before deployment. <br>
+## Use Case:
 
+Developers, maintainers, and users use this skill to turn the account-dropdown filtering enhancement into a practical workflow, checklist, analysis, implementation plan, code change, or decision-support artifact.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kyro-ma/filter-account-dropdown-entry-workflow-122817) <br>
-- [Requirement plan](references/requirement-plan.md) <br>
-- [Easy Books issue #63](https://github.com/bilalpiaic/Easy-Books/issues/63) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown or plain text with optional code snippets and checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should state assumptions, validation notes, remaining risks, and next steps when helpful.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence) <br>
+Risk: Broad implicit-invocation keywords may cause the skill to appear for loosely related account, filter, form, or enhancement requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the activation context before use and disable implicit invocation if the deployment requires narrow skill routing.
+
+## Reference(s):
+
+- [Requirement plan](references/requirement-plan.md)
+- [Source requirement issue](https://github.com/bilalpiaic/Easy-Books/issues/63)
+- [ClawHub skill page](https://clawhub.ai/kyro-ma/skills/filter-account-dropdown-entry-workflow-122817)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown or plain text, with code or configuration snippets when implementation support is requested.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include assumptions, validation notes, risks, and follow-up work.]
+
+## Skill Version(s):
+
+0.1.1 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

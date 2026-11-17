@@ -1,292 +1,79 @@
 # Thailand Visa Guide
 
-## Visa Overview
+Thailand rewrites visa rules several times a year. Figures below held as of early 2026 — verify with the Thai embassy or immigration before the user commits money or books flights. Decision shortcut:
 
-Thailand's visa system is complex and changes frequently. This covers common scenarios as of 2026.
+| Situation | Visa |
+|-----------|------|
+| Vacation ≤60 days | Visa exemption (free) |
+| Vacation/workcation 2-6 months | Exemption + extension, or Tourist visa (TR) |
+| Nomad, foreign clients, returns yearly | **DTV** — the default answer since Jul 2024 |
+| Remote worker earning ~$80K+/year | LTR (10-year, legal remote work, 17% tax) |
+| 50+, retiring | Non-O retirement |
+| Job offer from Thai company | Non-B + work permit (employer drives it) |
+| Married to a Thai national | Non-O marriage |
+| Money > paperwork tolerance | Thailand Privilege (ex-Elite) |
+| Anything else / unsure | Start from length of stay + income source; when both are long-term and foreign, DTV first |
 
 ## Short-Term Options
 
-### Visa Exemption (Most Western Countries)
+### Visa Exemption
 
-**Duration**: 30 days (air) / 15 days (land)
-
-**Requirements**:
-- Passport valid 6+ months
-- Proof of onward travel
-- Sufficient funds (~10,000 THB)
-
-**Extension**: +30 days at immigration (฿1,900)
-
-**Countries**: USA, UK, EU, Australia, Canada, Japan, etc.
-
-**Reality**: Most tourists use this. Fine for vacation.
+- **Duration**: 60 days for 93 nationalities, air AND land (extended from 30 in Jul 2024). Government has floated reverting to 30 days — check current status before advising.
+- **Extension**: +30 days at immigration, ฿1,900 → up to 90 days total per entry.
+- **Requirements**: passport valid 6+ months, onward travel proof, ~฿20,000 funds (rarely checked, legally required).
+- **Limit heuristic**: >90 days/year in Thailand on exempt entries, or back-to-back stamps → immigration questioning or denied entry. Land-border entries have historically been capped at 2/calendar year.
 
 ### Tourist Visa (TR)
 
-**Duration**: 60 days + 30-day extension = 90 days total
+- 60 days + 30-day extension (฿1,900) = 90 days. Cost $40-60 at a Thai embassy/consulate.
+- Since the 60-day exemption, TR only makes sense for nationalities outside the exemption list or for the multiple-entry version (6-month validity, 60 days per entry).
 
-**Get From**: Thai embassy/consulate in home country or nearby country (Vientiane, Kuala Lumpur, etc.)
+## The Nomad Answer: DTV (Destination Thailand Visa)
 
-**Requirements**:
-- Passport + photos
-- Application form
-- Proof of accommodation
-- Proof of finances
-- Flight itinerary
+Launched Jul 2024; check DTV eligibility before recommending any workaround.
 
-**Cost**: $40-60 depending on country
-
-**Multiple Entry**: 6-month validity, 60 days per entry
-
-### Special Tourist Visa (STV)
-
-Created during COVID, may still be available.
-- 90 days
-- Two 90-day extensions possible
-- Total: 270 days
-- Requires quarantine documentation (COVID legacy)
-
----
+- **Terms**: 5-year validity, multiple entry, 180 days per entry, extendable once per entry (+180 days, ฿10,000).
+- **Fee**: ฿10,000. **Financial proof**: ฿500,000 (bank statements).
+- **Categories**: "Workcation" (remote employees/freelancers with foreign employers or clients — show contract or portfolio) and "soft power" (Muay Thai, Thai cooking, medical treatment — show enrollment).
+- **What it is not**: a work permit. Thai employers/clients remain off-limits. No path to residency; time on DTV doesn't count toward PR.
+- **Practical notes**: apply online via Thai e-visa from outside Thailand; approval friction varies by embassy; some ask for extra docs (proof of current employment, not just savings).
 
 ## Long-Term Options
 
-### Non-Immigrant B (Business/Employment)
+### Non-Immigrant B (Employment)
 
-**For**: Working in Thailand
+Employer-driven: job offer → Non-B at embassy → enter → employer processes work permit → 1-year extension, renewable. Company must meet criteria (registered capital ฿2M/foreigner, 4 Thai employees per foreigner is the classic ratio — verify current). If the employer can't explain this process, that's a red flag about the employer.
 
-**How It Works**:
-1. Employer sponsors you
-2. Apply for Non-B visa at Thai embassy
-3. Enter Thailand
-4. Employer processes work permit
-5. Convert to 1-year extension
+### Non-Immigrant O
 
-**Initial Duration**: 90 days
-**Extension**: 1 year (renewable)
-
-**Requirements**:
-- Job offer from Thai company
-- Company meets criteria (registered capital, Thai employee ratio)
-- Your qualifications match position
-
-### Non-Immigrant O (Multiple Uses)
-
-**Varieties**:
-- **O (Retirement)**: 50+, retired
-- **O (Marriage)**: Married to Thai national
-- **O (Family)**: Dependent of visa holder
-- **O (Volunteer)**: Volunteer work
-
-#### Retirement Visa (Non-O)
-
-**Requirements**:
-- Age 50+
-- 800,000 THB in Thai bank account OR
-- Monthly income of 65,000 THB OR
-- Combination totaling 800,000 THB/year
-- Health insurance
-
-**Duration**: 1 year, renewable
-
-**Cannot Work**: Even remotely (technically)
-
-#### Marriage Visa (Non-O)
-
-**Requirements**:
-- Married to Thai national
-- 400,000 THB in Thai bank OR
-- Monthly income 40,000 THB
-- Marriage certificate
-
-**Duration**: 1 year, renewable
+- **Retirement (50+)**: ฿800,000 seasoned in a Thai bank (2 months before application, 3 months after) OR ฿65,000/month income OR combination totaling ฿800,000/year. Health insurance required for O-A. 1 year, renewable. No work, including remote (technically). The life around the visa — O vs O-A choice, insurance insurability, where retirees live, compliance rhythm: `retirement.md`.
+- **Marriage**: ฿400,000 in Thai bank OR ฿40,000/month income + marriage certificate. 1 year, renewable. Scrutiny is higher than retirement — home visits happen.
 
 ### Education Visa (Non-ED)
 
-**For**: Studying Thai language, martial arts, cooking, etc.
+Enroll in approved school (Thai language, Muay Thai) → school papers → Non-ED → extensions tied to attendance. ฿30,000-80,000/year all-in.
+**Reality check**: under active crackdown — immigration tests students' Thai at extensions; visa-mill schools get delisted and their students burned. Since DTV exists, ED-as-cover is a worse trade than it was. Choose ED only to actually study.
 
-**How It Works**:
-1. Enroll in approved school
-2. School provides documents
-3. Apply for Non-ED visa
-4. Attend minimum classes (varies by school)
+### LTR (Long-Term Resident)
 
-**Duration**: 90 days, renewable up to 1 year
+10-year visa for: wealthy citizens, wealthy pensioners, work-from-Thailand professionals (~$80K/year income, 5+ years experience), highly-skilled professionals. Criteria were relaxed in 2025 (some income/employer thresholds dropped) — verify current per category.
+- **Benefits**: legal remote work (digital work permit), 17% flat income tax for eligible categories vs 35% top rate, annual reporting instead of 90-day. Application ฿50,000.
 
-**Cost**: School + visa + extensions = ฿30,000-80,000/year
+### Thailand Privilege (rebranded from "Elite", Oct 2023)
 
-**Popular Schools**:
-- Union Language School
-- AAA Thai Language
-- Pro Language
-- Various Muay Thai camps
+Membership visa: from ~฿900,000 for 5 years, tiers up to 15-20 years (top tier invitation-only). Multiple entry, airport fast-track, concierge, no visa anxiety. No work permit included. Since DTV costs ฿10,000 for 5 years, Privilege only wins for those who fail DTV requirements or want the service layer.
 
-**Reality**: Common for digital nomads who want to stay legal while working remotely (gray area — technically can't work).
+## Compliance Mechanics (where visas actually die)
 
----
-
-## Premium Options
-
-### Thailand Elite Visa
-
-**What**: Long-term membership visa program
-
-**Tiers**:
-| Package | Duration | Cost |
-|---------|----------|------|
-| Elite Easy Access | 5 years | ฿600,000 (~$17,000) |
-| Elite Privilege Access | 10 years | ฿1,000,000 (~$28,500) |
-| Elite Superiority Extension | 20 years | ฿2,000,000 (~$57,000) |
-
-**Perks**:
-- Multiple entry
-- Airport fast-track
-- VIP lounge access
-- Concierge services
-- No 90-day reporting
-
-**Who It's For**:
-- Long-term expats
-- Digital nomads with steady income
-- Retirees who don't meet financial requirements
-- Anyone who values convenience
-
-**Cannot Work**: No work permit included
-
-### Long-Term Resident Visa (LTR)
-
-**New visa (launched 2022)** for high earners.
-
-**Categories**:
-1. **Wealthy Global Citizen**: $1M+ assets, $80K+/year income
-2. **Wealthy Pensioner**: $80K+/year pension, $250K+ invested
-3. **Work-from-Thailand Professional**: $80K+/year, 5+ years experience
-4. **Highly-Skilled Professional**: Specific sectors, invited by Thai company
-
-**Benefits**:
-- 10-year visa
-- **Can work remotely legally** (Work-from-Thailand category)
-- 17% personal income tax (vs 35% top rate)
-- No 90-day reporting (1-year instead)
-- Digital work permit
-
-**Cost**: ฿50,000 application fee
-
-**Game Changer**: First visa that explicitly allows remote work.
-
----
-
-## Digital Nomad Reality
-
-### The Gray Area
-
-Technically:
-- Working in Thailand requires work permit
-- Remote work for foreign employer = still working
-- Tourist/ED visa holders can't legally work
-
-Practically:
-- Enforcement on laptop workers is minimal
-- Don't advertise you're working
-- Don't work for Thai clients
-- Don't take money from Thai sources
-
-### Best Options for Nomads
-
-1. **LTR Visa** (if you qualify with $80K income) — Fully legal
-2. **Thailand Elite** (5-20 years) — Stay legal, don't flaunt work
-3. **ED Visa** (language school) — Renewable, somewhat legal cover
-4. **Tourist visa + extensions** — Most common, shortest legal stay
-
-### Visa Runs
-
-**What**: Leave Thailand, re-enter for new stamp
-
-**Where**:
-- Vientiane (Laos) — Get tourist visa at embassy
-- Penang (Malaysia) — Same
-- Phnom Penh (Cambodia) — Same
-
-**Warning**: Immigration tracking multiple entries. Too many = questioned or denied entry.
-
----
-
-## 90-Day Reporting
-
-**Required for**: Anyone on long-term visa (1-year extensions)
-
-**What**: Report your address to immigration every 90 days
-
-**Options**:
-1. **In person**: Immigration office (free, time-consuming)
-2. **Online**: immigration.go.th (when working)
-3. **Mail**: Send forms + stamped envelope
-4. **Agent**: ฿500-1,500
-
-**Penalty for Late**: ฿2,000 fine
-
----
-
-## Re-Entry Permits
-
-**If you leave Thailand** on a 1-year visa, you need re-entry permit or visa is cancelled.
-
-**Types**:
-- **Single**: ฿1,000 — one exit/entry
-- **Multiple**: ฿3,800 — unlimited exits during visa validity
-
-**Where**: Immigration office or airport (before departure)
-
-**Don't Forget**: Common mistake that costs your visa.
-
----
+- **90-day reporting**: all long-stay visa holders report address every 90 days. In person (free), online at immigration.go.th (works intermittently), mail, or agent (฿500-1,500). Late = ฿2,000 fine.
+- **Re-entry permit**: leaving Thailand on a 1-year extension without one **cancels the visa**. Single ฿1,000, multiple ฿3,800, at immigration or the airport before departure. This is the most expensive common mistake — DTV and Privilege holders are exempt (multi-entry by design).
+- **Overstay**: ฿500/day fine (cap ฿20,000). Voluntary departure: >90 days → 1-year ban; >1 year → 3-year; >3 years → 5-year; >5 years → 10-year. Caught while overstaying: 5-10 year bans. One day of overstay is survivable (pay at airport); never let it reach 90.
+- **Visa runs** (Vientiane, Penang, Phnom Penh): legacy tactic; immigration profiles serial runners. With 60-day exemption + DTV available, advising a visa run is advising the worst option.
 
 ## Visa Agents
 
-**What They Do**:
-- Handle paperwork
-- Navigate immigration
-- Accompany you or go on your behalf
-- Resolve issues
+฿500-5,000 by complexity. Worth it for: first extension, marriage visa scrutiny, anything at Chaengwattana without Thai. Found via language schools and expat Facebook groups. An agent promising a visa "without meeting requirements" is describing a bribe — that trail attaches to the user's passport, not the agent.
 
-**Cost**: ฿500-5,000 depending on complexity
+## Immigration Office Tips
 
-**When Useful**:
-- First time extending visa
-- Complex situations
-- Don't speak Thai
-- Value your time
-
-**Finding One**:
-- Ask at language school (ED visa)
-- Facebook expat groups
-- Thai Visa forum
-
----
-
-## Common Mistakes
-
-1. **Overstaying**: ฿500/day fine, potential ban, detention if long
-2. **Forgetting 90-day report**: ฿2,000 fine
-3. **No re-entry permit**: Visa cancelled when you leave
-4. **Insufficient funds**: Can be asked to prove at border
-5. **Expired passport**: Need 6+ months validity
-6. **Working on tourist visa**: Deportation if caught
-
----
-
-## Embassy/Consulate Tips
-
-**For Tourist Visa Application**:
-- Apply 1-2 weeks before travel
-- Some consulates easier than others
-- Have all documents ready
-- Dress appropriately
-- Be polite
-
-**Bangkok Immigration Office**:
-- Chaengwattana Government Complex
-- Go early (7-8 AM)
-- Bring all possible documents
-- Photos: 4x6 cm, white background
-- Dress conservatively
-- Long wait typical
+Bangkok immigration = Chaengwattana Government Complex. Arrive 7-8 AM (queue numbers run out), dress conservatively, bring every document you own plus photocopies, photos 4×6 cm white background. Budget a half day.

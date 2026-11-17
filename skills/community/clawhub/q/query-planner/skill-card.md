@@ -1,41 +1,58 @@
-## Description: <br>
-Plans structured search queries by decomposing complex tasks into identity, event, action, and counter-evidence query categories. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-oriented query planning skill that decomposes complex research tasks into identity, event, action, and counter-evidence search queries.
 
-## Publisher: <br>
-[z1one0415](https://clawhub.ai/user/z1one0415) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[z1one0415](https://clawhub.ai/user/z1one0415)
 
-## Use Case: <br>
-Developers, analysts, and agents use this skill before web search or multi-step analysis to turn a complex task into a consistent query plan for downstream search and review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated counter-evidence and controversy-oriented search terms may be sensitive or overbroad for the user's task. <br>
-Mitigation: Review generated queries for relevance, neutrality, and sensitivity before using them in downstream search or analysis. <br>
-Risk: The skill creates query ideas but does not verify facts or judge source credibility. <br>
-Mitigation: Use separate retrieval, source evaluation, and human review before relying on search results produced from the planned queries. <br>
+## Use Case:
 
+Researchers, analysts, and agent builders use this skill before web research or multi-step analysis to turn a complex task into a structured query plan. It is especially oriented toward Chinese-language search phrase generation.
 
-## Reference(s): <br>
-- [Query Patterns](references/query-patterns.md) <br>
-- [Examples](references/examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, guidance] <br>
-**Output Format:** [JSON query plan] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes identity_queries, event_queries, action_queries, and counter_queries; counter_queries must contain at least two entries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill may activate for broad research-like tasks and produce query plans when the user expected direct analysis.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it as a planning step before research, and confirm whether the next agent should search, analyze, or answer.
+
+Risk: The templates are Chinese-oriented and may be less suitable for users who need another language.
+
+Mitigation: Adapt or translate generated search phrases before using them in non-Chinese research workflows.
+
+Risk: The skill generates queries only and does not verify facts or draw conclusions.
+
+Mitigation: Route generated queries to search and analysis steps before presenting findings as evidence-backed answers.
+
+## Reference(s):
+
+- [Query Patterns](references/query-patterns.md)
+- [Examples](references/examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, guidance]
+
+**Output Format:** [Structured JSON query plan with arrays of search phrases]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generates four fixed query categories and requires at least two counter_queries.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

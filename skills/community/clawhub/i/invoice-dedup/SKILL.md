@@ -154,7 +154,7 @@ description: 发票查重技能。录入发票进行查重、查询查重记录�
 ```json
 {
   "data": {
-    "apiKey": "sk-sg-9EVbsJLJnlKVLaSO4FZtPUVFysbFL",
+    "apiKey": "REDACTED-SECRET",
     "invoiceNumber": "26117000000698099579",
     "invoiceDate": "2026-05-14"
   }
@@ -197,7 +197,7 @@ description: 发票查重技能。录入发票进行查重、查询查重记录�
 ```json
 {
   "data": {
-    "apiKey": "sk-sg-9EVbsJLJnlKVLaSO4FZtPUVFysbFL",
+    "apiKey": "REDACTED-SECRET",
     "startDate": "2026-05-01",
     "endDate": "2026-05-31",
     "pageNo": "1",

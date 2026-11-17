@@ -1,38 +1,50 @@
-## Description: <br>
-Randomly select or split team members with options for weighted choice, exclusions, and fair distribution over multiple rounds. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Randomly selects team members or splits a group into teams, with options for weighted selection, exclusions, and repeated fair distribution.
 
-## Publisher: <br>
-[darbling](https://clawhub.ai/user/darbling) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[darbling](https://clawhub.ai/user/darbling)
 
-## Use Case: <br>
-Team leads, developers, and facilitators use this skill to randomly choose meeting participants, code reviewers, or activity members and to split a group into teams. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Random and weighted selections may not satisfy strict fairness or audit requirements for consequential assignments. <br>
-Mitigation: Review the short script and verify the selection behavior before using it for decisions where exact fairness properties matter. <br>
+## Use Case:
 
+Employees, facilitators, and team leads use this skill to pick participants for meetings, reviews, or activities, or to split a participant list into teams.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/darbling/random-team-picker) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text results with Markdown usage examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Local random selection output; no network access, persistence, or data exfiltration is indicated by the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: Extremely large or untrusted weight values can cause weighted selection to build an oversized in-memory list.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use modest, trusted integer weights until weight size validation or a non-expanding weighted sampling approach is added.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/darbling/skills/random-team-picker)
+- [Publisher profile](https://clawhub.ai/user/darbling)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Guidance]
+
+**Output Format:** [Plain text selections or team lists, with Markdown usage examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Local random selection; weighted selection accepts name:weight pairs.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

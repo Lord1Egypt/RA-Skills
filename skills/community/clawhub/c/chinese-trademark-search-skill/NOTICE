@@ -1,0 +1,45 @@
+Chinese Trademark Search Skill
+Copyright 2026 Chongqing ZhengQu Technology Co., Ltd. (重庆争取科技有限公司)
+
+This product includes software developed by
+Chongqing ZhengQu Technology Co., Ltd. (https://tm.zhengquai.com).
+
+Licensed under the Apache License, Version 2.0. See the LICENSE file.
+
+--------------------------------------------------------------------------------
+Trademarks / 商标
+--------------------------------------------------------------------------------
+
+Per section 6 of the Apache License, Version 2.0, this license does NOT grant
+permission to use the trade names, trademarks, service marks, or product names
+of the licensor. This includes, without limitation:
+
+  - "争取" / "争取AI" / "ZhengQu" / "ZhengquAI"
+  - "争取商标监控"
+  - the zhengquai.com and tm.zhengquai.com brand identities and logos
+
+You may fork, modify, and redistribute this code under the Apache License, but
+a derivative work must not be named or presented in a way that suggests it is
+an official ZhengQu product or is endorsed by ZhengQu.
+
+依据 Apache License 2.0 第 6 条，本许可证不授予上述商号、商标、服务标记或产品
+名称的使用权。你可以自由 fork、修改、再分发本代码，但衍生作品不得以暗示"官方
+出品"或"经争取授权"的方式命名或呈现。
+
+--------------------------------------------------------------------------------
+Platform API / 平台 API
+--------------------------------------------------------------------------------
+
+The Apache License covers the source code in this repository only. Calling the
+hosted platform API at https://tm.zhengquai.com additionally requires a platform
+account and is governed by API_TERMS_OF_USE.md — in particular the restriction
+on commercial resale, sublicensing, or redistribution of API data and search
+results.
+
+本许可证只覆盖本仓库的源代码。调用 https://tm.zhengquai.com 的托管平台 API 需要
+平台账号，并另受 API_TERMS_OF_USE.md 约束 —— 特别是其中关于 API 数据与查询结果
+不得商业转售、再许可或再分发的条款。
+
+Trademark data originates from CNIPA-derived sources and is provided for
+informational purposes only; it does not constitute legal advice.
+See LEGAL_DISCLAIMER.md.

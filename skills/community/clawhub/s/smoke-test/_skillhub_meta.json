@@ -1,0 +1,22 @@
+{
+  "name": "冒烟测试",
+  "skillId": "skill_smoke_test",
+  "version": "1.0.0",
+  "author": "大雪块",
+  "source": "local",
+  "examples_zh": [
+    "全面测试一下这个 Web 应用",
+    "对所有视图做一次回归冒烟测试",
+    "帮我做功能测试，确认修复有没有生效",
+    "这个 bug 修完跑一遍冒烟测试"
+  ],
+  "examples_en": [
+    "Run a full smoke test on this web app",
+    "Regression test all views",
+    "Functional test to confirm the fix works",
+    "Run smoke test after the bug fix"
+  ],
+  "description_zh": "多模态大模型辅助的 Web 应用「测试—修复」迭代工作流：覆盖全面测试、根因审核、代码修复、回归验证与证据链报告。",
+  "description_en": "Multi-modal LLM-assisted iterative QA and fixing workflow for web applications.",
+  "iconSource": "letter:烟"
+}

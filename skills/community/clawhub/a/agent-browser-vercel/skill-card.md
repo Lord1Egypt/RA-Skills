@@ -1,49 +1,67 @@
-## Description: <br>
-Browser automation CLI guidance for AI agents that need to navigate websites, fill forms, click elements, capture screenshots, extract data, test web apps, and manage browser sessions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Browser automation CLI for AI agents that helps navigate pages, fill forms, click buttons, take screenshots, extract data, test web apps, and automate browser tasks.
 
-## Publisher: <br>
-[Winchester-Yi](https://clawhub.ai/user/Winchester-Yi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[winchester-yi](https://clawhub.ai/user/winchester-yi)
 
-## Use Case: <br>
-Developers and agents use this skill to drive real browser sessions for authorized website interaction, application testing, form workflows, data extraction, screenshots, PDF export, visual diffs, profiling, and session management. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can invoke an external browser automation CLI that may be unpinned. <br>
-Mitigation: Install and run only a trusted agent-browser package version, and review generated commands before execution. <br>
-Risk: Automated browser control can act inside logged-in accounts and submit forms or state-changing actions. <br>
-Mitigation: Use the skill only on sites and accounts the user is authorized to automate, and require confirmation before purchases, posts, account changes, or submissions. <br>
-Risk: Saved state, screenshots, videos, downloads, traces, and proxy credentials can contain sensitive data. <br>
-Mitigation: Treat generated browser artifacts as sensitive, encrypt saved sessions when possible, avoid committing them, and delete them when no longer needed. <br>
-Risk: Proxy guidance could be misused for evasion or rate-limit avoidance. <br>
-Mitigation: Use proxies only for authorized corporate access, testing, or geo-validation, and avoid proxy rotation for bans, rate-limit bypass, or unauthorized scraping. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Command Reference](references/commands.md) <br>
-- [Authentication Patterns](references/authentication.md) <br>
-- [Session Management](references/session-management.md) <br>
-- [Snapshot Refs](references/snapshot-refs.md) <br>
-- [Video Recording](references/video-recording.md) <br>
-- [Profiling](references/profiling.md) <br>
-- [Proxy Support](references/proxy-support.md) <br>
+## Use Case:
 
+Developers and AI agents use this skill to drive browser workflows such as navigation, form submission, authenticated sessions, content capture, visual evidence collection, and web app testing from shell commands.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, configuration examples, and workflow steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce browser-control commands that create screenshots, PDFs, videos, saved browser state, downloads, traces, and extracted page text.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill enables broad browser automation, including navigation, clicks, form submission, downloads, JavaScript evaluation, local file access, and connection to existing browser sessions.
+
+Mitigation: Supervise runs and use domain allowlists, action policies, fresh snapshots after page changes, and explicit review before submitting forms or performing destructive actions.
+
+Risk: Authenticated sessions, saved state files, cookies, recordings, traces, proxy credentials, and screenshots can expose sensitive information.
+
+Mitigation: Prefer the encrypted auth vault, keep state files and artifacts out of source control, clear or delete credentials after use, and treat generated browser artifacts like secrets.
+
+Risk: Proxy guidance and scraping workflows could be misused to bypass rate limits, bans, or site policies.
+
+Mitigation: Use proxies only for legitimate testing or approved network access, follow site terms and rate limits, and avoid automation intended to evade restrictions.
+
+Risk: The authoritative scan verdict is suspicious because the skill grants powerful browser, credential, session, proxy, and persistence capabilities with under-scoped safety guidance.
+
+Mitigation: Review the skill and its operational policy before deployment, restrict trusted domains and actions, and monitor generated files and browser state during use.
+
+## Reference(s):
+
+- [Agent Browser ClawHub Page](https://clawhub.ai/winchester-yi/skills/agent-browser-vercel)
+- [Command Reference](references/commands.md)
+- [Snapshot and Refs](references/snapshot-refs.md)
+- [Session Management](references/session-management.md)
+- [Authentication Patterns](references/authentication.md)
+- [Video Recording](references/video-recording.md)
+- [Profiling](references/profiling.md)
+- [Proxy Support](references/proxy-support.md)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Markdown, Code, Guidance]
+
+**Output Format:** [Markdown guidance with inline bash commands, JSON configuration examples, and reusable shell script templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce browser state files, screenshots, PDFs, WebM recordings, trace files, and extracted text when the recommended commands are executed.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

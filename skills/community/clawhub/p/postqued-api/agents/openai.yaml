@@ -1,0 +1,4 @@
+interface:
+  display_name: "Postqued API"
+  short_description: "Operate Postqued through MCP or its v2 API"
+  default_prompt: "Use $postqued-api to inspect my client workspace and safely complete this social media task."

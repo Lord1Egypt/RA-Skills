@@ -1,0 +1,98 @@
+# GOAL: {{TASK_TITLE}}
+
+## 1. Objective and boundaries
+
+- Objective: complete every work item under frozen `design/**` and obtain approval under the configured review mode.
+- Non-goals: defined by `design/00_discussion-decisions.md` and each part.
+- Execution authorization: `not_authorized`; change to `authorized` only after explicit user instruction.
+- Active Goal: `not_created`.
+- Document language: `{{DOCUMENT_LANGUAGE}}`.
+
+## 2. Roles and configuration
+
+- Worker: `main`, default `gpt-5.6-sol/high`.
+- Reviewer mode: `inherited_subagent` by default; the Reviewer inherits the Worker's model/reasoning and full pre-implementation history. Explicit alternative: `self_review` with no subagent.
+- The inherited Reviewer writes only `review/reviewer-main.md`; in `self_review`, the Worker writes clearly labeled `SELF` receipts there.
+
+### 2.1 Session lineage
+
+| Field | Value |
+| --- | --- |
+| planning/coordinator label | To resolve from the sidebar title or derive |
+| planning/coordinator type/source | existing current task (`current_task`); no fork or new context |
+| planning/coordinator task ID | To fill |
+| current-task role | `planning / worker / reviewer` |
+| Worker label | To resolve from the sidebar title or derive |
+| Worker context kind/construction | current task, existing sidebar task, new forked sidebar task, or fresh sidebar task; state reused/forked/new |
+| Worker task ID | To create or reuse |
+| Worker session mode | `current_task / fork_current / reuse_fixed / fresh` |
+| Worker fork source | To fill |
+| Reviewer label | `<Worker label> / Pre-execution Reviewer` |
+| Reviewer context kind/construction | new nested subagent by default after Worker task/code reading; explicit `self_review` creates none |
+| Reviewer task or subagent ID | To create or reuse |
+| Reviewer session mode | `isolated_subagent` by default; alternatives require confirmation |
+| Reviewer fork source | full Worker history at pre-execution boundary |
+| Reviewer owner/context mode | `worker`; `full_history_pre_execution` / `self_review` |
+| pre-execution or isolation boundary | To fill |
+| execution dispatch time | Must respect the selected independence construction |
+| Worker model enforcement | Requested model/reasoning; method; `planned / confirmed / enforced / mismatch`; receipt |
+| Reviewer model enforcement | inherited Worker model/reasoning by default; method/status/receipt, or `self_review` |
+
+## 3. Launch-configuration confirmation
+
+- `launch_config_status`: `not_proposed / proposed / confirmed`
+- Provenance priority: current user request -> task package -> same-family history -> project default -> skill default.
+- User confirmation receipt and time: To fill.
+
+| Setting | Recommended value | Provenance and reason | Actual value |
+| --- | --- | --- | --- |
+| Execution mode | `single` | Default without confirmed parallelism | To confirm |
+| Current-task role | Planning, Worker, or Reviewer | Selected topology | To confirm |
+| Worker/Reviewer | See session lineage | Current request/history/skill default | To confirm |
+| Model enforcement | Fresh creation, fork/reuse handshake plus explicit dispatch, current actual, or explicit isolated-subagent spawn | Selected session modes | To confirm and record receipts |
+| Branch/worktree/baseline | To inspect | Current state | To confirm |
+| Review cadence | Each item plus part-level audit | Skill default | To confirm |
+| Validation scope | Summarize the design matrix | Task design | To confirm |
+| Commit/push/cleanup | To fill; push false by default | Project and skill rules | To confirm |
+| Real/server/migration/Release | All false by default | Not explicitly authorized | To confirm |
+
+Before confirmation, do not fork or reuse sessions, create an active Goal or worktree, implement, or start external runs. After confirmation, do not execute until every assigned context has an `enforced` model receipt; fail closed on mismatch.
+
+## 4. Work-item state
+
+Allowed states: `pending`, `implemented_pending_review`, and `approved`.
+
+| Work item | Part | State | Design | Execution | Review receipt | Notes |
+| --- | --- | --- | --- | --- | --- | --- |
+{{POINT_ROWS}}
+
+## 5. Part-level integrated audits
+
+| Part | All items approved | Integrated-audit verdict | Review receipt |
+| --- | --- | --- | --- |
+{{PART_AUDIT_ROWS}}
+
+## 6. Worker rules
+
+1. After authorization, read the frozen package and code, then apply the confirmed review mode. By default, create the full-history inherited Reviewer before implementation and obtain `READY_REVIEW`; for `self_review`, record `SELF_REVIEW_READY` without a subagent.
+2. Only after that readiness receipt, create an active Goal that references this file's absolute path; do not set an unrequested token budget.
+3. Complete items one by one and update `execution/worker-main.md`.
+4. After implementation self-check, mark the item `implemented_pending_review` and invoke the configured review mode.
+5. Mark `approved` only after an exact `REVIEW` or `SELF` approval receipt.
+6. Reviewer findings follow the risk-proportional gate: supported business paths and high-consequence invariants may block; speculative long-tail hardening is recorded as non-blocking residual work.
+7. After all items pass, complete each part audit and final consistency checks.
+
+## 7. Completion conditions
+
+- [ ] Every work item is `approved`.
+- [ ] Every part-level integrated audit passes.
+- [ ] Exact validation, failures, interruptions, and residual risks are recorded.
+- [ ] README, GOAL, execution, review, and current facts agree.
+- [ ] Git, artifacts, and external state are closed within user boundaries.
+
+## 8. Active Goal and final receipt
+
+- Goal ID: To fill after authorization.
+- Launch baseline: To fill.
+- Final commits or artifacts: To fill.
+- Final state: `pending`.

@@ -1,6 +1,13 @@
 {
-  "ownerId": "kn775j8jrm11qnnxm1t00rdaad833871",
+  "name": "PromptBuddy Lite",
   "slug": "promptbuddy-lite",
   "version": "3.0.0",
-  "publishedAt": 1774442298946
+  "description": "纯 Shell 版 Prompt 优化技能 v3.0 - 基于 HMAW 层级式架构，4层分层模板",
+  "author": "曾鹏祥",
+  "license": "MIT",
+  "homepage": "https://github.com/Steventsang18/promptbuddy-lite",
+  "keywords": ["prompt", "optimization", "shell", "lightweight", "zero-dependency", "HMAW", "hierarchical"],
+  "category": "productivity",
+  "os": ["linux", "darwin"],
+  "dependencies": []
 }

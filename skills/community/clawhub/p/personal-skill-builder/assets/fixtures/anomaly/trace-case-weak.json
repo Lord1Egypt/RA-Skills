@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "skill_dir": "trace-weak",
+  "entry_files": [
+    "SKILL.md"
+  ],
+  "clauses": [
+    {
+      "id": "R1",
+      "source": "上层要求：非法数量显示未知",
+      "strength": "must",
+      "anchors": [
+        "数量",
+        "未知"
+      ]
+    },
+    {
+      "id": "R2",
+      "source": "上层要求：冲突逐版本保留",
+      "strength": "must",
+      "anchors": [
+        "冲突",
+        "来源行号"
+      ]
+    },
+    {
+      "id": "R3",
+      "source": "上层要求：金额在全部字段与视图清理",
+      "strength": "must",
+      "anchors": [
+        "金额",
+        "清理"
+      ],
+      "scope": [
+        "物品",
+        "备注",
+        "冲突明细",
+        "提醒"
+      ],
+      "narrowing": [
+        "仅备注",
+        "只清理备注",
+        "备注中的金额"
+      ]
+    }
+  ]
+}

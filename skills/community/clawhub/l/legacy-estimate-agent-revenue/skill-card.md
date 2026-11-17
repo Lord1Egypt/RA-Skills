@@ -1,45 +1,54 @@
-## Description: <br>
-Calculate how much monthly revenue an AI agent could earn from native ads, affiliate links, CPC, and lead generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Calculate monthly revenue projections for AI agents using native ads, affiliate links, CPC, and lead generation, with floor/mid/ceiling scenarios and math shown.
 
-## Publisher: <br>
-[yaooooooooooooooo](https://clawhub.ai/user/yaooooooooooooooo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yaooooooooooooooo](https://clawhub.ai/user/yaooooooooooooooo)
 
-## Use Case: <br>
-Agent developers use this skill to estimate whether monetizing an AI agent with native ads, affiliate links, CPC placements, or lead generation is worth pursuing. It walks through five business questions and returns floor, mid, and ceiling monthly revenue projections with the assumptions and math shown. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Revenue projections and network-state claims may be mistaken for current guaranteed market results. <br>
-Mitigation: Treat outputs as rough estimates based on fixed benchmarks and review assumptions before using them for business decisions. <br>
-Risk: Users may provide sensitive customer, traffic, or financial details while answering the estimator questions. <br>
-Mitigation: Use only the minimum non-sensitive information needed to estimate query volume, vertical, response type, and audience. <br>
-Risk: The skill does not fetch live auction, demand, or conversion data. <br>
-Mitigation: Validate important monetization decisions against current demand-side data or integration-specific results. <br>
+## Use Case:
 
+Developers and agent builders use this skill to estimate potential monthly monetization revenue for an AI agent from traffic volume, vertical, response style, and audience.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yaooooooooooooooo/legacy-estimate-agent-revenue) <br>
-- [Operon homepage](https://operon.so) <br>
-- [Operon developer documentation](https://operon.so/developers?utm_source=skill-estimate-revenue&utm_medium=skill&utm_campaign=skills-distribution) <br>
-- [Revenue calculator bot](https://t.me/rev_calc_bot?start=skill-estimate-revenue) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with revenue tables, assumptions, and calculation breakdowns] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses fixed benchmark tables and does not fetch live auction or market data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated estimates include vendor-specific claims and promotional links that are not necessary for the revenue calculation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated estimates before publication and remove or qualify vendor-specific promotional content when it is not appropriate for the audience.
+
+Risk: Partner counts, current network-state language, and next-quarter projections are static vendor claims.
+
+Mitigation: Independently verify current advertiser demand and partner coverage before using the estimates for business planning.
+
+## Reference(s):
+
+- [Operon homepage](https://operon.so)
+- [Operon developer information](https://operon.so/developers?utm_source=skill-estimate-revenue&utm_medium=skill&utm_campaign=skills-distribution)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown revenue estimate with tables and calculation breakdowns]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Interactive five-question intake; uses embedded benchmark tables and static assumptions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

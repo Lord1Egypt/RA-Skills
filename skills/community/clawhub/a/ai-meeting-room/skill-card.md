@@ -1,42 +1,56 @@
-## Description: <br>
-AI Meeting Room convenes simulated expert agents to research, debate, critique, and produce actionable conclusions for business reviews, strategy discussions, brainstorming, decision-making, and risk analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI Meeting Room runs a Korean-language advisory-panel discussion in which specialized AI personas research a topic, debate risks and tradeoffs, and produce a concrete conclusion with action items.
 
-## Publisher: <br>
-[gyeuun97](https://clawhub.ai/user/gyeuun97) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gyeuun97](https://clawhub.ai/user/gyeuun97)
 
-## Use Case: <br>
-External users and business practitioners use this skill to get multi-perspective critiques of ideas, markets, strategies, risks, pivots, and execution plans. It is intended for brainstorming and decision support, not as licensed legal, financial, or investment advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can produce business, legal, financial, or investment-adjacent advice that may be incorrect, incomplete, or unsuitable for a user's situation. <br>
-Mitigation: Treat outputs as brainstorming and decision-support material, verify cited facts and assumptions, and consult qualified professionals before relying on high-impact recommendations. <br>
-Risk: The skill performs disclosed web research and may process confidential business plans, customer data, or sensitive internal details if the user provides them. <br>
-Mitigation: Avoid entering confidential or sensitive information unless it is appropriate for web-assisted analysis and the user's agent environment. <br>
+## Use Case:
 
+External users, developers, and business teams use this skill to test business ideas, strategy choices, brainstorming topics, and risk questions through a data-backed multi-perspective AI meeting.
 
-## Reference(s): <br>
-- [Agent Roles](references/agent-roles.md) <br>
-- [Conflict Patterns](references/conflict-patterns.md) <br>
-- [Meeting Templates](references/meeting-templates.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Guidance] <br>
-**Output Format:** [Markdown meeting transcript with research briefing, debate, conclusion, risks, and action items] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include web-researched claims, simulated expert personas, decision trees, risk notes, and concrete next actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill can activate on broad discussion or review prompts and may run web searches about the user's topic.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid using it for private or sensitive ideas unless the user is comfortable with web-based research.
+
+Risk: Data-backed advisory output can still contain incorrect, stale, or misleading conclusions.
+
+Mitigation: Review sourced claims and validate recommendations before using them for business, legal, financial, or operational decisions.
+
+## Reference(s):
+
+- [Agent roles](references/agent-roles.md)
+- [Conflict patterns](references/conflict-patterns.md)
+- [Meeting templates](references/meeting-templates.md)
+- [ClawHub skill page](https://clawhub.ai/gyeuun97/skills/ai-meeting-room)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown advisory meeting transcript with research brief, debate, conclusion, risks, and action items]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include cited research findings and decision-tree action items; sprint, full, and deep modes change output length.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

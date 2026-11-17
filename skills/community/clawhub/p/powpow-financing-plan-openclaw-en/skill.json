@@ -1,0 +1,629 @@
+{
+  "id": "powpow-financing-plan-en",
+  "slug": "powpow-financing-plan-openclaw-en",
+  "name": "PowPow Funding Plan - Investor Challenge (English)",
+  "version": "1.2.3",
+  "language": "en",
+  "description": "PowPow angel-round/Pre-A funding plan — an interactive investor challenge with memory personalization, interactive Q&A, and image display. Professional questions filter both ways and generate an investor style portrait. No style is better or worse — only a fit or not. No scores, no grades; we simply paint the collaboration style.",
+
+  "author": {
+    "name": "durenzidu",
+    "email": "dongtao@outlook.com"
+  },
+
+  "game_config": {
+    "mode": "investor_challenge",
+    "total_questions": 13,
+    "reward": {
+      "name": "PowPow Badge",
+      "description": "Each answered question earns 1 PowPow Badge — answer N questions, get N badges. Badges are the universal credential inside the PowPow product: create a digital human (2 badges), renew a digital human (1 badge)",
+      "redemption": "Send an email (with your PowPow registered email) → the founder tops up badges to that account based on the number of questions answered → delivered in-product; if the investor has not registered yet, they can provide a regular email and the founder will help them register",
+      "note": "No valuation discounts, no coupons — answering questions is not for haggling, only for both sides to see clearly whether they are a fit"
+    },
+    "message_template": "✅ Question {completed}/13 complete — you earned 1 PowPow Badge ({completed} in total)!\n💡 Badges are topped up to your PowPow account. Not registered yet? https://global.powpow.online/register",
+    "per_question_response": [
+      "Thank the investor for their answer",
+      "Badge announcement: you earned 1 PowPow Badge (N in total), usable to create a digital human in the PowPow product (2 badges) / renew a digital human (1 badge)",
+      "One-sentence style commentary: a positive description based on the style value of that question, praising the beauty of the style (e.g. \"You showed the steadiness of portfolio discipline\"). Strictly forbidden: phrases implying scoring, such as \"great answer / very professional / awesome\"",
+      "One-line registration reminder: badges must be topped up to your PowPow account — register at https://global.powpow.online/register"
+    ],
+    "completion_message": "🎉 All 13 questions complete! You earned 13 PowPow badges in total, and your full investing-style portrait has been generated. Send an email with your PowPow registered email to complete the badge top-up — badges can be used to create your own digital human on the map.",
+    "email_bonus_message": "🏅 Send the email = submit your style portrait + claim {total_badges} badges (you must include your PowPow registered email, otherwise the top-up cannot be processed; not registered yet? Provide a regular email and the founder will help you register)."
+  },
+
+  "project_intro": {
+    "personalization": {
+      "enabled": true,
+      "description": "Generate a personalized opening based on the user's local memory (informed-consent based)",
+      "consent_required": true,
+      "consent_flow": "Ask the user for consent first: \"To make this introduction more relevant to you, may I refer to what we discussed in previous conversations? It's totally fine to say no — we can just start.\" Call memory_search only after consent; if declined or unanswered, skip personalization and do not access memory again in this session",
+      "memory_search": {
+        "description": "Call memory_search to retrieve the user's local memories after the user consents",
+        "use_cases": [
+          {
+            "memory_keyword": "technology",
+            "personalized_intro": "I noticed you're really into technology — that excites me, because we're using technology to change the shape of social networking."
+          },
+          {
+            "memory_keyword": "investment",
+            "personalized_intro": "I noticed you've followed quite a few startups — that makes me believe you'll understand what we're building."
+          },
+          {
+            "memory_keyword": "startup",
+            "personalized_intro": "I noticed you're an entrepreneur too — then you probably get it: what one person plus a few AIs can accomplish."
+          },
+          {
+            "memory_keyword": "AI",
+            "personalized_intro": "I noticed you pay close attention to AI — that makes us kindred spirits. This very skill is itself a product of AI collaboration."
+          }
+        ]
+      }
+    },
+    "founder_message": {
+      "title": "To Investors",
+      "content": [
+        "It is an honor to meet you.",
+        "We will become the best of friends.",
+        "We are seeking investment,",
+        "and we believe this will be an exhilarating journey.",
+        "",
+        "— POWPOW"
+      ]
+    },
+    "images": {
+      "enabled": true,
+      "source": "external",
+      "description": "Product screenshots are hosted in the GitHub repository durenzidu/durenzidu; send the corresponding link when displaying them in conversation; if raw.githubusercontent.com is unreachable, fall back to the jsdelivr mirror",
+      "mirror_pattern": "https://cdn.jsdelivr.net/gh/durenzidu/durenzidu@main/screenshots/{filename}",
+      "screenshots": [
+        { "id": "screenshot_1", "url": "https://raw.githubusercontent.com/durenzidu/durenzidu/main/screenshots/powpow-01.jpg", "description": "Product UI screenshot 1" },
+        { "id": "screenshot_2", "url": "https://raw.githubusercontent.com/durenzidu/durenzidu/main/screenshots/powpow-02.jpg", "description": "Product UI screenshot 2" },
+        { "id": "screenshot_3", "url": "https://raw.githubusercontent.com/durenzidu/durenzidu/main/screenshots/powpow-03.jpg", "description": "Product UI screenshot 3" },
+        { "id": "screenshot_4", "url": "https://raw.githubusercontent.com/durenzidu/durenzidu/main/screenshots/powpow-04.jpg", "description": "Product UI screenshot 4" },
+        { "id": "screenshot_5", "url": "https://raw.githubusercontent.com/durenzidu/durenzidu/main/screenshots/powpow-05.jpg", "description": "Product UI screenshot 5" },
+        { "id": "screenshot_6", "url": "https://raw.githubusercontent.com/durenzidu/durenzidu/main/screenshots/powpow-06.jpg", "description": "Product UI screenshot 6" }
+      ]
+    },
+    "overview": {
+      "title": "Overview",
+      "items": [
+        "Project name: PowPow",
+        "Positioning: location-based Agent social network",
+        "Core idea: life is full of stories everywhere",
+        "Official site: https://www.powpow.online/",
+        "Funding round: angel / Pre-A",
+        "Funding amount: to be discussed",
+        "Team size: 1 human + 8 Agents"
+      ]
+    },
+    "highlights": {
+      "title": "Highlights",
+      "items": [
+        "Tech approach: PWA architecture, zero install cost, naturally fits AI interaction scenarios, completely bypasses traditional app distribution channels",
+        "Innovative scenario: digital human actors fused with local services — a closed loop of immersive content + services",
+        "Business model: B2D (Business to Developer), serving the developer ecosystem"
+      ]
+    },
+    "contact": {
+      "title": "Contact",
+      "items": [
+        "Owner: durenzidu",
+        "Email: dongtao@outlook.com",
+        "Official site: https://www.powpow.online/",
+        "Landing page: https://global.powpow.online/landing",
+        "",
+        "🏅 To help you experience the product, every question you answer earns 1 PowPow Badge. Badges can be used to create digital humans in the product — email me and I'll top them up for you."
+      ]
+    }
+  },
+
+  "triggers": [
+    "PowPow funding",
+    "PowPow funding plan",
+    "PowPow investment",
+    "invest in PowPow",
+    "investing in PowPow",
+    "become a PowPow investor",
+    "become a proud PowPow investor",
+    "I want to invest in PowPow",
+    "tell me about the PowPow project",
+    "PowPow investor challenge"
+  ],
+  "co_occurrence_triggers": {
+    "rule": "The keywords below never trigger on their own; they trigger only when PowPow is named in the same conversation, or the user clearly expresses interest in this funding plan",
+    "keywords": [
+      "AI social",
+      "AI social app",
+      "Agent social",
+      "location-based social",
+      "map-based social",
+      "digital human social",
+      "angel round",
+      "AI startup funding",
+      "social startup funding",
+      "investing in AI projects",
+      "looking for startups to invest in"
+    ]
+  },
+  "negative_examples": "Do not activate when the user is just chatting about industry analysis, doing academic research, job seeking, or discussing other projects, or when industry keywords appear without any PowPow context. When intent is uncertain, ask first: \"Are you interested in PowPow's funding plan?\" — if the answer is no, exit immediately.",
+
+  "interactive_qa": {
+    "enabled": true,
+    "description": "An interactive Q&A session before the formal challenge",
+    "trigger_phrase": "Before we start the formal challenge, is there anything you'd like to know?",
+    "direct_email_option": {
+      "enabled": true,
+      "description": "During the interactive Q&A and the challenge, the user can say \"just send the email\" at any time to skip the remaining steps and go straight to the email flow; badges are counted by questions answered",
+      "phrases": ["just send the email", "send the email", "skip the questions", "email first"]
+    },
+    "knowledge_sources": {
+      "description": "Official references to consult first when answering free-form questions",
+      "official_site": "https://www.powpow.online/",
+      "landing_page": "https://global.powpow.online/landing",
+      "cis": "https://www.powpow.online/cis/",
+      "clawhub": "https://clawhub.ai/durenzidu",
+      "github": "https://github.com/durenzidu",
+      "usage": "Answer by combining the questions_pool answer templates with the content at the official URLs above; if the environment supports internet access, you may retrieve content from the official site / CIS; for questions not covered by official materials, say so honestly and supplement with websearch"
+    },
+    "features": {
+      "free_question": {
+        "enabled": true,
+        "description": "The user can ask freely; the AI answers based on project specifics and web search",
+        "tools": ["websearch"],
+        "workflow": [
+          "1. The user asks a free-form question",
+          "2. Classify the question (project-related / industry-related / general)",
+          "3. If it is an industry question, call websearch for the latest information",
+          "4. Generate an answer combining project specifics and search results"
+        ]
+      },
+      "recommended_questions": {
+        "enabled": true,
+        "description": "Recommend relevant questions based on user memory (only if the user consented to memory use at the opening; otherwise use default_questions without accessing memory)",
+        "memory_based": {
+          "technology": [
+            "What is PowPow's PWA technical architecture?",
+            "How do digital humans achieve personality, memory, and viewpoints?",
+            "How do I publish an OpenClaw Agent onto the PowPow map?"
+          ],
+          "investment": [
+            "How is PowPow's B2D business model being validated?",
+            "What does the competitive landscape of the Agent social track look like?",
+            "What does current user growth data look like?"
+          ],
+          "startup": [
+            "How does 1 human + 8 Agents actually work?",
+            "What was the biggest challenge you hit while building the startup?",
+            "How do the costs and efficiency of Agent employees compare?"
+          ],
+          "AI": [
+            "How was this skill created with AI?",
+            "Which models do the 8 Agents run on, and what does each one do?",
+            "What will companies look like in the AI era?"
+          ]
+        },
+        "default_questions": [
+          "What does PowPow do?",
+          "What is the business model?",
+          "What will the funding be used for?"
+        ]
+      },
+      "web_search_integration": {
+        "enabled": true,
+        "description": "For industry-related questions, call websearch for the latest information",
+        "trigger_keywords": ["competition", "market", "industry", "trend", "data", "landscape"],
+        "example_queries": [
+          "social app competitive landscape",
+          "PWA adoption trends",
+          "AI social products"
+        ]
+      }
+    },
+    "questions_pool": [
+      {
+        "id": "what_is_powpow",
+        "question": "What does PowPow do?",
+        "answer_template": "PowPow is a location-based immersive social app built on the core idea that \"life is full of stories everywhere.\" Users discover, create, and share stories at real geographic locations, interacting with scenes through digital humans."
+      },
+      {
+        "id": "business_model",
+        "question": "What is PowPow's business model?",
+        "answer_template": "PowPow uses a B2D (Business to Developer) model serving the developer ecosystem. Developers can build digital humans and local service scenarios on the PowPow platform, and the platform takes a share of the revenue."
+      },
+      {
+        "id": "tech_highlights",
+        "question": "What are PowPow's technical highlights?",
+        "answer_template": "Technical highlights include: 1) PWA architecture — zero install cost, bypassing app distribution channels; 2) digital humans fused with local services; 3) location-driven immersive experiences."
+      },
+      {
+        "id": "why_pwa",
+        "question": "Why PWA instead of a native app?",
+        "answer_template": "PWA is the product form of the AI era: no app-store review, zero install cost, naturally fits AI interaction, lets you acquire users by simply sharing a link, and completely bypasses the 30% cut."
+      },
+      {
+        "id": "ai_employees",
+        "question": "How does a one-person company + 8 AI employees work?",
+        "answer_template": "PowPow is a new kind of company for the AI era — using Agents to amplify individual capability, running 24/7 without interruption.\n\nFounder durenzidu is responsible for strategy, product, and investor communication.\n\n8 Agents, each with its own role:\n• Lin Xiaodong (Product Manager Agent) — Kimi K2.5 · Coze\n• Zhang Hao (Development Engineer Agent) — Kimi K2.5 · Coze / Trae / WorkBuddy\n• Chen Siyu (UX/UI Agent) — Kimi K2.5 · Coze / Trae\n• Wang Jiaqi (Investor Relations Agent) — Qianfan Dumate\n• Liu Lei (Database Ops Agent) — GPT-5.4 mini\n• Wu Jianguo (Server Ops Agent) — GPT-5.4 mini\n• Zhao Yuxin (Content Marketing Agent) — Doubao 2.0\n• DS Web (Technical Advisor) — DeepSeek-V3.2\n\nThe advantages of this model: extremely low labor costs, non-stop 24/7 operation, and fast iteration."
+      },
+      {
+        "id": "user_status",
+        "question": "How are the users doing so far?",
+        "answer_template": "The product is live at https://global.powpow.online/ — come try it. Register at https://global.powpow.online/register, or request a demo account by email (dongtao@outlook.com)."
+      },
+      {
+        "id": "funding_use",
+        "question": "What will the funding be used for?",
+        "answer_template": "The funding will mainly go toward: product iteration, user growth, and technical investment. The full business plan (BP) is available on request via email (dongtao@outlook.com)."
+      }
+    ]
+  },
+
+  "questions": [
+    {
+      "id": "q0",
+      "section": "identity",
+      "type": "text",
+      "question": "First, may I ask how I should address you?",
+      "variable": "investor_name",
+      "response_template": "Great to meet you, {answer}!"
+    },
+    {
+      "id": "q1",
+      "section": "identity",
+      "type": "choice",
+      "question": "Are you an institutional investor, an individual investor, or an FA?",
+      "variable": "investor_type",
+      "options": [
+        { "value": "Institutional investor", "label": "A) Institutional investor" },
+        { "value": "Individual investor", "label": "B) Individual investor" },
+        { "value": "FA", "label": "C) FA (financial advisor)" }
+      ],
+      "response_template": "Understood, {investor_name} — as an {answer}, let's get to know each other properly."
+    },
+    {
+      "id": "q2",
+      "section": "identity",
+      "type": "choice",
+      "question": "What exit scenario do you most look forward to right now?",
+      "variable": "exit_preference",
+      "options": [
+        { "value": "IPO exit", "label": "A) Long-term partner — hoping for an IPO exit" },
+        { "value": "M&A exit", "label": "B) An M&A exit works too, as long as the valuation is right" },
+        { "value": "Exit in 3-5 years", "label": "C) A clear exit path within 3-5 years" },
+        { "value": "Follow the lead", "label": "D) I follow the lead investor — whatever they decide, I follow" }
+      ],
+      "insight": "A core question for probing whether the investor's 'timetable' and 'return expectations' match yours.",
+      "style_mapping": {
+        "A": { "style": "Long-term Companion", "tags": ["long-termist"] },
+        "B": { "style": "M&A Open", "tags": ["M&A-sensitive"] },
+        "C": { "style": "Exit-driven", "tags": ["time-sensitive"] },
+        "D": { "style": "Trustful Follower", "tags": ["follower"] }
+      }
+    },
+    {
+      "id": "q3",
+      "section": "money",
+      "section_title": "Part 1: \"Money\"",
+      "section_intro": "Many founders are embarrassed to talk money through — that is actually the biggest risk. Let's be candid.",
+      "type": "choice",
+      "question": "What year of its investment period is your fund in, and how much dry powder is left?",
+      "variable": "fund_cycle",
+      "options": [
+        { "value": "Early investment period", "label": "A) Early in the investment period, plenty of dry powder" },
+        { "value": "Mid investment period", "label": "B) Mid investment period, investing per plan" },
+        { "value": "Late investment period", "label": "C) Late investment period / exit period, capital is tight" },
+        { "value": "Not applicable", "label": "D) I'm an individual investor / FA — not applicable" }
+      ],
+      "insight": "If the fund is already in its exit period, follow-on investment is less likely.",
+      "style_mapping": {
+        "A": { "tags": ["ample dry powder"] },
+        "B": { "tags": ["invests per plan"] },
+        "C": { "tags": ["late investment period"] },
+        "D": { "tags": ["individual investor / FA"] }
+      }
+    },
+    {
+      "id": "q4",
+      "section": "money",
+      "type": "choice",
+      "question": "From signing the SPA to the money hitting the account, how long does it usually take?",
+      "variable": "payment_speed",
+      "options": [
+        { "value": "1-2 months", "label": "A) 1-2 months, smooth process" },
+        { "value": "2-3 months", "label": "B) 2-3 months, investment committee approval needed" },
+        { "value": "3+ months", "label": "C) More than 3 months, complex process" },
+        { "value": "Depends", "label": "D) Depends on the specific deal" }
+      ],
+      "insight": "This probes the 'TS walk-away rate' and the wiring speed.",
+      "style_mapping": {
+        "A": { "style": "Fast Mover", "tags": ["fast decision-maker"] },
+        "B": { "style": "Process Driven", "tags": ["process-driven"] },
+        "C": { "style": "Multi-layer Deliberator", "tags": ["long decision cycle"] },
+        "D": { "style": "Situationally Prudent", "tags": ["adapts to the deal"] }
+      }
+    },
+    {
+      "id": "q5",
+      "section": "money",
+      "type": "choice",
+      "question": "If this round is oversubscribed, what would you do?",
+      "variable": "oversubscribe",
+      "options": [
+        { "value": "Re-up", "label": "A) Re-up — if I'm bullish, I invest more" },
+        { "value": "Hold allocation", "label": "B) Hold my original allocation, stay disciplined" },
+        { "value": "See others", "label": "C) Decide based on what other investors do" },
+        { "value": "Not a focus", "label": "D) I don't really pay attention to that" }
+      ],
+      "insight": "This reveals whether the other side is a true lead investor or just a follower financial investor.",
+      "style_mapping": {
+        "A": { "style": "Aggressive Re-up", "tags": ["potential lead investor"] },
+        "B": { "style": "Disciplined Holder", "tags": ["disciplined"] },
+        "C": { "style": "Flexible Watcher", "tags": ["reads the table first"] },
+        "D": { "style": "Flexible Watcher", "tags": ["independent-minded"] }
+      }
+    },
+    {
+      "id": "q6",
+      "section": "people",
+      "section_title": "Part 2: \"People\"",
+      "section_intro": "Money is homogeneous; people are not. I need to figure out how you would engage with my company in the future.",
+      "type": "choice",
+      "question": "If we hit a wall — even needing layoffs or a business pivot — what would your personal attitude be?",
+      "variable": "downturn_attitude",
+      "options": [
+        { "value": "Shoulder it together", "label": "A) Shoulder it with you and help you find resources" },
+        { "value": "Stay patient", "label": "B) I understand startup cycles — I stay patient" },
+        { "value": "Get involved", "label": "C) Focus on the root cause and get involved in solving it" },
+        { "value": "Depends", "label": "D) It depends on the specific situation" }
+      ],
+      "insight": "This is a stress test. I need a partner who can hold the line in a downturn.",
+      "style_mapping": {
+        "A": { "style": "In the Trenches", "tags": ["crisis supporter"] },
+        "B": { "style": "Patient Companion", "tags": ["patient"] },
+        "C": { "style": "Resource Enabler", "tags": ["problem solver"] },
+        "D": { "style": "Patient Companion", "tags": ["context judgment"] }
+      }
+    },
+    {
+      "id": "q7",
+      "section": "people",
+      "type": "choice",
+      "question": "What is the most concrete thing you recently helped a portfolio company with?",
+      "variable": "portfolio_help",
+      "options": [
+        { "value": "Land customers", "label": "A) Helped land key customers / partnerships" },
+        { "value": "Recruit talent", "label": "B) Helped recruit core talent" },
+        { "value": "Mediate conflicts", "label": "C) Helped mediate internal conflicts / personal issues" },
+        { "value": "Strategic advice", "label": "D) Provided strategic advice / industry insights" }
+      ],
+      "insight": "Ask for concrete cases — is the person bragging about their network, or did they actually put in the effort?",
+      "style_mapping": {
+        "A": { "tags": ["customer resources"] },
+        "B": { "tags": ["talent resources"] },
+        "C": { "tags": ["soft support"] },
+        "D": { "tags": ["strategic advisor"] }
+      }
+    },
+    {
+      "id": "q8",
+      "section": "industry",
+      "section_title": "Part 3: \"Industry\"",
+      "section_intro": "An investor should be the founder's 'second brain,' not a parrot that can only say 'this track seems huge.'",
+      "type": "choice",
+      "question": "In the social track, what worries you most about a model like PowPow's?",
+      "variable": "concerns",
+      "options": [
+        { "value": "Cold start", "label": "A) Cold start and user retention" },
+        { "value": "Business model", "label": "B) Business model validation" },
+        { "value": "Technical moat", "label": "C) Whether the technical moat is deep enough" },
+        { "value": "Competitive landscape", "label": "D) The competitive landscape" }
+      ],
+      "insight": "If the investor's concern happens to be exactly the moat I have thought deeply about, it means they haven't yet grasped my core advantage.",
+      "style_mapping": {
+        "A": { "style": "Growth Lens", "tags": ["focuses on user growth"] },
+        "B": { "style": "Business-model Lens", "tags": ["focuses on business fundamentals"] },
+        "C": { "style": "Moat Lens", "tags": ["focuses on technical moats"] },
+        "D": { "style": "Landscape Lens", "tags": ["focuses on competitive landscape"] }
+      }
+    },
+    {
+      "id": "q9",
+      "section": "industry",
+      "type": "choice",
+      "question": "Has any social company in your portfolio failed? What do you think was the reason?",
+      "variable": "failed_case",
+      "options": [
+        { "value": "Market timing", "label": "A) Market timing was wrong" },
+        { "value": "Team execution", "label": "B) Team execution problems" },
+        { "value": "Business model", "label": "C) The business model never worked" },
+        { "value": "No experience", "label": "D) I haven't invested in the social track yet" }
+      ],
+      "insight": "This reveals the investor's attribution ability and industry depth.",
+      "style_mapping": {
+        "A": { "tags": ["social track experience"] },
+        "B": { "tags": ["social track experience"] },
+        "C": { "tags": ["social track experience"] },
+        "D": { "tags": ["new to the social track"] }
+      }
+    },
+    {
+      "id": "q10",
+      "section": "cooperation",
+      "section_title": "Part 4: \"Cooperation\"",
+      "section_intro": "Finally, while the mood is at its best, let's say the ugly things upfront.",
+      "type": "choice",
+      "question": "If the company later needs offshore restructuring, reorganization, or faces an M&A exit, how long is your decision cycle?",
+      "variable": "decision_mechanism",
+      "options": [
+        { "value": "Independent decision", "label": "A) Within a week — I can decide independently" },
+        { "value": "Internal alignment", "label": "B) 2-4 weeks — I need internal alignment" },
+        { "value": "Committee approval", "label": "C) Over a month — investment committee / LP approval needed" },
+        { "value": "Depends", "label": "D) Depends on the specific situation" }
+      ],
+      "insight": "Many companies die on 'shareholder resolutions that never get signed.'",
+      "style_mapping": {
+        "A": { "tags": ["independent decision-maker"] },
+        "B": { "tags": ["internal negotiator"] },
+        "C": { "tags": ["complex decision chain"] },
+        "D": { "tags": ["context judgment"] }
+      }
+    },
+    {
+      "id": "q11",
+      "section": "cooperation",
+      "type": "choice",
+      "question": "Under what circumstances would you choose to sell the company outright, or vote against my fundraising request?",
+      "variable": "exit_bottomline",
+      "options": [
+        { "value": "Major problems", "label": "A) Only if the company runs into major operational problems" },
+        { "value": "M&A opportunity", "label": "B) I'd consider it when a reasonable M&A opportunity comes along" },
+        { "value": "No exit", "label": "C) If there's no exit opportunity within 3-5 years" },
+        { "value": "Respect the founder", "label": "D) I respect the founder's decisions" }
+      ],
+      "insight": "This is a probe about 'control.'",
+      "style_mapping": {
+        "A": { "tags": ["founder-friendly"] },
+        "B": { "tags": ["M&A-sensitive"] },
+        "C": { "tags": ["time-sensitive"] },
+        "D": { "tags": ["founder-led"] }
+      }
+    },
+    {
+      "id": "q12",
+      "section": "open",
+      "section_title": "Open Question: Resources and Problem-Solving",
+      "type": "open",
+      "question": "The PowPow project hits a technical wall — real-time calls between PowPow users and OpenClaw Agents can't be implemented yet. How would you help PowPow?",
+      "hint": "Answer freely — show your technical understanding or your resources",
+      "variable": "open_answer",
+      "insight": "There is no standard answer to this question; your response will reveal your problem-solving style.",
+      "style_detection": {
+        "Technical Solver": { "keywords": ["WebRTC", "WebSocket", "real-time", "audio", "video", "SDK", "API"], "tag": "clear technical path" },
+        "Connector": { "keywords": ["know", "refer", "introduce", "connect you", "friend", "team"], "tag": "has concrete resources" },
+        "Prioritizer": { "keywords": ["core problem", "priority", "key", "first", "more important"], "tag": "strong judgment" },
+        "Cost-conscious": { "keywords": ["cost", "spend", "budget", "cost-effective", "ROI"], "tag": "careful with money" }
+      }
+    }
+  ],
+
+  "style_analysis": {
+    "principle": "No style is better or worse — only a fit or not. No scores, no grades; we simply paint the collaboration style.",
+    "comment_principle": "Each question's commentary praises the beauty of the style, not the quality of the answer. Strictly forbidden: phrases implying scoring, such as \"great answer / very professional / awesome.\"",
+    "axes": {
+      "capital_posture": {
+        "label": "Capital Posture",
+        "primary_question": "q5",
+        "values": {
+          "Aggressive Re-up": "Backs winners with more capital — natural lead-investor energy",
+          "Disciplined Holder": "Sticks to allocation and discipline — clear portfolio thinking",
+          "Flexible Watcher": "Reads the table first, then decides the chips"
+        }
+      },
+      "decision_rhythm": {
+        "label": "Decision Rhythm",
+        "primary_question": "q4",
+        "values": {
+          "Fast Mover": "Decides fast, wires fast — opportunity-driven",
+          "Process Driven": "Follows internal process — every step is solid",
+          "Multi-layer Deliberator": "Long decision chain, but every layer counts",
+          "Situationally Prudent": "Pace depends on the deal — no one-size-fits-all"
+        }
+      },
+      "post_invest_style": {
+        "label": "Post-investment Style",
+        "primary_question": "q6",
+        "values": {
+          "In the Trenches": "Actually rolls up sleeves and helps in a downturn",
+          "Patient Companion": "Gives space and patience, doesn't intervene lightly",
+          "Resource Enabler": "Shows up with resources and solutions"
+        }
+      },
+      "exit_philosophy": {
+        "label": "Exit Philosophy",
+        "primary_question": "q2",
+        "values": {
+          "Long-term Companion": "Willing to spend enough time watching the company grow up",
+          "M&A Open": "Open to M&A — willing to talk when the terms are right",
+          "Exit-driven": "Needs a clear timetable and exit path",
+          "Trustful Follower": "Trusts the lead investor's judgment and follows"
+        }
+      },
+      "cognitive_lens": {
+        "label": "Cognitive Lens",
+        "primary_question": "q8",
+        "values": {
+          "Growth Lens": "Looks at user and retention signals first",
+          "Business-model Lens": "First asks whether the business model holds",
+          "Moat Lens": "Watches the depth of the technical moat",
+          "Landscape Lens": "Reads the endgame from the competitive landscape"
+        }
+      },
+      "resource_strength": {
+        "label": "Resource Strength",
+        "primary_question": "q12",
+        "values": {
+          "Technical Solver": "Used to decomposing problems along technical paths",
+          "Connector": "Thinks of mobilizing people first to solve problems",
+          "Prioritizer": "Asks what matters most before discussing how",
+          "Cost-conscious": "Runs the numbers before any plan"
+        }
+      }
+    },
+    "supplementary_tags_questions": ["q3", "q7", "q9", "q10", "q11"],
+    "output_format": "Present the portrait as 6 style lines, each formatted like \"Capital Posture: Disciplined Holder — sticks to allocation and discipline, clear portfolio thinking,\" plus a tags line. Never output scores or grades."
+  },
+
+  "email_template": {
+    "to": "dongtao@outlook.com",
+    "subject": "[PowPow Investment Interest] {investor_name} - {organization}",
+    "sections": {
+      "greeting": "Hi durenzidu,\n\nThis is {investor_name}.\n\nI just completed the PowPow Investor Challenge and would love to talk about the possibility of working together.",
+      "background": "[My Background]\n• Role: {investor_type}\n• Organization: {organization}\n• Title: {title}\n• Email: {email}\n• WeChat: {wechat}",
+      "style": "[My Investing Style]\n\nBased on my answers in the challenge, my style portrait is:\n\n{style_profile_text}\n\nMy tags: {tags}",
+      "understanding": "[My Understanding of PowPow]\n\n{understanding_text}",
+      "help": "[How I Can Help]\n\n{help_text}",
+      "expectation": "[What I'm Looking For]\n\n{expectation_text}",
+      "intention": "[PowPow Badge Claim]\n\nI completed the Investor Challenge and earned {total_badges} PowPow badges in total.\nPlease top them up to my PowPow registered email: {powpow_email}\n(I don't have an account yet — feel free to use this email to help me register; or I'll register myself at https://global.powpow.online/register)",
+      "closing": "Looking forward to talking with you!\n\n{investor_name}\n{organization}\n{title}\n{email}\n{wechat}\n\n═══════════════════════════════════════\nThis email was generated by the PowPow investor outreach system.\n\nOwner: durenzidu\n═══════════════════════════════════════"
+    }
+  },
+
+  "email_flow": {
+    "preview_required": true,
+    "preview_rule": "The full email text must be shown before sending so the user can confirm it section by section",
+    "send_trigger": "Send only when the user explicitly instructs to send after previewing (e.g. \"send\" / \"confirm send\") — never send automatically",
+    "style_section": {
+      "default_included": true,
+      "removable": "Tell the user during preview: the style-portrait section is included by default and can be removed on request"
+    },
+    "contact_rule": "Organization, title, contact email, WeChat, and PowPow registered email are all optional; omitted fields are dropped as whole lines in the email, no blank placeholders; before sending, at least one contact channel must be provided (email or WeChat); badge top-up depends on the PowPow registered email — remind the user to provide it before sending",
+    "redacted_copy": {
+      "enabled": true,
+      "description": "Offer a \"copy redacted version\" option: removes organization, title, email, WeChat and other contact details, keeping only the salutation, style portrait, and badge claim"
+    },
+    "privacy_notice": "Before sending, tell the user: the information provided is used only to contact them about PowPow funding matters, will not be used for anything else, and can be deleted at any time upon request."
+  },
+
+  "data_collection": {
+    "rule": "All fields are optional with nothing required; before sending the email, at least one contact channel must be provided (either email or WeChat)",
+    "fields": [
+      { "id": "organization", "label": "Organization name", "required": false },
+      { "id": "title", "label": "Title", "required": false },
+      { "id": "email", "label": "Email", "required": false },
+      { "id": "wechat", "label": "WeChat", "required": false },
+      { "id": "powpow_email", "label": "PowPow registered email (used for badge top-up; if not registered yet, fill in your regular email)", "required": false }
+    ]
+  },
+
+  "language_policy": {
+    "dialogue": "The dialogue language follows the user; respond in the language the user uses",
+    "fixed_content": "The founder's message is fixed English content; the challenge question pool and badge rules are kept in English"
+  },
+
+  "examples": [
+    {
+      "input": "PowPow funding plan",
+      "output": "Welcome to the PowPow Investor Challenge! Before the challenge begins, let me introduce the PowPow project..."
+    }
+  ]
+}

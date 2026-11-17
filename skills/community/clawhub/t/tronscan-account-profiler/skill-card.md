@@ -1,45 +1,60 @@
-## Description: <br>
-Profiles TRON wallet addresses with TronScan data, including assets, token holdings, DeFi participation, bandwidth and energy, votes, transaction activity, tags, approvals, and related accounts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query TRON wallet addresses for total assets, token holdings, DeFi participation, energy and bandwidth, votes, transfer counts, and related account activity.
 
-## Publisher: <br>
-[sshnii](https://clawhub.ai/user/sshnii) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sshnii](https://clawhub.ai/user/sshnii)
 
-## Use Case: <br>
-External users and developers use this skill to profile TRON wallet addresses for holdings, account resources, approvals, activity, counterparties, and risk labels using TronScan MCP data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Wallet profiling can aggregate public but sensitive address patterns, including holdings, counterparties, approvals, and risk labels. <br>
-Mitigation: Use the skill only for legitimate, lawful purposes and avoid unnecessary disclosure of profiled addresses or derived relationship data. <br>
-Risk: Queried wallet addresses may be sent to TronScan through the MCP server. <br>
-Mitigation: Confirm the user intends to query the address and avoid submitting addresses that should not be shared with the external service. <br>
-Risk: Token holdings can include spam or risky assets that may mislead users if presented without context. <br>
-Mitigation: Flag returned token risk fields such as tokenCanShow false or tokenLevel 3 or 4 when summarizing wallet holdings. <br>
+## Use Case:
 
+External users and developers use this skill to profile TRON wallet addresses, inspect balances and token holdings, review staking resources, evaluate approvals, and summarize account activity through the TronScan MCP service.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sshnii/tronscan-account-profiler) <br>
-- [TronScan MCP server](https://mcp.tronscan.org/mcp) <br>
-- [TronScan MCP Guide](https://mcpdoc.tronscan.org) <br>
-- [TronScan Developer API](https://tronscan.org/#/developer/api) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or concise text summaries based on TronScan MCP responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only wallet profiling; MCP calls may require TronScan connectivity and can be rate limited without an API key.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: ClawHub release evidence) <br>
+Risk: Wallet profiling can expose privacy-sensitive public blockchain activity and related-account patterns.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for addresses the user is authorized or comfortable analyzing, and explain that public blockchain signals can be sensitive.
+
+Risk: Risk tags, approval data, related accounts, and activity patterns may be misleading without additional context.
+
+Mitigation: Present these outputs as analysis signals rather than definitive conclusions, and encourage review against the underlying TronScan results.
+
+Risk: Queries are sent to the configured TronScan MCP service.
+
+Mitigation: Install and use the skill only when sending TRON addresses and related questions to that service is acceptable.
+
+## Reference(s):
+
+- [TronScan MCP Server](https://mcp.tronscan.org/mcp)
+- [TronScan MCP Guide](https://mcpdoc.tronscan.org)
+- [TronScan Developer API](https://tronscan.org/#/developer/api)
+- [ClawHub Skill Page](https://clawhub.ai/sshnii/skills/tronscan-account-profiler)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, API Calls, Guidance]
+
+**Output Format:** [Markdown or text summaries with referenced TronScan MCP tool results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include wallet balances, token holdings, DeFi participation, staking resources, approvals, tags, and activity summaries.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

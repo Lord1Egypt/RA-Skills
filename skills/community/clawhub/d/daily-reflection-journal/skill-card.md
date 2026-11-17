@@ -1,39 +1,54 @@
-## Description: <br>
-Guides a daily reflection journal based on the Cognitive Awakening framework, helping users turn meaningful daily events into facts, feelings, insights, and one concrete next action. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides Chinese-language daily reflection journaling using a fact, feeling, insight, and action framework based on Cognitive Awakening.
 
-## Publisher: <br>
-[derekdong-star](https://clawhub.ai/user/derekdong-star) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[derekdong-star](https://clawhub.ai/user/derekdong-star)
 
-## Use Case: <br>
-Individuals and teams use this skill to conduct guided daily journaling, focusing on 1-3 meaningful events and converting them into self-observation, insight, and a practical next action. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Daily reflection entries may contain sensitive personal information saved in local dated Markdown files. <br>
-Mitigation: Confirm where daily-reflection/YYYY-MM-DD.md is created, avoid shared or synced folders when privacy matters, and review or delete entries that contain sensitive information. <br>
+## Use Case:
 
+External users and agents use this skill to conduct focused daily reflection sessions, identify meaningful events, explore emotions and causes, and turn insights into a concrete next action.
 
-## Reference(s): <br>
-- [Cognitive Awakening Framework](references/cognitive-awakening.md) <br>
-- [Reflection Prompt Library](references/prompts-library.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown] <br>
-**Output Format:** [Markdown journal entry saved as daily-reflection/YYYY-MM-DD.md] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides reflection on 1-3 significant events and encourages one concrete action for the next day.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Personal reflections may be saved to a local dated Markdown file in the workspace.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid entering sensitive information, and review or delete entries manually when needed.
+
+Risk: The workflow is written primarily in Chinese, which may reduce usability for users who do not read Chinese.
+
+Mitigation: Install only if a Chinese-language reflection workflow is appropriate for the intended users.
+
+## Reference(s):
+
+- [Cognitive Awakening Core Concepts](references/cognitive-awakening.md)
+- [Reflection Prompt Library](references/prompts-library.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, text]
+
+**Output Format:** [Markdown journal entry saved under daily-reflection/YYYY-MM-DD.md]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language reflective prompts and notes; users should avoid recording sensitive personal information they do not want stored locally.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

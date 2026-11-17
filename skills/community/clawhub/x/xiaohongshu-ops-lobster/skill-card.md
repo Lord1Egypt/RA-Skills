@@ -1,48 +1,62 @@
-## Description: <br>
-End-to-end Xiaohongshu operations including positioning, topic research, content production, publish execution, and post-incident recovery. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+End-to-end Xiaohongshu operations including positioning, topic research, content production, publish execution, and post-incident recovery. Reusable across verticals with templates and a concrete 陪你看剧 case preset.
 
-## Publisher: <br>
-[mjscjj](https://clawhub.ai/user/mjscjj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mjscjj](https://clawhub.ai/user/mjscjj)
 
-## Use Case: <br>
-External creators, brand operators, and agency teams use this skill to plan Xiaohongshu account positioning, produce post drafts, prepare publishing flows, and manage comment replies with human confirmation for sensitive actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide live Xiaohongshu account automation for publishing and comment replies. <br>
-Mitigation: Use it only with accounts that are appropriate for agent operation and require human confirmation before any publish or reply action. <br>
-Risk: The optional OpenClaw setup script prints the gateway token in plaintext. <br>
-Mitigation: Edit out the token-printing line before running the setup script, treat any displayed token as a secret, and rotate the token if it may have been exposed. <br>
-Risk: Running social-account automation on a shared machine can expose account state or session access. <br>
-Mitigation: Avoid shared machines and review the skill before installing or executing account automation flows. <br>
+## Use Case:
 
+External creators, agencies, and social media operators use this skill to plan Xiaohongshu topics, draft platform-native posts, prepare publishing workflows, review comments, and generate reply guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mjscjj/xiaohongshu-ops-lobster) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/mjscjj) <br>
-- [XHS runtime rules](artifact/references/xhs-runtime-rules.md) <br>
-- [XHS publish flows](artifact/references/xhs-publish-flows.md) <br>
-- [XHS comment ops](artifact/references/xhs-comment-ops.md) <br>
-- [XHS viral copy flow](artifact/references/xhs-viral-copy-flow.md) <br>
-- [XHS evaluation patterns](artifact/references/xhs-eval-patterns.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and plain text with structured checklists, draft copy, prompts, and occasional shell command blocks.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose browser automation steps and publishing or reply actions that should be confirmed by a human before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact/PUBLISH.md) <br>
+Risk: The bundled OpenClaw setup guide includes broad installer and gateway-administration steps that can expose credentials or persistent access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review setup commands before use, avoid blindly pasting curl-to-bash installers, do not print or share gateway tokens, and verify device identities before approving them.
+
+Risk: Persistent browser and gateway access may be inappropriate for some Xiaohongshu accounts.
+
+Mitigation: Use a dedicated account or environment when possible, confirm whether persistent access is acceptable, and monitor approved devices and gateway status.
+
+Risk: Automated publishing or replies can create unintended public content or platform-rate issues.
+
+Mitigation: Keep the documented publish-before-confirmation checkpoint, require user confirmation before replies, send one reply per turn by default, and stop when platform warnings or send failures appear.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mjscjj/skills/xiaohongshu-ops-lobster)
+- [XHS Runtime Rules](references/xhs-runtime-rules.md)
+- [XHS Publish Flows](references/xhs-publish-flows.md)
+- [XHS Comment Ops](references/xhs-comment-ops.md)
+- [XHS Viral Copy Flow](references/xhs-viral-copy-flow.md)
+- [XHS Evaluation Patterns](references/xhs-eval-patterns.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with structured lists, draft copy, prompts, and inline code or shell blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include browser-operation steps, account-positioning templates, post drafts, comment replies, image prompts, and publish-confirmation checkpoints.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and PUBLISH.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

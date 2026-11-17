@@ -1,39 +1,57 @@
-## Description: <br>
-Creates and repairs durable OpenClaw agents, bindings, and runtime state with verification against live OpenClaw command output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create and repair durable OpenClaw agents, bindings, and runtime state with verification against live OpenClaw state.
 
-## Publisher: <br>
-[matthewxmurphy](https://clawhub.ai/user/matthewxmurphy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[matthewxmurphy](https://clawhub.ai/user/matthewxmurphy)
 
-## Use Case: <br>
-Developers and operators use this skill to create durable OpenClaw agents, repair missing bindings, and confirm runtime state before reporting orchestration results. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can replace durable OpenClaw workspaces and copy broad private workspace contents. <br>
-Mitigation: Use it only for explicit OpenClaw agent-management tasks, choose simple safe agent IDs, inspect or back up the source workspace, and avoid running it against existing agents unless workspace replacement is intended. <br>
-Risk: Agent or binding status may be misreported if runtime state is not checked after changes. <br>
-Mitigation: Report creation, repair, or routing results only after the relevant OpenClaw JSON output shows the expected live state. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [OpenClaw Agent Orchestrator on ClawHub](https://clawhub.ai/matthewxmurphy/openclaw-agent-orchestrator) <br>
+## Use Case:
 
+Developers and operators use this skill to create, repair, route, and verify durable OpenClaw subagents while avoiding unsupported session-based spawning claims.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands and references to JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires OpenClaw CLI access and verified runtime output before reporting state changes.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.6.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The creation script can delete or replace an existing target workspace.
+
+Mitigation: Back up OpenClaw state first, validate agent IDs, enforce destinations under OPENCLAW_HOME/workspaces, and require explicit confirmation before overwriting any workspace.
+
+Risk: The default cloning behavior can copy broad workspace contents.
+
+Mitigation: Use an explicit trusted source workspace and patch the script to skip sensitive files and symlinks.
+
+Risk: Untrusted agent IDs or source workspaces can cause unintended OpenClaw state changes.
+
+Mitigation: Use only trusted agent IDs and source workspaces, then verify final agents and bindings with OpenClaw JSON output before reporting success.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/matthewxmurphy/skills/openclaw-agent-orchestrator)
+- [Publisher profile](https://clawhub.ai/user/matthewxmurphy)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON verification output references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires OpenClaw CLI runtime state verification before reporting created agents or bindings.]
+
+## Skill Version(s):
+
+0.6.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

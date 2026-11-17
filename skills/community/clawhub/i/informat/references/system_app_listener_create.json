@@ -1,0 +1,118 @@
+{
+  "type": "function",
+  "function": {
+    "name": "_app_listener_create",
+    "description": "Create a new listener definition.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Listener name"
+        },
+        "remark": {
+          "type": "string",
+          "description": "Remark"
+        },
+        "eventList": {
+          "type": "array",
+          "description": "List of events to listen. Available values: record.create.before, record.create.after, record.update.before, record.update.after, record.delete.before, record.delete.after, record.rownumber.update.before, record.rownumber.update.after, record.comment.create.after, record.comment.delete.after, app.member.add.after, app.member.remove.after, app.member.role.update.after, app.postevent, app.publish, app.systemboot, app.schedule.before, app.schedule.success, app.schedule.fail, app.automatic.before, app.automatic.success, app.automatic.fail, app.role.create.before, app.role.create.after, app.role.update.before, app.role.update.after, app.role.delete.before, app.role.delete.after, app.role.permission.update.before, app.role.permission.update.after",
+          "items": {
+            "type": "string"
+          }
+        },
+        "isEnable": {
+          "type": "boolean",
+          "description": "Whether to enable",
+          "default": true
+        },
+        "invokeType": {
+          "type": "string",
+          "description": "Invocation type. Must be one of: automatic (invoke automation), script (invoke script)."
+        },
+        "automaticList": {
+          "type": "array",
+          "description": "Automation ID list (when invokeType=automatic)",
+          "items": {
+            "type": "string"
+          }
+        },
+        "scriptId": {
+          "type": "string",
+          "description": "Script ID (when invokeType=script)"
+        },
+        "scriptFunc": {
+          "type": "string",
+          "description": "Script function name (when invokeType=script)"
+        },
+        "tableEventSetting": {
+          "type": "object",
+          "description": "Data table event settings (configure when listening to data table record related events)",
+          "properties": {
+            "tableList": {
+              "type": "array",
+              "description": "List of data table IDs to listen (empty means listen to all tables)",
+              "items": { "type": "string" }
+            },
+            "tableSourceList": {
+              "type": "array",
+              "description": "Data source filter. Available values: form (form submission), survey (survey submission), bpmn (workflow submission)",
+              "items": { "type": "string" }
+            }
+          }
+        },
+        "postEventSetting": {
+          "type": "object",
+          "description": "Post event settings (configure when listening to app.postevent)",
+          "properties": {
+            "postEventId": {
+              "type": "string",
+              "description": "Post event ID (empty means listen to all events)"
+            },
+            "postEventAppDefineId": {
+              "type": "string",
+              "description": "Application define ID of the post event (cannot be empty)"
+            }
+          }
+        },
+        "automaticEventSetting": {
+          "type": "object",
+          "description": "Automation event settings (configure when listening to app.automatic.* events)",
+          "properties": {
+            "automaticList": {
+              "type": "array",
+              "description": "List of automation IDs to listen",
+              "items": { "type": "string" }
+            }
+          }
+        },
+        "scheduleEventSetting": {
+          "type": "object",
+          "description": "Scheduled task event settings (configure when listening to app.schedule.* events)",
+          "properties": {
+            "scheduleList": {
+              "type": "array",
+              "description": "List of scheduled task IDs to listen",
+              "items": { "type": "string" }
+            }
+          }
+        },
+        "bpmnEventSetting": {
+          "type": "object",
+          "description": "Workflow event settings (configure when listening to workflow related events)",
+          "properties": {
+            "workflowList": {
+              "type": "array",
+              "description": "List of workflow IDs to listen",
+              "items": { "type": "string" }
+            }
+          }
+        }
+      },
+      "required": [
+        "name"
+      ],
+      "additionalProperties": false
+    }
+  }
+}

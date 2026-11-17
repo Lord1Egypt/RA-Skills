@@ -1,41 +1,57 @@
-## Description: <br>
-Raindrop.io bookmark and collection manager for a local OpenClaw workspace. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Raindrop.io bookmark and collection manager for a local OpenClaw workspace. Use when the user wants to validate Raindrop auth, inspect their account, list or search bookmark collections, create/update/delete collections, save or edit bookmarks, bulk import/export bookmark links, or run local Raindrop.io OAuth flows without exposing secrets inside the published skill.
 
-## Publisher: <br>
-[stanestane](https://clawhub.ai/user/stanestane) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[stanestane](https://clawhub.ai/user/stanestane)
 
-## Use Case: <br>
-OpenClaw users and developers use this skill to manage Raindrop.io bookmarks and collections from a local workspace, including authentication checks, collection organization, bookmark search, and import or export workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires Raindrop.io credentials and can save OAuth tokens in a local plaintext env file. <br>
-Mitigation: Prefer user environment variables or a protected local env file, use --no-save when tokens should not be written to disk, and restrict access to any file containing tokens. <br>
-Risk: The CLI can modify or delete live collections and bookmarks. <br>
-Mitigation: Verify collection and bookmark IDs before update, delete, or bulk import commands, and test bulk changes on a small set before applying them broadly. <br>
+## Use Case:
 
+External users and developers use this skill to manage Raindrop.io collections and bookmarks from an agent-driven local OpenClaw workspace. It supports authentication checks, collection and bookmark inspection, OAuth token flows, import, export, and account-changing create/update/delete operations.
 
-## Reference(s): <br>
-- [API notes](references/api-notes.md) <br>
-- [Optional local env file example](references/env-example.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands; CLI commands may return text, JSON, CSV, or local files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide local API-backed bookmark operations and import/export files when the user runs the provided CLI commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.4 (source: server release evidence) <br>
+Risk: The skill handles Raindrop.io OAuth tokens and may save credentials to a local env file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer environment variables or a short-lived test token, avoid passing secrets on the command line, and check permissions on any ~/.openclaw/raindrop.env file.
+
+Risk: Delete, update, and import commands can change or remove Raindrop.io account data without an extra confirmation step.
+
+Mitigation: Validate authentication with whoami, inspect target collections and bookmarks first, confirm IDs before account-changing commands, and export data before bulk changes.
+
+## Reference(s):
+
+- [API notes](references/api-notes.md)
+- [Optional local env file example](references/env-example.md)
+- [Raindrop.io REST API base](https://api.raindrop.io/rest/v1)
+- [Raindrop.io OAuth authorize endpoint](https://raindrop.io/oauth/authorize)
+- [Raindrop.io OAuth token endpoint](https://raindrop.io/oauth/access_token)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Code, Files, API calls]
+
+**Output Format:** [Markdown guidance with shell commands; CLI commands emit JSON or CSV and can write JSON, TXT, or CSV files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses user-provided Raindrop.io credentials and can perform account-changing create, update, delete, import, and export workflows.]
+
+## Skill Version(s):
+
+0.2.4 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

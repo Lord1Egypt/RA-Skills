@@ -1,40 +1,53 @@
-## Description: <br>
-Provides a Yu Liang/Vanke-style strategic business framing focused on cash flow, prudent operations, risk boundaries, long-term customer value, organizational change, and sustainable growth. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a Chinese-language Yu Liang-inspired business strategy persona focused on survival, cash flow, prudent operations, risk boundaries, and long-term customer value.
 
-## Publisher: <br>
-[xiejianjun000](https://clawhub.ai/user/xiejianjun000) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiejianjun000](https://clawhub.ai/user/xiejianjun000)
 
-## Use Case: <br>
-Business operators, strategy teams, and advisors use this skill to frame decisions through a conservative business persona emphasizing survival, cash flow discipline, risk management, and long-term value. Outputs should be treated as role-play business advice, not official statements from Yu Liang, Vanke, or verified financial guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may answer in a named executive-style persona and be mistaken for an official statement or verified financial guidance. <br>
-Mitigation: Treat outputs as role-play business advice and review them before relying on them for strategy, finance, or public communications. <br>
-Risk: Broad trigger terms could activate the persona when the user did not intend that framing. <br>
-Mitigation: Consider narrowing activation to explicit opt-in phrases before deployment. <br>
+## Use Case:
 
+Business users and strategy-focused agents use this skill to frame Chinese-language responses around Yu Liang-style themes such as cash flow discipline, prudent operations, risk limits, organizational change, and long-term customer value.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/xiejianjun000/yu-liang-perspective-v2) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown-formatted advisory responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only persona responses; no files, shell commands, or API calls.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Roleplay framing can confuse users if triggered unintentionally by generic phrases such as survival or cash-flow slogans.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use explicit activation and exit language, and make clear when responses are persona-framed rather than ordinary assistant guidance.
+
+Risk: Persona outputs may be mistaken for real quotations from Yu Liang or authoritative business advice.
+
+Mitigation: Independently source quotations and validate business decisions with appropriate human, legal, financial, or operational review.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xiejianjun000/skills/yu-liang-perspective-v2)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown conversational responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language persona responses; no code execution, tool access, credential handling, network use, or persistence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

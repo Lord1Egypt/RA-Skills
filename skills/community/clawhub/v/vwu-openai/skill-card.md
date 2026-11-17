@@ -1,42 +1,58 @@
-## Description: <br>
-Provides a shell wrapper for calling vwu.ai's OpenAI-compatible chat completions API with supported GPT-4 and GPT-5 series model names. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Calls GPT-4 and GPT-5 family chat models through the vwu.ai platform using an OpenAI-compatible chat completions interface.
 
-## Publisher: <br>
-[a3273283](https://clawhub.ai/user/a3273283) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[a3273283](https://clawhub.ai/user/a3273283)
 
-## Use Case: <br>
-Developers and agents use this skill to configure a vwu.ai API key and send prompts to vwu.ai-hosted OpenAI-compatible chat models from a shell command. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts are sent to vwu.ai's OpenAI-compatible chat API. <br>
-Mitigation: Use this skill only when you trust vwu.ai with submitted content, and avoid sending secrets or sensitive data unless that use is appropriate. <br>
-Risk: VWU_BASE_URL can redirect requests and the API key to a different endpoint. <br>
-Mitigation: Keep the default endpoint or set VWU_BASE_URL only to an endpoint you trust. <br>
+## Use Case:
 
+Developers and agents use this skill to configure and invoke vwu.ai-hosted OpenAI-compatible chat models from a shell workflow. It is useful for selecting supported GPT-4 and GPT-5 model names, setting the required API key, and submitting prompts through the included chat helper.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/a3273283/vwu-openai) <br>
-- [Publisher profile](https://clawhub.ai/user/a3273283) <br>
-- [vwu.ai](https://vwu.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text API responses and shell command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires VWU_API_KEY; optional VWU_BASE_URL changes the API endpoint; the wrapper depends on curl and jq.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: An endpoint override could send prompts and the API key to an unintended remote service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Leave VWU_BASE_URL unset or pin it to a trusted HTTPS endpoint before use.
+
+Risk: Prompts are sent to a remote provider and may contain sensitive data.
+
+Mitigation: Avoid putting secrets or confidential information in prompts.
+
+Risk: The security verdict requires review before use.
+
+Mitigation: Install only after trusting vwu.ai and confirming the execution environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/a3273283/skills/vwu-openai)
+- [vwu.ai](https://vwu.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text and Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires VWU_API_KEY; VWU_BASE_URL should remain unset or pinned to a trusted HTTPS endpoint.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

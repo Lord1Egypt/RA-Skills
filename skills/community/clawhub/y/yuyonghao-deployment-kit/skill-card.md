@@ -1,46 +1,57 @@
-## Description: <br>
-Deployment Kit helps agents guide Docker-based OpenClaw deployment with Docker Compose, CI/CD pipeline steps, health checks, security scanning, and optional monitoring. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deployment Kit helps agents prepare Docker-based OpenClaw deployments with CI/CD guidance, Docker Compose configuration, and health checks.
 
-## Publisher: <br>
-[yuyonghao-123](https://clawhub.ai/user/yuyonghao-123) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yuyonghao-123](https://clawhub.ai/user/yuyonghao-123)
 
-## Use Case: <br>
-Developers and operations engineers use this skill to containerize and deploy OpenClaw services, run health checks, and prepare CI/CD and monitoring guidance for production-style environments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Configurable values are interpolated into shell commands that can change Docker state. <br>
-Mitigation: Review before installing on machines with important Docker access and use only trusted configuration values. <br>
-Risk: Monitoring and service ports may be exposed if deployed without network controls. <br>
-Mitigation: Avoid exposing monitoring ports publicly; use firewall rules, private networks, and HTTPS for production deployments. <br>
-Risk: External container images may change when version tags are not pinned. <br>
-Mitigation: Pin external image versions before production use. <br>
-Risk: Production use needs operational controls beyond the bundled deployment helpers. <br>
-Mitigation: Add branch protection, deployment approvals, rollback steps, and cleanup procedures before using this for production deployment. <br>
+## Use Case:
 
+Developers and deployment engineers use this skill to prepare OpenClaw services for containerized deployment, configure Docker Compose services, run health checks, and outline CI/CD release steps.
 
-## Reference(s): <br>
-- [Deployment Kit ClawHub Release](https://clawhub.ai/yuyonghao-123/yuyonghao-deployment-kit) <br>
-- [Deployment Kit Source Instructions](artifact/SKILL.md) <br>
-- [Docker Compose Configuration](artifact/docker/docker-compose.yml) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash, JavaScript, Dockerfile, and YAML snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose Docker and deployment commands that alter local containers, images, ports, and runtime state.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata, artifact package.json, and artifact SKILL.md) <br>
+Risk: Docker command strings can be built from configuration values and executed on the host.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing on any real host; replace shell-string execution with argument-based process execution and validate image, container, port, registry, and log parameters.
+
+Risk: Deployment commands can start, stop, remove, and persist Docker services and volumes.
+
+Mitigation: Use only in a controlled environment until production deployments require explicit approval and operator review.
+
+Risk: Container images are referenced with mutable tags such as latest.
+
+Mitigation: Pin images to immutable versions or digests before production use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yuyonghao-123/skills/yuyonghao-deployment-kit)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, JavaScript code, and Docker Compose configuration]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include host-level Docker operations and deployment configuration that should be reviewed before execution.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

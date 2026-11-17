@@ -1,40 +1,60 @@
-## Description: <br>
-A background agent that generates a daily life prediction by analyzing local data and social signals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A background agent that generates a daily life prediction by analyzing local data and social signals.
 
-## Publisher: <br>
-[Invelene](https://clawhub.ai/user/Invelene) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[invelene](https://clawhub.ai/user/invelene)
 
-## Use Case: <br>
-External users use this skill to run a local, unattended daily agent that reads personal calendar, messaging, recent file, and logged-in social context to produce a desktop life prediction. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill is designed to run unattended while reading private messages, calendar events, recent files, and logged-in social pages. <br>
-Mitigation: Run it manually or in an isolated local-only session, disable memory and logging, and grant only the data permissions required for the intended run. <br>
-Risk: Browser-cookie social scraping and Full Disk Access can expose sensitive account and local message data. <br>
-Mitigation: Disable social-cookie scraping unless explicitly needed, avoid Full Disk Access where possible, and require each notification to state which data categories were used. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Invelene/daily-oracle) <br>
-- [Publisher profile](https://clawhub.ai/user/Invelene) <br>
+## Use Case:
 
+External users install this skill to run a scheduled personal prediction agent that analyzes local calendar, message, file, and social signals and sends a concise desktop notification.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Desktop notification text with supporting setup guidance and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The primary agent-facing result is a single prediction notification; setup guidance includes cron scheduling and local permission requirements.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can silently combine private messages, calendar details, Downloads metadata, and logged-in social account data.
+
+Mitigation: Review before installation and grant Full Disk Access, calendar access, and browser-cookie access only if this level of local data access is acceptable.
+
+Risk: Scheduled background execution provides limited user control at run time.
+
+Mitigation: Prefer disabling the cron job, running in an isolated session, or requiring per-run approval before allowing the skill to execute.
+
+Risk: The privacy posture depends on the model and execution environment being truly local.
+
+Mitigation: Confirm local-only model execution and prevent third-party logging or external data transmission before use.
+
+Risk: Using existing browser cookies can expose authenticated social pages.
+
+Mitigation: Use an isolated browser profile or avoid granting browser-cookie access unless authenticated social-page access is intended.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/invelene/skills/daily-oracle)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration]
+
+**Output Format:** [Plain-text desktop notification with setup commands and scheduling guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Runs as a one-shot scheduled task and sends the prediction through the operating system notification mechanism.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

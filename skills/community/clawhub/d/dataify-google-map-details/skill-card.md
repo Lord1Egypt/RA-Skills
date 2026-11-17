@@ -1,43 +1,59 @@
-## Description: <br>
-Submit Dataify Google Map Details Builder tasks for four Google Maps detail collection modes by URL, CID, location, or place ID. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Collect structured Google Maps place or business details from a known map URL, CID, location input, or Place ID. Do not use to discover nearby places or collect reviews.
 
-## Publisher: <br>
-[dataify-server](https://clawhub.ai/user/dataify-server) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dataify-server](https://clawhub.ai/user/dataify-server)
 
-## Use Case: <br>
-External users and developers use this skill to configure and submit Dataify Builder jobs that collect Google Maps detail records by URL, CID, location search, or place ID. The skill returns task identifiers, status information, and guidance for viewing results in Dataify. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Submitted Google Maps URLs, CIDs, place IDs, keywords, coordinates, and task parameters are sent to Dataify for processing. <br>
-Mitigation: Review all task parameters before submission and avoid sensitive customer or business lists unless Dataify's handling is acceptable for the intended use. <br>
-Risk: Saving DATAIFY_API_TOKEN locally makes the credential available to future runs in that environment. <br>
-Mitigation: Save the token locally only after explicit user confirmation and only in environments where future access to that credential is acceptable. <br>
+## Use Case:
 
+External users and developers use this skill to submit Dataify Builder jobs for Google Maps place or business detail collection by URL, CID, location, or Place ID, then receive the collected result after task monitoring.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dataify-server/dataify-google-map-details) <br>
-- [Dataify dashboard](https://dashboard.dataify.com?utm_source=skill) <br>
-- [Dataify login](https://dashboard.dataify.com/login?utm_source=skill) <br>
-- [Google country values](references/google_countries.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, API calls] <br>
-**Output Format:** [Markdown guidance with parameter tables, shell command examples, and JSON task summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns Dataify task_id, status, selected mode, spider_id, normalized parameters, file_name, dashboard_url, and message when the submission succeeds.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server-resolved release metadata) <br>
+Risk: The skill sends map targets, keywords, coordinates, and related collection parameters to Dataify.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and use it only when sharing those inputs with Dataify is acceptable for the intended task.
+
+Risk: The skill depends on a Dataify API token and can submit third-party collection jobs.
+
+Mitigation: Configure DATAIFY_API_TOKEN in the shell, do not paste tokens into chat, and verify the target mode and scope before execution.
+
+Risk: The skill waits for results through a companion dataify-task-operations runtime.
+
+Mitigation: Review or verify the companion runtime before allowing automatic task monitoring.
+
+## Reference(s):
+
+- [Modes and parameters](references/modes-and-parameters.md)
+- [Google Country Options](references/google_countries.md)
+- [ClawHub Skill Page](https://clawhub.ai/dataify-server/skills/dataify-google-map-details)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown guidance with shell commands and JSON task or result payloads]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May submit a Dataify task, wait for asynchronous completion, and summarize large result payloads while preserving access to raw results.]
+
+## Skill Version(s):
+
+1.3.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

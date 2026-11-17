@@ -1,42 +1,57 @@
-## Description: <br>
-Batch web scraping for competitor analysis, price monitoring and market research. <br>
+## Description:
 
-This skill is for research and development only. <br>
+Batch web scraping for competitor analysis, price monitoring and market research.
 
-## Publisher: <br>
-[windy-001-crypto](https://clawhub.ai/user/windy-001-crypto) <br>
+This skill is for research and development only.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[windy-001-crypto](https://clawhub.ai/user/windy-001-crypto)
 
-## Use Case: <br>
-External users and developers can use this skill as a research helper for command-line summaries around competitor comparisons, batch URL lists, sample market data, and keyword news searches. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill may overstate live scraping and market-data capabilities, and its stock, fund, news, or price outputs may be static or unreliable. <br>
-Mitigation: Treat outputs as research assistance only; verify market, price, and news information against authoritative sources before using it for business or investment decisions. <br>
-Risk: Batch mode accepts an arbitrary local file path for URL lists. <br>
-Mitigation: Use batch mode only with URL-list files you intentionally created and know contain no sensitive data. <br>
-Risk: Scraping workflows can create compliance or authorization issues for target websites. <br>
-Mitigation: Respect robots.txt, use reasonable request intervals, and obtain appropriate authorization before commercial use. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/windy-001-crypto/data-harvester-v2) <br>
-- [Skill definition](artifact/SKILL.md) <br>
+## Use Case:
 
+Developers, analysts, and researchers use this skill to run command-driven market research workflows for stock lookups, sector summaries, news keyword results, competitor comparisons, and batch URL-list handling.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Plain text and Markdown-style command output from a Python CLI tool] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs with python3; batch mode reads a user-provided local URL-list file.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The batch command can read and print local file contents from any path supplied by the caller.
+
+Mitigation: Run the skill in a sandbox or wrapper that restricts batch inputs to a dedicated URL-list directory and avoids sensitive local files.
+
+Risk: The security verdict is suspicious and calls for review before installation.
+
+Mitigation: Review the artifact and security guidance before deploying the skill, then scan it in the target environment.
+
+Risk: Finance, news, comparison, and export outputs may be mock or incomplete.
+
+Mitigation: Do not rely on these outputs for business, financial, or operational decisions without verification from trusted data sources.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/windy-001-crypto/skills/data-harvester-v2)
+- [ClawHub publisher profile](https://clawhub.ai/user/windy-001-crypto)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Plain text and Markdown-compatible command output with tables, status messages, and usage guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Some finance, news, comparison, and export outputs are mock or incomplete according to the security guidance and artifact behavior.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

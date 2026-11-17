@@ -1,0 +1,9 @@
+{
+  "id": "brief",
+  "version": "0.1.0",
+  "tests": [
+    "bash ../../../tests/lint-skills.sh brief",
+    "bash ../../../tests/lint-evals.sh brief"
+  ],
+  "trust_level": "workspace"
+}

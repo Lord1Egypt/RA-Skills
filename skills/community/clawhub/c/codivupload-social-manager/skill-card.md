@@ -1,46 +1,63 @@
-## Description: <br>
-Social media scheduler, cross-poster, and content calendar for OpenClaw across YouTube, Instagram, Facebook, X, TikTok, Threads, and Pinterest. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Social media scheduler, cross-poster, and content calendar for OpenClaw across YouTube, Instagram, Facebook, X, TikTok, Threads, and Pinterest.
 
-## Publisher: <br>
-[codivion](https://clawhub.ai/user/codivion) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[codivion](https://clawhub.ai/user/codivion)
 
-## Use Case: <br>
-External users and developers use this skill to configure CodivUpload access, schedule or publish social media content, cross-post across connected platforms, manage content calendars, pull analytics, and coordinate livestream workflows through an OpenClaw agent. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can affect real connected social accounts when a CodivUpload API key is configured. <br>
-Mitigation: Use the narrowest API key scope available, preferably single-platform or per-workspace, and review each approval prompt before posting, scheduling, livestreaming, deleting, or changing account settings. <br>
-Risk: A broad or global API key can authorize actions beyond ordinary posting workflows. <br>
-Mitigation: Avoid global account keys unless account or billing changes are intentionally needed; rotate any key that is pasted into chat or otherwise exposed. <br>
-Risk: The optional MCP package expands the supply-chain surface in a credentialed runtime. <br>
-Mitigation: Install the optional MCP server only when needed, pin the exact version, and verify the package publisher and integrity before use. <br>
+## Use Case:
 
+External users, creators, agencies, and developers use this skill to help an OpenClaw agent schedule, publish, cross-post, and analyze social media content through the CodivUpload API. It is useful for managing content calendars, platform-specific post formats, bulk uploads, and livestream workflows from agent-generated guidance, commands, or API calls.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/codivion/codivupload-social-manager) <br>
-- [CodivUpload product site](https://codivupload.com) <br>
-- [CodivUpload dashboard](https://app.codivupload.com/en/dashboard) <br>
-- [CodivUpload MCP package](https://www.npmjs.com/package/codivupload-mcp) <br>
-- [OpenClaw MCP documentation](https://docs.openclaw.ai/skills/mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, API calls, Configuration] <br>
-**Output Format:** [Markdown with inline shell commands and structured API request guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires CODIVUPLOAD_API_KEY; publishing, bulk scheduling, livestream, deletion, and account-setting actions are confirmation-gated by the runtime and CodivUpload API key scope.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.17 (source: server release metadata) <br>
+Risk: The skill can affect real public social media accounts through the configured CodivUpload API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a single-platform or per-workspace API key where possible, avoid global account keys unless needed, and review every publish, bulk, livestream, delete, and billing approval prompt before execution.
+
+Risk: Unpinned MCP or package execution in a credentialed environment could expose CODIVUPLOAD_API_KEY to unexpected code.
+
+Mitigation: Use the exact pinned codivupload-mcp version and avoid unpinned npx or package install commands in the same environment as the API key.
+
+Risk: Scheduled posts and livestreams may continue after the original agent session ends.
+
+Mitigation: Prefer draft or scheduled workflows for review, track created post or stream identifiers, and explicitly cancel scheduled posts or stop livestreams when no longer intended.
+
+## Reference(s):
+
+- [CodivUpload Skill on ClawHub](https://clawhub.ai/codivion/skills/codivupload-social-manager)
+- [CodivUpload Website](https://codivupload.com)
+- [CodivUpload API Documentation](https://docs.codivupload.com)
+- [CodivUpload OpenAPI Specification](https://api.codivupload.com/public-openapi.json)
+- [CodivUpload MCP Server](https://www.npmjs.com/package/codivupload-mcp)
+- [CodivUpload TypeScript SDK](https://www.npmjs.com/package/codivupload)
+- [CodivUpload Python SDK](https://pypi.org/project/codivupload/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands, API examples, and structured guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose CodivUpload REST API calls, SDK snippets, MCP usage, and OpenClaw configuration steps for user review.]
+
+## Skill Version(s):
+
+1.0.17 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

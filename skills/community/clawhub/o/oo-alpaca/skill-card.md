@@ -1,42 +1,56 @@
-## Description: <br>
-Alpaca (alpaca.markets) helps agents read, create, and update data through Alpaca by using the OOMOL oo CLI connector instead of direct API calls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Retrieves Alpaca market and connected account data through the OOMOL-connected account.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and external users use this skill to operate Alpaca accounts and market data through an OOMOL-connected account, including account details, portfolio history, orders, positions, watchlists, market calendars, and stock or crypto market data. It is suited for agent-assisted workflows where the connector schema is checked before actions run. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can expose sensitive Alpaca account, order, position, and portfolio data. <br>
-Mitigation: Install it only for intended OOMOL-connected Alpaca accounts and treat returned financial data as sensitive. <br>
-Risk: Some proposed connector actions could create, update, cancel, or otherwise affect trading or account state. <br>
-Mitigation: Confirm the exact payload and expected effect with the user before running any state-changing action. <br>
+## Use Case:
 
+External users and developers can retrieve market data and read account, order, position, and watchlist information from their connected Alpaca account.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/oomol/skills/oo-alpaca) <br>
-- [Alpaca homepage](https://alpaca.markets/) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON payload examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Connector actions return JSON when executed with the oo CLI.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Automatic setup or downloaded code may execute unverified software and make broader changes to the agent environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a verified release, review skill synchronization settings, and require approval before downloaded code runs or other agent skills change.
+
+Risk: The connected Alpaca account may expose sensitive financial information to the connected service.
+
+Mitigation: Review whether OOMOL should handle access to the intended financial account before connecting it.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/oomol/skills/oo-alpaca)
+- [Alpaca](https://alpaca.markets/)
+- [Alpaca API authentication documentation](https://docs.alpaca.markets/us/docs/authentication)
+- [oo CLI repository](https://github.com/oomol-lab/oo-cli)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Text]
+
+**Output Format:** [Alpaca data as JSON, with text summaries where useful]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results depend on the selected read action.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

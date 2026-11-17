@@ -1,37 +1,52 @@
-## Description: <br>
-Designs agent-evaluated flow tests for browser tasks, LLM outputs, and tool workflows. Invoke when exact asserts are brittle and semantic success matters more than literal equality. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Designs agent-evaluated flow tests for browser tasks, LLM outputs, and tool workflows. Invoke when exact asserts are brittle and semantic success matters more than literal equality.
 
-## Publisher: <br>
-[qipengguo](https://clawhub.ai/user/qipengguo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[qipengguo](https://clawhub.ai/user/qipengguo)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill to design flow tests for browser tasks, LLM outputs, and multi-tool workflows where exact assertions are brittle. It helps them define deterministic checks, evidence to collect, semantic rubrics, and bounded verdicts.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: A flow test design may browse live sites, call external tools, or collect evidence from private systems.
+
+Mitigation: Review proposed flow tests before running them, limit allowed sources and tools, and avoid private-system evidence collection unless explicitly approved.
+
+Risk: Semantic evaluation can produce an overconfident pass when evidence is incomplete or ambiguous.
+
+Mitigation: Require inspectable evidence, preserve deterministic checks for stable invariants, and use needs_review when evidence is weak or contradictory.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and test engineers use this skill to design flow tests for browser tasks, LLM outputs, and multi-tool workflows where exact assertions are brittle. It helps separate deterministic checks from semantic evaluation and define evidence, rubrics, and bounded verdicts. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Flow-test evidence may capture credentials, secrets, or unnecessary private page contents if the test scope is too broad. <br>
-Mitigation: Collect only the evidence needed for the rubric and exclude credentials, secrets, and unrelated private content from test logs. <br>
+**Output Format:** [Markdown structured test specification]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Includes deterministic checks, evidence schema, semantic rubric, execution notes, and a final verdict format using pass, fail, or needs_review.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Guidance] <br>
-**Output Format:** [Structured Markdown test specification with deterministic checks, evidence schema, semantic rubric, execution notes, and final verdict format] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a bounded verdict format of pass, fail, or needs_review.] <br>
+0.0.1 (source: release evidence)
 
-## Skill Version(s): <br>
-0.0.1 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

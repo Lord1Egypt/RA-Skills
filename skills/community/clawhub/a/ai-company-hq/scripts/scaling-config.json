@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "upgrade_policy": "propose-only",
+  "evaluation_interval_days": 30,
+  "thresholds": {
+    "agent_count_headroom": 1.0,
+    "blocks_per_department_ratio": 1.5,
+    "routing_accuracy_floor": 0.85,
+    "error_code_reuse_ceiling": 0.25
+  },
+  "immutable_paths": ["permissions", "tests/", "scripts/self-scale.ps1"],
+  "output_dir": "{WORKSPACE_ROOT}/.skill-upgrade"
+}

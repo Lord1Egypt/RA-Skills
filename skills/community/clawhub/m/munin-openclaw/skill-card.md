@@ -1,42 +1,54 @@
-## Description: <br>
-Munin - The Free (or $1.6/mo) Persistent Memory for OpenClaw. Stop your agent from having Alzheimer's. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Munin provides persistent memory for OpenClaw agents through a CLI and MCP adapter connected to a configured Munin service.
 
-## Publisher: <br>
-[3d-era](https://clawhub.ai/user/3d-era) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[3d-era](https://clawhub.ai/user/3d-era)
 
-## Use Case: <br>
-Developers and OpenClaw users use this adapter to give agents persistent Munin-backed memory through CLI actions or an MCP server. It supports capabilities checks and project-scoped memory actions against a configured Munin endpoint. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Memory operations are sent to the configured Munin endpoint and may include sensitive user or agent context. <br>
-Mitigation: Use only a trusted MUNIN_BASE_URL and avoid storing credentials, regulated data, or other highly sensitive content unless that storage risk has been separately accepted. <br>
-Risk: The Munin API key authorizes access to memory operations and could be exposed through prompts, logs, or source control. <br>
-Mitigation: Treat MUNIN_API_KEY as a secret, keep it out of prompts and repositories, and rotate it if exposure is suspected. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to add long-term agent memory backed by a configured Munin endpoint. It supports capability checks and memory actions through CLI or MCP-style execution.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/3d-era/munin-openclaw) <br>
-- [Publisher profile](https://clawhub.ai/user/3d-era) <br>
-- [Munin cloud endpoint](https://munin.kalera.dev) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires MUNIN_BASE_URL and optionally MUNIN_API_KEY for authenticated Munin access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: SKILL.md frontmatter and package.json) <br>
+Risk: Persistent memory may send agent context to the configured MUNIN_BASE_URL, and the included artifact does not contain the external Munin SDK/runtime packages needed to fully review data handling.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if you trust Kalera/Munin, verify the resolved SDK/runtime package versions, and confirm encryption, retention, and deletion behavior before storing sensitive context.
+
+Risk: Stored memories may include secrets or highly sensitive private context if the agent is allowed to persist unrestricted content.
+
+Mitigation: Avoid storing secrets or sensitive private context until controls are verified, and scope project or Context Core IDs so memory is isolated to the intended use case.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/3d-era/skills/munin-openclaw)
+- [Munin service](https://munin.kalera.dev)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON command responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses MUNIN_BASE_URL and optionally MUNIN_API_KEY to reach the configured Munin service.]
+
+## Skill Version(s):
+
+1.0.1 (source: SKILL.md frontmatter, package.json, server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

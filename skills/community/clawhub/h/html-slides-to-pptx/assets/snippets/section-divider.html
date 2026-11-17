@@ -1,0 +1,19 @@
+<!-- ══════════════════════════════════════════════════════════════
+  片段:章节分隔(超大编号 + 章节名 · 原型 4 · airy)
+  参数:
+    {{NUM}}     章节编号(如 02)      {{TITLE}} 章节标题
+    {{SUB}}     这一章回答的一个问题
+  用法: 整页替换 .slide-container 内容;深底用 var(--deep-navy) 容器底色,
+        编号用"比深底浅一号"的 var(--deep-navy-light) 做水印感;
+        浅底变体:容器 --off-white、编号 --border-light、标题 --charcoal
+  纪律: 不加渐变条/徽章/装饰图形 —— 编号本身就是装饰
+  ══════════════════════════════════════════════════════════════ -->
+<div data-object="true" data-object-type="textbox" style="position:absolute;left:80px;top:180px;width:800px;">
+  <div class="num" style="font-size:240px;font-weight:800;line-height:1;color:var(--deep-navy-light);">{{NUM}}</div>
+</div>
+<div data-object="true" data-object-type="textbox" style="position:absolute;left:100px;top:560px;width:1500px;">
+  <div style="font-size:64px;font-weight:800;line-height:1.2;color:var(--on-navy-text);">{{TITLE}}</div>
+</div>
+<div data-object="true" data-object-type="textbox" style="position:absolute;left:100px;top:680px;width:1400px;">
+  <div style="font-size:24px;line-height:1.5;color:var(--on-navy-sub);">{{SUB}}</div>
+</div>

@@ -1,42 +1,59 @@
-## Description: <br>
-Analyzes tabular data, recommends suitable chart types, and generates an interactive HTML dashboard with Plotly visualizations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates interactive HTML dashboards from CSV or Excel data by analyzing tabular data characteristics and recommending suitable chart combinations.
 
-## Publisher: <br>
-[cloudcba](https://clawhub.ai/user/cloudcba) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cloudcba](https://clawhub.ai/user/cloudcba)
 
-## Use Case: <br>
-Developers, analysts, and external users use this skill to turn CSV or Excel data into an interactive dashboard when they need chart recommendations and quick visual exploration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated HTML may preserve source data and visualizations in a local file. <br>
-Mitigation: Review the generated file before sharing and avoid sensitive personal or business data unless local persistence is acceptable. <br>
-Risk: The chart-generation script writes to the output path supplied by the user. <br>
-Mitigation: Choose a safe output path and confirm it will not overwrite an important file. <br>
+## Use Case:
 
+Developers, analysts, and external users can use this skill to turn tabular datasets into interactive dashboards with automatically selected charts for comparison, trend, distribution, relationship, and hierarchy analysis.
 
-## Reference(s): <br>
-- [Chart Types Guide](references/chart-types.md) <br>
-- [Data Format Guide](references/data-format.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/cloudcba/data-visualization-cloud) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Text, Shell commands, Guidance] <br>
-**Output Format:** [HTML dashboard file with terminal status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads CSV or Excel input and saves a single responsive Plotly HTML dashboard; generated charts are capped at 15.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: Untrusted CSV or Excel content can be carried into executable HTML dashboards.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted or sanitized datasets and review generated dashboards before opening, publishing, or sharing them.
+
+Risk: Generated dashboards may load Plotly from a CDN.
+
+Mitigation: Use a trusted network path or modify the script to embed a reviewed local Plotly copy when external CDN loading is not acceptable.
+
+Risk: User-selected output paths can write dashboards to unintended locations.
+
+Mitigation: Choose explicit output paths in controlled directories and avoid overwriting important files.
+
+## Reference(s):
+
+- [Chart Types Guide](references/chart-types.md)
+- [Data Format Specification](references/data-format.md)
+- [ClawHub Skill Page](https://clawhub.ai/cloudcba/skills/data-visualization-cloud)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with shell commands and generated HTML dashboard files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The bundled script writes a single responsive Plotly HTML dashboard and can include up to 15 recommended charts.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

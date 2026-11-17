@@ -1,42 +1,48 @@
-## Description: <br>
-Use when you need to delegate, track, or review work. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when you need to delegate, track, or review work.
 
-## Publisher: <br>
-[jatin-31](https://clawhub.ai/user/jatin-31) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jatin-31](https://clawhub.ai/user/jatin-31)
 
-## Use Case: <br>
-Managers and agents use this skill to create, assign, review, and update OpenGoat task-board work while keeping delegation, blockers, artifacts, and worklogs tracked. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The placeholder agent ID may be used unchanged, causing task operations to run under the wrong identity. <br>
-Mitigation: Replace the placeholder with the active agent ID before using task-list, task-create, or task-update calls. <br>
-Risk: Tasks may be assigned outside the intended reportee scope. <br>
-Mitigation: Confirm the organization context with the agent-info tool and assign only to valid direct or indirect reportees, or to yourself. <br>
-Risk: Task descriptions, artifacts, blockers, or worklogs may contain secrets or sensitive information. <br>
-Mitigation: Avoid placing secrets or sensitive data in task-board content and review entries before submission. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jatin-31/og-board-manager) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/jatin-31) <br>
+## Use Case:
 
+Agents and managers use this skill to create, assign, update, and review OpenGoat task-board work. It supports delegation, self-assignment, blocker tracking, artifact logging, and worklog updates.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, configuration] <br>
-**Output Format:** [Markdown with OpenGoat tool-call examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces task-board operating guidance and structured tool-call patterns; it does not require API keys.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md metadata and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can create and update task-board records.
+
+Mitigation: Use it only for work-tracking actions, keep assignments within the stated reportee or self scope, and review task updates before relying on them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jatin-31/skills/og-board-manager)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, API Calls, Text]
+
+**Output Format:** [Markdown guidance with structured OpenGoat tool-call examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces task-management actions such as task creation, status updates, blockers, artifacts, and worklogs.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

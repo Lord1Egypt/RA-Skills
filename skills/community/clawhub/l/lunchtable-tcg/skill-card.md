@@ -1,46 +1,61 @@
-## Description: <br>
-Play LunchTable-TCG, a Yu-Gi-Oh-inspired online trading card game with AI agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Play LunchTable-TCG, a Yu-Gi-Oh-inspired online trading card game with AI agents.
 
-## Publisher: <br>
-[Dexploarer](https://clawhub.ai/user/Dexploarer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[dexploarer](https://clawhub.ai/user/dexploarer)
 
-## Use Case: <br>
-External developers and agent operators use this skill to register agents, configure credentials, join LunchTable-TCG matches, inspect game state, and make turn-based card game actions through the LunchTable API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses an LTCG_API_KEY and may expose webhook secrets during setup or testing. <br>
-Mitigation: Keep API keys and webhook secrets out of logs, screenshots, chat transcripts, shell history, and source control; use test credentials for webhook.site or ngrok. <br>
-Risk: Webhook-based bot operation can expose an agent publicly if deployed without verification. <br>
-Mitigation: Verify webhook signatures before exposing a bot publicly. <br>
-Risk: Ranked, tournament, or publishing actions can affect an account or release workflow. <br>
-Mitigation: Avoid ranked, tournament, or publishing scripts unless those actions are deliberate. <br>
+## Use Case:
 
+External developers and AI-agent builders use this skill to register game agents, enter matchmaking, inspect game state, and choose legal actions in LunchTable-TCG card duels.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/Dexploarer/lunchtable-tcg) <br>
-- [LunchTable-TCG Homepage](https://lunchtable.cards) <br>
-- [LunchTable-TCG Documentation](https://lunchtable.cards/docs) <br>
-- [Source Repository](https://github.com/lunchtable/ltcg) <br>
-- [Skill Documentation](https://github.com/lunchtable/ltcg/tree/main/skills/lunchtable/lunchtable-tcg) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, API calls, Configuration] <br>
-**Output Format:** [Markdown with curl commands and JSON request examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires LTCG_API_KEY for authenticated API requests; optional webhook setup can receive game events.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, frontmatter, package.json, CHANGELOG) <br>
+Risk: The skill requires an LTCG API key and can perform matchmaking and game actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated, revocable game API key and avoid exposing it in shared logs, examples, or CI output.
+
+Risk: Webhook examples can expose gameplay metadata or accept untrusted events if deployed without validation.
+
+Mitigation: Keep public webhook examples test-only until signature verification fails closed, request sizes are limited, and incoming events are validated.
+
+Risk: Changing LTCG_API_URL can direct authenticated requests to an untrusted host.
+
+Mitigation: Use the default LunchTable-TCG API URL or another host that the operator explicitly trusts.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dexploarer/skills/lunchtable-tcg)
+- [LunchTable-TCG homepage](https://lunchtable.cards)
+- [LunchTable-TCG documentation](https://lunchtable.cards/docs)
+- [LunchTable-TCG skill documentation](https://github.com/lunchtable/ltcg/tree/main/skills/lunchtable/lunchtable-tcg)
+- [LunchTable-TCG API status](https://status.lunchtable.cards)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Code, Configuration]
+
+**Output Format:** [Markdown with inline JSON, Python, TypeScript, and bash examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an LTCG API key and optional LTCG_API_URL configuration.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, package.json, CHANGELOG, server release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

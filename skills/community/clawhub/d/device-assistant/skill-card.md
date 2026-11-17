@@ -1,41 +1,62 @@
-## Description: <br>
-Device Assistant is a personal device and appliance manager for tracking device details, manuals, warranties, maintenance, and error-code troubleshooting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Personal device and appliance manager with error code lookup and troubleshooting.
 
-## Publisher: <br>
-[udiedrichsen](https://clawhub.ai/user/udiedrichsen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[udiedrichsen](https://clawhub.ai/user/udiedrichsen)
 
-## Use Case: <br>
-People managing home devices and appliances use this skill to record device inventory details, look up error codes, find manuals or support links, track warranty status, and maintain service logs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Device inventory stored in workspace memory can include sensitive household or asset details such as model numbers, serial numbers, purchase data, locations, notes, warranty information, and maintenance history. <br>
-Mitigation: Store only details needed for troubleshooting and warranty tracking, avoid full serial numbers when possible, and review workspace memory access before installing. <br>
-Risk: Generated manual, search, or support links may disclose model numbers, error codes, or problem descriptions to external services if opened. <br>
-Mitigation: Review generated links before opening them and remove unnecessary identifying details from searches. <br>
+## Use Case:
 
+External users use this skill to track household devices and appliances, store model and warranty details, look up error codes, and get troubleshooting or maintenance guidance.
 
-## Reference(s): <br>
-- [Device Assistant ClawHub release](https://clawhub.ai/udiedrichsen/device-assistant) <br>
-- [udiedrichsen ClawHub profile](https://clawhub.ai/user/udiedrichsen) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON responses and Markdown guidance with shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write device inventory, error history, maintenance logs, cached error lookup data, and generated manual/search/support URLs under workspace memory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter, server release metadata) <br>
+Risk: The skill stores personal device information such as serial numbers, purchase details, warranty dates, and maintenance notes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in workspaces where storing this information is acceptable, and avoid entering unnecessary sensitive device details.
+
+Risk: The security summary reports a search-query bug that can expose the handler environment.
+
+Mitigation: Avoid putting secrets in the handler environment until the bug is fixed and the release is rescanned.
+
+Risk: Generated Google search links can include device details and problem descriptions.
+
+Mitigation: Review generated links before opening or sharing them when device information is private.
+
+Risk: Removing a device deletes its record immediately.
+
+Mitigation: Confirm the selected device before removal and keep backups of important records.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/udiedrichsen/skills/device-assistant)
+- [Publisher profile](https://clawhub.ai/user/udiedrichsen)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, JSON, Shell commands]
+
+**Output Format:** [JSON responses with user-facing troubleshooting, warranty, maintenance, and device-management guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores device records and history under the workspace memory directory; online lookups are represented as generated search URLs.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

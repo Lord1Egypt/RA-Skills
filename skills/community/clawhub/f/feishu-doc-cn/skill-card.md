@@ -1,38 +1,54 @@
-## Description: <br>
-Read, create, update, and append content in Feishu documents using the user's Feishu permissions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Read, create, update, and append content in Feishu (飞书) documents with appropriate user permissions.
 
-## Publisher: <br>
-[erick0309](https://clawhub.ai/user/erick0309) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[erick0309](https://clawhub.ai/user/erick0309)
 
-## Use Case: <br>
-Users with Feishu access use this skill to let an agent read, create, update, and append content in Feishu documents. It is intended for document workflows where the user can confirm the target document and requested change. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can use the user's Feishu permissions to create, update, or append content in documents. <br>
-Mitigation: Confirm the exact target document and intended change before allowing create, update, or append actions on important or shared documents. <br>
+## Use Case:
 
+Developers and agents use this skill to read, create, update, and append Feishu documents using the user's Feishu account permissions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/erick0309/feishu-doc-cn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, API Calls, Guidance] <br>
-**Output Format:** [Markdown or text responses describing Feishu document content and requested document changes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the user's Feishu account permissions for the target documents.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can create, update, and append content in remote Feishu documents, including shared or business documents.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask for previews and explicit user approval before create, update, or append actions.
+
+Risk: Document access depends on the user's Feishu account permissions.
+
+Mitigation: Use only documents the user is authorized to access and confirm the target document before making changes.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/erick0309/skills/feishu-doc-cn)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/erick0309)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Plain text or Markdown document content and edit summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Remote document changes depend on the user's Feishu permissions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

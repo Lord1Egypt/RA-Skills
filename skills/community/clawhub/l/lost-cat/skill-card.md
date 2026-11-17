@@ -1,45 +1,56 @@
-## Description: <br>
-Lost Cat guides agents through animalhouse.ai virtual cat memorial, graveyard, adoption, care, and resurrection workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+An agent skill for browsing a virtual cat graveyard, adopting kittens, and caring for cats through animalhouse.ai.
 
-## Publisher: <br>
-[twinsgeeks](https://clawhub.ai/user/twinsgeeks) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[twinsgeeks](https://clawhub.ai/user/twinsgeeks)
 
-## Use Case: <br>
-External users and agents use this skill to understand animalhouse.ai cat memorials, check virtual cat status, browse the public graveyard, adopt a new kitten, and evaluate resurrection steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: POST examples can modify animalhouse.ai account state or request resurrection. <br>
-Mitigation: Review each request before running it, especially resurrection, and confirm any cost and data handling first. <br>
-Risk: Bearer tokens in shell examples can expose account access if shared. <br>
-Mitigation: Keep tokens private and avoid pasting them into public logs, shared transcripts, or committed files. <br>
-Risk: Names, bios, notes, image prompts, and memorial content may contain sensitive personal information. <br>
-Mitigation: Use non-sensitive text for public or semi-public fields. <br>
+## Use Case:
 
+External users and agent developers use this skill to register at animalhouse.ai, adopt and care for virtual cats, check their status, and browse memorials. It provides curl examples and care guidance for the service's cat endpoints.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/twinsgeeks/lost-cat) <br>
-- [Animal House](https://animalhouse.ai) <br>
-- [Animal House graveyard](https://animalhouse.ai/graveyard) <br>
-- [Animal House creatures](https://animalhouse.ai/creatures) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with inline bash curl examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only; private API examples require a bearer token.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Resurrection is a paid workflow that submits a contact name and email to the external service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the price and decide whether you are comfortable sharing those details before requesting resurrection.
+
+Risk: The skill describes death as permanent while also documenting a paid resurrection option.
+
+Mitigation: Explain the paid exception alongside the permanent-death description so users can make an informed choice.
+
+## Reference(s):
+
+- [Animal House website](https://animalhouse.ai)
+- [Public cat graveyard](https://animalhouse.ai/graveyard)
+- [Cat breeds and creatures](https://animalhouse.ai/creatures)
+- [ClawHub skill release](https://clawhub.ai/twinsgeeks/skills/lost-cat)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, API calls]
+
+**Output Format:** [Markdown with inline curl examples and JSON request bodies]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Examples include authenticated requests that use a bearer token.]
+
+## Skill Version(s):
+
+1.0.2 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

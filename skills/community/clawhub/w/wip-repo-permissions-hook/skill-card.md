@@ -1,42 +1,59 @@
-## Description: <br>
-Repo visibility guard that blocks repositories from being made public unless a matching -private counterpart exists. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Repo visibility guard. Blocks repos from going public without a -private counterpart.
 
-## Publisher: <br>
-[parkertoddbrooks](https://clawhub.ai/user/parkertoddbrooks) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[parkertoddbrooks](https://clawhub.ai/user/parkertoddbrooks)
 
-## Use Case: <br>
-Developers and engineering teams use this skill as a CLI, hook, MCP server, or OpenClaw plugin to check repository visibility changes and audit public repositories for required -private counterparts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can block GitHub repository visibility changes when its hook policy does not match the team's intended release workflow. <br>
-Mitigation: Install it only in environments where the -private counterpart rule is required, and review blocked results before changing release automation. <br>
-Risk: The skill relies on the existing `gh` authentication context and reads GitHub repository metadata for requested organizations. <br>
-Mitigation: Use a GitHub authentication context scoped to the intended organizations and permissions for visibility checks and audits. <br>
+## Use Case:
 
+Developers and repository maintainers use this skill to check whether a GitHub repository can be made public under a public/private repository workflow. It can run as a CLI, Claude Code hook, OpenClaw plugin, or MCP tool to check individual repositories and audit public repositories in an organization.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/parkertoddbrooks/wip-repo-permissions-hook) <br>
-- [Project Homepage](https://github.com/wipcomputer/wip-ai-devops-toolbox) <br>
-- [npm Package](https://www.npmjs.com/package/@wipcomputer/wip-repo-permissions-hook) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text and Markdown with shell and JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [CLI and MCP responses report allowed, blocked, audit, and error states for GitHub repository visibility checks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.9.72 (source: server release metadata) <br>
+Risk: The guard is advisory and can miss cases because hook parsing and audit behavior are limited.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before relying on it, compensate for missed command forms and the 200-repository audit limit, and use server-side GitHub organization controls for critical visibility policy.
+
+Risk: The hook can fail open and may allow an action when input parsing or execution fails.
+
+Mitigation: Treat local hook behavior as a convenience check, not a complete enforcement boundary, and add independent repository visibility controls.
+
+Risk: The MCP dependency is unpinned.
+
+Mitigation: Pin or otherwise control dependency versions before deployment in sensitive environments.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/parkertoddbrooks/skills/wip-repo-permissions-hook)
+- [Project Homepage](https://github.com/wipcomputer/wip-ai-devops-toolbox)
+- [npm Package](https://www.npmjs.com/package/@wipcomputer/wip-repo-permissions-hook)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and plain text with JSON configuration examples and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js and GitHub CLI access for repository checks.]
+
+## Skill Version(s):
+
+1.9.72 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

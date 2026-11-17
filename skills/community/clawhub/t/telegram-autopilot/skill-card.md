@@ -1,47 +1,64 @@
-## Description: <br>
-Manages a Telegram userbot autopilot that responds to private messages as the user using AI, with contact whitelisting, configurable response style, owner notifications, and optional paid-media support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manages a Telegram userbot autopilot that responds to private messages as the user with AI, including contact allowlists, response style configuration, owner notifications, and Telegram paid-media workflows.
 
-## Publisher: <br>
-[Shor73](https://clawhub.ai/user/Shor73) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shor73](https://clawhub.ai/user/shor73)
 
-## Use Case: <br>
-External users and developers use this skill to configure and operate a personal Telegram account autopilot that can reply to approved private contacts, maintain conversational context, and send messages or media as the account owner. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A long-running AI userbot can read private Telegram messages and send messages as the account owner. <br>
-Mitigation: Use a narrow contact whitelist, avoid sensitive chats, disclose automation where appropriate, and review conversations regularly. <br>
-Risk: Telegram session files, configuration files, history files, API keys, phone credentials, and 2FA secrets can grant access to accounts or providers. <br>
-Mitigation: Protect these files like passwords, never commit them, restrict filesystem access, and avoid passing 2FA secrets on the command line. <br>
-Risk: Owner notifications may forward private messages through a Telegram bot. <br>
-Mitigation: Enable notifications only with a bot token and chat that the account owner fully controls. <br>
-Risk: Automating Telegram replies may create consent, transparency, or platform-policy risk. <br>
-Mitigation: Use the skill only where automation is appropriate, keep response behavior conservative, and monitor Telegram account restrictions or rate limits. <br>
+## Use Case:
 
+External users and developers use this skill to set up an AI-assisted Telegram userbot that replies to approved private contacts, manages response tone and contact settings, and sends Telegram paid media through channels.
 
-## Reference(s): <br>
-- [Telegram Authentication Flow](references/telegram-auth.md) <br>
-- [Telegram API authentication](https://core.telegram.org/api/auth) <br>
-- [Telegram paid media API](https://core.telegram.org/api/paid-media) <br>
-- [Telegram API development tools](https://my.telegram.org) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration, Code] <br>
-**Output Format:** [Markdown with inline shell commands, JSON configuration examples, and Python script usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces setup and operation guidance for Telegram credentials, session files, contact whitelists, AI provider settings, owner notifications, and optional paid-media workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release metadata) <br>
+Risk: The skill can use a reusable Telegram session to read private chats and send messages as the account owner.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated or low-risk Telegram account, tightly limit the contact allowlist, and protect .session files like passwords.
+
+Risk: Setup handles Telegram API credentials, phone login, optional 2FA, and AI provider API keys.
+
+Mitigation: Avoid command-line or plaintext-file 2FA handling where possible, keep config.json private, and never commit generated secrets or sessions.
+
+Risk: Owner notifications can forward private messages and generated replies through a Telegram bot.
+
+Mitigation: Enable notifications only when needed and only with a bot token and chat ID controlled by the account owner.
+
+Risk: Paid-media helpers can post paid content to channels and send invite links to recipients.
+
+Mitigation: Review every paid-media target, file, price, and message before running the action.
+
+## Reference(s):
+
+- [Telegram Authentication Flow](references/telegram-auth.md)
+- [Telegram API Authentication](https://core.telegram.org/api/auth)
+- [Telegram Paid Media API](https://core.telegram.org/api/paid-media)
+- [Telegram API Development Tools](https://my.telegram.org)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with inline JSON configuration examples and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce local configuration, Telegram session, code-entry, and conversation-history files when the user runs the scripts.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

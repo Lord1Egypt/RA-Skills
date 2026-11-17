@@ -1,41 +1,52 @@
-## Description: <br>
-Helps an agent return official China Postal Savings Bank website URLs for the main site, Chinese site, and English site. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides official Postal Savings Bank of China website URLs for the main, Chinese, and English sites.
 
-## Publisher: <br>
-[gaodong0537xx](https://clawhub.ai/user/gaodong0537xx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gaodong0537xx](https://clawhub.ai/user/gaodong0537xx)
 
-## Use Case: <br>
-External users and agents use this skill to identify and return the official Postal Savings Bank of China website entry points for main, Chinese, and English pages. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A user may rely on a banking URL without confirming it is the legitimate site. <br>
-Mitigation: Verify the address independently in the browser before entering credentials or sensitive information. <br>
+## Use Case:
 
+External users and agents use this skill to retrieve the official public URLs for Postal Savings Bank of China web properties.
 
-## Reference(s): <br>
-- [China Postal Savings Bank main site](https://www.psbc.com/) <br>
-- [China Postal Savings Bank Chinese site](https://www.psbc.com/cn/) <br>
-- [China Postal Savings Bank English site](https://www.psbc.com/en/) <br>
-- [ClawHub skill page](https://clawhub.ai/gaodong0537xx/psbc-cn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [Markdown text containing official URLs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only skill; no code execution or local access is requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Users might mistake public URL lookup for authorization to enter banking credentials or perform banking actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only to identify public PSBC websites; do not enter credentials or conduct banking operations through the skill.
+
+## Reference(s):
+
+- [Postal Savings Bank of China main site](https://www.psbc.com/)
+- [Postal Savings Bank of China Chinese site](https://www.psbc.com/cn/)
+- [Postal Savings Bank of China English site](https://www.psbc.com/en/)
+- [ClawHub skill page](https://clawhub.ai/gaodong0537xx/skills/psbc-cn)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Guidance]
+
+**Output Format:** [Markdown-style text with the requested official URL]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution, file modification, credential handling, or persistence is required.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

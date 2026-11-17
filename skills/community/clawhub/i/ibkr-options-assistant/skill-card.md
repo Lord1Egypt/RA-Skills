@@ -1,48 +1,60 @@
-## Description: <br>
-Interactive Brokers options and stock trading assistant that provides real-time portfolio Greeks, option chain analysis, strategy recommendations, P&L analytics, Wheel tracking, earnings warnings, risk simulation, and optional gated trade execution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Interactive Brokers options and stock trading assistant for portfolio Greeks, option-chain analysis, strategy recommendations, P&L statistics, Wheel tracking, earnings warnings, and risk simulation.
 
-## Publisher: <br>
-[alexliu0130](https://clawhub.ai/user/alexliu0130) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[alexliu0130](https://clawhub.ai/user/alexliu0130)
 
-## Use Case: <br>
-External users, developers, and trading agents use this skill to query IBKR account and market data, analyze options positions and strategies, monitor risk, and optionally prepare or execute gated trades through IBKR. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can access sensitive IBKR account data. <br>
-Mitigation: Use a paper account or dedicated read-only IBKR user where possible, keep IB Gateway permissions narrow, and treat generated JSON files as brokerage statements. <br>
-Risk: The bundled trading script can place or cancel real orders when trading gates are enabled. <br>
-Mitigation: Review trade.py before enabling trading, test against a paper account first, keep IBKR_TRADING_ENABLED unset by default, and require explicit --confirm-trade per order. <br>
-Risk: The documentation includes conflicting read-only claims for a release that also contains live trading capability. <br>
-Mitigation: Review the Trading Mode and Security Model documentation before installation, and avoid broad auto-use for casual market questions. <br>
+## Use Case:
 
+External users and developers use this skill to inspect IBKR account state, analyze options and stock positions, evaluate trade ideas, monitor earnings and IV risk, and produce trading guidance from live brokerage data.
 
-## Reference(s): <br>
-- [Greeks Primer](references/greeks_primer.md) <br>
-- [Options Book Summary](references/options_book_summary.md) <br>
-- [Options Strategy Library](references/strategies.md) <br>
-- [Trading Mode](references/trading.md) <br>
-- [Troubleshooting](references/troubleshooting.md) <br>
-- [The Wheel Strategy](references/wheel_strategy.md) <br>
-- [Interactive Brokers Gateway](https://www.interactivebrokers.com/en/trading/ibgateway-stable.php) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON-producing CLI workflows] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Scripts may emit JSON, ANSI terminal output, or Telegram-friendly Markdown; trade execution is gated and should be treated as high impact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.6 (source: CHANGELOG.md, released 2026-05-15; server release metadata) <br>
+Risk: The order-cancel command can change live brokerage state without the same confirmation gates described for other trade actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, use a paper account or read-only IBKR Gateway/user, and avoid exposing trade.py cancel until the behavior is fixed.
+
+Risk: The skill may access live brokerage data and account state when connected to IBKR.
+
+Mitigation: Connect only accounts intended for agent access and keep Gateway Read-Only API enabled unless live brokerage access is explicitly required.
+
+## Reference(s):
+
+- [Trading Mode](references/trading.md)
+- [Strategies](references/strategies.md)
+- [Greeks Primer](references/greeks_primer.md)
+- [Wheel Strategy](references/wheel_strategy.md)
+- [Options Book Summary](references/options_book_summary.md)
+- [Troubleshooting](references/troubleshooting.md)
+- [Interactive Brokers](https://www.interactivebrokers.com/)
+- [IB Gateway](https://www.interactivebrokers.com/en/trading/ibgateway-stable.php)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON-producing script outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Some scripts can emit JSON, ANSI terminal output, or Telegram-friendly Markdown.]
+
+## Skill Version(s):
+
+0.2.6 (source: changelog, released 2026-05-15)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

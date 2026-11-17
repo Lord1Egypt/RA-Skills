@@ -1,40 +1,63 @@
-## Description: <br>
-Generate/edit images via Tuzi API (default), Google Gemini, OpenAI, DashScope, Replicate. Text-to-image + image-to-image editing; 1K/2K/4K resolution. Use for image create/modify/edit requests incl. --input-image. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate/edit images via Tuzi API (default), Google Gemini, OpenAI, DashScope, Replicate. Text-to-image + image-to-image editing; 1K/2K/4K resolution. Use for image create/modify/edit requests incl. --input-image.
 
-## Publisher: <br>
-[ljquan](https://clawhub.ai/user/ljquan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ljquan](https://clawhub.ai/user/ljquan)
 
-## Use Case: <br>
-Developers and agent users can use this skill to generate new images or edit existing images through supported third-party image providers. It supports draft-to-final workflows with selectable provider, model, input image, and 1K/2K/4K resolution options. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Prompts, API keys, proxy settings, and input images may be sent to selected third-party image providers. <br>
-Mitigation: Use only trusted provider and proxy settings, avoid sensitive prompts or images, and protect API keys in environment files and command arguments. <br>
-Risk: Untrusted input image paths or .tuzi-skills environment files can affect how the skill reads files and routes API traffic. <br>
-Mitigation: Run the skill from trusted project directories, avoid untrusted --input-image paths, and review any local .tuzi-skills/.env file before execution. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ljquan/tuzi-nano-banana) <br>
-- [Tuzi API](https://api.tu-zi.com) <br>
+## Use Case:
 
+Developers and agents use this skill to generate new PNG images or edit existing images through supported image-generation providers. It is suited for normal ClawHub image creation and modification workflows where API keys are supplied by the user environment.
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [PNG image files with terminal status text and saved-path output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an API key for the selected provider; supports optional input images, provider/model selection, and 1K, 2K, or 4K resolution.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Unsafe shell execution paths could let crafted inputs run local commands or expose API credentials.
+
+Mitigation: Review and patch the unsafe shell paths before use with untrusted filenames, environment variables, or API-key inputs; run the skill in a restricted environment.
+
+Risk: Prompts, input images, and generated outputs are sent to external image-generation providers selected by configuration and available API keys.
+
+Mitigation: Avoid sensitive prompts or images, use narrowly scoped API keys, and only enable trusted providers, proxies, and custom base URLs.
+
+Risk: Runtime installation through npx and bun can introduce supply-chain or version drift risk.
+
+Mitigation: Prefer a pinned or preinstalled Bun runtime and review dependencies before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ljquan/skills/tuzi-nano-banana)
+- [ClawHub publisher profile](https://clawhub.ai/user/ljquan)
+- [Tuzi API](https://api.tu-zi.com)
+- [Tuzi API token page](https://api.tu-zi.com/token)
+- [Google Generative Language API](https://generativelanguage.googleapis.com)
+- [OpenAI API](https://api.openai.com/v1)
+- [DashScope API](https://dashscope.aliyuncs.com)
+- [Replicate API](https://api.replicate.com)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [PNG image files with Markdown guidance and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Saves generated or edited PNG files to the current working directory or specified output path.]
+
+## Skill Version(s):
+
+1.0.0 (source: artifact/_meta.json and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

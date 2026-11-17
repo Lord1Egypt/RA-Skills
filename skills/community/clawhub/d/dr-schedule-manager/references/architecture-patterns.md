@@ -152,8 +152,8 @@ Example:
 {
   "delivery": {
     "channel": "discord",
-    "target": "user:270548320366100480",
-    "accountId": "default"
+    "target": "user:<approved-recipient-id>",
+    "accountId": "<approved-account-id>"
   }
 }
 ```

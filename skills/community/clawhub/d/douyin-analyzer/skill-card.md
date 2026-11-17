@@ -1,37 +1,53 @@
-## Description: <br>
-内容分析模块。对转录文本进行语义分段、提取要点、生成总结。由 agent 直接完成，不依赖脚本。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes Douyin transcript text by cleaning obvious transcription errors, removing filler language, segmenting topics, extracting key points, and generating tags and summaries.
 
-## Publisher: <br>
-[don068589](https://clawhub.ai/user/don068589) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[don068589](https://clawhub.ai/user/don068589)
 
-## Use Case: <br>
-External developers and content workflow users use this skill to turn Whisper transcript text from Douyin videos into structured Markdown with corrected prose, semantic sections, key points, a summary, and tags. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can invoke a local text-processing helper on transcript files, and the security guidance notes that users should be comfortable with local helper execution. <br>
-Mitigation: Review the helper before execution, run it only on intended transcript inputs, and use direct agent review for sensitive repositories or content. <br>
+## Use Case:
 
+External users and developers use this skill to turn Whisper transcript text from Douyin videos into structured Markdown transcripts with corrected wording, topic sections, key points, and tags.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown transcript structure, optional JSON from the helper script, and concise agent guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The bundled helper can preprocess text and produce JSON, but the skill directs the agent to perform higher-quality semantic analysis directly.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata) <br>
+Risk: The bundled helper script reads OpenClaw user configuration even though transcript analysis does not require it.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installation and prefer a version that removes config access or restricts it to an explicit dedicated config file.
+
+Risk: Transcript text is incorporated into generated LLM prompts and may contain untrusted or adversarial content.
+
+Mitigation: Treat transcript input as untrusted and review generated prompts and summaries before relying on them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/don068589/skills/douyin-analyzer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, guidance]
+
+**Output Format:** [Structured Markdown transcript with headings, key points, and tags; the optional helper script can emit JSON for full analysis.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Processes user-provided transcript text and may generate an LLM prompt for deeper analysis.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

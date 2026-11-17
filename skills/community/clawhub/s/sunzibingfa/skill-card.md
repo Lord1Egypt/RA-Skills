@@ -1,41 +1,58 @@
-## Description: <br>
-Guides interpersonal, leadership, decision-making, and competitive strategy advice using practical frameworks from The Art of War. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Chinese-language Sun Tzu-style practical guidance for interpersonal conduct, communication, decision-making, leadership, team management, negotiation, competition, and related life or workplace dilemmas.
 
-## Publisher: <br>
-[ybg218996-ui](https://clawhub.ai/user/ybg218996-ui) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ybg218996-ui](https://clawhub.ai/user/ybg218996-ui)
 
-## Use Case: <br>
-External users and employees use this skill for general interpersonal, workplace, leadership, decision-making, and competitive strategy guidance through a Sun Tzu lens. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill provides broad strategy and interpersonal advice that may be inappropriate for legal, medical, mental health, financial, workplace discipline, crisis, or highly sensitive relationship situations. <br>
-Mitigation: Use it only for general guidance, avoid relying on it for high-stakes decisions, and seek qualified professional advice where appropriate. <br>
-Risk: Sun Tzu-style strategy framing can produce manipulative, coercive, or overly competitive recommendations. <br>
-Mitigation: Review outputs for ethical fit, proportionality, and respect for affected people before acting on the advice. <br>
+## Use Case:
 
+External users and agent operators use this skill to receive structured Chinese-language advice based on Sun Tzu concepts for interpersonal situations, workplace challenges, business competition, leadership, negotiation, and practical decision-making.
 
-## Reference(s): <br>
-- [Sun Tzu Practical Application Handbook](references/孙子兵法实战应用手册.md) <br>
-- [ClawHub skill page](https://clawhub.ai/ybg218996-ui/sunzibingfa) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, text, markdown] <br>
-**Output Format:** [Markdown prose with structured advice and action steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution, credential access, persistence, or hidden data behavior is described in the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can provide advice for sensitive personal, legal, medical, financial, or mental-health decisions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat responses as general strategic guidance and seek qualified professional advice for high-stakes or regulated decisions.
+
+Risk: Some Sun Tzu-derived tactics may become adversarial or manipulative when applied uncritically.
+
+Mitigation: Apply recommendations with ethical judgment, respect for consent and boundaries, and human review for workplace or interpersonal impact.
+
+Risk: The skill has broad activation wording and may answer beyond the user's intended scope.
+
+Mitigation: Confirm the user's context and desired level of advice before applying competitive or negotiation-oriented frameworks.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ybg218996-ui/skills/sunzibingfa)
+- [Sun Tzu Practical Application Handbook](artifact/references/孙子兵法实战应用手册.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown conversational guidance with structured analysis, suggested wording, and action steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language responses grounded in the included handbook; no code execution or external tool use described.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

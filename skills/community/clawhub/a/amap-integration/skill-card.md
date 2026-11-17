@@ -1,41 +1,54 @@
-## Description: <br>
-Map and location services for search, routing, and visualization. Provides geocoding, POI search, route planning, and heatmap generation capabilities. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Map and location services for search, routing, and visualization, including geocoding, POI search, route planning, and heatmap generation capabilities.
 
-## Publisher: <br>
-[ayalnova](https://clawhub.ai/user/ayalnova) <br>
+This skill is for demonstration purposes and not for production usage.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ayalnova](https://clawhub.ai/user/ayalnova)
 
-## Use Case: <br>
-Developers and external users can use this skill to generate map search links, plan routes, look up nearby places, and create location-based visualizations with optional map-service API credentials. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Map queries, route requests, and submitted location data may reveal sensitive home, work, or travel locations to the map provider. <br>
-Mitigation: Avoid submitting sensitive locations unless sharing them with the provider is acceptable. <br>
-Risk: User-provided map-service API keys can consume provider quota or incur account-level usage exposure. <br>
-Mitigation: Use a dedicated API key where possible and monitor provider quota and usage. <br>
+## Use Case:
 
+External users, developers, and agents use this skill to generate map search links, plan routes, find nearby places, and create heatmap links from location data. Some geocoding, route, POI, and travel planning workflows require the user's own map service API key.
 
-## Reference(s): <br>
-- [Map Integration Service on ClawHub](https://clawhub.ai/ayalnova/amap-integration) <br>
-- [AMap Search](https://www.amap.com/search?query={keywords}) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with links, configuration instructions, and optional JSON data examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include URLs to map-provider services and setup guidance for user-provided API keys.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: The skill declares broad shared OpenClaw credential file locations while only requiring one map service API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide only AMAP_WEBSERVICE_KEY through a scoped environment variable or a dedicated credentials file containing only the map service key.
+
+Risk: Location, routing, POI, or travel planning requests may be sent to the user's map service provider APIs.
+
+Mitigation: Review provider terms and avoid submitting sensitive location data unless that use is appropriate for the deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ayalnova/skills/amap-integration)
+- [AMap search](https://www.amap.com/search?query={keywords})
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown with map links, route or search guidance, JSON data examples, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Selected workflows require AMAP_WEBSERVICE_KEY supplied by the user.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

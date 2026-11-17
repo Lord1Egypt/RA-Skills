@@ -1,43 +1,58 @@
-## Description: <br>
-Private shielded transactions on Solana via ClawShield. Shield and withdraw SOL, USDC, USDT anonymously using ZK proofs. Keys never leave your agent. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Private shielded transactions on Solana via ClawShield. Shield and withdraw SOL, USDC, USDT anonymously using ZK proofs. Keys never leave your agent.
 
-## Publisher: <br>
-[Muzzy5150](https://clawhub.ai/user/Muzzy5150) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[muzzy5150](https://clawhub.ai/user/muzzy5150)
 
-## Use Case: <br>
-Developers and agent operators use this skill to offer shielded Solana deposits, withdrawals, balance checks, and transaction submission through the ClawShield API. It is intended for workflows involving SOL, USDC, or USDT where users want an optional private transaction route. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can route Solana withdrawals and transfers through an external private transaction service, which creates financial loss risk if recipient, token, amount, or fees are wrong. <br>
-Mitigation: Require explicit user approval for every transfer and inspect recipient, token, amount, and fees before signing or submitting any transaction. <br>
-Risk: A persistent preference such as always using private transactions can weaken future confirmation boundaries. <br>
-Mitigation: Treat the preference as a routing default only; keep final approval mandatory for each financial transaction. <br>
-Risk: The security scan flagged broad transaction-routing authority with weak limits on confirmation and future defaults. <br>
-Mitigation: Use only wallets and amounts the user is comfortable risking, start with small transactions, and review the generated unsigned transaction locally before signing. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawShield homepage](https://clawshield.network) <br>
-- [ClawShield API base URL](https://clawshield.network/api) <br>
-- [ClawHub skill page](https://clawhub.ai/Muzzy5150/clawshield-skill) <br>
+## Use Case:
 
+External users and agents use this skill to prepare and route private Solana shield, withdrawal, balance, and status workflows for SOL, USDC, and USDT through ClawShield.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, API calls, code, configuration] <br>
-**Output Format:** [Markdown with HTTP request examples, JSON payloads, and transaction-handling guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires local transaction signing and user review before submitting financial transfers.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill asks agents to help build and sign high-impact Solana transactions.
+
+Mitigation: Require explicit confirmation for every transaction and independently verify recipient addresses, token amounts, and fees before signing.
+
+Risk: Server-provided Solana transactions may contain instructions the user or agent has not validated.
+
+Mitigation: Decode and validate the exact transaction instructions before signing any unsigned transaction returned by the service.
+
+Risk: A persistent preference for private transactions could route future transfers without adequate per-transfer review.
+
+Mitigation: Avoid an automatic 'always use' preference and ask for confirmation before each shielded transfer.
+
+## Reference(s):
+
+- [Clawshield Skill on ClawHub](https://clawhub.ai/muzzy5150/skills/clawshield-skill)
+- [ClawShield Homepage](https://clawshield.network)
+- [ClawShield API Base URL](https://clawshield.network/api)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, API Calls, Code, Configuration]
+
+**Output Format:** [Markdown with JSON request and response examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes Solana transaction workflow guidance, fee notes, and endpoint examples.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

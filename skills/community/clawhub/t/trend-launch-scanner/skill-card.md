@@ -1,45 +1,57 @@
-## Description: <br>
-趋势启动扫描器 is a trend-following stock screening skill that scores Chinese A-share candidates using technical indicators, confirmation signals, industry dispersion, sentiment checks, tracking, and backtest helpers. <br>
+## Description:
 
-This skill is for research and development only. <br>
+基于历史技术指栌验证，实时扫描筛选处于上升趋势初期的潜力股票，评分≥60分为重点关注标的。
 
-## Publisher: <br>
-[jayden-zhong](https://clawhub.ai/user/jayden-zhong) <br>
+This skill is for research and development only.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jayden-zhong](https://clawhub.ai/user/jayden-zhong)
 
-## Use Case: <br>
-Developers, analysts, and agent operators use this skill to run a local market-data scanner that ranks potential early trend stocks and records follow-up tracking information. It is suitable for research and validation workflows, not as standalone investment advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Helper scripts can overwrite generated stock-pool Python files from network-fetched market data. <br>
-Mitigation: Review those scripts before use, change hard-coded output paths, and run them only in an isolated workspace where overwrites are acceptable. <br>
-Risk: The skill creates or updates local market-data, tracking, weight, and backtest files under configured .qclaw paths. <br>
-Mitigation: Run the scanner only after confirming the local data location and permissions match the intended environment. <br>
-Risk: Some helper scripts depend on hard-coded local import paths and non-HTTPS market-data endpoints. <br>
-Mitigation: Update local paths and prefer HTTPS data sources before running fetch or rebuild helpers. <br>
-Risk: Backtest and scoring results may be misleading if treated as investment advice. <br>
-Mitigation: Independently validate thresholds, holding-period logic, and data quality before relying on the outputs. <br>
+## Use Case:
 
+Developers and market researchers use this skill to run a trend-following A-share stock scanner, inspect technical scores, confirmation signals, sentiment indicators, and optional backtest outputs. Financial outputs should be treated as research signals only, not investment advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jayden-zhong/trend-launch-scanner) <br>
-- [Publisher profile](https://clawhub.ai/user/jayden-zhong) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and console-style text with Python command examples and generated local data files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Scanner output depends on live market-data requests and locally persisted tracking, weights, and backtest data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release evidence) <br>
+Risk: Included stock-pool fetch and rebuild utilities can overwrite importable Python files with unvalidated market data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review these utilities before running them, avoid fetch/rebuild scripts by default, and execute only in an isolated workspace.
+
+Risk: Some scripts load code from paths outside the skill package and use hard-coded .qclaw paths.
+
+Mitigation: Inspect path configuration before execution and run in an environment where those paths cannot overwrite important user files.
+
+Risk: The scanner produces financial research signals that may be incomplete or misleading.
+
+Mitigation: Treat all outputs as research only and verify decisions with independent financial analysis.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jayden-zhong/skills/trend-launch-scanner)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance, Files]
+
+**Output Format:** [Markdown or plain-text guidance with Python command examples and optional CSV/TXT scan outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stock-scanning results depend on live market-data endpoints and local data files.]
+
+## Skill Version(s):
+
+1.2.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

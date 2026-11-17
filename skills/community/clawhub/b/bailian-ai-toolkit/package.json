@@ -1,0 +1,17 @@
+{
+  "name": "bailian-ai-toolkit-skill",
+  "version": "1.0.1",
+  "private": true,
+  "description": "Pinned local CLI runtime for the bailian-ai-toolkit skill",
+  "license": "MIT-0",
+  "engines": {
+    "node": ">=18.17"
+  },
+  "scripts": {
+    "bl": "bl",
+    "test": "node tests/security.test.cjs"
+  },
+  "dependencies": {
+    "bailian-cli": "1.26.0"
+  }
+}

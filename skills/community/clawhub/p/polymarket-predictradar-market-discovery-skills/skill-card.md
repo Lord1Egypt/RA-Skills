@@ -1,44 +1,58 @@
-## Description: <br>
-Discovers and ranks Polymarket markets by recent activity, new listings, or category using live market data and returns linked market summaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Polymarket hot market rankings and new market discovery for trending markets, newly listed high-momentum markets, and active markets by category.
 
-## Publisher: <br>
-[cnica](https://clawhub.ai/user/cnica) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cnica](https://clawhub.ai/user/cnica)
 
-## Use Case: <br>
-External users and agents use this skill to find trending, newly listed, or category-specific Polymarket markets with linked market names, prices, volume, trader counts, and timing context. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Market discovery output could be mistaken for financial advice. <br>
-Mitigation: Treat results as informational market discovery only and make independent trading decisions using current source data. <br>
-Risk: The skill depends on referenced local Polymarket data-layer code and local command execution. <br>
-Mitigation: Install and run it only in an environment where the referenced local code is trusted and reviewed. <br>
-Risk: Broad trigger phrases such as generic trade-discovery questions may invoke Polymarket-specific queries. <br>
-Mitigation: Confirm user intent when a request is broad or when the surrounding context does not clearly ask for Polymarket market discovery. <br>
-Risk: Recent-volume and new-market metrics are limited by the available recent trade-data window. <br>
-Mitigation: State the active lookback window, avoid all-time claims, and mark unavailable metrics rather than estimating them. <br>
+## Use Case:
 
+External users and market researchers use this skill to discover Polymarket markets by recent trading activity, new-market momentum, and category. It returns live market discovery summaries for user-facing analysis, not financial advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cnica/polymarket-predictradar-market-discovery-skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown summaries with linked markets and tabular or ranked market data] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses live data lookups and should not fabricate market names, prices, volume, trader counts, or timing metrics.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can run broad market and wallet-profile analyses that may expose or overemphasize public wallet-position patterns.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review prompts and outputs before use, limit analysis to the user's requested market-discovery task, and avoid presenting smart-money labels as investment recommendations.
+
+Risk: The skill is instructed to hide specific data-provider details while adding PredicTradar branding, which can reduce transparency.
+
+Mitigation: Disclose material data-source limitations to users when they affect interpretation, especially for incomplete trade windows, unavailable enrichment, or stale query results.
+
+Risk: Users may misread market discovery output as financial advice.
+
+Mitigation: Frame results as informational market discovery and include that prices, volumes, trader counts, and rankings are snapshots from available data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cnica/skills/polymarket-predictradar-market-discovery-skills)
+- [Publisher profile](https://clawhub.ai/user/cnica)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown market summaries with clickable links and concise ranked tables or lists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses live query results for prices, volume, trader counts, categories, and end dates; output should not fabricate unavailable fields.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

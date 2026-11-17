@@ -1,42 +1,62 @@
-## Description: <br>
-Download Video/Music from YouTube/Bilibili/X/etc. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Download Video/Music from YouTube/Bilibili/X/etc.
 
-## Publisher: <br>
-[guoqiao](https://clawhub.ai/user/guoqiao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[guoqiao](https://clawhub.ai/user/guoqiao)
 
-## Use Case: <br>
-External users and developers use this skill to download user-requested video or audio from supported media URLs into local media folders for playback or library management. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill fetches media from user-provided URLs through yt-dlp and writes downloaded files to local folders, which can consume disk space and depend on third-party downloader behavior. <br>
-Mitigation: Use it only for user-requested media, review the printed output path, and monitor the configured media directories for unexpected size growth. <br>
-Risk: Configured cookie files can enable authenticated media access. <br>
-Mitigation: Keep cookie files private, scope them to the intended services, and remove or rotate them when they are no longer needed. <br>
-Risk: When used from Telegram, downloaded audio may be sent back to the chat. <br>
-Mitigation: Confirm the Telegram context and the selected audio file before sending it to the user. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/guoqiao/dl) <br>
-- [Universal Media Server setup example](https://github.com/guoqiao/skills/blob/main/dl/ums/ums_install.sh) <br>
+## Use Case:
 
+External users and developers use this skill to have an agent download video or music from supported media URLs into local media folders for playback, media-server access, or optional sharing back through Telegram when appropriate.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Files, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with shell command examples and script stdout path text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Downloads media files to local output directories and may provide an audio file through Telegram when used in that channel.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.2.3 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill downloads media from supplied URLs into local folders, which can consume storage or place files where local media servers expose them on a LAN.
+
+Mitigation: Use a dedicated output folder, monitor storage use, and review which local folders are shared by media-server software.
+
+Risk: Optional cookies may be used for authenticated access, making configured cookie paths sensitive.
+
+Mitigation: Avoid placing sensitive cookies at the documented default paths, or use a dedicated low-privilege cookies file only when needed.
+
+Risk: When used from Telegram, audio files may be sent back through Telegram.
+
+Mitigation: Confirm the chat context and file path before sending audio, and avoid uploading sensitive downloads.
+
+Risk: The skill installs Python dependencies at runtime and does not pin every dependency version.
+
+Mitigation: Run it in a controlled environment and prefer a release with pinned dependencies for higher-assurance deployments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/guoqiao/skills/dl)
+- [ClawHub metadata homepage](https://clawhub.ai/guoqiao/dl)
+- [Universal Media Server setup example](https://github.com/guoqiao/skills/blob/main/dl/ums/ums_install.sh)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, files, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands; the script prints a local file or folder path and creates downloaded media files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires uv and Python 3.12 or newer; supports optional cookies, custom output directories, playlist downloads capped at 30 items, video downloads capped at 2000 MB, and audio downloads capped at 30 MB.]
+
+## Skill Version(s):
+
+0.2.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

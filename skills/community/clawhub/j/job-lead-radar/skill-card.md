@@ -1,43 +1,57 @@
-## Description: <br>
-Scrapes and collects job leads from major job boards on demand or on a schedule for production, creative, and related roles. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scrapes and collects job leads from Indeed, ZipRecruiter, ProductionHUB, LinkedIn, and Peerspace on demand or on a schedule for production and creative roles.
 
-## Publisher: <br>
-[gullish42069](https://clawhub.ai/user/gullish42069) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gullish42069](https://clawhub.ai/user/gullish42069)
 
-## Use Case: <br>
-External users and developers use this skill to collect and monitor job leads across supported job boards for production, creative, freelance, and career-search workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill makes outbound requests to third-party job sites and may be affected by site terms, availability, rate limits, or anti-bot protections. <br>
-Mitigation: Review the target sites' terms and configure scraping frequency deliberately before enabling scheduled runs. <br>
-Risk: Scheduled scraping can repeatedly write local job lead results and logs. <br>
-Mitigation: Use the cron examples only when scheduled collection is intended, and periodically review generated output and logs. <br>
-Risk: The skill depends on the third-party scrapling package. <br>
-Mitigation: Review and pin the dependency in the deployment environment before use. <br>
+## Use Case:
 
+Developers, operators, and creative production teams use this skill to gather job lead data from supported job boards, run one-off searches, or schedule recurring monitoring for production and creative roles.
 
-## Reference(s): <br>
-- [Query templates](references/queries.md) <br>
-- [ClawHub skill page](https://clawhub.ai/gullish42069/job-lead-radar) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Shell commands, Guidance] <br>
-**Output Format:** [JSON file plus Markdown guidance with shell and cron command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes scraped job lead records locally to scripts/job_leads.json; results can vary by source availability and anti-bot controls.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill sends chosen job search terms to third-party job sites and stores results or logs locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run or schedule the skill only with queries appropriate for disclosure to those sites, and manage local result and log files according to the user's data handling expectations.
+
+Risk: The scraper depends on the third-party scrapling package.
+
+Mitigation: Install in a virtual environment and pin or review the dependency before use.
+
+Risk: Anti-bot protections on Indeed, ZipRecruiter, and LinkedIn may reduce results or return no listings.
+
+Mitigation: Treat empty or reduced results from those sites as expected scraping limitations and compare against more reliable sources such as ProductionHUB and Peerspace when appropriate.
+
+## Reference(s):
+
+- [Job Query Templates](artifact/references/queries.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance, JSON]
+
+**Output Format:** [Console status text plus a JSON results file containing timestamps, sources, queries, job entries, links, and per-source errors when scraping fails.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results are saved to scripts/job_leads.json; scheduled runs may also append logs when configured with cron.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

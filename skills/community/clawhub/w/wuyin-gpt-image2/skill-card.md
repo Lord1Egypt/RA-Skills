@@ -1,42 +1,59 @@
-## Description: <br>
-Generate images using the WuyinKeji GPT-Image-2 API (速创科技), including text-to-image, reference images, multiple aspect ratios, and async result polling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate images with the WuyinKeji GPT-Image-2 API, including text-to-image prompts, reference image URLs, aspect ratio hints, and asynchronous result polling.
 
-## Publisher: <br>
-[alex-shen1121](https://clawhub.ai/user/alex-shen1121) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alex-shen1121](https://clawhub.ai/user/alex-shen1121)
 
-## Use Case: <br>
-Developers and agents use this skill to submit WuyinKeji GPT-Image-2 text-to-image or reference-image generation jobs, poll for async completion, and download generated image files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires WuyinKeji API credentials and the evidence warns that key handling may expose credentials through command history, process listings, or URL logs. <br>
-Mitigation: Use a scoped or disposable API key, avoid reusing sensitive credentials, and prefer a revised workflow that avoids literal keys and query-string credentials. <br>
-Risk: Prompts and reference image URLs are sent to a third-party image-generation service. <br>
-Mitigation: Avoid sensitive prompts, private reference images, or confidential URLs unless the service and account terms are acceptable for the data. <br>
+## Use Case:
 
+Developers and agents use this skill to create images through WuyinKeji GPT-Image-2 from prompts, optionally with reference image URLs, and retrieve completed image files after asynchronous polling.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/alex-shen1121/wuyin-gpt-image2) <br>
-- [WuyinKeji async image API endpoint](https://api.wuyinkeji.com/api/async/image_gpt) <br>
-- [WuyinKeji async detail endpoint](https://api.wuyinkeji.com/api/async/detail) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, code, configuration, files] <br>
-**Output Format:** [Markdown with inline bash commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces helper-script usage guidance and can download generated PNG image files through the WuyinKeji API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: API credentials are sent to the provider and may appear in polling URLs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a rotated, limited WuyinKeji API key and avoid exposing command history, logs, or URLs that contain the key.
+
+Risk: Prompts and reference image URLs are submitted to a third-party image generation provider.
+
+Mitigation: Avoid sensitive prompts, private images, regulated data, or confidential URLs unless this provider and use case have been approved.
+
+Risk: Generated result URLs are downloaded by the helper script.
+
+Mitigation: Validate result URLs and scan downloaded files before using them in production workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/alex-shen1121/skills/wuyin-gpt-image2)
+- [WuyinKeji async image generation endpoint](https://api.wuyinkeji.com/api/async/image_gpt)
+- [WuyinKeji async task detail endpoint](https://api.wuyinkeji.com/api/async/detail)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a user-supplied WuyinKeji API key; helper usage may download generated image files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

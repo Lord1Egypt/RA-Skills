@@ -1,0 +1,84 @@
+{
+  "version": "1.0",
+  "styles": {
+    "default": {
+      "name": "默认风格",
+      "font": "Arial",
+      "size": 20,
+      "color": "FFFFFF",
+      "outline": 1,
+      "shadow": true,
+      "position": "center",
+      "margin_v": 50,
+      "alignment": 2,
+      "max_chars_per_line": 25,
+      "description": "白色字幕，黑色描边，居中底部"
+    },
+    "netflix": {
+      "name": "Netflix 风格",
+      "font": "Arial",
+      "size": 16,
+      "color": "FFFFFF",
+      "outline": 2,
+      "shadow": true,
+      "position": "center",
+      "margin_v": 60,
+      "alignment": 2,
+      "max_chars_per_line": 40,
+      "single_line": true,
+      "description": "单行字幕，小字，灵感来自 Netflix"
+    },
+    "douyin": {
+      "name": "抖音风格",
+      "font": "PingFang SC",
+      "size": 24,
+      "color": "FFFFFF",
+      "outline": 2,
+      "shadow": true,
+      "position": "center",
+      "margin_v": 80,
+      "alignment": 2,
+      "max_chars_per_line": 18,
+      "description": "大字号中文字幕，适合竖屏短视频"
+    },
+    "bilibili": {
+      "name": "B站风格",
+      "font": "PingFang SC",
+      "size": 18,
+      "color": "FFFFFF",
+      "outline": 1,
+      "shadow": false,
+      "position": "bottom",
+      "margin_v": 40,
+      "alignment": 2,
+      "max_chars_per_line": 30,
+      "description": "中文字幕，半透明黑底，适配B站"
+    },
+    "youtube": {
+      "name": "YouTube 风格",
+      "font": "Roboto",
+      "size": 18,
+      "color": "FFFFFF",
+      "outline": 1,
+      "shadow": true,
+      "position": "center",
+      "margin_v": 50,
+      "alignment": 2,
+      "max_chars_per_line": 32,
+      "description": "英语字幕，适度描边"
+    },
+    "minimal": {
+      "name": "极简风格",
+      "font": "Helvetica",
+      "size": 14,
+      "color": "FFFFFF",
+      "outline": 0,
+      "shadow": false,
+      "position": "bottom",
+      "margin_v": 30,
+      "alignment": 2,
+      "max_chars_per_line": 42,
+      "description": "小字无描边，适合电影感"
+    }
+  }
+}

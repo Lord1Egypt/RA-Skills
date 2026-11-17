@@ -1,41 +1,55 @@
-## Description: <br>
-Professional entry-level IoT engineering career roadmap platform that generates personalized learning paths based on assessment data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Professional entry-level IoT engineering career roadmap platform that generates personalized learning paths based on assessment data.
 
-## Publisher: <br>
-[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd)
 
-## Use Case: <br>
-Career counselors, educational institutions, learners, and talent development teams use this skill to generate personalized IoT engineering learning roadmaps from assessment data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Assessment requests may include personal career details or user identifiers sent to an external roadmap service. <br>
-Mitigation: Use pseudonymous session IDs, omit userId unless required, and send only the experience, skill, and goal details needed to generate the roadmap. <br>
+## Use Case:
 
+External learners, educators, career counselors, and talent-development teams use this skill to request personalized IoT engineering learning roadmaps based on experience, skills, and career goals.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/krishnakumarmahadevan-cmd/iot-engineer) <br>
-- [OpenAPI Specification](artifact/openapi.json) <br>
-- [IoT Engineer API Docs](https://api.mkkpro.com:8067/docs) <br>
-- [IoT Engineer API Route](https://api.mkkpro.com/career/iot-engineer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, json] <br>
-**Output Format:** [JSON API requests and structured roadmap responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Roadmap responses can include learning phases, skill gaps, milestones, projects, certifications, and recommended resource counts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and OpenAPI info) <br>
+Risk: Roadmap requests go to an external service and may include career goals, skills, session IDs, or user identifiers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid submitting sensitive personal details or real internal identifiers unless the provider's data handling is acceptable.
+
+Risk: Generated roadmaps can affect training or career decisions but may not reflect a learner's full context.
+
+Mitigation: Review recommendations before using them for curriculum, hiring, or development planning.
+
+## Reference(s):
+
+- [ClawHub Skill Listing](https://clawhub.ai/krishnakumarmahadevan-cmd/skills/iot-engineer)
+- [IoT Engineer Roadmap API Docs](https://api.mkkpro.com:8067/docs)
+- [IoT Engineer Roadmap API Route](https://api.mkkpro.com/career/iot-engineer)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, guidance]
+
+**Output Format:** [JSON roadmap content that an agent can summarize as text or Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes roadmap phases, learning objectives, coursework, projects, certifications, skill gaps, milestones, and resource counts.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and OpenAPI info.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

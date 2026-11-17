@@ -1,0 +1,6 @@
+interface:
+  display_name: "OpenClaw Safe Upgrade Rehearsal"
+  short_description: "Find upgrade risks before OpenClaw changes"
+  default_prompt: "Use $openclaw-safe-update to inventory my OpenClaw installation, run the read-only upgrade rehearsal, and stop at BLOCKED or READY FOR OPERATOR PLAN."
+policy:
+  allow_implicit_invocation: true

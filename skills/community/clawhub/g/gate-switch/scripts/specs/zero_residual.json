@@ -1,0 +1,14 @@
+{
+  "gate": "zero_residual",
+  "desc": "零残留参数化模板闸：机械核验 {pattern} 在 {path}（支持 glob）内命中数==0。典型用法：改名后旧符号零残留、回滚后特征字符串零残留、脚本禁止 `>/dev/null` 静默重定向等。注意 pattern 按正则解释，含特殊字符须转义。A=0 残留放行；B=命中数即残留实证，violations 逐条列出。",
+  "checks": [
+    {
+      "type": "grep_count",
+      "pattern": "{pattern}",
+      "path": "{path}",
+      "op": "eq",
+      "value": 0,
+      "label": "零残留扫描（{pattern} 在 {path} 内命中数必须为 0）"
+    }
+  ]
+}

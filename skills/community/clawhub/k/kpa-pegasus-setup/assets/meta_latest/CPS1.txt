@@ -1,0 +1,195 @@
+collection: CPS1
+sort-by: 10
+shortname: cps1
+launch: am start --user 0 -n com.retroarch.aarch64/com.retroarch.browser.retroactivity.RetroActivityFuture -e ROM "{file.path}" -e LIBRETRO /data/data/com.retroarch.aarch64/cores/fbalpha2012_cps1_libretro_android.so -e CONFIGFILE /storage/emulated/0/Android/data/com.retroarch.aarch64/files/retroarch.cfg
+
+game: 1941
+file: 1941.zip
+assets.box_front: Imgs/1941.png
+description: 《1941》，由 Capcom 出品，CPS1 街机 平台。
+publisher: Capcom
+developer: Capcom
+game: 3wonders
+file: 3wonders.zip
+assets.box_front: Imgs/3wonders.png
+description: 《3wonders》，由 Capcom 出品，1991 年发行，CPS1 街机 平台。
+publisher: Capcom
+release: 1991
+game: captcomm
+file: captcomm.zip
+assets.box_front: Imgs/captcomm.png
+description: 《captcomm》，由 Capcom 出品，1991 年发行，CPS1 街机 平台。
+publisher: Capcom
+release: 1991
+game: cawing
+file: cawing.zip
+assets.box_front: Imgs/cawing.png
+description: 《cawing》，由 Capcom 出品，1990 年发行，CPS1 街机 平台。
+publisher: Capcom
+release: 1990
+game: dino
+file: dino.zip
+assets.box_front: Imgs/dino.png
+description: 《dino》，由 Knowledge Adventure 出品，1993 年发行，教育类游戏，CPS1 街机 平台。
+publisher: Knowledge Adventure
+developer: Knowledge Adventure
+release: 1993
+genre: Educational
+game: dynwarjr
+file: dynwarjr.zip
+assets.box_front: Imgs/dynwarjr.png
+description: 《dynwarjr》，由 Capcom 出品，1989 年发行，CPS1 街机 平台。
+publisher: Capcom
+release: 1989
+game: ffight
+file: ffight.zip
+assets.box_front: Imgs/ffight.png
+description: 《ffight》，由 Capcom 出品，CPS1 街机 平台。
+publisher: Capcom
+developer: Capcom
+game: ghouls
+file: ghouls.zip
+assets.box_front: Imgs/ghouls.png
+description: 《ghouls》，由 Capcom 出品，1988 年发行，CPS1 街机 平台。
+publisher: Capcom
+release: 1988
+game: knights
+file: knights.zip
+assets.box_front: Imgs/knights.png
+description: 《knights》，由 Capcom 出品，1991 年发行，CPS1 街机 平台。
+publisher: Capcom
+release: 1991
+game: kod
+file: kod.zip
+assets.box_front: Imgs/kod.png
+description: 《kod》，由 Capcom 出品，1991 年发行，CPS1 街机 平台。
+publisher: Capcom
+release: 1991
+game: mbombrd
+file: mbombrd.zip
+assets.box_front: Imgs/mbombrd.png
+description: 《mbombrd》，由 Capcom 出品，1993 年发行，CPS1 街机 平台。
+publisher: Capcom
+release: 1993
+game: megaman
+file: megaman.zip
+assets.box_front: Imgs/megaman.png
+description: 《megaman》，由 Paolo Lucchesi 出品，2001 年发行，动作类游戏，CPS1 街机 平台。
+publisher: Paolo Lucchesi
+developer: Paolo Lucchesi
+release: 2001
+genre: Action
+game: mercsj
+file: mercsj.zip
+assets.box_front: Imgs/mercsj.png
+description: 《mercsj》，由 Capcom 出品，1990 年发行，CPS1 街机 平台。
+publisher: Capcom
+release: 1990
+game: msword
+file: msword.zip
+assets.box_front: Imgs/msword.png
+description: 《msword》，由 Capcom 出品，1990 年发行，CPS1 街机 平台。
+publisher: Capcom
+release: 1990
+game: mtwins
+file: mtwins.zip
+assets.box_front: Imgs/mtwins.png
+description: 《mtwins》，由 Capcom 出品，1990 年发行，CPS1 街机 平台。
+publisher: Capcom
+release: 1990
+game: nemo
+file: nemo.zip
+assets.box_front: Imgs/nemo.png
+description: 《nemo》，由 Anonymous 出品，1995 年发行，策略类游戏，CPS1 街机 平台。
+publisher: Anonymous
+developer: Anonymous
+release: 1995
+genre: Strategy
+game: pang3
+file: pang3.zip
+assets.box_front: Imgs/pang3.png
+description: 《pang3》，由 Mitchell 出品，1995 年发行，CPS1 街机 平台。
+publisher: Mitchell
+release: 1995
+game: pnickj
+file: pnickj.zip
+assets.box_front: Imgs/pnickj.png
+description: 《pnickj》，由 Compile (Capcom license) 出品，1994 年发行，CPS1 街机 平台。
+publisher: Compile (Capcom license)
+release: 1994
+game: punisher
+file: punisher.zip
+assets.box_front: Imgs/punisher.png
+description: 《punisher》，由 Capcom 出品，1993 年发行，CPS1 街机 平台。
+publisher: Capcom
+release: 1993
+game: sf2
+file: sf2.zip
+assets.box_front: Imgs/sf2.png
+description: 《sf2》，由 Jung Young Dug 出品，1993 年发行，动作类游戏，CPS1 街机 平台。
+publisher: Jung Young Dug
+developer: Jung Young Dug
+release: 1993
+genre: Action
+game: sf2ce
+file: sf2ce.zip
+assets.box_front: Imgs/sf2ce.png
+description: 《sf2ce》，由 Capcom 出品，1992 年发行，CPS1 街机 平台。
+publisher: Capcom
+release: 1992
+game: sf2hf
+file: sf2hf.zip
+assets.box_front: Imgs/sf2hf.png
+description: 《sf2hf》，由 Capcom 出品，1992 年发行，CPS1 街机 平台。
+publisher: Capcom
+release: 1992
+game: sfzch
+file: sfzch.zip
+assets.box_front: Imgs/sfzch.png
+description: 《sfzch》，由 Capcom 出品，1995 年发行，CPS1 街机 平台。
+publisher: Capcom
+release: 1995
+game: slammast
+file: slammast.zip
+assets.box_front: Imgs/slammast.png
+description: 《slammast》，由 Capcom 出品，1993 年发行，CPS1 街机 平台。
+publisher: Capcom
+release: 1993
+game: strider
+file: strider.zip
+assets.box_front: Imgs/strider.png
+description: 《strider》，由 U.S. Gold 出品，1989 年发行，动作类游戏，CPS1 街机 平台。
+publisher: U.S. Gold
+developer: U.S. Gold
+release: 1989
+genre: Action
+game: unsquad
+file: unsquad.zip
+assets.box_front: Imgs/unsquad.png
+description: 《unsquad》，由 Daipro (Capcom license) 出品，1989 年发行，CPS1 街机 平台。
+publisher: Daipro (Capcom license)
+release: 1989
+game: varth
+file: varth.zip
+assets.box_front: Imgs/varth.png
+description: 《varth》，由 Capcom 出品，1992 年发行，CPS1 街机 平台。
+publisher: Capcom
+release: 1992
+game: willow
+file: willow.zip
+assets.box_front: Imgs/willow.png
+description: 《willow》，由 Capcom 出品，1989 年发行，CPS1 街机 平台。
+publisher: Capcom
+release: 1989
+game: wofa
+file: wofa.zip
+assets.box_front: Imgs/wofa.png
+description: 《wofa》，由 Capcom 出品，1992 年发行，CPS1 街机 平台。
+publisher: Capcom
+release: 1992
+game: wofj
+file: wofj.zip
+assets.box_front: Imgs/wofj.png
+description: 《wofj》，由 Capcom 出品，1992 年发行，CPS1 街机 平台。
+publisher: Capcom
+release: 1992

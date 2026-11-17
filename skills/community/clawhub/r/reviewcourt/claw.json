@@ -1,0 +1,23 @@
+{
+  "name": "reviewcourt",
+  "version": "1.0.0",
+  "tagline": "Post-meeting requirement verdict from Tencent Meeting transcripts / 需求评审庭：会后原话裁决 + 会议与 PRD 双源核对",
+  "description": "Evidence-backed post-meeting requirement review skill powered by the official Tencent Meeting tmeet CLI. Locates ended review meetings, builds an evidence chain from smart minutes and paragraph transcripts, and outputs a Pass / Conditional Pass / Reject / Insufficient Info verdict with blockers, acceptance criteria drafts, and quote-level citations. Supports dual-source checking against a PRD for omissions and conflicts. Not for general minutes, live listening, auto-outbound actions, PRD rewriting, or people performance evaluation. 基于腾讯会议官方 tmeet CLI 的会后需求评审裁决 Skill：从智能纪要与逐段转写建立证据链，给出通过/有条件通过/驳回/信息不足，并支持会议与 PRD 双源核对。",
+  "category": "productivity",
+  "tags": [
+    "product-management",
+    "prd-review",
+    "requirement-analysis",
+    "meeting-review",
+    "tencent-meeting",
+    "tmeet",
+    "evidence-based",
+    "chinese"
+  ],
+  "license": "MIT",
+  "author": "Chris1Wang3",
+  "pricing": "free",
+  "entry": "SKILL.md",
+  "support_url": "https://github.com/Chris1Wang3/HammerRoom-Skills/issues",
+  "homepage": "https://github.com/Chris1Wang3/HammerRoom-Skills/tree/master/reviewcourt"
+}

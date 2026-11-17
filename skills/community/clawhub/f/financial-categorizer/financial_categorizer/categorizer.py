@@ -136,12 +136,14 @@ class Categorizer:
         if recalculate:
             self.db.recalculate_adjusted_amounts()
 
-    def categorize_new(self) -> dict:
+    def categorize_new(self, auto_close: bool = False) -> dict:
         """Categorize only uncategorized transactions (category_id IS NULL).
 
-        Skips transactions that already have a category (rule or manual).
+        Skips transactions that already have a category (rule or manual). Also automatically
+        links transactions to recurring templates.
 
-        Returns a dict with counts and detail lists: {'matched': int, 'unmatched': int, 'categorized_details': list}
+        Returns a dict with counts and detail lists:
+        {'matched': int, 'unmatched': int, 'categorized_details': list, 'recurring_results': dict}
         """
         cur = self.db.get_cursor()
         cur.execute(
@@ -165,6 +167,11 @@ class Categorizer:
         if matched > 0:
             self.db.commit()
             self.db.recalculate_adjusted_amounts()
+
+        # Link recurring payments
+        from financial_categorizer.recurring import RecurringManager
+        rm = RecurringManager(self.db)
+        rm_results = rm.link_transactions(dry_run=False, auto_close=auto_close)
 
         categorized_details = []
         if uncategorized:
@@ -195,8 +202,10 @@ class Categorizer:
         return {
             "matched": matched,
             "unmatched": len(uncategorized) - matched,
-            "categorized_details": categorized_details
+            "categorized_details": categorized_details,
+            "recurring_results": rm_results
         }
+
 
     def categorize_all(self) -> dict:
         """Re-categorize ALL transactions using current rules.
@@ -400,15 +409,22 @@ class Categorizer:
     #  Queries
     # ------------------------------------------------------------------ #
 
-    def get_uncategorized(self) -> list[dict]:
-        """Return all transactions without a category."""
+    def get_uncategorized(self, non_zero: bool = True) -> list[dict]:
+        """Return all transactions without a category.
+
+        By default zero-adjusted (reimbursed/neutralized) transactions are
+        excluded. Pass ``non_zero=False`` to include them.
+        """
         cur = self.db.get_cursor()
-        cur.execute(
+        sql = (
             "SELECT t.id, t.date, t.description, t.amount, a.name "
             "FROM transactions t JOIN accounts a ON t.account_id = a.id "
             "WHERE t.category_id IS NULL "
-            "ORDER BY t.date DESC"
         )
+        if non_zero:
+            sql += " AND (t.adjusted_amount IS NULL OR t.adjusted_amount != 0)"
+        sql += " ORDER BY t.date DESC"
+        cur.execute(sql)
         return [
             {
                 "id": row[0],
@@ -420,15 +436,23 @@ class Categorizer:
             for row in cur.fetchall()
         ]
 
-    def get_uncategorized_grouped(self, non_zero: bool = False) -> list[dict]:
+    def get_uncategorized_grouped(self, non_zero: bool = True,
+                                  net: bool = False, unsplit: bool = False) -> list[dict]:
         """Group uncategorized transactions by description.
 
         Returns list of dicts with description, count, total, avg_amount,
         account_names, sorted by count descending.
         """
-        sql = """
-            SELECT t.description, COUNT(*) as cnt, ROUND(SUM(t.amount), 2) as total, 
-                   ROUND(AVG(t.amount), 2) as avg_amount, GROUP_CONCAT(DISTINCT a.name) as accounts 
+        if unsplit:
+            amount_expr = "(t.adjusted_amount / a.ownership_ratio)"
+        elif net:
+            amount_expr = "t.adjusted_amount"
+        else:
+            amount_expr = "t.amount"
+
+        sql = f"""
+            SELECT t.description, COUNT(*) as cnt, ROUND(SUM({amount_expr}), 2) as total, 
+                   ROUND(AVG({amount_expr}), 2) as avg_amount, GROUP_CONCAT(DISTINCT a.name) as accounts 
             FROM transactions t JOIN accounts a ON t.account_id = a.id 
             WHERE t.category_id IS NULL
         """

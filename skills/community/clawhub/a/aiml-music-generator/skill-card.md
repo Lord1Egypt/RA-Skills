@@ -1,42 +1,57 @@
-## Description: <br>
-Generates music and songs through AIMLAPI models such as Suno, Udio, Minimax, and ElevenLabs from prompts, lyrics, and style requests. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate high-quality music or songs via AIMLAPI using Suno, Udio, Minimax, and ElevenLabs models for requested lyrics, styles, or soundtracks.
 
-## Publisher: <br>
-[aimlapihello](https://clawhub.ai/user/aimlapihello) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[aimlapihello](https://clawhub.ai/user/aimlapihello)
 
-## Use Case: <br>
-External users and developers use this skill when they want an agent to create instrumental music, songs, or soundtracks with custom prompts, lyrics, model choices, length, and output location. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Music prompts and lyrics are sent to AIMLAPI for generation. <br>
-Mitigation: Avoid submitting confidential prompts, private lyrics, or sensitive project details. <br>
-Risk: AIMLAPI usage may consume quota or incur billing through the configured API key. <br>
-Mitigation: Use a dedicated AIMLAPI key where possible and monitor API usage and billing. <br>
-Risk: Generated audio files are downloaded to a local output directory. <br>
-Mitigation: Save outputs to a normal project or downloads directory and review generated files before reuse. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [AIMLAPI audio generation endpoint](https://api.aimlapi.com/v2) <br>
-- [ClawHub release page](https://clawhub.ai/aimlapihello/aiml-music-generator) <br>
+## Use Case:
 
+External users and developers use this skill to generate instrumental tracks or songs with custom prompts, lyrics, model choices, and length settings through AIMLAPI.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with Python command examples; generated MP3 files from the script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires AIMLAPI_API_KEY and writes generated MP3 files to the configured output directory.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Prompts, lyrics, the AIMLAPI API key, and generated audio are handled through external network calls.
+
+Mitigation: Use the skill only when external AIMLAPI processing is acceptable, avoid private or sensitive text in prompts and lyrics, and keep the API key in the environment.
+
+Risk: API use may create cost exposure during generation and polling.
+
+Mitigation: Use spending limits on the AIMLAPI key and tune polling interval and maximum wait settings for the task.
+
+Risk: Downloaded MP3 files may need review before redistribution or commercial use.
+
+Mitigation: Review generated audio and applicable AIMLAPI or model terms before publishing, sharing, or using it in production content.
+
+## Reference(s):
+
+- [AIML Music Generator on ClawHub](https://clawhub.ai/aimlapihello/skills/aiml-music-generator)
+- [AIMLAPI audio generation API endpoint](https://api.aimlapi.com/v2)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Files, Configuration]
+
+**Output Format:** [Command-line guidance and downloaded MP3 audio files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires AIMLAPI_API_KEY and writes generated music files to the configured output directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

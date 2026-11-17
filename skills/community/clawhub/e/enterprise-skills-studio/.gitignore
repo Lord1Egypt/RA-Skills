@@ -1,0 +1,7 @@
+# Python bytecode
+__pycache__/
+*.py[cod]
+
+# Backups created by update_skill.py
+*.bak/
+.backup/

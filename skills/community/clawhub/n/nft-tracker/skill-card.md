@@ -1,41 +1,54 @@
-## Description: <br>
-Track NFT collection prices, floor prices, and sales data for Ethereum collections including BAYC, MAYC, CryptoPunks, and more. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Track NFT collection prices, floor prices, and sales data. Supports Ethereum collections including BAYC, MAYC, CryptoPunks, and more.
 
-## Publisher: <br>
-[ianalloway](https://clawhub.ai/user/ianalloway) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ianalloway](https://clawhub.ai/user/ianalloway)
 
-## Use Case: <br>
-External users and developers use this skill to get shell commands for checking NFT collection floor prices, volumes, owner counts, floor history, recent sales, and token details from Reservoir and optional OpenSea APIs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Collection slugs, contract addresses, token IDs, and OpenSea authenticated requests may be visible to the relevant API provider. <br>
-Mitigation: Review commands before running them and send only NFT identifiers intended for those API providers. <br>
-Risk: The OPENSEA_API_KEY value can be exposed if pasted into chat, command history, or logs. <br>
-Mitigation: Keep OPENSEA_API_KEY in an environment variable and do not paste the key itself into prompts, scripts, or shared logs. <br>
+## Use Case:
 
+Developers and NFT users use the skill to query OpenSea for collection statistics, metadata, recent sales, and individual token details, and to create a one-shot floor-price alert example.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ianalloway/nft-tracker) <br>
-- [OpenSea API overview](https://docs.opensea.io/reference/api-overview) <br>
-- [OpenSea API keys](https://docs.opensea.io/reference/api-keys) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with bash code blocks, curl commands, and jq filters] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl and jq; OpenSea requests optionally use OPENSEA_API_KEY.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The OpenSea API key is required for most endpoints and could be exposed if handled carelessly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Supply OPENSEA_API_KEY through secure secret storage and avoid printing or sharing its value.
+
+Risk: The price-alert example's response fields and currency units were not runtime-tested, and the example runs only once.
+
+Mitigation: Verify the returned floor-price field and units before relying on alerts; install bc for the example and configure separate scheduling for continuous monitoring.
+
+## Reference(s):
+
+- [OpenSea API overview](https://docs.opensea.io/reference/api-overview)
+- [OpenSea API keys](https://docs.opensea.io/reference/api-keys)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Shell commands, JSON, Guidance]
+
+**Output Format:** [Markdown with inline curl commands and jq filters]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returned fields depend on the selected OpenSea endpoint.]
+
+## Skill Version(s):
+
+0.2.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

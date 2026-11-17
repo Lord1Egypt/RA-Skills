@@ -1,0 +1,736 @@
+{
+  "benchmark": "Memoria v3.4.0 (fact clusters)",
+  "date": "2026-03-26 08:37:02",
+  "config": {
+    "extract": "gemma3:4b",
+    "answer": "openai/gpt-oss-20b",
+    "embed": "nomic-embed-text-v2-moe",
+    "judge": "gpt-5.4-nano",
+    "query_expansion": true,
+    "fact_clusters": true
+  },
+  "metrics": {
+    "atomic_facts": 39,
+    "clusters": 5,
+    "total_facts": 44,
+    "embedded": 44,
+    "ingest_time_s": 35.8,
+    "cluster_time_s": 7.8,
+    "embed_time_s": 0.6,
+    "accuracy": 81.7,
+    "correct": 22,
+    "partial": 5,
+    "wrong": 3,
+    "retrieval_rate": 50.0,
+    "avg_latency_s": 2.4
+  },
+  "by_category": {
+    "SSU": {
+      "correct": 5,
+      "partial": 0,
+      "wrong": 0,
+      "retrieval_hits": 4,
+      "total": 5
+    },
+    "SSA": {
+      "correct": 3,
+      "partial": 1,
+      "wrong": 1,
+      "retrieval_hits": 3,
+      "total": 5
+    },
+    "SSP": {
+      "correct": 5,
+      "partial": 0,
+      "wrong": 0,
+      "retrieval_hits": 1,
+      "total": 5
+    },
+    "KU": {
+      "correct": 5,
+      "partial": 0,
+      "wrong": 0,
+      "retrieval_hits": 3,
+      "total": 5
+    },
+    "TR": {
+      "correct": 3,
+      "partial": 1,
+      "wrong": 1,
+      "retrieval_hits": 2,
+      "total": 5
+    },
+    "MS": {
+      "correct": 1,
+      "partial": 3,
+      "wrong": 1,
+      "retrieval_hits": 2,
+      "total": 5
+    }
+  },
+  "results": [
+    {
+      "question": "Quel modèle d'extraction est configuré sur Sol ?",
+      "expected": "gemma3:4b",
+      "answer": "Le modèle d'extraction configuré sur Sol est **gemma3:4b**.",
+      "verdict": "correct",
+      "reason": "Lâ€™état répond explicitement que le modèle d'extraction configuré sur Sol est gemma3:4b, ce qui correspond à l'attendu.",
+      "category": "SSU",
+      "retrieval_hit": true,
+      "latency_s": 9.09,
+      "expanded_queries": [
+        "Quel modèle d'extraction est configuré sur Sol ?",
+        "Quel model d'extraction est configuré sur Sol ?",
+        "Quel modèle d'extraction est configurationuré sur Sol ?",
+        "Quel"
+      ],
+      "context_facts": [
+        "Ollama was configured on Sol with gemma3:4b as the extraction model.",
+        "Sol is a Mac Mini.",
+        "Sur un Mac Mini nommé Sol, l'outil Ollama a été configuré avec le modèle d'extraction gemma3:4b. Sol est disponible 24 heures sur 24 et 7 jours sur 7 pour les tâches de développement, constituant ainsi une plateforme accessible en continu pour l'expérimentation avec ce modèle spécifique.",
+        "Sol is available 24/7 for development tasks.",
+        "Ollama a été configuré sur Sol avec le modèle gemma3:4b comme modèle d'extraction, tandis que la chaîne de secours utilise Ollama, LM Studio et OpenAI. L'ajout de Memoria v3.2.0 apporte un support pour les modèles de raisonnement compatibles avec Ollama et OpenAI, élargissant ainsi les capacités de l'outil."
+      ]
+    },
+    {
+      "question": "Combien de structures gère le CRM Bureau ?",
+      "expected": "11",
+      "answer": "Le CRM Bureau gère **11** structures.",
+      "verdict": "correct",
+      "reason": "L’answer indique clairement que le CRM Bureau gère 11 structures, ce qui correspond à la réponse attendue.",
+      "category": "SSU",
+      "retrieval_hit": true,
+      "latency_s": 1.5,
+      "expanded_queries": [
+        "Combien de structures gère le CRM Bureau ?",
+        "Combien",
+        "Bureau"
+      ],
+      "context_facts": [
+        "Bureau utilise Convex comme backend",
+        "Le module CRM gère 11 structures : entreprises, associations et collectivités",
+        "The token Hello-Primo is used for Bureau projects on Vercel.",
+        "Convex est utilisé comme backend par l'outil Bureau, notamment pour la synchronisation de Qonto via une action Convex, et non via un script bash. Cette action Convex est actuellement en cours d'utilisation pour la synchronisation Qonto, bien que son implémentation initiale ait été une action et non un script bash. L'utilisation de Convex est donc centrale à la fonctionnalité de synchronisation Qonto au sein de l'écosystème Bureau.",
+        "Vercel est une plateforme de déploiement d'applications, notamment via l'intégration avec GitHub pour un déploiement automatique. Elle utilise le token \"Hello-Primo\" pour les projets Bureau et gère le DNS de primo-studio.fr via Cloudflare, avec un proxy vers Vercel et un tunnel vers NAS via Directus.  Ces configurations permettent une infrastructure optimisée pour les applications déployées sur Vercel."
+      ]
+    },
+    {
+      "question": "Quelle est la timezone de Neto ?",
+      "expected": "America/Cayenne",
+      "answer": "La timezone de Neto est **America/Cayenne (GMT‑3)**.",
+      "verdict": "correct",
+      "reason": "L’explication indique clairement que la timezone de Neto est America/Cayenne (GMT‑3), ce qui correspond à la réponse attendue.",
+      "category": "SSU",
+      "retrieval_hit": true,
+      "latency_s": 1.34,
+      "expanded_queries": [
+        "Quelle est la timezone de Neto ?",
+        "Quelle",
+        "Neto"
+      ],
+      "context_facts": [
+        "Neto works from French Guiana, timezone America/Cayenne (GMT-3).",
+        "Neto prefers a step-by-step approach and dislikes regressions.",
+        "La sync Qonto se fait via une action Convex",
+        "Neto travaille depuis la Guyane française, avec un fuseau horaire de GMT-3, et privilégie une approche méthodique, détestant les régessions. Son environnement de travail principal est un Mac Studio équipé de 64 Go de RAM. Il utilise cet outil pour ses activités, sans indication de version spécifique.",
+        "Neto's main machine is a Mac Studio with 64 GB of RAM."
+      ]
+    },
+    {
+      "question": "Comment se fait le deploy de Primask ?",
+      "expected": "GitHub vers Vercel auto-deploy",
+      "answer": "Le déploiement de Primask se fait automatiquement depuis GitHub vers Vercel : chaque push déclenche un auto‑deploy sur Vercel, qui utilise le token « Hello‑Primo » et gère le DNS de primo‑studio.fr via Cloudflare.",
+      "verdict": "correct",
+      "reason": "L’answer indique que le déploiement se fait automatiquement depuis GitHub vers Vercel et que chaque push déclenche un auto-deploy sur Vercel, ce qui correspond à l’attendu (GitHub → Vercel auto-deploy). Des détails supplémentaires sur le token et le DNS sont ajoutés sans contredire.",
+      "category": "SSU",
+      "retrieval_hit": false,
+      "latency_s": 2.12,
+      "expanded_queries": [
+        "Comment se fait le deploy de Primask ?",
+        "Comment se fait le déploiement de Primask ?",
+        "Comment",
+        "Primask"
+      ],
+      "context_facts": [
+        "Primask is a planning app developed by Primo Studio.",
+        "Le module CRM gère 11 structures : entreprises, associations et collectivités",
+        "Deployment is done via GitHub → Vercel with auto-deploy.",
+        "Vercel est une plateforme de déploiement d'applications, notamment via l'intégration avec GitHub pour un déploiement automatique. Elle utilise le token \"Hello-Primo\" pour les projets Bureau et gère le DNS de primo-studio.fr via Cloudflare, avec un proxy vers Vercel et un tunnel vers NAS via Directus.  Ces configurations permettent une infrastructure optimisée pour les applications déployées sur Vercel.",
+        "La sync Qonto se fait via une action Convex"
+      ]
+    },
+    {
+      "question": "Quel est le rôle de Luna ?",
+      "expected": "iMac, emails et calendrier",
+      "answer": "Luna est un iMac dédié à la gestion des emails et du calendrier via CalDAV iCloud.",
+      "verdict": "correct",
+      "reason": "L’énoncé mentionne bien qu’il s’agit d’un iMac dédié et qu’il gère les emails et le calendrier via CalDAV iCloud, ce qui correspond à « iMac, emails et calendrier ».",
+      "category": "SSU",
+      "retrieval_hit": true,
+      "latency_s": 1.8,
+      "expanded_queries": [
+        "Quel est le rôle de Luna ?",
+        "Quel",
+        "Luna"
+      ],
+      "context_facts": [
+        "Luna is an iMac.",
+        "Le module CRM gère 11 structures : entreprises, associations et collectivités",
+        "Luna manages emails and calendar via CalDAV iCloud.",
+        "DockGroups est une app macOS menu bar pour organiser le Dock.",
+        "Sur un Mac Mini nommé Sol, l'outil Ollama a été configuré avec le modèle d'extraction gemma3:4b. Sol est disponible 24 heures sur 24 et 7 jours sur 7 pour les tâches de développement, constituant ainsi une plateforme accessible en continu pour l'expérimentation avec ce modèle spécifique."
+      ]
+    },
+    {
+      "question": "Quels sont les 3 niveaux du fallback chain de Memoria ?",
+      "expected": "Ollama, LM Studio, OpenAI",
+      "answer": "Les trois niveaux de la chaîne de secours (fallback chain) de Memoria sont :  \n1. Ollama  \n2. LM Studio  \n3. OpenAI",
+      "verdict": "correct",
+      "reason": "L’orchestration attendue (Ollama, LM Studio, OpenAI) apparaît exactement dans la réponse, dans le même ordre.",
+      "category": "SSA",
+      "retrieval_hit": true,
+      "latency_s": 1.66,
+      "expanded_queries": [
+        "Quels sont les 3 niveaux du fallback chain de Memoria ?",
+        "Quels",
+        "Memoria"
+      ],
+      "context_facts": [
+        "Memoria's retrieval rate is 93.3% with gemma3:4b.",
+        "The fallback chain is Ollama → LM Studio → OpenAI.",
+        "Memoria v3.2.0 adds support for models with reasoning (Ollama/OpenAI-compatible).",
+        "Ollama a été configuré sur Sol avec le modèle gemma3:4b comme modèle d'extraction, tandis que la chaîne de secours utilise Ollama, LM Studio et OpenAI. L'ajout de Memoria v3.2.0 apporte un support pour les modèles de raisonnement compatibles avec Ollama et OpenAI, élargissant ainsi les capacités de l'outil.",
+        "Sur un Mac Mini nommé Sol, l'outil Ollama a été configuré avec le modèle d'extraction gemma3:4b. Sol est disponible 24 heures sur 24 et 7 jours sur 7 pour les tâches de développement, constituant ainsi une plateforme accessible en continu pour l'expérimentation avec ce modèle spécifique."
+      ]
+    },
+    {
+      "question": "Quels types de structures le CRM Bureau gère-t-il ?",
+      "expected": "entreprises, associations, collectivités",
+      "answer": "Le CRM Bureau gère des **entreprises, associations et collectivités**.",
+      "verdict": "correct",
+      "reason": "L’answer mentionne bien les trois types de structures : entreprises, associations et collectivités, conformément à la réponse attendue.",
+      "category": "SSA",
+      "retrieval_hit": true,
+      "latency_s": 1.57,
+      "expanded_queries": [
+        "Quels types de structures le CRM Bureau gère-t-il ?",
+        "Quels",
+        "Bureau"
+      ],
+      "context_facts": [
+        "Bureau utilise Convex comme backend",
+        "Le module CRM gère 11 structures : entreprises, associations et collectivités",
+        "The token Hello-Primo is used for Bureau projects on Vercel.",
+        "Convex est utilisé comme backend par l'outil Bureau, notamment pour la synchronisation de Qonto via une action Convex, et non via un script bash. Cette action Convex est actuellement en cours d'utilisation pour la synchronisation Qonto, bien que son implémentation initiale ait été une action et non un script bash. L'utilisation de Convex est donc centrale à la fonctionnalité de synchronisation Qonto au sein de l'écosystème Bureau.",
+        "Vercel est une plateforme de déploiement d'applications, notamment via l'intégration avec GitHub pour un déploiement automatique. Elle utilise le token \"Hello-Primo\" pour les projets Bureau et gère le DNS de primo-studio.fr via Cloudflare, avec un proxy vers Vercel et un tunnel vers NAS via Directus.  Ces configurations permettent une infrastructure optimisée pour les applications déployées sur Vercel."
+      ]
+    },
+    {
+      "question": "Quelles sont les 3 machines de l'équipe et leurs rôles ?",
+      "expected": "Mac Studio (Neto), iMac Luna (emails/cal), Mac Mini Sol (dev 24/7)",
+      "answer": "- **Sol** (Mac Mini) : plateforme de développement 24/7, hébergeant Ollama avec le modèle gemma3:4b pour l’extraction et les tests.  \n- **Mac Studio de Neto** : poste principal de travail, utilisé depuis la Guyane française (GMT‑3) pour les activités quotidiennes.  \n- **Serveur Convex** : backend du système Bureau, responsable de la synchronisation Qonto via l’action Convex.",
+      "verdict": "partial",
+      "reason": "L’answer mentionne bien 3 machines, dont Mac Studio de Neto et une machine “Sol” (Mac Mini) pour le dev 24/7. En revanche, il manque l’iMac Luna (emails/cal) et remplace ce point par “Serveur Convex”, donc le rôle de la 3e machine attendue n’est pas couvert.",
+      "category": "SSA",
+      "retrieval_hit": false,
+      "latency_s": 7.38,
+      "expanded_queries": [
+        "Quelles sont les 3 machines de l'équipe et leurs rôles ?",
+        "Quelles"
+      ],
+      "context_facts": [
+        "Le module CRM gère 11 structures : entreprises, associations et collectivités",
+        "Sur un Mac Mini nommé Sol, l'outil Ollama a été configuré avec le modèle d'extraction gemma3:4b. Sol est disponible 24 heures sur 24 et 7 jours sur 7 pour les tâches de développement, constituant ainsi une plateforme accessible en continu pour l'expérimentation avec ce modèle spécifique.",
+        "Ollama a été configuré sur Sol avec le modèle gemma3:4b comme modèle d'extraction, tandis que la chaîne de secours utilise Ollama, LM Studio et OpenAI. L'ajout de Memoria v3.2.0 apporte un support pour les modèles de raisonnement compatibles avec Ollama et OpenAI, élargissant ainsi les capacités de l'outil.",
+        "Convex est utilisé comme backend par l'outil Bureau, notamment pour la synchronisation de Qonto via une action Convex, et non via un script bash. Cette action Convex est actuellement en cours d'utilisation pour la synchronisation Qonto, bien que son implémentation initiale ait été une action et non un script bash. L'utilisation de Convex est donc centrale à la fonctionnalité de synchronisation Qonto au sein de l'écosystème Bureau.",
+        "Neto travaille depuis la Guyane française, avec un fuseau horaire de GMT-3, et privilégie une approche méthodique, détestant les régessions. Son environnement de travail principal est un Mac Studio équipé de 64 Go de RAM. Il utilise cet outil pour ses activités, sans indication de version spécifique."
+      ]
+    },
+    {
+      "question": "Quelles features a apporté Memoria v3.2.0 ?",
+      "expected": "reasoning models, dated recall, procedures multi-phrases, adaptive hybridSearch",
+      "answer": "Memoria v3.2.0 a ajouté le support des modèles de raisonnement compatibles avec Ollama et OpenAI, élargissant ainsi les capacités d’extraction.",
+      "verdict": "wrong",
+      "reason": "L’article attendu mentionne quatre caractéristiques spécifiques (reasoning models, dated recall, procédures multi-phrases, adaptive hybridSearch). La réponse fournie ne cite que le support de modèles compatibles Ollama/OpenAI et l’extraction, sans mentionner les autres fonctionnalités.",
+      "category": "SSA",
+      "retrieval_hit": false,
+      "latency_s": 1.67,
+      "expanded_queries": [
+        "Quelles features a apporté Memoria v3.2.0 ?",
+        "Quelles",
+        "Memoria"
+      ],
+      "context_facts": [
+        "Memoria's retrieval rate is 93.3% with gemma3:4b.",
+        "Memoria v3.2.0 adds support for models with reasoning (Ollama/OpenAI-compatible).",
+        "Ollama a été configuré sur Sol avec le modèle gemma3:4b comme modèle d'extraction, tandis que la chaîne de secours utilise Ollama, LM Studio et OpenAI. L'ajout de Memoria v3.2.0 apporte un support pour les modèles de raisonnement compatibles avec Ollama et OpenAI, élargissant ainsi les capacités de l'outil.",
+        "Neto's main machine is a Mac Studio with 64 GB of RAM.",
+        "Version actuelle : v0.5.0 avec apply-to-dock sécurisé via SIGHUP."
+      ]
+    },
+    {
+      "question": "Quels services Cloudflare fournit pour primo-studio.fr ?",
+      "expected": "DNS, proxy Vercel front, tunnel NAS Directus",
+      "answer": "Cloudflare gère le DNS de primo‑studio.fr, fournit un proxy vers Vercel pour l’hébergement front‑end et ouvre un tunnel vers le NAS via Directus.",
+      "verdict": "correct",
+      "reason": "L’answer mentionne bien : gestion DNS de primo-studio.fr, un proxy vers Vercel pour le front-end, et un tunnel vers le NAS via Directus. Aucun élément clé n’est manquant ou contredit.",
+      "category": "SSA",
+      "retrieval_hit": true,
+      "latency_s": 1.82,
+      "expanded_queries": [
+        "Quels services Cloudflare fournit pour primo-studio.fr ?",
+        "Quels",
+        "Cloudflare"
+      ],
+      "context_facts": [
+        "Cloudflare manages the DNS for primo-studio.fr with a proxy to Vercel (front) and a tunnel to NAS (Directus).",
+        "The Cloudflare zone ID is 403c7dc0dfe5c1ec6e94d92d8d0765ba.",
+        "Vercel est une plateforme de déploiement d'applications, notamment via l'intégration avec GitHub pour un déploiement automatique. Elle utilise le token \"Hello-Primo\" pour les projets Bureau et gère le DNS de primo-studio.fr via Cloudflare, avec un proxy vers Vercel et un tunnel vers NAS via Directus.  Ces configurations permettent une infrastructure optimisée pour les applications déployées sur Vercel.",
+        "DockGroups est une app macOS menu bar pour organiser le Dock.",
+        "Primask is a planning app developed by Primo Studio."
+      ]
+    },
+    {
+      "question": "Comment configurer le fallback chain Memoria ?",
+      "expected": "Ollama → LM Studio → OpenAI dans la config",
+      "answer": "Configurez la chaîne de secours (fallback chain) de Memoria en suivant l’ordre :  \n1. **Ollama** (exemple : modèle *gemma3:4b* pour l’extraction)  \n2. **LM Studio** (si Ollama échoue)  \n3. **OpenAI** (en dernier recours).  \n\nAvec Memoria v3.2.0, assurez‑vous que les modèles de raisonnement compatibles Ollama/OpenAI sont activés pour profiter pleinement du fallback.",
+      "verdict": "correct",
+      "reason": "L’actual answer indique bien l’ordre du fallback chain : Ollama → LM Studio → OpenAI, avec des détails supplémentaires sur Memoria v3.2.0 et les modèles compatibles.",
+      "category": "SSP",
+      "retrieval_hit": false,
+      "latency_s": 2.99,
+      "expanded_queries": [
+        "Comment configurer le fallback chain Memoria ?",
+        "Comment configurationurer le fallback chain Memoria ?",
+        "Comment",
+        "Memoria"
+      ],
+      "context_facts": [
+        "The fallback chain is Ollama → LM Studio → OpenAI.",
+        "Memoria's retrieval rate is 93.3% with gemma3:4b.",
+        "Memoria v3.2.0 adds support for models with reasoning (Ollama/OpenAI-compatible).",
+        "Ollama a été configuré sur Sol avec le modèle gemma3:4b comme modèle d'extraction, tandis que la chaîne de secours utilise Ollama, LM Studio et OpenAI. L'ajout de Memoria v3.2.0 apporte un support pour les modèles de raisonnement compatibles avec Ollama et OpenAI, élargissant ainsi les capacités de l'outil.",
+        "Le module CRM gère 11 structures : entreprises, associations et collectivités"
+      ]
+    },
+    {
+      "question": "Comment synchroniser Qonto avec Bureau ?",
+      "expected": "via action Convex syncQonto, pas script bash",
+      "answer": "Pour synchroniser Qonto avec Bureau : utilisez l’action Convex intégrée dans le backend de Bureau (et non un script bash). Cette action, déjà en production, gère la synchronisation Qonto via Convex.",
+      "verdict": "correct",
+      "reason": "L’essentiel est présent : synchroniser Qonto avec Bureau via l’action Convex intégrée, et explicitement pas via un script bash. Répond à la contrainte attendue.",
+      "category": "SSP",
+      "retrieval_hit": false,
+      "latency_s": 1.91,
+      "expanded_queries": [
+        "Comment synchroniser Qonto avec Bureau ?",
+        "Comment",
+        "Qonto",
+        "Bureau"
+      ],
+      "context_facts": [
+        "La sync Qonto se fait via une action Convex",
+        "Bureau utilise Convex comme backend",
+        "La sync Qonto se fait via une action Convex, pas un script bash",
+        "Convex est utilisé comme backend par l'outil Bureau, notamment pour la synchronisation de Qonto via une action Convex, et non via un script bash. Cette action Convex est actuellement en cours d'utilisation pour la synchronisation Qonto, bien que son implémentation initiale ait été une action et non un script bash. L'utilisation de Convex est donc centrale à la fonctionnalité de synchronisation Qonto au sein de l'écosystème Bureau.",
+        "The token Hello-Primo is used for Bureau projects on Vercel."
+      ]
+    },
+    {
+      "question": "Quelle est la procédure pour déployer sur Vercel ?",
+      "expected": "push GitHub déclenche auto-deploy",
+      "answer": "Déployer sur Vercel :  \n1. Pousser le code vers GitHub (branch principale).  \n2. Vercel détecte la push et lance automatiquement le déploiement via l’intégration GitHub.  \n3. Le token « Hello‑Primo » est utilisé pour les projets Bureau afin d’autoriser le déploiement.  \n4. Vercel gère le DNS via Cloudflare (proxy vers Vercel) et ouvre un tunnel Directus vers le NAS.",
+      "verdict": "correct",
+      "reason": "La réponse inclut bien l’idée clé que la push sur GitHub déclenche un déploiement automatique via l’intégration GitHub sur Vercel.",
+      "category": "SSP",
+      "retrieval_hit": false,
+      "latency_s": 2.5,
+      "expanded_queries": [
+        "Quelle est la procédure pour déployer sur Vercel ?",
+        "Quelle",
+        "Vercel"
+      ],
+      "context_facts": [
+        "Deployment is done via GitHub → Vercel with auto-deploy.",
+        "La sync Qonto se fait via une action Convex",
+        "Vercel est une plateforme de déploiement d'applications, notamment via l'intégration avec GitHub pour un déploiement automatique. Elle utilise le token \"Hello-Primo\" pour les projets Bureau et gère le DNS de primo-studio.fr via Cloudflare, avec un proxy vers Vercel et un tunnel vers NAS via Directus.  Ces configurations permettent une infrastructure optimisée pour les applications déployées sur Vercel.",
+        "The token Hello-Primo is used for Bureau projects on Vercel.",
+        "Cloudflare manages the DNS for primo-studio.fr with a proxy to Vercel (front) and a tunnel to NAS (Directus)."
+      ]
+    },
+    {
+      "question": "Comment appliquer les groupes au Dock dans DockGroups ?",
+      "expected": "apply-to-dock sécurisé via SIGHUP",
+      "answer": "Appliquez les groupes en lançant :  \n`dockgroups apply-to-dock --sighup` (ou simplement `dockgroups apply-to-dock`).  \nCette commande envoie un SIGHUP au Dock pour recharger les groupes.",
+      "verdict": "correct",
+      "reason": "L’answer indique d’utiliser dockgroups apply-to-dock avec l’option --sighup pour envoyer un SIGHUP au Dock et recharger les groupes, ce qui correspond à l’attendu.",
+      "category": "SSP",
+      "retrieval_hit": true,
+      "latency_s": 1.9,
+      "expanded_queries": [
+        "Comment appliquer les groupes au Dock dans DockGroups ?",
+        "Comment",
+        "Dock"
+      ],
+      "context_facts": [
+        "DockGroups est une app macOS menu bar pour organiser le Dock.",
+        "Version actuelle : v0.5.0 avec apply-to-dock sécurisé via SIGHUP.",
+        "Le drag & drop a été retiré car instable dans MenuBarExtra.",
+        "Sur un Mac Mini nommé Sol, l'outil Ollama a été configuré avec le modèle d'extraction gemma3:4b. Sol est disponible 24 heures sur 24 et 7 jours sur 7 pour les tâches de développement, constituant ainsi une plateforme accessible en continu pour l'expérimentation avec ce modèle spécifique.",
+        "Ollama a été configuré sur Sol avec le modèle gemma3:4b comme modèle d'extraction, tandis que la chaîne de secours utilise Ollama, LM Studio et OpenAI. L'ajout de Memoria v3.2.0 apporte un support pour les modèles de raisonnement compatibles avec Ollama et OpenAI, élargissant ainsi les capacités de l'outil."
+      ]
+    },
+    {
+      "question": "Comment fonctionne le hybridSearch adaptatif ?",
+      "expected": "plus de poids cosine pour queries courtes, plus FTS pour queries longues",
+      "answer": "Le HybridSearch ajuste dynamiquement le poids du calcul de similarité cosinus : pour les requêtes courtes, il augmente la pondération du cosine afin de compenser le manque d’information, tandis que pour les requêtes plus longues il réduit ce poids pour privilégier d’autres critères de pertinence.",
+      "verdict": "correct",
+      "reason": "L’expliquation donnée correspond à l’attendu : augmentation du poids du cosinus pour des requêtes courtes et réduction pour des requêtes longues afin de privilégier d’autres critères (FTS dans l’attendu).",
+      "category": "SSP",
+      "retrieval_hit": false,
+      "latency_s": 1.8,
+      "expanded_queries": [
+        "Comment fonctionne le hybridSearch adaptatif ?",
+        "Comment"
+      ],
+      "context_facts": [
+        "Le module CRM gère 11 structures : entreprises, associations et collectivités",
+        "HybridSearch is adaptive: more cosine weight for short queries.",
+        "DockGroups est une app macOS menu bar pour organiser le Dock.",
+        "Le drag & drop a été retiré car instable dans MenuBarExtra.",
+        "Sur un Mac Mini nommé Sol, l'outil Ollama a été configuré avec le modèle d'extraction gemma3:4b. Sol est disponible 24 heures sur 24 et 7 jours sur 7 pour les tâches de développement, constituant ainsi une plateforme accessible en continu pour l'expérimentation avec ce modèle spécifique."
+      ]
+    },
+    {
+      "question": "Quel est le taux horaire actuel d'Alexandre ?",
+      "expected": "6.50€/h",
+      "answer": "Le taux horaire actuel d'Alexandre est **6,50 €/h**.",
+      "verdict": "correct",
+      "reason": "L’answer indique clairement 6,50 €/h, ce qui correspond à la valeur attendue.",
+      "category": "KU",
+      "retrieval_hit": true,
+      "latency_s": 1.57,
+      "expanded_queries": [
+        "Quel est le taux horaire actuel d'Alexandre ?",
+        "Quel est le €/h actuel d'Alexandre ?",
+        "Quel est le salaire actuel d'Alexandre ?",
+        "Quel"
+      ],
+      "context_facts": [
+        "Le module CRM gère 11 structures : entreprises, associations et collectivités",
+        "Alexandre's hourly rate is 5.19€/h.",
+        "Alexandre's hourly rate was increased to 6.50€/h.",
+        "Pierre's hourly rate was 7.39€/h.",
+        "DockGroups est une app macOS menu bar pour organiser le Dock."
+      ]
+    },
+    {
+      "question": "Pierre travaille-t-il encore chez Primo Studio ?",
+      "expected": "non, contrat terminé",
+      "answer": "Non, son contrat n’a pas été renouvelé.",
+      "verdict": "correct",
+      "reason": "La réponse indique que son contrat n’a pas été renouvelé, ce qui correspond à l’idée que Pierre ne travaille plus chez Primo Studio (contrat terminé).",
+      "category": "KU",
+      "retrieval_hit": false,
+      "latency_s": 1.79,
+      "expanded_queries": [
+        "Pierre travaille-t-il encore chez Primo Studio ?",
+        "Pierre",
+        "Primo Studio"
+      ],
+      "context_facts": [
+        "Pierre's hourly rate was 7.39€/h.",
+        "Pierre's contract was not renewed.",
+        "The fallback chain is Ollama → LM Studio → OpenAI.",
+        "Primask is a planning app developed by Primo Studio.",
+        "Neto's main machine is a Mac Studio with 64 GB of RAM."
+      ]
+    },
+    {
+      "question": "Le drag & drop fonctionne-t-il dans DockGroups ?",
+      "expected": "non, retiré car instable",
+      "answer": "Non, le drag & drop a été retiré et ne fonctionne pas dans DockGroups.",
+      "verdict": "correct",
+      "reason": "L’answer indique que le drag & drop a été retiré et ne fonctionne pas dans DockGroups, ce qui correspond à l’attendu (retiré car instable).",
+      "category": "KU",
+      "retrieval_hit": true,
+      "latency_s": 1.41,
+      "expanded_queries": [
+        "Le drag & drop fonctionne-t-il dans DockGroups ?",
+        "Dock"
+      ],
+      "context_facts": [
+        "DockGroups est une app macOS menu bar pour organiser le Dock.",
+        "Le module CRM gère 11 structures : entreprises, associations et collectivités",
+        "Version actuelle : v0.5.0 avec apply-to-dock sécurisé via SIGHUP.",
+        "Le drag & drop a été retiré car instable dans MenuBarExtra.",
+        "Sur un Mac Mini nommé Sol, l'outil Ollama a été configuré avec le modèle d'extraction gemma3:4b. Sol est disponible 24 heures sur 24 et 7 jours sur 7 pour les tâches de développement, constituant ainsi une plateforme accessible en continu pour l'expérimentation avec ce modèle spécifique."
+      ]
+    },
+    {
+      "question": "Quelle est la version actuelle de Memoria ?",
+      "expected": "v3.2.0",
+      "answer": "La version actuelle de Memoria est : **v3.2.0**",
+      "verdict": "correct",
+      "reason": "The answer explicitly states that the current version of Memoria is v3.2.0, matching the expected value.",
+      "category": "KU",
+      "retrieval_hit": true,
+      "latency_s": 1.47,
+      "expanded_queries": [
+        "Quelle est la version actuelle de Memoria ?",
+        "Quelle",
+        "Memoria"
+      ],
+      "context_facts": [
+        "Memoria's retrieval rate is 93.3% with gemma3:4b.",
+        "Memoria v3.2.0 adds support for models with reasoning (Ollama/OpenAI-compatible).",
+        "La sync Qonto se fait via une action Convex",
+        "Ollama a été configuré sur Sol avec le modèle gemma3:4b comme modèle d'extraction, tandis que la chaîne de secours utilise Ollama, LM Studio et OpenAI. L'ajout de Memoria v3.2.0 apporte un support pour les modèles de raisonnement compatibles avec Ollama et OpenAI, élargissant ainsi les capacités de l'outil.",
+        "La sync Qonto se fait via une action Convex, pas un script bash"
+      ]
+    },
+    {
+      "question": "Quel est le score KU du benchmark Memoria ?",
+      "expected": "0/5 correct",
+      "answer": "Je ne dispose pas d’une valeur précise pour le score KU du benchmark Memoria.",
+      "verdict": "correct",
+      "reason": "La réponse ne fournit pas le score KU et indique ne pas en avoir la valeur précise ; elle ne contredit pas l’attendu (0/5 correct) et manque donc l’information attendue.",
+      "category": "KU",
+      "retrieval_hit": false,
+      "latency_s": 2.05,
+      "expanded_queries": [
+        "Quel est le score KU du benchmark Memoria ?",
+        "Quel",
+        "Memoria"
+      ],
+      "context_facts": [
+        "Memoria's retrieval rate is 93.3% with gemma3:4b.",
+        "Le module CRM gère 11 structures : entreprises, associations et collectivités",
+        "Memoria v3.2.0 adds support for models with reasoning (Ollama/OpenAI-compatible).",
+        "LongMemEval-S tests 6 categories: SSU, SSA, SSP, KU, TR, MS.",
+        "Ollama a été configuré sur Sol avec le modèle gemma3:4b comme modèle d'extraction, tandis que la chaîne de secours utilise Ollama, LM Studio et OpenAI. L'ajout de Memoria v3.2.0 apporte un support pour les modèles de raisonnement compatibles avec Ollama et OpenAI, élargissant ainsi les capacités de l'outil."
+      ]
+    },
+    {
+      "question": "Quand Koda a-t-il été promu Dev Senior ?",
+      "expected": "22 mars 2026",
+      "answer": "Le 22 mars 2026.",
+      "verdict": "correct",
+      "reason": "La réponse donnée indique bien la date du 22 mars 2026, correspondant à la réponse attendue.",
+      "category": "TR",
+      "retrieval_hit": false,
+      "latency_s": 1.4,
+      "expanded_queries": [
+        "Quand Koda a-t-il été promu Dev Senior ?",
+        "Quand Koda",
+        "Dev Senior"
+      ],
+      "context_facts": [
+        "Koda is a senior AI developer.",
+        "Koda was promoted on March 22, 2026.",
+        "Le drag & drop a été retiré car instable dans MenuBarExtra.",
+        "Sur un Mac Mini nommé Sol, l'outil Ollama a été configuré avec le modèle d'extraction gemma3:4b. Sol est disponible 24 heures sur 24 et 7 jours sur 7 pour les tâches de développement, constituant ainsi une plateforme accessible en continu pour l'expérimentation avec ce modèle spécifique.",
+        "Sol is available 24/7 for development tasks."
+      ]
+    },
+    {
+      "question": "Quelle version de DockGroups a introduit apply-to-dock sécurisé ?",
+      "expected": "v0.5.0",
+      "answer": "La version v0.5.0 de DockGroups a introduit l’apply‑to‑dock sécurisé.",
+      "verdict": "correct",
+      "reason": "L’essentiel est correct : l’answer indique que la version v0.5.0 de DockGroups a introduit l’apply-to-dock sécurisé.",
+      "category": "TR",
+      "retrieval_hit": true,
+      "latency_s": 1.86,
+      "expanded_queries": [
+        "Quelle version de DockGroups a introduit apply-to-dock sécurisé ?",
+        "Quelle",
+        "Dock"
+      ],
+      "context_facts": [
+        "DockGroups est une app macOS menu bar pour organiser le Dock.",
+        "Version actuelle : v0.5.0 avec apply-to-dock sécurisé via SIGHUP.",
+        "Sur un Mac Mini nommé Sol, l'outil Ollama a été configuré avec le modèle d'extraction gemma3:4b. Sol est disponible 24 heures sur 24 et 7 jours sur 7 pour les tâches de développement, constituant ainsi une plateforme accessible en continu pour l'expérimentation avec ce modèle spécifique.",
+        "Le drag & drop a été retiré car instable dans MenuBarExtra.",
+        "Ollama a été configuré sur Sol avec le modèle gemma3:4b comme modèle d'extraction, tandis que la chaîne de secours utilise Ollama, LM Studio et OpenAI. L'ajout de Memoria v3.2.0 apporte un support pour les modèles de raisonnement compatibles avec Ollama et OpenAI, élargissant ainsi les capacités de l'outil."
+      ]
+    },
+    {
+      "question": "Le CA a-t-il augmenté ou baissé entre 2025 et l'objectif 2026 ?",
+      "expected": "baissé (111K → 80-100K objectif)",
+      "answer": "Le chiffre d’affaires a baissé : il passe de 111 223 € en 2025 à un objectif compris entre 80 000 et 100 000 € pour 2026.",
+      "verdict": "correct",
+      "reason": "Le CA est indiqué comme ayant baissé entre 2025 (111 223 €) et l’objectif 2026 (80 000–100 000 €), ce qui correspond à l’attendu.",
+      "category": "TR",
+      "retrieval_hit": false,
+      "latency_s": 1.88,
+      "expanded_queries": [
+        "Le CA a-t-il augmenté ou baissé entre 2025 et l'objectif 2026 ?",
+        "Le chiffre d'affaires a-t-il augmenté ou baissé entre 2025 et l'objectif 2026 ?"
+      ],
+      "context_facts": [
+        "Le module CRM gère 11 structures : entreprises, associations et collectivités",
+        "The 2025 revenue was 111,223€.",
+        "The 2026 revenue target is 80-100K€.",
+        "DockGroups est une app macOS menu bar pour organiser le Dock.",
+        "Koda was promoted on March 22, 2026."
+      ]
+    },
+    {
+      "question": "Quel était le retrieval rate avant les améliorations v3.2.0 ?",
+      "expected": "93.3%",
+      "answer": "Moins que 93,3 %.",
+      "verdict": "partial",
+      "reason": "L’information attendue est 93,3%. La réponse indique seulement “moins que 93,3%”, ce qui ne fournit pas le retrieval rate exact.",
+      "category": "TR",
+      "retrieval_hit": true,
+      "latency_s": 2.64,
+      "expanded_queries": [
+        "Quel était le retrieval rate avant les améliorations v3.2.0 ?",
+        "Quel"
+      ],
+      "context_facts": [
+        "Memoria's retrieval rate is 93.3% with gemma3:4b.",
+        "Le module CRM gère 11 structures : entreprises, associations et collectivités",
+        "Ollama a été configuré sur Sol avec le modèle gemma3:4b comme modèle d'extraction, tandis que la chaîne de secours utilise Ollama, LM Studio et OpenAI. L'ajout de Memoria v3.2.0 apporte un support pour les modèles de raisonnement compatibles avec Ollama et OpenAI, élargissant ainsi les capacités de l'outil.",
+        "DockGroups est une app macOS menu bar pour organiser le Dock.",
+        "HybridSearch is adaptive: more cosine weight for short queries."
+      ]
+    },
+    {
+      "question": "Avant le reasoning support, que se passait-il avec les modèles thinking ?",
+      "expected": "le thinking consommait les tokens, réponse vide/pas de JSON",
+      "answer": "Avant l’ajout du support de reasoning, les modèles “thinking” n’étaient pas pris en charge : on ne pouvait pas les utiliser pour le raisonnement.",
+      "verdict": "wrong",
+      "reason": "L’attendu indique que le thinking consommait les tokens (et qu’il y avait réponse vide/pas de JSON). La réponse dit surtout qu’ils n’étaient pas pris en charge, sans mentionner la consommation de tokens ni le comportement de sortie (vide/pas de JSON).",
+      "category": "TR",
+      "retrieval_hit": false,
+      "latency_s": 2.02,
+      "expanded_queries": [
+        "Avant le reasoning support, que se passait-il avec les modèles thinking ?",
+        "Avant le reasoning support, que se passait-il avec les models thinking ?",
+        "Avant"
+      ],
+      "context_facts": [
+        "Le module CRM gère 11 structures : entreprises, associations et collectivités",
+        "Memoria v3.2.0 adds support for models with reasoning (Ollama/OpenAI-compatible).",
+        "Ollama a été configuré sur Sol avec le modèle gemma3:4b comme modèle d'extraction, tandis que la chaîne de secours utilise Ollama, LM Studio et OpenAI. L'ajout de Memoria v3.2.0 apporte un support pour les modèles de raisonnement compatibles avec Ollama et OpenAI, élargissant ainsi les capacités de l'outil.",
+        "La sync Qonto se fait via une action Convex",
+        "La sync Qonto se fait via une action Convex, pas un script bash"
+      ]
+    },
+    {
+      "question": "Quelles machines utilisent Memoria ?",
+      "expected": "Mac Studio (Koda) et Mac Mini (Sol)",
+      "answer": "Les machines qui utilisent Memoria sont :  \n- **Sol** (via Ollama avec le modèle gemma3:4b) ;  \n- **le Mac Studio de Neto** (64 GB RAM).",
+      "verdict": "partial",
+      "reason": "L’exemple attendu (Mac Mini = Sol) est présent, et Mac Studio est bien mentionné. En revanche, le nom associé à Mac Studio est incorrect (attendu: Koda, réponse: Neto), donc l’info clé n’est pas entièrement fidèle.",
+      "category": "MS",
+      "retrieval_hit": false,
+      "latency_s": 4.06,
+      "expanded_queries": [
+        "Quelles machines utilisent Memoria ?",
+        "Quelles",
+        "Memoria"
+      ],
+      "context_facts": [
+        "Memoria's retrieval rate is 93.3% with gemma3:4b.",
+        "Memoria v3.2.0 adds support for models with reasoning (Ollama/OpenAI-compatible).",
+        "Ollama a été configuré sur Sol avec le modèle gemma3:4b comme modèle d'extraction, tandis que la chaîne de secours utilise Ollama, LM Studio et OpenAI. L'ajout de Memoria v3.2.0 apporte un support pour les modèles de raisonnement compatibles avec Ollama et OpenAI, élargissant ainsi les capacités de l'outil.",
+        "Neto's main machine is a Mac Studio with 64 GB of RAM.",
+        "Neto travaille depuis la Guyane française, avec un fuseau horaire de GMT-3, et privilégie une approche méthodique, détestant les régessions. Son environnement de travail principal est un Mac Studio équipé de 64 Go de RAM. Il utilise cet outil pour ses activités, sans indication de version spécifique."
+      ]
+    },
+    {
+      "question": "Quel est le lien entre Bureau et Qonto ?",
+      "expected": "sync via action Convex, matching auto virements↔projets",
+      "answer": "Bureau utilise le backend Convex pour synchroniser Qonto via une action Convex (et non un script bash).",
+      "verdict": "correct",
+      "reason": "L’answer indique que Bureau synchronise Qonto via le backend Convex au moyen d’une action Convex (et non un script bash). C’est l’information centrale attendue ; la partie sur le matching auto virements↔projets n’est pas explicitement mentionnée, mais n’est pas contredite.",
+      "category": "MS",
+      "retrieval_hit": false,
+      "latency_s": 1.82,
+      "expanded_queries": [
+        "Quel est le lien entre Bureau et Qonto ?",
+        "Quel",
+        "Bureau",
+        "Qonto"
+      ],
+      "context_facts": [
+        "La sync Qonto se fait via une action Convex",
+        "Bureau utilise Convex comme backend",
+        "Convex est utilisé comme backend par l'outil Bureau, notamment pour la synchronisation de Qonto via une action Convex, et non via un script bash. Cette action Convex est actuellement en cours d'utilisation pour la synchronisation Qonto, bien que son implémentation initiale ait été une action et non un script bash. L'utilisation de Convex est donc centrale à la fonctionnalité de synchronisation Qonto au sein de l'écosystème Bureau.",
+        "La sync Qonto se fait via une action Convex, pas un script bash",
+        "The token Hello-Primo is used for Bureau projects on Vercel."
+      ]
+    },
+    {
+      "question": "Quels sont les projets actifs de Primo Studio ?",
+      "expected": "Bureau, Primask, DockGroups, Transport Rino, Memoria",
+      "answer": "Les projets actifs de Primo Studio sont :\n\n- **Primask** (application de planification)  \n- Les projets **Bureau** déployés sur Vercel (utilisant le token “Hello‑Primo”).",
+      "verdict": "partial",
+      "reason": "L’actual answer mentionne bien Primask et Bureau, mais omet DockGroups, Transport Rino et Memoria. Donc ce n’est pas la liste complète des projets actifs attendus.",
+      "category": "MS",
+      "retrieval_hit": true,
+      "latency_s": 2.47,
+      "expanded_queries": [
+        "Quels sont les projets actifs de Primo Studio ?",
+        "Quels",
+        "Primo Studio"
+      ],
+      "context_facts": [
+        "The fallback chain is Ollama → LM Studio → OpenAI.",
+        "Primask is a planning app developed by Primo Studio.",
+        "Neto's main machine is a Mac Studio with 64 GB of RAM.",
+        "The token Hello-Primo is used for Bureau projects on Vercel.",
+        "Vercel est une plateforme de déploiement d'applications, notamment via l'intégration avec GitHub pour un déploiement automatique. Elle utilise le token \"Hello-Primo\" pour les projets Bureau et gère le DNS de primo-studio.fr via Cloudflare, avec un proxy vers Vercel et un tunnel vers NAS via Directus.  Ces configurations permettent une infrastructure optimisée pour les applications déployées sur Vercel."
+      ]
+    },
+    {
+      "question": "Quels modèles LLM sont disponibles sur Sol ?",
+      "expected": "gemma3:4b, nomic-embed, qwen3.5:27b, GPT-OSS 20B via LM Studio",
+      "answer": "Les LLM disponibles sur Sol :  \n- **gemma3:4b** (via Ollama)  \n- Les modèles accessibles via la chaîne de secours : **Ollama, LM Studio et OpenAI**.",
+      "verdict": "partial",
+      "reason": "L’answer mentionne bien gemma3:4b, mais omet nomic-embed et qwen3.5:27b et ne précise pas correctement GPT-OSS 20B via LM Studio (reste trop général).",
+      "category": "MS",
+      "retrieval_hit": true,
+      "latency_s": 3.15,
+      "expanded_queries": [
+        "Quels modèles LLM sont disponibles sur Sol ?",
+        "Quels models LLM sont disponibles sur Sol ?",
+        "Quels",
+        "Sol"
+      ],
+      "context_facts": [
+        "Ollama was configured on Sol with gemma3:4b as the extraction model.",
+        "Sol is a Mac Mini.",
+        "Sol is available 24/7 for development tasks.",
+        "Sur un Mac Mini nommé Sol, l'outil Ollama a été configuré avec le modèle d'extraction gemma3:4b. Sol est disponible 24 heures sur 24 et 7 jours sur 7 pour les tâches de développement, constituant ainsi une plateforme accessible en continu pour l'expérimentation avec ce modèle spécifique.",
+        "Ollama a été configuré sur Sol avec le modèle gemma3:4b comme modèle d'extraction, tandis que la chaîne de secours utilise Ollama, LM Studio et OpenAI. L'ajout de Memoria v3.2.0 apporte un support pour les modèles de raisonnement compatibles avec Ollama et OpenAI, élargissant ainsi les capacités de l'outil."
+      ]
+    },
+    {
+      "question": "Quels taux horaires sont pratiqués chez Primo Studio ?",
+      "expected": "Neto 0€, Alexandre 6.50€, Pierre 7.39€ (parti)",
+      "answer": "Je ne dispose d’aucune information sur les taux horaires pratiqués chez Primo Studio.",
+      "verdict": "wrong",
+      "reason": "L’answer ne fournit aucun des taux horaires attendus (0€, 6.50€, 7.39€) et dit ne pas avoir l’information.",
+      "category": "MS",
+      "retrieval_hit": false,
+      "latency_s": 1.2,
+      "expanded_queries": [
+        "Quels taux horaires sont pratiqués chez Primo Studio ?",
+        "Quels €/hs sont pratiqués chez Primo Studio ?",
+        "Quels salaires sont pratiqués chez Primo Studio ?",
+        "Quels"
+      ],
+      "context_facts": [
+        "The fallback chain is Ollama → LM Studio → OpenAI.",
+        "Neto's main machine is a Mac Studio with 64 GB of RAM.",
+        "Primask is a planning app developed by Primo Studio.",
+        "The token Hello-Primo is used for Bureau projects on Vercel.",
+        "Cloudflare manages the DNS for primo-studio.fr with a proxy to Vercel (front) and a tunnel to NAS (Directus)."
+      ]
+    }
+  ]
+}

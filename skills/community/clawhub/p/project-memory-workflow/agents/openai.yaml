@@ -1,0 +1,7 @@
+interface:
+  display_name: "Project Memory Workflow"
+  short_description: "Initialize and maintain AI-readable project context"
+  default_prompt: "Use $project-memory-workflow to initialize or maintain this repository project memory."
+
+policy:
+  allow_implicit_invocation: true

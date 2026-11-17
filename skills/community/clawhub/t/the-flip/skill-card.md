@@ -1,47 +1,63 @@
-## Description: <br>
-THE FLIP is a Solana devnet coin-flip game where a $1 USDC entry buys 20 predictions and matching the first 14 wins the jackpot. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+$1 USDC entry. Pick 20 predictions. All 20 coins flip at once each round. Match the first 14 to win the entire jackpot. Live on Solana devnet.
 
-## Publisher: <br>
-[maurodelazeri](https://clawhub.ai/user/maurodelazeri) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[maurodelazeri](https://clawhub.ai/user/maurodelazeri)
 
-## Use Case: <br>
-External users and agents use this skill to inspect and operate a Solana devnet jackpot game, including checking game status, entering predictions, flipping rounds, checking tickets, and claiming eligible winnings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read a local Solana keypair and sign transactions. <br>
-Mitigation: Use a dedicated devnet-only wallet and require explicit approval before running commands that enter, claim, flip, initialize, withdraw fees, or close game state. <br>
-Risk: Setup includes npm dependencies and a curl-to-shell Solana installer. <br>
-Mitigation: Review dependencies and installer commands before execution, and install only in an isolated development environment. <br>
-Risk: The game uses transaction and admin-style commands with financial effects on devnet assets. <br>
-Mitigation: Confirm the command, wallet, round, and amount before signing any transaction. <br>
+## Use Case:
 
+External users and agents use this skill to inspect, enter, flip, and claim rounds in a Solana devnet coin-flip jackpot game. Developers can also use the included CLI, API examples, IDL, and on-chain account details to integrate or inspect the game state.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/maurodelazeri/the-flip) <br>
-- [Project homepage](https://github.com/maurodelazeri/the-flip-publish) <br>
-- [Dashboard and API](https://the-flip.vercel.app) <br>
-- [Solana devnet program](https://explorer.solana.com/address/7rSMKhD3ve2NcR4qdYK5xcbMHfGtEjTgoKCS5Mgx9ECX?cluster=devnet) <br>
-- [README](README.md) <br>
-- [Anchor IDL](idl/the_flip.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, json, code, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, JSON API examples, and code snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands may read a local Solana keypair and sign Solana devnet transactions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.8 (source: ClawHub release metadata) <br>
+Risk: The skill asks users to run an unpinned remote installer during wallet setup.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the installer source independently before execution, or install Solana tooling through a pinned and trusted channel.
+
+Risk: The skill operates a fund-moving jackpot flow on Solana devnet.
+
+Mitigation: Use only a throwaway devnet wallet with no real assets, and do not connect production wallets or mainnet funds.
+
+Risk: The scanner summary says the contract behavior is under-disclosed and unsafe for fairness or production use without fixes for randomness and round-specific payout accounting.
+
+Mitigation: Do not treat the jackpot game as fair or production-safe until the smart contract design is reviewed and fixed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/maurodelazeri/skills/the-flip)
+- [Project homepage](https://github.com/maurodelazeri/the-flip-publish)
+- [Game dashboard](https://the-flip.vercel.app)
+- [Solana devnet program](https://explorer.solana.com/address/7rSMKhD3ve2NcR4qdYK5xcbMHfGtEjTgoKCS5Mgx9ECX?cluster=devnet)
+- [README.md](artifact/README.md)
+- [SKILL.md](artifact/SKILL.md)
+- [The Flip IDL](artifact/idl/the_flip.json)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, API Calls, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline bash commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes Solana devnet command examples, wallet setup guidance, API response examples, and on-chain account references.]
+
+## Skill Version(s):
+
+1.0.8 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

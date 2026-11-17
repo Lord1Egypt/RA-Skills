@@ -1,48 +1,66 @@
-## Description: <br>
-Slash-invocable Razor and UO Outlands reference assistant for macros, scripts, hotkeys, profile XML, validation, and shard-safe guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Slash-invocable Razor and UO Outlands reference assistant for macros, scripts, hotkeys, profile XML, validation, and shard-safe guidance.
 
-## Publisher: <br>
-[neomagnetar](https://clawhub.ai/user/neomagnetar) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[neomagnetar](https://clawhub.ai/user/neomagnetar)
 
-## Use Case: <br>
-External users and agents use this skill to explain, generate, repair, and validate Ultima Online Razor macros, Razor scripts, hotkey bindings, profile XML snippets, and UO Outlands-specific automation guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated Razor macros, scripts, or profile XML could behave incorrectly if copied without review. <br>
-Mitigation: Back up existing Razor profiles, macros, and scripts; inspect generated content; then test in a safe environment before relying on it. <br>
-Risk: Automation behavior may violate shard rules or fail under UO Outlands PvP restrictions. <br>
-Mitigation: Confirm generated automation against the user's shard rules and verify PvP-sensitive behavior in-client before competitive use. <br>
+## Use Case:
 
+External users and developers use this skill to review, generate, repair, and validate Ultima Online Razor macros, Razor scripts, hotkey bindings, and profile XML while preserving shard- and version-sensitive uncertainty.
 
-## Reference(s): <br>
-- [UO Razor Assistant on ClawHub](https://clawhub.ai/neomagnetar/uo-razor-assistant) <br>
-- [UO Razor Assistant README](README.md) <br>
-- [Razor Core Reference for OpenClaw Skill Pack](references/core_reference.md) <br>
-- [Macro Serialization Legend](references/macro_serialization_legend.md) <br>
-- [UO Outlands Razor Extensions and Restrictions](references/outlands_constraints.md) <br>
-- [Profile XML Examples](references/profile_xml_examples.md) <br>
-- [Validation and Deployment Workflow](references/validation_workflow.md) <br>
-- [Troubleshooting and Ambiguity Registry](references/troubleshooting_registry.md) <br>
-- [Hotkey Action Map](references/hotkey_action_map.csv) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown with plain-text Razor macro, Razor script, and profile XML snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only guidance and copyable artifacts; generated Razor content should be inspected and tested before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter, changelog, and release evidence) <br>
+Risk: Generated Razor macros or scripts can automate in-game actions in ways that conflict with shard automation rules or PvP restrictions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated artifacts before use, test them in a safe area, and follow the shard's automation and PvP rules.
+
+Risk: Profile XML, macro, or script changes can disrupt a user's local Razor setup if applied incorrectly.
+
+Mitigation: Back up Razor profiles, macros, and scripts before applying changes, then validate behavior in the Razor client.
+
+Risk: Razor command behavior, hotkey IDs, and Outlands-specific scripting features can vary by client, build, or shard.
+
+Mitigation: Keep version-sensitive details visible and verify uncertain IDs, commands, and restrictions in-client before relying on them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/neomagnetar/skills/uo-razor-assistant)
+- [Razor Core Reference for OpenClaw Skill Pack](references/core_reference.md)
+- [Glossary of Razor Terms](references/glossary.md)
+- [Hotkey Action Map](references/hotkey_action_map.csv)
+- [Macro Serialization Legend](references/macro_serialization_legend.md)
+- [Outlands Constraints](references/outlands_constraints.md)
+- [Profile XML Examples](references/profile_xml_examples.md)
+- [Troubleshooting Registry](references/troubleshooting_registry.md)
+- [User Guidance](references/user_guidance.md)
+- [Validation Workflow](references/validation_workflow.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown responses with fenced code blocks and concise validation checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce copyable .macro lines, .razor script commands, profile XML snippets, troubleshooting steps, and shard/version caveats.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, changelog, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

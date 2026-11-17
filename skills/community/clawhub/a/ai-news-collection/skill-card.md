@@ -1,41 +1,57 @@
-## Description: <br>
-Runs a self-contained Chinese and international AI news workflow for RSS capture, scheduled report generation, cumulative Excel outputs, and merged Word briefs inside the current workspace. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run a self-contained Chinese and international AI news workflow inside the current workspace. Use when the user wants either high-frequency RSS capture only or scheduled report delivery only, with cumulative Excel outputs and a merged Word brief, without relying on an external local repository path.
 
-## Publisher: <br>
-[Nighmat1220](https://clawhub.ai/user/Nighmat1220) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nighmat1220](https://clawhub.ai/user/nighmat1220)
 
-## Use Case: <br>
-Employees, analysts, and developers use this skill to collect Chinese and international AI news from RSS sources, generate company-focused Excel reports, and create a daily Word brief. It supports capture-only, report-only, and full workflow runs in a workspace with the required source configuration and company list. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Feed configuration can include credentials and can disable TLS checks for arbitrary RSS sources. <br>
-Mitigation: Run in a dedicated workspace, keep reusable secrets out of feed configs, use trusted HTTPS feeds with TLS verification enabled, and avoid verify_ssl=false. <br>
-Risk: Collected content may be sent to the ARK model service during report generation. <br>
-Mitigation: Use --disable-ai when collected content should not be sent to the model service. <br>
+## Use Case:
 
+Developers and analysts use this skill to collect Chinese and international AI news from RSS or Atom sources, deduplicate items, generate AI-assisted summaries and impact scores, and produce cumulative Excel reports plus a merged Word brief.
 
-## Reference(s): <br>
-- [Commands](references/commands.md) <br>
-- [ClawHub skill page](https://clawhub.ai/Nighmat1220/ai-news-collection) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with bash commands; generated workspace files include JSONL data, Excel workbooks, state files, snapshots, and Word briefs.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses ARK_API_KEY for model-generated summaries unless disable-AI mode is selected.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Article content and ARK_API_KEY can be sent to a configurable model endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only a trusted HTTPS ARK_API_BASE, keep ARK_API_BASE unset unless an override is required, and use --disable-ai for private or licensed content.
+
+Risk: Feed configuration can include arbitrary URLs, custom headers, basic authentication, and disabled TLS verification.
+
+Mitigation: Inspect config/sources.json and config/international_sources.json before running, require trusted feed URLs, and do not set verify_ssl=false outside a controlled test environment.
+
+Risk: The workflow writes collected article content and generated reports into the selected workspace.
+
+Mitigation: Run it in a trusted workspace with appropriate access controls and retention expectations for data, reports, snapshots, and state files.
+
+## Reference(s):
+
+- [Commands](references/commands.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, files]
+
+**Output Format:** [Markdown guidance with bash commands; generated JSONL, Excel, and Word files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates workspace-scoped data, reports, snapshots, and state files; AI generation can be disabled with --disable-ai.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

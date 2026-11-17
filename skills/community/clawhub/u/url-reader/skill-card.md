@@ -1,45 +1,63 @@
-## Description: <br>
-Url Reader reads URLs from common Chinese content platforms, identifies the platform, extracts core page content, and can save the result as Markdown with downloaded images. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reads user-supplied URLs, identifies supported Chinese and general web platforms, extracts core page content, and saves Markdown and images locally.
 
-## Publisher: <br>
-[justao](https://clawhub.ai/user/justao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[justao](https://clawhub.ai/user/justao)
 
-## Use Case: <br>
-Developers and agent users can use this skill to fetch, summarize, and preserve web article content from supported platforms such as WeChat, Xiaohongshu, Toutiao, Douyin, Taobao, JD, Baidu, Zhihu, Weibo, Bilibili, and general websites. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Fetched URL content and images may be saved locally. <br>
-Mitigation: Use the skill only for content appropriate for local storage, review the output directory, and delete saved files that should not persist. <br>
-Risk: Some URLs or page data may be sent to third-party URL processors. <br>
-Mitigation: Avoid private, internal, tokenized, or regulated links unless you have confirmed a local-only path for the specific workflow. <br>
-Risk: The WeChat reader can retain browser state that functions like a login secret. <br>
-Mitigation: Treat saved browser state as sensitive credential material and delete it when the reading task is complete. <br>
+## Use Case:
 
+Developers and content operators use this skill to fetch and summarize web article content from platforms such as WeChat, Xiaohongshu, Toutiao, Douyin, Taobao, JD, Baidu, Zhihu, Weibo, Bilibili, and general websites. It is useful when an agent needs to turn a supplied URL into Markdown content and optionally save related images for later review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/justao/url-reader) <br>
-- [Firecrawl](https://www.firecrawl.dev/) <br>
-- [Jina Reader](https://r.jina.ai/) <br>
-- [Artifact README](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown content with source metadata, optional saved files, and setup or fallback guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write Markdown content and downloaded image files to a local output directory when saving is enabled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata) <br>
+Risk: URLs and page content may be processed by third-party fetchers such as Firecrawl or Jina.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with public or approved links, and avoid private, tokenized, internal, or account-sensitive URLs.
+
+Risk: Browser automation may visit arbitrary supplied pages.
+
+Mitigation: Review the source and destination of URLs before execution, and run browser automation in an environment appropriate for untrusted web content.
+
+Risk: The skill can save fetched content and downloaded images to the local filesystem.
+
+Mitigation: Confirm the output directory before use and review saved files before sharing, indexing, or importing them into other systems.
+
+Risk: Reusable WeChat login state can be stored locally.
+
+Mitigation: Set up WeChat login state only on trusted machines, protect the generated auth file, and delete or refresh it when no longer needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/justao/skills/url-reader)
+- [Firecrawl](https://www.firecrawl.dev/)
+- [Jina Reader endpoint](https://r.jina.ai/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown content, status text, setup commands, and saved local files such as content.md and downloaded images.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use Firecrawl, Jina Reader, or Playwright depending on the target URL and configuration; content and images are saved to a local output directory when saving is enabled.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

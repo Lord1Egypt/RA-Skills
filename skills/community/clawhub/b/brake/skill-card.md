@@ -1,44 +1,58 @@
-## Description: <br>
-Brake guides users through collecting brake design parameters, calculating results, and creating guest production sheets for CAD drawing generation on jixietools.com. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Brake guides an agent through collecting brake design parameters, calling the JXT mechanical-parts API, reviewing calculated CAD parameters, and creating a guest production sheet for generated drawings.
 
-## Publisher: <br>
-[liv09370](https://clawhub.ai/user/liv09370) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liv09370](https://clawhub.ai/user/liv09370)
 
-## Use Case: <br>
-External users and mechanical design practitioners use this skill to generate brake CAD drawing workflows by selecting a brake product, entering parameters, reviewing calculated values, and creating a guest production sheet. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow sends brake design parameters to jixietools.com and creates a guest production sheet on that service. <br>
-Mitigation: Use the skill only when users accept that remote service interaction, and stop before production-sheet creation if they do not want remote job creation or polling. <br>
-Risk: The generated guest URL and guest code provide access to production-sheet progress and results. <br>
-Mitigation: Treat the generated URL and guest code as private access links and avoid sharing them outside the intended audience. <br>
-Risk: The skill evidence notes a category ID inconsistency in product selection. <br>
-Mitigation: Review the selected product carefully before calculation or production-sheet creation. <br>
+## Use Case:
 
+External users and engineers use this skill to select a brake product, provide design inputs step by step in Chinese, review calculated parameters, and create a guest link for CAD drawing production.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/liv09370/brake) <br>
-- [Jixietools API Base URL](https://jixietools.com/api/v1) <br>
-- [Publisher Profile](https://clawhub.ai/user/liv09370) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Chinese-language Markdown with tables, prompts, URLs, and inline bash/curl commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces remote job progress links and generated drawing file listings when the external service completes the workflow.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Brake design parameters are sent to jixietools.com.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and use the skill only when sharing those design parameters with that third-party service is acceptable.
+
+Risk: The workflow uses raw shell commands with user-supplied values.
+
+Mitigation: Use a native HTTP client or safely constructed argument arrays, and avoid interpolating untrusted input into shell commands.
+
+Risk: Generated guest links, guest codes, and filename handles can expose workflow state or generated output.
+
+Mitigation: Treat those values as sensitive references and share them only with intended recipients.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/liv09370/skills/brake)
+- [Jixietools API base](https://jixietools.com/api/v1)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Chinese conversational guidance with Markdown tables and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces guest production-sheet links and status updates; does not create local files itself.]
+
+## Skill Version(s):
+
+1.0.1 (source: release metadata; artifact frontmatter states 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

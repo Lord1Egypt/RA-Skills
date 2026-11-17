@@ -1,40 +1,51 @@
-## Description: <br>
-AI PR Narrative Factory analyzes GitHub pull request changes and produces human-readable changelog entries, technical explanations, and team synchronization reports for Feishu publication. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI PR Narrative Factory analyzes GitHub Pull Request changes, generates human-readable changelog entries, technical explanations, and team update reports, then publishes the report to Feishu.
 
-## Publisher: <br>
-[zlszhonglongshen](https://clawhub.ai/user/zlszhonglongshen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zlszhonglongshen](https://clawhub.ai/user/zlszhonglongshen)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to turn GitHub PR URLs, PR numbers, or release ranges into structured change narratives for code review follow-up, release notes, product communication, and team knowledge capture. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Pull request metadata, diffs, summaries, file lists, and change analysis may be shared through configured GitHub, AI, and Feishu services. <br>
-Mitigation: Use the skill only when organization policy permits those services for the target repository, and confirm provider data handling for private or sensitive repositories. <br>
-Risk: Automatically published Feishu documents may expose code-derived information to unintended readers. <br>
-Mitigation: Review Feishu document permissions and the generated report before sharing links outside the intended audience. <br>
+## Use Case:
 
+Developers, release managers, and product teams use this skill to turn one or more GitHub Pull Requests into structured change narratives, changelog entries, migration notes, and stakeholder-ready team updates.
 
-## Reference(s): <br>
-- [Keep a Changelog](https://keepachangelog.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Structured report content, markdown changelog entries, summary text, and a Feishu document URL] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include executive summaries, technical and non-technical narratives, changelog entries, team communication text, test notes, and migration guidance when breaking changes are detected.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and workflow.json) <br>
+Risk: The skill may republish GitHub PR-derived information into a permanent shareable Feishu document without clear publication controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the generated report and Feishu sharing settings before distributing the link, especially for private repositories, security fixes, unreleased work, secrets in diffs, or PRs from untrusted contributors.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zlszhonglongshen/skills/ai-pr-narrative-factory)
+- [Publisher profile](https://clawhub.ai/user/zlszhonglongshen)
+- [Keep a Changelog](https://keepachangelog.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Feishu document link with structured narrative report, changelog entries, summary, and communication guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The workflow may publish GitHub PR-derived information to a permanent shareable Feishu document.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and workflow.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

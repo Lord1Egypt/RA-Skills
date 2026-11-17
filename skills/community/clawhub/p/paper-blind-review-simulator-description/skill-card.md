@@ -1,40 +1,53 @@
-## Description: <br>
-模拟一位严格的双盲评审专家，对用户上传的论文进行系统、多维度的学术评价，指出质量等级、具体问题，并提供分步骤修改建议和至少五处修改后的文本样例。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Simulates a strict double-blind academic reviewer for Chinese-language manuscripts, producing multidimensional critique, quality classification, actionable revision guidance, and at least five before-and-after text examples.
 
-## Publisher: <br>
-[793943403](https://clawhub.ai/user/793943403) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[793943403](https://clawhub.ai/user/793943403)
 
-## Use Case: <br>
-Authors, students, and researchers use this skill to simulate a strict blind review before submitting a paper, identify manuscript weaknesses, and receive structured revision guidance with concrete before-and-after examples. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may submit confidential, unpublished, or sensitive manuscript text for review. <br>
-Mitigation: Use only text that may be shared with the AI service, and remove sensitive or restricted material when appropriate. <br>
-Risk: The review may be inaccurate or mistaken for an official academic decision. <br>
-Mitigation: Treat the output as advisory feedback and have qualified reviewers verify important conclusions before relying on it. <br>
+## Use Case:
 
+External authors, students, and researchers use this skill to pre-review paper drafts or key sections before submission, identify likely blind-review risks, and plan revisions without having the assistant rewrite the full manuscript.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/793943403/paper-blind-review-simulator-description) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Structured Markdown review report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes ratings, issue lists, revision recommendations, and at least five before-and-after text examples when source text supports them.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: Illustrative before-and-after text examples may be mistaken for final manuscript text.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat examples as editing guidance and review all changes against the author's own judgment and applicable academic integrity rules.
+
+Risk: The skill is intended for Chinese-language blind-review style critique and may not match every institution, journal, or discipline's review criteria.
+
+Mitigation: Compare the generated critique with the relevant submission guidelines, advisor feedback, and field-specific review standards before acting on it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/793943403/skills/paper-blind-review-simulator-description)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown structured as a Chinese-language blind-review report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes Type A/B/C/D assessment, dimension-level review comments, issue lists, revision recommendations, and at least five illustrative before-and-after text examples.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter reports 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

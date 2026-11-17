@@ -1,40 +1,58 @@
-## Description: <br>
-Is SM buying this token on one chain but selling on another? Detect capital rotation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Is SM buying this token on one chain but selling on another? Detect capital rotation.
 
-## Publisher: <br>
-[nansen-devops](https://clawhub.ai/user/nansen-devops) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nansen-devops](https://clawhub.ai/user/nansen-devops)
 
-## Use Case: <br>
-External users and analysts use this skill to run Nansen smart-money netflow checks across Ethereum, Solana, Base, and BNB, then compare 24h and 7d flow divergence for potential cross-chain capital rotation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill runs Nansen CLI research commands and may consume Nansen API quota. <br>
-Mitigation: Confirm the user trusts the nansen-cli package, has configured NANSEN_API_KEY intentionally, and is comfortable using API quota before running the commands. <br>
-Risk: Interpreting absent token results as lack of support can be misleading. <br>
-Mitigation: Treat absent results as possible low smart-money activity on that chain, and focus on 24h and 7d divergence rather than 1h movement. <br>
+## Use Case:
 
+Crypto analysts use this skill to compare smart-money net flows for a token across selected chains and identify possible capital rotation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nansen-devops/nansen-sm-cross-chain-flows) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the nansen CLI and NANSEN_API_KEY; analyzes netflow windows including 1h, 24h, 7d, and 30d.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server-resolved release evidence) <br>
+Risk: Research calls may trigger x402 payments from the configured wallet, and each call in a loop can incur a charge.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review wallet authorization, payment policy, and spending limits before running research calls; keep loops and chain selections scoped to the intended analysis.
+
+Risk: Net-flow results omit activity below the reporting threshold, which could be mistaken for unsupported chains or no activity.
+
+Mitigation: Interpret missing results as below-threshold activity, not proof that a chain is unsupported; use the documented limit when seeking mid-tier tokens.
+
+Risk: The workflow requires an explicitly selected authenticated API key or saved browser session.
+
+Mitigation: Check authentication status before research and stop if selection or renewal fails; do not switch to anonymous access to retry.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/nansen-devops/skills/nansen-sm-cross-chain-flows)
+- [Nansen CLI browser login platform scope](https://github.com/nansen-ai/nansen-cli/blob/main/docs/browser-login.md#preview-platform-scope)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline Bash command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Compares net-flow observations across chains; uses 24h and 7d divergence as rotation signals.]
+
+## Skill Version(s):
+
+0.1.3 (source: server-resolved release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

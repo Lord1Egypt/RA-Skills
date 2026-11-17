@@ -1,0 +1,4 @@
+interface:
+  display_name: "Locron"
+  short_description: "Safely operate, explain, and diagnose Locron."
+  default_prompt: "Use $locron to explain why this Locron job did not run."

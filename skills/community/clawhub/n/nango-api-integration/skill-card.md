@@ -1,46 +1,61 @@
-## Description: <br>
-Connect AI agents to 700+ external APIs using Nango for OAuth handling, authentication flows, and tool calling across external services. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connect AI agents to external APIs through Nango, with guidance for OAuth, API-key authentication, MCP server use, and tool-calling patterns.
 
-## Publisher: <br>
-[engsathiago](https://clawhub.ai/user/engsathiago) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[engsathiago](https://clawhub.ai/user/engsathiago)
 
-## Use Case: <br>
-Developers and agent builders use this skill to configure Nango-backed API access, OAuth connections, provider credentials, and MCP-style integration patterns for services such as Google, Slack, GitHub, Salesforce, Stripe, Notion, Linear, and HubSpot. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad credential-backed access to external APIs can expose data or perform write actions across connected services. <br>
-Mitigation: Use least-privilege OAuth scopes, test accounts where possible, and require explicit approval before write, delete, financial, public-posting, CRM, or repository mutation actions. <br>
-Risk: Nango and provider secrets could be exposed through prompts, logs, or generated examples. <br>
-Mitigation: Keep NANGO_SECRET_KEY and provider keys in environment variables or secret stores, and avoid including credentials in prompts, logs, or shared outputs. <br>
-Risk: Unused or stale provider connections may retain access after an agent workflow is complete. <br>
-Mitigation: Review and revoke unused Nango or provider connections when they are no longer needed. <br>
+## Use Case:
 
+Developers and agent builders use this skill to configure Nango-backed OAuth and API-key connections, explore provider capabilities, and adapt example agent tool patterns for services such as Google, Slack, GitHub, Notion, Stripe, and Salesforce.
 
-## Reference(s): <br>
-- [Nango Provider Reference](references/providers.md) <br>
-- [Nango Documentation](https://docs.nango.dev) <br>
-- [Nango Integration Catalog](https://nango.dev/integrations) <br>
-- [Nango Dashboard](https://app.nango.dev) <br>
-- [Nango GitHub Repository](https://github.com/NangoHQ/nango) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with Python, TypeScript, JSON, and bash examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes setup steps, provider examples, OAuth and API-key patterns, MCP configuration guidance, and troubleshooting notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Agents can receive broad access to connected third-party accounts and write-capable API patterns.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use least-privilege Nango keys and provider scopes, and require explicit confirmation before sending messages, creating issues, updating records, or making other mutating API calls.
+
+Risk: Secrets and provider credentials can be exposed through prompts, logs, or insecure configuration.
+
+Mitigation: Keep Nango and provider credentials in environment variables or a secret store, and keep secrets out of prompts, generated code examples, and logs.
+
+Risk: External SDKs and provider APIs can change behavior or permissions over time.
+
+Mitigation: Pin SDK versions, test each target provider in a controlled environment, and review requested scopes before production use.
+
+## Reference(s):
+
+- [Nango Provider Reference](references/providers.md)
+- [Nango Documentation](https://docs.nango.dev)
+- [Nango Integration Catalog](https://nango.dev/integrations)
+- [Nango GitHub Repository](https://github.com/NangoHQ/nango)
+- [ClawHub Skill Page](https://clawhub.ai/engsathiago/skills/nango-api-integration)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with Python, TypeScript, shell, and JSON snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes example scripts for mocked provider calls and a connection tester that requires NANGO_SECRET_KEY for live checks.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

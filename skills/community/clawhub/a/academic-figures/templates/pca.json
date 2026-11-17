@@ -1,0 +1,85 @@
+{
+ "_chart_type": "pca",
+ "_command": "python3 scripts/gen_figure.py -t pca -d templates/pca.json -o pca.png",
+ "matrix": [
+  [
+   5.1,
+   3.5,
+   1.4,
+   0.2
+  ],
+  [
+   4.9,
+   3.0,
+   1.4,
+   0.2
+  ],
+  [
+   6.7,
+   3.1,
+   4.4,
+   1.4
+  ],
+  [
+   6.0,
+   2.9,
+   4.5,
+   1.5
+  ],
+  [
+   6.3,
+   3.3,
+   6.0,
+   2.5
+  ],
+  [
+   5.8,
+   2.7,
+   5.1,
+   1.9
+  ],
+  [
+   4.7,
+   3.2,
+   1.3,
+   0.2
+  ],
+  [
+   6.1,
+   2.8,
+   4.7,
+   1.2
+  ],
+  [
+   5.0,
+   3.4,
+   1.6,
+   0.4
+  ],
+  [
+   6.5,
+   3.0,
+   5.2,
+   2.0
+  ]
+ ],
+ "groups": [
+  "setosa",
+  "setosa",
+  "versicolor",
+  "versicolor",
+  "virginica",
+  "virginica",
+  "setosa",
+  "versicolor",
+  "setosa",
+  "virginica"
+ ],
+ "feature_names": [
+  "萼长",
+  "萼宽",
+  "瓣长",
+  "瓣宽"
+ ],
+ "_note": "场景：10 样本×4 特征（模拟）降维投影，组着色看样本分类分离度。≤200 特征列上限；载荷与解释方差比例见 stderr 事实行。探索性展示用， inferential 结论需原始建模。"
+}

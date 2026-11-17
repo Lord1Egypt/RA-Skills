@@ -1,57 +1,70 @@
-## Description: <br>
-My MBTI lets an agent switch and sustain conversation style based on a user-selected MBTI type, including single-type, mixed-type, comparison, recommendation, and reset modes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language skill that lets an agent switch and sustain its conversational style according to user-selected MBTI types, including single-type, comparison, mixed-style, recommendation, and reset flows.
 
-## Publisher: <br>
-[fuetsui](https://clawhub.ai/user/fuetsui) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fuetsui](https://clawhub.ai/user/fuetsui)
 
-## Use Case: <br>
-External users use this skill to ask an agent to answer in a selected MBTI-inspired communication style, compare two styles, blend a small number of styles, or return to the default style. It is intended for expression and interaction preferences, not personality diagnosis or high-stakes assessment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Short MBTI labels, mixed-type strings, or reset words may unintentionally change the agent's response style during ordinary discussion. <br>
-Mitigation: Use this skill only in contexts where style switching is desired, and explicitly reset or disable the style when the conversation should return to normal. <br>
-Risk: MBTI-inspired output can be mistaken for personality assessment or authoritative psychological guidance. <br>
-Mitigation: Treat the skill as an expression and tone control aid, and avoid using it for high-stakes, diagnostic, hiring, medical, legal, or financial decisions. <br>
+## Use Case:
 
+External users use this skill to ask an agent to answer in a specific MBTI-inspired conversation style, compare two styles, blend compatible styles, or return to the default assistant tone. The skill is focused on expression, structure, pacing, and question style rather than personality testing.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/fuetsui/my-mbti) <br>
-- [MBTI style index](references/index.md) <br>
-- [INTJ style card](references/INTJ.md) <br>
-- [INTP style card](references/INTP.md) <br>
-- [ENTJ style card](references/ENTJ.md) <br>
-- [ENTP style card](references/ENTP.md) <br>
-- [INFJ style card](references/INFJ.md) <br>
-- [INFP style card](references/INFP.md) <br>
-- [ENFJ style card](references/ENFJ.md) <br>
-- [ENFP style card](references/ENFP.md) <br>
-- [ISTJ style card](references/ISTJ.md) <br>
-- [ISFJ style card](references/ISFJ.md) <br>
-- [ESTJ style card](references/ESTJ.md) <br>
-- [ESFJ style card](references/ESFJ.md) <br>
-- [ISTP style card](references/ISTP.md) <br>
-- [ISFP style card](references/ISFP.md) <br>
-- [ESTP style card](references/ESTP.md) <br>
-- [ESFP style card](references/ESFP.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain conversational text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The agent may maintain the latest user-selected MBTI style within the conversation until the user switches or resets it.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: MBTI labels may be mistaken for personality diagnosis or may produce stereotyped phrasing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill as an expression-layer style control and keep task quality, accuracy, and non-stereotyped language ahead of persona effects.
+
+Risk: The bundled maintenance script contains developer-local paths and should not be run casually.
+
+Mitigation: Treat the script as maintainer evidence only; remove or parameterize local paths before using it to regenerate reference files.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/fuetsui/skills/my-mbti)
+- [MyMBTI Reference Index](references/index.md)
+- [INTJ Style Card](references/INTJ.md)
+- [INTP Style Card](references/INTP.md)
+- [ENTJ Style Card](references/ENTJ.md)
+- [ENTP Style Card](references/ENTP.md)
+- [INFJ Style Card](references/INFJ.md)
+- [INFP Style Card](references/INFP.md)
+- [ENFJ Style Card](references/ENFJ.md)
+- [ENFP Style Card](references/ENFP.md)
+- [ISTJ Style Card](references/ISTJ.md)
+- [ISFJ Style Card](references/ISFJ.md)
+- [ESTJ Style Card](references/ESTJ.md)
+- [ESFJ Style Card](references/ESFJ.md)
+- [ISTP Style Card](references/ISTP.md)
+- [ISFP Style Card](references/ISFP.md)
+- [ESTP Style Card](references/ESTP.md)
+- [ESFP Style Card](references/ESFP.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Conversational Markdown text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May maintain a user-selected MBTI style across turns until the user switches style or resets to the default tone.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

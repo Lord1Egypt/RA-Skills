@@ -20,9 +20,9 @@ Use this when the model appears to loop on **`run-task`** or repeat **`spawn-run
 
 Tasks **`videoscreenclear`** and **`hdvideoallinone`** are asynchronous. The client polls until completion; wall time varies (often on the order of minutes to tens of minutes).
 
-## Stderr progress (`[kaipai-ai]`)
+## Stderr progress (`[vmake-ai]`)
 
-While polling, `kaipai_ai.py` may print throttled **`[kaipai-ai]`** lines to **stderr** (`poll i/N`, `api_status`, `elapsed`). Hosts that merge stderr into the chat transcript will show progress.
+While polling, `kaipai_ai.py` may print throttled **`[vmake-ai]`** lines to **stderr** (`poll i/N`, `api_status`, `elapsed`). Hosts that merge stderr into the chat transcript will show progress.
 
 - Progress lines are **sampled**: poll **1**, then every **3rd** poll (3, 6, 9, …), plus the last poll. Skipped indices still run, so **`elapsed` can jump** when each sleep step is large (e.g. 30s from **`MT_AI_POLL_EXTEND_STEP_MS`**).
 - Set **`MT_AI_PROGRESS=0`** to silence those lines.
@@ -60,7 +60,13 @@ On consume failure, stdout JSON includes **`skill_status`: `"failed"`**, **`fail
 |------------|---------|------------------------|
 | **60001** | `membership_required` | User needs membership/subscription — not fixable by changing `--task` / **`--params`** alone. If the API **`detail`** / `msg` contains an `https` link, stdout may include **`pricing_url`** (parsed from that text); the agent **must** surface that link or the full **`detail`** to the user. |
 | **60002** | `credit_required` | User needs more credits or a subscription. Same as 60001: follow server **`detail`**; use JSON **`pricing_url`** when present (extracted from **`detail`**), otherwise paste/quote **`detail`** so links in the API message are visible. |
-| **Other** (including **-1** if the server sent a non-numeric code) | `consume_param_error` | Treat as invocation/parameters: check **`--task`**, **`--input`**, **`--params`** against SKILL.md and remote config. **Do not** instruct recharge unless **`api_code`** is 60002. |
+| **10103** + exact `This media URL is not supported. Please upload the image or video file directly and try again.` message | `input_unavailable` | The server rejected the media URL domain. Ask the user to upload the image or video file directly and do not retry the same URL. Other 10103 messages are not matched by this rule. |
+| **Other with `notices`** | `consume_denied` | The non-zero API code already makes the operation fail. Surface every notice message and action link even when its notice code is unknown, and follow the server-provided next action without retrying unchanged. No dedicated numeric API code is required just to display a notice. |
+| **Other without `notices`** (including **-1** if the server sent a non-numeric code) | `consume_param_error` | Treat as invocation/parameters: check **`--task`**, **`--input`**, **`--params`** against SKILL.md and remote config. **Do not** instruct recharge unless **`api_code`** is 60002. |
+
+## Server notices
+
+Config, consume, and task responses may add a top-level **`notices`** array. The CLI carries valid notices into its final stdout JSON without requiring the Skill to recognize their codes. Include every non-empty **`message`** in the user-facing reply, preserve a completed result when a notice is only a warning, and use **`skill_status`** / **`api_code`** as the failure source of truth. Deduplicate repeated notices by **`dedupe_key`** within one reply and expose **`action_url`** when present.
 
 ## SIGKILL / host timeout
 
@@ -68,7 +74,7 @@ If the OS or host kills the process (**SIGKILL**, OOM, or a **shorter outer time
 
 ## Shorter outer / session timeouts
 
-Some stacks cap **how long one agent turn, tool call, or blocking shell** may run. That cap is separate from **`runTimeoutSeconds`** and from the client’s poll schedule. If it fires before the job finishes, you may see **no final JSON** on stdout while **stderr** can still show `[kaipai-ai]` lines and **`task_id=...`**.
+Some stacks cap **how long one agent turn, tool call, or blocking shell** may run. That cap is separate from **`runTimeoutSeconds`** and from the client’s poll schedule. If it fires before the job finishes, you may see **no final JSON** on stdout while **stderr** can still show `[vmake-ai]` lines and **`task_id=...`**.
 
 **Recovery:** use **`last-task`** / **`history`**, read **`task_id`** from stderr or any partial JSON, then **`query-task`** — do **not** re-run **`run-task`** for the same id. Video tasks should use **`spawn-run-task`** in the main session so it is not blocked on polling. Host-side limits (config names vary) can be raised if appropriate; they do not replace **`spawn-run-task`** for video in the main session.
 

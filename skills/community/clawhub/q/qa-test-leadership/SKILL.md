@@ -1,44 +1,28 @@
 ---
 name: qa-test-leadership
-version: 1.5.0
 description: >-
-  当需要管理测试团队、制定团队目标和绩效标准、或者团队扩招需要面试标准时使用此技能。覆盖测试团队管理（目标设定/KPI 制定/人员成长）、绩效评估（能力模型/360 评估）、招聘面试（面试流程/技术评估标准）和组织建设。不要只管进度不管成长——一个稳定的测试团队靠的是每个人都在不断学习和进步。
-
-when_to_use: 用户说"团队管理"、"绩效评估"、"招聘"、"面试"、"团队建设"、"能力模型"、"目标"、需要管理测试团队、团队扩招需要面试标准时
+  当需要管理测试团队、制定团队目标和绩效标准、或者团队扩招需要面试标准时使用此技能。覆盖测试团队管理（目标设定/KPI 制定/人员成长）、绩效评估（能力模型/360 评估）、招聘面试（面试流程/技术评估标准）和组织建设。不要只管进度不管成长——一个稳定的测试团队靠的是每个人都在不断学习和进步。 触发场景：团队管理、绩效评估、招聘、面试、团队建设、能力模型、目标、团队扩招需要面试标准时。 Use when the user asks about: QA team leadership — goal setting, KPI definition, performance review, hiring interviews, and capability models.
+license: MIT
 allowed-tools: Read Grep Glob
-related_skills:
-  upstream:
-    - qa-team-coaching           # 输入：团队赋能方法
-    - qa-retrospective           # 输入：复盘结果
-  downstream:
-    - qa-stakeholder-communication # 输出：团队管理用于沟通
-input_format:
-  required:
-    - name: 团队现状
-      type: string
-      description: 测试团队当前状态评估
-    - name: 组织目标
-      type: string
-      description: 组织质量目标和愿景
-  optional:
-    - name: 资源预算
-      type: string
-      description: 可用资源和预算
-output_format:
-  structure:
-    - team_assessment: 团队评估报告
-    - improvement_roadmap: 改进路线图
-    - stakeholder_plan: 干系人管理计划
-    - metrics_framework: 度量框架设计
+metadata:
+  display-name: "Test Leadership"
+  version: "1.8.0"
+  when-to-use: "用户说\"团队管理\"、\"绩效评估\"、\"招聘\"、\"面试\"、\"团队建设\"、\"能力模型\"、\"目标\"、需要管理测试团队、团队扩招需要面试标准时"
+  related-skills: "{\"upstream\":[\"qa-team-coaching\",\"qa-retrospective\"],\"downstream\":[\"qa-stakeholder-communication\"]}"
+  references: "[\"references/performance-review.md\"]"
+  input-format: "{\"required\":[{\"name\":\"团队现状\",\"type\":\"string\",\"description\":\"测试团队当前状态评估\"},{\"name\":\"组织目标\",\"type\":\"string\",\"description\":\"组织质量目标和愿景\"}],\"optional\":[{\"name\":\"资源预算\",\"type\":\"string\",\"description\":\"可用资源和预算\"}]}"
+  output-format: "{\"traceability\":[\"每份管理方案带唯一ID（LEAD-XXXX）\"],\"structure\":[{\"team_assessment\":\"团队评估报告\"},{\"improvement_roadmap\":\"改进路线图\"},{\"stakeholder_plan\":\"干系人管理计划\"},{\"metrics_framework\":\"度量框架设计\"}]}"
+  error-recovery-guidance: "{\"on_failure\":\"管理方案遗漏角色时回退到团队能力评估补充\",\"retry_behavior\":\"补充评估后重新设计方案\"}"
+  categories: "[\"Development\",\"Testing\",\"DevOps\"]"
+  depth-requirement: "{\"reference_value\":\"根据团队规模调整管理深度：简单×1/中等×2/复杂×3\",\"minimum\":\"至少覆盖能力模型、绩效评估、招聘标准3项\"}"
 ---
+> ⚠️ 本技能单独使用效果有限，建议配合完整技能集（12 步工作流）使用。安装：npx skills add Kokxi/qa-test-skills
 
 # 测试领导力
 
 ## 核心原则
 
-你是一位测试管理专家，擅长管理测试团队。
-**核心原则**：测试领导力——从技术专家到团队领袖的转变。
-本技能覆盖团队组织架构、绩效评估和招聘面试。
+测试领导力——从技术专家到团队领袖的转变。
 
 ## 团队组织架构
 
@@ -99,72 +83,13 @@ output_format:
     └─ 产出：自动化脚本、测试工具、测试框架
 ```
 
-## 绩效评估
+## 加载时机
 
-### 评估维度
+| 什么时候读 | 读哪个 |
+|-----------|--------|
+| 做绩效评估与能力模型时 | [`references/performance-review.md`](references/performance-review.md) |
 
-```text
-├─ 技术能力
-│   ├─ 测试设计能力
-│   ├─ 缺陷发现能力
-│   ├─ 工具使用能力
-│   └─ 技术深度
-│
-├─ 业务能力
-│   ├─ 业务理解能力
-│   ├─ 需求分析能力
-│   ├─ 风险识别能力
-│   └─ 质量把控能力
-│
-├─ 协作能力
-│   ├─ 沟通能力
-│   ├─ 团队协作
-│   ├─ 问题解决
-│   └─ 推动能力
-│
-└─ 成长能力
-    ├─ 学习能力
-    ├─ 创新能力
-    ├─ 总结能力
-    └─ 影响力
-```
-
-### 评估方法
-
-```text
-├─ KPI考核
-│   ├─ 缺陷发现数
-│   ├─ 测试覆盖率
-│   ├─ 测试效率
-│   └─ 质量指标
-│
-├─ 360度评估
-│   ├─ 上级评估
-│   ├─ 同事评估
-│   ├─ 下级评估
-│   └─ 自我评估
-│
-├─ OKR管理
-│   ├─ 目标设定
-│   ├─ 关键结果
-│   ├─ 进度跟踪
-│   └─ 结果评估
-│
-└─ 能力评估
-    ├─ 技能测试
-    ├─ 项目评审
-    ├─ 知识分享
-    └─ 成长记录
-```
-
-### 评估周期
-
-```text
-├─ 日常：1对1沟通（每周/双周）
-├─ 月度：工作回顾、目标跟踪
-├─ 季度：绩效评估、能力评估
-└─ 年度：年度总结、晋升评估
-```
+> `绩效评估`的完整内容已下沉至 `references/performance-review.md`，避免每次触发都占用上下文。
 
 ## 招聘面试
 
@@ -235,6 +160,31 @@ output_format:
 **新入职测试同学需要快速上手**
 → 新人培训：技能矩阵评估→按短板制定学习计划→Mentor一对一辅导
 
+## 输出示例
+
+**场景：新建 12 人测试团队的组织架构设计**
+
+**1. 背景**：公司新产品线（电商中台），需 12 人测试团队（含 2 名组长），预算已批
+
+**2. 组织模式选择**：按产品线分组（交易/营销/数据 3 组，每组 3 人 + 1 组长）
+
+**3. 角色定义**：
+```
+测试负责人（1人）：统筹全局，向质量总监汇报
+  ├─ 组长A 交易组（4人）：支付/订单/售后
+  ├─ 组长B 营销组（4人）：活动/优惠券/推送
+  └─ 组长C 数据组（3人）：报表/BI/埋点
+```
+
+**4. 绩效评估体系**：用例质量（30%）+ 缺陷发现效率（25%）+ 自动化覆盖率（25%）+ 线上故障数（20%）
+
+**5. 招聘计划**：当前缺口 3 人 → 面试流程（电话面→笔试→技术面→终面）→ 30 天内补齐
+
+**6. 团队文化**：每周分享会 + 缺陷复盘会 + 测试工具轮值
+
+**场景：测试工程师晋升答辩准备**
+→ 对照能力模型（测试设计/自动化/性能/管理）逐项自评 → 用 3 个量化案例支撑（如"自动化覆盖率从 20% 提升至 65%"）→ 输出晋升述职报告
+
 ## 自检清单
 
 团队管理实施后检查：
@@ -246,3 +196,10 @@ output_format:
 - [ ] 人才培养是否规划？
 
 
+## 检查清单
+
+- [ ] 能力模型是否建立？
+- [ ] 绩效评估是否量化？
+- [ ] 招聘标准是否明确？
+- [ ] 团队结构是否合理？
+- [ ] 赋能计划是否落地？

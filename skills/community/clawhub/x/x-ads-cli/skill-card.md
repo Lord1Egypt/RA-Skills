@@ -1,46 +1,62 @@
-## Description: <br>
-X Ads data analysis and reporting via x-ads-cli for checking ad performance, campaign stats, account structure, creatives, targeting, conversions, billing, and reach. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+X Ads CLI helps agents analyze and report on X/Twitter Ads data through the x-ads-cli command-line tool.
 
-## Publisher: <br>
-[bin-huang](https://clawhub.ai/user/bin-huang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bin-huang](https://clawhub.ai/user/bin-huang)
 
-## Use Case: <br>
-Marketing analysts, growth teams, and developers use this skill to query X/Twitter Ads accounts with x-ads-cli, retrieve JSON analytics, inspect campaign entities, and prepare performance or billing reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can expose sensitive ad account, billing, audience, payment-method, and conversion details. <br>
-Mitigation: Use least-privilege X Ads credentials and avoid printing, sharing, or retaining raw sensitive details unless needed for the task. <br>
-Risk: OAuth credentials are required to access X Ads data. <br>
-Mitigation: Store credential files securely, prefer scoped credentials where available, and verify credentials before running account or reporting commands. <br>
-Risk: The workflow depends on installing and using the referenced x-ads-cli package. <br>
-Mitigation: Install only when the package and its npm/GitHub provenance are trusted for the intended environment. <br>
+## Use Case:
 
+Developers, marketers, and analysts use this skill to inspect X/Twitter Ads accounts, campaign performance, creatives, targeting, billing, conversion events, and reach estimates through read-only CLI workflows.
 
-## Reference(s): <br>
-- [x-ads-cli documentation](https://github.com/Bin-Huang/x-ads-cli) <br>
-- [X Ads API introduction](https://docs.x.com/x-ads-api/introduction) <br>
-- [X Ads API campaign management](https://docs.x.com/x-ads-api/campaign-management) <br>
-- [X Ads API analytics](https://docs.x.com/x-ads-api/analytics) <br>
-- [X Ads API getting started](https://docs.x.com/x-ads-api/getting-started) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [x-ads-cli command outputs are JSON; synchronous stats requests support up to 7 days per request.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill asks the agent to install an unpinned global third-party CLI that handles OAuth credentials and sensitive X Ads data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer a pinned, locally installed, reviewed version of x-ads-cli and verify package source and integrity before use.
+
+Risk: OAuth credentials and ad account data can be exposed through command output, logs, shell history, or shared reports.
+
+Mitigation: Use least-privileged X Ads credentials, avoid printing or sharing secrets, and redact sensitive account, billing, and funding data before sharing outputs.
+
+Risk: Billing and funding-instrument commands can reveal sensitive payment metadata.
+
+Mitigation: Run billing or funding-instrument commands only when the user explicitly intends to inspect that information.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/bin-huang/skills/x-ads-cli)
+- [x-ads-cli Documentation](https://github.com/Bin-Huang/x-ads-cli)
+- [X Ads API Introduction](https://docs.x.com/x-ads-api/introduction)
+- [X Ads API Campaign Management](https://docs.x.com/x-ads-api/campaign-management)
+- [X Ads API Analytics](https://docs.x.com/x-ads-api/analytics)
+- [X Ads API Getting Started](https://docs.x.com/x-ads-api/getting-started)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The referenced CLI returns JSON and may expose sensitive ads, billing, funding, and OAuth-related data.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

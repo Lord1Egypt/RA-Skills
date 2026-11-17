@@ -1,42 +1,58 @@
-## Description: <br>
-Provides a JavaScript evaluation helper for RAG quality, reasoning quality, and hallucination detection with single-case and batch evaluation APIs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Evaluation Suite provides local JavaScript evaluators for RAG quality, reasoning quality, hallucination indicators, and batch evaluation reports.
 
-## Publisher: <br>
-[yuyonghao-123](https://clawhub.ai/user/yuyonghao-123) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yuyonghao-123](https://clawhub.ai/user/yuyonghao-123)
 
-## Use Case: <br>
-Developers and engineers use this skill to score RAG outputs, inspect reasoning steps, detect possible hallucinations, and generate batch evaluation summaries for AI-generated content. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Evaluation scores are simple heuristic checks rather than authoritative safety judgments. <br>
-Mitigation: Use the outputs as review aids and pair them with human review or task-specific validation before deployment decisions. <br>
-Risk: Some documentation examples use parameter names that do not exactly match the implementation. <br>
-Mitigation: Confirm request parameters against the JavaScript source APIs before wiring the skill into automated workflows. <br>
+## Use Case:
 
+Developers and evaluation engineers can use this skill to score generated answers, retrieved contexts, reasoning steps, and hallucination indicators in local AI evaluation workflows. It is most useful for quick heuristic checks and batch test reporting before deeper model or application review.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/yuyonghao-123/yuyonghao-evaluation-suite) <br>
-- [Skill Documentation](artifact/SKILL.md) <br>
-- [Package Manifest](artifact/package.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Code, Configuration, Guidance] <br>
-**Output Format:** [JavaScript objects with scores, pass/fail flags, indicators, and aggregate report data] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are heuristic evaluation results and should be reviewed before they are used as authoritative quality or safety judgments.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release evidence) <br>
+Risk: Package metadata appears malformed, which may prevent standard npm tooling from installing or running the package as documented.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Validate package.json and package-lock.json before installation, then run npm test in an isolated workspace.
+
+Risk: README examples and implementation parameter names differ in places, so copied examples may fail or produce misleading evaluation results.
+
+Mitigation: Check the source API signatures and quick test inputs before using results for release or quality decisions.
+
+Risk: The evaluators use local heuristic scoring, so scores can miss semantic errors or overstate quality.
+
+Mitigation: Treat outputs as triage signals and pair them with task-specific test sets, human review, or stronger evaluators for high-impact decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yuyonghao-123/skills/yuyonghao-evaluation-suite)
+- [Publisher profile](https://clawhub.ai/user/yuyonghao-123)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, configuration, guidance, JSON]
+
+**Output Format:** [Markdown guidance with JavaScript and shell snippets; runtime evaluators return JSON-like result objects and summary reports.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Runs local heuristic checks for RAG, reasoning, and hallucination indicators; batch APIs aggregate pass rates and average scores.]
+
+## Skill Version(s):
+
+0.1.2 (source: server release metadata; artifact package.json and SKILL.md cite 0.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,52 @@
-## Description: <br>
-Helps agents plan travel itineraries, create valid trip-packer JSON, run the CLI, and deliver local HTML map pages with optional share images. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Trip Packer helps users plan travel itineraries, produce schema-valid trip JSON, and use the trip-packer CLI to build standalone HTML map pages with optional share images.
 
-## Publisher: <br>
-[ucasytoo](https://clawhub.ai/user/ucasytoo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ucasytoo](https://clawhub.ai/user/ucasytoo)
 
-## Use Case: <br>
-Travel planners and agents use this skill to turn destination, hotel, route, and activity details into validated itinerary JSON and a shareable local map artifact. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow may run npx trip-packer, which depends on the npm package resolved at execution time. <br>
-Mitigation: Pin or verify the trip-packer npm package before use when supply-chain control matters. <br>
-Risk: Generated map artifacts and third-party map tile requests can expose sensitive travel, hotel, or location details. <br>
-Mitigation: Avoid including sensitive itinerary details, review generated files before sharing, and consider map tile exposure when choosing what to publish. <br>
+## Use Case:
 
+External users and agent developers use this skill to turn destination, hotel, route, and transport details into validated itinerary data and shareable map outputs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ucasytoo/trip-packer) <br>
-- [Trip Packer Planning Guide](planning-guide.md) <br>
-- [trip-packer JSON Schema Reference](references/schema-reference.md) <br>
-- [Sample Itinerary JSON](references/sample-itinerary.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, JSON, HTML, Images, Shell commands, Files] <br>
-**Output Format:** [Markdown guidance with JSON itinerary files, npx trip-packer commands, local HTML map files, and optional PNG image files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js and uses npx trip-packer; no credential environment variables are declared.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill instructs agents to run unpinned npx trip-packer commands, so normal use can execute changing external npm code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before sensitive deployments and prefer a reviewed, pinned, lockfile-managed trip-packer installation before running validation or build commands.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ucasytoo/skills/trip-packer)
+- [Trip Packer Planning Guide](planning-guide.md)
+- [trip-packer JSON Schema reference](references/schema-reference.md)
+- [Sample itinerary JSON](references/sample-itinerary.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, files, guidance]
+
+**Output Format:** [Markdown guidance with JSON data and shell command examples; generated artifacts are itinerary JSON files, standalone HTML map pages, and optional PNG share images.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js and invokes the trip-packer CLI; supports linux, darwin, and win32 environments according to ClawHub metadata.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

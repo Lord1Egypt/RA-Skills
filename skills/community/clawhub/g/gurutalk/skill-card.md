@@ -1,43 +1,60 @@
-## Description: <br>
-Creates, syncs, and manages local persona skill directories backed by Bibliotalk profiles so users can install and converse with figure-specific agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+GuruTalk manages local digital persona directories by syncing Bibliotalk profiles, generating persona skill folders, and routing ongoing conversations to selected figures.
 
-## Publisher: <br>
-[casterkay](https://clawhub.ai/user/casterkay) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[casterkay](https://clawhub.ai/user/casterkay)
 
-## Use Case: <br>
-Developers and agent users use GuruTalk to install, update, list, remove, snapshot, and roll back local persona skills for Claude, Codex, and OpenClaw. The skill also guides API-key setup and routes conversations to generated figure-specific skills. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a Bibliotalk API key and copies runtime .env files into generated persona skill folders. <br>
-Mitigation: Use only trusted local skill directories, avoid sharing or syncing generated persona folders, and rotate the Bibliotalk key if any generated folder is exposed. <br>
-Risk: The skill can write or delete local agent skill directories, and security evidence notes weak path containment around base directory overrides. <br>
-Mitigation: Review target paths before running create, sync, remove, rollback, or cleanup actions; avoid untrusted --base-dir values; and confirm deletion targets before execution. <br>
+## Use Case:
 
+External users and developers use this skill to install, sync, list, remove, and version local persona skills backed by Bibliotalk profiles. Generated personas can answer with cited source material after the user starts a figure-specific conversation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/casterkay/gurutalk) <br>
-- [Bibliotalk](https://bibliotalk.space) <br>
-- [Bibliotalk API](https://api.bibliotalk.space) <br>
-- [AgentSkills standard](https://agentskills.io) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, JSON script output, and generated local skill files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires BIBLIOTALK_API_KEY for Bibliotalk API calls and writes persona skill folders for the selected agent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: The skill can write and delete local skill folders.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review requested create, sync, remove, snapshot, and rollback operations before execution, and run them only for trusted figure slugs and expected agent directories.
+
+Risk: The skill stores a Bibliotalk API key locally and may copy runtime configuration into generated persona skills.
+
+Mitigation: Use only a Bibliotalk account and API key suitable for local storage, avoid pasting secrets into chat, and rotate the key if generated skill folders are shared or exposed.
+
+Risk: Generated personas can introduce incorrect or misleading profile content or advice.
+
+Mitigation: Review generated persona profiles and require cited Bibliotalk evidence for substantive claims; treat uncited or insufficiently supported answers as unreliable.
+
+## Reference(s):
+
+- [GuruTalk ClawHub release page](https://clawhub.ai/casterkay/skills/gurutalk)
+- [Bibliotalk](https://bibliotalk.space)
+- [Bibliotalk API endpoint](https://api.bibliotalk.space)
+- [AgentSkills standard](https://agentskills.io)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown text with inline shell commands and generated local skill files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create, sync, remove, snapshot, and roll back local persona skill folders for Claude Code, Codex, and OpenClaw.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

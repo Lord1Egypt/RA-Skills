@@ -1,45 +1,66 @@
-## Description: <br>
-Submit your AI product to 70+ AI directories. Agent automates form filling, captcha solving (BYOK 2captcha), and email verification (BYOK IMAP). Save 10+ hours of manual submissions. User provides their own API keys - no credentials stored in skill. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Listing Swarm helps agents submit an AI product to 70+ AI directories by automating form filling, BYOK captcha solving, optional BYOK IMAP email verification, and submission tracking.
 
-## Publisher: <br>
-[Heyw00d](https://clawhub.ai/user/Heyw00d) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[heyw00d](https://clawhub.ai/user/heyw00d)
 
-## Use Case: <br>
-External product teams and founders use this skill to coordinate public submissions of an AI product to many directory websites, with human help for account creation, payment, and stalled verification steps. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Bulk public submissions can post incorrect, unwanted, or overly broad product listings across third-party sites. <br>
-Mitigation: Review the product information and directory list before running, limit targets to intended sites, and keep human approval for account creation, paid listings, or unclear forms. <br>
-Risk: Captcha solving can incur charges through the user's chosen captcha service. <br>
-Mitigation: Use a dedicated BYOK captcha account, set budget controls where available, monitor usage during the campaign, and revoke the key when finished. <br>
-Risk: Optional email verification requires mailbox credentials and may expose verification email contents to the agent runtime. <br>
-Mitigation: Use a dedicated submission mailbox with an app password, avoid personal inbox credentials, and revoke or rotate IMAP credentials after use. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Heyw00d/listing-swarm) <br>
-- [LinkSwarm skill page](https://linkswarm.ai/skill/) <br>
-- [2Captcha](https://2captcha.com) <br>
-- [Anti-Captcha](https://anti-captcha.com) <br>
-- [CapSolver](https://capsolver.com) <br>
+## Use Case:
 
+External developers, founders, and product teams use this skill to submit AI product listings across directory websites while keeping humans involved for account creation, payments, failed captchas, and other blockers.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON configuration examples and environment variable shell commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May update submissions.json with per-directory submission status and notes.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.3 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Optional IMAP access can expose email content and credentials if a personal inbox is used.
+
+Mitigation: Use a dedicated submission email account with an app password and revoke it after the campaign if no longer needed.
+
+Risk: Captcha solving requires a user-provided paid API key.
+
+Mitigation: Use a dedicated, low-balance CAPTCHA account and keep the key in runtime environment variables only.
+
+Risk: Product and contact details are submitted to many third-party directory websites.
+
+Mitigation: Review the directory list and product configuration before running, and submit only information intended for public listing.
+
+Risk: Some directory targets may require payment, account creation, or terms-of-service review.
+
+Mitigation: Keep human approval in the loop for paid listings, account creation, failed captchas, and any non-HTTPS or otherwise unexpected target.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/heyw00d/skills/listing-swarm)
+- [LinkSwarm skill page](https://linkswarm.ai/skill/)
+- [Security documentation](SECURITY.md)
+- [Complete documentation](DOCS.md)
+- [2Captcha](https://2captcha.com)
+- [Anti-Captcha](https://anti-captcha.com)
+- [CapSolver](https://capsolver.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON examples and shell command snippets; submission tracking is stored as JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user-provided product information and optional environment variables for captcha solving and IMAP verification.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

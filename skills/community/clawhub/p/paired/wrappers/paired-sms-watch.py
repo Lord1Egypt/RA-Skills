@@ -52,6 +52,7 @@ import time
 import signal
 import argparse
 import logging
+import shlex
 import subprocess
 import threading
 import tempfile
@@ -133,18 +134,30 @@ def load_seen_ids() -> set:
 
 
 def append_seen_id(msg_id: str):
+    # Holds sender/subject fragments of private messages -> enforce mode 0600.
     try:
         SEEN_DB.parent.mkdir(parents=True, exist_ok=True)
-        with SEEN_DB.open("a") as f:
+        fd = os.open(str(SEEN_DB), os.O_WRONLY | os.O_CREAT | os.O_APPEND, 0o600)
+        try:
+            os.chmod(str(SEEN_DB), 0o600)
+        except OSError:
+            pass
+        with os.fdopen(fd, "a") as f:
             f.write(f"{msg_id}\n")
     except OSError as e:
         log.warning(f"seen-db write failed: {e}")
 
 
 def append_event_log(event: dict):
+    # Holds full SMS/MMS message bodies -> enforce mode 0600.
     try:
         EVENT_LOG.parent.mkdir(parents=True, exist_ok=True)
-        with EVENT_LOG.open("a") as f:
+        fd = os.open(str(EVENT_LOG), os.O_WRONLY | os.O_CREAT | os.O_APPEND, 0o600)
+        try:
+            os.chmod(str(EVENT_LOG), 0o600)
+        except OSError:
+            pass
+        with os.fdopen(fd, "a") as f:
             f.write(json.dumps(event) + "\n")
     except OSError as e:
         log.warning(f"event log write failed: {e}")
@@ -447,7 +460,14 @@ class MapWatcher:
         if self.print_only or not self.hook_cmd:
             return
 
-        env = os.environ.copy()
+        # Pass a minimal, curated environment to the hook rather than the full
+        # parent environ: the parent may hold unrelated secrets (Gemini keys,
+        # Telegram tokens, etc.) a notify hook has no need to see. The shipped
+        # tg-hook reads its own credentials from a mode-0600 config file.
+        _PASS = ("PATH", "HOME", "USER", "LOGNAME", "LANG", "LC_ALL",
+                 "LC_CTYPE", "TERM", "TZ", "XDG_RUNTIME_DIR",
+                 "DBUS_SESSION_BUS_ADDRESS", "PAIRED_DATA_DIR")
+        env = {k: os.environ[k] for k in _PASS if k in os.environ}
         env.update({
             "BTSMS_SENDER": fields['sender'],
             "BTSMS_SENDER_ADDR": fields['sender_address'],
@@ -460,8 +480,13 @@ class MapWatcher:
             "BTSMS_PHONE": self.phone,
         })
         try:
+            # hook_cmd is the operator-supplied --hook command, fixed at service
+            # start; message data is passed via env vars, never interpolated into
+            # the command. Split to argv and run without a shell so there is no
+            # shell-injection surface. A hook that needs shell features should be
+            # a script file (as the shipped hook is).
             subprocess.Popen(
-                self.hook_cmd, shell=True, env=env,
+                shlex.split(self.hook_cmd), shell=False, env=env,
                 stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL,
             )
             log.info(f"Hook dispatched: {self.hook_cmd[:80]}")

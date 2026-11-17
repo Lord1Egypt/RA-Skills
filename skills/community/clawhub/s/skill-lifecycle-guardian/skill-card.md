@@ -1,40 +1,56 @@
-## Description: <br>
-Skill Guardian monitors OpenClaw skill workspaces for new or changed skills, detects functional overlap, and maintains user-guide and README documentation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Skill Guardian monitors OpenClaw skill workspaces for new or changed skills, checks for functional overlap, generates or updates user guides, refreshes the guide index, and can notify administrators when changes are detected.
 
-## Publisher: <br>
-[nathemkingh](https://clawhub.ai/user/nathemkingh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[nathemkingh](https://clawhub.ai/user/nathemkingh)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Administrators and skill maintainers use this skill to maintain an inventory of installed OpenClaw skills, detect new or changed SKILL.md files, identify overlapping functionality, and keep user-facing guide files current.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Recurring scheduled scans can broadly read installed skill files and update persistent registry, guide, README, and notification outputs.
+
+Mitigation: Install only when an administrator-level autonomous skill inventory service is intended, restrict scanned directories, and run scheduled agents with least privilege.
+
+Risk: Scanned skill contents may influence generated guide and README output.
+
+Mitigation: Treat scanned SKILL.md content as untrusted data and review generated guides and README changes before relying on them.
+
+Risk: The security guidance identifies insufficient path containment in guardian-check.sh.
+
+Mitigation: Fix the path containment logic and pin or verify the approved SKILL.md hash before each scheduled run.
+
+## Reference(s):
 
 
-## Use Case: <br>
-OpenClaw administrators and developers use the skill to monitor installed skill directories, identify new or changed skills, check for functional overlap, and keep user-facing guide files current. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Scheduled operation can periodically read skill documentation across OpenClaw workspaces and update registry and guide files. <br>
-Mitigation: Review the cron schedules, notification destination, and declared write scope before enabling scheduled scans. <br>
-Risk: Generated overlap notices or user-guide updates may be incomplete or misleading if skill descriptions are ambiguous. <br>
-Mitigation: Review generated overlap findings, guide files, and README changes before relying on them. <br>
+**Output Format:** [Markdown guidance with shell command snippets, JSON configuration examples, generated guide files, README updates, and concise Chinese status messages.]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nathemkingh/skill-lifecycle-guardian) <br>
+**Other Properties Related to Output:** [May write persistent registry, user guide, README, and notification outputs inside the configured OpenClaw workspace.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Chinese text responses, Markdown guide files, JSON registry updates, and shell/cron command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May update declared workspace files: memory/skill-registry.json, skills/user-guides/*.md, and skills/user-guides/README.md.] <br>
+2.0.12 (source: server release metadata)
 
-## Skill Version(s): <br>
-2.0.12 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

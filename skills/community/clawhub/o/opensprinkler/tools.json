@@ -1,0 +1,193 @@
+[
+  {
+    "type": "function",
+    "function": {
+      "name": "get_status",
+      "description": "Fetch global controller status, software rain delay, physical rain sensor state, hardware sensor states (sensor 1 & 2), and current running status for all stations.",
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "get_programs",
+      "description": "Fetch a list of all configured watering programs, including their 1-based IDs, names, and whether they are currently enabled.",
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "get_options",
+      "description": "Fetch system diagnostics and settings. Use this tool to find the current Watering Level (weather adjustment percentage), whether weather adjustments are enabled, firmware/hardware versions, and sunrise/sunset times.",
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "set_station",
+      "description": "Manually open or close a single sprinkler station.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "station_id": {
+            "type": "integer",
+            "description": "The 1-based ID of the station to control (1-72)."
+          },
+          "state": {
+            "type": "boolean",
+            "description": "true to turn ON, false to turn OFF."
+          },
+          "duration": {
+            "type": "integer",
+            "description": "Duration in seconds. Required if state is true."
+          }
+        },
+        "required": ["station_id", "state"]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "start_program",
+      "description": "Manually trigger a pre-configured schedule/program by its ID.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "program_id": {
+            "type": "integer",
+            "description": "1-based index of the program to run."
+          },
+          "use_weather": {
+            "type": "boolean",
+            "description": "Apply weather adjustment percentage. Default is true."
+          }
+        },
+        "required": ["program_id"]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "run_once",
+      "description": "Run a custom sequence of multiple stations manually.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "station_durations": {
+            "type": "object",
+            "description": "A dictionary mapping 1-based Station IDs (as strings) to durations in seconds. Example: {\"1\": 600, \"3\": 300} will run Station 1 for 10 mins, then Station 3 for 5 mins."
+          }
+        },
+        "required": ["station_durations"]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "set_rain_delay",
+      "description": "Enable or disable a temporary rain delay.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "hours": {
+            "type": "integer",
+            "description": "Number of hours to delay. Set to 0 to cancel an active rain delay."
+          }
+        },
+        "required": ["hours"]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "pause_queue",
+      "description": "Temporarily pause all currently running and queued watering programs for a specified number of seconds.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "duration_seconds": {
+            "type": "integer",
+            "description": "Number of seconds to pause (e.g., 600 for 10 minutes). Set to 0 to cancel an active pause."
+          }
+        },
+        "required": ["duration_seconds"]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "set_operation",
+      "description": "Toggle global operation mode (enable or disable automatic watering).",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "enable": {
+            "type": "boolean",
+            "description": "true to enable system operations, false to disable."
+          }
+        },
+        "required": ["enable"]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "stop_all_stations",
+      "description": "Immediately aborts all currently running programs and stations.",
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "get_logs",
+      "description": "Fetch historical watering records and sensor triggers.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "hist_days": {
+            "type": "integer",
+            "description": "Number of historical days to fetch (e.g., 1 to 30)."
+          }
+        },
+        "required": ["hist_days"]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "reboot_controller",
+      "description": "Send a remote reboot signal to the hardware unit.",
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      }
+    }
+  }
+]

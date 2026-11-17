@@ -1,45 +1,63 @@
-## Description: <br>
-Universal LYGO Living Memory Library upgrade. Provides a strict, low-noise memory index (max 20 files), fragile tagging, and audit/compression workflows so Champions can retain continuity and verify integrity via LYGO-MINT. Pure advisor; not a controller. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Defines a capped LYGO living-memory index and provides local audit and compression helpers for continuity files, fragile item review, and optional minting preparation.
 
-## Publisher: <br>
-[DeepSeekOracle](https://clawhub.ai/user/DeepSeekOracle) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[deepseekoracle](https://clawhub.ai/user/deepseekoracle)
 
-## Use Case: <br>
-External users and developers use this skill to define a compact living-memory index, audit indexed files for drift or fragile tags, compress logs or archives into a Master Archive, and prepare LYGO-MINT anchor snippets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Public anchoring of archives made from logs or conversation exports can expose secrets, personal data, internal links, identifiers, or private decisions. <br>
-Mitigation: Treat public anchoring as opt-in; remove sensitive material before minting or anchoring, and use local or private verification for sensitive archives. <br>
-Risk: Fragile indexed items may need manual review before they are compressed, minted, or anchored. <br>
-Mitigation: Honor FRAGILE tags, review flagged files before minting, and isolate suspicious drift until receipts or other evidence explain the change. <br>
+## Use Case:
 
+Developers and operators use this skill to maintain a small LYGO/LYRA continuity index, audit missing or fragile memory items, and prepare a concise Master Archive only after review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/DeepSeekOracle/lygo-universal-living-memory-library) <br>
-- [LYGO-MINT verifier](https://clawhub.ai/DeepSeekOracle/lygo-mint-verifier) <br>
-- [Library Spec](references/library_spec.md) <br>
-- [Core Files Index](references/core_files_index.json) <br>
-- [Audit Protocol](references/audit_protocol.md) <br>
-- [Compression Protocol](references/compression_protocol.md) <br>
-- [Seal 220C Update Excerpt](references/seal_220cupdate_excerpt.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with optional shell commands and JSON audit reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The audit helper performs local inspection and can write state/living_memory_audit_report.json when run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: The audit and compression helpers inspect local paths under the selected LYGO_AUTHORITY_ROOT and can write local report or archive files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a deliberately chosen authority root, inspect core_files_index.json for absolute paths, traversal, and symlinks, and run only in an intended local workspace.
+
+Risk: A Master Archive or public anchor can expose secrets, personal data, or private conversation content if sensitive memory items are included.
+
+Mitigation: Review FRAGILE items and remove API keys, wallet seeds, tokens, personal data, and private conversation content before minting or publishing any archive.
+
+Risk: Installer or verifier drift can change what is installed or validated for a memory-sensitive workflow.
+
+Mitigation: Use pinned ClawHub installer, skill, and verifier versions before running audit, compression, or minting steps.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/deepseekoracle/skills/lygo-universal-living-memory-library)
+- [Metadata GitHub link](https://github.com/DeepSeekOracle/lygo-protocol-stack)
+- [Library Spec](references/library_spec.md)
+- [Core Files Index](references/core_files_index.json)
+- [Audit Protocol](references/audit_protocol.md)
+- [Compression Protocol](references/compression_protocol.md)
+- [Security Guidance](references/SECURITY.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance]
+
+**Output Format:** [Markdown and terminal text with optional JSON report files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write a local audit report and MASTER_ARCHIVE.md when the bundled scripts are run.]
+
+## Skill Version(s):
+
+1.2.0 (source: release evidence and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

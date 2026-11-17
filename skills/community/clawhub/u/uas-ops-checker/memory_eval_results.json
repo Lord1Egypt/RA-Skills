@@ -1,0 +1,25 @@
+﻿{
+  "tool": "memory_eval_battery.py",
+  "version": "1.0.0",
+  "scope": "config-layer file-system memory (synthetic data, no real credentials)",
+  "run_at": "2026-10-17T07:48:27",
+  "note": "自研配置层评测，非标准 LoCoMo/LongMemEval 跑分；分数为链路功能验证口径",
+  "dimensions_0_5": {
+    "编码写入": 5.0,
+    "单跳提取": 5.0,
+    "多跳关联": 5.0,
+    "时序一致性": 5.0,
+    "蒸馏保真": 5.0,
+    "容量控制": 5.0
+  },
+  "raw_metrics": {
+    "single_hop": 1.0,
+    "multi_hop": 1.0,
+    "temporal": 1.0,
+    "consolidation_recall": 1.0,
+    "consolidation_compressed": true,
+    "capacity_bytes": 5531,
+    "capacity_triggered": true
+  },
+  "avg_score_0_5": 5.0
+}

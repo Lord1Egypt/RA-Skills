@@ -1,38 +1,48 @@
-## Description: <br>
-Visualizes Luhmann-encoded memory clusters as interactive node-link graphs with cluster highlighting, narrative overlays, real-time updates, and export options. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Visualize and explore Luhmann-encoded memory clusters as interactive graphs with narrative overlays, cluster highlighting, and export options.
 
-## Publisher: <br>
-[kkw-21](https://clawhub.ai/user/kkw-21) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[kkw-21](https://clawhub.ai/user/kkw-21)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and agents use this skill to render and inspect memory graphs, explore clusters, generate narrative overlays, and export graph views for embedding or review.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: A separately installed memory-graph command could read graph data outside the intended IDs or expose other users' memories.
+
+Mitigation: Confirm the command only reads selected graph IDs and enforces authorization before rendering or exporting memory data.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and agents use this skill to render, explore, and export memory graphs from Luhmann-encoded memory clusters. It is suited for interactive knowledge-map review, embedded WebView displays, and cluster-level narrative exploration. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, shell commands, code, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Cross-user memory discovery and graph export can expose private, workplace, customer, or personal data. <br>
-Mitigation: Use only where cross-user discovery is opt-in and access-controlled, and review or disable exportable graph data for sensitive memory stores. <br>
+**Output Format:** [Markdown with inline shell commands and export guidance]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [Memory Graph ClawHub page](https://clawhub.ai/kkw-21/memory-graph) <br>
+**Other Properties Related to Output:** [May produce SVG, PNG, or JSON exports when used with a separately installed memory-graph command.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and exported SVG, PNG, or JSON graph files when commands are executed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [WebView-ready graph output with cluster-aware layout, narrative overlays, and real-time update behavior when supported by the host environment.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

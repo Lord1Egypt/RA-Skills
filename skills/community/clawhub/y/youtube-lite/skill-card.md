@@ -1,45 +1,59 @@
-## Description: <br>
-Youtube Lite helps agents use TranscriptAPI.com to retrieve YouTube transcripts, search videos and channels, browse channel and playlist content, and inspect metadata. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Complete YouTube toolkit for transcripts, search, channels, playlists, and metadata via TranscriptAPI.com.
 
-## Publisher: <br>
-[liliangjie91](https://clawhub.ai/user/liliangjie91) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liliangjie91](https://clawhub.ai/user/liliangjie91)
 
-## Use Case: <br>
-External users, developers, and agents use this skill to gather YouTube transcripts, search YouTube content, browse channels and playlists, and support research or channel-monitoring workflows through TranscriptAPI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a TranscriptAPI API key for requests. <br>
-Mitigation: Use a dedicated API key where possible and avoid exposing it in shared terminals, logs, or transcripts. <br>
-Risk: Several endpoints consume TranscriptAPI credits, including transcript, search, channel videos, channel search, and playlist video calls. <br>
-Mitigation: Confirm paid or paginated requests before use and prefer free endpoints such as channel resolve or latest videos when they satisfy the task. <br>
-Risk: Search terms, video identifiers, channel identifiers, and playlist identifiers are sent to TranscriptAPI. <br>
-Mitigation: Avoid sending private or sensitive search terms unless the user is comfortable sharing them with TranscriptAPI. <br>
+## Use Case:
 
+Developers and agents use this skill to retrieve YouTube transcripts, search videos and channels, browse playlists, inspect channel content, and combine search-to-transcript workflows through TranscriptAPI.com.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/liliangjie91/youtube-lite) <br>
-- [TranscriptAPI](https://transcriptapi.com) <br>
-- [TranscriptAPI OpenAPI Specification](https://transcriptapi.com/openapi.json) <br>
-- [TranscriptAPI Signup](https://transcriptapi.com/signup) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline curl commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires TRANSCRIPT_API_KEY; some TranscriptAPI endpoints consume credits.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill sends YouTube queries and the TranscriptAPI.com API key to a third-party service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only when the user accepts TranscriptAPI.com processing and keep the API key scoped and revocable.
+
+Risk: The skill can save the API key in local OpenClaw configuration and creates a backup file.
+
+Mitigation: Avoid saving keys on shared machines, review file permissions, and remove plaintext config or backup files when no longer needed.
+
+Risk: Several endpoints consume TranscriptAPI.com credits.
+
+Mitigation: Confirm before using credit-based endpoints and prefer free endpoints when they satisfy the task.
+
+## Reference(s):
+
+- [TranscriptAPI.com](https://transcriptapi.com)
+- [TranscriptAPI OpenAPI specification](https://transcriptapi.com/openapi.json)
+- [Youtube Lite on ClawHub](https://clawhub.ai/liliangjie91/skills/youtube-lite)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and API response examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses TRANSCRIPT_API_KEY and may call free or credit-based TranscriptAPI.com endpoints.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

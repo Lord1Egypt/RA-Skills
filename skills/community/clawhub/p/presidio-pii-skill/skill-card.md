@@ -1,46 +1,59 @@
-## Description: <br>
-Local PII protection for OpenClaw agents that scrubs customer data before it reaches any AI model using local Microsoft Presidio containers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides local PII protection for OpenClaw agents by using Microsoft Presidio containers to scrub customer data before it reaches an AI model, with reversible pseudonymization and fail-closed behavior.
 
-## Publisher: <br>
-[sebclawops](https://clawhub.ai/user/sebclawops) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[sebclawops](https://clawhub.ai/user/sebclawops)
 
-## Use Case: <br>
-Developers and operators use this skill to check local Presidio health, pseudonymize customer PII from CRM, cloud-drive, and project-management data before model use, and restore tokenized responses locally before delivery. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Raw customer data is sent to Presidio endpoints controlled by PRESIDIO_ANALYZER_URL and PRESIDIO_ANONYMIZER_URL. <br>
-Mitigation: Bind Presidio to localhost and verify those environment variables are not set to remote services before use. <br>
-Risk: Sensitive token-to-PII mapping files are stored locally during reversible pseudonymization. <br>
-Mitigation: Use a controlled mapping directory, simple session IDs such as timestamps or UUIDs without slashes, and periodically remove stale mapping files. <br>
-Risk: The server security verdict requires review before deployment. <br>
-Mitigation: Install only when local PII scrubbing is needed and the runtime, container bindings, and mapping storage can be controlled. <br>
+## Use Case:
 
+Developers and operators use this skill to protect customer data from CRM, cloud storage, project management, and similar sources before an agent sends content to an AI model. It helps agents check local Presidio availability, scrub PII into tokens, reason over anonymized text, and restore user-facing responses locally.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/sebclawops/presidio-pii-skill) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact skill instructions](artifact/SKILL.md) <br>
-- [Project homepage from artifact metadata](https://github.com/sebclawops/presidio-pii-skill) <br>
-- [Project homepage from skill frontmatter](https://github.com/sebclawops/presidio-pii) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown instructions with inline shell commands and JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces scrubbed text, restore output, health status, and local mapping-file paths for a single session.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata; artifact SKILL.md version 1.0.1) <br>
+Risk: Raw customer data can be sent to Presidio endpoints controlled through environment variables.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted local Presidio analyzer and anonymizer endpoints, review endpoint environment variables before execution, and avoid forwarding sensitive input if the health check fails.
+
+Risk: Reversible PII mapping files contain sensitive token-to-original-value associations.
+
+Mitigation: Run the skill as an unprivileged user, store mappings in a restricted local directory, use trusted session identifiers, and restore/delete mappings promptly.
+
+Risk: PII detection may miss unsupported formats or domain-specific identifiers.
+
+Mitigation: Review anonymized output before sending it to a model and maintain custom recognizers for local data patterns.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sebclawops/skills/presidio-pii-skill)
+- [Artifact README](artifact/README.md)
+- [Artifact skill instructions](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON responses from helper scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local reversible mapping files during scrub/restore workflows; restore deletes mappings unless explicitly kept.]
+
+## Skill Version(s):
+
+0.1.1 (source: ClawHub release metadata; artifact declares 1.0.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

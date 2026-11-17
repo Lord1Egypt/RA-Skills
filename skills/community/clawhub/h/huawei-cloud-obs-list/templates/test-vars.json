@@ -1,0 +1,48 @@
+{
+  "skill_name": "huawei-cloud-obs-list",
+  "region": "cn-north-4",
+  "test_cases": [
+    {
+      "id": "TC-01",
+      "name": "List buckets via KooCLI obsutil (read-only, limit 1)",
+      "command": "hcloud OBS ls -limit=1 -e=obs.{region}.myhuaweicloud.com",
+      "expected": "Bucket number is: N + obs:// bucket names (account-level list)",
+      "type": "readonly",
+      "executor": "cli"
+    },
+    {
+      "id": "TC-02",
+      "name": "Bucket name list (script, names mode)",
+      "command": "python3 scripts/list_obs_buckets.py --region {region} --names-only",
+      "expected": "Header + one '- <bucket>' line per bucket, or a friendly empty message",
+      "type": "readonly",
+      "executor": "sdk"
+    },
+    {
+      "id": "TC-03",
+      "name": "Bucket list as JSON (script)",
+      "command": "python3 scripts/list_obs_buckets.py --region {region} --json",
+      "expected": "JSON array of {name, [creation_date], [location]}",
+      "type": "readonly",
+      "executor": "sdk"
+    },
+    {
+      "id": "TC-04",
+      "name": "Default table output (script)",
+      "command": "python3 scripts/list_obs_buckets.py --region {region}",
+      "expected": "Aligned table with name/creation_date/location columns",
+      "type": "readonly",
+      "executor": "sdk"
+    },
+    {
+      "id": "TC-05",
+      "name": "Argument help (syntax)",
+      "command": "python3 scripts/list_obs_buckets.py --help",
+      "expected": "argparse help printed, exit 0",
+      "type": "syntax",
+      "executor": "sdk"
+    }
+  ],
+  "env_vars_required": ["HW_ACCESS_KEY", "HW_SECRET_KEY"],
+  "notes": "只读操作（ListBuckets），无资源创建/修改/删除风险。CLI 路径使用 hcloud OBS（obsutil）的 ls；SDK 回退使用 huaweicloudsdkobs。OBS 桶列表为账号级，--region 仅决定 endpoint。"
+}

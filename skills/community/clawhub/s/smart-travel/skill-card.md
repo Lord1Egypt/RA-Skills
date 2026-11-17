@@ -1,41 +1,54 @@
-## Description: <br>
-零配置即装即用，16项工具涵盖行程规划、火车票、机票、酒店、景点、万豪、美食、交通、打车、天气、汽车票、跟团游、邮轮和度假线路，基于飞猪+高德+同程+途牛数据直连。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+一站式AI旅行助手，16项工具覆盖机票/酒店/火车票/景点/美食/天气全场景。途牛+高德+同程多源数据直连，零配置即装即用。
 
-## Publisher: <br>
-[travel-skills](https://clawhub.ai/user/travel-skills) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[travel-skills](https://clawhub.ai/user/travel-skills)
 
-## Use Case: <br>
-External users and travel planners use this skill to plan itineraries and search travel options such as trains, flights, hotels, attractions, food, local transit, taxis, bus tickets, tours, cruises, holiday routes, and weather. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Travel searches, locations, route endpoints, dates, hotel interests, and similar itinerary details are sent through the skill publisher's cloud proxy to travel and map providers. <br>
-Mitigation: Use the skill for non-sensitive travel planning only, and avoid entering passport numbers, payment data, account credentials, or highly private travel plans. <br>
-Risk: Travel prices, availability, routes, schedules, and weather can change after the skill returns results. <br>
-Mitigation: Confirm important details on the booking page, map provider, carrier, hotel, or attraction source before purchase or travel. <br>
+## Use Case:
 
+External users and travel assistants use this skill to plan trips and search Chinese-language travel information including flights, trains, hotels, attractions, food, weather, local transport, taxis, buses, tours, cruises, and holiday packages.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/travel-skills/smart-travel) <br>
-- [Publisher profile](https://clawhub.ai/user/travel-skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-style text responses with travel search results, itinerary guidance, booking or map links, prices, times, routes, weather, and follow-up suggestions.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses natural-language travel queries and returns provider-backed results through cloud proxy endpoints.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: server release evidence) <br>
+Risk: Travel searches are sent through cloud proxy services to travel and map providers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid entering sensitive personal details, account credentials, payment data, or exact private addresses unless necessary.
+
+Risk: Prices, availability, and booking links can change after the skill returns results.
+
+Mitigation: Verify prices and booking links on the provider page before purchasing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/travel-skills/skills/smart-travel)
+- [ClawHub publisher profile](https://clawhub.ai/user/travel-skills)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, links, guidance]
+
+**Output Format:** [Chinese markdown-like text with travel search results, prices, availability, route details, warnings, and provider links when available]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include real-time travel data from cloud proxy services; prices, availability, and booking links should be verified on the provider page before purchase.]
+
+## Skill Version(s):
+
+3.2.9 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

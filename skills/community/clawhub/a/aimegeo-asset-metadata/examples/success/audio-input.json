@@ -1,0 +1,24 @@
+{
+  "assets": [
+    {
+      "id": "sound-01",
+      "type": "audio",
+      "original_filename": "操作完成.WAV",
+      "filename_stem": "操作完成 提示音",
+      "title": "操作完成提示音",
+      "evidence": {
+        "kind": "user_description",
+        "scope": "full",
+        "reference": "受控样例的提示音说明",
+        "details": "操作完成时播放的一声短提示音，不含人声。"
+      },
+      "caption": "操作完成提示音。",
+      "description": "在操作完成时播放的短提示音，不含语言内容。",
+      "duration_seconds": 1.25,
+      "transcript": {
+        "status": "not_applicable",
+        "reason": "输入说明为纯提示音，无语言内容"
+      }
+    }
+  ]
+}

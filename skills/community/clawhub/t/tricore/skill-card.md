@@ -1,42 +1,57 @@
-## Description: <br>
-TriCore is a deterministic three-layer memory and cognitive framework for OpenClaw agents, with a Python memory controller, policy constraints, and planning, ReAct, and self-evolution skill templates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+TriCore Architecture is a deterministic, code-first three-layer memory and cognitive framework for low-resource servers and agents, including the memctl engine, policy constraints, and cognitive tools for planning, ReAct reasoning, and self-evolution.
 
-## Publisher: <br>
-[bertonhan](https://clawhub.ai/user/bertonhan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[bertonhan](https://clawhub.ai/user/bertonhan)
 
-## Use Case: <br>
-Developers and agent operators use TriCore to install a workspace-level memory framework that routes planning state, session notes, and knowledge base entries through memctl.py instead of scattered files. It is intended for OpenClaw environments that support memory_search and memory_get. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The install script modifies workspace policy and OpenClaw compaction configuration. <br>
-Mitigation: Review the POLICY.md diff and compaction prompt change before installation, and install first in a test workspace or with backups. <br>
-Risk: The installer may migrate an oversized MEMORY.md into memory/archive and replace it with a minimal template. <br>
-Mitigation: Back up the workspace before installation and review any archived legacy memory file before redistributing content into the new memory structure. <br>
-Risk: The bundled self-evolution skill can guide web-informed code and configuration changes. <br>
-Mitigation: Disable or remove self-evolution unless runtime code modification is explicitly desired and reviewed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [TriCore ClawHub release](https://clawhub.ai/bertonhan/tricore) <br>
-- [Publisher profile](https://clawhub.ai/user/bertonhan) <br>
+## Use Case:
 
+Developers and agent operators use TriCore to install a workspace-wide memory and state framework for OpenClaw agents. It routes planning, task state, and knowledge capture through memctl.py and optionally deploys bundled planning, ReAct, and self-evolution skill templates.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown instructions with bash and Python command examples plus installable script and skill files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces workspace memory files, policy configuration changes, and cognitive skill templates when installed.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release metadata; artifact frontmatter says 1.0.0) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: TriCore can persistently change workspace-wide agent policy, memory handling, and compaction behavior.
+
+Mitigation: Review the POLICY.md changes, save the existing OpenClaw compaction prompt, and back up MEMORY.md before running install.sh.
+
+Risk: The self-evolution component can lead agents toward code, skill, and configuration edits.
+
+Mitigation: Enable self-evolution only when human review is required for proposed edits and runtime write permissions are intentionally granted.
+
+Risk: Legacy memory migration may move an existing large MEMORY.md into an archive and replace it with a minimal template.
+
+Mitigation: Back up MEMORY.md and inspect any archived legacy memory before redistributing facts, decisions, and playbooks through memctl.py.
+
+## Reference(s):
+
+- [TriCore skill page](https://clawhub.ai/bertonhan/skills/tricore)
+- [TriCore repository declared by the skill](https://github.com/bertonhan/tricore)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline bash and Python command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce or recommend workspace policy, memory, skill, and configuration changes when installed or applied.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

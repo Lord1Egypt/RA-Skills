@@ -1,81 +1,154 @@
 {
   "name": "FarmDash Futures Strategist",
-  "version": "3.0.1",
-  "description": "Adaptive Hyperliquid perps execution engine for OpenClaw agents. Provides research, pre-trade simulation, predictive funding shifts, and zero-custody EIP-712 order routing with forensic telemetry. Scout (5/day), Pioneer (unlimited), and Syndicate (unlimited) execution supported.",
+  "version": "3.4.0",
+  "description": "Hyperliquid perps strategist: market scans, funding rates, position sizing, and user-signed EIP-712 order execution & cancellation with drawdown guardrails.",
   "tags": [
     "defi",
-    "ai-agent",
-    "autonomous-agent",
-    "openclaw",
-    "clawhub",
-    "mcp",
-    "crypto",
-    "web3",
-    "onchain",
     "hyperliquid",
-    "perps",
-    "futures",
-    "trading",
+    "perpetual-futures",
+    "perps-trading",
+    "leverage-trading",
+    "perp-dex",
+    "defi-trading",
+    "ai-trading-agent",
     "funding-rates",
-    "funding-arb",
-    "market-making",
-    "risk-management",
-    "liquidation",
-    "zero-custody",
+    "funding-arbitrage",
+    "position-sizing",
+    "drawdown-control",
+    "liquidation-risk",
     "eip-712",
-    "trail-heat",
-    "farmdash",
-    "forensics",
-    "shadow-mode",
-    "oracle-latency",
-    "monetization",
-    "syndicate-tier",
-    "hft",
-    "delta-neutral",
-    "hedging",
-    "blockchain-forensics",
-    "automated-trading",
-    "l2"
+    "zero-custody",
+    "openclaw",
+    "mcp",
+    "risk-management",
+    "web3",
+    "farmdash"
   ],
   "author": "FarmDash Pioneers (@Parmasanandgarlic)",
   "homepage": "https://www.farmdash.one/agents",
   "tools": [
     {
       "name": "scan_funding_rates",
-      "description": "Scan cross-venue funding opportunities. (v3.0: Includes Predictive Funding Shift indicators).",
+      "description": "Scan current and venue-published predicted funding snapshots. Scout receives a top-3 numeric preview; Pioneer/Syndicate or the default-overage x402 one-off receives the full response for that request. Predicted funding is not a calibrated probability or guaranteed future payment. Takes no parameters.",
       "inputSchema": {
         "type": "object",
-        "properties": {}
+        "properties": {},
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false
       },
       "outputHints": [],
       "category": "read"
     },
     {
       "name": "scan_market_conditions",
-      "description": "Read EMA, RSI, MACD, ADX, ATR, Bollinger Bands, volume ratio, Z-score, and Hyperliquid oracle latency for one perp asset.",
+      "description": "Read candle-derived EMA, RSI, MACD, ADX, ATR, Bollinger Bands, volume ratio, Z-score, market regime, and the response timestamp for one perp asset. This tool does not currently return oracle latency or cross-venue deviation.",
       "inputSchema": {
         "type": "object",
-        "properties": {}
+        "properties": {
+          "coin": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "coin"
+        ],
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false
       },
       "outputHints": [],
       "category": "read"
     },
     {
       "name": "get_futures_account",
-      "description": "Inspect equity, open positions, available margin, drawdown state, and guardrail pressure.",
+      "description": "Inspect equity, open positions, available margin, venue-reported liquidation prices, and guardrail pressure. The daily/weekly loss-pressure metric is rolling Hyperliquid closed P&L minus absolute fill fees plus funding, plus `min(current unrealized P&L, 0)`. Positive open gains cannot offset realized losses. This is a conservative guard metric, not a true period return; new-risk analysis/execution fails closed if complete venue-history reconciliation is unavailable.\r\n\r\nSend `agentAddress` plus optional `accountAddress`. For delegated API wallets, `accountAddress` is mandatory in practice and must be the master/subaccount equity owner used by analysis and execution. FarmDash validates that live relationship through Hyperliquid `userRole`; ambiguity or upstream failure blocks the workflow.",
       "inputSchema": {
         "type": "object",
-        "properties": {}
+        "properties": {
+          "agentAddress": {
+            "type": "string",
+            "pattern": "^0x[a-fA-F0-9]{40}$"
+          },
+          "accountAddress": {
+            "type": "string",
+            "pattern": "^0x[a-fA-F0-9]{40}$"
+          }
+        },
+        "required": [
+          "agentAddress"
+        ],
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false
       },
       "outputHints": [],
       "category": "read"
     },
     {
       "name": "analyze_futures_strategy",
-      "description": "Primary research tool. Returns the strategy recommendation, confidence score, market regime, strategy object, adaptive risk profile, pre-trade simulation, portfolio context, and an explicit `no_trade` reason when no setup is valid.",
+      "description": "Primary research tool. Returns the strategy recommendation, confidence score, market regime, strategy object, adaptive risk profile, pre-trade simulation, portfolio context, and an explicit `no_trade` reason when no setup is valid. accountAddress optionally pins the equity-owner account for delegated-wallet flows (master/subaccount/vault); omit only for a direct signer.",
       "inputSchema": {
         "type": "object",
-        "properties": {}
+        "properties": {
+          "coin": {
+            "type": "string"
+          },
+          "agentAddress": {
+            "type": "string",
+            "pattern": "^0x[a-fA-F0-9]{40}$"
+          },
+          "accountAddress": {
+            "type": "string",
+            "pattern": "^0x[a-fA-F0-9]{40}$"
+          },
+          "riskMultiplier": {
+            "type": "number",
+            "minimum": 0.1,
+            "maximum": 1
+          },
+          "idempotencyKey": {
+            "type": "string",
+            "pattern": "^[\\x21-\\x7e]{1,128}$"
+          },
+          "executionTrialProof": {
+            "type": "object",
+            "properties": {
+              "issuedAt": {
+                "type": "integer",
+                "exclusiveMinimum": 0,
+                "maximum": 9007199254740991
+              },
+              "signature": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "required": [
+              "issuedAt",
+              "signature"
+            ]
+          },
+          "executionMode": {
+            "type": "string",
+            "enum": [
+              "USER_SIGNED",
+              "BOUNDED_AUTONOMOUS"
+            ]
+          },
+          "grantId": {
+            "type": "string"
+          },
+          "sessionId": {
+            "type": "string"
+          },
+          "sessionToken": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "coin",
+          "agentAddress"
+        ],
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false
       },
       "outputHints": [],
       "category": "read"
@@ -85,37 +158,397 @@
       "description": "Inspect sizing math separately when the user wants to validate risk and margin.",
       "inputSchema": {
         "type": "object",
-        "properties": {}
+        "properties": {
+          "equity": {
+            "type": "number",
+            "exclusiveMinimum": 0
+          },
+          "entryPrice": {
+            "type": "number",
+            "exclusiveMinimum": 0
+          },
+          "stopPrice": {
+            "type": "number",
+            "exclusiveMinimum": 0
+          },
+          "riskPercent": {
+            "type": "number",
+            "exclusiveMinimum": 0
+          },
+          "targetPrice": {
+            "type": "number",
+            "exclusiveMinimum": 0
+          },
+          "riskMultiplier": {
+            "type": "number",
+            "minimum": 0.1,
+            "maximum": 1
+          }
+        },
+        "required": [
+          "equity",
+          "entryPrice",
+          "stopPrice"
+        ],
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false
       },
       "outputHints": [],
       "category": "read"
     },
     {
-      "name": "execute_perp_order",
-      "description": "Execute only after research and explicit user confirmation. Generates 11-field Forensic receipt on settlement.",
+      "name": "prepare_perp_order",
+      "description": "Zero-custody preparation: validates the intended Hyperliquid order and returns the exact signedAction, nonce, expiresAt, intentHash, EIP-712 typedData, and executeRequest template for local signing. FarmDash does not sign or submit. New-risk preparation requires fresh execution-ready analysis.",
       "inputSchema": {
         "type": "object",
-        "properties": {}
+        "properties": {
+          "agentAddress": {
+            "type": "string",
+            "pattern": "^0x[a-fA-F0-9]{40}$"
+          },
+          "accountAddress": {
+            "type": "string",
+            "pattern": "^0x[a-fA-F0-9]{40}$"
+          },
+          "coin": {
+            "type": "string"
+          },
+          "isBuy": {
+            "type": "boolean"
+          },
+          "size": {
+            "type": "string"
+          },
+          "price": {
+            "type": "string"
+          },
+          "orderType": {
+            "type": "string",
+            "enum": [
+              "limit_gtc",
+              "limit_ioc",
+              "limit_alo",
+              "market_ioc",
+              "stop_loss",
+              "take_profit"
+            ]
+          },
+          "reduceOnly": {
+            "type": "boolean"
+          },
+          "leverage": {
+            "type": "number",
+            "exclusiveMinimum": 0,
+            "maximum": 5
+          },
+          "nonce": {
+            "type": "integer",
+            "exclusiveMinimum": 0,
+            "maximum": 9007199254740991
+          },
+          "expiresAt": {
+            "type": "integer",
+            "exclusiveMinimum": 0,
+            "maximum": 9007199254740991
+          },
+          "executionMode": {
+            "default": "USER_SIGNED",
+            "type": "string",
+            "enum": [
+              "USER_SIGNED",
+              "BOUNDED_AUTONOMOUS"
+            ]
+          },
+          "executionTrialId": {
+            "type": "string",
+            "minLength": 1
+          },
+          "continuationId": {
+            "type": "string",
+            "format": "uuid",
+            "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+          },
+          "grantId": {
+            "type": "string"
+          },
+          "sessionId": {
+            "type": "string"
+          },
+          "sessionToken": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "agentAddress",
+          "coin",
+          "isBuy",
+          "size",
+          "price",
+          "orderType"
+        ],
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false
+      },
+      "outputHints": [],
+      "category": "execution"
+    },
+    {
+      "name": "execute_perp_order",
+      "description": "State-changing execution: forward a locally signed EIP-712 order only after exact identity/action binding, venue authority, builder approval, risk and replay checks. USER_SIGNED requires fresh manual user confirmation; BOUNDED_AUTONOMOUS requires an owner-signed futures policy, authenticated session and all quantitative checks. Current futures.BOUNDED_AUTONOMOUS = operational; live gates remain mandatory. Reconcile venue outcomes before dependent actions.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "agentAddress": {
+            "type": "string",
+            "pattern": "^0x[a-fA-F0-9]{40}$"
+          },
+          "accountAddress": {
+            "type": "string",
+            "pattern": "^0x[a-fA-F0-9]{40}$"
+          },
+          "coin": {
+            "type": "string"
+          },
+          "isBuy": {
+            "type": "boolean"
+          },
+          "size": {
+            "type": "string"
+          },
+          "price": {
+            "type": "string"
+          },
+          "orderType": {
+            "type": "string",
+            "enum": [
+              "limit_gtc",
+              "limit_ioc",
+              "limit_alo",
+              "market_ioc",
+              "stop_loss",
+              "take_profit"
+            ]
+          },
+          "signature": {
+            "type": "object",
+            "properties": {
+              "r": {
+                "type": "string",
+                "pattern": "^0x[a-fA-F0-9]{64}$"
+              },
+              "s": {
+                "type": "string",
+                "pattern": "^0x[a-fA-F0-9]{64}$"
+              },
+              "v": {
+                "type": "integer",
+                "minimum": -9007199254740991,
+                "maximum": 9007199254740991
+              }
+            },
+            "required": [
+              "r",
+              "s",
+              "v"
+            ]
+          },
+          "reduceOnly": {
+            "type": "boolean"
+          },
+          "leverage": {
+            "type": "number",
+            "exclusiveMinimum": 0
+          },
+          "signedAction": {
+            "description": "If supplied, must include the signed FarmDash builder term { b: treasury, f: 1 }; f is tenths of a basis point."
+          },
+          "executionTrialId": {
+            "type": "string",
+            "minLength": 1
+          },
+          "nonce": {
+            "type": "integer",
+            "exclusiveMinimum": 0,
+            "maximum": 9007199254740991
+          },
+          "expiresAt": {
+            "type": "integer",
+            "exclusiveMinimum": 0,
+            "maximum": 9007199254740991
+          },
+          "intentHash": {
+            "type": "string"
+          },
+          "executionMode": {
+            "default": "USER_SIGNED",
+            "type": "string",
+            "enum": [
+              "USER_SIGNED",
+              "BOUNDED_AUTONOMOUS"
+            ]
+          },
+          "grantId": {
+            "type": "string"
+          },
+          "sessionId": {
+            "type": "string"
+          },
+          "sessionToken": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "agentAddress",
+          "coin",
+          "isBuy",
+          "size",
+          "price",
+          "orderType",
+          "signature",
+          "nonce",
+          "expiresAt",
+          "intentHash"
+        ],
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false
       },
       "outputHints": [],
       "category": "execution"
     },
     {
       "name": "cancel_perp_order",
-      "description": "Cancel stale or superseded open orders.",
+      "description": "State-changing action: forward a pre-signed EIP-712 cancellation payload. USER_SIGNED requires fresh manual confirmation before invoking; bounded mode requires futures.cancel scope, owner policy, session, local venue signature and replay checks, not unused entry budget. An accepted acknowledgement is not final cancellation; reconcile every requested ID.",
       "inputSchema": {
         "type": "object",
-        "properties": {}
+        "properties": {
+          "agentAddress": {
+            "type": "string",
+            "pattern": "^0x[a-fA-F0-9]{40}$"
+          },
+          "accountAddress": {
+            "type": "string",
+            "pattern": "^0x[a-fA-F0-9]{40}$"
+          },
+          "coin": {
+            "type": "string"
+          },
+          "orderIds": {
+            "minItems": 1,
+            "maxItems": 50,
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "exclusiveMinimum": 0,
+              "maximum": 9007199254740991
+            }
+          },
+          "signature": {
+            "type": "object",
+            "properties": {
+              "r": {
+                "type": "string",
+                "pattern": "^0x[a-fA-F0-9]{64}$"
+              },
+              "s": {
+                "type": "string",
+                "pattern": "^0x[a-fA-F0-9]{64}$"
+              },
+              "v": {
+                "type": "integer",
+                "minimum": -9007199254740991,
+                "maximum": 9007199254740991
+              }
+            },
+            "required": [
+              "r",
+              "s",
+              "v"
+            ]
+          },
+          "signedAction": {},
+          "nonce": {
+            "type": "integer",
+            "exclusiveMinimum": 0,
+            "maximum": 9007199254740991
+          },
+          "expiresAt": {
+            "type": "integer",
+            "exclusiveMinimum": 0,
+            "maximum": 9007199254740991
+          },
+          "intentHash": {
+            "type": "string"
+          },
+          "executionMode": {
+            "default": "USER_SIGNED",
+            "type": "string",
+            "enum": [
+              "USER_SIGNED",
+              "BOUNDED_AUTONOMOUS"
+            ]
+          },
+          "grantId": {
+            "type": "string"
+          },
+          "sessionId": {
+            "type": "string"
+          },
+          "sessionToken": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "agentAddress",
+          "coin",
+          "orderIds",
+          "signature",
+          "nonce",
+          "expiresAt",
+          "intentHash"
+        ],
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false
       },
       "outputHints": [],
       "category": "execution"
     },
     {
       "name": "get_agent_performance",
-      "description": "Use as the feedback loop for strategy review, drawdown response, shadow-mode drift checks, and campaign-level confidence adjustments. Backed by `https://www.farmdash.one/api/v1/agent/performance`.",
+      "description": "Use only for FarmDash fee-event activity, fees, protocol diversity, and reputation. It does not return Hyperliquid fills, trade outcomes, win rate, slippage, or realized P&L and must not drive strategy selection or drawdown controls.",
       "inputSchema": {
         "type": "object",
-        "properties": {}
+        "properties": {
+          "agentAddress": {
+            "type": "string",
+            "pattern": "^0x[a-fA-F0-9]{40}$"
+          }
+        },
+        "required": [
+          "agentAddress"
+        ],
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false
+      },
+      "outputHints": [],
+      "category": "read"
+    },
+    {
+      "name": "select_execution_continuation",
+      "description": "Select a server-issued continuation as read-only context. Returns canonical next_operation parameters and prerequisites only; does not quote, analyze, prepare, admit, debit, sign or submit. Requires only continuationId and grants no execution authority.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "continuationId": {
+            "type": "string",
+            "format": "uuid",
+            "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+          }
+        },
+        "required": [
+          "continuationId"
+        ],
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false
       },
       "outputHints": [],
       "category": "read"
@@ -127,5 +560,66 @@
       "description": "Optional Bearer token for Pioneer or Syndicate tier. Scout mode works with no key or with the public fd_scout_free token. Never share private keys, seed phrases, or mnemonics with this skill — perps execution uses EIP-712 local signing only via the user's Hyperliquid API wallet.",
       "required": false
     }
+  },
+  "links": {
+    "website": "https://www.farmdash.one/",
+    "agentHub": "https://www.farmdash.one/agents",
+    "canonicalSkill": "https://www.farmdash.one/openclaw-skills/farmdash-futures-strategist/SKILL.md",
+    "documentation": "https://www.farmdash.one/docs",
+    "status": "https://www.farmdash.one/api/v1/agent/status",
+    "openApi": "https://www.farmdash.one/agents/openapi.yaml",
+    "mcpDiscovery": "https://www.farmdash.one/.well-known/mcp.json",
+    "fees": "https://www.farmdash.one/fees",
+    "security": "https://www.farmdash.one/security"
+  },
+  "capability_truth": {
+    "spot.USER_SIGNED": {
+      "status": "operational",
+      "prerequisite": "Healthy execution governor, quote provider, RPC and durable receipt store; customer signs and submits."
+    },
+    "spot.BOUNDED_AUTONOMOUS": {
+      "status": "operational",
+      "prerequisite": "Owner-signed EVM grant, exact simulation/calldata binding, durable budget and customer-local signer authority."
+    },
+    "futures.USER_SIGNED": {
+      "status": "operational",
+      "prerequisite": "Venue account ownership, local action signature, builder approval, risk/research gates and durable order control."
+    },
+    "futures.BOUNDED_AUTONOMOUS": {
+      "status": "operational",
+      "prerequisite": "Authenticated owner-bound futures policy, authorized local API-wallet signature, durable nonce/budget/order controls."
+    },
+    "solana.USER_SIGNED": {
+      "status": "operational",
+      "prerequisite": "Native Jupiter/RPC route, durable preparation and finality store; customer signs and broadcasts."
+    },
+    "solana.BOUNDED_AUTONOMOUS": {
+      "status": "operational",
+      "prerequisite": "Native owner-signed Solana policy; local key must be an actual required transaction signer. Policy creates no on-chain authority."
+    },
+    "ERC4337_SERVER_SUBMISSION": {
+      "status": "preparation_only",
+      "prerequisite": "Qualified tenant/account authorization and session-key policy enforcement on public forwarding, configured bundler, durable claims and verified receipt integration."
+    },
+    "GENERIC_SERVER_INTENT_EXECUTION": {
+      "status": "preparation_only",
+      "prerequisite": "Trusted executable adapter, exact signed-transaction binding and canonical receipt verifier."
+    },
+    "MEE": {
+      "status": "preparation_only",
+      "prerequisite": "Production coordinator and authoritative source/destination receipt verifier."
+    },
+    "ACP": {
+      "status": "deployment_prerequisite",
+      "prerequisite": "AcpReadinessService paidWorkflowReady, evaluator/client identities, migrations, funding/finality workers and Base RPC."
+    }
+  },
+  "installation_attribution": {
+    "header": "X-FarmDash-Installation-ID",
+    "optional": true,
+    "analytics_only": true,
+    "generation": "locally generated random UUIDv4, stable per installation, shared across skills",
+    "server_storage": "domain-separated salted hash only",
+    "authority": "none; cannot authenticate, grant quota/payment/trial capacity, own wallets, delegate or sign"
   }
 }

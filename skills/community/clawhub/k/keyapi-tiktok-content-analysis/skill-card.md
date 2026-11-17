@@ -1,42 +1,63 @@
-## Description: <br>
-Analyze TikTok content at scale, including videos, hashtags, music tracks, live streams, engagement trends, comment sentiment, caption transcription, and commerce attribution data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze TikTok content at scale, extracting insights from videos, hashtags, music tracks, and live streams, including engagement trends, comment sentiment, caption transcription, and commerce attribution data.
 
-## Publisher: <br>
-[lycici](https://clawhub.ai/user/lycici) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lycici](https://clawhub.ai/user/lycici)
 
-## Use Case: <br>
-Developers, analysts, and marketing teams use this skill to retrieve and synthesize TikTok performance, audience, hashtag, music, live-stream, and commerce signals through KeyAPI-backed tool calls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a KeyAPI token and may access broader remote MCP server capabilities than TikTok analysis alone. <br>
-Mitigation: Use a rotatable, least-privilege token and inspect available tools before issuing calls. <br>
-Risk: Credentials may be loaded from a plaintext .env file and API responses may be retained in a local cache. <br>
-Mitigation: Avoid high-value tokens, restrict local file access, and clear .keyapi-cache when cached TikTok data should not persist. <br>
+## Use Case:
 
+External users, developers, analysts, and marketing teams use this skill to collect and synthesize TikTok video, hashtag, music, live-stream, comment, caption, engagement, and commerce signals for content strategy and audience research.
 
-## Reference(s): <br>
-- [KeyAPI](https://keyapi.ai/) <br>
-- [KeyAPI MCP Server](https://mcp.keyapi.ai) <br>
-- [ClawHub skill page](https://clawhub.ai/lycici/keyapi-tiktok-content-analysis) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON API results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js and KEYAPI_TOKEN; tool calls may cache API responses locally.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill requires a KeyAPI token and may persist secrets if the interactive .env flow is used.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Set KEYAPI_TOKEN only in the process environment when possible, avoid writing tokens to .env, and remove any unintended .env file after use.
+
+Risk: TikTok and KeyAPI results may be stored on local disk in cache or output files.
+
+Mitigation: Review cached data handling requirements and periodically delete .keyapi-cache and generated output files that should not be retained.
+
+Risk: A custom KEYAPI_SERVER_URL can route authenticated requests to a non-default endpoint.
+
+Mitigation: Leave KEYAPI_SERVER_URL unset unless the endpoint is trusted and approved for the data being processed.
+
+Risk: The server security verdict is suspicious and recommends review before execution.
+
+Mitigation: Review the skill, dependency installation, token handling, and network endpoint configuration before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lycici/skills/keyapi-tiktok-content-analysis)
+- [KeyAPI website](https://keyapi.ai/)
+- [KeyAPI MCP server endpoint](https://mcp.keyapi.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports, JSON API responses, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May cache API responses and converted cover-image URLs locally; outputs can include TikTok content metadata, engagement data, comments, captions, and commerce signals.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

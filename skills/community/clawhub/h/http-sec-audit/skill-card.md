@@ -1,40 +1,53 @@
-## Description: <br>
-Audits user-supplied websites for HTTP security headers, grades the result, and reports missing headers, weak values, and information-leak headers with recommended fixes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audit HTTP security headers for any website, including HSTS, CSP, X-Frame-Options, information-leak headers, per-site grades, and optional JSON output.
 
-## Publisher: <br>
-[Johnnywang2001](https://clawhub.ai/user/Johnnywang2001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[johnnywang2001](https://clawhub.ai/user/johnnywang2001)
 
-## Use Case: <br>
-Developers, site reliability engineers, and security reviewers use this skill to run quick authorized checks of website HTTP response headers and receive actionable hardening recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill makes outbound HTTP(S) requests to user-supplied URLs. <br>
-Mitigation: Use it only against sites you own or are authorized to audit, and avoid localhost, internal network, metadata-service, or otherwise sensitive URLs unless those requests are intentional. <br>
-Risk: The audit is limited to selected HTTP headers and obvious weak values, so it is not a complete web application security assessment. <br>
-Mitigation: Treat results as triage and review recommendations before applying production configuration changes. <br>
+## Use Case:
 
+Developers, security engineers, and site operators use this skill to audit public websites for missing or weak HTTP security headers and receive grades, warnings, and fix recommendations.
 
-## Reference(s): <br>
-- [ClawHub release page for Http Sec Audit](https://clawhub.ai/Johnnywang2001/http-sec-audit) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Human-readable terminal report or JSON array] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports one or more URL audit results with status, present and missing headers, warnings, information leaks, score, grade, and recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can make unrestricted outbound requests from the runner to user-provided URLs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only on public websites you intend to audit, avoid internal or sensitive URLs, and run it in a network-restricted environment when possible.
+
+Risk: The security scan verdict is suspicious pending stronger URL validation, redirect validation, response streaming, and pinned dependencies.
+
+Mitigation: Review the skill before deployment and add those controls before using it in sensitive environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/johnnywang2001/skills/http-sec-audit)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, guidance]
+
+**Output Format:** [Markdown report or JSON array with per-URL findings, grades, warnings, and recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May make outbound HTTP requests to user-provided URLs and follows redirects during scanning.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,55 @@
-## Description: <br>
-Generates short AI videos through Atlas Cloud using ByteDance Seedance models, with guidance and commands for text-to-video, image-to-video, synchronized audio, camera controls, model selection, polling, and output download. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill helps an agent generate and download short AI videos through Atlas Cloud using ByteDance Seedance text-to-video and image-to-video models.
 
-## Publisher: <br>
-[xixihhhh](https://clawhub.ai/user/xixihhhh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xixihhhh](https://clawhub.ai/user/xixihhhh)
 
-## Use Case: <br>
-Developers, creators, and agent users use this skill to generate or animate short video clips from prompts or image inputs through Atlas Cloud's hosted video generation API. It is suited for product demos, marketing clips, social media reels, cinematic scenes, and talking-head style video generation when paid API use is acceptable. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The script can incur paid Atlas Cloud video-generation charges. <br>
-Mitigation: Use a dedicated Atlas Cloud API key, confirm the selected model and price before execution, and run only when paid generation is intended. <br>
-Risk: Prompts, image URLs, video URLs, audio URLs, and uploaded local media may be sent to Atlas Cloud. <br>
-Mitigation: Avoid confidential prompts and private media, and require explicit user confirmation before using the upload command or sending sensitive inputs. <br>
-Risk: The helper script supports broader model and media-upload behavior than the main skill description emphasizes. <br>
-Mitigation: Review generated commands for model ID, input files, URLs, and parameters before execution, especially for video-to-video, audio-guided, or upload workflows. <br>
+## Use Case:
 
+External users, developers, and content teams can use this skill to turn prompts or image URLs into short generated video clips and save the returned MP4 files. It is suited for drafts, social media reels, product demos, and cinematic clips where Atlas Cloud API use is acceptable.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xixihhhh/seedance-ai-video) <br>
-- [Publisher profile](https://clawhub.ai/user/xixihhhh) <br>
-- [Atlas Cloud](https://www.atlascloud.ai) <br>
-- [Atlas Cloud video generation endpoint](https://api.atlascloud.ai/api/v1/model/generateVideo) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance, Files] <br>
-**Output Format:** [Markdown guidance with inline shell commands and downloaded MP4 video files when the script is executed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires ATLASCLOUD_API_KEY and sends prompts, image URLs, or uploaded media to Atlas Cloud.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.2 (source: server release metadata) <br>
+Risk: The skill requires an Atlas Cloud API key and sends prompts, image URLs, and potentially uploaded local media to Atlas Cloud.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with data that may be shared with Atlas Cloud, store the API key in ATLASCLOUD_API_KEY, and avoid submitting sensitive prompts or media.
+
+Risk: The bundled script supports broader Atlas Cloud video generation and upload behavior than the Seedance-focused description highlights.
+
+Mitigation: Review commands before execution, confirm model IDs and upload actions, and be cautious with upload --yes because it skips confirmation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xixihhhh/skills/seedance-ai-video)
+- [Atlas Cloud](https://www.atlascloud.ai)
+- [Atlas Cloud video generation API endpoint](https://api.atlascloud.ai/api/v1/model/generateVideo)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and Python script usage]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated media is retrieved from Atlas Cloud and saved as MP4 files when the bundled script is run.]
+
+## Skill Version(s):
+
+1.1.2 (source: server evidence release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

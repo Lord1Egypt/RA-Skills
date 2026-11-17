@@ -1,39 +1,54 @@
-## Description: <br>
-Guides collaborative brainstorming before creative or implementation work, helping turn rough ideas into validated designs and next-step plans. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+在任何创造性工作之前必须使用 - 创建功能、构建组件、添加新功能或修改行为。通过协作对话探索用户意图、需求和设计。
 
-## Publisher: <br>
-[lky115](https://clawhub.ai/user/lky115) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lky115](https://clawhub.ai/user/lky115)
 
-## Use Case: <br>
-Developers, designers, and product collaborators use this skill before feature, component, or behavior changes to clarify intent, compare alternatives, and shape a validated design. It can also hand off to planning workflows after the design is approved. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow can lead to design documents being written and committed before the user has fully reviewed the proposal. <br>
-Mitigation: Require explicit approval before file writes or git commits, and review generated design sections before relying on them. <br>
-Risk: Brainstormed alternatives or recommendations may miss project constraints or produce misleading direction. <br>
-Mitigation: Keep project inspection scoped, answer clarification questions carefully, and validate each design section against the current project context. <br>
+## Use Case:
 
+Developers, product teams, and builders use this skill to turn early creative ideas into scoped designs through collaborative questioning, option exploration, and incremental validation.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Conversational Markdown with optional design document content and command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose writing validated designs under docs/plans and committing them after user approval.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can guide an agent toward reading broad project context, writing design documents, and committing those documents.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user approval before broad context reads, writes under docs/plans, or git commits.
+
+Risk: Brainstormed proposals may contain incorrect assumptions or misleading design guidance.
+
+Mitigation: Review and validate proposed designs before implementation or release.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lky115/skills/est321)
+- [ClawHub publisher profile](https://clawhub.ai/user/lky115)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Conversational text and Markdown design sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include staged design sections and a docs/plans design document when approved.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

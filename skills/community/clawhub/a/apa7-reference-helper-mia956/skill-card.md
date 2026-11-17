@@ -1,40 +1,60 @@
-## Description: <br>
-Format, audit, and polish academic references in APA 7th style, including in-text citations, DOI/URL cleanup, and correction tables for student papers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Format, audit, and polish academic references in APA 7th style, including in-text citations, DOI/URL cleanup, and correction tables for student papers.
 
-## Publisher: <br>
-[mia956](https://clawhub.ai/user/mia956) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mia956](https://clawhub.ai/user/mia956)
 
-## Use Case: <br>
-External students, researchers, and academic writers use this skill to format APA 7 reference lists, audit citation quality, generate in-text citation examples, and identify missing source metadata. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: APA formatting suggestions or checker output may miss source-specific details or give incomplete citation-quality feedback. <br>
-Mitigation: Review important references manually against APA 7 guidance, verify source metadata and DOI or URL values, and keep missing fields explicitly marked instead of filling them from memory. <br>
-Risk: The optional checker reads local reference-list text files supplied to it. <br>
-Mitigation: Run the checker only on reference-list files intended for inspection and avoid passing unrelated or sensitive documents. <br>
+## Use Case:
 
+Students, researchers, and academic writers use this skill to format APA 7 reference lists, audit incomplete citation metadata, clean DOI/URL and author formatting, and prepare in-text citation examples. It supports bilingual workflows where corrections can be explained in Chinese while English APA 7 references are produced.
 
-## Reference(s): <br>
-- [APA7 Reference Helper ClawHub release](https://clawhub.ai/mia956/apa7-reference-helper-mia956) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown or plain text, with optional local checker reports or JSON output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Marks missing bibliographic metadata explicitly and treats the helper script as formatting triage rather than source verification.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The local Python checker is a quick heuristic and can miss APA 7 issues or flag acceptable references.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use checker output only as triage, then manually apply the APA 7 rules and citation-integrity guidance in the skill instructions.
+
+Risk: The smoke test writes to a fixed temporary path and is not appropriate for elevated-privilege execution as-is.
+
+Mitigation: Run the smoke test without elevated privileges or fix its temporary-file handling before using it in privileged automation.
+
+Risk: Incomplete citation metadata could lead to unsupported reference details if handled carelessly.
+
+Mitigation: Mark missing authors, years, publication data, DOIs, and URLs explicitly, and verify external identifiers before claiming they exist.
+
+## Reference(s):
+
+- [Skill instructions](artifact/SKILL.md)
+- [README](artifact/README.md)
+- [Demo references](artifact/examples/demo_references.txt)
+- [ClawHub skill page](https://clawhub.ai/mia956/skills/apa7-reference-helper-mia956)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, shell commands]
+
+**Output Format:** [Markdown with reference lists, compact correction tables, citation examples, missing-metadata markers, and optional shell commands for the local checker]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Chinese correction explanations while preserving English APA 7 reference entries; the helper script can emit readable text or JSON audit results.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

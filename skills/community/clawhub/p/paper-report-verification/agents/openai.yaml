@@ -1,0 +1,4 @@
+interface:
+  display_name: "论文查重报告验真"
+  short_description: "提供维普、知网、万方报告的官方验真图文教程"
+  default_prompt: "使用 $paper-report-verification：先识别报告品牌/类型，再给出官方验真入口、编号/题名/验证码填写和复制步骤；以真实报告/验真页面截图说明位置，并仅对敏感值做局部遮挡，验证码由用户本人输入，统一引导至 https://vpcs.cqccjy.cn/pwp/verify。"

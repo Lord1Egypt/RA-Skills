@@ -1,41 +1,58 @@
-## Description: <br>
-Controls a local Windows WeChat client with Python to log in, send text messages, list recent chats, and report unread message counts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Wechat Control provides Python commands for a local Windows WeChat client to log in, send text messages, list recent chats, and report total unread messages through itchat.
 
-## Publisher: <br>
-[ltf13133-wq](https://clawhub.ai/user/ltf13133-wq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ltf13133-wq](https://clawhub.ai/user/ltf13133-wq)
 
-## Use Case: <br>
-Developers and local automation users can use this skill to operate a personal Windows WeChat session from an agent workflow, including sending messages and checking recent chat or unread-count status. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A cached WeChat login can persist agent access to the user's account across runs. <br>
-Mitigation: Install only on a trusted personal machine, avoid shared or synced environments, and delete loginInfo.pkl when persistent access is no longer needed. <br>
-Risk: The skill can send messages and read chat metadata without built-in confirmation or tight scoping. <br>
-Mitigation: Verify recipient names and message text before invoking send, and use the skill only with accounts and chats the operator is comfortable exposing to the agent. <br>
+## Use Case:
 
+Developers and local automation users use this skill to operate a single logged-in Windows WeChat desktop account from Python or command-line workflows. It is suited to private local use where recipients and message text can be reviewed before sending.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ltf13133-wq/wechat-control) <br>
-- [Publisher profile](https://clawhub.ai/user/ltf13133-wq) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, guidance] <br>
-**Output Format:** [CLI text output with JSON arrays for chat listings] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Python dependencies and a local Windows WeChat session; login state may be cached by itchat.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.3 (source: server release metadata; artifact manifest lists 0.1.0) <br>
+Risk: The skill can send messages through the user's logged-in WeChat account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in a private local environment and review the recipient and message text before running send commands.
+
+Risk: The skill can reuse a cached WeChat login session through loginInfo.pkl.
+
+Mitigation: Do not share or sync loginInfo.pkl, and delete the cache when the session should no longer be reused.
+
+Risk: The skill has limited safeguards around account actions.
+
+Mitigation: Install only when account-level automation is acceptable and run commands interactively for sensitive conversations.
+
+## Reference(s):
+
+- [Wechat Control on ClawHub](https://clawhub.ai/ltf13133-wq/skills/wechat-control)
+- [Artifact skill documentation](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, guidance]
+
+**Output Format:** [Markdown with inline Python and shell command examples; runtime commands print text or JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a local Windows WeChat desktop session and Python dependencies listed in requirements.txt.]
+
+## Skill Version(s):
+
+0.1.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,38 +1,53 @@
-## Description: <br>
-Configure Cross-Origin Resource Sharing correctly to avoid security issues and debugging pain. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Configure Cross-Origin Resource Sharing correctly to avoid security issues and debugging pain.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Developers and engineers use this skill as a compact CORS reference when configuring browser-facing services, reviewing origin allowlists, handling preflight behavior, and debugging cross-origin request failures. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: CORS changes can weaken browser-facing service security if origin allowlists, credentialed requests, CSRF protections, or cache headers are applied incorrectly. <br>
-Mitigation: Review CORS changes before applying them to production services, especially origin validation, credential handling, CSRF protections, and Vary/cache headers. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/cors) <br>
-- [Publisher profile](https://clawhub.ai/user/ivangdavila) <br>
+## Use Case:
 
+Developers and engineers use this skill as a concise CORS reference for configuring browser cross-origin requests, credentials, origin allowlists, caching headers, exposed headers, and preflight behavior.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only reference output; no executable behavior.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Incorrect CORS origin, credential, or caching configuration can expose sensitive responses or break browser clients.
+
+Mitigation: Validate exact origin allowlists, avoid wildcard credentials with credentials mode, include appropriate Vary headers, and test preflight behavior in the target application.
+
+Risk: CORS controls do not replace authentication or CSRF protections for sensitive endpoints.
+
+Mitigation: Require application authentication and CSRF protections in addition to CORS response headers.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/cors)
+- [ClawHub publisher profile](https://clawhub.ai/user/ivangdavila)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Configuration, Guidance]
+
+**Output Format:** [Markdown reference guidance with inline configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces reference guidance only; no files, commands, credentials, or network access are requested.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

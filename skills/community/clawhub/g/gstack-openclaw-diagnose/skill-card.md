@@ -1,41 +1,54 @@
-## Description: <br>
-Structured diagnosis for hard bugs and performance regressions by building a deterministic feedback loop, reproducing the issue, ranking hypotheses, instrumenting, fixing with a regression test, and cleaning up. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Structured diagnosis for hard bugs and performance regressions through deterministic feedback loops, reproduction, ranked hypotheses, targeted instrumentation, fixes, regression tests, and cleanup.
 
-## Publisher: <br>
-[ilmych](https://clawhub.ai/user/ilmych) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ilmych](https://clawhub.ai/user/ilmych)
 
-## Use Case: <br>
-Developers and engineers use this skill to diagnose difficult bugs, flaky failures, and performance regressions through a disciplined reproduce-hypothesize-instrument-fix workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow may guide an agent to run local commands, create repro tests, or add temporary debug instrumentation. <br>
-Mitigation: Review proposed code changes and explicitly approve production instrumentation or access to sensitive environments. <br>
-Risk: Temporary debug logs or harnesses can remain after diagnosis if cleanup is skipped. <br>
-Mitigation: Use the skill's cleanup checks to remove tagged debug logs and throwaway harnesses before marking the task done. <br>
+## Use Case:
 
+Developers and engineers use this skill to investigate hard bugs, flaky failures, and performance regressions with a repeatable loop before changing code. It guides the agent toward reproducing the issue, testing ranked hypotheses, adding targeted instrumentation, applying a fix, and verifying cleanup.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ilmych/gstack-openclaw-diagnose) <br>
-- [Publisher profile](https://clawhub.ai/user/ilmych) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands] <br>
-**Output Format:** [Markdown guidance with structured steps and command or code suggestions when useful] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include ranked hypotheses, reproduction loops, instrumentation notes, regression-test guidance, cleanup checks, and completion status.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Diagnostic artifacts such as HAR files, logs, dumps, or recordings may contain secrets, personal data, or production-sensitive details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm what will be captured before collection, redact secrets and personal data, and limit artifact retention and access.
+
+Risk: Temporary probes or production instrumentation may remain after diagnosis.
+
+Mitigation: Track temporary instrumentation during investigation and require cleanup after the issue is diagnosed.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ilmych/skills/gstack-openclaw-diagnose)
+- [Publisher Profile](https://clawhub.ai/user/ilmych)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands]
+
+**Output Format:** [Markdown guidance with proposed tests, instrumentation, code changes, shell commands, and verification steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces human-reviewable debugging plans and implementation guidance; no bundled code executes automatically.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

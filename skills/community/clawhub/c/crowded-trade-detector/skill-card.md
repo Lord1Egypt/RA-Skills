@@ -1,41 +1,51 @@
-## Description: <br>
-Detects when too many agents are in the same trade - liquidation risk. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Queries a paid x402 endpoint for signals that identify crowded trades and potential liquidation risk.
 
-## Publisher: <br>
-[kynto2001-ctrl](https://clawhub.ai/user/kynto2001-ctrl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kynto2001-ctrl](https://clawhub.ai/user/kynto2001-ctrl)
 
-## Use Case: <br>
-External agents and developers use this skill to query a paid APEX Runner crypto-market signal before entering popular trades, avoiding liquidation-cascade exposure, or adding a crowding-risk gate to trading workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires an EVM private key and can authorize real USDC charges through x402 requests. <br>
-Mitigation: Use a dedicated low-balance wallet on Base mainnet and avoid exposing a primary wallet private key to the agent environment. <br>
-Risk: Automatic paid requests may occur without clear per-call user confirmation. <br>
-Mitigation: Require explicit price confirmation before each call and monitor repeated invocations. <br>
+## Use Case:
 
+Trading agents use this signal before entering popular trades or as a risk gate to assess crowded positions and possible liquidation cascade exposure.
 
-## Reference(s): <br>
-- [Crowded Trade Detector signal](https://apexrunner.ai/signals/crowded-trade-detector) <br>
-- [Crowded Trade Detector on ClawHub](https://clawhub.ai/kynto2001-ctrl/skills/crowded-trade-detector) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [json, guidance, analysis] <br>
-**Output Format:** [JSON response containing crowded trade entries, crowding scores, severity, contrarian signals, market consensus, and timestamp.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires EVM_PRIVATE_KEY and can authorize paid x402 requests using USDC on Base mainnet.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The example uses an EVM private key to authorize paid USDC requests, and the endpoint price may change.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated wallet with only the intended USDC balance, protect the private key, and confirm the current per-call price and payment cap before approving requests.
+
+## Reference(s):
+
+- [Crowded Trade Detector endpoint](https://apexrunner.ai/signals/crowded-trade-detector)
+- [Agent Stress Index](https://apexrunner.ai/signals/agent-stress-index)
+- [Liquidation Pressure](https://apexrunner.ai/signals/liquidation-pressure)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Guidance]
+
+**Output Format:** [JSON market-signal response]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [One paid response per request; requires an EVM wallet with USDC on Base and an EVM_PRIVATE_KEY.]
+
+## Skill Version(s):
+
+1.0.2 (source: server-resolved release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

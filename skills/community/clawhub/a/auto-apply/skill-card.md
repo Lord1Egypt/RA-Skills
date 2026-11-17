@@ -1,42 +1,59 @@
-## Description: <br>
-Automate your job search with Mokaru by searching listings, tracking applications, tailoring resumes, managing contacts, and maintaining career profile data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automate job search and career management through Mokaru by searching jobs, preparing applications, tailoring resumes, tracking applications, and managing contacts and career-profile records.
 
-## Publisher: <br>
-[vndck](https://clawhub.ai/user/vndck) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vndck](https://clawhub.ai/user/vndck)
 
-## Use Case: <br>
-External job seekers and career-management agents use this skill to find roles, save and update application records, tailor resumes, manage contacts, and keep career profile data current through the Mokaru API. The artifact states that it prepares application materials and tracking data but does not submit job applications on the user's behalf. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can access sensitive job-search and career profile data through a Mokaru API key. <br>
-Mitigation: Store MOKARU_API_KEY securely, avoid pasting it into chats or committing it to files, and install only when the user trusts Mokaru and the publisher. <br>
-Risk: The skill can update, delete, export, or auto-tailor resumes, contacts, applications, profile, education, experience, and skills records. <br>
-Mitigation: Require explicit user confirmation before any write, delete, export, or auto-tailoring action. <br>
+## Use Case:
 
+External users and agents use this skill to search for jobs, maintain a Mokaru application tracker, tailor and export resumes, and manage career-profile data. The skill prepares application materials and provides apply links; it does not submit job applications itself.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/vndck/auto-apply) <br>
-- [Mokaru API documentation](https://docs.mokaru.ai) <br>
-- [Mokaru website](https://mokaru.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, API calls, Shell commands, Configuration, Guidance, Files] <br>
-**Output Format:** [Markdown responses with curl and jq examples, JSON API payloads, and optional exported resume files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires MOKARU_API_KEY plus curl and jq; operations may read, create, update, delete, export, or tailor sensitive career data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.7 (source: server release metadata; artifact frontmatter says 2.0.0) <br>
+Risk: The skill can expose sensitive Mokaru account data, including resumes, work history, education, skills, applications, and contacts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when this account access is acceptable, keep MOKARU_API_KEY private, and review retrieved data before sharing it outside the session.
+
+Risk: Write and delete operations can modify or remove career, resume, application, education, skill, and contact records.
+
+Mitigation: Require the agent to show the exact record and requested change, then obtain explicit confirmation before any write or delete request.
+
+Risk: Profile changes can affect resumes that use profile data.
+
+Mitigation: Review profile updates carefully and confirm downstream resume impact before applying changes.
+
+## Reference(s):
+
+- [Mokaru API documentation](https://docs.mokaru.ai)
+- [Mokaru API base URL](https://api.mokaru.ai)
+- [ClawHub skill page](https://clawhub.ai/vndck/skills/auto-apply)
+
+## Skill Output:
+
+**Output Type(s):** [text, guidance, shell commands, configuration, markdown, files]
+
+**Output Format:** [Markdown guidance with curl commands, JSON examples, and occasional generated files such as exported resumes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires MOKARU_API_KEY plus curl and jq; API responses may include sensitive career, application, resume, profile, education, skill, and contact data.]
+
+## Skill Version(s):
+
+1.0.7 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

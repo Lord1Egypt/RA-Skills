@@ -1,43 +1,57 @@
-## Description: <br>
-Scans documentation directories, heading structure, and file distribution to find missing sections, duplicate content, and outdated areas. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Doc Gap Finder scans documentation directories, heading structures, and file distribution to identify missing sections, duplicate content, and stale areas.
 
-## Publisher: <br>
-[52YuanChangXing](https://clawhub.ai/user/52YuanChangXing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[52yuanchangxing](https://clawhub.ai/user/52yuanchangxing)
 
-## Use Case: <br>
-Documentation maintainers, knowledge base owners, developers, and release reviewers use this skill to audit documentation folders for structure gaps, repeated sections, stale areas, and prioritized follow-up work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The generated report can include local file names, headings, and documentation structure from private folders. <br>
-Mitigation: Use the skill only on documentation folders or directories the user is authorized to inspect, and review or redact the report before sharing. <br>
-Risk: Scanning an entire private repository can expose more context than intended. <br>
-Mitigation: Point the skill at the intended documentation directory or file list rather than a broader repository unless the wider audit is deliberate. <br>
-Risk: Gap and duplicate findings are audit suggestions and may be incomplete or context-dependent. <br>
-Mitigation: Treat results as a review draft and confirm priorities before adding, deleting, publishing, or reorganizing documentation. <br>
+## Use Case:
 
+Developers, documentation maintainers, and knowledge-base owners use this skill to audit local documentation before cleanup or release. It produces a directory overview, suspected gaps, duplicate or near-duplicate sections, suggested additions or deletions, and priorities.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/52YuanChangXing/doc-gap-finder) <br>
-- [Publisher profile](https://clawhub.ai/user/52YuanChangXing) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown report or JSON report with directory overview, suspected gaps, duplicates, suggested additions or removals, priorities, and confirmation items.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only local documentation audit; script output may be written to a user-selected report file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and frontmatter) <br>
+Risk: The skill may process sensitive local documentation if pointed at broad personal, private, or credential-containing directories.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide narrow documentation paths, prefer dry-run or stdout review for sensitive repositories, and avoid scanning unrelated personal or credential directories.
+
+Risk: Audit suggestions can be incomplete or misleading if the sampled documents are sparse, outdated, or outside the intended documentation scope.
+
+Mitigation: Review generated gaps, duplicate findings, and deletion suggestions before changing source documents or publishing results.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/52yuanchangxing/skills/doc-gap-finder)
+- [Skill manifest](artifact/SKILL.md)
+- [README](artifact/README.md)
+- [Output specification](artifact/resources/spec.json)
+- [Output template](artifact/resources/template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands, guidance]
+
+**Output Format:** [Structured Markdown report by default, with an optional JSON wrapper from the support script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Local Python support script accepts input path, output path, format, limit, and dry-run options.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

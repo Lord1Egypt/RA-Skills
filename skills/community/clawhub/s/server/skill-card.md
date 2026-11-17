@@ -1,44 +1,54 @@
-## Description: <br>
-Configure, deploy, and troubleshoot web servers, application servers, and containerized services. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents operate web and application services on a host, including supervision, proxy routing, worker sizing, deployment, rollback, logs, TLS reloads, static assets, and self-hosted applications.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Developers and engineers use this skill to configure web servers, reverse proxies, process managers, TLS certificates, Docker Compose services, and common self-hosted application patterns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Server administration commands and configuration examples can affect live services if copied without review. <br>
-Mitigation: Review every command before running it on a production host and adapt examples to the target environment. <br>
-Risk: Example credentials and environment values can expose secrets if reused directly. <br>
-Mitigation: Replace example passwords and protect secrets with an ignored .env file, Docker secrets, or a secret manager. <br>
-Risk: The Traefik example includes an insecure dashboard/API flag that is unsuitable for production as written. <br>
-Mitigation: Remove or secure the insecure dashboard/API flag before deploying Traefik publicly. <br>
-Risk: Persistent services and Docker volume deletion can cause data loss or prolonged service changes. <br>
-Mitigation: Confirm persistence, backups, and the impact of destructive Docker commands before deleting volumes or changing long-running services. <br>
+## Use Case:
 
+Developers and operators use this skill to diagnose, configure, deploy, and maintain services running on hosts, especially when proxying, process supervision, capacity, logs, TLS reloads, or rollback behavior matters.
 
-## Reference(s): <br>
-- [Server Configuration Examples](configs.md) <br>
-- [Docker and Docker Compose Patterns](docker.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: A hardening sweep command may start at the filesystem root and scan the whole host for credential-like files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before use, limit that sweep to known document roots or service directories and avoid running it broadly on shared or privileged hosts.
+
+Risk: The skill maintains local operational notes and may update or delete rows it wrote as part of normal maintenance.
+
+Mitigation: Review the configured Clawic data paths and keep operational notes under the documented local directories; do not store secret values there.
+
+## Reference(s):
+
+- [Server skill on ClawHub](https://clawhub.ai/ivangdavila/skills/server)
+- [Server skill homepage](https://clawic.com/skills/server)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown responses with inline shell commands, code snippets, configuration examples, and operational guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May read and update local operational notes under configured Clawic data paths; secret values are represented as pointers rather than stored directly.]
+
+## Skill Version(s):
+
+1.0.2 (source: server evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

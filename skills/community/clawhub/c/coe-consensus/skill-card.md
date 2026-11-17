@@ -1,38 +1,65 @@
-## Description: <br>
-COE Consensus Engine for cross-model consensus and Shared World State formation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Evaluate signed votes against an operator-configured quorum.
 
-## Publisher: <br>
-[schchit](https://clawhub.ai/user/schchit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[schchit](https://clawhub.ai/user/schchit)
 
-## Use Case: <br>
-Developers and engineers use this skill to process COE/JEP-style events from agents, robots, or human observers and produce a Shared World State through simple majority, weighted trust, or BFT consensus policies. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Running the FastAPI server can expose an unauthenticated JSON consensus endpoint if it is bound to a public interface. <br>
-Mitigation: Keep the service on localhost or place it behind authentication and network access controls unless public exposure is intentional. <br>
+## Use Case:
 
+Developers and operators use this skill to run a local signed-vote quorum evaluation API for COE/JEP-style events and produce a resolved or unresolved Shared World State result. It supports simple majority, weighted trust, and BFT-style quorum policies configured by the operator.
 
-## Reference(s): <br>
-- [COE Consensus on ClawHub](https://clawhub.ai/schchit/coe-consensus) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, API responses, Guidance] <br>
-**Output Format:** [JSON object returned by a FastAPI or MCP-compatible consensus call] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes the resolved flag, consensus policy, Shared World State records, unresolved conflicts, event counts, and issuer counts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, SKILL.md frontmatter, manifest.json, and CHANGELOG) <br>
+Risk: The service can be exposed beyond its intended local trust boundary.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it on loopback or behind a hardened reverse proxy with TLS, request-rate limits, read-time limits, and restricted service-account configuration.
+
+Risk: Bearer tokens and environment configuration control tenant access and consensus permissions.
+
+Mitigation: Use high-entropy bearer tokens, store only token digests, restrict environment access to the service account, and grant only required permissions.
+
+Risk: Consensus results can be mistaken for automatic action execution or a durable decision ledger.
+
+Mitigation: Treat output as a checksum-backed evaluation result; downstream systems should handle idempotent execution and preserve evidence when durable records are required.
+
+Risk: Signed statements establish issuer provenance, not factual truth or legal compliance.
+
+Mitigation: Verify the underlying evidence and apply domain review before relying on a resolved assertion.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/schchit/skills/coe-consensus)
+- [README.md](artifact/README.md)
+- [SECURITY.md](artifact/SECURITY.md)
+- [CHANGELOG.md](artifact/CHANGELOG.md)
+- [manifest.json](artifact/manifest.json)
+
+## Skill Output:
+
+**Output Type(s):** [json, configuration, guidance]
+
+**Output Format:** [JSON API responses with resolved status, conflicts, and optional Shared World State checksum.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Accepts up to 128 signed events per request; the Shared World State hash is an integrity checksum, not a signed tamper-proof record.]
+
+## Skill Version(s):
+
+2.0.0 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

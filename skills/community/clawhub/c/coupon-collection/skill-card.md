@@ -1,40 +1,53 @@
-## Description: <br>
-提供全平台优惠券、红包封面及免单机会汇总指南。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+提供全平台优惠券、红包封面及免单机会汇总指南。
 
-## Publisher: <br>
-[mike47512](https://clawhub.ai/user/mike47512) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mike47512](https://clawhub.ai/user/mike47512)
 
-## Use Case: <br>
-External users use this skill to find coupon, red-packet cover, and free-order opportunity guidance across platforms, including entry points, action steps, timing, and safety notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may discuss third-party offers or authorization steps that users cannot independently trust from the skill alone. <br>
-Mitigation: Verify each external deal source before acting and avoid sharing payment details, account credentials, or sensitive personal information unless the service is trusted. <br>
-Risk: Third-party offer availability and service stability may change outside the skill's control. <br>
-Mitigation: Treat availability, eligibility, and redemption instructions as time-sensitive and confirm them on the relevant platform before use. <br>
+## Use Case:
 
+External users can use this Chinese-language skill to ask an agent for concise coupon, red-envelope cover, discount, and free-order opportunity guidance across platforms. It helps organize available offers by category, scenario, device, status, entry point, usage steps, tips, and safety considerations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mike47512/coupon-collection) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or structured text guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include action summaries, interaction steps, feature highlights, status tracking notes, reminders, and safety guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: release evidence) <br>
+Risk: Third-party coupon or promotion offers may request sensitive authorization or personal information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review offer requests before acting, avoid unnecessary sensitive authorization, and prefer official platform entry points when following the skill's guidance.
+
+Risk: Coupon availability and third-party service stability may change over time.
+
+Mitigation: Treat returned deals as time-sensitive guidance and verify offer status on the relevant platform before relying on it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mike47512/skills/coupon-collection)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Text]
+
+**Output Format:** [Markdown or plain text guidance with categorized summaries, steps, tips, and safety notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code, persistence, hidden data access, or unsafe authority was identified in security evidence.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

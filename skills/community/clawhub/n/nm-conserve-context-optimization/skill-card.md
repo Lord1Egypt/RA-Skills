@@ -1,45 +1,55 @@
-## Description: <br>
-Optimizes context window via MECW principles and memory tiering. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Optimizes context window via MECW principles and memory tiering
 
-## Publisher: <br>
-[athola](https://clawhub.ai/user/athola) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[athola](https://clawhub.ai/user/athola)
 
-## Use Case: <br>
-Developers and agent operators use this skill to monitor context pressure, apply MECW guidance, route work to subagents or dedicated sessions, and manage memory tiers during long or multi-file workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill describes workflows that can create local checkpoints and coordination files, which may capture sensitive project state if used without boundaries. <br>
-Mitigation: Decide allowed checkpoint and coordination paths before use, and avoid storing secrets or credentials in those files. <br>
-Risk: Subagent and cross-plugin workflows can change shared resources if delegated too broadly. <br>
-Mitigation: Require explicit approval before multi-agent or cross-plugin workflows modify shared resources. <br>
-Risk: Context optimization advice may lead an agent to skip relevant evidence or over-compress important history. <br>
-Mitigation: Review summaries and retained evidence before relying on synthesized results for consequential decisions. <br>
+## Use Case:
 
+Developers use this skill to assess context pressure and choose memory, compression, routing, or delegation strategies for long or complex agent tasks.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/athola/skills/nm-conserve-context-optimization) <br>
-- [OpenClaw homepage](https://github.com/athola/claude-night-market/tree/master/plugins/conserve) <br>
-- [MECW principles module](artifact/modules/mecw-principles.md) <br>
-- [Subagent coordination module](artifact/modules/subagent-coordination.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Configuration] <br>
-**Output Format:** [Markdown guidance with examples, checklists, and code snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes context thresholds, routing rules, memory-tier conventions, and coordination-file patterns.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.9.13 (source: server release metadata) <br>
+Risk: Checkpoint examples using shared temporary paths may expose or collide with saved state.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review checkpoint paths and use an isolated, access-restricted temporary location.
+
+Risk: Sharing logs may expose sensitive information.
+
+Mitigation: Review and redact sensitive information from logs before sharing them.
+
+## Reference(s):
+
+- [Project homepage](https://github.com/athola/claude-night-market/tree/master/plugins/conserve)
+- [Anthropic prompt caching documentation](https://platform.claude.com/docs/en/build-with-claude/prompt-caching)
+- [vLLM automatic prefix caching documentation](https://docs.vllm.ai/en/stable/features/automatic_prefix_caching/)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Analysis, Markdown, Code, Shell commands]
+
+**Output Format:** [Markdown guidance with checklists and occasional code or command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Recommendations are tailored to the current task and context state.]
+
+## Skill Version(s):
+
+1.10.3 (source: artifact frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

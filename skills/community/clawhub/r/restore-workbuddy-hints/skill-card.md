@@ -1,39 +1,53 @@
-## Description: <br>
-Restore WorkBuddy UI hints and tips that were dismissed via the '不再显示' button. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Restores WorkBuddy UI hints and tips that were dismissed with the "Do not show again" button.
 
-## Publisher: <br>
-[liuwenqi123123](https://clawhub.ai/user/liuwenqi123123) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liuwenqi123123](https://clawhub.ai/user/liuwenqi123123)
 
-## Use Case: <br>
-WorkBuddy users use this skill to list or restore UI hints that were hidden after selecting 'Don't show again'. It can restore all dismissed hints or a specific hint key by editing the local WorkBuddy user-state file. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The restore script modifies the local WorkBuddy user-state file. <br>
-Mitigation: Confirm the target action with the user, close WorkBuddy before making changes, and restart WorkBuddy after the script runs. <br>
-Risk: Restoring all hints may re-enable more dismissed prompts than the user intended. <br>
-Mitigation: Use the list mode first when the user wants to restore only one hint, then run the key-specific mode for that hint. <br>
+## Use Case:
 
+WorkBuddy users and support agents use this skill to inspect dismissed hint entries, restore a specific hidden hint, or restore all hidden WorkBuddy prompt bars.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, code, configuration] <br>
-**Output Format:** [Markdown guidance with inline shell commands and script references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes list, restore-all, and restore-by-key modes for local WorkBuddy hint state.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill edits WorkBuddy's local user-state.json and can change which UI hints reappear.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use list mode first, close WorkBuddy before changing state, and restore a specific hint with --key when broad restoration is not intended.
+
+Risk: Manual fallback edits to user-state.json could affect unrelated settings if the file is changed incorrectly.
+
+Mitigation: Limit manual recovery to setting tipShowHistory to an empty object and avoid modifying other fields.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/liuwenqi123123/skills/restore-workbuddy-hints)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May run a local Python helper that lists or clears WorkBuddy tipShowHistory entries.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

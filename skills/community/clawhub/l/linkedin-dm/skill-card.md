@@ -1,41 +1,57 @@
-## Description: <br>
-Send personalized LinkedIn direct messages to existing first-degree connections through browser automation, using an approved pitch and per-recipient relationship hooks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Sends AI-personalized LinkedIn direct messages to existing 1st-degree connections via browser automation, using a provided contact list, approved pitch, profile-based opener, and outreach status tracking.
 
-## Publisher: <br>
-[10Madh](https://clawhub.ai/user/10Madh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[10madh](https://clawhub.ai/user/10madh)
 
-## Use Case: <br>
-Sales, founder, recruiting, and community operators use this skill to prepare and send reviewed LinkedIn outreach to existing first-degree connections. It supports lead nurturing, event follow-up, reconnection campaigns, and announcements while tracking outreach status. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a logged-in LinkedIn session to inspect profiles and send outreach. <br>
-Mitigation: Review the recipient list and every generated message before sending, and stop immediately if LinkedIn shows account or rate warnings. <br>
-Risk: Outreach logs can contain contact details, relationship hooks, and full message bodies. <br>
-Mitigation: Use a private Google Sheet or the local sidecar only when appropriate, and avoid storing sensitive personal or commercial information unnecessarily. <br>
-Risk: The workflow includes automation-detection avoidance guidance that can put the LinkedIn account at risk. <br>
-Mitigation: Use conservative batch sizes, keep human oversight in the loop, and ensure outreach practices comply with the account holder's policies and platform obligations. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Browser Automation Workflow](references/browser-workflow.md) <br>
+## Use Case:
 
+External users and business teams use this skill to message existing LinkedIn connections with personalized outreach for lead nurturing, event follow-up, reconnection, or announcements. The skill helps prepare profile-aware openers, reuse an approved pitch, send messages through the browser, and track outreach status.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with message text, browser automation steps, shell commands, and optional JSON progress records] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces personalized opener and pitch text, CRM tracking rows, and status values for each recipient.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may send LinkedIn messages from the user's authenticated account.
+
+Mitigation: Require explicit approval of the pitch and full batch preview before sending, keep per-message review available, and stop immediately if LinkedIn warns about messaging rate.
+
+Risk: The skill reads LinkedIn profile information and can store identifiable outreach records.
+
+Mitigation: Store only necessary outreach fields, limit retention of full message text and relationship notes, and use a controlled Google Sheet or local file with appropriate access controls.
+
+Risk: The security summary flags anti-detection guidance and broad personal-data logging.
+
+Mitigation: Review platform-policy, anti-spam, and privacy compliance before installing or running the skill.
+
+## Reference(s):
+
+- [Browser Automation Workflow](references/browser-workflow.md)
+- [ClawHub Skill Page](https://clawhub.ai/10madh/skills/linkedin-dm)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with personalized message drafts, browser action steps, and optional Google Sheets shell commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces one personalized opener and one approved pitch message per contact, with outreach status records for Google Sheets or a local JSON sidecar.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

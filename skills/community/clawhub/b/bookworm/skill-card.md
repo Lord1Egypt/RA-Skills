@@ -1,39 +1,54 @@
-## Description: <br>
-Log books, track reading habits, and review reading streaks over time. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Log books, track reading habits, and review reading streaks over time.
 
-## Publisher: <br>
-[ckchzh](https://clawhub.ai/user/ckchzh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ckchzh](https://clawhub.ai/user/ckchzh)
 
-## Use Case: <br>
-External users and developers use Bookworm to record reading logs, plans, progress, reviews, habits, reminders, priorities, and weekly reflections from the command line. It also supports local search, summary statistics, and exports for personal analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Bookworm stores user-entered notes and exports in plain text on the local filesystem. <br>
-Mitigation: Do not record secrets or highly sensitive personal or work information, verify the local command or alias before use, and periodically delete the data directory or old exports when they are no longer needed. <br>
+## Use Case:
 
+External users use Bookworm to maintain a local command-line reading and productivity log, track habits and priorities, review recent activity, search saved entries, and export personal records.
 
-## Reference(s): <br>
-- [ClawHub Bookworm release](https://clawhub.ai/ckchzh/bookworm) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text command output with optional JSON, CSV, or TXT export files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores entries and generated exports as local plain-text files under ~/.local/share/bookworm/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: ClawHub release evidence) <br>
+Risk: Saved entries and exports may contain personal data in unencrypted local files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid recording secrets, credentials, or highly sensitive personal details, and manage the ~/.local/share/bookworm directory according to the user's local data-protection practices.
+
+Risk: CSV exports can carry spreadsheet-formula content if a logged entry begins with formula syntax.
+
+Mitigation: Review CSV exports before opening them in spreadsheet software when entries come from untrusted or copied text.
+
+## Reference(s):
+
+- [Bookworm ClawHub page](https://clawhub.ai/ckchzh/skills/bookworm)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Files]
+
+**Output Format:** [Markdown guidance and command-line text output; the installed CLI writes local log and export files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The CLI stores plain-text data under ~/.local/share/bookworm and can export JSON, CSV, or TXT files.]
+
+## Skill Version(s):
+
+2.0.1 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

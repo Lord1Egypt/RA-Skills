@@ -1,40 +1,52 @@
-## Description: <br>
-Guide literary reading from personal response to scholarly analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guide literary reading from personal response to scholarly analysis.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Readers, students, researchers, and teachers use this skill to discuss literature at an appropriate level, moving from personal response toward close reading, argument, and scholarly analysis. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill may tailor literary discussion using user-provided reading level, classroom context, reactions to texts, or scholarly framing. <br>
-Mitigation: Share only context needed for the discussion and avoid including sensitive personal, student, or classroom information. <br>
-Risk: Literary interpretations or citation guidance may be incomplete or may not match a specific edition, assignment, or classroom policy. <br>
-Mitigation: Verify claims against the assigned text, required edition, and applicable citation or classroom requirements before using the output. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/literature) <br>
-- [Publisher profile](https://clawhub.ai/user/ivangdavila) <br>
+## Use Case:
 
+Readers, students, researchers, and teachers use this skill to adapt literary discussion, close reading, argument development, scholarly analysis, and classroom prompt support to the user's level.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, text, markdown] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Adapts literary discussion depth to the user's reading level and context.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Users may share private personal details while connecting literature to personal experience.
+
+Mitigation: Avoid sharing private personal details unless they are relevant and the user is comfortable including them.
+
+Risk: Literary guidance can be incomplete or misleading if treated as a single authoritative interpretation.
+
+Mitigation: Ground claims in textual evidence, compare multiple plausible readings, and verify scholarly or citation-specific claims against the assigned edition and sources.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/literature)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain text responses with literary analysis guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code, persistence, credential access, or hidden behavior found in security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

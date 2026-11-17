@@ -1,40 +1,56 @@
-## Description: <br>
-Use this skill when a planning consultant, zoning attorney, or property owner needs to draft a zoning-variance application narrative for a ZBA or BZA. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill when a planning consultant, zoning attorney, or property owner needs to draft a zoning-variance application narrative for a ZBA or BZA.
 
-## Publisher: <br>
-[archlab-space](https://clawhub.ai/user/archlab-space) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[archlab-space](https://clawhub.ai/user/archlab-space)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Planning consultants, zoning attorneys, property owners, and municipal-board staff use this skill to draft a variance application narrative that maps parcel facts and ordinance requirements to the jurisdiction's variance standard. It produces a draft packet for attorney review, including Findings of Fact, hardship audits, evidence indexing, hearing Q&A prep, and notice-checklist reminders.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Users may rely on a draft as legal advice or as a filing-ready application.
+
+Mitigation: Treat outputs as drafting assistance only and require zoning-attorney review before filing or relying on the narrative.
+
+Risk: The controlling variance standard, citation, or notice deadline may be wrong for the jurisdiction.
+
+Mitigation: Require the user to confirm the jurisdiction, ordinance standard, citations, and notice or publication requirements with counsel or the municipality before drafting and before filing.
+
+Risk: Unsupported parcel facts or self-created hardship could make the variance narrative misleading.
+
+Mitigation: Use only user-provided evidence-backed facts, run the self-created-hardship audit, and flag missing or problematic facts instead of inventing or smoothing them over.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Planning consultants, zoning attorneys, property owners, and municipal-board staff use this skill to draft variance application narratives, proposed Findings of Fact, evidence indexes, self-created-hardship audits, and hearing Q&A prep for attorney review before filing. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Generated zoning narratives may contain incorrect citations, filing assumptions, or jurisdiction-specific variance standards. <br>
-Mitigation: Treat outputs as drafts only and confirm standards, citations, filing requirements, and notice rules with local counsel or the municipal clerk before use. <br>
-Risk: The skill could be mistaken for legal representation or a filing service. <br>
-Mitigation: Do not use it to file applications, schedule hearings, publish notice, mail abutter notice, appear before a board, or provide legal advice. <br>
+**Output Format:** [Structured Markdown draft narrative packet and checklist]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/archlab-space/zoning-variance-application-narrative) <br>
+**Other Properties Related to Output:** [Every output is labeled as a draft for zoning-attorney review; the skill does not file applications, appear before boards, or execute notice.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Guidance, Text] <br>
-**Output Format:** [Draft narrative packet in structured Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Every output is labeled as a draft requiring zoning-attorney review and independent confirmation of notice and publication requirements.] <br>
+0.1.1 (source: server release evidence and changelog, released 2026-05-28)
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata and changelog, released 2026-05-28) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

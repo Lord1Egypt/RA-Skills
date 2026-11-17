@@ -1,38 +1,53 @@
-## Description: <br>
-飞书会议纪要 AI 从飞书文档、群聊讨论和多维表格中提取会议信息，并生成结构化会议纪要、决议和行动项。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+飞书会议纪要AI helps an agent extract meeting content from Feishu documents, group chats, and Bitable records, then produce structured meeting minutes with decisions, action items, and follow-up dates.
 
-## Publisher: <br>
-[young-joey](https://clawhub.ai/user/young-joey) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[young-joey](https://clawhub.ai/user/young-joey)
 
-## Use Case: <br>
-飞书工作区用户和团队可以用该技能将会议文档、群聊讨论和多维表格记录转换为结构化纪要。典型输出包括讨论要点、决议、行动项、负责人和截止日期。 <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can access private Feishu meeting documents, group chats, and tables, and may distribute generated minutes to recipients. <br>
-Mitigation: Confirm the exact sources, date range, generated minutes, and recipients before use; prefer draft-only output unless sending is explicitly approved. <br>
+## Use Case:
 
+Employees and external collaborators use this skill to turn Feishu meeting sources, chat discussions, and tabular meeting records into concise meeting minutes, decisions, action items, and distribution-ready Markdown.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/young-joey/feishu-auto-minutes) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Structured meeting minutes with discussion points, decisions, action items, owners, due dates, and next-meeting date when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can access meeting content from Feishu sources provided by the user.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Grant access only to the specific documents, chats, or records needed for the minutes task.
+
+Risk: Automatically distributed minutes could expose confidential meeting details to unintended recipients.
+
+Mitigation: Before distribution, confirm the target Feishu document, group chat, and recipient list.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/young-joey/skills/feishu-auto-minutes)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Guidance, API Calls]
+
+**Output Format:** [Markdown meeting minutes with structured sections for attendees, discussion, decisions, action items, and next meeting details]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May read Feishu documents, group chat discussions, and Bitable records, and may prepare or send generated minutes to Feishu destinations selected by the user.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,59 @@
-## Description: <br>
-AI智能出题考试系统 - 基于文档自动生成考试、指派学员并查询结果 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI智能出题考试系统，可基于文档自动生成考试、指派学员并查询结果。
 
-## Publisher: <br>
-[xiangzidetiandi](https://clawhub.ai/user/xiangzidetiandi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiangzidetiandi](https://clawhub.ai/user/xiangzidetiandi)
 
-## Use Case: <br>
-Educators, training teams, and enterprise administrators use this skill to create exams from uploaded documents, assign them to named users or departments, and query individual or batch exam results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can upload documents, create exams, assign users or departments, and query personal exam results. <br>
-Mitigation: Install and run it only with authorization for the connected exam system, the source documents, learner identities, and score data. <br>
-Risk: Credentials, access tokens, user identifiers, department names, exam IDs, and scores may appear in configuration or console output. <br>
-Mitigation: Use least-privilege credentials, keep secrets out of chats and repositories, and avoid running in environments where logs are broadly visible. <br>
-Risk: Assignments by department or name search can target unintended people when names are ambiguous or departments are broad. <br>
-Mitigation: Verify the configured API endpoint and confirm exact users and departments before creating or assigning an exam. <br>
+## Use Case:
 
+Educators, training teams, and developers use this skill to upload documents, generate AI-assisted exams, assign exams to users or departments, and retrieve individual or batch exam results.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xiangzidetiandi/soke-ai-exam-skill) <br>
-- [Publisher profile](https://clawhub.ai/user/xiangzidetiandi) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Code, Configuration instructions, Guidance] <br>
-**Output Format:** [JavaScript module responses, console output, and usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires configured application credentials and API endpoint access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill sends organization credentials, access tokens, uploaded documents, user and department lookups, and exam results to a configurable remote API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only an approved HTTPS BASE_URL, limit credentials to the smallest required scope, and avoid confidential or regulated documents unless authorized.
+
+Risk: Exam results and user or department lookup data may include sensitive personal or organizational information.
+
+Mitigation: Restrict access to authorized operators and handle generated exams, assignments, and result outputs under the organization's data handling policy.
+
+Risk: The artifact lists dependency ranges and no reviewed lockfile is provided in the evidence.
+
+Mitigation: Review and pin dependencies or add a lockfile before production deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xiangzidetiandi/skills/soke-ai-exam-skill)
+- [Artifact README](artifact/README.md)
+- [Artifact skill definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JavaScript examples, shell commands, configuration values, and JSON-like result objects]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May upload configured documents and send organization credentials, user or department identifiers, access tokens, and exam results to the configured remote API.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release metadata; artifact frontmatter and package.json report 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

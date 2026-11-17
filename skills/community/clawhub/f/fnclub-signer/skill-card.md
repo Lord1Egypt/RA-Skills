@@ -1,47 +1,63 @@
-## Description: <br>
-飞牛论坛(club.fnnas.com)自动签到，支持手动或定时运行，并在需要时使用百度 OCR 处理验证码。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically signs in to the FN Club forum at club.fnnas.com, including CAPTCHA handling through Baidu OCR when needed.
 
-## Publisher: <br>
-[OneTian1211](https://clawhub.ai/user/OneTian1211) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[onetian1211](https://clawhub.ai/user/onetian1211)
 
-## Use Case: <br>
-External users and automation operators use this skill to configure credentials, install Node.js dependencies, run daily sign-in for club.fnnas.com, and optionally schedule it with OpenClaw cron. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a forum username and password plus Baidu OCR API credentials. <br>
-Mitigation: Use dedicated credentials where possible, store them only in trusted ClawHub or local configuration, and rotate them when the skill is no longer used. <br>
-Risk: CAPTCHA images may be sent to Baidu OCR, and OCR tokens are cached locally. <br>
-Mitigation: Install only if this data flow is acceptable, keep token cache files out of shared folders and source control, and delete cached files when disabling the skill. <br>
-Risk: Forum cookies are saved locally for session reuse. <br>
-Mitigation: Keep the configured data directory private, exclude cache files from source control, and clear cookies if account access changes. <br>
-Risk: A cron schedule can run the sign-in automatically. <br>
-Mitigation: Review the OpenClaw cron schedule, timezone, and session before enabling unattended execution. <br>
+## Use Case:
 
+External users and automation agents use this skill to perform daily FN Club forum sign-ins, check sign-in status, and set up scheduled sign-in tasks with OpenClaw cron.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/OneTian1211/fnclub-signer) <br>
-- [Publisher profile](https://clawhub.ai/user/OneTian1211) <br>
-- [飞牛论坛](https://club.fnnas.com/) <br>
-- [百度 AI 开放平台](https://ai.baidu.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, JSON] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON status output from the Node.js script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires forum credentials and Baidu OCR API keys; writes local cookie and OCR token cache files when used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The skill requires a forum password and Baidu OCR credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide credentials through protected environment variables or a private config file, and do not commit secrets to source control.
+
+Risk: CAPTCHA images may be uploaded to Baidu OCR during sign-in.
+
+Mitigation: Install only when this data flow is acceptable for the account and forum content being accessed.
+
+Risk: Reusable cookies and OCR tokens may be stored on disk.
+
+Mitigation: Set FNCLUB_DATA_DIR to a private directory with restrictive permissions and delete cached files when the skill is no longer used.
+
+Risk: A scheduled cron job can keep using credentials after initial setup.
+
+Mitigation: Remove the OpenClaw cron job and cached files when stopping or rotating the forum account.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/onetian1211/skills/fnclub-signer)
+- [FN Club forum](https://club.fnnas.com/)
+- [Baidu AI Open Platform](https://ai.baidu.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires forum credentials and Baidu OCR credentials before execution.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

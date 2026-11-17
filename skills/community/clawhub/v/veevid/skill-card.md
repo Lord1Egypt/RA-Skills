@@ -1,46 +1,67 @@
-## Description: <br>
-AI video generator for text-to-video, image-to-video, and reference-to-video generation through the Veevid API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Veevid API for AI video, image and audio generation. Use when the user asks to generate or edit a video (text-to-video, image-to-video, reference-to-video), generate or edit an image, make speech (TTS), music or a transcript, or run a video tool: upscale, resize, extend, edit, lip-sync, motion control, character swap, virtual try-on. Covers Veo 3.1, Kling 3.0, Seedance, Wan, MiniMax H3, Nano Banana, GPT Image, Seedream, Eleven v4, Lyria and more; also quotes prices and checks credits.
 
-## Publisher: <br>
-[meigesir](https://clawhub.ai/user/meigesir) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[meigesir](https://clawhub.ai/user/meigesir)
 
-## Use Case: <br>
-External users and developers use this skill to ask an agent to generate videos from prompts or images, compare available Veevid video models, check credit balance, and get quoted costs before generation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a local Veevid API key and sends selected prompts or images to Veevid. <br>
-Mitigation: Protect ~/.config/veevid/api_key, rotate the key if exposed, and only install the skill if sending selected content to Veevid is acceptable. <br>
-Risk: Video generation can spend Veevid credits. <br>
-Mitigation: Use the quote step to show the exact cost and current balance, then wait for user confirmation before generating. <br>
-Risk: In Discord or group chats, the skill may inspect recent messages to find image attachments. <br>
-Mitigation: Filter attachments by the requesting sender and quote the selected image back for confirmation before upload or generation. <br>
+## Use Case:
 
+Developers and creative users use this skill to generate or edit video, images, and audio, compare model options, check credit balances, and review costs before starting a generation.
 
-## Reference(s): <br>
-- [Veevid API Reference](references/api-reference.md) <br>
-- [Veevid AI](https://veevid.ai) <br>
-- [API Key Management](https://veevid.ai/settings/api-keys) <br>
-- [Pricing and Credits](https://veevid.ai/pricing) <br>
-- [ClawHub Skill Page](https://clawhub.ai/meigesir/veevid) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, API calls, Markdown, Text] <br>
-**Output Format:** [Markdown guidance with inline shell commands, API request examples, JSON response summaries, and generated video URLs.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a local Veevid API key file at ~/.config/veevid/api_key and requires user confirmation before spending credits.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.2 (source: server release evidence) <br>
+Risk: Prompts and selected source media are sent to Veevid for processing; the provider's storage and retention practices were not verified in this review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Tell the user where files will be sent and get their approval before uploading private or sensitive media.
+
+Risk: Generations and some upgrades spend credits, with prices affected by model settings and input duration or quantity.
+
+Mitigation: Quote the exact request, including relevant input counts and durations, and get the user's confirmation before generating or upgrading.
+
+Risk: A disclosed API key could allow access to the user's Veevid account.
+
+Mitigation: Keep the key in the protected local config file, preserve restrictive file permissions, and never ask the user to paste it into chat.
+
+Risk: Deleting a creation permanently removes the saved result and may remove uploaded input audio.
+
+Mitigation: Identify the specific creation and obtain explicit confirmation before deletion.
+
+## Reference(s):
+
+- [Veevid API Reference](references/api-reference.md)
+- [Video Model Reference](references/models-video.md)
+- [Image Model Reference](references/models-image.md)
+- [Audio Model Reference](references/models-audio.md)
+- [Video Tools Reference](references/models-tools.md)
+- [Manage Veevid API Keys](https://veevid.ai/settings/api-keys)
+- [Veevid Pricing](https://veevid.ai/pricing)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Media files, Guidance]
+
+**Output Format:** [Markdown guidance with JSON API request examples and media result URLs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Model-dependent parameters, source media, and credit costs]
+
+## Skill Version(s):
+
+1.3.4 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

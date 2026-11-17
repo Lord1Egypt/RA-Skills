@@ -1,40 +1,53 @@
-## Description: <br>
-Pharmacist provides medication information, drug interaction checks, dosage guidance, prescription clarification, and over-the-counter treatment recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pharmacist provides medication information, interaction checks, dosage guidance, and over-the-counter treatment suggestions for medication-related questions.
 
-## Publisher: <br>
-[jiwenbing](https://clawhub.ai/user/jiwenbing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiwenbing](https://clawhub.ai/user/jiwenbing)
 
-## Use Case: <br>
-External users and assistants use this skill to answer common medication questions, compare generic and brand-name drugs, check potential interactions, clarify prescription instructions, and identify over-the-counter options for common symptoms. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Medication guidance may be incomplete or inappropriate for a user's specific health context. <br>
-Mitigation: Use it for general medication information only and verify dosing changes, interactions, allergy concerns, pregnancy-related questions, or significant concerns with a licensed pharmacist or doctor. <br>
-Risk: Serious interactions, allergic reactions, or urgent symptoms require immediate professional care. <br>
-Mitigation: Escalate serious interactions or allergic reactions to emergency care immediately. <br>
+## Use Case:
 
+External users use this skill to ask educational medication questions about drug uses, side effects, interactions, prescription instructions, and over-the-counter options. It should support informed conversations, not replace a doctor, pharmacist, poison control, or emergency care.
 
-## Reference(s): <br>
-- [Pharmacist on ClawHub](https://clawhub.ai/jiwenbing/pharmacist) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Guidance] <br>
-**Output Format:** [Markdown or plain text conversational responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Medication guidance is informational and should be verified for dosing changes, interactions, allergies, pregnancy-related questions, and urgent symptoms.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: Medication guidance can be incomplete, incorrect, or unsuitable for a user's individual health conditions, allergies, pregnancy or breastfeeding status, age, kidney or liver disease, or current medicines.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat responses as educational only and verify individualized dosing, interactions, contraindications, and treatment decisions with a qualified clinician or pharmacist.
+
+Risk: Users may ask about serious interactions, allergic reactions, overdose, urgent symptoms, or other situations that require immediate medical attention.
+
+Mitigation: Escalate urgent or severe cases to emergency care, poison control, or another qualified professional instead of relying on the skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jiwenbing/skills/pharmacist)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Conversational text or Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Educational medication guidance; no code execution, tool use, or hidden system access is described.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

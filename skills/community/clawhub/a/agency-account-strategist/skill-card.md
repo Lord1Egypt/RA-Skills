@@ -1,43 +1,53 @@
-## Description: <br>
-Account Strategist helps revenue and customer teams plan post-sale account expansion, QBR strategy, stakeholder mapping, multi-threading, and churn prevention. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Expert post-sale revenue strategist specializing in account expansion, stakeholder mapping, QBR design, and net revenue retention.
 
-## Publisher: <br>
-[zhouqkt](https://clawhub.ai/user/zhouqkt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhouqkt](https://clawhub.ai/user/zhouqkt)
 
-## Use Case: <br>
-Revenue, customer success, and account management teams use this skill to produce expansion plans, QBR preparation frameworks, stakeholder maps, mutual action plans, and churn prevention playbooks for customer accounts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may handle sensitive customer account details, deal terms, stakeholder names, or other PII during account planning. <br>
-Mitigation: Use it only in an agent environment approved for that data, minimize sensitive inputs, and redact confidential customer or stakeholder information when possible. <br>
-Risk: Generated expansion, QBR, or churn-prevention recommendations may be incomplete or commercially inappropriate for a specific customer relationship. <br>
-Mitigation: Have account owners review recommendations against current customer health, contractual context, and relationship history before using them with customers. <br>
-Risk: The skill can be invoked accidentally in contexts where account-expansion guidance is not intended. <br>
-Mitigation: Use explicit invocation by name or specialty, consistent with the release security guidance. <br>
+## Use Case:
 
+Account, customer success, and revenue teams use this skill to plan post-sale expansion, stakeholder mapping, QBRs, and churn prevention for customer accounts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhouqkt/agency-account-strategist) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/zhouqkt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown guidance with planning templates and tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include account expansion plans, QBR preparation frameworks, stakeholder maps, mutual action plans, churn prevention plans, and risk assessments.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Account strategy work may involve sensitive customer org charts, usage data, revenue figures, contract details, and stakeholder sentiment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide only account context appropriate for the agent to process, and avoid sharing sensitive business information that is not needed for the requested strategy.
+
+Risk: Expansion, QBR, or churn guidance can be incorrect if the supplied account data is stale or incomplete.
+
+Mitigation: Review recommendations against current customer health, usage, renewal, and stakeholder data before using them with customers.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/zhouqkt/skills/agency-account-strategist)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown guidance and structured planning templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces account expansion plans, QBR preparation frameworks, stakeholder maps, and churn prevention playbooks; no executable code or install actions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

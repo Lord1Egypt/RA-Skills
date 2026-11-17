@@ -206,21 +206,15 @@
 ```json
 {
   "authRecordId": 123,
-  "accessToken": "Atza|IwEBIA...",
-  "refreshToken": "Atzr|IwEBIJ...",
-  "tokenType": "bearer",
-  "expiresIn": "3600",
-  "message": "刷新成功并已更新数据库"
+  "success": true,
+  "message": "刷新成功并已更新数据库，token 已后台化管理"
 }
 ```
 
 | 字段 | 类型 | 说明 |
 |------|------|------|
 | authRecordId | Long | 授权记录ID |
-| accessToken | String | 新的访问令牌 |
-| refreshToken | String | 新的刷新令牌（可能更新） |
-| tokenType | String | 令牌类型 |
-| expiresIn | String | 过期时间（秒） |
+| success | Boolean | 刷新是否成功 |
 | message | String | 处理结果 |
 
 ### 业务逻辑
@@ -230,7 +224,7 @@
 3. 调用紫鸟代理接口 `/developer-proxy/{region}/auth/o2/token`
 4. 使用 refresh_token 换取新的 access_token
 5. 更新数据库中的令牌信息
-6. 返回新令牌
+6. 返回刷新状态，不下发 raw token
 
 ### 错误码
 
@@ -243,12 +237,12 @@
 
 ### 注意事项
 
-- refresh_token 可能在刷新时更新，需保存新的 refresh_token
-- 如果 region 未提供，会匹配该 sellerId 的第一条记录
+- refresh_token 可能在刷新时更新，由服务端保存
+- 如果 region 未提供，会匹配该 sellerId 的第一条记录；生产调用建议传 region
 
 ---
 
-## 5. 查询店铺令牌
+## 5. 查询授权状态
 
 ### 接口信息
 
@@ -271,10 +265,9 @@
   "sellerId": "A1234567890",
   "region": "NA",
   "authRecordId": 123,
-  "accessToken": "Atza|IwEBIA...",
-  "refreshToken": "Atzr|IwEBIJ...",
-  "tokenType": "bearer",
-  "expiresIn": "3600"
+  "status": "ACTIVE",
+  "tokenExpiresAt": 3600,
+  "message": "授权信息已后台化管理，token 不再经由 Agent 返回"
 }
 ```
 
@@ -283,17 +276,16 @@
 | sellerId | String | 卖家ID |
 | region | String | 区域代码 |
 | authRecordId | Long | 授权记录ID |
-| accessToken | String | 访问令牌 |
-| refreshToken | String | 刷新令牌 |
-| tokenType | String | 令牌类型 |
-| expiresIn | String | 过期时间（秒） |
+| status | String | 授权状态：ACTIVE / EXPIRED / REVOKED |
+| tokenExpiresAt | Long | token 过期时间信息 |
+| message | String | 说明 |
 
 ### 业务逻辑
 
 1. 根据 sellerId + region 查询授权记录
 2. 校验该授权是否属于当前用户
-3. 直接从数据库读取令牌信息（不调用刷新）
-4. 返回令牌数据
+3. 读取本地授权状态（不调用刷新）
+4. 返回状态与元数据，不下发 raw token
 
 ### 错误码
 
@@ -304,9 +296,15 @@
 
 ### 使用场景
 
-- 在调用亚马逊卖家开放接口前获取访问令牌
-- 检查令牌是否即将过期（根据 expiresIn）
+- 在调用亚马逊卖家开放接口前确认本地授权是否存在
+- 检查授权状态是否 ACTIVE
 - 如果令牌过期，调用 refreshToken 接口更新
+
+---
+
+## 6. 本地取消/解绑授权
+
+用户操作流程见 [SKILL.md 场景 5](../SKILL.md#scenario-5-cancel-local-authorization)，参数、响应及解绑边界统一见 [API §5](api.md#5-cancel-authorization)。
 
 ---
 
@@ -352,6 +350,10 @@
 | sellingPartnerId | String | 卖家ID |
 | sellerName | String | 卖家名称 |
 | mwsAuthToken | String | MWS 授权令牌 |
+| status | String | ACTIVE / REVOKED |
+| revokedByGatewayUserId | String | 本地停用授权的用户 |
+| revokedDate | Date | 本地停用时间 |
+| revokedTime | Long | 本地停用时间戳 |
 | createDate | Date | 创建时间 |
 | createTime | Long | 创建时间戳 |
 | lastUpdateDate | Date | 更新时间 |
@@ -435,28 +437,21 @@ Headers: Authorization: Bearer <token>
 }
 ```
 
-### 步骤 5: 使用令牌调用卖家开放接口
+### 步骤 5: 调用卖家开放接口
 
 **请求**:
 ```bash
-POST /spApi/storeTokens
+POST /spApi/developerProxy
 Headers: Authorization: Bearer <token>
 Body: {
   "sellerId": "A1234567890",
-  "region": "NA"
+  "region": "NA",
+  "path": "orders/v0/orders",
+  "method": "GET"
 }
 ```
 
-**响应**:
-```json
-{
-  "accessToken": "Atza|...",
-  "refreshToken": "Atzr|...",
-  "expiresIn": "3600"
-}
-```
-
-使用 `accessToken` 作为 `x-amz-access-token` header 调用亚马逊卖家开放接口。
+服务端会根据 `sellerId` + `region` 取用后台 token，并在检测到过期时尝试刷新一次。
 
 ---
 

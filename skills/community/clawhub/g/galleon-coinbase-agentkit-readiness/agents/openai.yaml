@@ -1,0 +1,4 @@
+interface:
+  display_name: "Coinbase AgentKit readiness"
+  short_description: "Audit CDP accounts and agent action exposure"
+  default_prompt: "Use $galleon-coinbase-agentkit-readiness to complete the requested provider workflow with concrete evidence and unresolved gaps."

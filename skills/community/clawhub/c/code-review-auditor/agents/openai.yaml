@@ -1,0 +1,4 @@
+interface:
+  display_name: "Code Review Auditor"
+  short_description: "Review code for bugs, security, architecture, smells, patterns, performance, tests, and refactor plans"
+  default_prompt: "Use $code-review-auditor to review this project. Create the required review folder and do not modify source code during analysis."

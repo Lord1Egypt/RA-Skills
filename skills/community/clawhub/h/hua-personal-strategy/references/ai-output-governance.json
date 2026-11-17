@@ -1,0 +1,10 @@
+{
+  "schemaVersion": "ai_output_governance.v1",
+  "restrictModelIdentity": false,
+  "restrictReasoningTier": false,
+  "requireModelVersionForAudit": true,
+  "requireEvidenceGrounded": true,
+  "requireIndependentCritic": true,
+  "numericAuthority": "NONE",
+  "fallbackBehavior": "AI_MODEL_BLOCKED"
+}

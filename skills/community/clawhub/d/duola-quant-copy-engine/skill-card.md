@@ -1,42 +1,53 @@
-## Description: <br>
-Institutional-grade execution playbook for the published `duola` Polymarket copy-trading CLI in lobster-agent workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Institutional-grade execution playbook for the published `duola` Polymarket copy-trading CLI in lobster-agent workflows.
 
-## Publisher: <br>
-[duolaAmengweb3](https://clawhub.ai/user/duolaAmengweb3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[duolaamengweb3](https://clawhub.ai/user/duolaamengweb3)
 
-## Use Case: <br>
-Developers, operators, and external users use this skill to run a staged duola copy-trading workflow: verify the runtime, onboard leaders, sync and backtest strategies, run diagnostics, start limited live or autopilot operation, and report structured risk and performance results. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide live Polymarket trading and persistent autopilot operation with wallet authority. <br>
-Mitigation: Use a dedicated low-balance wallet, avoid exposing a main private key, require explicit approval before live trading, and monitor or stop detached autopilot promptly. <br>
-Risk: The workflow depends on installing and operating the duola npm package. <br>
-Mitigation: Verify the duola package and publisher independently, then pin a reviewed version before use. <br>
-Risk: Billing-gated commands can create SkillPay charges. <br>
-Mitigation: Require explicit approval before any billing charge and scope billing credentials to the intended user and release. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/duolaAmengweb3/duola-quant-copy-engine) <br>
-- [Publisher profile](https://clawhub.ai/user/duolaAmengweb3) <br>
+## Use Case:
 
+External operators and developers use this skill to install and operate the `duola` Polymarket copy-trading CLI, onboard leaders, sync trades, run backtests and diagnostics, start or stop autopilot, and return structured risk and performance summaries.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and concise structured summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include JSON-oriented command outputs for leader, sync, backtest, doctor, and autopilot status reporting.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill installs and operates a mutable trading CLI that can control live automated trading.
+
+Mitigation: Install only after independently trusting the `duola` package and publisher, prefer a pinned and verified local install, and use staged rollout through sync, backtest, doctor checks, and limited live cycles before detached autopilot.
+
+Risk: The workflow handles financial secrets, wallet private keys, and SkillPay credentials.
+
+Mitigation: Use a dedicated low-value wallet, provide private keys through stdin rather than shell history, protect SkillPay credentials, and monitor or stop detached live-trading processes promptly.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/duolaamengweb3/skills/duola-quant-copy-engine)
+- [SkillPay](https://skillpay.me)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with shell commands and structured JSON-style summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include leader, sync, backtest, doctor, autopilot, billing, risk, and performance fields.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,60 @@
-## Description: <br>
-Use GLM-4.7V's multimodal grounding capability to detect and locate objects, text, UI elements, and regions in images. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use GLM-4.7V's multimodal grounding capability to detect and locate objects, text, UI elements, or regions in images and return bounding-box coordinates.
 
-## Publisher: <br>
-[qijimrc](https://clawhub.ai/user/qijimrc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[qijimrc](https://clawhub.ai/user/qijimrc)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and external users can use this skill to ask an agent to identify visual targets in images, parse bounding-box coordinates, and produce annotated outputs for image-grounding workflows.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The package includes a sensitive runtime trace that may contain captured headers, user content, or image-derived data.
+
+Mitigation: Remove the raw trace file from the release and redact captured headers, user content, and image data before distribution.
+
+Risk: The skill instructs users to submit images to a model API and includes plaintext internal HTTP endpoint examples.
+
+Mitigation: Disclose that images are sent to a model service and prefer HTTPS endpoints with endpoint authentication.
+
+Risk: The artifact instructs users to bypass proxies with NO_PROXY for model calls.
+
+Mitigation: Avoid process-wide proxy bypasses; scope network exceptions narrowly and review them before installation.
+
+Risk: Security evidence notes ambiguity between true model-grounded boxes and approximate visual estimates.
+
+Mitigation: Clarify whether coordinates are model-grounded outputs or approximate estimates, and require user review before relying on localization results.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and agents use this skill to send image-and-prompt grounding requests to a GLM-4.7V-compatible model endpoint, parse normalized bounding boxes, and visualize labeled boxes on the source image. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The package includes an unrelated captured OpenClaw chat/API log with system prompts, tool definitions, headers, user conversation content, and a large base64 duplicate. <br>
-Mitigation: Remove ssssss.json from the release package and review packaged files for private or irrelevant data before installation. <br>
-Risk: The workflow sends images and prompts to a model endpoint and documents proxy bypass behavior for internal hosts. <br>
-Mitigation: Use only approved model endpoints, document image data flow, and avoid sensitive images unless the endpoint and network path are approved. <br>
-Risk: The skill references helper modules and local model configuration that are not bundled or pinned in the artifact. <br>
-Mitigation: Include or pin the required helper modules and document the expected local model configuration before use. <br>
+**Output Format:** [Markdown guidance with Python code examples and bounding-box coordinate output]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Bounding boxes are described as 0-1000 normalized coordinates that can be converted to pixel coordinates for visualization.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown with Python code examples and configuration notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces model-call guidance, bounding-box parsing steps, and image annotation instructions.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

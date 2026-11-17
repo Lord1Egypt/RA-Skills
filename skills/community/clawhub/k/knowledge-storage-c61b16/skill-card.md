@@ -1,41 +1,52 @@
-## Description: <br>
-Provides video-derived guidance about knowledge storage, name labels, inventory storage components, and related learning references. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+从抖音视频学习: knowledge-storage — 关于之前名称标签/库存存储组件的一些小知识的补充
 
-## Publisher: <br>
-[534422530](https://clawhub.ai/user/534422530) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[534422530](https://clawhub.ai/user/534422530)
 
-## Use Case: <br>
-Developers and learners use this markdown-only guidance skill to recall concise notes and practice steps from Douyin and Bilibili learning videos about knowledge storage, name labels, inventory storage components, and sustainable habits. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Overly broad trigger phrases may activate the skill when the user did not explicitly request it. <br>
-Mitigation: Narrow activation wording to explicit knowledge-storage, name-label, or inventory-storage requests before regular use. <br>
+## Use Case:
 
+Developers and agents use this skill as a concise learning note for knowledge-storage topics, including name labels and inventory storage components, with video references for follow-up.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/534422530/knowledge-storage-c61b16) <br>
-- [Bilibili: knowledge](https://www.bilibili.com/video/BV1vG4y1u7WA) <br>
-- [Bilibili: Myu's Knowledge Points Tracker](https://www.bilibili.com/video/BV1ebNNziEPZ) <br>
-- [Bilibili: The Knowledge Project](https://www.bilibili.com/video/BV1LrZeBiECk) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance and reference notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Markdown-only skill with no bundled code execution behavior.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Overly broad trigger phrases may cause the skill to load during unrelated conversations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Narrow or remove generic trigger phrases before deployment, especially "The".
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/534422530/skills/knowledge-storage-c61b16)
+- [Bilibili video: knowledge](https://www.bilibili.com/video/BV1vG4y1u7WA)
+- [Bilibili video: Myu's Knowledge Points Tracker](https://www.bilibili.com/video/BV1ebNNziEPZ)
+- [Bilibili video: The Knowledge Project](https://www.bilibili.com/video/BV1LrZeBiECk)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown]
+
+**Output Format:** [Markdown guidance with reference links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable behavior; the skill provides concise learning steps and references.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

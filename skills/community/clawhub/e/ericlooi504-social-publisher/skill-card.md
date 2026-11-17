@@ -1,39 +1,59 @@
-## Description: <br>
-Generates, schedules, and repurposes platform-optimized social media content with consistent brand voice and content calendars. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps create platform-tailored social media posts, content calendars, repurposed social snippets, and brand voice guidance for major social platforms.
 
-## Publisher: <br>
-[ericlooi504](https://clawhub.ai/user/ericlooi504) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ericlooi504](https://clawhub.ai/user/ericlooi504)
 
-## Use Case: <br>
-External creators, small businesses, marketers, and agents use this skill to draft social posts, create calendars, repurpose long-form content, and keep messaging consistent across Twitter/X, LinkedIn, Instagram, Facebook, and TikTok. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can help draft or schedule public-facing social content, but the security evidence notes that external platform tools and credentials are not implemented or constrained by the skill itself. <br>
-Mitigation: Review generated content and verify any separate publishing, scheduling, or credentialed platform integrations before using them. <br>
+## Use Case:
 
+External users, content creators, small businesses, and marketers use this skill to draft social posts, plan posting calendars, repurpose long-form material, and keep messaging consistent across Twitter/X, LinkedIn, Instagram, Facebook, and TikTok.
 
-## Reference(s): <br>
-- [Platform Guides](references/PLATFORMS.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/ericlooi504/ericlooi504-social-publisher) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with generated social post text, content calendar entries, and optional shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include platform-specific captions, hashtags, posting schedules, repurposed snippets, and brand-voice adjustments.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release metadata) <br>
+Risk: Generated posts or schedules may contain incorrect, off-brand, or unsuitable content for a real social account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated posts, calendars, hashtags, and timing before publishing.
+
+Risk: Using the skill with real social accounts may expose credentials or publishing access if connected through untrusted tools.
+
+Mitigation: Provide platform credentials or publishing access only through tools the user trusts and intentionally authorizes.
+
+Risk: The artifact is mostly guidance plus placeholder helper scripts, so built-in automation is limited.
+
+Mitigation: Treat helper scripts as references and confirm any desired publishing or scheduling workflow before relying on it operationally.
+
+## Reference(s):
+
+- [Social Media Platform Guides](references/PLATFORMS.md)
+- [ClawHub skill page](https://clawhub.ai/ericlooi504/skills/ericlooi504-social-publisher)
+- [Publisher profile](https://clawhub.ai/user/ericlooi504)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with optional inline shell commands and structured content calendars]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces draft content and planning guidance for human review before posting.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

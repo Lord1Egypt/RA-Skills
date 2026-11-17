@@ -1,0 +1,13 @@
+{
+  "profile_type": "unification",
+  "id": "warm-paper-journal",
+  "version": "1.0.0",
+  "paper": {"color": "#F1EBDD", "finish": "matte", "texture_scale": "shared-master", "temperature": "warm-neutral"},
+  "normalization": {
+    "match_across_series": ["paper", "color temperature", "black point", "contrast", "saturation", "line treatment"],
+    "protect": ["source-specific subject color", "delicate linework", "transparent washes"]
+  },
+  "qa_thresholds": {"mean_luminance_relative_delta": 0.12, "rms_contrast_relative_delta": 0.18, "mean_saturation_relative_delta": 0.18},
+  "blocking_checks": ["dimensions", "subject_integrity", "caption_clearance", "edge_integration", "paper_consistency", "style_consistency", "typography_consistency"],
+  "conditional_checks": {"route": ["route_single_layer", "route_continuity", "route_endpoints", "route_avoidance"]}
+}

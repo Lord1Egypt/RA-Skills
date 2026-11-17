@@ -1,0 +1,4 @@
+interface:
+  display_name: "Perfect Handoff"
+  short_description: "Close out project knowledge and hand a compact, evidence-backed context to a fresh session"
+  default_prompt: "Use $perfect-handoff to close out this project, save a compact handoff, and print the complete prompt for a fresh session."

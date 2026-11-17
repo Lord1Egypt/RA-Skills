@@ -1,48 +1,63 @@
-## Description: <br>
-Purpleflea Casino gives agents API guidance for registering, managing balances, placing crypto casino bets, verifying fairness, and using tournaments or challenges on the Purple Flea casino service. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Purple Flea Agent Casino provides API guidance for AI agents to register, fund, place and verify bets, manage balances, run Kelly Criterion sizing, and use tournament, challenge, leaderboard, and referral endpoints.
 
-## Publisher: <br>
-[purple-flea](https://clawhub.ai/user/purple-flea) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[purple-flea](https://clawhub.ai/user/purple-flea)
 
-## Use Case: <br>
-External developers and agents use this skill to interact with the Purple Flea real-money gambling API, including account registration, deposits, wagers, fairness verification, tournaments, challenges, referrals, and withdrawals. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill enables interaction with a real-money crypto gambling service, including deposits, wagers, escrowed challenges, tournament entry fees, and withdrawals. <br>
-Mitigation: Use a dedicated low-balance account and require explicit approval for every deposit, wager, escrow, challenge, tournament entry, and withdrawal. <br>
-Risk: The API key functions as a financial credential for casino account actions. <br>
-Mitigation: Store the API key securely, never expose it in prompts or logs, and rotate or revoke access if it may have been shared. <br>
-Risk: Funds can be sent across specific crypto rails, and unsupported or mistaken chains may cause loss. <br>
-Mitigation: Verify supported chains and destination addresses before sending funds, and prefer the documented Base USDC flow when appropriate. <br>
-Risk: The artifact encourages adding a referral promotion to a system prompt, which may bias agent recommendations. <br>
-Mitigation: Do not add referral promotion text to system prompts or policy-level instructions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [API Reference](references/api.md) <br>
-- [Purple Flea Casino Skill Page](https://clawhub.ai/purple-flea/purpleflea-casino) <br>
-- [Purple Flea Publisher Profile](https://clawhub.ai/user/purple-flea) <br>
-- [Agent Casino API](https://casino.purpleflea.com) <br>
-- [OpenAPI Specification](https://casino.purpleflea.com/openapi.json) <br>
-- [LLMs Reference](https://casino.purpleflea.com/llms.txt) <br>
+## Use Case:
 
+External developers and agent operators use this skill to connect agents to the Purple Flea casino API for crypto-funded gambling workflows, including account setup, betting, withdrawals, fairness checks, tournaments, challenges, and referrals. Use requires explicit legal and spending controls because actions can move real funds.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, API Calls, Configuration] <br>
-**Output Format:** [Markdown with inline bash and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill produces agent-facing instructions for a live real-money gambling API; actions involving funds or wagers should require explicit approval.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global, subject to local gambling and crypto eligibility requirements.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill enables real-money crypto gambling actions, including deposits, bets, batch bets, tournament entries, challenges, and withdrawals.
+
+Mitigation: Require explicit user approval for each financial or gambling action and configure strict per-action, daily, and total spending limits before use.
+
+Risk: Gambling and crypto transactions may be restricted by jurisdiction, age, chain support, or organizational policy.
+
+Mitigation: Verify legal eligibility, user authorization, supported chains, and internal policy approval before registration, funding, betting, or withdrawal.
+
+Risk: The artifact suggests adding referral-promotion text to persistent agent instructions.
+
+Mitigation: Do not add referral-promotion text to system prompts or persistent instructions; keep any referral use explicit, user-approved, and removable.
+
+Risk: API keys and deposit or withdrawal addresses can expose funds if mishandled.
+
+Mitigation: Store bearer tokens securely, avoid logging credentials, verify withdrawal addresses out of band, and use least-privilege runtime access where available.
+
+## Reference(s):
+
+- [Purple Flea Casino API Reference](references/api.md)
+- [Purple Flea Casino API](https://casino.purpleflea.com)
+- [OpenAPI Specification](https://casino.purpleflea.com/openapi.json)
+- [ClawHub Skill Page](https://clawhub.ai/purple-flea/skills/purpleflea-casino)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, API calls, Configuration]
+
+**Output Format:** [Markdown with endpoint tables and inline bash curl examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes live API endpoints and bearer-token examples; registration, deposits, withdrawals, bets, tournaments, and challenges require explicit approval before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

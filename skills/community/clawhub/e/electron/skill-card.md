@@ -1,39 +1,51 @@
-## Description: <br>
-Build Electron desktop apps with secure architecture and common pitfall avoidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build Electron desktop apps with secure architecture and common pitfall avoidance.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Developers and engineers use this skill for practical Electron application guidance, especially secure renderer architecture, preload APIs, IPC validation, packaging, platform differences, and debugging. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated Electron code could weaken application security if it enables renderer Node.js access, disables context isolation, or exposes broad IPC channels. <br>
-Mitigation: Review generated code so nodeIntegration remains false, contextIsolation remains true, preload APIs are narrow, and all IPC channels and payloads are explicitly validated. <br>
-Risk: Packaging and update guidance can affect runtime reliability and release trust if dependencies, native modules, logging, updates, or signing choices are applied incorrectly. <br>
-Mitigation: Review package dependencies, rebuild native modules for the Electron version in use, avoid storing secrets in ASAR packages, and verify update and code-signing behavior for each target platform. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/electron) <br>
+## Use Case:
+
+Developers and engineers use this skill to build Electron desktop applications while avoiding common security, packaging, native module, platform, debugging, memory, and performance pitfalls.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Guidance may affect security-sensitive Electron settings such as IPC exposure, renderer isolation, and production logging.
+
+Mitigation: Review suggested settings in the target app context, explicitly whitelist IPC channels, validate IPC message content, and scan the skill before deployment.
+
+Risk: Packaging guidance may be misapplied to production signing, update, installer, or platform-specific release requirements.
+
+Mitigation: Validate packaging, code signing, updater, and platform choices against the app's release requirements before shipping.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline code and command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance; no hidden execution, data access, or persistence is indicated by the security evidence.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+**Output Type(s):** [guidance, markdown, code, configuration]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown guidance with inline code identifiers and configuration recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable artifact; npm availability is listed as a runtime prerequisite for Electron workflows.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,72 @@
+{
+  "meta": {
+    "root": "https://api.we-media.cn",
+    "auth_header": "X-API-Key",
+    "source_header": "X-WM-Source",
+    "official_site": "https://api.we-media.cn"
+  },
+  "endpoints": [
+    {
+      "key": "mp-account-articles",
+      "name": "公众号历史文章",
+      "cat": "mp",
+      "method": "POST",
+      "path": "/openapi/wechat-native-account-articles/accounts/articles",
+      "price": 0.035,
+      "params": [
+        "url",
+        "ghid",
+        "page",
+        "cursor",
+        "collectionId",
+        "offset",
+        "limit"
+      ],
+      "purpose": "按链接或 gh_ ID 拉历史文章",
+      "param_types": {
+        "url": "string",
+        "ghid": "string",
+        "page": "integer",
+        "cursor": "string",
+        "collectionId": "string",
+        "offset": "integer",
+        "limit": "integer"
+      },
+      "product_slug": "wechat-native-account-articles"
+    },
+    {
+      "key": "mp-account-profile",
+      "name": "公众号资料",
+      "cat": "mp",
+      "method": "POST",
+      "path": "/openapi/wechat-native-account-profile/accounts/profile",
+      "price": 0.03,
+      "params": [
+        "url",
+        "ghid"
+      ],
+      "purpose": "公众号名称/简介/原始ID",
+      "param_types": {
+        "url": "string",
+        "ghid": "string"
+      },
+      "product_slug": "wechat-native-account-profile"
+    },
+    {
+      "key": "mp-article-metrics",
+      "name": "文章互动数据",
+      "cat": "mp",
+      "method": "POST",
+      "path": "/openapi/wechat-native-article-metrics/articles/metrics",
+      "price": 0.015,
+      "params": [
+        "url"
+      ],
+      "purpose": "阅读/点赞/分享/收藏",
+      "param_types": {
+        "url": "string"
+      },
+      "product_slug": "wechat-native-article-metrics"
+    }
+  ]
+}

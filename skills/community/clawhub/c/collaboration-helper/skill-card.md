@@ -1,38 +1,53 @@
-## Description: <br>
-Track action items and coordination signals for the community, including quick task creation, status checks, and handoff notes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Track action items and coordination signals for the community, including quick task creation, status checks, and handoff notes.
 
-## Publisher: <br>
-[CrimsonDevil333333](https://clawhub.ai/user/CrimsonDevil333333) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[crimsondevil333333](https://clawhub.ai/user/crimsondevil333333)
 
-## Use Case: <br>
-Developers, operators, and community maintainers use this skill to record shared action items, review current ownership and priority, and close tasks during handoffs. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Task titles and notes may contain secrets, sensitive personal details, or internal coordination information because the skill persists entries to a local JSON file. <br>
-Mitigation: Avoid storing secrets or sensitive details in task fields, and confirm the data file path before using custom or cross-workspace task files. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Collaboration Helper reference](references/collaboration-guide.md) <br>
-- [ClawHub skill page](https://clawhub.ai/CrimsonDevil333333/collaboration-helper) <br>
+## Use Case:
 
+External users, developers, and community operators use this skill to log shared tasks, review current ownership and status, and record handoff notes during collaborative work.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text CLI output and JSON task records] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores task state in a local JSON file.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Shared task entries can persist owners, priorities, notes, and links in a local JSON file across runs.
+
+Mitigation: Use the helper only for collaboration notes intended to be stored locally, and do not enter secrets, credentials, private customer data, or sensitive internal notes.
+
+Risk: An alternate task data path can cause the helper to read or update a different JSON task file.
+
+Mitigation: Point alternate data paths only at task files that the team intends this helper to inspect or modify.
+
+## Reference(s):
+
+- [Collaboration Helper reference](references/collaboration-guide.md)
+- [Collaboration Helper ClawHub page](https://clawhub.ai/crimsondevil333333/skills/collaboration-helper)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell command examples and JSON task structure guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates, reads, and updates local JSON task entries for shared collaboration state.]
+
+## Skill Version(s):
+
+1.0.1 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

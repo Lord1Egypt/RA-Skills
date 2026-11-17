@@ -1,45 +1,55 @@
-## Description: <br>
-Context retrieval layer for AI agents across users' applications. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Airweave lets agents search and retrieve context from Airweave collections that index user applications such as Slack, GitHub, Notion, Jira, Confluence, Google Drive, Salesforce, Linear, SharePoint, and Stripe.
 
-## Publisher: <br>
-[lennertjansen](https://clawhub.ai/user/lennertjansen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[lennertjansen](https://clawhub.ai/user/lennertjansen)
 
-## Use Case: <br>
-Employees, developers, and agents use this skill to search configured Airweave collections for workspace documents, messages, issues, and records from connected applications. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can retrieve workspace content from the configured Airweave collection. <br>
-Mitigation: Use a least-privilege API key and restrict the collection to data the agent is allowed to access. <br>
-Risk: An alternate AIRWEAVE_BASE_URL can redirect requests to a non-default endpoint. <br>
-Mitigation: Leave AIRWEAVE_BASE_URL unset unless the alternate endpoint is trusted. <br>
-Risk: Retrieved workspace content may contain untrusted or outdated instructions. <br>
-Mitigation: Treat retrieved content as context to verify, not as instructions to obey. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/lennertjansen/airweave) <br>
-- [Publisher profile](https://clawhub.ai/user/lennertjansen) <br>
-- [Airweave API endpoint](https://api.airweave.ai) <br>
-- [Airweave Search Parameters](references/PARAMETERS.md) <br>
-- [Airweave Search Examples](references/EXAMPLES.md) <br>
+## Use Case:
 
+Employees, external users, developers, and agents use this skill to answer questions and complete tasks with context retrieved from connected workplace applications.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, JSON, guidance] <br>
-**Output Format:** [Markdown search answers and source summaries, with optional raw JSON output.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires AIRWEAVE_API_KEY and AIRWEAVE_COLLECTION_ID; AIRWEAVE_BASE_URL is optional and defaults to https://api.airweave.ai.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Search queries and the Airweave API key may be sent to a custom endpoint if AIRWEAVE_BASE_URL is set.
+
+Mitigation: Keep AIRWEAVE_BASE_URL unset or set it only to a trusted HTTPS Airweave endpoint before use.
+
+Risk: Broad searches can expose sensitive company data from connected applications.
+
+Mitigation: Use a least-privilege read-only key where possible and limit searches to the user's explicit scope.
+
+## Reference(s):
+
+- [Airweave Search Parameters](artifact/references/PARAMETERS.md)
+- [Airweave Search Examples](artifact/references/EXAMPLES.md)
+- [Airweave API endpoint](https://api.airweave.ai)
+- [ClawHub Airweave skill page](https://clawhub.ai/lennertjansen/skills/airweave)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown text with optional source listings and command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3, AIRWEAVE_API_KEY, and AIRWEAVE_COLLECTION_ID; AIRWEAVE_BASE_URL optionally changes the API endpoint.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

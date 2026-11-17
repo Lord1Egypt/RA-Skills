@@ -1,41 +1,54 @@
-## Description: <br>
-Publishes articles to WeChat Official Account drafts when a user asks to publish or save a WeChat draft. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Publishes articles to a WeChat Official Account draft box using the weixingongzhonghao-publisher CLI.
 
-## Publisher: <br>
-[lixinran2015](https://clawhub.ai/user/lixinran2015) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lixinran2015](https://clawhub.ai/user/lixinran2015)
 
-## Use Case: <br>
-External users and developers use this skill to help an agent prepare and publish HTML, Markdown, plain text, or configured article content into the WeChat Official Account draft workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can lead an agent to install dependencies, launch Playwright, run login flows, and publish content through a third-party CLI. <br>
-Mitigation: Confirm the user's request is explicit before running install, browser, login, or publish commands, and review the referenced publisher project before use. <br>
-Risk: WeChat authentication cookies may be present on the user's machine during draft publishing. <br>
-Mitigation: Do not read or expose cookie contents, and keep WeChat cookie files out of git. <br>
+## Use Case:
 
+Developers and content operators use this skill to prepare article input, check the required publisher project and dependencies, guide WeChat login when needed, and create WeChat Official Account drafts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lixinran2015/publish-wechat-draft) <br>
-- [Publisher project homepage](https://github.com/lixinran2015/weixingongzhonghao) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with shell commands and generated article files when needed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May run npm, Playwright, login, and publish commands after explicit user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The workflow may run mutable third-party npm code that can access the local environment and WeChat publishing session.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only a trusted, pinned copy of the referenced project and dependencies, run it in a restricted workspace or container, and require confirmation before installation, login, file writes, or draft creation.
+
+Risk: The workflow uses WeChat account session cookies with limited scoping safeguards.
+
+Mitigation: Do not read or expose cookie contents, keep cookie files out of git, require user-controlled login, and stop if the user declines authentication.
+
+## Reference(s):
+
+- [weixingongzhonghao GitHub project](https://github.com/lixinran2015/weixingongzhonghao)
+- [ClawHub skill page](https://clawhub.ai/lixinran2015/skills/publish-wechat-draft)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and optional generated article files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create temporary HTML article files and report publish results, draft links, errors, and suggested next steps.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,63 @@
-## Description: <br>
-Deploy Moltbot to Fly.io with persistent storage, secure token authentication, environment secrets, and approved device pairing for web UI access. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deploy Moltbot to Fly.io with persistent storage, secure token authentication, environment secrets, and approved device pairing for web UI access.
 
-## Publisher: <br>
-[hollaugo](https://clawhub.ai/user/hollaugo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[hollaugo](https://clawhub.ai/user/hollaugo)
 
-## Use Case: <br>
-Developers and operators use this skill to deploy and maintain a Moltbot gateway on Fly.io, including persistent storage, secrets, authentication, device pairing, updates, and troubleshooting. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill guides users through creating a public Fly.io deployment and storing API keys as Fly secrets. <br>
-Mitigation: Install only after reviewing the deployment target, generated gateway token, and secret values, and consider pinning or reviewing the external repository before deploying secrets. <br>
-Risk: Device pairing can grant access to the deployed web UI if the wrong pending device is approved. <br>
-Mitigation: Inspect pending devices before approval and approve only the device you recognize with the expected roles and scopes. <br>
-Risk: Troubleshooting includes a destructive app-destroy command that can remove the Fly.io app and associated state. <br>
-Mitigation: Back up or export needed state before running destructive commands and use them only when rebuilding the deployment is intended. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Fly.io Documentation](https://fly.io/docs/) <br>
-- [Moltbot Official Docs](https://docs.molt.bot/platforms/fly) <br>
-- [Clawdbot GitHub](https://github.com/clawdbot/clawdbot) <br>
-- [ClawHub Skill Page](https://clawhub.ai/hollaugo/deploy-moltbot-to-fly) <br>
+## Use Case:
 
+Developers and operators use this skill to deploy Moltbot or Clawdbot on Fly.io, configure persistent storage and secrets, and pair devices for browser access.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces deployment guidance for Fly.io app setup, secrets, persistent storage, token authentication, device pairing, maintenance, and troubleshooting.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.3 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Gateway tokens can be exposed when placed in browser URLs or copied into multiple locations.
+
+Mitigation: Avoid tokenized URLs where possible, keep tokens in Fly secrets and protected config, and rotate any token that has already been shared through a URL.
+
+Risk: Manual device-pairing commands can approve the wrong pending device or grant unintended permissions.
+
+Mitigation: Verify the pending device identity, role, scopes, and requester before approving a pairing request.
+
+Risk: Destroying a Fly app as a recovery shortcut can remove the wrong app or lose persistent state.
+
+Mitigation: Confirm the app name and back up persistent data before running any app-destroy command.
+
+Risk: Shell-based CLI installation shortcuts can run installer code directly from the network.
+
+Mitigation: Prefer the package-manager Fly CLI install path, or verify installer source and integrity before using a shell installer.
+
+## Reference(s):
+
+- [Fly.io Documentation](https://fly.io/docs/)
+- [Moltbot Official Docs](https://docs.molt.bot/platforms/fly)
+- [Clawdbot GitHub](https://github.com/clawdbot/clawdbot)
+- [ClawHub Skill Page](https://clawhub.ai/hollaugo/skills/deploy-moltbot-to-fly)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with bash, TOML, JSON, and inline command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes deployment steps, troubleshooting guidance, and configuration snippets.]
+
+## Skill Version(s):
+
+0.1.3 (source: server release metadata, released 2026-01-31)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

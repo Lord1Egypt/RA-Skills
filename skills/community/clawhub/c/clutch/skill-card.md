@@ -1,41 +1,54 @@
-## Description: <br>
-Generates clutch CAD drawings through a guided JXT mechanical parts workflow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates clutch CAD drawings by guiding users through product selection, parameter collection, calculation, and guest production-sheet creation through jixietools.com.
 
-## Publisher: <br>
-[liv09370](https://clawhub.ai/user/liv09370) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liv09370](https://clawhub.ai/user/liv09370)
 
-## Use Case: <br>
-External users and mechanical design practitioners use this skill to choose a clutch product, enter design parameters step by step, review calculated values, and create a guest production sheet for CAD drawing generation through jixietools.com. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The artifact names clutch category ID 31 but the product-list command uses category_id=8, so the product list may not match the intended clutch catalog. <br>
-Mitigation: Confirm the correct clutch category with the publisher or jixietools.com documentation before relying on the fetched product list. <br>
-Risk: The workflow sends design parameters to jixietools.com and creates a guest production sheet link accessible with its guest code. <br>
-Mitigation: Use the skill only when sharing those design parameters and creating a guest-accessible production sheet is acceptable for the user's project. <br>
+## Use Case:
 
+External users and engineers use this skill to configure clutch design parameters, review calculated values, and request CAD drawing generation through the JXT mechanical parts service.
 
-## Reference(s): <br>
-- [JixieTools API base](https://jixietools.com/api/v1) <br>
-- [ClawHub skill page](https://clawhub.ai/liv09370/clutch) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, API calls, Guidance] <br>
-**Output Format:** [Chinese Markdown conversation with parameter tables, curl commands, JSON examples, and production sheet links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides one parameter at a time, stores the returned filename for incremental recalculation, and polls the guest production sheet status.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact frontmatter is 1.0.0) <br>
+Risk: The skill sends clutch design parameters to jixietools.com and receives a guest access link.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only when the user is comfortable sharing those design parameters with the third-party service.
+
+Risk: The artifact shows shell-command patterns that could become unsafe if raw user input or returned filenames are interpolated into commands.
+
+Mitigation: Implement API calls with a structured HTTP client or JSON serializer and avoid passing untrusted values through shell interpolation.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/liv09370/skills/clutch)
+- [JixieTools API Base](https://jixietools.com/api/v1)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, API calls]
+
+**Output Format:** [Markdown conversation with tables, JSON summaries, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a guest access link and lists generated output files when the external service completes.]
+
+## Skill Version(s):
+
+1.0.1 (source: release evidence; artifact frontmatter says 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

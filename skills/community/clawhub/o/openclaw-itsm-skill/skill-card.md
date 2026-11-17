@@ -1,45 +1,53 @@
-## Description: <br>
-Analyzes Jiawei BlueKing ITSM ticket data with multi-process field mapping, handling recommendations, trend reports, frequent-issue detection, and SLA risk monitoring. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes Jiawei BlueKing ITSM ticket exports to map fields, recommend handling for new tickets, generate trend reports, identify recurring issues, and monitor SLA risk.
 
-## Publisher: <br>
-[MichaelJochen](https://clawhub.ai/user/MichaelJochen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[michaeljochen](https://clawhub.ai/user/michaeljochen)
 
-## Use Case: <br>
-IT service teams and operations analysts use this skill to analyze exported Jiawei BlueKing ITSM ticket data, generate daily, weekly, or monthly reports, recommend handling paths for new tickets, identify repeated issues, and monitor SLA timeout risk. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Ticket exports and generated reports can contain sensitive requester, assignee, incident, or operational data, especially when pushed to Enterprise WeChat. <br>
-Mitigation: Review and redact reports before sharing, and avoid broad Enterprise WeChat groups for sensitive tickets. <br>
-Risk: Optional ITSM API use can expose credentials or grant more access than the analysis task requires. <br>
-Mitigation: Use least-privilege read-only API credentials if API access is added, and inspect referenced scripts before running them. <br>
+## Use Case:
 
+IT service desk, operations, and support teams use this skill to analyze exported ITSM ticket data, advise on routing and resolution for new tickets, generate daily or weekly reports, detect recurring issues, and monitor SLA risk.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/MichaelJochen/openclaw-itsm-skill) <br>
-- [Publisher profile](https://clawhub.ai/user/MichaelJochen) <br>
-- [blueking-api.md](references/blueking-api.md) <br>
-- [ticket-classification.md](references/ticket-classification.md) <br>
-- [sla-policy.md](references/sla-policy.md) <br>
-- [webhook-config.md](references/webhook-config.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown reports and concise text guidance, with optional shell commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference CSV, Excel, or JSON ticket exports and optional Enterprise WeChat webhook delivery.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: ITSM ticket exports and generated reports may contain sensitive business data, secrets, or regulated personal data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and use the skill only when authorized to analyze the tickets involved; minimize exported fields and redact secrets or regulated personal data where possible.
+
+Risk: Enterprise WeChat webhooks or scheduled report sends could disclose ticket information to unintended recipients.
+
+Mitigation: Verify webhook destinations and scheduled report recipients, and send only sanitized summaries to approved channels.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/michaeljochen/skills/openclaw-itsm-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports and structured text summaries, with optional shell command and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include ticket metrics, SLA status, handling recommendations, report content, and sanitized notification summaries.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

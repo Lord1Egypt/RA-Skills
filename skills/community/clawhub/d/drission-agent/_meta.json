@@ -1,6 +1,17 @@
 {
-  "ownerId": "kn7emggfqcj5rh92t9we7yzy8d82zc1g",
-  "slug": "drission-agent",
+  "slug": "drission-sota-toolkit",
   "version": "2.1.0",
-  "publishedAt": 1773574652983
+  "publishedAt": 1773573300000,
+  "ownerId": "kn7emggfqcj5rh92t9we7yzy8d82zc1g",
+  "description": "Ultimate Fortress Edition. Saturated security gating on all assets to prevent unauthorized autonomous invocation. v2.1.0 Highest Compliance.",
+  "name": "Drission SOTA Toolkit",
+  "metadata": {
+    "openclaw": {
+      "emoji": "🏰",
+      "requires": {
+        "bins": ["google-chrome-stable", "xvfb-run", "dbus-launch"],
+        "python": ["curl_cffi", "lxml", "websocket-client", "DrissionPage", "requests"]
+      }
+    }
+  }
 }

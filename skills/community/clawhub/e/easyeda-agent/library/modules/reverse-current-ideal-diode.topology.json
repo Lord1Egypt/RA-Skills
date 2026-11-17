@@ -1,0 +1,125 @@
+{
+  "schemaVersion": 1,
+  "kind": "role_topology_module",
+  "source": {
+    "kind": "live_schematic_readback",
+    "containsProjectIdentity": false,
+    "containsOriginalReferenceDesign": false,
+    "evidence": [
+      "official manufacture netlist",
+      "LCSC device identity resolver"
+    ]
+  },
+  "module": {
+    "id": "lib.reverse_current_ideal_diode",
+    "title": "低压侧反向电流保护",
+    "maturity": "topology_ready",
+    "parts": [
+      {
+        "role": "CTRL",
+        "lcsc": "C5456874",
+        "device": {
+          "libraryUuid": "0819f05c4eef4c71ace90d822a990e87",
+          "deviceUuid": "11b7ac3f768147c385e38e3b17254086",
+          "name": "CH213K"
+        },
+        "footprint": "SOT-23-3_L2.9-W1.6-P1.90-LS2.8-BR",
+        "pins": [
+          {
+            "number": "1",
+            "name": "GND",
+            "net": "port.GND"
+          },
+          {
+            "number": "2",
+            "name": "VO-",
+            "net": "port.POWER_OUT"
+          },
+          {
+            "number": "3",
+            "name": "VI+",
+            "net": "port.POWER_IN"
+          }
+        ]
+      },
+      {
+        "role": "IN_BULK",
+        "lcsc": "C45783",
+        "device": {
+          "libraryUuid": "0819f05c4eef4c71ace90d822a990e87",
+          "deviceUuid": "159c3da60be9490abf4e97599788a0d5",
+          "name": "CL21A226MAQNNNE"
+        },
+        "footprint": "C0805",
+        "pins": [
+          {
+            "number": "1",
+            "name": "1",
+            "net": "port.GND"
+          },
+          {
+            "number": "2",
+            "name": "2",
+            "net": "port.POWER_IN"
+          }
+        ]
+      },
+      {
+        "role": "OUT_BULK",
+        "lcsc": "C45783",
+        "device": {
+          "libraryUuid": "0819f05c4eef4c71ace90d822a990e87",
+          "deviceUuid": "159c3da60be9490abf4e97599788a0d5",
+          "name": "CL21A226MAQNNNE"
+        },
+        "footprint": "C0805",
+        "pins": [
+          {
+            "number": "1",
+            "name": "1",
+            "net": "port.GND"
+          },
+          {
+            "number": "2",
+            "name": "2",
+            "net": "port.POWER_OUT"
+          }
+        ]
+      }
+    ],
+    "nets": [
+      {
+        "id": "port.POWER_OUT",
+        "members": [
+          "CTRL.2",
+          "OUT_BULK.2"
+        ],
+        "port": "POWER_OUT"
+      },
+      {
+        "id": "port.GND",
+        "members": [
+          "CTRL.1",
+          "IN_BULK.1",
+          "OUT_BULK.1"
+        ],
+        "port": "GND"
+      },
+      {
+        "id": "port.POWER_IN",
+        "members": [
+          "CTRL.3",
+          "IN_BULK.2"
+        ],
+        "port": "POWER_IN"
+      }
+    ],
+    "verification": {
+      "pinNetReadback": "passed",
+      "deviceIdentityResolution": "passed",
+      "geometry": "not_captured",
+      "pcb": "not_tested",
+      "bringup": "not_tested"
+    }
+  }
+}

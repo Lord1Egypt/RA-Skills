@@ -1,7 +1,7 @@
 ---
 name: markdown-formatting
 description: Enforces markdown line-wrap and structure rules for clean git diffs
-version: 1.9.8
+version: 1.10.3
 triggers:
   - markdown
   - formatting
@@ -14,7 +14,7 @@ source: claude-night-market
 source_plugin: leyline
 ---
 
-> **Night Market Skill** — ported from [claude-night-market/leyline](https://github.com/athola/claude-night-market/tree/master/plugins/leyline). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
+> **Night Market Skill**: ported from [claude-night-market/leyline](https://github.com/athola/claude-night-market/tree/master/plugins/leyline). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
 
 # Markdown Formatting Conventions
@@ -166,3 +166,17 @@ Short inline links that keep the line under 80 chars are fine:
 OK:
 See [the guide](https://example.com) for details.
 ```
+
+## Exit Criteria
+
+- [ ] All prose lines in the edited file wrap at 80 characters or
+  fewer; verified with `awk 'length>80' <file>` returning no
+  matches on prose blocks (tables, code, headings, frontmatter
+  excluded)
+- [ ] Every heading has a blank line before and after it (except
+  the first line of a file); no setext-style underline headings
+  present
+- [ ] Every list is preceded by a blank line
+- [ ] Inline links that would push a line past 80 characters
+  converted to reference-style syntax with the URL definition at
+  the end of the section or document

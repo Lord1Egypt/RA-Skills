@@ -1,0 +1,57 @@
+collection: EASYRPG
+sort-by: 10
+shortname: easyrpg
+launch: am start --user 0 -n com.retroarch.aarch64/com.retroarch.browser.retroactivity.RetroActivityFuture -e ROM "{file.path}" -e LIBRETRO /data/data/com.retroarch.aarch64/cores/easyrpg_libretro_android.so -e CONFIGFILE /storage/emulated/0/Android/data/com.retroarch.aarch64/files/retroarch.cfg
+
+game: Mogeko城堡
+file: Mogeko城堡/RPG_RT.ldb
+assets.box_front: Imgs/Mogeko城堡.png
+description: 《Mogeko城堡》，EasyRPG 平台。
+game: 威伦诺尔
+file: 威伦诺尔/RPG_RT.ldb
+assets.box_front: Imgs/威伦诺尔.png
+description: 《威伦诺尔》，EasyRPG 平台。
+game: 寂静岭
+file: 寂静岭/RPG_RT.ldb
+assets.box_front: Imgs/寂静岭.png
+description: 《寂静岭》，EasyRPG 平台。
+game: 废都物语
+file: 废都物语/RPG_RT.ldb
+assets.box_front: Imgs/废都物语.png
+description: 《废都物语》，EasyRPG 平台。
+game: 怪异症候群1
+file: 怪异症候群1/RPG_RT.ldb
+assets.box_front: Imgs/怪异症候群1.png
+description: 《怪异症候群1》，EasyRPG 平台。
+game: 怪异症候群2
+file: 怪异症候群2/RPG_RT.ldb
+assets.box_front: Imgs/怪异症候群2.png
+description: 《怪异症候群2》，EasyRPG 平台。
+game: 恐怖美术馆
+file: 恐怖美术馆/RPG_RT.ldb
+assets.box_front: Imgs/恐怖美术馆.png
+description: 《恐怖美术馆》，EasyRPG 平台。
+game: 梦幻重装机兵
+file: 梦幻重装机兵/RPG_RT.ldb
+assets.box_front: Imgs/梦幻重装机兵.png
+description: 《梦幻重装机兵》，EasyRPG 平台。
+game: 灰色庭院
+file: 灰色庭院/RPG_RT.ldb
+assets.box_front: Imgs/灰色庭院.png
+description: 《灰色庭院》，EasyRPG 平台。
+game: 野比大雄的双截龙
+file: 野比大雄的双截龙/RPG_RT.ldb
+assets.box_front: Imgs/野比大雄的双截龙.png
+description: 《野比大雄的双截龙》，EasyRPG 平台。
+game: 野比大雄的恶灵附身
+file: 野比大雄的恶灵附身/RPG_RT.ldb
+assets.box_front: Imgs/野比大雄的恶灵附身.png
+description: 《野比大雄的恶灵附身》，EasyRPG 平台。
+game: 野比大雄的死亡空间
+file: 野比大雄的死亡空间/RPG_RT.ldb
+assets.box_front: Imgs/野比大雄的死亡空间.png
+description: 《野比大雄的死亡空间》，EasyRPG 平台。
+game: 野比大雄的生化危机
+file: 野比大雄的生化危机/RPG_RT.ldb
+assets.box_front: Imgs/野比大雄的生化危机.png
+description: 《野比大雄的生化危机》，EasyRPG 平台。

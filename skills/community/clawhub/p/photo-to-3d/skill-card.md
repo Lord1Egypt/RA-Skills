@@ -1,42 +1,59 @@
-## Description: <br>
-One-click photo to 3D model pipeline that uses Gemini to generate a clean isometric view from a photo, then uses the Tripo3D API to convert it into a GLB 3D model. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts a user-supplied photo into a clean isometric image with Gemini, then generates a .glb 3D model with the Tripo3D API.
 
-## Publisher: <br>
-[m15010495895-sudo](https://clawhub.ai/user/m15010495895-sudo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[m15010495895-sudo](https://clawhub.ai/user/m15010495895-sudo)
 
-## Use Case: <br>
-Developers, designers, and 3D content creators use this skill to turn supported image files into 3D asset outputs for prototyping, game assets, product renders, or AR workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected images are sent to Gemini and Tripo3D services. <br>
-Mitigation: Avoid private, sensitive, confidential, or rights-restricted images unless the provider policies have been reviewed. <br>
-Risk: The workflow uses external API quota and service credentials. <br>
-Mitigation: Use dedicated API keys where possible and review generated outputs before downstream use. <br>
+## Use Case:
 
+Developers, creators, and asset teams use this skill to turn 2D product, object, or reference images into generated 3D model assets.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/m15010495895-sudo/photo-to-3d) <br>
-- [Gemini API key setup](https://aistudio.google.com/apikey) <br>
-- [Tripo3D platform](https://platform.tripo3d.ai/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Files] <br>
-**Output Format:** [Terminal status text plus generated PNG and GLB files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires GEMINI_API_KEY and TRIPO_API_KEY; selected images are sent to Gemini and Tripo3D services.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Selected images are sent to Gemini and Tripo3D for processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sensitive, private, or regulated images unless those services' policies and data handling meet your requirements.
+
+Risk: The model download URL is returned by an external API.
+
+Mitigation: Validate the returned model URL before fetching the generated asset.
+
+Risk: Broad trigger phrases may invoke the workflow for requests that only loosely mention 3D generation.
+
+Mitigation: Narrow triggers or confirm user intent before uploading images to third-party services.
+
+## Reference(s):
+
+- [Photo to 3D ClawHub Skill Page](https://clawhub.ai/m15010495895-sudo/skills/photo-to-3d)
+- [Google AI Studio API Keys](https://aistudio.google.com/apikey)
+- [Tripo3D Platform](https://platform.tripo3d.ai/)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and generated PNG/GLB file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires GEMINI_API_KEY and TRIPO_API_KEY; writes an isometric PNG and final .glb model under the selected output directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

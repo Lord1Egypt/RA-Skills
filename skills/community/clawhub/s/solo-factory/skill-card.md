@@ -1,43 +1,56 @@
-## Description: <br>
-Installs the Solo Factory toolkit, including 23 startup workflow skills and optional solograph MCP setup for code intelligence, knowledge-base search, and web search. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Install the full Solo Factory toolkit: 23 startup skills plus the optional solograph MCP server for code intelligence, knowledge-base search, session search, and web search.
 
-## Publisher: <br>
-[fortunto2](https://clawhub.ai/user/fortunto2) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[fortunto2](https://clawhub.ai/user/fortunto2)
 
-## Use Case: <br>
-External developers and startup builders use this skill to install the Solo Factory skill collection across supported AI agents and optionally configure solograph MCP for local code, session, and search workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Bulk installation can modify multiple AI-agent environments and add a large toolkit at once. <br>
-Mitigation: Use a scoped install path, inspect the referenced contents first, and confirm the intended target agents before running installation commands. <br>
-Risk: Optional plugin and MCP setup can add persistent behavior, hooks, agents, or auto-start services. <br>
-Mitigation: Skip MCP unless local code or session search is needed, and identify uninstall or disable steps before using the plugin path. <br>
+## Use Case:
 
+Developers and startup builders use this skill to install and configure a Solo Factory agent toolkit for researching, validating, building, deploying, reviewing, and promoting startup projects. It can also guide optional setup of the solograph MCP server for project code intelligence and searchable knowledge sources.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/fortunto2/solo-factory) <br>
-- [Solo Factory GitHub repository](https://github.com/fortunto2/solo-factory) <br>
-- [solograph MCP server](https://github.com/fortunto2/solograph) <br>
-- [uv documentation](https://docs.astral.sh/uv/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with shell commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May ask whether to configure the optional MCP server.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release metadata and skill metadata) <br>
+Risk: The skill directs broad, persistent third-party installations and may add user-scoped agent tooling that can access project code, session history, or knowledge-base content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the upstream repositories and package sources before installing, prefer pinned versions or immutable commits, and enable the Claude plugin, hooks, or solograph MCP server only when that access is acceptable.
+
+Risk: The artifact includes a direct remote script execution command for installing uv.
+
+Mitigation: Avoid running curl-to-shell commands directly; inspect the installer first or use a trusted package-manager installation path.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fortunto2/skills/solo-factory)
+- [Solo Factory repository](https://github.com/fortunto2/solo-factory)
+- [solograph repository](https://github.com/fortunto2/solograph)
+- [uv documentation](https://docs.astral.sh/uv/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash and JSON code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May ask whether to enable optional MCP setup when no install mode is provided.]
+
+## Skill Version(s):
+
+1.1.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

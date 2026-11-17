@@ -1,0 +1,633 @@
+{
+  "version": "2.4.0",
+  "source_id": "wanfang",
+  "status": "entry_observed",
+  "checked_at": "2026-10-09T08:59:15.682Z",
+  "notes": [
+    "期刊统计页：https://c.wanfangdata.com.cn/magazine/<刊名拼音码>?tabId=analysis（如《红外与毫米波学报》hwyhmb），可读“发文热度/文献量”。",
+    "检索年份分面：https://s.wanfangdata.com.cn/paper?q=刊名:\"<刊名>\"，结果页“年份”分面直接给出各年篇数。",
+    "学位论文阅读器：https://f.wanfangdata.com.cn/online/pc/thesis/<id>，阅读器左侧目录可跳章，表格文本可直接读取；其 transaction 查询串含 login 字样，不代表登录页。",
+    "杂志页统计接口：web/getStatistics（magazine 路径下）；仅到专辑级，不到子类。"
+  ],
+  "entry": {
+    "url": "https://www.wanfangdata.com.cn/",
+    "final_url": "https://s.wanfangdata.com.cn/advanced-search/paper",
+    "title": "万方数据知识服务平台",
+    "status": "accessible",
+    "http_status": 200,
+    "checked_at": "2026-10-09T08:59:15.682Z",
+    "identity": {
+      "declared_name": "万方数据知识服务平台",
+      "hostname": "s.wanfangdata.com.cn",
+      "domain_matches": true
+    },
+    "links": [
+      {
+        "text": "了解高级检索",
+        "href": "https://www.wanfangdata.com.cn/teach-expression?to=advanced-search",
+        "target": "_blank"
+      },
+      {
+        "text": "帮助",
+        "href": "https://www.wanfangdata.com.cn/Help",
+        "target": "_blank"
+      },
+      {
+        "text": "万方数据学术资源发现获取服务系统[简称：万方智搜] V3.0 证书号：软著登字第11363462号",
+        "href": "https://www.wanfangdata.com.cn/www/file/wfdatazs.pdf",
+        "target": "_blank"
+      }
+    ],
+    "frames": [
+      {
+        "src": "https://s.wanfangdata.com.cn/advanced-search/paper",
+        "id": "loginframe",
+        "name": "",
+        "title": ""
+      },
+      {
+        "src": "https://s.wanfangdata.com.cn/advanced-search/paper",
+        "id": "anxs-8qwe-login",
+        "name": "",
+        "title": ""
+      },
+      {
+        "src": "https://s.wanfangdata.com.cn/advanced-search/paper",
+        "id": "gr-info-form",
+        "name": "",
+        "title": ""
+      },
+      {
+        "src": "https://www.wanfangdata.com.cn/export.html",
+        "id": "iframe-page",
+        "name": "",
+        "title": ""
+      },
+      {
+        "src": "https://s.wanfangdata.com.cn/aipermission.html",
+        "id": "permisition-page",
+        "name": "",
+        "title": ""
+      },
+      {
+        "src": "",
+        "id": "",
+        "name": "",
+        "title": ""
+      },
+      {
+        "src": "https://s.wanfangdata.com.cn/advanced-search/paper",
+        "id": "anxs-8qwe-login-1",
+        "name": "",
+        "title": ""
+      }
+    ]
+  },
+  "controls": [
+    {
+      "tag": "input",
+      "type": "text",
+      "text": "",
+      "label": "",
+      "aria_label": null,
+      "placeholder": "",
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": null,
+      "observed_url": "https://s.wanfangdata.com.cn/advanced-search/paper",
+      "observed_at": "2026-10-09T08:59:14.314Z"
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "text": "",
+      "label": "",
+      "aria_label": null,
+      "placeholder": "",
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": null,
+      "observed_url": "https://s.wanfangdata.com.cn/advanced-search/paper",
+      "observed_at": "2026-10-09T08:59:14.314Z"
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "text": "",
+      "label": "",
+      "aria_label": null,
+      "placeholder": "",
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": null,
+      "observed_url": "https://s.wanfangdata.com.cn/advanced-search/paper",
+      "observed_at": "2026-10-09T08:59:14.314Z"
+    }
+  ],
+  "recipes": [
+    {
+      "id": "wanfang:statistics-ranking",
+      "source_id": "wanfang",
+      "task_kind": "statistics-ranking",
+      "status": "blocked",
+      "parameters": [
+        "query_terms",
+        "fields",
+        "boolean_relation",
+        "match_mode",
+        "start_year",
+        "end_year",
+        "resource_type",
+        "fund",
+        "sort_field",
+        "sort_direction",
+        "rank_or_threshold"
+      ],
+      "instructions": [
+        "把本题条件逐一填入已观察字段或该库自己的专业语法；清除上题筛选；核对结果回显、资源类型、年份、匹配方式、排序及统计口径。"
+      ],
+      "transitions": {},
+      "entry_url": "https://s.wanfangdata.com.cn/advanced-search/paper",
+      "controls": [],
+      "pending": [
+        "完成当前验证码后恢复本题检索；结果容器仍需实查"
+      ],
+      "search_mode": "professional",
+      "mode_switch": {
+        "text": "专业检索",
+        "exact": true
+      },
+      "query_input": {
+        "css": "textarea[maxlength=\"800\"]"
+      },
+      "submit": {
+        "css": "span.submit-btn"
+      },
+      "field_controls": [
+        "全部",
+        "主题",
+        "题名或关键词",
+        "题名",
+        "第一作者",
+        "作者单位",
+        "作者",
+        "关键词",
+        "摘要",
+        "DOI"
+      ],
+      "syntax": {
+        "title_template": "题名:(<本题词>)",
+        "operators": [
+          "AND",
+          "OR",
+          "NOT"
+        ],
+        "precedence": "括号 > NOT > AND > OR",
+        "quotes": "英文半角双引号表示整体短语；具体字段由当前字段按钮生成"
+      },
+      "result_items": {
+        "status": "pending",
+        "locator": null,
+        "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+      },
+      "record_identity": {
+        "status": "pending",
+        "fields": []
+      },
+      "detail_fields": {
+        "status": "pending",
+        "fields": []
+      },
+      "completion": {
+        "status": "pending",
+        "ready": null,
+        "empty": null,
+        "loading": null,
+        "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+      }
+    },
+    {
+      "id": "wanfang:citation-export",
+      "source_id": "wanfang",
+      "task_kind": "citation-export",
+      "status": "blocked",
+      "parameters": [
+        "record_identifier",
+        "citation_style",
+        "export_format"
+      ],
+      "instructions": [
+        "打开本题记录的引用/导出入口，读取当前支持的格式和样式；不得沿用示例引文。"
+      ],
+      "transitions": {},
+      "entry_url": "https://s.wanfangdata.com.cn/advanced-search/paper",
+      "controls": [],
+      "pending": [
+        "完成当前验证码后恢复本题检索；结果容器仍需实查"
+      ],
+      "search_mode": "professional",
+      "mode_switch": {
+        "text": "专业检索",
+        "exact": true
+      },
+      "query_input": {
+        "css": "textarea[maxlength=\"800\"]"
+      },
+      "submit": {
+        "css": "span.submit-btn"
+      },
+      "field_controls": [
+        "全部",
+        "主题",
+        "题名或关键词",
+        "题名",
+        "第一作者",
+        "作者单位",
+        "作者",
+        "关键词",
+        "摘要",
+        "DOI"
+      ],
+      "syntax": {
+        "title_template": "题名:(<本题词>)",
+        "operators": [
+          "AND",
+          "OR",
+          "NOT"
+        ],
+        "precedence": "括号 > NOT > AND > OR",
+        "quotes": "英文半角双引号表示整体短语；具体字段由当前字段按钮生成"
+      },
+      "result_items": {
+        "status": "pending",
+        "locator": null,
+        "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+      },
+      "record_identity": {
+        "status": "pending",
+        "fields": []
+      },
+      "detail_fields": {
+        "status": "pending",
+        "fields": []
+      },
+      "completion": {
+        "status": "pending",
+        "ready": null,
+        "empty": null,
+        "loading": null,
+        "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+      }
+    },
+    {
+      "id": "wanfang:record-lookup",
+      "source_id": "wanfang",
+      "task_kind": "record-lookup",
+      "status": "blocked",
+      "parameters": [
+        "title_or_identifier",
+        "author",
+        "institution",
+        "date_or_year",
+        "resource_type",
+        "target_field"
+      ],
+      "instructions": [
+        "使用本题实体或唯一标识查找；在真实结果容器内匹配题名、作者、机构、年份或ID，打开详情读取目标字段。"
+      ],
+      "transitions": {},
+      "entry_url": "https://s.wanfangdata.com.cn/advanced-search/paper",
+      "controls": [],
+      "pending": [
+        "完成当前验证码后恢复本题检索；结果容器仍需实查"
+      ],
+      "search_mode": "professional",
+      "mode_switch": {
+        "text": "专业检索",
+        "exact": true
+      },
+      "query_input": {
+        "css": "textarea[maxlength=\"800\"]"
+      },
+      "submit": {
+        "css": "span.submit-btn"
+      },
+      "field_controls": [
+        "全部",
+        "主题",
+        "题名或关键词",
+        "题名",
+        "第一作者",
+        "作者单位",
+        "作者",
+        "关键词",
+        "摘要",
+        "DOI"
+      ],
+      "syntax": {
+        "title_template": "题名:(<本题词>)",
+        "operators": [
+          "AND",
+          "OR",
+          "NOT"
+        ],
+        "precedence": "括号 > NOT > AND > OR",
+        "quotes": "英文半角双引号表示整体短语；具体字段由当前字段按钮生成"
+      },
+      "result_items": {
+        "status": "pending",
+        "locator": null,
+        "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+      },
+      "record_identity": {
+        "status": "pending",
+        "fields": []
+      },
+      "detail_fields": {
+        "status": "pending",
+        "fields": []
+      },
+      "completion": {
+        "status": "pending",
+        "ready": null,
+        "empty": null,
+        "loading": null,
+        "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+      }
+    },
+    {
+      "id": "wanfang:search-syntax",
+      "source_id": "wanfang",
+      "task_kind": "search-syntax",
+      "status": "blocked",
+      "parameters": [
+        "field",
+        "terms",
+        "operators",
+        "phrase_mode",
+        "wildcard",
+        "exclude_terms"
+      ],
+      "instructions": [
+        "先按retrieval_channels选择覆盖本题缺口的官方API/指南；原status只描述浏览器。指南不能支持当前数量或排名，受阻渠道不重复预检；需要界面时再执行下列浏览器步骤。",
+        "在官方检索帮助确认该字段、布尔、短语或截词规则；数据库之间不得互套语法。"
+      ],
+      "transitions": {},
+      "entry_url": "https://s.wanfangdata.com.cn/advanced-search/paper",
+      "controls": [],
+      "pending": [
+        "完成当前验证码后恢复本题检索；结果容器仍需实查"
+      ],
+      "search_mode": "professional",
+      "mode_switch": {
+        "text": "专业检索",
+        "exact": true
+      },
+      "query_input": {
+        "css": "textarea[maxlength=\"800\"]"
+      },
+      "submit": {
+        "css": "span.submit-btn"
+      },
+      "field_controls": [
+        "全部",
+        "主题",
+        "题名或关键词",
+        "题名",
+        "第一作者",
+        "作者单位",
+        "作者",
+        "关键词",
+        "摘要",
+        "DOI"
+      ],
+      "syntax": {
+        "title_template": "题名:(<本题词>)",
+        "operators": [
+          "AND",
+          "OR",
+          "NOT"
+        ],
+        "precedence": "括号 > NOT > AND > OR",
+        "quotes": "英文半角双引号表示整体短语；具体字段由当前字段按钮生成"
+      },
+      "result_items": {
+        "status": "pending",
+        "locator": null,
+        "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+      },
+      "record_identity": {
+        "status": "pending",
+        "fields": []
+      },
+      "detail_fields": {
+        "status": "pending",
+        "fields": []
+      },
+      "completion": {
+        "status": "pending",
+        "ready": null,
+        "empty": null,
+        "loading": null,
+        "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+      },
+      "status_scope": "browser",
+      "retrieval_channels": [
+        {
+          "id": "wanfang-expression-guide",
+          "kind": "official-help",
+          "url": "https://www.wanfangdata.com.cn/teach-expression?to=advanced-search",
+          "use_when": "万方数据知识服务平台 www.wanfangdata.com.cn；本轮未读到规则正文，不能界定更细的产品或版本适用范围。",
+          "verification": {
+            "status": "body_unverified",
+            "checked_at": "2026-10-10",
+            "time_precision": "date",
+            "scope": "2026-10-10 尝试读取；没有可读取的正文版本信息。"
+          },
+          "supported_questions": [],
+          "not_covered": [
+            "所有字段代码和语法结论",
+            "精确/模糊匹配规则",
+            "当前检索结果数量或排名",
+            "具体记录",
+            "馆藏及全文授权"
+          ],
+          "limitations": [
+            "正文需要能读取该页面渲染内容或 PDF 图像的路径。",
+            "不从搜索摘要、旧记忆或第三方转载补造规则证据。"
+          ],
+          "fallback": "保留表达式教学真实深链作为首选帮助入口；当前 Web 读取不可用时停止该路径，不循环打开相同框架。若任务必须确认规则，使用可读取正文的授权官方页面渠道。"
+        }
+      ]
+    },
+    {
+      "id": "wanfang:product-capability",
+      "source_id": "wanfang",
+      "task_kind": "product-capability",
+      "status": "entry_observed",
+      "parameters": [
+        "product",
+        "client_platform",
+        "feature",
+        "menu_or_setting"
+      ],
+      "instructions": [
+        "先按retrieval_channels选择覆盖本题缺口的官方API/指南；原status只描述浏览器。指南不能支持当前数量或排名，受阻渠道不重复预检；需要界面时再执行下列浏览器步骤。",
+        "先确认网页版/桌面版/插件的具体产品和版本，再打开本题功能菜单或官方帮助读取选项；不提交生成、付费或个人信息。"
+      ],
+      "transitions": {},
+      "entry_url": "https://s.wanfangdata.com.cn/advanced-search/paper",
+      "controls": [],
+      "pending": [
+        "结果容器、完成标志与页面打开方式仍需真实查询确认"
+      ],
+      "result_items": {
+        "status": "pending",
+        "locator": null,
+        "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+      },
+      "record_identity": {
+        "status": "pending",
+        "fields": []
+      },
+      "detail_fields": {
+        "status": "pending",
+        "fields": []
+      },
+      "completion": {
+        "status": "pending",
+        "ready": null,
+        "empty": null,
+        "loading": null,
+        "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+      },
+      "status_scope": "browser",
+      "retrieval_channels": [
+        {
+          "id": "wanfang-expression-guide",
+          "kind": "official-help",
+          "url": "https://www.wanfangdata.com.cn/teach-expression?to=advanced-search",
+          "use_when": "万方数据知识服务平台 www.wanfangdata.com.cn；本轮未读到规则正文，不能界定更细的产品或版本适用范围。",
+          "verification": {
+            "status": "body_unverified",
+            "checked_at": "2026-10-10",
+            "time_precision": "date",
+            "scope": "2026-10-10 尝试读取；没有可读取的正文版本信息。"
+          },
+          "supported_questions": [],
+          "not_covered": [
+            "所有字段代码和语法结论",
+            "精确/模糊匹配规则",
+            "当前检索结果数量或排名",
+            "具体记录",
+            "馆藏及全文授权"
+          ],
+          "limitations": [
+            "正文需要能读取该页面渲染内容或 PDF 图像的路径。",
+            "不从搜索摘要、旧记忆或第三方转载补造规则证据。"
+          ],
+          "fallback": "保留表达式教学真实深链作为首选帮助入口；当前 Web 读取不可用时停止该路径，不循环打开相同框架。若任务必须确认规则，使用可读取正文的授权官方页面渠道。"
+        }
+      ]
+    }
+  ],
+  "blockers": [
+    {
+      "kind": "query_captcha_required",
+      "detail": "专业题名字段按钮生成题名:()；填入参数并提交后真实跳到验证码，结果容器尚未验证。"
+    }
+  ],
+  "provenance": {
+    "catalog_source_id": "wanfang",
+    "quiz_entries": [
+      "quiz-entry-085"
+    ],
+    "example_ids": [
+      "2025-M31-Q1",
+      "2025-M32-Q1",
+      "2026-M31-Q1",
+      "2026-M32-Q1",
+      "PT1-Q17",
+      "PT1-Q26",
+      "PT1-Q45",
+      "KH-Q040",
+      "KH-Q044",
+      "KH-Q074",
+      "KH-Q092",
+      "KH-Q093",
+      "KH-Q099"
+    ],
+    "method": "参数化操作学习；不分发整题、答案或解析",
+    "audit": {
+      "checked_at": "2026-10-09T08:59:15.682Z",
+      "browser": "Google Chrome",
+      "api": "Playwright JavaScript library",
+      "snapshot": "validation/site-audit-v24/wanfang-search-entry.json",
+      "original_entry_snapshot": "validation/site-audit-v24/wanfang-entry.json",
+      "identity_limit": "匹配来源域名不等于核验所有内容；查询未执行时不得声称检索验证完成。",
+      "published_url_policy": "动态验证码、登录回跳和会话令牌不固化为流程入口；原始现场快照仅在validation留存。"
+    }
+  },
+  "professional_search": {
+    "checked_at": "2026-10-09T09:12:22.331Z",
+    "snapshot": "validation/site-audit-v24/wanfang-query-professional.json",
+    "entry_url": "https://s.wanfangdata.com.cn/advanced-search/paper",
+    "mode_switch": {
+      "text": "专业检索",
+      "exact": true
+    },
+    "query_input": {
+      "css": "textarea[maxlength=\"800\"]"
+    },
+    "submit": {
+      "css": "span.submit-btn"
+    },
+    "field_button": {
+      "text": "题名",
+      "exact": true
+    },
+    "field_generated_template": "题名:(<本题词>)",
+    "fields_observed": [
+      "全部",
+      "主题",
+      "题名或关键词",
+      "题名",
+      "第一作者",
+      "作者单位",
+      "作者",
+      "关键词",
+      "摘要",
+      "DOI"
+    ]
+  },
+  "result_items": {
+    "status": "pending",
+    "locator": null,
+    "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+  },
+  "record_identity": {
+    "status": "pending",
+    "fields": []
+  },
+  "detail_fields": {
+    "status": "pending",
+    "fields": []
+  },
+  "completion": {
+    "status": "pending",
+    "ready": null,
+    "empty": null,
+    "loading": null,
+    "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+  },
+  "status_scope": "browser"
+}

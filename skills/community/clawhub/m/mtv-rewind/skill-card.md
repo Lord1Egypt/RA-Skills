@@ -1,42 +1,54 @@
-## Description: <br>
-Play classic MTV music videos from the 80s, 90s, and 2000s. Use when the user wants to watch MTV, music videos, retro TV, or says anything like 'play MTV', 'I want my MTV', or 'put on some videos'. No API key needed. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MTV Rewind helps agents route users to a classic MTV-style music video player focused on 80s, 90s, and 2000s videos.
 
-## Publisher: <br>
-[Flexasaurusrex](https://clawhub.ai/user/Flexasaurusrex) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[flexasaurusrex](https://clawhub.ai/user/flexasaurusrex)
 
-## Use Case: <br>
-External users use this skill to open a retro MTV-style web player for 80s, 90s, and 2000s music video requests. Agents should use it for broad MTV, retro music video, or background-video requests, and avoid it for exact-song playback or audio-only requests. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Vague requests for background music or unspecified videos could open the MTV Rewind player when the user expected a different media experience. <br>
-Mitigation: Ask for confirmation before using the skill for ambiguous music or video requests. <br>
-Risk: The skill directs users to a third-party web player outside the agent runtime. <br>
-Mitigation: Use the disclosed player URL and rely on the server security summary; do not provide credentials or local data to the site. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [MTV Rewind homepage](https://wantmymtv.xyz) <br>
-- [MTV Rewind player](https://wantmymtv.xyz/player.html) <br>
-- [ClawHub release page](https://clawhub.ai/Flexasaurusrex/mtv-rewind) <br>
-- [Publisher profile](https://clawhub.ai/user/Flexasaurusrex) <br>
+## Use Case:
 
+External users and agents use this skill when a user asks for MTV-style, retro, or background music video playback. The skill provides a short response or platform-specific button that opens the MTV Rewind player.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Short natural-language response with a direct web player URL or platform button payload guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No credentials, binaries, local data access, or API keys are required.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Broad activation for video or background-music requests may route users to MTV Rewind when a more specific music task is intended.
+
+Mitigation: Use this skill for retro MTV-style music video playback, and prefer a specific music search or audio player skill for exact songs, audio-only requests, or brand-new releases.
+
+Risk: The skill directs users to an external player site.
+
+Mitigation: Provide the player URL transparently and review future versions carefully if they request credentials, local system access, or additional permissions.
+
+## Reference(s):
+
+- [MTV Rewind Player](https://wantmymtv.xyz/player.html)
+- [MTV Rewind Site](https://wantmymtv.xyz)
+- [ClawHub Skill Page](https://clawhub.ai/flexasaurusrex/skills/mtv-rewind)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, API Calls, Guidance]
+
+**Output Format:** [Short text response, direct player URL, or Telegram web app button payload]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No API key, binaries, credentials, or local configuration required; opens an external player URL.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

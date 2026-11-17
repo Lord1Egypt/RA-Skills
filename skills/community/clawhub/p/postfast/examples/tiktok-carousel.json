@@ -12,7 +12,7 @@
     }
   ],
   "controls": {
-    "tiktokPrivacy": "PUBLIC",
-    "tiktokAllowComments": true
+    "tiktokAllowComments": true,
+    "tiktokAutoAddMusic": true
   }
 }

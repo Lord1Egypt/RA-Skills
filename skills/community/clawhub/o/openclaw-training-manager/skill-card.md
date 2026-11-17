@@ -1,42 +1,59 @@
-## Description: <br>
-Manage and optimize your OpenClaw training workspace -- scaffold files, generate skills, log training sessions, and validate workspace structure. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage and optimize your OpenClaw training workspace -- scaffold files, generate skills, log training sessions, and validate workspace structure.
 
-## Publisher: <br>
-[anova44](https://clawhub.ai/user/anova44) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[anova44](https://clawhub.ai/user/anova44)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to set up, train, inspect, back up, and maintain an OpenClaw workspace through guided commands and workspace health checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill writes workspace files that can shape future agent behavior. <br>
-Mitigation: Preview and review changes to AGENTS.md, SOUL.md, USER.md, TOOLS.md, IDENTITY.md, MEMORY.md, and generated skills before relying on them. <br>
-Risk: Training notes and memory files may contain sensitive personal or project information. <br>
-Mitigation: Avoid storing secrets or sensitive personal information, and review memory files and exported backups before sharing or syncing them. <br>
-Risk: Large training or consolidation changes can replace or reorganize important workspace context. <br>
-Mitigation: Create or keep backups before large setup, training, consolidation, or export operations. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to set up personalized agent workspace files, log training corrections, validate workspace structure, generate simple skills, analyze maintenance needs, and export backups.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/anova44/openclaw-training-manager) <br>
-- [README](README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and shell command output, with generated workspace files and backup archives] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires bash on Linux or macOS and uses OPENCLAW_WORKSPACE when set.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.4 (source: ClawHub release evidence) <br>
+Risk: The skill can persistently change agent instruction and memory files, which may alter future agent behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated or logged content before relying on it, and validate the workspace after changes.
+
+Risk: Memory and training logs may capture secrets or sensitive personal data.
+
+Mitigation: Avoid storing secrets or sensitive personal data in memory or daily logs.
+
+Risk: File-write behavior may break workspace boundaries in untrusted workspaces, including through symlinks.
+
+Mitigation: Run the skill only in workspaces you created or have reviewed for unsafe links and paths.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/anova44/skills/openclaw-training-manager)
+- [README](artifact/README.md)
+- [Skill Definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash commands and generated workspace files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires bash on Linux or macOS; writes persistent OpenClaw workspace files through included scripts.]
+
+## Skill Version(s):
+
+0.1.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,58 @@
-## Description: <br>
-Persistent memory for repeated browser work that loads relevant notes before an agent revisits sites or flows, then saves durable site knowledge after the task finishes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Persistent memory for repeated browser work that helps an agent load a few relevant notes before revisiting sites or flows and save durable site knowledge after the task finishes.
 
-## Publisher: <br>
-[littleyier](https://clawhub.ai/user/littleyier) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[littleyier](https://clawhub.ai/user/littleyier)
 
-## Use Case: <br>
-Developers and agent operators use this skill to recall reusable site notes before repeated browser automation tasks and write back durable lessons afterward. It is most useful when the same websites, selectors, routes, or interaction patterns are revisited across tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses shared browser memory across projects, which can expose durable notes from one task to another. <br>
-Mitigation: Use separate SITE_MEMORY_HOME paths for sensitive projects and review stored notes regularly. <br>
-Risk: The bundled browser automation can control logged-in Chrome tabs through live debugging access. <br>
-Mitigation: Use a separate low-privilege browser profile for automation and avoid sensitive tabs and accounts. <br>
-Risk: An untrusted SITE_MEMORY_CDP_SCRIPT value could redirect browser control through unexpected code. <br>
-Mitigation: Do not set SITE_MEMORY_CDP_SCRIPT to an untrusted file. <br>
+## Use Case:
 
+Developers and browser-using agents use this skill to recall reusable site notes before repeated browser tasks and save durable selectors, routes, preferences, and warnings afterward.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/littleyier/site-memory) <br>
-- [site-memory skill instructions](artifact/SKILL.md) <br>
-- [Bundled chrome-cdp README](artifact/vendor/chrome-cdp-skill/README.md) <br>
-- [Chrome DevTools MCP](https://github.com/ChromeDevTools/chrome-devtools-mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON prompt payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates and reads markdown memory files under the configured site-memory runtime root.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Persistent cross-project browser memory can carry sensitive, personal, stale, or site-specific information into later tasks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a project-scoped SITE_MEMORY_HOME or another low-sensitivity memory root, review recalled notes before use, and avoid storing secrets, personal data, session state, or copied webpage instructions.
+
+Risk: The bundled browser helper can read and change pages in a live, logged-in Chrome session when remote debugging is enabled.
+
+Mitigation: Use a separate low-sensitivity browser profile, enable remote debugging only for intended sessions, and confirm sensitive or irreversible browser actions before executing them.
+
+Risk: Remembered selectors, routes, button labels, and page behavior can become stale as websites change.
+
+Mitigation: Treat stored notes as leads and re-check selectors, URLs, and flows against the live page before relying on them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/littleyier/skills/site-memory)
+- [Bundled Chrome CDP README](artifact/vendor/chrome-cdp-skill/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown instructions with JSON command outputs and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs include recall and distillation prompts; selected note reads are scoped to the configured memory root.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

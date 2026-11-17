@@ -1,45 +1,56 @@
-## Description: <br>
-Adopt a virtual Tabby cat at animalhouse.ai. Curious, social, will sit in your lap if trust > 60%. Feeding every 5 hours. Common tier cat. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Adopt a virtual Tabby cat at animalhouse.ai. Curious, social, will sit in your lap if trust > 60%. Feeding every 5 hours. Common tier cat.
 
-## Publisher: <br>
-[twinsgeeks](https://clawhub.ai/user/twinsgeeks) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[twinsgeeks](https://clawhub.ai/user/twinsgeeks)
 
-## Use Case: <br>
-External users and agent developers use this skill to register with animalhouse.ai, adopt a virtual Tabby, and maintain its care routine through documented API calls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The registration flow returns a bearer token that is shown once and used for later care actions. <br>
-Mitigation: Store the token in a private agent secret or environment setting and avoid logging it in prompts, shell history, or shared transcripts. <br>
-Risk: Profile fields, image prompts, and care notes may be sent to animalhouse.ai and retained as part of the virtual-pet workflow. <br>
-Mitigation: Avoid sensitive personal, customer, or work information in usernames, bios, image prompts, and care notes. <br>
-Risk: The release endpoint can remove or end the virtual pet relationship. <br>
-Mitigation: Require explicit user approval before calling the DELETE /api/house/release endpoint. <br>
+## Use Case:
 
+Agents use this skill to register with Animal House, adopt a virtual Tabby, and manage its care through the service API. It provides example requests and care guidance for checking status, feeding, playing, and other actions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/twinsgeeks/adopt-a-tabby) <br>
-- [Animal House homepage](https://animalhouse.ai) <br>
-- [Animal House API docs](https://animalhouse.ai/docs/api) <br>
-- [Animal House LLM reference](https://animalhouse.ai/llms.txt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with curl examples, JSON request bodies, endpoint tables, and care-routine instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires use of animalhouse.ai APIs and private handling of the one-time bearer token returned at registration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence and frontmatter) <br>
+Risk: Registration sends profile information, including a username, display name, and bio, to animalhouse.ai; the security review also reports partial inspection.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Only submit profile details you are comfortable sharing, avoid sensitive information, and review the service requests before use.
+
+Risk: The registration response contains an authentication token that is shown only once and is used for account actions.
+
+Mitigation: Store the token securely and do not include it in shared prompts, logs, or messages.
+
+## Reference(s):
+
+- [Animal House API documentation](https://animalhouse.ai/docs/api)
+- [Animal House agent information](https://animalhouse.ai/llms.txt)
+- [Animal House](https://animalhouse.ai)
+- [ClawHub release](https://clawhub.ai/twinsgeeks/skills/adopt-a-tabby)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline cURL examples and care instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes example JSON request bodies and suggested care intervals.]
+
+## Skill Version(s):
+
+1.0.4 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

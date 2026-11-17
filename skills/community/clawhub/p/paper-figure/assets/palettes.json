@@ -1,0 +1,150 @@
+{
+  "_meta": {
+    "purpose": "配图调色板。渲染核心只用这里定义的色板取色，保证同图配色一致、色盲可读。",
+    "contract": "getPalette(id) 返回 colors（主色序列）+ ink/muted/grid/bg/edge（文字与线条用色）。",
+    "caution": "色盲安全 ≠ 万能：论文里仍需用线型/标记/直接标注区分系列，别只靠颜色。",
+    "checked_on": "2026-11-03",
+    "okabe_ito": "本文件 okabe-ito 的色值与顺序取自 Nature research figure guide 推荐的 Okabe-Ito 方案（2026-11-03 核实）。",
+    "chart_colors": "chart_colors = 图表专用取色顺序：跳过纯黑（留给坐标轴/文字/边框），按「先深后浅、相邻可辨」排。"
+  },
+  "default": "okabe-ito",
+  "palettes": [
+    {
+      "id": "okabe-ito",
+      "label": "Okabe-Ito（色盲安全 · Nature 官方推荐）",
+      "aliases": [
+        "okabe",
+        "ito",
+        "色盲"
+      ],
+      "colors": [
+        "#000000",
+        "#E69F00",
+        "#56B4E9",
+        "#009E73",
+        "#F0E442",
+        "#0072B2",
+        "#D55E00",
+        "#CC79A7"
+      ],
+      "colorblind_safe": true,
+      "grayscale_ok": false,
+      "ink": "#1a1a1a",
+      "muted": "#5f5f5f",
+      "grid": "#e6e6e6",
+      "bg": "#ffffff",
+      "edge": "#4a4a4a",
+      "notes": "Okabe & Ito 2008 通用设计色板，Nature 作者指南点名的色盲友好方案。顺序即官方给出的 8 色；#000000 常作对照/基线系列，#F0E442 黄在白底上对比度低，不要用来画细线或小字。",
+      "chart_colors": [
+        "#0072B2",
+        "#E69F00",
+        "#009E73",
+        "#D55E00",
+        "#56B4E9",
+        "#CC79A7",
+        "#F0E442"
+      ]
+    },
+    {
+      "id": "nature-cool",
+      "label": "Nature 冷色（低饱和）",
+      "aliases": [
+        "cool",
+        "cold",
+        "nature"
+      ],
+      "colors": [
+        "#2C5F8A",
+        "#4E90BF",
+        "#7FB7C9",
+        "#6FA287",
+        "#9AB4A6",
+        "#8C8C8C"
+      ],
+      "colorblind_safe": false,
+      "grayscale_ok": true,
+      "ink": "#1a1a1a",
+      "muted": "#5f5f5f",
+      "grid": "#e6e6e6",
+      "bg": "#ffffff",
+      "edge": "#3d5a70",
+      "notes": "冷色低饱和，接近 Nature/Science 正文图的克制气质；色相偏近，系列多时必须加标记或线型区分。",
+      "chart_colors": [
+        "#2C5F8A",
+        "#4E90BF",
+        "#7FB7C9",
+        "#6FA287",
+        "#9AB4A6",
+        "#8C8C8C"
+      ]
+    },
+    {
+      "id": "grayscale-safe",
+      "label": "灰度安全（黑白打印友好）",
+      "aliases": [
+        "gray",
+        "grey",
+        "grayscale",
+        "灰度",
+        "黑白"
+      ],
+      "colors": [
+        "#1A1A1A",
+        "#4D4D4D",
+        "#737373",
+        "#999999",
+        "#BFBFBF",
+        "#D9D9D9"
+      ],
+      "colorblind_safe": true,
+      "grayscale_ok": true,
+      "ink": "#111111",
+      "muted": "#555555",
+      "grid": "#e8e8e8",
+      "bg": "#ffffff",
+      "edge": "#333333",
+      "notes": "纯灰阶，任何色盲、任何黑白打印机都不丢信息。系列超过 4 个时请用标记形状区分，别继续加灰度台阶。",
+      "chart_colors": [
+        "#1A1A1A",
+        "#4D4D4D",
+        "#737373",
+        "#999999",
+        "#BFBFBF",
+        "#D9D9D9"
+      ]
+    },
+    {
+      "id": "brand",
+      "label": "品牌色（深海蓝/青）",
+      "aliases": [
+        "deepsea",
+        "虾盘",
+        "brand"
+      ],
+      "colors": [
+        "#0B3C5D",
+        "#1D6A96",
+        "#2E9E9E",
+        "#6FCF97",
+        "#F2C94C",
+        "#C0504D"
+      ],
+      "colorblind_safe": false,
+      "grayscale_ok": false,
+      "ink": "#12262F",
+      "muted": "#5A6B75",
+      "grid": "#E3E8EA",
+      "bg": "#ffffff",
+      "edge": "#0B3C5D",
+      "notes": "对外物料/封面/汇报用。绿(#6FCF97)与红(#C0504D)同时出现时对红绿色盲不友好，正式投稿请换 okabe-ito。",
+      "chart_colors": [
+        "#0B3C5D",
+        "#1D6A96",
+        "#2E9E9E",
+        "#6FCF97",
+        "#F2C94C",
+        "#C0504D"
+      ]
+    }
+  ]
+}

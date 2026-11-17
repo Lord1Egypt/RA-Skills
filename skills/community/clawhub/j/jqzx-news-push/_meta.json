@@ -1,6 +1,6 @@
 {
-  "ownerId": "kn7ahqzpdzrv1w0x81mrzppj6s80ky1f",
-  "slug": "jqzx-news-push",
-  "version": "1.0.0",
-  "publishedAt": 1773144024807
+  "slug": "daily-news-push",
+  "name": "每日科技新闻推送",
+  "description": "每日自动获取机器之心科技热榜，推送到飞书并保存到Get笔记",
+  "version": "1.0.0"
 }

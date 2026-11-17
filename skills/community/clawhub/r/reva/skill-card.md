@@ -1,43 +1,57 @@
-## Description: <br>
-Complete Reva wallet management for passwordless authentication, PayID name claiming, multi-chain crypto transfers to PayIDs or wallet addresses, balance tracking, account information, and deposit guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reva helps agents authenticate users, manage PayID names, view account and wallet details, and transfer supported crypto assets through Reva.
 
-## Publisher: <br>
-[pax47](https://clawhub.ai/user/pax47) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[pax47](https://clawhub.ai/user/pax47)
 
-## Use Case: <br>
-External Reva users use this skill to authenticate with email OTP, manage PayIDs, inspect wallet and account details, receive deposit addresses, and request cryptocurrency transfers through Reva. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Cryptocurrency transfers can move funds without a clearly documented final confirmation step. <br>
-Mitigation: Require the user to manually confirm recipient, token, chain, and amount immediately before each transfer request. <br>
-Risk: Local authentication data in ~/.openclaw/payid/auth.json grants access to protected wallet operations. <br>
-Mitigation: Install only on trusted devices, keep the auth file private, and delete it or log out when finished. <br>
-Risk: Remote message handling is under-disclosed for transaction-related workflows. <br>
-Mitigation: Tell users when requests are sent to Reva services and review returned transaction details before acting on them. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Reva](https://revapay.ai) <br>
-- [Reva API](https://api.revapay.ai) <br>
-- [ClawHub release page](https://clawhub.ai/pax47/reva) <br>
+## Use Case:
 
+External Reva users use this skill to complete email OTP authentication, claim PayIDs, inspect wallet and account details, and send supported tokens after providing the required transfer details.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown or plain text guidance with shell command invocations and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local authentication state in ~/.openclaw/payid/auth.json and communicates with Reva API endpoints.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.5 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill performs real crypto-wallet actions, including transfers.
+
+Mitigation: Before any transfer, manually confirm the exact recipient, network, token, and amount.
+
+Risk: The skill stores a local wallet access token for authenticated Reva operations.
+
+Mitigation: Install only in trusted environments and clear the local auth file when the session should end.
+
+Risk: OTP values and transfer details may be exposed in environments that log command output or process arguments.
+
+Mitigation: Avoid entering OTPs or initiating transfers in shared, recorded, or heavily logged shells.
+
+## Reference(s):
+
+- [Reva homepage](https://revapay.ai)
+- [Reva on ClawHub](https://clawhub.ai/pax47/skills/reva)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance, configuration]
+
+**Output Format:** [Plain text and JSON command responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires jq and curl; protected actions require a locally stored Reva access token after email OTP verification.]
+
+## Skill Version(s):
+
+0.1.5 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

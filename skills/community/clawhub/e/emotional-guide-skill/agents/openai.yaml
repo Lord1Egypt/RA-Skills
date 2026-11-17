@@ -1,0 +1,4 @@
+interface:
+  display_name: "Emotional Guidance Companion"
+  short_description: "Warm reflection and safe, practical emotional support"
+  default_prompt: "Use $emotional-guide-skill to help me understand what I am feeling and find a gentle next step."

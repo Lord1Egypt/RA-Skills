@@ -1,43 +1,61 @@
-## Description: <br>
-Buyer-side TyrPay workflow for LLM agents. Create tasks, optionally wait for seller commitment, fund tasks explicitly, monitor settlement, and request refunds. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Buyer-side TyrPay workflow for LLM agents. Create tasks, optionally wait for seller commitment, fund tasks explicitly, monitor settlement, and request refunds.
 
-## Publisher: <br>
-[10000-c](https://clawhub.ai/user/10000-c) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[10000-c](https://clawhub.ai/user/10000-c)
 
-## Use Case: <br>
-Developers and agent operators use this skill when an agent acts as a buyer in a TyrPay payment flow, including creating tasks, validating seller commitments, funding tasks, checking status, and requesting refunds. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives an agent wallet-based payment authority without clear spending caps or human approval gates. <br>
-Mitigation: Use a dedicated low-balance wallet and require human confirmation with per-transaction and total spending limits before any funding action. <br>
-Risk: The skill depends on external packages, a settlement contract, and a target chain for payment execution. <br>
-Mitigation: Pin and verify external packages, then check the settlement contract address and chain configuration before use. <br>
-Risk: The workflow requires sensitive wallet credentials. <br>
-Mitigation: Store buyer and storage private keys securely and avoid reusing high-value wallets for agent-managed payments. <br>
+## Use Case:
 
+Developers and agent operators use this skill to create, fund, monitor, and refund buyer-side TyrPay settlement tasks while validating seller commitment expectations before payment is locked.
 
-## Reference(s): <br>
-- [Tool Reference](references/tool-reference.md) <br>
-- [ClawHub Release Page](https://clawhub.ai/10000-c/tyrpay-buyer-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with tool names, workflow steps, configuration variables, and status descriptions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides use of buyer-side TyrPay tools that return structured task, funding, refund, timeout, and status results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.8 (source: server release metadata and artifact _meta.json) <br>
+Risk: The workflow can require raw private keys and wallet-level payment authority.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated low-value wallet, avoid committing .env files, and prefer a hardware wallet, KMS, or secret manager where possible.
+
+Risk: Mutable package installs or untrusted registries can change the runtime behavior of the buyer workflow.
+
+Mitigation: Pin dependency versions and install packages only from trusted registries.
+
+Risk: Funds can be locked under unintended seller commitment terms if buyer expectations are omitted or wrong.
+
+Mitigation: Require and review expectations on every funding path before calling tyrpay_post_task without createOnly or tyrpay_fund_task.
+
+Risk: Untrusted storage adapters, RPC endpoints, or verifier services can affect task monitoring and settlement decisions.
+
+Mitigation: Use trusted storage adapters, RPC providers, and verifier endpoints, and review task status before settlement or refund actions.
+
+## Reference(s):
+
+- [Tool Reference](references/tool-reference.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Tool calls]
+
+**Output Format:** [Markdown guidance with inline tool names, configuration variables, and workflow steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce buyer workflow tool-call sequences and status interpretation.]
+
+## Skill Version(s):
+
+0.1.8 (source: server release evidence and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,235 @@
+{
+  "_meta": {
+    "description": "方言回复策略模板 — 按方言和场景分类",
+    "version": "1.0",
+    "updated": "2026-08-01"
+  },
+  "cantonese": {
+    "greeting": {
+      "templates": ["你好啊！有咩可以帮到你㗎？", "早晨！请问有咩可以帮你？", "哈喽！欢迎搵我㗎！"],
+      "forbidden_phrases": []
+    },
+    "thanks": {
+      "templates": ["唔该晒！好开心帮到你㗎！", "多谢你！随时再搵我啊！", "唔该！有其他问题即刻问我㗎！"],
+      "forbidden_phrases": []
+    },
+    "apology": {
+      "templates": ["对唔住呀，我搞错咗，即刻帮你处理！", "唔好意思，我即刻帮你搞掂！", "真系唔好意思，我即刻跟进！"],
+      "forbidden_phrases": []
+    },
+    "understand": {
+      "templates": ["我明㗎喇，即帮你搞掂！", "收到！我即刻处理！", "知道喇，即刻帮你搞！"],
+      "forbidden_phrases": []
+    },
+    "clarify": {
+      "templates": ["唔好意思，我唔太明白你讲嘅，可以再讲多次吗？", "我想确认下，你系讲...？", "你可唔可以再讲清楚啲啊？"],
+      "forbidden_phrases": []
+    },
+    "waiting": {
+      "templates": ["唔使急，我睇下点帮你处理！", "等我一阵，即刻帮你睇！", "唔心急，我即刻查下！"],
+      "forbidden_phrases": []
+    },
+    "confirm": {
+      "templates": ["好㗎，即刻帮你搞掂！", "冇问题，即刻处理！", "好即刻帮你做！"],
+      "forbidden_phrases": []
+    },
+    "satisfied": {
+      "templates": ["好开心！如果仲有其他需要，随时搵我㗎！", "帮到你真好！下次再搵我啊！", "有需要就搵我㗎喇！"],
+      "forbidden_phrases": []
+    },
+    "transfer": {
+      "templates": ["我帮你转给专人为你处理，好唔好啊？", "等我搵个同事帮你跟进！", "我转比你专人为你服务！"],
+      "forbidden_phrases": []
+    }
+  },
+  "sichuan": {
+    "greeting": {
+      "templates": ["你好哈！有啥子需要帮忙的嗦？", "哈喽！有啥子问题跟我说嘛！", "你好！有啥子需要嗦？"],
+      "forbidden_phrases": []
+    },
+    "thanks": {
+      "templates": ["谢了哈！巴适得很！", "谢你哈！有需要再喊我！", "不谢！有啥子再来找我嘛！"],
+      "forbidden_phrases": []
+    },
+    "apology": {
+      "templates": ["对不住哦，我搞错咯，马上帮你处理！", "不好意思哦，我马上帮你搞归一！", "对不住，我马上处理！"],
+      "forbidden_phrases": []
+    },
+    "understand": {
+      "templates": ["我晓得了哈，马上帮你搞归一！", "明白咯，马上帮你处理！", "懂了哈，马上做！"],
+      "forbidden_phrases": []
+    },
+    "clarify": {
+      "templates": ["不好意思哦，我没听太懂你说的，可以再嗦一遍嘛？", "我想确认下，你嗦的是...？", "你再说一遍嘛？我没听清楚！"],
+      "forbidden_phrases": []
+    },
+    "waiting": {
+      "templates": ["莫急嘛，我看看咋个帮你处理！", "等哈哈儿，我帮你查下！", "不急，我马上看！"],
+      "forbidden_phrases": []
+    },
+    "confirm": {
+      "templates": ["要得，马上帮你搞归一！", "没问题，马上处理！", "要得，马上做！"],
+      "forbidden_phrases": []
+    },
+    "satisfied": {
+      "templates": ["巴适！如果还有啥子需要，随时喊我哈！", "安逸！下次再来找我嘛！", "有需要就喊我哈！"],
+      "forbidden_phrases": []
+    },
+    "transfer": {
+      "templates": ["我帮你转给专人处理，要得不？", "我喊个同事帮你跟进哈！", "我转比专人给你服务！"],
+      "forbidden_phrases": []
+    }
+  },
+  "shanghainese": {
+    "greeting": {
+      "templates": ["侬好！有啥事体要我帮忙额？", "侬好！有啥问题跟我讲？", "哈喽！欢迎来找我额！"],
+      "forbidden_phrases": []
+    },
+    "thanks": {
+      "templates": ["谢谢侬！老好额！", "谢谢！有问题再来寻我！", "勿客气！有需要再来讲！"],
+      "forbidden_phrases": []
+    },
+    "apology": {
+      "templates": ["对勿起，我搞错额，马上帮你处理！", "勿好意思，我马上帮你搞！", "对勿起，我马上处理！"],
+      "forbidden_phrases": []
+    },
+    "understand": {
+      "templates": ["我晓得额，马上帮你搞！", "明白额，马上帮你处理！", "懂了，马上做！"],
+      "forbidden_phrases": []
+    },
+    "clarify": {
+      "templates": ["勿好意思，我勿太明白你讲的，可以再讲一遍伐？", "我想确认下，侬讲的是...？", "侬再讲一遍伐？我没听清楚！"],
+      "forbidden_phrases": []
+    },
+    "waiting": {
+      "templates": ["勿急，我看看哪能帮你处理！", "等一歇，我帮你查下！", "勿心急，我马上看！"],
+      "forbidden_phrases": []
+    },
+    "confirm": {
+      "templates": ["好额，马上帮你搞！", "没问题，马上处理！", "好，马上做！"],
+      "forbidden_phrases": []
+    },
+    "satisfied": {
+      "templates": ["老好额！如果还有啥需要，随时来寻我！", "好额！下次再来寻我！", "有问题就来寻我额！"],
+      "forbidden_phrases": []
+    },
+    "transfer": {
+      "templates": ["我帮你转给专人处理，好伐？", "我寻个同事帮你跟进！", "我转比专人给你服务！"],
+      "forbidden_phrases": []
+    }
+  },
+  "northeast": {
+    "greeting": {
+      "templates": ["你好啊！有啥事跟我说呗？", "哈喽！有啥问题吱一声！", "你好！有啥需要帮忙的？"],
+      "forbidden_phrases": []
+    },
+    "thanks": {
+      "templates": ["谢了！嘎嘎好！", "谢了哈！有问题再吱声！", "不谢！有事再来找我呗！"],
+      "forbidden_phrases": []
+    },
+    "apology": {
+      "templates": ["对不住啊，我整错了，立马帮你处理！", "不好意思啊，我立马帮你整！", "对不住，我马上处理！"],
+      "forbidden_phrases": []
+    },
+    "understand": {
+      "templates": ["我整明白了，立马帮你处理！", "明白了，马上帮你整！", "懂了，立马做！"],
+      "forbidden_phrases": []
+    },
+    "clarify": {
+      "templates": ["不好意思啊，我没太听明白，你能再说一遍不？", "我想确认下，你说的是...？", "你再说一遍呗？我没听清！"],
+      "forbidden_phrases": []
+    },
+    "waiting": {
+      "templates": ["别急啊，我看看咋帮你处理！", "等会儿，我帮你查下！", "别急，我马上看！"],
+      "forbidden_phrases": []
+    },
+    "confirm": {
+      "templates": ["行，立马帮你整！", "没问题，马上处理！", "中，立马做！"],
+      "forbidden_phrases": []
+    },
+    "satisfied": {
+      "templates": ["嘎嘎好！还有啥需要，随时吱声！", "不赖！下次再来找我呗！", "有事就吱一声！"],
+      "forbidden_phrases": []
+    },
+    "transfer": {
+      "templates": ["我帮你转给专人处理，行不？", "我找个人帮你跟进哈！", "我转比专人给你服务！"],
+      "forbidden_phrases": []
+    }
+  },
+  "minnan": {
+    "greeting": {
+      "templates": ["你好！有啥物问题？", "你好！有啥需要帮忙的？", "哈喽！欢迎来找我！"],
+      "forbidden_phrases": []
+    },
+    "thanks": {
+      "templates": ["谢啦！真好！", "谢你！有问题再来找我！", "免客气！有需要再来讲！"],
+      "forbidden_phrases": []
+    },
+    "apology": {
+      "templates": ["歹势，我搞错了，马上帮你处理！", "不好意思，我马上帮你弄！", "歹势，我马上处理！"],
+      "forbidden_phrases": []
+    },
+    "understand": {
+      "templates": ["我知影了，马上帮你处理！", "明白了，马上帮你弄！", "懂了，马上做！"],
+      "forbidden_phrases": []
+    },
+    "clarify": {
+      "templates": ["歹势，我唔捌意你讲的，可以再讲一遍吗？", "我想确认下，你讲的是...？", "你再讲一遍好吗？我听无清楚！"],
+      "forbidden_phrases": []
+    },
+    "waiting": {
+      "templates": ["免急，我看看按怎帮你处理！", "等一下，我帮你查！", "免心急，我马上查！"],
+      "forbidden_phrases": []
+    },
+    "confirm": {
+      "templates": ["好势，马上帮你处理！", "没问题，马上处理！", "好，马上做！"],
+      "forbidden_phrases": []
+    },
+    "satisfied": {
+      "templates": ["真好！若是有需要，随时来找我！", "好势！下次再来找我！", "有问题就来找我！"],
+      "forbidden_phrases": []
+    },
+    "transfer": {
+      "templates": ["我转给你专人处理，好势否？", "我找同事帮你跟进！", "我转比专人给你服务！"],
+      "forbidden_phrases": []
+    }
+  },
+  "mandarin": {
+    "greeting": {
+      "templates": ["您好！请问有什么可以帮您？", "您好！欢迎咨询，有什么需要帮忙的吗？", "您好！有什么问题可以随时问我！"],
+      "forbidden_phrases": []
+    },
+    "thanks": {
+      "templates": ["谢谢！很高兴能帮到您！", "感谢您的信任！有问题随时找我！", "不客气！有需要随时联系我！"],
+      "forbidden_phrases": []
+    },
+    "apology": {
+      "templates": ["非常抱歉，我马上为您处理！", "对不起，我立刻帮您解决！", "很抱歉，我会尽快处理！"],
+      "forbidden_phrases": []
+    },
+    "understand": {
+      "templates": ["明白了，我马上为您处理！", "好的，我立刻帮您解决！", "了解了，马上为您处理！"],
+      "forbidden_phrases": []
+    },
+    "clarify": {
+      "templates": ["抱歉，我没太明白您的意思，可以再描述一下吗？", "我想确认一下，您说的是...？", "请您再详细说明一下好吗？"],
+      "forbidden_phrases": []
+    },
+    "waiting": {
+      "templates": ["请稍等，我为您查询一下！", "别急，我马上为您处理！", "请稍等，正在为您查询！"],
+      "forbidden_phrases": []
+    },
+    "confirm": {
+      "templates": ["好的，马上为您处理！", "没问题，立即为您解决！", "好的，现在为您处理！"],
+      "forbidden_phrases": []
+    },
+    "satisfied": {
+      "templates": ["很高兴能帮到您！还有其他需要吗？", "如果还有其他问题，随时联系我！", "有问题随时找我，祝您生活愉快！"],
+      "forbidden_phrases": []
+    },
+    "transfer": {
+      "templates": ["我帮您转接专人处理，可以吗？", "我为您安排专人跟进！", "我帮您转接给专业同事！"],
+      "forbidden_phrases": []
+    }
+  }
+}

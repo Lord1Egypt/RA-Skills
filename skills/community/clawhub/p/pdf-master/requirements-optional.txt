@@ -1,0 +1,10 @@
+# pdf-master 增强依赖（按需安装：pip install -r requirements-optional.txt）
+# 也可只装单行：pip install pdf2docx
+
+pdf2docx>=0.5      # 能力 #1 PDF→Word 首选管道
+Pillow>=10.0       # 图片重编码（压缩/水印）
+pytesseract>=0.3   # 能力 #2 OCR 兜底引擎（需系统 tesseract 二进制）
+
+# 中文 OCR 高性能引擎（体积大，按需取消注释）：
+# paddleocr>=2.7
+# paddlepaddle>=2.6   # CPU 版；GPU 版请按官方文档装 paddlepaddle-gpu

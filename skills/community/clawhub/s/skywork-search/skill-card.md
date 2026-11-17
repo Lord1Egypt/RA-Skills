@@ -1,44 +1,60 @@
-## Description: <br>
-Skywork Search lets an agent search the web for real-time information through the Skywork Search API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Skywork Search helps an agent search the web for current information through the Skywork Search API and return sourced snippets for research, fact lookup, recent events, and document preparation.
 
-## Publisher: <br>
-[gxcun17](https://clawhub.ai/user/gxcun17) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gxcun17](https://clawhub.ai/user/gxcun17)
 
-## Use Case: <br>
-Developers, employees, and external users can use this skill when an agent needs current web information, recent facts, statistics, source URLs, or research material for downstream writing and analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search queries are sent to Skywork as an external web-search provider and may include sensitive user or business information. <br>
-Mitigation: Do not include secrets, confidential business data, or sensitive personal information in search queries unless that disclosure is acceptable. <br>
-Risk: The skill depends on a Skywork API key for authenticated API access. <br>
-Mitigation: Store SKYWORK_API_KEY carefully and avoid printing it in shared terminals, logs, screenshots, or public configuration. <br>
-Risk: Search result files are written to a temporary directory and may contain sensitive query text or result snippets. <br>
-Mitigation: Delete temporary result files after sensitive searches. <br>
+## Use Case:
 
+Developers, employees, and external users can use this skill when an agent needs up-to-date web research, recent facts, statistics, news, or source material before answering a user or drafting content.
 
-## Reference(s): <br>
-- [Skywork API Key Setup Guide](references/apikey-fetch.md) <br>
-- [Skywork](https://skywork.ai) <br>
-- [Skywork Search ClawHub Page](https://clawhub.ai/gxcun17/skywork-search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and text files containing source URLs and snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Accepts one to three search queries per invocation; each query uses a 30-second timeout and writes results to temporary text files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.8 (source: server release evidence) <br>
+Risk: Search queries are sent to the Skywork API and may include sensitive user or business context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for queries appropriate to send to Skywork, and avoid submitting secrets, regulated data, or confidential material unless approved for that service.
+
+Risk: The skill requires a Skywork API key, which could be exposed through shell history, logs, or configuration files if handled carelessly.
+
+Mitigation: Prefer OpenClaw-managed API-key configuration, avoid printing or sharing the key, and restrict access to any file that stores it.
+
+Risk: Search results depend on Skywork API availability, result quality, and a 30-second per-query timeout.
+
+Mitigation: Check returned source URLs and snippets before relying on facts, and retry or use alternate research paths when the API fails or results are incomplete.
+
+## Reference(s):
+
+- [Skywork Search on ClawHub](https://clawhub.ai/gxcun17/skills/skywork-search)
+- [Skywork API Key Setup Guide](references/apikey-fetch.md)
+- [Skywork](https://skywork.ai)
+- [Skywork API Key Settings](https://skywork.ai/?openApiKeySetting=1)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and text files containing query results, source URLs, and snippets.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Accepts one to three search queries per invocation; each query has a 30-second timeout and depends on Skywork API availability.]
+
+## Skill Version(s):
+
+1.0.8 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

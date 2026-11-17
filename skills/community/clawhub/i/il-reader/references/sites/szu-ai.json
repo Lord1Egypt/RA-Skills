@@ -1,0 +1,276 @@
+{
+  "version": "2.4.0",
+  "source_id": "szu-ai",
+  "status": "entry_observed",
+  "checked_at": "2026-10-09T09:02:21.976Z",
+  "entry": {
+    "url": "https://www.lib.szu.edu.cn/learning/ai",
+    "final_url": "https://www.lib.szu.edu.cn/learning/ai",
+    "title": "生成式人工智能专题 | 深圳大学图书馆",
+    "status": "accessible",
+    "http_status": 200,
+    "checked_at": "2026-10-09T09:02:21.976Z",
+    "identity": {
+      "declared_name": "深圳大学图书馆生成式人工智能专题",
+      "hostname": "www.lib.szu.edu.cn",
+      "domain_matches": true
+    },
+    "links": [
+      {
+        "text": "资源",
+        "href": "https://www.lib.szu.edu.cn/resources",
+        "target": ""
+      },
+      {
+        "text": "数据库导航",
+        "href": "https://www.lib.szu.edu.cn/er",
+        "target": ""
+      },
+      {
+        "text": "常用数据库",
+        "href": "https://www.lib.szu.edu.cn/er/favorites",
+        "target": ""
+      },
+      {
+        "text": "信息素养课程",
+        "href": "https://www.lib.szu.edu.cn/learning/information-literacy",
+        "target": ""
+      },
+      {
+        "text": "数据库专场培训",
+        "href": "http://www.lib.szu.edu.cn/wp?url=http://info.lib.szu.edu.cn/infoliteracy/training?topic=all&type=24",
+        "target": "_blank"
+      },
+      {
+        "text": "物理学科资源与服务平台",
+        "href": "https://www.lib.szu.edu.cn/research/ssp/physics",
+        "target": ""
+      },
+      {
+        "text": "电子资源使用管理办法",
+        "href": "https://www.lib.szu.edu.cn/about/public-policy/05",
+        "target": ""
+      },
+      {
+        "text": "信息素养课程",
+        "href": "https://www.lib.szu.edu.cn/learning/information-literacy",
+        "target": ""
+      },
+      {
+        "text": "AI搜索引擎",
+        "href": "https://www.lib.szu.edu.cn/learning/ai#random-index-7",
+        "target": ""
+      },
+      {
+        "text": "提示工程相关资源",
+        "href": "https://www.lib.szu.edu.cn/learning/ai#random-index-20",
+        "target": ""
+      },
+      {
+        "text": "其他AI资源",
+        "href": "https://www.lib.szu.edu.cn/learning/ai#random-index-37",
+        "target": ""
+      },
+      {
+        "text": "《深圳大学图书馆生成式人工智能资源导航使用反馈问卷》",
+        "href": "https://www.wjx.cn/vm/hqOy3YT.aspx#",
+        "target": "_blank"
+      },
+      {
+        "text": "《Guidance for generative AI in education and research》",
+        "href": "https://unesdoc.unesco.org/ark:/48223/pf0000386693",
+        "target": "_blank"
+      },
+      {
+        "text": "其他资源链接",
+        "href": "https://www.lib.szu.edu.cn/learning/ai#random-index-30",
+        "target": "_blank"
+      },
+      {
+        "text": "360纳米AI搜索",
+        "href": "https://www.n.cn/",
+        "target": "_blank"
+      },
+      {
+        "text": "秘塔AI搜索",
+        "href": "https://metaso.cn/",
+        "target": "_blank"
+      },
+      {
+        "text": "其他AI资源",
+        "href": "https://www.lib.szu.edu.cn/learning/ai#random-index-32",
+        "target": "_blank"
+      },
+      {
+        "text": "秘塔AI搜索",
+        "href": "https://metaso.cn/?s=aibot",
+        "target": "_blank"
+      },
+      {
+        "text": "天工AI搜索",
+        "href": "https://www.tiangong.cn/",
+        "target": "_blank"
+      },
+      {
+        "text": "纳米AI搜索",
+        "href": "https://www.n.cn/",
+        "target": "_blank"
+      },
+      {
+        "text": "秘塔AI搜索",
+        "href": "https://metaso.cn/",
+        "target": "_blank"
+      },
+      {
+        "text": "图书馆AIGC专题资源导航",
+        "href": "https://tsinghua.cn.libguides.com/c.php?g=968399&p=7039773",
+        "target": "_blank"
+      },
+      {
+        "text": "清华大学第四弹：DeepSeek+DeepResearch：让科研像聊天一样简单-.pdf",
+        "href": "https://www.lib.szu.edu.cn/sites/szulib/files/2025-03/%E6%B8%85%E5%8D%8E%E5%A4%A7%E5%AD%A6%E7%AC%AC%E5%9B%9B%E5%BC%B9%EF%BC%9ADeepSeek%2BDeepResearch%EF%BC%9A%E8%AE%A9%E7%A7%91%E7%A0%94%E5%83%8F%E8%81%8A%E5%A4%A9%E4%B8%80%E6%A0%B7%E7%AE%80%E5%8D%95-.pdf",
+        "target": "_blank"
+      }
+    ],
+    "frames": []
+  },
+  "controls": [
+    {
+      "tag": "input",
+      "type": "search",
+      "text": "站内搜索",
+      "label": "",
+      "aria_label": null,
+      "placeholder": "站内搜索",
+      "name": "key",
+      "id": "",
+      "css": "input[name=\"key\"]",
+      "role": null,
+      "form_action": "https://www.lib.szu.edu.cn/search",
+      "locator": {
+        "css": "input[name=\"key\"]"
+      },
+      "observed_url": "https://www.lib.szu.edu.cn/learning/ai",
+      "observed_at": "2026-10-09T09:02:19.979Z"
+    },
+    {
+      "tag": "button",
+      "type": null,
+      "text": "",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": null,
+      "observed_url": "https://www.lib.szu.edu.cn/learning/ai",
+      "observed_at": "2026-10-09T09:02:19.979Z"
+    }
+  ],
+  "recipes": [
+    {
+      "id": "szu-ai:navigation-membership",
+      "source_id": "szu-ai",
+      "task_kind": "navigation-membership",
+      "status": "entry_observed",
+      "parameters": [
+        "product",
+        "section",
+        "category",
+        "target_item"
+      ],
+      "instructions": [
+        "进入本题指定栏目/分类，读取当前子类和可见成员；不能用截断列表证明不存在。"
+      ],
+      "transitions": {},
+      "entry_url": "https://www.lib.szu.edu.cn/learning/ai",
+      "controls": [
+        {
+          "tag": "input",
+          "type": "search",
+          "text": "站内搜索",
+          "label": "",
+          "aria_label": null,
+          "placeholder": "站内搜索",
+          "name": "key",
+          "id": "",
+          "css": "input[name=\"key\"]",
+          "role": null,
+          "form_action": "https://www.lib.szu.edu.cn/search",
+          "locator": {
+            "css": "input[name=\"key\"]"
+          },
+          "observed_url": "https://www.lib.szu.edu.cn/learning/ai",
+          "observed_at": "2026-10-09T09:02:19.979Z"
+        }
+      ],
+      "pending": [
+        "结果容器、完成标志与页面打开方式仍需真实查询确认"
+      ],
+      "result_items": {
+        "status": "pending",
+        "locator": null,
+        "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+      },
+      "record_identity": {
+        "status": "pending",
+        "fields": []
+      },
+      "detail_fields": {
+        "status": "pending",
+        "fields": []
+      },
+      "completion": {
+        "status": "pending",
+        "ready": null,
+        "empty": null,
+        "loading": null,
+        "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+      }
+    }
+  ],
+  "blockers": [],
+  "provenance": {
+    "catalog_source_id": "szu-ai",
+    "quiz_entries": [
+      "quiz-entry-022"
+    ],
+    "example_ids": [
+      "2025-M02-Q1",
+      "2026-M02-Q1"
+    ],
+    "method": "参数化操作学习；不分发整题、答案或解析",
+    "audit": {
+      "checked_at": "2026-10-09T09:02:21.976Z",
+      "browser": "Google Chrome",
+      "api": "Playwright JavaScript library",
+      "snapshot": "validation/site-audit-v24/szu-ai-entry.json",
+      "original_entry_snapshot": "validation/site-audit-v24/szu-ai-entry.json",
+      "identity_limit": "匹配来源域名不等于核验所有内容；查询未执行时不得声称检索验证完成。",
+      "published_url_policy": "动态验证码、登录回跳和会话令牌不固化为流程入口；原始现场快照仅在validation留存。"
+    }
+  },
+  "result_items": {
+    "status": "pending",
+    "locator": null,
+    "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+  },
+  "record_identity": {
+    "status": "pending",
+    "fields": []
+  },
+  "detail_fields": {
+    "status": "pending",
+    "fields": []
+  },
+  "completion": {
+    "status": "pending",
+    "ready": null,
+    "empty": null,
+    "loading": null,
+    "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+  }
+}

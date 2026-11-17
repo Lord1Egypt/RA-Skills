@@ -1,40 +1,54 @@
-## Description: <br>
-Provides scheduled progress reports for long-running tasks, with concise chat summaries and detailed Markdown status reports saved locally. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Task Progress Report helps agents provide periodic status updates for long-running tasks and write detailed Markdown progress reports.
 
-## Publisher: <br>
-[cheffly](https://clawhub.ai/user/cheffly) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cheffly](https://clawhub.ai/user/cheffly)
 
-## Use Case: <br>
-Developers and operators use this skill to monitor long-running agent tasks such as model training, data processing, crawler jobs, or multi-stage analysis by receiving periodic status updates and a persisted Markdown report. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Progress reports can persist task details locally, including sensitive operational context if users provide it. <br>
-Mitigation: Avoid putting secrets or sensitive operational details into progress fields, and review the report location before enabling long-running reporting. <br>
-Risk: Scheduled progress reporting can continue after the task ends if the scheduling mechanism is not cleaned up. <br>
-Mitigation: Confirm any scheduled reporting is stopped or removed when the task completes. <br>
+## Use Case:
 
+Developers and operators use this skill to keep users informed during long-running work such as model training, data processing, crawlers, and multi-stage analysis tasks. It produces concise chat updates and maintains a detailed local Markdown progress report.
 
-## Reference(s): <br>
-- [Task Progress Report on ClawHub](https://clawhub.ai/cheffly/task-progress-report) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Concise chat status updates and Markdown report files, with optional shell command snippets.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [When the helper script is used, reports are written under /root/.openclaw/workspace/reports/progress.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Progress reports may include sensitive task details in local Markdown files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm what information may be written before enabling the skill, and delete or archive report files when they are no longer needed.
+
+Risk: Timer-based progress reporting may continue longer than intended for a task.
+
+Mitigation: Confirm the reporting interval and timer behavior before use, and clean up scheduled reporting when the task completes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cheffly/skills/task-progress-report)
+- [Publisher profile](https://clawhub.ai/user/cheffly)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Plain text status updates and Markdown report files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May append local progress reports and final summaries under the configured reports directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

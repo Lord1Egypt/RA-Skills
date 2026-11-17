@@ -1,0 +1,38 @@
+# starter pack · 政务民生服务
+# 来源：mocks/government 合成场景提炼
+# 本体段为声明式事实清单；投影示例见 mocks/ 与 references/contract.md。
+pack:
+  id: government
+  name: 政务民生服务
+  version: '0.1'
+  source: mocks/government 合成场景提炼
+  aligns:
+  - schema.org/GovernmentService
+  - schema.org/Citizen
+  usage: python scripts/guide_model.py init --model partial.yaml --scope scope.yaml
+    --session session.json --pack starter_packs/government.yaml
+ontology:
+  entities:
+  - name: 政务办件
+    attributes:
+    - name: 办结状态
+      value_type: enum
+      values:
+      - 按期办结
+      - 超期办结
+      - 办理中
+    note: 一行一件办件
+    uid: ent_gov_service_case
+    evidence:
+      source: data_observed
+  - name: 办事群众
+    unprojected_reason: 无对应物理表，仅业务声明
+    uid: ent_citizen
+    evidence:
+      source: user_provided
+  relations:
+  - from: 办事群众
+    to: 政务办件
+    predicate: 提交
+    mapping: weak
+    note: 办件不含办事人标识（隐私最小化），不可自动 join

@@ -1,47 +1,59 @@
-## Description: <br>
-Dygod Movies helps an agent fetch DYGod movie and TV listings, search recent or high-scoring titles, and optionally add selected download links to a Synology DownloadStation NAS. <br>
+## Description:
 
-This skill is for research and development only. <br>
+Dygod Movies helps agents search recent and high-scoring movies or TV shows from dygod.net and prepare Synology NAS download actions.
 
-## Publisher: <br>
-[anlinxi](https://clawhub.ai/user/anlinxi) <br>
+This skill is for research and development only.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[anlinxi](https://clawhub.ai/user/anlinxi)
 
-## Use Case: <br>
-People using a local media workflow can ask an agent to find recent or high-rated DYGod movies and TV shows, inspect metadata and download links, and create Synology DownloadStation tasks after review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release evidence reports hardcoded Synology NAS credentials and HTTP-based NAS authentication. <br>
-Mitigation: Replace and rotate the embedded credentials before use, move NAS configuration to user-supplied secrets, and use HTTPS or a trusted private network where available. <br>
-Risk: The artifact can create and delete Synology DownloadStation tasks. <br>
-Mitigation: Require explicit user confirmation before each download or deletion and restrict allowed URI schemes and destination folders. <br>
-Risk: The FastAPI service exposes download functionality without artifact-provided authentication and uses permissive CORS settings. <br>
-Mitigation: Add authentication, bind the service to trusted interfaces, and narrow allowed origins before deployment. <br>
-Risk: The release evidence advises dependency pinning. <br>
-Mitigation: Pin and review Python dependencies before installing or running the service. <br>
+## Use Case:
 
+External users and media-library operators can use this skill to retrieve DYGod movie and TV metadata, filter high-score results, search titles, and prepare Synology DownloadStation tasks. Download actions should be reviewed before execution.
 
-## Reference(s): <br>
-- [ClawHub Dygod Movies release page](https://clawhub.ai/anlinxi/dygod-movies) <br>
-- [ClawHub publisher profile for anlinxi](https://clawhub.ai/user/anlinxi) <br>
-- [DYGod movie listing source](https://dygod.net/html/gndy/dyzz/) <br>
-- [DYGod site](https://dygod.net) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, API calls] <br>
-**Output Format:** [Markdown summaries, JSON records, shell command examples, and FastAPI JSON responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include external download URIs such as magnet, ftp, ed2k, and torrent links.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The package ships real-looking Synology NAS credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not install or run the package as published with those credentials; rotate the password if it is real and move secrets into protected configuration.
+
+Risk: The service exposes privileged download actions without adequate protection.
+
+Mitigation: Restrict the service to trusted hosts, add authentication, require explicit confirmation for downloads and deletions, and constrain allowed destinations.
+
+Risk: NAS actions use HTTP endpoints in the provided examples and implementation.
+
+Mitigation: Use HTTPS or a trusted private network and avoid exposing NAS APIs to untrusted networks.
+
+## Reference(s):
+
+- [Dygod Movies on ClawHub](https://clawhub.ai/anlinxi/skills/dygod-movies)
+- [anlinxi publisher profile](https://clawhub.ai/user/anlinxi)
+- [DYGod movie index](https://dygod.net/html/gndy/dyzz/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, code, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON-compatible movie and TV result objects, Python examples, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include movie metadata, TV metadata, magnet or FTP download links, and Synology DownloadStation task results.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -49,10 +49,21 @@ except ImportError:
     print("❌ Missing dependencies, please install first: python3 -m pip install tencentcloud-sdk-python", file=sys.stderr)
     sys.exit(1)
 
-DEFAULT_REGION = os.getenv("TENCENTCLOUD_REGION", "ap-guangzhou")
+FALLBACK_REGION = "ap-guangzhou"
 
 
-def get_client(region: str = DEFAULT_REGION):
+def default_region() -> str:
+    """Return the default region.
+
+    Must read the environment variable at call time, not at import time:
+    .env loading happens inside main() / get_client(), so evaluating this
+    at module level would run before .env is loaded and silently ignore a
+    TENCENTCLOUD_REGION configured there.
+    """
+    return os.getenv("TENCENTCLOUD_REGION", FALLBACK_REGION)
+
+
+def get_client(region: str = None):
     """Create a VOD client"""
     secret_id = os.environ.get("TENCENTCLOUD_SECRET_ID", "")
     secret_key = os.environ.get("TENCENTCLOUD_SECRET_KEY", "")
@@ -74,6 +85,10 @@ def get_client(region: str = DEFAULT_REGION):
         print("Error: Please set environment variables TENCENTCLOUD_SECRET_ID and TENCENTCLOUD_SECRET_KEY", file=sys.stderr)
         sys.exit(1)
     cred = credential.Credential(secret_id, secret_key)
+    # The region fallback must come after dotenv loading, so that a
+    # TENCENTCLOUD_REGION from .env is already in os.environ
+    if region is None:
+        region = default_region()
     return vod_client.VodClient(cred, region)
 
 
@@ -344,8 +359,8 @@ def build_parser():
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog=__doc__,
     )
-    parser.add_argument("--region", default=DEFAULT_REGION,
-                        help=f"Region (default: {DEFAULT_REGION})")
+    parser.add_argument("--region", default=default_region(),
+                        help=f"Region (default: {default_region()})")
     parser.add_argument("--sub-app-id", type=int,
                         default=int(os.environ.get("TENCENTCLOUD_VOD_SUB_APP_ID", 0)) or None,
                         help="VOD sub-application ID (required for users who activated after December 2023; can also be set via environment variable TENCENTCLOUD_VOD_SUB_APP_ID)")

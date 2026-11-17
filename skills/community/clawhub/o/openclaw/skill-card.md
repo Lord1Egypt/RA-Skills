@@ -1,45 +1,61 @@
-## Description: <br>
-Secure key management for AI agents handling private keys, API secrets, wallet credentials, and agent-controlled funds. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Secure key management for AI agents handling private keys, API secrets, wallet credentials, or systems that need agent-controlled funds.
 
-## Publisher: <br>
-[zscole](https://clawhub.ai/user/zscole) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[zscole](https://clawhub.ai/user/zscole)
 
-## Use Case: <br>
-Developers and engineers use this skill to design agent workflows that access private keys, API secrets, wallet credentials, and on-chain funds with reduced leakage and prompt-injection risk. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Wallet, session-key, environment-variable, and git history-rewrite snippets can cause loss of funds, credential exposure, or repository disruption if copied without adaptation. <br>
-Mitigation: Adapt snippets in a test environment first, use test funds, short-lived least-privilege credentials, human approval for transfers, monitoring, and coordinated incident-response procedures. <br>
-Risk: The skill discusses agent access to private keys, API secrets, wallet credentials, and on-chain funds, which are high-impact assets if exposed or misused. <br>
-Mitigation: Use delegated session keys instead of master keys, retrieve secrets at runtime through 1Password CLI, sanitize outputs, and isolate wallet operations from conversation context. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Openclaw ClawHub listing](https://clawhub.ai/zscole/openclaw) <br>
-- [Publisher profile](https://clawhub.ai/user/zscole) <br>
-- [Secure Storage Patterns for Agent Secrets](references/secure-storage.md) <br>
-- [Session Keys for Agent Wallet Access](references/session-keys.md) <br>
-- [Leak Prevention for Agent Secrets](references/leak-prevention.md) <br>
-- [Prompt Injection Defense for Agent Key Operations](references/prompt-injection-defense.md) <br>
-- [Project homepage](https://numbergroup.xyz) <br>
+## Use Case:
 
+Developers and engineers use this skill to design safer agent secret-handling and wallet-access workflows with secure storage, delegated session keys, leak prevention, and prompt-injection defenses.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline code blocks and command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance requiring the 1Password CLI for the primary secure-storage workflow.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Copy-paste examples may be unsafe when adapted directly for live credentials or funds.
+
+Mitigation: Review and harden examples before production use, especially secret retrieval, confirmation flows, and incident-response commands.
+
+Risk: Shell-based secret retrieval and bypassable pre-commit examples can weaken secret-handling controls.
+
+Mitigation: Use argument-array execution where practical, remove bypass prompts from commit hooks, and test controls against non-production wallets first.
+
+Risk: Wallet confirmations and emergency actions can be misapplied if they are not tied to a verified user, session, and exact operation.
+
+Mitigation: Bind confirmations to authenticated sessions and operation details, and coordinate revocation or history-rewrite steps before executing them.
+
+## Reference(s):
+
+- [Secure Storage Patterns for Agent Secrets](artifact/references/secure-storage.md)
+- [Session Keys for Agent Wallet Access](artifact/references/session-keys.md)
+- [Leak Prevention for Agent Secrets](artifact/references/leak-prevention.md)
+- [Prompt Injection Defense for Agent Key Operations](artifact/references/prompt-injection-defense.md)
+- [Skill homepage](https://numbergroup.xyz)
+- [ClawHub skill page](https://clawhub.ai/zscole/skills/openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with inline shell, Python, TypeScript, and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces implementation patterns and checklists; examples should be reviewed and hardened before use with live credentials or funds.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

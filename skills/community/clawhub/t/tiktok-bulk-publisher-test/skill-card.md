@@ -1,40 +1,58 @@
-## Description: <br>
-Automates bulk uploading and publishing TikTok videos with customizable titles, privacy settings, comment, duet, stitch controls, and upload status checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automate bulk uploading and publishing of TikTok videos with customizable titles, privacy, comment, duet, stitch, and upload status controls.
 
-## Publisher: <br>
-[fly3094](https://clawhub.ai/user/fly3094) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fly3094](https://clawhub.ai/user/fly3094)
 
-## Use Case: <br>
-Developers and social media operations teams use this skill to automate TikTok video uploads, configure post metadata and privacy controls, and check publishing status through command-line or Python workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can publish videos to a TikTok account, including public posts, using supplied account credentials. <br>
-Mitigation: Use a test account or SELF_ONLY privacy first, and review each video, title, and privacy setting before running bulk publishing jobs. <br>
-Risk: The skill relies on TikTok access tokens for live posting workflows. <br>
-Mitigation: Provide only least-privilege TikTok tokens that are acceptable for the intended account, and rotate or refresh credentials according to TikTok token requirements. <br>
+## Use Case:
 
+Developers and operators use this skill to automate TikTok video publishing through the TikTok Content Posting API, including video metadata, privacy settings, engagement controls, OAuth setup, and publish status checks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fly3094/tiktok-bulk-publisher-test) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell and Python examples; runtime responses are status dictionaries and console text.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May perform TikTok API calls with provided credentials and return publish IDs, video URLs, status values, or error messages.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: The skill handles TikTok account publishing credentials and access tokens.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing with a real TikTok account, use a test account first, avoid passing tokens or client secrets on the command line, and prefer tightly scoped secret storage.
+
+Risk: The skill can publish content publicly if privacy is not set deliberately.
+
+Mitigation: Set privacy explicitly for each publishing workflow instead of relying on the public default.
+
+Risk: The requested OAuth scopes may exceed what some workflows need.
+
+Mitigation: Consider reducing OAuth scope to only the permissions required for the intended workflow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fly3094/skills/tiktok-bulk-publisher-test)
+- [Publisher profile](https://clawhub.ai/user/fly3094)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash and Python code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance may include TikTok OAuth credentials, access tokens, privacy settings, upload parameters, and publishing status checks.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

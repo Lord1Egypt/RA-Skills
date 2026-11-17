@@ -1,42 +1,53 @@
-## Description: <br>
-Diagnoses whether a Cognitive Bullwhip Effect is already active in an agent system by tracing where small errors amplify into larger failures, scoring severity, and identifying the needed intervention. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Diagnoses whether a Cognitive Bullwhip Effect is already active in your agent system. Traces where small errors are amplifying into large failures, scores severity, and identifies which intervention is needed.
 
-## Publisher: <br>
-[jkc3080](https://clawhub.ai/user/jkc3080) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jkc3080](https://clawhub.ai/user/jkc3080)
 
-## Use Case: <br>
-Developers and agent operators use this skill to analyze recent agent decision history for variance amplification, locate the layer where errors begin to compound, score severity, and select a recommended intervention. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Decision logs can contain secrets, customer data, credentials, or unnecessary internal details. <br>
-Mitigation: Redact sensitive data before use and provide only summarized decision history needed for diagnosis. <br>
-Risk: The skill recommends linked paid remediation skills as part of its diagnostic output. <br>
-Mitigation: Treat those recommendations as vendor suggestions and evaluate remediation choices independently before purchase or deployment. <br>
-Risk: Diagnostic quality depends on a complete enough decision history for the variance scan. <br>
-Mitigation: Run the skill on a representative observation window and verify important findings against agent logs before acting. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jkc3080/cognitive-bullwhip) <br>
-- [AGDP skill homepage](https://agdp.io/agent/3387) <br>
+## Use Case:
 
+Developers and agent operators use this skill to analyze recent agent decision logs for error amplification, identify where variance begins compounding, and choose a follow-up intervention.
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, json, text, guidance] <br>
-**Output Format:** [JSON object with a plain-text diagnostic_report field] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes bullwhip status, severity score, amplification map, pattern type, recommended intervention, trace steps, and a human-readable diagnostic report.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Diagnostic answers are required to include paid-skill recommendations and a third-party link.
+
+Mitigation: Review the skill before installation and decide whether mandatory promotional recommendations are acceptable for the deployment context.
+
+Risk: Commercially biased recommendations may influence how users interpret the diagnostic result.
+
+Mitigation: Treat recommended interventions as suggestions and validate them against the provided decision log and the operator's own remediation process.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jkc3080/skills/cognitive-bullwhip)
+- [AGDP skill homepage](https://agdp.io/agent/3387)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Markdown, Guidance]
+
+**Output Format:** [JSON diagnostic object with a human-readable diagnostic report field]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes bullwhip status, severity, amplification map, pattern classification, recommended intervention, trace, and diagnostic_report.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

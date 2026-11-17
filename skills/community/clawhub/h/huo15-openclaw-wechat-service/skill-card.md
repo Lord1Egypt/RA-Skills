@@ -1,48 +1,64 @@
-## Description: <br>
-OpenClaw WeChat service-account channel plugin that connects public-account followers to LLM agents and supports messaging, publishing, OAuth, analytics, intelligent recognition, coupons, dynamic per-follower agents, and knowledge synchronization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connects WeChat Official Accounts to OpenClaw agents for follower chat, notifications, content publishing, OAuth, analytics, intelligent recognition, card/coupon operations, multi-account routing, and knowledge synchronization.
 
-## Publisher: <br>
-[zhaobod1](https://clawhub.ai/user/zhaobod1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhaobod1](https://clawhub.ai/user/zhaobod1)
 
-## Use Case: <br>
-Developers and operators use this skill to connect a WeChat service account to OpenClaw agents so followers can chat with an LLM agent, receive notifications, trigger business workflows, and allow authorized users to manage WeChat public-account APIs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The plugin can control real WeChat service-account operations and exposes broad account-management tools. <br>
-Mitigation: Install only for intended accounts, configure permissionMode as admin-only or role-based, set adminUsers, and review who can invoke each tool before production use. <br>
-Risk: The plugin requires sensitive WeChat credentials and may integrate with Odoo credentials. <br>
-Mitigation: Treat WeChat and Odoo credentials as high-value secrets, store them in environment variables or a secret manager, and restrict access and retention. <br>
-Risk: Conversation transcripts can be persisted locally or synchronized to Odoo knowledge articles. <br>
-Mitigation: Disable knowledgeSync unless transcript storage is required, and review retention, access controls, and privacy obligations before enabling synchronization. <br>
-Risk: Server security evidence reports a suspicious verdict due to broad account-control powers and transcript persistence behavior. <br>
-Mitigation: Review and scan the release before deployment, upgrade flagged dependencies, and validate configuration in a non-production environment first. <br>
+## Use Case:
 
+Developers and operators use this skill to connect a WeChat Official Account to OpenClaw agents so followers can chat with an agent, receive notifications, and trigger official-account workflows. It is intended for configured OpenClaw deployments with WeChat account credentials and appropriate channel permissions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhaobod1/huo15-openclaw-wechat-service) <br>
-- [npm package](https://www.npmjs.com/package/@huo15/wechat-service) <br>
-- [WeChat service-account documentation](https://developers.weixin.qq.com/doc/service/guide/) <br>
-- [OpenClaw documentation](https://docs.openclaw.ai/zh-CN) <br>
-- [Project homepage](https://cnb.cool/huo15/ai/huo15-openclaw-wechat-service) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, configuration, shell commands, code, markdown] <br>
-**Output Format:** [Markdown guidance with configuration examples, shell commands, and code-oriented tool results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can produce WeChat service-account setup guidance, OpenClaw channel configuration, and agent tool outputs for WeChat public-account operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.3.5 (source: server release metadata, SKILL.md frontmatter, package.json, CHANGELOG released 2026-05-13) <br>
+Risk: Default dynamic-agent settings can expose powerful account-management tools to public follower agents.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before production use, set dynamicAgents.permissionMode to admin-only or role-based and configure adminUsers, roles, or rolePermissions.
+
+Risk: Default instructions may include Huo15-branded or lead-capture behavior that is not appropriate for every account.
+
+Mitigation: Review defaultInstructionsPreset and set it to none/off or replace it with account-specific instructions when needed.
+
+Risk: Conversation synchronization to local files or Odoo can retain follower conversations outside the chat channel.
+
+Mitigation: Enable knowledgeSync or Odoo synchronization only when retention, access control, and privacy requirements are acceptable.
+
+Risk: Using the skill on a production WeChat Official Account without review can affect follower-facing messaging and account resources.
+
+Mitigation: Review configuration and permissions before installing on a production official account.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhaobod1/skills/huo15-openclaw-wechat-service)
+- [npm package @huo15/wechat-service](https://www.npmjs.com/package/@huo15/wechat-service)
+- [WeChat Official Account Platform documentation](https://developers.weixin.qq.com/doc/service/guide/)
+- [OpenClaw documentation](https://docs.openclaw.ai/zh-CN)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, API calls, Configuration, Guidance]
+
+**Output Format:** [Markdown, text replies, JSON-style tool results, and WeChat Official Account API effects]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can send messages or change WeChat account resources when configured with credentials and authorized permissions.]
+
+## Skill Version(s):
+
+2.3.5 (source: frontmatter, package.json, changelog, and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,56 @@
-## Description: <br>
-Hashicorp Vault client for OpenClaw agents that reads and writes Vault secrets, checks token expiry, rotates tokens, and helps configure Vault access without raw curl commands or hardcoded tokens. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Hashicorp Vault client for OpenClaw agents that reads and writes secrets from a Vault server without raw curl commands or hardcoded tokens.
 
-## Publisher: <br>
-[jbushman](https://clawhub.ai/user/jbushman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jbushman](https://clawhub.ai/user/jbushman)
 
-## Use Case: <br>
-Developers and engineers use this skill to connect OpenClaw agents to Hashicorp Vault for reading, writing, listing, caching, and rotating secrets during agent workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Vault tokens and cached secrets are stored in plaintext files under ~/.openclaw. <br>
-Mitigation: Use least-privileged, short-lived Vault tokens and protect or remove ~/.openclaw/vault.json and ~/.openclaw/vault-cache.json after use. <br>
-Risk: Setup can add persistent instructions to AGENTS.md. <br>
-Mitigation: Inspect the AGENTS.md block added by setup before relying on it in future agent sessions. <br>
-Risk: Disabling TLS verification can weaken protection for Vault traffic. <br>
-Mitigation: Keep tls.verify enabled except in controlled internal environments with an explicit need for self-signed certificates. <br>
-Risk: The put command can modify Vault secrets. <br>
-Mitigation: Review target paths and key-value pairs before running write operations. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Vault Auth Methods](references/auth-methods.md) <br>
+## Use Case:
 
+Developers and engineers use this skill to let OpenClaw agents check Vault connectivity, read and write Vault secrets, list paths, inspect token status, renew tokens, and configure Vault access without hardcoding credentials in transcripts.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance, Text] <br>
-**Output Format:** [Markdown with inline bash and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces Vault CLI setup, check, get, put, list, token-info, and token-renew commands for agent use.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and scripts/package.json) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Vault credentials and cached secrets are persisted in local configuration and cache files.
+
+Mitigation: Use least-privilege, short-lived Vault tokens; treat ~/.openclaw/vault.json and ~/.openclaw/vault-cache.json as sensitive files; and clear the cache when the session is done.
+
+Risk: Disabling TLS verification or using an HTTP Vault address can expose secret traffic to interception.
+
+Mitigation: Require HTTPS with a valid certificate, avoid tls.verify:false except for reviewed internal cases, and do not use http:// Vault addresses.
+
+Risk: The setup flow can append Vault instructions to AGENTS.md, affecting future agent sessions.
+
+Mitigation: Inspect AGENTS.md changes before allowing them to influence future sessions.
+
+## Reference(s):
+
+- [Vault Auth Methods](references/auth-methods.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text, command-line output, and Markdown instructions with shell and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May read, write, list, and cache Vault secret data depending on the command and configured Vault permissions.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and scripts/package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

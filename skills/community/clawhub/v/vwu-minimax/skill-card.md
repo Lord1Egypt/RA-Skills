@@ -1,44 +1,55 @@
-## Description: <br>
-Calls vwu.ai MiniMax chat models through an OpenAI-compatible chat completions helper using a user-provided API key. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Call MiniMax Hailuo models on vwu.ai through an OpenAI-compatible chat completions wrapper using a configured API key.
 
-## Publisher: <br>
-[a3273283](https://clawhub.ai/user/a3273283) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[a3273283](https://clawhub.ai/user/a3273283)
 
-## Use Case: <br>
-Developers and agents use this skill to configure a vwu.ai API key and call MiniMax-Hailuo chat models from a shell helper. It is useful when an agent needs text responses from vwu.ai models through an OpenAI-compatible chat completions endpoint. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts and chat content are sent to vwu.ai using the configured API key. <br>
-Mitigation: Avoid putting secrets in prompts and install only when that external API use is intended. <br>
-Risk: VWU_BASE_URL can redirect requests to a different endpoint if set incorrectly. <br>
-Mitigation: Verify VWU_BASE_URL before use, or leave it unset to use the default https://vwu.ai endpoint. <br>
-Risk: The shell helper depends on local command-line tools. <br>
-Mitigation: Confirm zsh, curl, and jq are installed before relying on the helper. <br>
+## Use Case:
 
+Developers and agent operators use this skill to send prompts to MiniMax Hailuo models hosted on vwu.ai from a shell-based chat wrapper. It is useful for quick OpenAI-compatible chat completion calls when a vwu.ai API key and model name are configured.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/a3273283/vwu-minimax) <br>
-- [Publisher profile](https://clawhub.ai/user/a3273283) <br>
-- [vwu.ai](https://vwu.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text responses and Markdown usage guidance with shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires zsh, curl, jq, and a VWU_API_KEY environment variable.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can send prompts and a vwu.ai API key to an undocumented endpoint controlled by VWU_BASE_URL.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only a trusted HTTPS vwu.ai endpoint, keep VWU_BASE_URL unset unless explicitly needed, and avoid regulated or sensitive prompt data.
+
+Risk: Prompt and model values are passed into request JSON by the shell wrapper.
+
+Mitigation: Review or harden the script to JSON-encode prompt and model values before broad or automated use.
+
+## Reference(s):
+
+- [vwu.ai](https://vwu.ai)
+- [ClawHub skill page](https://clawhub.ai/a3273283/skills/vwu-minimax)
+- [Publisher profile](https://clawhub.ai/user/a3273283)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and plain text model responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires VWU_API_KEY; VWU_BASE_URL can redirect API calls if set.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

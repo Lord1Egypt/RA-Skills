@@ -1,42 +1,55 @@
-## Description: <br>
-Fish makes utility tools simple. Use when you need fish. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fish is a local terminal utility for recording, searching, and exporting activity logs.
 
-## Publisher: <br>
-[bytesagain1](https://clawhub.ai/user/bytesagain1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain1](https://clawhub.ai/user/bytesagain1)
 
-## Use Case: <br>
-Developers and agents use Fish as a local command-line utility for recording activity, searching entries, checking status, and exporting logged data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: User-entered text may be saved in local plaintext history under ~/.local/share/fish and later shown or exported. <br>
-Mitigation: Do not pass passwords, API keys, private prompts, customer data, or other sensitive content to the skill. <br>
-Risk: The fish command name can conflict with the Fish shell or another local executable. <br>
-Mitigation: Verify which executable is bound to fish before use. <br>
+## Use Case:
 
+Developers and terminal users can use Fish to inspect local command activity, view simple statistics, search retained entries, and export logs.
 
-## Reference(s): <br>
-- [ClawHub Fish release](https://clawhub.ai/bytesagain1/fish) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
-- [BytesAgain feedback](https://bytesagain.com/feedback/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Text, Files] <br>
-**Output Format:** [Terminal text with optional JSON, CSV, or plain text exports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores local history and export files under ~/.local/share/fish.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Command inputs and activity can be retained locally under ~/.local/share/fish, including secrets or sensitive filenames if a user enters them.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when local command logging is intended, avoid entering secrets or sensitive data, and inspect or delete ~/.local/share/fish when retained data should be cleared.
+
+Risk: The security review labels Fish as suspicious because its utility framing is vague and some command behavior may be misleading.
+
+Mitigation: Review the installed shell behavior before deployment and limit use to environments where local logging and export behavior are acceptable.
+
+## Reference(s):
+
+- [Fish ClawHub listing](https://clawhub.ai/bytesagain1/skills/fish)
+- [BytesAgain homepage](https://bytesagain.com)
+- [BytesAgain feedback](https://bytesagain.com/feedback/)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, files]
+
+**Output Format:** [Terminal text with local log and export files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores timestamped logs under ~/.local/share/fish and can export JSON, CSV, or plain text.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

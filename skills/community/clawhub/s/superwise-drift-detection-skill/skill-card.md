@@ -1,46 +1,59 @@
-## Description: <br>
-Detects feature drift in tabular ML models using Superwise Compare Distribution policies, handles dataset setup and inference ingestion, and can send Telegram alerts when drift is detected. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Detects feature drift in tabular ML models using Superwise Compare Distribution policies, manages Superwise dataset and drift policy setup, ingests inference records, and sends Telegram alerts.
 
-## Publisher: <br>
-[mark-stadtmueller](https://clawhub.ai/user/mark-stadtmueller) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mark-stadtmueller](https://clawhub.ai/user/mark-stadtmueller)
 
-## Use Case: <br>
-Developers and ML engineers use this skill to configure Superwise drift monitoring for tabular models, upload training and inference data, create categorical drift policies, and receive operational drift summaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected training and inference records are sent to Superwise for drift monitoring. <br>
-Mitigation: Use only approved datasets and least-privilege Superwise credentials, and confirm that the data is appropriate for the Superwise workspace before upload. <br>
-Risk: Drift summaries may be sent to Telegram. <br>
-Mitigation: Route alerts only to approved chats and avoid including sensitive feature values or model data in alert text. <br>
-Risk: A deployed /run-check endpoint can trigger ingestion, policy polling, and alerts. <br>
-Mitigation: Restrict access to the endpoint and protect deployment environment variables with a secret manager or platform-level secret storage. <br>
-Risk: Unpinned dependencies can change behavior over time in production deployments. <br>
-Mitigation: Pin and review Python dependencies before production use. <br>
+## Use Case:
 
+Developers and ML engineers use this skill to add scheduled drift checks for tabular models, compare inference distributions against a training baseline in Superwise, and receive operational alerts when drift is detected.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mark-stadtmueller/superwise-drift-detection-skill) <br>
-- [Superwise MCP documentation](https://docs.superwise.ai/mcp) <br>
-- [Superwise Python SDK MCP reference](https://mcp.sdk.docs.superwise.ai/mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, code, text] <br>
-**Output Format:** [Markdown guidance with shell commands, environment configuration, Python code paths, and JSON-style drift summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May call Superwise APIs, a configured inference endpoint, and Telegram when executed by the user.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: ClawHub release metadata and skill.py metadata) <br>
+Risk: The production scheduler exposes an unauthenticated /run-check endpoint that can trigger repeated Superwise uploads, policy actions, and Telegram alerts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Add authentication to /run-check, prefer POST, rate limit requests, and enforce a single-run lock before deploying the scheduler publicly.
+
+Risk: The skill sends model inference data to Superwise and depends on a configured inference endpoint.
+
+Mitigation: Use only trusted Superwise accounts and trusted inference endpoints, and confirm the data is approved for third-party processing before running the skill.
+
+Risk: Unpinned dependencies can change behavior across installations.
+
+Mitigation: Pin production dependency versions before deploying the scheduled drift detection service.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mark-stadtmueller/skills/superwise-drift-detection-skill)
+- [Superwise API and guides](https://docs.superwise.ai/mcp)
+- [Superwise Python SDK reference](https://mcp.sdk.docs.superwise.ai/mcp)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with inline shell commands, Python setup scripts, and environment configuration values]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides the agent through credential setup, dataset creation, policy creation, drift checks, scheduling, and alert configuration.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release metadata and skill.py metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

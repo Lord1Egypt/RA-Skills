@@ -1,42 +1,61 @@
-## Description: <br>
-Connects a personal WeChat account to OpenClaw through a QR-code login flow, explicitly excluding enterprise WeChat and WeCom. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connects a personal WeChat account, not enterprise WeChat or WeCom, by guiding an agent through OpenClaw setup, QR-code login, credential confirmation, and gateway restart.
 
-## Publisher: <br>
-[oreoandyuumi](https://clawhub.ai/user/oreoandyuumi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oreoandyuumi](https://clawhub.ai/user/oreoandyuumi)
 
-## Use Case: <br>
-OpenClaw users and developers use this skill to bind a personal WeChat account, install or update the required WeChat plugin, generate a login QR code, confirm credentials before storage, and restart the gateway. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The flow connects a personal WeChat account and writes a reusable bot token under ~/.openclaw. <br>
-Mitigation: Run it only on a trusted, non-shared machine and require the user to review masked credential details before writing them to disk. <br>
-Risk: The optional CDN upload can expose a one-time authorization QR code outside the local workspace. <br>
-Mitigation: Prefer the local QR image file and use CDN upload only when the user cannot access the local file. <br>
-Risk: The setup installs npm packages and uses a registry mirror during execution. <br>
-Mitigation: Proceed only when the user trusts the package sources and the registry mirror used by the setup. <br>
+## Use Case:
 
+Developers and external users use this skill when they need an agent to connect a personal WeChat account through OpenClaw using QR-code authentication. The skill is not intended for enterprise WeChat or WeCom connection flows.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/oreoandyuumi/mmxagent-skill-wechat) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance, Files] <br>
-**Output Format:** [Markdown with inline bash commands and credential-review prompts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a local QR PNG and writes account credential configuration only after user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server evidence release metadata) <br>
+Risk: The skill instructs agents to install or update npm packages, including global OpenClaw changes, from external package sources.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review package provenance before use, prefer pinned package versions, and ask the user clearly before global installs or persistent toolchain changes.
+
+Risk: The flow handles personal WeChat QR codes and can optionally expose a one-time authorization QR code through CDN upload.
+
+Mitigation: Keep QR-code images local by default and use external upload only after explicit user request and disclosure of exposure risk.
+
+Risk: The flow writes account tokens and local credential files after successful QR confirmation.
+
+Mitigation: Show redacted credential details before writing, require user confirmation, write data-only JSON, and restrict credential file permissions.
+
+Risk: The skill changes OpenClaw gateway state and depends on responses from Tencent WeChat endpoints.
+
+Mitigation: Validate API responses, preserve normal agent discretion for error handling, and confirm operational changes before restarting the gateway.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/oreoandyuumi/skills/mmxagent-skill-wechat)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, JSON credential data, and local QR-code file instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a stepwise account-linking flow that may install npm packages, call Tencent WeChat endpoints, save a QR-code image, write local credentials, and restart the OpenClaw gateway.]
+
+## Skill Version(s):
+
+1.0.3 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

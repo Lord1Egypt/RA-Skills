@@ -1,45 +1,61 @@
-## Description: <br>
-Load anime character info from multiple sources and generate validated SOUL.generated.md files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Loads anime character information from multiple sources and generates validated SOUL.generated.md persona files for OpenClaw agents.
 
-## Publisher: <br>
-[colinchen4](https://clawhub.ai/user/colinchen4) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[colinchen4](https://clawhub.ai/user/colinchen4)
 
-## Use Case: <br>
-External OpenClaw users and developers use this skill to look up anime character data, disambiguate similar names, and generate SOUL.generated.md character files for agent roleplay configuration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Character and anime names may be sent to third-party public services during lookup. <br>
-Mitigation: Use the skill only when those queries are acceptable, and avoid submitting private or sensitive names as character inputs. <br>
-Risk: Generated files can overwrite or merge with existing SOUL.md content. <br>
-Mitigation: Review prompts before choosing REPLACE or MERGE and keep backups of important SOUL.md files. <br>
-Risk: The documented external-quotes opt-out may not be implemented in the artifact behavior. <br>
-Mitigation: Do not rely on that opt-out for privacy-sensitive use unless the publisher implements and verifies it. <br>
+## Use Case:
 
+OpenClaw users, role-play communities, and developers use this skill to fetch anime character data, resolve ambiguous names, and generate reviewed SOUL persona files for agents.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/colinchen4/anime-character-loader) <br>
-- [AniList GraphQL API](https://graphql.anilist.co) <br>
-- [Jikan API](https://api.jikan.moe/v4) <br>
-- [Baseline v2.4 notes](docs/baseline-v2.4.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown SOUL.generated.md files with command-line status output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write or merge SOUL.md files and cache public character lookup responses locally.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.4.2 (source: server release metadata, SKILL.md frontmatter, setup.py) <br>
+Risk: Character and anime names may be sent to third-party anime and wiki services during lookup.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when those external requests are acceptable for the intended use case, and avoid submitting sensitive or private names as queries.
+
+Risk: Third-party character data can become persistent agent persona instructions in generated SOUL files.
+
+Mitigation: Review SOUL.generated.md before using REPLACE or MERGE, with special attention to Background, Personality, Identity, and Boundaries text copied or summarized from remote sources.
+
+Risk: REPLACE mode can overwrite an existing SOUL.md file.
+
+Mitigation: Use KEEP or MERGE for review-first workflows and confirm backups before replacing an existing persona file.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/colinchen4/skills/anime-character-loader)
+- [AniList GraphQL API](https://graphql.anilist.co)
+- [Jikan API](https://api.jikan.moe/v4)
+- [README](artifact/README.md)
+- [Baseline v2.4](artifact/docs/baseline-v2.4.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown persona files with CLI guidance and optional merge choices]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generates SOUL.generated.md and may merge or replace SOUL.md after user selection.]
+
+## Skill Version(s):
+
+2.4.2 (source: server release metadata, SKILL.md frontmatter, setup.py)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

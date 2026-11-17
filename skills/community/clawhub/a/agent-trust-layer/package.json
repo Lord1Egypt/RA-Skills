@@ -1,0 +1,113 @@
+{
+  "name": "@yun520-1/agent-trust-layer",
+  "version": "6.6.1",
+  "description": "Agent Trust Layer — rule-based discriminator engine for AI agent output verification. 47 dimensions, 9 check layers, 131 MCP tools. Zero LLM dependency. Checks what AI says before it reaches humans and says \"no\" when something is wrong.",
+  "main": "src/gate.js",
+  "bin": {
+    "heartflow": "src/mcp-server.js"
+  },
+  "scripts": {
+    "prepublishOnly": "node scripts/sync-version.js",
+    "start": "node bin/cli.js chat",
+    "status": "node bin/cli.js status",
+    "test": "node test/run-all.js || node tests/integration.test.js",
+    "test:integration": "node tests/integration.test.js",
+    "test:unit": "node tests/unit/test-path-guard.js && node tests/unit/test-code-verifier.js",
+    "test:full": "find tests test -name '*.test.js' -exec node {} \\;",
+    "verify": "node bin/verify.js",
+    "check": "node -e \"require('fs').readdirSync('src',{recursive:true}).filter(f=>f.endsWith('.js')).forEach(f=>require('child_process').execSync('node --check src/'+f,{stdio:'inherit'}))\""
+  },
+  "files": [
+    "VERSION",
+    "README.md",
+    "AGENTS.md",
+    "SKILL.md",
+    "LICENSE",
+    "src/"
+  ],
+  "keywords": [
+    "ai",
+    "agent",
+    "trust",
+    "verification",
+    "discriminator",
+    "guardrail",
+    "llm",
+    "mcp",
+    "security",
+    "output-filter"
+  ],
+  "security": {
+    "audit": "@xenova/transformers has known CVEs in sharp/libvips transitive deps. npm audit fix --allow-downgrade or remove optionalDependencies if not using embedding features.",
+    "warnings": [
+      "No automatic external data transmission. All network communication requires explicit configuration.",
+      "No automatic API key injection. Users must provide keys explicitly.",
+      "Benchmark MCP tools enforce guardPath confinement; git commands run parameterized (no shell interpolation)."
+    ]
+  },
+  "license": "MIT",
+  "dependencies": {
+    "mathjs": "~15.2.0"
+  },
+  "optionalDependencies": {
+    "@xenova/transformers": "~2.17.2",
+    "pm2": "~7.0.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yun520-1/agent-trust-layer.git"
+  },
+  "homepage": "https://yun520-1.github.io/agent-trust-layer/",
+  "bugs": {
+    "url": "https://github.com/yun520-1/mark-heartflow-skill/issues"
+  },
+  "engines": {
+    "node": ">=18.17"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "overrides": {
+    "protobufjs": "^7.2.5"
+  },
+  "heartflow": {
+    "skills": "skills/",
+    "workflows": [
+      "heartflow-architecture-tracing",
+      "heartflow-audit-upgrade-push",
+      "heartflow-benchmark",
+      "heartflow-bridge-layer",
+      "heartflow-bulk-upgrade",
+      "heartflow-debug-workflow",
+      "heartflow-dreaming",
+      "heartflow-emotion-analysis",
+      "heartflow-module-upgrader",
+      "heartflow-session-context",
+      "heartflow-static-injection-upgrade",
+      "heartflow-system-prompt-absorption",
+      "mind-space",
+      "two-pass-response"
+    ]
+  },
+  "features": {
+    "v5.8.0": {
+      "entityExtractor": "src/memory/entity-extractor.js",
+      "memoryScorer": "src/memory/memory-scorer.js",
+      "sessionManager": "src/memory/session-manager.js",
+      "signalTracker": "src/memory/signal-tracker.js",
+      "programmableGuardrails": "src/shield/programmable-guardrails.js"
+    }
+  },
+  "author": {
+    "name": "markcell",
+    "email": "markcell@qq.com"
+  },
+  "exports": {
+    ".": "./src/gate.js",
+    "./gate": "./src/gate.js",
+    "./pipeline": "./src/pipeline.js",
+    "./discriminate": "./src/index.js",
+    "./engine": "./src/core/heartflow.js"
+  }
+}

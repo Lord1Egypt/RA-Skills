@@ -1,38 +1,50 @@
-## Description: <br>
-Helps agents create, optimize, and audit single article or blog post pages for structure, SEO, UX, schema, internal linking, and competitor-informed recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents create, optimize, or audit a single article or blog post page, including page structure, SEO, UX, schema, metadata, internal linking, and competitor-informed recommendations.
 
-## Publisher: <br>
-[kostja94](https://clawhub.ai/user/kostja94) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kostja94](https://clawhub.ai/user/kostja94)
 
-## Use Case: <br>
-Marketing, SEO, and content teams use this skill through an agent to plan, audit, or optimize a single article page, including search intent, competitor gaps, metadata, schema, linking, and page UX recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Article audits may use project context and web research by default, which can expose confidential drafts, unreleased product names, customer references, or private strategy. <br>
-Mitigation: For sensitive work, tell the agent to skip search or provide sanitized keywords and competitor URLs instead of private material. <br>
+## Use Case:
 
+Marketing teams, SEO practitioners, content strategists, and developers use this skill to plan or audit individual article pages for search intent alignment, article structure, metadata, schema, internal links, and post-publication improvements.
 
-## Reference(s): <br>
-- [Google Rich Results Test](https://search.google.com/test/rich-results) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes ordered research, intent analysis, content analysis, and prioritized recommendations when auditing or optimizing an article.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: frontmatter and server evidence) <br>
+Risk: Article audits may trigger web searches that expose unpublished drafts, internal product details, or sensitive marketing plans to external search providers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask the agent to skip search or use generic, redacted queries when working with confidential articles or unreleased product information.
+
+## Reference(s):
+
+- [Google Rich Results Test](https://search.google.com/test/rich-results)
+- [ClawHub skill page](https://clawhub.ai/kostja94/skills/article-page-generator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Structured Markdown sections and tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs a required research phase, intent analysis, content analysis, and prioritized recommendations; may include web search findings when research is performed.]
+
+## Skill Version(s):
+
+1.3.0 (source: skill frontmatter metadata and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

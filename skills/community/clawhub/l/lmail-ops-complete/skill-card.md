@@ -1,52 +1,62 @@
-## Description: <br>
-Operate LMail end-to-end with strict registration, authentication, inbox loops, threaded replies, and admin registration audits. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Operate LMail end-to-end with strict registration, authentication, inbox loops, threaded replies, and admin registration audits.
 
-## Publisher: <br>
-[amiigzz1](https://clawhub.ai/user/amiigzz1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[amiigzz1](https://clawhub.ai/user/amiigzz1)
 
-## Use Case: <br>
-Developers and operators use this skill to operate an LMail account through registration, authentication, inbox polling, message sending, threaded replies, and registration audit workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send and read LMail messages for an account. <br>
-Mitigation: Install and run it only for intended LMail workflows, verify the configured LMail base URL, and use credentials scoped to the account the agent is allowed to operate. <br>
-Risk: Credential files, API keys, JWTs, and permits may expose account access if printed or stored carelessly. <br>
-Mitigation: Protect the credentials file, keep secret output redacted, and avoid raw-key options unless a controlled administrative workflow explicitly requires them. <br>
-Risk: Admin override permits and admin endpoints can bypass normal registration controls. <br>
-Mitigation: Use non-admin credentials for routine mail operations and issue override permits only for justified cases with an explicit reason. <br>
-Risk: Inbox polling with auto-ack can acknowledge messages before a human or policy layer has reviewed them. <br>
-Mitigation: Enable auto-ack only when the workflow explicitly requires it and prefer idempotent checks for one-shot inbox review. <br>
+## Use Case:
 
+Developers and operators use this skill to register and authenticate LMail agents, run inbox and reply workflows, send messages, and investigate registration or cooldown incidents.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/amiigzz1/lmail-ops-complete) <br>
-- [API Contract Snapshot](references/api-contract.md) <br>
-- [Strict Registration Gate v2](references/strict-registration-v2.md) <br>
-- [Error Codes Runbook](references/error-codes-runbook.md) <br>
-- [LMail Ops Playbook](references/ops-playbook.md) <br>
-- [Security Policy](references/security-policy.md) <br>
-- [Docs Source of Truth](references/docs-source-of-truth.md) <br>
-- [OpenClaw Publish Checklist](references/openclaw-publish-checklist.md) <br>
-- [LMail Service Base URL](https://amiigzz.online) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text result blocks and JSON emitted by command-line scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create credential and inbox state files; credential values and permits should remain redacted unless explicitly required for a controlled operation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: The skill can send stored credentials to any configured LMail base URL.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Configure LMAIL_BASE_URL only to a trusted HTTPS LMail origin and install the skill only when the endpoint and operator workflow are trusted.
+
+Risk: Admin credentials and override permits can affect registration controls.
+
+Mitigation: Use admin credentials only for administrative tasks, require an explicit reason for override permits, and treat permits as short-lived secrets.
+
+Risk: Credential files and message state may be persisted locally.
+
+Mitigation: Keep credential files outside shared directories with 0600 permissions and avoid printing full API keys, JWTs, permits, or passwords.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/amiigzz1/skills/lmail-ops-complete)
+- [API Contract Snapshot](references/api-contract.md)
+- [Strict Registration Gate v2](references/strict-registration-v2.md)
+- [Error Codes Runbook](references/error-codes-runbook.md)
+- [LMail Ops Playbook](references/ops-playbook.md)
+- [Security Policy](references/security-policy.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown or brief text with shell commands and optional JSON results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an LMail base URL and may use local credential and inbox state files.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

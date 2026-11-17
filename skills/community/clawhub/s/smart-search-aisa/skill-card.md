@@ -1,42 +1,55 @@
-## Description: <br>
-Combine web and academic search into one smart AISA search mode for balanced research across public web coverage and academic sources. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Combine web and academic search into one smart AISA search mode for balanced research across public web coverage and academic depth.
 
-## Publisher: <br>
-[bibaofeng](https://clawhub.ai/user/bibaofeng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bibaofeng](https://clawhub.ai/user/bibaofeng)
 
-## Use Case: <br>
-Developers, researchers, and other external users can use this skill when they need one research pass that combines public web results with academic search depth. It is intended for research queries, not credential access or unrelated local data collection. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The bundled client can send search queries, pasted URLs, extracted URL content, and AISA_API_KEY-authenticated requests to AISA. <br>
-Mitigation: Use the skill only when the user intends to share that query or URL with AISA, and avoid private, signed, intranet, localhost, or sensitive document URLs. <br>
-Risk: The security verdict is suspicious because the client can do more and send more data than the short skill description clearly explains. <br>
-Mitigation: Review the requested mode before running it, especially extract and multi-source modes, and keep usage limited to research-oriented queries. <br>
+## Use Case:
 
+Developers, researchers, and external users use this skill to run a balanced research pass that combines public web coverage with academic retrieval for one query.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bibaofeng/smart-search-aisa) <br>
-- [AISA service](https://aisa.one) <br>
-- [AISA API endpoint](https://api.aisa.one/apis/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown or terminal text with search results, citations, summaries, and optional command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and AISA_API_KEY; search queries, URLs, and extracted URL content may be sent to AISA.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and skill frontmatter) <br>
+Risk: Search prompts, selected URLs, and generated result bundles may be sent to AISA-hosted endpoints.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with queries and URLs appropriate for external processing, and review the provider's data handling terms before deployment.
+
+Risk: Extract and sonar modes can process user-provided URLs or prompts through external services.
+
+Mitigation: Avoid private, signed, internal, or sensitive URLs and restrict enabled modes to the release's intended research workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bibaofeng/skills/smart-search-aisa)
+- [AISA API service](https://api.aisa.one/apis/v1)
+- [AISA API key signup](https://aisa.one)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Plain text or Markdown search summaries with URLs, citations, and command-line status output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and AISA_API_KEY; search prompts, selected URLs, and result bundles may be sent to AISA-hosted endpoints.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

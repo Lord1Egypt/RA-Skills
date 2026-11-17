@@ -1,0 +1,110 @@
+/* ---------------------------------------------------------------------------------------------
+ * Structural fixes for the gaps in `sp-marketplace-app-ui.min.css` (SKILL.md Step 6).
+ *
+ * Link AFTER the CDN bundle — every rule here is single-class or lower specificity on purpose,
+ * so load order is what makes it win. Nothing here invents a value: it restores foundation the
+ * bundle dropped and corrects a handful of alignment measurements, and the one colour it does set
+ * reads a bundle token (`--panel-bg`). Radius, type and spacing still come from the bundle. If you
+ * find yourself writing a literal colour here, stop and find the class instead.
+ *
+ * Verified in a real browser in both themes, 2026-08-21. Take the whole file: each block costs
+ * nothing until you use the component it repairs, and each one is a bug you would otherwise
+ * spend an hour diagnosing.
+ * ------------------------------------------------------------------------------------------- */
+
+/* The dark build's reset still ships `body{background-color:#fff}`, so a dark page is white behind
+   the panel until you paint it. `--panel-bg` (from tokens.css) because the documented layout is one
+   panel flush to the frame: the panel's own colour can never show as a seam behind it, and it is
+   what shipped integrations use. A screen that is
+   instead separated cards on a visible page wants `--bg-color` — change this one value. */
+body {
+  background-color: var(--panel-bg);
+}
+
+/* An integration is embedded in the host's iframe or panel, so it owns that whole rectangle: the
+   host supplies the outer gutter, and the app must be as tall as the frame for a sticky action
+   footer to have something to stick to. The bundle's reset zeroes body margin but sets no height,
+   and 100vh is the wrong unit inside an iframe. No padding or max-width belongs on these. */
+html,
+body {
+  height: 100%;
+}
+
+/* The bundle styles `.nav-tabs > li > a` in detail but drops Bootstrap 3's base `.nav` rules,
+   which live in bootstrap.min.css — so a tab strip renders as a bulleted vertical list and the
+   next section wraps beside it. Structure only: `.nav-tabs{margin-bottom:20px}` and every
+   colour still come from the bundle, which is why a tab strip needs no spacing class. */
+.nav {
+  padding-left: 0;
+  list-style: none;
+}
+.nav > li,
+.nav > li > a {
+  position: relative;
+  display: block;
+}
+.nav:before,
+.nav:after {
+  content: " ";
+  display: table;
+}
+.nav:after {
+  clear: both;
+}
+.nav-tabs > li {
+  float: left;
+  margin-bottom: -1px;
+}
+
+/* `.list-group-item .badge{background-color:rgba(70,81,82,.8)}` out-specifies the single-class
+   `.badge-status-*` modifiers, so a status dot inside a list row renders muted grey instead of
+   green or red. Both values below are the bundle's own. (The muted dot is occasionally what you
+   want — an inactive row — so leave the modifier off rather than adding a fourth colour.) */
+.list-group-item .badge-status-success {
+  background-color: #00b175;
+}
+.list-group-item .badge-status-primary {
+  background-color: #428bca;
+}
+.list-group-item .badge-status-warning {
+  background-color: #ff9b46;
+}
+.list-group-item .badge-status-danger {
+  background-color: #f86850;
+}
+
+/* `.input-group` keeps Bootstrap's `display:table-cell` children but not the `display:table` on
+   the group itself, and Chrome blockifies table-cell on an <input> anyway — so a number lands in
+   an anonymous cell that claims all leftover width and shoves its unit <select> away, collapsed
+   to the caret. Laid out as a flex row instead. The pair is one control, so it stays joined: the
+   bundle's own :first-child / :last-child rules flatten the inner corners and the negative margin
+   collapses the shared border. No `gap` — a gap would make it read as two fields.
+   Add `.input-group-fit` to the group and the two width classes to its children. */
+.input-group.input-group-fit {
+  display: flex;
+  width: auto;
+}
+.input-group .input-group-number {
+  width: 106px;
+}
+.input-group .input-group-unit {
+  width: auto;
+  margin-left: -1px;
+}
+
+/* `.badge-paid` is `vertical-align:sub`, with another -2px on `.badge-paid-sm` — sized for a
+   button's caps. Beside 16px label text — a checkbox label, a form label, or the bold title of a
+   switcher row — it drops below the baseline. */
+.checkbox label .badge-paid,
+.control-label .badge-paid,
+.switcher-flex-holder .badge-paid {
+  vertical-align: middle;
+  top: 0;
+}
+
+/* `.avatar` is inline-block with no vertical-align, so in an input-shaped dropdown trigger or a
+   menu row it hangs below the label's baseline. */
+.dropdown-toggle > .avatar,
+.dropdown-menu .avatar {
+  vertical-align: middle;
+}

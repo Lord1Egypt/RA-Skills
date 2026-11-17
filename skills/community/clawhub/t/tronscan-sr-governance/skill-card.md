@@ -1,43 +1,56 @@
-## Description: <br>
-Query TRON Super Representatives, witnesses, candidates, voting information, chain parameters, and governance proposals through TronScan. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides an agent to query TRON Super Representatives, witnesses, candidates, voting information, chain parameters, and governance proposals through TronScan MCP.
 
-## Publisher: <br>
-[sshnii](https://clawhub.ai/user/sshnii) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sshnii](https://clawhub.ai/user/sshnii)
 
-## Use Case: <br>
-Developers, analysts, and TRON ecosystem operators use this skill to look up Super Representative rankings, account votes, chain parameters, governance proposals, and witness vote metrics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Governance queries and TRON addresses entered by the user are sent to the disclosed TronScan MCP service. <br>
-Mitigation: Use the skill only when sharing those query details with TronScan is acceptable. <br>
-Risk: Optional TronScan API keys used for rate limits could be exposed if stored or shared carelessly. <br>
-Mitigation: Store API keys in the agent or MCP configuration secret mechanism and rotate them if exposure is suspected. <br>
+## Use Case:
 
+External developers and TRON users use this skill to guide agents through TronScan MCP lookups for SR rankings, account voting records, chain configuration, proposal lists, witness vote metrics, and network vote summaries.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sshnii/tronscan-sr-governance) <br>
-- [TronScan MCP endpoint](https://mcp.tronscan.org/mcp) <br>
-- [TronScan MCP Guide](https://mcpdoc.tronscan.org) <br>
-- [TronScan Developer API](https://tronscan.org/#/developer/api) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, API calls, configuration] <br>
-**Output Format:** [Markdown or text guidance with structured MCP tool calls] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only TronScan governance lookups; optional API key configuration may be used for rate limits.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: Queries may include public TRON blockchain addresses.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid submitting private or sensitive address context that is not needed for the governance lookup.
+
+Risk: TronScan MCP or API requests may be rate-limited when no API key is configured.
+
+Mitigation: Configure a TronScan API key in the MCP setup when rate limits affect expected usage.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/sshnii/skills/tronscan-sr-governance)
+- [TronScan MCP Server](https://mcp.tronscan.org/mcp)
+- [TronScan MCP Guide](https://mcpdoc.tronscan.org)
+- [TronScan Developer API](https://tronscan.org/#/developer/api)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, API calls, Configuration guidance]
+
+**Output Format:** [Markdown guidance with TronScan MCP tool names, query inputs, and response summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May involve public TRON blockchain addresses; TronScan API key configuration may be needed if rate limits are encountered.]
+
+## Skill Version(s):
+
+1.0.3 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,210 @@
+# Iterate Skill 默认配置 / Default configuration
+# 复制到项目根目录并修改，即可覆盖默认值。
+# Copy this file to project root to override defaults.
+#
+# 重要 / IMPORTANT:
+# 下方的 validation 命令只是示例，必须根据你的实际项目自定义。
+# The validation commands below are examples only. You MUST customize them
+# for your actual project stack, package manager, and module layout.
+
+# 迭代目标 / Iteration goal
+goal: "Improve code quality and maintainability"
+
+# 最大轮数 / Max rounds
+max_rounds: 7
+
+# 输出语言 / Output language: zh | en
+language: en
+
+# 默认执行模式 / Default execution mode (v3.0):
+#   iterate   — 原模式：多轮审查-修复-收敛（默认，零破坏）
+#   defensive — 防御式编程模式：面向"让 AI 做正常增量式编程任务"，从头至尾防御式纪律
+# 调用参数里的显式 `defensive` 会覆盖此默认值。
+# Default execution mode (v3.0): 'iterate' (original loop, default, zero breakage)
+# or 'defensive' (defensive-programming mode for incremental coding tasks).
+# An explicit 'defensive' in the invocation overrides this value.
+mode: iterate
+
+# 启用的审查维度 / Enabled review dimensions
+# 可用值见 config/dimensions.yaml
+dimensions:
+  - correctness
+  - security
+  - performance
+  - architecture
+  - style-tests
+  - tech-debt
+  - spec-compliance
+  - frontend-backend
+  - ui-ux
+
+# 审查范围 / Review scope
+# - changed-only: 仅审查本轮有改动的文件（增量审查）。
+# - full:         每次审查整个代码库（全量审查）。
+review:
+  scope: full
+
+# 原子问题判定阈值 / Atomic issue thresholds
+atomic:
+  max_lines: 20
+  max_adjacent_methods: 3
+
+# Git 配置 / Git configuration
+git:
+  target_branch: main
+  # 默认是否使用 worktree。注意：当工作区有未提交改动/未跟踪文件时，
+  # 无论此值如何，iterate 都会优先用 worktree 隔离（见 SKILL.md Step 1.7）。
+  use_worktree: false
+  # 每轮修复验证通过后是否立即 push。
+  # true:  每轮都 push（旧行为，高风险）。
+  # false: 只在本地合并，最后一次性 push（默认，安全）。
+  push_per_round: false
+  # 是否在每轮验证通过后自动 merge 回 target_branch。
+  # true:  每轮自动 merge（旧行为，高风险）。
+  # false: 不自动 merge，仅保留在迭代分支上，由用户决定何时合并（默认，安全）。
+  auto_merge: false
+
+# 验证命令安全 / Validation command safety
+# 运行时只允许执行 validation.commands 中【精确匹配】的命令（唯一信任源）。
+# 不在 commands 中的命令直接拒绝，不可通过用户确认绕过。
+# command_whitelist 仅用于配置期校验（旧字段，兼容保留），不参与运行时匹配。
+validation:
+  command_whitelist:
+    - "ruff"
+    - "mypy"
+    - "pytest"
+    - "swift"
+    - "npm run"
+    - "yarn"
+    - "pnpm"
+    - "go"
+    - "cargo"
+    - "python"
+    - "python3"
+
+  # 键名对应项目模块（示例），AI 会根据改动的模块选择执行。
+  # 使用者决定：这些命令完全由你配置，AI 只读取并执行你信任的命令。
+  # 运行时校验要求命令与下方某条【完全一致】（去除首尾空白后），
+  # 例如只能执行 "pytest tests/ -x -q"，不能改参数也不能拼接。
+  # User decides: these commands are fully configurable. The AI only reads and
+  # executes commands you trust — and only if they match EXACTLY (after trim).
+  commands:
+    python:
+      - "ruff check src/"
+      - "mypy src/ --ignore-missing-imports"
+      - "pytest tests/ -x -q"
+    swift:
+      - "swift build -c debug"
+    typescript:
+      - "npm run compile"
+
+# 项目级不变量（防御式编程模式 / v3.0 可选段）
+# 在「防御式编程模式」（/iterate defensive）的收尾阶段由 `iterate invariant`
+# 执行：声明"项目在任何时候都必须成立"的约束。命令与 validation.commands
+# 同样要求精确匹配；ensure 为文件存在断言（相对项目根）。
+# 未配置本段时，`iterate invariant` 自动退化为执行 validation.commands，
+# 因此旧配置无需任何改动。
+# Project-level invariants (defensive-programming mode / v3.0, optional).
+# Run by `iterate invariant` at the end of defensive mode: constraints that must
+# always hold. Commands must match EXACTLY (same rule as validation.commands);
+# ensure entries are file-existence assertions (relative to project root).
+# When this section is absent, `iterate invariant` degrades to validation.commands.
+invariants:
+  # 收尾时必须存在的关键产物（相对项目根） / Artifacts that must exist at delivery
+  ensure:
+    - "README.md"
+  # 收尾时必须通过的命令 / Commands that must pass at delivery
+  commands:
+    python:
+      - "pytest tests/ -x -q"
+    typescript:
+      - "npm run compile"
+
+# Reviewer 输出校验 / Reviewer output validation
+reviewer:
+  # 是否对子代理返回的 JSON 进行 schema 校验，格式不符时自动重试。
+  output_schema_validation: true
+  # 硬证据门禁（默认开启）：meta-review 时逐条校验 finding 的 file/line 是否
+  # 真实存在于磁盘代码中。伪造路径或越界行号会作为 critical 的
+  # EVIDENCE_VIOLATION 浮出，并把最终裁决翻转为 needs_revision，强制子代理
+  # 只能锚定实际读过的真实代码。设 false 可关闭。
+  # Hard code-evidence gate (default on): during meta-review, every finding's
+  # file/line is validated against real files on disk. A fabricated path or
+  # out-of-range line surfaces as a critical EVIDENCE_VIOLATION and flips the
+  # final verdict to needs_revision — reviewers must anchor to real, read code.
+  evidence_validation: true
+  # 范围覆盖率校验（默认开启，提示性）：meta-review 时把子代理自报的已读文件
+  # (readFiles) 与它被分配到的审查清单对比，明显缺口以 medium 的 COVERAGE_GAP
+  # 提示浮出，用于推动子代理逐文件读取自身负责范围，绝不反转判定。设 false 关闭。
+  # Prompt-informative scope coverage check (default on): during meta-review, the
+  # reviewer's self-reported readFiles are compared to the file inventory it was
+  # assigned; a meaningful gap surfaces as a medium COVERAGE_GAP hint to push
+  # reviewers to read every file in their own scope. Never flips the verdict.
+  coverage_validation: true
+  # 一次 full 范围审查每批分配的文件数（默认 25）。较大清单会按此拆分为多个
+  # reviewer 分批任务，保持单次审查范围可控且不遗漏。
+  # Files per reviewer batch in a `full` scope review (default 25). Large inventories
+  # are split into per-chunk reviewer tasks to stay bounded.
+  scope_chunk_size: 25
+
+# Onboarding 状态（由 onboarding 流程自动写入，请勿手动编辑）
+# Onboarding state (auto-generated by the onboarding flow; do not edit manually)
+# 运行 `iterate onboard` 或在 AI 工具中调用 /iterate 时自动生成。
+# Run `iterate onboard` or invoke /iterate in your AI tool to generate.
+onboarding:
+  # 指纹版本号 / Fingerprint schema version
+  version: "1.0"
+  # 是否在每次 /iterate 时检查 manifest 漂移 / Check manifest drift on each invocation
+  drift_check: true
+  # 漂移忽略模式 / Drift ignore patterns (fnmatch glob)
+  # 列表中的 manifest 文件不会计入漂移检测，避免锁文件等频繁变更的文件触发误报。
+  # drift_ignore:
+  #   - "package-lock.json"
+  #   - "yarn.lock"
+  # 此段在首次 onboarding 后由 CLI/AI 填充 / Populated after first onboarding
+  # fingerprints:
+  #   - path: "package.json"
+  #     sha256: "..."
+
+# 个性化配置 / Personalization
+# 捕获 AI 扫描不到的项目专属约束和经验。
+# Capture project-specific constraints AI scanning cannot discover.
+# 运行 `iterate personalize` 或在 onboarding 向导中选择个性化配置来填充。
+# Run `iterate personalize` or choose personalization in the onboarding wizard.
+personalization:
+  # 版本号 / Schema version (auto-managed, do not edit manually)
+  # version: "1.0"
+
+  # 禁区 / Protected files — iterate 不得修改（glob 模式）
+  # protected_paths:
+  #   - "legacy/**"
+  #   - "vendor/**"
+
+  # 风险区 / Risk areas — 改动需架构审批
+  # risk_areas:
+  #   - path: "src/auth/"
+  #     reason: "认证模块，任何改动需架构审批"
+
+  # 已知意图 / Known intentional — 抑制误报（文件:行号 + 维度）
+  # known_intentional:
+  #   - file: "db/queries.py"
+  #     line: 42
+  #     dimension: "tech-debt"
+  #     reason: "使用 any 是性能优化，非技术债"
+
+  # 维度定制 / Dimension focus — 追加 focus 到特定维度
+  # dimension_focus:
+  #   - dimension: "security"
+  #     focus: "SQL 注入（项目历史上有过事故）"
+
+  # 优先修复顺序 / Fix priority order — 从高到低
+  # fix_priority_order:
+  #   - security
+  #   - correctness
+  #   - performance
+
+  # 禁止的修复方式 / Forbidden fixes
+  # forbidden_fixes:
+  #   - "try-catch 吞错"
+  #   - "# noqa"
+  #   - "// @ts-ignore"

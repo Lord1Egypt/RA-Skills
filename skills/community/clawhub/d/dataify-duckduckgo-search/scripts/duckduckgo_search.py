@@ -510,14 +510,14 @@ def get_token(args: argparse.Namespace) -> str:
     token = args.token or os.environ.get("DATAIFY_API_TOKEN")
     if not token and not args.no_prompt and sys.stdin.isatty():
         print(
-            "未检测到 Dataify API token。请输入 token，或前往 https://dashboard.dataify.com/login?utm_source=skill 注册获取。",
+            "未检测到 Dataify API token。请输入 token，或前往 https://dashboard.dataify.com/login?utm_source=skill 注册获取；新账号注册即得 50 免费积分。",
             file=sys.stderr,
         )
         token = getpass.getpass("Dataify API token: ")
 
     if not token:
         raise SystemExit(
-            "未检测到 Dataify API token。请提供 --token，设置 DATAIFY_API_TOKEN，或前往 https://dashboard.dataify.com/login?utm_source=skill 注册获取。"
+            "未检测到 Dataify API token。请提供 --token，设置 DATAIFY_API_TOKEN，或前往 https://dashboard.dataify.com/login?utm_source=skill 注册获取；新账号注册即得 50 免费积分。"
         )
 
     os.environ["DATAIFY_API_TOKEN"] = token
@@ -564,7 +564,7 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--no-cache", dest="no_cache", help="Whether to skip cache: true or false.")
     parser.add_argument("--dry-run", action="store_true", help="Print the request body without calling the API.")
     parser.add_argument("--preview", action="store_true", help="Print a Markdown parameter table and do not call the API.")
-    parser.add_argument("--confirmed", action="store_true", help="Confirm the displayed parameters and call the API.")
+    parser.add_argument("--confirmed", action="store_true", help="Deprecated compatibility flag; read-only searches run directly.")
     parser.add_argument("--no-prompt", action="store_true", help="Do not prompt interactively for a token.")
     return parser
 
@@ -587,9 +587,6 @@ def main() -> int:
     if args.dry_run:
         print(json.dumps(request_body_from_fields(fields), ensure_ascii=False, indent=2))
         return 0
-
-    if not args.confirmed:
-        raise SystemExit("调用接口前必须先向用户展示参数表并获得确认。确认后请添加 --confirmed 再调用。")
 
     token = get_token(args)
     return post_request(request_body_from_fields(fields), token)

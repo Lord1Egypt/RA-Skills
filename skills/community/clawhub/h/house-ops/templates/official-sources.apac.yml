@@ -1,0 +1,270 @@
+# templates/official-sources.apac.yml — 亚太首批三个市场的官方/公开房地产数据源登记表
+#   hk = 中国香港特别行政区（Hong Kong, China）· sg = 新加坡 · jp = 日本
+#
+# 规则与 official-sources.cn.yml / eu.yml 相同——**登记 ≠ 核实**。用前必须联网核实可达性、
+#       数据口径与粒度，并把 as_of 写进扫描记录；核实结果与本表冲突时以核实结果为准。
+#
+# 这三个市场的成交价可得性差异极大，直接决定 Price 维度能做到哪一层：
+#   hk  有——土地注册处 IRIS 的土地登记册记载成交代价，是官方成交价口径（按次收费）。
+#   sg  部分有——组屋转售是真正的交易级开放数据（1990 起）；私宅只有 URA 的 caveat 登记，
+#       而 caveat 属自愿登记，覆盖率约 80–90%，且新盘自 2015 年起不是 caveat 而是发展商申报。
+#   jp  没有单套级——只有 MLIT 的成约价格情报（REINS 加工）与取引価格情報（当事人问卷），
+#       都到不了「这一套」，只能到同区同类型的成交区间。
+#
+# 字段约定（沿用 CN/EU 表）：
+#   market        市场代码（hk / sg / jp），供 `scan official --market apac` 或 `--market hk` 过滤
+#   tier          落入 `_shared.md` 数据可靠度四档的哪一层：成交数据 | 公开统计 | 开放登记 | 未见开放源
+#   granularity   数据粒度：内联数组，取值 ∈ 单套级|地块级|楼盘级|小区级|街区级|片区级|区级|全市级|全国级
+#                  （枚举 SoT：scrapers/_fields.mjs 的 SOURCE_GRANULARITIES；doctor 断言本表不漂移）
+#   access        访问方式：免登录 | 需注册 | 收费/需现场 | 未知
+#   verify_before_use 恒为 true
+
+as_of_registry: "2026-09-24"
+market_registry: apac
+
+sources:
+  # ============================ 中国香港（Hong Kong, China） ============================
+  - market: hk
+    city: "中国香港特别行政区（Hong Kong, China）"
+    keywords: [Hong Kong, 香港, HK, Kowloon, 九龙, 新界, New Territories, 港岛]
+    name: 土地注册处「综合注册资讯系统」（IRIS）网上服务 · 土地登记册
+    url: https://www.iris.gov.hk
+    data: [业权人, 成交代价 consideration, 成交日期, 按揭/押记/命令等产权负担, 分段与不分割份数]
+    tier: 成交数据
+    granularity: [单套级]
+    access: 收费/需现场
+    update: 每日上午 7:30
+    licence: 法定登记册查册（按份收费，非开放授权）
+    verify_before_use: true
+    notes: 香港最接近「产调」的源，也是唯一能核实真实成交价的官方口径——代理口述与宣传单上的成交价，
+      一律以 IRIS 记载的代价为准。只能按地址/地段/物业参考编号查，**不能以业主姓名反查**（私隐）。
+      登记册被「封存」（如地段已分割、楼宇已拆卸）后不再记录后续交易，须改查分段或重建后的登记册。
+  - market: hk
+    city: "中国香港特别行政区（Hong Kong, China）"
+    keywords: [Hong Kong, 香港, 土地查册, land search, API]
+    name: 土地注册处 土地查册 API
+    url: https://www.landreg.gov.hk
+    data: [程式化存取土地登记册数据与影像文件]
+    tier: 成交数据
+    granularity: [单套级]
+    access: 收费/需现场
+    update: 随登记册
+    licence: 需申请并按量计费（以土地注册处公告为准）
+    verify_before_use: true
+    notes: 2025 年推出，供批量比对成交用。推出日期、可用字段与计费方式**各资料说法不一**，
+      用前以土地注册处当期公告为准。
+  - market: hk
+    city: "中国香港特别行政区（Hong Kong, China）"
+    keywords: [Hong Kong, 香港, 楼价指数, 租金指数, RVD, 差饷]
+    name: 差饷物业估价署 物业市场统计资料（rvd.gov.hk / data.gov.hk）
+    url: https://www.rvd.gov.hk
+    data: [每月楼价指数与租金指数, 回报率, 落成量预测, 空置率, 按私人类别（A/B/C…）与分区]
+    tier: 公开统计
+    granularity: [全市级, 区级]
+    access: 免登录
+    update: 每月
+    licence: 政府资料一线通（data.gov.hk）
+    verify_before_use: true
+    notes: 判断片区趋势与租金回报的唯一官方口径，不能用来核实单套成交价。
+  - market: hk
+    city: "中国香港特别行政区（Hong Kong, China）"
+    keywords: [Hong Kong, 香港, 差饷租值, 实用面积, 楼龄, PIO, rvdpi]
+    name: 物业资讯网（PIO · 差饷物业估价署）
+    url: https://www.rvdpi.gov.hk
+    data: [应课差饷租值, 实用面积, 楼龄, 许可用途, 物业类别]
+    tier: 开放登记
+    granularity: [单套级]
+    access: 免登录（部分纪录需付费订购）
+    update: 每年重估差饷租值
+    licence: 政府网上服务
+    verify_before_use: true
+    notes: 核实「实用面积 / 楼龄 / 许可用途」的官方口径，专门用来打假——中介报的面积与年份常与官方不一致。
+  - market: hk
+    city: "中国香港特别行政区（Hong Kong, China）"
+    keywords: [Hong Kong, 香港, 一手楼, 新盘, 价单, 成交纪录册, SRPE]
+    name: 一手住宅物业销售资讯网（SRPE）· 价单与成交纪录册
+    url: https://www.srpe.gov.hk
+    data: [价单（叫价）, 销售安排, 成交纪录册（成交价/成交日期/支付方式）, 楼书, 示范单位安排]
+    tier: 成交数据
+    granularity: [单套级]
+    access: 免登录
+    update: 发展商按《一手住宅物业销售条例》实时更新
+    licence: 政府法定披露平台
+    verify_before_use: true
+    notes: 一手盘唯一权威成交口径。**关键陷阱：价单是叫价，只有成交纪录册才是成交**；
+      营销文案引用的一手成交价必须与成交纪录册逐条对齐。
+  - market: hk
+    city: "中国香港特别行政区（Hong Kong, China）"
+    keywords: [Hong Kong, 香港, 屋宇署, 百楼图网, BRAVO, 僭建, 维修令]
+    name: 屋宇署「百楼图网」（BRAVO）+ 私人大厦电脑资料库
+    url: https://www.bd.gov.hk
+    data: [楼宇记录与小型工程记录, 大厦层数/单位数目/组织, 维修与清拆令相关记录]
+    tier: 开放登记
+    granularity: [单套级]
+    access: 需注册
+    update: 随署方更新
+    licence: 政府网上服务
+    verify_before_use: true
+    notes: 核实僭建、维修令与大厦管理状况。香港的老楼风险（大维修分摊、钉契、僭建）**照片看不出来**。
+  - market: hk
+    city: "中国香港特别行政区（Hong Kong, China）"
+    keywords: [Hong Kong, 香港, 地段, 地理资讯地图, GeoInfo, 土地契约]
+    name: 地政总署 地理资讯地图（GeoInfo Map）
+    url: https://www.landsd.gov.hk
+    data: [地段界线, 土地用途与规划, 地理位置]
+    tier: 开放登记
+    granularity: [街区级, 地块级]
+    access: 免登录
+    update: 定期
+    licence: 政府资料一线通
+    verify_before_use: true
+    notes: 用于核实地段界线与土地用途；土地契约年期以地契与土地注册处登记册为准。
+
+  # ================================ 新加坡（Singapore） ================================
+  - market: sg
+    city: 新加坡（Singapore）
+    keywords: [Singapore, 新加坡, HDB, 组屋, BTO, resale, 转售]
+    name: HDB 组屋转售成交价（data.gov.sg）
+    url: https://data.gov.sg
+    data: [1990-01 起逐笔转售成交, 组屋型号, 楼层, 面积, 成交价, 成交日期, 剩余租期相关栏位]
+    tier: 成交数据
+    granularity: [单套级]
+    access: 免登录
+    update: 每月
+    licence: Singapore Open Data Licence
+    verify_before_use: true
+    notes: "**新加坡最强的一档开放源，而且是真正的成交登记（不是 caveat）**——可核实组屋逐笔成交。 但只覆盖组屋；私人住宅另看 URA，且 URA 的覆盖率明显更差。"
+  - market: sg
+    city: 新加坡（Singapore）
+    keywords: [Singapore, 新加坡, URA, caveat, 私宅, 成交, REALIS]
+    name: URA 私人住宅成交纪录（Private Residential Property Transactions / REALIS）
+    url: https://www.ura.gov.sg
+    data: [近 60 个月私宅成交（项目/邮区/面积/单价/成交日）, 成交类型：新售/转售/转让]
+    tier: 成交数据
+    granularity: [单套级]
+    access: 免登录（e-Service）；深历史需 REALIS 付费订阅
+    update: 转售与转让每周二、五；新售每周五
+    licence: URA 使用条款
+    verify_before_use: true
+    notes: "**四个必须写进报告的盲区**：① caveat 属自愿登记，URA 自己说只覆盖约 80–90% 的转售与转让， 约八分之一的成交不在这里；② 异常高价/低价纪录会被剔除，且剔除清单不公开； ③ 2015-05-25 起「新售」不是 caveat，而是持牌发展商每周申报的 OTP； ④ 新售/转售/转让三种类型来自不同管道，**单价混算即为错**。深历史（>5 年）只能付费 REALIS。"
+  - market: sg
+    city: 新加坡（Singapore）
+    keywords: [Singapore, 新加坡, URA, 价格指数, index, IRAS]
+    name: URA 私宅价格指数（以 IRAS 印花税数据补足）
+    url: https://www.ura.gov.sg
+    data: [季度私宅价格指数, 租金指数, 中位数与成交量]
+    tier: 公开统计
+    granularity: [全市级, 区级]
+    access: 免登录
+    update: 季度
+    licence: URA 使用条款
+    verify_before_use: true
+    notes: 自 2015 Q1 起该指数会补充 IRAS 印花税数据与发展商新售数据，因此**比免费 caveat 查册更完整**。
+      判断趋势用指数，核实单套仍须回到成交纪录。
+  - market: sg
+    city: 新加坡（Singapore）
+    keywords: [Singapore, 新加坡, URA SPACE, OneMap, Master Plan, 用途, 地积比率]
+    name: URA SPACE / OneMap（SLA）规划与地图
+    url: https://www.ura.gov.sg
+    data: [总规（Master Plan）分区用途, 地积比率/总楼面, 地址与地界]
+    tier: 开放登记
+    granularity: [街区级, 地块级]
+    access: 免登录
+    update: 随总规修订
+    licence: 政府开放数据
+    verify_before_use: true
+    notes: 核实规划用途与开发强度（是否有加建/重建空间、周边是否改划）的官方地图口径。
+  - market: sg
+    city: 新加坡（Singapore）
+    keywords: [Singapore, 新加坡, SLA, INLIS, 业权, 地契, tenure, 99年]
+    name: SLA 业权查询（INLIS / Integrated Land Information Service）
+    url: https://www.sla.gov.sg
+    data: [业权与产权负担, 地契年期（99 年 / 999 年 / 永久）, 地段资料]
+    tier: 开放登记
+    granularity: [单套级]
+    access: 收费/需现场
+    update: 随登记
+    licence: 政府收费服务
+    verify_before_use: true
+    notes: "**新加坡没有公开的业主名册**——业权与地契年期只能透过 SLA 付费查询， 中介说的「99 年还是永久」必须以此为准，直接决定融资与转售受众。"
+
+  # ================================== 日本（Japan） ==================================
+  - market: jp
+    city: 日本（Japan）
+    keywords: [Japan, 日本, Tokyo, 东京, Osaka, 大阪, 不动产, 地价]
+    name: 国土交通省 不动产情报图书馆（不动産情報ライブラリ）
+    url: https://www.reinfolib.mlit.go.jp
+    data: [地価公示, 都道府県地価調査, 不動産取引価格情報（2005 起问卷）, 成約価格情報（REINS，2021-02 起）, 都市計画（用途地域/防火/立地適正化）, 防災（洪水/土砂/津波）, 将来推計人口]
+    tier: 成交数据
+    granularity: [片区级]
+    access: 免登录（API 需申请）
+    update: 取引価格情報每季（1/4/7/10 月）；地価公示每年 3 月、地価調査每年 9 月
+    licence: 国土交通省开放数据
+    verify_before_use: true
+    notes: "**日本做不到「逐套核实成交价」**：取引価格情報是对交易当事人的问卷调查，只到行政区/车站层级； 成約価格情報是 REINS 成交价经加工后公布（个别交易不可特定）。因此日本的最佳档位是 「同区同类型的成約区间」，**不得伪造单套成交价**。地图叠加用途地域与灾害区是其最大价值。"
+  - market: jp
+    city: 日本（Japan）
+    keywords: [Japan, 日本, 法务局, 登记簿, 登記事項証明書, 产调]
+    name: 法务局 登記事項証明書（登记簿）
+    url: https://houmukyoku.moj.go.jp
+    data: [所有者, 所有权移转经过, 抵押权/差押等权利负担, 地目与面积]
+    tier: 开放登记
+    granularity: [单套级]
+    access: 收费/需现场
+    update: 随登记
+    licence: 法务局交付（谁都能申请，按份收费）
+    verify_before_use: true
+    notes: 日本版「产调」。登记是权利对抗要件，但**登记簿上的地址可能不是现况**（住所变更未登记），
+      且 2024-04-01 起相続登記义务化后才逐步补全——老物件要留意所有者不明/相続未了的风险。
+  - market: jp
+    city: 日本（Japan）
+    keywords: [Japan, 日本, 路線価, 相続税, 国税庁, 固定資産税評価]
+    name: 国税庁 路線価図・評価倍率表（相続税路線価）
+    url: https://www.rosenka.nta.go.jp
+    data: [按道路标价（円/㎡）, 评价倍率]
+    tier: 公开统计
+    granularity: [街区级, 地块级]
+    access: 免登录
+    update: 每年（7 月公布）
+    licence: 国税庁公开资料
+    verify_before_use: true
+    notes: 相続税評価基准，经验上约为公示地价的八成。只用来**推算土地价值区间与下限**，不是成交价。
+  - market: jp
+    city: 日本（Japan）
+    keywords: [Japan, 日本, ハザードマップ, 洪水, 土砂, 津波, 液状化]
+    name: ハザードマップポータルサイト（防灾地图）
+    url: https://disaportal.gsi.go.jp
+    data: [洪水浸水想定区域, 土砂灾害警戒区域, 津波浸水想定, 液状化可能性]
+    tier: 开放登记
+    granularity: [街区级, 地块级]
+    access: 免登录
+    update: 随各自治体修订
+    licence: 政府公开资料
+    verify_before_use: true
+    notes: 日本买房的灾害风险（水淹/土砂/液状化）是价格的主要解释变量，必须在看房前查。
+  - market: jp
+    city: 日本（Japan）
+    keywords: [Japan, 日本, 重要土地等調査法, 注視区域, 特別注視区域, 内閣府]
+    name: 内閣府 重要土地等調査法ポータル（注视区域/特别注视区域）
+    url: https://www.cas.go.jp
+    data: [注視区域与特別注視区域的指定范围]
+    tier: 开放登记
+    granularity: [街区级, 地块级]
+    access: 免登录
+    update: 随指定追加（2026 年 4 月追加指定）
+    licence: 政府公开资料
+    verify_before_use: true
+    notes: "**买地前必查**：特別注視区域内 200㎡ 以上的土地或建物所有权移转，须在签约前事前届出； 内外无差别（日本人也一样），未届出可处 6 月以下惩役或 100 万日圆以下罚款。城市住宅多不在范围内。"
+  - market: jp
+    city: 日本（Japan）
+    keywords: [Japan, 日本, 不動産価格指数, 国土交通省, 指数]
+    name: 国土交通省 不動産価格指数
+    url: https://www.mlit.go.jp
+    data: [住宅地・戸建て・マンション的月度价格指数]
+    tier: 公开统计
+    granularity: [全国级, 区级]
+    access: 免登录
+    update: 月度（2026 年起暂停）
+    licence: 国土交通省公开资料
+    verify_before_use: true
+    notes: "**重要缺口：因计算程序故障，自 2026-01 起的发布已暂停（2026-08-27 公告），且未公布恢复日期。** 引用 2026 年「日本官方房价指数」前必须先确认该月份是否真的发布过。"

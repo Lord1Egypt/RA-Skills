@@ -1,44 +1,58 @@
-## Description: <br>
-Real-time X/Twitter search powered by Grok-4. Find tweets, trends, and discussions with citations. Grok-4.20 also returns image results alongside tweet citations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Real-time X/Twitter search powered by Grok-4 for finding tweets, trends, and discussions with citations.
 
-## Publisher: <br>
-[mvanhorn](https://clawhub.ai/user/mvanhorn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[mvanhorn](https://clawhub.ai/user/mvanhorn)
 
-## Use Case: <br>
-Developers and agent users use this skill to search X/Twitter in real time for tweets, trends, account-specific posts, and cited discussions through xAI's Grok search capability. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Tweet-search prompts are sent to xAI using the configured XAI_API_KEY. <br>
-Mitigation: Use the skill only for explicit X/Twitter search requests and avoid submitting sensitive or confidential prompts. <br>
-Risk: The API key may be available through the environment or local skill configuration. <br>
-Mitigation: Keep XAI_API_KEY in scoped local configuration or environment variables and rotate it if exposure is suspected. <br>
-Risk: Returned tweets, citations, and trends may be incomplete or misleading for decision-making. <br>
-Mitigation: Review cited X/Twitter links and corroborate important claims before acting on the results. <br>
+## Use Case:
 
+Developers and agents use this skill to search X/Twitter in real time through xAI, optionally filtering by date range, included handles, or excluded handles, and returning tweet text, timestamps, links, citations, or JSON.
 
-## Reference(s): <br>
-- [Search X on ClawHub](https://clawhub.ai/mvanhorn/search-x) <br>
-- [xAI Documentation](https://docs.x.ai) <br>
-- [xAI Console](https://console.x.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, guidance] <br>
-**Output Format:** [Markdown or plain text search results with tweet citations; optional full JSON or links-only output.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires XAI_API_KEY. Supports day-range filters, included or excluded handles, compact output, links-only output, JSON output, and model override.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.1 (source: server release metadata) <br>
+Risk: Search terms, date filters, and handle filters are sent to xAI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for queries that are appropriate to send to xAI, and avoid submitting sensitive or confidential search terms.
+
+Risk: The skill requires an xAI API key and may read the local ~/.clawdbot/clawdbot.json configuration as a fallback credential source.
+
+Mitigation: Keep XAI_API_KEY private, restrict local config file access, and review the local credential lookup before installation if shared skill config is not desired.
+
+Risk: Returned tweets and citations may reflect fast-moving public discussion and should not be treated as verified facts by default.
+
+Mitigation: Review linked citations and corroborate important claims before relying on the search output.
+
+## Reference(s):
+
+- [Search X on ClawHub](https://clawhub.ai/mvanhorn/skills/search-x)
+- [xAI Documentation](https://docs.x.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown text with tweet links and citations, links-only text, or full JSON]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires XAI_API_KEY; default search window is configurable with SEARCH_X_DAYS, and model selection is configurable with SEARCH_X_MODEL.]
+
+## Skill Version(s):
+
+1.2.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

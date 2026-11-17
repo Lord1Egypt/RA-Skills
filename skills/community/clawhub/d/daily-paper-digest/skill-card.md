@@ -1,44 +1,60 @@
-## Description: <br>
-Daily Paper Digest aggregates recent AI papers from arXiv and Hugging Face and formats them for chat delivery. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Daily Paper Digest aggregates recent AI papers from arXiv and Hugging Face and formats them for delivery to chat applications.
 
-## Publisher: <br>
-[qjymary](https://clawhub.ai/user/qjymary) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[qjymary](https://clawhub.ai/user/qjymary)
 
-## Use Case: <br>
-Developers, researchers, and teams use this skill to collect daily AI paper listings from configured sources, filter them by topic, and produce a readable digest for chat channels. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill makes outbound requests to arXiv and Hugging Face to fetch public paper listings. <br>
-Mitigation: Enable it only in environments where outbound access to those sources is allowed. <br>
-Risk: The skill is configured for a daily 9:00 scheduled run. <br>
-Mitigation: Confirm the schedule before enabling automated execution. <br>
-Risk: Digests may be posted to chat channels. <br>
-Mitigation: Use channels where public paper titles, summaries, authors, and links are appropriate for the audience. <br>
+## Use Case:
 
+Developers, researchers, and OpenClaw users use this skill to collect daily AI paper updates, filter them by configurable topics, and produce a formatted digest for chat delivery or scheduled review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/qjymary/daily-paper-digest) <br>
-- [Configured homepage](https://github.com/your-username/daily-paper-digest) <br>
-- [Hugging Face Papers](https://huggingface.co/papers) <br>
-- [arXiv category taxonomy](https://arxiv.org/category_taxonomy) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Formatted text digest with paper titles, authors, summaries, source links, and run guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Output can be filtered through JSON source configuration and is intended for chat delivery.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill makes scheduled outbound requests to arXiv and Hugging Face paper sources.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer explicit slash-command or scheduled activation and restrict network egress to the documented paper sources.
+
+Risk: Pinned dependencies may need maintenance before production deployment.
+
+Mitigation: Review and update pinned Python dependencies before production use.
+
+Risk: The Hugging Face detail helper can fetch a caller-provided paper URL if exposed as a callable tool.
+
+Mitigation: Remove that helper from exposed tool surfaces or validate allowed URLs before use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/qjymary/skills/daily-paper-digest)
+- [Hugging Face Papers](https://huggingface.co/papers)
+- [arXiv Category Taxonomy](https://arxiv.org/category_taxonomy)
+- [OpenClaw metadata homepage](https://github.com/your-username/daily-paper-digest)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, shell commands, guidance]
+
+**Output Format:** [Formatted text digest with paper titles, authors, abstracts, source links, and source counts; documentation includes Markdown and shell command examples.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are configurable through JSON source and filter settings and are intended for Chinese-language chat delivery.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter, skill.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

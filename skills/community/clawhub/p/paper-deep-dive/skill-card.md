@@ -1,46 +1,60 @@
-## Description: <br>
-Paper Deep Dive helps an agent produce structured, evidence-driven analyses of a single academic paper, including research context, method walkthroughs, claim-to-evidence mapping, and limitations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Paper Deep Dive helps agents produce structured, evidence-driven Chinese-language deep dives for a single academic paper, including research context, method explanation, claim-to-evidence analysis, limitations, and follow-up reading.
 
-## Publisher: <br>
-[tom-zju](https://clawhub.ai/user/tom-zju) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tom-zju](https://clawhub.ai/user/tom-zju)
 
-## Use Case: <br>
-Researchers, students, engineers, and technical readers use this skill to turn a focal paper, PDF, arXiv page, appendix, project page, or title-and-abstract input into a rigorous deep dive. It is intended for blog-quality explainers, group discussion preparation, research-context mapping, method analysis, and checking whether experiments support the paper's claims. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can produce incorrect, incomplete, or overconfident analysis of a paper's claims, methods, or experiments. <br>
-Mitigation: Treat outputs as analysis aids, verify important claims against the original paper, and preserve explicit evidence labels and uncertainty markers. <br>
-Risk: Inputs may include private drafts, confidential research, or unreleased code. <br>
-Mitigation: Provide sensitive materials only to an agent/runtime approved to process them. <br>
+## Use Case:
 
+External researchers, students, technical writers, and engineers use this skill to convert a focal paper and supporting sources such as PDFs, arXiv pages, appendices, project pages, or official code into a detailed paper analysis. It is especially suited for blog drafts, technical talks, research discussions, method walkthroughs, and checking whether experiments support the paper's claims.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tom-zju/paper-deep-dive) <br>
-- [Evidence rules](references/evidence-rules.md) <br>
-- [Output template](references/output-template.md) <br>
-- [Paper types](references/paper-types.md) <br>
-- [Quick reference](references/quickref.md) <br>
-- [Visualization guide](references/visualization.md) <br>
-- [Attention paper example](references/example-attention.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Structured Markdown with tables and optional Mermaid diagrams] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include evidence labels, claim-to-evidence tables, formulas, and Mermaid diagrams; output depth depends on the quality and completeness of the paper sources provided.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill defaults to Chinese-language paper analysis, which may not match every deployment's reader language.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Tell the agent the required output language when installing or invoking the skill for a non-Chinese audience.
+
+Risk: Paper analysis can overstate unsupported claims when source material is incomplete or only an abstract is available.
+
+Mitigation: Require use of the skill's limited deep-dive posture for title-and-abstract inputs and ask the agent to label unsupported points as unverified.
+
+## Reference(s):
+
+- [Paper Deep Dive Source](artifact/SKILL.md)
+- [Paper Deep Dive - Evidence Rules and Uncertainty Labels](artifact/references/evidence-rules.md)
+- [Paper Deep Dive - Full Output Template](artifact/references/output-template.md)
+- [Paper Deep Dive - Paper Type Adaptation Guide](artifact/references/paper-types.md)
+- [Paper Deep Dive - Quick Reference](artifact/references/quickref.md)
+- [Paper Deep Dive - Visualization Guidelines](artifact/references/visualization.md)
+- [Paper Deep Dive - Complete Example](artifact/references/example-attention.md)
+- [ClawHub Skill Page](https://clawhub.ai/tom-zju/skills/paper-deep-dive)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Structured Markdown, typically in Chinese, with tables and optional Mermaid diagrams]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce standard, deep-dive, or limited deep-dive variants depending on the user's source material.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,60 @@
-## Description: <br>
-Build a personal friendship system with interaction tracking, relationship health, and proactive maintenance reminders. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build a personal friendship system with interaction tracking, relationship health, and proactive maintenance reminders.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Individuals use this skill to maintain Markdown-based notes about friendships, track meaningful interactions and life events, and receive prompts for follow-ups, reconnection, and relationship maintenance. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can create long-lived local notes about other people, including sensitive life events and relationship details. <br>
-Mitigation: Require explicit confirmation before saving or updating details, keep ~/friends/ private, and periodically delete or redact old notes. <br>
-Risk: Friend profiles may include health, mental health, pregnancy, family, legal, or hardship information. <br>
-Mitigation: Avoid storing sensitive categories unless truly necessary and appropriate. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/friends) <br>
-- [Publisher profile](https://clawhub.ai/user/ivangdavila) <br>
-- [Making New Friends](artifact/making.md) <br>
-- [Deepening Friendships](artifact/deepening.md) <br>
-- [Friendship Conflicts](artifact/conflicts.md) <br>
-- [Reconnecting with Lost Friends](artifact/reconnecting.md) <br>
+## Use Case:
 
+External users use this skill to maintain a private friendship journal, track meaningful interactions and life events, and receive prompts for check-ins, reconnection, and conflict repair.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Files, Guidance] <br>
-**Output Format:** [Markdown friendship profiles, indexes, check-in notes, and conversational guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates and updates persistent local notes under ~/friends/ when used as described.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill encourages long-term plaintext records about identifiable friends, including sensitive life events and relationship context.
+
+Mitigation: Use it only for a private local friendship journal, avoid recording highly sensitive details unless deliberate, restrict folder permissions, and review or delete old records periodically.
+
+Risk: Friendship notes may include information about people who have not consented to being tracked.
+
+Mitigation: Keep entries minimal, factual, and respectful; avoid unnecessary health, mental-health, children, grief, conflict, or location details.
+
+Risk: Sync or backup tools could expose the ~/friends/ folder beyond the local machine.
+
+Mitigation: Exclude the folder from sync and backups unless the user has intentionally chosen protected storage.
+
+## Reference(s):
+
+- [Friends Skill Page](https://clawhub.ai/ivangdavila/skills/friends)
+- [Making New Friends](artifact/making.md)
+- [Deepening Friendships](artifact/deepening.md)
+- [Friendship Conflicts](artifact/conflicts.md)
+- [Reconnecting with Lost Friends](artifact/reconnecting.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Files, Configuration instructions]
+
+**Output Format:** [Markdown guidance and Markdown friendship records]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create and update local plaintext files under ~/friends/.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

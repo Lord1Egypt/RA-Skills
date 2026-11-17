@@ -1,44 +1,51 @@
-## Description: <br>
-Apicheck helps agents prepare API requests, curl commands, mock data, API documentation, HTTP status-code explanations, and header guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Apicheck helps agents construct API requests, generate curl commands and mock data, draft API documentation, and explain HTTP status codes and headers.
 
-## Publisher: <br>
-[xueyetianya](https://clawhub.ai/user/xueyetianya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xueyetianya](https://clawhub.ai/user/xueyetianya)
 
-## Use Case: <br>
-Developers and API practitioners use Apicheck to draft request payloads, generate curl examples, create mock data, write API documentation, and look up HTTP status-code or header guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated curl commands or API examples may include sensitive values if a user supplies tokens, keys, or credentials. <br>
-Mitigation: Review generated commands before running them and avoid passing secrets as command arguments. <br>
-Risk: The release includes an unrelated workflow-style shell script that records command arguments in a local Apicheck history file. <br>
-Mitigation: Avoid invoking that script with sensitive arguments, and check or clear the local Apicheck history file when needed. <br>
-Risk: The server security verdict is suspicious because the package combines a static API helper with the unrelated local-history behavior. <br>
-Mitigation: Install only after reviewing the shipped shell scripts and confirming the behavior is acceptable for the target environment. <br>
+## Use Case:
 
+Developers and engineers use Apicheck to ask an agent for API request examples, curl commands, mock JSON data, endpoint documentation, and quick HTTP status or header explanations.
 
-## Reference(s): <br>
-- [Apicheck on ClawHub](https://clawhub.ai/xueyetianya/apicheck) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
-- [API Tester reference document](artifact/tips.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with code blocks, curl commands, API documentation tables, and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include executable shell commands and sample credentials placeholders that users should review before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: The release evidence flags a purpose-mismatched workflow script that can write command arguments to persistent local history.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the package before installation, avoid passing secrets or tokens to its commands, and prefer installation after the publisher removes or clearly documents the extra workflow script and local logging.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/xueyetianya/skills/apicheck)
+- [BytesAgain Homepage](https://bytesagain.com)
+- [API Tester Reference](artifact/tips.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline code blocks and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include generated API examples, curl variants, mock JSON, API documentation, and HTTP/header explanations.]
+
+## Skill Version(s):
+
+2.0.0 (source: release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

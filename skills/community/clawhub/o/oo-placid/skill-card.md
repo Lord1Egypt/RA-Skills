@@ -1,43 +1,55 @@
-## Description: <br>
-Placid enables agents to read, create, update, and delete Placid data through an OOMOL-connected account using the oo CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill for Placid requests to inspect templates, create and check image generation requests, and delete image requests.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-External users and developers use this skill to operate Placid through an OOMOL-connected account, inspect connector schemas, manage templates, generate images, poll image status, and delete image requests with explicit approval. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: First-time setup may execute remote installer scripts directly from the network without verification. <br>
-Mitigation: Install the oo CLI from a trusted, versioned source or verify the installer before execution. <br>
-Risk: Write and delete actions can modify or remove Placid resources. <br>
-Mitigation: Approve these actions only after checking the exact payload, effect, and target. <br>
+## Use Case:
 
+For users working in Placid, agents can list or inspect templates, submit image-generation requests, check request status, and delete requests.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/oomol/oo-placid) <br>
-- [Placid homepage](https://placid.app) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [oo CLI install guide](https://cli.oomol.com/install-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON connector responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses live connector schemas before constructing action payloads.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence and skill frontmatter) <br>
+Risk: First-time setup instructions can lead an agent to run an online installer whose contents have not been verified.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install a verified, fixed CLI release separately and require approval before running any downloaded installer.
+
+Risk: The skill uses a connected Placid account and includes actions that create or delete image requests.
+
+Mitigation: Keep confirmation prompts enabled for writes and deletions, and review the target and payload before execution.
+
+## Reference(s):
+
+- [Placid](https://placid.app)
+- [Placid API documentation](https://placid.app/docs/2.0/rest/authentication)
+- [oo CLI project](https://github.com/oomol-lab/oo-cli)
+
+## Skill Output:
+
+**Output Type(s):** [Text, API results, Guidance]
+
+**Output Format:** [Natural-language summaries and structured Placid action results, including JSON data and image URLs.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Image requests may return a handle for later status checks.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter metadata, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

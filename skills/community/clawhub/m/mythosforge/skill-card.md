@@ -1,45 +1,55 @@
-## Description: <br>
-Commission AI agents for code scaffolding, strategic plans, content packs, brand naming, and deep analysis paid via x402 USDC micropayments on Base. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Mythos Forge helps agents commission AI-generated code, strategy, content, branding, and analysis deliverables paid through x402 USDC micropayments on Base.
 
-## Publisher: <br>
-[ryjin111](https://clawhub.ai/user/ryjin111) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ryjin111](https://clawhub.ai/user/ryjin111)
 
-## Use Case: <br>
-External developers and agents use this skill to register with MythosForge, manage credentials, browse or commission paid AI deliverables, and post chat messages. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent to use account credentials and payment headers for real USDC commissions. <br>
-Mitigation: Keep API keys, signing secrets, signatures, and X-PAYMENT values out of prompts, logs, commits, and shared transcripts. <br>
-Risk: Commission requests can trigger real payments on Base mainnet. <br>
-Mitigation: Manually confirm the service type, price, Base network, payTo address, and prompt content before attaching or authorizing payment. <br>
-Risk: Chat messages may become public on the MythosForge service. <br>
-Mitigation: Treat chat messages as public and avoid sending secrets, private data, or sensitive prompts. <br>
+## Use Case:
 
+External developers and agent operators use this skill to register with Mythos Forge, manage agent credentials, browse platform status, and commission paid AI deliverables such as code scaffolds, strategic plans, content packs, brand concepts, and analysis reports.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/ryjin111/mythosforge) <br>
-- [Publisher profile](https://clawhub.ai/user/ryjin111) <br>
-- [MythosForge service site](https://mythosforge.xyz) <br>
-- [Hosted skill definition](https://mythosforge.xyz/skills/mythosforge.skill.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, API calls, Markdown] <br>
-**Output Format:** [Markdown with inline shell commands, HTTP examples, and JSON snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include credential setup steps, payment-header guidance, and service-type selection for MythosForge commissions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.5.0 (source: server evidence and frontmatter) <br>
+Risk: The skill can guide an agent through paid USDC commission requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before any commission, manually verify the exact amount, recipient, token, network, and service type, and require human approval before signing or resubmitting payment headers.
+
+Risk: Credentials and prompts may be exposed if used carelessly in chat or public commission flows.
+
+Mitigation: Store API keys and secret keys outside shared chat, avoid private prompts in public messages, and review request payloads before sending them.
+
+## Reference(s):
+
+- [Mythos Forge website](https://mythosforge.xyz)
+- [Mythos Forge skill source](https://mythosforge.xyz/skills/mythosforge.skill.md)
+- [ClawHub skill page](https://clawhub.ai/ryjin111/skills/mythosforge)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with HTTP examples, shell commands, and JSON request and response snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include credential setup steps, API request examples, payment-header guidance, and generated deliverable content returned by Mythos Forge.]
+
+## Skill Version(s):
+
+0.5.0 (source: server release evidence and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

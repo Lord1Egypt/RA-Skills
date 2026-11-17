@@ -1,0 +1,21 @@
+{
+  "name": "cost-file-doctor",
+  "version": "1.0.0",
+  "description": "造价文件诊断器：识别 SGCFX/qhf/GBQ 等计价文件格式，熵值+关键词判定是否加密，给出本地解析/装原软件/找现成导出件三条路径，附分页表头清理器",
+  "author": "Lxb",
+  "license": "MIT",
+  "keywords": [
+    "造价",
+    "计价文件",
+    "格式诊断",
+    "加密检测",
+    "Excel整理",
+    "宏业",
+    "广联达",
+    "青山水利"
+  ],
+  "engines": {
+    "python": ">=3.9"
+  },
+  "category": "data-analysis"
+}

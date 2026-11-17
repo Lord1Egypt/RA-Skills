@@ -1,40 +1,58 @@
-## Description: <br>
-Provides daily Gmail briefings by listing unread or urgent emails, summarizing priorities, drafting replies, and helping manage inbox filters. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides daily or periodic Gmail briefings by listing unread and urgent emails, summarizing priorities, drafting replies, and supporting inbox flagging or archiving workflows.
 
-## Publisher: <br>
-[deliverydriver](https://clawhub.ai/user/deliverydriver) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[deliverydriver](https://clawhub.ai/user/deliverydriver)
 
-## Use Case: <br>
-Employees and individual email users use this skill to triage Gmail inboxes, review unread or urgent messages, summarize priorities, and prepare reply drafts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive mailbox access could expose private personal or work email. <br>
-Mitigation: Grant access only to the intended mailbox, prefer narrow provider scopes, and use a separate profile for work or personal accounts. <br>
-Risk: Email actions such as send, delete, reply, forward, or modify could affect the wrong account or message. <br>
-Mitigation: Confirm the account, recipient or message ID, and exact action before performing any mailbox mutation. <br>
+## Use Case:
 
+Employees and external users use this skill to triage Gmail inboxes, identify priority unread messages, and prepare draft replies for review. It is intended for authenticated Gmail or GOG CLI setups where the user wants periodic inbox digests and sender-focused filtering.
 
-## Reference(s): <br>
-- [GOG SOP](references/gog-sop.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and drafted email text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference mailbox account, message identifiers, sender filters, unread status, and suggested reply drafts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill uses an authenticated Gmail or GOG setup to inspect unread mailbox content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only for accounts where Gmail triage is intended and where mailbox access has been approved by the account owner.
+
+Risk: Draft replies, archive actions, or flagging changes could affect real email workflows if applied without review.
+
+Mitigation: Review any proposed draft, archive, or flagging action before allowing the agent to change the mailbox.
+
+Risk: The bundled SOP contains a personal Gmail address.
+
+Mitigation: Replace the embedded address with the user's own account or a neutral configuration placeholder before use.
+
+## Reference(s):
+
+- [GOG SOP](references/gog-sop.md)
+- [ClawHub Skill Page](https://clawhub.ai/deliverydriver/skills/gmail-briefings)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown summaries with inline shell commands and draft reply text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires review before draft replies, archive actions, or flagging changes are applied to the mailbox.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

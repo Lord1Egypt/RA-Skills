@@ -1,0 +1,69 @@
+{
+  "artifactKind": "svg",
+  "generatedAt": "2026-09-01T00:41:51.514572+00:00",
+  "input": {
+    "bytes": 2301,
+    "path": "examples/pr-delta-review.json",
+    "sha256": "cc407d18793e860c9d7be79c32e17988ad65e74976709a8e96a7dee8bc4e4bb2"
+  },
+  "mode": "pr-delta",
+  "output": {
+    "bytes": 9882,
+    "path": "examples/pr-delta-review.svg",
+    "sha256": "cdeecf1b481c2e8410b8817afd9b2a488c3b5a66ac43cfee69067e3d168966f7"
+  },
+  "tool": "visual-architecture",
+  "validation": {
+    "errors": [],
+    "metrics": {
+      "edgeKinds": [
+        "control",
+        "memory-write",
+        "primary-data"
+      ],
+      "edges": 6,
+      "evidenceItems": 0,
+      "mode": "pr-delta",
+      "nodeKinds": [
+        "agent",
+        "memory",
+        "service"
+      ],
+      "nodes": 6,
+      "quality": {
+        "checks": [
+          {
+            "code": "quality.node.spacing",
+            "level": "warn",
+            "subjects": [
+              "base",
+              "head"
+            ]
+          },
+          {
+            "code": "quality.node.spacing",
+            "level": "warn",
+            "subjects": [
+              "boundary",
+              "deps"
+            ]
+          }
+        ],
+        "rating": "good",
+        "routeCrossings": 0,
+        "score": 84
+      },
+      "sourceBacked": false,
+      "sourceConfidence": {
+        "high": 0,
+        "low": 0,
+        "medium": 0,
+        "unspecified": 0
+      },
+      "theme": "classic"
+    },
+    "ok": true,
+    "warnings": []
+  },
+  "version": "1.8.0"
+}

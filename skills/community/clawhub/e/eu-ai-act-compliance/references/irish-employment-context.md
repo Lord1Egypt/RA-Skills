@@ -325,12 +325,16 @@ This document provides specific guidance for AI compliance in the Irish employme
 
 ## Regulatory Timeline
 
-| Date | Milestone | Action Required |
-|------|-----------|-----------------|
-| 1 August 2025 | EU AI Act applies | Prohibited practices enforcement |
-| 1 August 2025 | Prohibited practices | Cease prohibited AI uses |
-| 2 February 2026 | High-risk systems | Full compliance for high-risk systems |
-| 2 August 2027 | General provisions | Full Act application |
+| Date | Milestone | Status | Action Required |
+|------|-----------|--------|-----------------|
+| 2 February 2025 | Prohibited practices enforcement | ✅ In force | Cease any Article 5 prohibited AI uses |
+| August 2026 | Article 4 AI literacy obligation | ⏳ Imminent | Train staff on AI capabilities and risks. NOT extended by Digital Omnibus. |
+| 2 December 2027 | Annex III high-risk compliance | ⏳ Extended | Full compliance for HR/recruitment AI. Was 2 August 2026 — extended by Digital Omnibus package. |
+| August 2028 | Annex I product safety AI | Future | AI systems that are safety components of regulated products |
+
+**Key change:** The Digital Omnibus package (2026) extended the Annex III high-risk deadline from 2 August 2026 to 2 December 2027. However, the Article 4 AI literacy deadline (August 2026) was NOT extended. Do not delay staff training.
+
+**UK divergence:** UK GDPR Article 22 replaced by Articles 22A–22D (DUAA 2025, effective 5 February 2026). UK now has a permissive + safeguards model for automated decision-making. For cross-border work, assess under both frameworks.
 
 ---
 
@@ -371,6 +375,6 @@ This document provides specific guidance for AI compliance in the Irish employme
 
 ---
 
-*Last updated: April 2026*  
+*Last updated: July 2026 | Updated for Digital Omnibus package and UK DUAA 2025*  
 *Author: Enda Rochford*  
 *For informational purposes only — not legal advice*

@@ -1,0 +1,3 @@
+display_name: Influencer Commerce Intel
+short_description: Analyze TikTok commerce signals across sales, goods, live, and ad activity.
+default_prompt: Evaluate commerce performance for these creators using sale, goods, live, and video-ad signals, then return monetization potential, risks, and a pilot plan.

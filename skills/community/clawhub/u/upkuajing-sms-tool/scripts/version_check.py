@@ -95,7 +95,7 @@ def mark_checked(skill_name: str, latest_version: str) -> None:
 def check_skill_version(skill_name: str, api_base_url: str) -> Optional[str]:
     """调用 API 检查最新版本"""
     try:
-        url = f"{api_base_url}/api/skills/version"
+        url = f"{api_base_url}/agent/api/skills/version"
         headers = {"Content-Type": "application/json"}
 
         with httpx.Client(timeout=10.0) as client:

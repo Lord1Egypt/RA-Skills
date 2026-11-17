@@ -1,6 +1,8 @@
 {
-  "ownerId": "kn7ac9knfd0gdwhn8ktjvqqgj181thkt",
+  "ownerid": "kn70cjr952qdec1nx70zs6wefn7ynq2t",
   "slug": "ima-all-ai",
-  "version": "1.0.10",
-  "publishedAt": 1773771775011
+  "name": "IMA Studio",
+  "description": "IMA 一站式 AI 创作：SeeDream/Midjourney/Nano Banana 图，Ima Sevio（IMA Pro/Pro Fast）/Wan/Kling/Veo/Sora 视频，Suno/DouBao 音乐，TTS。Unified image, video, music, TTS with Ima Sevio support.",
+  "version": "1.3.0",
+  "publishedAt": 1741277713337
 }

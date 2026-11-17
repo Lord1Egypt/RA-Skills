@@ -1,50 +1,65 @@
-## Description: <br>
-Searches movie torrent and magnet-link resources, verifies availability, and recommends trending downloadable movies with optional subtitle and review lookup. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MovieMovie helps agents search movie torrent and magnet-link resources, recommend trending movies with confirmed downloadable results, and find subtitles.
 
-## Publisher: <br>
-[kunhai1994](https://clawhub.ai/user/kunhai1994) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kunhai1994](https://clawhub.ai/user/kunhai1994)
 
-## Use Case: <br>
-External users and movie-focused agents use this skill to find films, confirm downloadable torrent or magnet resources, compare quality and size tiers, and locate subtitles. It is intended for movie search and recommendation workflows where live source availability matters. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill searches torrent and magnet-link sources, which can produce legally sensitive or untrusted results. <br>
-Mitigation: Review results before use, follow applicable law and platform policy, and treat external links and magnet metadata as untrusted. <br>
-Risk: A SessionStart hook can automatically run network source checks when the skill starts. <br>
-Mitigation: Disable or remove the SessionStart hook if automatic startup network checks are not desired. <br>
-Risk: API-key guidance can lead users to expose secrets if keys are pasted into unsafe contexts. <br>
-Mitigation: Configure TORRENTCLAW_API_KEY and TMDB_API_KEY only through environment variables or a trusted secrets UI. <br>
-Risk: Broad activation wording can trigger the skill for general movie or download requests. <br>
-Mitigation: Review invocation behavior and limit use to intentional movie search, recommendation, and subtitle workflows. <br>
+## Use Case:
 
+External users and developers use this skill to ask an agent for movie search, trending movie recommendations, torrent or magnet-link availability summaries, and subtitle discovery. It is intended for environments where contacting torrent-related services is acceptable.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kunhai1994/moviemovie) <br>
-- [Rotten Tomatoes popular at home](https://www.rottentomatoes.com/browse/movies_at_home/sort:popular) <br>
-- [Rotten Tomatoes box office](https://www.rottentomatoes.com/browse/movies_in_theaters/sort:top_box_office) <br>
-- [Douban movie chart](https://movie.douban.com/chart) <br>
-- [TMDb movie search API](https://api.themoviedb.org/3/search/movie) <br>
-- [TMDb weekly trending API](https://api.themoviedb.org/3/trending/movie/week) <br>
-- [SubHD search](https://subhd.tv/search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with movie recommendations, torrent or magnet details, subtitle links, and optional JSON status output from helper scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include external links, quality tiers, seed counts, file sizes, and environment setup guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The skill contacts torrent-related services during use and checks torrent-source reachability automatically on session start.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in environments where torrent-site access is allowed, and review or disable session-start hooks before installation when automatic network checks are not acceptable.
+
+Risk: Movie search terms and interests may be sent to multiple third-party services and observed by network monitors.
+
+Mitigation: Treat search queries as externally disclosed and avoid submitting sensitive viewing interests or private investigation details.
+
+Risk: The artifact encourages users to paste API keys into chat for configuration.
+
+Mitigation: Configure TORRENTCLAW_API_KEY and TMDB_API_KEY through environment variables or approved secret-management settings instead of chat messages.
+
+Risk: The source claims it does not send user data to third parties, but the security evidence flags that claim as inaccurate for search behavior.
+
+Mitigation: Document third-party service contact clearly for users and review all external endpoints before deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/kunhai1994/skills/moviemovie)
+- [Publisher Profile](https://clawhub.ai/user/kunhai1994)
+- [TMDb API Search Endpoint](https://api.themoviedb.org/3/search/movie)
+- [Rotten Tomatoes Movies at Home Popular Browse](https://www.rottentomatoes.com/browse/movies_at_home/sort:popular)
+- [Douban Movie Chart](https://movie.douban.com/chart)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown responses with inline links and optional JSON from helper scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include movie metadata, reviews, torrent availability summaries, magnet links, subtitle links, source reachability status, and API-key setup guidance.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata; SKILL.md frontmatter says 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

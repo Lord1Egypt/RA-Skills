@@ -1,43 +1,54 @@
-## Description: <br>
-Counts black Go/Weiqi stones from source board photos, estimates black Chinese-area scoring, and renders a clean static 19x19 result board image. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Counts black Go/Weiqi stones from source board photos, estimates black Chinese-area scoring, and renders a clean static 19x19 result board image.
 
-## Publisher: <br>
-[imcaptor](https://clawhub.ai/user/imcaptor) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[imcaptor](https://clawhub.ai/user/imcaptor)
 
-## Use Case: <br>
-Go players, reviewers, and agents use this skill to process original 19x19 Go board photos, count visible black stones, estimate black Chinese-area score, and optionally produce a clean result-board image for review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Blurry, cropped, obstructed, or low-confidence board photos can lead to incorrect stone classification or scoring. <br>
-Mitigation: Review the generated overlay and result board before trusting the count, and rerun with explicit board corners when automatic board detection is wrong. <br>
-Risk: Chinese-area scoring is rules-based and does not independently resolve unsettled dead stones. <br>
-Mitigation: Treat the score as an estimate when dead groups remain on the board and request manual confirmation for life-and-death status. <br>
-Risk: Dependency versions can affect reproducibility in controlled environments. <br>
-Mitigation: Pin or lock Python dependencies before deployment when reproducible installs matter. <br>
+## Use Case:
 
+External users and agents use this skill to analyze original 19x19 Go board photos, report visible black stones or black Chinese-area score, and optionally produce verification and result-board images.
 
-## Reference(s): <br>
-- [Chinese README](README.md) <br>
-- [English README](README.en.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, image files, shell commands, guidance] <br>
-**Output Format:** [Markdown or text responses with optional JSON data, shell commands, verification overlays, and static result-board images.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a source 19x19 Go board photo; automatic detection can be guided with explicit board corners.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.5 (source: server release evidence) <br>
+Risk: Dependency ranges can change local image-processing behavior over time.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install in a dedicated virtual environment or container and prefer pinned, hash-locked dependency versions.
+
+Risk: Blurry, cropped, obstructed, scoring-overlay, or unsettled-dead-stone board images can produce incorrect counts or area estimates.
+
+Mitigation: Review the generated overlay/result board, pass manual corners when board detection is wrong, and state manual confirmation is needed when warnings or life-and-death uncertainty remain.
+
+## Reference(s):
+
+- [ClawHub Skill Listing](https://clawhub.ai/imcaptor/skills/count-go-black-stones)
+- [English README](https://github.com/imcaptor/count-go-black-stones/blob/main/README.en.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, image files, shell commands, guidance]
+
+**Output Format:** [Human-readable text or JSON, with optional generated overlay and result-board image files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Go board image input; output quality depends on board visibility, grid detection, and life-and-death status.]
+
+## Skill Version(s):
+
+0.1.5 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

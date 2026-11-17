@@ -1,47 +1,59 @@
-## Description: <br>
-Complete Google NotebookLM integration for adding sources, asking questions, generating Studio content, downloading artifacts, and managing notebooks programmatically. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Notebooklm helps agents use Google NotebookLM to add sources, ask cited questions, generate Studio content, download artifacts, and manage notebooks programmatically.
 
-## Publisher: <br>
-[kevinzien1107-ctrl](https://clawhub.ai/user/kevinzien1107-ctrl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kevinzien1107-ctrl](https://clawhub.ai/user/kevinzien1107-ctrl)
 
-## Use Case: <br>
-Developers and agent users use this skill to automate NotebookLM research workflows, including source import, cited Q&A, notebook management, and generation of podcasts, videos, slide decks, quizzes, flashcards, infographics, mind maps, data tables, and reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill controls NotebookLM through an unofficial client that uses undocumented Google APIs and may break without notice. <br>
-Mitigation: Confirm the client is intentionally allowed for the workflow, validate authentication with diagnostic commands, and fall back to manual review if API behavior changes. <br>
-Risk: The skill requires sensitive Google session access and can import, export, share, delete, or download user content. <br>
-Mitigation: Use a dedicated low-privilege Google account or isolated browser profile, avoid primary-account cookies, review source and Drive content before import, and require explicit confirmation before sharing, exporting, deleting, or uploading sensitive material. <br>
-Risk: NotebookLM content generation can be long-running, rate-limited, or fail after partially completed work. <br>
-Mitigation: Use non-blocking generation for long tasks, monitor artifact status, retry after rate limits, and ask the user whether to retry, skip, or investigate failures. <br>
-Risk: Shared active-notebook state can be unsafe in parallel agent workflows. <br>
-Mitigation: Pass notebook IDs directly with commands or isolate each agent with its own NotebookLM profile or home directory. <br>
+## Use Case:
 
+Developers and external users use this skill to automate NotebookLM research workflows, including importing sources, asking cited questions, creating study or presentation artifacts, and managing notebooks from an agent.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/kevinzien1107-ctrl/notebooklm-ksyun) <br>
-- [Publisher Profile](https://clawhub.ai/user/kevinzien1107-ctrl) <br>
-- [notebooklm-py](https://github.com/teng-lin/notebooklm-py) <br>
-- [notebooklm-py Troubleshooting](https://github.com/teng-lin/notebooklm-py/blob/main/docs/troubleshooting.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide agents to create, download, export, or share NotebookLM artifacts such as MP3, MP4, PDF, PPTX, JSON, Markdown, HTML, PNG, and CSV files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: The skill can add local files, Google Drive documents, and bulk research results to an authenticated Google NotebookLM account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit per-source approval before importing local files, Drive documents, or bulk research results.
+
+Risk: The skill uses an unofficial client for undocumented Google APIs that may change or fail without notice.
+
+Mitigation: Review the upstream client before installation and use the official NotebookLM web interface as a fallback for failed or changed operations.
+
+Risk: The skill can perform account-affecting actions such as exports, sharing changes, profile switches, and global language changes.
+
+Mitigation: Require explicit approval for those actions and prefer a dedicated Google account or isolated profile.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kevinzien1107-ctrl/skills/notebooklm-ksyun)
+- [notebooklm-py upstream library](https://github.com/teng-lin/notebooklm-py)
+- [notebooklm-py troubleshooting docs](https://github.com/teng-lin/notebooklm-py/blob/main/docs/troubleshooting.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and occasional JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May require approval before long-running generation, filesystem downloads, note writes, destructive actions, sharing changes, or sensitive source imports.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

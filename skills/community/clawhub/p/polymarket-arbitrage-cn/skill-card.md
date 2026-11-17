@@ -1,49 +1,65 @@
-## Description: <br>
-Helps agents fetch Polymarket market data, detect probability-sum arbitrage candidates, and monitor opportunities with optional alerts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Finds Polymarket prediction-market pricing discrepancies, monitors opportunities, and outputs arbitrage summaries for paper trading or manual review.
 
-## Publisher: <br>
-[guohongbin-git](https://clawhub.ai/user/guohongbin-git) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[guohongbin-git](https://clawhub.ai/user/guohongbin-git)
 
-## Use Case: <br>
-External users and developers use this skill to inspect Polymarket markets, produce JSON arbitrage reports, and run monitoring commands before making manual trading decisions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The security evidence reports a serious command-injection risk in the monitor script. <br>
-Mitigation: Review and fix command construction before running the monitor, and avoid passing untrusted values to command-line options. <br>
-Risk: The package under-discloses local execution, file writes, network access, and optional alerting behavior. <br>
-Mitigation: Run only in a controlled environment after reviewing scripts, expected network destinations, output paths, and alert configuration. <br>
-Risk: Arbitrage outputs may rely on stale homepage prices, low liquidity, or non-executable displayed probabilities. <br>
-Mitigation: Treat results as screening signals only; manually verify prices, liquidity, fees, and market resolution terms before any trade. <br>
-Risk: Webhook URLs can contain secrets or send sensitive alert data outside the local environment. <br>
-Mitigation: Use non-secret test webhooks first, avoid embedding credentials in URLs when possible, and document alert payload contents before enabling alerts. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/guohongbin-git/polymarket-arbitrage-cn) <br>
-- [Publisher Profile](https://clawhub.ai/user/guohongbin-git) <br>
-- [ClawHub](https://clawhub.ai) <br>
-- [Polymarket](https://polymarket.com) <br>
-- [Polymarket Documentation](https://docs.polymarket.com) <br>
-- [Arbitrage Types on Polymarket](references/arbitrage_types.md) <br>
-- [Getting Started with Polymarket Arbitrage](references/getting_started.md) <br>
+## Use Case:
 
+External users and developers use this skill to scan Polymarket markets, detect math arbitrage candidates, monitor recurring scans, and review JSON results before any manual trading decision.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON report files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes market scans, arbitrage results, and alert state under polymarket_data when scripts are executed.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The monitor script can execute shell-injected commands through user-controlled paths or parameters.
+
+Mitigation: Run only in a constrained environment, use trusted fixed paths, and fix command execution before routine use.
+
+Risk: Webhook tokens can be exposed through command-line arguments or logs.
+
+Mitigation: Avoid real webhook tokens on the command line; use a secret store or environment variable and redact logs.
+
+Risk: Unpinned dependencies can change runtime behavior over time.
+
+Mitigation: Use a fixed virtual environment with pinned versions for requests and beautifulsoup4.
+
+Risk: Market prices shown by the homepage can be stale or non-executable, and liquidity can make detected arbitrage unavailable.
+
+Mitigation: Paper trade first, manually verify prices and liquidity on Polymarket, and keep strict position limits before any real-money trading.
+
+## Reference(s):
+
+- [Polymarket](https://polymarket.com)
+- [Polymarket Documentation](https://docs.polymarket.com)
+- [Arbitrage Types](references/arbitrage_types.md)
+- [Getting Started](references/getting_started.md)
+- [ClawHub Skill Page](https://clawhub.ai/guohongbin-git/skills/polymarket-arbitrage-cn)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/guohongbin-git)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, JSON files, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON output files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces market scans and arbitrage result files under polymarket_data/ when scripts are run.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

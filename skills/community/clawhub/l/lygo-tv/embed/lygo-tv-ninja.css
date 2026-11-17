@@ -1,0 +1,138 @@
+/* LYGO TV Ninja — portable framed player. Inherits host --bg --fg --muted --line --gold --accent */
+.lygo-tv-wrap,
+.ad-slot.lygo-tv-wrap {
+  width: min(960px, 100%);
+  max-width: 960px;
+  margin: 0 auto 0.4rem;
+  padding: 0.4rem 0 1.8rem;
+  min-height: 0;
+  border: none;
+  background: transparent;
+  text-align: left;
+  box-sizing: border-box;
+}
+.lygo-tv-wrap .lygo-tv-ninja,
+.ad-slot.lygo-tv-wrap .lygo-tv-ninja {
+  max-width: 960px;
+  margin: 0 auto;
+}
+.lygo-tv-ninja {
+  --_bg: var(--bg, #0a0a0b);
+  --_fg: var(--fg, #f4f1ea);
+  --_muted: var(--muted, #9a9388);
+  --_line: var(--line, rgba(255,255,255,.14));
+  --_accent: var(--accent, var(--gold, #c9b8a0));
+  border: 1px solid var(--_line);
+  border-radius: 14px;
+  overflow: hidden;
+  background: color-mix(in srgb, var(--_bg) 88%, #000);
+  color: var(--_fg);
+  font-family: inherit;
+}
+.lygo-tv-ninja .tv-top,
+.lygo-tv-ninja .tv-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 8px 12px;
+}
+.lygo-tv-ninja .tv-kicker {
+  margin: 0;
+  font-size: 0.68rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--_accent);
+}
+.lygo-tv-ninja .tv-open {
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--_accent);
+  text-decoration: none;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+}
+.lygo-tv-ninja .tv-open:hover { text-decoration: underline; }
+.lygo-tv-ninja .tv-screen {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  background: #000;
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--_fg) 10%, transparent);
+}
+.lygo-tv-ninja .tv-screen iframe,
+.lygo-tv-ninja .tv-screen video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  background: #000;
+  object-fit: contain;
+}
+.lygo-tv-ninja .tv-meta {
+  margin: 0;
+  flex: 1;
+  min-width: 0;
+  text-align: center;
+  font-size: 0.72rem;
+  letter-spacing: 0.03em;
+  color: var(--_muted);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.lygo-tv-ninja .tv-zap {
+  min-width: 64px;
+  min-height: 44px;
+  padding: 0 12px;
+  border-radius: 8px;
+  border: 1px solid var(--_line);
+  background: transparent;
+  color: var(--_fg);
+  font: inherit;
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.lygo-tv-ninja .tv-zap:hover {
+  background: color-mix(in srgb, var(--_fg) 8%, transparent);
+}
+@media (min-width: 1100px) {
+  .lygo-tv-wrap,
+  .ad-slot.lygo-tv-wrap {
+    width: 960px;
+    margin-left: calc(50% - 480px);
+    margin-right: calc(50% - 480px);
+  }
+}
+@media (max-width: 700px) {
+  .lygo-tv-wrap,
+  .ad-slot.lygo-tv-wrap {
+    width: 100%;
+    max-width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    padding: 0 0 1.4rem;
+  }
+  .lygo-tv-ninja .tv-bar {
+    flex-wrap: wrap;
+  }
+  .lygo-tv-ninja .tv-meta {
+    flex-basis: 100%;
+    order: 3;
+    white-space: normal;
+  }
+}
+
+.lygo-tv-ninja .tv-hint {
+  padding: 0 12px 8px;
+  white-space: normal;
+  text-align: center;
+}
+.lygo-tv-ninja .tv-sound[aria-pressed="true"] {
+  border-color: var(--_accent);
+  color: var(--_accent);
+}

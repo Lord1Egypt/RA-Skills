@@ -1,0 +1,4 @@
+interface:
+  display_name: "Executive Presentation Designer"
+  short_description: "Create stylish executive slide decks with modern visual systems."
+  default_prompt: "Use $executive-presentation-designer to redesign this presentation into a premium, modern executive deck."

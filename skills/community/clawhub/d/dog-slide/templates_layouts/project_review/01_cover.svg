@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720">
+  <defs>
+    <linearGradient id="coverBgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1A2744;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#151F36;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0F1A2E;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect x="0" y="0" width="1280" height="720" fill="url(#coverBgGrad)" />
+  <rect x="0" y="0" width="1280" height="6" fill="#CFAC6A" />
+  <rect x="80" y="200" width="4" height="320" fill="#CFAC6A" fill-opacity="0.6" />
+  <rect x="100" y="200" width="600" height="320" fill="#CFAC6A" fill-opacity="0.05" rx="4" />
+  <text x="120" y="340" font-family="Microsoft YaHei, SimHei, sans-serif" font-size="48" font-weight="bold" fill="#FFFFFF">{{TITLE}}</text>
+  <text x="120" y="400" font-family="Microsoft YaHei, Arial, sans-serif" font-size="24" fill="#CFAC6A">{{SUBTITLE}}</text>
+  <line x1="120" y1="440" x2="450" y2="440" stroke="#CFAC6A" stroke-width="1" stroke-opacity="0.6" />
+  <circle cx="460" cy="440" r="4" fill="#CFAC6A" />
+  <text x="120" y="500" font-family="Microsoft YaHei, sans-serif" font-size="18" fill="#FFFFFF" fill-opacity="0.8">{{AUTHOR}}</text>
+  <text x="120" y="540" font-family="Arial, sans-serif" font-size="16" fill="#CFAC6A" fill-opacity="0.6">{{DATE}}</text>
+  <rect x="0" y="710" width="1280" height="10" fill="#CFAC6A" fill-opacity="0.3" />
+</svg>

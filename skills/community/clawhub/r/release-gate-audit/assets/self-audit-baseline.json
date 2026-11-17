@@ -1,0 +1,145 @@
+{
+  "_comment": "本技能自审基线：以下命中均为文档/代码中用于讲解「什么是误报」的教学示例，逐条人工核实后确认非真实泄露。",
+  "_reviewed_at": "2026-08-04",
+  "_review_note": "REDACTED-SECRET 为 AWS 官方文档固定示例串；变量插值语法非字面密码；apiKey 单测假值为说明用例；MYCO-/INT- 为词表语法示例；RealPass/10.0.3.14 为虚构教学样例；「司内」「公司内部」为设计原则论述用词。",
+  "accepted": [
+    [
+      "ORG_INTERNAL",
+      "SKILL.md",
+      260,
+      "雇主内部标识: 司内"
+    ],
+    [
+      "CREDENTIAL",
+      "references/false-positive-playbook.md",
+      29,
+      "AWS Access Key ID"
+    ],
+    [
+      "CREDENTIAL",
+      "references/false-positive-playbook.md",
+      71,
+      "AWS Access Key ID"
+    ],
+    [
+      "CREDENTIAL",
+      "references/false-positive-playbook.md",
+      75,
+      "含内联密码的数据库连接串"
+    ],
+    [
+      "CREDENTIAL",
+      "references/false-positive-playbook.md",
+      76,
+      "硬编码密钥赋值"
+    ],
+    [
+      "CREDENTIAL",
+      "references/false-positive-playbook.md",
+      144,
+      "AWS Access Key ID"
+    ],
+    [
+      "ORG_INTERNAL",
+      "references/threat-categories.md",
+      54,
+      "疑似内网主机名"
+    ],
+    [
+      "PII",
+      "references/threat-categories.md",
+      85,
+      "macOS 绝对家目录（泄露用户名）"
+    ],
+    [
+      "CREDENTIAL",
+      "references/threat-categories.md",
+      131,
+      "含内联密码的数据库连接串"
+    ],
+    [
+      "ORG_INTERNAL",
+      "references/threat-categories.md",
+      131,
+      "内网 IP 地址"
+    ],
+    [
+      "ORG_INTERNAL",
+      "references/threat-categories.md",
+      136,
+      "内网 IP 地址"
+    ],
+    [
+      "CREDENTIAL",
+      "scripts/release_gate.py",
+      167,
+      "硬编码密钥赋值"
+    ],
+    [
+      "CREDENTIAL",
+      "scripts/release_gate.py",
+      463,
+      "AWS Access Key ID"
+    ],
+    [
+      "CREDENTIAL",
+      "assets/self-audit-baseline.json",
+      4,
+      "AWS Access Key ID"
+    ],
+    [
+      "ORG_INTERNAL",
+      "assets/self-audit-baseline.json",
+      4,
+      "内网 IP 地址"
+    ],
+    [
+      "ORG_INTERNAL",
+      "assets/self-audit-baseline.json",
+      4,
+      "雇主内部标识: 司内"
+    ],
+    [
+      "ORG_INTERNAL",
+      "assets/self-audit-baseline.json",
+      10,
+      "雇主内部标识: 司内"
+    ],
+    [
+      "ORG_INTERNAL",
+      "assets/self-audit-baseline.json",
+      100,
+      "雇主内部标识: 司内"
+    ],
+    [
+      "ORG_INTERNAL",
+      "assets/self-audit-baseline.json",
+      106,
+      "雇主内部标识: 司内"
+    ],
+    [
+      "ORG_INTERNAL",
+      "assets/self-audit-baseline.json",
+      112,
+      "雇主内部标识: 司内"
+    ],
+    [
+      "ORG_INTERNAL",
+      "assets/self-audit-baseline.json",
+      118,
+      "雇主内部标识: 司内"
+    ],
+    [
+      "ORG_INTERNAL",
+      "assets/self-audit-baseline.json",
+      124,
+      "雇主内部标识: 司内"
+    ],
+    [
+      "ORG_INTERNAL",
+      "assets/self-audit-baseline.json",
+      130,
+      "雇主内部标识: 司内"
+    ]
+  ]
+}

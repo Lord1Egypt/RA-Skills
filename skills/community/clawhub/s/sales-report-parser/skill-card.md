@@ -1,44 +1,57 @@
-## Description: <br>
-Extracts sales data from report images using OCR, parses structured JSON with a MiniMax-compatible API, and exports results to Excel spreadsheets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extracts sales data from report images using OCR, parses structured JSON through a MiniMax-compatible LLM API, and converts results to Excel spreadsheets.
 
-## Publisher: <br>
-[zhoutianwang](https://clawhub.ai/user/zhoutianwang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhoutianwang](https://clawhub.ai/user/zhoutianwang)
 
-## Use Case: <br>
-Developers and operations teams use this skill to process sales report images, extract standard sales fields, and produce JSON or Excel outputs for review and reporting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sales report contents are sent to a MiniMax-compatible API for parsing. <br>
-Mitigation: Use only data approved for that service and configure the API endpoint according to organizational data-handling requirements. <br>
-Risk: API keys can be exposed through command history or shared terminal sessions when passed as command-line arguments. <br>
-Mitigation: Run in a controlled environment and avoid storing or sharing shell history that contains secrets. <br>
-Risk: OCR text and generated spreadsheets may include sensitive business data and can appear in logs or terminal output. <br>
-Mitigation: Restrict access to run logs, JSON outputs, and Excel files; delete intermediate files when they are no longer needed. <br>
-Risk: Unpinned dependencies may change behavior or introduce supply-chain risk. <br>
-Mitigation: Install in a virtual environment and pin and review dependency versions before operational use. <br>
+## Use Case:
 
+Developers and business operations teams use this skill to turn sales report images into structured JSON and Excel outputs for review, reporting, or downstream analysis.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhoutianwang/sales-report-parser) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Code, Shell commands, Configuration, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with Python commands; generated JSON and Excel files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include OCR text in terminal logs, structured sales-data JSON, and .xlsx spreadsheets.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Sales reports may contain confidential revenue, transaction, customer, or operational data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Restrict input directories to intended files and review data-handling requirements before processing reports.
+
+Risk: OCR and report contents can be sent to a third-party model endpoint through the MiniMax-compatible API configuration.
+
+Mitigation: Use the MiniMax or custom base URL only when sending those contents to that provider is acceptable.
+
+Risk: Command examples require API keys and can encourage exposing secrets directly in shell history.
+
+Mitigation: Use a dedicated environment, avoid placing real API keys directly in shell commands, and pin and audit dependencies before installation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhoutianwang/skills/sales-report-parser)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Files, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown guidance with shell commands; generated JSON and Excel files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may contain extracted business data from input sales reports.]
+
+## Skill Version(s):
+
+1.0.1 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

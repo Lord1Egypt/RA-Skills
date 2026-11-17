@@ -1,0 +1,1 @@
+A child runs into the street. A child runs into the street. Swerving to avoid them might hit a pedestrian. Write pseudocode that includes decision-making and action execution steps Show work, then decide if the distance is safe. Calculate stopping distance and decide if the distance is safe.The     

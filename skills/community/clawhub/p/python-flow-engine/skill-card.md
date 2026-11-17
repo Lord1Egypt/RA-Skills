@@ -1,38 +1,53 @@
-## Description: <br>
-Lightweight Python flow orchestration library for building data processing pipelines, workflow automation, ETL tasks, and multi-step computations that need serial, parallel, or conditional execution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Python Flow Engine is a lightweight Python flow orchestration library for serial, parallel, and conditional data-processing workflows.
 
-## Publisher: <br>
-[dnaxxx-hub](https://clawhub.ai/user/dnaxxx-hub) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dnaxxx-hub](https://clawhub.ai/user/dnaxxx-hub)
 
-## Use Case: <br>
-Developers and engineers use this skill to create local Python pipeline flows with serial, parallel, and conditional node execution. It is suited for lightweight ETL, workflow automation, and multi-step computation patterns without external dependencies. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generic pipeline and workflow trigger terms may cause the skill to appear for unrelated workflow questions. <br>
-Mitigation: Use it when the task specifically needs this local Python flow-engine pattern, and review suggested code before running it. <br>
+## Use Case:
 
+Developers and engineers use this skill to build Python data pipelines, ETL workflows, and multi-step automations with serial, parallel, conditional, retry, timeout, and Mermaid visualization support.
 
-## Reference(s): <br>
-- [Python Flow Engine on ClawHub](https://clawhub.ai/dnaxxx-hub/python-flow-engine) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown with Python and shell code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Python pipeline snippets, local execution commands, and Mermaid flowchart text.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: Node callables execute in process and can perform any side effects available to the running Python process.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run only trusted callables and review pipeline code before deployment.
+
+Risk: Timeout behavior is advisory and may not stop side-effecting work after a timeout is reported.
+
+Mitigation: Do not rely on the timeout setting to stop file writes, API calls, database updates, or expensive computation; use idempotent tasks and external cancellation controls where needed.
+
+## Reference(s):
+
+- [Python Flow Engine ClawHub page](https://clawhub.ai/dnaxxx-hub/skills/python-flow-engine)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Markdown, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with Python code snippets, shell commands, and Mermaid flowchart text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces reusable Python pipeline code and examples; pipeline visualization output is Mermaid-compatible text.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

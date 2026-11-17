@@ -1,42 +1,57 @@
-## Description: <br>
-Download manga from Kmoe (kxx.moe / mox.moe) with concurrent downloads, credential management, and automation callbacks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Download manga from Kmoe (kxx.moe / mox.moe) with concurrent downloads, credential management, and automation callbacks.
 
-## Publisher: <br>
-[InphinitiZ](https://clawhub.ai/user/InphinitiZ) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[inphinitiz](https://clawhub.ai/user/inphinitiz)
 
-## Use Case: <br>
-External users and developers use this skill to operate the kmdr command-line tool for downloading Kmoe manga volumes, managing Kmoe credentials and credential pools, configuring mirrors or proxies, and setting post-download callbacks. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill supports Kmoe account authentication and credential pools. <br>
-Mitigation: Prefer interactive password entry instead of passing passwords on the command line, and use only accounts the user is authorized to use. <br>
-Risk: Post-download callback commands can execute user-provided shell behavior. <br>
-Mitigation: Approve callback commands only after reviewing exactly what they execute. <br>
-Risk: The skill depends on the external kmoe-manga-downloader pip package. <br>
-Mitigation: Install the package only if the user trusts that external dependency. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Kmoe Manga Download on ClawHub](https://clawhub.ai/InphinitiZ/kmoe-manga-download) <br>
-- [Kmoe mirror source](https://mox.moe) <br>
+## Use Case:
 
+External users and agents use this skill to guide manga downloads from Kmoe with the kmdr CLI, including batch volume selection, credential pools, proxies, mirror switching, and post-download callbacks.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance centers on the external kmdr CLI, which requires Python >= 3.9 and the kmoe-manga-downloader pip package.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill uses an external CLI package that handles account credentials.
+
+Mitigation: Install only when comfortable with the package and keep credential pools minimal.
+
+Risk: Password examples may encourage placing credentials on the command line.
+
+Mitigation: Prefer prompted password entry and avoid storing passwords in shell history.
+
+Risk: Post-download callbacks run local commands.
+
+Mitigation: Use callbacks only with trusted commands and reviewed metadata templates.
+
+## Reference(s):
+
+- [Kmoe Manga Download on ClawHub](https://clawhub.ai/inphinitiz/skills/kmoe-manga-download)
+- [Kmoe mirror](https://mox.moe)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the external kmdr command from the kmoe-manga-downloader Python package.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,53 @@
-## Description: <br>
-Per-workspace SQLite todo manager for adding, listing, editing, moving, removing, and grouping todo entries through a bundled CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Per-workspace SQLite todo manager (./todo.db) with groups and task statuses (pending/in_progress/done/skipped), operated via {baseDir}/scripts/todo.sh for adding, listing, editing, moving, and removing entries and managing groups.
 
-## Publisher: <br>
-[lstpsche](https://clawhub.ai/user/lstpsche) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[lstpsche](https://clawhub.ai/user/lstpsche)
 
-## Use Case: <br>
-Developers and agent users use this skill to manage a local project todo list in a per-workspace SQLite database while keeping agent responses concise. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill creates and modifies a local todo.db file in the active workspace. <br>
-Mitigation: Install and use it only in workspaces where local todo storage is acceptable, or set TODO_DB to an intended database path. <br>
-Risk: Todo entries may expose secrets or sensitive personal data if users store them in shared projects. <br>
-Mitigation: Do not place secrets or sensitive personal data in todo entries, especially in shared repositories or collaborative workspaces. <br>
-Risk: Clear, remove, and group deletion operations can delete todo data. <br>
-Mitigation: Use explicit IDs for destructive changes and rely on the documented prompt flow before deleting group entries. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lstpsche/todo-management) <br>
-- [README](README.md) <br>
+## Use Case:
 
+Developers and agents use this skill to keep a local, per-workspace todo list with groups and task statuses while keeping replies concise and avoiding separate todo files.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration] <br>
-**Output Format:** [Short natural-language confirmations, todo-list text when requested, and bash CLI commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires sqlite3; stores tasks in ./todo.db by default unless TODO_DB is set.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.3 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill creates and modifies a local SQLite todo.db in each workspace.
+
+Mitigation: Install it only where that local database behavior is acceptable, and set TODO_DB deliberately when using a non-default location.
+
+Risk: Remove, clear, and group remove --delete-entries can delete todo entries from the local database.
+
+Mitigation: Confirm destructive targets before execution, and use the default group removal behavior unless the user explicitly asks to delete entries.
+
+## Reference(s):
+
+- [README](artifact/README.md)
+- [ClawHub skill page](https://clawhub.ai/lstpsche/skills/todo-management)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Guidance]
+
+**Output Format:** [Plain text confirmations and CLI output, with shell commands for todo operations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires sqlite3 and stores persistent state in a per-workspace todo.db unless TODO_DB overrides the location.]
+
+## Skill Version(s):
+
+1.1.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

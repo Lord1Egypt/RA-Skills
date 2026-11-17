@@ -1,41 +1,54 @@
-## Description: <br>
-MTA system train departures (NYC Subway, LIRR, Metro-North). Use when the user wants train times, schedules, or service alerts for MTA transit. Covers MTA Subway, LIRR, and Metro-North across the greater New York area. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MTA system train departures (NYC Subway, LIRR, Metro-North). Use when the user wants train times, schedules, or service alerts for MTA transit. Covers MTA Subway, LIRR, and Metro-North across the greater New York area.
 
-## Publisher: <br>
-[gumadeiras](https://clawhub.ai/user/gumadeiras) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gumadeiras](https://clawhub.ai/user/gumadeiras)
 
-## Use Case: <br>
-External users and developers use this skill to look up MTA Subway, LIRR, and Metro-North station departures, schedules, saved favorite stations, and active service alerts through the gotrain CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill installs and depends on an external npm package that provides the gotrain command. <br>
-Mitigation: Install only when the external npm package is trusted and appropriate for the deployment environment. <br>
-Risk: Transit departures and alerts can be time-sensitive and may change after lookup. <br>
-Mitigation: Treat results as current transit guidance and re-check live service information before making critical travel decisions. <br>
+## Use Case:
 
+External users and developers use this skill to ask an agent for MTA station searches, train departures, service alerts, and favorite-station commands through the gotrain CLI.
 
-## Reference(s): <br>
-- [gotrain ClawHub page](https://clawhub.ai/gumadeiras/gotrain) <br>
-- [gumadeiras publisher profile](https://clawhub.ai/user/gumadeiras) <br>
+### Deployment Geography for Use:
 
+Global; transit information is specific to the MTA Subway, LIRR, and Metro-North systems in the greater New York area.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and concise guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces user-facing guidance for installing and running the gotrain CLI; command output depends on the external npm package and live MTA transit data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.1 (source: server release metadata) <br>
+Risk: The skill installs an unpinned npm command globally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if the npm package and maintainer are trusted, avoid elevated privileges, and prefer a pinned or locally scoped install when stronger supply-chain control is required.
+
+Risk: Transit departures and service alerts may change quickly.
+
+Mitigation: Treat returned schedules and alerts as time-sensitive operational guidance and confirm critical trips against an official MTA source when needed.
+
+## Reference(s):
+
+- [gotrain ClawHub Skill Page](https://clawhub.ai/gumadeiras/skills/gotrain)
+- [gumadeiras ClawHub Publisher Profile](https://clawhub.ai/user/gumadeiras)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the gotrain CLI binary; command results depend on the installed npm package and current MTA data.]
+
+## Skill Version(s):
+
+1.3.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,78 @@
+{
+  "test_cases": [
+    {
+      "id": "chinese_title_first_line",
+      "description": "Chinese academic paper with title in first line",
+      "text": "中医体质学说的理论构建与临床应用研究\n\n王琦\n北京中医药大学\n\n摘要：中医体质学说是中医理论体系的重要组成部分...",
+      "metadata": {
+        "source": "CNKI",
+        "file": "sample1.pdf"
+      }
+    },
+    {
+      "id": "english_title_metadata",
+      "description": "English academic paper with title in metadata",
+      "text": "\n\n\n\nAbstract\n\nTraditional Chinese Medicine (TCM) constitution theory has been developed...\n\nKeywords: TCM, constitution, classification\n\n1. Introduction\n\nThe concept of constitution in Traditional Chinese Medicine...",
+      "metadata": {
+        "source": "PDF",
+        "file": "sample2.pdf",
+        "title": "Development of TCM Constitution Classification System",
+        "author": "Wang Qi"
+      }
+    },
+    {
+      "id": "authors_pattern",
+      "description": "Paper with authors in text (作者：xxx pattern)",
+      "text": "中医体质分类与判定标准的研究\n\n作者：王琦，朱燕波，李英帅\n\n北京中医药大学，北京 100029\n\n摘要：目的 建立中医体质分类与判定标准...",
+      "metadata": {
+        "source": "CNKI",
+        "file": "sample3.pdf"
+      }
+    },
+    {
+      "id": "cnki_generic_metadata",
+      "description": "Paper with generic CNKI metadata",
+      "text": "\n\n\n\n\n\n\n\n中国知网\n\n下载时间：2024-01-15\n\n中医体质学\n\n王琦\n\n\n\n\n\n\n\n第一章 中医体质学概述\n\n中医体质学是研究...",
+      "metadata": {
+        "source": "CNKI",
+        "file": "sample4.pdf"
+      }
+    },
+    {
+      "id": "mixed_content",
+      "description": "Paper with mixed Chinese and English content",
+      "text": "中医体质学理论体系的构建\nThe Construction of TCM Constitution Theory System\n\n王琦 Wang Qi\n北京中医药大学 Beijing University of Chinese Medicine\n\n【摘要】本文系统阐述了...",
+      "metadata": {
+        "source": "CNKI",
+        "file": "sample5.pdf"
+      }
+    },
+    {
+      "id": "empty_lines_start",
+      "description": "Paper with many empty lines at start",
+      "text": "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n中医体质辨识与健康管理\n\n王琦\n\n\n\n摘要：目的 探讨中医体质辨识...",
+      "metadata": {
+        "source": "PDF",
+        "file": "sample6.pdf"
+      }
+    },
+    {
+      "id": "author_affiliation_pattern",
+      "description": "Paper with author and affiliation pattern",
+      "text": "基于中医体质的健康干预策略研究\n\n王琦1，朱燕波2，李英帅1\n\n（1.北京中医药大学，北京 100029；2.中国中医科学院，北京 100700）\n\n【摘要】...",
+      "metadata": {
+        "source": "CNKI",
+        "file": "sample7.pdf"
+      }
+    },
+    {
+      "id": "book_chapter",
+      "description": "Book chapter with chapter title",
+      "text": "第九章 体质辨识与养生\n\n第一节 体质的概念与分类\n\n一、体质的概念\n\n体质是指人体在先天禀赋和后天获得的基础上...",
+      "metadata": {
+        "source": "PDF",
+        "file": "sample8.pdf"
+      }
+    }
+  ]
+}

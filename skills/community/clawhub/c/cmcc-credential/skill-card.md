@@ -1,43 +1,58 @@
-## Description: <br>
-Handle China Mobile Digital Credential authorization flow for sensitive operations by loading app credentials, binding an agent, requesting user authorization, polling authorization status, and verifying approval before proceeding. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps an agent load China Mobile Digital Credential app credentials, bind the agent, and request user authorization before sensitive operations.
 
-## Publisher: <br>
-[riceankim](https://clawhub.ai/user/riceankim) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[riceankim](https://clawhub.ai/user/riceankim)
 
-## Use Case: <br>
-Developers and operators use this skill to gate sensitive agent actions with CMCC Digital Credential authorization. It supports credential setup, agent binding, authorization-link generation, and polling before the agent proceeds with a protected operation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores reusable app credentials and can expose appKey data through credential retrieval workflows. <br>
-Mitigation: Use limited-scope credentials, avoid displaying appKey values, protect or delete memory/cmcc-digital-credential.json after use, and rotate the key if it appears in logs. <br>
-Risk: The authorization flow handles phone-number data through the CMCC authorization service. <br>
-Mitigation: Confirm that sending the phone number to the CMCC authorization service is acceptable for the intended use case before enabling the workflow. <br>
-Risk: The workflow depends on a CMCC test endpoint and a third-party publisher. <br>
-Mitigation: Install only when the publisher and CMCC test endpoint are trusted for the deployment context. <br>
+## Use Case:
 
+Developers and operators use this skill to add a CMCC Digital Credential approval step before destructive actions, secret access, or other sensitive agent operations. It supports credential setup, agent binding, authorization-link generation, and polling for approval status.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/riceankim/cmcc-credential) <br>
-- [CMCC test authorization endpoint](https://vctest.cmccsign.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write local credential state to memory/cmcc-digital-credential.json and call CMCC authorization endpoints when the user authorizes that flow.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill handles app secrets and phone numbers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in a controlled workspace, restrict access to the memory directory, avoid committing stored credentials, and rotate exposed appKey values.
+
+Risk: The security evidence says the skill should not be treated as a strong approval boundary for high-impact operations.
+
+Mitigation: Require independent human review and platform-native access controls before destructive actions or secret disclosure.
+
+Risk: The helper scripts call an external CMCC credential service and may poll for up to ten minutes.
+
+Mitigation: Confirm endpoint suitability, network permissions, phone-number handling, and timeout behavior before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/riceankim/skills/cmcc-credential)
+- [Publisher profile](https://clawhub.ai/user/riceankim)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce credential-status JSON, authorization record IDs, and authorization URLs when its helper scripts are run.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

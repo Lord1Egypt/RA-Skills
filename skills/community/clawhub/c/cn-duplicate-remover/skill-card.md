@@ -1,42 +1,59 @@
-## Description: <br>
-Removes duplicate lines from text using a Python standard-library script, with options to preserve first-seen order or sort the output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Removes duplicate lines from text input or files, with options to preserve first-seen order or write the result to an output file.
 
-## Publisher: <br>
-[freedompixels](https://clawhub.ai/user/freedompixels) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[freedompixels](https://clawhub.ai/user/freedompixels)
 
-## Use Case: <br>
-Developers and text-processing users can use this skill to remove repeated lines from pasted text or input files and write the cleaned output to the terminal or a file. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The script can read from and write to local file paths supplied by the user. <br>
-Mitigation: Run it only on intended text files and review output paths before using the --output option. <br>
-Risk: Security evidence is clean, but provenance is unavailable for this version. <br>
-Mitigation: Rely on the server-resolved publisher and scan evidence, and review the small included Python script before use. <br>
+## Use Case:
 
+Developers, content maintainers, and agent operators can use this skill to remove repeated lines from supplied text or UTF-8 text files during cleanup and preparation workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/freedompixels/cn-duplicate-remover) <br>
-- [AISoBrand](https://aisobrand.com) <br>
-- [AISoBrand free diagnosis](https://aisobrand.com/free-diagnosis.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text and Markdown with inline bash examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can print deduplicated text to stdout or write it to an output file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server-resolved release metadata) <br>
+Risk: The tool can overwrite a user-specified output file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the output path before execution and write to a temporary file when preserving existing content matters.
+
+Risk: Documentation and command help are in Chinese, which can lead to option misuse by readers who do not read Chinese.
+
+Mitigation: Confirm the meaning of command options before running the script in an automated workflow.
+
+Risk: Using the non-order-preserving mode can change line order.
+
+Mitigation: Use the default order-preserving mode when downstream tasks depend on stable line order.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/freedompixels/skills/cn-duplicate-remover)
+- [Publisher profile](https://clawhub.ai/user/freedompixels)
+- [AISoBrand](https://aisobrand.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Files]
+
+**Output Format:** [Plain text output or UTF-8 text file, often accompanied by bash command examples.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The CLI can read from inline text or a file and can write to a caller-provided output path.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

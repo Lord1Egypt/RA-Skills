@@ -1,39 +1,54 @@
-## Description: <br>
-Convert Markdown to HTML with basic styling. Support headers, bold, italic, links, code blocks. Pure Python standard library, no API key required. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert Markdown to HTML with basic styling for headers, bold, italic, links, and code blocks using the Python standard library.
 
-## Publisher: <br>
-[freedompixels](https://clawhub.ai/user/freedompixels) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[freedompixels](https://clawhub.ai/user/freedompixels)
 
-## Use Case: <br>
-Developers and engineers use this skill to convert Markdown files into complete HTML documents with basic styling using a local Python script. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The authoritative security summary marks the package as suspicious and overbroad for a skill review. <br>
-Mitigation: Review the skill carefully before installation and deploy it only in repositories where the publisher and intended workflow are trusted. <br>
-Risk: The authoritative security guidance warns about full-access helper behavior and credentialed publishing or moderation commands. <br>
-Mitigation: Avoid running privileged helper, moderation, GitHub, Convex, or publishing commands unless the target repository and credentials are understood. <br>
+## Use Case:
 
+Developers and content maintainers use this skill to convert local Markdown files into complete HTML documents for lightweight publishing or preview workflows.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and generated HTML text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses Python standard library only and writes the converted HTML document to standard output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server-resolved release metadata; artifact frontmatter says 1.0.0) <br>
+Risk: Generated HTML may be unsafe when Markdown content is untrusted or served from a trusted browser origin.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Add HTML escaping, URL validation, and sanitization before using converted output in a website or trusted browser context.
+
+Risk: The converter is basic and may produce incomplete or low-quality HTML for Markdown outside its supported subset.
+
+Mitigation: Review converted output and limit use to supported Markdown elements unless the script is extended and tested.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/freedompixels/skills/cn-markdown-to-html)
+- [Publisher profile](https://clawhub.ai/user/freedompixels)
+
+## Skill Output:
+
+**Output Type(s):** [HTML, Shell commands, Guidance]
+
+**Output Format:** [HTML document emitted from a local Python command, with Markdown usage guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Pure Python standard library implementation; no API key required.]
+
+## Skill Version(s):
+
+1.1.1 (source: ClawHub release evidence; artifact frontmatter lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

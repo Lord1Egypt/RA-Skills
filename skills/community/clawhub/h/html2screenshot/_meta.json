@@ -1,0 +1,18 @@
+{
+  "name": "html2screenshot",
+  "version": "1.0.0",
+  "description": "HTML 网页长截图技能 — 将任意 HTML 转换为完整长图（PNG）",
+  "author": "keling",
+  "created": "2026-04-08",
+  "tags": ["screenshot", "html", "puppeteer", "automation"],
+  "dependencies": ["puppeteer", "node"],
+  "entryPoint": "SKILL.md",
+  "skillOpt": {
+    "status": "baseline-pending",
+    "trainingSetSize": 15,
+    "validationSetSize": 10,
+    "datasetFile": "dataset.md",
+    "passThreshold": 4.0,
+    "dimensions": ["完整性", "清晰度", "布局保真", "CSS渲染", "动态内容", "尺寸适配"]
+  }
+}

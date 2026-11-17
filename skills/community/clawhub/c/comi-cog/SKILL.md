@@ -1,6 +1,6 @@
 ---
-name: comi-cog
-description: "AI comic and manga creation powered by CellCog. Comics, manga, webtoons, graphic novels, comic strips, sequential art. Character-consistent panels and visual storytelling."
+name: comic-manga-generator-cellcog
+description: "AI comic and manga generator powered by CellCog. Comics, manga, webtoons, graphic novels, comic strips, sequential art. Character-consistent panels and visual storytelling."
 metadata:
   openclaw:
     emoji: "💥"
@@ -12,7 +12,7 @@ author: CellCog
 homepage: https://cellcog.ai
 dependencies: [cellcog]
 ---
-# Comi Cog - Comics & Manga Powered by CellCog
+# Comic & Manga Generator - Powered by CellCog
 
 Create visual stories with AI - from manga pages to webtoons to comic strips with consistent characters.
 
@@ -26,7 +26,7 @@ result = client.create_chat(
     prompt="[your task prompt]",
     notify_session_key="agent:main:main",
     task_label="my-task",
-    chat_mode="agent",
+    chat_mode="creative",
 )
 ```
 
@@ -37,7 +37,7 @@ client = CellCogClient(agent_provider="openclaw|cursor|claude-code|codex|...")
 result = client.create_chat(
     prompt="[your task prompt]",
     task_label="my-task",
-    chat_mode="agent",
+    chat_mode="creative",
 )
 print(result["message"])
 ```
@@ -146,7 +146,7 @@ Full-format sequential art:
 
 ## Character Consistency
 
-The magic of comi-cog: **your characters stay consistent**.
+The magic of comic-manga-generator-cellcog: **your characters stay consistent**.
 
 When you describe a character, CellCog maintains their appearance across all panels:
 
@@ -194,16 +194,17 @@ Request specific layouts:
 
 ---
 
-## Chat Mode for Comics
+## Choosing Mode & Tier
 
-| Scenario | Recommended Mode |
-|----------|------------------|
-| Single pages, comic strips, character designs | `"agent"` |
-| Multi-page sequences, full episodes, complex narratives | `"agent team"` |
+**Use `chat_mode="creative"` for comics and manga** — the craft-first mode tuned for design taste, visual polish, and voice.
 
-**Use `"agent"` for most comic work.** Individual pages and strips execute well in agent mode.
+| Scenario | Recommended |
+|----------|-------------|
+| Comic pages, webtoon episodes, manga panels | `chat_mode="creative"` (default tier `"core"`) |
+| Maximum craft on high-stakes pieces | `chat_mode="creative", chat_tier="max"` |
+| Quick disposable drafts | `chat_mode="agent", chat_tier="flash"` |
 
-**Use `"agent team"` for narrative complexity** - full webtoon episodes, multi-page fight sequences, or when you need story and art direction working together.
+Note: Agent Team (`chat_mode="team"`) is reserved for deep research.
 
 ---
 
@@ -274,6 +275,7 @@ Request specific layouts:
 
 ## If CellCog is not installed
 
-Run `/cellcog-setup` (or `/cellcog:cellcog-setup` depending on your tool) to install and authenticate.
-**OpenClaw users:** Run `clawhub install cellcog` instead.
+**Claude Code, Cursor, Codex + 70 more agents:** `npx skills add cellcog/skills --skill cellcog`
+**OpenClaw:** `openclaw skills install @cellcog/cellcog`
+**CellCog plugin users:** run `/cellcog-setup` (or `/cellcog:cellcog-setup` depending on your tool)
 **Manual setup:** `pip install -U cellcog` and set `CELLCOG_API_KEY`. See the **cellcog** skill for SDK reference.

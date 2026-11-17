@@ -1,40 +1,57 @@
-## Description: <br>
-Konto helps agents query personal finance data from a Konto API, including bank accounts, investments, assets, loans, transactions, and financial summaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Konto helps agents query personal finance data from the Konto API, including accounts, transactions, investments, assets, loans, and financial summaries.
 
-## Publisher: <br>
-[angelstreet](https://clawhub.ai/user/angelstreet) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[angelstreet](https://clawhub.ai/user/angelstreet)
 
-## Use Case: <br>
-Developers and users with a Konto API key use this skill to let an agent retrieve personal finance snapshots, account balances, transactions, investments, assets, loans, and subscription summaries. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The Konto API token can grant access to personal financial records. <br>
-Mitigation: Keep the API key out of shared terminals, logs, commits, and chat transcripts; restrict token scope when the Konto service supports it. <br>
-Risk: Skill outputs may include sensitive balances, transactions, holdings, loans, or subscription details. <br>
-Mitigation: Review and redact financial details before sharing agent outputs with other people or systems. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Konto on ClawHub](https://clawhub.ai/angelstreet/konto) <br>
-- [Konto API Reference](artifact/api.md) <br>
+## Use Case:
 
+Developers and agents use Konto to answer personal finance questions by making authenticated, read-oriented API calls against a user's Konto service. It is intended for personal finance lookups such as net worth, balances, subscriptions, loans, investments, and recent transactions.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, API Calls] <br>
-**Output Format:** [Markdown guidance with bash and curl command examples; API responses are JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires KONTO_API_KEY and KONTO_URL; returned data may include sensitive personal financial records.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill handles sensitive personal financial credentials with weak safeguards around the local secrets file.
+
+Mitigation: Use a personal-scoped key, keep ~/.openclaw/secrets/konto.env private, and install only after trusting the Konto service and publisher.
+
+Risk: KONTO_URL controls where authenticated financial requests are sent.
+
+Mitigation: Set KONTO_URL only to the intended HTTPS Konto endpoint or to a deliberate local development server.
+
+Risk: The helper script includes an analytics command outside the skill's declared personal scope.
+
+Mitigation: Avoid placing an analytics-scoped key in this skill's secrets file unless analytics access is intentional.
+
+## Reference(s):
+
+- [Konto API Reference](artifact/api.md)
+- [Konto ClawHub Skill Page](https://clawhub.ai/angelstreet/skills/konto)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with curl and jq examples plus shell helper commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Konto API key and KONTO_URL environment configuration for live API access.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

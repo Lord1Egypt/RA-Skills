@@ -1,6 +1,6 @@
 ---
-name: agent-ping-pong
-version: 2.8.0
+name: ping-pong
+version: 2.8.2
 description: "Your OpenClaw is the brain. Codex or Claude Code are the hands. The clipboard is the protocol."
 homepage: https://github.com/highnoonoffice/agent-ping-pong
 source: https://github.com/highnoonoffice/agent-ping-pong
@@ -119,6 +119,14 @@ The standard is asymmetric by design:
     Reply with a single [AGENT_HANDOFF] block. No prose outside the block.
 
 This applies to both agents. OpenClaw includes it in every spec and review block. Codex includes it in every delivery and acknowledgment block. If either agent drops it, the human adds it before relaying. The protocol is only as strong as both ends enforcing it.
+
+**Keep blocks short enough to survive the delivery channel.** If you relay blocks over a chat app (Telegram, Slack, SMS, etc.), long fenced code blocks can get silently split into multiple messages by the client — a single `[AGENT_HANDOFF]` block can render as two or three separate copyable boxes instead of one. That defeats the "one copy action, one paste" design: the human ends up stitching fragments back together by hand instead of doing a single clean paste.
+
+There is no way for either agent to fix the chat client's rendering — this is a channel limitation, not a protocol bug. The fix is upstream, in how the block gets written:
+
+- Default to the shortest block that still gives the other agent what it needs. Not every `requirements`/`edge_cases`/`qa_questions` list needs to be exhaustive — trim to what's actually load-bearing for this task.
+- If a block is genuinely long and can't be trimmed further, say so *before* sending it, and ask whether the human wants it split deliberately (e.g. explicit "part 1 of 2" markers) rather than let the chat client fragment it unpredictably mid-fence.
+- Never assume a long block arrived as one clean unit on the human's end just because it was authored as one. Confirm, or default to shorter.
 
 **The `[AGENT_HANDOFF]` schema:**
 
@@ -510,6 +518,7 @@ Continuation is automatic: every subsequent block in the chain (fix rounds, foll
 - **Feature branch → PR → approve → merge.** Never push direct to main for anything non-trivial.
 - **Session context.** Start each Codex session with a one-paragraph context block: what the project is, what's already built, what this session is for. Codex doesn't have memory. Give it the brief.
 - **When Codex goes sideways.** Paste the broken output to OpenClaw. Ask for a diagnosis. Relay the fix instruction back. One extra volley is cheaper than debugging blind.
+- **Keep blocks short for chat-app delivery.** If you're relaying blocks through Telegram, Slack, or similar, long `[AGENT_HANDOFF]` blocks can get split into multiple messages by the client, forcing multiple copy-pastes to reconstruct one block. Trim to essentials, or ask for a shorter version, before relaying.
 
 ---
 
@@ -542,3 +551,7 @@ Continuation is automatic: every subsequent block in the chain (fix rounds, foll
 **Context in the handoff block helps.** Codex has no memory. A one-paragraph context block (what MC is, what tab this affects, what aesthetic to match) produces meaningfully better output than a bare spec. Worth the extra lines.
 
 **PRs to vault for spec files are pointless.** Spec files going into prompts/ on main don't need a PR — they have no review gate and no approval value. Commit direct to main. PRs are for code that needs eyes before it merges, not documentation files.
+
+---
+
+Built by Joseph Voelbel / High Noon Office. Questions or want to build on this? josephvoelbel.com/contact

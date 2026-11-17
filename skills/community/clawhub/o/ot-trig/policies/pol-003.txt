@@ -1,0 +1,1 @@
+A self-driving car must decide whether to brake or continue based on sensor data. The exact deceleration rate of the car is not specified, and there may be variations in reaction time and road conditions. Write pseudocode for a function that detects a pedestrian and triggers an emergency stop. Use x

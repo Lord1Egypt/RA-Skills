@@ -1,41 +1,54 @@
-## Description: <br>
-Code Right Publish creates Code-Right software copyright application material tasks that generate Word documents and screenshots, then send a ZIP download by email. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Code Right Publish creates a Code-Right task that sends a software system name and recipient email to generate software copyright registration materials, package them, and email a ZIP download.
 
-## Publisher: <br>
-[ziyiyu](https://clawhub.ai/user/ziyiyu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ziyiyu](https://clawhub.ai/user/ziyiyu)
 
-## Use Case: <br>
-External developers, software teams, and service providers use this skill to create Code-Right tasks for software copyright registration materials and receive generated Word files and screenshots by email. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends system names and notification email addresses to softcraft.cloud for remote processing. <br>
-Mitigation: Use only with materials and email addresses acceptable for third-party processing, and review the service's privacy, retention, sharing, deletion, and uploaded-document handling before use. <br>
-Risk: Generated copyright application materials may be incomplete or inaccurate for a particular filing. <br>
-Mitigation: Review generated Word documents and screenshots before submitting them. <br>
+## Use Case:
 
+Developers, operations teams, and service providers use this skill to create software copyright material generation tasks for software systems. It is suitable when task creation needs to be initiated from an agent workflow or integrated into an automation or ticketing process.
 
-## Reference(s): <br>
-- [Code Right Publish on ClawHub](https://clawhub.ai/ziyiyu/code-right-create-task) <br>
-- [Code-Right service](https://softcraft.cloud) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API Calls, JSON] <br>
-**Output Format:** [Markdown guidance with bash command examples; script output is JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates a remote task and sends generated Word documents and screenshots as a ZIP by email; requires a system name and notification email.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.4 (source: server release evidence) <br>
+Risk: The skill sends the software system name and recipient email to softcraft.cloud for document generation and email delivery.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only when that external service is acceptable for the workflow; avoid confidential project names or personal emails unless they are approved for that service.
+
+Risk: An optional access token can be sent to the external service when provided.
+
+Mitigation: Use an appropriate session token and avoid exposing it in shared logs, tickets, or command history.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ziyiyu/skills/code-right-create-task)
+- [Code-Right task service](https://softcraft.cloud)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, JSON, Guidance]
+
+**Output Format:** [Markdown guidance with bash command examples and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates remote tasks through softcraft.cloud and may email ZIP materials after processing.]
+
+## Skill Version(s):
+
+0.1.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

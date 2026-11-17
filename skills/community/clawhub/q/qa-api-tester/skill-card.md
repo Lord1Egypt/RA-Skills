@@ -1,39 +1,54 @@
-## Description: <br>
-API interface testing and automation for sending HTTP requests, validating responses, chaining API calls, and generating Python requests/pytest, curl, and Postman collection outputs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+API interface testing and automation for sending HTTP requests, validating responses, chaining API calls, and generating Python requests/pytest, curl, and Postman collection outputs.
 
-## Publisher: <br>
-[zhanghengyi1986-afk](https://clawhub.ai/user/zhanghengyi1986-afk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhanghengyi1986-afk](https://clawhub.ai/user/zhanghengyi1986-afk)
 
-## Use Case: <br>
-Developers, QA engineers, and API testers use this skill to exercise REST or GraphQL endpoints, validate response status, headers, bodies, and schemas, and generate reusable API automation assets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated write, delete, or concurrency tests could affect production data or overload systems when run against live services. <br>
-Mitigation: Review generated commands before execution, prefer staging or disposable data, avoid production tokens, and run concurrency examples only on systems you own or are authorized to test within agreed rate limits. <br>
+## Use Case:
 
+Developers, QA engineers, and API testers use this skill to test REST or GraphQL endpoints, validate status codes, headers, response bodies, schemas, and generate reusable API automation assets.
 
-## Reference(s): <br>
-- [QA API Tester on ClawHub](https://clawhub.ai/zhanghengyi1986-afk/qa-api-tester) <br>
-- [Postman Collection v2.1 Schema](https://schema.getpostman.com/json/collection/v2.1.0/collection.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline bash, Python, and JSON code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce curl commands, pytest scripts, Postman collection JSON, response validation checklists, and environment configuration examples.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Authenticated write or delete requests could modify or remove data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use scoped test tokens, approved non-production endpoints, disposable data, and explicit confirmation before POST, PUT, PATCH, or DELETE requests.
+
+Risk: Concurrent request checks could create unwanted traffic against target services.
+
+Mitigation: Run concurrency checks only against approved test endpoints with conservative limits and explicit confirmation.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/zhanghengyi1986-afk/skills/qa-api-tester)
+- [Publisher Profile](https://clawhub.ai/user/zhanghengyi1986-afk)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown with inline bash, Python, and JSON code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can produce curl commands, pytest/requests scripts, JSON schema validation examples, Postman collection JSON, and environment configuration guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

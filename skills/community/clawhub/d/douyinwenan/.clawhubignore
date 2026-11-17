@@ -1,0 +1,8 @@
+# ClawHub 发布忽略规则
+# 排除测试与本地临时文件，保持发布包轻量
+tests/
+*.zip
+*.bak
+*.tmp
+.DS_Store
+Thumbs.db

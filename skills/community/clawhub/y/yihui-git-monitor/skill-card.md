@@ -1,41 +1,58 @@
-## Description: <br>
-A Git repository monitoring skill that supports GitHub, GitLab, Gitee, and other Git platforms, with repository update checks, pulls, and change summaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Git repository monitoring skill that tracks repositories across GitHub, GitLab, Gitee, and other Git platforms, pulls updates, and summarizes changes.
 
-## Publisher: <br>
-[1yihui](https://clawhub.ai/user/1yihui) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[1yihui](https://clawhub.ai/user/1yihui)
 
-## Use Case: <br>
-Developers and teams use this skill to monitor selected Git repositories, check for code updates, pull changes, and receive concise change summaries in chat or Feishu. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks for recurring repository pulls and automatic use of shared Feishu credentials without enough scoping or user control. <br>
-Mitigation: Use it only for repositories and chats that are intentionally monitored, keep Feishu credentials scoped to the intended bot and chat, and review behavior before enabling recurring checks. <br>
-Risk: The reviewed package references helper.js, but that runtime implementation was not present in the artifact evidence. <br>
-Mitigation: Verify the actual runtime files before installation or deployment, especially any code that pulls repositories or sends Feishu messages. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to monitor Git repositories, check for updates, pull changed code, and receive concise change summaries and notifications.
 
-## Reference(s): <br>
-- [YiHui GIT MONITOR on ClawHub](https://clawhub.ai/1yihui/yihui-git-monitor) <br>
-- [Feishu Open Platform](https://open.feishu.cn/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce repository change summaries and setup guidance for Git monitoring and Feishu notifications.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Automatic repository syncing and scheduled checks could affect repositories beyond the user's intended scope.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Enable monitoring only for explicitly approved repositories and review each repository entry before scheduled checks run.
+
+Risk: Feishu notification setup requires credentials and chat identifiers.
+
+Mitigation: Use narrowly scoped Feishu credentials, rotate them as needed, and send notifications only to approved chats.
+
+Risk: The reviewed artifact references helper.js, but that implementation file is not present in the evidence.
+
+Mitigation: Do not assume secret handling, logging, network destinations, or local repository changes are constrained until the implementation is reviewed.
+
+## Reference(s):
+
+- [YiHui GIT MONITOR ClawHub release page](https://clawhub.ai/1yihui/skills/yihui-git-monitor)
+- [Feishu Open Platform](https://open.feishu.cn/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown and plain text with inline shell commands and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include repository status, change summaries, scheduled-check guidance, and notification setup details.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

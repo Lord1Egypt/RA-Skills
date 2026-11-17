@@ -1,39 +1,58 @@
-## Description: <br>
-Daily recipe recommendation — Chinese, Western, and fusion cuisines on rotation. Full ingredients, step-by-step instructions, 30–60 min home-cook meals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Daily Recipe recommends Chinese, Western, and fusion recipes with ingredients, step-by-step instructions, and 30-60 minute home-cook meal guidance.
 
-## Publisher: <br>
-[jiajiaoy](https://clawhub.ai/user/jiajiaoy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiajiaoy](https://clawhub.ai/user/jiajiaoy)
 
-## Use Case: <br>
-External users and home cooks use this skill to get a daily bilingual recipe recommendation with ingredients, cooking steps, tips, and an optional visual recipe card. It can also help configure optional morning and evening recipe pushes for a selected user and channel. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Enabling push creates recurring morning and evening jobs for the chosen user and channel. <br>
-Mitigation: Review how the OpenClaw environment handles __OPENCLAW_CRON_ADD__ tokens, and enable pushes only for intended users and channels. <br>
+## Use Case:
 
+External users and home cooks use this skill to answer what to cook today with bilingual recipe recommendations, practical ingredient lists, cooking steps, tips, and optional daily reminders.
 
-## Reference(s): <br>
-- [Daily Recipe on ClawHub](https://clawhub.ai/jiajiaoy/daily-recipe) <br>
-- [OpenClaw](https://openclaw.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Bilingual recipe guidance plus a generated single-file HTML recipe card; optional push scripts emit shell output and OpenClaw cron tokens.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes the recipe artifact to /mnt/user-data/outputs/daily-recipe.html when run as documented; optional pushes target telegram, feishu, slack, or discord.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release evidence) <br>
+Risk: The skill can set up recurring recipe push reminders with per-user local settings and multi-channel delivery.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Enable reminders only after confirming the recipient, channel, schedule, and whether persistent userId-based settings are acceptable.
+
+Risk: Scheduled pushes use a fixed Asia/Shanghai timezone unless the surrounding platform changes the emitted cron configuration.
+
+Mitigation: Review the configured reminder times and timezone before enabling daily morning or evening pushes.
+
+Risk: Generated recipe pages may include ad-ready placeholders and ClawCode branding.
+
+Mitigation: Review generated HTML before publishing or sharing it in contexts where advertising placeholders or branding are not desired.
+
+## Reference(s):
+
+- [Daily Recipe on ClawHub](https://clawhub.ai/jiajiaoy/skills/daily-recipe)
+- [OpenClaw](https://openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration]
+
+**Output Format:** [Bilingual recipe guidance, Markdown responses, and a single-file HTML recipe page.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May also emit OpenClaw cron add/remove commands for scheduled morning and evening recipe pushes.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

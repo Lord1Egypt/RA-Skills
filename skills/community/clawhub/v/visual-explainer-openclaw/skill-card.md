@@ -1,52 +1,63 @@
-## Description: <br>
-Generate beautiful, self-contained HTML pages that visually explain systems, code changes, plans, and data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate self-contained HTML pages and slide decks that visually explain systems, code changes, plans, data tables, and technical concepts.
 
-## Publisher: <br>
-[keylimesoda](https://clawhub.ai/user/keylimesoda) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[keylimesoda](https://clawhub.ai/user/keylimesoda)
 
-## Use Case: <br>
-Developers and engineers use this skill to turn technical concepts, architecture, code reviews, plans, recaps, comparisons, and data tables into visual HTML explanations and slide decks for review or sharing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Generated explanations may include incorrect or misleading technical claims when source context is incomplete. <br>
-Mitigation: Review generated diagrams, summaries, and slide decks against the source project before relying on or sharing them. <br>
-Risk: The share workflow can publish selected HTML pages publicly through Vercel. <br>
-Mitigation: Do not use the share workflow for confidential code, architecture, plans, customer data, or other sensitive content. <br>
-Risk: The fact-check workflow can edit documents in place. <br>
-Mitigation: Review resulting diffs before accepting corrections or using the edited document as authoritative. <br>
-Risk: The skill can write persistent HTML files, open them in a browser, and optionally use external image-generation tools. <br>
-Mitigation: Inspect generated files and avoid sending sensitive content to optional external tooling. <br>
+## Use Case:
 
+Developers and engineers use this skill to convert architecture notes, reviews, implementation plans, recaps, comparisons, and technical explanations into browser-viewable HTML diagrams, reports, and slide decks.
 
-## Reference(s): <br>
-- [ClawHub Skill Listing](https://clawhub.ai/keylimesoda/visual-explainer-openclaw) <br>
-- [README](README.md) <br>
-- [Skill Definition](SKILL.md) <br>
-- [CSS Patterns](references/css-patterns.md) <br>
-- [Libraries](references/libraries.md) <br>
-- [Responsive Navigation](references/responsive-nav.md) <br>
-- [Slide Patterns](references/slide-patterns.md) <br>
-- [Share Workflow](prompts/share.md) <br>
-- [Fact Check Workflow](prompts/fact-check.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance plus generated self-contained HTML, shell commands, and file edits when workflows request them.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated HTML is intended to be opened locally in a browser; the share workflow can publish selected HTML pages publicly through Vercel.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.5.1-openclaw.1 (source: ClawHub release metadata and artifact/skill.json) <br>
+Risk: Generated reports can include repository content, git history, conversation context, or OpenClaw memory details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated HTML for secrets, internal details, and inaccurate claims before saving it as a durable record or sharing it.
+
+Risk: The share workflow can publish an HTML report publicly and may default to the latest diagram when no file is specified.
+
+Mitigation: Pass an explicit file path and confirm the selected report contents before using the share workflow on sensitive projects.
+
+Risk: Optional Vercel, CDN-backed diagrams, and AI-image workflows rely on external dependencies.
+
+Mitigation: Use those optional paths only when the project permits the dependency; otherwise keep the generated HTML local.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/keylimesoda/skills/visual-explainer-openclaw)
+- [README](README.md)
+- [Skill instructions](SKILL.md)
+- [CSS patterns](references/css-patterns.md)
+- [External libraries](references/libraries.md)
+- [Responsive navigation](references/responsive-nav.md)
+- [Slide patterns](references/slide-patterns.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Self-contained HTML files with optional Markdown summaries, shell commands, configuration guidance, and share-workflow JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes local HTML reports to ~/.openclaw/workspace/diagrams; optional workflows can open files in a browser or publish selected HTML through Vercel.]
+
+## Skill Version(s):
+
+0.5.1-openclaw.1 (source: server release metadata and skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

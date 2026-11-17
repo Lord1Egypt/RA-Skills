@@ -1,40 +1,56 @@
-## Description: <br>
-Codebase Stats analyzes local projects for lines of code, language distribution, simplified function complexity, comment ratio, dependency counts, largest files, and tech debt indicators across 40+ languages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze project metrics including lines of code, language distribution, function complexity, code-to-comment ratio, test coverage indicators, dependency counts, largest files, and tech debt signals across 40+ languages.
 
-## Publisher: <br>
-[charlie-morrison](https://clawhub.ai/user/charlie-morrison) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[charlie-morrison](https://clawhub.ai/user/charlie-morrison)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill to inspect a local codebase and produce project health metrics such as LOC, language distribution, simplified function complexity, dependency counts, test file indicators, largest files, and TODO/FIXME/HACK signals.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill reads source files in the target project to compute metrics.
+
+Mitigation: Run it only on codebases the local agent is allowed to inspect, and pass a specific path when scope should be limited.
+
+Risk: Large or broad scans may inspect more files than intended.
+
+Mitigation: Use --language or --max-files to narrow the scan when tighter scope is needed.
+
+Risk: The skill can write a report file when --output is provided.
+
+Mitigation: Choose an explicit output path and review generated reports before sharing them.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineering teams use this skill to inspect a codebase's size, language mix, complexity hotspots, dependency footprint, and maintenance signals before planning or reviewing engineering work. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, JSON, shell commands, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The scanner reads local project files and reports metrics for the selected directory. <br>
-Mitigation: Run it only against specific code folders intended for analysis and avoid broad home or secrets-containing directories. <br>
-Risk: Using --output can overwrite an existing file at the chosen path. <br>
-Mitigation: Choose an explicit report filename and confirm it is safe to replace before running with --output. <br>
+**Output Format:** [Terminal text, Markdown report, or JSON report]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/charlie-morrison/codebase-stats) <br>
+**Other Properties Related to Output:** [Can write a user-requested report file with --output; supports path, language, format, and max-files options.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, shell commands, guidance] <br>
-**Output Format:** [Terminal text, Markdown, or JSON report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can optionally write a report file with --output; scans local files in the selected project directory.] <br>
+1.0.1 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,60 @@
-## Description: <br>
-Nano Banana Pro CN helps agents generate and edit images through APIYI's NanoBananaPro image service with configurable aspect ratios, resolutions, and optional input images. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates and edits images from natural-language prompts through the APIYI-hosted NanoBananaPro image service, with support for multiple aspect ratios, 1K to 4K output sizes, and optional image inputs.
 
-## Publisher: <br>
-[onlyloveher](https://clawhub.ai/user/onlyloveher) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[onlyloveher](https://clawhub.ai/user/onlyloveher)
 
-## Use Case: <br>
-External users and developers use this skill to generate new images or edit existing images for social media, marketing, personal creative, and presentation workflows through APIYI-backed image generation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts and selected input images are sent to APIYI for remote processing. <br>
-Mitigation: Use only with APIYI and publisher trust, and avoid sending confidential, personal, or regulated images unless remote processing is acceptable. <br>
-Risk: API credentials can be exposed if shared broadly or passed through command history. <br>
-Mitigation: Use a dedicated API key and prefer environment variables or a secret manager over command-line keys. <br>
+## Use Case:
 
+External users, developers, and content creators use this skill to generate new images or edit existing images from prompts for social content, marketing assets, wallpapers, illustrations, and image repair workflows.
 
-## Reference(s): <br>
-- [Common use cases](references/scene.md) <br>
-- [APIYI](https://apiyi.com/) <br>
-- [APIYI API console](https://api.apiyi.com) <br>
-- [ClawHub skill page](https://clawhub.ai/onlyloveher/nano-banana-pro-cn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown guidance with inline shell commands and generated PNG image files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an APIYI API key, prompt text, optional output filename, aspect ratio, resolution, and up to 14 input images.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence release and skill.yaml) <br>
+Risk: The skill can upload local input-image paths supplied to the script to the APIYI service, and scanner evidence notes it does not validate that those paths are actually images.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only non-sensitive images, verify each input path before execution, and run the skill in a restricted workspace that cannot read credentials, private keys, or unrelated documents.
+
+Risk: API keys may be provided by command-line flag, which can expose credentials through shell history or process listings.
+
+Mitigation: Prefer the APIYI_API_KEY environment variable and avoid passing API keys directly on the command line.
+
+Risk: Prompts and image inputs are sent to a third-party provider for processing.
+
+Mitigation: Confirm that APIYI is the intended backend before use and avoid sending private, regulated, or confidential content.
+
+## Reference(s):
+
+- [Common Usage Scenarios](references/scene.md)
+- [APIYI Service](https://apiyi.com/)
+- [APIYI API Console](https://api.apiyi.com)
+- [ClawHub Skill Page](https://clawhub.ai/onlyloveher/skills/nano-banana-pro-cn)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Shell commands, Guidance]
+
+**Output Format:** [PNG image files with terminal status text and Markdown guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports text-to-image and image editing with optional aspect ratio, resolution, and up to 14 input images.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill.yaml)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

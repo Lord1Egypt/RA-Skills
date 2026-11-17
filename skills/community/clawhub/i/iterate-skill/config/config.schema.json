@@ -1,0 +1,433 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/jingzhao-l/iterate-skill/main/config/config.schema.json",
+  "title": "Iterate Skill Configuration",
+  "description": "Schema for iterate.config.yaml used by the iterate-skill AI coding assistant skill.",
+  "type": "object",
+  "additionalProperties": false,
+  "$defs": {
+    "dimension": {
+      "type": "string",
+      "description": "Review dimension key.",
+      "enum": [
+        "correctness",
+        "security",
+        "performance",
+        "architecture",
+        "style-tests",
+        "tech-debt",
+        "spec-compliance",
+        "frontend-backend",
+        "ui-ux"
+      ]
+    },
+    "dimensionSet": {
+      "type": "object",
+      "description": "A named review-dimension blueprint: a subset of dimensions plus optional per-dimension focus overrides, used when a goal targets a specific scope.",
+      "additionalProperties": false,
+      "properties": {
+        "dimensions": {
+          "type": "array",
+          "description": "Dimension keys enabled for this scope.",
+          "items": {
+            "$ref": "#/$defs/dimension"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "focus": {
+          "type": "object",
+          "description": "Optional extra focus text appended to specific dimension prompts for this scope. Keys must correspond to dimensions present in this set.",
+          "propertyNames": {
+            "$ref": "#/$defs/dimension"
+          },
+          "additionalProperties": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      },
+      "required": ["dimensions"]
+    }
+  },
+  "properties": {
+    "goal": {
+      "type": "string",
+      "description": "Iteration goal shown in prompts and decision logs."
+    },
+    "max_rounds": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 50,
+      "description": "Maximum number of iteration rounds (hard cap 50)."
+    },
+    "reasoning_effort": {
+      "type": ["string", "null"],
+      "enum": [null, "low", "medium", "high"],
+      "default": null,
+      "description": "LLM reasoning effort for review passes. 'low' saves tokens on quick rounds, 'high' for critical deep review; null = follow the provider default."
+    },
+    "language": {
+      "type": "string",
+      "enum": ["zh", "en"],
+      "description": "Output language for prompts and reports."
+    },
+    "mode": {
+      "type": "string",
+      "enum": ["iterate", "defensive"],
+      "default": "iterate",
+      "description": "Default execution mode for this invocation (v3.0): 'iterate' (original review-fix-converge loop) or 'defensive' (defensive-programming mode for incremental coding tasks). An explicit 'defensive' in the invocation overrides this. 'iterate' stays the default for zero breakage."
+    },
+    "dimensions": {
+      "type": "array",
+      "description": "Enabled review dimensions. Values are defined in config/dimensions.yaml.",
+      "items": {
+        "$ref": "#/$defs/dimension"
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "dimension_sets": {
+      "type": "object",
+      "description": "Named review-dimension blueprints for scope-specific goals (e.g. frontend, api, security). The top-level 'dimensions' remains the default for whole-project/global review; a scoped goal may route to one of these sets instead. Keys are safe scope names (letters/digits/underscore/dot/dash).",
+      "propertyNames": {
+        "pattern": "^[A-Za-z0-9_.-]+$",
+        "description": "Scope names must only contain letters, digits, underscore, dot, or dash."
+      },
+      "additionalProperties": {
+        "$ref": "#/$defs/dimensionSet"
+      }
+    },
+    "review": {
+      "type": "object",
+      "description": "Review behaviour configuration.",
+      "additionalProperties": false,
+      "properties": {
+        "scope": {
+          "type": "string",
+          "enum": ["changed-only", "full"],
+          "description": "changed-only reviews only files changed in the current round; full reviews the whole codebase."
+        }
+      }
+    },
+    "atomic": {
+      "type": "object",
+      "description": "Thresholds used to classify issues as atomic.",
+      "additionalProperties": false,
+      "properties": {
+        "max_lines": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Maximum number of changed lines for an atomic issue."
+        },
+        "max_adjacent_methods": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Maximum number of adjacent similar methods an atomic fix may span."
+        }
+      }
+    },
+    "git": {
+      "type": "object",
+      "description": "Git workflow configuration.",
+      "additionalProperties": false,
+      "properties": {
+        "target_branch": {
+          "type": "string",
+          "description": "Target branch to merge fixes into."
+        },
+        "use_worktree": {
+          "type": "boolean",
+          "description": "Use git worktree instead of a local branch for isolation."
+        },
+        "push_per_round": {
+          "type": "boolean",
+          "description": "Push to remote after every round (true) or only at the end (false).",
+          "default": false
+        },
+        "auto_merge": {
+          "type": "boolean",
+          "description": "Automatically merge iteration branch into target_branch after each round (true) or leave on iteration branch for manual merge (false).",
+          "default": false
+        }
+      }
+    },
+    "validation": {
+      "type": "object",
+      "description": "Validation command configuration and safety whitelist.",
+      "additionalProperties": false,
+      "properties": {
+        "command_whitelist": {
+          "type": "array",
+          "description": "Config-time vetting aid (optional): common command prefixes that scripts/validate.py checks each validation.commands entry starts with. Has no effect at runtime; the runtime authoritative whitelist is validation.commands.",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "commands": {
+          "type": "object",
+          "description": "Per-module validation command lists. Keys are module identifiers; values are shell commands. This is the runtime authoritative whitelist: the agent executes exactly these commands and no others.",
+          "propertyNames": {
+            "pattern": "^[A-Za-z0-9_.-]+$",
+            "description": "Module identifiers must only contain letters, digits, underscore, dash, or dot (no shell metacharacters)."
+          },
+          "additionalProperties": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 1
+          }
+        }
+      }
+    },
+    "invariants": {
+      "type": "object",
+      "description": "Project-level invariants for defensive-programming mode (v3.0). Optional section evaluated by `iterate invariant` at delivery. When absent, `iterate invariant` degrades to validation.commands.",
+      "additionalProperties": false,
+      "properties": {
+        "ensure": {
+          "type": "array",
+          "description": "File-existence assertions (relative to project root) that must hold at delivery. Only relative paths inside the project root are allowed — absolute paths and ../ key escaping the root are rejected by `iterate invariant`.",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "commands": {
+          "type": "object",
+          "description": "Per-module invariant command lists. Each command must match a configured entry EXACTLY (same rule as validation.commands); no composition or prefixing.",
+          "propertyNames": {
+            "pattern": "^[A-Za-z0-9_.-]+$",
+            "description": "Module identifiers must only contain letters, digits, underscore, dash, or dot (no shell metacharacters)."
+          },
+          "additionalProperties": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 1
+          }
+        }
+      }
+    },
+    "reviewer": {
+      "type": "object",
+      "description": "Reviewer sub-agent configuration.",
+      "additionalProperties": false,
+      "properties": {
+        "output_schema_validation": {
+          "type": "boolean",
+          "description": "Validate reviewer JSON output against the expected schema and retry on mismatch."
+        },
+        "evidence_validation": {
+          "type": "boolean",
+          "description": "Hard code-evidence gate (default on). When enabled, every finding's file/line is validated against real files on disk during meta-review; a fabricated or out-of-range location surfaces as a critical EVIDENCE_VIOLATION and flips the verdict to needs_revision. Set to false to disable."
+        },
+        "coverage_validation": {
+          "type": "boolean",
+          "description": "Prompt-informative scope coverage check (default on). During meta-review, the reviewer's self-reported reads are compared to the file inventory it was assigned; a meaningful gap surfaces as a medium COVERAGE_GAP hint. Never flips the verdict. Set to false to disable."
+        },
+        "scope_chunk_size": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Number of files per reviewer batch in a `full` scope review (default 25). Large inventories are split into per-chunk reviewer tasks. Must be >= 1: a zero or negative value would produce zero-size chunks and an empty review."
+        }
+      }
+    },
+    "onboarding": {
+      "type": "object",
+      "description": "Onboarding state and drift detection configuration. Written by the onboarding wizard or AI onboarding flow; not intended for manual editing.",
+      "additionalProperties": false,
+      "properties": {
+        "version": {
+          "type": "string",
+          "description": "Fingerprint schema version."
+        },
+        "completed_at": {
+          "type": "string",
+          "description": "ISO 8601 timestamp of the last onboarding or refresh."
+        },
+        "channel": {
+          "type": "string",
+          "enum": ["cli", "ai"],
+          "description": "Channel used for onboarding: 'cli' (interactive wizard) or 'ai' (AI-assisted scan)."
+        },
+        "skill_version": {
+          "type": "string",
+          "description": "Version of the iterate skill that performed onboarding."
+        },
+        "drift_check": {
+          "type": "boolean",
+          "description": "Whether to check for manifest drift on each /iterate invocation. Defaults to true."
+        },
+        "fingerprints": {
+          "type": "array",
+          "description": "SHA-256 hashes of manifest files at the time of onboarding, used for drift detection.",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "path": {
+                "type": "string",
+                "minLength": 1,
+                "description": "Manifest file name (relative to project root)."
+              },
+              "sha256": {
+                "type": "string",
+                "minLength": 64,
+                "maxLength": 64,
+                "description": "SHA-256 hash of the file content."
+              }
+            },
+            "required": ["path", "sha256"]
+          }
+        },
+        "project_description": {
+          "type": "string",
+          "description": "User-entered project description from the onboarding wizard. Persisted so returning users who decline basic update don't lose their input."
+        },
+        "code_conventions": {
+          "type": "string",
+          "description": "User-entered code conventions from the onboarding wizard. Persisted so returning users who decline basic update don't lose their input."
+        },
+        "drift_ignore": {
+          "type": "array",
+          "description": "Glob patterns of manifest files to exclude from drift detection (e.g. package-lock.json, yarn.lock).",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        }
+      }
+    },
+    "personalization": {
+      "type": ["object", "null"],
+      "description": "User-defined project-specific constraints and rules that AI scanning cannot discover. Managed by 'iterate personalize' or the onboarding wizard's personalization step. Null/empty when no personalization has been configured yet.",
+      "additionalProperties": false,
+      "properties": {
+        "version": {
+          "type": "string",
+          "description": "Personalization schema version, for future compatibility checks.",
+          "pattern": "^\\d+\\.\\d+$"
+        },
+        "protected_paths": {
+          "type": "array",
+          "description": "Glob patterns of files/dirs iterate must never modify.",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "risk_areas": {
+          "type": "array",
+          "description": "Fragile files/dirs where changes require architectural approval.",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "path": {
+                "type": "string",
+                "minLength": 1,
+                "description": "File or directory path."
+              },
+              "reason": {
+                "type": "string",
+                "description": "Why this area is risky."
+              }
+            },
+            "required": ["path", "reason"]
+          }
+        },
+        "known_intentional": {
+          "type": "array",
+          "description": "Findings to suppress because the pattern is intentional. Matched by file:line + dimension.",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "file": {
+                "type": "string",
+                "minLength": 1,
+                "description": "File path relative to project root."
+              },
+              "line": {
+                "type": "integer",
+                "minimum": 0,
+                "description": "Line number (0 means the entire file)."
+              },
+              "dimension": {
+                "description": "Review dimension to suppress (e.g. tech-debt, security).",
+                "$ref": "#/$defs/dimension"
+              },
+              "reason": {
+                "type": "string",
+                "description": "Why this pattern is intentional."
+              }
+            },
+            "required": ["file", "line", "dimension", "reason"]
+          }
+        },
+        "dimension_focus": {
+          "type": "array",
+          "description": "Extra focus text appended to specific dimension prompts during review.",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "dimension": {
+                "description": "Dimension key (e.g. security, performance).",
+                "$ref": "#/$defs/dimension"
+              },
+              "focus": {
+                "type": "string",
+                "description": "Extra focus text to append."
+              }
+            },
+            "required": ["dimension", "focus"]
+          }
+        },
+        "fix_priority_order": {
+          "type": "array",
+          "description": "Dimension fix priority order (high to low). Dimensions listed first are fixed first.",
+          "items": {
+            "$ref": "#/$defs/dimension"
+          },
+          "uniqueItems": true
+        },
+        "forbidden_fixes": {
+          "type": "array",
+          "description": "Fix approaches iterate must never use (e.g. 'try-catch 吞错', '# noqa').",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "extra_validation_commands": {
+          "type": "object",
+          "description": "Project-specific validation commands grouped by module. Merged into validation.commands by merge_personalization_into_config.",
+          "propertyNames": {
+            "pattern": "^[A-Za-z0-9_.-]+$",
+            "description": "Module identifiers must only contain letters, digits, underscore, dash, or dot (no shell metacharacters)."
+          },
+          "additionalProperties": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        }
+      }
+    }
+  }
+}

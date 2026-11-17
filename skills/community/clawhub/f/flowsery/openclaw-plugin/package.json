@@ -1,0 +1,57 @@
+{
+  "name": "@flowsery/openclaw-plugin",
+  "version": "0.3.2",
+  "description": "Flowsery plugin for OpenClaw: privacy-first web analytics and AI-detected session issues",
+  "license": "MIT",
+  "author": "Flowsery <contact@flowsery.com> (https://flowsery.com)",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist",
+    "openclaw.plugin.json",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "prepublishOnly": "npm run build"
+  },
+  "peerDependencies": {
+    "openclaw": ">=2026.8.0"
+  },
+  "dependencies": {
+    "@sinclair/typebox": "0.34.52"
+  },
+  "devDependencies": {
+    "@types/node": "22.20.1",
+    "openclaw": "2026.8.1",
+    "typescript": "5.9.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Flowsery/flowsery-openclaw.git",
+    "directory": "openclaw-plugin"
+  },
+  "homepage": "https://flowsery.com",
+  "keywords": [
+    "openclaw",
+    "openclaw-plugin",
+    "clawhub",
+    "flowsery",
+    "analytics",
+    "web-analytics",
+    "privacy",
+    "session-replay"
+  ],
+  "openclaw": {
+    "extensions": [
+      "./dist/index.js"
+    ],
+    "compat": {
+      "pluginApi": ">=2026.8.0"
+    },
+    "build": {
+      "openclawVersion": "2026.8.1"
+    }
+  }
+}

@@ -1,0 +1,12 @@
+# FluidGraph Skill 运行时依赖
+#
+# 结论：**没有第三方依赖**。
+#
+# TOML 解析使用 Python 3.11+ 标准库的 tomllib。
+# 仅当运行环境是 Python 3.10 及以下时，才需要下面这个回退包：
+tomli>=2.0.1; python_version < "3.11"
+
+# 说明：
+# * openai / 其它 LLM SDK 只在 agent/ 目录（DeepSeek 集成）里才需要，
+#   Skill 层与 Core 完全不依赖它们。单独部署 Skill 时不要装。
+# * 测试用标准库 unittest，不需要 pytest。

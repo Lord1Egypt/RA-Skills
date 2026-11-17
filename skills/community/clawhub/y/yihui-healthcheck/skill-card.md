@@ -1,39 +1,57 @@
-## Description: <br>
-Host security hardening and risk-tolerance configuration for OpenClaw deployments. Use when a user asks for security audits, firewall/SSH/update hardening, risk posture, exposure review, OpenClaw cron scheduling for periodic checks, or version status checks on a machine running OpenClaw (laptop, workstation, Pi, VPS). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Host security hardening and risk-tolerance configuration for OpenClaw deployments.
 
-## Publisher: <br>
-[1yihui](https://clawhub.ai/user/1yihui) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[1yihui](https://clawhub.ai/user/1yihui)
 
-## Use Case: <br>
-OpenClaw users, developers, and operators use this skill to assess host security posture, run OpenClaw security and version checks, choose a risk tolerance, and prepare staged hardening plans. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Host-hardening actions can change firewall, SSH, update, service, or scheduling behavior and may interrupt access if approved without confirming the access path. <br>
-Mitigation: Confirm how the user connects, show exact commands and rollback steps, require explicit approval for each state-changing action, and verify access after changes. <br>
-Risk: Scheduled audits, notifications, and local state or log files can expose operational details if scoped too broadly. <br>
-Mitigation: Review cadence, notification targets, and output locations before scheduling, keep state scoped to this skill, and redact secrets from logs. <br>
+## Use Case:
 
+Developers, operators, and OpenClaw users use this skill to audit host security posture, plan firewall, SSH, update, backup, and OpenClaw security checks, and apply hardening steps with explicit approval.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with numbered choices and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Plans require explicit approval before state-changing commands and include rollback and verification guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Host hardening changes can disrupt remote access or expected services if applied incorrectly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit approval for state-changing actions, confirm how the user connects, stage reversible changes, and include rollback steps before execution.
+
+Risk: Security checks and logs can expose sensitive host details or credential locations.
+
+Mitigation: Ask before running checks, avoid reading credential contents, redact secrets, and store outputs only in user-approved locations.
+
+Risk: Periodic audits or update checks can add persistent scheduled jobs and recurring logs.
+
+Mitigation: Create or modify scheduled checks only after direct approval, use stable job names, and document cadence and output location.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/1yihui/skills/yihui-healthcheck)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and numbered choices]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include remediation plans, rollback notes, audit summaries, and user-approved scheduling guidance.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

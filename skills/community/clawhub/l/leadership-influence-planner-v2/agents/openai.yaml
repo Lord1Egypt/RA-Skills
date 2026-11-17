@@ -1,0 +1,7 @@
+interface:
+  display_name: "Leadership Influence Planner V2"
+  short_description: "Break loops and influence ethically"
+  default_prompt: "Use $leadership-influence-planner-v2 to diagnose the conversation loop and choose an ethical leadership influence move."
+
+policy:
+  allow_implicit_invocation: true

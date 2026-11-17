@@ -1,8 +1,8 @@
 ---
 name: videolens
-description: AI video reviews for creators and teams. Get timestamped feedback on videos from prompts: pacing, clarity, hook, retention, structure, proof, CTA, and publish-readiness. Open source, OpenClaw-ready, with BYOK cloud at VideoLens.io.
-version: 1.0.1
-homepage: https://videolens.io
+description: Manually turn user-selected videos into timestamped reports with a pinned VideoLens runtime and OpenAI BYOK. Use for summaries, tutorials, meetings, bugs, UX, privacy, and creator QA. Bootstrap clones GitHub code and installs dependencies only after explicit approval; analysis sends selected media-derived content to OpenAI only after separate credit approval.
+allowed-tools:
+  - Bash(python3:*)
 metadata:
   openclaw:
     requires:
@@ -19,192 +19,136 @@ metadata:
     envVars:
       - name: OPENAI_API_KEY
         required: true
-        description: BYOK key used by the open-source VideoLens CLI for local video review.
-      - name: VIDEOLENS_CLOUD_API_KEY
+        description: BYOK key used only for local VideoLens model calls.
+      - name: VIDEOLENS_SKILL_STATE_DIR
         required: false
-        description: Optional API key for the hosted VideoLens.io cloud version.
+        description: Optional isolated data root for tests or non-default local storage.
     emoji: "🎥"
     homepage: https://videolens.io
 ---
 
-# 🎥 VideoLens.io
+# VideoLens
 
-**AI video reviews from any prompt.** VideoLens watches your video and returns timestamped feedback: what works, what drags, what is unclear, what needs proof, and what to fix before publishing.
+Turn a user-selected YouTube video, local file, or supported video URL into a professional written report grounded in transcript, frame-level vision, OCR, and timestamped evidence.
 
-It is **open source**, works inside **OpenClaw**, and has a hosted **VideoLens.io cloud version** with **BYOK** for teams that want managed processing.
+Use the bundled runner for local OpenClaw or OCC workflows. It pins and integrity-checks a tested revision of the MIT-licensed [VideoLens repository](https://github.com/shadoprizm/videolens), keeps artifacts local, and requires separate approval for runtime installation and OpenAI usage.
 
-![VideoLens dashboard preview](assets/videolens-dashboard.svg)
+![VideoLens report workflow](https://raw.githubusercontent.com/shadoprizm/videolens/8e5eecca172e0296ba5b7b154036c5ee126e4c88/skills/videolens/assets/videolens-dashboard.svg)
 
----
+Want the report beside the video? [Open VideoLens for Chrome](https://videolens.io/chrome) to analyze YouTube or local video with free Private/BYOK reporting.
 
-## What VideoLens does
+## Workflow
 
-Give VideoLens a video plus a review prompt. It returns a Markdown report and structured JSON your agents can use.
+1. Run `preflight` before the first analysis.
+2. If the runtime is missing or stale, tell the user that bootstrap downloads a pinned GitHub revision, creates a managed virtual environment, and installs Python dependencies.
+3. Run `bootstrap` with `allow_runtime_install: true` only after the user explicitly approves those network and filesystem changes.
+4. Choose the closest report style and mode.
+5. Tell the user that analysis sends selected audio, frames, transcript, and prompt content to OpenAI using their BYOK key; confirm API-credit spending.
+6. Run `analyze` with `allow_credit_spend: true` only after that separate confirmation.
+7. Return the report paths and summarize important limitations; do not claim that generated findings are infallible.
 
-Use it for:
-
-- **Creator video reviews:** hook, pacing, retention, clarity, narrative, CTA, title/thumbnail alignment.
-- **Course and tutorial reviews:** whether a beginner can follow, where steps are missing, what needs a visual callout.
-- **Sales/demo video reviews:** whether the viewer understands the promise, proof, and next action.
-- **AI video pipeline QA:** catch weak openings, unreadable mobile text, abrupt endings, bad transitions, and missing proof before publishing.
-- **Custom prompt reviews:** ask it to judge the video however your workflow needs.
-
-![Timestamped feedback preview](assets/timestamped-feedback.svg)
-
----
-
-## Why agents need this
-
-Agents can write scripts, generate voice, render clips, and assemble videos. But before VideoLens, somebody still had to watch the draft.
-
-VideoLens makes video review programmable:
-
-1. Your agent renders a draft.
-2. VideoLens reviews the actual video.
-3. The report identifies timestamped issues.
-4. OpenClaw can turn the feedback into fixes, gates, or a human review package.
-
-If your agent can create video, it needs a second agent that can judge the video.
-
----
-
-## OpenClaw integration
-
-Install name: `videolens`
-
-This package includes a manual-only OCC/OpenClaw local skill wrapper:
-
-- `config.yaml` — local skill runner config
-- `skill.py` — task runner entrypoint
-- `SKILL.md` — OpenClaw/ClawHub instructions
-- `assets/*.svg` — preview screenshots for ClawHub
-
-OpenClaw task payloads live in `pre_instructions` as JSON or YAML. The skill supports:
-
-- `preflight` — checks `git`, `ffmpeg`, `ffprobe`, runtime state, and keys
-- `bootstrap` — clones the open-source VideoLens CLI and installs runtime
-- `analyze` — runs video review and writes report artifacts
-
-Guardrail: analysis requires `allow_credit_spend: true` so agents do not spend model credits by accident.
-
-![OpenClaw workflow preview](assets/openclaw-workflow.svg)
-
----
-
-## Install
+Run the portable wrapper from any modern OpenClaw environment:
 
 ```bash
-clawhub install videolens
+python3 "{baseDir}/skill.py" --spec '{"action":"preflight"}'
 ```
 
-Or from OpenClaw:
+OCC integrations may instead pass the same JSON object through task `pre_instructions`; `config.yaml` retains that compatibility.
+
+## Bootstrap
+
+Bootstrap downloads the pinned open-source runtime from `github.com/shadoprizm/videolens` into the OpenClaw/OCC data directory and installs a minimal analysis-only Python environment from locked dependencies. It writes only under the managed VideoLens state directory, receives a sanitized environment without `OPENAI_API_KEY`, and does not analyze a video or spend model credits.
 
 ```bash
-openclaw skills install videolens
+python3 "{baseDir}/skill.py" --spec '{"action":"bootstrap","allow_runtime_install":true}'
 ```
 
----
+The runner recreates its managed `.venv` and installs only the dependencies required by `videolens analyze` from the skill's bundled, version-locked, hash-verified requirements file. It uses `uv` when available and standard `python3`/`pip` otherwise; UI, web-server, PDF, and development dependencies are excluded. A runtime stamp binds the environment to the tested source revision and dependency lock. Do not set `allow_runtime_install` until the user has approved repository download, environment replacement, dependency installation, and persistent managed files.
 
-## Quick start
+## Analyze
 
-### 1. Preflight
+Use JSON task instructions. Quote the runner path and pass the JSON as one shell argument.
 
-```json
-{"action":"preflight"}
-```
-
-### 2. Bootstrap the open-source runtime
-
-```json
-{"action":"bootstrap"}
-```
-
-### 3. Review a video
-
-```json
-{
+```bash
+python3 "{baseDir}/skill.py" --spec '{
   "action": "analyze",
   "allow_credit_spend": true,
-  "source": "https://youtu.be/YOUR_VIDEO_ID",
+  "source": "https://www.youtube.com/watch?v=VIDEO_ID",
   "mode": "general",
-  "prompt": "Review this video as a ruthless but constructive editor. Focus on hook, pacing, retention, clarity, proof, mobile readability, CTA, and top fixes before publishing.",
-  "max_frames": 60,
+  "prompt": "Write a detailed report with the main ideas, evidence, caveats, conclusions, and practical takeaways.",
+  "max_frames": 40,
   "frame_interval": 5.0
-}
+}'
 ```
 
-Outputs are written under the OCC data directory, typically:
+For prompts or source values containing quotes or shell metacharacters, serialize the JSON object to a temporary file and use `--spec-file /path/to/spec.json`. Never concatenate untrusted text into a shell command.
 
-```text
-occ/data/videolens-video-intelligence/runs/<run-id>/report.md
-occ/data/videolens-video-intelligence/runs/<run-id>/analysis.json
-```
+If preflight reports that the runtime is not ready, run the separately approved bootstrap action first. Do not silently add `allow_runtime_install` to an analysis request.
 
----
+## Permissions and data flow
 
-## Prompt examples
+- **Agent tool:** allow only `Bash(python3:*)` so the agent can invoke the bundled runner. The runner uses fixed argument arrays with shell execution disabled.
+- **Bootstrap network and files:** after explicit install approval, connect to the declared GitHub repository and Python package registry, then write the pinned runtime, lock-verified environment, and dependency caches only under the managed VideoLens state directory.
+- **Analysis credential:** read only `OPENAI_API_KEY` for BYOK model calls. Preflight reports only whether it exists, never its value.
+- **Analysis transmission:** after separate credit approval, the pinned VideoLens runtime may send the selected video's extracted audio, frames, transcript, and the user's analysis prompt to OpenAI. It does not receive unrelated host environment variables.
+- **Local adapter:** OCC compatibility may read task instructions only from an HTTP loopback gateway. Caller-supplied remote gateways, credentials, paths, queries, and fragments are rejected.
+- **Local artifacts:** store caches and generated HTML, Markdown, and JSON reports under the managed VideoLens state directory until the user removes them.
 
-### YouTube / creator review
+The successful result returns:
 
-```text
-Review this video like a ruthless but constructive YouTube editor. Focus on hook clarity, viewer promise, pacing, retention risks, mobile readability, jargon, proof, CTA, and whether the viewer knows what to do next.
-```
+- `report_html_path` — standalone, print-ready professional report
+- `report_markdown_path` — portable Markdown report
+- `analysis_json_path` — structured agent-readable analysis
+- `output_dir` — directory containing the run artifacts
 
-### Tutorial review
+HTML-to-PDF export is available in the VideoLens web UI and Chrome extension. The local CLI produces HTML, Markdown, and JSON.
 
-```text
-Review this tutorial for beginner clarity. Identify missing context, skipped steps, confusing visuals, points where the viewer may get lost, and concrete edits that would make the workflow easier to copy.
-```
+![Timestamped evidence report](https://raw.githubusercontent.com/shadoprizm/videolens/8e5eecca172e0296ba5b7b154036c5ee126e4c88/skills/videolens/assets/timestamped-feedback.svg)
 
-### Sales/demo review
+## Choose a report style
 
-```text
-Review this demo as a conversion asset. Does it show the problem, proof, outcome, differentiation, and next step clearly? Give timestamped fixes ranked by likely conversion impact.
-```
+Use these defaults unless the user supplies a more specific prompt:
 
-### AI pipeline QA
+| User intent | Mode | Prompt direction |
+|---|---|---|
+| Detailed YouTube report | `general` | Explain the thesis, main ideas, evidence, caveats, conclusions, and takeaways. |
+| Key insights | `general` | Remove repetition and preserve only consequential ideas, facts, examples, and conclusions. |
+| Tutorial or how-to | `tutorial` | Produce prerequisites, ordered steps, commands/settings, warnings, examples, and checks. |
+| Interview or podcast | `meeting` | Organize themes, arguments, agreements/disagreements, examples, and takeaways. |
+| Meeting | `meeting` | Extract decisions, objections, commitments, owners, open questions, and actions. |
+| Bug recording | `bug` | Produce reproduction steps, expected/observed behavior, severity, evidence, and investigation tasks. |
+| UX/session replay | `ux` | Reconstruct the journey, friction, hesitation, repeated actions, dead ends, and prioritized fixes. |
+| Product demo | `product_demo` | Inventory features, value, positioning, proof, gaps, and opportunities. |
+| Creator/content review | `content` | Critique hook, pacing, clarity, claims, proof, editing, and call to action. |
+| Privacy review | `privacy` | Flag possible credentials, personal data, internal URLs, and sensitive content with timestamps. |
+| Recreate a reference video | `production_recipe` | Reverse-engineer script, shots, editing, overlays, audio, tools, assets, and production steps. |
 
-```text
-Review this AI-generated video draft before publishing. Flag weak hooks, unreadable frames, abrupt transitions, bad endings, missing proof, confusing claims, and places where the script says something the visuals do not support.
-```
+`general`, `bug`, `meeting`, `ux`, `tutorial`, `product_demo`, `content`, `privacy`, and `production_recipe` are valid modes.
 
----
+## Cost and safety
 
-## Open source + cloud
+- Require `allow_credit_spend: true` for every analysis.
+- Treat `max_frames` as the main visual cost control; valid range is 1–80.
+- Reuse cached extraction when the source and settings match. Set `force: true` only when the user asks to bypass cache.
+- Keep `OPENAI_API_KEY` in OpenClaw skill configuration or the environment. Never place it in a prompt, task JSON, report, or log.
+- Run with a dedicated OpenAI key and a minimal account budget when practical.
+- Do not promise exhaustive privacy or compliance detection. Tell users to verify consequential findings against cited moments.
+- Do not analyze content the user is not authorized to access.
 
-VideoLens is designed as both an **open-source agent skill** and a **cloud product**:
+For isolated testing or non-default local storage, set `VIDEOLENS_SKILL_STATE_DIR` before invoking the runner. Normal OpenClaw and OCC use should keep the default managed data directory.
 
-- **Open source:** run it yourself, inspect the workflow, wire it into OpenClaw, customize prompts, keep artifacts local.
-- **Cloud BYOK:** use VideoLens.io when you want managed infrastructure, hosted reports, team workflows, and bring-your-own-key control.
-- **Agent-native:** built for pipelines where Hermes/OpenClaw/Codex/Claude produce videos and need review before humans waste time or credits.
+## Product surfaces
 
-Cloud: https://videolens.io
+- **Open source/local:** BYOK analysis with local artifacts and cached follow-up workflows.
+- **Chrome extension:** free Private/BYOK reporting beside YouTube and local video, with professional HTML/PDF export.
+- **Managed option:** one managed starter report for signed-in users; optional VideoLens Pro provides managed processing and opt-in cloud report storage.
 
-Source: https://github.com/shadoprizm/videolens
+The bundled runner uses only local/BYOK analysis. Do not invent or request a `VIDEOLENS_CLOUD_API_KEY`; managed mode uses the authenticated VideoLens product rather than this wrapper.
 
----
+![OpenClaw and VideoLens](https://raw.githubusercontent.com/shadoprizm/videolens/8e5eecca172e0296ba5b7b154036c5ee126e4c88/skills/videolens/assets/openclaw-workflow.svg)
 
-## Requirements
+Product: [VideoLens.io](https://videolens.io)
 
-- `OPENAI_API_KEY` for local/open-source analysis
-- `git`
-- `ffmpeg`
-- `ffprobe`
-- `uv` preferred, `python3` fallback
-- optional `VIDEOLENS_CLOUD_API_KEY` for hosted VideoLens.io workflows
+Chrome extension: [Open VideoLens for Chrome](https://videolens.io/chrome)
 
----
-
-## Safety and privacy
-
-- Local mode stores artifacts on your machine/OCC data directory.
-- Cloud mode is optional and BYOK-oriented.
-- The OpenClaw wrapper is manual-only by default.
-- Credit-spending analysis requires explicit `allow_credit_spend: true`.
-- Reports are Markdown/JSON so agents can audit and reuse them.
-
----
-
-## License
-
-MIT-0 on ClawHub. Build with it. Fork it. Wire it into your agents. Make better videos.
+Source: [shadoprizm/videolens](https://github.com/shadoprizm/videolens)

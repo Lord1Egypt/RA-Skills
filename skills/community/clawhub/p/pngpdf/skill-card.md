@@ -1,38 +1,53 @@
-## Description: <br>
-A comprehensive PDF manipulation toolkit for extracting text and tables, creating PDFs, merging and splitting documents, handling forms, and guiding programmatic PDF processing at scale. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Comprehensive PDF manipulation toolkit for extracting text and tables, creating new PDFs, merging/splitting documents, and handling forms. When Claude needs to fill in a PDF form or programmatically process, generate, or analyze PDF documents at scale.
 
-## Publisher: <br>
-[x2534817519](https://clawhub.ai/user/x2534817519) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[x2534817519](https://clawhub.ai/user/x2534817519)
 
-## Use Case: <br>
-Developers and engineers use this skill to generate PDF-processing code and shell commands for extracting text or tables, creating PDFs, merging or splitting documents, rotating pages, handling metadata, working with forms, OCR, and converting images to PDF. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may help run local PDF repair or decryption commands, including dual-use password-removal workflows. <br>
-Mitigation: Use it only on documents the user owns or is authorized to process, and review generated qpdf or decryption commands before execution. <br>
+## Use Case:
 
+Developers and automation engineers use this skill to process PDF documents at scale, including text and table extraction, PDF creation, merging, splitting, form handling, OCR workflows, and command-line PDF operations.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/x2534817519/pngpdf) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with Python and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference local PDF tools and Python libraries such as pypdf, pdfplumber, reportlab, qpdf, pdftk, pytesseract, and pdf2image.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Installing every PDF or OCR library mentioned in the guide could expand dependency exposure unnecessarily.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only the libraries needed for the current task, pin versions where practical, and use a virtual environment.
+
+Risk: Password and decryption examples could be misused on documents the user is not authorized to modify.
+
+Mitigation: Use password and decryption workflows only for documents where the user has explicit authorization.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/x2534817519/skills/pngpdf)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance]
+
+**Output Format:** [Markdown with Python and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include recommended package installation commands and PDF file-processing snippets; users choose which tools to install and run.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

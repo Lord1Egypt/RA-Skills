@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "channel": "listing-change",
+  "workflow": "watch",
+  "focus": "listing",
+  "outputTemplate": "watch_digest",
+  "requiredCapabilities": [
+    "product-detail",
+    "product-snapshots"
+  ]
+}

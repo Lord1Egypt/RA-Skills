@@ -1,46 +1,64 @@
-## Description: <br>
-PRISM OS SDK gives AI agents access to PRISM financial APIs for market data, prices, fundamentals, analytics, and finance workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Financial data SDK for AI Agents. 218+ read-only endpoints for market data, prices, fundamentals. Built for Cursor, Claude, OpenClaw. Data retrieval only.
 
-## Publisher: <br>
-[StrykrAgent](https://clawhub.ai/user/StrykrAgent) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[strykragent](https://clawhub.ai/user/strykragent)
 
-## Use Case: <br>
-Developers and agent builders use this skill to add PRISM financial data and analytics calls to AI finance agents, trading assistants, research tools, and portfolio workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The SDK may expose trading, order, wallet, webhook, and API-key administration capabilities beyond the read-only positioning in the public skill text. <br>
-Mitigation: Scope PRISM_API_KEY permissions narrowly and do not expose execution, wallet, webhook, or key-management methods to autonomous agents without explicit human approval gates, limits, and separate credentials. <br>
-Risk: Financial API outputs may influence trading or portfolio decisions. <br>
-Mitigation: Treat returned data and generated recommendations as decision support, verify material actions independently, and require review before any transaction or account-management action. <br>
+## Use Case:
 
+Developers and external agent builders use this SDK to connect AI agents and trading workflows to PRISM financial market data, analytics, risk, prediction market, and agent-context endpoints.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/StrykrAgent/prism-finance-os) <br>
-- [PRISM API Documentation](https://api.prismapi.ai/docs) <br>
-- [PRISM API Homepage](https://api.prismapi.ai) <br>
-- [npm Package](https://www.npmjs.com/package/prism-finance-os) <br>
-- [Architecture and Build Roadmap](docs/ARCHITECTURE.md) <br>
-- [Real API Coverage](docs/REAL_API_COVERAGE.md) <br>
-- [Universal SDK Reference](docs/UNIVERSAL_SDK.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with TypeScript examples and shell commands; SDK calls return JSON from the PRISM API.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires PRISM_API_KEY for authenticated API access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: ClawHub release metadata; package.json lists 0.1.0) <br>
+Risk: The package is advertised as read-only, while authoritative security evidence says it includes account key management and transaction-related capabilities.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and restrict any non-read-only modules before installation or agent use; require human approval for developer key-management and execution workflows.
+
+Risk: The skill requires a PRISM API key and supports a custom baseUrl.
+
+Mitigation: Use least-privilege or non-production credentials, keep secrets in environment variables, and avoid custom endpoints unless they have been reviewed.
+
+Risk: Execution, webhook, and watch behavior can create higher-risk remote account activity.
+
+Mitigation: Treat these features as active operations rather than passive market-data lookup; gate them behind policy controls, logging, and explicit operator approval.
+
+## Reference(s):
+
+- [ClawHub Skill Listing](https://clawhub.ai/strykragent/skills/prism-finance-os)
+- [PRISM API Documentation](https://api.prismapi.ai/docs)
+- [PRISM API Home](https://api.prismapi.ai)
+- [npm Package](https://www.npmjs.com/package/prism-finance-os)
+- [GitHub Repository](https://github.com/Strykr-Prism/PRISM-OS-SDK)
+- [Architecture](docs/ARCHITECTURE.md)
+- [Real API Coverage](docs/REAL_API_COVERAGE.md)
+- [Universal SDK](docs/UNIVERSAL_SDK.md)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Code, Configuration instructions, JSON]
+
+**Output Format:** [TypeScript SDK calls and structured JSON-like API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires PRISM_API_KEY; supports configurable baseUrl and timeout.]
+
+## Skill Version(s):
+
+0.1.2 (source: ClawHub release evidence, released 2026-02-19)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

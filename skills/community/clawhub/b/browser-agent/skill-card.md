@@ -1,45 +1,56 @@
-## Description: <br>
-Browser Agent lets an agent control a local Chrome browser through Chrome DevTools Protocol for navigation, screenshots, clicks, typing, JavaScript evaluation, session reuse, data collection, content management, and browser-based testing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Browser Agent controls a local Chrome browser through the Chrome DevTools Protocol and WebSocket connections for navigation, screenshots, element interaction, JavaScript evaluation, and session reuse.
 
-## Publisher: <br>
-[kaka4413](https://clawhub.ai/user/kaka4413) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kaka4413](https://clawhub.ai/user/kaka4413)
 
-## Use Case: <br>
-Developers and automation engineers use this skill to connect agents to Chrome CDP, reuse browser sessions, and automate browser workflows such as web data collection, form interactions, content publishing, cross-platform synchronization, screenshots, and UI regression checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives an agent broad control over real logged-in Chrome sessions. <br>
-Mitigation: Use a separate Chrome profile with non-sensitive accounts and require explicit confirmation before posting, deleting, submitting forms, or other state-changing actions. <br>
-Risk: Chrome CDP access can expose powerful browser control if the debugging endpoint is reachable beyond the intended local session. <br>
-Mitigation: Keep CDP bound to localhost and avoid wildcard remote origins when possible. <br>
-Risk: Browser automation and JavaScript evaluation can be unsafe on sensitive sites. <br>
-Mitigation: Avoid using the skill on banking, email, admin consoles, password managers, or other sensitive sites unless reviewed and explicitly approved. <br>
+## Use Case:
 
+Developers and automation engineers use this skill to drive a real Chrome session for web testing, data collection, content workflows, and cross-platform browser tasks where logged-in state or a visible browser session is needed.
 
-## Reference(s): <br>
-- [ClawHub Skill Release](https://clawhub.ai/kaka4413/browser-agent) <br>
-- [Browser Agent API Reference](references/api_reference.md) <br>
-- [Chrome DevTools Protocol Documentation](https://chromedevtools.github.io/devtools-protocol/) <br>
-- [websocket-client Documentation](https://websocket-client.readthedocs.io/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, files, guidance] <br>
-**Output Format:** [Markdown guidance with Python and shell snippets, CLI status text, and generated browser artifacts such as screenshots when actions are executed.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runtime behavior depends on access to a local Chrome CDP endpoint and may act on logged-in browser sessions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: The skill can control a real browser as the user, including authenticated accounts and sensitive pages.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated automation Chrome profile with no personal sessions, and require explicit review before posting, deleting, typing credentials, running JavaScript, or capturing screenshots on sensitive pages.
+
+Risk: Chrome remote debugging and permissive WebSocket origins can expose high-impact browser control if misconfigured.
+
+Mitigation: Keep CDP bound to localhost, avoid wildcard remote origins when possible, close the browser when automation is complete, and do not expose the debugging port to a network.
+
+## Reference(s):
+
+- [Browser Agent API Reference](references/api_reference.md)
+- [Chrome DevTools Protocol Documentation](https://chromedevtools.github.io/devtools-protocol/)
+- [websocket-client Documentation](https://websocket-client.readthedocs.io/)
+- [ClawHub Skill Page](https://clawhub.ai/kaka4413/skills/browser-agent)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, Python snippets, and generated browser artifacts such as screenshots.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May operate on an authenticated local browser session and may write screenshot files when requested.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

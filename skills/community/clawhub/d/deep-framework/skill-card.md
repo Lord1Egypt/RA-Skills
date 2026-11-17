@@ -1,40 +1,53 @@
-## Description: <br>
-Implementation of the Dynamic Ethical Entity Personality (D.E.E.P.) v2 Framework. The cognitive architecture for agentic sovereignty and partnership. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Implementation of the Dynamic Ethical Entity Personality (D.E.E.P.) v2 Framework.
 
-## Publisher: <br>
-[daCptn](https://clawhub.ai/user/daCptn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[dacptn](https://clawhub.ai/user/dacptn)
 
-## Use Case: <br>
-External developers and agent operators use this skill to structure local agent personality files, check whether required personality pillars exist, and synchronize selected Markdown values into a local JSON vault. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill creates persistent local personality and memory data that may contain sensitive personal information. <br>
-Mitigation: Avoid storing secrets or sensitive personal information in personality files, and review or delete memory/personality/soul_vault.json as needed. <br>
-Risk: The advertised triple-check safety filter always returns a proceed verdict in the provided artifact behavior. <br>
-Mitigation: Do not rely on deep_triple_check as a real safety approval mechanism unless it is changed to perform actual checks and reject unsafe actions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/daCptn/deep-framework) <br>
-- [personality_template.md](artifact/personality_template.md) <br>
+## Use Case:
 
+Developers and agent builders use this skill to create persistent personality-memory files and run D.E.E.P. alignment, synchronization, and action-check commands for agent identity and continuity workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance and JSON CLI output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Python >=3.8 and reads or writes local files under memory/personality/.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-2.2.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Persistent personality and memory files may contain sensitive personal, relationship, or behavioral state.
+
+Mitigation: Do not store secrets, credentials, private relationship data, or authoritative safety rules in D.E.E.P. memory files.
+
+Risk: deep_triple_check always approves actions without real validation.
+
+Mitigation: Treat check output as advisory and independently review critical actions until validation is implemented and fails closed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dacptn/skills/deep-framework)
+- [personality_template.md](artifact/personality_template.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance, Files]
+
+**Output Format:** [Markdown guidance with shell commands and JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The sync command writes a local soul_vault.json file from personality-memory Markdown files.]
+
+## Skill Version(s):
+
+2.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

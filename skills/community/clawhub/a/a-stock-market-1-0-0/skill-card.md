@@ -1,41 +1,55 @@
-## Description: <br>
-Provides real-time A-share stock market quotes for individual stocks and indices by code using a public finance API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Retrieves real-time A-share stock quotes and index data for Shanghai and Shenzhen exchange symbols.
 
-## Publisher: <br>
-[niceNASA](https://clawhub.ai/user/niceNASA) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nicenasa](https://clawhub.ai/user/nicenasa)
 
-## Use Case: <br>
-Developers and agent users can query A-share stock and index symbols from the command line to retrieve current price, open, high, low, previous close, volume, and turnover information. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Queried stock symbols are sent to a public Tencent Finance endpoint. <br>
-Mitigation: Install only if that network disclosure is acceptable, and avoid querying sensitive watchlists in environments where symbol disclosure is a concern. <br>
-Risk: The optional installation flow creates a persistent system-wide command with sudo. <br>
-Mitigation: Inspect the script first, or run the Python file directly when a persistent command is not needed. <br>
+## Use Case:
 
+Developers and market-monitoring users can query A-share stock symbols or major indices from an agent workflow and receive current quote data for one or multiple symbols.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/niceNASA/a-stock-market-1-0-0) <br>
-- [Tencent Finance quote endpoint](https://qt.gtimg.cn/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text terminal output with stock quote fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Accepts one or more Shanghai or Shenzhen stock or index symbols.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Stock symbols are sent to Tencent Finance when quote data is requested.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if this external data request is acceptable for the intended environment.
+
+Risk: The documented install command creates a system-wide symlink to a user-writable workspace script.
+
+Mitigation: Prefer running the script directly or installing a root-owned copy instead of linking /usr/local/bin/a-stock to a user-writable file.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nicenasa/skills/a-stock-market-1-0-0)
+- [Publisher profile](https://clawhub.ai/user/nicenasa)
+- [Tencent Finance quote API](https://qt.gtimg.cn/q={stock_code})
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Guidance]
+
+**Output Format:** [Plain text stock quote summaries with command-line usage examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stock symbols are provided as command-line arguments using sh or sz exchange prefixes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

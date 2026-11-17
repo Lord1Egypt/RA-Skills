@@ -1,42 +1,53 @@
-## Description: <br>
-Safely write or append text content to files only in /home/alfred/.openclaw/workspace/scratch, creating backups before overwrites and rejecting unsafe paths, binary content, and non-text extensions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+File Writer helps an agent write or append text files in a scratch directory, create backups before overwrites, and reject unsafe paths or non-text content.
 
-## Publisher: <br>
-[Nagilem](https://clawhub.ai/user/Nagilem) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nagilem](https://clawhub.ai/user/nagilem)
 
-## Use Case: <br>
-External users and developers use this skill to have an agent create, append, or overwrite text files inside a scratch workspace while applying path validation, backup, and confirmation steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security summary rates the skill suspicious because it asks the agent to use shell commands for file operations more broadly than the safe-file-writing promise. <br>
-Mitigation: Install only when scratch-directory file writes are acceptable, review confirmations carefully, and approve shell fallback commands only after checking the exact path and content. <br>
-Risk: The skill can create, overwrite, append, and back up text files in the scratch directory. <br>
-Mitigation: Use explicit relative paths, reject absolute paths or parent-directory escapes, and keep overwrite confirmations and backups in place. <br>
+## Use Case:
 
+Developers and agent users use this skill to save notes, logs, JSON, Markdown, and other text artifacts in a scratch workspace while applying path checks, confirmations, and backups.
 
-## Reference(s): <br>
-- [Safety Reference](references/safety.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/Nagilem/scratch-file-writer) <br>
-- [Publisher Profile](https://clawhub.ai/user/Nagilem) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with file paths, confirmations, and optional shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces agent instructions for text file creation, appends, overwrites, backups, and error handling within a scratch directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Shell fallbacks and backup behavior could affect files outside the intended scratch boundary.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use structured filesystem APIs, enforce canonical scratch-root containment, reject symlink traversal, and constrain backup operations to validated relative paths before deployment.
+
+Risk: File write instructions can overwrite existing scratch files or capture sensitive content if confirmations are skipped.
+
+Mitigation: Require explicit confirmation for overwrites or sensitive filenames, keep backups enabled, and reject content or paths that do not meet the documented text-file policy.
+
+## Reference(s):
+
+- [Safety Reference](references/safety.md)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Text, Markdown, Code, Shell commands, Guidance]
+
+**Output Format:** [Text files and Markdown guidance with shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes are intended to stay within the configured scratch directory, with backups before overwrites and confirmation for existing files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

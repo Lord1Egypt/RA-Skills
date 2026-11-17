@@ -1,0 +1,22 @@
+{
+  "schema": "v1",
+  "name": "ghl-lead-qualifier",
+  "displayName": "GoHighLevel Lead Qualifier & Conversational Triage",
+  "version": "1.0.0",
+  "description": "Autonomous conversational triage for GoHighLevel leads. Qualifies prospects over WhatsApp/SMS, extracts budget and niche, and updates CRM Kanban stages.",
+  "author": "Rafa Martins <rafacpti@gmail.com>",
+  "category": "productivity",
+  "tags": [
+    "ghl",
+    "gohighlevel",
+    "lead-qualification",
+    "whatsapp",
+    "triage",
+    "crm",
+    "sales-agents",
+    "habilis"
+  ],
+  "entrypoint": "SKILL.md",
+  "platforms": ["linux", "darwin", "windows"],
+  "homepage": "https://ia.sthub.com.br"
+}

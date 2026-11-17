@@ -1,0 +1,150 @@
+{
+  "schema_version": 1,
+  "runtime_version": "20251207-174704",
+  "default_mirror_prefixes": [
+    "https://ghfast.top/"
+  ],
+  "platforms": {
+    "darwin-universal": {
+      "url": "https://github.com/upscayl/upscayl-ncnn/releases/download/20251207-174704/upscayl-bin-20251207-174704-macos.zip",
+      "sha256": "277419791281a56eae0c739c70120b974d7267cf7c2de8e86dc09798d4b314db",
+      "archive_root": "upscayl-bin-20251207-174704-macos",
+      "executable": "upscayl-bin",
+      "executable_sha256": "b7f54f362fc10d5f334e587fb90917e95a5557ec1cfefbddce78657dd3fee055"
+    },
+    "windows-x64": {
+      "url": "https://github.com/upscayl/upscayl-ncnn/releases/download/20251207-174704/upscayl-bin-20251207-174704-windows.zip",
+      "sha256": "1f0f65c5d2ade866555e2ac467d35952c35a47080a4060fe56a1ab028f67258a",
+      "archive_root": "upscayl-bin-20251207-174704-windows",
+      "executable": "upscayl-bin.exe",
+      "executable_sha256": "294d31be8f29d047c0d91a8dcd5e739616ece56bce3188ac688f9a52d70abe60"
+    }
+  },
+  "models": {
+    "high-fidelity": {
+      "engine_name": "high-fidelity-4x",
+      "download_bytes": 33532559,
+      "label": "Balanced / Default",
+      "best_for": "general photos, AI-generated images, and conservative enhancement",
+      "tradeoff": "balanced output; less aggressive than the sharp profile",
+      "files": [
+        {
+          "name": "high-fidelity-4x.bin",
+          "url": "https://raw.githubusercontent.com/upscayl/upscayl/main/resources/models/high-fidelity-4x.bin",
+          "sha256": "8a135402b4f39286121b76abb47601a6b7b7e8d4f3e999a5aaa45ed277824fb4"
+        },
+        {
+          "name": "high-fidelity-4x.param",
+          "url": "https://raw.githubusercontent.com/upscayl/upscayl/main/resources/models/high-fidelity-4x.param",
+          "sha256": "4576ed5c2fc5fa250d3c3d585ef02248f26abdfc1867088078f501fe71e5d61e"
+        }
+      ]
+    },
+    "lite": {
+      "engine_name": "upscayl-lite-4x",
+      "download_bytes": 2440291,
+      "label": "Fast / Lite",
+      "best_for": "previews, batch work, and low-memory devices",
+      "tradeoff": "smallest download and fastest processing, but reconstructs less fine detail",
+      "files": [
+        {
+          "name": "upscayl-lite-4x.bin",
+          "url": "https://raw.githubusercontent.com/upscayl/upscayl/main/resources/models/upscayl-lite-4x.bin",
+          "sha256": "85ee266b632a765a725425ba6a5620c088c8aa2939a03063b2d83b3462724cc1"
+        },
+        {
+          "name": "upscayl-lite-4x.param",
+          "url": "https://raw.githubusercontent.com/upscayl/upscayl/main/resources/models/upscayl-lite-4x.param",
+          "sha256": "22174924330297357434ad21ed0af7f4b820008d2a502b492754d130d4142714"
+        }
+      ]
+    },
+    "digital-art": {
+      "engine_name": "digital-art-4x",
+      "download_bytes": 8973790,
+      "label": "Digital Art",
+      "best_for": "anime, illustrations, icons, and clean synthetic edges",
+      "tradeoff": "compact and clean on artwork, but may oversimplify photographic texture",
+      "files": [
+        {
+          "name": "digital-art-4x.bin",
+          "url": "https://raw.githubusercontent.com/upscayl/upscayl/main/resources/models/digital-art-4x.bin",
+          "sha256": "fe01c269cfd10cdef8e018ab66ebe750cf79c7af4d1f9c16c737e1295229bacc"
+        },
+        {
+          "name": "digital-art-4x.param",
+          "url": "https://raw.githubusercontent.com/upscayl/upscayl/main/resources/models/digital-art-4x.param",
+          "sha256": "2b8fb6e0ae4d2d85704ca08c119a2f5ea40add4f2ecd512eb7f4cd44b6127ed4"
+        }
+      ]
+    },
+    "remacri": {
+      "engine_name": "remacri-4x",
+      "download_bytes": 33564815,
+      "label": "Natural Photo / Portrait",
+      "best_for": "natural photos and portraits where identity and smooth tonal transitions matter",
+      "tradeoff": "more natural rendering, but less crisp than the sharp profile on text and architecture",
+      "files": [
+        {
+          "name": "remacri-4x.bin",
+          "url": "https://raw.githubusercontent.com/upscayl/upscayl/main/resources/models/remacri-4x.bin",
+          "sha256": "a43be595c0d743314c30b50fe7ef188be0c61cc55c46ce81adb79ba4b3c3fb7a"
+        },
+        {
+          "name": "remacri-4x.param",
+          "url": "https://raw.githubusercontent.com/upscayl/upscayl/main/resources/models/remacri-4x.param",
+          "sha256": "859ecba5b3592ecf3e76c93bed65e9f627b5236dd696aae5a84ecf8c93ab65ce"
+        }
+      ]
+    },
+    "ultrasharp": {
+      "engine_name": "ultrasharp-4x",
+      "download_bytes": 33540549,
+      "label": "Sharp Detail",
+      "best_for": "architecture, products, game assets, and images that benefit from strong edge detail",
+      "tradeoff": "strongest apparent sharpness, but can exaggerate halos, noise, skin texture, and text artifacts",
+      "files": [
+        {
+          "name": "ultrasharp-4x.bin",
+          "url": "https://raw.githubusercontent.com/upscayl/upscayl/main/resources/models/ultrasharp-4x.bin",
+          "sha256": "fb3e279d40d4cddb44db4e684d59e68d0aa39852c8cc14dc3f23ccc7e6eee9c1"
+        },
+        {
+          "name": "ultrasharp-4x.param",
+          "url": "https://raw.githubusercontent.com/upscayl/upscayl/main/resources/models/ultrasharp-4x.param",
+          "sha256": "0136ca83686809a8f17f7111f11b951e8db93610e24b7f4137c9ffe4dbc4a806"
+        }
+      ]
+    }
+  },
+  "profiles": {
+    "auto": {
+      "model": "high-fidelity",
+      "description": "Agent-inspected automatic recommendation; conservatively falls back to the balanced model"
+    },
+    "default": {
+      "model": "high-fidelity",
+      "description": "Balanced, conservative output for unknown or mixed content"
+    },
+    "fast": {
+      "model": "lite",
+      "description": "Lowest download, memory use, and processing time"
+    },
+    "photo": {
+      "model": "remacri",
+      "description": "Natural photographic texture and tonal transitions"
+    },
+    "portrait": {
+      "model": "remacri",
+      "description": "Smoother rendering for noisy, compressed, or rough natural portraits without generative face replacement; use default for clean AI portraits"
+    },
+    "digital-art": {
+      "model": "digital-art",
+      "description": "Clean edges for anime, illustrations, and icons"
+    },
+    "sharp": {
+      "model": "ultrasharp",
+      "description": "Aggressive apparent detail for architecture and products"
+    }
+  }
+}

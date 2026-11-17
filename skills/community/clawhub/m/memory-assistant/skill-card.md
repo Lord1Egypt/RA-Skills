@@ -1,45 +1,61 @@
-## Description: <br>
-Helps users remember where they put things and schedule voice reminders. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Memory Assistant helps users record item locations and schedule time-based voice reminders, including SenseAudio TTS alerts for saved locations and reminders.
 
-## Publisher: <br>
-[q1lin570](https://clawhub.ai/user/q1lin570) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[q1lin570](https://clawhub.ai/user/q1lin570)
 
-## Use Case: <br>
-Individuals and assistants use this skill to record item locations, retrieve them later, and schedule spoken reminders for personal tasks or appointments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Item locations and reminders are stored in local JSON files. <br>
-Mitigation: Avoid recording secrets or highly sensitive locations, and protect the local data directory with normal device and filesystem controls. <br>
-Risk: Text selected for speech is sent to SenseAudio for TTS generation. <br>
-Mitigation: Review spoken reminder text before use and do not send confidential content unless the deployment's SenseAudio terms and data-handling requirements are acceptable. <br>
-Risk: Daemon or scheduled-task mode can run ongoing background reminder checks. <br>
-Mitigation: Enable daemon or scheduled execution only when persistent reminders are intended, and review the configured interval and local reminder list. <br>
+## Use Case:
 
+External users use this skill to record item locations, query those locations later, and schedule voice reminders for personal tasks. The skill can also guide an agent to generate or run helper commands that synthesize reminder and location text through SenseAudio TTS.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/q1lin570/memory-assistant) <br>
-- [SenseAudio documentation](https://senseaudio.cn/docs) <br>
-- [SenseAudio text-to-speech API](https://senseaudio.cn/docs/text_to_speech_api) <br>
-- [SenseAudio voice API](https://senseaudio.cn/docs/voice_api) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline JSON examples and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May generate or play audio through SenseAudio TTS when configured with SENSEAUDIO_API_KEY.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Personal reminder and item-location text may be stored locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the configured storage path before use and avoid recording highly sensitive locations, secrets, or regulated personal information.
+
+Risk: Reminder and location text may be sent to SenseAudio for text-to-speech generation.
+
+Mitigation: Use the skill only when cloud TTS exposure is acceptable, and avoid sending sensitive travel, medical, financial, or secret information.
+
+Risk: The helper scripts can write local JSON state and generated audio files, and the reminder runner can be used as a daemon or scheduled task.
+
+Mitigation: Review file-writing behavior and scheduled execution settings before enabling the daemon or cron/task scheduler integration.
+
+## Reference(s):
+
+- [Reference](reference.md)
+- [Examples](examples.md)
+- [SenseAudio Documentation](https://senseaudio.cn/docs)
+- [SenseAudio Text-to-Speech API](https://senseaudio.cn/docs/text_to_speech_api)
+- [SenseAudio Voice API](https://senseaudio.cn/docs/voice_api)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON data examples, Python helper scripts, and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update local reminder and item-location JSON files and generate audio files through SenseAudio TTS helper scripts.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

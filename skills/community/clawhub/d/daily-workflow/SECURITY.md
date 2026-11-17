@@ -1,22 +1,24 @@
 # Daily Workflow / 项目记忆工作流 - Security Guide
 
-Version: 3.0.0
+Version: 4.1.0
 
 ## Security Statement / 安全说明
 
-This skill writes project-local workflow notes under `Docs/`. It is designed for resumability and handoff, not for storing secrets or confidential records.
+This skill may write project-local workflow notes when the user explicitly requests persistence or an established trigger authorizes it. It is designed for resumability and handoff, not for storing secrets, replacing project governance, or recording confidential source bodies.
 
 本 Skill 只应在项目本地 `Docs/` 中写入工作流笔记，用于恢复上下文和交接，不用于保存密钥、账号凭证或完整敏感资料。
 
 ## Allowed Storage / 允许写入范围
 
-Default allowed write scope:
+Default allowed write scope when no project-owned workflow defines a narrower location:
 
 ```text
 Docs/
 ```
 
 Do not write global user state. Do not write outside `Docs/` unless the user explicitly asks as part of the broader task.
+
+Before writing, resolve the actual workspace and repository, preserve dirty changes, identify existing governance ownership, and avoid creating competing state files.
 
 ## Sensitive Data Rules / 敏感信息规则
 
@@ -40,8 +42,10 @@ Archiving older status history is allowed only by moving content into `Docs/arch
 
 ## Release Checklist / 发布检查
 
-- `SKILL.md`, `SECURITY.md`, `_meta.json`, and `skill-card.md` show version `3.0.0`.
+- `SKILL.md` and `SECURITY.md` show version `4.1.0`; generated registry snapshots are excluded from the publish bundle.
 - The package uses one bilingual skill, not separate English and Chinese packages.
 - Legacy file migration is documented.
 - `NEXT_ACTIONS.md` is the primary continuation file, with `SCHEDULE.md` treated as compatibility alias.
+- Existing project/governance files remain authoritative; the lightweight profile starts with only `STATUS.md` and `NEXT_ACTIONS.md`.
+- Completion, verification, and independent acceptance remain separate.
 - No example contains real credentials or private data.

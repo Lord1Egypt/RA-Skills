@@ -1,0 +1,33 @@
+display_name: 小说简介与封底文案
+schema_version: "1.0"
+name: "novel-blurb-variants-cn"
+slug: "novel-blurb-variants-cn"
+version: "1.0.1"
+short_description: "为中文小说生成三种定位清晰、避开剧透的简介与卖点文案"
+description: "根据真实故事梗概、小说类型和禁剧透点，撰写情绪人物、冲突类型、主题气质三种定位的中文书籍简介，每版120至220字，并给出18至36字卖点；适用于封底、商品页和读者导读，保留故事事实并避开指定剧透。"
+repository: "https://github.com/xxjrq/novel-blurb-variants-cn"
+license: MIT-0
+tags:
+  - "小说文案"
+  - "封底简介"
+  - "中文写作"
+  - "图书营销"
+  - "自媒体创作"
+triggers:
+  - "小说简介"
+  - "封底文案"
+  - "书籍卖点"
+  - "小说宣传语"
+inputs:
+  required:
+    - "故事梗概"
+    - "类型"
+    - "禁剧透点"
+outputs:
+  - "三种定位不同的书籍简介"
+  - "一句无剧透卖点"
+self_test: "sh scripts/self-test.sh"
+assets:
+  icon: "icon-512.png"
+  promo: "assets/promo-1600x900.png"
+icon: icon-512.png

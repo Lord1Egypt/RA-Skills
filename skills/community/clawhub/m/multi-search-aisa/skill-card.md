@@ -1,42 +1,56 @@
-## Description: <br>
-Run multi-source evidence gathering with confidence scoring across web, academic, Tavily, and synthesis layers via AISA. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run multi-source evidence gathering with confidence scoring across web, academic, Tavily, and synthesis layers via AISA.
 
-## Publisher: <br>
-[bibaofeng](https://clawhub.ai/user/bibaofeng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Apache-2.0 <br>
+## Publisher:
 
+[bibaofeng](https://clawhub.ai/user/bibaofeng)
 
-## Use Case: <br>
-Developers and research-oriented agent users use this skill to gather evidence from multiple search sources, synthesize results, and assess confidence for questions that need more than a single search pass. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Apache-2.0
 
-## Known Risks and Mitigations: <br>
-Risk: Research queries, URLs, and extracted page content are sent to external AISA-backed services. <br>
-Mitigation: Avoid using the skill with private documents, sensitive internal URLs, passwords, browser data, or confidential research unless the service and publisher are trusted. <br>
-Risk: The skill requires an AISA API key. <br>
-Mitigation: Provide the key through the AISA_API_KEY environment variable, keep it out of prompts and logs, and rotate it if exposure is suspected. <br>
+## Use Case:
 
+Developers and researchers use this skill to gather evidence-backed answers from multiple search sources when one search pass is not enough.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/bibaofeng/multi-search-aisa) <br>
-- [AISA service](https://aisa.one) <br>
-- [AISA API endpoint](https://api.aisa.one/apis/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Plain text CLI output with search results, citations, confidence scoring, and setup commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and AISA_API_KEY; may send queries, URLs, and extracted page content to AISA-backed services.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Search queries, requested URLs, and AISA API credentials are sent to AISA's API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sensitive queries, private documents, secrets, and credential-related tasks unless external processing by AISA is acceptable.
+
+Risk: The skill depends on an external AISA API key and network service.
+
+Mitigation: Confirm AISA_API_KEY is configured and review API availability, account terms, and data-handling requirements before use.
+
+## Reference(s):
+
+- [AISA](https://aisa.one)
+- [AISA API Base](https://api.aisa.one/apis/v1)
+- [ClawHub skill page](https://clawhub.ai/bibaofeng/skills/multi-search-aisa)
+- [Publisher profile](https://clawhub.ai/user/bibaofeng)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown or terminal text with search results, citations, confidence scoring, and setup commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires AISA_API_KEY and python3; sends search queries and requested URLs to AISA.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

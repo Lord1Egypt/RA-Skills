@@ -1,7 +1,7 @@
 ---
 name: BloodHound Narrator
-description: Turn BloodHound attack path exports into dual-layer security reports — CISO executive prose on top, technical remediation playbook below. Automates Active Directory audit reporting for pentesters, blue teams, and security consultants. Supports DCSync, Kerberoasting, unconstrained delegation, ACL abuse, GPO takeover, and lateral movement paths. Pure local PowerShell — no API calls, no data leaves your machine. Air-gap compatible.
-version: 1.0.0
+description: Turn BloodHound attack path exports into dual-layer security reports — CISO executive prose on top, technical remediation playbook below. Automates Active Directory audit reporting for pentesters, blue teams, and security consultants. Supports DCSync, Kerberoasting, AD CS abuse (ESC1/3/4/6/7/9/10/13, Golden Certificate), resource-based constrained delegation, shadow credentials, LAPS and gMSA password reads, ACL abuse, GPO takeover, and lateral movement paths. Pure local PowerShell — no API calls, no data leaves your machine. Air-gap compatible.
+version: 1.0.2
 license: MIT-0
 bins:
   - pwsh
@@ -18,7 +18,7 @@ BloodHound Narrator ingests Cypher export JSON, scores each attack path on a wei
 1. **CISO / Executive Layer** — severity summary table, per-path business risk narrative, impact statements written in non-technical language that management and board members can act on.
 2. **Technical Remediation Appendix** — step-by-step hardening playbook with PowerShell commands, Event IDs to monitor, and remediation guidance per finding.
 
-**Detected attack patterns:** DCSync, Kerberoasting, unconstrained delegation, GenericAll / WriteDacl / WriteOwner ACL abuse, GPO takeover, lateral movement chains (AdminTo + HasSession), Tier 0 boundary violations, stale service account passwords, and sensitive data exposure paths.
+**Detected attack patterns:** DCSync and directory replication rights, Kerberoasting, unconstrained delegation, resource-based constrained delegation (RBCD), shadow credentials (AddKeyCredentialLink), LAPS and gMSA password reads, AD CS escalation (ESC1, ESC3, ESC4, ESC6a/b, ESC7, ESC9a/b, ESC10a/b, ESC13, Golden Certificate, CA management rights, PKI template flag writes), GenericAll / WriteDacl / WriteOwner / GenericWrite / AllExtendedRights ACL abuse, GPO takeover, lateral movement chains (AdminTo + HasSession + CanPSRemote / ExecuteDCOM / SQLAdmin), Tier 0 boundary violations, stale service account passwords, and sensitive data exposure paths.
 
 No API keys. No network calls. No data exfiltration risk. Air-gap compatible. Works in regulated, classified, and OT environments.
 
@@ -60,25 +60,77 @@ bash {baseDir}/scripts/bh-narrator.sh -InputFile "path/to/export.json" -PassThru
 bash {baseDir}/tests/run-tests.sh
 ```
 
-A synthetic BloodHound export with 5 attack paths (3 Critical, 2 High) is included at `{baseDir}/tests/synthetic-bloodhound.json` for validation.
+Two synthetic exports are included for validation:
+
+- `{baseDir}/tests/synthetic-bloodhound.json` — 5 classic paths (3 Critical, 2 High)
+- `{baseDir}/tests/synthetic-adcs.json` — AD CS, RBCD, shadow credential, and schema-drift cases
+
+Both contain fabricated data only. Neither reflects a real environment.
 
 ## Severity Scoring Model
 
-| Factor | Points | Example |
-|--------|--------|---------|
-| Tier 0 target (DA, EA, DC) | +40 | Path ends at Domain Admins |
-| DCSync edge | +30 | Replication rights on DC |
-| GenericAll/WriteDacl/Owns on Tier 0 | +30 | GenericAll on Domain Admins group |
-| Unconstrained delegation in path | +20 | TGT cached on delegation host |
-| GenericAll/WriteDacl/Owns (non-Tier 0) | +15 | WriteDacl on OU |
-| Sensitive data keywords in path | +15 | Target description contains "PII" or "financial" |
-| Kerberoastable source | +10 | Source account has SPN set |
-| Short path (1-2 hops) | +10 | Direct GenericAll to DA |
-| Lateral movement chain | +10 | AdminTo + HasSession combo |
-| Medium path (3 hops) | +5 | Three-hop escalation |
-| Stale password (>365 days) | +5 | Service account never rotated |
+Scoring is additive: every factor a path matches contributes points, so a
+Kerberoastable account that also reaches Tier 0 with a stale password stacks all
+three signals rather than collapsing to one category. The total is capped at 100.
+
+### Path-level factors
+
+| Factor | Points |
+|--------|--------|
+| Terminates at Tier 0 core (DA, EA, Administrators, DCs, Schema/Key Admins) | +40 |
+| Terminates at a privileged operator group (Account/Backup/Server/Print Operators, DnsAdmins) | +30 |
+| Unconstrained delegation anywhere in path | +20 |
+| Sensitive data keyword in a node description | +15 |
+| Kerberoastable source account | +10 |
+| Kerberoastable account mid-path | +6 |
+| Short path (1-2 hops) | +10 |
+| Medium path (3 hops) | +5 |
+| Lateral movement chain (AdminTo + HasSession) | +5 |
+| Stale source password (>365 days) | +5 |
+
+### Edge weights
+
+Edge scoring is table-driven; the full table lives in
+`scripts/lib/SeverityClassifier.txt` under `$Script:EdgeWeights`. The Tier 0
+column is an additional bonus applied when the edge target is a Tier 0 object.
+
+| Edge | Base | +Tier 0 |
+|------|------|---------|
+| DCSync / GetChangesAll / GetChanges | 30 / 25 / 20 | — |
+| GenericAll, WriteDacl, Owns | 15 | +15 |
+| AllExtendedRights, WriteOwner | 12 | +18 |
+| GenericWrite, AddMember, ForceChangePassword, WriteAccountRestrictions | 10 | +10 to +15 |
+| AddKeyCredentialLink (shadow credentials) | 20 | +10 |
+| AllowedToAct / AddAllowedToAct (RBCD) | 20 | +10 |
+| AllowedToDelegate (constrained delegation) | 10 | +10 |
+| ReadLAPSPassword / SyncLAPSPassword / ReadGMSAPassword | 15 | — |
+| GoldenCert | 40 | — |
+| ADCSESC1 / ESC3 / ESC4 / ESC6a / ESC6b / ESC7 | 35 | — |
+| ADCSESC9a/b, ESC10a/b, ESC13 | 30 | — |
+| ManageCA / ManageCertificates | 25 / 20 | — |
+| WritePKIEnrollmentFlag, WritePKINameFlag, DelegatedEnrollmentAgent | 20 | — |
+| SQLAdmin, WriteSPN | 8 | — |
+| CanPSRemote, ExecuteDCOM, AddSelf, GpLink, Enroll | 5 | +5 (GpLink) |
+| AdminTo, HasSession, CanRDP | 3 | — |
+| MemberOf, Contains, and AD CS structural edges | 0 (ignored) | — |
 
 **Thresholds:** Critical >= 50 | High >= 30 | Medium >= 15 | Low < 15
+
+### Unknown edges
+
+Edge labels that are neither weighted nor explicitly ignored are collected and
+reported through a warning at the end of the run, and are retrievable via
+`Get-UnknownEdgeLabels`. This matters because BloodHound adds edge types between
+releases: without it, a newer export would score unrecognised edges as zero and
+silently understate severity.
+
+### Scope note on AD CS
+
+ESC1, ESC3, ESC4, ESC6, ESC7, ESC9, ESC10 and ESC13 are detected from the
+composite `ADCSESC*` edges emitted by BloodHound CE. Techniques that BloodHound
+does not model as a composite edge — notably ESC2, ESC5, ESC8 (NTLM relay to web
+enrollment) and ESC11 — are **not** detected here. Use Certipy or a dedicated AD CS
+audit for those; this skill reports what is present in the graph it is given.
 
 ## Report Output
 

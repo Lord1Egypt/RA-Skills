@@ -1,42 +1,56 @@
-## Description: <br>
-Check AIClient2API usage statistics, quotas, account status, subscription status, and API consumption. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Check AIClient2API usage statistics, quotas, and account status.
 
-## Publisher: <br>
-[limingdev-tech-2024](https://clawhub.ai/user/limingdev-tech-2024) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[limingdev-tech-2024](https://clawhub.ai/user/limingdev-tech-2024)
 
-## Use Case: <br>
-Developers and operators use this skill to inspect AIClient2API credits, quotas, free trial status, subscription details, and overage information from a local AIClient2API installation. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill may read ~/web/AIClient-2-API/configs/pwd and authenticate to a localhost AIClient2API service. <br>
-Mitigation: Review the shell scripts before execution and run them only in an environment where access to that local password file and service is intended. <br>
-Risk: The scripts can print account and billing-related usage details from usage-cache.json. <br>
-Mitigation: Avoid sharing generated reports publicly and redact email, user ID, quota, subscription, and charge details before copying output. <br>
-Risk: Refresh behavior depends on the local AIClient2API service and may update usage data before display. <br>
-Mitigation: Use the documented cache-only path or inspect usage-cache.json directly when a read-only summary is sufficient. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/limingdev-tech-2024/aiclient2api-usage) <br>
-- [AIClient2API local web UI](http://127.0.0.1:16825) <br>
+## Use Case:
 
+Developers and operators who run AIClient2API use this skill to inspect local usage metrics, credits, quotas, subscription status, expiration dates, and account health.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with shell commands and terminal output summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include account and billing-related usage details read from the local AIClient2API usage cache or localhost service.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can read local AIClient2API cache data and account details.
+
+Mitigation: Install and run it only where access to that account data is appropriate, and avoid sharing generated usage reports without review.
+
+Risk: Refresh scripts may use a local password and authenticate to a localhost service.
+
+Mitigation: Ask before running authenticated refresh commands, verify the local service endpoint, and review credential handling before installation.
+
+Risk: The security summary flags an unsafe temporary-script pattern.
+
+Mitigation: Prefer a revised version that removes the predictable /tmp helper, or inspect the scripts before execution in shared environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/limingdev-tech-2024/skills/aiclient2api-usage)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and usage summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May summarize locally cached account, quota, subscription, and overage data when the referenced scripts are run.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

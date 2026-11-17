@@ -1,0 +1,4 @@
+interface:
+  display_name: "黑石写作助手·短故事版"
+  short_description: "用完整故事工程方法完成短篇小说、微小说与单篇完结故事。"
+  default_prompt: "使用 $blackstone-short-fiction 帮我把这个灵感写成一篇完整短故事；信息足够就直接给出可修改的结果。"

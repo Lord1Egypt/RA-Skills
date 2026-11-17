@@ -1,0 +1,41 @@
+{
+  "$schema": "https://github.com/maojiebc/majia-chatcut-koubo/schemas/suggested-update-queue.schema.json",
+  "schemaVersion": "1.0.0",
+  "queueId": "suggestion_queue_001",
+  "generatedAt": "2026-07-24T09:00:00Z",
+  "executionPolicy": {
+    "autoApply": false,
+    "mutationRoute": "human-reviewed-release"
+  },
+  "suggestions": [
+    {
+      "suggestionId": "suggestion_profile_001",
+      "targetType": "profile",
+      "targetRef": "profile_caption_local",
+      "proposedAdjustment": {
+        "field": "releaseGates.minimumDurationMs",
+        "operation": "increase",
+        "value": 500
+      },
+      "sampleRefs": [
+        "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+        "sha256:2222222222222222222222222222222222222222222222222222222222222222",
+        "sha256:3333333333333333333333333333333333333333333333333333333333333333"
+      ],
+      "sampleCount": 3,
+      "minimumSamples": 3,
+      "evidenceRefs": [
+        "sha256:4444444444444444444444444444444444444444444444444444444444444444"
+      ],
+      "counterexampleRefs": [
+        "sha256:5555555555555555555555555555555555555555555555555555555555555555"
+      ],
+      "ownerId": "owner_caption_policy",
+      "status": "under-review",
+      "rollback": {
+        "strategy": "previous-version",
+        "reference": "fixtures/profiles/local/profile.source.json"
+      }
+    }
+  ]
+}

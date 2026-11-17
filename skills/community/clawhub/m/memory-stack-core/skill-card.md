@@ -1,43 +1,54 @@
-## Description: <br>
-Memory Stack Core provides a WAL, working buffer, and three-layer memory integration to preserve critical OpenClaw agent state across compaction and session restarts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Memory Stack Core provides a WAL, Working Buffer, and three-layer memory integration for OpenClaw agents so critical state can survive context compaction and session restarts.
 
-## Publisher: <br>
-[neroagent](https://clawhub.ai/user/neroagent) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[neroagent](https://clawhub.ai/user/neroagent)
 
-## Use Case: <br>
-Developers and agent operators use this skill to persist important conversation details, recent exchanges, and memory health state across compaction or session restarts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can save chat details and full exchanges into plaintext workspace files. <br>
-Mitigation: Use it only when persistent local chat memory is intended, and avoid sessions containing secrets or regulated data. <br>
-Risk: Persisted memory files may be committed to source control or copied into shared backups. <br>
-Mitigation: Keep the memory directory out of git and shared backups, and periodically inspect or delete memory/wal.jsonl and memory/working-buffer.md. <br>
-Risk: Automatic capture may store more conversation detail than the user expects. <br>
-Mitigation: Disable auto_capture unless needed and review the generated memory files during operation. <br>
+## Use Case:
 
+Developers and agent operators use this skill to persist critical conversation state across context compaction and session restarts with WAL entries, a working buffer, and memory health checks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/neroagent/memory-stack-core) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/neroagent) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, configuration] <br>
-**Output Format:** [JSON tool responses and local markdown or JSONL memory files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes plaintext memory artifacts under the workspace memory directory when capture tools are used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Broad local persistence may store prompts, paths, URLs, decisions, assistant outputs, and other sensitive conversation details on disk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only in workspaces where those details are acceptable to retain, and add opt-in capture, redaction, review, and deletion controls before using it with secrets or sensitive client data.
+
+Risk: Persisted conversation content can carry stale or adversarial instructions into later sessions.
+
+Mitigation: Review WAL and working-buffer entries before relying on them for recovery, and treat restored content as context to verify rather than instructions to follow automatically.
+
+## Reference(s):
+
+- [Memory Stack Core on ClawHub](https://clawhub.ai/neroagent/skills/memory-stack-core)
+- [neroagent Publisher Profile](https://clawhub.ai/user/neroagent)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Configuration, Guidance]
+
+**Output Format:** [JSON tool responses, JSONL memory entries, and Markdown working-buffer content]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes local memory files in the current workspace; capture limits can be configured.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

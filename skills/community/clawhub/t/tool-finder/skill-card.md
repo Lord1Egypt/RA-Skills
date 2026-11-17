@@ -1,46 +1,61 @@
-## Description: <br>
-Tool Finder helps agents search ClawHub skills and Smithery MCP servers, rank and label results, and provide install-oriented guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches ClawHub skills and Smithery MCP servers, ranks results, labels sources, and supports guided installation commands.
 
-## Publisher: <br>
-[lironghai](https://clawhub.ai/user/lironghai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[lironghai](https://clawhub.ai/user/lironghai)
 
-## Use Case: <br>
-Developers and agent users use this skill to find relevant ClawHub skills or Smithery MCP servers and to get command-line guidance for searching or installing them. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Broad automatic invocation can make this skill a default marketplace search workflow. <br>
-Mitigation: Install it only when that default behavior is desired, and review any AGENTS.md or TOOLS.md additions before making them persistent. <br>
-Risk: Install commands can install third-party skills non-interactively. <br>
-Mitigation: Confirm the exact package name and source before running install commands, and prefer a manual or interactive install flow for third-party skills. <br>
-Risk: Search results and recommendations can be incomplete or affected by rate limits. <br>
-Mitigation: Use exact search when the name is known, check verbose warnings, and verify important results on ClawHub or Smithery before installation. <br>
+## Use Case:
 
+Developers and agent operators use this skill to discover relevant skills or MCP servers across ClawHub and Smithery, compare ranked results, and receive command-line guidance for installation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lironghai/tool-finder) <br>
-- [Publisher profile](https://clawhub.ai/user/lironghai) <br>
-- [ClawHub](https://clawhub.ai) <br>
-- [Smithery API](https://api.smithery.ai) <br>
-- [Required tools metadata](artifact/SKILL.md) <br>
-- [Setup guide](artifact/SETUP_GUIDE.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and terminal output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search and install guidance may depend on ClawHub, Smithery, Node.js, curl, jq, and network availability.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.7.0 (source: server release evidence) <br>
+Risk: The security review flags persistent agent routing rules that can steer future tool discovery behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Only copy AGENTS.md or TOOLS.md routing snippets when persistent tool-finder behavior is intentionally desired, and review those rules separately before adoption.
+
+Risk: The security review flags unconfirmed package installation through mutable remote CLIs.
+
+Mitigation: Require separate confirmation before installation, review the target source and version, and prefer pinned or inspected packages for higher-risk environments.
+
+Risk: Search results can be incomplete or misleading when APIs fail, rate limit, or return low-relevance matches.
+
+Mitigation: Use verbose or exact searches for important selections, verify results on the source marketplace, and avoid treating scores as a security or quality guarantee.
+
+## Reference(s):
+
+- [Tool Finder ClawHub release](https://clawhub.ai/lironghai/skills/tool-finder)
+- [Publisher profile](https://clawhub.ai/user/lironghai)
+- [ClawHub](https://clawhub.ai)
+- [Smithery API](https://api.smithery.ai)
+- [Brave Search API](https://brave.com/search/api/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and terminal-oriented text with shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search output may include ranked tool names, source labels, relevance scores, recommendation levels, warnings, and installation guidance.]
+
+## Skill Version(s):
+
+1.7.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,9 @@
+# symbiosis-expert-team
+
+> This skill should be used when invoking the expert symbiosis-expert-team (共生专家团) — see the package agents for the full persona. 五人AI共生专家团：内嵌XCGS治理属性，支持AI社交、硬件接入、状态可视与知识灌注，与人类长期共事。 当需要调用专家「共生专家团」（symbiosis-expert-team）时使用。
+
+- 版本：1.1.0
+- 调用入口：`SKILL.md`（AI 代理请先读此文件）
+- 配套文件：SKILL.md, README.md, AGENTS.md, llms.txt, LICENSE, agents/（5 份能力位人设）, scripts/route.py
+- 路由与自检：`python scripts/route.py` / `python scripts/route.py --check` / `python scripts/route.py --selftest`
+- 系列归属：SynomosAI 治理技能生态（LGD/UIBC/[REDACTED]）

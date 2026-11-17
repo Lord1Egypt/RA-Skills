@@ -11,9 +11,11 @@
  * - 验证建议生成
  */
 const { codeVerifier } = require('./code-verifier');
-const { skillVerifier } = require('./skill-verifier');
-const { hypothesisTester } = require('./hypothesis-tester');
-const { selfCorrectionLoop } = require('./self-correction-loop');
+const { skillVerifier } = require('../shield/skill-verifier');
+const { HypothesisTester } = require('../cortex/hypothesis-tester.js');
+const { SelfCorrectionLoop } = require('../cortex/self-correction-loop.js');
+const hypothesisTester = new HypothesisTester();
+const selfCorrectionLoop = new SelfCorrectionLoop();
 
 // 严重性级别
 const Severity = Object.freeze({

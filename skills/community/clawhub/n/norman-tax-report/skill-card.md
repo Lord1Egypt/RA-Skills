@@ -1,42 +1,58 @@
-## Description: <br>
-Review and manage German tax reports including VAT (Umsatzsteuer), income tax prepayments, and Finanzamt submissions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Review and manage German tax reports including VAT (Umsatzsteuer), income tax prepayments, and Finanzamt submissions.
 
-## Publisher: <br>
-[stanlee000](https://clawhub.ai/user/stanlee000) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[stanlee000](https://clawhub.ai/user/stanlee000)
 
-## Use Case: <br>
-External users use this skill to review German tax reports, inspect VAT deadlines and tax settings, preview Finanzamt submissions, and submit tax reports only after explicit confirmation. <br>
-
-### Deployment Geography for Use: <br>
-Germany <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide irreversible Finanzamt submissions through the Norman Finance integration. <br>
-Mitigation: Show a Finanzamt preview first, require explicit user confirmation, and confirm the tax period and figures before filing. <br>
-Risk: The skill depends on the Norman Finance MCP connection and the account configured for it. <br>
-Mitigation: Install and use the skill only when the user trusts that MCP connection and the linked Norman Finance account. <br>
-Risk: Incorrect tax report periods, figures, or tax settings could lead to filing errors. <br>
-Mitigation: Review report details, VAT registration, filing frequency, deadlines, and tax numbers before submission. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Norman Finance](https://norman.finance) <br>
-- [ClawHub skill page](https://clawhub.ai/stanlee000/norman-tax-report) <br>
+## Use Case:
 
+External Norman Finance users use this skill to review German tax reports, inspect VAT deadlines and tax settings, preview Finanzamt submissions, and file reports through ELSTER after explicit confirmation.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, API Calls, guidance] <br>
-**Output Format:** [Markdown or text responses with tax report details, deadlines, previews, and confirmation prompts.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses the norman-finance MCP integration; Finanzamt submission requires explicit user confirmation.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Germany
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The connected MCP server can access tax reports, VAT settings, and filing actions.
+
+Mitigation: Install only if you use Norman Finance for German tax reporting and accept that access scope.
+
+Risk: ELSTER filing is high impact and tax submissions are irreversible.
+
+Mitigation: Review the Finanzamt preview carefully and submit only after explicit user confirmation.
+
+Risk: Missed or misunderstood VAT filing deadlines may affect tax compliance.
+
+Mitigation: Use the skill to check upcoming VAT deadlines and confirm obligations against current tax records.
+
+## Reference(s):
+
+- [Norman Finance homepage](https://norman.finance)
+- [ClawHub skill listing](https://clawhub.ai/stanlee000/skills/norman-tax-report)
+- [Publisher profile](https://clawhub.ai/user/stanlee000)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Text, API Calls]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses the Norman Finance MCP server to retrieve tax report data, generate previews, validate tax numbers, and submit only after explicit user confirmation.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

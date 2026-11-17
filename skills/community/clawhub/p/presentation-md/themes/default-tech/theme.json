@@ -1,0 +1,28 @@
+{
+  "name": "default-tech",
+  "version": "0.1.0",
+  "description": "Edgy tech-startup default: dark canvas, violet + cyan accents, bold geometric sans.",
+  "vibe": "Edgy tech startup — dark, confident, neon-accented.",
+  "license": "MIT",
+  "author": "Timur Isachenko",
+  "roles": {
+    "bg": "#0e0e12",
+    "bg2": "#16161d",
+    "text": "#f4f4f5",
+    "muted": "#a1a1aa",
+    "accent": "#7c3aed",
+    "accent2": "#22d3ee",
+    "cardBg": "rgba(255,255,255,0.04)",
+    "border": "rgba(255,255,255,0.08)"
+  },
+  "typography": {
+    "headingFont": "'Montserrat', system-ui, sans-serif",
+    "bodyFont": "'Open Sans', system-ui, sans-serif",
+    "headingWeight": 800,
+    "googleFonts": ["Montserrat:wght@700;800", "Open+Sans:wght@400;600"]
+  },
+  "geometry": {
+    "radius": "18px",
+    "slideWidth": "1280px"
+  }
+}

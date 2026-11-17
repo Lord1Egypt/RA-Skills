@@ -1,46 +1,60 @@
-## Description: <br>
-Manage Zilliz Cloud clusters and Milvus vector databases: cluster operations, collections, vector search, RBAC, backups, imports, and more via zilliz-cli. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Zilliz Cloud clusters and Milvus vector databases - cluster ops, collections, vector search, RBAC, backups, imports, and more via zilliz-cli.
 
-## Publisher: <br>
-[Lumina2025](https://clawhub.ai/user/Lumina2025) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lumina2025](https://clawhub.ai/user/lumina2025)
 
-## Use Case: <br>
-Developers and operators use this skill to manage Zilliz Cloud and Milvus vector database resources from an agent-assisted terminal workflow, including cluster lifecycle, collection management, vector operations, RBAC, backups, imports, monitoring, and billing checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can help operate real Zilliz Cloud database resources when credentials are configured. <br>
-Mitigation: Use least-privileged Zilliz credentials and review exact commands before cluster modification, delete, drop, restore, RBAC, billing, or other high-impact actions. <br>
-Risk: API keys or other credentials could be exposed if pasted into chat. <br>
-Mitigation: Configure credentials in the user's terminal or environment and avoid sharing secrets in conversation. <br>
-Risk: Interactive authentication commands cannot be run reliably inside an AI agent session. <br>
-Mitigation: Run zilliz login, zilliz configure, and organization switching commands directly in the user's terminal. <br>
+## Use Case:
 
+Developers and operators use this skill to manage Zilliz Cloud clusters and Milvus vector database resources from an agent-assisted terminal workflow. It supports cluster lifecycle tasks, collection and vector operations, RBAC, backups, imports, monitoring, billing, and setup guidance for zilliz-cli.
 
-## Reference(s): <br>
-- [Zilliz CLI plugin homepage](https://github.com/zilliztech/zilliz-plugin) <br>
-- [Zilliz Cloud](https://cloud.zilliz.com/) <br>
-- [Zilliz](https://zilliz.com/) <br>
-- [ClawHub skill page](https://clawhub.ai/Lumina2025/zilliz-cloud) <br>
-- [Publisher profile](https://clawhub.ai/user/Lumina2025) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and command-output summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May request JSON output from zilliz-cli for structured parsing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter: 0.3.0) <br>
+Risk: Agent-assisted commands can modify or delete live Zilliz Cloud resources, including clusters, databases, collections, backups, and vector data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation before destructive, RBAC, billing, or data-deletion actions, and prefer reviewed command previews before execution.
+
+Risk: Authentication, user-password, API-key, and payment-card workflows involve sensitive values.
+
+Mitigation: Use browser or interactive terminal flows for secrets and payment cards, and do not paste API keys, passwords, or card details into chat.
+
+Risk: The skill depends on a locally installed zilliz-cli and authenticated cloud context.
+
+Mitigation: Install the CLI in an isolated environment where practical, verify authentication and active context before commands, and use a reviewed or pinned CLI version when available.
+
+## Reference(s):
+
+- [Zilliz Plugin homepage](https://github.com/zilliztech/zilliz-plugin)
+- [Zilliz](https://zilliz.com/)
+- [Zilliz Cloud](https://cloud.zilliz.com/)
+- [ClawHub skill listing](https://clawhub.ai/lumina2025/skills/zilliz-cloud)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and structured command output summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include JSON-formatted CLI output when commands are run with --output json.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata; artifact frontmatter reports 0.3.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

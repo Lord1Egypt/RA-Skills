@@ -1,45 +1,60 @@
-## Description: <br>
-Generate TikTok-style slideshow assets and MP4 exports from local images, GPT Image 2 visuals, remote image URLs, or lightweight image queries plus structured copy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates short-form slideshow guidance, reusable JSON project configuration, and commands for producing PNG slides, voice-synced assets, and MP4 exports from local images, remote images, image queries, or GPT Image 2 visuals.
 
-## Publisher: <br>
-[x-rayluan](https://clawhub.ai/user/x-rayluan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[x-rayluan](https://clawhub.ai/user/x-rayluan)
 
-## Use Case: <br>
-Developers, creators, and content teams use this skill to turn structured project JSON, source images, generated visuals, and narration assets into platform-ready slideshow PNGs, short vertical MP4 exports, and handoff metadata. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release asks users to run external setup that may involve API keys. <br>
-Mitigation: Review the external repository and environment setup before use, protect API keys from commits and logs, and avoid installing or running unreviewed dependencies in trusted environments. <br>
-Risk: Project files can reference local files, remote media URLs, and generated caches. <br>
-Mitigation: Use only trusted project JSON files, avoid private or internal media URLs, and inspect generated caches and outputs before publishing or sharing. <br>
-Risk: The security verdict is suspicious due to under-scoped file and network behavior. <br>
-Mitigation: Run the skill in a restricted workspace, review planned file and network access before execution, and scan generated artifacts before deployment. <br>
+## Use Case:
 
+External creators, marketers, and developers use this skill to turn structured project JSON, image sources, and narration plans into short-form slideshow assets and MP4 exports for TikTok, Reels, Shorts, and similar channels.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/x-rayluan/slideshow-video) <br>
-- [Pipeline example](references/pipeline.example.json) <br>
-- [Slides config example](references/slides-config.example.json) <br>
-- [Workflow guide](references/workflow.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON configuration examples and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides agents toward generated slide PNGs, MP4 files, resolved project JSON, summary metadata, and cached remote media.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.3 (source: server release metadata) <br>
+Risk: Generated videos may be steered toward the default Clawlite.ai call-to-action.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove or override the default CTA and verify that the final slide and final narration line match the intended campaign.
+
+Risk: Project JSON can trigger network access, session-backed image generation, remote media downloads, and file writes.
+
+Mitigation: Run only trusted project JSON, avoid sensitive prompts or private URLs, pin OPENCLAW_BASE_URL to a trusted local endpoint, and use a constrained output directory.
+
+Risk: Query-based or third-party hosted images can introduce quality, licensing, or brand-safety issues.
+
+Mitigation: Prefer local approved images and audio for production, review resolved images before publishing, and validate third-party media rights before commercial use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/x-rayluan/skills/slideshow-video)
+- [Slideshow Workflow](artifact/references/workflow.md)
+- [Pipeline Example JSON](artifact/references/pipeline.example.json)
+- [Slides Config Example JSON](artifact/references/slides-config.example.json)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with JSON configuration and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [When the bundled scripts are run, they can produce PNG slides, MP4 videos, resolved project JSON, cached media files, summary JSON, and sync metadata.]
+
+## Skill Version(s):
+
+0.2.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -14,18 +14,18 @@ Validated demand: Founders and builders need a repeatable way to turn rough prod
 
 ## 来源证据
 
-- hacker-news-search：[Trillions of dollars spent just to work on customer services?](https://news.ycombinator.com/item?id=48596176)
-- hacker-news-search：[Tell HN: Forget selectors and screenshots. The agentic web lives in your shell](https://news.ycombinator.com/item?id=48540019)
-- hacker-news-search：[Policy on the AI Exponential](https://news.ycombinator.com/item?id=48497908)
-- hacker-news-search：[I'm Eric Ries, author of "The Lean Startup" and new book "Incorruptible" – AMA](https://news.ycombinator.com/item?id=48480617)
-- hacker-news-search：[Workers are spending over 6 hours a week botsitting AI, fueling job frustration](https://news.ycombinator.com/item?id=48492245)
-- github-issues：[Define Product Requirements and Business Rules](https://github.com/lenixeduardo/promptLabz/issues/21)
-- github-issues：[validation: the organic-catch gate — the product idea is unvalidated until a real catch on unstaged work (or its absence is confronted)](https://github.com/autumngarage/cortex/issues/576)
-- github-issues：[Custom Extensions showcase — guide + demo products + CI validation starter](https://github.com/Schema-Smith/SchemaSmith/issues/268)
-- csdn-search：[24 Idea Validation - Save Yourself Time and Money](https://wenku.csdn.net/doc/7fnjuwdtp5?ops_request_misc=elastic_search_misc&request_id=f675dd0817a7433d865c080e85c96dee&biz_id=&utm_medium=distribute.pc_search_result.none-task-c_download-2~all~ElasticSearch~search_v2-1-7fnjuwdtp5-null-null.142^v102^control&utm_term=product%20idea%20validation)
-- csdn-search：[debugging-and- validation](https://wenku.csdn.net/doc/62or4vx1j7?ops_request_misc=elastic_search_misc&request_id=f675dd0817a7433d865c080e85c96dee&biz_id=&utm_medium=distribute.pc_search_result.none-task-c_download-2~all~ElasticSearch~search_v2-2-62or4vx1j7-null-null.142^v102^control&utm_term=product%20idea%20validation)
-- csdn-search：[springboot在线商城系统源码 idea 开发mysql数据库源码和论文 不包含答疑 和调试服务](https://wenku.csdn.net/doc/7sosvvskan?ops_request_misc=elastic_search_misc&request_id=f675dd0817a7433d865c080e85c96dee&biz_id=&utm_medium=distribute.pc_search_result.none-task-c_download-2~all~ElasticSearch~search_v2-3-7sosvvskan-null-null.142^v102^control&utm_term=product%20idea%20validation)
-- csdn-search：[【AI应用实战-claude】claudecode使用Superpower开发智能问数 1 （十五）](https://blog.csdn.net/forest_long/article/details/162149466?ops_request_misc=elastic_search_misc&request_id=f675dd0817a7433d865c080e85c96dee&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~all~ElasticSearch~search_v2-6-162149466-null-null.142^v102^control&utm_term=product%20idea%20validation)
+- hacker-news-ask-hn：[Ask HN: Startups are spamming helpdesk chats now?](https://news.ycombinator.com/item?id=50515458)
+- github-issues：[Shared group goals with a progress bar](https://github.com/fraval13/wow-status-discord-updates/issues/157)
+- segmentfault-search：[HarmonyOS 开发者社区](https://segmentfault.com/brand/harmonyos-next)
+- segmentfault-search：[javascript](https://segmentfault.com/t/javascript)
+- segmentfault-search：[typescript](https://segmentfault.com/t/typescript)
+- segmentfault-search：[ONES 研发管理](https://ones.cn/?utm_term=ONES%C2%A0%E7%A0%94%E5%8F%91%E7%AE%A1%E7%90%86&utm_campaign=%E9%A6%96%E9%A1%B5%E6%A0%87%E7%AD%BE&_channel_track_key=myqX1C0f&utm_source=%E6%80%9D%E5%90%A6%E8%BD%AC%20ONES)
+- segmentfault-search：[问： 属性或方法“$v”未使用 Vuelidate 定义](https://segmentfault.com/q/1010000042816440)
+- segmentfault-search：[问： 从JDK 1.8切换到JDK 21时遇到NoProviderFoundException如何解决？](https://segmentfault.com/q/1010000047230462)
+- segmentfault-search：[问： laravel validator验证不通过返回The given data was invalid，而不是返回定义的提示信息](https://segmentfault.com/q/1010000018250396)
+- hacker-news-search：[Eli Lilly CEO pushes back on Dario Amodei's medical claims](https://news.ycombinator.com/item?id=50486013)
+- hacker-news-search：[Jonathan Blow – If AI solved coding, why is my software still the same? [video]](https://news.ycombinator.com/item?id=50495285)
+- hacker-news-search：[Anthropic IPO](https://news.ycombinator.com/item?id=50466721)
 
 ## 这个技能如何满足需求
 

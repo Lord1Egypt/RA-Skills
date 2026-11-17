@@ -1,42 +1,57 @@
-## Description: <br>
-Guides users through choosing, purchasing, onboarding, and troubleshooting Taoflow VPN plans with payment and API-purchase safety guardrails. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guide users to choose and purchase Taoflow VPN plans safely and efficiently.
 
-## Publisher: <br>
-[taoflownetwork](https://clawhub.ai/user/taoflownetwork) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[taoflownetwork](https://clawhub.ai/user/taoflownetwork)
 
-## Use Case: <br>
-External users and agents use this skill to help a user choose and buy Taoflow VPN, handle crypto payment flow details, recover orders, and get WireGuard setup guidance without inventing pricing or policy terms. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may send cryptocurrency to an incorrect address, choose the wrong plan or region, or expose recovery keys, access tokens, or WireGuard configurations during purchase and setup. <br>
-Mitigation: Verify taoflow.network independently, confirm plan, country, currency, payment address, and order status before acting, and keep recovery keys, access tokens, and WireGuard configs private. <br>
+## Use Case:
 
+External users and agents use this skill to compare Taoflow VPN purchase options, follow safe checkout steps, and handle onboarding or purchase troubleshooting with verified details only. Developers can use its API mode guidance for programmatic order creation, status checks, and WireGuard configuration retrieval.
 
-## Reference(s): <br>
-- [Taoflow VPN skill page](https://clawhub.ai/taoflownetwork/taoflow-buy-vpn) <br>
-- [Official Taoflow site](https://taoflow.network) <br>
-- [Taoflow API guide](https://taoflow.network/api.html) <br>
-- [Taoflow OpenAPI specification](https://taoflow.network/openapi.json) <br>
-- [Taoflow plugin manifest](https://taoflow.network/.well-known/ai-plugin.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, API Calls, Configuration instructions] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Concise plan recommendations, purchase steps, payment status guidance, and WireGuard setup instructions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release evidence) <br>
+Risk: The skill may guide an agent through VPN order creation and configuration retrieval.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm plan details, payment network requirements, refund terms, and support channels on the official Taoflow site before purchase.
+
+Risk: Access tokens, recovery keys, payment addresses, and order data may be sensitive.
+
+Mitigation: Mask secrets in chat, avoid sharing full tokens or recovery keys unless necessary, and require explicit user confirmation before payment-related actions.
+
+## Reference(s):
+
+- [Taoflow VPN Official Site](https://taoflow.network)
+- [Taoflow API Guide](https://taoflow.network/api.html)
+- [Taoflow OpenAPI Specification](https://taoflow.network/openapi.json)
+- [Taoflow Plugin Manifest](https://taoflow.network/.well-known/ai-plugin.json)
+- [ClawHub Skill Page](https://clawhub.ai/taoflownetwork/skills/taoflow-buy-vpn)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, API Calls, Configuration instructions]
+
+**Output Format:** [Markdown guidance with optional API request and WireGuard setup steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responses should avoid fabricating prices, policies, payment status, access tokens, or recovery keys.]
+
+## Skill Version(s):
+
+0.1.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

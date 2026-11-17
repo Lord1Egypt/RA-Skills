@@ -1,44 +1,55 @@
-## Description: <br>
-Centralized alerting and notification system for OpenClaw with multi-channel alerts, rules, escalation, and audit support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Centralized alerting and notification system for OpenClaw. Multi-channel alerts, intelligent rules, escalation, and audit.
 
-## Publisher: <br>
-[rhanxerox](https://clawhub.ai/user/rhanxerox) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[rhanxerox](https://clawhub.ai/user/rhanxerox)
 
-## Use Case: <br>
-Developers and operators use this skill to configure alert monitoring, trigger notifications, review alert status, and integrate alerting with other OpenClaw skills or operational workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The integration script can write files into other skill directories and install a recurring cron job. <br>
-Mitigation: Review integration and cron commands before running them, approve target paths explicitly, and run the skill in an isolated workspace or least-privilege account. <br>
-Risk: Some alert, email, and HTTP monitoring paths build shell commands from alert data, recipient settings, or URLs. <br>
-Mitigation: Prefer native HTTP and email APIs or argument-array subprocess calls, and validate or restrict all URLs, alert text, account values, and recipients before execution. <br>
-Risk: Notifications may expose sensitive endpoint, incident, or operational details through email, Telegram, or logs. <br>
-Mitigation: Redact secrets and sensitive payload fields, use approved recipients and channels, and avoid email alerts for sensitive data until redaction is implemented. <br>
+## Use Case:
 
+Developers and operators use this skill to define alerts, monitor endpoints and system signals, send notifications, track active incidents, and resolve alert history in OpenClaw workflows.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/rhanxerox/rhandus-alerting-system) <br>
-- [Publisher profile](https://clawhub.ai/user/rhanxerox) <br>
-- [Publisher website](https://tiklick.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JavaScript configuration examples; runtime commands emit text and JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create alert records, logs, integration files, notifications, and optional recurring monitoring when installed and run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md metadata, package.json, server release metadata) <br>
+Risk: Shell-based command construction and monitor paths may execute unsafe commands or handle untrusted endpoint values.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and replace shell command construction with structured process APIs, strict argument handling, endpoint allowlists, and payload redaction before installation.
+
+Risk: System-level persistence and writes into other skills can modify the host environment beyond ordinary alerting behavior.
+
+Mitigation: Use explicit user-scoped scheduling, document privileged actions and uninstall steps, and disable automatic cross-skill file writes unless reviewed and approved.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/rhanxerox/skills/rhandus-alerting-system)
+- [Publisher profile](https://clawhub.ai/user/rhanxerox)
+- [Tiklick website](https://tiklick.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and CLI-oriented text with shell commands and JavaScript examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May generate alert records, logs, notification payloads, integration snippets, and monitoring status summaries.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

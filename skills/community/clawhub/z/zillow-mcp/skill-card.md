@@ -1,45 +1,60 @@
-## Description: <br>
-Look up real-estate listings, property details, Zestimates, saved searches and homes, and market reports on Zillow via MCP. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Look up real-estate listings, property details, Zestimates, saved searches, saved homes, and market reports on Zillow via MCP.
 
-## Publisher: <br>
-[chrischall](https://clawhub.ai/user/chrischall) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chrischall](https://clawhub.ai/user/chrischall)
 
-## Use Case: <br>
-Developers and agent users use this skill to query Zillow property listings, property records, Zestimates, saved Zillow activity, market reports, and mortgage calculations through an MCP server. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can query Zillow through the user's signed-in browser session, including saved homes and saved searches when requested. <br>
-Mitigation: Install only when that access is acceptable, keep browser sessions scoped to the intended account, and avoid requesting saved Zillow activity unless needed. <br>
-Risk: The Zillow MCP server and fetchproxy extension are external third-party packages used to broker browser-session requests. <br>
-Mitigation: Review the zillow-mcp and fetchproxy packages before use and keep them updated through trusted package sources. <br>
-Risk: Broad or automated Zillow querying could conflict with Zillow's terms or expose personal real-estate activity. <br>
-Mitigation: Use the skill for limited, user-directed read-only queries and avoid broad scraping or redistribution of signed-in Zillow data. <br>
+## Use Case:
 
+External users and developers use this skill to query Zillow property listings, estimates, saved Zillow activity, and market reports from an agent through the zillow-mcp server.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chrischall/zillow-mcp) <br>
-- [zillow-mcp npm package](https://www.npmjs.com/package/zillow-mcp) <br>
-- [zillow-mcp source reference from artifact](https://github.com/chrischall/zillow-mcp) <br>
-- [fetchproxy source reference from artifact](https://github.com/chrischall/fetchproxy) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON configuration snippets, shell commands, and MCP tool descriptions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces read-only Zillow query guidance and MCP setup instructions; saved-home and saved-search tools require a signed-in Zillow browser session.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.10.5 (source: ClawHub release evidence) <br>
+Risk: The skill asks users to run mutable third-party code and a browser extension against a signed-in Zillow session.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, use a dedicated Chrome profile for Zillow, and pin the MCP package and fetchproxy source to reviewed versions or commits.
+
+Risk: Signed-in Zillow activity may expose saved homes, saved searches, or other account-linked data to the agent.
+
+Mitigation: Avoid staying signed in unless the user intends the agent to access saved Zillow homes or searches.
+
+Risk: Zillow does not publish a public consumer API, and the skill depends on private web app endpoints through a browser session.
+
+Mitigation: Use at the user's discretion and review Zillow access behavior before relying on results in production workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chrischall/skills/zillow-mcp)
+- [zillow-mcp npm package](https://www.npmjs.com/package/zillow-mcp)
+- [zillow-mcp source](https://github.com/chrischall/zillow-mcp)
+- [fetchproxy source](https://github.com/chrischall/fetchproxy)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline JSON and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Zillow listing details, property records, Zestimate history, saved-search results, saved-home results, market reports, and mortgage breakdowns.]
+
+## Skill Version(s):
+
+0.10.6 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -29,7 +29,7 @@ def main() -> int:
     sample = "\n".join(
         [
             "Authorization: Bearer super-secret-token",
-            "OPENAI_API_KEY=sk-examplesecret123456789",
+            "OPENAI_API_KEY=REDACTED-SECRET",
             "Contact: dev@example.com",
             'url=https://api.example.com/build?token=raw-demo-token&id=42',
             "Cookie: sessionid=abc123def456",

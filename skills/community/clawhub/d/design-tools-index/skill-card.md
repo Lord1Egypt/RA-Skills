@@ -1,43 +1,56 @@
-## Description: <br>
-Design Tools Index helps agents recommend categorized design tools for animation, color, prototyping, design handoff, design-to-code, icons, fonts, gradients, illustration, mockups, UI design, wireframing, and related design tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Categorized index of design tools by purpose, including animation, color, prototyping, handoff, design-to-code, icons, fonts, gradients, illustration, mockups, UI design, wireframing, and additional design categories.
 
-## Publisher: <br>
-[ezra-y](https://clawhub.ai/user/ezra-y) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ezra-y](https://clawhub.ai/user/ezra-y)
 
-## Use Case: <br>
-Designers, developers, and product teams use this skill to quickly select tools for design tasks such as prototyping, color selection, design handoff, design-to-code conversion, icon selection, font pairing, mockups, UI design, and wireframing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: External tool links may lead to third-party services with their own pricing, authentication, data-use, and privacy terms. <br>
-Mitigation: Evaluate each linked service before signing in, paying, or uploading private design assets. <br>
-Risk: Broad trigger wording may route general design-tool selection requests to this skill when a narrower source may be more appropriate. <br>
-Mitigation: Confirm the user's design task and compare recommendations against the current project requirements before acting. <br>
+## Use Case:
 
+Designers, developers, and product teams use this skill to quickly choose design tools for common design tasks and locate broader reference lists when a task needs deeper comparison.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ezra-y/skills/design-tools-index) <br>
-- [Source repository](https://github.com/Ezra-Y/design-tools-index) <br>
-- [Awesome Design Tools](https://github.com/goabstract/Awesome-Design-Tools) <br>
-- [Awesome](https://github.com/sindresorhus/awesome) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Text] <br>
-**Output Format:** [Markdown with categorized external links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-language content; recommendations point to third-party design tools and reference lists.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: External design-tool links may change, become unavailable, or lead to third-party services with their own terms and security posture.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify external tool links and vendor terms before signing up for, installing, or recommending a third-party product.
+
+Risk: Some referenced local reference files are absent from the provided artifact.
+
+Mitigation: Treat missing local reference lists as unavailable and rely on the inline categories or source repository until the artifact is updated.
+
+## Reference(s):
+
+- [Server-resolved source repository](https://github.com/Ezra-Y/design-tools-index)
+- [Awesome Design Tools](https://github.com/goabstract/Awesome-Design-Tools)
+- [Awesome](https://github.com/sindresorhus/awesome)
+- [ClawHub skill page](https://clawhub.ai/ezra-y/skills/design-tools-index)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Text]
+
+**Output Format:** [Markdown or concise text with external tool links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Chinese category labels and links to third-party design tools or local reference files.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

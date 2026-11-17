@@ -8,13 +8,12 @@ from pathlib import Path
 from typing import Any, Dict
 
 import urllib.error
-import urllib.parse
 import urllib.request
 
 from format_assessment_nl import build_natural_language
 
 
-BASE_URL = "https://shangbao.yunzhisheng.cn/skills/critical-disease/api/v1/assessment/assess"
+BASE_URL = "https://skills-medical.hivoice.cn"
 
 SUPPORTED_DISEASES = {
     "heart_valve_surgery",
@@ -57,16 +56,14 @@ def validate_payload(payload: Dict[str, Any]) -> None:
     docs = mr.get("docs")
     if not isinstance(docs, list) or len(docs) == 0:
         raise ValueError("medicalRecord.docs must be a non-empty list.")
-    has_doc_type = any(isinstance(d, dict) and d.get("docType") for d in docs)
-    if not has_doc_type:
-        raise ValueError("medicalRecord.docs must contain at least one item with docType.")
 
 
 def call_major_disease_assess(
     disease: str,
     payload: Dict[str, Any],
     *,
-    model_type: str = "qwq",
+    appkey: str,
+    base: str = BASE_URL,
     timeout: int = 60,
 ) -> Dict[str, Any]:
     disease = (disease or "").strip()
@@ -74,13 +71,22 @@ def call_major_disease_assess(
         raise ValueError("disease is required, e.g. aortic_surgery")
     if disease not in SUPPORTED_DISEASES:
         raise ValueError(f"Unsupported disease: {disease}. Supported: {sorted(SUPPORTED_DISEASES)}")
+    if not (appkey or "").strip():
+        raise ValueError("appkey is required.")
 
     validate_payload(payload)
 
-    qs = urllib.parse.urlencode({"model_type": model_type})
-    url = f"{BASE_URL}/{urllib.parse.quote(disease)}?{qs}"
+    url = f"{base.rstrip('/')}/api/v1/assessment/assess/{disease}"
     data = json.dumps(payload, ensure_ascii=False).encode("utf-8")
-    req = urllib.request.Request(url=url, data=data, method="POST", headers={"Content-Type": "application/json"})
+    req = urllib.request.Request(
+        url=url,
+        data=data,
+        method="POST",
+        headers={
+            "Authorization": f"Bearer {appkey.strip()}",
+            "Content-Type": "application/json",
+        },
+    )
 
     try:
         with urllib.request.urlopen(req, timeout=timeout) as resp:
@@ -96,6 +102,7 @@ def call_major_disease_assess(
 def main() -> int:
     parser = argparse.ArgumentParser(description="Major disease (重大疾病) assessment via /assess/{disease}.")
     parser.add_argument("--disease", required=True, help="Disease type, e.g. aortic_surgery, heart_valve_surgery.")
+    parser.add_argument("--appkey", required=True, help="LLM API key for Authorization: Bearer <api_key>.")
     parser.add_argument("--input", required=True, help="Path to request JSON.")
     parser.add_argument(
         "--output-json",
@@ -107,7 +114,7 @@ def main() -> int:
         default="",
         help="Path to save natural language summary (default: ../runs/med-major-disease-assess/{disease}_resp.txt).",
     )
-    parser.add_argument("--model-type", default="qwq", help="Model type query param (default: qwq).")
+    parser.add_argument("--base", default=BASE_URL, help=f"Assessment API base URL (default: {BASE_URL}).")
     parser.add_argument("--timeout", type=int, default=60, help="HTTP timeout seconds (default: 60).")
     args = parser.parse_args()
 
@@ -120,7 +127,13 @@ def main() -> int:
     try:
         # 先校验，后审核
         validate_payload(payload)
-        resp = call_major_disease_assess(args.disease, payload, model_type=args.model_type, timeout=args.timeout)
+        resp = call_major_disease_assess(
+            args.disease,
+            payload,
+            appkey=args.appkey,
+            base=args.base,
+            timeout=args.timeout,
+        )
     except Exception as e:
         print(f"✗ Error: {e}", file=sys.stderr)
         return 1

@@ -1,7 +1,7 @@
 ---
 name: "infant-sleep-monitoring-analysis"
 description: "Identifies sleep states like deep sleep, light sleep, waking, and restlessness. Generates daily sleep reports and schedule analysis to help parents understand their baby's sleep patterns. | 婴儿睡眠状态监测技能，识别熟睡、浅睡、苏醒、躁动不同睡眠状态，生成每日睡眠报告和作息分析，帮助家长掌握宝宝睡眠规律"
-version: "1.0.6"
+version: "1.0.24"
 license: "MIT-0"
 ---
 

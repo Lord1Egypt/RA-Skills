@@ -1,0 +1,49 @@
+{
+  "name": "data-audit",
+  "version": "1.1.0",
+  "description": "数据操作审计追踪器。对数据目录生成SHA256快照、比对文件变化（新增/删除/修改）、记录操作日志。适用于数据合规场景中的操作追溯和审计准备。",
+  "author": "ChengQian (成乾)",
+  "license": "MIT",
+  "keywords": [
+    "data-audit", "审计", "compliance", "数据合规",
+    "snapshot", "文件追踪", "数据治理", "完整性校验",
+    "SHA256", "变更追溯", "健康检查", "数据目录巡检"
+  ],
+  "files": [
+    "SKILL.md", "package.json", "requirements.txt",
+    "CHANGELOG.md", "README.md", "scripts/"
+  ],
+  "scripts": {
+    "snapshot": "python3 scripts/auditor.py --snapshot",
+    "compare": "python3 scripts/auditor.py --compare",
+    "diff": "python3 scripts/auditor.py --compare",
+    "validate": "python3 scripts/auditor.py --validate",
+    "log": "python3 scripts/auditor.py --log",
+    "history": "python3 scripts/auditor.py --history"
+  },
+  "openclaw": {
+    "skill": true,
+    "category": "compliance",
+    "subcategory": "data-governance",
+    "region": "global",
+    "dependencies": [],
+    "emoji": "📋",
+    "capabilities": [
+      "filesystem-read",
+      "filesystem-write-log"
+    ]
+  },
+  "security": {
+    "scanned": true,
+    "issues": 0,
+    "warnings": 0,
+    "network": false,
+    "sandbox": "read-only"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cqdev-ai/data-audit"
+  },
+  "homepage": "https://github.com/cqdev-ai/data-audit",
+  "changelog": "CHANGELOG.md"
+}

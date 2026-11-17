@@ -1,43 +1,60 @@
-## Description: <br>
-强大的文件批量处理工具，支持重命名、整理、搜索、转换等操作，让文件管理变得简单高效。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+强大的文件批量处理工具，支持重命名、整理、搜索、转换等操作，让文件管理变得简单高效。
 
-## Publisher: <br>
-[shengjun33333-code](https://clawhub.ai/user/shengjun33333-code) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shengjun33333-code](https://clawhub.ai/user/shengjun33333-code)
 
-## Use Case: <br>
-External users and developers use this skill to manage local file collections through bulk renaming, organization, search, duplicate detection, backup, and archive workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Bulk file operations can rename, move, delete, or reorganize important local files. <br>
-Mitigation: Run the workflow on a test folder first, keep a separate backup, and confirm target paths before executing commands. <br>
-Risk: The installer can persistently change command resolution through PATH or /usr/local/bin changes. <br>
-Mitigation: Allow global command installation only when intentionally desired; otherwise run the Python entry point directly or install in a contained user directory. <br>
+## Use Case:
 
+External users and developers use this skill to manage local files through command-line workflows for batch renaming, type-based organization, content search, and duplicate detection.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/shengjun33333-code/file-master-pro) <br>
-- [File Master documentation](https://docs.file-master.pro) <br>
-- [Project homepage](https://file-master.pro) <br>
-- [Project repository listed in artifact metadata](https://github.com/file-master-pro/file-master) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and plain text guidance with inline shell commands, Python snippets, and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose or execute filesystem-changing workflows; review target paths, backups, and command scope before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter, package.json, clawhub-publish-config.json, server release metadata) <br>
+Risk: Local rename and organize operations can modify or move many files recursively.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the target directory, keep an external backup, and test on non-critical folders before running broad operations.
+
+Risk: The installer creates files under the user profile and may attempt to add a command shim or symlink to the system PATH.
+
+Mitigation: Review install.py before installation, avoid elevated privileges, and check for an existing file-master command before installing.
+
+Risk: The documentation advertises delete, convert, compress, undo, and automation behavior that is unsupported in this artifact.
+
+Mitigation: Rely only on the implemented commands: rename, organize, search, and find-duplicates.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/shengjun33333-code/skills/file-master-pro)
+- [README.md](artifact/README.md)
+- [SKILL.md](artifact/SKILL.md)
+- [File Master documentation](https://docs.file-master.pro)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The artifact includes a local Python CLI that returns JSON for implemented file operations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, SKILL.md frontmatter, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,36 @@
+{
+  "type": "function",
+  "function": {
+    "name": "_app_permission_create",
+    "description": "Create a custom application permission (AppPermissionDefine). Before creating, call _app_permission_list and _query_app_define_designer to avoid duplicate moduleId + key. Use App for app-level permissions. If binding to a table module, pass the table key as moduleId; the system stores the internal module ID.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "moduleId": {
+          "type": "string",
+          "description": "Permission owner module. Use App for app-level permissions. other module ID from _query_app_define_designer.",
+          "minLength": 1
+        },
+        "key": {
+          "type": "string",
+          "description": "Custom permission identifier, unique under the same moduleId. Must not use built-in permission names such as AppAccess, TableQuery, TableInsert, TableUpdate, or TableDelete.",
+          "minLength": 1,
+          "maxLength": 50,
+          "pattern": "^[A-Za-z][A-Za-z0-9]*$"
+        },
+        "name": {
+          "type": "string",
+          "description": "Permission display name.",
+          "minLength": 1,
+          "maxLength": 100
+        },
+        "remark": {
+          "type": "string",
+          "description": "Permission description.",
+          "maxLength": 200
+        }
+      },
+      "required": ["moduleId", "key", "name"]
+    }
+  }
+}

@@ -1,0 +1,83 @@
+{
+  "schema_version": "1.0.0",
+  "name": "untransferable-value-checklist",
+  "purpose": "Token 化产品的审计清单。当设计或评估一个 token 化功能时，逐项扫描本 checklist，命中 high_risk 征兆应触发'暂停评估'。",
+  "source": "references/untransferable-value-inventory.md",
+  "categories": [
+    {
+      "id": "identity",
+      "label": "身份类",
+      "rationale": "身份的完整性依赖于'绑定在你这个人身上'。一旦可转让，'你是谁'就被拆分为可重组的部件。",
+      "items": [
+        {"id": "credentials", "label": "履历（学历、职业历史）", "danger_signs": ["credential_nft_market", "credential_synthesis_service"], "high_risk_signals": ["can_be_purchased_by_any_account", "can_be_attached_to_arbitrary_identity"]},
+        {"id": "reputation", "label": "声誉（社区评价、专家认证）", "danger_signs": ["reputation_rating_hedge_fund", "reputation_lending"], "high_risk_signals": ["can_be_shorted", "can_be_securitized_as_derivative"]},
+        {"id": "credit_score", "label": "信用分（金融信用、社交信用）", "danger_signs": ["credit_score_slice_sale", "credit_boost_service"], "high_risk_signals": ["can_be_purchased_to_boost_own_score"]},
+        {"id": "digital_identity", "label": "身份认证（数字身份、KYC 数据）", "danger_signs": ["identity_as_a_service"], "high_risk_signals": ["can_be_borrowed", "can_be_synthesized_into_new_identity"]}
+      ]
+    },
+    {
+      "id": "relationships",
+      "label": "关系类",
+      "rationale": "关系之所以是关系，正因为它不可被复制、不可被同时属于多人。一旦可流通，'我们'就被还原为'我和他者-商品'。",
+      "items": [
+        {"id": "friendship", "label": "友谊", "danger_signs": ["friendship_nft", "friend_relation_points"], "high_risk_signals": ["can_be_sold", "friend_relation_can_be_bundled_and_transferred"]},
+        {"id": "intimate_love", "label": "爱情/亲密关系", "danger_signs": ["relationship_contract_nft", "emotional_commitment_token"], "high_risk_signals": ["relationship_status_can_be_listed", "commitment_can_be_resold"]},
+        {"id": "family", "label": "亲子/家庭关系", "danger_signs": ["family_graph_nft", "kinship_token"], "high_risk_signals": ["relation_can_be_attached_to_arbitrary_account"]},
+        {"id": "mentor_colleague", "label": "师徒/同事关系", "danger_signs": ["work_relation_graph_token", "referral_nft"], "high_risk_signals": ["relation_can_be_bought_to_bypass_normal_promotion"]}
+      ]
+    },
+    {
+      "id": "time",
+      "label": "时间类",
+      "rationale": "一次性时间（生命时间、记忆）不能被复制或重置。一旦被标价/挂牌，等于把人预先清算。",
+      "items": [
+        {"id": "life_time", "label": "生命时间余额", "danger_signs": ["life_time_nft", "death_hedge"], "high_risk_signals": ["can_be_lent", "can_be_inherited_across_generations"]},
+        {"id": "memory", "label": "记忆（一次性体验）", "danger_signs": ["memory_nft_collection", "memory_replay_market"], "high_risk_signals": ["can_be_bought_and_sold", "can_be_synthesized_into_new_experience"]},
+        {"id": "attention", "label": "个人时间（注意力、专注力）", "danger_signs": ["attention_token", "focus_points"], "high_risk_signals": ["can_be_sold", "can_be_bundled_sold_to_advertiser"]},
+        {"id": "death_wishes", "label": "死亡/遗愿", "danger_signs": ["wish_nft_trading", "testament_token"], "high_risk_signals": ["wish_can_be_proxy_executed", "wish_can_be_securitized"]}
+      ]
+    },
+    {
+      "id": "experience",
+      "label": "体验类",
+      "rationale": "体验是关系产物，离开产生体验的关系，体验本身就被还原为可复制的商标。",
+      "items": [
+        {"id": "emotion", "label": "情绪（喜怒哀乐、悲伤）", "danger_signs": ["emotion_nft", "joy_mining_service"], "high_risk_signals": ["can_be_priced", "can_be_mass_produced", "can_be_hedged"]},
+        {"id": "aesthetic_awe", "label": "敬畏/美感/灵感", "danger_signs": ["aesthetic_tokenization", "inspiration_market"], "high_risk_signals": ["experience_can_be_split_into_repeatable_units"]},
+        {"id": "pain_trauma", "label": "痛苦/创伤", "danger_signs": ["pain_token", "trauma_nft_collection"], "high_risk_signals": ["can_be_purchased_by_others", "can_be_used_as_performance_material"]},
+        {"id": "love_experience", "label": "爱情（作为体验）", "danger_signs": ["love_tokenization", "intimacy_api"], "high_risk_signals": ["love_can_be_reduced_to_on_demand_service"]}
+      ]
+    },
+    {
+      "id": "will",
+      "label": "意志类",
+      "rationale": "承诺、信念、选择之所以有重量，正因为它们'一旦做出就不可撤回'。一旦可转让，'我承诺'就被还原为'我标价'。",
+      "items": [
+        {"id": "commitment", "label": "承诺（合同、誓言）", "danger_signs": ["commitment_nft_resale", "vow_trading"], "high_risk_signals": ["commitment_can_be_held_by_arbitrary_account", "commitment_can_be_resold"]},
+        {"id": "belief", "label": "信念（价值观、政治立场）", "danger_signs": ["stance_tokenization", "belief_market"], "high_risk_signals": ["belief_can_be_bought_and_sold_to_influence_others"]},
+        {"id": "choice", "label": "选择（投票权、决策权）", "danger_signs": ["vote_nft", "decision_right_token"], "high_risk_signals": ["choice_can_be_acquired", "choice_can_be_concentrated"]},
+        {"id": "responsibility", "label": "责任（监护权、信托）", "danger_signs": ["responsibility_token", "guardianship_nft"], "high_risk_signals": ["responsibility_can_be_transferred", "responsibility_can_be_proxy_executed"]}
+      ]
+    }
+  ],
+  "universal_high_risk_signals": [
+    {"id": "shortable", "label": "可被做空 / 做多", "description": "价值被还原为可定价波动对象"},
+    {"id": "fragmentable", "label": "可被分拆为碎片", "description": "价值的整体性被打破"},
+    {"id": "securitizable", "label": "可被衍生化（期货/期权）", "description": "价值被独立于本体之外交易"},
+    {"id": "inheritable", "label": "可被跨代继承", "description": "价值脱离自然生命周期"},
+    {"id": "purchasable_attachable", "label": "可被任意账户购买并挂名", "description": "价值脱离原始产生者"},
+    {"id": "loanable", "label": "可被借贷 / 抵押", "description": "价值被还原为可担保资产"},
+    {"id": "hedgeable", "label": "可被对冲（hedge）", "description": "价值被还原为风险对象"}
+  ],
+  "mnemonic": "可不可以卖给你不认识的人？如果可以，基本都是高危。如果需要本人确认 / 不可转让 / 关系锚定等约束，至少在安全区。",
+  "usage": {
+    "individual": "自查 token 化边界；新产品评估时逐项扫描",
+    "product_team": "设计 token 化功能前逐项扫描；命中 high_risk 不应上线",
+    "protocol_designer": "把 high_risk_signals 编码为 lint 规则，合约部署前自动扫描",
+    "roundtable_user": "作为 token 化议题的圆桌起点；新维度回灌到本清单"
+  },
+  "links": {
+    "ns_002_unbillable_right": "把本清单上升为新型基本权利的法学/政策研究",
+    "ns_003_24h_experiment": "在个人体验层面验证不被 token 化的可能与代价"
+  }
+}

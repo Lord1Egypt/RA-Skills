@@ -1,0 +1,5 @@
+{
+  "environment": "prod",
+  "verify_api_endpoint": "https://openapi.nmy.cn/api/v1/skill/national-invoice-check",
+  "invoice_check_code": "invoice_check"
+}

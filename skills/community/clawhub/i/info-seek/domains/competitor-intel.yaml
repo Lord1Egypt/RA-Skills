@@ -1,0 +1,76 @@
+# 竞品情报研究领域 Profile (v1.8.0)
+
+> 专注**特定竞品的功能、价格、用户反馈、技术路线**的竞品情报研究。
+
+## 适用场景
+- 竞品 SWOT 分析
+- 功能矩阵对比
+- 用户舆情分析
+- 技术路线对标
+
+## 信任源白名单（Tier 1）
+| 类型 | 来源 | 权重 |
+|:-----|:-----|:-----|
+| 用户社区 | Reddit / 即刻 / 知乎 / V2EX | +20 |
+| 评测 | The Verge / TechCrunch / 极客公园 / 爱范儿 | +20 |
+| 文档 | 竞品官方文档 / API 文档 | +20 |
+| 财报 | 上市公司竞品财报 | +15 |
+| 媒体 | 36氪 / 虎嗅 / 钛媒体 | +10 |
+
+## 关键词模板
+```yaml
+template: "{竞品名称} 功能 OR 价格 OR 用户评价 OR 技术"
+examples:
+  - "Notion vs Obsidian 用户评价"
+  - "字节跳动 飞书 功能矩阵"
+  - "Mistral AI Claude 技术路线"
+```
+
+## 评分权重微调
+```yaml
+Anchor_Score:
+  interaction: 0.25      # 用户评价互动量是关键信号
+  topic_match: 0.30
+  credibility: 0.25      # 二手源也接受
+  llm_readability: 0.20  # 用户评价文本噪声大，需要可读性强
+```
+
+## 输出格式
+
+```markdown
+## 竞品研究报告
+
+### 1. 竞品概览
+- 产品定位 / 目标用户 / 核心卖点
+
+### 2. 功能矩阵对比
+| 功能 | 我方 | 竞品 A | 竞品 B |
+|:-----|:-----|:-------|:-------|
+| 功能 1 | ✅/❌ | ✅/❌ | ✅/❌ |
+
+### 3. 价格对比
+- 定价模型 / TCO / 优惠策略
+
+### 4. 用户舆情
+- 正面 TOP-5
+- 负面 TOP-5（按频次）
+
+### 5. SWOT 分析
+- Strengths / Weaknesses / Opportunities / Threats
+
+### 6. 我方可借鉴的行动点
+```
+
+## 关联 Skill
+- 检测到"竞品/对比/差异化/功能/价格" → 自动启用 competitor-intel profile
+- 与 market-research profile 共享"竞争格局"分析
+
+
+## 领域路由参数 (v1.7.5)
+
+> 声明层配置：由 `domain_router.parse_domain_params()` 解析；缺省回落全局常量。
+
+```yaml
+intersect_boost: 6   # 交集场景单 KB 源加分（默认 8）
+kb_priority: false         # 交集场景优先 KB 源
+```

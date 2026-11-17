@@ -1,0 +1,53 @@
+{
+  "name": "shizheng-suanliang",
+  "version": "1.1.1",
+  "entry_policy": "contract-only",
+  "author": "lis",
+  "license": "CC-BY-NC-SA-4.0",
+  "entry": "SKILL.md",
+  "manual_requires_flag": true,
+  "requires": {
+    "skills": {
+      "cad-file-reader": ">=0.41.0",
+      "lis-skill-bus": ">=0.1.11"
+    },
+    "python": ">=3.10"
+  },
+  "scripts": [
+    "scripts/pyboot.py",
+    "scripts/runtime_env.sh",
+    "scripts/shizheng_statesync.py",
+    "scripts/shizheng_statesync.sh",
+    "scripts/municipal_qty.py",
+    "scripts/municipal_qty.sh",
+    "scripts/make_fixtures.py",
+    "scripts/lint_cross_platform.py",
+    "scripts/contract_guard.py",
+    "scripts/contract_support.py",
+    "scripts/entry_gate.py"
+  ],
+  "references": [
+    "CHANGELOG.md",
+    "LICENSE.md",
+    "README.en.md",
+    "README.md",
+    "requirements.txt"
+  ],
+  "tests": [
+    "scripts/tests/test_municipal_qty.py",
+    "tests/test_entry_gate.py"
+  ],
+  "privacy": "只在本机消费已有识图契约 JSON；发布包不含 DWG/DXF/PDF、项目数据、公司路径或图纸内容。",
+  "notes": "输出为 ±15% 计划口径估算带，final_quantity=false；正式量必须从 bus 用 --from-contract 取，文件入口必须显式 --allow-manual 且 formal_ledger_eligible=false；管径只分档计数不做段长强配，道路面积缺宽度标注即 unavailable，不默认宽度；不替代清单编制、竣工计量、结算与报价。",
+  "contract_schema": "cad-municipal-geometry/v1 -> cad-municipal-qty/v0.1",
+  "description": "市政识图契约 JSON → 管道延米（按系统）、管径分档计数、井类计数、道路面积带、路面材料清单（json/md/csv）；正式量只从 lis-skill-bus 按 contract_id 取，文件入口需 --allow-manual；缺依据项一律进缺项清单，不用默认值凑数。",
+  "platforms": [
+    "macos",
+    "windows",
+    "linux"
+  ],
+  "examples": [
+    "examples/minimal.municipal.json",
+    "examples/README.md"
+  ]
+}

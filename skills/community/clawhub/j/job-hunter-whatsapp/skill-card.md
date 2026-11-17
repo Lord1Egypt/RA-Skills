@@ -1,48 +1,55 @@
-## Description: <br>
-Automates job search, job-description parsing, resume customization, application tracking, and WhatsApp or messaging updates using configured job APIs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automated job search, job description parsing, resume customization, and application tracking pipeline with WhatsApp or messaging updates.
 
-## Publisher: <br>
-[danielvivek2006](https://clawhub.ai/user/danielvivek2006) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[danielvivek2006](https://clawhub.ai/user/danielvivek2006)
 
-## Use Case: <br>
-Job seekers and career-support agents use this skill to find roles from job APIs, parse actual job descriptions, tailor resumes from verified user experience, track application status, and send concise job-hunt updates through WhatsApp or another messaging channel. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles sensitive resume, job-search, API key, application tracker, and messaging data. <br>
-Mitigation: Install only in a private workspace and keep resume, config, tracker, and API key files out of Git and shared folders. <br>
-Risk: Resume tailoring can introduce inaccurate or overstated experience if not reviewed. <br>
-Mitigation: Review tailored resumes before use and include only verified user experience and facts drawn from the actual job description. <br>
-Risk: Automated cron or WhatsApp updates may expose job-search details to an unintended recipient or on an unintended schedule. <br>
-Mitigation: Enable scheduled or messaging updates only after confirming the schedule, recipient, and fields included. <br>
+## Use Case:
 
+Job seekers and agents assisting them use this skill to find roles, parse job descriptions, tailor resumes from verified experience, track application status, and send mobile-friendly job hunt updates.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/danielvivek2006/job-hunter-whatsapp) <br>
-- [Job APIs Reference](references/apis.md) <br>
-- [Adzuna Developer](https://developer.adzuna.com) <br>
-- [RapidAPI JSearch](https://rapidapi.com/letscrape-6bRBa3QguO5/api/jsearch) <br>
-- [Jobicy Remote Jobs API](https://jobicy.com/api/v2/remote-jobs) <br>
-- [RemoteOK API](https://remoteok.com/api) <br>
-- [Remotive Jobs API](https://remotive.com/api/remote-jobs) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON configuration and tracker files, shell commands, and optional script usage.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses actual job-description data only; stores resumes, API keys, configuration, and application tracking data in local workspace files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill stores resumes, job preferences, application status, and API keys in local workspace files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in a workspace where this data may be stored, keep credentials out of source control, and prefer secret-management or restricted local files for API keys.
+
+Risk: Recurring job searches and messaging updates can run or send information without enough user-control safeguards.
+
+Mitigation: Confirm the schedule, destination, message content, pause procedure, and deletion procedure before enabling cron jobs or messaging updates.
+
+## Reference(s):
+
+- [Job APIs Reference](references/apis.md)
+- [Adzuna Developer](https://developer.adzuna.com)
+- [JSearch on RapidAPI](https://rapidapi.com/letscrape-6bRBa3QguO5/api/jsearch)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON configuration, generated resume Markdown, tracked-jobs JSON, and shell or cron command suggestions.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates or updates local project files such as config.json, api_keys.json, resumes/*.md, and jobs/tracked_jobs.json.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,38 +1,52 @@
-## Description: <br>
-Deprecated legacy listing for detect-file-type-skill that directs users to remove it and use detect-file-type-local instead. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+DEPRECATED - remove this legacy listing; superseded by detect-file-type-local.
 
-## Publisher: <br>
-[pgeraghty](https://clawhub.ai/user/pgeraghty) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[pgeraghty](https://clawhub.ai/user/pgeraghty)
 
-## Use Case: <br>
-External users and developers use this listing only to recognize that the legacy skill is deprecated and should be removed in favor of detect-file-type-local. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The listing is deprecated and not useful for new work. <br>
-Mitigation: Remove it if installed and evaluate detect-file-type-local separately before installing the replacement. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/pgeraghty/detect-file-type-skill) <br>
-- [Project homepage](https://github.com/pgeraghty/openclaw-detect-file-type-local) <br>
+## Use Case:
 
+External users and developers encounter this listing as a deprecation notice and are directed to uninstall it and use detect-file-type-local instead.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown] <br>
-**Output Format:** [Markdown deprecation notice] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only; no executable behavior found in the release evidence.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Users may install an obsolete placeholder instead of the maintained replacement skill.
+
+Mitigation: Follow the deprecation notice and review the named replacement skill, detect-file-type-local, before installing it.
+
+Risk: The listing has no useful executable behavior for file type detection.
+
+Mitigation: Treat this release as a notice only and remove it from active agent configurations.
+
+## Reference(s):
+
+- [Replacement project homepage](https://github.com/pgeraghty/openclaw-detect-file-type-local)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Text, Markdown]
+
+**Output Format:** [Markdown notice]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Deprecated placeholder with no executable code.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

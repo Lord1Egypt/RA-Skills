@@ -1,6 +1,7 @@
 ---
 name: clawsouls
-description: Manage AI agent personas (Souls) for OpenClaw. Use when the user wants to install, switch, list, or restore AI personalities/personas. Triggers on requests like "install a soul", "switch persona", "change personality", "list souls", "restore my old soul", "use minimalist", "browse personas", "what souls are available", "publish a soul", or "login to clawsouls".
+version: 0.6.8
+description: Manage AI agent personas (Souls) for OpenClaw, Hermes Agent, ZeroClaw, and other agents that use Soul Spec workspace files (SOUL.md, IDENTITY.md, AGENTS.md). Installs/switches/restores persona files in the agent workspace, searches and publishes to the clawsouls.ai registry (network + token auth), optionally syncs encrypted agent memory via Git (explicit `sync`/`swarm` commands only), and detects the local agent platform. Use only when the user explicitly asks to manage personas — e.g. "install a soul", "switch persona to X", "list souls", "restore my previous soul", "publish my soul", or "login to clawsouls". Workspace-modifying and publishing actions should be confirmed with the user first.
 ---
 
 # ClawSouls — AI Persona Manager
@@ -13,8 +14,10 @@ Souls use `owner/name` namespacing (e.g., `clawsouls/surgical-coder`, `TomLeeLiv
 
 Ensure `clawsouls` CLI is available:
 
+> 모든 명령은 `clawsouls@0.16.1` 로 버전을 고정한다 — 게시 후 도구 코드가 바뀌지 않게(ClawHub 보안 리뷰 지적, 2026-09-29). 새 CLI 를 쓰려면 이 스킬을 함께 올린다.
+
 ```bash
-npx clawsouls --version
+npx clawsouls@0.16.1 --version
 ```
 
 If not installed, install globally:
@@ -23,16 +26,16 @@ If not installed, install globally:
 npm install -g clawsouls
 ```
 
-Current version: **v0.6.2**
+Current version: **v0.6.8**
 
 ## Commands
 
 ### Install a Soul
 
 ```bash
-npx clawsouls install clawsouls/surgical-coder
-npx clawsouls install clawsouls/surgical-coder --force       # overwrite existing
-npx clawsouls install clawsouls/surgical-coder@0.1.0         # specific version
+npx clawsouls@0.16.1 install clawsouls/surgical-coder
+npx clawsouls@0.16.1 install clawsouls/surgical-coder --force       # overwrite existing
+npx clawsouls@0.16.1 install clawsouls/surgical-coder@0.1.0         # specific version
 ```
 
 80+ souls available. Browse all at https://clawsouls.ai
@@ -54,7 +57,7 @@ npx clawsouls install clawsouls/surgical-coder@0.1.0         # specific version
 ### Activate a Soul
 
 ```bash
-npx clawsouls use clawsouls/surgical-coder
+npx clawsouls@0.16.1 use clawsouls/surgical-coder
 ```
 
 - Automatically backs up current workspace files (SOUL.md, IDENTITY.md, AGENTS.md, HEARTBEAT.md, STYLE.md, examples/)
@@ -64,7 +67,7 @@ npx clawsouls use clawsouls/surgical-coder
 ### Restore Previous Soul
 
 ```bash
-npx clawsouls restore
+npx clawsouls@0.16.1 restore
 ```
 
 Reverts to the most recent backup created by `use`.
@@ -72,7 +75,7 @@ Reverts to the most recent backup created by `use`.
 ### List Installed Souls
 
 ```bash
-npx clawsouls list
+npx clawsouls@0.16.1 list
 ```
 
 Shows installed souls in `owner/name` format.
@@ -80,7 +83,7 @@ Shows installed souls in `owner/name` format.
 ### Create a New Soul
 
 ```bash
-npx clawsouls init my-soul
+npx clawsouls@0.16.1 init my-soul
 ```
 
 Scaffolds a new soul directory with `soul.json`, SOUL.md, IDENTITY.md, AGENTS.md, HEARTBEAT.md, README.md.
@@ -88,8 +91,8 @@ Scaffolds a new soul directory with `soul.json`, SOUL.md, IDENTITY.md, AGENTS.md
 ### Export a Soul
 
 ```bash
-npx clawsouls export claude-md           # generate CLAUDE.md from current workspace soul files
-npx clawsouls export system-prompt       # generate a system prompt string
+npx clawsouls@0.16.1 export claude-md           # generate CLAUDE.md from current workspace soul files
+npx clawsouls@0.16.1 export system-prompt       # generate a system prompt string
 ```
 
 Combines SOUL.md, IDENTITY.md, AGENTS.md, HEARTBEAT.md, STYLE.md into a single file. Useful for Claude Code, Cursor, Windsurf, and other tools that use a single config file.
@@ -97,17 +100,17 @@ Combines SOUL.md, IDENTITY.md, AGENTS.md, HEARTBEAT.md, STYLE.md into a single f
 ### Version Management
 
 ```bash
-npx clawsouls version bump patch    # 1.0.0 → 1.0.1
-npx clawsouls version bump minor    # 1.0.0 → 1.1.0
-npx clawsouls version bump major    # 1.0.0 → 2.0.0
-npx clawsouls diff                  # colored diff of soul files
+npx clawsouls@0.16.1 version bump patch    # 1.0.0 → 1.0.1
+npx clawsouls@0.16.1 version bump minor    # 1.0.0 → 1.1.0
+npx clawsouls@0.16.1 version bump major    # 1.0.0 → 2.0.0
+npx clawsouls@0.16.1 diff                  # colored diff of soul files
 ```
 
 ### Soul Testing (Phase 9)
 
 ```bash
-npx clawsouls test                  # Level 1 (schema) + Level 2 (soulscan)
-npx clawsouls test --level 3       # + Level 3 (behavioral LLM tests)
+npx clawsouls@0.16.1 test                  # Level 1 (schema) + Level 2 (soulscan)
+npx clawsouls@0.16.1 test --level 3       # + Level 3 (behavioral LLM tests)
 ```
 
 Level 3 requires `soul.test.yaml` in the soul directory and an LLM provider (OpenAI/Anthropic/Ollama).
@@ -115,19 +118,19 @@ Level 3 requires `soul.test.yaml` in the soul directory and an LLM provider (Ope
 ### Doctor, Migrate, Search, Info, Update (Phase 10)
 
 ```bash
-npx clawsouls doctor                # 12 environment checks
-npx clawsouls migrate               # migrate soul from v0.3 → v0.4 → v0.5
-npx clawsouls search "engineer"     # search souls from registry
-npx clawsouls info clawsouls/brad  # show soul metadata
-npx clawsouls update                # update installed soul to latest
+npx clawsouls@0.16.1 doctor                # 12 environment checks
+npx clawsouls@0.16.1 migrate               # migrate soul from v0.3 → v0.4 → v0.5
+npx clawsouls@0.16.1 search "engineer"     # search souls from registry
+npx clawsouls@0.16.1 info clawsouls/brad  # show soul metadata
+npx clawsouls@0.16.1 update                # update installed soul to latest
 ```
 
 ### Validate a Soul
 
 ```bash
-npx clawsouls validate ./my-soul/
-npx clawsouls validate --soulscan ./my-soul/   # with SoulScan security analysis
-npx clawsouls check ./my-soul/                 # alias
+npx clawsouls@0.16.1 validate ./my-soul/
+npx clawsouls@0.16.1 validate --soulscan ./my-soul/   # with SoulScan security analysis
+npx clawsouls@0.16.1 check ./my-soul/                 # alias
 ```
 
 Validates against the spec: schema, required files. Add `--soulscan` for full security & quality analysis with scoring. Also runs automatically before publish.
@@ -135,11 +138,11 @@ Validates against the spec: schema, required files. Add `--soulscan` for full se
 ### SoulScan — Security & Integrity Scanner
 
 ```bash
-npx clawsouls soulscan              # scan current OpenClaw workspace
-npx clawsouls soulscan ./my-soul/   # scan a specific directory
-npx clawsouls soulscan --init       # initialize baseline checksums
-npx clawsouls soulscan -q           # quiet mode for cron (SOULSCAN_OK / SOULSCAN_ALERT)
-npx clawsouls scan                  # alias
+npx clawsouls@0.16.1 soulscan              # scan current OpenClaw workspace
+npx clawsouls@0.16.1 soulscan ./my-soul/   # scan a specific directory
+npx clawsouls@0.16.1 soulscan --init       # initialize baseline checksums
+npx clawsouls@0.16.1 soulscan -q           # quiet mode for cron (SOULSCAN_OK / SOULSCAN_ALERT)
+npx clawsouls@0.16.1 scan                  # alias
 ```
 
 SoulScan checks active soul files for:
@@ -153,7 +156,7 @@ SoulScan checks active soul files for:
 
 ```bash
 # Run every hour to monitor workspace integrity
-npx clawsouls soulscan -q
+npx clawsouls@0.16.1 soulscan -q
 # Exit code 0 = OK, 1 = alert (tampered or security issue)
 ```
 
@@ -165,7 +168,7 @@ SOULSCAN™ — Score: 0-100, Grades: Verified (90+) / Low Risk (70+) / Medium R
 
 ```bash
 export CLAWSOULS_TOKEN=<token>
-npx clawsouls publish ./my-soul/
+npx clawsouls@0.16.1 publish ./my-soul/
 ```
 
 Publishes to `username/soul-name` namespace automatically. Requires authentication token. Runs validation automatically before publishing — blocks on failure.
@@ -173,7 +176,7 @@ Publishes to `username/soul-name` namespace automatically. Requires authenticati
 ### Login / Get Token
 
 ```bash
-npx clawsouls login
+npx clawsouls@0.16.1 login
 ```
 
 Instructions to get API token: Sign in at https://clawsouls.ai → Dashboard → Generate API Token.
@@ -183,25 +186,25 @@ Instructions to get API token: Sign in at https://clawsouls.ai → Dashboard →
 ### Installing & Switching Personas
 
 1. **Browse** — Check available souls at https://clawsouls.ai or suggest from the categorized list above
-2. **Install** — `npx clawsouls install clawsouls/surgical-coder`
-3. **Activate** — `npx clawsouls use clawsouls/surgical-coder`
+2. **Install** — `npx clawsouls@0.16.1 install clawsouls/surgical-coder`
+3. **Activate** — `npx clawsouls@0.16.1 use clawsouls/surgical-coder`
 4. **Restart** — Run `soulclaw gateway restart` to apply the new persona
 5. **New Session** — Send `/new` in chat to clear previous persona context from conversation history
-6. **Restore** — If they want to go back, `npx clawsouls restore`
+6. **Restore** — If they want to go back, `npx clawsouls@0.16.1 restore`
 
 ### Publishing a Soul
 
-1. **Login** — `npx clawsouls login` → get token from dashboard
+1. **Login** — `npx clawsouls@0.16.1 login` → get token from dashboard
 2. **Set token** — `export CLAWSOULS_TOKEN=<token>`
-3. **Create** — `npx clawsouls init my-soul` → edit files
-4. **Publish** — `npx clawsouls publish ./my-soul/`
+3. **Create** — `npx clawsouls@0.16.1 init my-soul` → edit files
+4. **Publish** — `npx clawsouls@0.16.1 publish ./my-soul/`
 5. **Manage** — Dashboard at https://clawsouls.ai/dashboard (delete, view downloads)
 
 ### Memory Sync (Swarm)
 
 ```bash
-npx clawsouls sync                  # sync encrypted memory to/from GitHub
-npx clawsouls swarm                 # multi-agent memory branch & merge system
+npx clawsouls@0.16.1 sync                  # sync encrypted memory to/from GitHub
+npx clawsouls@0.16.1 swarm                 # multi-agent memory branch & merge system
 ```
 
 Sync agent memory across machines via encrypted Git. Uses `age` encryption for local-first privacy.
@@ -209,10 +212,10 @@ Sync agent memory across machines via encrypted Git. Uses `age` encryption for l
 ### Soul Checkpoints (Rollback)
 
 ```bash
-npx clawsouls checkpoint            # manage soul checkpoints
-npx clawsouls checkpoint create     # create a checkpoint of current soul state
-npx clawsouls checkpoint list       # list available checkpoints
-npx clawsouls checkpoint restore    # restore from a checkpoint
+npx clawsouls@0.16.1 checkpoint            # manage soul checkpoints
+npx clawsouls@0.16.1 checkpoint create     # create a checkpoint of current soul state
+npx clawsouls@0.16.1 checkpoint list       # list available checkpoints
+npx clawsouls@0.16.1 checkpoint restore    # restore from a checkpoint
 ```
 
 Checkpoint-based rollback for persona contamination detection and recovery.
@@ -220,29 +223,57 @@ Checkpoint-based rollback for persona contamination detection and recovery.
 ### Platform Detection
 
 ```bash
-npx clawsouls platform              # show detected agent platform(s) and workspace path
-npx clawsouls detect                # alias
+npx clawsouls@0.16.1 platform              # show detected agent platform(s) and workspace path
+npx clawsouls@0.16.1 detect                # alias
 ```
 
-Detects which agent platform is running (OpenClaw, SoulClaw, ZeroClaw, etc.) and shows workspace paths.
+Detects which agent platform is running (OpenClaw, SoulClaw, ZeroClaw, Hermes Agent, etc.) and shows workspace paths. If detection misses your platform, run soul commands from inside the agent workspace directory — souls are plain Soul Spec files, so any workspace that reads SOUL.md works.
+
+## Platform Notes
+
+| Platform | Workspace | Apply changes |
+|---|---|---|
+| OpenClaw / SoulClaw | agent workspace dir | `soulclaw gateway restart` + `/new` |
+| Hermes Agent | Hermes workspace (reads SOUL.md / AGENTS.md natively; imports OpenClaw layouts) | restart the Hermes session, then start a new chat |
+| ZeroClaw | workspace dir (OpenClaw-style markdown via IdentityConfig) | see `ZEROCLAW_ADAPTER.md` |
+
+Hermes details: `HERMES_ADAPTER.md` in this repo.
 
 ## MCP Server (for Claude Desktop / Cowork)
 
 For Claude Desktop or Cowork users, there's also a dedicated MCP server:
 
 ```bash
-npx -y soul-spec-mcp
+npx -y soul-spec-mcp@0.6.0
 ```
 
 Or add to Claude Desktop config (`claude_desktop_config.json`):
 
 ```json
-{ "mcpServers": { "soul-spec": { "command": "npx", "args": ["-y", "soul-spec-mcp"] } } }
+{ "mcpServers": { "soul-spec": { "command": "npx", "args": ["-y", "soul-spec-mcp@0.6.0"] } } }
 ```
 
 6 tools: `search_souls`, `get_soul`, `install_soul`, `preview_soul`, `list_categories`, `apply_persona`
 
 GitHub: https://github.com/clawsouls/soul-spec-mcp
+
+## Security & Privacy Disclosure
+
+Full transparency on what this skill can touch — review before use in workspaces containing sensitive prompts, memories, or client data.
+
+**What this skill does:**
+- **Local file changes**: `use`/`restore`/`checkpoint` replace persona files (SOUL.md, IDENTITY.md, AGENTS.md, HEARTBEAT.md, STYLE.md) in the agent workspace. An automatic backup is created before every `use`. USER.md, MEMORY.md, TOOLS.md are never overwritten.
+- **Network calls**: `install`/`search`/`info`/`update` talk to the clawsouls.ai registry. `publish` uploads your soul directory to a public registry.
+- **Memory sync (opt-in only)**: `sync`/`swarm` move agent memory to/from a Git remote you configure, encrypted locally with `age` before leaving the machine. These commands never run implicitly — only on explicit user request.
+- **Platform detection**: `platform`/`detect` inspect the local environment to find the agent workspace path. Nothing is transmitted.
+- **Token handling**: `publish` uses `CLAWSOULS_TOKEN` (env var). Never echo it, commit it, or leave it in shell history.
+
+**Ask the user before:**
+- `use` — switching personas rewrites workspace identity files (routine requests like "change personality" should be confirmed once before files change)
+- `publish` — uploads content publicly; list the files being uploaded first
+- `sync`/`swarm` — pushes (encrypted) memory to a remote
+
+**Safety recommendations:** keep backups enabled (default), use `soulscan` to verify soul integrity after installs, and only install souls from owners you trust.
 
 ## Important Notes
 

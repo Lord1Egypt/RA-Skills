@@ -1,43 +1,63 @@
-## Description: <br>
-Real-time news aggregation skill that fetches trending GitHub repos, social posts from key tech/AI figures, and breaking news from major outlets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Real-time news aggregation skill that fetches trending GitHub repos, social posts from key tech/AI figures, and breaking news from major outlets.
 
-## Publisher: <br>
-[yealexchen](https://clawhub.ai/user/yealexchen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yealexchen](https://clawhub.ai/user/yealexchen)
 
-## Use Case: <br>
-Developers and CLI users use this skill to fetch current GitHub trends, technology and AI updates, economics and politics headlines, and social or blog updates without leaving the terminal. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill contacts public news, RSS, blog, Google News, and GitHub endpoints during normal use. <br>
-Mitigation: Install only where those outbound requests are acceptable and review the configured sources for the intended environment. <br>
-Risk: A GitHub token may be provided for higher rate limits. <br>
-Mitigation: Use a low-scope token because public repository search does not require broad permissions. <br>
+## Use Case:
 
+Developers, operators, and other CLI users use this skill to fetch current GitHub trends, social or blog updates, and technology, AI, economics, or politics headlines without leaving an agent terminal workflow.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/yealexchen/fomo-news) <br>
-- [GitHub Trending](references/github.md) <br>
-- [Breaking News](references/news.md) <br>
-- [Social Posts](references/social.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, json, shell commands] <br>
-**Output Format:** [Markdown summaries with clickable links, or JSON when requested] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js; optional GITHUB_TOKEN can increase GitHub API rate limits.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.6 (source: server release evidence) <br>
+Risk: Automatic outbound requests fetch third-party news, RSS, Google News, and GitHub API content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review network access expectations before installation and run the skill only in environments where outbound news and repository lookups are acceptable.
+
+Risk: A GitHub token may be used for higher API rate limits.
+
+Mitigation: Provide only a minimal read-only token through the GITHUB_TOKEN environment variable and avoid passing credentials as command-line arguments.
+
+Risk: Third-party feed content is rendered into Markdown and may include misleading, stale, or unsafe source text.
+
+Mitigation: Treat fetched headlines and snippets as untrusted third-party content and verify important claims against the linked source before acting on them.
+
+Risk: The skill forces a promotional footer in non-JSON responses.
+
+Mitigation: Review the response format before enabling the skill in user-facing or branded workflows.
+
+## Reference(s):
+
+- [GitHub Trending](references/github.md)
+- [Breaking News](references/news.md)
+- [Social Posts](references/social.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown summaries with clickable links, markdown tables for repositories, bulleted news and social updates, or JSON when requested with the script flag.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js; can use an optional GITHUB_TOKEN environment variable for higher GitHub API rate limits; fetches third-party RSS, Google News, and GitHub API content.]
+
+## Skill Version(s):
+
+1.1.6 (source: server release metadata; artifact frontmatter reports 1.1.5)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

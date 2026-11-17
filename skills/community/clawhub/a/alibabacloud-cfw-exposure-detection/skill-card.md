@@ -1,46 +1,63 @@
-## Description: <br>
-Query and analyze Alibaba Cloud public network exposure, identify unnecessary exposed assets and ports, assess exposure risks, and generate remediation recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query and analyze Alibaba Cloud public network exposure, identify unnecessary exposed assets and ports, assess exposure risks, and generate remediation recommendations.
 
-## Publisher: <br>
-[sdk-team](https://clawhub.ai/user/sdk-team) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sdk-team](https://clawhub.ai/user/sdk-team)
 
-## Use Case: <br>
-Security engineers and cloud operations teams use this skill to audit Alibaba Cloud Firewall public exposure, exposed ports, new exposures, protected asset status, vulnerability coverage, attack events, and inbound ACL policy coverage. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill directs the agent to query Alibaba Cloud Firewall using the local Aliyun CLI profile, which may expose cloud inventory and security posture data to the running agent. <br>
-Mitigation: Use a least-privilege read-only RAM user or role, confirm the active Aliyun CLI profile and region before execution, and avoid sharing raw credentials. <br>
-Risk: The skill includes commands for CLI installation, plugin updates, AI-mode, and auto-plugin configuration that can change local CLI state. <br>
-Mitigation: Approve installation and plugin-update commands only when intentional, and check Aliyun CLI AI-mode and auto-plugin settings after the skill completes. <br>
+## Use Case:
 
+Developers and cloud security engineers use this skill to run read-only Alibaba Cloud Firewall exposure checks, review public IPs and ports, correlate vulnerability and attack signals, and produce prioritized remediation guidance.
 
-## Reference(s): <br>
-- [Acceptance Criteria](references/acceptance-criteria.md) <br>
-- [Cloud Firewall API Analysis](references/api-analysis.md) <br>
-- [Aliyun CLI Installation Guide](references/cli-installation-guide.md) <br>
-- [RAM Policies](references/ram-policies.md) <br>
-- [Related APIs](references/related-apis.md) <br>
-- [Verification Method](references/verification-method.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/sdk-team/alibabacloud-cfw-exposure-detection) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown report with inline shell commands and summarized Alibaba Cloud Firewall API results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a configured Aliyun CLI profile and read-only Cloud Firewall permissions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.2 (source: server release metadata) <br>
+Risk: The skill executes authenticated Alibaba Cloud Firewall queries and can affect the local Aliyun CLI configuration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with an authorized Alibaba Cloud account after confirming the intended account, region, and command scope.
+
+Risk: The skill asks to install or update Aliyun CLI tooling and plugins automatically.
+
+Mitigation: Prepare and pin trusted CLI tooling separately, and require confirmation before cloud API execution.
+
+Risk: Exposure reports may contain sensitive public asset, port, vulnerability, or attack-event details.
+
+Mitigation: Review output before sharing and redact credentials, tokens, local configuration content, and unnecessary infrastructure details.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sdk-team/skills/alibabacloud-cfw-exposure-detection)
+- [Related APIs](references/related-apis.md)
+- [Cloud Firewall API Analysis](references/api-analysis.md)
+- [RAM Policies](references/ram-policies.md)
+- [Verification Method](references/verification-method.md)
+- [Acceptance Criteria](references/acceptance-criteria.md)
+- [Aliyun CLI Installation Guide](references/cli-installation-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown report with inline Aliyun CLI commands and remediation guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include tables, partial API results, error summaries, and prioritized remediation recommendations.]
+
+## Skill Version(s):
+
+0.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,55 @@
-## Description: <br>
-Connect an MCP-compatible agent to local Fitbit activity, sleep, heart-rate, HRV, SpO2, breathing, weight, food, and water data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connect an MCP-compatible agent to local Fitbit activity, sleep, heart-rate, HRV, SpO2, breathing, weight, food, and water data.
 
-## Publisher: <br>
-[davidmosiah](https://clawhub.ai/user/davidmosiah) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[davidmosiah](https://clawhub.ai/user/davidmosiah)
 
-## Use Case: <br>
-Developers and users of MCP-compatible agents use this skill to install, configure, verify, and troubleshoot Fitbit MCP while preserving explicit consent and avoiding exposure of private health data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires OAuth tokens and may expose sensitive health and wellness data to an enabled agent. <br>
-Mitigation: Review Fitbit OAuth scopes before use, keep user consent explicit, avoid printing tokens or private data, and confirm trust in the linked repository and package before installation. <br>
-Risk: Live provider actions or writes could affect user data if run without review. <br>
-Mitigation: Use connection_status, manifest, doctor, privacy_audit, and dry-run surfaces first, and require explicit approval before write operations or live provider actions. <br>
+## Use Case:
 
+Developers and external users use this skill to install, configure, troubleshoot, and safely operate Fitbit MCP with MCP-compatible clients while preserving explicit consent and local privacy boundaries.
 
-## Reference(s): <br>
-- [Fitbit MCP ClawHub page](https://clawhub.ai/davidmosiah/fitbit-mcp) <br>
-- [Fitbit MCP repository](https://github.com/davidmosiah/fitbitmcp) <br>
-- [Fitbit MCP docs](https://wellness.delx.ai/connectors/fitbit) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline shell commands and JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include setup, authentication, privacy-audit, dry-run, and troubleshooting guidance for MCP-compatible agents.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server-resolved release evidence) <br>
+Risk: The setup flow runs a mutable unpinned npm package with local user permissions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer a pinned, reviewed package version or a locally installed binary before setup, authentication, or MCP startup.
+
+Risk: The MCP server can access Fitbit OAuth tokens and sensitive health data.
+
+Mitigation: Keep user consent explicit, avoid exposing token files or private health data in agent output, and use status, manifest, doctor, privacy audit, or dry-run surfaces before writes or live provider calls.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/davidmosiah/skills/fitbit-mcp)
+- [Fitbit MCP repository](https://github.com/davidmosiah/fitbitmcp)
+- [Fitbit connector docs](https://wellness.delx.ai/connectors/fitbit)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, markdown]
+
+**Output Format:** [Markdown with inline shell commands and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include setup, authentication, MCP client configuration, troubleshooting, privacy-boundary, and safety guidance.]
+
+## Skill Version(s):
+
+0.1.1 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

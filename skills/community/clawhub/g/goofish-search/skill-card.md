@@ -1,42 +1,59 @@
-## Description: <br>
-Searches Xianyu/Goofish for products, filters merchants and low-quality listings, sorts by price, and returns top matching results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when user wants to search Xianyu/Goofish for products. Auto-search, filter merchants, sort by price, and output TOP results.
 
-## Publisher: <br>
-[mabe88650](https://clawhub.ai/user/mabe88650) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mabe88650](https://clawhub.ai/user/mabe88650)
 
-## Use Case: <br>
-External users use this skill to search Goofish/Xianyu for second-hand products with filters for price, region, condition, seller type, and sorting. It helps an agent gather product listings, exclude merchant-style or misleading results, and summarize the most relevant options. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may operate in a logged-in Goofish/Xianyu browser session and collect shopping listing data visible to that session. <br>
-Mitigation: Run it only in a browser profile appropriate for the search task and review the requested search, filters, and pages before continuing. <br>
-Risk: The workflow can save a Markdown results file to the desktop. <br>
-Mitigation: Ask the agent to confirm before writing files or specify a destination that is acceptable for the resulting listing summary. <br>
+## Use Case:
 
+Agents assisting shoppers use this skill to search Xianyu/Goofish for second-hand products, filter out merchant-style listings and ads, sort by price, and return concise top results with item links and price statistics.
 
-## Reference(s): <br>
-- [Goofish DOM Structure Reference](references/goofish-dom-structure.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/mabe88650/goofish-search) <br>
-- [Publisher Profile](https://clawhub.ai/user/mabe88650) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown summary with product tables, price statistics, direct listing links, and optional saved Markdown results file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use a logged-in browser session and may save a Markdown results file to the desktop when the agent follows the skill workflow.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; source skill frontmatter lists 2.1.0) <br>
+Risk: The skill operates in a logged-in Goofish browser session, so searches and clicks occur under the user's active account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the intended browser profile and review actions before allowing purchase-related or account-sensitive steps.
+
+Risk: Search results, including item links, may be saved locally as a Markdown file.
+
+Mitigation: Review or adjust the save location when local records of shopping searches should not be retained.
+
+Risk: Goofish page structure and pagination controls can change, which may reduce filtering accuracy or page traversal reliability.
+
+Mitigation: Review the generated results and update selectors or browser interaction steps when the site layout changes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mabe88650/skills/goofish-search)
+- [Goofish DOM structure reference](artifact/references/goofish-dom-structure.md)
+- [Goofish search URL pattern](https://www.goofish.com/search?q={keyword})
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown summary with tables, item links, filtering notes, and local file path guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May save a Markdown results file to the user's desktop path described by the skill.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter reports 2.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

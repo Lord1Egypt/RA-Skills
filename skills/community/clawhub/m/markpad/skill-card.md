@@ -1,41 +1,54 @@
-## Description: <br>
-Reference tool for devtools - covers intro, quickstart, patterns and more. Quick lookup for Markpad concepts, best practices, and implementation patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reference tool for devtools — covers intro, quickstart, patterns and more. Quick lookup for Markpad concepts, best practices, and implementation patterns.
 
-## Publisher: <br>
-[xueyetianya](https://clawhub.ai/user/xueyetianya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xueyetianya](https://clawhub.ai/user/xueyetianya)
 
-## Use Case: <br>
-Developers and engineers use Markpad as a quick local reference for Markpad concepts, workflows, troubleshooting, performance, security, migration, and cheat-sheet guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill executes a local shell script when invoked. <br>
-Mitigation: Review the installed script before running new versions; the reviewed script only prints static reference documentation. <br>
-Risk: The reference content is generic and may not be authoritative for a specific Markpad implementation. <br>
-Mitigation: Treat outputs as quick reference material and verify operational or security guidance against the relevant project documentation. <br>
+## Use Case:
 
+Developers and engineers use this skill as a quick local reference for Markpad concepts, quickstart steps, usage patterns, debugging, performance, security, migration, and cheat-sheet guidance.
 
-## Reference(s): <br>
-- [Markpad on ClawHub](https://clawhub.ai/xueyetianya/markpad) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Plain text reference documentation with Markdown headings, lists, and tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands print static heredoc content; no external API calls, credentials, or network access are required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.3 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The security evidence describes the skill as generic Markpad documentation rather than a verified upstream tool implementation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the output as reference guidance and verify important Markpad implementation details against authoritative project documentation before relying on it.
+
+Risk: The artifact reports version 2.0.3 in SKILL.md while scripts/script.sh reports 2.0.2.
+
+Mitigation: Use the server release and SKILL.md version for release tracking, and review the script version before redistributing or depending on exact version output.
+
+## Reference(s):
+
+- [ClawHub Markpad skill page](https://clawhub.ai/xueyetianya/skills/markpad)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Plain-text reference documentation with Markdown headings, lists, and tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No API calls, credentials, network access, or persistent system settings are described by the artifact or security evidence.]
+
+## Skill Version(s):
+
+2.0.3 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

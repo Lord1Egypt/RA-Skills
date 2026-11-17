@@ -1,51 +1,64 @@
-## Description: <br>
-A couples relationship coach grounded in IFS, Emotionally Focused Therapy, and honest communication for conflict, emotional distance, recurring arguments, disconnection, triggers, and repair after fights. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A couples relationship coaching skill grounded in IFS, Emotionally Focused Therapy, and honest communication for conflict, emotional distance, recurring arguments, and repair after fights.
 
-## Publisher: <br>
-[hnykda](https://clawhub.ai/user/hnykda) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[hnykda](https://clawhub.ai/user/hnykda)
 
-## Use Case: <br>
-External users and agents use this skill to guide couples through relationship conflict, recurring patterns, emotional disconnection, difficult conversations, triggered states, and post-fight repair. It routes the session to relevant IFS, EFT, and communication processes while maintaining workspace notes about relationship patterns and agreements. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill automatically creates lasting relationship and partner notes that may contain very sensitive personal information. <br>
-Mitigation: Before use, decide what may be stored, get explicit permission for sensitive notes, and review or delete generated profiles regularly. <br>
-Risk: Private disclosures can be exposed if notes or shared-channel responses include details from one partner's direct messages. <br>
-Mitigation: Keep direct-message disclosures private, reference only shared-channel content in shared sessions, and record patterns instead of private quotes. <br>
-Risk: The skill is not appropriate for abuse, coercion, self-harm risk, emergencies, or issues needing a licensed professional. <br>
-Mitigation: Do not use it for those situations; escalate to appropriate emergency, safety, or licensed professional support. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hnykda/relationship-coach) <br>
-- [Publisher profile](https://clawhub.ai/user/hnykda) <br>
-- [Repair Process](references/repair-process.md) <br>
-- [Demon Dialogues](references/demon-dialogues.md) <br>
-- [Reconnection](references/reconnection.md) <br>
-- [Communication Tools](references/communication-tools.md) <br>
-- [IFS Parts Process for Couples](references/ifs-parts-process.md) <br>
-- [Forgiving Injuries](references/forgiving-injuries.md) <br>
-- [Anchor Cards](references/anchor-cards.md) <br>
-- [Assurance Cards](references/assurance-cards.md) <br>
-- [Golden Concepts, Success Stories & Learnings](references/golden-concepts.md) <br>
+## Use Case:
 
+External users and agents use this skill to guide couples through structured relationship coaching sessions, route current relationship issues to relevant repair, reconnection, communication, or parts-work processes, and maintain relationship profiles and agreements over time.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, files, guidance] <br>
-**Output Format:** [Conversational guidance with Markdown profile notes, relationship agreements, session notes, cards, and optional printable HTML resources.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates and updates workspace profile files for partner patterns, relationship dynamics, agreements, and success stories.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can keep long-lived notes about sensitive relationship patterns, triggers, wounds, boundaries, and session learnings in workspace Markdown files.
+
+Mitigation: Use the skill only in a trusted workspace, get explicit consent from everyone involved, and define how stored profiles will be reviewed and deleted.
+
+Risk: Private disclosures between partners could be over-recorded or exposed through shared notes.
+
+Mitigation: Keep private and shared contexts separate, record patterns rather than verbatim private quotes, and avoid referencing private disclosures in shared sessions.
+
+Risk: Relationship coaching may be inappropriate when there are safety concerns, ongoing harm, abuse, or trauma-linked injuries.
+
+Mitigation: Name safety concerns directly, avoid treating the skill as a substitute for professional or emergency support, and pause coaching when qualified help is needed.
+
+## Reference(s):
+
+- [Repair Process](references/repair-process.md)
+- [Demon Dialogues](references/demon-dialogues.md)
+- [Reconnection](references/reconnection.md)
+- [Communication Tools](references/communication-tools.md)
+- [IFS Parts Process for Couples](references/ifs-parts-process.md)
+- [Forgiving Injuries](references/forgiving-injuries.md)
+- [Anchor Cards](references/anchor-cards.md)
+- [Assurance Cards](references/assurance-cards.md)
+- [Golden Concepts, Success Stories & Learnings](references/golden-concepts.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Files]
+
+**Output Format:** [Markdown guidance and workspace Markdown profile or resource files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update profiles and relationship resource files during sessions.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

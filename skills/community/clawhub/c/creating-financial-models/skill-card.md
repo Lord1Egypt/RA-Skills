@@ -1,42 +1,53 @@
-## Description: <br>
-Use when user wants to build financial models, DCF analysis, valuation, sensitivity analysis, e-commerce business planning, investment decisions, or project finance assessments. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when user wants to build financial models, DCF analysis, valuation, sensitivity analysis, e-commerce business planning, investment decisions, or project finance assessments.
 
-## Publisher: <br>
-[simoncai519](https://clawhub.ai/user/simoncai519) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[simoncai519](https://clawhub.ai/user/simoncai519)
 
-## Use Case: <br>
-Employees, external users, and developers use this skill to structure financial modeling workflows, run simple DCF valuation calculations, and prepare valuation workbooks from user-provided assumptions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Financial valuation outputs may be incomplete or misleading if inputs, assumptions, or formulas are wrong. <br>
-Mitigation: Review assumptions and source financials carefully, sanity-check outputs against other valuation methods, and do not treat results as professional financial advice. <br>
-Risk: Workbook generation writes to the requested output path and could overwrite an existing file. <br>
-Mitigation: Choose output paths deliberately and review the destination before running the script. <br>
-Risk: The workbook generator depends on the xlsxwriter Python package. <br>
-Mitigation: Install dependencies only from trusted package sources and use a reviewed or pinned Python environment when possible. <br>
+## Use Case:
 
+External users and developers use this skill to prepare financial-modeling workflows for valuation, investment analysis, e-commerce planning, and project finance assessments. The included local script supports a basic DCF model from JSON inputs to an Excel workbook.
 
-## Reference(s): <br>
-- [Financial Modeling Methodology](references/methodology.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Files] <br>
-**Output Format:** [Markdown guidance with optional shell commands and generated Excel workbook files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads user-provided JSON inputs and may write an .xlsx workbook to a user-selected output path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Financial model outputs can be misleading if assumptions, formulas, or inputs are wrong.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review all assumptions and formulas independently before using outputs for valuation or investment decisions.
+
+Risk: The artifact advertises outputs and workflows that are broader than the included DCF script implements.
+
+Mitigation: Treat the release as a basic local DCF helper unless additional implementation is supplied and reviewed.
+
+## Reference(s):
+
+- [Financial Modeling Methodology](references/methodology.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, code, configuration, files]
+
+**Output Format:** [Markdown guidance with inline shell commands and generated Excel workbook output from the included DCF script.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The script writes an .xlsx DCF workbook and prints enterprise value; verify assumptions and formulas before use.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

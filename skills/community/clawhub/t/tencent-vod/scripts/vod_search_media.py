@@ -44,7 +44,7 @@ try:
     from tencentcloud.common.profile.http_profile import HttpProfile
     from tencentcloud.vod.v20180717 import vod_client, models
 except ImportError:
-    print("错误：请先安装腾讯云 SDK: pip install tencentcloud-sdk-python")
+    print("错误：请先安装腾讯云 SDK: python3 -m pip install tencentcloud-sdk-python")
     sys.exit(1)
 
 
@@ -60,13 +60,16 @@ def get_credential():
             _ensure_env_loaded(verbose=True)
             secret_id = os.environ.get("TENCENTCLOUD_SECRET_ID")
             secret_key = os.environ.get("TENCENTCLOUD_SECRET_KEY")
-        if not secret_id or not secret_key:
-            if _LOAD_ENV_AVAILABLE:
-                from vod_load_env import _print_setup_hint
-                _print_setup_hint(["TENCENTCLOUD_SECRET_ID", "TENCENTCLOUD_SECRET_KEY"])
-            else:
-                print("错误：请设置环境变量 TENCENTCLOUD_SECRET_ID 和 TENCENTCLOUD_SECRET_KEY", file=sys.stderr)
+    # 检查所有必需变量（SECRET_ID/KEY/SUB_APP_ID）
+    if _LOAD_ENV_AVAILABLE:
+        from vod_load_env import check_required_vars, _print_setup_hint
+        missing = check_required_vars()
+        if missing:
+            _print_setup_hint(missing)
             sys.exit(1)
+    elif not secret_id or not secret_key:
+        print("错误：请设置环境变量 TENCENTCLOUD_SECRET_ID 和 TENCENTCLOUD_SECRET_KEY", file=sys.stderr)
+        sys.exit(1)
 
     return credential.Credential(secret_id, secret_key)
 
@@ -579,6 +582,15 @@ def search_media(args):
 
 
 def main():
+    # 早加载 .env，确保 argparse `default=os.environ.get(...)` 能取到 TENCENTCLOUD_VOD_SUB_APP_ID
+    # 修复 BUG：此前 argparse 在 add_argument 时立即从环境变量取值，但 .env 加载发生在
+    # get_credential() 内，时序错位导致 SubAppId 为 None。
+    if _LOAD_ENV_AVAILABLE:
+        try:
+            _ensure_env_loaded(verbose=False)
+        except Exception:
+            pass
+
     parser = argparse.ArgumentParser(
         description='VOD 搜索媒体工具（SearchMedia）',
         formatter_class=argparse.RawDescriptionHelpFormatter,
@@ -593,46 +605,46 @@ def main():
 
 示例:
   # ✅ 模糊搜索名称（主应用）
-  python vod_search_media.py --names "我的视频"
+  python3 vod_search_media.py --names "我的视频"
 
   # 通过 FileId 搜索（主应用）
-  python vod_search_media.py --file-ids 387702292285462759
+  python3 vod_search_media.py --file-ids 387702292285462759
 
   # ✅ 模糊搜索名称（指定应用）
-  python vod_search_media.py --names "我的视频" --sub-app-id 1500046806
+  python3 vod_search_media.py --names "我的视频" --sub-app-id 1500046806
 
   # ✅ 通过应用名称模糊匹配 + 名称搜索
-  python vod_search_media.py --names "我的视频" --app-name "测试应用"
+  python3 vod_search_media.py --names "我的视频" --app-name "测试应用"
 
   # 搜索视频文件
-  python vod_search_media.py --names "测试" --categories Video
+  python3 vod_search_media.py --names "测试" --categories Video
 
   # 搜索图片文件
-  python vod_search_media.py --names "封面" --categories Image
+  python3 vod_search_media.py --names "封面" --categories Image
 
   # 按标签搜索
-  python vod_search_media.py --tags "体育" "篮球"
+  python3 vod_search_media.py --tags "体育" "篮球"
 
   # 按创建时间范围搜索
-  python vod_search_media.py --names "会议" \\
+  python3 vod_search_media.py --names "会议" \\
       --create-after "2026-01-01T00:00:00+08:00" \\
       --create-before "2026-03-31T23:59:59+08:00"
 
   # 按创建时间降序排序
-  python vod_search_media.py --names "测试" \\
+  python3 vod_search_media.py --names "测试" \\
       --sort-field CreateTime --sort-order Desc
 
   # 分页查询
-  python vod_search_media.py --names "视频" --offset 0 --limit 20
+  python3 vod_search_media.py --names "视频" --offset 0 --limit 20
 
   # 只返回基础信息
-  python vod_search_media.py --names "视频" --filters basicInfo
+  python3 vod_search_media.py --names "视频" --filters basicInfo
 
   # JSON 格式输出
-  python vod_search_media.py --names "视频" --json
+  python3 vod_search_media.py --names "视频" --json
 
   # 预览请求参数
-  python vod_search_media.py --names "视频" --dry-run
+  python3 vod_search_media.py --names "视频" --dry-run
         '''
     )
 
@@ -717,7 +729,7 @@ def main():
                               help='显示详细信息（包含 URL 等）')
     output_group.add_argument('--json', action='store_true',
                               help='JSON 格式输出完整响应')
-    output_group.add_argument('--region', default='ap-guangzhou',
+    output_group.add_argument('--region', default=os.getenv('TENCENTCLOUD_REGION', 'ap-guangzhou'),
                               help='地域，默认 ap-guangzhou')
     output_group.add_argument('--dry-run', action='store_true',
                               help='预览请求参数，不实际执行')

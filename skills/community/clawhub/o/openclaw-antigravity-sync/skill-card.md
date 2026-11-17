@@ -1,38 +1,63 @@
-## Description: <br>
-Automatically discover and configure available Google Antigravity models and quotas. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically discover and configure available Google Antigravity models and quotas.
 
-## Publisher: <br>
-[krnbwj](https://clawhub.ai/user/krnbwj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[krnbwj](https://clawhub.ai/user/krnbwj)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to refresh Google Antigravity model availability and quota data, then update OpenClaw model configuration with an available primary model. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses existing Google Antigravity authentication and updates OpenClaw model configuration. <br>
-Mitigation: Install and run it only when that behavior is intended, then review ~/.openclaw/openclaw.json and keep the .bak backup until the selected default model is acceptable. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to sync Google Antigravity model availability and quotas into openclaw.json, keeping the configured primary model valid when quotas or model availability change.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/krnbwj/openclaw-antigravity-sync) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration] <br>
-**Output Format:** [Console text with JSON configuration updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Updates OpenClaw model settings and creates a backup before writing configuration changes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence release and package.json) <br>
+Risk: The skill uses an existing Google Antigravity OAuth session to query model availability.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run it only in an OpenClaw environment where that OAuth session is intended for model discovery.
+
+Risk: The skill rewrites OpenClaw model configuration and may change the primary model when the current model is unavailable or exhausted.
+
+Mitigation: Review the selected primary model and compare openclaw.json with the generated backup after each sync.
+
+Risk: A broad invocation such as a generic model update request could trigger configuration changes unexpectedly.
+
+Mitigation: Invoke it with a specific request such as syncing Antigravity models.
+
+Risk: If WhatsApp is configured without self-chat mode or an allowlist, the bot may accept messages from unintended senders.
+
+Mitigation: Enable selfChatMode or configure allowFrom before exposing the WhatsApp channel.
+
+## Reference(s):
+
+- [OpenClaw Antigravity Sync Skill release](https://clawhub.ai/krnbwj/skills/openclaw-antigravity-sync)
+- [README.md](artifact/README.md)
+- [SKILL.md](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration]
+
+**Output Format:** [Terminal output and JSON configuration updates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Updates openclaw.json and creates an openclaw.json.bak backup when run.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

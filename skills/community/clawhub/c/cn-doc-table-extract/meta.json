@@ -1,0 +1,19 @@
+{
+  "pkg": "cn-doc-table-extract",
+  "kind": "agent",
+  "name_zh": "中文文档表格抽取与字段校验",
+  "profession_zh": "中文文档表格抽取与字段校验",
+  "desc_zh": "为需要处理中文文档的开发者与数据团队，从中文 PDF、扫描件、Excel、Word 中批量抽取结构化表格与关键字段，并自动校验金额、日期、编号格式、合计勾稽与重复行，输出带页码行列溯源的可机读记录。触发词：中文PDF表格提取、中文发票识别、保单信息提取、对账单解析、表格字段校验、中文文档结构化。",
+  "desc_en": "For developers and data teams processing Chinese documents: batch-extract structured tables and key fields from Chinese PDF, scans, Excel and Word, then auto-validate amounts, dates, identifier formats, total reconciliation and duplicate rows, emitting machine-readable records with page/row/column traceability. Triggers: Chinese PDF table extraction, Chinese invoice recognition, insurance policy field extraction, bank statement parsing, table field validation, Chinese document structuring.",
+  "tags": ["中文文档抽取", "表格结构化", "字段校验"],
+  "price_cny_tiers": [9, 19, 49],
+  "suggested_price_cny": 19,
+  "suggested_price_usd": [9, 19, 49],
+  "platforms": {
+    "workbuddy": { "published": false, "note": "观察期只能挂 1 个付费资产，发布后不可改付费" },
+    "coze": { "format": "SKILL.md 同源", "note": "扣子编程侧用 SKILL.md；需个人版商户入驻 + 精选案例" },
+    "claude_skills": { "format": "SKILL.md 同源", "note": "Agensi / ClawHub / skills.sh 均收此格式" }
+  },
+  "copyright": "原创方法论整理，不含受版权保护出版物内容",
+  "license": "MIT-0"
+}

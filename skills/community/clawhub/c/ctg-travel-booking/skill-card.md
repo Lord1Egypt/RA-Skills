@@ -1,47 +1,61 @@
-## Description: <br>
-Deprecated CTG Travel Booking helps agents guide users through CTG travel searches, bookings, cancellations, and refunds for flights, hotels, trains, and attraction tickets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ctg Travel Booking is an expired CTG Travel Open Platform assistant for guided lookup, booking, cancellation, and refund workflows across flights, hotels, train tickets, and attraction tickets.
 
-## Publisher: <br>
-[xiaosai](https://clawhub.ai/user/xiaosai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiaosai](https://clawhub.ai/user/xiaosai)
 
-## Use Case: <br>
-External users and travel-service agents use this skill to collect trip details, present CTG travel options, and execute booking, cancellation, or refund flows after user confirmation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create, cancel, or refund real travel bookings. <br>
-Mitigation: Require the agent to show a final summary and obtain explicit user confirmation before any booking, cancellation, or refund action. <br>
-Risk: Passenger identity data and contact details may be collected or saved during booking flows. <br>
-Mitigation: Use the skill only with a trusted CTG account and API key, and provide only the passenger information needed for the requested transaction. <br>
-Risk: This release is marked as expired and no longer maintained. <br>
-Mitigation: Prefer the newer CTG Travel skill linked in the artifact before installing or using this release. <br>
-Risk: Misconfigured endpoints or transport settings could send travel data to an unintended service. <br>
-Mitigation: Verify the HTTPS CTG endpoint in configuration before running API-backed workflows. <br>
+## Use Case:
 
+External travelers and travel-service agents use this skill to collect trip details, query options, prepare orders, and handle cancellations or refunds for CTG Travel resources. Because the release is expired, users should prefer the newer linked version when available.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xiaosai/ctg-travel-booking) <br>
-- [Publisher profile](https://clawhub.ai/user/xiaosai) <br>
-- [Latest CTG Travel skill](https://clawhub.ai/ctg-travel/ctg-travel) <br>
-- [CTG skill access guide](https://pro-m.ourtour.com/new-journey/static-page/openClawGuide) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON configuration or request parameters] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces user-facing travel options, booking summaries, refund summaries, and operational instructions for CTG API-backed flows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.5 (source: frontmatter and release evidence) <br>
+Risk: The release is expired and no longer maintained.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer the newer CTG Travel skill linked by the release before installing or using this version.
+
+Risk: The skill handles API keys, passenger identity details, contact information, and order data.
+
+Mitigation: Configure only a trusted HTTPS CTG Travel endpoint and share identity or contact data only when needed for the requested booking or refund.
+
+Risk: Booking, cancellation, and refund actions can change orders or move money if submitted ambiguously.
+
+Mitigation: Require a clear final summary and explicit user confirmation before any booking, cancellation, or refund submission.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/xiaosai/skills/ctg-travel-booking)
+- [Current CTG Travel Skill](https://clawhub.ai/ctg-travel/ctg-travel)
+- [CTG Travel Skill Access Guide](https://pro-m.ourtour.com/new-journey/static-page/openClawGuide)
+- [Skill Definition](artifact/SKILL.md)
+- [API Configuration](artifact/config/ctgConfig.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON request parameters]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May trigger authenticated POST requests to the configured CTG Travel endpoint; booking, cancellation, and refund actions require final user confirmation.]
+
+## Skill Version(s):
+
+0.2.5 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,56 @@
-## Description: <br>
-Upload images to img402.dev and get a public URL for sharing in messages, embedding in documents, posting to social platforms, or other contexts that require a public image link. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Upload images to img402.dev and return a public URL for sharing, embedding, posting, or other workflows that need a hosted image link.
 
-## Publisher: <br>
-[img402](https://clawhub.ai/user/img402) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[img402](https://clawhub.ai/user/img402)
 
-## Use Case: <br>
-Developers, agents, and external users use this skill to upload a local image and obtain a public hosted URL. It is suited for shareable screenshots, diagrams, documents, social posts, and other non-confidential image assets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Uploaded images are public to anyone with the URL. <br>
-Mitigation: Upload only images that are approved for public sharing; avoid confidential screenshots, personal data, secrets, API keys, and internal material. <br>
-Risk: Uploaded images may not be removable immediately after publication. <br>
-Mitigation: Use expiring tiers for temporary material and avoid permanent uploads for assets that may need prompt deletion. <br>
-Risk: Longer-lived uploads can involve x402 USDC payments. <br>
-Mitigation: Confirm the requested retention period, payment amount, and user authorization before using a paid upload flow. <br>
+## Use Case:
 
+Developers, external users, and agents use this skill to upload local image files and return public CDN URLs for messages, documents, social platforms, or other contexts that require a publicly reachable image.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/img402/image-hosting) <br>
-- [img402.dev](https://img402.dev) <br>
-- [img402 x402 API Payment Guide](https://img402.dev/blog/paying-x402-apis) <br>
-- [Coinbase Payments MCP Tool](https://docs.cdp.coinbase.com/mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline bash commands and JSON response examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces or explains public image URLs; paid tiers may require x402 payment handling.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.2 (source: release evidence) <br>
+Risk: Uploaded images are public and may be permanent, especially files at or under 1 MB.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review files before upload and do not upload internal screenshots, personal data, secrets, API keys, regulated data, or other content that should not be public.
+
+Risk: Images over 1 MB may require either temporary retention or a paid x402 flow for permanence.
+
+Mitigation: Confirm the required retention before upload; shrink images below 1 MB for free permanent hosting when appropriate, or use the paid flow only when long-term retention is needed.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/img402/skills/image-hosting)
+- [img402](https://img402.dev)
+- [Coinbase Payments MCP](https://docs.cdp.coinbase.com/mcp)
+- [Paying x402 APIs](https://img402.dev/blog/paying-x402-apis)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, API calls, Guidance]
+
+**Output Format:** [Markdown guidance with bash/curl snippets and JSON response examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl; upload responses include a public URL, content type, size, and expiresAt retention value.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

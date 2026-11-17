@@ -1,45 +1,56 @@
-## Description: <br>
-WeChat Official Account Draft Box management tool. Create and manage graphic draft articles via WeChat API, supporting text and images. Automatically extracts the first paragraph as summary. Supports draft creation, listing, publishing, and deletion. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+WeChat Official Account Draft Box management tool. Create and manage graphic draft articles via WeChat API, supporting text and images. Automatically extracts the first paragraph as summary. Supports draft creation, listing, publishing, and deletion.
 
-## Publisher: <br>
-[manifoldor](https://clawhub.ai/user/manifoldor) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[manifoldor](https://clawhub.ai/user/manifoldor)
 
-## Use Case: <br>
-Developers, operators, and content teams use this skill to prepare and manage WeChat Official Account draft articles, upload associated images, list drafts, and submit or delete drafts through the WeChat API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can publish or delete WeChat Official Account drafts when run with valid credentials. <br>
-Mitigation: Review media IDs and intended actions before running publish or delete commands. <br>
-Risk: WECHAT_APPSECRET and the cached access token can grant access to account draft-management APIs. <br>
-Mitigation: Protect WECHAT_APPSECRET and ~/.config/channel/access_token.json, and rotate credentials if they are exposed. <br>
-Risk: Article and image files passed to the tool may be uploaded to WeChat services. <br>
-Mitigation: Use only article text and media files that are approved for upload to the connected WeChat Official Account. <br>
+## Use Case:
 
+Developers and content operations teams use this skill to create, list, publish, and delete WeChat Official Account draft articles through the WeChat API. It supports text, image upload, automatic cover generation, and summary extraction for draft workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/manifoldor/channel) <br>
-- [WeChat Official Account documentation](https://developers.weixin.qq.com/doc/offiaccount/Getting_Started/Overview.html) <br>
-- [WeChat Official Account API reference](references/wechat_api.md) <br>
-- [WeChat Official Account platform](https://mp.weixin.qq.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown documentation, Python CLI commands, and terminal output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses WECHAT_APPID and WECHAT_APPSECRET environment variables and may cache an access token under ~/.config/channel.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: server release evidence) <br>
+Risk: The skill handles WeChat Official Account credentials and caches access tokens locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated secret manager or tightly permissioned environment file, avoid storing AppSecret in shell startup files, and harden or disable local token caching where possible.
+
+Risk: Publish and delete commands can cause irreversible account actions.
+
+Mitigation: Confirm the target media_id and account context before running publish or delete commands, and restrict credentials to accounts where that level of access is intended.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/manifoldor/skills/channel)
+- [WeChat Official Account API Reference](references/wechat_api.md)
+- [WeChat Official Account Overview](https://developers.weixin.qq.com/doc/offiaccount/Getting_Started/Overview.html)
+- [WeChat Official Platform](https://mp.weixin.qq.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, API Calls]
+
+**Output Format:** [Markdown guidance with shell command examples and CLI text output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires WECHAT_APPID and WECHAT_APPSECRET environment variables and performs WeChat Official Account API operations against draft, media, publish, and delete endpoints.]
+
+## Skill Version(s):
+
+1.0.6 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

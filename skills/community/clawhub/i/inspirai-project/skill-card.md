@@ -1,42 +1,57 @@
-## Description: <br>
-Coordinates multi-agent project work by routing ideas to Discord discussions, creating project threads, assigning initial agent tasks, and summarizing project status. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Coordinates multi-agent project work by routing early discussions, creating Discord project threads, assigning initial agent tasks, and reporting project status.
 
-## Publisher: <br>
-[alexxxiong](https://clawhub.ai/user/alexxxiong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alexxxiong](https://clawhub.ai/user/alexxxiong)
 
-## Use Case: <br>
-Developers and project leads use this skill to coordinate multi-agent work through Discord by discussing ideas, initializing projects, assigning agent-specific tasks, and checking active project status. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Discord bot token or channel configuration can be exposed through helper configuration output. <br>
-Mitigation: Use a least-privilege bot token, redact configuration output before sharing it, and avoid storing secrets in project descriptions. <br>
-Risk: Broad natural-language triggers can post messages or change project data in Discord unexpectedly. <br>
-Mitigation: Prefer explicit /project:* commands and review the intended Discord-bound message before allowing the skill to send it. <br>
-Risk: Project descriptions and task briefs can disclose confidential information to Discord channels or threads. <br>
-Mitigation: Keep sensitive details out of project prompts and review every generated task brief before posting. <br>
+## Use Case:
 
+Developers and project leads use this skill to coordinate multi-agent work in Discord, from brainstorming and project initiation through thread-based task assignment and status checks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/alexxxiong/inspirai-project) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, JSON, API Calls] <br>
-**Output Format:** [Markdown instructions with inline shell commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or query Discord channels and threads when configured with a Discord bot token.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Discord bot credentials may be exposed by helper commands or logs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid running the config output command unless token fields are redacted, keep bot tokens out of transcripts, and rotate any token that may have been printed.
+
+Risk: Project ideas, assignments, and status queries can be sent to the configured Discord workspace.
+
+Mitigation: Use the skill only with approved Discord workspaces and avoid submitting confidential project details unless that workspace is authorized for them.
+
+Risk: Broad natural-language triggers can send messages, create threads, or update project records unexpectedly.
+
+Mitigation: Prefer explicit /project:init, /project:discuss, and /project:status invocations, confirm agent selections before thread creation, and review archive actions before updating records.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/alexxxiong/skills/inspirai-project)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands, JSON examples, and operational guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce Discord API calls, project summaries, local project-record updates, and status tables.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,38 +1,55 @@
-## Description: <br>
-Control a sandboxed MetaMask browser extension wallet for autonomous blockchain transactions. Features configurable permission guardrails including spend limits, chain allowlists, protocol restrictions, and approval thresholds. MetaMask-only (other wallets not supported). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Controls a sandboxed MetaMask browser extension wallet for autonomous blockchain transactions with configurable spend limits, chain allowlists, protocol restrictions, and approval thresholds.
 
-## Publisher: <br>
-[andreolf](https://clawhub.ai/user/andreolf) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[andreolf](https://clawhub.ai/user/andreolf)
 
-## Use Case: <br>
-Developers and external users use this skill to let an agent operate a dedicated MetaMask wallet for dapp connections, swaps, token transfers, message signing, balance checks, and transaction history review under configured wallet constraints. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The release asks users to run npm setup code and rely on unverified guardrails for irreversible crypto actions. <br>
-Mitigation: Review the full source, package scripts, lockfile, and permission enforcement before installing, running setup, or trusting advertised spend limits. <br>
-Risk: Automated wallet actions can move funds or sign messages through MetaMask. <br>
-Mitigation: Use only a brand-new MetaMask wallet with very small funds, and never use a main wallet or seed phrase. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
+
+Developers and external users can use this skill to let an agent interact with dapps through a separate MetaMask wallet while enforcing configured wallet permissions and transaction limits.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill asks users to run setup and dependency commands for wallet automation code that has not been fully reviewed in the provided evidence.
+
+Mitigation: Review package.json, the lockfile, setup scripts, source code, and MetaMask extension provenance before running npm install or npm run setup.
+
+Risk: The skill persists browser wallet state under ~/.agent-wallet, which can retain sensitive wallet session material.
+
+Mitigation: Use only a new low-value wallet in a dedicated unprivileged environment, and delete or rotate ~/.agent-wallet when retiring the setup.
+
+Risk: Automated blockchain transactions can spend real assets if permission constraints are too broad or configured incorrectly.
+
+Mitigation: Start with small funds, strict spend caps, narrow chain and protocol allowlists, and explicit approval thresholds for higher-value transactions.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with command examples, JSON configuration snippets, and transaction or approval summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include wallet balances, transaction history, approval requests, and transaction outcomes.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown with command examples and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include transaction intents, approval requests, balances, transaction history, and setup or troubleshooting guidance.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,14 @@
+{
+  "id": "certainlogic.certainlogic-onboarding-wizard",
+  "name": "certainlogic-onboarding-wizard",
+  "displayName": "CertainLogic Onboarding Wizard",
+  "version": "2.1.0",
+  "description": "Automated onboarding for OpenClaw. Environment scan, skill detection, personalized starter stack with setup scripts, verification, weekly checkups, team export. All features free.",
+  "author": "CertainLogic",
+  "license": "MIT",
+  "source": "https://github.com/CertainLogicAI/certainlogic-onboarding-wizard",
+  "tags": ["onboarding", "setup", "beginner", "wizard", "scanner"],
+  "entrypoints": {
+    "cli": "scripts/onboarding_wizard.py"
+  }
+}

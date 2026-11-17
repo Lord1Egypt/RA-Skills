@@ -1,45 +1,64 @@
-## Description: <br>
-Interact with the Pakat email marketing API to manage mailing lists, subscribers, campaigns, templates, transactional emails, segments, campaign statistics, and delivery logs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Interact with the Pakat email marketing API to manage mailing lists, subscribers, campaigns, templates, transactional emails, segments, campaign statistics, and delivery logs.
 
-## Publisher: <br>
-[hadifarnoud](https://clawhub.ai/user/hadifarnoud) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[hadifarnoud](https://clawhub.ai/user/hadifarnoud)
 
-## Use Case: <br>
-Developers and marketing operators use this skill to make authenticated Pakat API requests for email list management, campaign operations, transactional email workflows, and reporting. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can operate a live Pakat account, including account creation, email sending or scheduling, deletions, unsubscribes, and subscriber-data imports. <br>
-Mitigation: Require explicit user confirmation before state-changing, destructive, or email-sending actions. <br>
-Risk: The Pakat API key grants access to account operations if exposed or reused outside the intended environment. <br>
-Mitigation: Store PAKAT_API_KEY securely and restrict it with scoped keys if Pakat supports scoping. <br>
-Risk: User-provided HTML content may be unsafe if encoded through shell patterns that interpolate untrusted input. <br>
-Mitigation: Use heredocs or temporary files for base64 encoding rather than echoing unsanitized content. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Pakat Skill Page](https://clawhub.ai/hadifarnoud/pakat) <br>
-- [Pakat API Key Page](https://new.pakat.net/customer/api-keys/index) <br>
-- [Pakat API Reference](references/api_reference.md) <br>
-- [Pakat OpenAPI Specification](references/openapi.json) <br>
-- [Pakat Website](https://pakat.net) <br>
+## Use Case:
 
+External users, developers, and marketing operators use this skill to have an agent prepare Pakat REST API requests for email-list administration, subscriber operations, campaign work, transactional email sending, and reporting.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with curl commands and API request guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl and PAKAT_API_KEY for live Pakat API operations.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.2 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can generate requests that send real email or modify and delete Pakat mailing-list data.
+
+Mitigation: Require a preview and explicit confirmation before sends, deletes, imports, unsubscribes, and list changes.
+
+Risk: A Pakat API key can allow account actions through the live API.
+
+Mitigation: Use the least-privileged API key available and store it only in the PAKAT_API_KEY environment variable.
+
+Risk: Subscriber records, tracking data, and delivery logs may contain personal or consent-sensitive information.
+
+Mitigation: Handle subscriber and tracking data according to applicable privacy, consent, and retention obligations.
+
+Risk: Unsafe shell encoding of user-provided HTML can introduce command-injection risk.
+
+Mitigation: Use heredocs or temporary files for base64 encoding and avoid echo with unsanitized input.
+
+## Reference(s):
+
+- [Pakat API Reference](references/api_reference.md)
+- [Pakat OpenAPI Specification](references/openapi.json)
+- [Pakat API Key Management](https://new.pakat.net/customer/api-keys/index)
+- [Pakat Platform](https://pakat.net)
+- [Pakat API Base URL](https://new.pakat.net/api)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, API Calls, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline curl commands and REST API parameters]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl and PAKAT_API_KEY; generated commands may operate on live Pakat account data if executed.]
+
+## Skill Version(s):
+
+1.1.2 (source: server release metadata, created 2026-02-23)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

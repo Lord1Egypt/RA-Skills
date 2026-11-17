@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "jobs": [
+    {
+      "skill": "ci-tools-digest",
+      "job": {
+        "name": "CI Tools Monthly Digest",
+        "description": "Publish an English digest of the previous complete UTC calendar month through a CI Tools merge request.",
+        "enabled": false,
+        "deleteAfterRun": false,
+        "schedule": { "kind": "cron", "expr": "0 9 1 * *", "tz": "Europe/Berlin" },
+        "sessionTarget": "isolated",
+        "wakeMode": "now",
+        "payload": {
+          "kind": "agentTurn",
+          "message": "Read skill `ci-tools-digest` and publish the previous complete UTC calendar month's English digest as a merge request in xrow-public/ci-tools at docs/digest/digest-yyyy-mm.md. Reuse that month's existing open digest MR. Never substitute a rolling window or claim an unfinished month is complete.",
+          "thinking": "medium",
+          "timeoutSeconds": 1200,
+          "model": "openai/gpt-6.1-sol"
+        },
+        "delivery": { "mode": "announce", "bestEffort": false }
+      }
+    }
+  ]
+}

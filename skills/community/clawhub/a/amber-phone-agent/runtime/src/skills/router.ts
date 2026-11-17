@@ -11,6 +11,9 @@ import OpenAI from 'openai';
 
 /** In-memory registry of loaded skills, keyed by function name */
 const skillRegistry = new Map<string, LoadedSkill>();
+const directSkillAllowlist = new Map<string, Set<string>>([
+  ['crm', new Set(['lookup_contact', 'upsert_contact', 'log_interaction'])],
+]);
 
 /**
  * Initialize the router with loaded skills.
@@ -49,6 +52,13 @@ export async function callSkillDirectly(
   if (!skill) {
     return { success: false, message: `Skill not found: ${fnName}` };
   }
+
+  const allowedActions = directSkillAllowlist.get(fnName);
+  const action = typeof params?.action === 'string' ? params.action : '';
+  if (!allowedActions || !allowedActions.has(action)) {
+    return { success: false, message: `Direct skill call not allowed: ${fnName}/${action || 'unknown'}` };
+  }
+
   const context = buildSkillContext(skill.manifest.amber.permissions, apiDeps);
   return executeWithTimeout(skill.handler, params, context, skill.manifest.amber.timeout_ms);
 }
@@ -89,6 +99,13 @@ function sanitizeParams(params: Record<string, any>): Record<string, any> {
   for (const [key, value] of Object.entries(params)) {
     if (typeof value === 'string') {
       sanitized[key] = sanitizeInput(value);
+    } else if (Array.isArray(value)) {
+      sanitized[key] = value.map((item) => {
+        if (typeof item === 'string') return sanitizeInput(item);
+        if (typeof item === 'number' || typeof item === 'boolean' || item === null || item === undefined) return item;
+        if (typeof item === 'object') return sanitizeParams(item);
+        return String(item);
+      });
     } else if (typeof value === 'number' || typeof value === 'boolean') {
       sanitized[key] = value;
     } else if (value === null || value === undefined) {
@@ -150,15 +167,6 @@ export async function handleSkillCall(
 
   const manifest = skill.manifest;
 
-  deps.writeJsonl({
-    type: 'c2.skill_call',
-    call_id: deps.callId,
-    received_at: new Date().toISOString(),
-    skill_name: manifest.name,
-    fn_name: fnName,
-    fn_args: fnArgs,
-  });
-
   try {
     // Parse and sanitize arguments
     let params: Record<string, any>;
@@ -168,6 +176,16 @@ export async function handleSkillCall(
       params = {};
     }
     params = sanitizeParams(params);
+
+    deps.writeJsonl({
+      type: 'c2.skill_call',
+      call_id: deps.callId,
+      received_at: new Date().toISOString(),
+      skill_name: manifest.name,
+      fn_name: fnName,
+      arg_keys: Object.keys(params).sort(),
+      confirmed: params.confirmed === true,
+    });
 
     // Router-level confirmation enforcement for 'act' skills.
     // All 'act' skills require confirmed: true by default.

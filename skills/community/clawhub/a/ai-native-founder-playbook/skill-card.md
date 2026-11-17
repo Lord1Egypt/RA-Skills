@@ -1,49 +1,64 @@
-## Description: <br>
-Apply a bilingual, vendor-neutral AI-native startup operating playbook for Claude Code, Codex, Cursor, Trae, OpenClaw, hermers-agent, and other agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Applies a bilingual, vendor-neutral operating playbook that helps AI-native startup founders diagnose stage gates, validate ideas, scope MVPs, plan launch operations, and turn decisions into agent workflows.
 
-## Publisher: <br>
-[mackding](https://clawhub.ai/user/mackding) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mackding](https://clawhub.ai/user/mackding)
 
-## Use Case: <br>
-Founders, operators, and developers use this skill to pressure-test AI-native startup ideas, diagnose stage gates, plan MVP, launch, GTM, and scale work, and translate strategy into agent workflows and reusable artifacts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may share confidential customer lists, unreleased strategy, financials, or regulated data while seeking startup advice. <br>
-Mitigation: Use redacted or synthetic examples unless the active agent environment is approved for that information. <br>
-Risk: Legal, finance, compliance, security, fundraising, or financial outputs may be mistaken for professional advice. <br>
-Mitigation: Treat those outputs as planning support and route high-stakes decisions to qualified human experts. <br>
-Risk: Startup recommendations can encourage premature building or overbroad scope when evidence is weak. <br>
-Mitigation: Apply the skill's stage gates, separate facts from assumptions, and prefer the smallest evidence-producing experiment before implementation. <br>
+## Use Case:
 
+Founders, startup operators, and builders use this skill to pressure-test AI-native startup strategy, customer discovery, PMF, GTM, launch readiness, scale-stage operations, and agent workflow design. It produces stage-aware analysis, checklists, and reusable planning artifacts in English or Chinese.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mackding/ai-native-founder-playbook) <br>
-- [Project homepage](https://github.com/MackDing/ai-native-founder-playbook-skill) <br>
-- [Source Map And Caveats](references/source-map.md) <br>
-- [Stage Gates](references/stage-gates.md) <br>
-- [Workflows](references/workflows.md) <br>
-- [Templates](references/templates.md) <br>
-- [Agent Skills specification](https://agentskills.io/specification) <br>
-- [Anthropic Agent Skills overview](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with optional inline shell commands and ready-to-use planning artifacts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Bilingual English and Chinese output; recommendations distinguish facts, assumptions, hypotheses, missing evidence, and expert-review needs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: release evidence) <br>
+Risk: The skill may once mention starring its GitHub repository after it helps, which could be inappropriate if treated as automated promotion.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not let the skill star, fork, follow, promote, or use a GitHub token unless the user explicitly asks.
+
+Risk: Startup, security, legal, compliance, fundraising, or financial recommendations could be mistaken for professional advice.
+
+Mitigation: Use outputs as planning guidance and route high-stakes decisions to qualified experts.
+
+Risk: Founders may overbuild if stage recommendations are based on assumptions rather than direct evidence.
+
+Mitigation: Require the skill to separate facts from assumptions and demand customer evidence before expanding MVP scope.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mackding/skills/ai-native-founder-playbook)
+- [Project homepage](https://github.com/MackDing/ai-native-founder-playbook-skill)
+- [Source Map And Caveats](references/source-map.md)
+- [Stage Gates](references/stage-gates.md)
+- [Workflows](references/workflows.md)
+- [Templates](references/templates.md)
+- [Agent Skills specification](https://agentskills.io/specification)
+- [Anthropic Agent Skills overview](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with structured sections and optional inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Bilingual English/Chinese output based on the user's dominant language.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

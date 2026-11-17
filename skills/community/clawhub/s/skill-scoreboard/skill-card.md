@@ -1,42 +1,57 @@
-## Description: <br>
-Tracks OpenClaw skill usage, scores calls by duration and complexity weight, and reports daily, weekly, monthly, yearly, and all-time leaderboards. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Skill Scoreboard helps OpenClaw users track skill usage, calculate daily, weekly, monthly, yearly, and all-time scoreboards, and generate usage snapshots and workflow review reports.
 
-## Publisher: <br>
-[luis1213899](https://clawhub.ai/user/luis1213899) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[luis1213899](https://clawhub.ai/user/luis1213899)
 
-## Use Case: <br>
-Developers and OpenClaw operators use this skill to record skill invocations, review leaderboards and error history, and generate daily snapshots or workflow review reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill persists local skill usage and error history under ~/.skill_scoreboard, which may include sensitive information if users record secrets in error messages. <br>
-Mitigation: Avoid passing secrets in error messages, review stored records before sharing, and protect or clear ~/.skill_scoreboard according to local data handling requirements. <br>
-Risk: The gateway-log parser can read local OpenClaw gateway logs from /tmp/openclaw and persist inferred skill usage. <br>
-Mitigation: Run parse_gateway_logs.py only when local log scanning is intended and the operator is comfortable with the log contents being summarized into the scoreboard. <br>
-Risk: Cron automation can repeatedly create snapshots and workflow reviews without interactive confirmation. <br>
-Mitigation: Enable scheduled runs only after reviewing the scripts and confirming the storage path, timezone, and retention expectations. <br>
+## Use Case:
 
+OpenClaw users and developers use this skill to record skill calls, review usage and error history, compare scoreboards over several time windows, and generate daily workflow review reports.
 
-## Reference(s): <br>
-- [ClawHub Skill Scoreboard release page](https://clawhub.ai/luis1213899/skill-scoreboard) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, JSON files] <br>
-**Output Format:** [Markdown guidance with shell commands; CLI scripts emit text tables and JSON files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Persists scores, call logs, error logs, daily snapshots, and workflow review JSON under ~/.skill_scoreboard.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: The skill persists local usage history, call logs, and error history.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only where retaining skill activity and error history is acceptable, and periodically review or remove stored data under ~/.skill_scoreboard.
+
+Risk: The bundled gateway-log parser reads OpenClaw gateway logs and infers skill usage from message text.
+
+Mitigation: Review, remove, or disable parse_gateway_logs.py unless reading /tmp/openclaw logs and inferring activity from message text is within the intended scope.
+
+Risk: The cron example can automate recurring snapshots and workflow reviews, extending collection over time.
+
+Mitigation: Do not enable the cron schedule until retention, redaction, and collection scope are acceptable.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/luis1213899/skills/skill-scoreboard)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and local JSON/text report outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The bundled scripts can write local JSON score data, text call logs, text error logs, daily JSON snapshots, and workflow review JSON files.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release evidence and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

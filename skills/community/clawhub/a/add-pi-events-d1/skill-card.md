@@ -1,41 +1,58 @@
-## Description: <br>
-Add or update PI events in the Cloudflare D1 mb-events database using parsed event details, ISO 8601 dates, and SQL commands executed remotely. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Add or update PI events in the Cloudflare D1 mb-events database using parsed event details, ISO 8601 dates, and SQL commands executed remotely.
 
-## Publisher: <br>
-[ababen](https://clawhub.ai/user/ababen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ababen](https://clawhub.ai/user/ababen)
 
-## Use Case: <br>
-Site maintainers use this skill to turn event prompts, CSV rows, or event lists into Cloudflare D1 SQL updates for the babenchuk.com events database. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent to write to or delete from a live Cloudflare D1 database. <br>
-Mitigation: Require the agent to show the exact SQL, target database, and affected event records before any write or delete, then explicitly confirm the action. <br>
-Risk: Misconfigured credentials or broad Cloudflare permissions could expose more authority than the events workflow needs. <br>
-Mitigation: Use a dedicated least-privilege Cloudflare token for the controlled account and keep a backup or rollback path for live-site data. <br>
+## Use Case:
 
+Site maintainers for babenchuk.com use this skill to parse event details or CSV lists, generate Cloudflare D1 SQL, and verify live event updates.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/ababen/add-pi-events-d1) <br>
-- [Babenchuk events page](https://babenchuk.com/#events) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with SQL and bash command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include generated SQL for inserts, updates, deletes, verification queries, and event-data normalization guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can mutate a live Cloudflare D1 events database using broad Cloudflare credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if you control the target Cloudflare account; use a dedicated least-privilege D1 token and require explicit confirmation before insert, update, or delete commands.
+
+Risk: The skill sources credentials from a shared environment file.
+
+Mitigation: Avoid sourcing a shared env file; provide only the scoped credentials required for the session.
+
+Risk: Unpinned Wrangler execution can change behavior across releases.
+
+Mitigation: Pin the Wrangler version before running generated database commands.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ababen/skills/add-pi-events-d1)
+- [Babenchuk events page](https://babenchuk.com/#events)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with SQL and bash command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces commands for live Cloudflare D1 database mutations; execution should require explicit user confirmation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

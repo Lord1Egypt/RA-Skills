@@ -1,40 +1,58 @@
-## Description: <br>
-Provides an OpenClaw fallback that replaces weak local-model responses with replies from a configured cloud chat-completions API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically calls a configured cloud API when the local model's confidence is below a threshold or it fails to answer.
 
-## Publisher: <br>
-[dream458268696](https://clawhub.ai/user/dream458268696) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dream458268696](https://clawhub.ai/user/dream458268696)
 
-## Use Case: <br>
-OpenClaw users configure this skill to route weak, empty, generic, or failed local responses to a cloud model so the agent can return a substitute answer. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The fallback gate can send ordinary prompts and recent chat context to the configured API, not only failed or low-confidence responses. <br>
-Mitigation: Fix and review the fallback logic before deployment, disclose external data handling, and limit the prompt history and metadata sent to approved endpoints. <br>
-Risk: The bundle includes an API-key-like value in configuration. <br>
-Mitigation: Replace the bundled configuration before use, rotate the value if it was real, and avoid publishing secrets in release artifacts. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to route low-confidence, empty, or failed local-model responses to a configured cloud model endpoint so an agent can return a fallback answer.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dream458268696/openclaw-fallback-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, configuration, API calls] <br>
-**Output Format:** [Plain text or streamed chat response from the configured cloud model API] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include fallback error guidance when the configured API call fails.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Conversation content may be sent to the configured cloud model endpoint more often than the skill description suggests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only a trusted endpoint, avoid sensitive conversations until fallback behavior is fixed, and require clear logging or user/admin consent for remote transfers.
+
+Risk: The package includes an API-key-shaped value.
+
+Mitigation: Rotate or remove the packaged value before installation and supply secrets through trusted local configuration or secret management.
+
+Risk: User metadata may be forwarded to the cloud model endpoint.
+
+Mitigation: Remove or minimize metadata forwarding unless it is required and approved for the deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dream458268696/skills/openclaw-fallback-skill)
+- [Installation and configuration notes](artifact/readme.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, configuration, shell commands, guidance]
+
+**Output Format:** [Plain text or Markdown guidance with configuration JSON and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns a replacement fallback response or an error message; setup requires API endpoint, key, model, threshold, retry, timeout, and streaming settings.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

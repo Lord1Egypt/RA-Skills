@@ -1,177 +1,177 @@
 # React project structure and component boundaries
 
-## 项目结构（推荐参考）
+## Project structure (recommended reference)
 
-以下为中大型 React 项目的业界最佳实践结构，按项目实际情况裁剪：
+The following is the industry's best practice structure for medium and large React projects, tailored according to the actual situation of the project:
 
 ```text
 src/
-├── app/                        # 应用入口与全局配置
-│   ├── App.tsx                 # 根组件（Provider 组合）
-│   ├── routes.tsx              # 路由配置
-│   └── providers.tsx           # 全局 Provider 组装
+├── app/ # Application entry and global configuration
+│ ├── App.tsx # Root component (Provider combination)
+│ ├── routes.tsx # Routing configuration
+│ └── providers.tsx # Global Provider assembly
 │
-├── pages/                      # 页面组件（与路由一一对应）
+├── pages/ # Page components (one-to-one correspondence with routing)
 │   ├── Dashboard/
 │   │   ├── DashboardPage.tsx
-│   │   ├── components/         # 页面私有组件
-│   │   └── hooks/              # 页面私有 hooks
+│ │ ├── components/ # Page private components
+│ │ └── hooks/ # Page private hooks
 │   ├── UserList/
 │   └── Settings/
 │
-├── layouts/                    # 布局组件
-│   ├── MainLayout.tsx          # 主布局（侧边栏 + 顶栏 + 内容区）
-│   ├── AuthLayout.tsx          # 登录/注册页布局
-│   └── BlankLayout.tsx         # 空白布局（错误页等）
+├── layouts/ # Layout component
+│ ├── MainLayout.tsx # Main layout (sidebar + top bar + content area)
+│ ├── AuthLayout.tsx # Login/registration page layout
+│ └── BlankLayout.tsx # Blank layout (error page, etc.)
 │
-├── features/                   # 功能模块（按业务领域划分）
+├── features/ # Function modules (divided by business areas)
 │   ├── auth/
-│   │   ├── components/         # 模块组件
-│   │   ├── hooks/              # 模块 hooks
-│   │   ├── api.ts              # 模块 API 调用
-│   │   ├── types.ts            # 模块类型定义
-│   │   ├── constants.ts        # 模块常量
-│   │   └── index.ts            # 模块公开导出
+│ │ ├── components/ # Module components
+│ │ ├── hooks/ # module hooks
+│ │ ├── api.ts # Module API call
+│ │ ├── types.ts # Module type definition
+│ │ ├── constants.ts # Module constants
+│ │ └── index.ts # Module publicly exported
 │   └── order/
 │
-├── components/                 # 全局共享 UI 组件
+├── components/ # Globally shared UI components
 │   ├── Button/
 │   │   ├── Button.tsx
 │   │   ├── Button.styles.css
 │   │   └── __tests__/
 │   ├── Modal/
 │   ├── Form/
-│   └── ErrorBoundary/          # 对 react-error-boundary 等的薄封装（函数组件）
+│ └── ErrorBoundary/ # Thin wrapper (function component) for react-error-boundary etc.
 │
-├── hooks/                      # 全局共享 hooks
+├── hooks/ # Global shared hooks
 │   ├── useAuth.ts
 │   ├── useDebounce.ts
 │   └── useMediaQuery.ts
 │
-├── services/                   # API 基础层
-│   ├── request.ts              # Axios/fetch 实例与拦截器
-│   └── endpoints/              # API 端点定义（如按领域拆分）
+├── services/ # API base layer
+│ ├── request.ts # Axios/fetch instance and interceptor
+│ └── endpoints/ # API endpoint definition (such as split by field)
 │
-├── stores/                     # 全局状态管理
+├── stores/ # Global status management
 │   ├── authStore.ts
 │   └── uiStore.ts
 │
-├── locales/                    # 国际化语言包
-│   ├── zh-CN.json              # 中文
-│   ├── en-US.json              # 英文
-│   └── index.ts                # i18n 实例初始化（i18next / react-intl）
+├── locales/ # International language pack
+│ ├── zh-CN.json # Simplified Chinese
+│ ├── en-US.json # English
+│ └── index.ts # i18n instance initialization (i18next / react-intl)
 │
-├── assets/                     # 静态资源
-│   ├── images/                 # 图片（PNG、JPG、WebP）
-│   ├── icons/                  # SVG 图标
-│   └── fonts/                  # 自定义字体
+├── assets/ # Static resources
+│ ├── images/ # Pictures (PNG, JPG, WebP)
+│ ├── icons/ # SVG icon
+│ └── fonts/ # Custom fonts
 │
-├── config/                     # 应用配置
-│   ├── env.ts                  # 环境变量类型化封装
-│   └── features.ts             # Feature Flags 管理
+├── config/ # Application configuration
+│ ├── env.ts # Typed encapsulation of environment variables
+│ └── features.ts # Feature Flags Management
 │
-├── types/                      # 全局共享类型
-│   ├── api.ts                  # API 响应/请求通用类型
-│   ├── models.ts               # 业务实体类型
-│   └── global.d.ts             # 全局类型扩展（图片模块声明等）
+├── types/ # Global shared types
+│ ├── api.ts # API response/request common type
+│ ├── models.ts #Business entity type
+│ └── global.d.ts # Global type extension (picture module declaration, etc.)
 │
-├── utils/                      # 纯工具函数
-│   ├── format.ts               # 日期、数字、货币格式化
-│   ├── validators.ts           # 表单校验规则
-│   └── storage.ts              # LocalStorage / SessionStorage 封装
+├── utils/ # Pure utility function
+│ ├── format.ts # Date, number, currency formatting
+│ ├── validators.ts # Form validation rules
+│ └── storage.ts # LocalStorage / SessionStorage package
 │
-├── styles/                     # 全局样式与主题
-│   ├── global.css              # 全局基础样式（reset / normalize）
-│   ├── variables.css           # CSS 变量（颜色、间距、字号）
-│   ├── breakpoints.ts          # 响应式断点常量
-│   └── themes/                 # 主题定义
-│       ├── light.css           # 亮色主题变量
-│       ├── dark.css            # 暗色主题变量
-│       └── index.ts            # 主题切换逻辑
+├── styles/ # Global styles and themes
+│ ├── global.css # Global basic style (reset/normalize)
+│ ├── variables.css # CSS variables (color, spacing, font size)
+│ ├── breakpoints.ts # Responsive breakpoint constants
+│ └── themes/ # theme definition
+│ ├── light.css # Light theme variable
+│ ├── dark.css # Dark theme variable
+│ └── index.ts # theme switching logic
 │
-└── constants/                  # 全局常量
-    ├── routes.ts               # 路由路径常量
-    └── config.ts               # 业务常量（分页大小、超时时间等）
+└── constants/ # Global constants
+    ├── routes.ts #Routing path constants
+    └── config.ts #Business constants (paging size, timeout, etc.)
 ```
 
-### 关键原则
+### Key Principles
 
-- `pages/` 做路由映射和页面编排，不承载大块可复用业务逻辑
-- `layouts/` 负责页面骨架和布局容器，由路由配置引用
-- `features/` 按业务领域划分，模块内尽量自包含
-- `components/` 仅放跨页面、跨模块复用的通用组件
-- `hooks/` 仅放全局通用 hooks；业务 hooks 优先放回对应 feature 或 page
-- `locales/` 存放语言包 JSON 文件，组件中使用 `t('key')` 而非硬编码文案
-- `assets/` 存放静态资源，图标优先使用 SVG，图片优先使用 WebP/AVIF
-- `services/` 负责请求基础设施，不堆叠业务细节
-- `config/` 统一封装环境变量和特性开关，禁止组件中直接读取 `import.meta.env`
-- `styles/` 和主题变量统一管理，避免颜色和尺寸散落在业务代码中
-- 每个模块通过 `index.ts` 管控对外公开 API，避免深层路径导入
+- `pages/` does route mapping and page arrangement, and does not carry large pieces of reusable business logic.
+- `layouts/` is responsible for the page skeleton and layout container, referenced by the routing configuration
+- `features/` is divided according to business areas, and the module should be as self-contained as possible
+- `components/` only contains common components that are reused across pages and modules
+- `hooks/` only puts global general hooks; business hooks are put back to the corresponding feature or page first
+- `locales/` stores language pack JSON files, use `t('key')` in the component instead of hard-coded copy
+- `assets/` stores static resources, SVG is preferred for icons, and WebP/AVIF is preferred for images.
+- `services/` is responsible for requesting infrastructure and does not stack business details
+- `config/` uniformly encapsulates environment variables and feature switches, prohibiting direct reading of `import.meta.env` in components
+- `styles/` and theme variables are managed uniformly to avoid colors and sizes being scattered in business code
+- Each module controls the public API through `index.ts` to avoid deep path imports
 
 ---
 
-## 组件与模块分层
+## Component and module layering
 
-推荐分层：
+Recommended layering:
 
 ```text
-页面组件 (Pages)        → 路由映射、布局组合、页面编排
-  └── 容器/编排层        → 数据获取、状态组织、事件编排
-       └── 业务组件      → 领域逻辑展示
-            └── 通用组件 → 无业务耦合、可跨模块复用
+Page components (Pages) → route mapping, layout combination, page arrangement
+  └── Container/orchestration layer → data acquisition, status organization, event orchestration
+       └── Business components → Domain logic display
+            └── Common components → No business coupling, reusable across modules
 ```
 
-### 什么时候放到 `pages/`
+### When to put it in `pages/`
 
-适合放：
+Suitable for:
 
-- 路由入口组件
-- 页面级布局组合
-- 页面私有的轻量编排逻辑
+- Routing entry component
+- Page level layout combination
+- Page private lightweight orchestration logic
 
-不适合放：
+Not suitable for:
 
-- 大量领域逻辑
-- 可复用于多个页面的复杂业务块
-- 与某个业务域强绑定的 API / hooks / types
+- A lot of domain logic
+- Complex business blocks that can be reused on multiple pages
+- API/hooks/types that are strongly bound to a certain business domain
 
-### 什么时候放到 `features/`
+### When to put it in `features/`
 
-适合放：
+Suitable for:
 
-- 某个业务域的组件、hooks、api、types
-- 可被多个页面共享但带业务语义的逻辑
-- 一个完整业务单元的自包含实现
+- Components, hooks, apis, and types of a certain business domain
+- Logic that can be shared by multiple pages but has business semantics
+- Self-contained implementation of a complete business unit
 
-### 什么时候放到 `components/`
+### When to put it in `components/`
 
-适合放：
+Suitable for:
 
-- 按钮、弹窗、表单项、表格壳子、空态、错误态等通用 UI
-- 与具体业务无关、可跨模块复用的组件
-
----
-
-## 组件设计规范
-
-- 使用**函数组件**、Hooks 与 TypeScript；**不要**新增类组件（Error Boundary 用 `react-error-boundary` 等库，见下文）
-- **单文件规模**与拆分原则见 `templates/shared/rules/fec-react.md`「**组件文件规模**」（约 300 行内为佳，逾 500 行或复杂度过高拆子组件、Hooks、utils、类型）
-- 保持组件职责单一、可组合
-- 将可复用逻辑提取到 hooks
-- 在合适场景优先使用受控组件 API
-- props 定义清晰且类型明确
-- 优先复用现有设计系统组件
-- 保持可访问性与键盘交互
-- 避免过深的 JSX 嵌套和重复分支
-- 对可推导的值不要额外存 state
+- Common UI such as buttons, pop-up windows, form items, table shells, empty states, error states, etc.
+- Components that have nothing to do with specific business and can be reused across modules
 
 ---
 
+## Component design specifications
 
-## 组件目录建议
+- Use **Functional Components**, Hooks and TypeScript; **Do not** add new class components (Error Boundary uses libraries such as `react-error-boundary`, see below)
+- **Single file size** and splitting principles can be found in `templates/shared/rules/fec-react.md` "**Component file size**" (approximately 300 lines is preferred, if it exceeds 500 lines or is too complex, sub-components, Hooks, utils, and types will be split)
+- Keep components with single responsibilities and composable
+- Extract reusable logic into hooks
+- Prioritize the use of controlled component APIs in appropriate scenarios
+- props are clearly defined and typed
+- Prioritize reuse of existing design system components
+- Maintain accessibility with keyboard interaction
+- Avoid deep JSX nesting and duplicate branches
+- Do not store additional state for deducible values
 
-当组件复杂度较低时，可只保留一个文件。  
-当组件包含样式、子组件、hooks、测试时，推荐使用如下结构：
+---
+
+
+## Component directory suggestions
+
+When the component complexity is low, only one file can be kept.  
+When a component contains styles, subcomponents, hooks, and tests, it is recommended to use the following structure:
 
 ```text
 ComponentName/
@@ -186,12 +186,12 @@ ComponentName/
     └── ComponentName.spec.tsx
 ```
 
-说明：
+Description:
 
-- 类型复杂时再拆 `ComponentName.types.ts`
-- 存在局部逻辑复用时再拆 `hooks/`
-- 子组件仅在当前组件内部使用时，放到当前目录 `components/`
-- 测试是否就近放置，应遵循仓库现有约定
+- Split `ComponentName.types.ts` when the type is complex
+- Split `hooks/` when there is local logic reuse
+- When the subcomponent is only used inside the current component, it is placed in the current directory `components/`
+- Whether the test should be placed nearby should follow the existing protocols of the warehouse
 
 ---
 

@@ -1,47 +1,62 @@
-## Description: <br>
-Project Heartbeat helps agents design controlled continuation loops for long-running projects that need periodic wake-ups, explicit continue conditions, stop boundaries, pending-decision handling, progress logging, and resume rules. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Design controlled continuation loops for long-running projects. Use when a task is too large for one session, benefits from periodic wake-ups, and needs explicit continue conditions, stop boundaries, pending-decision handling, progress logging, and resume rules. Ideal for workspace refactors, long skill development, research tracks, and other cumulative engineering work.
 
-## Publisher: <br>
-[daowuu](https://clawhub.ai/user/daowuu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[daowuu](https://clawhub.ai/user/daowuu)
 
-## Use Case: <br>
-Developers and project maintainers use this skill to decide whether a long-running project is a good fit for heartbeat-style continuation, then define cadence, continue conditions, stop boundaries, progress artifacts, pending-decision handling, and resume behavior. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The scan evidence says the target skill artifact was not available for direct confirmation in that review. <br>
-Mitigation: Install with normal caution and review the packaged artifact files before use. <br>
-Risk: Heartbeat-style continuation can create false progress if cycles continue without durable project artifact updates. <br>
-Mitigation: Require each cycle to update a durable artifact such as STATE.md, TODO.md, PENDING-DECISIONS.md, HEARTBEAT-LOG.md, or a tracked decision or review document. <br>
+## Use Case:
 
+Developers and engineers use this skill to design controlled wake-up loops for long-running project work, including explicit continuation criteria, stop boundaries, pending-decision handling, progress logging, and resume behavior.
 
-## Reference(s): <br>
-- [Project Heartbeat ClawHub page](https://clawhub.ai/daowuu/project-heartbeat) <br>
-- [Boundaries](references/boundaries.md) <br>
-- [Continuation Integrity](references/continuation-integrity.md) <br>
-- [Examples](references/examples.md) <br>
-- [Pending Decisions Template](references/pending-decisions-template.md) <br>
-- [Heartbeat Log Template](references/heartbeat-log-template.md) <br>
-- [Summary + Handoff](references/summary-handoff.md) <br>
-- [Deferred Backlog](references/deferred-backlog.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with optional plain-text script output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.4.1 (source: server release evidence) <br>
+Risk: Heartbeat runs may continue work in a project directory or delivery channel the user did not intend.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review cron and delivery setup manually before enabling it, and scope heartbeat runs to project directories the agent is intended to read and update.
+
+Risk: Continuation language can overstate progress when no durable project artifact changes.
+
+Mitigation: Apply the skill's minimum artifact rule: a cycle counts as progress only when it updates a durable artifact such as state, backlog, pending decisions, or heartbeat logs.
+
+## Reference(s):
+
+- [Project Heartbeat on ClawHub](https://clawhub.ai/daowuu/skills/project-heartbeat)
+- [Project Heartbeat Homepage](https://clawhub.ai/daowuu/project-heartbeat)
+- [Boundaries](references/boundaries.md)
+- [Continuation Integrity](references/continuation-integrity.md)
+- [Deferred Backlog](references/deferred-backlog.md)
+- [Examples](references/examples.md)
+- [Heartbeat Log Template](references/heartbeat-log-template.md)
+- [Pending Decisions Template](references/pending-decisions-template.md)
+- [Summary + Handoff](references/summary-handoff.md)
+- [TODO / Deferred Ideas](references/todo.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with plain-text helper script output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes optional local helper scripts for fit checks and heartbeat plan rendering.]
+
+## Skill Version(s):
+
+0.4.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

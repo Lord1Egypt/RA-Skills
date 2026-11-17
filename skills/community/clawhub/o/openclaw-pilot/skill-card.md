@@ -1,39 +1,52 @@
-## Description: <br>
-Convert rough project ideas into a human-readable blueprint and a clean OpenClaw execution packet for safe, scoped implementation and continuation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert rough project ideas into a human-readable blueprint and a clean OpenClaw execution packet for safe, scoped implementation and continuation.
 
-## Publisher: <br>
-[catcherintheroad-hub](https://clawhub.ai/user/catcherintheroad-hub) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[catcherintheroad-hub](https://clawhub.ai/user/catcherintheroad-hub)
 
-## Use Case: <br>
-Developers and builders use OpenClaw Pilot to turn rough project goals into a reviewable blueprint and a separate OpenClaw execution packet. It is useful when the user wants scoped implementation planning, continuation, and a packet-only handoff. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A generated execution packet could contain unsuitable instructions for a specific project even though the skill itself is low risk. <br>
-Mitigation: Review each generated OpenClaw execution packet before handing it to an executor. <br>
+## Use Case:
 
+Developers and project owners use OpenClaw Pilot to turn fuzzy project goals or continuation feedback into a scoped blueprint and a packet-only OpenClaw handoff they can review before execution.
 
-## Reference(s): <br>
-- [OpenClaw Pilot on ClawHub](https://clawhub.ai/catcherintheroad-hub/openclaw-pilot) <br>
-- [Publisher profile](https://clawhub.ai/user/catcherintheroad-hub) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Two assistant messages: a human-readable markdown blueprint followed by a packet-only text block.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The second message must contain only an [OPENCLAW_EXECUTION_PACKET v1] block and its closing marker, with no extra prose.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.3.0-beta.2 (source: server release evidence) <br>
+Risk: Execution packets are intended for later OpenClaw handoff and may carry incorrect or overbroad instructions if the initial goal or continuation feedback is ambiguous.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the generated blueprint and packet before handoff, confirming scope boundaries and removing instructions that exceed the requested work.
+
+## Reference(s):
+
+- [OpenClaw Pilot on ClawHub](https://clawhub.ai/catcherintheroad-hub/skills/openclaw-pilot)
+- [New Project Example](artifact/examples/new-project.md)
+- [Continuation Example](artifact/examples/continuation.md)
+- [Output Contract Example](artifact/examples/output-contract.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration]
+
+**Output Format:** [Markdown blueprint plus a plain text OpenClaw execution packet]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Two-message contract: first a human-readable blueprint, then a packet-only handoff block.]
+
+## Skill Version(s):
+
+0.3.0-beta.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

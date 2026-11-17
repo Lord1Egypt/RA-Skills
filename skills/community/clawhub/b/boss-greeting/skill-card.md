@@ -1,42 +1,55 @@
-## Description: <br>
-为求职者基于本地求职档案和岗位 JD 生成个性化 BOSS 直聘打招呼话术，并支持多岗位匹配排序和截图 JD 识别确认。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill helps agents generate personalized BOSS Zhipin outreach messages, compare job descriptions against a user's profile, rank multiple roles, and handle screenshot-based job description extraction.
 
-## Publisher: <br>
-[KaguraNanaga](https://clawhub.ai/user/KaguraNanaga) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kagurananaga](https://clawhub.ai/user/kagurananaga)
 
-## Use Case: <br>
-Job seekers and career-assistance agents use this skill to draft tailored BOSS Zhipin greeting messages from a saved job-search profile and one or more job descriptions. It can compare multiple JDs, rank fit, and ask for confirmation after screenshot-based JD extraction. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill saves detailed resume, salary, preference, and job-search profile information locally. <br>
-Mitigation: Use it only when local retention is acceptable, avoid pasting sensitive details that should not be retained, and confirm how to view, update, or delete the saved profile. <br>
-Risk: The artifact requests Bash permission even though the documented workflow does not need shell execution. <br>
-Mitigation: Remove or disable Bash permission before deployment unless a reviewed operational need is added. <br>
+## Use Case:
 
+Job seekers and their agents use this skill to maintain a structured job-search profile, evaluate BOSS Zhipin job descriptions, and draft concise personalized greeting messages for selected roles.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/KaguraNanaga/boss-greeting) <br>
-- [Greeting examples](references/examples.md) <br>
-- [Profile template](references/profile-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Plain text greeting messages, Markdown ranking tables, and Markdown profile updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated greetings are constrained to 200-250 Chinese characters and include a word count.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill stores a detailed job-search profile locally, which may include resume history, job preferences, salary expectations, and sensitive career context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm where the profile is stored and how to delete it before use, and avoid adding highly sensitive identifiers or confidential employer information.
+
+Risk: The skill requests Bash access even though its normal workflow is profile management, job description analysis, and message drafting.
+
+Mitigation: Prefer a version that removes shell access or review any shell activity before execution and keep file operations limited to the intended profile data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kagurananaga/skills/boss-greeting)
+- [Greeting examples](references/examples.md)
+- [Profile template](references/profile-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Plain text and Markdown tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Greeting drafts are intended to be 200-250 Chinese characters, with word counts included after generation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

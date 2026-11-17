@@ -1,40 +1,52 @@
-## Description: <br>
-Find nearby beauty salons. Invoke when user asks for beauty services near me. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find nearby beauty salons. Invoke when user asks for beauty services near me.
 
-## Publisher: <br>
-[CodeKungfu](https://clawhub.ai/user/CodeKungfu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[codekungfu](https://clawhub.ai/user/codekungfu)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and agents use this skill to find nearby beauty salons from an authorized location, with common filters such as open status, rating, price level, and keywords.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill uses location data to find nearby salons, which can expose sensitive personal context if over-collected or retained.
+
+Mitigation: Use the skill only after the user intentionally requests nearby beauty services and authorizes location use; avoid retaining precise coordinates and coarsen them when possible.
+
+Risk: Nearby salon results can be incomplete, stale, unavailable, or rate limited by the provider.
+
+Mitigation: Surface provider, radius, location, and rate-limit errors clearly instead of presenting unavailable results as authoritative.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users use this skill to find nearby beauty salons from a provided location or city and narrow results by rating, price level, open status, or keywords. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses user location data to search for nearby salons. <br>
-Mitigation: Ask for location permission, prefer approximate location when exact coordinates are unnecessary, and avoid retaining precise coordinates. <br>
-Risk: Repeated location-based searches could expose precise movement patterns or increase provider request volume. <br>
-Mitigation: Use short-term caching for location, category, and radius combinations, and apply coordinate anonymization where appropriate. <br>
+**Output Format:** [Markdown or JSON-like POI responses]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/CodeKungfu/beauty-salons) <br>
+**Other Properties Related to Output:** [Returns standardized point-of-interest fields and related error states for invalid location, excessive radius, provider unavailability, and rate limiting.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, text, JSON] <br>
-**Output Format:** [Text or structured JSON describing nearby beauty salon points of interest] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns standardized POI fields for the beauty-salons category and may include error codes for invalid location, excessive radius, provider unavailability, or rate limiting.] <br>
+0.1.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-0.1.0 (source: server-resolved release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,57 @@
-## Description: <br>
-Provides standardized historical lottery result statistics, hot and cold number summaries, omission analysis, and trend recap reports without prediction or betting guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates standardized reports for historical lottery drawing statistics, hot/cold number summaries, omission metrics, and trend reviews without prediction or betting guidance.
 
-## Publisher: <br>
-[mzx857](https://clawhub.ai/user/mzx857) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mzx857](https://clawhub.ai/user/mzx857)
 
-## Use Case: <br>
-Lottery data enthusiasts and historical trend reviewers use this skill to turn user-supplied drawing data into concise historical statistics and recap reports. It is scoped to retrospective analysis and should not be used for number prediction, lottery recommendations, or betting decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Historical trend analysis may be mistaken for lottery prediction or betting advice. <br>
-Mitigation: Label reports as historical reference only, avoid number recommendations, and do not use outputs to guide gambling decisions. <br>
-Risk: Incomplete or inaccurate user-supplied drawing data can produce misleading summaries. <br>
-Mitigation: Validate required fields such as lottery type, issue number, draw date, winning numbers, and requested history window before generating a report. <br>
+## Use Case:
 
+Lottery data reviewers and agents use this skill to turn manually supplied drawing data into historical statistics, hot/cold number summaries, omission metrics, and non-predictive trend reports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mzx857/prediction-tendency) <br>
-- [Publisher profile](https://clawhub.ai/user/mzx857) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Standardized text or Markdown report from JSON-like lottery draw inputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable behavior; outputs should preserve historical-reference disclaimers and avoid prediction or betting advice.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release evidence) <br>
+Risk: Users may treat trend summaries or hot/cold number analysis as lottery predictions or betting advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present outputs as historical summaries only and retain the skill's no-prediction and no-betting caveats in generated reports.
+
+Risk: Incorrect manually supplied drawing data can produce misleading statistics.
+
+Mitigation: Verify lottery type, issue number, date, winning numbers, and history window before relying on the report.
+
+Risk: Lottery-related analysis can be misused for gambling promotion or underage participation.
+
+Mitigation: Use only in lawful, age-appropriate contexts and avoid promotional or recommendation language.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mzx857/skills/prediction-tendency)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Standardized text or Markdown report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses manually supplied lottery data and returns historical summaries only, with no predictions or betting advice.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

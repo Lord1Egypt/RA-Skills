@@ -1,45 +1,60 @@
-## Description: <br>
-Searches Google through Pangolin AI Mode and SERP APIs and scrapes Amazon pages for structured product, keyword, category, seller, ranking, and screenshot results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search Google and scrape Amazon using Pangolin APIs, including AI Mode search, SERP results with AI Overview extraction, Amazon product and listing scraping, and screenshot capture.
 
-## Publisher: <br>
-[tammy-hash](https://clawhub.ai/user/tammy-hash) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tammy-hash](https://clawhub.ai/user/tammy-hash)
 
-## Use Case: <br>
-Developers and agents use this skill to authenticate with Pangolin, run Google AI Mode or standard SERP searches, and collect Amazon product or market data as structured JSON. It is useful when an agent needs search, AI overview, screenshot, or Amazon scrape data without building Pangolin API calls from scratch. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Searches, URLs, follow-up prompts, zip code, and screenshot requests are sent to Pangolin's remote API. <br>
-Mitigation: Avoid confidential searches and use the skill only where sending those inputs to Pangolin is acceptable. <br>
-Risk: Pangolin bearer tokens or login-derived tokens are sensitive and may be cached at ~/.pangolin_token. <br>
-Mitigation: Use a dedicated or revocable token where possible, protect shared machines, and remove or rotate the cached token when no longer needed. <br>
+## Use Case:
 
+Developers and agents use this skill to run Pangolin-backed Google search, Google AI Overview, multi-turn AI Mode, and Amazon scraping workflows from a local Python client. It is useful for collecting structured search results, AI overview content with references, screenshots, and Amazon product or listing data.
 
-## Reference(s): <br>
-- [Pangolinfo AI SERP canonical skill](https://clawhub.ai/pangolinfo/pangolinfo-ai-serp) <br>
-- [Pangolinfo Amazon Scraper canonical skill](https://clawhub.ai/pangolinfo/pangolinfo-amazon-scraper) <br>
-- [AI Mode API Reference](references/ai-mode-api.md) <br>
-- [AI Overview SERP API Reference](references/ai-overview-serp-api.md) <br>
-- [Amazon Scrape API Reference](references/amazon-api.md) <br>
-- [Error Codes and Troubleshooting](references/error-codes.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with bash commands and JSON API output examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can emit structured JSON responses, raw Pangolin API responses, raw HTML or markdown for Amazon requests, and screenshot URLs when requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The release evidence reports that the skill stores a long-lived Pangolin access token in a predictable local file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer PANGOLIN_TOKEN where possible, protect or remove ~/.pangolin_token after use, and treat the token as account access.
+
+Risk: Searches, Amazon URLs, screenshot requests, follow-up prompts, and Pangolin credentials or tokens are sent to Pangolin.
+
+Mitigation: Install and run the skill only when this data sharing is acceptable, and avoid submitting sensitive prompts, URLs, or credentials outside the documented authentication variables.
+
+## Reference(s):
+
+- [Pangolinfo Scrape (Legacy) ClawHub Page](https://clawhub.ai/tammy-hash/skills/pangolinfo-scrape-legacy)
+- [Pangolinfo AI SERP Canonical Skill](https://clawhub.ai/pangolinfo/pangolinfo-ai-serp)
+- [Pangolinfo Amazon Scraper Canonical Skill](https://clawhub.ai/pangolinfo/pangolinfo-amazon-scraper)
+- [Pangolin Website](https://www.pangolinfo.com)
+- [AI Mode API Reference](references/ai-mode-api.md)
+- [AI Overview SERP API Reference](references/ai-overview-serp-api.md)
+- [Amazon Scrape API Reference](references/amazon-api.md)
+- [Error Codes and Troubleshooting](references/error-codes.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, JSON, Guidance]
+
+**Output Format:** [Markdown guidance with bash examples and structured JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include task IDs, AI overview text and references, organic search results, screenshot URLs, Amazon product records, errors, and authentication status.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence; artifact _meta.json reports 0.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

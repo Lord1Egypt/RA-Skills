@@ -1,47 +1,59 @@
-## Description: <br>
-全渠道选品 Agent — 拉齐社媒端、SEO端、投放端数据，帮助运营同学确定待上线需求。触发词：选品、社媒热点、SEO调研、竞品广告、Facebook Ads、TikTok趋势。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Collects KOL, social media, SEO, and advertising signals to help product and operations teams identify candidate AI visual-agent trends and generate Slack-ready reports.
 
-## Publisher: <br>
-[lygjoey](https://clawhub.ai/user/lygjoey) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lygjoey](https://clawhub.ai/user/lygjoey)
 
-## Use Case: <br>
-Operations, growth, and product teams use this skill to collect social, SEO, advertising, and KOL trend signals for AI visual-product research and launch planning. It supports full or single-channel research pipelines and produces Slack-ready reports plus source JSON. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security evidence reports under-scoped credential handling and artifact code reads tokens from shell profile files. <br>
-Mitigation: Use dedicated least-privilege API tokens, provide them through a controlled runtime environment, and remove shell-profile credential loading before deployment. <br>
-Risk: The security evidence reports runtime environment mutation, and artifact code can install dependencies at runtime. <br>
-Mitigation: Review and pin dependencies ahead of use, install them in an isolated environment, and disable runtime package installation. <br>
-Risk: The security evidence reports off-purpose adult or sensitive trend data in stored outputs. <br>
-Mitigation: Apply strict source allowlists plus NSFW and off-topic filters before using outputs for product or marketing decisions. <br>
-Risk: The trend methodology says automated scores are only an initial screen and that cultural context requires human review. <br>
-Mitigation: Require human review of trend fit, visual quality, and cultural context before turning recommendations into launch decisions. <br>
+## Use Case:
 
+Product, operations, and growth teams use this skill to gather multi-channel trend, SEO, and advertising evidence for AI visual product selection and campaign planning.
 
-## Reference(s): <br>
-- [Omni Channel Agent on ClawHub](https://clawhub.ai/lygjoey/omni-channel-agent) <br>
-- [Publisher profile: lygjoey](https://clawhub.ai/user/lygjoey) <br>
-- [Trend Methodology](artifact/TREND_METHODOLOGY.md) <br>
-- [Apify API endpoint](https://api.apify.com/v2) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Slack-style text reports, JSON data files, and command-line guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes timestamped reports and channel-specific JSON files under output/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill handles API credentials broadly and may read tokens from shell startup configuration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use dedicated, least-privilege API tokens and provide them explicitly in the runtime environment instead of relying on shared shell configuration.
+
+Risk: Reports may surface adult, nudification, or creator-likeness reuse opportunities that are not suitable for product decisions without review.
+
+Mitigation: Filter or remove this content before using the outputs for roadmap, product, or campaign decisions.
+
+Risk: External data sources can incur paid usage or rate limits during full pipeline runs.
+
+Mitigation: Use test mode, result limits, and scheduled runs that match API budgets and source terms.
+
+## Reference(s):
+
+- [Trend Methodology](artifact/TREND_METHODOLOGY.md)
+- [Apify API](https://api.apify.com/v2)
+- [ClawHub Skill Page](https://clawhub.ai/lygjoey/skills/omni-channel-agent)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration]
+
+**Output Format:** [Slack-formatted text reports, JSON data files, and CLI command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes timestamped reports and channel data files under output/ when the pipeline runs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

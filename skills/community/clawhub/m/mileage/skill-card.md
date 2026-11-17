@@ -1,42 +1,54 @@
-## Description: <br>
-Log vehicle mileage, review driving trends, and export trip reports for tracking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Log vehicle mileage, review driving trends, and export trip reports for tracking.
 
-## Publisher: <br>
-[ckchzh](https://clawhub.ai/user/ckchzh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ckchzh](https://clawhub.ai/user/ckchzh)
 
-## Use Case: <br>
-External users can use this skill to keep a local vehicle mileage log, review driving and cost trends, search recent entries, and export mileage reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local mileage logs and exported reports may contain sensitive trips, schedules, costs, or personal notes. <br>
-Mitigation: Avoid entering sensitive details unless local storage and export files are acceptable; review local logs and reports before sharing or backing them up. <br>
-Risk: The release has confusing mileage versus generic home-tool wording, which may create mismatched expectations. <br>
-Mitigation: Use help, status, and small test entries to confirm command behavior before relying on the logbook for operational records. <br>
+## Use Case:
 
+External users and agents can use this skill to record mileage-related entries, review status and summary statistics, search activity, and export local reports.
 
-## Reference(s): <br>
-- [Mileage on ClawHub](https://clawhub.ai/ckchzh/mileage) <br>
-- [ckchzh publisher profile](https://clawhub.ai/user/ckchzh) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Files, Guidance] <br>
-**Output Format:** [Plain text command guidance and local JSON, CSV, or text exports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores local logs under ~/.local/share/mileage and exports reports on request.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release metadata) <br>
+Risk: The skill is advertised as vehicle mileage tracking, while security evidence says it can retain broader personal home-management notes under the mileage label.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review intended commands before use and avoid storing sensitive travel, schedule, cost, household, or unrelated personal information unless that local retention is acceptable.
+
+Risk: The skill stores searchable and exportable local data under ~/.local/share/mileage without a documented cleanup or retention workflow.
+
+Mitigation: Manage local file permissions, review exported files before sharing them, and manually delete retained data when it is no longer needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ckchzh/skills/mileage)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, text, files, configuration]
+
+**Output Format:** [Command-line text with local log files and JSON, CSV, or plain-text exports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores data locally under ~/.local/share/mileage.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release metadata; artifact frontmatter reports 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

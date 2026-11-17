@@ -1,43 +1,55 @@
-## Description: <br>
-Detects and reads the largest license plate from a local image using the TrafficEye REST API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Detect and read the largest license plate from a local image using the TrafficEye REST API.
 
-## Publisher: <br>
-[eyedea-ai](https://clawhub.ai/user/eyedea-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[eyedea-ai](https://clawhub.ai/user/eyedea-ai)
 
-## Use Case: <br>
-Developers and external users use this skill to run automatic number plate recognition on a local image through TrafficEye and receive the selected plate payload, including OCR text, type, dimensions, scores, unreadable status, and position. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Vehicle images and plate data are sent to an external TrafficEye service for recognition. <br>
-Mitigation: Use the skill only for images you are authorized to process externally and confirm that TrafficEye handling is acceptable for the user's privacy and compliance requirements. <br>
-Risk: API credentials can be exposed if passed through query-string authentication. <br>
-Mitigation: Prefer header or bearer authentication and avoid query-string API keys when configuring the helper. <br>
+## Use Case:
 
+External users, developers, and operations teams use this skill to extract license plate text and plate metadata from vehicle images through the TrafficEye API.
 
-## Reference(s): <br>
-- [TrafficEye](https://trafficeye.ai) <br>
-- [TrafficEye API](https://www.trafficeye.ai/api) <br>
-- [ClawHub Skill Page](https://clawhub.ai/eyedea-ai/automatic-number-plate-recognition) <br>
-- [Publisher Profile](https://clawhub.ai/user/eyedea-ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON plate-recognition payloads and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a local image path and TrafficEye API credentials; the helper selects the largest detected plate by polygon area.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Vehicle images and API credentials may be sent to a configurable endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with images approved for upload, pin TRAFFICEYE_API_URL to a trusted HTTPS host, and prevent untrusted configuration from changing the endpoint.
+
+Risk: API keys can be exposed if query-string authentication is used.
+
+Mitigation: Prefer header or bearer authentication and avoid query-string API keys.
+
+## Reference(s):
+
+- [TrafficEye](https://trafficeye.ai)
+- [TrafficEye API](https://www.trafficeye.ai/api)
+- [ClawHub Skill Page](https://clawhub.ai/eyedea-ai/skills/automatic-number-plate-recognition)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON plate-recognition output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns the selected largest plate payload, including recognized text, position, unreadable score, and source indexes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

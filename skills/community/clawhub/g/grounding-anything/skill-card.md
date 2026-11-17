@@ -1,39 +1,52 @@
-## Description: <br>
-Use GLM-4.7V multimodal grounding to detect and locate requested objects, text, UI elements, or image regions and produce bounding-box guidance and visualized outputs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use GLM-4.7V's multimodal grounding capability to detect and locate objects, text, UI elements, and regions in images.
 
-## Publisher: <br>
-[qijimrc](https://clawhub.ai/user/qijimrc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[qijimrc](https://clawhub.ai/user/qijimrc)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and agents use this skill to ground requested objects, text, UI elements, or image regions by calling a configured multimodal model endpoint, parsing bounding boxes, and producing annotated visual results.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Image contents and prompts are sent to an internal HTTP model endpoint with proxy bypass configured.
+
+Mitigation: Use only trusted endpoints and confirm transport security, logging, retention, and proxy policy before sending sensitive images.
+
+Risk: Annotated output images may persist on disk after visualization.
+
+Mitigation: Choose known save paths and remove generated files when they contain sensitive content.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use this skill to guide an agent through image-grounding workflows: call a configured GLM-4.7V endpoint, parse normalized bounding boxes, and save an annotated output image. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Guidance, Code, Configuration, Files]
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow sends user-provided images to a configured GLM model endpoint. <br>
-Mitigation: Install only if the endpoint is trusted for the images being processed, and avoid sending confidential images unless the endpoint's privacy and retention practices are acceptable. <br>
-Risk: The workflow requires NO_PROXY configuration for model-host access. <br>
-Mitigation: Keep NO_PROXY limited to the model host and review local helper modules before use. <br>
+**Output Format:** [Markdown guidance with Python code snippets and saved annotated image output]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Bounding boxes are normalized to 0-1000 coordinates and can be converted to pixel coordinates for visualization.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Shell commands, Configuration, Files] <br>
-**Output Format:** [Markdown with Python and shell code snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce saved annotated image files from user-provided images and model-returned bounding boxes.] <br>
+1.0.0 (source: release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and changelog) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

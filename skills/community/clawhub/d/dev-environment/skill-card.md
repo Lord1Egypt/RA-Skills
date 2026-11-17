@@ -1,39 +1,54 @@
-## Description: <br>
-Dev Environment provides static reference documentation for development environment concepts, quickstart steps, patterns, debugging, performance, security, migration, and cheat sheets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Dev Environment provides plain-text reference documentation for devtools topics including intro, quickstart, patterns, debugging, performance, security, migration, and a cheatsheet.
 
-## Publisher: <br>
-[xueyetianya](https://clawhub.ai/user/xueyetianya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xueyetianya](https://clawhub.ai/user/xueyetianya)
 
-## Use Case: <br>
-Developers and engineers use this skill to quickly retrieve reference guidance for development environment setup, troubleshooting, performance, security, migration, and common workflow patterns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Reference guidance may be incomplete or too generic for a specific development environment. <br>
-Mitigation: Review the guidance against the target environment before applying it to production systems. <br>
+## Use Case:
 
+Developers and engineers use this skill to get quick, local reference guidance for development environment concepts, setup, patterns, troubleshooting, performance, security, and migration tasks.
 
-## Reference(s): <br>
-- [Dev Environment on ClawHub](https://clawhub.ai/xueyetianya/dev-environment) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Plain text with Markdown headings, lists, and tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Static heredoc reference content; no network access or credentials required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.4 (source: release evidence; artifact frontmatter lists 2.0.3 and script lists 2.0.2) <br>
+Risk: The output is generic reference documentation and may not match a user's actual development environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the guidance as a starting point and verify commands, configuration, and security steps against the target environment before use.
+
+Risk: The cheatsheet has a small command-name mismatch.
+
+Mitigation: Check the skill command list or help output before relying on cheatsheet command names.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xueyetianya/skills/dev-environment)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Plain text with Markdown-style headings and tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No external API calls, credentials, or network access; commands print static reference documentation.]
+
+## Skill Version(s):
+
+2.0.4 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

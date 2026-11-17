@@ -1,41 +1,62 @@
-## Description: <br>
-Compress or convert generated images for delivery, preview, and social upload. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Compress or convert generated images for delivery, preview, and social upload.
 
-## Publisher: <br>
-[632657122](https://clawhub.ai/user/632657122) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[632657122](https://clawhub.ai/user/632657122)
 
-## Use Case: <br>
-Developers and agents use this skill to compress or convert local image files for delivery, preview, social upload, and lower file size. It supports single images, directories, recursive processing, WebP/PNG/JPEG targets, quality settings, and optional JSON summaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The package includes undisclosed image-generation code that can use APIs, credentials, network calls, and persistent configuration. <br>
-Mitigation: Treat the release as a Review install, avoid scripts under scripts/vendor for compression-only use, and do not provide API keys or network access unless the publisher explains the bundled files or ships a compression-only version. <br>
-Risk: The advertised compression workflow depends on local compressor tools and may fail or fall back depending on what is installed. <br>
-Mitigation: Run the readiness check before use and install or select one of the supported local tools: sips, cwebp, or ImageMagick. <br>
+## Use Case:
 
+Developers and content teams use this skill to compress, convert, and prepare generated image files for preview, delivery, and social upload.
 
-## Reference(s): <br>
-- [Tool Selection Notes](references/tool-selection.md) <br>
-- [ClawHub skill page](https://clawhub.ai/632657122/compress-image) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, files, json] <br>
-**Output Format:** [Markdown guidance with shell commands; compressed image files; optional JSON CLI summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local compressors when available; WebP output requires cwebp or ImageMagick.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-9.0.3 (source: ClawHub release evidence) <br>
+Risk: The package bundles image-generation runtime code beyond the advertised compression workflow, including code paths that can handle API keys and send prompts or images to WeryAI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the package before installing and remove or clearly separate the bundled image-generation runtime from the compression-only skill.
+
+Risk: Secret-handling behavior in bundled code may persist API keys from this package context.
+
+Mitigation: Do not configure or persist API keys through this package unless the image-generation runtime is intentionally retained and reviewed.
+
+Risk: Runtime dependencies and local compressor tools may vary across environments.
+
+Mitigation: Confirm the readiness check passes, install at least one supported compressor, and pin or vendor runtime dependencies before deployment.
+
+Risk: Same-extension compression can overwrite the original file unless the user chooses the keep behavior or a separate output path.
+
+Mitigation: Write outputs to a separate directory or use the keep behavior when compressing to the same extension.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/632657122/skills/compress-image)
+- [Tool Selection Notes](references/tool-selection.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, code, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and optional JSON summaries from the compression CLI]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces compressed image files while preserving originals unless same-extension overwrite behavior is requested.]
+
+## Skill Version(s):
+
+9.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

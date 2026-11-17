@@ -1,41 +1,52 @@
-## Description: <br>
-README Writer helps agents draft, improve, and review open source README files using structure and examples for tools, AI/ML projects, and frameworks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Expert README writing skill for open source projects that helps write, improve, or review READMEs for tool-type software, AI/ML projects, and code frameworks.
 
-## Publisher: <br>
-[caopulan](https://clawhub.ai/user/caopulan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[caopulan](https://clawhub.ai/user/caopulan)
 
-## Use Case: <br>
-Developers, maintainers, and documentation authors use this skill to create polished README drafts or targeted reviews for open source projects, including installation, quick-start, feature, contributing, and license sections. Review generated badges, links, installation snippets, and curl-based commands before publication. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated README badges, links, installation snippets, or curl-based commands may be inaccurate or unsafe if copied without review. <br>
-Mitigation: Review those generated elements for accuracy and safety before publishing the README. <br>
+## Use Case:
 
+Developers and maintainers use this skill to draft, improve, and review open source README documentation. It provides structure, examples, and project-type-specific guidance for tools, AI/ML repositories, and code frameworks.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/caopulan/readme-writer-skill) <br>
-- [README Patterns: Tool-Type Repositories](references/tools.md) <br>
-- [README Patterns: AI/ML Repositories](references/ai-ml.md) <br>
-- [README Patterns: Code Framework Repositories](references/frameworks.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown README drafts, review notes, checklists, and inline code or command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Tailors README content by project type and target audience using the relevant reference guide.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated installation sections may recommend running remote installer scripts without verification.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review installation guidance before publishing and replace curl-pipe-sh examples with package-manager commands, versioned release downloads, or explicit checksum and signature verification steps.
+
+## Reference(s):
+
+- [Skill definition](artifact/SKILL.md)
+- [Tool README patterns](artifact/references/tools.md)
+- [AI/ML README patterns](artifact/references/ai-ml.md)
+- [Framework README patterns](artifact/references/frameworks.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Guidance, Shell commands, Code]
+
+**Output Format:** [Markdown with examples, checklists, and inline code or shell command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include README drafts, improvement recommendations, review feedback, and project-specific documentation templates.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

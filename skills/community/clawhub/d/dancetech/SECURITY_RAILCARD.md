@@ -111,6 +111,6 @@ node scripts/tools/security_railcard.js .
 
 Test the pre-commit hook by staging a file containing a fake key like:
 ```javascript
-const key = 'sk-or-v1-fakebutlongenoughstring1234567890';
+const key = 'REDACTED-SECRET';
 ```
 The hook should block the commit.

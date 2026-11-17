@@ -1,41 +1,55 @@
-## Description: <br>
-Cpu is a Bash-based local operations journal that records, searches, summarizes, and exports sysops notes under ~/.local/share/cpu. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cpu provides shell commands for recording, searching, exporting, and reviewing timestamped local operations journal entries for CPU and system operations.
 
-## Publisher: <br>
-[bytesagain3](https://clawhub.ai/user/bytesagain3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain3](https://clawhub.ai/user/bytesagain3)
 
-## Use Case: <br>
-Developers and operators can use this skill to record local scan notes, monitoring observations, alerts, fixes, cleanup actions, backups, restores, benchmarks, and comparisons. It should be treated as a plaintext journal, not as an authoritative CPU load, temperature, or process-monitoring tool. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may mistake Cpu for a real CPU monitor even though the security evidence says it stores searchable local operations notes. <br>
-Mitigation: Describe it as a plaintext operations journal and use a separate trusted system tool for actual CPU load, temperature, or top-process data. <br>
-Risk: Operational notes entered into Cpu are stored locally in plaintext and may later be exported. <br>
-Mitigation: Do not enter passwords, tokens, private incident notes, sensitive hostnames, or backup details unless plaintext local storage and export are acceptable. <br>
+## Use Case:
 
+Developers and system operators can use this skill to log, search, export, and review local notes about system scans, alerts, fixes, backups, benchmarks, and related operations. It should be used as a local journal rather than as an actual CPU monitor.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bytesagain3/cpu) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and plain text with bash command examples; runtime commands write local log files and optional JSON, CSV, or TXT exports.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local plaintext files under ~/.local/share/cpu and does not require network access, external dependencies, or API keys.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release evidence) <br>
+Risk: The CPU-monitoring branding may lead users to expect live telemetry or resource analysis.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the skill as a local operations journal and verify CPU, load, temperature, and process data with trusted system monitoring tools.
+
+Risk: Local logs and exported files may retain sensitive operational notes.
+
+Mitigation: Avoid recording secrets, tokens, customer data, private incident details, or sensitive infrastructure notes, and review ~/.local/share/cpu plus exported files before sharing or backing them up.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bytesagain3/skills/cpu)
+- [Publisher profile](https://clawhub.ai/user/bytesagain3)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash command examples and a shell script artifact]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes local plain-text logs and optional JSON, CSV, or TXT exports under ~/.local/share/cpu.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release metadata; artifact frontmatter and script report 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

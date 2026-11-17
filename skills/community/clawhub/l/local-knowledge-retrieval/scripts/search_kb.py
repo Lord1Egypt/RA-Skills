@@ -32,6 +32,27 @@ DEFAULT_TOP_K = 10
 
 # ── Search ──────────────────────────────────────────────────────────
 
+def resolve_project_dir(project_name: str, kb_root: Path = KB_ROOT) -> Path:
+    """Return one non-symlink direct child of KB root, never a traversal path."""
+    candidate_name = Path(project_name)
+    if (
+        not project_name
+        or candidate_name.is_absolute()
+        or candidate_name.name != project_name
+        or project_name in {".", ".."}
+    ):
+        raise ValueError("project must be a direct knowledge-base folder name")
+
+    root = kb_root.resolve()
+    candidate = (root / project_name).resolve()
+    try:
+        candidate.relative_to(root)
+    except ValueError as exc:
+        raise ValueError("project resolves outside knowledge-base") from exc
+    if candidate.parent != root or not candidate.is_dir() or (root / project_name).is_symlink():
+        raise ValueError("project must be an existing non-symlink direct knowledge-base folder")
+    return candidate
+
 def search(project_name: str, query: str, top_k: int = DEFAULT_TOP_K) -> list[dict]:
     """
     Search BM25 index for project, return ranked file list.
@@ -46,7 +67,7 @@ def search(project_name: str, query: str, top_k: int = DEFAULT_TOP_K) -> list[di
     """
     import bm25s
     
-    kb_dir = KB_ROOT / project_name
+    kb_dir = resolve_project_dir(project_name)
     index_dir = kb_dir / ".bm25_index"
     
     if not index_dir.exists():
@@ -135,4 +156,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-

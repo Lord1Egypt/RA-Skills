@@ -1,0 +1,42 @@
+{
+  "skill_name": "huawei-cloud-aom-list",
+  "region": "cn-north-4",
+  "test_cases": [
+    {
+      "id": "TC-01",
+      "name": "CLI 服务可用性检查",
+      "command": "hcloud AOM --help",
+      "expected": "帮助信息正常输出，AOM 服务存在",
+      "type": "syntax",
+      "executor": "cli"
+    },
+    {
+      "id": "TC-02",
+      "name": "AOM ListAlarmRule 只读告警规则名称列表",
+      "command": "hcloud AOM ListAlarmRule --cli-region={region} --limit=1",
+      "expected": "返回告警规则名称列表 JSON 或空列表",
+      "type": "readonly",
+      "executor": "cli"
+    },
+    {
+      "id": "TC-03",
+      "name": "AOM ListPromInstance 只读 Prometheus 实例名称列表",
+      "command": "hcloud AOM ListPromInstance --cli-region={region} --Enterprise-Project-Id=0",
+      "expected": "返回 Prometheus 实例名称列表 JSON 或空列表（ListPromInstance 必填 Enterprise-Project-Id 且为 header 形式 --Enterprise-Project-Id，不接受 --limit）",
+      "type": "readonly",
+      "executor": "cli"
+    },
+    {
+      "id": "TC-04",
+      "name": "AOM ListNotificationTemplates 只读通知模板名称列表",
+      "command": "hcloud AOM ListNotificationTemplates --cli-region={region}",
+      "expected": "返回通知模板名称列表 JSON 或空列表（ListNotificationTemplates 不接受 --limit）",
+      "type": "readonly",
+      "executor": "cli"
+    }
+  ],
+  "env_vars_required": [
+    "HUAWEICLOUD_SDK_AK / HUAWEICLOUD_SDK_SK（或 HUAWEI_ACCESS_KEY / HUAWEI_SECRET_KEY、HW_ACCESS_KEY / HW_SECRET_KEY）"
+  ],
+  "notes": "只读用例使用 AOM 只读列表命令（region 默认 cn-north-4）。缺 hcloud 后端/凭据时用例按后端可用性降级或跳过，不产生伪失败；真实只读验证由 QA 带外执行。"
+}

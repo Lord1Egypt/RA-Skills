@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """Generate the full interactive calendar-dashboard grid spec with embedded JS."""
+from _paths import SKILL_DIR
 import json, sys
 from pathlib import Path
 
-SKILL_DIR = Path(__file__).parent.parent
 
 # 内置模板目录（位于安装目录下，跟随技能发布）
 TEMPLATES_DIR = SKILL_DIR / "scripts" / "templates"

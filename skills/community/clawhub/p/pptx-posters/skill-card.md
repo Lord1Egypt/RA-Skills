@@ -1,42 +1,57 @@
-## Description: <br>
-Generate PowerPoint presentations and academic posters from paper abstracts or full paper content, with automatic layout optimization and citation formatting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates structured slide and academic poster outlines from existing paper abstracts or paper content, with layout guidance and optional helper code.
 
-## Publisher: <br>
-[aipoch-ai](https://clawhub.ai/user/aipoch-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aipoch-ai](https://clawhub.ai/user/aipoch-ai)
 
-## Use Case: <br>
-Developers, researchers, and academic authors use this skill to turn existing paper content into structured slide-deck or poster outlines, layout recommendations, and manual refinement guidance. It is intended for presentation planning from supplied content, not for writing original research, fabricating figures, or producing submission-ready manuscripts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The optional generated-code path can overwrite an existing *_generator.py file when the chosen output name conflicts with an existing file. <br>
-Mitigation: Use a unique output filename or check for an existing generated helper file before enabling generated-code output. <br>
-Risk: PDF parsing and direct PPTX creation are limited; the artifact primarily produces outlines and optional helper code. <br>
-Mitigation: Validate PDF text extraction before relying on the output, and review or run the generated helper code separately when a real PPTX file is needed. <br>
-Risk: Citation formatting, figure placeholders, and academic content structure can be incomplete or misleading if not reviewed. <br>
-Mitigation: Manually verify citations, replace placeholders with real figures, and confirm the final slide or poster content against the source paper before use. <br>
+## Use Case:
 
+External users, researchers, and developers use this skill to turn existing paper abstracts or paper content into structured poster or slide outlines with assumptions, design notes, and manual review checks. It is not intended to write original research, fabricate figures, or create submission-ready academic work without review.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/aipoch-ai/pptx-posters) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown with structured sections, plain-text outlines, and optional Python code snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can provide layout recommendations, design notes, manual checks, and optional generated python-pptx helper code.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Generated helper code may be unsafe if executed with untrusted abstracts or output paths.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat generated *_generator.py files as untrusted, review them before execution, and avoid running them on untrusted inputs or paths.
+
+Risk: The release may overstate finished PowerPoint or poster generation capability.
+
+Mitigation: Use the skill as an outline, layout, and helper-code generator; manually verify formatting, citations, figures, and final presentation quality.
+
+Risk: Encrypted, image-only, or corrupt PDFs may not be parseable.
+
+Mitigation: Request a text version or abstract directly when a PDF cannot be parsed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aipoch-ai/skills/pptx-posters)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown or plain text outlines, with optional generated Python helper code.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May emit layout recommendations, design guidelines, figure placeholders, manual checks, and optional python-pptx helper code.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

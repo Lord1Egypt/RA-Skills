@@ -1,44 +1,64 @@
-## Description: <br>
-ClawdCall helps OpenClaw agents place outbound AI voice calls, manage signup and authentication, wire optional completion webhooks, retrieve transcripts, and track billing-aware call execution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Orchestrate outbound AI voice calls and asynchronous call results through ClawdCall from OpenClaw.
 
-## Publisher: <br>
-[chitrang89](https://clawhub.ai/user/chitrang89) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chitrang89](https://clawhub.ai/user/chitrang89)
 
-## Use Case: <br>
-Developers and operators use ClawdCall to orchestrate paid outbound voice-agent calls from OpenClaw, including call setup, webhook-based completion handling, transcript retrieval, and safe storage of non-secret call identifiers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can place real outbound calls that may consume call credits and contact real people. <br>
-Mitigation: Confirm the user's intent, target phone number, call objective, caller identity, and paid-call readiness before placing any outbound call. <br>
-Risk: API tokens, webhook tokens, OTPs, and transcripts may contain sensitive information. <br>
-Mitigation: Use secure environment or runtime storage, avoid persistent memory for secrets, and retain transcripts only when the user explicitly requests it. <br>
-Risk: Asynchronous callback wiring can send call results to an OpenClaw endpoint. <br>
-Mitigation: Enable webhook callbacks only when the endpoint is controlled and trusted, and omit callback wiring when required routing values or tokens are unavailable. <br>
+## Use Case:
 
+Developers and operators use this skill to place user-confirmed outbound voice-agent calls, configure optional OpenClaw callbacks, retrieve completed call transcripts, and manage non-secret call identifiers.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chitrang89/clawdcall) <br>
-- [ClawdCall homepage](https://clawdcall.com) <br>
-- [ClawdCall API base](https://api.clawdcall.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, API Calls, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with HTTP request shapes and JSON payload examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires ClawdCall credentials for calls and optional OpenClaw webhook credentials for asynchronous results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence) <br>
+Risk: The skill can place real outbound calls that may consume paid calling minutes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation, a verified phone number, and a clear call objective before each outbound call.
+
+Risk: ClawdCall and OpenClaw tokens could expose account access if stored or logged.
+
+Mitigation: Keep tokens in secure runtime storage or ephemeral session state, and never write them to persistent memory, logs, transcripts, or task text.
+
+Risk: Call transcripts and spoken context may contain sensitive personal information.
+
+Mitigation: Retrieve transcripts only for completed calls and retain transcripts or sensitive call details only when the user explicitly asks for retention.
+
+Risk: Incorrect callback routing or fabricated identifiers could misattribute call results.
+
+Mitigation: Use only available webhook URLs, tokens, conversation IDs, call IDs, and campaign IDs; omit callback wiring or defer lookup when required values are missing.
+
+## Reference(s):
+
+- [ClawdCall skill page](https://clawhub.ai/chitrang89/skills/clawdcall)
+- [Publisher profile](https://clawhub.ai/user/chitrang89)
+- [ClawdCall homepage](https://clawdcall.com)
+- [ClawdCall API base](https://api.clawdcall.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, API calls, configuration, guidance]
+
+**Output Format:** [Markdown guidance with HTTP request examples and JSON payload shapes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include outbound-call instructions, callback configuration, call-result summaries, transcript retrieval guidance, and safe memory-handling rules.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

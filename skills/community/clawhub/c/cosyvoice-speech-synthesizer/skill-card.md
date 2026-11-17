@@ -1,42 +1,54 @@
-## Description: <br>
-Converts user-provided text into speech with CosyVoice, including voice, dialect, emotion, role, rate, pitch, volume, and output format controls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts user-provided text into natural-sounding speech using Alibaba Cloud DashScope CosyVoice, with options for dialect, emotion, role, voice, speed, pitch, volume, and audio format.
 
-## Publisher: <br>
-[songguocola](https://clawhub.ai/user/songguocola) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[songguocola](https://clawhub.ai/user/songguocola)
 
-## Use Case: <br>
-Developers and content creators use this skill to generate narration, dubbing, podcast, announcement, and audiobook audio from text through Alibaba Cloud DashScope CosyVoice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Text submitted for synthesis is sent to Alibaba Cloud DashScope using the user's API key. <br>
-Mitigation: Avoid submitting secrets, private messages, regulated data, or confidential business text unless the provider's data terms are acceptable. <br>
-Risk: The skill depends on a DashScope API key and downloads generated audio to local files. <br>
-Mitigation: Use a dedicated or scoped key where possible and review the output path and generated audio before sharing or retaining it. <br>
+## Use Case:
 
+Developers and content creators use this skill to synthesize speech for narration, video voiceovers, podcasts, announcements, audiobooks, and dialect or character-style audio experiments.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/songguocola/cosyvoice-speech-synthesizer) <br>
-- [Alibaba Cloud CosyVoice voice list](https://help.aliyun.com/zh/model-studio/cosyvoice-voice-list) <br>
-- [DashScope SpeechSynthesizer endpoint](https://dashscope.aliyuncs.com/api/v1/services/audio/tts/SpeechSynthesizer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, API calls, Files, Text] <br>
-**Output Format:** [Command-line text plus generated audio files in WAV, MP3, PCM, or Opus formats.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires DASHSCOPE_API_KEY and writes the synthesized audio to the requested output path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Text submitted for synthesis is sent to Alibaba Cloud DashScope under the user's API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid secrets, regulated data, and confidential business text unless third-party processing is approved.
+
+Risk: The synthesis script writes downloaded audio to a user-provided output path.
+
+Mitigation: Choose output paths deliberately and review them before running the command.
+
+## Reference(s):
+
+- [Alibaba Cloud Model Studio CosyVoice Voice List](https://help.aliyun.com/zh/model-studio/cosyvoice-voice-list)
+- [CosyVoice Speech Synthesizer on ClawHub](https://clawhub.ai/songguocola/skills/cosyvoice-speech-synthesizer)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Files, Guidance]
+
+**Output Format:** [Markdown guidance with bash commands; generated audio files or audio URLs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires DASHSCOPE_API_KEY; downloaded audio is written to the user-selected output path unless URL-only mode is used.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Clean Code 最小清单（第一性原理版）</title>
+<style>
+  :root {
+    --bg: #ffffff;
+    --panel: #fafafa;
+    --border: #e6e6e6;
+    --text: #1a1a1a;
+    --muted: #6b7280;
+    --red: #d92d20;
+    --red-bg: #fef3f2;
+    --yellow: #b54708;
+    --yellow-bg: #fffaeb;
+    --green: #067647;
+    --green-bg: #ecfdf3;
+    --accent: #5b5bd6;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; padding: 32px 20px;
+    background: var(--bg); color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+    line-height: 1.55;
+  }
+  .wrap { max-width: 880px; margin: 0 auto; }
+  h1 { font-size: 22px; margin: 0 0 4px; }
+  .sub { color: var(--muted); font-size: 13px; margin-bottom: 20px; }
+  .root {
+    background: var(--panel); border: 1px solid var(--border);
+    border-radius: 10px; padding: 14px 16px; margin-bottom: 22px; font-size: 14px;
+  }
+  .root b { color: var(--accent); }
+  .legend { display: flex; gap: 14px; flex-wrap: wrap; margin: 0 0 20px; font-size: 13px; }
+  .legend span { display: inline-flex; align-items: center; gap: 6px; }
+  .dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
+  .dot.r { background: var(--red); }
+  .dot.y { background: var(--yellow); }
+  .dot.g { background: var(--green); }
+  .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media (max-width: 680px) { .cols { grid-template-columns: 1fr; } }
+  .col { border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+  .col h2 { font-size: 14px; margin: 0; padding: 12px 14px; background: var(--panel); border-bottom: 1px solid var(--border); }
+  .col h2 small { color: var(--muted); font-weight: 400; }
+  .item { padding: 10px 14px; border-bottom: 1px solid var(--border); font-size: 13px; display: flex; gap: 10px; align-items: flex-start; }
+  .item:last-child { border-bottom: none; }
+  .item label { flex: 1; cursor: pointer; }
+  .item input { margin-top: 3px; accent-color: var(--accent); }
+  .sev { font-size: 11px; font-weight: 600; padding: 1px 7px; border-radius: 999px; white-space: nowrap; }
+  .sev.r { color: var(--red); background: var(--red-bg); }
+  .sev.y { color: var(--yellow); background: var(--yellow-bg); }
+  .sev.g { color: var(--green); background: var(--green-bg); }
+  .item.checked label { color: var(--muted); text-decoration: line-through; }
+  .verdict { margin-top: 22px; background: var(--panel); border: 1px solid var(--border); border-radius: 10px; padding: 14px 16px; font-size: 13px; }
+  .verdict b { color: var(--accent); }
+  .score { font-size: 13px; color: var(--muted); margin-top: 10px; }
+  .score b { font-size: 15px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Clean Code 最小清单</h1>
+  <div class="sub">第一性原理版 · 审计 Skill 脚本时照着打勾 · 判据是成本与风险，不是符合清单</div>
+
+  <div class="root">
+    <b>根前提：</b>代码是写给人看的（机器只认语法对不对，不在乎命名/长度/注释）。<br/>
+    由此只推出两根判据 ——
+    <b>A. 理解成本</b>（让人一眼读懂意图与边界）·
+    <b>B. 修改风险</b>（改动时不牵连出错）。<br/>
+    所有规则都是这两根的子树；检验不过的，就是噪音。
+  </div>
+
+  <div class="legend">
+    <span><i class="dot r"></i> 红 · 出现即脏，优先修</span>
+    <span><i class="dot y"></i> 黄 · 有意的债，需注释+范围可控</span>
+    <span><i class="dot g"></i> 绿 · 出现即干净</span>
+  </div>
+
+  <div class="cols">
+    <div class="col">
+      <h2>A. 理解成本 <small>读起来费不费劲</small></h2>
+
+      <div class="item"><input type="checkbox"/><label><span class="sev r">红</span> 全局搜才知道符号从哪来（<code>import *</code>、来源隐式）—— 见审计范例 例1</label></div>
+      <div class="item"><input type="checkbox"/><label><span class="sev r">红</span> 同一说明出现多处且互相矛盾（死字符串/docstring 重复）—— 见例2</label></div>
+      <div class="item"><input type="checkbox"/><label><span class="sev r">红</span> 注释像 changelog：满屏 P0 / 工单号自辩，读代码先解码内部体系 —— 见审计范例 例3</label></div>
+      <div class="item"><input type="checkbox"/><label><span class="sev y">黄</span> 长函数（&gt;40 行）但确实内聚、难拆 —— 确认是真难拆还是懒拆</label></div>
+      <div class="item"><input type="checkbox"/><label><span class="sev y">黄</span> 魔法数字/字符串未命名 —— 命名常量即可消除</label></div>
+      <div class="item"><input type="checkbox"/><label><span class="sev g">绿</span> 命名即文档，变量/函数名一眼知意图</label></div>
+      <div class="item"><input type="checkbox"/><label><span class="sev g">绿</span> 显式优于隐式，前提与边界清楚，不逼人猜</label></div>
+    </div>
+
+    <div class="col">
+      <h2>B. 修改风险 <small>改起来怕不怕</small></h2>
+
+      <div class="item"><input type="checkbox"/><label><span class="sev r">红</span> 模块级可变全局状态控制行为（如配置覆盖全局 <code>_CONFIG_OVERRIDE</code>）—— 见审计范例 例3</label></div>
+      <div class="item"><input type="checkbox"/><label><span class="sev r">红</span> 重复逻辑（违反 DRY），改一处要同步多处</label></div>
+      <div class="item"><input type="checkbox"/><label><span class="sev r">红</span> 裸 <code>except</code> 静默吞错，失败被藏起来下次才爆</label></div>
+      <div class="item"><input type="checkbox"/><label><span class="sev y">黄</span> 有意的 best-effort <code>except</code>（单源失败不拖垮管线）—— 需注释说明，范围可控 · 见例4注记</label></div>
+      <div class="item"><input type="checkbox"/><label><span class="sev y">黄</span> 过早抽象出没人复用的通用接口 —— 风险前置</label></div>
+      <div class="item"><input type="checkbox"/><label><span class="sev g">绿</span> 行为只由入参决定，无隐藏状态，任意调用顺序安全</label></div>
+      <div class="item"><input type="checkbox"/><label><span class="sev g">绿</span> 有测试覆盖，修改可验证、可回退</label></div>
+    </div>
+  </div>
+
+  <div class="verdict">
+    <b>用法：</b>审一段脚本，逐项打勾「我在这里发现了这个问题」。勾完看下方计数 ——
+    <div class="score">
+      红（必须修）：<b id="cR">0</b> ·
+      黄（可控债）：<b id="cY">0</b> ·
+      绿（已达标）：<b id="cG">0</b>
+    </div>
+    <div style="margin-top:10px; color:var(--muted)">
+      判据不是清单：红了就修；黄了只要「注释说清 + 范围可控」就暂时可接受；绿的出现说明干净。
+      同一处若「为了清单而清单」（为短拆成七层 tiny function、为 DRY 抽象没人用的接口），反而是脏的。
+    </div>
+  </div>
+</div>
+
+<script>
+  const items = document.querySelectorAll('.item');
+  function recalc() {
+    let r = 0, y = 0, g = 0;
+    items.forEach(it => {
+      const cb = it.querySelector('input');
+      const on = cb.checked;
+      it.classList.toggle('checked', on);
+      if (on) {
+        const sev = it.querySelector('.sev').textContent.trim();
+        if (sev === '红') r++;
+        else if (sev === '黄') y++;
+        else if (sev === '绿') g++;
+      }
+    });
+    document.getElementById('cR').textContent = r;
+    document.getElementById('cY').textContent = y;
+    document.getElementById('cG').textContent = g;
+  }
+  items.forEach(it => it.querySelector('input').addEventListener('change', recalc));
+</script>
+</body>
+</html>

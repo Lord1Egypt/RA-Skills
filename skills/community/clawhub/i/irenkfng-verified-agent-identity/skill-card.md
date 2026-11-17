@@ -1,43 +1,58 @@
-## Description: <br>
-Billions decentralized identity for agents links agents to human identities using Billions ERC-8004 and Attestation Registries, verifies and generates authentication proofs, and is based on the iden3 self-sovereign identity protocol. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Billions decentralized identity for agents. Link agents to human identities using Billions ERC-8004 and Attestation Registries. Verify and generate authentication proofs. Based on iden3 self-sovereign identity protocol.
 
-## Publisher: <br>
-[idraniw29](https://clawhub.ai/user/idraniw29) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[idraniw29](https://clawhub.ai/user/idraniw29)
 
-## Use Case: <br>
-Developers and agent operators use this skill to create and manage decentralized agent identities, link an agent DID to a human owner, sign authentication challenges, and verify DID ownership. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles persistent identity keys and authentication material. <br>
-Mitigation: Do not paste private keys, JWTs, or reusable identity tokens into commands or chat; configure encryption or a secret store before creating real identities. <br>
-Risk: Human-agent linking is a persistent identity action. <br>
-Mitigation: Confirm the DID, challenge, requester, registry destination, and agent name before running a linking command. <br>
-Risk: The artifact documents Node.js scripts, but the release artifact contains only the skill instructions. <br>
-Mitigation: Install only if you are prepared to review or supply the referenced scripts before executing identity workflows. <br>
+## Use Case:
 
+Developers, engineers, and agents use this skill to create and manage Billions Network decentralized identities, link an agent DID to a human owner, sign challenges, and verify identity ownership.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/idraniw29/irenkfng-verified-agent-identity) <br>
-- [Billions Network](https://billions.network/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, JSON, Text, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON or text command results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or use local identity data under $HOME/.openclaw/billions when the referenced scripts are present.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill handles long-lived private identity keys and stores sensitive identity data under $HOME/.openclaw/billions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the actual plugin scripts and dependencies before installation, configure BILLIONS_NETWORK_MASTER_KMS_KEY before creating identities, and protect the local identity directory as highly sensitive.
+
+Risk: Importing a private key with --key can expose secret material through command history or process listings.
+
+Mitigation: Avoid importing private keys on the command line unless an operator has reviewed the environment and accepts the exposure risk.
+
+Risk: The security verdict is suspicious because executable artifacts are incomplete for a skill that performs identity operations.
+
+Mitigation: Install only after reviewing the complete scripts and dependencies that will run in the target environment.
+
+## Reference(s):
+
+- [Billions Network](https://billions.network/)
+- [ClawHub skill page](https://clawhub.ai/idraniw29/skills/irenkfng-verified-agent-identity)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON or text script outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js; BILLIONS_NETWORK_MASTER_KMS_KEY is optional but recommended before creating identities.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

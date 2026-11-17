@@ -1,40 +1,50 @@
-## Description: <br>
-Schedule automatic OpenClaw and skill updates with reliable cron templates, timezone-safe scheduling, and clear summary outputs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Schedule automatic OpenClaw and skill updates with reliable cron templates, timezone-safe scheduling, and clear summary outputs.
 
-## Publisher: <br>
-[litiao1224](https://clawhub.ai/user/litiao1224) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[litiao1224](https://clawhub.ai/user/litiao1224)
 
-## Use Case: <br>
-Developers and operators use this skill to schedule hands-off OpenClaw and ClawHub skill updates, choose safer dry-run or core-only modes, and receive concise update summaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Automatic updates can repeatedly change OpenClaw and installed skills without review each time. <br>
-Mitigation: Start with the dry-run or core-only template, confirm the cron entry after setup, use a maintenance window, and avoid automatic all-skill updates where unexpected behavior changes would be costly. <br>
+## Use Case:
 
+Developers and operators use this skill to configure scheduled OpenClaw and ClawHub skill update checks, choose safer modes such as dry run or core-only updates, and produce concise update summaries.
 
-## Reference(s): <br>
-- [Agent Implementation Guide](references/agent-guide.md) <br>
-- [Update Summary Examples](references/summary-examples.md) <br>
-- [ClawHub skill page](https://clawhub.ai/litiao1224/openclaw-auto-updater-litiao) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Markdown, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks and update-summary templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes cron schedules, timezone settings, dry-run and core-only alternatives, and concise status reporting.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Recurring unattended update jobs can update OpenClaw and installed skills without human review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use dry-run or core-only examples first, set an explicit timezone, avoid broad all-skill updates where possible, and review how to list, edit, or remove the scheduled cron job before enabling it.
+
+## Reference(s):
+
+- [Agent Implementation Guide](artifact/references/agent-guide.md)
+- [Update Summary Examples](artifact/references/summary-examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces cron setup commands, update-mode guidance, and concise status-summary templates.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

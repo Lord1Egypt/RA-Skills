@@ -1,0 +1,90 @@
+{
+  "meta": {
+    "name": "余烬荒年",
+    "tone_family": "apocalypse",
+    "tone_variant": "废土生存",
+    "version": 1
+  },
+  "continents": [
+    {
+      "id": "continent_jinyuan",
+      "name": "烬原",
+      "summary": "大崩塌后的废土：旧城市成废墟、水源多被污染，五方靠净水、弹药、疫苗、净粮四类硬通货苟活；旧站集市是各方唯一的安全交易地。"
+    }
+  ],
+  "nations": [
+    {
+      "id": "nation_weijin",
+      "name": "烬市议会",
+      "continent": "continent_jinyuan",
+      "summary": "握旧世界合法性、却没有旧世界武力的市政残部，靠给军阀发'执照'换保护续命。",
+      "tension_seeds": [
+        "议会握旧世界合法性却无武力，靠给旷野军发'执照'换保护，法理与枪杆的账越欠越多",
+        "议会私藏一份旧政府净水厂坐标，却对外宣称'已随城市一起埋了'"
+      ]
+    },
+    {
+      "id": "nation_kuangya",
+      "name": "旷野军",
+      "continent": "continent_jinyuan",
+      "summary": "有枪有人、却缺水缺疫苗的武装割据军阀，靠截补给线维持，部下已因缺水生变。",
+      "tension_seeds": [
+        "军头有枪有人却缺水缺疫苗，靠截补给线维持，部下已因缺水生变",
+        "军头与荒泉教暗通、以保护换净泉配额，被议会察觉后两头受疑"
+      ]
+    },
+    {
+      "id": "nation_xinsheng",
+      "name": "新芽聚落",
+      "continent": "continent_jinyuan",
+      "summary": "只想活命、却总被各方当成兵源与税源的自耕自守幸存者聚落。",
+      "tension_seeds": [
+        "聚落只想活命，却被各方当兵源与税源，年轻人在逃、老人在守",
+        "聚落长老藏着荒泉教早年'神迹'的真相：所谓净泉不过是旧净水厂的一角"
+      ]
+    },
+    {
+      "id": "nation_huangjiao",
+      "name": "荒泉教",
+      "continent": "continent_jinyuan",
+      "summary": "用末日恐惧募人心的末日教会，暗里垄断了最后一口净泉，泉眼水位却在下降。",
+      "tension_seeds": [
+        "教会用末日恐惧募人心，暗里垄断最后一口净泉，泉眼水位却在下降",
+        "教会内'守泉派'与'布道派'就'是否开放净泉'分裂，教主两难"
+      ]
+    },
+    {
+      "id": "nation_shangmo",
+      "name": "商漠驼队",
+      "continent": "continent_jinyuan",
+      "summary": "走通补给线、也走漏所有据点虚实的长途贸易商队，被各方既拉拢又忌惮。",
+      "tension_seeds": [
+        "驼队走通补给线、也走漏所有据点虚实，被各方既拉拢又忌惮",
+        "驼队掌舵人替各方走私疫苗，手里握着'谁最先断粮'的账"
+      ]
+    }
+  ],
+  "neutral_port": {
+    "id": "port_jiuzhan",
+    "name": "旧站集市",
+    "continent": "continent_jinyuan",
+    "summary": "建在废弃旧车站的露天集市，各方商队与散客唯一的安全交易地；站内禁抢是残存秩序，谁在此动刀，谁就失去所有人的补给通道。"
+  },
+  "faction_matrix": {
+    "nation_huangjiao|nation_kuangya": { "relation": 42, "note": "荒泉教以净泉配额换旷野军的保护，教军合流；裂缝在于军头私下囤水、教主疑其要夺泉。" },
+    "nation_huangjiao|nation_shangmo": { "relation": -20, "note": "教会斥商队'贩卖末世'、发末日财，却也要靠驼队运粮。" },
+    "nation_huangjiao|nation_weijin": { "relation": -35, "note": "教会与旧政府残部争'谁是废土的正统'，法理与神权互不承认。" },
+    "nation_huangjiao|nation_xinsheng": { "relation": -15, "note": "聚落曾信教、后因净泉配给不公而疏远教会，关系冷淡。" },
+    "nation_huangjiao|port_jiuzhan": { "relation": 18, "note": "教会在旧站集市布道募人、也在此采购补给。" },
+    "nation_kuangya|nation_shangmo": { "relation": -55, "note": "军阀截商队补给、强抽过路费，商队视其为匪，补给线上冲突不断。" },
+    "nation_kuangya|nation_weijin": { "relation": 30, "note": "议会给旷野军发'执照'换保护；裂缝在于军头嫌配额太少、已生夺市二心。" },
+    "nation_kuangya|nation_xinsheng": { "relation": -60, "note": "军阀把聚落当兵源与税源强征，聚落视其为灾，积怨已深。" },
+    "nation_kuangya|port_jiuzhan": { "relation": -25, "note": "军阀想控集市收税，各商队联合抵制，站内禁抢之规正是冲他而立。" },
+    "nation_shangmo|nation_weijin": { "relation": 25, "note": "议会依赖驼队运补、驼队借议会招牌通行，互利而互相提防。" },
+    "nation_shangmo|nation_xinsheng": { "relation": 35, "note": "驼队与聚落换粮换水、互利；裂缝在于驼队也把聚落虚实卖给别人。" },
+    "nation_shangmo|port_jiuzhan": { "relation": 52, "note": "驼队是旧站集市的常客与秩序维持者；裂缝在于驼队掌舵人早把集市的库存虚实卖给了旷野军。" },
+    "nation_weijin|nation_xinsheng": { "relation": 40, "note": "议会以'重建秩序'招聚落归附；裂缝在于议会只想把聚落当税基。" },
+    "nation_weijin|port_jiuzhan": { "relation": 28, "note": "议会借集市发执照、收旧币，维持旧秩序的体面。" },
+    "nation_xinsheng|port_jiuzhan": { "relation": 22, "note": "聚落在集市换农具与种子，是集市里最朴素的常客。" }
+  }
+}

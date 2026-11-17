@@ -1,44 +1,61 @@
-## Description: <br>
-Brandfetch (brandfetch.com). Use this skill for ANY Brandfetch request - searching and reading data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Brandfetch (brandfetch.com). Use this skill for ANY Brandfetch request — searching and reading data. Whenever a task involves Brandfetch, use this skill instead of calling the API directly.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and external users use this skill to fetch Brandfetch brand profiles and resolve transaction labels through an OOMOL-connected Brandfetch account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill operates through an OOMOL-connected account and requires sensitive credentials to be configured server-side. <br>
-Mitigation: Use it only when Brandfetch access through OOMOL is intended, and review connector action payloads before approval. <br>
-Risk: The first-time setup guidance includes optional remote installer commands. <br>
-Mitigation: Prefer official or verified oo CLI installation steps and review installer commands before running them. <br>
+## Use Case:
 
+Developers and agents use this skill to search for Brandfetch brand profiles and resolve transaction labels to merchant profiles through a connected OOMOL account.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/oomol/oo-brandfetch) <br>
-- [OOMOL Publisher Profile](https://clawhub.ai/user/oomol) <br>
-- [Brandfetch Homepage](https://brandfetch.com) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [oo CLI Install Guide](https://cli.oomol.com/install-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON payload guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces Brandfetch connector calls and setup guidance; connector responses are returned as JSON by the oo CLI.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and release evidence) <br>
+Risk: The first-time setup path downloads and runs a CLI installer, and the downloaded installer and runtime behavior have not been verified.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the CLI installation separately and prefer a verified, pinned release before using the setup fallback.
+
+Risk: The CLI may synchronize changes to other installed agent skills at startup.
+
+Mitigation: Review and approve any skill changes; consider setting OO_SKILLS_SYNC_DISABLED=1 as documented in the oo CLI command reference.
+
+Risk: Resolving transaction labels sends those labels through OOMOL.
+
+Mitigation: Submit only transaction labels you are comfortable sharing through OOMOL.
+
+## Reference(s):
+
+- [Brandfetch](https://brandfetch.com)
+- [Brandfetch API documentation](https://docs.brandfetch.com/)
+- [oo CLI repository](https://github.com/oomol-lab/oo-cli)
+- [oo CLI command reference: environment variables](https://github.com/oomol-lab/oo-cli/blob/main/docs/commands.md#environment-variables)
+- [Brandfetch ClawHub release](https://clawhub.ai/oomol/skills/oo-brandfetch)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON data, Text summaries]
+
+**Output Format:** [Brand profile data returned as JSON, with optional natural-language summaries.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses the connected Brandfetch account; credentials are not included in the skill's output.]
+
+## Skill Version(s):
+
+1.0.6 (source: server release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

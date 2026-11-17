@@ -1,42 +1,60 @@
-## Description: <br>
-A-Share Guard is a finance-focused stock risk diagnosis skill for A-share equities that combines quantitative indicators, recent sentiment, and consensus logic. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Share Guard helps agents diagnose A-share stock risk using quote data, sentiment signals, and consensus-style risk scoring.
 
-## Publisher: <br>
-[mx6315909](https://clawhub.ai/user/mx6315909) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mx6315909](https://clawhub.ai/user/mx6315909)
 
-## Use Case: <br>
-External users and developers use this skill to scan A-share stock symbols for financial, technical, and sentiment risk signals. It produces a structured risk rating and advisory notes for review, not investment advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can produce incomplete or misleading stock-risk reports if public finance data, web results, or bundled scripts are incomplete. <br>
-Mitigation: Review outputs against primary financial disclosures and do not use generated ratings as the sole basis for trading decisions. <br>
-Risk: The skill runs bundled Python scripts and fetches public finance websites, and artifact configuration references a private browserless/CDP URL. <br>
-Mitigation: Inspect the scripts before execution and replace or remove the private browserless/CDP URL unless it points to an isolated browser instance you control. <br>
+## Use Case:
 
+External users and agents use this skill to scan A-share stocks for valuation, technical, financial red-flag, and sentiment risks. It produces advisory risk reports and structured risk scores for review, not investment advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mx6315909/xiaodi-a-share-guard) <br>
-- [Radar indicators reference](references/radar-indicators.md) <br>
-- [Configuration template](references/config-template.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, JSON, Guidance, Shell commands] <br>
-**Output Format:** [Markdown report with structured risk ratings and JSON-compatible analysis fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports are generated from public finance website data, bundled Python scripts, and web search results when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: The skill can overstate unfinished financial-risk checks and make missing data look safe.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat pending, unavailable, or null financial indicators as incomplete evidence and require user review before relying on the final signal.
+
+Risk: The release is intended for financial-risk analysis but is not dependable as investment advice.
+
+Mitigation: Present outputs as informational risk screening only and require independent financial review before trading or portfolio decisions.
+
+Risk: The bundled browserless configuration references a private-IP endpoint template.
+
+Mitigation: Replace the template endpoint with an approved local or managed browserless service before installation or execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mx6315909/skills/xiaodi-a-share-guard)
+- [Publisher profile](https://clawhub.ai/user/mx6315909)
+- [Radar indicators](references/radar-indicators.md)
+- [Configuration template](references/config-template.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, guidance]
+
+**Output Format:** [Markdown risk report with structured JSON fields]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes stock code, timestamp, risk scores, red flags, sentiment/quant comparison, final signal, and advisory guidance.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter, artifact metadata, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

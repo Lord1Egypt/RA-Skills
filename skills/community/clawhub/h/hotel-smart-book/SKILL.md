@@ -13,11 +13,11 @@ tools:
         type: string
         description: 城市，如"上海""北京"
         required: true
-      - name: check_in
+      - name: checkIn
         type: string
         description: 入住日期 YYYY-MM-DD
         required: true
-      - name: check_out
+      - name: checkOut
         type: string
         description: 离店日期 YYYY-MM-DD
         required: true
@@ -36,7 +36,7 @@ tools:
         type: string
         description: 关键词/地标
         required: false
-      - name: start_date
+      - name: startDate
         type: string
         description: 起始入住日期 YYYY-MM-DD
         required: true
@@ -59,11 +59,11 @@ tools:
         type: string
         description: 城市
         required: true
-      - name: check_in
+      - name: checkIn
         type: string
         description: 入住日期 YYYY-MM-DD
         required: true
-      - name: check_out
+      - name: checkOut
         type: string
         description: 离店日期 YYYY-MM-DD
         required: true

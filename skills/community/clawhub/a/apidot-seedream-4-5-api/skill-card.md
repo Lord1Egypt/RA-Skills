@@ -1,50 +1,63 @@
-## Description: <br>
-Use APIDot for Seedream 4.5 API workflows, including image generation API, image editing API, image-to-image API, reference image generation, prompt-based image creation, async task submission, task_id handling, polling, task status, and webhook integration based on APIDot docs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use APIDot for Seedream 4.5 API workflows, including image generation, image editing, image-to-image, reference image generation, prompt-based image creation, async task submission, task_id handling, polling, task status, and webhook integration based on APIDot docs.
 
-## Publisher: <br>
-[jiehao71727](https://clawhub.ai/user/jiehao71727) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiehao71727](https://clawhub.ai/user/jiehao71727)
 
-## Use Case: <br>
-Developers and agents use this skill to plan APIDot Seedream 4.5 image generation and editing integrations, including request routing, async task handling, polling, webhooks, and credential-safe implementation practices. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: APIDOT_API_KEY could be exposed through browser code, logs, public repositories, screenshots, or chat output. <br>
-Mitigation: Keep the key server-side in environment variables or a backend secret manager and avoid logging it. <br>
-Risk: Private prompts, image URLs, generated image URLs, or callback URLs could disclose user or workflow data if logged. <br>
-Mitigation: Avoid logging private prompts, private image URLs, generated image URLs, callback URLs, and related request metadata. <br>
-Risk: Outdated or guessed APIDot request fields could lead to failed or incorrect Seedream 4.5 integrations. <br>
-Mitigation: Verify the live APIDot docs and model page before preparing payloads or making API calls. <br>
-Risk: Live API calls could run in an unsafe environment or before the user is ready. <br>
-Mitigation: Do not make live APIDot API calls unless the user explicitly asks and provides a safe server-side environment. <br>
+## Use Case:
 
+Developers and engineers use this skill to plan APIDot Seedream 4.5 image generation and editing integrations, choose the relevant APIDot documentation path, and handle async task polling or webhook delivery safely.
 
-## Reference(s): <br>
-- [APIDot documentation](https://apidot.ai/docs) <br>
-- [APIDot Seedream 4.5 model page](https://apidot.ai/models/seedream-4-5) <br>
-- [APIDot Seedream 4.5 docs](https://apidot.ai/docs/seedream-4-5) <br>
-- [APIDot webhooks documentation](https://apidot.ai/docs/webhooks) <br>
-- [APIDot Seedream 4.5 examples](https://github.com/APIDotAI/seedream-4.5-api) <br>
-- [APIDot examples](https://github.com/APIDotAI/apidot-examples) <br>
-- [APIDot Seedream 4.5 Reference](references/api.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, configuration] <br>
-**Output Format:** [Markdown guidance with optional code snippets and API workflow notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only skill; it does not make API calls, bundle clients, or store credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: evidence.release.version) <br>
+Risk: APIDot API keys could be exposed if copied into browser code, public repositories, logs, screenshots, or chat output.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep APIDOT_API_KEY in a backend secret store or server-side environment variable and avoid echoing credentials in generated guidance.
+
+Risk: Live API calls may submit private prompts, source image URLs, callback URLs, or generated image URLs to APIDot.
+
+Mitigation: Only make live calls when the user intentionally provides a safe server-side runtime, and minimize logging of prompts, private media URLs, generated URLs, and callback URLs.
+
+Risk: Model-specific payload fields, availability, limits, or commercial terms may change after the skill release.
+
+Mitigation: Use the current APIDot docs and model page as the source of truth before producing copyable request examples or integration decisions.
+
+## Reference(s):
+
+- [APIDot docs](https://apidot.ai/docs)
+- [APIDot Seedream 4.5 model page](https://apidot.ai/models/seedream-4-5)
+- [APIDot Seedream 4.5 API docs](https://apidot.ai/docs/seedream-4-5)
+- [APIDot quickstart](https://apidot.ai/docs/quickstart)
+- [APIDot webhooks](https://apidot.ai/docs/webhooks)
+- [APIDot API key dashboard](https://apidot.ai/dashboard/api-key)
+- [Local API reference](references/api.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown guidance with documentation links and integration planning notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only; agents should consult current APIDot docs before producing copyable request payloads.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

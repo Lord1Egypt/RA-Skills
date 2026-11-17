@@ -1,45 +1,58 @@
-## Description: <br>
-数字宠物是一个可爱的 3D 拉布布（Labubu）数字宠物，支持互动喂食、玩耍、抚摸，可用于桌面宠物陪伴、3D 互动展示和宠物养成游戏。 <br>
+## Description:
 
-This skill is for demonstration purposes and not for production usage. <br>
+数字宠物 - 一个可爱的 3D 拉布布（Labubu）数字宠物，支持互动喂食、玩耍、抚摸。用于：(1) 桌面宠物陪伴，(2) 3D 互动展示，(3) 宠物养成游戏。
 
-## Publisher: <br>
-[WittFan](https://clawhub.ai/user/WittFan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[wittfan](https://clawhub.ai/user/wittfan)
 
-## Use Case: <br>
-External users and developers use this skill to run a local 3D digital pet experience with feeding, play, petting, mouse-following animation, sound feedback, and an optional desktop widget. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The local visual pet demo loads Three.js from a public CDN. <br>
-Mitigation: Use it on a trusted network; bundling Three.js locally or adding SRI would reduce supply-chain risk. <br>
-Risk: The skill starts a local HTTP server for the browser demo. <br>
-Mitigation: Stop the local server when finished. <br>
-Risk: The optional desktop widget runs as a local tray application. <br>
-Mitigation: Use the tray Quit option for the desktop widget when finished. <br>
+## Use Case:
 
+External users and developers use this skill to run a browser or desktop 3D Labubu-style virtual pet with feeding, play, petting, status, animation, and sound interactions.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/WittFan/digital-pet) <br>
-- [Publisher profile](https://clawhub.ai/user/WittFan) <br>
-- [README](artifact/README.md) <br>
-- [Skill definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Files, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown guidance with HTML, JavaScript, CSS, Python files, and local shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a local browser-based Three.js pet and optional PyQt desktop widget; no API keys were detected.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: The helper server is exposed beyond localhost and sends wildcard CORS headers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only on trusted networks, bind the server to 127.0.0.1, and remove wildcard CORS before regular use.
+
+Risk: The web views load Three.js from a live CDN without integrity checks.
+
+Mitigation: Bundle Three.js locally or add subresource integrity and a content security policy.
+
+Risk: The README identifies Labubu as a POP MART copyrighted character.
+
+Mitigation: Confirm character rights and branding permissions before redistribution or commercial promotion.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wittfan/skills/digital-pet)
+- [README](README.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown guidance with runnable HTML, JavaScript, CSS, and Python files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No external API keys are required; the skill runs an interactive local web or desktop pet experience.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

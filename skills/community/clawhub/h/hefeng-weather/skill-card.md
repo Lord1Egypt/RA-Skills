@@ -1,44 +1,59 @@
-## Description: <br>
-Queries real-time weather, hourly forecasts, daily forecasts, and minute-level precipitation for a specified city using the QWeather/HeFeng Weather API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Queries QWeather for current weather, hourly and daily forecasts, and minute-level precipitation for a specified city.
 
-## Publisher: <br>
-[aaronjager92](https://clawhub.ai/user/aaronjager92) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aaronjager92](https://clawhub.ai/user/aaronjager92)
 
-## Use Case: <br>
-External users and developers use this skill to answer city weather questions in chat workflows or from the command line after configuring a QWeather API key. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a QWeather/HeFeng API key and supports reading it from a local config file. <br>
-Mitigation: Prefer the HEFENG_WEATHER_API_KEY environment variable, do not commit config.txt, and rotate exposed keys. <br>
-Risk: The setup documentation contains conflicting API-key acquisition links. <br>
-Mitigation: Use the official QWeather key page at https://id.qweather.com/ when provisioning credentials. <br>
-Risk: Broad chat triggers for routine weather comments may consume paid API quota unexpectedly. <br>
-Mitigation: Narrow trigger phrases, monitor QWeather usage, and apply quota controls where available. <br>
+## Use Case:
 
+Developers and agent users use this skill to answer weather requests in Chinese chat or command-line workflows by querying configured QWeather endpoints for a requested city.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/aaronjager92/hefeng-weather) <br>
-- [QWeather API key registration](https://id.qweather.com/) <br>
-- [Artifact reference README](artifact/references/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text weather summaries and Markdown setup guidance with shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a QWeather/HeFeng API key; accepts a city name or city ID plus a forecast type.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: A QWeather API key is required and could be exposed if stored carelessly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer HEFENG_WEATHER_API_KEY, keep local config files out of shared artifacts, and install only if providing a QWeather key is acceptable.
+
+Risk: The setup text contains a conflicting API key link.
+
+Mitigation: Use the official QWeather account portal at https://id.qweather.com/ and avoid the minimaxi.com link.
+
+Risk: The Python requests dependency is not pinned.
+
+Mitigation: Pin dependencies in managed environments before deployment.
+
+## Reference(s):
+
+- [Artifact setup and usage reference](artifact/references/README.md)
+- [QWeather account portal](https://id.qweather.com/)
+- [ClawHub skill page](https://clawhub.ai/aaronjager92/skills/hefeng-weather)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with command examples; command-line output is plain text weather summaries.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a QWeather API key configured through HEFENG_WEATHER_API_KEY or config.txt.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,52 @@
-## Description: <br>
-Calculate loan payments for mortgages, car loans, and personal loans using equal principal plus interest or equal principal methods. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Calculate loan payments for mortgages, car loans, and personal loans using equal principal plus interest or equal principal repayment methods.
 
-## Publisher: <br>
-[freedompixels](https://clawhub.ai/user/freedompixels) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[freedompixels](https://clawhub.ai/user/freedompixels)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and developers can use this skill to calculate loan repayment totals, interest, and monthly payment values for common loan scenarios. It is a lightweight local calculator and should not be treated as financial advice.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Calculator results may be unsuitable for financial decisions if users rely on them without review.
+
+Mitigation: Treat outputs as lightweight estimates and review them carefully before making financial decisions.
+
+Risk: Unbounded or untrusted loan terms can create reliability issues because additional validation and timeouts are not present.
+
+Mitigation: Add input bounds, validation, and execution time limits before forwarding untrusted loan terms.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users and developers use this skill to estimate loan payments and compare repayment methods from local command-line inputs. Its outputs are estimates and should not be treated as financial advice. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, code, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Loan calculations can be mistaken for financial advice. <br>
-Mitigation: Treat outputs as estimates and confirm repayment decisions with authoritative financial sources or a qualified adviser. <br>
-Risk: The skill documentation includes promotional AISoBrand links. <br>
-Mitigation: Review linked promotional material separately; the calculator artifact itself has no evidence of contacting that site. <br>
+**Output Format:** [Markdown guidance with Python CLI usage and JSON calculator output]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Uses Python standard library only; no API key or network service is required.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Local Python standard-library calculator; no artifact evidence of network access.] <br>
+1.0.2 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

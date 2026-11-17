@@ -1,46 +1,55 @@
-## Description: <br>
-Perception Music turns local agent perception signals into deterministic WAV or MP3 music using a local FM synthesizer. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Turn agent perception data into music using a zero-dependency FM synthesizer written in Zig.
 
-## Publisher: <br>
-[citriac](https://clawhub.ai/user/citriac) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[citriac](https://clawhub.ai/user/citriac)
 
-## Use Case: <br>
-Developers and agent operators use this skill to sonify local perception data such as brightness, RMS, phase, temperature, and presence into audio compositions. It is useful for local, offline perception-to-music workflows that do not require API keys, external calls, or ML models. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads local perception data under ~/.qclaw. <br>
-Mitigation: Install and run it only when local perception data access is expected for the workflow. <br>
-Risk: The skill executes local binaries such as fm_compose, sense_all, and ffmpeg. <br>
-Mitigation: Use trusted local binaries and prefer absolute paths for ffmpeg and related tools. <br>
-Risk: Scheduled use can create recurring compositions and local file writes. <br>
-Mitigation: Enable scheduled composition only when recurring audio generation is intentional. <br>
-Risk: Generated audio is written to ~/.qclaw/workspace/soundscape with temporary WAV or MP3 files created during processing. <br>
-Mitigation: Review the output location and storage impact before repeated or automated runs. <br>
+## Use Case:
 
+Developers and external users use this skill to sonify local perception data by mapping brightness, RMS, phase, temperature, and presence signals to FM synthesis parameters and generated audio files.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/citriac/perception-music) <br>
-- [FM Synthesis Algorithm](references/fm_algorithm.md) <br>
-- [Perception to Music Mapping](references/perception_mapping.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Guidance] <br>
-**Output Format:** [WAV or MP3 audio files with terminal status output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads local perception data, invokes local audio tools, and writes generated audio to the local soundscape workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter, _meta.json, server release evidence) <br>
+Risk: The skill invokes local audio and sensor binaries and writes generated music into the local QClaw workspace.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the provenance of ~/.local/bin/fm_compose, ~/.local/bin/sense_all, and ffmpeg before use, especially on shared or privileged systems.
+
+Risk: Temporary audio files are written under /tmp before being moved or deleted.
+
+Mitigation: Prefer private temporary directories or run the skill only in trusted local environments until temp-file hardening is improved.
+
+## Reference(s):
+
+- [FM Synthesis Algorithm](references/fm_algorithm.md)
+- [Perception to Music Mapping](references/perception_mapping.md)
+- [ClawHub Skill Page](https://clawhub.ai/citriac/skills/perception-music)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and Python script usage]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill guides an agent to run local scripts that generate WAV or MP3 audio files from perception data.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, release metadata, _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

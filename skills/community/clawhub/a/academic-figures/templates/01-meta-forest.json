@@ -1,0 +1,78 @@
+{
+ "_scene": "荟萃分析森林图",
+ "_description": "荟萃分析森林图（forest）。用模板自带 _command 一键渲染示例。",
+ "_chart_type": "forest",
+ "_command": "python3 scripts/gen_figure.py -t forest -d templates/01-meta-forest.json -o forest.pdf --theme okabe-ito --verify",
+ "_caption_template": "图X | 森林图显示……合并效应量 OR = 1.18（95%CI 0.98–1.42），异质性低（I²=51.9%）。",
+ "_note": "示例数字仅示意，请替换为你的真实数据（--stats auto 可用于 box/violin 原始数据）",
+ "labels": [
+  "Study A 2020",
+  "Study B 2021",
+  "Study C 2022",
+  "Study D 2023",
+  "Study E 2024"
+ ],
+ "estimates": [
+  1.35,
+  0.89,
+  1.52,
+  1.1,
+  0.95
+ ],
+ "ci_low": [
+  0.95,
+  0.65,
+  1.1,
+  0.82,
+  0.71
+ ],
+ "ci_high": [
+  1.92,
+  1.22,
+  2.1,
+  1.48,
+  1.27
+ ],
+ "weights": [
+  25.3,
+  18.7,
+  22.1,
+  17.4,
+  16.5
+ ],
+ "events": [
+  {
+   "events": 45,
+   "total": 120
+  },
+  {
+   "events": 32,
+   "total": 95
+  },
+  {
+   "events": 58,
+   "total": 150
+  },
+  {
+   "events": 27,
+   "total": 88
+  },
+  {
+   "events": 40,
+   "total": 132
+  }
+ ],
+ "overall": {
+  "estimate": 1.18,
+  "ci_low": 0.98,
+  "ci_high": 1.42
+ },
+ "ref_line": 1.0,
+ "measure": "OR (95% CI)",
+ "heterogeneity": {
+  "Q": 8.32,
+  "df": 4,
+  "I2": 51.9,
+  "p": 0.081
+ }
+}

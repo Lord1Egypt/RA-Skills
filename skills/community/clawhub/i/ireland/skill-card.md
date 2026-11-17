@@ -1,40 +1,53 @@
-## Description: <br>
-Discover Ireland like a local with concrete pubs, coastal routes, city guides, and practical trip-planning tips. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Discover Ireland like a local with concrete pubs, coastal routes, city guides, and practical trip-planning tips.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External travelers and travel-planning agents use this skill to plan Ireland trips with practical local guidance for cities, coastal routes, food, nightlife, transport, accommodations, weather-aware pacing, and common tourist traps. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Trip dates, budget, dietary needs, mobility needs, booking notes, and other preferences may be retained in ~/ireland/memory.md for reuse. <br>
-Mitigation: Review, edit, or delete ~/ireland/memory.md when those details should not be retained. <br>
-Risk: Ireland route plans can become unrealistic when scenic road speeds, weather changes, or peak-season booking pressure are underestimated. <br>
-Mitigation: Keep weather fallback time in daily plans, use realistic driving assumptions, and confirm high-value bookings or transport details through official providers before committing. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Ireland skill page](https://clawhub.ai/ivangdavila/ireland) <br>
-- [Ireland skill homepage](https://clawic.com/skills/ireland) <br>
+## Use Case:
 
+External travelers and travel-planning agents use this skill to plan Ireland trips with practical city, coastal route, food, transport, safety, and timing guidance. It helps tailor recommendations to trip style, season, budget, mobility, family needs, and driving comfort.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown or plain text travel guidance with optional local memory updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create, read, or update ~/ireland/memory.md to retain trip preferences locally.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Trip-planning notes may store dates, preferences, budget, mobility, dietary, family, or booking details in ~/ireland/memory.md.
+
+Mitigation: Review or delete ~/ireland/memory.md when local retention is not desired.
+
+Risk: Travel guidance can become stale for prices, opening hours, bookings, weather, transport disruption, and outdoor safety conditions.
+
+Mitigation: Confirm high-value bookings, transport, weather, hiking conditions, and emergency details against current official sources before acting.
+
+## Reference(s):
+
+- [ClawHub Ireland skill page](https://clawhub.ai/ivangdavila/skills/ireland)
+- [Ireland skill homepage](https://clawic.com/skills/ireland)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with optional shell commands and local memory notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update ~/ireland/memory.md for local trip context; no network behavior is described in the security evidence.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

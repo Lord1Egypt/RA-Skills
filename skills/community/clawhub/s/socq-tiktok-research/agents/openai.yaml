@@ -1,0 +1,11 @@
+interface:
+  display_name: "SocQ TikTok Research"
+  short_description: "Collect and analyze public TikTok data"
+  default_prompt: "Use $socq-tiktok-research to collect and analyze this public TikTok research request."
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "socq"
+      description: "Hosted SocQ TikTok data tools"
+      transport: "streamable_http"
+      url: "https://api.socq.ai/mcp?platforms=tiktok"

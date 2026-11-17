@@ -1,41 +1,54 @@
-## Description: <br>
-Hierarchical memory management for AI agents across sessions, using daily notes, active context, and long-term memory with periodic distillation from raw notes to curated memory. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Hierarchical memory management for AI agents across sessions, maintaining daily notes, active context, and long-term memory with distillation from raw notes to curated knowledge.
 
-## Publisher: <br>
-[yozu](https://clawhub.ai/user/yozu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yozu](https://clawhub.ai/user/yozu)
 
-## Use Case: <br>
-Developers and agent operators use this skill to set up durable workspace memory, decide what should be captured, and consolidate daily notes into long-term context across sessions or compaction boundaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Memory files can accidentally retain secrets, tokens, passwords, or sensitive client data. <br>
-Mitigation: Do not write secrets to memory files; reference secure file paths instead and treat memory files as potentially shared or version-controlled. <br>
-Risk: Automatic distillation or pruning can preserve incorrect context or remove useful history. <br>
-Mitigation: Review proposed memory updates before relying on them, and use version control or backups for workspaces where memory files are important. <br>
+## Use Case:
 
+Developers and agent operators use this skill to set up local workspace memory so agents can resume work across sessions, record decisions, and periodically distill daily notes into long-term memory.
 
-## Reference(s): <br>
-- [Distillation Guide](references/distillation-guide.md) <br>
-- [ClawHub release page](https://clawhub.ai/yozu/adaptive-memory) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and configuration file examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local workspace memory files and maintenance guidance; no network output is described.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Workspace memory files can retain private operational context across sessions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review what is written to memory files, avoid storing secrets or credentials, and keep memory files out of public repositories when they contain private context.
+
+Risk: Automated distillation can promote stale or incorrect daily notes into long-term memory.
+
+Mitigation: Prefer manual or clearly user-approved distillation, and review long-term memory updates before relying on them.
+
+## Reference(s):
+
+- [Distillation Guide](references/distillation-guide.md)
+- [Adaptive Memory ClawHub Page](https://clawhub.ai/yozu/skills/adaptive-memory)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with optional shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce local workspace memory files such as MEMORY.md and files under memory/ when the initialization workflow is used.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

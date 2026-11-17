@@ -1,6 +1,14 @@
 {
-  "ownerId": "kn7cp7eb6ymqv898hke0ersmc1847fed",
-  "slug": "kb-ingest",
-  "version": "1.0.1",
-  "publishedAt": 1782415314010
+  "name": "kb_ingest",
+  "version": "1.0.0",
+  "description": "Ingest uploaded files into personal or team Research KB repositories through OpenClaw Agent JSON tasks.",
+  "author": "mayidan",
+  "language": "python3",
+  "entry": "SKILL.md",
+  "part_of": "research-kb-desktop",
+  "taskTypes": ["kb_ingest"],
+  "requires": {
+    "env": ["GITEA_URL", "GITEA_ADMIN_TOKEN", "GITEA_BOT_USERNAME"],
+    "input": ["research_kb_agent_task JSON"]
+  }
 }

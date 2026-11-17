@@ -1,43 +1,58 @@
-## Description: <br>
-ExpertLens is an AI thinking framework that forces expert-level reasoning on any task. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ExpertLens is a platform-agnostic reasoning skill that helps an agent diagnose the real task, adapt its reasoning to the domain, self-audit its output, and optionally coordinate multi-model review for complex work.
 
-## Publisher: <br>
-[ashutosh2m](https://clawhub.ai/user/ashutosh2m) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ashutosh2m](https://clawhub.ai/user/ashutosh2m)
 
-## Use Case: <br>
-External users and developers use ExpertLens to have an agent apply a structured reasoning, execution, self-audit, and improvement process to complex, creative, strategic, architectural, or publishable work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can broadly activate and steer agent behavior across many task types. <br>
-Mitigation: Review the generated response before relying on it, especially for high-stakes or user-facing work. <br>
-Risk: Swarm Mode may send task context to external AI services. <br>
-Mitigation: Before any external sharing, require the agent to name the destination service, show the exact prompt or email, and remove secrets, personal data, credentials, private project context, and regulated information. <br>
+## Use Case:
 
+External users and developers use ExpertLens to make an LLM produce structured, domain-adapted analysis, recommendations, self-critique, and task-specific guidance instead of generic responses. It is intended for complex, creative, strategic, architectural, publishable, or high-stakes tasks rather than simple factual lookups or one-step edits.
 
-## Reference(s): <br>
-- [ExpertLens ClawHub page](https://clawhub.ai/ashutosh2m/expertlens) <br>
-- [ExpertLens homepage](https://github.com/Ashutosh2M/ExpertLens) <br>
-- [Platform guide](references/platform-guide.md) <br>
-- [Swarm protocol](references/swarm-protocol.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown or task-appropriate plain text with optional code blocks, commands, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prompt-only skill; output depends on the user's task and the host agent's available tools.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Autonomous Swarm Mode can send broad task context to third-party AI services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Disable or avoid Autonomous Swarm Mode for confidential work unless each external send shows the minimized prompt, destination, and account first.
+
+Risk: The skill can activate a broad reasoning persona on many complex tasks.
+
+Mitigation: Install it only where that broad reasoning posture is desired, and reserve simple factual or one-step tasks for normal agent behavior.
+
+Risk: Memory, file, or feedback sends may store or transmit user context if approved.
+
+Mitigation: Approve those actions only after reviewing exactly what will be written, stored, or sent.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/ashutosh2m/skills/expertlens)
+- [Project homepage from ClawHub metadata](https://github.com/Ashutosh2M/ExpertLens)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown-formatted prose, lists, tables, and recommendations matched to the user's task.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No fixed schema; output shape follows the task and may include analysis, recommendations, self-critique, relay prompts, or implementation guidance.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

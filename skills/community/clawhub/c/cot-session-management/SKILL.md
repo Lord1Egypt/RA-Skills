@@ -1,0 +1,297 @@
+---
+name: session-management
+description: Structured session lifecycle for Claude Code — start, checkpoint, end, and daily heartbeat commands that maintain project state across conversations.
+disable-model-invocation: true
+---
+<!-- x-source: agent-workspace/SKILL.md @ 7b7211e -->
+
+# Session Management for Claude Code
+
+A system of four commands that give Claude Code a memory across sessions. Instead of starting every conversation cold, these skills maintain state files that capture what you're working on, what decisions you've made, and what's next.
+
+**Invocation:** user-only (`disable-model-invocation: true`) — session lifecycle is timed by you, and the flag keeps this 300-line skill out of ambient context.
+
+## Why This Exists
+
+Claude Code conversations are ephemeral — close the terminal and the context is gone. These skills solve that by:
+- **`/start`** loads your project state so Claude knows where you left off
+- **`/update`** saves progress mid-session without closing
+- **`/end`** captures the session and proposes durable memory updates before you close
+- **`/today`** runs a morning check-in that catches staleness, surfaces deadlines, and proposes memory updates
+
+The system compounds over time. Session logs become an episodic record. State files stay fresh. Decisions are logged. Nothing falls through the cracks.
+
+## Setup
+
+### Required file structure
+
+Create these files in your project root (or wherever makes sense for your workflow):
+
+```
+state/
+  current.md          # Active priorities, open threads, recent context
+  current-log.md      # History of past "Last Updated" lines, newest first (auto-created)
+  decisions.md        # Decision log (date, decision, rationale, rejected alternatives)
+  weekly-priorities.md # What matters this week
+  blockers.md         # Things waiting on external dependencies
+  heartbeat-log.md    # Record of /today check-ins (auto-created)
+sessions/
+  {YYYY-MM-DD}.md     # Daily session logs (auto-created)
+```
+
+### Minimal `state/current.md` to start
+
+```markdown
+# Current State
+
+Last updated: [date]
+
+## Active Priorities
+1. [Your top priority]
+2. [Second priority]
+
+## Active Context
+- [Open thread or thing you're working on] *(created M/D)*
+
+## Recently Completed
+- [Last thing you finished] *(M/D)*
+```
+
+### Minimal `state/decisions.md` to start
+
+```markdown
+# Decision Log
+
+Key decisions with date, context, rationale, and what was considered but not chosen.
+
+| Date | Decision | Context / Rationale | Rejected Alternatives |
+|------|----------|---------------------|-----------------------|
+```
+
+The last column records what else was on the table and why it lost. It is the failed-hypothesis log: a future session can audit the reasoning, not just the outcome, and avoid re-litigating a path that was already ruled out. Leave it blank when there was only one obvious option.
+
+### Add to your CLAUDE.md
+
+```markdown
+## Session Management
+| Command | What it does |
+|---------|-------------|
+| `/start` | Load state, check what changed, give a briefing |
+| `/end` | Log the session, update state, propose memory updates, check for uncommitted work |
+| `/update` | Mid-session checkpoint (quick save) |
+| `/today` | Morning heartbeat — staleness check, deadlines, memory curation |
+```
+
+---
+
+## /start — Begin Session
+
+### Instructions
+
+1. **Get today's date.** Run `date +%Y-%m-%d`. Note the day of week.
+
+2. **Check what changed since last session.** Find the most recent session log and run:
+   ```bash
+   git log --oneline --since="<last session date>"
+   ```
+   Flag any state or context files modified since last session — these may contain updates from other sessions or manual edits.
+
+3. **Load context (read in order):**
+   - `state/current.md` — active priorities, open threads
+   - `state/decisions.md` — scan last 5 entries for awareness
+   - `state/weekly-priorities.md` — what matters this week
+   - `state/blockers.md` — things waiting on dependencies
+   - `sessions/{TODAY}.md` — if it exists, you're resuming today
+
+4. **Health checks.** Flag anything that needs attention; skip silently if all clean:
+   - `current.md` >3 days stale — flag it
+   - `weekly-priorities.md` >5 days — flag it
+   - `blockers.md` >7 days — flag it
+   - **Inbox:** if you keep a drop-zone (e.g. `inbox/`) and it holds files, note the count and suggest triaging them
+   - **Overdue items:** scan your task file (e.g. `TODO.md`) for unchecked items with a date that has passed
+
+5. **Give a briefing.** Keep it short:
+   - Date and day of week
+   - State freshness (one line if all fresh, individual flags if stale)
+   - Files changed since last session
+   - Top 2-3 priorities from current.md
+   - Any time-sensitive open threads
+   - Any blockers worth flagging
+   - Ask: "What's the focus today?"
+
+   If resuming today's session, acknowledge what was already covered.
+
+---
+
+## /update — Quick Checkpoint
+
+### Instructions
+
+1. **Scan recent conversation.** Identify in 30 seconds: what was worked on, any decisions made, any state changes needed.
+
+2. **Append to session log.** Add to `sessions/{TODAY}.md`:
+   ```markdown
+   ## Update: {TIME}
+   - {what was worked on, 1-3 bullets max}
+   ```
+
+3. **Update state if something changed.** Only touch `current.md` if a priority shifted, a thread opened/closed, or a task completed. Skip otherwise.
+
+4. **Confirm.** One line: "Checkpointed: {brief description}"
+
+---
+
+## /end — Close Session
+
+### Instructions
+
+1. **Auto-extract session summary.** Scan the full conversation and extract:
+   - **Topics covered** — what was worked on
+   - **Decisions made** — anything concluded or chosen, with rationale
+   - **Rejected alternatives:** for each meaningful decision, what else was considered and why it lost. If a bug was fixed, note the wrong theory that was tried first. If an approach changed mid-session, capture the pivot. This is the failed-hypothesis record that keeps a future session from repeating the same wrong starting point.
+   - **State changes** — priorities that shifted, threads that opened or closed
+   - **Open threads** — unfinished items or things waiting on someone
+   - **Next actions** — what needs to happen next session
+
+   Present the summary for quick confirmation before writing.
+
+2. **Write session log.** Append to `sessions/{TODAY}.md`:
+   ```markdown
+   ## Session: {TIME}
+
+   ### Topics
+   - {topic}
+
+   ### Decisions
+   - {decision}
+
+   ### Open Threads
+   - {thread}
+
+   ### Next Actions
+   - {action}
+   ```
+
+3. **Update state files:**
+   - **Always update `current.md`**: Add new threads, remove completed items, update timestamps on touched items.
+   - **Roll the `Last Updated` line through `current-log.md` (chain protocol).** Keep exactly one `**Last Updated:**` line at the top of `current.md`, the newest one. Never stack extra `**Last Updated:**` lines, and never extend one line with a "previous-entry" chain (that pattern breaks the Read tool, breaks grep, and turns parallel-session merges into spliced single-line conflicts). Instead:
+     1. Read the existing `**Last Updated:**` line from `current.md`.
+     2. Prepend it as its own line at the top of `state/current-log.md`, directly under the file header, newest first. Create the file with a `# current.md update log` header if it does not exist.
+     3. Replace the `**Last Updated:**` line in `current.md` with today's new entry.
+
+     One entry per line keeps history append-only and merge conflicts line-based: two parallel sessions both prepending produce a trivial both-lines merge instead of one giant clobbered line.
+   - **Update `blockers.md` if needed**: Add new dependencies, move resolved blockers to "Recently Unblocked."
+   - **Update `weekly-priorities.md` if needed**: Check off completed items. Only touch if meaningful progress was made.
+
+4. **Update decision log.** If decisions were made, append to `decisions.md`:
+   ```markdown
+   | {TODAY} | {decision} | {context / rationale} | {rejected alternatives} |
+   ```
+   Only log decisions that future sessions need to know about: source-of-truth changes, strategy pivots, scope calls, tool or process choices. Skip trivial ones.
+
+   Fill the **rejected alternatives** column when there was a real branch point: what else was considered, and why it lost. Leave it blank for decisions with only one obvious option. Capturing the non-chosen paths lets a future session audit the reasoning, not just the outcome.
+
+5. **Propose auto-memory updates.** Beyond state files, scan the session for durable patterns worth preserving across *every* conversation in this project. Claude Code auto-loads `MEMORY.md` from the project's memory dir (`~/.claude/projects/<encoded-cwd>/memory/`, where `<encoded-cwd>` is the project path with `/`, `\`, and `:` replaced by `-`) at the start of each conversation, so anything saved there compounds.
+
+   Propose 0–2 additions. Good candidates: environment quirks or tool behaviors confirmed this session, workflow preferences the user stated ("always X", "never Y"), debugging fixes that will recur, stable facts about projects or people. Skip: today's work (that's the session log), anything already in `CLAUDE.md` or state files, and unverified single-observation conclusions.
+
+   **Friction-point check:** before proposing, ask — *was there a friction point this session that a memory entry would have prevented?* A tool you had to re-learn, an error you'd hit before, a convention you had to re-infer. If yes, write the entry; repeating a mistake is a system failure, so turn it into a durable rule.
+
+   Present proposals inline and wait for approval — never write to memory automatically:
+   ```
+   MEMORY PROPOSALS:
+   - [proposed addition]
+   (Reply "save" to apply, or skip)
+   ```
+   If nothing qualifies, skip silently.
+
+6. **Quick drift check (if parallel sessions ran).** Run `git log --oneline --all --since="6 hours ago"` to catch commits from other sessions working in parallel.
+   - If any of those commits touched files this session also edited, flag the potential conflict: "Parallel session also edited [file], check for conflicts." Wait for the user before fixing anything.
+   - If no parallel commits are found, skip silently. Do not mention this step.
+   - This is a fast spot-check, not a full reconcile.
+
+7. **Git safety check (do not skip).** Run `git status` and check for uncommitted or unpushed work:
+   - Uncommitted changes? Show the files and ask whether to commit.
+   - Unpushed commits? Show the count and ask whether to push.
+   - Clean and pushed? Skip silently.
+
+8. **Confirm.** Two-line summary: what was logged, and the top open thread or next action. If memory proposals are awaiting a save/skip reply, note that.
+
+---
+
+## /today — Morning Heartbeat
+
+A daily check-in that catches staleness, surfaces deadlines, and proposes updates. Designed to run in under 60 seconds.
+
+### Instructions
+
+1. **Establish context.** Get today's date. Read the heartbeat log (`state/heartbeat-log.md`) to find the last check-in date.
+
+2. **Scan recent activity.** Run:
+   ```bash
+   git log --oneline --since="3 days ago"
+   ```
+   Check `sessions/` for recent logs. This captures work even from sessions that closed without `/end`.
+
+3. **Check state freshness.** Same thresholds as `/start` step 4.
+
+4. **Surface deadlines.** Read `TODO.md` or your task file and scan for:
+   - Items with dates in the next 7 days
+   - Items marked urgent or time-sensitive
+
+5. **Age-check open items.** Read `current.md` and check dates on open threads:
+   - Items >7 days old: flag as "stale — still relevant?"
+   - Items >14 days old: escalate as "likely stale — remove or convert to task?"
+   Present proposals. **Do not auto-update.**
+
+6. **Identify memory gaps.** Compare git log activity against state files:
+   - Decisions committed but not in `decisions.md`?
+   - Completed work not reflected in `current.md`?
+   List proposed updates. **Do not auto-update. Wait for approval.**
+
+7. **Output format:**
+   ```
+   MORNING CHECK-IN — [DATE] ([day of week])
+   Last heartbeat: [date] ([N] days ago)
+
+   SINCE LAST CHECK-IN:
+   - [N] commits: [brief themes]
+   - Session logs: [found/none]
+
+   STATE:
+   - current.md — [fresh/N days stale]
+   - weekly-priorities.md — [fresh/N days stale]
+   - blockers.md — [fresh/N days stale]
+
+   DEADLINES (next 7 days):
+   - [items, most urgent first]
+
+   [If stale items found:]
+   STALE ITEMS:
+   - [item] — [N] days old. [Propose: remove / convert to task]
+
+   [If memory gaps found:]
+   MEMORY GAPS:
+   - [proposed update]
+   ```
+
+8. **Log the heartbeat.** Append to `state/heartbeat-log.md`:
+   ```markdown
+   ## [DATE]
+   - Commits since last: [N]
+   - State staleness: [summary]
+   - Deadlines flagged: [count]
+   - Stale items flagged: [count]
+   - Memory gaps found: [count]
+   - Updates applied: [list or "none — awaiting response"]
+   ```
+
+9. **Transition.** Ask: "What's the focus today?"
+
+## Design Principles
+
+- **Fast.** Under 60 seconds. If it's slow, it won't get used.
+- **Propose, don't act.** State and auto-memory updates from `/end` are presented for confirmation. Memory updates from `/today` require explicit approval. Never silently edit state files during heartbeat, or write to auto-memory without a "save".
+- **Skip what's clean.** If everything is fresh and no deadlines are near, say so in one line.
+- **Compound over time.** Session logs and heartbeat logs become an episodic record. Over weeks, they show patterns.
+- **Graceful degradation.** If state files don't exist yet, create them. If a session closes without `/end`, `/today` catches the gaps. Nothing is catastrophic.

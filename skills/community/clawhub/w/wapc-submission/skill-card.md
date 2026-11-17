@@ -1,40 +1,53 @@
-## Description: <br>
-Automate WAPC award submissions on mulandxc.com when you need to collect real LoTW-confirmed evidence, fill the WAPC table, upload screenshots, save applicant info, and complete the final browser-based submission flow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automate WAPC award submissions on mulandxc.com when you need to collect real LoTW-confirmed evidence, fill the WAPC table, upload screenshots, save applicant info, and complete the final browser-based submission flow.
 
-## Publisher: <br>
-[muningwang](https://clawhub.ai/user/muningwang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[muningwang](https://clawhub.ai/user/muningwang)
 
-## Use Case: <br>
-Radio-award applicants and assisting operators use this skill to prepare a Mulan DX Club WAPC application from LoTW-confirmed QSO evidence, upload required screenshots, save applicant information, and complete the browser submission flow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill works inside LoTW and mulandxc.com sessions and can submit applicant details. <br>
-Mitigation: Use it only for intended WAPC submissions and review applicant fields before the final save or submit step. <br>
-Risk: The workflow uploads QSO evidence screenshots that may expose account or contact details. <br>
-Mitigation: Review each selected screenshot before upload and keep evidence files limited to the required WAPC proof. <br>
+## Use Case:
 
+External award applicants and supporting agents use this skill to prepare Mulan DX Club WAPC submissions with LoTW-confirmed QSOs, uploaded screenshots, saved row data, applicant information, and final browser submission.
 
-## Reference(s): <br>
-- [WAPC workflow reference](references/workflow.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, files, API calls, configuration] <br>
-**Output Format:** [Markdown guidance with browser actions, endpoint payload notes, and screenshot file conventions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces workflow guidance for handling LoTW evidence screenshots, WAPC row data, applicant information, and final submission checks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill has a hard-coded live WAPC application ID for remote updates and personal-data submission, which can update the wrong application record.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the authenticated account owns the target WAPC application and replace or verify application ID 806 from the live page before any update.
+
+Risk: The workflow uploads evidence images and submits personal contact details.
+
+Mitigation: Explicitly approve all LoTW evidence images and applicant contact details before upload or final submission.
+
+## Reference(s):
+
+- [WAPC Workflow Reference](references/workflow.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with commands, field names, API endpoints, and workflow checks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should be reviewed before browser actions, evidence uploads, personal-data submission, or final award submission.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

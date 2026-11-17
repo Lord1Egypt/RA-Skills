@@ -1,0 +1,4 @@
+interface:
+  display_name: "Session Guardian"
+  short_description: "Detect session boundaries and create concise handoffs"
+  default_prompt: "Use $session-guardian to assess whether this work should continue here or start a new session."

@@ -1,45 +1,60 @@
-## Description: <br>
-Integrates with the Lovart.ai API to help agents generate AI designs, images, edited visuals, videos, and template-based creative assets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Integrates with the Lovart.ai API to help agents generate AI designs, images, and videos, including image generation, image editing, video creation, and template workflows.
 
-## Publisher: <br>
-[mendynew](https://clawhub.ai/user/mendynew) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mendynew](https://clawhub.ai/user/mendynew)
 
-## Use Case: <br>
-External users and developers use this skill to convert design requests into Lovart API workflows for product images, marketing assets, logo concepts, and short videos. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send prompts, design requirements, or brand material to Lovart.ai for processing. <br>
-Mitigation: Use a trusted environment and avoid submitting confidential product plans, customer data, secrets, or unreleased brand assets unless third-party processing by Lovart is acceptable. <br>
-Risk: Lovart API calls may consume paid credits. <br>
-Mitigation: Confirm broad or batch generation requests before execution and monitor API usage against the account plan. <br>
-Risk: The skill requires a Lovart API key. <br>
-Mitigation: Store LOVART_API_KEY only in trusted environment variables, never expose it in client-side code, and rotate it regularly. <br>
+## Use Case:
 
+Developers and creative users use this skill to turn design requests into Lovart.ai API calls for product images, marketing assets, logos, short videos, and template-based design workflows.
 
-## Reference(s): <br>
-- [Lovart Skill on ClawHub](https://clawhub.ai/mendynew/lovart) <br>
-- [Lovart.ai](https://www.lovart.ai/) <br>
-- [Lovart API Documentation](https://lovart.info/lovart-api) <br>
-- [Lovart for Developers](https://lovart.info/lovart-ai-code) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON request examples and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce Lovart API prompts, curl commands, task polling guidance, and result URLs from Lovart responses.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter, config.json, server release metadata) <br>
+Risk: Design prompts, brand details, and related usage metadata may be sent to Lovart.ai under the user's Lovart account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when Lovart.ai processing is intended, and avoid submitting confidential product, campaign, or branding material unless third-party processing is approved.
+
+Risk: Broad design-related trigger wording may cause accidental use from generic design requests.
+
+Mitigation: Invoke Lovart explicitly for Lovart.ai work and review generated API calls before execution.
+
+Risk: Lovart API keys can be exposed if copied into client-side code or shared logs.
+
+Mitigation: Store LOVART_API_KEY in an environment variable or server-side secret store, proxy requests through approved backend services, and rotate keys regularly.
+
+## Reference(s):
+
+- [Lovart API Documentation](https://lovart.info/lovart-api)
+- [Lovart for Developers](https://lovart.info/lovart-ai-code)
+- [Lovart.ai](https://www.lovart.ai/)
+- [ClawHub Skill Page](https://clawhub.ai/mendynew/skills/lovart)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with JSON request bodies and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include optimized design prompts, Lovart.ai API request examples, polling commands, result handling guidance, and configuration instructions for LOVART_API_KEY.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence, skill frontmatter, config.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

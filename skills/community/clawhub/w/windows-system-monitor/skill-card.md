@@ -1,43 +1,53 @@
-## Description: <br>
-Monitors Windows system status, including CPU, memory, disk, network, processes, and event logs, and notifies users when issues are detected. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Windows system status monitoring that checks CPU, memory, disk, network, process, and Windows event log health and notifies when issues are detected.
 
-## Publisher: <br>
-[jirboy](https://clawhub.ai/user/jirboy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jirboy](https://clawhub.ai/user/jirboy)
 
-## Use Case: <br>
-Developers, operators, and Windows administrators use this skill to check host health, review resource pressure, and receive alerts when configured thresholds are exceeded. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Monitoring can expose system status, resource usage, process, network, log, or alert details to unintended recipients. <br>
-Mitigation: Configure Feishu and other alerts to send only minimal necessary system details to trusted recipients. <br>
-Risk: A monitoring schedule could run more often or in more contexts than intended. <br>
-Mitigation: Confirm that monitoring runs only on explicit request or on a schedule the operator approves. <br>
-Risk: Referenced monitoring code is not bundled in this release artifact. <br>
-Mitigation: Inspect any separate Python monitoring script before running it. <br>
+## Use Case:
 
+Developers, operators, and Windows administrators use this skill to request system-health checks and receive status reports or alerts about resource pressure, abnormal processes, network issues, and relevant event-log problems.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jirboy/windows-system-monitor) <br>
-- [Publisher profile](https://clawhub.ai/user/jirboy) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and references to JSON status reports.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference local monitoring scripts, report files, logs, and Feishu notification configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release evidence) <br>
+Risk: Configured Feishu alerts may send host, process, network, or log status details outside the local machine.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before enabling Feishu alerts or recurring checks, confirm the recipient, webhook or app configuration, and the exact details included in notifications.
+
+Risk: System-health findings may be incomplete or stale if checks are not run at the intended frequency.
+
+Mitigation: Use the documented daily, weekly, and monthly check cadence and review generated reports before taking operational action.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jirboy/skills/windows-system-monitor)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with status summaries and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference JSON health reports and Feishu, popup, or log notifications when configured.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -12,6 +12,8 @@ intents:
   - "multi-agent tool access control"
 tags: [multi-agent, access-control, delegation, openclaw, agent-orchestration, security]
 icon: 🛡️
+disable-model-invocation: true
+user-invocable: true
 metadata:
   author: iClaw
   version: "1.1.1"
@@ -24,6 +26,22 @@ edit, exec, process, apply_patch). Turn it on — main delegates everything
 to sub-agents. Turn it off — main is free. Add or remove agents from the
 controlled list to extend protection. Install or remove the companion
 plugin in one command. No restarts, no config edits.
+
+## Invocation Model
+
+mainctrl is a management/admin skill — it is NOT loaded into your system
+prompt. The frontmatter settings enforce this:
+
+- **`disable-model-invocation: true`** — This skill is excluded from the
+  agent's available skills list at load time. You will never see these
+  instructions unless the user invokes mainctrl explicitly.
+
+- **`user-invocable: true`** — The skill is available as the `/mainctrl`
+  slash command for manual invocation.
+
+**When to follow these instructions:** Only when the user has explicitly
+invoked mainctrl via `/mainctrl`. In all other contexts, this skill is
+inactive — do not pre-emptively apply its rules or behavior.
 
 ## Startup Behavior
 

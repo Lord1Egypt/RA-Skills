@@ -1,0 +1,13 @@
+{
+  "snapshot_date": "2026-10-06",
+  "repository_contains_runtime": false,
+  "downloads": [
+    {
+      "file": "ptbrowser-mcp-37b93ea03a42.zip",
+      "url": "https://res.qique.cn/system/skill/ptbrowser-mcp-37b93ea03a42.zip",
+      "bytes": 3658,
+      "sha256": "37b93ea03a42662fc35f289c26a2c32765e3556c8d5827c110d0322edb478617"
+    }
+  ],
+  "note": "Runtime packages remain hosted by the product publisher. Snapshot hashes do not establish functional compatibility or grant a license."
+}

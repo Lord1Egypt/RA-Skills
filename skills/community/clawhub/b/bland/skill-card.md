@@ -1,44 +1,57 @@
-## Description: <br>
-Place and manage AI-driven phone calls, access transcripts, recordings, call status, and configure inbound call agents via the Bland AI API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Place and manage AI-driven phone calls, access transcripts, recordings, call status, and configure inbound call agents via the Bland AI API.
 
-## Publisher: <br>
-[0xrichyrich](https://clawhub.ai/user/0xrichyrich) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[0xrichyrich](https://clawhub.ai/user/0xrichyrich)
 
-## Use Case: <br>
-Developers and agents with Bland AI accounts use this skill to place outbound AI calls, inspect call status, retrieve transcripts and recordings, manage inbound numbers, and configure inbound call agents. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can place real calls that may incur cost and require legal authorization or consent. <br>
-Mitigation: Confirm the recipient, purpose, consent requirements, and account balance before running call commands. <br>
-Risk: The skill can expose call metadata, transcripts, and temporary recording URLs. <br>
-Mitigation: Treat call outputs as sensitive data and share or store them only according to the user's data handling requirements. <br>
-Risk: The skill includes account-changing commands such as stopping active calls, configuring inbound agents, and buying numbers. <br>
-Mitigation: Run stop-all, setup-inbound, and buy-number only after explicit confirmation of the intended account impact. <br>
-Risk: The skill depends on a Bland AI API key with access to live account resources. <br>
-Mitigation: Set BLAND_API_KEY explicitly for the intended account and avoid broad or shared credentials when possible. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/0xrichyrich/bland) <br>
-- [Bland API Base](https://api.bland.ai/v1) <br>
+## Use Case:
 
+Developers and operators use this skill to place and manage Bland AI phone calls from an agent-accessible CLI, including outbound calls, inbound agent setup, transcripts, recordings, number management, balance checks, and call analysis.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Text, API calls, Configuration] <br>
-**Output Format:** [Terminal text with JSON-formatted API responses where available] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires BLAND_API_KEY and network access to the Bland AI API; some commands can create billing events or expose call data.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can initiate real Bland AI calls and perform billable account actions, including purchasing inbound numbers.
+
+Mitigation: Use a dedicated Bland API key with intended permissions, review commands before execution, and check account balance before heavy use.
+
+Risk: Transcripts and recording URLs may contain sensitive call content and can appear in terminal output or logs.
+
+Mitigation: Treat transcript and recording output as sensitive, limit log retention, and avoid sharing terminal output that contains call data.
+
+Risk: The skill may read a broadly shared API key from /root/clawd/.env.
+
+Mitigation: Prefer setting BLAND_API_KEY explicitly for this skill and avoid using shared environment files for production credentials.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/0xrichyrich/skills/bland)
+- [Publisher profile](https://clawhub.ai/user/0xrichyrich)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands and CLI output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May output call IDs, call status, account balance, transcript text, analysis results, and temporary recording URLs.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence, created 2026-03-02T09:02:04Z)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

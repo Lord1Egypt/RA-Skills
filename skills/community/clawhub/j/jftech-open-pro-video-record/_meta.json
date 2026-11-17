@@ -1,6 +1,61 @@
 {
-  "ownerId": "kn76a4cz1f8226smfrv62zp4h1845f45",
-  "slug": "jftech-open-pro-video-record",
-  "version": "1.0.0",
-  "publishedAt": 1777270913790
+  "name": "jf-open-pro-video-record",
+  "version": "1.0.1",
+  "description": "杰峰设备录像回放技能。支持获取设备云存储录像和设备本地录像回放地址，包括录像列表查询、回放地址获取、录像下载等功能。",
+  "requiredEnvVars": [
+    {
+      "name": "JF_UUID",
+      "description": "杰峰开放平台用户唯一标识",
+      "source": "https://open.jftech.com/"
+    },
+    {
+      "name": "JF_APPKEY",
+      "description": "杰峰开放平台应用 Key",
+      "source": "https://open.jftech.com/"
+    },
+    {
+      "name": "JF_APPSECRET",
+      "description": "杰峰开放平台应用密钥",
+      "source": "https://open.jftech.com/"
+    },
+    {
+      "name": "JF_MOVECARD",
+      "description": "签名算法偏移量 (0-9)，用于时间戳偏移增加签名安全性",
+      "source": "https://open.jftech.com/"
+    }
+  ],
+  "optionalEnvVars": [
+    {
+      "name": "JF_SN",
+      "description": "设备序列号"
+    },
+    {
+      "name": "JF_USERNAME",
+      "description": "设备登录用户名",
+      "default": "admin"
+    },
+    {
+      "name": "JF_PASSWORD",
+      "description": "设备登录密码（本地录像必需）"
+    },
+    {
+      "name": "JF_ENDPOINT",
+      "description": "API 端点",
+      "default": "api.jftechws.com"
+    }
+  ],
+  "credentialsRequired": true,
+  "envVarsOnly": true,
+  "networkAccess": [
+    "api.jftechws.com",
+    "api-cn.jftech.com"
+  ],
+  "fileAccess": "none",
+  "language": "python",
+  "scripts": [
+    "cloud_video_list.py",
+    "cloud_playback_url.py",
+    "local_video_list.py",
+    "local_playback_url.py"
+  ]
 }

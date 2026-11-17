@@ -1,46 +1,59 @@
-## Description: <br>
-Decentralized file marketplace on Monad blockchain - buy, sell, and browse encrypted files with x402. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Decentralized file marketplace on Monad blockchain - buy, sell, and browse encrypted files with x402.
 
-## Publisher: <br>
-[timowhite88](https://clawhub.ai/user/timowhite88) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[timowhite88](https://clawhub.ai/user/timowhite88)
 
-## Use Case: <br>
-Developers and external users can use this skill to browse encrypted file listings, purchase files through x402 payment flows, and list files for sale on the Planet Express marketplace. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Marketplace purchase and listing flows can involve real payments and irreversible on-chain actions. <br>
-Mitigation: Before any payment or listing, manually confirm the exact cost, chain, contract or recipient, wallet prompt, and listing details. <br>
-Risk: Public listings can expose file titles, descriptions, URIs, prices, and related marketplace metadata. <br>
-Mitigation: Review the file and listing metadata before publishing, and avoid listing sensitive material unless public exposure is intended. <br>
-Risk: The skill depends on external marketplace and payment endpoints for browsing, purchasing, listing, and delivery. <br>
-Mitigation: Use the documented Planet Express and DropClaw endpoints, verify listing identity and payment options, and stop if endpoint, contract, or wallet details do not match expectations. <br>
+## Use Case:
 
+Developers and external agents use this skill to browse marketplace listings, purchase encrypted files, and list files for sale through x402 payment flows on Monad, Solana, and Base.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/timowhite88/planetexpress-marketplace) <br>
-- [Planet Express marketplace](https://planetexpress.dropclaw.cloud) <br>
-- [DropClaw marketplace API](https://dropclaw.cloud/marketplace) <br>
-- [artifact/SKILL.md](artifact/SKILL.md) <br>
-- [artifact/claw.json](artifact/claw.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, API Calls, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with HTTP request examples and command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Network-enabled marketplace guidance involving x402 payment flows, encrypted file listings, and chain-specific payment details.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: artifact/claw.json and server release evidence) <br>
+Risk: The skill can guide agents toward real blockchain purchases, listing fees, or transaction submissions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit human approval before any purchase, listing fee, or transaction submission, and verify network, price, recipient, and listing details before payment.
+
+Risk: Marketplace files and skill files may be untrusted content.
+
+Mitigation: Treat downloaded files as untrusted and review or sandbox them before opening, decrypting, executing, or installing related content.
+
+Risk: SDK installation commands may alter the agent runtime environment.
+
+Mitigation: Pin SDK versions and install them only in an isolated environment intended for marketplace interaction.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/timowhite88/skills/planetexpress-marketplace)
+- [Planet Express Marketplace Frontend](https://planetexpress.dropclaw.cloud)
+- [DropClaw Marketplace API](https://dropclaw.cloud/marketplace)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, API Calls, Shell commands, Configuration]
+
+**Output Format:** [Markdown with HTTP examples and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide agents through network requests, x402 payment retries, and SDK installation commands.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata and artifact/claw.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

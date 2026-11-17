@@ -1,42 +1,55 @@
-## Description: <br>
-A Chinese structured-analysis framework for analyzing a problem, industry, system, or other object from logic, essence, data, and domain perspectives. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language structured analysis framework for examining objects, problems, industries, or systems through logic, essence, data, and domain perspectives.
 
-## Publisher: <br>
-[jack-xun](https://clawhub.ai/user/jack-xun) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jack-xun](https://clawhub.ai/user/jack-xun)
 
-## Use Case: <br>
-Analysts, researchers, and teams use this skill to structure analysis of a problem, industry, system, or object. It supports research briefs, analysis reports, and systematic deconstruction using four complementary angles. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad activation on general analysis requests can produce analysis that is too wide or not aligned with the user's intended scope. <br>
-Mitigation: Specify the object, analysis goal, boundaries, desired depth, and output language when invoking the skill. <br>
-Risk: The framework can organize reasoning, but it does not verify facts or data sources by itself. <br>
-Mitigation: Pair generated analysis with cited evidence, current data, and domain review before using it for decisions or publication. <br>
+## Use Case:
 
+External users, analysts, and agents use this skill to produce structured research, analysis reports, and systematic decompositions of broad topics or systems.
 
-## Reference(s): <br>
-- [Four Angle Framework Details](references/framework.md) <br>
-- [System Nine Elements Details](references/nine-elements.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/jack-xun/four-angle-analysis) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown analysis with structured sections, core findings, and key insights] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance; no credentials, code execution, or special system access are required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter, package.json, server release evidence) <br>
+Risk: The skill can trigger for many analysis-style requests and may impose a structured four-angle format when a lighter answer would be more appropriate.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it for structured analysis, research, reports, or systematic deconstruction, and avoid invoking it for simple factual answers.
+
+Risk: The source material is Chinese-language and may steer outputs into Chinese.
+
+Mitigation: State the desired response language explicitly when another language is needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jack-xun/skills/four-angle-analysis)
+- [Four-angle framework details](references/framework.md)
+- [System nine-elements details](references/nine-elements.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown structured analysis report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use Chinese unless the user or agent explicitly requests another language.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter, package.json, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

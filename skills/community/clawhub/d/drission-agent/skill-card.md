@@ -1,44 +1,59 @@
-## Description: <br>
-Provides gated browser automation utilities for web research/search and local browser relay workflows. <br>
+## Description:
 
-This skill is for research and development only. <br>
+Web automation toolkit that provides a gated arXiv search script and a local TCP relay for browser-control workflows.
 
-## Publisher: <br>
-[Biogod2020](https://clawhub.ai/user/Biogod2020) <br>
+This skill is for research and development only.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[biogod2020](https://clawhub.ai/user/biogod2020)
 
-## Use Case: <br>
-Developers and security reviewers use this skill to run gated browser automation for web research/search and local relay support in isolated environments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The package exposes a local browser-control relay. <br>
-Mitigation: Run only in an isolated sandbox and avoid connecting it to a personal or logged-in browser profile. <br>
-Risk: The package claims human-only lockout controls but the claimed wrapper is not included in the artifact. <br>
-Mitigation: Do not rely on the lockout claim unless the missing wrapper and related controls are supplied and independently reviewed. <br>
-Risk: Browser automation can access external web content and produce local output files. <br>
-Mitigation: Review the target query and generated JSON output before using results in downstream workflows. <br>
+## Use Case:
 
+Developers and researchers use this skill to run a guarded search helper and, when intentionally enabled, a local relay for browser debugging or automation workflows. The bundled evidence states it is for authorized educational research and isolated sandbox use.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Biogod2020/drission-agent) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/Biogod2020) <br>
-- [arXiv search endpoint](https://arxiv.org/search/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, shell commands, configuration, guidance] <br>
-**Output Format:** [Console text and JSON files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires local browser dependencies and the SOTA_NUCLEAR_CONFIRMED=true environment gate; search output is written to SOTA_SEARCH_REPORT.json.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: The local TCP relay can expose access to a sensitive browser-control port.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run only in an isolated environment and start the relay only when local forwarding to the browser debugging port is intentionally required.
+
+Risk: The package overstates its safety controls and should not be trusted solely because it advertises human gating.
+
+Mitigation: Review and scan the package before installation, and enforce independent sandboxing and approval controls outside the skill.
+
+Risk: The server security verdict is suspicious.
+
+Mitigation: Avoid deploying this skill in production or sensitive environments without a security review and explicit acceptance of the relay behavior.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/biogod2020/skills/drission-agent)
+- [Publisher profile](https://clawhub.ai/user/biogod2020)
+- [arXiv search endpoint used by main_engine.py](https://arxiv.org/search/)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, configuration, JSON]
+
+**Output Format:** [Markdown guidance, Python scripts, shell commands, and generated JSON search results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires explicit environment gating before bundled scripts execute; the relay listens locally and forwards to a browser debugging port when run.]
+
+## Skill Version(s):
+
+2.1.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

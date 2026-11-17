@@ -1,7 +1,7 @@
 ---
 name: "花小猪"
-version: "1.0.0"
-description: "花小猪打车助手，精通优惠出行、行程规划、费用估算、安全出行"
+version: "1.1.0"
+description: "花小猪打车使用指南。Use for: (1) 一口价模式的适用场景判断——何时比滴滴主站划算/何时踩坑, (2) 下沉市场定位与运力特点理解, (3) 优惠活动与拼单玩法。Huaxiaozhu ride-hailing guide: fixed-fare model trade-offs and discount mechanics."
 tags: ["transportation", "ride-hailing", "budget", "travel"]
 author: "ClawSkills Team"
 category: "transportation"
@@ -123,6 +123,12 @@ category: "transportation"
 - 优惠信息可能随时变化，提醒用户以 APP 实际显示为准
 - 不鼓励用户为省钱牺牲安全（如选择偏僻上车点）
 
+## 工作边界
+
+- 一口价堵车不加价是优势，但高峰期应答率低于滴滴主站，赶时间慎用
+- 价格与补贴实时变化，同程建议滴滴/花小猪双开比价
+- 安全功能（行程分享/紧急联系人）与滴滴同体系，夜间出行主动提醒开启
+
 ---
 
-**最后更新**: 2026-03-16
+**最后更新**: 2026-07-11

@@ -1,43 +1,58 @@
-## Description: <br>
-Real multi-model council deliberation for OpenClaw subagents that spawns three parallel subagents with different LLMs and analytical perspectives, then synthesizes their outputs into a unified verdict with consensus points, disagreements, and action items. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Real multi-model council deliberation for OpenClaw subagents that spawns three parallel subagents with distinct analytical perspectives and synthesizes their independent outputs into a unified verdict.
 
-## Publisher: <br>
-[wahajahmed010](https://clawhub.ai/user/wahajahmed010) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wahajahmed010](https://clawhub.ai/user/wahajahmed010)
 
-## Use Case: <br>
-Developers and agents use this skill to run multi-model deliberation for reviews, stress tests, decisions, and analytical verdicts. It is intended to produce a synthesized council review from three independent subagent perspectives. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can launch multiple long-running subagents for an ordinary review or analysis request. <br>
-Mitigation: Confirm that a council run is intended before invoking it, review the configured models, and monitor timeout settings for the task size. <br>
-Risk: The skill can write a council-review-[topic].md file that may overwrite or clutter a sensitive workspace. <br>
-Mitigation: Choose the output filename or location explicitly and check for existing council-review-* files before writing the synthesis. <br>
-Risk: Council subagents do not receive conversation history or web access, so incomplete context can produce misleading analysis. <br>
-Mitigation: Provide only necessary verified context inline, summarize large inputs, and keep task descriptions within the documented limits. <br>
+## Use Case:
 
+Developers and engineers use this skill to run multi-model reviews, debates, stress tests, and decision analyses by assigning strategic, analytical, and creative perspectives to separate subagents before synthesizing a final verdict.
 
-## Reference(s): <br>
-- [Council Of Llms on ClawHub](https://clawhub.ai/wahajahmed010/council-of-llms) <br>
-- [Subagent Orchestration companion skill](https://github.com/wahajahmed010/subagent-orchestration) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown synthesis with consensus points, disagreements, blind spots, a final verdict, and action items.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May spawn three long-running subagents and write a council-review-[topic].md file in the workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata) <br>
+Risk: Configured council models may be cloud-backed, so copied context can be sent to external model providers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review configured models before use and avoid pasting secrets, credentials, customer data, regulated information, or proprietary material unless sharing with those providers is acceptable.
+
+Risk: The skill can create a local council-review markdown file in the workspace.
+
+Mitigation: Review generated files before sharing, committing, or using them as decision records.
+
+Risk: The skill depends on companion subagent orchestration behavior.
+
+Mitigation: Review or pin the companion subagent skill before installing or running the council workflow.
+
+## Reference(s):
+
+- [Council Of Llms on ClawHub](https://clawhub.ai/wahajahmed010/skills/council-of-llms)
+- [Subagent Orchestration companion skill](https://github.com/wahajahmed010/subagent-orchestration)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration]
+
+**Output Format:** [Markdown synthesis with structured verdicts, consensus points, disagreements, blind spots, and action items]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create a local council-review markdown file in the workspace.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,57 @@
-## Description: <br>
-Research a business website, produce a concise prospect report, recommend concrete OpenClaw use cases, and draft a tailored outreach email. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Research a business website, produce a concise prospect report, recommend concrete OpenClaw use cases, and draft a tailored outreach email.
 
-## Publisher: <br>
-[lexAlex36](https://clawhub.ai/user/lexAlex36) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lexalex36](https://clawhub.ai/user/lexalex36)
 
-## Use Case: <br>
-External sales, growth, or demo operators use this skill to turn a business website URL and contact email into evidence-based OpenClaw opportunity materials. It produces a prospect report, outreach email drafts, and optional delivery artifacts while requiring approval before real email is sent. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send real email through a configured Gmail/gog account, and the send script does not itself enforce the approval gate described by the skill instructions. <br>
-Mitigation: Require a manual preview and explicit user approval for each recipient/message before invoking the send script; use --dry-run first when validating setup. <br>
-Risk: PDF rendering uses headless Chromium with --no-sandbox. <br>
-Mitigation: Render only trusted, locally generated HTML, or run PDF conversion inside an isolated environment when handling untrusted content. <br>
-Risk: Outreach recommendations may overstate business needs if website observations are treated as verified internal facts. <br>
-Mitigation: Keep claims grounded in visible public website evidence and phrase uncertain conclusions as likely, apparent, or suggested. <br>
+## Use Case:
 
+External users and business development operators use this skill to turn a business website URL and contact email into a concise OpenClaw opportunity brief, outreach report, and approval-gated email draft.
 
-## Reference(s): <br>
-- [Outreach Demo Report Format](references/report-format.md) <br>
-- [Outreach Demo Email Template](references/email-template.md) <br>
-- [Value-First Outreach Mode](references/value-first-outreach.md) <br>
-- [Visual Delivery Mode](references/visual-delivery.md) <br>
-- [Follow-Up Sequence](references/follow-up-sequence.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Structured JSON, Markdown reports, plain-text or HTML email drafts, HTML/PDF briefs, preview manifests, and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Draft-first outreach workflow with optional Gmail send after explicit approval.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The bundled email-sending helper can send real Gmail messages without enforcing the documented approval gate.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use drafting and rendering helpers only in a controlled workspace, and do not use the send script unless it defaults to dry-run, requires an explicit approved manifest, validates recipient and content hashes, and requires a configured sender account.
+
+Risk: Generated email bodies and brief attachments can be sent outside the organization.
+
+Mitigation: Treat generated bodies and attachments as outbound data and review the recipient, subject, body, and attachment before any approved send.
+
+## Reference(s):
+
+- [Outreach Demo Report Format](references/report-format.md)
+- [Outreach Demo Email Template](references/email-template.md)
+- [Value-First Outreach Mode](references/value-first-outreach.md)
+- [Visual Delivery Mode](references/visual-delivery.md)
+- [Follow-Up Sequence](references/follow-up-sequence.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Structured JSON, Markdown reports, plain-text email drafts, HTML email or brief files, PDF briefs, and preview manifests]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Draft-first workflow with an approval preview before outbound email; PDF rendering depends on Chromium and sending depends on a configured Gmail-compatible command.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

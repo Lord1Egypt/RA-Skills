@@ -1,47 +1,59 @@
-## Description: <br>
-Ruiping produces assertive Chinese-language news commentary by screening events, analyzing likely impacts, and turning them into decision-oriented opinion pieces. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ruiping helps agents turn user-provided or searched Chinese news items into opinionated commentary with source context, trend analysis, affected-party impact, and decision guidance.
 
-## Publisher: <br>
-[leslietong2046-ship-it](https://clawhub.ai/user/leslietong2046-ship-it) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leslietong2046-ship-it](https://clawhub.ai/user/leslietong2046-ship-it)
 
-## Use Case: <br>
-External users, analysts, and content creators use this skill to turn supplied or searched news events into Chinese commentary with source summaries, short conclusions, impact analysis, forecasts, and practical recommendations. It is intended for opinionated decision support rather than neutral news reporting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill intentionally produces assertive opinion and decision recommendations, including investment, career, and current-events guidance. <br>
-Mitigation: Treat recommendations as commentary, verify sources and facts independently, and avoid using the output as the sole basis for high-impact decisions. <br>
-Risk: Search-style behavior and current-events analysis can rely on incomplete, stale, or incorrect source material. <br>
-Mitigation: Check cited or summarized sources before publishing or acting on the analysis, especially for fast-moving news. <br>
-Risk: The fixed commentary format may be unwanted for ordinary news questions after installation. <br>
-Mitigation: Use explicit prompts when neutral summaries, raw facts, or a different response format are desired. <br>
+## Use Case:
 
+External users and agents use this skill to evaluate current events, business news, policy changes, and industry developments by producing structured Chinese commentary and practical next-step guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/leslietong2046-ship-it/ruiping-skill) <br>
-- [README](README.md) <br>
-- [Skill definition](SKILL.md) <br>
-- [Tesla price-cut example](examples/tesla-price-cut.md) <br>
-- [AI regulation example](examples/ai-regulation.md) <br>
-- [Python formatter reference](scripts/ruiping.py) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Chinese-language Markdown commentary with source summary, conclusion, impact analysis, recommendations, and final comment.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include investment, career, consumer, or current-events recommendations; source claims and recommendations should be independently verified before reliance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.4 (source: server evidence and SKILL.md frontmatter) <br>
+Risk: Opinionated commentary may include incorrect facts, unsupported forecasts, or misleading financial and industry recommendations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require users to verify cited facts and sources, treat recommendations as commentary rather than professional advice, and apply human review before acting on high-impact decisions.
+
+Risk: The artifact includes an unused, range-based requests dependency that can add packaging surface area in stricter environments.
+
+Mitigation: Remove the dependency if unused or pin and scan it before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/leslietong2046-ship-it/skills/ruiping-skill)
+- [README](README.md)
+- [Skill instructions](SKILL.md)
+- [AI regulation example](examples/ai-regulation.md)
+- [Tesla price-cut example](examples/tesla-price-cut.md)
+- [Daily commentary example](references/examples/锐评日报_20260503.md)
+- [Formatter script](scripts/ruiping.py)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Structured Markdown commentary in Chinese]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include source summaries, short conclusions, impact analysis, forecasts, audience-specific recommendations, and optional Markdown file output when the bundled formatter script is used.]
+
+## Skill Version(s):
+
+2.0.4 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

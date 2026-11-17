@@ -1,42 +1,62 @@
-## Description: <br>
-Implement multi-channel notification services for Chinese applications using WeChat Template Messages, WeChat Subscription Messages, SMS (Alibaba Cloud/Tencent Cloud), DingTalk Bot, Feishu Bot, and Email. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Implement multi-channel notification services for Chinese applications using WeChat Template Messages, WeChat Subscription Messages, SMS through Alibaba Cloud and Tencent Cloud, DingTalk Bot, Feishu Bot, and Email.
 
-## Publisher: <br>
-[lm203688](https://clawhub.ai/user/lm203688) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lm203688](https://clawhub.ai/user/lm203688)
 
-## Use Case: <br>
-Developers and engineers use this skill to design multi-channel notification dispatch for China-oriented applications, including WeChat messages, SMS through Chinese cloud providers, DingTalk and Feishu bots, email, priority routing, rate limits, and compliance controls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-China <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Notification integrations may expose SMS keys, WeChat tokens, cloud credentials, or bot webhooks if copied into source or logs. <br>
-Mitigation: Store credentials in secret management, avoid logging tokens and webhook URLs, and rotate any credential that may have been exposed. <br>
-Risk: Production sends can violate consent, unsubscribe, template approval, or rate-limit requirements. <br>
-Mitigation: Record user consent, support unsubscribe flows where required, use approved templates, enforce per-channel rate limits, and audit delivery status before production use. <br>
-Risk: Provider APIs, template rules, and platform limits may change after the skill release. <br>
-Mitigation: Validate generated implementation guidance against current WeChat, Alibaba Cloud, Tencent Cloud, DingTalk, and Feishu documentation before deployment. <br>
+## Use Case:
 
+Developers and agents use this skill to design multi-channel notification workflows for China-focused applications, including WeChat, SMS, DingTalk, Feishu, and email delivery. It supports unified dispatch design, priority routing, provider-specific message examples, rate limiting, and compliance checks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lm203688/china-notification-service) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, configuration] <br>
-**Output Format:** [Markdown with JavaScript examples, checklists, and channel comparison tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance; generated implementation details should be reviewed against current provider policies before production use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Notification provider credentials and webhook URLs could be exposed or misused during implementation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Store provider credentials in approved secret management, limit access by environment, rotate secrets when needed, and avoid placing webhook URLs or API keys in prompts, logs, or source examples.
+
+Risk: Messages may be sent without required consent, approved templates, or unsubscribe handling.
+
+Mitigation: Record user consent before sends, use provider-approved SMS and WeChat templates, include unsubscribe handling for marketing messages, and review message content before production use.
+
+Risk: High-volume or duplicate sends can violate provider limits, increase cost, or suspend accounts.
+
+Mitigation: Enforce per-user and per-channel rate limits, add idempotency controls, log delivery attempts, and test notification workflows with sandbox accounts before production sends.
+
+Risk: Notifications can disclose sensitive personal data to end users, teams, or third-party channels.
+
+Mitigation: Minimize notification content, avoid full phone numbers or identification data, and route sensitive details to authenticated application views instead of message bodies.
+
+## Reference(s):
+
+- [China Notification Service on ClawHub](https://clawhub.ai/lm203688/skills/china-notification-service)
+- [Publisher profile: lm203688](https://clawhub.ai/user/lm203688)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Configuration, API Calls]
+
+**Output Format:** [Markdown with JavaScript examples, workflow guidance, checklists, and reference tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include provider-specific API examples, routing matrices, rate-limit rules, and compliance guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

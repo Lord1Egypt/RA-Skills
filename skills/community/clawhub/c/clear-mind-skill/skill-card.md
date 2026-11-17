@@ -1,39 +1,52 @@
-## Description: <br>
-Memory file maintenance and optimization system that helps an agent migrate scenario-specific factual content out of MEMORY.md while preserving core rules, capabilities, indexes, and rollback paths. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Clear Mind helps agents maintain MEMORY.md by migrating scenario-specific facts into dedicated facts/ files while preserving core rules, indexes, and capabilities.
 
-## Publisher: <br>
-[webray1983](https://clawhub.ai/user/webray1983) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[webray1983](https://clawhub.ai/user/webray1983)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and agent operators use Clear Mind to reorganize long-term memory when scenario-specific facts accumulate in MEMORY.md, keeping reusable behavioral rules and navigation in the core memory while moving detailed facts into dedicated files.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can rewrite or delete persistent memory that may contain sensitive project, portfolio, user directive, or incident records.
+
+Mitigation: Require a verified backup and explicit user approval before any migration or deletion of long-term memory content.
+
+Risk: Core behavioral rules, capability definitions, or tool descriptions could be misclassified as scenario-specific facts during cleanup.
+
+Mitigation: Keep core rules, capabilities, installed skills, and technical setup in MEMORY.md when classification is uncertain, then verify those categories remain intact after migration.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users and agents use this skill to reorganize long-term MEMORY.md content by keeping durable rules and navigation in place while moving scenario-specific facts into dedicated facts/ files. It is intended for memory cleanup when factual bloat is present, not as a line-count reduction tool. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Memory cleanup can move or delete personal, financial, project, preference, or other important notes. <br>
-Mitigation: Ask for a proposed diff or dry run, keep a backup, and require explicit user approval before any deletion or migration. <br>
-Risk: Incorrect classification can remove core behavioral rules, capabilities, tool descriptions, or installed-skill information from MEMORY.md. <br>
-Mitigation: Preserve core rules and capability definitions in MEMORY.md, keep content there when uncertain, and verify the Quick Index and facts/ files after migration. <br>
+**Output Format:** [Markdown guidance and file-organization instructions]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Produces migration plans, rewritten MEMORY.md structure, facts/ file templates, and rollback guidance.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Guidance] <br>
-**Output Format:** [Markdown guidance and proposed memory-file changes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose creating or updating MEMORY.md and memory/facts/ files after user confirmation.] <br>
+0.1.0 (source: release metadata)
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

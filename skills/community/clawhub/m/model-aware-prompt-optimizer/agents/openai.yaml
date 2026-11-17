@@ -1,0 +1,4 @@
+interface:
+  display_name: "Model-Aware Prompt Optimizer"
+  short_description: "Rewrite prompts for the user’s target model"
+  default_prompt: "Use $model-aware-prompt-optimizer to rewrite my prompt for the model I am using."

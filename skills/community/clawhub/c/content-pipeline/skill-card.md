@@ -1,37 +1,51 @@
-## Description: <br>
-Orchestrates a content workflow from planning and writing through design, social publishing, and performance tracking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Orchestrates a full content workflow from planning through writing, design, publishing, and tracking.
 
-## Publisher: <br>
-[mupengi-bot](https://clawhub.ai/user/mupengi-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[mupengi-bot](https://clawhub.ai/user/mupengi-bot)
 
-## Use Case: <br>
-Content and marketing teams use this skill to coordinate an agent-driven pipeline that plans topics, drafts copy, creates card-news images, publishes to social channels, and records performance events. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Automatic publishing can post content to connected social media accounts before human review. <br>
-Mitigation: Use stage-by-stage mode, review generated event files, final media, captions, and connected account settings before publishing, and avoid `--skip-review` unless separate approval and rollback controls are in place. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mupengi-bot/content-pipeline) <br>
+## Use Case:
+
+Content operators and agents use this skill to coordinate an end-to-end content pipeline, including SEO planning, draft writing, card news design, social publishing, and performance tracking.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The pipeline can automatically publish generated content to social accounts without review.
+
+Mitigation: Use stage-by-stage mode, review generated content and destination accounts before publishing, and avoid --auto or --skip-review unless separate publishing safeguards are in place.
+
+Risk: Stage outputs are chained through dated event files, so stale or unintended event data could influence later content or publishing steps.
+
+Mitigation: Review the relevant event files before continuing to later stages, especially before design and publish steps.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON event file descriptions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Coordinates stage outputs through dated files in an events directory.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release metadata) <br>
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown guidance with inline shell command examples and event-file conventions.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Coordinates stage outputs through dated event files and may prepare social publishing steps for review.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

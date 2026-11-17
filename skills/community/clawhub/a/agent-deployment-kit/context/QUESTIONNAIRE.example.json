@@ -1,0 +1,42 @@
+{
+  "_meta": {
+    "context": "acme-corp",
+    "scope": "SOLD: inbound DM triage on two platforms. NOT SOLD: newsletter, invoices, outbound.",
+    "note": "Fictional example. Single source of truth for this install. ASCII only: these values are rendered into outbound messages. No secrets here — secrets live in context/secrets.local.json (gitignored)."
+  },
+
+  "config": {
+    "INSTALL_DIRNAME": ".agent",
+    "INSTALL_HOME": "TO_PROVIDE - absolute path on the target machine, or pass it as the CLI argument",
+    "MODEL_PRIMARY": "vendor/model-primary",
+    "MODEL_FALLBACK": "vendor/model-fallback"
+  },
+
+  "context": {
+    "CLIENT_NAME": "Acme Corp",
+    "CLIENT_SHORT": "Acme",
+    "TIMEZONE": "UTC",
+    "LANGUAGE": "en",
+    "TONE": "direct, factual, warm; no jargon",
+    "ADDRESSING": "formal",
+    "DM_MAX_CHARS": "400",
+    "PUBLIC_URL": "https://example.com",
+    "BOOKING_URL": "TO_PROVIDE - the single conversion link; every interested person is routed here",
+    "PLATFORMS_LIST": "platform-a, platform-b",
+    "PLATFORM_A_HANDLE": "TO_PROVIDE - confirmed handle, never guessed",
+    "PLATFORM_B_HANDLE": "TO_PROVIDE - confirmed handle, never guessed",
+    "IN_SCOPE_TOPICS": "product questions, availability, booking",
+    "OUT_OF_SCOPE_TOPICS": "anything outside the sold workstreams; refuse politely, name no third party",
+    "SEGMENTS": "cold / warm / booked / out-of-scope",
+    "LEGAL_BASIS": "TO_PROVIDE - the lawful basis for processing inbound DM data (e.g. legitimate interest, consent), named by the client, in writing",
+    "DATA_MINIMISATION": "handle, segment, timestamp, booking status - and nothing else: the rest of a DM is read and dropped.",
+    "DATA_RETENTION": "TO_PROVIDE - how long DM/lead data is kept, and the command or job that deletes it at the end of that window",
+    "STANDARD_REPLY": "short answer, one concrete question, then the booking link",
+    "SENSITIVE_CASES": "TO_PROVIDE - what counts as urgent here + who gets pinged, verbatim",
+    "EXTRA_RED_LINES": "TO_PROVIDE - context-specific red lines, on top of the hard-coded ones in the templates",
+    "PRICING_POLICY": "public ranges may be linked; never commit to a figure in DM",
+    "PROOF_POINTS": "TO_PROVIDE - only what is written on a public source. Never invent credentials, volumes or affiliations.",
+    "OPERATOR_LABEL": "the Acme team",
+    "ALERT_CHANNEL_LABEL": "ops"
+  }
+}

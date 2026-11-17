@@ -1,43 +1,58 @@
-## Description: <br>
-Generate images, videos, upscale or enhance images, and train LoRA styles through the Krea.ai API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate images and videos, upscale or enhance images, train LoRA styles, and run creative media pipelines with the Krea.ai API.
 
-## Publisher: <br>
-[albertsalgueda](https://clawhub.ai/user/albertsalgueda) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[albertsalgueda](https://clawhub.ai/user/albertsalgueda)
 
-## Use Case: <br>
-Developers, creative operators, and agents use this skill to run Krea.ai media workflows from shell commands, including image and video generation, image enhancement, LoRA style training, job lookup, and multi-step creative pipelines. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, private URLs, local media, and training images may be sent to Krea.ai for generation, enhancement, or style training. <br>
-Mitigation: Use this skill only when Krea.ai data handling is approved for the content, and avoid submitting secrets, regulated data, private URLs, or confidential media. <br>
-Risk: API tokens can be exposed if passed directly on the command line. <br>
-Mitigation: Prefer the KREA_API_TOKEN environment variable over the --api-key argument. <br>
-Risk: Generation and training jobs can spend paid compute units or require a higher Krea.ai plan. <br>
-Mitigation: Check available models, costs, and parameters before running jobs, and review downloaded outputs before opening or sharing them. <br>
+## Use Case:
 
+Developers, creative practitioners, and external agent users use this skill to generate images and videos, enhance or upscale existing images, train custom LoRA styles, and automate multi-step media workflows through Krea.ai.
 
-## Reference(s): <br>
-- [Krea API OpenAPI Specification](https://api.krea.ai/openapi.json) <br>
-- [ClawHub release page](https://clawhub.ai/albertsalgueda/krea) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, files, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and saved file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May save generated images, videos, and JSON manifests to the current working directory or a selected output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release metadata) <br>
+Risk: Prompts, image or video inputs, local files referenced by path, and training image URLs are sent to Krea.ai using the user's Krea API token.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only approved non-sensitive inputs, avoid sensitive or internal URLs, and provide tokens through intended runtime mechanisms.
+
+Risk: Generated media, training manifests, cache files, and pipeline state can be written to local directories.
+
+Mitigation: Run from the intended working directory, set output directories deliberately, and review saved files before sharing.
+
+Risk: Skipping URL validation can submit unverified training inputs and waste compute units on unreachable or unintended URLs.
+
+Mitigation: Keep URL validation enabled unless all training inputs are trusted and already verified.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/albertsalgueda/skills/krea)
+- [Krea API](https://api.krea.ai)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, files, guidance]
+
+**Output Format:** [Markdown guidance with command invocations and local file paths; scripts save generated media files and JSON manifests.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Krea API token; prompts, media inputs, referenced local files, and training image URLs may be sent to Krea.ai.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

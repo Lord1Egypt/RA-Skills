@@ -1,6 +1,20 @@
 {
-  "ownerId": "kn7e4s9qsycv5ve4ccbzqeb5n182vv2h",
-  "slug": "cold-outreach-free",
+  "name": "cold-outreach",
   "version": "1.0.0",
-  "publishedAt": 1773403585578
+  "description": "Run a complete cold email outreach campaign — from sourcing leads to handling replies. Covers ICP definition, lead sourcing strategy, email sequence construction, personalization, reply handling, and suppression management. Use when an agent needs to build or execute a cold outreach pipeline from scratch, without paid tools or SaaS subscriptions.",
+  "author": "Qsys",
+  "tags": ["cold-email", "outreach", "lead-gen", "n8n", "automation"],
+  "price": "free",
+  "entry": "SKILL.md",
+  "references": [
+    "references/lead-sourcing.md",
+    "references/email-sequences.md",
+    "references/reply-handling.md",
+    "references/tools-free-tier.md"
+  ],
+  "cta": {
+    "product": "Cold Outreach System",
+    "price": "$19",
+    "url": "https://qssys.gumroad.com/l/cold-outreach-system"
+  }
 }

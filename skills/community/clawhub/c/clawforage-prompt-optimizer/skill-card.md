@@ -1,42 +1,61 @@
-## Description: <br>
-Analyzes your conversation transcripts daily to find patterns, suggest SOUL.md improvements, and recommend skills. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes your conversation transcripts daily to find patterns, suggest SOUL.md improvements, and recommend skills.
 
-## Publisher: <br>
-[dainash](https://clawhub.ai/user/dainash) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dainash](https://clawhub.ai/user/dainash)
 
-## Use Case: <br>
-External users and developers use this skill to review OpenClaw conversation transcripts, identify repeated patterns, analyze failures, tool usage, and costs, and produce concise optimization recommendations for SOUL.md and skill adoption. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The transcript extraction can read more private conversation history than the daily or recent framing suggests. <br>
-Mitigation: Run it manually on a limited transcript folder first, and use it only after reviewing the privacy implications. <br>
-Risk: Generated SOUL.md and workflow recommendations may be incorrect or overfit to recent behavior. <br>
-Mitigation: Review each recommendation before applying it; the skill is designed to provide suggestions only. <br>
+## Use Case:
 
+External users and agent operators use this skill to review recent OpenClaw conversation activity, identify repeated prompts and failures, and produce concise optimization suggestions for SOUL.md, workflows, and skill recommendations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dainash/clawforage-prompt-optimizer) <br>
-- [Publisher profile](https://clawhub.ai/user/dainash) <br>
-- [InspireHub Labs](https://inspireehub.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown optimization reports with inline shell command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only and suggestion-based; reports are capped at 500 words and require bash and jq.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill reads local OpenClaw conversation history and SOUL.md, and the security review notes that transcript processing may be broader than the one-day invocation suggests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, run only in workspaces where that local history may be exposed to the active agent context, and prefer a version that enforces date filtering.
+
+Risk: The skill stores a derived optimization report that may summarize sensitive usage patterns from private transcripts.
+
+Mitigation: Review generated reports before sharing, keep reports in private memory storage, and redact sensitive text from any retained or exported report.
+
+Risk: Suggested SOUL.md or workflow changes may be incorrect or overfit to recent transcript patterns.
+
+Mitigation: Treat all recommendations as advisory and apply changes only after human review.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/dainash/skills/clawforage-prompt-optimizer)
+- [Publisher Profile](https://clawhub.ai/user/dainash)
+- [InspireHub Labs](https://inspireehub.ai)
+- [README](artifact/README.md)
+- [Weekly Report Template](artifact/templates/weekly-report.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown report with suggested configuration and workflow changes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes a derived optimization report and requires bash and jq.]
+
+## Skill Version(s):
+
+0.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

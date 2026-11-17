@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" role="img" aria-labelledby="title desc">
+  <title id="title">Instagram Creator Video Insights</title>
+  <desc id="desc">A reel play card connected to transcript insight lines.</desc>
+  <defs>
+    <linearGradient id="bg" x1="24" y1="20" x2="376" y2="380" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#182C38"/><stop offset="1" stop-color="#0B141C"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="70" y1="80" x2="333" y2="330" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#4DE1CB"/><stop offset=".55" stop-color="#55A7FF"/><stop offset="1" stop-color="#B28BFF"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="400" rx="82" fill="url(#bg)"/>
+  <rect x="56" y="61" width="288" height="177" rx="30" fill="#172630" stroke="url(#accent)" stroke-width="12"/>
+  <circle cx="149" cy="149" r="57" fill="#0E1B23" stroke="url(#accent)" stroke-width="8"/>
+  <path d="M137 118v62l52-31z" fill="#72E8D3"/>
+  <path d="M242 112h67M242 145h51M242 178h62" fill="none" stroke="#C9F5EF" stroke-width="11" stroke-linecap="round"/>
+  <path d="M104 282h192M104 318h142" fill="none" stroke="url(#accent)" stroke-width="15" stroke-linecap="round"/>
+  <circle cx="319" cy="318" r="18" fill="#72E8D3"/>
+</svg>

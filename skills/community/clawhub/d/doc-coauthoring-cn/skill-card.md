@@ -1,40 +1,54 @@
-## Description: <br>
-引导用户完成结构化文档协作，覆盖上下文收集、结构细化、读者测试，并可生成用于团队培训或技术分享的交互式 HTML 概念讲解页面。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+引导用户完成结构化文档协作，用三阶段工作流支持文档、提案、技术规格、决策文档、PRD、设计文档、RFC 的起草，并可生成交互式 HTML 概念讲解页面。
 
-## Publisher: <br>
-[paudyyin](https://clawhub.ai/user/paudyyin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[paudyyin](https://clawhub.ai/user/paudyyin)
 
-## Use Case: <br>
-Writers, product teams, and engineering teams use this skill to coauthor structured Chinese documents such as proposals, PRDs, technical specifications, design documents, decision records, and RFCs. It also supports creating self-contained interactive HTML explainers for team training and technical sharing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may process internal project context while helping draft documents. <br>
-Mitigation: Share only the project context needed for the document and review generated drafts before distribution. <br>
-Risk: Generated interactive HTML explainers may be published, hosted, or sent to others. <br>
-Mitigation: Review and test generated HTML before publishing, hosting, or sharing it. <br>
+## Use Case:
 
+Writers, product teams, engineers, and managers use this Chinese-first skill to turn loose context into reader-ready structured documents. It is also useful for team training or technical sharing when an interactive HTML explainer is preferred over plain text.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/paudyyin/doc-coauthoring-cn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Guidance] <br>
-**Output Format:** [Markdown, plain text, or self-contained HTML] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include document outlines, section drafts, reader-test reports, and interactive HTML explainers.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence and frontmatter) <br>
+Risk: Users may provide sensitive documents, links, team history, or organizational context during drafting.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Only share source material that is appropriate for the drafting session and review generated content before distribution.
+
+Risk: Generated drafts or reader-test feedback may omit context or overstate clarity for the intended audience.
+
+Mitigation: Validate outlines, decisions, risks, and next steps with the target stakeholders before publishing the document.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/paudyyin/skills/doc-coauthoring-cn)
+- [Publisher profile](https://clawhub.ai/user/paudyyin)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown guidance or self-contained HTML when creating an interactive concept explainer]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-first drafting workflow; may include structured outlines, draft sections, reader-test reports, and HTML/CSS/JavaScript for static explainers.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,6 +1,19 @@
 {
-  "ownerId": "kn73vp5rarc3b14rc7wjcw8f8580t5d1",
+  "owner": "clawic",
   "slug": "habits",
-  "version": "1.0.0",
-  "publishedAt": 1770767338144
+  "displayName": "Habits",
+  "latest": {
+    "version": "1.0.2",
+    "publishedAt": 1785140325487
+  },
+  "history": [
+    {
+      "version": "1.0.1",
+      "publishedAt": 1785112998127
+    },
+    {
+      "version": "1.0.0",
+      "publishedAt": 1770767338144
+    }
+  ]
 }

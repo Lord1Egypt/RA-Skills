@@ -1,41 +1,57 @@
-## Description: <br>
-Supervises OpenClaude and Claude Code Workflow project execution by selecting the correct planning, issue, queueing, or execution-review step and checking scope, dependencies, and backlog quality. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Supervises software project execution with OpenClaude and Claude Code Workflow by selecting the right workflow stage, checking backlog quality, validating dependency order, and recommending the next CCW step.
 
-## Publisher: <br>
-[Majmunu](https://clawhub.ai/user/Majmunu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[majmunu](https://clawhub.ai/user/majmunu)
 
-## Use Case: <br>
-Developers and engineering leads use this skill to supervise CCW project delivery, choose the right workflow command, and review plans or queues for dependency order, scope control, and execution readiness. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can recommend CCW prompts or /issue/execute steps that may not match the user's actual repository state or intended scope. <br>
-Mitigation: Review generated prompts and execution recommendations before running them, and confirm they align with the current project scope, repository state, and validated issue queue. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to supervise planning, issue breakdown, queue validation, and execution-readiness for greenfield or existing software projects using CCW.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/Majmunu/ccw-project-supervisor) <br>
-- [Engineering Order Reference](references/engineering-order.md) <br>
-- [Phase Checklists](references/phase-checklists.md) <br>
-- [Prompt Templates](references/prompt-templates.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Text] <br>
-**Output Format:** [Markdown with copy-ready command and prompt text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include validation notes, exit criteria, and next-step recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may recommend a CCW execution stage before a project queue is sufficiently clear.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill's queue-clarity and dependency-order checks before following execution recommendations.
+
+Risk: Planning guidance may be incorrect or drift beyond the provided backlog and constraints.
+
+Mitigation: Review stage rationale, validation notes, and proposed CCW prompts against the project source materials before acting.
+
+## Reference(s):
+
+- [CCW Project Supervisor on ClawHub](https://clawhub.ai/majmunu/skills/ccw-project-supervisor)
+- [Majmunu Publisher Profile](https://clawhub.ai/user/majmunu)
+- [Phase Checklists](references/phase-checklists.md)
+- [Engineering Order Reference](references/engineering-order.md)
+- [Prompt Templates](references/prompt-templates.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands]
+
+**Output Format:** [Markdown with copy-ready CCW command prompts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include stage assessment, validation notes, exit criteria, and the recommended next CCW command.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

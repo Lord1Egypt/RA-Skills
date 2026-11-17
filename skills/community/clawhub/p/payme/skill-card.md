@@ -1,44 +1,59 @@
-## Description: <br>
-PayMe helps agents connect to PayMe smart wallets, check USDC/USDT balances, prepare stablecoin payments, view transaction history, manage contacts, and support P2P crypto-to-local-currency sells. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+PayMe enables agents to connect to PayMe smart wallets, check balances, send USDC/USDT payments, manage contacts and history, and sell crypto for local currency through supported P2P workflows.
 
-## Publisher: <br>
-[variousfoot](https://clawhub.ai/user/variousfoot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[variousfoot](https://clawhub.ai/user/variousfoot)
 
-## Use Case: <br>
-External users and agents use this skill to inspect PayMe wallet state, prepare stablecoin transfers, manage contacts, and help sell USDC/USDT for local currency through PayMe's P2P flow after explicit user confirmation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global for wallet and payment assistance; P2P sell flows are documented for Nigeria, Ghana, Kenya, South Africa, Cameroon, Senegal, Benin, Togo, Tanzania, and Uganda. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Agent tokens grant limited wallet authority and could enable wallet activity if stored or exposed improperly. <br>
-Mitigation: Store tokens only in an encrypted secrets store or other protected local mechanism, never log or commit them, prefer short token durations, and revoke access when finished. <br>
-Risk: Stablecoin payments or P2P sell orders can move funds and may be difficult or impossible to reverse after confirmation. <br>
-Mitigation: Use the default two-step flow, show a fresh preview with fees and recipient or local-currency details, and require explicit user approval before confirming any transfer or sell. <br>
-Risk: P2P escrow can auto-release after the vendor marks fiat as sent, even if the user has not verified receipt. <br>
-Mitigation: Prompt the user to check their bank or mobile money immediately, only confirm after they verify receipt, and direct them to open a dispute before auto-release if funds have not arrived. <br>
+## Use Case:
 
+External users and developers use this skill to let an agent operate PayMe wallet workflows after account connection, including balance checks, stablecoin transfers, contact management, and P2P sell flows with user confirmation.
 
-## Reference(s): <br>
-- [PayMe Web App](https://payme.feedom.tech) <br>
-- [PayMe Agent API Reference](references/api-reference.md) <br>
-- [PayMe Agent API](https://api.feedom.tech) <br>
+### Deployment Geography for Use:
 
+Global for wallet features; P2P sell workflows are documented for Nigeria, Ghana, Kenya, South Africa, Cameroon, Senegal, Benin, Togo, Tanzania, and Uganda.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, API Calls, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with API endpoint examples and JSON request/response shapes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces user-facing payment previews, connection steps, and operational guidance; the skill itself contains instructions and configuration, not executable code.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.27 (source: server release metadata) <br>
+Risk: Broad renewable payment tokens can grant wallet access and payment capabilities if exposed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use encrypted secret storage, avoid logging or committing tokens, surface token expiry to the user, and revoke tokens when access is no longer needed.
+
+Risk: Chat-based account creation can expose a newly chosen financial PIN in the conversation transcript.
+
+Mitigation: Prefer the web-generated connection-code flow; if account creation is used, tell the user to delete the PIN message and rotate the PIN in PayMe afterward.
+
+Risk: Direct Execute can complete transfers in one API call when the user has explicitly enabled it.
+
+Mitigation: Keep Direct Execute off unless the user intentionally accepts one-call transfers, and use the preview plus explicit confirmation flow for normal payments.
+
+## Reference(s):
+
+- [PayMe Agent API Reference](references/api-reference.md)
+- [PayMe Homepage](https://payme.feedom.tech)
+- [ClawHub Skill Page](https://clawhub.ai/variousfoot/skills/payme)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, API calls, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with REST API request examples and JSON payloads]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Instruction-only artifact; no executable code, scripts, or binaries.]
+
+## Skill Version(s):
+
+1.0.27 (source: server release metadata, created 2026-03-25T10:00:02Z)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

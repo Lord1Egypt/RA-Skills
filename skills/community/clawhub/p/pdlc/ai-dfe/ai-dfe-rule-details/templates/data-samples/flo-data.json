@@ -1,0 +1,41 @@
+{
+  "$schema": ".kiro/pdlc/ai-flo-rule-details/data-schema/flo-data.schema.json",
+  "$schemaVersion": "1.0.0",
+  "$generatedBy": "AI-DFE",
+  "$generatedOn": "2026-06-22T12:00:00Z",
+  "$family": "pdlc",
+  "$package": "ai-flo",
+  "data": {
+    "topologyMode": 1,
+    "version": "1.0.0",
+    "created": "2026-06-22T12:00:00Z",
+    "lastUpdated": "2026-06-22T12:00:00Z",
+    "configuration": {
+      "holdTimeout": "3 business days",
+      "optionalFeedWait": "2 business days",
+      "stallThreshold": "5 days",
+      "autoResolveRule": "upstream-wins",
+      "rollUpSchedule": "on-demand"
+    },
+    "projects": [
+      {
+        "projectId": "PRJ-SMP-2026-001",
+        "workspaceRef": "./",
+        "currentPackage": "AI-DLC v1",
+        "currentStatus": "In Progress",
+        "nextHop": "end-of-chain",
+        "priority": 1,
+        "dispatched": "2026-06-22T12:00:00Z",
+        "lastActivity": "2026-06-22T12:00:00Z",
+        "profile": "Full",
+        "reworkCount": 0,
+        "toggles": [],
+        "positionHistory": []
+      }
+    ],
+    "routes": [],
+    "fanInRules": [],
+    "packageAvailability": [],
+    "routingLogEntryCount": 12
+  }
+}

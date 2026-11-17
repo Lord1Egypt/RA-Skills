@@ -1,45 +1,60 @@
-## Description: <br>
-Organizes sales lead information into qualification judgments, key questions, risk items, and recommended next steps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Organizes sales lead information into a qualification judgment, key questions, risks, and recommended next steps.
 
-## Publisher: <br>
-[52YuanChangXing](https://clawhub.ai/user/52YuanChangXing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[52yuanchangxing](https://clawhub.ai/user/52yuanchangxing)
 
-## Use Case: <br>
-Sales and CRM users use this skill to turn lead background, pain points, budget, and timing into reviewable qualification notes, follow-up questions, risks, and next actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The bundled Python helper includes broader local audit and pattern-scanning behavior than the advertised sales-note workflow requires. <br>
-Mitigation: Review the helper before installation and run it only against intended lead-note inputs, not broad private directories. <br>
-Risk: Lead notes may include private or sensitive sales information. <br>
-Mitigation: Desensitize inputs when needed and review generated notes before sharing or copying them into a CRM. <br>
-Risk: Generated qualification notes could be mistaken for authoritative CRM master data. <br>
-Mitigation: Use the output as a draft and checklist, and confirm facts against official CRM records before acting. <br>
+## Use Case:
 
+Sales and go-to-market teams use this skill to turn lead background, pain points, budget, and timing into reviewable qualification notes, follow-up questions, risk items, and next-step recommendations.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/52YuanChangXing/lead-qualification-notes) <br>
-- [README](artifact/README.md) <br>
-- [Output Specification](artifact/resources/spec.json) <br>
-- [Output Template](artifact/resources/template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Shell commands] <br>
-**Output Format:** [Structured Markdown notes, with optional JSON or file output from the local Python helper.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only sales-assist output that highlights missing or uncertain information.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: The bundled script includes local audit and pattern-scanning modes beyond the stated lead-note generation purpose.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the script before deployment, scope execution to intended lead files, and avoid broad filesystem access unless those audit modes are explicitly needed and documented.
+
+Risk: Lead inputs may contain sensitive customer, prospect, or personal information.
+
+Mitigation: Use only necessary local inputs, redact sensitive material where practical, and avoid treating generated notes as authoritative CRM master data.
+
+Risk: Generated qualification notes can be misleading if the source lead data is incomplete or uncertain.
+
+Mitigation: Preserve the skill's review workflow by listing missing information, marking uncertain assumptions, and having a sales owner review notes before action.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/52yuanchangxing/skills/lead-qualification-notes)
+- [Publisher profile](https://clawhub.ai/user/52yuanchangxing)
+- [README.md](artifact/README.md)
+- [resources/spec.json](artifact/resources/spec.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, shell commands]
+
+**Output Format:** [Markdown by default, with optional JSON output from the local script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only lead qualification notes with explicit missing-information and review sections.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

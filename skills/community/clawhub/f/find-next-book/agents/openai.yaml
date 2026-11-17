@@ -1,0 +1,4 @@
+interface:
+  display_name: "Find Next Book"
+  short_description: "根据相关记忆、当前目标和真实书目证据推荐下一本值得读的书"
+  default_prompt: "使用 $find-next-book，根据你对我的相关记忆推荐我现在最值得读的一本书。"

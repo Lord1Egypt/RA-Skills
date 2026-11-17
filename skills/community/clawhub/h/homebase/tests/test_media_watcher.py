@@ -17,18 +17,11 @@ import sys
 from pathlib import Path
 from unittest.mock import MagicMock, patch
 
-import pytest
 
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
-# Stub Google deps before import
-for mod in ("google", "google.oauth2", "google.oauth2.credentials",
-            "google.auth", "google.auth.transport", "google.auth.transport.requests",
-            "googleapiclient", "googleapiclient.discovery"):
-    sys.modules.setdefault(mod, MagicMock())
 
-with patch("core.keychain_secrets.load_google_secrets", return_value=None), \
-     patch("core.config_loader._load_config") as _mc:
+with patch("core.config_loader._load_config") as _mc:
     from conftest import MINIMAL_CONFIG
     from core.config_loader import Config
     _mc.return_value = Config(MINIMAL_CONFIG)

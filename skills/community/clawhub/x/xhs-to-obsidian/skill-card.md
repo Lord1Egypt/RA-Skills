@@ -1,41 +1,63 @@
-## Description: <br>
-Extract Xiaohongshu (小红书) posts into Obsidian Markdown notes, with support for single posts, batch extraction, and optional video transcription. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extract Xiaohongshu (小红书) posts into Obsidian notes from shared Xiaohongshu or RedNote links, with support for single posts, batch extraction, and optional video transcription.
 
-## Publisher: <br>
-[jmin1113](https://clawhub.ai/user/jmin1113) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jmin1113](https://clawhub.ai/user/jmin1113)
 
-## Use Case: <br>
-External users and personal knowledge-management users use this skill to convert Xiaohongshu or RedNote links into Obsidian-ready Markdown notes with post metadata, images, and optional video transcripts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles Xiaohongshu login cookies that could expose an account session. <br>
-Mitigation: Use only a low-risk Xiaohongshu account, treat ~/.openclaw/xhs-cookies.json like a password, and delete or rotate the cookie file after use. <br>
-Risk: Running the extractor on untrusted links can increase account and transport risk. <br>
-Mitigation: Avoid untrusted links unless the extractor is patched to enforce the Xiaohongshu hostname and keep normal HTTPS certificate verification enabled. <br>
+## Use Case:
 
+External users and developers use this skill to preserve Xiaohongshu posts as Obsidian Markdown notes. It helps capture post text, images, source metadata, engagement counts, tags, and optional Chinese video transcripts for personal knowledge management.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/jmin1113/xhs-to-obsidian) <br>
-- [Xiaohongshu](https://www.xiaohongshu.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown notes, JSON status output, and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Saves notes to an Obsidian vault path and may append video transcription text when optional dependencies are available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill requires exported Xiaohongshu browser cookies, which can expose a user's active session if mishandled.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated local cookie file with restricted permissions, refresh it only when needed, and avoid sharing generated logs or command output that may contain cookie paths or session-related errors.
+
+Risk: Unsafe network validation can expose session cookies or downloaded media to unintended destinations.
+
+Mitigation: Before use, validate Xiaohongshu hostnames, keep TLS certificate and hostname verification enabled, and restrict redirects and video URLs to expected Xiaohongshu domains.
+
+Risk: Video transcription downloads media and stores temporary files locally.
+
+Mitigation: Protect temporary files, clean them after transcription, and review generated transcripts before appending them to Obsidian notes.
+
+Risk: Passing unvalidated values into inline code can lead to command or script execution issues.
+
+Mitigation: Quote and validate URL, post ID, and path inputs before running extraction or transcription commands.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jmin1113/skills/xhs-to-obsidian)
+- [Publisher profile](https://clawhub.ai/user/jmin1113)
+- [Xiaohongshu](https://www.xiaohongshu.com)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown notes, JSON command results, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes Obsidian Markdown files and may append video transcription text when local transcription tools are available.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

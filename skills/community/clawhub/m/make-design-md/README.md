@@ -32,15 +32,20 @@
 ### 使用 Google CLI 验证与导出
 
 ```bash
-# 验证文档格式
+# 验证文档格式（JSON 输出）
 npx @google/design.md lint DESIGN.md
 
-# 导出为 Tailwind 配置
-npx @google/design.md export --format tailwind DESIGN.md
+# 导出为 Tailwind v3 配置（theme.extend JSON，--format tailwind 为其别名）
+npx @google/design.md export --format json-tailwind DESIGN.md
 
-# 导出为 DTCG 格式
+# 导出为 Tailwind v4 主题（CSS @theme 块）
+npx @google/design.md export --format css-tailwind DESIGN.md
+
+# 导出为 DTCG 格式（W3C Design Tokens Format）
 npx @google/design.md export --format dtcg DESIGN.md
 ```
+
+> Windows/PowerShell 下若 `npx @google/design.md` 无输出，改用无点的别名：`npx -p @google/design.md designmd lint DESIGN.md`。
 
 ## 输出结构
 

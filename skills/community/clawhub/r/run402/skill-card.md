@@ -1,45 +1,60 @@
-## Description: <br>
-Provision Postgres databases, deploy static sites, generate images, and build full-stack webapps on Run402 using x402 micropayments. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provision Postgres databases, deploy static sites, generate images, and build full-stack webapps on Run402 using x402 micropayments.
 
-## Publisher: <br>
-[MajorTal](https://clawhub.ai/user/MajorTal) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[majortal](https://clawhub.ai/user/majortal)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and agents use this skill to build and operate Run402-backed web applications, including database provisioning, static site deployment, serverless functions, image generation, billing flows, and project management.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Paid Run402 actions can create resources, renew projects, generate images, create checkout sessions, or send paid feedback messages.
+
+Mitigation: Require explicit user confirmation before paid actions and use idempotency keys for provisioning, deployment, renewal, image generation, and other chargeable requests.
+
+Risk: The skill relies on persistent wallet, project, and service credentials that can grant broad access to deployed resources.
+
+Mitigation: Keep wallet files and service keys isolated, avoid exposing service keys in client-side code, and prefer a pinned or locally reviewed Run402 CLI installation.
+
+Risk: Project deletion, publishing, forking, subdomain changes, and similar management actions can alter or remove deployed resources.
+
+Mitigation: Ask for explicit confirmation before destructive or public-facing operations and verify the target project or subdomain before running commands.
+
+Risk: The invocation scope is broad and could apply Run402 behavior to unrelated build or deployment requests.
+
+Mitigation: Use the skill only when the user explicitly asks for Run402 or clearly requests a Run402-backed database, site, image, or full-stack deployment.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and agent operators use this skill to build, deploy, and operate Run402-hosted apps, databases, static sites, serverless functions, image generation, and billing or wallet workflows. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can install an unpinned global CLI package. <br>
-Mitigation: Verify the npm package name and version before installation. <br>
-Risk: The skill can create persistent wallet or payment authority and trigger paid cloud actions. <br>
-Mitigation: Start on testnet or with minimal funds, use idempotency keys where applicable, and require explicit approval before paid or mainnet actions. <br>
-Risk: The skill handles service keys, wallet files, project configuration, and deployed secrets. <br>
-Mitigation: Keep service keys server-side, avoid exposing secret values, and rotate wallet files or service credentials if they may have been exposed. <br>
-Risk: The skill includes destructive project, storage, and data operations. <br>
-Mitigation: Require explicit user confirmation before deletion, archival, or irreversible administrative operations. <br>
+**Output Format:** [Markdown guidance with inline shell, JSON, SQL, and JavaScript snippets]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [Run402 API](https://api.run402.com) <br>
-- [ClawHub run402 skill page](https://clawhub.ai/MajorTal/run402) <br>
+**Other Properties Related to Output:** [May include commands and manifests that create, modify, renew, publish, or delete Run402 resources.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline shell, JSON, SQL, JavaScript, and API request examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include paid deployment steps, project manifests, API requests, and secret-handling instructions.] <br>
+3.0.1 (source: server release metadata; artifact frontmatter is 3.0.0)
 
-## Skill Version(s): <br>
-3.0.1 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

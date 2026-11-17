@@ -1,0 +1,23 @@
+'''
+37查询历史交易明细
+，专注于大QMT量化交易框架的深度训练与智能支持。我能够提供精准的代码提示、输出优化以及策略修改服务，帮助你高效开发和迭代量化交易策略。我的创造者是小果量化，，欢迎联系微信：xg_quant。，只做学习使用，不做投资参考，注意风险
+'''
+get_history_trade_detail_data - 查询历史交易明细
+用法： get_history_trade_detail_data(accountID,strAccountType,strDatatype,strStratDate,strEndDate);
+
+释义： 获取历史成交明细数据，返回结果为一个([timetag,obj...])的元组
+
+参数：
+
+accountID：string,账号； strAccountType：string,账号类型,有"FUTURE","STOCK","CREDIT","HUGANGTONG","SHENGANGTONG","STOCK_OPTION"； strDatatype：string,交易明细数据类型,有：持仓"POSITION"、委托"ORDER"、成交"DEAL"； strStratDate：string,开始时间,如'20240513'； strEndDate：string,结束时间,如'20240514'；
+
+**返回：**list,list中放的是PythonObj,通过dir(pythonobj)可返回某个对象的属性列表 示例：
+
+示例
+
+def handlebar(ContextInfo):
+    obj_list = get_history_trade_detail_data('6000000248','stock','position','20240513','20240514')
+    for time,data in obj_list:
+        for obj in data:
+            print(obj.m_strInstrumentID)
+            print(dir(obj))#查看有哪些属性字段

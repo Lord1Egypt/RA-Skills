@@ -1,41 +1,62 @@
-## Description: <br>
-Run structured network diagnostics that test DNS, traceroute, MTU, speed, and historical baselines, then produce a plain-English diagnosis with actionable findings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run structured network diagnostics across DNS, ping, traceroute, MTU, speed, and history baselines, then produce a plain-English diagnosis with actionable next steps.
 
-## Publisher: <br>
-[newageinvestments25-byte](https://clawhub.ai/user/newageinvestments25-byte) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[newageinvestments25-byte](https://clawhub.ai/user/newageinvestments25-byte)
 
-## Use Case: <br>
-Developers, support engineers, and network operators use Net Detective to diagnose slow or unreliable network connections, compare results against baselines, and produce actionable reports for end users. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Active diagnostics send traffic to public DNS providers, ping/traceroute targets, and optional Cloudflare speed-test endpoints. <br>
-Mitigation: Run the skill only in environments where active network probing and external test traffic are acceptable. <br>
-Risk: Generated JSON and Markdown reports can expose local network details such as hostnames, local IPs, gateway information, and traceroute hops. <br>
-Mitigation: Review and redact diagnostic outputs before sharing them outside the trusted troubleshooting context. <br>
+## Use Case:
 
+External users, developers, and support engineers use Net Detective to diagnose slow or broken connectivity and turn raw network measurements into a clear report with next steps.
 
-## Reference(s): <br>
-- [Net Detective Diagnostic Guide](references/diagnostic-guide.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/newageinvestments25-byte/net-detective) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, guidance] <br>
-**Output Format:** [JSON diagnostic data plus Markdown/plain-English reports and shell command guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Optional speed tests generate active network traffic; history comparison uses locally recorded baseline data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill runs active network diagnostics against public hosts and resolvers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only on networks where diagnostics are authorized, and skip optional speed, traceroute, or MTU checks when active probing is inappropriate.
+
+Risk: Raw diagnostic JSON can include local host, local IP, gateway, DNS, traceroute, and performance details from a sensitive network.
+
+Mitigation: Share only the plain-English findings when possible, and redact or avoid sharing raw diagnostic JSON from sensitive environments.
+
+Risk: Documented examples write diagnostic outputs under /tmp, which may be less private on shared systems.
+
+Mitigation: Use a private temporary directory with restrictive permissions, such as one created with mktemp -d, for diagnostic JSON and history comparison outputs.
+
+Risk: Running network tools with elevated privileges can increase the impact of any local execution mistake.
+
+Mitigation: Run the skill as a normal user and avoid sudo unless a reviewer explicitly determines it is required for the environment.
+
+## Reference(s):
+
+- [Net Detective diagnostic guide](artifact/references/diagnostic-guide.md)
+- [ClawHub skill page](https://clawhub.ai/newageinvestments25-byte/skills/net-detective)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports with JSON diagnostic inputs and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May optionally record local history for baseline comparison; no external Python packages are required.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

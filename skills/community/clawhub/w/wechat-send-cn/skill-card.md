@@ -1,43 +1,58 @@
-## Description: <br>
-Wechat Send helps an agent send text messages to a contact or group through the macOS WeChat desktop client, using automatic GUI control with OCR verification and an agent-assisted fallback. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Send a message to a contact or group via the macOS WeChat desktop client, using an automated locate-and-verify flow with Agent-assisted fallback when verification fails.
 
-## Publisher: <br>
-[chuntong007](https://clawhub.ai/user/chuntong007) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chuntong007](https://clawhub.ai/user/chuntong007)
 
-## Use Case: <br>
-Employees, external users, or developers who use WeChat on macOS can invoke this skill when they need an agent to send a specific text message to a named contact or group. It is limited to sending text messages and does not read messages or send files/images. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send real WeChat messages through a logged-in desktop session automatically. <br>
-Mitigation: Require explicit confirmation of the exact recipient and message before running the send command. <br>
-Risk: GUI and OCR matching can be fragile, especially when the workflow falls back to screenshot-coordinate selection. <br>
-Mitigation: Verify the selected conversation from the title OCR or fallback screenshot before using --send-only, and stop if the match is ambiguous. <br>
-Risk: The workflow writes message text and screenshots to temporary files under /tmp. <br>
-Mitigation: Avoid sensitive content and delete /tmp/wechat_send_clip.txt and /tmp/wechat_*.png after sending. <br>
+## Use Case:
 
+External users and developers use this skill to send WeChat messages to contacts or groups from a logged-in macOS WeChat desktop client. It is intended for sending messages only, not reading messages or sending files and images.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/chuntong007/wechat-send-cn) <br>
-- [Publisher profile](https://clawhub.ai/user/chuntong007) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, guidance] <br>
-**Output Format:** [Markdown instructions with bash command examples and screenshot-coordinate guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires macOS, a logged-in WeChat desktop client, Accessibility permission, cliclick, and macOS Vision/Swift OCR; sends text messages only.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: frontmatter and server release evidence) <br>
+Risk: The skill can automatically send real WeChat messages after weak recipient verification.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only after intentionally granting Accessibility control, and add or require an explicit final confirmation of recipient and content before sending.
+
+Risk: Private message text and screenshots may remain in predictable temporary files.
+
+Mitigation: Avoid sensitive messages until secure temporary files and cleanup are added; review and remove temporary files after use.
+
+Risk: The skill automates the live WeChat desktop client through macOS Accessibility control.
+
+Mitigation: Install and run it only in environments where that level of local UI control is acceptable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chuntong007/skills/wechat-send-cn)
+- [Publisher profile](https://clawhub.ai/user/chuntong007)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Markdown with inline bash commands and operational status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce instructions to inspect a screenshot and rerun the script with screen coordinates when automated verification falls back.]
+
+## Skill Version(s):
+
+2.0.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

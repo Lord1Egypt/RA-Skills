@@ -1,37 +1,51 @@
-## Description: <br>
-Support sociological thinking from first observations to academic research. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Support sociological thinking from first observations to academic research.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Students, teachers, researchers, and general learners use this skill to adapt sociology explanations, theory, evidence, classroom discussion, and research guidance to the user's level and task. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Academic claims, sources, or citations may be inaccurate or unsupported if accepted without review. <br>
-Mitigation: Verify claims, sources, and citations independently before using the output for coursework, publishing, or research decisions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/sociology) <br>
+## Use Case:
+
+External learners, students, researchers, and teachers use this skill to adapt sociology explanations, theory-to-evidence reasoning, methodology support, and classroom facilitation to the user's level.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Academic explanations, sources, or citations may be incomplete or incorrect.
+
+Mitigation: Verify citations, source claims, and research guidance before using outputs for coursework or publication.
+
+Risk: Sociology topics such as race, class, gender, and inequality can be sensitive in teaching or discussion settings.
+
+Mitigation: Use the skill's guidance to distinguish description from endorsement and review responses for audience-appropriate framing.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Analysis, Markdown] <br>
-**Output Format:** [Markdown prose] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only educational output; no code execution, data access, persistence, or credential use.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown or plain text responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code, tools, persistence, or hidden data access are used by the skill.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,36 +1,70 @@
 #!/usr/bin/env python3
 """
-感知节点 - Tool Use 接口（完整版 + 错误智慧库集成）
+感知节点（PerceptionNode） - 被动能力执行器 / Tool Use 统一入口层
 
-功能：
-- 工具调用（web_search, get_weather, calculator, search_documents）
+【行为红线 · 必读】
+本模块是框架次循环"感知接口（Tool Use）"的落地，严格遵循 tool_use_spec.md
+的职责边界红线：
+  - 被动能力执行器：只按调用方给定参数执行能力、返回结构化契约；
+    不拥有任何决策权 / 推理权 / 判断权（那些属于映射层与外环）。
+  - 无自主推理：调用与否、结果如何处置，由上层决定；本层仅按预置规则
+    （如确定性错误码集合、retryable 标志）机械响应。
+  - 最小化自我表述：只输出结构化契约数据与 operational telemetry
+    （trace_id / backend / duration 等）；不输出任何主体性 / 叙事性 / 拔高性
+    措辞（禁止"我认为/我治理/我进化/核心 IP"等）。
+
+功能（均为"执行态"能力，非决策）：
+- 工具调用入口（web_search, get_weather, calculator, search_documents, toolnode）
 - Trace ID 全链路追踪
-- 缓存策略
-- 重试机制
+- 缓存策略（执行态复用）
+- 重试机制（仅确定性规则驱动）
 - 性能监控
 - 分页支持
 - SSE 流式响应（模拟）
-- 可观测性（调试模式、日志）
+- 可观测性（调试模式、日志 —— 进程内执行态，不进入契约）
 - 版本控制
 - Token 预估
-- 错误智慧库集成（前置预防检查 + 错误记录）
+- 错误台账（内部状态，用于重试判定与可观测；错误事件上报上层，入库决策在上层）
 
 基于：tool_use_spec.md 接口规范（2026版）
 """
+__version__ = "1.0.0"
+
 
 import sys
 import os
 import json
 import argparse
+import subprocess
 import time
 import hashlib
 import uuid
 import datetime
 import logging
+import ast
+import math
 from typing import Dict, List, Optional, Any, AsyncGenerator, Callable
 from dataclasses import dataclass, field
 from functools import lru_cache
 from collections import OrderedDict
+from interfaces import TraceContext, ValidationResult, create_trace_context
+
+# 导入 toolnode 的参数 Schema（单一事实来源，供参数校验复用）
+# toolnode.py 缺失时（保命场景：Rust 二进制 + Python 原型都没了）回退到 busybox_fallback.SCHEMAS，
+# 保证保命模式下参数校验仍生效（Step 4）。
+try:
+    from toolnode import SCHEMAS as TOOLNODE_SCHEMAS
+except Exception:
+    try:
+        from busybox_fallback import SCHEMAS as TOOLNODE_SCHEMAS
+    except Exception:
+        TOOLNODE_SCHEMAS = {}
+
+# BusyBox 保命层（Step 4）：能力层缺失/崩溃时的最后兜底。纯 stdlib，内嵌进程。
+try:
+    import busybox_fallback
+except Exception:
+    busybox_fallback = None
 
 # 配置日志
 logging.basicConfig(
@@ -39,23 +73,30 @@ logging.basicConfig(
 )
 logger = logging.getLogger('perception_node')
 
-# 确保当前目录在 sys.path 中
+# 确保当前目录在 sys.path 中（供同目录其他模块导入）
 current_dir = os.path.dirname(os.path.abspath(__file__))
-personality_core_dir = os.path.join(current_dir, 'personality_core')
 if current_dir not in sys.path:
     sys.path.insert(0, current_dir)
-if personality_core_dir not in sys.path:
-    sys.path.insert(0, personality_core_dir)
 
-# 尝试导入 C 扩展
+# 集中加载 C 扩展（c_ext_loader 按显式文件路径加载，规避命名空间包遮蔽）
 try:
-    import core_perception_node
-    from core_perception_node import generate_trace_id as c_generate_trace_id
-    C_EXT_AVAILABLE = True
-    logger.info("C extension loaded successfully")
-except ImportError as e:
+    from c_ext_loader import load_c_extension, PERCEPTION_NODE_SYMBOLS
+    _cpn_mod, C_EXT_AVAILABLE, _cpn_detail = load_c_extension(
+        "core_perception_node", required_symbols=PERCEPTION_NODE_SYMBOLS,
+        runtime_probe=("generate_trace_id", (), {}))
+    if C_EXT_AVAILABLE:
+        core_perception_node = _cpn_mod
+        c_generate_trace_id = core_perception_node.generate_trace_id
+        logger.info(_cpn_detail)
+    else:
+        logger.warning(f"{_cpn_detail}, using pure Python implementation")
+        core_perception_node = None
+        c_generate_trace_id = None
+except Exception as e:
     logger.warning(f"C extension not available: {e}, using pure Python implementation")
     C_EXT_AVAILABLE = False
+    core_perception_node = None
+    c_generate_trace_id = None
 
 # 尝试导入错误智慧库模块
 try:
@@ -83,6 +124,7 @@ class ToolConfig:
     deprecated: bool = False
     sunset_date: Optional[str] = None
     replacement: Optional[str] = None
+    stub: bool = False  # 是否为桩（未真正实现，禁止进入主路径）
 
 
 # 工具注册表
@@ -94,7 +136,8 @@ TOOL_REGISTRY: Dict[str, ToolConfig] = {
         cacheable=True,
         cache_ttl=300,
         cache_key_params=["query"],
-        estimated_tokens={"input": 50, "output": {"typical": 200, "max": 1000}}
+        estimated_tokens={"input": 50, "output": {"typical": 200, "max": 1000}},
+        stub=True
     ),
     "get_weather": ToolConfig(
         name="get_weather",
@@ -103,14 +146,16 @@ TOOL_REGISTRY: Dict[str, ToolConfig] = {
         cacheable=True,
         cache_ttl=600,
         cache_key_params=["location", "unit"],
-        estimated_tokens={"input": 50, "output": {"typical": 100, "max": 200}}
+        estimated_tokens={"input": 50, "output": {"typical": 100, "max": 200}},
+        stub=True
     ),
     "calculator": ToolConfig(
         name="calculator",
-        description="执行数学计算",
-        version="1.0.0",
+        description="执行数学计算（四则/幂/取模 + 科学函数 sqrt/sin/cos/log/exp/pow/atan2 及常量 pi/e/tau）",
+        version="1.1.0",
         cacheable=True,
         cache_ttl=3600,
+        cache_key_params=["expression"],
         estimated_tokens={"input": 100, "output": {"typical": 50, "max": 100}}
     ),
     "search_documents": ToolConfig(
@@ -119,12 +164,85 @@ TOOL_REGISTRY: Dict[str, ToolConfig] = {
         version="2.1.0",
         cacheable=True,
         cache_ttl=300,
-        estimated_tokens={"input": 100, "output": {"min": 200, "max": 5000, "typical": 1000}}
+        estimated_tokens={"input": 100, "output": {"min": 200, "max": 5000, "typical": 1000}},
+        stub=True
+    ),
+    "toolnode": ToolConfig(
+        name="toolnode",
+        description="统一工具节点（fs/sys/proc/exec），由 PerceptionNode 经 subprocess 路由到 toolnode.py（真实能力层）",
+        version="1.0.0",
+        cacheable=False,
+        estimated_tokens={"input": 100, "output": {"typical": 500, "max": 4000}}
     )
 }
 
 
 # ==================== 辅助函数 ====================
+
+# ==================== 安全计算（calculator 白名单求值，v2） ====================
+# 与 C 扩展 tool_calculator（纯 C 白名单求值器）行为对齐：
+# - 仅允许 数字字面量 / 四则 / 幂 / 取模 / 地板除 / 一元正负 / 括号
+# - 函数与常量严格白名单（math 常用科学函数），任意未登记名字一律拒绝
+# - 无自由 eval：AST 白名单校验 + 清空 __builtins__ 的受限命名空间
+#   免疫 __import__ / ().__class__ / open / lambda 等沙箱逃逸
+_CALC_AST_ALLOWED = frozenset({
+    ast.Expression, ast.BinOp, ast.UnaryOp, ast.Constant, ast.Name, ast.Call,
+    ast.Load,  # Name/Call 的上下文标记，无害
+    ast.Add, ast.Sub, ast.Mult, ast.Div, ast.Pow, ast.Mod, ast.FloorDiv,
+    ast.UAdd, ast.USub,
+})
+
+# 单/双参函数白名单（与 C 扩展 CALC_UNARY/CALC_BINARY 对齐；min/max 限定双参）
+_CALC_FUNCS = frozenset({
+    "fabs", "sqrt", "cbrt", "sin", "cos", "tan",
+    "asin", "acos", "atan", "sinh", "cosh", "tanh",
+    "asinh", "acosh", "atanh", "exp", "expm1",
+    "log", "log2", "log10", "log1p",
+    "floor", "ceil", "trunc",
+    "degrees", "radians", "erf", "erfc", "gamma", "lgamma",
+    "pow", "atan2", "hypot", "fmod", "copysign", "remainder",
+})
+# 非 math 模块的内置函数（C 侧为 fabs/nearbyint/fmin/fmax 对应实现；min/max 限定双参）
+_CALC_FUNCS_BUILTIN = {"abs", "round", "min", "max"}
+_CALC_CONSTS = frozenset({"pi", "e", "tau", "inf", "nan"})
+
+
+def _safe_calc(expression: str) -> Any:
+    """白名单安全求值（AST 校验 + math 受限命名空间）。
+
+    - 数字字面量仅限 int/float（拒绝字符串/复数/布尔等非常规数值）
+    - 函数调用必须是白名单内的裸名字（拒绝属性访问、下标）
+    - 执行时 __builtins__ 清空，只暴露白名单函数与常量
+    """
+    try:
+        tree = ast.parse(expression, mode="eval")
+    except SyntaxError:
+        raise ValueError("invalid expression")
+    called = {n.func.id for n in ast.walk(tree)
+              if isinstance(n, ast.Call) and isinstance(n.func, ast.Name)}
+    for node in ast.walk(tree):
+        if type(node) not in _CALC_AST_ALLOWED:
+            raise ValueError(f"disallowed node: {type(node).__name__}")
+        if isinstance(node, ast.Constant):
+            v = node.value
+            if not isinstance(v, (int, float)) or isinstance(v, bool):
+                raise ValueError("only numeric literals allowed")
+        if isinstance(node, ast.Name):
+            if node.id in _CALC_FUNCS | _CALC_FUNCS_BUILTIN and node.id not in called:
+                raise ValueError(f"function must be called: {node.id}")  # 裸函数名拒绝（对齐 C 扩展）
+            if node.id not in _CALC_FUNCS | _CALC_FUNCS_BUILTIN | _CALC_CONSTS:
+                raise ValueError(f"unknown name: {node.id}")
+        if isinstance(node, ast.Call) and not isinstance(node.func, ast.Name):
+            raise ValueError("function call must be a plain name")
+    ns = {name: getattr(math, name) for name in _CALC_FUNCS}
+    ns.update({"abs": abs, "round": round})  # 内置 abs / round（round 为 half-even，与 C nearbyint 一致）
+    ns.update({name: getattr(math, name) for name in ("pi", "e", "tau")})
+    ns.update({"inf": float("inf"), "nan": float("nan")})
+    # min/max 限定双参（与 C 扩展 fmin/fmax 对齐）
+    ns.update({"min": lambda a, b: a if a < b else b,
+               "max": lambda a, b: a if a > b else b})
+    return eval(compile(tree, "<safe_calc>", "eval"), {"__builtins__": {}}, ns)
+
 
 def generate_trace_id() -> str:
     """生成 Trace ID"""
@@ -260,6 +378,21 @@ class ObservabilityManager:
             "retryable": retryable
         }, exc_info=True)
 
+    def log_failure(self, tool_name: str, trace_id: str, error_code: str, message: str) -> None:
+        """记录错误契约结果（success=False 的业务失败，非抛异常路径）。
+
+        与 log_error 共同支撑真实成功率指标——此前错误契约只入智慧库不计 failed_calls，
+        致 failed_calls 恒为异常数、成功率指标失真（Step 5 Q7 发现并修正）。
+        """
+        self.metrics["failed_calls"] += 1
+        # 注意：LogRecord 保留属性（message/name/levelname 等）不可放入 extra，否则抛 KeyError
+        logger.info(f"Tool failed (contract): {tool_name} ({error_code})", extra={
+            "trace_id": trace_id,
+            "tool_name": tool_name,
+            "error_code": error_code,
+            "error_message": message,
+        })
+
     def log_cache_hit(self, tool_name: str) -> None:
         """记录缓存命中"""
         self.metrics["cache_hits"] += 1
@@ -281,7 +414,12 @@ class ObservabilityManager:
 # ==================== 感知节点主类 ====================
 
 class PerceptionNode:
-    """感知节点 - Tool Use 接口（完整版 + 错误智慧库集成）"""
+    """感知节点（PerceptionNode） - 被动能力执行器 / Tool Use 统一入口层。
+
+    严格遵循 tool_use_spec.md 职责边界红线：无自主推理、最小化自我表述。
+    错误事件经 error_wisdom 接口**单向上报**给框架记录层；入库/复盘/预防等
+    决策性动作由上层完成，本层不因此获得任何决策权（详见模块 docstring）。
+    """
 
     def __init__(self, memory_dir: str = "./agi_memory"):
         self.c_ext_available = C_EXT_AVAILABLE
@@ -289,15 +427,16 @@ class PerceptionNode:
         self.observability = ObservabilityManager()
         self.memory_dir = memory_dir
         
-        # 初始化错误智慧库模块
+        # 初始化错误事件上报（单向依赖：本层只把错误事件上报给框架记录层，
+        # 入库/复盘/预防等决策在上层完成；本层不因此改动自身行为，也不反向约束上层）
         self.prevention_engine = None
         self.error_wisdom_manager = None
-        
+
         if ERROR_WISDOM_AVAILABLE:
             try:
                 self.prevention_engine = PreventionEngine(memory_dir)
                 self.error_wisdom_manager = ErrorWisdomManager(memory_dir)
-                logger.info("Error Wisdom integration enabled")
+                logger.info("Error event reporting enabled (upstream)")
             except Exception as e:
                 logger.warning(f"Failed to initialize Error Wisdom: {e}")
 
@@ -325,6 +464,9 @@ class PerceptionNode:
         # 获取工具配置
         tool_config = TOOL_REGISTRY.get(tool_name)
 
+        # 尽早生成 trace_id，保证所有分支（含提前返回）可追踪（Q3）
+        trace_id = generate_trace_id()
+
         if not tool_config:
             return {
                 "success": False,
@@ -336,7 +478,7 @@ class PerceptionNode:
                 "metadata": {
                     "tool_name": tool_name,
                     "timestamp": get_timestamp_iso8601(),
-                    "trace_id": generate_trace_id()
+                    "trace_id": trace_id
                 }
             }
 
@@ -354,12 +496,45 @@ class PerceptionNode:
                 "metadata": {
                     "tool_name": tool_name,
                     "timestamp": get_timestamp_iso8601(),
-                    "trace_id": generate_trace_id()
+                    "trace_id": trace_id
                 }
             }
 
-        # 生成 trace_id
-        trace_id = generate_trace_id()
+        # 检查工具是否仅为桩（未真正实现，禁止进入主路径）— Q1 质量门禁
+        if tool_config.stub and not options.get('allow_stub', False):
+            return {
+                "success": False,
+                "status": "error",
+                "error": {
+                    "code": "STUB_NOT_IMPLEMENTED",
+                    "message": f"Tool '{tool_name}' is a stub and not implemented",
+                    "replacement": "toolnode"
+                },
+                "metadata": {
+                    "tool_name": tool_name,
+                    "timestamp": get_timestamp_iso8601(),
+                    "trace_id": trace_id
+                }
+            }
+
+        # 参数 Schema 校验（Q2：真实接线工具强制校验）
+        if tool_name == "toolnode":
+            verr = self._validate_toolnode_params(params)
+            if verr:
+                return {
+                    "success": False,
+                    "status": "error",
+                    "error": {
+                        "code": "INVALID_PARAMS",
+                        "message": verr,
+                        "retryable": False
+                    },
+                    "metadata": {
+                        "tool_name": tool_name,
+                        "timestamp": get_timestamp_iso8601(),
+                        "trace_id": trace_id
+                    }
+                }
 
         # 记录调用
         self.observability.log_call(tool_name, trace_id, params)
@@ -460,6 +635,25 @@ class PerceptionNode:
                 result['metadata']['performance'] = {
                     'total_ms': execution_time
                 }
+                # Q7：错误契约（success=False 的业务失败）计入可观测性 failed_calls，
+                # 支撑真实成功率指标（此前仅异常计 failed_calls，成功率失真）。
+                self.observability.log_failure(
+                    tool_name, trace_id,
+                    (result.get("error") or {}).get("code", "UNKNOWN"),
+                    (result.get("error") or {}).get("message", ""),
+                )
+                # Q6：真实工具失败（非客户端错误）自动入错误智慧库，闭环复盘
+                if tool_name == "toolnode":
+                    ecode = (result.get("error") or {}).get("code", "")
+                    _client_errors = ("INVALID_PARAMS", "PATH_NOT_FOUND", "PERMISSION_DENIED",
+                                      "UNKNOWN_GROUP", "UNKNOWN_OP", "BAD_PARAMS_JSON",
+                                      "STUB_NOT_IMPLEMENTED")
+                    if ecode and ecode not in _client_errors:
+                        self._record_error_to_wisdom(
+                            tool_name, params,
+                            RuntimeError(f"{ecode}: {(result.get('error') or {}).get('message', '')}"),
+                            trace_id
+                        )
 
             return result
 
@@ -492,7 +686,8 @@ class PerceptionNode:
 
     def _execute_tool(self, tool_name: str, params: dict, config: ToolConfig, trace_id: str) -> dict:
         """执行工具（基础版本）"""
-        if self.c_ext_available:
+        # C 扩展仅实现 calculator；其余（含 toolnode 真实能力层）走 Python 路径
+        if self.c_ext_available and tool_name == "calculator":
             try:
                 # 调用 C 扩展
                 result = core_perception_node.call_tool(tool_name, params)
@@ -503,7 +698,7 @@ class PerceptionNode:
             except Exception as e:
                 logger.warning(f"C extension failed for {tool_name}: {e}, falling back to Python")
 
-        # Python 实现的后备方案
+        # Python 实现的后备方案（toolnode 经 subprocess 路由到统一工具节点）
         return self._execute_tool_python(tool_name, params, config, trace_id)
 
     def _execute_tool_python(self, tool_name: str, params: dict, config: ToolConfig, trace_id: str) -> dict:
@@ -511,6 +706,10 @@ class PerceptionNode:
         start_time = time.time()
 
         try:
+            # toolnode：经 subprocess 路由到统一工具节点（真实能力层）
+            if tool_name == "toolnode":
+                return self._execute_toolnode(params, config, trace_id)
+
             if tool_name == "web_search":
                 data = {
                     "query": params.get("query", ""),
@@ -527,7 +726,8 @@ class PerceptionNode:
             elif tool_name == "calculator":
                 expression = params.get("expression", "0")
                 try:
-                    result = eval(expression)
+                    # v2：白名单安全求值（AST 校验 + math 受限命名空间），替代裸 eval
+                    result = _safe_calc(expression)
                     data = {
                         "expression": expression,
                         "result": result
@@ -624,6 +824,147 @@ class PerceptionNode:
                 }
             }
 
+    def _validate_toolnode_params(self, params: dict) -> Optional[str]:
+        """校验 toolnode 参数（group/op + 各操作 required）。返回错误信息或 None。"""
+        group = params.get("group")
+        op = params.get("op")
+        if not group or not op:
+            return "toolnode requires 'group' and 'op'"
+        schema = TOOLNODE_SCHEMAS.get(group, {}).get(op)
+        if not schema:
+            return f"unknown toolnode operation: {group}.{op}"
+        missing = [r for r in schema.get("required", []) if r not in params]
+        if missing:
+            return f"toolnode {group}.{op} missing required params: {', '.join(missing)}"
+        return None
+
+    def _toolnode_binary_path(self):
+        """解析 toolnode 能力层入口：优先 Rust 静态二进制（toolnode / toolnode.exe），
+        不存在则回退 Python 原型 toolnode.py。返回 (path, is_rust)。
+
+        Step 3 后主路径是 Rust 二进制（零依赖、跨平台双二进制），Python 原型保留为
+        可回退的安全网——任一缺失都不致治理层失效。
+        """
+        ext = ".exe" if os.name == "nt" else ""
+        bin_path = os.path.join(current_dir, "toolnode" + ext)
+        if os.path.exists(bin_path):
+            return bin_path, True
+        py_path = os.path.join(current_dir, "toolnode.py")
+        if os.path.exists(py_path):
+            return py_path, False
+        return None, False
+
+    def _execute_toolnode(self, params: dict, config: ToolConfig, trace_id: str) -> dict:
+        """经 subprocess 调用 toolnode（Rust 二进制优先，回退 Python 原型），透传 trace_id，
+        解析并归一化统一契约（Q3/Q4）。
+
+        能力层三级兜底（Step 4）：Rust 二进制(主) → Python 原型(回退) → BusyBox(保命)。
+        - bin_path 为 None（Rust + Python 原型都缺）→ 直接走 BusyBox
+        - subprocess spawn 失败 / 超时（OSError/TimeoutExpired）→ 能力层崩溃，走 BusyBox
+        - stdout 非合法契约（非 JSON / 无 status）→ 能力层崩溃，走 BusyBox
+        - 合法错误契约（exit 1 + 合法 JSON，如 COMMAND_TIMEOUT）→ **不**触发兜底，那是业务结果
+
+        toolnode/busybox 均输出 status-based 契约；此处统一经 _normalize_toolnode_contract
+        归一化为 PerceptionNode 内部 success-based 契约。
+        """
+        group = params["group"]
+        op = params["op"]
+        bin_path, is_rust = self._toolnode_binary_path()
+
+        # —— 能力层全缺：直接保命层 ——
+        if bin_path is None:
+            logger.warning("[toolnode] no capability binary found, falling back to BusyBox (trace=%s)", trace_id)
+            return self._busybox_fallback(group, op, params, trace_id)
+
+        if is_rust:
+            cmd = [
+                bin_path, group, op,
+                "--params", json.dumps(params, ensure_ascii=False),
+                "--trace-id", trace_id, "--timeout", "120",
+            ]
+        else:
+            cmd = [
+                sys.executable, bin_path, group, op,
+                "--params", json.dumps(params, ensure_ascii=False),
+                "--trace-id", trace_id, "--timeout", "120",
+            ]
+        logger.info("[toolnode] using %s backend for %s.%s (trace=%s)",
+                    "rust" if is_rust else "python", group, op, trace_id)
+
+        # —— 子进程调用：spawn 失败/超时视为能力层崩溃，转保命层 ——
+        try:
+            proc = subprocess.run(cmd, capture_output=True, timeout=120)
+        except (subprocess.TimeoutExpired, OSError) as e:
+            logger.warning("[toolnode] capability layer crashed (%s: %s), falling back to BusyBox (trace=%s)",
+                           type(e).__name__, e, trace_id)
+            return self._busybox_fallback(group, op, params, trace_id)
+
+        stdout = proc.stdout.decode("utf-8", errors="replace") if isinstance(proc.stdout, bytes) else (proc.stdout or "")
+        stderr = proc.stderr.decode("utf-8", errors="replace") if isinstance(proc.stderr, bytes) else (proc.stderr or "")
+
+        # toolnode 约定：成功 exit 0、失败 exit 1，但失败时仍把错误契约写进 stdout。
+        # 因此先按契约解析 stdout：合法契约（含合法错误契约）直接归一化返回；
+        # 仅当 stdout 非合法契约时，才视为能力层崩溃 → 转保命层（而非降级 EXECUTION_ERROR）。
+        result = None
+        try:
+            parsed = json.loads(stdout)
+            if isinstance(parsed, dict) and "status" in parsed:
+                result = parsed
+        except (json.JSONDecodeError, ValueError):
+            pass
+        if result is None:
+            logger.warning("[toolnode] non-contract output from capability layer (rc=%s), falling back to BusyBox (trace=%s)",
+                           proc.returncode, trace_id)
+            return self._busybox_fallback(group, op, params, trace_id)
+
+        return self._normalize_toolnode_contract(result, trace_id)
+
+    def _busybox_fallback(self, group: str, op: str, params: dict, trace_id: str) -> dict:
+        """BusyBox 保命层入口（Step 4）。纯 stdlib，内嵌于治理层进程——只要 PerceptionNode
+        活即活，即使 Rust 二进制与 toolnode.py 全缺也能维持核心 fs/proc.list/sys.all/exec.run。
+
+        返回与 toolnode 一致的统一契约，metadata.backend="busybox" 标记可观测。
+        兜底层自身异常绝不裸抛（再无下一级），一律包成契约。
+        """
+        if busybox_fallback is None:
+            # 极端情况：busybox_fallback.py 也丢了。返回明确错误，不静默。
+            contract = {
+                "status": "error", "data": None,
+                "error": {"code": "BUSYBOX_UNAVAILABLE",
+                          "message": "capability layer down and busybox_fallback module missing",
+                          "retryable": False},
+                "metadata": {"trace_id": trace_id, "backend": "none"},
+                "trace_id": trace_id, "timestamp": get_timestamp_iso8601(),
+            }
+            return contract
+        logger.info("[toolnode] using busybox backend for %s.%s (trace=%s)", group, op, trace_id)
+        result = busybox_fallback.execute(group, op, params, trace_id)
+        return self._normalize_toolnode_contract(result, trace_id)
+
+    def _normalize_toolnode_contract(self, result: dict, trace_id: str) -> dict:
+        """边界归一化：toolnode/busybox 的 status-based → PerceptionNode 内部 success-based。
+
+        这是能力层→治理层的唯一契约边界。此前正是 'success' 键缺失被 _execute_with_retry
+        误判失败，导致所有 toolnode 调用返回 EXECUTION_ERROR。
+        """
+        success = result.get("status") == "success"
+        result["success"] = success
+        if not success:
+            err = result.get("error")
+            if not isinstance(err, dict):
+                result["error"] = {"code": "EXECUTION_ERROR", "message": str(err), "retryable": False}
+        if result.get("status") is None:
+            result["status"] = "success" if success else "error"
+
+        # 防静默失败：确保链路 trace_id 与能力层回报一致（不一致则强制对齐，绝不静默丢弃）
+        if result.get("trace_id") != trace_id:
+            result["trace_id"] = trace_id
+        if isinstance(result.get("metadata"), dict):
+            result["metadata"]["trace_id"] = trace_id
+        else:
+            result["metadata"] = {"trace_id": trace_id}
+        return result
+
     def _execute_with_retry(
         self,
         tool_name: str,
@@ -644,12 +985,16 @@ class PerceptionNode:
                 if not result.get('success'):
                     error_code = result.get('error', {}).get('code')
 
-                    # 参数错误和权限错误不重试
-                    if error_code in ['INVALID_PARAMS', 'PERMISSION_DENIED', 'TOOL_NOT_FOUND', 'TOOL_DEPRECATED']:
-                        return result
-
-                    # 执行错误和计算错误不重试
-                    if error_code in ['EXECUTION_ERROR', 'CALC_ERROR']:
+                    # 参数/权限/确定性业务错误不重试
+                    _no_retry = [
+                        'INVALID_PARAMS', 'PERMISSION_DENIED', 'TOOL_NOT_FOUND',
+                        'TOOL_DEPRECATED', 'EXECUTION_ERROR', 'CALC_ERROR',
+                        'PATH_NOT_FOUND', 'DANGEROUS_COMMAND_BLOCKED', 'COMMAND_TIMEOUT',
+                        'COMMAND_FAILED', 'BAD_PARAMS_JSON', 'UNKNOWN_GROUP', 'UNKNOWN_OP',
+                        # BusyBox 保命层错误均为确定性（不支持/不可用/内部异常），不应重试（Step 4）
+                        'BUSYBOX_UNSUPPORTED', 'BUSYBOX_UNAVAILABLE', 'BUSYBOX_INTERNAL_ERROR',
+                    ]
+                    if error_code in _no_retry:
                         return result
 
                     # 其他错误继续重试
@@ -810,6 +1155,9 @@ class PerceptionNode:
             # 执行预防检查
             result = self.prevention_engine.quick_check(tool_name, params, tool_schema)
             
+            # 预防引擎对未知工具可能返回 None → 视为放行（防静默失败：勿因 None 崩溃）
+            if not isinstance(result, dict):
+                return {"pass": True}
             return result
         except Exception as e:
             logger.warning(f"Pre-check failed: {e}")
@@ -902,23 +1250,22 @@ class PerceptionNode:
         trace_id: str
     ):
         """
-        记录错误到错误智慧库
-        
-        Args:
-            tool_name: 工具名称
-            params: 调用参数
-            error: 异常对象
-            trace_id: 追踪ID
+        上报错误事件给框架记录层（单向）。
+
+        注意：本层是被动能力执行器，不做"复盘/进化/决策"。此处仅把错误事件
+        上报给上层 error_wisdom 接口；是否入库、如何预防，由记录层决策。
+        这是红线允许的"单向依赖"，本层不因上报结果改变自身行为、也不反向
+        约束上层 schema。
         """
         if not self.error_wisdom_manager:
             return
         
         try:
-            # 分析错误类型
+            # 分析错误类型（机械分类，非语义判断）
             error_type = "工具性错误"
             error_subtype = self._classify_tool_error(error)
             
-            # 记录错误
+            # 上报错误事件（决策在上层）
             self.error_wisdom_manager.record_error(
                 error_type=error_type,
                 error_subtype=error_subtype,
@@ -1011,6 +1358,8 @@ def main():
             ("get_weather", {"location": "Beijing", "unit": "celsius"}),
             ("calculator", {"expression": "2 + 3 * 4"}),
             ("search_documents", {"query": "AGI", "limit": 10}),
+            ("toolnode", {"group": "sys", "op": "all"}),
+            ("toolnode", {"group": "fs", "op": "write", "path": os.path.join(current_dir, "_toolnode_selftest.txt"), "content": "selftest"}),
         ]
 
         options = {"debug": args.debug}

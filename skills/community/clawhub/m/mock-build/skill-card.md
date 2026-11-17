@@ -1,43 +1,56 @@
-## Description: <br>
-Provides guidance for using Mock to build RPM packages in clean chroot environments with reusable build, configuration, dependency, and result-management workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through managing reproducible RPM package builds with Mock in clean chroot environments.
 
-## Publisher: <br>
-[weidongkl](https://clawhub.ai/user/weidongkl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[weidongkl](https://clawhub.ai/user/weidongkl)
 
-## Use Case: <br>
-Developers, release engineers, and package maintainers use this skill to plan and run reproducible RPM builds with Mock, including chroot setup, SRPM and spec builds, plugin use, and troubleshooting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Mock setup may require local privileges and trusted mock group membership. <br>
-Mitigation: Install only in environments where Mock privileges are understood, restrict mock group access to trusted users, and avoid passwordless sudo unless it is necessary. <br>
-Risk: Lower-trust repositories, network-enabled builds, or disabled package signature checks can reduce build trust. <br>
-Mitigation: Keep GPG checks enabled for production or trusted builds, review any external repositories before use, and treat network-enabled builds as lower-trust. <br>
+## Use Case:
 
+Developers and build engineers use this skill to set up Mock, choose RPM build presets, run SRPM and spec builds, manage chroot environments, configure plugins, and troubleshoot build results.
 
-## Reference(s): <br>
-- [Mock Official Docs](https://rpm-software-management.github.io/mock/) <br>
-- [Fedora Build Guide](https://docs.fedoraproject.org/en-US/quick-docs/mock/) <br>
-- [Mock Plugin Docs](https://rpm-software-management.github.io/mock/plugins.html) <br>
-- [ClawHub skill page](https://clawhub.ai/weidongkl/mock-build) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with shell command and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance; does not execute commands on its own.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and package.json) <br>
+Risk: Persistent passwordless Mock privileges and broad mock group membership can expand host-level access on build machines.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated or disposable build machine, avoid the passwordless sudoers entry, and limit mock group membership to trusted users.
+
+Risk: Insecure build settings such as disabled RPM signature checks or unnecessary build networking can weaken supply-chain protections.
+
+Mitigation: Keep RPM signature verification enabled and disable build networking unless a specific trusted build process requires it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/weidongkl/skills/mock-build)
+- [Mock official documentation](https://rpm-software-management.github.io/mock/)
+- [Fedora Mock build guide](https://docs.fedoraproject.org/en-US/quick-docs/mock/)
+- [Mock plugin documentation](https://rpm-software-management.github.io/mock/plugins.html)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Bilingual Chinese and English guidance with RPM build examples]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

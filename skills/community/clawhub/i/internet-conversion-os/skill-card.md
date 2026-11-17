@@ -1,41 +1,53 @@
-## Description: <br>
-Internet Conversion OS is a Chinese-language agent skill for planning internet marketing, conversion optimization, user growth, content strategy, monetization, positioning, trust building, and user journey design. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Internet Conversion OS helps users create marketing, conversion optimization, user growth, monetization, product positioning, trust-building, and user journey plans from a full-funnel conversion framework.
 
-## Publisher: <br>
-[web-seeker](https://clawhub.ai/user/web-seeker) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[web-seeker](https://clawhub.ai/user/web-seeker)
 
-## Use Case: <br>
-External marketers, founders, creators, and operators use this skill to diagnose conversion bottlenecks and produce structured strategies for value definition, attention acquisition, trust building, conversion triggers, user journeys, and growth flywheels. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can activate for a broad range of growth, content, monetization, positioning, and trust-building requests. <br>
-Mitigation: Use specific invocation wording and choose a narrower specialist when the request is outside internet conversion strategy. <br>
-Risk: Conversion recommendations may be inaccurate when user-provided product, audience, channel, or performance data is incomplete. <br>
-Mitigation: Provide concrete business context and validate recommendations against current funnel data before acting on them. <br>
-Risk: Marketing and conversion advice can affect customer trust if applied without review. <br>
-Mitigation: Review generated claims, benchmarks, offers, and calls to action for accuracy, compliance, and fit with the brand before publication. <br>
+## Use Case:
 
+External users can use this skill to diagnose conversion bottlenecks and produce structured marketing strategy, content, trust-building, CTA, user journey, and growth-flywheel plans. It is most useful for Chinese-language internet marketing and conversion strategy workflows.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with structured tables, templates, diagnostics, and action plans] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-language strategy outputs; no executable code is produced by the skill itself.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill gives broad marketing and conversion strategy guidance that may not fit every product, audience, budget, or regulatory context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review recommendations against the user's real business constraints and applicable marketing, privacy, and advertising rules before acting on them.
+
+Risk: The skill is Chinese-language by default, which may reduce clarity for users expecting another language.
+
+Mitigation: Ask for the preferred output language or translate the resulting plans when the workflow requires non-Chinese deliverables.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/web-seeker/skills/internet-conversion-os)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with structured plans, tables, diagnostics, templates, and recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language outputs by default; asks clarifying questions when product, audience, bottleneck, or desired output format is unclear.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,59 @@
-## Description: <br>
-产品认知跃迁教练。基于23年产品实战经验，帮助产品经理在AI时代完成认知升级与职业身份转型。适用于：(1) 焦虑AI替代/想做AI转型的产品经理，(2) 希望从功能执行升级为系统设计者，(3) 35+PM寻找第二曲线，(4) 公司引入AI后更乱需要诊断，(5) 想用认知跃迁方法论突破职业瓶颈。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+产品经理认知跃迁教练帮助产品经理在 AI 时代完成认知升级、职业转型，并用诊断提问、认知模型和行动卡处理职业瓶颈与产品难题。
 
-## Publisher: <br>
-[hanshufang79](https://clawhub.ai/user/hanshufang79) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hanshufang79](https://clawhub.ai/user/hanshufang79)
 
-## Use Case: <br>
-External product managers and product leaders use this Chinese-language coaching skill to diagnose career, product judgment, AI transition, and organization-design challenges. The skill guides users through staged questions, cognition models, and concrete next actions rather than producing product requirements or implementation plans. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may be invoked for broad advice-style prompts where coaching language or scope does not match the intended user or organization. <br>
-Mitigation: Review whether its Chinese-language PM coaching scope fits the deployment context and treat outputs as guidance for human judgment, not as authoritative career or business decisions. <br>
+## Use Case:
 
+Product managers, PM leaders, and professionals facing AI transition or career-growth questions use this skill for coaching conversations that diagnose their product-thinking stage, surface blind spots, anchor guidance in supplied references, and produce a concrete action card.
 
-## Reference(s): <br>
-- [ClawHub skill release](https://clawhub.ai/hanshufang79/pm-cognition-coach) <br>
-- [快速开始：如何与认知跃迁教练对话](artifact/assets/quickstart.md) <br>
-- [职业发展路径与跃迁卡点](artifact/references/career-growth.md) <br>
-- [思维框架与工具](artifact/references/thinking-frameworks.md) <br>
-- [认知模型与底层逻辑](artifact/references/cognition-models.md) <br>
-- [产品方法论与实战体系](artifact/references/product-methodology.md) <br>
-- [案例拆解与实战复盘](artifact/references/case-studies.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Chinese-language coaching dialogue with a Markdown action card] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes diagnostic questions, referenced cognition models, and concise next actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill may suggest updates to trusted files such as SKILL.md or files under references/ based on user feedback.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the installed skill files read-only during normal use, or require explicit human review before applying any proposed file changes.
+
+Risk: The skill provides Chinese-language product-management coaching and may not fit teams that cannot review Chinese guidance accurately.
+
+Mitigation: Deploy it only where reviewers and users can assess the Chinese-language coaching content and references.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hanshufang79/skills/pm-cognition-coach)
+- [快速开始：如何与认知跃迁教练对话](assets/quickstart.md)
+- [职业发展路径与跃迁卡点](references/career-growth.md)
+- [认知模型与底层逻辑](references/cognition-models.md)
+- [思维框架与工具](references/thinking-frameworks.md)
+- [产品方法论与实战体系](references/product-methodology.md)
+- [案例拆解与实战复盘](references/case-studies.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown coaching response with diagnostic questions and an action card]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language coaching guidance; no code execution or tool calls required.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

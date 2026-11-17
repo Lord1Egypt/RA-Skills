@@ -1,6 +1,9 @@
 {
-  "ownerId": "kn7crmwcjh34vvbqhscxqsvej982jgy4",
-  "slug": "feishu-card-sender-beautify",
+  "name": "feishu-card-sender-beautify",
   "version": "1.0.0",
-  "publishedAt": 1773159410565
+  "description": "发送飞书 Interactive Card 格式消息，用于美化富文本卡片推送和优化通知",
+  "author": "OpenClaw User",
+  "tags": ["feishu", "card", "sender", "message", "notification", "beautify", "optimize"],
+  "license": "MIT",
+  "platform": "openclaw"
 }

@@ -1,44 +1,55 @@
-## Description: <br>
-Reviews a codebase for architecture quality issues such as cyclic dependencies, dead code, oversized modules, high cyclomatic complexity, API boundary problems, and technical debt. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Performs periodic architecture quality reviews of codebases to identify cyclic dependencies, dead code, oversized modules, high cyclomatic complexity, unclear interfaces, and technical debt.
 
-## Publisher: <br>
-[sipoon](https://clawhub.ai/user/sipoon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sipoon](https://clawhub.ai/user/sipoon)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to run periodic or pre-release architecture audits and receive a prioritized refactoring report. It is also useful when entering an unfamiliar codebase or when a refactoring request needs clearer scope. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill has broad activation wording and may be invoked for large or private repositories. <br>
-Mitigation: Confirm the review scope before running scans, especially for private repositories. <br>
-Risk: Suggested follow-on refactoring or agent-team actions could change project behavior if acted on automatically. <br>
-Mitigation: Require explicit approval before applying refactors or invoking follow-on agents. <br>
-Risk: Some suggested tools may use npx or other package runners that download and execute tooling. <br>
-Mitigation: Review and approve command execution and package sources before running downloaded tools. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to audit unfamiliar, aging, pre-release, or refactoring-bound codebases and prioritize architecture cleanup.
 
-## Reference(s): <br>
-- [Architecture Review skill page](https://clawhub.ai/sipoon/sipoon-architecture-review) <br>
-- [Publisher profile: sipoon](https://clawhub.ai/user/sipoon) <br>
-- [Packaged skill source](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown architecture review report with issue tables, severity labels, prioritized actions, and suggested command-line checks.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The report may reference optional follow-on skills for refactoring, code indexing, or broader review workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server-resolved release metadata and artifact metadata) <br>
+Risk: The workflow may execute project-controlled npm scripts during broad architecture scans.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run reviews in a sandbox, inspect commands before execution, and avoid exposing credentials in the scanned environment.
+
+Risk: The workflow may download analyzer CLIs dynamically at runtime.
+
+Mitigation: Prefer pinned or already-installed local analysis tools and verify package sources before use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/sipoon/skills/sipoon-architecture-review)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/sipoon)
+- [Artifact Skill Definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown report with tables and prioritized recommendations, plus inline shell commands when relevant]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include prioritized findings for module structure, dead code, complexity, interface design, and technical debt.]
+
+## Skill Version(s):
+
+0.1.0 (source: release evidence and artifact/_meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

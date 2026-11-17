@@ -1,45 +1,55 @@
-## Description: <br>
-Write and publish SEO-optimized blog posts to canmarket.ai, including topic research, article drafting with original data, Nuxt page creation, commit and push workflow, auto-deployment, and optional DEV.to cross-posting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Writes and publishes SEO-optimized blog posts for canmarket.ai, including topic research, article drafting, Nuxt page creation, build verification, Git deployment, and optional DEV.to cross-posting.
 
-## Publisher: <br>
-[PHY041](https://clawhub.ai/user/PHY041) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[phy041](https://clawhub.ai/user/phy041)
 
-## Use Case: <br>
-Marketing operators, site owners, and developers who administer CanMarket use this skill to draft, publish, and deploy SEO-focused blog posts for canmarket.ai. It is intended for users who can review generated content, changed files, commits, and deployment targets before publication. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can push generated blog content directly to a live CanMarket site from broad trigger phrases. <br>
-Mitigation: Require manual approval after reviewing the article, changed files, git diff, commit message, target branch, deployment target, and any DEV.to destination before publishing. <br>
-Risk: Direct commits to the production branch can cause accidental production changes. <br>
-Mitigation: Use a branch or pull request workflow where practical, and deploy only after build verification and reviewer approval. <br>
-Risk: The skill is site-specific and assumes access to CanMarket publishing infrastructure. <br>
-Mitigation: Install and run it only if you own or administer the CanMarket site and are authorized to publish there. <br>
+## Use Case:
 
+External developers and CanMarket maintainers use this skill to create, SEO-check, publish, and deploy blog posts for CanMarket's production website.
 
-## Reference(s): <br>
-- [Canlah AI homepage](https://canlah.ai) <br>
-- [CanMarket website](https://canmarket.ai) <br>
-- [ClawHub skill page](https://clawhub.ai/PHY041/canmarket-blog) <br>
-- [Publisher profile](https://clawhub.ai/user/PHY041) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with Nuxt/Vue code, SEO metadata, JSON-LD snippets, and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or modify blog source files, propose commit messages, and provide deployment or cross-posting steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The skill can push directly to the CanMarket production site with broad Git staging.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require a clean working tree, stage only known blog files, review the full diff, and prefer a feature branch or pull request before deployment.
+
+Risk: Published posts may contain unreviewed claims, bylines, or simulation data.
+
+Mitigation: Review all claims, bylines, and cited CanMarket simulation data before publishing or cross-posting.
+
+## Reference(s):
+
+- [Canlah AI](https://canlah.ai)
+- [CanMarket](https://canmarket.ai)
+- [ClawHub skill page](https://clawhub.ai/phy041/skills/canmarket-blog)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown prose with Vue/Nuxt, TypeScript, JSON-LD, and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or modify blog page files and Git commits when executed in the target site repository.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

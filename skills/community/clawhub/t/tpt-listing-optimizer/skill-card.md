@@ -1,40 +1,54 @@
-## Description: <br>
-Maximize visibility and sales on TeachersPayTeachers listings by guiding title, tag, description, thumbnail, pricing, bundle, and revision decisions for TPT's native search behavior. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Maximize visibility and sales on TeachersPayTeachers (TPT) by optimizing listings for TPT's native search algorithm.
 
-## Publisher: <br>
-[kimmi2ue](https://clawhub.ai/user/kimmi2ue) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kimmi2ue](https://clawhub.ai/user/kimmi2ue)
 
-## Use Case: <br>
-TPT sellers and education content creators use this skill to create or improve product listings, including keyword research, titles, tags, descriptions, thumbnails, pricing, bundles, freebies, and listing revision decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Marketplace advice or listing specifications may become outdated or may not match current TeachersPayTeachers rules. <br>
-Mitigation: Verify current TeachersPayTeachers rules, limits, and listing specifications before publishing or revising a listing. <br>
-Risk: Optimization guidance could be misused to copy competitor content or use competitor brand names. <br>
-Mitigation: Use the guidance to structure original listings only, and avoid copying competitor content or using competitor brand names. <br>
+## Use Case:
 
+External creators and marketplace sellers use this skill to improve TPT product listings, including titles, tags, descriptions, thumbnails, pricing, bundles, freebies, and revision decisions.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/kimmi2ue/tpt-listing-optimizer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Text] <br>
-**Output Format:** [Markdown guidance with checklists, templates, examples, and decision criteria] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Non-executable marketplace listing guidance; users should verify current TeachersPayTeachers rules and specifications before relying on it.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Marketplace optimization advice may be outdated or inconsistent with current TPT policy.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review suggested listing, pricing, and revision changes against current TPT rules before publishing.
+
+Risk: Competitor-title research could lead to wording that is too similar to another seller's listing.
+
+Mitigation: Use competitor research for structure and keyword discovery only; write original titles and descriptions.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/kimmi2ue/skills/tpt-listing-optimizer)
+- [Publisher profile](https://clawhub.ai/user/kimmi2ue)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Configuration instructions]
+
+**Output Format:** [Markdown guidance with listing templates, checklists, and optimization recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Markdown-only advice; no shell commands, credential access, persistence, or unrelated data handling were found in the server security review.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

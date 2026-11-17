@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Shared configuration defaults for Word Formatter Pro v2.7.3."""
+"""Shared configuration defaults for Word Formatter Pro."""
 
 from wfp_core import DEFAULT_BLANK_LINE_MODE
 
@@ -10,6 +10,7 @@ FONT_SIZE_MAP = {
 }
 
 DEFAULT_CONFIG = {
+    'convert_auto_numbering': True,  # Non-Windows option; Windows uses COM or Python fallback.
     'page_number_align': '奇偶分页', 'footer_distance': 2.5, 'line_spacing': 28,
     'margin_top': 3.7, 'margin_bottom': 3.5, 'margin_left': 2.8, 'margin_right': 2.6,
     'title_font': '方正小标宋简体', 'h1_font': '黑体', 'h2_font': '楷体_GB2312',
@@ -19,15 +20,34 @@ DEFAULT_CONFIG = {
     'title_size': 22, 'h1_size': 16, 'h2_size': 16, 'body_size': 16, 'page_number_size': 14,
     'table_caption_size': 14, 'figure_caption_size': 14, 'attachment_size': 16,
     'subtitle_size': 16, 'title_line_spacing': 33, 'subtitle_line_spacing': 33,
+    'line_spacing_unit': 'pt', 'line_spacing_multiple': 1.0,
+    'title_line_spacing_unit': 'pt', 'title_line_spacing_multiple': 1.0,
+    'subtitle_line_spacing_unit': 'pt', 'subtitle_line_spacing_multiple': 1.0,
+    'enable_title_after_blank_line': False,
+    'enable_title_after_spacing': False, 'title_after_spacing': 0.0,
+    'title_after_spacing_unit': 'pt',
+    'enable_attachment_title_after_blank_line': False,
+    'enable_attachment_title_after_spacing': False, 'attachment_title_after_spacing': 0.0,
+    'attachment_title_after_spacing_unit': 'pt',
+    'enable_signature_formatting': False, 'signature_layout': 'sealed',
+    'signature_include_attachments': False, 'signature_normalize_date': False,
+    'signature_before_spacing_mode': 'auto', 'signature_before_spacing': 0.0,
+    'signature_before_spacing_unit': 'pt',
     'left_indent_cm': 0.0, 'right_indent_cm': 0.0,
+    'paragraph_indent_unit': 'cm',
+    'left_indent_chars': 0.0, 'right_indent_chars': 0.0, 'first_line_indent_chars': 2.0,
+    'title_bold': 'preserve', 'subtitle_bold': 'preserve',
+    'h1_bold': 'preserve', 'h2_bold': 'preserve', 'attachment_bold': 'preserve',
     'set_outline': True, 'enable_attachment_formatting': True,
     'force_a4': False, 'use_custom_english_font': False, 'english_font': 'Times New Roman',
     'blank_line_mode': DEFAULT_BLANK_LINE_MODE, 'normalize_punctuation': False,
     'enable_table_formatting': False, 'table_header_font': '仿宋_GB2312',
     'table_font': '仿宋_GB2312', 'table_size': 12, 'table_line_spacing': 22,
+    'table_line_spacing_unit': 'pt', 'table_line_spacing_multiple': 1.0,
     'table_row_height_cm': 0.7, 'table_auto_col_width': True, 'table_width_percent': 100,
-    'table_header_bold': True, 'table_smart_align': False,
-    'table_unified_borders': True, 'table_border_size_pt': 0.5,
+    'table_header_bold': 'bold', 'table_alignment': 'preserve',
+    'table_cell_alignment': 'preserve', 'table_remove_text_wrapping': False,
+    'table_border_mode': 'unified', 'table_border_size_pt': 0.5,
 }
 
 PRESET_FONT_OPTIONS = {

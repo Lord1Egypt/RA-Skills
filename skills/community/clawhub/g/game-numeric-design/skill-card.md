@@ -1,37 +1,49 @@
-## Description: <br>
-游戏数值策划技能 - 基于《游戏数值设定入门》方法论，提供数值设计公式、经济系统、成长曲线等工具 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+游戏数值策划技能 - 基于《游戏数值设定入门》方法论，提供数值设计公式、经济系统、成长曲线等工具
 
-## Publisher: <br>
-[wangssi1998-cell](https://clawhub.ai/user/wangssi1998-cell) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangssi1998-cell](https://clawhub.ai/user/wangssi1998-cell)
 
-## Use Case: <br>
-Game designers and developers use this skill to choose formulas, templates, and balancing checks for game attributes, monsters, equipment, progression, drop rates, and economy systems. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Formula and balancing examples may not fit a specific game's economy, progression, or player experience. <br>
-Mitigation: Review assumptions, test with representative game data, and tune values before using them in production design. <br>
+## Use Case:
 
+Game designers and developers use this Chinese-language skill to design progression, combat, reward, and economy numbers with formulas, templates, and balancing checks.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code] <br>
-**Output Format:** [Markdown with JavaScript formula examples and design templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Formula examples and templates should be reviewed for design fit before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Formula examples may be copied into production balancing logic without validating gameplay impact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and adapt formulas for the target game, then validate balance with simulations, playtests, and economy checks before release.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wangssi1998-cell/skills/game-numeric-design)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Guidance]
+
+**Output Format:** [Markdown guidance with JavaScript formula examples and design tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language reference material; code blocks are examples to review and adapt.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,65 @@
-## Description: <br>
-Advanced Star Citizen trade advisor. Query live commodity prices, optimize trade routes, contribute market data, and create trade listings using the UEXCorp API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Advanced Star Citizen trade advisor. Query live commodity prices, optimize trade routes, contribute market data, and create trade listings using the UEXCorp API.
 
-## Publisher: <br>
-[rikyz90](https://clawhub.ai/user/rikyz90) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rikyz90](https://clawhub.ai/user/rikyz90)
 
-## Use Case: <br>
-External Star Citizen players and trading agents use this skill to query UEXCorp market data, compare trade routes, calculate profits, submit price observations, and create marketplace or trade listings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can submit market data and create, delete, or recreate remote UEXCorp marketplace records. <br>
-Mitigation: Require the agent to show the exact listing, payload, or database change and obtain explicit user approval before any create, update, or delete action. <br>
-Risk: The skill requires a UEXCorp bearer token and may require a separate secret key for marketplace listing workflows. <br>
-Mitigation: Keep tokens and secret keys out of chat logs, screenshots, and version control, and provide them only through the configured secret mechanism. <br>
-Risk: UEXCorp market data is community-sourced and may differ from live in-game prices. <br>
-Mitigation: Present trade recommendations as estimates and remind users to verify important prices in game before acting. <br>
+## Use Case:
 
+External Star Citizen players and agent users use this skill to query UEXcorp market data, optimize trade routes, calculate trade outcomes, contribute price observations, and create marketplace listings.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/rikyz90/uexcorp-sc) <br>
-- [UEXCorp API documentation](https://uexcorp.space/api/documentation/) <br>
-- [UEXCorp API apps](https://uexcorp.space/api/apps) <br>
-- [UEXCorp](https://uexcorp.space) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, API calls, configuration, guidance] <br>
-**Output Format:** [Markdown responses with tables, API request guidance, and concise trade recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires uexcorp.apiToken configuration and may require a separate UEXCorp secret key for marketplace listing workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.2 (source: server-resolved release evidence) <br>
+Risk: The skill can create, post, and delete live UEXcorp marketplace records using a user token.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user approval before any write, post, or delete action, including the exact payload, target listing, and sandbox or production mode.
+
+Risk: Updating an existing marketplace listing may require deleting the live listing before recreating it.
+
+Mitigation: Confirm the listing ID, preserve the current listing details, test payloads in sandbox mode, and delete production listings only after the user approves the replacement.
+
+Risk: The skill may send uploaded images, listing details, and market observations to UEXcorp.
+
+Mitigation: Tell the user what data will be transmitted to UEXcorp and proceed only after consent.
+
+Risk: Community-sourced market data may differ from current in-game values.
+
+Mitigation: Present UEXcorp market data as advisory and include the skill's community-sourced data disclaimer in price and route guidance.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/rikyz90/skills/uexcorp-sc)
+- [Publisher profile](https://clawhub.ai/user/rikyz90)
+- [UEXcorp API documentation](https://uexcorp.space/api/documentation/)
+- [UEXcorp API apps](https://uexcorp.space/api/apps)
+- [UEXcorp API 2.0 base URL](https://api.uexcorp.space/2.0/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, API calls, configuration, guidance]
+
+**Output Format:** [Markdown responses with tables, calculations, JSON payload previews, and API request guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires uexcorp.apiToken; skill guidance states UEXcorp data is community-sourced and may differ from live in-game values.]
+
+## Skill Version(s):
+
+1.1.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

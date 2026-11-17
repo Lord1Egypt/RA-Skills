@@ -1,38 +1,49 @@
-## Description: <br>
-Greet users in multiple languages with culturally appropriate phrases and expressions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Greet users in multiple languages with culturally appropriate phrases and expressions.
 
-## Publisher: <br>
-[Viki-ii](https://clawhub.ai/user/Viki-ii) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[viki-ii](https://clawhub.ai/user/viki-ii)
 
-## Use Case: <br>
-External users and agent developers use this skill to choose culturally appropriate formal, informal, or casual greetings when responding to greeting requests. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Greeting examples may not match the tone, locale, or cultural context a user expects. <br>
-Mitigation: Review and adapt phrases for the target audience, formality level, and cultural context before relying on them. <br>
+## Use Case:
 
+External users and developers use this skill to ask an agent for formal, informal, or casual greetings in supported languages.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Viki-ii/greetings) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Guidance] <br>
-**Output Format:** [Markdown guidance with greeting examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes sample formal, informal, and casual greeting phrases.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release metadata) <br>
+Risk: Users may treat the greeting examples as comprehensive translation or cultural guidance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill as starter phrasing for supported greetings and verify appropriateness for high-stakes, regional, or unfamiliar contexts.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/viki-ii/skills/greetings)
+
+## Skill Output:
+
+**Output Type(s):** [text, guidance]
+
+**Output Format:** [Markdown text with greeting examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution, tool calls, or file changes.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

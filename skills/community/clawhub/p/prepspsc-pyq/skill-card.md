@@ -1,43 +1,51 @@
-## Description: <br>
-PrepSPSC PYQ API helps agents search Sikkim PSC previous year questions, generate mock tests from exam patterns, and return MCQs with answers, explanations, topics, cognitive levels, and difficulty metadata. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+PrepSPSC PYQ API helps agents search Sikkim PSC previous-year questions, generate SPSC mock tests, retrieve exam pattern details, and optionally track study progress through PrepSPSC's API.
 
-## Publisher: <br>
-[himyeticapital](https://clawhub.ai/user/himyeticapital) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT License <br>
+## Publisher:
 
+[himyeticapital](https://clawhub.ai/user/himyeticapital)
 
-## Use Case: <br>
-External learners, educators, and developers use this skill for SPSC exam preparation, previous-year-question search, mock test generation, progress tracking, and reference examples for AI question generation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses PrepSPSC's external API and requires an API key. <br>
-Mitigation: Keep the API key private, prefer the PREPSPSC_API_KEY environment variable, and review generated shell commands before running them. <br>
-Risk: Optional progress, analytics, bookmark, and leaderboard features can store study activity with PrepSPSC. <br>
-Mitigation: Avoid personally identifying user IDs or sensitive bookmark notes, and use those features only when study activity storage is acceptable. <br>
+## Use Case:
 
+External learners, tutors, and exam-prep agents use this skill to retrieve SPSC previous-year MCQs, build mock tests from authentic exam patterns, and support subject-wise practice for Indian government job exam preparation.
 
-## Reference(s): <br>
-- [PrepSPSC website](https://prepspsc.com) <br>
-- [PrepSPSC developer API key page](https://prepspsc.com/developers) <br>
-- [ClawHub skill page](https://clawhub.ai/himyeticapital/prepspsc-pyq) <br>
-- [PrepSPSC PYQ API endpoint](https://qqqditxzghqzodvauxth.supabase.co/functions/v1/pyq-api) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, API Calls, Configuration guidance] <br>
-**Output Format:** [Markdown guidance with JSON examples and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include external API responses containing MCQs, answers, explanations, topics, cognitive levels, difficulty, progress, analytics, bookmarks, or leaderboard data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: The skill can store and retrieve persistent user study activity through a third-party API without clear consent, retention, or per-user access-control evidence.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use progress tracking, bookmarks, analytics, and leaderboards only after informed user consent; avoid personally identifying user IDs or sensitive notes, and verify PrepSPSC's privacy, retention, deletion, and authorization model before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/himyeticapital/skills/prepspsc-pyq)
+- [PrepSPSC website](https://prepspsc.com)
+- [PrepSPSC developer API keys](https://prepspsc.com/developers)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown guidance with curl examples and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a PrepSPSC API key supplied by the user.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

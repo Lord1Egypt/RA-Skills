@@ -1,43 +1,56 @@
-## Description: <br>
-Place, list, and retrieve orders via the Zinc API (zinc.com). Use when the user wants to buy a product from an online retailer, check order status, list recent orders, or anything involving the Zinc e-commerce ordering API. Requires ZINC_API_KEY environment variable. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Discover, buy, track, and return real products from Amazon, Walmart, Target and almost any other US online retailer through the Zinc API (zinc.com). Needs no account to begin — the agent mints its own test key, then earns a live key and a $5 starter credit once its operator approves it. Pay from a pre-funded wallet, per request over MPP or x402, or with a Stripe Link card.
 
-## Publisher: <br>
-[a5huynh](https://clawhub.ai/user/a5huynh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[a5huynh](https://clawhub.ai/user/a5huynh)
 
-## Use Case: <br>
-External users and developers use this skill to let an agent prepare and manage Zinc API checkout workflows, including creating orders, listing recent orders, and checking order status. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can initiate real-money purchases through a configured Zinc account. <br>
-Mitigation: Confirm every purchase, product, shipping address, and max_price with the user before sending POST /orders. <br>
-Risk: Zinc API keys and checkout data, including shipping and order details, are sensitive. <br>
-Mitigation: Install only when agent access to Zinc is intended, keep ZINC_API_KEY protected, and expect order and shipping details to be sent to Zinc. <br>
+## Use Case:
 
+External users and their agents use this skill to discover products, place operator-approved purchases, track orders, and request returns through Zinc's API.
 
-## Reference(s): <br>
-- [Skill instructions](SKILL.md) <br>
-- [Zinc API error reference](references/errors.md) <br>
-- [Zinc API](https://api.zinc.com) <br>
-- [Zinc API key signup](https://app.zinc.com) <br>
-- [ClawHub release page](https://clawhub.ai/a5huynh/universal-checkout) <br>
+### Deployment Geography for Use:
 
+United States
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline JSON and bash examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires ZINC_API_KEY and explicit user confirmation before creating orders.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Live orders send the operator's name, address, and phone number to Zinc and spend real money; searches also cost money.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before buying, confirm the item, maximum purchase total, separate order fee, and payment account; never invent an address, and keep the live API key private.
+
+## Reference(s):
+
+- [Agent Sandbox Quickstart](https://www.zinc.com/docs/v2/agent-sandbox/quickstart.md)
+- [Going Live](https://www.zinc.com/docs/v2/agent-sandbox/going-live.md)
+- [MPP Payments](https://www.zinc.com/docs/v2/mpp.md)
+- [Retailer Accounts](https://www.zinc.com/docs/v2/retailer-accounts.md)
+- [Create Order API](https://www.zinc.com/docs/v2/api-reference/orders/create-order.md)
+- [Get Order API](https://www.zinc.com/docs/v2/api-reference/orders/get-order.md)
+- [Error Handling](https://www.zinc.com/docs/v2/api-reference/introduction/error-handling.md)
+- [references/errors.md](references/errors.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, JSON]
+
+**Output Format:** [Markdown guidance with curl commands and JSON API request examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.1.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,54 @@
-## Description: <br>
-System Continuity Check helps agents review system designs and workflows for continuity, automation, restart recovery, and error isolation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+System Continuity Check helps agents review system and workflow designs for continuity, automation, restart recovery, and error isolation.
 
-## Publisher: <br>
-[minijoy-b](https://clawhub.ai/user/minijoy-b) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[minijoy-b](https://clawhub.ai/user/minijoy-b)
 
-## Use Case: <br>
-Developers and automation builders use this skill during system design or workflow discussions to run a checklist that highlights gaps in end-to-end flow, automatic recovery, restart behavior, and error handling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger terms may activate the checklist during general development conversations where it is not needed. <br>
-Mitigation: Use the skill explicitly or narrow trigger settings if automatic activation becomes distracting. <br>
-Risk: Recommendations about auto-start, monitoring, and recovery are design advice and may not fit every environment. <br>
-Mitigation: Review suggested operational changes before applying them and test them in the target workflow. <br>
+## Use Case:
 
+Developers and engineers use this skill to quickly evaluate whether a proposed system or automation workflow has complete handoffs, restart behavior, error handling, and low manual intervention.
 
-## Reference(s): <br>
-- [Checklist template](artifact/checklist_template.md) <br>
-- [Error pattern library](artifact/error_patterns.md) <br>
-- [ClawHub skill page](https://clawhub.ai/minijoy-b/system-continuity-check) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown checklist with pass, warning, or fail statuses and concise recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Checklist output is design review guidance and does not execute changes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill may recommend autostart, service, monitoring, or restart changes during system design discussions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review those recommendations as design prompts and require explicit approval before implementing operational changes.
+
+Risk: Broad activation wording may make the checklist appear in general engineering or automation discussions.
+
+Mitigation: Use the skill when Chinese-language continuity review is desired and disregard it when the discussion is not about system, workflow, or automation design.
+
+## Reference(s):
+
+- [System Continuity Check on ClawHub](https://clawhub.ai/minijoy-b/skills/system-continuity-check)
+- [Publisher profile: minijoy-b](https://clawhub.ai/user/minijoy-b)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown]
+
+**Output Format:** [Markdown checklist results with pass, warning, or fail status and concise recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language review guidance; no code execution or automatic system changes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server evidence release.version and artifact version notes)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

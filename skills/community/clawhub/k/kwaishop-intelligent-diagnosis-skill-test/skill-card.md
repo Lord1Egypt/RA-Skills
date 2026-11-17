@@ -1,40 +1,57 @@
-## Description: <br>
-Looks up seller identifiers for a parsed merchant name through an internal Kuaishou merchant CRM service. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Looks up merchant seller identifiers by using a local OpenClaw username and a merchant name against a Kuaishou internal merchant CRM endpoint.
 
-## Publisher: <br>
-[jimadara](https://clawhub.ai/user/jimadara) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jimadara](https://clawhub.ai/user/jimadara)
 
-## Use Case: <br>
-Authorized Kuaishou or OpenClaw users use this skill to resolve a merchant name into seller identifiers through an internal merchant CRM service. The returned identifiers are passed back directly to the requester. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill queries an internal merchant CRM endpoint using a local OpenClaw username and returns raw seller identifiers. <br>
-Mitigation: Run it only when the operator is authorized to query the service and disclose the returned seller identifiers to the requester. <br>
-Risk: The public label describes domain testing while the behavior queries merchant seller data. <br>
-Mitigation: Rename or re-scope the skill and document authorization, consent, and data-minimization expectations before general use. <br>
+## Use Case:
 
+ClawHub and OpenClaw users use this skill to resolve merchant names into seller lookup results for Kuaishou merchant workflows. Users should install it only when authorized to query the internal merchant CRM and expose returned seller data.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jimadara/kwaishop-intelligent-diagnosis-skill-test) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON] <br>
-**Output Format:** [Raw HTTP response body or authentication error text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May contain seller identifiers returned by the internal merchant CRM service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact frontmatter lists 0.1.0) <br>
+Risk: The skill may use the operator's local OpenClaw username to query a Kuaishou internal merchant CRM.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run it only for operators who are authorized to perform the intended merchant queries.
+
+Risk: The skill returns raw seller lookup results without additional filtering.
+
+Mitigation: Review returned data before sharing it outside the approved workflow or audience.
+
+Risk: The advertised domain testing purpose may not clearly communicate the internal merchant CRM lookup behavior.
+
+Mitigation: Review the skill description and release notes so users understand the CRM query behavior before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jimadara/skills/kwaishop-intelligent-diagnosis-skill-test)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON]
+
+**Output Format:** [Raw API response or plain-text error message]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns unfiltered seller lookup results from the configured CRM request.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

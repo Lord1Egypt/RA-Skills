@@ -1,42 +1,57 @@
-## Description: <br>
-Searches and browses Pinterest pins, gets pin details, and sends selected Pinterest images through supported messaging tools instead of only links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search and browse Pinterest pins, get pin details, and send actual images to the user via Telegram/messaging.
 
-## Publisher: <br>
-[0xs4m1337](https://clawhub.ai/user/0xs4m1337) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[0xs4m1337](https://clawhub.ai/user/0xs4m1337)
 
-## Use Case: <br>
-External users and agents use this skill to search Pinterest for visual inspiration, inspect pins, and share selected images directly in chat. Developers can optionally use the helper script with Pinterest OAuth for read-only board and pin access. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The helper script can install Python packages at runtime. <br>
-Mitigation: Review the script before running it and install dependencies deliberately in a controlled environment. <br>
-Risk: OAuth use can expose Pinterest access tokens or grant broader access than needed. <br>
-Mitigation: Use only read-only Pinterest scopes, protect the token, and rotate or revoke credentials when they are no longer needed. <br>
-Risk: The skill can send Pinterest screenshots or media through messaging tools. <br>
-Mitigation: Send media only when it is clearly the requested Pinterest content and verify the selected image before sharing. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Pinterest OAuth Setup](references/oauth-setup.md) <br>
-- [Pinterest API v5 Reference](references/api-reference.md) <br>
+## Use Case:
 
+External users and agents use this skill to find visual inspiration on Pinterest, inspect pin details, and send image media directly in chat. Developers can also use the included OAuth-based commands to read their own Pinterest boards and pins.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with browser and message tool examples, shell commands, and optional JSON from the helper script.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include direct image media messages, Pinterest pin metadata, and OAuth-backed API results when configured.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may browse Pinterest and send external images where that behavior is not intended.
+
+Mitigation: Use it only in workflows where Pinterest browsing and external image delivery are expected, and review image results before forwarding them.
+
+Risk: Pinterest access tokens and app secrets can expose account data if pasted into chats or logs.
+
+Mitigation: Treat PINTEREST_ACCESS_TOKEN and OAuth secrets as sensitive credentials, store them outside shared transcripts, and limit scopes to the required read permissions.
+
+Risk: The script can install an unpinned httpx dependency at runtime if it is missing.
+
+Mitigation: Run the skill in a controlled environment with dependencies preinstalled from pinned versions instead of allowing runtime package installation.
+
+## Reference(s):
+
+- [Pinterest OAuth Setup](references/oauth-setup.md)
+- [Pinterest API v5 Reference](references/api-reference.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, images, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with browser/message commands, shell command examples, and optional JSON API output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May send Pinterest image media directly through the agent's messaging tool; API commands require PINTEREST_ACCESS_TOKEN.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

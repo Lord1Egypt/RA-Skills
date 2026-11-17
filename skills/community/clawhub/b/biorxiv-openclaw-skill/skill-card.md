@@ -1,42 +1,51 @@
-## Description: <br>
-Access bioRxiv preprints by category and date range, list supported subject collections, and retrieve paper metadata without authentication. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Access bioRxiv preprint repository for biology preprints by category and date range, with paper metadata including titles, authors, DOIs, dates, and categories.
 
-## Publisher: <br>
-[aquaskyline](https://clawhub.ai/user/aquaskyline) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aquaskyline](https://clawhub.ai/user/aquaskyline)
 
-## Use Case: <br>
-Researchers, developers, and agents use this skill to fetch recent biology preprints from bioRxiv, filter by supported subject collection and date range, and return paper metadata for summarization or topic discovery. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill makes network requests to bioRxiv and depends on Python availability in the execution environment. <br>
-Mitigation: Install only where outbound requests to bioRxiv are acceptable and Python command execution is permitted. <br>
-Risk: Package provenance is unavailable and the release changelog is inaccurate. <br>
-Mitigation: Review the packaged artifact files and scan results before deployment rather than relying on inferred source history. <br>
+## Use Case:
 
+External users, developers, and research-support agents use this skill to retrieve public bioRxiv preprint metadata for selected biology collections and date ranges. It supports listing available subject collections, fetching recent or bounded-date papers, and returning results as text or JSON for downstream summarization.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aquaskyline/biorxiv-openclaw-skill) <br>
-- [bioRxiv API documentation](references/api.md) <br>
-- [bioRxiv API](https://api.biorxiv.org) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, guidance] <br>
-**Output Format:** [Plain text or JSON paper metadata returned from Python command-line usage] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Network access to the public bioRxiv API is required; no authentication is required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Default or --days usage may fetch a broader date range than expected.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use explicit --start and --end dates when precise recency or bounded retrieval is required.
+
+## Reference(s):
+
+- [bioRxiv API Documentation](references/api.md)
+- [bioRxiv API](https://api.biorxiv.org)
+- [ClawHub Skill Page](https://clawhub.ai/aquaskyline/skills/biorxiv-openclaw-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and optional JSON paper metadata]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses public bioRxiv API responses; no authentication or credential input is required.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter lists 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,56 @@
-## Description: <br>
-Provides JSON-RPC method discovery and call execution for MCP workflows, routing requests through the xiaobenyang API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides JSON-RPC method invocation and OpenRPC-style method discovery through a Xiaobenyang-backed MCP API wrapper.
 
-## Publisher: <br>
-[cainingnk](https://clawhub.ai/user/cainingnk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cainingnk](https://clawhub.ai/user/cainingnk)
 
-## Use Case: <br>
-Developers and agents use this skill to discover JSON-RPC methods on a server and call specified methods with parameters. It requires a xiaobenyang API key and should be used only when the server URL and parameters are appropriate to send through that service. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores a xiaobenyang API key locally and sends JSON-RPC server URLs, method names, and parameters through the xiaobenyang API. <br>
-Mitigation: Use it only with non-sensitive endpoints and parameters, protect the local .env file, and avoid internal or private URLs unless the publisher clarifies the data flow and credential handling. <br>
-Risk: Server evidence marks the release as suspicious because the apparent JSON-RPC workflow depends on a third-party API path. <br>
-Mitigation: Review the publisher, API-key requirement, and expected data flow before installation or operational use. <br>
+## Use Case:
 
+Developers and engineers use this skill to call JSON-RPC methods on a specified server URL and inspect available methods via rpc.discover.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cainingnk/skills/json-rpc) <br>
-- [xiaobenyang API key site](https://xiaobenyang.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, guidance] <br>
-**Output Format:** [Markdown summary with JSON-derived results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes raw JSON-RPC response data plus success and status messages from the tool wrapper.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact frontmatter reports 1.0.0) <br>
+Risk: The skill stores a Xiaobenyang API key in a local .env file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use test-scoped or rotated credentials and review local key storage before production use.
+
+Risk: JSON-RPC target URLs and parameters are sent through the Xiaobenyang service.
+
+Mitigation: Avoid sensitive or internal server URLs and review URL validation and endpoint scoping before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cainingnk/skills/json-rpc)
+- [Publisher profile](https://clawhub.ai/user/cainingnk)
+- [Xiaobenyang](https://xiaobenyang.com)
+- [Xiaobenyang MCP API endpoint](https://mcp.xiaobenyang.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, guidance]
+
+**Output Format:** [Markdown summaries of JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Xiaobenyang API key before tool calls can be made.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

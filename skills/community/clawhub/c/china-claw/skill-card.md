@@ -1,40 +1,48 @@
-## Description: <br>
-Research and introduce China-based alternatives, counterparts, or "平替" products to OpenClaw, organized by company and product positioning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Research and introduce China-based alternatives, counterparts, or "平替" products to OpenClaw, organized by company and product positioning.
 
-## Publisher: <br>
-[harrylabsj](https://clawhub.ai/user/harrylabsj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[harrylabsj](https://clawhub.ai/user/harrylabsj)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users, developers, and teams use this skill to research China-based AI agent platforms, workflow automation tools, and multi-agent systems as possible OpenClaw alternatives or adjacent products. It supports market overviews, shortlist recommendations, and company-by-company comparisons.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill includes an ICP filing workflow that is outside the advertised OpenClaw-alternative market-research scope and could lead to regulatory guidance being presented without current official-source verification.
+
+Mitigation: Review before installation if only market research is needed, and remove or separate the ICP filing scenario into a clearly scoped compliance skill that requires current official-source verification.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, researchers, and product teams use this skill to compare China-based AI agent platforms, workflow automation tools, and multi-agent products against OpenClaw. It supports market overviews, shortlists, and company-by-company scans with explicit confidence and similarity judgments. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may include off-topic regulatory guidance, such as the domain ICP filing example identified in the security evidence. <br>
-Mitigation: Use the skill for AI product market research and independently verify any regulatory or process guidance before relying on it. <br>
-Risk: Market research about AI products can become outdated quickly or reflect incomplete public information. <br>
-Mitigation: Check current official sources and reputable coverage before making product or procurement decisions. <br>
+**Output Format:** [Markdown market research summaries, shortlists, comparisons, and recommendations]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [China Claw on ClawHub](https://clawhub.ai/harrylabsj/china-claw) <br>
+**Other Properties Related to Output:** [May include Chinese-language queries and bilingual product-positioning analysis.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown market research summaries, comparison tables, shortlists, and recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Responses should use recent sources, distinguish close substitutes from adjacent products, and state low confidence when evidence is thin.] <br>
+1.0.1 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact frontmatter reports v1.0.0) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

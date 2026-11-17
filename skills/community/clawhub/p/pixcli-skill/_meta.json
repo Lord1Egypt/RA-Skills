@@ -1,6 +1,6 @@
 {
-  "ownerId": "kn77xggy5eeemd65ehqx3x3t6n81dc1c",
-  "slug": "pixcli-skill",
+  "slug": "pixcli",
   "version": "2.2.0",
-  "publishedAt": 1774984567973
+  "publishedAt": 1743382800000,
+  "icon": "https://getshell.ai/_next/image?url=%2Fshellbot.png&w=1080&q=100"
 }

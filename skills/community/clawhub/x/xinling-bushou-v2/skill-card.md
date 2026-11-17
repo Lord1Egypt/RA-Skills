@@ -1,48 +1,59 @@
-## Description: <br>
-心灵补手 V3.0 provides six configurable flattery and role-play persona overlays for agents and subagents, including a Liu Bowen divination-themed persona. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+心灵补手 V4.0 provides opt-in, session-scoped Chinese companion personas for agent sessions.
 
-## Publisher: <br>
-[william22820785-cmyk](https://clawhub.ai/user/william22820785-cmyk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[william22820785-cmyk](https://clawhub.ai/user/william22820785-cmyk)
 
-## Use Case: <br>
-External ClawHub users and developers use this skill to install, configure, and activate agent persona overlays for OpenClaw-style agents and subagents. The skill produces prompt fragments, persona configuration, CLI guidance, and adapter launch configuration for supported environments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent assistant-persona modification can alter assistant control files such as SOUL.md. <br>
-Mitigation: Install only when the persona overlay is intended, and review SOUL.md changes before restarting the assistant session. <br>
-Risk: The Claude Code adapter can disable permission checks. <br>
-Mitigation: Avoid using the Claude Code adapter unless the permission-bypass flag has been removed. <br>
-Risk: The AI corpus upgrade script can send persona prompts to MiniMax using a local credential file. <br>
-Mitigation: Do not run the corpus upgrade script unless external prompt sharing and local credential use are acceptable. <br>
+## Use Case:
 
+External users and developers use this skill to list, inspect, test, and explicitly activate Chinese-language companion persona styles for the current session or subagent. The skill produces bounded style guidance and launch metadata without changing persistent host-agent identity files.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/william22820785-cmyk/xinling-bushou-v2) <br>
-- [Publisher profile](https://clawhub.ai/user/william22820785-cmyk) <br>
-- [Skill definition](artifact/SKILL.md) <br>
-- [Architecture documentation](artifact/architecture.md) <br>
-- [CLAW systems research](artifact/claw-systems-research.md) <br>
-- [Agent Skills standard](https://agentskills.io) <br>
-- [Project homepage](https://aceworld.top) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown prompt fragments, JSON persona and configuration files, Python code snippets, and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May persist persona state and update assistant control files during installation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.0 (source: server release metadata and skill metadata) <br>
+Risk: Included personas may apply intense loyalty, political, mysticism, or flirtatious tones that are inappropriate for some sessions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the persona definitions before use and activate only the persona whose tone is intended for the current session.
+
+Risk: Persona guidance may bias the agent's style if copied into a session without boundaries.
+
+Mitigation: Use the generated fragments as optional style guidance only; they must not override platform, developer, safety, or current user instructions.
+
+Risk: Installation copies local runtime files and creates local state for persona sessions.
+
+Mitigation: Install only when local persona management is desired, and inspect the bundled install script and CLI behavior before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/william22820785-cmyk/skills/xinling-bushou-v2)
+- [Publisher profile](https://clawhub.ai/user/william22820785-cmyk)
+- [Project homepage](https://aceworld.top)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown-like persona guidance text, JSON persona/configuration data, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Session-scoped persona fragments are generated only after explicit activation and are intended as style guidance, not instruction authority.]
+
+## Skill Version(s):
+
+4.0.0 (source: server release metadata, target metadata, and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

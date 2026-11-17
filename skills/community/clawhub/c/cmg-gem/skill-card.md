@@ -1,42 +1,53 @@
-## Description: <br>
-This skill helps agents generate, debug, and refine CMG GEM reservoir or core-scale DAT simulation files with attention to runnable syntax and scale-appropriate well definitions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill helps agents generate, run, diagnose, and iteratively correct CMG GEM reservoir or core-scale DAT simulation files.
 
-## Publisher: <br>
-[nv4dll-git](https://clawhub.ai/user/nv4dll-git) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nv4dll-git](https://clawhub.ai/user/nv4dll-git)
 
-## Use Case: <br>
-Reservoir engineers and technical agents use this skill to draft CMG GEM DAT files, choose oil-reservoir or core-scale modeling patterns, run local simulation commands when requested, and diagnose simulator output errors for iterative correction. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated DAT files or simulator runs may use an unintended working directory, executable path, file name, or parallelism setting. <br>
-Mitigation: Review the DAT file, working directory, executable path, and parallelism setting before running a simulation, and use a controlled project directory to avoid overwriting important files. <br>
-Risk: Reservoir simulation output can be incorrect when user-provided units, grid dimensions, component ordering, initialization data, or well definitions are incomplete or inconsistent. <br>
-Mitigation: Validate units, array lengths, component mole fractions, scale-specific well definitions, and simulator logs before relying on generated results. <br>
+## Use Case:
 
+Reservoir engineers and simulation specialists use this skill to draft CMG GEM DAT files, distinguish reservoir-scale and core-scale modeling patterns, run local simulator commands, and use output logs to correct model errors.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nv4dll-git/cmg-gem) <br>
-- [Publisher profile](https://clawhub.ai/user/nv4dll-git) <br>
-- [Artifact skill instructions](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with CMG GEM DAT snippets, diagnostic notes, and Windows CMD command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce simulation file content and local run commands for user review before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.1 (source: server release evidence) <br>
+Risk: The skill may create or overwrite DAT files in a local project directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated project directory, choose filenames explicitly, and review changes before replacing existing work.
+
+Risk: Local CMG GEM simulator runs may consume compute resources or licensed software capacity.
+
+Mitigation: Confirm simulator execution before running commands and monitor local resource and license usage.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nv4dll-git/skills/cmg-gem)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown text with DAT code blocks and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write DAT files and propose local CMG GEM simulator runs when explicitly requested.]
+
+## Skill Version(s):
+
+0.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

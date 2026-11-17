@@ -1,41 +1,52 @@
-## Description: <br>
-Recommend optimal Reserved Instance and Savings Plan portfolio based on AWS usage patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Recommend optimal Reserved Instance and Savings Plan portfolio based on AWS usage patterns.
 
-## Publisher: <br>
-[anmolnagpal](https://clawhub.ai/user/anmolnagpal) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[anmolnagpal](https://clawhub.ai/user/anmolnagpal)
 
-## Use Case: <br>
-Cloud finance, FinOps, and AWS infrastructure teams use this skill to analyze exported AWS cost, usage, Savings Plans, and Reserved Instance data and plan commitment-based discount coverage. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Users may paste AWS access keys, secret keys, session tokens, account identifiers, or sensitive business details with billing exports. <br>
-Mitigation: Review pasted data before analysis and remove credentials, tokens, account identifiers, and sensitive business details. <br>
-Risk: Savings recommendations can influence financial commitments and may be wrong if the supplied usage data is incomplete or stale. <br>
-Mitigation: Treat the output as planning guidance and have finance or cloud owners verify assumptions before making AWS purchasing decisions. <br>
-Risk: Generating source reports may require AWS account access. <br>
-Mitigation: Use a least-privilege read-only role or profile for Cost Explorer and reservation inventory exports. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/anmolnagpal/ri-savings-advisor) <br>
+## Use Case:
 
+Developers, cloud engineers, and finance stakeholders use this skill to analyze user-supplied AWS usage exports and plan Reserved Instance or Savings Plan commitments. It helps compare conservative and aggressive coverage scenarios, estimate savings, and flag workloads that are poor commitment candidates.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with tables and inline bash examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses user-supplied exported AWS billing and reservation data; does not require credentials or direct AWS account access.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence release and SKILL.md frontmatter) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: AWS cost and usage exports can reveal sensitive infrastructure and spending patterns.
+
+Mitigation: Use sanitized exports where possible and avoid sharing AWS access keys, secret keys, session tokens, or unrelated account data.
+
+Risk: Recommendations based on incomplete or stale usage data can lead to unsuitable AWS commitment purchases.
+
+Mitigation: Review the generated recommendations against current workload stability, pricing, and finance policy before purchasing Reserved Instances or Savings Plans.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/anmolnagpal/skills/ri-savings-advisor)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with AWS CLI command examples and structured recommendation sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces coverage gap analysis, a recommendation table, risk assessment, scenario comparison, and finance summary from user-provided AWS usage data.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

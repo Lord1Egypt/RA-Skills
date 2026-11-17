@@ -14,6 +14,7 @@ class CliInterface(Protocol):
         input_src: str,
         params: Optional[Dict] = None,
         on_async_submitted: Optional[Callable[[str], None]] = None,
+        profile: Optional[Dict] = None,
     ) -> Dict:
         """Run a task and return result."""
         ...
@@ -27,6 +28,7 @@ class CliInterface(Protocol):
         task: str,
         input_src: str,
         params: Optional[Dict] = None,
+        profile: Optional[Dict] = None,
         deliver_to: Optional[str] = None,
         deliver_channel: Optional[str] = None,
         run_timeout_seconds: int = 3600,

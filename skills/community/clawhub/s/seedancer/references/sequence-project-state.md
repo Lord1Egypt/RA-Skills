@@ -1,3 +1,8 @@
+> **Language**: This document is in Chinese only. For English overview, see [README.md](../README.md).
+>
+> **语言说明**: 本文档仅提供中文版本。英文概述请查看 [README.md](../README.md)。
+
+---
 # 序列项目状态管理 (Sequence Project State)
 
 > 当项目超过单次生成时长，进入序列项目管理。

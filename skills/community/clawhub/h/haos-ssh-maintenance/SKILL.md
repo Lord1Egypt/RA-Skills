@@ -1,6 +1,6 @@
 ---
-name: haos-ssh-maintenance
-description: Use when Home Assistant OS needs SSH-based maintenance that cannot be completed cleanly through the Home Assistant API alone. Prefer API-first investigation for states, history, logbook, and routine automation checks; use this skill when direct filesystem access, YAML edits, custom_components inspection, HAOS shell troubleshooting, or interactive `ha` CLI work is required. Distinguish one-shot SSH commands from interactive SSH sessions: `ha` commands such as `ha core logs` may work only inside an interactive PTY-backed SSH session.
+name: "haos-ssh-maintenance"
+description: "Home Assistant OS SSH maintenance for config files, YAML, custom components, shell troubleshooting, or interactive ha CLI."
 ---
 
 # HAOS SSH Maintenance
@@ -22,7 +22,7 @@ Switch to SSH when:
 - shell-level troubleshooting is required
 - `ha` CLI work is needed
 
-Use the SSH target stored in `TOOLS.md`.
+Use the SSH target stored in the workspace `AGENTS.md` `## Tools` section.
 
 ## Common HAOS paths
 

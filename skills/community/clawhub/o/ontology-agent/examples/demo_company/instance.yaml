@@ -1,0 +1,88 @@
+# Demo company instance (fictional example — e-commerce)
+# Bilingual note: the Chinese counterpart of this file is `instance.zh.yaml`.
+meta:
+  generated_by: ontology-agent/init.py
+  pack_id: ecommerce
+  pack_display: E-commerce
+  team_name: "xinghe · Ontology Agent Digital Company"
+  team_slug: xinghe
+  template_ref: references/semantic.yaml
+  action_specs_total: 141
+profile:
+  short_name: xinghe
+  company: "Xinghe Select (fictional example e-commerce)"
+  enterprise_type: e-commerce
+  legal_form: "limited liability company (example)"
+  region: "Hangzhou, Zhejiang (example)"
+  industry: "daily necessities retail (e-commerce)"
+  scale: "8 people (example)"
+  credit_code: "(example) 91330100MA1DEMO1234"
+  departments:
+  - lead
+  - admin
+  - hr
+  - finance
+  - legal
+  - rnd
+  - mkt_content
+  - mkt_dist
+  - mkt_seo
+  - sales
+  - data
+  - strategy
+  workflow:
+  - listing
+  - order intake
+  - shipping
+  - review
+  - repurchase
+  - review
+  owner_profile:
+    name: "Example Founder"
+    title: Founder
+    address_as: "Mr. Wang (example)"
+    decision_style: data-driven
+    risk_appetite: balanced
+    comm_style: "colloquial, concise"
+    auth_boundary: "large refunds and pricing must be confirmed personally"
+    background: retail
+    value_priority: "growth and compliance equally"
+    availability: working hours
+    taboo: "avoid politics"
+    language: English
+  culture:
+    mission: "Serve family users with high value-for-money goods"
+    voice: "friendly, down-to-earth"
+    taboo_topics: politics
+  context:
+    stage: growth
+    products: household goods
+    customers: ToC
+    quarterly_goal: increase repurchase rate
+    tool_stack: "DingTalk (example) / library pending"
+departments:
+- lead
+- admin
+- hr
+- finance
+- legal
+- rnd
+- mkt_content
+- mkt_dist
+- mkt_seo
+- sales
+- data
+- strategy
+workflow:
+- listing
+- order intake
+- shipping
+- ratings & reviews
+- repurchase
+- retrospective
+policy_hooks:
+  region: nationwide
+  redline_refs:
+  - compliance_redlines.ecommerce_law
+  - compliance_redlines.tax
+  local_services: []

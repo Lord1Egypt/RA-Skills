@@ -1,0 +1,154 @@
+{
+  "voice": "whit3rabbit",
+  "description": "Mechanically checkable subset of voices/whit3rabbit.md. Everything here is a hard rule for this writer. Judgment rules stay in the markdown.",
+  "default_priority": "P0",
+  "mechanics": {
+    "em_dash": "forbid",
+    "semicolon": "forbid",
+    "emoji": "forbid",
+    "curly_quotes": "allow",
+    "oxford_comma": "require",
+    "one_word_sentence": "forbid",
+    "max_paragraph_sentences": 5,
+    "max_avg_sentence_words": 22,
+    "max_sentence_words": 25,
+    "date_format": "dmy"
+  },
+  "banned_words": [
+    "piggyback",
+    "synergy",
+    "synergies",
+    "lethal",
+    "cyberwarfare",
+    "cyberwar",
+    "furthermore",
+    "unhackable",
+    "lowly"
+  ],
+  "banned_phrases": [
+    "circle back",
+    "circling back",
+    "per my last email",
+    "as per my previous",
+    "as i mentioned before",
+    "thought leader",
+    "thought leaders",
+    "thought leadership",
+    "wild west",
+    "ai driven",
+    "ai-driven",
+    "bad actor",
+    "bad actors",
+    "move the needle",
+    "low-hanging fruit",
+    "boil the ocean",
+    "take this offline",
+    "reach out to",
+    "at the end of the day",
+    "needless to say"
+  ],
+  "banned_regex": [
+    {
+      "id": "condescend-seniority",
+      "label": "Condescension by seniority",
+      "rx": "(?i)(if you'?d been (doing this|here) as long as|when you'?ve been (doing this|around) as long as|with all due respect,)",
+      "priority": "P0",
+      "example": "With all due respect, the schedule was never realistic."
+    },
+    {
+      "id": "fear-mongering",
+      "label": "Fear-mongering",
+      "rx": "(?i)(before it'?s too late|you can'?t afford (not )?to|the (threat|risk) has never been (greater|higher)|it'?s only a matter of time before you'?re)",
+      "priority": "P0",
+      "example": "Patch the gateway before it's too late."
+    },
+    {
+      "id": "absolute-claim",
+      "label": "Absolute security claim",
+      "rx": "(?i)\\b((100|one hundred) ?% (secure|safe|effective|accurate|reliable)|impossible to (hack|breach|compromise)|guarantees? (complete|total|full) (security|protection)|zero risk)",
+      "priority": "P0",
+      "example": "The appliance is 100% secure out of the box."
+    },
+    {
+      "id": "war-metaphor",
+      "label": "War metaphor on desk work",
+      "rx": "(?i)\\b(battle ?rhythm|kill chain|in the trenches|war ?room|weaponi[sz]e[ds]?|force multiplier|troops on the ground|boots on the ground)",
+      "priority": "P0",
+      "example": "The team ran a war room for three days."
+    },
+    {
+      "id": "efficiency-overuse",
+      "label": "Overused efficiency/improve",
+      "rx": "(?i)\\b(efficienc(y|ies)|improve(s|d|ment|ments)?)\\b",
+      "priority": "P2",
+      "max_allowed": 2,
+      "note": "Not banned, overused. Two uses pass; the third and every one after it is flagged. Name what got faster or better instead.",
+      "example": "Efficiency improves when the process improves."
+    },
+    {
+      "id": "motivational-cadence",
+      "label": "Motivational-poster cadence",
+      "rx": "(?m)^[A-Z][^.!?\\n]{4,60}[.!?]\\s*\\n\\s*\\n[A-Z][^.!?\\n]{4,60}[.!?]\\s*\\n\\s*\\n[A-Z][^.!?\\n]{4,60}[.!?]\\s*$",
+      "priority": "P0",
+      "note": "Three consecutive one-sentence paragraphs. Write in sentences.",
+      "example": "Ship the work.\n\nMeasure the result.\n\nThen do it again."
+    },
+    {
+      "id": "hedge-softener",
+      "label": "Tidy over-hedging",
+      "rx": "(?i)\\b(i (just )?wanted to (reach out|check in|follow up)|i was (just )?wondering if|if that (makes|would make) sense|does that (sound|work) (good|ok)|no worries (at all|if not))",
+      "priority": "P1",
+      "example": "I just wanted to check in on the draft."
+    },
+    {
+      "id": "manufactured-enthusiasm",
+      "label": "Manufactured enthusiasm",
+      "rx": "(?i)(i'?m (so |really |super )?(excited|thrilled|pumped) to|we'?re (thrilled|excited) to announce|can'?t wait to|absolutely love(d)? (this|it)|amazing work!|fantastic job!)",
+      "priority": "P0",
+      "example": "We're thrilled to announce the new release."
+    },
+    {
+      "id": "credential-substitute",
+      "label": "Credential as substitute for substance",
+      "rx": "(?i)(as (a|an) (certified|seasoned|veteran) [a-z ]{3,30},|in my \\d+ years of (experience|doing this)|speaking as (a|an) (expert|professional))",
+      "priority": "P0",
+      "example": "As a certified network engineer, I would not do that."
+    },
+    {
+      "id": "numeric-date",
+      "label": "Ambiguous numeric date (use 12 September 2025)",
+      "rx": "\\b\\d{1,2}/\\d{1,2}/\\d{2,4}\\b",
+      "priority": "P1",
+      "example": "It shipped on 09/12/2025."
+    }
+  ],
+  "required_when": [
+    {
+      "id": "missing-closer",
+      "label": "Missing closer",
+      "applies_to_registers": [
+        "chat",
+        "informal",
+        "blog",
+        "formal"
+      ],
+      "any_of_rx": [
+        "(?im)^\\s*(thanks,|v/r|-\\s*whit3rabbit)"
+      ],
+      "priority": "P2",
+      "note": "Which closer depends on the rung: 'Thanks,' + '-whit3rabbit' at chat, informal, and blog, 'v/r' at formal. Only checked when the text opens like correspondence, which is why it is scoped to the spine and not to the genre columns: a README does not take a signoff.",
+      "when_rx": "(?im)^\\s*(good morning|good afternoon|good evening|afternoon,|morning,|hi |hello |dear |sir|ma'am)",
+      "when_example": "Good morning,\n\nThe migration finished overnight and the numbers held."
+    }
+  ],
+  "preferred_substitutions": {
+    "furthermore": "also (casual) or additionally (formal)",
+    "circle back": "follow up, get back to you, revisit",
+    "reach out to": "email, call, ask",
+    "leverage": "use",
+    "utilize": "use",
+    "synergy": "name the combined effect",
+    "at the end of the day": "cut it",
+    "bad actor": "attacker, the person who did it"
+  }
+}

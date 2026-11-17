@@ -1,0 +1,4 @@
+interface:
+  display_name: "LexMount 云浏览器"
+  short_description: "用云端浏览器读取网页、填写表单、交付截图，并在登录后继续操作"
+  default_prompt: "使用 $lexmount-cloud-browser 打开 https://example.com，读取标题并给我截图。"

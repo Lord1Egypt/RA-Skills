@@ -1,41 +1,54 @@
-## Description: <br>
-Audits installed Skills for security risks such as command execution, network access, file access, data leakage, dependency risk, prompt injection, and broad trigger conditions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audits installed skills for risky execution, data access, exfiltration, and overscoped triggers.
 
-## Publisher: <br>
-[chensu1234](https://clawhub.ai/user/chensu1234) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chensu1234](https://clawhub.ai/user/chensu1234)
 
-## Use Case: <br>
-Developers, security reviewers, and skill maintainers use this skill to review user-provided skill files, identify risky behavior, assign severity, and produce remediation guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Audit inputs may include secrets, credentials, or unrelated private documents. <br>
-Mitigation: Provide only the skill files intended for review and exclude secrets, credentials, and unrelated private material. <br>
-Risk: Audit findings and remediation text may be incomplete or require human judgment before deployment. <br>
-Mitigation: Review recommendations before changing or deploying skills, and rescan after remediation. <br>
+## Use Case:
 
+Developers and security reviewers use this skill to batch audit user-supplied installed skill files and produce security findings, severity ratings, and remediation guidance.
 
-## Reference(s): <br>
-- [Review Checklist](references/review-checklist.md) <br>
-- [Skill Security Audit on ClawHub](https://clawhub.ai/chensu1234/skill-security-audit-v2) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown security audit report with severity findings and remediation suggestions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reviews user-provided skill materials and does not request execution, credentials, persistence, or outbound data transfer.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and CLAWHUB.json) <br>
+Risk: The skill produces advisory security findings that may be incomplete or misleading if the supplied skill files are partial or outdated.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide explicit, current file inputs and have a qualified reviewer confirm findings before making security or deployment decisions.
+
+Risk: The skill is primarily written in Chinese, which may create review friction for users or agents expecting English instructions.
+
+Mitigation: Use reviewers or translation support that can accurately interpret the Chinese audit criteria and remediation guidance.
+
+## Reference(s):
+
+- [Review Checklist](references/review-checklist.md)
+- [ClawHub Skill Page](https://clawhub.ai/chensu1234/skills/skill-security-audit-v2)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown security audit report with summaries, findings, risk evidence, and remediation text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Findings are advisory and should be reviewed before acting on them.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and CLAWHUB.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

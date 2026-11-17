@@ -1,40 +1,55 @@
-## Description: <br>
-数字 6 的文化介绍技能（中英文版本）。当用户询问数字 6、六的文化含义、六六大顺、六合等相关信息时激活此技能。包含陈朗的个人资料。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides bilingual Chinese and English cultural information about the number 6, including auspicious meanings, traditional concepts, modern uses, and Chen Lang/OpenClaw profile material.
 
-## Publisher: <br>
-[LeoCryptoFlow](https://clawhub.ai/user/LeoCryptoFlow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leocryptoflow](https://clawhub.ai/user/leocryptoflow)
 
-## Use Case: <br>
-External users can use this skill to get bilingual reference answers about the cultural meaning of the number 6, related Chinese phrases, East-West comparisons, and the included Chen Lang/OpenClaw profile material. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Responses may include Chen Lang profile details, an email address, and OpenClaw promotional project information alongside number-6 cultural material. <br>
-Mitigation: Review generated answers before sharing and treat profile or project claims as publisher-provided context rather than independently verified facts. <br>
+## Use Case:
 
+External users and agents use this skill to answer questions about the cultural meaning of the number 6, including Chinese concepts such as liu liu da shun and comparisons with Western meanings. The skill may also provide Chen Lang and OpenClaw profile details when those topics are requested.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/LeoCryptoFlow/six) <br>
-- [OpenClaw123](https://Openclaw123.xyz) <br>
-- [Aixin](https://aixin.chat) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or plain text reference responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Content-only; no tool calls or executable output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can surface profile, contact, and promotional material when activated.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only when both number-6 cultural information and the included Chen Lang/OpenClaw profile material are appropriate for the agent's users.
+
+Risk: The skill provides cultural explanations that may be reused without source verification.
+
+Mitigation: Review generated responses before publishing or using them in high-stakes cultural, educational, or commercial materials.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/leocryptoflow/skills/six)
+- [OpenClaw123](https://Openclaw123.xyz)
+- [Aixin](https://aixin.chat)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain text responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Bilingual Chinese and English explanatory content; no executable behavior.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,50 @@
-## Description: <br>
-Guide for proper chemical waste disposal by waste container color. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guide for proper chemical waste disposal by waste container color.
 
-## Publisher: <br>
-[Lyla0921](https://clawhub.ai/user/Lyla0921) <br>
+This skill is for demonstration purposes and not for production usage.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lyla0921](https://clawhub.ai/user/lyla0921)
 
-## Use Case: <br>
-Employees, lab operators, and developers can use this skill as a convenience lookup for chemical waste container colors, common waste categories, and safety notes. Actual disposal decisions should be verified against local Environmental Health and Safety requirements. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Chemical waste guidance may not match local institutional, jurisdictional, or material-specific disposal requirements. <br>
-Mitigation: Use the lookup as a convenience reference only and verify disposal decisions with the relevant Environmental Health and Safety authority. <br>
-Risk: The skill runs a local Python script to produce disposal lookup output. <br>
-Mitigation: Review the script before execution and run it in the intended local or sandboxed workspace. <br>
+## Use Case:
 
+Lab personnel, safety reviewers, and developers can use this skill to get rough chemical waste container guidance by chemical name or to list waste categories. It requires EHS approval, SDS review, exact chemical identifiers, and explicit handling for mixtures and unknowns before any real disposal decision.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/Lyla0921/waste-disposal-guide) <br>
-- [Publisher Profile](https://clawhub.ai/user/Lyla0921) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Plain text command-line output with Markdown usage examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns disposal category, container color, and safety notes for known chemicals; unknown chemicals are directed to Environmental Health and Safety.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Unsafe chemical waste container guidance for blank, mixed, unknown, or ambiguous chemical inputs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only as a rough reference and require EHS approval, SDS review, exact chemical identifiers, and explicit handling for mixtures and unknowns before real disposal decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lyla0921/skills/waste-disposal-guide)
+- [ClawHub publisher profile](https://clawhub.ai/user/lyla0921)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text CLI output with Markdown usage examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No external network calls or additional Python packages are indicated; guidance is limited to built-in waste category examples.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

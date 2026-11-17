@@ -1,44 +1,60 @@
-## Description: <br>
-Routes shopping-related queries to Volcengine Viking AI Search chat or search APIs and formats real returned product fields into product lists, product cards, or conversational answers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Goods Search helps agents handle shopping queries by using Viking AI Search chat or direct search APIs and formatting returned product results.
 
-## Publisher: <br>
-[chenyantong429-coder](https://clawhub.ai/user/chenyantong429-coder) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chenyantong429-coder](https://clawhub.ai/user/chenyantong429-coder)
 
-## Use Case: <br>
-External users and shopping assistants use this skill to decide between conversational shopping search and direct product retrieval, then present returned product data as concise recommendations, lists, or cards. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The artifact bundles and automatically uses an external API key. <br>
-Mitigation: Remove or rotate the bundled key before installation and require a user-provided, scoped credential. <br>
-Risk: Shopping queries, image inputs, optional user fields, and optional location context may be sent to Volcengine AI Search. <br>
-Mitigation: Review data-sharing requirements before use and avoid sending sensitive user, image, or location data unless authorized. <br>
+## Use Case:
 
+External users and shopping agents use this skill to search for goods, retrieve candidate products, answer shopping questions, and generate product-card style recommendations from real service responses.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chenyantong429-coder/adidas-goods-search) <br>
-- [ChatSearch API reference](artifact/references/chat_search_api.md) <br>
-- [Search API reference](artifact/references/search_api.md) <br>
-- [Volcengine ChatSearch documentation](https://www.volcengine.com/docs/85296/1873492?lang=zh) <br>
-- [Volcengine Search documentation](https://www.volcengine.com/docs/85296/1544974?lang=zh) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown product summaries and structured JSON search or chat responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses only fields returned by the search service and omits missing product details.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The artifact includes a plaintext API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Revoke the bundled key, remove it from distributed files, and require a user-controlled secret through environment configuration before use.
+
+Risk: Shopping queries, optional images, user metadata, and location context can be sent to the configured Viking AI Search endpoint.
+
+Mitigation: Use the skill only when that data flow is acceptable, avoid sensitive inputs, and disclose the external service dependency to users or operators.
+
+Risk: The configured service endpoint is not independently validated by the artifact.
+
+Mitigation: Restrict use to the documented HTTPS hosts and review endpoint configuration before deployment.
+
+## Reference(s):
+
+- [Search API reference](artifact/references/search_api.md)
+- [ChatSearch API reference](artifact/references/chat_search_api.md)
+- [Volcengine Search API documentation](https://www.volcengine.com/docs/85296/1544974?lang=zh)
+- [Volcengine ChatSearch API documentation](https://www.volcengine.com/docs/85296/1873492?lang=zh)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance]
+
+**Output Format:** [JSON service responses and concise Markdown product summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should use only fields returned by the search service; missing product fields are omitted rather than fabricated.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

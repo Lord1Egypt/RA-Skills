@@ -1,43 +1,61 @@
-## Description: <br>
-Deploys the SupplyWhy application to a development EC2 and Kubernetes environment from Slack natural language commands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deploydevnlu lets an agent deploy the SupplyWhy application from Slack natural language commands by using SSH, optionally updating the deployment image target, applying Kubernetes configuration, and reporting rollout status.
 
-## Publisher: <br>
-[yusong-7456](https://clawhub.ai/user/yusong-7456) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[yusong-7456](https://clawhub.ai/user/yusong-7456)
 
-## Use Case: <br>
-Developers and operators use this skill to trigger SupplyWhy development deployments from Slack natural language and receive deployment status. It is intended for workflows where the operator controls the Slack trigger and deployment authority. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Slack text can trigger real infrastructure changes with weak scoping and no built-in confirmation. <br>
-Mitigation: Require explicit human confirmation, authenticated Slack triggers, and strict allowlists for permitted environments, tags, and deployment targets. <br>
-Risk: The skill uses shell command construction around deployment inputs and remote commands. <br>
-Mitigation: Validate and constrain all parsed values before execution, avoid unsafe shell interpolation, and log the exact approved deployment target before running commands. <br>
-Risk: The skill requires access to the SupplyWhy SSH key and Kubernetes deployment authority. <br>
-Mitigation: Install only in controlled workflows, limit key and Kubernetes permissions to the intended development environment, and retain auditable deployment records. <br>
+## Use Case:
 
+Developers and operators with authorized Slack access use this skill to trigger and monitor SupplyWhy application deployments to the development EC2/Kubernetes environment. It is intended for controlled release workflows where live infrastructure changes are expected.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yusong-7456/deploydevnlu) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/yusong-7456) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration] <br>
-**Output Format:** [Text status messages with shell command execution and remote deployment configuration changes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May update an image tag or deployment target and reports deployment success or failure.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release evidence) <br>
+Risk: Slack natural language input can trigger live deployment actions with weak validation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Restrict Slack callers to authorized deployers, require an explicit confirmation step before running kubectl, and keep use to tightly controlled workspaces.
+
+Risk: Environment selection from free text can cause accidental deployment to the wrong target.
+
+Mitigation: Use an exact allowlist for permitted environments and map each environment to explicit infrastructure before any deployment command runs.
+
+Risk: SSH and Kubernetes commands can affect live infrastructure if credentials are overprivileged.
+
+Mitigation: Use least-privileged SSH credentials and Kubernetes access scoped only to the intended deployment resources.
+
+Risk: Shell command construction around deployment inputs can introduce command-interpolation risk.
+
+Mitigation: Avoid shell interpolation for untrusted values and pass validated deployment parameters through fixed command templates.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yusong-7456/skills/deploydevnlu)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands]
+
+**Output Format:** [Plain text deployment status and command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns success or failure status after SSH and Kubernetes rollout checks.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

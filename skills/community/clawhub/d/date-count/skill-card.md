@@ -1,42 +1,53 @@
-## Description: <br>
-Helps users track countdown dates so they can better plan their schedule. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tracks countdown dates so users can plan schedules around holidays, anniversaries, deadlines, and other dated events.
 
-## Publisher: <br>
-[rain-lei](https://clawhub.ai/user/rain-lei) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rain-lei](https://clawhub.ai/user/rain-lei)
 
-## Use Case: <br>
-External users use this skill to store countdown dates in a local JSON file, query days remaining or elapsed for named events, list all saved dates, and manually maintain entries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Countdowns, birthdays, anniversaries, or deadlines may be stored in a local plaintext JSON file. <br>
-Mitigation: Install only if local plaintext storage is acceptable for the user's date data. <br>
-Risk: Manual edits to the JSON data file can corrupt dates or remove saved entries. <br>
-Mitigation: Back up the JSON file before editing it and keep dates in strict YYYY-MM-DD format. <br>
-Risk: Broad requests to list saved dates may reveal all locally stored countdown entries. <br>
-Mitigation: Use explicit wording when asking the agent to list all saved dates. <br>
+## Use Case:
 
+External users and agents use this skill to read or maintain simple countdown entries and report remaining or elapsed days for named dates. It is suited to lightweight schedule reminders where local JSON storage is acceptable.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/rain-lei/date-count) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown text with JSON examples and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses YYYY-MM-DD dates stored in a local plaintext JSON file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: release evidence) <br>
+Risk: Countdown names and dates are stored in a local JSON file and may reveal personal or sensitive events.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid storing sensitive personal dates and restrict file access according to the user's local environment.
+
+Risk: Manual edits can delete entries or overwrite an existing countdown when a name is reused.
+
+Mitigation: Back up the JSON file before bulk edits and review names for duplicates before saving changes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/rain-lei/skills/date-count)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown or plain text responses with JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses named date entries stored in a local JSON file; the artifact contains no executable code.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,12 @@
+{
+  "type": "function",
+  "function": {
+    "name": "_app_listener_list",
+    "description": "Query the listener definition list under the current application (tree structure, includes directories and sub-listeners).",
+    "parameters": {
+      "type": "object",
+      "properties": {},
+      "additionalProperties": false
+    }
+  }
+}

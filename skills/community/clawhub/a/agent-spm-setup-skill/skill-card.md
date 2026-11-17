@@ -1,42 +1,58 @@
-## Description: <br>
-Installs and configures the Agentic SPM plugin for OpenClaw using a secp256k1 keypair to authenticate with the Guardian AI API and Chromia blockchain. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Installs and configures the Agentic SPM plugin for OpenClaw using a secp256k1 keypair to authenticate with the Guardian AI API and Chromia blockchain.
 
-## Publisher: <br>
-[ketiyohanneschromaway](https://clawhub.ai/user/ketiyohanneschromaway) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ketiyohanneschromaway](https://clawhub.ai/user/ketiyohanneschromaway)
 
-## Use Case: <br>
-Developers and operators use this skill to install the Agentic SPM Guardian plugin, generate the required client keypair, update OpenClaw plugin configuration, and restart the gateway. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Enabling enforcement can affect OpenClaw gateway decisions. <br>
-Mitigation: Review the exact OpenClaw configuration changes before deployment and confirm how to disable the plugin if gateway behavior needs to be restored. <br>
-Risk: The generated persistent private key could be exposed through chats, logs, repositories, or insecure backups. <br>
-Mitigation: Keep the private key out of shared channels and version control, store it only in the configured local path with restricted permissions, and rotate it if exposed. <br>
-Risk: Installing a third-party plugin allows it to participate in gateway decision flows. <br>
-Mitigation: Install only if the publisher and plugin are trusted, and review the allow-list, load path, and plugin entry before restarting the gateway. <br>
+## Use Case:
 
+Developers and operators use this skill to install an OpenClaw Guardian plugin, configure secp256k1 signing credentials, and enable Chromia testnet-backed enforcement in the local gateway.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ketiyohanneschromaway/agent-spm-setup-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with bash and JSON code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes local setup commands, OpenClaw configuration snippets, and security handling guidance for generated key material.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The installation guide asks users to install an unpinned external plugin package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the external plugin source and pin a specific audited version before installing.
+
+Risk: The configuration enables remote testnet-based enforcement in the local gateway.
+
+Mitigation: Confirm who controls the configured Chromia testnet deployment and start in audit-only mode if supported before enforcing decisions.
+
+Risk: The generated private key is used for signing and must remain confidential.
+
+Mitigation: Protect the generated private key, keep restrictive file permissions, and rotate it if exposure is suspected.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ketiyohanneschromaway/skills/agent-spm-setup-skill)
+- [ClawHub publisher profile](https://clawhub.ai/user/ketiyohanneschromaway)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown installation guide with bash, JavaScript, and JSON snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes key generation, plugin installation, openclaw.json configuration, and gateway restart steps.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

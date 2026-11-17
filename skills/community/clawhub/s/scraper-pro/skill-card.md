@@ -1,42 +1,58 @@
-## Description: <br>
-Extract data from websites and APIs for analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extracts structured data from websites and APIs for analysis, including product prices, news articles, web-page datasets, and public-source research collections.
 
-## Publisher: <br>
-[dinghaibin](https://clawhub.ai/user/dinghaibin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dinghaibin](https://clawhub.ai/user/dinghaibin)
 
-## Use Case: <br>
-Developers, analysts, and researchers use this skill to collect structured public web or API data such as product prices, news articles, and datasets for later analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can fetch arbitrary websites and APIs. <br>
-Mitigation: Review each scrape target before use and confirm permission, Terms of Service, and robots.txt expectations. <br>
-Risk: TLS verification is disabled during fetching. <br>
-Mitigation: Avoid sensitive sessions or credentials unless TLS verification is fixed and reviewed. <br>
-Risk: Scraped output can contain sensitive or regulated data. <br>
-Mitigation: Write outputs only to controlled locations where the data can be protected, reviewed, and deleted. <br>
+## Use Case:
 
+Developers, analysts, and research teams use this skill to collect structured data from permitted public websites or APIs and save it in formats suitable for analysis.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/dinghaibin/scraper-pro) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands, JSON/CSV/Markdown output files, and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can write scraped data to user-selected output paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: HTTPS certificate verification is disabled when fetching pages.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove the TLS verification bypass, or make insecure fetching an explicit opt-in that is off by default.
+
+Risk: The scraper can fetch arbitrary internal, local, or private URLs from the agent environment.
+
+Mitigation: Run it in a constrained network environment and restrict scraping to approved public targets.
+
+Risk: Saved scrape outputs may contain sensitive or regulated data.
+
+Mitigation: Avoid authenticated or sensitive targets and handle generated output files as potentially sensitive.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/dinghaibin/skills/scraper-pro)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/dinghaibin)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash command examples, YAML configuration examples, and scraper outputs in JSON, CSV, or Markdown.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write scraped output files to user-specified paths.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

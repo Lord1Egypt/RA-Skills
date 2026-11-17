@@ -1,42 +1,55 @@
-## Description: <br>
-Detect and read the largest license plate from an image using the TrafficEye REST API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Detect and read the largest license plate from an image using the TrafficEye REST API.
 
-## Publisher: <br>
-[radekzc](https://clawhub.ai/user/radekzc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[radekzc](https://clawhub.ai/user/radekzc)
 
-## Use Case: <br>
-External users and developers use this skill to submit a local vehicle image to TrafficEye and extract the largest detected license plate payload, including OCR text, country/type, geometry, scores, occlusion, and unreadable indicators. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Vehicle images and license plate data may be privacy-sensitive when sent to TrafficEye or a configured compatible endpoint. <br>
-Mitigation: Use the skill only with images you are authorized to process, avoid sensitive people, locations, or business context, and confirm the configured API endpoint is trusted. <br>
-Risk: API credentials and endpoint settings control where images and plate data are transmitted. <br>
-Mitigation: Keep TRAFFICEYE_API_KEY private and scope TRAFFICEYE_API_URL and related authentication settings to the intended service. <br>
+## Use Case:
 
+Developers and external users use this skill to submit a local vehicle image to the TrafficEye API, parse the recognition response, and report the largest detected license plate with its OCR text and plate metadata.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/radekzc/license-plate-reader) <br>
-- [TrafficEye homepage](https://trafficeye.ai) <br>
-- [TrafficEye API reference](https://www.trafficeye.ai/api) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and optional JSON output from the helper script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns the selected plate payload from the TrafficEye response; offline validation can use the bundled sample response JSON.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release metadata) <br>
+Risk: Vehicle images and plate data are uploaded to TrafficEye or another configured endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when the user is comfortable sending the selected image and plate data to that service, and configure TRAFFICEYE_API_URL to a trusted HTTPS host.
+
+Risk: API credentials may be exposed if query-string transport is used or if keys are over-privileged.
+
+Mitigation: Prefer header or bearer authentication, avoid query-string API key transport unless required, and use a scoped TrafficEye API key.
+
+## Reference(s):
+
+- [TrafficEye](https://trafficeye.ai)
+- [TrafficEye API](https://www.trafficeye.ai/api)
+- [ClawHub skill page](https://clawhub.ai/radekzc/skills/license-plate-reader)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON recognition output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The helper returns the selected plate payload, recognized text, polygon area, and source path within the API response.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

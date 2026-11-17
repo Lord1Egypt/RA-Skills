@@ -23,8 +23,9 @@ JSON response structures returned by Cargo CLI commands used in the `cargo-stora
       ],
       "additionalColumns": [
         { "slug": "full_name", "type": "string", "label": "Full Name", "kind": "computed", "expression": { "kind": "jsExpression", "expression": "..." }, "columnsUsed": ["first_name", "last_name"] },
-        { "slug": "total_deals", "type": "number", "label": "Total Deals", "kind": "metric", "relationshipUuid": "...", "aggregation": { "function": "count", "columnSlug": "uuid" } }
+        { "slug": "total_deals", "type": "number", "label": "Total Deals", "kind": "metric", "relationshipUuid": "...", "aggregation": { "function": "COUNT", "columnSlug": "uuid" } }
       ],
+      "unification": null,
       "playsCount": 2,
       "segmentsCount": 1,
       "isPaused": false,
@@ -43,6 +44,11 @@ JSON response structures returned by Cargo CLI commands used in the `cargo-stora
 ```
 
 **Key fields:** `uuid`, `slug`, `name`, `datasetUuid`, `idColumnSlug`, `columns` (original columns), `additionalColumns` (custom/computed/metric/lookup columns).
+
+`unification` is `null` unless the model unifies. When set it is either
+`{"source":"integration"}` or the `custom` shape (`type`, `uniqueColumns`,
+optionally `selectedColumnSlugs` / `timeColumnSlug` / `parent` / `filter`) —
+see the Unification section of `SKILL.md`.
 
 Columns have no `uuid` — they are identified by `slug` within the model.
 
@@ -85,7 +91,7 @@ For `cargo-ai storage query execute`, reference tables as `<datasetSlug>.<modelS
       "uuid": "dataset-uuid",
       "slug": "default",
       "workspaceUuid": "...",
-      "config": { "kind": "object" },
+      "kind": "native",
       "createdAt": "2025-01-01T00:00:00Z"
     }
   ]
@@ -100,44 +106,31 @@ For `cargo-ai storage query execute`, reference tables as `<datasetSlug>.<modelS
     "uuid": "dataset-uuid",
     "slug": "default",
     "workspaceUuid": "...",
-    "config": { "kind": "object" }
+    "kind": "connector",
+    "connectorUuid": "connector-uuid"
   }
 }
 ```
 
 ## cargo-ai storage column list
 
-Returns the model's columns (both original and additional). All columns share base fields: `slug`, `type`, `label`, `kind`. Columns have no `uuid` — use `slug` to identify them.
+Returns an array of **strings**, not column objects: each column's storage name. Original columns keep their slug; added columns are prefixed by kind (`custom__`, `computed__`, `metric__`, `lookup__`). That prefixed name is what `storage query execute` SQL reads.
 
 ```json
 {
-  "columns": [
-    {
-      "slug": "name",
-      "type": "string",
-      "label": "Name",
-      "kind": "original",
-      "originalSlug": "name"
-    },
-    {
-      "slug": "full_name",
-      "type": "string",
-      "label": "Full Name",
-      "kind": "computed",
-      "expression": { "kind": "jsExpression", "expression": "..." },
-      "columnsUsed": ["first_name", "last_name"]
-    }
-  ]
+  "columns": ["name", "domain", "computed__full_name", "custom__website_url"]
 }
 ```
 
-Kind-specific fields are included alongside the base fields:
+For the column objects (`slug`, `type`, `label`, `kind`), read `storage model get <uuid>` → `model.columns` (original) and `model.additionalColumns`. Columns have no `uuid`: use `slug` to identify them.
+
+Kind-specific fields on `additionalColumns` entries, alongside the base fields:
 
 **`computed`**
 ```json
 {
   "kind": "computed",
-  "expression": { "kind": "jsExpression", "value": "record.first_name + \" \" + record.last_name" },
+  "expression": { "kind": "jsExpression", "expression": "record.first_name + \" \" + record.last_name", "instructTo": "none", "fromRecipe": false },
   "columnsUsed": ["first_name", "last_name"]
 }
 ```
@@ -148,7 +141,7 @@ Kind-specific fields are included alongside the base fields:
   "kind": "metric",
   "relationshipUuid": "relationship-uuid",
   "aggregation": {
-    "function": "count",
+    "function": "COUNT",
     "columnSlug": "uuid"
   },
   "filter": null
@@ -176,20 +169,34 @@ Kind-specific fields are included alongside the base fields:
   "relationships": [
     {
       "uuid": "relationship-uuid",
+      "workspaceUuid": "workspace-uuid",
+      "fromDatasetUuid": "dataset-uuid",
       "fromModelUuid": "contacts-model-uuid",
+      "fromColumnSlug": "account_id",
+      "fromPropertySlug": "hubspot___contacts[0]",
+      "toDatasetUuid": "dataset-uuid",
       "toModelUuid": "companies-model-uuid",
-      "fromColumnSlug": "company_uuid",
-      "toColumnSlug": "uuid",
+      "toColumnSlug": "id",
       "relation": "manyToOne"
     }
   ]
 }
 ```
 
+Workspace-wide — the command takes no flags. `fromDatasetUuid` always equals
+`toDatasetUuid`. `fromPropertySlug` / `toPropertySlug` are `null` unless the
+relationship keys off a nested property of a connector column, and every entry
+also carries `fromSelectedColumnSlugs` / `toSelectedColumnSlugs` (`null` when
+not limited).
+
+`relationship set` returns the same shape, holding the dataset's full set after
+the replace.
+
 ## cargo-ai storage record list
 
 ```json
 {
+  "isRefreshing": false,
   "records": [
     {
       "uuid": "record-uuid",
@@ -209,6 +216,7 @@ Tables are referenced as `<datasetSlug>.<modelSlug>` and rewritten to the underl
 
 ```json
 {
+  "isRefreshing": false,
   "rows": [
     { "name": "Acme Corp", "domain": "acme.com", "employee_count": 500 },
     { "name": "Globex", "domain": "globex.com", "employee_count": 1200 }
@@ -232,15 +240,18 @@ Tables are referenced as `<datasetSlug>.<modelSlug>` and rewritten to the underl
 
 ## cargo-ai storage query download
 
-Used for full exports. Same table-naming convention as `storage query execute` (`<datasetSlug>.<modelSlug>`). Pass the SQL via `--query`; the response is a signed URL.
+Used for full exports. Same table-naming convention as `storage query execute` (`<datasetSlug>.<modelSlug>`). Pass the SQL via `--query`; the response is an array of signed URLs (the result can span several files).
 
 **Success:**
 
 ```json
 {
-  "url": "https://signed-url-to-csv-or-parquet-file"
+  "isRefreshing": false,
+  "urls": ["https://signed-url-to-csv-or-parquet-file"]
 }
 ```
+
+`isRefreshing: true` (here and on `query execute`) means a model refresh was still running, so very recent writes may be missing.
 
 **Failure (non-zero exit):**
 

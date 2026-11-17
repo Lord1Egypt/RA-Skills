@@ -1,41 +1,59 @@
-## Description: <br>
-Drafts Reddit posts and comments in Luka's voice from research findings, subreddit rules, and writing templates for manual review before posting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Drafts Reddit posts and comments in Luka's voice from prior research and subreddit rules for manual review.
 
-## Publisher: <br>
-[lknezic](https://clawhub.ai/user/lknezic) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[lknezic](https://clawhub.ai/user/lknezic)
 
-## Use Case: <br>
-Operators supporting Luka use this skill to turn prior Reddit research into draft posts and comments that match his trading voice and subreddit constraints. The drafts are saved for Luka's manual review and posting. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill tells the agent to imitate Luka's voice and avoid being flagged as AI-written. <br>
-Mitigation: Use only with Luka's authorization, remove AI-detection-evasion instructions, and keep manual review mandatory. <br>
-Risk: Drafts may mention QuantWheel in Reddit communities with disclosure or external-link restrictions. <br>
-Mitigation: Verify subreddit rules and affiliation disclosure before any QuantWheel mention, and require Luka's approval before posting. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lknezic/reddit-write) <br>
-- [Post templates](artifact/ref-templates.md) <br>
-- [Luka's voice reference](artifact/ref-voice.md) <br>
+## Use Case:
 
+Luka or an authorized reviewer uses this skill to draft Reddit posts and comment replies from weekday research, subreddit constraints, and voice references, then review each draft manually before posting.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown draft files with frontmatter and Reddit-ready post or comment text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Drafts require human review before posting and are not auto-posted.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may encourage AI-origin concealment or unsupported first-person claims.
+
+Mitigation: Install only with Luka's explicit authorization, remove AI-detection evasion language, and require a human reviewer to approve every draft before posting.
+
+Risk: Drafts may create subtle product promotion or omit material connection disclosures for QuantWheel.
+
+Mitigation: Disclose any material connection to QuantWheel, avoid promotional wording, and remove tool mentions where subreddit rules prohibit or discourage them.
+
+Risk: Options-trading content may be mistaken for individualized financial guidance.
+
+Mitigation: Verify claims, include suitable options-risk disclaimers, and keep final posting decisions with the authorized human reviewer.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/lknezic/skills/reddit-write)
+- [Skill Instructions](artifact/SKILL.md)
+- [Voice Reference](artifact/ref-voice.md)
+- [Post Templates](artifact/ref-templates.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown draft files with YAML frontmatter and prose review guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Drafts are intended for manual approval before posting and may include subreddit, title, source, and validation metadata.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

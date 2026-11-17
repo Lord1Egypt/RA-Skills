@@ -1,45 +1,59 @@
-## Description: <br>
-OpenClaw Blackbox helps agents inspect failed, stalled, expensive, or unusual OpenClaw runs from local disk evidence, list sessions and failures, find the session behind a request, and generate terminal, Markdown, JSON, or HTML reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw Blackbox CLI inspects failed, stalled, expensive, or unusual OpenClaw agent runs from local disk evidence; lists sessions and failures; finds the session behind a request; and generates terminal, Markdown, JSON, or HTML reports.
 
-## Publisher: <br>
-[shan8851](https://clawhub.ai/user/shan8851) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shan8851](https://clawhub.ai/user/shan8851)
 
-## Use Case: <br>
-Developers and engineers use this skill to debug OpenClaw cron runs, session failures, context overflows, missing transcripts or trajectories, message delivery issues, and other local run-evidence problems without relying on hidden LLM calls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on the @shan8851/blackbox npm package and its publisher. <br>
-Mitigation: Install only when the package and publisher are trusted in the deployment environment. <br>
-Risk: Generated Markdown, JSON, or HTML reports may include private prompts, tool outputs, URLs, and local paths. <br>
-Mitigation: Review and redact reports before sharing them outside the trusted debugging context. <br>
-Risk: Request search can match multiple sessions or the wrong run when local evidence is ambiguous. <br>
-Mitigation: Use explicit session IDs or scoped OPENCLAW_HOME paths when possible. <br>
+## Use Case:
 
+Developers and engineers use this skill to inspect local OpenClaw run evidence, triage failed or suspicious runs, find sessions related to requests, and produce deterministic debugging reports without relying on hidden LLM calls.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/shan8851/openclaw-blackbox) <br>
-- [Publisher profile](https://clawhub.ai/user/shan8851) <br>
-- [Project homepage](https://github.com/shan8851/openclaw-blackbox) <br>
-- [npm package @shan8851/blackbox](https://www.npmjs.com/package/@shan8851/blackbox) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, HTML, shell commands, guidance] <br>
-**Output Format:** [Terminal text, Markdown reports, JSON reports, HTML reports, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports are generated from local OpenClaw state and may include prompts, tool outputs, URLs, and local paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill installs an unpinned third-party npm CLI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after reviewing or pinning the npm package and confirming trust in the package publisher.
+
+Risk: The CLI reads local OpenClaw session history that may contain sensitive prompts, tool results, URLs, and paths.
+
+Mitigation: Inspect explicit sessions when possible, avoid broad all-agent scans unless needed, and limit access to environments where local session data is appropriate to review.
+
+Risk: Generated reports can write sensitive debugging details to disk or open them in external viewers.
+
+Mitigation: Review Markdown, JSON, HTML, and terminal reports before sharing them or opening them outside the trusted environment.
+
+## Reference(s):
+
+- [OpenClaw Blackbox ClawHub page](https://clawhub.ai/shan8851/skills/openclaw-blackbox)
+- [shan8851 publisher profile](https://clawhub.ai/user/shan8851)
+- [OpenClaw Blackbox npm package](https://www.npmjs.com/package/@shan8851/blackbox)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, HTML, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands; CLI reports may be terminal text, Markdown, JSON, or HTML.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports can include prompts, tool arguments and results, URLs, and local paths; review generated reports before sharing.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

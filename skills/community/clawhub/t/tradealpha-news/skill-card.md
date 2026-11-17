@@ -1,44 +1,56 @@
-## Description: <br>
-获取 TradeAlpha 实时新闻和语义检索结果，适用于 TradeAlpha 新闻、今日新闻、路透、彭博、Truth、国内资讯、研报快讯，以及按主题、事件、公司或叙事检索相关新闻的场景。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+获取 TradeAlpha 实时新闻和语义检索结果，适用于按来源、主题、事件、公司或叙事检索相关新闻，并在当前会话中使用用户提供的 TradeAlphaToken 查询结果。
 
-## Publisher: <br>
-[tradealpha-coder](https://clawhub.ai/user/tradealpha-coder) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tradealpha-coder](https://clawhub.ai/user/tradealpha-coder)
 
-## Use Case: <br>
-External users and agents use this skill to retrieve TradeAlpha realtime news lists and semantic news search results, then summarize key Chinese-language findings. It requires a user-provided TradeAlphaToken in chat and reuses that token only within the current conversation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires users to paste a TradeAlpha token into chat and sends it to the listed TradeAlpha API domains. <br>
-Mitigation: Use a limited-scope or easily revocable token, verify the TradeAlpha site, and rotate the token or start a fresh conversation when session reuse is no longer desired. <br>
-Risk: Realtime news may have the documented 0-5 minute objective delay. <br>
-Mitigation: Tell users when recency matters and avoid presenting results as perfectly instantaneous. <br>
+## Use Case:
 
+External users and market analysts use this skill to query TradeAlpha realtime news and semantic news search results, then receive concise Chinese summaries and structured request/result details. It is intended for news lookup workflows after the user supplies a TradeAlpha API token in the current chat session.
 
-## Reference(s): <br>
-- [TradeAlpha News Reference](references/reference.md) <br>
-- [TradeAlpha News Examples](references/examples.md) <br>
-- [TradeAlpha official site](https://quantaccess.lxaa.top/) <br>
-- [Realtime news endpoint](https://openapi.lxaa.top/api/v1/news/realtime_news) <br>
-- [Semantic search endpoint](https://openapi.lxaa.top/api/v1/news/news_vector_search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Guidance] <br>
-**Output Format:** [Markdown summaries with structured JSON request and response details when useful] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a chat-provided TradeAlphaToken; does not use environment variables or local token storage.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact frontmatter reports 2.1.3) <br>
+Risk: The skill asks users to paste a TradeAlpha API token into chat and reuses it during the current session.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a scoped or short-lived token when possible, avoid account-wide credentials, and never write the token to files, environment variables, shell commands, or local configuration.
+
+Risk: The skill may trigger on broad news requests involving sources such as Reuters, Bloomberg, Truth, domestic news, or research reports.
+
+Mitigation: Confirm the user wants a TradeAlpha lookup before requesting a token or making an API call.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/tradealpha-coder/skills/tradealpha-news)
+- [TradeAlpha News Reference](references/reference.md)
+- [Conversation and Payload Examples](references/examples.md)
+- [TradeAlpha Account and Token Site](https://quantaccess.lxaa.top/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, API calls, JSON, guidance]
+
+**Output Format:** [Chinese Markdown summaries with structured JSON request and result details]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a user-provided TradeAlphaToken in chat; the token is reused only within the current session and should not be written to files, environment variables, shell commands, or local configuration.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter says 2.1.3)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

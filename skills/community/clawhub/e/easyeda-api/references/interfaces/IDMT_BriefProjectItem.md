@@ -1,11 +1,11 @@
 # IDMT\_BriefProjectItem interface
 
-简略工程属性
+Brief project properties
 
 ## Signature
 
 ```typescript
-interface IDMT_BriefProjectItem 
+interface IDMT_BriefProjectItem
 ```
 
 ## Properties
@@ -14,118 +14,94 @@ interface IDMT_BriefProjectItem
 
 Property
 
-
 </th><th>
 
 Modifiers
-
 
 </th><th>
 
 Type
 
-
 </th><th>
 
 Description
-
 
 </th></tr></thead>
 <tbody><tr><td>
 
 [folderUuid?](./IDMT_BriefProjectItem.md)
 
-
 </td><td>
-
 
 </td><td>
 
 string
 
-
 </td><td>
 
-_(Optional)_ 所属文件夹 UUID
-
+_(Optional)_ UUID of the folder it belongs to
 
 </td></tr>
 <tr><td>
 
 [friendlyName](./IDMT_BriefProjectItem.md)
 
-
 </td><td>
-
 
 </td><td>
 
 string
 
-
 </td><td>
 
-工程友好名称
-
+Project friendly name
 
 </td></tr>
 <tr><td>
 
 [itemType](./IDMT_BriefProjectItem.md)
 
-
 </td><td>
 
 `readonly`
-
 
 </td><td>
 
 [EDMT\_ItemType.PROJECT](../enums/EDMT_ItemType.md) \| [EDMT\_ItemType.CBB\_PROJECT](../enums/EDMT_ItemType.md)
 
-
 </td><td>
 
-项目类型
-
+Project type
 
 </td></tr>
 <tr><td>
 
 [teamUuid](./IDMT_BriefProjectItem.md)
 
-
 </td><td>
-
 
 </td><td>
 
 string
 
-
 </td><td>
 
-所属团队 UUID
-
+UUID of the team it belongs to
 
 </td></tr>
 <tr><td>
 
 [uuid](./IDMT_BriefProjectItem.md)
 
-
 </td><td>
-
 
 </td><td>
 
 string
 
-
 </td><td>
 
-工程 UUID
-
+Project UUID
 
 </td></tr>
 </tbody></table>
@@ -138,7 +114,7 @@ string
 
 # IDMT\_BriefProjectItem.folderUuid property
 
-所属文件夹 UUID
+UUID of the folder it belongs to
 
 ## Signature
 
@@ -150,7 +126,7 @@ folderUuid?: string;
 
 # IDMT\_BriefProjectItem.friendlyName property
 
-工程友好名称
+Project friendly name
 
 ## Signature
 
@@ -162,7 +138,7 @@ friendlyName: string;
 
 # IDMT\_BriefProjectItem.itemType property
 
-项目类型
+Project type
 
 ## Signature
 
@@ -174,7 +150,7 @@ readonly itemType: EDMT_ItemType.PROJECT | EDMT_ItemType.CBB_PROJECT;
 
 # IDMT\_BriefProjectItem.teamUuid property
 
-所属团队 UUID
+UUID of the team it belongs to
 
 ## Signature
 
@@ -186,7 +162,7 @@ teamUuid: string;
 
 # IDMT\_BriefProjectItem.uuid property
 
-工程 UUID
+Project UUID
 
 ## Signature
 

@@ -1,43 +1,56 @@
-## Description: <br>
-A Maxwell 2D finite element simulation assistant for motor and magnetic-circuit workflows, including solver setup, boundary conditions, parametric sweeps, result extraction, and post-processing guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Maxwell 2D finite element simulation assistant for brushless motors, permanent-magnet synchronous motors, magnetic circuit setup, boundary conditions, parametric sweeps, solver analysis, and result extraction.
 
-## Publisher: <br>
-[yongjie666888](https://clawhub.ai/user/yongjie666888) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yongjie666888](https://clawhub.ai/user/yongjie666888)
 
-## Use Case: <br>
-Developers and engineers use this skill to plan Maxwell 2D FEA studies for BLDC/PMSM motors and magnetic circuits, configure geometry, materials, mesh, solver, and sweep settings, and generate checklists or post-process exported result arrays. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The post-processing script can produce demo results while appearing to analyze user CSV data. <br>
-Mitigation: Verify or modify the script to read declared input files before relying on its output, and clearly label whether results are demo data or simulation-derived results. <br>
-Risk: Simulation guidance and reference parameters may be mistaken for validated engineering decisions. <br>
-Mitigation: Treat the material tables, mesh settings, and solver templates as starting points; validate them against project requirements, mesh-convergence checks, and trusted Maxwell outputs. <br>
+## Use Case:
 
+Developers and motor engineers use this skill to plan Maxwell 2D FEA workflows, configure materials, meshes, boundaries, excitations, solver settings, and review post-processing approaches for motor and magnetic-circuit simulations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yongjie666888/maxwell-fea-simulation) <br>
-- [Maxwell common material parameter library](references/material_library.md) <br>
-- [Maxwell mesh setup guidelines](references/mesh_guidelines.md) <br>
-- [Maxwell 2D simulation parameter templates](references/simulation_templates.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and optional Python script outputs.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The post-processing script may write PNG plots in the current working directory when plotting is enabled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata) <br>
+Risk: The bundled Python helpers may need dependencies that conflict with an existing Python environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the scripts in a virtual environment with pinned dependency versions.
+
+Risk: The post-processing helper includes demo workflows and should not be assumed ready for production CSV result ingestion.
+
+Mitigation: Verify or implement real CSV loading before using it on production simulation results.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yongjie666888/skills/maxwell-fea-simulation)
+- [Material library](references/material_library.md)
+- [Mesh guidelines](references/mesh_guidelines.md)
+- [Simulation templates](references/simulation_templates.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, configuration templates, and Python helper output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May generate local checklist text or post-processing plot files when the bundled Python scripts are run.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

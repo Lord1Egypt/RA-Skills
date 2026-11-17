@@ -1,46 +1,55 @@
-## Description: <br>
-用于中文小说人物蒸馏、关系抽取、关系图谱导出与角色对话准备；当宿主需要基于小说内容生成结构化人物档案、关系结果或多角色对话上下文时使用。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Zaomeng Skill helps host-managed agents prepare Chinese novel character distillation, relationship extraction, relationship graph export, and in-character dialogue context.
 
-## Publisher: <br>
-[wkbin](https://clawhub.ai/user/wkbin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wkbin](https://clawhub.ai/user/wkbin)
 
-## Use Case: <br>
-External users and host-agent developers use this skill to turn Chinese novel text into structured character profiles, relationship artifacts, graph exports, and host-driven roleplay context. It is useful when an agent needs prompt payloads, local helper scripts, and schemas rather than direct model calls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads source text and writes generated project outputs such as profiles, status files, and relationship graph artifacts. <br>
-Mitigation: Run it in the intended project directory and review generated file changes before keeping or publishing them. <br>
-Risk: Character profiles, relationship extraction, and dialogue context can be misleading when the source evidence is thin or contradictory. <br>
-Mitigation: Use the included validation and safety policies, preserve evidence notes, and mark low-confidence results for revision. <br>
+## Use Case:
 
+Developers and host-managed agent users use this skill to turn Chinese novel text into structured character profiles, relationship artifacts, persona bundles, and dialogue-ready context for act, insert, and observe roleplay flows.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/wkbin/zaomeng-skill) <br>
-- [Capability Index](references/capability_index.md) <br>
-- [Output Schema](references/output_schema.md) <br>
-- [Dialogue Handoff Contract](references/chat_contract.md) <br>
-- [Safety Policy](references/safety_policy.md) <br>
-- [Validation Policy](references/validation_policy.md) <br>
-- [Scene Recommendation Context Example](examples/scene_recommendation_context.example.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Code, Shell commands, Configuration, Guidance, Files] <br>
-**Output Format:** [Markdown, JSON, Mermaid, HTML/SVG files, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Host performs model calls; helper scripts prepare prompt payloads, status files, persona bundles, and graph artifacts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-4.1.8 (source: server evidence, SKILL.md frontmatter, .metadata.json) <br>
+Risk: The self-card helper can delete or overwrite files outside its intended folder if given an unsafe card ID.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in a sandboxed or backed-up workspace, do not pass untrusted values to --card-id or --cards-root, avoid self-card delete until path validation is fixed, and prefer pinned installer versions over @latest.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wkbin/skills/zaomeng-skill)
+- [Capability Index](references/capability_index.md)
+- [Output Schema](references/output_schema.md)
+- [Chat Contract](references/chat_contract.md)
+- [Validation Policy](references/validation_policy.md)
+- [Safety Policy](references/safety_policy.md)
+- [Host Workflow Example](examples/host_workflow_example.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and JSON guidance with Python helper commands; generated artifacts may include persona Markdown, JSON status files, Mermaid, HTML, and SVG.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The host performs model calls; the skill prepares prompt payloads, validates workflow artifacts, and writes status sidecars.]
+
+## Skill Version(s):
+
+4.1.8 (source: SKILL.md frontmatter, .metadata.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

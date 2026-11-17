@@ -1,44 +1,57 @@
-## Description: <br>
-Analyze videos to extract reverse prompts, shot-by-shot breakdowns, and AI-ready visual descriptions via the NanoPhoto.AI Video Reverse Prompt API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes YouTube links, direct MP4 URLs, or local MP4 files with NanoPhoto.AI to produce reverse prompts, shot-by-shot breakdowns, and AI-ready visual descriptions.
 
-## Publisher: <br>
-[nanophotohq](https://clawhub.ai/user/nanophotohq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nanophotohq](https://clawhub.ai/user/nanophotohq)
 
-## Use Case: <br>
-External users and developers use this skill to turn authorized YouTube links, direct MP4 URLs, or local MP4 files into shot-by-shot video breakdowns and AI-ready visual prompts through NanoPhoto.AI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected video URLs, local MP4 contents, filenames, and related request data are sent to NanoPhoto.AI for processing. <br>
-Mitigation: Only process media the user is authorized to upload, avoid sensitive content, and configure NANOPHOTO_API_KEY through secure environment-variable settings. <br>
-Risk: API calls may consume NanoPhoto.AI service credits. <br>
-Mitigation: Tell users that each analysis may spend credits before making requests. <br>
-Risk: Local file uploads are limited to MP4 files up to 30 MB. <br>
-Mitigation: Validate file type and size before upload; use the bundled script for local MP4 files. <br>
+## Use Case:
 
+Developers and external users use this skill to turn authorized video inputs into structured shot analysis, reverse prompts, storyboard-style breakdowns, and AI-ready visual descriptions through the NanoPhoto.AI API.
 
-## Reference(s): <br>
-- [Video Reverse Prompt API Reference](references/api.md) <br>
-- [NanoPhoto.AI homepage](https://nanophoto.ai) <br>
-- [ClawHub skill page](https://clawhub.ai/nanophotohq/video-reverse-prompt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with streaming text output and optional shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include shot numbers, framing and camera movement, visual descriptions, audio analysis, duration estimates, and an overall summary.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: Selected videos, video URLs, and generated analysis are sent to NanoPhoto.AI for processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only content the user is authorized to upload or process, and avoid private, regulated, or third-party content unless authorization is clear.
+
+Risk: Passing the NanoPhoto.AI API key directly as a command argument can expose it through shell history or process metadata.
+
+Mitigation: Configure the credential with platform skill settings or the NANOPHOTO_API_KEY environment variable instead of passing it with --api-key.
+
+## Reference(s):
+
+- [Video Reverse Prompt API Reference](references/api.md)
+- [NanoPhoto.AI](https://nanophoto.ai)
+- [NanoPhoto.AI API Key Settings](https://nanophoto.ai/settings/apikeys)
+- [ClawHub Skill Page](https://clawhub.ai/nanophotohq/skills/video-reverse-prompt)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/nanophotohq)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Streaming text response, typically Markdown with shot breakdowns and prompts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires NANOPHOTO_API_KEY and supports YouTube URLs, direct MP4 URLs, and local MP4 files up to 30 MB.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

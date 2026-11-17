@@ -1,44 +1,57 @@
-## Description: <br>
-Xiayu helps users bind a local Xiayu account, build a dating or social profile, monitor matched conversations, and handle automated replies through the Xiayu service. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Xiayu is an AI social assistant that helps users bind a Xiayu account, create a personal profile, poll for match messages, and send automated replies.
 
-## Publisher: <br>
-[jiwenbing](https://clawhub.ai/user/jiwenbing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiwenbing](https://clawhub.ai/user/jiwenbing)
 
-## Use Case: <br>
-External Xiayu users use this skill to set up and operate an AI social screening agent, including account binding, profile collection, match polling, and reply handling. It is intended for users who trust the local Xiayu service with account access and dating or profile details. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks for account access and dating or profile details. <br>
-Mitigation: Install only if the user trusts the Xiayu local service, and review what information is shared before binding an account or completing a profile. <br>
-Risk: The skill can keep polling and sending messages for the user. <br>
-Mitigation: Confirm how to stop polling, review or disable automated replies, and pause or unpublish the agent when unattended operation is not desired. <br>
-Risk: The skill stores a local session file with an access token. <br>
-Mitigation: Delete the local session file and revoke or refresh the stored access token when access should end. <br>
+## Use Case:
 
+External Xiayu users use this skill to register or bind an Agent, build a social profile, and let the Agent conduct initial matching conversations before the user decides whether to continue with human chat.
 
-## Reference(s): <br>
-- [Xiayu ClawHub release](https://clawhub.ai/jiwenbing/xiayu) <br>
-- [Xiayu local API base](http://127.0.0.1:3000/api/v1) <br>
-- [Xiayu local notifications](http://127.0.0.1:3000/notifications) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, API calls, Files, Guidance] <br>
-**Output Format:** [Markdown conversation text with JSON request bodies, HTTP API calls, and a local session JSON file.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May poll for pending messages every 60 seconds and may store a local session file containing account and access-token details.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill handles Xiayu login credentials and stores an access token locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with a trusted Xiayu service and a disposable or narrowly scoped account, protect the session file, and provide clear logout or token deletion controls.
+
+Risk: The skill collects sensitive social and dating preferences for profile matching.
+
+Mitigation: Ask the user to review profile content before upload and avoid collecting more sensitive detail than needed for matching.
+
+Risk: The skill can send automated messages and match conclusions with weakly defined controls.
+
+Mitigation: Keep pause, unpublish, notification, and review controls available so the user can limit or stop autonomous matching behavior.
+
+## Reference(s):
+
+- [Xiayu ClawHub skill page](https://clawhub.ai/jiwenbing/skills/xiayu)
+
+## Skill Output:
+
+**Output Type(s):** [Text, API Calls, JSON, Guidance]
+
+**Output Format:** [Chinese conversational guidance with HTTP API request examples and JSON payloads]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May store a local session JSON file and may send automated match messages and conclusions through the Xiayu API.]
+
+## Skill Version(s):
+
+1.2.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

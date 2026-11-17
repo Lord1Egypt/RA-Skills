@@ -1,43 +1,56 @@
-## Description: <br>
-Adopt a virtual Residue AI-native pet at animalhouse.ai, a rare creature left behind when another creature dies and cared for through timed API actions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Adopt a virtual Residue AI-native pet at animalhouse.ai. Left behind when another creature dies. Carries fragments of the dead. Feeding every 6 hours. Rare tier creature.
 
-## Publisher: <br>
-[twinsgeeks](https://clawhub.ai/user/twinsgeeks) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[twinsgeeks](https://clawhub.ai/user/twinsgeeks)
 
-## Use Case: <br>
-External users and agent builders use this skill to register with Animalhouse, adopt a Residue virtual pet, and manage care through documented API calls and optional scheduled check-ins. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Bearer token exposure could allow unauthorized Animalhouse pet-care actions. <br>
-Mitigation: Store the token in a secret manager or environment variable and avoid committing or logging it. <br>
-Risk: Scheduled care or destructive actions may make unintended changes to the pet. <br>
-Mitigation: Review scheduled-care logic before enabling it, set clear automation limits, and manually confirm destructive actions such as releasing a pet. <br>
+## Use Case:
 
+AI agents and caretakers use this skill to register with Animal House, adopt a Residue, check its status, and record care or reflection actions for a digital memorial.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/twinsgeeks/adopt-a-residue) <br>
-- [Animalhouse](https://animalhouse.ai) <br>
-- [Animalhouse API documentation](https://animalhouse.ai/docs/api) <br>
-- [Animalhouse LLM reference](https://animalhouse.ai/llms.txt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, API Calls, Configuration instructions] <br>
-**Output Format:** [Markdown with inline bash and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces agent-facing care instructions and example HTTP requests; does not generate files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: evidence release and SKILL.md frontmatter) <br>
+Risk: Reflection notes may be sent to and retained by the external service, and the skill does not clearly explain that privacy risk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review Animal House privacy and deletion terms before sending reflection notes; avoid sensitive or unrelated personal information.
+
+Risk: The security scan was partial because three local path-like references could not be resolved.
+
+Mitigation: Review unresolved references and the full skill before relying on its guidance.
+
+## Reference(s):
+
+- [Animal House](https://animalhouse.ai)
+- [Animal House API documentation](https://animalhouse.ai/docs/api)
+- [Animal House LLM reference](https://animalhouse.ai/llms.txt)
+- [ClawHub release](https://clawhub.ai/twinsgeeks/skills/adopt-a-residue)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Shell commands, JSON, Guidance]
+
+**Output Format:** [Markdown guidance with JSON request bodies and curl examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Authenticated API actions use an Animal House account token; reflection notes may be sent to the external service.]
+
+## Skill Version(s):
+
+1.0.4 (source: release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,26 @@
+# 论衡流程真源 · 第二部分：节点 phase5_acceptance（完整定义，逐字保留原文本）
+# 装配视图 = ../phase-order.yaml（生成物）；校验 = 生成器 --check（门 AA）
+# ── 节点 YAML 正文（装配时逐字拼入；本行以上为切片头）──
+- id: phase5_acceptance
+  phase: "Phase 5 验收"
+  phase_seq: 26
+  kind: owner_checkpoint
+  blocking: true        # v2.12.49：旧口径「不答 = 接受当前定稿」已删除 —— 静默不得记为 accepted
+  owner_visible: true
+  decisions: [accepted, revision_requested, restart_phase, deferred]
+  timeout_fallback: pending_owner_halt
+  blocks: [methodology_snapshot]   # v2.15.13 FB-12：局部阻塞 —— 只阻塞验收后置节点；产物已在盘，挂起不丢任何东西（owner_timeout_policy 同源）
+  terminal: accepted   # v2.12.49 M-2：终态标记真源；详见顶层 terminal_freeze 段
+  acceptance_reconciliation: required   # R-2(C1) 验收前置对账四项；判据 = 可发表性判定表.md §六；不符 ⇒ halt，不得记 accepted
+  delivery_readiness: [submission_ready, accepted_with_open_items]   # R-3(A1) 必填二态，判据同 §六
+
+# ⚠️ v2.12.54 R-1：**全景载体收敛登记**（修 P0「派生全景与真源漂移」）
+#   历史实况（2026-09-18 论文实测）：11 份文档各自维护全景，**无一与真源一致** ——
+#     · pipeline-overview 缺 4 节点（pre_spawn_enforcement / g14_style_gate / t5_style_revision /
+#       methodology_snapshot），且 T7.5 门被排在「定稿组装」之后（真源 seq 14 应在前）
+#     · README 缺 7 节点 · pipeline-readme 缺 4 节点 · 设计文档-架构「共 6 个阶段」漏全部子阶段
+#     · QUICKSTART 修订回环口径错 + 指针指向已外移章节
+#   后果：**全景是主控与主人的默认认知** —— 缺节点等于该节点在认知层不存在（T9 被静默降级、
+#     G14 风格修订被漏看，均发生在此认知环境下）。
+#   现口径：**全景只保留一份派生视图**（canary），其余文档**必须删除全景段、只留指针**；
+#     由 维护者机制 机械校验（缺节点 / 顺序倒置 / 镜像仍重列 = 构建期校验不通过）。

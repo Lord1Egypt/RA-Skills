@@ -1,45 +1,60 @@
-## Description: <br>
-Given an arxiv identifier or arxiv abs/pdf URL, download the LaTeX source or use MinerU's PDF-to-Markdown fallback, ask an OpenRouter model to generate a Beamer presentation introducing the work, and package the result as an Overleaf-uploadable zip. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Given an arxiv identifier or arxiv abs/pdf URL, download the LaTeX source or fall back to MinerU PDF-to-Markdown, ask an OpenRouter model to generate a Beamer presentation introducing the work, and package the result as an Overleaf-uploadable zip.
 
-## Publisher: <br>
-[dirtycomputer](https://clawhub.ai/user/dirtycomputer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dirtycomputer](https://clawhub.ai/user/dirtycomputer)
 
-## Use Case: <br>
-Researchers, developers, and agents use this skill to turn an arXiv identifier or URL into an Overleaf-ready Beamer slide deck. It is intended for paper-introduction workflows where source TeX is available or a PDF-only paper can be converted through MinerU. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Downloaded paper archives may contain paths that write outside the temporary working folder during extraction. <br>
-Mitigation: Run the skill only on papers you trust, use a sandboxed working directory, and harden archive extraction before regular use. <br>
-Risk: Paper content is sent to OpenRouter and may be sent to MinerU for PDF-only fallback processing. <br>
-Mitigation: Avoid using the skill with confidential or restricted papers, and use dedicated API keys with limited scope. <br>
-Risk: The generated Beamer project may contain inaccurate or misleading model-authored summaries of the source paper. <br>
-Mitigation: Review the generated slides against the original paper before presenting or sharing them. <br>
+## Use Case:
 
+Developers, researchers, and academic authors use this skill to turn an arXiv paper ID or URL into an Overleaf-ready Beamer project. It is useful when a user asks for slides or a presentation derived from a paper's LaTeX source or PDF content.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dirtycomputer/arxiv-to-beamer) <br>
-- [arXiv](https://arxiv.org) <br>
-- [MinerU](https://mineru.net) <br>
-- [OpenRouter API](https://openrouter.ai/api/v1/chat/completions) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Code, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with command output; generated artifact is an Overleaf-uploadable ZIP containing LaTeX project files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires OPENROUTER_API_KEY and may require MINERU_API_TOKEN for PDF-only papers; source text is capped before model submission.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Downloaded archives are handled unsafely and could affect local files or resources.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing and run only in a contained workspace until archive-safety fixes are in place.
+
+Risk: Paper-derived content is sent to OpenRouter, and PDF URLs or content may be sent through MinerU.
+
+Mitigation: Do not use the skill on untrusted or sensitive papers; use --no-mineru-fallback to avoid MinerU when appropriate.
+
+Risk: The skill reads API tokens from environment variables.
+
+Mitigation: Use scoped API tokens and avoid running the skill in shared or untrusted shell environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dirtycomputer/skills/arxiv-to-beamer)
+- [arXiv](https://arxiv.org)
+- [MinerU](https://mineru.net)
+- [OpenRouter API](https://openrouter.ai/api/v1/chat/completions)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Code, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands, plus an Overleaf-uploadable zip containing LaTeX project files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires OPENROUTER_API_KEY; PDF-only fallback may require MINERU_API_TOKEN; default source text cap is 200000 characters.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

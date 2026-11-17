@@ -1,43 +1,67 @@
-## Description: <br>
-iaskaster helps agents run Bazi fortune-telling workflows by logging in to the iaskaster service, submitting birth details, and returning or downloading PDF reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+iaskaster helps an agent collect Bazi birth details, authenticate to the external iaskmaster.cn service, and generate or retrieve fortune-analysis PDF reports.
 
-## Publisher: <br>
-[tjlzw](https://clawhub.ai/user/tjlzw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tjlzw](https://clawhub.ai/user/tjlzw)
 
-## Use Case: <br>
-External users and agents use this skill when a user explicitly asks for fortune-telling, Bazi analysis, fate readings, horoscope charts, report downloads, balance checks, or report interpretation through the iaskaster service. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles phone or email login plus detailed birth information and may retain local token, session, PDF, or screenshot files. <br>
-Mitigation: Use only with trusted accounts and user consent, and remove .iaskaster-token, .iaskaster-uid, .iaskaster-session, downloaded PDFs, and generated screenshots when they are no longer needed. <br>
-Risk: The skill can read local report files and could be invoked with unintended paths. <br>
-Mitigation: Restrict report-reading requests to expected downloaded iaskaster PDF files and review any requested file path before execution. <br>
-Risk: The skill exposes recharge and payment links that users could treat as authoritative. <br>
-Mitigation: Independently verify the recharge destination and amount before completing any payment. <br>
+## Use Case:
 
+External users can ask an agent to collect birth details, use verification-code login, submit an analysis request, and retrieve Bazi reports, report lists, account balance details, recharge links, and downloaded PDFs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tjlzw/iaskaster) <br>
-- [iaskaster API service endpoint](https://iaskmaster.cn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Shell commands, Guidance] <br>
-**Output Format:** [Plain text or Markdown-style terminal output, with PDF files or links when reports are downloaded or shown.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires network access and phone or email verification login; may store local session, token, PDF, and screenshot artifacts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: The workflow sends phone or email login data and exact birth details to an external service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with explicit user consent for that data sharing, and avoid submitting unnecessary personal details.
+
+Risk: The report-reading tool can read arbitrary local files.
+
+Mitigation: Constrain file access to generated report locations before deployment and review requested file paths before execution.
+
+Risk: Tokens are stored or exposed with weak boundaries.
+
+Mitigation: Protect token storage, avoid sharing command output that may include tokenized report links, and prefer a scoped token-handling design.
+
+Risk: The API destination can be configured and is not proven allowlisted by the artifact evidence.
+
+Mitigation: Allowlist the expected iaskmaster.cn endpoint and review any custom API URL before use.
+
+Risk: The installer modifies OpenClaw configuration.
+
+Mitigation: Review installer changes and back up configuration before installation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tjlzw/skills/iaskaster)
+- [Publisher profile](https://clawhub.ai/user/tjlzw)
+- [iaskmaster external service](https://iaskmaster.cn)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, files, shell commands, configuration, guidance]
+
+**Output Format:** [Text and Markdown responses with shell-command examples; downloaded reports are PDF files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires verification-code login and network access to the external iaskmaster.cn service.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

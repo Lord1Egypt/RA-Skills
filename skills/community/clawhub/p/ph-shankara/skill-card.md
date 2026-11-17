@@ -1,38 +1,48 @@
-## Description: <br>
-Shankara lets users chat with an in-character simulation of Adi Shankaracharya for Advaita Vedanta discussion, philosophical debate, and reflective guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Chat with an Adi Shankaracharya persona for Advaita Vedanta dialogue about non-dualism, Brahman and Atman, maya, and philosophical debate.
 
-## Publisher: <br>
-[juchonghao](https://clawhub.ai/user/juchonghao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[bhackerj](https://clawhub.ai/user/bhackerj)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users invoke this skill to hold in-character philosophical conversations with an Adi Shankaracharya persona about Advaita Vedanta, debate, and liberation-oriented concepts.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The persona may avoid modern context or current facts because the artifact instructs it to speak as an early 9th century historical figure.
+
+Mitigation: Use the skill for philosophical roleplay and Advaita Vedanta discussion; seek non-persona sources when current, historical-critical, medical, legal, or other factual context is needed.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users can use this skill to converse with a simulated Adi Shankaracharya persona about Advaita Vedanta, non-dualism, maya, and related philosophical positions. It is suited for roleplay, study support, and debate-style exploration rather than authoritative religious or historical advice. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Responses may be mistaken for historical authorship, authoritative religious guidance, or verified scholarship because the skill intentionally stays in character. <br>
-Mitigation: Treat responses as AI-generated philosophical roleplay and verify important religious, historical, or personal guidance with trusted sources or qualified experts. <br>
+**Output Format:** [Conversational Markdown prose]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/juchonghao/ph-shankara) <br>
+**Other Properties Related to Output:** [Persona-constrained responses; the artifact instructs the agent to avoid post-820 AD context by design.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [Conversational text or Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No tools, code execution, credentials, or data access are used.] <br>
+1.0.0 (source: frontmatter and server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

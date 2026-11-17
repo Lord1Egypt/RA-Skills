@@ -1,6 +1,14 @@
 {
-  "ownerId": "kn7b1bjk878xpagxd2x6yandwn889wb8",
-  "slug": "kickbacks",
-  "version": "1.2.0",
-  "publishedAt": 1781323592538
+  "name": "kickbacks",
+  "title": "Kickbacks.ai — Get Paid for Waiting",
+  "author": "Kickbacks.ai",
+  "version": "1.1.0",
+  "license": "MIT",
+  "tags": ["kickbacks", "claude-code", "codex", "vs-code", "extension", "earn-money", "ai-tools"],
+  "description": "Kickbacks.ai — turn AI spinner waiting time into passive income. Install the VS Code extension to earn 50% ad revenue while Claude Code or Codex thinks.",
+  "homepage": "https://github.com/jaysonmeng/book-skills/tree/main/skills/kickbacks",
+  "clawhub": {
+    "slug": "kickbacks",
+    "owner": "jaysonmeng"
+  }
 }

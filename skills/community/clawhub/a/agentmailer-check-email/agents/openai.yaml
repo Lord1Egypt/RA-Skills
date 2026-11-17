@@ -1,0 +1,13 @@
+interface:
+  display_name: "Check AgentMailer Email"
+  short_description: "Search and summarize agent inboxes safely"
+  default_prompt: "Use $agentmailer-check-email to find the relevant inbox conversation and summarize it without taking external action."
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "agentmailer"
+      description: "Read and search AgentMailer inboxes, messages, threads, drafts, and attachments"
+      transport: "streamable_http"
+      url: "https://api.agentmailer.ai/mcp"
+policy:
+  allow_implicit_invocation: true

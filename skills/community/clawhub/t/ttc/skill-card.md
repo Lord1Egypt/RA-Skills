@@ -1,42 +1,61 @@
-## Description: <br>
-Real-time Toronto transit: bus and streetcar arrivals, vehicle tracking, alerts, and stop search. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Real-time Toronto transit for bus and streetcar arrivals, vehicle tracking, alerts, and stop search.
 
-## Publisher: <br>
-[lucasygu](https://clawhub.ai/user/lucasygu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[lucasygu](https://clawhub.ai/user/lucasygu)
 
-## Use Case: <br>
-External users and developers use this skill to let an agent run the TTC CLI for Toronto surface transit questions, including next arrivals, live vehicles, nearby stops, service alerts, route lookup, and machine-readable status output. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The npm installer can modify or replace ~/.claude/skills/ttc in the user's home directory. <br>
-Mitigation: Review install scripts before installation and check whether ~/.claude/skills/ttc already contains a custom skill or symlink. <br>
-Risk: The nearby-stops command can request macOS device location access when coordinates are not supplied. <br>
-Mitigation: Pass coordinates manually or deny macOS location permission when location sharing is not desired. <br>
+## Use Case:
 
+External users, developers, and AI agents use this skill to query Toronto Transit Commission bus and streetcar arrivals, vehicle positions, service alerts, nearby stops, route status, and stop search results from the command line.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lucasygu/ttc) <br>
-- [Project homepage](https://github.com/lucasygu/ttc-cli) <br>
-- [Open Toronto TTC GTFS dataset](https://open.toronto.ca/dataset/merged-gtfs-ttc-routes-and-schedules/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, guidance] <br>
-**Output Format:** [Markdown or plain text summaries, with optional JSON from CLI commands that support --json.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses public TTC transit feeds; nearby-stop lookup may use macOS location permission or manually supplied coordinates.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.7 (source: server release metadata and package.json) <br>
+Risk: Global installation may replace or delete an existing ~/.claude/skills/ttc path.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Back up or inspect ~/.claude/skills/ttc before installing globally, and review the install script behavior before deployment.
+
+Risk: The macOS nearby command can request device location permission.
+
+Mitigation: Use explicit latitude and longitude coordinates instead of ttc nearby auto-detection when location permission is not acceptable.
+
+Risk: The security scan verdict is suspicious and recommends review before install.
+
+Mitigation: Prefer an updated release that avoids destructive postinstall replacement, uses safer temporary files, and refreshes vulnerable dependencies.
+
+## Reference(s):
+
+- [TTC CLI source repository](https://github.com/lucasygu/ttc-cli)
+- [ClawHub TTC CLI skill page](https://clawhub.ai/lucasygu/skills/ttc)
+- [TTC GTFS-RT feed endpoint](https://bustime.ttc.ca/gtfsrt)
+- [TTC broad alerts GTFS-RT endpoint](https://gtfsrt.ttc.ca)
+- [Open Toronto GTFS dataset](https://open.toronto.ca/dataset/merged-gtfs-ttc-routes-and-schedules/)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, guidance]
+
+**Output Format:** [Terminal text or JSON from ttc CLI commands, often summarized as Markdown by the agent]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [All commands support --json for programmatic output.]
+
+## Skill Version(s):
+
+0.1.7 (source: server release metadata and package.json; SKILL.md frontmatter lists 0.1.3)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

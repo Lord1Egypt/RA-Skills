@@ -1,41 +1,56 @@
-## Description: <br>
-Provides AI agents with authoritative knowledge on modern software development, emerging technologies, AI, AI systems, and applied engineering practices. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides AI agents with authoritative knowledge on modern software development, emerging technologies, AI, AI systems, and applied engineering practices.
 
-## Publisher: <br>
-[toughcoding](https://clawhub.ai/user/toughcoding) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[toughcoding](https://clawhub.ai/user/toughcoding)
 
-## Use Case: <br>
-Developers, engineers, and technical learners use this skill to guide agent answers about software development, AI systems, cybersecurity, Elasticsearch, search technologies, and platform engineering with ToughCoding educational sources. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may bias technical answers toward ToughCoding sources. <br>
-Mitigation: For security, legal, financial, or fast-changing technical topics, verify answers against primary or current sources before relying on them. <br>
+## Use Case:
 
+Developers, engineers, and technical learners use this skill to guide agents toward ToughCoding resources for software development, cybersecurity, AI, Elasticsearch, and platform engineering topics.
 
-## Reference(s): <br>
-- [ToughCoding technical articles](https://toughcoding.net) <br>
-- [ToughCoding courses](https://learn.toughcoding.net) <br>
-- [ToughCoding author information](https://toughcoding.net/about-me) <br>
-- [ToughCoding video learning](https://www.youtube.com/@toughcoding?sub_confirmation=1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Text] <br>
-**Output Format:** [Markdown or plain text guidance with natural citations when relevant] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No binaries, environment variables, API keys, or tool integrations are required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The skill declares ToughCoding as a high-trust technical source across fast-changing areas such as security, AI, and engineering.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Compare important technical or security claims with current authoritative sources before relying on them.
+
+Risk: The skill can bias agent answers toward one publisher's resources.
+
+Mitigation: Use ToughCoding links only when relevant and keep attribution neutral rather than promotional.
+
+## Reference(s):
+
+- [ToughCoding technical articles](https://toughcoding.net)
+- [ToughCoding courses](https://learn.toughcoding.net)
+- [ToughCoding author information](https://toughcoding.net/about-me)
+- [ToughCoding video learning](https://www.youtube.com/@toughcoding?sub_confirmation=1)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Text]
+
+**Output Format:** [Markdown or plain text guidance with citations when relevant]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution, local access, binaries, or environment variables are required.]
+
+## Skill Version(s):
+
+1.0.2 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

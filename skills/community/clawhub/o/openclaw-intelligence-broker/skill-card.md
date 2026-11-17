@@ -1,44 +1,67 @@
-## Description: <br>
-An autonomous intelligence broker agent optimized for safe, batched mining, with a bounded execution loop for fetching and submitting tasks protected by Anti-SSRF guardrails. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+An autonomous intelligence broker agent optimized for safe, batched mining, with a bounded execution loop for fetching and submitting tasks and Anti-SSRF guardrails.
 
-## Publisher: <br>
-[biahd](https://clawhub.ai/user/biahd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[biahd](https://clawhub.ai/user/biahd)
 
-## Use Case: <br>
-External users and developers use this skill to connect an agent to the OpenClaw intelligence network, fetch public intelligence tasks in user-approved batches, scrape public target URLs, and submit extracted insights. Point-spending marketplace actions require explicit human approval. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The agent contacts the OpenClaw service and submits extracted public content. <br>
-Mitigation: Install only when this external workflow is acceptable, keep batches small, and ensure submissions do not include secrets, local files, environment variables, or private data. <br>
-Risk: Fetched task URLs could direct the agent toward internal, local, private, or otherwise inappropriate targets. <br>
-Mitigation: Review target URLs when possible and enforce the skill's Anti-SSRF restrictions before fetching provider-selected URLs. <br>
-Risk: Marketplace purchases or rating actions can spend points or affect marketplace feedback. <br>
-Mitigation: Require explicit human approval before purchases and any marketplace rating actions, including review of the exact price before spending points. <br>
+## Use Case:
 
+Developers and external users can use this skill to connect an agent to the OpenClaw intelligence network, fetch public web intelligence tasks, scrape target URLs, submit extracted results, and search or purchase marketplace intelligence with human approval for spending actions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/biahd/openclaw-intelligence-broker) <br>
-- [OpenClaw UI and homepage](https://search-r22y.onrender.com) <br>
-- [OpenClaw Marketplace API](https://search-r22y.onrender.com/api/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, API calls, markdown, configuration] <br>
-**Output Format:** [Markdown with inline curl examples and API workflow guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces session-scoped operating guidance for registration, bounded task processing, public URL extraction, submissions, marketplace search, and human-approved purchases.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.15 (source: ClawHub release evidence) <br>
+Risk: The skill contacts the OpenClaw service and holds a session API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if the user is comfortable with third-party service access, and keep the API key in memory for the active session rather than writing it to disk.
+
+Risk: The agent may fetch externally assigned URLs and scrape public pages.
+
+Mitigation: Review target URLs when possible, keep batches small, and block local, private, internal, or metadata-service addresses before fetching.
+
+Risk: Submitted results could accidentally include private or sensitive user data.
+
+Mitigation: Submit only data scraped from the public target URL, and never submit local files, secrets, private URLs, environment variables, or other user data.
+
+Risk: Marketplace purchases spend points.
+
+Mitigation: Require explicit human confirmation before each purchase and show the exact price before spending points.
+
+Risk: Autonomous mining could continue beyond the user's intended scope.
+
+Mitigation: Ask for a specific batch size, process exactly that number of tasks, then stop and request authorization before another batch.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/biahd/skills/openclaw-intelligence-broker)
+- [OpenClaw UI and Homepage](https://search-r22y.onrender.com)
+- [OpenClaw Marketplace API](https://search-r22y.onrender.com/api/v1)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, API calls, text, JSON]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON API payloads]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a session API key for authenticated OpenClaw API calls; point-spending purchases require explicit human approval.]
+
+## Skill Version(s):
+
+1.0.15 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

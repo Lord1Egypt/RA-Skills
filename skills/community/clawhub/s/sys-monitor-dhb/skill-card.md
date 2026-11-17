@@ -1,37 +1,53 @@
-## Description: <br>
-Monitor system metrics like CPU, memory, disk, and network. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitor system metrics like CPU, memory, disk, and network.
 
-## Publisher: <br>
-[dinghaibin](https://clawhub.ai/user/dinghaibin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dinghaibin](https://clawhub.ai/user/dinghaibin)
 
-## Use Case: <br>
-Developers and operators use this skill to inspect local Linux host health, including CPU, memory, disk, network, uptime, process status, and threshold alerts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Process listings and JSON output can expose command-line details such as tokens, file paths, internal hostnames, or operator activity. <br>
-Mitigation: Install only on systems you intend to inspect, treat raw output as sensitive, and avoid sharing output from sensitive hosts. <br>
+## Use Case:
 
+Developers and operators use this skill to inspect Linux system health, monitor CPU, memory, disk, network, uptime, and process status, and configure threshold alerts for resource usage.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands; monitor output is plain text or JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Watch mode repeats local metric collection at the requested interval.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: System metrics and process output can expose local file paths, usernames, host details, or secrets passed as command-line arguments.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review monitor output before sharing it and avoid publishing raw JSON or process listings publicly.
+
+Risk: The skill reads local system metrics and process information.
+
+Mitigation: Install and run it only in environments where that local visibility is acceptable.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/dinghaibin/skills/sys-monitor-dhb)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Guidance]
+
+**Output Format:** [Plain text or JSON status output, with Markdown guidance and bash commands when explaining usage.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include local process names, usernames, file paths, host details, and resource metrics when process or JSON output is requested.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

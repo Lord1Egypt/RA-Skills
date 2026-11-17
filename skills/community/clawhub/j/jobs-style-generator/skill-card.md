@@ -1,40 +1,51 @@
-## Description: <br>
-Transform any text into Steve Jobs' iconic presentation style. Perfect for product launches, keynotes, and making any message incredibly persuasive and memorable. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transform any text into Steve Jobs' iconic presentation style. Perfect for product launches, keynotes, and making any message incredibly persuasive and memorable.
 
-## Publisher: <br>
-[huajianjiu000](https://clawhub.ai/user/huajianjiu000) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[huajianjiu000](https://clawhub.ai/user/huajianjiu000)
 
-## Use Case: <br>
-External users and creators use this skill to rewrite product launches, announcements, vision statements, and presentation copy in a concise Apple-keynote style. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may over-apply a Steve Jobs or Apple-keynote persuasive tone to broad writing requests. <br>
-Mitigation: Use it when that tone is desired, and explicitly ask for a different or neutral voice when ordinary writing help is needed. <br>
+## Use Case:
 
+External users, creators, marketers, and presentation authors use this skill to rewrite product launches, announcements, vision statements, and keynote-style messaging in a Steve Jobs-inspired presentation voice.
 
-## Reference(s): <br>
-- [Jobs Style Generator Reference Guide](references/REFERENCE.md) <br>
-- [Publisher Homepage](https://xiaping.coze.site) <br>
-- [ClawHub Skill Page](https://clawhub.ai/huajianjiu000/jobs-style-generator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or plain text rewrites with examples and presentation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces persuasive keynote-style phrasing and structural guidance; no external tools or binaries are required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Broad activation can produce an over-persuasive or unwanted Steve Jobs-inspired voice when the user did not explicitly ask for it.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated copy for tone, accuracy, and suitability before publishing or using it in customer-facing material.
+
+## Reference(s):
+
+- [Jobs Style Generator Reference Guide](references/REFERENCE.md)
+- [ClawHub Skill Page](https://clawhub.ai/huajianjiu000/skills/jobs-style-generator)
+- [Publisher Homepage](https://xiaping.coze.site)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text rewriting guidance with examples and templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No shell commands, code execution, credential use, or external tool calls are required by the artifact.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

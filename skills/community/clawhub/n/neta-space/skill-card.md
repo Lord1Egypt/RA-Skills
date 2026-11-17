@@ -1,40 +1,56 @@
-## Description: <br>
-Neta API space and world-view browsing skill for exploring worldbuilding, sub-spaces, playable content, characters, and activity structure by space or hashtag. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Neta Space helps agents browse Neta API spaces, worldbuilding, sub-spaces, characters, collections, and playable content by space or hashtag.
 
-## Publisher: <br>
-[huxiuhan](https://clawhub.ai/user/huxiuhan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[huxiuhan](https://clawhub.ai/user/huxiuhan)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and developers use this skill to answer questions about available Neta spaces and retrieve lore, activity, character, sub-space, collection, and gameplay details before any separate creative workflow.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The setup instructions install @talesofai/neta-skills with @latest and global package manager flags.
+
+Mitigation: Pin a reviewed package version and prefer a local or isolated install instead of a global install.
+
+Risk: The skill requires NETA_TOKEN for Neta CLI access.
+
+Mitigation: Provide the token only in the intended agent environment and avoid exposing it in prompts, logs, or shared command output.
+
+Risk: The artifact includes a command to add the separate neta-creative skill.
+
+Mitigation: Run that add command only when the user explicitly wants content creation in addition to space browsing.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and agents use this skill to browse Neta spaces, lore, sub-spaces, collections, characters, and gameplay content before answering informational or gameplay-structure questions. It is not intended for concrete media creation, which the source skill delegates to neta-creative. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on a globally installed third-party Neta CLI package. <br>
-Mitigation: Install only if the @talesofai/neta-skills package is trusted; pin or verify the package version before global installation. <br>
-Risk: The skill requires a NETA_TOKEN credential for API access. <br>
-Mitigation: Provide NETA_TOKEN through a secure environment or secret manager, and avoid pasting, printing, or logging the token. <br>
+**Output Format:** [Markdown responses with inline shell commands and Neta CLI result summaries]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/huxiuhan/neta-space) <br>
+**Other Properties Related to Output:** [Requires NETA_TOKEN and Neta CLI 0.8.0 or later.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires NETA_TOKEN and Neta CLI access for live Neta API browsing.] <br>
+0.1.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

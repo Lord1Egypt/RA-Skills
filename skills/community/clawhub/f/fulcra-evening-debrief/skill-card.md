@@ -1,42 +1,55 @@
-## Description: <br>
-Runs a short end-of-day debrief that reflects on the user's day, extracts action items and open loops, previews tomorrow, and stores the result in Fulcra as a structured annotation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run a short end-of-day debrief that reflects on the day, extracts action items and open loops, previews tomorrow, and stores the result in Fulcra as a structured annotation.
 
-## Publisher: <br>
-[keng009](https://clawhub.ai/user/keng009) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[keng009](https://clawhub.ai/user/keng009)
 
-## Use Case: <br>
-Fulcra users use this skill with an agent to run a short evening reflection, compare the day against calendar and morning check-in context, and save ratings, meeting feedback, wins, open loops, and action items for later review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads Fulcra calendar, check-in, and reflection data that may be personal. <br>
-Mitigation: Install only when the publisher is trusted with this data, use least-privilege Fulcra tokens, and avoid sharing day ratings or calendar details publicly. <br>
-Risk: The package includes broader account and CRM helpers than the evening debrief workflow requires. <br>
-Mitigation: Review the package before deployment and remove or disable unused Attio and generic delete/update helpers when they are not needed. <br>
-Risk: Fulcra API and CLI settings affect where the skill sends requests and how credentials are used. <br>
-Mitigation: Pin Fulcra API and CLI configuration to trusted values before running the skill. <br>
+## Use Case:
 
+Fulcra users use this skill as a light evening coaching workflow to review the day, capture meeting feedback, wins, open loops, and action items, and prepare for tomorrow. It is intended for personal concierge-style reflection where calendar context and structured Fulcra annotations are available.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/keng009/skills/fulcra-evening-debrief) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and structured JSON payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a Fulcra annotation payload containing fields such as day_rating, meeting_count, wins, open_loops, and action_items.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and target metadata) <br>
+Risk: Authenticated Fulcra or Attio traffic could be redirected if environment variables such as FULCRA_API_BASE, ATTIO_API_BASE, or FULCRA_CLI_COMMAND are untrusted.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run the skill only in a trusted environment with known-good Fulcra tooling and controlled environment variables.
+
+Risk: The package includes broader shared CRM/Fulcra helpers than the evening debrief workflow itself needs.
+
+Mitigation: Review the packaged helper scripts and grant credentials only with the minimum authority needed for the intended Fulcra debrief workflow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/keng009/skills/fulcra-evening-debrief)
+- [Fulcra API](https://api.fulcradynamics.com)
+- [Attio API](https://api.attio.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Conversational guidance with JSON payloads and shell commands for Fulcra annotation reads and writes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write an Evening Debrief Fulcra annotation when the user provides debrief content and authenticated Fulcra tooling is available.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,58 @@
-## Description: <br>
-Analyzes multiple local tender documents for paragraph-level similarity and produces an HTML duplicate-content report with statistics, status labels, and rewrite suggestions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides local cross-document similarity analysis for tender files with paragraph-level duplicate detection and visual HTML reporting.
 
-## Publisher: <br>
-[wuliwenjing](https://clawhub.ai/user/wuliwenjing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wuliwenjing](https://clawhub.ai/user/wuliwenjing)
 
-## Use Case: <br>
-Proposal and tender teams use this skill to compare two or more local DOCX, PDF, TXT, or Markdown files and identify repeated or highly similar paragraphs before submission. It is useful when reviewers need an HTML report that highlights duplicate paragraph pairs, aggregate similarity statistics, and suggested rewrite directions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads tender documents and writes an HTML report containing matching paragraph text. <br>
-Mitigation: Run it only on documents intended for local review, store the generated report in an approved location, and treat the report as sensitive tender material. <br>
-Risk: The release evidence says its zero-outbound and sandbox claims should not be treated as a hard security boundary. <br>
-Mitigation: Use normal environment controls for confidential documents and do not rely on the skill's network-isolation claims as the sole protection. <br>
-Risk: Dependency installation and document-editing helper paths can change the local environment or files if explicitly invoked. <br>
-Mitigation: Install dependencies manually from a reviewed requirements file and avoid helper paths that edit documents unless those changes are intended and backed up. <br>
+## Use Case:
 
+Developers and proposal teams use this skill to compare local tender documents, identify duplicate or highly similar paragraphs, and produce a reviewable similarity report without uploading source files.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wuliwenjing/tender-similarity-analyzer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Files, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [HTML report file plus console summary and human-facing guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads selected local tender files, writes a local report and audit metadata, and may provide rewrite suggestions without modifying source files during normal analysis.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: server release evidence) <br>
+Risk: Generated HTML reports may contain sensitive tender content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Store and share reports as sensitive documents, and avoid opening reports from untrusted inputs in a browser with network access.
+
+Risk: The dependency helper and runtime controls require review before installation.
+
+Mitigation: Install only reviewed dependencies in an isolated Python environment, preferably from pinned versions.
+
+Risk: Network-isolation behavior can affect the current Python process.
+
+Mitigation: Run the analyzer in a short-lived subprocess or container so isolation changes do not disrupt other tools.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wuliwenjing/skills/tender-similarity-analyzer)
+- [ClawHub publisher profile](https://clawhub.ai/user/wuliwenjing)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, files, guidance]
+
+**Output Format:** [Console text plus an HTML similarity report file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Analyzes at least two local DOCX, PDF, TXT, or Markdown files and can write the report to a user-specified path.]
+
+## Skill Version(s):
+
+2.1.0 (source: server release metadata; artifact version history lists v2.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

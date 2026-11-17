@@ -1,41 +1,58 @@
-## Description: <br>
-Manage Apple Notes through the memo CLI on macOS to create, view, edit, delete, search, move, and export notes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Apple Notes via the memo CLI on macOS, including creating, viewing, editing, deleting, searching, moving, and exporting notes.
 
-## Publisher: <br>
-[huangfeng1995](https://clawhub.ai/user/huangfeng1995) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[huangfeng1995](https://clawhub.ai/user/huangfeng1995)
 
-## Use Case: <br>
-macOS users and their agents use this skill to manage Apple Notes from the terminal through the memo CLI, including note creation, search, folder moves, deletion, and HTML or Markdown export. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read and change Apple Notes when requested. <br>
-Mitigation: Install only if you are comfortable giving the memo CLI and your agent access to Apple Notes, and review selected notes before edit, move, delete, or export actions. <br>
-Risk: macOS Automation access may remain available after the skill is no longer needed. <br>
-Mitigation: Revoke the memo CLI or agent Automation permission in macOS privacy settings when you no longer use the skill. <br>
+## Use Case:
 
+External users and developers use this skill to operate Apple Notes from an agent through the memo CLI on macOS for note and folder management.
 
-## Reference(s): <br>
-- [Apple Notes.Old on ClawHub](https://clawhub.ai/huangfeng1995/apple-notes-old) <br>
-- [memo CLI homepage from skill metadata](https://github.com/antoniorodr/memo) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance, Markdown] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires macOS, Apple Notes.app access, and the memo CLI.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Installing a third-party CLI and granting macOS Automation access may expose Apple Notes data to software outside the agent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after reviewing and trusting the memo CLI source, Homebrew tap, and required macOS permissions.
+
+Risk: Delete operations can remove the wrong note or be difficult to recover.
+
+Mitigation: Confirm the selected note before deletion and keep backups for important Apple Notes content.
+
+Risk: The skill cannot edit notes that contain images or attachments.
+
+Mitigation: Use the skill for text-based notes and manage attachment-heavy notes directly in Apple Notes.
+
+## Reference(s):
+
+- [memo GitHub repository](https://github.com/antoniorodr/memo)
+- [ClawHub skill page](https://clawhub.ai/huangfeng1995/skills/apple-notes-old)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include memo CLI commands for creating, viewing, editing, deleting, moving, searching, and exporting notes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

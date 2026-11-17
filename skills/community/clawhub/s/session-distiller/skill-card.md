@@ -1,44 +1,63 @@
-## Description: <br>
-Batch-distill completed and live OpenClaw session transcripts, meeting notes, and daily logs into structured daily memory files, with an optional context monitor that can trigger auto-distillation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Batch-distill completed and live OpenClaw session transcripts, meeting notes, and daily log entries into structured daily memory files.
 
-## Publisher: <br>
-[pjmorr](https://clawhub.ai/user/pjmorr) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pjmorr](https://clawhub.ai/user/pjmorr)
 
-## Use Case: <br>
-Developers and OpenClaw operators use this skill to summarize completed sessions, approved live sessions, meeting notes, and daily logs into durable daily memory files. It is also used to monitor active session context usage and trigger distillation when configured thresholds are reached. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Automatic live distillation can capture and persist active conversations beyond the documented allowlist. <br>
-Mitigation: Restrict which sessions can auto-distill, keep the live allowlist minimal, and use dry-run mode before enabling scheduled context-gate runs. <br>
-Risk: OpenClaw transcripts, meeting notes, and daily logs may be summarized into durable memory. <br>
-Mitigation: Review memory destinations and retention expectations before use, and verify where the configured LiteLLM proxy sends distillation content. <br>
-Risk: Telegram alerts may expose session or context metadata outside the local OpenClaw workspace. <br>
-Mitigation: Configure Telegram credentials only when alerts are required and minimize alert metadata where possible. <br>
+## Use Case:
 
+Developers and OpenClaw operators use this skill to preserve useful context from completed sessions, approved live sessions, meeting notes, and daily logs as markdown memory files.
 
-## Reference(s): <br>
-- [Session Distiller ClawHub Listing](https://clawhub.ai/pjmorr/session-distiller) <br>
-- [ROADMAP.md](references/ROADMAP.md) <br>
-- [trash CLI](https://github.com/ali-rantakari/trash) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Files, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown memory sections appended to daily files, with shell commands and configuration guidance for running the scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes daily memory files and runtime state files; can emit Telegram alerts when context-gate is configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.5.1 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: Private session transcripts, meeting notes, and memory content may be copied into long-term memory or sent through model and Telegram channels.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only where that data flow is acceptable, treat the LiteLLM endpoint as a sensitive data processor, and avoid Telegram alerts or redact session identifiers in sensitive environments.
+
+Risk: context-gate.py may process live session content beyond the live-session allowlist used by distill.py.
+
+Mitigation: Disable or patch context-gate.py unless it enforces the same live-session allowlist before automatic distillation.
+
+Risk: Durable memory entries may preserve user preferences, instructions, or edited and deleted group-chat content.
+
+Mitigation: Review generated memory entries before relying on them and require review before durable user preferences or instructions are written to memory.
+
+Risk: Shared or hardcoded credentials can weaken deployment isolation.
+
+Mitigation: Replace shared credentials before use and configure alerting tokens through environment-specific secrets.
+
+## Reference(s):
+
+- [ROADMAP.md](references/ROADMAP.md)
+- [trash CLI](https://github.com/ali-rantakari/trash)
+- [ClawHub skill page](https://clawhub.ai/pjmorr/skills/session-distiller)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown memory entries with shell command and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes daily memory files and may emit Telegram alerts when context-gate monitoring is enabled.]
+
+## Skill Version(s):
+
+0.5.1 (source: frontmatter, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

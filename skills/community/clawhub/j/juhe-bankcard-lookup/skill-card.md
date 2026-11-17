@@ -1,41 +1,58 @@
-## Description: <br>
-Looks up a bank card's issuing bank, card type, location, and customer service details through Juhe's API for single or batch queries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Queries Juhe.cn for a bank card's issuing bank, card type, province or city attribution, customer service phone number, and related details for single or batch lookups.
 
-## Publisher: <br>
-[juhemcp](https://clawhub.ai/user/juhemcp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[juhemcp](https://clawhub.ai/user/juhemcp)
 
-## Use Case: <br>
-External users and agents use this skill to answer requests such as identifying which bank issued a card, whether it is a debit or credit card, and what province or city is associated with it. It can process one card number or a small batch and return human-readable summaries, tables, and JSON details. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Bank card numbers and the Juhe API key may be sent to a third-party service over plain HTTP. <br>
-Mitigation: Use only after explicit user confirmation, avoid passing the API key on the command line, prefer environment or .env configuration, and do not use the skill until HTTP transmission is addressed. <br>
-Risk: The skill depends on Juhe service availability, API-key validity, and request quota; lookups can fail or time out. <br>
-Mitigation: Handle reported errors plainly, retry timeouts once, and avoid treating lookup results as the sole source for financial or identity decisions. <br>
+## Use Case:
 
+External users and agents use this skill to look up bank card issuer, card type, attribution location, customer service phone number, and related fields after a user provides one or more card numbers. The skill requires a Juhe API key before live lookup can run.
 
-## Reference(s): <br>
-- [Juhe Bank Card API documentation](https://www.juhe.cn/docs/api/id/305) <br>
-- [Juhe data platform](https://www.juhe.cn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown or terminal text with JSON result blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and JUHE_BANKCARDCODE_KEY; accepts one or more 15-19 digit bank card numbers.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Full bank card numbers and the Juhe API key are sent over plaintext HTTP.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not use real card numbers or production Juhe keys unless the implementation is changed to HTTPS.
+
+Risk: Card numbers are sent to Juhe for lookup.
+
+Mitigation: Tell users before lookup that their card numbers will be sent to Juhe, and only proceed when that data sharing is acceptable.
+
+Risk: API keys may be exposed through URLs or command-line arguments.
+
+Mitigation: Prefer environment-based secret handling, avoid passing secrets on the command line, and rotate any API key already used with the current HTTP implementation.
+
+## Reference(s):
+
+- [Juhe Bankcard Lookup API Documentation](https://www.juhe.cn/docs/api/id/305)
+- [ClawHub Skill Page](https://clawhub.ai/juhemcp/skills/juhe-bankcard-lookup)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown or console text with JSON results for individual lookups and tabular summaries for batch lookups]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and the JUHE_BANKCARDCODE_KEY environment variable for live API queries]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,38 +1,53 @@
-## Description: <br>
-Terminal Spotify playback/search via spogo (preferred) or spotify_player. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Terminal Spotify playback/search via spogo (preferred) or spotify_player.
 
-## Publisher: <br>
-[engahmedsalah358-lgtm](https://clawhub.ai/user/engahmedsalah358-lgtm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[engahmedsalah358-lgtm](https://clawhub.ai/user/engahmedsalah358-lgtm)
 
-## Use Case: <br>
-Developers and terminal users use this skill to search Spotify and control playback through spogo or spotify_player commands. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The setup flow asks users to import Chrome browser cookies into a third-party CLI for Spotify authentication. <br>
-Mitigation: Only run the cookie-import step if spogo is trusted; consider a separate browser profile or documented OAuth/client-id flow, and know how to revoke Spotify sessions or remove stored CLI authentication state. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Spotify](https://www.spotify.com) <br>
-- [ClawHub Skill Page](https://clawhub.ai/engahmedsalah358-lgtm/ahmed) <br>
+## Use Case:
 
+External users and developers use this skill to control Spotify playback, search tracks, select devices, and configure terminal clients through spogo or spotify_player.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires either spogo or spotify_player, and a Spotify Premium account for playback.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The spogo setup path imports Chrome browser cookies, which can expose account-equivalent credentials until the cookies expire or are revoked.
+
+Mitigation: Prefer an official OAuth or device-code flow, or use the spotify_player fallback when it avoids browser-cookie import.
+
+Risk: The preferred spogo dependency is installed from a custom Homebrew tap.
+
+Mitigation: Install only on a trusted machine from a trusted build, review the package source before use, and consider a dedicated browser profile for any cookie-based authentication.
+
+## Reference(s):
+
+- [Spotify](https://www.spotify.com)
+- [ClawHub Skill Page](https://clawhub.ai/engahmedsalah358-lgtm/skills/ahmed)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires either spogo or spotify_player and a Spotify Premium account.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

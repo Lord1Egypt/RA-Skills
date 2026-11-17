@@ -1,44 +1,60 @@
-## Description: <br>
-Codia Design Skills helps agents create, edit, convert, inspect, and manage visual assets through the authenticated Codia Design CLI and Codia Open API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create, edit, enhance, convert, and manage images, design resources, and visual assets with Codia Design Skills and the Codia Open API.
 
-## Publisher: <br>
-[codia-ai](https://clawhub.ai/user/codia-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[codia-ai](https://clawhub.ai/user/codia-ai)
 
-## Use Case: <br>
-Developers, designers, and marketing teams use this skill pack through local agents to generate and edit images, convert screenshots and PDFs into editable design data or PPTX, vectorize assets, and manage Codia account usage. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Authenticated Codia cloud workflows may upload local images, screenshots, PDFs, or documents to Codia Open API. <br>
-Mitigation: Review each command and source path before execution, and only submit files the user intended to process. <br>
-Risk: The skill can inspect or change Codia account settings, including automatic recharge. <br>
-Mitigation: Require explicit user confirmation before any auto-recharge or billing-related update. <br>
-Risk: Credentials may be exposed if API keys or local auth config are printed. <br>
-Mitigation: Use the CLI auth flow or environment variables, redact keys in logs, and never print ~/.codia/design-skills/config.json. <br>
+## Use Case:
 
+Developers and AI-agent users use this skill pack to route design, image, PDF, SVG, account, and usage requests to the Codia Design CLI and Codia Open API. It supports asset generation and editing, background removal, image inspection, editable design extraction, PDF-to-PPT conversion, and account credit management.
 
-## Reference(s): <br>
-- [Codia Open API Documentation](https://codia.ai/api-reference#description/introduction) <br>
-- [ClawHub Skill Page](https://clawhub.ai/codia-ai/codia-design-skills) <br>
-- [README](README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, files, guidance] <br>
-**Output Format:** [Markdown summaries with shell commands, local file paths, URLs, JSON snippets, and downloaded asset references.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Codia task IDs, credit or usage summaries, and local output paths; excludes API keys and raw auth config.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.3 (source: SKILL.md frontmatter and ClawHub release evidence) <br>
+Risk: The skill relies on installing and running the Codia Design CLI and authenticating it with a Codia API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only from trusted Codia sources, prefer pinned or reviewed releases, and avoid exposing API keys in chat, shell history, logs, or the local auth config file.
+
+Risk: Billable API operations and auto-recharge settings can affect account credits or spending.
+
+Mitigation: Check credit estimates and balances before paid operations, and require explicit user approval before enabling or changing auto-recharge.
+
+Risk: Design, image, PDF, and URL inputs may be sent to the Codia Open API through the local CLI.
+
+Mitigation: Use only user-provided or authorized files and URLs, keep outputs in requested directories, and report API or download validation failures directly.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/codia-ai/skills/codia-design-skills)
+- [Codia API reference](https://codia.ai/api-reference#description/introduction)
+- [README](artifact/README.md)
+- [Security and data handling](artifact/SECURITY.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, markdown, JSON, files]
+
+**Output Format:** [Markdown guidance with inline shell commands, local file paths, downloaded asset paths, returned URLs, task IDs, and compact JSON summaries when needed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce local image, SVG, PPTX, or JSON files through the Codia Design CLI; does not expose API keys or raw local auth configuration.]
+
+## Skill Version(s):
+
+0.1.4 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

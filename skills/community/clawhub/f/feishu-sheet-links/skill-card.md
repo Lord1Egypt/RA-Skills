@@ -1,41 +1,58 @@
-## Description: <br>
-Extracts hyperlinks from every tab of a public Feishu spreadsheet and can optionally download linked articles as Markdown files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extracts hyperlinks from all tabs in a public Feishu spreadsheet and can optionally download linked articles as Markdown files.
 
-## Publisher: <br>
-[wangyan9110](https://clawhub.ai/user/wangyan9110) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangyan9110](https://clawhub.ai/user/wangyan9110)
 
-## Use Case: <br>
-Developers and operators use this skill when they need to collect links from public Feishu spreadsheets, summarize the extracted links by sheet, and optionally archive linked article content as Markdown. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can reuse an existing Chrome remote-debugging session, which may expose logged-in browser context. <br>
-Mitigation: Use it only with Feishu documents and extracted links you trust, and avoid running it while a logged-in Chrome debugging session is open unless that is intentional. <br>
-Risk: Batch download opens extracted URLs in Chrome and writes article content to a local output folder. <br>
-Mitigation: Review extracted URLs before downloading and choose a low-risk output directory. <br>
+## Use Case:
 
+Developers and external users use this skill when a public Feishu spreadsheet or wiki URL needs link extraction across all sheet tabs, with an optional follow-up to save linked article content as Markdown.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/wangyan9110/feishu-sheet-links) <br>
-- [Bun runtime](https://bun.sh) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, a JSON link inventory, and optional Markdown article files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Extraction output groups links by sheet name; optional article downloads support resume.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: The skill controls Chrome and visits links found in a public Feishu sheet.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review extracted URLs before downloading content and avoid using an authenticated or personal debugging Chrome profile.
+
+Risk: The optional downloader writes Markdown files and progress data to a local output directory.
+
+Mitigation: Choose a low-risk output directory and review generated files before reusing or publishing them.
+
+Risk: The documented npx command can invoke an unpinned Bun runtime path.
+
+Mitigation: Prefer a locally installed trusted Bun runtime when running the extraction or download scripts.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wangyan9110/skills/feishu-sheet-links)
+- [Bun runtime](https://bun.sh)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, json, markdown]
+
+**Output Format:** [Markdown guidance with bash commands; extraction produces JSON and optional Markdown files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a public Feishu URL, Bun, and Chrome or Chromium; the optional downloader supports resume, timeout, output directory, and concurrency settings.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -7,23 +7,22 @@ into the SQLite database with deduplication. Handles pending transactions
 
 import csv
 import datetime
+import itertools
 import os
 import logging
 import re
 
+from financial_categorizer.matching import (
+    aggregate_tolerance,
+    clean_description,
+    inexact_amount_match,
+)
+
 logger = logging.getLogger(__name__)
 
 
-def clean_description(desc: str) -> str:
-    """Normalize descriptions by removing bank transaction prefixes."""
-    d = desc.lower()
-    # Matches 'reservation kortköp', 'reservation kortkp', 'reservation kortk\xf6p', etc.
-    d = re.sub(r'^reservation\s+kortk[\xf6\ufffd\w]+p\s+', '', d)
-    # Matches 'kortköp YYMMDD', 'kortkp YYMMDD', etc.
-    d = re.sub(r'^kortk[\xf6\ufffd\w]+p\s+\d{6}\s+', '', d)
-    # Fallback to remove standalone reservation prefix
-    d = re.sub(r'^reservation\s+', '', d)
-    return d.strip()
+# clean_description / aggregate_tolerance now live in financial_categorizer.matching
+# (re-exported via the module import above for backwards compatibility).
 
 
 # Known CSV formats. Detection uses a unique header combo per format.
@@ -115,6 +114,91 @@ def _has_matching_settled(cur, account_id: int, pending_date: datetime.date, pen
         return True
         
     return False
+
+def _match_split_reservations(pending_candidates, settled_desc, settled_date, settled_amount):
+    """Find 2-4 pending reservations whose amounts sum to one settled charge.
+
+    Banks sometimes split a single card purchase into several authorization
+    reservations that later settle as ONE charge. Tries every combination of
+    2-4 same-description candidates inside the usual 10-day window and
+    returns the matching group of ids (or an empty list).
+    """
+    settled_clean = clean_description(settled_desc)
+    s_dt = datetime.date.fromisoformat(settled_date) if isinstance(settled_date, str) else settled_date
+
+    pool = []
+    for p_id, p_desc, p_date, p_amount in pending_candidates:
+        p_clean = clean_description(p_desc)
+        if p_clean not in settled_clean and settled_clean not in p_clean:
+            continue
+        p_dt = datetime.date.fromisoformat(p_date) if isinstance(p_date, str) else p_date
+        if not (0 <= (s_dt - p_dt).days <= 10):
+            continue
+        if (p_amount < 0) != (settled_amount < 0):
+            continue
+        pool.append((p_id, p_amount))
+
+    if len(pool) < 2 or len(pool) > 8:
+        return []
+
+    tolerance = aggregate_tolerance(settled_amount)
+    for size in range(2, min(4, len(pool)) + 1):
+        for combo in itertools.combinations(pool, size):
+            if abs(sum(a for _, a in combo) - settled_amount) <= tolerance:
+                return [p_id for p_id, _ in combo]
+    return []
+
+
+def _match_inexact_pending(cur, account_id, pending_candidates, settled_desc, settled_date, settled_amount):
+    """Find THE reservation whose settled amount differs from its authorization.
+
+    Some merchants (notably ICA Maxi with weighed goods) authorize a
+    reservation and settle a different final amount, beyond the exact and
+    split tolerances. Returns the pending id when exactly ONE candidate
+    matches the merchant, the usual 10-day window, and the inexact amount
+    band — and no settled row already in the database could claim that
+    pending instead (mutual uniqueness). Returns None when there is no
+    candidate or the situation is ambiguous.
+    """
+    settled_clean = clean_description(settled_desc)
+    s_dt = datetime.date.fromisoformat(settled_date) if isinstance(settled_date, str) else settled_date
+
+    candidates = []
+    for p_id, p_desc, p_date, p_amount in pending_candidates:
+        p_clean = clean_description(p_desc)
+        if p_clean not in settled_clean and settled_clean not in p_clean:
+            continue
+        p_dt = datetime.date.fromisoformat(p_date) if isinstance(p_date, str) else p_date
+        if not (0 <= (s_dt - p_dt).days <= 10):
+            continue
+        if inexact_amount_match(p_amount, settled_amount):
+            candidates.append((p_id, p_desc, p_date, p_amount))
+
+    if len(candidates) != 1:
+        return None
+    p_id, p_desc, p_date, p_amount = candidates[0]
+
+    # Mutual uniqueness: if another settled row already in the database
+    # could also claim this pending, the new charge's claim is a guess.
+    p_clean = clean_description(p_desc)
+    p_dt = datetime.date.fromisoformat(p_date) if isinstance(p_date, str) else p_date
+    cur.execute(
+        "SELECT date, description, amount FROM transactions "
+        "WHERE account_id = ? AND status = 'settled'",
+        (account_id,),
+    )
+    for d_date, d_desc, d_amount in cur.fetchall():
+        d_clean = clean_description(d_desc)
+        if p_clean not in d_clean and d_clean not in p_clean:
+            continue
+        d_dt = datetime.date.fromisoformat(d_date) if isinstance(d_date, str) else d_date
+        if not (0 <= (d_dt - p_dt).days <= 10):
+            continue
+        if inexact_amount_match(p_amount, d_amount):
+            return None
+
+    return p_id
+
 
 def extract_account_identifier(file_path: str) -> str | None:
     """Extract bank account number/identifier from Nordea CSV columns or file path.
@@ -310,6 +394,24 @@ class CSVImporter:
 
             cur = self.db.get_cursor()
 
+            # Multiset of postings already stored for this account, used to
+            # tell apart genuinely identical rows (same date, description,
+            # amount and status) from re-imported duplicates.
+            cur.execute(
+                "SELECT date, description, amount, status, COUNT(*) "
+                "FROM transactions WHERE account_id = ? "
+                "GROUP BY date, description, amount, status",
+                (account_id,),
+            )
+            existing_counts = {
+                (str(d), desc, amount, status): n
+                for d, desc, amount, status, n in cur.fetchall()
+            }
+            batch_index = {}
+
+            seen_reservations = set()       # (cleaned desc, amount) listed in this export
+            settled_dates_seen = []         # settled row dates listed in this export
+
             for row in reader:
                 if not row or all(cell.strip() == "" for cell in row):
                     continue
@@ -332,6 +434,11 @@ class CSVImporter:
                     continue
 
                 status = "pending" if is_pending else "settled"
+
+                if status == "pending":
+                    seen_reservations.add((clean_description(description), amount))
+                else:
+                    settled_dates_seen.append(txn_date)
 
                 # For settled transactions, check if a pending one exists
                 # with a matching description, same account, close date, and close amount.
@@ -368,7 +475,20 @@ class CSVImporter:
                         matched_pending_id = p_id
                         break  # Pick the first matching candidate
                     
-                    if matched_pending_id is not None:
+                    matched_ids = (
+                        [matched_pending_id] if matched_pending_id is not None
+                        else _match_split_reservations(pending_candidates, description, txn_date, amount)
+                    )
+                    matched_inexactly = False
+                    if not matched_ids:
+                        inexact_id = _match_inexact_pending(
+                            cur, account_id, pending_candidates, description, txn_date, amount
+                        )
+                        if inexact_id is not None:
+                            matched_ids = [inexact_id]
+                            matched_inexactly = True
+                    if matched_ids:
+                        primary_id = matched_ids[0]
                         # Pre-check: Check if the settled version already exists in the database.
                         cur.execute(
                             "SELECT id FROM transactions "
@@ -376,30 +496,40 @@ class CSVImporter:
                             (txn_date, description, amount, account_id),
                         )
                         if cur.fetchone() is not None:
-                            # The settled version already exists. We can safely delete the ghost pending transaction.
-                            cur.execute("DELETE FROM transactions WHERE id = ?", (matched_pending_id,))
+                            # The settled version already exists. We can safely delete the ghost pending transaction(s).
+                            for ghost_id in matched_ids:
+                                cur.execute("DELETE FROM transactions WHERE id = ?", (ghost_id,))
                             skipped += 1
                             details_skipped.append({
                                 "date": txn_date,
                                 "description": description,
                                 "amount": amount,
-                                "reason": "Settled version already exists; ghost pending transaction deleted"
+                                "reason": (
+                                    "Settled version already exists; ghost pending transaction(s) deleted"
+                                    + (" (inexact amount match)" if matched_inexactly else "")
+                                )
                             })
                         else:
+                            # Settle the primary reservation in place; drop the extra reservations
+                            # that were merged into this settled charge (split authorizations).
                             cur.execute(
                                 "UPDATE transactions SET date = ?, description = ?, amount = ?, "
                                 "adjusted_amount = ? * "
                                 "(SELECT ownership_ratio FROM accounts WHERE accounts.id = account_id), "
                                 "status = 'settled', source_file = ? WHERE id = ?",
-                                (txn_date, description, amount, amount, file_path, matched_pending_id),
+                                (txn_date, description, amount, amount, file_path, primary_id),
                             )
+                            for merged_id in matched_ids[1:]:
+                                cur.execute("DELETE FROM transactions WHERE id = ?", (merged_id,))
                             settled_pending += 1
                             imported += 1
                             details_settled.append({
                                 "date": txn_date,
                                 "description": description,
                                 "amount": amount,
-                                "matched_pending_id": matched_pending_id
+                                "matched_pending_id": primary_id,
+                                "merged_pending_ids": matched_ids[1:],
+                                "inexact": matched_inexactly,
                             })
                         continue
 
@@ -413,13 +543,51 @@ class CSVImporter:
                             "reason": "Pending transaction already has settled counterpart"
                         })
                         continue
+                    # An outstanding reservation re-listed in a later export
+                    # must not become a second pending row (pendings are
+                    # stored with the import date, so the unique constraint
+                    # alone cannot catch cross-day duplicates).
+                    cur.execute(
+                        "SELECT 1 FROM transactions "
+                        "WHERE account_id = ? AND status = 'pending' "
+                        "AND description = ? AND amount = ? LIMIT 1",
+                        (account_id, description, amount),
+                    )
+                    if cur.fetchone() is not None:
+                        skipped += 1
+                        details_skipped.append({
+                            "date": txn_date,
+                            "description": description,
+                            "amount": amount,
+                            "reason": "Pending transaction already exists (outstanding reservation)"
+                        })
+                        continue
+
+                # Rows are matched to already-stored postings as a multiset:
+                # for a group of N identical rows in the file, the first E
+                # (pre-existing) occurrences are skipped and any extra rows are
+                # stored with the next occurrence number. This keeps re-imports
+                # idempotent while no longer dropping genuinely distinct rows.
+                txn_key = (str(txn_date), description, amount, status)
+                group_idx = batch_index.get(txn_key, 0)
+                batch_index[txn_key] = group_idx + 1
+                if group_idx < existing_counts.get(txn_key, 0):
+                    skipped += 1
+                    details_skipped.append({
+                        "date": txn_date,
+                        "description": description,
+                        "amount": amount,
+                        "reason": "Duplicate of an already-imported transaction",
+                    })
+                    continue
+                occurrence = group_idx + 1
 
                 try:
                     cur.execute(
-                        "INSERT INTO transactions (date, description, amount, account_id, source_file, status, adjusted_amount) "
+                        "INSERT INTO transactions (date, description, amount, account_id, source_file, status, adjusted_amount, occurrence) "
                         "VALUES (?, ?, ?, ?, ?, ?, ? * "
-                        "(SELECT ownership_ratio FROM accounts WHERE accounts.id = ?))",
-                        (txn_date, description, amount, account_id, file_path, status, amount, account_id),
+                        "(SELECT ownership_ratio FROM accounts WHERE accounts.id = ?), ?)",
+                        (txn_date, description, amount, account_id, file_path, status, amount, account_id, occurrence),
                     )
                     imported += 1
                     details_new.append({
@@ -438,6 +606,48 @@ class CSVImporter:
                         "reason": f"Database unique constraint or error: {str(e)}"
                     })
 
+            # Pending lifecycle check: a reservation the export no longer
+            # shows must have settled (handled above) or been cancelled.
+            # Flag anything old enough that is neither, so it can never hang
+            # silently as a double-count.
+            import_warnings = []
+            today = datetime.date.today()
+            export_is_current = bool(settled_dates_seen) and (
+                max(settled_dates_seen) >= today - datetime.timedelta(days=14)
+            )
+            if export_is_current:
+                cur.execute(
+                    "SELECT id, date, description, amount FROM transactions "
+                    "WHERE account_id = ? AND status = 'pending'",
+                    (account_id,),
+                )
+                for p_id, p_date, p_desc, p_amount in cur.fetchall():
+                    if (clean_description(p_desc), p_amount) in seen_reservations:
+                        continue  # the bank still shows this reservation
+                    p_dt = (
+                        datetime.date.fromisoformat(p_date)
+                        if isinstance(p_date, str)
+                        else p_date
+                    )
+                    if (today - p_dt).days < 14:
+                        continue  # recent enough that settlement may lag
+                    import_warnings.append({
+                        "id": p_id,
+                        "date": str(p_date),
+                        "amount": p_amount,
+                        "description": p_desc,
+                        "reason": (
+                            "reservation disappeared from the export without a "
+                            "settled counterpart (probable cancellation or "
+                            "amount-changed settlement); run cleanup-pending"
+                        ),
+                    })
+                    logger.warning(
+                        "Pending [%s] %s %.2f %s: disappeared from export "
+                        "without a settled counterpart",
+                        p_id, p_date, p_amount, p_desc,
+                    )
+
             self.db.commit()
 
         return {
@@ -445,6 +655,7 @@ class CSVImporter:
             "skipped": skipped,
             "errors": errors,
             "settled_pending": settled_pending,
+            "warnings": import_warnings,
             "details": {
                 "new": details_new,
                 "skipped": details_skipped,

@@ -1,40 +1,52 @@
-## Description: <br>
-Find nearby cafes when the user asks for coffee nearby. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find nearby cafes. Invoke when user asks for coffee near me.
 
-## Publisher: <br>
-[mikeclaw007](https://clawhub.ai/user/mikeclaw007) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[mikeclaw007](https://clawhub.ai/user/mikeclaw007)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users invoke this skill to find nearby cafes from an authorized location, with configurable radius, result limits, and filters such as chain status, rating, or seating.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill requires user location and could expose precise coordinates if location data is retained or reused unnecessarily.
+
+Mitigation: Request location authorization before lookup and avoid retaining precise coordinates; use coarse grid handling where possible.
+
+Risk: The referenced STANDARD_RESPONSE.md file is not included in the release, so exact response formatting may be ambiguous.
+
+Mitigation: Confirm the expected POI response schema before integrating the skill into automated workflows.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users and agents use this skill to request nearby cafe or coffee-place results from an authorized location, with optional radius, limit, and cafe filters. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may use location data to find nearby cafes. <br>
-Mitigation: Share only a one-time or coarse location, and avoid retaining precise coordinates beyond the request. <br>
-Risk: The referenced STANDARD_RESPONSE.md file is not included in the artifact, so exact response formatting may be unclear. <br>
-Mitigation: Publisher should bundle the missing response-format reference or define the expected output fields directly in the skill. <br>
+**Output Format:** [Markdown or structured POI list]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mikeclaw007/cafes) <br>
+**Other Properties Related to Output:** [May include standardized cafe POI fields, provider/rate-limit error codes, and privacy guidance for location handling.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [Structured place-result guidance with standardized cafe category, fields, and error codes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user-authorized location; supports radius, result limit, and optional cafe filters.] <br>
+0.1.0 (source: release evidence)
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

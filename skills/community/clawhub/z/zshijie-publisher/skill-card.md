@@ -1,46 +1,61 @@
-## Description: <br>
-Operate the Zshijie publishing API from OpenClaw by guiding QR-code login and publishing or editing article and short-video content through bundled HTTP workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Operates the Z视介 publishing API from OpenClaw by guiding QR-code login and publishing or editing 图文 and 短视频 content from JSON payloads.
 
-## Publisher: <br>
-[jkbwfi](https://clawhub.ai/user/jkbwfi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jkbwfi](https://clawhub.ai/user/jkbwfi)
 
-## Use Case: <br>
-External publishers and developers use this skill to log in to Zshijie with a QR code, prepare JSON payloads, and publish or edit article and short-video content through the platform API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores a reusable login session that can authorize later publishing actions. <br>
-Mitigation: Treat the session file like a password, keep it out of shared workspaces, and delete or rotate it when publishing work is complete. <br>
-Risk: Publish and edit commands can modify live Zshijie account content. <br>
-Mitigation: Review the account, JSON payload, article_id, media URLs, and operation name before each publish or edit command. <br>
-Risk: A non-default publish host could send session-bearing requests to an unintended service. <br>
-Mitigation: Use the bundled host by default and only pass --base-url for a host the user explicitly trusts. <br>
+## Use Case:
 
+Developers and operators with authorized Z视介 accounts use this skill to authenticate by QR code and publish or update live article and short-video content from prepared JSON payloads.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/jkbwfi/zshijie-publisher) <br>
-- [Usage Guide](references/usage.md) <br>
-- [Zshijie API Notes](references/zshijie-api.md) <br>
-- [Zshijie API Contract](references/zshijie-api.json) <br>
-- [Zshijie Creator Login Page](https://mp.cztv.com/#/login) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, JSON, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON request/response payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May generate QR login HTML and PNG files, local session JSON, and optional saved JSON responses when commands are run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.5 (source: server release evidence) <br>
+Risk: The skill can publish or edit live Z视介 content through an authenticated account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with an authorized account and review payload JSON before running publish or edit commands.
+
+Risk: Reusable login sessions may be stored in a local session file.
+
+Mitigation: Store the session file in a private location with restrictive permissions and delete it after use.
+
+Risk: Publishing can use a plaintext HTTP host or a caller-supplied host override.
+
+Mitigation: Avoid untrusted networks and do not use arbitrary --base-url values or custom contracts with a saved session.
+
+## Reference(s):
+
+- [Z视介 API Notes](artifact/references/zshijie-api.md)
+- [Usage Guide](artifact/references/usage.md)
+- [Z视介 API Contract](artifact/references/zshijie-api.json)
+- [Z视介 Creator Login](https://mp.cztv.com/#/login)
+- [ClawHub Release Page](https://clawhub.ai/jkbwfi/skills/zshijie-publisher)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance, Files]
+
+**Output Format:** [Markdown with inline bash and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May generate local QR HTML/PNG files and a session file during login.]
+
+## Skill Version(s):
+
+0.1.5 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

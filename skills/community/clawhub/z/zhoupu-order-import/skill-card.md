@@ -1,43 +1,58 @@
-## Description: <br>
-舟谱系统订单导入模板生成（自提订单+调拨订单分开，每表只有1个sheet）。当下单表数据需要转化为舟谱系统可导入的Excel格式时使用。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+舟谱系统订单导入模板生成（自提订单+调拨订单分开，每表只有1个sheet）。当下单表数据需要转化为舟谱系统可导入的Excel格式时使用。
 
-## Publisher: <br>
-[xyzhangjf](https://clawhub.ai/user/xyzhangjf) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xyzhangjf](https://clawhub.ai/user/xyzhangjf)
 
-## Use Case: <br>
-Operations staff and agent users use this skill to convert order spreadsheets and price sheets into Zhoupu-compatible Excel import templates for pickup orders and transfer orders. The workflow includes a human approval step before generated files are uploaded to Zhoupu. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill processes order and price spreadsheets that may contain sensitive business data. <br>
-Mitigation: Run it only on the specific spreadsheets intended for conversion, keep processing local, and review generated Excel files before uploading them to Zhoupu. <br>
-Risk: Incorrect quantities, barcode matches, prices, or document numbers could create bad import records. <br>
-Mitigation: Keep the documented human approval step and compare generated totals, barcode warnings, and skipped items against the source spreadsheets before import. <br>
-Risk: The scripts depend on spreadsheet-processing libraries and expected worksheet formats. <br>
-Mitigation: Install required dependencies such as pandas and openpyxl, and rerun or manually correct records when the scripts report missing sheets, missing prices, or unmatched barcode data. <br>
+## Use Case:
 
+Operations users and agents use this skill to convert Chinese-language Zhoupu order workbooks and price tables into self-pickup and transfer-order Excel import templates. It supports customer name mapping, source document numbering, barcode and unit lookup, quantity checks against workbook total rows, and required-field validation before Zhoupu import.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xyzhangjf/zhoupu-order-import) <br>
-- [Zhoupu portal](https://portal.zhoupudata.com/saas/main) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown instructions and generated Excel files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces Zhoupu pickup-order and transfer-order import workbooks from user-provided order and price spreadsheets.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata) <br>
+Risk: Incorrect quantities, barcodes, units, prices, or self-pickup columns could lead to wrong Zhoupu imports.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated spreadsheets before importing and compare generated totals with the workbook total rows.
+
+Risk: The documentation and generated self-pickup column count do not fully match.
+
+Mitigation: Confirm the generated self-pickup workbook against the current Zhoupu import template before upload.
+
+Risk: Orders may bypass the documented sales-manager review step if the workflow is used mechanically.
+
+Mitigation: Keep the documented review by 郝洋 before generating and importing final Zhoupu templates.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xyzhangjf/skills/zhoupu-order-import)
+- [Zhoupu portal](https://portal.zhoupudata.com/saas/main)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Shell commands, Guidance]
+
+**Output Format:** [Excel workbooks with terminal validation messages]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an order workbook, price workbook, and arrival date; supports optional sheet selection, output path, start sequence, and supplemental prices.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

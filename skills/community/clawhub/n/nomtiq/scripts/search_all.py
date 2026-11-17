@@ -234,16 +234,13 @@ def main():
 
     # 排序
     merged.sort(key=lambda x: (x.get('cross_verified', False), x['match_score']), reverse=True)
+    has_prefs = bool(preferences)
 
     if args.mode == '2plus1':
         precise, explorer = select_2plus1(merged, preferences)
         if args.json:
             print(json.dumps({'precise': precise, 'explorer': explorer}, ensure_ascii=False, indent=2))
             return
-    elif args.json:
-        print(json.dumps(merged, ensure_ascii=False, indent=2))
-        return
-        
         print(f"\n🍜 小饭卡 2+1 推荐：{args.query}")
         if has_prefs:
             print(f"   (已根据你的口味画像筛选)\n")
@@ -256,6 +253,9 @@ def main():
             print("\n━━━ 探索推荐 (1 家) ━━━\n")
             print_recommendation(1, explorer[0], has_prefs, is_explorer=True)
     else:
+        if args.json:
+            print(json.dumps(merged, ensure_ascii=False, indent=2))
+            return
         # 正常模式：输出前 10 家
         print(f"\n🍜 小饭卡推荐：{args.query} (前 10 家)")
         if has_prefs:

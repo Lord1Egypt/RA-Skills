@@ -1,40 +1,58 @@
-## Description: <br>
-Discover website URLs, feed entries, and latest publications by checking sitemap.xml, sitemaps.xml, atom.xml, and rss.xml before crawling a specific site. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+RSS Sitemap helps agents discover website URLs, feed entries, and recent publications from sitemap, Atom, RSS, and robots.txt resources before falling back to general crawling.
 
-## Publisher: <br>
-[carlosdelfino](https://clawhub.ai/user/carlosdelfino) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[carlosdelfino](https://clawhub.ai/user/carlosdelfino)
 
-## Use Case: <br>
-Developers and agents use this skill to discover crawlable URLs, feed entries, and recent publications from a specific website before falling back to broader crawling or search. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The bundled script runs on the host and makes outbound HTTP requests. <br>
-Mitigation: Scope exec approvals to the bundled Node.js script and use one-time approval unless repeated use is intentional. <br>
-Risk: Using the skill against localhost, private IP ranges, or sensitive internal domains can expose internal network information to the agent workflow. <br>
-Mitigation: Use it on internal targets only when that access is intentional and authorized. <br>
+## Use Case:
 
+Developers and agents use this skill to discover crawlable URLs, recent posts, and feed entries from a named website before broader crawling or scraping. It is useful when recency, site coverage, or feed and sitemap provenance should guide downstream research.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/carlosdelfino/rss-sitemap) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON output from the bundled Node.js preprocessor] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The preprocessor emits JSON resources and entries with source provenance for discovered sitemap, RSS, and Atom content.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Host execution can fetch arbitrary URLs and read or overwrite user-chosen local files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use allow-once for routine use, or grant persistent approval only with argument, network destination, and output path restrictions.
+
+Risk: Exposing the skill in untrusted chat contexts could let others trigger network or local-file discovery workflows.
+
+Mitigation: Limit access to trusted contexts and run the skill only for domains and files intentionally selected by the operator.
+
+Risk: Some sites may block feed or sitemap fetches, require JavaScript, or require authentication, so discovery results can be incomplete.
+
+Mitigation: Treat results as a crawl frontier, fall back to approved browser or scraping tools when needed, and respect robots, rate limits, authentication boundaries, and user instructions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/carlosdelfino/skills/rss-sitemap)
+- [Publisher profile](https://clawhub.ai/user/carlosdelfino)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON discovery output from the bundled Node.js preprocessor]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The discovery output includes probed resources, normalized entries, dates when available, and per-entry source provenance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

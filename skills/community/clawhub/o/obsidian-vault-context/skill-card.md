@@ -1,46 +1,61 @@
-## Description: <br>
-Teach Claude to use an Obsidian vault as a shared workspace with persistent state across sessions, including vault navigation, orchestration file management, output routing, and bidirectional collaboration via Obsidian Headless. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Teach Claude to use an Obsidian vault as a shared workspace with persistent state across sessions, including vault navigation, orchestration file management, output routing, and optional bidirectional collaboration via Obsidian Headless.
 
-## Publisher: <br>
-[tesfandiari1](https://clawhub.ai/user/tesfandiari1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tesfandiari1](https://clawhub.ai/user/tesfandiari1)
 
-## Use Case: <br>
-Developers, operators, and Obsidian users use this skill to let an agent read and maintain vault context, create or update markdown output, and preserve task and decision state across sessions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may create or edit persistent files in an Obsidian vault. <br>
-Mitigation: Ask the agent to summarize intended creates, edits, or overwrites and obtain confirmation before changing important notes or operational files. <br>
-Risk: Vault sync or authentication setup can expose local credentials or sensitive notes if the server is not secured. <br>
-Mitigation: Keep credentials out of notes and logs, defer authentication to the user, run sync under an unprivileged account, and restrict agent work to the vault directory. <br>
-Risk: Sensitive areas such as legal folders could be modified accidentally. <br>
-Mitigation: Treat company/legal/ as read-only and use selective sync or workspace boundaries to limit what the agent can access. <br>
+## Use Case:
 
+Developers and knowledge workers use this skill to let an agent read and maintain shared Obsidian vault context, update persistent status and task files, and route reusable work into the vault. It is especially suited to long-running projects where human and agent collaborators need durable Markdown state across sessions.
 
-## Reference(s): <br>
-- [Obsidian Headless Sync Setup](references/obsidian-headless-setup.md) <br>
-- [Orchestration Files Guide](references/orchestration-files.md) <br>
-- [Vault Structure Template](references/vault-structure-template.md) <br>
-- [Obsidian Headless](https://obsidian.md/help/sync/headless) <br>
-- [Obsidian Sync](https://obsidian.md/sync) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown with inline shell commands and vault file updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include markdown files, status updates, task lists, decision logs, and Obsidian wikilinks within the configured vault.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Optional server sync can create a long-running service with broad access to synced notes and locally stored Obsidian credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated unprivileged account, prefer a user-level or sandboxed service, secure the host, and document a clear uninstall path before enabling continuous sync.
+
+Risk: Installing the optional Obsidian Headless package globally can increase dependency and update risk.
+
+Mitigation: Pin the package version where possible and review the installed package before using it in a persistent sync workflow.
+
+Risk: A synced vault may contain sensitive folders or agent configuration that should not be modified by the agent.
+
+Mitigation: Keep agent code and workflow definitions outside the synced vault, use selective sync for sensitive folders, and treat legal or credential-bearing areas as read-only.
+
+## Reference(s):
+
+- [Orchestration Files Guide](references/orchestration-files.md)
+- [Obsidian Headless Sync Setup](references/obsidian-headless-setup.md)
+- [Vault Structure Template](references/vault-structure-template.md)
+- [Obsidian Headless documentation](https://obsidian.md/help/sync/headless)
+- [Obsidian Sync](https://obsidian.md/sync)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown files with YAML frontmatter, wikilinks, tables, checklists, and optional bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Routes persistent state to _context/ files and deliverables to work/ or equivalent vault folders.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release; artifact frontmatter reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,58 @@
-## Description: <br>
-Access cloud storage (S3, GCS, Azure Blob) through a Pilot bridge agent. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Access cloud storage (S3, GCS, Azure Blob) through a Pilot bridge agent.
 
-## Publisher: <br>
-[teoslayer](https://clawhub.ai/user/teoslayer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-AGPL-3.0 <br>
+## Publisher:
 
+[teoslayer](https://clawhub.ai/user/teoslayer)
 
-## Use Case: <br>
-Developers and agent operators use this skill to move files between agents and cloud storage through a Pilot bridge when direct storage access is unavailable or undesirable. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The bridge may run as a public long-running agent with cloud credentials and no documented access controls. <br>
-Mitigation: Use dedicated least-privilege cloud credentials, keep the daemon private unless public access is required, and stop the bridge when the task is complete. <br>
-Risk: Requests can target cloud buckets, prefixes, object paths, and actions that affect stored data. <br>
-Mitigation: Restrict allowed buckets and prefixes, verify allowed senders, and validate requested actions and paths before transferring or exposing files. <br>
+## Use Case:
 
+Developers and agents use this skill to transfer, list, and request cloud-stored files through a Pilot bridge agent when cloud access is mediated by a running Pilot daemon and bridge host.
 
-## Reference(s): <br>
-- [Pilot Protocol](https://pilotprotocol.network) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks and JSON command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires pilotctl, a running Pilot daemon, and cloud provider credentials for the bridge agent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Remote callers could use the bridge host's cloud permissions without clear access controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use authenticated requesters, per-action and per-bucket authorization, least-privilege short-lived credentials, logging, and explicit approval for sensitive downloads or presigned URLs.
+
+Risk: The public bridge example could expose real cloud accounts if run as written.
+
+Mitigation: Do not run the public bridge example on real cloud accounts; use private networking and production-specific access controls before deployment.
+
+Risk: Shared temporary file paths can mix data between requests or leak downloaded content.
+
+Mitigation: Use safe per-request temporary files and clean them after upload or download handling completes.
+
+## Reference(s):
+
+- [Pilot Protocol](https://pilotprotocol.network)
+- [ClawHub Skill Page](https://clawhub.ai/teoslayer/skills/pilot-s3-bridge)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks and JSON command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires pilotctl, a running Pilot daemon, a bridge agent, and cloud-provider CLI credentials.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

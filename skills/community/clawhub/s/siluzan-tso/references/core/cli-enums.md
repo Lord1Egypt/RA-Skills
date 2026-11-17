@@ -8,7 +8,7 @@
 
 | 命令                                                                      | 选项        | 合法值                                                 |
 | ------------------------------------------------------------------------- | ----------- | ------------------------------------------------------ |
-| list-accounts, stats, balance, account-history, open-account, transfer, … | -m, --media | Google \| TikTok \| Yandex \| MetaAd \| BingV2 \| Kwai |
+| list-accounts, stats, balance, account-history, open-account, transfer, … | -m, --media | Google \| TikTok \| Yandex \| MetaAd \| BingV2 |
 
 > 区分大小写；Meta 广告账户用 MetaAd，不是 Facebook。
 
@@ -22,9 +22,18 @@
 
 | 命令                                       | 选项       | 合法值                                                                                                                                                                                                                                                                                                                                                                                    |
 | ------------------------------------------ | ---------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| google-analysis, google-analysis-batch run | --sections | overview \| keywords \| search-terms \| campaigns \| campaign-hour \| ads \| extensions \| devices \| geographic \| geo-matched \| campaign-geo \| campaign-geo-matched \| campaign-device \| audience \| asset-images \| videos \| materials \| resource-counts \| conversion-actions \| daily-metrics \| gold-account \| ads-index \| final-urls \| dimension-summary \| campaign-types |
+| google-analysis, google-analysis-batch run | --sections | overview \| keywords \| search-terms \| campaigns \| campaign-hour \| ads \| extensions \| devices \| geographic \| geo-matched \| campaign-geo \| campaign-geo-matched \| geo-targeted \| campaign-device \| audience \| asset-images \| videos \| materials \| resource-counts \| conversion-actions \| daily-metrics \| gold-account \| ads-index \| final-urls \| dimension-summary \| campaign-types |
 
 > 逗号分隔；省略=全部。`final-urls`、`campaign-types` 不传日期。
+
+### `google-quarterly collect`
+
+| 命令 | 选项 | 说明 |
+| ---- | ---- | ---- |
+| google-quarterly collect | --inquiries | 运营询盘 **JSON**（数组或 `items`）；禁止传 xlsx/csv，由 Agent 先转 |
+| google-quarterly collect | --inquiry-conversion | 转化动作名称兜底 |
+| google-quarterly collect | --youtube-channel | 可选；本期报告不展示频道订阅总数 / 来源饼 |
+| google-quarterly collect | --keyword-seeds | 逗号分隔种子词（Keyword Planner，不是行业指数） |
 
 ### `google-analysis --level`（extensions 维度）
 
@@ -38,13 +47,19 @@
 | ----------------------------------- | --------------- | ---------------------------- |
 | google-analysis --sections audience | --audience-type | SystemDefined \| UserDefined |
 
-### `facebook-analysis --sections` 维度（7）
+### `facebook-analysis --sections` 维度（10）
 
-| 命令              | 选项       | 合法值                                                                         |
-| ----------------- | ---------- | ------------------------------------------------------------------------------ |
-| facebook-analysis | --sections | overview \| ad-sets \| platform \| country \| audience \| creative \| material |
+| 命令              | 选项       | 合法值                                                                                          |
+| ----------------- | ---------- | ----------------------------------------------------------------------------------------------- |
+| facebook-analysis | --sections | overview \| daily \| campaigns \| ad-sets \| platform \| country \| device \| audience \| creative \| material |
 
-> 默认周期报告：overview,ad-sets,platform,country,audience,creative。
+> 默认周期报告：overview,daily,country,campaigns,audience。当天/小时巡检不要用 `--sections`，走 `account-status` / `campaign-entities` / `adset-entities` / `ad-entities` / `insights`。
+
+### `facebook-analysis insights --level`
+
+| 命令 | 选项 | 合法值 |
+| ---- | ---- | ------ |
+| facebook-analysis insights | --level | account \| campaigns \| adsets \| ads |
 
 ### `facebook-analysis --sections` Google 别名
 
@@ -54,7 +69,7 @@
 
 > 解析后映射到左侧 canonical 名。
 
-**别名**：`campaigns` → `ad-sets`；`ad-groups` → `ad-sets`；`geographic` → `country`；`geo` → `country`；`devices` → `platform`；`network` → `platform`；`networks` → `platform`；`ads` → `creative`；`materials` → `material`；`asset-images` → `material`；`videos` → `material`
+**别名**：`daily-metrics` → `daily`；`campaign` → `campaigns`；`ad-groups` → `ad-sets`；`geographic` → `country`；`geo` → `country`；`devices` → `platform`；`network` → `platform`；`networks` → `platform`；`ads` → `creative`；`materials` → `material`；`asset-images` → `material`；`videos` → `material`
 
 ### `ad extension * --level`
 
@@ -122,11 +137,3 @@
 | website-diagnosis collect（响应字段） | modules[].status | Excellent \| Good \| Normal \| Poor \| Full \| NeedImprove \| Absent |
 
 > 撰写报告时转中文展示；细则见 assets/website-diagnosis-rules.md。
-
-### Kwai 开户 `--licence-id-type`（`open-account kwai`）
-
-| 命令              | 选项              | 合法值                                       |
-| ----------------- | ----------------- | -------------------------------------------- |
-| open-account kwai | --licence-id-type | `1` 统一社会信用代码 \| `2` DUNS \| `3` CNPJ |
-
-> 与网页 `KwaiOpenAnAccount.vue` 的 `licenseCodeTypeOptions` **value** 一致（数字字符串）。**勿用** `ENTERPRISE` / `INDIVIDUAL`（旧文档误写；传入 `ENTERPRISE` 时 CLI 会警告并映射为 `1`）。

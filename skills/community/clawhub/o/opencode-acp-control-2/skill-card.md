@@ -1,43 +1,55 @@
-## Description: <br>
-Control OpenCode directly via the Agent Client Protocol (ACP), including starting sessions, sending prompts, resuming conversations, and managing OpenCode updates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Control OpenCode directly via the Agent Client Protocol (ACP). Start sessions, send prompts, resume conversations, and manage OpenCode updates.
 
-## Publisher: <br>
-[studio-hakke](https://clawhub.ai/user/studio-hakke) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[studio-hakke](https://clawhub.ai/user/studio-hakke)
 
-## Use Case: <br>
-Developers and agent operators use this skill to drive OpenCode in local project directories through ACP, including creating or resuming sessions, exchanging JSON-RPC messages, and checking or updating OpenCode. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives an agent broad local OpenCode control in project directories. <br>
-Mitigation: Use it only in intended directories, verify the local OpenCode installation, avoid sharing secrets, and require confirmation before file or terminal actions. <br>
-Risk: The update workflow can stop running OpenCode processes and interrupt active work. <br>
-Mitigation: Confirm before killing processes or triggering updates, and resume existing sessions only after the user selects the intended session. <br>
+## Use Case:
 
+Developers and engineers use this skill to control OpenCode through ACP, including starting sessions, sending prompts, resuming prior sessions, and checking or updating OpenCode.
 
-## Reference(s): <br>
-- [Agent Client Protocol docs for agents](https://agentclientprotocol.com/llms.txt) <br>
-- [Skill source repository](https://github.com/bjesuiter/opencode-acp-skill) <br>
-- [Skill issue tracker](https://github.com/bjesuiter/opencode-acp-skill/issues) <br>
-- [ClawHub skill page](https://clawhub.ai/studio-hakke/opencode-acp-control-2) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, code] <br>
-**Output Format:** [Markdown with JSON-RPC examples and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes polling, session-resume, cancellation, and update workflows for OpenCode ACP control.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: ClawHub release metadata) <br>
+Risk: Update guidance includes unsafe remote installer execution and overbroad process-killing instructions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review update steps before running them; independently verify installer sources and stop only the intended OpenCode processes.
+
+Risk: The session-resume flow can expose prior OpenCode conversation history to the current agent context.
+
+Mitigation: Resume sessions only when prior conversation history is appropriate for the current task and user.
+
+## Reference(s):
+
+- [Agent Client Protocol docs for agents](https://agentclientprotocol.com/llms.txt)
+- [OpenCode ACP skill repository](https://github.com/bjesuiter/opencode-acp-skill)
+- [OpenCode latest releases](https://github.com/anomalyco/opencode/releases/latest)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, API Calls]
+
+**Output Format:** [Markdown with inline shell commands and JSON-RPC examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes polling, session tracking, resume, cancellation, and update workflows.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

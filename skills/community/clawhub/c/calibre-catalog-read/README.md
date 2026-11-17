@@ -1,140 +1,96 @@
 # calibre-catalog-read
 
-Calibreカタログ参照 + 1冊単位のAI読書パイプライン。
+Calibreの検索・書誌確認と、1冊の本文解析を行う読み取り専用スキルです。解析後もcomments/tagsを自動更新しません。保存したい場合は、生成したJSONL提案をcalibre-metadata-applyへ渡します。
 
-注: このパイプラインは、テキスト解析コスト/品質の観点から漫画・コミック系タイトルを対象外にする設計です。
+## 必要な環境
 
-## セットアップ
+- カタログ参照: Node.js >=20、calibredb。
+- 本文解析: 追加でPython >=3.11、ebook-convert。PDFの変換失敗時はpdftotextが任意のフォールバック。
+- 既存Content server、または既存のローカルライブラリ。サーバーは起動・再設定しません。
+- 認証がある場合のみ、既存のCALIBRE_USERNAME/CALIBRE_PASSWORDなどの環境変数。
 
-1. OpenClaw実行環境(このスキルを実行するマシン/ランタイム)にCalibreをインストールする。
-   - 必須バイナリ: `calibredb` / `ebook-convert`
-2. 上記バイナリがPATHに通っていることを確認する。
-3. `subagent-spawn-command-builder` を導入する(spawn payload生成に使用)。
+以下のSKILL_DIRは、インストール先の絶対パスに置き換えます。作業ディレクトリに依存しません。
 
-```bash
-npx clawhub@latest install subagent-spawn-command-builder
-pnpm dlx clawhub@latest install subagent-spawn-command-builder
-```
+    SKILL_DIR=/absolute/path/to/calibre-catalog-read
+    node "$SKILL_DIR/scripts/calibredb_read.mjs" --help
+    node "$SKILL_DIR/scripts/calibredb_read.mjs" libraries --with-library "http://HOST:8080/"
+    node "$SKILL_DIR/scripts/calibredb_read.mjs" list --with-library "http://HOST:8080/#LIBRARY_ID" --limit 50
+    node "$SKILL_DIR/scripts/calibredb_read.mjs" search --query 'series:"中公文庫"'
+    node "$SKILL_DIR/scripts/calibredb_read.mjs" id --book-id 3
 
-4. Calibre Content serverへ到達できることを確認する。
-5. 接続先は必ず明示的な `HOST:PORT` を使う。
-   - `http://HOST:PORT/#LIBRARY_ID`
-   - `--with-library` を省略する場合は以下を事前設定する。
-     - env: `CALIBRE_WITH_LIBRARY` / `CALIBRE_LIBRARY_URL` / `CALIBRE_CONTENT_SERVER_URL`
-     - config: `~/.config/calibre-catalog-read/config.json` の `with_library`
-     - `#LIBRARY_ID` が無いURLは `CALIBRE_LIBRARY_ID` または config `library_id` で補完可能
-   - IP変更対策:
-     - `CALIBRE_SERVER_HOSTS=host1,host2,...` を設定すると候補を順に試行
-     - WSLでは `/etc/resolv.conf` の `nameserver` も自動候補に追加
-   - `LIBRARY_ID` が不明なら `#-` で一覧確認可能。
-     - 例: `calibredb list --with-library "http://HOST:PORT/#-" --username ... --password ...`
-6. 認証が有効な場合は `~/.openclaw/.env` に設定する(推奨)。
-   - `CALIBRE_USERNAME=<user>`
-   - `CALIBRE_PASSWORD=<password>`
-   - 認証方式は非SSL運用前提でDigest固定(自動)とし、`--auth-mode` / `--auth-scheme` は使わない
-   - 実行時は `--password-env CALIBRE_PASSWORD` を渡す(ユーザー名はenvから自動読込)。
-   - 任意で `~/.config/calibre-catalog-read/auth.json` に認証キャッシュ可能。
-   - `--save-plain-password` は平文保存のため、明示指示がない限り使わない。
+最後の2例は接続先を環境変数/configへ設定した場合です。list/searchは既定100件、最大10000件に制限します。possibly_truncated=trueは「全件取得と断定できない」の意味です。該当なしと接続失敗を区別します。idは完全一致だけを返します。
 
-## 重要
+## 接続設定
 
-OpenClaw単体では不足です。実行環境にCalibreを入れて、必要バイナリを利用可能にしてください。
-チャット実行時は、参照処理を `node scripts/calibredb_read.mjs ...` 経由に寄せ、`calibredb` 直接実行は避けてください。
-この運用では既存のCalibre Content serverに接続するため、`calibre-server` の起動は不要です。
+優先順位:
 
-WindowsではDefender Controlled Folder Accessの影響でメタデータ/ファイル操作が失敗する場合があります。
-`WinError 2/5` が出る場合は、Calibreライブラリフォルダや関連バイナリを許可対象に追加してください。
+1. --with-library
+2. CALIBRE_WITH_LIBRARY / CALIBRE_LIBRARY_URL / CALIBRE_CONTENT_SERVER_URL
+3. ~/.config/calibre-catalog-read/config.json のwith_library
 
-## クイックテスト(カタログ参照)
+configは--configまたはCALIBRE_CATALOG_CONFIGで切り替えられます。許可するキーはwith_library、library_id、username、password_env、reading_scriptです。reading_scriptは従来の人間向け設定を保持するだけで、コードとして実行しません。
 
-```bash
-node scripts/calibredb_read.mjs list \
-  --with-library "http://192.168.11.20:8080/#Calibreライブラリ" \
-  --password-env CALIBRE_PASSWORD \
-  --limit 5
-```
+    {"with_library":"http://HOST:8080/#LIBRARY_ID","username":"USER","password_env":"CALIBRE_PASSWORD"}
 
-## クイックテスト(1冊パイプライン)
+URLにライブラリがない場合は、--library-id / CALIBRE_LIBRARY_ID / config.library_idが必要です。ブラウザー用の#library_id=...ではなくCLI用#LIBRARY_IDを使います。ライブラリID不明時は、指定サーバーだけをlibrariesで照会できます。
 
-```bash
-uv run python scripts/run_analysis_pipeline.py \
-  --with-library "http://192.168.11.20:8080/#Calibreライブラリ" \
-  --password-env CALIBRE_PASSWORD \
-  --book-id 3 --lang ja
-```
+パスワードは--password-envで指定した変数から読み、Calibreの公式ファイル入力形式で一時的に渡します。一時ファイルは0600、作成先ディレクトリは私有、通常終了/エラー時に回収します。値はargvや診断ログに出しません。異常終了時は私有一時ディレクトリが残る場合があります。平文保存機能・暗黙の.env読込・DNS/WSL/Dockerのホスト探索はありません。非SSL時の認証はCalibre側のDigestに任せ、auth-mode等を追加しません。
 
-## サブエージェント入力の分割(推奨)
+## 実行可能な解析フロー
 
-readツールの行サイズ制限を避けるため、抽出テキストを分割し、`subagent_input.json` 経由で `source_files` を渡します。
+### 1. 原本を書き出して準備
 
-```bash
-node scripts/prepare_subagent_input.mjs \
-  --book-id 3 --title "<title>" --lang ja \
-  --text-path /tmp/book_3.txt --out-dir /tmp/calibre_subagent_3
-```
+    python3 "$SKILL_DIR/scripts/run_analysis_pipeline.py" prepare \
+      --book-id 3 --run-id book3-unique-run --lang ja --format EPUB
 
-## 低テキスト時の安全策
+接続オプションはカタログと同じです。--cache-dirで保存先、--chunk-charsで分割サイズを指定できます。prepare_subagent_input.mjsも同じ準備コマンドの入口です。
 
-抽出テキストが短すぎる場合、パイプラインは `reason: low_text_requires_confirmation` で停止し、確認を要求します。
-`--force-low-text` はユーザー確認後のみ使ってください。
+status=preparedなら、prepared_inputとinput_sha256が返ります。元ファイル・抽出本文・全パートのSHA256、文字数、書籍UUID、接続先、言語、run IDを保存します。exportには--dont-update-metadataを付け、書き出す原本の内容を変えません。
 
-## チャット運用(必須: 2ターン)
+status=skippedなら解析を開始しません。コミック系のタグはexcluded_content、短い抽出はlow_text_requires_confirmationです。続行の明示確認後だけ、別のrun IDと--force-low-textで再準備できます。空の抽出は続行不可です。画像中心の本を読めたことにする定型文の代替要約はありません。
 
-チャット面では必ず2ターンに分けて実行します。
+### 2. 登録と解析
 
-1) 開始ターン(高速)
-- 対象選定
-- `subagent-spawn-command-builder` で `sessions_spawn` payloadを生成
-- 生成payloadでspawn
-- `run_state.mjs upsert`
-- 即時ACK
+    node "$SKILL_DIR/scripts/run_state.mjs" upsert \
+      --run-id book3-unique-run --input-json /absolute/run/subagent_input.json
 
-2) 完了ターン(後続)
-- 完了イベント
-- `handle_completion.mjs`(内部で `get -> apply -> remove/fail`)
+[解析プロンプト](references/subagent-analysis.prompt.md)、[入力スキーマ](references/subagent-input.schema.json)、[出力スキーマ](references/subagent-analysis.schema.json)を使います。特定の専用agent、モデル、2ターン制、完了方式を固定しません。現在利用できる実行基盤の仕様に従います。
 
-spawnと同一ターンで `poll/wait/apply` を行わないでください。
+パート単位で実際に読んだIDを返し、そのID・ハッシュ・件数・文字数を照合します。これは自己申告の整合性検証であり、モデルの理解や全文読了を数学的に証明するものではありません。途中までなら必ずpartialです。
 
-## spawn payload生成例(builder利用)
+### 3. オフライン検証と提案
 
-まず `subagent-spawn-command-builder` 側の `spawn-profiles.json` に
-`calibre-read` プロファイルを定義します。
+    node "$SKILL_DIR/scripts/handle_completion.mjs" \
+      --run-id book3-unique-run --analysis-json /absolute/analysis.json \
+      --proposal-jsonl /absolute/NEW-proposal.jsonl
 
-例:
+完了時に再取得・再変換・Calibre書込はしません。登録時から入力が変わった場合、書籍・言語・原本が一致しない場合、欠落/改変パート、不正な範囲申告を拒否します。成功時だけproposal_createdを返します。提案はid、expected_library、expected_uuid、analysisを持ち、更新先の取り違えを防ぎます。
 
-```json
-{
-  "version": 1,
-  "defaults": {
-    "runTimeoutSeconds": 300,
-    "cleanup": "keep"
-  },
-  "profiles": {
-    "calibre-read": {
-      "model": "openrouter/qwen/qwen3-next-80b-a3b-instruct",
-      "thinking": "low",
-      "runTimeoutSeconds": 300,
-      "cleanup": "keep"
-    }
-  }
-}
-```
+非同期登録を使わない手動実行では、次の明示的なオフライン処理も可能です。
 
-そのうえで、まずは**スキル呼び出しとして**次の意図で実行します:
+    python3 "$SKILL_DIR/scripts/run_analysis_pipeline.py" complete \
+      --prepared-input /absolute/run/subagent_input.json \
+      --expected-input-sha256 sha256:PREPARATION_OUTPUT_HASH \
+      --analysis-json /absolute/analysis.json --proposal-jsonl /absolute/NEW-proposal.jsonl
 
-- `subagent-spawn-command-builder` を使って `calibre-read` の `sessions_spawn` payloadを生成する
-- `task` には `references/subagent-analysis.prompt.md` ベースの解析指示を渡す
+## 状態・互換性
 
-内部実装コマンド(低レベル)は次のとおり:
+- 状態: CALIBRE_CATALOG_STATE_DIR、XDG_STATE_HOME/calibre-catalog-read、~/.local/state/calibre-catalog-readの順。
+- キャッシュ: CALIBRE_CATALOG_CACHE_DIR、XDG_CACHE_HOME/calibre-catalog-read、~/.cache/calibre-catalog-readの順。
+- 新規runディレクトリ・提案は上書きしません。run状態は排他ロックとatomic rename。完了済みIDを記録して重複を抑止し、失敗状態は自動再実行しません。
+- ロック残存時は稼働processと提案生成の有無を調べてから復旧します。自動で古いロックを消しません。
+- 旧skill/stateと旧runs.json/SQLiteはそのまま保持します。旧処理は新しい状態ファイルとrun IDで再準備してください。破壊的な自動移行はありません。
+- analysis_db.pyは任意のローカル索引です。新DBはlibrary/book/format/hash/langで分離し、旧スキーマは上書きせず拒否します。全文、部分解析、言語、対象の証拠はmanifestが正であり、キャッシュ一致で作業を省略しません。
+- エクスポートされた書籍や解析結果は私有データです。公開・自動削除・パッケージへの同梱をしません。
 
-```bash
-uv run python ../subagent-spawn-command-builder/scripts/build_spawn_payload.py \
-  --profile calibre-read \
-  --task "<analysis task text based on references/subagent-analysis.prompt.md>"
-```
+## 検証
 
-出力JSONをそのまま `sessions_spawn` に渡します。
+スキル単体のhermeticテスト(本番接続なし):
 
-注意:
-- `--task` は必ず `references/subagent-analysis.prompt.md` の厳格read契約を含む内容にする。
-- `read` ツールは `{"path":"..."}` 形式のみを使う(pathなし呼び出し禁止)。
+    python3 -m unittest discover -s "$SKILL_DIR/tests" -v
+
+リポジトリ直下では、合成データだけを使う実Calibre連携テストも実行できます。サーバー起動や本番DB書込はありません。
+
+    CALIBRE_NATIVE_TESTS=1 python3 -m unittest discover -s tests -p test_calibre_integration.py -v
+
+仕様確認: [公式calibredbマニュアル](https://manual.calibre-ebook.com/generated/en/calibredb.html)。調査時の公式表示9.16.0、実機CLI検証9.2.1。旧バージョンで未知のオプションが出たら、黙って省略せずhelpと互換性を確認してください。

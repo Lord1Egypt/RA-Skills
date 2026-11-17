@@ -1,42 +1,53 @@
-## Description: <br>
-Analyze and optimize OpenClaw system prompt token usage by auditing workspace prompt files, recommending safe compression opportunities, and applying approved changes with backups. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze and optimize OpenClaw system prompt token usage by compressing workspace files (AGENTS.md, SOUL.md, USER.md, TOOLS.md, IDENTITY.md, HEARTBEAT.md, MEMORY.md).
 
-## Publisher: <br>
-[dgkim311](https://clawhub.ai/user/dgkim311) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dgkim311](https://clawhub.ai/user/dgkim311)
 
-## Use Case: <br>
-Developers and engineers use this skill to audit OpenClaw workspace prompt files, measure token usage, classify compression opportunities by safety tier, and apply only user-approved edits while preserving agent behavior. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Approved edits to prompt and memory files can change future agent behavior if important context is removed or rewritten. <br>
-Mitigation: Review recommendations before applying them, never silently remove MEMORY.md entries, and keep generated backups until the result is confirmed. <br>
-Risk: Token counts are estimates and may differ from the model's actual accounting. <br>
-Mitigation: Treat savings as approximate and verify behavior after changes rather than optimizing solely for reported token totals. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to audit workspace prompt files, identify token-heavy areas, and apply only approved compression changes that preserve agent behavior.
 
-## Reference(s): <br>
-- [Compression Rules](references/compression-rules.md) <br>
-- [Token Count Script](scripts/token_count.py) <br>
-- [ClawHub Skill Page](https://clawhub.ai/dgkim311/prompt-diet) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance, token-count tables or JSON, recommendation tables, shell commands, backup instructions, and before-and-after summaries.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create backup files or backup directories before approved edits; token counts are estimates and may use tiktoken or a chars-per-token fallback.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release evidence) <br>
+Risk: The skill may inspect sensitive workspace prompt, user, tool, and memory Markdown files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only against intended directories and review proposed changes before approval, especially for MEMORY.md and tool-related files.
+
+Risk: Exact token counts may depend on optional tokenizer availability and may differ from the target model tokenizer.
+
+Mitigation: Use a pinned or isolated tiktoken install when exact counts are needed and treat estimates as audit guidance.
+
+## Reference(s):
+
+- [Compression Rules by File Type](references/compression-rules.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with plain-text tables and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include JSON token-count output when the bundled script is run with --format json]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

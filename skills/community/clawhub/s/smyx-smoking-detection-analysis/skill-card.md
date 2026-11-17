@@ -1,45 +1,58 @@
-## Description: <br>
-Detects smoking behavior in public-area images, videos, and video streams, then returns structured analysis with violation alerts, recommendations, and report links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes images, videos, and video streams for suspected smoking behavior and returns detection reports, alerts, and report links.
 
-## Publisher: <br>
-[smyx-sunjinhui](https://clawhub.ai/user/smyx-sunjinhui) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[smyx-sunjinhui](https://clawhub.ai/user/smyx-sunjinhui)
 
-## Use Case: <br>
-Facility, community, and enterprise safety teams can use this skill to analyze media or media URLs for smoking-control monitoring, violation alerts, and cloud report lookup. Developers and agents can invoke the bundled commands to produce structured reports or history tables for review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Media or media URLs may be sent to external lifeemergence/open API services. <br>
-Mitigation: Use only media approved for external processing, and confirm authorization, retention, and deletion controls before using sensitive content. <br>
-Risk: The skill can create or reuse a local identity and store authentication tokens in a workspace SQLite database. <br>
-Mitigation: Run it in an isolated workspace, restrict access to generated local data, and rotate or remove stored tokens when they are no longer needed. <br>
-Risk: Cloud history retrieval has weak visible scoping in the available evidence. <br>
-Mitigation: Confirm report access controls with the publisher and review retrieved reports before sharing or acting on them. <br>
+## Use Case:
 
+Public-space managers and operations teams use the skill to review submitted images or video for suspected smoking and to retrieve prior detection reports. Results support smoking-control management and should be considered alongside the organization's review procedures.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/smyx-sunjinhui/skills/smyx-smoking-detection-analysis) <br>
-- [Skill Demo](https://lifeemergence.com/sample.html) <br>
-- [API Documentation](references/api_doc.md) <br>
-- [Analysis API Documentation](skills/smyx_analysis/references/api_doc.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, shell commands, guidance] <br>
-**Output Format:** [Markdown text with structured JSON analysis, report links, and optional Markdown tables for cloud history.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May save JSON results to a file when an output path is provided.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release evidence; artifact frontmatter lists 1.0.6) <br>
+Risk: The service may send an API secret as account-registration data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Have the publisher correct credential handling before use, and avoid processing sensitive footage until this is addressed.
+
+Risk: Footage may be uploaded even when the --export-env-only option is used.
+
+Mitigation: Do not treat that option as a no-upload guarantee. Confirm permission to upload the media and review the provider's retention terms first.
+
+Risk: The --api-url option may not redirect processing to the expected service.
+
+Mitigation: Do not rely on this option to redirect processing; verify the processing destination before sending footage.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/smyx-sunjinhui/skills/smyx-smoking-detection-analysis)
+- [Skill demo](https://lifeemergence.com/sample.html)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON]
+
+**Output Format:** [Structured detection results and reports in JSON or Markdown, with alert and report links when available]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Analysis results are for smoking-control management reference; follow organizational procedures for decisions.]
+
+## Skill Version(s):
+
+1.0.17 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,16 @@
+{
+  "name": "vbot-skills-framework",
+  "version": "1.0.0",
+  "description": "A framework for building reusable AI agent skills",
+  "keywords": ["ai", "skills", "framework", "openclaw", "agent"],
+  "author": "VBot",
+  "license": "MIT"
+}
+  "clawhub": {
+    "slug": "vbot-skills-framework",
+    "name": "VBot Skills Framework"
+  }
+EOF
+
+# 重新发布
+clawhub publish ./ --slug vbot-skills-framework --name "VBot Skills Framework" --version 1.0.0 --changelog "Initial release" 2>&1

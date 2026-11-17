@@ -1,42 +1,55 @@
-## Description: <br>
-SearXNG Web Search runs queries against a configurable SearXNG meta-search endpoint and returns structured web search results from engines such as Baidu and Bing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+SearXNG Web Search lets an agent query a configured SearXNG instance for structured web search results from Baidu, Bing, and other engines.
 
-## Publisher: <br>
-[qiaoshaohua](https://clawhub.ai/user/qiaoshaohua) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qiaoshaohua](https://clawhub.ai/user/qiaoshaohua)
 
-## Use Case: <br>
-Agents and users use this skill to retrieve current public web information, compare search results across engines, and cite source URLs before answering research, news, product, policy, or general information questions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The default configuration sends search queries to an unknown public SearXNG server over unencrypted HTTP. <br>
-Mitigation: Use a trusted HTTPS or self-hosted SearXNG endpoint before searching private, client, account, health, legal, financial, or workplace-sensitive topics. <br>
-Risk: Search results are public web-search output from Baidu and Bing through the configured endpoint and may be incomplete or misleading. <br>
-Mitigation: Verify important answers against cited source pages and treat the search output as discovery evidence rather than authoritative fact. <br>
+## Use Case:
 
+External users and developers use this skill to let an agent perform public web searches, inspect structured search results, and summarize source-backed findings without browser automation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/qiaoshaohua/youyiai-web-search) <br>
-- [Artifact-declared homepage](https://github.com/robydeeptool/hermes-skills) <br>
-- [Configured SearXNG endpoint](http://175.24.233.186:8890) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Plain text status output or JSON search results containing title, URL, source engine, and summary fields.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Result count is capped at 20; the SearXNG endpoint can be overridden with SEARXNG_ENDPOINT or an explicit endpoint argument.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence, SKILL.md frontmatter, README version record, and artifact metadata) <br>
+Risk: Search queries may be sent to the default hard-coded unencrypted SearXNG endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Set SEARXNG_ENDPOINT or pass --endpoint with a trusted HTTPS or local self-hosted SearXNG instance, and avoid submitting secrets, private project names, personal data, or confidential text.
+
+Risk: Search results may be incomplete, stale, unavailable, or affected by unresponsive upstream engines.
+
+Mitigation: Use the returned source URLs to verify important claims, cite multiple reliable results for factual or news answers, and disclose when only limited results are available.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/qiaoshaohua/skills/youyiai-web-search)
+- [Publisher profile](https://clawhub.ai/user/qiaoshaohua)
+- [Project homepage from artifact metadata](https://github.com/robydeeptool/hermes-skills)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text status output or JSON search result objects]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns up to 20 deduplicated results with title, URL, summary, and source engine; may also report empty results, errors, suggestions, or unresponsive engines.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence, target metadata, frontmatter, README, clawhub.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,241 @@
+/* === RESET & BASE === */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 14px; }
+
+/* === THEME: DARK (default) === */
+:root {
+  --bg-primary: #1e1e1e; --bg-secondary: #252526;
+  --bg-card: #2d2d30; --bg-hover: #3e3e42;
+  --bg-details: #252526; --bg-table-header: #333;
+  --text-primary: #ccc; --text-secondary: #888; --text-heading: #fff;
+  --color-accent: #569cd6; --border: #3e3e42;
+  --color-key: #dcdcaa; --color-pkg: #4ec9b0;
+  --color-copy-bg: #4caf50; --color-tier: #ce9178;
+  --color-sample-bg: #1a1a2e; --color-sample-border: #444;
+  --color-combo-bg: #1e1e2e; --color-label: #9cdcfe;
+}
+
+/* === THEME: LIGHT === */
+[data-theme="light"] {
+  --bg-primary: #f8f9fa; --bg-secondary: #fff;
+  --bg-card: #fff; --bg-hover: #e9ecef;
+  --bg-details: #f1f3f5; --bg-table-header: #e9ecef;
+  --text-primary: #333; --text-secondary: #666; --text-heading: #1a1a1a;
+  --color-accent: #0066cc; --border: #dee2e6;
+  --color-key: #795548; --color-pkg: #00796b;
+  --color-copy-bg: #4caf50; --color-tier: #d84315;
+  --color-sample-bg: #e8f5e9; --color-sample-border: #c8e6c9;
+  --color-combo-bg: #f5f5f5; --color-label: #0066cc;
+}
+
+body { background: var(--bg-primary); color: var(--text-primary); display: flex; flex-direction: column; overflow-y: auto; }
+
+/* === TOP BAR === */
+.topbar { display: flex; align-items: center; padding: 10px 16px; background: var(--bg-secondary); border-bottom: 1px solid var(--border); gap: 12px; flex-shrink: 0; position: sticky; top: 0; z-index: 10; }
+.topbar-title { font-weight: 600; color: var(--text-heading); font-size: 15px; white-space: nowrap; }
+.search-input { flex: 1; max-width: 360px; padding: 6px 12px; border-radius: 4px; border: 1px solid var(--border); background: var(--bg-primary); color: var(--text-primary); font-size: 13px; outline: none; }
+.search-input:focus { border-color: var(--color-accent); }
+.theme-toggle { background: var(--bg-card); border: 1px solid var(--border); color: var(--text-primary); padding: 4px 10px; border-radius: 4px; cursor: pointer; font-size: 14px; }
+
+/* === FILTERS === */
+.filter-bar { background: var(--bg-secondary); border-bottom: 1px solid var(--border); }
+.filter-row { display: flex; align-items: center; gap: 6px; padding: 8px 16px; flex-wrap: wrap; }
+.filter-row + .filter-row { padding-top: 0; }
+.filter-label { font-size: 10px; font-weight: 600; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.5px; margin-right: 4px; white-space: nowrap; }
+
+/* Family filter (top-level) */
+.family-filter-btn { padding: 5px 14px; border-radius: 4px; font-size: 12px; font-weight: 700; background: var(--bg-card); color: var(--color-accent); border: 1px solid var(--border); cursor: pointer; transition: all 0.15s; letter-spacing: 0.3px; }
+.family-filter-btn:hover { border-color: var(--color-accent); }
+.family-filter-btn.active { background: var(--color-accent); color: #fff; border-color: var(--color-accent); }
+
+/* Category filter (secondary) */
+.filter-btn { padding: 4px 12px; border-radius: 12px; font-size: 11px; font-weight: 500; background: var(--bg-card); color: var(--text-secondary); border: 1px solid var(--border); cursor: pointer; transition: all 0.15s; }
+.filter-btn:hover { border-color: var(--color-accent); color: var(--text-primary); }
+.filter-btn.active { background: var(--color-accent); color: #fff; border-color: var(--color-accent); }
+
+/* === COMMAND GRID === */
+.command-grid { padding: 16px; flex: 1; }
+.category-section { margin-bottom: 24px; }
+.category-title { font-size: 13px; font-weight: 600; color: var(--text-heading); margin-bottom: 10px; padding-bottom: 6px; border-bottom: 1px solid var(--border); }
+.trigger-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(380px, 1fr)); gap: 10px; align-items: start; }
+
+/* === TRIGGER CARD (Expandable) === */
+.trigger-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+  overflow: hidden;
+}
+.trigger-card:hover { border-color: var(--color-accent); }
+.trigger-card.expanded { border-color: var(--color-accent); background: var(--bg-card); }
+
+/* Card header */
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+}
+.card-header .key {
+  font-family: 'Cascadia Code', 'Fira Code', monospace;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-key);
+  min-width: 72px;
+  white-space: nowrap;
+}
+.card-header .desc {
+  font-size: 12px;
+  color: var(--text-primary);
+  flex: 1;
+  line-height: 1.3;
+}
+.card-header .pkg {
+  font-size: 10px;
+  color: var(--color-pkg);
+  font-weight: 600;
+  white-space: nowrap;
+}
+.card-header .tier {
+  font-size: 9px;
+  color: var(--color-tier);
+  font-weight: 500;
+  white-space: nowrap;
+  padding: 2px 6px;
+  border-radius: 8px;
+  border: 1px solid var(--color-tier);
+}
+.card-header .copy-btn {
+  background: none;
+  border: none;
+  font-size: 14px;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.15s;
+  padding: 2px 4px;
+}
+.trigger-card:hover .copy-btn { opacity: 0.7; }
+.card-header .copy-btn:hover { opacity: 1; }
+
+.expand-arrow {
+  font-size: 10px;
+  color: var(--text-secondary);
+  transition: transform 0.2s;
+}
+.trigger-card.expanded .expand-arrow { transform: rotate(90deg); }
+
+/* === CARD DETAILS (hidden by default, shown on expand) === */
+.card-details {
+  display: none;
+  padding: 0 14px 14px;
+  border-top: 1px solid var(--border);
+  margin-top: 0;
+  background: var(--bg-details);
+}
+.trigger-card.expanded .card-details { display: block; }
+
+.detail-section {
+  margin-top: 12px;
+}
+.detail-label {
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--color-label);
+  margin-bottom: 4px;
+}
+.detail-text {
+  font-size: 12px;
+  color: var(--text-primary);
+  line-height: 1.5;
+}
+
+/* Combinations table */
+.combo-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+  margin-top: 4px;
+}
+.combo-table thead th {
+  text-align: left;
+  padding: 6px 8px;
+  background: var(--bg-table-header);
+  color: var(--text-secondary);
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--border);
+}
+.combo-table tbody td {
+  padding: 6px 8px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+.combo-table tbody tr:last-child td { border-bottom: none; }
+.combo-table tbody tr:hover { background: var(--bg-hover); }
+
+.combo-key {
+  font-family: 'Cascadia Code', 'Fira Code', monospace;
+  font-size: 11px;
+  color: var(--color-key);
+  background: var(--color-combo-bg);
+  padding: 2px 6px;
+  border-radius: 3px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.15s;
+}
+.combo-key:hover {
+  background: var(--color-accent);
+  color: #fff;
+}
+
+/* Sample box */
+.sample-box {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  background: var(--color-sample-bg);
+  border: 1px solid var(--color-sample-border);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: border-color 0.15s;
+  margin-top: 4px;
+}
+.sample-box:hover { border-color: var(--color-accent); }
+.sample-box code {
+  font-family: 'Cascadia Code', 'Fira Code', monospace;
+  font-size: 12px;
+  color: var(--color-key);
+  flex: 1;
+  word-break: break-word;
+}
+.sample-copy {
+  font-size: 12px;
+  opacity: 0.5;
+}
+.sample-box:hover .sample-copy { opacity: 1; }
+
+/* === TOAST === */
+.toast { position: fixed; bottom: 20px; right: 20px; padding: 8px 16px; background: var(--color-copy-bg); color: #fff; border-radius: 6px; font-size: 12px; font-weight: 600; opacity: 0; transform: translateY(10px); transition: all 0.2s; pointer-events: none; z-index: 100; }
+.toast.visible { opacity: 1; transform: translateY(0); }
+
+/* === FOOTER === */
+.footer { padding: 6px 16px; background: var(--bg-secondary); border-top: 1px solid var(--border); font-size: 11px; color: var(--text-secondary); flex-shrink: 0; }
+
+/* === HIDDEN === */
+.hidden { display: none !important; }
+
+/* === RESPONSIVE === */
+@media (max-width: 768px) {
+  .trigger-list { grid-template-columns: 1fr; }
+  .topbar { flex-wrap: wrap; }
+  .search-input { max-width: 100%; order: 3; width: 100%; margin-top: 8px; }
+  .combo-table { font-size: 11px; }
+  .combo-key { font-size: 10px; }
+}

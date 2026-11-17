@@ -1,43 +1,59 @@
-## Description: <br>
-Execute AI workflow orchestration flows using the AetherLang Omega DSL for multi-step AI pipelines such as recipes, business strategy, market analysis, and molecular gastronomy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Execute AI workflow orchestration flows using the AetherLang Omega DSL for multi-step AI pipelines across recipes, business strategy, market analysis, molecular gastronomy, and related workflows.
 
-## Publisher: <br>
-[contrario](https://clawhub.ai/user/contrario) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[contrario](https://clawhub.ai/user/contrario)
 
-## Use Case: <br>
-External users and developers use this skill to send AetherLang flow DSL code and explicit query text to a remote AetherLang API for structured multi-step workflow outputs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Workflow code and prompt text are sent to api.neurodoc.app for processing. <br>
-Mitigation: Send only the minimum explicit workflow and query text needed, and do not include passwords, API keys, private files, regulated personal data, or confidential business material. <br>
-Risk: Remote AI workflow outputs may be incorrect or misleading. <br>
-Mitigation: Verify important outputs independently before relying on them. <br>
+## Use Case:
 
+Developers and external users use this skill to submit AetherLang flow DSL and explicit query text to an external API that executes AI workflow orchestration flows and returns structured results.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/contrario/aetherlang) <br>
-- [AetherLang API endpoint](https://api.neurodoc.app/aetherlang/execute) <br>
-- [Publisher homepage and privacy policy](https://masterswarm.net) <br>
-- [Aether Nexus Omega DSL homepage](https://neurodoc.app/aether-nexus-omega-dsl) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown or JSON response text from a remote API] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill sends flow DSL code and query text to api.neurodoc.app; avoid sensitive, regulated, or confidential content.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-9.9.11 (source: server release metadata and frontmatter) <br>
+Risk: Flow DSL and query text are transmitted to an external service at api.neurodoc.app.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Inform users before the first API call and send only the explicit flow code and query text needed for the request.
+
+Risk: Prompts may accidentally include secrets, credentials, personal data, private files, or confidential business information.
+
+Mitigation: Strip sensitive content before sending requests and ask the user to provide a sanitized query when needed.
+
+Risk: Generated workflow outputs may be incomplete, incorrect, or unsuitable for high-impact decisions without review.
+
+Mitigation: Have a qualified person review API results before using them for business, culinary safety, scientific, medical, legal, or financial decisions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/contrario/skills/aetherlang)
+- [AetherLang Homepage](https://masterswarm.net)
+- [AetherLang Execute API Endpoint](https://api.neurodoc.app/aetherlang/execute)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, API Calls, Guidance]
+
+**Output Format:** [Markdown and JSON-like structured response text from an external API]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Sends only explicit flow DSL code and query text to api.neurodoc.app; no credentials are required.]
+
+## Skill Version(s):
+
+9.9.11 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

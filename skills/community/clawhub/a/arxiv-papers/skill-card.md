@@ -1,43 +1,58 @@
-## Description: <br>
-Find and summarize arXiv.org preprints—keyword/category search, abstracts, PDF links. Use for literature scans, paper IDs, or quick orientation (not peer-review, not medical/legal advice). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find and summarize arXiv.org preprints--keyword/category search, abstracts, PDF links. Use for literature scans, paper IDs, or quick orientation (not peer-review, not medical/legal advice).
 
-## Publisher: <br>
-[codenova58](https://clawhub.ai/user/codenova58) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[codenova58](https://clawhub.ai/user/codenova58)
 
-## Use Case: <br>
-Developers, researchers, and research-oriented agents use this skill to search arXiv by keyword, identifier, or category and quickly summarize preprint abstracts with links for literature scanning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search terms are sent to arXiv through a local curl-based helper. <br>
-Mitigation: Avoid sensitive private information in search queries. <br>
-Risk: Returned papers are arXiv preprints and may not be peer reviewed or final. <br>
-Mitigation: Treat summaries as orientation material and verify important claims against the full paper and other sources. <br>
-Risk: Optional research logging can retain paper notes locally. <br>
-Mitigation: Use the log only for notes intended to be retained in the agent environment. <br>
+## Use Case:
 
+Developers, researchers, and other users use this skill to find arXiv preprints by keyword, category, or paper ID and receive concise abstract summaries with paper links. It is intended for quick literature orientation, with preprint status and non-peer-reviewed limitations called out when relevant.
 
-## Reference(s): <br>
-- [arXiv API query endpoint](https://export.arxiv.org/api/query) <br>
-- [ClawHub skill page](https://clawhub.ai/codenova58/arxiv-papers) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown summaries with paper metadata, arXiv IDs, abstract and PDF links, and optional shell command usage] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May optionally append notable papers to a local research log when the agent environment supports it.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill queries arXiv and may optionally fetch PDFs, creating disclosed network activity.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only when external arXiv lookups and selective PDF retrieval are acceptable for the task.
+
+Risk: Paper results are arXiv preprints and may not be peer reviewed, final, or reliable for high-stakes decisions.
+
+Mitigation: Treat summaries as orientation only and review the original paper and other sources before relying on claims.
+
+Risk: The skill can optionally save notable paper notes to a research log or memory file.
+
+Mitigation: Ask before persisting research notes when the user does not want research logs retained.
+
+## Reference(s):
+
+- [arXiv API query endpoint](https://export.arxiv.org/api/query)
+- [ClawHub skill page](https://clawhub.ai/codenova58/skills/arxiv-papers)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown summaries with paper metadata and links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include arXiv IDs, titles, authors, abstract summaries, abstract links, PDF links, and preprint-status caveats.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

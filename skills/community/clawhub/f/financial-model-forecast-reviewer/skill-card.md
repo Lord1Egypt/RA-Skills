@@ -1,42 +1,54 @@
-## Description: <br>
-Helps founders, finance analysts, operators, consultants, and managers review financial models, check assumptions, build revenue or expense forecasts, and turn spreadsheets into scenario plans. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a general workflow for clarifying practical agent-skill needs, planning bug fixes or reliability improvements, and producing a requested artifact or adjacent workflow.
 
-## Publisher: <br>
-[kyro-ma](https://clawhub.ai/user/kyro-ma) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kyro-ma](https://clawhub.ai/user/kyro-ma)
 
-## Use Case: <br>
-External users and business teams use this skill to review spreadsheet assumptions, build forecasts, plan runway, and convert financial models into practical scenario analysis. It supports repeatable checklists, workflows, lightweight analysis, and decision-support artifacts for business planning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Forecasting outputs may be mistaken for regulated financial, tax, accounting, or investment advice. <br>
-Mitigation: Treat outputs as planning support, review assumptions with qualified stakeholders, and do not rely on the skill for regulated advice. <br>
-Risk: Prompts or inputs may include sensitive financial data. <br>
-Mitigation: Share only data appropriate for the agent runtime and redact confidential details when possible. <br>
-Risk: Over-broad activation wording may invoke the skill when finance-related intent is ambiguous. <br>
-Mitigation: Use explicit prompts for financial modeling tasks and confirm the scope before relying on output. <br>
+## Use Case:
 
+AI-agent users, skill authors, maintainers, and teams use it to turn a practical workflow request into a concise plan, template, decision aid, or requested artifact, then check the result against the user's criteria.
 
-## Reference(s): <br>
-- [Requirement Plan](references/requirement-plan.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown with checklists, workflows, analyses, and optional code snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include assumptions, validation notes, and follow-up risks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence) <br>
+Risk: The financial-review name does not match the weather-oriented description, and broad activation keywords may select this workflow for an unrelated request.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Invoke it explicitly and confirm that its general workflow guidance fits the task before applying the result.
+
+Risk: Generated analysis or code changes may be inaccurate or unsuitable for the target project.
+
+Mitigation: Review generated analysis and code changes before relying on or applying them.
+
+## Reference(s):
+
+- [Requirement plan](references/requirement-plan.md)
+- [ClawHub release page](https://clawhub.ai/kyro-ma/skills/financial-model-forecast-reviewer)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance]
+
+**Output Format:** [Markdown, with code or structured templates when requested]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Tailored to the user's stated outcome and success criteria]
+
+## Skill Version(s):
+
+0.20261105.40634 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

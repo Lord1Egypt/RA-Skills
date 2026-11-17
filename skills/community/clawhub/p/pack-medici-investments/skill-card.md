@@ -1,42 +1,53 @@
-## Description: <br>
-Position management and market monitoring tools for active traders, including risk-based position sizing and a quick market health pulse monitor. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Position management and market monitoring tools for active traders, including risk-based position sizing and a quick market health pulse monitor covering trend, volatility, breadth, and sentiment.
 
-## Publisher: <br>
-[clawdiri-ai](https://clawhub.ai/user/clawdiri-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[clawdiri-ai](https://clawhub.ai/user/clawdiri-ai)
 
-## Use Case: <br>
-External active traders use this pack to install position sizing and market pulse skills for risk-based trade sizing and quick market health checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The pack points to two separate investment-analysis skills and does not include their full implementation details. <br>
-Mitigation: Review the referenced skills and their Python dependencies before installing or relying on their outputs. <br>
-Risk: Trading, position sizing, and market health outputs can be incomplete, stale, or misleading if treated as financial advice. <br>
-Mitigation: Treat outputs as informational support and apply independent financial judgment, current market data, and user-defined risk controls. <br>
+## Use Case:
 
+External active traders and swing traders use this pack to install position sizing and market pulse skills for structured risk management and fast market health checks before trading decisions.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/clawdiri-ai/pack-medici-investments) <br>
-- [README](artifact/README.md) <br>
-- [Skill definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with install commands and trading workflow guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [This pack points to two separately installed investment-analysis skills.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The pack directs installation of child skills that are not pinned to reviewed versions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the referenced Medici Investments packages and publisher before installing, and prefer reviewed or pinned versions when available.
+
+Risk: Trading-related outputs may influence position sizing or market interpretation.
+
+Mitigation: Review outputs against the trader's risk policy and treat them as decision support rather than execution authority.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/clawdiri-ai/skills/pack-medici-investments)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands]
+
+**Output Format:** [Markdown with shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only pack that points agents to the included position sizing and market pulse skills.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

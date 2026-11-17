@@ -1,43 +1,54 @@
-## Description: <br>
-Verify and inspect smart contracts on the QELT blockchain using the Mainnet Indexer verification API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Verify, inspect, and retrieve verified Solidity smart contracts, ABIs, and compiler/EVM versions on the QELT blockchain using the Mainnet Indexer API.
 
-## Publisher: <br>
-[PRQELT](https://clawhub.ai/user/PRQELT) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[prqelt](https://clawhub.ai/user/prqelt)
 
-## Use Case: <br>
-Developers and engineers use this skill to check QELT contract verification status, submit single-file or multi-file Solidity verification jobs, retrieve ABIs and source code, and inspect supported compiler or EVM versions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Submitted Solidity source, constructor arguments, and library details may become public after successful verification. <br>
-Mitigation: Review the exact files and values before submission, and do not submit private keys, secrets, proprietary code that should remain private, or unreviewed local files. <br>
-Risk: Repeated submissions can consume the QELT verification rate limit or duplicate a job already in progress. <br>
-Mitigation: Check existing verification status before submitting, poll active jobs instead of re-submitting, and follow Retry-After guidance after HTTP 429 responses. <br>
-Risk: Optional Hardhat plugin and CLI tooling introduce separate package dependencies. <br>
-Mitigation: Review those npm packages independently before installing or using them. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [QELT Contract Verification Reference Guide](references/verification-guide.md) <br>
-- [QELT Mainnet Indexer](https://mnindexer.qelt.ai) <br>
-- [ClawHub Skill Page](https://clawhub.ai/PRQELT/qelt-contracts) <br>
+## Use Case:
 
+Developers and smart contract maintainers use this skill to verify Solidity contracts on QELT, retrieve verified source code or ABI data, and choose matching compiler and EVM settings before submitting verification jobs.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, API Calls, Configuration] <br>
-**Output Format:** [Markdown with inline bash commands and JSON request or response examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses curl against QELT verification endpoints; verification submissions are rate limited to 10 per hour per IP.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Optional npm or global tooling may run mutable third-party code when package versions are not pinned.
+
+Mitigation: Prefer the direct curl/API workflow where possible; before using the optional Hardhat plugin or CLI, pin exact package versions, avoid global installs, and review npm package provenance and lifecycle scripts.
+
+Risk: Submitted contract source code becomes public if verification succeeds.
+
+Mitigation: Inspect source files before submission, remove private keys or secrets, and confirm that public disclosure is intended.
+
+## Reference(s):
+
+- [QELT Mainnet Indexer](https://mnindexer.qelt.ai)
+- [QELT Contract Verification Reference Guide](references/verification-guide.md)
+- [ClawHub skill page](https://clawhub.ai/prqelt/skills/qelt-contracts)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, API calls, configuration]
+
+**Output Format:** [Markdown guidance with curl commands and JSON request examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include API responses, ABI or source retrieval guidance, and status polling instructions.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

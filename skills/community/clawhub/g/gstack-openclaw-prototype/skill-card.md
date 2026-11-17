@@ -1,40 +1,54 @@
-## Description: <br>
-Builds disposable logic or UI prototypes so developers can quickly test a state model, workflow, or design direction before committing to production code. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Builds disposable prototypes that help developers quickly validate either interaction logic and state models or several substantially different UI directions.
 
-## Publisher: <br>
-[ilmych](https://clawhub.ai/user/ilmych) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ilmych](https://clawhub.ai/user/ilmych)
 
-## Use Case: <br>
-Developers and engineers use this skill to build quick, throwaway terminal or UI prototypes that answer a specific design question. It is suited for validating state transitions, data models, or multiple frontend directions before folding a decision into real code. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may lead an agent to create and later clean up local throwaway files. <br>
-Mitigation: Before use, define where temporary files may be created and review any cleanup or folding of prototype code into production code. <br>
-Risk: Prototype code may be mistaken for production-ready implementation if left in the workspace. <br>
-Mitigation: Keep prototype names explicit, capture the decision they answer, and delete or absorb the code after validation. <br>
+## Use Case:
 
+Developers and engineers use this skill to answer design questions quickly before committing to production work. It routes requests toward either an interactive terminal prototype for logic and state-machine exploration or multiple UI variants for visual comparison.
 
-## Reference(s): <br>
-- [ClawHub skill release](https://clawhub.ai/ilmych/gstack-openclaw-prototype) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown with code snippets and runnable command suggestions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prototype artifacts are expected to be temporary, in-memory where possible, and clearly named for cleanup.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Broad requests such as "prototype this" or "mock up a UI" may invoke a throwaway-code workflow when the user expects production-quality implementation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm whether the desired output is a disposable prototype or production-ready code before applying the skill to ambiguous requests.
+
+Risk: Prototype code may be mistaken for maintainable production code if it remains in the repository after validation.
+
+Mitigation: Delete the prototype, fold the validated decision into real code, or clearly mark the artifact for cleanup after the design question is answered.
+
+## Reference(s):
+
+- [gstack Prototype on ClawHub](https://clawhub.ai/ilmych/skills/gstack-openclaw-prototype)
+- [Publisher profile: ilmych](https://clawhub.ai/user/ilmych)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown with code, commands, and concise implementation notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Prototype outputs are intended to be temporary and should be deleted, absorbed into production code, or clearly marked for cleanup after validation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

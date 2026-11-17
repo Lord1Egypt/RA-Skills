@@ -1,52 +1,64 @@
-## Description: <br>
-Complete guide to using and extending Hermes Agent -- CLI usage, setup, configuration, spawning additional agents, gateway platforms, skills, voice, tools, profiles, and a concise contributor reference. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Complete guide to using and extending Hermes Agent, including CLI usage, setup, configuration, spawning additional agents, gateway platforms, skills, voice, tools, profiles, and contributor workflows.
 
-## Publisher: <br>
-[oicqren](https://clawhub.ai/user/oicqren) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oicqren](https://clawhub.ai/user/oicqren)
 
-## Use Case: <br>
-Developers, engineers, and external users use this skill to configure, troubleshoot, operate, and extend Hermes Agent across CLI, gateway, profile, tool, skill, memory, voice, and multi-agent workflows. It is also useful for contributors who need concise reference material for Hermes commands, configuration paths, and extension patterns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The quick-start installer runs a remote shell script and can change the user's local environment. <br>
-Mitigation: Review or pin the installer source before running it, and install only in an environment where Hermes Agent is intended to be used. <br>
-Risk: Approval-bypass modes, spawned agents, gateways, cron jobs, tools, and memory can operate with broad access if configured too permissively. <br>
-Mitigation: Keep credentials, gateway platforms, memory backends, scheduled jobs, and spawned agents scoped to trusted environments, and avoid approval-bypass modes on important systems. <br>
-Risk: The skill references many credential environment variables and OAuth flows for model providers, voice services, and integrations. <br>
-Mitigation: Store secrets only in the intended Hermes configuration or environment files and limit provider keys to the minimum privileges needed. <br>
+## Use Case:
 
+Developers, engineers, and operators use this skill to configure Hermes Agent, troubleshoot CLI and gateway workflows, spawn additional agent instances, and understand extension points for tools, skills, memory, profiles, and contribution work.
 
-## Reference(s): <br>
-- [Hermes Agent ClawHub page](https://clawhub.ai/oicqren/hermes-agent-yuhu) <br>
-- [Hermes Agent GitHub repository](https://github.com/NousResearch/hermes-agent) <br>
-- [Hermes Agent documentation](https://hermes-agent.nousresearch.com/docs/) <br>
-- [Configuration guide](https://hermes-agent.nousresearch.com/docs/user-guide/configuration) <br>
-- [Provider integrations](https://hermes-agent.nousresearch.com/docs/integrations/providers) <br>
-- [Messaging platforms](https://hermes-agent.nousresearch.com/docs/user-guide/messaging/) <br>
-- [Tools reference](https://hermes-agent.nousresearch.com/docs/reference/tools-reference) <br>
-- [Slash commands reference](https://hermes-agent.nousresearch.com/docs/reference/slash-commands) <br>
-- [Skills catalog](https://hermes-agent.nousresearch.com/docs/reference/skills-catalog) <br>
-- [MCP feature guide](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp) <br>
-- [Profiles guide](https://hermes-agent.nousresearch.com/docs/user-guide/profiles) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with command examples, configuration snippets, tables, and contributor reference notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are operational guidance for Hermes Agent and may include commands that install software, configure credentials, start gateways, spawn agents, or edit local configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: The release normalizes direct remote installer execution.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the remote installer before running it and prefer a controlled environment for installation or testing.
+
+Risk: Approval bypass or yolo modes can allow powerful commands to run without normal confirmation.
+
+Mitigation: Avoid approval-bypass modes except in controlled environments with clear rollback and monitoring.
+
+Risk: Gateway, cron, persistent memory, credentials, and spawned-agent features can act across sessions and external services.
+
+Mitigation: Scope credentials and platform access carefully, review long-running agent behavior, and disable features that are not needed.
+
+## Reference(s):
+
+- [Hermes Agent repository](https://github.com/NousResearch/hermes-agent)
+- [Hermes Agent documentation](https://hermes-agent.nousresearch.com/docs/)
+- [Messaging platform docs](https://hermes-agent.nousresearch.com/docs/user-guide/messaging/)
+- [Configuration docs](https://hermes-agent.nousresearch.com/docs/user-guide/configuration)
+- [Provider integrations guide](https://hermes-agent.nousresearch.com/docs/integrations/providers)
+- [Tools reference](https://hermes-agent.nousresearch.com/docs/reference/tools-reference)
+- [Slash commands reference](https://hermes-agent.nousresearch.com/docs/reference/slash-commands)
+- [ClawHub skill page](https://clawhub.ai/oicqren/skills/hermes-agent-yuhu)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration, Code, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, configuration examples, and code snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include operational guidance for local agents, gateway services, credentials, cron jobs, memory, profiles, tools, and spawned agent processes.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

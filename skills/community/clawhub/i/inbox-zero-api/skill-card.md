@@ -1,44 +1,59 @@
-## Description: <br>
-Use the Inbox Zero API CLI to inspect the live API schema, list and manage automation rules, and read inbox analytics through the public API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use the Inbox Zero API CLI to inspect the live API schema, list and manage automation rules, and read inbox analytics through the public API.
 
-## Publisher: <br>
-[elie222](https://clawhub.ai/user/elie222) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[elie222](https://clawhub.ai/user/elie222)
 
-## Use Case: <br>
-Developers and operators use this skill to inspect Inbox Zero API schemas, manage automation rules, and read inbox analytics through the Inbox Zero CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent to use an Inbox Zero API key for authenticated access. <br>
-Mitigation: Keep credentials in INBOX_ZERO_API_KEY or approved skill configuration, avoid passing keys as CLI flags, and use a revocable or least-privilege key where available. <br>
-Risk: Rule create, update, and delete commands can change Inbox Zero automation behavior. <br>
-Mitigation: Ask for explicit approval before mutations, inspect the live schema first, and read the existing rule before applying a full replacement. <br>
-Risk: The skill depends on the third-party @inbox-zero/api npm package. <br>
-Mitigation: Install only when the package source is trusted and verify the intended package before use. <br>
+## Use Case:
 
+Developers and agents use this skill to inspect or change Inbox Zero state through the public API, including automation rules, live API schema details, and inbox analytics.
 
-## Reference(s): <br>
-- [Inbox Zero API CLI documentation](https://www.getinboxzero.com/api-reference/cli) <br>
-- [CLI reference](references/cli-reference.md) <br>
-- [npm package: @inbox-zero/api](https://www.npmjs.com/package/@inbox-zero%2Fapi) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON-oriented CLI guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires INBOX_ZERO_API_KEY for authenticated rules and stats commands; prefers --json for stable output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.29.2 (source: server release evidence) <br>
+Risk: The skill can invoke an unpinned npm CLI with an API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer a pinned, reviewed @inbox-zero/api version and use a revocable, least-privilege API key stored in INBOX_ZERO_API_KEY or configured skill settings.
+
+Risk: The skill can modify or delete live mail automation rules.
+
+Mitigation: Inspect the live schema, read and back up the existing rule before update or delete, and treat rule updates as full replacements.
+
+Risk: Rule JSON files may expose sensitive automation details in shared or synced workspaces.
+
+Mitigation: Keep rule JSON in an appropriate workspace location and remove temporary files after review and application.
+
+## Reference(s):
+
+- [Inbox Zero CLI API Reference](https://www.getinboxzero.com/api-reference/cli)
+- [ClawHub skill page](https://clawhub.ai/elie222/skills/inbox-zero-api)
+- [CLI reference](references/cli-reference.md)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance, JSON]
+
+**Output Format:** [Markdown with inline bash commands and JSON-oriented CLI output guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Prefers --json output for stable machine-readable command results.]
+
+## Skill Version(s):
+
+2.29.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

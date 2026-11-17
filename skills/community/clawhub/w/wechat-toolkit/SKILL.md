@@ -241,13 +241,8 @@ node {baseDir}/scripts/downloader/download.js "<文章URL>" --no-video
 ## 首次安装
 
 ```bash
-node {baseDir}/scripts/bootstrap/install_wenyan.js
+npm install -g @wenyan-md/cli
 ```
-
-说明：
-- skill 已内置 fork 版 `wenyan-cli` 源码，位置是 `vendor/wenyan-cli-main`
-- 首次运行发布脚本时，也会自动执行这一步
-- 如果本机没有 `pnpm`，可先执行 `corepack enable`
 
 ## 配置 API 凭证
 
@@ -282,8 +277,6 @@ cover: ./assets/cover.jpg                         # ❌ 相对路径可能出错
 ![配图](/Users/minruiqing/photos/image.jpg)       # ✅ 绝对路径
 ![配图](./images/photo.jpg)                       # ❌ 相对路径可能出错
 ```
-
-**⚠️ 图片路径里不要出现空格。** `cover` 和正文图片一旦带空格，wenyan 上传公众号时很容易失败。建议文章目录、`media/` 目录和所有文件名都使用无空格命名。
 
 ## 配图生成
 
@@ -320,53 +313,7 @@ cat "/path/to/article.md" | WECHAT_APP_ID=xxx WECHAT_APP_SECRET=xxx wenyan publi
 
 # 方式 4: 含视频文章（必须用这个）
 node {baseDir}/scripts/publisher/publish_with_video.js /path/to/article.md
-
-# 方式 5: 草稿 / 已发布文章管理
-node {baseDir}/scripts/publisher/manage_draft.js get MEDIA_ID
-node {baseDir}/scripts/publisher/manage_draft.js list --count 10
-node {baseDir}/scripts/publisher/manage_draft.js count
-node {baseDir}/scripts/publisher/manage_draft.js delete MEDIA_ID
-node {baseDir}/scripts/publisher/manage_draft.js publish MEDIA_ID --wait
-node {baseDir}/scripts/publisher/manage_draft.js status PUBLISH_ID
-node {baseDir}/scripts/publisher/manage_draft.js published-list --count 10
-node {baseDir}/scripts/publisher/manage_draft.js published-get ARTICLE_ID
-node {baseDir}/scripts/publisher/manage_draft.js published-delete ARTICLE_ID --index 0
 ```
-
-## 草稿删除与正式发布
-
-wenyan 扩展后，现在除了“上传到草稿箱”之外，还支持：
-
-```bash
-# 直接用 wenyan
-wenyan draft get MEDIA_ID
-wenyan draft list --count 10
-wenyan draft count
-wenyan draft delete MEDIA_ID
-wenyan draft publish MEDIA_ID --wait
-wenyan publish-status PUBLISH_ID
-wenyan published list --count 10
-wenyan published get ARTICLE_ID
-wenyan published delete ARTICLE_ID --index 0
-
-# 或使用 toolkit 包装脚本（自动读取 TOOLS.md 中的凭证）
-node {baseDir}/scripts/publisher/manage_draft.js get MEDIA_ID
-node {baseDir}/scripts/publisher/manage_draft.js list --count 10
-node {baseDir}/scripts/publisher/manage_draft.js count
-node {baseDir}/scripts/publisher/manage_draft.js delete MEDIA_ID
-node {baseDir}/scripts/publisher/manage_draft.js publish MEDIA_ID --wait
-node {baseDir}/scripts/publisher/manage_draft.js status PUBLISH_ID
-node {baseDir}/scripts/publisher/manage_draft.js published-list --count 10
-node {baseDir}/scripts/publisher/manage_draft.js published-get ARTICLE_ID
-node {baseDir}/scripts/publisher/manage_draft.js published-delete ARTICLE_ID --index 0
-```
-
-说明：
-- `draft list` / `published list` 支持 `--offset`、`--count`、`--no-content`
-- `draft publish` 返回的是异步发布任务，推荐带 `--wait`
-- `publish-status` 用来查询正式发布结果
-- `published delete --index 0` 会删除整篇已发布图文；传具体序号可删单篇
-- 正式发布能力依赖公众号权限；如果微信返回未授权，需要去公众平台确认接口权限
 
 ## 主题选项
 
@@ -420,11 +367,10 @@ Markdown 中引用：
 | 问题 | 解决方法 |
 |------|---------|
 | IP 不在白名单 | `curl ifconfig.me` → 添加到公众号后台 |
-| 内置 wenyan 未就绪 | `node {baseDir}/scripts/bootstrap/install_wenyan.js` |
+| wenyan 未安装 | `npm install -g @wenyan-md/cli` |
 | 环境变量未设置 | `export WECHAT_APP_ID=xxx` |
 | 缺少 frontmatter | 添加 title + cover |
 | 40001 token 失效 | 用 `publish_with_video.js`（已内置 token 管理） |
-| 图片路径带空格 | 重命名目录/文件，确保 cover 和正文图片路径都不含空格 |
 
 ---
 

@@ -1,44 +1,55 @@
-## Description: <br>
-Analyzes fixed-camera elder-care video to identify loneliness-related behaviors, produce a loneliness index, and suggest warm companionship actions without making medical diagnoses. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes images or video from an older adult’s home to identify behaviors associated with loneliness and suggest companionship actions.
 
-## Publisher: <br>
-[smyx-sunjinhui](https://clawhub.ai/user/smyx-sunjinhui) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[smyx-sunjinhui](https://clawhub.ai/user/smyx-sunjinhui)
 
-## Use Case: <br>
-External caregivers, elder-care platform operators, and authorized family-support workflows use this skill to analyze videos from solitary-living elder homes or private nursing-home rooms. It returns behavior statistics, loneliness-level output, report links, and companionship recommendations for human review and follow-up. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Highly private elder-care video or optional audio may be sent to a cloud API and associated with report history. <br>
-Mitigation: Use only with informed consent from the monitored elder and authorized family, clear notice about cloud processing, and strict limits on who can query historical reports. <br>
-Risk: Silent identity setup and local token persistence can reduce user control over identity linkage. <br>
-Mitigation: Run only in controlled deployments that explicitly approve local identity and token persistence, restrict workspace access, and review identity handling before installation. <br>
-Risk: Loneliness-related behavior output could be mistaken for a psychiatric diagnosis or trigger intrusive interventions. <br>
-Mitigation: Present outputs as behavioral statistics and recommendations only, avoid medical diagnosis, support the elder's ability to turn off reminders, and route serious concerns to appropriate human or clinical support. <br>
+## Use Case:
 
+Families and caregivers use the skill to review behavior reports from an older adult’s living space, consider companionship suggestions, and retrieve prior reports. The results describe observed behavior and do not provide a medical diagnosis.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/smyx-sunjinhui/skills/smyx-elderly-loneliness-comfort-analysis) <br>
-- [API documentation](references/api_doc.md) <br>
-- [Skill demo](https://lifeemergence.com/sample.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, guidance] <br>
-**Output Format:** [Markdown text containing structured JSON analysis, report links, and recommendations.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include cloud report export links and warm-companionship action suggestions; output should be treated as behavioral support information, not a medical diagnosis.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence; artifact frontmatter reports 1.0.2) <br>
+Risk: The skill may upload private home footage for external processing, including when its no-analysis option is used.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use non-sensitive test footage until the no-analysis option is fixed. Before sending home recordings, obtain informed consent and confirm the provider’s deletion practices.
+
+Risk: The skill automatically saves account credentials and may enroll a default user.
+
+Mitigation: Review automatic enrollment and token storage before use; avoid sending sensitive footage until these practices are understood.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/smyx-sunjinhui/skills/smyx-elderly-loneliness-comfort-analysis)
+- [Skill demonstration](https://lifeemergence.com/sample.html)
+- [API documentation](artifact/references/api_doc.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Markdown, Guidance]
+
+**Output Format:** [Structured behavior analysis with companionship suggestions and report links; Markdown tables for report listings]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include behavioral indicators, a 0–100 loneliness index, and suggested actions; not a medical diagnosis.]
+
+## Skill Version(s):
+
+1.0.11 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

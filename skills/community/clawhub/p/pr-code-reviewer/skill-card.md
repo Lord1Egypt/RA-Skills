@@ -1,50 +1,63 @@
-## Description: <br>
-Reviews pull request diffs for syntax errors, code quality issues, security vulnerabilities, and team-standard violations across JavaScript, TypeScript, Node.js, PHP, Python, CSS, and HTML. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Revisa Pull Requests con reglas de calidad, seguridad y estilo para JavaScript, TypeScript, Node.js, PHP, Python, CSS y HTML, y genera comentarios y resúmenes de revisión en español.
 
-## Publisher: <br>
-[nesquitmx](https://clawhub.ai/user/nesquitmx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[nesquitmx](https://clawhub.ai/user/nesquitmx)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to get structured pull request review comments, severity-ranked findings, and suggested fixes before code is merged. It is intended for human-controlled review workflows, not autonomous approval or merge decisions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Automated PR integration could post comments, approvals, or merge decisions with broader repository permissions than needed. <br>
-Mitigation: Use narrowly scoped repository permissions and require human control over posting comments, approvals, and merges. <br>
-Risk: The skill performs static review guidance and may miss runtime failures, compilation issues, test regressions, or project-specific context. <br>
-Mitigation: Use it alongside tests, linters, SAST tools, and human reviewer judgment before accepting changes. <br>
-Risk: Review findings can include false positives or severity choices that do not match a team's policy. <br>
-Mitigation: Have reviewers confirm findings and adapt the team conventions reference to the target repository. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/nesquitmx/pr-code-reviewer) <br>
-- [README](README.md) <br>
-- [General Review Rules](references/general.md) <br>
-- [Security Review Rules](references/security.md) <br>
-- [Team Conventions](references/team-conventions.md) <br>
-- [JavaScript and TypeScript Rules](references/javascript-typescript.md) <br>
-- [Node.js Rules](references/nodejs.md) <br>
-- [PHP Rules](references/php.md) <br>
-- [Python Rules](references/python.md) <br>
-- [CSS and HTML Rules](references/css-html.md) <br>
+## Use Case:
 
+Developers and engineering teams use this skill to review pull request diffs before merge, with findings grouped by file and severity. It is intended to help identify bugs, security issues, maintainability problems, style concerns, and team-convention violations.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Guidance] <br>
-**Output Format:** [Markdown review summaries and inline findings with suggested code corrections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs include severity labels, file and line references when available, rationale, and a final review verdict.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact frontmatter says 1.0.0) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can produce overly strict or project-mismatched review guidance if team conventions are left generic.
+
+Mitigation: Review and customize artifact/references/team-conventions.md before use, including language, severity thresholds, architecture expectations, test coverage, and project-specific rules.
+
+Risk: Example unsafe code snippets in the reference files may look executable when copied outside their review context.
+
+Mitigation: Treat unsafe snippets as examples of patterns the reviewer should detect, not as code to run or reuse.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nesquitmx/skills/pr-code-reviewer)
+- [README](artifact/README.md)
+- [General review rules](artifact/references/general.md)
+- [Security review rules](artifact/references/security.md)
+- [JavaScript and TypeScript review rules](artifact/references/javascript-typescript.md)
+- [Node.js review rules](artifact/references/nodejs.md)
+- [PHP review rules](artifact/references/php.md)
+- [Python review rules](artifact/references/python.md)
+- [CSS and HTML review rules](artifact/references/css-html.md)
+- [Team conventions template](artifact/references/team-conventions.md)
+- [Review summary template](artifact/assets/review-summary.md)
+- [Review comment template](artifact/assets/review-comment.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown review summaries and inline-style review comments with suggested fixes.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Spanish-language output with severity labels for blockers, warnings, suggestions, and nits.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

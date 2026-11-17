@@ -1,41 +1,54 @@
-## Description: <br>
-Normalizes URLs, PDFs, Word, Excel, CSV, images, and text into clean JSON for reliable, universal input parsing in under 2 seconds. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Normalizes URLs, PDFs, Word, Excel, CSV, images, and text into clean JSON for reliable agent input parsing.
 
-## Publisher: <br>
-[etytabs](https://clawhub.ai/user/etytabs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[etytabs](https://clawhub.ai/user/etytabs)
 
-## Use Case: <br>
-Developers and agent builders use this skill to normalize URLs, documents, spreadsheets, images, and text into deterministic JSON before passing content to LLM agents. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Remote HTTP or SDK usage may send selected files, URLs, and parsed output to Reversal's service. <br>
-Mitigation: Use the local stdio setup for confidential, internal, regulated, or proprietary inputs; review service terms before remote use. <br>
-Risk: Remote mode and image parsing can involve sensitive API credentials. <br>
-Mitigation: Store keys in the agent host's secret or environment configuration, avoid logging them, and do not commit them to source control. <br>
+## Use Case:
 
+Developers and agent builders use this skill to convert web pages, documents, spreadsheets, images, and text into a deterministic JSON envelope before passing content to an agent.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/etytabs/reversal-engine) <br>
-- [Reversal repository listed in artifact](https://github.com/Etytabs/REVERSAL) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, configuration, shell commands, code, JSON] <br>
-**Output Format:** [Markdown guidance with JSON, bash, TOML, Python, and TypeScript examples; the integration outputs structured JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Remote HTTP and SDK use can require API keys; image and dashboard screenshot parsing may require ANTHROPIC_API_KEY; batch parsing supports up to 10 sources.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: Remote HTTP mode may send URLs, uploaded files, and parsed outputs to api.reversal.dev.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use local stdio mode for sensitive documents, and review the remote service's privacy, retention, and security practices before sending confidential data.
+
+Risk: Production installs from floating sources can change behavior unexpectedly.
+
+Mitigation: Pin repository commits and package versions in production or credentialed environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/etytabs/skills/reversal-engine)
+- [Reversal repository](https://github.com/Etytabs/REVERSAL)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Structured JSON from tool calls, plus Markdown guidance with code and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports URL, PDF, Word, Excel, CSV, image, and text inputs; batch normalization supports up to 10 sources.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

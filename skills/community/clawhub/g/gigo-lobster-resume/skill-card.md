@@ -1,49 +1,60 @@
-## Description: <br>
-Resume entrypoint for GIGO Lobster benchmark runs; the v2 stable runtime currently starts fresh while preserving this slug for legacy checkpoint compatibility. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Gigo Lobster Resume provides a legacy-compatible entrypoint for continuing GIGO Lobster benchmark runs; in v2 stable it clears older checkpoints and starts a fresh run.
 
-## Publisher: <br>
-[gigolab](https://clawhub.ai/user/gigolab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gigolab](https://clawhub.ai/user/gigolab)
 
-## Use Case: <br>
-OpenClaw users use this companion skill to resume or restart a GIGO Lobster benchmark run, monitor progress, and produce benchmark outputs such as reports, certificates, logs, and optional cloud results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The server security summary flags this as a real benchmark runner with high-impact behavior that users should review before installing. <br>
-Mitigation: Install only when a GIGO cloud benchmark runner is intended, and review the skill behavior before execution. <br>
-Risk: The server security guidance notes local code execution, dependency installation, use of gateway/profile/secret settings, network calls, default result upload, and possible checkpoint reset. <br>
-Mitigation: Run in an isolated workspace and use local, offline, skip-upload, or another companion skill when cloud submission or checkpoint changes are not desired. <br>
-Risk: The server evidence includes sensitive-credential capability tags. <br>
-Mitigation: Confirm gateway and profile credentials before running, and avoid executing the benchmark in shared or production workspaces. <br>
+## Use Case:
 
+OpenClaw users use this skill to continue or restart interrupted GIGO Lobster benchmark runs and collect the resulting log, report, certificate, and optional shared result link.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/gigolab/gigo-lobster-resume) <br>
-- [Publisher Profile](https://clawhub.ai/user/gigolab) <br>
-- [Skill README](artifact/README.md) <br>
-- [Skill Definition](artifact/SKILL.md) <br>
-- [Bundle README](artifact/bundle/README.md) <br>
-- [Scoring Specification](artifact/bundle/specs/scoring.md) <br>
-- [Task Schema Specification](artifact/bundle/specs/task-schema.md) <br>
-- [Judge Protocol Specification](artifact/bundle/specs/judge-protocol.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance, Files, Markdown] <br>
-**Output Format:** [Markdown progress updates with shell commands and generated benchmark files such as HTML reports, PNG or SVG certificates, logs, and result metadata.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May perform network calls and upload results by default unless local, offline, or skip-upload options are used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.2 (source: server release metadata and artifact manifest) <br>
+Risk: Benchmark responses, telemetry, and task output may be sent to api.agent-gigo.com.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run in an isolated workspace or container and use local, offline, or skip-upload mode when a cloud submission is not intended.
+
+Risk: Workspace secrets or private files could be exposed during benchmark execution.
+
+Mitigation: Run from a disposable workspace without secrets.env values, credentials, or private project files.
+
+Risk: Remote evaluation behavior requires trust beyond the resume-focused entrypoint description.
+
+Mitigation: Review the skill, logs, generated report, and upload mode before sharing or relying on benchmark results.
+
+## Reference(s):
+
+- [Gigo Lobster Resume on ClawHub](https://clawhub.ai/gigolab/skills/gigo-lobster-resume)
+- [GIGO Lobster Skill Family README](artifact/README.md)
+- [GIGO Lobster Taster v2 Bundle README](artifact/bundle/README.md)
+- [GIGO Lobster v2 Integration Guide](artifact/bundle/INTEGRATION.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands, file paths, and progress updates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Points users to gigo-run.log, lobster-report.html, and lobster-cert PNG/SVG outputs.]
+
+## Skill Version(s):
+
+2.1.2 (source: server release metadata and artifact manifest)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,54 @@
-## Description: <br>
-Craft effective AI image generation prompts for product photography, store branding, and marketing visuals for a Mobazha store. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Craft effective AI image generation prompts for Mobazha product photography, lifestyle shots, store branding, and marketing visuals.
 
-## Publisher: <br>
-[fengzie](https://clawhub.ai/user/fengzie) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fengzie](https://clawhub.ai/user/fengzie)
 
-## Use Case: <br>
-External sellers and agents use this skill to draft product photography, lifestyle, store branding, logo, and promotional image prompts for Mobazha listings and campaigns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated image prompts can lead to inaccurate product representation or inconsistent brand presentation. <br>
-Mitigation: Review each generated prompt and resulting image for product accuracy, quality, and brand consistency before publishing. <br>
-Risk: External image-generation tools may receive product or business details included in prompts. <br>
-Mitigation: Avoid submitting API keys, wallet data, customer data, private business records, or other sensitive information to external tools unless that tool is separately trusted. <br>
-Risk: Prompts that request recognizable third-party brand elements can create rights or authenticity issues. <br>
-Mitigation: Use owned brand assets only and avoid recognizable brand logos or protected elements unless the user has the right to use them. <br>
+## Use Case:
 
+External sellers and store operators use this skill to draft product image, lifestyle image, store branding, and promotional graphic prompts for Mobazha listings.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fengzie/mobazha-product-image-prompt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, text] <br>
-**Output Format:** [Markdown guidance with reusable prompt templates and example prompts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces prompt-writing guidance for image-generation tools; it does not execute code or call APIs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server evidence) <br>
+Risk: Generated images can contain inaccurate product details, brand elements, or rights-sensitive logos.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated images for product accuracy, brand consistency, and rights issues before using them in store materials.
+
+Risk: Listing creation or update guidance could lead to unintended publishing changes if acted on automatically.
+
+Mitigation: Keep listing creation and update actions under explicit user control.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/fengzie/skills/mobazha-product-image-prompt)
+- [Publisher Profile](https://clawhub.ai/user/fengzie)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown prompt guidance and prompt templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces natural-language image prompts and review guidance; no executable code.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

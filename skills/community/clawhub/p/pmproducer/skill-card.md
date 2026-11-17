@@ -1,41 +1,52 @@
-## Description: <br>
-用于产品经理岗位求职的辅导者。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+用于产品经理岗位求职的辅导者。
 
-## Publisher: <br>
-[ffernnnl](https://clawhub.ai/user/ffernnnl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[ffernnnl](https://clawhub.ai/user/ffernnnl)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Product manager candidates use this skill to prepare for Chinese-language PM interviews by researching target companies and job descriptions, diagnosing resume fit, generating likely interview questions, and practicing mock interview answers with structured feedback.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Users may share resumes or examples containing personal or sensitive information during interview preparation.
+
+Mitigation: Remove or mask phone numbers, email addresses, home addresses, government ID numbers, exact compensation, and unrelated private information before using the skill.
+
+Risk: Company research and interview-experience summaries may be incorrect if not grounded in current search results.
+
+Mitigation: Use fact-based analysis, state when reliable information is unavailable, and avoid fabricating company details or interview experiences.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Chinese-speaking product manager candidates use this skill to prepare for PM interviews by researching company and role context, analyzing job descriptions, matching resume experience to the role, practicing tailored mock interview questions, and receiving structured feedback. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Users may provide resumes, job descriptions, or project details containing personal data or confidential business information. <br>
-Mitigation: Provide only the minimum resume and JD details needed for coaching; redact contact information, addresses, IDs, confidential company details, and private internal job descriptions before use. <br>
-Risk: Company research and interview-experience summaries can be misleading if unsupported or outdated. <br>
-Mitigation: Base company and interview-experience analysis on real search results and explicitly state when reliable information is unavailable. <br>
+**Output Format:** [Markdown-style Chinese-language coaching responses with bullets, tables, interview questions, scoring feedback, rewritten sample answers, and resume revision suggestions.]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ffernnnl/pmproducer) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/ffernnnl) <br>
+**Other Properties Related to Output:** [May rely on web research when company and job-description inputs are provided; users should redact sensitive personal details before sharing resumes or examples.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with structured lists, tables, interview questions, scoring feedback, rewritten answers, and resume revision suggestions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-language coaching output that is generated step by step from user-provided company, JD, resume, and interview-answer inputs.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

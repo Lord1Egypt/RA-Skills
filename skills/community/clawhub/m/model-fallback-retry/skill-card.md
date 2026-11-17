@@ -1,45 +1,55 @@
-## Description: <br>
-Detects large-language-model quota, rate-limit, and overload failures, queues the original message, and retries delivery with exponential backoff. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Model Fallback Retry detects LLM rate-limit, quota, and overload failures, queues the original user message locally, and retries it on a scheduled exponential backoff.
 
-## Publisher: <br>
-[hehe973781230](https://clawhub.ai/user/hehe973781230) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hehe973781230](https://clawhub.ai/user/hehe973781230)
 
-## Use Case: <br>
-Developers and operators use this skill to reduce message loss when model calls fail because of rate limits, quota exhaustion, or temporary service overload. It captures retryable failures, tracks queued messages, and sends due retries back to the original session. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Failed prompts and model responses may be written to local plaintext JSON queue and log files. <br>
-Mitigation: Review the queue and log storage locations, restrict local file permissions, and disable or reduce verbose logging where possible. <br>
-Risk: Queued conversation content may be automatically resent by the retry job. <br>
-Mitigation: Install only for sessions where automatic replay is acceptable, review retry limits and intervals, and monitor queued items before enabling scheduled retries. <br>
-Risk: The clear command can remove queued retry work. <br>
-Mitigation: Limit command access to trusted users and confirm queued item status before using bulk clear operations. <br>
+## Use Case:
 
+Developers and OpenClaw operators use this skill to preserve user messages when model calls fail because of rate limits, quota exhaustion, or temporary service overload, then retry those messages without manual re-entry.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hehe973781230/model-fallback-retry) <br>
-- [README.md](README.md) <br>
-- [CHANGELOG.md](CHANGELOG.md) <br>
-- [Plugin manifest](plugin/openclaw.plugin.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [When installed, the plugin maintains local JSON queue and log files for retry tracking.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, artifact package.json, and CHANGELOG.md released 2026-06-20) <br>
+Risk: The skill stores full AI replies and queued user messages locally, which may include sensitive conversation content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Enable it only where local retention is acceptable; review file permissions, retention expectations, and whether sensitive conversations should be excluded before deployment.
+
+Risk: The recurring retry job can resend queued user content automatically.
+
+Mitigation: Review cron configuration, destination routing, and maximum retry settings before enabling automatic replay.
+
+## Reference(s):
+
+- [Model Fallback Retry ClawHub Page](https://clawhub.ai/hehe973781230/skills/model-fallback-retry)
+- [Artifact README](artifact/README.md)
+- [Artifact Changelog](artifact/CHANGELOG.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Configuration]
+
+**Output Format:** [Text responses, local JSON queue records, and shell command invocations for scheduled retry delivery]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores retry state locally and uses configured retry intervals and maximum retry counts.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, package.json, CHANGELOG)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

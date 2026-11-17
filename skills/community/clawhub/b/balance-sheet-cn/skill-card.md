@@ -1,43 +1,58 @@
-## Description: <br>
-根据财务报表 Excel 文件生成规范化资产负债表，保留模板格式和公式，并按指定规则汇总银行余额、往来款项和经营利润。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates a standardized balance sheet workbook from a financial Excel source file by applying documented accounting-sheet transformation rules.
 
-## Publisher: <br>
-[courage-zen](https://clawhub.ai/user/courage-zen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[courage-zen](https://clawhub.ai/user/courage-zen)
 
-## Use Case: <br>
-Finance and operations users can use this skill to turn a workbook containing an asset-liability template, detail sheet, and income statement into a completed balance-sheet workbook for monthly or annual reporting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads financial Excel files from the workspace. <br>
-Mitigation: Use only intended source workbooks, keep sensitive files out of the workspace when possible, and review generated output before sharing it. <br>
-Risk: Running without an explicit output path writes the default workbook name and may replace an existing file. <br>
-Mitigation: Provide a specific output path or check whether 资产负债表.xlsx already exists before running. <br>
-Risk: Generated totals depend on the expected workbook sheets, columns, and category labels. <br>
-Mitigation: Confirm the input workbook follows the documented template and validate key totals against source records before relying on the result. <br>
+## Use Case:
 
+Finance staff, accountants, and agents supporting bookkeeping workflows use this skill to turn a structured Excel workbook containing balance-sheet, detail, and profit-statement sheets into a formatted balance sheet output.
 
-## Reference(s): <br>
-- [Balance-sheet generation rules](references/rules.md) <br>
-- [ClawHub skill page](https://clawhub.ai/courage-zen/balance-sheet-cn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Guidance] <br>
-**Output Format:** [Excel workbook (.xlsx) with concise command-line status text when run from a shell] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads a source workbook and writes a balance-sheet workbook, defaulting to 资产负债表.xlsx when no output path is provided.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and artifact documentation) <br>
+Risk: The skill reads local financial workbooks that may contain sensitive business data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only on intended input files in a controlled workspace and provide explicit source and output paths.
+
+Risk: Automatic or under-scoped file selection could process the wrong workbook.
+
+Mitigation: Prefer command-line or scripted usage with an explicit input path and verify the selected workbook before generation.
+
+Risk: Untrusted formulas or external links may be carried into the generated workbook.
+
+Mitigation: Use trusted source files and review the generated workbook for unexpected formulas or external links before sharing or opening broadly.
+
+## Reference(s):
+
+- [Balance sheet generation rules](references/rules.md)
+- [ClawHub skill page](https://clawhub.ai/courage-zen/skills/balance-sheet-cn)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Shell commands, Code, Guidance]
+
+**Output Format:** [Markdown guidance with Python and shell examples; generated Excel workbook]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces an .xlsx balance sheet, defaulting to 资产负债表.xlsx when no output path is supplied.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

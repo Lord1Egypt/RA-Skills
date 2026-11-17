@@ -1,45 +1,58 @@
-## Description: <br>
-Lightweight AI-native CRM for solopreneurs and freelancers that tracks clients, relationships, follow-ups, deal stages, and interaction history in plain text files without a SaaS subscription. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Lightweight AI-native CRM for solopreneurs and freelancers that helps track clients, relationships, follow-ups, deal stages, and interaction history in plain text files.
 
-## Publisher: <br>
-[Clawdssen](https://clawhub.ai/user/Clawdssen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-CC-BY-NC-4.0 <br>
+## Publisher:
 
+[clawdssen](https://clawhub.ai/user/clawdssen)
 
-## Use Case: <br>
-External users, solopreneurs, and freelancers use this skill to maintain local CRM records, prepare for client meetings, track follow-ups, and review pipeline status in plain text files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+CC-BY-NC-4.0
 
-## Known Risks and Mitigations: <br>
-Risk: CRM notes can contain sensitive client information or credentials if users enter them directly into local markdown files. <br>
-Mitigation: Keep passwords, API keys, recovery codes, and session tokens out of CRM files; track only access status or references to a password manager or vault. <br>
-Risk: The optional cron and Telegram workflow can send CRM summaries outside the workspace. <br>
-Mitigation: Review the automation destination and message contents before enabling scheduled summaries. <br>
-Risk: Cloud-synced folders can expose local CRM records beyond the intended workspace. <br>
-Mitigation: Use a local-only workspace for confidential client data and review applicable data protection or professional obligations before syncing. <br>
+## Use Case:
 
+Solopreneurs and freelancers use this skill to maintain a local text-file CRM, prepare for client meetings, track follow-ups, review pipeline status, and draft updates to client records for confirmation.
 
-## Reference(s): <br>
-- [Client Relationship Manager release page](https://clawhub.ai/Clawdssen/agentledger-crm) <br>
-- [Publisher profile](https://clawhub.ai/user/Clawdssen) <br>
-- [Advanced Patterns](references/advanced-patterns.md) <br>
-- [The Agent Ledger](https://theagentledger.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with templates, checklists, tables, and optional shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local CRM structures, client record templates, follow-up queues, meeting briefs, pipeline summaries, and review guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact frontmatter lists 1.0.0) <br>
+Risk: The skill may handle confidential CRM data, including client contact details, pipeline values, relationship notes, and follow-up history.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installing for confidential CRM use, keep sensitive client data in approved local workspaces, and apply any client confidentiality or data protection obligations before syncing or sharing files.
+
+Risk: The optional weekly Telegram cron can repeatedly send CRM summaries to external services.
+
+Mitigation: Enable scheduled Telegram delivery only when external model processing and Telegram delivery are approved for the relevant client data.
+
+Risk: Client markdown files could become an unsafe place for credentials or login secrets.
+
+Mitigation: Do not place passwords, API keys, or login secrets in CRM markdown files; use an approved password manager or secret-sharing process instead.
+
+## Reference(s):
+
+- [Client Relationship Manager - Advanced Patterns](references/advanced-patterns.md)
+- [ClawHub skill page](https://clawhub.ai/clawdssen/skills/agentledger-crm)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline templates and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose file updates, CRM summaries, meeting briefs, follow-up queues, pipeline reviews, and optional scheduled review commands.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter says 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

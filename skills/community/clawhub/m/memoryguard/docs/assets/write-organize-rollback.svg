@@ -1,0 +1,133 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="900" viewBox="0 0 1440 900" font-family="'Segoe UI', Helvetica, Arial, sans-serif">
+  <style>
+    @media (prefers-reduced-motion:reduce){
+      animate,animateTransform{display:none}
+    }
+  </style>
+  
+  <rect width="1440" height="900" fill="#08121F"/>
+  
+  <!-- Title bar -->
+  <rect width="1440" height="52" fill="#12243A"/>
+  <rect x="20" y="16" width="180" height="20" rx="4" fill="#38D5C8"/>
+  
+  <!-- Step indicator -->
+  <text x="720" y="34" font-size="16" font-weight="600" fill="#38D5C8" text-anchor="middle">Agent writes &#8594; Auto-organize &#8594; Rollback</text>
+  
+  <!-- Left panel: Write -->
+  <rect x="20" y="72" width="460" height="500" rx="8" fill="#0D1B2A" stroke="#1E3A52" stroke-width="1"/>
+  <rect x="20" y="72" width="460" height="40" rx="8" fill="#12243A"/>
+  <rect x="36" y="84" width="100" height="16" rx="3" fill="#38D5C8" opacity="0.8"/>
+  
+  <!-- Write input -->
+  <rect x="36" y="128" width="424" height="60" rx="4" fill="#12243A"/>
+  <rect x="48" y="140" width="8" height="36" rx="2" fill="#38D5C8">
+    <animate attributeName="opacity" values="0;1;1;0.4" dur="6s" repeatCount="indefinite"/>
+  </rect>
+  <rect x="68" y="144" width="300" height="10" rx="2" fill="#3E556B"/>
+  <rect x="68" y="162" width="180" height="8" rx="2" fill="#2A3F55"/>
+  
+  <!-- Old memory (shadowed) -->
+  <rect x="36" y="204" width="424" height="56" rx="4" fill="#12243A" opacity="0.4">
+    <animate attributeName="opacity" values="0.8;0.4;0.4;0.8" dur="6s" repeatCount="indefinite"/>
+  </rect>
+  <rect x="48" y="216" width="8" height="32" rx="2" fill="#3E556B"/>
+  <rect x="68" y="220" width="260" height="10" rx="2" fill="#3E556B"/>
+  <rect x="68" y="238" width="140" height="8" rx="2" fill="#2A3F55"/>
+  
+  <!-- Supersede arrow -->
+  <g opacity="0.8">
+    <path d="M 248 268 L 248 296 L 242 290 M 248 296 L 254 290" stroke="#38D5C8" stroke-width="2" fill="none">
+      <animate attributeName="opacity" values="0;0;1;1;0" dur="6s" repeatCount="indefinite" keyTimes="0;0.2;0.3;0.8;1"/>
+    </path>
+  </g>
+  
+  <!-- New memory (active) -->
+  <rect x="36" y="300" width="424" height="56" rx="4" fill="#12243A">
+    <animate attributeName="fill" values="#12243A;#12243A;#0D2A20;#0D2A20;#12243A" dur="6s" repeatCount="indefinite" keyTimes="0;0.2;0.3;0.8;1"/>
+  </rect>
+  <rect x="48" y="312" width="8" height="32" rx="2" fill="#38D5C8"/>
+  <rect x="68" y="316" width="320" height="10" rx="2" fill="#3E556B"/>
+  <rect x="68" y="334" width="200" height="8" rx="2" fill="#2A3F55"/>
+  
+  <!-- Actions -->
+  <rect x="36" y="376" width="100" height="28" rx="14" fill="#1A3340">
+    <animate attributeName="opacity" values="0.4;0.4;1;1;0.4" dur="6s" repeatCount="indefinite" keyTimes="0;0.2;0.3;0.8;1"/>
+  </rect>
+  <rect x="48" y="384" width="12" height="12" rx="6" fill="#38D5C8"/>
+  <rect x="68" y="386" width="56" height="10" rx="2" fill="#3E556B"/>
+  
+  <rect x="148" y="376" width="120" height="28" rx="14" fill="#1A3340">
+    <animate attributeName="opacity" values="0.4;0.4;1;1;0.4" dur="6s" repeatCount="indefinite" keyTimes="0;0.2;0.3;0.8;1"/>
+  </rect>
+  <rect x="160" y="384" width="12" height="12" rx="6" fill="#F3B562"/>
+  <rect x="180" y="386" width="76" height="10" rx="2" fill="#3E556B"/>
+  
+  <!-- Right panel: Version History -->
+  <rect x="500" y="72" width="920" height="500" rx="8" fill="#0D1B2A" stroke="#1E3A52" stroke-width="1"/>
+  <rect x="500" y="72" width="920" height="40" rx="8" fill="#12243A"/>
+  <rect x="516" y="84" width="140" height="16" rx="3" fill="#38D5C8" opacity="0.8"/>
+  
+  <!-- Timeline -->
+  <line x1="556" y1="140" x2="556" y2="520" stroke="#1E3A52" stroke-width="2"/>
+  
+  <!-- Version 3 (current, active) -->
+  <circle cx="556" cy="160" r="10" fill="#38D5C8">
+    <animate attributeName="r" values="10;10;10;10;14;10" dur="6s" repeatCount="indefinite" keyTimes="0;0.2;0.3;0.7;0.8;1"/>
+  </circle>
+  <rect x="580" y="148" width="780" height="56" rx="4" fill="#12243A">
+    <animate attributeName="fill" values="#12243A;#12243A;#0D2A20;#0D2A20;#1A1212;#12243A" dur="6s" repeatCount="indefinite" keyTimes="0;0.2;0.3;0.7;0.8;1"/>
+  </rect>
+  <rect x="592" y="160" width="8" height="32" rx="2" fill="#38D5C8"/>
+  <rect x="612" y="164" width="360" height="10" rx="2" fill="#3E556B"/>
+  <rect x="612" y="182" width="200" height="8" rx="2" fill="#2A3F55"/>
+  
+  <!-- Version 2 (superseded) -->
+  <circle cx="556" cy="260" r="10" fill="#F3B562" opacity="0.6"/>
+  <rect x="580" y="248" width="780" height="56" rx="4" fill="#12243A" opacity="0.5"/>
+  <rect x="592" y="260" width="8" height="32" rx="2" fill="#F3B562" opacity="0.5"/>
+  <rect x="612" y="264" width="300" height="10" rx="2" fill="#3E556B"/>
+  <rect x="612" y="282" width="160" height="8" rx="2" fill="#2A3F55"/>
+  
+  <!-- Version 1 (original) -->
+  <circle cx="556" cy="360" r="10" fill="#3E556B">
+    <animate attributeName="fill" values="#3E556B;#3E556B;#3E556B;#3E556B;#38D5C8;#3E556B" dur="6s" repeatCount="indefinite" keyTimes="0;0.2;0.3;0.7;0.8;1"/>
+  </circle>
+  <rect x="580" y="348" width="780" height="56" rx="4" fill="#12243A" opacity="0.3">
+    <animate attributeName="opacity" values="0.3;0.3;0.3;0.3;0.8;0.3" dur="6s" repeatCount="indefinite" keyTimes="0;0.2;0.3;0.7;0.8;1"/>
+  </rect>
+  <rect x="592" y="360" width="8" height="32" rx="2" fill="#3E556B">
+    <animate attributeName="fill" values="#3E556B;#3E556B;#3E556B;#3E556B;#38D5C8;#3E556B" dur="6s" repeatCount="indefinite" keyTimes="0;0.2;0.3;0.7;0.8;1"/>
+  </rect>
+  <rect x="612" y="364" width="280" height="10" rx="2" fill="#3E556B"/>
+  <rect x="612" y="382" width="140" height="8" rx="2" fill="#2A3F55"/>
+  
+  <!-- Rollback button (animated) -->
+  <rect x="580" y="440" width="140" height="40" rx="20" fill="#38D5C8" opacity="0.15">
+    <animate attributeName="opacity" values="0.15;0.15;0.15;0.15;0.4;0.15" dur="6s" repeatCount="indefinite" keyTimes="0;0.2;0.3;0.7;0.8;1"/>
+  </rect>
+  <rect x="592" y="452" width="116" height="16" rx="3" fill="#38D5C8">
+    <animate attributeName="opacity" values="0.4;0.4;0.4;0.4;1;0.4" dur="6s" repeatCount="indefinite" keyTimes="0;0.2;0.3;0.7;0.8;1"/>
+  </rect>
+  
+  <!-- Rollback arrow -->
+  <path d="M 556 380 Q 520 420 556 460" stroke="#38D5C8" stroke-width="2" fill="none" stroke-dasharray="4 4" opacity="0">
+    <animate attributeName="opacity" values="0;0;0;0;0.8;0" dur="6s" repeatCount="indefinite" keyTimes="0;0.2;0.3;0.7;0.8;1"/>
+  </path>
+  
+  <!-- Bottom: quarantine preview -->
+  <rect x="20" y="600" width="1400" height="120" rx="8" fill="#0D1B2A" stroke="#1E3A52" stroke-width="1"/>
+  <rect x="20" y="600" width="1400" height="36" rx="8" fill="#12243A"/>
+  <rect x="36" y="612" width="120" height="14" rx="3" fill="#EA6A6A" opacity="0.8"/>
+  
+  <rect x="36" y="652" width="1360" height="48" rx="4" fill="#1A1212" stroke="#3A2020" stroke-width="1"/>
+  <rect x="48" y="664" width="8" height="24" rx="2" fill="#EA6A6A"/>
+  <rect x="68" y="668" width="300" height="10" rx="2" fill="#3E556B"/>
+  <rect x="68" y="686" width="180" height="8" rx="2" fill="#2A3F55"/>
+  
+  <rect x="1350" y="660" width="40" height="32" rx="4" fill="#EA6A6A" opacity="0.2"/>
+  
+  <!-- Bottom stats -->
+  <text x="720" y="780" font-size="18" fill="#3E556B" text-anchor="middle">22 MCP tools &#183; Auto-organize &#183; SQLite backend &#183; No account &#183; No telemetry</text>
+  <text x="720" y="820" font-size="22" font-weight="600" fill="#38D5C8" text-anchor="middle" font-family="'Cascadia Code', 'Consolas', monospace">pip install agent-memguard</text>
+</svg>

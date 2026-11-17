@@ -1,45 +1,63 @@
-## Description: <br>
-AI公众号信息源 scans AI WeChat public-account articles, identifies popular items by read count, clusters them into topics, and generates a styled HTML daily report with metrics, cover images, search, and subscription support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI公众号信息源 scans AI WeChat public account articles, ranks hot content by read count, clusters articles into topics, and generates a styled HTML daily report with metrics, cover images, search, and subscription support.
 
-## Publisher: <br>
-[redfox-data](https://clawhub.ai/user/redfox-data) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[redfox-data](https://clawhub.ai/user/redfox-data)
 
-## Use Case: <br>
-External users and content-curation teams use this skill to generate daily AI WeChat article reports, inspect high-read articles by topic, and search the collected article set through the generated local report experience. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a RedFox API key and can store or embed sensitive credential material in local configuration or generated report behavior. <br>
-Mitigation: Prefer REDFOX_API_KEY over a plaintext config file, avoid sharing generated reports without review, and rotate the API key if local files may have been exposed. <br>
-Risk: The generated report can run a localhost search proxy while the process remains open. <br>
-Mitigation: Use --no-open when interactive search is not needed, and close the report process when finished. <br>
-Risk: --subscribe installs an OS-level scheduled task for recurring report generation. <br>
-Mitigation: Use --subscribe only when scheduled execution is intended, review the created LaunchAgent or crontab entry, and remove it with --unsubscribe when no longer needed. <br>
-Risk: Reports are written to the local filesystem and may contain article metadata, links, and usage context. <br>
-Mitigation: Choose an appropriate output directory and review generated HTML before sharing it outside the local environment. <br>
+## Use Case:
 
+AI professionals, content creators, and industry researchers use this skill to monitor popular AI WeChat public account articles, identify trending topics, and produce daily local HTML briefings.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/redfox-data/gzh-ai-feed) <br>
-- [RedFox API key setup](https://redfox.hk/settings/api-keys?source=clawhub) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, HTML, Files, Shell commands, Configuration] <br>
-**Output Format:** [Terminal text plus a generated HTML report file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a RedFox API key; writes reports under the configured output directory, defaulting to ~/Downloads/QoderReports; optional search uses a localhost proxy while the report process stays open.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The skill contacts redfox.hk using a RedFox API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run it only when comfortable sending requests to RedFox, and verify the API key origin, scope, validity period, and reset or revocation support before use.
+
+Risk: The subscription option installs a persistent daily scheduled task.
+
+Mitigation: Avoid --subscribe unless persistent local scheduling is expected, and review or remove the installed launch agent or crontab entry when no longer needed.
+
+Risk: Generated reports include remote article metadata in HTML.
+
+Mitigation: Treat generated reports as untrusted local HTML and review content before sharing or opening in sensitive browser contexts.
+
+Risk: API key handling and subscription command construction need review according to the security guidance.
+
+Mitigation: Prefer environment-variable based key configuration, avoid hardcoding or logging keys, and do not use subscription with sensitive API keys until those issues are fixed.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/redfox-data/skills/gzh-ai-feed)
+- [RedFox API Key Settings](https://redfox.hk/settings/api-keys?source=clawhub)
+- [RedFoxHub](https://redfox.hk)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, code]
+
+**Output Format:** [Terminal text plus local HTML report files and command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can save reports under ~/Downloads/QoderReports, start a localhost search proxy, and optionally install a daily scheduled subscription task.]
+
+## Skill Version(s):
+
+1.0.3 (source: server evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

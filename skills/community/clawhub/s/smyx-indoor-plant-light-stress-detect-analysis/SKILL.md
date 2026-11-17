@@ -1,7 +1,7 @@
 ---
 name: "smyx-indoor-plant-light-stress-detect-analysis"
 description: "AI-powered indoor plant light stress detection from smart planter or fixed camera images (optionally combined with light sensor lux data). Detects morphological anomalies caused by low light (elongated internodes / etiolation, thin leaves, pale green color) or strong-light damage (leaf burn spots, scorched edges, curling, bleaching). Combined with optional lux sensor readings, it determines the current light stress type (insufficient / excessive / normal) and outputs adjustment suggestions (e.g. move to window, add shading, adjust grow-light duration). Scenarios: smart planters, indoor green plant care, home gardening, office plants. | 通过智能花盆或固定摄像头拍摄植物整体图像（也可选配光照传感器数据），利用AI视觉分析技术检测植物因光照不足引起的形态异常（如茎节间距拉长—徒长、叶片变薄、颜色浅绿）或因光照过强引起的损伤（叶片灼伤斑、焦边、卷曲、褪绿）。结合可选的光照传感器实时数据（勒克斯值），综合判断植物当前所受的光照胁迫类型（不足/过强/正常），并输出光照调整建议（如"增加光照，可移至窗边""遮阴，避免直射光"）。应用场景：智能花盆、室内绿植养护、家庭园艺、办公室植物。"
-version: "1.0.1"
+version: "1.0.11"
 license: "MIT-0"
 ---
 

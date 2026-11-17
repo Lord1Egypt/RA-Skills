@@ -1,40 +1,51 @@
-## Description: <br>
-Socrates helps agents run a concise Socratic self-Q&A before planning, coding, refactoring, or delegation to clarify goals, assumptions, risks, approach, and next actions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Socrates helps an agent run a concise self-Q&A before planning, coding, refactoring, or delegation to clarify goals, expose assumptions, pressure-test risks, choose an approach, and define next actions.
 
-## Publisher: <br>
-[Hongyi3](https://clawhub.ai/user/Hongyi3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[hongyi3](https://clawhub.ai/user/hongyi3)
 
-## Use Case: <br>
-Developers, agents, and reviewers use Socrates to pressure-test non-trivial plans, coding changes, refactors, and delegation boundaries before execution while keeping the reasoning brief and action-oriented. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Use in sensitive maintenance or production-adjacent workflows could authorize actions that need human review. <br>
-Mitigation: Review commands and proposed actions before allowing moderation, publishing, production Convex, or full-access autoreview steps, and use documented opt-outs or confirmation steps in sensitive environments. <br>
+## Use Case:
 
+Developers and agent operators use Socrates to add a compact planning check before complex implementation, refactoring, architecture, or delegation work. It is intended to improve execution quality by making assumptions, risks, tradeoffs, and next actions explicit.
 
-## Reference(s): <br>
-- [Socrates Protocol](references/protocol.md) <br>
-- [Socrates Examples](references/examples.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/Hongyi3/socrates) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown sections with concise bullet points and numbered action plans] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include a Delegation Contract only when sub-agents are involved.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata) <br>
+Risk: Implicit invocation may add extra structure or slow very small planning, coding, refactoring, or delegation tasks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when a compact planning check is desired, and disable or narrow implicit invocation in environments that support it.
+
+## Reference(s):
+
+- [Socrates Protocol](references/protocol.md)
+- [Socrates Examples](references/examples.md)
+- [Socrates ClawHub Skill Page](https://clawhub.ai/hongyi3/skills/socrates)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with concise Socratic Pass, Action Plan, and optional Delegation Contract sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution, data access, persistence, or hidden behavior reported by security evidence.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

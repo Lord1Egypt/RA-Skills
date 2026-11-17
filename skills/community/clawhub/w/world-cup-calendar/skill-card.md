@@ -1,47 +1,60 @@
-## Description: <br>
-将 2026 FIFA 世界杯赛程同步到飞书日历，支持按北京时间预览、创建或删除私密日程，并为关注球队设置提前提醒。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+将 2026 FIFA 世界杯赛程按北京时间同步到私密飞书日历，并为关注球队比赛设置提前提醒。
 
-## Publisher: <br>
-[kekenana272](https://clawhub.ai/user/kekenana272) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kekenana272](https://clawhub.ai/user/kekenana272)
 
-## Use Case: <br>
-External users and developers use this skill to preview and synchronize the 2026 FIFA World Cup schedule into a Feishu/Lark calendar with private visibility, free busy status, and configurable reminders for selected teams. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Calendar permissions allow the local Feishu/Lark CLI to create or delete calendar data. <br>
-Mitigation: Review preview output first, grant only the needed calendar scopes, and use --execute only after confirming the intended changes. <br>
-Risk: The helper can attempt a global npm install of @larksuite/cli when requested. <br>
-Mitigation: Install @larksuite/cli manually when preferred, or review the doctor --install-cli path before allowing a global npm install. <br>
-Risk: World Cup fixture times and knockout-stage placeholders may change after the bundled data extraction. <br>
-Mitigation: Recheck the official FIFA schedule before important syncs or before updating placeholder knockout matches. <br>
-Risk: Delete commands can remove generated World Cup events or the whole target calendar when executed. <br>
-Mitigation: Run delete commands without --execute first and confirm the matched calendar, match IDs, and event list before deleting. <br>
+## Use Case:
 
+External users and developers use this skill to preview, create, or delete Feishu calendar events for the 2026 FIFA World Cup schedule, including private visibility, free busy status, and focus-team reminders.
 
-## Reference(s): <br>
-- [FIFA 2026 match schedule PDF](https://digitalhub.fifa.com/m/1be9ce37eb98fcc5/original/FWC26-Match-Schedule_English.pdf) <br>
-- [Schedule data notes](references/data-notes.md) <br>
-- [2026 FIFA World Cup schedule JSON](references/fwc2026-schedule.json) <br>
-- [ClawHub skill page](https://clawhub.ai/kekenana272/world-cup-calendar) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration instructions, JSON] <br>
-**Output Format:** [Markdown guidance with inline bash commands and JSON preview output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Preview mode is the default; calendar writes and deletions require the user to add --execute.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can globally install an unpinned external Feishu CLI through npm.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and verify a pinned lark-cli version separately before using the skill, or review the package before running doctor --install-cli.
+
+Risk: The skill can create or delete real Feishu calendar data when --execute is used.
+
+Mitigation: Run preview commands first, review the planned sync or delete output, and use --execute only after confirming the target calendar and match selection.
+
+Risk: The bundled schedule may become stale if FIFA updates match times or knockout-stage teams.
+
+Mitigation: Recheck the official FIFA schedule before important matches and update references/fwc2026-schedule.json when official data changes.
+
+## Reference(s):
+
+- [Schedule Data Notes](references/data-notes.md)
+- [2026 FIFA World Cup Schedule Data](references/fwc2026-schedule.json)
+- [FIFA Official Match Schedule PDF](https://digitalhub.fifa.com/m/1be9ce37eb98fcc5/original/FWC26-Match-Schedule_English.pdf)
+- [ClawHub Skill Page](https://clawhub.ai/kekenana272/skills/world-cup-calendar)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON calendar-event previews]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Preview mode is the default; Feishu writes and deletions require an explicit --execute flag.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,59 @@
-## Description: <br>
-Active Learning Agent continuously reviews Feishu workplace context, builds topic timelines, and proactively delivers analyses, summaries, risk alerts, or drafts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Active Learning Agent continuously observes Feishu workplace context, builds timelines across messages, meetings, documents, and calendar events, and proactively delivers analyses, summaries, alerts, and drafts.
 
-## Publisher: <br>
-[cscguochang](https://clawhub.ai/user/cscguochang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cscguochang](https://clawhub.ai/user/cscguochang)
 
-## Use Case: <br>
-Employees using Feishu use this recurring assistant to connect messages, documents, meetings, recordings, and calendars into accurate work timelines. It helps produce concise cross-source summaries, risk alerts, analyses, and draft documents while recording long-term insights. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The assistant can continuously inspect private Feishu chats, documents, meetings, recordings, calendars, and long-term memory files. <br>
-Mitigation: Restrict the Feishu sources it may inspect, review retained memory and log files, and define redaction and deletion procedures before enabling recurring scans. <br>
-Risk: The assistant can send messages or create documents without clear approval controls. <br>
-Mitigation: Require user approval before sending messages or creating Feishu documents, especially for summaries, alerts, or drafts based on private workplace data. <br>
+## Use Case:
 
+Employees and teams using Feishu can use this skill to track evolving work topics across private chats, group chats, meetings, recordings, documents, and calendars. It helps assemble timelines, surface inconsistencies, prepare concise summaries, and draft follow-up artifacts for review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cscguochang/active-learning-agent) <br>
-- [Publisher profile](https://clawhub.ai/user/cscguochang) <br>
-- [MIT-0 license](https://spdx.org/licenses/MIT-0.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance] <br>
-**Output Format:** [Markdown messages, Feishu document drafts, action logs, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update memory files and Feishu documents when the configured tools permit it.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.4.0 (source: server release metadata and skill.yaml) <br>
+Risk: The skill requests recurring access to private Feishu chats, meetings, recordings, documents, and calendars, which can expose sensitive workplace content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit source-by-source consent, disable private chats and transcripts by default, and limit access to only the sources needed for the user's workflow.
+
+Risk: The skill stores long-term summaries and work profiles in memory files.
+
+Mitigation: Define retention, review, correction, and deletion controls for memory files before enabling recurring runs.
+
+Risk: The skill can send outbound Feishu messages based on inferred context.
+
+Mitigation: Keep outbound messages private unless the user confirms sharing, and review drafts before sending to broader channels.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/cscguochang/skills/active-learning-agent)
+- [Artifact README](artifact/README.md)
+- [Artifact Examples](artifact/EXAMPLES.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Configuration, Guidance]
+
+**Output Format:** [Markdown and concise Feishu-ready text with optional document drafts and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May update persistent memory and activity logs when deployed with the configured Feishu tools.]
+
+## Skill Version(s):
+
+2.4.0 (source: server release metadata and skill.yaml)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

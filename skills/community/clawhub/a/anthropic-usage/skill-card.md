@@ -1,45 +1,56 @@
-## Description: <br>
-Query Anthropic Admin API for token usage reports (daily, weekly, monthly) with model breakdown. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query Anthropic Admin API for token usage reports (daily, weekly, monthly) with model breakdown.
 
-## Publisher: <br>
-[leaofelipe](https://clawhub.ai/user/leaofelipe) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leaofelipe](https://clawhub.ai/user/leaofelipe)
 
-## Use Case: <br>
-Developers, engineering managers, and Anthropic organization administrators use this skill to inspect Anthropic token usage across daily, weekly, and monthly windows, including optional per-model breakdowns and cost estimates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires access to an Anthropic Admin API key and organization usage data. <br>
-Mitigation: Install only when that access is intended, configure the key through the OpenClaw API key field or direct config entry, and do not paste the Admin API key into chat. <br>
-Risk: The skill makes external requests to api.anthropic.com and may fetch anthropic.com/pricing for cost estimates. <br>
-Mitigation: Review and approve those network destinations before use in restricted environments. <br>
-Risk: The security summary reports that one script error path asks users to paste the key into chat. <br>
-Mitigation: Before installation or publication, revise that guidance so all key handling uses the OpenClaw key field or local config only. <br>
+## Use Case:
 
+Developers and operators use this skill to query Anthropic Organization Admin API usage, summarize token consumption across daily, weekly, or monthly windows, and optionally break usage down by model.
 
-## Reference(s): <br>
-- [ClawHub Anthropic Usage skill page](https://clawhub.ai/leaofelipe/anthropic-usage) <br>
-- [OpenClaw](https://openclaw.dev) <br>
-- [Anthropic pricing](https://www.anthropic.com/pricing) <br>
-- [Anthropic usage report API endpoint](https://api.anthropic.com/v1/organizations/usage_report/messages) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown tables and concise explanatory text, with shell commands when invoking or checking the usage script.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl, jq, and ANTHROPIC_ADMIN_API_KEY; cost estimates may use current rates from anthropic.com/pricing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.7 (source: server release evidence and target metadata; artifact _meta.json reports 1.0.6) <br>
+Risk: The skill uses a high-privilege Anthropic Admin API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Configure the key through the OpenClaw API-key field or a controlled local secret configuration, and do not paste the key into chat.
+
+Risk: Bundled tests may accidentally use real credentials if a real ANTHROPIC_ADMIN_API_KEY is exported.
+
+Mitigation: Unset real credentials before running tests, or run tests only after the curl stub issue described by the security evidence is fixed.
+
+## Reference(s):
+
+- [Anthropic Usage ClawHub Page](https://clawhub.ai/leaofelipe/skills/anthropic-usage)
+- [OpenClaw](https://openclaw.dev)
+- [Anthropic Pricing](https://www.anthropic.com/pricing)
+- [Anthropic Usage Report API Endpoint](https://api.anthropic.com/v1/organizations/usage_report/messages)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs token usage summaries, optional per-model tables, and agent-side cost estimates based on live Anthropic pricing.]
+
+## Skill Version(s):
+
+1.0.7 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,60 @@
-## Description: <br>
-Generates Chinese daily, weekly, and monthly work report drafts from local memory and daily log files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Chinese daily and weekly work reports from local MEMORY.md and daily log files, with documented daily, weekly, and monthly report templates.
 
-## Publisher: <br>
-[freedompixels](https://clawhub.ai/user/freedompixels) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[freedompixels](https://clawhub.ai/user/freedompixels)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and knowledge workers can use this skill to turn local Chinese work logs into structured daily and weekly Markdown reports. It is suited for personal or team status reporting when the underlying logs are maintained regularly.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Generated reports can overwrite fixed files under ~/reports.
+
+Mitigation: Review output paths before use and keep backups or version control for report directories where existing reports matter.
+
+Risk: Generated business reports include unrelated branding from the artifact.
+
+Mitigation: Inspect generated reports before sharing and remove branding that is not appropriate for the audience.
+
+Risk: Monthly reporting is advertised but not implemented in the bundled script.
+
+Mitigation: Use the daily and weekly report paths as implemented, and treat monthly output as unavailable until the skill is updated.
+
+Risk: Report quality depends on the completeness of local work logs.
+
+Mitigation: Maintain daily log files consistently and review generated summaries for omissions before relying on them.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Employees and teams use this skill to turn local OpenClaw memory and daily work logs into structured Chinese daily and weekly report drafts. It is intended for personal productivity reporting where the user reviews generated Markdown before sharing it. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Markdown, Files, Shell commands, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Generated reports may include sensitive work details from local OpenClaw memory and work-log files. <br>
-Mitigation: Review generated reports before sharing them outside the intended audience. <br>
-Risk: Rerunning a daily or weekly report can replace the existing Markdown file for that date or week. <br>
-Mitigation: Keep backups or review the target report path before rerunning generation for an existing period. <br>
+**Output Format:** [Markdown reports saved as local files, plus brief command-line status text]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/freedompixels/cn-report-generator) <br>
+**Other Properties Related to Output:** [Reads local work-log files from the user's home workspace and writes report files under ~/reports.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, text, shell commands, guidance] <br>
-**Output Format:** [Markdown report files and concise command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports are saved locally under ~/reports for daily and weekly outputs; monthly output is documented but the bundled script reports it as still in development.] <br>
+1.2.7 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.2.7 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

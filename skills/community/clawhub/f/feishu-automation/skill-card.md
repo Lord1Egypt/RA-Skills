@@ -1,44 +1,60 @@
-## Description: <br>
-Automates Feishu (Lark) document workflows, app-to-app data syncing, report generation, and batch operations across documents, wikis, bitables, and cloud storage. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Advanced automation workflows for Feishu (Lark) productivity suite, including document workflows, cross-app data sync, report generation, and batch operations across documents, wikis, bitables, and cloud storage.
 
-## Publisher: <br>
-[Hejk](https://clawhub.ai/user/Hejk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[hejk](https://clawhub.ai/user/hejk)
 
-## Use Case: <br>
-Developers and operations teams use this skill to automate Feishu/Lark document, wiki, Bitable, drive, and reporting workflows, including batch updates, migrations, backups, and generated reports. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can be used with broad Feishu access across documents, wikis, bitables, and drive folders. <br>
-Mitigation: Grant the narrowest Feishu app scopes and folder or document access needed for the workflow. <br>
-Risk: Batch, migration, and backup workflows can affect many documents or export sensitive workspace content. <br>
-Mitigation: Run dry-run modes first, target specific tokens where possible, and review generated content before applying changes. <br>
-Risk: Real Feishu app secrets in checked-in configuration could expose workspace access. <br>
-Mitigation: Keep production credentials in environment variables or a secret manager instead of repository config files. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Weekly Report Automation Workflow](references/weekly_report_workflow.md) <br>
-- [Feishu API Patterns](references/feishu_api_patterns.md) <br>
-- [Error Handling Guide](references/error_handling.md) <br>
-- [Best Practices for Feishu Automation](references/best_practices.md) <br>
+## Use Case:
 
+Developers and operations teams use this skill to automate Feishu/Lark document, wiki, Bitable, and drive workflows for reporting, backups, migrations, and batch updates.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python scripts, YAML configuration examples, reusable templates, and shell command examples.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update Feishu documents, generated Markdown reports, local backup files, and JSON reports when users run the provided scripts.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: High-impact document, wiki, table, move, restore, or sharing automation can alter production Feishu content.
+
+Mitigation: Run dry-runs first, require explicit approval before production execution, scope Feishu app permissions to the exact workflow, and keep backups before write or migration operations.
+
+Risk: Some bundled scripts are demo stubs and can report success without performing real Feishu API operations.
+
+Mitigation: Treat scripts as examples until real Feishu API behavior is verified and placeholder logic is replaced or reviewed for the target workflow.
+
+Risk: Configuration examples include credential-shaped fields that could lead users to place real secrets in YAML files.
+
+Mitigation: Use environment variables or a secrets manager for real credentials and avoid committing populated configuration files.
+
+## Reference(s):
+
+- [Feishu Automation Skill Page](https://clawhub.ai/hejk/skills/feishu-automation)
+- [Weekly Report Automation Workflow](references/weekly_report_workflow.md)
+- [Feishu API Patterns](references/feishu_api_patterns.md)
+- [Error Handling Guide](references/error_handling.md)
+- [Best Practices for Feishu Automation](references/best_practices.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with code snippets, shell commands, configuration examples, and generated document/report content]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce local Markdown, JSON reports, Feishu document content, and dry-run previews depending on the selected workflow.]
+
+## Skill Version(s):
+
+1.0.0 (source: server evidence release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

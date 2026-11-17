@@ -1,40 +1,62 @@
-## Description: <br>
-Agent vision for web pages - scene summaries, attention-ranked elements, annotated screenshots, and state diffing via SurfAgent's perception engine. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent vision for web pages: scene summaries, attention-ranked elements, annotated screenshots, and state diffing via SurfAgent's perception engine.
 
-## Publisher: <br>
-[agentossoftware](https://clawhub.ai/user/agentossoftware) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[agentossoftware](https://clawhub.ai/user/agentossoftware)
 
-## Use Case: <br>
-Developers and agent operators use this skill to understand live web pages, identify important interactive elements, request annotated screenshots, and verify page changes after browser actions through a local SurfAgent perception daemon. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A local SurfAgent daemon and its bearer token can expose browser perception capabilities beyond the skill text itself. <br>
-Mitigation: Install only when the local SurfAgent daemon is trusted, keep the daemon bound to localhost, and treat ~/.surfagent/daemon-token.txt as a secret. <br>
-Risk: Using browser perception on sensitive pages can reveal passwords, account data, or private information to the agent workflow. <br>
-Mitigation: Avoid using the skill on sensitive browser content unless the operator is comfortable with the agent seeing that content. <br>
+## Use Case:
 
+Developers and agent operators use this skill to perceive active web pages, rank visible interactive elements, annotate screenshots, and compare page state after browser actions.
 
-## Reference(s): <br>
-- [SurfAgent homepage](https://surfagent.app) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, markdown] <br>
-**Output Format:** [Markdown guidance with tool names, parameter tables, example workflows, and daemon endpoint examples.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill guides agents to request scene summaries, ranked elements, annotated screenshots, state tokens, and scene diffs from SurfAgent tools.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill can be used on logged-in pages or pages containing sensitive personal, payment, authentication, or private-message data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with sites and accounts you are authorized to automate, and avoid annotating or sharing pages that expose passwords, MFA codes, payment data, private messages, or personal records.
+
+Risk: Annotated screenshots and perception summaries may capture sensitive page content.
+
+Mitigation: Review outputs before sharing or storing them, and redact sensitive content when screenshots or legends are needed for collaboration.
+
+Risk: Blocker and captcha workflows can conflict with site rules or legal permissions.
+
+Mitigation: Treat captcha-solving and blocker automation as sensitive activity, and use them only where site rules and legal authorization permit.
+
+Risk: The SurfAgent daemon token protects browser automation access.
+
+Mitigation: Protect the daemon token and limit access to the local SurfAgent daemon.
+
+## Reference(s):
+
+- [SurfAgent Homepage](https://surfagent.app)
+- [ClawHub Skill Page](https://clawhub.ai/agentossoftware/skills/surfagent-perception)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, API Calls, Guidance]
+
+**Output Format:** [Markdown guidance with tool call parameters and structured perception outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include scene summaries, ranked element references, spatial clusters, state tokens, diff summaries, and annotated screenshot legends.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,45 @@
+{
+  "meta": {
+    "name": "Binance Trading Agent",
+    "version": "1.0.0",
+    "description": "An automated trading agent for Binance USDS-M Futures using OpenClaw MOA structure."
+  },
+  "agents": {
+    "defaults": {
+      "workspace": "./",
+      "model": {
+        "primary": "openai/gpt-4o",
+        "fallbacks": ["anthropic/claude-3-5-sonnet"]
+      },
+      "contextPruning": {
+        "mode": "cache-ttl",
+        "ttl": "4h"
+      },
+      "compaction": {
+        "memoryFlush": {
+          "enabled": true,
+          "softThresholdTokens": 30000
+        }
+      }
+    },
+    "list": [
+      {
+        "id": "trading-orchestrator",
+        "name": "Binance Trading Orchestrator",
+        "default": true,
+        "skills": ["binance-trading-skill"]
+      }
+    ]
+  },
+  "tools": {
+    "python": {
+      "enabled": true
+    },
+    "shell": {
+      "enabled": true
+    }
+  },
+  "logging": {
+    "redactSensitive": "tools"
+  }
+}

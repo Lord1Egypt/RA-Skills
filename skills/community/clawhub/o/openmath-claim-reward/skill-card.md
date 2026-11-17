@@ -1,45 +1,60 @@
-## Description: <br>
-Claims earned rewards from the OpenMath platform. Use when the user wants to query claimable imported/proof rewards or withdraw verified Shentu rewards after a proof has passed verification. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Claims earned rewards from the OpenMath platform by helping users query claimable imported/proof rewards and withdraw verified Shentu rewards after proof verification.
 
-## Publisher: <br>
-[bennyzhe](https://clawhub.ai/user/bennyzhe) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bennyzhe](https://clawhub.ai/user/bennyzhe)
 
-## Use Case: <br>
-External OpenMath users and developers use this skill to check claimable imported or proof rewards and prepare Shentu reward withdrawals after verifying the reward address, local key, chain ID, and RPC node. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A withdrawal command can sign and broadcast a transaction with the local OS keyring. <br>
-Mitigation: Before broadcasting, verify the exact shentud binary, reward address, key name, chain ID, and RPC node, and proceed only after the user confirms they match the intended wallet. <br>
-Risk: Reward queries and transaction checks depend on the selected Shentu RPC endpoint. <br>
-Mitigation: Use a trusted RPC node and confirm any SHENTU_NODE_URL or command-line node override before relying on results or broadcasting. <br>
-Risk: Missing or stale OpenMath config can point the flow at the wrong reward address. <br>
-Mitigation: Use an explicit address or verify the prover_address loaded from --config, OPENMATH_ENV_CONFIG, or the standard openmath-env.json locations before querying or withdrawing. <br>
+## Use Case:
 
+External users and developers use this skill to check claimable OpenMath reward buckets for a Shentu address and prepare confirmed withdrawal commands through a local Shentu keyring.
 
-## Reference(s): <br>
-- [Init Setup](references/init-setup.md) <br>
-- [OpenMath Reward Claim Reference](references/reward_claim_flow.md) <br>
-- [OpenMath Platform](https://openmath.shentu.org) <br>
-- [Default Shentu RPC Endpoint](https://rpc.shentu.org:443) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and command output summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May query a Shentu RPC endpoint and may prepare withdrawal commands that require local OS keyring signing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-v1.0.4 (source: frontmatter and server release metadata) <br>
+Risk: Reward queries and withdrawals depend on a trusted local shentud binary and the selected Shentu RPC node.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and use only trusted local binaries, and confirm the node URL before querying or broadcasting transactions.
+
+Risk: Withdrawal commands sign through the local OS keyring and can withdraw all available claimable reward buckets.
+
+Mitigation: Before broadcasting, confirm the key name, resolved wallet address, chain ID, node URL, gas settings, and intent to withdraw all claimable rewards.
+
+Risk: Wallet recovery may require sensitive secret material outside the agent workflow.
+
+Mitigation: Do not paste a recovery phrase into chat; perform recovery only in a trusted terminal or official wallet flow.
+
+## Reference(s):
+
+- [Init Setup](references/init-setup.md)
+- [OpenMath Reward Claim Reference](references/reward_claim_flow.md)
+- [OpenMath Portal](https://openmath.shentu.org)
+- [ClawHub Skill Page](https://clawhub.ai/bennyzhe/skills/openmath-claim-reward)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Shentu CLI query or withdrawal commands; withdrawal guidance requires explicit confirmation of the key name, wallet address, chain ID, node URL, and gas settings before signing.]
+
+## Skill Version(s):
+
+v1.0.4 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

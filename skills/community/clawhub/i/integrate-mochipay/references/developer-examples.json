@@ -1,0 +1,161 @@
+{
+  "website_release": "WEB82.27",
+  "documentation_url": "https://mochi.bz/Developers/Reference.aspx#code-examples",
+  "notification_url": "https://mochi.bz/Developers/Reference.aspx#returns-notifications",
+  "resources": [
+    {
+      "id": "php",
+      "name": "PHP",
+      "runtime": "7.0–8.4",
+      "download": "https://mochi.bz/Downloads/MochiPay_PHP_API_Demo_1.2.4_Multilanguages_Onsite_HPP.zip",
+      "modes": [
+        "ON_SITE",
+        "HPP"
+      ],
+      "default_mode": "ON_SITE",
+      "notes": "Original PHP routes: order.php, checkout.php and callback.php",
+      "sha256": "c1afb1241e97f16e0fc293c14984c3bd9d560de5910d6af1ee0c7fac637da389",
+      "version": "1.2.4",
+      "supported_payment_methods": [
+        "USDT_TRC20",
+        "USDC_ERC20",
+        "BTC_BITCOIN",
+        "ETH_ERC20",
+        "SOL_SOLANA",
+        "TRX_TRON"
+      ]
+    },
+    {
+      "id": "nodejs",
+      "name": "Node.js",
+      "runtime": "22+",
+      "download": "https://mochi.bz/Downloads/MochiPay_NodeJS_API_Demo_1.0.9_Multilanguages_Onsite_HPP.zip",
+      "modes": [
+        "ON_SITE",
+        "HPP"
+      ],
+      "default_mode": "ON_SITE",
+      "notes": "Common mobile/backend routes",
+      "sha256": "c64b8c4835c14361a0fe51467932419cf418856ee5cdc5d048cb06259dac2fb6",
+      "version": "1.0.9",
+      "supported_payment_methods": [
+        "USDT_TRC20",
+        "USDC_ERC20",
+        "BTC_BITCOIN",
+        "ETH_ERC20",
+        "SOL_SOLANA",
+        "TRX_TRON"
+      ]
+    },
+    {
+      "id": "python",
+      "name": "Python",
+      "runtime": "3.10+",
+      "download": "https://mochi.bz/Downloads/MochiPay_Python_API_Demo_1.0.9_Multilanguages_Onsite_HPP.zip",
+      "modes": [
+        "ON_SITE",
+        "HPP"
+      ],
+      "default_mode": "ON_SITE",
+      "notes": "Common mobile/backend routes",
+      "sha256": "82b2b8d27ac97058aff8df51371c2141671483f83b9fea975397d05e9a83068e",
+      "version": "1.0.9",
+      "supported_payment_methods": [
+        "USDT_TRC20",
+        "USDC_ERC20",
+        "BTC_BITCOIN",
+        "ETH_ERC20",
+        "SOL_SOLANA",
+        "TRX_TRON"
+      ]
+    },
+    {
+      "id": "dotnet",
+      "name": "C# / .NET Framework",
+      "runtime": "4.6.1 / VS2019",
+      "download": "https://mochi.bz/Downloads/MochiPay_DotNet_API_Demo_1.0.9_Multilanguages_Onsite_HPP.zip",
+      "modes": [
+        "ON_SITE",
+        "HPP"
+      ],
+      "default_mode": "ON_SITE",
+      "notes": "Common mobile/backend routes",
+      "sha256": "6d563f00b7d7e46b6026440b0f9311fa8eb317956b16297f990202c3ed62833b",
+      "version": "1.0.9",
+      "supported_payment_methods": [
+        "USDT_TRC20",
+        "USDC_ERC20",
+        "BTC_BITCOIN",
+        "ETH_ERC20",
+        "SOL_SOLANA",
+        "TRX_TRON"
+      ]
+    },
+    {
+      "id": "java",
+      "name": "Java",
+      "runtime": "JDK17+",
+      "download": "https://mochi.bz/Downloads/MochiPay_Java_API_Demo_1.0.9_Multilanguages_Onsite_HPP.zip",
+      "modes": [
+        "ON_SITE",
+        "HPP"
+      ],
+      "default_mode": "ON_SITE",
+      "notes": "Common mobile/backend routes",
+      "sha256": "d7f842b53c05a58d95d95d1ac66a4fe9e24c346f157d0c813f4bed13cb262b19",
+      "version": "1.0.9",
+      "supported_payment_methods": [
+        "USDT_TRC20",
+        "USDC_ERC20",
+        "BTC_BITCOIN",
+        "ETH_ERC20",
+        "SOL_SOLANA",
+        "TRX_TRON"
+      ]
+    },
+    {
+      "id": "ios",
+      "name": "iOS Swift",
+      "runtime": "iOS15+ / Xcode14+",
+      "download": "https://mochi.bz/Downloads/MochiPay_iOS_Swift_Demo_1.0.5_Multilanguages_Onsite_HPP.zip",
+      "modes": [
+        "ON_SITE",
+        "HPP"
+      ],
+      "default_mode": "ON_SITE",
+      "notes": "Use one common backend; source project only",
+      "sha256": "27fb0297671d103ab22e299fb2f4faa8b40820009bf179580cf2d1ad1346473b",
+      "version": "1.0.5",
+      "supported_payment_methods": [
+        "USDT_TRC20",
+        "USDC_ERC20",
+        "BTC_BITCOIN",
+        "ETH_ERC20",
+        "SOL_SOLANA",
+        "TRX_TRON"
+      ]
+    },
+    {
+      "id": "android",
+      "name": "Android Kotlin",
+      "runtime": "API26+ / SDK35 / JDK17",
+      "download": "https://mochi.bz/Downloads/MochiPay_Android_Kotlin_Demo_1.0.5_Multilanguages_Onsite_HPP.zip",
+      "modes": [
+        "ON_SITE",
+        "HPP"
+      ],
+      "default_mode": "ON_SITE",
+      "notes": "Use one common backend; source project only",
+      "sha256": "27f27e721a986a055c1b3540cfb5f637ed0245fd8bdbefb2394498a53ab33f14",
+      "version": "1.0.5",
+      "supported_payment_methods": [
+        "USDT_TRC20",
+        "USDC_ERC20",
+        "BTC_BITCOIN",
+        "ETH_ERC20",
+        "SOL_SOLANA",
+        "TRX_TRON"
+      ]
+    }
+  ]
+}

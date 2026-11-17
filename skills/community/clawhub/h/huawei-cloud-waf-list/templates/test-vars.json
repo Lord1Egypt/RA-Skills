@@ -1,0 +1,70 @@
+{
+  "skill_name": "huawei-cloud-waf-list",
+  "region": "cn-north-4",
+  "test_cases": [
+    {
+      "id": "TC-01",
+      "name": "list cloud-mode protected domains (default)",
+      "command": "python3 scripts/list_waf_sites.py --region=cn-north-4",
+      "expected": "table with 防护域名 | 防护状态 | 接入方式 | 保活方式 | 独享IP | Domain ID and 共 N 个防护网站",
+      "type": "readonly",
+      "executor": "script"
+    },
+    {
+      "id": "TC-02",
+      "name": "list all-modes protected domains",
+      "command": "python3 scripts/list_waf_sites.py --all-modes --region=cn-north-4",
+      "expected": "composite table incl. waf_type=premium domains",
+      "type": "readonly",
+      "executor": "script"
+    },
+    {
+      "id": "TC-03",
+      "name": "JSON output",
+      "command": "python3 scripts/list_waf_sites.py --all-modes --json --region=cn-north-4",
+      "expected": "valid JSON with hostname/protect_status/waf_type",
+      "type": "readonly",
+      "executor": "script"
+    },
+    {
+      "id": "TC-04",
+      "name": "names-only output",
+      "command": "python3 scripts/list_waf_sites.py --names-only --region=cn-north-4",
+      "expected": "one domain per line, unique & sorted",
+      "type": "readonly",
+      "executor": "script"
+    },
+    {
+      "id": "TC-05",
+      "name": "filter by protection status",
+      "command": "python3 scripts/list_waf_sites.py --all-modes --protect-status 1 --region=cn-north-4",
+      "expected": "only enabled domains",
+      "type": "readonly",
+      "executor": "script"
+    },
+    {
+      "id": "TC-06",
+      "name": "write-intent guard",
+      "command": "python3 scripts/list_waf_sites.py --hostname \"delete www.example.com\" --region=cn-north-4",
+      "expected": "read-only guard error, no command runs",
+      "type": "readonly",
+      "executor": "script"
+    },
+    {
+      "id": "TC-07",
+      "name": "empty region hint",
+      "command": "python3 scripts/list_waf_sites.py --region=cn-north-4",
+      "expected": "当前区域无 WAF 防护网站。 (when account has no sites)",
+      "type": "readonly",
+      "executor": "script"
+    },
+    {
+      "id": "TC-08",
+      "name": "IAM permission missing hint",
+      "command": "python3 scripts/list_waf_sites.py --region=cn-north-4",
+      "expected": "无权限访问 WAF 防护网站列表 (WAF.00012006)",
+      "type": "readonly",
+      "executor": "script"
+    }
+  ]
+}

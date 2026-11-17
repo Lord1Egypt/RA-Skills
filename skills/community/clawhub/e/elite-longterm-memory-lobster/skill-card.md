@@ -1,50 +1,59 @@
-## Description: <br>
-Ultimate AI agent memory system that combines bulletproof WAL protocol, vector search, git-based knowledge graphs, cloud backup, and maintenance hygiene for Clawdbot, Moltbot, Claude, GPT agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides agent-facing guidance and CLI commands for maintaining durable long-term memory through session files, semantic recall configuration, git notes, curated archives, and optional cloud memory.
 
-## Publisher: <br>
-[mjscjj](https://clawhub.ai/user/mjscjj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[mjscjj](https://clawhub.ai/user/mjscjj)
 
-## Use Case: <br>
-Developers and agent operators use this skill to set up durable working memory, semantic recall, Git-based decision records, curated memory files, and optional cloud memory for Clawdbot, Moltbot, Claude, GPT, and similar agents. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Durable memory may retain sensitive conversation details longer than intended. <br>
-Mitigation: Avoid secrets, customer data, regulated data, and sensitive business context unless explicit retention rules, redaction, review, and deletion controls are in place. <br>
-Risk: Optional Mem0, SuperMemory, or other cloud memory features may transmit conversation content to third-party services. <br>
-Mitigation: Do not enable cloud memory features until the transmitted data, provider storage behavior, and deletion controls are understood and approved. <br>
-Risk: Silent memory capture can store preferences, decisions, or facts without enough consent or sensitivity filtering. <br>
-Mitigation: Require explicit consent or policy approval for auto-capture and review stored memories periodically for sensitivity and relevance. <br>
+## Use Case:
 
+Developers and agent operators use this skill to set up durable memory workflows for Clawdbot, Moltbot, Claude Code, GPT agents, and similar agent environments. It helps agents preserve active context, record decisions, organize daily memory files, and configure optional semantic or cloud-backed recall.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/mjscjj/elite-longterm-memory-lobster) <br>
-- [README](README.md) <br>
-- [Skill documentation](SKILL.md) <br>
-- [npm package](https://www.npmjs.com/package/elite-longterm-memory) <br>
-- [bulletproof-memory](https://clawdhub.com/skills/bulletproof-memory) <br>
-- [lancedb-memory](https://clawdhub.com/skills/lancedb-memory) <br>
-- [git-notes-memory](https://clawdhub.com/skills/git-notes-memory) <br>
-- [memory-hygiene](https://clawdhub.com/skills/memory-hygiene) <br>
-- [supermemory](https://clawdhub.com/skills/supermemory) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration, code] <br>
-**Output Format:** [Markdown guidance with shell commands, JSON configuration, and JavaScript snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create SESSION-STATE.md, MEMORY.md, and memory/ daily log files when the included CLI is run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata; artifact frontmatter and package.json report 1.2.0) <br>
+Risk: Durable memory can retain sensitive, secret, or regulated conversation details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat memory capture as opt-in, review memory files regularly, and avoid storing secrets or regulated data.
+
+Risk: Optional cloud memory can upload retained context outside the local workspace.
+
+Mitigation: Do not enable cloud memory until upload behavior and privacy controls have been reviewed.
+
+Risk: Broad or silent memory capture can preserve more context than intended.
+
+Mitigation: Use explicit capture thresholds and periodically audit or delete low-value memory entries.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mjscjj/skills/elite-longterm-memory-lobster)
+- [Publisher profile](https://clawhub.ai/user/mjscjj)
+- [npm package: elite-longterm-memory](https://www.npmjs.com/package/elite-longterm-memory)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash, JSON, and JavaScript snippets plus CLI-generated Markdown files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The CLI can create or inspect local memory files such as SESSION-STATE.md, MEMORY.md, and memory/YYYY-MM-DD.md.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter and package.json declare 1.2.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

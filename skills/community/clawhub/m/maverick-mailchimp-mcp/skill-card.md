@@ -1,41 +1,54 @@
-## Description: <br>
-Search and read Mailchimp Marketing API audiences, members, campaigns, content, and reports through a local MCP wrapper. Use when the user asks about Mailchimp marketing data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search and read Mailchimp Marketing API audiences, members, campaigns, content, and reports through a local MCP wrapper. Use when the user asks about Mailchimp marketing data.
 
-## Publisher: <br>
-[maverick](https://clawhub.ai/user/maverick) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[maverick](https://clawhub.ai/user/maverick)
 
-## Use Case: <br>
-External users and teams use this skill to let an agent inspect Mailchimp account, audience, member, campaign, campaign content, and report data from a connected Mailchimp account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a Mailchimp OAuth token and can read connected account data such as audiences, members, campaigns, campaign content, and reports. <br>
-Mitigation: Use a Mailchimp grant with the narrowest available scopes and avoid passing unrelated sensitive content through the tools. <br>
-Risk: The runtime depends on mcporter and uv-managed Python dependencies, and the artifact notes that mcporter installation may use an unpinned latest package. <br>
-Mitigation: Pin mcporter and uv-managed dependency versions in environments with stricter supply-chain requirements. <br>
+## Use Case:
 
+External users and marketing teams use the skill to inspect a connected Mailchimp account, including its audiences, members, campaigns, campaign content, and reports.
 
-## Reference(s): <br>
-- [mcporter](https://github.com/steipete/mcporter) <br>
-- [uv documentation](https://docs.astral.sh/uv/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, JSON, Guidance] <br>
-**Output Format:** [JSON responses from Mailchimp Marketing API tools, with brief agent guidance when needed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only Mailchimp data access; list-style tools bound requested limits to a maximum of 100 where implemented.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: The skill can read contacts, campaign content, and reports from the connected Mailchimp account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Connect only an account whose data the agent is authorized to inspect.
+
+Risk: A misconfigured API base could direct authenticated requests to an unintended endpoint.
+
+Mitigation: Verify that the provisioned API base is the correct HTTPS Mailchimp endpoint before use.
+
+## Reference(s):
+
+- [mcporter](https://github.com/steipete/mcporter)
+- [uv documentation](https://docs.astral.sh/uv/)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Text]
+
+**Output Format:** [Mailchimp account data as JSON, with text summaries where requested]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only results vary by the selected Mailchimp data request.]
+
+## Skill Version(s):
+
+1.0.3 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

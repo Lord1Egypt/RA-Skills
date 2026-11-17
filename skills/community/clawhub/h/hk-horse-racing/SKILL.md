@@ -1,14 +1,15 @@
 ---
 name: hk-horse-racing
-description: Fetches Hong Kong Jockey Club race cards with horse details, odds, and recommended picks per race. Supports date selection, class filtering, exclusions, single-race fetch, advanced scoring, and enhanced form analysis.
+description: Fetches Hong Kong Jockey Club race cards, available WIN/PLA odds, recommendations, official results, and dividends. Supports date selection, exclusions, single-race fetch, and advanced scoring.
 ---
 # HK Horse Racing Skill
 
-This skill provides two core functions:
-- **Race card data** - Fetches Hong Kong Jockey Club race cards for a given date, including meeting details, race conditions, and complete horse data (jockey, trainer, barrier, weight, past runs, gear, win/place odds).
+This skill provides three core functions:
+- **Race card data** - Reads Hong Kong Jockey Club's public English race-card page for a given date, including meeting details and runner data (jockey, trainer, barrier, weight, past runs, and gear).
 - **Recommended picks** - Analyzes the field and returns up to 4 recommended horses per race with reasoning (win odds, barrier, weight, recent form, gear), plus an estimated win probability.
+- **Official race results** - Reads official placings, final win odds, and dividends from HKJC's public results page.
 
-English output only. Additional features: exclude by horse number or barrier, single-race fetch (`raceNo`), 15‑minute caching, and 60‑second rate limiting between fresh API fetches. Advanced scoring includes trainer/jockey bonuses, barrier effectiveness, and weight penalty.
+English output only. Additional features: exclude by horse number or barrier, single-race fetch (`raceNo`), 15-minute caching, and a 60-second cooldown between fresh requests. Advanced scoring includes trainer/jockey bonuses, barrier effectiveness, and weight penalty.
 
 **Repository:** https://github.com/StevenHo1394/openclaw/tree/main/skills/hk-horse-racing
 
@@ -16,7 +17,7 @@ English output only. Additional features: exclude by horse number or barrier, si
 
 ### `fetchRaceCard(params)`
 
-Fetch race card for a given date (default: today in HKT). Includes race details, per-horse win/place odds, and recommendations for each race.
+Fetch race card for a given date (default: today in HKT). Reads runner details from the public HKJC race-card page and fetches official WIN/PLA odds when available.
 
 **Parameters (object):**
 - `date` (string, optional): Date in `YYYY-MM-DD` format. Default: today (HKT).
@@ -73,7 +74,8 @@ Fetch race card for a given date (default: today in HKT). Includes race details,
     }
     // ...
   ],
-  "source": "hkjc-api",
+  "source": "hkjc-public-racecard-page",
+  "oddsSource": "hkjc-api",
   "timestamp": "2026-03-17T17:58:31.793Z"
 }
 ```
@@ -87,12 +89,24 @@ Fetch race card for a given date (default: today in HKT). Includes race details,
 - Probabilities are normalized implied probabilities from market odds, adjusted by form.
 - When `advancedScoring=true`, additional bonuses may be applied: top jockey + top trainer combo (+tjBonusWeight), barrier effectiveness (+/- depending on distance class), and weight penalty for horses carrying significantly above average weight.
 - **Chinese names**: Chinese horse/trainer/jockey names (name_ch fields) may be present in the source data but are not guaranteed to exist. The skill returns English names by default; if an English name is missing, the field shows `(no English name)`. Chinese names are not used in output.
+- Race cards come from HKJC's public server-rendered page at `racing.hkjc.com`; a date with no published card returns an empty `races` array.
+- Live WIN/PLA odds are requested from the HKJC odds API first using the ISO race date and meeting venue. If it is unavailable or returns no odds, the skill falls back to odds present in the public race-card page. Race-card pages may omit odds columns; in that case, the odds API can still supply them. Missing odds remain `null`; the skill does not estimate them. `oddsSource` reports `hkjc-api`, `hkjc-public-racecard-page`, or `mixed`.
+
+### `fetchRaceResults(params)`
+
+Fetch official results for a date or the latest available meeting. If `raceNo` is omitted, all races linked from the meeting page are returned.
+
+**Parameters (object):**
+- `date` (string, optional): Date in `YYYY-MM-DD` format. Omit to use the latest results available on HKJC's public page.
+- `raceNo` (number, optional): Return only the specified race.
+
+The result includes each runner's placing, final win odds, and official dividends by betting pool. These are final results, not live odds.
 
 ## Prerequisites
 
 - Node.js environment (Node 18+ recommended)
-- Internet access to reach HKJC API (no authentication required)
-- The skill depends on `hkjc-api` npm package, which will be installed automatically.
+- Internet access to reach HKJC's public racing pages and (for available live odds) the HKJC GraphQL endpoint.
+- The skill uses `hkjc-api` for its accepted WIN/PLA odds query; race-card and results data use public HKJC HTML pages.
 
 ## Installation
 
@@ -106,9 +120,9 @@ To avoid overloading the HKJC source, the skill enforces a **1-minute cooldown**
 
 ## Notes
 
-- The HKJC API is unofficial and may have rate limits or downtime.
-- Place odds provided by the skill may be estimates rather than actual dividends, especially when the live API doesn't publish plaOdds values. For reliable place betting, verify against actual results when possible, and consider using win odds combined with form analysis as a more reliable alternative when place odds are unavailable.
-- For fetching official race results (including final positions and dividends), see the `scripts/get_hk_race_results.js` script which uses the hkjc-api package directly.
+- The package's race-meeting GraphQL query may be rejected by HKJC with `WHITELIST_ERROR`. Live odds are attempted through the API first and then fall back to any odds available on the official public HTML race-card page. The skill does not bypass HKJC access controls.
+- HKJC pages and odds may be unavailable or change structure. HTTP failures and unexpected page structure are surfaced as errors.
+- The skill does not estimate missing place odds. `placeOdds` is `null` until the live odds source publishes a value; use `fetchRaceResults` for official settled dividends.
 - Odds are fetched separately per race (WIN and PLA by default). Additional odds types can be added by modifying the skill.
 - If the API does not return past performance data, that field will be empty.
 - The skill caches results for 15 minutes to reduce load.
@@ -123,6 +137,16 @@ If the skill fails to install or run:
 - Check agent logs for errors.
 
 ## Version History
+
+### v1.2.4
+- Send the ISO-formatted race date to the HKJC odds API so odds are requested for the intended meeting instead of potentially receiving stale odds.
+- Allow the public race-card parser to handle pages that omit WIN/PLA odds columns, so API odds can still be fetched and merged with runner data.
+- Document that missing public-card odds columns are supported and missing odds are not estimated.
+
+### v1.2.3
+- Fetch live WIN/PLA odds from the HKJC odds API first, then silently fall back to odds available in the public race-card page if the API is blocked, unavailable, or returns no odds.
+- Parse WIN/PLA odds from public race-card runner tables when those values are present, and retain `null` when neither source provides an odds value.
+- Report the odds source as `hkjc-api`, `hkjc-public-racecard-page`, or `mixed`.
 
 ### v1.2.2
 - Enabled formAnalysis by default for improved horse selection accuracy

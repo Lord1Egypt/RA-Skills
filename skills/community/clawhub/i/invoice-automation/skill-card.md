@@ -1,43 +1,56 @@
-## Description: <br>
-AR/AP invoice automation for PrecisionLedger that supports aging analysis, overdue follow-up drafting, payment matching, and collection priority scoring while keeping accounting-system changes and client communications behind human approval. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AR/AP invoice automation for PrecisionLedger that supports aging analysis, follow-up sequencing, payment matching, and collection priority scoring.
 
-## Publisher: <br>
-[samledger67-dotcom](https://clawhub.ai/user/samledger67-dotcom) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[samledger67-dotcom](https://clawhub.ai/user/samledger67-dotcom)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Finance and accounting users use this skill to analyze AR/AP aging, draft overdue-payment follow-ups for approval, match payments to open invoices, and prioritize collection activity.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Invoice, payment, and collections workflows may involve sensitive financial and client data.
+
+Mitigation: Install and use the skill only where sharing the relevant invoice, payment, and collections data with the agent is acceptable.
+
+Risk: Drafted follow-up messages could be sent to clients without required approval.
+
+Mitigation: Keep the stated approval gate in place and require Irfan review before any client communication is sent.
+
+Risk: The skill could be misused to modify accounting records or make final legal, tax, payroll, or dispute decisions.
+
+Mitigation: Use outputs as analysis and briefing material only; do not use the skill to directly modify accounting systems or make final compliance, payroll, tax, legal, or dispute-resolution decisions.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Accounting and finance teams use this skill to analyze AR/AP aging, draft overdue invoice follow-ups, match incoming payments to open invoices, and prioritize collections. It is designed for recommendation and drafting workflows, with human review before communications or accounting-system changes. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Invoice, client, and payment data can be sensitive. <br>
-Mitigation: Provide only the data needed for the task and use the skill only where the agent is permitted to process AR/AP workflow data. <br>
-Risk: Drafted collections messages, payment matches, or priority scores may be incorrect or inappropriate for a specific account. <br>
-Mitigation: Review amounts, invoice IDs, payment status, tone, and next actions before sending messages or making accounting decisions. <br>
-Risk: The artifact explicitly disallows posting transactions, write-offs, dispute resolution, and unapproved client communications. <br>
-Mitigation: Use outputs as recommendations and briefings; keep accounting-system updates, dispute handling, and outbound communications under human control. <br>
+**Output Format:** [Markdown-style tables, draft email text, and concise recommendations]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/samledger67-dotcom/invoice-automation) <br>
-- [Publisher Profile](https://clawhub.ai/user/samledger67-dotcom) <br>
+**Other Properties Related to Output:** [May produce aging reports, payment matching summaries, collection priority matrices, and follow-up drafts that require human review before client use.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown tables, drafted email text, CSV exports on request, and concise recommendations.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Follow-up drafts require human approval before sending; payment matches and collection priorities should be reviewed before action.] <br>
+98.0.1 (source: ClawHub release metadata; artifact frontmatter lists 1.0.0)
 
-## Skill Version(s): <br>
-98.0.1 (source: ClawHub release metadata; artifact frontmatter version: 1.0.0) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

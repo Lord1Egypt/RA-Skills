@@ -1,46 +1,61 @@
-## Description: <br>
-Minimize total codebase size through ruthless simplification. Measure success by final code amount, not effort. Bias toward deletion. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Minimize total codebase size through ruthless simplification. Measure success by final code amount, not effort. Bias toward deletion.
 
-## Publisher: <br>
-[wpank](https://clawhub.ai/user/wpank) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[wpank](https://clawhub.ai/user/wpank)
 
-## Use Case: <br>
-Developers and engineers use this skill during refactoring, feature work, code review, and tech-debt reduction to challenge unnecessary complexity and reduce the final size of the codebase. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Simplification guidance may lead an agent to delete code, tests, abstractions, or files that still protect needed behavior. <br>
-Mitigation: Use the skill on a branch, inspect all proposed removals, and run relevant tests before accepting deletions. <br>
-Risk: The artifact contains no server-resolved import provenance for this release. <br>
-Mitigation: Install only from a trusted source and prefer reviewed or pinned source when provenance matters. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Reducing Entropy on ClawHub](https://clawhub.ai/wpank/reducing-entropy) <br>
-- [Simplicity vs Easy](references/simplicity-vs-easy.md) <br>
-- [Composition Over Construction](references/design-is-taking-apart.md) <br>
-- [Data-Oriented Design](references/data-over-abstractions.md) <br>
-- [PAGNI: Probably Are Gonna Need It](references/expensive-to-add-later.md) <br>
-- [Simple Made Easy](https://www.infoq.com/presentations/Simple-Made-Easy/) <br>
-- [The Grug Brained Developer](https://grugbrain.dev/) <br>
-- [Out of the Tar Pit](https://curtclifton.net/papers/MosesleyMarks06a.pdf) <br>
+## Use Case:
 
+Developers and engineering teams use this skill during refactoring, feature work, pull request review, and technical debt cleanup to challenge unnecessary complexity and reduce the final size of a codebase.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code] <br>
-**Output Format:** [Markdown guidance with checklists, review prompts, and code-change recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May recommend deleting code, tests, abstractions, or files; proposed removals should be reviewed and tested.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: ClawHub release metadata; artifact frontmatter lists 1.0) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Deletion-focused guidance may encourage removing security checks, audit logs, compliance code, or tests that still protect active behavior.
+
+Mitigation: Treat deletion recommendations as review prompts, preserve required safeguards, and run the relevant test suite before accepting changes.
+
+Risk: Installing a third-party skill without review may introduce untrusted instructions into an agent workflow.
+
+Mitigation: Install only from trusted sources, prefer pinned versions or reviewed commits, and scan the skill before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wpank/skills/reducing-entropy)
+- [Simplicity vs Easy](references/simplicity-vs-easy.md)
+- [Composition Over Construction](references/design-is-taking-apart.md)
+- [Data-Oriented Design](references/data-over-abstractions.md)
+- [PAGNI: Probably Are Gonna Need It](references/expensive-to-add-later.md)
+- [Simple Made Easy](https://www.infoq.com/presentations/Simple-Made-Easy/)
+- [The Grug Brained Developer](https://grugbrain.dev/)
+- [Out of the Tar Pit](https://curtclifton.net/papers/MosesleyMarks06a.pdf)
+- [The Value of Values](https://www.infoq.com/presentations/Value-Values/)
+- [Data-Oriented Design](https://www.dataorienteddesign.com/dodbook/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance]
+
+**Output Format:** [Markdown text with optional code blocks and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill itself requires no external credentials or tool integrations.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

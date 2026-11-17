@@ -1,45 +1,54 @@
-## Description: <br>
-Automates tender monitoring and generates structured analyses of bid documents across contract, payment, technical, evaluation, and risk dimensions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates tender information collection and produces structured tender risk, payment, evaluation, technical, and contract analysis reports.
 
-## Publisher: <br>
-[ylbwjf](https://clawhub.ai/user/ylbwjf) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ylbwjf](https://clawhub.ai/user/ylbwjf)
 
-## Use Case: <br>
-Procurement, sales, and bid teams use this skill to monitor tender sources, summarize new opportunities, and produce structured tender analysis reports for review before bidding. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global, with configured tender data sources focused on China. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The setup script can install recurring background cron jobs for hourly and two-hour runs. <br>
-Mitigation: Inspect the crontab entries before running cron_setup.sh, confirm the schedule is acceptable, create required log directories, and document how to remove only these entries. <br>
-Risk: Configured email credentials, Feishu webhooks, and LLM API keys are sensitive. <br>
-Mitigation: Keep secrets out of shared files, use protected local configuration or a secret manager, and rotate any exposed credentials. <br>
-Risk: Automated tender summaries and analysis reports can be incomplete or misleading. <br>
-Mitigation: Review generated reports against the original tender documents before making bid or compliance decisions. <br>
+## Use Case:
 
+Business development, procurement, and bid teams use this skill to monitor tender sources and generate structured summaries of newly found opportunities, high-value projects, deadlines, payment terms, evaluation criteria, and contract risks.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/ylbwjf/tender-analysis-system) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact skill instructions](artifact/SKILL.md) <br>
-- [Artifact configuration](artifact/config.yaml) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports and concise operational guidance with YAML and shell snippets.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write local SQLite data and Markdown report files when the bundled scripts are executed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and target metadata) <br>
+Risk: The setup can create recurring background jobs and repeatedly install packages without clear rollback controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installation, run cron_setup.sh only when recurring jobs are intended, use a least-privileged account, inspect crontab afterward, and prefer pinned dependencies in an isolated environment.
+
+Risk: External notifications may expose tender details or send data to unintended recipients if configured incorrectly.
+
+Mitigation: Keep notification channels disabled until recipient addresses, webhooks, and sensitive tender-data handling expectations are reviewed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ylbwjf/skills/tender-analysis-system)
+- [Publisher profile](https://clawhub.ai/user/ylbwjf)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Configuration, Shell commands, Guidance]
+
+**Output Format:** [Markdown reports and briefings with configurable YAML settings and shell commands for execution or scheduling.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can write report files and SQLite data locally; scheduled operation is optional and should be explicitly enabled by the user.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

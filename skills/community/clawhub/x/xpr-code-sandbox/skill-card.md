@@ -1,39 +1,48 @@
-## Description: <br>
-Execute JavaScript code in a secure sandbox for data processing, computation, and quick expression evaluation without network or filesystem access. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Execute JavaScript code in a sandboxed VM for data processing and computation.
 
-## Publisher: <br>
-[paulgnz](https://clawhub.ai/user/paulgnz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[paulgnz](https://clawhub.ai/user/paulgnz)
 
-## Use Case: <br>
-Developers and agents use this skill to run small JavaScript calculations, data transformations, and expression checks in a constrained sandbox without network or filesystem access. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill intentionally executes user-provided JavaScript, which can produce incorrect results, long-running computations, or misleading logs. <br>
-Mitigation: Run only snippets intended for computation, review returned results before relying on them, and use the disclosed timeout and output limits for bounded execution. <br>
-Risk: Users may overestimate the sandbox's access to external systems or local resources. <br>
-Mitigation: Treat the execution environment as pure computation only; the reviewed evidence states it has no network, filesystem, credential, import, or persistence behavior. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/paulgnz/xpr-code-sandbox) <br>
+## Use Case:
 
+Developers and agents use this skill to run JavaScript snippets for calculations, data processing, expression evaluation, and algorithm checks inside a constrained execution environment.
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, analysis] <br>
-**Output Format:** [JSON object with result, logs, duration, type, or error fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Default 5 second timeout, maximum 30 seconds, and 10MB output limit.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.2.11 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The security review reports that the JavaScript sandbox boundary is flawed and may expose the host process despite claims of no process, filesystem, or network access.
+
+Mitigation: Review carefully before installing; run only JavaScript that is fully trusted or strengthen the isolation before treating the tool as a safe sandbox for arbitrary code.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/paulgnz/skills/xpr-code-sandbox)
+
+## Skill Output:
+
+**Output Type(s):** [text, code]
+
+**Output Format:** [JSON object containing a result, logs, duration, type information, warnings, or an error message.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Default timeout is 5 seconds, maximum timeout is 30 seconds, and serialized output is limited to 10MB.]
+
+## Skill Version(s):
+
+0.2.11 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

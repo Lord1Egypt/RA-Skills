@@ -1,46 +1,61 @@
-## Description: <br>
-Analyzes ecommerce return reasons and distinguishes product problems, expectation mismatches, logistics issues, and description issues. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes ecommerce return records and separates product issues, expectation mismatches, logistics problems, and description issues.
 
-## Publisher: <br>
-[52YuanChangXing](https://clawhub.ai/user/52YuanChangXing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[52yuanchangxing](https://clawhub.ai/user/52yuanchangxing)
 
-## Use Case: <br>
-External ecommerce operators, analysts, and support teams use this skill to review return records, classify return reasons, identify frequent issues, and prepare reviewable follow-up actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Customer return records may include personal or sensitive data. <br>
-Mitigation: Desensitize customer personal information before analysis and process only files intentionally selected for review. <br>
-Risk: The local Python helper can read selected files and write a report to a chosen output path. <br>
-Mitigation: Use explicit input and output paths, choose the output location carefully, and avoid pointing the helper at unrelated private directories. <br>
-Risk: Return classifications can be incomplete or misleading when source records lack reason text or product context. <br>
-Mitigation: List missing information and require human review before acting on recommendations. <br>
+## Use Case:
 
+Operations, merchandising, and customer support teams use this skill to convert return CSV/TSV files, reason text, and product information into reviewable return intelligence. It helps classify causes, identify frequent issues, surface samples needing review, and draft follow-up actions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/52YuanChangXing/ecommerce-return-intelligence) <br>
-- [Publisher profile](https://clawhub.ai/user/52YuanChangXing) <br>
-- [README](README.md) <br>
-- [Skill specification](resources/spec.json) <br>
-- [Output template](resources/template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, shell commands, guidance] <br>
-**Output Format:** [Markdown or JSON report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 when using the local helper script; can also produce structured text directly from the provided template and specification.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: Return records may include customer, order, or other sensitive operational data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide only the local CSV/TSV or text intended for analysis, redact personal data where possible, and prefer dry-run/stdout handling for sensitive inputs.
+
+Risk: The bundled script includes dormant generic audit modes outside the normal returns-analysis workflow.
+
+Mitigation: Use the documented CSV/TSV or text returns-analysis path, and do not modify the bundled spec to enable unused directory or security-audit modes without separate review.
+
+Risk: Draft classifications and recommendations may be incomplete when source data is sparse or ambiguous.
+
+Mitigation: Review the generated cause classifications, high-frequency issues, missing-information list, and follow-up actions before using them for customer service, operations, or product changes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/52yuanchangxing/skills/ecommerce-return-intelligence)
+- [ClawHub publisher profile](https://clawhub.ai/user/52yuanchangxing)
+- [Artifact README](artifact/README.md)
+- [Skill specification](artifact/resources/spec.json)
+- [Output template](artifact/resources/template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands, guidance]
+
+**Output Format:** [Markdown report by default; JSON wrapper available from the local script.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only local analysis; can write an output file when explicitly requested.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

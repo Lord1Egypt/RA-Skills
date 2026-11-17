@@ -1,44 +1,58 @@
-## Description: <br>
-Formats Word documents to Shuke company document-printing standards and generates PDFs using specified Chinese fonts, margins, grid, and line spacing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Formats Word documents and generates PDFs according to Shuke company printing requirements, including prescribed Chinese fonts, margins, line spacing, and page grid settings.
 
-## Publisher: <br>
-[an0027](https://clawhub.ai/user/an0027) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[an0027](https://clawhub.ai/user/an0027)
 
-## Use Case: <br>
-Developers and document operators use this skill to format Chinese Word documents to Shuke document-printing standards, install or verify required fonts, generate PDFs, and batch-convert document folders. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The font installer can make persistent system font changes and may require sudo. <br>
-Mitigation: Review the installer before use, run it only when Shuke fonts are needed, and prefer a controlled environment or explicit font source directory. <br>
-Risk: PDF conversion can create local debug HTML and report files that may contain document content. <br>
-Mitigation: Use narrow input and output folders, avoid confidential inputs unless appropriate, and delete generated *_debug.html files and batch reports after review. <br>
-Risk: Formatting and PDF generation modify or create document files and depend on locally available fonts and tools. <br>
-Mitigation: Keep original documents, test with a single file before batch conversion, and verify installed fonts and generated PDFs before distribution. <br>
+## Use Case:
 
+External users and document automation practitioners use this skill to format DOCX files, generate compliant PDFs, batch-convert document folders, and verify required font usage for Shuke-style print documents.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/an0027/shuke-document-formatting) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact skill instructions](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, files] <br>
-**Output Format:** [Markdown guidance with Python commands; generated artifacts are DOCX, PDF, font verification text, batch reports, and optional debug HTML files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are local files and console status messages; results depend on Python dependencies, Pandoc or PDF tooling, and locally installed fonts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact config files report 1.1.0) <br>
+Risk: System-wide font installation can modify local font directories or require elevated privileges.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review font files and their source directory before installation, and avoid running the installer with sudo unless the environment and files are trusted.
+
+Risk: PDF conversion can process local document content and may touch local or network resources.
+
+Mitigation: Convert only trusted DOCX files, and use a sandboxed or offline conversion environment for untrusted documents.
+
+Risk: Generated debug HTML may contain sensitive document content.
+
+Mitigation: Delete generated debug HTML after review or restrict access to the output directory.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/an0027/skills/shuke-document-formatting)
+- [OpenClaw issue tracker](https://github.com/openclaw/openclaw/issues)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with shell command examples and generated DOCX, PDF, font report, or debug HTML files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may depend on local fonts, document conversion tools, and trusted input DOCX files.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

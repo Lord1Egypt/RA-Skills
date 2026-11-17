@@ -1,39 +1,55 @@
-## Description: <br>
-Capture, inspect, and compare screenshots of screens, windows, regions, web pages, simulators, and CI runs with the right tool, wait strategy, viewport, and output format. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides screenshot workflow guidance for choosing capture tools, stabilizing targets, controlling viewports, masking sensitive regions, and producing useful captures for debugging, QA, documentation, and visual review.
 
-## Publisher: <br>
-[zhouhuihui008](https://clawhub.ai/user/zhouhuihui008) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhouhuihui008](https://clawhub.ai/user/zhouhuihui008)
 
-## Use Case: <br>
-Developers, QA engineers, documentation writers, and support teams use this skill to choose reliable screenshot workflows for desktop apps, browsers, simulators, headless CI, debugging, bug reports, visual review, and before/after comparison. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Screenshots may capture visible secrets, personal data, internal URLs, notifications, or test credentials. <br>
-Mitigation: Prefer region, window, or element captures when possible, and check the visible content before saving or sharing screenshots. <br>
+## Use Case:
 
+Developers, QA engineers, technical writers, and support teams use this skill to plan reliable screenshots of desktop apps, browser pages, simulators, CI runs, and before/after comparisons.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/zhouhuihui008/screenshot-1-0-1) <br>
-- [Skill Homepage](https://clawic.com/skills/screenshot) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with command examples and decision guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May recommend OS-native, browser-native, simulator, or CI screenshot workflows; output should include privacy checks when screenshots may expose visible screen content.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata); artifact frontmatter reports 1.0.1 <br>
+Risk: Screenshots may expose secrets, personal data, internal URLs, notifications, or account details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Crop, mask, or avoid sensitive regions before saving or sharing captures, and verify the final screenshot before distribution.
+
+Risk: Unstable viewport, animation, theme, or timing differences can make screenshot evidence misleading.
+
+Mitigation: Use fixed viewports, explicit readiness checks, stable theme and zoom settings, and masks for noisy UI before capturing or comparing screenshots.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/zhouhuihui008/skills/screenshot-1-0-1)
+- [Skill Homepage](https://clawic.com/skills/screenshot)
+- [Publisher Profile](https://clawhub.ai/user/zhouhuihui008)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May recommend platform-specific screenshot tools, browser automation settings, viewport choices, masking, and output formats.]
+
+## Skill Version(s):
+
+1.0.1 (source: artifact/SKILL.md frontmatter; release package version 1.0.0 in evidence.release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

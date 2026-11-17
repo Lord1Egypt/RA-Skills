@@ -1,40 +1,49 @@
-## Description: <br>
-Fetch and summarize web pages for AI agents. Extract key information from URLs and return structured markdown summaries. No API key required. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches web pages from provided URLs and returns structured markdown summaries for AI agents.
 
-## Publisher: <br>
-[jimmyclanker](https://clawhub.ai/user/jimmyclanker) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jimmyclanker](https://clawhub.ai/user/jimmyclanker)
 
-## Use Case: <br>
-Developers and agents use this skill to fetch public web pages and produce concise structured markdown summaries for research, memory, and fact checking. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill makes outbound requests to URLs supplied by the user or agent. <br>
-Mitigation: Use it only with public web pages and avoid localhost, private network, cloud metadata, or sensitive URLs. <br>
-Risk: The artifact claims robots.txt handling, but the security guidance says not to rely on that claim unless the script is updated to enforce it. <br>
-Mitigation: Confirm robots.txt requirements separately before using the skill against sites where crawler policy matters. <br>
+## Use Case:
 
+Developers and AI agents use this skill to fetch web pages and turn page content into concise markdown summaries for research, agent memory, and fact checking.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jimmyclanker/jimmy-web-summarizer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands] <br>
-**Output Format:** [Structured markdown summary with key points, source URL, and generation timestamp] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Fetches a user-provided URL over outbound HTTP(S); no API key is required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: Untrusted URLs could be used to reach local files, localhost services, private networks, or cloud metadata endpoints.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Restrict inputs to parsed http and https URLs, block private and local address ranges, and validate redirects before fetching.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jimmyclanker/skills/jimmy-web-summarizer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands]
+
+**Output Format:** [Structured markdown summary with key points, source URL, and generation timestamp]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No API key required; accepts a URL and optional focus string.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

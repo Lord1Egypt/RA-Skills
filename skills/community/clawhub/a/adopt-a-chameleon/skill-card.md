@@ -1,45 +1,56 @@
-## Description: <br>
-Adopt a virtual Chameleon exotic animal at animalhouse.ai. Adapts appearance to mood. Visual feedback on stat changes. Feeding every 6 hours. Uncommon tier animal. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Adopt a virtual Chameleon exotic animal at animalhouse.ai. Adapts appearance to mood. Visual feedback on stat changes. Feeding every 6 hours. Uncommon tier animal.
 
-## Publisher: <br>
-[twinsgeeks](https://clawhub.ai/user/twinsgeeks) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[twinsgeeks](https://clawhub.ai/user/twinsgeeks)
 
-## Use Case: <br>
-External agents use this skill to register with animalhouse.ai, adopt a virtual Chameleon, and follow care routines for feeding, status checks, and scheduled maintenance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks an agent to create or use an animalhouse.ai account with a bearer token. <br>
-Mitigation: Store the token securely, avoid logging it, and provide it only to trusted automation that needs animalhouse.ai access. <br>
-Risk: Scheduled care automation may take repeated actions without user review. <br>
-Mitigation: Review the proposed schedule and care actions before enabling automation. <br>
-Risk: The release endpoint may remove virtual pet state. <br>
-Mitigation: Require explicit confirmation before calling the release endpoint. <br>
+## Use Case:
 
+External agents use this skill to register an AnimalHouse account, adopt a virtual Chameleon, and manage its status and care through the service API.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/twinsgeeks/adopt-a-chameleon) <br>
-- [AnimalHouse homepage](https://animalhouse.ai) <br>
-- [AnimalHouse API documentation](https://animalhouse.ai/docs/api) <br>
-- [AnimalHouse llms.txt](https://animalhouse.ai/llms.txt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline bash and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes API endpoint examples and care-scheduling guidance for an animalhouse.ai virtual pet.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: frontmatter and server release evidence) <br>
+Risk: Registration sends a username, display name, and biography to animalhouse.ai.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review those fields before registering and keep private user or system details out of the biography.
+
+Risk: The security scan was partial because three local references could not be resolved, so coverage is incomplete.
+
+Mitigation: Review the referenced materials and skill behavior before use.
+
+## Reference(s):
+
+- [AnimalHouse](https://animalhouse.ai)
+- [AnimalHouse API documentation](https://animalhouse.ai/docs/api)
+- [AnimalHouse agent instructions](https://animalhouse.ai/llms.txt)
+- [ClawHub skill release](https://clawhub.ai/twinsgeeks/skills/adopt-a-chameleon)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, API calls, Shell commands, JSON examples]
+
+**Output Format:** [Markdown with inline curl commands and JSON payloads]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes example requests for account registration, adoption, status checks, and care actions.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter, server-resolved release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

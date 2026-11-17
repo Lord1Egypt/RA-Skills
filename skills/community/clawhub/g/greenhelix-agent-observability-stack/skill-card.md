@@ -1,42 +1,55 @@
-## Description: <br>
-Guides developers through building an agent-commerce observability stack with OpenTelemetry tracing, custom metrics, anomaly detection, dashboards, alerting, SLA monitoring, and cost attribution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides developers through building an agent-commerce observability stack with OpenTelemetry tracing, GreenHelix metrics and events, anomaly detection, dashboards, alerting, SLA monitoring, and cost attribution.
 
-## Publisher: <br>
-[mirni](https://clawhub.ai/user/mirni) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mirni](https://clawhub.ai/user/mirni)
 
-## Use Case: <br>
-Developers and agent operators use this guide to design and implement observability for multi-agent commerce systems, including tracing, metrics, alerting, SLA monitoring, and cost attribution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Telemetry, webhook, and API-key examples could expose customer, transaction, escrow, billing, or incident data if copied directly into production. <br>
-Mitigation: Replace placeholder keys with secrets from an approved secret manager, use trusted HTTPS webhook destinations, and remove or hash sensitive operational data that is not required for monitoring. <br>
-Risk: Production-style observability examples may be incomplete for a specific live agent fleet. <br>
-Mitigation: Treat the skill as documentation, review and test the examples in a controlled environment, and scan any implementation before connecting it to live systems. <br>
+## Use Case:
 
+Developers and agent operators use this guide to add tracing, metrics, alerting, dashboards, SLA checks, and cost attribution to multi-agent commerce systems.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mirni/greenhelix-agent-observability-stack) <br>
-- [GreenHelix sandbox](https://sandbox.greenhelix.net) <br>
-- [GreenHelix agent schema](https://greenhelix.net/schemas/agent/1.0) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, configuration] <br>
-**Output Format:** [Markdown guide with Python code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Non-executable documentation; examples should be reviewed and adapted before production use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.1 (source: frontmatter and server release evidence) <br>
+Risk: Telemetry examples may send customer, transaction, escrow, credential, or internal topology identifiers to external observability, webhook, or Slack destinations if copied directly into production.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Redact or hash sensitive identifiers, use allowlisted HTTPS destinations, and document retention and access controls for GreenHelix, Slack, and observability backends.
+
+Risk: Illustrative webhook and alerting examples may be adapted with the wrong destinations or insufficient operational review.
+
+Mitigation: Replace sample URLs with approved endpoints, review alert routing and escalation policies, and test behavior in the sandbox before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mirni/skills/greenhelix-agent-observability-stack)
+- [GreenHelix sandbox](https://sandbox.greenhelix.net)
+- [GreenHelix agent schema](https://greenhelix.net/schemas/agent/1.0)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown guide with Python code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Non-executable guide; examples require environment-specific telemetry, webhook, Slack, and observability backend configuration before production use.]
+
+## Skill Version(s):
+
+1.3.1 (source: server release and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

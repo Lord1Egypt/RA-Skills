@@ -1,42 +1,66 @@
-## Description: <br>
-Generate daily geopolitical TikTok scripts using free news sources. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate daily geopolitical TikTok scripts using free news sources.
 
-## Publisher: <br>
-[ahmed181283](https://clawhub.ai/user/ahmed181283) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ahmed181283](https://clawhub.ai/user/ahmed181283)
 
-## Use Case: <br>
-External content creators and social media teams use this skill to gather recent geopolitical RSS news and draft short TikTok scripts, daily report scripts, hashtags, and posting guidance. Generated scripts should be reviewed and fact-checked before publication, especially for conflict or diplomacy coverage. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ahmed181283/daily-geo-tiktok) <br>
-- [BBC World News RSS](http://feeds.bbci.co.uk/news/world/rss.xml) <br>
-- [Reuters World RSS](https://www.reuters.com/rssFeed/worldNews) <br>
-- [Reuters Conflict RSS](https://www.reuters.com/rssFeed/conflict) <br>
-- [AP World News RSS](https://storage.googleapis.com/afs-prod/media/feeds/AP.WorldNews.xml) <br>
-- [Al Jazeera RSS](https://www.aljazeera.com/xml/rss/all.xml) <br>
+External content creators and social media teams use this skill to gather recent geopolitical RSS items and draft short-form TikTok scripts, daily report scripts, hashtags, and posting guidance. Developers may also use it as a configurable local workflow for regional or topic-specific geopolitical content generation.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Plain-text TikTok scripts, daily report text files, and metadata JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes timestamped local script files and metadata; expects outbound requests to public RSS feeds during report generation.] <br>
+Global
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and artifact README) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: System-wide dependency installation can affect the host Python environment.
+
+Mitigation: Install dependencies in a virtual environment or isolated tool environment before running the generator.
+
+Risk: Cron, systemd, or Heartbeat scheduling can cause recurring automated news gathering and script generation.
+
+Mitigation: Enable scheduling only when intentional and review the configured cadence, workspace path, and output location.
+
+Risk: Generated geopolitical scripts may be incomplete, misleading, or overstate certainty because they rely on RSS summaries and attention-grabbing wording.
+
+Mitigation: Review every generated script against the cited source article before recording or posting.
+
+Risk: One configured feed uses HTTP rather than HTTPS.
+
+Mitigation: Treat content from the HTTP feed with caution and prefer HTTPS feed sources where available.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ahmed181283/skills/daily-geo-tiktok)
+- [BBC World RSS feed](http://feeds.bbci.co.uk/news/world/rss.xml)
+- [Reuters World RSS feed](https://www.reuters.com/rssFeed/worldNews)
+- [Reuters Conflict RSS feed](https://www.reuters.com/rssFeed/conflict)
+- [AP World News RSS feed](https://storage.googleapis.com/afs-prod/media/feeds/AP.WorldNews.xml)
+- [Al Jazeera RSS feed](https://www.aljazeera.com/xml/rss/all.xml)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, configuration, guidance]
+
+**Output Format:** [Plain text scripts, daily report text, metadata JSON, and Markdown usage guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated outputs are saved to timestamped local directories and may be filtered by time window, region, topic, and number of scripts.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,60 @@
-## Description: <br>
-Query Linz public transport stops for IDs and fetch live upcoming departures using Linz Linien EFA endpoints. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query Linz Linien raw EFA endpoints for stop lookup and live departures.
 
-## Publisher: <br>
-[fjrevoredo](https://clawhub.ai/user/fjrevoredo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[fjrevoredo](https://clawhub.ai/user/fjrevoredo)
 
-## Use Case: <br>
-Developers and transit-assistance agents use this skill to resolve Linz public transport stop IDs and retrieve upcoming departures for a selected stop. <br>
-
-### Deployment Geography for Use: <br>
-Global use; data coverage is Linz, Austria public transport. <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The configured Linz EFA endpoint receives stop names or stop IDs sent by the agent. <br>
-Mitigation: Use only a trusted base URL and avoid setting LINZ_TRANSPORT_API_BASE_URL or --base-url to an endpoint you do not trust. <br>
-Risk: The default transit API base URL uses plain HTTP. <br>
-Mitigation: Prefer an HTTPS base URL when it works for the endpoint. <br>
-Risk: Live transit responses can be empty, ambiguous, or shape-variant. <br>
-Mitigation: Confirm ambiguous stop matches, surface EFA message codes, and report when no upcoming departures are available. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/fjrevoredo/linz-public-transport) <br>
-- [OpenClaw Skills Documentation](https://docs.openclaw.ai/tools/skills) <br>
-- [Endpoint Reference](references/endpoints.md) <br>
-- [Linz EFA XML API PDF](https://data.linz.gv.at/katalog/linz_ag/linz_ag_linien/fahrplan/EFA_XML_Schnittstelle_20151217.pdf) <br>
-- [Linz AG EFA Endpoint](https://www.linzag.at/linz2) <br>
-- [Linz Linien Open Data RDF](https://www.data.gv.at/api/hub/repo/datasets/linien-fahrwege-und-haltestellen-der-linz-ag-linien-2025.rdf?useNormalizedId=true&locale=de) <br>
+## Use Case:
 
+External users and developers use this skill to resolve Linz public transport stop IDs from stop names and fetch upcoming live departures from Linz Linien EFA endpoints.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, JSON, guidance] <br>
-**Output Format:** [Markdown summary with optional shell commands and JSON command output.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include stop IDs, departure times, line numbers, directions, platforms, and EFA diagnostics.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence and SKILL.md frontmatter) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill defaults to an unencrypted HTTP API base URL.
+
+Mitigation: Configure the base URL to the official HTTPS Linz endpoint before use.
+
+Risk: The skill allows a custom API base URL, which can redirect requests to arbitrary destinations.
+
+Mitigation: Constrain execution to the official Linz endpoint and avoid accepting untrusted base URL overrides.
+
+Risk: Full request URLs may include stop-search terms.
+
+Mitigation: Avoid logging full query URLs or redact stop-search parameters from diagnostics.
+
+## Reference(s):
+
+- [Endpoint Reference](artifact/references/endpoints.md)
+- [OpenClaw Skills Documentation](https://docs.openclaw.ai/tools/skills)
+- [EFA XML API PDF](https://data.linz.gv.at/katalog/linz_ag/linz_ag_linien/fahrplan/EFA_XML_Schnittstelle_20151217.pdf)
+- [Linz AG EFA Endpoint Base](https://www.linzag.at/linz2)
+- [Open Data Catalog RDF](https://www.data.gv.at/api/hub/repo/datasets/linien-fahrwege-und-haltestellen-der-linz-ag-linien-2025.rdf?useNormalizedId=true&locale=de)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown or JSON summaries with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May require outbound network access to Linz Linien EFA endpoints.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata and SKILL.md metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

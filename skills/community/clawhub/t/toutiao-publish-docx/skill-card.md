@@ -1,43 +1,56 @@
-## Description: <br>
-用 Cookie 或已保存会话在头条号后台发布文章，支持标题/正文/图片与固定目录 docx 导入。当用户要自动发头条文章、传入 cookie_header 或要求按 docx 流程发布时调用。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Publishes articles to the Toutiao creator backend using a provided cookie header or saved session, with support for title, body, images, and fixed-directory DOCX import.
 
-## Publisher: <br>
-[charlesliu-sap](https://clawhub.ai/user/charlesliu-sap) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[charlesliu-sap](https://clawhub.ai/user/charlesliu-sap)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and automation agents use this skill to prepare or publish Toutiao articles from text, images, or DOCX files. It is intended for accounts the user is authorized to automate.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill handles Toutiao cookie headers that can grant account access.
+
+Mitigation: Treat cookie_header as a password-level secret and use only accounts the user is authorized to automate.
+
+Risk: The workflow can publish content to a live public account.
+
+Mitigation: Require a dry run before enabling publish=true and review the prepared article before posting.
+
+Risk: Documented shell-style command templates include user-controlled title, content, cookie, and path values.
+
+Mitigation: Avoid executing generated command strings through a shell with untrusted values; pass values through structured arguments or carefully escaped environment variables.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users and operators use this skill to prepare or publish Toutiao articles from title, body text, optional images, or a fixed-directory docx import workflow. It is suited to controlled publishing sessions where the user can provide a Toutiao cookie header or rely on a saved local session. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Toutiao cookie headers and saved sessions can grant account access. <br>
-Mitigation: Treat cookie_header values and saved sessions as passwords, avoid logging or sharing them, and install only on hosts you control. <br>
-Risk: The workflow can publish article content to a live Toutiao account. <br>
-Mitigation: Confirm the target account and article content before setting publish behavior that submits the post. <br>
-Risk: Fixed docx and image directories may contain unrelated private files. <br>
-Mitigation: Keep watched directories limited to intended publishing assets and remove or archive unrelated files before running the workflow. <br>
+**Output Format:** [Markdown with inline bash command examples and parameter guidance]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/charlesliu-sap/toutiao-publish-docx) <br>
-- [Publisher profile](https://clawhub.ai/user/charlesliu-sap) <br>
+**Other Properties Related to Output:** [Includes dry-run guidance by default and optional publish=true behavior.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and operational guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference local article, image, docx, screenshot, and session artifact paths used by the publishing workflow.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

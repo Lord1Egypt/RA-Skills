@@ -1,43 +1,60 @@
-## Description: <br>
-Discover the queries worth tracking for a brand's AI visibility, including informational, commercial, and comparison-intent prompts, via MentionsAPI.com. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Discover the queries worth tracking for a brand's AI visibility, including informational, commercial, and comparison-intent prompts, via MentionsAPI.com.
 
-## Publisher: <br>
-[nikhonit](https://clawhub.ai/user/nikhonit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nikhonit](https://clawhub.ai/user/nikhonit)
 
-## Use Case: <br>
-External users and developers use this skill to generate a starting set of brand visibility queries before measuring or monitoring how often a brand appears in AI answers. It is intended for explicit requests to discover prompts or questions to track for a brand, industry, or competitive comparison set. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a local MENTIONSAPI_KEY for a paid external service. <br>
-Mitigation: Install only if the user trusts MentionsAPI, store the key locally, and rotate the key if it is rejected or exposed. <br>
-Risk: Each discover_queries call is documented as costing $0.50. <br>
-Mitigation: Confirm the brand, industry context, and requested count before calling the tool. <br>
+## Use Case:
 
+Developers, marketers, and brand-monitoring teams use this skill when they explicitly need candidate prompts or questions to track for a brand's AI visibility program. It returns query suggestions that can be checked or monitored with related MentionsAPI workflows.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/nikhonit/mentions-discover) <br>
-- [MentionsAPI Homepage](https://mentionsapi.com) <br>
-- [MentionsAPI Endpoint Reference](https://mentionsapi.com/docs/api/check) <br>
-- [MentionsAPI OpenAPI Spec](https://mentionsapi.com/openapi.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance, configuration] <br>
-**Output Format:** [JSON object containing candidate query strings, intents, cost and balance fields, or an error object.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires MENTIONSAPI_KEY and sends brand, optional industry, and count values to MentionsAPI.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata; artifact frontmatter says 1.0.0) <br>
+Risk: The skill can initiate paid MentionsAPI query-discovery calls using MENTIONSAPI_KEY.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the brand and, when available, the industry before each call and use the skill only when the user explicitly asks for query suggestions.
+
+Risk: The API key and brand query are sent to the disclosed MentionsAPI endpoint.
+
+Mitigation: Install only when you intend to use MentionsAPI and are comfortable providing MENTIONSAPI_KEY for this purpose.
+
+Risk: The documentation mentions an optional unpinned npx MCP alternative.
+
+Mitigation: Avoid that alternative unless the package is separately trusted and pinned.
+
+## Reference(s):
+
+- [MentionsAPI homepage](https://mentionsapi.com)
+- [MentionsAPI endpoint reference](https://mentionsapi.com/docs/api/check)
+- [MentionsAPI OpenAPI spec](https://mentionsapi.com/openapi.json)
+- [ClawHub skill page](https://clawhub.ai/nikhonit/skills/mentions-discover)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Text, JSON, Guidance]
+
+**Output Format:** [Python dict / JSON-compatible response containing candidate queries, intents, cost information, or structured error details]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires MENTIONSAPI_KEY and sends the confirmed brand query to MentionsAPI. The count parameter supports 1-100 results and defaults to 50.]
+
+## Skill Version(s):
+
+1.0.2 (source: ClawHub release evidence; artifact frontmatter lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

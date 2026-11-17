@@ -1,40 +1,52 @@
-## Description: <br>
-Helps an agent analyze past failures during idle periods, learn collaboration patterns, update a Pattern Library, and suggest checkpoint improvements. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+自我进化能力(Dream Module)，空闲时自动分析失败案例，学习新模式，更新Pattern库
 
-## Publisher: <br>
-[467718584](https://clawhub.ai/user/467718584) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[467718584](https://clawhub.ai/user/467718584)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and agent operators use this skill to run a Dream Module that reviews recent work logs, analyzes failure patterns, learns collaboration patterns, and proposes Pattern Library and checkpoint improvements.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill describes automatic analysis of real work logs and persistent Pattern Library updates without clear scope or approval controls.
+
+Mitigation: Limit analysis to explicitly selected or sanitized logs, and require human approval with provenance and rollback before learned patterns become persistent.
+
+Risk: The package has no executable installer, so operational risk depends on how the host EO plugin implements the described automation.
+
+Mitigation: Review host automation behavior before installation and restrict EO automation permissions to the minimum needed for selected logs and pattern updates.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and agent operators use this skill to trigger or inspect an idle-time Dream Module that analyzes recent failures, learns reusable patterns, updates a Pattern Library, and proposes checkpoint improvements. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Guidance, Shell commands, Markdown, Configuration]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can analyze real work logs and persist learned behavior, which may expose sensitive content or introduce unwanted patterns. <br>
-Mitigation: Confirm which logs are readable, require opt-in analysis, redact sensitive content, and review, audit, and roll back Pattern Library changes before relying on them. <br>
-Risk: Automatically suggested Pattern Library and checkpoint updates may reinforce incorrect lessons from failed cases. <br>
-Mitigation: Treat learned patterns and checkpoint changes as proposals until a human reviews the evidence and approves them for future workflows. <br>
+**Output Format:** [Markdown with command examples and typed interface definitions]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub Eo Ability Dream skill page](https://clawhub.ai/467718584/eo-ability-dream) <br>
+**Other Properties Related to Output:** [May produce improvement suggestions, learned-pattern counts, status reports, and dream logs.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Configuration] <br>
-**Output Format:** [Markdown or structured text describing Dream status, learned patterns, dream logs, and improvement suggestions.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include a status value, improvement list, learned-pattern count, and optional dream log.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

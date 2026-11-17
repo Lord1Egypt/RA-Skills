@@ -1,37 +1,48 @@
-## Description: <br>
-Keeps README.md and related documentation synchronized with code changes that affect features, APIs, configuration, installation, changelogs, migration guides, or examples. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically update README.md and documentation files when application code changes require documentation updates.
 
-## Publisher: <br>
-[jhauga](https://clawhub.ai/user/jhauga) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[jhauga](https://clawhub.ai/user/jhauga)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and maintainers use this skill to keep README files, API documentation, changelogs, migration guides, and examples aligned with user-facing code changes.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Broad activation wording may lead the agent to propose documentation edits for internal refactors or test-only changes where documentation may not need to change.
+
+Mitigation: Review proposed documentation edits for relevance before accepting them.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and maintainers use this skill when code changes require matching updates to project documentation. It guides updates to README files, API documentation, changelogs, migration guides, configuration docs, installation docs, and code examples. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Broad documentation triggers may produce unnecessary or inaccurate documentation edits. <br>
-Mitigation: Review generated documentation diffs, especially changelog entries, migration guides, API examples, and configuration examples. <br>
+**Output Format:** [Markdown with documentation edits, code examples, shell commands, configuration snippets, and review checklists]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [None]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with checklists, examples, and validation command suggestions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces documentation update guidance only; review generated documentation diffs before release.] <br>
+1.0.0 (source: ClawHub release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,49 +1,68 @@
-## Description: <br>
-Helps travelers find where they can depart right now by searching feasible flights, same-night hotels, attractions, and booking links from a starting city and earliest departure time. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps an agent plan immediate, time-constrained travel by searching feasible flights, hotels, attractions, and booking links from a user's departure city and earliest departure time.
 
-## Publisher: <br>
-[hello-ahang](https://clawhub.ai/user/hello-ahang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hello-ahang](https://clawhub.ai/user/hello-ahang)
 
-## Use Case: <br>
-External users and travel assistants use this skill to plan spontaneous trips by comparing destinations reachable from a departure city within a short time window. It returns actionable options that combine transportation, lodging, attractions, prices, and booking links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow can ask an agent to install or update an unpinned global CLI package. <br>
-Mitigation: Review the package source and version before installation, avoid sudo when possible, and prefer pinned versions in managed environments. <br>
-Risk: The workflow documents disabling TLS verification for FlyAI searches when certificate errors occur. <br>
-Mitigation: Do not run searches with TLS verification disabled unless the environment and network are trusted and the risk is explicitly accepted. <br>
-Risk: The skill may persist detailed travel preferences in memory or a plaintext local profile file. <br>
-Mitigation: Store profile data only after user consent and avoid saving sensitive travel, family, or location details unless necessary. <br>
+## Use Case:
 
+External users and travel-planning agents use this skill to identify destinations reachable on short notice, compare flight, hotel, and attraction options, and prepare concise booking-oriented itineraries.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/hello-ahang/flyai-instant-departure) <br>
-- [Workflow Reference](reference/workflow.md) <br>
-- [User Profile Storage Reference](reference/user-profile-storage.md) <br>
-- [Flight Search Reference](reference/search-flight.md) <br>
-- [Hotel Search Reference](reference/search-hotel.md) <br>
-- [POI Search Reference](reference/search-poi.md) <br>
-- [Train Search Reference](reference/search-train.md) <br>
-- [Example Conversations](reference/examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown travel options with booking links and inline FlyAI CLI command usage] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Time-sensitive travel results may include prices, availability, user travel preferences, and third-party booking URLs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill may ask the user to install or upgrade a global CLI package, including a sudo-based fallback.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review installation steps before execution, avoid the sudo install path, and prefer a pinned CLI version in a sandboxed environment.
+
+Risk: The artifact describes disabling TLS certificate verification when CLI requests fail.
+
+Mitigation: Keep TLS verification enabled and resolve certificate or network issues without using NODE_TLS_REJECT_UNAUTHORIZED=0.
+
+Risk: The skill can save personal and family travel preferences in memory or a local profile file.
+
+Mitigation: Ask for explicit user consent before persistence, minimize stored profile details, and avoid saving sensitive travel or family information unless the user accepts that storage.
+
+Risk: Travel prices, availability, and booking links are time-sensitive and may change quickly.
+
+Mitigation: Label results as time-sensitive, prompt the user to confirm details at booking time, and avoid presenting stale search output as guaranteed availability.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/hello-ahang/skills/flyai-instant-departure)
+- [Workflow](reference/workflow.md)
+- [User Profile Storage](reference/user-profile-storage.md)
+- [Examples](reference/examples.md)
+- [Flight Search](reference/search-flight.md)
+- [Train Search](reference/search-train.md)
+- [Hotel Search](reference/search-hotel.md)
+- [POI / Attraction Search](reference/search-poi.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown travel options with command examples, structured itinerary details, prices, timing, and booking links when available]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include time-sensitive prices, seat or room availability, local user travel preferences, and external booking URLs.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

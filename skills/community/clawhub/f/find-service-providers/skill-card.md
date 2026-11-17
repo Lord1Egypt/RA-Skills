@@ -1,42 +1,55 @@
-## Description: <br>
-Find, shortlist, vet, enrich, and research US B2B professional-services firms using the ServiceGraph pro_services dataset and API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Finds, shortlists, vets, enriches, and researches US professional-services firms across B2B categories such as law, marketing, consulting, accounting, IT services, architecture, engineering, HR, PR, and design by using the ServiceGraph pro_services dataset.
 
-## Publisher: <br>
-[nostrband](https://clawhub.ai/user/nostrband) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nostrband](https://clawhub.ai/user/nostrband)
 
-## Use Case: <br>
-Employees, external procurement teams, developers, and agents use this skill to search and enrich US-based B2B service providers such as law firms, agencies, consultancies, accounting firms, IT services firms, and similar vendors. It is intended for structured firm discovery and shortlist workflows, not consumer-service requests, non-US firms, freelancers, recruiting tasks, or general web research. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security scan flags credential-loading instructions that can source local .env.local shell code. <br>
-Mitigation: Prefer the ServiceGraph MCP/OAuth flow or an already-exported SERVICEGRAPH_API_KEY, and do not source .env.local unless the user explicitly trusts that file. <br>
-Risk: The skill can trigger paid ServiceGraph unlocks for firm details. <br>
-Mitigation: Confirm the number of firms and expected credit cost with the user before running unlock calls. <br>
+## Use Case:
 
+External users, procurement teams, sales teams, and operators use this skill to discover and evaluate US B2B professional-services firms, build shortlists, and enrich selected firm domains with contact and company details. It is not intended for consumer-service searches, non-US provider discovery, individual freelancers, recruiting tasks, or general web research outside structured firm-directory needs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nostrband/find-service-providers) <br>
-- [ServiceGraph API base](https://api.servicegraph.co) <br>
-- [ServiceGraph MCP server](https://mcp.servicegraph.co) <br>
+### Deployment Geography for Use:
 
+United States
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with API request examples and structured shortlist guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include ServiceGraph filters, API calls, shortlist summaries, enrichment planning, and cost/credit guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter: 0.3.0) <br>
+Risk: The documented shell wrapper can execute arbitrary code from a local .env.local file when used in an untrusted project directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer the ServiceGraph MCP/OAuth path or an already-exported SERVICEGRAPH_API_KEY, and avoid sourcing .env.local from untrusted directories.
+
+Risk: Detail unlock calls spend ServiceGraph credits for selected firms.
+
+Mitigation: Confirm the firm count and expected credit cost with the user before batch unlocks.
+
+## Reference(s):
+
+- [Find Service Providers on ClawHub](https://clawhub.ai/nostrband/skills/find-service-providers)
+- [ServiceGraph API](https://api.servicegraph.co)
+- [ServiceGraph MCP Server](https://mcp.servicegraph.co)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, API calls, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and API request examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce firm shortlists, filter strings, unlock plans, enrichment summaries, and credential setup guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter says 0.3.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

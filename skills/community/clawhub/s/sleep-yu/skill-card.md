@@ -1,41 +1,53 @@
-## Description: <br>
-Supports brief, warm responses when users are going to rest or saying good night, and provides general sleep-hygiene guidance with clear non-medical boundaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Responds when users say good night, prepare to rest, or ask lightweight sleep-routine questions, with concise send-offs and non-medical sleep hygiene guidance.
 
-## Publisher: <br>
-[yu](https://clawhub.ai/user/yu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yu](https://clawhub.ai/user/yu)
 
-## Use Case: <br>
-External users use this skill when they indicate they are ending the conversation to sleep, say good night, or ask lightweight questions about sleep routines. The skill guides the agent to keep bedtime replies concise and to treat sleep-health advice as general wellness information rather than medical diagnosis or treatment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may interpret sleep-health guidance as medical advice. <br>
-Mitigation: Keep advice general, state that it is not a medical diagnosis or prescription, and recommend professional medical consultation for persistent or severe symptoms. <br>
-Risk: The skill could trigger on technical uses of sleep terminology, such as programming APIs or device sleep modes. <br>
-Mitigation: Apply the artifact's non-trigger guidance and continue the user's technical task when sleep is used in a programming or product context. <br>
-Risk: The skill could unnecessarily prolong a conversation after the user says they are going to sleep. <br>
-Mitigation: Use a short send-off and avoid introducing new tasks, tool use, or follow-up prompts. <br>
+## Use Case:
 
+External users use this skill to let an agent close conversations briefly when they are going to rest, and to receive practical, non-medical sleep hygiene guidance for common sleep and routine questions.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or plain text conversational responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution, data access, or special permissions indicated by server security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Users may treat lightweight sleep hygiene guidance as medical advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep responses at a general wellness level, state that the agent is not a doctor, and recommend a qualified clinician for persistent, severe, or safety-impacting symptoms.
+
+Risk: Chinese responses default to Simplified Chinese, which may not match every user's preference.
+
+Mitigation: Honor explicit user language or script preferences when provided.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yu/skills/sleep-yu)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text conversational response]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable output; responses should remain concise for bedtime send-offs and avoid medical diagnosis or dosage advice.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

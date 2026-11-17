@@ -1,39 +1,49 @@
-## Description: <br>
-Helps users define company values and culture for minimalist businesses before hiring. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps Chinese-speaking founders define minimalist company values and culture before hiring.
 
-## Publisher: <br>
-[ethan-china](https://clawhub.ai/user/ethan-china) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ethan-china](https://clawhub.ai/user/ethan-china)
 
-## Use Case: <br>
-Founders and business operators use this skill to draft company values, connect those values to hiring decisions and daily work, and identify anti-patterns before building a team. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated company values may be too broad, culturally mismatched, or unsuitable for hiring and public materials without review. <br>
-Mitigation: Review and adapt the drafted values with the responsible leadership, people, or legal stakeholders before publishing them or using them in hiring. <br>
-Risk: Broad business and culture trigger terms may make the skill relevant in some general business conversations. <br>
-Mitigation: Confirm the user is asking for company values, culture, hiring, or related operating guidance before applying the skill's recommendations. <br>
+## Use Case:
 
+Founders and operators use this skill to draft company values, culture principles, hiring implications, daily work behaviors, and anti-patterns before expanding a team.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown guidance with structured company value drafts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution, credential access, local file access, persistence, or external access requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill may activate for broad Chinese-language discussions about company culture, values, hiring, or remote teams and steer conversations that are only loosely related.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Narrow activation language or review activation behavior during installation so it is used only for explicit company-values and culture-design requests.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ethan-china/skills/miniest-company-values)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown prose with structured lists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

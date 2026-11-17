@@ -1,40 +1,53 @@
-## Description: <br>
-AI解梦与潜意识分析。分析梦境中的象征结构、情绪循环、身份焦虑与现实映射。不要鸡汤，不要安慰，只要真相。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI解梦与潜意识分析。分析梦境中的象征结构、情绪循环、身份焦虑与现实映射。不要鸡汤，不要安慰，只要真相。
 
-## Publisher: <br>
-[chenyuan35](https://clawhub.ai/user/chenyuan35) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chenyuan35](https://clawhub.ai/user/chenyuan35)
 
-## Use Case: <br>
-Chinese-language users use this skill to interpret dream reports through symbolic mapping, emotional-pattern analysis, and personality-conflict framing. It is for reflective interpretation, not diagnosis, therapy, or crisis support. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Dream interpretation output may be mistaken for diagnosis, therapy, or professional mental-health advice. <br>
-Mitigation: Use the skill only for reflective interpretation and route crisis, trauma, self-harm, delusions, or severe distress to qualified professional support. <br>
-Risk: The skill uses a direct, non-comforting psychological style that may be emotionally sensitive for some users. <br>
-Mitigation: Review outputs before relying on them and avoid using the skill when a supportive or clinically appropriate response is needed. <br>
+## Use Case:
 
+External users use this skill to ask an agent for symbolic dream interpretation that maps dream elements to emotions, identity anxiety, and inner conflicts. It is for reflective analysis, not diagnosis, therapy, crisis support, or reliable personality assessment.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chenyuan35/dream-analyzer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Guidance] <br>
-**Output Format:** [Markdown dream-analysis response with JSON-style structured fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-language dream interpretation; no code execution, shell commands, or external tool access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: Users may mistake symbolic dream interpretation for diagnosis, therapy, or reliable personality assessment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present outputs as reflective interpretation only and avoid using the skill for clinical, crisis, trauma, self-harm, or serious mental-health concerns.
+
+Risk: The skill's intentionally blunt tone may produce emotionally harsh or overconfident interpretations.
+
+Mitigation: Review outputs before sharing with vulnerable users and soften, contextualize, or withhold interpretations when emotional harm is likely.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chenyuan35/skills/dream-analyzer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, guidance]
+
+**Output Format:** [Markdown dream-analysis report with an optional JSON-shaped summary]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses concise symbolic interpretation with a deliberately blunt tone.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

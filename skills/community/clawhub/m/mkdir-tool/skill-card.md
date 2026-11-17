@@ -1,40 +1,48 @@
-## Description: <br>
-Create directories and directory hierarchies for organizing files, setting up project structures, and managing filesystem layout. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create directories and directory hierarchies for organizing files, setting up project structures, and managing filesystem layout.
 
-## Publisher: <br>
-[dinghaibin](https://clawhub.ai/user/dinghaibin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[dinghaibin](https://clawhub.ai/user/dinghaibin)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and agents use this skill to create directories and parent directory hierarchies while organizing files or setting up project structures.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill creates directories at paths supplied by a user or agent, including absolute paths or paths outside the current project.
+
+Mitigation: Review requested paths before execution and prefer paths scoped to the intended project workspace.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and agents use this skill to create local directories and directory hierarchies while organizing files or preparing project structures. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [shell commands, guidance, text]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill creates local directories, including parent directory paths when requested. <br>
-Mitigation: Review requested paths before execution, especially absolute paths or paths under sensitive locations. <br>
-Risk: The documentation mentions a permission mode option that the implementation does not currently support. <br>
-Mitigation: Do not rely on the documented -m permission option unless the implementation is updated and revalidated. <br>
+**Output Format:** [Markdown with inline shell commands and concise execution guidance]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [Mkdir Tool on ClawHub](https://clawhub.ai/dinghaibin/mkdir-tool) <br>
+**Other Properties Related to Output:** [Produces filesystem directory creation actions at user- or agent-provided paths.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates local filesystem directories when executed; parent directory creation is supported by the implementation.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

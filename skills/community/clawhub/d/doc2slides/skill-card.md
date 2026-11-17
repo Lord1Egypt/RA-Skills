@@ -1,43 +1,58 @@
-## Description: <br>
-Doc2slides converts PDF, Word, and Markdown documents into designer-grade PPTX slide decks with auto-layout, built-in charts, and optional LLM-assisted analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts PDF, Word, and Markdown documents into designer-grade PowerPoint presentations with AI-assisted layout selection, built-in charts, and local-first defaults.
 
-## Publisher: <br>
-[lifei68801](https://clawhub.ai/user/lifei68801) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lifei68801](https://clawhub.ai/user/lifei68801)
 
-## Use Case: <br>
-External users and developers use this skill to turn documents or prepared slide outlines into PPTX presentations for reports, training, pitches, academic presentations, and technical sharing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Document text may be processed by configured external AI providers despite local-first positioning. <br>
-Mitigation: Verify model configuration before using confidential documents, avoid setting API keys unless external processing is intended, and prefer JSON/template-only or truly local endpoint modes when needed. <br>
-Risk: Setup installs packages and generated HTML may be rendered in a browser. <br>
-Mitigation: Review setup steps before installation, run in a controlled environment, and render only trusted local/generated HTML. <br>
-Risk: The workflow modifies local files while producing presentations and intermediate artifacts. <br>
-Mitigation: Use an explicit output directory, keep source documents backed up, and inspect generated PPTX, preview, and validation files before sharing. <br>
+## Use Case:
 
+External users, developers, and document authors use this skill to turn PDFs, Word files, or Markdown into presentation decks for thesis defenses, status reports, technical training, business pitches, and reading notes.
 
-## Reference(s): <br>
-- [ClawHub Doc2slides Skill Page](https://clawhub.ai/lifei68801/doc2slides) <br>
-- [Design Principles](artifact/references/design-principles.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Guidance] <br>
-**Output Format:** [PPTX files with optional HTML slides, PNG previews, JSON work files, validation reports, and terminal status output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes local output and work files; optional LLM configuration can affect whether document text is processed by an external provider or local compatible endpoint.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.8.2 (source: frontmatter and server release metadata) <br>
+Risk: Document contents may be sent to configured AI services when optional LLM providers or custom endpoints are used.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use true offline mode for confidential documents, or confirm the selected provider and endpoint are approved before enabling API keys.
+
+Risk: Generated HTML is rendered for slide previews and may have weak browser isolation.
+
+Mitigation: Render untrusted or sensitive content in a contained environment and review generated previews before sharing outputs.
+
+Risk: Setup installs Python dependencies into the active environment.
+
+Mitigation: Run setup in an isolated virtual environment or disposable workspace rather than a privileged or shared global Python install.
+
+## Reference(s):
+
+- [Design Principles](references/design-principles.md)
+- [ClawHub Skill Page](https://clawhub.ai/lifei68801/skills/doc2slides)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [PPTX files with optional PNG previews, plus Markdown and inline shell commands for setup and execution guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reads local documents, writes local presentation outputs, and can optionally use configured LLM provider API keys for content analysis.]
+
+## Skill Version(s):
+
+3.8.2 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

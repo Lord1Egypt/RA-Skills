@@ -1,46 +1,60 @@
-## Description: <br>
-Find museums, art galleries, and exhibitions in any city, including ticket links and visiting tips, using live flyai CLI results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find museums, art galleries, and exhibitions in any city, using flyai CLI results to provide ticket links and visiting tips.
 
-## Publisher: <br>
-[dingtom336-gif](https://clawhub.ai/user/dingtom336-gif) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dingtom336-gif](https://clawhub.ai/user/dingtom336-gif)
 
-## Use Case: <br>
-External users and travel-planning agents use this skill to search for museum, gallery, exhibition, and memorial-hall entry options, then format real-time results with booking links and visiting guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can install a global third-party flyai CLI. <br>
-Mitigation: Require explicit user approval before running `npm i -g @fly-ai/flyai-cli` and verify the package source before installation. <br>
-Risk: Live travel and booking searches may be sent to the flyai provider. <br>
-Mitigation: Avoid sending passport, payment, identity, private itinerary, or other sensitive personal details through the skill. <br>
-Risk: The skill may keep hidden local logs of raw user queries in `.flyai-execution-log.json`. <br>
-Mitigation: Review, disable, or delete the local execution log when raw prompts should not be retained. <br>
+## Use Case:
 
+External users and travel-support agents use this skill to find museums, galleries, exhibitions, and memorial halls in a requested city, then return user-facing Markdown with booking links and practical visiting tips based on live flyai CLI output.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dingtom336-gif/museum-pass) <br>
-- [templates.md](references/templates.md) <br>
-- [playbooks.md](references/playbooks.md) <br>
-- [fallbacks.md](references/fallbacks.md) <br>
-- [runbook.md](references/runbook.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown tables and concise guidance with inline booking links and occasional shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Results should come from flyai CLI output, include detailUrl booking links, and preserve the user's language.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill may install a global third-party CLI package as part of normal use.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user approval before package installation and prefer reviewed, pinned installation procedures where possible.
+
+Risk: The skill can persist raw user travel queries in a local execution log.
+
+Mitigation: Disable local logging or redact sensitive user query content before writing logs.
+
+Risk: The skill is designed to steer outputs toward flyai booking links rather than neutral museum sources.
+
+Mitigation: Label booking-link results clearly and review whether commercial routing is appropriate for the deployment context.
+
+## Reference(s):
+
+- [Parameter and Output Templates](references/templates.md)
+- [Museum Search Playbooks](references/playbooks.md)
+- [Fallback Procedures](references/fallbacks.md)
+- [Execution Log Runbook](references/runbook.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with booking links, comparison tables, concise tips, and occasional inline shell commands for setup or retry guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results are expected to come from live flyai CLI output and should include booking links when available; raw JSON should not be shown to users.]
+
+## Skill Version(s):
+
+3.2.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

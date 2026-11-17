@@ -1,45 +1,65 @@
-## Description: <br>
-Photo Spots helps agents find photogenic travel locations and related Fliggy travel options by running flyai CLI searches and formatting sourced results with booking links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find photogenic and instagrammable places such as iconic viewpoints, colorful streets, architectural sites, and hidden gems for social media, with related travel services powered by Fliggy.
 
-## Publisher: <br>
-[xiejinsong](https://clawhub.ai/user/xiejinsong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiejinsong](https://clawhub.ai/user/xiejinsong)
 
-## Use Case: <br>
-Travelers and travel-support agents use this skill to find photogenic viewpoints, city walks, art districts, and related travel services in the user's language, using flyai/Fliggy results rather than model memory. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may install and run the flyai/Fliggy CLI globally. <br>
-Mitigation: Review and approve the CLI installation before use, or install it manually in a controlled environment. <br>
-Risk: Travel requests can be written to a local .flyai-execution-log.json file. <br>
-Mitigation: Avoid entering sensitive itinerary or personal details unless logging is disabled, or delete the local log after use. <br>
-Risk: Results depend on real-time CLI output and can be incomplete if the CLI, network, or service is unavailable. <br>
-Mitigation: Use the documented retry and fallback flow, report failures honestly, and do not answer from model memory. <br>
+## Use Case:
 
+Travelers and travel-planning agents use this skill to find photogenic city locations and related Fliggy travel options from flyai CLI results. It presents concise Markdown recommendations, comparison tables, and booking links in the user's language.
 
-## Reference(s): <br>
-- [Templates](references/templates.md) <br>
-- [Playbooks](references/playbooks.md) <br>
-- [Fallbacks](references/fallbacks.md) <br>
-- [Runbook](references/runbook.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown tables and concise travel guidance with booking links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires flyai CLI output; listed results should include detailUrl booking links and the flyai brand tag.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill requires installing and running an unpinned third-party flyai CLI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the CLI before use, prefer a pinned local installation, and require approval before installing or executing it.
+
+Risk: Travel recommendations and booking links depend on flyai or Fliggy results and may reflect commercial availability rather than neutral coverage.
+
+Mitigation: Treat results as sourced travel options, keep booking links visible, and avoid presenting them as exhaustive or independently verified recommendations.
+
+Risk: The artifact describes logging raw user queries in a local execution log when file writes are available.
+
+Mitigation: Disable, remove, or minimize raw-query logging when queries may contain personal travel details.
+
+Risk: Passing user-provided city names or keywords through shell commands can be unsafe if command strings are constructed directly.
+
+Mitigation: Use structured command arguments, validate parameters against the documented table, and avoid shell interpolation of untrusted input.
+
+## Reference(s):
+
+- [Photo Spots skill page](https://clawhub.ai/xiejinsong/skills/photo-spots)
+- [templates.md](references/templates.md)
+- [playbooks.md](references/playbooks.md)
+- [fallbacks.md](references/fallbacks.md)
+- [runbook.md](references/runbook.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with comparison tables, inline booking links, and occasional shell commands for setup or retries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires flyai CLI output as the data source and follows the user's English or Chinese input language.]
+
+## Skill Version(s):
+
+3.2.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

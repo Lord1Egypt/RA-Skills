@@ -1,0 +1,25 @@
+{
+  "slug": "wechat-to-cards",
+  "title": "WeChat To Cards",
+  "category": "content",
+  "summary": "Adapt reviewed WeChat content into inline-card requirements and distribution copy while reusing the shared card-to-image pipeline.",
+  "keywords": [
+    "WeChat",
+    "cards",
+    "article repurposing",
+    "Moments copy",
+    "community sharing",
+    "cards-to-images"
+  ],
+  "user_needs": [
+    "turn a reviewed WeChat article into checked inline-card images through the shared pipeline",
+    "create inline image-card copy from a draft",
+    "write Moments and community share copy without overwriting approved publish metadata",
+    "preserve article claims and approved metadata while adapting WeChat distribution assets"
+  ],
+  "source_dir": "skills/content/wechat-to-cards",
+  "entry": "SKILL.md",
+  "package_strategy": "on-demand",
+  "package_format": "skill",
+  "status": "ready"
+}

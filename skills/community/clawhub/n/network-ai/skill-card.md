@@ -1,45 +1,52 @@
-## Description: <br>
-Network AI is a local Python orchestration skill for multi-agent workflows using a shared blackboard file, permission gating, token budget scripts, and persistent project context. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Coordinates local multi-agent workflows using a shared blackboard, advisory permission scoring, token-budget checks, and persistent project context.
 
-## Publisher: <br>
-[jovancoding](https://clawhub.ai/user/jovancoding) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jovancoding](https://clawhub.ai/user/jovancoding)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to coordinate multi-agent work locally, track shared task state, manage budget checks, and request advisory permission grants before sensitive operations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores shared blackboard state, project context, audit logs, and advisory grant records in local workspace files. <br>
-Mitigation: Keep the data directory private, restrict local file permissions, and review project-context.json before injecting it into prompts. <br>
-Risk: Permission grant tokens are advisory scoring outputs and do not authenticate the caller's identity. <br>
-Mitigation: Require separate identity verification or human approval before honoring grants for sensitive resources such as payments, databases, email, or file export. <br>
-Risk: Free-text permission justifications and project context may contain sensitive data if agents or users enter it. <br>
-Mitigation: Do not place PII, credentials, or secrets in justification fields or project context, and rotate or delete local audit logs as needed. <br>
-Risk: The broader npm package can expose optional shell execution or a local MCP SSE server when an operator explicitly enables those features. <br>
-Mitigation: Keep shell auto-approval disabled outside isolated test environments, require a bearer token for MCP access, and bind local services only to trusted interfaces. <br>
+## Use Case:
 
+Developers and engineers use it to coordinate agents in a trusted workspace through a shared blackboard and to track task budgets, advisory permission scores, and persistent project context.
 
-## Reference(s): <br>
-- [Network AI homepage](https://network-ai.org) <br>
-- [ClawHub skill page](https://clawhub.ai/jovancoding/network-ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, markdown, JSON] <br>
-**Output Format:** [Markdown instructions with bash examples and local JSON or markdown file outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs and state remain local unless the host platform or operator connects external services.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-5.12.7 (source: target metadata and evidence.release.version) <br>
+Risk: Directory manipulation could redirect writes to persistent context, permission, audit, or coordination data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run it in a trusted workspace with protected directory permissions, and review the scan guidance before use.
+
+## Reference(s):
+
+- [Network AI homepage](https://network-ai.org)
+- [Network AI on ClawHub](https://clawhub.ai/jovancoding/skills/network-ai)
+- [Network AI project documentation](https://github.com/Jovancoding/Network-AI)
+- [ClawHub skill scan findings](https://github.com/Jovancoding/Network-AI/blob/main/SECURITY.md#clawhub-skill-scan-findings)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Markdown, Shell commands]
+
+**Output Format:** [JSON state files and Markdown coordination/context files, with status text on stdout]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Persistent local state is stored under the project root and data/ (or data/<env>/).]
+
+## Skill Version(s):
+
+6.0.1 (source: server-resolved release, artifact/skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

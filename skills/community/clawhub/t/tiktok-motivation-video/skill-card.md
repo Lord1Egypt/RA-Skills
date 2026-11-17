@@ -1,45 +1,62 @@
-## Description: <br>
-Creates dark motivational TikTok/Reels videos by generating a timed script, producing an ElevenLabs voiceover, fetching real cinematic clips from Pexels, adding animated text overlays, applying FFmpeg color grading, and exporting a 1080x1920 MP4. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates dark motivational TikTok/Reels videos by generating a timed script, ElevenLabs voiceover, Pexels stock footage selection, MoviePy text overlays, FFmpeg color grading, and a 1080x1920 MP4 export.
 
-## Publisher: <br>
-[thuongvh2-python](https://clawhub.ai/user/thuongvh2-python) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[thuongvh2-python](https://clawhub.ai/user/thuongvh2-python)
 
-## Use Case: <br>
-Content creators, marketers, and automation developers use this skill to assemble short dark-motivation social videos from user-provided topics, provider API keys, and real stock footage. It is suited for producing ready-to-post vertical MP4s with voiceover, captions, text timing, and cinematic grading. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Provider API keys and usage may expose cost, quota, or account risk when running the pipeline. <br>
-Mitigation: Keep API keys out of source control, use a dedicated project folder, and monitor Anthropic, ElevenLabs, and Pexels usage or billing. <br>
-Risk: Generated scripts, topics, or voice content may include private plans, personal data, or unauthorized voice cloning. <br>
-Mitigation: Avoid private business plans or personal data in prompts and use voice cloning only with explicit authorization. <br>
-Risk: Downloaded stock footage and generated captions may need review before posting. <br>
-Mitigation: Review the final MP4, captions, and Pexels attribution before publishing. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/thuongvh2-python/tiktok-motivation-video) <br>
-- [Pexels API](https://www.pexels.com/api/) <br>
-- [Anthropic Messages API endpoint](https://api.anthropic.com/v1/messages) <br>
-- [ElevenLabs text-to-speech endpoint](https://api.elevenlabs.io/v1/text-to-speech/{voice_id}) <br>
-- [Voice catalog](elevenlabs_voices.md) <br>
+## Use Case:
 
+Content creators, marketers, and developers use this skill to assemble short dark-aesthetic motivational videos for TikTok or Reels from generated scripts, synthetic voiceover, and real Pexels footage.
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python code, shell commands, environment variables, and generated MP4 video artifacts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The workflow depends on Anthropic, ElevenLabs, Pexels, MoviePy, pydub, FFmpeg, and API keys supplied through environment variables.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Remote media downloads may be fetched and processed without strong host, content type, redirect, or size bounds.
+
+Mitigation: Run the skill in an isolated environment with limited filesystem access and add explicit download validation before using it on sensitive machines.
+
+Risk: Third-party Python dependencies are documented without pinned versions.
+
+Mitigation: Pin and review dependency versions before installation or deployment.
+
+Risk: The pipeline requires Anthropic, ElevenLabs, and Pexels API keys.
+
+Mitigation: Use service-scoped API keys, store them outside the artifact, and rotate them if exposed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/thuongvh2-python/skills/tiktok-motivation-video)
+- [Publisher profile](https://clawhub.ai/user/thuongvh2-python)
+- [Pexels API](https://www.pexels.com/api/)
+- [Anthropic Messages API endpoint](https://api.anthropic.com/v1/messages)
+- [ElevenLabs Text to Speech API endpoint](https://api.elevenlabs.io/v1/text-to-speech/{voice_id})
+- [ElevenLabs voice catalog](artifact/elevenlabs_voices.md)
+- [Complete runnable pipeline](artifact/pipeline_full.py)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with Python and shell command examples; when executed, the pipeline writes MP3, intermediate MP4, and final 1080x1920 MP4 files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Anthropic, ElevenLabs, and Pexels API keys plus FFmpeg and Python media dependencies.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

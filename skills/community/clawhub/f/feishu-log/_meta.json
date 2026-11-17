@@ -1,6 +1,18 @@
 {
-  "ownerId": "kn7fdhvna7nhh2j83sbv5p9141825xgw",
-  "slug": "feishu-log",
-  "version": "1.0.2",
-  "publishedAt": 1773393690933
+  "name": "feishu-log",
+  "version": "1.0.1",
+  "description": "飞书日志记录 - 用户主动提供日志内容，智能整理、结构化、层次化后写入飞书文档",
+  "author": "OpenClaw Community",
+  "license": "MIT",
+  "keywords": ["feishu", "log", "documentation", "meeting-notes"],
+  "main": "feishu-log.js",
+  "bin": {
+    "feishu-log": "./feishu-log.sh"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "requires": {
+    "bins": ["node", "curl", "jq"]
+  }
 }

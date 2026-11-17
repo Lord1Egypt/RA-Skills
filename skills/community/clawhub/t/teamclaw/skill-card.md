@@ -1,46 +1,59 @@
-## Description: <br>
-A high-performance Agent subsystem for complex multi-agent orchestration. It provides a visual workflow canvas (OASIS) to coordinate OpenClaw agents, automated computer use tasks, and real-time monitoring via a dedicated Web UI. Supports Telegram/QQ bot integrations and Cloudflare Tunnel for secure remote access. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A high-performance Agent subsystem for complex multi-agent orchestration. It provides a visual workflow canvas (OASIS) to coordinate OpenClaw agents, automated computer use tasks, and real-time monitoring via a dedicated Web UI. Supports Telegram/QQ bot integrations and Cloudflare Tunnel for secure remote access.
 
-## Publisher: <br>
-[Avalon-467](https://clawhub.ai/user/Avalon-467) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[avalon-467](https://clawhub.ai/user/avalon-467)
 
-## Use Case: <br>
-Developers and agent operators use TeamClaw to run a local multi-agent orchestration service with an OpenAI-compatible chat API, OASIS workflow canvas, scheduled tasks, monitoring, bot integrations, and optional remote access. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can expose broad local agent, file, command, network, persistent-memory, bot, and public-web controls. <br>
-Mitigation: Install only in an environment where those capabilities are expected, review configuration before launch, and restrict access to trusted users. <br>
-Risk: Optional Cloudflare Tunnel exposure can make the web UI reachable outside the local machine. <br>
-Mitigation: Leave the tunnel disabled unless remote access is required, and add strong authentication and access controls before enabling it. <br>
-Risk: This version passes and stores raw user passwords internally. <br>
-Mitigation: Use dedicated, non-reused passwords for TeamClaw accounts and avoid sharing credentials across important services. <br>
-Risk: Telegram and QQ bot integrations can receive commands from external messaging platforms. <br>
-Mitigation: Configure bot tokens and allowlists carefully, and keep bot integrations disabled when they are not needed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [TeamClaw ClawHub release](https://clawhub.ai/Avalon-467/teamclaw) <br>
-- [Publisher profile](https://clawhub.ai/user/Avalon-467) <br>
-- [TeamClaw GitHub repository](https://github.com/Avalon-467/Teamclaw) <br>
-- [OASIS external usage guide](artifact/OASIS_GUIDE.md) <br>
+## Use Case:
 
+Developers and external users can use TeamClaw to run an OpenAI-compatible local agent service, coordinate multi-agent OASIS workflows, monitor activity through a Web UI, and connect optional Telegram, QQ, Bark, OpenClaw, and Cloudflare Tunnel integrations.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown, YAML workflow definitions, JSON API payloads, and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include long-running background workflows, local API responses, scheduled-task status, bot messages, and web UI state.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.3 (source: server release metadata; artifact frontmatter metadata.version is 1.0.1) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: TeamClaw is a coherent multi-agent orchestration platform, but it grants broad automation and credential-bearing service access with weak scoping that should be reviewed before installation.
+
+Mitigation: Install only if you are comfortable running a powerful local multi-agent service with code execution, persistent memory, stored API keys, and optional public access. Keep it bound to localhost unless you have reviewed the exposed routes, avoid exposing OASIS directly, do not use untrusted callback URLs or external expert API URLs, rotate tokens if exposure is suspected, and prefer running it in a separate low-privilege account or container.
+
+Risk: The skill can expose local multi-agent services and optional public access paths.
+
+Mitigation: Keep services bound to localhost unless exposed routes have been reviewed, avoid exposing OASIS directly, and use a low-privilege account or container for installation.
+
+Risk: The skill depends on stored API keys, user credentials, and external expert or callback URLs.
+
+Mitigation: Avoid untrusted callback URLs or external expert API URLs and rotate tokens if exposure is suspected.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/avalon-467/skills/teamclaw)
+- [TeamClaw repository](https://github.com/Avalon-467/Teamclaw)
+- [TeamClaw README](artifact/README.md)
+- [OASIS guide](artifact/OASIS_GUIDE.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, YAML schedules, API examples, and configuration values]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference local service ports, API credentials, bot tokens, and workflow/session identifiers needed to operate the agent subsystem.]
+
+## Skill Version(s):
+
+0.1.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

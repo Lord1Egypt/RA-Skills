@@ -1,44 +1,60 @@
-## Description: <br>
-Create, edit, and publish WordPress posts via REST API with full Gutenberg block support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create, edit, and publish WordPress posts via REST API with full Gutenberg block support.
 
-## Publisher: <br>
-[chirukinbb](https://clawhub.ai/user/chirukinbb) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[chirukinbb](https://clawhub.ai/user/chirukinbb)
 
-## Use Case: <br>
-Developers and content automation teams use this skill to generate Gutenberg-compatible WordPress content, upload media, manage taxonomy metadata, and create or publish posts through the WordPress REST API. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can use WordPress site credentials to create, publish, delete, or upload content. <br>
-Mitigation: Use least-privilege application passwords, prefer staging and draft-by-default workflows, and require explicit approval before publishing, deleting, or uploading media. <br>
-Risk: Credentials or authenticated responses could be exposed through inline secrets or verbose logging. <br>
-Mitigation: Use environment variables or reviewed configuration, avoid admin credentials, and avoid verbose authenticated logging with real credentials. <br>
-Risk: Media upload workflows can send unintended local files to a WordPress site. <br>
-Mitigation: Restrict uploads to reviewed files or a small reviewed directory before running upload commands. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [WordPress REST API Reference](artifact/references/api_reference.md) <br>
-- [Gutenberg Block Examples](artifact/references/common_blocks.md) <br>
-- [Troubleshooting WordPress API Issues](artifact/references/troubleshooting.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/chirukinbb/wordpress-api-gutenberg) <br>
+## Use Case:
 
+Developers, content operators, and automation agents use this skill to prepare Gutenberg-compatible WordPress content, upload media, manage taxonomy metadata, and create or publish posts through the WordPress REST API.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance, API calls] <br>
-**Output Format:** [Markdown guidance with Python, JSON, HTML, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce WordPress REST API payloads, Gutenberg block HTML, publishing scripts, and configuration steps.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can create or update live WordPress content when connected to a real site.
+
+Mitigation: Use a dedicated low-privilege WordPress account and keep posts as drafts until a human reviews the generated content and metadata.
+
+Risk: Credentials and target site settings are required for REST API writes.
+
+Mitigation: Store credentials in environment variables or a secure secret store, confirm the exact WP_URL before writes, and avoid placing real passwords directly in shell commands.
+
+Risk: Some troubleshooting examples show insecure patterns such as disabled TLS verification or wildcard credentialed CORS.
+
+Mitigation: Use those examples only to understand failure modes, and do not copy verify=False or wildcard credentialed CORS settings into production environments.
+
+## Reference(s):
+
+- [WordPress REST API Reference](references/api_reference.md)
+- [Gutenberg Block Examples](references/common_blocks.md)
+- [Troubleshooting WordPress API Issues](references/troubleshooting.md)
+- [WordPress REST API Handbook](https://developer.wordpress.org/rest-api/)
+- [Block Editor Handbook](https://developer.wordpress.org/block-editor/)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with inline Python, shell, JSON, and Gutenberg HTML examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can produce WordPress REST API request patterns, Gutenberg block markup, publishing scripts, media upload reports, and configuration examples.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

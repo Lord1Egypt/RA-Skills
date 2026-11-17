@@ -1,40 +1,58 @@
-## Description: <br>
-Use when configuring Maven plugins, setting up common plugins like compiler, surefire, jar, or creating custom plugin executions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when configuring Maven plugins, setting up common plugins like compiler, surefire, jar, or creating custom plugin executions.
 
-## Publisher: <br>
-[wu-uk](https://clawhub.ai/user/wu-uk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wu-uk](https://clawhub.ai/user/wu-uk)
 
-## Use Case: <br>
-Developers and build engineers use this skill to configure Maven build, testing, packaging, release, quality, and code-generation plugins. It provides reusable Maven XML examples, command examples, and best-practice guidance for POM plugin configuration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Copyable Maven command examples can rewrite project version files or alter dependency and plugin versions. <br>
-Mitigation: Apply suggestions on a clean branch and review generated POM and version-control diffs before committing or running in CI. <br>
-Risk: The exec-maven-plugin example can make future builds run a shell script. <br>
-Mitigation: Use the bash execution example only when the referenced script is trusted and intentionally allowed in local and CI builds. <br>
+## Use Case:
 
+Developers and build engineers use this skill to configure Maven build, test, quality, packaging, version-management, and code-generation plugins for Java projects.
 
-## Reference(s): <br>
-- [Oracle Java SE 17 API documentation](https://docs.oracle.com/en/java/javase/17/docs/api/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with Maven XML and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: Maven plugin examples that run external commands can execute trusted or untrusted repository scripts during a build.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use exec plugin configuration only with trusted scripts in trusted repositories, and review command paths and arguments before copying examples.
+
+Risk: Release and version-management plugin examples can change project release state or dependency versions.
+
+Mitigation: Review release, version, and update commands in a branch or CI dry run before applying them to protected repositories.
+
+Risk: Manifest examples can embed developer identity or build timestamps, which may affect privacy or reproducible builds.
+
+Mitigation: Remove Built-By and Build-Time manifest entries when privacy or reproducibility requirements apply.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wu-uk/skills/fix-build-google-auto-maven-plugin-configuration)
+- [Java SE 17 API documentation](https://docs.oracle.com/en/java/javase/17/docs/api/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with XML configuration snippets and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only guidance; examples should be reviewed before use in a project build.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

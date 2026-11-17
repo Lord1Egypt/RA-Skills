@@ -1,46 +1,59 @@
-## Description: <br>
-Provides OAuth 1.0a access to X API v2 for posting tweets, creating threads, deleting tweets, checking account info, and retrieving mentions or search results when the account tier permits. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides an X (Twitter) OAuth 1.0a API client for posting tweets and threads, deleting tweets, checking account info, and using paid-tier search or mentions commands.
 
-## Publisher: <br>
-[ngmeyer](https://clawhub.ai/user/ngmeyer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ngmeyer](https://clawhub.ai/user/ngmeyer)
 
-## Use Case: <br>
-Developers and external users use this skill to let an agent operate an X account through official OAuth credentials for posting, threads, deletion, account checks, mentions, and search. It is intended for accounts where the operator is comfortable granting write authority and reviewing public actions before execution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can post or delete content from a live X account using OAuth credentials. <br>
-Mitigation: Require explicit human review before posts, threads, or deletions, and verify tweet IDs before deletion. <br>
-Risk: Declared scope conflicts with implemented search and mentions features, and those endpoints may require a paid X API tier. <br>
-Mitigation: Treat search and mentions as available capabilities, check the account tier before use, and expect clear failure handling on unsupported tiers. <br>
-Risk: The automation template can publish unattended public posts if configured and scheduled. <br>
-Mitigation: Use the automation template only when unattended posting is intentional, customize content deliberately, and keep daily limits and cooldowns enabled. <br>
-Risk: OAuth credentials grant account authority and can fail after rotation or if copied with extra whitespace. <br>
-Mitigation: Store credentials securely, rotate all four OAuth values together, and validate copied values before use. <br>
+## Use Case:
 
+Developers and agents use this skill to configure X API credentials and run command-line workflows that post, delete, and thread tweets, inspect account details, and optionally retrieve mentions or search results when the account tier allows it.
 
-## Reference(s): <br>
-- [ClawHub listing for X OAuth API](https://clawhub.ai/ngmeyer/x-oauth-api) <br>
-- [X Developer Platform](https://developer.twitter.com/) <br>
-- [X API rate limits](https://developer.twitter.com/en/docs/twitter-api/rate-limits) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Plain text and JSON from CLI commands, with Markdown guidance when used by an agent] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires X OAuth environment variables and network access to api.twitter.com; some commands depend on paid X API tiers.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: Commands can post to or delete from a live X account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated X app or low-risk account, review generated tweet content before posting, and run delete commands only when the account action is explicitly intended.
+
+Risk: The implemented search, mentions, and automation behavior extends beyond the declared free-tier posting scope.
+
+Mitigation: Confirm the account tier before using search or mentions, and limit automation scripts with clear posting caps and review of template content.
+
+Risk: OAuth credentials are sensitive and required for the client to run.
+
+Mitigation: Keep X API keys and access tokens private, rotate them if exposed, and avoid storing them in shared logs or source files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ngmeyer/skills/x-oauth-api)
+- [X Developer Portal](https://developer.twitter.com/)
+- [X API rate limits](https://developer.twitter.com/en/docs/twitter-api/rate-limits)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands; CLI output may be plain text or JSON]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires X OAuth environment variables and network access to api.twitter.com]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,56 @@
-## Description: <br>
-Publishes HTML or Markdown content to Bilibili articles or Tribee posts, handling login checks, title entry, content insertion through the editor API, and publish actions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Publishes trusted HTML or Markdown content to Bilibili article or Tribee targets with login checks, title handling, editor insertion, and publishing steps.
 
-## Publisher: <br>
-[zangzhicong](https://clawhub.ai/user/zangzhicong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zangzhicong](https://clawhub.ai/user/zangzhicong)
 
-## Use Case: <br>
-External creators and agents use this skill to publish prepared HTML or Markdown articles to Bilibili Article or Tribee posts through an authenticated browser session. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can publish through the user's logged-in Bilibili account without a required final approval step. <br>
-Mitigation: Before publishing, verify the account, file path, title, target, visibility, category or sync settings, and require explicit approval before clicking publish. <br>
-Risk: Local images referenced by the source HTML or Markdown can be inlined into the content and published. <br>
-Mitigation: Review embedded image paths and the processed content before insertion, especially when the source file comes from an untrusted location. <br>
+## Use Case:
 
+Content publishers and operators use this skill to publish trusted HTML or Markdown files to Bilibili articles or Tribee posts from an authenticated OpenClaw browser session.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/zangzhicong/bili-sunflower-publish) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and browser-action steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces publish workflow instructions and can drive a logged-in browser session to post user-supplied content.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill can publish content publicly from an authenticated Bilibili account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Manually verify the account, target, visibility, title, body, and publish settings before allowing the final publish action.
+
+Risk: Referenced local images can be read from disk and embedded into the published post.
+
+Mitigation: Use only trusted input files and review embedded images in the processed output before publishing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zangzhicong/skills/bili-sunflower-publish)
+- [Publisher profile](https://clawhub.ai/user/zangzhicong)
+- [Bilibili article editor](https://member.bilibili.com/york/read-editor)
+- [Bilibili Tribee publish URL pattern](https://www.bilibili.com/bubble/publish?tribee_id={id}&tribee_name={name})
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, code, guidance]
+
+**Output Format:** [Markdown guidance with shell and JavaScript snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create preprocessed temporary HTML or Markdown files before browser-based publishing]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

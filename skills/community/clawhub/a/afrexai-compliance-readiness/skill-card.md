@@ -1,41 +1,60 @@
-## Description: <br>
-AI Compliance Readiness Assessment - evaluate how prepared an organization is for AI governance regulations including the EU AI Act, NIST AI RMF, HHS mandates, and state bar AI rules. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI Compliance Readiness Assessment evaluates how prepared an organization is for AI governance regulations, scores readiness across 8 dimensions, and generates an action plan.
 
-## Publisher: <br>
-[afrexai-cto](https://clawhub.ai/user/afrexai-cto) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[afrexai-cto](https://clawhub.ai/user/afrexai-cto)
 
-## Use Case: <br>
-Compliance, governance, and operations teams use this skill to assess AI regulatory readiness, identify gaps across eight governance dimensions, and prepare an action plan before audits or regulatory reviews. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may share internal AI usage, governance, vendor, audit, or compliance details while using the assessment. <br>
-Mitigation: Share only information approved for the agent context and avoid unnecessary confidential or sensitive details. <br>
-Risk: The generated readiness report may be mistaken for legal or compliance advice. <br>
-Mitigation: Use the output as planning guidance and have qualified compliance or legal reviewers validate obligations, deadlines, and remediation plans. <br>
+## Use Case:
 
+Compliance, governance, legal operations, and AI program teams use this skill to assess AI compliance gaps, prepare for audits, and build an AI governance roadmap. It produces readiness scoring, regulatory exposure notes, and prioritized remediation guidance that should be reviewed by qualified compliance or legal staff.
 
-## Reference(s): <br>
-- [Compliance Readiness release page](https://clawhub.ai/afrexai-cto/afrexai-compliance-readiness) <br>
-- [AfrexAI](https://afrexai.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown assessment report with summary, score table, regulatory exposure, and action plan] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Scores readiness across eight dimensions using user-provided organizational, AI-system, jurisdiction, and governance context.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Users may treat the generated readiness checklist as legal advice or a final compliance determination.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the assessment as planning guidance and have qualified legal or compliance staff review conclusions before relying on them for audits, regulatory filings, or operational decisions.
+
+Risk: The assessment may request vendor, audit, certification, or internal control details that are sensitive.
+
+Mitigation: Share only the details needed for the assessment, redact sensitive values where possible, and follow the organization's data-handling rules.
+
+## Reference(s):
+
+- [Compliance Readiness ClawHub listing](https://clawhub.ai/afrexai-cto/skills/afrexai-compliance-readiness)
+- [AfrexAI publisher profile](https://clawhub.ai/user/afrexai-cto)
+- [AfrexAI website](https://afrexai.com)
+- [AI Adoption Readiness](https://clawhub.com/skills/afrexai-ai-adoption-readiness)
+- [Change Management Plan](https://clawhub.com/skills/afrexai-change-management-plan)
+- [Vendor Risk Assessment](https://clawhub.com/skills/afrexai-vendor-risk-assessment)
+- [Incident Response Plan](https://clawhub.com/skills/afrexai-incident-response-plan)
+- [SLA Monitor](https://clawhub.com/skills/afrexai-sla-monitor)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown report with scoring tables, regulatory exposure notes, prioritized action items, and audit checklist guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses user-provided organization, AI-system, jurisdiction, governance, audit, certification, and vendor context to produce a compliance readiness assessment.]
+
+## Skill Version(s):
+
+1.0.1 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

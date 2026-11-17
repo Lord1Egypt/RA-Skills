@@ -1,0 +1,108 @@
+{
+  "language": "nodecoda/1",
+  "pack_version": "1.0.0",
+  "generated_from": [
+    "references/gotchas.md"
+  ],
+  "items": [
+    {
+      "id": "G1",
+      "title": "@conversation 声明顺序",
+      "codes": [
+        "SYNTAX_ERROR"
+      ],
+      "symptom": "Expected declaration, got AT_CONVERSATION",
+      "cause": "@conversation 在 const/type/function 之后",
+      "correct": "@conversation 全部紧跟在 @mode 之后、const 之前"
+    },
+    {
+      "id": "G2",
+      "title": "文件变量没有 .text 字段",
+      "codes": [
+        "FIELD_NOT_FOUND"
+      ],
+      "symptom": "Field 'text' not found on file type. Available fields: name, filename, ...",
+      "cause": "file 变量只暴露元数据字段",
+      "correct": "用 extract_text(doc) 提取后再取 .text"
+    },
+    {
+      "id": "G3",
+      "title": "extract_text 要求声明可提取扩展名",
+      "codes": [
+        "TARGET_NOT_LOWERABLE"
+      ],
+      "symptom": "extract_text requires a selector-backed scalar file with a declared extractable extension",
+      "cause": "file<> 没声明可提取扩展名",
+      "correct": "file<document; .pdf>"
+    },
+    {
+      "id": "G4",
+      "title": "会话变量赋值只支持标量字面量",
+      "codes": [
+        "TARGET_NOT_LOWERABLE"
+      ],
+      "symptom": "conversation variable set operation only supports scalar literal values",
+      "cause": "给 @conversation 变量赋动态计算值",
+      "correct": "只存字面量标记，动态数据靠 LLM 记忆"
+    },
+    {
+      "id": "G5",
+      "title": "@conversation 默认值仅限字面量",
+      "codes": [
+        "TARGET_NOT_LOWERABLE"
+      ],
+      "symptom": "默认值非字面量报错",
+      "cause": "target 要求会话变量默认值是常量",
+      "correct": "默认值写死字面量"
+    },
+    {
+      "id": "G6",
+      "title": "文件直传 LLM 不被接受",
+      "codes": [
+        "TYPE_MISMATCH"
+      ],
+      "symptom": "Map value has incompatible type Type(file); expected Type(string)",
+      "cause": "LLM content 要 string，整个 file 变量不行",
+      "correct": "先 extract_text 再喂 LLM"
+    },
+    {
+      "id": "G7",
+      "title": "构建入口 / 工具 base 路径",
+      "codes": [
+        "401 INVALID_TOKEN",
+        "404"
+      ],
+      "symptom": "/api/v1/workflow-builds 401；save-build base 拼出 /v1/v1/ 404",
+      "cause": "admin /api/v1 与 MCP gateway /v1 两套 base",
+      "correct": "build 走 /v1；NODECODA_API_BASE 传宿主根"
+    },
+    {
+      "id": "G8",
+      "title": "变量名避开保留字",
+      "codes": [
+        "SYNTAX_ERROR"
+      ],
+      "symptom": "code/source/answer/limit 当变量名撞保留字",
+      "cause": "保留字表（grammar-reference §7）",
+      "correct": "换名 result/content 等"
+    },
+    {
+      "id": "G13",
+      "title": "else if 链合法（勿按 EBNF 误判）",
+      "codes": [],
+      "symptom": "想写 if...else if...else，查 grammar.ebnf 只见 else_clause_opt，怀疑不支持链式",
+      "cause": "EBNF 是简化写法，else_clause_opt 实际可承接嵌套 if",
+      "correct": "else if (cond) { ... } else { ... } 直接可用（实证构建 0 诊断）"
+    },
+    {
+      "id": "G14",
+      "title": "REST 直连缺 Idempotency-Key header",
+      "codes": [
+        "WORKFLOW_BUILD_REQUEST_INVALID"
+      ],
+      "symptom": "POST /v1/workflow-builds 返回 400 WORKFLOW_BUILD_REQUEST_INVALID",
+      "cause": "公网网关要求幂等 key body + Idempotency-Key 请求头双份；MCP server 自动转发，REST 直连不会",
+      "correct": "curl 加 -H \"Idempotency-Key: <key>\" 与 body 同值"
+    }
+  ]
+}

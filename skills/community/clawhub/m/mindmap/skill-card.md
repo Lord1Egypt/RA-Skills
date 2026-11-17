@@ -1,41 +1,58 @@
-## Description: <br>
-Create and visualize mind maps in the terminal with branching and export. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Mindmap is a terminal note-capture utility for adding, listing, searching, and exporting local plain-text entries.
 
-## Publisher: <br>
-[bytesagain-lab](https://clawhub.ai/user/bytesagain-lab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain-lab](https://clawhub.ai/user/bytesagain-lab)
 
-## Use Case: <br>
-Developers and terminal users can use this skill to capture, search, list, and export local brainstorming notes or lightweight project entries. The current implementation should be treated as a plaintext logging utility rather than a visual mind-map renderer. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release is described as a mind-map visualizer, but the included script behaves as a persistent plaintext note and log manager. <br>
-Mitigation: Set user expectations before use and verify the installed script behavior against the desired workflow before relying on it for mind-map visualization. <br>
-Risk: Entries and command history are stored locally in plaintext, and the remove command logs a removal without deleting stored entries. <br>
-Mitigation: Do not store secrets or sensitive brainstorming content, and manually inspect or delete the data and history logs when removal or retention control matters. <br>
+## Use Case:
 
+Developers and terminal users can capture lightweight notes, search local entries, and export them for downstream analysis. Treat it as local plain-text note storage rather than a mind-map visualization tool.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/bytesagain-lab/mindmap) <br>
-- [BytesAgain Homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Plain text terminal output and local plaintext log files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes command history and entries to local files under the configured mindmap data directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release metadata; artifact frontmatter reports 2.0.0) <br>
+Risk: The package is marketed as a mind-map tool, but security evidence says it behaves as a local logging or note-capture utility.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Evaluate and present it as local note storage, and do not rely on it for mind-map visualization unless separately verified.
+
+Risk: Entries and command history may be retained as plain text in the configured data directory.
+
+Mitigation: Avoid storing sensitive information, use a dedicated data directory when needed, and inspect stored logs before sharing or backing them up.
+
+Risk: The remove command logs removal but does not remove stored data.
+
+Mitigation: Do not rely on the remove command for deletion; manually edit or delete retained data and history logs when removal is required.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bytesagain-lab/skills/mindmap)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and terminal text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create and append plain-text data and history logs under the configured local data directory.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release metadata; artifact files report 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

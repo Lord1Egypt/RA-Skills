@@ -1,0 +1,13 @@
+{
+  "version": "1.0",
+  "meta": { "title": "为什么内容更新会断更", "footer": "鱼骨分析示例" },
+  "layout": "fishbone",
+  "visual_system": { "palette": "ocean" },
+  "blocks": [
+    { "id": "head", "title": "小红书断更一周", "role": "head" },
+    { "id": "c1", "title": "精力错配", "text": "手工活挤占创作时间" },
+    { "id": "c2", "title": "选题枯竭", "text": "没有素材沉淀管道" },
+    { "id": "c3", "title": "完美主义", "text": "总想憋大招再发" },
+    { "id": "c4", "title": "反馈延迟", "text": "看不到正反馈就泄气" }
+  ]
+}

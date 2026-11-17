@@ -1,42 +1,55 @@
-## Description: <br>
-Generate a PNG image from HTML content or a public URL using headless Chromium. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate a PNG image from HTML content or a public URL using headless Chromium. Supports custom dimensions, retina quality, full-page screenshots, cookie consent handling, and dynamic parameters.
 
-## Publisher: <br>
-[rishabhdugar](https://clawhub.ai/user/rishabhdugar) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rishabhdugar](https://clawhub.ai/user/rishabhdugar)
 
-## Use Case: <br>
-Developers and content teams use this skill to render HTML templates or public webpages as PNG images for social cards, banners, certificates, thumbnails, monitoring previews, and other generated visuals. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: HTML, CSS, URLs, rendering parameters, and the pdfapihub.com API key are sent to a third-party service. <br>
-Mitigation: Use only when that processing is acceptable, and avoid private URLs, secrets, session-bearing links, proprietary HTML, and personal data. <br>
-Risk: Hosted output files may remain available for the documented retention period. <br>
-Mitigation: Do not submit sensitive content unless the documented 30-day hosted-file retention is acceptable. <br>
+## Use Case:
 
+Developers and content teams use this skill to create screenshots or render HTML/CSS templates as PNG images for social cards, banners, certificates, thumbnails, and webpage previews.
 
-## Reference(s): <br>
-- [ClawHub Release Page](https://clawhub.ai/rishabhdugar/generate-image-from-html) <br>
-- [PDF API Hub Documentation](https://pdfapihub.com/docs) <br>
-- [PDF API Hub Generate Image API](https://pdfapihub.com/api/v1/generateImage) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Files, Configuration instructions, Guidance] <br>
-**Output Format:** [PNG image returned as a URL, base64 data, or direct image/file response] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a CLIENT-API-KEY header and accepts HTML, CSS, public URL, dimensions, viewport, scale factor, wait strategy, cookie-consent text, fonts, and dynamic parameters.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: HTML, CSS, dynamic parameters, or public webpage URLs sent for rendering may contain sensitive data or private endpoints.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Send only approved public content, remove secrets and personal data, and avoid internal URLs unless pdfapihub.com has been approved for that use.
+
+Risk: Generated image files may remain available through the service for a retention period.
+
+Mitigation: Avoid confidential rendering jobs when URL output is used and account for the documented automatic deletion window.
+
+## Reference(s):
+
+- [PDF API Hub documentation](https://pdfapihub.com/docs)
+- [Generate Image API endpoint](https://pdfapihub.com/api/v1/generateImage)
+- [ClawHub skill page](https://clawhub.ai/rishabhdugar/skills/generate-image-from-html)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON request examples and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can guide API requests that return image URLs, base64 image data, or PNG image files.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

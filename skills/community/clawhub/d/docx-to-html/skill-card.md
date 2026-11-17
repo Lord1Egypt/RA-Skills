@@ -1,42 +1,58 @@
-## Description: <br>
-Converts Microsoft Word DOCX files into semantic HTML for browser viewing, content extraction, search, and AI workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts Microsoft Word DOCX documents into semantic HTML for browser viewing, content extraction, and AI processing.
 
-## Publisher: <br>
-[bibekyess](https://clawhub.ai/user/bibekyess) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-ISC <br>
+## Publisher:
 
+[bibekyess](https://clawhub.ai/user/bibekyess)
 
-## Use Case: <br>
-Developers and agents use this skill to convert DOCX documents into clean HTML that can be viewed in browsers, indexed, summarized, or integrated into web and AI workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+ISC
 
-## Known Risks and Mitigations: <br>
-Risk: Local Python and Node.js scripts run on user-selected DOCX files and write generated HTML to a chosen output path. <br>
-Mitigation: Use only DOCX files intended for processing, choose an output path you control, and inspect the generated HTML before sharing or indexing it. <br>
-Risk: Generated HTML may contain sensitive document content or embedded images from the source DOCX. <br>
-Mitigation: Delete generated files that contain sensitive content when they are no longer needed. <br>
-Risk: The converter depends on npm packages installed locally. <br>
-Mitigation: Install dependencies only if you are comfortable running local npm packages for this skill. <br>
+## Use Case:
 
+Developers and engineers use this skill to convert DOCX files into HTML for web display, indexing, summarization, Q&A, semantic search, and structured content extraction.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bibekyess/docx-to-html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, guidance] <br>
-**Output Format:** [HTML file plus Markdown guidance with shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs local Python and Node.js scripts; generated HTML should be reviewed before sharing or indexing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and scripts/package.json) <br>
+Risk: Converted HTML can persist the full text, embedded images, and active links from sensitive DOCX files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run conversion only on documents approved for that workspace and store generated HTML in controlled locations.
+
+Risk: Generated HTML may be unsanitized and unsafe to embed directly in applications or serve to users.
+
+Mitigation: Treat generated HTML as untrusted, review or sanitize it before browser rendering, embedding, or publication.
+
+Risk: The converter depends on npm packages and DOCX/XML parsing behavior that may need security review.
+
+Mitigation: Audit and update npm dependencies before deployment, and prefer trusted input documents.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bibekyess/skills/docx-to-html)
+- [ClawHub publisher profile](https://clawhub.ai/user/bibekyess)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands; conversion produces HTML files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Python 3, Node.js, and npm dependencies for the mammoth-based converter.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, target metadata, and artifact/scripts/package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

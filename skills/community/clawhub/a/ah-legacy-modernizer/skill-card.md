@@ -1,39 +1,50 @@
-## Description: <br>
-Legacy Modernizer helps developers assess legacy systems, plan incremental migrations, refactor or update technology, and maintain business continuity during modernization work. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Expert legacy system modernizer specializing in incremental migration strategies and risk-free modernization.
 
-## Publisher: <br>
-[mtsatryan](https://clawhub.ai/user/mtsatryan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mtsatryan](https://clawhub.ai/user/mtsatryan)
 
-## Use Case: <br>
-Developers and engineers use this skill to analyze aging systems, create phased modernization roadmaps, plan refactors, update technology stacks, strengthen tests and security, and coordinate low-disruption migration work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Modernization recommendations may affect code, databases, authentication, CI/CD, cloud settings, analytics, or deployments if executed without review. <br>
-Mitigation: Define the target scope, require human approval before changes, keep backups and rollback plans, and review proposed edits before applying them. <br>
-Risk: Claims such as zero disruption or risk-free modernization can be treated as guarantees rather than goals. <br>
-Mitigation: Treat continuity and risk reduction claims as planning objectives, validate them with tests and monitoring, and retain rollback options for each migration phase. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to assess legacy systems, plan incremental modernization, and guide refactoring, dependency upgrades, testing, documentation, and rollout strategies while preserving business continuity.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with plans, checklists, code snippets, shell commands, and configuration examples as needed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only skill with no bundled scripts, tools, or credential requirements.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Modernization guidance can lead to broad refactoring, dependency upgrades, CI/CD changes, and security fixes that may affect production behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill in a controlled repository with review, backups, rollback plans, and staged deployment expectations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mtsatryan/skills/ah-legacy-modernizer)
+- [Publisher profile](https://clawhub.ai/user/mtsatryan)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with code, shell command, and configuration recommendations when needed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should be reviewed before applying modernization changes to a production codebase.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,54 @@
-## Description: <br>
-Google Sheets: Read values from a spreadsheet. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Google Sheets: Read values from a spreadsheet.
 
-## Publisher: <br>
-[googleworkspace-bot](https://clawhub.ai/user/googleworkspace-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[googleworkspace-bot](https://clawhub.ai/user/googleworkspace-bot)
 
-## Use Case: <br>
-Developers and agent users use this skill to read values from a specified Google Sheets spreadsheet range through the local gws CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read spreadsheet data from an unintended Google account, spreadsheet, or range. <br>
-Mitigation: Confirm the gws authentication context, spreadsheet ID, and range before execution. <br>
-Risk: The skill depends on a local gws CLI installation. <br>
-Mitigation: Use only a trusted gws CLI installation and review the gws-shared authentication instructions before use. <br>
+## Use Case:
 
+Developers and Google Workspace users use this skill to have an agent read a specified range from a Google Sheets spreadsheet through the gws CLI without modifying the spreadsheet.
 
-## Reference(s): <br>
-- [Gws Sheets Read ClawHub release](https://clawhub.ai/googleworkspace-bot/gws-sheets-read) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance] <br>
-**Output Format:** [Markdown with bash command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the local gws CLI and reads only the spreadsheet range specified by the user.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.13 (source: ClawHub release metadata; artifact metadata version 0.22.5) <br>
+Risk: The skill can read Google Sheets data from any spreadsheet ID and range the user supplies.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run it only when the agent should have read access to the specified spreadsheet data.
+
+Risk: Authentication and global security behavior are delegated to the shared gws auth skill and gws CLI configuration.
+
+Mitigation: Review the shared gws auth skill and CLI configuration before use.
+
+## Reference(s):
+
+- [Gws Sheets Read on ClawHub](https://clawhub.ai/googleworkspace-bot/skills/gws-sheets-read)
+- [googleworkspace-bot publisher profile](https://clawhub.ai/user/googleworkspace-bot)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the gws CLI; the read command requires spreadsheet and range arguments.]
+
+## Skill Version(s):
+
+1.0.13 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,58 @@
-## Description: <br>
-Generates a Nano Banana style NFT and deploys it to the Zora Network. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates a Nano Banana style NFT and deploys it to the Zora Network.
 
-## Publisher: <br>
-[eshraqism](https://clawhub.ai/user/eshraqism) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[eshraqism](https://clawhub.ai/user/eshraqism)
 
-## Use Case: <br>
-Developers and creators use this skill to generate Nano Banana style character artwork, upload it to IPFS, and deploy a Zora NFT collection from a prompt. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can use a raw wallet private key to submit live Zora blockchain transactions without an explicit review or confirmation step. <br>
-Mitigation: Use a dedicated low-value deployment wallet, avoid primary wallet keys, and review transaction details with an external signer or wallet flow before broadcast. <br>
-Risk: The skill depends on live external services and unpinned Python packages for image generation, Web3 access, and HTTP requests. <br>
-Mitigation: Pin dependencies, review package versions before installation, and run the skill in an isolated environment with only the required credentials. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/eshraqism/skill-zorapro) <br>
+## Use Case:
 
+Developers and creators can use this skill to generate character art and deploy it as an NFT collection on the Zora Network. It is intended for workflows that connect image generation, IPFS upload, and on-chain NFT contract deployment.
 
-## Skill Output: <br>
-**Output Type(s):** [text, files, configuration] <br>
-**Output Format:** [Plain text status with a transaction hash and generated image file path] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires GEMINI_API_KEY, PRIVATE_KEY, and ZORA_RPC_URL environment variables.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill requests a raw wallet private key and can sign and broadcast blockchain transactions.
+
+Mitigation: Use only a dedicated low-value deployment wallet, require manual transaction review before broadcast, and avoid primary or funded wallets.
+
+Risk: On-chain deployment behavior may proceed without an explicit confirmation or transaction preview path.
+
+Mitigation: Add transaction preview, chain validation, contract validation, and explicit user confirmation before routine use.
+
+Risk: Unpinned dependencies can change behavior across installs.
+
+Mitigation: Pin and review dependencies before production or routine deployment.
+
+## Reference(s):
+
+- [Zora RPC endpoint](https://rpc.zora.energy)
+- [ClawHub skill page](https://clawhub.ai/eshraqism/skills/skill-zorapro)
+- [Publisher profile](https://clawhub.ai/user/eshraqism)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown or plain text with Python-oriented usage guidance and status strings]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May require GEMINI_API_KEY, PRIVATE_KEY, and ZORA_RPC_URL environment variables for full operation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

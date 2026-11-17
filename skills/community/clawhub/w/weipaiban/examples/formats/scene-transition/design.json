@@ -1,0 +1,220 @@
+{
+  "format": "scene-transition",
+  "shell": {
+    "width": 390,
+    "sceneHeight": 600,
+    "overflow": "hidden",
+    "sceneLayer": "scenes",
+    "spacer": "spacer"
+  },
+  "scenes": [
+    {
+      "id": "scene-1",
+      "name": "门扉",
+      "height": 600,
+      "initialState": "两扇深绿门遮住晨光小路",
+      "endState": "门移开，露出晨光小路",
+      "handoff": "下一幕相同坐标的小路上薄雾待散",
+      "hint": "推开门，走进晨光",
+      "hotspot": {
+        "source": "animationGroup",
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 600,
+        "action": "play-and-collapse"
+      },
+      "timeline": [
+        {
+          "id": "scene-1-part-1",
+          "trigger": "pointerUp",
+          "delay": 0,
+          "duration": 0.8,
+          "repeat": 1,
+          "effect": "左滑消失"
+        },
+        {
+          "id": "scene-1-part-2",
+          "trigger": "pointerUp",
+          "delay": 0.8,
+          "duration": 0.7,
+          "repeat": 1,
+          "effect": "右滑消失"
+        }
+      ],
+      "collapse": {
+        "delay": 1.5,
+        "duration": 0.001
+      },
+      "layout": {
+        "sun": {
+          "x": 265,
+          "y": 155,
+          "width": 64,
+          "height": 64
+        },
+        "horizonY": 330,
+        "path": {
+          "x": 170,
+          "y": 330,
+          "width": 50,
+          "height": 270
+        },
+        "parts": [
+          {
+            "x": 0,
+            "y": 0,
+            "width": 195,
+            "height": 600
+          },
+          {
+            "x": 195,
+            "y": 0,
+            "width": 195,
+            "height": 600
+          }
+        ],
+        "text": {
+          "x": 28,
+          "y": 60,
+          "width": 334,
+          "height": 40
+        },
+        "hint": {
+          "x": 28,
+          "y": 520,
+          "width": 334,
+          "height": 48
+        }
+      }
+    },
+    {
+      "id": "scene-2",
+      "name": "薄雾",
+      "height": 600,
+      "initialState": "同一条小路笼罩薄雾",
+      "endState": "薄雾散去，晨光小路完全可见",
+      "handoff": "结尾复用完全相同的太阳、地平线与小路",
+      "hint": "拨开雾，看见前路",
+      "hotspot": {
+        "source": "animationGroup",
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 600,
+        "action": "play-and-collapse"
+      },
+      "timeline": [
+        {
+          "id": "scene-2-part-1",
+          "trigger": "pointerUp",
+          "delay": 0,
+          "duration": 0.8,
+          "repeat": 1,
+          "effect": "渐隐"
+        },
+        {
+          "id": "scene-2-part-2",
+          "trigger": "pointerUp",
+          "delay": 0.8,
+          "duration": 0.6,
+          "repeat": 1,
+          "effect": "渐隐"
+        }
+      ],
+      "collapse": {
+        "delay": 1.4,
+        "duration": 0.001
+      },
+      "layout": {
+        "sun": {
+          "x": 265,
+          "y": 155,
+          "width": 64,
+          "height": 64
+        },
+        "horizonY": 330,
+        "path": {
+          "x": 170,
+          "y": 330,
+          "width": 50,
+          "height": 270
+        },
+        "parts": [
+          {
+            "x": 0,
+            "y": 240,
+            "width": 390,
+            "height": 100
+          },
+          {
+            "x": 0,
+            "y": 340,
+            "width": 390,
+            "height": 110
+          }
+        ],
+        "text": {
+          "x": 28,
+          "y": 60,
+          "width": 334,
+          "height": 40
+        },
+        "hint": {
+          "x": 28,
+          "y": 520,
+          "width": 334,
+          "height": 48
+        }
+      }
+    },
+    {
+      "id": "scene-3",
+      "name": "晨光",
+      "height": 600,
+      "initialState": "晨光小路完全可见",
+      "endState": "静态收场",
+      "handoff": "收口：走过迷雾，路就在脚下。",
+      "hint": null,
+      "hotspot": {
+        "source": "static",
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 600,
+        "action": "none"
+      },
+      "timeline": [],
+      "collapse": null,
+      "layout": {
+        "sun": {
+          "x": 265,
+          "y": 155,
+          "width": 64,
+          "height": 64
+        },
+        "horizonY": 330,
+        "path": {
+          "x": 170,
+          "y": 330,
+          "width": 50,
+          "height": 270
+        },
+        "parts": [],
+        "text": {
+          "x": 28,
+          "y": 60,
+          "width": 334,
+          "height": 40
+        },
+        "hint": null,
+        "ai-credit": {
+          "x": 28,
+          "y": 570,
+          "width": 334,
+          "height": 20
+        }
+      }
+    }
+  ]
+}

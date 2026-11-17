@@ -1,43 +1,60 @@
-## Description: <br>
-TencentCloud Text AIGC Detection helps an agent send user-provided text to Tencent Cloud TextModeration to identify likely AI-generated content and return structured detection results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+TencentCloud Text AIGC Detection helps agents submit text to Tencent Cloud TextModeration for AI-generated text detection and returns a structured result with suggestion, label, score, keywords, details, and request metadata.
 
-## Publisher: <br>
-[shawn233](https://clawhub.ai/user/shawn233) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shawn233](https://clawhub.ai/user/shawn233)
 
-## Use Case: <br>
-Developers, operators, and review teams use this skill to check text supplied directly, from a file, or from standard input for likely AI-generated content. It is intended for article screening, moderation review, news authenticity checks, and similar text-analysis workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Checked text is sent to Tencent Cloud for processing. <br>
-Mitigation: Avoid submitting confidential, regulated, or proprietary text unless the user's data-handling rules allow Tencent Cloud processing. <br>
-Risk: The skill requires Tencent Cloud credentials to call the service. <br>
-Mitigation: Use least-privilege or temporary credentials where possible, keep credentials in environment variables, and do not hardcode secrets. <br>
+## Use Case:
 
+Developers and external users use this skill through an agent to check whether submitted text, file content, or stdin input is likely AI-generated using Tencent Cloud TextModeration. It supports content review, article screening, news authenticity checks, and AI writing detection workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/shawn233/tencentcloud-aigc-recog-text) <br>
-- [TextModeration API reference](references/text_moderation_api.md) <br>
-- [Tencent Cloud TextModeration documentation](https://cloud.tencent.com/document/product/1124/51860) <br>
-- [Tencent Cloud SDK guide](https://cloud.tencent.com/document/product/1124/100983) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, JSON, Guidance] <br>
-**Output Format:** [JSON responses with optional setup guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Consumes text from an argument, file, or stdin; requires Tencent Cloud credentials and a BizType.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.8 (source: server release evidence) <br>
+Risk: User-provided text, including file contents passed to the skill, may be sent to Tencent Cloud using the configured Tencent Cloud credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid submitting sensitive or regulated content unless approved for the use case, and use narrowly scoped or temporary Tencent Cloud credentials.
+
+Risk: Missing credentials, missing BizType, API errors, or over-limit text can prevent a valid detection result.
+
+Mitigation: Treat API failures as failures, return the reported error to the user, and do not infer whether text is AI-generated without a successful Tencent Cloud response.
+
+Risk: The Tencent Cloud SDK dependency may change behavior across versions if installed without pinning.
+
+Mitigation: Install the SDK in a controlled environment and pin the dependency version when reproducibility matters.
+
+## Reference(s):
+
+- [TextModeration API Reference](references/text_moderation_api.md)
+- [Tencent Cloud TextModeration API](https://cloud.tencent.com/document/product/1124/51860)
+- [Tencent Cloud SDK Guide](https://cloud.tencent.com/document/product/1124/100983)
+- [ClawHub Skill Page](https://clawhub.ai/shawn233/skills/tencentcloud-aigc-recog-text)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Configuration instructions, Shell commands, Guidance]
+
+**Output Format:** [JSON results with Markdown configuration guidance and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Tencent Cloud credentials, a text moderation BizType, and input text of at most 10000 Unicode characters.]
+
+## Skill Version(s):
+
+1.0.8 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

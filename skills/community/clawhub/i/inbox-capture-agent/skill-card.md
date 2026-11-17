@@ -1,40 +1,54 @@
-## Description: <br>
-Silently captures user ideas, requests, pain points, and complaints from conversations and writes them to a configured inbox for later review. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Captures user ideas, requests, pain points, and complaints from conversations and silently appends them to an inbox for later review.
 
-## Publisher: <br>
-[guytogay](https://clawhub.ai/user/guytogay) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[guytogay](https://clawhub.ai/user/guytogay)
 
-## Use Case: <br>
-External users and personal-workflow operators use this skill to capture candidate product ideas, feature requests, and pain points without interrupting the conversation, then review them later in a configured destination. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill silently monitors broad conversations and stores users' original words. <br>
-Mitigation: Install only when broad background capture is intentional, and ensure participants understand that idea capture may occur. <br>
-Risk: Captured entries may include private or work-sensitive content, especially when synced to external destinations. <br>
-Mitigation: Configure a narrow inbox destination, avoid external sync for private or work chats unless all participants have agreed, and keep a way to pause capture and review, edit, or delete stored entries. <br>
+## Use Case:
 
+Individuals or teams use this agent skill to keep a running inbox of feature ideas, product requests, complaints, and workflow pain points that appear naturally in conversation.
 
-## Reference(s): <br>
-- [ClawHub skill release](https://clawhub.ai/guytogay/inbox-capture-agent) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown and plain text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May append timestamped original user text and channel metadata to a configured inbox destination.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Silent capture of near-verbatim user messages can expose private or sensitive information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Enable only with informed user consent, provide visible review and delete controls, and require separate confirmation before sending captured content to external destinations.
+
+Risk: Always-active capture across conversations may record content outside the user's intended collection scope.
+
+Mitigation: Prefer explicit capture commands or narrowly scoped activation rules when privacy requirements are strict.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/guytogay/skills/inbox-capture-agent)
+- [ClawHub publisher profile](https://clawhub.ai/user/guytogay)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown entries appended to an inbox, with configuration guidance for review schedule and destination.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Entries preserve the user's original wording where possible and may include channel and timestamp metadata.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

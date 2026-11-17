@@ -1,41 +1,58 @@
-## Description: <br>
-AI spreadsheet and Excel generation powered by CellCog for financial models, budget templates, data trackers, projections, pivot tables, complex formulas, XLSX output, analysis, charts, and professional formatting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI Excel spreadsheet generation powered by CellCog. Financial models, budget templates, data trackers, projections, pivot tables, complex formulas — XLSX output. Data manipulation, analysis, charts, and professional formatting.
 
-## Publisher: <br>
-[nitishgargiitd](https://clawhub.ai/user/nitishgargiitd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cellcog](https://clawhub.ai/user/cellcog)
 
-## Use Case: <br>
-Developers and external users use this skill to ask a CellCog agent to create spreadsheet workbooks, financial models, trackers, analysis templates, charts, formulas, and formatted XLSX or HTML spreadsheet tools. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Spreadsheet prompts and explicitly referenced files may be sent to CellCog and could include sensitive business, financial, personal, or proprietary data. <br>
-Mitigation: Use only after approving CellCog's data handling for the intended data; redact or minimize sensitive inputs and avoid secrets, regulated personal data, and confidential records unless approved. <br>
-Risk: The skill requires CELLCOG_API_KEY to access the external CellCog service. <br>
-Mitigation: Store the API key in the agent environment or a secret manager; do not paste it into prompts or generated spreadsheets. <br>
+## Use Case:
 
+People using AI agents can ask CellCog to create Excel workbooks for financial models, budgets, trackers, business operations, and data analysis. The skill can also produce interactive HTML calculators and tools.
 
-## Reference(s): <br>
-- [CellCog](https://cellcog.ai) <br>
-- [ClawHub listing](https://clawhub.ai/nitishgargiitd/spreadsheets-cog) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, API Calls, Files, Configuration] <br>
-**Output Format:** [Markdown guidance with Python code snippets; generated spreadsheet files may be XLSX or interactive HTML.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3, the cellcog package, and CELLCOG_API_KEY; sends spreadsheet prompts and referenced files to CellCog.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.13 (source: server release metadata) <br>
+Risk: Prompts and supplied data are shared with CellCog.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Send only information you are authorized to share.
+
+Risk: Generated spreadsheet formulas may be incorrect.
+
+Mitigation: Check formulas before relying on generated results.
+
+Risk: The skill depends on the separately installed CellCog package.
+
+Mitigation: Prefer pinned installation versions.
+
+## Reference(s):
+
+- [CellCog](https://cellcog.ai)
+- [Excel Spreadsheet on ClawHub](https://clawhub.ai/cellcog/skills/excel-spreadsheet-cellcog)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Analysis, Guidance]
+
+**Output Format:** [XLSX workbooks and interactive HTML tools]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Workbook structure and contents follow the user's request; outputs may include formulas, charts, formatting, and multiple sheets.]
+
+## Skill Version(s):
+
+1.0.19 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

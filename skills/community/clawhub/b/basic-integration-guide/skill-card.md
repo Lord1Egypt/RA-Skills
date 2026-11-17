@@ -1,43 +1,61 @@
-## Description: <br>
-指导开发者如何接入basic基础服务，包括依赖引入、gRPC调用、REST API使用、配置说明。涵盖国际化(i18n)、项目管理、租户管理、字典管理、存储、认证等核心能力 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides developers through integrating the Basic service with Maven dependencies, gRPC clients, REST APIs, tenant context, authentication, and configuration.
 
-## Publisher: <br>
-[effort02](https://clawhub.ai/user/effort02) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[effort02](https://clawhub.ai/user/effort02)
 
-## Use Case: <br>
-Developers and integration engineers use this skill as a reference guide for connecting systems to the Basic service through Maven dependencies, gRPC clients, REST APIs, tenant headers, and authentication context. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Copied examples may include placeholder hosts, bearer tokens, or sensitive service configuration. <br>
-Mitigation: Replace placeholders before use, store secrets in a secret manager, and avoid committing tenant, token, database, OIDC, OSS, or storage credentials. <br>
-Risk: Some documented APIs perform delete, reset, import, publish, rollback, draft-clearing, or batch storage operations. <br>
-Mitigation: Require approval, backups, audit logging, and rollback procedures before using those operations in production environments. <br>
-Risk: The sample gRPC configuration uses plaintext negotiation. <br>
-Mitigation: Use TLS or mTLS where appropriate before adapting the example for production traffic. <br>
+## Use Case:
 
+Developers and engineers use this skill as an integration reference for Basic service APIs, SDKs, and configuration across i18n, project, tenant, dictionary, storage, and authentication capabilities.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/effort02/basic-integration-guide) <br>
-- [Publisher profile](https://clawhub.ai/user/effort02) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guide with XML, YAML, Java, Protobuf, curl, and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only output; no code is installed or executed by the skill.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The guide includes plaintext gRPC and authenticated service-call examples that could normalize insecure transport in production.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Add TLS or enforced mTLS before production use and validate authentication behavior in the target environment.
+
+Risk: Authorization and tenant headers appear in example requests and could be exposed through logs or overly broad credentials.
+
+Mitigation: Redact Authorization, X-TENANT, and X-UID values from logs and use least-privilege, short-lived credentials.
+
+Risk: The Maven examples use SNAPSHOT dependencies that may change unexpectedly.
+
+Mitigation: Replace SNAPSHOT dependencies with pinned releases from a trusted repository.
+
+Risk: The documented APIs include delete, reset, import, rollback, and batch storage operations that can alter or remove business data.
+
+Mitigation: Require confirmation, backup, and approval gates before destructive or bulk operations.
+
+## Reference(s):
+
+- [Basic Integration Guide on ClawHub](https://clawhub.ai/effort02/skills/basic-integration-guide)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guide with XML, YAML, Java, Protobuf, bash, and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only; examples require environment-specific validation before production use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

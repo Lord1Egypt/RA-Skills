@@ -1,42 +1,57 @@
-## Description: <br>
-This skill uses BaZi, Zi Wei Dou Shu, major-luck, and annual-flow rules to generate fortune-style career direction, health-theme analysis, and short summaries from birth details. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+基于八字、紫微斗数、大运和流年规则，为用户生成中文职业方向、健康关注点和简短命理摘要。
 
-## Publisher: <br>
-[devioslang](https://clawhub.ai/user/devioslang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[devioslang](https://clawhub.ai/user/devioslang)
 
-## Use Case: <br>
-External users or agents use this skill to turn birth date, birth time, optional lunar-calendar status, and gender into Chinese fortune-style career guidance, wellness themes, and either a five-sentence summary or a full report. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill processes birth date, birth time, and gender, which may be sensitive personal context. <br>
-Mitigation: Use only with data the user intentionally provides, avoid unnecessary retention, and do not share the inputs outside the local analysis flow. <br>
-Risk: Health output could be mistaken for medical diagnosis or treatment guidance. <br>
-Mitigation: Present health results as entertainment or general wellness commentary and direct users to qualified clinicians for symptoms, treatment decisions, or urgent concerns. <br>
-Risk: Running the artifact depends on the external Python package sxtwl. <br>
-Mitigation: Install missing dependencies only from trusted package sources and review the local environment before execution. <br>
+## Use Case:
 
+Chinese-speaking users and agents use this skill to turn birth date, birth time, optional lunar-calendar wording, and optional gender into astrology-style career, health, fortune-trend, and five-sentence summary reports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/devioslang/fortune-career) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Chinese Markdown report or five-line plain-text summary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires birth date and birth time; optional inputs include gender and lunar-calendar wording. Health content is fortune-style wellness commentary, not medical diagnosis or treatment advice.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: server release evidence) <br>
+Risk: Users may mistake astrology-style health output for medical diagnosis or treatment guidance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present health output as entertainment or general reflection, not diagnosis or medical advice, and direct users to qualified professionals for health decisions.
+
+Risk: The skill asks for birth date, birth time, and optional gender, which some users may consider sensitive.
+
+Mitigation: Ask users to provide only information they are comfortable entering into a local astrology-style tool.
+
+Risk: Career recommendations are based on traditional metaphysical rules rather than validated employment assessment.
+
+Mitigation: Frame career output as reflective guidance and avoid using it as the sole basis for hiring, education, or financial decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/devioslang/skills/fortune-career)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown-style Chinese text report or five-sentence summary]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local astrology-style analysis; inputs may include birth date, birth time, lunar-calendar wording, gender, and report mode.]
+
+## Skill Version(s):
+
+2.1.0 (source: server release metadata and artifact version history)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

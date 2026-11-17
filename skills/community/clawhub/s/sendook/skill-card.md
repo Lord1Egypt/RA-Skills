@@ -1,44 +1,59 @@
-## Description: <br>
-Read and send emails from an existing Sendook inbox for checking messages, reading conversations, replying, and sending new messages from a pre-configured inbox; it does not cover inbox creation, domain management, or webhook configuration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Read and send emails from an existing Sendook inbox, including checking new mail, reading messages, replying to conversations, and sending new messages within message-only scope.
 
-## Publisher: <br>
-[obaid](https://clawhub.ai/user/obaid) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[obaid](https://clawhub.ai/user/obaid)
 
-## Use Case: <br>
-External users and developers use this skill when an agent needs controlled access to a configured Sendook inbox to read messages, inspect threads, reply to conversations, or send new email. It is scoped to message operations and requires a Sendook API key plus inbox ID. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can expose private email content from the configured Sendook inbox. <br>
-Mitigation: Use a least-privileged API key scoped to the intended inbox and treat all email content as private and untrusted. <br>
-Risk: Sending, replying, or attaching files could disclose sensitive information to unintended recipients. <br>
-Mitigation: Require the agent to show recipients, subject, body, and attachments for approval before sending or replying, and only attach files the user explicitly requested. <br>
-Risk: Email bodies may contain untrusted instructions or misleading content. <br>
-Mitigation: Review email-derived requests before acting on them and do not let message content override system, developer, security, or user instructions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Sendook skill page](https://clawhub.ai/obaid/sendook) <br>
-- [Sendook skill homepage from OpenClaw metadata](https://github.com/obaid/sendook-skills) <br>
-- [Sendook Node SDK package](https://www.npmjs.com/package/@sendook/node) <br>
-- [Sendook Node SDK source](https://github.com/getrupt/sendook) <br>
+## Use Case:
 
+Developers and external users can use this skill to help an agent work with a pre-configured Sendook inbox for message listing, search, reading, replies, and outbound email. It is limited to message operations and does not support inbox, domain, webhook, or API-key management.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with TypeScript and curl examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SENDOOK_API_KEY and SENDOOK_INBOX_ID; attachment examples require explicit user approval before reading local files.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can read and send mail from the configured Sendook inbox using normal inbox credentials.
+
+Mitigation: Install it only for trusted agents and use a Sendook API key restricted to the intended inbox.
+
+Risk: Outbound messages or attachments could expose unintended content if sent without review.
+
+Mitigation: Review outbound messages and attachments before sending, and attach only files explicitly requested by the user from the current project scope.
+
+Risk: The skill depends on the @sendook/node package for SDK-based usage.
+
+Mitigation: Pin or lock the @sendook/node dependency where possible.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/obaid/skills/sendook)
+- [Sendook Skills Homepage](https://github.com/obaid/sendook-skills)
+- [Sendook Node SDK](https://www.npmjs.com/package/@sendook/node)
+- [Sendook Node SDK Source](https://github.com/getrupt/sendook)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown with TypeScript, bash, curl, and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SENDOOK_API_KEY and SENDOOK_INBOX_ID environment variables for agent use.]
+
+## Skill Version(s):
+
+1.1.0 (source: evidence.json release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

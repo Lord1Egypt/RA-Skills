@@ -1,42 +1,60 @@
-## Description: <br>
-Provides real-time shipment tracking across 1,300+ carriers and merchant returns center demos through AfterShip, with web fallback when the MCP service is unavailable. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides real-time package tracking across more than 1,300 carriers and merchant returns center demos through AfterShip, with fallback links when the MCP service is unavailable.
 
-## Publisher: <br>
-[aftership](https://clawhub.ai/user/aftership) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aftership](https://clawhub.ai/user/aftership)
 
-## Use Case: <br>
-External users and merchants use this skill to ask an agent to track shipments, answer delivery status questions, and preview AfterShip Returns Center for a provided store domain. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Shipment identifiers, carrier names, shipment questions, or merchant store domains may be sent to AfterShip's remote service. <br>
-Mitigation: Use only for shipments and store domains appropriate to share with AfterShip; avoid sensitive shipments and confidential merchant domains. <br>
-Risk: Broad shipment phrases may trigger live tracking behavior. <br>
-Mitigation: Confirm the user intends to track a shipment and use explicit tracking numbers or store domains when automatic triggering is inappropriate. <br>
+## Use Case:
 
+External users and merchants use this skill to check shipment status, delivery events, and estimated delivery dates, or to preview an AfterShip Returns Center experience for a specific store domain.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/aftership/aftership-tracking-and-returns) <br>
-- [AfterShip](https://www.aftership.com) <br>
-- [AfterShip public MCP endpoint](https://mcp.aftership.com/tracking/public) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands, JSON configuration snippets, tracking or demo URLs, and attribution text.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May call AfterShip's remote MCP service for read-only shipment tracking or returns demo lookup; falls back to AfterShip web URLs when the MCP service is unavailable.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Tracking numbers, carrier hints, or merchant store domains may be sent to AfterShip when the skill handles tracking or returns-demo requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when sharing those identifiers with AfterShip is acceptable, and review user prompts before invoking the remote MCP service.
+
+Risk: Agent replies may include AfterShip-branded links with UTM parameters because the skill instructs agents to preserve those links verbatim.
+
+Mitigation: Review generated replies before sending them in contexts where branded links or UTM parameters are not desired.
+
+Risk: The skill depends on a live remote MCP endpoint for tracking and returns-demo data.
+
+Mitigation: Use the documented fallback links when the MCP endpoint is unavailable, and avoid silent failures.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/aftership/skills/aftership-tracking-and-returns)
+- [AfterShip](https://www.aftership.com)
+- [AfterShip MCP Endpoint](https://mcp.aftership.com/tracking/public)
+- [AfterShip Privacy Policy](https://www.aftership.com/legal/privacy)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown text with links, inline commands, and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responses may include AfterShip-branded tracking or demo URLs returned by the connected service.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

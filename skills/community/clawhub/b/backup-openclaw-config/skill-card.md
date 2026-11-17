@@ -1,43 +1,58 @@
-## Description: <br>
-Backs up and restores OpenClaw configuration files before upgrades, machine transfers, recovery, or maintenance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Backup and restore OpenClaw configuration files for upgrades, machine transfers, recovery, and system maintenance.
 
-## Publisher: <br>
-[alexjunanjing-2](https://clawhub.ai/user/alexjunanjing-2) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alexjunanjing-2](https://clawhub.ai/user/alexjunanjing-2)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to create timestamped backups of OpenClaw configuration, workspace, skills, memory, tokens, and local data, then restore those files when moving systems or recovering from failure. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Backup archives may contain sensitive OpenClaw data such as tokens, memory, skills, and user data. <br>
-Mitigation: Store generated backups in a private location and consider encrypting archives before transferring or retaining them. <br>
-Risk: The shell backup script automatically deletes OpenClaw backup archives older than 15 days. <br>
-Mitigation: Review, change, or disable the cleanup behavior unless that retention period matches operational requirements. <br>
-Risk: Restore operations overwrite current OpenClaw configuration after user confirmation. <br>
-Mitigation: Inspect the archive contents and keep the generated .bak copies until the restored OpenClaw gateway is verified. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to create local backups of OpenClaw configuration, workspace, skills, memory, and user data, then restore those archives during upgrades, transfers, or disaster recovery.
 
-## Reference(s): <br>
-- [OpenClaw Configuration Locations](references/config-locations.md) <br>
-- [ClawHub skill page](https://clawhub.ai/alexjunanjing-2/backup-openclaw-config) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell command examples and file path references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The included scripts can create .tar.gz backup archives and .info metadata files, and can restore archived configuration after confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Backup archives may contain sensitive OpenClaw configuration, credentials, memory, skills, and agent instructions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Write archives to a private backup directory, encrypt sensitive backups, restrict access, and do not share archives publicly.
+
+Risk: Restoring an archive can overwrite current OpenClaw configuration and user data.
+
+Mitigation: Restore only trusted archives, inspect the listed contents first, keep the generated .bak copies until validation is complete, and restart OpenClaw services only after review.
+
+Risk: The shell backup workflow deletes matching backups older than 15 days in the chosen backup directory.
+
+Mitigation: Review the retention behavior before running the script, choose a dedicated backup directory, and disable or adjust cleanup when longer retention is required.
+
+## Reference(s):
+
+- [OpenClaw Configuration Locations](references/config-locations.md)
+- [ClawHub Skill Page](https://clawhub.ai/alexjunanjing-2/skills/backup-openclaw-config)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce commands that create local tar.gz backup archives, metadata files, and restore operations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

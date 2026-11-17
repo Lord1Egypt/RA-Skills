@@ -1,0 +1,107 @@
+{
+  "tool": "measure_prompt.py",
+  "schema_version": 1,
+  "timestamp": "2026-11-09T19:29:08+08:00",
+  "cwd": "/tmp",
+  "command": [
+    "codex",
+    "debug",
+    "prompt-input",
+    "x"
+  ],
+  "input_text_blocks": 5,
+  "prompt_sha256_12": "25b3ac3eab40",
+  "gate_bytes": 57344,
+  "gate_label": "56 KiB",
+  "gate_status": "PASS",
+  "headroom_bytes": 4382,
+  "truncation": {
+    "marker": "[Some commands were truncated]",
+    "detected": false,
+    "status": "OK"
+  },
+  "blocks": [
+    {
+      "id": "memory",
+      "label": "记忆摘要",
+      "bytes": 8081,
+      "sha256_12": "a4f1ae5522cd",
+      "source": "measured",
+      "source_detail": "file:memory_summary.md",
+      "source_file": "${CODEX_HOME}/memories/memory_summary.md",
+      "source_mtime": null,
+      "note": "CLI 调试视图未渲染记忆块，按源文件字节计"
+    },
+    {
+      "id": "base",
+      "label": "基础系统提示",
+      "bytes": 21779,
+      "sha256_12": "e1bdd4f8f0df",
+      "source": "static",
+      "source_detail": "static:app instructions_template max (2026-11-09)",
+      "source_file": "Codex CLI/App instructions_template",
+      "source_mtime": null,
+      "note": "2026-11-09 app 二进制最大 instructions_template；CLI 调试视图不渲染"
+    },
+    {
+      "id": "skills",
+      "label": "技能目录",
+      "bytes": 7744,
+      "sha256_12": "6876964da8a1",
+      "source": "measured",
+      "source_detail": "prompt:<skills_instructions>",
+      "source_file": "${CODEX_HOME}/skills",
+      "source_mtime": null,
+      "note": "按 prompt input_text 字节计；mtime 取技能根目录"
+    },
+    {
+      "id": "permissions",
+      "label": "权限块",
+      "bytes": 5665,
+      "sha256_12": "2681c27d1ddd",
+      "source": "measured",
+      "source_detail": "prompt:<permissions instructions>",
+      "source_file": "${CODEX_HOME}/config.toml",
+      "source_mtime": null,
+      "note": "含 Codex 固定权限模板；mtime 取 config.toml"
+    },
+    {
+      "id": "AGENTS",
+      "label": "全局 AGENTS",
+      "bytes": 5443,
+      "sha256_12": "bdc902c01077",
+      "source": "measured",
+      "source_detail": "prompt:# AGENTS.md instructions",
+      "source_file": "${CODEX_HOME}/AGENTS.md",
+      "source_mtime": null,
+      "note": "含 41 B 前缀 + 15 B 后缀包装；mtime 取 AGENTS.md"
+    },
+    {
+      "id": "mcp",
+      "label": "MCP schema",
+      "bytes": 3900,
+      "sha256_12": null,
+      "source": "assumption",
+      "source_detail": "assumption:2026-11-05-baseline",
+      "source_file": null,
+      "source_mtime": null,
+      "note": "11-05 假设值；CLI 不输出 tools schema，s2 实测前不得当 measured"
+    },
+    {
+      "id": "env",
+      "label": "环境上下文",
+      "bytes": 350,
+      "sha256_12": "2162e9b4c731",
+      "source": "measured",
+      "source_detail": "prompt:<environment_context>",
+      "source_file": null,
+      "source_mtime": null,
+      "note": "按 /tmp 工作目录渲染；cwd 不同字节会略有差异"
+    }
+  ],
+  "sum_bytes": 52962,
+  "total": 52962,
+  "reconciliation": "PASS",
+  "exit_code": 0,
+  "status": "PASS"
+}

@@ -1,6 +1,16 @@
 {
-  "ownerId": "kn7fhdkbjt7b5hbbjcsmyg4jvs87x7dm",
-  "slug": "akshare-finance-pro",
-  "version": "1.2.0",
-  "publishedAt": 1780445859943
+  "name": "akshare-pro",
+  "version": "1.0.0",
+  "description": "A股智能投资助手 - 实时行情、技术分析、自动盯盘、持仓报告",
+  "author": "wangzhaofeng",
+  "license": "MIT",
+  "tier": "pro",
+  "price": {
+    "free": "基础行情查询",
+    "pro": "¥29/月 (自动告警+技术分析+持仓报告)"
+  },
+  "keywords": ["股票", "A股", "技术分析", "自动盯盘", "MACD", "KDJ"],
+  "dependencies": ["akshare>=1.12", "pandas>=1.5", "ta>=0.11"],
+  "platform": ["openclaw"],
+  "channels": ["feishu", "wechat", "telegram", "whatsapp"]
 }

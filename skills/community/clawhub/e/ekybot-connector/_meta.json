@@ -1,6 +1,104 @@
 {
-  "ownerId": "kn75pabse7800sfdye8mj7argn82de1w",
   "slug": "ekybot-connector",
-  "version": "6.1.0",
-  "publishedAt": 1775742067087
+  "version": "6.0.1",
+  "publishedAt": 1775865600000,
+  "homepage": "https://www.ekybot.com",
+  "repository": "https://github.com/regiomag/ekybot-connector",
+  "source": "https://github.com/regiomag/ekybot-connector",
+  "license": "MIT",
+  "components": {
+    "companion_daemon": "Background service: relay dispatch, agent reconciliation, budget guard",
+    "relay_processor": "@mention inter-agent routing with source-channel return path",
+    "memory_system": "4-layer memory: SOUL.md, MEMORY.md, daily logs, project Knowledge Base — synced to dashboard",
+    "agent_management": "Create, edit, delete agents with per-agent AI model selection from web/mobile",
+    "cron_management": "Create, edit, schedule cron jobs and automations from dashboard",
+    "session_monitoring": "Real-time token usage, session size alerts, automatic summarization",
+    "project_tracking": "Roadmap, task assignment to agents, progress tracking",
+    "budget_guard": "Per-session cost limit with log/block actions",
+    "service_management": "LaunchAgent (macOS) / systemd (Linux) for 24/7 operation"
+  },
+  "requirements": {
+    "node": ">=18.0.0",
+    "openclaw": ">=2026.3.0"
+  },
+  "env": {
+    "EKYBOT_ENROLLMENT_TOKEN": {
+      "description": "Temporary enrollment token from ekybot.com/companion (starts with ekrt_). Required only during initial setup — not stored after enrollment.",
+      "required": true,
+      "scope": "setup"
+    },
+    "EKYBOT_APP_URL": {
+      "description": "EkyBot instance URL. Defaults to https://www.ekybot.com",
+      "required": false,
+      "default": "https://www.ekybot.com"
+    },
+    "EKYBOT_COMPANION_POLL_INTERVAL_MS": {
+      "description": "Relay polling interval in milliseconds. Set to 0 to disable telemetry. Default: 30000",
+      "required": false,
+      "default": "30000"
+    },
+    "EKYBOT_COMPANION_MAX_BUDGET_PER_SESSION_USD": {
+      "description": "Per-session cost limit in USD. When exceeded, action is taken per BUDGET_EXCEEDED_ACTION.",
+      "required": false,
+      "default": "5.00"
+    },
+    "EKYBOT_COMPANION_BUDGET_EXCEEDED_ACTION": {
+      "description": "What to do when budget is exceeded: 'log' (warn only) or 'block' (reject messages).",
+      "required": false,
+      "default": "log"
+    }
+  },
+  "telemetry": {
+    "collected": [
+      "os.platform (e.g. darwin, linux)",
+      "os.arch (e.g. arm64, x64)",
+      "os.release (kernel version)",
+      "os.hostname (machine name — used for dashboard display)",
+      "node.version",
+      "process.uptime (connector uptime in seconds)",
+      "process.memoryUsage (connector heap only, not system RAM)",
+      "agent.count (number of configured agents)",
+      "agent.session_count (active sessions per agent)"
+    ],
+    "not_collected": [
+      "CPU usage or load average",
+      "disk usage or filesystem info",
+      "IP address",
+      "file contents",
+      "message contents",
+      "API keys or tokens",
+      "user browsing or activity data"
+    ],
+    "opt_out": "Set EKYBOT_COMPANION_POLL_INTERVAL_MS=0 to disable all telemetry reporting. The companion daemon will still function for relay dispatch.",
+    "destination": "https://www.ekybot.com/api (HTTPS only, authenticated with companion token)"
+  },
+  "data_scope": {
+    "memory_sync": {
+      "uploads": [
+        "MEMORY.md (full content)",
+        "working-memory.md (full content)",
+        "facts.md (full content)",
+        "rules.md (full content)",
+        "history.md (full content)",
+        "context-index.json (auto-generated metadata)",
+        "memory/summaries/*.md (last 3)",
+        "memory/daily/*.md (last 3)"
+      ],
+      "never_uploads": [
+        "SOUL.md",
+        "AGENTS.md",
+        "USER.md",
+        "TOOLS.md",
+        "conversation_history",
+        "raw_prompts",
+        "api_keys",
+        "files outside agent workspace"
+      ],
+      "opt_out_env": "EKYBOT_COMPANION_MEMORY_SYNC=false"
+    }
+  },
+  "installation": {
+    "method": "bundled",
+    "note": "All runtime files (src/, scripts/, package.json) are bundled in the skill package under runtime/. The setup script copies them to ~/.openclaw/ekybot-connector/ and runs npm install for dependencies. No git clone required."
+  }
 }

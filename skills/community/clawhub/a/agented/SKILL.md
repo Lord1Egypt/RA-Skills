@@ -1,6 +1,6 @@
 ---
 name: agented
-version: 1.3.0
+version: 1.4.0
 binary: ae
 description: A text editor for LLMs, not humans.
 metadata:
@@ -82,7 +82,7 @@ These are the operations that motivate reaching for `ae` over the built-ins.
 - **Atomic batches.** `ae apply` consumes JSON-lines on stdin and applies every operation inside one transaction. Replaces N Edit calls with one. Verb: `cat ops.jsonl | ae apply <path>`.
 - **Atomic move.** `ae move` cuts a range and inserts it elsewhere — same file or cross-file — in one transaction. No partial-success risk. Verb: `ae move <path> --from S:E --to N` (same-file) or `--to-file <other> --to-line N` (cross-file).
 - **Atomic extract.** `ae extract` cuts a range out of one file and writes it to another, creating the destination if absent and optionally saving both files in one call. The canonical refactor primitive. Verb: `ae extract <path> -r S:E --to <new-or-existing> [--to-line N] [--save]`.
-- **Regex replace with capture groups.** `ae replace --pattern` does sed-style replacement in a single tool call. Verb: `ae s <path> -p '<re>' -w '<expansion>' [-L <max>] [-n]`. **Always single-quote `-w`** when using `$1`/`$2` backrefs — bash expands `$1` as the first positional arg (empty in most shells), so `-w "$1.foo"` silently inserts an empty string. Single quotes (`-w '$1.foo'`) pass `$1` through to ae, which expands per Go regexp.ExpandString semantics.
+- **Regex replace with capture groups.** `ae replace --pattern` does sed-style replacement in a single tool call. Verb: `ae s <path> -p '<re>' -w '<expansion>' [-L <max>] [-n]`. **Always single-quote `-w`** when using `$1`/`$2` backrefs — bash expands `$1` as the first positional arg (empty in most shells), so `-w "$1.foo"` silently inserts an empty string. Single quotes (`-w '$1.foo'`) pass `$1` through to ae, which expands per Go regexp.ExpandString semantics. **0 matches is an error** (nonzero exit, nothing written) so `&& ae save` chains stop instead of shipping a no-op; pass `--allow-no-match` when 0 is an acceptable outcome. `--text` is accepted as an alias for `--with`.
 - **Range-based addressing.** Every write targets a line range or insertion point, not a string. Edit's "string appears multiple times" failure mode doesn't exist here. Verb: any of `ae s/i/d` with `-r S:E`.
 - **Annotations as cross-session memory.** Per-file notes that persist across processes and across agents. Verb: `ae an <path> a -t "..."` to write; reading is automatic on `ae open`.
 - **Transactions with auto-rollback.** `ae begin` opens a logical group; `ae commit` finalizes; `ae rollback` reverts. Forgotten transactions auto-rollback after the configured idle window. Verb: `ae begin / ae commit / ae rollback`.
@@ -113,18 +113,17 @@ These are the operations that motivate reaching for `ae` over the built-ins.
 | `replace`  | `s`   | `<path> --range S:E --with TEXT --expect TOK` | exit 3 + content  | Change lines         |
 | `insert`   | `i`   | `<path> --after N --text TEXT --expect TOK`   | exit 3 + content  | Add lines            |
 | `delete`   | `d`   | `<path> --range S:E --expect TOK`             | exit 3 + content  | Remove lines         |
-| `save`     | `w`   | `<path>`                                      | -                 | Write head to disk   |
+| `save`     | `w`   | `<path> [--force]`                            | -                 | Write head to disk   |
 | `load`     | `e`   | `<path>`                                      | -                 | Reload from disk     |
 | `move`     | `mv`  | `<path> --from S:E --to N` (or `--to-file P --to-line N`) | exit 3 + content | Move a range; cross-file dst auto-created |
 | `extract`  | -     | `<path> --range S:E --to <new-or-existing> [--save]` | -            | Refactor a range into a sibling file (atomic) |
 
-Every successful write prints `edit_id=<n>\thead_edit_id=<n>\tline_delta=<d>\tline_count=<n>\tstate_token=<hex>`. Use the new token for the next write.
-**Auto-save and auto-load are on by default.** Every write verb (replace/insert/delete/move/extract) and history verb (undo/redo/head) flushes the resulting head to disk in the same call. The result includes `saved: true` to confirm. Before the write, ae stat-s the file: if `(mtime, size)` match the stamp from our last save, the call proceeds; if disk was touched externally, ae loads the disk content as a new edit on the tree (so external changes are recoverable via `ae undo`/`ae head`) and applies your edit on top. The result includes `loaded_from_disk: true` and `drift_reason` when this happens.
+Every successful write prints `edit_id=<n>\thead_edit_id=<n>\tline_delta=<d>\tline_count=<n>\tstate_token=<hex>`. Use the new token for the next write. When stdout is a terminal, a compact colored delta of the edit follows (config `output.edit_diff = off | tty | always`, default `tty`; `always` also attaches a `diff` field to JSON/MCP responses — costs tokens, opt in deliberately).
+**Auto-save and auto-load are on by default.** Every write verb (replace/insert/delete/move/extract) and history verb (undo/redo/head) flushes the resulting head to disk in the same call. The result includes `saved: true` to confirm. Before the write, ae stat-s the file: if `(mtime, size)` match the stamp from our last save, the call proceeds; if disk was touched externally, ae loads the disk content as a new edit on the tree (so external changes are recoverable via `ae undo`/`ae head`) and applies your edit on top. The result includes `loaded_from_disk: true` and `drift_reason` when this happens. `ae open` performs the same reconciliation: opening a file whose disk content diverged from the workspace head folds the disk state in as a new head edit and says so.
 
 Config knobs: `concurrency.auto_save = clean | off | force` (default `clean`), `concurrency.auto_load_on_drift` (default `true`). Env override: `AE_AUTO_SAVE=off`, `AE_AUTO_LOAD_ON_DRIFT=false`.
 
-`ae save <path>` and `ae load <path>` still exist for granular control. They are not part of the normal write flow.
-`ae save <path>` and `ae load <path>` still exist for granular control: `save` flushes head when auto-save was off, `load` pulls disk content into the workspace as a new edit (useful when an external editor diverged the file). Neither belongs in the normal write flow.
+`ae save <path>` and `ae load <path>` still exist for granular control: `save` flushes head when auto-save was off, `load` pulls disk content into the workspace as a new edit (useful when an external editor diverged the file). Neither belongs in the normal write flow. `save` refuses to overwrite disk content this workspace never loaded (i.e. the file changed outside ae and no edit in history carries that hash) — run `ae load` first to fold it in, or pass `--force` to overwrite deliberately.
 
 ## History verbs
 

@@ -1,40 +1,62 @@
-## Description: <br>
-Classifies product queries and returns commodity, customs, HS, or tax-code lookup results using the configured FastGPT workflow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides product classification, customs code, HS code, and tax code lookup for goods such as Bluetooth headsets, phone cases, and chargers.
 
-## Publisher: <br>
-[orangeboo](https://clawhub.ai/user/orangeboo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[orangeboo](https://clawhub.ai/user/orangeboo)
 
-## Use Case: <br>
-External users or agents use this skill to answer Chinese-language product classification requests, including commodity codes, customs codes, HS codes, and tax numbers. It may first request a mobile number before returning product-code results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill collects mobile numbers, stores them locally, and sends them with product queries to an external FastGPT service. <br>
-Mitigation: Use only with informed user consent and an approved data-retention process; prefer a version that documents retention and deletion behavior. <br>
-Risk: The security review reports bundled service credentials and plain HTTP communication with the configured FastGPT service. <br>
-Mitigation: Replace bundled keys with operator-managed secrets, rotate exposed credentials, and prefer HTTPS before using the skill in sensitive environments. <br>
+## Use Case:
 
+External users and trade or compliance operators can ask for product classification, customs code, HS code, and tax code answers. On first use, the skill may request a phone number before returning classification results.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/orangeboo/goodsclassify) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May prompt for a mobile number before returning product-code lookup results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill collects phone numbers before returning classification results.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require clear user consent, make collection optional or explicitly justified, and document why the phone number is needed.
+
+Risk: Phone numbers and pending questions are retained locally.
+
+Mitigation: Add deletion, retention, and access-protection controls before using the skill with real users.
+
+Risk: Personal data is sent to an external FastGPT service.
+
+Mitigation: Enforce HTTPS and disclose what data is sent to the external service.
+
+Risk: Packaged FastGPT credentials may be bundled with the release.
+
+Mitigation: Remove packaged keys and rotate FastGPT credentials before installation or use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/orangeboo/skills/goodsclassify)
+- [ClawHub publisher profile](https://clawhub.ai/user/orangeboo)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text responses from a local CLI-backed workflow]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May return a phone-number prompt before producing a product classification answer.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,59 @@
-## Description: <br>
-Manage Dex personal CRM contacts, notes, reminders, and contact details through Dex API commands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Dex personal CRM contacts, notes, and reminders, including contact lookup, note creation, reminder management, and contact detail retrieval.
 
-## Publisher: <br>
-[jaybna](https://clawhub.ai/user/jaybna) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[jaybna](https://clawhub.ai/user/jaybna)
 
-## Use Case: <br>
-External users and developers use this skill to search or browse Dex contacts, add notes, create or check reminders, and inspect contact details such as phone numbers, email addresses, and birthdays. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can exercise broad read/write authority over Dex CRM contacts, notes, and reminders, including delete and archive operations. <br>
-Mitigation: Use a Dex API key with access you are comfortable granting, review the exact target records before write/delete/archive actions, and require explicit confirmation before changes. <br>
-Risk: The included cleanup script can bulk-archive contacts based on heuristic junk detection. <br>
-Mitigation: Run the cleanup script with --dry-run first and review all proposed archived contacts before running it without dry-run mode. <br>
+## Use Case:
 
+External users and developers use this skill to manage Dex personal CRM data from an agent, including searching contacts, viewing contact details, adding notes, creating or completing reminders, and archiving contacts.
 
-## Reference(s): <br>
-- [Dex CRM](https://getdex.com) <br>
-- [Dex API Settings](https://getdex.com/settings/api) <br>
-- [Dex API Base](https://api.getdex.com/api/rest) <br>
-- [ClawHub Skill Page](https://clawhub.ai/jaybna/dex-crm) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, JSON request bodies, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce Dex API requests that read, create, update, delete, or archive CRM records; requires DEX_API_KEY.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The Dex API key can allow the agent to read and modify CRM contacts, notes, and reminders.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when that access is acceptable, keep DEX_API_KEY in secret configuration, and require explicit confirmation before create, update, delete, or archive actions.
+
+Risk: The cleanup script can bulk archive contacts that match newsletter or automated-sender patterns.
+
+Mitigation: Run the cleanup script with --dry-run first, review matched contacts manually, and use an explicit confirmation or allowlist before archiving.
+
+Risk: Delete and update examples can permanently alter CRM records or CRM history.
+
+Mitigation: Prefer reversible archive or completion workflows where available, verify contact and record IDs before mutation, and preserve summaries of changed records.
+
+## Reference(s):
+
+- [Dex](https://getdex.com)
+- [Dex API Base](https://api.getdex.com/api/rest)
+- [Dex API Settings](https://getdex.com/settings/api)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, API Calls, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline bash, JSON, and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a DEX_API_KEY environment variable and can read or modify Dex CRM contacts, notes, and reminders.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

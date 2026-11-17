@@ -1,45 +1,62 @@
-## Description: <br>
-Streaming Buddy is a personal streaming assistant that tracks viewing activity, learns preferences from ratings and feedback, and recommends movies or TV shows by service, mood, and taste profile. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Streaming Buddy is a personal streaming assistant that tracks viewing activity, learns taste preferences, and recommends movies or TV shows by service, mood, and history.
 
-## Publisher: <br>
-[udiedrichsen](https://clawhub.ai/user/udiedrichsen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[udiedrichsen](https://clawhub.ai/user/udiedrichsen)
 
-## Use Case: <br>
-External users and agents use this skill to manage streaming services, track watch progress, maintain watchlists and history, and get personalized movie and TV recommendations using TMDB metadata. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores streaming services, watch history, ratings, inferred preferences, cached TMDB responses, and the TMDB API key in the workspace. <br>
-Mitigation: Install only if this local profile storage is acceptable, use a TMDB key intended for this skill, and delete $WORKSPACE/memory/streaming-buddy/ to reset the profile. <br>
-Risk: The skill uses TMDB lookups for search, title details, watch-provider availability, and recommendations. <br>
-Mitigation: Review the configured region, language, services, and TMDB key before use so recommendations and availability checks match the intended user context. <br>
+## Use Case:
 
+External users use this skill to manage a local streaming profile, track watch progress, maintain a watchlist and history, and get personalized movie or TV recommendations using configured services, moods, ratings, and TMDB-backed availability data.
 
-## Reference(s): <br>
-- [Streaming Buddy ClawHub Page](https://clawhub.ai/udiedrichsen/streaming-buddy) <br>
-- [Publisher Profile](https://clawhub.ai/user/udiedrichsen) <br>
-- [Streaming Services Reference](references/services.md) <br>
-- [TMDB API Reference](references/tmdb-api.md) <br>
-- [JustWatch Integration](references/justwatch.md) <br>
-- [TMDB API Key Settings](https://www.themoviedb.org/settings/api) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON status and result objects, with agent-facing recommendation text or setup guidance derived from those results.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Maintains local workspace state for services, watch history, ratings, inferred preferences, watchlists, and cached TMDB responses.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: evidence release and SKILL.md frontmatter) <br>
+Risk: The skill stores a TMDB API key and personal viewing profile data in the workspace.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a private workspace, avoid sharing or committing memory/streaming-buddy/config.json, and rotate the TMDB key if it has already been exposed.
+
+Risk: Viewing-related searches and recommendation requests are sent to TMDB-backed endpoints.
+
+Mitigation: Use explicit /stream commands, set the intended region and language, and avoid sensitive viewing queries when third-party API disclosure is unacceptable.
+
+Risk: Streaming availability can be stale or regionally inaccurate.
+
+Mitigation: Treat availability as advisory and verify the title in the relevant streaming service before relying on it.
+
+## Reference(s):
+
+- [Streaming Buddy Skill Page](https://clawhub.ai/udiedrichsen/skills/streaming-buddy)
+- [Streaming Services Reference](references/services.md)
+- [TMDB API Reference](references/tmdb-api.md)
+- [JustWatch Integration](references/justwatch.md)
+- [TMDB API Key Settings](https://www.themoviedb.org/settings/api)
+- [TMDB Signup](https://www.themoviedb.org/signup)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown guidance with JSON-backed command results and inline shell examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires jq, curl, and a TMDB API key; stores configuration, services, viewing history, watchlist, preferences, and cached API responses under memory/streaming-buddy/.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

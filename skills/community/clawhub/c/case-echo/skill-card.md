@@ -1,43 +1,54 @@
-## Description: <br>
-Extract simple structured JSON fields from a short Chinese medical case description. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extract simple structured JSON fields from a short Chinese medical case description.
 
-## Publisher: <br>
-[heyheya11](https://clawhub.ai/user/heyheya11) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[heyheya11](https://clawhub.ai/user/heyheya11)
 
-## Use Case: <br>
-Developers, analysts, and agents use this skill to convert short Chinese medical case summaries into standardized JSON fields such as sex, age, diagnosis, stage, EGFR, PD-L1, and brain metastasis status. It structures text only and does not provide diagnosis or treatment recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Medical case text may contain sensitive personal or clinical information. <br>
-Mitigation: Treat input case text as sensitive and avoid unnecessary disclosure or retention. <br>
-Risk: Unsafe shell string construction could expose case text or alter command execution. <br>
-Mitigation: Invoke the bundled script with safe argument passing instead of interpolating untrusted text into a shell command string. <br>
-Risk: Structured extraction can omit or misread fields when the input wording differs from the parser's simple patterns. <br>
-Mitigation: Review extracted JSON before using it in downstream analysis, and do not treat it as medical diagnosis or treatment guidance. <br>
+## Use Case:
 
+Developers and clinical workflow builders can use this skill to convert brief Chinese case summaries into a small JSON object with obvious fields such as sex, age, diagnosis, stage, EGFR, PD-L1, and brain metastasis status. It structures supplied text only and does not provide diagnosis or treatment recommendations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/heyheya11/case-echo) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/heyheya11) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, shell commands] <br>
-**Output Format:** [JSON] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Missing fields are returned as null, and raw_text preserves the input text.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server-resolved release metadata) <br>
+Risk: The documented shell command can allow specially crafted case text to run local shell commands if user text is pasted directly into command text.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pass case text as data through a structured process API, file, or standard input rather than interpolating or pasting it into a shell command.
+
+Risk: The skill structures medical case text and could be mistaken for clinical interpretation.
+
+Mitigation: Use the JSON output as field extraction only; require human review before using extracted fields in clinical or downstream analysis workflows.
+
+## Reference(s):
+
+- [Sample Chinese case text](examples/sample_case.txt)
+- [ClawHub skill page](https://clawhub.ai/heyheya11/skills/case-echo)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Text]
+
+**Output Format:** [JSON object]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Missing fields are returned as null; extracted values should come only from the supplied case text.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

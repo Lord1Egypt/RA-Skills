@@ -1,0 +1,60 @@
+`#coding:gbk
+
+import time
+
+operator_time = '093000' # 还款时间
+
+# 信用账号  融资负债， 可用资金
+
+record = {}
+
+def init(ContextInfo):
+print('还款时间:%s'%operator_time)
+ContextInfo.run_time("myHandlebar","1nSecond","2019-10-14 13:20:00","SH")
+
+def myHandlebar(ContextInfo):
+global record
+if not ContextInfo.is_last_bar():
+return
+now_time = time.strftime('%H%M%S')
+now_date = time.strftime('%Y%m%d')
+if now_time>=operator_time and now_date not in record:
+print('开始还款','=='*30)
+record.update({now_date:True})
+acc_infos = get_unclosed_compacts(account, 'credit')
+print(f"负债信息", acc_infos)
+available = get_trade_detail_data(account,'CREDIT','ACCOUNT')[0].m_dAvailable
+if available<=0:
+print('\t可用资金不足，不执行还款，本次还款结束！')
+print('还款结束','=='*30)
+return
+total_debet_money = 0
+for acc_info in acc_infos: #统计所有负债
+total_debet_money+=acc_info.m_dRealCompactBalance
+# debet_money = acc_info.m_dRealCompactBalance
+#print()
+if int(total_debet_money)>0:
+if int(available - total_debet_money)>0: # 可用大于该合约负债，执行还款
+available -= total_debet_money
+print('\t账号%s 执行还款%.2f'%(account,total_debet_money))
+passorder(32,1102,account,'000001.SZ',5,1,total_debet_money,1,ContextInfo)
+elif int(available) > 0:
+print('\t账号 %s 可用不足，未还%.2f，实际执行还款%.2f，执行还款后剩余未还%.2f'%(account, total_debet_money, available,total_debet_money-available))
+passorder(32,1102,account,'000001.SZ',5,1,int(available),1,ContextInfo)
+else:
+print('\t 账号:%s 无需还款，本次还款结束'%account)
+'''
+if debet_money==0:
+print('\t合约%s 无未还负债，跳过还款'%(acc_info.m_strInstrumentID))
+continue
+if available - debet_money>0: # 可用大于该合约负债，执行还款
+available -= debet_money
+print('\t合约：%s 执行还款'%acc_info.m_strInstrumentID)
+passorder(32,1102,account,acc_info.m_strInstrumentID+'.'+acc_info.m_strExchangeID,5,1,debet_money,1,ContextInfo)
+else:
+print('\t账号 %s 可用不足，未还%.2f，实际执行还款%.2f，执行还款后剩余未还%.2f, 合约%s'%(account, debet_money, available,debet_money-available,acc_info.m_strInstrumentID))
+passorder(32,1102,account,acc_info.m_strInstrumentID+'.'+acc_info.m_strExchangeID,5,1,available,1,ContextInfo)
+break
+'''
+print('还款结束','=='*30)
+`

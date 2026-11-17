@@ -1,44 +1,56 @@
-## Description: <br>
-Xhs Writer is an offline Xiaohongshu/REDnote content creation skill that generates a complete publishing kit including titles, body copy, hashtags, a first-comment hook, multi-card image Markdown, and style parameters. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Xhs Writer creates a complete Xiaohongshu/REDnote publishing package from a user topic, including a title, body copy, hashtags, first-comment hook, multi-card image Markdown, and style parameters.
 
-## Publisher: <br>
-[ToBeWin](https://clawhub.ai/user/ToBeWin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tobewin](https://clawhub.ai/user/tobewin)
 
-## Use Case: <br>
-Content creators, marketers, and social-media teams use this skill to draft Chinese Xiaohongshu/REDnote posts from a topic, keywords, or draft. It produces a ready-to-review publishing package while remaining offline and not publishing on the user's behalf. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated posts may include inaccurate claims, missing disclosures, or overclaiming before publication. <br>
-Mitigation: Review generated content for factual accuracy, platform compliance, required disclosures, and claim strength before publishing. <br>
-Risk: The skill is optimized for Xiaohongshu/REDnote-style content and may be unsuitable when that tone or format is not intended. <br>
-Mitigation: Use it only when a Xiaohongshu/REDnote-style publishing package is explicitly desired, and adapt the output for other channels. <br>
+## Use Case:
 
+External users and content creators use this skill to turn a topic, keyword set, or draft into a ready-to-edit Xiaohongshu/REDnote post package. It is aimed at Chinese-style social content across tech, AI, knowledge, lifestyle, travel, and general topics.
 
-## Reference(s): <br>
-- [Xhs Writer ClawHub release](https://clawhub.ai/ToBeWin/xhs-writer) <br>
-- [ToBeWin publisher profile](https://clawhub.ai/user/ToBeWin) <br>
-- [Copywriting formulas](artifact/references/copywriting.md) <br>
-- [Dynamic style system](artifact/references/styles.md) <br>
-- [Xiaohongshu hashtag library](artifact/references/tags.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Structured Markdown in Chinese with sectioned copy, hashtag lists, multi-card image Markdown, and style parameter values.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Offline content-generation guidance; users should review posts for accuracy, disclosures, platform compliance, and overclaiming before publishing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Generated social copy, hashtags, and visual-card text may be inaccurate, off-brand, or unsuitable for the intended audience.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and edit the generated publishing package before posting.
+
+Risk: The default behavior is Chinese-style Xiaohongshu/REDnote content and may not match English, bilingual, or other locale needs.
+
+Mitigation: Specify the desired language, locale, and audience when invoking the skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tobewin/skills/xhs-writer)
+- [copywriting.md](references/copywriting.md)
+- [styles.md](references/styles.md)
+- [tags.md](references/tags.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with structured sections for title, body copy, first comment, image-card Markdown, and style parameters]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Offline content generation; no browser, API, cookies, or external tools are required.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

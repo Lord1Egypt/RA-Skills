@@ -26,7 +26,7 @@ pip install -r requirements.txt
 
 ```env
 # SiliconFlow API Key (必填，用于视频转录功能)
-api_key=sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+api_key=REDACTED-SECRET
 # 视频转录模型 (默认: FunAudioLLM/SenseVoiceSmall)
 model=FunAudioLLM/SenseVoiceSmall
 # 是否自动清理临时文件 (true: 自动清理, false: 保留在 tmp/ 目录中)

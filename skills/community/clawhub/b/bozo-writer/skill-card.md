@@ -1,38 +1,54 @@
-## Description: <br>
-Creates Chinese short-video oral scripts for AI education topics by expanding a user-provided topic, article, or keywords into an eight-part structure for platforms such as Douyin and Xiaohongshu. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Bozo Writer helps agents create or rewrite Chinese short-video voiceover scripts for AI topics using an eight-part structure for attention, contrast, analysis, practical method, and closing insight.
 
-## Publisher: <br>
-[bozoyan](https://clawhub.ai/user/bozoyan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bozoyan](https://clawhub.ai/user/bozoyan)
 
-## Use Case: <br>
-External creators, AI educators, and content teams use this skill to turn AI-related topics or source material into accessible Chinese short-video scripts for beginner audiences. It is tailored to AI basics, LoRA training, ComfyUI usage, API calls, AI programming, and agent-building content. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated scripts may overfit the fixed eight-part structure or include claims that need review before publication. <br>
-Mitigation: Review the output for factual accuracy, originality, audience fit, and suitability for the target short-video platform before publishing. <br>
+## Use Case:
 
+External content creators and AI educators use this skill to turn AI topics, articles, or keywords into Chinese short-video scripts for platforms such as Douyin and Xiaohongshu. It is aimed at explainers for technology beginners and favors conversational, structured output.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/bozoyan/bozo-writer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown script organized under eight Chinese section headings] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces Chinese short-video oral scripts; does not request files, credentials, tool use, or command execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill is specialized for Chinese AI-topic short-video scripts and may be a poor fit for general writing, non-Chinese content, or non-video formats.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only when the desired output is the specified Chinese eight-part口播 format, or explicitly review and adapt the result for other formats.
+
+Risk: Generated AI explainer scripts may still need editorial review before public posting.
+
+Mitigation: Review the script for topic accuracy, platform fit, and claims about AI tools before publishing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bozoyan/skills/bozo-writer)
+- [ClawHub publisher profile](https://clawhub.ai/user/bozoyan)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown short-video voiceover script with structured section headings]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language AI-topic content using an eight-part short-video script structure.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

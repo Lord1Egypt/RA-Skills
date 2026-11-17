@@ -1,41 +1,53 @@
-## Description: <br>
-Duf - duf - Disk Usage/Free analyzer. Automated tool for duf tasks. Use when you need Duf capabilities. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Disk Analyzer helps an agent inspect disk usage and free space, find large or duplicate files, monitor usage, and export disk reports with a shell utility.
 
-## Publisher: <br>
-[bytesagain1](https://clawhub.ai/user/bytesagain1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain1](https://clawhub.ai/user/bytesagain1)
 
-## Use Case: <br>
-Developers and operators use this skill to inspect local disk usage, find large files, identify duplicate candidates, monitor disk usage changes, and export disk reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Disk reports can expose sensitive file names, mount points, or private project paths. <br>
-Mitigation: Run the skill on specific directories where possible and review reports before sharing command output. <br>
-Risk: Broad scans can traverse large parts of the local filesystem and produce noisy or sensitive results. <br>
-Mitigation: Prefer scoped paths for usage, top-file, duplicate, and monitoring commands. <br>
+## Use Case:
 
+Developers, operators, and support engineers use this skill to inspect local disk usage, identify large or duplicate files, monitor usage changes, and export disk reports.
 
-## Reference(s): <br>
-- [muesli/duf reference project](https://github.com/muesli/duf) <br>
-- [ClawHub skill page](https://clawhub.ai/bytesagain1/disk-analyzer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, guidance] <br>
-**Output Format:** [Plain text, Markdown, or JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports may include local file names, mount points, and private project paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release evidence) <br>
+Risk: Crafted or unusual path arguments can make file-search commands behave unexpectedly, especially path values beginning with a dash.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review command arguments before execution and use trusted, explicit paths that do not begin with a dash.
+
+Risk: The cleanup command reports broad system cleanup locations rather than behaving as a path-scoped analyzer.
+
+Mitigation: Treat cleanup output as advisory, review each suggested location manually, and do not perform cleanup actions solely from this report.
+
+## Reference(s):
+
+- [muesli/duf](https://github.com/muesli/duf)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands, guidance]
+
+**Output Format:** [Plain text, Markdown, or JSON disk usage reports with shell command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports are generated from local filesystem commands and may vary by operating system, permissions, mounted filesystems, and command arguments.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

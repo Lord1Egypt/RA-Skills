@@ -1,41 +1,58 @@
-## Description: <br>
-Improve reusable agent workflows with reflective experiments, value checks, and local pattern memory. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Improve reusable agent workflows with reflective experiments, value checks, and local pattern memory.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Developers and agent users use this skill to improve repeated workflows by recording local experiment notes, testing one behavior change at a time, and promoting only proven patterns into stable memory. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local notes may capture sensitive workflow details if the user lets the agent save too much context. <br>
-Mitigation: Review ~/self-evolving/ periodically, avoid storing secrets or sensitive personal or business details, and pause or opt out of memory updates when needed. <br>
-Risk: Unreviewed behavior changes could make the agent less reliable or change workflows without clear value. <br>
-Mitigation: Use one small experiment at a time, require explicit evidence across comparable uses before promotion, and discard changes that add churn or weaken reliability. <br>
+## Use Case:
 
+External users and developers use this skill to improve recurring agent workflows through local experiment logs, value-gated promotion of proven patterns, and bounded local memory.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/self-evolving) <br>
-- [Skill homepage](https://clawic.com/skills/self-evolving) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Configuration] <br>
-**Output Format:** [Markdown guidance and local memory templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Maintains concise local notes under ~/self-evolving/ when the user allows persistent writes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and SKILL.md frontmatter) <br>
+Risk: The skill can save durable behavior preferences and activation rules with unclear scope.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep saved rules inside ~/self-evolving/ unless the user explicitly confirms another memory write.
+
+Risk: Stored activation cues or always/never rules may persist after they stop matching the user's intent.
+
+Mitigation: Periodically inspect or delete saved activation cues and always/never rules.
+
+Risk: Workflow changes could be promoted before they have enough supporting evidence.
+
+Mitigation: Promote only after three comparable wins and discard changes that add churn or weaken reliability.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/self-evolving)
+- [Skill homepage](https://clawic.com/skills/self-evolving)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance and local markdown memory templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update concise local notes under ~/self-evolving/ when the user has been told about persistent storage.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

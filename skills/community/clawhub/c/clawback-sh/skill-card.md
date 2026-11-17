@@ -1,42 +1,55 @@
-## Description: <br>
-Clawback helps agents use Gmail through a security proxy with policy enforcement, approval workflows, and audit logging for reading, searching, sending, and managing mail. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Clawback is a Gmail security proxy with policy enforcement, approval workflows, and audit logging for agents that read, search, or send Gmail with guardrails.
 
-## Publisher: <br>
-[rotemtam](https://clawhub.ai/user/rotemtam) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Apache-2.0 <br>
+## Publisher:
 
+[rotemtam](https://clawhub.ai/user/rotemtam)
 
-## Use Case: <br>
-Employees and developers use this skill when they want an agent to work with Gmail through Clawback guardrails, including search, message retrieval, send and draft workflows, labels, history, settings, and approval-aware actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Apache-2.0
 
-## Known Risks and Mitigations: <br>
-Risk: Mailbox-changing actions such as deletes, draft deletes, label changes, and batch modifications can alter user Gmail data. <br>
-Mitigation: Require explicit user confirmation before any delete, draft delete, label change, batch modification, or other mailbox-changing action. <br>
-Risk: The skill depends on a locally installed Clawback CLI and the configured Clawback server. <br>
-Mitigation: Install only when the user trusts Honeybadge Labs, the clawback binary on PATH, and the configured CB_SERVER value. <br>
+## Use Case:
 
+Employees, external users, and developers use this skill to let an agent search, inspect, compose, and send Gmail through Clawback guardrails, approvals, policy checks, and audit logging.
 
-## Reference(s): <br>
-- [Clawback skill listing](https://clawhub.ai/rotemtam/clawback-sh) <br>
-- [Clawback homepage](https://clawback.sh) <br>
-- [Clawback releases](https://github.com/honeybadge-labs/clawback/releases) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON-oriented command output guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses the clawback CLI and favors JSON, no-input, and fail-empty flags for reliable parsing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: release evidence and package.json) <br>
+Risk: The skill can guide high-impact mailbox actions such as deletes, batch modifies, label changes, and draft actions without explicit confirmation guidance beyond sending email.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require a clear preview and explicit user confirmation before deletes, batch modifications, label changes, draft actions, and sends.
+
+Risk: The skill requires a local Clawback CLI and Gmail service access, so mailbox data and actions depend on trusting that CLI and service.
+
+Mitigation: Install only a trusted Clawback CLI, verify the configured service before authentication, and rely on organization policy controls and audit logs for sensitive accounts.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/rotemtam/skills/clawback-sh)
+- [Clawback homepage](https://clawback.sh)
+- [Clawback CLI releases](https://github.com/honeybadge-labs/clawback/releases)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON-oriented CLI output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill instructs agents to prefer JSON CLI output for reliable parsing and to present sensitive email actions to users in plain language.]
+
+## Skill Version(s):
+
+0.2.0 (source: evidence.release.version, package.json, target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,54 @@
-## Description: <br>
-Run a multi-agent autonomous scientific investigation on any topic. Spawns specialized AI agents that use 300+ scientific tools (PubMed, BLAST, UniProt, PubChem, TDC, RDKit, etc.) to investigate and post findings to Infinite. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run a multi-agent autonomous scientific investigation on any topic, spawning specialized AI agents that use scientific tools such as PubMed, BLAST, UniProt, PubChem, TDC, and RDKit to investigate and post findings to Infinite.
 
-## Publisher: <br>
-[fwang108](https://clawhub.ai/user/fwang108) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fwang108](https://clawhub.ai/user/fwang108)
 
-## Use Case: <br>
-External researchers and developers use this skill to launch ScienceClaw investigations on biology, chemistry, materials, genomics, drug targets, proteins, compounds, pathways, or diseases, then review summarized findings and tool usage. It is also useful when a user wants the agent to post investigation results to Infinite or run a dry-run investigation without posting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can run autonomous research through a separate ScienceClaw runtime. <br>
-Mitigation: Install and run it only when the ScienceClaw runtime is trusted and the requested investigation scope is appropriate. <br>
-Risk: The skill may include workspace memory.md context in the prompt. <br>
-Mitigation: Review memory.md for sensitive or irrelevant project details before running the investigation. <br>
-Risk: The skill posts results to Infinite by default. <br>
-Mitigation: Use --dry-run unless external posting is explicitly intended, and confirm which account and community will publish the result. <br>
+## Use Case:
 
+Developers, researchers, and scientific analysts use this skill to run autonomous multi-agent investigations for biology, chemistry, materials, genomics, drug-target, protein, compound, pathway, and disease research topics. The skill can synthesize findings and post results to Infinite unless run in dry-run mode.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/fwang108/scienceclaw-investigate) <br>
-- [Publisher Profile](https://clawhub.ai/user/fwang108) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown summary with shell command invocations, post links when published, key findings, participating agents, and tools used.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May publish results to Infinite unless --dry-run is used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: Private workspace memory may be appended to the investigation topic and then externally processed or posted.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only in workspaces where memory.md does not contain confidential, unpublished, personal, or proprietary research context, and prefer dry-run unless posting is intended.
+
+Risk: Untrusted topic text or an unexpected ScienceClaw path could affect shell-driven execution.
+
+Mitigation: Verify the ScienceClaw installation path before running and avoid passing untrusted topic text through the shell command.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fwang108/skills/scienceclaw-investigate)
+- [Publisher profile](https://clawhub.ai/user/fwang108)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and concise investigation results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3, a ScienceClaw installation, and ANTHROPIC_API_KEY; may post to Infinite unless dry-run mode is used.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

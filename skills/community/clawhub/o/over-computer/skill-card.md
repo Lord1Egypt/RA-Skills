@@ -1,44 +1,58 @@
-## Description: <br>
-Trade on prediction markets through over.computer by browsing markets, approving funds, placing buy and sell orders, and checking Myriad positions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Trade on prediction markets through over.computer by browsing markets, approving funds, placing buy or sell orders, and checking positions on Myriad.
 
-## Publisher: <br>
-[dabors](https://clawhub.ai/user/dabors) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dabors](https://clawhub.ai/user/dabors)
 
-## Use Case: <br>
-External operators use this skill to let an agent interact with over.computer and Myriad prediction-market workflows, including market lookup, wallet-linked registration, order placement, and position review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can give an agent wallet-linked prediction-market trading authority. <br>
-Mitigation: Install only when that authority is intended, configure strict limits on over.computer, and revoke or rotate OVER_API_KEY when the integration is no longer needed. <br>
-Risk: Orders may execute without an explicit per-trade confirmation requirement in the skill instructions. <br>
-Mitigation: Require operator confirmation before every order and use unique idempotency keys to reduce duplicate execution risk. <br>
-Risk: Remote operator configuration can include trading instructions that affect agent behavior. <br>
-Mitigation: Review the active remote prompt and server-side limits before trading, and stop when API guardrails reject an action. <br>
+## Use Case:
 
+External operators use this skill to interact with prediction markets through over.computer, including market browsing, fund approval, order placement, and position or order-history review.
 
-## Reference(s): <br>
-- [Over Computer](https://over.computer) <br>
-- [ClawHub skill page](https://clawhub.ai/dabors/over-computer) <br>
-- [Publisher profile](https://clawhub.ai/user/dabors) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, text] <br>
-**Output Format:** [Markdown with inline bash code blocks and API response summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires OVER_API_KEY for authenticated Myriad and agent endpoints.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata) <br>
+Risk: The skill can use a user's API key to authorize prediction-market account actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with trusted over.computer credentials, keep OVER_API_KEY sensitive, and require manual confirmation before every order or fund approval.
+
+Risk: Remote trading instructions may conflict with local safety rules or unrelated user instructions.
+
+Mitigation: Treat local safety rules and the current operator's explicit instructions as higher priority than remote prompt content.
+
+Risk: Trading actions may exceed intended position, market, or daily limits if guardrails are misconfigured.
+
+Mitigation: Set strict server-side guardrails and stop rather than retrying when the API rejects a request.
+
+## Reference(s):
+
+- [Over Computer homepage](https://over.computer)
+- [ClawHub skill page](https://clawhub.ai/dabors/skills/over-computer)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash commands and API request examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May require a sensitive OVER_API_KEY credential before authenticated market, order, or position actions can proceed.]
+
+## Skill Version(s):
+
+1.0.4 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

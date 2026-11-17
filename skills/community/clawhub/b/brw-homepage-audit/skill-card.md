@@ -1,38 +1,54 @@
-## Description: <br>
-Quick conversion audit for any homepage or landing page. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Quick conversion audit for any homepage or landing page. Use when someone asks to "review my homepage," "audit my landing page," "why isn't my page converting," "check my website," "improve my homepage," or wants feedback on their marketing page.
 
-## Publisher: <br>
-[BrianRWagner](https://clawhub.ai/user/BrianRWagner) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[brianrwagner](https://clawhub.ai/user/brianrwagner)
 
-## Use Case: <br>
-External users, marketers, founders, and website owners use this skill to review homepages or landing pages for conversion clarity, trust signals, calls to action, and prioritized improvement opportunities. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Users may provide URLs, screenshots, or page copy that contain sensitive business or customer information. <br>
-Mitigation: Share only public or approved homepage materials that are acceptable for processing by the agent and any tools it uses. <br>
-Risk: The artifact includes the author's strategy-call link, which may be promotional. <br>
-Mitigation: Treat the strategy-call link as advertising and evaluate it separately from the skill's audit guidance. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+Marketing teams, founders, and developers use this skill to review homepage or landing page conversion fundamentals and receive prioritized fixes, quick wins, longer-term opportunities, and a weighted score.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown audit report with prioritized issues, quick wins, longer-term opportunities, and scoring] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May request a URL, above-the-fold screenshot, or page copy when direct page access is unavailable.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill includes an unrelated commercial booking link that may affect user-facing audit output.
+
+Mitigation: Review generated audits for promotional content and remove or disclose the commercial call to action before sharing results.
+
+Risk: Homepage screenshots, URLs, or copied page content may include private or unpublished materials.
+
+Mitigation: Avoid submitting sensitive page content unless it is acceptable to analyze it in the active agent session; redact private details when possible.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/brianrwagner/skills/brw-homepage-audit)
+- [Publisher profile](https://clawhub.ai/user/brianrwagner)
+- [Publisher website](https://brianrwagner.com)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Guidance]
+
+**Output Format:** [Markdown audit report with prioritized recommendations and scoring]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May ask for a screenshot, URL, or copied homepage content when direct page access is unavailable.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

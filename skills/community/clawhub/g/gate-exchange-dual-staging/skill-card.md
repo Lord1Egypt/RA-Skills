@@ -1,53 +1,68 @@
-## Description: <br>
-Gate dual investment skill for answering questions about dual currency products, target price settlement, account balances, dual orders, and confirmation-gated order placement. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Gate Exchange Dual Investment helps agents browse Gate dual investment products, simulate settlement outcomes, review positions and balances, and prepare confirmation-gated dual investment orders.
 
-## Publisher: <br>
-[gaixianggeng](https://clawhub.ai/user/gaixianggeng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gaixianggeng](https://clawhub.ai/user/gaixianggeng)
 
-## Use Case: <br>
-External users and agent developers use this skill to explore Gate dual investment products, simulate settlement outcomes, review dual balances and orders, and prepare order placements through Gate MCP tools after explicit confirmation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can use Earn:Write access through Gate MCP to place financial-product orders. <br>
-Mitigation: Use a narrowly scoped API key when possible and require explicit user confirmation immediately before any order placement. <br>
-Risk: Dual investment is not principal-protected and settlement may occur in a different currency than the user invested. <br>
-Mitigation: Present settlement scenarios and the product risk disclaimer in financial-product responses; do not recommend plans or predict prices. <br>
-Risk: Incorrect order details, amounts, or date ranges could lead to misleading financial guidance or unwanted subscriptions. <br>
-Mitigation: Review every order draft, double-check minimum amounts and date ranges, and fetch all required order pages before drawing conclusions. <br>
-Risk: API credentials and account data are sensitive. <br>
-Mitigation: Rely on the configured MCP session, never ask users to paste secrets into chat, and avoid exposing raw keys, internal endpoints, or raw error traces. <br>
+## Use Case:
 
+External Gate users and agent developers use this skill to inspect dual investment products, understand settlement scenarios and balances, and place dual orders through a locally configured Gate MCP session after explicit confirmation. It supports informational financial workflows and confirmation-gated order execution without providing investment advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gaixianggeng/gate-exchange-dual-staging) <br>
-- [Publisher profile](https://clawhub.ai/user/gaixianggeng) <br>
-- [ClawHub metadata homepage](https://github.com/gate/gate-skills) <br>
-- [Gate MCP dependency](https://github.com/gate/gate-mcp) <br>
-- [Gate Dual Investment Runtime Rules](references/gate-runtime-rules.md) <br>
-- [Gate Dual Investment MCP Specification](references/mcp.md) <br>
-- [Product Query](references/product-query.md) <br>
-- [Subscription & Order Placement](references/subscription.md) <br>
-- [Settlement & Assets](references/settlement-assets.md) <br>
-- [Scenarios & Prompt Examples](references/scenarios.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, API Calls, guidance] <br>
-**Output Format:** [Markdown responses with tables, settlement calculations, risk notes, and confirmation prompts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May call configured Gate MCP tools for product discovery, balance/order queries, and confirmation-gated dual order placement.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata; artifact frontmatter version: 2026.4.3-1) <br>
+Risk: Confirmed dual investment orders commit funds, cannot be canceled after placement, and may settle in a different currency.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Show a complete order draft and require explicit immediate confirmation before calling the order placement tool.
+
+Risk: The workflow requires Gate API credentials and Earn:Write permission.
+
+Mitigation: Use only the locally configured Gate MCP session, never ask users to paste secrets into chat, and keep write access scoped to the documented dual investment tools.
+
+Risk: Financial product responses could be mistaken for investment advice or guaranteed returns.
+
+Mitigation: Present product data and settlement mechanics for reference only, include the required risk disclaimer, and avoid recommending plans or predicting prices.
+
+Risk: Incorrect APY formatting or timestamp display can mislead users about product terms.
+
+Mitigation: Convert raw APY and rate fields by multiplying by 100 before display, sanity-check displayed percentages, and omit timestamp fields from user-facing output.
+
+## Reference(s):
+
+- [Gate Skills Repository](https://github.com/gate/gate-skills)
+- [Gate MCP Server](https://github.com/gate/gate-mcp)
+- [Gate Dual Investment Runtime Rules](references/gate-runtime-rules.md)
+- [Gate Dual Investment MCP Specification](references/mcp.md)
+- [Product Query Workflow](references/product-query.md)
+- [Subscription and Order Placement Workflow](references/subscription.md)
+- [Settlement and Assets Workflow](references/settlement-assets.md)
+- [Scenarios and Prompt Examples](references/scenarios.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, API Calls, Guidance]
+
+**Output Format:** [Markdown responses with comparison tables, settlement calculations, order drafts, confirmation prompts, and status summaries.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a local Gate MCP session with GATE_API_KEY and GATE_API_SECRET. Write operations require Earn:Write permission and explicit immediate user confirmation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter and changelog version: 2026.4.3-1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

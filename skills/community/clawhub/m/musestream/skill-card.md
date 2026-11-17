@@ -1,43 +1,58 @@
-## Description: <br>
-AI-Music-Stream helps agents generate AI music from text prompts or user context, return browser-playable stream links, and save generated tracks to a local library. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-Music-Stream helps an agent turn text prompts or user context into continuous browser-playable AI music streams, saving generated tracks and metadata to a local library.
 
-## Publisher: <br>
-[asriverwang](https://clawhub.ai/user/asriverwang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[asriverwang](https://clawhub.ai/user/asriverwang)
 
-## Use Case: <br>
-Developers and agent users use this skill to set up a local MuseStream server, turn natural-language music requests or contextual signals into generation prompts, and share a player URL for continuous browser playback. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The local music server is unauthenticated by default and could expose prompts, saved songs, or paid music API usage if reachable by others. <br>
-Mitigation: Keep the server on localhost unless it is protected with authentication, firewall rules, TLS, and rate limiting. <br>
-Risk: Generated streams can continue auto-queuing and consume provider credits while the browser session remains active. <br>
-Mitigation: Stop the stream or close the browser window when listening is finished, and monitor provider usage. <br>
-Risk: Configuration files and the output library can contain API keys, prompts, metadata, or saved songs. <br>
-Mitigation: Protect config.json and the output directory, avoid sensitive personal details in prompts or context fields, and stop the background server when it is no longer needed. <br>
+## Use Case:
 
+External users and their agents use this skill to create and share AI-generated music streams from prompts, mood, weather, activity, or other context, then browse generated tracks in a local library.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/asriverwang/musestream) <br>
-- [Sonauto](https://sonauto.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, API calls, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, JSON configuration examples, and HTTP endpoint examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce a local browser player URL and guidance for managing generated audio files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release evidence) <br>
+Risk: The local web server can expose paid music generation controls and saved library data without built-in access control.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the server bound to localhost by default; before sharing links or exposing the port, add authentication, rate limits, HTTPS proxying, and firewall restrictions.
+
+Risk: Continuous auto-queue behavior can continue requesting songs and consuming provider credits while a player window remains active.
+
+Mitigation: Stop the stream or close the player when listening ends, and monitor provider API usage when generating long sessions.
+
+Risk: Prompts, metadata, audio files, and provider credentials are stored or used locally.
+
+Mitigation: Protect the configuration and output directory, avoid committing API keys, and review saved library contents before sharing the machine or directory.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/asriverwang/skills/musestream)
+- [Sonauto](https://sonauto.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown instructions with shell commands, JSON configuration examples, and local HTTP endpoint guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces shareable player URLs, setup steps, prompt guidance, and local server endpoint usage.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

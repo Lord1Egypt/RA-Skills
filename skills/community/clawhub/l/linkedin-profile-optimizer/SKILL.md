@@ -1,6 +1,6 @@
 ---
 name: linkedin-profile-optimizer
-description: Audit and rewrite a LinkedIn profile end-to-end for 2026 — headline formula, About section 7-step structure, Featured section strategy, banner design, photo rules, Experience metrics, Skills pinning, custom URL, recommendations. Triggers on requests like "review my LinkedIn profile", "rewrite my headline", "fix my About section", "optimize banner", "profile audit", "LinkedIn bio", "Featured section", "profile conversion", "profile keywords". Converts default/resume-style profiles into one that converts visitors 3-5x better.
+description: 'Audit and rewrite a LinkedIn profile end-to-end for 2026: headline, About 7-step, Featured, banner, photo, Experience metrics, Skills, custom URL, recommendations. Triggers on "review my profile", "rewrite my headline", "fix my About", "optimize banner", "profile audit", "LinkedIn bio". Converts resume-style profiles to ones that convert 3-5x better.'
 ---
 
 # LinkedIn Profile Optimizer
@@ -68,12 +68,12 @@ A structured audit + rewrite in this shape:
 
 ## Hard rules
 
-- No em dashes in any profile copy (AI tell, penalized by 2026 detection tools)
+Global voice rules: see root `SKILL.md` §Voice rules. Additional skill-specific rules:
+
 - First person ("I help...") never third person ("Jane is a passionate...")
-- Never "passionate thought leader" / "driven professional" / "results-oriented"
-- Capitalize all names, companies, products
-- Avoid wall-of-text — use line breaks in About section
-- 80% of users leave Featured empty — filling it is a free edge
+- Never "passionate thought leader" / "driven professional" / "results-oriented" (profile-specific AI vocab)
+- Avoid wall-of-text. Use line breaks in About section
+- 80% of users leave Featured empty. Filling it is a free edge
 
 ## Reference files
 

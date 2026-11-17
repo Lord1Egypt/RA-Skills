@@ -40,7 +40,7 @@ git clone https://github.com/LeeFJ0606/sensitive-info-protection.git /path/to/se
 from scripts.detector import SensitiveDetector
 
 detector = SensitiveDetector()
-result = detector.scan("My API key is sk-1234567890abcdef1234567890abcdef1234567890abcdef")
+result = detector.scan("My API key is REDACTED-SECRET")
 
 if result.has_sensitive:
     print(result.to_markdown())
@@ -126,7 +126,7 @@ git clone https://github.com/LeeFJ0606/sensitive-info-protection.git /path/to/se
 from scripts.detector import SensitiveDetector
 
 detector = SensitiveDetector()
-result = detector.scan("我的 API 密钥是 sk-1234567890abcdef1234567890abcdef1234567890abcdef")
+result = detector.scan("我的 API 密钥是 REDACTED-SECRET")
 
 if result.has_sensitive:
     print(result.to_markdown())  # 输出标准检测结果

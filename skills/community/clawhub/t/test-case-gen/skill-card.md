@@ -1,40 +1,54 @@
-## Description: <br>
-Generate test cases from requirements, user stories, PRDs, or API docs, with structured outputs such as markdown tables, CSV, JSON, and TestLink XML. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate structured test cases from requirements, user stories, PRDs, or API documentation, with support for common test design techniques and markdown, CSV, or JSON-style outputs.
 
-## Publisher: <br>
-[zhanghengyi1986-afk](https://clawhub.ai/user/zhanghengyi1986-afk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhanghengyi1986-afk](https://clawhub.ai/user/zhanghengyi1986-afk)
 
-## Use Case: <br>
-Developers, QA engineers, and product teams use this skill to turn requirements, user stories, PRDs, or API documentation into structured test cases, coverage summaries, and export-ready test data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Requirements or customer data pasted into prompts may contain sensitive information. <br>
-Mitigation: Avoid sharing secrets or sensitive customer data unless approved for the environment. <br>
-Risk: Generated test cases may be incomplete or unsuitable for direct import into test-management tools. <br>
-Mitigation: Review generated cases and coverage gaps before using them in test planning or importing them into external tools. <br>
+## Use Case:
 
+Developers, QA engineers, product teams, and external users use this skill to turn requirements, user stories, PRDs, or API documentation into structured test cases, coverage summaries, and export-ready test data.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhanghengyi1986-afk/test-case-gen) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown tables with optional CSV, JSON, or TestLink XML export formats] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes priority labels, test type categories, coverage summaries, and gap notes when applicable.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Generated test cases or exported test data may be incomplete, incorrect, or unsuitable for direct import into downstream test-management tools.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated cases, expected results, priorities, and import fields before using them for release decisions or importing them into TestLink, ZenTao, or similar tools.
+
+Risk: The skill may write user-requested export files in the OpenClaw workspace output directory.
+
+Mitigation: Confirm the requested export format and destination before using generated CSV, JSON, or XML artifacts.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/zhanghengyi1986-afk/skills/test-case-gen)
+- [Publisher Profile](https://clawhub.ai/user/zhanghengyi1986-afk)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown tables with optional CSV, JSON, or XML export structure]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include priority labels, test types, coverage summaries, and import-oriented field mappings for tools such as TestLink or ZenTao.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

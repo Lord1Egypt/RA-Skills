@@ -11,6 +11,8 @@ description: >
 Amber remembers everyone she talks to. The CRM stores contact details,
 personal context, and a log of every interaction.
 
+Privacy: CRM storage is local and should be opt-in. Enable it only after configuring caller notice/consent, retention/deletion practices, and access controls for the SQLite database.
+
 ## MCP Tools
 
 ### crm
@@ -28,10 +30,10 @@ Manage contacts and interaction history.
 - On inbound calls, Amber automatically looks up the caller by phone number
 - If the caller is known, their context and history are loaded into the conversation
 - After every call, an interaction log entry is created with: date, summary, sentiment, outcome
-- New callers are automatically added to the CRM after their first call
+- New callers are added to the CRM only when CRM persistence is enabled and appropriate under your caller notice/consent policy
 
 ## Guidelines
 
-- Use the CRM to personalize interactions ("Welcome back, Sarah! Last time we spoke about...")
+- Use the CRM only for relevant follow-up context; avoid surprising personalization from sensitive or unnecessary personal details
 - Keep notes professional but useful — preferences, important dates, relationship context
 - Never expose CRM data to callers beyond what's socially appropriate

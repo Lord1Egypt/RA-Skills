@@ -1,6 +1,10 @@
 {
-  "ownerId": "kn72cqttfa4en7epyybjca4m2x85ppvj",
+  "owner": "jikeapi",
   "slug": "jike-caipiao-lottery-query",
   "version": "1.0.0",
-  "publishedAt": 1777440954618
+  "title": "彩票查询 - 即刻数据",
+  "description": "查询彩票最新开奖、指定彩种期开奖详情、福彩3D/排列3历史号码和冷热号统计。",
+  "env": "JIKE_CAIPIAO_LOTTERY_QUERY_KEY",
+  "api_url": "https://api.jikeapi.cn/v1/caipiao/lottery/latest",
+  "homepage": "https://www.jikeapi.cn/"
 }

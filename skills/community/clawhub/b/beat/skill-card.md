@@ -1,41 +1,54 @@
-## Description: <br>
-Beat is advertised as a command-line tool for tracking, analyzing, and managing music and audio activity, while server security evidence notes that the included script mainly stores user-entered command text in local logs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Track, analyze, and manage music and audio files from the command line. Use when organizing playlists, converting formats, or analyzing metadata.
 
-## Publisher: <br>
-[bytesagain3](https://clawhub.ai/user/bytesagain3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain3](https://clawhub.ai/user/bytesagain3)
 
-## Use Case: <br>
-External users and agents can use Beat to run a local command-line activity logger for audio-oriented workflows, inspect recent entries, view simple statistics, search saved entries, and export local records. Because server security evidence flags the release as suspicious, users should validate its behavior before relying on it as an audio management tool. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release is advertised as a music/audio management tool, but server security evidence says the script mainly logs command text entered by the user. <br>
-Mitigation: Review it as a local activity logger and validate behavior before relying on it for audio processing or metadata management. <br>
-Risk: Local logs may capture sensitive command text, private paths, unreleased project names, or other metadata. <br>
-Mitigation: Avoid entering secrets or sensitive metadata, and inspect or clear ~/.local/share/beat after testing. <br>
+## Use Case:
 
+Developers and command-line users can use Beat to log music and audio-related workflow activity, inspect recent activity, search entries, and export local records.
 
-## Reference(s): <br>
-- [Beat on ClawHub](https://clawhub.ai/bytesagain3/beat) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Files] <br>
-**Output Format:** [Plain text terminal output with optional JSON, CSV, or text export files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores command activity under ~/.local/share/beat when executed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: The skill is advertised as a music and audio management tool, but security evidence says the bundled script is mostly a generic local activity logger with no real audio processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat Beat as a local text logging utility, verify expected behavior before relying on it for audio workflows, and do not assume it converts or analyzes media content.
+
+Risk: Commands can record user-provided text and export local records under ~/.local/share/beat/.
+
+Mitigation: Avoid entering secrets, tokens, private paths, or sensitive playlist and media details, and remove ~/.local/share/beat/ after testing if the records are not needed.
+
+## Reference(s):
+
+- [Beat Skill Page](https://clawhub.ai/bytesagain3/skills/beat)
+- [BytesAgain Homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and command-line text output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write local activity logs and export files under ~/.local/share/beat/.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,60 @@
-## Description: <br>
-HerCycle reads Whoop biometrics and cycle phase data to identify the user's hormonal phase and provide phase-aware recommendations or actions for training, nutrition, scheduling, social energy, and music. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Women's cycle intelligence companion that reads Whoop biometric data and menstrual cycle phase to identify the user's hormonal season and provide phase-aware recommendations.
 
-## Publisher: <br>
-[gloria-zhang1](https://clawhub.ai/user/gloria-zhang1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[gloria-zhang1](https://clawhub.ai/user/gloria-zhang1)
 
-## Use Case: <br>
-External users use this skill to connect Whoop biometrics and cycle phase information to phase-aware recommendations for daily planning, training intensity, nutrition, social energy, and optional action modules. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill handles sensitive reproductive-health and biometric data. <br>
-Mitigation: Review the skill carefully before installation and only connect Whoop or cycle data sources when the user is comfortable with that access. <br>
-Risk: The activation and possible external actions are not scoped tightly enough for sensitive health-related data. <br>
-Mitigation: Require explicit confirmation before connecting to live health services or performing external actions such as changing schedules, sending messages, or calling third-party tools. <br>
-Risk: Recommendations can be misleading if based on stale or incomplete biometric data. <br>
-Mitigation: Pull live data before recommendations and clearly treat inferred phase information as an estimate when no explicit cycle log is available. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Whoop API - HerCycle Reference](references/whoop-api.md) <br>
-- [Action Modules - HerCycle Reference](references/action-modules.md) <br>
-- [Whoop Developer Dashboard](https://developer-dashboard.whoop.com) <br>
-- [HerCycle on ClawHub](https://clawhub.ai/gloria-zhang1/hercycle) <br>
+## Use Case:
 
+External users use HerCycle to combine Whoop recovery, HRV, sleep, skin temperature, and cycle phase signals into recommendations for training, nutrition, scheduling, social energy, and phase-aware actions.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, API calls, configuration] <br>
-**Output Format:** [Markdown or conversational text with optional API endpoint guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May call configured WhoopClaw and action-module backends when the user authorizes live data access or external actions.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Sensitive biometric and menstrual-cycle data may be exposed to a local backend or connected services.
+
+Mitigation: Use only a trusted WhoopClaw implementation, inspect its code and dependencies before use, and limit access to users who intentionally want cycle-aware analysis.
+
+Risk: Whoop OAuth credentials can grant access to personal health and recovery data.
+
+Mitigation: Keep credentials scoped, private, and revocable; rotate or revoke them when the backend is no longer needed.
+
+Risk: Recommendations may be inaccurate if based on stale cached data or incomplete cycle logs.
+
+Mitigation: Pull live Whoop and cycle data before making recommendations and clearly account for missing or inferred phase information.
+
+## Reference(s):
+
+- [Whoop API - HerCycle Reference](references/whoop-api.md)
+- [Action Modules - HerCycle Reference](references/action-modules.md)
+- [Whoop Developer Dashboard](https://developer-dashboard.whoop.com)
+- [HerCycle ClawHub Skill Page](https://clawhub.ai/gloria-zhang1/skills/hercycle)
+- [gloria-zhang1 ClawHub Publisher Profile](https://clawhub.ai/user/gloria-zhang1)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance, API Calls]
+
+**Output Format:** [Markdown with concise recommendations, setup guidance, endpoint references, and occasional shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses live WhoopClaw and Whoop data when available; recommendations should not rely on stale cached values.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

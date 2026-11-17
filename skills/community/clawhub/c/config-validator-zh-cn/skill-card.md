@@ -1,55 +1,59 @@
-## Description: <br>
-Validates and queries OpenClaw configuration fields and allowed values, provides configuration examples, and helps check configuration against official schema references. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Validates and looks up OpenClaw configuration fields, allowed values, and examples against the documented schema.
 
-## Publisher: <br>
-[nicoxia](https://clawhub.ai/user/nicoxia) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[nicoxia](https://clawhub.ai/user/nicoxia)
 
-## Use Case: <br>
-Developers and operators use this skill before and after editing OpenClaw gateway configuration to check field names, allowed enum values, value types, and examples against bundled schema references. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Configuration examples include tokens, phone numbers, user IDs, or identity-link values that should not be copied into real deployments. <br>
-Mitigation: Treat these values as placeholders, generate deployment-specific high-entropy secrets, and replace identity values with approved real identifiers. <br>
-Risk: Gateway settings can expose services beyond loopback or enable public access. <br>
-Mitigation: Keep gateway binding on loopback unless wider access is required, and review authentication and network restrictions before enabling LAN, tailnet, or public binding. <br>
-Risk: The skill is a documentation-only reference, so schema guidance may lag current OpenClaw behavior if upstream configuration docs change. <br>
-Mitigation: Compare critical configuration changes against the current OpenClaw documentation and run OpenClaw validation commands before deployment. <br>
+## Use Case:
 
+Developers and operators use this Chinese OpenClaw reference skill before and after editing gateway, channel, agent, session, model, and tool configuration. It helps confirm field names, allowed values, types, and examples before running validation commands such as openclaw doctor.
 
-## Reference(s): <br>
-- [Config Validator on ClawHub](https://clawhub.ai/nicoxia/config-validator-zh-cn) <br>
-- [OpenClaw Configuration Reference](https://docs.openclaw.ai/gateway/configuration-reference) <br>
-- [OpenClaw Configuration (zh-CN)](https://docs.openclaw.ai/zh-CN/gateway/configuration) <br>
-- [OpenClaw Gateway](https://docs.openclaw.ai/zh-CN/gateway/index) <br>
-- [OpenClaw Model Failover](https://docs.openclaw.ai/zh-CN/concepts/model-failover) <br>
-- [OpenClaw Session Concepts](https://docs.openclaw.ai/zh-CN/concepts/session) <br>
-- [OpenClaw Sandboxing](https://docs.openclaw.ai/zh-CN/gateway/sandboxing) <br>
-- [Quick Reference](artifact/quick-reference.md) <br>
-- [Channels Schema](artifact/schema-channels.md) <br>
-- [Agents Schema](artifact/schema-agents.md) <br>
-- [Gateway Schema](artifact/schema-gateway.md) <br>
-- [Session Schema](artifact/schema-session.md) <br>
-- [Tools Schema](artifact/schema-tools.md) <br>
-- [Models Schema](artifact/schema-models.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with schema tables, configuration examples, and inline shell commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only output; examples may include placeholder tokens, identity values, and deployment settings that must be replaced or reviewed before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release metadata; artifact package.json and SKILL.md describe 1.0.0/v1.0 content) <br>
+Risk: Examples include tokens and service-account style fields that could be copied into real configuration or committed by mistake.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Generate fresh secrets, keep tokens and service-account files out of source control, and replace placeholder values before use.
+
+Risk: Gateway binding, Tailscale Funnel, heartbeat targets, and elevated tool settings can broaden access or send activity to unintended recipients.
+
+Mitigation: Keep gateway binding on localhost unless remote access is deliberate, and review public funnel, heartbeat recipient, sandbox, and elevated-tool settings before applying examples.
+
+## Reference(s):
+
+- [OpenClaw Configuration Reference](https://docs.openclaw.ai/gateway/configuration-reference)
+- [OpenClaw Chinese Configuration Guide](https://docs.openclaw.ai/zh-CN/gateway/configuration)
+- [OpenClaw Gateway Documentation](https://docs.openclaw.ai/zh-CN/gateway/index)
+- [OpenClaw Model Failover](https://docs.openclaw.ai/zh-CN/concepts/model-failover)
+- [OpenClaw Session Concepts](https://docs.openclaw.ai/zh-CN/concepts/session)
+- [OpenClaw Sandboxing](https://docs.openclaw.ai/zh-CN/gateway/sandboxing)
+- [ClawHub Skill Page](https://clawhub.ai/nicoxia/skills/config-validator-zh-cn)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown or plain text with configuration snippets and command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only reference output; does not execute commands by itself.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

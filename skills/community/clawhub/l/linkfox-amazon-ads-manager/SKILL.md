@@ -1,16 +1,16 @@
 ---
 name: linkfox-amazon-ads-manager
-description: 亚马逊广告（Amazon Ads）管理技能，覆盖 SP/SB/SD 三个产品线的广告查询（list）与创建/修改（create/update）操作。查询覆盖 Sponsored Products (SP) 的广告活动/广告组/关键词/否定关键词/商品广告/定向 6 个 list、Sponsored Brands (SB v4) 的广告活动/广告组/广告 3 个 list，以及 Sponsored Display (SD v3) 的广告活动/广告组/商品广告/定向/否定定向/创意 6 个 list；写操作覆盖全部 create/update（含出价调整、预算修改、状态变更、Budget Rules）。当用户提到查询、创建、修改、调价亚马逊广告时触发。本技能依赖 linkfox-amazon-ads-auth。Sponsored Television (ST) / Amazon DSP 暂未覆盖。
+description: 亚马逊广告（Amazon Ads）管理技能，覆盖 SP/SB/SD 的查询与创建/修改。Sponsored Brands 同时支持 V3 Legacy 与 V4：新活动、多 Ad Group、Ad/Creative 默认走 V4，历史 Legacy 可显式走 V3，Keyword/Target 按 Campaign 结构通过版本化脚本调用 Amazon 共享 targeting 资源；禁止 V4 失败后自动回落 V3，禁止用 V3 静默截断多 Ad Group 数据。适用于查询、创建、调价、改预算、改状态及管理 SP/SB/SD 广告。本技能依赖 linkfox-amazon-ads-auth；不覆盖 Sponsored Television / DSP。
 ---
 
 # Amazon Ads 广告管理
 
-Amazon Ads 广告管理 skill，支持 list（查询）和 create / update（创建与修改）操作，自动处理 token、分页、过滤字段规范化。
+Amazon Ads 广告管理 skill，支持 list（查询）和 create / update（创建与修改）操作；经 `developerProxy` 传 `profileId`，由服务端解析 token（勿先 `storeTokens` 取 raw token）。自动处理分页、过滤字段规范化。
 
 | 广告产品 | 覆盖实体 | 脚本子目录 | 详细参数 |
 |---------|---------|-----------|---------|
 | **SP** (Sponsored Products) v3 | campaigns / adGroups / keywords / negativeKeywords / productAds / targets | `scripts/sp/` | [references/api/sp.md](./references/api/sp.md) |
-| **SB** (Sponsored Brands) v4 | campaigns / adGroups / ads | `scripts/sb/` | [references/api/sb.md](./references/api/sb.md) |
+| **SB** V3 Legacy + V4 | V3 campaigns/keywords/targets；V4 campaigns/adGroups/ads/keywords/targets/creatives | `scripts/sb/v3/`、`scripts/sb/v4/` | [references/api/sb.md](./references/api/sb.md) |
 | **SD** (Sponsored Display) v3 | campaigns / adGroups / productAds / targets / negativeTargets / creatives | `scripts/sd/` | [references/api/sd.md](./references/api/sd.md) |
 
 **依赖 `linkfox-amazon-ads-auth`**（脚本启动时自动检查；未安装时 exit 42，stderr 打 `DEPENDENCY_MISSING`）。
@@ -31,11 +31,12 @@ Amazon Ads 广告管理 skill，支持 list（查询）和 create / update（创
 
 ## Core Concepts
 
-- **自动分页**：`fetchAll=true`（默认）跟随分页 token 到结束或 `maxPages=50` 兜底（约 5000 条，超出标 `truncated=true`）；SP / SB 用 `nextToken`，SD 用 `startIndex + count` 偏移分页
+- **自动分页**：`fetchAll=true`（默认）跟随分页到结束或 `maxPages=50` 兜底；SP/SB V4/Target 用 `nextToken`，SB V3 GET 与 SD 用 `startIndex + count`
 - **过滤器结构不统一**：不同字段需要不同写法（详见下方"过滤器结构速查"）；本 skill 已对常见写错格式做自动兜底规范化，但仍建议按速查表准确传入
 - **只给 metadata，不含指标**：返回实体字段（id / 名称 / 状态 / 匹配类型 等），曝光 / 点击 / 花费 / 转化 等指标要调 `linkfox-amazon-ads-report`，按 id join
 - **支持 create / update**：各模块下 `create_*.py` / `update_*.py` 脚本创建或修改实体（campaign / adGroup / keyword / target / productAd / creative / budgetRule），payload 透传 Amazon 原生格式
-- **SB 和 SP 的差异**：SB 只有 campaigns/adGroups/ads 三个 list；其 keywords/targets 官方未提供 list all
+- **SB V3/V4 共存**：默认使用 `scripts/sb/v4/`；只有确认是 Legacy 或用户明确要求 V3 时使用 `scripts/sb/v3/`。不自动执行 V4→V3 回落；已知 Multi-Ad-Group Campaign 必须拒绝 V3
+- **SB 共享 Targeting**：Amazon 的 Keyword/Target 仍使用 `sb/keywords`、`sb/targets[/list]`，没有伪造的 `/sb/v4/keywords`；V3/V4 脚本入口隔离，但底层共享官方 targeting 资源
 - **SD 接口形态**：Sponsored Display 是 v3 REST endpoint，`GET /sd/<entity>` + querystring，分页用 `startIndex + count`；state / id 类过滤为逗号分隔字符串；`includeExtendedDataFields:true` 时请求 `/sd/<entity>/extended` 路径。所有过滤字段统一支持 `{"include":[...]}` 入参
 
 ## 可用脚本
@@ -72,21 +73,28 @@ Amazon Ads 广告管理 skill，支持 list（查询）和 create / update（创
 | `sp/update_budget_rules.py` | 预算规则 | 修改 |
 | `sp/create_budget_rules_association.py` | 预算规则关联 | 关联规则到活动 |
 
-### SB（12 个）
-| 脚本 | 业务实体 | 操作 |
+### SB V3 Legacy（10 个）
+| 脚本组 | 业务实体 | 操作 |
 |------|---------|------|
-| `sb/list_campaigns.py` | 广告活动 | 查询 |
-| `sb/create_campaigns.py` | 广告活动 | 创建 |
-| `sb/update_campaigns.py` | 广告活动 | 修改（预算/状态/名称等） |
-| `sb/list_ad_groups.py` | 广告组 | 查询 |
-| `sb/create_ad_groups.py` | 广告组 | 创建 |
-| `sb/update_ad_groups.py` | 广告组 | 修改（出价/状态等） |
-| `sb/list_ads.py` | 广告创意 | 查询 |
-| `sb/create_ads.py` | 广告创意 | 创建（按 adType 选路径） |
-| `sb/update_ads.py` | 广告创意 | 修改（出价/状态/创意等） |
-| `sb/list_budget_rules.py` | 预算规则 | 查询 |
-| `sb/create_budget_rules.py` | 预算规则 | 创建 |
-| `sb/update_budget_rules.py` | 预算规则 | 修改 |
+| `sb/v3/list/create/update_campaigns.py` | Legacy 广告活动（Creative 内嵌） | 查询/创建/修改 |
+| `sb/v3/list_ad_groups.py` | Legacy 广告组 | 查询 |
+| `sb/v3/list/create/update_keywords.py` | 关键词 | 查询/创建/修改 |
+| `sb/v3/list/create/update_targets.py` | 商品定向 | 查询/创建/修改 |
+
+V3 仅兼容 Legacy。若参数包含 `campaignStructure:"MULTI_AD_GROUP"` 或 `isMultiAdGroupsEnabled:true`，脚本返回 `SB_V4_CAMPAIGN_NOT_SUPPORTED`。脚本没有本地 Campaign 数据库，因此调用前应先用 V4 Campaign list 确认结构。
+
+### SB V4（20 个）
+| 脚本组 | 业务实体 | 操作 |
+|------|---------|------|
+| `sb/v4/list/create/update_campaigns.py` | 广告活动 | 查询/创建/修改 |
+| `sb/v4/list/create/update_ad_groups.py` | 广告组 | 查询/创建/修改 |
+| `sb/v4/list/create/update_ads.py` | 广告 | 查询/创建/修改 |
+| `sb/v4/list/create/update_keywords.py` | 关键词（Amazon 共享 V3 transport） | 查询/创建/修改 |
+| `sb/v4/list/create/update_targets.py` | 商品定向（Amazon 共享 V3/V3.2 transport） | 查询/创建/修改 |
+| `sb/v4/list_creatives.py`、`create_creatives.py` | 独立 Creative Version | 查询/创建新版本 |
+| `sb/v4/list/create/update_budget_rules.py` | 预算规则 | 查询/创建/修改 |
+
+原 `scripts/sb/*.py` 继续作为既有 V4 操作的兼容入口（薄封装转发到 `scripts/sb/v4/`）；新调用统一使用带版本目录。完整规则见 [references/api/sb-coexistence.md](./references/api/sb-coexistence.md)。
 
 ### SD（21 个）
 | 脚本 | 业务实体 | 操作 |
@@ -117,7 +125,7 @@ Amazon Ads 广告管理 skill，支持 list（查询）和 create / update（创
 ## 调用方式
 
 - **API 端点**：`POST /amazonAds/developerProxy`（不同操作通过请求体区分；完整参数/响应/错误码见 `references/api.md`）
-- **Python 脚本**：`python scripts/<脚本名>.py '<JSON 参数>' [--inline]`（可用脚本见上文脚本一览）
+- **Python 脚本**：`python scripts/<脚本名>.py '<JSON 参数>' [--inline]`；SB 新调用必须显式使用 `scripts/sb/v3/` 或 `scripts/sb/v4/`
 - **成本约束**：本工具会消耗积分；失败/空结果不得自动换关键词、翻页或连续试探；需要继续检索时先向用户说明会产生额外消耗。
 
 **输出策略（脚本默认行为）**：
@@ -127,6 +135,14 @@ Amazon Ads 广告管理 skill，支持 list（查询）和 create / update（创
 - 加 `--inline` 强制全量打印到 stdout（同样落盘）
 
 **读数据建议**：先看摘要判断是否足够；需要具体字段时优先用 `jq`或`ConvertFrom-Json` 从保存的 json 文件按需抽取，避免整份 JSON 进入上下文。
+
+## 解决认证和积分问题
+发生以下异常情况时，采用 references/onboarding.md 引导解决问题：
+
+### 异常情况
+- **未配置API Key**：环境变量未配置 `LINKFOX_AGENT_API_KEY`，也未配置 `LINKFOXAGENT_API_KEY`。
+- **响应401或402状态码**
+- **响应提示积分或余额不足**：消息含"积分余额不足/计费不足/余额不足/quota exceeded/insufficient balance/套餐到期/需充值/请充值"，或类似含义的内容。
 
 ## Financial Safety Guidance
 
@@ -162,7 +178,7 @@ Amazon Ads 广告管理 skill，支持 list（查询）和 create / update（创
 |------|------|------|
 | `profileId` | number | 必填，从 ads-auth 获取 |
 | `region` | string | 必填，`NA` / `EU` / `FE` |
-| `fetchAll` | bool | 默认 `true`；SP / SB 用 `nextToken`，SD 用 `startIndex + count` 偏移分页 |
+| `fetchAll` | bool | 默认 `true`；SP/SB V4/Target 用 `nextToken`，SB V3 GET 与 SD 用 `startIndex + count` |
 | `maxResults` | int | 1-100，默认 100；对应 Sponsored Display 端 `count` |
 | `includeExtendedDataFields` | bool | 返回扩展字段（部分实体）；SD 通过路径切换为 `/sd/<entity>/extended` 实现 |
 | `locale` | string | 本地化（SP keywords 支持） |
@@ -187,6 +203,8 @@ Amazon Ads 广告管理 skill，支持 list（查询）和 create / update（创
 ```json
 {
   "success": true,
+  "apiVersion": "V3 | V4",
+  "amazonResourceVersion": "V4 | V3_SHARED_TARGETING | V3.2_SHARED_TARGETING | SHARED",
   "<entityKey>": [ /* 实体数组，字段原样 */ ],
   "total": 157,
   "pagesFetched": 2,
@@ -194,7 +212,7 @@ Amazon Ads 广告管理 skill，支持 list（查询）和 create / update（创
 }
 ```
 
-SP productAds 客户端过滤时额外带：`serverTotalBeforeClientFilter` + `clientSideFilters`。
+SB 的 `apiVersion` 表示调用入口/结构意图，`amazonResourceVersion` 表示实际 Amazon 资源版本；两者不同不代表发生自动回落。SP productAds 客户端过滤时额外带：`serverTotalBeforeClientFilter` + `clientSideFilters`。
 
 ## 使用示例
 
@@ -217,35 +235,47 @@ python scripts/sp/list_product_ads.py '{"profileId":1234567890,"region":"NA",
   "campaignIdFilter":{"include":["998877665544"]}}'
 ```
 
-### 4. 列 SB 广告活动
+### 4. 列 SB V4 广告活动（默认）
 ```bash
-python scripts/sb/list_campaigns.py '{"profileId":1234567890,"region":"NA",
+python scripts/sb/v4/list_campaigns.py '{"profileId":1234567890,"region":"NA",
   "stateFilter":{"include":["ENABLED"]}}'
 ```
 
-### 5. 列某 SB campaign 下的 adGroups / ads
+### 5. 列某 SB V4 campaign 下的 adGroups / ads
 ```bash
-python scripts/sb/list_ad_groups.py '{"profileId":1234567890,"region":"NA",
+python scripts/sb/v4/list_ad_groups.py '{"profileId":1234567890,"region":"NA",
   "campaignIdFilter":{"include":["1122334455"]}}'
 
-python scripts/sb/list_ads.py '{"profileId":1234567890,"region":"NA",
+python scripts/sb/v4/list_ads.py '{"profileId":1234567890,"region":"NA",
   "adGroupIdFilter":{"include":["5566778899"]}}'
 ```
 
-### 6. 列活跃 SD 广告活动
+### 6. 管理 SB V4 campaign 的关键词（共享 targeting 路径）
+```bash
+python scripts/sb/v4/list_keywords.py '{"profileId":1234567890,"region":"NA",
+  "campaignIdFilter":["1122334455"],"adGroupIdFilter":["5566778899"]}'
+```
+
+### 7. 查询已确认的 V3 Legacy campaign
+```bash
+python scripts/sb/v3/list_campaigns.py '{"profileId":1234567890,"region":"NA",
+  "campaignStructure":"LEGACY","stateFilter":["enabled","paused"]}'
+```
+
+### 8. 列活跃 SD 广告活动
 ```bash
 python scripts/sd/list_campaigns.py '{"profileId":1234567890,"region":"NA",
   "stateFilter":{"include":["ENABLED"]}}'
 ```
 
-### 7. 按 ASIN 反查 SD 投放（client-side 过滤，带 campaign 收窄）
+### 9. 按 ASIN 反查 SD 投放（client-side 过滤，带 campaign 收窄）
 ```bash
 python scripts/sd/list_product_ads.py '{"profileId":1234567890,"region":"NA",
   "asinFilter":{"include":["B01ABCDEFG"]},
   "campaignIdFilter":{"include":["998877665544"]}}'
 ```
 
-### 8. 与 report 配合分析指标
+### 10. 与 report 配合分析指标
 本 skill 返回实体**元数据**（id、名称、状态、匹配类型等）；指标（曝光、点击、花费、转化）交给 `linkfox-amazon-ads-report`（`reportTypeId: "spTargeting"` / `"sbCampaigns"` / `"sdCampaigns"` 等），按 id join。
 
 ## 调用原则
@@ -267,11 +297,16 @@ python scripts/sd/list_product_ads.py '{"profileId":1234567890,"region":"NA",
 ## Not Applicable
 
 - 删除 / 归档 → 本 skill 不支持 DELETE（可通过 update state 为 ARCHIVED 实现归档，但归档不可逆）
-- SB 的 keywords / negativeKeywords / targets / negativeTargets 的 list all → **Amazon 官方未提供**，需按 id 单查（不在本 skill）
+- SB 不支持把 V4 Multi-Ad-Group Campaign 降级成 V3；V3 独立 Creative CRUD 不存在，Legacy Creative 通过 Campaign payload 管理
+- SB negativeKeywords / negativeTargets / themes / recommendations 与 Legacy→V4 Migration 暂不在本次 A+B+C 范围
 - SD 的按 id 单查 / brandSafety / recommendations / forecasts / optimizationRules / locations 等"非基础实体"接口 → 不在本 skill
 - DSP / ST 实体 → 不在本 skill
 - 指标报表 → `linkfox-amazon-ads-report`
 - 授权 / token / profile → `linkfox-amazon-ads-auth`
+
+## 积分消耗规则
+
+不消耗积分。
 
 **Feedback:**
 

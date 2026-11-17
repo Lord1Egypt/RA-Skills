@@ -1,0 +1,85 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://skillmelody.dev/schemas/capability-report.schema.json",
+  "title": "Article HTML to PPT Capability Report",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "generated_at", "environment", "builders", "renderers", "formats", "fonts", "features", "warnings", "errors"],
+  "properties": {
+    "schema_version": {"const": "1.0"},
+    "generated_at": {"type": "string"},
+    "environment": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["os", "architecture", "python", "working_directory", "containerized"],
+      "properties": {
+        "os": {"type": ["string", "null"]},
+        "os_version": {"type": ["string", "null"]},
+        "architecture": {"type": ["string", "null"]},
+        "python": {"type": ["string", "null"]},
+        "node": {"type": ["string", "null"]},
+        "java": {"type": ["string", "null"]},
+        "working_directory": {"type": "string"},
+        "containerized": {"type": "boolean"}
+      }
+    },
+    "builders": {
+      "type": "object",
+      "minProperties": 3,
+      "additionalProperties": {"$ref": "#/$defs/builderCapability"}
+    },
+    "renderers": {
+      "type": "object",
+      "minProperties": 2,
+      "additionalProperties": {"$ref": "#/$defs/rendererCapability"}
+    },
+    "formats": {
+      "type": "object",
+      "additionalProperties": {"type": "boolean"}
+    },
+    "fonts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["installed", "required_missing", "fallback_map"],
+      "properties": {
+        "installed": {"type": "array", "items": {"type": "string"}},
+        "required_missing": {"type": "array", "items": {"type": "string"}},
+        "fallback_map": {"type": "object", "additionalProperties": {"type": "string"}}
+      }
+    },
+    "features": {"type": "object", "additionalProperties": true},
+    "warnings": {"type": "array", "items": {"type": "string"}},
+    "errors": {"type": "array", "items": {"type": "string"}}
+  },
+  "$defs": {
+    "featureValue": {"enum": [true, false, "partial", "unknown"]},
+    "supportLevel": {"enum": ["full", "partial", "visual_only", "unsupported", "unknown"]},
+    "builderCapability": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["available", "version", "command", "features"],
+      "properties": {
+        "available": {"type": "boolean"},
+        "version": {"type": ["string", "null"]},
+        "command": {"type": ["string", "null"]},
+        "features": {"type": "object", "additionalProperties": {"$ref": "#/$defs/featureValue"}},
+        "components": {"type": "object", "additionalProperties": {"$ref": "#/$defs/supportLevel"}},
+        "warnings": {"type": "array", "items": {"type": "string"}},
+        "errors": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "rendererCapability": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["available", "version", "supports_pdf", "supports_png", "supports_readback"],
+      "properties": {
+        "available": {"type": "boolean"},
+        "version": {"type": ["string", "null"]},
+        "command": {"type": ["string", "null"]},
+        "supports_pdf": {"type": "boolean"},
+        "supports_png": {"type": "boolean"},
+        "supports_readback": {"type": "boolean"}
+      }
+    }
+  }
+}

@@ -1,45 +1,53 @@
-## Description: <br>
-文物讲解词一键生成。用户只需提供文物名称和 API 信息，系统自动判断讲解风格并生成400-500字的专业讲解词。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates a 400-500 character cultural relic narration from a relic name, optional museum and audience context, and a configured OpenAI-compatible model API.
 
-## Publisher: <br>
-[jiangzw0707](https://clawhub.ai/user/jiangzw0707) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiangzw0707](https://clawhub.ai/user/jiangzw0707)
 
-## Use Case: <br>
-Museum educators, guides, and cultural content creators use this skill to generate Chinese narration for cultural relics from a relic name, optional museum context, audience profile, and optional visitor question. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores the configured model API key in a local JSON file. <br>
-Mitigation: Use a trusted local environment, restrict file access, and prefer a limited-scope API key that can be rotated. <br>
-Risk: Relic names, audience descriptions, and optional questions are sent to the configured API endpoint. <br>
-Mitigation: Use a trusted HTTPS provider and avoid entering private, unpublished, or sensitive information. <br>
-Risk: Broad Chinese trigger phrases may activate the skill for generic introduction or explanation requests. <br>
-Mitigation: Review the trigger list before deployment and narrow activation phrases if the host agent routes unrelated requests to the skill. <br>
-Risk: Generated museum narration may contain inaccurate cultural or historical details. <br>
-Mitigation: Have a qualified reviewer check generated narration before public or educational use. <br>
+## Use Case:
 
+Museum educators, cultural content creators, and agent users can use this skill to draft Chinese narration for cultural relics and museum exhibits with audience-adapted style.
 
-## Reference(s): <br>
-- [Cultural Relics Guide on ClawHub](https://clawhub.ai/jiangzw0707/guide) <br>
-- [Required local API configuration](artifact/config/user_config.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Files, Guidance] <br>
-**Output Format:** [Plain text narration printed to the console and saved as a UTF-8 .txt file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Targets 400-500 Chinese characters and uses the user's configured OpenAI-compatible chat completion API endpoint.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: release evidence) <br>
+Risk: API credentials can be stored in config/user_config.json and sent to the configured API endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat config/user_config.json as a secret, keep it out of shared workspaces, use HTTPS or trusted local loopback endpoints, and rotate keys exposed to untrusted endpoints.
+
+Risk: Relic, museum, audience, and question details are included in prompts sent to the configured model API.
+
+Mitigation: Avoid entering sensitive or unpublished collection details unless the selected endpoint and data handling terms are approved.
+
+## Reference(s):
+
+- [Cultural Relics Guide ClawHub listing](https://clawhub.ai/jiangzw0707/skills/guide)
+
+## Skill Output:
+
+**Output Type(s):** [text, files, configuration, shell commands]
+
+**Output Format:** [Plain text narration with optional saved .txt output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a local configuration file with API endpoint, API key, narration model, optional style model, and timeout.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

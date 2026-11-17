@@ -1,0 +1,339 @@
+#!/usr/bin/env bash
+# postnext - thin CLI over the PostNext public API (https://api-app.postnext.io)
+#
+# Auth:  export POSTNEXT_API_KEY=<your key from https://postnext.io/account/api-keys>
+# Needs: curl, jq
+#
+# This helper absorbs the three silent-failure traps of the raw API:
+#   1. posts are keyed by the BARE provider name (twitter, not twitter:@handle)
+#   2. media is attached by asset URL, never by assetId
+#   3. providerId is resolved from GET /connections (platform-native id), never uniqueId
+# See references/*.md for the request shapes and read-only curl recipes.
+
+set -euo pipefail
+
+BASE="https://api-app.postnext.io"
+
+die()  { printf 'postnext: %s\n' "$1" >&2; exit 1; }
+need() { command -v "$1" >/dev/null 2>&1 || die "missing dependency: $1"; }
+need curl; need jq
+
+# valid_id VALUE -> dies unless VALUE is a plain token (no slash, dot, ?, #, space) so it cannot rewrite the request path
+valid_id() { case "$1" in ''|*[!A-Za-z0-9_-]*) die "invalid id: $1";; esac; }
+[ -n "${POSTNEXT_API_KEY:-}" ] || die "set POSTNEXT_API_KEY (create one at https://postnext.io/account/api-keys)"
+case "$POSTNEXT_API_KEY" in *[!A-Za-z0-9_.-]*) die "POSTNEXT_API_KEY contains unexpected characters";; esac
+
+# kcurl ARGS... -> curl with the key header fed on stdin, so the key never appears in the process list.
+# -q (must be first) skips ~/.curlrc, where "verbose" would print the key and "location-trusted" would forward it.
+kcurl() { curl -q -H @- "$@" <<<"x-api-key: $POSTNEXT_API_KEY"; }
+
+# ---- confirmation gate -------------------------------------------------------
+# Every command that changes the account (post, schedule, cancel, delete, upload,
+# analytics sync)
+# first prints a PREVIEW and sends nothing. It runs only when called again with
+# --confirm <code>, where <code> is a hash of that exact operation: change the
+# text, media, time or target and the old code no longer matches.
+sha256() { if command -v sha256sum >/dev/null 2>&1; then sha256sum; else shasum -a 256; fi | cut -d' ' -f1; }
+
+# gate DESCRIPTION_JSON CONFIRM -> returns only when CONFIRM matches; otherwise previews and exits 3
+gate() {
+  local desc code
+  desc="$(printf '%s' "$1" | jq -cS .)"
+  code="$(printf '%s' "$desc" | sha256 | cut -c1-12)"
+  [ -n "$2" ] && [ "$2" = "$code" ] && return 0
+  [ -z "$2" ] || printf 'postnext: --confirm %s does not match this operation (it changed since the preview)\n' "$2" >&2
+  printf 'PREVIEW (nothing was sent):\n'
+  printf '%s\n' "$desc" | jq .
+  printf 'Show this to the user. Only after they approve exactly this, run the same command again with: --confirm %s\n' "$code"
+  exit 3
+}
+
+# file_fingerprint FILE -> sha256 of the bytes, so a confirmed upload cannot be swapped for another file
+file_fingerprint() { sha256 < "$1"; }
+
+# api METHOD PATH [json-body]  -> stdout: body; on HTTP>=400 prints a human error and exits 1
+api() {
+  local method="$1" path="$2" body="${3:-}"
+  local tmp code
+  tmp="$(mktemp)"
+  if [ -n "$body" ]; then
+    code="$(kcurl -sS -o "$tmp" -w '%{http_code}' -X "$method" "$BASE$path" \
+      -H 'Content-Type: application/json' -d "$body")"
+  else
+    code="$(kcurl -sS -o "$tmp" -w '%{http_code}' -X "$method" "$BASE$path")"
+  fi
+  if [ "$code" -ge 400 ]; then
+    local msg; msg="$(jq -r '
+      if type=="object" then
+        ((.error|if type=="object" then .message elif type=="string" then . else empty end) // .message // .code // "request failed")
+      else "request failed" end' "$tmp" 2>/dev/null || echo "request failed")"
+    case "$code" in
+      401) msg="invalid or missing API key ($msg)";;
+      402) msg="subscription inactive - fix billing at postnext.io/account/billing ($msg)";;
+      403) msg="not allowed on your plan or monthly quota reached ($msg)";;
+      429) msg="rate limited - slow down and retry ($msg)";;
+    esac
+    rm -f "$tmp"; die "HTTP $code: $msg"
+  fi
+  cat "$tmp"; rm -f "$tmp"
+}
+
+# unwrap: read stdin, return .data if the {success,data} envelope is present, else the body as-is
+unwrap() { jq 'if type=="object" and has("data") then .data else . end'; }
+
+account_uniqueid() { api GET /api/v1/account | jq -r '.uniqueId'; }
+
+# resolve_provider PROVIDER CHANNEL  -> "<providerId>\t<channelName>"  (trap #3)
+resolve_provider() {
+  local provider="$1" channel="${2:-}"
+  api GET /api/connections | jq -r --arg p "$provider" --arg c "$channel" '
+    map(select(.provider==$p and (($c=="") or .channelName==$c)))
+    | if length==0 then "NONE" else (.[0].providerId + "\t" + .[0].channelName) end'
+}
+
+# ---- media -----------------------------------------------------------------
+# mime_for FILE -> mime (for the presigned 6-type allow-list / multipart)
+mime_for() {
+  case "${1##*.}" in
+    jpg|jpeg) echo image/jpeg;; png) echo image/png;; webp) echo image/webp;;
+    gif) echo image/gif;; mp4) echo video/mp4;; webm) echo video/webm;;
+    mov) echo video/quicktime;; *) echo application/octet-stream;;
+  esac
+}
+
+# check_upload_file FILE -> dies unless FILE is an uploadable image/video
+check_upload_file() {
+  local file="$1"; [ -f "$file" ] || die "no such file: $file"
+  [ "$(mime_for "$file")" != application/octet-stream ] || die "refusing to upload '$file': only image and video files (jpg png webp gif mp4 webm mov)"
+  # curl -F splits its value on ; and reads quotes/backslashes, so "a.txt;x.png" would upload a.txt
+  case "$file" in *[\;,\"\\]*|*$'\n'*|*$'\r'*) die "refusing to upload '$file': rename it without ; , \" or \\ characters";; esac
+}
+
+# upload FILE [--confirm CODE] -> prints the asset URL (attach THIS into post content - trap #2)
+cmd_upload() {
+  local file="${1:-}" confirm=""; [ -n "$file" ] || die "usage: postnext upload <file> [--confirm CODE]"; shift
+  while [ $# -gt 0 ]; do case "$1" in --confirm) confirm="${2:-}"; shift 2 || die "--confirm needs a value";; *) die "unknown flag: $1";; esac; done
+  check_upload_file "$file"
+  gate "$(jq -n --arg f "$file" --arg h "$(file_fingerprint "$file")" '{op:"upload", file:$f, sha256:$h}')" "$confirm"
+  do_upload "$file"
+}
+
+# do_upload FILE -> the upload itself. Not a command: only cmd_upload and build_post call it,
+# and both do so after gate() has matched the user's --confirm code.
+do_upload() {
+  local file="$1"
+  local size mime; size="$(wc -c < "$file" | tr -d ' ')"; mime="$(mime_for "$file")"
+  local PRESIGN_MAX=$((50*1024*1024))
+  local presignable=0
+  case "$mime" in image/jpeg|image/png|image/webp|image/gif|video/mp4|video/webm) presignable=1;; esac
+
+  if [ "$presignable" -eq 1 ] && [ "$size" -le "$PRESIGN_MAX" ]; then
+    # 3-step presigned direct-to-S3
+    local init upl_id upl_url
+    init="$(api POST /api/assets/upload/create-url \
+      "$(jq -n --arg f "$(basename "$file")" --arg c "$mime" --argjson s "$size" \
+         '{filename:$f, contentType:$c, sizeBytes:$s}')")"
+    upl_id="$(echo "$init" | jq -r '.data.uploadId')"
+    upl_url="$(echo "$init" | jq -r '.data.uploadUrl')"
+    case "$upl_url" in https://*) ;; *) die "refusing non-https upload URL";; esac
+    # PUT the bytes; Content-Type MUST match the signed contentType or S3 rejects the signature
+    curl -sS -X PUT "$upl_url" -H "Content-Type: $mime" --data-binary "@$file" >/dev/null \
+      || die "S3 upload PUT failed"
+    api POST /api/assets/upload/complete "$(jq -n --arg u "$upl_id" '{uploadId:$u}')" \
+      | jq -r '.data.url'
+  else
+    # large video (>50MB) or non-allow-list type -> multipart /single (500MB); needs userId
+    local uid; uid="$(account_uniqueid)"
+    kcurl -sS -X POST "$BASE/api/assets/upload/single" \
+      -F "file=@$file;type=$mime" -F "userId=$uid" | jq -r '.asset.url'
+  fi
+}
+
+# ---- content builders ------------------------------------------------------
+# build_content TEXT MEDIA_URLS(csv) FIRST_COMMENT IG_TYPE  -> LegacyPostContent JSON
+build_content() {
+  local text="$1" media_csv="$2" ig_type="${3:-}"
+  jq -n --arg t "$text" --arg m "$media_csv" --arg ig "$ig_type" '
+    {text:$t}
+    + (if $m=="" then {} else
+         {media: ($m|split(",")|map({url:., type:(
+            if test("(?i)\\.(mp4|webm|mov)$") then "VIDEO"
+            elif test("(?i)\\.gif$") then "GIF" else "IMAGE" end)}))} end)
+    + (if $ig=="" then {} else {instagramPostType:$ig} end)'
+}
+
+# ---- post / schedule -------------------------------------------------------
+# parse_post OP ARGS... -> validated flags in globals; nothing is sent
+parse_post() {
+  local op="$1"; shift
+  PROVIDER=""; CHANNEL=""; TEXT=""; MEDIA=(); FIRST=""; IGTYPE=""; TITLE=""; AT=""; CONFIRM=""
+  while [ $# -gt 0 ]; do
+    case "$1" in
+      --confirm)  CONFIRM="$2";  shift 2;;
+      --provider) PROVIDER="$2"; shift 2;;
+      --channel)  CHANNEL="$2";  shift 2;;
+      --text)     TEXT="$2";     shift 2;;
+      --media)    MEDIA+=("$2"); shift 2;;
+      --first-comment) FIRST="$2"; shift 2;;
+      --ig-type)  IGTYPE="$2";   shift 2;;
+      --title)    TITLE="$2";    shift 2;;
+      --at)       AT="$2";       shift 2;;
+      *) die "unknown flag: $1";;
+    esac
+  done
+  [ -n "$PROVIDER" ] || die "--provider is required"
+  local m
+  for m in "${MEDIA[@]:-}"; do [ -z "$m" ] || [ ! -f "$m" ] || check_upload_file "$m"; done
+  if [ "$op" = schedule ]; then
+    [ -n "$AT" ] || die "--at <ISO8601 future datetime> is required for schedule"
+    # past-due / not-future guard (mirrors the API + MCP)
+    local now sched
+    now="$(date -u +%s)"
+    sched="$(date -u -j -f '%Y-%m-%dT%H:%M:%S' "${AT%%.*}" +%s 2>/dev/null \
+          || date -u -d "$AT" +%s 2>/dev/null || echo 0)"
+    [ "$sched" -gt "$now" ] || die "--at must be a future time (got: $AT)"
+  fi
+}
+
+# post_description OP -> the exact operation the user approves (local files by content hash)
+post_description() {
+  local media_json="[]" m
+  for m in "${MEDIA[@]:-}"; do
+    [ -z "$m" ] && continue
+    if [ -f "$m" ]; then
+      media_json="$(jq -c --arg f "$m" --arg h "$(file_fingerprint "$m")" '. + [{file:$f, sha256:$h}]' <<<"$media_json")"
+    else
+      media_json="$(jq -c --arg u "$m" '. + [{url:$u}]' <<<"$media_json")"
+    fi
+  done
+  jq -n --arg op "$1" --arg p "$PROVIDER" --arg c "$CHANNEL" --arg t "$TEXT" --argjson media "$media_json" \
+        --arg fc "$FIRST" --arg ig "$IGTYPE" --arg title "$TITLE" --arg at "$AT" '
+    {op:$op, provider:$p, channel:$c, text:$t, media:$media, firstComment:$fc, igType:$ig, title:$title}
+    + (if $op=="schedule" then {at:$at} else {} end)'
+}
+
+# build_post -> the CreatePostRequest body in $BODY (uploads local media, resolves the channel)
+build_post() {
+  # each --media may be a local file (upload it) or an existing URL
+  local urls=() m
+  for m in "${MEDIA[@]:-}"; do
+    [ -z "$m" ] && continue
+    if [ -f "$m" ]; then urls+=("$(do_upload "$m")"); else urls+=("$m"); fi
+  done
+  local media_csv; media_csv="$(IFS=,; echo "${urls[*]:-}")"
+
+  local rp pid ch
+  rp="$(resolve_provider "$PROVIDER" "$CHANNEL")"
+  [ "$rp" != "NONE" ] || die "no connected $PROVIDER channel${CHANNEL:+ named $CHANNEL} (run: postnext channels)"
+  pid="$(printf '%s' "$rp" | cut -f1)"; ch="$(printf '%s' "$rp" | cut -f2)"
+
+  local content; content="$(build_content "$TEXT" "$media_csv" "$IGTYPE")"
+  # firstComment honored only for instagram/linkedin
+  local entry
+  entry="$(jq -n --arg ch "$ch" --arg pid "$pid" --argjson c "$content" \
+              --arg fc "$FIRST" --arg p "$PROVIDER" '
+    {channelName:$ch, providerId:$pid, content:$c}
+    + (if $fc!="" and ($p=="instagram" or $p=="linkedin") then {firstComment:$fc} else {} end)')"
+  BODY="$(jq -n --arg p "$PROVIDER" --argjson e "$entry" --arg title "$TITLE" '
+    {providers:{($p):$e}} + (if $title=="" then {} else {title:$title} end)')"
+}
+
+cmd_post() {
+  local BODY; parse_post post "$@"
+  gate "$(post_description post)" "$CONFIRM"
+  build_post
+  api POST /api/posts/publish "$BODY" \
+    | jq '{id:.data.group.id, status:.data.group.status, publish:.data.publishStatus}'
+}
+
+cmd_schedule() {
+  local BODY; parse_post schedule "$@"
+  gate "$(post_description schedule)" "$CONFIRM"
+  build_post
+  BODY="$(echo "$BODY" | jq --arg at "$AT" '. + {scheduledAt:$at}')"
+  api POST /api/posts/schedule "$BODY" | jq '{id:.data.id, status:.data.status}'
+}
+
+# ---- reads -----------------------------------------------------------------
+cmd_whoami()   { api GET /api/v1/account | jq '{name, email, uniqueId, onboardingCompleted}'; }
+cmd_channels() { api GET /api/connections | jq -r '.[] | "\(.provider)\t\(.channelName)\t\(.providerId)\tattention=\(.requiresAttention)"'; }
+cmd_posts()    { local s="${1:-}"; api GET "/api/posts${s:+?status=$s}" | unwrap; }
+cmd_results()  { api GET /api/posts/results | jq '.data.results'; }
+# id_and_confirm USAGE ARGS... -> ID and CONFIRM globals
+id_and_confirm() {
+  local usage="$1"; shift
+  ID="${1:-}"; CONFIRM=""; [ -n "$ID" ] || die "usage: $usage"; shift
+  while [ $# -gt 0 ]; do case "$1" in --confirm) CONFIRM="${2:-}"; shift 2 || die "--confirm needs a value";; *) die "unknown flag: $1";; esac; done
+  valid_id "$ID"
+}
+cmd_cancel() {
+  id_and_confirm "postnext cancel <postId> [--confirm CODE]" "$@"
+  gate "$(jq -n --arg id "$ID" '{op:"cancel", postId:$id}')" "$CONFIRM"
+  api POST "/api/posts/$ID/cancel-schedule" | jq '.data|{id, status}'
+}
+cmd_delete() {
+  id_and_confirm "postnext delete <groupId> [--confirm CODE]" "$@"
+  gate "$(jq -n --arg id "$ID" '{op:"delete", groupId:$id}')" "$CONFIRM"
+  api DELETE "/api/posts/$ID" | jq '.data'
+}
+
+# analytics sync [--confirm CODE] -> a paid, rate-limited POST that snapshots fresh metrics server-side
+cmd_analytics_sync() {
+  local confirm=""
+  while [ $# -gt 0 ]; do case "$1" in --confirm) confirm="${2:-}"; shift 2 || die "--confirm needs a value";; *) die "unknown flag: $1";; esac; done
+  gate "$(jq -n '{op:"analytics-sync", channels:"all connected channels (twitter, instagram, tiktok, linkedin)",
+    effect:"PostNext fetches fresh metrics from each platform and stores new snapshots; no posts change",
+    cost:"paid feature; uses one sync from your rate limit and per-platform caps"}')" "$confirm"
+  api POST /api/v1/analytics/sync | unwrap
+}
+
+cmd_analytics() {
+  local sub="${1:-overview}"; shift || true
+  case "$sub" in
+    overview|posts|daily|audience-growth|engagement-over-time) api GET "/api/v1/analytics/$sub" | unwrap;;
+    best-time) local p="${1:?usage: postnext analytics best-time <provider>}"; valid_id "$p"; api GET "/api/v1/analytics/best-time-to-post?platform=$p" | unwrap;;
+    sync)      cmd_analytics_sync "$@";;
+    post)      local id="${1:?usage: postnext analytics post <postId>}"; valid_id "$id"; api GET "/api/v1/analytics/post/$id" | unwrap;;
+    *) die "unknown analytics subcommand: $sub";;
+  esac
+}
+
+usage() {
+  cat >&2 <<'EOF'
+postnext <command>
+
+  whoami                      show the authenticated account (+ uniqueId)
+  channels                    list connected channels (provider / channelName / providerId)
+  upload <file>               upload media, print the asset URL to attach in a post
+  post     --provider P [--channel C] --text "..." [--media URL|FILE ...] [--first-comment ...] [--ig-type feed|story|reel] [--title ...]
+  schedule ... --at <ISO8601-future>
+  posts [STATUS]              list posts (DRAFT|SCHEDULED|PUBLISHED|FAILED|...)
+  results                     per-channel publish outcomes
+  cancel <postId>             cancel a scheduled post (back to draft)
+  delete <groupId>            delete a post from PostNext
+  analytics <overview|posts|daily|audience-growth|engagement-over-time|best-time P|sync|post ID>
+
+post, schedule, cancel, delete, upload and analytics sync change the account.
+Run once to get a PREVIEW (nothing is sent, exit code 3); after the user approves
+it, run the same command again with --confirm <code from the preview>.
+
+Env: POSTNEXT_API_KEY (required)
+EOF
+  exit 1
+}
+
+cmd="${1:-}"; shift || true
+case "$cmd" in
+  whoami)    cmd_whoami "$@";;
+  channels)  cmd_channels "$@";;
+  upload)    cmd_upload "$@";;
+  post)      cmd_post "$@";;
+  schedule)  cmd_schedule "$@";;
+  posts)     cmd_posts "$@";;
+  results)   cmd_results "$@";;
+  cancel)    cmd_cancel "$@";;
+  delete)    cmd_delete "$@";;
+  analytics) cmd_analytics "$@";;
+  ''|-h|--help|help) usage;;
+  *) die "unknown command: $cmd (try: postnext help)";;
+esac

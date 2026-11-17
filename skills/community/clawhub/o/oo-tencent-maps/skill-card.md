@@ -1,46 +1,51 @@
-## Description: <br>
-Tencent Maps helps agents search and read Tencent Maps data through OOMOL's oo CLI connector instead of calling the API directly. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search Tencent Maps and retrieve place, address, route, district, weather, and location data through an OOMOL-connected account.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and external users use this skill to geocode addresses, search places, plan routes, query weather, and retrieve Tencent Maps data through an OOMOL-connected account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Map queries, coordinates, IP addresses, routes, and weather locations may be sent through OOMOL and Tencent Maps. <br>
-Mitigation: Use the skill only for intended Tencent Maps tasks and avoid sensitive location data unless the user approves and account policies allow it. <br>
-Risk: The skill depends on an installed and authenticated oo CLI with a connected Tencent Maps account. <br>
-Mitigation: Run setup steps only after an authentication or connection failure, and have the user handle login, account connection, and billing issues. <br>
-Risk: If the oo CLI is missing, setup may involve remote installation scripts. <br>
-Mitigation: Review OOMOL installation instructions and script source before running installation commands in a user environment. <br>
+## Use Case:
 
+Developers and other users can ask an agent to search Tencent Maps, look up addresses and places, plan routes, inspect districts, and retrieve weather or location data. The agent uses the connected OOMOL account to make the requested map queries.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/oomol/oo-tencent-maps) <br>
-- [Tencent Maps Homepage](https://lbs.qq.com) <br>
-- [OOMOL oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [OOMOL oo CLI Install Guide](https://cli.oomol.com/install-guide.md) <br>
-- [OOMOL Tencent Maps Connection Setup](https://console.oomol.com/app-connections?provider=tencent_maps) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with oo CLI shell commands and JSON payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses live connector schemas before constructing action payloads; oo CLI action responses are JSON.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: evidence release and skill metadata) <br>
+Risk: Setup executes unverified downloads, and supporting software can change other agents’ installed skills; downloaded installers and hosted connector code remain unverified.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review supporting software before proceeding, use a verified CLI release, set OO_SKILLS_SYNC_DISABLED=1 before running it, and share only the location details needed for the request.
+
+## Reference(s):
+
+- [Tencent Maps API documentation](https://lbs.qq.com/docs-square/)
+- [Tencent Maps](https://lbs.qq.com)
+- [OO CLI project](https://github.com/oomol-lab/oo-cli)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Text, Guidance]
+
+**Output Format:** [JSON map-action results with concise text responses and usage guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No output file is specified.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

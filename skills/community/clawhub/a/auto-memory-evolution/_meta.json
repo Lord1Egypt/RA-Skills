@@ -1,6 +1,12 @@
 {
-  "ownerId": "kn7bj982h4smar48p9gkzy9hc582a1h1",
-  "slug": "auto-memory-evolution",
-  "version": "1.0.5",
-  "publishedAt": 1774295523722
+  "name": "auto-memory-evolution",
+  "version": "1.0.0",
+  "description": "自动记忆总结 Skill - 每天自动归纳讨论内容，更新记忆文件",
+  "author": "mr-11even",
+  "tags": ["memory", "automation", "evolution", "heartbeat"],
+  "platform": "openclaw",
+  "runtime": "python",
+  "triggers": ["cron", "heartbeat"],
+  "permissions": ["file:read", "file:write"],
+  "dependencies": []
 }

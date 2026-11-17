@@ -1,40 +1,52 @@
-## Description: <br>
-Evaluates longevity interventions using evidence tiers and provides a research evaluation framework for supplements, sleep, exercise, protocols, and research paper analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Evaluates longevity interventions using evidence tiers and provides a research evaluation framework with curated insights on supplements, sleep, exercise, and protocols.
 
-## Publisher: <br>
-[lofimichael](https://clawhub.ai/user/lofimichael) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
+
+[lofimichael](https://clawhub.ai/user/lofimichael)
+
+### License/Terms of Use:
+
+MIT
+
+## Use Case:
+
+External users and agents use this skill to evaluate longevity, healthspan, supplement, protocol, biomarker, and research-paper questions through evidence tiers and research-quality checks. The skill is educational and should not be used as personalized medical advice.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Users may mistake educational supplement, biomarker, medication-interaction, pregnancy, chronic-condition, or surgery-planning guidance for personalized medical advice.
+
+Mitigation: Keep outputs framed as educational evidence appraisal, avoid diagnosis or prescribing, and direct users to clinician review before health decisions.
+
+Risk: Broad longevity and healthspan triggers may produce actionable guidance before enough personal medical context is known.
+
+Mitigation: Ask for relevant context when needed, state uncertainty, introduce one variable at a time, and highlight interaction and contraindication checks.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users and research-oriented healthspan practitioners use this skill to evaluate longevity interventions, supplements, protocols, biomarkers, and research papers with evidence tiers and safety caveats. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Guidance, Analysis]
 
-## Known Risks and Mitigations: <br>
-Risk: Health-adjacent guidance could be mistaken for medical advice or used to change supplement, medication, or treatment decisions. <br>
-Mitigation: Use the skill as a research and evidence-quality aid, and confirm supplement dosing, medication interactions, and protocol changes with a qualified clinician. <br>
-Risk: User-provided lab results or health documents may contain sensitive personal information. <br>
-Mitigation: Avoid sharing unnecessary health records or identifiers, and provide only the minimum context needed for research-oriented analysis. <br>
+**Output Format:** [Markdown or plain text with evidence-tier summaries, checklists, cautions, and educational recommendations]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [Longevity Assistant on ClawHub](https://clawhub.ai/lofimichael/longevity-assistant) <br>
+**Other Properties Related to Output:** [May include evidence tiers, uncertainty notes, safety cautions, and recommendations to consult a clinician for medical decisions.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, analysis] <br>
-**Output Format:** [Markdown prose with evidence tiers, checklists, safety caveats, and research evaluation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Educational health-adjacent guidance; not medical diagnosis, treatment, or prescription.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

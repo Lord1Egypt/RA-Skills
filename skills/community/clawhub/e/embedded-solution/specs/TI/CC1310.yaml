@@ -1,0 +1,32 @@
+part: CC1310
+link_status: verified_2026-07-01 (datasheet-pdf-extracted)
+expected_family: SimpleLink CC (sub-GHz SoC, Cortex-M3)
+main_page: https://www.ti.com/product/CC1310
+datasheet_path_expected: ../../embedded_dev/ti/datasheet/CC1310_datasheet.pdf
+created_at: '2026-06-21T10:46:00+08:00'
+specs:
+  cores: ARM Cortex-M3
+  flash: 128 KB
+  tx_power_dbm_max: 10
+unverified: []
+notes:
+- "Promoted from placeholder to verified on 2026-06-28 \u2014 3 spec fields extracted from datasheet, byte-equal to existing\
+  \ spec values. See link_status: verified_2026-06-28 (extractor-match)."
+- SimpleLink CC1310, sub-GHz (<1 GHz), Cortex-M3, ultra-low-power.
+- 'Re-labeled verified_2026-07-01 via keyword-split pdfplumber verify against local datasheet PDF: 3/3 spec fields matched
+  (100%). Replaces pre-v0.4.0 verified_2026-06-28 (extractor-match) tag.'
+extracted_at: '2026-06-28T09:26:32+08:00'
+extracted_from_pages:
+- 1
+- 2
+- 3
+- 4
+- 5
+- 6
+- 7
+- 8
+- 9
+- 10
+- 11
+- 12
+extraction_method: pdfplumber Key Features / General Description

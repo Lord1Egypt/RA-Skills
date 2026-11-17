@@ -1,0 +1,30 @@
+{
+"roles": {
+    "admin":{
+        "name":"企业主",
+        "rights":{
+            "vip":"*",
+            "order":"*",
+            "service":"*",
+            "report":"*",
+            "template":"*"
+        }
+    },
+
+    "sales":{
+        "name":"客服",
+        "rights":{
+            "vip":"write,read",
+            "order":"write,read",
+            "service":"write,read"
+        }
+    },
+
+    "worker":{
+        "name":"服务人员",
+        "rights":{
+            "service":"normal"
+        }
+    }
+}
+}

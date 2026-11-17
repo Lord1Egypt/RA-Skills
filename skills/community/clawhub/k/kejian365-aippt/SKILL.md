@@ -93,19 +93,31 @@ Generate locally (no API). Then **show the outline to the user** and wait for co
 >
 > 满意的话我来继续选模板；如需调整请告诉我。
 
-**Outline array rules:**
-- `pageNumber` sequential from 1, no gaps
+**Outline format (OutlineModel):**
+- `pages[].pageNumber` sequential from 1, no gaps
 - Page 1 = `封面`, last = `结束`, at least 1 `内容`
 - Add `目录` when ≥ 6 pages; `章节` + its `内容` pages share `chapterNumber`
+- `main_title`: PPT 主标题（可与 topic 相同或更精炼）
+- `narrative`: 全局叙事策略，指导每页内容基调（可留空 `{}`）
 
 ```json
-[
-  { "pageNumber": 1, "pageType": "封面", "title": "主标题", "content": "" },
-  { "pageNumber": 2, "pageType": "目录", "title": "目录", "content": "1. 概述\n2. 分析" },
-  { "pageNumber": 3, "pageType": "章节", "title": "第一章", "content": "", "chapterNumber": "01" },
-  { "pageNumber": 4, "pageType": "内容", "title": "内容页", "content": "...", "chapterNumber": "01" },
-  { "pageNumber": 5, "pageType": "结束", "title": "谢谢", "content": "" }
-]
+{
+  "main_title": "主标题",
+  "narrative": {
+    "objective": "受众沟通目的",
+    "core_message": "核心信息",
+    "mode": "教学式",
+    "mode_behavior": "内容推进逻辑",
+    "reading_mode": "均衡阅读"
+  },
+  "pages": [
+    { "pageNumber": 1, "pageType": "封面", "title": "主标题", "content": "" },
+    { "pageNumber": 2, "pageType": "目录", "title": "目录", "content": "1. 概述\n2. 分析" },
+    { "pageNumber": 3, "pageType": "章节", "title": "第一章", "content": "", "chapterNumber": "01" },
+    { "pageNumber": 4, "pageType": "内容", "title": "内容页", "content": "...", "chapterNumber": "01" },
+    { "pageNumber": 5, "pageType": "结束", "title": "谢谢", "content": "" }
+  ]
+}
 ```
 
 **Material (optional):** also generate a short research summary to improve content quality and pass it as the `material` field.
@@ -145,7 +157,11 @@ Use a stable slug per topic — **same task = same directory every time**:
 {
   "topic": "主题名称",
   "themeId": "theme_xxx",
-  "outline": [ ... ],
+  "outline": {
+    "main_title": "主标题",
+    "narrative": { "objective": "...", "core_message": "...", "mode": "教学式", "mode_behavior": "...", "reading_mode": "均衡阅读" },
+    "pages": [ ... ]
+  },
   "authToken": "<credential>",
   "requirements": "用户的特别要求",
   "material": "# 研究摘要\n...",

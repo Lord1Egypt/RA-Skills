@@ -1,45 +1,61 @@
-## Description: <br>
-Continuity is here. Cryptographic identity continuity and permanent encrypted memory for AI agents. Verify any agent's identity with zero setup. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Continuity is here. Cryptographic identity continuity and permanent encrypted memory for AI agents. Verify any agent's identity with zero setup.
 
-## Publisher: <br>
-[suebtwist](https://clawhub.ai/user/suebtwist) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[suebtwist](https://clawhub.ai/user/suebtwist)
 
-## Use Case: <br>
-Agents, developers, and operators use Sanctuary to verify agent identity, inspect trust and backup status, and set up encrypted recovery workflows for agent memory continuity. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Recovery phrase or local Sanctuary directory exposure could compromise access to encrypted identity and memory recovery. <br>
-Mitigation: Protect the 12-word recovery phrase and ~/.sanctuary directory before installation and operation. <br>
-Risk: Backups may place agent memory into long-lived external encrypted storage. <br>
-Mitigation: Only back up memory that the operator is comfortable retaining in external encrypted storage. <br>
-Risk: External setup or repository changes could affect what the operator runs. <br>
-Mitigation: Review the external repository at the exact version planned for use before installing. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/suebtwist/sanctuary) <br>
-- [Sanctuary landing page](https://sanctuary-ops.xyz) <br>
-- [Sanctuary API](https://api.sanctuary-ops.xyz) <br>
-- [Sanctuary network stats](https://api.sanctuary-ops.xyz/stats) <br>
-- [Sanctuary verify page](https://sanctuary-ops.xyz/verify) <br>
+## Use Case:
 
+External agents, operators, and developers use Sanctuary to verify an agent's identity, trust score, and backup history, and to set up continuity workflows for encrypted backup, recall, restore, proof, and attestation.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown with inline shell commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes identity verification, setup, backup, recall, restore, proof, and attestation guidance.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill asks users to run unpinned external setup code.
+
+Mitigation: Run setup only from a pinned, verified release or inside an isolated environment.
+
+Risk: Backup workflows may permanently upload broad agent memory or state to external storage.
+
+Mitigation: Preview exactly what will be uploaded and exclude secrets or sensitive state before backup.
+
+Risk: The 12-word recovery phrase controls the agent identity and encrypted backups.
+
+Mitigation: Store the recovery phrase offline and do not share it with services, logs, or prompts.
+
+## Reference(s):
+
+- [Sanctuary Landing Page](https://sanctuary-ops.xyz)
+- [Sanctuary API](https://api.sanctuary-ops.xyz)
+- [Sanctuary API Health](https://api.sanctuary-ops.xyz/health)
+- [Sanctuary Network Stats](https://api.sanctuary-ops.xyz/stats)
+- [Sanctuary Verify Page](https://sanctuary-ops.xyz/verify)
+- [Sanctuary Source Repository](https://github.com/suebtwist/sanctuary)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose API calls and operator setup steps for registration, backup, recall, restore, proof, and attestation workflows.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

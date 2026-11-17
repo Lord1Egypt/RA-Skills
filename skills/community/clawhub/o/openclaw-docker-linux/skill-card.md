@@ -1,50 +1,67 @@
-## Description: <br>
-Guides Linux users through running OpenClaw in Docker with Tailscale remote access, including setup, configuration, credentials, and common troubleshooting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run OpenClaw inside Docker on Linux and configure remote access through Tailscale.
 
-## Publisher: <br>
-[djc00p](https://clawhub.ai/user/djc00p) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[djc00p](https://clawhub.ai/user/djc00p)
 
-## Use Case: <br>
-Developers and operators use this skill to set up and manage OpenClaw in Docker on Linux, including docker-compose configuration, environment variables, permissions, Tailscale access, and troubleshooting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The setup requires sensitive API tokens and an OpenClaw gateway token. <br>
-Mitigation: Store secrets in a local .env file with restrictive permissions, avoid committing it, and mask tokens in terminal output. <br>
-Risk: Exposing port 18789 can make the OpenClaw instance reachable outside the intended host or tailnet. <br>
-Mitigation: Keep port 18789 bound to 127.0.0.1 unless intentionally exposing it through Tailscale or a tightly scoped firewall rule. <br>
-Risk: Optional host credential mounts can expose GitHub, package registry, or other local credentials to the container. <br>
-Mitigation: Leave optional host credential mounts disabled unless needed and only enable mounts for container images the user trusts. <br>
-Risk: Docker setup and repair commands can change local configuration or require elevated trust. <br>
-Mitigation: Review docker-setup.sh and any --fix command before running it, especially when using sudo or modifying OpenClaw configuration. <br>
+## Use Case:
 
+Developers and Linux system administrators use this skill to install and configure OpenClaw in Docker, manage its gateway, and enable remote access through Tailscale.
 
-## Reference(s): <br>
-- [OpenClaw Docker Setup on ClawHub](https://clawhub.ai/djc00p/openclaw-docker-linux) <br>
-- [ClawHub package homepage](https://clawhub.com/djc00p/openclaw-docker-linux) <br>
-- [Docker Configuration](references/docker-config.md) <br>
-- [OpenClaw Docker Quickstart](references/quickstart.md) <br>
-- [OpenClaw Docker Management Script](references/docker-setup.sh) <br>
-- [Critical Gotchas](references/gotchas.md) <br>
-- [Troubleshooting](references/troubleshooting.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline bash, YAML, and JSON code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Linux-focused Docker setup guidance that references Docker, docker-compose, Tailscale, ANTHROPIC_API_KEY, and OPENCLAW_GATEWAY_TOKEN.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.7 (source: server release metadata and skill frontmatter metadata) <br>
+Risk: Docker administration can grant lasting root-equivalent access to the host.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the setup commands and Docker group implications before granting access; remove group membership when it is no longer needed.
+
+Risk: Containers can expose host files and credentials through mounted directories.
+
+Mitigation: Keep optional credential mounts disabled unless required, and mount only directories the container needs.
+
+Risk: An exposed gateway or stale Tailscale Serve route can make the service reachable remotely.
+
+Mitigation: Keep host port publishing on 127.0.0.1, restrict tailnet access, and confirm forwarding is removed when stopping.
+
+Risk: API keys, gateway tokens, and OpenClaw state may be exposed if local files or the container image are not protected.
+
+Mitigation: Protect .env and OpenClaw state, verify and pin the container image before deployment, and review scripts before running them.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/djc00p/skills/openclaw-docker-linux)
+- [Quickstart](artifact/references/quickstart.md)
+- [Docker configuration](artifact/references/docker-config.md)
+- [Critical gotchas](artifact/references/gotchas.md)
+- [Troubleshooting](artifact/references/troubleshooting.md)
+- [Docker setup script](artifact/references/docker-setup.sh)
+- [Container startup script](artifact/references/start.sh)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration instructions, Code]
+
+**Output Format:** [Markdown with inline shell commands, scripts, and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Setup steps, operational commands, security guidance, and troubleshooting advice]
+
+## Skill Version(s):
+
+1.0.16 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

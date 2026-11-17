@@ -1,43 +1,61 @@
-## Description: <br>
-Extracts full content from X/Twitter tweets, X Articles, and external pages shared through t.co links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extracts full content from X/Twitter posts, X Articles, and external pages shared through t.co links.
 
-## Publisher: <br>
-[yuxiaoyang2007-prog](https://clawhub.ai/user/yuxiaoyang2007-prog) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yuxiaoyang2007-prog](https://clawhub.ai/user/yuxiaoyang2007-prog)
 
-## Use Case: <br>
-Developers and agents use this skill to turn X/Twitter links into structured content for analysis, summarization, or downstream content-library workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can use an xreach/X login session to retrieve X content. <br>
-Mitigation: Use a dedicated or low-privilege X account for sensitive workflows and confirm that account access is appropriate before running extraction. <br>
-Risk: When FIRECRAWL_API_KEY is configured, external t.co targets can be sent to Firecrawl for page extraction. <br>
-Mitigation: Review target links before extraction and only configure Firecrawl when sending external page URLs to that service is acceptable. <br>
-Risk: Using --ingest can save extracted content into a content factory. <br>
-Mitigation: Use --ingest only when persistent storage is intended and review the extracted content before relying on it downstream. <br>
+## Use Case:
 
+Developers and external users use this skill to extract readable content and engagement metadata from X/Twitter links, including long-form X Articles and external pages reached through t.co short links.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yuxiaoyang2007-prog/x-article-extract) <br>
-- [README](README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration] <br>
-**Output Format:** [JSON or human-readable CLI text; external page content may include markdown.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes extracted title, author, description, content type, engagement metrics, word count, language, and publish date when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The skill can read authenticated X session material while extracting X Articles.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only in trusted environments and keep access to the xreach session file limited to agents and users that need article extraction.
+
+Risk: External-page extraction can send resolved t.co targets to Firecrawl.
+
+Mitigation: Set FIRECRAWL_API_KEY only when sharing target URLs and retrieved page content with Firecrawl is acceptable; leave it unset to avoid that path.
+
+Risk: The optional ingestion mode can persist extracted material into the content-factory system.
+
+Mitigation: Use --ingest only when the destination and retention of extracted content are intentional.
+
+Risk: Dependencies and proxy configuration can affect execution risk, especially with embedded proxy credentials.
+
+Mitigation: Prefer pinned dependency versions and avoid proxy URLs that include passwords.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yuxiaoyang2007-prog/skills/x-article-extract)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON]
+
+**Output Format:** [JSON or human-readable text containing extracted content, source metadata, and engagement metrics.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3, xreach, and curl. Can optionally resolve t.co links, use an authenticated X session for X Article extraction, call Firecrawl for external pages, and persist extracted material when ingestion is explicitly enabled.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

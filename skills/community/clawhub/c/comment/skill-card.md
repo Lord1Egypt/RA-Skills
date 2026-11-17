@@ -1,39 +1,51 @@
-## Description: <br>
-Manage Comment data right from your terminal. Use when you need comment. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Comment data right from your terminal. Use when you need comment.
 
-## Publisher: <br>
-[bytesagain3](https://clawhub.ai/user/bytesagain3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain3](https://clawhub.ai/user/bytesagain3)
 
-## Use Case: <br>
-Developers and terminal users use Comment to record, inspect, search, and export local comment activity from a command-line workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Comment inputs are saved locally under ~/.local/share/comment and may contain sensitive text if users enter it. <br>
-Mitigation: Do not enter secrets, tokens, private customer data, or sensitive personal information unless local retention is intended; delete the local data directory when history is no longer needed. <br>
+## Use Case:
 
+Developers and command-line users use Comment to record, search, inspect, and export local comment-related entries from a terminal workflow.
 
-## Reference(s): <br>
-- [ClawHub Comment skill page](https://clawhub.ai/bytesagain3/comment) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Files] <br>
-**Output Format:** [Terminal text and local log or export files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores command history locally and can export entries as JSON, CSV, or plain text.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The local CLI persistently saves arbitrary text and activity logs under ~/.local/share/comment without clear retention or deletion controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not enter secrets, tokens, private notes, or sensitive business data unless local retention is intended; review or remove ~/.local/share/comment when needed.
+
+## Reference(s):
+
+- [Comment on ClawHub](https://clawhub.ai/bytesagain3/skills/comment)
+- [BytesAgain Homepage](https://bytesagain.com)
+- [BytesAgain Feedback](https://bytesagain.com/feedback/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Files, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and local CLI text output; exports may be JSON, CSV, or plain text files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores entries and activity logs under ~/.local/share/comment.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

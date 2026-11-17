@@ -1,41 +1,55 @@
-## Description: <br>
-Operate Twilio through an OOMOL-connected account for account lookup, message reads, usage reporting, and outbound SMS or MMS sending. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Twilio (twilio.com). Use this skill for ANY Twilio request — reading, creating, and updating data. Whenever a task involves Twilio, use this skill instead of calling the API directly.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-External users and developers use this skill to let an agent operate their connected Twilio account through OOMOL, including reading account and message data, listing usage, and preparing confirmed outbound messages. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send outbound SMS or MMS messages through the connected Twilio account, which can contact unintended recipients or incur cost. <br>
-Mitigation: Before running send_message or any other write action, verify the recipient, message body, account or project, full payload, and potential cost with the user. <br>
-Risk: Broad Twilio invocation wording could be mistaken for permission to make changes. <br>
-Mitigation: Treat broad Twilio requests as routing context only, and require explicit user confirmation before write or destructive actions. <br>
+## Use Case:
 
+Twilio account users and developers use this skill to inspect account, call, message, and usage data, or to send SMS/MMS messages and place outbound calls through a connected OOMOL account.
 
-## Reference(s): <br>
-- [Twilio homepage](https://www.twilio.com) <br>
-- [OOMOL oo CLI](https://github.com/oomol-lab/oo-cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON connector payloads or responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires live schema inspection before connector actions; write actions require user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server evidence) <br>
+Risk: First-time setup instructs the agent to run downloaded installer code whose payload and local changes were not inspected.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer an already installed, trusted oo CLI. Require separate approval and verification before running either installer.
+
+Risk: Calls and messages can contact unintended recipients, disclose content, or incur charges.
+
+Mitigation: Confirm recipients, content, and possible charges before creating calls or sending messages.
+
+## Reference(s):
+
+- [Twilio](https://www.twilio.com)
+- [Twilio Call Resource API documentation](https://www.twilio.com/docs/voice/api/call-resource)
+- [oo CLI](https://github.com/oomol-lab/oo-cli)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Shell commands, JSON, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON payload examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responses from Twilio actions may include account, call, message, or usage data.]
+
+## Skill Version(s):
+
+1.0.6 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

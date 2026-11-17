@@ -1,43 +1,57 @@
-## Description: <br>
-Analyze competitor strategies, content, pricing, ads, and market positioning across Google Maps, Booking.com, Facebook, Instagram, YouTube, and TikTok. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze competitor strategies, content, pricing, ads, and market positioning across Google Maps, Booking.com, Facebook, Instagram, YouTube, and TikTok.
 
-## Publisher: <br>
-[apify](https://clawhub.ai/user/apify) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[apify](https://clawhub.ai/user/apify)
 
-## Use Case: <br>
-Developers, analysts, and operators use this skill to select Apify Actors, fetch actor input details, run competitor research scrapers with an APIFY_TOKEN, and summarize or export the results. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Apify Actor runs use a user-provided token and may create long-running jobs or usage costs. <br>
-Mitigation: Confirm the Actor, input JSON, result limits, and timeout before running, and monitor the Apify console for job status and cost. <br>
-Risk: Exports may contain public contact, review, social, or business data gathered from third-party platforms. <br>
-Mitigation: Handle exported data according to platform terms, privacy law, and organizational retention rules. <br>
-Risk: Incorrect Actor IDs, malformed JSON, or unsafe filenames can cause failed runs or unintended output files. <br>
-Mitigation: Validate Actor IDs, JSON input, result format, and output filenames before executing the provided commands. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/apify/apify-competitor-intelligence) <br>
-- [Apify Homepage](https://apify.com) <br>
-- [Apify Actor API Permission Lookup](https://api.apify.com/v2/acts/:actorId) <br>
+## Use Case:
 
+External users and business analysts use this skill to select and run Apify Actors for competitor research across local listings, travel, social media, ads, reviews, and video platforms, then summarize or export the results.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, code, configuration, files] <br>
-**Output Format:** [Markdown guidance with bash command examples and optional CSV or JSON exports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires APIFY_TOKEN, Node.js 20.6+, and mcpc; quick-answer mode displays top results in chat, while export mode writes CSV or JSON under the current working directory.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can start Apify Actor runs with the configured token, which may consume account resources.
+
+Mitigation: Use a dedicated low-privilege Apify token with spend limits and keep Actor choices within the documented catalog.
+
+Risk: Scraped outputs may contain inaccurate, sensitive, or otherwise untrusted public data.
+
+Mitigation: Avoid sensitive input, review generated CSV or JSON before reuse, and treat exported files as untrusted data.
+
+Risk: The mcpc installation path is unpinned, so dependency changes can affect behavior.
+
+Mitigation: Pin and review the @apify/mcpc package version in managed environments before deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/apify/skills/apify-competitor-intelligence)
+- [Apify](https://apify.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with bash commands; optional CSV or JSON exports from Apify Actor runs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires APIFY_TOKEN, Node.js, and mcpc; quick-answer mode prints a small result sample while file mode exports CSV or JSON data.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

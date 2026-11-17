@@ -33,7 +33,10 @@ Talk Robots 机器人配置页扫码保存后，机器人会 Base64 decode 并�
 clawhub install yunitalk-beta
 ```
 
-`shell/robot_send.sh` 依赖 `curl`、`openssl` 和 `python3`。如果 OpenClaw 运行环境是容器，请确认镜像内已安装这些命令。
+发送消息按运行形态二选一（都会自动完成 HMAC-SHA256 签名）：
+
+- **`bin/bot-cli`（推荐，仓库/skills.git 分发形态）**：基于 Talk Robots Go SDK，启动器自动选择当前平台（darwin/linux × amd64/arm64）的预编译二进制并首次运行时解压，无需安装 Go。
+- **`shell/robot_send.sh`（clawhub 发布形态）**：clawhub 发布包因大小限制不包含 `bin/`，此时使用内置 shell 脚本（依赖 `curl`、`openssl` 和 `python3`）。
 
 本地开发调试未发布版本时，才需要使用本仓库中的 `docs/skills/yunitalk-beta/` 目录。
 
@@ -136,7 +139,7 @@ npx CLI 默认会自动读取本地 `openclaw.json` 的 Gateway 配置，探测�
 
 ## 机器人消息发送接口
 
-OpenClaw 可以调用 Talk Robots `/robot/send` 将文本或文件事件投递给指定机器人。发送消息时推荐优先使用本 Skill 内置脚本 `shell/robot_send.sh`，它会自动生成 `msg_id`、`noncestr`、`timestamp` 和 HMAC-SHA256 `sign`。
+OpenClaw 可以调用 Talk Robots `/robot/send` 将文本或文件事件投递给指定机器人。发送消息时推荐优先使用 `bot-cli` 命令行客户端（基于 `sdk.RobotClient`），它会自动生成 `msg_id`、`noncestr`、`timestamp` 和 HMAC-SHA256 `sign`。
 
 完整的文本消息、文件消息、签名规则和 `curl` 示例见独立文档：
 
@@ -160,7 +163,7 @@ OpenClaw 可以调用 Talk Robots `/robot/send` 将文本或文件事件投递�
 
 1. 检查 `TALK_ROBOT_ENDPOINT`、`TALK_ROBOT_ID`、`TALK_ROBOT_KEY` 是否完整。
 2. 如需投递到指定会话，确认 `cvs_id` 使用当前目标会话 ID，且大小写未被改变；不传时默认投递到机器人与创建者的点对点会话。
-3. 使用 `shell/robot_send.sh --dry-run` 检查签名 URL 和请求体。
+3. 使用 `--dry-run` 检查请求信息（`./bin/bot-cli` 与 `./shell/robot_send.sh` 均支持）。
 4. 确认 `/robot/send` 的返回状态和错误信息。
 
 ## 注意事项

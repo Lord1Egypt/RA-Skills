@@ -1,43 +1,57 @@
-## Description: <br>
-Curated prompt template library for OpenClaw agents that stores, searches, versions, tags, and reuses prompt templates across sessions and agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Prompt Library Manager stores, searches, versions, tags, and reuses prompt templates across OpenClaw sessions and agents.
 
-## Publisher: <br>
-[stevojarvisai-star](https://clawhub.ai/user/stevojarvisai-star) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[stevojarvisai-star](https://clawhub.ai/user/stevojarvisai-star)
 
-## Use Case: <br>
-Developers and agent users use this skill to create, find, fill, update, import, and export reusable prompt templates. Teams can use it to standardize common prompt workflows across OpenClaw sessions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompt templates are stored locally and may contain sensitive content if users save secrets, regulated data, or confidential customer information. <br>
-Mitigation: Do not store passwords, API keys, regulated data, or confidential customer content in prompt templates. <br>
-Risk: Deletes and overwrites are immediate, which can remove important prompt templates. <br>
-Mitigation: Keep backups of important prompt libraries and review destructive operations before confirming them. <br>
-Risk: Imported or reused prompt templates can introduce misleading or inappropriate guidance into agent workflows. <br>
-Mitigation: Review templates before reuse and scan shared libraries before deployment. <br>
+## Use Case:
 
+Developers, teams, and OpenClaw agent users use this skill to store, search, version, tag, reuse, import, and export prompt templates across sessions and agents.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/stevojarvisai-star/prompt-library-manager) <br>
-- [Publisher profile](https://clawhub.ai/user/stevojarvisai-star) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, shell commands, guidance] <br>
-**Output Format:** [CLI text output, filled prompt text, JSON exports, and Markdown exports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores prompt library data locally and can read, write, import, export, update, and delete user-selected prompt library files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: The prompt library persists locally across sessions and may contain sensitive prompt content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid storing secrets or confidential data in prompt templates, and review local and exported prompt library files before sharing them.
+
+Risk: Import, --from-file, export, and --workspace accept user-selected paths that may read from or write to sensitive or system locations.
+
+Mitigation: Use a dedicated workspace path, avoid sensitive or system paths, and inspect imported and exported files before relying on or distributing them.
+
+Risk: Deleting a prompt is immediate and does not enforce a confirmation or recovery workflow.
+
+Mitigation: Export or back up the library before deletes, and verify the prompt name before running delete.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/stevojarvisai-star/skills/prompt-library-manager)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration]
+
+**Output Format:** [CLI text, JSON, Markdown exports, and filled prompt text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores prompt library data locally in memory/prompt-library.json under the configured OpenClaw workspace.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

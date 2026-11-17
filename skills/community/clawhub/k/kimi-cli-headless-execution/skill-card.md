@@ -1,43 +1,53 @@
-## Description: <br>
-教 OpenClaw 在自动化脚本、后台任务、CI/CD、无 TTY 环境等非交互场景中，正确使用 Kimi Code CLI 的 `-p/--prompt`、`--print`、`--quiet`、`--wire` 等参数完成无头执行。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+教 OpenClaw 在自动化脚本、后台任务、CI/CD 和无 TTY 等非交互场景中，正确使用 Kimi Code CLI 的无头执行参数完成命令构造、输出选择、会话管理、错误处理和安全防护。
 
-## Publisher: <br>
-[aiyouwolegequ](https://clawhub.ai/user/aiyouwolegequ) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aiyouwolegequ](https://clawhub.ai/user/aiyouwolegequ)
 
-## Use Case: <br>
-Developers and automation engineers use this skill to construct, run, and handle Kimi CLI headless commands in scripts, background jobs, CI/CD pipelines, and other non-interactive environments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Headless Kimi CLI execution can automatically modify files or run shell commands when `--yolo` is enabled. <br>
-Mitigation: Require explicit user confirmation before enabling automatic approval, avoid critical system directories, and set a narrow `--work-dir` for project-scoped tasks. <br>
-Risk: The skill may require Kimi authentication or API credentials to run commands successfully. <br>
-Mitigation: Grant only the credentials needed for Kimi CLI use and verify authentication with `kimi --version`, `which kimi`, or login/configuration checks before execution. <br>
-Risk: Non-interactive output can be incomplete, noisy, or difficult to parse when the wrong mode is selected. <br>
-Mitigation: Choose `--quiet`, `--print`, or `--print --output-format stream-json` based on the task, check the exit code, and fall back to a simpler output mode when parsing fails. <br>
+## Use Case:
 
+面向需要在自动化脚本、后台任务或 CI/CD 环境中调用 Kimi CLI 的开发者和工程团队，帮助 Agent 选择 `--quiet`、`--print`、`--wire` 等模式，构造可执行的无头命令并处理结果与风险。
 
-## Reference(s): <br>
-- [Source skill definition](artifact/SKILL.md) <br>
-- [ClawHub skill page](https://clawhub.ai/aiyouwolegequ/kimi-cli-headless-execution) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Markdown, Guidance, Configuration] <br>
-**Output Format:** [Markdown with bash code blocks and structured result fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include constructed_command, execution_result, exit_code, warnings, and next_steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter version 1.0) <br>
+Risk: Headless Kimi CLI modes can enable automatic file changes or shell execution without enough scoping or containment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only in trusted, isolated project directories and require explicit approval before any `--quiet`, `--print`, or `--yolo` run that could modify files or execute commands.
+
+Risk: CI environments may expose secrets or sensitive project state to automated CLI execution.
+
+Mitigation: Avoid CI environments with secrets unless they are tightly sandboxed, and verify the Kimi CLI package source with pinned, isolated installation.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/aiyouwolegequ/skills/kimi-cli-headless-execution)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with bash command examples and concise execution guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include constructed Kimi CLI commands, execution summaries, exit codes, warnings, and next steps.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,62 @@
-## Description: <br>
-Self Evolution Engine helps skill developers monitor execution logs and user feedback, analyze failures and performance, and generate improvement proposals for ongoing skill maintenance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+自我进化引擎 - 让AI Skill具备自我分析、自我改进、自我学习的能力。通过监控执行日志、分析用户反馈、自动发现优化点并生成改进方案，实现Skills的持续进化。适用于技能开发者希望自动化技能维护、优化和迭代的场景。
 
-## Publisher: <br>
-[shenmeng](https://clawhub.ai/user/shenmeng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shenmeng](https://clawhub.ai/user/shenmeng)
 
-## Use Case: <br>
-Developers and skill maintainers use this skill to inspect skill execution data, error patterns, and feedback, then produce improvement proposals, patch templates, reports, and version-management actions for human review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill includes paid billing behavior that can charge an external SkillPay account using an environment-derived user ID without a clear per-call consent step. <br>
-Mitigation: Install only when paid execution is intended; review or disable payment.py, avoid setting SKILLPAY_USER_ID unless the charge path is understood, and confirm billing before use. <br>
-Risk: The artifact requires sensitive billing credentials and includes an embedded billing key. <br>
-Mitigation: Rotate or remove the embedded billing key and use explicitly managed credentials before running the skill. <br>
-Risk: Evolution and version-management scripts can create, copy, restore, or modify files in selected skill directories. <br>
-Mitigation: Run file-changing commands only against test or explicitly chosen skill directories and review generated changes before applying them. <br>
+## Use Case:
 
+Developers and skill maintainers use this skill to monitor execution metrics, analyze errors and feedback, generate improvement proposals, and manage skill version snapshots and rollbacks.
 
-## Reference(s): <br>
-- [Architecture Design](references/architecture.md) <br>
-- [SkillPay Billing Provider](https://skillpay.me) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, JSON] <br>
-**Output Format:** [Markdown, JSON reports, code patch templates, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local log, evolution, backup, and version snapshot files when its scripts are run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2025.4.15 (source: server release metadata) <br>
+Risk: Automatic billing calls can submit charge requests using SKILLPAY_USER_ID.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit payment consent before execution and verify the billing account, amount, and user identifier in a controlled environment.
+
+Risk: The packaged code contains an exposed SkillPay API credential.
+
+Mitigation: Remove or rotate the exposed credential and load billing secrets only from a protected runtime secret or environment variable.
+
+Risk: Snapshot and rollback scripts perform local file operations that may be under-scoped.
+
+Mitigation: Constrain and validate all target paths to the intended skill workspace before allowing backups, snapshots, rollback, or generated changes.
+
+Risk: Generated improvement proposals or patches can be incorrect or unsafe.
+
+Mitigation: Keep human review, tests, and security scanning in the approval path before applying generated changes.
+
+## Reference(s):
+
+- [Architecture design](references/architecture.md)
+- [ClawHub skill page](https://clawhub.ai/shenmeng/skills/shenmeng-self-evolution-engine)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and JSON reports with shell command examples and generated code or patch guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write local logs, evolution proposal JSON files, backups, and version snapshots when its scripts are run.]
+
+## Skill Version(s):
+
+2025.4.15 (source: server release metadata; artifact _meta.json reports 1.0.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

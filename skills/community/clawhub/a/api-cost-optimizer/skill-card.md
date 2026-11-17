@@ -1,40 +1,54 @@
-## Description: <br>
-Analyze OpenClaw agent configuration and API usage patterns to estimate API spend, diagnose heartbeat waste, and recommend cost-saving changes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Api Cost Optimizer analyzes OpenClaw agent configuration and API usage patterns to estimate spend, diagnose heartbeat waste, and recommend cost reductions.
 
-## Publisher: <br>
-[kryzl19](https://clawhub.ai/user/kryzl19) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kryzl19](https://clawhub.ai/user/kryzl19)
 
-## Use Case: <br>
-Developers and agent operators use this skill to estimate OpenClaw API spend, diagnose heartbeat-related waste, and prioritize configuration changes before costs grow unexpectedly. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated optimization guidance may be applied to agent or heartbeat configuration without review. <br>
-Mitigation: Review generated AGENTS.md and HEARTBEAT.md changes before replacing existing files, keep a backup, and be cautious with optional provider or API-key configuration patches. <br>
-Risk: Cost estimates may differ from actual provider billing because the scripts use configuration analysis and default pricing rather than live metering. <br>
-Mitigation: Compare estimates with provider cost logs before making budget or production configuration decisions. <br>
+## Use Case:
 
+Developers and agent operators use this skill to estimate OpenClaw LLM API spend, identify inefficient heartbeat settings, and prioritize configuration changes that may reduce recurring API costs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kryzl19/api-cost-optimizer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration guidance] <br>
-**Output Format:** [Markdown-style cost reports and command-line guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Estimates are based on configuration analysis and default provider pricing, not live API metering.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Bundled scripts use unsafe path handling that can allow local code execution in crafted environments.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and patch path handling before deployment; run the skill only in a trusted local environment.
+
+Risk: The generated cost estimates may not match provider billing data.
+
+Mitigation: Use the reports for planning and compare results against provider cost logs before making budget decisions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/kryzl19/skills/api-cost-optimizer)
+- [Publisher Profile](https://clawhub.ai/user/kryzl19)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown-style terminal reports and command-line estimates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Cost numbers are rough estimates based on configuration and default pricing, not provider billing data.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

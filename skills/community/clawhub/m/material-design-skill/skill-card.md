@@ -1,56 +1,71 @@
-## Description: <br>
-Guides agents on applying Google Material Design 3 across color, typography, shape, elevation, icons, motion, components, and Flutter, Jetpack Compose, Android View, and web implementations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Material Design 3 guidance, quick references, and cross-platform implementation examples for color, typography, shape, elevation, icons, motion, components, and adaptive UI.
 
-## Publisher: <br>
-[yhongm](https://clawhub.ai/user/yhongm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yhongm](https://clawhub.ai/user/yhongm)
 
-## Use Case: <br>
-Developers, designers, and agents use this skill to answer Material Design 3 questions, compare component patterns, and produce platform-specific UI guidance or code examples for Flutter, Jetpack Compose, Android View, and web. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Copied code examples may not be production-ready for every target framework version or app architecture. <br>
-Mitigation: Review, adapt, and test examples in the target Flutter, Jetpack Compose, Android View, or web project before shipping. <br>
-Risk: Generic UI or design prompts may activate the skill more often than intended. <br>
-Mitigation: Narrow activation triggers or prompt scope when deploying it in environments with broad design-assistance workflows. <br>
-Risk: Material Design platform support and component recommendations can change over time. <br>
-Mitigation: Check current Material Design and framework documentation before using the guidance for production design decisions. <br>
+## Use Case:
 
+Developers and designers use this skill to apply Material Design 3 patterns and platform-specific implementation guidance across Flutter, Jetpack Compose, Android View, and Web projects.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/yhongm/material-design-skill) <br>
-- [Publisher Profile](https://clawhub.ai/user/yhongm) <br>
-- [Google Material Design 3](https://m3.material.io/) <br>
-- [Material Design 3 Color](https://m3.material.io/styles/color/overview) <br>
-- [Material Design 3 Typography](https://m3.material.io/styles/typography/overview) <br>
-- [Material Design 3 Shape](https://m3.material.io/styles/shape/overview) <br>
-- [Material Design 3 Motion](https://m3.material.io/styles/motion/overview/how-it-works) <br>
-- [Material Design 3 Foundations](https://m3.material.io/foundations) <br>
-- [Material Design 3 Components](https://m3.material.io/components) <br>
-- [Material Design 3 Develop](https://m3.material.io/develop) <br>
-- [Material Design 3 Color System Reference](references/color-system.md) <br>
-- [Material Design 3 Typography Reference](references/typography.md) <br>
-- [Material Design 3 Components Overview](references/components-overview.md) <br>
-- [Material Design 3 Motion System Reference](references/motion.md) <br>
-- [Material Design 3 Platform Implementation Reference](references/platform-implementation.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance, configuration] <br>
-**Output Format:** [Markdown with optional platform code blocks and tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance; no executable skill code or credential handling.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Broad activation can route non-Material UI work into this reference skill.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Narrow activation or invocation rules when working on UI topics outside Material Design.
+
+Risk: Code examples and design references may lag current official Material, Flutter, or Android documentation.
+
+Mitigation: Verify examples against current official platform documentation before copying them into production.
+
+Risk: The skill is opinionated and Chinese-first in its responses.
+
+Mitigation: Review generated guidance for audience, language, and project-specific design requirements before adopting it.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/yhongm/skills/material-design-skill)
+- [Material Design 3](https://m3.material.io/)
+- [Material Color](https://m3.material.io/styles/color/overview)
+- [Material Typography](https://m3.material.io/styles/typography/overview)
+- [Material Shape](https://m3.material.io/styles/shape/overview)
+- [Material Motion](https://m3.material.io/styles/motion/overview/how-it-works)
+- [Material Foundations](https://m3.material.io/foundations)
+- [Material Components](https://m3.material.io/components)
+- [Material Develop](https://m3.material.io/develop)
+- [README](README.md)
+- [Color System Reference](references/color-system.md)
+- [Typography Reference](references/typography.md)
+- [Components Overview](references/components-overview.md)
+- [Platform Implementation](references/platform-implementation.md)
+- [M3 Migration Guide](references/m3-migration-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Configuration instructions]
+
+**Output Format:** [Markdown with inline code examples and tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-first Material Design guidance with platform-specific examples for Flutter, Jetpack Compose, Android View, and Web.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

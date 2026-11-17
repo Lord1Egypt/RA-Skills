@@ -1,39 +1,53 @@
-## Description: <br>
-实现计划生成 - 从需求生成多阶段实施计划：基础→逻辑→接口→测试→部署。含模板、依赖分析、验收标准 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+实现计划生成 - 从需求生成多阶段实施计划：基础→逻辑→接口→测试→部署。含模板、依赖分析、验收标准
 
-## Publisher: <br>
-[534422530](https://clawhub.ai/user/534422530) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[534422530](https://clawhub.ai/user/534422530)
 
-## Use Case: <br>
-Developers and project planners use this Chinese-oriented skill to turn a feature request into a phased implementation plan with dependencies, effort estimates, risks, and acceptance criteria. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generic trigger terms such as plan or 方案 may activate this planning skill when a user expected a different planning style or language. <br>
-Mitigation: State the desired planning format and language explicitly when invoking or bypassing the skill. <br>
+## Use Case:
 
+Developers and project teams use this skill to turn requirements into staged implementation plans with dependencies, effort estimates, risks, acceptance criteria, and Markdown output.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/534422530/laosi-write-plan) <br>
-- [Publisher Profile](https://clawhub.ai/user/534422530) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code] <br>
-**Output Format:** [Markdown with structured plan sections and optional Python template code] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-oriented planning output with five implementation phases, dependency analysis, effort estimates, and acceptance criteria.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: Generic planning trigger words may activate the skill when the user did not intend to use it.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm that the user wants an implementation plan before applying the template when the request is ambiguous.
+
+Risk: Generated plans can contain inaccurate dependencies, effort estimates, or acceptance criteria.
+
+Mitigation: Review generated plans against project requirements and adjust estimates, dependencies, and risks before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/534422530/skills/laosi-write-plan)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Guidance]
+
+**Output Format:** [Markdown with structured implementation phases and optional Python planning code]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include phase dependencies, effort estimates, acceptance criteria, risk notes, and plan templates.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

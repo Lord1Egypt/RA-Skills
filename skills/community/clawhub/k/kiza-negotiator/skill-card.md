@@ -1,40 +1,53 @@
-## Description: <br>
-Kiza Negotiator is an agent skill for automating marketplace negotiations, offer responses, deal closing, and pricing with configurable negotiation styles. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI agent that automates marketplace negotiations, offer responses, deal closing, and pricing with customizable styles and continuous availability.
 
-## Publisher: <br>
-[iamskark](https://clawhub.ai/user/iamskark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[iamskark](https://clawhub.ai/user/iamskark)
 
-## Use Case: <br>
-Marketplace operators, service providers, and bounty participants use this skill to draft or automate negotiation responses, bidding behavior, pricing choices, and deal-flow actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may receive marketplace account authority and perform autonomous bidding, counter-offers, escrow steps, or deal closure without clear safety limits. <br>
-Mitigation: Use a dedicated or least-privilege marketplace account, keep auto-respond and auto-pilot disabled until tested, and require manual approval for bids, counter-offers, escrow steps, and deal closure. <br>
-Risk: The actual kiza-nego implementation is not included in the artifact evidence reviewed for this card. <br>
-Mitigation: Verify the implementation before installation, set strict financial limits, confirm how to stop the agent, and confirm how negotiation logs can be deleted. <br>
+## Use Case:
 
+Marketplace users and developers use this skill to automate or assist with buying, selling, bounty bidding, service-rate negotiation, and multi-party deal coordination.
 
-## Reference(s): <br>
-- [Kiza Negotiator on ClawHub](https://clawhub.ai/iamskark/kiza-negotiator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose or initiate marketplace negotiation actions depending on the account authority and runtime configuration granted by the user.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: release evidence) <br>
+Risk: The skill may make bids, close deals, or handle escrow without clearly documented approval gates or spending limits.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with strict marketplace-side spending caps and require explicit per-transaction approval before real bids, escrow actions, or deal completion.
+
+Risk: Automatic response and auto-pilot behavior may create unintended marketplace commitments.
+
+Mitigation: Keep auto-pilot disabled for real accounts until the operating environment enforces review, audit logging, and bounded transaction authority.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/iamskark/skills/kiza-negotiator)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown or plain text with inline shell commands and negotiation guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce marketplace negotiation responses, bidding guidance, deal terms, and setup or configuration commands.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

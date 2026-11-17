@@ -1,43 +1,57 @@
-## Description: <br>
-Generate and deploy app Privacy Policy and Terms of Service static websites from an app feature document. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate and deploy app Privacy Policy and Terms of Service static websites from an app feature document. Use when a user provides app requirements/feature docs and wants production-ready legal pages published via GitHub + Cloudflare Pages, including draft generation, consistency checks, and deployment-ready output URLs.
 
-## Publisher: <br>
-[chentuan7963-afk](https://clawhub.ai/user/chentuan7963-afk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[chentuan7963-afk](https://clawhub.ai/user/chentuan7963-afk)
 
-## Use Case: <br>
-Developers and app publishers use this skill to generate draft Privacy Policy and Terms of Service pages from explicit app feature inputs, run consistency checks, and deploy the approved static site to Cloudflare Pages. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated legal pages may not fully satisfy an app's legal or app-store requirements. <br>
-Mitigation: Review the generated pages before deployment and seek human legal review before production app-store submission. <br>
-Risk: Deployment uses Cloudflare credentials or an authenticated Wrangler session. <br>
-Mitigation: Use least-privilege Cloudflare credentials and require explicit user approval before deployment. <br>
-Risk: Heuristic feature and permission detection can miss or overstate app behavior. <br>
-Mitigation: Collect explicit product inputs, run the consistency checker, and manually adjust disclosures when app behavior is more specific than the generated draft. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Cloudflare Pages + GitHub Deployment](references/cloudflare-github-deploy.md) <br>
-- [App Legal Pages on ClawHub](https://clawhub.ai/chentuan7963-afk/app-legal-pages) <br>
-- [Publisher Profile](https://clawhub.ai/user/chentuan7963-afk) <br>
+## Use Case:
 
+Developers and app publishers use this skill to turn app feature documentation into reviewable Privacy Policy and Terms of Service static pages, then optionally deploy the approved site to Cloudflare Pages.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with generated HTML/CSS files, JSON status output, and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces static legal-site files, consistency-check results, deployment status, and public Cloudflare Pages URLs after user approval.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.6 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated legal pages may contain incorrect contact, jurisdiction, or data-practice statements if sample values or incomplete inputs are copied unchanged.
+
+Mitigation: Replace all sample contact and jurisdiction values, review the generated Privacy Policy and Terms of Service line by line, and confirm the pages match the app's actual behavior before publication.
+
+Risk: Deployment can publish an approved draft to the wrong Cloudflare Pages project if the project name or production branch is not confirmed.
+
+Mitigation: Confirm the exact Cloudflare project and production branch before deployment, and require explicit user approval after reviewing the generated files.
+
+Risk: Cloudflare credentials could be exposed if pasted into prompts or generated documents.
+
+Mitigation: Configure Cloudflare credentials through environment variables or Wrangler login, and do not paste API tokens into prompts.
+
+## Reference(s):
+
+- [Cloudflare Pages + GitHub Deployment](artifact/references/cloudflare-github-deploy.md)
+- [App Legal Pages on ClawHub](https://clawhub.ai/chentuan7963-afk/skills/app-legal-pages)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Code, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown guidance with bash commands plus generated HTML and CSS files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generates a static legal mini-site and can return Cloudflare Pages URLs after user-approved deployment.]
+
+## Skill Version(s):
+
+0.1.6 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

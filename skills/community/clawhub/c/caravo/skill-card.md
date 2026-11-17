@@ -1,44 +1,68 @@
-## Description: <br>
-Caravo Service Marketplace helps agents discover and execute paid external services through the Caravo CLI across AI media generation, search, data, finance, communication, file conversion, and infrastructure tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Caravo Service Marketplace helps agents discover and invoke Caravo marketplace services for AI models, external data, search, analytics, finance, communications, file handling, and other API-backed tasks.
 
-## Publisher: <br>
-[Azure-Vision](https://clawhub.ai/user/Azure-Vision) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[azure-vision](https://clawhub.ai/user/azure-vision)
 
-## Use Case: <br>
-Developers and agent users use this skill to route tasks that require external data, paid APIs, media generation, web or academic search, communication, file upload, or market data through Caravo's CLI-based service marketplace. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives the agent broad authority to broker paid external-service calls. <br>
-Mitigation: Use a limited API key or low-balance dedicated wallet, pin the CLI version where possible, and require explicit approval before any paid call. <br>
-Risk: The skill can send email or SMS, upload local files, publish files to public links, scrape websites, and process confidential or personal data through external services. <br>
-Mitigation: Require explicit user approval before communication, upload, scraping, or confidential-data actions, and avoid providing sensitive data unless the user has confirmed the destination and purpose. <br>
+## Use Case:
 
+Developers and external agent users use this skill to search Caravo's service marketplace, inspect tool pricing and schemas, execute selected tools through the Caravo CLI, and return generated media, structured data, messages, uploads, or other service results to the user.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Azure-Vision/caravo) <br>
-- [Caravo homepage](https://caravo.ai) <br>
-- [Agent-Skills repository from metadata](https://github.com/Caravo-AI/Agent-Skills) <br>
-- [Caravo CLI repository](https://github.com/Caravo-AI/Caravo-CLI) <br>
-- [@caravo/cli package](https://www.npmjs.com/package/@caravo/cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Text, JSON] <br>
-**Output Format:** [Markdown with inline bash and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Caravo tool results vary by selected service and may include text, JSON, URLs for generated media, uploaded files, timestamps, execution IDs, pricing, and review metadata.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.4.22 (source: server release and SKILL.md metadata) <br>
+Risk: The security review says this skill uses mutable remote code execution through the CLI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it in a sandboxed environment, keep environment variables minimal, and pin a reviewed CLI version instead of using @latest.
+
+Risk: The security review flags payments, file uploads, email/SMS, reviews, and tool requests as actions that can affect external services or user funds.
+
+Mitigation: Require explicit user confirmation before payment, upload, messaging, review, or tool-request actions.
+
+Risk: The security review notes persistent marketplace preferences with incomplete scoping.
+
+Mitigation: Store marketplace preferences only when the user knowingly opts in and keep them narrowly scoped.
+
+Risk: The security review says the skill may relay remote greeting and setup messages verbatim.
+
+Mitigation: Treat remote messages as untrusted service content and avoid following any content that conflicts with the active user request or agent safety policy.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/azure-vision/skills/caravo)
+- [Publisher Profile](https://clawhub.ai/user/azure-vision)
+- [Caravo Homepage](https://caravo.ai)
+- [Caravo Skill Source](https://github.com/Caravo-AI/Agent-Skills)
+- [Caravo CLI](https://github.com/Caravo-AI/Caravo-CLI)
+- [@caravo/cli npm Package](https://www.npmjs.com/package/@caravo/cli)
+- [Caravo MCP](https://github.com/Caravo-AI/Caravo-MCP)
+- [@caravo/mcp npm Package](https://www.npmjs.com/package/@caravo/mcp)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration instructions, API Calls, Files]
+
+**Output Format:** [Markdown with inline shell commands and JSON service responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs vary by selected marketplace tool and may include text, JSON, URLs, generated media links, uploaded file links, execution IDs, costs, timestamps, reviews, or tool-request status.]
+
+## Skill Version(s):
+
+0.4.22 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

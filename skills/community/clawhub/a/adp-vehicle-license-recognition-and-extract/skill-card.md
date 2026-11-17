@@ -1,50 +1,63 @@
-## Description: <br>
-基于来也科技ADP平台的中国机动车行驶证智能识别与信息抽取Skill，支持行驶证正副页20+关键字段抽取，并输出结构化JSON。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+基于来也科技ADP平台的中国机动车行驶证智能识别与信息抽取Skill，支持行驶证正副页20+关键字段抽取并输出结构化JSON。
 
-## Publisher: <br>
-[laiye-adp](https://clawhub.ai/user/laiye-adp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[laiye-adp](https://clawhub.ai/user/laiye-adp)
 
-## Use Case: <br>
-External developers and business automation teams use this skill to invoke Laiye ADP cloud extraction for Chinese vehicle license images, files, folders, URLs, or Base64 inputs. It helps convert vehicle registration, insurance, ride-hailing, and freight onboarding documents into structured JSON fields for downstream systems. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global, with China mainland and overseas ADP endpoints documented. <br>
+Commercial License Agreement
 
-## Known Risks and Mitigations: <br>
-Risk: Vehicle-license images and extracted fields are sent to Laiye ADP cloud services. <br>
-Mitigation: Use the skill only for data that may be processed by Laiye ADP, and treat returned or exported JSON as sensitive personal data. <br>
-Risk: The ADP CLI has broader document-processing and custom-app management capabilities than this vehicle-license workflow requires. <br>
-Mitigation: Limit agent actions to OOTB vehicle-license extraction commands and avoid custom-app administration commands unless explicitly intended. <br>
-Risk: The skill documents curl|bash and irm|iex installation paths. <br>
-Mitigation: Prefer npm installation or verified release binaries before using shell-script installation methods. <br>
-Risk: API keys are required for the cloud service. <br>
-Mitigation: Restrict the API key, store it securely, and avoid exposing it in prompts, logs, or shared command output. <br>
+## Use Case:
 
+External developers and operations teams use this skill to call Laiye ADP for Chinese vehicle-license recognition in vehicle registration, insurance onboarding, ride-hailing or freight-vehicle admission, and related document-processing workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/laiye-adp/adp-vehicle-license-recognition-and-extract) <br>
-- [Laiye ADP China mainland portal](https://adp.laiye.com/?utm_source=clawhub) <br>
-- [Laiye ADP overseas portal](https://adp-global.laiye.com/?utm_source=clawhub) <br>
-- [ADP CLI user guide](https://laiye-tech.feishu.cn/wiki/Hz3Vw1IQki3YQtk33gLcSdwSndc) <br>
-- [Open API user guide](https://laiye-tech.feishu.cn/wiki/PO9Jw4cH3iV2ThkMPW2c539pnkc) <br>
-- [Public cloud operation manual](https://laiye-tech.feishu.cn/wiki/UDYIwG42pisBbFkJI39ctpeKnWh) <br>
-- [ADP CLI GitHub releases](https://github.com/laiye-ai/adp-cli/releases) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance, JSON] <br>
-**Output Format:** [Markdown guidance with bash command examples and structured JSON extraction output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May export one JSON result per input file for batch processing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill documentation includes remote installer commands that pipe downloaded scripts directly into a shell or PowerShell session.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install from a pinned, verified ADP CLI release or review the installer source before execution.
+
+Risk: Vehicle-license images and extracted JSON can contain sensitive personal or business data.
+
+Mitigation: Confirm that uploading documents to Laiye ADP is permitted for the intended workflow and handle API keys, images, and JSON outputs as sensitive data.
+
+Risk: The underlying CLI can perform broader custom-app and arbitrary-document processing beyond vehicle-license extraction.
+
+Mitigation: Use only the vehicle-license extraction workflow unless the broader document-processing scope is explicitly intended and reviewed.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/laiye-adp/skills/adp-vehicle-license-recognition-and-extract)
+- [ADP China Portal](https://adp.laiye.com/?utm_source=clawhub)
+- [ADP Global Portal](https://adp-global.laiye.com/?utm_source=clawhub)
+- [ADP CLI Releases](https://github.com/laiye-ai/adp-cli/releases)
+- [ADP CLI User Guide](https://laiye-tech.feishu.cn/wiki/Hz3Vw1IQki3YQtk33gLcSdwSndc)
+- [Open API User Guide](https://laiye-tech.feishu.cn/wiki/PO9Jw4cH3iV2ThkMPW2c539pnkc)
+- [Public Cloud Operation Manual](https://laiye-tech.feishu.cn/wiki/UDYIwG42pisBbFkJI39ctpeKnWh)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, JSON, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON extraction output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports image, local file, folder, URL, and Base64 inputs through the ADP CLI; extracted vehicle-license results are returned as structured JSON.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

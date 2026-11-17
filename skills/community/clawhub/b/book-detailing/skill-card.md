@@ -1,37 +1,49 @@
-## Description: <br>
-Book detailing services through Lokuli MCP for users who need to find and book detailing services. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Book detailing services through Lokuli MCP.
 
-## Publisher: <br>
-[edwardrodriguez703-design](https://clawhub.ai/user/edwardrodriguez703-design) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[edwardrodriguez703-design](https://clawhub.ai/user/edwardrodriguez703-design)
 
-## Use Case: <br>
-External users can use this skill to search for detailing providers, check appointment availability, and create a booking through Lokuli's MCP service. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill uses Lokuli's external MCP service to create bookings and may send customer name, email, and phone number. <br>
-Mitigation: Before creating a booking, confirm the provider, service, time slot, and that the user's contact information will be sent to Lokuli. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Lokuli MCP endpoint](https://lokuli.com/mcp/sse) <br>
+## Use Case:
 
+External users use this skill to find nearby detailing providers, check appointment availability, and create bookings through Lokuli's MCP service.
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Guidance, Configuration] <br>
-**Output Format:** [Markdown guidance with JSON-RPC tool call examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses Lokuli MCP tools for search, availability checks, and booking creation.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Booking can send personal contact details, location or ZIP code, provider selection, service selection, and appointment time to Lokuli's external MCP service.
+
+Mitigation: Confirm the booking details and user consent before creating a booking.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/edwardrodriguez703-design/skills/book-detailing)
+- [Lokuli MCP endpoint](https://lokuli.com/mcp/sse)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Guidance, Text]
+
+**Output Format:** [MCP JSON-RPC tool calls and concise booking status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses search, availability, and booking tool calls against Lokuli's external MCP service.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata, released 2026-02-06)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

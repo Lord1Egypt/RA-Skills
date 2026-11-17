@@ -1,43 +1,59 @@
-## Description: <br>
-Aviation weather data -- METAR observations, TAF forecasts, and nearby station discovery via L402 API for flight planning, airport weather checks, and aviation safety briefings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Aviation weather data for METAR observations, TAF forecasts, and nearby station discovery via an L402 API.
 
-## Publisher: <br>
-[haveblue997](https://clawhub.ai/user/haveblue997) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[haveblue997](https://clawhub.ai/user/haveblue997)
 
-## Use Case: <br>
-Developers and aviation-focused users can add an MCP server that retrieves METAR observations, TAF forecasts, and nearby aviation weather stations. Use it for flight planning support, airport weather checks, condition monitoring, and safety-oriented briefings while validating results against official flight-safety sources. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Station codes and coordinate searches are sent to a configured external aviation weather API. <br>
-Mitigation: Confirm the endpoint before use and avoid sending sensitive operational context beyond the required lookup parameters. <br>
-Risk: Aviation weather responses may be incomplete, delayed, unavailable, or unsuitable as the sole basis for flight-safety decisions. <br>
-Mitigation: Validate results against official aviation weather and flight-safety sources before operational use. <br>
-Risk: Documentation and configuration evidence disagree on package names and environment variable names. <br>
-Mitigation: Confirm the intended npm package and endpoint variable before installation or deployment. <br>
+## Use Case:
 
+External users, developers, and aviation operators can use this MCP server to retrieve METAR observations, TAF forecasts, and nearby weather station data for flight planning, airport weather checks, and safety briefings.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/haveblue997/mcp-aviation-weather) <br>
-- [Configured aviation weather API base URL](https://api.nautdev.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, API calls, configuration] <br>
-**Output Format:** [MCP tool responses containing JSON-formatted text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires npx and a configured aviation weather API endpoint; station codes and coordinate searches are sent to the configured external API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence, frontmatter, and package.json) <br>
+Risk: Installation guidance can run unpinned npm code, and artifact documentation names inconsistent npm packages and environment variables.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the authoritative npm package, pin an exact audited version, and configure only the required environment variables before installation.
+
+Risk: Repeated tool calls may create L402 micropayment costs without clear spending controls.
+
+Mitigation: Review L402 pricing and enforce spending limits or approval controls before allowing automated repeated calls.
+
+Risk: Aviation weather output may be used in operational flight-planning decisions.
+
+Mitigation: Treat responses as advisory agent output and verify weather data against authoritative aviation sources before operational use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/haveblue997/skills/mcp-aviation-weather)
+- [Configured L402 API base URL](https://api.nautdev.com)
+- [Pricing details referenced by artifact README](https://github.com/Blue-Trianon-Ventures)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, configuration]
+
+**Output Format:** [MCP tool responses containing JSON text, plus MCP server configuration snippets.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Tool calls accept ICAO station identifiers or latitude, longitude, and optional radius; requests use a configurable L402 API base URL.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter, package.json, and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,62 @@
-## Description: <br>
-Starts a temporary remote browser session so a user can complete visual login and persist cookies and localStorage for later Playwright automation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Remote browser login and session persistence for headless servers through a temporary public browser session that can save cookies and localStorage for future automation.
 
-## Publisher: <br>
-[MichaelLod](https://clawhub.ai/user/MichaelLod) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[michaellod](https://clawhub.ai/user/michaellod)
 
-## Use Case: <br>
-Developers and agents use this skill on headless servers when a website requires manual visual login before authenticated browsing or automation. It opens a browser through a temporary public URL, then saves session state for later Playwright use. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill exposes an authenticated browser session through a public tunnel with broad remote-control capabilities. <br>
-Mitigation: Use only in a trusted environment, share the tunnel URL only with the intended user, and close the tunnel immediately after login. <br>
-Risk: Saved session files contain authentication cookies and localStorage that can grant account access. <br>
-Mitigation: Treat saved session state as sensitive, avoid sensitive accounts when possible, and delete saved session data when it is no longer needed. <br>
-Risk: Remote-control endpoints can interact with pages beyond simple login flows. <br>
-Mitigation: Prefer a version that binds to localhost, requires a strong access token, and removes general remote-control endpoints before use in higher-trust environments. <br>
+## Use Case:
 
+Developers and automation agents use this skill when authenticated browser access is needed on a headless server and a human must complete the login flow visually. It is intended to create reusable Playwright session state for later automated browsing.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/MichaelLod/lock-me-in) <br>
-- [cloudflared release download](https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown instructions with bash and JavaScript snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [When executed, the script can write Playwright storage state and session metadata files to disk.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata) <br>
+Risk: The skill can expose a logged-in browser through a temporary public URL without authentication.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with intended users, protect the tunnel where possible, and avoid high-value accounts unless access to the tunnel is strongly controlled.
+
+Risk: Saved session files can contain reusable authentication cookies and localStorage.
+
+Mitigation: Restrict access to session files, encrypt or isolate storage where appropriate, and provide a clear deletion process.
+
+Risk: The browser control surface includes an evaluation endpoint that can execute page JavaScript.
+
+Mitigation: Remove or strongly authenticate the endpoint before using the skill with sensitive accounts or untrusted network exposure.
+
+Risk: Typed secrets may pass through browser-control URLs during remote interaction.
+
+Mitigation: Avoid sending secrets in URLs and prefer protected input paths for credentials.
+
+## Reference(s):
+
+- [lock-me-in ClawHub page](https://clawhub.ai/michaellod/skills/lock-me-in)
+- [cloudflared Linux AMD64 download](https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Files, Guidance]
+
+**Output Format:** [Markdown with inline bash and JavaScript code blocks, plus saved Playwright JSON session files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates browser session state files containing cookies and localStorage under the configured sessions directory.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

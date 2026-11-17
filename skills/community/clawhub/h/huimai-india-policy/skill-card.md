@@ -1,40 +1,53 @@
-## Description: <br>
-Provides India-market policy lookup guidance for BIS certification, DGFT import/export policy, GST rate and HSN matching, and PLI program applicability. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides one-stop research assistance for India BIS certification, DGFT import/export policy, GST rate, HSN classification, and PLI incentive questions.
 
-## Publisher: <br>
-[yezhaowang888-stack](https://clawhub.ai/user/yezhaowang888-stack) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yezhaowang888-stack](https://clawhub.ai/user/yezhaowang888-stack)
 
-## Use Case: <br>
-External exporters, manufacturers, and market researchers use this skill to check India BIS certification exposure, DGFT import/export policy considerations, GST/HSN rate matching, and PLI incentive applicability. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global; content focuses on India-market policy queries. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: India policy, tax, customs, and certification guidance can become outdated or differ by authority or region. <br>
-Mitigation: Verify BIS, DGFT, GST, and PLI conclusions against current official Indian government sources before business use. <br>
-Risk: The skill may provide reference timelines or eligibility guidance that does not match a specific product, state, shipment, or application window. <br>
-Mitigation: Treat outputs as preliminary guidance and confirm product classification, state-level rules, certification timelines, and PLI deadlines with qualified advisors or official notices. <br>
+## Use Case:
 
+External trade teams, manufacturers, and market researchers use this skill to research India market policy questions, including BIS certification needs, DGFT import/export rules, GST or HSN classification, and PLI incentive applicability.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/yezhaowang888-stack/huimai-india-policy) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown conversational guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only policy guidance; no executable code or credential access evident in the artifacts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata and artifact changelog, released 2026-05-03) <br>
+Risk: India trade, certification, tax, and incentive rules can change quickly, so answers may become outdated or incomplete.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify important decisions against official BIS, DGFT, GST, and DPITT notices or a qualified advisor.
+
+Risk: GST treatment, state-level execution, PLI eligibility, and BIS certification timing can vary by product, jurisdiction, or application window.
+
+Mitigation: Treat the skill output as research assistance and confirm product-specific obligations, rates, deadlines, and certification timelines before shipment or filing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yezhaowang888-stack/skills/huimai-india-policy)
+
+## Skill Output:
+
+**Output Type(s):** [text, guidance]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Regulatory and tax guidance should be verified against official notices or a qualified advisor before business decisions.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata and SKILL.md changelog, released 2026-05-03)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

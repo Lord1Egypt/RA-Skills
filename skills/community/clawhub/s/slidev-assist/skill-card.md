@@ -1,45 +1,64 @@
-## Description: <br>
-Accepts a topic or source material such as reports, data, copy, or PPTX files, then helps an agent turn the material into Slidev Markdown and previewable HTML slides. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Slidev presentation Markdown and supporting commands from topics, documents, data, web pages, copy, or existing PPTX material.
 
-## Publisher: <br>
-[sfewsuper](https://clawhub.ai/user/sfewsuper) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sfewsuper](https://clawhub.ai/user/sfewsuper)
 
-## Use Case: <br>
-External users and developers use this skill to convert topics, documents, data, web content, or existing presentations into Slidev-based slide decks that can be previewed and exported. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may read user-provided files, URLs, reports, data, or presentations while preparing a slide deck. <br>
-Mitigation: Use a dedicated project folder and avoid confidential documents or internal URLs unless the execution environment is trusted. <br>
-Risk: The skill may install npm dependencies, run npx commands, export slides, or start a Slidev preview. <br>
-Mitigation: Require explicit approval before npm install, npx, export, or --remote preview steps. <br>
-Risk: The skill may modify files in the working directory while creating Slidev project assets. <br>
-Mitigation: Run it in a clean or disposable workspace and review generated files before reuse or publication. <br>
+## Use Case:
 
+Employees, external users, developers, and presentation authors use this skill to turn source material into Slidev-based presentations, then preview or export the result. It is most useful when an agent is allowed to read local inputs, produce slides.md, and suggest npm/npx commands for Slidev workflows.
 
-## Reference(s): <br>
-- [Slidev Assist Quick Reference](references/quickref.md) <br>
-- [Slidev Documentation](https://sli.dev) <br>
-- [Slidev Getting Started](https://github.com/slidevjs/slidev#getting-started) <br>
-- [ClawHub Release Page](https://clawhub.ai/sfewsuper/slidev-assist) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown slides, Slidev frontmatter, command snippets, and presentation workflow guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or modify project files, install npm dependencies, start a local Slidev preview, and export slides to PDF, PPTX, or PNG when approved.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata and artifact metadata.json) <br>
+Risk: Automatic npm/npx execution can fetch changing package versions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin Slidev and Playwright versions in a project lockfile before running generated install, preview, or export commands.
+
+Risk: The skill can process local documents, spreadsheets, PPTX files, and web content.
+
+Mitigation: Use it only in workspaces where those files are appropriate for the agent to read, and avoid sensitive documents unless that access is intended.
+
+Risk: Remote Slidev preview can expose the local presentation server beyond the local machine.
+
+Mitigation: Avoid enabling --remote unless the user understands and accepts the network exposure.
+
+Risk: Global package installation changes the host environment.
+
+Mitigation: Prefer local project installation over global installs.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/sfewsuper/skills/slidev-assist)
+- [Slidev Documentation](https://sli.dev)
+- [Slidev GitHub Repository](https://github.com/slidevjs/slidev)
+- [Slidev Assist Quick Reference](references/quickref.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown, Slidev frontmatter, inline code blocks, and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces presentation source and workflow guidance for previewing or exporting with Slidev; does not itself guarantee package pinning or network isolation.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

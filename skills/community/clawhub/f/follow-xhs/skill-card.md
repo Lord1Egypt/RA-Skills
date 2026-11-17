@@ -1,44 +1,62 @@
-## Description: <br>
-Xiaohongshu note search and content retrieval tool that helps users find target content, fetch note details, and generate structured analysis reports. <br>
+## Description:
 
-This skill is for research and development only. <br>
+A Xiaohongshu note search and retrieval skill that helps agents find notes, fetch note details, and produce structured content analysis reports.
 
-## Publisher: <br>
-[champagne315](https://clawhub.ai/user/champagne315) <br>
+This skill is for research and development only.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[champagne315](https://clawhub.ai/user/champagne315)
 
-## Use Case: <br>
-Developers and analysts use this skill to search Xiaohongshu notes, retrieve note details, and produce structured content analysis reports from the results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Bundled account-session data may expose or reuse an account-linked Xiaohongshu session. <br>
-Mitigation: Delete the bundled web_session value before use, rotate it if it belongs to you, and prefer a separate low-risk account. <br>
-Risk: Unofficial authenticated browser-style requests and fingerprinting may trigger platform rate limits, verification, or account controls. <br>
-Mitigation: Use conservative request rates, avoid untrusted proxies, and expect manual verification or request failures. <br>
-Risk: Unpinned Python dependencies can change behavior or introduce supply-chain risk. <br>
-Mitigation: Pin and review dependencies before installation in a controlled environment. <br>
+## Use Case:
 
+External users and developers use this skill to search Xiaohongshu by keyword, retrieve note details with an authenticated web session, and summarize the collected posts into a structured analysis report.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/champagne315/follow-xhs) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Xiaohongshu Web](https://www.xiaohongshu.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, API calls, Markdown, Analysis] <br>
-**Output Format:** [Markdown with inline Python and shell code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce structured analysis reports, configuration updates, and local command snippets.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and user changelog) <br>
+Risk: The skill requires a Xiaohongshu web_session cookie and the artifact ships a populated session value.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Rotate or remove the shipped session value, store the cookie locally only, and avoid pasting reusable cookies into chat.
+
+Risk: Authenticated scraping-style requests and anti-bot request behavior may violate site rules or trigger account controls.
+
+Mitigation: Confirm authorization and applicable Xiaohongshu terms before use, limit request volume, and use only accounts approved for this activity.
+
+Risk: Unsafe eval-based configuration parsing and unpinned dependencies increase installation and runtime risk.
+
+Mitigation: Replace eval-based parsing with a safe parser, and pin and review dependencies before installation.
+
+Risk: Runtime logs may expose session cookies during account or security failures.
+
+Mitigation: Redact web_session and cookie values from logs before use.
+
+## Reference(s):
+
+- [Follow-XHS ClawHub release](https://clawhub.ai/champagne315/skills/follow-xhs)
+- [Xiaohongshu website](https://www.xiaohongshu.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports with inline code and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May request a Xiaohongshu web_session cookie and local runtime configuration before producing search results.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

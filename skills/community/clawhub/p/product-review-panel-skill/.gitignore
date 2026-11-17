@@ -1,0 +1,25 @@
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+.idea/
+.vscode/
+*.code-workspace
+
+# Python (in case future evals/scripts arrive)
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+
+# Build artifacts
+*.skill
+dist/
+build/
+
+# Logs / temp
+*.log
+*.tmp
+.cache/
+.claude/

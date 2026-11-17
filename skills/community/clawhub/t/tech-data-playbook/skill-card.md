@@ -1,40 +1,49 @@
-## Description: <br>
-Provides a technology and data strategy playbook for software development, IT infrastructure, cybersecurity, analytics, cloud architecture, AI/ML adoption, DevOps, governance, and technical leadership. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+World-Class Technology & Data Playbook for software development best practices, IT infrastructure design, cybersecurity strategy, data analytics, business intelligence, automation and DevOps, cloud architecture, AI/ML adoption, technical architecture decisions, digital transformation strategy, platform engineering, CI/CD pipelines, zero-trust security, data governance, FinOps, edge computing, observability, MLOps, and technology leadership.
 
-## Publisher: <br>
-[chilu18](https://clawhub.ai/user/chilu18) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chilu18](https://clawhub.ai/user/chilu18)
 
-## Use Case: <br>
-Developers, engineering leaders, technology strategists, and data, security, and cloud practitioners use this skill to shape recommendations, architecture decisions, implementation checklists, and strategic guidance across technology and data domains. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill has broad activation wording and may influence answers across many engineering, cloud, security, data, and AI topics. <br>
-Mitigation: Treat its recommendations as advisory starting points and review them against the user's environment, policy, compliance obligations, and current technical constraints. <br>
-Risk: The README install command uses a GitHub repository with --global and --yes flags. <br>
-Mitigation: Verify the repository and decide whether global installation and non-interactive confirmation are appropriate before running the command. <br>
+## Use Case:
 
+Developers, engineers, technology leaders, and data practitioners use this skill to get structured guidance on engineering practices, security posture, cloud architecture, data platforms, AI implementation, DevOps, and digital transformation decisions.
 
-## Reference(s): <br>
-- [Technology & Data Playbook - Full Reference Guide](references/full-playbook.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with tables, checklists, and occasional shell commands or configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No hidden execution, data access, credential handling, or persistence behavior was identified by the server security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Unpinned install commands and global installation can execute changing third-party code or apply the skill more broadly than intended.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review installation steps before use; prefer a pinned installer version, immutable commit or release artifact, checksum or signature verification, and project-local installation unless global installation is intentional.
+
+## Reference(s):
+
+- [Technology & Data Playbook Full Reference Guide](references/full-playbook.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown prose with tables, checklists, and inline code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces advisory text and implementation guidance; it does not require credentials or external tool access.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

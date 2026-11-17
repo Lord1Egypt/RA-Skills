@@ -1,0 +1,9 @@
+interface:
+  display_name: "easyserp"
+  short_description: "Google and Bing search for agents"
+  icon_large: "./assets/easyserp-icon.png"
+  brand_color: "#5368D8"
+  default_prompt: "Use $easyserp to search Google or Bing for this question and return relevant results with their source links."
+
+policy:
+  allow_implicit_invocation: true

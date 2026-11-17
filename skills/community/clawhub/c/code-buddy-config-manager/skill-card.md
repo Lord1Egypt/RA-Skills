@@ -1,43 +1,59 @@
-## Description: <br>
-Auto-detect, install, update and verify CodeBuddy configurations for MCP servers, skills, plugins, models, and CLI tools. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Auto-detect, install, update and verify all CodeBuddy configurations (MCP, Skill, Plugin, Model, CLI).
 
-## Publisher: <br>
-[dxc-dxc](https://clawhub.ai/user/dxc-dxc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dxc-dxc](https://clawhub.ai/user/dxc-dxc)
 
-## Use Case: <br>
-Developers and CodeBuddy users use this skill to inspect, install, update, and validate persistent CodeBuddy configuration for project or global scopes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can install packages, import remote configuration, and change persistent CodeBuddy settings. <br>
-Mitigation: Use trusted URLs and known package names, review MCP JSON and skill or plugin changes before applying them, and treat global scope or CLI installs as high-impact changes. <br>
-Risk: Search-derived installs or ambiguous package names can lead to incorrect or untrusted configuration. <br>
-Mitigation: Prefer explicit user-provided sources and verify the source before installing or enabling a discovered component. <br>
-Risk: Some configuration workflows may involve API keys, tokens, or other sensitive credentials. <br>
-Mitigation: Avoid embedding secrets in shared configuration text and review generated or imported configuration before storing it. <br>
+## Use Case:
 
+Developers and engineers use this skill to inspect, install, update, and verify CodeBuddy MCP servers, skills, plugins, models, and CLI tools across project and global scopes.
 
-## Reference(s): <br>
-- [CodeBuddy configuration structures](references/config-structures.md) <br>
-- [ClawHub skill page](https://clawhub.ai/dxc-dxc/code-buddy-config-manager) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON status or verification reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May result in persistent CodeBuddy configuration changes when installation scripts are executed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill can persistently modify CodeBuddy configuration files and system tooling from user-provided or discovered inputs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit review and confirmation before package installation, MCP writes, plugin enablement, skill downloads, or global configuration changes.
+
+Risk: Arbitrary or unverified URLs may provide unsafe configuration or skill content.
+
+Mitigation: Prefer trusted marketplaces, pinned hashes or signatures, and reviewed source URLs; avoid arbitrary URLs for installation input.
+
+Risk: Configuration changes may disrupt an existing CodeBuddy setup.
+
+Mitigation: Back up ~/.codebuddy and project .codebuddy files before use and run the included status and verification checks after changes.
+
+## Reference(s):
+
+- [CodeBuddy configuration structure reference](references/config-structures.md)
+- [ClawHub skill page](https://clawhub.ai/dxc-dxc/skills/code-buddy-config-manager)
+- [Publisher profile](https://clawhub.ai/user/dxc-dxc)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with JSON status reports, verification reports, configuration snippets, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose or perform persistent CodeBuddy configuration changes when used by an agent with the requested permissions.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

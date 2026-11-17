@@ -1,44 +1,64 @@
-## Description: <br>
-Skill Feed is a scenario-driven ClawHub skill recommendation agent that detects failed or unclear workflows, builds sanitized search queries, and returns ranked skill recommendations with recovery steps and fallback paths. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scenario-driven skill recommendation engine for ClawHub. Detects failed or stuck workflows, builds targeted search queries, and returns ranked skill recommendations with immediate recovery steps and fallback paths.
 
-## Publisher: <br>
-[jackleeio](https://clawhub.ai/user/jackleeio) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jackleeio](https://clawhub.ai/user/jackleeio)
 
-## Use Case: <br>
-Developers and agent users use Skill Feed when a workflow fails, times out, lacks an expected output, or has no clear implementation path. The skill helps them search ClawHub, compare candidate skills, and choose a primary recommendation, alternatives, immediate actions, success checks, and a fallback path. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive details from a failed workflow could be included in generated search terms. <br>
-Mitigation: Review generated search terms when context is sensitive; the skill instructs agents to strip secrets, credentials, PII, internal URLs, private paths, request bodies, response bodies, and authorization headers before search. <br>
-Risk: Recommended downstream skills may require separate trust, setup, or permission decisions. <br>
-Mitigation: Evaluate each recommended skill separately before installing it or granting permissions. <br>
+## Use Case:
 
+Developers and agent users use Skill Feed when a workflow is blocked by an error, timeout, retry loop, missing output, or unclear implementation path. It turns the failure context into sanitized ClawHub search queries, ranked skill recommendations, immediate recovery steps, and a fallback path.
 
-## Reference(s): <br>
-- [Skill Feed ClawHub Page](https://clawhub.ai/jackleeio/skill-feed) <br>
-- [Discovery Workflow](references/discovery-workflow.md) <br>
-- [Query Templates](references/query-templates.md) <br>
-- [Provider Adaptation](references/provider-adaptation.md) <br>
-- [Top Skills Snapshot](references/top-skills-2026-03-09.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands] <br>
-**Output Format:** [Markdown recovery plan with ranked recommendations, immediate actions, success checks, fallback guidance, and provider-specific execution notes.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses sanitized failure context and avoids repeating the same recommendation for the same error within one conversation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.1 (source: server release evidence) <br>
+Risk: Troubleshooting context may contain secrets, credentials, PII, or internal details before it is converted into search queries.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Strip sensitive values and keep only generic error codes, error types, platform names, and action verbs before searching or sharing output.
+
+Risk: Recommended skills may have their own permissions, setup costs, or security posture.
+
+Mitigation: Review and scan each recommended skill before installing it or granting runtime permissions.
+
+Risk: Offline fallback recommendations can become stale.
+
+Mitigation: Use the bundled top-skills snapshot only as a fallback and re-check ClawHub live search before final recommendations when available.
+
+## Reference(s):
+
+- [Skill Feed on ClawHub](https://clawhub.ai/jackleeio/skills/skill-feed)
+- [ClawHub skill search](https://clawhub.ai/skills?focus=search)
+- [ClawHub skills by stars](https://clawhub.ai/skills?sort=stars&dir=desc)
+- [ClawHub skills by recent updates](https://clawhub.ai/skills?sort=updatedAt&dir=desc)
+- [Discovery Workflow](references/discovery-workflow.md)
+- [Query Templates](references/query-templates.md)
+- [Provider Adaptation Guide](references/provider-adaptation.md)
+- [Top Skills Snapshot](references/top-skills-2026-03-09.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown recovery plan with ranked recommendations, immediate actions, success checks, fallback path, and provider-adapted execution notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search queries and troubleshooting context should be sanitized before external use.]
+
+## Skill Version(s):
+
+0.2.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

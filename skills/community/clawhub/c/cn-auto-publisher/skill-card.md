@@ -1,41 +1,58 @@
-## Description: <br>
-多平台内容自动发布，支持将内容发布为知乎回答、知乎文章或小红书图文笔记。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates publishing prepared content to Zhihu answers and articles and Xiaohongshu image-text notes.
 
-## Publisher: <br>
-[freedompixels](https://clawhub.ai/user/freedompixels) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[freedompixels](https://clawhub.ai/user/freedompixels)
 
-## Use Case: <br>
-Content creators and operators use this skill to automate publishing prepared Chinese-language content to Zhihu questions, Zhihu articles, and Xiaohongshu notes. It is intended for users who can review the content and target destination before allowing the agent to publish. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can automatically publish to real Zhihu and Xiaohongshu accounts. <br>
-Mitigation: Review the content and target URL manually before execution, and prefer adding a confirmation or draft-only step before publishing. <br>
-Risk: Reusable login cookies are stored on disk under ~/.qclaw. <br>
-Mitigation: Use only accounts you are willing to automate, protect the cookie files, and delete them after use when persistence is not needed. <br>
+## Use Case:
 
+Content creators and operators use this skill to publish prepared text and optional images to Zhihu and Xiaohongshu through browser automation. It is intended for accounts where automated public posting is acceptable.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/freedompixels/cn-auto-publisher) <br>
-- [Publisher profile](https://clawhub.ai/user/freedompixels) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API Calls, Guidance, Text] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON status output from publishing scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May launch browser automation, request manual login, publish to live platform accounts, and store reusable cookies under ~/.qclaw.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill can publish public content without a final confirmation step.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Inspect and approve content before invocation, and use only accounts where automated posting is acceptable.
+
+Risk: Saved login cookies under ~/.qclaw may contain reusable account sessions.
+
+Mitigation: Protect or delete the cookie files after use and avoid running the skill on shared machines.
+
+Risk: Automated posting may violate platform rules or account expectations if used too frequently or with unsuitable content.
+
+Mitigation: Follow the target platform's rules and keep posting frequency conservative.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/freedompixels/skills/cn-auto-publisher)
+- [Publisher profile](https://clawhub.ai/user/freedompixels)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Text status and JSON command results from browser automation scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce public posts or result URLs on supported platforms when invoked with valid account sessions.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

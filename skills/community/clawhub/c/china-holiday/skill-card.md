@@ -1,41 +1,54 @@
-## Description: <br>
-China Holiday identifies mainland China statutory holidays, weekends, adjusted workdays, and school vacation periods for supported cities. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a China mainland calendar helper that identifies statutory holidays, weekends, adjusted workdays, and school vacation periods for supported cities.
 
-## Publisher: <br>
-[violin](https://clawhub.ai/user/violin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[violin](https://clawhub.ai/user/violin)
 
-## Use Case: <br>
-Developers and agents use China Holiday to answer whether a mainland China date is a holiday or workday, list annual holidays, and query school vacation periods for supported cities. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The unpinned chinese-calendar dependency can resolve to future upstream releases with changed behavior. <br>
-Mitigation: Install chinese-calendar from a trusted package source and pin a reviewed version for repeatable or production use. <br>
+## Use Case:
 
+Developers and operations users can use this skill to check Chinese mainland holiday and workday status, list annual holidays, and query configured school vacation windows for supported cities.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/violin/china-holiday) <br>
-- [Publisher profile](https://clawhub.ai/user/violin) <br>
-- [Dependency declaration](requirements.txt) <br>
-- [Supported city vacation configuration](config/regions.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Code, Configuration] <br>
-**Output Format:** [Plain text command output and Python function return values] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Python 3 and the chinese-calendar package.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The chinese-calendar dependency is not pinned, so installs can receive changed package versions over time.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install in an isolated Python environment and pin chinese-calendar to a reviewed version before production use.
+
+Risk: Holiday and vacation responses are focused on China Mainland rules and the configured supported cities.
+
+Mitigation: Confirm outputs against official calendars or local policy before using them for business-critical scheduling.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/violin/skills/china-holiday)
+- [ClawHub publisher profile](https://clawhub.ai/user/violin)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Code, Guidance]
+
+**Output Format:** [Plain text responses, Markdown guidance, and Python API call snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and the chinese-calendar Python package; outputs are focused on China Mainland holiday rules.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -75,7 +75,10 @@ tsarr sonarr series search --term "Breaking Bad" --limit 5 --json
 tsarr sonarr series add --term "Breaking Bad"
 
 tsarr lidarr artist search --term "Radiohead" --json
-tsarr lidarr artist add --term "Radiohead"
+tsarr lidarr artist add --term "Radiohead" --foreign-artist-id a74b1b7f-71a5-4011-9441-d0b5e4122711 --quality-profile-id 2 --metadata-profile-id 4 --root-folder /music --no-search --yes
+tsarr lidarr album list --artist-id <artistId> --json
+tsarr lidarr release list --album-id <albumId> --json
+tsarr lidarr release grab --file selected-release.json --yes
 
 tsarr readarr author search --term "Ursula Le Guin" --json
 tsarr readarr author add --term "Ursula Le Guin"
@@ -163,6 +166,87 @@ Use extra destructive flags only when the user clearly asks for them:
 tsarr radarr movie delete --id 123 --delete-files
 tsarr sonarr series delete --id 456 --delete-files
 tsarr qbit torrents delete --hashes <hash> --delete-files
+```
+
+## Media server (Jellyfin)
+
+Trigger a scan after an import, then confirm the item landed:
+
+```bash
+tsarr jellyfin library refresh
+tsarr jellyfin item list --type Movie --search "The Matrix" --json
+```
+
+Check nobody is streaming before running maintenance:
+
+```bash
+tsarr jellyfin session list --active-within 300 --json
+```
+
+Read watched state (per user — get the ID from `tsarr jellyfin user list --json`):
+
+```bash
+tsarr jellyfin user list --json
+tsarr jellyfin watched status --id <itemId> --user <userId> --json
+tsarr jellyfin item list --type Movie --user <userId> --played true --json
+```
+
+Jellyfin output is PascalCase, so extract fields accordingly:
+
+```bash
+tsarr jellyfin item list --type Movie --json --select Id,Name
+```
+
+## Fix a missing or poor cover image
+
+When someone says a title has no cover, or a bad one, resolve it in four steps.
+Never guess an item ID — look it up.
+
+```bash
+# 1. Find the item
+tsarr jellyfin item list --search "Pokemon" --type Movie --json --select Id,Name,ProductionYear
+
+# 2. Inspect what artwork it has. No Primary row means no cover; a small
+#    Width/Height means a poor one.
+tsarr jellyfin image list --id <itemId> --json
+
+# 3. List candidates from the metadata providers
+tsarr jellyfin image remote --id <itemId> --type Primary --limit 10 --json
+
+# 4. Apply the chosen one
+tsarr jellyfin image set --id <itemId> --type Primary --url "<url>"
+```
+
+Choosing a candidate:
+
+- Prefer higher `Width`/`Height`, then higher `CommunityRating`.
+- **`Width`/`Height` are absent on Jellyfin 12.0** (present on 10.11), even
+  though the API schema declares them. When they are missing, rank by
+  `CommunityRating` and `VoteCount` instead.
+- `Language` matters for posters with title text; pass `--all-languages` to
+  widen the search.
+
+`--url` accepts **any reachable image URL**, not only provider candidates, so a
+cover found elsewhere can be applied directly:
+
+```bash
+tsarr jellyfin image set --id <itemId> --type Primary --url "https://example.com/poster.jpg"
+```
+
+Other artwork types work the same way — `Backdrop`, `Logo`, `Thumb`, `Banner`.
+To drop a bad image without replacing it:
+
+```bash
+tsarr jellyfin image delete --id <itemId> --type Primary --yes
+```
+
+To sweep a whole library for missing covers:
+
+```bash
+for id in $(tsarr jellyfin item list --type Movie --quiet); do
+  tsarr jellyfin image list --id "$id" --json \
+    | grep -q '"Primary"' || echo "no cover: $id"
+done
 ```
 
 ## Configuration checks

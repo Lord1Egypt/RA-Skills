@@ -1,40 +1,55 @@
-## Description: <br>
-Provides technical UX architecture and CSS systems guidance for setting up project foundations, design tokens, layout frameworks, component architecture, responsive breakpoints, and light, dark, or system theme support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Technical UX architecture and CSS systems skill that helps agents define design tokens, layout frameworks, component architecture, responsive breakpoints, and theme support.
 
-## Publisher: <br>
-[tyronecoh](https://clawhub.ai/user/tyronecoh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tyronecoh](https://clawhub.ai/user/tyronecoh)
 
-## Use Case: <br>
-Developers, frontend engineers, and technical leads use this skill to establish repeatable CSS architecture, component naming conventions, responsive layout strategy, accessibility baselines, and theme-toggle implementation guidance for web projects. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Copied theme-toggle snippets may not match a project's localStorage behavior, labels, or accessibility requirements. <br>
-Mitigation: Review and adapt the theme-toggle snippet before production use so storage behavior, visible labels, keyboard behavior, and accessibility details match project standards. <br>
+## Use Case:
 
+Developers, tech leads, and AI coding agents use this skill to establish reusable frontend foundations for new or evolving projects. It produces CSS token systems, layout and component guidance, responsive breakpoint plans, theme support, and developer handoff material.
 
-## Reference(s): <br>
-- [CSS Architecture Reference](references/css-architecture.md) <br>
-- [Component Hierarchy & Naming Conventions](references/component-hierarchy.md) <br>
-- [Frontend Architecture Pro on ClawHub](https://clawhub.ai/tyronecoh/frontend-architecture-pro) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown with CSS, HTML, and JavaScript snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces design tokens, layout specifications, component hierarchy guidance, responsive breakpoint maps, accessibility baselines, and theme-toggle implementation guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata) <br>
+Risk: Generated UI guidance may include opinionated theme requirements or sample localized UI text that does not fit the target product.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated text and theme requirements before adoption and adjust for product language, brand, accessibility, and design-system constraints.
+
+Risk: Broad frontend architecture recommendations may be over-applied to a specific codebase or product context.
+
+Mitigation: Have developers review generated CSS, breakpoints, component hierarchy, and accessibility behavior before implementation.
+
+## Reference(s):
+
+- [CSS Architecture Reference](references/css-architecture.md)
+- [Component Hierarchy & Naming Conventions](references/component-hierarchy.md)
+- [ClawHub Skill Page](https://clawhub.ai/tyronecoh/skills/frontend-architecture-pro)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, configuration]
+
+**Output Format:** [Markdown guidance with CSS, HTML, and JavaScript snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include design tokens, component hierarchy, responsive breakpoint maps, theme toggle snippets, and handoff checklists.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

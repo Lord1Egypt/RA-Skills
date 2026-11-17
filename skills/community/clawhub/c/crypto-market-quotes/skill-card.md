@@ -1,43 +1,60 @@
-## Description: <br>
-Query real-time cryptocurrency prices, market data, and trends across major exchanges (Binance, Coinbase, Kraken). Supports BTC, ETH, and major altcoins with price, 24h change, market cap, and volume data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query real-time cryptocurrency prices, market data, and trends across major exchanges including Binance, Coinbase, and Kraken.
 
-## Publisher: <br>
-[zhaocaixia888](https://clawhub.ai/user/zhaocaixia888) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhaocaixia888](https://clawhub.ai/user/zhaocaixia888)
 
-## Use Case: <br>
-Developers and external users can ask an agent to fetch and format public cryptocurrency quotes, market-cap data, volume, and short-term price movement from public exchange APIs for price checks, portfolio tracking, market overviews, and alert monitoring. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Live cryptocurrency market output can be mistaken for financial advice or connected to trading actions without review. <br>
-Mitigation: Use the output as informational market data only, and require separate human or system review before any trading decision or automated action. <br>
-Risk: Third-party public API limits, outages, or source differences can produce missing, delayed, or inconsistent quotes. <br>
-Mitigation: Handle rate limits and API errors, compare sources where accuracy matters, and avoid treating a single response as authoritative. <br>
+## Use Case:
 
+Developers, traders, and portfolio operators use this skill to fetch public cryptocurrency quote data, compare major coins, and summarize market movement for pre-trade checks, tracking, sentiment review, or alerting.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhaocaixia888/crypto-market-quotes) <br>
-- [Binance 24hr ticker endpoint](https://api.binance.com/api/v3/ticker/24hr?symbol=BTCUSDT) <br>
-- [CoinGecko markets endpoint](https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=20&page=1&sparkline=false) <br>
-- [Kraken ticker endpoint](https://api.kraken.com/0/public/Ticker?pair=XBTUSD) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands, formatted quote summaries, and market tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses public cryptocurrency market-data APIs through curl; no API key is required for the documented basic queries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The skill calls public cryptocurrency market-data APIs and may expose requested symbols or query timing to those providers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for symbols and market checks that are acceptable to send to public data providers.
+
+Risk: Returned prices can be stale, rate-limited, unavailable, or inconsistent across exchanges.
+
+Mitigation: Treat responses as informational market data and verify material decisions against authoritative exchange or portfolio systems.
+
+Risk: The artifact includes Chinese-language output examples that may not match every user's preferred response language.
+
+Mitigation: Ask the agent for the desired response language or formatting before presenting final market summaries.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhaocaixia888/skills/crypto-market-quotes)
+- [Binance 24-hour ticker endpoint](https://api.binance.com/api/v3/ticker/24hr?symbol=BTCUSDT)
+- [CoinGecko markets endpoint](https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=20&page=1&sparkline=false)
+- [Kraken ticker endpoint](https://api.kraken.com/0/public/Ticker?pair=XBTUSD)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline bash commands and market summary tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include live public market data, USD-denominated quote summaries, exchange-specific ticker fields, and rate-limit handling guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

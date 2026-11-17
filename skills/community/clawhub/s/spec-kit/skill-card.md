@@ -1,42 +1,58 @@
-## Description: <br>
-Use GitHub Spec Kit for Spec-Driven Development. Initialize projects, create specifications, and build software using the /speckit.* slash commands. Supports Claude Code, GitHub Copilot, Gemini CLI, and Codebuddy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use GitHub Spec Kit for Spec-Driven Development. Initialize projects, create specifications, and build software using the /speckit.* slash commands. Supports Claude Code, GitHub Copilot, Gemini CLI, and Codebuddy.
 
-## Publisher: <br>
-[AungMyoKyaw](https://clawhub.ai/user/AungMyoKyaw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[aungmyokyaw](https://clawhub.ai/user/aungmyokyaw)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to initialize Spec Kit projects, create executable specifications, clarify requirements, plan implementation, and build software through the /speckit.* workflow. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Spec Kit can automate project setup and development, which may change files, configuration, tests, and commits in a working project. <br>
-Mitigation: Use it on a clean branch or disposable project when possible, review generated diffs and test results, and inspect commits before pushing or sharing them. <br>
-Risk: The documented setup runs Spec Kit through uvx from a GitHub source, which may matter for supply-chain controls. <br>
-Mitigation: Pin or review the GitHub source used by uvx when supply-chain control is required. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Spec Kit Skill Page](https://clawhub.ai/AungMyoKyaw/spec-kit) <br>
-- [Spec Kit Documentation](https://github.github.com/spec-kit/) <br>
-- [Spec Kit Repository](https://github.com/github/spec-kit) <br>
-- [uv Documentation](https://docs.astral.sh/uv/) <br>
+## Use Case:
 
+Developers and engineers use this skill to initialize GitHub Spec Kit projects and guide specification, clarification, planning, and build workflows with supported coding agents.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with slash-command examples and shell command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or modify project files, configuration, specifications, implementation code, tests, and Git commits when used with Spec Kit commands.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill instructs users to execute mutable remote Git code at run time.
+
+Mitigation: Pin the Git URL to a reviewed commit or release before running initialization.
+
+Risk: Initialization and build workflows may modify project files and Git history.
+
+Mitigation: Run the workflow first in a disposable or isolated repository, inspect generated files, and review Git changes before accepting commits.
+
+Risk: Using --ignore-agent-tools may bypass checks for expected local agent tooling.
+
+Mitigation: Use the flag only after confirming the required tools and reviewing the generated .speckit files and scripts.
+
+## Reference(s):
+
+- [Spec Kit Documentation](https://github.github.com/spec-kit/)
+- [GitHub Spec Kit Repository](https://github.com/github/spec-kit)
+- [uv Documentation](https://docs.astral.sh/uv/)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown with inline slash commands and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose project files, specifications, plans, generated scripts, and Git changes for user review.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

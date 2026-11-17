@@ -1,43 +1,58 @@
-## Description: <br>
-Manages multiple OpenAI OAuth accounts in OpenClaw, including account snapshots, switching, quota checks, auto-rotation near exhaustion, and fallback model selection. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage multiple OpenAI OAuth accounts in OpenClaw by saving account snapshots, switching active accounts, checking cached 5-hour and weekly usage, rotating near quota exhaustion, and falling back to a backup model when OpenAI accounts are unavailable.
 
-## Publisher: <br>
-[tutouguai1933](https://clawhub.ai/user/tutouguai1933) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tutouguai1933](https://clawhub.ai/user/tutouguai1933)
 
-## Use Case: <br>
-Developers and OpenClaw operators use this skill to manage several OpenAI Codex OAuth accounts, inspect cached or probed quota state, switch accounts, and fall back to a backup model when OpenAI accounts are unavailable. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Quota probing can send OAuth tokens to the URL configured by OPENCLAW_CODEX_USAGE_URL. <br>
-Mitigation: Before enabling probing or automation, leave OPENCLAW_CODEX_USAGE_URL unset or set it only to the intended official endpoint. <br>
-Risk: The skill stores and propagates OAuth tokens in local OpenClaw account snapshots. <br>
-Mitigation: Use it only on trusted machines, back up ~/.openclaw before switching accounts, and treat ~/.openclaw/openai-codex-accounts/ as credential material. <br>
-Risk: Automated switching can change active OpenClaw accounts or fallback models during unattended checks. <br>
-Mitigation: Validate account status with list --verbose or status first, then use conservative thresholds and an inactivity guard for scheduled automation. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to manage multiple OpenAI Codex OAuth accounts, inspect active account and quota state, and automate account rotation or fallback model selection.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/tutouguai1933/openclaw-openai-multi-account) <br>
-- [ChatGPT usage endpoint used for quota checks](https://chatgpt.com/backend-api/wham/usage) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and optional JSON command output.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose or run commands that update local OpenClaw account state and OAuth account snapshots.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: The skill can read and rewrite OpenClaw OAuth credentials across configured agents.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in environments where account switching is expected, treat the snapshot directory as sensitive credential storage, and review status output before switching accounts.
+
+Risk: The usage endpoint is configurable and could be pointed at an untrusted host.
+
+Mitigation: Pin unattended use to a trusted HTTPS OpenAI or ChatGPT usage host before enabling scheduled checks.
+
+Risk: Account names influence stored snapshot paths and metadata.
+
+Mitigation: Use validated, simple account names and reject path traversal characters before adding accounts.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/tutouguai1933/skills/openclaw-openai-multi-account)
+- [ChatGPT usage endpoint used by the artifact](https://chatgpt.com/backend-api/wham/usage)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and optional JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose or run local commands that read and rewrite OpenClaw OAuth account snapshots and agent auth configuration.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

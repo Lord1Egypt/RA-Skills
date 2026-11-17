@@ -1,43 +1,53 @@
-## Description: <br>
-Local speech-to-text using OpenAI Whisper that runs fully offline after the initial model download and supports multiple model sizes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Local speech-to-text using OpenAI Whisper. Runs fully offline after model download. High quality transcription with multiple model sizes.
 
-## Publisher: <br>
-[araa47](https://clawhub.ai/user/araa47) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[araa47](https://clawhub.ai/user/araa47)
 
-## Use Case: <br>
-Developers and agent users use this skill to transcribe local audio files with Whisper, selecting model size, language, timestamp, JSON, and quiet-mode options as needed. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The initial Whisper model download and cache can be large, especially for larger model choices. <br>
-Mitigation: Choose an appropriate model size before first use and ensure local storage and network access are acceptable for the environment. <br>
-Risk: The setup relies on uv/pip dependency installation without a lockfile in the reviewed evidence. <br>
-Mitigation: Pin package versions or install in an isolated environment before operational use. <br>
-Risk: The documentation names scripts/local-whisper while the reviewed bundle contains scripts/transcribe.py. <br>
-Mitigation: Verify the command wrapper or invoke the reviewed script path directly before deployment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/araa47/local-whisper) <br>
-- [Publisher profile](https://clawhub.ai/user/araa47) <br>
-- [PyTorch CPU package index](https://download.pytorch.org/whl/cpu) <br>
+## Use Case:
 
+Developers and agents use this skill to transcribe local audio files with OpenAI Whisper, choosing model size, language, timestamp, JSON, and quiet-mode options.
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text transcription or JSON with optional timestamp segments; setup guidance uses Markdown with shell commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires ffmpeg and a local Whisper model cache after the initial model download.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Initial dependency and model downloads can be large and may vary over time.
+
+Mitigation: Install as an unprivileged user and pin or review package versions when reproducible or tightly controlled installs are required.
+
+Risk: Audio inputs and generated transcripts may contain sensitive spoken content.
+
+Mitigation: Process only authorized local audio files and review transcripts before sharing or storing them outside the local environment.
+
+## Reference(s):
+
+- [Local Whisper ClawHub release](https://clawhub.ai/araa47/skills/local-whisper)
+- [PyTorch CPU wheel index](https://download.pytorch.org/whl/cpu)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Guidance]
+
+**Output Format:** [Plain text transcript or JSON with optional language and segment timestamps; setup and usage guidance may include shell commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Runs locally after the initial Whisper model download; supports model, language, timestamps, JSON, and quiet-mode options.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,61 @@
-## Description: <br>
-Comprehensive Feishu/Lark integration skill for OpenClaw covering messaging, group management, Bitable tables, documents, calendar, video conferencing, meeting minutes, task management, approvals, contacts, cloud drive, and wiki workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Comprehensive Feishu/Lark integration guidance for OpenClaw agents covering messaging, group management, Bitable, documents, calendar, video conferencing, meeting minutes, tasks, approvals, contacts, cloud drive, and wiki workflows through the official Lark MCP server.
 
-## Publisher: <br>
-[lucascheung](https://clawhub.ai/user/lucascheung) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[lucascheung](https://clawhub.ai/user/lucascheung)
 
-## Use Case: <br>
-Developers and workplace automation users use this skill to let an agent work with Feishu/Lark collaboration surfaces such as messages, groups, documents, calendars, tasks, approvals, meeting records, and knowledge bases through the configured Lark MCP server. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can expose sensitive workplace data from chats, documents, calendars, contacts, meeting recordings, transcripts, approvals, and cloud drive content. <br>
-Mitigation: Use the narrowest Lark app scopes possible, limit account access, and review retrieved content before sharing it outside the intended audience. <br>
-Risk: The skill documents destructive or high-impact actions such as deleting messages, records, files, tasks, groups, calendar events, reservations, and changing permissions or approval states. <br>
-Mitigation: Require explicit user confirmation before deletion, permission changes, approval decisions, removing people, ending meetings, or other irreversible workplace actions. <br>
-Risk: The security verdict is suspicious because the integration is broad and the artifact does not provide enough safety guidance for sensitive Lark operations. <br>
-Mitigation: Review the skill before installing and constrain it to non-admin credentials unless elevated access is required for a specific workflow. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Lark Skill Page](https://clawhub.ai/lucascheung/lark-mcp) <br>
-- [Lark MCP Homepage](https://github.com/lucascheung/lark-mcp) <br>
-- [Official Lark OpenAPI MCP Server](https://github.com/larksuite/lark-openapi-mcp) <br>
-- [Lark Open Platform Documentation](https://open.larkoffice.com/document/home/index) <br>
-- [Lark Card Builder](https://open.larkoffice.com/cardkit) <br>
+## Use Case:
 
+Developers and automation builders use this skill to configure an agent for Feishu/Lark workplace operations such as messaging, document handling, calendar coordination, task management, approvals, and knowledge-base access through Lark MCP tools.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Configuration instructions, Shell commands, API calls, Markdown] <br>
-**Output Format:** [Markdown guidance with YAML examples and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a configured Lark MCP server and LARK_APP_ID/LARK_APP_SECRET credentials.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence; artifact frontmatter lists documentation version 3.1.0) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Setup runs mutable npm code while using Lark app credentials.
+
+Mitigation: Pin and review the Lark MCP package version before use, and avoid passing app secrets directly on the command line.
+
+Risk: The enabled Lark workflows can perform broad workplace read, write, and delete actions.
+
+Mitigation: Grant only the Lark scopes required for the intended workflow and require explicit user confirmation before destructive actions.
+
+Risk: The skill can guide access to sensitive workplace content such as recordings, transcripts, approvals, and private documents.
+
+Mitigation: Limit access to approved workspaces and review sensitive outputs before sharing or acting on them.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/lucascheung/skills/lark-mcp)
+- [Publisher Profile](https://clawhub.ai/user/lucascheung)
+- [Project Homepage](https://github.com/lucascheung/lark-mcp)
+- [Lark OpenAPI MCP Server](https://github.com/larksuite/lark-openapi-mcp)
+- [Lark Open Platform Documentation](https://open.larkoffice.com/document/home/index)
+- [Lark Card Builder](https://open.larkoffice.com/cardkit)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with YAML examples and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a configured Lark MCP server and LARK_APP_ID/LARK_APP_SECRET credentials.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

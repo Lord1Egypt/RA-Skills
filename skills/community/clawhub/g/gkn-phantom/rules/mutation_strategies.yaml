@@ -1,0 +1,837 @@
+# GKN-Phantom v3.0 — Mutation Strategies Configuration
+# ======================================================
+# Extracted from adaptive_engine.py MUTATION_STRATEGIES.
+# Maps each vulnerability type to a set of named mutation strategies.
+#
+# NOTE: The actual lambda/function implementations remain in
+# adaptive_engine.py. This YAML file describes the STRATEGY METADATA —
+# what each strategy does, when to apply it, and what WAF type it is
+# most effective against. This allows users to enable/disable/prioritize
+# strategies per engagement without modifying Python code.
+#
+# Total: 20 vulnerability-type groups, ~120 individual strategies
+
+mutation_groups:
+
+  # ---- SQL Injection: 12 strategies -----------------------------------------
+  - vuln_type: "sqli"
+    description: "SQL injection payload mutation for WAF bypass"
+    priority: 1
+    strategies:
+      - name: "url_encode_quote"
+        description: "Replace single quote with %27 URL encoding"
+        transformation: "p.replace(\"'\", \"%27\")"
+        effective_against: ["generic", "mod_security", "cloudflare"]
+        category: "encoding"
+
+      - name: "inline_comment_spaces"
+        description: "Replace spaces with inline comment /**/ to bypass space-based filters"
+        transformation: "p.replace(' ', '/**/')"
+        effective_against: ["mod_security", "tencent_waf", "safedog"]
+        category: "obfuscation"
+
+      - name: "commented_space"
+        description: "Replace spaces with commented-space /*RANDOM*/"
+        transformation: "p.replace(' ', '/*PTSKILLTEST*/')"
+        effective_against: ["mod_security", "fortiweb"]
+        category: "obfuscation"
+
+      - name: "case_variation_union"
+        description: "Randomize case of UNION keyword (UnIoN)"
+        transformation: "p.replace('UNION', 'UnIoN')"
+        effective_against: ["generic", "safedog", "yundun"]
+        category: "case"
+
+      - name: "case_variation_select"
+        description: "Randomize case of SELECT keyword (SeLeCt)"
+        transformation: "p.replace('SELECT', 'SeLeCt')"
+        effective_against: ["generic", "safedog"]
+        category: "case"
+
+      - name: "trailing_comment"
+        description: "Append trailing comment /* to break query analysis"
+        transformation: "p + '/*'"
+        effective_against: ["mod_security", "imperva"]
+        category: "truncation"
+
+      - name: "double_quote_escape"
+        description: "Double the single quote for escape bypass"
+        transformation: "p.replace(\"'\", \"''\")"
+        effective_against: ["generic", "barracuda"]
+        category: "encoding"
+
+      - name: "like_instead_of_equals"
+        description: "Use LIKE operator instead of = for boolean tests"
+        transformation: "p.replace('=', ' LIKE ')"
+        effective_against: ["mod_security", "cloudflare"]
+        category: "operator"
+
+      - name: "tab_separator"
+        description: "Use tab character (%09) as space separator"
+        transformation: "p.replace(' ', '%09')"
+        effective_against: ["generic", "tencent_waf"]
+        category: "encoding"
+
+      - name: "double_pipe_or"
+        description: "Use || instead of OR keyword"
+        transformation: "p.replace('or', '||')"
+        effective_against: ["mod_security", "yundun"]
+        category: "operator"
+
+      - name: "newline_separator"
+        description: "Use newline (0x0a) as separator character"
+        transformation: "p.replace(' ', chr(0x0a))"
+        effective_against: ["generic", "f5_asm"]
+        category: "encoding"
+
+      - name: "tautology_variant"
+        description: "Use 2>1 instead of 1=1 as tautology"
+        transformation: "p.replace('1=1', '2>1')"
+        effective_against: ["mod_security", "imperva"]
+        category: "logic"
+
+  # ---- XSS: 10 strategies ---------------------------------------------------
+  - vuln_type: "xss"
+    description: "Cross-site scripting payload mutation for filter bypass"
+    priority: 2
+    strategies:
+      - name: "url_encode_lt"
+        description: "URL-encode < character as %3C"
+        transformation: "p.replace('<', '%3C')"
+        effective_against: ["generic", "cloudflare", "yundun"]
+        category: "encoding"
+
+      - name: "url_encode_gt"
+        description: "URL-encode > character as %3E"
+        transformation: "p.replace('>', '%3E')"
+        effective_against: ["generic", "cloudflare"]
+        category: "encoding"
+
+      - name: "case_variation_script"
+        description: "Randomize case of <script tag (<ScRiPt)"
+        transformation: "p.replace('<script', '<ScRiPt')"
+        effective_against: ["mod_security", "safedog"]
+        category: "case"
+
+      - name: "svg_onload"
+        description: "Use <svg/onload instead of <script for event-based XSS"
+        transformation: "p.replace('<script', '<svg/onload')"
+        effective_against: ["mod_security", "tencent_waf"]
+        category: "alternative-tag"
+
+      - name: "slash_separator"
+        description: "Use / as attribute separator in HTML"
+        transformation: "p.replace(' ', '/')"
+        effective_against: ["generic", "barracuda"]
+        category: "obfuscation"
+
+      - name: "unicode_escape_lt"
+        description: "Use unicode escape \\u003c instead of < character"
+        transformation: "p.replace('<', '\\\\u003c')"
+        effective_against: ["mod_security", "f5_asm"]
+        category: "encoding"
+
+      - name: "prompt_instead_of_alert"
+        description: "Use prompt() instead of alert() for popup-based detection"
+        transformation: "p.replace('alert', 'prompt')"
+        effective_against: ["generic", "wordfence"]
+        category: "function"
+
+      - name: "confirm_instead_of_alert"
+        description: "Use confirm() instead of alert() for popup-based detection"
+        transformation: "p.replace('alert', 'confirm')"
+        effective_against: ["generic", "wordfence"]
+        category: "function"
+
+      - name: "html_entity_lt"
+        description: "Use HTML entity &lt; instead of < character"
+        transformation: "p.replace('<', '&lt;')"
+        effective_against: ["generic", "sucuri"]
+        category: "encoding"
+
+      - name: "case_variation_onerror"
+        description: "Randomize case of onerror event (ONERROR)"
+        transformation: "p.replace('onerror', 'ONERROR')"
+        effective_against: ["mod_security", "safedog"]
+        category: "case"
+
+  # ---- Command Injection: 8 strategies --------------------------------------
+  - vuln_type: "command_injection"
+    description: "OS command injection payload mutation"
+    priority: 3
+    strategies:
+      - name: "ifs_separator"
+        description: "Use $IFS (Internal Field Separator) instead of spaces (Linux)"
+        transformation: "p.replace(' ', '$IFS')"
+        effective_against: ["generic", "mod_security", "tencent_waf"]
+        category: "encoding"
+
+      - name: "url_encode_semicolon"
+        description: "URL-encode ; as %3B"
+        transformation: "p.replace(';', '%3B')"
+        effective_against: ["generic", "cloudflare"]
+        category: "encoding"
+
+      - name: "double_ampersand"
+        description: "Use && instead of ; as command separator"
+        transformation: "p.replace(';', '&&')"
+        effective_against: ["mod_security", "safedog"]
+        category: "operator"
+
+      - name: "case_variation_sleep"
+        description: "Randomize case of sleep command (SlEeP)"
+        transformation: "p.replace('sleep', 'SlEeP')"
+        effective_against: ["generic", "safedog", "yundun"]
+        category: "case"
+
+      - name: "newline_semicolon"
+        description: "Use newline %0a instead of ; as command separator"
+        transformation: "p.replace(';', '%0a')"
+        effective_against: ["mod_security", "imperva"]
+        category: "encoding"
+
+      - name: "url_encode_pipe"
+        description: "URL-encode | pipe character as %7c"
+        transformation: "p.replace('|', '%7c')"
+        effective_against: ["generic", "cloudflare"]
+        category: "encoding"
+
+      - name: "backslash_escape_cat"
+        description: "Escape cat command with backslash (c\\at)"
+        transformation: "p.replace('cat', 'c\\\\at')"
+        effective_against: ["mod_security", "safedog"]
+        category: "obfuscation"
+
+      - name: "single_quote_escape_cat"
+        description: "Escape cat command with single quotes (c'a't)"
+        transformation: "p.replace('cat', \"c'a't\")"
+        effective_against: ["mod_security", "f5_asm"]
+        category: "obfuscation"
+
+  # ---- Path Traversal: 8 strategies -----------------------------------------
+  - vuln_type: "path_traversal"
+    description: "Directory/path traversal payload mutation"
+    priority: 4
+    strategies:
+      - name: "url_encode_dotdot"
+        description: "URL-encode .. as %2e%2e to bypass dot-filter rules"
+        transformation: "p.replace('..', '%2e%2e')"
+        effective_against: ["generic", "cloudflare", "tencent_waf"]
+        category: "encoding"
+
+      - name: "quadruple_dot_slash"
+        description: "Use ....// instead of ../ to bypass naive ../ filters"
+        transformation: "p.replace('..', '....//')"
+        effective_against: ["mod_security", "safedog"]
+        category: "filter-bypass"
+
+      - name: "encoded_slash"
+        description: "URL-encode / as %2f while dots remain literal"
+        transformation: "p.replace('/', '%2f')"
+        effective_against: ["generic", "yundun"]
+        category: "encoding"
+
+      - name: "backslash_windows"
+        description: "Use backslash \\ instead of forward slash for Windows targets"
+        transformation: "p.replace('/', '\\\\')"
+        effective_against: ["generic", "mod_security"]
+        category: "os-specific"
+
+      - name: "double_encoded_dotdot"
+        description: "Double URL-encode .. as ..%252f to bypass single-decode"
+        transformation: "p.replace('..', '..%252f')"
+        effective_against: ["imperva", "akamai"]
+        category: "encoding"
+
+      - name: "iis_semicolon"
+        description: "Use IIS semicolon ..; trick for IIS servers"
+        transformation: "p.replace('..', '..;')"
+        effective_against: ["generic", "f5_asm"]
+        category: "iis-specific"
+
+      - name: "unicode_overlong"
+        description: "Use unicode overlong sequence ..%c0%af to bypass ASCII filters"
+        transformation: "p.replace('..', '..%c0%af')"
+        effective_against: ["mod_security", "f5_asm"]
+        category: "encoding"
+
+      - name: "null_byte_bypass"
+        description: "Use null byte .%00./ to truncate extension checks"
+        transformation: "p.replace('..', '.%00./')"
+        effective_against: ["generic", "barracuda"]
+        category: "truncation"
+
+  # ---- File Upload: 8 strategies --------------------------------------------
+  - vuln_type: "file_upload"
+    description: "File upload extension/content-type bypass mutations"
+    priority: 5
+    strategies:
+      - name: "phtml_extension"
+        description: "Use .phtml extension as PHP alternative"
+        transformation: "p.replace('.php', '.phtml')"
+        effective_against: ["generic", "mod_security"]
+        category: "extension"
+
+      - name: "phar_extension"
+        description: "Use .phar (PHP Archive) extension"
+        transformation: "p.replace('.php', '.phar')"
+        effective_against: ["generic", "mod_security"]
+        category: "extension"
+
+      - name: "php5_extension"
+        description: "Use .php5 extension as PHP version variant"
+        transformation: "p.replace('.php', '.php5')"
+        effective_against: ["generic", "safedog"]
+        category: "extension"
+
+      - name: "iis_semicolon_extension"
+        description: "Use IIS .asp;.jpg trick to bypass extension filters"
+        transformation: "p.replace('.php', '.asp;.jpg')"
+        effective_against: ["generic", "f5_asm", "safedog"]
+        category: "iis-specific"
+
+      - name: "double_extension"
+        description: "Use .jpg.php double extension to exploit parsing order"
+        transformation: "p.replace('.php', '.jpg.php')"
+        effective_against: ["generic", "cloudflare", "safedog"]
+        category: "extension"
+
+      - name: "null_byte_extension"
+        description: "Use .php%00.jpg with null byte truncation"
+        transformation: "p.replace('.php', '.php%00.jpg')"
+        effective_against: ["generic", "barracuda"]
+        category: "truncation"
+
+      - name: "case_variation_extension"
+        description: "Use mixed-case .PhP extension"
+        transformation: "p.replace('.php', '.PhP')"
+        effective_against: ["generic", "safedog", "yundun"]
+        category: "case"
+
+      - name: "malformed_extension"
+        description: "Use malformed .p\\hp with backslash"
+        transformation: "p.replace('.php', '.p\\\\hp')"
+        effective_against: ["generic", "safedog"]
+        category: "obfuscation"
+
+  # ---- NoSQL Injection: 6 strategies (v3 NEW) -------------------------------
+  - vuln_type: "nosql_injection"
+    description: "NoSQL (MongoDB) injection operator substitution"
+    priority: 6
+    strategies:
+      - name: "gte_for_gt"
+        description: "Use $gte (greater-than-or-equal) instead of $gt"
+        transformation: "p.replace('$gt', '$gte')"
+        effective_against: ["generic", "mod_security"]
+        category: "operator"
+      - name: "nin_for_ne"
+        description: "Use $nin (not in) instead of $ne (not equal)"
+        transformation: "p.replace('$ne', '$nin')"
+        effective_against: ["generic", "cloudflare"]
+        category: "operator"
+      - name: "number_for_boolean"
+        description: "Use 1 instead of true for boolean operators"
+        transformation: "p.replace('true', '1')"
+        effective_against: ["generic"]
+        category: "type-juggling"
+      - name: "single_quote_for_double"
+        description: "Use single quotes instead of double quotes for JSON keys"
+        transformation: "p.replace('\"', \"'\")"
+        effective_against: ["generic", "safedog"]
+        category: "encoding"
+      - name: "this_for_where"
+        description: "Use 'this' keyword instead of $where operator"
+        transformation: "p.replace('$where', 'this')"
+        effective_against: ["mod_security", "tencent_waf"]
+        category: "keyword"
+      - name: "options_for_regex"
+        description: "Use $options instead of $regex to modify matching behavior"
+        transformation: "p.replace('$regex', '$options')"
+        effective_against: ["mod_security"]
+        category: "operator"
+
+  # ---- LDAP Injection: 6 strategies (v3 NEW) ---------------------------------
+  - vuln_type: "ldap_injection"
+    description: "LDAP injection character encoding"
+    priority: 7
+    strategies:
+      - name: "url_encode_lparen"
+        description: "URL-encode ( as %28"
+        transformation: "p.replace('(', '%28')"
+        effective_against: ["generic", "cloudflare"]
+        category: "encoding"
+      - name: "url_encode_rparen"
+        description: "URL-encode ) as %29"
+        transformation: "p.replace(')', '%29')"
+        effective_against: ["generic", "cloudflare"]
+        category: "encoding"
+      - name: "url_encode_star"
+        description: "URL-encode * as %2a"
+        transformation: "p.replace('*', '%2a')"
+        effective_against: ["generic", "yundun"]
+        category: "encoding"
+      - name: "url_encode_ampersand"
+        description: "URL-encode & as %26"
+        transformation: "p.replace('&', '%26')"
+        effective_against: ["generic", "cloudflare"]
+        category: "encoding"
+      - name: "url_encode_pipe"
+        description: "URL-encode | as %7c"
+        transformation: "p.replace('|', '%7c')"
+        effective_against: ["generic", "mod_security"]
+        category: "encoding"
+      - name: "double_exclamation"
+        description: "Double !! to confuse negation filters"
+        transformation: "p.replace('!', '!!')"
+        effective_against: ["generic", "f5_asm"]
+        category: "obfuscation"
+
+  # ---- CRLF Injection: 5 strategies (v3 NEW) --------------------------------
+  - vuln_type: "crlf_injection"
+    description: "CRLF injection encoding obfuscation"
+    priority: 8
+    strategies:
+      - name: "crlf_with_space"
+        description: "Add %20 after %0d%0a to bypass exact CRLF filters"
+        transformation: "p.replace('%0d%0a', '%0d%0a%20')"
+        effective_against: ["generic", "mod_security"]
+        category: "obfuscation"
+      - name: "crlf_space_rn"
+        description: "Add trailing space after \\r\\n"
+        transformation: "p.replace('\\r\\n', '\\r\\n ')"
+        effective_against: ["generic"]
+        category: "obfuscation"
+      - name: "double_cr"
+        description: "Double the CR byte %0d%0d to confuse parsing"
+        transformation: "p.replace('%0d', '%0d%0d')"
+        effective_against: ["mod_security"]
+        category: "encoding"
+      - name: "double_lf"
+        description: "Double the LF byte %0a%0a"
+        transformation: "p.replace('%0a', '%0a%0a')"
+        effective_against: ["mod_security"]
+        category: "encoding"
+      - name: "unicode_crlf"
+        description: "Use Unicode CRLF equivalent %E5%98%8A%E5%98%8D"
+        transformation: "p.replace('\\r\\n', '%E5%98%8A%E5%98%8D')"
+        effective_against: ["mod_security", "f5_asm"]
+        category: "encoding"
+
+  # ---- SSRF: 8 strategies (v3 NEW) ------------------------------------------
+  - vuln_type: "ssrf"
+    description: "SSRF URL obfuscation for IP/hostname bypass"
+    priority: 9
+    strategies:
+      - name: "localhost_override"
+        description: "Replace target with http://127.0.0.1:port"
+        transformation: "p.replace('http://', 'http://127.0.0.1:')"
+        effective_against: ["generic", "cloudflare"]
+        category: "hostname"
+      - name: "zero_ip"
+        description: "Use 0.0.0.0 as alternative to 127.0.0.1"
+        transformation: "p.replace('127.0.0.1', '0.0.0.0')"
+        effective_against: ["generic", "mod_security"]
+        category: "hostname"
+      - name: "ipv6_loopback"
+        description: "Use IPv6 loopback [::1] instead of 127.0.0.1"
+        transformation: "p.replace('127.0.0.1', '[::1]')"
+        effective_against: ["generic", "f5_asm"]
+        category: "hostname"
+      - name: "decimal_ip"
+        description: "Use decimal IP representation 2130706433 for 127.0.0.1"
+        transformation: "p.replace('127.0.0.1', '2130706433')"
+        effective_against: ["mod_security", "cloudflare"]
+        category: "encoding"
+      - name: "hex_ip"
+        description: "Use hex IP representation 0x7f000001 for 127.0.0.1"
+        transformation: "p.replace('127.0.0.1', '0x7f000001')"
+        effective_against: ["mod_security", "imperva"]
+        category: "encoding"
+      - name: "localtest_me"
+        description: "Use localtest.me (resolves to 127.0.0.1) DNS trick"
+        transformation: "p.replace('localhost', 'localtest.me')"
+        effective_against: ["generic"]
+        category: "dns"
+      - name: "unicode_domain"
+        description: "Use unicode homoglyph domain with 127.0.0.1 embedded"
+        transformation: "p.replace('http://', 'http://xn--127.0.0.1/')"
+        effective_against: ["mod_security"]
+        category: "encoding"
+      - name: "nip_io_dns"
+        description: "Use nip.io DNS service: 127.0.0.1.nip.io"
+        transformation: "p.replace('http://', 'http://127.0.0.1.nip.io/')"
+        effective_against: ["generic", "cloudflare"]
+        category: "dns"
+
+  # ---- SSTI: 6 strategies (v3 NEW) ------------------------------------------
+  - vuln_type: "ssti"
+    description: "Server-side template injection syntax variation"
+    priority: 10
+    strategies:
+      - name: "dollar_brace"
+        description: "Use ${ instead of {{ for FreeMarker-style templates"
+        transformation: "p.replace('{{', '${')"
+        effective_against: ["generic", "mod_security"]
+        category: "syntax"
+      - name: "string_multiply"
+        description: "Use 7*'7' instead of 7*7 for string-based arithmetic"
+        transformation: "p.replace('7*7', \"7*'7'\")"
+        effective_against: ["mod_security"]
+        category: "expression"
+      - name: "eruby_syntax"
+        description: "Use <%= syntax for ERB/ERuby templates"
+        transformation: "p.replace('{{', '<%=')"
+        effective_against: ["generic"]
+        category: "syntax"
+      - name: "mro_chain"
+        description: "Use self.__class__ for Python MRO chain"
+        transformation: "p.replace('self', 'self.__class__')"
+        effective_against: ["mod_security"]
+        category: "expression"
+      - name: "request_application"
+        description: "Use request.application instead of config for Flask"
+        transformation: "p.replace('config', 'request.application')"
+        effective_against: ["mod_security"]
+        category: "expression"
+      - name: "twig_filter_add"
+        description: "Use Twig filter 42|add:7 instead of 7*7"
+        transformation: "p.replace('7*7', '42|add:7')"
+        effective_against: ["mod_security"]
+        category: "expression"
+
+  # ---- XXE: 5 strategies (v3 NEW) -------------------------------------------
+  - vuln_type: "xxe"
+    description: "XML External Entity payload mutation"
+    priority: 11
+    strategies:
+      - name: "system_quote_space"
+        description: "Add space after SYSTEM keyword (SYSTEM ')"
+        transformation: "p.replace('SYSTEM', \"SYSTEM '\")"
+        effective_against: ["generic", "mod_security"]
+        category: "obfuscation"
+      - name: "php_filter_wrapper"
+        description: "Use php://filter instead of file:// for PHP targets"
+        transformation: "p.replace('file://', 'php://filter/')"
+        effective_against: ["mod_security", "safedog"]
+        category: "protocol"
+      - name: "parameter_entity"
+        description: "Use parameter entity % instead of general entity"
+        transformation: "p.replace('<!ENTITY', '<!ENTITY %')"
+        effective_against: ["mod_security", "f5_asm"]
+        category: "entity"
+      - name: "public_instead_of_system"
+        description: "Use PUBLIC keyword instead of SYSTEM"
+        transformation: "p.replace('SYSTEM', 'PUBLIC')"
+        effective_against: ["generic"]
+        category: "keyword"
+      - name: "expect_wrapper"
+        description: "Use expect:// protocol instead of file:// for PHP"
+        transformation: "p.replace('file:///etc/passwd', 'expect://id')"
+        effective_against: ["mod_security"]
+        category: "protocol"
+
+  # ---- Deserialization: 5 strategies (v3 NEW) -------------------------------
+  - vuln_type: "deserialization"
+    description: "Insecure deserialization payload mutation"
+    priority: 12
+    strategies:
+      - name: "php_plus_syntax"
+        description: "Use O:+ for PHP serialized objects"
+        transformation: "p.replace('O:', 'O:+')"
+        effective_against: ["generic", "mod_security"]
+        category: "syntax"
+      - name: "escaped_slash"
+        description: "Escape forward slash in Python pickle (py\\/)"
+        transformation: "p.replace('py/', 'py\\\\/')"
+        effective_against: ["mod_security"]
+        category: "encoding"
+      - name: "uppercase_protocol"
+        description: "Use uppercase PHP: protocol identifier"
+        transformation: "p.replace('php:', 'PHP:')"
+        effective_against: ["generic"]
+        category: "case"
+      - name: "java_util_path"
+        description: "Use java/util/ path separator instead of java."
+        transformation: "p.replace('java.', 'java/util/')"
+        effective_against: ["mod_security", "f5_asm"]
+        category: "path"
+      - name: "base64url_encoding"
+        description: "Use base64url encoding instead of standard base64"
+        transformation: "p.replace('base64', 'base64url')"
+        effective_against: ["mod_security"]
+        category: "encoding"
+
+  # ---- Prototype Pollution: 5 strategies (v3 NEW) ---------------------------
+  - vuln_type: "prototype_pollution"
+    description: "JavaScript prototype pollution key obfuscation"
+    priority: 13
+    strategies:
+      - name: "constructor_prototype"
+        description: "Use constructor.prototype instead of __proto__"
+        transformation: "p.replace('__proto__', 'constructor.prototype')"
+        effective_against: ["generic", "mod_security"]
+        category: "key"
+      - name: "proto_null_byte"
+        description: "Add null byte %00 after __proto__"
+        transformation: "p.replace('__proto__', '__proto__%00')"
+        effective_against: ["generic"]
+        category: "truncation"
+      - name: "bracket_notation"
+        description: "Use [\"__proto__\"] bracket notation"
+        transformation: "p.replace('__proto__', '[\"__proto__\"]')"
+        effective_against: ["mod_security"]
+        category: "syntax"
+      - name: "constructor_bracket_prototype"
+        description: "Use constructor['prototype'] compound notation"
+        transformation: "p.replace('__proto__', \"constructor['prototype']\")"
+        effective_against: ["mod_security"]
+        category: "syntax"
+      - name: "uppercase_proto"
+        description: "Use uppercase __PROTO__ (if case-insensitive merge)"
+        transformation: "p.replace('__proto__', '__PROTO__')"
+        effective_against: ["generic"]
+        category: "case"
+
+  # ---- GraphQL Injection: 5 strategies (v3 NEW) -----------------------------
+  - vuln_type: "graphql_injection"
+    description: "GraphQL query mutation for WAF/injection bypass"
+    priority: 14
+    strategies:
+      - name: "newline_after_query"
+        description: "Add newline after query keyword to confuse WAF parsing"
+        transformation: "p.replace('query', 'query\\n')"
+        effective_against: ["generic", "mod_security"]
+        category: "whitespace"
+      - name: "schema_instead_of_typename"
+        description: "Use __schema instead of __typename for introspection"
+        transformation: "p.replace('__typename', '__schema')"
+        effective_against: ["mod_security"]
+        category: "field"
+      - name: "url_encoded_brace"
+        description: "Use {%20 for URL-encoded space after opening brace"
+        transformation: "p.replace('{', '{%20')"
+        effective_against: ["generic"]
+        category: "encoding"
+      - name: "many_spaces"
+        description: "Use many spaces after query to confuse parsers"
+        transformation: "p.replace('query', 'query        ')"
+        effective_against: ["generic", "tencent_waf"]
+        category: "whitespace"
+      - name: "newline_injection_in_id"
+        description: "Inject newline into argument value"
+        transformation: "p.replace('id: 1', 'id: \\\\n1')"
+        effective_against: ["mod_security"]
+        category: "injection"
+
+  # ---- HTTP Smuggling: 5 strategies (v3 NEW) --------------------------------
+  - vuln_type: "http_smuggling"
+    description: "HTTP request smuggling header obfuscation"
+    priority: 15
+    strategies:
+      - name: "te_newline"
+        description: "Add newline after Transfer-Encoding header name"
+        transformation: "p.replace('Transfer-Encoding', 'Transfer-Encoding\\n')"
+        effective_against: ["generic", "mod_security", "cloudflare"]
+        category: "header"
+      - name: "chunked_vertical_tab"
+        description: "Use chunked with 0x0b vertical tab obfuscation"
+        transformation: "p.replace('chunked', 'chunked\\x0b')"
+        effective_against: ["mod_security", "akamai"]
+        category: "encoding"
+      - name: "cl_with_space"
+        description: "Add space after Content-Length header name"
+        transformation: "p.replace('Content-Length', 'Content-Length\\x20')"
+        effective_against: ["generic", "f5_asm"]
+        category: "header"
+      - name: "identity_chunked"
+        description: "Use identity, chunked as dual Transfer-Encoding"
+        transformation: "p.replace('chunked', 'identity, chunked')"
+        effective_against: ["mod_security", "imperva"]
+        category: "dual-header"
+      - name: "cl_zero_prefix"
+        description: "Prefix with CL: 0 to exploit header ordering"
+        transformation: "p.replace('CL: ', 'Content-Length: 0\\r\\n\\r\\n')"
+        effective_against: ["generic", "akamai"]
+        category: "header-ordering"
+
+  # ---- Cache Poisoning: 5 strategies (v3 NEW) -------------------------------
+  - vuln_type: "cache_poisoning"
+    description: "Web cache poisoning header mutation"
+    priority: 16
+    strategies:
+      - name: "xfh_newline"
+        description: "Add newline after X-Forwarded-Host header"
+        transformation: "p.replace('X-Forwarded-Host', 'X-Forwarded-Host\\n')"
+        effective_against: ["generic", "cloudflare"]
+        category: "header"
+      - name: "xfs_scheme_http"
+        description: "Add scheme value to X-Forwarded-Scheme"
+        transformation: "p.replace('X-Forwarded-Scheme', 'X-Forwarded-Scheme: http')"
+        effective_against: ["generic", "akamai"]
+        category: "header"
+      - name: "xff_newline"
+        description: "Add newline after X-Forwarded-For header"
+        transformation: "p.replace('X-Forwarded-For', 'X-Forwarded-For\\n')"
+        effective_against: ["generic"]
+        category: "header"
+      - name: "xou_newline"
+        description: "Add newline after X-Original-URL header"
+        transformation: "p.replace('X-Original-URL', 'X-Original-URL\\n')"
+        effective_against: ["generic", "akamai"]
+        category: "header"
+      - name: "xru_newline"
+        description: "Add newline after X-Rewrite-URL header"
+        transformation: "p.replace('X-Rewrite-URL', 'X-Rewrite-URL\\n')"
+        effective_against: ["generic"]
+        category: "header"
+
+  # ---- JWT: 5 strategies (v3 NEW) -------------------------------------------
+  - vuln_type: "jwt_deep_analysis"
+    description: "JWT token manipulation strategies"
+    priority: 17
+    strategies:
+      - name: "alg_none"
+        description: "Change algorithm to none (no signature)"
+        transformation: "p.replace('alg\\\":\\\"HS256\\\"', 'alg\\\":\\\"none\\\"')"
+        effective_against: ["generic"]
+        category: "algorithm"
+      - name: "alg_confusion_rs_to_hs"
+        description: "Change RS256 to HS256 to use public key as HMAC secret"
+        transformation: "p.replace('alg\\\":\\\"RS256\\\"', 'alg\\\":\\\"HS256\\\"')"
+        effective_against: ["generic"]
+        category: "algorithm"
+      - name: "preserve_header"
+        description: "Preserve original JWT header during mutation"
+        transformation: "p.replace('eyJ', 'eyJ')"
+        effective_against: ["generic"]
+        category: "header"
+      - name: "double_dot"
+        description: "Add double-dot .. in JWT parts"
+        transformation: "p.replace('.', '..')"
+        effective_against: ["generic"]
+        category: "separator"
+      - name: "url_encode_bearer"
+        description: "URL-encode Bearer prefix for transport"
+        transformation: "p.replace('Bearer ', 'Bearer%20')"
+        effective_against: ["generic", "cloudflare"]
+        category: "encoding"
+
+  # ---- OAuth: 5 strategies (v3 NEW) -----------------------------------------
+  - vuln_type: "oauth_misconfig"
+    description: "OAuth 2.0 parameter mutation"
+    priority: 18
+    strategies:
+      - name: "redirect_uri_null"
+        description: "Add null byte %00 after redirect_uri parameter name"
+        transformation: "p.replace('redirect_uri', 'redirect_uri%00')"
+        effective_against: ["generic"]
+        category: "truncation"
+      - name: "response_type_token"
+        description: "Change response_type from code to token (implicit flow)"
+        transformation: "p.replace('response_type=code', 'response_type=token')"
+        effective_against: ["generic"]
+        category: "flow"
+      - name: "client_id_null"
+        description: "Add null byte after client_id parameter"
+        transformation: "p.replace('client_id', 'client_id%00')"
+        effective_against: ["generic"]
+        category: "truncation"
+      - name: "scope_newline"
+        description: "Add newline after scope parameter"
+        transformation: "p.replace('scope', 'scope%0a')"
+        effective_against: ["generic"]
+        category: "injection"
+      - name: "state_traversal"
+        description: "Add path traversal to state parameter"
+        transformation: "p.replace('state=', 'state=../../')"
+        effective_against: ["generic"]
+        category: "injection"
+
+  # ---- Race Condition: 4 strategies (v3 NEW) --------------------------------
+  - vuln_type: "race_condition"
+    description: "Race condition exploitation header mutation"
+    priority: 19
+    strategies:
+      - name: "te_chunked"
+        description: "Add chunked Transfer-Encoding to enable request pipelining"
+        transformation: "p.replace('Transfer-Encoding', 'Transfer-Encoding: chunked')"
+        effective_against: ["generic"]
+        category: "header"
+      - name: "post_newline"
+        description: "Add newline after POST method for request splitting"
+        transformation: "p.replace('POST', 'POST\\n')"
+        effective_against: ["generic", "mod_security"]
+        category: "method"
+      - name: "keep_alive_case"
+        description: "Change Connection keep-alive case variation"
+        transformation: "p.replace('Connection: keep-alive', 'Connection: Keep-Alive\\n')"
+        effective_against: ["generic"]
+        category: "header"
+      - name: "cl_zero"
+        description: "Set Content-Length: 0 to enable request smuggling for race"
+        transformation: "p.replace('Content-Length: 1', 'Content-Length: 0')"
+        effective_against: ["generic", "akamai"]
+        category: "header"
+
+  # ---- CORS: 4 strategies (v3 NEW) ------------------------------------------
+  - vuln_type: "cors_misconfig"
+    description: "CORS Origin header mutation for origin validation bypass"
+    priority: 20
+    strategies:
+      - name: "origin_trailing_dot"
+        description: "Add trailing dot to Origin: https://evil.com → .com."
+        transformation: "p.replace('Origin: https://evil.com', 'Origin: https://evil.com.')"
+        effective_against: ["generic"]
+        category: "dns"
+      - name: "origin_null"
+        description: "Use null Origin for sandboxed contexts"
+        transformation: "p.replace('Origin: https://evil.com', 'Origin: null')"
+        effective_against: ["generic", "safedog"]
+        category: "origin"
+      - name: "origin_subdomain"
+        description: "Use subdomain prefix for origin matching bypass"
+        transformation: "p.replace('Origin: https://evil.com', 'Origin: https://sub.evil.com')"
+        effective_against: ["generic"]
+        category: "origin"
+      - name: "origin_encoded_backtick"
+        description: "Use encoded backtick for suffix bypass"
+        transformation: "p.replace('Origin: https://evil.com', 'Origin: https://evil.com%60')"
+        effective_against: ["generic"]
+        category: "encoding"
+
+  # ---- Host Header Injection: 4 strategies (v3 NEW) -------------------------
+  - vuln_type: "host_header_injection"
+    description: "Host header override and injection strategies"
+    priority: 21
+    strategies:
+      - name: "x_forwarded_host"
+        description: "Use X-Forwarded-Host header instead of Host"
+        transformation: "p.replace('Host:', 'X-Forwarded-Host:')"
+        effective_against: ["generic", "cloudflare"]
+        category: "header-override"
+      - name: "x_host"
+        description: "Use X-Host custom header instead of Host"
+        transformation: "p.replace('Host:', 'X-Host:')"
+        effective_against: ["generic"]
+        category: "header-override"
+      - name: "host_newline"
+        description: "Add newline after Host header for injection"
+        transformation: "p.replace('Host:', 'Host:\\n')"
+        effective_against: ["generic", "mod_security"]
+        category: "injection"
+      - name: "host_evil_override"
+        description: "Replace target Host with attacker-controlled value"
+        transformation: "p.replace('Host: target.com', 'Host: evil.com')"
+        effective_against: ["generic"]
+        category: "replacement"
+
+# ---- Global configuration ------------------------------------------------
+# Settings that apply to all mutation strategy execution.
+
+global_settings:
+  max_variants_per_type: 5          # Default max mutations to generate
+  retry_with_mutations: true        # Whether adaptive engine should mutate
+  mutation_order: "sequential"      # "sequential", "random", "priority"
+  waf_specific_priorities: true     # Prioritize strategies effective against detected WAF
+  log_mutations: true               # Log each mutation attempt
+  fallback_to_generic: true         # If type-specific strategies fail, try generic obfuscation

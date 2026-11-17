@@ -1,45 +1,59 @@
-## Description: <br>
-Kelly Formula Crypto helps agents calculate cryptocurrency position sizes using Kelly Criterion, fractional Kelly, multi-strategy allocation, and leverage safety checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Kelly Formula Crypto calculates crypto position sizes with Kelly Criterion, fractional Kelly suggestions, multi-strategy allocation, leverage safety checks, and disclosed x402 payment support.
 
-## Publisher: <br>
-[jinboh68-prog](https://clawhub.ai/user/jinboh68-prog) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jinboh68-prog](https://clawhub.ai/user/jinboh68-prog)
 
-## Use Case: <br>
-External users and trading-focused agents use this skill to compute Kelly-based cryptocurrency position sizes, fractional Kelly recommendations, multi-strategy allocation adjustments, and leverage safety checks. The outputs are decision-support guidance for risk management workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill advertises a 0.01 USDC x402 payment per call, so repeated autonomous invocations can incur charges. <br>
-Mitigation: Confirm each wallet or payment prompt and set invocation limits before using the skill in automated workflows. <br>
-Risk: Calculation inputs may be sent to the disclosed hosted endpoint. <br>
-Mitigation: Avoid submitting sensitive trading strategy details unless the endpoint and data handling are acceptable for the intended use. <br>
-Risk: Kelly position sizing depends on estimated win probability, payout ratio, losses, fees, and market conditions. <br>
-Mitigation: Treat outputs as decision-support, account for fees and slippage, and review recommendations before placing trades. <br>
+## Use Case:
 
+External users and developers use this skill to estimate crypto trading position sizes, compare full, half, and quarter Kelly allocations, and check leverage safety for a trading thesis.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jinboh68-prog/kelly-formula-crypto) <br>
-- [Hosted calculation endpoint](https://kelly-formula-crypto.vercel.app/api/calculate) <br>
-- [x402 payment endpoint](https://api.x402.dev/pay) <br>
-- [Original article referenced by the skill](https://x.com/KKaWSB/status/1968453490084299020) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, guidance] <br>
-**Output Format:** [Plain text or JSON calculation results with position sizing and leverage safety guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May require a 0.01 USDC x402 payment per call and may send calculation inputs to the hosted endpoint.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Paid x402 requests can transfer 0.01 USDC through the disclosed payment flow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the payment amount, destination wallet, chain, and API endpoint before invoking the skill.
+
+Risk: Position recommendations can be misleading when win probability, payoff, loss, or leverage inputs are inaccurate or unbounded.
+
+Mitigation: Validate finite inputs, review assumptions, apply strict position caps, and keep a human review step before trading.
+
+Risk: Leverage can cause liquidation even when a Kelly estimate appears favorable.
+
+Mitigation: Use conservative fractional Kelly settings, require leverage safety checks, and review stop-loss distance before using any result.
+
+## Reference(s):
+
+- [Kelly Formula Crypto ClawHub page](https://clawhub.ai/jinboh68-prog/skills/kelly-formula-crypto)
+- [Skill API endpoint](https://kelly-formula-crypto.vercel.app/api/calculate)
+- [Original article referenced by the skill](https://x.com/KKaWSB/status/1968453490084299020)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, JSON, guidance]
+
+**Output Format:** [Plain text or JSON calculation results, with Markdown guidance and inline command examples in documentation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes position-size percentages, fractional Kelly recommendations, net-edge values, and optional leverage safety results.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,13 @@
+﻿platform: cursor
+# Cursor IDE 平台特征配置（v5.9.1 平台适配）
+# scan_paths 定义在 config.yaml（唯一配置源），此文件仅存平台特征。
+# ⚠️ 触发词权威来源：SKILL.md 触发词矩阵。此文件不重复定义。
+project_scan_default_depth: 10
+# Cursor 特有配置
+cursor:
+  skills_dir: "~/.cursor/skills/"
+  # Cursor 基于 VS Code 扩展生态，技能目录路径可能与 .cursorrules 相关
+  rules_file: ".cursorrules"
+  # Cursor 无独立 MCP 配置文件，技能审计跳过 MCP 扫描
+  mcp_supported: false
+

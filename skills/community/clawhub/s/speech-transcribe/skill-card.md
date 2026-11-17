@@ -1,41 +1,57 @@
-## Description: <br>
-Transcribes local audio and video files into plain-text transcripts and SRT subtitles with sentence-level timestamps using a remote Modal L4 GPU Whisper pipeline. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transcribes local audio and video files with sentence-level timestamps using remote L4 GPU Whisper inference, returning plain-text transcripts and SRT subtitle files.
 
-## Publisher: <br>
-[speech2srt](https://clawhub.ai/user/speech2srt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[speech2srt](https://clawhub.ai/user/speech2srt)
 
-## Use Case: <br>
-Developers, creators, and other ClawHub users use this skill to send selected audio or video files to Modal for GPU-backed transcription and retrieve .txt and .srt outputs in the original file locations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected recordings are uploaded to Modal for remote GPU processing. <br>
-Mitigation: Use only media that is acceptable to process with Modal, and avoid sensitive or regulated recordings unless that service is approved for the data. <br>
-Risk: The workflow includes a recursive cleanup command for the selected remote volume slug. <br>
-Mitigation: Confirm the slug and selected files before cleanup, and download expected transcript and subtitle outputs before removing the remote volume path. <br>
+## Use Case:
 
+Developers and external users use this skill to run speech-to-text transcription on local audio or video files through a remote GPU workflow and retrieve transcript and subtitle outputs.
 
-## Reference(s): <br>
-- [Error Handling](references/error-handling.md) <br>
-- [ClawHub skill page](https://clawhub.ai/speech2srt/speech-transcribe) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands and generated .txt/.srt transcript files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces one plain-text transcript and one SRT subtitle file per processed media file; streams Modal progress and reports processed count and real-time factor.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.1 (source: server release metadata; artifact frontmatter says v1.0.1) <br>
+Risk: User-controlled slugs may escape intended paths and affect cleanup behavior in the remote runtime.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a fixed simple slug format with only letters, numbers, underscores, and hyphens; reject path separators and special path components before running or cleaning up a job.
+
+Risk: Media files are uploaded to a remote Modal volume for processing.
+
+Mitigation: Use only media that is approved for remote processing, and make retention and cleanup expectations clear before upload.
+
+Risk: Unpinned dependencies can change runtime behavior between installs.
+
+Mitigation: Pin runtime dependencies before treating the skill as routine to install or deploy.
+
+## Reference(s):
+
+- [Error Handling](references/error-handling.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and expected transcript and subtitle file names]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The workflow can produce .txt transcript files and .srt subtitle files for processed media.]
+
+## Skill Version(s):
+
+1.3.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

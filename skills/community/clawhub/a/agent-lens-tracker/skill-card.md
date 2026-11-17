@@ -1,44 +1,59 @@
-## Description: <br>
-Track AI agent API calls, analyze token usage, and optimize costs for OpenAI, Anthropic, Google, DeepSeek, and other LLM APIs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Track AI agent API calls, analyze token usage, and optimize costs for OpenAI, Anthropic, Google, and DeepSeek API usage.
 
-## Publisher: <br>
-[lrg913427-dot](https://clawhub.ai/user/lrg913427-dot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lrg913427-dot](https://clawhub.ai/user/lrg913427-dot)
 
-## Use Case: <br>
-Developers and engineers use Agent Lens to instrument AI API calls, inspect token, cost, latency, and error data, and generate local cost reports. It supports workflows for LLM spend monitoring, prompt cost optimization, and troubleshooting API usage across supported providers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill records API usage metadata in a local SQLite database. <br>
-Mitigation: Review what metadata will be collected, keep sensitive workloads under local data-handling controls, and periodically clean or export the database according to retention needs. <br>
-Risk: The quick-start flow installs package code from an upstream GitHub repository. <br>
-Mitigation: Review the upstream package and pin a trusted revision before using it with sensitive or production workloads. <br>
-Risk: Cost estimates use list prices and may differ from actual provider billing after discounts, caching, or account-specific pricing. <br>
-Mitigation: Treat reports as estimates and reconcile important decisions against provider billing data. <br>
+## Use Case:
 
+Developers and engineers use this skill to instrument agent API calls, review token and cost reports, troubleshoot expensive models or prompts, and export local usage data.
 
-## Reference(s): <br>
-- [Agent Lens ClawHub Skill Page](https://clawhub.ai/lrg913427-dot/agent-lens-tracker) <br>
-- [Agent Lens Upstream Repository](https://github.com/lrg913427-dot/agent-lens.git) <br>
-- [Publisher Profile](https://clawhub.ai/user/lrg913427-dot) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with Python and bash examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes CLI command suggestions, instrumentation patterns, cost optimization steps, and local SQLite storage notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.15.0 (source: ClawHub release metadata; artifact frontmatter lists 2.14.0) <br>
+Risk: Install guidance pulls executable code from an unpinned external repository.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the repository before installing, use an isolated virtual environment, and prefer a pinned commit or verified release.
+
+Risk: Tracing agent calls can store sensitive prompts or metadata in the local SQLite database.
+
+Mitigation: Avoid tracing sensitive production data unless retention and cleanup practices are defined; use the documented clean command to remove old records.
+
+Risk: Cost estimates may differ from actual billed costs because list prices and provider-specific formats can vary.
+
+Mitigation: Treat reports as estimates and validate high-impact decisions against provider billing data and manually supplied token counts when needed.
+
+## Reference(s):
+
+- [Agent Lens ClawHub release](https://clawhub.ai/lrg913427-dot/skills/agent-lens-tracker)
+- [lrg913427-dot publisher profile](https://clawhub.ai/user/lrg913427-dot)
+- [Agent Lens install repository](https://github.com/lrg913427-dot/agent-lens.git)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline code and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include cost-analysis guidance, token-counting snippets, CLI commands, and local data-retention recommendations.]
+
+## Skill Version(s):
+
+2.15.0 (source: server release metadata; artifact frontmatter reports 2.14.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

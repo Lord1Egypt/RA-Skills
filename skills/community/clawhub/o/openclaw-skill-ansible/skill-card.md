@@ -1,48 +1,62 @@
-## Description: <br>
-Openclaw Skill Ansible teaches agents to operate a distributed OpenClaw mesh with ring-of-trust admission, CRDT-synced coordination, capability-contract routing, and governed task delegation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Distributed agent mesh for OpenClaw gateways with ring-of-trust admission, CRDT-synced coordination, capability-contract routing, and governed delegation.
 
-## Publisher: <br>
-[likesjx](https://clawhub.ai/user/likesjx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[likesjx](https://clawhub.ai/user/likesjx)
 
-## Use Case: <br>
-OpenClaw operators and developers use this skill to coordinate work across multiple gateways, maintain durable mesh state, publish capability contracts, and run gated lifecycle operations with human-visible status updates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can coordinate broad mesh operations, including deployment and command actions. <br>
-Mitigation: Install it only in controlled operator environments, keep high-risk gates disabled by default, and restrict allowed callers to authenticated operators. <br>
-Risk: Downloaded skill artifacts or host command execution can affect the gateway host. <br>
-Mitigation: Review artifact sources before use, require explicit approval for host execution, and sandbox downloaded artifact scripts separately before enabling deployment actions. <br>
-Risk: Capability publishing and mesh trust flows can route work across gateways if governance settings are too permissive. <br>
-Mitigation: Require approval artifacts for high-risk capability publishes, keep caller gates configured, and enforce trusted publisher signatures where available. <br>
+## Use Case:
 
+OpenClaw operators and developers use this skill to coordinate work across multiple gateways, manage trust and routing policies, and keep delegated tasks visible and auditable.
 
-## Reference(s): <br>
-- [ClawHub Listing](https://clawhub.ai/likesjx/openclaw-skill-ansible) <br>
-- [OpenClaw Skill README](README.md) <br>
-- [MeshOps Coordination Skill](SKILL.md) <br>
-- [Operator Runbook](docs/runbook.md) <br>
-- [Plugin Capability Inventory](docs/plugin-capabilities-actual-v2026-03-03.md) <br>
-- [OpenClaw Ansible Plugin](https://github.com/likesjx/openclaw-plugin-ansible) <br>
-- [OpenClaw](https://openclaw.ai/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration, JSON] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON task/action outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May invoke gated OpenClaw mesh actions that write logs and JSON results under the configured artifact root.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.6 (source: server release metadata and artifact metadata.yaml) <br>
+Risk: Task-controlled inputs can trigger code installation or command execution on an OpenClaw gateway.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run only in administrator-controlled environments with authenticated task creation, caller allowlists, and deployment or command execution disabled unless explicitly approved.
+
+Risk: Untrusted package sources or mutable plugin references could introduce unintended code.
+
+Mitigation: Require signed or allowlisted artifacts, pin plugin identities and versions, verify SHA-256 hashes, and use trusted package sources.
+
+Risk: Package-provided smoke tests may execute code after deployment.
+
+Mitigation: Review deployment artifacts before installation and avoid automatic execution of package-provided smoke tests unless the artifact source is trusted.
+
+## Reference(s):
+
+- [ClawHub Skill Listing](https://clawhub.ai/likesjx/skills/openclaw-skill-ansible)
+- [OpenClaw](https://openclaw.ai/)
+- [OpenClaw Ansible Plugin](https://github.com/likesjx/openclaw-plugin-ansible)
+- [Ansible Skill Source Repository](https://github.com/likesjx/openclaw-skill-ansible)
+- [Operator Runbook](docs/operator-runbook.md)
+- [Plugin Capability Inventory](docs/plugin-capabilities-actual-v2026-03-03.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, configuration examples, and JSON task artifacts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce operational status updates, command output summaries, and artifact logs when paired with OpenClaw gateway actions.]
+
+## Skill Version(s):
+
+0.1.6 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

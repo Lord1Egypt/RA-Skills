@@ -1,40 +1,52 @@
-## Description: <br>
-Validate and lint Prettier configuration files for structure, invalid options, deprecated fields, override conflicts, and best practices across JSON, YAML, TOML, and package.json#prettier formats. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Validate and lint Prettier configuration files (.prettierrc, .prettierrc.json, .prettierrc.yaml, .prettierrc.toml, package.json#prettier) for structure, invalid options, deprecated fields, override conflicts, and best practices.
 
-## Publisher: <br>
-[charlie-morrison](https://clawhub.ai/user/charlie-morrison) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[charlie-morrison](https://clawhub.ai/user/charlie-morrison)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill to validate Prettier configuration files, catch invalid or deprecated options, and produce text, JSON, or summary lint results for local review or CI gating.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The validator intentionally exits nonzero when it finds errors, which can fail CI jobs.
+
+Mitigation: Review the lint output before using the command as a CI gate and decide which findings should block the workflow.
+
+Risk: JavaScript-based Prettier config files are detected but not statically validated.
+
+Mitigation: Use JSON, YAML, TOML, or package.json#prettier configs for full static validation, or validate JavaScript configs with complementary project tooling.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and CI maintainers use this skill to check Prettier configuration files for syntax, invalid or deprecated options, override issues, and project consistency before committing or enforcing formatting in CI. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The validator reads the local configuration path supplied by the user. <br>
-Mitigation: Review the target path before running the command and prefer repository-local Prettier configuration files. <br>
-Risk: CI use can fail builds when validation errors are found. <br>
-Mitigation: Run the validator locally or in a nonblocking CI step before making it a required gate, then review the reported issues. <br>
+**Output Format:** [Markdown with inline shell commands and optional text, JSON, or summary validator output.]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/charlie-morrison/prettierrc-validator) <br>
+**Other Properties Related to Output:** [Validator exits with code 0 for no errors, 1 for found errors, and 2 for invalid input or unsupported formats.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands; validator output can be text, JSON, or summary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Exit codes indicate success, validation errors, or invalid input.] <br>
+1.0.1 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

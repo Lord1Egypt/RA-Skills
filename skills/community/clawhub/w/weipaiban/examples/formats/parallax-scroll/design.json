@@ -1,0 +1,99 @@
+{
+  "title": "山径夜灯",
+  "description": "暖米色背景上，远雾慢、正文稳、近处灯笼略快并轻轻侧转",
+  "theme": "山径夜灯",
+  "audience": "夜游读者",
+  "format": "parallax-scroll",
+  "shell": {
+    "viewportHeight": 700,
+    "perspective": 1,
+    "scrollDirection": "vertical",
+    "background": {
+      "id": "background",
+      "role": "overlay-background",
+      "kind": "solid",
+      "purpose": "整段滑动的暖米色底",
+      "height": 840
+    },
+    "layers": [
+      {
+        "id": "far",
+        "role": "far",
+        "translateZ": -0.2,
+        "purpose": "左侧慢速薄雾",
+        "contentHeight": 600
+      },
+      {
+        "id": "content",
+        "role": "content",
+        "translateZ": 0,
+        "purpose": "标题、收口与 AI 声明",
+        "contentHeight": 840
+      },
+      {
+        "id": "near",
+        "role": "near",
+        "translateZ": 0.18,
+        "rotate3d": "0.1 -1 0 0.036",
+        "purpose": "右侧灯笼与轻微转角",
+        "contentHeight": 500
+      }
+    ]
+  },
+  "visual": {
+    "colorRoute": "light-airy",
+    "imageMedium": "纸本淡彩",
+    "lightingHint": "暖米色底，灯笼是一小块琥珀光",
+    "throughline": "灯笼始终靠右，雾始终靠左",
+    "palette": {
+      "bg": "#F4EFE6",
+      "panel": "#E7D7C3",
+      "text": "#2C3A34",
+      "muted": "#7E9A84",
+      "accent": "#C46A45"
+    }
+  },
+  "blocks": [
+    {
+      "id": "background-solid",
+      "kind": "solid",
+      "layer": "background",
+      "name": "背景画布",
+      "height": 840,
+      "layout": "390×840 满幅矩形，填充 palette.bg，无文字无点击"
+    },
+    {
+      "id": "far-mist",
+      "kind": "svg",
+      "layer": "far",
+      "name": "远景薄雾",
+      "height": 600,
+      "layout": "左侧 140×420 的 muted 色块，距左 24、距顶 80，其余透明"
+    },
+    {
+      "id": "content-open",
+      "kind": "svg",
+      "layer": "content",
+      "name": "开场",
+      "height": 800,
+      "layout": "标题位于 y=96，宽 280；收口金句位于 y=640，宽 300；中间大片透明以露出背景"
+    },
+    {
+      "id": "near-lantern",
+      "kind": "svg",
+      "layer": "near",
+      "name": "近景灯笼",
+      "height": 500,
+      "assets": ["near-lantern"],
+      "layout": "120×160 透明灯笼位于 x=230 y=180；画布其余区域透明，不挡滑动"
+    },
+    {
+      "id": "ai-credit",
+      "kind": "svg",
+      "layer": "content",
+      "name": "AI声明",
+      "height": 40,
+      "layout": "内容层最后一个 SVG，12px 居中声明"
+    }
+  ]
+}

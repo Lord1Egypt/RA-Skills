@@ -1,47 +1,56 @@
-## Description: <br>
-Open security scanner for agentic infrastructure, including agents, MCP, packages, blast radius, runtime trust, package CVEs, container images, provenance, filesystems, and SBOMs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Checks a specified package version, repository, container image, or SBOM for vulnerabilities and inspects named CVEs.
 
-## Publisher: <br>
-[msaad00](https://clawhub.ai/user/msaad00) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Apache-2.0 <br>
+## Publisher:
 
+[msaad00](https://clawhub.ai/user/msaad00)
 
-## Use Case: <br>
-Developers and security engineers use this skill to check packages and containers for vulnerabilities, inspect agent and MCP dependency exposure, verify package provenance, generate SBOMs, and produce remediation-oriented security findings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Apache-2.0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad scan requests can read local agent, MCP, and related configuration files disclosed by the skill. <br>
-Mitigation: Invoke the skill only for explicit package, image, dependency, SBOM, provenance, or agent/MCP scans and confirm scope before broad local scans. <br>
-Risk: Vulnerability lookups send public package names and CVE IDs to external vulnerability databases. <br>
-Mitigation: Use the skill when those lookups are acceptable for the intended environment, and avoid including secrets or private configuration contents in prompts or scan inputs. <br>
+## Use Case:
 
+Developers and security engineers use the skill to assess vulnerabilities in a named software package or an explicitly selected repository, image, SBOM, or advisory. It can also produce SBOMs and remediation guidance for the requested target.
 
-## Reference(s): <br>
-- [Project homepage](https://github.com/msaad00/agent-bom) <br>
-- [PyPI project: agent-bom](https://pypi.org/project/agent-bom/) <br>
-- [OpenSSF Scorecard: msaad00/agent-bom](https://securityscorecards.dev/viewer/?uri=github.com/msaad00/agent-bom) <br>
-- [Credential redaction reference](https://github.com/msaad00/agent-bom/blob/main/src/agent_bom/security.py#L159) <br>
-- [OSV vulnerability database API](https://api.osv.dev/v1) <br>
-- [NVD CVE API](https://services.nvd.nist.gov/rest/json/cves/2.0) <br>
-- [FIRST EPSS API](https://api.first.org/data/v1/epss) <br>
-- [GitHub Security Advisories API](https://api.github.com/advisories) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown, JSON, SARIF, HTML, and CycloneDX/SPDX SBOM formats depending on the workflow and consumer.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce vulnerability findings, provenance checks, blast-radius analysis, remediation plans, inventory summaries, diff reports, and CI gate results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.89.2 (source: frontmatter and server release metadata) <br>
+Risk: Online vulnerability lookups send package identifiers, versions, and advisory IDs to external providers; these identifiers may be sensitive for private packages.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm permission before querying private package identifiers. Use offline mode when online requests are not authorized and report any resulting coverage gaps.
+
+Risk: Explicit local MCP-client discovery can involve agent configuration paths that may contain sensitive settings.
+
+Mitigation: Perform discovery only when explicitly requested, read only authorized targets, and do not print credentials or upload configuration contents.
+
+## Reference(s):
+
+- [agent-bom project and source](https://github.com/koda-ai-studio/agent-bom)
+- [agent-bom on PyPI](https://pypi.org/project/agent-bom/)
+- [OpenSSF Scorecard](https://securityscorecards.dev/viewer/?uri=github.com/koda-ai-studio/agent-bom)
+- [Credential redaction implementation reference](https://github.com/koda-ai-studio/agent-bom/blob/main/src/agent_bom/security.py)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Guidance, JSON, Markdown, SBOM files]
+
+**Output Format:** [Text findings and guidance; reports or SBOMs can be produced in JSON, SARIF, Markdown, CycloneDX, or SPDX formats.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results depend on the supplied target and available advisory data; offline scans can have incomplete vulnerability coverage.]
+
+## Skill Version(s):
+
+0.115.3 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
+  "name": "job-hunt",
+  "displayName": "Job Hunt",
+  "description": "A career coach for Claude Code and Codex that works from your real history and refuses to embellish it. Four modes: discover roles worth a look, assess whether one posting is worth applying to, apply with a tailored CV and letter that an ATS, a recruiter and a hiring manager review independently, and rehearse the interview. Scripts block invented skills, titles, dates and metrics, and any interview or offer probability. Outputs Markdown, Word and PDF, with market convention tables for the US, UK, Germany, the Netherlands and China plus a Japanese rirekisho form. Runs locally and never submits an application for you.",
+  "version": "1.4.0",
+  "author": {
+    "name": "Addsum",
+    "url": "https://github.com/addsumtech"
+  },
+  "homepage": "https://github.com/addsumtech/job-hunt",
+  "repository": "https://github.com/addsumtech/job-hunt",
+  "license": "MIT",
+  "keywords": [
+    "agent-skill",
+    "ats",
+    "career",
+    "cover-letter",
+    "cv",
+    "interview-prep",
+    "job-search",
+    "local-first",
+    "mock-interview",
+    "quality-gates",
+    "resume",
+    "resume-builder"
+  ]
+}

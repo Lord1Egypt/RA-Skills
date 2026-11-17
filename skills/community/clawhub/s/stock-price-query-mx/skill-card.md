@@ -1,42 +1,55 @@
-## Description: <br>
-Real-time stock and market index quote lookup for A-shares, Hong Kong stocks, and US stocks, with batch query support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Queries real-time stock and market-index quotes for A-shares, Hong Kong stocks, and US stocks, with batch lookups supported.
 
-## Publisher: <br>
-[liuli4](https://clawhub.ai/user/liuli4) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liuli4](https://clawhub.ai/user/liuli4)
 
-## Use Case: <br>
-External users and agents use this skill to look up current stock or index quotes by ticker across A-share, Hong Kong, and US markets, including comparing multiple tickers in one request. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Hong Kong quote lookup may use a local Eastmoney credential and a separate finance-data helper that is not included or pinned in the skill package. <br>
-Mitigation: Review the Hong Kong quote path before installation, install only where that helper and credential exposure are trusted, or use a version that documents or removes that path. <br>
-Risk: The package is marked as requiring sensitive credentials despite describing itself as needing no API key. <br>
-Mitigation: Confirm expected credential behavior during review and avoid deploying it in environments where unintended credential access is unacceptable. <br>
+## Use Case:
 
+External users and agents use this skill to retrieve current A-share, Hong Kong, US stock, and market-index quotes by code. It supports single-symbol checks and small batch comparisons for chat-based market lookup workflows.
 
-## Reference(s): <br>
-- [API reference](references/api-docs.md) <br>
-- [Tencent Finance quote API](https://qt.gtimg.cn/q={symbol}) <br>
-- [ClawHub release page](https://clawhub.ai/liuli4/stock-price-query-mx) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance for user-facing quote summaries and JSON returned by the stock query script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Batch queries are limited to 20 symbols; script output includes success or error objects per symbol.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.4 (source: server evidence and artifact/_meta.json) <br>
+Risk: Hong Kong quote lookups can read an Eastmoney API key from a shared local vault and run another installed skill with broad environment access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when the publisher, host environment, and mx-finance-data dependency are trusted; prefer a revised release that clearly discloses and scopes credentials and dependencies.
+
+Risk: The security review verdict is suspicious because the Hong Kong stock path silently depends on local credentials and another skill.
+
+Mitigation: Review before installing, and disable or isolate the Hong Kong lookup path unless those credential and dependency behaviors are acceptable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/liuli4/skills/stock-price-query-mx)
+- [Stock query API docs](references/api-docs.md)
+- [Tencent Finance quote endpoint](https://qt.gtimg.cn/q={symbol})
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands]
+
+**Output Format:** [JSON from the query script plus concise Markdown or plain-text quote summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Single-stock queries return one JSON object; batch queries return a JSON array for up to 20 symbols.]
+
+## Skill Version(s):
+
+1.1.4 (source: server release evidence and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

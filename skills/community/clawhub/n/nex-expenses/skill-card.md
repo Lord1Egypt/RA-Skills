@@ -1,46 +1,63 @@
-## Description: <br>
-Track and categorize business expenses with Belgian tax deduction rules, local OCR receipt scanning, BTW tracking, quarterly summaries, and CSV/JSON exports for accounting workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Nex Expenses helps agents track business expenses, scan receipts with local Tesseract OCR, categorize Belgian tax deductions, summarize VAT, and export accounting records.
 
-## Publisher: <br>
-[nexaiguy](https://clawhub.ai/user/nexaiguy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nexaiguy](https://clawhub.ai/user/nexaiguy)
 
-## Use Case: <br>
-Freelancers, sole traders, small businesses, and their agents use this skill to add, scan, categorize, search, summarize, and export Belgian business expenses while keeping receipt and expense data local. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores sensitive receipts, OCR text, and business expense records locally under ~/.nex-expenses. <br>
-Mitigation: Install only on trusted machines and manage local filesystem permissions, backups, and deletion of receipt images according to the user's data-handling needs. <br>
-Risk: OCR extraction and automatic Belgian tax categorization can be incorrect or incomplete. <br>
-Mitigation: Review extracted vendor, date, amount, BTW rate, and tax category values before using summaries or exports for accounting or tax filing. <br>
-Risk: Expense add, edit, delete, and export actions can change local records or create files used in accounting workflows. <br>
-Mitigation: Confirm the intended action and target expense IDs before running mutating commands, especially delete or bulk export operations. <br>
-Risk: Evidence lists crypto and purchase-related capabilities even though the security guidance says the skill does not need that authority. <br>
-Mitigation: Do not grant crypto or purchase authority when installing or running this skill. <br>
+## Use Case:
 
+External freelancers, sole traders, and small businesses in Belgium use this skill to capture receipts and expenses, calculate deductible amounts and VAT summaries, and prepare CSV or JSON exports for an accountant.
 
-## Reference(s): <br>
-- [Nex AI homepage](https://nex-ai.be) <br>
-- [Tesseract OCR Windows installer reference](https://github.com/UB-Mannheim/tesseract/wiki) <br>
-- [ClawHub skill page](https://clawhub.ai/nexaiguy/nex-expenses) <br>
+### Deployment Geography for Use:
 
+Belgium
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, code, files] <br>
-**Output Format:** [Plain text and Markdown guidance with CLI commands; generated expense exports may be CSV or JSON files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Agent-facing output may include parsed expense details, summaries, file paths, command results, and local configuration guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter, release metadata, README changelog) <br>
+Risk: Receipt images, OCR text, expense records, and exports can contain sensitive accounting or personal data stored under ~/.nex-expenses.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Protect the local data directory, limit access to the machine account, and periodically delete receipts or exports that no longer need to be retained.
+
+Risk: Belgian tax categories, deduction percentages, and VAT summaries may not fit every business circumstance.
+
+Mitigation: Review generated categories and quarterly summaries with an accountant before using them for filings.
+
+Risk: CSV exports can expose sensitive data and may need sanitization before being opened in spreadsheet tools or shared externally.
+
+Mitigation: Inspect and sanitize CSV exports before sharing them or opening them in spreadsheet software.
+
+Risk: The setup flow installs Python dependencies and creates local CLI files.
+
+Mitigation: Review setup.sh and dependency installation behavior before running it in a production or sensitive environment.
+
+## Reference(s):
+
+- [Nex AI homepage](https://nex-ai.be)
+- [Tesseract OCR installation reference](https://github.com/UB-Mannheim/tesseract/wiki)
+- [ClawHub skill page](https://clawhub.ai/nexaiguy/skills/nex-expenses)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance, files]
+
+**Output Format:** [Plain text guidance with shell commands; generated exports may be CSV or JSON files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Runs locally and stores the SQLite database, receipt images, configuration, and exports under ~/.nex-expenses by default.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, release evidence, README changelog 2026-04-05)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

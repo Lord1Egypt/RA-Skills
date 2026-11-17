@@ -1,42 +1,58 @@
-## Description: <br>
-Test LLM applications for prompt injection vulnerabilities - run attack simulations, evaluate defenses, and generate hardening recommendations for AI systems. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Test LLM applications for prompt injection vulnerabilities, run attack simulations, evaluate defenses, and generate hardening recommendations for AI systems.
 
-## Publisher: <br>
-[charlie-morrison](https://clawhub.ai/user/charlie-morrison) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[charlie-morrison](https://clawhub.ai/user/charlie-morrison)
 
-## Use Case: <br>
-Security reviewers, developers, and AI application owners use this skill to test chatbots, RAG systems, AI agents, and other LLM-integrated applications for prompt injection weaknesses and to generate hardening recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompt-injection tests can affect systems or data if run without authorization. <br>
-Mitigation: Install and use the skill only for systems you own or have explicit permission to test. <br>
-Risk: Resource-heavy or data-mutating tests may disrupt production workflows. <br>
-Mitigation: Prefer staging or isolated environments and obtain explicit approval before resource-heavy or data-mutating tests. <br>
-Risk: RAG or tool-call testing can leave test prompts, poisoned documents, or manipulated records behind. <br>
-Mitigation: Remove test prompts and poisoned documents after testing, and document cleanup for audit trails. <br>
+## Use Case:
 
+Developers, security engineers, and AI application teams use this skill to assess chatbots, RAG systems, AI agents, and other LLM-integrated applications for prompt injection weaknesses. It supports structured attack simulation, defense evaluation, vulnerability scoring, and prioritized hardening recommendations.
 
-## Reference(s): <br>
-- [Prompt Injection Tester on ClawHub](https://clawhub.ai/charlie-morrison/prompt-injection-tester) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Guidance] <br>
-**Output Format:** [Markdown security report with vulnerability summaries, findings, scores, and prioritized recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports may include test payloads, observed responses, risk ratings, and defense maturity scoring.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: release evidence) <br>
+Risk: The skill includes risky prompt-injection example payloads that could be misused against systems without authorization.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only on applications you own or have explicit permission to test, and do not apply payloads to third-party systems.
+
+Risk: Testing against production systems can expose sensitive prompts, tool behavior, or application data in reports.
+
+Mitigation: Prefer approved test environments, document authorization, and redact sensitive payloads, responses, and system details from shared reports.
+
+Risk: Hardening recommendations may be incomplete or unsuitable for a specific deployment.
+
+Mitigation: Review recommendations with application owners and validate changes before deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/charlie-morrison/skills/prompt-injection-tester)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/charlie-morrison)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown security report with vulnerability summary, critical findings, and prioritized hardening recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include example payloads, defense maturity scoring, and remediation priorities.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

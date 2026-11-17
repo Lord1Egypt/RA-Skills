@@ -1,42 +1,54 @@
-## Description: <br>
-Converts text data reports into interactive HTML dashboards by guiding agents to extract source data, plan chart structure, and generate Python ReportBuilder scripts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts text-based data reports into interactive HTML dashboards through a Python ReportBuilder template and chart component workflow.
 
-## Publisher: <br>
-[1688aiinfra](https://clawhub.ai/user/1688aiinfra) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[1688aiinfra](https://clawhub.ai/user/1688aiinfra)
 
-## Use Case: <br>
-Developers, analysts, and reporting teams use this skill to turn market analysis, operations reviews, industry research, and sales summaries into interactive HTML data dashboards. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated reports can include raw HTML from report content. <br>
-Mitigation: Sanitize untrusted report text before generating or sharing the HTML output. <br>
-Risk: Generated reports load a public charting library from a CDN. <br>
-Mitigation: Use a local pinned ECharts copy when reports need offline use or broader distribution. <br>
+## Use Case:
 
+Developers and analysts use this skill to turn market analysis, operations reviews, industry research, and sales summaries into interactive HTML dashboards while preserving source sections, tables, key figures, and written insights.
 
-## Reference(s): <br>
-- [Chart Bindbook](references/chart-bindbook.md) <br>
-- [ClawHub skill page](https://clawhub.ai/1688aiinfra/1688-common-html-report-generator) <br>
-- [ECharts CDN asset](https://cdnjs.cloudflare.com/ajax/libs/echarts/5.4.3/echarts.min.js) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with Python code and shell commands that produce local HTML files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated reports use a Python template workflow and may load ECharts from a public CDN.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Generated reports can execute unsanitized HTML or JavaScript from input data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted data or review and sanitize text fields before sharing generated reports, especially on authenticated or sensitive origins.
+
+Risk: Generated reports load ECharts from a remote CDN script.
+
+Mitigation: Bundle ECharts locally or use an integrity-pinned trusted script before distributing or hosting reports.
+
+## Reference(s):
+
+- [Chart Bindbook](references/chart-bindbook.md)
+- [ClawHub skill page](https://clawhub.ai/1688aiinfra/skills/1688-common-html-report-generator)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Shell commands, Files]
+
+**Output Format:** [Markdown guidance with Python code and shell commands; generated HTML report file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local HTML dashboards using a bundled template and ECharts-based chart components.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

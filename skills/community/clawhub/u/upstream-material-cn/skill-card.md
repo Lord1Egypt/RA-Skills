@@ -1,39 +1,59 @@
-## Description: <br>
-用于分析上游材料公司的中文研究框架，帮助梳理产业链位置、供需格局、价格弹性、利润贡献和可比标的。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+提供中文上游材料股研究框架，帮助分析铜箔、衬底、晶体、树脂、玻纤、载板基材等材料公司的产业链位置、供需格局、量价弹性和可比标的。
 
-## Publisher: <br>
-[pcchris1995](https://clawhub.ai/user/pcchris1995) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pcchris1995](https://clawhub.ai/user/pcchris1995)
 
-## Use Case: <br>
-投资研究人员和分析型代理可用它对上游材料股进行结构化研究，包括产业链传导、供需判断、量价测算、客户验证和同赛道对比。 <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Investment conclusions may rely on outdated market data, secondary sources, or unverifiable assumptions. <br>
-Mitigation: Verify market data, source quality, and assumptions against primary filings and current trusted sources before relying on conclusions. <br>
+## Use Case:
 
+External analysts, investors, and agent users can use this skill as Chinese-language research scaffolding for upstream materials companies. It guides chain-of-demand mapping, supply-demand checks, scenario-based pricing and profit-sensitivity analysis, customer validation, and peer comparison.
 
-## Reference(s): <br>
-- [量价测算模板](references/pricing-model.md) <br>
-- [案例：载体铜箔研究](references/case-carrier-copper-foil.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Chinese Markdown research notes, tables, formulas, and structured comparison outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable code; outputs should separate facts, assumptions, calculations, and items needing verification.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Financial examples, market assumptions, and industry data may be stale, incomplete, or unsuitable for an investment decision.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the skill as research scaffolding only, verify current market data independently, and avoid relying on it as investment advice.
+
+Risk: The workflow allows secondhand sources such as brokerage reports, expert calls, and community notes, which can introduce unsupported estimates.
+
+Mitigation: Prioritize primary disclosures and investor relations materials, label source credibility, and mark missing quantity or price data as requiring verification.
+
+Risk: Scenario outputs can overstate confidence if assumptions and calculations are mixed with reported facts.
+
+Mitigation: Separate facts from estimates, present conservative through aggressive scenarios, and compare at least two peer companies before forming conclusions.
+
+## Reference(s):
+
+- [量价测算模板](references/pricing-model.md)
+- [案例：载体铜箔研究](references/case-carrier-copper-foil.md)
+- [ClawHub skill release page](https://clawhub.ai/pcchris1995/skills/upstream-material-cn)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, analysis]
+
+**Output Format:** [Markdown guidance with formulas, checklists, comparison tables, and research-output templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language research workflow; may guide creation of stock-profile files, supply-chain maps, and methodology case notes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

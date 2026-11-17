@@ -1,45 +1,58 @@
-## Description: <br>
-Agility CMS (agilitycms.com). Use this skill for Agility CMS search and read requests through the OOMOL-connected oo CLI instead of calling the API directly. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search and read Agility CMS content, pages, sitemaps, and content models through a connected account.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and agents use this skill to inspect Agility CMS connector schemas and run read-oriented content, page, sitemap, and content-model actions through an OOMOL-connected account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill relies on OOMOL as the intermediary for Agility CMS access. <br>
-Mitigation: Install it only when that intermediary is intended for the deployment. <br>
-Risk: Remote oo CLI installer commands may change over time. <br>
-Mitigation: Review the installer before running remote install commands. <br>
-Risk: Future write or destructive Agility actions could modify or remove CMS data. <br>
-Mitigation: Confirm the exact payload and effect with the user before allowing any write or destructive action to run. <br>
+## Use Case:
 
+Developers use this skill to retrieve Agility CMS content items, lists, pages, sitemaps, and content models from a connected account.
 
-## Reference(s): <br>
-- [Agility CMS homepage](https://agilitycms.com/) <br>
-- [oo CLI repository](https://github.com/oomol-lab/oo-cli) <br>
-- [oo CLI install guide](https://cli.oomol.com/install-guide.md) <br>
-- [ClawHub skill page](https://clawhub.ai/oomol/skills/oo-agility) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API Calls, JSON, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON request or response payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Responses may include Agility CMS data and an execution id under meta.executionId.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: artifact metadata and release evidence) <br>
+Risk: Setup can run remote installers whose release integrity was not verified.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install a verified oo CLI release yourself before enabling the skill.
+
+Risk: Managed skill synchronization may introduce broader agent changes without clear user control.
+
+Mitigation: Review and approve skill changes; consider disabling managed-skill synchronization with OO_SKILLS_SYNC_DISABLED.
+
+Risk: The connected Agility CMS account may expose more content than a task requires.
+
+Mitigation: Connect only the intended account and use read-only permissions where available.
+
+## Reference(s):
+
+- [Agility CMS Content Fetch API documentation](https://agilitycms.com/docs/developers/content-fetch-api)
+- [oo CLI](https://github.com/oomol-lab/oo-cli)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Text]
+
+**Output Format:** [Structured CMS data with text summaries as needed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.4 (source: frontmatter metadata.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

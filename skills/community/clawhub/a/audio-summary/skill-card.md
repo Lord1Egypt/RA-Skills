@@ -1,42 +1,61 @@
-## Description: <br>
-Automatically extracts audio from video, transcribes it with qwen3-asr-flash, and saves segmented text summaries alongside the original file. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically extracts audio from video or audio files, transcribes it with qwen3-asr-flash, and writes a segmented text summary next to the source file.
 
-## Publisher: <br>
-[alanOO7](https://clawhub.ai/user/alanOO7) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[alanoo7](https://clawhub.ai/user/alanoo7)
 
-## Use Case: <br>
-Developers and content workflows use this skill to turn local video or audio files into transcribed, segmented summaries. It is useful when an agent needs to prepare readable notes from short media files while preserving the summary next to the source file. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The artifact includes an embedded live-looking API key. <br>
-Mitigation: Replace the embedded key with a scoped secret managed outside the skill before use. <br>
-Risk: The skill sends media-derived audio content to Bailian/DashScope for transcription. <br>
-Mitigation: Use only non-sensitive media that is appropriate to send to the external transcription service. <br>
-Risk: The skill runs ffmpeg through a shell command that includes the user's file path. <br>
-Mitigation: Run it only on trusted filenames, or update the implementation to invoke ffmpeg with subprocess arguments. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/alanOO7/audio-summary) <br>
-- [Publisher profile](https://clawhub.ai/user/alanOO7) <br>
+## Use Case:
 
+Developers and agent users can use this skill to turn short audio or video files into transcribed summaries for review, note-taking, or content triage.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, files, guidance] <br>
-**Output Format:** [Plain text summary printed to stdout and saved as a .txt file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses ffmpeg to create temporary 16 kHz mono audio before transcription; summaries are saved beside the source media file.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The release ships with an exposed API key.
+
+Mitigation: Revoke the embedded key and require users to provide their own secret through a secure environment or configuration mechanism before use.
+
+Risk: Unsafe command execution could allow crafted filenames to run local commands.
+
+Mitigation: Call ffmpeg through a subprocess argument list and validate input paths before execution.
+
+Risk: Audio or video-derived content is uploaded to a third-party ASR provider.
+
+Mitigation: Warn users before upload and require consent for files that may contain private, confidential, or regulated content.
+
+Risk: Temporary audio output uses a predictable shared filename.
+
+Mitigation: Use unique private temporary files and clean them up reliably after processing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/alanoo7/skills/audio-summary)
+- [Publisher profile](https://clawhub.ai/user/alanoo7)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text transcript and segmented summary saved as a .txt file, with progress messages printed to the shell.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Processes a single input audio or video path and may create a temporary compressed audio file during execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

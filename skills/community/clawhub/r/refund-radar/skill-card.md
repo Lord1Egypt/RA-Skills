@@ -1,43 +1,58 @@
-## Description: <br>
-Scan bank statements to detect recurring charges, flag suspicious transactions, and draft refund requests with interactive HTML reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scan bank statements to detect recurring charges, flag suspicious transactions, and draft refund requests with interactive HTML reports.
 
-## Publisher: <br>
-[andreolf](https://clawhub.ai/user/andreolf) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[andreolf](https://clawhub.ai/user/andreolf)
 
-## Use Case: <br>
-External users and developers use this skill to audit local bank or card statement exports, identify recurring or suspicious charges, and prepare refund or dispute text for review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Generated reports and refund templates can contain sensitive financial data. <br>
-Mitigation: Use the skill only on a trusted device, keep generated HTML and JSON reports private, avoid sharing full card or account numbers, and delete local Refund Radar data when finished. <br>
-Risk: The skill invokes an external Python module for bank-statement analysis. <br>
-Mitigation: Verify the Python module or repository before running it on real bank statements. <br>
+## Use Case:
 
+External users and personal finance reviewers use this skill to analyze bank or card transaction exports, identify recurring or suspicious charges, and prepare refund or dispute request drafts.
 
-## Reference(s): <br>
-- [Detection Rules Reference](references/detection-rules.md) <br>
-- [Refund Template Reference](references/refund-templates.md) <br>
-- [ClawHub skill page](https://clawhub.ai/andreolf/refund-radar) <br>
-- [Publisher profile](https://clawhub.ai/user/andreolf) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, plus generated local HTML and JSON report files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local analysis reports and refund-request templates that may contain sensitive financial details.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Generated financial reports and raw analysis files may store sensitive transaction details locally under ~/.refund_radar.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the user is comfortable with local storage, restrict file permissions where appropriate, and remove reports or raw exports when they are no longer needed.
+
+Risk: The HTML report template embeds an external footer link even though the skill claims local-only behavior.
+
+Mitigation: Review or remove the footer link before opening or sharing generated reports.
+
+Risk: The artifact describes running a refund_radar Python module but does not include that implementation.
+
+Mitigation: Verify the installed refund_radar module and its source before executing commands against financial data.
+
+## Reference(s):
+
+- [Detection Rules Reference](references/detection-rules.md)
+- [Refund Template Reference](references/refund-templates.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with inline shell commands, refund request drafts, and local HTML or JSON report files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated refund text should avoid apostrophes, and reports may include privacy toggles, copy buttons, and collapsible sections.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact documentation lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

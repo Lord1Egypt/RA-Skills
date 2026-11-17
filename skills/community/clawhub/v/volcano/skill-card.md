@@ -1,44 +1,56 @@
-## Description: <br>
-Provides non-sensitive summaries of Volcano Engine public product information, pricing links, console-visible billing overviews, and service announcements. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Volcano helps agents summarize non-sensitive public or user-visible Volcengine product, pricing, billing, and service announcement information.
 
-## Publisher: <br>
-[mikeclaw007](https://clawhub.ai/user/mikeclaw007) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mikeclaw007](https://clawhub.ai/user/mikeclaw007)
 
-## Use Case: <br>
-Developers, operators, and account users use this skill to summarize Volcano Engine product specs, pricing references, billing trends visible in their own console, and service announcements without handling sensitive credentials. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Console billing summaries may contain private account or cost information. <br>
-Mitigation: Review billing output before sharing it and limit use to information the user is authorized to view. <br>
-Risk: The skill could encounter credentials, secrets, or account identifiers while viewing console pages. <br>
-Mitigation: Do not capture, store, or reproduce credentials, secrets, or account identifiers in summaries. <br>
-Risk: Automated browsing can exceed platform expectations if repeated too aggressively. <br>
-Mitigation: Respect Volcano Engine access limits and keep collection to visible, compliant, non-sensitive page content. <br>
+## Use Case:
 
+External users and developers use this skill to collect concise summaries of visible Volcengine product specifications, pricing links, billing overviews, cost trends, and service announcements without performing account operations or API calls.
 
-## Reference(s): <br>
-- [Volcano Engine homepage](https://www.volcengine.com/) <br>
-- [Volcano Engine documentation](https://www.volcengine.com/docs) <br>
-- [Volcano Engine console](https://console.volcengine.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown summaries with source links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No API calls; summarizes visible, non-sensitive information only.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Billing or console summaries may expose account IDs, keys, or other sensitive details if copied from user-visible pages.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep console work user-directed, do not provide credentials to the agent, and review generated summaries before storing or sharing them.
+
+Risk: Automated access to console pages could exceed the skill's stated boundary of visible summaries and drift into account operations.
+
+Mitigation: Use the skill only for visible information summaries and avoid account changes, permission changes, paid API calls, or credential handling.
+
+## Reference(s):
+
+- [ClawHub Volcano Skill](https://clawhub.ai/mikeclaw007/skills/volcano)
+- [Volcengine Homepage](https://www.volcengine.com/)
+- [Volcengine Console](https://console.volcengine.com/)
+- [Volcengine Documentation](https://www.volcengine.com/docs)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text summaries with source links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Summaries should stay within visible, non-sensitive information and avoid copying credentials, account IDs, or keys.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

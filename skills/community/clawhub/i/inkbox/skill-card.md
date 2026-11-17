@@ -1,45 +1,64 @@
-## Description: <br>
-Send and receive emails and phone calls via Inkbox agent identities. Use when the user wants to check inbox messages, list unread email, view a thread, search mailbox contents, draft/send an email, place an outbound phone call, list call history, retrieve call transcripts, manage vault credentials, or create/set up an Inkbox identity. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Send and receive emails and phone calls via Inkbox agent identities, including inbox search, thread review, outbound messages and calls, call transcripts, vault credentials, and identity setup.
 
-## Publisher: <br>
-[inkbox](https://clawhub.ai/user/inkbox) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[inkbox](https://clawhub.ai/user/inkbox)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to connect an agent to Inkbox identities for mailbox, phone, call transcript, webhook, and vault credential workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives agents sensitive authority over Inkbox mailboxes, phone calls, transcripts, identities, and vault secrets. <br>
-Mitigation: Confirm every outbound email, phone call, deletion, webhook or WebSocket destination, and credential retrieval before execution. <br>
-Risk: Examples and workflows can expose passwords, API keys, private keys, or OTP codes to the agent transcript or terminal output. <br>
-Mitigation: Use a minimally scoped Inkbox API key and avoid printing secrets unless the user explicitly needs to inspect them. <br>
-Risk: The security scan verdict is suspicious because the integration is powerful and some examples lack clear confirmation guidance. <br>
-Mitigation: Install only when the user trusts the skill and the agent with the connected Inkbox account, communications, and vault contents. <br>
+## Use Case:
 
+External users and developers use this skill to let an OpenClaw agent operate Inkbox identities for email, phone, transcript, and encrypted credential workflows. It is intended for agents that need explicit user-confirmed communication actions and scoped access to Inkbox resources.
 
-## Reference(s): <br>
-- [ClawHub Inkbox skill page](https://clawhub.ai/inkbox/inkbox) <br>
-- [Inkbox homepage](https://inkbox.ai) <br>
-- [Inkbox console](https://console.inkbox.ai) <br>
-- [OpenClaw](https://openclaw.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, shell commands, configuration, API calls] <br>
-**Output Format:** [Markdown with JavaScript, shell, and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js >=18 and INKBOX_API_KEY; agent actions may use Inkbox email, phone, transcript, webhook, WebSocket, identity, and vault APIs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.1 (source: server release evidence) <br>
+Risk: Inkbox API keys and vault secrets can be exposed if stored or printed carelessly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a scoped API key, store it through the strongest OpenClaw secret mechanism available, avoid printing decrypted vault payloads, and rotate any key or secret that may have been exposed.
+
+Risk: The skill depends on mutable third-party code through the @inkbox/sdk dependency path.
+
+Mitigation: Install only when the Inkbox publisher and SDK dependency path are trusted, and prefer isolated or disposable Node environments for SDK use unless the user explicitly requests workspace installation.
+
+Risk: Outbound email and phone actions can contact external recipients or numbers.
+
+Mitigation: Confirm recipients, subjects, message bodies, and phone numbers with the user before sending email or placing calls.
+
+Risk: Unlocked vault state can make decrypted credentials available to agent workflows.
+
+Mitigation: Unlock the vault only for the needed task, rely on identity-scoped access rules where possible, and refresh or end the session when credential access is no longer required.
+
+## Reference(s):
+
+- [Inkbox homepage](https://inkbox.ai)
+- [Inkbox console](https://console.inkbox.ai)
+- [OpenClaw](https://openclaw.ai)
+- [ClawHub Inkbox skill page](https://clawhub.ai/inkbox/skills/inkbox)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline JavaScript, JSON, and bash examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include proposed SDK calls, setup commands, configuration snippets, message summaries, call transcript summaries, and credential-handling guidance.]
+
+## Skill Version(s):
+
+0.2.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

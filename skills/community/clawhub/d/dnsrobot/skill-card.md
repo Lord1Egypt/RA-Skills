@@ -1,41 +1,55 @@
-## Description: <br>
-Run DNS, email security, SSL, WHOIS, and network tools via dnsrobot.net API — no API key required. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run DNS, domain, email security, SSL, WHOIS, and network diagnostics through the dnsrobot.net API without requiring an API key.
 
-## Publisher: <br>
-[dnsrobot](https://clawhub.ai/user/dnsrobot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dnsrobot](https://clawhub.ai/user/dnsrobot)
 
-## Use Case: <br>
-Developers, sysadmins, and security practitioners use this skill to run DNS, domain, email-authentication, SSL/TLS, WHOIS, HTTP-header, IP reputation, and port diagnostics from an agent. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Lookup and scan targets, including domains, IPs, hostnames, ports, and URLs, are sent to dnsrobot.net. <br>
-Mitigation: Avoid internal, confidential, customer-sensitive, incident-response, or token-bearing targets unless sharing them with dnsrobot.net is acceptable. <br>
-Risk: SMTP tests, subdomain discovery, and port checks can interact with external systems. <br>
-Mitigation: Use these features only on systems you own or are authorized to test. <br>
+## Use Case:
 
+Developers, site operators, security teams, and support engineers use this skill to inspect DNS records, domain health, email authentication, SSL/TLS certificates, WHOIS data, HTTP headers, ports, and IP reputation for assets they own or are authorized to test.
 
-## Reference(s): <br>
-- [DNS Robot Homepage](https://dnsrobot.net) <br>
-- [DNS Robot All Tools](https://dnsrobot.net/all-tools) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with inline curl commands and JSON or NDJSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl; endpoints accept JSON request bodies and some responses stream as NDJSON.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Queried domains, IP addresses, hostnames, mail-server names, and full URLs are sent to dnsrobot.net.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid submitting secrets, tokenized URLs, private paths, or sensitive internal targets unless this data sharing is approved.
+
+Risk: SMTP, HTTP header, subdomain, blacklist, SSL, and port checks may actively probe hosts.
+
+Mitigation: Use active checks only for systems you own or have authorization to test.
+
+## Reference(s):
+
+- [DNS Robot homepage](https://dnsrobot.net)
+- [DNS Robot tools](https://dnsrobot.net/all-tools)
+- [ClawHub DNS Robot skill](https://clawhub.ai/dnsrobot/skills/dnsrobot)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with curl examples and JSON or NDJSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl. Some endpoints return newline-delimited JSON streams.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

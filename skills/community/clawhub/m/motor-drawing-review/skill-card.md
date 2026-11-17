@@ -1,41 +1,54 @@
-## Description: <br>
-Motor Drawing Review helps agents review motor engineering drawings for pole-slot matching, dimension annotations, technical requirements, tolerance fits, and drawing review reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reviews motor engineering drawings for pole-slot matching, dimensions, technical requirements, GD&T, tolerances, and review reports.
 
-## Publisher: <br>
-[yongjie666888](https://clawhub.ai/user/yongjie666888) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yongjie666888](https://clawhub.ai/user/yongjie666888)
 
-## Use Case: <br>
-Motor and electrical engineers use this skill to structure reviews of motor engineering drawings, generate checklist-style review materials, and draft standardized issue reports for dimensions, tolerances, GD&T, and technical requirements. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is a checklist and reference aid, not certified engineering validation or proof that a motor drawing is correct. <br>
-Mitigation: Use it to organize review work, then have a qualified engineer verify safety-critical designs and final drawing decisions. <br>
-Risk: The structural checklist command currently has a non-security runtime bug. <br>
-Mitigation: Use the full or electromagnetic checklist paths, or fix and test the structural checklist script before relying on that command. <br>
+## Use Case:
 
+External developers and motor engineers use this skill to review motor engineering drawings and produce structured issue reports and checklist files for human engineering signoff.
 
-## Reference(s): <br>
-- [Motor Drawing GD&T Reference](references/gdt-reference.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/yongjie666888/motor-drawing-review) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown reports, plain-text checklists, and command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Checklist output can be printed or written to a text file; engineering conclusions require qualified human review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: Checklist and review report content may be mistaken for automated CAD or PDF validation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as review aids only and keep human engineering signoff before accepting drawing changes.
+
+Risk: The bundled checklist script can create a local text file when --output is supplied.
+
+Mitigation: Use --output only with an intentional destination path.
+
+## Reference(s):
+
+- [Motor Drawing GD&T Reference](references/gdt-reference.md)
+- [ClawHub Skill Page](https://clawhub.ai/yongjie666888/skills/motor-drawing-review)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with optional plain-text checklist files from the bundled Python script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The checklist script can write a text file when the user supplies --output.]
+
+## Skill Version(s):
+
+1.2.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -11,11 +11,7 @@ import {
   Feeling,
   Goal,
   Location,
-  Experience,
-  MuscleGroup,
-  SleepQuality,
-  StressLevel,
-  EnergyLevel
+  Experience
 } from './types.js';
 import {
   loadConfig,
@@ -77,22 +73,6 @@ import {
   formatAllExerciseBriefs,
   formatAllExerciseBriefsWithVideos
 } from './notifier.js';
-import {
-  getCurrentPhase,
-  advancePhase,
-  adjustPlanForPhase,
-  incrementPhaseWeek,
-  loadMuscleProgress,
-  recordMuscleTraining,
-  recordSoreness,
-  analyzeMuscleBalance,
-  getPreWorkoutAnalysis,
-  recommendExerciseAdjustments,
-  muscleGroupNames,
-  recordQuickFeedback,
-  analyzeRecoveryStatus
-} from './periodization.js';
-import { findExerciseDetail } from './exercise-detail.js';
 
 // ==================== 命令类型 ====================
 
@@ -110,10 +90,6 @@ type CommandType =
   | 'adjust'
   | 'nextweek'
   | 'exercise'
-  | 'phase'        // 周期化训练
-  | 'muscle'       // 肌群进展
-  | 'feedback'     // 多维度反馈
-  | 'recovery'     // 恢复状态
   | 'help';
 
 interface CommandResult {
@@ -176,14 +152,6 @@ export function handleInput(input: string): CommandResult {
       return handleNextWeek();
     case 'exercise':
       return handleExercise(input);
-    case 'phase':
-      return handlePhase(input);
-    case 'muscle':
-      return handleMuscle(input);
-    case 'feedback':
-      return handleFeedback(input);
-    case 'recovery':
-      return handleRecovery();
     case 'help':
       return handleHelp();
     default:
@@ -208,10 +176,6 @@ function recognizeCommand(input: string): CommandType {
   if (input.includes('调整') || input.includes('降低强度') || input.includes('增加强度')) return 'adjust';
   if (input.includes('下周') || input.includes('生成下周')) return 'nextweek';
   if (input.includes('动作') || input.includes('讲解') || input.includes('教学')) return 'exercise';
-  if (input.includes('周期') || input.includes('阶段') || input.includes('训练期')) return 'phase';
-  if (input.includes('肌群') || input.includes('肌肉') || input.includes('部位')) return 'muscle';
-  if (input.includes('反馈') || input.includes('睡眠') || input.includes('状态') || input.includes('精力')) return 'feedback';
-  if (input.includes('恢复') || input.includes('疲劳')) return 'recovery';
   if (input.includes('帮助') || input.includes('help')) return 'help';
   return 'today';
 }
@@ -342,68 +306,11 @@ function handleToday(): CommandResult {
     };
   }
   
-  // 获取训练前分析
-  const analysis = getPreWorkoutAnalysis();
-  const phaseNames: Record<string, string> = {
-    strength: '力量期',
-    hypertrophy: '肌肥大期',
-    endurance: '耐力期',
-    deload: '减载周'
-  };
-  
-  // 应用周期化调整
-  let adjustedPlan = todayPlan;
-  if (analysis.phase.type !== 'hypertrophy') {
-    adjustedPlan = adjustPlanForPhase({ ...plan, days: [todayPlan] }, analysis.phase).days[0];
-  }
-  
-  // 获取动作调整建议
-  const adjustments = recommendExerciseAdjustments(adjustedPlan);
-  
-  const lines: string[] = [
-    '🏋️ 今日训练提醒',
-    '',
-    `📋 ${adjustedPlan.name} - ${adjustedPlan.focus}`,
-    `⏱️ 预计 ${adjustedPlan.estimatedDuration} 分钟`,
-    `📅 训练阶段：${phaseNames[analysis.phase.type]}（第 ${analysis.phase.weekNumber} 周）`,
-    '',
-    '动作清单：'
-  ];
-  
-  for (const ex of adjustedPlan.exercises) {
-    const detail = findExerciseDetail(ex.name);
-    const brief = detail?.tips[0] || ex.notes || '';
-    
-    // 检查是否建议跳过
-    const shouldSkip = adjustments.removeExercises.includes(ex.name);
-    
-    if (shouldSkip) {
-      lines.push(`⚠️ ${ex.name} ${ex.sets}×${ex.reps} (建议跳过)`);
-    } else {
-      lines.push(`✓ ${ex.name} ${ex.sets}×${ex.reps}`);
-      if (brief) {
-        lines.push(`   💡 ${brief}`);
-      }
-    }
-  }
-  
-  // 添加综合建议
-  lines.push('');
-  lines.push(`💡 ${analysis.overallRecommendation}`);
-  
-  if (adjustments.notes.length > 0) {
-    lines.push('');
-    adjustments.notes.forEach(n => lines.push(n));
-  }
-  
-  lines.push('');
-  lines.push('训练完成后回复「打卡」记录 ✅');
-  lines.push('回复「动作讲解」查看详细步骤和视频');
-  
+  // 未打卡，显示计划
   return {
     success: true,
-    message: lines.join('\n'),
-    data: adjustedPlan
+    message: formatWorkoutReminder(todayPlan),
+    data: todayPlan
   };
 }
 
@@ -439,12 +346,6 @@ function handleCheckin(): CommandResult {
   
   // 更新统计
   const stats = updateStats(record);
-  
-  // 记录肌群训练数据
-  recordMuscleTraining(todayPlan.exercises);
-  
-  // 推进周期周数
-  incrementPhaseWeek();
   
   // 重置跳过计数
   resetSkipCount();
@@ -747,29 +648,19 @@ function handleHelp(): CommandResult {
     message: [
       '🏋️ 健身规划助手',
       '',
-      '📋 计划管理：',
+      '可用命令：',
       '• 初始化 - 开始配置',
       '• 计划 - 生成本周计划',
-      '• 今天 - 查看今日训练（含恢复分析）',
+      '• 今天 - 查看今日训练',
       '• 打卡 - 记录完成',
       '• 进度 - 本周进度',
-      '• 下周 - 生成下周计划',
-      '',
-      '📊 数据分析：',
       '• 统计 - 训练数据',
       '• 周报 - 周总结',
       '• 历史 - 训练记录',
-      '',
-      '🔄 智能调整：',
-      '• 周期 - 查看训练周期阶段',
-      '• 肌群 - 查看各肌群训练进展',
-      '• 恢复 - 查看恢复状态分析',
-      '• 反馈 [睡眠] [精力] - 记录状态',
+      '• 配置 - 查看/修改配置',
       '• 调整强度 - 自动调整计划',
-      '',
-      '📖 学习：',
-      '• 动作讲解 [动作名] - 详细讲解+视频',
-      '• 配置 - 查看/修改配置'
+      '• 下周 - 生成下周计划',
+      '• 动作讲解 [动作名] - 查看详细讲解'
     ].join('\n')
   };
 }
@@ -834,225 +725,6 @@ function handleAdjust(input: string): CommandResult {
  */
 function handleNextWeek(): CommandResult {
   return generateNextWeekPlan();
-}
-
-// ==================== 周期化训练命令 ====================
-
-/**
- * 周期化训练管理
- */
-function handlePhase(input: string): CommandResult {
-  const lower = input.toLowerCase();
-  
-  // 查看当前阶段
-  if (lower.includes('查看') || lower.includes('当前') || lower === '周期' || lower === '阶段') {
-    const phase = getCurrentPhase();
-    const phaseNames: Record<string, string> = {
-      strength: '力量期',
-      hypertrophy: '肌肥大期',
-      endurance: '耐力期',
-      deload: '减载周'
-    };
-    
-    const intensityNames: Record<string, string> = {
-      low: '低强度',
-      medium: '中等强度',
-      high: '高强度'
-    };
-    
-    const lines = [
-      '📅 训练周期状态',
-      '',
-      `当前阶段：${phaseNames[phase.type]}`,
-      `强度：${intensityNames[phase.intensity]}`,
-      `进度：第 ${phase.weekNumber}/${phase.totalWeeks} 周`,
-      '',
-      `说明：${phase.description}`,
-      '',
-      `开始日期：${phase.startDate}`,
-      `结束日期：${phase.endDate}`
-    ];
-    
-    return { success: true, message: lines.join('\n') };
-  }
-  
-  // 进入下一阶段
-  if (lower.includes('下一') || lower.includes('推进')) {
-    const result = advancePhase();
-    return { success: true, message: result.message };
-  }
-  
-  // 默认显示当前阶段
-  const phase = getCurrentPhase();
-  const phaseNames: Record<string, string> = {
-    strength: '力量期',
-    hypertrophy: '肌肥大期',
-    endurance: '耐力期',
-    deload: '减载周'
-  };
-  
-  return {
-    success: true,
-    message: `当前训练阶段：${phaseNames[phase.type]}（第 ${phase.weekNumber}/${phase.totalWeeks} 周）\n\n回复「下一阶段」进入新阶段`
-  };
-}
-
-// ==================== 肌群进展命令 ====================
-
-/**
- * 肌群进展查询
- */
-function handleMuscle(input: string): CommandResult {
-  const lower = input.toLowerCase();
-  
-  // 查看所有肌群
-  if (lower.includes('所有') || lower.includes('全部') || lower === '肌群' || lower === '肌肉') {
-    const progress = loadMuscleProgress();
-    const analysis = analyzeMuscleBalance();
-    
-    const lines = [
-      '💪 肌群训练进展',
-      ''
-    ];
-    
-    for (const [muscle, data] of Object.entries(progress.muscles) as [MuscleGroup, any][]) {
-      const status = analysis.undertrained.includes(muscle as MuscleGroup) ? '⚠️' :
-                    analysis.overtrained.includes(muscle as MuscleGroup) ? '😴' : '✅';
-      const lastTrained = data.lastTrained ? data.lastTrained : '从未';
-      lines.push(`${status} ${muscleGroupNames[muscle as MuscleGroup]}`);
-      lines.push(`   总组数：${data.totalSets} | 上次训练：${lastTrained}`);
-    }
-    
-    if (analysis.recommendations.length > 0) {
-      lines.push('');
-      lines.push('💡 建议：');
-      analysis.recommendations.forEach(r => lines.push(`   ${r}`));
-    }
-    
-    return { success: true, message: lines.join('\n') };
-  }
-  
-  // 查看特定肌群
-  for (const [key, name] of Object.entries(muscleGroupNames)) {
-    if (lower.includes(name) || lower.includes(key)) {
-      const progress = loadMuscleProgress();
-      const data = progress.muscles[key as MuscleGroup];
-      
-      const lines = [
-        `💪 ${name} 进展`,
-        '',
-        `总训练组数：${data.totalSets}`,
-        `总训练次数：${data.totalReps}`,
-        `上次训练：${data.lastTrained || '从未'}`,
-        `酸痛程度：${data.sorenessLevel > 0 ? data.sorenessLevel + '/10' : '无'}`,
-        '',
-        `力量进展：${data.strengthProgress > 0 ? '+' : ''}${data.strengthProgress}%`,
-        `肌肥大进展：${data.hypertrophyProgress > 0 ? '+' : ''}${data.hypertrophyProgress}%`
-      ];
-      
-      if (data.personalRecords.length > 0) {
-        lines.push('');
-        lines.push('🏆 个人记录：');
-        data.personalRecords.slice(0, 3).forEach(pr => {
-          lines.push(`   ${pr.exercise}: ${pr.weight}kg × ${pr.reps}`);
-        });
-      }
-      
-      return { success: true, message: lines.join('\n') };
-    }
-  }
-  
-  // 默认显示所有肌群
-  return handleMuscle('所有');
-}
-
-// ==================== 多维度反馈命令 ====================
-
-/**
- * 多维度反馈处理
- */
-function handleFeedback(input: string): CommandResult {
-  const lower = input.toLowerCase();
-  
-  // 快速反馈：睡眠 + 精力
-  const sleepMatch = lower.match(/睡?眠?\s*(\d+(?:\.\d+)?)\s*小时?/);
-  const energyMatch = lower.match(/精力?(好|中|差|高|低)/);
-  
-  if (sleepMatch) {
-    const hours = parseFloat(sleepMatch[1]);
-    const quality: SleepQuality = hours >= 8 ? 'excellent' : hours >= 7 ? 'good' : hours >= 6 ? 'fair' : 'poor';
-    
-    const energy: EnergyLevel = energyMatch ? 
-      (energyMatch[1] === '好' || energyMatch[1] === '高' ? 'high' : 
-       energyMatch[1] === '中' ? 'medium' : 'low') : 'medium';
-    
-    const stress: StressLevel = 'medium';
-    
-    recordQuickFeedback(hours, quality, energy, stress);
-    
-    const recovery = analyzeRecoveryStatus();
-    
-    return {
-      success: true,
-      message: `✅ 已记录反馈\n\n睡眠：${hours} 小时 (${quality})\n精力：${energy}\n\n恢复指数：${recovery.score}/100\n\n${recovery.recommendations[0]}`
-    };
-  }
-  
-  // 查看反馈状态
-  if (lower.includes('查看') || lower.includes('状态') || lower === '反馈') {
-    const recovery = analyzeRecoveryStatus();
-    const statusEmoji = { poor: '😴', fair: '😐', good: '🙂', excellent: '🌟' };
-    
-    const lines = [
-      '📊 恢复状态',
-      '',
-      `${statusEmoji[recovery.status]} 恢复指数：${recovery.score}/100`,
-      '',
-      ...recovery.recommendations
-    ];
-    
-    return { success: true, message: lines.join('\n') };
-  }
-  
-  // 引导输入
-  return {
-    success: true,
-    message: '📝 记录今日状态\n\n快速反馈示例：\n• 「睡眠7.5小时 精力好」\n• 「睡6小时 精力差」\n\n回复「恢复状态」查看分析'
-  };
-}
-
-/**
- * 恢复状态查询
- */
-function handleRecovery(): CommandResult {
-  const analysis = getPreWorkoutAnalysis();
-  const statusEmoji = { poor: '😴', fair: '😐', good: '🙂', excellent: '🌟' };
-  const phaseNames: Record<string, string> = {
-    strength: '力量期',
-    hypertrophy: '肌肥大期',
-    endurance: '耐力期',
-    deload: '减载周'
-  };
-  
-  const lines = [
-    '📊 今日训练状态分析',
-    '',
-    `📅 训练阶段：${phaseNames[analysis.phase.type]}（第 ${analysis.phase.weekNumber} 周）`,
-    `${statusEmoji[analysis.recovery.status]} 恢复指数：${analysis.recovery.score}/100`,
-    '',
-    '💡 综合建议：',
-    analysis.overallRecommendation
-  ];
-  
-  if (analysis.muscleBalance.recommendations.length > 0) {
-    lines.push('');
-    lines.push('肌群状态：');
-    analysis.muscleBalance.recommendations.slice(0, 3).forEach(r => {
-      lines.push(`  • ${r}`);
-    });
-  }
-  
-  return { success: true, message: lines.join('\n') };
 }
 
 // ==================== 辅助函数 ====================

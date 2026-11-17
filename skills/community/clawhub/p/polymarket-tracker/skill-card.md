@@ -1,44 +1,58 @@
-## Description: <br>
-Tracks active Polymarket markets by total trading volume and prints market names, estimated Yes/No volume, current odds, and volume rankings, with skillpay.me payment required for normal runs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tracks top active Polymarket markets by trading volume, showing market names, approximate Yes/No volume splits, current odds, and requiring 0.001 USDT skillpay.me payment per normal call.
 
-## Publisher: <br>
-[ariesdevil](https://clawhub.ai/user/ariesdevil) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ariesdevil](https://clawhub.ai/user/ariesdevil)
 
-## Use Case: <br>
-External users and agents use this skill to run a paid command-line report of high-volume active Polymarket markets, including odds and estimated Yes/No volume. Results are best used for market monitoring and should be verified before trading decisions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Normal runs can charge 0.001 USDT through skillpay.me. <br>
-Mitigation: Use the balance-check path before running, review billing terms, and run only when the user accepts the charge. <br>
-Risk: The report can present lifetime or estimated volume as recent market flow. <br>
-Mitigation: Label results as total-volume rankings and rough Yes/No estimates, and verify against source market data before trading decisions. <br>
-Risk: The skill depends on third-party billing and market-data endpoints. <br>
-Mitigation: Install only when the user trusts skillpay.me and is comfortable sending requests to the referenced external services. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ariesdevil/polymarket-tracker) <br>
-- [Publisher profile](https://clawhub.ai/user/ariesdevil) <br>
-- [Polymarket Gamma API](https://gamma-api.polymarket.com) <br>
-- [skillpay.me billing service](https://skillpay.me) <br>
+## Use Case:
 
+External users and agents use this skill to identify high-volume active Polymarket markets and review current Yes/No odds before further analysis.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text market ranking report with command-line status and billing messages] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns top 10 active markets by total volume; Yes/No volume split is estimated from outcome prices.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.4 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Reported volumes can be mistaken for recent trading momentum because the authoritative security guidance identifies them as lifetime aggregate values.
+
+Mitigation: Present reported volume as lifetime aggregate and treat Yes/No splits as approximate before using the output for market analysis.
+
+Risk: Normal use charges 0.001 USDT through skillpay.me.
+
+Mitigation: Confirm the user ID, balance, and payment expectation before running a paid call; use balance-check or test mode when appropriate.
+
+Risk: Passing the billing API key directly on the command line can expose it in local process lists or shell history.
+
+Mitigation: Prefer environment variables or another secret-handling mechanism and avoid sharing logs that contain credentials.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ariesdevil/skills/polymarket-tracker)
+- [Polymarket Gamma API](https://gamma-api.polymarket.com)
+- [skillpay.me billing service](https://skillpay.me)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Guidance]
+
+**Output Format:** [Plain text market ranking with command-line billing and status messages]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns the top 10 active markets; volume is lifetime aggregate, Yes/No volume splits are approximate, and normal use charges 0.001 USDT.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

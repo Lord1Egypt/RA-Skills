@@ -1,42 +1,54 @@
-## Description: <br>
-Enforces completeness checks for API-backed data queries and summaries, including pagination, source tracing, and verified date/time conversions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enforces data query integrity checks for API queries, summaries, and statistics by requiring pagination validation, source tracing, and tool-verified date and time conversions.
 
-## Publisher: <br>
-[xiyinli811-crypto](https://clawhub.ai/user/xiyinli811-crypto) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiyinli811-crypto](https://clawhub.ai/user/xiyinli811-crypto)
 
-## Use Case: <br>
-Developers and operators use this skill when agents query APIs, summarize returned records, or convert returned dates and timestamps. It helps agents paginate fully, identify incomplete data, trace output fields to source records, and disclose query completeness to users. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: An agent may summarize incomplete API results if pagination, errors, or unexpectedly small result sets are not checked. <br>
-Mitigation: Check has_more, continue pagination until completion, retry or narrow failed queries, and disclose any incomplete ranges before summarizing. <br>
-Risk: An agent may introduce unsupported facts by filling gaps in API responses from assumptions. <br>
-Mitigation: Trace each key output field to the raw API response and omit or mark records whose required fields are missing. <br>
-Risk: Manual date, weekday, timezone, or timestamp conversion can produce wrong results even when source data is valid. <br>
-Mitigation: Verify conversions with a local date/time command or preserve the original timestamp with its format. <br>
+## Use Case:
 
+Developers and agent operators use this skill when an agent queries APIs or summarizes returned records, especially calendar, document, and table data, to reduce omissions and fabricated fields caused by incomplete pagination or unsourced conversions.
 
-## Reference(s): <br>
-- [Detailed workflow](references/workflow.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, text, markdown, shell commands] <br>
-**Output Format:** [Markdown guidance with inline shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should disclose API query count, pagination status, and any incomplete data ranges when applicable.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: The skill may cause an agent to run simple local date or time conversion commands when validating calendar or timestamp transformations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review proposed commands before execution and keep verification commands read-only, such as date conversion checks.
+
+Risk: The source instructions are written in Chinese, which may reduce reviewer comprehension for operators who do not read Chinese.
+
+Mitigation: Have a Chinese-reading reviewer confirm the workflow semantics before deployment or maintain an approved translation for operational review.
+
+## Reference(s):
+
+- [Detailed data query integrity workflow](references/workflow.md)
+- [ClawHub skill page](https://clawhub.ai/xiyinli811-crypto/skills/data-query-integrity)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands]
+
+**Output Format:** [Markdown guidance with optional inline shell commands for date and time verification]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should state query counts, pagination status, incomplete-data warnings, and field-level source limitations when relevant.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

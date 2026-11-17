@@ -1,0 +1,74 @@
+version: demo-1
+name: order_delivery
+datasets:
+  - name: orders
+    source: orders
+    primary_key: [tenant_id, order_id]
+    fields:
+      - {name: tenant_id, role: pk}
+      - {name: order_id, role: pk}
+      - {name: customer_ref, role: fk}
+      - {name: amount, role: measure}
+      - {name: status, role: dim, enum: [paid, cancelled]}
+      - {name: ordered_at, role: time}
+      - {name: delivered_at, role: time}
+  - name: customers
+    source: customers
+    grain: 一行一个租户内客户
+    primary_key: [tenant_id, customer_id]
+    temporal: {kind: current}
+    fields:
+      - {name: tenant_id, role: pk}
+      - {name: customer_id, role: pk}
+      - {name: region, role: dim}
+  - name: items
+    source: items
+    grain: 一行一个订单商品行
+    primary_key: item_id
+    temporal: {kind: current}
+    fields:
+      - {name: item_id, role: pk}
+      - {name: tenant_id, role: fk}
+      - {name: order_ref, role: fk}
+relationships:
+  - id: order_customer
+    from: orders
+    to: customers
+    from_columns: [tenant_id, customer_ref]
+    to_columns: [tenant_id, customer_id]
+    cardinality: 'N:1'
+    traversable: true
+  - id: order_items
+    from: orders
+    to: items
+    from_columns: [tenant_id, order_id]
+    to_columns: [tenant_id, order_ref]
+    cardinality: '1:N'
+    traversable: true
+metrics:
+  - id: gmv
+    name: 已支付订单金额
+    dataset: orders
+    type: sum
+    structured: true
+    status: 草案
+    unit: 元
+    time_field: ordered_at
+    filters: [{field: status, values: [paid]}]
+concepts: []
+query_plans:
+  - id: gmv_by_customer
+    metric: gmv
+    relationships: [order_customer]
+constraints:
+  - {id: order_pk, kind: unique, dataset: orders, columns: [tenant_id, order_id], null_policy: forbid}
+  - {id: customer_pk, kind: unique, dataset: customers, columns: [tenant_id, customer_id], null_policy: forbid}
+  - {id: amount_nonnegative, kind: range, dataset: orders, field: amount, min: 0, null_policy: forbid}
+  - {id: statuses, kind: allowed_values, dataset: orders, field: status, values: [paid, cancelled], null_policy: forbid}
+  - {id: delivery_order, kind: date_order, dataset: orders, columns: [ordered_at, delivered_at], null_policy: unknown}
+  - id: order_customer_reference
+    kind: referential
+    dataset: orders
+    columns: [tenant_id, customer_ref]
+    references: {dataset: customers, columns: [tenant_id, customer_id]}
+    null_policy: forbid

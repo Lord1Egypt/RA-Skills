@@ -1,40 +1,49 @@
-## Description: <br>
-Systematic debugging framework. 4-phase root-cause analysis with defense-in-depth. Never guess, never patch symptoms. From Claude Code + Superpowers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Systematic debugging framework. 4-phase root-cause analysis with defense-in-depth. Never guess, never patch symptoms. From Claude Code + Superpowers.
 
-## Publisher: <br>
-[wangxiaofei860208-source](https://clawhub.ai/user/wangxiaofei860208-source) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangxiaofei860208-source](https://clawhub.ai/user/wangxiaofei860208-source)
 
-## Use Case: <br>
-Developers and engineers use this skill to guide agents through root-cause debugging, replacing guesswork and symptom patches with reproduction, investigation, condition-based waiting, layered prevention, and verification. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may lead an agent to inspect code, run tests, add diagnostics, and propose code changes during debugging. <br>
-Mitigation: Use it in development workspaces where those actions are approved, and review proposed changes before applying them. <br>
-Risk: The strict no-fixes-before-root-cause workflow can delay quick symptom relief when an urgent workaround is needed. <br>
-Mitigation: Treat emergency workarounds as temporary, document them, and return to the root-cause investigation and verification process. <br>
+## Use Case:
 
+Developers and engineers use this skill to guide systematic root-cause debugging, replace guesswork with reproducible investigation, and verify fixes with tests and safeguards.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wangxiaofei860208-source/lobster-debugging) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Analysis, Code, Shell commands] <br>
-**Output Format:** [Markdown guidance with optional code and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide an agent to inspect code, run tests, add diagnostics, and propose changes during debugging.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and skill frontmatter) <br>
+Risk: The skill may lead an agent to inspect code, run tests, or propose normal project changes while debugging.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review proposed code edits, commands, and test changes before applying them in sensitive repositories.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wangxiaofei860208-source/skills/lobster-debugging)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, code, markdown]
+
+**Output Format:** [Markdown guidance with possible inline commands, code edits, and test recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable skill code; outputs depend on the user's debugging request and project context.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

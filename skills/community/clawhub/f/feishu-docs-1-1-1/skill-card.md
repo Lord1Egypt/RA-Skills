@@ -1,45 +1,55 @@
-## Description: <br>
-Provides Feishu Docx document operations for creating, reading, updating, deleting, sharing, searching, listing, and converting Markdown or HTML content through Feishu Open Platform APIs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Feishu Docs is an agent skill for creating, reading, updating, deleting, converting, searching, and sharing Feishu Docx cloud documents through the Feishu Open Platform API.
 
-## Publisher: <br>
-[binbin](https://clawhub.ai/user/binbin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[binbin](https://clawhub.ai/user/binbin)
 
-## Use Case: <br>
-Developers and agent operators use this skill to manage Feishu Docx documents from an agent workflow, including CRUD operations, content conversion, export, search, folder listing, and permission management. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can overwrite or delete live Feishu documents without built-in confirmation safeguards. <br>
-Mitigation: Use a dedicated least-privilege Feishu app, verify document IDs before update or delete commands, and back up important documents before replacement or deletion. <br>
-Risk: Sharing commands can grant document access to the wrong recipient or with excessive permissions. <br>
-Mitigation: Verify recipient user IDs and requested permission levels before running share commands. <br>
-Risk: Feishu app credentials can authorize read and write access to business documents. <br>
-Mitigation: Keep FEISHU_APP_SECRET out of logs and source control, scope app permissions narrowly, and rotate credentials according to organization policy. <br>
+## Use Case:
 
+Developers and agent operators use this skill to let an agent manage Feishu Docx documents, including document creation, content updates, Markdown or HTML conversion, search, export, and permission management.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/binbin/feishu-docs-1-1-1) <br>
-- [Publisher profile](https://clawhub.ai/user/binbin) <br>
-- [Feishu Open Platform Docx API documentation](https://open.feishu.cn/document/server-docs/docs/docs/docx-v1/overview) <br>
-- [Feishu Open Platform app console](https://open.feishu.cn/app) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JavaScript examples; CLI commands may emit JSON, Markdown, or plain text depending on options.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires FEISHU_APP_ID and FEISHU_APP_SECRET. Commands may make live Feishu API changes, including document replacement, deletion, and sharing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact package.json and _meta.json list 1.1.1) <br>
+Risk: The skill can delete, replace, or share Feishu cloud documents.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require human confirmation before delete, full replace, or permission-changing commands, and use a least-privileged Feishu app.
+
+Risk: App secrets can be supplied through command-line arguments.
+
+Mitigation: Prefer protected environment variables or secret-manager injection and avoid passing secrets with --app-secret.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/binbin/skills/feishu-docs-1-1-1)
+- [Feishu Open Platform Docx API Overview](https://open.feishu.cn/document/server-docs/docs/docs/docx-v1/overview)
+- [Feishu Open Platform App Console](https://open.feishu.cn/app)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and terminal-oriented text with inline shell commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce or modify Feishu cloud documents and permissions through authenticated API calls.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact package.json reports 1.1.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

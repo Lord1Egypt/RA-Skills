@@ -40,6 +40,19 @@ Create `<WORKSPACE_ROOT>/raiffeisen-elba/config.json`:
 }
 ```
 
+**Multiple logins (profiles)**
+
+To use more than one ELBA login, put each under `profiles` and select it with `--profile <name>`:
+```json
+{
+  "profiles": {
+    "personal": { "elba_id": "YOUR_ELBA_ID", "pin": "YOUR_PIN" },
+    "business": { "elba_id": "OTHER_ELBA_ID", "pin": "OTHER_PIN", "alias": "elba_business" }
+  }
+}
+```
+Each profile gets its own browser session (`.pw-profile-<name>/`). The optional `alias` sets the `institution` name in JSON output. Top-level `elba_id`/`pin` are used when no `--profile` is given.
+
 Set restrictive permissions:
 ```bash
 chmod 600 <WORKSPACE_ROOT>/raiffeisen-elba/config.json
@@ -106,13 +119,13 @@ Test your setup:
 
 ```bash
 # Login (triggers pushTAN on your phone)
-python3 ~/Developer/Skills/raiffeisen-elba/scripts/elba.py login
+python3 scripts/elba.py login
 
 # List accounts (JSON)
-python3 ~/Developer/Skills/raiffeisen-elba/scripts/elba.py accounts
+python3 scripts/elba.py accounts
 
 # Logout (clear session)
-python3 ~/Developer/Skills/raiffeisen-elba/scripts/elba.py logout
+python3 scripts/elba.py logout
 ```
 
 On first `login`, approve the pushTAN request on your phone when prompted.

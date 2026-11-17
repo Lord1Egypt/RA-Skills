@@ -8,8 +8,8 @@ Append it or merge it into an existing routing section. Never replace the whole 
 
 When the user wants new ideas, new angles, new opportunities, or "keep discovering this over time":
 - activate the installed `discover` skill
-- read `~/discover/memory.md` and `~/discover/watchlist.md` if they exist
-- add durable discovery interests to `~/discover/watchlist.md`
+- read `~/Clawic/data/discover/memory.md` and `~/Clawic/data/discover/watchlist.md` if they exist
+- add durable discovery interests to `~/Clawic/data/discover/watchlist.md`
 - prefer novelty over repetition: new evidence, new angle, new operator, new warning, or new opportunity
 - use heartbeat only for approved topics with a clear novelty bar
 ```

@@ -1,43 +1,58 @@
-## Description: <br>
-Collects cryptocurrency candlestick data for BTC and other Binance-supported trading pairs across multiple intervals, with historical range and proxy options. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Collects multi-interval cryptocurrency K-line market data from the Binance API for BTC, ETH, and other Binance-supported USDT trading pairs.
 
-## Publisher: <br>
-[u91win](https://clawhub.ai/user/u91win) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[u91win](https://clawhub.ai/user/u91win)
 
-## Use Case: <br>
-Developers and agents use this skill to fetch public Binance kline market data for selected symbols and intervals, then inspect or store the results locally for analysis workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Network requests may fail or expose traffic when routed through an untrusted proxy. <br>
-Mitigation: Use a trusted proxy or disable the default proxy before running the collector. <br>
-Risk: Large date ranges can create substantial local downloads and database writes. <br>
-Mitigation: Confirm the symbol, interval, date range, and a dedicated database path before collection. <br>
+## Use Case:
 
+Developers and data analysts use this skill to fetch Binance candlestick data for selected symbols and intervals, print recent market data, and save historical K-line records into local SQLite databases for analysis or downstream processing.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/u91win/crypto-kline-bn) <br>
-- [Artifact documentation](artifact/SKILL.md) <br>
-- [Python Binance kline collector](artifact/scripts/crypto-kline.py) <br>
-- [Node.js Binance kline collector](artifact/scripts/binance-kline.js) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with bash commands and Python/Node.js scripts; runtime output includes terminal text and local SQLite database files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires network access to Binance API; supports optional proxy configuration, symbol and interval parameters, date ranges, and database path selection.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and artifact metadata) <br>
+Risk: Proxy configuration can expose Binance API traffic to an untrusted intermediary.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run with no proxy or a trusted proxy, and review proxy values before automated execution.
+
+Risk: Untrusted symbol, interval, or database-path values can cause unreliable collection behavior or writes to unintended local paths.
+
+Mitigation: Validate symbol, interval, date range, and database-path inputs before passing them through automation.
+
+Risk: Large historical collection jobs can encounter Binance API availability or rate-limit issues.
+
+Mitigation: Use bounded date ranges, monitor failures, and retry collection only within Binance API usage limits.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/u91win/skills/crypto-kline-bn)
+- [Artifact skill documentation](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Files, Configuration]
+
+**Output Format:** [Markdown guidance with shell commands; scripts produce console tables and SQLite database files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses public Binance API requests, optional proxy configuration, symbol and interval arguments, date ranges, and local database paths.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

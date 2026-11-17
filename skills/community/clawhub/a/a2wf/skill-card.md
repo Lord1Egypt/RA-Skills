@@ -1,43 +1,54 @@
-## Description: <br>
-Validate, generate, and audit A2WF siteai.json files for website AI agent governance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Validate, generate, and audit A2WF siteai.json files for website AI-agent governance.
 
-## Publisher: <br>
-[Wolfuser45](https://clawhub.ai/user/Wolfuser45) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wolfuser45](https://clawhub.ai/user/wolfuser45)
 
-## Use Case: <br>
-Developers and engineers use this skill to validate local siteai.json files, generate siteai.json policies, and review A2WF compliance posture for websites. It helps agents reason about website permission, identification, scraping, and legal policy signals before acting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Live website checks require fetching public siteai.json files and may create temporary local files. <br>
-Mitigation: Use web_fetch only for the requested siteai.json URL, save results to a temporary file, and remove temporary files after local validation. <br>
-Risk: The advertised live-audit command should be treated as limited local analysis unless the publisher clarifies or fixes the live-audit documentation. <br>
-Mitigation: Use the local validator for saved siteai.json files and avoid relying on the audit command as proof of network discovery behavior. <br>
+## Use Case:
 
+Developers and agent builders use this skill to create, validate, and review siteai.json policies that describe how AI agents may interact with a website.
 
-## Reference(s): <br>
-- [A2WF homepage](https://a2wf.org) <br>
-- [A2WF specification](https://a2wf.org/specification/) <br>
-- [A2WF core schema v1.0](https://a2wf.org/schema/core-v1.0.json) <br>
-- [A2WF Agent Implementer's Guide](references/implementer-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and generated JSON configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can produce validator reports and complete siteai.json policy documents.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Live website audit examples may imply URL-based network auditing, while the authoritative security evidence says normal validation is offline and audit documentation is not fully aligned with the script implementation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use web_fetch to retrieve a site's siteai.json first, then run local validation; treat URL audit examples as guidance unless the implementation is separately confirmed.
+
+## Reference(s):
+
+- [A2WF Homepage](https://a2wf.org)
+- [A2WF Specification](https://a2wf.org/specification/)
+- [A2WF Core v1.0 Schema](https://a2wf.org/schema/core-v1.0.json)
+- [A2WF GitHub Specification](https://github.com/a2wf/spec)
+- [A2WF Agent Implementer's Guide](references/implementer-guide.md)
+- [ClawHub Skill Page](https://clawhub.ai/wolfuser45/skills/a2wf)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, JSON siteai.json output, and structured validation or audit reports.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated siteai.json content is written to stdout or to a requested file; validation exits 0 for valid documents and 1 for invalid documents.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

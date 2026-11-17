@@ -1,6 +1,15 @@
 {
-  "ownerId": "kn71r9tee4gn77z9rr4ygj9bph82gg52",
-  "slug": "runstr-analytics",
+  "name": "runstr-analytics",
   "version": "1.0.1",
-  "publishedAt": 1773479683433
+  "description": "Advanced RUNSTR fitness analytics with trends and coaching insights",
+  "author": "Kjetil",
+  "tags": ["fitness", "analytics", "nostr", "running", "health"],
+  "credentials": [
+    {
+      "name": "RUNSTR_NSEC",
+      "description": "Your Nostr private key (nsec1...) for decrypting RUNSTR backup data",
+      "type": "secret",
+      "required": true
+    }
+  ]
 }

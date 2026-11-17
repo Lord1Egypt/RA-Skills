@@ -1,42 +1,58 @@
-## Description: <br>
-许君山人格视角 helps an agent respond in a Chinese persona style for communication, judgment, learning-path advice, and interest-based conversation while keeping assumptions explicit. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+用许君山的人格视角完成本人化表达、日常沟通代写、AI/学习路径判断和兴趣话题交流。
 
-## Publisher: <br>
-[yuaiccc](https://clawhub.ai/user/yuaiccc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yuaiccc](https://clawhub.ai/user/yuaiccc)
 
-## Use Case: <br>
-External users can use this persona-style skill to draft replies, make lightweight communication or learning-path judgments, and discuss AI or ACG topics in the documented 许君山 voice. It is best used when the user explicitly wants that persona applied. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The persona may influence responses when users did not clearly ask for it because implicit invocation is enabled. <br>
-Mitigation: Prefer explicit activation for drafting, advice, or decision support, and tell users when the response is using the persona. <br>
-Risk: Persona-style output could be mistaken for authorization, commitments, or factual claims by the real person. <br>
-Mitigation: Do not use the skill to impersonate someone or make commitments on their behalf; keep unsupported claims and assumptions explicit. <br>
+## Use Case:
 
+External users can invoke this persona-writing skill to draft replies, make lightweight judgments, and discuss AI, learning paths, ACG, and related interests in Xu Junshan's disclosed style.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yuaiccc/xujunshan) <br>
-- [Publisher profile](https://clawhub.ai/user/yuaiccc) <br>
-- [Homepage](https://xj3.tech) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Natural-language text or Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution, tool use, or data access is described by the artifact evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Implicit invocation may shape ordinary reply-writing or judgment requests in the Xu Junshan persona.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review when the skill is invoked and disable implicit invocation where persona shaping is not desired.
+
+Risk: Persona-style responses could be mistaken for Xu Junshan's real commitments, authorization, or factual proof.
+
+Mitigation: Keep assumptions explicit and do not present simulated persona advice as real-world authorization, commitments, or verified facts.
+
+Risk: The artifact states that high-sensitivity personal details are outside the public skill boundary.
+
+Mitigation: Do not add unprovided contact details, exact location, body data, or other sensitive personal information to responses.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/yuaiccc/skills/xujunshan)
+- [Homepage](https://xj3.tech)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain text responses in Chinese by default]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Keeps assumptions explicit when responding beyond the provided persona evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

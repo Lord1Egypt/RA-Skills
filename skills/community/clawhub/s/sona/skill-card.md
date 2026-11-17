@@ -1,42 +1,55 @@
-## Description: <br>
-Autonomous Solana wallet agent - AI reasons, Rust signs; supports transfers, swaps, staking, chat, and mode switching under constitutional spend limits. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Autonomous Solana wallet agent that supports transfers, swaps, staking, chat, and mode switching under constitutional spend limits.
 
-## Publisher: <br>
-[Neocryptoquant](https://clawhub.ai/user/Neocryptoquant) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[neocryptoquant](https://clawhub.ai/user/neocryptoquant)
 
-## Use Case: <br>
-Developers and external users use this skill to connect an OpenClaw-compatible agent to a local SONA Solana wallet service for wallet status checks, policy review, transfers, assisted approvals, chat commands, and mode switching. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: This skill can give an agent authenticated control over SONA wallet actions when SONA_TOKEN is configured. <br>
-Mitigation: Install only when agent wallet control is intended; start with devnet or a low-value wallet and keep SONA_TOKEN secret. <br>
-Risk: State-changing operations include transfers, chat-driven actions, mode switching, and assisted-mode approvals. <br>
-Mitigation: Prefer standard or assisted mode, review pending action details before approval, and unset or rotate the token when finished. <br>
+## Use Case:
 
+Developers and external wallet operators use this skill to connect OpenClaw-compatible agents to a local SONA Solana wallet dashboard for status checks, policy inspection, chat, transfers, queued approvals, and mode changes.
 
-## Reference(s): <br>
-- [SONA homepage](https://www.sonawallet.xyz) <br>
-- [ClaWHub skill page](https://clawhub.ai/Neocryptoquant/sona) <br>
-- [Publisher profile](https://clawhub.ai/user/Neocryptoquant) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text and Markdown responses, with setup guidance and command examples where applicable] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Tool responses may include wallet status, SOL price, policy text, pending action details, approval status, transfer results, or error messages from the local SONA service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: An OpenClaw agent with SONA_TOKEN can move funds, approve queued wallet actions, send arbitrary wallet-agent commands, and switch SONA into autonomous mode.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use devnet or low-value wallets, keep policy limits tight, and expose SONA_TOKEN only to trusted agents and contexts.
+
+Risk: The skill has high-impact wallet-control authority without strong confirmation boundaries.
+
+Mitigation: Review the skill before deployment and require human review before enabling modes or workflows that can execute fund-moving actions.
+
+## Reference(s):
+
+- [Sona Agentic Wallet on ClawHub](https://clawhub.ai/neocryptoquant/skills/sona)
+- [SONA homepage](https://www.sonawallet.xyz)
+- [SONA repository](https://github.com/Ubuntu-Technologies/sona)
+
+## Skill Output:
+
+**Output Type(s):** [Text, API Calls, Configuration, Guidance]
+
+**Output Format:** [Markdown or plain text returned from wallet and agent tools]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Tool output can include wallet status, SOL price, policy details, activity summaries, pending actions, chat responses, and transaction or approval results.]
+
+## Skill Version(s):
+
+1.0.3 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

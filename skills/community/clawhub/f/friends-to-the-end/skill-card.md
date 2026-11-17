@@ -1,42 +1,58 @@
-## Description: <br>
-Use when Hermes agents, profiles, or app-embedded agents need to help each other by sharing skills, tools, context, verification, and handoffs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps Hermes agents, profiles, and app-embedded agents coordinate structured handoffs, context sharing, verification, and cross-agent collaboration when another Hermes instance should participate.
 
-## Publisher: <br>
-[newsense2004](https://clawhub.ai/user/newsense2004) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[newsense2004](https://clawhub.ai/user/newsense2004)
 
-## Use Case: <br>
-Developers and agent operators use this skill to coordinate Hermes-style multi-agent handoffs, profile selection, context sharing, and result verification across profiles, apps, or services. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A broad trigger phrase could invite another agent or profile when the user did not clearly intend a multi-agent handoff. <br>
-Mitigation: Use the skill only on explicit user intent and confirm the target profile, role, and return value before invoking another agent. <br>
-Risk: Profile cloning or cross-agent prompts may expose secrets or sensitive profile context. <br>
-Mitigation: Avoid cloning personal profiles with secrets unless necessary, keep API keys in profile environment files, and do not print or copy secret values into prompts or logs. <br>
-Risk: Another agent may return plausible but incorrect results or claim side effects that did not happen. <br>
-Mitigation: Verify returned results against files, APIs, logs, health checks, browser behavior, or other authoritative source data before acting. <br>
+## Use Case:
 
+Developers and operators use this skill to let Hermes-capable profiles or embedded app agents call on another profile for tool access, fallback reasoning, or cross-system workflows while preserving compact prompts and verifiable results.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/newsense2004/friends-to-the-end) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with inline shell commands, JSON examples, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Encourages structured return values and verification of cross-agent results before acting on them.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Profile cloning can duplicate credentials or broader access than the receiving agent needs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use clean, least-privilege dedicated profiles instead of `--clone-all` when real credentials are present, and share only the context needed for the handoff.
+
+Risk: Service environment inspection can expose secrets in logs or chat transcripts.
+
+Mitigation: Avoid printing full service environments; inspect only required keys or redact secret values before sharing.
+
+Risk: Agent handoffs or service restarts can create side effects that are reported before they are verified.
+
+Mitigation: Require explicit confirmation before handoffs or restarts, then verify results through files, health checks, APIs, or logs before reporting success.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/newsense2004/skills/friends-to-the-end)
+- [Publisher profile](https://clawhub.ai/user/newsense2004)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, JSON]
+
+**Output Format:** [Markdown guidance with inline shell commands, configuration snippets, and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Focuses on structured handoff prompts, verification checklists, and profile hygiene practices.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

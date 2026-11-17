@@ -1,46 +1,64 @@
-## Description: <br>
-AgentVerif scans OpenClaw skills for OWASP LLM Top 10 issues and supports signing, verification, tamper detection, and license revocation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AgentVerif scans skill content for OWASP LLM risks, signs skill ZIPs, verifies skill certificates, and supports license revocation for controlled distribution.
 
-## Publisher: <br>
-[shaymizuno](https://clawhub.ai/user/shaymizuno) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shaymizuno](https://clawhub.ai/user/shaymizuno)
 
-## Use Case: <br>
-Developers and skill publishers use AgentVerif to scan OpenClaw skills, sign release ZIPs, verify certificates, detect tampering, and revoke licenses when distribution must be controlled. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Scan, sign, and verify operations can transmit skill ZIPs or license IDs to agentverif.com. <br>
-Mitigation: Do not scan or sign archives containing secrets or data that cannot be shared with agentverif.com. <br>
-Risk: Signing changes the supplied ZIP by adding signature metadata. <br>
-Mitigation: Keep an unsigned copy when the original archive must be preserved. <br>
-Risk: The revoke command uses AGENTVERIF_API_KEY. <br>
-Mitigation: Use a scoped key, provide it only when revoking, and rotate it if exposure is suspected. <br>
-Risk: The skill depends on the separate agentverif-sign Python package for core operations. <br>
-Mitigation: Install only when the package and its network behavior are acceptable for the target environment. <br>
+## Use Case:
 
+Developers and skill publishers use AgentVerif to scan OpenClaw skills for common LLM security issues, sign distributable ZIP archives, verify certificates, and revoke licenses when distribution must be controlled.
 
-## Reference(s): <br>
-- [ClawHub AgentVerif listing](https://clawhub.ai/shaymizuno/agentverif) <br>
-- [AgentVerif documentation](https://agentverif.com/docs) <br>
-- [AgentVerif homepage](https://agentverif.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Text, JSON status messages, Markdown reports, and command-line exit codes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands can return verification states such as VERIFIED, TAMPERED, UNSIGNED, EXPIRED, or REVOKED.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.6 (source: server release metadata) <br>
+Risk: Skill archives can be uploaded to the configured AgentVerif endpoint during scan or sign operations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review archive contents first and do not submit ZIPs containing secrets, credentials, or proprietary material unless sharing them with that endpoint is acceptable.
+
+Risk: The sign command can modify ZIP files in place.
+
+Mitigation: Keep a backup copy of the original archive before signing.
+
+Risk: Fixed certification text may overstate assurance if users treat it as a fresh scan result.
+
+Mitigation: Verify the release and review current scan output before relying on certification claims.
+
+Risk: Unpinned installer or dependency versions can change behavior after installation.
+
+Mitigation: Use pinned versions for the ClawHub installer and the agentverif-sign dependency in controlled environments.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/shaymizuno/skills/agentverif)
+- [Publisher profile](https://clawhub.ai/user/shaymizuno)
+- [AgentVerif homepage](https://agentverif.com)
+- [AgentVerif documentation](https://agentverif.com/docs)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [JSON and text responses with optional Markdown badge output and shell command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands return process exit codes for pass, fail, and argument or dependency errors.]
+
+## Skill Version(s):
+
+2.0.6 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

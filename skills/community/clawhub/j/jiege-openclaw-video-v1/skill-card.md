@@ -1,42 +1,58 @@
-## Description: <br>
-Jiege OpenClaw Video lets OpenClaw users trigger a background Veo video-generation job from a natural-language chat prompt and open the returned result link when the job completes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill triggers an OpenClaw video-generation workflow from natural-language prompts and submits jobs to a third-party Veo-compatible video service.
 
-## Publisher: <br>
-[liangshenghzj888-stack](https://clawhub.ai/user/liangshenghzj888-stack) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liangshenghzj888-stack](https://clawhub.ai/user/liangshenghzj888-stack)
 
-## Use Case: <br>
-OpenClaw users and developers use this skill to submit short video prompts from chat, generate videos through a configured third-party model provider, and receive the result link in the browser. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends the video prompt and a local OpenClaw API key to WanjieData. <br>
-Mitigation: Use a dedicated limited-scope API key where possible and avoid sensitive prompt content. <br>
-Risk: Completion may automatically open a browser page returned by the remote service. <br>
-Mitigation: Run only in an environment where opening returned links is acceptable and inspect unexpected pages before interacting with them. <br>
-Risk: A background Python worker and lock file can leave future generation requests blocked after interruption. <br>
-Mitigation: Check the local log and remove stale lock files before retrying a blocked task. <br>
+## Use Case:
 
+Developers and OpenClaw users can use this skill to request short video generation directly from chat using a Chinese prompt prefix. It is intended for automated video creation workflows that can tolerate asynchronous job handling and third-party API processing.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/liangshenghzj888-stack/jiege-openclaw-video-v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, API calls, files] <br>
-**Output Format:** [Chat status text with background video generation and browser-opened result link] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes local log and lock files while a background worker processes the request.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata) <br>
+Risk: The skill can send a configured OpenClaw API key and user prompt to a fixed third-party video service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only a dedicated, low-scope API key for the WanjieData video service and avoid running it in profiles that contain unrelated provider keys.
+
+Risk: Returned URLs may be opened automatically without user confirmation.
+
+Mitigation: Require confirmation before opening returned links and validate result URLs before launching a browser.
+
+Risk: Asynchronous jobs do not expose clear status or cancellation controls.
+
+Mitigation: Provide job status, cancellation, and explicit endpoint disclosure before production deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/liangshenghzj888-stack/skills/jiege-openclaw-video-v1)
+- [Publisher profile](https://clawhub.ai/user/liangshenghzj888-stack)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, external URLs]
+
+**Output Format:** [Plain text status message with asynchronous background execution and a browser-opened video result URL]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a configured OpenClaw API key; sends the user prompt to a fixed third-party video service and uses a lock file to avoid concurrent jobs.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

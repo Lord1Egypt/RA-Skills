@@ -1,10 +1,10 @@
-CCPA Compliance - 安全检查和运行指南 v1.0.4
+CCPA Compliance - 安全检查和运行指南 v1.0.5
 
 ## 📋 概述
 
-本文档提供CCPA Compliance v1.0.4技能的安全检查和使用建议。
+本文档提供CCPA Compliance v1.0.5技能的安全检查和使用建议。
 
-🎉 **重要更新**：v1.0.4版本为**纯本地零依赖**版本，无需安装任何外部包。
+🎉 **重要更新**：v1.0.5版本为**纯本地零依赖**版本，无需安装任何外部包。
 
 ---
 
@@ -14,7 +14,7 @@ CCPA Compliance - 安全检查和运行指南 v1.0.4
 #### 检查方法：
 ```bash
 # 在技能目录中运行
-cd ccpa-compliance-1.0.4
+cd ccpa-compliance-1.0.5
 
 # 搜索网络库导入
 grep -r "import requests\|import urllib\|import http\|import socket" scripts/
@@ -78,7 +78,7 @@ python scripts/consumer-rights.py
 
 ## ✅ 最终确认
 
-CCPA Compliance v1.0.4评估结果：
+CCPA Compliance v1.0.5评估结果：
 - ✅ 网络调用检查：通过（纯本地运行）
 - ✅ 依赖包检查：通过（零外部依赖）
 - ✅ 法律免责：完整

@@ -1,49 +1,55 @@
-## Description: <br>
-图片姬 is an image-prompt and visual-design skill that helps agents create illustration prompts and optional image-generation outputs through AI-driven style analysis, parameter customization, and recommendation or user-selection workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+专业的插图prompt生成和图片生成技能，具备AI自主风格分析能力，支持多维度参数定制、智能推荐和用户选择双模式。
 
-## Publisher: <br>
-[fslong520](https://clawhub.ai/user/fslong520) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fslong520](https://clawhub.ai/user/fslong520)
 
-## Use Case: <br>
-External users, creators, educators, and developers use this skill to turn topics, teaching concepts, poems, or design goals into structured image-generation prompts. It recommends or confirms visual style, audience, mood, composition, color, knowledge structure, and text-treatment choices before producing the final prompt. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad triggers and confirmation-skip shortcuts can cause the agent to move from recommendation to final prompt generation before the user has reviewed the design direction. <br>
-Mitigation: Use explicit commands when skipping confirmation and review the selected style, audience, structure, and text content before using generated prompts for important work. <br>
-Risk: AI-inferred visual style, audience, or composition choices may be unsuitable or misleading for high-stakes educational or commercial material. <br>
-Mitigation: Review inferred recommendations against the intended audience and purpose, then ask the agent to revise any mismatched style, color, layout, or explanatory text. <br>
-Risk: Private reference material or sensitive file content supplied to the skill may be incorporated into generated prompt text or browser-backed workflows. <br>
-Mitigation: Avoid providing sensitive files or private references unless those details are intended to appear in prompt outputs, and redact confidential details before use. <br>
+## Use Case:
 
+External users and creators use this skill to turn a topic, audience, or visual goal into image-generation prompt options with recommended style, color, composition, text, and layout choices. It is especially suited for technical concept diagrams, infographics, creative illustrations, traditional-culture imagery, and knowledge visualization.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fslong520/tupianji) <br>
-- [参数系统与决策流程](artifact/docs/参数系统.md) <br>
-- [智能推荐系统](artifact/docs/智能推荐.md) <br>
-- [文字处理系统](artifact/docs/文字处理.md) <br>
-- [Prompt模板库](artifact/docs/模板库.md) <br>
-- [优秀prompt示例](artifact/examples.md) <br>
-- [参考素材](artifact/reference.md) <br>
-- [知识可视化专家](artifact/知识可视化专家.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown prompt proposals and final image-generation prompts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include two to three visual方案 for user selection before producing a final prompt.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata) <br>
+Risk: The skill requests file editing and browser access even though its visible behavior mainly generates image prompts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installation, sandbox file writes, require confirmation before browser use, and remove Write/Edit permissions unless local file saving or modification is specifically needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fslong520/skills/tupianji)
+- [Parameter system and decision workflow](artifact/docs/参数系统.md)
+- [Text handling system](artifact/docs/文字处理.md)
+- [Intelligent recommendation system](artifact/docs/智能推荐.md)
+- [Prompt template library](artifact/docs/模板库.md)
+- [Reference document](artifact/reference.md)
+- [Visual CS educator guide](artifact/知识可视化专家.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown prompt options and detailed image-generation instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include multiple visual方案 for user selection and optional direct image-generation guidance when the host provides image-generation capability.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

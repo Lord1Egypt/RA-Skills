@@ -1,45 +1,55 @@
-## Description: <br>
-Iflytek Translate translates text between Chinese, English, Japanese, Korean, French, Spanish, German, Russian, Arabic, Thai, Vietnamese, and other languages through the iFlytek Machine Translation API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+iFlytek Machine Translation translates text between Chinese, English, Japanese, Korean, French, Spanish, German, Russian, Arabic, Thai, Vietnamese, and other supported languages using iFlytek's Machine Translation API.
 
-## Publisher: <br>
-[iflytek.skills](https://clawhub.ai/user/iflytek.skills) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[iflytek.skills](https://clawhub.ai/user/iflytek.skills)
 
-## Use Case: <br>
-Developers, agents, and end users use this skill to translate user-provided text or file/stdin content with an iFlytek account and configured API credentials. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Text submitted for translation, including file or stdin content, is sent to iFlytek for processing. <br>
-Mitigation: Do not submit secrets, credentials, confidential business text, personal data, or regulated content unless third-party translation is approved for that data. <br>
-Risk: The skill requires iFlytek API credentials to call the translation service. <br>
-Mitigation: Configure credentials through environment variables and rotate or revoke them if they may have been exposed. <br>
-Risk: Single-request input length is documented as limited to 4096 bytes. <br>
-Mitigation: Split longer text into smaller segments before translation and review the combined output. <br>
+## Use Case:
 
+External users and developers use this skill to translate short text, standard input, or explicitly selected files through the iFlytek Machine Translation API. It is useful when an agent needs direct multilingual translation output and the user has approved iFlytek credentials and data handling.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/iflytek.skills/iflytek-translate) <br>
-- [iFlytek Machine Translation product page](https://www.xfyun.cn/services/machine_translation) <br>
-- [iFlytek Machine Translation API documentation](https://www.xfyun.cn/doc/nlp/xftrans/API.html) <br>
-- [iFlytek console service setup](https://console.xfyun.cn/services/its) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration guidance] <br>
-**Output Format:** [Plain text translation by default, optional raw JSON response, and Markdown usage examples with shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires XFYUN_APP_ID, XFYUN_API_KEY, and XFYUN_API_SECRET; single request text is documented as limited to 4096 bytes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Translated text, standard input, or explicitly selected files are sent to iFlytek's external translation service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with content your organization has approved for that provider; do not translate secrets, regulated personal data, or confidential documents unless approved.
+
+Risk: The skill signs requests with XFYUN credentials from environment variables.
+
+Mitigation: Store credentials only in the expected environment variables and avoid placing credentials in translation input or files.
+
+## Reference(s):
+
+- [Iflytek Translate on ClawHub](https://clawhub.ai/iflytek.skills/skills/iflytek-translate)
+- [iFlytek Machine Translation Service](https://www.xfyun.cn/services/machine_translation)
+- [iFlytek Machine Translation API Documentation](https://www.xfyun.cn/doc/nlp/xftrans/API.html)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, configuration guidance]
+
+**Output Format:** [Plain text translation by default, with optional JSON response output.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires XFYUN_APP_ID, XFYUN_API_KEY, and XFYUN_API_SECRET; sends selected text to the iFlytek translation API.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

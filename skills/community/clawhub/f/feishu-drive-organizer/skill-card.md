@@ -1,39 +1,54 @@
-## Description: <br>
-飞书云盘 AI 管家 helps an agent organize Feishu Drive files and folders through bulk organization, automatic classification, file search, storage reports, and comment management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+飞书云盘 AI 管家 helps agents organize Feishu Drive files and folders through classification, search, bulk file management, storage reports, and comment management.
 
-## Publisher: <br>
-[young-joey](https://clawhub.ai/user/young-joey) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[young-joey](https://clawhub.ai/user/young-joey)
 
-## Use Case: <br>
-Employees and teams using Feishu Drive can ask an agent to classify files, manage folders, find stale or misplaced documents, produce storage reports, and manage file comments. The skill is suited to scoped cloud-drive cleanup and reporting workflows where the user reviews planned file changes before execution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Bulk moves, archiving, deletes, or comment actions can change many Feishu Drive items at once. <br>
-Mitigation: Ask the agent for a dry-run list, confirm the exact folder scope, and approve the planned changes before execution. <br>
+## Use Case:
 
+Employees and teams with Feishu Drive content use this skill to organize cloud files, find stale or misplaced documents, produce storage summaries, and manage file comments through an agent workflow.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/young-joey/feishu-drive-organizer) <br>
-- [Feishu Drive operation reference](references/drive-tips.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, API calls] <br>
-**Output Format:** [Markdown guidance, file lists, folder plans, storage reports, and Feishu Drive API actions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Agent actions may include listing folders, creating folders, moving files, soft-deleting files, and reading or writing comments when authorized by the user.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The skill can change Feishu Drive content through bulk moves, folder creation, comment posting, and soft deletion.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use explicit folder names, review affected file lists, and require confirmation before approving destructive or bulk actions.
+
+Risk: Automated organization may move files into an unexpected folder structure if the user request is ambiguous.
+
+Mitigation: Ask for clarification when folder scope or classification rules are unclear, and present the proposed plan before moving files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/young-joey/skills/feishu-drive-organizer)
+- [飞书云盘操作参考](artifact/references/drive-tips.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, API calls, guidance]
+
+**Output Format:** [Markdown or conversational text with Feishu Drive action proposals and summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include file lists, folder plans, storage summaries, comment actions, and confirmation prompts before bulk or destructive operations.]
+
+## Skill Version(s):
+
+1.0.2 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,145 +1,62 @@
 ---
-name: 忆时
-description: "🎋 记忆胶囊系统 - 模拟人类记忆检索 | 自动加载，主动联想记忆"
-priority: 900
+name: memocap
+description: "忆时记忆系统 - 类人记忆检索/存储/遗忘/胶囊/可视化。让 AI 拥有会遗忘、会联想、会涌现、会封存的记忆。触发词：忆时、记忆、记住、回想、回忆、recall、remember、时间胶囊、记忆检索、可视化、记忆脑图、人物画像。"
+allowed-tools:
+  - Read
+  - Write
+  - Bash
+  - Glob
+  - Grep
 metadata:
   slug: memocap
-  version: "1.0.0"
-  trigger: "忆时、记忆检索、时间胶囊、记忆胶囊、回想、回忆、recall、remember"
-  copaw:
-    emoji: "🎋"
-    requires: {}
-    auto_load: true
+  version: "2.5.10"
+  trigger: 忆时, 记忆检索, 时间胶囊, 记忆胶囊, 回想, 回忆, recall, remember, /忆时, 记住, 可视化, 记忆脑图, 人物画像
 ---
 
-# 忆时 - 记忆胶囊系统
+# Skill: 忆时记忆系统
 
-> 模拟人类的记忆机制，让 AI 拥有会遗忘、会联想、会涌现、会封存的记忆系统。
-> 详细流程参见 modules/ 目录。
+## Keywords
+忆时, 记忆, 记忆检索, 记忆存储, 时间胶囊, 遗忘曲线, 记忆涌现, 视觉化, 记忆能力
 
-## 触发条件
+## Summary
+忆时是类人记忆系统。核心命令经 `memory_core.py` CLI 走混合检索（BM25+向量 RRF）、去重合并、遗忘曲线、情绪锚定。数据与脚本共享于本机 `~/.local/share/忆时/`，多工具双栖共用。
 
-- **自动加载**：每次对话自动激活，AI 主动联想和检索记忆
-- **关键字**：忆时、记忆检索、时间胶囊、记忆胶囊、回想、回忆、我说过、我记得
-- **场景**：用户询问过去的事情、要求回忆、需要上下文关联、触发闪回
-- **主动**：定时模式运行时主动扫描到期胶囊和记忆关联
+## 前置（启始三检，每会话必行）
+缺一不可，验不过即报不绕：
+1. `MEMO_DIR` 已设环境变量？——否则脚本路径错、数据错存。
+2. 数据目录 `~/.local/share/忆时/data` 存在且可写？
+3. `python3` 可用？`memory_core.py` 能否运行？
 
-## 核心概念
-
-| 概念 | 说明 |
-|------|------|
-| **类人检索** | 语义40% + 近因20% + 情绪15% + 频率25%，不像数据库那样精确 |
-| **渐进式回忆** | 先抛最相关的1-2条，用户追问再深入，非一次性倒出 |
-| **遗忘曲线** | 记忆随时间指数衰减，低频率的记忆会变得"模糊" |
-| **情绪锚定** | 高情绪（🔴高/🟠中高）记忆权重更高，不易遗忘 |
-| **记忆涌现** | 话题转换时发现隐藏关联，主动说出"说到这个我突然想到…" |
-| **时间胶囊** | 封存某段记忆，设定解锁日期，到期后自动/手动解封翻阅 |
-
-## 记忆类型
-
-| 类型 | 说明 | 情绪权重倾向 |
-|------|------|-------------|
-| emotion | 情绪事件（开心、愤怒、悲伤） | |
-| decision | 用户做出的决策 | 🟠 |
-| task | 任务/待办 | 🟡 |
-| time | 时间敏感信息（截止日期） | 🔴 |
-| preference | 用户偏好/习惯 | 🟢 |
-| context | 上下文/背景信息 | 🟡 |
-
-## 执行流程入口
-
-1. 读取 `modules/01-initialize.md` - 初始化 Chroma
-2. 读取 `modules/02-passive-mode.md` - 被动模式流程
-3. 读取 `modules/03-active-mode.md` - 主动模式流程
-4. 读取 `modules/04-time-capsule.md` - 时间胶囊操作
-5. 读取 `modules/05-retrieval.md` - 类人检索策略
-6. 读取 `modules/06-import-export.md` - 导入导出操作
-
-## 核心命令
-
+## 路径与命令
 ```bash
-PY=/home/fslong/.config/opencode/skills/忆时/scripts/memory_core.py
-
-初始化:    python3 $PY init
-存储记忆:  python3 $PY store "内容" --type task --emotion high
-检索记忆:  python3 $PY recall "查询" --limit 5 --expand
-封胶囊:  python3 $PY capsule lock --unlock-at "2026-12-31"
-查看胶囊:  python3 $PY capsule list
-导入:      python3 $PY import-file file.md --format markdown
-导出:      python3 $PY export --format timeline --output output.md
-统计:      python3 $PY stats
-遗忘:      python3 $PY forget --before "2025-01-01" --auto
-恢复:      python3 $PY recover
-查看备份:  cat memories_backup.jsonl | python3 -m json.tool --lines
+LOCAL_BASE=~/.local/share/忆时
+YISHI=$LOCAL_BASE/scripts/memory_core.py
+MEMO_DIR=$LOCAL_BASE/data
+# store：内容为【位置参数放最后】（无 --content/--tags），关键字用 --keywords；title ≤10 字自动生成，可 --title 覆盖
+#   两段式：先 recall 判断（读相似旧忆，判同主题否）→ 再 store 决策。脚本不代决：
+#   store 遇相似≥70%候选（最多3条完整原文）即【不落库】挂起等 AI。统一一条路 --merge-ids（N 可0）：
+#   ①选（候选里选出值得合并者，可0条）②删（选N条→--merge-ids "ID1,ID2,..."；选0条→--merge-ids ""空串=删0条）③并（综合版=所选旧内容+新内容 AI 手写存入；选0条=新内容原样存）
+python3 $YISHI store --type <decision|task|preference|emotion|context|time|skill> --keywords "k1,k2" --emotion <0-1> "[完整内容]"
+# recall：检索/核实（默认最相关3条，勿多；相似>0.5 即看；--judge 判定模式输出全文+相似度/类型/创建日，值必存第一段用）
+python3 $YISHI recall "关键词" --judge
+# merge：梳理时语义合并高相关簇（锚记忆→预览簇→--content+--apply 删旧存新）
+python3 $YISHI merge --id <锚ID> --threshold 0.68
+# 其余子命令：forget 删除 | stats 统计 | export 导出 | recover 恢复 | capsule 时间胶囊
+# 可视化：python3 $LOCAL_BASE/scripts/viz/viz.py（全景）/ mindmap.py（网状记忆图谱，D3 力导向）
+# 人物画像：python3 $LOCAL_BASE/scripts/viz/profile.py
 ```
 
-## 项目结构
+## 三条红线（铁律）
+1. **言必检**——每言先 recall 检索再作答，检而再检，换词查透。
+2. **困必查**——卡住/不确定/忘细节/报错不明/改了没效果 → **先 recall 翻记忆找先例教训**，不得硬扛、不得凭猜、不得卡死；翻完仍无解才注明「无记忆」行事。
+3. **值必存**——有价值信息（决策/偏好/任务/情绪/时间/上下文）主动留存，**必两段式**：先 recall 判断（`--judge` 读全文，判同主题否）→ 再 store 决策。**脚本不代决**——store 遇候选【不落库】挂起等 AI，统一一条路 `--merge-ids`（N 可 0）：可合并→`--merge-ids "ID1,ID2,..."` 删旧存新综合版；不可合并→`--merge-ids ""` 空串机械存储。**禁止裸 store**。禁止"先存了再说"（先落库再合并=临时碎片）。存后 recall 核实。
+4. **存必告**——存则告"已录"（指明类型），不存亦告，不沉默。
 
-```
-忆时/
-├── SKILL.md                    # 技能定义 (入口)
-├── yishi-instructions.md       # 外挂提示词 (必须配置到 opencode.json)
-├── modules/                    # 详细流程模块
-│   ├── 01-initialize.md        # Chroma 初始化
-│   ├── 02-passive-mode.md      # 被动模式流程
-│   ├── 03-active-mode.md       # 主动模式流程
-│   ├── 04-time-capsule.md      # 时间胶囊操作
-│   ├── 05-retrieval.md         # 类人检索策略
-│   └── 06-import-export.md     # 导入导出操作
-├── models/                     # embedding 模型
-│   └── onnx.tar.gz             # 离线安装包 (80MB, 首次使用自动解压)
-├── scripts/
-│   └── memory_core.py          # 核心引擎 CLI
-└── references/
-    └── chroma-api.md           # ChromaDB API 参考
-```
+## 存储质量
+记忆内容**不可压缩**（对话输出可省字，存储须自足）。内容按【前因】【行为】【后果】三要素，答得出"为何"与"何如"、三月后重读自能理解方存。宁多三行因果，不省一字。
 
-## 模型安装
+## 语言风格
+默认简约直给，去填充词、客套、自夸、工具调用叙述。安全警告/不可逆操作/多步易歧义处自动恢复正常句式，明晰为要。
 
-本技能使用 all-MiniLM-L6-v2 embedding 模型。安装方式：
-
-1. **有离线包** (`models/onnx.tar.gz`) → 首次调用时自动解压到 `models/all-MiniLM-L6-v2/onnx/`
-2. **无离线包** → 自动从 Chroma S3 下载到 `models/all-MiniLM-L6-v2/onnx/`
-3. 也可手动下载并解压至 `models/all-MiniLM-L6-v2/onnx/`
-
-> ⚠️ **注意**：模型文件永远存放在本技能目录下的 `models/` 中，**不会写入 `~/.cache/chroma/`**。即使执行 `rm -rf ~/.cache/chroma` 也不会影响已安装的模型。
-
-## 使用说明
-
-### 必须配置外挂提示词
-
-本技能依赖 OpenCode 的 `instructions` 配置才能完整生效。
-未配置时，AI 不会自动检索记忆或存储记忆。
-
-**配置步骤：**
-
-1. 编辑全局配置文件 `~/.config/opencode/opencode.json`
-2. 添加 `instructions` 字段，指向技能目录下的提示词文件：
-
-```json
-{
-  "instructions": [
-    "~/.config/opencode/skills/忆时/yishi-instructions.md"
-  ]
-}
-```
-
-3. 重启 OpenCode 使配置生效
-
-**配置后 AI 将自动：**
-- 每次对话前检索记忆系统
-- 用户说"记住"时自动存储记忆
-- 话题关联时主动涌现历史记忆
-- 对话结束时自动归档重点
-
-**未配置则：**
-- 技能仍可手动调用命令
-- 但不会自动检索/存储记忆
-- 不会主动联想和闪回
-
-## 运行环境
-
-- Python: 3.13+
-- 依赖: chromadb 1.5.4
-- 脚本: `scripts/memory_core.py`
-- 数据: `data/` (ChromaDB PersistentClient 自动创建)
+## 模块详情
+细册在 `~/.local/share/忆时/docs/modules/`（13-retrieval-store.md 检索存储、12-viz-profile.md 可视化画像、11-quick-commands.md 快捷命令等）。渐进式披露——遇场景才读对应模块，勿一次全读。

@@ -1,42 +1,57 @@
-## Description: <br>
-Searches Douyin (抖音) content by natural language keyword, including video search, trending topics, and video detail extraction via web search and page fetching. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search Douyin (抖音) content by natural language keyword, including video search, trending topics, and video detail extraction using web search and page scraping without an API key.
 
-## Publisher: <br>
-[terrycarter1985](https://clawhub.ai/user/terrycarter1985) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[terrycarter1985](https://clawhub.ai/user/terrycarter1985)
 
-## Use Case: <br>
-Content researchers, social media managers, and agents use this skill to discover Douyin videos, review trending topics, and summarize metadata from specific Douyin video URLs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search terms and provided Douyin URLs may be sent through external web search and page-fetching services. <br>
-Mitigation: Use non-sensitive search terms and do not provide Douyin cookies, passwords, private account links, or other sensitive information. <br>
-Risk: Douyin CAPTCHA, authentication gates, and search engine coverage can make results incomplete, stale, or limited to indexed metadata. <br>
-Mitigation: Treat results as discovery leads, verify important content directly on Douyin, and retry with shorter or Chinese-language keywords when needed. <br>
-Risk: The artifact README install command uses a different slug than the published release. <br>
-Mitigation: Install the published ClawHub release using the slug douyin-quick-search. <br>
+## Use Case:
 
+Content researchers, social media managers, and external users use this skill to discover Douyin videos, trending topics, and basic metadata from public Douyin URLs through natural language requests.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/terrycarter1985/douyin-quick-search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes the search keyword, result count, titles, descriptions when available, and links to discovered Douyin content.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence release and skill metadata) <br>
+Risk: The skill may use web search and fetch public Douyin pages when asked for Douyin discovery or video details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it for public content discovery only and review outbound retrieval policies before deployment.
+
+Risk: Broad Douyin search requests can activate the skill and return incomplete or stale indexed results.
+
+Mitigation: Review the extracted keyword and verify important findings directly on Douyin when freshness or completeness matters.
+
+Risk: Douyin CAPTCHA, authentication, or access controls may prevent detailed page metadata extraction.
+
+Mitigation: Fallback to search result metadata and clearly label limited results instead of presenting them as comprehensive.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/terrycarter1985/skills/douyin-quick-search)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown search summaries with keywords, result counts, titles, descriptions, and links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results may be partial when Douyin pages are blocked or search indexes lag live content.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, skill manifest, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

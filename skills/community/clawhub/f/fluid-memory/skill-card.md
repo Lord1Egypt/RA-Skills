@@ -1,40 +1,55 @@
-## Description: <br>
-Fluid Memory adds local OpenClaw memory with ChromaDB recall, decay-based forgetting, and archive controls tied to OpenClaw memory flush events. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fluid Memory gives OpenClaw agents a local vector memory system with decay-based forgetting, access-frequency reinforcement, recall, forgetting, status, and flush-based conversation summarization.
 
-## Publisher: <br>
-[AgaintA](https://clawhub.ai/user/AgaintA) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[againta](https://clawhub.ai/user/againta)
 
-## Use Case: <br>
-OpenClaw users and developers use this skill to store, recall, reinforce, forget, and archive local conversation memories across sessions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT License
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores conversation content in local plaintext memory files and vector storage. <br>
-Mitigation: Enable it deliberately, avoid sending secrets while the hook is active, and protect or periodically clear ~/.openclaw/workspace/database/. <br>
-Risk: Scheduled cleanup can eventually delete archived memories. <br>
-Mitigation: Run the daemon only when automatic cleanup is intended and keep separate backups for memories that must be retained. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to add local, persistent memory that can remember user-provided facts, recall relevant memories, archive forgotten memories, and summarize conversations after OpenClaw memory flush events.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/AgaintA/fluid-memory) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Text responses, JSON-style tool call arguments, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local plaintext storage under the OpenClaw workspace and does not disclose cloud synchronization.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.9 (source: server-resolved release metadata) <br>
+Risk: The skill stores broad chat content and memory data in plaintext under ~/.openclaw/workspace/database/, including conversation_log.txt, with under-disclosed retention behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only on trusted local devices, enable disk encryption or strict local file permissions, avoid sending secrets while it is enabled, and manually review or delete database files when clearing retained content.
+
+Risk: When the fluid-memory-sync hook is enabled, sent messages are recorded locally before OpenClaw memory flush processing.
+
+Mitigation: Enable the hook only when automatic conversation capture is desired, and disable it for sensitive sessions or workflows that should not be retained.
+
+## Reference(s):
+
+- [Fluid Memory ClawHub release](https://clawhub.ai/againta/skills/fluid-memory)
+- [againta ClawHub publisher profile](https://clawhub.ai/user/againta)
+- [Fluid Memory project homepage](https://github.com/AgaintA/fluid-memory)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Text and JSON responses with CLI command examples and OpenClaw hook configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Recall returns scored memory snippets; remember and summarization operations may return empty text on success.]
+
+## Skill Version(s):
+
+1.0.9 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

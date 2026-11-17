@@ -1,0 +1,117 @@
+/* Locale: zh-CN (documented in SKILL.md metadata) — part of "Lan Folder Share",
+ * a LAN knowledge-base tool for Chinese-speaking users; comments are Chinese by
+ * design. 语言声明：本文件面向中文用户，注释默认中文。
+ * ---------------------------------------------------------------------------
+ * 全站实时搜索（fullsearch.js）— 侧边栏搜索框与结果面板 */
+
+.kb-fs {
+  padding: 0 15px 10px 15px;
+  position: relative;
+}
+
+.kb-fs-box {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.kb-fs-input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 6px 8px;
+  padding-right: 64px;
+  font-size: 13px;
+  color: var(--theme-color, #4a6ee0);
+  border: 1px solid #d4d4d4;
+  border-radius: 15px;
+  outline: none;
+  background: #fff;
+  transition: border-color 0.2s;
+}
+.kb-fs-input:focus {
+  border-color: var(--theme-color, #4a6ee0);
+}
+
+.kb-fs-status {
+  position: absolute;
+  right: 10px;
+  font-size: 11px;
+  color: #999;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.kb-fs-panel {
+  display: none;
+  position: absolute;
+  left: 10px;
+  right: 10px;
+  top: 100%;
+  z-index: 99;
+  max-height: 70vh;
+  overflow-y: auto;
+  margin-top: 4px;
+  background: #fff;
+  border: 1px solid #e3e3e3;
+  border-radius: 8px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+  padding: 6px;
+}
+
+.kb-fs-count {
+  font-size: 11px;
+  color: #999;
+  padding: 4px 8px;
+}
+
+.kb-fs-tip {
+  font-size: 12px;
+  color: #999;
+  padding: 10px 8px;
+  text-align: center;
+}
+
+.kb-fs-item {
+  padding: 7px 8px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.kb-fs-item:hover,
+.kb-fs-item.is-active {
+  background: #f0f4ff;
+}
+
+.kb-fs-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: #2c3e50;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.kb-fs-snip {
+  font-size: 12px;
+  color: #666;
+  margin-top: 2px;
+  line-height: 1.5;
+  word-break: break-all;
+}
+.kb-fs-snip em {
+  font-style: normal;
+  color: #c7254e;
+  background: #f9f2f4;
+  padding: 0 2px;
+  border-radius: 2px;
+}
+
+.kb-fs-meta {
+  font-size: 11px;
+  color: #999;
+  margin-top: 3px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.kb-fs-dot { color: #ccc; }

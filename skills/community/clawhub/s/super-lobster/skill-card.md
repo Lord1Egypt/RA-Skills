@@ -1,42 +1,57 @@
-## Description: <br>
-Performs aggressive web research and data extraction through local scripts for URL fetching, readable text extraction, browser DOM rendering, same-site crawling, and command execution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Performs web research and data extraction through URL fetching, main-text extraction, browser rendering, crawling, and local scripting.
 
-## Publisher: <br>
-[mrherojack](https://clawhub.ai/user/mrherojack) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mrherojack](https://clawhub.ai/user/mrherojack)
 
-## Use Case: <br>
-Developers and research agents use this skill to collect and extract web content in environments where public search providers or browser automation may be unreliable. It supports direct URL fetches, readable article extraction, rendered DOM capture, and bounded same-site crawling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill grants broad local execution capability for scraping, parsing, coding, automation, and cleanup tasks. <br>
-Mitigation: Run it in a least-privileged or disposable environment, review generated Python or shell before execution, and constrain cleanup to known temporary files. <br>
-Risk: The skill can render arbitrary web pages with Chrome using weakened browser isolation. <br>
-Mitigation: Use static fetching or main-text extraction first, render only intentionally selected URLs, and avoid sensitive internal URLs. <br>
-Risk: Network reachability and public search-provider availability may be unreliable in the intended China-networked gateway environment. <br>
-Mitigation: Prefer first-party URLs, direct references, mirrors, and bounded same-site crawling instead of depending on search APIs. <br>
+## Use Case:
 
+Developers and agents use this skill to research web content in constrained network environments by fetching URLs, extracting readable text, rendering JavaScript-heavy pages, crawling same-site links, and scripting follow-up processing.
 
-## Reference(s): <br>
-- [Super Lobster on ClawHub](https://clawhub.ai/mrherojack/super-lobster) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON or text output from helper scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Helper scripts may return fetched metadata, text previews, rendered DOM, extracted article text, or same-site crawl results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Arbitrary URL fetching and browser rendering could expose local or internal data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Restrict URLs to public http/https destinations, block private and local network ranges, and bound downloads and crawl limits.
+
+Risk: Local script execution can increase the impact of unsafe or unreviewed automation.
+
+Mitigation: Run the skill in an isolated environment and require explicit user approval before creating or executing new local programs.
+
+Risk: Headless Chrome rendering without sandbox isolation can expand browser-based attack surface.
+
+Mitigation: Keep browser rendering sandboxed or containerized when processing untrusted pages.
+
+## Reference(s):
+
+- [Super Lobster ClawHub page](https://clawhub.ai/mrherojack/skills/super-lobster)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with command-line outputs such as JSON, extracted text, HTML previews, and rendered DOM text.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May fetch arbitrary URLs, render pages in headless Chrome, crawl same-site links, and execute local scripts when used by an agent.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

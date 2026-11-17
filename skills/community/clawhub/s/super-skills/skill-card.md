@@ -1,43 +1,55 @@
-## Description: <br>
-Decomposes complex user requests into executable subtasks, identifies required capabilities, searches for existing skills at skills.sh, and creates new skills when no solution exists. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Decomposes complex user requests into executable subtasks, identifies required capabilities, searches for existing skills at skills.sh, and creates new skills when no solution exists.
 
-## Publisher: <br>
-[10e9928a](https://clawhub.ai/user/10e9928a) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[10e9928a](https://clawhub.ai/user/10e9928a)
 
-## Use Case: <br>
-Developers and agent operators use this skill to break complex multi-step requests into executable subtasks, identify required capabilities, find existing skills, and plan new skill creation when gaps remain. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can expand an agent's capabilities by finding, creating, or installing other skills with weak review boundaries. <br>
-Mitigation: Require human review and security scanning for every discovered or generated skill before installation or use. <br>
-Risk: Auto-confirmed global installs can make unreviewed skills available beyond the immediate task. <br>
-Mitigation: Avoid `-g -y` auto-confirm global installs; prefer trusted, pinned sources and explicit approval for installation scope. <br>
-Risk: Generated plans may involve credentials, scheduled jobs, or external service changes. <br>
-Mitigation: Require explicit confirmation before handling credentials, configuring scheduled execution, or modifying external services. <br>
+## Use Case:
 
+Developers and agents use this skill to break complex, multi-step requests into atomic subtasks, map each subtask to required capabilities, search for existing skills, and plan or create missing skills with user confirmation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/10e9928a/super-skills) <br>
-- [Skills ecosystem](https://skills.sh/) <br>
-- [Capability types reference](references/capability_types.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Code, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with structured task breakdowns and inline command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include skill search recommendations, skill creation plans, execution steps, and security review guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The skill recommends unpinned, auto-confirmed global installation of third-party skills.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin the Skills CLI and skill revisions, review discovered skill source before use, prefer local or isolated installation, and require explicit approval before adding third-party skills.
+
+Risk: Generated decomposition plans or new skill templates may contain incomplete or incorrect automation guidance.
+
+Mitigation: Review the proposed subtasks, dependencies, generated skill files, and verification steps before executing the plan or installing created skills.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/10e9928a/skills/super-skills)
+- [skills.sh](https://skills.sh/)
+- [Universal Capability Types Reference](references/capability_types.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown report with YAML-style task mappings, command examples, skill creation templates, and execution plans]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include proposed third-party skill install commands and newly drafted skill files; user confirmation is required before skill creation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

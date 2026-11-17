@@ -86,7 +86,7 @@ class TestSecurityScanner(unittest.TestCase):
         """Test hardcoded API keys and tokens"""
         # Use longer strings to match patterns (20+ chars)
         skill = self.create_skill("test_secrets", {
-            "source/config.py": 'API_KEY = "sk-1234567890abcdef1234567890abcdef"\nGITHUB_TOKEN = "ghp_1234567890abcdefghijklmnopqrstuvwxyz"'
+            "source/config.py": 'API_KEY = "REDACTED-SECRET"\nGITHUB_TOKEN = "REDACTED-SECRET"'
         })
         scanner = SecurityScanner(str(skill))
         results = scanner.scan()
@@ -147,7 +147,7 @@ class TestSecurityScanner(unittest.TestCase):
         skill = self.create_skill("test_multi", {
             "source/module1.py": "eval('test')",
             "source/module2.py": "exec('test')",
-            "source/config.py": "API_KEY='sk-1234567890abcdef1234567890abcdef'"
+            "source/config.py": "API_KEY='REDACTED-SECRET'"
         })
         scanner = SecurityScanner(str(skill))
         results = scanner.scan()

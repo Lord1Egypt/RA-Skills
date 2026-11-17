@@ -1,0 +1,4 @@
+interface:
+  display_name: "本地 Vlog 制作"
+  short_description: "审阅素材、整理时间线并制作本地 Vlog，复用照片与艺术字样式"
+  default_prompt: "使用 $local-vlog-production，先读取当前工作区状态，再按已授权阶段制作 Vlog。"

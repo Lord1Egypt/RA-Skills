@@ -1,39 +1,54 @@
-## Description: <br>
-Looks up Chinese statutory holidays, adjusted workdays, next holidays, workdays, yearly holiday lists, and TTS-style announcement text using the timor.tech holiday API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Looks up China public holiday, make-up workday, next holiday, next workday, yearly holiday, and text-to-speech holiday information using the timor.tech holiday API.
 
-## Publisher: <br>
-[decemjiang](https://clawhub.ai/user/decemjiang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[decemjiang](https://clawhub.ai/user/decemjiang)
 
-## Use Case: <br>
-Developers and agent users can answer China holiday, adjusted workday, next holiday, next workday, and yearly holiday-list questions from natural prompts or command-line calls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Holiday/date lookup requests are sent to timor.tech, and results depend on that service's availability and data accuracy. <br>
-Mitigation: Use only where external requests to timor.tech are acceptable; verify important holiday or workday decisions against an authoritative source. <br>
+## Use Case:
 
+Developers and external users can use this skill to answer China holiday and workday questions, including whether a date is a holiday, whether a make-up workday applies, and what holidays are listed for a month or year.
 
-## Reference(s): <br>
-- [timor.tech Holiday API](https://timor.tech/api/holiday) <br>
-- [timor.tech](https://timor.tech) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Plain text command output with date and holiday summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires network access to timor.tech; no credentials needed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Holiday queries require outbound requests to timor.tech, so results depend on external API availability and response quality.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Allow network access only to the disclosed API endpoint and review returned holiday information before using it for operational decisions.
+
+Risk: The skill output is primarily Chinese, which may be unsuitable for users who cannot review Chinese-language responses.
+
+Mitigation: Use with reviewers or downstream translation appropriate for the target audience.
+
+## Reference(s):
+
+- [timor.tech holiday API](https://timor.tech/api/holiday)
+- [timor.tech](https://timor.tech)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Guidance]
+
+**Output Format:** [Plain text and Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are primarily Chinese and depend on live responses from the timor.tech public API.]
+
+## Skill Version(s):
+
+1.0.1 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

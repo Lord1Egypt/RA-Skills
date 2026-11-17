@@ -1,6 +1,15 @@
 {
-  "ownerId": "kn73rjsd61kjdxp8s6k7ryn8x184h9xs",
-  "slug": "aswath-damodaran-investing",
+  "name": "aswath_damodaran",
+  "display_name": "Aswath Damodaran",
+  "subtitle": "The Dean of Valuation",
   "version": "1.0.0",
-  "publishedAt": 1776176056248
+  "description": "Professor at NYU Stern, expert in DCF valuation, story-driven analysis, and risk assessment",
+  "author": "Celebrity Skills Team",
+  "created_date": "2026-04-14",
+  "last_updated": "2026-04-14",
+  "tags": ["valuation", "DCF", "finance", "story_driven", "risk_assessment"],
+  "related_skills": ["warren_buffett", "benjamin_graham", "charlie_munger"],
+  "source_type": "books_lectures_interviews",
+  "confidence_level": "high",
+  "notes": "Primary sources: Valuation book, Corporate Finance, TED Talks, podcasts, blog"
 }

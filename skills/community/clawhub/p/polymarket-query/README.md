@@ -10,7 +10,9 @@ Query real-time prediction market data from [Polymarket](https://polymarket.com/
 - **Live/In-Play** — Currently active sports markets
 - **Market Search** — Find markets by keyword across sports, politics, crypto, etc.
 - **Event Details** — Full event breakdowns with sub-markets (spreads, O/U, props)
-- **Category Browsing** — Sports, politics, crypto, business, entertainment, AI
+- **Sports Metadata** — Browse 306 sports entries (leagues, image, resolution sources)
+- **Series Data** — NFL/NBA/MLB series information with nested events
+- **Tournament Brackets** — March Madness, World Cup with phases/sections/games
 
 ## Quick Start
 
@@ -21,6 +23,9 @@ python polymarket_query.py trending --limit 10
 python polymarket_query.py schedule --sport nba --date 2026-04-12
 python polymarket_query.py search Bitcoin
 python polymarket_query.py market 540816
+python polymarket_query.py categories
+python polymarket_query.py tournaments
+python polymarket_query.py series --limit 20
 ```
 
 ### PowerShell (Windows)
@@ -36,7 +41,10 @@ python polymarket_query.py market 540816
 
 | Command | Parameters | Description |
 |---------|-----------|-------------|
-| `categories` | — | List all market categories |
+| `categories` | — | List sports metadata & popular tags (uses `/sports` + `/tags`) |
+| `sports-meta` | `--limit N` | List sports metadata from `/sports` endpoint (306 entries) |
+| `series` | `--limit N` | List series (NFL/NBA/MLB/etc.) from `/series` |
+| `tournaments` | `--limit N` | List tournaments (March Madness, World Cup) with brackets |
 | `trending` | `--limit N` | Top trending markets by 24h volume |
 | `search` | `<keyword>` `--limit N` | Search markets by keyword |
 | `market` | `<market_id>` | Detailed market info with odds |
@@ -46,8 +54,11 @@ python polymarket_query.py market 540816
 | `politics` | `--limit N` | Politics markets |
 | `crypto` | `--limit N` | Crypto markets |
 | `category` | `<slug>` `--limit N` | Markets in a category |
-| `live` | — | Live/in-play sports markets |
+| `live` | `--limit N` | Live/in-play sports markets |
 | `schedule` | `--sport X` `--date YYYY-MM-DD` | Sports schedule by sport & date |
+
+> **Note**: All `--limit N` arguments can also be passed as a bare positional integer
+> (e.g., `trending 5` works the same as `trending --limit 5`) for backward compatibility.
 
 ## Supported Sports
 
@@ -57,12 +68,16 @@ python polymarket_query.py market 540816
 | `nfl` / `football` | NFL | `cs2` / `csgo` | Counter-Strike 2 |
 | `mlb` / `baseball` | MLB | `lol` / `leagueoflegends` | League of Legends |
 | `nhl` / `hockey` | NHL | `f1` / `racing` | Formula 1 |
-| `epl` / `soccer` | English Premier League | `pga` / `golf` | PGA Golf |
+| `soccer` / `epl` / `premierleague` | Soccer (multi-league) | `pga` / `golf` | PGA Golf |
 | `laliga` | La Liga | `boxing` | Boxing |
 | `ligue1` | Ligue 1 | `cricket` | Cricket |
 | `seriea` | Serie A | `mls` | MLS |
 | `ucl` / `championsleague` | UEFA Champions League | `atp` / `tennis` | ATP Tennis |
 | `bundesliga` | Bundesliga | `wta` | WTA Tennis |
+| `uel` / `europaleague` | UEFA Europa League | `ueu` / `europaconference` | UEFA Conference League |
+| `worldcup` / `fifawc` / `fifa` / `wc` | FIFA World Cup | | |
+
+> **Note**: The `soccer` keyword searches across all major soccer competitions (EPL, La Liga, Serie A, Bundesliga, Ligue 1, FIFA World Cup, UEFA Champions/Europa/Conference League). Use `worldcup` for World Cup matches only.
 
 ## How It Works
 

@@ -1,45 +1,56 @@
-## Description: <br>
-Privacy-respecting metasearch using your local SearXNG instance. Search the web, images, news, and more without external API dependencies. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Privacy-respecting metasearch using your local SearXNG instance. Search the web, images, news, and more without external API dependencies.
 
-## Publisher: <br>
-[asterisk622](https://clawhub.ai/user/asterisk622) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[asterisk622](https://clawhub.ai/user/asterisk622)
 
-## Use Case: <br>
-Developers and external users use this skill to search web, image, news, and other SearXNG categories through a configured local or trusted SearXNG instance without relying on a commercial search API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search queries may be sent to an untrusted or public SearXNG instance. <br>
-Mitigation: Configure SEARXNG_URL to a trusted local or remote instance and avoid sensitive queries on public instances. <br>
-Risk: The Docker helper can remove an existing container named searxng and start a persistent host-networked service. <br>
-Mitigation: Review run-searxng.sh before use and run it only when replacing that container and exposing the service on the host network is intended. <br>
-Risk: Remote HTTPS requests are made with certificate verification disabled in the artifact script. <br>
-Mitigation: For remote HTTPS instances, enable certificate verification or restrict use to trusted local/self-signed deployments where this behavior is understood. <br>
+## Use Case:
 
+External users and developers use this skill to run web, image, news, video, and category searches through a configured SearXNG instance. It is useful when an agent needs metasearch results without relying on a commercial search API key.
 
-## Reference(s): <br>
-- [SearXNG homepage](https://searxng.org) <br>
-- [SearXNG installation guide](https://docs.searxng.org/admin/installation.html) <br>
-- [SearXNG settings documentation](https://docs.searxng.org/admin/settings/settings.html) <br>
-- [ClawHub skill page](https://clawhub.ai/asterisk622/xiaoding-searxng) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration guidance] <br>
-**Output Format:** [Formatted search-result tables, JSON search-result objects, and concise setup or troubleshooting guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and a configured SEARXNG_URL; direct CLI use can select category, result limit, language, time range, and table or JSON output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release metadata) <br>
+Risk: The bundled helper script can create a persistent host-networked SearXNG Docker service and remove an existing container named searxng.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or replace run-searxng.sh before use; remove host networking, avoid persistent restart behavior unless intended, pin the container image, bind only to localhost, and require confirmation before replacing an existing container.
+
+Risk: Searches are routed through the configured SearXNG instance, which may expose sensitive queries if the instance is public or untrusted.
+
+Mitigation: Use a local or organization-controlled SearXNG instance and avoid sensitive searches on public instances.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/asterisk622/skills/xiaoding-searxng)
+- [SearXNG](https://searxng.org)
+- [SearXNG Installation Documentation](https://docs.searxng.org/admin/installation.html)
+- [SearXNG Settings Documentation](https://docs.searxng.org/admin/settings/settings.html)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration guidance]
+
+**Output Format:** [Markdown or terminal-formatted search summaries, with optional JSON search result data]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a reachable SearXNG instance configured with SEARXNG_URL; direct CLI usage supports category, language, time range, result limit, and JSON output options.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

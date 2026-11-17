@@ -1,40 +1,50 @@
-## Description: <br>
-Guides agents building 3D web experiences with Three.js, React Three Fiber, Spline, WebGL, model optimization, product configurators, portfolios, and immersive sites. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents design and implement 3D web experiences with Three.js, React Three Fiber, Spline, WebGL, optimized model pipelines, and scroll-driven scenes.
 
-## Publisher: <br>
-[jacket85](https://clawhub.ai/user/jacket85) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jacket85](https://clawhub.ai/user/jacket85)
 
-## Use Case: <br>
-Developers and designers use this skill to choose 3D web stacks, prepare performant 3D assets, and integrate interactive or scroll-driven 3D scenes into web experiences. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated 3D implementation advice can create slow pages, poor mobile behavior, or inaccessible experiences if applied without review. <br>
-Mitigation: Review recommendations against project performance, accessibility, and device-support requirements before implementation. <br>
-Risk: The artifact includes an optional global npm install command for glTF tooling. <br>
-Mitigation: Verify the package before running the command and prefer a project-local install when a global CLI is not required. <br>
+## Use Case:
 
+Developers and engineers use this skill to choose a 3D web stack, prepare performant 3D assets, and build interactive scenes for product configurators, portfolios, and immersive websites.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jacket85/3d-web-experience) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with JavaScript, JSX, and bash examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text guidance for agents; no executable files are included in the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The skill includes a global npm install example for @gltf-transform/cli, which can introduce dependency-safety concerns if copied directly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer a pinned, project-local @gltf-transform/cli version and run asset-processing tools without unnecessary secrets exposed.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jacket85/skills/3d-web-experience)
+- [Publisher Profile](https://clawhub.ai/user/jacket85)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with code blocks and command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Provides implementation guidance, stack-selection criteria, optimization workflows, and anti-patterns.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,11 @@
+# Vercel Python runtime dependency manifest.
+# Mirror of [project].dependencies in pyproject.toml — Vercel's @vercel/python
+# builder reads requirements.txt, NOT pyproject.toml. Keeping them in sync is
+# required for serverless builds (api/index.py) to install correctly.
+httpx>=0.27
+pydantic>=2.7
+pydantic-settings>=2.3
+fastmcp>=2.3
+markdown>=3.6
+x402[evm]==2.25.0
+redis>=5.0

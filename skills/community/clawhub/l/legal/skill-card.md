@@ -1,40 +1,53 @@
-## Description: <br>
-Think through any legal situation like a lawyer. Issue spotting, jurisdiction, risk assessment, actionable conclusions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Think through any legal situation like a lawyer. Issue spotting, jurisdiction, risk assessment, actionable conclusions.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users use this skill to structure legal questions, spot issues, assess jurisdiction-specific risks, and identify practical next steps. It is a legal reasoning aid, not a substitute for advice from a licensed attorney. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Users may treat the skill's legal analysis as definitive legal advice. <br>
-Mitigation: Use it for organizing questions and spotting issues, and consult a licensed attorney for high-stakes or jurisdiction-specific decisions. <br>
-Risk: Users may share unnecessary confidential or privileged legal materials with an agent. <br>
-Mitigation: Avoid providing confidential or privileged documents unless they are required for the task and appropriate safeguards are in place. <br>
-Risk: Legal deadlines, regulated filings, criminal, immigration, or court matters can carry severe consequences if handled incorrectly. <br>
-Mitigation: Escalate those matters to qualified counsel and verify current law, deadlines, and filing requirements before acting. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+External users use this skill to structure legal-information workflows around jurisdiction, facts, issue spotting, applicable law, risk, and next actions.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Structured sections for jurisdiction, issues, rule, application, risks, action, and escalation triggers.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Users may treat structured legal-information output as a substitute for advice from a licensed attorney.
+
+Mitigation: Present outputs as general legal information and require licensed-attorney review for specific legal decisions.
+
+Risk: Jurisdiction-specific law, filing requirements, and deadlines may be missing, outdated, or high stakes.
+
+Mitigation: Verify current law and procedural deadlines in the relevant jurisdiction, and escalate court deadlines, filings, criminal exposure, immigration, family law, or large financial stakes to licensed counsel.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/legal)
+- [Publisher profile](https://clawhub.ai/user/ivangdavila)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Structured Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes jurisdiction, issues, rule, application, risks, action, and escalation-trigger sections.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

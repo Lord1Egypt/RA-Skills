@@ -1,43 +1,58 @@
-## Description: <br>
-Remote Dispatch turns QQBot remote messages into desktop actions such as screenshots, browser search, clipboard operations, window actions, and file or app opening through a computer-use execution layer. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+多端协同/Dispatch 远程桌面操控。受 Claude Dispatch 功能启发——手机发指令，电脑执行。将 QQBot 收到的远程指令转化为 desktop actions：截图回传、打开浏览器搜索、操作桌面应用、文件操作。需要 computer-use skill 配合使用。
 
-## Publisher: <br>
-[lxr-666](https://clawhub.ai/user/lxr-666) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lxr-666](https://clawhub.ai/user/lxr-666)
 
-## Use Case: <br>
-Developers and operators use this skill to route trusted mobile QQBot messages into desktop-control actions for multi-device workflows, including screenshots, search, clipboard access, window management, and opening files, apps, or URLs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Remote-control commands can expose screenshots, clipboard contents, window actions, and file or app opening through broad message triggers. <br>
-Mitigation: Install only for a trusted QQBot workflow, enforce sender authentication, require a strict command prefix and the [远程] marker, and confirm sensitive actions before execution. <br>
-Risk: Screenshots and clipboard reads may reveal passwords, tokens, private messages, or business data. <br>
-Mitigation: Avoid use on systems that may display sensitive information, limit screenshot scope when possible, and review clipboard or screen content before returning it. <br>
-Risk: Window closing and file actions can disrupt the desktop session or affect unintended files. <br>
-Mitigation: Require explicit confirmation for window closing, clipboard writes, and file actions, and reject ambiguous or destructive requests. <br>
+## Use Case:
 
+External users and developers use this skill to route authorized QQBot remote commands into desktop actions such as screenshots, browser search, clipboard access, window management, and file or app opening through a downstream computer-use executor.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lxr-666/remote-dispatch) <br>
-- [Publisher profile](https://clawhub.ai/user/lxr-666) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Guidance] <br>
-**Output Format:** [JSON action descriptors with human-readable status or confirmation messages] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may describe screenshot, browser search, clipboard, window, and open-file/app/URL actions for an agent to execute.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Remote desktop actions may be triggered from broad chat phrases without enforcing the documented [远程] marker.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require strict sender authentication, require the [远程] prefix, and use an explicit command grammar before passing actions to the desktop executor.
+
+Risk: Screen, clipboard, and window actions can expose private information or affect active desktop work.
+
+Mitigation: Confirm screenshot, clipboard, and window-close actions before execution and restrict use to a QQBot channel and computer-use executor controlled by the installer.
+
+Risk: Open-target actions can launch URLs, applications, or files selected through chat input.
+
+Mitigation: Restrict allowed URLs, apps, and file paths before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lxr-666/skills/remote-dispatch)
+- [Publisher profile](https://clawhub.ai/user/lxr-666)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration]
+
+**Output Format:** [JSON action payloads with human-facing status or confirmation text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May emit screenshot, search, clipboard, window, open-target, and confirmation actions for downstream desktop execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

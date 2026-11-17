@@ -3,7 +3,7 @@ name: maverick-jira-mcp
 description: Work with Jira issue tracking and project workflow state through Atlassian Rovo's hosted MCP server. Thin pass-through to Atlassian's official MCP; the live tool catalog is whatever that server advertises. Use when the user asks about Jira work tracking or workflow updates.
 metadata:
   openclaw:
-    emoji: "🧭"
+    emoji: '🧭'
     homepage: https://support.atlassian.com/atlassian-rovo-mcp-server/docs/setting-up-clients/
     primaryEnv: MAVERICK_JIRA_MCP_REFRESH_TOKEN
     requires:

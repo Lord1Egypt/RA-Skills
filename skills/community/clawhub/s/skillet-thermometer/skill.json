@@ -1,0 +1,8 @@
+{
+  "id": "thermometer",
+  "version": "0.1.0",
+  "tests": [
+    "bash ../../../tests/lint-skills.sh thermometer"
+  ],
+  "trust_level": "workspace"
+}

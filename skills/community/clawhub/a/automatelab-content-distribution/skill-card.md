@@ -1,44 +1,59 @@
-## Description: <br>
-Use when the user wants to publish a post, article, or announcement to multiple platforms at once, with platform-specific format adaptation, idempotent re-publish, per-community anti-spam rules, and scheduling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when the user wants to publish a post, article, or announcement to multiple platforms at once: DEV.to, Hashnode, GitHub Discussions, Reddit, Bluesky, LinkedIn, Medium, or Twitter/X.
 
-## Publisher: <br>
-[automatelab](https://clawhub.ai/user/automatelab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[automatelab](https://clawhub.ai/user/automatelab)
 
-## Use Case: <br>
-Developers and content operators use this skill to prepare, publish, schedule, and check multi-platform posts through the Content Distribution MCP server. It is intended for workflows that need channel-specific copy, account-aware targeting, idempotent retries, and status tracking across publishing services. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can publish or schedule public content through real connected accounts. <br>
-Mitigation: Confirm the exact platforms, account identities, community targets, timing, and final text before any distribute or schedule action. <br>
-Risk: The skill requires OAuth tokens or other sensitive publishing credentials. <br>
-Mitigation: Install only when connecting real publishing accounts is intended and verify credential status before attempting a live publish. <br>
-Risk: Incorrect channel targeting or copy may violate platform or community rules. <br>
-Mitigation: Use channel hints for limits, cooldowns, flair options, tag vocabularies, and formatting rules before drafting or posting variants. <br>
+## Use Case:
 
+External users, developers, and content teams use this skill to draft platform-specific variants and publish or schedule the same announcement across multiple social and developer channels.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/automatelab/automatelab-content-distribution) <br>
-- [Project homepage](https://github.com/AutomateLab-tech/content-distribution-mcp) <br>
-- [Configuration README](https://github.com/AutomateLab-tech/content-distribution-mcp#configuration) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON configuration snippets, platform-specific post copy, and MCP tool-call parameters] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include channel-specific variants, scheduling details, distribution IDs, and status-check guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.2.1 (source: server release evidence and frontmatter) <br>
+Risk: The setup uses an unpinned external npm MCP server that can change after review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin the MCP package version where possible and review package updates before deployment.
+
+Risk: The MCP server handles posting credentials for connected platforms.
+
+Mitigation: Run it with only the platform credentials intended for the current release workflow and verify credentials before publishing.
+
+Risk: Content may be published or scheduled to unintended platforms or include private information.
+
+Mitigation: Avoid private or secret content in posts and confirm every target platform and scheduled post before allowing publication.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/automatelab/skills/automatelab-content-distribution)
+- [Content Distribution MCP repository](https://github.com/AutomateLab-tech/content-distribution-mcp)
+- [Content Distribution MCP configuration](https://github.com/AutomateLab-tech/content-distribution-mcp#configuration)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, API calls, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON configuration examples and structured MCP tool calls]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce platform-specific copy variants, scheduling instructions, status checks, and retry guidance.]
+
+## Skill Version(s):
+
+2.2.1 (source: release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

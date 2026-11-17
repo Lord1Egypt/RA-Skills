@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "diagram_type": "venn",
+  "meta": {
+    "title": "DevOps Responsibility",
+    "output": "examples/venn-devops-shared-rendered.html",
+    "quality_profile": "showcase"
+  },
+  "sets": [
+    { "id": "dev", "label": "Development" },
+    { "id": "ops", "label": "Operations" },
+    { "id": "sec", "label": "Security" }
+  ],
+  "intersections": [
+    { "id": "devops", "sets": ["dev", "ops"], "label": "DevOps" },
+    { "id": "devsec", "sets": ["dev", "sec"], "label": "AppSec" },
+    { "id": "secops", "sets": ["ops", "sec"], "label": "SecOps" },
+    { "id": "center", "sets": ["dev", "ops", "sec"], "label": "shared" }
+  ],
+  "cards": [
+    {
+      "dot": "emerald",
+      "title": "Overlapping ownership",
+      "items": [
+        "Development, Operations, and Security overlap in DevOps, AppSec, SecOps",
+        "The central zone is shared responsibility across all three",
+        "Each set keeps its own distinct label above the circle"
+      ]
+    }
+  ]
+}

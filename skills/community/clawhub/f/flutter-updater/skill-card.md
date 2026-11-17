@@ -1,44 +1,55 @@
-## Description: <br>
-Keep Flutter/Dart projects automatically up-to-date by checking SDK releases, updating dependencies, handling breaking changes, running dart fixes, and performing QA. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Keep Flutter/Dart projects automatically up-to-date by checking SDK releases, updating dependencies with breaking-change handling, applying fixes, and running QA.
 
-## Publisher: <br>
-[jaekyung-you](https://clawhub.ai/user/jaekyung-you) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jaekyung-you](https://clawhub.ai/user/jaekyung-you)
 
-## Use Case: <br>
-Developers and engineers use this skill from a Flutter or Dart project root to update the Flutter SDK, update pub.dev dependencies, migrate breaking changes when possible, run dart fix, and verify the result with analysis, tests, and builds. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill runs flutter-updater helper binaries that are not included in the reviewed package before changing project files. <br>
-Mitigation: Install only from a trusted source, inspect or verify the helper binaries before use, and run the skill only in projects where these helper programs are trusted. <br>
-Risk: The workflow can upgrade dependencies, edit source files, run dart fix, run tests and builds, write local state, and save a report. <br>
-Mitigation: Run it from the intended Flutter or Dart project root with version control available, review user confirmation prompts, and inspect the final report and diff before accepting the changes. <br>
-Risk: The workflow may rely on network lookups for SDK releases and package changelogs. <br>
-Mitigation: Review fetched release and changelog information before applying breaking-change migrations, and skip or retry steps when network results are unavailable or unclear. <br>
+## Use Case:
 
+Developers and engineers maintaining Flutter or Dart projects use this skill to update the Flutter SDK and pub dependencies, handle breaking changes with review points, run Dart/Flutter fixes, and produce a QA report.
 
-## Reference(s): <br>
-- [Flutter Updater README](artifact/README.md) <br>
-- [Flutter Updater Changelog](artifact/CHANGELOG.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/jaekyung-you/flutter-updater) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports, terminal summaries, shell command output, and project file edits] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May update pubspec files and source files, run Flutter and Dart QA commands, write local updater state, and save a Markdown report.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter, changelog, server release metadata) <br>
+Risk: The skill may run helper programs resolved through PATH before user confirmation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in a clean, backed-up Flutter/Dart workspace and verify installed helper binaries and PATH resolution before running.
+
+Risk: The update workflow can make broad changes to project dependencies, source code, tests, build outputs, and updater state.
+
+Mitigation: Review proposed breaking-change migrations, keep backups or version-control checkpoints outside the skill workflow, and inspect the generated QA report before accepting changes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jaekyung-you/skills/flutter-updater)
+- [Artifact README](artifact/README.md)
+- [Artifact changelog](artifact/CHANGELOG.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports and conversational guidance with shell commands and file edits]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May change pubspec files, lockfiles, source and test code, SDK state, build artifacts, and .flutter_updater reports or state.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, CHANGELOG, server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

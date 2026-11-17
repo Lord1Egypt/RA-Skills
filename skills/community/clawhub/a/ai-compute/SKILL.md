@@ -1,7 +1,7 @@
 ---
 name: ai-compute-x402
-description: 27-tool AI compute agent — LLM inference, image generation, video generation, text-to-speech, speech-to-text, embeddings, GPU inference, Bittensor decentralized AI, on-chain AI analytics, and prepaid compute futures via x402.
-version: 1.0.0
+description: 27-endpoint AI compute skill — LLM inference, image generation, video generation, text-to-speech, speech-to-text, embeddings, GPU inference, Bittensor decentralized AI, on-chain AI analytics, and prepaid compute futures via x402.
+version: 1.0.1
 homepage: https://github.com/plagtech/ai-compute-skill
 metadata:
   openclaw:
@@ -23,11 +23,26 @@ metadata:
 
 27 endpoints for managed AI compute — LLM text inference across 11 models, image generation (FLUX, SDXL), video generation, TTS, STT, embeddings, GPU inference via Replicate, decentralized AI via Bittensor, on-chain intelligence, and prepaid compute credits. Each call is a real x402 micropayment ($0.001–$0.50 USDC).
 
+> **Billing warning:** every endpoint listed below (except those marked FREE) triggers a **real USDC micropayment** via x402. Costs range from $0.001 to $0.50 per call. Prepaid credit operations (deposit, execute, refund) move real funds. Agents and scripts MUST get explicit user confirmation before making any paid call, and SHOULD enforce a per-session spending cap. Review the cost reference table before large workloads.
+
+> **Privacy notice:** prompts, text, audio URLs, media, and wallet addresses submitted through this skill are transmitted to external AI providers and the Spraay gateway for processing. Do not send secrets, private keys, personal data, internal documents, or regulated content unless you have explicit approval to do so.
+
 ## How to call endpoints
 
 ```bash
 bash {baseDir}/scripts/compute.sh METHOD ENDPOINT '{"key":"value"}'
 ```
+
+The helper script is a generic curl wrapper that can reach any gateway path. **Only call the 27 documented endpoints listed below** — do not use it to probe undocumented routes. The script's internal comments may still reference "research" naming from an earlier version; this is a cosmetic mismatch, not a functional difference — it calls the same gateway at the configured `RESEARCH_GATEWAY_URL`.
+
+## Guardrails
+
+- **User confirmation required.** Before every paid call, display the endpoint name, estimated cost, and input data being sent. Wait for explicit user approval.
+- **Spending cap.** Set a per-session budget (e.g. $1.00) and track cumulative spend. Stop and confirm with the user before exceeding it.
+- **Deposit/refund require double confirmation.** The compute-futures deposit and refund endpoints move real USDC. Always show the amount and ask the user to confirm twice before executing.
+- **Scope to documented endpoints only.** The shell wrapper accepts arbitrary METHOD/ENDPOINT arguments. Only call the 27 endpoints documented in this skill.
+- **No sensitive data.** Do not send secrets, API keys, private keys, PII, or confidential documents as prompts or inputs.
+- **Devnet first.** When available, test workflows against devnet before using mainnet credits.
 
 ## Workflow strategies
 
@@ -182,6 +197,8 @@ bash {baseDir}/scripts/compute.sh GET /bittensor/v1/models '{}'
 ```
 
 ### Compute Futures — Prepaid Credits (6 endpoints)
+
+> **Financial risk:** these endpoints deposit, consume, and refund real USDC. Always confirm the amount with the user before calling deposit or refund. Recommend starting with a small deposit ($1–$5) to test the workflow.
 
 **Deposit** — $0.01
 Deposit USDC to open a prepaid compute credit account with tiered discounts.

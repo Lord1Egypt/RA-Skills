@@ -1,44 +1,57 @@
-## Description: <br>
-Use when a user asks about weather, temperature, forecasts, air quality, UV index, or weather alerts for any location; it returns structured JSON with more data points and does not require an API key. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides current weather, multi-day forecasts, air quality, UV index, and severe weather alerts for a requested location through a curl-accessible weather API.
 
-## Publisher: <br>
-[splint3r](https://clawhub.ai/user/splint3r) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[splint3r](https://clawhub.ai/user/splint3r)
 
-## Use Case: <br>
-Developers and agents use this skill to answer weather-related user requests by calling a third-party weather wrapper for current conditions, forecasts, air quality, UV index, and severe weather alerts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Weather queries send location text to api.openmeteo-api.com and upstream weather providers. <br>
-Mitigation: Avoid precise sensitive locations when they are not needed, and disclose third-party weather API use before deployment in privacy-sensitive settings. <br>
-Risk: Location text is embedded in curl URLs. <br>
-Mitigation: Encode user-provided location text safely before executing the curl examples. <br>
+## Use Case:
 
+External users and developers use this skill to fetch and format weather conditions, forecasts, air quality, UV index, and alert information for user-provided locations.
 
-## Reference(s): <br>
-- [Weather Forecast Plus API Reference](references/api.md) <br>
-- [ClawHub skill page](https://clawhub.ai/splint3r/weather-forecast-premium) <br>
-- [Weather wrapper homepage](https://openmeteo-api.com) <br>
-- [Open-Meteo](https://open-meteo.com) <br>
-- [wttr.in](https://wttr.in) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, API calls, guidance] <br>
-**Output Format:** [Markdown guidance with curl commands and structured JSON weather responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl and sends the requested location to api.openmeteo-api.com and upstream weather providers.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: Untrusted location text may be substituted directly into shell command examples, creating command injection risk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Encode or otherwise safely pass the location value as data before running curl commands, and do not execute commands built from adversarial location strings.
+
+Risk: Weather lookups depend on an unofficial api.openmeteo-api.com wrapper and upstream weather services.
+
+Mitigation: Use the skill only where that third-party wrapper is trusted, and verify important weather results against upstream sources when accuracy matters.
+
+## Reference(s):
+
+- [Weather Forecast Premium on ClawHub](https://clawhub.ai/splint3r/skills/weather-forecast-premium)
+- [Weather Forecast Plus API Reference](references/api.md)
+- [OpenMeteo API Wrapper Homepage](https://openmeteo-api.com)
+- [Open-Meteo](https://open-meteo.com)
+- [wttr.in](https://wttr.in)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands and weather API JSON summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl; responses depend on the third-party wrapper and upstream weather services.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

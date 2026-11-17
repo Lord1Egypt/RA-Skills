@@ -1,45 +1,59 @@
-## Description: <br>
-Manage a Jellyfin/Plex + *Arr media server stack: check status, add content, monitor downloads, diagnose issues, and restart services. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage a Jellyfin/Plex + *Arr media server stack by checking status, adding content, monitoring downloads, diagnosing issues, and restarting services.
 
-## Publisher: <br>
-[maxtechera](https://clawhub.ai/user/maxtechera) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[maxtechera](https://clawhub.ai/user/maxtechera)
 
-## Use Case: <br>
-External users and agents use this skill to operate a self-hosted media server stack through the Admirarr CLI, including service status, diagnostics, content search, downloads, indexer setup, and stack maintenance. It is intended for environments where the user authorizes administrative media-stack and Docker actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can administer a media stack and Docker environment, including restarts and configuration changes. <br>
-Mitigation: Require explicit user intent for setup, restart, fix, and other management actions; review planned commands before execution. <br>
-Risk: The skill can collect or use local service API keys and configuration files. <br>
-Mitigation: Restrict API keys to the minimum required privileges and protect ~/.config/admirarr/config.yaml and compose .env files with appropriate file permissions. <br>
-Risk: Download removal and automated fix modes can change or delete operational data. <br>
-Mitigation: Avoid auto/fix modes and delete-file options unless the user has confirmed the change and understands the effect. <br>
+## Use Case:
 
+External users and developers use this skill to let an agent operate a self-hosted Jellyfin/Plex and *Arr stack through the Admirarr CLI for status, diagnostics, content additions, downloads, indexers, setup, and service management.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/maxtechera/nexus-cli) <br>
-- [Admirarr README](artifact/README.md) <br>
-- [Agent reference](artifact/AGENTS.md) <br>
-- [Recommended indexers](artifact/docs/recommended-indexers.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and references to JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read commands support JSON output for agent parsing; management commands may change Docker services, downloads, and media-stack configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can administer a user's media stack and Docker services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user approval before setup, doctor --fix, service restarts, indexer removals, or torrent deletion with --delete-files.
+
+Risk: The installer and release integrity require careful review before use.
+
+Mitigation: Prefer a pinned release and verify integrity where possible instead of using the pipe-to-shell installer.
+
+Risk: Generated config.yaml and .env files may contain service API keys or VPN credentials.
+
+Mitigation: Treat generated configuration files as secrets, restrict file permissions, and avoid cleartext remote service connections.
+
+## Reference(s):
+
+- [Nexus Cli on ClawHub](https://clawhub.ai/maxtechera/skills/nexus-cli)
+- [Agent Skills standard](https://agentskills.io)
+- [Recommended Indexers](artifact/docs/recommended-indexers.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, JSON]
+
+**Output Format:** [Markdown guidance with CLI commands and JSON-capable command outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill directs agents to use the Admirarr CLI as the interface to media-stack services.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

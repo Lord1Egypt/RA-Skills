@@ -1,7 +1,7 @@
 ---
 name: code-refinement
 description: Improves code quality across duplication, efficiency, and architectural fit
-version: 1.9.8
+version: 1.10.3
 triggers:
   - refactoring
   - clean-code
@@ -10,24 +10,13 @@ triggers:
   - anti-slop
   - craft
   - code passes tests but quality is poor or before a major release
-metadata: {"openclaw": {"homepage": "https://github.com/athola/claude-night-market/tree/master/plugins/pensive", "emoji": "\ud83e\udd9e", "requires": {"config": ["night-market.pensive:shared", "night-market.pensive:safety-critical-patterns", "night-market.imbue:proof-of-work", "night-market.imbue:justify"]}}}
+metadata: {"openclaw": {"homepage": "https://github.com/athola/claude-night-market/tree/master/plugins/pensive", "emoji": "\ud83e\udd9e", "requires": {"config": ["night-market.pensive:safety-critical-patterns", "night-market.imbue:proof-of-work", "night-market.imbue:justify", "night-market.imbue:review-core", "night-market.imbue:structured-output"]}}}
 source: claude-night-market
 source_plugin: pensive
 ---
 
-> **Night Market Skill** — ported from [claude-night-market/pensive](https://github.com/athola/claude-night-market/tree/master/plugins/pensive). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
+> **Night Market Skill**: ported from [claude-night-market/pensive](https://github.com/athola/claude-night-market/tree/master/plugins/pensive). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
-
-## Table of Contents
-
-- [Quick Start](#quick-start)
-- [When to Use](#when-to-use)
-- [Analysis Dimensions](#analysis-dimensions)
-- [Progressive Loading](#progressive-loading)
-- [Required TodoWrite Items](#required-todowrite-items)
-- [Workflow](#workflow)
-- [Tiered Analysis](#tiered-analysis)
-- [Cross-Plugin Dependencies](#cross-plugin-dependencies)
 
 # Code Refinement Workflow
 
@@ -107,16 +96,17 @@ Load modules based on refinement focus:
 - **`modules/clean-code-checks.md`** (~450 tokens): Clean code, anti-slop, error handling
 - **`modules/architectural-fit.md`** (~400 tokens): Paradigm alignment and coupling
 
-Load all for comprehensive refinement. For focused work, load only relevant modules.
+Load all for thorough refinement. For focused work, load only relevant modules.
 
-## Required TodoWrite Items
+## Required Progress Items
 
-1. `refine:context-established` — Scope, language, framework detection
-2. `refine:scan-complete` — Findings across all dimensions
-3. `refine:prioritized` — Findings ranked by impact and effort
-4. `refine:plan-generated` — Concrete refactoring plan with before/after
-5. `refine:evidence-captured` — Evidence appendix per `imbue:proof-of-work`
-6. `refine:execution-complete` — All wave-listed candidates closed-or-rationale'd (only required when invocation includes "execute findings" or stronger; see Step 6)
+1. `refine:context-established`: Scope, language, framework detection
+2. `refine:scan-complete`: Findings across all dimensions
+3. `refine:prioritized`: Findings ranked by impact and effort
+4. `refine:plan-generated`: Concrete refactoring plan with before/after
+5. `refine:evidence-captured`: Evidence appendix per `imbue:proof-of-work`
+6. `refine:findings-verified`: Citations confirmed by `citation_verifier.py`
+7. `refine:execution-complete`: All wave-listed candidates closed-or-rationale'd (only required when invocation includes "execute findings" or stronger; see Step 6)
 
 ## Workflow
 
@@ -160,6 +150,7 @@ Priority = HIGH impact + SMALL effort + LOW risk first.
 
 For each finding, produce:
 - File path and line range
+- Anchor: verbatim source text at the cited line
 - Current code snippet
 - Proposed improvement
 - Rationale (which principle/dimension)
@@ -176,7 +167,7 @@ Document with `imbue:proof-of-work` (if available):
 
 ### Step 6: Execute Findings (`refine:execution-complete`)
 
-Steps 1-5 produce a **plan**. Steps 6 produces **closures**. Both are part of the skill — execution does not stop at planning unless the user explicitly says "plan only".
+Steps 1-5 produce a **plan**. Steps 6 produces **closures**. Both are part of the skill. Execution does not stop at planning unless the user explicitly says "plan only".
 
 #### Execution mode detection
 
@@ -198,21 +189,49 @@ The triggers compose: `--tier 3 --execute all findings --ignore-scope-guard` mea
 The task is **not complete** until ALL of the following hold:
 
 1. **Wave 2 candidates** (medium-effort, listed in synthesis "Wave 2 Candidates" section): every entry has either a closure commit or an explicit per-item line in the synthesis stating why it is not viable.
-2. **Wave 3 candidates** (large-effort, listed in synthesis "Wave 3 Candidates" section): same gate. Do not pre-emptively defer LARGE-effort items with generic "needs dedicated PR" rationale when the user said "execute all" — execute the mechanical ones (split-by-class, mixin-package, module-merge) and reserve "deferred" only for items requiring architecture-level decisions (schema changes, new dependency declarations, new venv layouts).
+2. **Wave 3 candidates** (large-effort, listed in synthesis "Wave 3 Candidates" section): same gate. Do not pre-emptively defer LARGE-effort items with generic "needs dedicated PR" rationale when the user said "execute all". Execute the mechanical ones (split-by-class, mixin-package, module-merge) and reserve "deferred" only for items requiring architecture-level decisions (schema changes, new dependency declarations, new venv layouts).
 3. **Synthesis updated**: `docs/refinement/<date>/00-synthesis.md` records every closure with its commit SHA and every deferral with one-sentence rationale.
 
 #### Anti-pattern detector for the agent itself
 
-If the model finds itself doing any of the following during execution, this is a stop-hook leak — go back to executing findings:
+If the model finds itself doing any of the following during execution, this is a stop-hook leak. Go back to executing findings:
 
 | Anti-pattern | Recognise as |
 |---|---|
-| "Wave 2 closed. Moving to Wave 3." (mid-run summary) | Premature turn-completion signal — keep working |
+| "Wave 2 closed. Moving to Wave 3." (mid-run summary) | Premature turn-completion signal: keep working |
 | "Documenting deferred items with rationale" before all mechanical items are done | Skipping execution under a paper trail |
 | Writing a completion summary while >0 listed candidates lack closure-or-rationale | Violation of completion gate |
 | Re-asking user "should I continue?" when invocation included "do not stop" | Ignoring the explicit no-mid-task-summary contract |
 
-If the harness fires a stop signal mid-execution and the completion gate is not met, immediately resume with the next finding.
+#### What decides the gate
+
+The gate reads records, not the agent's account of its own work:
+`.review/findings.json` and the citation verifier's exit code (see
+the next section) say which candidates are closed, and the synthesis
+lists the rest. Execution is bounded by `max_waves` (default 3, one
+wave per pass over the open candidates). When the budget runs out, or
+when the harness fires a stop signal, the run stops: record every
+remaining candidate in the synthesis as a gap with what would close
+it, and end the turn. Do not resume past a stop signal. A harness
+stop is a signal from outside the run, and a run that overrides it
+has made itself the judge of its own completeness, which is the
+arrangement measured to drift (arXiv 2607.17641).
+
+### Verify Findings Are Grounded (`refine:findings-verified`)
+
+Write findings to `.review/findings.json`, run the citation verifier
+(`Skill(imbue:review-core)` Step 5), and drop or label `UNVERIFIED` any
+the verifier rejects.
+
+## Exit Criteria
+
+- [ ] All six analysis dimensions have a verdict (finding or "no issue
+      detected") for the target scope.
+- [ ] Each finding includes a file path, line range, and verbatim
+      `Anchor` (the exact source text at that line).
+- [ ] Every reported finding carries a `Location` + verbatim `Anchor`
+      confirmed by `citation_verifier.py` (exit `0`), or unverified
+      findings were dropped or labeled `UNVERIFIED`.
 
 ## Tiered Analysis
 
@@ -220,13 +239,12 @@ If the harness fires a stop signal mid-execution and the completion gate is not 
 |------|------|-------|
 | **1: Quick** (default) | 2-5 min | Complexity hotspots, obvious duplication, naming, magic values |
 | **2: Targeted** | 10-20 min | Algorithm analysis, full duplication scan, architectural alignment |
-| **3: Deep** | 30-60 min | All above and cross-module coupling, paradigm fitness, comprehensive plan |
+| **3: Deep** | 30-60 min | All above and cross-module coupling, paradigm fitness, thorough plan |
 
 ## Cross-Plugin Dependencies
 
 | Dependency | Required? | Fallback |
 |------------|-----------|----------|
-| `pensive:shared` | Yes | Core review patterns |
 | `imbue:proof-of-work` | Optional | Inline evidence in report |
 | `conserve:code-quality-principles` | Optional | Built-in KISS/YAGNI/SOLID checks |
 | `archetypes:architecture-paradigms` | Optional | Principle-based checks only (no paradigm detection) |
@@ -236,6 +254,6 @@ If the harness fires a stop signal mid-execution and the completion gate is not 
 - [Code quality analysis](modules/code-quality-analysis.md) - duplication detection commands and consolidation strategies
 
 When optional plugins are not installed, the skill degrades gracefully:
-- Without `imbue`: Evidence captured inline, no TodoWrite proof-of-work
+- Without `imbue`: Evidence captured inline, no progress-item proof-of-work
 - Without `conserve`: Uses built-in clean code checks (subset)
 - Without `archetypes`: Skips paradigm-specific alignment, uses coupling/cohesion principles only

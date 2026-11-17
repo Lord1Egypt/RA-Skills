@@ -1,40 +1,58 @@
-## Description: <br>
-Interactive algorithm practice skill that generates curated Easy, Medium, and Hard problems with Java and Python starter code, built-in tests, hints, and progress tracking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Interactive algorithm practice skill that generates original Easy, Medium, and Hard coding problems with Java and Python starter templates, built-in tests, hints, and local progress tracking.
 
-## Publisher: <br>
-[kadijin](https://clawhub.ai/user/kadijin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kadijin](https://clawhub.ai/user/kadijin)
 
-## Use Case: <br>
-Developers, students, and interview candidates use this skill for daily algorithm practice by selecting a difficulty level and receiving an original coding problem with matching Java and Python templates, test cases, hints, and progress tracking. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated exercise templates and expected outputs may be incomplete or incorrect. <br>
-Mitigation: Review generated code and test cases before relying on results, then run the generated tests locally. <br>
-Risk: The skill writes local Java, Python, and progress-history files in the workspace. <br>
-Mitigation: Inspect java/, python/, and algo_history.md after use; edit or delete the history file to reset progress. <br>
+## Use Case:
 
+External developers, computer science students, and interview candidates use this skill to practice algorithmic problem solving through generated coding exercises and ready-to-run Java and Python templates.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/kadijin/algorithm-practice) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Files, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown problem statement with generated Java and Python source files, inline shell commands, and a Markdown progress history file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates or updates java/, python/, and algo_history.md in the user's workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata and user changelog) <br>
+Risk: The skill creates and updates files in the workspace, including practice source files and progress history.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it in the intended project or a disposable practice workspace and review file changes before committing them.
+
+Risk: Generated exercise code and tests may contain mistakes or incomplete scaffolding.
+
+Mitigation: Review generated Java and Python files before running them and validate expected test outputs while solving.
+
+Risk: Problem descriptions are presented in Chinese by default, which may affect users who expect another language.
+
+Mitigation: Ask the agent to translate or generate the exercise in the preferred language before starting the solution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kadijin/skills/algorithm-practice)
+- [Publisher profile](https://clawhub.ai/user/kadijin)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown problem statements with generated Java and Python source files and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates or updates local practice files and a workspace history file.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

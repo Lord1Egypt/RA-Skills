@@ -1,44 +1,57 @@
-## Description: <br>
-通过 Kie AI API 调用 Google Nano Banana Pro 模型，生成高质量多比例多分辨率图像，并支持参考图和回调。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents use the Kie AI API to generate professional images with Google Nano Banana Pro, including prompt shaping, parameter selection, task submission, status checks, and webhook guidance.
 
-## Publisher: <br>
-[rfdiosuao](https://clawhub.ai/user/rfdiosuao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rfdiosuao](https://clawhub.ai/user/rfdiosuao)
 
-## Use Case: <br>
-Developers, designers, and content teams use this skill to submit Kie AI Nano Banana Pro image-generation jobs, tune generation parameters, track task status, and receive image results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Image prompts, reference image URLs, generation settings, and callback endpoints may be sent to Kie AI. <br>
-Mitigation: Avoid secrets or confidential material in prompts and images, store API keys securely, and use HTTPS callbacks with verification. <br>
-Risk: Generation requests can be sensitive or high cost. <br>
-Mitigation: Confirm user intent before submitting high-cost or sensitive generation jobs. <br>
+## Use Case:
 
+Developers, creators, and operators use this skill to prepare Kie AI Nano Banana Pro image-generation requests, choose aspect ratio, resolution, output format, reference images, and understand task completion flows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/rfdiosuao/kie-nano-banana-pro) <br>
-- [Kie AI Google Pro image-to-image documentation](https://docs.kie.ai/market/google/pro-image-to-image) <br>
-- [Kie AI API key management](https://kie.ai/api-key) <br>
-- [Kie AI task detail API](https://docs.kie.ai/common-api/get-task-detail) <br>
-- [Kie AI webhook verification](https://docs.kie.ai/common-api/webhook-verification) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, API calls, configuration] <br>
-**Output Format:** [Markdown guidance with JSON request and response examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include task IDs, generation settings, status-query guidance, callback guidance, and prompt-optimization suggestions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill.json) <br>
+Risk: Prompts, reference image URLs, and callback URLs may be sent to Kie AI or a configured callback endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use approved prompts and images, store API keys with a trusted secret mechanism, and configure only HTTPS callback endpoints that the user controls and can verify.
+
+Risk: Generated image requests depend on a third-party API and may be affected by authentication, quota, validation, rate-limit, or service errors.
+
+Mitigation: Handle documented API responses and task states, check credentials and account balance, respect rate limits, and retry or escalate failures according to Kie AI guidance.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/rfdiosuao/skills/kie-nano-banana-pro)
+- [Kie AI Google Pro Image-to-Image API documentation](https://docs.kie.ai/market/google/pro-image-to-image)
+- [Kie AI task detail documentation](https://docs.kie.ai/common-api/get-task-detail)
+- [Kie AI webhook verification documentation](https://docs.kie.ai/common-api/webhook-verification)
+- [Kie AI API key management](https://kie.ai/api-key)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, API calls, configuration, guidance]
+
+**Output Format:** [Markdown status summaries and JSON request examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include task IDs, image-generation parameters, prompt suggestions, status-check guidance, and webhook setup guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, artifact package metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

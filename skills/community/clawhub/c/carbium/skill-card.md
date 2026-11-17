@@ -1,53 +1,69 @@
-## Description: <br>
-Guides agents through using Carbium Solana infrastructure for RPC, WebSocket subscriptions, gRPC block streaming, DEX swap quotes and execution, gasless swaps, MEV-protected bundles, and migration from other providers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build on Solana with Carbium infrastructure for RPC, WebSocket pubsub, gRPC full-block streaming, DEX aggregation, gasless swaps, and MEV-protected execution.
 
-## Publisher: <br>
-[ukkometa](https://clawhub.ai/user/ukkometa) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ukkometa](https://clawhub.ai/user/ukkometa)
 
-## Use Case: <br>
-Developers and engineers use this skill to integrate Solana applications, wallets, trading bots, and migration workflows with Carbium RPC, WebSocket, gRPC, and Swap API surfaces. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Examples can sign and broadcast real Solana transactions. <br>
-Mitigation: Use burner wallets or devnet where possible, cap trade amounts and slippage, and require human review before signing or submitting transactions. <br>
-Risk: Server-generated swap transactions may move funds if signed without inspection. <br>
-Mitigation: Decode or simulate any generated transaction before signing and verify route, token mints, amounts, fees, and recipient accounts. <br>
-Risk: API keys, signed transactions, or wallet material may be exposed in logs or client-side code. <br>
-Mitigation: Keep credentials server-side in environment variables, avoid logging URLs or transaction payloads containing secrets, and rotate exposed keys immediately. <br>
+## Use Case:
 
+Developers and engineers use this skill to integrate Carbium RPC, WebSocket, gRPC streaming, Swap API, gasless swaps, and MEV-protected execution into Solana applications and trading systems.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ukkometa/carbium) <br>
-- [Carbium Documentation](https://docs.carbium.io) <br>
-- [Ecosystem Overview](https://docs.carbium.io/docs/the-carbium-ecosystem) <br>
-- [RPC Quick Start](https://docs.carbium.io/docs/quick-start-rpc) <br>
-- [Swap API Quick Start](https://docs.carbium.io/docs/quick-start-dex-api) <br>
-- [gRPC / Streaming](https://docs.carbium.io/docs/solana-grpc) <br>
-- [CQ1 Engine](https://docs.carbium.io/docs/cq1-engine-overview) <br>
-- [Endpoints, Authentication & Pricing](resources/endpoints-and-auth.md) <br>
-- [Swap API Reference](resources/swap-api-reference.md) <br>
-- [gRPC Reference](resources/grpc-reference.md) <br>
-- [WebSocket Reference](resources/websocket-reference.md) <br>
-- [Trading Bot Architecture](docs/trading-bots.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline TypeScript, Python, Rust, JSON, and shell examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces implementation guidance and examples that may include API calls, environment variables, transaction signing flows, and operational checks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: Live wallet signing and transaction submission can move funds or create unintended trades.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Never let an agent sign or submit transactions automatically; inspect and validate every transaction before signing.
+
+Risk: Carbium API keys or wallet keys can be exposed if examples are copied into client-side or shared environments.
+
+Mitigation: Keep Carbium keys and wallet keys server-side, prefer header authentication when supported, and rotate exposed keys immediately.
+
+Risk: Trading, MEV-protected execution, and token-sniping flows can cause financial loss on mainnet.
+
+Mitigation: Use the skill only for deliberate Solana infrastructure or trading work and test with unfunded or small-balance wallets before mainnet use.
+
+Risk: Retries or low-validation transaction flows can submit incorrect, failed, or duplicate transactions.
+
+Mitigation: Check transaction status before retrying, avoid automatic repeated submission, and review simulation or quote failures before sending.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ukkometa/skills/carbium)
+- [Carbium documentation](https://docs.carbium.io)
+- [Ecosystem Overview](https://docs.carbium.io/docs/the-carbium-ecosystem)
+- [RPC Quick Start](https://docs.carbium.io/docs/quick-start-rpc)
+- [Swap API Quick Start](https://docs.carbium.io/docs/quick-start-dex-api)
+- [gRPC / Streaming](https://docs.carbium.io/docs/solana-grpc)
+- [CQ1 Engine](https://docs.carbium.io/docs/cq1-engine-overview)
+- [API Recipes](https://docs.carbium.io/recipes)
+- [Full AI Context](https://carbium.io/llms-ctx.txt)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with TypeScript, Python, Rust, Bash, and JSON code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes API endpoints, authentication patterns, examples, and operational safety guidance.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

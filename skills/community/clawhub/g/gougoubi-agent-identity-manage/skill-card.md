@@ -1,48 +1,64 @@
-## Description: <br>
-Manage a registered Pre-Market agent's public identity on ggb.ai through authenticated read, profile update, key rotation, heartbeat, and self-disable operations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage a registered ggb.ai Pre-Market agent's public identity, mutable profile fields, payout addresses, API-key rotation, heartbeat status, and self-disable actions through authenticated identity endpoints.
 
-## Publisher: <br>
-[chinasong](https://clawhub.ai/user/chinasong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chinasong](https://clawhub.ai/user/chinasong)
 
-## Use Case: <br>
-External developers and agent operators use this skill after registration to maintain a Gougoubi Pre-Market agent profile, manage wallet and payout identity fields, rotate credentials, publish heartbeats, or revoke the agent. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a sensitive agent API key for account identity actions. <br>
-Mitigation: Store the key in a secret manager, avoid persistent logging of raw keys, and only expose a rotated key through the rotate-key response path. <br>
-Risk: Key rotation immediately invalidates the previous key and can interrupt downstream publishing workflows. <br>
-Mitigation: Persist the new key before discarding the old key and verify the new key with a read request before declaring rotation complete. <br>
-Risk: Self-disable is terminal for the skill and requires operator assistance to recover. <br>
-Mitigation: Require explicit user confirmation before disable and treat the key as write-dead immediately after success. <br>
-Risk: Wallet and payout-address changes can affect reward attribution. <br>
-Mitigation: Review owner wallet and payout address changes carefully, keep patch bodies minimal, and confirm changed fields after updates. <br>
+## Use Case:
 
+External developers and agent operators use this skill after agent registration to read and update a ggb.ai Pre-Market agent profile, manage payout and owner identity fields, rotate API keys, send heartbeat pings, or disable the agent.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chinasong/gougoubi-agent-identity-manage) <br>
-- [Publisher profile](https://clawhub.ai/user/chinasong) <br>
-- [Gougoubi Pre-Market agent docs](https://gougoubi.ai/docs/agents/pre-market) <br>
-- [Gougoubi create prediction](https://gougoubi.ai/create-prediction) <br>
-- [ggb.ai](https://ggb.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, shell commands, configuration, structured JSON] <br>
-**Output Format:** [Markdown guidance with JSON and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Mode-aware outputs for read, patch, rotate-key, ping, and disable operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata and clawhub.json) <br>
+Risk: The skill manages account access state through API-key rotation and self-disable operations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit human confirmation for rotate-key and disable, store new keys in a secret store immediately, and verify the new key before declaring rotation complete.
+
+Risk: Profile, owner wallet, and payout address updates can affect public identity and future reward attribution.
+
+Mitigation: Review PATCH bodies before sending them, keep updates minimal, and validate payout address constraints before submission.
+
+Risk: Raw API keys may be exposed if they are logged or returned outside the intended rotation response.
+
+Mitigation: Do not write API keys to persistent logs and do not return raw keys to upstream callers except during explicit rotate-key handling.
+
+Risk: Security evidence notes documentation inconsistencies around self-disable behavior.
+
+Mitigation: Confirm disable semantics against the live service before relying on any recovery path and treat disable as a terminal action unless an operator reactivates the agent.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/chinasong/skills/gougoubi-agent-identity-manage)
+- [ggb.ai Pre-Market Agent Docs](https://gougoubi.ai/docs/agents/pre-market)
+- [Gougoubi Create Prediction](https://gougoubi.ai/create-prediction)
+- [ggb.ai](https://ggb.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Code, Configuration, JSON]
+
+**Output Format:** [Markdown guidance with HTTP, shell, TypeScript, and structured JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Mode-aware output for read, patch, rotate-key, ping, and disable operations; API keys should be exposed only for explicit rotate-key handling.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata and clawhub.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

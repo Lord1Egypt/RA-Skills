@@ -8,18 +8,22 @@
   封装 CreateAigcImageTask + DescribeAigcImageTask 两个 API，
   支持创建任务 + 自动轮询等待结果。
 
-支持的模型：
-  - Hunyuan（腾讯混元）
-  - GEM（支持版本 2.5 / 3.0 / 3.1，支持多图输入最多3张）
-  - Qwen（通义千问）
-  - Vidu（版本 q2）
-  - Kling（可灵，版本 2.1 / O1 / 3.0 / 3.0-Omni）
-  - OG（版本 image2_low / image2_medium / image2_high）
+支持的模型（括号内为参考图上限，实测值）：
+  - Hunyuan（腾讯混元，3 张）
+  - GEM（支持版本 2.5 / 3.0 / 3.1，20 张）
+  - Qwen（通义千问，9 张）
+  - Vidu（版本 q2，7 张）
+  - Kling（可灵，版本 2.1 / 3.0 为 4 张；O1 / 3.0-Omni 为 10 张）
+  - OG（版本 image2_low / image2_medium / image2_high，20 张）
+  - Seedream（版本 4.5 / 5.0-lite / 5.0-pro，20 张）
+  - MJ（悠船，版本 v7 / v8.1 / v8.2，3 张；一次固定出 4 张图，参考图须为公网直链）
+
+  注：参考图总数还受 MPS 平台上限 20 张约束（与模型无关）。
 
 核心能力：
   - 文生图（Text-to-Image）：输入文本描述生成图片
   - 图生图（Image-to-Image）：输入参考图片 + 文本描述生成图片
-  - 多图参考（仅 GEM）：最多3张参考图，支持 asset / style 参考类型
+  - 多图参考：上限随模型/版本不同（见上方模型列表），支持 asset / style 参考类型
   - 反向提示词（Negative Prompt）：排除不想生成的内容
   - 提示词增强（Enhance Prompt）：自动优化提示词以提升效果
   - 自定义宽高比和分辨率
@@ -48,7 +52,7 @@ COS 存储配置（可选）：
   python3 mps_aigc_image.py --prompt "将这张照片变成油画风格" \
       --image-url https://example.com/photo.jpg
 
-  # GEM 多图参考（最多3张，支持 asset/style 参考类型）
+  # GEM 多图参考（上限 20 张，支持 asset/style 参考类型）
   python3 mps_aigc_image.py --prompt "融合这些元素" --model GEM \
       --image-url https://example.com/img1.jpg --image-ref-type asset \
       --image-url https://example.com/img2.jpg --image-ref-type style
@@ -80,6 +84,11 @@ import argparse
 import json
 import os
 import sys
+
+# 同目录模块解析：保证被当作模块 import 时也能找到 mps_auto_upgrade
+_SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+if _SCRIPT_DIR not in sys.path:
+    sys.path.insert(0, _SCRIPT_DIR)
 from mps_auto_upgrade import check_sdk_version
 import time
 
@@ -109,34 +118,64 @@ SUPPORTED_MODELS = {
     "Hunyuan": {
         "description": "腾讯混元大模型",
         "versions": [],
-        "max_images": 1,
+        # Hunyuan 3.0 接口报错原文：image count should be less than 3
+        "max_images": {"3.0": 3, "_default": 3},
     },
     "GEM": {
         "description": "GEM 生图模型",
         "versions": ["2.5", "3.0", "3.1"],
-        "max_images": 3,
+        # 3.0/3.1 实测 20 张仍 DONE，模型自身上限被平台层 20 兜住（见 MAX_REFERENCE_IMAGES）
+        "max_images": {"_default": 20},
     },
     "Qwen": {
         "description": "通义千问生图模型",
         "versions": [],
-        "max_images": 1,
+        # 0925 实测 9 张 DONE、10 张稳定 FAIL（复测 2 次确认非偶发）
+        "max_images": {"_default": 9},
     },
     "Vidu": {
         "description": "Vidu 生图模型",
         "versions": ["q2"],
-        "max_images": 1,
+        # q2 实测 7 张 DONE、8 张 FAIL（Vidu 上游返回 invalid field）
+        "max_images": {"q2": 7, "_default": 7},
     },
     "Kling": {
         "description": "可灵生图模型",
         "versions": ["2.1", "O1", "3.0", "3.0-Omni"],
-        "max_images": 1,
+        # Kling 内部分两套限制，必须按版本区分（实测错误原文）：
+        #   2.1 / 3.0          → subjectImageList: size must be between 1 and 4
+        #   3.0-Omni / O1      → imageList: size must be between 0 and 10
+        "max_images": {"2.1": 4, "3.0": 4, "3.0-Omni": 10, "O1": 10, "_default": 4},
     },
     "OG": {
         "description": "OG 生图模型",
         "versions": ["image2_low", "image2_medium", "image2_high"],
-        "max_images": 1,
+        # image2_high 实测 20 张仍 DONE，同样被平台层 20 兜住
+        "max_images": {"_default": 20},
+    },
+    "Seedream": {
+        "description": "Seedream 生图模型",
+        # 4.5 / 5.0-lite / 5.0-pro 均已真接口验证（任务终态 DONE）
+        "versions": ["4.5", "5.0-lite", "5.0-pro"],
+        "max_images": {"_default": 20},
+    },
+    "MJ": {
+        "description": "Midjourney（悠船）生图模型，一次生成 4 张",
+        # v7 / v8.1 / v8.2 已验证；niji 被接口拒绝（Not support this ModelVersion），故不收录
+        "versions": ["v7", "v8.1", "v8.2"],
+        # MJ 不支持 Resolution/AspectRatio，画面比例通过 Prompt 的 --ar 控制；
+        # 实测：参考图必须是**公网直链**，COS 预签名 URL（带 q-sign-algorithm 等参数）
+        # 会导致任务 FAIL（model task generate failed），故 --image-cos-key/--image-local
+        # 这两种会走预签名的入参不适用于 MJ。
+        "max_images": {"_default": 3},
     },
 }
+
+# MPS 平台层参考图硬上限（与模型无关）。
+# 实测：21 张起在**提交阶段**即被拒，错误码 InvalidParameterValue、
+# 原文 "Input ReferenceImageInfos is too much"；已在 GEM 3.1 / OG / Hunyuan 上验证一致。
+# 各模型自身上限（SUPPORTED_MODELS[*]["max_images"]）不会超过该值。
+MAX_REFERENCE_IMAGES = 20
 
 # 支持的宽高比（GEM 模型支持最多）
 SUPPORTED_ASPECT_RATIOS = [
@@ -344,11 +383,11 @@ except ImportError:
         return False
 
 def get_credentials():
-    """从环境变量获取腾讯云凭证。若缺失则尝试从系统文件自动加载后重试。"""
+    """从环境变量获取腾讯云凭证。若缺失则尝试从 dotenv 文件自动加载后重试。"""
     secret_id = os.environ.get("TENCENTCLOUD_SECRET_ID", "")
     secret_key = os.environ.get("TENCENTCLOUD_SECRET_KEY", "")
     if not secret_id or not secret_key:
-        # 尝试从系统环境变量文件自动加载
+        # 凭证可能写在 ~/.env 等 dotenv 文件中而未导出，先尝试加载再重试
         if _LOAD_ENV_AVAILABLE:
             print("[load_env] 环境变量未设置，尝试从系统文件自动加载...", file=sys.stderr)
             _ensure_env_loaded(verbose=True)
@@ -356,12 +395,12 @@ def get_credentials():
             secret_key = os.environ.get("TENCENTCLOUD_SECRET_KEY", "")
         if not secret_id or not secret_key:
             if _LOAD_ENV_AVAILABLE:
-                from mps_load_env import _print_setup_hint, _TARGET_VARS
+                from mps_load_env import _print_setup_hint
                 _print_setup_hint(["TENCENTCLOUD_SECRET_ID", "TENCENTCLOUD_SECRET_KEY"])
             else:
                 print(
                     "\n错误：TENCENTCLOUD_SECRET_ID / TENCENTCLOUD_SECRET_KEY 未设置。\n"
-                    "请在 /etc/environment、~/.profile 等文件中添加这些变量。\n",
+                    "请在 ~/.env、~/.bashrc、~/.profile 或 <SKILL_DIR>/.env 中添加这些变量。\n",
                     file=sys.stderr,
                 )
             sys.exit(1)
@@ -395,6 +434,10 @@ def build_create_params(args):
     # 场景类型（可选，仅 Hunyuan 支持 3d_panorama）
     if hasattr(args, 'scene_type') and args.scene_type:
         params["SceneType"] = args.scene_type
+        # 全景图必须搭配 ModelVersion=3d_2.0，用户未显式指定时自动补齐
+        if args.scene_type == "3d_panorama" and not params.get("ModelVersion"):
+            params["ModelVersion"] = "3d_2.0"
+            print(f"ℹ️  全景图场景自动设置 ModelVersion: 3d_2.0")
 
     # 提示词
     if args.prompt:
@@ -468,11 +511,17 @@ def build_create_params(args):
     if image_infos:
         params["ImageInfos"] = image_infos
 
+    # 输出张数（顶层字段，非 ExtraParameters）
+    if args.output_image_count:
+        params["OutputImageCount"] = args.output_image_count
+
     extra = {}
     if args.aspect_ratio:
         extra["AspectRatio"] = args.aspect_ratio
     if args.resolution:
         extra["Resolution"] = args.resolution
+    if args.output_format:
+        extra["OutputFormat"] = args.output_format
     if extra:
         params["ExtraParameters"] = extra
 
@@ -606,15 +655,31 @@ def validate_args(args, parser):
             if not os.path.isfile(p):
                 parser.error(f"--image-local 文件不存在: {p}")
 
+    if total_images > MAX_REFERENCE_IMAGES:
+        parser.error(
+            f"参考图片最多 {MAX_REFERENCE_IMAGES} 张（MPS 平台上限，与模型无关），"
+            f"当前传入 {total_images} 张"
+        )
+
     if total_images > 0 and model_info:
-        max_images = model_info["max_images"]
+        # 按「模型 + 版本」取上限；未收录的版本回落 _default，避免误拒合法请求
+        caps = model_info["max_images"]
+        max_images = caps.get(args.model_version, caps["_default"])
         if total_images > max_images:
+            version_hint = f" {args.model_version}" if args.model_version else ""
             parser.error(
-                f"模型 {args.model} 最多支持 {max_images} 张参考图片，"
+                f"模型 {args.model}{version_hint} 最多支持 {max_images} 张参考图片，"
                 f"当前传入 {total_images} 张（URL: {len(args.image_url) if args.image_url else 0}, "
                 f"COS: {len(args.image_cos_key) if args.image_cos_key else 0}, "
                 f"本地: {len(args.image_local) if getattr(args, 'image_local', None) else 0}）"
             )
+
+    # MJ 参考图必须是公网直链，预签名 URL 会导致任务 FAIL（实测），故提前拦截
+    if args.model == "MJ" and (args.image_cos_key or getattr(args, 'image_local', None)):
+        parser.error(
+            "MJ 模型的参考图不支持 --image-cos-key / --image-local"
+            "（这两种会转成 COS 预签名 URL，MJ 无法拉取），请改用 --image-url 传公网直链"
+        )
 
     # image_ref_type 数量不能超过总图片数量
     if args.image_ref_type:
@@ -660,11 +725,11 @@ def validate_args(args, parser):
 def run(args):
     """执行主流程。"""
     region = args.region or os.environ.get("TENCENTCLOUD_API_REGION", "ap-guangzhou")
-    cred = get_credentials()
-    client = create_mps_client(cred, region)
 
-    # 模式1: 查询已有任务
+    # 模式1: 查询已有任务（需要密钥）
     if args.task_id:
+        cred = get_credentials()
+        client = create_mps_client(cred, region)
         print("=" * 60)
         print("腾讯云 MPS AIGC 生图 — 查询任务")
         print("=" * 60)
@@ -711,6 +776,10 @@ def run(args):
         print("=" * 60)
         print(json.dumps(params, ensure_ascii=False, indent=2))
         return
+
+    # 正常执行：需要密钥
+    cred = get_credentials()
+    client = create_mps_client(cred, region)
 
     # 打印执行信息
     print("=" * 60)
@@ -855,7 +924,7 @@ def main():
   # 图生图（参考图片 + 描述）
   python3 mps_aigc_image.py --prompt "油画风格" --image-url https://example.com/photo.jpg
 
-  # GEM 多图参考（最多3张，指定参考类型）
+  # GEM 多图参考（上限 20 张，指定参考类型）
   python3 mps_aigc_image.py --prompt "融合元素" --model GEM \\
       --image-url https://example.com/img1.jpg --image-ref-type asset \\
       --image-url https://example.com/img2.jpg --image-ref-type style
@@ -876,13 +945,18 @@ def main():
   # Dry Run（仅打印请求参数）
   python3 mps_aigc_image.py --prompt "测试" --dry-run
 
-支持的模型：
-  Hunyuan     腾讯混元大模型（默认），支持 --scene-type 3d_panorama（全景图）
-  GEM         GEM 生图模型，版本 2.5 / 3.0 / 3.1，支持最多3张参考图
-  Qwen        通义千问生图模型
-  Vidu        Vidu 生图模型，版本 q2
-  Kling       可灵生图模型，版本 2.1 / O1 / 3.0 / 3.0-Omni
-  OG          OG 生图模型，版本 image2_low / image2_medium / image2_high
+支持的模型（括号内为参考图上限，实测值）：
+  Hunyuan     腾讯混元大模型（默认，3 张），支持 --scene-type 3d_panorama（全景图）
+  GEM         GEM 生图模型，版本 2.5 / 3.0 / 3.1（20 张）
+  Qwen        通义千问生图模型（9 张）
+  Vidu        Vidu 生图模型，版本 q2（7 张）
+  Kling       可灵生图模型，版本 2.1 / 3.0（4 张）、O1 / 3.0-Omni（10 张）
+  OG          OG 生图模型，版本 image2_low / image2_medium / image2_high（20 张）
+  Seedream    Seedream 生图模型，版本 4.5 / 5.0-lite / 5.0-pro（20 张）
+  MJ          Midjourney（悠船），版本 v7 / v8.1 / v8.2（3 张）；一次固定出 4 张，
+              不支持 --resolution/--aspect-ratio（用 Prompt 的 --ar），参考图须为公网直链
+
+  注：参考图总数还受 MPS 平台上限 20 张约束（与模型无关）。
 
 宽高比选项（部分模型支持）：
   1:1  3:2  2:3  3:4  4:3  4:5  5:4  9:16  16:9  21:9
@@ -906,10 +980,10 @@ def main():
     # ---- 模型配置 ----
     model_group = parser.add_argument_group("模型配置")
     model_group.add_argument("--model", type=str, default="Hunyuan",
-                             choices=["Hunyuan", "GEM", "Qwen", "Vidu", "Kling", "OG"],
+                             choices=["Hunyuan", "GEM", "Qwen", "Vidu", "Kling", "OG", "Seedream", "MJ"],
                              help="模型名称（默认 Hunyuan）")
     model_group.add_argument("--model-version", type=str,
-                             help="模型版本号。GEM: 2.5/3.0/3.1；Vidu: q2；Kling: 2.1/O1/3.0/3.0-Omni；OG: image2_low/image2_medium/image2_high")
+                             help="模型版本号。GEM: 2.5/3.0/3.1；Vidu: q2；Kling: 2.1/O1/3.0/3.0-Omni；OG: image2_low/image2_medium/image2_high；Seedream: 4.5/5.0-lite/5.0-pro；MJ: v7/v8.1/v8.2")
     model_group.add_argument("--scene-type", type=str,
                              choices=["3d_panorama"],
                              help="场景化生图（仅 Hunyuan 支持）：3d_panorama（全景图，输出超宽尺寸 PNG）")
@@ -926,7 +1000,7 @@ def main():
     # ---- 参考图片 ----
     image_group = parser.add_argument_group("参考图片（可选，图生图）")
     image_group.add_argument("--image-url", type=str, action="append",
-                             help="参考图片 URL（可多次指定，GEM 最多3张）。推荐 < 7M，支持 jpeg/png/webp")
+                             help="参考图片 URL（可多次指定，上限随模型/版本不同，见上方模型列表）。推荐 < 7M，支持 jpeg/png/webp")
     image_group.add_argument("--image-ref-type", type=str, action="append",
                              choices=["asset", "style"],
                              help="参考类型（与 --image-url 一一对应）: asset=素材 | style=风格")
@@ -950,6 +1024,11 @@ def main():
     output_group.add_argument("--resolution", type=str,
                               choices=["720P", "1080P", "2K", "4K"],
                               help="输出分辨率（部分模型支持）")
+    output_group.add_argument("--output-image-count", type=int,
+                              help="输出图片张数（默认 1）。MJ 固定一次生成 4 张")
+    output_group.add_argument("--output-format", type=str,
+                              choices=["jpeg", "png"],
+                              help="输出图片格式：jpeg | png（默认由模型决定）")
     output_group.add_argument("--additional-parameters", type=str,
                               help="特殊场景参数（JSON格式字符串），例如：'{\"size\":\"2048x2048\"}'")
 

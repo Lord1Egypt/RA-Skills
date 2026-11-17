@@ -1,38 +1,50 @@
-## Description: <br>
-Prompt Optimizer Cn rewrites unclear prompts into clearer, structured prompts while preserving the user's intent and matching the input language. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Prompt Optimizer Cn helps agents rewrite vague prompts into clearer, ready-to-use prompts by diagnosing missing role, task, context, format, and constraints.
 
-## Publisher: <br>
-[ucsdzehualiu](https://clawhub.ai/user/ucsdzehualiu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ucsdzehualiu](https://clawhub.ai/user/ucsdzehualiu)
 
-## Use Case: <br>
-People writing prompts for AI assistants use this skill to turn vague or underspecified requests into actionable prompts with roles, steps, context, constraints, and output format. It is intended for explicit prompt-optimization requests, not normal conversation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/ucsdzehualiu/prompt-optimizer-cn) <br>
-- [Publisher profile](https://clawhub.ai/user/ucsdzehualiu) <br>
+Agent users and prompt engineers use this skill to turn unclear Chinese or English prompts into structured, executable prompts while preserving the user's original intent.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with a fenced prompt block, a brief change summary, and a feedback question.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill preserves the original intent and language. Security evidence reports no hidden access, persistence, credential use, or unsafe runtime behavior; users should still review rewritten prompts before applying them.] <br>
+Global
 
-## Skill Version(s): <br>
-2.1.0 (source: server release and SKILL.md frontmatter) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: Broad trigger wording could activate prompt optimization when the user intended a different task.
+
+Mitigation: Use the skill only for explicit prompt optimization requests and preserve the user's original intent when rewriting.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ucsdzehualiu/skills/prompt-optimizer-cn)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/ucsdzehualiu)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with a fenced optimized prompt, a one-line change summary, and a follow-up question.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Matches the user's input language and preserves the original prompt intent.]
+
+## Skill Version(s):
+
+2.1.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

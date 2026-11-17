@@ -1,43 +1,56 @@
-## Description: <br>
-Bazi Fortune is a Chinese Bazi four-pillar fortune-analysis skill that computes pillars, ten-god relationships, five-element balance, luck cycles, and annual influences from birth details, then produces an interpretive report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Bazi Fortune generates Chinese Four Pillars astrology charts and interpretive reports from a user's birth date, birth time, and sex using deterministic chart calculations plus LLM-based synthesis.
 
-## Publisher: <br>
-[eamanc-lab](https://clawhub.ai/user/eamanc-lab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[eamanc-lab](https://clawhub.ai/user/eamanc-lab)
 
-## Use Case: <br>
-External users use this skill to request Chinese Bazi four-pillar readings from birth date, birth time, sex, and optional birthplace. It supports full chart generation, five-element analysis, major luck-cycle and annual readings, and focused answers about Bazi-derived concepts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may save birth date, birth time, sex, optional birthplace, and Bazi-derived profile data locally for reuse. <br>
-Mitigation: Install only if local storage of this profile data is acceptable; review or delete MEMORY.md when stored data should not be reused. <br>
-Risk: Fortune-telling outputs could be mistaken for professional medical, legal, or financial advice. <br>
-Mitigation: Treat outputs as entertainment or self-reflection and use qualified professionals for medical, legal, financial, or other high-impact decisions. <br>
+## Use Case:
 
+External users use this skill to request Bazi chart calculation, Five Elements and Ten Gods analysis, major luck-cycle and annual-flow readings, and concise answers to targeted fortune-analysis questions. The skill is intended for entertainment and self-exploration, not medical, legal, financial, or other professional decision-making.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/eamanc-lab/bazi-fortune) <br>
-- [fortune-telling-skills homepage](https://github.com/eamanc-lab/fortune-telling-skills) <br>
-- [Bazi calculation rules](references/calculation-rules.md) <br>
-- [Bazi interpretation guide](references/interpretation-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown reports with tables, calculation steps, and concise focused answers] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reuse or save local birth-profile details and Bazi-derived chart data for later readings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill metadata) <br>
+Risk: The skill may silently reuse or store birth date, birth time, sex, optional birthplace, and derived fortune-profile data in local MEMORY.md files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it in a private workspace, obtain user consent before storing or reusing profile data, and delete or avoid creating MEMORY.md when session-only use is desired.
+
+Risk: Fortune-telling interpretations can be mistaken for professional medical, legal, financial, or life-decision advice.
+
+Mitigation: Present outputs as entertainment and self-exploration, retain the artifact's professional-advice disclaimer, and direct users to qualified professionals for high-stakes decisions.
+
+## Reference(s):
+
+- [Bazi chart calculation rules](references/calculation-rules.md)
+- [Bazi interpretation guide](references/interpretation-guide.md)
+- [Project homepage](https://github.com/eamanc-lab/fortune-telling-skills)
+- [ClawHub skill page](https://clawhub.ai/eamanc-lab/skills/bazi-fortune)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Analysis, Files, Guidance]
+
+**Output Format:** [Markdown reports with tables, calculation traces, and concise text answers]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May read from and write to local MEMORY.md files containing birth-profile data and derived chart cache.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

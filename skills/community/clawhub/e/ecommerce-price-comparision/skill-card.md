@@ -1,49 +1,63 @@
-## Description: <br>
-Compare products across JD, Taobao, Tmall, Pinduoduo, and Douyin Mall by normalizing product identity, standardizing price basis, detecting purchase risk, and producing decision-ready recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Compare products across JD, Taobao, Tmall, Pinduoduo, and Douyin Mall by normalizing product identity, standardizing price basis, detecting purchase risk, and producing decision-ready recommendations.
 
-## Publisher: <br>
-[Hongtao-Xiang](https://clawhub.ai/user/Hongtao-Xiang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hongtao-xiang](https://clawhub.ai/user/hongtao-xiang)
 
-## Use Case: <br>
-External users and shopping assistants use this skill to compare the same product across major Chinese e-commerce platforms, normalize payable prices, and receive lowest-price, best-value, and safest-purchase recommendations with risks and conditions disclosed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Live prices, coupons, shipping, inventory, seller status, and platform conditions can change or be unavailable to the agent. <br>
-Mitigation: Verify current prices, coupon eligibility, shipping, seller legitimacy, return policies, and platform-specific conditions directly on the shopping platform before purchase. <br>
-Risk: A low visible price may reflect a different product variant, deposit, pre-sale, group-buy, membership, livestream, subsidy, or other conditional basis. <br>
-Mitigation: Use only high-confidence same-product matches for strict lowest-price conclusions and label conditional or uncertain prices before recommending. <br>
-Risk: Raw cheapest-listing recommendations can be misleading when seller trust, after-sales support, package contents, condition, or delivery reliability differ. <br>
-Mitigation: Present separate lowest-price, best-value, and safest-purchase options with trade-offs and risk notes. <br>
+## Use Case:
 
+External users and agents use this skill to compare Chinese e-commerce listings for the same product across JD, Taobao, Tmall, Pinduoduo, and Douyin Mall. It supports risk-aware shopping guidance by separating true same-product matches from near-equivalent or non-comparable listings and by distinguishing lowest price, best value, and safest purchase options.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/Hongtao-Xiang/ecommerce-price-comparision) <br>
-- [Publisher Profile](https://clawhub.ai/user/Hongtao-Xiang) <br>
-- [Comparison Traps](comparison-traps.md) <br>
-- [Parsing and Normalization](parsing-and-normalization.md) <br>
-- [Matching Rules](matching-rules.md) <br>
-- [Pricing Rules](pricing-rules.md) <br>
-- [Decision Framework](decision-framework.md) <br>
-- [Examples](examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes normalized target product, platform comparison, lowest price option, best value option, safest purchase option, risk notes, price conditions, and uncertainty disclosures.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: Shopping recommendations could be mistaken for authorization to purchase or provide account data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as shopping advice only; do not provide credentials, private session data, payment details, or approval for autonomous checkout.
+
+Risk: Visible prices may depend on coupons, membership, group-buy, livestream, subsidy, shipping, or pre-sale conditions.
+
+Mitigation: Verify the final payable price and all activation conditions on the merchant page before making a purchase decision.
+
+Risk: Similar listings may differ by model, capacity, package contents, condition, seller channel, or version.
+
+Mitigation: Use strict same-product matching and downgrade or exclude listings when identity or price basis is uncertain.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hongtao-xiang/skills/ecommerce-price-comparision)
+- [Comparison traps](artifact/comparison-traps.md)
+- [Parsing and normalization](artifact/parsing-and-normalization.md)
+- [Matching rules](artifact/matching-rules.md)
+- [Pricing rules](artifact/pricing-rules.md)
+- [Decision framework](artifact/decision-framework.md)
+- [Examples](artifact/examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown narrative with structured comparison results and recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes normalized product identity, platform-by-platform comparison, lowest price, best value, safest purchase, risk notes, price conditions, and uncertainty disclosures.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

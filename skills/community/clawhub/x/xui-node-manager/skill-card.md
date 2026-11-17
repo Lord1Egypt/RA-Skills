@@ -1,45 +1,62 @@
-## Description: <br>
-Install 3x-ui panels on servers via SSH, create VLESS+Reality+TCP nodes with SOCKS5 outbound binding. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Install 3x-ui panels on servers via SSH and create VLESS+Reality+TCP nodes with SOCKS5 outbound binding.
 
-## Publisher: <br>
-[n0vemb](https://clawhub.ai/user/n0vemb) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[n0vemb](https://clawhub.ai/user/n0vemb)
 
-## Use Case: <br>
-Developers and server operators use this skill to automate 3x-ui panel installation, register panel access details, and create VLESS Reality nodes that route through SOCKS5 exits. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can make remote server changes, open node ports, alter Xray routing, and restart services. <br>
-Mitigation: Use it only on servers you intend to modify, confirm target servers before execution, and review changes before relying on the new route. <br>
-Risk: Panel, SSH, and SOCKS5 credentials may be stored or handled by local configuration and command execution. <br>
-Mitigation: Keep servers.yaml out of version control, restrict file permissions, prefer SSH keys, and rotate exposed credentials. <br>
-Risk: The implementation weakens SSH host-key and TLS certificate checks. <br>
-Mitigation: Prefer verified SSH host keys and trusted TLS certificates; enable certificate verification or use a trusted CA where possible. <br>
-Risk: The install workflow fetches and runs an upstream 3x-ui installer during execution. <br>
-Mitigation: Inspect or pin the upstream installer before use and run it only in environments where that dependency is acceptable. <br>
+## Use Case:
 
+Developers and operators use this skill to install 3x-ui panels, register panel access, create VLESS nodes, bind SOCKS5 outbound routing, and return connection artifacts to the user.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/n0vemb/xui-node-manager) <br>
-- [3x-ui upstream installer used by the skill](https://raw.githubusercontent.com/mhsanaei/3x-ui/master/install.sh) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Markdown, Text, Files] <br>
-**Output Format:** [Markdown and terminal output with shell commands, generated QR PNG files, and vless:// URIs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local server configuration files and generated QR-code image files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.2 (source: server release metadata) <br>
+Risk: Automated remote administration can change servers without strong trust checks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review planned actions before execution and use disposable or test servers unless the operator accepts the automation risk.
+
+Risk: SSH, panel, and SOCKS5 credentials can be exposed through chat, command arguments, or plaintext YAML configuration.
+
+Mitigation: Avoid passing passwords in chat or command arguments and do not store panel passwords in plaintext YAML.
+
+Risk: The installer fetches and executes a remote shell script.
+
+Mitigation: Replace the remote curl-to-bash installer with a pinned and verified source before production use.
+
+Risk: Weak transport trust can expose panel administration traffic or allow host impersonation.
+
+Mitigation: Require HTTPS with valid certificates and verify SSH host keys before connecting.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/n0vemb/skills/xui-node-manager)
+- [3x-ui upstream installer](https://raw.githubusercontent.com/mhsanaei/3x-ui/master/install.sh)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, files]
+
+**Output Format:** [Markdown text with shell commands, configuration edits, generated QR PNG files, and vless:// URIs.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update local YAML configuration and QR image files while administering remote 3x-ui panels.]
+
+## Skill Version(s):
+
+1.1.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

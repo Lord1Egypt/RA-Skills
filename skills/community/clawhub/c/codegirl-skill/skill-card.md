@@ -1,45 +1,61 @@
-## Description: <br>
-Creates a local Codegirl agent skill from chat logs, GitHub activity, code snippets, photos, and user notes, generating coding memory and persona files that can evolve over time. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates a local Codegirl pair-programming companion skill from user-provided chat logs, GitHub activity, code snippets, photos, and profile notes.
 
-## Publisher: <br>
-[xmlans](https://clawhub.ai/user/xmlans) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xmlans](https://clawhub.ai/user/xmlans)
 
-## Use Case: <br>
-Developers and external users use this skill to create and maintain local personalized pair-programming companion skills from private chat, code, and media evidence for personal reflection and coding support. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can store sensitive chats, photos, locations, and relationship or personality notes locally. <br>
-Mitigation: Use only data you have permission to process, keep generated files private, and review or remove sensitive content before enabling the generated skill. <br>
-Risk: Generated personas may present themselves as a real person, creating impersonation or unhealthy attachment risks. <br>
-Mitigation: Treat outputs as simulation, do not use them to contact or impersonate a real person, and stop or seek support if use becomes obsessive. <br>
-Risk: Generated .agents rules or SKILL.md content may introduce unsafe or misleading behavior. <br>
-Mitigation: Review generated files and run security scans before deployment; do not enable rules that override privacy, consent, or safety boundaries. <br>
+## Use Case:
 
+Developers and individual users use this skill to create and evolve a local pair-programming companion persona from personal chat, coding, and profile materials for technical conversation and reflection.
 
-## Reference(s): <br>
-- [ClawHub release: Codegirl Skill](https://clawhub.ai/xmlans/codegirl-skill) <br>
-- [ClawHub publisher profile: xmlans](https://clawhub.ai/user/xmlans) <br>
-- [Artifact README_EN.md](artifact/README_EN.md) <br>
-- [Artifact INSTALL.md](artifact/INSTALL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown and generated skill files with JSON metadata and optional shell command suggestions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates local gfs/{slug}/ memory, persona, meta, and SKILL files; may parse local chat, code, and image metadata inputs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill processes and stores sensitive personal chat logs, photos, and identity-shaping persona instructions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only data you own or have clear consent to process, avoid importing full private chats or GPS-bearing photos, and inspect generated files before invoking them.
+
+Risk: Generated persona content can be persisted into future agent behavior in ways the user may not fully review.
+
+Mitigation: Do not place generated persona text into .agents/rules; keep generated skills scoped to the intended local directory and review each generated SKILL.md before use.
+
+Risk: Delete, rollback, and generated-file workflows can affect local files if the slug or resolved path is unsafe.
+
+Mitigation: Use simple slugs and verify the resolved path is visibly confined to the intended gfs directory before running destructive workflows.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/xmlans/skills/codegirl-skill)
+- [Project Repository Link Mentioned by Release Notes](https://github.com/xmlans/codegirl-skill)
+- [AgentSkills Standard](https://agentskills.io)
+- [WeChatMsg Export Tool](https://github.com/LC044/WeChatMsg)
+- [PyWxDump Export Tool](https://github.com/xaoyaoo/PyWxDump)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown files, JSON metadata, generated skill code, and command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are local files under a generated skill directory plus setup, update, rollback, and deletion guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

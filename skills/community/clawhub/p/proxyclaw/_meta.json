@@ -1,6 +1,63 @@
 {
-  "ownerId": "kn71m91tk95s3f8sayka8tv3y582q2jf",
-  "slug": "proxyclaw",
-  "version": "2.5.2",
-  "publishedAt": 1777567758756
+  "name": "proxyclaw",
+  "version": "3.0.3",
+  "description": "Residential proxy CLI with explicit V2 credentials, country/state/city selectors and sticky sessions; exact-city accuracy varies.",
+  "author": "iploop",
+  "license": "MIT",
+  "homepage": "https://proxyclaw.ai",
+  "keywords": [
+    "proxy",
+    "residential-proxy",
+    "web-scraping",
+    "anti-bot",
+    "anti-detection",
+    "tls-fingerprint",
+    "captcha",
+    "geo-targeting",
+    "iploop",
+    "proxyclaw",
+    "ai-agent",
+    "scraping",
+    "unblocking",
+    "site-presets",
+    "chrome-fingerprint"
+  ],
+  "tags": [
+    "proxy",
+    "residential",
+    "scraping",
+    "geo-targeting",
+    "web-access",
+    "anti-detection"
+  ],
+  "openclaw": {
+    "emoji": "\ud83c\udf10",
+    "requires": {
+      "bins": [
+        "bash",
+        "curl",
+        "python3"
+      ],
+      "env": [
+        "IPLOOP_API_KEY"
+      ]
+    },
+    "primaryEnv": "IPLOOP_API_KEY"
+  },
+  "v2": {
+    "signup": "https://platform.iploop.io/",
+    "credentials": [
+      "IPLOOP_API_KEY",
+      "IPLOOP_PROXY_USERNAME",
+      "IPLOOP_PROXY_PASSWORD"
+    ],
+    "city": "Deployed V2 selectors; exact-city accuracy varies"
+  },
+  "features": [
+    "v2-explicit-credentials",
+    "legacy-compatibility",
+    "country-routing",
+    "sticky-sessions",
+    "v2-city-state"
+  ]
 }

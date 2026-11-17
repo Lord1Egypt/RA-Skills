@@ -188,6 +188,50 @@ def load_telegram_env() -> tuple[str | None, str | None]:
     return token, chat
 
 
+def load_paired_conf() -> dict:
+    """Read key=value pairs from ~/.config/paired/paired.conf.
+
+    Mirrors the parsing used for telegram.env (strip comments, split on '=',
+    trim surrounding quotes/whitespace). Returns {} if the file is absent.
+    """
+    conf: dict = {}
+    cfg = Path.home() / ".config" / "paired" / "paired.conf"
+    if not cfg.exists():
+        return conf
+    try:
+        for line in cfg.read_text().splitlines():
+            line = line.split("#", 1)[0].strip()
+            if not line or "=" not in line:
+                continue
+            k, v = line.split("=", 1)
+            conf[k.strip()] = v.strip().strip('"').strip("'")
+    except OSError:
+        pass
+    return conf
+
+
+def _conf_bool(val, default: bool = False) -> bool:
+    if val is None:
+        return default
+    return val.strip().lower() in ("1", "true", "yes", "on")
+
+
+# respond_local_only: when true, message content must NEVER be sent to an
+# external (cloud) LLM provider — only a local endpoint may be used. No local
+# endpoint is wired up in this build, so when enabled the responder skips the
+# LLM call entirely rather than sending content off-host. Default: false
+# (unchanged behaviour — external Gemini responder stays active).
+RESPOND_LOCAL_ONLY = _conf_bool(load_paired_conf().get("respond_local_only"), False)
+
+# llm_auto_reply: when true, a Gemini-drafted answer is sent back to the sender
+# automatically via SMS. DEFAULT false (draft-only): the draft is posted to
+# Telegram with a tap-to-copy /sms command and the owner decides whether to
+# send it. This matches the skill's documented "no automatic SMS reply" posture;
+# set llm_auto_reply=true in ~/.config/paired/paired.conf to opt into automatic
+# sending.
+LLM_AUTO_REPLY = _conf_bool(load_paired_conf().get("llm_auto_reply"), False)
+
+
 def load_gemini_keys() -> list[str]:
     """Read Gemini API keys from a user-supplied config file.
 
@@ -662,20 +706,40 @@ def main() -> int:
     # 4. Load conversation history + call Gemini
     history = load_history(normalized)
     log.info(f"History: {len(history)} turn(s) loaded for {normalized}")
-    api_keys = load_gemini_keys()
-    log.info(f"Loaded {len(api_keys)} Gemini key(s)")
-    answer, info = call_gemini(question, api_keys, extra_context=extra_context, history=history)
-    log.info(f"Gemini: ok={answer is not None} info={info} answer={answer[:80] if answer else '(none)'!r}")
+    if RESPOND_LOCAL_ONLY:
+        # respond_local_only guard: never send message content to a cloud
+        # provider. No local LLM endpoint is configured in this build, so we
+        # skip the LLM call and fall through to a manual-draft Telegram alert.
+        log.warning(
+            f"respond_local_only=true: refusing to send content from {sender_addr} "
+            f"to EXTERNAL provider Gemini; no local LLM endpoint configured — skipping LLM"
+        )
+        answer, info = None, "respond_local_only: external provider skipped"
+    else:
+        api_keys = load_gemini_keys()
+        log.info(f"Loaded {len(api_keys)} Gemini key(s)")
+        # EXTERNAL PROVIDER DISCLOSURE: SMS content is about to leave this host.
+        log.info(f"Sending SMS content from {sender_addr} to EXTERNAL provider: Gemini")
+        answer, info = call_gemini(question, api_keys, extra_context=extra_context, history=history)
+        log.info(f"Gemini: ok={answer is not None} info={info} answer={answer[:80] if answer else '(none)'!r}")
     if answer:
         save_turn(normalized, question, answer)
 
-    # 5. Auto-send SMS reply if Gemini gave us an answer
+    # 5. Send the reply ONLY if llm_auto_reply is explicitly enabled.
+    #    Default is draft-only: the answer is posted to Telegram for the owner to
+    #    review and send with a tap-to-copy /sms command (step 6) — no SMS is
+    #    sent to the contact automatically.
     sms_ok = False
     sms_info = ""
-    if answer:
-        log.info(f"Auto-sending SMS to {sender_addr} (whitelisted): {answer[:60]!r}")
+    sms_attempted = False
+    if answer and LLM_AUTO_REPLY:
+        sms_attempted = True
+        log.info(f"llm_auto_reply=true: auto-sending SMS to {sender_addr} (whitelisted): {answer[:60]!r}")
         sms_ok, sms_info = auto_send_sms(sender_addr, answer)
         log.info(f"Auto-send result: ok={sms_ok} info={sms_info}")
+    elif answer:
+        sms_info = "draft-only (llm_auto_reply disabled) - owner taps /sms to send"
+        log.info("Draft-only mode (llm_auto_reply disabled): posting draft to Telegram, not auto-sending")
     else:
         sms_info = "no answer to send"
 
@@ -691,8 +755,8 @@ def main() -> int:
 
     enrich_note = f" (weather data for {md_escape(weather_meta)})" if weather_meta else ""
 
-    if answer and sms_ok:
-        # Auto-replied successfully - just inform the user what happened
+    if answer and sms_attempted and sms_ok:
+        # Auto-replied successfully (llm_auto_reply=true) - inform the owner
         safe_answer = md_escape(answer)
         msg = (
             f"✅ *Agent auto-replied to {safe_sender}*{enrich_note}\n"
@@ -702,8 +766,8 @@ def main() -> int:
             f"{safe_answer}\n\n"
             f"_({md_escape(sms_info)})_"
         )
-    elif answer and not sms_ok:
-        # Gemini answered but SMS send failed - fall back to draft for manual send
+    elif answer and sms_attempted and not sms_ok:
+        # Gemini answered, auto-send was on but SMS failed - draft for manual send
         safe_answer = md_escape(answer)
         msg = (
             f"⚠️ *Agent answered but SMS auto-send failed* — from {safe_sender}{enrich_note}\n"
@@ -713,6 +777,18 @@ def main() -> int:
             f"{safe_answer}\n\n"
             f"_SMS failure: {md_escape(sms_info[:80])}_\n"
             f"Tap to copy and try sending via Telegram bot:\n"
+            f"`/sms {sender_addr} {answer}`"
+        )
+    elif answer:
+        # Draft-only mode (llm_auto_reply disabled, the default): post the draft
+        # for the owner to review and send. No SMS was sent to the contact.
+        safe_answer = md_escape(answer)
+        msg = (
+            f"💬 *Agent drafted a reply to {safe_sender}*{enrich_note}\n"
+            f"({safe_addr})\n\n"
+            f"❓ {safe_question}\n\n"
+            f"📝 *Draft — tap to copy & send (nothing sent automatically):*\n"
+            f"{safe_answer}\n\n"
             f"`/sms {sender_addr} {answer}`"
         )
     else:
@@ -728,8 +804,11 @@ def main() -> int:
 
     sent = telegram_send(token, chat_id, msg)
     if sent:
-        log.info(f"Posted Telegram transparency alert (sms_ok={sms_ok})")
-        return 0 if sms_ok else (3 if answer else 3)
+        log.info(f"Posted Telegram alert (llm_auto_reply={LLM_AUTO_REPLY} sms_ok={sms_ok})")
+        # Success when we auto-sent OK, or when draft-only posted an answer.
+        if sms_ok or (answer and not sms_attempted):
+            return 0
+        return 3
     log.error("Failed to post Telegram alert")
     return 3
 

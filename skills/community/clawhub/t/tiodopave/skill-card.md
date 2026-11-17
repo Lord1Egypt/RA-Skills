@@ -1,40 +1,53 @@
-## Description: <br>
-Fetches recent clean jokes from Reddit's r/tiodopave community, filters for minimum score and adult-content indicators, and returns one joke as plain text. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches recent, clean jokes from Reddit's r/tiodopave community and returns one joke while avoiding immediate repetition and NSFW content.
 
-## Publisher: <br>
-[runawaydevil](https://clawhub.ai/user/runawaydevil) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[runawaydevil](https://clawhub.ai/user/runawaydevil)
 
-## Use Case: <br>
-Agents can use this skill to retrieve a recent Portuguese joke from r/tiodopave for casual responses or entertainment workflows. It is intended for users who want real Reddit-sourced jokes rather than AI-generated joke text. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Reddit content is user-generated, so unsuitable or low-quality text can remain despite score, NSFW, and keyword filtering. <br>
-Mitigation: Review returned jokes before publishing them in customer-facing or brand-sensitive contexts. <br>
-Risk: The skill depends on live Reddit access and can fail when Reddit is unavailable, rate-limited, or returns no eligible posts. <br>
-Mitigation: Handle command failures gracefully and provide fallback copy when no joke is returned. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/runawaydevil/tiodopave) <br>
-- [r/tiodopave subreddit](https://www.reddit.com/r/tiodopave) <br>
+## Use Case:
 
+External users and agents use this skill to retrieve a recent Portuguese joke from r/tiodopave for conversation or entertainment. It is useful when the agent should relay Reddit-sourced jokes rather than generate jokes itself.
 
-## Skill Output: <br>
-**Output Type(s):** [text] <br>
-**Output Format:** [Plain text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns a selected post title and, when present, body text after URL and Reddit formatting cleanup.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill contacts Reddit and prints untrusted user-generated Reddit posts.
+
+Mitigation: Treat returned jokes as untrusted external content and review them before publishing, logging, or relaying in sensitive contexts.
+
+Risk: The package uses fixed shared temporary file paths that could be abused on shared systems.
+
+Mitigation: Store state in a private user-owned directory or use securely created temporary files before routine use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/runawaydevil/skills/tiodopave)
+- [Reddit r/tiodopave](https://www.reddit.com/r/tiodopave)
+
+## Skill Output:
+
+**Output Type(s):** [Text]
+
+**Output Format:** [Plain text joke with optional title and body]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses live Reddit content and may return an error message if Reddit is unavailable.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

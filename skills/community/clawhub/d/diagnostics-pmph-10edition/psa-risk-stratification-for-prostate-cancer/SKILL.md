@@ -4,7 +4,7 @@ description: 根据男性患者的血清总PSA（t-PSA）和游离PSA（f-PSA）
 metadata:
   openclaw:
     emoji: "🩺"
-    skillKey: "psa-risk-stratification-for-prostate-cancer"
+    skillKey: "psa-riREDACTED-SECRET"
 ---
 
 # PSA及其f/t比值在前列腺癌风险分层中的应用

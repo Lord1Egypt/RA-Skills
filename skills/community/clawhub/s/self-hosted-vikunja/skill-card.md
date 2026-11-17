@@ -1,41 +1,57 @@
-## Description: <br>
-Interact with a self-hosted Vikunja task management instance via its REST API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Interact with a self-hosted Vikunja task management instance via its REST API to create, update, delete, and list tasks, projects, and labels.
 
-## Publisher: <br>
-[bydavid](https://clawhub.ai/user/bydavid) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bydavid](https://clawhub.ai/user/bydavid)
 
-## Use Case: <br>
-Developers and operators use this skill to manage tasks, projects, labels, due dates, reminders, and recurring work in a trusted self-hosted Vikunja instance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Reusable authentication tokens or credentials can be exposed through command output, environment variables, or local config files. <br>
-Mitigation: Use only trusted Vikunja servers, avoid logging or sharing the login token, and restrict permissions on config and token files. <br>
-Risk: Task or project deletes and bulk updates can change or remove user data. <br>
-Mitigation: Require explicit user confirmation before delete operations or bulk changes, and identify the affected task or project IDs before execution. <br>
+## Use Case:
 
+Developers and self-hosted Vikunja users use this skill to manage tasks, projects, labels, reminders, due dates, recurring tasks, and bulk task completion through an agent-driven REST API workflow.
 
-## Reference(s): <br>
-- [Vikunja API Reference](references/api_reference.md) <br>
-- [ClawHub release page](https://clawhub.ai/bydavid/self-hosted-vikunja) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May call a configured Vikunja REST API through the bundled helper script.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: The skill handles Vikunja credentials and authentication tokens.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only an HTTPS Vikunja URL, prefer a limited-permission Vikunja account, avoid running login where stdout is logged, and protect or remove the cached token file.
+
+Risk: The skill can delete task and project data.
+
+Mitigation: Require explicit confirmation before task or project deletion.
+
+Risk: The skill can modify live task, project, label, reminder, due date, recurring task, and bulk-completion state.
+
+Mitigation: Review the target instance, project IDs, task IDs, and requested operation before executing mutating commands.
+
+## Reference(s):
+
+- [Vikunja API Reference](artifact/references/api_reference.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, API Calls, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and plain text CLI output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses a local Python CLI helper that reads Vikunja connection settings from configuration or environment variables.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,62 @@
-## Description: <br>
-Humanizes AI-generated text by detecting common LLM writing patterns, scoring drafts, and suggesting or applying more natural rewrites. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Humanize AI-generated text by detecting common LLM writing patterns, scoring drafts, and suggesting edits that make text sound more natural.
 
-## Publisher: <br>
-[robinzorro86](https://clawhub.ai/user/robinzorro86) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[robinzorro86](https://clawhub.ai/user/robinzorro86)
 
-## Use Case: <br>
-Writers, editors, and developers use this skill to review drafts for AI-like phrasing, statistical uniformity, and style artifacts, then produce more natural text or implementation guidance for local CLI, API, MCP, and Custom GPT integrations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Confidential drafts may be exposed if users send text through a deployed API endpoint or Custom GPT Action. <br>
-Mitigation: Prefer local CLI or MCP use for sensitive content, and review endpoint ownership and data handling before submitting confidential text. <br>
-Risk: Always-on prompt rules can change an agent's general writing style beyond explicit humanization requests. <br>
-Mitigation: Enable always-on behavior only when broad style changes are intended, and keep humanization rules scoped to specific workflows otherwise. <br>
+## Use Case:
 
+Writers, editors, and developers use this skill to analyze drafts for AI-style language, get prioritized findings, and rewrite text or configure agents to produce more natural prose.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/robinzorro86/ai-humanizer-disabled) <br>
-- [Wikipedia: Signs of AI writing](https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing) <br>
-- [Copyleaks stylometric research](https://arxiv.org/abs/2503.01659) <br>
-- [Pattern documentation](references/patterns.md) <br>
-- [AI vocabulary reference](references/ai-vocabulary.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, shell commands, configuration] <br>
-**Output Format:** [Plain text, Markdown reports, JSON analysis, and command-line examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include AI-likeness scores, pattern findings, rewrite suggestions, and optional autofix output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: Autofix rewrites may change nuance, tone, or meaning in a draft.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review rewritten text before using it, especially for high-stakes or externally published content.
+
+Risk: Always-on prompt snippets can be inappropriate for legal, academic, compliance, evidence, or exact-quotation work.
+
+Mitigation: Keep always-on writing rules scoped to suitable drafting contexts and disable them where exact wording or formal constraints matter.
+
+Risk: Exposing the HTTP API beyond localhost can create abuse or sensitive-draft handling risks.
+
+Mitigation: Add request-size limits, authentication, rate limiting, and clear handling rules for sensitive drafts before network exposure.
+
+## Reference(s):
+
+- [Wikipedia: Signs of AI writing](https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing)
+- [Copyleaks stylometric research](https://arxiv.org/abs/2503.01659)
+- [AI vocabulary reference](references/ai-vocabulary.md)
+- [Pattern documentation](references/patterns.md)
+- [Real-world before/after examples](docs/EXAMPLES.md)
+- [Humanizer integrations](docs/INTEGRATIONS.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Plain text, Markdown reports, JSON analysis, command-line examples, and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include scores, pattern findings, rewrite suggestions, autofixed text, and statistical indicators such as burstiness, type-token ratio, sentence variation, and repetition.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter and package metadata report 2.2.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,54 @@
-## Description: <br>
-Searches Semantic Scholar for academic papers, paper details, author profiles, citations, and references with console or JSON output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches Semantic Scholar for academic papers, paper details, author profiles, citations, and references with console or JSON output.
 
-## Publisher: <br>
-[JackKuo666](https://clawhub.ai/user/JackKuo666) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT License <br>
+## Publisher:
 
+[jackkuo666](https://clawhub.ai/user/jackkuo666)
 
-## Use Case: <br>
-Researchers, students, and developers use this skill to search academic literature, inspect paper and author metadata, and gather citation or reference data through the Semantic Scholar API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Research queries, paper identifiers, and author identifiers are sent to Semantic Scholar. <br>
-Mitigation: Avoid sensitive or confidential queries and review organizational data-sharing requirements before use. <br>
-Risk: Third-party dependencies and installation commands can introduce normal supply-chain risk. <br>
-Mitigation: Install in an isolated environment, prefer package-manager based installation, and pin dependencies when deploying. <br>
-Risk: The optional output path can overwrite an existing file. <br>
-Mitigation: Use a dedicated output directory and review file paths before running commands with --output. <br>
+## Use Case:
 
+Researchers, students, and developers use this skill to discover academic literature, inspect paper metadata, review author profiles, and analyze citation or reference links through Semantic Scholar.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/JackKuo666/semanticscholar-search-skill) <br>
-- [Semantic Scholar](https://www.semanticscholar.org/) <br>
-- [Semantic Scholar API Key](https://www.semanticscholar.org/product/api#api-key) <br>
-- [semanticscholar PyPI package](https://pypi.org/project/semanticscholar/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Files, Shell commands] <br>
-**Output Format:** [Console text or JSON, with optional JSON export files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Optional Semantic Scholar API key can be used for higher rate limits.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Recommended installation paths may run mutable remote code or install unpinned packages.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer a reviewed Python virtual environment installation, pin dependencies and installer sources to approved versions, and avoid elevated privileges during setup.
+
+Risk: The tool contacts Semantic Scholar and can write JSON files to paths provided by the user.
+
+Mitigation: Review outbound network use before deployment and choose output paths that do not overwrite sensitive or important files.
+
+## Reference(s):
+
+- [Semantic Scholar API](https://www.semanticscholar.org/product/api)
+- [ClawHub Skill Page](https://clawhub.ai/jackkuo666/skills/semanticscholar-search-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, guidance]
+
+**Output Format:** [Console text or JSON, with optional JSON file export]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses Semantic Scholar network requests and may write JSON output to a user-provided path.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

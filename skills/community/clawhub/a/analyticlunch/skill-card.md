@@ -1,41 +1,59 @@
-## Description: <br>
-Query live traffic data, tracking links, and weekly reports from AnalyticLunch <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query live traffic data, tracking links, and weekly reports from AnalyticLunch
 
-## Publisher: <br>
-[dandyer](https://clawhub.ai/user/dandyer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dandyer](https://clawhub.ai/user/dandyer)
 
-## Use Case: <br>
-External users and developers use this skill to query AnalyticLunch website traffic, review traffic sources and weekly competitive intelligence reports, and create marketing tracking links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses an AnalyticLunch API key and can access analytics data. <br>
-Mitigation: Install it only for trusted agents, use a scoped or revocable key when available, and avoid exposing the key in responses. <br>
-Risk: The skill can create tracking links that affect marketing measurement. <br>
-Mitigation: Confirm the destination URL, label, and placement before creating a tracking link. <br>
+## Use Case:
 
+External users and developers use this skill to query AnalyticLunch website traffic data, summarize traffic and competitive intelligence reports, list tracked sites and links, and create tracking links for authorized marketing workflows.
 
-## Reference(s): <br>
-- [AnalyticLunch service](https://analyticlunch.com) <br>
-- [ClawHub skill page](https://clawhub.ai/dandyer/analyticlunch) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, API Calls, Shell commands, Guidance] <br>
-**Output Format:** [Markdown summaries with inline shell commands and tracking URLs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an AnalyticLunch API key configured at skills.entries.analyticlunch.apiKey.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill asks the agent to run raw curl commands with an API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the commands before execution and prefer structured HTTP requests with JSON-serialized user input.
+
+Risk: Creating tracking links changes AnalyticLunch account data.
+
+Mitigation: Use the skill only for authorized sites and confirm destination URL, label, and placement before creating a link.
+
+Risk: A broad AnalyticLunch API key may expose more sites or reports than intended.
+
+Mitigation: Install the skill only with an API key scoped to the account access the agent needs.
+
+## Reference(s):
+
+- [AnalyticLunch Skill Page](https://clawhub.ai/dandyer/skills/analyticlunch)
+- [dandyer Publisher Profile](https://clawhub.ai/user/dandyer)
+- [AnalyticLunch API Base URL](https://analyticlunch.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Conversational text or Markdown summaries with optional curl commands and returned tracking URLs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an AnalyticLunch API key configured as skills.entries.analyticlunch.apiKey.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,54 @@
-## Description: <br>
-Gaslighting Detector checks relationship messages and conversations for gaslighting, emotional manipulation, blame shifting, coercive control, and related toxic communication patterns, then helps users document evidence, set boundaries, and consider safer responses. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Gaslighting Detector helps users assess messages and relationship situations for gaslighting, emotional manipulation, blame shifting, coercive control, and related abuse patterns, then suggests documentation, boundaries, and safer responses.
 
-## Publisher: <br>
-[imwyvern](https://clawhub.ai/user/imwyvern) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[imwyvern](https://clawhub.ai/user/imwyvern)
 
-## Use Case: <br>
-External users use this skill to analyze concerning relationship messages or situations, identify manipulation patterns without treating the result as a diagnosis, and prepare boundaries, documentation, or safety-oriented next steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The bundled publish script can push code and publish the package under a mismatched ReplyHer slug. <br>
-Mitigation: Do not run publish.sh as-is; remove it or correct the slug and repository only if the publisher intentionally controls them. <br>
-Risk: Relationship-pattern analysis can be mistaken for diagnosis or crisis support. <br>
-Mitigation: Treat responses as pattern guidance, encourage professional support for complex situations, and prioritize safety planning when abuse or escalation is mentioned. <br>
+## Use Case:
 
+External users use this skill to analyze conversations or relationship situations that make them question their memory, judgment, or emotional reality. It provides pattern labels, severity framing, safer response options, and professional-support reminders for complex or abusive situations.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/imwyvern/gaslighting-detector) <br>
-- [ReplyHer](https://replyher.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown analysis with labeled sections, severity, example healthier wording, and action options] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Replies in the user's language and avoids diagnosing people.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The skill may add a replyher.com promotion during ongoing sensitive abuse-related conversations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the referral behavior before use and remove or clearly disclose the upgrade nudge if it is not appropriate for the deployment context.
+
+Risk: The bundled publish.sh script can commit, push, and publish from a repository.
+
+Mitigation: Do not run artifact/publish.sh unless an intentional release is being made; review the commands first and use pinned, verified tooling for publishing.
+
+## Reference(s):
+
+- [Gaslighting Detector ClawHub listing](https://clawhub.ai/imwyvern/skills/gaslighting-detector)
+- [ReplyHer](https://replyher.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown-style structured response in the user's language]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes pattern labels, severity, healthy-communication rewrite, and two to three safety or boundary options.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,59 @@
-## Description: <br>
-Helps agents edit existing images with Alibaba Cloud Model Studio Qwen Image Edit models, including inpainting, replacement, style transfer, local edits, subject consistency, and request/response mapping. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill supports image editing with Alibaba Cloud Model Studio Qwen Image Edit models for inpainting, replacement, style transfer, local edits, subject consistency, and request/response documentation.
 
-## Publisher: <br>
-[cinience](https://clawhub.ai/user/cinience) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cinience](https://clawhub.ai/user/cinience)
 
-## Use Case: <br>
-Developers and image workflow operators use this skill to prepare, execute, and document Alibaba Cloud Qwen Image Edit requests for instruction-based edits to existing images. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Images, prompts, and edit payloads may contain sensitive content that is sent to Alibaba Cloud Model Studio. <br>
-Mitigation: Use approved input images and prompts, prefer a dedicated DashScope key, and avoid sending sensitive content unless the user has confirmed the cloud processing path. <br>
-Risk: Saved request/response payloads and result URLs can expose edit details if retained or committed. <br>
-Mitigation: Keep output directories out of source control and redact or delete saved payloads after sensitive edits. <br>
+## Use Case:
 
+Developers and agents use this skill to prepare and document Alibaba Cloud Qwen Image Edit workflows for instruction-based image edits, local edits, inpainting, style transfer, and subject-consistency tasks.
 
-## Reference(s): <br>
-- [Alibaba Cloud Qwen Image Edit Guide](https://help.aliyun.com/zh/model-studio/qwen-image-edit-guide) <br>
-- [Alibaba Cloud Model Studio Newly Released Models](https://help.aliyun.com/zh/model-studio/newly-released-models) <br>
-- [ClawHub Skill Page](https://clawhub.ai/cinience/aliyun-qwen-image-edit) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration, code, JSON files] <br>
-**Output Format:** [Markdown guidance with bash examples and generated JSON request files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes normalized request payloads and validation results under output/aliyun-qwen-image-edit/ unless OUTPUT_DIR is set.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Alibaba Cloud credentials may be exposed through logs, source control, or shared environments.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep DASHSCOPE_API_KEY and Alibaba Cloud credential files out of logs and repositories, and use a clean virtual environment for installation.
+
+Risk: Saved prompts, request payloads, and private image URLs may contain sensitive user or business data.
+
+Mitigation: Retain output evidence only as long as needed, avoid storing sensitive prompts or private image URLs, and redact shared artifacts.
+
+Risk: An unreviewed or floating dashscope dependency may introduce compatibility or supply-chain risk.
+
+Mitigation: Use a pinned and reviewed dashscope version where possible before deploying the skill.
+
+## Reference(s):
+
+- [Alibaba Cloud Qwen Image Edit guide](https://help.aliyun.com/zh/model-studio/qwen-image-edit-guide)
+- [Alibaba Cloud Model Studio newly released models](https://help.aliyun.com/zh/model-studio/newly-released-models)
+- [ClawHub skill page](https://clawhub.ai/cinience/skills/aliyun-qwen-image-edit)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration, Files]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON request payloads]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create request and response evidence files under the configured output directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

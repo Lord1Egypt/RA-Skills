@@ -1,5 +1,7 @@
 ---
 name: fire
+version: 0.1.0
+license: MIT
 description: Use when a written implementation plan is ready to execute, when the user says "fire", "execute the plan", "build it", or hands over a plan file to implement. The step after recipe.
 ---
 

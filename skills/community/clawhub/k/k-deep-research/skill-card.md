@@ -1,46 +1,64 @@
-## Description: <br>
-Systematic deep research methodology for ANY domain. 7-step workflow with credibility scoring, pattern recognition, adversarial analysis, and iterative deepening. Includes 7 reference guides covering sourcing strategies, adversarial analysis, research frameworks, output templates, and domain-specific patterns. Produces exhaustive cited reports. Battle-tested across 40+ autonomous research loops. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Systematic deep research methodology for any domain using a 7-step workflow with credibility scoring, pattern recognition, adversarial analysis, iterative deepening, and cited report generation.
 
-## Publisher: <br>
-[rustyorb](https://clawhub.ai/user/rustyorb) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[rustyorb](https://clawhub.ai/user/rustyorb)
 
-## Use Case: <br>
-Developers, researchers, and agent users use this skill to guide agents through exhaustive multi-source investigations, credibility scoring, adversarial analysis, synthesis, and Obsidian-ready research reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Personal research tool. Not for redistribution without K's authorization.
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is broad and always active, which can make its research workflow influence more requests than intended. <br>
-Mitigation: Prefer workspace-scoped installation, review the skill before enabling it, and remove or disable alwaysActive where possible. <br>
-Risk: The skill describes local memory, file, scheduling, sub-agent, and notification behaviors that could affect files or agent activity if granted broad access. <br>
-Mitigation: Define allowed folders or vaults and require confirmation before writing reports, updating MEMORY.md or TASKS.md, scheduling recurring jobs, spawning sub-agents, archiving logs, or sending notifications. <br>
+## Use Case:
 
+External users, developers, and research-focused agents use this skill to structure deep investigations across domains, gather and score sources, preserve uncertainty and contradictions, and produce Obsidian-ready Markdown reports with YAML frontmatter.
 
-## Reference(s): <br>
-- [K Deep Research ClawHub Release](https://clawhub.ai/rustyorb/k-deep-research) <br>
-- [Sourcing Strategies Reference](references/sourcing-strategies.md) <br>
-- [Universal Research Frameworks](references/research-frameworks.md) <br>
-- [Research Output Templates](references/output-templates.md) <br>
-- [Adversarial Analysis Reference](references/adversarial-analysis.md) <br>
-- [OpenClaw Architecture Reference](references/openclaw-architecture.md) <br>
-- [OpenClaw Skill Authoring Reference](references/openclaw-skill-authoring.md) <br>
-- [Autonomy Patterns Reference](references/autonomy-patterns.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, shell commands] <br>
-**Output Format:** [Markdown research reports with YAML frontmatter, source lists, credibility scores, synthesis, and follow-up questions.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce long-form, cited investigations and may propose tool usage or follow-up research steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release evidence; artifact frontmatter says 2.0.0) <br>
+Risk: Broad local-note and filesystem access could expose personal or workspace data during research.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill in a tightly sandboxed workspace and approve any filesystem locations explicitly before use.
+
+Risk: Always-active activation and recurring automation can trigger research or state changes without enough user control.
+
+Mitigation: Disable or narrow alwaysActive behavior and require confirmation before enabling cron, heartbeat, sub-agent, notification, MEMORY.md, or TASKS.md actions.
+
+Risk: The bundled sourcing guidance references a hard-coded private SearXNG endpoint.
+
+Mitigation: Configure search endpoints explicitly for the deployment environment and avoid using the hard-coded private address.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/rustyorb/skills/k-deep-research)
+- [Sourcing Strategies](references/sourcing-strategies.md)
+- [Research Frameworks](references/research-frameworks.md)
+- [Output Templates](references/output-templates.md)
+- [OpenClaw Architecture](references/openclaw-architecture.md)
+- [OpenClaw Skill Authoring](references/openclaw-skill-authoring.md)
+- [Autonomy Patterns](references/autonomy-patterns.md)
+- [Adversarial Analysis](references/adversarial-analysis.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Obsidian-ready Markdown reports with YAML frontmatter, citations, credibility scores, synthesis, appendices, and investigation follow-ups]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce long-form reports and may suggest filesystem, search, cron, heartbeat, memory, task registry, sub-agent, or notification actions when used in OpenClaw contexts.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release metadata; artifact frontmatter and README state 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

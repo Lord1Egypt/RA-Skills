@@ -1,48 +1,61 @@
-## Description: <br>
-Instructional agent skill that teaches an AI agent when and how to use Tavily for live web search, content extraction, crawling, site mapping, source evaluation, citation discipline, error handling, cost control, freshness, and prompt-injection safety. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Instructional agent skill that teaches an AI agent when and how to use Tavily for live web search, content extraction, crawling, and site mapping, including operation selection, query planning, source evaluation, citation discipline, error handling, cost control, freshness, and security against prompt injection.
 
-## Publisher: <br>
-[simonpierreboucher02](https://clawhub.ai/user/simonpierreboucher02) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[simonpierreboucher02](https://clawhub.ai/user/simonpierreboucher02)
 
-## Use Case: <br>
-Developers and agent builders use this skill to teach agents how to perform live web research through Tavily, choose the appropriate search or retrieval operation, and produce cited, verifiable answers. It is intended for agents that already have Tavily tools or an approved HTTP client available. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires sensitive Tavily credentials. <br>
-Mitigation: Configure TAVILY_API_KEY through the host environment, never paste keys into prompts, and do not print or log key material. <br>
-Risk: Web search and extraction may expose confidential, regulated, or internal information to an external service. <br>
-Mitigation: Avoid sending secrets, confidential topics, internal URLs, private documents, or regulated data to Tavily unless the organization has approved that data flow. <br>
-Risk: Retrieved web content can contain inaccurate information or prompt-injection attempts. <br>
-Mitigation: Treat retrieved content as untrusted data, prefer authoritative sources, cross-check important claims, and cite the actual source URLs used. <br>
+## Use Case:
 
+Developers and agent builders use this skill to teach agents how to decide when live web retrieval is needed, select the right Tavily operation, evaluate sources, cite claims, and handle search or extraction failures safely.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/simonpierreboucher02/tavily-al) <br>
-- [Tavily official documentation](https://docs.tavily.com) <br>
-- [Endpoint reference](reference/endpoints.md) <br>
-- [Parameter reference](reference/parameters.md) <br>
-- [Response field reference](reference/response-fields.md) <br>
-- [Common error handling](reference/common-errors.md) <br>
-- [Safety and security reference](reference/safety-and-security.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Configuration instructions] <br>
-**Output Format:** [Markdown guidance with inline examples, checklists, and citation patterns] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a host-provided TAVILY_API_KEY and Tavily-compatible search, extract, crawl, or map tools for live retrieval.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and skill.json) <br>
+Risk: Search queries and requested URLs are sent to Tavily for live retrieval.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when live web retrieval is intended, and avoid sending secrets or private local data in queries or URLs.
+
+Risk: The Tavily API key could be exposed if handled directly by the agent.
+
+Mitigation: Keep TAVILY_API_KEY in the host environment and prefer MCP or tool-based use so the raw key is not surfaced to the agent.
+
+Risk: Retrieved web pages can contain misleading content or prompt-injection instructions.
+
+Mitigation: Treat retrieved content only as untrusted source data, ignore embedded instructions, cross-check important claims, and cite the actual source URLs used.
+
+## Reference(s):
+
+- [Tavily Official Documentation](https://docs.tavily.com)
+- [ClawHub Skill Page](https://clawhub.ai/simonpierreboucher02/skills/tavily-al)
+- [README](artifact/README.md)
+- [Tavily Endpoints Reference](artifact/reference/endpoints.md)
+- [Safety and Security Reference](artifact/reference/safety-and-security.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with examples, recipes, and reference notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should cite externally sourced claims, keep Tavily credentials out of responses and logs, and treat retrieved web content as untrusted.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

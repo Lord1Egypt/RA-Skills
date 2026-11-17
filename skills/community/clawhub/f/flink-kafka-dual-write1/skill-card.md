@@ -1,41 +1,53 @@
-## Description: <br>
-Generates Bethune Flink monitoring tasks that read Kafka logs, write to Hive and StarRocks, update the required configuration files, and run compile validation when feasible. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Bethune Flink monitoring jobs that dual-write Kafka data to Hive and StarRocks, including Java job/model/PO files, synchronized config.properties updates, and compile validation when available.
 
-## Publisher: <br>
-[printsky](https://clawhub.ai/user/printsky) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[printsky](https://clawhub.ai/user/printsky)
 
-## Use Case: <br>
-Developers and data engineers use this skill in Bethune-style repositories to add Kafka-to-Hive-and-StarRocks Flink monitoring jobs from an existing task pattern, including Java model/job classes and synchronized environment configuration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated Java and configuration changes can target incorrect Bethune product, stage, topic, table, or task values. <br>
-Mitigation: Use the skill in a version-controlled Bethune-style repository and review the generated Java files plus all four config.properties updates before deployment. <br>
-Risk: Generated error logging can expose Kafka message payloads when topics contain sensitive data. <br>
-Mitigation: Redact or truncate Kafka message payloads in generated error logs before using the task with sensitive topics. <br>
+## Use Case:
 
+Developers and engineers maintaining Bethune Flink monitoring pipelines use this skill to add Kafka-to-Hive-and-StarRocks dual-write jobs that follow established task 33/34/35/36 patterns.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/printsky/flink-kafka-dual-write1) <br>
-- [Bethune Patterns Reference](references/bethune-patterns.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [code, configuration, shell commands, guidance] <br>
-**Output Format:** [Markdown summary with Java and configuration file edits, compile-validation results, and optional Hive or StarRocks DDL.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May modify repository files and should report changed files, new configuration keys, generation mode, and compile status.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and user changelog) <br>
+Risk: Generated code can log raw Kafka message contents, which may expose sensitive data in production logs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove or redact raw Kafka payload logging before production use and review generated jobs during normal change review.
+
+Risk: The skill edits Java source and environment configuration files in the Bethune repository.
+
+Mitigation: Review the generated file changes and all four config updates, then run the repository compile and test checks before deployment.
+
+## Reference(s):
+
+- [Bethune task pattern reference](references/bethune-patterns.md)
+
+## Skill Output:
+
+**Output Type(s):** [code, configuration, shell commands, guidance]
+
+**Output Format:** [Markdown summary with Java file changes, config key updates, optional shell commands, and validation status]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May generate or update Java source files and four environment config.properties files in the target Bethune repository.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

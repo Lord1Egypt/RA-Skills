@@ -1,42 +1,56 @@
-## Description: <br>
-Searches Mysteel commodity industry information for steel, non-ferrous metals, energy chemicals, market alerts, policy changes, company updates, price movement analysis, and supply-demand events. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+大宗商品行业资讯查询技能。用于查询钢铁、有色、能源化工等行业的动态新闻、市场快讯、政策变化、企业消息、价格异动分析、供需事件等资讯信息。
 
-## Publisher: <br>
-[wyb92](https://clawhub.ai/user/wyb92) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wyb92](https://clawhub.ai/user/wyb92)
 
-## Use Case: <br>
-Commodity-market analysts, researchers, and business users use this skill to query Mysteel for industry news, policy updates, company developments, price movement explanations, and supply-demand events. Developers can run the included command-line script to submit a query and receive structured Mysteel API results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads an API token from references/api_key.md for requests to Mysteel. <br>
-Mitigation: Use a dedicated Mysteel key, keep references/api_key.md private, and do not commit the key file. <br>
-Risk: Search terms are sent to Mysteel's external API. <br>
-Mitigation: Avoid submitting confidential, regulated, or sensitive business information as query text. <br>
+## Use Case:
 
+Commodity market analysts, researchers, and industry users use this skill to search Mysteel information about steel, non-ferrous metals, energy chemicals, policy changes, company activity, price movement causes, and supply-demand events.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wyb92/mysteel-infosearch) <br>
-- [Mysteel API Reference](references/api_reference.md) <br>
-- [Mysteel AI Search API endpoint](https://mcp.mysteel.com/mcp/info/ai-search/search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance and command-line JSON responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The --raw option prints the unmodified JSON response from Mysteel.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill's documented setup can lead users to store a real Mysteel API token in a plaintext markdown file inside the skill directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer an environment variable or protected secret store; if references/api_key.md is used, keep it out of source control and shared workspaces and restrict local file permissions.
+
+Risk: User query text and the API token are sent to Mysteel's API during searches.
+
+Mitigation: Review queries for sensitive content before execution and only use credentials intended for this third-party API.
+
+## Reference(s):
+
+- [API Reference](references/api_reference.md)
+- [Mysteel Info Search API endpoint](https://mcp.mysteel.com/mcp/info/ai-search/search)
+- [ClawHub skill page](https://clawhub.ai/wyb92/skills/mysteel-infosearch)
+- [Publisher profile](https://clawhub.ai/user/wyb92)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Guidance]
+
+**Output Format:** [JSON response data or Markdown guidance with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Mysteel API token and sends query text to the Mysteel API.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

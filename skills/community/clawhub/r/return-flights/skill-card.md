@@ -1,45 +1,61 @@
-## Description: <br>
-Search and compare round-trip flights with return dates, including total cost for both legs and bundled-versus-separate booking comparisons for flight and related Fliggy travel services. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches and compares round-trip flights with return dates, including bundled versus separate-leg price comparisons and related Fliggy-powered travel booking workflows.
 
-## Publisher: <br>
-[xiejinsong](https://clawhub.ai/user/xiejinsong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiejinsong](https://clawhub.ai/user/xiejinsong)
 
-## Use Case: <br>
-External users and travel-planning agents use this skill to retrieve real-time round-trip flight options, compare bundled and separate-leg pricing, and produce booking-oriented summaries from flyai CLI output. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may install and run a global third-party FlyAI CLI for travel searches. <br>
-Mitigation: Ask before any npm install, prefer a pinned or manually reviewed CLI setup, and proceed only when the user accepts the third-party dependency. <br>
-Risk: Raw travel queries may be persisted locally in .flyai-execution-log.json. <br>
-Mitigation: Remove or disable the local execution log when users do not want travel queries retained. <br>
-Risk: Booking-critical travel, visa, or payment-related information could be incomplete or unsuitable for final decisions. <br>
-Mitigation: Avoid entering passport or payment details through the skill and verify visa or booking-critical information with official sources. <br>
+## Use Case:
 
+External travelers and travel-planning agents use this skill to collect round-trip flight parameters, run real-time flyai CLI searches, compare bundled and separate-leg prices, and format booking options with links.
 
-## Reference(s): <br>
-- [Parameter and Output Templates](references/templates.md) <br>
-- [Return-Flight Playbooks](references/playbooks.md) <br>
-- [Fallback Procedures](references/fallbacks.md) <br>
-- [Execution Log Runbook](references/runbook.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with booking-link tables and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires flyai CLI output; user-facing results should include Book links and avoid raw JSON.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill may prompt installation and execution of an unpinned global third-party CLI, including a sudo fallback.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, prefer a pinned and isolated flyai-cli installation, and avoid elevated global installs.
+
+Risk: Raw user travel queries may be stored in a hidden local execution log.
+
+Mitigation: Avoid entering sensitive personal travel details unless logging is removed, disabled, or clearly controlled.
+
+Risk: Real-time booking data depends on a third-party CLI and may fail, time out, or return unavailable results.
+
+Mitigation: Report retrieval failures honestly, do not substitute unsourced travel data, and ask users to verify itinerary details on the booking page before purchase.
+
+## Reference(s):
+
+- [Return Flights skill page](https://clawhub.ai/xiejinsong/skills/return-flights)
+- [Parameter collection and output templates](references/templates.md)
+- [Round-trip flight playbooks](references/playbooks.md)
+- [Flight search fallback procedures](references/fallbacks.md)
+- [Execution log schema](references/runbook.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with booking links and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Flight results must be sourced from flyai CLI output and include booking links when results are shown.]
+
+## Skill Version(s):
+
+3.2.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

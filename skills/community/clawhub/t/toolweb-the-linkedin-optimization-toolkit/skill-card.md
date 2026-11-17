@@ -1,43 +1,57 @@
-## Description: <br>
-Enterprise-grade API key generation, verification, and lifecycle management with centralized administrative control. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enterprise-grade API key generation, verification, and lifecycle management with centralized administrative control.
 
-## Publisher: <br>
-[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd)
 
-## Use Case: <br>
-External developers, administrators, and security teams use this skill to interact with a remote service for generating, verifying, revoking, and auditing API keys. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Remote API-key management operations can expose or change sensitive credentials and session state. <br>
-Mitigation: Use only with a trusted provider and avoid production credentials until authentication, tenant isolation, audit logging, retention, and revocation rollback behavior are clarified. <br>
-Risk: The listing and API documentation do not clearly scope sensitive actions such as debug-session output and get-random-key behavior. <br>
-Mitigation: Review these endpoints before deployment, restrict access to administrative users, and monitor calls that retrieve session or key material. <br>
+## Use Case:
 
+External developers and administrators use this skill to work with an API service for API key generation, verification, revocation, login/session flows, and health checks.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/krishnakumarmahadevan-cmd/toolweb-the-linkedin-optimization-toolkit) <br>
-- [API docs](https://api.mkkpro.com:8100/docs) <br>
-- [API base route](https://api.mkkpro.com/career/linproopt) <br>
-- [ToolWeb](https://toolweb.in) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Shell commands, JSON, Guidance] <br>
-**Output Format:** [Markdown with JSON payloads and bash examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Remote API operations can affect admin keys, session state, and managed API keys.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; API spec reports 0.1.0) <br>
+Risk: Sensitive key and session operations are exposed without clear authorization controls in the reviewed evidence.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only in non-production or explicitly trusted environments until the publisher confirms strong server-side authentication and role checks.
+
+Risk: API key material and debug/session data may be handled by the service.
+
+Mitigation: Confirm that raw keys are not logged, existing key material is not exposed, and debug/session data is safely restricted before deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/krishnakumarmahadevan-cmd/skills/toolweb-the-linkedin-optimization-toolkit)
+- [API Docs](https://api.mkkpro.com:8100/docs)
+- [Service Base URL](https://api.mkkpro.com/career/linproopt)
+- [ToolWeb](https://toolweb.in)
+- [RapidAPI Publisher Page](https://rapidapi.com/user/mkrishna477)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with JSON examples and cURL commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include HTTP endpoint descriptions, request parameters, and example responses.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

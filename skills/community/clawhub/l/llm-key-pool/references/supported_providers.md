@@ -287,7 +287,7 @@ claudecode:
   tier: fallback
   model: "claude-3-5-sonnet-20241022"
   api_keys:
-    - "sk-ant-xxxxxxxxxxxxxxxx"
+    - "REDACTED-SECRET"
   base_url: "https://api.anthropic.com/v1"
 ```
 

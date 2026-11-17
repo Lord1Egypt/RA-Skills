@@ -1,0 +1,225 @@
+/* Locale: zh-CN (documented in SKILL.md metadata) — part of "Lan Folder Share",
+ * a LAN knowledge-base tool for Chinese-speaking users; comments are Chinese by
+ * design. 语言声明：本文件面向中文用户，注释默认中文。
+ * ---------------------------------------------------------------------------
+ * 文档内联铺开样式（配合 assets/js/doc-inline.js）
+ * 页面里所有站内文档链接下方自动展开文档卡片，支持单个收起/展开与全页控制 */
+
+/* ---------- 页面顶部工具栏（独立于表格工具栏） ---------- */
+.kb-doc-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 12px;
+  padding: 8px 14px;
+  font-size: 13px;
+  color: #475569;
+  background: #f0f7ff;
+  border: 1px solid #d6e4ff;
+  border-radius: 8px;
+}
+
+.kb-doc-toolbar-info { color: #64748b; }
+
+.kb-doc-toolbar-gap { flex: 1 1 auto; }
+
+.kb-doc-toolbar-btn {
+  padding: 4px 12px;
+  font-size: 13px;
+  color: #4a6ee0;
+  background: #fff;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.kb-doc-toolbar-btn:hover {
+  background: #eef2ff;
+  border-color: #4a6ee0;
+}
+
+/* ---------- 内联文档卡片 ---------- */
+.kb-doc {
+  margin: 8px 0 14px;
+  background: #fff;
+  border: 1px solid #dbe4f3;
+  border-left: 3px solid #4a6ee0;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.05);
+  overflow: hidden;
+}
+
+.kb-doc-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 12px;
+  background: #f6f9ff;
+  border-bottom: 1px solid #e5eaf5;
+  flex-wrap: wrap;
+}
+
+.kb-doc-toggle {
+  width: 26px;
+  height: 26px;
+  flex: 0 0 auto;
+  font-size: 14px;
+  line-height: 1;
+  color: #64748b;
+  background: transparent;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.kb-doc-toggle:hover {
+  background: #e2e8f0;
+  color: #0f172a;
+}
+
+.kb-doc-title {
+  flex: 1 1 auto;
+  min-width: 120px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #0f172a;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  user-select: none;
+}
+
+.kb-doc-title:hover { color: #4a6ee0; }
+
+.kb-doc-tools {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 0 0 auto;
+}
+
+.kb-doc-btn {
+  padding: 4px 10px;
+  font-size: 12px;
+  color: #0f172a;
+  text-decoration: none;
+  background: #fff;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.kb-doc-btn:hover {
+  background: #f1f5f9;
+  border-color: #4a6ee0;
+  color: #4a6ee0;
+}
+
+/* 收起状态：只保留头部一行 */
+.kb-doc.is-collapsed .kb-doc-body { display: none; }
+.kb-doc.is-collapsed { margin-bottom: 6px; }
+
+/* ---------- 内容区 ---------- */
+.kb-doc-body {
+  padding: 4px 16px 14px;
+  background: #fff;
+  max-height: 560px;
+  overflow: auto;
+}
+
+.kb-doc-meta {
+  margin: 8px 0 4px;
+  padding-bottom: 6px;
+  font-size: 12px;
+  color: #94a3b8;
+  border-bottom: 1px dashed #e5e7eb;
+}
+
+.kb-doc-loading,
+.kb-doc-error {
+  padding: 20px 0;
+  font-size: 13px;
+  color: #64748b;
+  text-align: center;
+}
+
+.kb-doc-error {
+  color: #dc2626;
+  line-height: 1.8;
+}
+
+/* 渲染出的 md 正文沿用 docsify 正文排版，略缩字号 */
+.kb-doc-content {
+  font-size: 14px;
+  line-height: 1.75;
+  color: #1f2937;
+  word-break: break-word;
+}
+
+.kb-doc-content h1,
+.kb-doc-content h2,
+.kb-doc-content h3,
+.kb-doc-content h4 {
+  margin: 1em 0 0.5em;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.kb-doc-content h1 { font-size: 1.25em; }
+.kb-doc-content h2 { font-size: 1.15em; }
+.kb-doc-content h3 { font-size: 1.05em; }
+
+.kb-doc-content p { margin: 0.5em 0; }
+
+.kb-doc-content pre {
+  padding: 10px 12px;
+  overflow: auto;
+  font-size: 12.5px;
+  line-height: 1.6;
+  background: #f6f8fa;
+  border-radius: 6px;
+}
+
+.kb-doc-content code {
+  padding: 1px 5px;
+  font-size: 12.5px;
+  background: #f1f5f9;
+  border-radius: 4px;
+}
+
+.kb-doc-content pre code {
+  padding: 0;
+  background: transparent;
+}
+
+.kb-doc-content table {
+  display: table;
+  width: auto;
+  max-width: 100%;
+  margin: 0.6em 0;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.kb-doc-content th,
+.kb-doc-content td {
+  padding: 5px 10px;
+  border: 1px solid #e5e7eb;
+}
+
+.kb-doc-content thead th { background: #f1f5f9; }
+
+.kb-doc-content img { max-width: 100%; }
+
+.kb-doc-content blockquote {
+  margin: 0.6em 0;
+  padding: 4px 12px;
+  color: #64748b;
+  border-left: 3px solid #cbd5e1;
+  background: #f8fafc;
+}
+
+.kb-doc-content ul,
+.kb-doc-content ol { padding-left: 1.4em; }

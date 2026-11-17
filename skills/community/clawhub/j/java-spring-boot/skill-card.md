@@ -1,42 +1,60 @@
-## Description: <br>
-Build production Spring Boot applications - REST APIs, Security, Data, Actuator. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build production Spring Boot applications - REST APIs, Security, Data, Actuator
 
-## Publisher: <br>
-[watermelon11](https://clawhub.ai/user/watermelon11) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[watermelon11](https://clawhub.ai/user/watermelon11)
 
-## Use Case: <br>
-Developers and engineers use this skill to build and review Spring Boot 3.x services, including REST APIs, Spring Security configuration, Spring Data access, Actuator monitoring, and Spring Cloud integration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can write files and suggest shell commands, so proposed changes could affect an application or local project unexpectedly. <br>
-Mitigation: Review edits and commands before applying them, and run normal project tests and code review before deployment. <br>
-Risk: Spring Security snippets may not match a production application's authentication, CSRF, CORS, or authorization requirements. <br>
-Mitigation: Adapt security configuration to the application's threat model and verify it with security tests before production use. <br>
+## Use Case:
 
+Developers and engineers use this skill to build and review production-oriented Spring Boot applications, including REST APIs, Spring Security, Spring Data, Actuator monitoring, and cloud integration.
 
-## Reference(s): <br>
-- [Java Spring Boot Guide](references/GUIDE.md) <br>
-- [Java Spring Boot Patterns](references/PATTERNS.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/watermelon11/java-spring-boot) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Java, YAML, properties, and shell-command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose project file edits and Spring Boot configuration changes for review before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter states 3.0.0) <br>
+Risk: Generated Spring Security examples can weaken protections if copied without adapting CSRF, authentication, or route rules.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and test generated security configuration before use, especially CSRF settings and public route rules.
+
+Risk: The skill can propose file edits and shell commands in a project.
+
+Mitigation: Review proposed changes and commands before execution, then run project tests and security checks before deployment.
+
+Risk: The included validator is a convenience check rather than a strict release gate.
+
+Mitigation: Pair validator results with normal code review, automated tests, and application security review.
+
+## Reference(s):
+
+- [Java Spring Boot Guide](references/GUIDE.md)
+- [Java Spring Boot Patterns](references/PATTERNS.md)
+- [JSON Schema Draft 7](http://json-schema.org/draft-07/schema#)
+- [ClawHub Skill Page](https://clawhub.ai/watermelon11/skills/java-spring-boot)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with code blocks and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Java, YAML, properties, and shell snippets for Spring Boot development workflows.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, target metadata, and assets/config.yaml; SKILL.md frontmatter reports 3.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

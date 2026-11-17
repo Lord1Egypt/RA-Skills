@@ -1,42 +1,58 @@
-## Description: <br>
-Generate optimized 30/60/90-day content calendars by analyzing brand voice, industry trends, and engagement data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates optimized 30/60/90-day content calendars by analyzing brand voice, industry trends, and engagement data for content strategy planning, editorial calendars, and campaign scheduling.
 
-## Publisher: <br>
-[ncreighton](https://clawhub.ai/user/ncreighton) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ncreighton](https://clawhub.ai/user/ncreighton)
 
-## Use Case: <br>
-Content strategists, agencies, small business owners, SaaS teams, and e-commerce brands use this skill to plan 30/60/90-day content calendars, campaign schedules, platform-specific content ideas, and engagement-focused publishing recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may use OpenAI and Google Analytics data for content planning. <br>
-Mitigation: Use least-privilege or read-only analytics credentials and avoid sharing unnecessary client, customer, or sensitive business data. <br>
-Risk: Generated content plans, predictions, and recommendations may be inaccurate or misaligned with brand, platform, legal, or compliance requirements. <br>
-Mitigation: Require human review before publishing, especially for factual claims, regulated topics, advertising disclosures, email consent, and platform policy compliance. <br>
-Risk: Future integrations could affect calendars, websites, email systems, Slack, Airtable, or social publishing workflows. <br>
-Mitigation: Require explicit approval before any Google Calendar, WordPress, HubSpot, Slack, Airtable, email, or social publishing action. <br>
+## Use Case:
 
+External content strategists, small business owners, agencies, SaaS teams, and e-commerce brands use this skill to turn brand profiles, analytics signals, and campaign goals into multi-channel content calendars and publishing recommendations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ncreighton/ai-powered-content-calendar-planner) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Configuration, Guidance] <br>
-**Output Format:** [Markdown and JSON-style calendar plans with setup guidance, content recommendations, and sample prompts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include calendar tables, content briefs, social copy, email campaign suggestions, analytics insights, and configuration examples.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and frontmatter) <br>
+Risk: Analytics and connected platform credentials may be over-permissioned for content planning tasks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use limited-scope or read-only credentials for Google Analytics and connected publishing or marketing platforms before installing or running the skill.
+
+Risk: Generated copy, engagement estimates, or compliance-sensitive recommendations may be inaccurate or unsuitable for publication.
+
+Mitigation: Review generated content, claims, timing recommendations, and platform disclosures before publishing or sending campaigns.
+
+Risk: The artifact is truncated at the FAQ, so troubleshooting guidance may be incomplete.
+
+Mitigation: Validate source completeness before relying on the FAQ or troubleshooting section for operational decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ncreighton/skills/ai-powered-content-calendar-planner)
+- [Skill homepage](https://github.com/ncreighton/empire-skills)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with optional JSON calendar structures and plain-text campaign recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference user-provided brand profiles, analytics data, and connected platform credentials; generated copy should be reviewed before publishing.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

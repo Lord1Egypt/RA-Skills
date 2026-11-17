@@ -1,44 +1,60 @@
-## Description: <br>
-When the user wants to audit, review, or diagnose SEO issues on their site, this skill uses live web data via the Bright Data CLI for accurate detection of JS-injected schema, hreflang, canonicals, and live SERP-based ranking checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audits and diagnoses SEO issues using Bright Data CLI live web data, including rendered schema, hreflang, canonical tags, crawlability, on-page checks, and SERP-based ranking signals.
 
-## Publisher: <br>
-[meirk-brd](https://clawhub.ai/user/meirk-brd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[meirk-brd](https://clawhub.ai/user/meirk-brd)
 
-## Use Case: <br>
-External users, developers, and SEO practitioners use this skill to run evidence-backed technical and on-page SEO audits with Bright Data CLI commands, rendered HTML checks, SERP diagnostics, and prioritized Markdown recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill includes a direct remote installer command for the Bright Data CLI. <br>
-Mitigation: Review the installation path first and prefer a package-manager or documented install method; only run the remote installer if the source is trusted. <br>
-Risk: SEO audits send site URLs and keyword queries through Bright Data tooling. <br>
-Mitigation: Run audits only for sites and keywords the user is authorized to analyze and share with Bright Data. <br>
+## Use Case:
 
+External users, developers, and SEO practitioners use this skill to run evidence-backed technical and on-page SEO audits for a site or page and receive prioritized remediation guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/meirk-brd/brightdata-seo-audit) <br>
-- [Audit Framework](references/audit-framework.md) <br>
-- [bdata Recipes](references/bdata-recipes.md) <br>
-- [Output Templates](references/output-templates.md) <br>
-- [Site Type Playbooks](references/site-type-playbooks.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown reports with inline shell commands and evidence excerpts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Findings are organized by issue, impact, evidence, fix, and priority; unsupported measurements are routed to out-of-scope notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill includes an embedded remote installer command for Bright Data CLI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing and use a trusted, verifiable installation method for Bright Data CLI.
+
+Risk: Shell-command patterns can mishandle untrusted URLs or keywords.
+
+Mitigation: Quote and validate user-supplied domains, URLs, and keywords before running commands.
+
+Risk: Audits may send domains, URLs, and keywords through Bright Data and search services.
+
+Mitigation: Avoid private or internal targets unless the user has confirmed tool and account policy permit that use.
+
+## Reference(s):
+
+- [Audit Framework](references/audit-framework.md)
+- [bdata Recipes](references/bdata-recipes.md)
+- [Output Templates](references/output-templates.md)
+- [Site-Type Playbooks](references/site-type-playbooks.md)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown SEO audit report with evidence blocks and a prioritized action plan]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Each finding includes a runnable bdata command and output excerpt; unavailable measurements are routed to out-of-scope notes.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

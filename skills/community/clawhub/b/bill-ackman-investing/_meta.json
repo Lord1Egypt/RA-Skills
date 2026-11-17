@@ -1,6 +1,42 @@
 {
-  "ownerId": "kn73rjsd61kjdxp8s6k7ryn8x184h9xs",
-  "slug": "bill-ackman-investing",
+  "name": "bill-ackman",
   "version": "1.0.0",
-  "publishedAt": 1776261481098
+  "description": "Bill Ackman's activist investing philosophy and high-conviction framework — founder of Pershing Square Capital Management, known for concentrated bets, public campaigns, and deep due diligence",
+  "author": "Leo Li",
+  "tags": [
+    "investing",
+    "bill-ackman",
+    "activist-investing",
+    "pershing-square",
+    "high-conviction",
+    "concentrated-bets",
+    "value-investing",
+    "hedge-fund"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/Talentedleo/celebrity_skills",
+  "issues": "https://github.com/Talentedleo/celebrity_skills/issues",
+  "minimumOpenClawVersion": "1.0.0",
+  "skillSpecVersion": "1.0.0",
+  "triggers": [
+    "Bill Ackman",
+    "Ackman",
+    "Pershing Square",
+    "activist investing",
+    "Pershing Square Capital",
+    "high conviction investing",
+    "value investing"
+  ],
+  "sources": [
+    {
+      "name": "Wikipedia - Bill Ackman",
+      "url": "https://en.wikipedia.org/wiki/Bill_Ackman"
+    },
+    {
+      "name": "Pershing Square Holdings",
+      "url": "https://www.pershingsquareholdings.com"
+    }
+  ],
+  "lastUpdated": "2026-04-15",
+  "language": "en"
 }

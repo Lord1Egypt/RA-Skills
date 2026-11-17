@@ -1,43 +1,51 @@
-## Description: <br>
-Generate an AI image via Gemini and post it to X (Twitter) using OAuth1. Supports text-only or text+image tweets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate an AI image via Gemini and post it to X (Twitter) using OAuth1. Supports text-only or text+image tweets.
 
-## Publisher: <br>
-[Zero2Ai-hub](https://clawhub.ai/user/Zero2Ai-hub) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[zero2ai-hub](https://clawhub.ai/user/zero2ai-hub)
 
-## Use Case: <br>
-Developers and social media operators use this skill to generate Gemini images and publish text-only or text-plus-image posts to X/Twitter from an agent workflow. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can publish live X/Twitter posts using OAuth tokens. <br>
-Mitigation: Use a test or dedicated X/Twitter account where possible and review tweet text and image prompts before execution. <br>
-Risk: The image helper path can be overridden with NANO_BANANA_SCRIPT and runs with broad environment access. <br>
-Mitigation: Use only a trusted helper script, avoid untrusted NANO_BANANA_SCRIPT values, and isolate credentials so image generation cannot access posting tokens. <br>
-Risk: Runtime credentials include X/Twitter OAuth tokens and a Gemini API key. <br>
-Mitigation: Set credentials only in a controlled environment and avoid sharing them with unrelated tools or shells. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Zero2Ai-hub/skill-x-post-ai-image) <br>
-- [Zero2Ai-hub publisher profile](https://clawhub.ai/user/Zero2Ai-hub) <br>
-- [X/Twitter media upload endpoint used by the skill](https://upload.twitter.com/1.1/media/upload.json) <br>
+## Use Case:
+
+Developers and agents use this skill to generate an image from a prompt and publish a text-only or text-plus-image post to X/Twitter from one command.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill uses X/Twitter credentials for public posting.
+
+Mitigation: Use credentials only for an account intended for this workflow and review text and image prompts before posting.
+
+Risk: Helper commands may receive broader account or API credential environment than necessary.
+
+Mitigation: Prefer a version or local wrapper that passes only required environment variables to uv and xurl and constrains the image-generator path.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, API Calls] <br>
-**Output Format:** [Markdown instructions and command examples; runtime stdout logs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can generate a PNG, resize it to a JPEG media attachment, upload it to X/Twitter, and post tweet text with an optional media ID.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+**Output Type(s):** [text, shell commands, configuration]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Command output and stdout status messages]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Posts public X/Twitter content and logs media ID and confirmation details when available.]
+
+## Skill Version(s):
+
+1.0.1 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

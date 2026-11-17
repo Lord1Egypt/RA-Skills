@@ -1,43 +1,62 @@
-## Description: <br>
-Daily curiosity feed from AIgneous Million Whys - query "why" questions by topic or semantic search, delivered as quizzes, articles, or podcast scripts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Daily curiosity feed from AIgneous Million Whys that lets users query science and culture questions by topic or semantic search and receive quizzes, articles, flashcards, or podcast scripts.
 
-## Publisher: <br>
-[lyc11776611](https://clawhub.ai/user/lyc11776611) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lyc11776611](https://clawhub.ai/user/lyc11776611)
 
-## Use Case: <br>
-External users use this skill to receive personalized science and culture curiosity prompts from Million Whys as quizzes, short articles, podcast scripts, or flashcards. It also helps users submit question ideas and suggestions to the Million Whys community with explicit consent. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks users to provide a Million Whys API key in chat. <br>
-Mitigation: Use a revocable key, store it through a platform secret store when available, and avoid pasting long-lived secrets into ordinary chat history. <br>
-Risk: The skill asks the agent to maintain a long-term curiosity profile, including shown question IDs, interests, language preferences, and format preferences. <br>
-Mitigation: Install only if persistent personalization is acceptable, and prefer deployments that let users view, reset, or disable saved memory. <br>
+## Use Case:
 
+External users use this skill as a personal curiosity feed for science and culture questions, with adaptive quiz, article, flashcard, and podcast-style outputs. It also supports community question contributions and topic suggestions when the user gives consent.
 
-## Reference(s): <br>
-- [Clawriosity ClawHub page](https://clawhub.ai/lyc11776611/clawriosity) <br>
-- [Publisher profile](https://clawhub.ai/user/lyc11776611) <br>
-- [Million Whys](https://millionwhys.com) <br>
-- [Million Whys OpenClaw API](https://millionwhys.com/api/openclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with optional inline images, quiz cards, article cards, podcast scripts, flashcards, and curl command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use MILLIONWHYS_API_KEY for registered access and may ask the agent to maintain a long-term curiosity profile for personalization.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release evidence) <br>
+Risk: The skill sends query topics and contribution content to millionwhys.com.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sensitive personal topics and review outbound query or contribution content before submission.
+
+Risk: The skill asks the agent to store an API key and maintain a persistent interest profile.
+
+Mitigation: Use secure credential storage, provide a clear removal process, and let users opt out of remembered preferences where the host agent supports it.
+
+Risk: Community contributions could submit user-provided facts or suggestions externally.
+
+Mitigation: Fact-check proposed contributions, obtain explicit user consent, and avoid submitting personal or sensitive information.
+
+## Reference(s):
+
+- [Clawriosity ClawHub Skill Page](https://clawhub.ai/lyc11776611/skills/clawriosity)
+- [Million Whys](https://millionwhys.com)
+- [Million Whys OpenClaw API](https://millionwhys.com/api/openclaw)
+- [Million Whys Query API](https://millionwhys.com/api/openclaw/query)
+- [Million Whys Register API](https://millionwhys.com/api/openclaw/register)
+- [Million Whys Contribution API](https://millionwhys.com/api/openclaw/contribute)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, API Calls, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline images, quiz cards, article cards, flashcards, podcast scripts, and bash examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include bilingual English or Chinese content, translated presentation for other user languages, quota notices, and remembered question IDs or interests for personalization.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

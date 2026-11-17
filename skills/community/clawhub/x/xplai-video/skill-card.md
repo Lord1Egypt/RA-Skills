@@ -1,41 +1,59 @@
-## Description: <br>
-Xplai Video generates explainer videos from text prompts, ideas, math problems, or optional image URLs using the Xplai service, with support for Chinese and English. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Xplai Video helps agents submit text or image-guided requests to Xplai's external service to generate explainer videos in English or Chinese.
 
-## Publisher: <br>
-[yuanyxu](https://clawhub.ai/user/yuanyxu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yuanyxu](https://clawhub.ai/user/yuanyxu)
 
-## Use Case: <br>
-External users and developers use this skill when they want an agent to create or explain content as a video, including tutorials, math explanations, news summaries, code explanations, and language-learning visuals. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Video prompts and optional image URLs are sent to Xplai's external service for processing. <br>
-Mitigation: Confirm before use and avoid secrets, confidential code, private documents, personal data, or signed/private media links. <br>
-Risk: Generated videos may be inaccurate or unsuitable for the user's intended explanation. <br>
-Mitigation: Review the returned video before relying on or sharing it, especially for math, news, code, or language-learning content. <br>
+## Use Case:
 
+External users and developers use this skill to generate explainer or tutorial videos from prompts, optional image URLs, math problems, news summaries, code explanations, or language-learning material. It submits jobs to Xplai and checks status until a generated video URL or failure is returned.
 
-## Reference(s): <br>
-- [Xplai official website](https://www.xplai.ai/) <br>
-- [ClawHub skill listing](https://clawhub.ai/yuanyxu/xplai-video) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Markdown or plain text with shell commands, status values, video IDs, and video URLs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May poll for up to 60 minutes; generated video media is hosted by Xplai and returned as a URL when successful.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: Video descriptions, optional image URLs, and video IDs are sent to Xplai's external API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid confidential business material, private images, secrets, and internal URLs in prompts or image inputs.
+
+Risk: Debug mode can print request and response details that may contain sensitive prompts or service responses.
+
+Mitigation: Use debug mode only in controlled troubleshooting contexts and avoid it for sensitive requests.
+
+Risk: The skill depends on an external video-generation service and asynchronous status polling.
+
+Mitigation: Check returned status values before sharing outputs and handle failed or queued jobs as incomplete results.
+
+## Reference(s):
+
+- [Xplai official website](https://www.xplai.ai/)
+- [ClawHub skill page](https://clawhub.ai/yuanyxu/skills/xplai-video)
+- [ClawHub publisher profile](https://clawhub.ai/user/yuanyxu)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text status messages with generated video IDs, queue status, and video URLs when available]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include a generated video URL and Xplai web page URL after successful status polling.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

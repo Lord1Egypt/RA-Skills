@@ -1,6 +1,10 @@
 {
-  "ownerId": "kn780jv20fjwp08gw7vmveqz1581rbsv",
-  "slug": "model-citizen",
+  "name": "model-citizen",
   "version": "0.1.0",
-  "publishedAt": 1779171077853
+  "description": "Early release. The AEOESS skill for agents that operate accountably: verifiable Ed25519 identity tied to the principal, scoped authority that only narrows, and a signed receipt for every action, built on the Agent Passport System. The agent acts only within delegated authority; this is accountable capability, not autonomy from the principal. Apache-2.0. Current versions and counts are published at the repository and npm and are intentionally not hardcoded here so this skill cannot drift. This is an early release; capability is expanding.",
+  "author": "aeoess",
+  "homepage": "https://github.com/aeoess/agent-passport-system",
+  "license": "Apache-2.0",
+  "category": "development",
+  "tags": ["agent", "identity", "delegation", "accountability", "receipts", "ed25519", "passport", "protocol", "aeoess", "mcp"]
 }

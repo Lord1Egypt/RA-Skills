@@ -1,0 +1,1805 @@
+sources:
+  wikipedia:
+    category: knowledge
+    reference: wikipedia.md
+    auth: none
+    account: null
+    base_url: https://en.wikipedia.org/w/api.php
+    rate: 200/sec recommended ceiling; respect User-Agent rules
+    actions:
+      search:
+        method: GET
+        path: ''
+        params_in: query
+        defaults:
+          action: query
+          list: search
+          format: json
+      summary:
+        method: GET
+        path: /page/summary/{title}
+        params_in: path
+        base_override: https://en.wikipedia.org/api/rest_v1
+      extract:
+        method: GET
+        path: ''
+        params_in: query
+        defaults:
+          action: query
+          prop: extracts
+          format: json
+          exintro: true
+  wikidata:
+    category: knowledge
+    reference: wikidata.md
+    auth: none
+    custom: wikidata_sparql
+    rate: 5/sec; 60s query timeout
+    base_url: https://query.wikidata.org/sparql
+    actions:
+      sparql:
+        description: 'Run a SPARQL query. params: { query: ''<sparql>'' }'
+      entity:
+        description: 'Fetch entity JSON. params: { qid: ''Q42'' }'
+  openalex:
+    category: science
+    reference: openalex.md
+    auth: none
+    account: optional
+    base_url: https://api.openalex.org
+    rate: 10/sec polite pool, 100k/day
+    actions:
+      works:
+        method: GET
+        path: /works
+        params_in: query
+      authors:
+        method: GET
+        path: /authors
+        params_in: query
+      sources:
+        method: GET
+        path: /sources
+        params_in: query
+      concepts:
+        method: GET
+        path: /concepts
+        params_in: query
+  crossref:
+    category: science
+    reference: crossref.md
+    auth: none
+    base_url: https://api.crossref.org
+    rate: 50/sec polite pool
+    actions:
+      works:
+        method: GET
+        path: /works
+        params_in: query
+      doi:
+        method: GET
+        path: /works/{doi}
+        params_in: path
+      members:
+        method: GET
+        path: /members
+        params_in: query
+  pubmed:
+    category: health
+    reference: pubmed.md
+    auth: none
+    custom: pubmed
+    base_url: https://eutils.ncbi.nlm.nih.gov/entrez/eutils
+    rate: 3/sec without key, 10/sec with key
+    actions:
+      search:
+        description: 'esearch + efetch. params: { term: ''...'', limit: 20 }'
+      fetch:
+        description: 'efetch by PMID list. params: { pmids: [''12345'', ...] }'
+      summary:
+        description: 'esummary by PMID. params: { pmids: [...] }'
+  arxiv:
+    category: science
+    reference: arxiv.md
+    auth: none
+    base_url: http://export.arxiv.org/api
+    rate: 1 req every 3 sec recommended
+    actions:
+      search:
+        method: GET
+        path: /query
+        params_in: query
+  open_library:
+    category: knowledge
+    reference: open_library.md
+    auth: none
+    base_url: https://openlibrary.org
+    rate: 100/min
+    actions:
+      search:
+        method: GET
+        path: /search.json
+        params_in: query
+      isbn:
+        method: GET
+        path: /isbn/{isbn}.json
+        params_in: path
+      author:
+        method: GET
+        path: /authors/{key}.json
+        params_in: path
+      work:
+        method: GET
+        path: /works/{key}.json
+        params_in: path
+  scihub:
+    category: science
+    reference: scihub.md
+    auth: none
+    custom: scihub
+    base_url: https://sci-hub.box
+    rate: 30/min; be gentle, mirrors are fragile
+    mirrors:
+      - https://sci-hub.su
+      - https://sci-hub.red
+      - https://sci-hub.ren
+      - https://sci-hub.ru
+      - https://sci-hub.st
+      - https://sci-hub.box
+      - https://www.sci-hub.pub
+      - https://sci-hub.al
+      - https://sci-hub.mk
+      - https://sci-hub.ee
+    actions:
+      search_doi:
+        description: 'Search for a paper by DOI. params: { doi: "10.1038/nature09492" }'
+      search_title:
+        description: 'Search for a paper by title. params: { title: "Transformer Attention" }'
+      search_keyword:
+        description: 'Search papers by keyword. params: { keyword: "quantum computing", num_results: 10 }'
+      download_pdf:
+        description: 'Download a paper PDF. params: { pdf_url: "https://sci-hub.box/...", output_path: "/tmp/paper.pdf" }'
+  sec_edgar:
+    category: government
+    reference: sec_edgar.md
+    auth: none
+    custom: sec_edgar
+    base_url: https://data.sec.gov
+    rate: 10/sec; require User-Agent identifying caller
+    actions:
+      submissions:
+        description: 'Recent filings for CIK. params: { cik: ''0000320193'' }'
+      facts:
+        description: 'Company facts (XBRL). params: { cik }'
+      filing:
+        description: 'Fetch a specific filing. params: { cik, accession }'
+      ticker_lookup:
+        description: "Resolve ticker \u2192 CIK. params: { ticker: 'AAPL' }"
+  federal_register:
+    category: government
+    reference: federal_register.md
+    auth: none
+    base_url: https://www.federalregister.gov/api/v1
+    rate: 1000/hour
+    actions:
+      documents:
+        method: GET
+        path: /documents.json
+        params_in: query
+      document:
+        method: GET
+        path: /documents/{doc_id}.json
+        params_in: path
+      agencies:
+        method: GET
+        path: /agencies.json
+        params_in: query
+  usaspending:
+    category: government
+    reference: usaspending.md
+    auth: none
+    base_url: https://api.usaspending.gov/api/v2
+    rate: no published cap
+    actions:
+      awards_search:
+        method: POST
+        path: /search/spending_by_award/
+        params_in: body
+      award:
+        method: GET
+        path: /awards/{award_id}/
+        params_in: path
+      agencies:
+        method: GET
+        path: /references/toptier_agencies/
+        params_in: query
+  unpaywall:
+    category: science
+    reference: unpaywall.md
+    auth: none
+    base_url: https://api.unpaywall.org/v2
+    rate: 100k/day polite pool; no key required
+    actions:
+      doi:
+        description: 'Look up open-access status + PDF URL by DOI. params: { doi: "10.1038/nature09492" }'
+      search:
+        description: 'Search for papers by title/keyword. params: { query: "transformer attention", is_oa: true }'
+  gdelt:
+    category: media
+    reference: gdelt.md
+    auth: none
+    base_url: https://api.gdeltproject.org/api/v2
+    rate: no published cap; throttle to <1/sec
+    actions:
+      doc_search:
+        method: GET
+        path: /doc/doc
+        params_in: query
+      tv_search:
+        method: GET
+        path: /tv/tv
+        params_in: query
+      geo:
+        method: GET
+        path: /geo/geo
+        params_in: query
+  open_meteo:
+    category: weather
+    reference: open_meteo.md
+    auth: none
+    base_url: https://api.open-meteo.com/v1
+    rate: 10000/day, 600/hour, 60/min
+    actions:
+      forecast:
+        method: GET
+        path: /forecast
+        params_in: query
+      archive:
+        method: GET
+        path: /archive
+        params_in: query
+        base_override: https://archive-api.open-meteo.com/v1
+      marine:
+        method: GET
+        path: /marine
+        params_in: query
+        base_override: https://marine-api.open-meteo.com/v1
+      air_quality:
+        method: GET
+        path: /air-quality
+        params_in: query
+        base_override: https://air-quality-api.open-meteo.com/v1
+      flood:
+        method: GET
+        path: /flood
+        params_in: query
+        base_override: https://flood-api.open-meteo.com/v1
+      pollen:
+        method: GET
+        path: /air-quality
+        params_in: query
+        base_override: https://air-quality-api.open-meteo.com/v1
+        defaults:
+          hourly: alder_pollen,birch_pollen,grass_pollen,mugwort_pollen,olive_pollen,ragweed_pollen
+  noaa_nws:
+    category: weather
+    reference: noaa_nws.md
+    auth: none
+    base_url: https://api.weather.gov
+    rate: no documented hard cap
+    actions:
+      points:
+        method: GET
+        path: /points/{lat},{lon}
+        params_in: path
+      forecast:
+        method: GET
+        path: /gridpoints/{office}/{x},{y}/forecast
+        params_in: path
+      alerts:
+        method: GET
+        path: /alerts/active
+        params_in: query
+      observations:
+        method: GET
+        path: /stations/{station_id}/observations/latest
+        params_in: path
+  usgs_earthquake:
+    category: weather
+    reference: usgs_earthquake.md
+    auth: none
+    base_url: https://earthquake.usgs.gov/fdsnws/event/1
+    rate: no documented cap
+    actions:
+      query:
+        method: GET
+        path: /query
+        params_in: query
+        defaults:
+          format: geojson
+      count:
+        method: GET
+        path: /count
+        params_in: query
+      version:
+        method: GET
+        path: /version
+        params_in: query
+  nominatim:
+    category: geo
+    reference: nominatim.md
+    auth: none
+    base_url: https://nominatim.openstreetmap.org
+    rate: 1/sec absolute
+    actions:
+      search:
+        method: GET
+        path: /search
+        params_in: query
+        defaults:
+          format: jsonv2
+      reverse:
+        method: GET
+        path: /reverse
+        params_in: query
+        defaults:
+          format: jsonv2
+      lookup:
+        method: GET
+        path: /lookup
+        params_in: query
+        defaults:
+          format: jsonv2
+  photon:
+    category: geo
+    reference: photon.md
+    auth: none
+    base_url: https://photon.komoot.io
+    rate: no published cap; faster alt to Nominatim
+    actions:
+      search:
+        method: GET
+        path: /api
+        params_in: query
+      reverse:
+        method: GET
+        path: /reverse
+        params_in: query
+  overpass:
+    category: geo
+    reference: overpass.md
+    auth: none
+    base_url: https://overpass-api.de/api
+    rate: 10000 query elements / 5 min; throttle on busy
+    actions:
+      query:
+        method: POST
+        path: /interpreter
+        params_in: body
+        content_type: text/plain
+  rest_countries:
+    category: geo
+    reference: rest_countries.md
+    auth: none
+    base_url: https://restcountries.com/v3.1
+    rate: no documented cap
+    actions:
+      all:
+        method: GET
+        path: /all
+        params_in: query
+      name:
+        method: GET
+        path: /name/{name}
+        params_in: path
+      code:
+        method: GET
+        path: /alpha/{code}
+        params_in: path
+      currency:
+        method: GET
+        path: /currency/{currency}
+        params_in: path
+  open_food_facts:
+    category: knowledge
+    reference: open_food_facts.md
+    auth: none
+    base_url: https://world.openfoodfacts.org
+    rate: 100/min recommended
+    actions:
+      barcode:
+        method: GET
+        path: /api/v2/product/{barcode}.json
+        params_in: path
+      search:
+        method: GET
+        path: /cgi/search.pl
+        params_in: query
+        defaults:
+          json: 1
+  openaq:
+    category: weather
+    reference: openaq.md
+    auth: optional
+    env_var: OPENAQ_KEY
+    account: optional
+    account_url: https://docs.openaq.org/about/about
+    base_url: https://api.openaq.org/v3
+    rate: 60/min anonymous, 2000/min with key
+    actions:
+      locations:
+        method: GET
+        path: /locations
+        params_in: query
+      measurements:
+        method: GET
+        path: /measurements
+        params_in: query
+      parameters:
+        method: GET
+        path: /parameters
+        params_in: query
+  worldtime:
+    category: geo
+    reference: worldtime.md
+    auth: none
+    base_url: http://worldtimeapi.org/api
+    rate: no documented cap
+    actions:
+      timezone:
+        method: GET
+        path: /timezone/{area}/{location}
+        params_in: path
+      ip:
+        method: GET
+        path: /ip
+        params_in: query
+  nager_holidays:
+    category: knowledge
+    reference: nager_holidays.md
+    auth: none
+    base_url: https://date.nager.at/api/v3
+    rate: no documented cap
+    actions:
+      public:
+        method: GET
+        path: /PublicHolidays/{year}/{country}
+        params_in: path
+      next_public:
+        method: GET
+        path: /NextPublicHolidays/{country}
+        params_in: path
+      countries:
+        method: GET
+        path: /AvailableCountries
+        params_in: query
+      long_weekend:
+        method: GET
+        path: /LongWeekend/{year}/{country}
+        params_in: path
+  ip_api:
+    category: geo
+    reference: ip_api.md
+    auth: none
+    base_url: http://ip-api.com
+    rate: 45 req/min from one IP (free, non-commercial only)
+    actions:
+      lookup:
+        method: GET
+        path: /json/{ip}
+        params_in: path
+  themealdb:
+    category: knowledge
+    reference: themealdb.md
+    auth: none
+    base_url: https://www.themealdb.com/api/json/v1/1
+    rate: test endpoint only on free; no documented cap
+    actions:
+      search:
+        method: GET
+        path: /search.php
+        params_in: query
+      lookup:
+        method: GET
+        path: /lookup.php
+        params_in: query
+      random:
+        method: GET
+        path: /random.php
+        params_in: query
+      categories:
+        method: GET
+        path: /categories.php
+        params_in: query
+  thecocktaildb:
+    category: knowledge
+    reference: thecocktaildb.md
+    auth: none
+    base_url: https://www.thecocktaildb.com/api/json/v1/1
+    rate: test endpoint only on free
+    actions:
+      search:
+        method: GET
+        path: /search.php
+        params_in: query
+      lookup:
+        method: GET
+        path: /lookup.php
+        params_in: query
+      random:
+        method: GET
+        path: /random.php
+        params_in: query
+  world_bank:
+    category: government
+    reference: world_bank.md
+    auth: none
+    base_url: https://api.worldbank.org/v2
+    rate: no documented cap
+    actions:
+      indicator:
+        method: GET
+        path: /country/{country}/indicator/{indicator}
+        params_in: path
+        defaults:
+          format: json
+      indicators:
+        method: GET
+        path: /indicator
+        params_in: query
+        defaults:
+          format: json
+      countries:
+        method: GET
+        path: /country
+        params_in: query
+        defaults:
+          format: json
+  fred:
+    category: finance
+    reference: fred.md
+    auth: required
+    env_var: FRED_KEY
+    account: required
+    account_url: https://fred.stlouisfed.org/docs/api/api_key.html
+    base_url: https://api.stlouisfed.org/fred
+    rate: 120/min
+    actions:
+      series_observations:
+        method: GET
+        path: /series/observations
+        params_in: query
+        auth_param: api_key
+        defaults:
+          file_type: json
+      series:
+        method: GET
+        path: /series
+        params_in: query
+        auth_param: api_key
+        defaults:
+          file_type: json
+      series_search:
+        method: GET
+        path: /series/search
+        params_in: query
+        auth_param: api_key
+        defaults:
+          file_type: json
+      category:
+        method: GET
+        path: /category
+        params_in: query
+        auth_param: api_key
+        defaults:
+          file_type: json
+  nasa:
+    category: science
+    reference: nasa.md
+    auth: required
+    env_var: NASA_KEY
+    account: required
+    account_url: https://api.nasa.gov/
+    monthly: null
+    daily: 1000
+    base_url: https://api.nasa.gov
+    rate: 1000/hour with registered key
+    actions:
+      apod:
+        method: GET
+        path: /planetary/apod
+        params_in: query
+        auth_param: api_key
+      neo_feed:
+        method: GET
+        path: /neo/rest/v1/feed
+        params_in: query
+        auth_param: api_key
+      neo_lookup:
+        method: GET
+        path: /neo/rest/v1/neo/{id}
+        params_in: path
+        auth_param: api_key
+      epic:
+        method: GET
+        path: /EPIC/api/natural
+        params_in: query
+        auth_param: api_key
+      eonet:
+        method: GET
+        path: /EONET/api/v3/events
+        params_in: query
+        auth_param: null
+        base_override: https://eonet.gsfc.nasa.gov
+      mars_rover:
+        method: GET
+        path: /mars-photos/api/v1/rovers/{rover}/photos
+        params_in: path
+        auth_param: api_key
+  congress_gov:
+    category: government
+    reference: congress_gov.md
+    auth: required
+    env_var: CONGRESS_KEY
+    account: required
+    account_url: https://api.congress.gov/sign-up/
+    base_url: https://api.congress.gov/v3
+    rate: 5000/hour
+    actions:
+      bill:
+        method: GET
+        path: /bill/{congress}/{type}/{number}
+        params_in: path
+        auth_param: api_key
+        defaults:
+          format: json
+      bills:
+        method: GET
+        path: /bill
+        params_in: query
+        auth_param: api_key
+        defaults:
+          format: json
+      bill_actions:
+        method: GET
+        path: /bill/{congress}/{type}/{number}/actions
+        params_in: path
+        auth_param: api_key
+        defaults:
+          format: json
+      bill_amendments:
+        method: GET
+        path: /bill/{congress}/{type}/{number}/amendments
+        params_in: path
+        auth_param: api_key
+        defaults:
+          format: json
+      bill_committees:
+        method: GET
+        path: /bill/{congress}/{type}/{number}/committees
+        params_in: path
+        auth_param: api_key
+        defaults:
+          format: json
+      bill_cosponsors:
+        method: GET
+        path: /bill/{congress}/{type}/{number}/cosponsors
+        params_in: path
+        auth_param: api_key
+        defaults:
+          format: json
+      bill_relatedbills:
+        method: GET
+        path: /bill/{congress}/{type}/{number}/relatedbills
+        params_in: path
+        auth_param: api_key
+        defaults:
+          format: json
+      bill_subjects:
+        method: GET
+        path: /bill/{congress}/{type}/{number}/subjects
+        params_in: path
+        auth_param: api_key
+        defaults:
+          format: json
+      bill_summaries:
+        method: GET
+        path: /bill/{congress}/{type}/{number}/summaries
+        params_in: path
+        auth_param: api_key
+        defaults:
+          format: json
+      bill_text:
+        method: GET
+        path: /bill/{congress}/{type}/{number}/text
+        params_in: path
+        auth_param: api_key
+        defaults:
+          format: json
+      bill_titles:
+        method: GET
+        path: /bill/{congress}/{type}/{number}/titles
+        params_in: path
+        auth_param: api_key
+        defaults:
+          format: json
+      amendment:
+        method: GET
+        path: /amendment/{congress}/{type}/{number}
+        params_in: path
+        auth_param: api_key
+        defaults:
+          format: json
+      amendments:
+        method: GET
+        path: /amendment
+        params_in: query
+        auth_param: api_key
+        defaults:
+          format: json
+      congress:
+        method: GET
+        path: /congress/{congress}
+        params_in: path
+        auth_param: api_key
+        defaults:
+          format: json
+      congress_list:
+        method: GET
+        path: /congress
+        params_in: query
+        auth_param: api_key
+        defaults:
+          format: json
+      law:
+        method: GET
+        path: /law/{congress}/{type}/{number}
+        params_in: path
+        auth_param: api_key
+        defaults:
+          format: json
+      laws:
+        method: GET
+        path: /law
+        params_in: query
+        auth_param: api_key
+        defaults:
+          format: json
+      member:
+        method: GET
+        path: /member/{bioguide_id}
+        params_in: path
+        auth_param: api_key
+        defaults:
+          format: json
+      member_cosponsored:
+        method: GET
+        path: /member/{bioguide_id}/cosponsored-legislation
+        params_in: path
+        auth_param: api_key
+        defaults:
+          format: json
+      member_sponsored:
+        method: GET
+        path: /member/{bioguide_id}/sponsored-legislation
+        params_in: path
+        auth_param: api_key
+        defaults:
+          format: json
+      member_congress:
+        method: GET
+        path: /member/congress/{congress}
+        params_in: path
+        auth_param: api_key
+        defaults:
+          format: json
+      member_state:
+        method: GET
+        path: /member/{state_code}
+        params_in: path
+        auth_param: api_key
+        defaults:
+          format: json
+      members:
+        method: GET
+        path: /member
+        params_in: query
+        auth_param: api_key
+        defaults:
+          format: json
+      vote:
+        method: GET
+        path: /house-vote/{congress}/{session}/{vote}
+        params_in: path
+        auth_param: api_key
+        defaults:
+          format: json
+      votes:
+        method: GET
+        path: /house-vote
+        params_in: query
+        auth_param: api_key
+        defaults:
+          format: json
+      committee:
+        method: GET
+        path: /committee
+        params_in: query
+        auth_param: api_key
+        defaults:
+          format: json
+      committee_detail:
+        method: GET
+        path: /committee/{chamber}/{code}
+        params_in: path
+        auth_param: api_key
+        defaults:
+          format: json
+      committee_bills:
+        method: GET
+        path: /committee/{chamber}/{code}/bills
+        params_in: path
+        auth_param: api_key
+        defaults:
+          format: json
+      committee_reports:
+        method: GET
+        path: /committee/{chamber}/{code}/reports
+        params_in: path
+        auth_param: api_key
+        defaults:
+          format: json
+      committee_nominations:
+        method: GET
+        path: /committee/{chamber}/{code}/nominations
+        params_in: path
+        auth_param: api_key
+        defaults:
+          format: json
+      committee_meeting:
+        method: GET
+        path: /committee-meeting/{congress}/{chamber}/{event_id}
+        params_in: path
+        auth_param: api_key
+        defaults:
+          format: json
+      committee_meetings:
+        method: GET
+        path: /committee-meeting
+        params_in: query
+        auth_param: api_key
+        defaults:
+          format: json
+      committee_print:
+        method: GET
+        path: /committee-print/{congress}/{chamber}/{jacket_number}
+        params_in: path
+        auth_param: api_key
+        defaults:
+          format: json
+      committee_prints:
+        method: GET
+        path: /committee-print
+        params_in: query
+        auth_param: api_key
+        defaults:
+          format: json
+      committee_report:
+        method: GET
+        path: /committee-report/{congress}/{type}/{number}
+        params_in: path
+        auth_param: api_key
+        defaults:
+          format: json
+      committee_report_text:
+        method: GET
+        path: /committee-report/{congress}/{type}/{number}/text
+        params_in: path
+        auth_param: api_key
+        defaults:
+          format: json
+      nomination:
+        method: GET
+        path: /nomination/{congress}/{number}
+        params_in: path
+        auth_param: api_key
+        defaults:
+          format: json
+      nominations:
+        method: GET
+        path: /nomination
+        params_in: query
+        auth_param: api_key
+        defaults:
+          format: json
+      nomination_actions:
+        method: GET
+        path: /nomination/{congress}/{number}/actions
+        params_in: path
+        auth_param: api_key
+        defaults:
+          format: json
+      nomination_committees:
+        method: GET
+        path: /nomination/{congress}/{number}/committees
+        params_in: path
+        auth_param: api_key
+        defaults:
+          format: json
+      nomination_hearings:
+        method: GET
+        path: /nomination/{congress}/{number}/hearings
+        params_in: path
+        auth_param: api_key
+        defaults:
+          format: json
+      treaty:
+        method: GET
+        path: /treaty/{congress}/{number}
+        params_in: path
+        auth_param: api_key
+        defaults:
+          format: json
+      treaties:
+        method: GET
+        path: /treaty
+        params_in: query
+        auth_param: api_key
+        defaults:
+          format: json
+      treaty_actions:
+        method: GET
+        path: /treaty/{congress}/{number}/actions
+        params_in: path
+        auth_param: api_key
+        defaults:
+          format: json
+      treaty_committees:
+        method: GET
+        path: /treaty/{congress}/{number}/committees
+        params_in: path
+        auth_param: api_key
+        defaults:
+          format: json
+      summaries:
+        method: GET
+        path: /summaries
+        params_in: query
+        auth_param: api_key
+        defaults:
+          format: json
+      crsreport:
+        method: GET
+        path: /crsreport/{report_number}
+        params_in: path
+        auth_param: api_key
+        defaults:
+          format: json
+      crsreports:
+        method: GET
+        path: /crsreport
+        params_in: query
+        auth_param: api_key
+        defaults:
+          format: json
+      hearing:
+        method: GET
+        path: /hearing/{congress}/{chamber}/{jacket_number}
+        params_in: path
+        auth_param: api_key
+        defaults:
+          format: json
+      hearings:
+        method: GET
+        path: /hearing
+        params_in: query
+        auth_param: api_key
+        defaults:
+          format: json
+      house_communication:
+        method: GET
+        path: /house-communication/{congress}/{type}/{number}
+        params_in: path
+        auth_param: api_key
+        defaults:
+          format: json
+      house_communications:
+        method: GET
+        path: /house-communication
+        params_in: query
+        auth_param: api_key
+        defaults:
+          format: json
+      senate_communication:
+        method: GET
+        path: /senate-communication/{congress}/{type}/{number}
+        params_in: path
+        auth_param: api_key
+        defaults:
+          format: json
+      senate_communications:
+        method: GET
+        path: /senate-communication
+        params_in: query
+        auth_param: api_key
+        defaults:
+          format: json
+      house_requirement:
+        method: GET
+        path: /house-requirement/{requirement_number}
+        params_in: path
+        auth_param: api_key
+        defaults:
+          format: json
+      house_requirements:
+        method: GET
+        path: /house-requirement
+        params_in: query
+        auth_param: api_key
+        defaults:
+          format: json
+      daily_congressional_record:
+        method: GET
+        path: /daily-congressional-record/{volume}/{issue}
+        params_in: path
+        auth_param: api_key
+        defaults:
+          format: json
+      daily_congressional_records:
+        method: GET
+        path: /daily-congressional-record
+        params_in: query
+        auth_param: api_key
+        defaults:
+          format: json
+      bound_congressional_record:
+        method: GET
+        path: /bound-congressional-record/{year}/{month}/{day}
+        params_in: path
+        auth_param: api_key
+        defaults:
+          format: json
+      bound_congressional_records:
+        method: GET
+        path: /bound-congressional-record
+        params_in: query
+        auth_param: api_key
+        defaults:
+          format: json
+  bls:
+    category: government
+    reference: bls.md
+    auth: required
+    env_var: BLS_KEY
+    account: required
+    account_url: https://data.bls.gov/registrationEngine/
+    base_url: https://api.bls.gov/publicAPI/v2
+    rate: 500/day with key (25/day without)
+    daily: 500
+    actions:
+      timeseries:
+        method: POST
+        path: /timeseries/data/
+        params_in: body
+        auth_field: registrationkey
+      surveys:
+        method: GET
+        path: /surveys
+        params_in: query
+  govinfo:
+    category: government
+    reference: govinfo.md
+    auth: required
+    env_var: GOVINFO_KEY
+    account: required
+    account_url: https://api.govinfo.gov/docs/
+    base_url: https://api.govinfo.gov
+    rate: 1000/hour
+    actions:
+      packages:
+        method: GET
+        path: /packages
+        params_in: query
+        auth_param: api_key
+      package:
+        method: GET
+        path: /packages/{id}
+        params_in: path
+        auth_param: api_key
+      published:
+        method: GET
+        path: /published/{date}
+        params_in: path
+        auth_param: api_key
+      collections:
+        method: GET
+        path: /collections
+        params_in: query
+        auth_param: api_key
+  alpha_vantage:
+    category: finance
+    reference: alpha_vantage.md
+    auth: required
+    env_var: ALPHA_VANTAGE_KEY
+    account: required
+    account_url: https://www.alphavantage.co/support/#api-key
+    base_url: https://www.alphavantage.co/query
+    rate: 5/min
+    daily: 25
+    monthly: 750
+    actions:
+      time_series_daily:
+        method: GET
+        path: ''
+        params_in: query
+        auth_param: apikey
+        defaults:
+          function: TIME_SERIES_DAILY
+      global_quote:
+        method: GET
+        path: ''
+        params_in: query
+        auth_param: apikey
+        defaults:
+          function: GLOBAL_QUOTE
+      fx_daily:
+        method: GET
+        path: ''
+        params_in: query
+        auth_param: apikey
+        defaults:
+          function: FX_DAILY
+      overview:
+        method: GET
+        path: ''
+        params_in: query
+        auth_param: apikey
+        defaults:
+          function: OVERVIEW
+  semantic_scholar:
+    category: science
+    reference: semantic_scholar.md
+    auth: optional
+    env_var: SEMANTIC_SCHOLAR_KEY
+    account: optional
+    account_url: https://www.semanticscholar.org/product/api
+    base_url: https://api.semanticscholar.org/graph/v1
+    rate: 100/5min anonymous, 1/sec for partners
+    actions:
+      paper_search:
+        method: GET
+        path: /paper/search
+        params_in: query
+        auth_header: x-api-key
+      paper:
+        method: GET
+        path: /paper/{paper_id}
+        params_in: path
+        auth_header: x-api-key
+      author:
+        method: GET
+        path: /author/{author_id}
+        params_in: path
+        auth_header: x-api-key
+      recommendations:
+        method: GET
+        path: /recommendations/v1/papers/forpaper/{paper_id}
+        params_in: path
+        auth_header: x-api-key
+  usda_fooddata:
+    category: health
+    reference: usda_fooddata.md
+    auth: required
+    env_var: USDA_KEY
+    account: required
+    account_url: https://api.nal.usda.gov/fdc/
+    base_url: https://api.nal.usda.gov/fdc/v1
+    rate: 1000/hour
+    actions:
+      search:
+        method: GET
+        path: /foods/search
+        params_in: query
+        auth_param: api_key
+      food:
+        method: GET
+        path: /food/{fdc_id}
+        params_in: path
+        auth_param: api_key
+      foods:
+        method: POST
+        path: /foods
+        params_in: body
+        auth_param: api_key
+  courtlistener:
+    category: government
+    reference: courtlistener.md
+    auth: required
+    env_var: COURTLISTENER_KEY
+    account: required
+    account_url: https://www.courtlistener.com/help/api/rest/
+    base_url: https://www.courtlistener.com/api/rest/v4
+    rate: 5000/hour
+    actions:
+      search:
+        method: GET
+        path: /search/
+        params_in: query
+        auth_header: Authorization
+        auth_prefix: 'Token '
+      opinion:
+        method: GET
+        path: /opinions/{id}/
+        params_in: path
+        auth_header: Authorization
+        auth_prefix: 'Token '
+      docket:
+        method: GET
+        path: /dockets/{id}/
+        params_in: path
+        auth_header: Authorization
+        auth_prefix: 'Token '
+      court:
+        method: GET
+        path: /courts/{id}/
+        params_in: path
+        auth_header: Authorization
+        auth_prefix: 'Token '
+  fec:
+    category: government
+    reference: fec.md
+    auth: required
+    env_var: FEC_KEY
+    account: required
+    account_url: https://api.open.fec.gov/developers/
+    base_url: https://api.open.fec.gov/v1
+    rate: 1000/hour
+    actions:
+      candidates:
+        method: GET
+        path: /candidates
+        params_in: query
+        auth_param: api_key
+      candidate:
+        method: GET
+        path: /candidate/{candidate_id}
+        params_in: path
+        auth_param: api_key
+      committees:
+        method: GET
+        path: /committees
+        params_in: query
+        auth_param: api_key
+      committee:
+        method: GET
+        path: /committee/{committee_id}
+        params_in: path
+        auth_param: api_key
+      filings:
+        method: GET
+        path: /filings
+        params_in: query
+        auth_param: api_key
+  geonames:
+    category: geo
+    reference: geonames.md
+    auth: required
+    env_var: GEONAMES_USERNAME
+    account: required
+    account_url: https://www.geonames.org/login
+    base_url: http://api.geonames.org
+    rate: 20000/day, 1000/hour per username (free)
+    daily: 20000
+    actions:
+      search:
+        method: GET
+        path: /searchJSON
+        params_in: query
+        auth_param: username
+      country_info:
+        method: GET
+        path: /countryInfoJSON
+        params_in: query
+        auth_param: username
+      timezone:
+        method: GET
+        path: /timezoneJSON
+        params_in: query
+        auth_param: username
+      elevation:
+        method: GET
+        path: /srtm3JSON
+        params_in: query
+        auth_param: username
+      nearby:
+        method: GET
+        path: /findNearbyPlaceNameJSON
+        params_in: query
+        auth_param: username
+  public_apis:
+    category: knowledge
+    reference: public_apis.md
+    auth: none
+    account: null
+    base_url: https://api.publicapis.org
+    rate: no published cap; throttle to <1/sec
+    actions:
+      entries:
+        method: GET
+        path: /entries
+        params_in: query
+      categories:
+        method: GET
+        path: /categories
+        params_in: query
+
+  # ============================================================
+  # GOVERNMENT — US (no key) — batch 2
+  # ============================================================
+  census:
+    category: government
+    reference: census.md
+    auth: none
+    account: null
+    base_url: https://api.census.gov/data
+    rate: no documented cap; 500/day recommended polite default
+    actions:
+      acs:
+        method: GET
+        path: /{year}/acs/acs1
+        params_in: path
+        defaults: { get: NAME }
+      decennial:
+        method: GET
+        path: /{year}/dec/pl
+        params_in: path
+        defaults: { get: NAME,_for: us:1 }
+      population:
+        method: GET
+        path: /{year}/pep/population
+        params_in: path
+        defaults: { get: POP_2020,for: "*" }
+
+  epa_echo:
+    category: government
+    reference: epa_echo.md
+    auth: none
+    account: null
+    base_url: https://echodata.epa.gov/echo
+    rate: no documented cap; throttle to <2/sec
+    actions:
+      facility_search:
+        method: GET
+        path: /echo_rest_services.get_facilities
+        params_in: query
+        defaults: { output: JSON }
+      compliance_report:
+        method: GET
+        path: /echo_rest_services.get_compliance_report
+        params_in: query
+        defaults: { output: JSON }
+      effluent_chart:
+        method: GET
+        path: /echo_rest_services.get_effluent_chart
+        params_in: query
+        defaults: { output: JSON }
+
+  hifld:
+    category: government
+    reference: hifld.md
+    auth: none
+    account: null
+    base_url: https://services1.arcgis.com/Hp6G80Pky0om7QvQ/arcgis/rest/services
+    rate: no documented cap; standard ArcGIS REST terms
+    actions:
+      query:
+        method: GET
+        path: /{service}/FeatureServer/0/query
+        params_in: query
+        defaults: { where: "1=1", outFields: "*", f: json, resultRecordCount: 10 }
+
+  nonprofit_explorer:
+    category: government
+    reference: nonprofit_explorer.md
+    auth: none
+    account: null
+    base_url: https://projects.propublica.org/nonprofits/api/v2
+    rate: no documented cap; throttle to <1/sec
+    actions:
+      search:
+        method: GET
+        path: /search.json
+        params_in: query
+      organization:
+        method: GET
+        path: /organizations/{ein}.json
+        params_in: path
+
+  # ============================================================
+  # HEALTH + SCIENCE (no key) — batch 2
+  # ============================================================
+  ncbi_datasets:
+    category: health
+    reference: ncbi_datasets.md
+    auth: none
+    account: null
+    base_url: https://api.ncbi.nlm.nih.gov/datasets/v2alpha
+    rate: no documented cap; throttle to <3/sec
+    actions:
+      gene:
+        method: GET
+        path: /gene/symbol/{symbol}/taxon/{taxon}
+        params_in: path
+      genome:
+        method: GET
+        path: /genome/accession/{accession}
+        params_in: path
+      taxonomy:
+        method: GET
+        path: /taxonomy/{taxon_id}
+        params_in: path
+
+  airnow:
+    category: weather
+    reference: airnow.md
+    auth: required
+    env_var: AIRNOW_KEY
+    account: required
+    account_url: https://docs.airnowapi.org/
+    base_url: https://www.airnowapi.org/aq
+    rate: 1000/hour (free tier)
+    actions:
+      observation_zip:
+        method: GET
+        path: /observation/zipCode/current/
+        params_in: query
+        defaults: { format: application/json, distance: 25 }
+      observation_latlon:
+        method: GET
+        path: /observation/latLong/current/
+        params_in: query
+        defaults: { format: application/json, distance: 25 }
+      forecast:
+        method: GET
+        path: /forecast/zipCode/
+        params_in: query
+        defaults: { format: application/json }
+
+  space_weather:
+    category: science
+    reference: space_weather.md
+    auth: none
+    account: null
+    base_url: https://api.nasa.gov/DONKI
+    rate: no documented cap; throttle to <1/sec
+    actions:
+      cme:
+        method: GET
+        path: /CME
+        params_in: query
+      gst:
+        method: GET
+        path: /GST
+        params_in: query
+      ips:
+        method: GET
+        path: /IPS
+        params_in: query
+      iss_location:
+        method: GET
+        path: /iss-now.json
+        params_in: query
+        base_override: http://api.open-notify.org
+
+  # ============================================================
+  # FINANCE (no key) — batch 2
+  # ============================================================
+  exchangerate:
+    category: finance
+    reference: exchangerate.md
+    auth: none
+    account: null
+    base_url: https://api.exchangerate.host
+    rate: no published cap; throttle to <1/sec
+    actions:
+      latest:
+        method: GET
+        path: /latest
+        params_in: query
+      historical:
+        method: GET
+        path: /{date}
+        params_in: path
+      convert:
+        method: GET
+        path: /convert
+        params_in: query
+      timeseries:
+        method: GET
+        path: /timeseries
+        params_in: query
+
+  # ============================================================
+  # GEO + TRANSIT (no key) — batch 2
+  # ============================================================
+  transit_land:
+    category: geo
+    reference: transit_land.md
+    auth: none
+    account: optional
+    base_url: https://transit.land/api/v2/rest
+    rate: 1000/hour anonymous, key available for higher
+    actions:
+      routes:
+        method: GET
+        path: /routes
+        params_in: query
+      stops:
+        method: GET
+        path: /stops
+        params_in: query
+      operators:
+        method: GET
+        path: /operators
+        params_in: query
+      schedule:
+        method: GET
+        path: /schedule_stop_pairs
+        params_in: query
+
+  ev_charging:
+    category: geo
+    reference: ev_charging.md
+    auth: none
+    account: optional
+    base_url: https://api.openchargemap.io/v3
+    rate: no published cap; throttle to <2/sec
+    actions:
+      poi:
+        method: GET
+        path: /poi/
+        params_in: query
+      reference_data:
+        method: GET
+        path: /referencedata/
+        params_in: query
+
+  searxng:
+    category: media
+    reference: searxng.md
+    auth: none
+    account: null
+    base_url: http://localhost:8888
+    rate: no published cap; throttle to <5/sec
+    actions:
+      search:
+        description: "Open web search via SearXNG. params: {query, language, categories, time_range, limit}"
+      search_social:
+        description: "Search social media via SearXNG (Reddit, Twitter/X, etc.). params: {query, language, time_range, limit}"
+
+  yahoo_finance:
+    category: finance
+    reference: yahoo_finance.md
+    auth: none
+    account: null
+    custom: yahoo_finance_mcp
+    rate: ~5 req/sec; yfinance library rate limits apply
+    base_url: https://query1.finance.yahoo.com
+    actions:
+      historical_prices:
+        description: "Get historical OHLCV data. params: {symbol, period, interval}"
+      stock_info:
+        description: "Get comprehensive stock metrics. params: {symbol}"
+      news:
+        description: "Get latest news. params: {symbol, count}"
+      financial_statement:
+        description: "Get financial statements. params: {symbol, statement_type, period}"
+      holder_info:
+        description: "Get holder info. params: {symbol, holder_type}"
+      recommendations:
+        description: "Get analyst recommendations. params: {symbol}"
+      options_chain:
+        description: "Get options chain. params: {symbol, expiration, option_type}"
+      stock_actions:
+        description: "Get dividends and splits. params: {symbol}"
+
+  reddit:
+    category: media
+    reference: reddit.md
+    auth: optional
+    account: optional
+    account_url: https://www.reddit.com/prefs/apps
+    custom: reddit_mcp_buddy
+    rate: 10/min anonymous, 60/min app-only, 100/min authenticated
+    base_url: https://www.reddit.com
+    actions:
+      browse:
+        description: "Browse a subreddit. params: {subreddit, sort, time, limit}"
+      search:
+        description: "Search Reddit. params: {query, subreddit, sort, time, limit}"
+      post:
+        description: "Get post details. params: {url} or {post_id, subreddit}"
+      user:
+        description: "Analyze a Reddit user. params: {username}"
+      explain:
+        description: "Explain a Reddit term. params: {term}"
+
+  paper_search:
+    category: science
+    reference: paper_search.md
+    auth: optional
+    account: null
+    custom: paper_search_mcp
+    rate: varies by underlying source; throttle to <5/sec overall
+    base_url: https://api.arxiv.org
+    actions:
+      search:
+        description: "Search papers across all sources. params: {query, limit, sources}"
+      arxiv:
+        description: "Search arXiv specifically. params: {query, limit}"
+      pubmed:
+        description: "Search PubMed. params: {query, limit}"
+      download:
+        description: "Download a paper PDF. params: {doi} or {url}, source"
+
+  linkedin:
+    category: media
+    reference: linkedin.md
+    auth: required
+    account: required
+    account_url: https://www.linkedin.com
+    custom: linkedin_mcp
+    rate: browser-based throttling; sequential tool calls only
+    base_url: https://www.linkedin.com
+    actions:
+      person_profile:
+        description: "Get a person's profile. params: {public_id, sections}"
+      my_profile:
+        description: "Get authenticated user's profile. params: {sections}"
+      company_profile:
+        description: "Get company info. params: {public_id, sections}"
+      company_posts:
+        description: "Get company posts. params: {public_id, limit}"
+      company_employees:
+        description: "List company employees. params: {public_id, keyword, limit}"
+      search_people:
+        description: "Search for people. params: {keywords, location, company, limit}"
+      search_companies:
+        description: "Search for companies. params: {keywords, limit}"
+      search_jobs:
+        description: "Search for jobs. params: {keywords, location, limit}"
+      job_details:
+        description: "Get job details. params: {job_id}"
+      feed:
+        description: "Get user's home feed. params: {limit}"
+      inbox:
+        description: "List conversations. params: {limit}"
+      conversation:
+        description: "Read a conversation. params: {username} or {thread_id}"
+      search_messages:
+        description: "Search messages. params: {query}"
+      send_message:
+        description: "Send a message. params: {username, message}"
+      sidebar_profiles:
+        description: "Get sidebar recommendations. params: {public_id}"
+
+  weather:
+    category: weather
+    reference: weather.md
+    auth: none
+    account: null
+    custom: weather
+    base_url: https://api.weather.gov
+    rate: no documented hard cap; keep below 5 req/sec
+    actions:
+      conditions:
+        description: "Current observed conditions at a US lat/lon. params: {lat, lon}"
+      forecast:
+        description: "NWS 7-day or hourly forecast. params: {lat, lon, hourly (bool)}"
+      alerts:
+        description: "Active NWS warnings/watches. params: {lat, lon} or {state}"
+      metar:
+        description: "Raw + decoded METAR for an ICAO station. params: {station}"
+      brief:
+        description: "Quick briefing — conditions + 3-period forecast + alerts in one call. params: {lat, lon}"
+      global:
+        description: "Current weather worldwide via Open-Meteo. params: {lat, lon, units (us|metric)}"
+      severe:
+        description: "SPC Day 1 categorical outlook + active watches. params: {state (optional)}"
+  welib:
+    category: knowledge
+    reference: welib.md
+    auth: none
+    base_url: https://welib.org/api/v1
+    rate: unknown; be conservative
+    note: "Cloudflare-protected; may require browser or residential proxy in some regions"
+    actions:
+      search:
+        description: "Search books and papers. params: {q: 'quantum physics', type: 'all', limit: 10}"
+      detail:
+        description: "Get item details by ID. params: {id: '...', type: 'book|paper'}"
+
+  metricduck:
+    category: finance
+    reference: metricduck.md
+    auth: required
+    account: required
+    env_var: METRICDUCK_API_KEY
+    account_url: https://www.metricduck.com
+    custom: metricduck_mcp
+    mcp: true
+    mcp_url: https://mcp.metricduck.com/mcp
+    transport: streamable-http
+    rate: no published cap; respect throttling
+    note: "Company fundamentals / screening. Bearer token (METRICDUCK_API_KEY) sent on every MCP tools/call. Registered by <operator> 2026-07-20; 6/6 successful queries same day. Not yet invoked by Rally — pending addition to Rally market-data-sources degradation chain."
+    actions:
+      search_companies:
+        description: "Search companies by query. params: {query, limit?}"
+      company_overview:
+        description: "Company fundamentals overview. params: {ticker|name}"
+      compare_companies:
+        description: "Side-by-side company comparison. params: {companies: [...], metrics?}"
+      screen_companies:
+        description: "Screen companies by fundamentals criteria. params: {criteria}"
+
+  acre_lens:
+    category: geo
+    reference: acre-lens.md
+    auth: none
+    account: null
+    custom: acre_lens_mcp
+    mcp: true
+    mcp_url: https://mcp.acrelens.com/mcp
+    transport: streamable-http
+    rate: ~1 req/min per tool; 60-120s async turnaround for analyze/compare
+    actions:
+      analyze_land:
+        description: "Full land analysis report (off_grid|rural_residential|recreational|investment). params: {address, state, mode, county?, acreage?, lat?, lng?}. Async — returns report_id + poll_url."
+      compare_properties:
+        description: "Compare 2-5 properties side by side. params: {properties: [{address, state, ...}], mode}. Async — returns batch_id + report_ids."
+      get_land_quick_score:
+        description: "Quick 0-100 suitability score. params: {address, state, mode}. Near-synchronous."
+      get_solar_potential:
+        description: "Solar energy estimate via NREL PVWatts. params: {address?, lat?, lng?, system_size_kw?}. Read-only."
+      get_state_land_profile:
+        description: "State-level land intelligence (regulation, climate, solar, water, building codes). params: {state_code, mode?}. Read-only."
+
+  # ============================================================
+  # MANUALS + DOCUMENTATION
+  # ============================================================
+  gibs:
+    category: science
+    reference: gibs.md
+    auth: none
+    account: null
+    custom: gibs
+    base_url: https://gibs.earthdata.nasa.gov/wmts/epsg4326/best
+    rate: no documented cap; be polite to shared NASA infrastructure
+    actions:
+      layers:
+        description: "List available imagery layers (MODIS, VIIRS, etc.). params: {category: 'modis', instrument: 'viirs', search: 'true color', limit: 50, offset: 0}"
+      capabilities:
+        description: "Full parsed WMTS capabilities. params: {raw: false} for JSON, {raw: true} for XML string"
+      tile_url:
+        description: "Build a WMTS tile URL. params: {layer: '<id>', date: 'YYYY-MM-DD', tile_matrix_set: '2km', level: N, row: N, col: N, format: 'png'}"
+      wms_bbox:
+        description: "Build a WMS GetMap URL for a bbox. params: {layer: '<id>', date: 'YYYY-MM-DD', bbox: 'west,south,east,north', width: 512, height: 512}"
+      projections:
+        description: "List available map projections"
+
+  manualslib:
+    category: knowledge
+    reference: manualslib.md
+    auth: none
+    account: null
+    custom: manualslib
+    rate: no published cap; throttle to <5/sec for Wayback CDX
+    actions:
+      autocomplete:
+        description: "OpenSearch autocomplete — search suggestions from the site's index. params: {query: 'canon camera'}"
+      search:
+        description: "Find manuals via web_search + Wayback Wayback CDX URL enumeration. params: {query: 'canon f-730sx', limit: 5}"
+      read_page:
+        description: "Download and OCR a specific page from a manual. params: {manual_id: '1428710', page: 3, slug: 'f730sx'}"
+      read_random:
+        description: "Read a random page from a random manual. params: {}"

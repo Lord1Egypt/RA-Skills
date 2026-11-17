@@ -1,0 +1,22 @@
+name: selfmedia-content-calendar-cn
+slug: selfmedia-content-calendar-cn
+display_name: 两周内容日历
+description: 为中文小店经营者、小说作者和自媒体创作者，将账号定位、素材清单、产能和已确定主题编排为14天内容日历，交付选题顺序、内容形式、素材需求及制作时间建议；缺少关键信息时明确指出，不编造素材、热点或数据。
+version: 1.0.1
+repository: https://github.com/xxjrq/selfmedia-content-calendar-cn
+license: MIT-0
+tags:
+  - 内容日历
+  - 选题规划
+  - 自媒体运营
+  - 中文创作
+trigger_words:
+  - 两周内容日历
+  - 14天选题
+  - 内容排期
+icon: icon-512.png
+entrypoint: SKILL.md
+self_test: bash scripts/self-test.sh
+seo:
+  title: 两周内容日历｜14天中文自媒体选题与制作排期
+  keywords: [两周内容日历, 14天内容规划, 自媒体选题]

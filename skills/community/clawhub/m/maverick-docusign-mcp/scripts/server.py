@@ -11,11 +11,24 @@
 from __future__ import annotations
 
 import os
+from functools import wraps
 
 import docusign_esign as ds
+from docusign_esign.rest import ApiException
 from mcp.server.fastmcp import Context, FastMCP
 
 mcp = FastMCP("docusign")
+
+
+def provider_tool(function):
+    """Keep provider HTTP status structured for Maverick connection recovery."""
+    @wraps(function)
+    def invoke(*args, **kwargs):
+        try:
+            return function(*args, **kwargs)
+        except ApiException as error:
+            return {"success": False, "error": "docusign_http_error", "status": error.status}
+    return mcp.tool()(invoke)
 
 _BASE_URI = os.environ.get("MAVERICK_DOCUSIGN_MCP_BASE_URI", "https://demo.docusign.net/restapi")
 _ACCOUNT_ID = os.environ.get("MAVERICK_DOCUSIGN_MCP_ACCOUNT_ID", "")
@@ -48,7 +61,7 @@ def _account_id(client: ds.ApiClient, access_token: str) -> str:
     raise RuntimeError("No DocuSign accounts found for this token")
 
 
-@mcp.tool()
+@provider_tool
 def list_envelopes(ctx: Context, from_date: str = "", status: str = "") -> dict:
     """List DocuSign envelopes. Optionally filter by from_date and status."""
     access_token = _bearer_token(ctx)
@@ -74,7 +87,7 @@ def list_envelopes(ctx: Context, from_date: str = "", status: str = "") -> dict:
     return {"envelopes": envelopes, "total": len(envelopes)}
 
 
-@mcp.tool()
+@provider_tool
 def get_envelope(ctx: Context, envelope_id: str) -> dict:
     """Get detailed status and metadata for a specific DocuSign envelope."""
     access_token = _bearer_token(ctx)
@@ -97,7 +110,7 @@ def get_envelope(ctx: Context, envelope_id: str) -> dict:
     }
 
 
-@mcp.tool()
+@provider_tool
 def list_templates(ctx: Context, search_text: str = "") -> dict:
     """List available DocuSign templates."""
     access_token = _bearer_token(ctx)
@@ -122,7 +135,7 @@ def list_templates(ctx: Context, search_text: str = "") -> dict:
     return {"templates": templates, "total": len(templates)}
 
 
-@mcp.tool()
+@provider_tool
 def get_template(ctx: Context, template_id: str) -> dict:
     """Get a DocuSign template definition including roles and documents."""
     access_token = _bearer_token(ctx)
@@ -160,7 +173,7 @@ def get_template(ctx: Context, template_id: str) -> dict:
     }
 
 
-@mcp.tool()
+@provider_tool
 def send_envelope_from_template(
     ctx: Context,
     template_id: str,
@@ -193,7 +206,7 @@ def send_envelope_from_template(
     return {"envelope_id": result.envelope_id, "status": result.status, "uri": result.uri}
 
 
-@mcp.tool()
+@provider_tool
 def list_envelope_recipients(ctx: Context, envelope_id: str) -> dict:
     """List all recipients and their signing status for an envelope."""
     access_token = _bearer_token(ctx)

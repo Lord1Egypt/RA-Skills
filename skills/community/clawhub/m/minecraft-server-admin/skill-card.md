@@ -1,44 +1,64 @@
-## Description: <br>
-Execute Minecraft Java Edition admin commands through the RCON remote console for player moderation, whitelist management, item and state commands, world rules, broadcast messages, and recent log review on servers you control. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Execute Minecraft Java Edition admin commands through the RCON remote console for player moderation, whitelist management, item and world state changes, broadcast messages, and recent log review on servers the user controls.
 
-## Publisher: <br>
-[en1r0py1865](https://clawhub.ai/user/en1r0py1865) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[en1r0py1865](https://clawhub.ai/user/en1r0py1865)
 
-## Use Case: <br>
-External server administrators and developers use this skill to manage Minecraft Java Edition servers they control through RCON, including moderation, world state changes, broadcasts, and recent log review. It is intended for in-game administration, not server lifecycle management, backups, or plugin installation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: RCON credentials provide full administrator access to the target Minecraft server. <br>
-Mitigation: Install only for servers you control, keep MC_RCON_PASSWORD secret, and restrict RCON network exposure. <br>
-Risk: Destructive or privilege-changing commands can ban users, grant operator privileges, modify large world areas, stop the server, or pause auto-save. <br>
-Mitigation: Review every generated command before execution and require confirmation for high-impact actions such as ban, op, fill, kill, stop, and save-off. <br>
-Risk: Log analysis and audit memory can expose or retain player activity, chat, command history, and administrative actions. <br>
-Mitigation: Limit log access to necessary files and handle generated summaries and audit entries as server administration records. <br>
+## Use Case:
 
+External server administrators and developers use this skill to operate Minecraft Java Edition servers through RCON, including moderation, server communication, world adjustments, and recent log review.
 
-## Reference(s): <br>
-- [Vanilla Command Reference](references/commands.md) <br>
-- [Minecraft Server Log Patterns](references/log-patterns.md) <br>
-- [Project homepage](https://github.com/en1r0py1865/minecraft-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Analysis, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and optional JSON log summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May execute RCON commands against a configured Minecraft server and may summarize recent server logs when MC_SERVER_LOG is set.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can issue high-impact live server commands through RCON, including bans, operator changes, world edits, entity removal, and shutdown.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only on Minecraft servers you control and require explicit human review before destructive or privilege-changing commands are executed.
+
+Risk: RCON exposure or weak credentials could allow unauthorized server administration.
+
+Mitigation: Bind RCON to localhost or a trusted tunnel/VPN and use a dedicated strong RCON password.
+
+Risk: Recent server logs may contain player activity, chat, command history, or operational details.
+
+Mitigation: Enable MC_SERVER_LOG only when that information is appropriate for the agent to inspect.
+
+Risk: The release evidence flags an unnecessary unpinned npm install dependency.
+
+Mitigation: Remove the unused dependency or pin and review it before deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/en1r0py1865/skills/minecraft-server-admin)
+- [Project Homepage](https://github.com/en1r0py1865/minecraft-skill)
+- [Vanilla Command Reference](references/commands.md)
+- [Minecraft Server Log Patterns](references/log-patterns.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and optional JSON log-analysis output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js and RCON environment variables; optional log analysis reads MC_SERVER_LOG when configured.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

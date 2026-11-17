@@ -1,0 +1,66 @@
+{
+  "version": "intake@1",
+  "email": "",
+  "displayName": "张三",
+  "birth": {
+    "localDate": "1992-08-16",
+    "localTime": "07:30",
+    "timezone": "Asia/Shanghai",
+    "latitude": 31.2304,
+    "longitude": 121.4737,
+    "accuracy": "exact",
+    "dayBoundarySect": 1,
+    "sex": "male"
+  },
+  "primaryQuestion": "我接下来两年到底该继续留在现在的公司，还是应该主动跳去更高风险但回报更高的岗位？",
+  "optionalQuestions": [
+    "我在关系里为什么总是容易先投入、后失衡？",
+    "如果未来三年想提升财富积累，最该避开的结构性错误是什么？"
+  ],
+  "tradeoffs": {
+    "decisionSpeed": "balanced",
+    "autonomy": "autonomy",
+    "risk": "balanced",
+    "depthBreadth": "depth",
+    "structureFlexibility": "structure",
+    "soloTeam": "team",
+    "stabilityGrowth": "growth",
+    "recognitionCraft": "craft"
+  },
+  "lifeEvidence": [
+    {
+      "situation": "上一份工作里我负责一个长期复杂项目，前期投入很大但回报迟迟不明显。",
+      "action": "我还是坚持把框架和细节都搭完，宁愿慢一些也要把结构打牢。",
+      "outcome": "项目后期效果很好，但中间我承受了很大的不确定和内耗。",
+      "lesson": "我适合做长期价值高的事，但要提早给自己设置阶段反馈。"
+    },
+    {
+      "situation": "感情里我遇到过对方表达不清、推进忽冷忽热的关系。",
+      "action": "我会先主动理解和包容，试图把关系拉回稳定状态。",
+      "outcome": "最后常常变成我投入更多，对方却没有同步承担。",
+      "lesson": "我需要更早识别边界问题，而不是只靠投入来维持关系。"
+    }
+  ],
+  "milestones": [
+    {
+      "month": "2018-06",
+      "category": "career",
+      "event": "第一次进入高速成长型公司，承担核心项目。",
+      "impact": "positive"
+    },
+    {
+      "month": "2021-11",
+      "category": "relationship",
+      "event": "结束一段投入很深但长期失衡的关系。",
+      "impact": "mixed"
+    },
+    {
+      "month": "2024-03",
+      "category": "finance",
+      "event": "开始重新规划储蓄与投资结构。",
+      "impact": "positive"
+    }
+  ],
+  "contradictionAnswer": "我表面上看起来很稳，但内心其实经常在安全和突破之间反复拉扯。我既想要确定性，又怕自己被长期困住。",
+  "consent": true
+}

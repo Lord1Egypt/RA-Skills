@@ -1,42 +1,55 @@
-## Description: <br>
-The Cat API skill helps agents search and read cat breed and image data through the OOMOL `oo` CLI and `the_cat_api` connector. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use the OOMOL-connected The Cat API to search and read cat breed and image data.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and external users use this skill when they need an agent to look up The Cat API breeds and images through an OOMOL-connected account instead of calling the API directly. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires an installed and authenticated OOMOL oo CLI connection to The Cat API. <br>
-Mitigation: Run installer, login, or connection steps only when a command fails for that specific setup reason. <br>
-Risk: Future connector actions may add write or destructive behavior. <br>
-Mitigation: Inspect the live action schema and obtain explicit user approval before running any action that writes, deletes, or overwrites data. <br>
+## Use Case:
 
+Developers and agents use this skill to search The Cat API for cat breeds and images through an OOMOL-connected account, and to retrieve a specific breed or image.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/oomol/oo-the-cat-api) <br>
-- [The Cat API homepage](https://thecatapi.com/) <br>
-- [OOMOL oo CLI](https://github.com/oomol-lab/oo-cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API Calls, JSON, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only connector actions for breed and image lookup; requires an installed and authenticated OOMOL oo CLI connection.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: frontmatter and server evidence) <br>
+Risk: First-time setup may execute an unverified remote installer.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the installer and use a verified, pinned CLI installation; require approval before making installation changes.
+
+Risk: The CLI may automatically synchronize skills, and OOMOL-mediated API access may incur charges.
+
+Mitigation: Check the CLI's automatic skill-synchronization settings and OOMOL usage or billing before setup.
+
+## Reference(s):
+
+- [The Cat API](https://thecatapi.com/)
+- [The Cat API documentation](https://developers.thecatapi.com/)
+- [oo CLI](https://github.com/oomol-lab/oo-cli)
+
+## Skill Output:
+
+**Output Type(s):** [API calls, Shell commands, JSON, Guidance]
+
+**Output Format:** [Markdown instructions with shell commands, JSON request payloads, and API response data]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Response data varies by selected read action and request filters.]
+
+## Skill Version(s):
+
+1.0.6 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

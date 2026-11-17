@@ -1,39 +1,53 @@
-## Description: <br>
-Provides V2EX hot-topic monitoring prompts and formatted sample topic summaries for nodes, replies, and active users. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+V2EX Hot Topics Monitor helps agents answer requests about V2EX trending posts, technical discussions, digital life topics, and node-filtered community activity.
 
-## Publisher: <br>
-[guohongbin-git](https://clawhub.ai/user/guohongbin-git) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[guohongbin-git](https://clawhub.ai/user/guohongbin-git)
 
-## Use Case: <br>
-External users and developers use this skill to ask an agent for V2EX trending-topic summaries, node-filtered topics, and discussion signals in Chinese and English community contexts. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The packaged helper returns built-in sample V2EX topics rather than confirmed live community data. <br>
-Mitigation: Treat results as example summaries unless the publisher updates live fetching or clearly labels outputs as sample data; verify current topics on V2EX before relying on them. <br>
-Risk: Broad triggers such as "v2" may activate the skill unintentionally. <br>
-Mitigation: Narrow or disable broad triggers in environments where accidental activation would be disruptive. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [V2ex Hot Cn on ClawHub](https://clawhub.ai/guohongbin-git/v2ex-hot-cn) <br>
+## Use Case:
 
+External users and developers use this skill to request summaries of V2EX hot topics, node-specific discussions, reply counts, and active community posts. Review freshness before relying on the results because the release evidence reports fixed mock output rather than confirmed live V2EX fetching.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, guidance] <br>
-**Output Format:** [Markdown-style topic summaries or JSON from the helper script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The helper script supports optional limit and node filtering; bundled topic data is sample data.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and _meta.json) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill advertises live V2EX monitoring while the security evidence reports fixed mock topics, which can mislead users about freshness and provenance.
+
+Mitigation: Verify live fetching behavior before relying on current V2EX data, or clearly disclose the output as mock or demonstration data.
+
+Risk: No license identifier was provided in the server evidence or artifact files.
+
+Mitigation: Confirm terms of use with the publisher before redistribution or commercial deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/guohongbin-git/skills/v2ex-hot-cn)
+- [Publisher profile](https://clawhub.ai/user/guohongbin-git)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown or JSON-style topic lists with titles, nodes, reply counts, authors, and optional command examples.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and curl according to release metadata; script output may be mock data.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

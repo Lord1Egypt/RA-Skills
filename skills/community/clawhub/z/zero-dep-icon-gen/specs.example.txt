@@ -1,0 +1,35 @@
+# 示例 specs 文件 —— 每行一条，格式 slug:#主色,#次色,符号
+# 用法: python scripts/gen_icons.py --specs-file specs.example.txt -o out/
+
+# 网页 / 开发者工具
+web-console-cdp-upload:#4F46E5,#818CF8,browser
+
+# 云 / 部署
+aliyun-oss-static-deploy-skill:#0284C7,#38BDF8,cloud
+
+# 安全 / 证书
+aliyun-oidc-cert-renew:#D97706,#FBBF24,shield
+
+# 文件 / 归档
+wechat-file-organizer:#059669,#34D399,folder
+
+# 签到 / 完成
+workbuddy-checkin:#DC2626,#F87171,check
+
+# 下载器
+my-downloader:#7C3AED,#A78BFA,download
+
+# 自动化脚本
+my-automation:#0891B2,#22D3EE,gear
+
+# 检索类工具
+my-searcher:#DB2777,#F472B6,search
+
+# 点阵文字缩写（用 |text= 指定文字）
+my-brand:#1E293B,#64748B,text|text=WB
+
+# 次要/弱化变体（|shadow=1 压暗底色）
+my-tool-muted:#4F46E5,#818CF8,browser|shadow=1
+
+# 旋转符号（|rotate= 单位为度）
+my-rotated:#059669,#34D399,arrow-up|rotate=45

@@ -1,0 +1,112 @@
+{
+ "client": "example-mission-talks",
+ "episode": {
+  "id": "ep-007",
+  "title": "Episode 7: two days before launch",
+  "recorded": "1969",
+  "published": "2026-11-06T12:00:00Z",
+  "queue_item": "q001",
+  "source": "source.mp4",
+  "transcript": "work/transcript.json",
+  "guests": [
+   "two Apollo 11 crew members (CREDITS.md)"
+  ],
+  "guest_release": "on_file",
+  "guest_release_note": "EXAMPLE ONLY: invented. The footage is NASA's public-domain archive video",
+  "sponsor_segments": [],
+  "music": []
+ },
+ "clips": [
+  {
+   "id": "01",
+   "start": 1.25,
+   "end": 37.65,
+   "reframe": "center",
+   "focus_x": 0.47,
+   "fillers": true,
+   "hook_at": "top",
+   "logo_at": "high-left",
+   "why": "Days before launch, the question everyone asked: will the first words be scripted? He answers it straight. Stands alone, and the hook is the question viewers already have.",
+   "hook": "Were the first words on the Moon scripted?",
+   "title": "Were the first words on the Moon scripted? Apollo 11's commander, 1969",
+   "tags": [
+    "apollo 11",
+    "moon landing",
+    "space history"
+   ],
+   "captions": {
+    "TIKTOK": "Two days before launch, Apollo 11's commander was asked if his first words were written for him. #apollo11 #moonlanding #history",
+    "INSTAGRAM": "July 1969, two days before launch: were the first words on the Moon prepared?\n\nFull episode: link in bio.\n#apollo11 #moonlanding #history",
+    "YOUTUBE": "Apollo 11's commander in 1969 on whether his first words on the Moon were prepared. #Shorts"
+   }
+  },
+  {
+   "id": "02",
+   "start": 55.19,
+   "end": 66.93,
+   "reframe": "center",
+   "focus_x": 0.57,
+   "fillers": true,
+   "track": [
+    [
+     55.19,
+     0.59
+    ],
+    [
+     57.0,
+     0.57
+    ],
+    [
+     58.0,
+     0.52
+    ],
+    [
+     59.0,
+     0.5
+    ],
+    [
+     67.93,
+     0.5
+    ]
+   ],
+   "hook_at": "top",
+   "logo_at": "high-right",
+   "why": "One short, quotable answer that applies to any risky project: the danger is what you overlooked. Under 15 seconds, made for a rewatch.",
+   "hook": "The most dangerous part of Apollo 11",
+   "title": "The most dangerous part of Apollo 11, from its command module pilot (1969)",
+   "tags": [
+    "apollo 11",
+    "risk",
+    "space history"
+   ],
+   "captions": {
+    "TIKTOK": "Asked for the most dangerous moments of the flight, the command module pilot gave the answer every engineer knows. #apollo11 #engineering #space",
+    "INSTAGRAM": "The most dangerous part of any mission, from Apollo 11's command module pilot in July 1969.\n\nFull episode: link in bio.\n#apollo11 #engineering #space",
+    "YOUTUBE": "Apollo 11's command module pilot in 1969 on what the real danger of a mission is. #Shorts"
+   }
+  },
+  {
+   "id": "03",
+   "start": 75.33,
+   "end": 92.91,
+   "reframe": "center",
+   "focus_x": 0.47,
+   "fillers": true,
+   "hook_at": "top",
+   "logo_at": "none",
+   "why": "A funny, human complaint from the one crew member who would orbit alone: no TV on board. Opens on the line, ends on the punchline.",
+   "hook": "The man who missed the Moonwalk on TV",
+   "title": "Apollo 11's command module pilot had one complaint (1969)",
+   "tags": [
+    "apollo 11",
+    "moon landing",
+    "funny"
+   ],
+   "captions": {
+    "TIKTOK": "The one man on Apollo 11 who couldn't watch the Moonwalk on TV. #apollo11 #moonlanding #history",
+    "INSTAGRAM": "Apollo 11's command module pilot, two days before launch, with one complaint.\n\nFull episode: link in bio.\n#apollo11 #moonlanding #history",
+    "YOUTUBE": "Apollo 11's command module pilot in 1969 on the one thing missing from his spacecraft. #Shorts"
+   }
+  }
+ ]
+}

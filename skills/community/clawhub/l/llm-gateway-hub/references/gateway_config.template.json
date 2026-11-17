@@ -1,0 +1,96 @@
+{
+  "gateway_version": "1.1",
+  "note": "统一模型网关配置模板（V1.1，8 平台预留）。填入各家 API Key（绝密，仅本机私有，严禁进云/网盘/代码仓库）。新平台接入=复制一个 provider 条目改参数即可（见 references/接入新平台指引.md）。",
+  "providers": {
+    "doubao": {
+      "enabled": true,
+      "base_url": "https://ark.cn-beijing.volces.com/api/v3",
+      "api_key": "<在此填入你的_API_Key>",
+      "default_text_model": "doubao-seed-2-1-turbo-260628",
+      "default_image_model": "doubao-seedream-4-0-20260415",
+      "image_size": "1920x1080",
+      "price_text_in": 3.0,
+      "price_text_out": 15.0,
+      "price_image_per": 0.2,
+      "note": "模型ID需带版本后缀（-260628），裸名报NotFound；可用 models 子命令查真实ID"
+    },
+    "qwen": {
+      "enabled": false,
+      "base_url": "https://dashscope.aliyuncs.com/compatible-mode/v1",
+      "api_key": "<在此填入你的_API_Key>",
+      "default_text_model": "qwen-plus",
+      "default_image_model": "qwen-image-3.0",
+      "image_size": "1920x1080",
+      "price_text_in": 0.8,
+      "price_text_out": 2.0,
+      "price_image_per": 0.18,
+      "note": "阿里百炼；Key 创建时建议限 IP 白名单+模型范围（sk- 开头）"
+    },
+    "deepseek": {
+      "enabled": false,
+      "base_url": "https://api.deepseek.com/v1",
+      "api_key": "<在此填入你的_API_Key>",
+      "default_text_model": "deepseek-chat",
+      "default_image_model": "",
+      "price_text_in": 2.0,
+      "price_text_out": 8.0,
+      "price_image_per": 0.2,
+      "note": "性价比极高；v4 系列更便宜"
+    },
+    "kimi": {
+      "enabled": false,
+      "base_url": "https://api.moonshot.cn/v1",
+      "api_key": "<在此填入你的_API_Key>",
+      "default_text_model": "moonshot-v1-8k",
+      "default_image_model": "",
+      "price_text_in": 12.0,
+      "price_text_out": 12.0,
+      "price_image_per": 0.2,
+      "note": "超长文本强（200万字上下文）"
+    },
+    "zhipu": {
+      "enabled": false,
+      "base_url": "https://open.bigmodel.cn/api/paas/v4",
+      "api_key": "<在此填入你的_API_Key>",
+      "default_text_model": "glm-4",
+      "default_image_model": "cogview-3",
+      "price_text_in": 5.0,
+      "price_text_out": 5.0,
+      "price_image_per": 0.2,
+      "note": "智谱 GLM，中文老牌，工具调用好"
+    },
+    "hunyuan": {
+      "enabled": false,
+      "base_url": "https://api.hunyuan.cloud.tencent.com/v1",
+      "api_key": "<在此填入你的_API_Key>",
+      "default_text_model": "hunyuan-turbo",
+      "default_image_model": "",
+      "price_text_in": 3.0,
+      "price_text_out": 9.0,
+      "price_image_per": 0.2,
+      "note": "腾讯混元，腾讯生态"
+    },
+    "siliconflow": {
+      "enabled": false,
+      "base_url": "https://api.siliconflow.cn/v1",
+      "api_key": "<在此填入你的_API_Key>",
+      "default_text_model": "deepseek-ai/DeepSeek-V3",
+      "default_image_model": "black-forest-labs/FLUX.1-schnell",
+      "price_text_in": 1.0,
+      "price_text_out": 2.0,
+      "price_image_per": 0.1,
+      "note": "聚合平台，一个Key调多家开源模型，测试利器"
+    },
+    "ollama": {
+      "enabled": false,
+      "base_url": "http://localhost:11434/v1",
+      "api_key": "ollama",
+      "default_text_model": "qwen2.5:7b",
+      "default_image_model": "",
+      "price_text_in": 0.0,
+      "price_text_out": 0.0,
+      "price_image_per": 0.0,
+      "note": "本地模型，零成本离线，断网兜底；需本机已装 Ollama"
+    }
+  }
+}

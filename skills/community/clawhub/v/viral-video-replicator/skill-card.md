@@ -1,44 +1,65 @@
-## Description: <br>
-Reverse-engineers reference fashion or short-form videos into structured analysis, transcripts, Seedance 2.0 replication prompts, and platform operating guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Viral Video Replicator reverse-engineers reference fashion videos into Seedance 2.0 prompts using frame extraction, speech transcription, vision analysis, and optional face or clothing replacement modes.
 
-## Publisher: <br>
-[dingtom336-gif](https://clawhub.ai/user/dingtom336-gif) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dingtom336-gif](https://clawhub.ai/user/dingtom336-gif)
 
-## Use Case: <br>
-External creators, marketers, and developers use this skill to analyze existing reference videos and produce reusable Seedance 2.0 prompts with optional face, body, or clothing replacement modes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow may send selected frames, audio, transcripts, and presigned storage URLs to external cloud services for processing. <br>
-Mitigation: Process only media the user has rights and consent to analyze, and disclose when media or audio leaves the local machine. <br>
-Risk: The skill asks users for Volcano, TOS, and ASR credentials during setup. <br>
-Mitigation: Use temporary or least-privilege credentials, prefer an environment secret store, and avoid pasting long-lived keys into chat. <br>
+## Use Case:
 
+External developers and content teams use this skill to analyze existing fashion short-form videos and generate structured video analysis, Seedance 2.0 replication prompts, transcripts, operating guidance, and replacement summaries for single or batch workflows.
 
-## Reference(s): <br>
-- [FFmpeg Frame Extraction](references/frame-extraction.md) <br>
-- [ASR Transcription Pipeline](references/asr-pipeline.md) <br>
-- [Vision LLM Analysis](references/vision-analysis.md) <br>
-- [Reverse Prompt Assembly](references/reverse-prompt.md) <br>
-- [Fallbacks](references/fallbacks.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with JSON analysis, prompts, transcripts, SOP guidance, and inline shell or configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports single-video and batch workflows, four replacement modes, and degraded outputs when FFmpeg, ASR, storage, or vision analysis fails.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: Video frames, audio, and transcripts may be sent to Volcano or ByteDance-related services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with videos and likenesses the user has rights to process, and avoid sensitive or regulated media unless approved for those services.
+
+Risk: The skill asks users to provide reusable API and object-storage credentials.
+
+Mitigation: Use temporary, least-privilege credentials scoped to a dedicated bucket or prefix, avoid pasting long-lived keys into chat, and rotate credentials after use.
+
+Risk: The release security verdict is suspicious.
+
+Mitigation: Review the skill before installing and install only from a pinned, reviewed revision with pinned dependencies.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dingtom336-gif/skills/viral-video-replicator)
+- [README](README.md)
+- [FFmpeg Frame Extraction](references/frame-extraction.md)
+- [ASR Transcription Pipeline](references/asr-pipeline.md)
+- [Vision LLM Analysis](references/vision-analysis.md)
+- [Reverse Prompt Assembly](references/reverse-prompt.md)
+- [Fallbacks](references/fallbacks.md)
+- [Volcano Ark console](https://console.volcengine.com/ark)
+- [Seed-ASR-2.0 API endpoint](https://openspeech.bytedance.com/api/v3/auc/bigmodel)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown responses with JSON analysis blocks, generated Seedance prompts, transcript text, SOP guidance, and shell command snippets.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include mode-specific @image references, replacement summaries, and degraded-mode warnings when services are unavailable.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

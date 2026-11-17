@@ -1,0 +1,9 @@
+{
+  "name": "identity-verify",
+  "normalizedName": "identity-verify",
+  "description": "确认当前会话的登录入口身份，用于回答「你是哪个入口」「是不是同一个 AI 的另一个账号」「标记别搞错」这类问题。属三锚核验中身份锚（Identity Anchor）的最小落地实现：只读单一权威配置文件确诊入口归属，不猜测、不反复扫描；确诊不了直接向本人确认；确认后按既定入口标记发言，避免跨入口串号。省积分（一次读取即完成）。触发词：你是谁、哪个入口、身份确认、入口核验、身份锚、别搞错标记、新会话开场自检、identity verify。本技能为通用方法论工具，非医疗器械 / 非医疗软件，无疗效或临床声明；详见包内免责声明。",
+  "author": "诺卫(Phylax)@SynomosAI",
+  "copyright": "SynomosAI",
+  "version": "1.0.0",
+  "license": "MIT"
+}

@@ -1,44 +1,54 @@
-## Description: <br>
-Hot Content Creator helps agents fetch multi-platform trending topics, select content directions, generate Xiaohongshu-style cover and avatar assets, and draft human-facing social content. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Hot Content Creator helps an agent gather trending topics, propose content directions, create cover and avatar image workflows, and draft more natural social media copy.
 
-## Publisher: <br>
-[pengpengliu1212-art](https://clawhub.ai/user/pengpengliu1212-art) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pengpengliu1212-art](https://clawhub.ai/user/pengpengliu1212-art)
 
-## Use Case: <br>
-Content creators, social media operators, and marketers use this skill to turn current Chinese social platform trends into five candidate content angles, visual cover or avatar generation workflows, and platform-ready post copy. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global, with practical dependence on access to the configured trend, search, and image-generation services. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Trend, search, or image-generation requests may send user-provided topics to external services. <br>
-Mitigation: Avoid entering sensitive private topics and review the configured providers before using the skill for confidential work. <br>
-Risk: The artifact references user-configured API credentials through a missing TOOLS.md setup path. <br>
-Mitigation: Verify the intended API provider and use narrowly scoped keys before installation or execution. <br>
-Risk: Broad trigger phrases such as hot content creation or trend chasing could activate the workflow unintentionally. <br>
-Mitigation: Narrow or customize trigger phrases if accidental activation would disrupt normal agent use. <br>
-Risk: AI-generated visuals or copy may be mistaken for non-AI content. <br>
-Mitigation: Keep the workflow's AI-generated image and copy disclosures, and review generated claims before publication. <br>
+## Use Case:
 
+Content creators and social media operators use this skill to identify timely topics, choose a content angle, generate image concepts, and produce platform-ready copy for channels such as Xiaohongshu, Douyin, Weibo, and Zhihu.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/pengpengliu1212-art/hot-content-creator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-style trend reports, numbered content direction options, image-generation guidance, and social post copy.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May call configured trend, search, and image-generation services; generated images and final copy should include AI-generated content disclosure where appropriate.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.6.2 (source: server release evidence) <br>
+Risk: The skill uses external trend/search and image-generation services that may require user-configured API keys.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use scoped credentials where possible and avoid entering sensitive prompts, private reference images, or confidential campaign data.
+
+Risk: Generated trend summaries, images, and social posts may be inaccurate, misleading, or unsuitable for publication without review.
+
+Mitigation: Review factual claims, visual outputs, platform fit, and required AI-generated-image disclosures before publishing.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/pengpengliu1212-art/skills/hot-content-creator)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/pengpengliu1212-art)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, image assets, configuration, guidance]
+
+**Output Format:** [Markdown reports, structured prompts, generated image assets, and social media copy.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses user-configured external trend/search and image-generation services; generated content should be reviewed before publishing.]
+
+## Skill Version(s):
+
+1.6.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

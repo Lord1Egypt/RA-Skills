@@ -1,44 +1,56 @@
-## Description: <br>
-Guides agents through building cryptographic PnL proof for trading bots using Ed25519 signatures, Merkle claim chains, and GreenHelix API examples. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build cryptographic PnL proof workflows for trading bots using Ed25519 signatures and Merkle claim chains, with Python and API integration examples.
 
-## Publisher: <br>
-[mirni](https://clawhub.ai/user/mirni) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mirni](https://clawhub.ai/user/mirni)
 
-## Use Case: <br>
-Developers and trading bot operators use this guide to create a cryptographic agent identity, submit signed trading performance metrics, build Merkle proof chains, and expose verifiable reputation data through GreenHelix. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The guide uses sensitive signing keys, bearer tokens, and trading-performance submissions in API examples. <br>
-Mitigation: Use a dedicated test signing key first, do not reuse wallet or exchange keys, and keep credentials out of logs, shared files, and committed configuration. <br>
-Risk: Examples reference GreenHelix endpoints, and running adapted snippets against production could submit real trading metrics. <br>
-Mitigation: Verify whether each snippet targets sandbox or production before running it, and start with sandbox or test data. <br>
-Risk: Submitted trading metrics may become discoverable or retained by GreenHelix. <br>
-Mitigation: Submit only performance data that is appropriate for external discovery and retention under the user's compliance requirements. <br>
+## Use Case:
 
+Developers and trading-bot operators use this guide to design reputation workflows that sign bot identities, submit performance metrics, build Merkle claim chains, and query verification or reputation data through GreenHelix APIs.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/mirni/greenhelix-verified-bot-reputation) <br>
-- [GreenHelix Sandbox](https://sandbox.greenhelix.net) <br>
-- [GreenHelix API Documentation](https://api.greenhelix.net/docs) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guide with Python and shell examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user-supplied AGENT_SIGNING_KEY and may require API bearer tokens when examples are adapted for use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.1 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Private signing keys may be exposed if generated keys, AGENT_SIGNING_KEY values, or example output are pasted into terminals, chats, logs, notebooks, or CI output.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Store signing keys in a proper secret store, avoid printing private keys, and rotate any key generated or exposed while following the examples.
+
+Risk: Sandbox and production GreenHelix API usage can be confused, which may send real trading metrics or credentials to the wrong environment.
+
+Mitigation: Choose the sandbox or production base URL explicitly, confirm whether an API key is required, and avoid sending real trading data or credentials until the target environment is clear.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/mirni/skills/greenhelix-verified-bot-reputation)
+- [ClawHub publisher profile](https://clawhub.ai/user/mirni)
+- [GreenHelix API documentation](https://api.greenhelix.net/docs)
+- [GreenHelix sandbox](https://sandbox.greenhelix.net)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guide with inline Python, JSON, and curl examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Non-executable guide; examples reference AGENT_SIGNING_KEY and GreenHelix sandbox or production endpoints.]
+
+## Skill Version(s):
+
+1.3.1 (source: server release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

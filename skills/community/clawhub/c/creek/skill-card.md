@@ -1,43 +1,53 @@
-## Description: <br>
-Deploy and manage applications on Creek via the Creek CLI, including initialization, deployments, status checks, project and deployment history, rollbacks, environment variables, custom domains, and development server workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deploy and manage applications on Creek via the Creek CLI, including init, deploy, status, projects, deployments, rollback, environment variables, custom domains, and dev server workflows.
 
-## Publisher: <br>
-[linyiru](https://clawhub.ai/user/linyiru) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[linyiru](https://clawhub.ai/user/linyiru)
 
-## Use Case: <br>
-Developers and engineers use this skill to operate Creek deployments from an agent, including authentication, project setup, deployment, rollback, environment-variable management, and custom-domain management. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide agents through live deployment, rollback, domain, and environment-variable operations. <br>
-Mitigation: Require explicit user approval before commands that deploy, rollback, modify domains, or change environment variables. <br>
-Risk: The skill documents token-based authentication and commands that can reveal environment-variable values. <br>
-Mitigation: Use a limited-scope Creek token and avoid showing environment-variable values unless the user explicitly needs them. <br>
-Risk: The artifact encourages `--yes`, which can skip confirmation prompts. <br>
-Mitigation: Do not use skipped confirmations for destructive or account-affecting operations unless the user has approved the exact action. <br>
+## Use Case:
 
+Developers and engineers use Creek to deploy, configure, troubleshoot, and manage web applications through the Creek CLI, including rollbacks, environment variables, custom domains, and preview sandboxes.
 
-## Reference(s): <br>
-- [Creek skill page](https://clawhub.ai/linyiru/creek) <br>
-- [Publisher profile](https://clawhub.ai/user/linyiru) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON-oriented guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses Creek CLI JSON output and breadcrumb fields to guide follow-up commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: server release metadata) <br>
+Risk: The skill can affect live deployments, environment variables, and custom domains, and it recommends using --yes to skip prompts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation before rollback, displaying or removing environment values, changing domains, or running any command with --yes.
+
+Risk: The skill depends on the Creek CLI and a CREEK_TOKEN for authenticated workflows.
+
+Mitigation: Verify the Creek CLI package source and version before use, keep tokens out of logs, and run the CLI without elevated privileges.
+
+## Reference(s):
+
+- [Creek Skill on ClawHub](https://clawhub.ai/linyiru/skills/creek)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses Creek CLI JSON output and breadcrumbs to guide next actions.]
+
+## Skill Version(s):
+
+2.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

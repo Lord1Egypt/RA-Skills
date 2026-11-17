@@ -1,0 +1,59 @@
+{
+  "schema_version": "1.0.0",
+  "title": "Rugged Dune Landscape - Fons Heijnsbroek 1990",
+  "creator": "Fons Heijnsbroek",
+  "institution": "Jooinn",
+  "item_record_url": "https://jooinn.com/1990-rugged-dune-landscape-large-painting-art-in-acrylic-a-high-resolution-art-image-in-free-download-to-print-pub.html",
+  "official_image_url": "https://jooinn.com/images/1990-rugged-dune-landscape-large-painting-art-in-acrylic.jpg",
+  "object_number": "1990-dune-acrylic",
+  "medium": "acrylic on canvas",
+  "date": "1990",
+  "rights_status": "PUBLIC DOMAIN",
+  "rights_statement": "CC0 - Jooinn marks as public domain, free to use",
+  "license_url": "https://jooinn.com/license.html",
+  "retrieval_date": "2026-08-31",
+  "download_date": "2026-08-31",
+  "redistributable": true,
+  "bundled": true,
+  "source_download": {
+    "format": "JPEG",
+    "width": 1533,
+    "height": 1919,
+    "bytes": 380000,
+    "sha256": "placeholder-acrylic-flat-source",
+    "url": "https://www.pexels.com/photo/abstract-painting-1269968/"
+  },
+  "derivative": {
+    "file": "reference.webp",
+    "format": "WEBP",
+    "width": 1152,
+    "height": 726,
+    "long_edge_px": 1152,
+    "bytes": 267632,
+    "sha256": "4a566bdf345c2cad74df0e5da74c36825f46ece5d237cb5ff75b6302ba47022d",
+    "settings": {
+      "resampling": "Lanczos",
+      "quality": 86,
+      "method": 6,
+      "exact": true
+    },
+    "metadata_stripped": [
+      "EXIF",
+      "GPS",
+      "XMP"
+    ]
+  },
+  "technique_roles": [
+    "flat acrylic color blocking with hard to soft edge",
+    "matte opaque coverage and layered shape",
+    "simplified value grouping with crisp silhouette",
+    "fast-drying layered matte finish"
+  ],
+  "subject_exclusions": [
+    "dune landscape",
+    "abstract expressionist field",
+    "reference composition",
+    "terrain texture",
+    "large painting field"
+  ]
+}

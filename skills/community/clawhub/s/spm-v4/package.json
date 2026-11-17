@@ -1,0 +1,24 @@
+{
+  "name": "openclaw-spm",
+  "version": "4.0.0",
+  "description": "SPM — Super Project Manager: Production-grade software project management engine for AI coding agents (Node.js v4)",
+  "type": "module",
+  "main": "src/index.js",
+  "bin": {
+    "spm": "./src/cli.js"
+  },
+  "scripts": {
+    "test": "node --experimental-vm-modules node_modules/.bin/jest",
+    "spm": "node src/cli.js"
+  },
+  "dependencies": {
+    "commander": "^15.0.0",
+    "pino": "^10.3.1",
+    "proper-lockfile": "^4.1.2",
+    "yaml": "^2.9.0",
+    "zod": "^4.4.3"
+  },
+  "devDependencies": {
+    "jest": "^30.4.2"
+  }
+}

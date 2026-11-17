@@ -1,41 +1,58 @@
-## Description: <br>
-Practical Stoic philosophy applied to daily life for users who need a resilience framework, a daily mental practice, or grounding during adversity. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Practical Stoic philosophy applied to daily life for resilience, daily mental practice, and handling adversity through concrete exercises.
 
-## Publisher: <br>
-[howtousehumans](https://clawhub.ai/user/howtousehumans) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[howtousehumans](https://clawhub.ai/user/howtousehumans)
 
-## Use Case: <br>
-External users use this skill for non-clinical, philosophy-based coaching on applying Stoic practices such as the dichotomy of control, negative visualization, voluntary discomfort, and evening review to everyday stress and adversity. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Voluntary discomfort practices could be unsafe for some users depending on health, weather, medications, mobility, pregnancy status, or eating history. <br>
-Mitigation: Treat these practices as optional and avoid any discomfort exercise that could be unsafe for the user's circumstances. <br>
-Risk: Users may seek help for serious medical, mental-health, crisis, or safety concerns. <br>
-Mitigation: Position the skill as non-clinical philosophy-based coaching and direct users to professional medical or mental-health support for serious concerns. <br>
+## Use Case:
 
+External users and agents use this skill to apply Stoic practices such as the dichotomy of control, negative visualization, voluntary discomfort, perspective-taking, and evening review when facing stress, worry, or adversity.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/howtousehumans/stoicism-daily-practice) <br>
-- [Publisher profile](https://clawhub.ai/user/howtousehumans) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, text] <br>
-**Output Format:** [Markdown and plain text coaching guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Non-clinical philosophy-based coaching; may include optional daily practice suggestions and safety caveats.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill requests filesystem access that is not needed for ordinary Stoic coaching guidance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid granting filesystem access unless the runtime platform requires it for installation or operation.
+
+Risk: The installer command is unpinned, which can make the installed package version harder to verify.
+
+Mitigation: Use a pinned and trusted installer path, and review the package before installation.
+
+Risk: Voluntary discomfort practices such as cold exposure, skipping meals, sleeping on the floor, or weather exposure may be unsafe for some users.
+
+Mitigation: Treat these practices as optional and avoid them when health, eating-disorder history, age, or unsafe conditions make them risky.
+
+## Reference(s):
+
+- [Stoicism Daily Practice on ClawHub](https://clawhub.ai/howtousehumans/skills/stoicism-daily-practice)
+- [howtousehumans publisher profile](https://clawhub.ai/user/howtousehumans)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or conversational text with structured practice guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include reflective prompts, daily practice steps, and situation-specific framing.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

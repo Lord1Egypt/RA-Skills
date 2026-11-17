@@ -1,0 +1,16 @@
+{
+  "description": "Score and improve AI agent responses across six dimensions (intent, reasoning, tools, safety, efficiency, value). Use when an agent's answer was wrong, the user said 'that's not right' or 'actually no', output quality dropped, or you're tuning an agent before deployment.",
+  "publisher": "huanmeng9527",
+  "license": "MIT-0",
+  "useCase": "Score AI agent turns across six dimensions when something was wrong, quality dropped, or you need a baseline before deployment. Designed for moment-of-need triggers (user corrections, regressions, A/B testing).",
+  "deploymentGeography": "Global",
+  "risks": [
+    {"risk": "Composite scores can mask regressions", "mitigation": "Inspect per-dimension scores, not just average"},
+    {"risk": "LLM-as-judge inherits judge-model biases", "mitigation": "Validate against human raters periodically"},
+    {"risk": "Raw traces may contain user data", "mitigation": "Redact before persistence"}
+  ],
+  "output": {
+    "types": ["text", "markdown", "code", "configuration", "guidance"],
+    "format": "Markdown guidance with inline JSON evaluation examples"
+  }
+}

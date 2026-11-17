@@ -1,23 +1,24 @@
 ---
-name: Amazon Listing Audit Pro — 8-Dimension Health Check
-version: 1.0.1
+name: amazon-listing-audit-pro
 description: >
   Comprehensive listing health check and optimization engine for Amazon sellers.
   Scores listings across 8 dimensions, benchmarks against category leaders,
   identifies keyword gaps, and generates data-backed improvement recommendations.
   Supports single ASIN or bulk audit (10-100+ ASINs for agencies).
-  Uses all 11 APIClaw API endpoints with cross-validation.
+  Uses all 11 ZooData API endpoints with cross-validation.
   Use when user asks about: listing audit, listing optimization, listing score,
   listing quality, improve my listing, listing review, listing diagnosis,
   title optimization, bullet point optimization, keyword gaps, listing benchmark,
   A+ content, listing health check, listing comparison.
-  Requires APICLAW_API_KEY.
-author: SerendipityOneInc
-homepage: https://github.com/SerendipityOneInc/APIClaw-Skills
-metadata: {"openclaw": {"requires": {"env": ["APICLAW_API_KEY"]}, "primaryEnv": "APICLAW_API_KEY"}}
+  Requires ZOODATA_API_KEY.
+metadata:
+  version: "1.0.8"
+  author: SerendipityOneInc
+  homepage: https://github.com/SerendipityOneInc/ZooData-Skills
+  openclaw: {"requires": {"env": ["ZOODATA_API_KEY"]}, "primaryEnv": "ZOODATA_API_KEY"}
 ---
 
-# APIClaw — Amazon Listing Audit Pro
+# ZooData — Amazon Listing Audit Pro
 
 > 8-dimension health check. Benchmark against leaders. Fix what matters most. Respond in user's language.
 
@@ -25,12 +26,28 @@ metadata: {"openclaw": {"requires": {"env": ["APICLAW_API_KEY"]}, "primaryEnv": 
 
 | File | Purpose |
 |------|---------|
-| `{skill_base_dir}/scripts/apiclaw.py` | **Execute** for all API calls (run `--help` for params) |
+| `{skill_base_dir}/scripts/zoodata.py` | **Execute** for all API calls (run `--help` for params) |
 | `{skill_base_dir}/references/reference.md` | Load for exact field names or response structure |
 
 ## Credential
 
-Required: `APICLAW_API_KEY`. Get free key at [apiclaw.io/api-keys](https://apiclaw.io/en/api-keys).
+Required: `ZOODATA_API_KEY`. Get free key at [zoodata.ai/api-keys](https://zoodata.ai/en/api-keys).
+
+## Capabilities & Data Flow
+
+- **Network**: only `https://api.zoodata.ai` (Bearer `ZOODATA_API_KEY`). Setting `ZOODATA_BASE_URL` to an untrusted host (anything other than `api.zoodata.ai` / `*.zoodata.ai` / localhost) makes the CLI **refuse the request and withhold the key** — the Bearer token is never sent to an untrusted host.
+- **Execution**: bundled shared ZooData CLI `{skill_base_dir}/scripts/zoodata.py` (Python 3, stdlib-only). This skill allows `listing-audit`, `product`, `products`, `market`, `check`, plus the review fallback toolkit (`reviews-raw` / `review-tag-prompt` / `review-reduce-prompt` / `review-aggregate`). Do not invoke unrelated subcommands for this skill's tasks — the bundled manifest `{skill_base_dir}/scripts/allowed-commands.json` enforces this: the CLI refuses out-of-scope subcommands with a structured `COMMAND_NOT_ALLOWED` error before any API request.
+- **Local files**: a private temporary working dir (created with `mktemp -d`, removed when the fallback completes) during the review fallback; reads the optional credential store `~/.zoodata/config.json`.
+- **Sent to the API**: keywords, category paths, ASINs, marketplace/date and numeric filter values only. **Never sent**: budget, experience level, risk tolerance, or any other user-profile text — profile inputs map client-side to numeric filters.
+- **Credits**: every API call consumes account credits. For broad or ambiguous requests, state the estimated credit cost and confirm with the user before running multi-call scans. The composite `listing-audit` command executes ~18 API calls (~15-20 credits) in ONE invocation and has NO skip/trim flags — under a credit cap, use the granular commands instead.
+
+## Shared CLI Contract
+
+Before selecting or invoking the first command, read and apply the local `references/cli-contract.md`. Reapply it after every granular or composite result and before any fallback, additional call, state write, interpretation, or user-facing report. Use this skill's fallback logic only when the shared contract classifies the result as non-terminal.
+
+### Local Interface Failure Output
+
+For a terminal interface failure, respond in the user's language that the listing audit could not be completed, followed by the succeeded and failed endpoint identifiers. Do not issue a score, grade, rewrite, keyword-gap conclusion, or priority fix list. Keep control tokens, parameters, and retry logs internal unless diagnostics are requested.
 
 ## Input
 
@@ -41,8 +58,40 @@ Required: my_asin. Optional: keyword, category. Category is auto-detected from A
 1. **Category auto-detection**: categoryPath is auto-detected from ASIN. If `category_source` in output is `inferred_from_search`, confirm with user
 2. **All keyword-based endpoints MUST include `--category`**; ASIN-specific endpoints do NOT
 3. **Use API fields directly**: revenue=`sampleAvgMonthlyRevenue` (NEVER price×sales), sales=`monthlySalesFloor`, opportunity=`sampleOpportunityIndex`
-4. **reviews/analysis**: needs 50+ reviews; ASIN mode first, category fallback
+4. **reviews/analysis**: needs 50+ reviews; ASIN mode first, category fallback. Fallback chain when both fail:
+   1. **Lightweight**: `realtime/product` ratingBreakdown — only star distribution, no themes
+   2. **Full 11-dim insights** — bypass `/reviews/analysis` entirely:
+      a. `zoodata.py reviews-raw --asin X` → fetch up to 100 raw reviews (10 credits, ~60s)
+      b. For each review: render Map prompt via `zoodata.py review-tag-prompt --review '<json>'`
+         and have your own LLM produce JSON tags (sentiment + 11 dimensions)
+      c. Collect candidate phrases per dimension; for each dimension render
+         Reduce prompt via `zoodata.py review-reduce-prompt --label-type X --candidates '[...]'`
+         and have your LLM produce semantic clusters
+      d. `zoodata.py review-aggregate --reviews R --tagged T --clusters C`
+         → consumerInsights output compatible with `/reviews/analysis`
+   3. **Fallback caveats** (apply to the 4-step chain above — lessons from end-to-end validation):
+      - **Working dir**: `WORK=$(mktemp -d)` (private, 0700 — not a predictable path); remove it with `rm -rf "$WORK"` after `review-aggregate` succeeds or the fallback aborts
+      - **Step b CLI behavior**: `review-tag-prompt` RENDERS the prompt only; YOUR LLM produces the JSON. Render once to learn the schema, then produce tags for all N reviews in one in-context pass (don't call the CLI N times).
+      - **Step c candidate extraction** (Python one-liner):
+        `candidates = {d: sorted({el.strip().lower() for t in tagged for el in (t.get(d) or [])}) for d in DIMS}`
+      - **Small-sample rule (reviewCount<50)**: demote single-mention items 📊→🔍; NEVER attach table-level or section-header 📊 when any row inside is 🔍; suppress "🔴 Critical" verdicts on count=1
+      - **Scope**: fallback replaces ONLY the `/reviews/analysis` aggregation. This skill's primary workflow outputs (8-dimension audit scores, title/bullet/A+ checks, category-leader benchmarks) remain valid — do not re-run them.
 5. **Sales null fallback**: Monthly sales ≈ 300,000 / BSR^0.65, tag 🔍
+
+## On Missing Key
+
+When `ZOODATA_API_KEY` is not set (verify via `python {skill_base_dir}/scripts/zoodata.py check` — exits 2 if no key in env or `~/.zoodata/config.json`), stop before any evidence call. Tell the user that a ZooData API key is required, link to https://zoodata.ai/en/api-keys, and explain that the key may be set in the environment or local config. Do not substitute public knowledge or a "for reference only" analysis.
+## On 401 Invalid Key
+
+When `_transport.status=401`, stop further calls, tell the user that the configured key was rejected, direct them to https://zoodata.ai/en/api-keys, and do not fabricate missing data.
+
+## On 402 Credit Exhausted
+
+When `_transport.status=402`, stop further calls. Report where the workflow stopped, any compatible partial findings already gathered, and returned credit metadata when present; direct the user to https://zoodata.ai/en/pricing and do not fabricate missing data.
+
+## On Empty Target
+
+When the target ASIN's realtime lookup returns no data (`data.asin` empty), the `listing-audit` command now stops and returns `meta.audit_status = "not_auditable"` with `meta.target_status = "empty"` instead of benchmarking against an unfiltered (or category-mismatched) leader set. If you see this, tell the user the ASIN was not found / not indexed by ZooData (or a transient upstream failure), ask them to re-check the ASIN or retry, and do not present any competitor/benchmark comparison — there is none.
 
 ## Execution
 
@@ -76,7 +125,7 @@ Output language MUST match the user's input language. If the user asks in Chines
 
 ### Disclaimer (required, at the top of every report)
 
-> Data is based on APIClaw API sampling as of [date]. Monthly sales (`monthlySalesFloor`) are lower-bound estimates. This analysis is for reference only and should not be the sole basis for business decisions. Validate with additional sources before acting.
+> Data is based on ZooData API sampling as of [date]. Monthly sales (`monthlySalesFloor`) are lower-bound estimates. This analysis is for reference only and should not be the sole basis for business decisions. Validate with additional sources before acting.
 
 ### Confidence Labels (required, tag EVERY conclusion)
 
@@ -85,6 +134,22 @@ Output language MUST match the user's input language. If the user asks in Chines
 - 💡 **Directional** — suggestions, predictions, strategy (e.g. "consider entering $10-15 band 💡")
 
 Rules: Strategy recommendations are NEVER 📊. User criteria override AI judgment.
+
+**Aggregate-label rule (applies to ALL report output, not just fallback)**: NEVER attach 📊 to ANY element that aggregates or groups underlying content when ANY piece of that content is 🔍 or 💡. "Aggregate/grouping elements" include:
+- Section headers at EVERY level (`#`, `##`, `###`, `####`) — including top-level summary sections like "Overall Score", "Verdict", "Executive Summary"
+- Summary/score lines anywhere in the report (e.g. `## Overall Score — 27/100 · Grade F 📊` is WRONG if any Basis row inside is 🔍)
+- Table **column** headers in comparison tables (e.g. `**Target ASIN** 📊` as a column label is WRONG if any cell in that column contains 🔍)
+- Table row headers or row-aggregation labels (when the row aggregates multiple cells of mixed confidence)
+- Any other visual grouping label — bullet-list group titles, callout box titles, etc.
+
+A group-level 📊 implies the whole block/column/row is data-backed, which smuggles inferred/directional content into the 📊 tier via visual grouping. Either (a) **omit the group-level label entirely** (preferred when content mixes tiers), or (b) use the LOWEST confidence present inside (🔍 if any underlying content is 🔍; 💡 if any is 💡). This is a universal output-quality rule — it applies regardless of which fallback path (if any) was triggered.
+
+**Emoji reservation rule (closely related)**: The three confidence symbols `📊 🔍 💡` are RESERVED for confidence labeling. NEVER use them as decorative prefixes on section headers, table headers, or any aggregate element — even when you also include a correct confidence suffix on the same line. Example:
+- ❌ WRONG: `## 📊 Overall Score — 27/100 · Grade F 🔍` (the leading 📊 reads as a data-backed claim even though the trailing 🔍 is correct)
+- ✅ RIGHT: `## Overall Score — 27/100 · Grade F 🔍` (no decorative emoji, just the proper confidence suffix)
+- ✅ RIGHT: `## 🎯 Overall Score — 27/100 · Grade F 🔍` (use non-reserved decorative icons like 🎯 🧭 📋 📝 📂 🏁 🚨 🏆 🔔 when a visual prefix is desired)
+
+Decorative emoji ≠ confidence label — but from a reader's perspective, a leading `📊/🔍/💡` is indistinguishable from a confidence claim. Reserve these three symbols EXCLUSIVELY for confidence annotation to avoid ambiguity.
 
 Bulk audit: share market data across ASINs, run audit per ASIN.
 

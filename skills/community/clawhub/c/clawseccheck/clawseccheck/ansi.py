@@ -1,4 +1,4 @@
-"""Hand-rolled ANSI colour — stdlib only, opt-in, terminal-safe.
+"""Hand-rolled ANSI colour - stdlib only, opt-in, terminal-safe.
 
 Colour is a *presentation* layer for the human terminal report only. It is:
 
@@ -12,7 +12,7 @@ Colour is a *presentation* layer for the human terminal report only. It is:
 - **Strippable:** ``strip_ansi`` removes exactly the SGR codes we emit, so a
   saved report (``--save``) or a piped stream can be made plain again.
 
-No third-party dependency (no ``colorama``); Python 3.9+.
+No third-party dependency (no ``colorama``); Python 3.10+.
 """
 from __future__ import annotations
 
@@ -43,15 +43,16 @@ def should_color(*, no_color_flag: bool = False, stream=None, env=None) -> bool:
     """Decide whether ANSI colour should be emitted.
 
     Precedence (first match wins):
-      1. ``--no-color`` flag        → off (explicit user opt-out).
-      2. ``NO_COLOR`` present       → off (any value, incl. empty; the no-color.org spec).
-      3. ``FORCE_COLOR`` present    → on  (explicit opt-in, even when not a TTY).
-      4. ``stream.isatty()``        → on when interactive, else off.
+      1. ``--no-color`` flag        -> off (explicit user opt-out).
+      2. ``NO_COLOR`` present       -> off (any value, incl. empty; the no-color.org spec),
+         and so is ``TERM=dumb`` (a terminal that declares it cannot render escapes).
+      3. ``FORCE_COLOR`` present    -> on  (explicit opt-in, even when not a TTY).
+      4. ``stream.isatty()``        -> on when interactive, else off.
     """
     env = os.environ if env is None else env
     if no_color_flag:
         return False
-    if "NO_COLOR" in env:
+    if "NO_COLOR" in env or env.get("TERM") == "dumb":
         return False
     if "FORCE_COLOR" in env:
         return True
@@ -67,7 +68,7 @@ def paint(text: str, *styles: str, enabled: bool = True) -> str:
     """Wrap *text* in the given SGR *styles*, closing with a reset.
 
     A no-op when disabled, when *text* is empty, or when no (known) style is
-    given — so callers can pass ``enabled=color`` unconditionally.
+    given - so callers can pass ``enabled=color`` unconditionally.
     """
     if not enabled or not text or not styles:
         return text

@@ -1,44 +1,58 @@
-## Description: <br>
-Google Workspace Events: Subscribe to Workspace events and stream them as NDJSON. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Google Workspace Events: Subscribe to Workspace events and stream them as NDJSON.
 
-## Publisher: <br>
-[googleworkspace-bot](https://clawhub.ai/user/googleworkspace-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[googleworkspace-bot](https://clawhub.ai/user/googleworkspace-bot)
 
-## Use Case: <br>
-Developers and workspace administrators use this skill to prepare Google Workspace event subscription commands, configure targets and event types, and stream Workspace events for monitoring or automation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The generated command can create or reuse cloud Pub/Sub resources and subscribe to Google Workspace event streams. <br>
-Mitigation: Confirm execution with the user, use a least-privileged Google or GCP account, and choose narrow targets and event types. <br>
-Risk: Workspace event payloads may contain sensitive operational or user data, especially when written to an output directory. <br>
-Mitigation: Use a protected output directory, limit retained files, and decide whether --once, --cleanup, and --no-ack match the task. <br>
-Risk: The skill depends on the gws CLI and companion gws-shared instructions for authentication and global flags. <br>
-Mitigation: Verify that gws and the generated gws-shared instructions are trusted before installing or running commands. <br>
+## Use Case:
 
+Developers and administrators use this skill to have an agent prepare Google Workspace event subscription commands, including target resources, event types, Pub/Sub subscription options, polling behavior, cleanup, and optional event file output.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/googleworkspace-bot/gws-events-subscribe) <br>
-- [gws-shared](../gws-shared/SKILL.md) <br>
-- [gws-events](../gws-events/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Text, Files] <br>
-**Output Format:** [Markdown guidance with bash commands; the generated command streams NDJSON and can write JSON event files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the gws CLI and trusted gws-shared authentication instructions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.12 (source: ClawHub release metadata; artifact metadata version 0.22.5) <br>
+Risk: The gws CLI and referenced shared authentication rules are external prerequisites that affect access to Google Workspace and GCP resources.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before installing or using the skill, confirm trust in the gws CLI and review the shared authentication rules.
+
+Risk: Event subscription commands can create or reuse Pub/Sub resources and may leave resources persistent when cleanup is not selected.
+
+Mitigation: Use the narrowest required Google Workspace and GCP permissions, and choose --cleanup when persistent Pub/Sub resources are not wanted.
+
+Risk: Writing event payloads to a local output directory can store sensitive workspace data.
+
+Mitigation: Treat local event output as sensitive data and restrict where output files are written and retained.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/googleworkspace-bot/skills/gws-events-subscribe)
+- [Publisher profile](https://clawhub.ai/user/googleworkspace-bot)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Google Workspace resource URIs, CloudEvents type lists, GCP project IDs, Pub/Sub subscription names, polling options, cleanup options, acknowledgement behavior, and local output directory settings.]
+
+## Skill Version(s):
+
+1.0.12 (source: server release metadata); artifact metadata version 0.22.5
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

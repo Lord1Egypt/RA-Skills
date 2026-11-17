@@ -1,44 +1,56 @@
-## Description: <br>
-Audits agent skill quality against Anthropic skill guidance, checking structure, YAML frontmatter, description quality, instruction completeness, examples, and improvement opportunities. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reviews agent skills for structure, YAML frontmatter, description quality, instruction completeness, examples, and publishability against Anthropic-style skill guidance.
 
-## Publisher: <br>
-[xzxiaoshan](https://clawhub.ai/user/xzxiaoshan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xzxiaoshan](https://clawhub.ai/user/xzxiaoshan)
 
-## Use Case: <br>
-Developers, skill authors, and reviewers use this skill to audit agent skill folders or SKILL.md content before publishing or sharing. It produces structured quality findings, scores, and improvement recommendations based on Anthropic skill development guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Optional third-party install examples can run external package code if copied without review. <br>
-Mitigation: Run optional npx install examples only when the source is trusted and the user explicitly intends to install that separate skill. <br>
-Risk: Skill reviews can produce incorrect or incomplete quality guidance if the wrong SKILL.md or folder is supplied. <br>
-Mitigation: Provide only the specific skill file or folder intended for review, and verify the generated findings before applying changes. <br>
+## Use Case:
 
+Developers and skill maintainers use this skill to review agent skill folders or SKILL.md content, score documentation and instruction quality, and produce issue reports with improvement recommendations before publication or reuse.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/xzxiaoshan/agent-skill-reviewer) <br>
-- [Publisher Profile](https://clawhub.ai/user/xzxiaoshan) <br>
-- [Anthropic Skills Development Guide](references/anthropic-skills-development-guide.md) <br>
-- [Skill Review Checklist](references/checklist.md) <br>
-- [Official Guide Summary](references/official-guide-summary.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown review report with checklists, scores, findings, recommendations, and inline shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce quick audits or full review reports depending on the user's requested review depth.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The optional install workflow uses an unpinned npx command that can execute mutable third-party code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide a local skill folder when possible, or run package installation only in a disposable sandbox with a pinned, verified version.
+
+Risk: The review workflow may prompt an agent to inspect target skill folders that contain private instructions or files.
+
+Mitigation: Review only intended local skill directories and avoid exposing private skill content to untrusted tools or external contexts.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/xzxiaoshan/skills/agent-skill-reviewer)
+- [Anthropic Skills Development Guide](references/anthropic-skills-development-guide.md)
+- [Skill Review Checklist](references/checklist.md)
+- [Official Guide Summary](references/official-guide-summary.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown reports with checklist scores, findings, shell command examples, and recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May prompt the agent to inspect local skill folders and, in one optional workflow, install a named skill before review.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

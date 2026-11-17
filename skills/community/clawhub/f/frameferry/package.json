@@ -1,0 +1,35 @@
+{
+  "name": "frameferry",
+  "version": "0.2.1",
+  "description": "OpenClaw skill and CLI for bounded, verifiable FrameFerry archives using the InstaCognito public provider.",
+  "bin": {
+    "frameferry": "./bin/frameferry.js"
+  },
+  "scripts": {
+    "test": "node --test",
+    "test:sandbox": "./scripts/test-sandbox.sh"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "playwright": "1.63.0"
+  },
+  "license": "MIT",
+  "files": [
+    "SKILL.md",
+    "README.md",
+    "LICENSE",
+    "SECURITY.md",
+    "CHANGELOG.md",
+    "bin/",
+    "src/",
+    "scripts/",
+    "test/",
+    "references/"
+  ],
+  "author": {
+    "name": "Saju",
+    "url": "https://github.com/saju01"
+  }
+}

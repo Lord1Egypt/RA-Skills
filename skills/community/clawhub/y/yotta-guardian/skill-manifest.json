@@ -1,0 +1,33 @@
+{
+  "manifestVersion": 1,
+  "slug": "yotta-guardian",
+  "name": "元盾",
+  "package": "@yottameta/yotta-guardian",
+  "version": "0.1.10",
+  "trust": "yottameta",
+  "install": {
+    "idempotent": true
+  },
+  "permissions": {
+    "filesystem": "user-skills-dir",
+    "network": "none",
+    "process": "child-process",
+    "note": "仅执行本包内 Python 规则评估；默认只读，不执行被检查命令。"
+  },
+  "auto_apply": {
+    "mode": "hook",
+    "note": "高风险工具调用应交给统一适配器评估并留证；宿主能力不足时明确降级。"
+  },
+  "hooks": [
+    {
+      "event": "before_tool",
+      "require_tool": "guard_check",
+      "condition": "工具调用即将执行高风险命令、写入敏感路径或修改系统配置时",
+      "on_fail": "block",
+      "fallback": "explicit-unverified",
+      "evidence": [
+        "audit_log"
+      ]
+    }
+  ]
+}

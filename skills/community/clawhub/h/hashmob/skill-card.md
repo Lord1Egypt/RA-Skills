@@ -1,44 +1,60 @@
-## Description: <br>
-Let your AI agent interact with Hashmob.net. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Let your AI agent interact with Hashmob.net.
 
-## Publisher: <br>
-[ibnaleem](https://clawhub.ai/user/ibnaleem) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ibnaleem](https://clawhub.ai/user/ibnaleem)
 
-## Use Case: <br>
-External developers and HashMob users use this skill to guide an agent through public HashMob API queries and authenticated account operations such as hashlists, downloads, submissions, searches, attacks, purchases, withdrawals, statistics, and store actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent through authenticated HashMob actions with broad account authority, including account changes, submissions, attack management, and destructive operations. <br>
-Mitigation: Use a dedicated low-value HashMob account, keep the main API key out of the agent environment, and require explicit human approval before authenticated account-changing or destructive requests. <br>
-Risk: Several routes can spend account resources or initiate transfers, including paid search, file search, store purchases, and Gold withdrawals. <br>
-Mitigation: Require explicit human approval before paid search, purchase, withdrawal, hash submission, or attack creation actions, and confirm the endpoint, parameters, and expected cost before execution. <br>
-Risk: The skill uses HASHMOB_API_KEY as a sensitive credential for authenticated API calls. <br>
-Mitigation: Treat HASHMOB_API_KEY like a password, avoid exposing it in logs or shared transcripts, and unset or rotate it after use when appropriate. <br>
+## Use Case:
 
+Developers and security practitioners use this skill to have an agent look up HashMob API routes and prepare curl commands for public API queries and approved account-authenticated actions.
 
-## Reference(s): <br>
-- [HashMob](https://hashmob.net) <br>
-- [HashMob API v2 Documentation](https://hashmob.net/docs/api-v2-docs.json) <br>
-- [ClawHub Skill Page](https://clawhub.ai/ibnaleem/hashmob) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, API Calls, Configuration instructions] <br>
-**Output Format:** [Markdown with inline bash code blocks and curl examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl for command examples; authenticated examples use HASHMOB_API_KEY when the user provides it.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Authenticated HashMob API calls can submit hashes, manage hashlists, change account settings, make purchases, run paid searches, or initiate withdrawals.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit human approval before any authenticated, paid, destructive, withdrawal, purchase, submission, preference, notification, or hashlist-management action.
+
+Risk: The security review notes that the skill under-warns about account-changing and destructive actions that could affect user data or account value.
+
+Mitigation: Review the target endpoint and HashMob's real authorization requirements before execution, especially for endpoints marked as requiring no API key.
+
+Risk: The HASHMOB_API_KEY grants access to the user's HashMob account.
+
+Mitigation: Treat the API key like a password, avoid exposing it in logs or shared transcripts, and only pass it to approved HashMob API requests.
+
+## Reference(s):
+
+- [HashMob](https://hashmob.net)
+- [HashMob API v2 Documentation](https://hashmob.net/docs/api-v2-docs.json)
+- [Hashcat Wiki](https://hashcat.net/wiki/)
+- [ClawHub Skill Page](https://clawhub.ai/ibnaleem/skills/hashmob)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, API Calls, Configuration guidance]
+
+**Output Format:** [Markdown with curl command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl; authenticated examples use HASHMOB_API_KEY.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

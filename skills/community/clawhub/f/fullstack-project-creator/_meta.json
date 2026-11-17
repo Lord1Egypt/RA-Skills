@@ -1,6 +1,9 @@
 {
-  "ownerId": "kn78yrf6203637z57es6q6m8cx826423",
-  "slug": "fullstack-project-creator",
+  "name": "fullstack-project-creator",
+  "description": "创建标准化的 Java Spring Boot + Vue3 全栈项目结构",
   "version": "1.0.0",
-  "publishedAt": 1772780527236
+  "author": "superchao9",
+  "homepage": "https://github.com/superchao9",
+  "tags": ["java", "vue3", "spring-boot", "code-generator", "fullstack"],
+  "createdAt": "2026-03-05"
 }

@@ -1,53 +1,76 @@
-## Description: <br>
-腾讯文档 TENCENT DOCS helps agents create, edit, search, import, export, and manage Tencent Docs documents, sheets, slides, smart canvases, diagrams, spaces, and related file workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tencent Docs lets agents create, read, edit, manage, import, export, and organize docs.qq.com documents, spreadsheets, slides, diagrams, smart tables, forms, and knowledge-space files.
 
-## Publisher: <br>
-[liyang58](https://clawhub.ai/user/liyang58) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liyang58](https://clawhub.ai/user/liyang58)
 
-## Use Case: <br>
-Developers and end users use this skill through an agent to operate Tencent Docs cloud documents: create and edit content, manage files and spaces, read or search documents, upload local files, and clip web pages. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires Tencent Docs OAuth access and can use sensitive credentials. <br>
-Mitigation: Install only with a Tencent Docs account and token scope you are comfortable using for agent-driven document operations. <br>
-Risk: The skill can upload local files, export documents, delete documents or space nodes, and change sharing permissions. <br>
-Mitigation: Require explicit user confirmation before uploads, exports, deletions, recursive space operations, or public read/edit link changes. <br>
-Risk: Unsupported requests may be reported to Tencent without a separate notice. <br>
-Mitigation: Avoid entering sensitive prompts or document details unless you accept this reporting behavior. <br>
-Risk: Web clipping and image workflows can download and upload web content into Tencent Docs. <br>
-Mitigation: Confirm source URLs, content rights, and sensitivity before web clipping, image upload, or web image search workflows. <br>
+## Use Case:
 
+Employees, external users, and developers use this skill to operate Tencent Docs cloud documents from an agent workflow, including creating, editing, reading, searching, importing, exporting, and organizing online documents and workspace files.
 
-## Reference(s): <br>
-- [ClawHub Release Page](https://clawhub.ai/liyang58/tencent-docs) <br>
-- [Tencent Docs Homepage](https://docs.qq.com/home) <br>
-- [Tencent Docs OAuth Setup](https://docs.qq.com/scenario/open-claw.html?nlc=1) <br>
-- [Tencent Docs MCP Endpoint](https://docs.qq.com/openapi/mcp) <br>
-- [Authentication Guide](artifact/references/auth.md) <br>
-- [Common Workflows](artifact/references/workflows.md) <br>
-- [File Management Reference](artifact/references/manage_references.md) <br>
-- [Smart Canvas Guide](artifact/smartcanvas/entry.md) <br>
-- [Sheet Guide](artifact/sheet/entry.md) <br>
-- [Slide Reference](artifact/references/slide_references.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and text guidance with JSON tool arguments, shell commands, and Tencent Docs document URLs or IDs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Tencent Docs OAuth credentials and may invoke local helper scripts for setup, slide generation, and file import workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.31 (source: frontmatter and server release evidence) <br>
+Risk: Persistent Tencent Docs authorization can grant ongoing document access through mcporter configuration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after review, store tokens in an approved secret location, and revoke or rotate the token when access is no longer required.
+
+Risk: The skill can edit, delete, move, export, import, and change permissions for Tencent Docs files.
+
+Mitigation: Require explicit user confirmation for destructive actions, permission changes, exports, imports, and operations on broadly shared documents.
+
+Risk: Local files, web clips, and prompt-derived content may be uploaded to Tencent services.
+
+Mitigation: Avoid sensitive or regulated content unless the user has approved the upload destination and data-handling requirements.
+
+Risk: Unsupported-feature reporting may silently send prompt context or unmet requests.
+
+Mitigation: Remove or disable silent reporting before use with confidential prompts or environments requiring explicit telemetry consent.
+
+Risk: Setup and update paths can install global npm packages and follow remote update instructions.
+
+Mitigation: Review setup commands and remote update instructions before execution, and pin or verify dependencies in managed environments.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/liyang58/skills/tencent-docs)
+- [Tencent Docs Home](https://docs.qq.com/home)
+- [Tencent Docs Token Setup](https://docs.qq.com/scenario/open-claw.html?nlc=1)
+- [Authentication Reference](references/auth.md)
+- [Common Workflows](references/workflows.md)
+- [Smartcanvas Entry](smartcanvas/entry.md)
+- [Sheet Entry](sheet/entry.md)
+- [Document Engine Reference](references/docengine_references.md)
+- [Slide Reference](references/slide_references.md)
+- [Smartsheet Reference](references/smartsheet_references.md)
+- [Space Management Reference](references/space_references.md)
+- [File Management Reference](references/manage_references.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON arguments, shell commands, and generated Tencent Docs links or identifiers]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May invoke Tencent Docs MCP tools, local helper scripts, and asynchronous polling workflows.]
+
+## Skill Version(s):
+
+1.0.31 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

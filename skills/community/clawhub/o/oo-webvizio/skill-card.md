@@ -1,47 +1,56 @@
-## Description: <br>
-Webvizio helps agents operate Webvizio through an OOMOL-connected account by inspecting connector schemas and running supported REST Hook subscription actions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Operate Webvizio through an OOMOL-connected account, including creating and deleting REST Hook subscriptions.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and agents use this skill to manage Webvizio REST Hook subscriptions through the OOMOL oo CLI, including schema inspection, subscription creation, and subscription deletion. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires an OOMOL-connected Webvizio account and may operate with sensitive account credentials handled server-side. <br>
-Mitigation: Connect only the intended Webvizio account and scopes, and use this skill only when managing Webvizio through OOMOL is expected. <br>
-Risk: Creating REST Hook subscriptions can send Webvizio event notifications to an external callback URL. <br>
-Mitigation: Confirm the exact event and callback URL with the user before running subscription creation. <br>
-Risk: Deleting a REST Hook subscription removes an existing Webvizio webhook by ID. <br>
-Mitigation: Confirm the target webhook ID and get explicit approval before running the destructive delete action. <br>
-Risk: First-time setup may require installing the oo CLI through remote installer commands. <br>
-Mitigation: Verify the oo CLI installer source before running setup commands. <br>
+## Use Case:
 
+Developers and teams use this skill to manage Webvizio REST Hook subscriptions through an OOMOL-connected account. It provides commands for creating a subscription and deleting one by its Webvizio webhook ID, with confirmation required for state-changing actions.
 
-## Reference(s): <br>
-- [Webvizio homepage](https://webvizio.com) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [oo CLI install guide](https://cli.oomol.com/install-guide.md) <br>
-- [ClawHub skill page](https://clawhub.ai/oomol/oo-webvizio) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands and JSON payload guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses live connector schema inspection before constructing action payloads.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and release evidence) <br>
+Risk: Initial setup may execute downloaded CLI software whose exact installer and hosted connector implementation have not been verified.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and install the CLI separately, inspect its installer, and check any additional agent skills it installs before allowing setup.
+
+Risk: REST Hook subscriptions send event notifications to the selected callback, and deletion removes a subscription.
+
+Mitigation: Approve the callback destination and event before creating a subscription, and confirm the target subscription before deleting it.
+
+## Reference(s):
+
+- [Webvizio on ClawHub](https://clawhub.ai/oomol/skills/oo-webvizio)
+- [Webvizio](https://webvizio.com)
+- [Webvizio REST Hooks documentation](https://webvizio.com/help-center/rest-hooks/)
+- [oo CLI](https://github.com/oomol-lab/oo-cli)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, JSON, Guidance]
+
+**Output Format:** [Shell commands and JSON API responses with Markdown guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [API responses include data and execution metadata; creating or deleting subscriptions requires user confirmation.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

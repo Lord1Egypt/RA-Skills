@@ -1,0 +1,18 @@
+{
+  "areas": ["8-2", "9", "10", "11"],
+  "species": ["coho"],
+  "trailing_days": 14,
+  "top_launches": 3,
+  "min_week_anglers": 20,
+  "anomaly_mult": 1.5,
+  "daily_min_anglers": 15,
+  "until": null,
+  "alerts": {
+    "enabled": false,
+    "spike_mult": 1.8,
+    "min_anglers": 30,
+    "min_cpue": 0.4,
+    "cooldown_days": 2,
+    "min_baseline_days": 2
+  }
+}

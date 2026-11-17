@@ -1,42 +1,57 @@
-## Description: <br>
-Cross-platform social media posting for X (Twitter), Telegram, and Discord, including simultaneous posting, platform-specific formatting, and multi-channel workflow guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cross-Platform Social Poster helps agents prepare and send platform-specific posts for X (Twitter), Telegram, and Discord.
 
-## Publisher: <br>
-[terrycarter1985](https://clawhub.ai/user/terrycarter1985) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[terrycarter1985](https://clawhub.ai/user/terrycarter1985)
 
-## Use Case: <br>
-External users, developers, and social media operators use this skill to prepare and publish announcements or content across X, Telegram, and Discord with platform-appropriate formatting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can help publish content externally to social accounts and channels. <br>
-Mitigation: Review exact messages, media paths, target accounts, and destinations before running generated commands. <br>
-Risk: The workflow uses sensitive bot tokens, API keys, and webhook URLs. <br>
-Mitigation: Treat credentials as secrets, keep .env files out of version control, and avoid pasting secrets into shared logs or prompts. <br>
-Risk: The workflow suggests installing the xurl npm package globally. <br>
-Mitigation: Verify the package source and trustworthiness before installation. <br>
+## Use Case:
 
+Developers, marketers, and operators use this skill to draft and execute cross-platform social updates, announcements, and media posts while adapting formatting for X, Telegram, and Discord.
 
-## Reference(s): <br>
-- [ClawHub skill release](https://clawhub.ai/terrycarter1985/cross-platform-social-poster) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash and JSON code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include platform-specific posting commands, environment variable examples, and message-formatting guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: External posting with real social accounts can publish unintended, private, or incorrect content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use test accounts or limited webhooks first, and review every destination and message before posting.
+
+Risk: Credentials and webhook URLs can be exposed through `.env` files, shell history, or copied examples.
+
+Mitigation: Protect `.env` files, use secret storage when available, and avoid posting secrets, internal screenshots, or private media.
+
+Risk: Unpinned CLI dependencies can change behavior or introduce supply-chain risk.
+
+Mitigation: Pin and verify CLI dependencies before use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/terrycarter1985/skills/cross-platform-social-poster)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline bash, curl, and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

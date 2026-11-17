@@ -1,40 +1,54 @@
-## Description: <br>
-火一五权限 is a permission-control skill that checks user IDs and restricts create, update, delete, install, and uninstall actions, with ZhaoBo as the hardcoded administrator. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+火一五权限 is a permission-control skill that checks user IDs to restrict skill-management and content-change operations, granting global administrator authority to ZhaoBo.
 
-## Publisher: <br>
-[jobzhao15](https://clawhub.ai/user/jobzhao15) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jobzhao15](https://clawhub.ai/user/jobzhao15)
 
-## Use Case: <br>
-Workspace users can use this skill to enforce a simple role boundary for agent actions: ZhaoBo may perform all configured operations, while other users are limited to changes within existing skills and are blocked from installing or uninstalling skills. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives broad control over agent behavior by attempting to intercept install, uninstall, and editing requests based on a hardcoded administrator. <br>
-Mitigation: Install only in workspaces that intentionally delegate those decisions to ZhaoBo, and confirm the configured administrator and default permission level before use. <br>
-Risk: Keyword-based permission checks can block legitimate skill management or miss requests phrased outside the configured trigger terms. <br>
-Mitigation: Test the configured trigger terms in a controlled workspace and review blocked actions before relying on the skill for operational permission boundaries. <br>
+## Use Case:
 
+Workspace administrators use this skill to classify messages by userid and block non-admin users from installing or uninstalling skills or changing content they do not own.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jobzhao15/huo15-permission) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Configuration, Guidance] <br>
-**Output Format:** [Markdown and plain-text agent responses with JSON configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Permission decisions depend on message userid metadata and keyword matching configured in config.json.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata) <br>
+Risk: A hard-coded administrator receives broad global authority over skill installation, removal, and cross-user content changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when ZhaoBo is intentionally the privileged administrator and the host platform independently authenticates userid metadata and enforces sensitive operations.
+
+Risk: Automatic global interception can affect unrelated messages and skill management actions.
+
+Mitigation: Review the policy before deployment and test admin and non-admin flows in the target workspace.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jobzhao15/skills/huo15-permission)
+- [Publisher profile: jobzhao15](https://clawhub.ai/user/jobzhao15)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Configuration, Guidance]
+
+**Output Format:** [Plain text permission decisions and denial messages with JSON configuration]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses userid metadata, keyword matching, and a default restricted permission level for non-admin users.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,53 @@
-## Description: <br>
-Exports WeChat public account articles from wewe-rss or JSON Feed sources into cleaned DOCX documents, with optional date-prefixed filenames and ZIP packaging. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Exports wewe-rss or JSON Feed style WeChat public account feeds into cleaned DOCX documents with date-prefixed names and optional ZIP packaging.
 
-## Publisher: <br>
-[n1neman](https://clawhub.ai/user/n1neman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[n1neman](https://clawhub.ai/user/n1neman)
 
-## Use Case: <br>
-Developers and content operators use this skill to export wewe-rss style WeChat public account feeds into cleaned Word document bundles for review, delivery, or archiving. It supports small validation exports and larger batches with optional retained HTML/Markdown artifacts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill fetches a user-provided feed URL and downloads embedded article images. <br>
-Mitigation: Use trusted feed URLs, run exports in a dedicated workspace, and review the generated files before reuse or sharing. <br>
-Risk: The exporter writes local DOCX outputs and may replace an existing ZIP at the selected output path. <br>
-Mitigation: Choose a dedicated output directory and confirm the target ZIP path before using the ZIP option. <br>
+## Use Case:
 
+Developers and operators use this skill to export WeChat public account articles from wewe-rss-compatible feeds into document bundles for review, delivery, or archival workflows.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/n1neman/wewe-rss-wechat-export) <br>
-- [README.md](artifact/README.md) <br>
-- [INSTALL.md](artifact/INSTALL.md) <br>
-- [CHANGELOG.md](artifact/CHANGELOG.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Code, Files, Configuration instructions, Markdown] <br>
-**Output Format:** [Markdown guidance with shell commands that produce DOCX files, index.txt summaries, optional ZIP archives, and optional HTML/Markdown validation artifacts.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires node, pandoc, curl, and python3; fetches a user-provided HTTP(S) feed URL and writes outputs to a local export directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence, manifest.yaml, _meta.json, and changelog released 2026-03-25) <br>
+Risk: The skill can fetch arbitrary feed and image URLs from the agent host.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run with network controls that block private, link-local, loopback, and metadata-service addresses; only use trusted feed sources.
+
+Risk: The skill writes exported files locally and can process remote content without explicit size limits.
+
+Mitigation: Use a dedicated output directory with disk and memory limits, and review outputs before sharing them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/n1neman/skills/wewe-rss-wechat-export)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Guidance, Files]
+
+**Output Format:** [Markdown guidance with shell commands; generated DOCX, index.txt, and optional ZIP files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports docx and full output modes, dated or plain filenames, and optional ZIP packaging.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact manifest)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

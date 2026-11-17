@@ -1,45 +1,66 @@
-## Description: <br>
-机器人世界模型与动作模型（WAM）技术仓库维护Skill；支持搜集、分析、分类并生成图文并茂的AWAR仓库文档；包含科普介绍、深度技术分析、快速上手指南；当用户需要构建机器人AI领域技术仓库或研究VLA/RT-2/Dreamer等前沿工作时使用 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Maintains an AWAR-style robotics World-Action Model repository by helping agents collect, analyze, classify, and generate Chinese-language documentation with technical explanations, quick-start guidance, diagrams, benchmarks, and repository maintenance rules.
 
-## Publisher: <br>
-[jessy-huang](https://clawhub.ai/user/jessy-huang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jessy-huang](https://clawhub.ai/user/jessy-huang)
 
-## Use Case: <br>
-Developers, researchers, and technical writers use this skill to maintain AWAR-style robotics AI repositories focused on world models, action models, VLA systems, RT-2, Dreamer, and related work. It guides discovery, technical classification, deep analysis, and generation of Chinese-language documentation with quick-start guidance, architecture diagrams, benchmarks, and developer assessments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated quick-start guidance may include third-party repositories, package installs, checkpoint downloads, or real-robot demo steps. <br>
-Mitigation: Review third-party sources and generated commands before execution, especially before downloading checkpoints or running real-robot workflows. <br>
-Risk: The skill is designed to produce Chinese-language documentation by default. <br>
-Mitigation: Tell the agent the preferred output language when a different documentation language is required. <br>
+## Use Case:
 
+Developers, researchers, and technical writers use this skill to maintain a robotics AI knowledge repository focused on World Models, Action Models, VLA systems, RT-2, Dreamer, and related WAM research. It guides systematic discovery, technical decomposition, classification, and standardized Markdown documentation for new projects.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jessy-huang/awar-maintenance) <br>
-- [Getting started reference](references/getting_started.md) <br>
-- [Awareness analysis framework](references/awareness_analysis_framework.md) <br>
-- [Classification standard](references/classification_standard.md) <br>
-- [Output template](references/output_template.md) <br>
-- [Asset guide](assets/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Analysis, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown documentation with tables, diagrams, quick-start snippets, and structured technical analysis] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Primarily Chinese-language repository documentation for robotics world-model and action-model projects.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Generated quick-start commands or configuration snippets may be copied into a robotics project without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated commands and configuration before execution, especially installation, cloning, evaluation, and hardware-related steps.
+
+Risk: The skill is optimized for Chinese-language AWAR documentation and may not match a user's preferred language or local terminology.
+
+Mitigation: Ask the agent to use another language or terminology style when maintaining repositories for a different audience.
+
+Risk: Documentation-oriented analysis may introduce inaccurate benchmarks or misleading project comparisons if source materials are incomplete.
+
+Mitigation: Check benchmark values, paper claims, and project status against primary sources before publishing generated repository updates.
+
+## Reference(s):
+
+- [AWAR skill page](https://clawhub.ai/jessy-huang/skills/awar-maintenance)
+- [Getting Started](artifact/references/getting_started.md)
+- [Deep Analysis Protocol](artifact/references/awareness_analysis_framework.md)
+- [Classification Standard](artifact/references/classification_standard.md)
+- [Project Documentation Output Template](artifact/references/output_template.md)
+- [AWAR Asset Guide](artifact/assets/README.md)
+- [LeRobot](https://github.com/huggingface/lerobot)
+- [DMC-GPT](https://github.com/jdenysg/dmc-gpt)
+- [Diffusion Policy](https://github.com/columbia-robovision/DiffusionPolicy)
+- [OpenVLA](https://github.com/openvla/openvla)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with tables, Mermaid diagrams, inline code snippets, and shell command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language documentation output; generated quick-start commands should be reviewed before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

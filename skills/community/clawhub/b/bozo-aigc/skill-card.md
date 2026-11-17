@@ -1,43 +1,67 @@
-## Description: <br>
-Generates images from text prompts or one to eight reference image URLs using the BizyAir GPT_IMAGE_2 API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates images from text prompts or one to eight reference image URLs using the BizyAir GPT_IMAGE_2 API.
 
-## Publisher: <br>
-[bozoyan](https://clawhub.ai/user/bozoyan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bozoyan](https://clawhub.ai/user/bozoyan)
 
-## Use Case: <br>
-Developers and creators use this skill to generate images from prompts or transform one to eight reference images through BizyAir GPT_IMAGE_2. It helps an agent choose the text-to-image or image-to-image script, pass aspect ratio options, wait for remote generation, and report the saved image path. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The scripts print the first characters of BIZYAIR_API_KEY in command output. <br>
-Mitigation: Remove or fully mask API-key logging before use, and avoid sharing logs from image-generation runs. <br>
-Risk: Prompts and reference image URLs are sent to the third-party BizyAir API. <br>
-Mitigation: Confirm user consent before sending private prompts or image URLs, and avoid using sensitive images unless approved. <br>
-Risk: Local permissions and shell behavior are broader than necessary for a credentialed API integration. <br>
-Mitigation: Narrow allowed shell permissions to the specific scripts and review commands before installation. <br>
+## Use Case:
 
+External users and developers use this skill to request text-to-image or image-to-image generation with selectable aspect ratios. The agent runs the appropriate script, waits for the BizyAir response, downloads the generated image, and reports the saved file path.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bozoyan/bozo-aigc) <br>
-- [BizyAir OpenAPI task endpoint](https://api.bizyair.cn/w/v1/webapp/task/openapi/create) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, files, guidance] <br>
-**Output Format:** [Markdown guidance with shell command invocations and generated image files saved under pic/] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires BIZYAIR_API_KEY and may take 90 seconds to 10 minutes for remote image generation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: ClawHub release evidence) <br>
+Risk: Prompts, reference image URLs, and BizyAir API authorization are sent to the BizyAir endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when this data sharing is acceptable for the intended users and content.
+
+Risk: The skill handles API credentials and logs an API-key prefix during execution.
+
+Mitigation: Remove API-key-prefix logging before use and keep BIZYAIR_API_KEY in a protected environment variable.
+
+Risk: The scripts download remote image content and save it locally.
+
+Mitigation: Validate downloaded files before saving or opening them.
+
+Risk: The bundled permission guidance allows broad chmod usage.
+
+Mitigation: Narrow chmod permission to the exact scripts that need execute permissions.
+
+Risk: The security verdict is suspicious because credentials and downloaded remote content are handled unsafely enough to require review.
+
+Mitigation: Review the skill and apply the security guidance before installing or running it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bozoyan/skills/bozo-aigc)
+- [BizyAir webapp task API endpoint](https://api.bizyair.cn/w/v1/webapp/task/openapi/create)
+- [ClawHub publisher profile](https://clawhub.ai/user/bozoyan)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, files, guidance]
+
+**Output Format:** [Markdown guidance with bash command execution and saved image files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated images are saved under pic/ with timestamped filenames; requests may take 90 seconds to 10 minutes.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release evidence and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

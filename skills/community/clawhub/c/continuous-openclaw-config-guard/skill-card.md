@@ -1,42 +1,57 @@
-## Description: <br>
-OpenClaw configuration rollback guardian with automatic backup and recovery. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitors OpenClaw's openclaw.json configuration file, creates backups, restarts the gateway after changes, and rolls back automatically when message activity is not detected within the configured timeout.
 
-## Publisher: <br>
-[cxlhyx](https://clawhub.ai/user/cxlhyx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cxlhyx](https://clawhub.ai/user/cxlhyx)
 
-## Use Case: <br>
-Developers and operators use this skill to monitor OpenClaw configuration changes, back up known-good configurations, restart the gateway, and roll back changes when message activity does not resume within the configured timeout. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Status messages are sent to a hard-coded Matrix room/account. <br>
-Mitigation: Remove the message sends or parameterize the room and account before running the guard. <br>
-Risk: The guard can restart the gateway and automatically roll back openclaw.json. <br>
-Mitigation: Review the script, set paths for the local environment, and enable the systemd service only when persistent automated rollback is desired. <br>
-Risk: An incorrect SESSION_FILE can cause successful configuration changes to be treated as failed. <br>
-Mitigation: Set SESSION_FILE to the local agent session file before starting the guard. <br>
+## Use Case:
 
+Developers and operators who manage OpenClaw gateway configuration use this skill to protect risky openclaw.json edits with automatic backup, restart, validation, and rollback behavior. It is intended for Linux environments where the user can review and adapt the service and script paths before enabling persistence.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cxlhyx/continuous-openclaw-config-guard) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with shell commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces setup and operating guidance for a local guard script and optional systemd service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill runs as a persistent guard and can restart the OpenClaw gateway and roll back configuration changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and edit the service file and guard.sh before installation, run under the least-privileged suitable user, and validate paths, account, rollback behavior, and stop logic before enabling boot persistence.
+
+Risk: The security evidence reports undisclosed status messages sent to a hard-coded Matrix room and account.
+
+Mitigation: Remove or disable those message sends unless the notification target is intentional, or replace them with user-controlled notification settings.
+
+Risk: An incorrect SESSION_FILE or installation path can make validation fail and cause unwanted rollbacks.
+
+Mitigation: Set SESSION_FILE, OpenClaw paths, and systemd user values for the actual environment, then test the script manually before running it as a service.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cxlhyx/skills/continuous-openclaw-config-guard)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs assume local OpenClaw paths, service user, and session file settings are reviewed and updated before use.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 分组框片段：虚线圆角框 + 左上角组名，框内放节点（architecture 图常用） -->
+<svg xmlns="http://www.w3.org/2000/svg" width="46mm" height="20mm" viewBox="0 0 46 20">
+  <title>分组框模板</title>
+  <g data-role="group-box" data-group-id="encoder">
+    <rect x="0.5" y="0.5" width="45" height="19" rx="2" ry="2"
+          fill="none" stroke="#5f5f5f" stroke-width="0.1764" stroke-dasharray="1.06 0.71"/>
+    <text x="1.6" y="2.6" font-family="Arial, Helvetica, 'PingFang SC', sans-serif"
+          font-size="2.2932" fill="#5f5f5f" text-anchor="start"
+          data-role="group-label" data-font-pt="6.5">encoder</text>
+  </g>
+</svg>

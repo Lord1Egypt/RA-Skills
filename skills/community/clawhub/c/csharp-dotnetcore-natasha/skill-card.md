@@ -1,49 +1,62 @@
-## Description: <br>
-This skill helps developers create dynamic C# features at runtime with the Natasha library, including dynamic class generation, delegate generation, private member access, and compilation metadata management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill should be used when developers need to create dynamic C# features at runtime, including dynamic class generation, dynamic method creation, accessing private members through dynamic compilation, and managing compilation metadata strategies using the Natasha library.
 
-## Publisher: <br>
-[nmsazulxxiaohao](https://clawhub.ai/user/nmsazulxxiaohao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nmsazulxxiaohao](https://clawhub.ai/user/nmsazulxxiaohao)
 
-## Use Case: <br>
-Developers and engineers use this skill when building .NET applications that need runtime C# compilation, dynamic types, generated delegates, controlled load contexts, or Natasha migration and troubleshooting guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Dynamic compilation examples can execute arbitrary C# code when applied to untrusted inputs. <br>
-Mitigation: Use the skill only with controlled code provenance, and isolate execution in a separate low-privilege process or container for any higher-risk workflow. <br>
-Risk: Private-member access examples can bypass normal encapsulation boundaries. <br>
-Mitigation: Avoid applying private-member access patterns to third-party objects, secrets, shared writable paths, or multi-tenant production paths unless isolation and review controls are in place. <br>
+## Use Case:
 
+Developers and engineers use this skill to get implementation guidance, code examples, package setup commands, and troubleshooting patterns for runtime C# code generation with Natasha.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/nmsazulxxiaohao/csharp-dotnetcore-natasha) <br>
-- [Natasha Official Documentation](https://natasha.dotnetcore.xyz/zh-Hans/docs) <br>
-- [DotNetCore.Natasha.CSharp.Compiler NuGet Package](https://www.nuget.org/packages/DotNetCore.Natasha.CSharp.Compiler) <br>
-- [DotNetCore.Natasha.CSharp.Compiler.Domain NuGet Package](https://www.nuget.org/packages/DotNetCore.Natasha.CSharp.Compiler.Domain) <br>
-- [Initialization Patterns](references/initialization-patterns.md) <br>
-- [Context Management](references/context-management.md) <br>
-- [Compiler Options](references/compiler-options.md) <br>
-- [Migration Guide](references/migration-guide.md) <br>
-- [Common Patterns](references/common-patterns.md) <br>
-- [Troubleshooting](references/troubleshooting.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with C# and shell code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.3.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Runtime C# compilation can execute high-impact generated code if examples are applied to untrusted input.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use this guidance only with trusted code or add isolation such as a least-privileged process or container, strict input validation, reviewed package versions, and explicit filesystem and network limits.
+
+Risk: Private-member access examples can bypass intended encapsulation and increase exposure of internal application state.
+
+Mitigation: Limit private-member access to reviewed maintenance or test scenarios and require code review before using these patterns in production systems.
+
+## Reference(s):
+
+- [Natasha GitHub](https://github.com/dotnetcore/Natasha)
+- [Natasha Official Documentation](https://natasha.dotnetcore.xyz/zh-Hans/docs)
+- [DotNetCore.Natasha.CSharp.Compiler NuGet Package](https://www.nuget.org/packages/DotNetCore.Natasha.CSharp.Compiler)
+- [DotNetCore.Natasha.CSharp.Compiler.Domain NuGet Package](https://www.nuget.org/packages/DotNetCore.Natasha.CSharp.Compiler.Domain)
+- [initialization-patterns.md](references/initialization-patterns.md)
+- [context-management.md](references/context-management.md)
+- [compiler-options.md](references/compiler-options.md)
+- [migration-guide.md](references/migration-guide.md)
+- [common-patterns.md](references/common-patterns.md)
+- [troubleshooting.md](references/troubleshooting.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline C# and shell code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Provides documentation-oriented guidance for NuGet setup, Natasha initialization, compilation modes, private-member access, error handling, and optimization patterns.]
+
+## Skill Version(s):
+
+3.3.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

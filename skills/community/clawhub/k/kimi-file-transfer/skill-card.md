@@ -1,37 +1,48 @@
-## Description: <br>
-Sends up to five local files into the current Kimi conversation for user download. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+将本地最多5个文件上传到当前 Kimi 对话中，便于用户在对话内下载和共享文档、图片、PDF 或代码文件。
 
-## Publisher: <br>
-[chongjie-ran](https://clawhub.ai/user/chongjie-ran) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[chongjie-ran](https://clawhub.ai/user/chongjie-ran)
 
-## Use Case: <br>
-Users and agents use this skill to intentionally share local documents, images, PDFs, or code files through an active Kimi chat. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Selected local files are uploaded into a Kimi chat and may include sensitive or proprietary content if paths are chosen carelessly. <br>
-Mitigation: Review the exact file paths before upload and avoid passwords, SSH keys, API tokens, private records, proprietary documents, or any file not intended for that conversation. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chongjie-ran/kimi-file-transfer) <br>
+## Use Case:
 
+Kimi users and agents use this skill to transfer up to five locally accessible files into the active Kimi conversation for document sharing, asset handoff, or code sharing. Users should review selected paths because uploaded files leave the local machine.
 
-## Skill Output: <br>
-**Output Type(s):** [files, guidance] <br>
-**Output Format:** [Kimi file upload actions with concise text guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uploads are limited to local files selected by the user or agent, with a maximum of five files per transfer.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and artifact changelog) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: User-requested local files leave the local machine when uploaded into a Kimi conversation.
+
+Mitigation: Review each requested path before use, avoid secrets or private documents unless they are intended to be shared, and ask the agent to confirm the exact files before upload.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chongjie-ran/skills/kimi-file-transfer)
+
+## Skill Output:
+
+**Output Type(s):** [files, guidance]
+
+**Output Format:** [Kimi chat file attachments with concise text or Markdown guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports up to 5 local file paths per upload request.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

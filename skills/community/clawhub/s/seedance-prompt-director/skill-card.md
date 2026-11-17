@@ -1,42 +1,55 @@
-## Description: <br>
-Seedance 2.0 Guide helps users turn ideas and multimodal assets into cinematic Seedance/Jimeng storyboard prompts, video-generation scripts, and auto-audio guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Professional Seedance 2.0 / Jimeng storyboard and prompt engineering guide for creating movie-grade 9:16 vlogs, cinematic AI video prompts, and auto-audio scripts from multimodal inputs.
 
-## Publisher: <br>
-[xiuxiuing](https://clawhub.ai/user/xiuxiuing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiuxiuing](https://clawhub.ai/user/xiuxiuing)
 
-## Use Case: <br>
-Developers, creators, and video teams use this skill to turn rough Seedance 2.0 or Jimeng video ideas into structured storyboard prompts with camera direction, timed scenes, sound notes, and asset references. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may provide images, videos, or voices of real people without sufficient rights or consent. <br>
-Mitigation: Use only assets the user is authorized to provide, especially when prompts reference a person's likeness, voice, or prior video. <br>
-Risk: Prompts that rely on realistic human faces may fail or be blocked by the target generation system. <br>
-Mitigation: Set expectations before generation and avoid realistic human-face references when the workflow requires reliable execution. <br>
+## Use Case:
 
+External creators, prompt engineers, and developers use this skill to turn video concepts and media references into structured Seedance 2.0 storyboard prompts, directorial breakdowns, and sound design notes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xiuxiuing/seedance-prompt-director) <br>
-- [README.md](README.md) <br>
-- [usage_and_examples.md](usage_and_examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown storyboard prompts and directorial breakdowns] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include @asset references, timed storyboard segments, camera direction, sound design, and material-reference notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: Prompts may reference user-supplied media filenames or describe sensitive media.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated prompts and referenced assets before submitting them to a video generation service; avoid sensitive, private, or restricted media.
+
+Risk: Prompts involving realistic human faces may be rejected by the target generation system.
+
+Mitigation: Adjust concepts toward supported subjects or styles before generation when realistic human faces are required.
+
+## Reference(s):
+
+- [README](artifact/README.md)
+- [Usage and Examples](artifact/usage_and_examples.md)
+- [ClawHub Skill Page](https://clawhub.ai/xiuxiuing/skills/seedance-prompt-director)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown storyboard prompts and directorial breakdowns with optional sound design notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference user-supplied @image, @video, and @audio filenames; realistic human faces are noted as unsupported.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

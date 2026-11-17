@@ -1,42 +1,58 @@
-## Description: <br>
-Multi-column chat deck UI for OpenClaw agents. Launch a local web interface to manage and chat with multiple agents side-by-side. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw Deck launches a local multi-column web UI for managing and chatting with OpenClaw agents side by side.
 
-## Publisher: <br>
-[kellyclaudeai](https://clawhub.ai/user/kellyclaudeai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[kellyclaudeai](https://clawhub.ai/user/kellyclaudeai)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to install and launch a local Vite web interface for managing multiple OpenClaw chat columns side-by-side. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Gateway tokens may be exposed through browser-visible URL parameters or VITE_ environment variables. <br>
-Mitigation: Use short-lived, least-privilege gateway tokens and avoid placing long-lived or broadly privileged tokens in URLs or browser-exposed configuration. <br>
-Risk: The page loads Google Fonts from an external service. <br>
-Mitigation: Review network access expectations before use, or self-host fonts in environments that restrict third-party requests. <br>
-Risk: The multi-column UI may not map each column to a separate backend agent. <br>
-Mitigation: Verify OpenClaw Gateway routing behavior before relying on columns as isolated agent sessions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [OpenClaw Gateway Architecture](https://docs.openclaw.ai/concepts/architecture) <br>
-- [ClawHub Skill Page](https://clawhub.ai/kellyclaudeai/openclaw-deck) <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to start a local chat deck, connect to an OpenClaw Gateway, and manage side-by-side conversations with one or more agent columns.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with local commands and URLs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Launches a local Vite UI that connects to an OpenClaw Gateway.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: package.json and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Gateway tokens and connection targets may be exposed through URLs or shared deck links.
+
+Mitigation: Use environment configuration for tokens, avoid shared links with gateway or token parameters, and keep the gateway bound to localhost unless a broader binding is intentional.
+
+Risk: The deck connects to a configurable gateway and can interact with local agent sessions.
+
+Mitigation: Install only from a trusted publisher, run it in a controlled local environment, and verify any custom VITE_GATEWAY_URL before use.
+
+Risk: The release depends on local Vite and build dependencies.
+
+Mitigation: Review and update the Vite/build dependencies before broader deployment.
+
+## Reference(s):
+
+- [OpenClaw Deck on ClawHub](https://clawhub.ai/kellyclaudeai/skills/openclaw-deck)
+- [kellyclaudeai Publisher Profile](https://clawhub.ai/user/kellyclaudeai)
+- [OpenClaw Architecture Documentation](https://docs.openclaw.ai/concepts/architecture)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, configuration, guidance]
+
+**Output Format:** [Markdown text with inline shell commands, local URL, and shortcut guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js, npm, and a running OpenClaw Gateway at ws://127.0.0.1:18789 or a configured VITE_GATEWAY_URL.]
+
+## Skill Version(s):
+
+0.1.0 (source: package.json and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

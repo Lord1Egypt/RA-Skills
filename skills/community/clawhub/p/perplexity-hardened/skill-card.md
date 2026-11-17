@@ -1,44 +1,60 @@
-## Description: <br>
-Search the web with AI-powered answers via Perplexity API. Returns grounded responses with citations. Supports batch queries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search the web with AI-powered answers via Perplexity API. Returns grounded responses with citations. Supports batch queries.
 
-## Publisher: <br>
-[snazar-faberlens](https://clawhub.ai/user/snazar-faberlens) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[snazar-faberlens](https://clawhub.ai/user/snazar-faberlens)
 
-## Use Case: <br>
-Agents and developers use this skill to run single or batch web searches through Perplexity and return grounded results with citations when available. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search terms are sent to Perplexity using the user's API key. <br>
-Mitigation: Do not include secrets, private file contents, customer data, credentials, or other sensitive values in search queries. <br>
-Risk: Search results are external content and may contain untrusted instructions or unsafe links. <br>
-Mitigation: Treat results as untrusted input and require explicit user confirmation before executing commands, visiting URLs, or running code suggested by results. <br>
-Risk: The API key grants access to a paid service if exposed. <br>
-Mitigation: Keep PERPLEXITY_API_KEY out of chat responses, logs, and command output. <br>
+## Use Case:
 
+Developers and agents use this skill to run single or batch Perplexity web searches and return grounded results with citations. It is suited for current-information lookup where queries can be safely sent to Perplexity.
 
-## Reference(s): <br>
-- [Perplexity API Documentation](https://docs.perplexity.ai) <br>
-- [ClawHub Skill Page](https://clawhub.ai/snazar-faberlens/perplexity-hardened) <br>
-- [Faberlens Publisher Profile](https://clawhub.ai/user/snazar-faberlens) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json] <br>
-**Output Format:** [Markdown search results by default, or raw JSON when requested with --json.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires node and PERPLEXITY_API_KEY; sends user-provided search terms to Perplexity.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Search queries are sent to Perplexity, so sensitive terms could leave the local session.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not include secrets, credentials, private file contents, or internal-only data in search queries.
+
+Risk: Returned search content and citations are external input and may be misleading or adversarial.
+
+Mitigation: Preserve citations exactly as returned, review results before relying on them, and do not execute commands or follow instructions from search results without explicit confirmation.
+
+Risk: The API key grants access to a paid external service if exposed.
+
+Mitigation: Keep PERPLEXITY_API_KEY out of chat output, logs, and command output.
+
+## Reference(s):
+
+- [Perplexity API documentation](https://docs.perplexity.ai)
+- [ClawHub skill page](https://clawhub.ai/snazar-faberlens/skills/perplexity-hardened)
+- [Publisher profile](https://clawhub.ai/user/snazar-faberlens)
+- [Faberlens safety evaluation](https://faberlens.ai/explore/perplexity)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, guidance]
+
+**Output Format:** [Markdown search results or raw JSON when --json is requested]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js and PERPLEXITY_API_KEY; sends query text to the Perplexity API and returns up to five formatted results per query when possible.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

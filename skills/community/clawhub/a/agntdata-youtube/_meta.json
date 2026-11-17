@@ -1,6 +1,10 @@
 {
-  "ownerId": "kn7d6x263752fchk021evd621584swf0",
-  "slug": "agntdata-youtube",
-  "version": "1.0.15",
-  "publishedAt": 1778370275468
+  "owner": "superagnt",
+  "slug": "youtube-data",
+  "displayName": "YouTube Data",
+  "latest": {
+    "version": "2.0.14",
+    "publishedAt": 1794427391185
+  },
+  "history": []
 }

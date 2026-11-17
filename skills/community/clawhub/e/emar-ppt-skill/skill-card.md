@@ -1,51 +1,64 @@
-## Description: <br>
-Creates Emar-branded horizontal web presentation decks as single HTML files for internal slides, event decks, reports, image-backed covers, and Swiss or electronic-magazine styles. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates Emar-branded horizontal web presentation decks as single HTML files for internal presentations, reports, event decks, and Swiss Style or electronic magazine style slides.
 
-## Publisher: <br>
-[jixinyi546-maker](https://clawhub.ai/user/jixinyi546-maker) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jixinyi546-maker](https://clawhub.ai/user/jixinyi546-maker)
 
-## Use Case: <br>
-Employees and presentation authors use this skill to create Emar Online internal HTML slide decks from bundled templates, choosing between editorial and Swiss-style layouts and validating Swiss decks when applicable. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated internal decks may contact third-party services or run CDN-hosted JavaScript when opened. <br>
-Mitigation: Review decks before use with internal or confidential material; prefer locally vendored fonts and JavaScript, removed or pinned and disclosed CDN fallbacks, and bundled relative references. <br>
-Risk: Absolute local reference paths can reduce portability and expose local environment assumptions. <br>
-Mitigation: Replace absolute local paths with bundled relative references before distributing generated decks. <br>
+## Use Case:
 
+Employees and presentation authors use this skill to turn supplied material into Emar-branded internal HTML slide decks with template-driven layouts, navigation, animation fallback, and optional Swiss validation.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/jixinyi546-maker/emar-ppt-skill) <br>
-- [Project Homepage](https://github.com/op7418/emar-ppt-skill) <br>
-- [Checklist](artifact/references/checklist.md) <br>
-- [Components](artifact/references/components.md) <br>
-- [Image Prompts](artifact/references/image-prompts.md) <br>
-- [Style A Layouts](artifact/references/layouts.md) <br>
-- [Swiss Layouts](artifact/references/layouts-swiss.md) <br>
-- [Screenshot Framing](artifact/references/screenshot-framing.md) <br>
-- [Swiss Layout Lock](artifact/references/swiss-layout-lock.md) <br>
-- [Swiss Map Component](artifact/references/swiss-map-component.md) <br>
-- [Style A Themes](artifact/references/themes.md) <br>
-- [Swiss Themes](artifact/references/themes-swiss.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Code, Shell commands, Guidance] <br>
-**Output Format:** [Single-file HTML deck plus concise Markdown delivery summary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include local image asset paths and optional Swiss validation results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and release evidence) <br>
+Risk: Generated presentations may make outbound requests and run CDN-hosted browser JavaScript.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: For confidential internal decks, remove or vendor the remote Lucide, Motion, font, MapLibre, and tile dependencies before sharing or opening the output.
+
+Risk: Swiss Style decks can become inconsistent or hard to read if locked layouts are changed incorrectly.
+
+Mitigation: Run the bundled Swiss deck validator for Style B decks when Node is available and fix reported layout issues before delivery.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jixinyi546-maker/skills/emar-ppt-skill)
+- [Project Homepage](https://github.com/op7418/emar-ppt-skill)
+- [Final QA Checklist](references/checklist.md)
+- [Shared Components](references/components.md)
+- [Image and Cover Prompts](references/image-prompts.md)
+- [Style A Layouts](references/layouts.md)
+- [Style A Themes](references/themes.md)
+- [Swiss Layouts](references/layouts-swiss.md)
+- [Swiss Layout Constraints](references/swiss-layout-lock.md)
+- [Swiss Map Component](references/swiss-map-component.md)
+- [Swiss Themes](references/themes-swiss.md)
+- [Screenshot Framing](references/screenshot-framing.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Single HTML presentation deck with concise Markdown delivery notes and optional shell validation command.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces index.html from bundled templates; may include local image paths and optional Node-based Swiss deck validation.]
+
+## Skill Version(s):
+
+1.0.1 (source: artifact frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,54 @@
-## Description: <br>
-Memory Manager helps users save, search, link, and review notes and reminders as a personal knowledge aid. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Memory Manager Skill helps an agent save and search user-provided notes, create simple reminders, and link related memories for lightweight personal knowledge management.
 
-## Publisher: <br>
-[hgta23](https://clawhub.ai/user/hgta23) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hgta23](https://clawhub.ai/user/hgta23)
 
-## Use Case: <br>
-Individuals use this skill to capture everyday notes, reminders, and related facts so an agent can recall or organize them later. It is best suited to ordinary personal knowledge management, not sensitive recordkeeping. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may save sensitive personal details in notes or reminders. <br>
-Mitigation: Use only for ordinary notes and reminders; avoid passwords, tokens, financial details, medical information, and sensitive location data unless the host storage and deletion behavior is understood. <br>
-Risk: Reminder and memory behavior may be less durable than the skill description suggests. <br>
-Mitigation: Confirm the host platform provides persistent storage, scheduling, and location triggers before relying on reminders. <br>
+## Use Case:
 
+End users and agents use this skill to remember notes, set basic reminders, connect related items, and retrieve saved information with simple natural-language requests.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Guidance] <br>
-**Output Format:** [Plain text responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Responses are based on the skill's memory and reminder helper behavior; durable storage and real scheduling depend on host support.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md) <br>
+Risk: Users may treat saved memories or reminders as durable even though the evidence describes the skill as a lightweight memory helper rather than a reliable persistent reminder system.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it for low-sensitivity notes, confirm important reminders in a dedicated system, and require documented retention, review, and deletion controls before relying on it for sensitive information.
+
+Risk: Personal or sensitive information could be entered into memory content.
+
+Mitigation: Avoid secrets and highly sensitive personal information unless the publisher provides clear retention, access, review, and deletion controls.
+
+## Reference(s):
+
+- [Memory Manager Skill on ClawHub](https://clawhub.ai/hgta23/skills/mm)
+- [Publisher profile: hgta23](https://clawhub.ai/user/hgta23)
+
+## Skill Output:
+
+**Output Type(s):** [text, guidance]
+
+**Output Format:** [Plain text agent responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responses may include saved memory IDs, reminder IDs, search results, or status messages.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,6 +1,27 @@
 {
-  "ownerId": "kn73vp5rarc3b14rc7wjcw8f8580t5d1",
+  "owner": "clawic",
   "slug": "go",
-  "version": "1.0.2",
-  "publishedAt": 1771105340255
+  "displayName": "Go",
+  "latest": {
+    "version": "1.0.4",
+    "publishedAt": 1785068764934
+  },
+  "history": [
+    {
+      "version": "1.0.3",
+      "publishedAt": 1785066064435
+    },
+    {
+      "version": "1.0.2",
+      "publishedAt": 1771105340457
+    },
+    {
+      "version": "1.0.1",
+      "publishedAt": 1771080843972
+    },
+    {
+      "version": "1.0.0",
+      "publishedAt": 1770678609786
+    }
+  ]
 }

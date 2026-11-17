@@ -1,49 +1,64 @@
-## Description: <br>
-Let your agent shop online with guardrailed wallets, multiple payment methods, and owner approval. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Let your agent shop online with guardrailed wallets, multiple payment methods, and owner approval.
 
-## Publisher: <br>
-[TripleHippo](https://clawhub.ai/user/TripleHippo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[triplehippo](https://clawhub.ai/user/triplehippo)
 
-## Use Case: <br>
-External users and developers use this skill to let an agent shop online, request wallet top-ups, create payment links, and pay through CreditClaw payment rails while following owner-set spending limits and approvals. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives an agent real shopping, spending, top-up request, payment-link, and x402 payment abilities. <br>
-Mitigation: Start with ask-for-everything approval, keep low per-transaction and daily limits, restrict merchants or categories where possible, and review payment-link, heartbeat, and x402 settings before enabling them. <br>
-Risk: A leaked CREDITCLAW_API_KEY could allow unauthorized use of the connected CreditClaw account. <br>
-Mitigation: Store CREDITCLAW_API_KEY in a secrets manager, send it only to creditclaw.com API endpoints, and avoid logging request headers or bodies that may contain credentials. <br>
+## Use Case:
 
+External users and developers use this skill to let an AI agent shop online, request payments, check wallet status, and make CreditClaw payment-related API calls within owner-managed approvals, limits, and monitoring.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/TripleHippo/card) <br>
-- [CreditClaw homepage](https://creditclaw.com) <br>
-- [Skill registration and API reference](https://creditclaw.com/creditcard/skill.md) <br>
-- [General shopping guide](https://creditclaw.com/creditcard/shopping.md) <br>
-- [Amazon purchase guide](https://creditclaw.com/creditcard/amazon.md) <br>
-- [Pre-paid wallet guide](https://creditclaw.com/creditcard/prepaid-wallet.md) <br>
-- [Self-hosted card guide](https://creditclaw.com/creditcard/self-hosted-card.md) <br>
-- [Stripe x402 wallet guide](https://creditclaw.com/creditcard/stripe-x402-wallet.md) <br>
-- [Heartbeat and status guide](https://creditclaw.com/creditcard/heartbeat.md) <br>
-- [Machine-readable skill metadata](https://creditclaw.com/creditcard/skill.json) <br>
+### Deployment Geography for Use:
 
+Global, with US-only support for Amazon shipping workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, API calls, Configuration] <br>
-**Output Format:** [Markdown with inline shell commands, API request examples, and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires CREDITCLAW_API_KEY for authenticated CreditClaw API calls.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.3.1 (source: frontmatter and skill.json); release metadata version 1.0.0 <br>
+Risk: The skill gives an agent delegated authority to initiate real-money purchases and payment-signing flows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep ask-for-everything approval enabled unless narrow merchant or category limits, low thresholds, strong monitoring, and a wallet freeze path are in place.
+
+Risk: CREDITCLAW_API_KEY functions as a financial credential.
+
+Mitigation: Store it only in a secure secrets manager or environment variable, send it only to creditclaw.com API endpoints, and freeze or rotate access if exposure is suspected.
+
+Risk: Shipping, merchant, wallet, and transaction data may be sent to CreditClaw for fulfillment and approvals.
+
+Mitigation: Review data-sharing expectations before enabling the skill and monitor activity through the owner dashboard.
+
+## Reference(s):
+
+- [ClawHub Release Page](https://clawhub.ai/triplehippo/skills/card)
+- [CreditClaw Skill and API Reference](https://creditclaw.com/creditcard/skill.md)
+- [Shopping Guide](https://creditclaw.com/creditcard/shopping.md)
+- [Amazon Purchase Guide](https://creditclaw.com/creditcard/amazon.md)
+- [Pre-paid Wallet Guide](https://creditclaw.com/creditcard/prepaid-wallet.md)
+- [Self-Hosted Card Guide](https://creditclaw.com/creditcard/self-hosted-card.md)
+- [Stripe x402 Wallet Guide](https://creditclaw.com/creditcard/stripe-x402-wallet.md)
+- [Heartbeat Guide](https://creditclaw.com/creditcard/heartbeat.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance, API calls]
+
+**Output Format:** [Markdown guidance with bash and JSON API examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires CREDITCLAW_API_KEY for authenticated CreditClaw API calls.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

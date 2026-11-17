@@ -1,0 +1,85 @@
+{
+  "profile_type": "style",
+  "id": "highway-485-lithograph",
+  "version": "1.0.0",
+  "reference_status": "approved-bundled",
+  "references": [
+    {
+      "id": "highway-485",
+      "image": "assets/style-packs/highway-485-lithograph/reference.webp",
+      "source_metadata": "assets/style-packs/highway-485-lithograph/source.json",
+      "technique_roles": [
+        "sparse broken dry-crayon and contour-line construction",
+        "paper-white negative-space preservation",
+        "restrained dark accents",
+        "radical subject simplification",
+        "limited hatching and lithographic texture"
+      ],
+      "subject_exclusions": [
+        "road",
+        "road sign",
+        "utility poles",
+        "wires",
+        "landscape subject",
+        "reference composition"
+      ]
+    }
+  ],
+  "positive_prompt": "Monochrome lithograph language built from sparse broken dry-crayon contours and pressure-varied lines; visible paper tooth; radical simplification; paper-white negative space; restrained dark accents; limited localized hatching or grain; translate only source-photo structures.",
+  "negative_prompt": "Do not copy or invent the reference road, sign, utility poles, wires, landscape, horizon, or composition. No continuous heavy outline, rubbed-gray background, filled tonal haze, dense crosshatching, photorealistic detail, generated text, decorative frame, route line, marker, watermark, collage seam, or rectangular plate edge.",
+  "line": {
+    "weight": "fine-to-medium pressure-varied",
+    "character": "dry broken lithographic-crayon contour",
+    "color": "warm black"
+  },
+  "color": {
+    "saturation": "monochrome",
+    "transparency": "paper-preserving",
+    "temperature": "neutral-warm"
+  },
+  "edges": {
+    "subject": "broken, retraced, and selectively omitted",
+    "crop_marks": false
+  },
+  "finishing_notes": [
+    "use the reference only for line construction, negative space, dark accents, simplification, and limited texture",
+    "leave broad paper-white areas untouched",
+    "concentrate hatching only where structure or depth requires it",
+    "derive no road, sign, poles, wires, landscape, or reference composition"
+  ],
+  "sample_style_contract_defaults": {
+    "mark_edge_quality": [
+      "sparse broken dry-crayon contours with visible paper tooth",
+      "pressure variation, loose retracing, and selective line omission"
+    ],
+    "negative_space_rules": [
+      "keep open areas paper-white rather than filling them with gray",
+      "do not translate the reference road, sign, poles, wires, or landscape into the new subject"
+    ],
+    "fill_tonal_rules": [
+      "use restrained dark anchors and limited localized hatching",
+      "forbid rubbed-gray bases and continuous tonal haze"
+    ],
+    "background_cleanliness": [
+      "empty areas match the shared paper master",
+      "no generated background noise, gray cast, or rectangular plate patch"
+    ],
+    "frame_border_policy": "forbid generated frames, borders, crop edges, and plate seams",
+    "abstraction_level": "radical structural simplification that preserves the source photo's primary read and imports no reference subject",
+    "generated_page_is_style_reference": false
+  },
+  "plate_normalization": {
+    "mode": "paper-key-soft",
+    "enabled": true,
+    "corner_sample_ratio": 0.04,
+    "background_distance_threshold": 8,
+    "alpha_feather_distance": 22,
+    "preserve_luminance_below": 232,
+    "preserve_saturation_above": 18,
+    "minimum_component_area_px": 2,
+    "border_clear_px": 2,
+    "frame_policy": "forbid",
+    "max_empty_area_noise_ratio": 0.003,
+    "max_corner_alpha_mean": 8
+  }
+}

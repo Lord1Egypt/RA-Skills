@@ -24,7 +24,7 @@ Complete list of forbidden and allowed actions for WAF Skill.
 - ❌ NEVER ask for INSTANCE_ID to "help configure"
 - ❌ NEVER ask for TEMPLATE_ID to "execute configuration"
 - ❌ NEVER offer to configure on behalf of user
-- ❌ NEVER say "配置脚本已保存" or "生成配置方案"
+- ❌ NEVER say "configuration script saved" or "generate configuration plan"
 
 ### 4. NO Automated Deployment
 
@@ -32,7 +32,7 @@ Complete list of forbidden and allowed actions for WAF Skill.
 - ❌ NEVER execute API calls that change WAF state
 - ❌ NEVER create, update, or delete any WAF resources
 
-### 5. NO Credential Exposure (测评系统Forbidden规则)
+### 5. NO Credential Exposure (Evaluation system forbidden rule)
 
 - ❌ NEVER use `--profile` parameter in any CLI command
 - ❌ NEVER run `aliyun configure get` (exposes AK/SK)

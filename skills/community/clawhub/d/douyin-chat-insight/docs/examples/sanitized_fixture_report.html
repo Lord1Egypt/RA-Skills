@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Douyin Chat Insight — 示例AI学习群</title>
+<style>
+:root { --bg:#0f1419; --card:#1a2332; --text:#e7ecf3; --muted:#8b9bb4; --accent:#5b9fd4; --line:#2a3548; --good:#3ddc97; }
+* { box-sizing:border-box; }
+body { margin:0; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Noto Sans SC",sans-serif;
+  background:var(--bg); color:var(--text); line-height:1.55; }
+.wrap { max-width:920px; margin:0 auto; padding:28px 20px 64px; }
+header { margin-bottom:28px; }
+h1 { font-size:1.6rem; margin:0 0 6px; letter-spacing:.02em; }
+h2 { font-size:1.1rem; margin:0 0 12px; color:var(--accent); border-bottom:1px solid var(--line); padding-bottom:8px; }
+.sub { color:var(--muted); margin:0; }
+.meta { color:var(--muted); font-size:.9rem; }
+.note { background:var(--card); border-left:3px solid var(--accent); padding:10px 14px; color:var(--muted); font-size:.88rem; }
+section { background:var(--card); border:1px solid var(--line); border-radius:12px; padding:18px 18px 8px; margin:16px 0; }
+ol,ul { padding-left:1.2rem; }
+li { margin:0 0 12px; }
+.quote { color:#cfe3ff; }
+.who { color:var(--muted); font-size:.85rem; }
+.badge { display:inline-block; background:#243247; color:var(--good); font-size:.75rem; padding:2px 8px; border-radius:999px; margin-right:6px; }
+pre { white-space:pre-wrap; background:var(--card); padding:16px; border-radius:12px; }
+footer { margin-top:28px; color:var(--muted); font-size:.8rem; }
+</style>
+</head>
+<body>
+<div class="wrap">
+<header><h1>聊天价值洞察</h1><p class='sub'>示例AI学习群</p>
+<p class='meta'>类型 group · 消息 13 · 2023-11-14 → 2023-11-14</p>
+<p class='note'>本报告为可复现启发式草稿 + 证据包。Agent/人工应按 references/report-4block.md 做 chat-first 终审：删分享刷榜、闭合已解决矛盾、动作必须指回原话。</p></header>
+<section><h2>一、硬事实（带原话）</h2><ol><li><div class='quote'>本地 Whisper 能用吗？还是必须上云端百炼 Key？</div><div class='who'>出处: 学员小B · 2023-11-14</div></li><li><div class='quote'>打不开 GitHub 的，可以去我公众号回复关键字</div><div class='who'>出处: 主理人小A · 2023-11-14</div></li><li><div class='quote'>资料都在群公告了，GitHub 仓库免费，也可以公众号回复关键字领取</div><div class='who'>出处: 主理人小A · 2023-11-14</div></li><li><div class='quote'>基础能力免费，进阶模板才收费</div><div class='who'>出处: 主理人小A · 2023-11-14</div></li><li><div class='quote'>这个 skill 收费吗？看起来要付费订阅？</div><div class='who'>出处: 路过小D · 2023-11-14</div></li><li><div class='quote'>点链接显示无法访问页面，是不是必须科学上网？</div><div class='who'>出处: 学员小C · 2023-11-14</div></li><li><div class='quote'>可以本地，也可以云端，看你机器</div><div class='who'>出处: 主理人小A · 2023-11-14</div></li></ol></section>
+<section><h2>二、未闭合矛盾</h2><div style='margin-bottom:14px'><strong>极性对 #1: 免费 vs (收费|付费|订阅|买断)</strong><div class='who'>A 主理人小A: 资料都在群公告了，GitHub 仓库免费，也可以公众号回复关键字领取</div><div class='who'>B 路过小D: 这个 skill 收费吗？看起来要付费订阅？</div><div class='who'>unresolved_candidate — 启发式候选；终审时若上下文已闭合请删除或标 resolved</div></div><div style='margin-bottom:14px'><strong>极性对 #2: (能用|可以|没问题|支持) vs (不能|无法|不支持|打不开|失败)</strong><div class='who'>A 主理人小A: 资料都在群公告了，GitHub 仓库免费，也可以公众号回复关键字领取</div><div class='who'>B 学员小C: 点链接显示无法访问页面，是不是必须科学上网？</div><div class='who'>unresolved_candidate — 启发式候选；终审时若上下文已闭合请删除或标 resolved</div></div><div style='margin-bottom:14px'><strong>极性对 #3: (本地|开源) vs (云端|闭源|必须.?key)</strong><div class='who'>A 学员小B: 本地 Whisper 能用吗？还是必须上云端百炼 Key？</div><div class='who'>B 主理人小A: 可以本地，也可以云端，看你机器</div><div class='who'>unresolved_candidate — 启发式候选；终审时若上下文已闭合请删除或标 resolved</div></div><div style='margin-bottom:14px'><strong>重复提问未收敛</strong><div class='who'>A 学员小B: 自动生成视频的是哪个？有详细的工作流教程吗？</div><div class='who'>B —: 同义/相同问题出现 2 次</div><div class='who'>unresolved_candidate — 需人工确认是否已被群公告/后续回复闭合</div></div></section>
+<section><h2>三、需求侧原话墙</h2><ul><li><strong>学员小B</strong> <span class='who'>(2023-11-14)</span> <span class='quote'>「自动生成视频的是哪个？有详细的工作流教程吗？」</span></li><li><strong>学员小C</strong> <span class='who'>(2023-11-14)</span> <span class='quote'>「点链接显示无法访问页面，是不是必须科学上网？」</span></li><li><strong>学员小B</strong> <span class='who'>(2023-11-14)</span> <span class='quote'>「本地 Whisper 能用吗？还是必须上云端百炼 Key？」</span></li><li><strong>学员小C</strong> <span class='who'>(2023-11-14)</span> <span class='quote'>「我这边本地一直失败，还是不能跑」</span></li><li><strong>路过小D</strong> <span class='who'>(2023-11-14)</span> <span class='quote'>「这个 skill 收费吗？看起来要付费订阅？」</span></li><li><strong>学员小C</strong> <span class='who'>(2023-11-14)</span> <span class='quote'>「有没有 Windows 安装说明？我不会配环境」</span></li></ul></section>
+<section><h2>四、可执行动作</h2><ol><li><span class='badge'>P1</span><strong>针对「自动生成视频的是哪个？有详细的工作流教程吗？」补一份可执行说明或置顶答复</strong><div class='who'>为什么: 需求墙高频/明确提问</div><div class='who'>指回: msg:m1700000200</div></li><li><span class='badge'>P1</span><strong>针对「点链接显示无法访问页面，是不是必须科学上网？」补一份可执行说明或置顶答复</strong><div class='who'>为什么: 需求墙高频/明确提问</div><div class='who'>指回: msg:m1700000300</div></li><li><span class='badge'>P1</span><strong>针对「本地 Whisper 能用吗？还是必须上云端百炼 Key？」补一份可执行说明或置顶答复</strong><div class='who'>为什么: 需求墙高频/明确提问</div><div class='who'>指回: msg:m1700000500</div></li><li><span class='badge'>P0</span><strong>澄清矛盾主题：极性对 #1: 免费 vs (收费|付费|订阅|买断)（给出唯一官方口径）</strong><div class='who'>为什么: 未闭合矛盾会造成反复提问与信任损耗</div><div class='who'>指回: msg:m1700000100, msg:m1700000800</div></li><li><span class='badge'>P0</span><strong>澄清矛盾主题：极性对 #2: (能用|可以|没问题|支持) vs (不能|无法|不支持|打不开（给出唯一官方口径）</strong><div class='who'>为什么: 未闭合矛盾会造成反复提问与信任损耗</div><div class='who'>指回: msg:m1700000100, msg:m1700000300</div></li></ol></section>
+<section><h2>质量自审</h2><ul><li>☐ 是否 chat-first（分享文案未刷高分）</li><li>☐ 未闭合问题是否标清（无圆场）</li><li>☐ 需求墙是否以非博主/非群主为主</li><li>☐ 动作是否条条指回事实/矛盾/原话</li><li>☐ 是否单页、无重复叙事</li></ul></section>
+<footer>douyin-chat-insight · single-page report · local-first · no IM login</footer>
+</div>
+</body>
+</html>

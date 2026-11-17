@@ -1,45 +1,58 @@
-## Description: <br>
-Autonomously validates specifications, runs behavioral tests, generates code, executes tests, and produces outcome reports with integrity metadata. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Autonomously validates specifications, runs behavioral tests, generates code, executes tests, and produces cryptographically signed outcome reports.
 
-## Publisher: <br>
-[danielfoojunwei](https://clawhub.ai/user/danielfoojunwei) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[danielfoojunwei](https://clawhub.ai/user/danielfoojunwei)
 
-## Use Case: <br>
-Developers and engineers use this skill to validate structured specifications, run mock behavioral tests, orchestrate code generation checkpoints, and produce JSON outcome reports for review or feedback-loop analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security review says the skill presents simulated results and a simple hash as verified signed proof. <br>
-Mitigation: Treat pass rates, security evidence, and signature fields as local mock outputs only; require independent testing and trusted signing before release, compliance, or production use. <br>
-Risk: The release is tagged as requiring wallet access, but the security guidance says wallet access should not be granted without clearer scoping. <br>
-Mitigation: Run without wallet access unless a future version documents why wallet permissions are needed and how they are constrained. <br>
+## Use Case:
 
+Developers and engineers use this skill to validate structured specifications, run behavioral tests against a mock environment, coordinate an autonomous implementation-and-test workflow, and produce outcome reports for review or feedback-loop analysis.
 
-## Reference(s): <br>
-- [Dark Factory Skill Page](https://clawhub.ai/danielfoojunwei/dark-factory) <br>
-- [Specification Schema](artifact/references/specification_schema.json) <br>
-- [Outcome Report Schema](artifact/references/outcome_report_schema.json) <br>
-- [Behavioral Testing Guide](artifact/references/behavioral_testing_guide.md) <br>
-- [Dark Factory Operations](artifact/references/dark_factory_operations.md) <br>
-- [Triad Integration](artifact/references/triad_integration.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with inline bash commands and JSON outcome reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generates specification validation results, behavioral test reports, placeholder implementation files, and outcome_report JSON files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Outcome reports may appear authoritative even though behavioral, unit, and integration results can be based on mock or random execution.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review reports before using them in approval, CI/CD, security, or provenance workflows, and treat them as demonstrations unless the mock execution paths are replaced with real validation.
+
+Risk: Cryptographic signatures may be hashes of generated report content rather than independent proof of secure generation or authentic signing.
+
+Mitigation: Do not rely on the signature as security evidence until a real signing process and verification policy are integrated and reviewed.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/danielfoojunwei/skills/dark-factory)
+- [Behavioral Testing Guide](references/behavioral_testing_guide.md)
+- [Dark Factory Operations](references/dark_factory_operations.md)
+- [Triad Integration](references/triad_integration.md)
+- [Specification Schema](references/specification_schema.json)
+- [Outcome Report Schema](references/outcome_report_schema.json)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Shell commands, JSON, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON report files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces specification validation results, behavioral test reports, generated code placeholders, and signed outcome report JSON.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

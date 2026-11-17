@@ -1,49 +1,65 @@
-## Description: <br>
-Phylo Tree helps agents run maximum likelihood phylogenetic analysis from FASTA sequences or an optional UniProt query and produce trees, figures, summaries, and report material. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Builds publication-quality maximum likelihood phylogenetic trees, figures, quality-control summaries, and scientific reports from FASTA sequences or enzyme-name UniProt searches.
 
-## Publisher: <br>
-[billwanttobetop](https://clawhub.ai/user/billwanttobetop) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[billwanttobetop](https://clawhub.ai/user/billwanttobetop)
 
-## Use Case: <br>
-Developers, researchers, and AI agents use this skill to prepare publication-oriented phylogenetic tree analyses, especially from local FASTA inputs, and to generate structured summaries and report-ready outputs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Crafted output paths may lead to injected R code execution in some scripts. <br>
-Mitigation: Use simple, trusted output paths without quotes or unusual characters and review scripts before running them on untrusted inputs. <br>
-Risk: Installation guidance can make persistent changes to conda configuration. <br>
-Mitigation: Use an isolated conda environment and back up ~/.condarc before applying solver or channel changes. <br>
-Risk: The Feishu/Lark report helper can publish reports and figures through a configured bot account. <br>
-Mitigation: Run generate_feishu_report.py only when cloud publication is intended and the target account and document permissions are understood. <br>
-Risk: Query mode contacts the UniProt API and depends on external service behavior. <br>
-Mitigation: Prefer --fasta mode for offline, reproducible analysis unless network access to UniProt is explicitly acceptable. <br>
+## Use Case:
 
+Researchers, bioinformaticians, and AI agents use this skill to run phylogenetic analysis workflows, generate maximum likelihood trees and publication figures, and prepare structured scientific summaries.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/billwanttobetop/phylo-tree) <br>
-- [AI Workflow](references/ai_workflow.md) <br>
-- [Parameters Reference](references/parameters.md) <br>
-- [Installation Guide](references/installation.md) <br>
-- [Publication Checklist](references/publication.md) <br>
-- [UniProt](https://www.uniprot.org/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with command examples plus generated analysis files such as JSON summaries, Newick tree files, PNG figures, and report drafts.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The normal workflow runs locally with FASTA input; UniProt API access is optional when query mode is used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: ClawHub release evidence) <br>
+Risk: Unsafe R code construction around path interpolation can make untrusted paths risky.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or fix the Rscript path interpolation issue before installation, run as an unprivileged user, and use simple trusted output paths.
+
+Risk: Feishu publishing can upload generated reports and figures to a configured bot destination.
+
+Mitigation: Treat Feishu publishing as a separate opt-in action and confirm the lark-cli destination plus exact files before upload.
+
+Risk: Installation guidance may modify the user's conda configuration.
+
+Mitigation: Back up ~/.condarc before following the install guide and prefer pinned dependency files where possible.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/billwanttobetop/skills/phylo-tree)
+- [UniProt](https://www.uniprot.org/)
+- [Parameters Reference](references/parameters.md)
+- [Installation Guide](references/installation.md)
+- [AI Workflow](references/ai_workflow.md)
+- [Publication Checklist](references/publication.md)
+- [Troubleshooting](references/troubleshooting.md)
+- [IQ-TREE Documentation](http://www.iqtree.org/doc/)
+- [ggtree Documentation](https://yulab-smu.top/treedata-book/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown instructions with bash commands; generated workflow artifacts include Newick tree files, figures, JSON summaries, and Markdown reports.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs depend on local bioinformatics tools, selected input mode, bootstrap settings, and configured output directory.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

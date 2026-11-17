@@ -1,41 +1,54 @@
-## Description: <br>
-Analyzes five-year policy, market, and technology signals for an industry node and can map local enterprises to value-chain segments. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+基于近5年政策、市场和技术信息，分析特定产业节点的发展演进与未来趋势，并可将本地企业挂载到产业链环节。
 
-## Publisher: <br>
-[daviddatamining](https://clawhub.ai/user/daviddatamining) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[daviddatamining](https://clawhub.ai/user/daviddatamining)
 
-## Use Case: <br>
-External analysts, regional economic development teams, and enterprise researchers use this skill to summarize an industry node's recent development, forecast trends, and optionally classify local companies against the value chain. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Industry trend, investment, or due-diligence conclusions may be incomplete or misleading if treated as authoritative. <br>
-Mitigation: Verify policy, market, technical, and company claims against primary sources before making business decisions. <br>
-Risk: The skill may activate on broad enterprise or industry research requests. <br>
-Mitigation: Scope requests with a specific industry_node, region, and focus_industry so the generated analysis stays bounded. <br>
+## Use Case:
 
+产业分析人员、区域招商主管部门和企业研究人员使用该技能，对指定产业节点进行政策、市场、技术演进分析和趋势研判。提供本地企业名单时，技能还可按产业链环节生成企业挂载图谱并指出区域空白环节。
 
-## Reference(s): <br>
-- [ClawHub skill release](https://clawhub.ai/daviddatamining/industry-development-barometer) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/daviddatamining) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Structured Markdown report with tables or timelines] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include an optional enterprise value-chain mapping when local_enterprises is provided.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Policy, market-size, and technology forecasts may be outdated or unsupported if sources are not verified.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify cited policy and market sources, especially current-year claims and forecasts, before relying on the report.
+
+Risk: Optional enterprise lists may contain sensitive business information when used for analysis in the chat context.
+
+Mitigation: Provide only enterprise data that is appropriate for analysis in the selected agent environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/daviddatamining/skills/industry-development-barometer)
+- [Artifact skill definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Structured Markdown report with tables or timelines]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include an optional enterprise-to-industry-chain mapping when local_enterprises are provided.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

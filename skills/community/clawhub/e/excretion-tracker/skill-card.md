@@ -1,43 +1,58 @@
-## Description: <br>
-Track bathroom events (pee/poop) via chat: start time, duration, color, pain, and Bristol stool scale. Generates weekly summaries and optional constipation reminders when no poop occurs past a threshold (default 24h, user-configurable). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Track bathroom events including pee, poop, and no-output attempts via chat, with local logging of time, duration, color, pain, Bristol stool scale, weekly summaries, and optional visual cards.
 
-## Publisher: <br>
-[herve-clawd](https://clawhub.ai/user/herve-clawd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[herve-clawd](https://clawhub.ai/user/herve-clawd)
 
-## Use Case: <br>
-External users use this skill to log pee, poop, and no-output bathroom attempts through chat, keep a local bathroom history, and review weekly bowel and bladder patterns. It supports symptom tracking but does not provide medical diagnosis or medical advice. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Bathroom logs can contain sensitive personal health information stored on the user's device. <br>
-Mitigation: Install only when comfortable storing these logs locally, and avoid sharing the local database or generated summaries with untrusted parties. <br>
-Risk: Optional visual card generation may use selected event details to create local images through a separate skill. <br>
-Mitigation: Keep card generation disabled unless the separate nano-banana-pro skill is trusted and the user is comfortable with those details being used for image creation. <br>
-Risk: Users could mistake bathroom trend summaries for medical guidance. <br>
-Mitigation: Present summaries as logs only, include the not-medical-advice note, and recommend professional medical advice for blood, severe pain, fever, or symptoms lasting more than 24 to 48 hours. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Bristol stool scale](references/bristol.md) <br>
-- [Card generation SOP](references/card_sop.md) <br>
-- [ClawHub skill page](https://clawhub.ai/herve-clawd/excretion-tracker) <br>
+## Use Case:
 
+Individuals and agents use this skill to record bathroom events, monitor bowel and bladder patterns, summarize recent activity, and flag symptoms that may warrant professional medical advice. It is intended for personal tracking, not diagnosis.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Chat responses with inline shell commands and JSON CLI output summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores bathroom logs locally in SQLite; optional image card generation is disabled by default and depends on a separate user-installed skill.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.4.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill records private bathroom and symptom details in a local plaintext SQLite database.
+
+Mitigation: Use it only on trusted devices, review local file permissions before deployment, and document deletion and retention expectations for users.
+
+Risk: Optional card generation may create image files that contain sensitive bathroom details.
+
+Mitigation: Keep cards disabled unless the user explicitly enables them, store generated cards in a private local directory, and avoid sharing generated media without review.
+
+Risk: Command templates include user-provided notes and other free text.
+
+Mitigation: Pass user-provided values as structured command arguments and avoid shell interpolation when invoking the CLI.
+
+## Reference(s):
+
+- [Bristol stool scale reference](references/bristol.md)
+- [Optional card generation SOP](references/card_sop.md)
+- [ClawHub skill page](https://clawhub.ai/herve-clawd/skills/excretion-tracker)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Conversational text with inline shell commands and JSON CLI output summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local SQLite records and optional PNG card images when visual cards are enabled.]
+
+## Skill Version(s):
+
+0.4.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

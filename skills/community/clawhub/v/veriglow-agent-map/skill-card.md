@@ -1,43 +1,55 @@
-## Description: <br>
-Look up VeriGlow Agent Map for any website URL to discover its data functions, internal APIs, browser automation recipes, and agent reliability reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Look up VeriGlow Agent Map for any website URL to discover its data functions, internal APIs, browser automation recipes, and agent reliability reports.
 
-## Publisher: <br>
-[ChizhongWang](https://clawhub.ai/user/ChizhongWang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[chizhongwang](https://clawhub.ai/user/chizhongwang)
 
-## Use Case: <br>
-Developers and agents use this skill to find Agent-readable maps for website data extraction, hidden API calls, and browser automation fallback recipes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide agents to query external websites and use returned curl commands, hidden API calls, browser automation steps, or proxy suggestions. <br>
-Mitigation: Review returned recipes before use, confirm authorization to access the target site, and comply with site terms, rate limits, and data-use restrictions. <br>
-Risk: Submitting sensitive internal URLs, secret query strings, or customer-specific pages to VeriGlow may disclose information outside the user's environment. <br>
-Mitigation: Avoid sending sensitive URLs or parameters unless sharing them with VeriGlow is acceptable. <br>
+## Use Case:
 
+Developers and data engineers use this skill to find Agent-readable maps for public websites so agents can extract structured data, inspect documented page internals, and choose direct API calls or browser automation fallbacks.
 
-## Reference(s): <br>
-- [VeriGlow homepage](https://veri-glow.com) <br>
-- [ClawHub skill page](https://clawhub.ai/ChizhongWang/veriglow-agent-map) <br>
-- [VeriGlow Agent Map lookup pattern](https://veri-glow.com/{target-url-without-protocol}) <br>
-- [SSE bond daily overview Agent Map](https://veri-glow.com/www.sse.com.cn/market/bonddata/overview/day/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Code, Configuration] <br>
-**Output Format:** [Markdown with inline bash and JavaScript code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl for programmatic map fetching; returned website recipes may include external API calls, browser automation steps, rate-limit notes, freshness caveats, and proxy guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: server release metadata and skill frontmatter) <br>
+Risk: The skill is broadly scoped around hidden APIs and automation, which can encourage extraction beyond authorized public data access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for public, authorized web data extraction and avoid private, authenticated, confidential, or access-controlled URLs.
+
+Risk: Automation recipes or hidden API guidance could be used to bypass site rules, authentication, rate limits, or geographic restrictions.
+
+Mitigation: Review each target site's rules and documented constraints before use; do not use recipes to bypass access controls, rate limits, or regional restrictions.
+
+## Reference(s):
+
+- [VeriGlow](https://veri-glow.com)
+- [VeriGlow Agent Map on ClawHub](https://clawhub.ai/chizhongwang/skills/veriglow-agent-map)
+- [Publisher Profile](https://clawhub.ai/user/chizhongwang)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Code, Configuration instructions]
+
+**Output Format:** [Markdown with inline bash and JavaScript code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include website data extraction steps, request examples, response schema notes, browser automation recipes, caveats, and reliability reports.]
+
+## Skill Version(s):
+
+0.2.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

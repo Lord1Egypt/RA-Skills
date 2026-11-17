@@ -1,46 +1,63 @@
-## Description: <br>
-Autonomous research workflow agent for AI and scientific research that helps brainstorm research ideas, review literature, design experiments, analyze results, and write findings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Autonomous research workflow agent for AI and scientific research that helps brainstorm research ideas, conduct literature reviews, design experiments, run analysis, and write up findings with logbox tracking and reproducibility-first practices.
 
-## Publisher: <br>
-[AmberLJC](https://clawhub.ai/user/AmberLJC) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[amberljc](https://clawhub.ai/user/amberljc)
 
-## Use Case: <br>
-Researchers, research engineers, and technical writers use this skill to structure AI and scientific research work across brainstorming, literature review, protocol design, analysis, and writing. It emphasizes decision logging, reproducibility checks, phase transitions, and user checkpoints for research judgment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may create or edit research artifacts and propose Bash commands during research workflows. <br>
-Mitigation: Review proposed commands and file edits before approval, especially in confidential, regulated, or publication-sensitive workspaces. <br>
-Risk: Web-sourced literature or research guidance can be incomplete, outdated, or unsuitable for a specific study design. <br>
-Mitigation: Verify important citations, methods, datasets, and claims against primary sources before using them in experiments or publications. <br>
-Risk: Research workflow assistance can affect human-subjects, embargoed, or release decisions. <br>
-Mitigation: Keep user checkpoints for ethics, scope, publication, and deployment decisions, and apply institutional review processes where relevant. <br>
+## Use Case:
 
+External researchers, research teams, and developers use this skill to manage an AI or scientific research project across brainstorming, literature review, experiment design, analysis, and writing. It helps maintain decision provenance, reproducibility artifacts, phase outputs, and checkpoints for research judgment.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/AmberLJC/meta-research) <br>
-- [README](artifact/README.md) <br>
-- [Literature Review Phase Guide](artifact/phases/literature-review.md) <br>
-- [Experiment Design Phase Guide](artifact/phases/experiment-design.md) <br>
-- [Reproducibility Checklist](artifact/templates/reproducibility-checklist.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance, structured research artifacts, checklists, protocols, analysis notes, drafts, file edits, and proposed shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create project notes, LOGBOX entries, exploration directories, templates, protocols, and analysis artifacts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.5.0 (source: server release metadata; skill frontmatter reports 1.0.0) <br>
+Risk: The skill can search the web, write project files, and run analysis commands, which may affect important research artifacts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use project-scoped installation, keep version control enabled, and review proposed file changes and commands before allowing them.
+
+Risk: Analysis workflows may involve expensive compute or long-running experiments.
+
+Mitigation: Review experiment plans, resource assumptions, and command invocations before approving large runs.
+
+Risk: Research drafts, protocols, or analysis summaries could contain incorrect or misleading conclusions.
+
+Mitigation: Require researcher review of claims, limitations, evidence maps, and reproducibility checklists before public release.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/amberljc/skills/meta-research)
+- [README](artifact/README.md)
+- [Skill definition](artifact/SKILL.md)
+- [Analysis phase guide](artifact/phases/analysis.md)
+- [Literature review phase guide](artifact/phases/literature-review.md)
+- [Experiment protocol template](artifact/templates/experiment-protocol.md)
+- [Reproducibility checklist](artifact/templates/reproducibility-checklist.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance, Files]
+
+**Output Format:** [Markdown guidance, project files, checklists, protocols, code snippets, and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Maintains a LOGBOX decision trail and may create or update research artifacts during the workflow.]
+
+## Skill Version(s):
+
+2.5.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

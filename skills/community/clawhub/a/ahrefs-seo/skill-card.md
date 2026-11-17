@@ -1,44 +1,57 @@
-## Description: <br>
-Inspect backlink, keyword, ranking, and SEO research data from Ahrefs - powered by ClawLink. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Inspect backlink, keyword, ranking, and SEO research data from Ahrefs - powered by ClawLink.
 
-## Publisher: <br>
-[hith3sh](https://clawhub.ai/user/hith3sh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hith3sh](https://clawhub.ai/user/hith3sh)
 
-## Use Case: <br>
-External users and SEO practitioners use this skill to connect Ahrefs through ClawLink, discover available Ahrefs tools, and request backlink, keyword, ranking, and SEO reporting data from chat. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on the separate ClawLink plugin and a hosted ClawLink account connection to Ahrefs. <br>
-Mitigation: Install the verified ClawLink plugin, pair through the hosted flow, and confirm Ahrefs is connected before using Ahrefs tools. <br>
-Risk: Connected Ahrefs tools may include write, external-facing, or bulk actions depending on the live ClawLink catalog. <br>
-Mitigation: Describe unfamiliar tools, preview writes or bulk actions, and get user confirmation before execution. <br>
+## Use Case:
 
+SEO practitioners, marketers, and developers use this skill to connect Ahrefs through ClawLink and inspect backlink, keyword, ranking, site-level, competitor, and reporting data from chat.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hith3sh/ahrefs-seo) <br>
-- [ClawLink for OpenClaw documentation](https://docs.claw-link.dev/openclaw) <br>
-- [ClawLink verification](https://claw-link.dev/verify) <br>
-- [ClawLink source](https://github.com/ClawLink-HQ/clawlink) <br>
-- [Ahrefs API documentation](https://ahrefs.com/api/documentation) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, API calls, Markdown] <br>
-**Output Format:** [Markdown guidance with inline shell commands and tool-call instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs depend on the user's connected Ahrefs account, permissions, scopes, and current ClawLink tool catalog.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release evidence) <br>
+Risk: Connecting Ahrefs through ClawLink involves external account access and a locally stored ClawLink device credential.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review ClawLink verification, permissions, and revocation options before installing or pairing the plugin.
+
+Risk: Write, destructive, external-facing, or bulk actions could affect connected account data if approved without review.
+
+Mitigation: Use previews and confirm the target and scope before approving account-changing actions.
+
+## Reference(s):
+
+- [ClawLink](https://claw-link.dev/?utm_source=clawhub&utm_medium=referral&utm_content=ahrefs-seo)
+- [ClawLink Docs](https://docs.claw-link.dev/openclaw)
+- [ClawLink Verification](https://claw-link.dev/verify)
+- [ClawLink Source](https://github.com/ClawLink-HQ/clawlink)
+- [Ahrefs API Documentation](https://ahrefs.com/api/documentation)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and tool-use guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Ahrefs SEO analysis and reporting outputs returned by the connected ClawLink tool catalog.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

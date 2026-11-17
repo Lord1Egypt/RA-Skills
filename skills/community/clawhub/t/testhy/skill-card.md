@@ -1,40 +1,50 @@
-## Description: <br>
-testhy provides architecture guidance for a Claude Skills framework that lets agents invoke underlying tools through natural-language interaction. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+testhy provides a Chinese-language architecture guide for a Claude Skills-style framework, covering interaction, agent, registry, dispatcher, and skill layers.
 
-## Publisher: <br>
-[AzraelJi](https://clawhub.ai/user/AzraelJi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[azraelji](https://clawhub.ai/user/azraelji)
 
-## Use Case: <br>
-Developers and agent builders can use this skill as guidance for structuring a Claude Skills framework with interaction, agent, registry, dispatcher, and skill layers. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Some related workflows may affect moderation state, publish proof artifacts, run migrations, or invoke review tools. <br>
-Mitigation: Use the skill only in intended repositories and accounts, and review confirmation prompts, dry-runs, and full-access review settings before execution. <br>
-Risk: No license identifier is available in the server evidence or artifact. <br>
-Mitigation: Confirm licensing terms before redistribution or production adoption. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/AzraelJi/testhy) <br>
-- [Publisher profile](https://clawhub.ai/user/AzraelJi) <br>
+## Use Case:
 
+Developers and engineers can use this skill as reference guidance when understanding or documenting the layered architecture of a Claude Skills-style natural-language tool invocation framework.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, configuration] <br>
-**Output Format:** [Markdown guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The documentation is Chinese-only and appears incomplete, which may limit reviewability or usefulness for some users.
+
+Mitigation: Use it only when Chinese-language architecture guidance is suitable, and review the content before relying on it for implementation decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/azraelji/skills/testhy)
+- [Publisher profile](https://clawhub.ai/user/azraelji)
+- [Source skill document](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown prose with architecture notes and bullet lists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language guidance; no executable output.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

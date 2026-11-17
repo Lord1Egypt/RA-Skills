@@ -1,41 +1,54 @@
-## Description: <br>
-OpenStreetMap geocoding for forward and reverse address lookup and OpenStreetMap object lookups through the Nominatim API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenStreetMap geocoding for forward and reverse geocoding and place lookups via the Nominatim API.
 
-## Publisher: <br>
-[brucegutman](https://clawhub.ai/user/brucegutman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[brucegutman](https://clawhub.ai/user/brucegutman)
 
-## Use Case: <br>
-Developers and agents use this skill to convert place names or addresses into coordinates, reverse geocode coordinates into addresses, and look up specific OpenStreetMap objects by ID. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Address and coordinate queries can contain sensitive location information and are sent to Pipeworx's gateway. <br>
-Mitigation: Use the skill only when sending the relevant location data to the remote endpoint is appropriate for the user and environment. <br>
-Risk: Setup uses npx mcp-remote to connect an agent to a remote MCP endpoint. <br>
-Mitigation: Use that setup only when the npm package and the Pipeworx endpoint are trusted for the deployment context. <br>
+## Use Case:
 
+Developers and agents use this skill to convert typed addresses into coordinates, reverse geocode coordinates into addresses, resolve ambiguous place names, and look up OpenStreetMap objects by ID.
 
-## Reference(s): <br>
-- [Pipeworx Nominatim pack](https://pipeworx.io/packs/nominatim) <br>
-- [ClawHub skill page](https://clawhub.ai/brucegutman/pipeworx-nominatim) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with JSON configuration and curl examples; tool calls return JSON geocoding results.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl and uses a Pipeworx-hosted Nominatim MCP endpoint; the gateway respects Nominatim's 1 request per second usage policy.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence release and SKILL.md frontmatter) <br>
+Risk: The setup uses an automatically resolved mcp-remote package, so installed code may differ from the reviewed artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin mcp-remote to a reviewed version before installation and run it with least privilege.
+
+Risk: Address and coordinate queries are sent to the Pipeworx gateway for processing.
+
+Mitigation: Avoid submitting sensitive location data unless the gateway's handling is acceptable for the use case.
+
+## Reference(s):
+
+- [Pipeworx Nominatim homepage](https://pipeworx.io/packs/nominatim)
+- [ClawHub skill page](https://clawhub.ai/brucegutman/skills/pipeworx-nominatim)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with JSON and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Geocoding responses may include coordinates, bounding boxes, display names, addresses, and OpenStreetMap object identifiers.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,57 @@
-## Description: <br>
-Send SMS text messages directly from the user's Android device using the Termux API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Send SMS text messages directly from the user's Android device using the Termux API when the agent is running in Termux or has remote command access to an Android device with Termux installed.
 
-## Publisher: <br>
-[jerryshane1983-tech](https://clawhub.ai/user/jerryshane1983-tech) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jerryshane1983-tech](https://clawhub.ai/user/jerryshane1983-tech)
 
-## Use Case: <br>
-Developers and users running an agent on Android through Termux use this skill to send explicit SMS messages through the local Termux API after confirming the recipient and exact message text. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send real SMS messages from the user's Android device, which may expose private information or incur carrier charges. <br>
-Mitigation: Use only on a device the user controls, verify the recipient phone number and exact message text before each send, and consider carrier costs and privacy exposure. <br>
-Risk: SMS sending depends on local Termux and Android permissions being configured correctly. <br>
-Mitigation: Install Termux:API and the termux-api package, grant SMS permissions on the device, and confirm termux-sms-send is available before use. <br>
+## Use Case:
 
+External users and agent operators use this skill to prepare SMS-sending commands on an Android device through Termux. It is intended for explicit user-requested texting workflows where the recipient and message are confirmed before sending.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jerryshane1983-tech/termux-sms) <br>
-- [Publisher profile](https://clawhub.ai/user/jerryshane1983-tech) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an Android device with Termux, Termux:API, SMS permissions, and termux-sms-send available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: User-supplied recipient or message text could become shell execution if interpolated into a shell command.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pass the phone number and message as separate process arguments when possible; otherwise validate recipients and apply robust shell escaping before execution.
+
+Risk: An agent could send an unintended SMS or message the wrong recipient.
+
+Mitigation: Require an explicit phone number and confirm the exact recipient and message text with the user before sending.
+
+Risk: The skill can be misused for bulk or unwanted SMS messages.
+
+Mitigation: Do not use it for spam or bulk messaging, and restrict use to specific user-requested messages.
+
+## Reference(s):
+
+- [ClawHub Termux SMS release page](https://clawhub.ai/jerryshane1983-tech/skills/termux-sms)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline bash commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the Termux API command line utility `termux-sms-send` on an Android device with SMS permission.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

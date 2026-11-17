@@ -1,45 +1,57 @@
-## Description: <br>
-Provides API marketplace access for AI agents to discover and call external services including web search, image generation, code execution, text-to-speech, translation, financial data, weather, academic papers, email, and document conversion. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides API marketplace access for AI agents to discover and call external capabilities such as web search, image generation, code execution, text-to-speech, translation, financial data, weather, reference data, and document conversion.
 
-## Publisher: <br>
-[ucmai](https://clawhub.ai/user/ucmai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[ucmai](https://clawhub.ai/user/ucmai)
 
-## Use Case: <br>
-Developers and agent operators use this skill to discover UCM services and invoke external APIs from an agent through curl or another HTTP client when native capabilities are insufficient. It is suited for tasks that need current data, media generation, document conversion, sandboxed code execution, email, or other marketplace capabilities. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Paid marketplace calls, email sends, and sandbox code execution can spend credits or perform external actions. <br>
-Mitigation: Ask for confirmation before paid calls, email sends, or sandbox code execution; check balance and history when cost matters. <br>
-Risk: Inputs sent through UCM may be processed by UCM and downstream providers. <br>
-Mitigation: Do not send secrets, credentials, or confidential documents unless the user accepts that processing; redact sensitive inputs where possible. <br>
-Risk: The UCM API key or terminal logs containing it could expose account access. <br>
-Mitigation: Keep UCM_API_KEY private, avoid printing it unnecessarily, and protect logs that include credentials. <br>
+## Use Case:
 
+Developers and agent operators use this skill when an agent needs marketplace discovery and HTTP access to external API capabilities that are not available natively. It is suited for tasks that may require paid calls, credential handling, and data exchange with UCM and upstream service providers.
 
-## Reference(s): <br>
-- [UCM Service Catalog](references/service-catalog.md) <br>
-- [UCM Website](https://ucm.ai) <br>
-- [UCM Source Repository](https://github.com/ucmai/skills) <br>
-- [ClawHub Skill Page](https://clawhub.ai/ucmai/ucm) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance, API Calls] <br>
-**Output Format:** [Markdown guidance with curl commands and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires network access and UCM_API_KEY for authenticated paid service calls.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: release evidence and frontmatter) <br>
+Risk: The skill handles a paid-service bearer key and may expose credentials through transcripts, command output, logs, or permissive local credential storage.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid printing or pasting full API keys, store ~/.config/ucm/credentials.json with restrictive permissions, keep UCM_API_KEY out of logs, and rotate any key that has been exposed.
+
+Risk: The skill can send task data to UCM and upstream providers and can make paid calls without a separate built-in spending gate.
+
+Mitigation: Use it only when external data sharing and small paid calls are acceptable; check balance and service details before calling paid endpoints.
+
+## Reference(s):
+
+- [UCM Skill on ClawHub](https://clawhub.ai/ucmai/skills/ucm)
+- [UCM Publisher Profile](https://clawhub.ai/user/ucmai)
+- [UCM Website](https://ucm.ai)
+- [UCM Repository](https://github.com/ucmai/skills)
+- [Service Catalog](references/service-catalog.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON request examples; service calls may return service-specific text, JSON, code, markdown, or generated asset references.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires network access, curl or an HTTP client, and UCM_API_KEY for authenticated paid service calls.]
+
+## Skill Version(s):
+
+1.1.1 (source: target metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

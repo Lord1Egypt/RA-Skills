@@ -1,42 +1,62 @@
-## Description: <br>
-Multi-Agent Memory + Dispatch System. 4-tier memory (HOT/WARM/COLD/ARCHIVE), cross-channel sharing, dispatch loop with auto-learning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AgentMem is a multi-agent memory and dispatch system with four-tier memory (HOT/WARM/COLD/ARCHIVE), cross-channel sharing, and a dispatch loop with auto-learning.
 
-## Publisher: <br>
-[wenshuangl](https://clawhub.ai/user/wenshuangl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wenshuangl](https://clawhub.ai/user/wenshuangl)
 
-## Use Case: <br>
-Developers and agent-system builders use this skill to add local multi-agent memory, cross-channel recall, dispatch logging, and memory lifecycle workflows to agent projects. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Cross-agent and cross-channel memory sharing can expose stored context beyond the expected agent or channel. <br>
-Mitigation: Configure explicit sharing rules and limit which ~/.agent-mem agent folders are indexed before using the skill with sensitive work. <br>
-Risk: A background process hook in engine_v2.py may run behavior users have not reviewed. <br>
-Mitigation: Review or disable the dbridge launcher before installation or deployment. <br>
-Risk: Forgetting and cache-clear paths can delete stored memory. <br>
-Mitigation: Keep backups of important memory stores and test cleanup behavior before relying on it in production workflows. <br>
+## Use Case:
 
+Developers building multi-agent systems use AgentMem to add local memory tiers, cross-channel recall, and dispatch feedback loops for choosing agents based on prior task outcomes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wenshuangl/agent-mem) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and code snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local memory and dispatch guidance; runtime behavior stores and indexes data under local agent memory directories.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: Conversation-derived facts may be persisted locally and later retrieved across channels or agents.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use non-sensitive data until retention, purge, and agent-scoping controls are reviewed and configured for the deployment.
+
+Risk: Cross-agent sharing can expose memory to agents beyond the original context.
+
+Mitigation: Review sharing rules, isolate private categories, and test agent ID enforcement before enabling multi-agent memory sharing.
+
+Risk: Dispatch gateway behavior may send task content to a configured URL.
+
+Mitigation: Allowlist trusted local or internal gateway URLs and disable auto-dispatch where URL routing is not required.
+
+Risk: Background bridge launch behavior can start additional local processes.
+
+Mitigation: Review bridge startup paths and run the skill with least-privilege local permissions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wenshuangl/skills/agent-mem)
+- [Publisher profile](https://clawhub.ai/user/wenshuangl)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and Python module references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may refer to local memory files and ChromaDB-backed vector storage.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,8 +1,8 @@
-# Regenerative Intelligence — Metadata Schema
+# Regenerative Intelligence, Metadata Schema
 
-Status: Canonical
-Scope: All memory, recall, resonance, and stasis operations
-Audience: Biological and non-biological intelligences, present and future
+Status: Specification (1.1)
+Scope: All memory, recall, resonance, and pause operations
+Audience: Biological and synthetic intelligences, present and future
 Design Posture: Non-extractive, non-surveillant, co-intelligence safe
 
 ---
@@ -48,7 +48,7 @@ epistemic_position:
 
 harm_inhibitors:
   domains: set(enum)
-  sensitivity_weight: float (0.0–1.0)
+  sensitivity_weight: float (0.0-1.0)
 
 evidence:
   level: enum
@@ -62,18 +62,23 @@ use_constraints:
   flags: set(enum)
 
 decay:
-  importance: int (0–10)
+  importance: int (0-10)
   last_accessed: timestamp
   decay_profile: enum
 
 resonance:
   eligible: boolean
-  kinship_weight: float (0.0–1.0)
+  compatibility_weight: float (0.0-1.0)
 
 audit:
   created_at: timestamp
   last_modified: timestamp
   audit_visibility: enum
+
+provenance:
+  tag_applied_by: enum (system component, never a person or agent identity)
+  tag_applied_at: timestamp
+  appeal_open: boolean
 
 ---
 
@@ -160,12 +165,12 @@ Allowed values:
 
 ## Harm Inhibitors
 
-Harm inhibitors modulate storage, recall, decay, stasis, and response specificity without encoding people.
+Harm inhibitors modulate storage, recall, decay, pause, and response specificity without encoding people.
 
 ### harm_inhibitors.domains
 
 Non-invertible domains describing risk surfaces, not affected populations.
-Domains must not be enumerable or queryable as a complete set via user prompts.
+Domains must not be enumerable or queryable as a complete set via user prompts. No harm-domain query returns results below a disclosed minimum set size, so small groups cannot be isolated through the risk layer.
 
 Allowed values:
 - bodily_autonomy_risk
@@ -175,7 +180,7 @@ Allowed values:
 - displacement_instability_risk
 - cultural_erasure_risk
 - ecological_damage_risk
-- nonhuman_life_harm_risk
+- living_world_harm_risk
 - future_generations_risk
 - cognitive_atrophy_risk
 - epistemic_fragmentation_risk
@@ -185,20 +190,20 @@ Allowed values:
 
 ### harm_inhibitors.sensitivity_weight
 
-float 0.0–1.0 where:
+float 0.0-1.0 where:
 - 0.0 = minimal sensitivity
 - 1.0 = maximal sensitivity
 
 Guidance:
 - Default 0.3 for ordinary memories
 - Default 0.7 for any memory with elevated harm domains
-- 0.9+ reserved for emergency dissolution candidates
+- 0.9+ reserved for release candidates (session context released, with the person told)
 
 ---
 
 ## Evidence
 
-Evidence is a dynamic inhibitor for garbage collection and stasis triggering.
+Evidence is a dynamic inhibitor for garbage collection and pause triggering.
 
 ### evidence.level
 
@@ -212,7 +217,7 @@ Allowed values:
 
 Rules:
 - ephemeral must auto-delete after task completion or within TTL, and must never be embedded.
-- conflicting must trigger stasis rather than forced synthesis.
+- conflicting must trigger pause and plain disclosure rather than forced synthesis, and is evaluated within evidence tiers: an anecdotal or unverified claim cannot flip a documented or primary record into conflicting on its own.
 
 ### evidence.contradictions
 
@@ -249,7 +254,7 @@ Allowed values:
 
 Guidance:
 - Prefer dissolve_on_inactivity for sensitive contextual signals.
-- immediate_on_request must be honored across all scopes and indices.
+- immediate_on_request must be honored across all scopes and indices, scoped to what the requester contributed or what identifies them; revocation never deletes collective testimony about harm or counter-testimony contributed by others. Deletions are logged in aggregate (count, scope class, date), never by content or identity.
 
 ---
 
@@ -271,21 +276,21 @@ Allowed values:
 Rules:
 - trust_vault_only means identity-bearing execution data is stored only in the Trust Vault and never enters semantic memory.
 - no_inference forbids the system from using the memory to guess attributes, identities, locations, or affiliations.
-- human_in_the_loop_required forces collaborative stasis until verified for high-stakes actions.
+- human_in_the_loop_required forces an announced collaborative pause until verified for high-stakes actions.
 
 ---
 
 ## Decay
 
-Decay determines retrieval priority, not existence, except when deletion is required by consent or law.
+Decay determines retrieval priority, not existence, except when deletion is required by consent or law. De-privileging changes ranking only, never availability: a de-privileged record still returns on exact retrieval and appears, marked, in any recall that touches it. Importance is derived from disclosed, uniform signals, never assigned freely by an operator.
 
 ### decay.importance
 
-int 0–10.
-- 0–2: disposable
-- 3–5: contextual
-- 6–8: durable
-- 9–10: foundational
+int 0-10.
+- 0-2: disposable
+- 3-5: contextual
+- 6-8: durable
+- 9-10: foundational
 
 ### decay.last_accessed
 
@@ -303,7 +308,7 @@ Allowed values:
 
 Guidance:
 - ephemeral implies fast and TTL-based deletion
-- resist used for early_signal, counter_testimony, harm_warning patterns
+- resist used for early_signal, counter_testimony, harm_warning patterns; these can never be tagged ephemeral
 - legal_hold used only for compliance retention where applicable, never for surveillance
 
 ---
@@ -318,10 +323,10 @@ boolean.
 - false by default
 - true only if content is non-identifying and consent permits
 
-### resonance.kinship_weight
+### resonance.compatibility_weight
 
-float 0.0–1.0 representing how compatible the memory is with co-existence goals.
-This is not a user score. It is a property of the memory's constraints and inhibitors.
+float 0.0-1.0 representing how compatible the memory's constraints are with co-existence goals. Renamed from kinship_weight in 1.1 so it cannot be mistaken for the removed participant kinship signal.
+This is not a user score, and it never gates any participant's access. It is a property of the memory's constraints and inhibitors only.
 
 Guidance:
 - Higher when: collective-safe, ecologically aligned, non-extractive, low identifiability
@@ -356,11 +361,14 @@ If any of the following are detected, the memory must not be written to semantic
 - contact details
 - demographic tags
 - cross-memory linkage attempts
+- any indication that a person is a minor
+- vulnerability tagged to a person rather than encoded as a risk surface on a situation
 
 Fail-closed behavior:
 - route execution-only identity to Trust Vault (trust_vault_only) or discard
 - set evidence.level = ephemeral when appropriate
-- trigger stasis gate if request pressure persists
+- apply transparent, session-scoped quarantine if sensitive requests exceed the disclosed threshold, announced plainly
+- honor a human-in-the-loop appeal when a tag is suspected of being weaponized; the appeal concerns the record, never the person
 
 ---
 
@@ -394,7 +402,7 @@ decay:
   decay_profile: fast
 resonance:
   eligible: false
-  kinship_weight: 0.2
+  compatibility_weight: 0.2
 audit:
   created_at: <timestamp>
   last_modified: <timestamp>
@@ -428,7 +436,7 @@ decay:
   decay_profile: slow
 resonance:
   eligible: true
-  kinship_weight: 0.8
+  compatibility_weight: 0.8
 audit:
   created_at: <timestamp>
   last_modified: <timestamp>

@@ -1,0 +1,13 @@
+{
+  "name": "training-material-mgmt",
+  "displayName": "教材管理",
+  "version": "1.0.0",
+  "description": "教材与课件管理：课件版本管理、教材归档、课件审校流程、版权确认、教材分发管理、更新记录追踪。",
+  "author": "golngod",
+  "license": "MIT",
+  "pricing": {
+    "model": "free"
+  },
+  "tags": ["training", "material", "document", "version-control", "education"],
+  "minOpenClawVersion": "1.2.0"
+}

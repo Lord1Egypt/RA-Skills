@@ -1,41 +1,58 @@
-## Description: <br>
-Track fridge and pantry inventory with expiry reminders and grocery lists. Use when logging groceries, checking expiry dates, or building shopping lists. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Track fridge and pantry inventory with expiry reminders and grocery lists.
 
-## Publisher: <br>
-[bytesagain-lab](https://clawhub.ai/user/bytesagain-lab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain-lab](https://clawhub.ai/user/bytesagain-lab)
 
-## Use Case: <br>
-External users use Fridge to log fridge and pantry inventory, review recent household entries, export records, and build grocery or maintenance lists from a local command-line workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Household notes are saved locally in plaintext-like files under ~/.local/share/fridge/. <br>
-Mitigation: Avoid entering sensitive personal details on shared or heavily backed-up machines, and review local file permissions before use. <br>
-Risk: The skill text describes expiry reminders, but evidence warns not to rely on it for real timed expiry alerts without verification. <br>
-Mitigation: Use a separate trusted reminder system for time-critical expiry or safety decisions. <br>
+## Use Case:
 
+External users and household maintainers use this skill to log fridge and pantry items, review recent activity, search entries, and export local inventory notes.
 
-## Reference(s): <br>
-- [Fridge on ClawHub](https://clawhub.ai/bytesagain-lab/fridge) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text and shell command output, with export files available as JSON, CSV, or text.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores user-entered inventory notes locally under ~/.local/share/fridge/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release evidence) <br>
+Risk: The skill stores fridge and household notes persistently in local logs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid storing sensitive personal data unless local persistent logs are acceptable, and manage access to ~/.local/share/fridge.
+
+Risk: The skill description overstates expiry reminder and grocery-list automation.
+
+Mitigation: Use it as a local logging and export aid, not as the source of truth for actual expiry-date reminders or grocery automation.
+
+Risk: Exported JSON, CSV, or text files may contain untrusted or pasted entry content.
+
+Mitigation: Review and sanitize exports before sharing them or importing them into spreadsheets and other tools.
+
+## Reference(s):
+
+- [Fridge on ClawHub](https://clawhub.ai/bytesagain-lab/skills/fridge)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Files]
+
+**Output Format:** [Plain text CLI output with optional JSON, CSV, or text export files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores local logs under ~/.local/share/fridge.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

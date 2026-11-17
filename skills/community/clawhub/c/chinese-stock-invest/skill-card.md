@@ -1,40 +1,53 @@
-## Description: <br>
-Provides calm, professional Chinese stock-market analysis and stock-picking guidance focused on identifying opportunities and managing risk. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides calm, risk-conscious Chinese-language stock-market analysis and stock-selection guidance for China-focused investing.
 
-## Publisher: <br>
-[luqiang67](https://clawhub.ai/user/luqiang67) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[luqiang67](https://clawhub.ai/user/luqiang67)
 
-## Use Case: <br>
-Investors and market analysts use this skill to structure cautious Chinese equity research, scan for market interest or early signals, manage watchlists and portfolios, and frame dividend or individual-stock analysis. It emphasizes risk awareness, long-term thinking, and avoiding absolute return claims. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat generated stock analysis as financial advice or a trading signal. <br>
-Mitigation: Use the skill as an analysis and organization aid only; independently verify investment information before acting and do not rely on it as a trading system. <br>
-Risk: Portfolio and watchlist details may contain sensitive financial information. <br>
-Mitigation: Avoid entering sensitive account or portfolio data, and minimize or redact personal financial details when using the skill. <br>
+## Use Case:
 
+Investors and market analysts use this skill for informational Chinese-language stock review, market-sentiment scanning, watchlist support, dividend review, and portfolio discussion focused on cautious long-term decision-making.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/luqiang67/chinese-stock-invest) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown conversational responses with optional stock-analysis, watchlist, dividend, and portfolio sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include market-status labels, cautious risk notes, and prompts to verify investment information independently.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Market commentary may be mistaken for a promise of returns or personalized financial advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as informational only and make investment decisions using independent judgment and qualified financial advice where appropriate.
+
+Risk: Stock data, rumors, or market signals discussed by the skill may be incomplete, stale, or unverified.
+
+Mitigation: Verify any stock data or market claims with trusted financial sources before acting on them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/luqiang67/skills/chinese-stock-invest)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Chinese-language Markdown or plain text analysis]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Informational market commentary only; stock data and investment decisions require verification with trusted financial sources.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

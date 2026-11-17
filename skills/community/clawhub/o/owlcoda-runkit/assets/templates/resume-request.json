@@ -1,0 +1,10 @@
+{
+  "schemaVersion": "OwlCodaRunKitResumeRequestV1",
+  "resumeId": "replace-with-resume-id",
+  "continuationRunId": "replace-with-new-run-id-or-null-for-active-source",
+  "reason": "replace-with-explicit-resume-reason",
+  "coverage": {
+    "coverageId": "replace-with-coverage-id",
+    "sources": []
+  }
+}

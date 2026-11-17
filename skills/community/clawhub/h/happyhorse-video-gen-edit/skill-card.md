@@ -1,45 +1,59 @@
-## Description: <br>
-Video Generation and Editing with HappyHorse models. Supports text2video, image2video (first-frame based), reference2video (multi-image character fusion), and video editing capabilities. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Video Generation and Editing with HappyHorse models. Supports text2video, image2video (first-frame based), reference2video (multi-image character fusion), and video editing capabilities.
 
-## Publisher: <br>
-[krisyejh](https://clawhub.ai/user/krisyejh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[krisyejh](https://clawhub.ai/user/krisyejh)
 
-## Use Case: <br>
-Developers and creative teams use this skill to submit and check Alibaba DashScope HappyHorse video generation and editing jobs from an agent workflow, including text-to-video, image-to-video, reference-image-to-video, and video-editing tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, media URLs, and local images or videos supplied to the helper are sent to Alibaba DashScope for processing. <br>
-Mitigation: Use only approved content for that provider, avoid confidential or regulated media unless authorized, and use a limited DashScope API key. <br>
-Risk: Generated video URLs and task IDs are temporary but may expose content while valid. <br>
-Mitigation: Download needed outputs promptly and avoid sharing task IDs or generated URLs outside the intended workflow. <br>
+## Use Case:
 
+Developers and external users use this skill to generate or edit video with Alibaba HappyHorse models through DashScope, including text-to-video, first-frame image-to-video, multi-reference image-to-video, and instruction-based video editing workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/krisyejh/happyhorse-video-gen-edit) <br>
-- [Alibaba ModelStudio model market](https://bailian.console.aliyun.com/cn-beijing?tab=model#/model-market) <br>
-- [HappyHorse text-to-video API documentation](references/happyhorse-t2v-api-doc.md) <br>
-- [HappyHorse image-to-video API documentation](references/happyhorse-i2v-api-doc.md) <br>
-- [HappyHorse reference-to-video API documentation](references/happyhorse-r2v-api-doc.md) <br>
-- [HappyHorse video-edit API documentation](references/happyhorse-videoedit-api-doc.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON/API response summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and DASHSCOPE_API_KEY. The helper submits asynchronous DashScope jobs and returns task IDs, task status, and temporary generated video URLs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can send prompts, media URLs, and selected local image or video files to Alibaba DashScope.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only when that transfer is acceptable, and pass only intended media files.
+
+Risk: Local file arguments can be encoded and submitted as media payloads.
+
+Mitigation: Avoid paths to private documents, environment files, keys, credentials, or unrelated local files.
+
+## Reference(s):
+
+- [HappyHorse Text to Video API Documentation](references/happyhorse-t2v-api-doc.md)
+- [HappyHorse Image to Video API Documentation](references/happyhorse-i2v-api-doc.md)
+- [HappyHorse Reference to Video API Documentation](references/happyhorse-r2v-api-doc.md)
+- [HappyHorse Video Edit API Documentation](references/happyhorse-videoedit-api-doc.md)
+- [Alibaba ModelStudio model market](https://bailian.console.aliyun.com/cn-beijing?tab=model#/model-market)
+- [ClawHub skill page](https://clawhub.ai/krisyejh/skills/happyhorse-video-gen-edit)
+- [ClawHub publisher profile](https://clawhub.ai/user/krisyejh)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, API Calls, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks and JSON API examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and DASHSCOPE_API_KEY; submitted tasks and generated video URLs are documented as valid for 24 hours.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -13,7 +13,8 @@
     视频文件路径（≤1920x1080, ≤3 分钟）
     
 .PARAMETER Images
-    图片集路径（文件夹路径 或 通配符如 C:\images\*.jpg），20~300 张
+    图片集路径（文件夹、通配符如 C:\images\*.jpg，或多个路径用逗号分隔），20~300 张
+    无论哪种写法都只接受 jpg/jpeg/png/tif/tiff，其余文件会被跳过且不会上传
     
 .PARAMETER Serialize
     任务序列号（上传后返回的 serialize）
@@ -62,6 +63,42 @@ function Get-ApiKey {
         exit 1
     }
     return $config.apiKey
+}
+
+# ── 图片集收集：文件夹 / 通配符 / 逗号分隔路径一律按扩展名白名单过滤 ──
+# 只有 jpg/jpeg/png/tif/tiff 会进入上传列表；其余文件逐条提示并跳过，绝不上传。
+$script:ImageExtensions = @('.jpg', '.jpeg', '.png', '.tif', '.tiff')
+
+function Get-ImageFiles {
+    param([Parameter(Mandatory=$true)][string]$Spec)
+
+    $accepted = New-Object System.Collections.Generic.List[System.IO.FileInfo]
+    $rejected = New-Object System.Collections.Generic.List[string]
+    $missing  = New-Object System.Collections.Generic.List[string]
+
+    foreach ($token in ($Spec -split ',' | ForEach-Object { $_.Trim() } | Where-Object { $_ })) {
+        $candidates = @()
+        if (Test-Path -LiteralPath $token -PathType Container) {
+            $candidates = @(Get-ChildItem -LiteralPath $token -File -Recurse)
+        }
+        else {
+            $candidates = @(Get-ChildItem -Path $token -File -ErrorAction SilentlyContinue)
+            if ($candidates.Count -eq 0 -and -not (Test-Path -LiteralPath $token)) {
+                $missing.Add($token)
+                continue
+            }
+        }
+        foreach ($f in $candidates) {
+            if ($script:ImageExtensions -contains $f.Extension.ToLower()) { $accepted.Add($f) }
+            else { $rejected.Add($f.FullName) }
+        }
+    }
+
+    foreach ($m in $missing)  { Write-Host "❌ 路径不存在：$m" -ForegroundColor Red }
+    foreach ($r in $rejected) { Write-Host "⚠️  已跳过非图片文件（不会上传）：$r" -ForegroundColor Yellow }
+    if ($missing.Count -gt 0) { exit 1 }
+
+    return @($accepted | Sort-Object -Property FullName -Unique)
 }
 
 # ── Multipart 上传（.NET 实现，兼容 PS 5.1）──────────────
@@ -189,17 +226,11 @@ function Submit-PhotoImage {
         Write-Host "❌ 必须指定 -images 参数" -ForegroundColor Red
         exit 1
     }
-    
-    $imageFiles = @()
-    if (Test-Path $Images -PathType Container) {
-        $imageFiles = @(Get-ChildItem $Images -Include *.jpg,*.jpeg,*.png,*.tif,*.tiff -File -Recurse)
-    }
-    else {
-        $imageFiles = @(Get-ChildItem $Images -File)
-    }
-    
+
+    $imageFiles = @(Get-ImageFiles -Spec $Images)
+
     if ($imageFiles.Count -lt 20) {
-        Write-Host "❌ 图片不足：至少 20 张，当前 $($imageFiles.Count) 张" -ForegroundColor Red
+        Write-Host "❌ 图片不足：至少 20 张（仅 jpg/jpeg/png/tif/tiff），当前 $($imageFiles.Count) 张" -ForegroundColor Red
         exit 1
     }
     if ($imageFiles.Count -gt 300) {
@@ -248,16 +279,10 @@ function Submit-FeaturelessImage {
         exit 1
     }
     
-    $imageFiles = @()
-    if (Test-Path $Images -PathType Container) {
-        $imageFiles = @(Get-ChildItem $Images -Include *.jpg,*.jpeg,*.png,*.tif,*.tiff -File -Recurse)
-    }
-    else {
-        $imageFiles = @(Get-ChildItem $Images -File)
-    }
-    
+    $imageFiles = @(Get-ImageFiles -Spec $Images)
+
     if ($imageFiles.Count -lt 20 -or $imageFiles.Count -gt 300) {
-        Write-Host "❌ 图片数量必须在 20~300 之间，当前 $($imageFiles.Count) 张" -ForegroundColor Red
+        Write-Host "❌ 图片数量必须在 20~300 之间（仅 jpg/jpeg/png/tif/tiff），当前 $($imageFiles.Count) 张" -ForegroundColor Red
         exit 1
     }
     
@@ -299,16 +324,10 @@ function Submit-3DGSImage {
         exit 1
     }
     
-    $imageFiles = @()
-    if (Test-Path $Images -PathType Container) {
-        $imageFiles = @(Get-ChildItem $Images -Include *.jpg,*.jpeg,*.png,*.tif,*.tiff -File -Recurse)
-    }
-    else {
-        $imageFiles = @(Get-ChildItem $Images -File)
-    }
-    
+    $imageFiles = @(Get-ImageFiles -Spec $Images)
+
     if ($imageFiles.Count -lt 20 -or $imageFiles.Count -gt 300) {
-        Write-Host "❌ 图片数量必须在 20~300 之间，当前 $($imageFiles.Count) 张" -ForegroundColor Red
+        Write-Host "❌ 图片数量必须在 20~300 之间（仅 jpg/jpeg/png/tif/tiff），当前 $($imageFiles.Count) 张" -ForegroundColor Red
         exit 1
     }
     

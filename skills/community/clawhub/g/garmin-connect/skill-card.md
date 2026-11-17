@@ -1,44 +1,59 @@
-## Description: <br>
-Garmin Connect integration for Clawdbot: sync fitness data (steps, HR, calories, workouts, sleep) every 5 minutes using OAuth. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Garmin Connect integration for Clawdbot: sync fitness data (steps, HR, calories, workouts, sleep) every 5 minutes using OAuth.
 
-## Publisher: <br>
-[Rayleigh3105](https://clawhub.ai/user/Rayleigh3105) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[rayleigh3105](https://clawhub.ai/user/rayleigh3105)
 
-## Use Case: <br>
-Developers and Clawdbot users use this skill to authenticate with Garmin Connect, sync activity, sleep, and workout data to a local cache, and format that data for Clawdbot scripts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles Garmin credentials, OAuth tokens, and sensitive health data. <br>
-Mitigation: Use it only on a trusted single-user machine and protect ~/.garth/session.json and Garmin cache files as sensitive credential and health data. <br>
-Risk: The authentication flow may pass a Garmin password on the command line. <br>
-Mitigation: Modify the authentication script to prompt securely or use another protected secret-entry method before regular use. <br>
-Risk: The cron wrapper includes /tmp logging and developer-specific paths or emails. <br>
-Mitigation: Remove or change /tmp logging, replace hard-coded local paths and emails, and enable the five-minute cron job only when continuous syncing is intended. <br>
+## Use Case:
 
+External users and developers use this skill to authenticate with Garmin Connect, sync local fitness data into Clawdbot workflows, and format daily activity, sleep, and workout metrics for agent-readable use.
 
-## Reference(s): <br>
-- [ClawHub Garmin Connect skill page](https://clawhub.ai/Rayleigh3105/garmin-connect) <br>
-- [Clawdbot](https://clawd.bot) <br>
-- [Garmin SSO sign-in](https://sso.garmin.com/sso/signin) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Files, Guidance] <br>
-**Output Format:** [Markdown/text guidance with Python and shell command snippets; sync scripts emit JSON data and cache files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a local Garmin OAuth session and local Garmin cache files; optional cron configuration controls repeated syncing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and changelog) <br>
+Risk: The skill handles Garmin account credentials, OAuth session tokens, and sensitive health data stored on disk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the authentication flow before use, avoid entering a real password on the command line, and restrict permissions on ~/.garth and ~/.clawdbot files.
+
+Risk: Developer-specific paths, email examples, cache files, and log paths may expose private data or fail in another environment.
+
+Mitigation: Replace hard-coded local paths and example account identifiers before deployment, and configure private cache and log locations.
+
+Risk: A 5-minute cron sync can repeatedly access Garmin data and write local logs or cache files.
+
+Mitigation: Enable scheduled sync only after confirming storage locations, file permissions, and logging behavior are acceptable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/rayleigh3105/skills/garmin-connect)
+- [Clawdbot](https://clawd.bot)
+- [Garmin SSO sign-in](https://sso.garmin.com/sso/signin)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with shell commands and Python examples; scripts output JSON cache data and formatted text.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses local Garmin OAuth session and cache files; sync output includes activity, sleep, and workout metrics.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

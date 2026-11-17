@@ -1,43 +1,66 @@
-## Description: <br>
-Helps agents keep working proactively from a task queue instead of waiting for prompts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Stop waiting for prompts. Keep working.
 
-## Publisher: <br>
-[lean-zhouchao](https://clawhub.ai/user/lean-zhouchao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lean-zhouchao](https://clawhub.ai/user/lean-zhouchao)
 
-## Use Case: <br>
-Developers and agent operators use this skill to set up task queues, proactive heartbeats, and handoff notes so agents can continue queued work between human prompts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Unattended scheduled work can update files or accounts beyond the user's intent. <br>
-Mitigation: Define approved task sources, allowed directories and accounts, forbidden actions, logging, token and spend limits, review gates for high-impact work, and a clear pause or removal process before enabling cron or heartbeat automation. <br>
-Risk: Team spawning and external status posts can disclose sensitive work or trigger unwanted coordination. <br>
-Mitigation: Limit channel permissions, approve posting destinations, and require human review for high-impact handoffs or external updates. <br>
+## Use Case:
 
+Developers and agent operators use this skill to set up a task queue, proactive heartbeat routine, and scheduled work patterns so agents can continue research, writing, analysis, code review, and coordination between prompts.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/lean-zhouchao/agent-autonomy-kit-zc) <br>
-- [README](README.md) <br>
-- [Proactive Heartbeat template](templates/HEARTBEAT.md) <br>
-- [Task Queue template](templates/QUEUE.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell and JSON-style configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes queue and heartbeat templates; no direct API calls or credential variables were detected in the release evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release evidence) <br>
+Risk: Scheduled autonomous runs can continue work across sessions without a fresh human prompt.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Enable cron examples only where autonomous work is intended, prefer isolated sessions for scheduled jobs, and document how to list and remove those jobs.
+
+Risk: A mutable task queue can cause agents to pick up work that has not been reviewed or approved.
+
+Mitigation: Review queue items before execution, keep approval-dependent work in a blocked state, and require clear task ownership before moving items into progress.
+
+Risk: Long-running autonomous work can consume tokens or runtime unexpectedly.
+
+Mitigation: Cap runtime and token use, schedule active hours, and require handoff notes before the agent sleeps or reaches limits.
+
+Risk: Autonomous workflows may expose sensitive workspace data if enabled in a privileged environment.
+
+Mitigation: Restrict the agent's permissions, avoid sensitive credentials in the workspace, and install only in environments intended for autonomous operation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lean-zhouchao/skills/agent-autonomy-kit-zc)
+- [Publisher profile](https://clawhub.ai/user/lean-zhouchao)
+- [Homepage listed in skill metadata](https://github.com/itskai-dev/agent-autonomy-kit)
+- [Agent Autonomy Kit repository linked in README](https://github.com/reflectt/agent-autonomy-kit)
+- [Agent Memory Kit](https://github.com/reflectt/agent-memory-kit)
+- [Agent Team Kit](https://github.com/reflectt/agent-team-kit)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell and JSON-style configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes queue and heartbeat templates plus guidance for scheduled autonomous work.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

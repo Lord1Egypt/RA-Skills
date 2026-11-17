@@ -1,0 +1,1 @@
+Persist Codex Remote Control daemon E2EE public keys server-side and accept daemon reconnect identity frames, so a hosted MCP reload can restore encrypted bootstrap state without requiring routine `codex-daemon link`.

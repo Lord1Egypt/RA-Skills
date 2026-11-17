@@ -1,41 +1,49 @@
-## Description: <br>
-B2B SaaS positioning and messaging framework builder for defining, refining, or documenting product positioning, value propositions, messaging frameworks, taglines, and competitive differentiation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+B2B SaaS positioning and messaging framework builder.
 
-## Publisher: <br>
-[renehdzgtz](https://clawhub.ai/user/renehdzgtz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[renehdzgtz](https://clawhub.ai/user/renehdzgtz)
 
-## Use Case: <br>
-Marketing, product, and go-to-market teams use this skill to turn B2B SaaS product context into a shared positioning canvas, value proposition, messaging pillars, competitive differentiation matrix, and audience-specific messaging. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Positioning inputs may include confidential customer names, revenue details, competitive strategy, or private proof points. <br>
-Mitigation: Share only information appropriate for the conversation and redact sensitive details before using them. <br>
-Risk: Generated positioning or competitive messaging can overstate claims if source proof points are incomplete or unverified. <br>
-Mitigation: Review outputs against approved customer evidence, product facts, and legal or brand guidance before publication. <br>
+## Use Case:
 
+Marketing, product, founder, and go-to-market teams use this skill to create a shared B2B SaaS positioning and messaging framework, including value propositions, messaging pillars, competitive differentiation, and audience-specific language.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/renehdzgtz/b2b-saas-positioning) <br>
-- [Publisher profile](https://clawhub.ai/user/renehdzgtz) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown positioning and messaging framework] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes a positioning canvas, three value proposition variants, messaging pillars, a competitive differentiation matrix, audience messaging, language guidance, and suggested application channels.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill may activate for a wide range of company or product writing requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review activation behavior before deployment and tighten trigger wording if narrower behavior is required.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/renehdzgtz/skills/b2b-saas-positioning)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown framework with structured sections and tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code or privileged runtime behavior; outputs are messaging recommendations and templates.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

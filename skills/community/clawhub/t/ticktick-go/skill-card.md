@@ -1,43 +1,60 @@
-## Description: <br>
-Manage TickTick tasks and projects through the ttg CLI, including CRUD operations, checklists, reminders, recurring tasks, search, tags, natural-language dates, and JSON output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage TickTick tasks and projects via the `ttg` CLI, including task CRUD, checklists and subtasks, reminders, recurring tasks, search, tags, natural-language due dates, and JSON output.
 
-## Publisher: <br>
-[dhruvkelawala](https://clawhub.ai/user/dhruvkelawala) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dhruvkelawala](https://clawhub.ai/user/dhruvkelawala)
 
-## Use Case: <br>
-Developers and productivity-focused users use this skill to let an agent inspect, create, update, complete, delete, and search TickTick tasks and projects through the installed ttg CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The install workflow builds ttg from an unpinned upstream source. <br>
-Mitigation: Review the upstream ttg CLI before installing and pin or audit the source when using it in managed environments. <br>
-Risk: The skill can change TickTick tasks and relies on local TickTick API credentials. <br>
-Mitigation: Keep ~/.config/ttg/config.json private with restricted permissions and require explicit confirmation before editing, completing, or deleting tasks. <br>
+## Use Case:
 
+Developers and productivity-focused users use this skill to have an agent create, list, edit, search, complete, and delete TickTick tasks and related project, tag, reminder, recurrence, and checklist data through the `ttg` command-line interface.
 
-## Reference(s): <br>
-- [ClawHub listing for ticktick-go](https://clawhub.ai/dhruvkelawala/ticktick-go) <br>
-- [ticktick-go CLI](https://github.com/dhruvkelawala/ticktick-go) <br>
-- [TickTick](https://ticktick.com) <br>
-- [TickTick Developer Console](https://developer.ticktick.com/manage) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and optional JSON command output.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the local ttg binary and TickTick API credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: release evidence) <br>
+Risk: The installer runs unpinned code from an external GitHub repository.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the installer before use and prefer installing `ttg` from a pinned, reviewed release or commit without elevated privileges.
+
+Risk: TickTick API credentials are stored in `~/.config/ttg/config.json`.
+
+Mitigation: Store the credentials file with owner-only permissions and avoid sharing logs or outputs that may expose configuration details.
+
+Risk: The skill can modify or remove TickTick tasks and checklist items.
+
+Mitigation: Review proposed edit, completion, and delete commands before execution, especially for shared or business-critical task lists.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dhruvkelawala/skills/ticktick-go)
+- [ttg CLI repository referenced by the skill](https://github.com/dhruvkelawala/ticktick-go)
+- [TickTick](https://ticktick.com)
+- [TickTick developer credentials](https://developer.ticktick.com/manage)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include JSON-oriented command examples for scripting with `ttg`.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release metadata; artifact frontmatter lists 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

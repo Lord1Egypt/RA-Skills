@@ -1,46 +1,59 @@
-## Description: <br>
-Teach an agent to install Movi's local MCP server, stay review-first, and use the safest manifest and batch-analysis tools before deeper mutation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Teach an agent to install Movi's local MCP server, stay review-first, and use the safest manifest and batch-analysis tools before deeper mutation.
 
-## Publisher: <br>
-[xiaojiou176](https://clawhub.ai/user/xiaojiou176) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiaojiou176](https://clawhub.ai/user/xiaojiou176)
 
-## Use Case: <br>
-Developers and operators use this skill to attach a local Movi MCP server and inspect jobs, review queues, and manifests before authorizing heavier batch changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The MCP configuration uses a local path placeholder and could launch an unintended checkout if replaced carelessly. <br>
-Mitigation: Replace the placeholder only with a trusted Movi checkout and review the repository and dependencies before starting the MCP server. <br>
-Risk: Patch and rule-apply tools can mutate manifests or review rules. <br>
-Mitigation: Start with jobs.list, review_queue.get, manifest.get, and analyze.create, and require explicit operator approval before manifest.patch_row, manifest.batch_patch, review_rule.apply, or similar mutation actions. <br>
+## Use Case:
 
+Developers and agent operators use this skill to attach Movi as a local MCP server, inspect jobs and manifests, and keep batch work review-first before any patch or apply action.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/xiaojiou176/movi-review-first-bundle) <br>
-- [Install And Attach Movi MCP](references/INSTALL.md) <br>
-- [Movi MCP Capabilities](references/CAPABILITIES.md) <br>
-- [First-Success Path](references/DEMO.md) <br>
-- [Troubleshooting](references/TROUBLESHOOTING.md) <br>
-- [OpenHands MCP configuration](references/OPENHANDS_MCP_CONFIG.json) <br>
-- [OpenClaw MCP configuration](references/OPENCLAW_MCP_CONFIG.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs emphasize review-first inspection and require explicit user approval before mutation tools.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The install path asks users to run code from a mutable GitHub checkout.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin the Movi repository to a reviewed commit or signed release, verify launcher script hashes, and prefer npm ci with a lockfile before attaching the MCP server.
+
+Risk: Manifest patch and apply tools can mutate review data if used too early.
+
+Mitigation: Start with jobs.list, review_queue.get, manifest.get, and analyze.create; treat patch and apply tools as explicit user-approved actions only.
+
+## Reference(s):
+
+- [Movi Review-First Bundle on ClawHub](https://clawhub.ai/xiaojiou176/skills/movi-review-first-bundle)
+- [Install And Attach Movi MCP](references/INSTALL.md)
+- [Movi MCP Capabilities](references/CAPABILITIES.md)
+- [First-Success Path](references/DEMO.md)
+- [Troubleshooting](references/TROUBLESHOOTING.md)
+- [OpenHands MCP Configuration](references/OPENHANDS_MCP_CONFIG.json)
+- [OpenClaw MCP Configuration](references/OPENCLAW_MCP_CONFIG.json)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The workflow emphasizes review-first inspection and requires explicit user approval before mutation tools.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

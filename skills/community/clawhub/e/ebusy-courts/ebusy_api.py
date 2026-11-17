@@ -1,4 +1,5 @@
 import os
+import sys
 import requests
 from bs4 import BeautifulSoup
 
@@ -113,11 +114,23 @@ def main() -> None:
     import sys
 
     if len(sys.argv) < 2:
-        print("Usage: python ebusy_api.py MM/DD/YYYY", file=sys.stderr)
+        print("Usage: python ebusy_api.py MM/DD/YYYY [start_hour start_min end_hour end_min]", file=sys.stderr)
         raise SystemExit(1)
 
     date = sys.argv[1]
     _ensure_env_vars()
+
+    # Parse time window if provided
+    start_hour, start_min, end_hour, end_min = None, None, None, None
+    if len(sys.argv) == 6:
+        try:
+            start_hour = int(sys.argv[2])
+            start_min = int(sys.argv[3])
+            end_hour = int(sys.argv[4])
+            end_min = int(sys.argv[5])
+        except ValueError:
+            print("Invalid time window parameters", file=sys.stderr)
+            raise SystemExit(1)
 
     api = EbusyAPI()
     if not api.login(USERNAME, PASSWORD):
@@ -126,16 +139,171 @@ def main() -> None:
 
     data = api.get_reservations(date=date)
     reservations = data.get("reservations", [])
+    
+    # Filter reservations for the specified time window
+    if start_hour is not None:
+        filtered_reservations = []
+        for r in reservations:
+            try:
+                res_start = int(r["fromTime"][:2])
+                res_end = int(r["toTime"][:2])
+                if not (res_end <= start_hour or res_start >= end_hour):
+                    filtered_reservations.append(r)
+            except (ValueError, KeyError):
+                continue
+    else:
+        filtered_reservations = reservations
+    
     sorted_reservations = sorted(
-        reservations, key=lambda r: (r["court"], r["fromTime"])
+        filtered_reservations, key=lambda r: (r["court"], r["fromTime"])
     )
 
+    # Check total courts
+    total_courts = 6  # Default, will be adjusted based on FIRST_COURT_NO
+    try:
+        # Try to get total courts from environment or use a reasonable default
+        total_courts = int(os.getenv("EBUSY_TOTAL_COURTS", "6"))
+    except ValueError:
+        pass
+
+    # Build availability structure
+    court_status = {}
+    for i in range(1, total_courts + 1):
+        court_status[f"Platz {i}"] = {"available": True, "bookings": []}
+
+    # Mark unavailable courts based on reservations
     for r in sorted_reservations:
-        court_index = r["court"] - FIRST_COURT_NO + 1
-        print(
-            f"Reservierung Platz {court_index}: {r['fromTime']} - {r['toTime']} von {r['text']}"
-        )
+        try:
+            court_num = r["court"]
+            court_index = court_num - FIRST_COURT_NO + 1
+            if 1 <= court_index <= total_courts:
+                court_name = f"Platz {court_index}"
+                court_status[court_name]["available"] = False
+                court_status[court_name]["bookings"].append({
+                    "from": r["fromTime"],
+                    "to": r["toTime"],
+                    "text": r["text"]
+                })
+        except (KeyError, ValueError):
+            continue
+
+    # Calculate availability
+    available_count = sum(1 for status in court_status.values() if status["available"])
+    unavailable_count = total_courts - available_count
+
+    # Output results
+    import json
+    result = {
+        "date": date,
+        "time_window": f"{start_hour:02d}:{start_min:02d}-{end_hour:02d}:{end_min:02d}" if start_hour else "All day",
+        "total_courts": total_courts,
+        "available_courts": available_count,
+        "unavailable_courts": unavailable_count,
+        "available": [{"name": name, "available": info["available"], "bookings": info["bookings"]} 
+                      for name, info in sorted(court_status.items())],
+        "unavailable": [{"name": name, "bookings": info["bookings"]} 
+                        for name, info in court_status.items() if not info["available"]],
+        "status": "success"
+    }
+    
+    print(json.dumps(result, indent=2, ensure_ascii=False))
+
+
+def check() -> None:
+    """Check availability for a specific date and time window.
+    
+    Usage: python ebusy_api.py check MM/DD/YYYY start_hour start_min end_hour end_min
+    """
+    import sys
+    
+    if len(sys.argv) < 7 or sys.argv[1] != "check":
+        print("Usage: python ebusy_api.py check MM/DD/YYYY start_hour start_min end_hour end_min", file=sys.stderr)
+        raise SystemExit(1)
+    
+    # Extract parameters
+    date = sys.argv[2]
+    try:
+        start_hour = int(sys.argv[3])
+        start_min = int(sys.argv[4])
+        end_hour = int(sys.argv[5])
+        end_min = int(sys.argv[6])
+    except ValueError:
+        print("Invalid time parameters", file=sys.stderr)
+        raise SystemExit(1)
+    
+    _ensure_env_vars()
+    
+    api = EbusyAPI()
+    if not api.login(USERNAME, PASSWORD):
+        print("Login failed", file=sys.stderr)
+        raise SystemExit(1)
+    
+    data = api.get_reservations(date=date)
+    reservations = data.get("reservations", [])
+    
+    # Filter reservations for the specified time window
+    filtered_reservations = []
+    for r in reservations:
+        try:
+            res_start = int(r["fromTime"][:2])
+            res_end = int(r["toTime"][:2])
+            if not (res_end <= start_hour or res_start >= end_hour):
+                filtered_reservations.append(r)
+        except (ValueError, KeyError):
+            continue
+    
+    # Build court status
+    total_courts = 6  # Default
+    try:
+        total_courts = int(os.getenv("EBUSY_TOTAL_COURTS", "6"))
+    except ValueError:
+        pass
+    
+    court_status = {}
+    for i in range(1, total_courts + 1):
+        court_status[f"Platz {i}"] = {"available": True, "bookings": []}
+    
+    # Mark unavailable courts
+    for r in filtered_reservations:
+        try:
+            court_num = r["court"]
+            court_index = court_num - FIRST_COURT_NO + 1
+            if 1 <= court_index <= total_courts:
+                court_name = f"Platz {court_index}"
+                court_status[court_name]["available"] = False
+                court_status[court_name]["bookings"].append({
+                    "from": r["fromTime"],
+                    "to": r["toTime"],
+                    "text": r["text"]
+                })
+        except (KeyError, ValueError):
+            continue
+    
+    # Calculate availability
+    available_count = sum(1 for status in court_status.values() if status["available"])
+    unavailable_count = total_courts - available_count
+    
+    # Output results
+    import json
+    result = {
+        "date": date,
+        "time_window": f"{start_hour:02d}:{start_min:02d}-{end_hour:02d}:{end_min:02d}",
+        "total_courts": total_courts,
+        "available_courts": available_count,
+        "unavailable_courts": unavailable_count,
+        "available": [{"name": name, "available": info["available"], "bookings": info["bookings"]} 
+                      for name, info in sorted(court_status.items())],
+        "unavailable": [{"name": name, "bookings": info["bookings"]} 
+                        for name, info in court_status.items() if not info["available"]],
+        "status": "success"
+    }
+    
+    print(json.dumps(result, indent=2, ensure_ascii=False))
 
 
 if __name__ == "__main__":
-    main()
+    # Check if 'check' command is used
+    if len(sys.argv) > 1 and sys.argv[1] == "check":
+        check()
+    else:
+        main()

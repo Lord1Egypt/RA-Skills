@@ -1,45 +1,64 @@
-## Description: <br>
-Human-in-the-loop CAPTCHA solving with two modes: screenshot mode captures the page with a grid overlay and injects clicks based on a human reply, while token relay mode detects CAPTCHA type and sitekey, serves the real widget on a relay page for native solving, and injects the token via CDP. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Human-in-the-loop CAPTCHA solving with two modes: screenshot (default, zero infrastructure) and token relay (requires network access).
 
-## Publisher: <br>
-[0xclanky](https://clawhub.ai/user/0xclanky) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[0xclanky](https://clawhub.ai/user/0xclanky)
 
-## Use Case: <br>
-Developers and automation operators use this skill to route CAPTCHA challenges to a human solver through screenshot-based click selection or a relay page, then continue the browser workflow through CDP injection. It is intended for authorized workflows the user controls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Relay URLs and screenshots can expose browser or session data. <br>
-Mitigation: Treat them as sensitive, avoid sensitive logged-in pages, and share them only with the intended human solver. <br>
-Risk: Network-facing relay modes may expose browser/session control through unauthenticated relays. <br>
-Mitigation: Prefer private Tailscale or LAN access over public tunnels and stop relay services after use. <br>
-Risk: CAPTCHA relay and token injection can be misused on third-party services. <br>
-Mitigation: Use only for authorized testing or workflows you control and do not use token-injection features without explicit permission. <br>
+## Use Case:
 
+Developers and automation operators use this skill to route CAPTCHA challenges to a human solver, either by sharing an annotated screenshot for manual clicks or by serving a native CAPTCHA widget and injecting the returned token into a controlled browser session.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/0xclanky/captcha-relay) <br>
-- [README](artifact/README.md) <br>
-- [Architecture](artifact/ARCHITECTURE.md) <br>
-- [Tailscale setup](artifact/TAILSCALE.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown guidance with inline JavaScript and shell examples; CLI/module calls return JSON-like result objects and screenshot file paths.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce relay URLs, CAPTCHA tokens, annotated screenshot files, and CDP browser actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: package.json and server release metadata) <br>
+Risk: Relay mode can expose CAPTCHA-solving workflows and browser interaction over a reachable network endpoint without enough access controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer screenshot mode, localhost, or a tightly controlled private network such as Tailscale; avoid public tunnels and require per-session secrets before exposing the relay.
+
+Risk: The skill can interact with an active Chrome session through CDP and inject clicks or CAPTCHA tokens into the page.
+
+Mitigation: Use only on authorized sites and controlled browser sessions, isolate the browser profile, and close the relay and CDP-enabled browser after use.
+
+Risk: Solved CAPTCHA tokens are written to a predictable temporary file for external consumers.
+
+Mitigation: Run on trusted hosts, restrict local user access, and remove temporary token files after each solving session.
+
+Risk: Tunnel startup may use an unpinned npx localtunnel path or optional external tunnel tooling.
+
+Mitigation: Pin and review tunnel tooling and dependency versions before production use, or disable public tunneling and use private connectivity.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/0xclanky/skills/captcha-relay)
+- [README](README.md)
+- [Architecture](ARCHITECTURE.md)
+- [Tailscale Setup](TAILSCALE.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands plus JSON CLI events, relay URLs, screenshot paths, and CAPTCHA tokens from the runtime helper.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js 18+, Chrome or Chromium with CDP enabled on the configured port, and optional private network or tunnel access for relay mode.]
+
+## Skill Version(s):
+
+2.1.0 (source: package.json and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

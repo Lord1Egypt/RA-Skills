@@ -1,45 +1,58 @@
-## Description: <br>
-Query Chinese labor law on overtime, leave, contracts, and severance rules. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query Chinese labor law on overtime, leave, contracts, and severance rules.
 
-## Publisher: <br>
-[ckchzh](https://clawhub.ai/user/ckchzh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ckchzh](https://clawhub.ai/user/ckchzh)
 
-## Use Case: <br>
-Employees, advisors, and developers can use this skill to look up Chinese labor-law reference material for worker rights, overtime, leave, contracts, disputes, and severance. It also includes a command-line logging utility, so users should avoid recording confidential employment or dispute details. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release mixes Chinese labor-law lookup behavior with a generic plaintext local logging tool. <br>
-Mitigation: Review the installed commands before use and rely only on the labor-law reference behavior if that is the intended use case. <br>
-Risk: Logging commands can store confidential employment, salary, contract, employee, or dispute details in local plaintext files. <br>
-Mitigation: Do not enter sensitive details into logging commands; use non-sensitive summaries or a separate approved secure records system. <br>
-Risk: The documented remove command does not provide verified erasure of stored sensitive data. <br>
-Mitigation: Do not rely on remove for data deletion until the implementation is corrected and deletion behavior is independently verified. <br>
-Risk: The legal reference content may be incomplete, outdated, or not applicable to a specific jurisdiction or case. <br>
-Mitigation: Treat outputs as general reference material and consult a qualified labor lawyer for case-specific decisions. <br>
+## Use Case:
 
+External users and developers can use this skill to obtain Chinese labor-law reference output for worker rights, overtime, leave, contracts, disputes, and severance. The package also documents local command-line logging commands, so users should verify the intended entrypoint before handling sensitive legal or employment information.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/ckchzh/labor-law) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown tables, terminal text, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Some commands write plaintext local logs under the configured labor-law data directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release metadata) <br>
+Risk: The server security summary says the skill is advertised as a Chinese labor-law helper while the main documented command flow is a generic plaintext local logging tool.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the intended entrypoint before installation or use, align documentation with the labor-law script behavior, and avoid relying on the package until that mismatch is resolved.
+
+Risk: The server security guidance warns that contracts, employee identifiers, wage records, dispute facts, or privileged legal notes could be stored locally in plaintext under the invoking user's permissions.
+
+Mitigation: Do not enter sensitive legal or employment data unless plaintext local storage is acceptable; use a controlled LABOR_LAW_DIR and inspect or remove local data.log and history.log files after use.
+
+Risk: The artifact presents legal reference information that may not account for local rules or case-specific facts.
+
+Mitigation: Treat outputs as general legal knowledge only and consult a qualified labor-law professional for specific disputes or decisions.
+
+## Reference(s):
+
+- [Labor Law ClawHub Page](https://clawhub.ai/ckchzh/skills/labor-law)
+- [BytesAgain Homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and terminal text from Bash scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documented utility commands may write plaintext data.log and history.log files under the invoking user's local data directory.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release metadata; artifact frontmatter reports 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

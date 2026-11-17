@@ -1,43 +1,56 @@
-## Description: <br>
-Praesidia helps OpenClaw assistants verify AI agents, check trust scores, fetch A2A agent cards, discover marketplace agents, and apply guardrails for security and compliance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Praesidia helps agents verify AI agents, check 0-100 trust scores, fetch A2A agent cards, discover marketplace agents, and apply security, compliance, and moderation guardrails.
 
-## Publisher: <br>
-[msoica](https://clawhub.ai/user/msoica) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[msoica](https://clawhub.ai/user/msoica)
 
-## Use Case: <br>
-Developers and AI assistant operators use this skill to check agent identity and trust, discover suitable agents, and manage Praesidia guardrails for security, moderation, and compliance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide live guardrail changes for agents. <br>
-Mitigation: Require the assistant to show the proposed guardrail change and obtain explicit confirmation before making POST requests; test changes in staging when possible. <br>
-Risk: Praesidia API credentials or endpoints could be misconfigured. <br>
-Mitigation: Use a least-privilege API key and keep PRAESIDIA_API_URL pointed at a trusted endpoint. <br>
-Risk: Content validation may send confidential or regulated content to Praesidia. <br>
-Mitigation: Avoid validating sensitive content unless Praesidia's data handling is acceptable for the user's environment. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to evaluate whether agents are trustworthy, discover suitable public agents, inspect A2A agent cards, and manage security or compliance guardrails for their agents.
 
-## Reference(s): <br>
-- [Praesidia](https://praesidia.ai) <br>
-- [Praesidia API documentation](https://app.praesidia.ai/docs/api) <br>
-- [A2A protocol](https://a2a-protocol.org) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, API calls, configuration] <br>
-**Output Format:** [Markdown guidance with JSON and JavaScript request examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires PRAESIDIA_API_KEY for authenticated Praesidia operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release metadata) <br>
+Risk: The skill can change live guardrails for agents.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm guardrail changes before applying them and test guardrail behavior before enabling production use.
+
+Risk: The skill can send sensitive content or API keys to configurable API endpoints.
+
+Mitigation: Use trusted HTTPS API destinations, avoid production keys with custom or local endpoints, and do not submit secrets, regulated data, or confidential messages unless that data transfer is acceptable.
+
+## Reference(s):
+
+- [Praesidia homepage](https://praesidia.ai)
+- [Praesidia API documentation](https://app.praesidia.ai/docs/api)
+- [A2A protocol](https://a2a-protocol.org)
+- [ClawHub skill listing](https://clawhub.ai/msoica/skills/skills-a2a)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown with inline JavaScript, JSON, and shell examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses PRAESIDIA_API_KEY and may call a configured Praesidia API endpoint.]
+
+## Skill Version(s):
+
+1.1.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

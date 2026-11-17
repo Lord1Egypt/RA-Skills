@@ -1,41 +1,52 @@
-## Description: <br>
-Quickly assesses whether a task exceeds LLM limits, then advises what the LLM can do versus what needs expert or tool input. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audits user requests before execution to classify whether an LLM can handle them safely or should route parts to humans or professional tools.
 
-## Publisher: <br>
-[tianzhiceng297-boop](https://clawhub.ai/user/tianzhiceng297-boop) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[tianzhiceng297-boop](https://clawhub.ai/user/tianzhiceng297-boop)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and agent builders use this skill to screen capability-sensitive user requests, classify them as safe, restricted, or prohibited for LLM execution, and route unsafe portions to humans or professional tools.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill may be overcautious and pause or reroute requests that could otherwise receive direct best-effort assistance.
+
+Mitigation: Review the audit verdict against the user's actual request and proceed directly when the task is clearly a safe-zone text, translation, summarization, extraction, or formatting task.
+
+Risk: Strict boundary classifications can slow workflows that involve code audits, proofs, predictions, professional judgments, or completeness guarantees.
+
+Mitigation: Use the skill to define the LLM's supporting role, then involve formal tools, domain experts, or human reviewers for the part that requires verification or responsibility.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and agent users use this skill to classify high-risk or out-of-scope requests before execution and route unsafe or restricted subtasks to humans or specialized tools. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can make an agent more conservative and add boundary-audit language before answering. <br>
-Mitigation: Use it for high-stakes verification, prediction, physical design, legal, medical, financial, or mixed safe and unsafe tasks; skip it for routine text generation, translation, summarization, and simple Q&A. <br>
-Risk: Boundary classifications are guidance and do not replace formal verification, professional review, or domain-specific tools. <br>
-Mitigation: Route prohibited and restricted subtasks to the responsible human, expert system, formal tool, simulator, or professional reviewer identified by the audit. <br>
+**Output Format:** [Markdown task-boundary audit with a verdict, optional decomposition table, and division-of-labor guidance.]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tianzhiceng297-boop/task-boundary-auditor) <br>
-- [Source skill definition](artifact/SKILL.md) <br>
+**Other Properties Related to Output:** [No code execution, API calls, file writes, data access, or persisted state.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown audit blocks, routing tables, and concise recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces boundary classifications, task decomposition, risk points, disclaimers, and recommended human/tool handoffs.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

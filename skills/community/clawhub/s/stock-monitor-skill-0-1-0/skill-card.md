@@ -1,47 +1,62 @@
-## Description: <br>
-全功能智能股票监控预警系统。支持成本百分比、均线金叉死叉、RSI超买超卖、成交量异动、跳空缺口、动态止盈等7大预警规则。符合中国投资者习惯（红涨绿跌）。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Stock Monitor Skill provides a Chinese-market stock, ETF, and gold alert monitor with cost-percentage, price-change, volume, moving-average, RSI, gap, and trailing-stop rules.
 
-## Publisher: <br>
-[jiahl0910](https://clawhub.ai/user/jiahl0910) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[jiahl0910](https://clawhub.ai/user/jiahl0910)
 
-## Use Case: <br>
-Investors and operators use this skill to monitor configured A-share, ETF, and gold holdings, generate threshold-based alerts, and review technical-signal summaries. It is intended to support monitoring and decision review, not to automate trading decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill contains hardcoded watchlist entries and cost values that may not match the user's holdings. <br>
-Mitigation: Review and edit the watchlist, ticker symbols, markets, costs, and alert thresholds before running the monitor. <br>
-Risk: Starting the daemon enables continuous background polling and logging. <br>
-Mitigation: Start the daemon only when ongoing monitoring is intended, check its status and logs, and stop it when monitoring is no longer needed. <br>
-Risk: Ticker, stock-name, and quote lookups are sent to Sina and Eastmoney market-data services. <br>
-Mitigation: Run the skill only when those external lookups are acceptable for the configured symbols and names. <br>
-Risk: Generated alerts and suggestions can be incomplete, delayed, or unsuitable as trading advice. <br>
-Mitigation: Use alerts as monitoring inputs only and make investment decisions with independent review. <br>
+## Use Case:
 
+External users and developers use this skill to configure and run market alerts for watched Chinese equities, ETFs, and London gold. Its generated alerts and suggestions should be treated as informational signals, not investment advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jiahl0910/stock-monitor-skill-0-1-0) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/jiahl0910) <br>
-- [Eastmoney market data endpoint](https://push2his.eastmoney.com/api/qt/stock/kline/get) <br>
-- [Sina Finance quote endpoint](https://hq.sinajs.cn/list=) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and terminal text with inline shell commands and alert messages] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include market-data alerts, technical-signal summaries, watchlist configuration guidance, and daemon control commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Hardcoded watchlist and cost values may not match the user's actual holdings.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and edit the watchlist, cost basis, and thresholds before starting the monitor.
+
+Risk: The background monitor continues running after ./control.sh start until it is explicitly stopped.
+
+Mitigation: Use ./control.sh status, ./control.sh log, and ./control.sh stop to inspect and terminate the daemon.
+
+Risk: Financial alerts and generated suggestions may be inaccurate or unsuitable for a user's investment decisions.
+
+Mitigation: Treat alerts as informational signals and verify them against independent analysis before trading.
+
+Risk: Market-data and analysis output may be exposed to transport or text-handling risks if extended without care.
+
+Mitigation: Prefer HTTPS-only data sources and escape notification text when relying on analysis output.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jiahl0910/skills/stock-monitor-skill-0-1-0)
+- [Publisher profile](https://clawhub.ai/user/jiahl0910)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash and Python configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces alert text, configuration guidance, and local control commands for starting, stopping, checking, and logging a background monitor.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,61 @@
-## Description: <br>
-Guides developers through setting up automatic Bitcoin and Lightning payment workflows for open source contributions with GitHub Actions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides developers through setting up a GitHub Action for Bitcoin and Lightning payments tied to open source package downloads and installs.
 
-## Publisher: <br>
-[welove111](https://clawhub.ai/user/welove111) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[welove111](https://clawhub.ai/user/welove111)
 
-## Use Case: <br>
-Developers and open source maintainers use this skill to understand how to add Bitcoin and Lightning payment automation to project contribution or install workflows. It is also useful for discussions about GitHub Actions, micropayments, and open source monetization. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The referenced GitHub Action and third-party payment services may receive workflow, package, or payment information. <br>
-Mitigation: Review the action source and service terms before use, and only send payment or workflow information to services you trust. <br>
-Risk: Depending on a moving GitHub Action version tag can introduce unexpected workflow changes. <br>
-Mitigation: Pin the referenced action to a reviewed commit SHA when using it in production workflows. <br>
+## Use Case:
 
+Developers use this skill when exploring how to monetize open source projects with Bitcoin, Lightning micropayments, and GitHub workflow integration.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/welove111/proof-of-contribution) <br>
-- [Project homepage](https://github.com/welove111/proof-of-contribution) <br>
-- [BTCVision](https://btcvision.org) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, configuration, shell commands] <br>
-**Output Format:** [Markdown guidance with YAML workflow examples and HTTP request examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated guidance may reference third-party payment, Lightning, and GitHub Action services that users should review before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact frontmatter) <br>
+Risk: The skill relies on third-party financial and CI infrastructure for Bitcoin and Lightning payment workflows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the integration before use, verify payment and support domains directly, and require explicit confirmation for wallet or payout setup.
+
+Risk: A GitHub Action reference could change behavior if it is not pinned.
+
+Mitigation: Pin the action to a reviewed commit SHA and use minimal workflow permissions.
+
+Risk: Workflow secrets may be exposed if the CI configuration is broader than needed.
+
+Mitigation: Scope workflow permissions and secrets narrowly, and avoid exposing unrelated secrets.
+
+## Reference(s):
+
+- [Proof of Contribution ClawHub page](https://clawhub.ai/welove111/skills/proof-of-contribution)
+- [Proof of Contribution homepage](https://github.com/welove111/proof-of-contribution)
+- [BTC Vision](https://btcvision.org)
+- [BTC Vision MCP endpoint](https://btcvision.org/.netlify/functions/mcp)
+- [Zaprite payment link](https://pay.zaprite.com/pl_001CbTRNDN)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with YAML workflow snippets and API examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include setup guidance for third-party financial and CI services.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

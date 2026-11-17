@@ -1,41 +1,54 @@
-## Description: <br>
-iFlytek Ultra-Realistic TTS synthesizes natural, expressive speech from text using iFlytek's ultra-realistic voice synthesis API, with multiple voices and adjustable speed, volume, pitch, and output format options. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+iFlytek Ultra-Realistic TTS synthesizes natural, expressive speech from text using iFlytek's ultra-realistic voice synthesis API, with selectable voices, audio formats, speed, volume, and pitch.
 
-## Publisher: <br>
-[jpengcheng523-netizen](https://clawhub.ai/user/jpengcheng523-netizen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jpengcheng523-netizen](https://clawhub.ai/user/jpengcheng523-netizen)
 
-## Use Case: <br>
-Developers and agents use this skill to convert supplied text, files, or stdin into narrated audio through iFlytek's text-to-speech service. It is suited for generating voice content, narration, and speech assets when the required iFlytek credentials and enabled voices are available. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends selected text and iFlytek API credentials to iFlytek, and the security review notes that its TLS connection deliberately disables certificate checks. <br>
-Mitigation: Install only if that data transfer is acceptable, avoid sensitive or regulated text, and review or fix TLS certificate verification before use on untrusted networks. <br>
-Risk: The server security verdict is suspicious, with no malware finding available from pending VirusTotal telemetry at review time. <br>
-Mitigation: Review the source and current scan results before deployment, and run it only in environments that accept the documented network and credential handling risks. <br>
+## Use Case:
 
+Developers and content creators use this skill to convert text, files, or stdin into generated speech audio through iFlytek's TTS API. It supports narration, voice content generation, and scripted audio production with configurable voice and audio parameters.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jpengcheng523-netizen/xfyun-tts) <br>
-- [iFlytek console](https://console.xfyun.cn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration guidance, Files, Text] <br>
-**Output Format:** [CLI output with generated audio files and a saved file path on stdout] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports mp3, pcm, speex, and opus audio formats with voice, sample rate, speed, volume, pitch, and pronunciation options.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: User text and API-authenticated requests are sent while TLS certificate and hostname checks are disabled.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Enable normal TLS certificate and hostname validation before using the skill with secrets, regulated data, or confidential text.
+
+Risk: Generated audio is stored locally and may contain sensitive source text.
+
+Mitigation: Choose output locations intentionally and handle generated audio files according to the sensitivity of the input text.
+
+## Reference(s):
+
+- [iFlytek Console](https://console.xfyun.cn)
+- [ClawHub skill page](https://clawhub.ai/jpengcheng523-netizen/skills/xfyun-tts)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Shell commands, Configuration]
+
+**Output Format:** [Audio files with command-line status text and an absolute output path]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports mp3, pcm, speex, and opus output; generated audio is written locally.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

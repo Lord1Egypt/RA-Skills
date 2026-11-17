@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "veya": {
+      "url": "https://your-host.example.com/mcp",
+      "headers": {
+        "Authorization": "Bearer ${env:VEYA_MCP_API_KEY}"
+      }
+    }
+  }
+}

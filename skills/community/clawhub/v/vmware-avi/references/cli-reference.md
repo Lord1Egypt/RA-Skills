@@ -62,7 +62,7 @@ Complete command reference for the `vmware-avi` CLI (v1.4.0).
 | Command | Description | Arguments / Flags |
 |---------|-------------|-------------------|
 | `vmware-avi ako config-show` | Show current AKO Helm values.yaml (release auto-discovered via `helm list` — official installs use `--generate-name`) | -- |
-| `vmware-avi ako config-diff` | Show pending Helm changes (diff against the official Broadcom OCI chart `oci://projects.packages.broadcom.com/ako/helm-charts/ako`) | -- |
+| `vmware-avi ako config-diff` | Preview the pending Helm change against `oci://projects.packages.broadcom.com/ako/helm-charts/ako`, using `--reuse-values` so it matches what `config-upgrade` would apply | `--chart-version` (pin the version; default is registry latest) |
 | `vmware-avi ako config-upgrade` | Helm upgrade the discovered AKO release from the official Broadcom OCI chart with `--reuse-values` | `--dry-run` / `--no-dry-run` (default: `--dry-run`). **Double-confirm required for actual apply.** |
 
 ## AKO Ingress Commands (`vmware-avi ako ingress-*`)
@@ -85,7 +85,7 @@ Complete command reference for the `vmware-avi` CLI (v1.4.0).
 
 | Command | Description | Arguments / Flags |
 |---------|-------------|-------------------|
-| `vmware-avi ako clusters` | List all clusters with AKO deployed | -- |
+| `vmware-avi ako clusters` | List every kube-context and whether AKO runs there | -- |
 | `vmware-avi ako amko-status` | Show AMKO (multi-cluster GSLB) status | -- |
 
 ## Destructive Operations Summary

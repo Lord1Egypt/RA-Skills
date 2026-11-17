@@ -1,0 +1,109 @@
+{
+  "schema_version": "4.0.0",
+  "plan": {
+    "plan_id": "plan-20260811-a1",
+    "engine_version": "4.0.0-dev",
+    "ir_sha256": "b5bb9d8014a0f9b1d61e21e796d78dccdf1352f23cd32812f4850b878ae4944c",
+    "trace_run_id": "run-20260811-a1",
+    "style_pack": { "pack_id": "editorial-knowledge", "version": "4.0.0" }
+  },
+  "canvas": { "width_emu": 12192000, "height_emu": 6858000 },
+  "fonts_used": ["Aptos", "PingFang SC", "Source Han Serif SC"],
+  "slides": [
+    {
+      "slide_id": "s1",
+      "background": { "color": "#FBF8F1" },
+      "elements": [
+        {
+          "element_id": "s1-title",
+          "type": "textbox",
+          "frame": { "x": 838200, "y": 457200, "w": 10515600, "h": 800100 },
+          "paragraphs": [
+            {
+              "runs": [
+                { "text": "增长由海外业务驱动，但毛利承压", "font": "Source Han Serif SC", "size_cpt": 2200, "color": "#2B2621", "weight": 600 }
+              ],
+              "align": "left",
+              "line_height_pct": 110
+            }
+          ],
+          "valign": "middle",
+          "editable": true,
+          "semantic_role": "title"
+        },
+        {
+          "element_id": "s1-kpi-total",
+          "type": "shape",
+          "frame": { "x": 838200, "y": 1600200, "w": 3276600, "h": 1371600 },
+          "shape": "round_rect",
+          "corner_radius_emu": 101600,
+          "fill": { "color": "#F2EADF" },
+          "stroke": { "color": "#E4DDCF", "width_emu": 10160 },
+          "paragraphs": [
+            {
+              "runs": [
+                { "text": "总收入", "font": "Aptos", "size_cpt": 1000, "color": "#857C70", "weight": 500 }
+              ],
+              "align": "left"
+            },
+            {
+              "runs": [
+                { "text": "+36%", "font": "Aptos", "size_cpt": 3000, "color": "#2B2621", "weight": 700 }
+              ],
+              "align": "left"
+            }
+          ],
+          "editable": true,
+          "semantic_role": "metric"
+        },
+        {
+          "element_id": "s1-kpi-overseas",
+          "type": "shape",
+          "frame": { "x": 4457700, "y": 1600200, "w": 3276600, "h": 1371600 },
+          "shape": "round_rect",
+          "corner_radius_emu": 101600,
+          "fill": { "color": "#F2EADF" },
+          "stroke": { "color": "#E4DDCF", "width_emu": 10160 },
+          "paragraphs": [
+            {
+              "runs": [
+                { "text": "海外业务", "font": "Aptos", "size_cpt": 1000, "color": "#857C70", "weight": 500 }
+              ],
+              "align": "left"
+            },
+            {
+              "runs": [
+                { "text": "+52%", "font": "Aptos", "size_cpt": 3000, "color": "#C65D3B", "weight": 700 }
+              ],
+              "align": "left"
+            }
+          ],
+          "editable": true,
+          "semantic_role": "metric"
+        },
+        {
+          "element_id": "s1-causal",
+          "type": "connector",
+          "route": "straight",
+          "from_element": "s1-kpi-overseas",
+          "to_element": "s1-kpi-total",
+          "from_side": "left",
+          "to_side": "right",
+          "stroke": { "color": "#C65D3B", "width_emu": 27940 },
+          "arrowhead": "end",
+          "label": {
+            "frame": { "x": 4114800, "y": 1257300, "w": 1371600, "h": 274320 },
+            "paragraphs": [
+              {
+                "runs": [
+                  { "text": "主要驱动", "font": "Aptos", "size_cpt": 900, "color": "#857C70", "weight": 400 }
+                ],
+                "align": "center"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

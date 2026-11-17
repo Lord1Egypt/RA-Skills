@@ -1,43 +1,53 @@
-## Description: <br>
-This skill helps agents search Chinese and English psychology literature through free academic APIs, format citations, and export results for research workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents search free academic APIs for Chinese and English psychology literature, export bibliographic tables, and generate citations in common formats.
 
-## Publisher: <br>
-[zhan599](https://clawhub.ai/user/zhan599) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhan599](https://clawhub.ai/user/zhan599)
 
-## Use Case: <br>
-Researchers, students, and research assistants use this skill to find psychology papers, compare metadata from Semantic Scholar, OpenAlex, and CrossRef, and create citation or export files for literature review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search terms are sent to external academic APIs, and an optional email address may be shared with OpenAlex or CrossRef as a polite-pool contact. <br>
-Mitigation: Use non-sensitive search terms and omit the email address when privacy requirements call for it. <br>
-Risk: Export functions write CSV or text citation files to the local path chosen by the user. <br>
-Mitigation: Review output filenames and directories before running exports in shared or production workspaces. <br>
+## Use Case:
 
+Researchers, students, and academic writing assistants use this skill to find psychology and behavioral science papers, filter recent or highly cited work, export CSV bibliographies, and prepare APA, GB/T 7714, MLA, or Chicago citations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhan599/psychology-literature-search) <br>
-- [Semantic Scholar Graph API](https://api.semanticscholar.org/graph/v1) <br>
-- [OpenAlex Works API](https://api.openalex.org/works) <br>
-- [CrossRef Works API](https://api.crossref.org/works) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, configuration, guidance] <br>
-**Output Format:** [Python examples, returned literature records, CSV exports, and plain-text citations.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires network access to public academic APIs; optional email can be used as a contact for OpenAlex and CrossRef requests.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: Search terms and optional email addresses are sent to Semantic Scholar, OpenAlex, and CrossRef.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use non-sensitive queries when possible, omit email unless needed for polite-pool behavior, and ensure users understand which public academic APIs receive requests.
+
+Risk: Exported CSV files may contain untrusted metadata such as links or formula-like strings from external databases.
+
+Mitigation: Open exports with spreadsheet protections enabled, disable external content and macros, and review suspicious links or formulas before sharing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhan599/skills/psychology-literature-search)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, files, guidance]
+
+**Output Format:** [Markdown guidance with Python code examples; generated artifacts may be CSV or text citation files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May perform user-directed network queries to academic APIs and write CSV or text exports.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

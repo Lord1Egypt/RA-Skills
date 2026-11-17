@@ -1,50 +1,65 @@
-## Description: <br>
-Huo15 Markdown Export helps agents convert existing Markdown documents into styled PDF, DOCX, HTML, long-image, WeChat inline HTML, preview, sharing, and publishing outputs using bundled themes and scripts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Huo15 Markdown Export converts existing Markdown into styled PDF, DOCX, HTML, long-image PNG, WeChat inline HTML, live previews, and share-ready publishing outputs.
 
-## Publisher: <br>
-[zhaobod1](https://clawhub.ai/user/zhaobod1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhaobod1](https://clawhub.ai/user/zhaobod1)
 
-## Use Case: <br>
-Developers, content teams, and agents use this skill to render existing Markdown into polished documents and publishing assets across PDF, Word, HTML, image, WeChat, preview, and share-ready workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can install itself across multiple OpenClaw workspaces. <br>
-Mitigation: Run install-to-workspaces.sh with --dry-run first and review affected paths before allowing workspace changes. <br>
-Risk: Markdown rendering and publishing can persist or expose document contents. <br>
-Mitigation: Avoid using the skill for sensitive documents unless archiving and sharing behavior is reviewed; use --no-archive where appropriate. <br>
-Risk: Generated public links or chat-channel sends can disclose files to unintended recipients. <br>
-Mitigation: Require explicit user confirmation before creating public links or sending generated files to external chat channels. <br>
-Risk: Rendering untrusted Markdown may involve raw HTML or network-dependent content. <br>
-Mitigation: Render only trusted Markdown unless raw HTML handling and network access are acceptable for the environment. <br>
-Risk: Share or preview URLs may point to localhost, LAN, or link-local hosts that external recipients cannot access. <br>
-Mitigation: Apply the unsafe host checks described in the release evidence and downgrade to file delivery or local paths when a URL uses an unsafe host. <br>
+## Use Case:
 
+Developers, operators, and content teams use this skill to turn existing Markdown into polished multi-format documents for technical blogs, customer reports, social posts, WeChat articles, release notes, and shareable previews.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhaobod1/huo15-markdown-export) <br>
-- [README](README.md) <br>
-- [Skill instructions](SKILL.md) <br>
-- [Theme design guide](themes/DESIGN.md) <br>
-- [Template documentation](templates/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Markdown, Code, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and generated document files, plus JSON handoff data for share and publish workflows] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can produce PDF, DOCX, HTML, PNG long images, WeChat inline HTML, local preview output, changelog PDFs, and share-ready file metadata.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.4.4 (source: server release metadata, SKILL.md frontmatter, package.json) <br>
+Risk: Rendering active Markdown or Mermaid content can execute browser-side HTML or fetch remote Mermaid code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted Markdown only and pass --no-mermaid for sensitive, offline, or network-restricted documents.
+
+Risk: Preview or share URLs can point to localhost or private LAN hosts that external recipients cannot access.
+
+Mitigation: Check returned URLs before sharing and fall back to file delivery or a local path when the host is loopback or private network.
+
+Risk: Publishing workflows can create public links and local knowledge-base archives for source documents.
+
+Mitigation: Avoid confidential inputs, use --no-archive for sensitive documents, and set short share-link lifetimes when public links are needed.
+
+Risk: The workspace installer can copy the skill into multiple OpenClaw workspaces.
+
+Mitigation: Run the installer with a dry run first, back up affected workspaces, and review each target before installation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhaobod1/skills/huo15-markdown-export)
+- [Artifact README](README.md)
+- [Theme design guide](themes/DESIGN.md)
+- [Template README](templates/README.md)
+- [Package manifest](package.json)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with bash commands and JSON handoff data; rendered artifacts include PDF, DOCX, HTML, PNG, and inline HTML.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Node >=18 is required; Pandoc is required for DOCX output; WeasyPrint is optional for the Pandoc PDF path.]
+
+## Skill Version(s):
+
+0.4.4 (source: SKILL.md frontmatter, package.json, server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

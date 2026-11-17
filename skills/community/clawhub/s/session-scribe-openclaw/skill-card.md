@@ -1,43 +1,58 @@
-## Description: <br>
-Automatically summarizes active OpenClaw session transcripts into daily memory files by sending new user and assistant turns to OpenAI or Anthropic for summarization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Session Scribe summarizes new OpenClaw session transcript entries with OpenAI or Anthropic and appends bullet-point notes to daily memory files.
 
-## Publisher: <br>
-[kitsune](https://clawhub.ai/user/kitsune) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kitsune](https://clawhub.ai/user/kitsune)
 
-## Use Case: <br>
-Developers and OpenClaw operators use this skill to preserve session context as dated Markdown memory notes for later recall or downstream ingestion. It is most useful for unattended or recurring session summarization where explicit transcript and memory paths are configured. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Transcript content can include secrets, API keys, PII, or other sensitive conversation data that may be sent to OpenAI or Anthropic for summarization. <br>
-Mitigation: Run with --dry-run first, avoid sessions containing sensitive data, and use a dedicated low-privilege API key with spend limits. <br>
-Risk: Broad unattended use can summarize more sessions than intended and store reusable memory notes from those sessions. <br>
-Mitigation: Start with one explicit session before using --all-sessions, set --active-within-hours appropriately, and remove the cron job when unattended summarization is no longer wanted. <br>
-Risk: API key handling can expose credentials if keys are placed directly in shell history or cron entries. <br>
-Mitigation: Store keys in a protected file, use --api-key-file, restrict file permissions, and pass --provider when needed to avoid provider auto-detection mistakes. <br>
+## Use Case:
 
+Developers and operators use this skill to preserve OpenClaw session context by periodically summarizing selected session transcripts into reusable daily memory notes. It is intended for automated or manual runs where transcript processing by an external LLM provider is acceptable.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kitsune/session-scribe-openclaw) <br>
-- [OpenClaw Transcript Format](references/transcript-format.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown memory files with timestamped bullet-point summaries and CLI status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js and an OpenAI or Anthropic API key; supports dry-run mode, explicit session selection, and all-sessions cron operation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Private session transcripts may be sent to external LLM providers during summarization.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated low-privilege API key with spending limits, run --dry-run first, and avoid processing sessions containing secrets, PII, or regulated data.
+
+Risk: Recurring or all-session operation can broaden transcript processing beyond the intended conversation.
+
+Mitigation: Prefer a single explicit session unless broad coverage is required, and review the selected sessions before enabling a cron schedule.
+
+Risk: Generated memory notes may be incomplete, inaccurate, or misleading.
+
+Mitigation: Treat generated memory as untrusted notes and review important entries before relying on them.
+
+## Reference(s):
+
+- [OpenClaw Transcript Format](references/transcript-format.md)
+- [ClawHub Skill Page](https://clawhub.ai/kitsune/skills/session-scribe-openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown memory notes and console text, with setup examples as shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can append daily memory files, print dry-run summaries, and persist per-session progress state.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

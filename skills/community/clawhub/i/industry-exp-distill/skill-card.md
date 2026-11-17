@@ -1,41 +1,54 @@
-## Description: <br>
-Industry Experience Distillation helps agents collect, organize, and compare industry best practices and reusable work methodologies across ISIC-aligned sectors. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Industry Experience Distill is a Chinese-language skill for collecting, structuring, and generalizing industry best practices and work methodologies across ISIC-aligned sectors.
 
-## Publisher: <br>
-[smxtx](https://clawhub.ai/user/smxtx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[smxtx](https://clawhub.ai/user/smxtx)
 
-## Use Case: <br>
-Employees, external users, developers, and analysts use this skill to structure industry research, distill best practices, compare peer methods, and adapt cross-industry methodologies for planning or knowledge-management work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Business, financial, healthcare, or regulatory claims may be outdated, incomplete, or context-specific. <br>
-Mitigation: Provide source constraints and verify important claims against current authoritative sources before using them for decisions. <br>
-Risk: Cross-industry best practices may not transfer cleanly to a specific organization or operating context. <br>
-Mitigation: Use the skill's applicability checks, boundary notes, and pilot-validation steps before adopting recommendations. <br>
+## Use Case:
 
+Business analysts, consultants, managers, and knowledge-management practitioners use this skill to benchmark industry practices, distill reusable methods, and adapt cross-industry lessons for sectors such as technology, finance, manufacturing, education, healthcare, and professional services.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/smxtx/industry-exp-distill) <br>
-- [Usage guide](references/usage-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown guidance, structured report templates, comparison tables, and methodology summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-oriented reference content; no executable code or tool calls.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and artifact _meta.json) <br>
+Risk: Broad trigger wording and Chinese-language behavior may activate in contexts where users expect narrower or language-neutral industry benchmarking support.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Narrow activation guidance and clarify expected language behavior before deployment in environments that require static or multilingual behavior.
+
+Risk: Declared auto-update behavior can change the reference content or activation posture after review.
+
+Mitigation: Review each updated release and its security evidence before deployment.
+
+## Reference(s):
+
+- [Industry Experience Distillation Usage Guide](artifact/references/usage-guide.md)
+- [ClawHub skill page](https://clawhub.ai/smxtx/skills/industry-exp-distill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown reports, templates, checklists, comparison tables, and structured guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language reference guidance with declared auto-update metadata.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

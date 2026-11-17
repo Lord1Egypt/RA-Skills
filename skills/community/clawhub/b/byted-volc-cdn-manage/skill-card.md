@@ -1,49 +1,66 @@
-## Description: <br>
-Helps agents manage Volcengine CDN domains through the Volcengine CLI, including adding domains and submitting cache refresh or preload tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents guide users through managing Volcengine CDN domains with the Volcengine CLI, including domain creation, cache refresh, and content preload workflows.
 
-## Publisher: <br>
-[volcengine-skills](https://clawhub.ai/user/volcengine-skills) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[volcengine-skills](https://clawhub.ai/user/volcengine-skills)
 
-## Use Case: <br>
-Developers and operators use this skill to prepare and run Volcengine CDN domain creation, cache refresh, and content preload workflows with guided parameters and recommended CDN settings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can use Volcengine CLI credentials that are authorized to manage CDN resources. <br>
-Mitigation: Use least-privilege AK/SK credentials and avoid pasting real secrets into prompts, commands, examples, or shared logs. <br>
-Risk: Generated add-domain, refresh, and preload commands can affect live CDN configuration and content delivery. <br>
-Mitigation: Review every domain, origin, service region, refresh URL, and preload URL before execution, and treat scripts as production-affecting operations rather than dry runs. <br>
-Risk: The artifact includes CLI installation and upgrade guidance that downloads and installs the Volcengine CLI. <br>
-Mitigation: Install the CLI from the official Volcengine source, verify the CLI version is at least 1.0.39, and confirm credentials are configured for the intended account and region. <br>
+## Use Case:
 
+Developers and CDN operators use this skill to prepare and run Volcengine CLI workflows for adding CDN acceleration domains, applying recommended web/download/video configurations, and submitting cache refresh or preload jobs.
 
-## Reference(s): <br>
-- [Parameter Reference](references/parameters.md) <br>
-- [Usage Examples](references/examples.md) <br>
-- [CLI Installation Guide](references/install-guide.md) <br>
-- [FAQ](references/faq.md) <br>
-- [Volcengine CLI](https://github.com/volcengine/volcengine-cli) <br>
-- [Volcengine CDN AddCdnDomain API](https://www.volcengine.com/docs/6454/97340) <br>
-- [Volcengine CDN SubmitRefreshTask API](https://www.volcengine.com/docs/6454/97345) <br>
-- [Volcengine CDN SubmitPreloadTask API](https://www.volcengine.com/docs/6454/97346) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Code, Guidance] <br>
-**Output Format:** [Markdown guidance with inline bash commands and JSON request bodies] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce executable Volcengine CLI commands for live CDN resource changes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release evidence) <br>
+Risk: The skill can generate workflows that make live Volcengine CDN configuration changes, including domain creation, cache refresh, and content preload operations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review every domain, origin, refresh URL, and preload URL before running commands, and test changes outside production where possible.
+
+Risk: Volcengine credentials may be exposed if AK/SK values are pasted into chat, command history, or shared logs.
+
+Mitigation: Use least-privilege credentials limited to required CDN actions and avoid entering secrets in chat or shell commands that are persisted in history.
+
+Risk: The CLI installation guidance downloads executable tooling before cloud operations are run.
+
+Mitigation: Verify the Volcengine CLI source and checksum independently before installation or upgrade.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/volcengine-skills/skills/byted-volc-cdn-manage)
+- [Volcengine CLI documentation](https://github.com/volcengine/volcengine-cli)
+- [CDN AddCdnDomain API documentation](https://www.volcengine.com/docs/6454/97340)
+- [CDN SubmitRefreshTask API documentation](https://www.volcengine.com/docs/6454/97345)
+- [CDN SubmitPreloadTask API documentation](https://www.volcengine.com/docs/6454/97346)
+- [Volcengine CDN console](https://console.volcengine.com/cdn)
+- [Parameter reference](references/parameters.md)
+- [Usage examples](references/examples.md)
+- [FAQ](references/faq.md)
+- [CLI installation guide](references/install-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash commands and JSON request bodies]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce commands that call live Volcengine CDN APIs when run by the user.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata; artifact frontmatter version 2.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,62 @@
-## Description: <br>
-智能记账助手。用户提到记账、支出、收入、账本、流水、应收、应付、发票、票据、报销等关键词时使用此技能。支持文字直接记账，也可调用其他技能预处理图片/语音/文件后进行记账。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+智能记账助手，用于在用户提到账本、流水、收支、应收应付、发票、票据或报销时，从文字或预处理后的多媒体内容生成和查询记账操作。
 
-## Publisher: <br>
-[heygallon](https://clawhub.ai/user/heygallon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[heygallon](https://clawhub.ai/user/heygallon)
 
-## Use Case: <br>
-External users and agents use this skill to turn Chinese-language bookkeeping requests, receipts, invoices, and parsed document text into accounting queries or entries against the caiwu888.cn accounting backend. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create real accounting records from inferred text, OCR, speech, or document parsing. <br>
-Mitigation: Require the agent to preview normalized fields and obtain explicit user approval before every add operation. <br>
-Risk: The skill depends on ACCOUNTING_API_TOKEN for access to the caiwu888.cn backend. <br>
-Mitigation: Use a scoped token, keep it in the environment, and avoid exposing it in prompts, logs, command output, or shared files. <br>
-Risk: Parsed receipts, invoices, PDFs, spreadsheets, or audio may contain incorrect or ambiguous financial details. <br>
-Mitigation: Verify amount, transaction type, ledger, dates, company, invoice status, and due dates with the user before writing records. <br>
+## Use Case:
 
+External users and agents use this skill to record and query income, expenses, receivables, payables, ledgers, accounts, categories, handlers, and companies through a Caiwu accounting service. It supports direct text bookkeeping and bookkeeping after OCR, speech-to-text, or file parsing by companion skills.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/heygallon/accountingforcaijin) <br>
-- [caiwu888.cn accounting API endpoint](https://api.caiwu888.cn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, API Calls, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON request or response payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Python and ACCOUNTING_API_TOKEN; commands can read accounting metadata, query transactions, and add accounting records.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release evidence) <br>
+Risk: The skill can create financial records from inferred or defaulted data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require the agent to show the normalized transaction and get explicit approval before every add operation.
+
+Risk: OCR, speech, file, batch, or defaulted fields may produce inaccurate accounting entries.
+
+Mitigation: Review extracted amount, transaction type, ledger, category, dates, invoice status, and due date before execution.
+
+Risk: Local JSON file paths passed as command arguments may cause file contents to be sent to the accounting API.
+
+Mitigation: Pass inline JSON unless file upload is intended, and avoid sensitive local file paths.
+
+Risk: The skill depends on a remote accounting service and an API token.
+
+Mitigation: Install only when the service is trusted and the token can be scoped, rotated, or revoked.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/heygallon/skills/accountingforcaijin)
+- [Caiwu accounting API base URL](https://api.caiwu888.cn)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON arguments]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires ACCOUNTING_API_TOKEN and Python; add, query, ledger, account, category, handler, and company commands exchange JSON with the remote accounting API.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

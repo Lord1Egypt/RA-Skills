@@ -1,46 +1,55 @@
-## Description: <br>
-Probabilistic regime transition forecast with timing estimate. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Paid x402 endpoint: $0.007 USDC per call on Base. Returns probabilistic regime transition forecast with timing estimate.
 
-## Publisher: <br>
-[kynto2001-ctrl](https://clawhub.ai/user/kynto2001-ctrl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kynto2001-ctrl](https://clawhub.ai/user/kynto2001-ctrl)
 
-## Use Case: <br>
-Developers, agents, and trading teams use this skill to request a paid, real-time regime transition probability and timing estimate for dynamic strategy allocation and regime-aware hedging. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a live EVM private key that an agent can use while making requests. <br>
-Mitigation: Use only a dedicated low-balance wallet for this skill and never expose a main wallet private key. <br>
-Risk: Agent calls can trigger paid Base USDC requests, and repeated calls may spend funds unexpectedly. <br>
-Mitigation: Confirm the current call cost before use and rely on external wallet controls, low balances, or manual approval for spending limits. <br>
-Risk: The response is a probabilistic trading signal and may be incorrect or unsuitable for a specific strategy. <br>
-Mitigation: Treat the signal as decision support, validate it against independent risk controls, and avoid automated trading solely from this output. <br>
+## Use Case:
 
+Developers and agents use the paid x402 endpoint to retrieve a probabilistic market regime transition forecast and estimated timing, which can inform regime-aware strategy allocation or hedging.
 
-## Reference(s): <br>
-- [APEX Runner regime transition probability signal](https://apexrunner.ai/signals/regime-transition-probability) <br>
-- [APEX Runner pricing tier lookup](https://apexrunner.ai/signals/my-pricing) <br>
-- [Related signal: regime transition](https://apexrunner.ai/signals/regime-transition) <br>
-- [Related signal: regime confluence](https://apexrunner.ai/signals/regime-confluence) <br>
-- [Related signal: regime transition probability institutional](https://apexrunner.ai/signals/regime-transition-probability-institutional) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, JSON, Code, Guidance] <br>
-**Output Format:** [Markdown usage guidance with Python example code and a JSON API response] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires EVM_PRIVATE_KEY and a Base mainnet USDC wallet payment for each call.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Requests incur USDC charges and the example requires an EVM private key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Protect EVM_PRIVATE_KEY in a secret store and review the endpoint and payment cap before sending a request.
+
+Risk: A probabilistic forecast and estimated timing may not match subsequent market behavior.
+
+Mitigation: Treat the response as an uncertain input to analysis rather than a guaranteed outcome.
+
+## Reference(s):
+
+- [Regime Transition Probability API](https://apexrunner.ai/signals/regime-transition-probability)
+- [Related signal: Regime Transition](https://apexrunner.ai/signals/regime-transition)
+- [Related signal: Regime Confluence](https://apexrunner.ai/signals/regime-confluence)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON]
+
+**Output Format:** [JSON response containing regime, transition probability, likely next regime, and estimated timing]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Forecast values are returned by a paid x402 request.]
+
+## Skill Version(s):
+
+1.0.2 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

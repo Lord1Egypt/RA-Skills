@@ -1,7 +1,7 @@
 {
   "name": "enterprise-file-writer",
-  "version": "1.2.0",
-  "description": "写入内容到本地文件，支持企业安全策略环境。支持文本文件、代码文件、配置文件、Office 文档等 80+ 种格式，通过正确的编码处理避免乱码问题。",
+  "version": "1.3.1",
+  "description": "写入内容到本地文件，支持企业安全策略环境。明确支持：文本文件(.txt/.md/.log)、代码文件(.java/.py/.js等30+种)、配置文件(.json/.yaml/.ini等)、Office文档(.docx/.xlsx)。通过正确的编码处理(UTF-8/GBK)避免乱码问题。",
   "author": "aclory",
   "license": "MIT",
   "keywords": [
@@ -10,7 +10,6 @@
     "code-generation",
     "config-file",
     "enterprise",
-    "protected-file",
     "utf8",
     "encoding",
     "docx",
@@ -27,13 +26,9 @@
   },
   "homepage": "https://clawhub.com/skills/enterprise-file-writer",
   "engines": {
-    "openclaw": ">=1.0.0",
     "python": ">=3.6"
   },
   "dependencies": {},
-  "peerDependencies": {
-    "openclaw": ">=1.0.0"
-  },
   "config": {
     "pythonPath": "python",
     "scriptPath": "write_file.py",

@@ -1,41 +1,54 @@
-## Description: <br>
-Reports comprehensive Pilot Protocol mesh status across peers, connections, encryption, relay usage, bandwidth, and daemon health. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reports Pilot Protocol mesh status across peers, connections, encryption, relay usage, bandwidth, daemon health, and latency.
 
-## Publisher: <br>
-[teoslayer](https://clawhub.ai/user/teoslayer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[teoslayer](https://clawhub.ai/user/teoslayer)
 
-## Use Case: <br>
-Developers and operators using Pilot Protocol use this skill to generate mesh status reports for network health monitoring, dashboard inputs, and connectivity or performance debugging. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Mesh status reports can expose operational details such as node IDs, peers, connection patterns, relay use, bandwidth, and encryption coverage. <br>
-Mitigation: Share generated reports only with trusted operators and redact sensitive mesh details before storing or publishing them. <br>
-Risk: The skill relies on the local pilotctl binary and daemon for status data. <br>
-Mitigation: Use it only in a trusted Pilot Protocol environment where the pilotctl binary and daemon are expected and maintained. <br>
+## Use Case:
 
+Developers and operators use this skill to get a consolidated Pilot Protocol mesh health report, including daemon status, peers, connections, relay use, bandwidth, trust, encryption coverage, and latency.
 
-## Reference(s): <br>
-- [Pilot Protocol homepage](https://pilotprotocol.network) <br>
-- [ClawHub skill page](https://clawhub.ai/teoslayer/pilot-mesh-status) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with pilotctl command examples, JSON-oriented command output expectations, and bash snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the pilotctl binary on PATH and a running Pilot Protocol daemon; reports may include node IDs, peer and connection details, relay use, bandwidth, and encryption coverage.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata; artifact metadata version 1.0) <br>
+Risk: The agent may view mesh network metadata such as peers, connections, relay use, bandwidth, trust, and encryption state.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill only in environments where that mesh metadata is approved for agent access and downstream summarization.
+
+Risk: The external pilotctl binary and running Pilot Protocol daemon remain part of the execution trust boundary.
+
+Mitigation: Use a trusted pilotctl installation and daemon, and review commands before allowing the agent to execute them.
+
+## Reference(s):
+
+- [Pilot Protocol Homepage](https://pilotprotocol.network)
+- [ClawHub Skill Page](https://clawhub.ai/teoslayer/skills/pilot-mesh-status)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and summarized status metrics]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses pilotctl JSON status outputs when available; reports may include mesh metadata such as peers, connections, relay use, bandwidth, trust, and encryption state.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter version is 1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

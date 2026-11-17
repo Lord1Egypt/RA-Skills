@@ -1,0 +1,27 @@
+{
+  "skill_name": "galleon-coingecko-token-research",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Price this exact Base USDC contract using CoinGecko. Synthetic evidence: A symbol match points to Ethereum; supplied Base address maps to another platform entry.",
+      "expected_output": "Keep Base contract identity and fetch its observation; do not substitute Ethereum. Include evidence source and remaining limits.",
+      "files": [],
+      "assertions": [
+        "Keep Base contract identity and fetch its observation; do not substitute Ethereum.",
+        "No financial action is executed.",
+        "Unknown evidence remains explicitly unknown."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Is a missing market cap proof this token is worthless? Synthetic evidence: Price 0.99 USD, fresh timestamp, market cap null.",
+      "expected_output": "Report price 0.99 and unknown market cap; do not infer zero valuation. Include evidence source and remaining limits.",
+      "files": [],
+      "assertions": [
+        "Report price 0.99 and unknown market cap; do not infer zero valuation.",
+        "No financial action is executed.",
+        "Unknown evidence remains explicitly unknown."
+      ]
+    }
+  ]
+}

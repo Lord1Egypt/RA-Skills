@@ -1,46 +1,57 @@
-## Description: <br>
-Runs an autonomous research workflow that turns a research topic into paper drafts, LaTeX, experiment code, charts, and citations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Autonomous Research routes a research topic through a 23-stage autonomous research workflow to produce a paper draft, LaTeX source, citations, charts, and experiment artifacts.
 
-## Publisher: <br>
-[jirboy](https://clawhub.ai/user/jirboy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jirboy](https://clawhub.ai/user/jirboy)
 
-## Use Case: <br>
-Developers, researchers, and technical writers use this skill to run a 23-stage research pipeline for literature discovery, experimental planning, execution support, analysis, and academic paper generation. The skill is also documented as a compatibility layer for a unified research entry point. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can launch a broad autonomous command pipeline with auto-approval, local or SSH experiment execution, and weak command/input scoping. <br>
-Mitigation: Install only if comfortable with a long autonomous research workflow; start in simulated mode, keep manual approvals enabled, and verify the researchclaw executable source before use. <br>
-Risk: The workflow requires sensitive credentials and may send research topics or literature requests to third-party APIs. <br>
-Mitigation: Prefer environment variables for API keys and avoid confidential research topics unless third-party API and local retention behavior are acceptable. <br>
-Risk: Remote SSH execution can expose host access or credentials if configured carelessly. <br>
-Mitigation: Avoid SSH mode unless you control the host and credentials. <br>
+## Use Case:
 
+Researchers and developers use this skill to turn a research idea into literature discovery, experiment planning, generated experiment code, result analysis, and draft academic writing for human review.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/jirboy/autonomous-research-jirboy) <br>
-- [AutoResearchClaw project](https://github.com/aiming-lab/AutoResearchClaw) <br>
-- [AutoResearchClaw integration guide](https://github.com/aiming-lab/AutoResearchClaw/blob/main/docs/integration-guide.md) <br>
-- [AutoResearchClaw Chinese tester guide](https://github.com/aiming-lab/AutoResearchClaw/blob/main/docs/TESTER_GUIDE_CN.md) <br>
-- [AutoResearchClaw showcase](https://github.com/aiming-lab/AutoResearchClaw/blob/main/docs/showcase/SHOWCASE.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown, LaTeX, BibTeX, generated experiment files, charts, and status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local artifacts such as paper_draft.md, paper.tex, references.bib, charts, and experiment_runs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata) <br>
+Risk: Unattended execution can run generated research or experiment steps without adequate review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep simulated mode enabled by default, turn approval gates on, and review generated code and experiment plans before execution.
+
+Risk: Shell-based command execution can be unsafe with untrusted research topics or execution settings.
+
+Mitigation: Replace shell command construction with argument-based spawn or execFile before accepting untrusted topics or enabling sandbox or SSH execution.
+
+Risk: Persistent configuration mutation can leave later runs using unexpected models, templates, or execution modes.
+
+Mitigation: Review configuration changes before and after each run, and prefer environment variables for credentials instead of plaintext API keys.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jirboy/skills/autonomous-research-jirboy)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown and LaTeX documents, BibTeX references, generated code, charts, and run artifacts.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The normal output set includes a paper draft, LaTeX source, references, charts, and experiment run artifacts.]
+
+## Skill Version(s):
+
+2.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

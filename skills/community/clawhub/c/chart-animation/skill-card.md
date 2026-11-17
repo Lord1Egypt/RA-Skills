@@ -1,43 +1,54 @@
-## Description: <br>
-Generate dark-themed animated trend charts and static overview images from time-series JSON data with customizable titles and frame rates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate dark-themed animated trend charts and static overview images from time-series JSON data with customizable titles, frame rates, and chart dimensions.
 
-## Publisher: <br>
-[ravenquasar](https://clawhub.ai/user/ravenquasar) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ravenquasar](https://clawhub.ai/user/ravenquasar)
 
-## Use Case: <br>
-Developers, analysts, and presentation authors use this skill to turn time-series JSON data into animated trend charts, optional MP4 video, and a static overview image. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The chart generator creates or overwrites files in the selected output directory. <br>
-Mitigation: Review the input JSON and choose an output directory that does not contain files you need to preserve. <br>
-Risk: Installing or running the tool depends on local Python packages and optional ffmpeg support. <br>
-Mitigation: Install dependencies only from trusted package sources and treat MP4 output as optional when ffmpeg is unavailable. <br>
+## Use Case:
 
+Developers and analysts use this skill to turn time-series JSON data into presentation-ready animated GIF or MP4 trend charts and static overview images.
 
-## Reference(s): <br>
-- [Chart Animation Skill Page](https://clawhub.ai/ravenquasar/chart-animation) <br>
-- [Publisher Profile](https://clawhub.ai/user/ravenquasar) <br>
-- [Usage and Data Format](artifact/SKILL.md) <br>
-- [Examples](artifact/examples/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown guidance plus generated GIF, PNG, and optional MP4 files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads a user-provided JSON file and writes chart outputs to the selected output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, package.json, and SKILL.md) <br>
+Risk: Package metadata declares Python libraries as unpinned npm dependencies, which may create install-time supply-chain exposure if used directly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install the Python dependencies in a virtual environment with pinned versions and ignore or remove the npm dependency block unless those packages are intentionally used.
+
+Risk: MP4 export depends on an external ffmpeg installation.
+
+Mitigation: Install ffmpeg only from a trusted system package source, or use GIF and PNG outputs when ffmpeg is unavailable.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ravenquasar/skills/chart-animation)
+- [Chart Animation Examples](artifact/examples/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces guidance for generating animation.gif, animation.mp4 when ffmpeg is available, and overview.png from validated time-series JSON input.]
+
+## Skill Version(s):
+
+1.0.0 (source: artifact SKILL.md, package.json, and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -10,6 +10,7 @@ import importlib.util
 import json
 import os
 import platform
+import shutil
 import sys
 from pathlib import Path
 
@@ -34,6 +35,8 @@ OPTIONAL_MODULES = {
     "PIL": "Pillow image loading",
     "fitz": "Optional PyMuPDF text/PDF smoke backend",
     "pypdf": "Optional pure-Python PDF smoke backend",
+    "fastapi": "Default local HTTP service API",
+    "uvicorn": "Default local HTTP service runner",
     "gradio": "Optional local demo UI",
 }
 
@@ -154,6 +157,14 @@ def main() -> int:
     model_dir_ready = bool(model_assets["found"])
     backend_ready, backend_error = mineru_backend_importable()
     mineru_ready = has_mineru_stack and has_page_renderer and has_image_loader and backend_ready and model_dir_ready
+    server_files = {
+        "parse_client": base_dir / "scripts" / "parse_client.py",
+        "persistent_parse_server": base_dir / "scripts" / "persistent_parse_server.py",
+        "http_parse_server": base_dir / "scripts" / "http_parse_server.py",
+    }
+    persistent_server_available = all(path.exists() for path in server_files.values())
+    http_service_ready = persistent_server_available and module_ok["fastapi"] and module_ok["uvicorn"]
+    uv_exe = shutil.which("uv")
 
     warnings: list[str] = []
     if not module_ok["openvino"]:
@@ -200,6 +211,9 @@ def main() -> int:
         "local_runtime_paths": LOCAL_RUNTIME_PATHS,
         "capabilities": {
             "mineru_openvino_ready": mineru_ready,
+            "persistent_server_available": persistent_server_available,
+            "http_service_ready": http_service_ready,
+            "uv_available": uv_exe is not None,
             "openvino_runtime": module_ok["openvino"],
             "openvino_genai_runtime": module_ok["openvino_genai"],
             "mineru_vl_utils": module_ok["mineru_vl_utils"],
@@ -211,6 +225,18 @@ def main() -> int:
             "optional_demo_ui": module_ok["gradio"],
         },
         "model_assets": model_assets,
+        "persistent_server": {
+            "available": persistent_server_available,
+            "default_mode": "auto",
+            "http_ready": http_service_ready,
+            "uv_executable": uv_exe,
+            "client": str(server_files["parse_client"]),
+            "server": str(server_files["persistent_parse_server"]),
+            "http_server": str(server_files["http_parse_server"]),
+            "enable_with": "python scripts/run_skill.py --mode to-data --file <file> ...",
+            "warmup": "python scripts/run_skill.py --warmup-server",
+            "shutdown": "python scripts/run_skill.py --shutdown-server",
+        },
         "modules": modules,
         "warnings": warnings,
         "next_step": next_step,

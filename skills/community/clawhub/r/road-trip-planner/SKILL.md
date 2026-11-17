@@ -38,13 +38,26 @@ Before any API call, verify that the `personal-map` skill is installed and the A
 ```
 Checklist / 检查清单:
 1. personal-map skill installed? → No → 提示: "请先安装 personal-map skill，运行: openclaw skills install personal-map"
-2. AMAP_API_KEY set? → No → 提示: "请先配置高德 API Key: export AMAP_API_KEY=your_key，获取地址 https://lbs.amap.com/"
+2. AMAP_API_KEY set? → No → 提示: "请先配置高德 API Key，获取地址 https://lbs.amap.com/"
 3. AMapPersonalMapClient importable? → No → 提示: "personal-map skill 版本可能不兼容，请确认其提供 AMapPersonalMapClient 类"
+```
+
+Set the environment variable in the active shell; never put a real key in the skill or source code:
+
+```bash
+# macOS / Linux
+export AMAP_API_KEY='your_key'
+
+# PowerShell
+$env:AMAP_API_KEY = 'your_key'
+
+# Windows cmd
+set "AMAP_API_KEY=your_key"
 ```
 
 ## Core Principles / 核心原则
 
-1. **No fatigued driving / 不疲劳驾驶**：Keep daily actual driving time under 6 hours, ideally 4–5 hours. For high-altitude, mountainous, or winding roads, further reduce driving time.（每日实际驾驶时间控制在 6 小时以内，理想状态 4-5 小时。高原、山区、弯道多的路段进一步压缩。）
+1. **No fatigued driving / 不疲劳驾驶**：Keep daily actual driving time under 6 hours; 4–5 hours is a planning target, while short sightseeing or transfer days may be shorter. For high-altitude, mountainous, or winding roads, further reduce driving time.（每日实际驾驶时间控制在 6 小时以内；4-5 小时是规划目标，纯玩或短途换乘日可更短。高原、山区、弯道多的路段进一步压缩。）
 
 2. **Continuous route / 连续路线**：Merge all daily waypoints into one continuous route, either a closed loop or with a clear endpoint.（所有天的节点合并为一条连续路线，首尾闭合或明确终点。）
 
@@ -61,15 +74,16 @@ Confirm with the user:
 - Total number of days
 - Must-visit attractions / cities
 - Travel season (affects road conditions and accommodation)
+- Exact departure dates, vehicle type, and any driving/health constraints when safety or road choice depends on them
 
-与用户确认以下信息：起点、终点（是否环线）、总天数、必去景点/途经城市、出发季节。
+与用户确认以下信息：起点、终点（是否环线）、总天数、必去景点/途经城市、出发季节、准确出发日期、车型及会影响路线选择的驾驶/健康限制。
 
-If unspecified, proactively suggest reasonable defaults.
+If the date is unspecified, provide a provisional seasonal plan and explicitly mark the real-time checks as pending.
 
 ### Step 2: Design daily waypoints / 设计每日节点
 
 Split waypoints by day following these rules:
-- 4–6 hours of driving per day, never exceed 6 hours
+- Target 4–6 hours of driving per day, never exceed 6 hours; short sightseeing or transfer days may be shorter
 - Each day's `points` list includes the core locations passed that day
 - The end city of each day must also serve as the start point for the next day (for mileage calculation)
 
@@ -87,7 +101,7 @@ from scripts.amap_personal_map_client import AMapPersonalMapClient
 api_key = os.getenv("AMAP_API_KEY")
 if not api_key:
     print("AMAP_API_KEY not set. Get a key at https://lbs.amap.com/ and run:")
-    print("  export AMAP_API_KEY=your_key")
+    print("  Set AMAP_API_KEY in your active shell (see Dependencies above).")
     # stop here — do not proceed
 
 # Create client (auto-reads AMAP_API_KEY from env):
@@ -95,13 +109,34 @@ client = AMapPersonalMapClient()
 # Or pass explicitly: client = AMapPersonalMapClient(api_key="your_key")
 ```
 
-**IMPORTANT**: All API methods return structured dicts on error, they do NOT throw exceptions. Always check for `"error"` key:
+**Normalize every response before using it.** The client does not raise API failures, but a failure can be either an error dict or an error dict as the first item of a list (for example, POI search). Always check both shapes:
 
 ```python
-result = client.maps_geo("北京市朝阳区", "北京")
-if isinstance(result, dict) and "error" in result:
-    print(f"API error: {result['message']}")
-    # handle error — do not assume result contains coordinates
+def api_error_message(result):
+    if isinstance(result, dict) and "error" in result:
+        return result.get("message", str(result["error"]))
+    if (
+        isinstance(result, list)
+        and result
+        and isinstance(result[0], dict)
+        and "error" in result[0]
+    ):
+        return result[0].get("message", str(result[0]["error"]))
+    return None
+
+geo = client.maps_geo("北京市朝阳区", "北京")
+if error := api_error_message(geo):
+    # Stop handling this location; never reuse another location's coordinates.
+    raise ValueError(f"Cannot resolve this location: {error}")
+
+# Convert external fields once. All later workflow steps use only this shape.
+point = {
+    "name": "地点名称",
+    "lon": float(geo["longitude"]),
+    "lat": float(geo["latitude"]),
+    "poiId": "",             # fill from the verified POI-search result
+    "required": False,         # True for the start, end, and user must-visit points
+}
 ```
 
 For each location:
@@ -110,14 +145,14 @@ For each location:
 3. Verify search result coordinates are within 30km of geo coordinates to prevent cross-city mismatches
 4. `time.sleep(0.3)` between API calls to avoid QPS throttling
 
-对每个地点执行：`maps_geo` 获取坐标 → `maps_text_search` 获取 poiId → 验证距离 < 30km → sleep 0.3s。
+对每个地点执行：`maps_geo` 获取坐标 → 立即标准化为 `lon`/`lat` → `maps_text_search` 获取 poiId → 验证距离 < 30km → sleep 0.3s。后续步骤不得直接混用 API 返回的 `longitude`/`latitude` 与内部 `lon`/`lat` 字段。
 
 **Error handling / 错误处理**：
 - If `AMapPersonalMapClient` is not found → check the pre-flight checklist in the Dependencies section, inform user, and **stop**
 - If `AMAP_API_KEY` is empty → inform user and **stop**
-- If API returns `{"error": ...}` → check `result["message"]`, skip this location with a warning, use the previous valid result as fallback
-- If `maps_geo` returns error → skip this location with a warning
-- If `maps_text_search` returns error or no result within 30km → retry with `{city_name} {location_name}`, if still empty use placeholder `B000000000`
+- For every response → call `api_error_message()` before reading result fields
+- If `maps_geo` fails → do not substitute a previous coordinate. Stop QR generation when this is a start, end, or must-visit point; otherwise list the optional point as unresolved and exclude it from routing
+- If `maps_text_search` fails or has no result within 30km → retry with `{city_name} {location_name}`. For a required point, stop QR generation and ask the user to disambiguate; for an optional point, retain it only in the text itinerary as unresolved and do not give it a fake poiId
 - If QPS exceeded (`CUQPS_HAS_EXCEEDED_THE_LIMIT` in error message) → wait 1s and retry once
 
 #### 3.1 Supply point search per day / 每日补给搜索
@@ -135,8 +170,8 @@ result = client.maps_around_search(
     radius=5000,               # 搜索半径 5km（默认 1000m）
     offset=5
 )
-if isinstance(result, dict) and "error" in result:
-    print(f"补给搜索失败: {result['message']}")
+if error := api_error_message(result):
+    print(f"补给搜索失败: {error}")
 ```
 
 **When to search / 何时搜索**：
@@ -175,25 +210,28 @@ for i, day in enumerate(days):
 
 #### 5.1 Collect valid points / 收集有效点
 
-Collect all points across all days that have a non-empty poiId (skip placeholder `B000000000`). Preserve insertion order (day-by-day).
+Collect only normalized points with a non-empty verified `poiId`. Preserve insertion order (day-by-day). Before collecting, confirm that all required points (start, end, user must-visits) resolved successfully. If any did not, do not generate a QR code that claims to be the complete route.
 
-收集所有天的有效点（poiId 非空且非占位符 `B000000000`），按天顺序保持插入顺序。
+收集所有天的有效点（已标准化且 poiId 已验证），按天顺序保持插入顺序。收集前必须确认起点、终点和用户必去点均已解析；任一失败时不得生成声称完整的二维码路线。
 
-#### 5.2 Deduplicate by name / 按名称去重
+#### 5.2 Deduplicate by identity / 按身份去重
 
 Rules (apply in order):
 
-1. **Closed-loop anchor / 环线锚点**：If the first and last points have the same name AND this name also appears in the middle, keep the first AND last occurrence, remove the middle one(s). This ensures the route stays closed.
-2. **Intermediate duplicates / 中间重复**：For all other duplicate names, keep the **first** occurrence, remove subsequent ones.
-3. **Adjacent duplicates / 连续重复**：If two consecutive points share the same name, remove one (keep the earlier day's context). This happens when a day's endpoint equals the next day's start point due to cross-day completion.
+1. **Identity / 身份**：Use `poiId` as the primary identity. Only when no poiId is available for a non-QR text item, treat points as duplicates when their coordinates are within a small tolerance; never deduplicate by name alone.
+2. **Closed-loop anchor / 环线锚点**：If the first and last points have the same identity, keep both, and remove only middle occurrences of that identity. This ensures the route stays closed.
+3. **Intermediate duplicates / 中间重复**：For all other repeated identities, keep the first occurrence and remove later ones. Keep the day-by-day itinerary data unchanged; this rule applies only to the QR route list.
+4. **Adjacent duplicates / 连续重复**：Remove one only when two adjacent QR points have the same identity. Do not infer a duplicate solely because their display names match.
 
 ```
 Deduplication flow:
-  names = [p["name"] for p in points]
-  if names[0] == names[-1]:
-      → keep points[0] and points[-1], remove middle occurrences of this name
-  for all other duplicates:
-      → keep first occurrence, remove rest
+  identities = [p["poiId"] for p in points]
+  if len(identities) < 2:
+      → stop; do not generate a route QR code
+  elif identities[0] == identities[-1]:
+      → keep points[0] and points[-1], remove middle occurrences of this identity
+  else:
+      → for all repeated identities, keep first occurrence and remove rest
 ```
 
 #### 5.3 Trim to ≤ 16 nodes / 精简至 ≤ 16 节点
@@ -206,7 +244,7 @@ If the deduplicated list exceeds 16 nodes, trim using this priority order:
 | 2 | User-specified must-visit attractions | — |
 | 3 | Major scenic spots / landmarks (景点/地标) | Rest stops, service areas (服务区) |
 | 4 | Geographically isolated nodes (唯一覆盖该区域的点) | Dense urban clusters (keep 1 per city) |
-| 5 | POI with non-placeholder poiId | POI with placeholder poiId `B000000000` |
+| 5 | POI with verified poiId | Optional unresolved POI (text itinerary only; never add to QR route) |
 
 **Geographic distribution principle / 地理分布原则**：When choosing between nodes of equal priority, prefer nodes that are farther apart (ensure the route visually represents the full journey). Avoid dropping the only node in a sparse region.
 
@@ -228,8 +266,10 @@ line_list = [{
 # Validate before calling maps_schema_personal_map
 if len(point_info_list) > 16:
     raise ValueError(f"Still {len(point_info_list)} nodes, must be ≤ 16")
-if any(p["poiId"] == "B000000000" or not p["poiId"] for p in point_info_list):
-    raise ValueError("Placeholder or empty poiId found")
+if len(point_info_list) < 2:
+    raise ValueError("A route QR code needs at least a resolved start and end point")
+if any(not p["poiId"] for p in point_info_list):
+    raise ValueError("Empty poiId found")
 ```
 
 #### 5.5 Call API and download QR / 调用 API 并下载二维码
@@ -241,9 +281,9 @@ result = client.maps_schema_personal_map(
     sceneType=3          # 3 = route planning mode (仅创建路线)
 )
 
-# Check for API errors (all methods return dict on error, no exceptions)
-if isinstance(result, dict) and "error" in result:
-    print(f"地图生成失败: {result['message']}")
+# Check for API errors before reading result fields
+if error := api_error_message(result):
+    print(f"地图生成失败: {error}")
     # fallback: output the coordinates as text so user can manually create route
 else:
     qr_url = result["qr_code_url"]
@@ -261,7 +301,7 @@ else:
 3. Download QR code image and display inline
 4. Always include the fallback URL link
 
-收集有效点 → 按名称去重（按上述三条规则）→ 构建 lineList → 按优先级精简至 ≤ 16 节点 → 数据完整性校验 → 调用 `maps_schema_personal_map`(sceneType=3) → 检查错误 → 下载二维码 → 显示备用链接。
+收集已验证节点 → 按 poiId/坐标身份去重（保留闭环首尾）→ 构建 lineList → 按优先级精简至 ≤ 16 节点 → 数据完整性校验 → 调用 `maps_schema_personal_map`(sceneType=3) → 检查错误 → 下载二维码 → 显示备用链接。
 
 ### Step 6: Output Markdown itinerary / 输出 Markdown 行程表
 
@@ -273,6 +313,17 @@ Output directly in the conversation as Markdown, including:
 
 在对话中直接输出 Markdown：行程概览表格（含总里程合计行）、每日详细行程（含海拔和补给点）、实用提示、二维码图片和备用链接。
 
+### Step 6.1: Verify date-sensitive facts / 核验时效信息
+
+Before presenting a final itinerary, verify the route against the actual departure dates. Static seasonal guidance and route-planning API results are not proof that a road, attraction, or service is currently available.
+
+出最终行程前，必须按准确出发日期核验。静态季节提示和路径规划 API 结果均不能证明道路、景区或服务设施当前可用。
+
+- Check official traffic/road-authority notices for closures, controls, and weather-related restrictions
+- Check current weather warnings for high-altitude, mountain, desert, or remote segments
+- Check attraction opening status, ticket/reservation rules, and holiday calendar/traffic-freeway policy for that year
+- Mark each unavailable source as `未核验` rather than inferring a current status; advise the user to recheck immediately before departure
+
 ## Key Constraints / 关键约束
 
 | Constraint / 约束 | Description / 说明 |
@@ -280,8 +331,8 @@ Output directly in the conversation as Markdown, including:
 | Dependency check / 依赖检查 | Before any API call, verify `personal-map` skill is installed AND `AMAP_API_KEY` is set. Fail fast with clear user-facing messages if missing. |
 | Max nodes per route / 单条路线节点上限 | Amap `lineList` max 16 nodes per `pointInfoList` |
 | poiId required / poiId 必填 | `maps_schema_personal_map` requires non-empty poiId |
-| poiId strategy / poiId 获取策略 | `maps_text_search` first → retry with city name → fallback placeholder `B000000000` |
-| API error pattern / API 错误模式 | All API methods return `{"error": ..., "message": ...}` on failure — they do NOT throw exceptions. Always check for `"error"` key in every response. |
+| poiId strategy / poiId 获取策略 | `maps_text_search` first → retry with city name. Required points must resolve; optional unresolved points stay in text only and never receive a fake poiId. |
+| API error pattern / API 错误模式 | API failures do not throw. Check an error dict or an error dict in the first list item before reading result fields. |
 | QPS limit / QPS 限制 | ≥ 0.3s interval between calls, or `CUQPS_HAS_EXCEEDED_THE_LIMIT` |
 | API Key / API Key | Set `AMAP_API_KEY` env var (auto-read by `AMapPersonalMapClient()` with no args) or pass explicitly |
 | Region / 地域限制 | China only — Amap (高德) covers mainland China |
@@ -309,9 +360,9 @@ Output directly in the conversation as Markdown, including:
 - **Max altitude**: ~Xm (仅高原线路标注 / only for high-altitude routes)
 
 **Waypoints / 途经点**：
-| # | Name | Coordinates | Altitude | Note |
+| # | Name | Coordinates (lon, lat) | Altitude | Note |
 |---|------|------------|----------|------|
-| 1 | ... | (lat, lng) | ~Xm | ... |
+| 1 | ... | (lon, lat) | ~Xm | ... |
 
 **Supply points / 沿途补给**：
 - ⛽ Gas stations / 加油站: [name] at [location]
@@ -332,7 +383,7 @@ Output directly in the conversation as Markdown, including:
 
 - **Supply point search / 沿途补给搜索**：Integrated into Step 3.1 — conditions and API calls are defined there. / 已集成到 Step 3.1，按条件触发。
 - **Mileage anomaly troubleshooting / 里程异常排查**：If a day's mileage is 0 or obviously wrong, check whether the previous day's endpoint was correctly inserted (Step 4 cross-day completion), and whether coordinates are duplicated.
-- **Seasonal adjustments / 季节性调整**：For routes affected by holidays, winter closures, rainy seasons, high altitude, desert heat, or peak tourism windows, read [references/seasonal.md](references/seasonal.md) before finalizing the itinerary.
+- **Seasonal adjustments / 季节性调整**：For routes affected by holidays, winter closures, rainy seasons, high altitude, desert heat, or peak tourism windows, read [references/seasonal.md](references/seasonal.md) before finalizing the itinerary, then complete Step 6.1 with current official sources.
 
 ## References / 参考
 

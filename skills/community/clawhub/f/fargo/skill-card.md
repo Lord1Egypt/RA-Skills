@@ -1,42 +1,55 @@
-## Description: <br>
-FargoRate helps agents look up pool player ratings, FargoRate IDs, match odds, race recommendations, handicaps, rankings, and rating changes using the fargo CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+FargoRate helps agents look up pool player ratings, FargoRate IDs, match odds, race-to recommendations, handicaps, top rankings, and rating changes using the fargo CLI.
 
-## Publisher: <br>
-[rgstephens](https://clawhub.ai/user/rgstephens) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rgstephens](https://clawhub.ai/user/rgstephens)
 
-## Use Case: <br>
-External users and developers use this skill to answer pool-rating and handicap questions by selecting appropriate fargo CLI commands and interpreting results. It can also guide optional local SQLite tracking of player rating changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The Homebrew install path uses an external fargo CLI from a third-party tap. <br>
-Mitigation: Install only from the server-resolved publisher's tap when trusted, and review the CLI before running it in sensitive environments. <br>
-Risk: The optional local SQLite database and change outputs can contain player history and manually added contact details. <br>
-Mitigation: Keep database files local and avoid forwarding --changes or --json output to logs, bots, or shared channels unless those fields are acceptable to disclose. <br>
+## Use Case:
 
+External users and pool league organizers use FargoRate to retrieve player ratings, compare match odds, get race-length guidance, and monitor rating or robustness changes over time.
 
-## Reference(s): <br>
-- [ClawHub FargoRate Skill Page](https://clawhub.ai/rgstephens/fargo) <br>
-- [FargoRate Skill Repository](https://github.com/rgstephens/fargo-skill) <br>
-- [FargoRate](https://fargorate.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and optional JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include raw JSON examples and local SQLite database guidance when --json or --db are used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.4.1 (source: frontmatter and release evidence) <br>
+Risk: The skill depends on an unpinned external fargo executable installed from a personal Homebrew tap.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the Homebrew tap and executable provenance before installation, and pin or otherwise verify the dependency where possible.
+
+Risk: Using --db can persist player data and locally added contact details, and --changes can print those details in command output.
+
+Mitigation: Use --db only when tracking is needed, keep the database in a private location, and avoid adding contact details if output may be logged, shared, or sent through bots.
+
+## Reference(s):
+
+- [FargoRate website](https://fargorate.com)
+- [FargoRate skill homepage](https://github.com/rgstephens/fargo-skill)
+- [ClawHub FargoRate skill page](https://clawhub.ai/rgstephens/skills/fargo)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and optional JSON output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use a local SQLite database when --db is enabled; --json can emit raw API JSON.]
+
+## Skill Version(s):
+
+0.4.1 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

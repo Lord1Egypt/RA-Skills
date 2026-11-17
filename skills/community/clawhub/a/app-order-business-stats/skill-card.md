@@ -1,40 +1,53 @@
-## Description: <br>
-按时间段和业务版块统计久事体育APP订单关键指标（业务版块、用户数、订单量、支付金额、退款金额、净销售金额）。适用于查询“某段时间内业务版块的订单”相关统计。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Calculates Jiushi Sports APP order metrics by time range and business segment, including users, orders, payment amount, refund amount, and net sales.
 
-## Publisher: <br>
-[jaggerliu](https://clawhub.ai/user/jaggerliu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jaggerliu](https://clawhub.ai/user/jaggerliu)
 
-## Use Case: <br>
-Business and operations users use this skill to query daily app order metrics by business segment for a confirmed time range, including users, order volume, payment amount, refund amount, and net sales. It is intended for authorized reporting against the configured read-only order data source. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Unauthorized users could query private business order data if the skill is installed in an environment with database credentials. <br>
-Mitigation: Install only where database access is authorized, intentionally provision the mysql client and JIUSHI_DB_PASSWORD, and restrict who can invoke the skill. <br>
-Risk: Broader operational use may need stronger accountability around reporting access. <br>
-Mitigation: For wider deployment, consider a scoped reporting API with audit logging. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jaggerliu/app-order-business-stats) <br>
-- [Publisher profile](https://clawhub.ai/user/jaggerliu) <br>
+## Use Case:
 
+Authorized operations or business users use this skill to retrieve daily aggregated APP order sales and refund statistics by business segment for a confirmed time range.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Markdown, Analysis] <br>
-**Output Format:** [Markdown table with supporting SQL or shell command context when needed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Daily aggregation only; hourly breakdowns are out of scope.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill directs agents to query a live APP order database using an environment-backed password.
+
+Mitigation: Install only for authorized users and prefer a brokered, allowlisted reporting tool over direct mysql access.
+
+Risk: Generated reports expose aggregated payment, refund, and sales metrics.
+
+Mitigation: Limit use to users approved to view these business metrics and review reports before sharing them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jaggerliu/skills/app-order-business-stats)
+- [Publisher profile](https://clawhub.ai/user/jaggerliu)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Code, Markdown, Guidance]
+
+**Output Format:** [Markdown with SQL and shell command snippets plus a Markdown results table]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Daily aggregate results by business segment; hourly breakdowns are out of scope.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

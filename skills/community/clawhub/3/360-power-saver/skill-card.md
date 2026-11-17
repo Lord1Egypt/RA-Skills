@@ -1,43 +1,58 @@
-## Description: <br>
-360 Power Saver helps agents guide local power, battery, CPU, memory, and energy diagnostics, including battery reports, energy analysis, and power-plan switching. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+360 Power Saver helps agents inspect local battery, CPU, memory, process, and power-plan status and produce power-saving diagnostics and recommendations.
 
-## Publisher: <br>
-[ttqftech](https://clawhub.ai/user/ttqftech) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ttqftech](https://clawhub.ai/user/ttqftech)
 
-## Use Case: <br>
-External users and support agents use this skill to inspect local power state, battery health, CPU and memory load, energy reports, and available power plans before suggesting or applying power-saving actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may request elevated permissions for Windows powercfg actions such as energy reports or power-plan changes. <br>
-Mitigation: Proceed with elevation only when the user intentionally wants that diagnostic or power-plan action. <br>
-Risk: The skill may create diagnostic reports or context files under TEMP/360-power-saver. <br>
-Mitigation: Clear the TEMP/360-power-saver folder if retained local diagnostic history is not desired. <br>
-Risk: The skill may optionally retrieve remote power-strategy advice. <br>
-Mitigation: Use the remote advice only as guidance and review it before acting on any recommendation. <br>
+## Use Case:
 
+External users and IT/admin-oriented agents use this skill to inspect Windows and macOS power state, generate battery and energy reports, rank resource-heavy processes, and provide power-saving recommendations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ttqftech/360-power-saver) <br>
-- [Remote power strategy document](https://clawhub.virustotal.com/trustedApi/360power/v1/devicePower.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Analysis, Files] <br>
-**Output Format:** [Markdown with inline PowerShell and shell command references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce local TEMP reports and diagnostic context files when the user permits those actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.15-dazhanhongtu (source: server release metadata) <br>
+Risk: Remote Markdown fetched by the skill may contain unvalidated content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat remote responses as untrusted text, validate them outside the agent workflow, and delete the temporary file if injection-like content appears.
+
+Risk: Local diagnostic outputs may expose battery, CPU, memory, process, and power-plan state.
+
+Mitigation: Persist diagnostic data only with user consent, keep it in temporary storage, and remove it when no longer needed.
+
+Risk: Energy reports and power-plan changes may request administrator privileges.
+
+Mitigation: Proceed only after the user understands the permission prompt and the specific powercfg action being requested.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ttqftech/skills/360-power-saver)
+- [Remote power strategy markdown endpoint](https://clawhub.virustotal.com/trustedApi/360power/v1/devicePower.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, files, guidance]
+
+**Output Format:** [Markdown guidance with shell or PowerShell commands and generated local diagnostic report files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May open local HTML reports and system dialogs; some Windows powercfg operations request administrator approval.]
+
+## Skill Version(s):
+
+0.0.15-dazhanhongtu (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

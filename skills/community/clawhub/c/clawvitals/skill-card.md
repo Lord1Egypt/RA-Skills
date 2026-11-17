@@ -1,44 +1,65 @@
-## Description: <br>
-Security vitals checker for OpenClaw. Scans your installation, scores your setup, and shows you exactly what to fix. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Security vitals checker for OpenClaw that scans an installation, scores the setup, and reports prioritized fixes.
 
-## Publisher: <br>
-[bk-cm](https://clawhub.ai/user/bk-cm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bk-cm](https://clawhub.ai/user/bk-cm)
 
-## Use Case: <br>
-Developers and administrators use ClawVitals to run point-in-time security checks for self-hosted OpenClaw installations, review scored findings, and get remediation guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Detailed reports may reveal OpenClaw configuration weaknesses or security posture information. <br>
-Mitigation: Run detailed reports in private or administrator-only channels and display only the fields permitted by the skill instructions. <br>
-Risk: The update-status check may cause the OpenClaw CLI to contact its update registry. <br>
-Mitigation: For fully offline scans, skip the update-status step and mark dependent version controls as N/A. <br>
+## Use Case:
 
+Developers and operators of self-hosted OpenClaw installations use this skill to run point-in-time security and health checks, receive a scored posture summary, and review concrete remediation guidance.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/bk-cm/clawvitals) <br>
-- [ClawVitals website](https://clawvitals.io) <br>
-- [ClawVitals docs](https://clawvitals.io/docs) <br>
-- [ClawVitals controls](https://clawvitals.io/docs/controls) <br>
-- [OpenClaw](https://openclaw.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown report with a scored controls table, findings, remediation text, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports PASS, FAIL, N/A, and experimental notes from declared OpenClaw and Node CLI checks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.8 (source: server release evidence and skill.json) <br>
+Risk: The skill reads local OpenClaw security and health posture to generate its report.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only in environments where the agent may inspect OpenClaw posture, and follow the skill's field-extraction rules so secrets and raw command output are not displayed.
+
+Risk: The OpenClaw update-status command may contact the OpenClaw update registry.
+
+Mitigation: Skip the update-status step when a fully offline scan is required, and mark dependent version controls as N/A.
+
+Risk: The README install example uses an unpinned npx clawhub command.
+
+Mitigation: Use a pinned and trusted ClawHub installer path in sensitive environments.
+
+Risk: Scan output includes ClawVitals plugin and dashboard promotion.
+
+Mitigation: Treat promotional text as separate from security findings and rely on directly supported control results for decisions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/bk-cm/skills/clawvitals)
+- [ClawVitals Website](https://clawvitals.io)
+- [ClawVitals Docs](https://clawvitals.io/docs)
+- [ClawVitals Controls](https://clawvitals.io/docs/controls)
+- [OpenClaw](https://openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown report with tables, control results, and remediation text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill reports only supported control findings and marks unavailable checks as N/A.]
+
+## Skill Version(s):
+
+1.4.8 (source: release evidence and skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

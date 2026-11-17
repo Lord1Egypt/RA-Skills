@@ -1,0 +1,54 @@
+{
+  "gate": "no_abs_path",
+  "desc": "绝对路径硬编码零容忍 tripwire：活体代码禁止字面量 /Users/* 路径——写死即换机即死。用法：gate_switch.py --spec no_abs_path.json --set src=<项目根>。A=零命中放行；B=violations 逐条列出命中位置。",
+  "checks": [
+    {
+      "type": "grep_count",
+      "pattern": "/Users/",
+      "path": "{src}/backend/**/*.py",
+      "op": "max",
+      "value": 0,
+      "label": "backend/*.py 零字面量 /Users/ 路径"
+    },
+    {
+      "type": "grep_count",
+      "pattern": "/Users/",
+      "path": "{src}/scripts/**/*.py",
+      "op": "max",
+      "value": 0,
+      "label": "scripts/*.py 零字面量 /Users/ 路径"
+    },
+    {
+      "type": "grep_count",
+      "pattern": "/Users/",
+      "path": "{src}/scripts/**/*.sh",
+      "op": "max",
+      "value": 0,
+      "label": "scripts/*.sh 零字面量 /Users/ 路径"
+    },
+    {
+      "type": "grep_count",
+      "pattern": "/Users/",
+      "path": "{src}/*.sh",
+      "op": "max",
+      "value": 0,
+      "label": "顶层入口 *.sh 零字面量 /Users/ 路径"
+    },
+    {
+      "type": "grep_count",
+      "pattern": "/Users/",
+      "path": "{src}/memory/**/*.py",
+      "op": "max",
+      "value": 0,
+      "label": "memory/*.py 零字面量 /Users/ 路径"
+    },
+    {
+      "type": "grep_count",
+      "pattern": "/Users/",
+      "path": "{src}/memory/**/*.sh",
+      "op": "max",
+      "value": 0,
+      "label": "memory/*.sh 零字面量 /Users/ 路径"
+    }
+  ]
+}

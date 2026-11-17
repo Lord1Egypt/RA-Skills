@@ -1,59 +1,80 @@
-## Description: <br>
-Minara helps agents use the Minara CLI for crypto trading, wallet operations, perpetual futures, market discovery, AI analysis, x402 payments, and premium account workflows across EVM, Solana, and Hyperliquid. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Minara helps agents use the Minara CLI for crypto trading, wallet operations, perpetual futures, deposits, withdrawals, premium flows, x402 payments, and AI market analysis across EVM, Solana, and Hyperliquid.
 
-## Publisher: <br>
-[lowesyang](https://clawhub.ai/user/lowesyang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lowesyang](https://clawhub.ai/user/lowesyang)
 
-## Use Case: <br>
-External users and agents use Minara to route crypto finance intents to the Minara CLI, check account and market data, and prepare or execute confirmed trades, transfers, deposits, withdrawals, subscriptions, and perpetual futures actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can access authenticated crypto account data and help execute real trades, transfers, withdrawals, subscriptions, and perpetual futures actions. <br>
-Mitigation: Install only for intended crypto account use, keep confirmation and Touch ID enabled, and do not use --yes for fund-moving commands. <br>
-Risk: Setup guidance can persistently route future finance prompts through Minara by editing CLAUDE.md, AGENTS.md, or MEMORY.md. <br>
-Mitigation: Review proposed workspace configuration edits before accepting them and decline broad persistent routing if it is not desired. <br>
-Risk: Autopilot and perpetual futures workflows can materially change trading risk. <br>
-Mitigation: Enable autopilot only with clear risk limits, and check autopilot status before placing manual perps orders. <br>
+## Use Case:
 
+External users and developers use Minara to route finance and crypto requests through the Minara CLI for live market discovery, AI analysis, wallet actions, swaps, transfers, deposits, withdrawals, limit orders, premium subscriptions, and Hyperliquid perpetual futures workflows.
 
-## Reference(s): <br>
-- [Minara Homepage](https://minara.ai) <br>
-- [ClawHub Release Page](https://clawhub.ai/lowesyang/minara) <br>
-- [Workspace Integration](setup.md) <br>
-- [Auth / Account / Config](references/auth.md) <br>
-- [Balance / Assets](references/balance.md) <br>
-- [AI Chat / Ask / Research](references/chat.md) <br>
-- [Deposit / Receive](references/deposit.md) <br>
-- [Market Discovery](references/discover.md) <br>
-- [Minara Examples](references/examples.md) <br>
-- [Spot Limit Orders](references/limit-order.md) <br>
-- [Perps Autopilot / AI Analysis](references/perps-autopilot.md) <br>
-- [Perps Positions / Close / Cancel / Leverage / Trades](references/perps-manage.md) <br>
-- [Perps Order (Market / Limit)](references/perps-order.md) <br>
-- [Perps Wallets / Deposit / Withdraw / Fund Records](references/perps-wallet.md) <br>
-- [Premium / Subscription](references/premium.md) <br>
-- [Swap (Buy / Sell)](references/swap.md) <br>
-- [Transfer / Send / Pay](references/transfer.md) <br>
-- [Withdraw](references/withdraw.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown responses with CLI command execution, structured confirmation summaries, and configuration instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Minara CLI access and authenticated account state for account-specific or fund-moving workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.3 (source: server release metadata; artifact frontmatter says 3.0.2) <br>
+Risk: The skill can broadly influence finance-related routing and agent behavior after workspace integration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review setup.md before installation and avoid automatic writes to global memory or routing files unless that persistent behavior is desired.
+
+Risk: The skill relies on a globally installed, mutable Minara CLI for wallet and trading workflows.
+
+Mitigation: Prefer a pinned and reviewed CLI version before use, and review update prompts before changing the installed CLI or skill version.
+
+Risk: Credentials and wallet state may be exposed if MINARA_API_KEY or ~/.minara credentials are mishandled.
+
+Mitigation: Keep MINARA_API_KEY and ~/.minara credentials out of chat, logs, screenshots, and shared files.
+
+Risk: Trades, withdrawals, transfers, leverage changes, subscription changes, and autopilot actions can move funds or materially change financial exposure.
+
+Mitigation: Require fresh user confirmation for every fund-moving or exposure-changing action, and do not use confirmation-skipping flags.
+
+## Reference(s):
+
+- [ClawHub Skill Listing](https://clawhub.ai/lowesyang/skills/minara)
+- [Minara Homepage](https://minara.ai)
+- [Setup](setup.md)
+- [Auth / Account / Config](references/auth.md)
+- [Agent Authentication Recovery](references/auth-recovery.md)
+- [Interactive Commands - Agent Bypass Guide](references/interactive-commands.md)
+- [Balance / Assets](references/balance.md)
+- [AI Chat / Ask / Research](references/chat.md)
+- [Market Discovery](references/discover.md)
+- [Swap (Buy / Sell)](references/swap.md)
+- [Transfer / Send / Pay](references/transfer.md)
+- [Deposit / Receive](references/deposit.md)
+- [Withdraw](references/withdraw.md)
+- [Spot Limit Orders](references/limit-order.md)
+- [Perps Order (Market / Limit)](references/perps-order.md)
+- [Perps Positions / Close / Cancel / Leverage / Trades](references/perps-manage.md)
+- [Perps Wallets / Deposit / Withdraw / Fund Records](references/perps-wallet.md)
+- [Perps Autopilot / AI Analysis](references/perps-autopilot.md)
+- [Premium / Subscription](references/premium.md)
+- [Minara Examples](references/examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown responses with Minara CLI command execution, command-output summaries, and confirmation tables for fund-moving workflows.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the minara CLI and Minara credentials or MINARA_API_KEY. Fund-moving actions require fresh user confirmation and should not use confirmation-skipping flags.]
+
+## Skill Version(s):
+
+3.0.4 (source: SKILL.md frontmatter, target metadata, and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

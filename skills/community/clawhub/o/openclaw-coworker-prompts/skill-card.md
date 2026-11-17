@@ -1,45 +1,54 @@
-## Description: <br>
-100+ expert prompts to turn OpenClaw into an AI coworker across 44 professions. Instantly deploy agents for tech, business, healthcare, legal, media, and more. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+100+ expert prompts to turn OpenClaw into an AI coworker across 44 professions. Instantly deploy agents for tech, business, healthcare, legal, media, and more.
 
-## Publisher: <br>
-[ProjectMusk](https://clawhub.ai/user/ProjectMusk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[projectmusk](https://clawhub.ai/user/projectmusk)
 
-## Use Case: <br>
-External users, developers, and knowledge workers use this prompt pack to create OpenClaw agents for software, business, healthcare, legal, media, operations, and other professional tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad professional prompts can produce high-impact medical, legal, payroll, finance, security, or operational guidance. <br>
-Mitigation: Require qualified human review before relying on outputs in these domains. <br>
-Risk: Agents created from the prompts may request tools that can read, write, search, or execute actions beyond the immediate task. <br>
-Mitigation: Grant only the minimum tools needed for the selected prompt and review proposed actions before execution. <br>
-Risk: Sensitive information may be retained if memory is enabled for agents built from the prompt pack. <br>
-Mitigation: Avoid memory for sensitive data unless retention behavior and data handling requirements are understood. <br>
+## Use Case:
 
+External users, developers, and teams use this prompt pack to create OpenClaw agents for professional coworker roles across technology, business, healthcare, legal, media, and operations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ProjectMusk/openclaw-coworker-prompts) <br>
-- [README](artifact/README.md) <br>
-- [Skill definition](artifact/SKILL.md) <br>
-- [Prompt library JSON](artifact/prompts/prompts_full.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Prompt-driven natural language responses, often Markdown; some prompts may produce code, shell commands, checklists, or configuration.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs depend on the selected prompt and the tools granted to the resulting agent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The prompt pack asks users to grant broad command, web, messaging, editing, and memory powers without enough scope or safety controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review each prompt before use, grant the minimum tools needed for the chosen role, and require explicit approval before commands, file changes, outbound messages, web submissions, or memory writes.
+
+Risk: Some prompts cover healthcare, legal, payroll, compliance, emergency, or password-related workflows that may involve sensitive data or regulated advice.
+
+Mitigation: Do not use those prompts with real sensitive data unless the deployment environment, reviewer qualifications, and privacy controls meet the applicable requirements.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/projectmusk/skills/openclaw-coworker-prompts)
+- [ProjectMusk Publisher Profile](https://clawhub.ai/user/projectmusk)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Prompt text and task guidance that may include markdown, code snippets, shell commands, checklists, and configuration instructions.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static prompt pack; actual outputs depend on the selected prompt, user inputs, and tools granted to the resulting agent.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

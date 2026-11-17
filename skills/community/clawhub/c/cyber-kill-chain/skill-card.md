@@ -1,40 +1,52 @@
-## Description: <br>
-Enterprise-grade cybersecurity framework assessment platform that evaluates organizational security controls across the kill chain spectrum. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enterprise-grade cybersecurity framework assessment platform that evaluates organizational security controls across the kill chain spectrum.
 
-## Publisher: <br>
-[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd)
 
-## Use Case: <br>
-Security professionals, compliance officers, enterprise risk managers, and developers use this skill to submit structured control assessments and receive Cyber Kill Chain stage scores, compliance gaps, and prioritized remediation recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Submitted security assessment details may contain sensitive internal control status, architecture context, hostnames, credentials, exploit paths, or remediation plans. <br>
-Mitigation: Share only approved assessment details with the provider; redact secrets, credentials, exploit paths, internal hostnames, detailed architecture notes, and unnecessary remediation details, and review provider data retention and access policies before use. <br>
+## Use Case:
 
+Security professionals, compliance officers, and enterprise risk managers use this skill to submit kill-chain control assessments, measure compliance gaps, and receive stage-level remediation recommendations.
 
-## Reference(s): <br>
-- [Cyber Kill Chain ClawHub Listing](https://clawhub.ai/krishnakumarmahadevan-cmd/cyber-kill-chain) <br>
-- [Cyber Kill Chain API Route](https://api.mkkpro.com/security/cyber-kill-chain) <br>
-- [Cyber Kill Chain API Docs](https://api.mkkpro.com:8043/docs) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, guidance] <br>
-**Output Format:** [JSON API responses with overall scores, stage breakdowns, compliance gaps, and remediation recommendations.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires structured assessment input with tier, sessionId, and controls grouped by kill chain stage.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and openapi.json) <br>
+Risk: Assessment inputs may include confidential control gaps, remediation timelines, internal identifiers, or defensive weaknesses sent to a third-party API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only authorized data and redact sensitive notes unless the provider's retention and handling terms are acceptable.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/krishnakumarmahadevan-cmd/skills/cyber-kill-chain)
+- [API Documentation](https://api.mkkpro.com:8043/docs)
+- [Cyber Kill Chain API Route](https://api.mkkpro.com/security/cyber-kill-chain)
+- [ToolWeb](https://toolweb.in)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Analysis, Guidance]
+
+**Output Format:** [JSON assessment results with scores, stage breakdowns, gaps, and recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Assessment requests include tier, sessionId, and kill-chain controls grouped by stage.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and OpenAPI info.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

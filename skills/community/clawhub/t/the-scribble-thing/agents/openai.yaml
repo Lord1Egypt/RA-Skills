@@ -1,0 +1,11 @@
+interface:
+  display_name: "The Scribble Thing"
+  short_description: "Turn line art into scribe animation"
+  default_prompt: "Use $the-scribble-thing to turn this line-art image into a scribe animation."
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "the-scribble-thing"
+      description: "Create, monitor, unlock, download, and delete scribe animations."
+      transport: "streamable_http"
+      url: "https://scribble.boringstuff.club/mcp"

@@ -1,44 +1,54 @@
-## Description: <br>
-This skill should be used when the user asks about Apple app data via the native Swift MCP, including Calendar, Reminders, Contacts, Maps, Mail, Messages, or Notes on macOS. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill helps users work with Apple app data through a native Swift MCP server on macOS.
 
-## Publisher: <br>
-[chrischall](https://clawhub.ai/user/chrischall) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chrischall](https://clawhub.ai/user/chrischall)
 
-## Use Case: <br>
-Developers and macOS users use this skill to let an agent interact with Apple app data and personal productivity workflows through a native Swift MCP server. It covers calendar and reminder management, contact and map lookup, email and note workflows, and message sending or history queries on macOS. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can access sensitive local app data such as email, messages, notes, contacts, calendar data, reminders, and message history. <br>
-Mitigation: Install it only when this local macOS automation is intended, grant permissions narrowly, and review sensitive reads before using their results. <br>
-Risk: The skill can send outgoing mail or messages through macOS applications. <br>
-Mitigation: Require explicit user confirmation before any outgoing email, iMessage, SMS, reply, or forwarded message is sent. <br>
-Risk: Security evidence flags insufficient scoping and user-control guarantees for sensitive local data and messaging authority. <br>
-Mitigation: Confirm what each tool will access before use and avoid broad local permissions unless the access need is clear. <br>
+## Use Case:
 
+Mac users use the skill to search and manage Calendar, Reminders, Contacts, Maps, Mail, Messages, Notes, Photos, and Music playlists through the server's tools. It requires macOS 27.2 or later on Apple Silicon.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chrischall/apple-swift-mcp) <br>
-- [Project repository linked in skill documentation](https://github.com/chrischall/apple-swift-mcp) <br>
-- [GitHub releases linked in skill documentation](https://github.com/chrischall/apple-swift-mcp/releases) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown or plain text with optional shell commands and configuration values] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May trigger MCP-backed actions against local macOS apps when the user grants required permissions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.8 (source: server release metadata) <br>
+Risk: The skill can access sensitive Apple app data and includes tools that send, edit, or delete data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Grant only the macOS permissions needed for intended tasks, prefer read-only tools where possible, and review confirmation previews before approving writes.
+
+Risk: Some referenced content was unavailable to the security scanners, leaving the review evidence incomplete.
+
+Mitigation: Review the linked project and release materials before installing, and confirm the requested permissions match your intended use.
+
+## Reference(s):
+
+- [apple-swift-mcp project](https://github.com/chrischall/apple-swift-mcp)
+- [apple-swift-mcp releases](https://github.com/chrischall/apple-swift-mcp/releases)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Guidance]
+
+**Output Format:** [Structured JSON and text responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results depend on the selected tool, operation, permissions, and requested data.]
+
+## Skill Version(s):
+
+2.11.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

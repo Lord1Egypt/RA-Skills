@@ -1,46 +1,65 @@
-## Description: <br>
-Automates an end-to-end workflow that turns an SRT subtitle file into a whiteboard animation video by parsing storyboard scenes, generating images, and compiling video segments. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates a complete whiteboard animation video workflow from an SRT subtitle file by parsing scenes, generating images, producing animation segments, and merging the final video.
 
-## Publisher: <br>
-[yangagent](https://clawhub.ai/user/yangagent) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yangagent](https://clawhub.ai/user/yangagent)
 
-## Use Case: <br>
-Developers, creators, and agent users can use this skill to convert subtitle scripts into organized whiteboard video assets and a merged MP4 output. It is intended for workflows where the user provides an SRT file and wants storyboard, image, and video generation handled in sequence. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow sends subtitle-derived prompts to RunningHub for image generation. <br>
-Mitigation: Avoid confidential subtitles unless third-party image processing is acceptable, and use a revocable RunningHub API key. <br>
-Risk: The workflow invokes dependency setup and relies on a separate whiteboard-animation skill. <br>
-Mitigation: Review both skills before installation and run dependency setup in a sandbox or virtual environment. <br>
-Risk: Generated files are written to user-selected output paths. <br>
-Mitigation: Keep output paths inside the workspace and review paths before running the workflow. <br>
+## Use Case:
 
+Creators, educators, marketers, and developers use this skill to turn subtitle scripts into structured storyboard data, generated whiteboard-style images, animation segments, and a merged video. It is intended for agents that can orchestrate local Python scripts, subagents, and an external image generation API.
 
-## Reference(s): <br>
-- [Storyboard Parser](references/storyboard-parser.md) <br>
-- [Banana2 Image Generator](references/image-generator.md) <br>
-- [RunningHub](https://www.runninghub.cn/) <br>
-- [RunningHub OpenAPI](https://www.runninghub.cn/openapi/v2) <br>
-- [ClawHub skill page](https://clawhub.ai/yangagent/whiteboard-video-workflow) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, files] <br>
-**Output Format:** [JSON result with generated storyboard, image paths, video segment paths, and merged MP4 path] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a RunningHub API key and may create storyboard, image, and video directories under the selected output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server-resolved release metadata) <br>
+Risk: Subtitle-derived prompts are sent to RunningHub for image generation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid confidential or regulated subtitle content unless the external API use is approved.
+
+Risk: The workflow may change local Python dependencies and relies on a separate whiteboard-animation skill.
+
+Mitigation: Run the skill in an isolated environment with restricted filesystem access, network access, and disk quotas.
+
+Risk: Generated image URLs are downloaded during the workflow.
+
+Mitigation: Review and scan generated assets before reuse or publication.
+
+Risk: The release has a suspicious security verdict in server evidence.
+
+Mitigation: Treat installation as a reviewed decision and follow the server-provided security guidance before deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/yangagent/skills/whiteboard-video-workflow)
+- [RunningHub](https://www.runninghub.cn/)
+- [RunningHub OpenAPI](https://www.runninghub.cn/openapi/v2)
+- [Image Generator Reference](references/image-generator.md)
+- [Storyboard Parser Reference](references/storyboard-parser.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, JSON, files]
+
+**Output Format:** [Markdown guidance with shell commands plus JSON status objects, storyboard files, generated image files, video segments, and a merged MP4 video.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an SRT input path, optional output directory, RunningHub API credentials, local Python dependencies, and a separate whiteboard-animation skill.]
+
+## Skill Version(s):
+
+0.1.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,86 @@
+{
+  "profile_version": "1.0",
+  "profile_id": null,
+  "storage_consent": {
+    "personal_profile": false,
+    "confirmed_at": null,
+    "purpose": "Reuse travel preferences and constraints across future planning requests."
+  },
+  "identity_and_language": {
+    "nationality": null,
+    "residence_country": null,
+    "residence_status": null,
+    "legal_residence": null,
+    "preferred_response_language": null,
+    "profile_form_language": null,
+    "languages_spoken": [],
+    "local_language_comfort": null
+  },
+  "home_and_logistics": {
+    "home_city": null,
+    "home_country": null,
+    "acceptable_departure_airports": [],
+    "default_currency": null,
+    "typical_cabin_or_seat_preference": null,
+    "self_drive_preference": null
+  },
+  "digital_travel_access": {
+    "preferred_map_apps": [],
+    "preferred_booking_platforms": [],
+    "services_to_avoid": [],
+    "google_services_access": "unknown",
+    "booking_access_notes": null,
+    "notes": null
+  },
+  "travel_history": {
+    "visited_places": [
+      {
+        "place": null,
+        "scope": "city_or_region",
+        "visit_period": null,
+        "revisit_interest": "unknown",
+        "notes": null
+      }
+    ],
+    "wish_list": [
+      {
+        "place": null,
+        "scope": "city_or_region",
+        "priority": null,
+        "why": null
+      }
+    ],
+    "excluded_places": [
+      {
+        "place": null,
+        "scope": "city_or_region",
+        "reason": null,
+        "exclusion_strength": "never_recommend",
+        "confirmed_at": null
+      }
+    ]
+  },
+  "recurring_preferences": {
+    "experience_direction": null,
+    "natural_subtypes": [],
+    "human_cultural_subtypes": [],
+    "pace": null,
+    "lodging_style": null,
+    "location_priority": null,
+    "food_and_dietary_preferences": [],
+    "accessibility_needs": [],
+    "comfort_and_safety_preferences": [],
+    "avoid_list": []
+  },
+  "data_controls": {
+    "last_reviewed_at": null,
+    "sensitive_data_not_stored": [
+      "passport number",
+      "passport or visa image",
+      "payment card or bank details",
+      "exact home address",
+      "account credentials"
+    ],
+    "forget_on_explicit_request": true
+  }
+}

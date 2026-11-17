@@ -1,10 +1,16 @@
----
+﻿---
 name: poyo-wan-animate
 description: Wan Animate video generation on PoYo / poyo.ai via `https://api.poyo.ai/api/generate/submit`; use for `wan-animate-replace`, `wan-animate-move`, character animation, character replacement, one source video URL, one target image, 480p, 580p, or 720p output, polling, and webhooks.
-metadata: {"openclaw":{"homepage":"https://docs.poyo.ai/api-manual/video-series/wan-animate","requires":{"bins":["curl"],"env":["POYO_API_KEY"]},"primaryEnv":"POYO_API_KEY"}}
+metadata: {"openclaw":{"homepage":"https://poyo.ai/models/wan-animate","requires":{"bins":["curl"],"env":["POYO_API_KEY"]},"primaryEnv":"POYO_API_KEY"}}
 ---
 
 # PoYo Wan Animate Video Generation
+## PoYo Links
+
+- Model page: <https://poyo.ai/models/wan-animate>
+- API docs: <https://docs.poyo.ai/api-manual/video-series/wan-animate>
+- API key page: <https://poyo.ai/dashboard/api-key>
+
 
 Use this skill for Wan Animate jobs on PoYo. It helps agents prepare character animation and character replacement payloads, submit async tasks, and explain polling or webhook follow-up.
 

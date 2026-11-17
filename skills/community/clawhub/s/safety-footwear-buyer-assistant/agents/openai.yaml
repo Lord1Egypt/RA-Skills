@@ -1,0 +1,4 @@
+interface:
+  display_name: "Safety Footwear Buyer Assistant"
+  short_description: "Product matching and RFQ intake for PPE buyers"
+  default_prompt: "Use $safety-footwear-buyer-assistant to match a buyer with suitable safety footwear and draft a simulated inquiry."

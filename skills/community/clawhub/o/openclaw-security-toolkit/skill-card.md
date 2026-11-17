@@ -1,42 +1,54 @@
-## Description: <br>
-Security guard for OpenClaw users. Audit configs, scan secrets, manage access, and generate security reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Security guard for OpenClaw users. Audit configs, scan secrets, manage access, and generate security reports.
 
-## Publisher: <br>
-[hkall](https://clawhub.ai/user/hkall) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hkall](https://clawhub.ai/user/hkall)
 
-## Use Case: <br>
-Developers and OpenClaw administrators use this skill to audit local OpenClaw configuration, scan for exposed secrets, review access state, rotate tokens, apply hardening checks, and produce security reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The tool reads local OpenClaw credential, access, and configuration files. <br>
-Mitigation: Run it only on trusted machines and review who can access terminal output, generated reports, and saved scan artifacts. <br>
-Risk: Token rotation and auto-fix operations can modify authentication configuration and may print token-related details in the terminal. <br>
-Mitigation: Back up OpenClaw configuration first, run token rotation or --fix only in a trusted terminal, and avoid sharing logs from those sessions. <br>
-Risk: JSON and Markdown reports may expose sensitive file paths, secret findings, access state, or operational details. <br>
-Mitigation: Store reports securely and redact sensitive findings before attaching them to tickets, chats, or public documentation. <br>
+## Use Case:
 
+Developers and OpenClaw administrators use this skill to audit OpenClaw configuration, scan for exposed secrets, review access settings, rotate tokens, and generate security reports.
 
-## Reference(s): <br>
-- [OpenClaw Security Best Practices](references/security-best-practices.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands; CLI report output can be table text, JSON, or Markdown.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may describe local credential files, access state, scan findings, and token operations; treat generated reports and terminal logs as sensitive.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence release metadata and artifact CHANGELOG, released 2026-03-11) <br>
+Risk: Reports and command output may expose secrets or sensitive local file paths.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review output locally, avoid shared output paths and JSON reports until raw secret redaction is fixed, and do not paste or share command output.
+
+Risk: Token rotation and hardening commands can modify OpenClaw authentication settings.
+
+Mitigation: Back up ~/.openclaw/openclaw.json, run checks without --fix first, and apply changes only after reviewing the proposed actions.
+
+## Reference(s):
+
+- [OpenClaw Security Best Practices](artifact/references/security-best-practices.md)
+- [ClawHub Skill Page](https://clawhub.ai/hkall/skills/openclaw-security-toolkit)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [CLI output as terminal text, JSON, or Markdown reports with configuration guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports may include security findings, scores, affected file locations, and recommended actions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and CHANGELOG, released 2026-03-11)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

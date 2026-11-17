@@ -1,6 +1,14 @@
 {
-  "ownerId": "kn7b1bjk878xpagxd2x6yandwn889wb8",
-  "slug": "the-subtle-art-of-not-giving-a-fck",
+  "name": "the-subtle-art-of-not-giving-a-fck",
+  "title": "The Subtle Art of Not Giving a Fck",
+  "author": "Mark Manson",
   "version": "1.0.0",
-  "publishedAt": 1780929343290
+  "license": "MIT",
+  "tags": ["self-improvement", "psychology", "happiness", "values", "manson"],
+  "description": "Mark Manson's The Subtle Art of Not Giving a Fck — an executable toolkit for choosing what to care about, embracing discomfort, and living a values-driven life.",
+  "homepage": "https://github.com/jaysonmeng/book-skills/tree/main/skills/the-subtle-art-of-not-giving-a-fck",
+  "clawhub": {
+    "slug": "the-subtle-art-of-not-giving-a-fck",
+    "owner": "jaysonmeng"
+  }
 }

@@ -5,7 +5,7 @@ allowed-tools: [Bash(oo *)]
 metadata:
   title: "Mailtrap"
   author: "OOMOL"
-  version: "1.0.1"
+  version: "1.0.6"
   services: ["mailtrap"]
   icon: "https://static.oomol.com/logo/third-party/Mailtrap.svg"
 ---
@@ -37,7 +37,7 @@ Each action is listed below with a one-line description; actions that change sta
 
 ## Available actions
 
-- `clean_inbox` — Delete all messages from one Mailtrap inbox.
+- `clean_inbox` — Delete all messages from one Mailtrap inbox. [destructive]
 - `create_contact` — Create one Mailtrap contact. [write]
 - `create_contact_event` — Create one custom Mailtrap contact event. [write]
 - `create_contact_export` — Create one Mailtrap contact export job. [write]
@@ -55,7 +55,7 @@ Each action is listed below with a one-line description; actions that change sta
 - `get_contact` — Get one Mailtrap contact by UUID or email.
 - `get_contact_export` — Get one Mailtrap contact export job by ID.
 - `get_contact_field` — Get one Mailtrap contact field by ID.
-- `get_contact_import` — Get one Mailtrap contact import job by ID. [write]
+- `get_contact_import` — Get one Mailtrap contact import job by ID.
 - `get_contact_list` — Get one Mailtrap contact list by ID.
 - `get_email_template` — Get one Mailtrap email template by ID.
 - `get_inbox` — Get one Mailtrap inbox by ID.
@@ -117,11 +117,14 @@ These are **one-time** steps — do not repeat them on every call. Run a step on
 - **`scope_missing` / `credential_expired` / `app_not_ready` / `app_not_found`** — Mailtrap is not connected, or the connection expired or lacks a scope. Connect once (auth type: API key) at:
 
   ```text
-  https://console.oomol.com/app-connections?provider=mailtrap
+  https://console.oomol.com/connections/mailtrap
   ```
 
-- **HTTP 402 / `OOMOL_INSUFFICIENT_CREDIT`** — billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+- **`OOMOL_INSUFFICIENT_CREDIT`** — OOMOL billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+
+- **HTTP 402 without `OOMOL_INSUFFICIENT_CREDIT`** — the third-party account itself has no active plan or credit. Report the provider error message as is; do not ask the user to recharge OOMOL.
 
 ## Resources
 
 - Mailtrap homepage: https://mailtrap.io/
+- API documentation: https://docs.mailtrap.io/developers/account-management/

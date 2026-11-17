@@ -1,0 +1,430 @@
+{
+  "meta": {
+    "title": "孔子語錄三語資料庫（Part 4 為政處世篇・擴充）",
+    "title_en": "Confucius Quotes Trilingual Database (Part 4: On Government and Conduct)",
+    "version": "1.1",
+    "languages": [
+      "zh_tw",
+      "zh_cn",
+      "en"
+    ],
+    "built": "2026-08-09",
+    "source": "《論語》通行本",
+    "structure": "每則含原文/出處/對象/語境/譯文/詳解/現代應用，三語並列"
+  },
+  "category": {
+    "id": "government_conduct",
+    "name": {
+      "zh_tw": "為政處世",
+      "zh_cn": "为政处世",
+      "en": "On Government and Conduct"
+    }
+  },
+  "quotes": [
+    {
+      "id": "wz-001",
+      "original": "子曰：「為政以德，譬如北辰，居其所而眾星共之。」",
+      "source": "論語·為政第二",
+      "speaker": "孔子",
+      "audience": null,
+      "context": {
+        "zh_tw": "為政篇開宗明義：以德治國，如北辰般自然凝聚人心。",
+        "zh_cn": "为政篇开宗明义：以德治国，如北辰般自然凝聚人心。",
+        "en": "Opening of the chapter on government: ruling by virtue gathers hearts like the pole star."
+      },
+      "translation": {
+        "zh_tw": "用德行治理國家，就像北極星一樣，安坐在自己的位置，群星自然環繞著它。",
+        "zh_cn": "用德行治理国家，就像北极星一样，安坐在自己的位置，群星自然环绕着它。",
+        "en": "He who governs by virtue is like the pole star: it stays in its place, and the many stars turn toward it."
+      },
+      "explanation": {
+        "zh_tw": "「北辰」即北極星，不動而眾星拱之——領導者不必事事躬親、處處強控，只要自己正，人心自然歸向。這是「無為而治」的一種，強調榜樣的力量大於命令。",
+        "zh_cn": "「北辰」即北极星，不动而众星拱之——领导者不必事事躬亲、处处强控，只要自己正，人心自然归向。这是「无为而治」的一种，强调榜样的力量大于命令。",
+        "en": "The pole star does not move, yet all stars turn toward it — a ruler need not control every detail; if he is upright himself, hearts naturally turn to him. This is a form of “governing by non-action,” emphasizing that example outweighs command."
+      },
+      "application": {
+        "zh_tw": "團隊管理、家庭教養都適用：少用權威壓人，多用身教帶人。你希望團隊有什麼文化，自己先做到那個樣子，別人會跟。",
+        "zh_cn": "团队管理、家庭教养都适用：少用权威压人，多用身教带人。你希望团队有什么文化，自己先做到那个样子，别人会跟。",
+        "en": "Applies to team management and parenting alike: lead less by authority, more by example. The culture you want, live it first; others will follow."
+      }
+    },
+    {
+      "id": "wz-002",
+      "original": "子曰：「道之以政，齊之以刑，民免而無恥；道之以德，齊之以禮，有恥且格。」",
+      "source": "論語·為政第二",
+      "speaker": "孔子",
+      "audience": null,
+      "context": {
+        "zh_tw": "論兩種治理方式：以政令刑罰治民，與以德禮教化治民，結果迥異。",
+        "zh_cn": "论两种治理方式：以政令刑罚治民，与以德礼教化治民，结果迥异。",
+        "en": "On two ways of governing: by statutes and punishments versus by virtue and ritual — with very different outcomes."
+      },
+      "translation": {
+        "zh_tw": "用政令引導百姓，用刑罰整頓百姓，百姓只求免罪而不知羞恥；用德行引導百姓，用禮教整頓百姓，百姓有羞恥心而且歸於正道。",
+        "zh_cn": "用政令引导百姓，用刑罚整顿百姓，百姓只求免罪而不知羞耻；用德行引导百姓，用礼教整顿百姓，百姓有羞耻心而且归于正道。",
+        "en": "Guide them with statutes, align them with punishments, and the people will evade but have no shame. Guide them with virtue, align them with ritual, and the people will have a sense of shame and reform themselves."
+      },
+      "explanation": {
+        "zh_tw": "「免而無恥」：只想躲過刑罰，內心沒有道德底線；「有恥且格」：有羞恥心，自己會走上正路。孔子重視內在自覺，認為法律只是外在約束，德禮才能從根培養良知。",
+        "zh_cn": "「免而无耻」：只想躲过刑罚，内心没有道德底线；「有耻且格」：有羞耻心，自己会走上正路。孔子重视内在自觉，认为法律只是外在约束，德礼才能从根培养良知。",
+        "en": "“Evade but no shame” means dodging punishment with no inner moral line; “a sense of shame and reform” means they correct themselves from within. Confucius values inner awareness: law is an outer constraint; virtue and ritual cultivate conscience at the root."
+      },
+      "application": {
+        "zh_tw": "企業文化、制度設計都一樣：KPI 與懲罰只能讓人「不犯錯」，不能讓人「主動做好」。真正有效的制度是讓員工知道「為什麼這樣做」，內化成價值觀。",
+        "zh_cn": "企业文化、制度设计都一样：KPI 与惩罚只能让人「不犯错」，不能让人「主动做好」。真正有效的制度是让员工知道「为什么这样做」，内化成价值观。",
+        "en": "Corporate culture and system design are the same: KPIs and punishments only keep people from error, not inspire them to do right. Effective systems let employees understand the “why” and internalize it as values."
+      }
+    },
+    {
+      "id": "wz-003",
+      "original": "子曰：「其身正，不令而行；其身不正，雖令不從。」",
+      "source": "論語·子路第十三",
+      "speaker": "孔子",
+      "audience": null,
+      "context": {
+        "zh_tw": "論領導者的身教：自己正，不必下令也能推行；自己不正，下令也沒人聽。",
+        "zh_cn": "论领导者的身教：自己正，不必下令也能推行；自己不正，下令也没人听。",
+        "en": "On a leader's personal example: if he is upright, things get done without orders; if not, orders are ignored."
+      },
+      "translation": {
+        "zh_tw": "當權者自己品行端正，不用下令，政令也能推行；自己品行不端，即使下令，百姓也不會服從。",
+        "zh_cn": "当权者自己品行端正，不用下令，政令也能推行；自己品行不端，即使下令，百姓也不会服从。",
+        "en": "When the ruler is upright, things proceed without orders; when he is not upright, orders are not followed."
+      },
+      "explanation": {
+        "zh_tw": "這是孔子對「以身作則」最直白的表達。權威的來源不是職位，而是人格；命令的有效性不在語氣強硬，而在發令者可信。",
+        "zh_cn": "这是孔子对「以身作则」最直白的表达。权威的来源不是职位，而是人格；命令的有效性不在语气强硬，而在发令者可信。",
+        "en": "The plainest statement of “lead by example.” Authority comes not from title but from character; a command works not by tone but by the commander's credibility."
+      },
+      "application": {
+        "zh_tw": "主管要求團隊準時，自己先準時；要求團隊誠實，自己先不說謊；要求團隊努力，自己先不摸魚。否則再嚴的制度也壓不住人心。",
+        "zh_cn": "主管要求团队准时，自己先准时；要求团队诚实，自己先不说谎；要求团队努力，自己先不摸鱼。否则再严的制度也压不住人心。",
+        "en": "If a manager demands punctuality, be punctual first; demands honesty, never lie first; demands hard work, never slack first. Otherwise the strictest system cannot suppress the heart."
+      }
+    },
+    {
+      "id": "wz-004",
+      "original": "季康子問政於孔子。孔子對曰：「政者，正也。子帥以正，孰敢不正？」",
+      "source": "論語·顏淵第十二",
+      "speaker": "孔子",
+      "audience": "季康子（魯國權臣）",
+      "context": {
+        "zh_tw": "季康子問為政之道，孔子以「正」字作答：政治就是端正，領導者先正，誰敢不正。",
+        "zh_cn": "季康子问为政之道，孔子以「正」字作答：政治就是端正，领导者先正，谁敢不正。",
+        "en": "Ji Kangzi asks about government; Confucius answers with the word zheng: government is setting things right; if you lead by rectitude, who dares not be upright?"
+      },
+      "translation": {
+        "zh_tw": "季康子向孔子問政。孔子回答：政，就是正。您帶頭走正道，誰敢不走正道？",
+        "zh_cn": "季康子向孔子问政。孔子回答：政，就是正。您带头走正道，谁敢不走正道？",
+        "en": "Ji Kangzi asked about government. Confucius replied: “To govern is to set right. If you lead by rectitude, who will dare not be upright?”"
+      },
+      "explanation": {
+        "zh_tw": "「政者正也」把政治的根本拉回領導者的自身修養——不是管別人，是先管自己。「子帥以正」是帶頭示範，比任何制度都有效。",
+        "zh_cn": "「政者正也」把政治的根本拉回领导者的自身修养——不是管别人，是先管自己。「子帅以正」是带头示范，比任何制度都有效。",
+        "en": "“To govern is to set right” draws politics back to the ruler's own cultivation — not controlling others, but first controlling oneself. “Lead by rectitude” is demonstration, more effective than any system."
+      },
+      "application": {
+        "zh_tw": "父母教孩子、老闆帶員工、老師教學生，核心都一樣：你先做到，再要求別人。否則再好的道理也變成說教。",
+        "zh_cn": "父母教孩子、老板带员工、老师教学生，核心都一样：你先做到，再要求别人。否则再好的道理也变成说教。",
+        "en": "Parenting, managing, teaching — the core is the same: you do it first, then ask others. Otherwise even the best advice becomes empty preaching."
+      }
+    },
+    {
+      "id": "wz-005",
+      "original": "子曰：「名不正，則言不順；言不順，則事不成；事不成，則禮樂不興；禮樂不興，則刑罰不中；刑罰不中，則民無所措手足。」",
+      "source": "論語·子路第十三",
+      "speaker": "孔子",
+      "audience": "子路",
+      "context": {
+        "zh_tw": "子路問孔子若衛君用他，第一件事做什麼。孔子答「必也正名乎」，子路笑他迂腐，孔子遂詳述正名的連鎖效應。",
+        "zh_cn": "子路问孔子若卫君用他，第一件事做什么。孔子答「必也正名乎」，子路笑他迂腐，孔子遂详述正名的连锁效应。",
+        "en": "Zilu asks what Confucius would do first if the lord of Wei employed him. Confucius says “rectify names”; Zilu laughs at his pedantry. Confucius then explains the chain of consequences."
+      },
+      "translation": {
+        "zh_tw": "名分不正，說話就不順當；說話不順當，事情就做不成；事情做不成，禮樂就興不起來；禮樂興不起來，刑罰就會不公正；刑罰不公正，百姓就會手足無措。",
+        "zh_cn": "名分不正，说话就不顺当；说话不顺当，事情就做不成；事情做不成，礼乐就兴不起来；礼乐兴不起来，刑罚就会不公正；刑罚不公正，百姓就会手足无措。",
+        "en": "If names are not correct, speech does not accord; if speech does not accord, affairs are not completed; if affairs are not completed, ritual and music do not flourish; if ritual and music do not flourish, punishments are not just; if punishments are not just, the people do not know where to put hand or foot."
+      },
+      "explanation": {
+        "zh_tw": "「正名」是孔子政治哲學的核心：每個人、每件事都有其名分與責任，名分不正，權責不清，一切後果連鎖崩壞。現代說的「定義清楚」「權責分明」，正是正名的現代版。",
+        "zh_cn": "「正名」是孔子政治哲学的核心：每个人、每件事都有其名分与责任，名分不正，权责不清，一切后果连锁崩坏。现代说的「定义清楚」「权责分明」，正是正名的现代版。",
+        "en": "“Rectifying names” is the core of Confucius's political philosophy: each person and thing has a title and a duty; if titles are not right, authority and responsibility are unclear, and everything collapses in a chain. Modern “clear definitions” and “delineated duties” are its descendants."
+      },
+      "application": {
+        "zh_tw": "組織裡最常見的問題：角色定位模糊、決策權限不清、目標定義不一致——都是「名不正」。先釐清誰負責什麼、誰說了算，再談執行。",
+        "zh_cn": "组织里最常见的问题：角色定位模糊、决策权限不清、目标定义不一致——都是「名不正」。先厘清谁负责什么、谁说了算，再谈执行。",
+        "en": "The commonest problems in organizations: fuzzy roles, unclear decision rights, inconsistent goal definitions — all are “names not correct.” Clarify who is responsible for what and who decides, then execution follows."
+      }
+    },
+    {
+      "id": "wz-006",
+      "original": "子曰：「君子和而不同，小人同而不和。」",
+      "source": "論語·子路第十三",
+      "speaker": "孔子",
+      "audience": null,
+      "context": {
+        "zh_tw": "論君子小人在人際關係上的根本差異：和與同之辨。",
+        "zh_cn": "论君子小人在人际关系上的根本差异：和与同之辨。",
+        "en": "On the fundamental difference between the noble and petty in human relations: harmony versus uniformity."
+      },
+      "translation": {
+        "zh_tw": "君子能與人和諧相處，但不盲目附和；小人盲目附和，卻不能真正和諧。",
+        "zh_cn": "君子能与人和谐相处，但不盲目附和；小人盲目附和，却不能真正和谐。",
+        "en": "The noble man seeks harmony, not sameness; the petty man seeks sameness, not harmony."
+      },
+      "explanation": {
+        "zh_tw": "「和」是多元共存、彼此尊重；「同」是表面一致、實則趨炎附勢。君子可以不同意你，但尊重你；小人表面附和你，心裡各有算盤。真正的團隊不是一言堂，是和而不同。",
+        "zh_cn": "「和」是多元共存、彼此尊重；「同」是表面一致、实则趋炎附势。君子可以不同意你，但尊重你；小人表面附和你，心里各有算盘。真正的团队不是一言堂，是和而不同。",
+        "en": "Harmony is coexisting with diversity, mutual respect; sameness is surface agreement, actually currying favor. The noble man can disagree yet respect you; the petty man outwardly agrees while inwardly counting his own gains. A true team is not a chorus of one voice, but harmony within diversity."
+      },
+      "application": {
+        "zh_tw": "會議裡敢說真話、敢提反對意見的人，才是團隊的資產；只會點頭稱是的人，未必真的支持。營造「和而不同」的文化，讓不同意見能安全表達。",
+        "zh_cn": "会议里敢说真话、敢提反对意见的人，才是团队的资产；只会点头称是的人，未必真的支持。营造「和而不同」的文化，让不同意见能安全表达。",
+        "en": "Those who dare speak truth and disagree in meetings are the team's asset; those who only nod may not truly support. Build a culture of harmony within diversity, where dissent can be voiced safely."
+      }
+    },
+    {
+      "id": "wz-007",
+      "original": "子曰：「君子周而不比，小人比而不周。」",
+      "source": "論語·為政第二",
+      "speaker": "孔子",
+      "audience": null,
+      "context": {
+        "zh_tw": "論君子小人的交友與群體態度：周與比之辨。",
+        "zh_cn": "论君子小人的交友与群体态度：周与之辨。",
+        "en": "On the noble and petty in friendship and group attitude: universal versus factional."
+      },
+      "translation": {
+        "zh_tw": "君子團結眾人而不結黨營私，小人結黨營私而不團結眾人。",
+        "zh_cn": "君子团结众人而不结党营私，小人结党营私而不团结众人。",
+        "en": "The noble man unites but does not factionalize; the petty man factionalizes but does not unite."
+      },
+      "explanation": {
+        "zh_tw": "「周」是普遍、廣泛，對所有人都公正；「比」是勾結、偏私，只對自己圈子的人好。君子團結是為了公義，小人結黨是為了私利。",
+        "zh_cn": "「周」是普遍、广泛，对所有人都公正；「比」是勾结、偏私，只对自己圈子的人好。君子团结是为了公义，小人结党是为了私利。",
+        "en": "Zhou means universal, broad, just to all; bi means clique, partial, good only to one's own circle. The noble man unites for the common good; the petty man factions for private gain."
+      },
+      "application": {
+        "zh_tw": "職場裡「小圈子」是結黨，跨部門協作才是周。好的管理者不拉幫結派，對所有團隊一視同仁；壞的管理者只照顧自己人，排擠外人。",
+        "zh_cn": "职场里「小圈子」是结党，跨部门协作才是周。好的管理者不拉帮结派，对所有团队一视同仁；坏的管理者只照顾自己人，排挤外人。",
+        "en": "In the workplace, cliques are factions; cross-department collaboration is universality. Good managers do not form coteries but treat all teams fairly; bad ones look after their own and exclude others."
+      }
+    },
+    {
+      "id": "wz-008",
+      "original": "或曰：「以德報怨，何如？」子曰：「何以報德？以直報怨，以德報德。」",
+      "source": "論語·憲問第十四",
+      "speaker": "孔子",
+      "audience": null,
+      "context": {
+        "zh_tw": "有人問以德報怨好不好，孔子反問：那德怎麼報？主張以直報怨、以德報德。",
+        "zh_cn": "有人问以德报怨好不好，孔子反问：那德怎么报？主张以直报怨、以德报德。",
+        "en": "Someone asks whether repaying injury with kindness is good; Confucius counters: then how do you repay kindness? He advocates repaying injury with justice, kindness with kindness."
+      },
+      "translation": {
+        "zh_tw": "有人問：用恩德回報怨恨，怎麼樣？孔子說：那用什麼回報恩德呢？應該用正直回報怨恨，用恩德回報恩德。",
+        "zh_cn": "有人问：用恩德回报怨恨，怎么样？孔子说：那用什么回报恩德呢？应该用正直回报怨恨，用恩德回报恩德。",
+        "en": "Someone asked: “What about repaying injury with kindness?” Confucius said: “Then with what would you repay kindness? Repay injury with justice; repay kindness with kindness.”"
+      },
+      "explanation": {
+        "zh_tw": "「以德報怨」聽起來高尚，但孔子認為這樣會讓善惡失去分寸——惡被縱容，善反廉價。「以直報怨」是公正地回應，不報復也不縱容；「以德報德」是讓善意被善待。",
+        "zh_cn": "「以德报怨」听起来高尚，但孔子认为这样会让善恶失去分寸——恶被纵容，善反廉价。「以直报怨」是公正地回应，不报复也不纵容；「以德报德」是让善意被善待。",
+        "en": "“Repaying injury with kindness” sounds noble, but Confucius thinks it blurs the measure of good and evil — injury is indulged, kindness devalued. “Repay injury with justice” means a fair response, neither vengeance nor indulgence; “repay kindness with kindness” ensures goodwill is reciprocated."
+      },
+      "application": {
+        "zh_tw": "人際衝突裡，別當爛好人——對方的惡要指出來或用合適方式處理，而不是一味忍讓。善良要有底線，公正才是對善的保護。",
+        "zh_cn": "人际冲突里，别当烂好人——对方的恶要指出来或用合适方式处理，而不是一味忍让。善良要有底线，公正才是对善的保护。",
+        "en": "In conflicts, don't be a pushover — name the wrong or address it fairly, rather than endlessly yielding. Kindness needs boundaries; justice is what protects goodness."
+      }
+    },
+    {
+      "id": "wz-009",
+      "original": "子曰：「不在其位，不謀其政。」",
+      "source": "論語·泰伯第八",
+      "speaker": "孔子",
+      "audience": null,
+      "context": {
+        "zh_tw": "論各司其職：不在那個職位上，就不干涉那個職位的事務。",
+        "zh_cn": "论各司其职：不在那个职位上，就不干涉那个职位的事务。",
+        "en": "On each tending his own sphere: if you are not in that office, do not meddle with its affairs."
+      },
+      "translation": {
+        "zh_tw": "不在那個職位上，就不去謀劃那個職位的政事。",
+        "zh_cn": "不在那个职位上，就不去谋划那个职位的政事。",
+        "en": "Do not plan the government of a post you do not hold."
+      },
+      "explanation": {
+        "zh_tw": "這不是消極，是分寸：每個位置有其權責，越界插手往往添亂。當然，孔子也說「天下有道則見，無道則隱」，關鍵時刻該說話還是要說——但平時要守位。",
+        "zh_cn": "这不是消极，是分寸：每个位置有其权责，越界插手往往添乱。当然，孔子也说「天下有道则见，无道则隐」，关键时刻该说话还是要说——但平时要守位。",
+        "en": "This is not passivity but proportion: each post has its authority and duty; overstepping usually adds disorder. Of course, Confucius also says “appear when the Way prevails, hide when it does not” — speak up at critical moments, but ordinarily keep to your sphere."
+      },
+      "application": {
+        "zh_tw": "職場裡尊重別人的專業與權責邊界，不越級指揮、不跨部門亂插手；但遇到重大問題，該反映還是要反映。守位不是推責，是分工。",
+        "zh_cn": "职场里尊重别人的专业与权责边界，不越级指挥、不跨部门乱插手；但遇到重大问题，该反映还是要反映。守位不是推责，是分工。",
+        "en": "In the workplace, respect others' professional and authority boundaries — no skipping levels, no meddling across departments; but when major issues arise, do speak up. Keeping to one's sphere is not shirking, it is division of labor."
+      }
+    },
+    {
+      "id": "wz-010",
+      "original": "子曰：「鄉原，德之賊也。」",
+      "source": "論語·陽貨第十七",
+      "speaker": "孔子",
+      "audience": null,
+      "context": {
+        "zh_tw": "論「鄉原」（好好先生）：看似忠厚老實，實則缺乏原則，是德的賊害者。",
+        "zh_cn": "论「乡原」（好好先生）：看似忠厚老实，实则缺乏原则，是德的贼害者。",
+        "en": "On the village worthy: seeming honest and good but lacking principle, he is a thief of virtue."
+      },
+      "translation": {
+        "zh_tw": "孔子說：鄉原這種好好先生，是道德的竊賊。",
+        "zh_cn": "孔子说：乡原这种好好先生，是道德的窃贼。",
+        "en": "The village worthy is a thief of virtue."
+      },
+      "explanation": {
+        "zh_tw": "「鄉原」就是誰都不得罪、見人說人話的圓滑之人。孟子解釋：「閹然媚於世也者，是鄉原也。」這種人表面人緣好，實際沒立場，敗壞風氣。孔子最恨這種偽善。",
+        "zh_cn": "「乡原」就是谁都不得罪、见人说人话的圆滑之人。孟子解释：「阉然媚于世也者，是乡原也。」这种人表面人缘好，实际没立场，败坏风气。孔子最恨这种伪善。",
+        "en": "The village worthy offends no one, says what each wants to hear. Mencius explains: “fawning on the world is the village worthy.” Such people seem popular but have no stand, corrupting the climate. Confucius hated this hypocrisy most."
+      },
+      "application": {
+        "zh_tw": "職場、社交裡的「爛好人」——誰都不得罪、什麼都點頭——短期看是人緣好，長期看是沒原則。真正的朋友是能對你說真話的人，不是只會討好的牆頭草。",
+        "zh_cn": "职场、社交里的「烂好人」——谁都不得罪、什么都点头——短期看是人缘好，长期看是没原则。真正的朋友是能对你说真话的人，不是只会讨好的墙头草。",
+        "en": "The pushover in work and social life — offending no one, nodding at everything — looks popular short-term, but has no principle long-term. True friends are those who can speak truth to you, not sycophants."
+      }
+    },
+    {
+      "id": "wz-011",
+      "original": "子曰：「不患人之不己知，患不知人也。」",
+      "source": "論語·學而第一",
+      "speaker": "孔子",
+      "audience": null,
+      "context": {
+        "zh_tw": "學而篇末章，與全書首章「人不知而不慍」遙相呼應。",
+        "zh_cn": "学而篇末章，与全书首章「人不知而不愠」遥相呼应。",
+        "en": "The closing of Xue'er, echoing the opening's “not vexed when others do not understand you.”"
+      },
+      "translation": {
+        "zh_tw": "不怕別人不了解自己，只怕自己不了解別人。",
+        "zh_cn": "不怕别人不了解自己，只怕自己不了解别人。",
+        "en": "Do not worry that others do not know you; worry that you do not know others."
+      },
+      "explanation": {
+        "zh_tw": "人常焦慮「別人怎麼看我」，孔子把方向倒過來：了解人是更難也更要緊的本事。知人才能用人、交友、避禍——把心思從「被看見」轉到「看懂人」，境界立見高下。",
+        "zh_cn": "人常焦虑「别人怎么看我」，孔子把方向倒过来：了解人是更难也更要紧的本事。知人才能用人、交友、避祸——把心思从「被看见」转到「看懂人」，境界立见高下。",
+        "en": "People fret over how others see them; Confucius reverses the direction: knowing others is harder and more important. Only by knowing people can you employ, befriend, and avoid harm — shift your mind from being seen to seeing, and the level rises at once."
+      },
+      "application": {
+        "zh_tw": "面試、談判、合作前，先做功課了解對方；與其花時間解釋自己，不如花時間讀懂別人。",
+        "zh_cn": "面试、谈判、合作前，先做功课了解对方；与其花时间解释自己，不如花时间读懂别人。",
+        "en": "Before interviews, negotiations, or partnerships, study the other side. Rather than explaining yourself, spend the time understanding them."
+      }
+    },
+    {
+      "id": "wz-012",
+      "original": "子曰：「君子泰而不驕，小人驕而不泰。」",
+      "source": "論語·子路第十三",
+      "speaker": "孔子",
+      "audience": null,
+      "context": {
+        "zh_tw": "子路篇論君子與小人在氣度上的分別。",
+        "zh_cn": "子路篇论君子与小人在气度上的分别。",
+        "en": "From Zilu — the difference in bearing between the noble man and the petty man."
+      },
+      "translation": {
+        "zh_tw": "君子安詳舒泰而不驕傲，小人驕傲而不安詳。",
+        "zh_cn": "君子安详舒泰而不骄傲，小人骄傲而不安详。",
+        "en": "The noble man is serene without being proud; the petty man is proud without being serene."
+      },
+      "explanation": {
+        "zh_tw": "「泰」是內心的從容篤定，不必靠外在撐場面；「驕」是內心的空虛張揚，越不安越要擺架子。看一個人的底氣，就看他安不安。",
+        "zh_cn": "「泰」是内心的从容笃定，不必靠外在撑场面；「骄」是内心的空虚张扬，越不安越要摆架子。看一个人的底气，就看他安不安。",
+        "en": "“Serene” is inner composure that needs no display; “proud” is inner emptiness that postures all the more. Judge a person's substance by whether they are at ease."
+      },
+      "application": {
+        "zh_tw": "有本事的人不張揚，張揚的人多半心虛。自己得意時問一句：我是真的從容，還是在撐面子？",
+        "zh_cn": "有本事的人不张扬，张扬的人多半心虚。自己得意时问一句：我是真的从容，还是在撑面子？",
+        "en": "The capable do not boast; the boastful are usually insecure. When elated, ask: am I truly at ease, or just keeping up appearances?"
+      }
+    },
+    {
+      "id": "wz-013",
+      "original": "子曰：「道不同，不相為謀。」",
+      "source": "論語·衛靈公第十五",
+      "speaker": "孔子",
+      "audience": null,
+      "context": {
+        "zh_tw": "衛靈公篇，論價值觀不同者難以共事。",
+        "zh_cn": "卫灵公篇，论价值观不同者难以共事。",
+        "en": "From Wei Linggong — those of different ways cannot plan together."
+      },
+      "translation": {
+        "zh_tw": "主張、道路不同的人，不能在一起謀劃事情。",
+        "zh_cn": "主张、道路不同的人，不能在一起谋划事情。",
+        "en": "Those who follow different ways cannot take counsel together."
+      },
+      "explanation": {
+        "zh_tw": "「道」是根本的價值取向。目標南轅北轍，再怎麼談也是空轉。此句不是教人絕交，而是教人認清：合作的前提是方向一致，否則及早止損。",
+        "zh_cn": "「道」是根本的价值取向。目标南辕北辙，再怎么谈也是空转。此句不是教人绝交，而是教人认清：合作的前提是方向一致，否则及早止损。",
+        "en": "“Way” means fundamental values. With goals pulling opposite ways, talk spins its wheels. This is not about cutting ties but about recognizing that shared direction is the precondition of cooperation — otherwise cut losses early."
+      },
+      "application": {
+        "zh_tw": "合夥創業、選擇陣營之前，先確認價值觀是否一致。談不攏不是誰的錯，是道不同——不必勉強，及早分開對雙方都好。",
+        "zh_cn": "合伙创业、选择阵营之前，先确认价值观是否一致。谈不拢不是谁的错，是道不同——不必勉强，及早分开对双方都好。",
+        "en": "Before founding a venture together or joining a camp, confirm shared values. Failure to align is nobody's fault — the ways differ. Do not force it; parting early serves both."
+      }
+    },
+    {
+      "id": "wz-014",
+      "original": "子曰：「君子矜而不爭，群而不黨。」",
+      "source": "論語·衛靈公第十五",
+      "speaker": "孔子",
+      "audience": null,
+      "context": {
+        "zh_tw": "衛靈公篇論君子處世的兩個分寸：莊重而不爭鬥，合群而不結黨。",
+        "zh_cn": "卫灵公篇论君子处世的兩個分寸：庄重而不争斗，合群而不结党。",
+        "en": "From Wei Linggong — two measures of the noble man's conduct: dignified yet not contentious, sociable yet not cliquish."
+      },
+      "translation": {
+        "zh_tw": "君子莊重自守而不與人爭鬥，合群共處而不結黨營私。",
+        "zh_cn": "君子庄重自守而不与人争斗，合群共处而不结党营私。",
+        "en": "The noble man is dignified but not contentious; he mixes with others but forms no faction."
+      },
+      "explanation": {
+        "zh_tw": "前句守獨立：有原則的人不屑於意氣之爭；後句守公正：能合群但不靠拉幫結派鞏固地位。一獨立一合群，拿捏得當，才是處世的中道。",
+        "zh_cn": "前句守独立：有原则的人不屑于意气之争；后句守公正：能合群但不靠拉帮结派巩固地位。一独立一合群，拿捏得当，才是处世的中道。",
+        "en": "The first guards independence: the principled disdain petty strife. The second guards fairness: join the group without using cliques to entrench position. Independence and fellowship, held in balance, are the mean of social life."
+      },
+      "application": {
+        "zh_tw": "職場上：該合作就合作，但不站隊、不搞小圈子；被捲入派系鬥爭時，保持莊重與距離，是保護自己最好的方式。",
+        "zh_cn": "职场上：该合作就合作，但不站队、不搞小圈子；被卷入派系斗争时，保持庄重与距离，是保护自己最好的方式。",
+        "en": "At work: cooperate when fitting, but take no sides and form no cliques; amid factional strife, dignity and distance protect you best."
+      }
+    },
+    {
+      "id": "wz-015",
+      "original": "子曰：「老者安之，朋友信之，少者懷之。」",
+      "source": "論語·公冶長第五",
+      "speaker": "孔子",
+      "audience": "顏淵、子路",
+      "context": {
+        "zh_tw": "顏淵、子路侍坐，各言其志；孔子說出自己的志向——讓老者安、朋友信、少年懷。",
+        "zh_cn": "颜渊、子路侍坐，各言其志；孔子说出自己的志向——让老者安、朋友信、少年怀。",
+        "en": "Seated with Yan Yuan and Zilu, each spoke of aspirations; Confucius gave his own: the aged at peace, friends trusted, the young cherished."
+      },
+      "translation": {
+        "zh_tw": "（我的志向是）讓老年人得到安養，讓朋友們信任我，讓年輕人得到關懷。",
+        "zh_cn": "（我的志向是）让老年人得到安养，让朋友们信任我，让年轻人得到关怀。",
+        "en": "“My aspiration: to comfort the aged, to be trusted by friends, to cherish the young.”"
+      },
+      "explanation": {
+        "zh_tw": "子路說願與朋友共享車馬衣裘，顏淵說願不誇己功，孔子卻把志向指向天下人——三層境界立見：為己、為友、為眾。這三句是孔子「仁者愛人」最具體的藍圖。",
+        "zh_cn": "子路说愿与朋友共享车马衣裘，颜渊说愿不夸己功，孔子却把志向指向天下人——三层境界立见：为己、为友、为众。这三句是孔子「仁者爱人」最具体的蓝图。",
+        "en": "Zilu wished to share his possessions with friends; Yan Yuan wished to claim no merit; Confucius aimed at all people — three levels at once: self, friends, the many. These three clauses are the most concrete blueprint of “love others.”"
+      },
+      "application": {
+        "zh_tw": "設計產品、管理團隊、經營家庭，都可以用這三句當驗收標準：老人是否被安頓？夥伴是否信得過我？年輕人是否被照顧到？",
+        "zh_cn": "设计产品、管理团队、经营家庭，都可以用这三句当验收标准：老人是否被安顿？伙伴是否信得过我？年轻人是否被照顾到？",
+        "en": "In product design, team management, or family life, use these three as acceptance criteria: Are the aged cared for? Do partners trust me? Are the young nurtured?"
+      }
+    }
+  ]
+}

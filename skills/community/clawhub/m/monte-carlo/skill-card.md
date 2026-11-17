@@ -1,41 +1,54 @@
-## Description: <br>
-Monte Carlo reference tool for finance contexts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monte Carlo reference tool. Use when working with monte carlo in finance contexts.
 
-## Publisher: <br>
-[bytesagain3](https://clawhub.ai/user/bytesagain3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain3](https://clawhub.ai/user/bytesagain3)
 
-## Use Case: <br>
-Developers, analysts, and finance practitioners use this skill as a quick local reference for Monte Carlo concepts, formulas, regulatory topics, risks, strategies, glossary terms, and due diligence checklists. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Finance and regulatory content may be generic or incomplete if treated as professional financial or legal advice. <br>
-Mitigation: Use the output as educational reference material and verify decisions against authoritative finance, legal, or compliance sources. <br>
-Risk: Future versions could materially change the risk profile by adding network access, file writes, dependencies, or credential requirements. <br>
-Mitigation: Review and rescan upgraded versions before installation or operational use. <br>
+## Use Case:
 
+Developers and finance practitioners can use this skill for quick Monte Carlo-related reference material, formulas, risks, glossary terms, and checklist-style guidance. Its content should be reviewed before use in financial modeling, compliance, or investment workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bytesagain3/monte-carlo) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown reference text printed by local shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Static local reference output; no network access, file writes, dependencies, or credential requirements are indicated by the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: The finance and Monte Carlo content may be generic or mismatched to the claimed use case.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the generated reference material against authoritative finance, modeling, and compliance sources before relying on it.
+
+Risk: Users may mistake checklist, regulation, or strategy output for professional financial, compliance, or investment guidance.
+
+Mitigation: Use the output as a starting reference only, and require qualified human review for financial decisions or regulated workflows.
+
+## Reference(s):
+
+- [BytesAgain homepage](https://bytesagain.com)
+- [Monte Carlo skill listing](https://clawhub.ai/bytesagain3/skills/monte-carlo)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown reference text emitted by shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Command-selected topics include intro, formulas, regulations, risks, instruments, strategies, glossary, and checklist.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

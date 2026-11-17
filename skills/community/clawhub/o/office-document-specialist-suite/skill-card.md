@@ -1,40 +1,55 @@
-## Description: <br>
-Advanced suite for creating, editing, and analyzing Microsoft Office documents (Word, Excel, PowerPoint). Provides specialized tools for automated reporting and document management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates Word .docx report templates and applies document styling through a local Python CLI.
 
-## Publisher: <br>
-[Robert-Janssen](https://clawhub.ai/user/Robert-Janssen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[robert-janssen](https://clawhub.ai/user/robert-janssen)
 
-## Use Case: <br>
-Developers and agents use this skill to create and style local Word .docx report templates through a Python CLI. The release metadata describes broader Office document support, but server security evidence notes this version should not be expected to provide Excel or PowerPoint functionality. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The release description overstates Office-suite coverage relative to the artifact behavior. <br>
-Mitigation: Use this release for local Word .docx template generation and styling only; do not rely on it for Excel or PowerPoint workflows unless those capabilities are added and reviewed. <br>
-Risk: Dependency hygiene issues could affect sensitive or untrusted document handling. <br>
-Mitigation: Pin and review Python dependencies before deployment, and avoid processing sensitive or untrusted documents without additional review. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Robert-Janssen/office-document-specialist-suite) <br>
-- [Publisher profile](https://clawhub.ai/user/Robert-Janssen) <br>
+## Use Case:
+
+Developers and agents use this skill to generate basic Word report templates and apply consistent formatting to existing .docx documents. It is best suited for local document preparation workflows rather than full Office automation.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The public skill description claims Word, Excel, and PowerPoint support, while the artifact implementation only provides Word .docx template and styling commands.
+
+Mitigation: Use the skill for .docx workflows unless additional spreadsheet or presentation tooling is verified separately.
+
+Risk: Setup installs Python dependencies for local document generation.
+
+Mitigation: Review and pin dependencies before use in sensitive or controlled environments.
+
+Risk: Generated document text defaults to Dutch.
+
+Mitigation: Review and localize generated content before sharing documents externally.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with CLI commands and generated local .docx files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires local Python 3 and Python document libraries; current artifact implements Word .docx template generation and styling.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+**Output Type(s):** [Files, Shell commands, Guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Word .docx files plus Markdown guidance with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated document template text defaults to Dutch.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

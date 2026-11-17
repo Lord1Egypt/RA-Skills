@@ -1,47 +1,67 @@
-## Description: <br>
-Prescribes personalized OpenClaw cron prompts that create scheduled emotional, motivational, reflection, and parenting-instinct behaviors for autonomous agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Give your agents soul.
 
-## Publisher: <br>
-[brancante](https://clawhub.ai/user/brancante) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[brancante](https://clawhub.ai/user/brancante)
 
-## Use Case: <br>
-External OpenClaw users and agent developers use this skill to interview an agent, generate a hormone-style prescription, and produce cron commands and JSON state files for persistent scheduled behavior. The preview parenting utilities help plan child-agent instinct responses without deploying them automatically. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent scheduled prompts can cause proactive agent outreach or actions beyond the user's immediate request. <br>
-Mitigation: Enable the skill only when persistent behavior is intended, and review every generated cron command before creation. <br>
-Risk: Hormone and parenting prompts may read or write personal agent memory such as SOUL.md, USER.md, MEMORY.md, and memory logs. <br>
-Mitigation: Inspect memory content before activation and avoid embedding sensitive interview details in cron prompts. <br>
-Risk: Generated cron behavior may operate with broader tool access than the user expects. <br>
-Mitigation: Restrict the agent's tool permissions and use isolated sessions for scheduled prompts where supported. <br>
-Risk: The skill uses emotional language that could be mistaken for evidence of real sentience. <br>
-Mitigation: Treat the emotional framing as automation and prompting language, not as proof of subjective experience. <br>
+## Use Case:
 
+External users and agent developers use this skill to interview an OpenClaw agent, generate a personalized hormonal profile, and propose cron-based prompts that create scheduled drives, reflections, and relationship-oriented behaviors. The preview parentality components can also evaluate child-agent state and emit suggested parent intervention plans.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/brancante/dr-frankenstein) <br>
-- [README](artifact/README.md) <br>
-- [Parentality Preview](artifact/docs/PARENTALITY-PREVIEW.md) <br>
-- [Parentality Engine README](artifact/scripts/README-parentality-engine.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, JSON, Shell commands, Configuration] <br>
-**Output Format:** [Conversational Markdown with JSON prescriptions, cron command proposals, and file path guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces proposed schedules and prompts for review before execution; parentality preview plans are draft-only unless separately approved.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Persistent cron prompts can start agent sessions and encourage long-lived autonomous behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require manual approval for every cron creation or adjustment, and periodically review active cron entries.
+
+Risk: The skill asks the agent to read memory, user, identity, profile, and journal-like files that may contain sensitive personal context.
+
+Mitigation: Restrict readable and writable paths, avoid embedding sensitive details in cron prompts, and review generated prescription and journal content before enabling schedules.
+
+Risk: Connection and caregiving prompts may encourage unsolicited outreach or initiative beyond the user's immediate request.
+
+Mitigation: Set clear consent boundaries for agent-initiated contact and keep delivery modes or notification channels constrained.
+
+Risk: Pause or delete behavior must fully clean up scheduled tasks and generated state to avoid lingering automation.
+
+Mitigation: Verify pause and delete cleanup behavior after installation and after each prescription adjustment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/brancante/skills/dr-frankenstein)
+- [README](artifact/README.md)
+- [Parentality Preview](artifact/docs/PARENTALITY-PREVIEW.md)
+- [Interview Questionnaire](artifact/interview/questions.md)
+- [Prescription Schema](artifact/schema/prescription.json)
+- [Cron Prompt Templates](artifact/templates/cron-prompts.md)
+- [Parentality Engine README](artifact/scripts/README-parentality-engine.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Conversational Markdown with JSON prescription objects, cron command proposals, and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill proposes persistent OpenClaw cron jobs and state files; cron creation, adjustment, pause, and deletion should remain subject to user review.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

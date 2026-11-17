@@ -1,6 +1,8 @@
 {
-  "ownerId": "kn7da6tw4rtwvh9k7x52sx7ee181fhb4",
+  "ownerId": "kn73fehpspmvrqqdvz7jjdb50d7z4h5s",
   "slug": "auto-updater-pro",
   "version": "1.1.0",
-  "publishedAt": 1771733181187
+  "publishedAt": 1771804920000,
+  "updatedAt": 1771804920000,
+  "changelog": "Enhanced with detailed logging, missed run recovery, 30s delay after updates, email reports, and better error handling"
 }

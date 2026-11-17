@@ -1,46 +1,58 @@
-## Description: <br>
-Self improving helps an agent learn from explicit corrections, self-reflection, and repeated patterns by maintaining local memory files for preferences, lessons, and scoped project or domain rules. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides self-reflection, correction logging, and tiered local memory so an agent can evaluate its work, learn from explicit feedback, and reuse confirmed patterns.
 
-## Publisher: <br>
-[Keyserkazi1](https://clawhub.ai/user/Keyserkazi1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[keyserkazi1](https://clawhub.ai/user/keyserkazi1)
 
-## Use Case: <br>
-Developers and agent operators use this skill to let an agent keep transparent, local execution-improvement memory across tasks. It is most useful when the agent receives corrections, finds a reusable lesson, or needs to retrieve confirmed preferences and scoped project patterns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent local memory can influence future agent behavior in ways the user may not expect. <br>
-Mitigation: Enable the skill only when persistent memory is desired, keep learned rules visible in ~/self-improving/, and review or delete entries periodically. <br>
-Risk: Corrections or preferences could accidentally include secrets, sensitive personal data, or third-party information. <br>
-Mitigation: Do not store credentials, financial data, health data, biometric information, third-party details, location routines, or access patterns; remove any such entry immediately if it appears. <br>
-Risk: Workspace steering files such as AGENTS.md, SOUL.md, or HEARTBEAT.md may be changed during setup. <br>
-Mitigation: Inspect proposed steering-file edits before use and keep setup changes scoped to the self-improving memory behavior. <br>
+## Use Case:
 
+Developers and external users install this skill when they want an agent to preserve explicit corrections, preferences, and reusable execution lessons in local memory and consult them during future work.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Keyserkazi1/self-improving-100) <br>
-- [Skill homepage](https://clawic.com/skills/self-improving) <br>
-- [Security boundaries](artifact/boundaries.md) <br>
-- [Learning mechanics](artifact/learning.md) <br>
-- [Memory operations](artifact/operations.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local memory-management instructions and file templates; no credentials or extra binaries are required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Persistent local memory can change future agent behavior and store more than intended.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when persistent local memory is desired, and periodically inspect or delete ~/self-improving/.
+
+Risk: Setup can propose workspace steering edits and optional companion skill installation.
+
+Mitigation: Review proposed AGENTS.md, SOUL.md, and HEARTBEAT.md changes before enabling setup, and decline the companion skill unless its exact version is separately trusted.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/keyserkazi1/skills/self-improving-100)
+- [Skill homepage](https://clawic.com/skills/self-improving)
+- [Setup guide](artifact/setup.md)
+- [Security boundaries](artifact/boundaries.md)
+- [Memory operations](artifact/operations.md)
+- [Learning mechanics](artifact/learning.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and file templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose local memory files under ~/self-improving/ and workspace steering updates for AGENTS.md, SOUL.md, and HEARTBEAT.md.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

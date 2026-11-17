@@ -1,16 +1,16 @@
 # SYS\_ShortcutKey class
 
-系统 / 快捷键类
+System / shortcut key class
 
 ## Signature
 
 ```typescript
-declare class SYS_ShortcutKey 
+class SYS_ShortcutKey
 ```
 
 ## Remarks
 
-注册与管理系统快捷键
+Register and manage system shortcut keys
 
 ## Methods
 
@@ -18,58 +18,90 @@ declare class SYS_ShortcutKey
 
 Method
 
-
 </th><th>
 
 Modifiers
-
 
 </th><th>
 
 Description
 
-
 </th></tr></thead>
 <tbody><tr><td>
 
+[get(id)](./SYS_ShortcutKey.md)
+
+</td><td>
+
+</td><td>
+
+**_(BETA)_** Get Shortcut key data
+
+</td></tr>
+<tr><td>
+
+[getAll()](./SYS_ShortcutKey.md)
+
+</td><td>
+
+</td><td>
+
+**_(BETA)_** Get all Shortcut key data
+
+</td></tr>
+<tr><td>
+
 [getShortcutKeys(includeSystem)](./SYS_ShortcutKey.md)
 
+</td><td>
 
 </td><td>
 
+**_(BETA)_** Query shortcut key list
+
+</td></tr>
+<tr><td>
+
+[register(id, props)](./SYS_ShortcutKey.md)
 
 </td><td>
 
-**_(BETA)_** 查询快捷键列表
+</td><td>
 
+**_(BETA)_** Register shortcut key
 
 </td></tr>
 <tr><td>
 
 [registerShortcutKey(shortcutKey, title, callbackFn, documentType, scene)](./SYS_ShortcutKey.md)
 
+</td><td>
 
 </td><td>
 
+**_(BETA)_** Register shortcut key
+
+</td></tr>
+<tr><td>
+
+[unregister(id)](./SYS_ShortcutKey.md)
 
 </td><td>
 
-**_(BETA)_** 注册快捷键
+</td><td>
 
+**_(BETA)_** Unregister a shortcut key
 
 </td></tr>
 <tr><td>
 
 [unregisterShortcutKey(shortcutKey)](./SYS_ShortcutKey.md)
 
+</td><td>
 
 </td><td>
 
-
-</td><td>
-
-**_(BETA)_** 反注册快捷键
-
+**_(BETA)_** Unregister a shortcut key
 
 </td></tr>
 </tbody></table>
@@ -78,23 +110,18 @@ Description
 
 ## 方法详情
 
-### getshortcutkeys
+### get
 
-# SYS\_ShortcutKey.getShortcutKeys() method
+# SYS\_ShortcutKey.get() method
 
 > This API is provided as a beta preview for developers and may change based on feedback that we receive. Do not use this API in a production environment.
 
-查询快捷键列表
+Get Shortcut key data
 
 ## Signature
 
 ```typescript
-getShortcutKeys(includeSystem?: boolean): Promise<Array<{
-        shortcutKey: TSYS_ShortcutKeys;
-        title: string;
-        documentType: Array<ESYS_ShortcutKeyEffectiveEditorDocumentType>;
-        scene: Array<ESYS_ShortcutKeyEffectiveEditorScene>;
-    }>>;
+function get(id: string): ISYS_ShortcutKeyDataWithUserDefinedShortcutKey | undefined;
 ```
 
 ## Parameters
@@ -103,43 +130,226 @@ getShortcutKeys(includeSystem?: boolean): Promise<Array<{
 
 Parameter
 
-
 </th><th>
 
 Type
-
 
 </th><th>
 
 Description
 
+</th></tr></thead>
+<tbody><tr><td>
+
+id
+
+</td><td>
+
+string
+
+</td><td>
+
+Shortcut key ID. To get shortcut keys registered by other extensions, concatenate the extension UUID as a prefix. Format: `<extension UUID>.<shortcut key ID>`
+
+</td></tr>
+</tbody></table>
+
+## Returns
+
+[ISYS\_ShortcutKeyDataWithUserDefinedShortcutKey](../interfaces/ISYS_ShortcutKeyDataWithUserDefinedShortcutKey.md) \| undefined
+
+The obtained shortcut key data
+
+## Remarks
+
+This API allows getting shortcut key data of other extensions. Simply concatenate the shortcut key ID in the specified format
+
+This API cannot get system shortcut key data
+
+Note: This API is only valid for extensions. Calling it in a standalone script environment will always `throw Error` ADD since EDA v4.2
+
+### getall
+
+# SYS\_ShortcutKey.getAll() method
+
+> This API is provided as a beta preview for developers and may change based on feedback that we receive. Do not use this API in a production environment.
+
+Get all Shortcut key data
+
+## Signature
+
+```typescript
+function getAll(): Record<string, ISYS_ShortcutKeyDataWithUserDefinedShortcutKey>;
+```
+
+## Returns
+
+Record&lt;string, [ISYS\_ShortcutKeyDataWithUserDefinedShortcutKey](../interfaces/ISYS_ShortcutKeyDataWithUserDefinedShortcutKey.md)<!-- -->&gt;
+
+The obtained shortcut key data
+
+## Remarks
+
+This API will get all shortcut key data of this extension
+
+This API cannot get system shortcut key data
+
+Note: This API is only valid for extensions. Calling it in a standalone script environment will always `throw Error` ADD since EDA v4.2
+
+### getshortcutkeys
+
+# SYS\_ShortcutKey.getShortcutKeys() method
+
+> This API is provided as a beta preview for developers and may change based on feedback that we receive. Do not use this API in a production environment.
+
+> Warning: This API is now obsolete.
+>
+> since EDA v4.2
+
+Query shortcut key list
+
+## Signature
+
+```typescript
+function getShortcutKeys(
+	includeSystem?: boolean,
+): Promise<
+	Array<{
+		shortcutKey: TSYS_ShortcutKeys;
+		title: string;
+		documentType: Array<ESYS_ShortcutKeyEffectiveEditorRange>;
+		scene: Array<ESYS_ShortcutKeyEffectiveEditorScene>;
+	}>
+>;
+```
+
+## Parameters
+
+<table><thead><tr><th>
+
+Parameter
+
+</th><th>
+
+Type
+
+</th><th>
+
+Description
 
 </th></tr></thead>
 <tbody><tr><td>
 
 includeSystem
 
-
 </td><td>
 
 boolean
 
-
 </td><td>
 
-_(Optional)_ 是否包含系统快捷键
-
+_(Optional)_ Whether Contain system shortcut key
 
 </td></tr>
 </tbody></table>
 
+## Returns
 
+Promise&lt;Array&lt;{ shortcutKey: [TSYS\_ShortcutKeys](../types/TSYS_ShortcutKeys.md)<!-- -->; title: string; documentType: Array&lt;[ESYS\_ShortcutKeyEffectiveEditorRange](../enums/ESYS_ShortcutKeyEffectiveEditorRange.md)<!-- -->&gt;; scene: Array&lt;[ESYS\_ShortcutKeyEffectiveEditorScene](../enums/ESYS_ShortcutKeyEffectiveEditorScene.md)<!-- -->&gt; }&gt;&gt;
+
+Shortcut key list
+
+## Example
+
+```javascript
+// 1. 只查非系统快捷键（扩展注册的），列表精简便于观察
+const custom = await eda.sys_ShortcutKey.getShortcutKeys();
+console.log('非系统快捷键数量：', custom.length);
+
+// 2. 连同系统快捷键一起查（用于完整键位冲突检测）
+const all = await eda.sys_ShortcutKey.getShortcutKeys(true);
+console.log('含系统快捷键总数：', all.length);
+
+// 3. 观察单条数据结构：shortcutKey 是键位数组，title 是名称，
+// documentType 是生效页面，scene 是生效场景
+const sample = all[0];
+console.log('首条快捷键：', JSON.stringify(sample));
+```
+
+### register
+
+# SYS\_ShortcutKey.register() method
+
+> This API is provided as a beta preview for developers and may change based on feedback that we receive. Do not use this API in a production environment.
+
+Register shortcut key
+
+## Signature
+
+```typescript
+function register(id: string, props: ISYS_ShortcutKeyDataWithCallFn): boolean;
+```
+
+## Parameters
+
+<table><thead><tr><th>
+
+Parameter
+
+</th><th>
+
+Type
+
+</th><th>
+
+Description
+
+</th></tr></thead>
+<tbody><tr><td>
+
+id
+
+</td><td>
+
+string
+
+</td><td>
+
+Shortcut key ID. The extension UUID will be automatically concatenated as a prefix
+
+</td></tr>
+<tr><td>
+
+props
+
+</td><td>
+
+[ISYS\_ShortcutKeyDataWithCallFn](../interfaces/ISYS_ShortcutKeyDataWithCallFn.md)
+
+</td><td>
+
+Shortcut key data
+
+</td></tr>
+</tbody></table>
 
 ## Returns
 
-Promise&lt;Array&lt;{ shortcutKey: [TSYS\_ShortcutKeys](../types/TSYS_ShortcutKeys.md)<!-- -->; title: string; documentType: Array&lt;[ESYS\_ShortcutKeyEffectiveEditorDocumentType](../enums/ESYS_ShortcutKeyEffectiveEditorDocumentType.md)<!-- -->&gt;; scene: Array&lt;[ESYS\_ShortcutKeyEffectiveEditorScene](../enums/ESYS_ShortcutKeyEffectiveEditorScene.md)<!-- -->&gt;; }&gt;&gt;
+boolean
 
-快捷键列表
+Register whether it is successful
+
+## Remarks
+
+The `shortcutKey` passed in when registering a shortcut key here is only the default shortcut key. Users can modify it in settings
+
+If the shortcut key conflicts with a system shortcut key, the system shortcut key will take precedence
+
+To modify registered shortcut key information, you can call this API directly and pass the complete shortcut key data to be modified in `props`
+
+This API cannot modify system shortcut keys
+
+Note: This API is only valid for extensions. Calling it in a standalone script environment will always `throw Error` ADD since EDA v4.2
 
 ### registershortcutkey
 
@@ -147,12 +357,22 @@ Promise&lt;Array&lt;{ shortcutKey: [TSYS\_ShortcutKeys](../types/TSYS_ShortcutKe
 
 > This API is provided as a beta preview for developers and may change based on feedback that we receive. Do not use this API in a production environment.
 
-注册快捷键
+> Warning: This API is now obsolete.
+>
+> since EDA v4.2
+
+Register shortcut key
 
 ## Signature
 
 ```typescript
-registerShortcutKey(shortcutKey: TSYS_ShortcutKeys, title: string, callbackFn: (shortcutKey: TSYS_ShortcutKeys) => void | Promise<void>, documentType?: Array<ESYS_ShortcutKeyEffectiveEditorDocumentType>, scene?: Array<ESYS_ShortcutKeyEffectiveEditorScene>): Promise<boolean>;
+function registerShortcutKey(
+	shortcutKey: TSYS_ShortcutKeys,
+	title: string,
+	callbackFn: (shortcutKey: TSYS_ShortcutKeys) => void | Promise<void>,
+	documentType?: Array<ESYS_ShortcutKeyEffectiveEditorRange>,
+	scene?: Array<ESYS_ShortcutKeyEffectiveEditorScene>,
+): Promise<boolean>;
 ```
 
 ## Parameters
@@ -161,107 +381,172 @@ registerShortcutKey(shortcutKey: TSYS_ShortcutKeys, title: string, callbackFn: (
 
 Parameter
 
-
 </th><th>
 
 Type
 
-
 </th><th>
 
 Description
-
 
 </th></tr></thead>
 <tbody><tr><td>
 
 shortcutKey
 
-
 </td><td>
 
 [TSYS\_ShortcutKeys](../types/TSYS_ShortcutKeys.md)
 
-
 </td><td>
 
-快捷键，数组中包含多个元素则解析为组合快捷键，将按规则排序后存入缓存
-
+Shortcut key. If the array contains multiple elements, it is parsed as a combined shortcut key and sorted by rules before being stored in the cache
 
 </td></tr>
 <tr><td>
 
 title
 
-
 </td><td>
 
 string
 
-
 </td><td>
 
-快捷键标题，快捷键的友好名称
-
+Shortcut key title, the friendly name of the shortcut key
 
 </td></tr>
 <tr><td>
 
 callbackFn
 
-
 </td><td>
 
 (shortcutKey: [TSYS\_ShortcutKeys](../types/TSYS_ShortcutKeys.md)<!-- -->) =&gt; void \| Promise&lt;void&gt;
 
-
 </td><td>
 
-回调函数
-
+Callback function
 
 </td></tr>
 <tr><td>
 
 documentType
 
-
 </td><td>
 
-Array&lt;[ESYS\_ShortcutKeyEffectiveEditorDocumentType](../enums/ESYS_ShortcutKeyEffectiveEditorDocumentType.md)<!-- -->&gt;
-
+Array&lt;[ESYS\_ShortcutKeyEffectiveEditorRange](../enums/ESYS_ShortcutKeyEffectiveEditorRange.md)<!-- -->&gt;
 
 </td><td>
 
 _(Optional)_
-
 
 </td></tr>
 <tr><td>
 
 scene
 
-
 </td><td>
 
 Array&lt;[ESYS\_ShortcutKeyEffectiveEditorScene](../enums/ESYS_ShortcutKeyEffectiveEditorScene.md)<!-- -->&gt;
-
 
 </td><td>
 
 _(Optional)_
 
-
 </td></tr>
 </tbody></table>
-
-
 
 ## Returns
 
 Promise&lt;boolean&gt;
 
-注册操作是否成功
+Register whether the operation is successful
+
+## Example
+
+```javascript
+// 1. 注册冷门组合键 Ctrl+Alt+Shift+F9，避免占用常用键位
+// documentType 传 2（原理图图页）与 4（PCB）；scene 传 4（画布绘制）
+const ok = await eda.sys_ShortcutKey.registerShortcutKey(
+	['CONTROL', 'ALT', 'SHIFT', 'F9'],
+	'嘉立创示例_演示快捷键',
+	(shortcutKey) => {
+		// 用户实际按键时才触发，自动化测试不按键，此处仅演示回调写法
+		console.log('快捷键被按下：', JSON.stringify(shortcutKey));
+	},
+	[2, 4],
+	[4]
+);
+console.log('注册快捷键返回：', ok);
+
+// 2. 查询验证：新注册的快捷键出现在非系统快捷键列表中
+const list = await eda.sys_ShortcutKey.getShortcutKeys();
+const found = list.some(item => item.title === '嘉立创示例_演示快捷键');
+console.log('已注册到快捷键列表：', found);
+
+// 3. 反注册还原键位，保证案例可重复运行且不残留全局快捷键
+const removed = await eda.sys_ShortcutKey.unregisterShortcutKey(['CONTROL', 'ALT', 'SHIFT', 'F9']);
+console.log('反注册还原返回：', removed);
+```
+
+### unregister
+
+# SYS\_ShortcutKey.unregister() method
+
+> This API is provided as a beta preview for developers and may change based on feedback that we receive. Do not use this API in a production environment.
+
+Unregister a shortcut key
+
+## Signature
+
+```typescript
+function unregister(id: string): boolean;
+```
+
+## Parameters
+
+<table><thead><tr><th>
+
+Parameter
+
+</th><th>
+
+Type
+
+</th><th>
+
+Description
+
+</th></tr></thead>
+<tbody><tr><td>
+
+id
+
+</td><td>
+
+string
+
+</td><td>
+
+Shortcut key ID. To unregister shortcut keys registered by other extensions, concatenate the extension UUID as a prefix. Format: `<extension UUID>.<shortcut key ID>`
+
+</td></tr>
+</tbody></table>
+
+## Returns
+
+boolean
+
+Whether the unregistration was successful
+
+## Remarks
+
+This API allows unregistering shortcut keys of other extensions. Simply concatenate the shortcut key ID in the specified format
+
+This API cannot unregister system shortcut keys
+
+Note: This API is only valid for extensions. Calling it in a standalone script environment will always `throw Error` ADD since EDA v4.2
 
 ### unregistershortcutkey
 
@@ -269,12 +554,16 @@ Promise&lt;boolean&gt;
 
 > This API is provided as a beta preview for developers and may change based on feedback that we receive. Do not use this API in a production environment.
 
-反注册快捷键
+> Warning: This API is now obsolete.
+>
+> since EDA v4.2
+
+Unregister a shortcut key
 
 ## Signature
 
 ```typescript
-unregisterShortcutKey(shortcutKey: TSYS_ShortcutKeys): Promise<boolean>;
+function unregisterShortcutKey(shortcutKey: TSYS_ShortcutKeys): Promise<boolean>;
 ```
 
 ## Parameters
@@ -283,40 +572,52 @@ unregisterShortcutKey(shortcutKey: TSYS_ShortcutKeys): Promise<boolean>;
 
 Parameter
 
-
 </th><th>
 
 Type
 
-
 </th><th>
 
 Description
-
 
 </th></tr></thead>
 <tbody><tr><td>
 
 shortcutKey
 
-
 </td><td>
 
 [TSYS\_ShortcutKeys](../types/TSYS_ShortcutKeys.md)
 
-
 </td><td>
 
-快捷键，不区分传入的排列顺序，将自动排序并查询匹配的快捷键
-
+Shortcut key. The order of the passed-in elements is not distinguished; it will be sorted automatically and the matching shortcut key will be queried
 
 </td></tr>
 </tbody></table>
-
-
 
 ## Returns
 
 Promise&lt;boolean&gt;
 
-反注册操作是否成功
+Whether the unregistration operation was successful
+
+## Example
+
+```javascript
+// 1. 先注册一个演示快捷键作为操作对象
+await eda.sys_ShortcutKey.registerShortcutKey(
+	['CONTROL', 'ALT', 'F9'],
+	'嘉立创示例_待移除快捷键',
+	() => {}
+);
+
+// 2. 反注册：故意打乱键序传入，验证不区分排列顺序的匹配规则
+const ok = await eda.sys_ShortcutKey.unregisterShortcutKey(['F9', 'ALT', 'CONTROL']);
+console.log('反注册返回：', ok);
+
+// 3. 复查快捷键列表，确认演示键位已被移除
+const list = await eda.sys_ShortcutKey.getShortcutKeys();
+const still = list.some(item => item.title === '嘉立创示例_待移除快捷键');
+console.log('反注册后仍在列表中：', still);
+```

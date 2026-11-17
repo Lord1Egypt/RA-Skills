@@ -1,43 +1,55 @@
-## Description: <br>
-Search X (Twitter) posts using the xAI API when a user wants to find tweets, look up what people are saying on X, or find social media posts about a topic. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search X (Twitter) posts using the xAI API. Use when the user wants to find tweets, search X/Twitter, look up what people are saying on X, or find social media posts about a topic.
 
-## Publisher: <br>
-[github2cao](https://clawhub.ai/user/github2cao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[github2cao](https://clawhub.ai/user/github2cao)
 
-## Use Case: <br>
-Developers and agent users use this skill to search X/Twitter through xAI, optionally filtering by handles, exclusions, date ranges, and media-understanding flags. It returns summarized X search results with citations to original posts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search text, handle filters, date filters, and media-analysis options are sent to xAI under the user's XAI_API_KEY. <br>
-Mitigation: Do not use the skill for secrets, confidential project names, sensitive personal data, or searches that should not be processed by a third-party API provider. <br>
-Risk: The skill depends on a user-provided XAI_API_KEY and network access to xAI services. <br>
-Mitigation: Configure the API key only in the intended environment and review generated search output and citations before relying on them. <br>
+## Use Case:
 
+Developers and agents use this skill to search and summarize X/Twitter posts through xAI's X search tooling, with optional handle filters, exclusion filters, date ranges, and image or video understanding.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/github2cao/ssdfsdfsdfsaaaaaaa) <br>
-- [xAI X Search documentation](https://docs.x.ai/developers/tools/x-search) <br>
-- [xAI console](https://console.x.ai) <br>
-- [xAI Responses API endpoint](https://api.x.ai/v1/responses) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON search output and Markdown guidance with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and XAI_API_KEY; supports handle filters, excluded handles, date ranges, and image or video understanding flags.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: Search text, handle filters, date filters, and media options are sent to xAI/X services under the user's XAI_API_KEY.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid secrets, private business information, and personal data in search queries or filters.
+
+Risk: Use of the configured XAI_API_KEY may incur provider usage costs.
+
+Mitigation: Run the skill only with an intended xAI account and monitor provider-side usage and billing.
+
+## Reference(s):
+
+- [xAI X Search documentation](https://docs.x.ai/developers/tools/x-search)
+- [xAI Console](https://console.x.ai)
+- [ClawHub skill page](https://clawhub.ai/github2cao/skills/ssdfsdfsdfsaaaaaaa)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and JSON-formatted command output from the helper script.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search results may include post text, authors, status, citations, search-call counts, and token usage returned by the xAI API.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

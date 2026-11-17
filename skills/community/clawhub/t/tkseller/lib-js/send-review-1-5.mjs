@@ -26,7 +26,7 @@ export async function send(data) {
   const shortId = ct.reserveShortId(videoId, 'review_1_5');
   const media = ct.mediaUrl(storyboardUrl);
 
-  const text = `🛒 **分镜审核 #${shortId}**\n请审核分镜图是否符合预期。`;
+  const text = `🛒 **分镜审核 #${shortId}**\n\n请审核分镜图是否符合预期。`;
 
   const buttons = [
     { label: `✅ 分镜通过 #${shortId}`, style: 'success' },

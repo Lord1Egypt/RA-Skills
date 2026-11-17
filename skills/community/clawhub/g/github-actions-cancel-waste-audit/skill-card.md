@@ -1,37 +1,53 @@
-## Description: <br>
-Audit cancelled and timed-out GitHub Actions runs from JSON exports to surface wasted CI minutes and noisy workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audit cancelled and timed-out GitHub Actions runs from JSON exports to surface wasted CI minutes and noisy workflows.
 
-## Publisher: <br>
-[daniellummis](https://clawhub.ai/user/daniellummis) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[daniellummis](https://clawhub.ai/user/daniellummis)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to analyze exported GitHub Actions run data, quantify wasted CI time from cancelled or timed-out runs, and prioritize noisy workflows for cleanup. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The audit reads local GitHub Actions run exports, which may contain repository, branch, actor, and workflow metadata. <br>
-Mitigation: Review RUN_GLOB before execution so it only matches intended JSON exports, and collect Actions metadata only for repositories that are appropriate to analyze locally. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/daniellummis/github-actions-cancel-waste-audit) <br>
+## Use Case:
 
+Developers and CI maintainers use this skill to analyze GitHub Actions run exports, quantify wasted minutes from cancelled or timed-out runs, and identify repositories or workflows that need triage.
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, guidance] <br>
-**Output Format:** [Text or JSON reports with shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can signal critical waste through exit code 1 when FAIL_ON_CRITICAL=1.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: GitHub Actions export files can contain private repository metadata, branch names, actor names, run URLs, and timing details.
+
+Mitigation: Keep RUN_GLOB limited to intended export directories and avoid running the report over sensitive JSON exports unless that metadata may be printed.
+
+Risk: Waste estimates depend on the timestamps and conclusions present in exported GitHub Actions run JSON.
+
+Mitigation: Review the source export scope and configured thresholds before using the report to make CI budget or workflow-prioritization decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/daniellummis/skills/github-actions-cancel-waste-audit)
+- [ClawHub publisher profile](https://clawhub.ai/user/daniellummis)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with bash examples; script output is text or JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can exit 1 when FAIL_ON_CRITICAL=1 and at least one run reaches the critical waste threshold.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

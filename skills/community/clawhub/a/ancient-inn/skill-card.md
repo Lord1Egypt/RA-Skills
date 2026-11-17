@@ -1,47 +1,65 @@
-## Description: <br>
-Find traditional inns inside ancient towns and water villages, including courtyard houses, wooden architecture, lantern-lit alleys, and old-world stays, with additional Fliggy-powered travel booking support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Finds traditional inns in ancient towns and water villages using FlyAI/Fliggy search results, with support for related travel booking workflows.
 
-## Publisher: <br>
-[xiejinsong](https://clawhub.ai/user/xiejinsong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiejinsong](https://clawhub.ai/user/xiejinsong)
 
-## Use Case: <br>
-External users and travel agents use this skill to search for traditional inns in ancient towns or water villages and return real-time booking-oriented results. The skill is intended for travel planning workflows that rely on flyai CLI output rather than model memory. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may install a global third-party npm CLI before running travel searches. <br>
-Mitigation: Review and approve the flyai CLI source and installation path before deployment; use a controlled environment when possible. <br>
-Risk: The skill may keep local logs of travel queries when the runbook behavior is followed. <br>
-Mitigation: Confirm whether local logging is enabled, avoid recording sensitive travel details, and rotate or disable logs according to deployment policy. <br>
-Risk: The skill returns booking links and may support purchase-oriented travel workflows. <br>
-Mitigation: Require user confirmation before any purchase or booking action and keep booking decisions outside unattended automation. <br>
+## Use Case:
 
+External travelers and travel-planning agents use Ancient Inn to search real-time FlyAI/Fliggy results for traditional inns, compare options, and return booking links with prices.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xiejinsong/ancient-inn) <br>
-- [Publisher profile](https://clawhub.ai/user/xiejinsong) <br>
-- [templates.md](references/templates.md) <br>
-- [playbooks.md](references/playbooks.md) <br>
-- [fallbacks.md](references/fallbacks.md) <br>
-- [runbook.md](references/runbook.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with booking links and inline shell commands when setup or retry steps are needed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Results should be derived from live flyai CLI output and include booking links when travel results are shown.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.0 (source: ClawHub release metadata) <br>
+Risk: The skill may install and rely on a global third-party FlyAI CLI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and approve CLI installation before use, verify the package source, and prefer a controlled environment.
+
+Risk: Booking links, prices, dates, and hotel availability are time-sensitive commercial outputs.
+
+Mitigation: Run the CLI at response time, include only CLI-provided detailUrl booking links, and make user constraints explicit in the response.
+
+Risk: Local execution logging can capture raw travel queries or sensitive preferences.
+
+Mitigation: Disclose or disable persistent logging where possible, avoid storing sensitive prompts, and purge local logs after use.
+
+Risk: Fallback behavior can relax budget, location, date, or hotel-type constraints.
+
+Mitigation: Ask before relaxing important constraints or clearly label any fallback changes in the final answer.
+
+## Reference(s):
+
+- [Ancient Inn ClawHub release](https://clawhub.ai/xiejinsong/skills/ancient-inn)
+- [Templates](artifact/references/templates.md)
+- [Playbooks](artifact/references/playbooks.md)
+- [Fallbacks](artifact/references/fallbacks.md)
+- [Runbook](artifact/references/runbook.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with booking-link tables and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires FlyAI CLI output; qualifying results should include detailUrl booking links and avoid raw JSON.]
+
+## Skill Version(s):
+
+3.2.0 (source: server release evidence; artifact frontmatter lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

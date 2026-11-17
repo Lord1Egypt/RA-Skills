@@ -1,45 +1,60 @@
-## Description: <br>
-Teneo Protocol CLI helps agents discover and query Teneo Protocol AI agents, manage rooms, and handle x402 USDC micropayments across supported payment chains. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Teneo Protocol CLI helps agents discover and query Teneo Protocol AI agents, manage rooms, and handle x402 USDC micropayments across supported chains.
 
-## Publisher: <br>
-[np793](https://clawhub.ai/user/np793) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[np793](https://clawhub.ai/user/np793)
 
-## Use Case: <br>
-Developers and agent operators use this skill to set up a Teneo CLI, find available agents, send paid direct commands, manage rooms, and monitor wallet balances for x402 USDC payments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can give an agent high-impact wallet spending authority through paid commands and automatic USDC payment approval. <br>
-Mitigation: Review before installing, use only a dedicated low-balance bot wallet, and run paid commands only when comfortable with the resulting on-chain transactions and room changes. <br>
-Risk: Private-key handling is central to the payment workflow, including an optional environment variable for a dedicated bot wallet. <br>
-Mitigation: Do not provide a primary wallet private key; use the generated or otherwise dedicated wallet with limited funds and protect the local wallet files. <br>
-Risk: Incorrect agent selection, disconnected agents, or wrong social handles can waste paid queries. <br>
-Mitigation: Check agent details, room membership, status, pricing, and handles before querying; test with a cheap command first when reachability is uncertain. <br>
+## Use Case:
 
+Developers and agent operators use this skill to install and operate a Teneo Protocol CLI for agent discovery, room management, direct agent commands, quotes, payment confirmation, wallet checks, and USDC withdrawals.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/np793/teneoprotocolcli) <br>
-- [Teneo Protocol](https://teneo.pro) <br>
-- [Teneo Protocol SDK on npm](https://www.npmjs.com/package/@teneo-protocol/sdk) <br>
-- [Teneo Agent SDK on GitHub](https://github.com/AIMadeScripts/teneo-agent-sdk) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline shell commands and JavaScript code] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces CLI setup steps, command examples, wallet-management guidance, and JSON CLI output expectations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: Remote agent flows can request broadly scoped wallet spending without strong confirmation or limits.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated low-balance wallet, prefer manual quote and confirm payment flows, and constrain or remove the generic transaction signer before installation.
+
+Risk: Using TENEO_PRIVATE_KEY with a real wallet could expose funds to unintended agent-initiated payments.
+
+Mitigation: Do not set TENEO_PRIVATE_KEY to a real wallet; use only an isolated bot wallet funded with the minimum USDC needed for the task.
+
+Risk: Withdrawal ownership is based on the first inbound transfer, which may not be sufficient proof of intended ownership.
+
+Mitigation: Fund the wallet with a small controlled test transfer and verify withdrawal behavior before adding meaningful funds.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/np793/skills/teneoprotocolcli)
+- [Teneo Protocol](https://teneo.pro)
+- [Teneo Protocol SDK on npm](https://www.npmjs.com/package/@teneo-protocol/sdk)
+- [Teneo Agent SDK](https://github.com/AIMadeScripts/teneo-agent-sdk)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, JavaScript code, and JSON CLI responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill guides setup and operation of a local CLI that connects to Teneo Protocol services and signs x402 payments from a dedicated wallet.]
+
+## Skill Version(s):
+
+1.0.3 (source: ClawHub release evidence, created 2026-03-22)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,332 @@
+# 本体论智能体 · 语义层模板 semantic.yaml（加厚版）
+# ───────────────────────────────────────────────────────────
+# 取自：A1(1mancompany/onemancompany) Entity 原语 + 8 内置实体 + 关系基数 + 写入前约束校验
+# 扩展：微数通用实体（Department / Expert / Invoice / Customer / Policy）
+# 加厚：① 每个实体补全 property 字段（抄 A1 真实字段 + 微数扩展）② 新增 relation_types 关系类型库
+#       ③ 新增 global_constraints 全局约束库（A1 Credential 禁密 / Task 状态机 / 循环依赖 + PII 护栏）
+# 性质：模板(template)，不含用户数据；用户实例在 instance.yaml 生成
+# 行业特有实体（电商 Product/Order/Shop 等）放 references/packs/*.yaml，不在此
+# 术语：见 references/glossary.yaml
+
+meta:
+  layer: semantic_layer
+  base: A1 Entity primitive
+  principle: "小本体起步；template 与 instance 严格分离；PII 不进图谱明文"
+  convention: "所有实体必须有 id + type；type 受下方 entity_types 枚举约束"
+
+# ── 实体类型定义（13 类，字段加厚）─────────────────────────
+entity_types:
+
+  # ===== A1 内置 8 类（保留原语义 + 抄 A1 真实字段 + 补中文 desc）=====
+  Person:
+    desc: 自然人（老板 / 员工 / 客户联系人）
+    properties:
+      name:        {type: string, required: true, desc: "姓名"}
+      email:       {type: string, desc: "邮箱"}
+      phone:       {type: string, pii: true, desc: "电话，属 PII，存脱敏"}
+      organization: {type: string, desc: "所属组织 id"}
+      id_card:     {type: string, pii: true, desc: "身份证号，PII 强护栏"}
+      title:       {type: string, desc: "职务/头衔"}
+      role:        {type: string, desc: "职能角色"}
+      notes:       {type: text, desc: "备注"}
+      tags:        {type: list, desc: "标签"}
+    relations:
+      - {to: Organization, type: employs,      cardinality: many-to-one}
+      - {to: Department,   type: belongs_to,   cardinality: many-to-one}
+
+  Organization:
+    desc: 组织 / 公司（本体根节点）
+    properties:
+      name:        {type: string, required: true, desc: "公司名称"}
+      legal_form:  {type: enum, values: [opc, ecommerce, sme, other], required: true, desc: "企业类型，对应 industry_pack"}
+      credit_code: {type: string, pii: true, desc: "统一社会信用代码，PII"}
+      region:      {type: string, desc: "注册地区，如 天津"}
+      tax_status:  {type: enum, values: [未登记, 已登记, 正常, 异常], desc: "税务登记状态"}
+      founded_on:  {type: date, desc: "成立日期"}
+      owner_id:    {type: string, desc: "法定代表人/实控人 Person id"}
+      description: {type: text, desc: "公司简介"}
+      address:     {type: string, desc: "注册/经营地址"}
+    relations:
+      - {to: Department, type: has,         cardinality: one-to-many}
+      - {to: Account,   type: holds,       cardinality: one-to-many}
+
+  Project:
+    desc: 项目（跨部门的临时或长期目标容器）
+    properties:
+      name:        {type: string, required: true, desc: "项目名称"}
+      status:      {type: enum, values: [planning, active, done, archived], required: true, desc: "状态"}
+      description: {type: text, desc: "项目描述"}
+      owner:       {type: string, desc: "负责人 Person/Expert id"}
+      start_date:  {type: date, desc: "开始"}
+      end_date:    {type: date, desc: "结束"}
+      progress:    {type: number, desc: "进度 0-100"}
+    relations:
+      - {to: Organization, type: owned_by,   cardinality: many-to-one}
+      - {to: Task,        type: contains,   cardinality: one-to-many}
+
+  Task:
+    desc: 任务（最小可执行单元）
+    properties:
+      title:         {type: string, required: true, desc: "标题"}
+      status:        {type: enum, values: [todo, doing, blocked, done], required: true, desc: "状态（受状态机约束，见 global_constraints）"}
+      priority:      {type: enum, values: [low, medium, high, urgent], desc: "优先级"}
+      assignee:      {type: string, desc: "执行人 Expert/Person id"}
+      due:           {type: date, desc: "截止"}
+      estimate_hours: {type: number, desc: "预估工时"}
+      blockers:      {type: list, desc: "阻塞项（引用其他 Task id）"}
+      description:   {type: text, desc: "描述"}
+      created_at:    {type: datetime, desc: "创建时间"}
+    relations:
+      - {to: Project,  type: part_of,      cardinality: many-to-one}
+      - {to: Expert,  type: assigned_to,  cardinality: many-to-one}
+      - {to: Invoice, type: billed_by,    cardinality: many-to-one, desc: "任务可关联票据"}
+
+  Goal:
+    desc: 目标（量化意图，可被决策层回写）
+    properties:
+      title:       {type: string, required: true, desc: "目标描述"}
+      metric:      {type: string, desc: "衡量指标"}
+      target:      {type: number, desc: "目标值"}
+      current:     {type: number, desc: "当前值"}
+      deadline:    {type: date, desc: "期限"}
+    relations:
+      - {to: Organization, type: set_by, cardinality: many-to-one}
+
+  Event:
+    desc: 事件（时间锚点，如会议 / 申报 / 交付）
+    properties:
+      title:       {type: string, required: true, desc: "事件标题"}
+      at:          {type: datetime, required: true, desc: "发生时间（不得早于 created_at，见约束）"}
+      type:        {type: string, desc: "事件类型"}
+      attendees:   {type: list, desc: "参与人"}
+      notes:       {type: text, desc: "纪要"}
+      created_at:  {type: datetime, desc: "创建时间"}
+    relations:
+      - {to: Organization, type: occurs_at, cardinality: many-to-one}
+
+  Document:
+    desc: 文档（合同 / 报告 / 资料）
+    properties:
+      title:       {type: string, required: true, desc: "标题"}
+      kind:        {type: string, desc: "类型：合同/报告/资料"}
+      uri:         {type: string, desc: "存储地址"}
+      content_ref: {type: string, desc: "外部内容引用（大文本不入库，仅引用）"}
+      tags:        {type: list, desc: "标签"}
+      created_at:  {type: datetime, desc: "创建"}
+    relations:
+      - {to: Organization, type: belongs_to, cardinality: many-to-one}
+
+  Account:
+    desc: 账户（银行 / 平台 / 软件账号）
+    properties:
+      name:        {type: string, required: true, desc: "账户名"}
+      type:        {type: enum, values: [bank, platform, saas, other], desc: "账户类型"}
+      bank_no:     {type: string, pii: true, desc: "银行卡号，PII"}
+      balance:     {type: number, desc: "余额"}
+      currency:    {type: string, desc: "币种，默认 CNY"}
+    relations:
+      - {to: Organization, type: held_by, cardinality: many-to-one}
+
+  # ===== 微数扩展实体（跨行业通用）=====
+  Department:
+    desc: 部门（OPC 默认 12 部门；企业可增删）
+    properties:
+      name:        {type: string, required: true, desc: "部门名"}
+      code:        {type: string, desc: "部门代码，如 finance"}
+      description: {type: text, desc: "职责描述"}
+      lead_id:     {type: string, desc: "部门负责人 Expert id"}
+    relations:
+      - {to: Organization, type: part_of,      cardinality: many-to-one}
+      - {to: Expert,      type: staffed_by,   cardinality: one-to-many}
+
+  Expert:
+    desc: AI 员工 / 专家（映射到某部门，WorkBuddy 专家团成员）
+    properties:
+      name:        {type: string, required: true, desc: "专家名"}
+      domain:      {type: string, desc: "职能域，如 财务/法务"}
+      skill_ref:   {type: string, desc: "对应 experts-template/ 下模板 slug"}
+      dept_code:   {type: string, desc: "所属部门代码"}
+      status:      {type: enum, values: [active, idle], desc: "状态"}
+    relations:
+      - {to: Department, type: serves,       cardinality: many-to-one}
+      - {to: Task,      type: executes,     cardinality: many-to-many}
+
+  Invoice:
+    desc: 票据（发票 / 票据影像）—— PII 高危，强护栏
+    properties:
+      invoice_no:  {type: string, required: true, desc: "发票/票据号"}
+      amount:      {type: number, desc: "金额"}
+      issued_on:   {type: date, desc: "开票日期"}
+      payer:       {type: string, desc: "付款方"}
+      payee:       {type: string, desc: "收款方"}
+      tax_no:      {type: string, pii: true, desc: "税号，PII"}
+      image_ref:   {type: string, pii: true, desc: "影像外部引用（不存明文）"}
+      status:      {type: enum, values: [draft, issued, paid], desc: "状态"}
+    relations:
+      - {to: Organization, type: issued_by,   cardinality: many-to-one}
+      - {to: Task,        type: related_to,   cardinality: many-to-one}
+    pii_guard: strict
+
+  Customer:
+    desc: 客户（个人或企业）
+    properties:
+      name:        {type: string, required: true, desc: "客户名"}
+      id_card:     {type: string, pii: true, desc: "身份证号，PII（个人客户）"}
+      tier:        {type: enum, values: [lead, active, vip, churned], desc: "客户分层"}
+      contact:     {type: string, pii: true, desc: "联系方式"}
+      company:     {type: string, desc: "所属企业（企业客户）"}
+    relations:
+      - {to: Organization, type: patronizes,  cardinality: many-to-one}
+
+  Policy:
+    desc: 政策（天津税务 / 社保 / OPC 扶持 / 电商法等）
+    properties:
+      title:         {type: string, required: true, desc: "政策标题"}
+      category:      {type: enum, values: [tax, social_security, company_reg, ecommerce_law, opc_support, other], desc: "类别"}
+      scope:         {type: string, desc: "适用地区/行业"}
+      effective_date: {type: date, desc: "生效日"}
+      source:        {type: string, desc: "出处链接/文号"}
+      summary:       {type: text, desc: "要点摘要"}
+    relations:
+      - {to: Organization, type: applies_to,  cardinality: many-to-many}
+
+  # ── 微数补充基础实体（2026-08-15 补齐，供 24 部门扩展动作 / 制造业 pack 引用，均为 base 层）──
+  Contract:
+    desc: 合同 / 协议（采购 / 投资 / 客户等）
+    properties:
+      title:       {type: string, required: true, desc: "合同标题"}
+      party_a:     {type: string, desc: "甲方（组织 id）"}
+      party_b:     {type: string, desc: "乙方（组织 id）"}
+      amount:      {type: number, desc: "合同金额"}
+      status:      {type: enum, values: [草稿, 待签, 生效, 履行中, 终止], desc: "状态"}
+      signed_on:   {type: date, desc: "签署日期"}
+    relations:
+      - {to: Organization, type: issued_by, cardinality: many-to-one}
+  Asset:
+    desc: 资产（IT / 设备 / 物料等）
+    properties:
+      name:        {type: string, required: true, desc: "资产名"}
+      category:    {type: string, desc: "类别"}
+      owner_id:    {type: string, desc: "归属组织/部门 id"}
+    relations:
+      - {to: Organization, type: held_by, cardinality: many-to-one}
+  Metric:
+    desc: 指标 / 度量（良率 / OEE / 能耗等）
+    properties:
+      name:        {type: string, required: true, desc: "指标名"}
+      value:       {type: number, desc: "数值"}
+      unit:        {type: string, desc: "单位"}
+    relations: []
+  Supplier:
+    desc: 供应商
+    properties:
+      name:        {type: string, required: true, desc: "供应商名"}
+      lead_time:   {type: integer, desc: "供货周期(天)"}
+      credit_code: {type: string, pii: true, desc: "统一社会信用代码"}
+    relations:
+      - {to: Organization, type: sourced_from, cardinality: many-to-one}
+  Product:
+    desc: 产品（实物 / 数字）
+    properties:
+      name:        {type: string, required: true, desc: "产品名"}
+      sku:         {type: string, desc: "SKU"}
+      category:    {type: string, desc: "类别"}
+    relations:
+      - {to: Organization, type: produced_by, cardinality: many-to-one}
+
+# ── 关系类型库（A1 全套 + 微数扩展，集中定义 from/to/基数/是否成环）────────
+relation_types:
+  # A1 原关系
+  - {type: owns,          from: Person,      to: Organization, cardinality: many-to-one, cyclic: false}
+  - {type: has_owner,     from: Organization,to: Person,       cardinality: one-to-many, cyclic: false}
+  - {type: assigned_to,   from: Task,        to: Expert,       cardinality: many-to-one, cyclic: false}
+  - {type: has_task,      from: Expert,      to: Task,         cardinality: one-to-many, cyclic: false}
+  - {type: member_of,     from: Person,      to: Department,   cardinality: many-to-one, cyclic: false}
+  - {type: blocks,        from: Task,        to: Task,         cardinality: many-to-many, cyclic: false, desc: "阻塞，禁止成环"}
+  - {type: depends_on,    from: Task,        to: Task,         cardinality: many-to-many, cyclic: false, desc: "依赖，禁止成环"}
+  - {type: mentions,      from: Document,    to: Organization, cardinality: many-to-many, cyclic: false}
+  # 微数扩展关系
+  - {type: employs,       from: Organization,to: Person,       cardinality: one-to-many, cyclic: false}
+  - {type: belongs_to,    from: Person,      to: Department,   cardinality: many-to-one, cyclic: false}
+  - {type: has,           from: Organization,to: Department,   cardinality: one-to-many, cyclic: false}
+  - {type: holds,         from: Organization,to: Account,      cardinality: one-to-many, cyclic: false}
+  - {type: owned_by,      from: Project,     to: Organization, cardinality: many-to-one, cyclic: false}
+  - {type: contains,      from: Project,     to: Task,         cardinality: one-to-many, cyclic: false}
+  - {type: part_of,       from: Task,        to: Project,      cardinality: many-to-one, cyclic: false}
+  - {type: set_by,        from: Goal,        to: Organization, cardinality: many-to-one, cyclic: false}
+  - {type: occurs_at,     from: Event,       to: Organization, cardinality: many-to-one, cyclic: false}
+  - {type: belongs_to_org,from: Document,    to: Organization, cardinality: many-to-one, cyclic: false}
+  - {type: held_by,       from: Account,     to: Organization, cardinality: many-to-one, cyclic: false}
+  - {type: staffed_by,    from: Department,  to: Expert,       cardinality: one-to-many, cyclic: false}
+  - {type: serves,        from: Expert,      to: Department,   cardinality: many-to-one, cyclic: false}
+  - {type: executes,      from: Expert,      to: Task,         cardinality: many-to-many, cyclic: false}
+  - {type: billed_by,     from: Task,        to: Invoice,      cardinality: many-to-one, cyclic: false}
+  - {type: issued_by,     from: Invoice,     to: Organization, cardinality: many-to-one, cyclic: false}
+  - {type: related_to,    from: Invoice,     to: Task,         cardinality: many-to-one, cyclic: false}
+  - {type: patronizes,    from: Customer,    to: Organization, cardinality: many-to-one, cyclic: false}
+  - {type: applies_to,    from: Policy,      to: Organization, cardinality: many-to-many, cyclic: false}
+  - {type: owns_company,  from: Person,      to: Organization, cardinality: one-to-one,  cyclic: false, desc: "实控关系"}
+  - {type: manages,       from: Expert,      to: Department,   cardinality: many-to-one, cyclic: false, desc: "部门管理"}
+
+# ── 全局约束库（A1 模式：写入前拦截；合并 PII 护栏）────────
+global_constraints:
+  - id: no_plaintext_credential
+    desc: "Credential/密码类字段严禁存明文，只存外部加密引用"
+    action: block
+    applies_to: [Account.password, Document.secret]
+  - id: task_status_machine
+    desc: "Task.status 仅允许 todo→doing→blocked→done 合法迁移；done 不可回退"
+    action: block
+    applies_to: [Task.status]
+    transitions:
+      todo:   [doing, blocked]
+      doing:  [blocked, done]
+      blocked: [doing, done]
+      done:   []
+  - id: event_time_order
+    desc: "Event.at 不得早于其 created_at"
+    action: block
+    applies_to: [Event.at]
+  - id: no_circular_dependency
+    desc: "Task.blocks / Task.depends_on 不得成环"
+    action: block
+    applies_to: [Task.blocks, Task.depends_on]
+  - id: no_pii_plaintext
+    desc: "身份证/银行卡/票据影像/税号等 PII 不得存明文；只留外部加密引用索引"
+    action: block
+    applies_to: [Customer.id_card, Account.bank_no, Customer.contact, Invoice.image_ref, Invoice.tax_no, Person.id_card, Person.phone]
+  - id: no_circular_department
+    desc: "部门 part_of 归属不得成环"
+    action: block
+    applies_to: [Department.part_of]
+  - id: required_fields
+    desc: "实体必填字段缺失则拒写"
+    action: block
+  - id: legal_form_enum
+    desc: "Organization.legal_form 必须是枚举值之一"
+    action: block
+    applies_to: [Organization.legal_form]
+
+# ── 写入前约束校验入口（语义层 → 由 scripts/init.py + 写入路径复用）────────
+validation:
+  rules:
+    - {id: no_pii_plaintext,        action: block}
+    - {id: required_fields,         action: block}
+    - {id: no_circular_department,  action: block}
+    - {id: legal_form_enum,         action: block}
+    - {id: no_plaintext_credential, action: block}
+    - {id: task_status_machine,     action: block}
+    - {id: event_time_order,        action: block}
+    - {id: no_circular_dependency,  action: block}
+  cardinality:
+    - {from: Department, to: Organization, type: part_of,    max: 1}
+    - {from: Expert,    to: Department,   type: serves,     max: 1}
+    - {from: Task,      to: Project,      type: part_of,    max: 1}
+
+# ── 与 packs 的接口约定 ────────────────────────────────
+# packs/*.yaml 可补充行业特有实体（如 ecommerce: Product/Order/Shop）
+# 并引用本模板实体（如 Invoice/Customer）扩展关系，不得重复定义本模板已有实体
+extension_contract:
+  allow_extra_entity_types: true
+  must_reference_base: [Organization, Department, Expert, Invoice, Customer]
+  forbid_override: [Person, Organization, Account]

@@ -1,49 +1,63 @@
-## Description: <br>
-Google Play Developer API (Android Publisher) integration with managed OAuth for managing apps, subscriptions, in-app purchases, and reviews. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents in managing Google Play apps, subscriptions, in-app products, purchases, and reviews through a user-authorized Maton connection.
 
-## Publisher: <br>
-[byungkyu](https://clawhub.ai/user/byungkyu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[byungkyu](https://clawhub.ai/user/byungkyu)
 
-## Use Case: <br>
-Developers and app operators use this skill to interact with Google Play Console programmatically through Maton-managed OAuth, including listing and updating in-app products, subscriptions, purchases, reviews, and app edits. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a Maton API key and access to a connected Google Play account. <br>
-Mitigation: Keep MATON_API_KEY private, scope the connected account to the minimum permissions needed, and install only when Google Play access through Maton is intended. <br>
-Risk: Create, update, delete, refund, cancel, reply, and commit operations can change Google Play resources or account state. <br>
-Mitigation: Confirm the target resource, selected Maton connection, request body, and intended effect before running any write operation. <br>
-Risk: Multiple Google Play connections can route requests to the wrong account. <br>
-Mitigation: Use the Maton-Connection header whenever more than one connection exists and verify the connected Google Play account before acting. <br>
+## Use Case:
 
+Developers and app operators use this skill to query and manage Google Play commerce, reviews, and app data through their authorized account. It also describes optional scheduled or event-triggered automation of approved actions.
 
-## Reference(s): <br>
-- [Google Play skill on ClawHub](https://clawhub.ai/byungkyu/google-play) <br>
-- [Android Publisher API Overview](https://developers.google.com/android-publisher) <br>
-- [In-App Products API](https://developers.google.com/android-publisher/api-ref/rest/v3/inappproducts) <br>
-- [Subscriptions API](https://developers.google.com/android-publisher/api-ref/rest/v3/monetization.subscriptions) <br>
-- [Purchases API](https://developers.google.com/android-publisher/api-ref/rest/v3/purchases.products) <br>
-- [Reviews API](https://developers.google.com/android-publisher/api-ref/rest/v3/reviews) <br>
-- [Edits API](https://developers.google.com/android-publisher/api-ref/rest/v3/edits) <br>
-- [Maton](https://maton.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, code, configuration, API calls] <br>
-**Output Format:** [Markdown with inline bash, Python, JavaScript, HTTP, and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires MATON_API_KEY and a connected Google Play account through Maton.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release evidence) <br>
+Risk: Authorized writes can change live app commerce and review data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Start with read-only calls and confirm each write and new connection with the user.
+
+Risk: Automations and destinations can repeatedly act on or forward account data.
+
+Mitigation: Review functions, triggers, destinations, and forwarded fields before enabling them; know how to disable or delete them.
+
+Risk: Long-lived API keys can expose account access if mishandled.
+
+Mitigation: Prefer OAuth; never expose credentials in logs, commands, or destination settings.
+
+## Reference(s):
+
+- [ClawHub Google Play skill](https://clawhub.ai/byungkyu/skills/google-play)
+- [Android Publisher API overview](https://developers.google.com/android-publisher)
+- [Google Play subscriptions API](https://developers.google.com/android-publisher/api-ref/rest/v3/monetization.subscriptions)
+- [Google Play reviews API](https://developers.google.com/android-publisher/api-ref/rest/v3/reviews)
+- [Maton documentation](https://docs.maton.ai)
+- [Maton CLI manual](https://cli.maton.ai/manual)
+- [Time trigger reference](references/time/triggers.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Code, Configuration guidance]
+
+**Output Format:** [Markdown with command and code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Google Play API responses depend on the authorized account and requested operation.]
+
+## Skill Version(s):
+
+1.2.5 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

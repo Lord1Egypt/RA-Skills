@@ -1,6 +1,16 @@
 {
-  "ownerId": "kn77zzg9p845zanvy6vrf76k7d81mcnm",
-  "slug": "micro-change-helper",
-  "version": "1.0.1",
-  "publishedAt": 1781978037298
+  "name": "micro-change-helper",
+  "version": "0.1.0",
+  "status": "draft",
+  "entry": "SKILL.md",
+  "created": "2026-03-25",
+  "updated": "2026-03-25",
+  "publishable": true,
+  "published": false,
+  "author": "Claude Code",
+  "source": [
+    "书评/5%的改变.md",
+    "高价值内容总榜_Top20_2026-03-25.md",
+    "5个核心Skill定义_2026-03-25.md"
+  ]
 }

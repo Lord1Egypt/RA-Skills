@@ -1,44 +1,57 @@
-## Description: <br>
-Turns exported social media comment CSVs, especially Xiaohongshu and 社媒助手 exports, into VOC insight, growth analysis, Feishu-ready operating structures, and boss-ready HTML report delivery prompts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Turn exported social media comments - especially Xiaohongshu/小红书 CSV exports from 社媒助手 - into VOC insight, growth analysis, Feishu-ready operating structures, and boss-ready HTML report delivery links.
 
-## Publisher: <br>
-[happyandlg123321-maker](https://clawhub.ai/user/happyandlg123321-maker) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[happyandlg123321-maker](https://clawhub.ai/user/happyandlg123321-maker)
 
-## Use Case: <br>
-External operators, founders, marketing teams, growth teams, and agent users use this skill to turn social-comment CSV exports into customer insight, commercial opportunity scoring, growth recommendations, Feishu/Bitable schemas, and executive HTML report delivery workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles social-media comment exports that may contain identifiers such as IP addresses, profile links, and user IDs. <br>
-Mitigation: Use it only with authorized datasets and remove or mask unnecessary identifiers before analysis. <br>
-Risk: The workflow can ask an agent to write files or start a local preview service for HTML report delivery. <br>
-Mitigation: Require confirmation of the exact file path and preview-server settings before writing files or starting a service. <br>
+## Use Case:
 
+External operators, founders, social media teams, marketing teams, and AI delivery users use this skill to turn exported social comment CSVs into VOC analysis, commercial opportunity scoring, Feishu/Bitable operating structure, growth recommendations, and executive-ready report delivery prompts.
 
-## Reference(s): <br>
-- [VOC Growth Report ClawHub Listing](https://clawhub.ai/happyandlg123321-maker/voc-growth-report) <br>
-- [Demo Output Summary](artifact/references/demo-output-summary.md) <br>
-- [Executive HTML Report Structure](artifact/references/executive-report-structure.md) <br>
-- [Feishu Bitable Comment Library Schema](artifact/references/feishu-bitable-schema.md) <br>
-- [Trae / ACP Delivery Prompt Template](artifact/references/trae-delivery-prompt.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Code, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown guidance, prompt blocks, schemas, and HTML report delivery instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May ask agents to save generated HTML files and start a local preview service when the user requests a report artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: Social media comment exports can contain personal data such as IP addresses, user IDs, profile links, timestamps, and quoted comments.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Redact or minimize personal data before analysis, include only necessary evidence in reports, and apply retention and access controls to any Feishu/Bitable storage.
+
+Risk: Generated HTML reports and preview links can expose sensitive comment data if served broadly or shared without controls.
+
+Mitigation: Keep reports local or access-controlled, bind preview servers to localhost, and stop preview servers after review.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/happyandlg123321-maker/skills/voc-growth-report)
+- [Demo Output Summary](references/demo-output-summary.md)
+- [Executive HTML Report Structure](references/executive-report-structure.md)
+- [Feishu Bitable Comment Library Schema](references/feishu-bitable-schema.md)
+- [Trae / ACP Delivery Prompt Template](references/trae-delivery-prompt.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance, structured schemas, prompt packs, and HTML report delivery instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce local file paths and localhost preview links when asked to deliver an HTML report artifact.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,80 @@
+<!doctype html>
+<!--
+================================================================
+  P2 母版/转场/音视频夹具页(2026-07-27)
+  覆盖:
+    ① video 元素(poster 属性 → 截图做封面;src 指向本地视频 → addMedia 嵌入)
+    ② audio 元素(src 指向本地音频 → addMedia 嵌入)
+    ③ 母版页码/页脚(config.master 开启时由 defineSlideMaster 渲染)
+  转场由 playlist.json 的 transition 字段控制(非页面内属性)。
+  自包含(不引外部 CSS),L1/L2/L3 三层基线锚定。
+  注:video/audio src 指向的媒体文件不在夹具中(避免二进制入库),
+      此页主要锚定 media 基元的提取路径;实际嵌入需用户提供媒体文件。
+================================================================
+-->
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>P2 母版/转场/音视频夹具页</title>
+<style>
+  html,body{margin:0;padding:0;overflow:hidden;}
+</style>
+</head>
+<body>
+<div class="slide-container" style="position:relative;width:1920px;height:1080px;overflow:hidden;background:#FFFFFF;font-family:'Noto Sans SC',Arial,sans-serif;">
+
+  <!-- 页头 -->
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:100px;top:60px;width:1200px;height:50px;font-size:36px;font-weight:700;color:#0A2E5C;line-height:50px;">P2 2.1/2.2/2.6 母版·转场·音视频</div>
+  <div data-object="true" data-object-type="shape" style="position:absolute;left:100px;top:120px;width:1720px;height:2px;background:#D5D5D0;"></div>
+
+  <!-- ============================================ -->
+  <!-- 1. video 元素(poster + 占位 src)           -->
+  <!-- ============================================ -->
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:100px;top:160px;width:800px;height:40px;font-size:24px;font-weight:600;color:#333;line-height:40px;">① video 元素</div>
+
+  <!-- video:有 poster 属性(src 指向不存在的文件,仅测试提取路径) -->
+  <video data-object="true" poster="../assets/sample.png"
+         style="position:absolute;left:100px;top:210px;width:640px;height:360px;background:#000;border-radius:8px;z-index:1;">
+  </video>
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:100px;top:580px;width:640px;height:30px;font-size:14px;color:#666;text-align:center;">video + poster(封面截图)</div>
+
+  <!-- video:无 poster(将截取浏览器渲染帧) -->
+  <video data-object="true" src="demo.mp4"
+         style="position:absolute;left:820px;top:210px;width:640px;height:360px;background:#1A1A2E;border-radius:8px;z-index:1;">
+  </video>
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:820px;top:580px;width:640px;height:30px;font-size:14px;color:#666;text-align:center;">video + src(无 poster,截屏做封面)</div>
+
+  <!-- ============================================ -->
+  <!-- 2. audio 元素                                -->
+  <!-- ============================================ -->
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:100px;top:640px;width:800px;height:40px;font-size:24px;font-weight:600;color:#333;line-height:40px;">② audio 元素</div>
+
+  <!-- audio:有 src(渲染为小播放器图标) -->
+  <audio data-object="true" src="narration.mp3"
+         style="position:absolute;left:100px;top:700px;width:400px;height:60px;background:#F5F7FA;border:1px solid #E5E7EB;border-radius:8px;z-index:1;">
+  </audio>
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:100px;top:770px;width:400px;height:24px;font-size:14px;color:#666;text-align:center;">audio + src(addMedia 嵌入)</div>
+
+  <!-- ============================================ -->
+  <!-- 3. 母版说明(页码/页脚由 config.master 控制) -->
+  <!-- ============================================ -->
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:600px;top:640px;width:800px;height:40px;font-size:24px;font-weight:600;color:#333;line-height:40px;">③ 母版(config.master)</div>
+
+  <div data-object="true" data-object-type="shape" style="position:absolute;left:600px;top:700px;width:1200px;height:280px;background:#F8F9FA;border-radius:12px;border:1px solid #E5E7EB;"></div>
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:640px;top:730px;width:1120px;height:200px;font-size:18px;color:#333;line-height:1.8;">
+    <b>母版</b>由 <code>slides.config.json</code> 的 <code>master</code> 字段控制:<br>
+    • <code>{"master":{"pageNumbers":true}}</code> → 右下角自动页码<br>
+    • <code>{"master":{"footer":"© 2026 Company"}}</code> → 底部居中页脚<br>
+    • <code>{"master":{"pageNumbers":true,"footer":"机密","footerColor":"999999"}}</code> → 组合<br><br>
+    <b>转场</b>由 <code>playlist.json</code> 的 transition 字段控制:<br>
+    • <code>{"file":"01.html","transition":"fade"}</code> → 该页淡入<br>
+    • 支持:fade / push / wipe / cover / split
+  </div>
+
+  <template data-slide-notes>
+P2 2.1/2.2/2.6 夹具:① video(poster 截图做封面 / src addMedia 嵌入);② audio(addMedia 嵌入);③ 母版(config.master.pageNumbers/footer);转场(playlist transition 字段)。
+母版和转场均由配置控制,非页面内属性——母版用 slides.config.json,转场用 playlist.json。
+  </template>
+</div>
+</body>
+</html>

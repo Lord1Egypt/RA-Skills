@@ -1,41 +1,53 @@
-## Description: <br>
-Compares static April 2026 GPU instance pricing and specifications across AWS, GCP, Azure, Volcengine, and Alibaba Cloud, with filters for GPU model, cloud provider, and region. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Compares static GPU instance pricing and specifications across AWS, GCP, Azure, Volcengine, and Alibaba Cloud with filters for GPU model, provider, region, and output format.
 
-## Publisher: <br>
-[dashiming](https://clawhub.ai/user/dashiming) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dashiming](https://clawhub.ai/user/dashiming)
 
-## Use Case: <br>
-Sales engineers, cloud buyers, and AI infrastructure teams use this skill to compare GPU instance prices and specs across major cloud providers and export filtered results for analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Static pricing data may be mistaken for current cloud-provider quotes. <br>
-Mitigation: Treat results as reference data and verify prices against official provider pricing pages before business decisions. <br>
-Risk: Exporting to a chosen output path can replace an existing file at that path. <br>
-Mitigation: Choose output paths deliberately and review exported CSV or text files before sharing. <br>
+## Use Case:
 
+Developers, sales engineers, and cloud cost analysts use this skill to compare GPU cloud instance options and export pricing or specification data for vendor analysis.
 
-## Reference(s): <br>
-- [GPU Pricing Reference Data](references/gpu_pricing.md) <br>
-- [ClawHub release page](https://clawhub.ai/dashiming/pans-competitor-compare) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, code] <br>
-**Output Format:** [Console table, JSON, or CSV; optional file export when an output path is supplied.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses static April 2026 pricing reference data and does not fetch live cloud-provider prices.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Static pricing data may be stale or differ from current provider quotes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify current cloud-provider pricing before using the comparison for purchasing or budgeting decisions.
+
+Risk: The tool can write an output file when a user supplies --output.
+
+Mitigation: Choose an intended output path and review generated JSON or CSV files before reuse.
+
+## Reference(s):
+
+- [GPU Pricing Reference Data](references/gpu_pricing.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, csv, files, shell commands]
+
+**Output Format:** [Plain text tables, JSON arrays, or CSV, with optional file export.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static pricing data last updated April 2026; results can be filtered by GPU model, provider, region, and output mode.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,17 @@
+{
+  "type": "function",
+  "function": {
+    "name": "_company_expert_get",
+    "description": "Get the complete configuration of a team expert by ID, including expert and skillList. Call this method before editing an expert so fields the user did not request to change are preserved.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Expert ID. Required."
+        }
+      },
+      "required": ["id"]
+    }
+  }
+}

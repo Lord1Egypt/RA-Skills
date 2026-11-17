@@ -1,46 +1,62 @@
-## Description: <br>
-Provides ClickHouse schema, query, and ingestion review guidance using 28 documented best-practice rules. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides ClickHouse schema, query, and ingestion review guidance using 28 best-practice rules for table design, JOINs, materialized views, mutations, partitioning, data types, and batch writes.
 
-## Publisher: <br>
-[shaniu001](https://clawhub.ai/user/shaniu001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shaniu001](https://clawhub.ai/user/shaniu001)
 
-## Use Case: <br>
-Developers and database engineers use this skill to review ClickHouse CREATE TABLE and ALTER TABLE statements, SELECT and JOIN queries, materialized views, partitioning, and ingestion strategies. It helps produce prioritized findings and recommendations grounded in bundled ClickHouse rules. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Suggested schema, mutation, or data-deletion changes could be harmful if applied directly to production databases. <br>
-Mitigation: Review each recommendation with a database owner and test changes in staging before production rollout. <br>
-Risk: ClickHouse guidance can depend on workload shape, data volume, engine choice, and version-specific behavior. <br>
-Mitigation: Validate recommendations against the target cluster version, representative data, and observed query or ingestion metrics. <br>
+## Use Case:
 
+Developers and database engineers use this skill to review ClickHouse CREATE TABLE, ALTER TABLE, SELECT, JOIN, aggregation, ingestion, mutation, and configuration decisions. It produces prioritized findings and recommendations grounded in the bundled rule files and ClickHouse documentation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/shaniu001/clickhouse-best-practices) <br>
-- [ClickHouse best practices](https://clickhouse.com/docs/best-practices) <br>
-- [Selecting an insert strategy](https://clickhouse.com/docs/best-practices/selecting-an-insert-strategy) <br>
-- [Avoid mutations](https://clickhouse.com/docs/best-practices/avoid-mutations) <br>
-- [Use data skipping indices where appropriate](https://clickhouse.com/docs/best-practices/use-data-skipping-indices-where-appropriate) <br>
-- [Minimize and optimize JOINs](https://clickhouse.com/docs/best-practices/minimize-optimize-joins) <br>
-- [Using materialized views](https://clickhouse.com/docs/best-practices/using-materialized-views) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown review with rule citations, findings, recommendations, and SQL or code examples where relevant] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: Generated database changes could include destructive or expensive ClickHouse operations such as DROP PARTITION, DELETE, TTL, ALTER, or table migration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and test generated SQL against representative data before execution; require operator approval for destructive or migration steps.
+
+Risk: Responses may lean Chinese unless the host agent or user asks otherwise, which can reduce review clarity for teams expecting another language.
+
+Mitigation: Ask for the preferred review language before production use and request English output where required.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/shaniu001/skills/clickhouse-best-practices)
+- [ClickHouse Best Practices](https://clickhouse.com/docs/best-practices)
+- [Choosing a Primary Key](https://clickhouse.com/docs/best-practices/choosing-a-primary-key)
+- [Choosing a Partitioning Key](https://clickhouse.com/docs/best-practices/choosing-a-partitioning-key)
+- [Select Data Types](https://clickhouse.com/docs/best-practices/select-data-types)
+- [Minimize and Optimize JOINs](https://clickhouse.com/docs/best-practices/minimize-optimize-joins)
+- [Selecting an Insert Strategy](https://clickhouse.com/docs/best-practices/selecting-an-insert-strategy)
+- [Avoid Mutations](https://clickhouse.com/docs/best-practices/avoid-mutations)
+- [Use Data Skipping Indices Where Appropriate](https://clickhouse.com/docs/best-practices/use-data-skipping-indices-where-appropriate)
+- [Using Materialized Views](https://clickhouse.com/docs/best-practices/using-materialized-views)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with SQL, Python, shell, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Review output follows a structured checklist of checked rules, findings, compliant items, and prioritized recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

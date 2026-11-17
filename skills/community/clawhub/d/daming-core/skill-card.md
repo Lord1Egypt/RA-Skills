@@ -1,48 +1,65 @@
-## Description: <br>
-Provides a Python-based task management system that models task intake, review, resource budgeting, scheduling, ComfyUI execution, monitoring, and audit logging through a Ming court metaphor. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates a court-themed task workflow for receiving commands, auditing intent, managing token budgets, scheduling ComfyUI image and video jobs, and recording monitoring and audit evidence.
 
-## Publisher: <br>
-[fenzyh](https://clawhub.ai/user/fenzyh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fenzyh](https://clawhub.ai/user/fenzyh)
 
-## Use Case: <br>
-Developers and operators use this skill to create, approve, budget, schedule, execute, monitor, and audit task workflows, including image or video generation through a configured ComfyUI endpoint. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: External workflow execution can submit work to a configured ComfyUI server. <br>
-Mitigation: Use only trusted ComfyUI endpoints, restrict network access, and review endpoint configuration before enabling execution. <br>
-Risk: A downloaded output path can write outside the intended task folder. <br>
-Mitigation: Fix filename containment and sanitize downloaded filenames before running the scheduler unattended. <br>
-Risk: Task archives and logs may contain sensitive local workflow data. <br>
-Mitigation: Apply access controls, retention limits, and log review for active_tasks and logs directories. <br>
-Risk: Bundled workflow defaults may contain unsuitable prompt content. <br>
-Mitigation: Replace bundled prompt defaults with neutral, deployment-appropriate workflow prompts before use. <br>
+## Use Case:
 
+Developers and operators use this skill to run an auditable task pipeline that turns user instructions into reviewed, budgeted, scheduled ComfyUI jobs. It records task archives, token ledgers, execution status, monitoring events, and audit reports for follow-up review.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/fenzyh/daming-core) <br>
-- [README](README.md) <br>
-- [Skill documentation](SKILL.md) <br>
-- [JinYiWei monitoring guide](JINYIWEI_GUIDE.md) <br>
-- [Hybrid architecture guide](HYBRID_ARCHITECTURE.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown, Python snippets, shell commands, JSON, and YAML configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local task archives, logs, audit records, and ComfyUI output files when executed by an agent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: ClawHub release evidence) <br>
+Risk: Weak filesystem scoping could leak local JSON data or write files outside intended task folders.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run with a tightly scoped PROJECT_ROOT, validate task IDs, and generate safe local output filenames.
+
+Risk: External ComfyUI or agent connections could expose data or accept untrusted traffic.
+
+Mitigation: Use only trusted ComfyUI servers, require HTTPS and authentication, and keep external agent endpoints narrowly configured.
+
+Risk: The recurring scheduler can process queued tasks automatically before task approval and rate limits are in place.
+
+Mitigation: Disable the recurring scheduler until explicit task approval, rate limits, and operational controls are configured.
+
+Risk: Workflow files and dependencies may introduce unsafe behavior if accepted broadly or left stale.
+
+Mitigation: Restrict workflow files to an allowlisted workflows directory and update or remove risky dependencies before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fenzyh/skills/daming-core)
+- [README.md](artifact/README.md)
+- [SKILL.md](artifact/SKILL.md)
+- [HYBRID_ARCHITECTURE.md](artifact/HYBRID_ARCHITECTURE.md)
+- [JINYIWEI_GUIDE.md](artifact/JINYIWEI_GUIDE.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [JSON files, Markdown reports, console text, and Python or shell usage examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write task archives, token ledgers, execution records, statistics, logs, and downloaded ComfyUI output files under the configured project root.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence; artifact skill.json reports 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

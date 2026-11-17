@@ -1,44 +1,61 @@
-## Description: <br>
-Automates weekly memory compression per agent in OpenClaw, consolidating daily notes into domain-specific long-term files without manual setup. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Zero-config memory consolidation for multi-agent OpenClaw deployments that auto-discovers agents and registers staggered cron tasks with state tracking, deduplication, and domain-aware extraction.
 
-## Publisher: <br>
-[bensk2001](https://clawhub.ai/user/bensk2001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bensk2001](https://clawhub.ai/user/bensk2001)
 
-## Use Case: <br>
-Developers and OpenClaw operators use this skill to install recurring per-agent memory consolidation tasks that read older daily notes, extract durable facts, and append them to long-term memory files. It is intended for multi-agent OpenClaw deployments that need automated state tracking, deduplication, and domain-aware extraction. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Recurring jobs automatically read older daily notes and persist extracted personal profile information into long-term memory files. <br>
-Mitigation: Back up agent workspaces before installing, review generated USER.md, IDENTITY.md, SOUL.md, and MEMORY.md entries, and remove or correct sensitive or inaccurate extracted content. <br>
-Risk: The installer discovers all OpenClaw agents with workspaces and creates scheduled tasks for each one. <br>
-Mitigation: Edit the installer or delete unwanted cron tasks after installation so only intended agents run memory compression. <br>
-Risk: Delivery summaries can be sent to the wrong external recipient if channel or recipient settings are incorrect. <br>
-Mitigation: Verify the delivery channel, recipient, and account values before installation and confirm notification behavior after the first run. <br>
+## Use Case:
 
+Developers and OpenClaw operators use this skill to install recurring per-agent memory consolidation jobs that extract durable facts from older daily notes and append them to each agent's long-term memory files.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bensk2001/per-agent-compression-universal) <br>
-- [README.md](README.md) <br>
-- [CHANGELOG.md](CHANGELOG.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Markdown, Text] <br>
-**Output Format:** [Installer-driven cron configuration with Markdown and text updates to agent memory files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates OpenClaw cron tasks, state files, processed-note folders, and delivery summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.0 (source: server release evidence and artifact frontmatter) <br>
+Risk: Installation creates recurring jobs that can process every discovered agent's private memory notes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Back up memory files before installation and manually limit or remove cron tasks for agents that should not be included.
+
+Risk: The skill appends profile-derived content to long-term memory files without a built-in review gate.
+
+Mitigation: Review generated USER.md, IDENTITY.md, SOUL.md, and MEMORY.md entries after initial runs and remove incorrect or sensitive content manually.
+
+Risk: Uninstall removes scheduled tasks but does not undo note moves or appended memory entries.
+
+Mitigation: Keep pre-install backups and verify processed notes and appended memory files before relying on uninstall as cleanup.
+
+Risk: Task summaries may be sent through configured delivery channels.
+
+Mitigation: Review DingTalk or other delivery settings during installation and use only intended recipients.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/bensk2001/skills/per-agent-compression-universal)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, configuration, markdown, text]
+
+**Output Format:** [Installer-created cron tasks plus Markdown memory entries and JSON state files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires OpenClaw CLI and jq; creates recurring per-agent cron tasks and appends to USER.md, IDENTITY.md, SOUL.md, and MEMORY.md.]
+
+## Skill Version(s):
+
+1.4.0 (source: frontmatter, skill.json, changelog, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

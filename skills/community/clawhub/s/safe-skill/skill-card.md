@@ -1,44 +1,59 @@
-## Description: <br>
-Safe Skill is a programmatic static-analysis scanner that vets AI agent skills for suspicious code, URLs, credential access, obfuscation, and permission scope. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Safe Skill is a static security scanner for AI agent skills that checks code and documentation for risky patterns, credential access, suspicious endpoints, obfuscation, and permission scope.
 
-## Publisher: <br>
-[ZJZAC](https://clawhub.ai/user/ZJZAC) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zjzac](https://clawhub.ai/user/zjzac)
 
-## Use Case: <br>
-Developers and security reviewers use Safe Skill to triage ClawHub, GitHub, or local agent skills before installation by running static scans and reviewing scored findings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release includes executable malicious fixture files for scanner tests. <br>
-Mitigation: Do not run files under tests/ as standalone programs; use the documented scan commands against explicit target paths. <br>
-Risk: The environment audit mode can inspect sensitive local OpenClaw memory, credential metadata, installed skills, and persistence locations. <br>
-Mitigation: Run --env-check only when a host audit is intended and review the target OpenClaw home path before execution. <br>
-Risk: Static analysis can miss runtime-only behavior or produce false positives for legitimate automation. <br>
-Mitigation: Use scan results as first-pass triage and manually review medium, high, or extreme findings before installing a skill. <br>
+## Use Case:
 
+Developers and agent users use Safe Skill before installing or reviewing ClawHub, GitHub, or other third-party skills to produce a first-pass security assessment and installation guidance.
 
-## Reference(s): <br>
-- [Safe Skill ClawHub page](https://clawhub.ai/ZJZAC/safe-skill) <br>
-- [README](artifact/README.md) <br>
-- [Skill instructions](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, shell commands, guidance] <br>
-**Output Format:** [Markdown or JSON security scan report with scored findings and command-line guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can write reports to files and returns process exit codes by risk level.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: frontmatter and server release evidence) <br>
+Risk: Scanner output can understate risk when target content suppresses or bypasses checks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat scan results as first-pass triage and review high-impact behavior before installation.
+
+Risk: The --env-check option can inspect local OpenClaw files, memory, installed skills, crontab, services, and PATH.
+
+Mitigation: Use --env-check only with explicit intent and run scans for unknown repositories in a constrained workspace.
+
+Risk: Static analysis can miss runtime-only behavior and does not perform network reputation checks.
+
+Mitigation: Combine scanner findings with human review and stronger isolation when higher assurance is needed.
+
+## Reference(s):
+
+- [Safe Skill ClawHub page](https://clawhub.ai/zjzac/skills/safe-skill)
+- [Artifact README](artifact/README.md)
+- [Artifact skill manifest](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands, guidance]
+
+**Output Format:** [Markdown summary with optional JSON scanner output and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Scanner exit codes indicate risk level; JSON output is available with --json.]
+
+## Skill Version(s):
+
+1.2.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

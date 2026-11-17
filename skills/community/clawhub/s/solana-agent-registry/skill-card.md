@@ -1,42 +1,57 @@
-## Description: <br>
-TypeScript SDK guidance for the 8004 Trustless Agent Registry on Solana, covering agent registration, feedback and SEAL v1, ATOM reputation, signing, indexer queries, x402 payment feedback, and skipSend server-mode patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+TypeScript SDK guidance for the 8004 Trustless Agent Registry on Solana, covering agent registration, feedback and SEAL v1, ATOM reputation, signing, indexer queries, x402 payment feedback, and skipSend server-mode patterns.
 
-## Publisher: <br>
-[MonteCrypto999](https://clawhub.ai/user/MonteCrypto999) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[montecrypto999](https://clawhub.ai/user/montecrypto999)
 
-## Use Case: <br>
-Developers and engineers use this skill to configure and use the 8004-solana TypeScript SDK for Solana agent registration, wallet-backed signing, feedback, reputation, and registry queries. It is intended for agents that need guidance for read-only registry access or write-enabled on-chain operations. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Wallet signing and on-chain registry operations can cause high-impact or irreversible changes. <br>
-Mitigation: Start on devnet, use a dedicated low-balance wallet, and manually approve every transaction, delete, transfer, or immutable metadata action. <br>
-Risk: IPFS and on-chain metadata may expose secrets or private details permanently. <br>
-Mitigation: Review all metadata before upload or submission and keep private keys, API keys, and sensitive operational details out of published content. <br>
-Risk: Dependency or RPC/indexer behavior can affect registry reads, signing flows, and feedback operations. <br>
-Mitigation: Pin and verify npm dependencies, review RPC and indexer configuration, and prefer verified on-chain reads when indexer trust is uncertain. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/MonteCrypto999/solana-agent-registry) <br>
-- [8004-solana TypeScript SDK homepage](https://github.com/QuantuLabs/8004-solana-ts) <br>
+## Use Case:
 
+Developers and agent operators use this skill to configure and use the 8004 Solana TypeScript SDK for on-chain agent registration, reputation feedback, signing, indexer-backed reads, and related registry workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with TypeScript and shell code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js and SOLANA_PRIVATE_KEY for write-enabled operations; read-only SDK setup can be used without a wallet.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; SDK version 0.6.3 from artifact frontmatter) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill asks agents to use a raw wallet private key for write-enabled Solana operations.
+
+Mitigation: Use a low-value delegated wallet, keep private keys out of broad agent environments when possible, and prefer external signing or skipSend flows.
+
+Risk: The skill includes irreversible blockchain writes, including registration, feedback, transfers, metadata deletion, and immutable metadata writes.
+
+Mitigation: Require explicit human confirmation before transfers, metadata deletion, immutable metadata writes, or other on-chain mutations.
+
+Risk: The skill relies on npm packages and indexer or RPC services for some workflows.
+
+Mitigation: Pin and review npm dependencies, use trusted RPC and indexer endpoints, and verify indexer integrity before relying on indexed data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/montecrypto999/skills/solana-agent-registry)
+- [8004 Solana TypeScript SDK homepage](https://github.com/QuantuLabs/8004-solana-ts)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown with TypeScript and bash code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only examples can run without a wallet; write-enabled examples require Node.js and a Solana private key environment variable.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata); SDK 0.6.3 (source: artifact frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

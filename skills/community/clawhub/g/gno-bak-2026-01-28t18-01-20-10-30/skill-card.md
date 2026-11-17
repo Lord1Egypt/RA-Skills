@@ -1,44 +1,60 @@
-## Description: <br>
-Search local documents, files, notes, and knowledge bases. Index directories, search with BM25/vector/hybrid, get AI answers with citations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search local documents, files, notes, and knowledge bases with keyword, semantic, and hybrid search, and generate answers with citations.
 
-## Publisher: <br>
-[nicoataiza](https://clawhub.ai/user/nicoataiza) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[nicoataiza](https://clawhub.ai/user/nicoataiza)
 
-## Use Case: <br>
-Developers and knowledge workers use this skill to index local folders, search files and notes with keyword, vector, or hybrid retrieval, and ask grounded questions over local documents. It also helps configure a local web UI or MCP integration for document access. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Indexing broad or sensitive folders can make private documents searchable by the local tool or connected clients. <br>
-Mitigation: Index only intended folders and avoid secrets, credentials, and broad home-directory collections. <br>
-Risk: Serving a web UI for private documents can expose indexed content if bound too broadly. <br>
-Mitigation: Bind the web UI to localhost when handling private documents. <br>
-Risk: MCP write tools and administrative commands can make persistent local changes. <br>
-Mitigation: Enable MCP write tools and run reset, cleanup, or skill-install commands only when those changes are explicitly desired. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [GNO CLI Reference](cli-reference.md) <br>
-- [GNO Usage Examples](examples.md) <br>
-- [GNO MCP Installation](mcp-reference.md) <br>
-- [GNO MCP Documentation](https://www.gno.sh/docs/MCP) <br>
+## Use Case:
 
+Developers, knowledge workers, and agent users use this skill to index local document collections, search them with keyword or semantic retrieval, and retrieve or summarize relevant content with citations.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include JSON-oriented command examples when the user asks for scripting or machine-readable output.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Indexed folders and assistant integrations can expose local document contents to users or tools with access to GNO.
+
+Mitigation: Index only intended folders, review collections before connecting assistants, and confirm MCP status before use.
+
+Risk: The web UI can expose indexed documents if it is bound to a network interface.
+
+Mitigation: Run the web UI on 127.0.0.1 unless deliberate network access is required.
+
+Risk: Write-enabled or forced MCP and skill installation options can broaden access or persist configuration changes.
+
+Mitigation: Use status or dry-run style checks first, and avoid --force and --enable-write unless they are explicitly needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nicoataiza/skills/gno-bak-2026-01-28t18-01-20-10-30)
+- [GNO CLI Reference](artifact/cli-reference.md)
+- [GNO Usage Examples](artifact/examples.md)
+- [GNO MCP Installation](artifact/mcp-reference.md)
+- [GNO MCP documentation](https://www.gno.sh/docs/MCP)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and optional JSON output from GNO commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference local file paths, document URIs, citations, tags, search scores, and MCP configuration snippets.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

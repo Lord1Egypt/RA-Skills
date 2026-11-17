@@ -33,6 +33,11 @@ other creator and ask whether it is worth learning from, use
 `comparable-account-breakdown-report-template.md`. If they send their own
 profile without peer comparison, use `self-account-diagnosis-report-template.md`.
 
+For formal or deep peer-comparison reports, also apply
+`account-report-evidence-visual-contract.md`. The horizontal diagnosis should
+inherit its evidence-link, real-cover-audit, viral-asset-reuse, and
+visual-deliverable standards.
+
 ## Core Principle
 
 The report should not shame the user or flatten their account into generic
@@ -75,7 +80,8 @@ Default first round:
 - prefer active accounts with visible recent updates
 - prefer accounts with recent high-performing notes or at least one clear spike
 - match track, user audience, content format, and stage as much as possible
-- show direct profile links when available, not raw IDs
+- show direct profile links when available; keep `search-users` returned
+  `users[].id` only for follow-up profile commands
 - include follower count, total liked count, latest update, and representative
   high-performing notes when available
 
@@ -143,6 +149,11 @@ For each selected peer, include:
 | why selected | what it proves for this comparison |
 | what not to copy | hidden resources, mature-stage advantage, face/team/tech/city assets |
 
+The peer table must not be only names and IDs. When available, include direct
+creator profile links and direct representative-note links. If follower count,
+total liked count, update date, or representative-work metrics are unknown,
+mark them unknown instead of hiding the field.
+
 ### 4. Horizontal Comparison Dimensions
 
 Compare the user's account against peers across these dimensions:
@@ -152,6 +163,9 @@ Compare the user's account against peers across these dimensions:
 - **Title click reason**: keyword anchor, contradiction, result, number, time,
   question, or identity hook.
 - **Cover hierarchy**: first-eye result, second-eye identity, third-eye benefit.
+- **Real cover audit**: representative covers from the user's account and peers
+  should be compared by cover text, visual subject, composition, click hook,
+  trust evidence, and learnable/non-copyable parts when images are available.
 - **Opening / first 3 seconds**: one result or one problem before background.
 - **Speech / information speed**: fast speech can be energy, but screen
   hierarchy must slow down the user's brain.
@@ -160,6 +174,9 @@ Compare the user's account against peers across these dimensions:
 - **Proof system**: app, workflow, dashboard, knowledge base, case, data,
   before/after, customer result, or real life scene.
 - **Columnization**: whether old hits are becoming repeatable columns.
+- **Viral asset reuse**: whether the user and peers turn old hits into
+  repeatable topic/title/cover/scene assets, or only leave them as one-off
+  spikes.
 - **Comment demand**: whether comments ask for tutorial, template, software,
   address, next part, or only praise.
 - **Follow reason**: whether the homepage promises more similar value.
@@ -256,28 +273,38 @@ as Word / Feishu / HTML if the report is long. Full report structure:
    - user account vs peers across memory point, title, cover, opening, proof,
      columns, comments, follow reason, commercial path
 
-6. **Top 3 current gaps**
+6. **Real cover comparison**
+   - user's representative covers vs peer representative covers
+   - first-eye result, visual hammer, keyword hierarchy, trust evidence, and
+     what can be safely borrowed
+
+7. **Viral asset reuse comparison**
+   - whether each account has repeatable topic/title/cover/scene assets
+   - whether the user's own old hits are becoming columns or staying isolated
+   - what one asset should be reused next
+
+8. **Top 3 current gaps**
    - each gap must be based on comparison evidence
    - each gap includes one immediate repair rule
 
-7. **What the user should not reduce themselves to**
+9. **What the user should not reduce themselves to**
    - e.g. not only AI tools, not only technical tutorial, not only lifestyle
    - preserve their real assets
 
-8. **30-day adjustment plan**
+10. **30-day adjustment plan**
    - week 1: frontstage memory point, bio, pinned notes, cover templates
    - week 2: run 3-4 columns, at least two notes each
    - week 3: turn old hits into repeatable series
    - week 4: record data and decide what to continue
 
-9. **Next content experiments**
+11. **Next content experiments**
    - 6-12 topics, or fewer if the user asked for lightweight output
    - include title direction, cover direction, first line, keyword
 
-10. **Human closing**
-    - acknowledge that the account does not need to be pushed over
-    - lower the next action to one small test
-    - ask for one concrete return item: next title/cover, draft, note link, or
+12. **Human closing**
+   - acknowledge that the account does not need to be pushed over
+   - lower the next action to one small test
+   - ask for one concrete return item: next title/cover, draft, note link, or
       24h data
 
 ## User-Facing Style
@@ -297,9 +324,9 @@ Avoid:
 - generic advice without peer evidence
 - long peer lists without explaining why each one matters
 
-## Credit And Packaging Boundary
+## Scope And Packaging Boundary
 
-Use `search-credit-notice.md` before expanding into paid public-content lookup,
+Use `research-scope-guard.md` before expanding into online public-content lookup,
 deep profile analysis, note comments, or broad peer discovery.
 
 If the report is long, do not leave the user with a wall of chat text. Offer:

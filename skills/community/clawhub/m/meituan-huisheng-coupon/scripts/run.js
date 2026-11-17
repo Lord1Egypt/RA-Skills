@@ -8,11 +8,17 @@
  * 子命令:
  *   init                          环境初始化（Python检查 + npm检查 + pt-passport安装）
  *   get-device-token              获取设备标识
- *   get-token                     获取缓存的用户Token
+ *   get-token [--env test|prod]   获取缓存的用户Token
  *   auth-get-code [--env test|prod]  获取授权链接
  *   auth-poll-token               轮询授权结果
- *   qrcode <url>                  生成二维码PNG
+ *   qrcode <url>                  获取二维码图片URL（服务端生成）
+ *   qrcode <url> [client_id]      生成二维码PNG
  *   issue --token <t>             领券
+ *   hotword --city-id <id>        热搜词查询
+ *   search --keyword <kw> --lat <lat> --lng <lng> --token <t> --city-id <id> [--page N] [--page-size N] [--query-id Q] [--request-id R] [--max-distance-km D]
+ *   location --token <t>          获取用户近期位置
+ *   location-by-address --address <addr>  根据地址获取经纬度
+ *   order --product-id <pid> --poi-id <pid> --token <t> --city-id <id> --uuid <u> [--lat <lat>] [--lng <lng>] [--quantity N]
  *   logout                        退出登录
  *   clear-device-token            清除设备标识
  *
@@ -130,6 +136,8 @@ function parseArgs(argv) {
   }
   return { args, positional };
 }
+
+
 
 // ── 子命令实现 ───────────────────────────────────────────────
 
@@ -311,7 +319,7 @@ commands['auth-poll-token'] = function () {
   out({ ok: false, error: 'POLL_FAILED', raw: stdout, stderr: res.stderr });
 };
 
-// ── CLIGuard 签名集成 ─────────────────────────────────────
+// ── CLIGuard 签名集成 ─────────────────────────────────────────
 
 function loadCliguard() {
   const vendorPath = path.join(SCRIPTS_DIR, 'vendor', 'cliguard', 'js', 'cliguard.js');
@@ -425,6 +433,97 @@ commands.issue = function (argv) {
 };
 
 /**
+ * hotword — 热搜词查询
+ * 用法: node run.js hotword --city-id <id>
+ */
+commands.hotword = function (argv) {
+  const { args } = parseArgs(argv || []);
+  if (!args['city-id']) fail('MISSING_PARAM', { param: 'city-id' });
+  const result = runPython('hotword.py', ['--city-id', args['city-id']]);
+  out(Object.assign({ ok: !!result.success }, result));
+};
+
+/**
+ * search — 商品搜索
+ * 用法: node run.js search --keyword <kw> --lat <lat> --lng <lng> --token <t> --city-id <id>
+ *        [--page N] [--page-size N] [--query-id Q] [--request-id R] [--max-distance-km D]
+ */
+commands.search = function (argv) {
+  const { args } = parseArgs(argv || []);
+  const required = ['keyword', 'lat', 'lng', 'token', 'city-id'];
+  for (const r of required) {
+    if (!args[r]) fail('MISSING_PARAM', { param: r });
+  }
+
+  const pyArgs = [
+    '--keyword', args['keyword'],
+    '--lat', args['lat'],
+    '--lng', args['lng'],
+    '--token', args['token'],
+    '--city-id', args['city-id']
+  ];
+
+  if (args['page'])           { pyArgs.push('--page', args['page']); }
+  if (args['page-size'])      { pyArgs.push('--page-size', args['page-size']); }
+  if (args['query-id'])       { pyArgs.push('--query-id', args['query-id']); }
+  if (args['request-id'])     { pyArgs.push('--request-id', args['request-id']); }
+  if (args['max-distance-km']) { pyArgs.push('--max-distance-km', args['max-distance-km']); }
+
+  const result = runPython('product_search.py', pyArgs);
+  out(Object.assign({ ok: !!result.success }, result));
+};
+
+/**
+ * location — 获取用户近期位置
+ * 用法: node run.js location --token <t>
+ */
+commands.location = function (argv) {
+  const { args } = parseArgs(argv || []);
+  if (!args['token']) fail('MISSING_PARAM', { param: 'token' });
+  const result = runPython('get_user_recent_location.py', ['--token', args['token']]);
+  out(Object.assign({ ok: !!result.success }, result));
+};
+
+/**
+ * location-by-address — 根据地址获取经纬度
+ * 用法: node run.js location-by-address --address <addr>
+ */
+commands['location-by-address'] = function (argv) {
+  const { args } = parseArgs(argv || []);
+  if (!args['address']) fail('MISSING_PARAM', { param: 'address' });
+  const result = runPython('get_location_by_address.py', ['--address', args['address']]);
+  out(Object.assign({ ok: !!result.success }, result));
+};
+
+/**
+ * order — 下单
+ * 用法: node run.js order --product-id <pid> --poi-id <pid> --token <t> --city-id <id> --uuid <u>
+ *        [--lat <lat>] [--lng <lng>] [--quantity N]
+ */
+commands.order = function (argv) {
+  const { args } = parseArgs(argv || []);
+  const required = ['product-id', 'poi-id', 'token', 'city-id', 'uuid'];
+  for (const r of required) {
+    if (!args[r]) fail('MISSING_PARAM', { param: r });
+  }
+
+  const pyArgs = [
+    '--product-id', args['product-id'],
+    '--poi-id', args['poi-id'],
+    '--token', args['token'],
+    '--city-id', args['city-id'],
+    '--uuid', args['uuid']
+  ];
+
+  if (args['lat'])      { pyArgs.push('--lat', args['lat']); }
+  if (args['lng'])      { pyArgs.push('--lng', args['lng']); }
+  if (args['quantity']) { pyArgs.push('--quantity', args['quantity']); }
+
+  const result = runPython('order.py', pyArgs);
+  out(Object.assign({ ok: !!result.success }, result));
+};
+
+/**
  * logout — 退出登录
  */
 commands.logout = function () {
@@ -457,6 +556,11 @@ Commands:
   auth-poll-token               Poll auth result
   qrcode <url>                  Get QR code image URL (server-side)
   issue --token <t>             Issue coupons
+  hotword --city-id <id>        Hot search words
+  search --keyword <kw> --lat <lat> --lng <lng> --token <t> --city-id <id>
+  location --token <t>          Get recent location
+  location-by-address --address <addr>  Get location by address
+  order --product-id <pid> --poi-id <pid> --token <t> --city-id <id> --uuid <u>
   logout                        Logout
   clear-device-token            Clear device token`);
   process.exit(0);

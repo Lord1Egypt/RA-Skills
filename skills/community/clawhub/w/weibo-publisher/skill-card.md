@@ -1,47 +1,69 @@
-## Description: <br>
-Publish posts to Weibo (Sina Weibo) using browser automation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Publishes text posts to Weibo (Sina Weibo) with emoji, hashtags, and mentions through browser automation using a managed browser profile.
 
-## Publisher: <br>
-[azfliao](https://clawhub.ai/user/azfliao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[azfliao](https://clawhub.ai/user/azfliao)
 
-## Use Case: <br>
-External users and developers use this skill to draft, publish, schedule, and verify Weibo posts from a logged-in browser session. It is suited for text posts that may include emoji, hashtags, mentions, line breaks, and Chinese content. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can publish public Weibo posts from a logged-in browser session. <br>
-Mitigation: Require explicit user confirmation before each live or scheduled post and use only an account and browser profile approved for automation. <br>
-Risk: Unattended or recurring posting examples could publish content without timely human review. <br>
-Mitigation: Avoid hourly or trending-news automation patterns unless a human approval gate is added before publication. <br>
-Risk: Post content may be stored in a local state file after successful publication. <br>
-Mitigation: Clear, restrict, or avoid the local state file when post content is sensitive. <br>
-Risk: Moderation-evasion guidance appears in the reviewed material. <br>
-Mitigation: Do not follow sensitive-word evasion advice; revise content to comply with applicable platform rules and review requirements. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/azfliao/weibo-publisher) <br>
-- [Weibo Publishing Examples](references/EXAMPLES.md) <br>
-- [Weibo Publishing Troubleshooting](references/TROUBLESHOOTING.md) <br>
-- [Unicode Escape Guide](references/UNICODE_ESCAPE.md) <br>
-- [Quick Reference](QUICK_REFERENCE.md) <br>
+## Use Case:
 
+External users and developers use this skill when they want an agent to draft and publish text content to a logged-in Weibo account through browser automation. It is intended for posts that may include Chinese text, emoji, hashtags, mentions, and line breaks.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown instructions with inline browser automation calls, Python snippets, JSON state examples, and command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces posting workflows and verification steps; optional helper script can update local posting state.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-2.0.0 (source: server evidence release.version) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can publish to a real Weibo account, creating reputational, policy, or account-impacting consequences.
+
+Mitigation: Require explicit user confirmation before every send action and verify the intended account, content, and timing before publishing.
+
+Risk: Saved browser snapshots and weibo-state.json can contain account details or post content.
+
+Mitigation: Treat local state and snapshots as sensitive, minimize stored content, and restrict access to the workspace where they are stored.
+
+Risk: Unattended or scheduled posting can publish content without adequate review.
+
+Mitigation: Avoid unattended or hourly posting workflows unless a human approval step is enforced for each post.
+
+Risk: The optional Python script defines a posting workflow and updates state, but it does not prove that Weibo accepted or displayed the post.
+
+Mitigation: Verify publication in the browser or profile timeline before reporting success or updating posting history.
+
+Risk: Changing page element references and JSON quoting issues can cause failed or unintended browser actions.
+
+Mitigation: Take fresh browser snapshots before each action and use the documented Unicode escaping approach for Chinese content.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/azfliao/skills/weibo-publisher)
+- [Weibo Publishing Quick Reference](QUICK_REFERENCE.md)
+- [Weibo Publishing Examples](references/EXAMPLES.md)
+- [Weibo Publisher Troubleshooting](references/TROUBLESHOOTING.md)
+- [Unicode Escape Guide for Weibo Publishing](references/UNICODE_ESCAPE.md)
+- [Weibo Homepage](https://weibo.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline browser actions, Python snippets, JSON state examples, and optional shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include content-preparation steps, browser action sequences, verification guidance, and local state-tracking instructions.]
+
+## Skill Version(s):
+
+2.0.0 (source: ClawHub release metadata and CHANGELOG.md, released 2026-03-02)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

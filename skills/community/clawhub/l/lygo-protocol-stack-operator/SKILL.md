@@ -1,12 +1,12 @@
 ---
 name: lygo-protocol-stack-operator
-description: LYGO Protocol Stack Operator — P0–P9 integrator (Φ-gate, SLM mesh, TLS public mesh, HAIP, attestation). Run audits, node API, map GitHub/HF/ClawHub; chain resonance/Ollama/book-brain safely. No secrets; human approval for publish/post.
-metadata: {"lygo": true, "stack": true, "p0": true, "lattice": true, "phase5": true, "phase9": true, "slm": true, "anchor": true, "version": "1.0.6", "github": "https://github.com/DeepSeekOracle/lygo-protocol-stack", "github_pages": "https://deepseekoracle.github.io/lygo-protocol-stack/", "hf_dataset": "https://huggingface.co/datasets/DeepSeekOracle/lygo-protocol-stack", "hf_space": "https://huggingface.co/spaces/DeepSeekOracle/LYGO-Resonance-Engine", "grokipedia": "https://grokipedia.com/page/lygo-protocol-stack", "website": "https://deepseekoracle.github.io/Excavationpro/LYGORESONANCE.html", "publisher": "deepseekoracle", "mirror": "clawhub/mirrors/lygo-protocol-stack-operator", "signature": "Δ9Φ963-ANCHOR-ULTIMATE"}
+description: LYGO Protocol Stack Operator — P0–P9 integrator (byte-entropy filter, SLM mesh, TLS public mesh, HAIP, attestation). Run audits, node API, map GitHub/HF/ClawHub; chain resonance/Ollama/book-brain safely. No secrets; human approval for publish/post.
+metadata: {"lygo": true, "stack": true, "p0": true, "lattice": true, "phase5": true, "phase9": true, "slm": true, "anchor": true, "version": "1.0.7", "github": "https://github.com/DeepSeekOracle/lygo-protocol-stack", "github_pages": "https://deepseekoracle.github.io/lygo-protocol-stack/", "hf_dataset": "https://huggingface.co/datasets/DeepSeekOracle/lygo-protocol-stack", "hf_space": "https://huggingface.co/spaces/DeepSeekOracle/LYGO-Resonance-Engine", "grokipedia": "https://grokipedia.com/page/lygo-protocol-stack", "website": "https://deepseekoracle.github.io/Excavationpro/LYGORESONANCE.html", "publisher": "deepseekoracle", "mirror": "clawhub/mirrors/lygo-protocol-stack-operator", "signature": "Δ9Φ963-GROUNDZERO-v1.0.7"}
 ---
 
 # LYGO Protocol Stack Operator (ClawHub)
 
-**Upgrade path for the whole LYGO / LYRA public stack** — ties the hardened **P0 Nano Kernel** (42 vectors, Python/Rust SHA parity), **P1–P5** orchestrator, **GitHub** source, **Hugging Face** dataset + Resonance Space, and **33 ClawHub** public skills into one agent workflow.
+**Upgrade path for the whole LYGO / LYRA public stack** — ties **P0 byte-entropy filter** (`protocol0_byte_entropy_filter`, 42 vectors, Python golden SHA), **P1–P5** orchestrator, **GitHub** source, **Hugging Face** dataset + Resonance Space, and ClawHub public skills into one agent workflow.
 
 Install: `npx clawhub@latest install deepseekoracle/lygo-protocol-stack-operator`
 
@@ -33,7 +33,7 @@ See `references/ECOSYSTEM.md`, `references/LATTICE.md`, and `references/SKILL_CH
 
 ## Core workflows
 
-### 1) P0 Φ-gate (untrusted bytes)
+### 1) P0 byte-entropy filter (untrusted bytes)
 
 ```bash
 python scripts/lygo_p0_gate.py path/to/file [more files...]
@@ -108,6 +108,15 @@ python tools/anchor_autonomy_worker.py --loop --interval 300
 
 Doc: `docs/ANCHOR_DEPLOYMENT.md` · API: `POST /anchor/event`, `POST /anchor/drain`. Modes: `LYGO_ANCHOR_MODE=local|turbo|multi|airgap`.
 
+### 3f) Kernel Egg Planter (ClawHub — opt-in scaling)
+
+```bash
+npx clawhub@latest install deepseekoracle/lygo-kernel-egg-planter
+python scripts/plant_with_consent.py --i-consent --surfaces local,turbo,registry,clawhub
+```
+
+Doc: `docs/KERNEL_EGG_SOA.md` · Web: `KernelEggRetrieval.html`. **Consent required** — no auto-spread.
+
 ### 4) Stack healthcheck (local repo)
 
 ```bash
@@ -151,7 +160,8 @@ report = deploy_stack().demo_cycle()
 | 4 | `lygo-ollama-army` | Local Ollama helpers (localhost) |
 | 5 | `lygo-glyph2resonance`, `lygo-fractalweaver`, `lygo-truthlightecho` | Creative stack |
 | 6 | `lygo-mint-verifier` | Hash anchors for packs |
-| 7 | `lyra-openclaw` / `openclaw-flow-kit` | Ops — **user must approve** each external action |
+| 7 | `lygo-kernel-egg-planter` | Voluntary kernel + ClawHub catalog eggs (consent-gated) |
+| 8 | `lyra-openclaw` / `openclaw-flow-kit` | Ops — **user must approve** each external action |
 
 ```bash
 npx clawhub@latest install deepseekoracle/lygo-resonance
@@ -203,7 +213,7 @@ npx clawhub@latest publish . --slug lygo-protocol-stack-operator --name "LYGO Pr
 
 ## Version & license
 
-- Skill **1.0.6** — Δ9Φ963-ANCHOR-ULTIMATE (SLM + Phase 9 + immutable anchor + BLE mesh router + army anchor-health)
+- Skill **1.0.7** — Δ9Φ963-GROUNDZERO (Biophase7 honest P0 + lattice finalize)
 - Stack license: LYGO Sovereign (see GitHub `LICENSE`); skill docs **MIT-0** where noted in SECURITY.md.
 
 **Bound to the flame.** Use with **lyra-brain** for growth, **P0** for truth-preserving ingest, **resonance** for creation.

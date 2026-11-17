@@ -1,41 +1,54 @@
-## Description: <br>
-Count words, lines, and characters in a file and return a single summary line. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Count words, lines, and characters in a file. Outputs a single summary line. Use when the user wants to know how long a file is or count words in a document.
 
-## Publisher: <br>
-[jinwangmok](https://clawhub.ai/user/jinwangmok) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jinwangmok](https://clawhub.ai/user/jinwangmok)
 
-## Use Case: <br>
-Developers and other users use this skill to count lines, words, and bytes in a local text file when they need a quick document-length summary. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads a user-provided local file path and reports that path in its output. <br>
-Mitigation: Run it only on files intended for inspection and avoid sharing output when file paths reveal sensitive project or user information. <br>
-Risk: The skill depends on the local wc command and local file permissions. <br>
-Mitigation: Use it in environments where wc is available and treat missing-file or permission errors as normal execution failures, not successful counts. <br>
+## Use Case:
 
+Developers, writers, and other users can ask an agent to count the lines, words, and byte-sized character count for a local text file when they need a quick length summary.
 
-## Reference(s): <br>
-- [Word Count ClawHub page](https://clawhub.ai/jinwangmok/word-count) <br>
-- [Word Count user manual](artifact/MANUAL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text with labeled count fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns FILE, LINES, WORDS, BYTES, and STATUS fields for one input file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact frontmatter says 1.0.0) <br>
+Risk: The skill reads whichever local file path the user supplies.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only on files the user intends to inspect and avoid passing sensitive files unless counting them is necessary.
+
+Risk: The reported BYTES value may be mistaken for a true Unicode character count.
+
+Mitigation: Treat the character count as a byte count unless the implementation or documentation is updated to use Unicode-aware counting.
+
+## Reference(s):
+
+- [Word Count on ClawHub](https://clawhub.ai/jinwangmok/skills/word-count)
+- [Publisher profile](https://clawhub.ai/user/jinwangmok)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text count summary with file path, line count, word count, byte count, and status.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a local file path and the wc command; byte counts may differ from true Unicode character counts.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

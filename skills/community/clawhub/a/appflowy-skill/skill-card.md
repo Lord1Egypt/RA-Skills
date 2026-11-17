@@ -1,47 +1,59 @@
-## Description: <br>
-Appflowy Skill helps agents authenticate with AppFlowy Cloud/GoTrue and automate workspace, document, database, search, and collaboration workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents authenticate to AppFlowy Cloud/GoTrue and call workspace, document, database, search, and collaboration APIs for self-hosted AppFlowy environments.
 
-## Publisher: <br>
-[BaloneGit](https://clawhub.ai/user/BaloneGit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[balonegit](https://clawhub.ai/user/balonegit)
 
-## Use Case: <br>
-Developers and automation engineers use this skill to call AppFlowy APIs, obtain authentication tokens, inspect workspaces, and create or update AppFlowy documents and grids. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can directly modify or delete live AppFlowy workspace content using user credentials. <br>
-Mitigation: Run it first in a test workspace, back up important documents, and verify workspace, view, and database IDs before executing data-changing commands. <br>
-Risk: Credentials may be exposed if passwords are passed directly on the command line. <br>
-Mitigation: Avoid command-line passwords where possible and prefer short-lived tokens or least-privilege accounts. <br>
-Risk: Template, grid, and collaboration operations can change existing documents in place. <br>
-Mitigation: Treat update-user-management-doc, apply-grid, and collab commands as live data-changing operations and review planned changes before execution. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/BaloneGit/appflowy-skill) <br>
-- [AppFlowy API Reference](references/appflowy_api_reference.md) <br>
-- [Configuration Example](references/config.example.json) <br>
-- [Usage Examples](examples/README.md) <br>
-- [Grid Plan Template](references/templates/grid_plan.example.json) <br>
-- [Fitness Plan Template](references/templates/fitness_plan.example.json) <br>
-- [User Management Document Template](references/templates/user_management_doc.json) <br>
+## Use Case:
 
+Developers and automation engineers use this skill to build, debug, and operate AppFlowy API workflows, including token retrieval, workspace discovery, page and database updates, search, and collaboration-data repair.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, JSON payload examples, and generated AppFlowy API requests or scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce live AppFlowy API operations that create, update, or delete workspace content when executed with user credentials.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata and skill.json) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can modify live AppFlowy workspace, document, database, and collaboration data.
+
+Mitigation: Use a test workspace first, review every workspace, view, and database ID before running write or cleanup commands, and inspect planned payloads before execution.
+
+Risk: The skill handles AppFlowy passwords and access tokens.
+
+Mitigation: Prefer token or environment-based handling over command-line passwords when possible, redact token output from logs and transcripts, and avoid storing credentials in shared files.
+
+Risk: Example configuration and commands may use plain HTTP endpoints.
+
+Mitigation: Prefer HTTPS endpoints for real deployments and confirm base URL and GoTrue URL values before authenticating.
+
+## Reference(s):
+
+- [AppFlowy API Reference](references/appflowy_api_reference.md)
+- [Configuration Example](references/config.example.json)
+- [Example Commands](examples/README.md)
+- [ClawHub Skill Page](https://clawhub.ai/balonegit/skills/appflowy-skill)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Code, Configuration, JSON]
+
+**Output Format:** [Markdown with inline shell commands, Python command examples, and JSON payloads]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include commands that call live AppFlowy APIs and modify workspace, document, or database content.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata and skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

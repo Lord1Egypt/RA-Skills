@@ -1,42 +1,57 @@
-## Description: <br>
-AI纹身设计全维度指南，帮助用户比较纹身风格、匹配身体部位、筛选纹身师、规划安全护理与遮盖修改，并生成交互式HTML可视化设计咨询报告。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI纹身设计指南 helps agents collect tattoo preferences and produce Chinese-localized guidance on styles, body placement, artist selection, hygiene, aftercare, cover-ups, and interactive HTML consultation reports.
 
-## Publisher: <br>
-[bettermen](https://clawhub.ai/user/bettermen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bettermen](https://clawhub.ai/user/bettermen)
 
-## Use Case: <br>
-External users use this skill to explore tattoo ideas, compare styles and placements, evaluate safety and aftercare considerations, and receive a structured HTML consultation report before speaking with a qualified tattoo professional. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Tattoo planning guidance can be mistaken for medical, legal, or region-specific professional advice. <br>
-Mitigation: Treat the output as advisory planning material and confirm health risks, allergies, skin conditions, infection signs, consent rules, and studio requirements with qualified local professionals. <br>
-Risk: Generated HTML reports load Chart.js from a third-party CDN. <br>
-Mitigation: Open generated reports only in browser environments where that external script dependency is acceptable. <br>
+## Use Case:
 
+External users and assistants use this skill to structure tattoo design consultations, compare styles and body placements, screen hygiene and aftercare considerations, and generate a Chinese-localized interactive HTML advisory report.
 
-## Reference(s): <br>
-- [纹身风格百科全书](references/tattoo-styles.md) <br>
-- [身体部位纹身匹配指南](references/body-parts.md) <br>
-- [纹身卫生安全、护理与遮盖修改指南](references/safety-care.md) <br>
+### Deployment Geography for Use:
 
+Global, with China-localized pricing, legal, hygiene, and studio-selection assumptions.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown conversation output and generated interactive HTML report code] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [HTML reports embed user-specific recommendations and use Chart.js for visualizations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Generated HTML reports can expose embedded personal consultation details to unverified third-party JavaScript.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sensitive medical, identity, or workplace details in generated reports, or bundle Chart.js locally with a restrictive CSP and SRI-protected assets.
+
+Risk: Tattoo hygiene, contraindication, infection, and aftercare content may be mistaken for professional medical advice.
+
+Mitigation: Use the skill as planning guidance only and consult qualified health professionals for infection, allergy, pregnancy, diabetes, immune-system, or wound-healing concerns.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bettermen/skills/tattoo-design-guide)
+- [纹身风格百科全书](artifact/references/tattoo-styles.md)
+- [身体部位纹身匹配指南](artifact/references/body-parts.md)
+- [纹身卫生安全、护理与遮盖修改指南](artifact/references/safety-care.md)
+- [Interactive report template](artifact/assets/report-template.html)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown guidance and interactive HTML report code]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference Chart.js from a CDN unless the dependency is bundled locally.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

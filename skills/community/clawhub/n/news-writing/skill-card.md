@@ -1,41 +1,55 @@
-## Description: <br>
-Guides agents through collecting source material, fact-checking, drafting, formatting, and pre-publication review for news articles, briefs, press releases, event reports, and revisions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language workflow for gathering source material, fact-checking, drafting, formatting, and proofreading news articles before publication.
 
-## Publisher: <br>
-[RichardCao06](https://clawhub.ai/user/RichardCao06) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[richardcao06](https://clawhub.ai/user/richardcao06)
 
-## Use Case: <br>
-Editorial teams, communications staff, and external users can use this skill to turn gathered source material into a publishable Markdown news draft with a fact-check summary and a list of missing information. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Drafts may contain unverified claims, source errors, or misleading attribution if input materials are incomplete. <br>
-Mitigation: Use the skill's fact-check summary and missing-information section, then independently review sources and unresolved claims before publishing. <br>
-Risk: News drafts can include privacy, legal, or reputational risk when covering individuals, disputes, or sensitive events. <br>
-Mitigation: Review privacy, legal, and compliance concerns before publication, especially for names, accusations, quotes, and personal data. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Fact Check Guide](references/fact-check.md) <br>
-- [Writing Style Guide](references/writing-style.md) <br>
-- [News Article Template](assets/news-article-template.md) <br>
+## Use Case:
 
+Editors, communications teams, and other external users use this skill to turn Chinese-language source material into publishable news drafts with a fact-check summary and a list of unresolved items.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown with structured sections for the news draft, fact-check summary, and missing information] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include source tables, verification notes, and pre-publication review checklists.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated news copy may contain incorrect or insufficiently verified claims if source material is incomplete.
+
+Mitigation: Verify primary sources before publication and keep unverified claims in the pending information list.
+
+Risk: News drafts can include legal, privacy, or reputationally sensitive statements.
+
+Mitigation: Review names, titles, numbers, allegations, quoted context, and privacy-sensitive details before release.
+
+## Reference(s):
+
+- [Fact Check Guide](references/fact-check.md)
+- [Writing Style Guide](references/writing-style.md)
+- [News Article Template](assets/news-article-template.md)
+- [ClawHub skill page](https://clawhub.ai/richardcao06/skills/news-writing)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown news draft with fact-check summary and pending information list]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language output by default; users can request another language or bilingual output.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

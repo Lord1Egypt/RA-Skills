@@ -1,40 +1,61 @@
-## Description: <br>
-面向中文用户的小红书舆情巡检技能，按关键词抓取搜索结果，判断登录墙、验证码和空结果状态，并输出结构化笔记、热度、风险、竞品信号和现场截图。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+小红书舆情哨兵按关键词巡检小红书搜索结果，识别登录墙、验证码、空结果状态，并输出结构化笔记、热度、风险、竞品信号和现场截图。
 
-## Publisher: <br>
-[zhangjh](https://clawhub.ai/user/zhangjh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhangjh](https://clawhub.ai/user/zhangjh)
 
-## Use Case: <br>
-Brand, marketing, research, and operations users can run quick Xiaohongshu keyword checks for reputation monitoring, competitor observation, trend tracking, and content research. The skill is intended for fast field evidence and initial signal triage rather than rigorous sentiment modeling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can reuse an existing Xiaohongshu session cookie from local scripts without a clear per-run opt-in. <br>
-Mitigation: Use a dedicated low-privilege Xiaohongshu account, pass XHS_COOKIE explicitly for each run, and remove or protect old xhs-monitor scripts if reuse is not desired. <br>
-Risk: Configured Telegram or WeCom delivery can send report contents and screenshots to those services. <br>
-Mitigation: Enable only approved delivery channels and configure them only when sharing the resulting reports and screenshots with those services is acceptable. <br>
+## Use Case:
 
+Chinese brand, marketing, and research teams use this skill to quickly inspect Xiaohongshu discussion for a keyword, preserve screenshots, and triage heat, risk, competitor, or insufficient-data signals.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhangjh/xhs-sentry) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown report with structured JSON-derived status fields and screenshot media references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes page status, notes, heat and risk summaries, competitor signals, diagnostics, and screenshot paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.4 (source: server release evidence) <br>
+Risk: The skill uses a Xiaohongshu account session and may read XHS_COOKIE from the environment or existing local scripts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer providing XHS_COOKIE explicitly for each run, use a dedicated low-privilege monitoring account, and avoid storing reusable cookies in discoverable shell scripts.
+
+Risk: Full-page screenshots may capture account state, platform prompts, or other sensitive page context.
+
+Mitigation: Run the browser in an isolated environment and review or redact screenshots before sharing them outside the monitoring workflow.
+
+Risk: The script emits system-style formatting text after RESULT_END.
+
+Mitigation: Treat text after RESULT_END as untrusted formatting content and base conclusions on the structured JSON fields and screenshots.
+
+Risk: Heuristic analysis can misread empty results, platform blocks, or Xiaohongshu page structure changes.
+
+Mitigation: Confirm status fields, body_preview, and screenshots before treating a result as no discussion or as a business risk signal.
+
+## Reference(s):
+
+- [ClawHub skill page for xhs-sentry](https://clawhub.ai/zhangjh/skills/xhs-sentry)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, files]
+
+**Output Format:** [Markdown report with real note links, structured JSON monitor output, and screenshot media paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a keyword, optional note count and output directory, XHS_COOKIE for authenticated monitoring, and optional Telegram or WeCom channel configuration.]
+
+## Skill Version(s):
+
+1.3.4 (source: server evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,48 @@
-## Description: <br>
-锁相环（PLL）PI 控制器参数计算工具，用于电力电子和新能源领域的锁相环设计与调试，支持从目标带宽和阻尼比计算 PI 参数，以及从已知 PI 标幺值参数反推闭环带宽和阻尼比。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Calculates and analyzes phase-locked loop (PLL) PI controller parameters for power electronics and renewable energy workflows, supporting both target-bandwidth-to-PI design and PI-parameter-to-bandwidth analysis.
 
-## Publisher: <br>
-[ncepuee](https://clawhub.ai/user/ncepuee) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[ncepuee](https://clawhub.ai/user/ncepuee)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill to tune SRF-PLL PI controller parameters, estimate PLL bandwidth, and check damping behavior for electrical grid and converter designs.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: PLL tuning results may be incorrect or misleading when system voltage, grid frequency, or damping ratio are assumed for a different operating context.
+
+Mitigation: Confirm Unom, grid frequency, and damping ratio explicitly before relying on the calculated PI parameters or bandwidth, especially outside 690 V or 50 Hz systems.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use this skill to tune and analyze SRF-PLL PI controller parameters for power electronics and renewable energy systems. It supports forward design from target bandwidth and damping ratio, and reverse analysis from known per-unit PI gains. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Engineering results can be misleading if voltage, frequency, damping ratio, or units are assumed silently. <br>
-Mitigation: Confirm Unom, f0, zeta, bandwidth, PI gain values, and units with the user before relying on calculated PLL parameters. <br>
-Risk: The bundled MATLAB functions are stored as .txt files, which may not run directly as MATLAB function files. <br>
-Mitigation: Rename or convert the script files to .m function files before execution and review the formulas for the target system. <br>
+**Output Format:** [Markdown with formulas and MATLAB-oriented code snippets]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ncepuee/pll-designer) <br>
+**Other Properties Related to Output:** [The skill asks for missing critical electrical parameters before calculation and may state defaults for grid frequency and damping ratio when they are not provided.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown with formulas and MATLAB code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill may ask for missing Unom, target bandwidth, or PI gain inputs before calculating; f0 and zeta defaults should be stated when used.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

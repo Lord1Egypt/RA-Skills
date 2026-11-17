@@ -1,40 +1,49 @@
-## Description: <br>
-Guides end-to-end SEO audits and site health checks across technical foundation, on-page SEO, content, and off-page authority. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides end-to-end SEO audits across technical foundation, on-page SEO, content, and off-page authority checks.
 
-## Publisher: <br>
-[kostja94](https://clawhub.ai/user/kostja94) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kostja94](https://clawhub.ai/user/kostja94)
 
-## Use Case: <br>
-External users, SEO practitioners, and site operators use this skill to structure SEO audits for existing websites, identify technical and content issues, prioritize fixes, and map follow-up work to related SEO skills. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Credential or account exposure when this checklist is paired with separate SEO, crawling, or Google Search Console skills. <br>
-Mitigation: Review those separate skills before granting site, account, or credential access, and grant only the minimum access needed. <br>
-Risk: Checklist-only SEO guidance may miss site-specific constraints or produce incorrect priorities. <br>
-Mitigation: Review recommendations against crawl data, Search Console data, and business priorities before implementing changes. <br>
+## Use Case:
 
+External users, developers, and SEO practitioners use this skill to structure an SEO audit for an existing site, identify technical and content issues, prioritize fixes, map follow-up skills, and plan immediate, short-term, and ongoing remediation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kostja94/seo-audit-strategies) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Analysis] <br>
-**Output Format:** [Markdown audit report with phase findings, priorities, skill mapping, and timeline] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance-only; no code execution, credentials, persistence, or hidden behavior.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: frontmatter and server release metadata) <br>
+Risk: Broad trigger terms may activate this skill for general SEO troubleshooting requests where a narrower SEO strategy or Search Console skill would fit better.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm whether the task is an SEO audit or site health check before applying the audit workflow; route prioritization and Search Console data analysis to the related skills named by the artifact.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kostja94/skills/seo-audit-strategies)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, configuration]
+
+**Output Format:** [Markdown checklist and prioritized audit plan]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces phase-by-phase findings, P0-P2 priority ordering, related-skill mapping, and timeline guidance.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata and skill frontmatter metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

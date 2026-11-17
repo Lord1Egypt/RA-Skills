@@ -1,41 +1,53 @@
-## Description: <br>
-Prepares Greek individual tax return data for E1 filings, including income, deductions, ENFIA property tax, and compliance planning for Greek tax residents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Comprehensive Greek individual tax return processing skill for employed individuals that handles E1 form preparation, personal income tax calculations, deduction optimization, property taxes (ENFIA), and individual compliance management for Greek tax residents with employment, property, and investment income.
 
-## Publisher: <br>
-[satoshistackalotto](https://clawhub.ai/user/satoshistackalotto) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[satoshistackalotto](https://clawhub.ai/user/satoshistackalotto)
 
-## Use Case: <br>
-Tax professionals and Greek tax residents use this skill to prepare individual tax return data, optimize deductions and credits, plan ENFIA/property tax handling, and assemble E1 submission materials from local files. <br>
-
-### Deployment Geography for Use: <br>
-Greece <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Tax calculations or filing guidance may be incorrect or outdated for a user's specific circumstances. <br>
-Mitigation: Verify calculations against current official guidance and have a qualified human review before relying on the result. <br>
-Risk: The skill may lead to high-impact actions such as TAXIS submission, payment processing, bank import, client messaging, or cloud archiving. <br>
-Mitigation: Require explicit human approval before any submission, payment, external communication, banking access, or cloud archive action. <br>
-Risk: Local tax files may contain sensitive personal and financial data. <br>
-Mitigation: Keep tax files in a dedicated controlled folder and avoid granting unrelated banking, email, payment, or cloud access. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/satoshistackalotto/greek-individual-taxes) <br>
+## Use Case:
 
+External users and tax-preparation agents use this skill to prepare Greek individual E1 return materials, calculate income tax and deductions, coordinate ENFIA property tax data, and assemble submission-ready guidance from local files. Human review is expected before filing, payment, digital signing, or any tax authority interaction.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and structured tax-preparation data] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires jq and OPENCLAW_DATA_DIR for local data-file workflows.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Instructions extend beyond local tax preparation into email access, bank-data import, cloud upload, digital signing, AADE submission, and payment handling.
+
+Mitigation: Require explicit human approval and separate operational controls before enabling any external account access, submission, signature, storage, or payment action.
+
+Risk: Tax calculations and filing guidance may affect legal or financial obligations.
+
+Mitigation: Use outputs as preparation material only and route all filing decisions, authority submissions, and payment schedules through qualified human review.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/satoshistackalotto/skills/greek-individual-taxes)
+- [Publisher profile](https://clawhub.ai/user/satoshistackalotto)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline JSON, YAML, Python, and bash examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires local tax data files, jq, and OPENCLAW_DATA_DIR; no external credentials are required for local preparation.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata; artifact frontmatter states 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

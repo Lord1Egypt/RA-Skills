@@ -1,46 +1,57 @@
-## Description: <br>
-Interact with the SoundCloud API for searching tracks, analyzing audio metadata, managing playlists, user operations, likes, follows, and audio discovery. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Interact with the SoundCloud API to search and analyze tracks, inspect users and playlists, and perform authenticated playlist, like, and follow operations.
 
-## Publisher: <br>
-[leosaucedo](https://clawhub.ai/user/leosaucedo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leosaucedo](https://clawhub.ai/user/leosaucedo)
 
-## Use Case: <br>
-Developers and external users use this skill to run SoundCloud discovery, metadata analysis, playlist management, and account interaction workflows from an agent-assisted command-line environment. Write operations require a SoundCloud user OAuth token and can change the user's account state. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires SoundCloud API credentials and can cache OAuth tokens locally. <br>
-Mitigation: Use a low-privilege or temporary SoundCloud app, avoid non-expiring or wildcard tokens, and review token files under ~/.cache/soundcloud before deployment. <br>
-Risk: Write operations can delete playlists, replace or remove playlist tracks, like or unlike tracks, follow or unfollow users, and perform batch account changes. <br>
-Mitigation: Require explicit human confirmation before account-changing commands and avoid bypass flags such as --force or --no-confirm unless the operator has reviewed the exact target resources. <br>
+## Use Case:
 
+External developers and agents use this skill to discover SoundCloud tracks, inspect user and playlist metadata, and manage playlists, likes, and follows through SoundCloud API shell scripts.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/leosaucedo/soundcloud) <br>
-- [ClawHub Publisher Profile](https://clawhub.ai/user/leosaucedo) <br>
-- [SoundCloud API Reference](https://developers.soundcloud.com/docs/api/reference) <br>
-- [SoundCloud API Security Updates](https://developers.soundcloud.com/blog/security-updates-api/) <br>
-- [API Endpoints Reference](references/api_endpoints.md) <br>
-- [OAuth Flow Reference](references/oauth_flow.md) <br>
-- [Best Practices Reference](references/best_practices.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands; scripts may emit human-readable text, JSON, or CSV.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Bash 4+, curl, jq, SoundCloud client credentials, and a user OAuth token for write operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Long-lived SoundCloud account tokens may be stored in plaintext cache files or shell profiles.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer a secure credential store or short-lived, revocable tokens, and avoid persisting user tokens in shell profiles when possible.
+
+Risk: Playlist, like, follow, and delete operations can change a user's SoundCloud account.
+
+Mitigation: Require explicit user confirmation for write actions, verify playlist, track, and user IDs before execution, and avoid --force and --no-confirm in agent workflows.
+
+## Reference(s):
+
+- [SoundCloud API Reference](https://developers.soundcloud.com/docs/api/reference)
+- [SoundCloud API Security Updates](https://developers.soundcloud.com/blog/security-updates-api/)
+- [SoundCloud API Endpoints Reference](references/api_endpoints.md)
+- [SoundCloud OAuth 2.0 Authentication Guide](references/oauth_flow.md)
+- [SoundCloud API Best Practices](references/best_practices.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, CSV, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands; script output may be human-readable text, JSON, or CSV.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses SoundCloud API credentials; write operations require a user token.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

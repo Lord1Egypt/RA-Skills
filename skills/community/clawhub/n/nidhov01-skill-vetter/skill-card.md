@@ -1,40 +1,54 @@
-## Description: <br>
-Security-first skill vetting for AI agents before installing skills from ClawdHub, GitHub, or other sources, with checks for red flags, permission scope, and suspicious patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Security-first skill vetting for AI agents. Use before installing any skill from ClawdHub, GitHub, or other sources. Checks for red flags, permission scope, and suspicious patterns.
 
-## Publisher: <br>
-[nidhov01](https://clawhub.ai/user/nidhov01) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nidhov01](https://clawhub.ai/user/nidhov01)
 
-## Use Case: <br>
-Developers, operators, and agent users use this skill to review third-party or unfamiliar skills before installation by checking source, permissions, suspicious patterns, and risk level. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Example GitHub commands may contact remote GitHub endpoints when copied and run. <br>
-Mitigation: Run those commands only against repositories you intentionally want to inspect, and review substituted OWNER, REPO, and SKILL_NAME values before execution. <br>
-Risk: A checklist report can be mistaken for proof that a skill is safe. <br>
-Mitigation: Treat the report as review guidance, and require human approval for high-risk findings, credential access, system changes, or unclear provenance. <br>
+## Use Case:
 
+Developers and agent users use this skill to review candidate skills before installation by checking source, permissions, suspicious patterns, and risk level.
 
-## Reference(s): <br>
-- [ClawHub Skill Vetter listing](https://clawhub.ai/nidhov01/nidhov01-skill-vetter) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown report with optional inline bash commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a structured vetting report with source, author, version, metrics, reviewed files, red flags, permissions, risk level, verdict, and notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill may lead an agent to inspect all files in a candidate skill.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run vetting with least-privilege filesystem access and avoid exposing unrelated sensitive files.
+
+Risk: Optional public GitHub endpoint checks may disclose repository names or metadata through network requests.
+
+Mitigation: Limit network access to intended public GitHub endpoints or skip those checks for private or sensitive repositories.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/nidhov01/skills/nidhov01-skill-vetter)
+- [Skill Source](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands]
+
+**Output Format:** [Markdown vetting report with optional shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Checklist-driven review with red flags, permission scope, risk level, verdict, and notes.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

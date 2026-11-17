@@ -1,43 +1,53 @@
-## Description: <br>
-Generate itemised construction quotes, material lists, labour breakdowns, and job costings from plain English construction job descriptions using UK pricing assumptions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate itemised construction quotes, material lists, and job costings from plain English job descriptions. Covers extensions, kitchens, bathrooms, loft conversions, roofing, and general building work with UK material prices and labour rates.
 
-## Publisher: <br>
-[jamespatrickthom2003-star](https://clawhub.ai/user/jamespatrickthom2003-star) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jamespatrickthom2003-star](https://clawhub.ai/user/jamespatrickthom2003-star)
 
-## Use Case: <br>
-Builders, tradespeople, contractors, project managers, quantity surveyors, and homeowners use this skill to turn a construction job description into a structured working estimate and client-ready quote. It is intended for UK residential and trade pricing scenarios where material costs, labour rates, regional adjustments, VAT, and common additional costs need to be surfaced quickly. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-United Kingdom <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release advertises crypto and purchase capabilities that do not match the construction estimating behavior. <br>
-Mitigation: Install only if those permissions are acceptable, and do not grant payment, purchase, or crypto authority unless the publisher explains why they are required. <br>
-Risk: Generated construction quotes may be inaccurate because actual costs depend on site conditions, supplier pricing, regulations, taxes, and contract terms. <br>
-Mitigation: Treat outputs as estimates and verify prices, VAT, regulatory obligations, and contract language before using them with clients. <br>
+## Use Case:
 
+External builders, tradespeople, contractors, project managers, quantity surveyors, and homeowners use this skill to turn UK residential construction job descriptions into preliminary itemised cost estimates and client-ready quote documents.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jamespatrickthom2003-star/construction-quote) <br>
-- [README](artifact/README.md) <br>
-- [Skill instructions](artifact/SKILL.md) <br>
-- [Marketplace listing](artifact/listing.md) <br>
+### Deployment Geography for Use:
 
+United Kingdom
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with itemised tables and a client-ready quote document] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes assumptions, material and labour estimate ranges, additional costs, VAT and markup notes, exclusions, payment schedule, terms, and an estimate disclaimer.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Construction estimates may be inaccurate because prices, site conditions, access, and specifications vary.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as preliminary working estimates, verify current supplier prices, and perform a site visit before relying on a quote commercially.
+
+Risk: Legal, tax, and regulatory guidance may not match the user's exact project or current obligations.
+
+Mitigation: Verify Building Control, planning, Party Wall, CIS, VAT, and other legal or tax requirements with current authoritative sources or qualified professionals.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jamespatrickthom2003-star/skills/construction-quote)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with itemised tables and quote-document sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces preliminary working estimates using UK 2025/26 prices and stated assumptions; outputs should be checked against site conditions and supplier quotes.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

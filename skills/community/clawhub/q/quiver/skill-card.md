@@ -1,39 +1,52 @@
-## Description: <br>
-Queries alternative financial data from Quiver Quantitative, including Congress trading, lobbying, government contracts, and insider transactions, to help track unconventional market signals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query alternative financial data from Quiver Quantitative (Congress trading, Lobbying, Government Contracts, Insider transactions). Use this to track politician stock trades or unconventional market signals.
 
-## Publisher: <br>
-[stuhorsman](https://clawhub.ai/user/stuhorsman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[stuhorsman](https://clawhub.ai/user/stuhorsman)
 
-## Use Case: <br>
-External users, analysts, and developers use this skill to run Quiver Quantitative API queries for alternative financial datasets such as congressional trades, lobbying spend, government contracts, and insider transactions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a Quiver Quantitative API key and calls an external financial-data API. <br>
-Mitigation: Provide the key only through a controlled QUIVER_API_KEY environment variable and install the quiverquant Python package from a trusted source. <br>
-Risk: The skill returns alternative financial data that may require review before operational or investment use. <br>
-Mitigation: Treat returned JSON as source data for further analysis and corroborate it with other trusted sources before acting on it. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/stuhorsman/quiver) <br>
+## Use Case:
 
+External users, developers, and analysts use this skill to query Quiver Quantitative alternative financial datasets, including congressional trading, lobbying, government contracts, and insider transactions, as JSON for market-signal analysis.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Guidance] <br>
-**Output Format:** [Markdown usage guidance with command output as JSON arrays] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires QUIVER_API_KEY and the quiverquant Python package; returned records depend on Quiver Quantitative API access.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill uses an authenticated Quiver Quantitative API key to query financial-data records.
+
+Mitigation: Provide only a Quiver Quantitative API key intended for this skill, preferably scoped or revocable if Quiver supports that.
+
+Risk: Returned records may be used as market signals but are not investment advice.
+
+Mitigation: Review the JSON results and corroborate them with other sources before using them for financial decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/stuhorsman/skills/quiver)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, API calls, JSON]
+
+**Output Format:** [JSON array of records emitted by command-line queries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires QUIVER_API_KEY; commands may return an empty JSON array when no matching records are available.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

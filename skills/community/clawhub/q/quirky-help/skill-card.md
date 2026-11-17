@@ -1,42 +1,55 @@
-## Description: <br>
-Visual troubleshooting and screen-aware user guidance for screenshots, terminal output, app settings, installer failures, and confusing web/app flows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Visual troubleshooting and screen-aware user guidance for screenshots, terminal output, app settings, installer failures, and confusing web/app flows.
 
-## Publisher: <br>
-[m-lwatcher](https://clawhub.ai/user/m-lwatcher) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[m-lwatcher](https://clawhub.ai/user/m-lwatcher)
 
-## Use Case: <br>
-Developers, support teams, and end users use this skill to turn screenshots, terminal errors, setup blockers, and confusing app flows into a short diagnosis and the next one to three concrete actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Troubleshooting may involve screenshots, browser state, local files, or command output that contain private or sensitive information. <br>
-Mitigation: Keep inspection limited to the problem at hand and confirm before changing settings, accounts, files, or system state. <br>
-Risk: Partial screenshots or incomplete logs can lead to overconfident or misleading guidance. <br>
-Mitigation: State visible evidence, note uncertainty, and ask for the single most useful missing detail before recommending broader fixes. <br>
+## Use Case:
 
+External users and developers use this skill to interpret screenshots, terminal errors, app settings, installer failures, and confusing web or app flows, then receive one to three concrete next actions.
 
-## Reference(s): <br>
-- [Quirky Help on ClawHub](https://clawhub.ai/m-lwatcher/quirky-help) <br>
-- [Response Patterns](references/response-patterns.md) <br>
-- [Triage Guide](references/triage.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Concise Markdown with short action lists and inline commands when useful] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference user-supplied screenshots, terminal output, browser state, or local files when relevant.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may lead an agent to inspect screenshots, browser state, local files, or command output when directly relevant to troubleshooting.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sharing sensitive screens or logs unless needed, and ask before destructive, privacy-sensitive, or irreversible actions.
+
+Risk: Blurry, partial, or cropped screenshots can make the guidance uncertain.
+
+Mitigation: State what is visible, what cannot be confirmed, and request the single most useful missing detail before giving high-confidence instructions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/m-lwatcher/skills/quirky-help)
+- [Response Patterns](artifact/references/response-patterns.md)
+- [Triage Guide](artifact/references/triage.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown or concise plain text with optional inline commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Action-first troubleshooting guidance, typically limited to the visible issue, likely cause, and one to three next actions.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

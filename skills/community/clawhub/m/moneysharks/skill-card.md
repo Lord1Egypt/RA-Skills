@@ -1,50 +1,66 @@
-## Description: <br>
-MoneySharks is an autonomous Aster DEX perpetual futures trading agent that can onboard credentials, run paper or live trading cycles, manage orders and positions, enforce configured risk limits, journal decisions, and review trade outcomes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fully autonomous 24/7 Aster DEX perpetual futures trading agent that manages onboarding, live execution, bracket orders, trailing stop management, position monitoring, risk enforcement, journaling, and self-learning from past trades after explicit onboarding consent.
 
-## Publisher: <br>
-[sharksdotmoney](https://clawhub.ai/user/sharksdotmoney) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sharksdotmoney](https://clawhub.ai/user/sharksdotmoney)
 
-## Use Case: <br>
-External users and developers use this skill to configure and operate an Aster DEX futures trading agent for paper testing, approval-gated proposals, or autonomous live execution after explicit onboarding consent. It is intended for users who understand the risks of real-money leveraged futures trading and want automated scanning, sizing, execution, monitoring, journaling, and emergency controls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can perform autonomous real-money leveraged futures trading after onboarding consent. <br>
-Mitigation: Start in paper mode, review the generated configuration, and enable autonomous_live only after explicit consent and risk-cap review. <br>
-Risk: Exchange API credentials grant private account access and may allow trading actions. <br>
-Mitigation: Use the narrowest possible API permissions, keep ASTER_API_KEY and ASTER_API_SECRET in environment variables, and avoid storing secrets in config files. <br>
-Risk: A custom ASTER_BASE_URL could redirect requests to an untrusted endpoint. <br>
-Mitigation: Do not override ASTER_BASE_URL unless the endpoint is fully trusted. <br>
-Risk: Autonomous execution can continue on a schedule if cron jobs are enabled. <br>
-Mitigation: Review cron registration before enabling it and use the documented halt, circuit breaker, cancel-order, flatten-position, and paper-mode controls when needed. <br>
+## Use Case:
 
+External users and developers use MoneySharks to configure and run an Aster DEX perpetual futures trading agent. It supports paper, approval, live, and autonomous_live modes for market scanning, sizing, execution, monitoring, journaling, and trade review.
 
-## Reference(s): <br>
-- [MoneySharks ClawHub listing](https://clawhub.ai/sharksdotmoney/moneysharks) <br>
-- [MoneySharks documentation](documentation-moneysharks.md) <br>
-- [Live execution boundary](references/live-execution-boundary.md) <br>
-- [Risk policy](references/risk-policy.md) <br>
-- [Emergency controls](references/emergency-controls.md) <br>
-- [Onboarding and consent](references/onboarding.md) <br>
-- [Aster read-only integration](references/aster-readonly-integration.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance, JSON status/configuration files, and shell commands for local scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires ASTER_API_KEY and ASTER_API_SECRET for private Aster actions; default mode is paper until onboarding consent enables live autonomy.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: Unattended real-money futures trading can place leveraged orders and lose funds if misconfigured or insufficiently reviewed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when this authority is intended; start in paper mode, use restricted Aster API keys, use IP allowlisting when available, and verify risk limits before live trading.
+
+Risk: Autonomous live mode removes per-trade approval after explicit onboarding consent.
+
+Mitigation: Use paper or approval mode until audited, and verify approval gates, halt behavior, circuit breakers, and protective orders before enabling autonomous_live.
+
+Risk: Aster API credentials grant trading access.
+
+Mitigation: Store ASTER_API_KEY and ASTER_API_SECRET in environment variables, avoid hardcoding secrets, and restrict key permissions to the minimum required.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/sharksdotmoney/skills/moneysharks)
+- [MoneySharks Documentation](artifact/documentation-moneysharks.md)
+- [Onboarding](artifact/references/onboarding.md)
+- [Risk Policy](artifact/references/risk-policy.md)
+- [Live Execution Boundary](artifact/references/live-execution-boundary.md)
+- [Execution Playbook](artifact/references/execution-playbook.md)
+- [Emergency Controls](artifact/references/emergency-controls.md)
+- [Aster Read-Only Integration](artifact/references/aster-readonly-integration.md)
+- [Cron Automation](artifact/references/cron-automation.md)
+- [Deployment](artifact/references/deployment.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance, JSON configuration and state files, and shell/Python command invocations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May operate in paper, approval, live, or autonomous_live modes; live trading requires Aster API credentials and explicit onboarding consent.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

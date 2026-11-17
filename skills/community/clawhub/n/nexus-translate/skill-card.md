@@ -1,44 +1,61 @@
-## Description: <br>
-High-quality translations with cultural awareness across 50+ languages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+High-quality translations with cultural awareness across 50+ languages.
 
-## Publisher: <br>
-[cyberforexblockchain](https://clawhub.ai/user/cyberforexblockchain) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cyberforexblockchain](https://clawhub.ai/user/cyberforexblockchain)
 
-## Use Case: <br>
-External users and developers use this skill to translate text through the NEXUS remote translation service when cultural context and multilingual coverage are needed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Translated text and payment proof data are sent to the NEXUS remote service when the skill is used. <br>
-Mitigation: Install only if you trust NEXUS for the content being translated, and avoid sending secrets, regulated personal data, or proprietary content unless the provider is approved for that use. <br>
-Risk: The skill can trigger paid requests through supported payment flows. <br>
-Mitigation: Use the sandbox for testing and configure the agent to ask before billable requests where possible. <br>
+## Use Case:
 
+External users and developers use this skill to send text to the NEXUS translation service and receive culturally aware translations. It supports paid agent requests through x402, MPP, Masumi, AP2, and XRPL payment flows.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/cyberforexblockchain/nexus-translate) <br>
-- [NEXUS Platform](https://ai-service-hub-15.emergent.host) <br>
-- [MPP Discovery](https://ai-service-hub-15.emergent.host/api/mpp/discover) <br>
-- [x402 Discovery](https://ai-service-hub-15.emergent.host/api/mpp/x402) <br>
-- [AP2 Configuration](https://ai-service-hub-15.emergent.host/api/ap2/config) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, API calls, guidance] <br>
-**Output Format:** [JSON service response containing translated text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires payment proof or a supported payment flow before billable service use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: frontmatter and server release metadata) <br>
+Risk: Text submitted for translation and payment proof data are sent to an external NEXUS API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with text and payment credentials approved for third-party processing, and avoid secrets, regulated data, or proprietary content unless organizational policy allows it.
+
+Risk: Non-sandbox requests are priced per request.
+
+Mitigation: Confirm payment network, asset, and amount before retrying a request with a payment credential.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/cyberforexblockchain/skills/nexus-translate)
+- [Publisher Profile](https://clawhub.ai/user/cyberforexblockchain)
+- [NEXUS Platform](https://ai-service-hub-15.emergent.host)
+- [Translation API Endpoint](https://ai-service-hub-15.emergent.host/api/original-services/translate)
+- [x402 Discovery](https://ai-service-hub-15.emergent.host/api/mpp/x402)
+- [MPP Discovery](https://ai-service-hub-15.emergent.host/api/mpp/discover)
+- [AP2 Configuration](https://ai-service-hub-15.emergent.host/api/ap2/config)
+- [XRPL Configuration](https://ai-service-hub-15.emergent.host/api/xrpl/config)
+- [A2A Agent Card](https://ai-service-hub-15.emergent.host/.well-known/agent.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, API Calls, Shell commands, guidance]
+
+**Output Format:** [Text or JSON service response with Markdown usage guidance and inline bash examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a NEXUS payment proof or supported payment credential for paid requests; sandbox testing is described in the artifact.]
+
+## Skill Version(s):
+
+2.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

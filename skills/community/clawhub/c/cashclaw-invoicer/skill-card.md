@@ -1,47 +1,66 @@
-## Description: <br>
-Handles invoice creation, payment link generation, payment status tracking, and automated reminders via Stripe API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Handles invoice creation, payment link generation, payment status tracking, and automated reminders via Stripe API. Supports multi-currency billing and recurring payments.
 
-## Publisher: <br>
-[andreataide86](https://clawhub.ai/user/andreataide86) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[andreataide86](https://clawhub.ai/user/andreataide86)
 
-## Use Case: <br>
-Developers and business operators use this skill to create Stripe payment links and invoices, check payment status, send reminders, manage recurring billing, and record payment events for CashClaw workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can perform real financial actions, including refunds, without a built-in confirmation step. <br>
-Mitigation: Require explicit human approval before running payment, invoice, subscription, reminder, or refund commands, and do not allow an agent to run refund commands automatically. <br>
-Risk: Stripe API credentials and local CashClaw ledger/dashboard files may expose payment access or customer billing records. <br>
-Mitigation: Use restricted Stripe API keys where possible, protect configuration files, and periodically delete or secure ~/.cashclaw ledger and dashboard files. <br>
-Risk: Automated reminders can contact clients or re-send invoices at the wrong time if the payment state or recipient is wrong. <br>
-Mitigation: Review invoice status, recipient, amount, currency, and reminder schedule before sending reminders; pause automation when a client responds. <br>
+## Use Case:
 
+Developers and operators use this skill to create Stripe payment links and invoices, check payment status, send reminders, manage recurring billing, and process refunds for CashClaw services.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/andreataide86/cashclaw-invoicer) <br>
-- [Stripe Customers API](https://api.stripe.com/v1/customers) <br>
-- [Stripe Invoices API](https://api.stripe.com/v1/invoices) <br>
-- [Stripe Payment Links API](https://api.stripe.com/v1/payment_links) <br>
-- [Stripe Refunds API](https://api.stripe.com/v1/refunds) <br>
-- [Stripe Subscriptions API](https://api.stripe.com/v1/subscriptions) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API Calls, Configuration, Guidance, Files] <br>
-**Output Format:** [Markdown with bash commands, curl examples, and JSON ledger/dashboard examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses Node.js, Stripe credentials, and local CashClaw ledger/dashboard files when executed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill requests powerful Stripe payment authority, including invoice, subscription, payment link, and refund operations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a restricted Stripe key and require explicit human approval before refunds or subscription changes.
+
+Risk: Stripe credentials can be read from ~/.cashclaw/config.json if no environment variable is set.
+
+Mitigation: Prefer short-lived environment configuration; if a config file is used, lock down file permissions and keep it out of backups and logs.
+
+Risk: The release includes unreviewed npm installation guidance.
+
+Mitigation: Audit and pin npm package versions before installation in production environments.
+
+Risk: Payment and reminder events may be written to local CashClaw ledger and dashboard files.
+
+Mitigation: Restrict access to local CashClaw data files and avoid storing unnecessary customer or payment details.
+
+## Reference(s):
+
+- [Cashclaw Invoicer on ClawHub](https://clawhub.ai/andreataide86/skills/cashclaw-invoicer)
+- [Publisher profile](https://clawhub.ai/user/andreataide86)
+- [cashclaw npm package](https://www.npmjs.com/package/cashclaw)
+- [Stripe invoices API endpoint](https://api.stripe.com/v1/invoices)
+- [Stripe payment links API endpoint](https://api.stripe.com/v1/payment_links)
+- [Stripe refunds API endpoint](https://api.stripe.com/v1/refunds)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON examples and shell command or API call snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js and STRIPE_SECRET_KEY for Stripe operations; may write payment events to local CashClaw ledger files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

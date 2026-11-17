@@ -1,37 +1,49 @@
-## Description: <br>
-Provides concise guidance on using dimensionality reduction, low-dimensional representations, subspace decomposition, and sparse constraints to reason about high-dimensional complex systems. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents in explaining and selecting low-dimensional methods for high-dimensional complex systems, including dimensionality reduction, sparse representation, low-rank approximation, manifold learning, stochastic control, reinforcement learning, signal processing, and AI inference.
 
-## Publisher: <br>
-[smseow001](https://clawhub.ai/user/smseow001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[smseow001](https://clawhub.ai/user/smseow001)
 
-## Use Case: <br>
-Developers, researchers, and technical readers use this skill to choose and explain low-dimensional methods for high-dimensional optimization, control, reinforcement learning, signal processing, and AI inference problems. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The mathematical and engineering guidance may be incomplete or unsuitable for safety-critical control, finance, or production AI systems. <br>
-Mitigation: Treat outputs as educational guidance and have qualified reviewers validate methods, assumptions, and implementation choices before production use. <br>
+## Use Case:
 
+Developers, engineers, and learners use this skill to get educational guidance on applying low-dimensional modeling and approximation methods to high-dimensional optimization, control, signal processing, reinforcement learning, and AI inference problems.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown] <br>
-**Output Format:** [Markdown prose with method summaries, scenario guidance, tables, and Q&A] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Markdown-only educational content; no code execution, credentials, file access, persistence, or system changes requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server evidence) <br>
+Risk: The source material is primarily Chinese, which may limit comprehension for users expecting another language.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask the agent to translate or answer in the user's preferred language before applying the guidance.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/smseow001/skills/lowdim-hidim)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown prose with examples, method summaries, selection guidance, and Q&A]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Primarily Chinese educational content; no code execution or sensitive access is described.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

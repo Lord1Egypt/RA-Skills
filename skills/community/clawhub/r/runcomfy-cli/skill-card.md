@@ -1,47 +1,65 @@
-## Description: <br>
-Guides agents and developers through installing, authenticating, and using the RunComfy CLI to run RunComfy model endpoints, inspect schemas, poll jobs, script JSON output, and handle errors. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+RunComfy CLI on RunComfy teaches agents how to install and authenticate the `runcomfy` CLI, discover model schemas, invoke RunComfy model endpoints, poll or submit asynchronous jobs, download outputs, emit JSON for scripts, and handle common exit codes.
 
-## Publisher: <br>
-[kalvinrv](https://clawhub.ai/user/kalvinrv) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[permew](https://clawhub.ai/user/permew)
 
-## Use Case: <br>
-Developers and agents use this skill to operate RunComfy from a terminal or script, including setup, authentication, model invocation, job polling, downloads, JSON output, and troubleshooting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a RunComfy token and local CLI configuration. <br>
-Mitigation: Protect the token, avoid logging or committing it, use the RUNCOMFY_TOKEN environment variable where appropriate, and rotate credentials when needed. <br>
-Risk: The workflow depends on installing and running an external CLI. <br>
-Mitigation: Install only the verified RunComfy CLI package or inspect installer scripts before use. <br>
-Risk: Model outputs may be downloaded to local disk. <br>
-Mitigation: Choose output directories deliberately and review generated files before relying on or sharing them. <br>
+## Use Case:
 
+Developers and external users use this skill to operate RunComfy models from a terminal or script, including install, login, request submission, status checks, result download, and automation patterns.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kalvinrv/runcomfy-cli) <br>
-- [RunComfy](https://www.runcomfy.com) <br>
-- [RunComfy CLI documentation](https://docs.runcomfy.com/cli/introduction?utm_source=clawhub&utm_medium=skill&utm_campaign=runcomfy-cli) <br>
-- [RunComfy CLI install guide](https://docs.runcomfy.com/cli/install?utm_source=clawhub&utm_medium=skill&utm_campaign=runcomfy-cli) <br>
-- [RunComfy CLI authentication](https://docs.runcomfy.com/cli/auth?utm_source=clawhub&utm_medium=skill&utm_campaign=runcomfy-cli) <br>
-- [RunComfy model catalog](https://www.runcomfy.com/models?utm_source=clawhub&utm_medium=skill&utm_campaign=runcomfy-cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce RunComfy CLI commands, environment variable setup, request JSON, polling commands, and download guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: The skill may lead an agent to install and run an unpinned third-party npm package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned, reviewed `@runcomfy/cli` version from a trusted package source and avoid unattended `npx -y` execution.
+
+Risk: RunComfy authentication tokens can be exposed through logs, prompts, shell history, or committed configuration.
+
+Mitigation: Keep `RUNCOMFY_TOKEN` out of prompts and logs, store local token files with owner-only permissions, and prefer scoped environment handling in CI.
+
+Risk: Generated media downloads can consume unexpected disk space or land in an unintended working directory.
+
+Mitigation: Set an explicit output directory and review large-download behavior before running automated batches.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/permew/skills/runcomfy-cli)
+- [RunComfy](https://www.runcomfy.com)
+- [RunComfy CLI documentation](https://docs.runcomfy.com/cli/introduction?utm_source=clawhub&utm_medium=skill&utm_campaign=runcomfy-cli)
+- [RunComfy CLI install guide](https://docs.runcomfy.com/cli/install?utm_source=clawhub&utm_medium=skill&utm_campaign=runcomfy-cli)
+- [RunComfy CLI authentication](https://docs.runcomfy.com/cli/auth?utm_source=clawhub&utm_medium=skill&utm_campaign=runcomfy-cli)
+- [RunComfy CLI quickstart](https://docs.runcomfy.com/cli/quickstart?utm_source=clawhub&utm_medium=skill&utm_campaign=runcomfy-cli)
+- [RunComfy CLI command reference](https://docs.runcomfy.com/cli/commands?utm_source=clawhub&utm_medium=skill&utm_campaign=runcomfy-cli)
+- [RunComfy CLI troubleshooting](https://docs.runcomfy.com/cli/troubleshooting?utm_source=clawhub&utm_medium=skill&utm_campaign=runcomfy-cli)
+- [RunComfy model catalog](https://www.runcomfy.com/models?utm_source=clawhub&utm_medium=skill&utm_campaign=runcomfy-cli)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, JSON examples, configuration notes, and troubleshooting tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May describe CLI commands that submit remote jobs, poll status, download generated files, or emit machine-readable JSON.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

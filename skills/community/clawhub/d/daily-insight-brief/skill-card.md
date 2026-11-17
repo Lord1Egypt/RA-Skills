@@ -1,42 +1,52 @@
-## Description: <br>
-Daily morning brief（8:30 Beijing time）自动收集、交叉验证并提炼来自广域来源的商业、科技、金融等领域信息，产出10-15条要点性简报。每条包含：标题/要点、来源（名称+链接）、关键数据点、分析评论（1-2句）、核心观点、验证状态（已验证 / 待核实）。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Daily morning brief（8:30 Beijing time）自动收集、交叉验证并提炼来自广域来源的商业、科技、金融等领域信息，产出10-15条要点性简报。每条包含：标题/要点、来源（名称+链接）、关键数据点、分析评论（1-2句）、核心观点、验证状态（已验证 / 待核实）。
 
-## Publisher: <br>
-[alexweng123](https://clawhub.ai/user/alexweng123) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[alexweng123](https://clawhub.ai/user/alexweng123)
 
-## Use Case: <br>
-Employees, analysts, and external users use this skill to generate a structured daily Chinese-language morning brief on business, technology, finance, and market developments. It emphasizes source links, key data points, short analysis, and verification status for each brief item. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Recurring web-based news collection can surface incomplete, stale, or unverified public-source information. <br>
-Mitigation: Review each item before relying on it, preserve the skill's verification status field, and mark unsupported claims as pending verification. <br>
-Risk: Future integrations could send brief output to Feishu, email, or other channels unintentionally. <br>
-Mitigation: Keep external publishing disabled unless the target channel and recipients are intentionally configured and reviewed. <br>
-Risk: The artifact includes a stray local-path authoring sentence that is not operational guidance for deployment. <br>
-Mitigation: Remove or ignore local authoring paths before release packaging. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Daily Insight Brief source list](references/source_list.md) <br>
-- [ClawHub release page](https://clawhub.ai/alexweng123/daily-insight-brief) <br>
+## Use Case:
 
+Employees, external users, and developers can use this skill to generate a Chinese-language daily morning brief covering business, technology, finance, markets, and research from broad public sources. It is intended to produce concise brief items with source links, key data points, short analysis, core takeaways, and verification status.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Analysis, Guidance] <br>
-**Output Format:** [Structured Markdown brief with source links, data points, analysis, core insight, and verification status] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces 10-15 brief items per run; Chinese is the primary language, with optional English notes when useful.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Scheduled or external delivery could send reports to unintended destinations if channels, credentials, or opt-in controls are not confirmed.
+
+Mitigation: Confirm destinations, credentials, schedule settings, and opt-in controls before enabling any real scheduler, Feishu delivery, email delivery, or channel delivery.
+
+Risk: Brief items may include public-source claims that are not fully verified at generation time.
+
+Mitigation: Preserve the per-item verification status and evidence notes, and treat items marked pending verification as leads that need follow-up before decision-making.
+
+## Reference(s):
+
+- [Daily Insight Brief source list](references/source_list.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Structured Markdown brief in Chinese with source links, data points, analysis, takeaways, verification status, and notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Typically 10-15 brief items per output; each item includes verification status and evidence notes.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

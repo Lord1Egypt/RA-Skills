@@ -1,41 +1,47 @@
-## Description: <br>
-Buku helps agents manage a local buku bookmark database from the CLI, including adding, searching, listing, tagging, importing, exporting, updating, and deleting bookmarks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage bookmarks using the buku CLI for adding, searching, listing, tagging, importing, exporting, updating, and deleting saved links.
 
-## Publisher: <br>
-[god4saken](https://clawhub.ai/user/god4saken) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[god4saken](https://clawhub.ai/user/god4saken)
 
-## Use Case: <br>
-Developers and agents use this skill to operate a user's local buku bookmark database through non-interactive CLI commands for bookmark lookup, organization, import/export, and maintenance. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Deletion, range deletion, import/export, and global tag changes can alter or remove entries in the user's persistent local buku bookmark database. <br>
-Mitigation: Show the exact target bookmarks or file paths and require explicit user confirmation before running destructive or bulk-changing commands. <br>
-Risk: The skill includes deletion commands that use flags to bypass buku's confirmation prompts. <br>
-Mitigation: Use confirmation-skipping flags only after the user has reviewed the targets and explicitly approved the operation. <br>
-Risk: Bookmark title or description refreshes may contact websites to fetch metadata. <br>
-Mitigation: Use offline mode when the user does not want bookmark metadata fetching to contact external websites. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/god4saken/buku) <br>
+## Use Case:
+
+Developers and agent users use this skill to operate a local buku bookmark database through non-interactive CLI commands for bookmark creation, search, listing, tagging, import, export, update, and deletion.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill normalizes deletion commands that bypass confirmation and can remove individual bookmarks, ranges of bookmarks, or tags from the local buku database.
+
+Mitigation: Before delete, range delete, tag deletion, import, or export operations, require the agent to show the matching bookmarks and get explicit confirmation of the exact index, range, tag, or file path.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance, Configuration] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses non-interactive CLI flags; JSON output is recommended for parsing bookmark records.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+**Output Type(s):** [shell commands, guidance, configuration]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown guidance with inline bash command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands target a local buku bookmark database, including operations that can modify or remove saved bookmarks.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

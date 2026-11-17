@@ -1,42 +1,53 @@
-## Description: <br>
-Spin up a remote browser session via the TinyFish Browser API and get a CDP URL for driving it. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Spin up a remote browser session via the TinyFish Browser API and get a CDP URL for driving it.
 
-## Publisher: <br>
-[bunsdev](https://clawhub.ai/user/bunsdev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bunsdev](https://clawhub.ai/user/bunsdev)
 
-## Use Case: <br>
-Developers and automation agents use this skill to create a remote Chromium session for Playwright, Puppeteer, or DevTools Protocol workflows and receive the session identifiers needed to drive it. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends target URLs and browser activity to TinyFish's remote browser service. <br>
-Mitigation: Install only if TinyFish is trusted for the intended browsing activity and avoid sensitive internal sites unless approved. <br>
-Risk: The TinyFish API key authorizes browser session creation. <br>
-Mitigation: Use a dedicated, revocable API key and verify TINYFISH_API_KEY is set before making requests. <br>
-Risk: Returned CDP and session URLs can provide access to the remote browser session. <br>
-Mitigation: Treat returned session endpoints as sensitive and avoid logging or sharing them outside the automation workflow. <br>
+## Use Case:
 
+Developers and engineers use this skill to create hosted Chromium sessions for browser automation with Playwright, Puppeteer, or other DevTools Protocol clients.
 
-## Reference(s): <br>
-- [TinyFish Browser API documentation](https://docs.tinyfish.ai/browser-api) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash commands and JSON response examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires TINYFISH_API_KEY and returns a session ID, CDP URL, and authenticated polling base URL.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Target URLs and browser activity are sent to TinyFish as a third-party hosted browser provider.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when TinyFish is approved for the data and sites being automated.
+
+Risk: The TinyFish API key may be exposed if it is broadly scoped or visible in process arguments.
+
+Mitigation: Scope and rotate TINYFISH_API_KEY, restrict environment access, and harden the helper before handling sensitive workflows.
+
+## Reference(s):
+
+- [TinyFish Browser API documentation](https://docs.tinyfish.ai/browser-api)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, JSON]
+
+**Output Format:** [Markdown guidance with bash command examples and JSON response shape]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires TINYFISH_API_KEY; TinyFish returns session_id, cdp_url, and an authenticated base_url.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

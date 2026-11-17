@@ -1,46 +1,58 @@
-## Description: <br>
-AxonFlow plugin setup for OpenClaw: install, connect, and explore starter governance policies. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AxonFlow plugin setup for OpenClaw — install, activate Hosted Starter, or connect a self-hosted deployment.
 
-## Publisher: <br>
-[axonflow](https://clawhub.ai/user/axonflow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[axonflow](https://clawhub.ai/user/axonflow)
 
-## Use Case: <br>
-Developers and governance or security teams use this skill to install and configure AxonFlow's OpenClaw plugin, review starter governance policies, and connect OpenClaw to AxonFlow for policy enforcement, approvals, PII handling, explainability, and audit history. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The external AxonFlow plugin and service may process agent events, prompts, PII, approvals, and audit history. <br>
-Mitigation: Review the @axonflow/openclaw plugin and AxonFlow service before installation, and keep client credentials in a secret manager rather than source control. <br>
-Risk: The setup requires OpenClaw 2026.5.22+ and @axonflow/openclaw 2.6.4+. <br>
-Mitigation: Verify OpenClaw and plugin versions before installation or deployment. <br>
+## Use Case:
 
+OpenClaw developers and administrators use this guide to install the AxonFlow governance plugin, activate Hosted Starter, or connect a self-hosted deployment.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/axonflow/governance-policies) <br>
-- [Artifact homepage](https://github.com/getaxonflow/axonflow-openclaw-plugin/tree/main/policies) <br>
-- [AxonFlow docs](https://docs.getaxonflow.com/) <br>
-- [OpenClaw plugin reference](https://docs.getaxonflow.com/docs/integration/openclaw/) <br>
-- [Policy overview](https://docs.getaxonflow.com/docs/policies/overview/) <br>
-- [Self-hosted deployment](https://docs.getaxonflow.com/docs/deployment/self-hosted/) <br>
-- [Plugin GitHub](https://github.com/getaxonflow/axonflow-openclaw-plugin) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline shell commands and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes OpenClaw 2026.5.22+ and @axonflow/openclaw 2.6.4+ requirements.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.5.0 (source: server release metadata) <br>
+Risk: Hosted Starter is intended for early exploration and is unsuitable for production, regulated, personal, or other sensitive data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a self-hosted deployment for production or sensitive workloads.
+
+Risk: Self-hosted client credentials could be exposed if committed to source control.
+
+Mitigation: Store credentials in a secret manager and do not commit them to source control.
+
+## Reference(s):
+
+- [AxonFlow Governance Policies](https://github.com/getaxonflow/axonflow-openclaw-plugin/tree/main/policies)
+- [OpenClaw Integration Guide](https://docs.getaxonflow.com/docs/integration/openclaw/)
+- [Self-Hosted Deployment](https://docs.getaxonflow.com/docs/deployment/self-hosted/)
+- [Human Approval Gates](https://docs.getaxonflow.com/docs/governance/human-in-the-loop/)
+- [Compliance and PII](https://docs.getaxonflow.com/docs/compliance/)
+- [Hosted Starter Pricing](https://getaxonflow.com/saas-pricing/)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown with inline shell commands and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+2.6.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

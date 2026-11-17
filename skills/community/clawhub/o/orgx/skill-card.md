@@ -1,44 +1,56 @@
-## Description: <br>
-Use when managing work with OrgX, including progress reporting, decision requests, artifact registration, memory sync, quality gates, and organization status checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when managing work with OrgX to report progress, request decisions, register artifacts, sync memory, check quality gates, or view org status.
 
-## Publisher: <br>
-[hopeatina](https://clawhub.ai/user/hopeatina) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hopeatina](https://clawhub.ai/user/hopeatina)
 
-## Use Case: <br>
-Developers and agent operators use OrgX to coordinate multi-agent work through structured progress reports, decision workflows, artifact registration, memory sync, quality scoring, entity management, and run control. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Memory sync may expose sensitive local context such as MEMORY.md, daily logs, or progress summaries. <br>
-Mitigation: Review local memory, daily logs, and progress summaries before syncing them to OrgX. <br>
-Risk: ORGX_API_KEY is sensitive credential material. <br>
-Mitigation: Keep ORGX_API_KEY in the environment and out of prompts, shared files, and generated reports. <br>
-Risk: The skill depends on the external @useorgx/openclaw-plugin package. <br>
-Mitigation: Install only when you trust OrgX and the external package source. <br>
-Risk: Entity updates, cancellations, rollbacks, and checkpoint restores can change tracked work or run state. <br>
-Mitigation: Explicitly confirm those actions before allowing an agent to perform them. <br>
+## Use Case:
 
+Developers and agent operators use this skill to connect agent work to OrgX for progress reporting, decision requests, artifact registration, quality scoring, entity tracking, and run control.
 
-## Reference(s): <br>
-- [OrgX on ClawHub](https://clawhub.ai/hopeatina/orgx) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with tool-call examples, shell commands, configuration notes, and operational guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces structured guidance for reporting progress, requesting decisions, registering artifacts, syncing memory, checking quality gates, managing entities, and controlling runs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.1.0 (source: server release metadata) <br>
+Risk: The skill can send status, task details, memory summaries, and logs to an external OrgX service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only where this data sharing is acceptable, and avoid syncing raw memory or daily logs that may contain secrets or sensitive internal information.
+
+Risk: The skill uses ORGX_API_KEY and plugin installation paths that could expose credentials if copied into chats, logs, or repositories.
+
+Mitigation: Keep ORGX_API_KEY out of chats, logs, and repositories, and prefer a pinned reviewed plugin version before deployment.
+
+## Reference(s):
+
+- [OrgX ClawHub Skill Page](https://clawhub.ai/hopeatina/skills/orgx)
+- [hopeatina ClawHub Publisher Profile](https://clawhub.ai/user/hopeatina)
+- [OrgX Live Dashboard](http://127.0.0.1:18789/orgx/live)
+- [OrgX MCP Server](https://mcp.useorgx.com)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, API calls, Markdown]
+
+**Output Format:** [Markdown with inline shell commands and structured tool-call examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference ORGX_API_KEY and OrgX MCP tools for reporting, synchronization, quality scoring, and entity management.]
+
+## Skill Version(s):
+
+3.1.0 (source: server release metadata; artifact frontmatter says 2.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

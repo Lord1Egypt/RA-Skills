@@ -1,44 +1,55 @@
-## Description: <br>
-Helps e-commerce teams draft structured creator/KOL collaboration briefs that are ready to share with influencers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill helps agents draft complete Chinese ecommerce creator and KOL cooperation briefs that brands can send directly to creators.
 
-## Publisher: <br>
-[lxyk588](https://clawhub.ai/user/lxyk588) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lxyk588](https://clawhub.ai/user/lxyk588)
 
-## Use Case: <br>
-E-commerce brand, marketing, and creator operations teams use this skill to turn campaign details into a structured creator collaboration brief covering product positioning, content direction, platform requirements, creator profile, KPIs, deliverables, and compliance notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated briefs may include confidential pricing strategy, private margins, unreleased campaign details, or personal contact information if the user provides them. <br>
-Mitigation: Avoid entering sensitive commercial or personal information unless it is appropriate for the AI workspace and the intended recipient. <br>
-Risk: Briefs may contain platform compliance, advertising, or legal claims that need review before commercial use. <br>
-Mitigation: Verify platform rules, disclosure requirements, prohibited claims, and any legal obligations before sending a generated brief to creators. <br>
-Risk: Campaign KPI, ROI, or product-claim language can become misleading if copied without checking feasibility and substantiation. <br>
-Mitigation: Review KPI targets, ROI statements, and product efficacy claims against actual campaign data and approved product materials. <br>
+## Use Case:
 
+External ecommerce, marketing, and creator-operations teams use this skill to turn campaign details into structured creator briefs for platforms such as Douyin, Xiaohongshu, Kuaishou, Bilibili, and WeChat Channels. The brief covers product positioning, creator requirements, content direction, platform format, KPIs, delivery expectations, settlement terms, and compliance notes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lxyk588/ecommerce-creator-brief) <br>
-- [带货达人Brief标准模板](artifact/brief-template.md) <br>
-- [各平台内容规范速查](artifact/platform-rules.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown brief document with tables, checklists, and compliance notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Markdown-only drafting output; no code execution or hidden data movement was identified in the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Briefs may include incorrect platform-compliance assumptions when reused outside the China-market platforms covered by the artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask the agent to adapt the brief language, platform rules, and compliance assumptions for the target locale and platform before use.
+
+Risk: Draft campaign claims, KPIs, or product benefits may be unrealistic, noncompliant, or unsupported if the user provides incomplete inputs.
+
+Mitigation: Review and approve all product claims, KPI targets, pricing, creator requirements, and platform compliance notes before sending the brief to creators.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lxyk588/skills/ecommerce-creator-brief)
+- [Standard creator brief template](artifact/brief-template.md)
+- [Platform content rules quick reference](artifact/platform-rules.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown brief document with tables, checklists, and compliance notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language output by default; users should adapt locale, language, platform rules, and compliance assumptions for other markets.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

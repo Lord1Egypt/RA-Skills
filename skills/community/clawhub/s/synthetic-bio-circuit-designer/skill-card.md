@@ -1,40 +1,53 @@
-## Description: <br>
-Design gene circuits for synthetic biology applications. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Design gene circuits for synthetic biology applications.
 
-## Publisher: <br>
-[aipoch-ai](https://clawhub.ai/user/aipoch-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aipoch-ai](https://clawhub.ai/user/aipoch-ai)
 
-## Use Case: <br>
-Researchers, educators, and developers use this skill to generate high-level synthetic biology circuit sketches, component lists, and expected behavior for toggle-switch or oscillator designs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Outputs could be mistaken for lab-ready biological instructions. <br>
-Mitigation: Treat generated designs as educational sketches and require expert review before any laboratory or deployment use. <br>
-Risk: Future versions may add file writing, external APIs, organism-specific designs, real simulation, or wet-lab protocols. <br>
-Mitigation: Re-review and rescan future versions before use when behavior or biological specificity changes. <br>
+## Use Case:
 
+Developers, educators, and synthetic-biology practitioners use this skill to generate conceptual toggle-switch or oscillator circuit descriptions, component lists, and expected behavior for review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aipoch-ai/synthetic-bio-circuit-designer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [Plain text circuit descriptions printed to stdout] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes component lists and expected behavior for toggle-switch or oscillator circuit sketches.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Users could mistake conceptual circuit descriptions for experimentally validated or safe-to-build biological designs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use outputs only as educational examples and require qualified biological review plus applicable safety and compliance controls before any real-world work.
+
+Risk: The skill runs a local Python script supplied with the release.
+
+Mitigation: Run it in a sandboxed workspace and review the script before execution in sensitive environments.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/aipoch-ai/skills/synthetic-bio-circuit-designer)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Guidance]
+
+**Output Format:** [Plain text and Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Conceptual, unvalidated circuit descriptions; no external API calls.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence release.version and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

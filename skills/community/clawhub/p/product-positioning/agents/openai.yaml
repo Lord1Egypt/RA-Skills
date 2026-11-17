@@ -1,0 +1,4 @@
+interface:
+  display_name: "Amazon 产品定位建议"
+  short_description: "基于商品与评论证据梳理定位方向"
+  default_prompt: "使用 $amazon-product-positioning 根据 Amazon 商品详情和评论证据梳理产品定位方向。"

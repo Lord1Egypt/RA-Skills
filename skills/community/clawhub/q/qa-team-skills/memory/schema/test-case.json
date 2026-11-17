@@ -1,0 +1,59 @@
+{
+  "name": "测试用例库 (Test Case)",
+  "description": "/qa-case 指令的输出结果存储模型",
+  "version": "1.0",
+  "fields": {
+    "id": { "type": "string", "format": "case-YYYYMMDD-NNN", "required": true },
+    "created_at": { "type": "string", "format": "ISO 8601", "required": true },
+    "module": { "type": "string", "description": "产品/模块名称", "required": true },
+    "source": { "type": "string", "description": "来源 session_id", "required": true },
+    "tags": { "type": "array", "items": "string", "default": [] },
+    "data": {
+      "type": "object",
+      "required": true,
+      "properties": {
+        "requirement_summary": { "type": "string", "description": "需求摘要" },
+        "test_types_covered": {
+          "type": "array",
+          "items": { "type": "string", "enum": ["功能测试", "边界测试", "异常测试", "安全测试", "性能测试", "兼容性测试"] }
+        },
+        "total_cases": { "type": "integer" },
+        "priority_distribution": {
+          "type": "object",
+          "properties": {
+            "P0": { "type": "integer" },
+            "P1": { "type": "integer" },
+            "P2": { "type": "integer" },
+            "P3": { "type": "integer" }
+          }
+        },
+        "layer_distribution": {
+          "type": "object",
+          "properties": {
+            "核心层": { "type": "integer" },
+            "体验层": { "type": "integer" },
+            "增值层": { "type": "integer" }
+          }
+        },
+        "test_cases": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": { "type": "string" },
+              "title": { "type": "string" },
+              "type": { "type": "string", "enum": ["功能", "边界", "异常", "安全", "性能", "兼容性"] },
+              "business_layer": { "type": "string", "enum": ["核心层", "体验层", "增值层"] },
+              "design_method": { "type": "string" },
+              "priority": { "type": "string", "enum": ["P0", "P1", "P2", "P3"] },
+              "precondition": { "type": "string" },
+              "test_data": { "type": "string" },
+              "steps": { "type": "array", "items": { "type": "string" } },
+              "expected_results": { "type": "array", "items": { "type": "string" } }
+            }
+          }
+        }
+      }
+    }
+  }
+}

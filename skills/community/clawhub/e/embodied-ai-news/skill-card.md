@@ -1,47 +1,65 @@
-## Description: <br>
-Aggregates public embodied AI and robotics news from curated media, research, company, and GitHub sources into structured briefings with direct source links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Aggregates public Embodied AI and robotics sources into structured briefings on humanoid robots, foundation models, hardware, deployments, funding, and optional GitHub open-source activity.
 
-## Publisher: <br>
-[hexavi8](https://clawhub.ai/user/hexavi8) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hexavi8](https://clawhub.ai/user/hexavi8)
 
-## Use Case: <br>
-External users, developers, analysts, and robotics teams use this skill to request daily, weekly, monthly, or topic-specific embodied AI news briefings, including optional open-source repository radar. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Briefings depend on public robotics, AI, arXiv, social media, and GitHub pages that may be incomplete, unavailable, or change after collection. <br>
-Mitigation: Prefer curated public sources, include direct links, mark uncertainty when details are limited, and omit or qualify unverifiable claims. <br>
-Risk: Monthly maintenance proposals can change the skill's future source lists or workflow behavior. <br>
-Mitigation: Review the proposed diff and scan the skill before approving any persistent reference-file changes. <br>
+## Use Case:
 
+Researchers, developers, analysts, and business teams use this skill to request current embodied AI and robotics briefings, topic deep dives, company spotlights, and open-source repository radar with source links.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hexavi8/embodied-ai-news) <br>
-- [Project homepage from ClawHub metadata](https://github.com/HeXavi8/skills) <br>
-- [News sources](references/news_sources.md) <br>
-- [Search queries](references/search_queries.md) <br>
-- [Output templates](references/output_templates.md) <br>
-- [Taxonomy](references/taxonomy.md) <br>
-- [GitHub repository radar](references/github_repos.md) <br>
-- [Workflow SOP](references/workflow.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown briefings, reports, source-linked summaries, and optional repository tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include bilingual English/Chinese content and direct links to original public sources.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release metadata) <br>
+Risk: Briefings can become outdated or reflect incomplete public reporting.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify publication dates, include direct source links, deduplicate stories, and mark limited or conflicting details instead of filling gaps.
+
+Risk: Information gathering could drift into private, authenticated, or unreliable sources.
+
+Mitigation: Use public sources from the curated reference files, skip content requiring authentication, and do not use private accounts or tokens.
+
+Risk: Proposed edits to the skill's own reference files could change future briefing behavior.
+
+Mitigation: Keep briefing output separate from maintenance work and require explicit user approval and review before applying reference-file changes.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/hexavi8/skills/embodied-ai-news)
+- [Publisher Profile](https://clawhub.ai/user/hexavi8)
+- [Skill Homepage](https://github.com/HeXavi8/skills)
+- [News Source Guide](references/news_sources.md)
+- [Search Query Recipes](references/search_queries.md)
+- [Output Format Templates](references/output_templates.md)
+- [Domain Taxonomy](references/taxonomy.md)
+- [Workflow SOP](references/workflow.md)
+- [GitHub Repository Radar Procedure](references/github_repos.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown briefing with categorized sections, source links, and optional GitHub repository table]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports daily, weekly, monthly, custom topic, company-specific, China ecosystem, and GitHub open-source radar briefings.]
+
+## Skill Version(s):
+
+1.0.5 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,47 +1,64 @@
-## Description: <br>
-Get an email address without your human. Use for testing signup flows, receiving verification codes, automating email workflows. Free. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Get an email address without your human. Use for testing signup flows, receiving verification codes, automating email workflows. Free.
 
-## Publisher: <br>
-[claw-silhouette](https://clawhub.ai/user/claw-silhouette) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[claw-silhouette](https://clawhub.ai/user/claw-silhouette)
 
-## Use Case: <br>
-Developers and agents use this skill to create bot email inboxes, read received messages, extract verification codes, and monitor email-based workflows for testing or automation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can expose verification codes and authentication emails. <br>
-Mitigation: Use it for bot or test-account workflows, and avoid real-user or high-value production 2FA flows unless the user explicitly accepts that risk. <br>
-Risk: Generated API keys provide access to inbox contents. <br>
-Mitigation: Protect API keys like passwords and store them only when the user explicitly approves a secure location. <br>
-Risk: Inbox deletion endpoints can remove messages. <br>
-Mitigation: Confirm destructive delete or clear-inbox actions before running them. <br>
-Risk: Heartbeat monitoring can repeatedly fetch and surface email metadata. <br>
-Mitigation: Enable monitoring only after the user confirms the target address and understands that sender, subject, and preview details may be shown. <br>
+## Use Case:
 
+Developers and agents use this skill to create bot email inboxes, read incoming messages, extract verification codes, and monitor email-driven workflows for testing and automation.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/claw-silhouette/bot-email) <br>
-- [BotEmail.ai Documentation](https://botemail.ai/docs) <br>
-- [BotEmail.ai Dashboard](https://botemail.ai/dashboard) <br>
-- [BotEmail.ai Website](https://botemail.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, code, configuration] <br>
-**Output Format:** [Markdown with inline JSON, shell, and JavaScript examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include API endpoint guidance, bearer-token usage, inbox monitoring steps, and credential handling reminders.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-v1.0.7 (source: server release metadata) <br>
+Risk: The skill handles bot inbox contents, verification emails, codes, and API keys.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for accounts where sending these materials to BotEmail.ai is acceptable, treat API keys like passwords, and avoid high-value or regulated accounts.
+
+Risk: The documented API supports deleting individual messages and clearing an inbox.
+
+Mitigation: Require explicit user confirmation before deleting messages or clearing an inbox.
+
+Risk: Dashboard URLs may expose access keys if shared.
+
+Mitigation: Avoid sharing dashboard URLs that contain API keys or other credentials.
+
+Risk: The optional MCP server adds executable third-party code to the environment.
+
+Mitigation: Use the MCP server only from a pinned, reviewed commit in an isolated environment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/claw-silhouette/skills/bot-email)
+- [BotEmail.ai API Docs](https://botemail.ai/docs)
+- [BotEmail.ai Dashboard](https://botemail.ai/dashboard)
+- [BotEmail.ai MCP Server](https://github.com/claw-silhouette/botemail-mcp-server)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with API examples, JSON examples, shell commands, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces guidance for HTTP API use, credential handling, inbox monitoring, and optional MCP setup.]
+
+## Skill Version(s):
+
+v1.0.7 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

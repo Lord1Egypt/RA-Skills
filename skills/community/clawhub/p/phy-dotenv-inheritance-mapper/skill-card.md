@@ -1,42 +1,51 @@
-## Description: <br>
-Maps a project's dotenv inheritance chain into a resolved report that shows override sources, environment conflicts, missing example variables, and code-referenced variables without external API calls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Maps a project's dotenv inheritance chain into a resolved view, showing which .env layer each variable comes from, what overrides what, conflicts across environments, missing .env.example entries, and code-referenced variables with no definition.
 
-## Publisher: <br>
-[PHY041](https://clawhub.ai/user/PHY041) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[phy041](https://clawhub.ai/user/phy041)
 
-## Use Case: <br>
-Developers and DevOps engineers use this skill to inspect dotenv file load order, understand which environment values win, identify missing or conflicting variables, and improve local and deployment configuration hygiene. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated dotenv reports may expose secrets or sensitive configuration values from local .env files. <br>
-Mitigation: Treat reports as sensitive and redact secret values by default before sharing or committing them. <br>
-Risk: Suggested git and .gitignore commands may alter repository tracking for environment files. <br>
-Mitigation: Review each suggested command before running it, especially commands that remove files from git tracking or change ignore rules. <br>
+## Use Case:
 
+Developers and engineers use this skill to audit local environment configuration, compare dotenv override behavior across frameworks and environments, and identify missing, conflicting, undocumented, or unused variables before deployment.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/PHY041/phy-dotenv-inheritance-mapper) <br>
-- [Canlah AI](https://canlah.ai) <br>
-- [The Twelve-Factor App: Config](https://12factor.net/config) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown report with tables, summaries, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include resolved environment-variable maps, conflict summaries, missing-variable findings, generated .env.example suggestions, and gitignore recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata and skill frontmatter) <br>
+Risk: The skill can read and print full dotenv values, including real secrets, in generated reports.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only on repositories where dotenv values are safe for the agent to inspect, redact production secrets before use, and avoid sharing generated reports that contain raw environment values.
+
+## Reference(s):
+
+- [Canlah AI](https://canlah.ai)
+- [12-Factor App: Config](https://12factor.net/config)
+- [ClawHub skill page](https://clawhub.ai/phy041/skills/phy-dotenv-inheritance-mapper)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown report with tables, inline shell commands, configuration snippets, and remediation guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include raw environment variable values discovered in local dotenv files.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,38 +1,50 @@
-## Description: <br>
-Bundle for power OpenClaw users: memory-stack-core, session-wrap-up-premium, agent-harness-doctor, and git-workflows-advanced. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Bundle for power OpenClaw users: memory-stack-core, session-wrap-up-premium, agent-harness-doctor, and git-workflows-advanced.
 
-## Publisher: <br>
-[neroagent](https://clawhub.ai/user/neroagent) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[neroagent](https://clawhub.ai/user/neroagent)
 
-## Use Case: <br>
-Developers, teams, and power OpenClaw users use this bundle to install a memory, session wrap-up, agent harness diagnostic, and advanced Git workflow skill set through one release. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The bundle wrapper does not show the permissions and data behavior of the four included skills. <br>
-Mitigation: Review memory-stack-core, session-wrap-up-premium, agent-harness-doctor, and git-workflows-advanced individually before installation. <br>
+## Use Case:
 
+Developers, teams, and OpenClaw power users use this bundle to install a premium memory and Git automation skill stack as a single ClawHub release.
 
-## Reference(s): <br>
-- [Power User Pack on ClawHub](https://clawhub.ai/neroagent/power-user-pack) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline shell command] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Bundle wrapper installs memory-stack-core, session-wrap-up-premium, agent-harness-doctor, and git-workflows-advanced.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server-resolved release metadata) <br>
+Risk: The bundle installs multiple skills at once, including memory and Git automation components whose detailed behavior is not described in this wrapper.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the individual included skills before installation and deployment.
+
+## Reference(s):
+
+- [Power User Pack ClawHub Page](https://clawhub.ai/neroagent/skills/power-user-pack)
+- [NeroAgent Publisher Profile](https://clawhub.ai/user/neroagent)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline shell command]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Bundle wrapper that installs multiple included OpenClaw skills.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

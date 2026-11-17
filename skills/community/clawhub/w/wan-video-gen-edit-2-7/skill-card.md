@@ -1,43 +1,58 @@
-## Description: <br>
-Video Generation and Editing with Wan 2.7 series models. Supports text2video, image2video (first-frame, first+last-frame, video-continuation), reference2video, and video-editing capabilities. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Video Generation and Editing with Wan 2.7 series models. Supports text2video, image2video (first-frame, first+last-frame, video-continuation), reference2video, and video-editing capabilities.
 
-## Publisher: <br>
-[krisyejh](https://clawhub.ai/user/krisyejh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[krisyejh](https://clawhub.ai/user/krisyejh)
 
-## Use Case: <br>
-Developers and creators use this skill to submit and check Alibaba DashScope Wan 2.7 text-to-video, image-to-video, reference-to-video, and video editing jobs from an agent workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, images, audio, and videos submitted through this skill are uploaded to Alibaba DashScope/Wan services for processing and billing. <br>
-Mitigation: Use only media and prompts you are authorized to share, and avoid private, regulated, proprietary, or sensitive material unless third-party processing is acceptable. <br>
+## Use Case:
 
+External developers and agent users use this skill to prepare and run Alibaba DashScope Wan 2.7 video generation and editing tasks, then retrieve task status and generated video URLs.
 
-## Reference(s): <br>
-- [Wan 2.7 Model Market](https://bailian.console.aliyun.com/cn-beijing?tab=model#/model-market) <br>
-- [wan2.7-t2v API Documentation](references/wan2.7-t2v-api-doc.md) <br>
-- [wan2.7-i2v API Documentation](references/wan2.7-i2v-api-doc.md) <br>
-- [wan2.7-r2v API Documentation](references/wan2.7-r2v-api-doc.md) <br>
-- [wan2.7-videoedit API Documentation](references/wan2.7-videoedit-api-doc.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/krisyejh/wan-video-gen-edit-2-7) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API Calls, Markdown, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires DASHSCOPE_API_KEY and sends prompts or media inputs to Alibaba DashScope for processing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill can send prompts, media URLs, local files, and voice samples to Alibaba DashScope.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only prompts, media, and reference voices that the user is authorized to submit; avoid private files, internal URLs, and voice samples without explicit consent.
+
+Risk: Local-file inputs may be base64-encoded and uploaded through API requests.
+
+Mitigation: Hosts should restrict or patch local-file upload behavior before broad agent use, and require user confirmation before submitting local paths.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/krisyejh/skills/wan-video-gen-edit-2-7)
+- [Alibaba ModelStudio Model Market](https://bailian.console.aliyun.com/cn-beijing?tab=model#/model-market)
+- [wan2.7-t2v API Documentation](references/wan2.7-t2v-api-doc.md)
+- [wan2.7-i2v API Documentation](references/wan2.7-i2v-api-doc.md)
+- [wan2.7-r2v API Documentation](references/wan2.7-r2v-api-doc.md)
+- [wan2.7-videoedit API Documentation](references/wan2.7-videoedit-api-doc.md)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, API Calls, Markdown, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON API responses containing task IDs, statuses, and generated video URLs.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires DASHSCOPE_API_KEY and the python3 requests package; generated task IDs and video URLs are time-limited according to the skill documentation.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,54 @@
-## Description: <br>
-Convert any URL or file to Markdown. Supports webpage, WeChat, YouTube, Bilibili, Douyin, Xiaohongshu, PDF, and Office files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert any URL or file to Markdown. Supports webpage, WeChat, YouTube, Bilibili, Douyin, Xiaohongshu, PDF, and Office files.
 
-## Publisher: <br>
-[haiwenai](https://clawhub.ai/user/haiwenai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[haiwenai](https://clawhub.ai/user/haiwenai)
 
-## Use Case: <br>
-Developers and knowledge workers use this skill to convert webpages, social/video links, and local documents into Markdown for notes, documentation, or downstream agent workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: YouTube conversions may retry with Chrome browser cookies, which can expose a logged-in browser context. <br>
-Mitigation: Use a dedicated browser profile or require explicit approval before cookie-based retry, prefer stdout output, and avoid sensitive paths. <br>
+## Use Case:
 
+Developers and agents use this skill to convert web pages, social media posts, videos, and local documents into Markdown for summarization, analysis, archival, or downstream document workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/haiwenai/anything-to-md) <br>
-- [Project homepage](https://github.com/haiwenai/anything-to-md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Text, Shell commands] <br>
-**Output Format:** [Markdown with YAML frontmatter; video conversions may include a timestamped transcript section.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses stdout by default and can save output to a file or directory when requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill installs a third-party converter from a mutable GitHub source.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and pin the dependency before deployment, and run it in an isolated environment when possible.
+
+Risk: YouTube conversions may retry with Chrome browser cookies.
+
+Mitigation: Avoid sensitive browser profiles and confirm user consent before allowing browser cookie access.
+
+## Reference(s):
+
+- [anything-to-md homepage](https://github.com/haiwenai/anything-to-md)
+- [ClawHub skill page](https://clawhub.ai/haiwenai/skills/anything-to-md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Text, Shell commands, Guidance]
+
+**Output Format:** [Markdown with YAML frontmatter; video conversions may include a timestamped transcript section.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write Markdown to stdout or a requested output path; requires python3 and ffmpeg, with optional yt-dlp, deno, and Whisper-related tooling for media inputs.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

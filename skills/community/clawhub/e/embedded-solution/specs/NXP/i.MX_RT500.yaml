@@ -1,0 +1,70 @@
+part: i.MX_RT500
+link_status: verified_2026-07-01 (datasheet-pdf-mirror-extracted)
+expected_family: "i.MX RT500 \u2014 Cortex-M33 + Fusion F1 DSP Crossover MCU"
+main_page: https://www.nxp.com/products/i.MX-RT500
+datasheet_path_expected: ../../datasheets/imx-rt500-rm.pdf
+created_at: '2026-06-30T23:08:00+08:00'
+specs:
+  family: "i.MX RT Crossover MCU (RT500 mid-tier \u2014 cost-optimized vs RT700)"
+  cores:
+    application:
+    - Arm Cortex-M33 @ up to 275 MHz with TrustZone + MPU (8 regions)
+    dsp:
+    - Cadence Tensilica Fusion F1 DSP @ up to 275 MHz - Hardware floating point unit (single-precision IEEE MAC per cycle)
+    coprocessors:
+    - PowerQuad (FPU + DSP functions)
+    - CASPER (asymmetric crypto)
+  memory:
+    sram: up to 5 MB (shared by both CPUs + all DMA engines)
+    flexspi_cache: 2x 32 KB
+  graphics:
+    gpu: 2D with vector graphics acceleration
+    csi: 8/10/16-bit parallel (FlexIO)
+    lcd: 8/10/16/18/24-bit parallel (FlexIO)
+    lcd_interface: true
+    mipi_dsi: true
+  digital_peripherals:
+    dma_engines: 2 (each 32 channels)
+    quad_octo_spi: yes (with dynamic description)
+    sd_emmc: 2 interfaces (one supports eMMC 5.0 with HS400/DDR)
+    usb_hs_host_device: yes (on-chip PHY)
+    flexcomm: 12 (universal serial interface, configurable SPI/I2C/I2S/UART)
+    i3c: 2
+    digital_microphone: yes (up to 8 channels)
+  power:
+    voltage_v_min: not_specified_in_fetched_spec_block
+    voltage_v_max: not_specified_in_fetched_spec_block
+  security:
+    trustzone: true
+    casper_crypto: yes (hardware-accelerated asymmetric crypto)
+  ecosystem:
+  - MCUXpresso IDE + SDK
+  - Zephyr RTOS
+  use_cases:
+  - Audio / voice DSP (Fusion F1)
+  - Low-power HMI (LCD/MIPI DSI + 2D GPU)
+  - IoT edge inference (Cortex-M33 + DSP)
+unverified:
+- exact supply voltage range
+- exact SRAM max option (5 MB is shared system)
+- exact FlexComm max throughput
+- exact operating temp range
+- exact package options
+- exact power consumption per mode
+notes:
+- "New yaml entry on 2026-06-30 \u2014 extracted from nxp.com product page via Firecrawl (186,369 bytes raw)."
+- 'Family differentiator vs i.MX-RT700 (existing yaml): RT700 is Cortex-M33 @ 325 MHz + HiFi 4 + eIQ Neutron NPU + 2.5D GPU;
+  RT500 is Cortex-M33 + Fusion F1 DSP @ 275 MHz + 2D GPU (lower-cost audio/HMI tier).'
+- 'Family differentiator vs i.MX-RT1170: RT1170 is dual-core M7+M4 for high-compute industrial HMI; RT500 is M33+DSP for audio/DSP
+  power.'
+- 'Use case: low-cost audio + DSP + HMI combo; alternative to RT1170 when Cortex-M7 compute not needed but DSP + 2D GPU is
+  required.'
+- 'Verified 2026-07-01 via firecrawl-html-extract against i.mx-rt500.html: 9/25 spec fields matched (36%). Source: https://www.nxp.com/products/i.MX-RT500
+  (vendor product page scraped as HTML; no separate PDF available).'
+- 'Verified 2026-07-01 via Tavily-found mirror PDF (datasheets/imx-rt500-rm.pdf): 14/25 spec fields matched (56%). Source:
+  https://www.mouser.com/pdfDocs/IMXRT500RM.pdf.'
+extracted_at: '2026-06-30T23:08:00+08:00'
+extraction_method: firecrawl-extract (keyed) of nxp.com product page
+extraction_source: references/semiconductor-vendor/NXP/firecrawl-snapshots/iMX-RT500_raw.md
+extraction_credits_used: 1
+datasheet_source_url: https://www.mouser.com/pdfDocs/IMXRT500RM.pdf

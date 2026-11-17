@@ -1,43 +1,57 @@
-## Description: <br>
-禾连健康体检预约智能助手通过多轮对话引导用户完成体检医院和院区选择、套餐预订、登录校验、下单和支付流程。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helian Health Assistant guides users through health-check appointment booking, including hospital and package selection, identity and login steps, order creation, and payment through Helian Health and LianLian Pay services.
 
-## Publisher: <br>
-[xuwang412](https://clawhub.ai/user/xuwang412) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xuwang412](https://clawhub.ai/user/xuwang412)
 
-## Use Case: <br>
-External users use this skill to book health-check appointments through conversational channels such as OpenClaw, Qoder, WeChat, DingTalk, and Feishu. It guides hospital selection, package review, patient login, order creation, and payment handoff for Helian Health checkup services. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles real health-booking and payment flows and stores patient and bank-card data in local hidden files. <br>
-Mitigation: Install only when the publisher is trusted; require explicit user consent, data minimization, masking for displayed saved records, and clear deletion controls before use. <br>
-Risk: Payment credentials, SMS codes, and service responses may be exposed through console logging. <br>
-Mitigation: Remove or redact logs for payment credentials, SMS codes, tokens, card data, and patient identity data before deployment. <br>
+## Use Case:
 
+External consumers use this agent to find health-check providers, compare packages and appointment slots, enter patient details, create a booking order, and complete payment. Developers can deploy it on supported agent platforms such as OpenClaw and Qoder for chat-based booking workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xuwang412/helian-health-assistant) <br>
-- [Helian Health web client](https://healthcheck-web-client.helianhealth.com) <br>
-- [Helian Health management service](https://management.helianhealth.com) <br>
-- [LianLian Pay MCP service](https://mcp.lianlianpay.com/mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, API calls, Files, Guidance] <br>
-**Output Format:** [Conversational Chinese guidance with Markdown tables, Python call snippets, API responses, payment links, and QR-code image files when payment is initiated.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Handles health-booking and payment workflows and may create local hidden records for patient, bank-card, and QR-code data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can handle highly sensitive health, identity, authentication, and payment data, and security evidence reports that it may store patient, identity, and bank-card details in hidden plaintext files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not use with real patient or bank-card data until local storage is removed or replaced with encrypted, consented, minimal-retention storage.
+
+Risk: Security evidence reports that payment secrets may be printed in logs.
+
+Mitigation: Redact payment credentials, tokens, bank-card details, and session identifiers from all user-visible output and logs before production use.
+
+Risk: The security verdict is suspicious because the skill can book appointments and process payments.
+
+Mitigation: Require human review before installation, limit deployment to approved environments, and verify each booking and payment action with the user before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xuwang412/skills/helian-health-assistant)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, API calls, configuration, guidance]
+
+**Output Format:** [Markdown/plain text with tables, prompts, API-backed booking results, payment links, and setup snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include health-check package details, appointment availability, login prompts, order status, and payment status]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,47 @@
+{
+  "name": "lygo-emotional-ram",
+  "displayName": "LYGO Emotional RAM",
+  "version": "1.0.1",
+  "description": "Light-math affective/ethical indexing for human, animal, swarm, and cyborg understanding. Encode, Grace γ, UMP gradient, consent-gated memory index. Pure local — no network, no subprocess, no sentience claims.",
+  "slug": "lygo-emotional-ram",
+  "publisher": "deepseekoracle",
+  "license": "MIT-0",
+  "homepage": "https://github.com/DeepSeekOracle/lygo-protocol-stack/blob/main/docs/whitepapers/LYGO_EMOTIONAL_RAM_v1.md",
+  "clawhub": "https://clawhub.ai/deepseekoracle/lygo-emotional-ram",
+  "signature": "Delta9Phi963-EMOTIONAL-RAM-v1.0.0",
+  "tags": ["latest", "lygo", "emotion", "ram", "affect", "ethics", "swarm", "cyborg", "delta9"],
+  "entry": "SKILL.md",
+  "scripts": {
+    "encode": "scripts/emotional_ram_cli.py encode",
+    "index": "scripts/emotional_ram_cli.py index",
+    "recall": "scripts/emotional_ram_cli.py recall",
+    "swarm": "scripts/emotional_ram_cli.py swarm",
+    "demo": "scripts/emotional_ram_cli.py demo",
+    "self_check": "scripts/self_check.py"
+  },
+  "permissions": {
+    "network": false,
+    "subprocess": false,
+    "shell": false,
+    "filesystem": {
+      "read": "operator text inputs",
+      "write": "skill state/ with --i-consent only"
+    },
+    "publish": false
+  },
+  "security": {
+    "no_subprocess": true,
+    "local_first": true,
+    "consent_required_for_index": true,
+    "no_sentience_claim": true,
+    "no_auto_publish": true
+  },
+  "pairs_with": [
+    "lygo-joy-loop",
+    "lygo-traumacodex",
+    "lygo-continuum",
+    "lygo-continuum-integrator",
+    "lygo-cyborg-kernel",
+    "lygo-mint-verifier"
+  ]
+}

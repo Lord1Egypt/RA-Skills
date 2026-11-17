@@ -1,42 +1,53 @@
-## Description: <br>
-Helps agents isolate troubleshooting work in a temporary Git worktree or subagent so the main conversation context can continue after the issue is resolved. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Trouble Shooting helps an agent isolate error investigation in a Git worktree or subagent while preserving the main conversation context.
 
-## Publisher: <br>
-[graceqx](https://clawhub.ai/user/graceqx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[graceqx](https://clawhub.ai/user/graceqx)
 
-## Use Case: <br>
-Developers and engineering agents use this skill when an error or defect needs focused investigation without polluting the main task context. It guides creation of an isolated worktree or subagent session, records troubleshooting state, and helps apply or discard the isolated changes after review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The helper scripts can create temporary Git branches and worktree directories, merge troubleshooting changes, and force-remove the isolated worktree and branch. <br>
-Mitigation: Commit or back up important work before use, invoke commands explicitly, and review proposed changes before applying or discarding the isolated session. <br>
-Risk: Broad activation wording can start a troubleshooting flow when the user only meant to describe a problem. <br>
-Mitigation: Confirm user intent before running helper scripts or changing repository state, and prefer explicit command invocation for repository operations. <br>
-Risk: Troubleshooting records may include project paths, branch names, issue titles, or solution notes. <br>
-Mitigation: Review .trouble-shooting records before sharing a repository or publishing logs, especially when issue titles or paths may be sensitive. <br>
+## Use Case:
 
+Developers and agents use this skill when a coding issue or runtime error needs isolated investigation. It guides troubleshooting in a temporary worktree when possible, or through subagent analysis when a worktree is not available, so the main task context can continue afterward.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/graceqx/trouble-shooting) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Code, Configuration] <br>
-**Output Format:** [Markdown guidance with JSON status output from helper scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Helper scripts may emit issue IDs, session status, archive paths, and cleanup results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can perform high-impact Git operations, including creating worktrees, merging a troubleshooting branch into the current branch, and force-deleting temporary worktrees or branches.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use explicit commands, review the active troubleshooting snapshot before finishing, and inspect proposed changes before applying or discarding them.
+
+Risk: The security evidence identifies a data-loss risk if the finish action is mistyped or invoked through automation.
+
+Mitigation: Avoid automated finish calls unless action validation is fixed, and manually confirm whether the intended action is apply or discard before running the finish script.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/graceqx/skills/trouble-shooting)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, JSON, files]
+
+**Output Format:** [Markdown guidance with optional JSON script output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create troubleshooting state files and temporary Git worktrees during use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

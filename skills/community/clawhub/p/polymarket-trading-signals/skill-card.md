@@ -1,41 +1,49 @@
-## Description: <br>
-Provides Polymarket prediction-market research signals by analyzing market trends, smart-money movements, mispricing candidates, and event context. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Polymarket prediction-market research, trend analysis, smart-money tracking, mispricing alerts, and trading-signal writeups.
 
-## Publisher: <br>
-[gunybuny](https://clawhub.ai/user/gunybuny) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gunybuny](https://clawhub.ai/user/gunybuny)
 
-## Use Case: <br>
-External traders and market researchers use this skill to research Polymarket markets, synthesize web evidence, and generate bullish, bearish, or wait signals for possible market opportunities. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Market signals may be incomplete, stale, or mistaken if web research misses current market conditions. <br>
-Mitigation: Treat outputs as research signals rather than financial advice and verify live Polymarket data independently before acting. <br>
-Risk: The skill has paid per-call usage after the free tier. <br>
-Mitigation: Monitor usage and billing after the 3 free calls per day because server metadata lists $0.05 per call. <br>
+## Use Case:
 
+External Polymarket traders and market researchers use this skill to research prediction markets, compare odds and volume signals, track smart-money movement, and generate trading signal summaries.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gunybuny/polymarket-trading-signals) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/gunybuny) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or structured text with market analysis, signal labels, confidence, and rationale] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses web search and fetch tools; paid after 3 free calls per day at $0.05 per call.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may produce confident market calls and entry-style recommendations that users could mistake for financial advice or guaranteed outcomes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use outputs as research input only, verify sources independently, and avoid relying on the skill as financial advice or as a guarantee of Polymarket outcomes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gunybuny/skills/polymarket-trading-signals)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text trading-signal analysis]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include confidence estimates and entry-style recommendations; treat as informational research, not financial advice.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, released 2026-04-08)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

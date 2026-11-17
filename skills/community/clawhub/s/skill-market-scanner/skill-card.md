@@ -1,40 +1,53 @@
-## Description: <br>
-ClawHub Guard helps agents browse, search, audit, and install ClawHub skills with lightweight marketplace risk checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Clawhub Guard provides CLI-style commands for browsing, searching, auditing, and installing ClawHub marketplace skills with lightweight risk hints.
 
-## Publisher: <br>
-[huangxianzhan](https://clawhub.ai/user/huangxianzhan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[huangxianzhan](https://clawhub.ai/user/huangxianzhan)
 
-## Use Case: <br>
-Developers and agent users use this skill to scan and search the ClawHub marketplace, rank skills by rough risk signals, audit installed skills, and review a skill before installation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can install other skills and persistently change the local skill environment. <br>
-Mitigation: Use scan and search results as rough discovery only; manually inspect any skill before installing it. <br>
-Risk: The skill may overstate the strength of its automated checks. <br>
-Mitigation: Treat it as an experimental marketplace helper, not a trusted security gate. <br>
+## Use Case:
 
+Developers and agents use Clawhub Guard to scan or search ClawHub marketplace listings, review simple risk hints, audit installed skills for updates, and install selected skills after manual inspection.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/huangxianzhan/skill-market-scanner) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown-like terminal text with risk labels, recommendations, and command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May execute ClawHub CLI subprocesses for marketplace search, inspection, listing, and installation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release, frontmatter, _meta.json) <br>
+Risk: The skill advertises safety checks that evidence indicates it does not actually perform.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat its ratings as convenience hints only and independently inspect packages before trusting or installing them.
+
+Risk: The install command can install marketplace skills.
+
+Mitigation: Use the install command only for sources you already trust after manual review.
+
+## Reference(s):
+
+- [Clawhub Guard marketplace listing](https://clawhub.ai/huangxianzhan/skills/skill-market-scanner)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Console text and Markdown-style recommendations with command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May invoke the ClawHub CLI to inspect or install marketplace skills.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and artifact frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

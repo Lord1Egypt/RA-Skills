@@ -1,42 +1,53 @@
-## Description: <br>
-Uses Fennec SEO Auditor results to provide quick on-page and technical SEO health checks, including favicon, metadata, schema, and GEO readiness review. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Uses Fennec SEO Auditor results to audit a URL when a user wants a quick on-page or technical SEO health check, or to verify favicon, meta, schema, and GEO readiness.
 
-## Publisher: <br>
-[2winter-dev](https://clawhub.ai/user/2winter-dev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[2winter-dev](https://clawhub.ai/user/2winter-dev)
 
-## Use Case: <br>
-External site owners, SEO practitioners, content teams, and developers use this skill to interpret Fennec SEO Auditor extension output for a single URL and turn on-page, technical, structured data, and GEO findings into prioritized fixes. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Installing a browser extension may expose browsing data depending on its permissions. <br>
-Mitigation: Before installing Fennec SEO Auditor, review its publisher, requested permissions, and Chrome Web Store reputation. <br>
-Risk: Audit output from private or sensitive pages can disclose page content, URLs, or business details in the assistant conversation. <br>
-Mitigation: Share only the findings needed for analysis, redact sensitive values, and avoid submitting private-page audit output unless approved. <br>
-Risk: Recommendations can be incomplete if the shared audit output omits important page or technical context. <br>
-Mitigation: Provide the relevant Fennec findings, target URL context, and business goal so the assistant can tie fixes to the actual page. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Fennec SEO Auditor Chrome extension](https://chromewebstore.google.com/detail/fennec-seo-auditor/fifppiokpmlgceojhfdjbjjapbephcdo) <br>
-- [ClawHub skill page](https://clawhub.ai/2winter-dev/fennecseo-audit) <br>
+## Use Case:
 
+External users, developers, marketers, and site owners use this skill to interpret Fennec SEO Auditor results for a single URL and turn them into prioritized SEO, technical, and GEO/RAG recommendations.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown action plan with prioritized findings and fixes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user-provided Fennec SEO Auditor output; the assistant does not run the browser extension directly.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Installing the companion Chrome extension may expose page context according to that extension's permissions.
+
+Mitigation: Review the Chrome extension permissions before installing and run it only on pages you are comfortable auditing.
+
+Risk: Audit excerpts or screenshots may contain sensitive page details.
+
+Mitigation: Share only the report excerpts needed for SEO advice.
+
+## Reference(s):
+
+- [Fennec SEO Auditor Chrome Web Store listing](https://chromewebstore.google.com/detail/fennec-seo-auditor/fifppiokpmlgceojhfdjbjjapbephcdo)
+- [ClawHub skill page](https://clawhub.ai/2winter-dev/skills/fennecseo-audit)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown action plan with prioritized findings and fixes.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user-provided Fennec SEO Auditor report excerpts or screenshots; does not operate the browser or extension directly.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

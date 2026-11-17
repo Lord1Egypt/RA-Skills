@@ -1,40 +1,54 @@
-## Description: <br>
-Helps answer OpenClaw questions, troubleshoot configuration and runtime issues, and propose OpenClaw CLI commands for fixes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+claw-helper helps agents answer OpenClaw usage, configuration, and troubleshooting questions, including CLI-based diagnostics and fixes.
 
-## Publisher: <br>
-[Thincher](https://clawhub.ai/user/Thincher) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[thincher](https://clawhub.ai/user/thincher)
 
-## Use Case: <br>
-Developers and operators use this skill to answer OpenClaw usage, configuration, and troubleshooting questions, consult local OpenClaw documentation, and prepare CLI-based remediation steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may suggest OpenClaw configuration changes through `openclaw config set`. <br>
-Mitigation: Review each proposed configuration change before execution. <br>
-Risk: The skill may update local troubleshooting notes or documentation indexes. <br>
-Mitigation: Only save verified fixes, and do not store tokens, passwords, private logs, or unverified guidance in notes. <br>
+## Use Case:
 
+Developers and OpenClaw operators use this skill to troubleshoot gateway, channel, configuration, and model issues, consult the local OpenClaw documentation index, and draft CLI-based remediation steps.
 
-## Reference(s): <br>
-- [Experience notes](references/experience.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with inline shell commands and configuration steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose OpenClaw CLI commands and updates to local troubleshooting notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.7 (source: server release metadata) <br>
+Risk: The skill may propose OpenClaw CLI configuration changes that alter local state.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review proposed commands and configuration changes before execution, and confirm they match the intended OpenClaw environment.
+
+Risk: Troubleshooting notes or documentation index updates could accidentally store sensitive logs, tokens, private account details, or incorrect guidance.
+
+Mitigation: Keep secrets and private logs out of notes, and review file edits against authoritative OpenClaw documentation before saving them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/thincher/skills/claw-helper)
+- [Problem-solving experience notes](references/experience.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown responses with inline shell commands and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose OpenClaw CLI diagnostics, configuration changes, and local troubleshooting notes; contains no executable payload.]
+
+## Skill Version(s):
+
+1.0.7 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

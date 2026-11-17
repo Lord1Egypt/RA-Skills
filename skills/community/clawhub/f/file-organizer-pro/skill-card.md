@@ -1,43 +1,52 @@
-## Description: <br>
-Smart File Organizer automatically organizes files into folders by type, date, or custom naming rules with preview and undo options. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically organize files into folders by type, date, or custom naming rules with preview and undo options.
 
-## Publisher: <br>
-[mizhimin](https://clawhub.ai/user/mizhimin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[mizhimin](https://clawhub.ai/user/mizhimin)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and end users can use this skill to organize local folders by file type, modification date, or custom filename patterns. It is useful for cleaning download, document, or photo directories while previewing moves before execution.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Custom pattern rules and undo behavior can move files outside the chosen folder.
+
+Mitigation: Use --dry-run first, avoid pattern rules containing absolute paths, '..', or nested path separators, and treat .organizer_log.json as sensitive.
+
+Risk: Running file moves on important folders can cause unintended reorganization or loss of expected file locations.
+
+Mitigation: Run on backed-up or non-critical folders first and review preview output before executing changes.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users and developers use this skill to preview and organize local folders by file type, modification date, or custom filename patterns. It is intended for routine file cleanup workflows where users can review planned moves before applying them. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Shell commands, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Running the organizer without preview can move files in the selected folder in ways the user did not intend. <br>
-Mitigation: Use --dry-run first and run the skill on a non-critical or backed-up folder before applying changes. <br>
-Risk: Undo is best-effort and may not restore every edge case, including some name-collision scenarios. <br>
-Mitigation: Keep a backup of important folders and review the generated organization plan before executing file moves. <br>
-Risk: The documented entry path may not match the packaged artifact layout. <br>
-Mitigation: If python scripts/main.py is unavailable, run the packaged main.py directly with the same arguments. <br>
+**Output Format:** [Markdown with inline shell commands and command output summaries]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/mizhimin/file-organizer-pro) <br>
-- [Artifact README](artifact/README.md) <br>
+**Other Properties Related to Output:** [Supports dry-run previews and undo logs for file organization operations.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and plain-text command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May move files in a user-specified local folder when executed without --dry-run; undo is best-effort.] <br>
+1.0.1 (source: server-resolved release metadata)
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

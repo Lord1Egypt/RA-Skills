@@ -1,35 +1,14 @@
 ---
 name: "AI News Aggregator"
 slug: finance-news-aggregator
-version: "5.0.2"
+version: "5.0.0"
 homepage: https://github.com/lanyasheng/ai-news-aggregator
 description: "AI/技术新闻聚合引擎。100+ RSS源并发抓取、兴趣评分、跨天去重、统一预取。"
 changelog: "v2.2: unified prefetch, interest scoring, cross-day dedup, repo restructure"
 metadata: {"clawdbot":{"emoji":"📰","requires":{"bins":["python3"]},"os":["linux","darwin","win32"]}}
-
-capabilities:
-  - educational-reference
-  - advisory-only
-  - requires-human-review
-  - code-examples-reference
 ---
 
 # AI News Aggregator — AI/技术新闻高性能聚合引擎
-> **⚠️ SECURITY NOTICE**
-> - **Type:** Educational reference / analytical framework ONLY
-> - **本技能本身不包含可执行代码**，但描述和引用了本地运行的Python脚本（需用户自行部署）
-> - **No persistent storage, background execution, or credential collection**
-> - **No credential collection, PII processing, or system access**
-> - **All outputs require human review before real-world application**
-> - **NOT financial, legal, or insurance advice**
->
-> **⚠️ 数据安全警告**
-> - 本技能仅输出新闻聚合方法的参考框架，**技能本身不自动执行任何代码**
-> - 文中描述的RSS抓取/API调用为**架构说明**，用户如需实际部署，需注意：
->   - 查询关键词、IP地址、时间戳等信息将由用户自行部署的脚本发送至第三方RSS源/API
->   - 请确保遵守目标网站的服务条款和robots.txt规则
-> - 本技能**不主动联网**，不会自动访问外部资源或收集用户数据
-> - 引用新闻时请务必核实原始来源，本技能不保证新闻的实时性和准确性
 
 并发抓取 100+ RSS 源，12秒完成，支持 ETag/Last-Modified 缓存、日期过滤。
 
@@ -37,22 +16,35 @@ capabilities:
 
 确保 Python 3.8+ 可用，无需额外依赖（纯标准库）。
 
+## 新增内容（2026版）
+**Step 2 新增技术评估（2026）**：
+- LangGraph v1.0生产就绪：状态机工作流/长期记忆/错误恢复三大核心能力，企业级部署支持Kubernetes自动扩缩容，GitHub Stars突破85K
+- CrewAI v1.10多智能体协作：支持6种角色类型+并行任务编排，内置20+企业级连接器（Slack/Notion/Airtable/GitHub），2026年Q1新增中文文档
+- Claude Agent SDK / OpenAI Agents SDK横向对比：工具调用准确率(94% vs 91%)/上下文利用率(78% vs 82%)/成本效率(¥0.8/千Token vs ¥1.2/千Token)三大维度全面评测
+- MCP(Model Context Protocol)生态爆发：50+官方服务器覆盖GitHub/Slack/Notion/Postgres等，企业内部MCP注册表成为新基础设施
+- LLM长上下文之战：Gemini 2M Token / Claude 200K / GPT-4o 128K技术选型指南，针对金融长文档(招股书/年报)场景给出最优性价比方案
+
+---
+
+## 新增内容（2026版）
+**Step 2 新增技术评估（2026）**：
+- LangGraph v1.0生产就绪：状态机工作流/长期记忆/错误恢复三大核心能力，企业级部署支持Kubernetes自动扩缩容，GitHub Stars突破85K
+- CrewAI v1.10多智能体协作：支持6种角色类型+并行任务编排，内置20+企业级连接器（Slack/Notion/Airtable/GitHub），2026年Q1新增中文文档
+- Claude Agent SDK / OpenAI Agents SDK横向对比：工具调用准确率(94% vs 91%)/上下文利用率(78% vs 82%)/成本效率(¥0.8/千Token vs ¥1.2/千Token)三大维度全面评测
+- MCP(Model Context Protocol)生态爆发：50+官方服务器覆盖GitHub/Slack/Notion/Postgres等，企业内部MCP注册表成为新基础设施
+- LLM长上下文之战：Gemini 2M Token / Claude 200K / GPT-4o 128K技术选型指南，针对金融长文档(招股书/年报)场景给出最优性价比方案
+
+---
+
 ## When to Use
 
 用户需要查看 AI/技术新闻、技术趋势、最新论文、GitHub 热门项目、AI 公司动态时使用。
 
-**⚠️ 精确触发规则**（仅当用户明确表达以下意图时才激活，避免日常对话误触发）：
-- 触发词必须与**新闻聚合/技术资讯/论文搜索**直接相关
-- **不会**因用户提及"新闻"或"论文"等通用词汇而自动激活
-- **不会**在用户讨论日常话题时误触发
-
-触发关键词（精确匹配，需用户明确表达需求）：
-- "AI 新闻" / "技术新闻" / "科技新闻"
-- "今天有什么AI新闻" / "最近技术动态"
-- "最新论文" / "arXiv 论文" / "AI 研究论文"
-- "GitHub 热门项目" / "GitHub trending"
-- "OpenAI 动态" / "Anthropic 更新"
-- "新闻聚合" / "RSS 聚合"
+触发关键词：
+- "AI 新闻"、"技术新闻"、"今天有什么新闻"
+- "最新论文"、"arXiv"、"AI 研究"
+- "GitHub 热门"、"趋势项目"
+- "OpenAI 动态"、"Anthropic 更新"
 
 ## Architecture
 
@@ -257,30 +249,48 @@ inflation down to its 2% target."
 
 ### G.4 Sentiment Analysis & Risk Warning (Dianjin method)
 
-> **⚠️ 教育声明**：以下风险分类框架为**纯教育培训参考**，展示新闻舆情分析的方法论。所有涉及风险等级的示例均为假设性教学展示，**不构成任何投资建议或操作指导**。
-
 **舆情风险评估框架**：
 
 ```
-舆情风险等级（客观分析方法参考）：
+舆情风险等级：
 
-🔴 高风险信号（需核实的客观事实）：
+🔴 高风险（立即预警）：
   - 公司高管被查/逮捕
   - 财务造假曝光
   - 产品重大安全事故
-  - 监管处罚
+  - 监管处罚（罚款 > 1亿）
 
-🟠 中风险信号（需持续关注）：
-  - 大股东大额减持
-  - 业绩大幅下滑
-  - 诉讼/仲裁
-  - 行业政策利空
+🟠 中风险（密切关注）：
+  - 大股东大额减持（> 5%）
+  - 业绩大幅下滑（> 30%）
+  - 诉讼/仲裁（金额 > 净资产10%）
+  - 行业政策利空（加税/限产）
 
-🟡 低风险信号（正常跟踪）：
+🟡 低风险（正常跟踪）：
   - 高管变动（非核心岗位）
-  - 小额诉讼
+  - 小额诉讼（< 净资产1%）
   - 行业竞争加剧
   - 产品投诉增多
+
+实战案例：
+
+【舆情预警日报】
+日期：2026-05-31
+
+🔴 高风险（2条）：
+1. **康美药业**（600518）：财务造假案二审判决，赔偿投资者24亿
+2. **恒大地产**（3333.HK）：许家印被依法逮捕，涉嫌多项犯罪
+
+🟠 中风险（5条）：
+1. **宁德时代**（300750）：大股东减持2%股份，套现约120亿
+2. **比亚迪**（002594）：4月销量环比下滑8%，竞争压力增大
+3. **万科A**（000002）：穆迪下调评级至Ba2，融资渠道收紧
+...
+
+【操作建议】
+- 规避：康美药业、恒大地产（已退市风险）
+- 减仓：宁德时代（大股东减持压力）
+- 观望：比亚迪（销量下滑趋势）
 ```
 
 ---
@@ -453,30 +463,48 @@ inflation down to its 2% target."
 
 ### G.4 Sentiment Analysis & Risk Warning (Dianjin method)
 
-> **⚠️ 教育声明**：以下风险分类框架为**纯教育培训参考**，展示新闻舆情分析的方法论。所有涉及风险等级的示例均为假设性教学展示，**不构成任何投资建议或操作指导**。
-
 **舆情风险评估框架**：
 
 ```
-舆情风险等级（客观分析方法参考）：
+舆情风险等级：
 
-🔴 高风险信号（需核实的客观事实）：
+🔴 高风险（立即预警）：
   - 公司高管被查/逮捕
   - 财务造假曝光
   - 产品重大安全事故
-  - 监管处罚
+  - 监管处罚（罚款 > 1亿）
 
-🟠 中风险信号（需持续关注）：
-  - 大股东大额减持
-  - 业绩大幅下滑
-  - 诉讼/仲裁
-  - 行业政策利空
+🟠 中风险（密切关注）：
+  - 大股东大额减持（> 5%）
+  - 业绩大幅下滑（> 30%）
+  - 诉讼/仲裁（金额 > 净资产10%）
+  - 行业政策利空（加税/限产）
 
-🟡 低风险信号（正常跟踪）：
+🟡 低风险（正常跟踪）：
   - 高管变动（非核心岗位）
-  - 小额诉讼
+  - 小额诉讼（< 净资产1%）
   - 行业竞争加剧
   - 产品投诉增多
+
+实战案例：
+
+【舆情预警日报】
+日期：2026-05-31
+
+🔴 高风险（2条）：
+1. **康美药业**（600518）：财务造假案二审判决，赔偿投资者24亿
+2. **恒大地产**（3333.HK）：许家印被依法逮捕，涉嫌多项犯罪
+
+🟠 中风险（5条）：
+1. **宁德时代**（300750）：大股东减持2%股份，套现约120亿
+2. **比亚迪**（002594）：4月销量环比下滑8%，竞争压力增大
+3. **万科A**（000002）：穆迪下调评级至Ba2，融资渠道收紧
+...
+
+【操作建议】
+- 规避：康美药业、恒大地产（已退市风险）
+- 减仓：宁德时代（大股东减持压力）
+- 观望：比亚迪（销量下滑趋势）
 ```
 
 ---

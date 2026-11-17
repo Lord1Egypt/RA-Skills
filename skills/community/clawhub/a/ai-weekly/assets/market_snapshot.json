@@ -1,0 +1,127 @@
+{
+  "as_of": "2026-W32",
+  "retrieved_at": "2026-08-08",
+  "unit": "USD_B",
+  "unit_note": "顶层 unit 仅代表两张全球图（DEFAULT_MARKET / DEFAULT_FUNDING，单位十亿美元 USD_B）；中国四张图单位为亿元人民币（RMB_100M），以各 series.unit 为准。",
+  "source": {
+    "name": "Grand View Research",
+    "url": "https://www.grandviewresearch.com"
+  },
+  "note": "静态快照，非实时；市场图上的实测值来自本周 RSS 事件抽取",
+  "honesty_note": "本文件里的机构从未被本skill 网络抓取。它们是人工查得的公开数字，被人工誊录进本文件作为静态基线。「静态快照引用」= 人工誊录，不是自动抓取。真正每周实时抓取的是 fetch_ai_news.py 的 14 个 RSS 源（见页脚「本周信号来源」区）。",
+  "chart_sources": {
+    "market": "Grand View Research 2026（全球 AI 市场规模，CAGR 30.6%；海外机构，静态快照引用）",
+    "funding": "Crunchbase / CB Insights（全球 AI 融资，H1 2026 口径；海外机构，静态快照引用）",
+    "cn_market": "中国信通院 · 中商产业研究院《2025–2030 中国人工智能产业现状调查》（中国核心产业规模）",
+    "cn_funding": "新浪创投Plus 2025 国内一级市场 AI 行业统计 + IT桔子 2026H1（一级市场股权融资，标签「人工智能」）"
+  },
+  "series": [
+    {
+      "key": "market",
+      "title": "全球 AI 市场规模",
+      "unit": "USD_B",
+      "labels": ["2020", "2021", "2022", "2023", "2024", "2025", "2026E", "2027F", "2028F"],
+      "values": [103, 134, 176, 229, 299, 391, 540, 705, 921],
+      "provenance": "Grand View Research 2026 版基准，CAGR 30.6%。标注 F 的年份（2027F/2028F）为 CAGR 外推值，非实测；页面图表对 F 结尾标签单独配色并在 tooltip 注明「CAGR 外推，非实测」。"
+    },
+    {
+      "key": "funding",
+      "title": "全球 AI 融资额（季度）",
+      "unit": "USD_B",
+      "labels": ["23Q1", "23Q2", "23Q3", "23Q4", "24Q1", "24Q2", "24Q3", "24Q4", "25Q1", "25Q2", "25Q3", "25Q4", "26Q1", "26Q2"],
+      "values": [72.4, 72.4, 72.4, 72.4, 79.9, 79.9, 79.9, 79.9, 110.0, 110.0, 110.0, 110.0, 305.0, 205.0],
+      "provenance": "Crunchbase H1 2026（Q1 305 / Q2 205，合计 510）+ CB Insights 2023-2025 年度值均摊到季。23Q1–25Q4 的均摊值是**推算**而非逐季实测。"
+    },
+    {
+      "key": "cn_market",
+      "title": "中国 AI 核心产业规模",
+      "unit": "RMB_100M",
+      "labels": ["2024", "2025", "2026E"],
+      "values": [9188, 12000, 17000],
+      "provenance": "中国信通院 · 中商产业研究院《2025–2030 中国人工智能产业现状调查》。2026E 为预测值。"
+    },
+    {
+      "key": "cn_funding",
+      "title": "中国 AI 一级市场融资",
+      "unit": "RMB_100M",
+      "labels": ["2024", "2025", "2026H1"],
+      "values": [391.51, 656.04, 3076.82],
+      "provenance": "新浪创投Plus 2025 全年 + IT桔子 2026H1（一级市场股权融资，标签「人工智能」）。注意 2026H1 是半年值，与 2024/2025 的全年值不同口径，不可直接同比。"
+    },
+    {
+      "key": "cn_structure",
+      "title": "中国 AI 融资赛道结构（2026H1）",
+      "unit": "RMB_100M",
+      "labels": ["大模型", "具身智能", "AIGC 应用", "基础层"],
+      "values": [1598, 906, 596, 725],
+      "provenance": "IT桔子 2026H1 细分赛道统计。四项合计 3825 亿，大于 cn_funding 的 3076.82 亿——两者统计口径不同（细分赛道口径含非股权融资/未披露轮次），差额属口径差而非算错。"
+    },
+    {
+      "key": "cn_concentration",
+      "title": "中国 AI 融资头部集中度（2026H1）",
+      "unit": "RMB_100M",
+      "labels": ["TOP3 大模型", "TOP4–30 名", "其他赛道"],
+      "values": [930, 770, 1376],
+      "provenance": "IT桔子 2026H1。TOP3 大模型（DeepSeek/阶跃/Kimi）合计 930 亿占 30%。三项合计 3076 亿，与 cn_funding 的 2026H1 一致。"
+    }
+  ],
+  "sources": [
+    {
+      "name": "Grand View Research",
+      "url": "https://www.grandviewresearch.com",
+      "used_for": "全球 AI 市场规模图",
+      "retrieved_at": "2026-08-08"
+    },
+    {
+      "name": "Crunchbase",
+      "url": "https://crunchbase.com",
+      "used_for": "全球 AI 融资图（H1 2026 口径）",
+      "retrieved_at": "2026-08-08"
+    },
+    {
+      "name": "CB Insights",
+      "url": "https://www.cbinsights.com",
+      "used_for": "全球 AI 融资图（2023–2025 年度基准）",
+      "retrieved_at": "2026-08-08"
+    },
+    {
+      "name": "中国信通院",
+      "url": "https://www.caict.ac.cn",
+      "used_for": "中国 AI 市场规模图",
+      "retrieved_at": "2026-08-08"
+    },
+    {
+      "name": "中商产业研究院",
+      "url": "",
+      "used_for": "中国 AI 市场规模图（与信通院联合署名报告）",
+      "retrieved_at": "2026-08-08",
+      "url_missing_reason": "未核验该机构官网地址，故留空不猜；页脚渲染为纯文本名而非链接。需要链接时由使用者补填。"
+    },
+    {
+      "name": "IT桔子",
+      "url": "https://www.itjuzi.com",
+      "used_for": "中国 AI 融资图 / 赛道结构图 / 头部集中度图",
+      "retrieved_at": "2026-08-08"
+    },
+    {
+      "name": "新浪创投Plus",
+      "url": "https://venture.sina.com.cn",
+      "used_for": "中国 AI 融资图（2025 全年）",
+      "retrieved_at": "2026-08-08"
+    },
+    {
+      "name": "Stanford HAI",
+      "url": "https://hai.stanford.edu",
+      "used_for": "",
+      "retrieved_at": "2026-08-08",
+      "uncited_reason": "本快照的任何 series 都未引用该机构数字；旧 BASE_SOURCES 把它与 LMMarketCap 一并列为基础来源，但两者都没有任何 DEFAULT_*_SOURCE 实际引用，属凑数。保留条目以便日后真要用时补used_for。"
+    },
+    {
+      "name": "LMMarketCap",
+      "url": "https://lmmarketcap.com",
+      "used_for": "",
+      "retrieved_at": "2026-08-08",
+      "uncited_reason": "同上，纯凑数。另注：排行榜实际抓取的是 LMArena / Artificial Analysis / HuggingFace 等多源池（见 leaderboard_sources.py），与 LMMarketCap 无关；render.py 里「LMMarketCap 实时数据」标签是另一处失实 labeling，本次未在授权范围内改。"
+    }
+  ]
+}

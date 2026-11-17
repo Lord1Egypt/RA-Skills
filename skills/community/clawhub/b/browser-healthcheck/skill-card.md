@@ -1,38 +1,49 @@
-## Description: <br>
-Browser tool health check and auto-repair. Automatically checks browser status before each use and diagnoses/fixes issues. Use when preparing to use browser automation, a browser snapshot or start times out, CDP connection fails, or browser timeout/disconnection symptoms appear. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Browser Healthcheck checks browser tool status before use and guides diagnosis or repair for screenshot, automation, timeout, and CDP disconnection issues.
 
-## Publisher: <br>
-[systiger](https://clawhub.ai/user/systiger) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[systiger](https://clawhub.ai/user/systiger)
 
-## Use Case: <br>
-Developers and automation users use this skill to check browser tool readiness, diagnose browser timeouts or CDP failures, and apply guided repairs before running browser screenshots or automation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Automatic repair can forcibly stop local browser processes without enough safeguards. <br>
-Mitigation: Use diagnostic mode first, and only allow --fix or taskkill after confirming the PID belongs to the intended OpenClaw browser process. <br>
+## Use Case:
 
+Developers and automation users use this skill to check OpenClaw browser readiness, diagnose profile conflicts, CDP connectivity problems, and browser timeouts, and apply guided repair steps before browser-based screenshots or automation.
 
-## Reference(s): <br>
-- [Browser Healthcheck release page](https://clawhub.ai/systiger/browser-healthcheck) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Code] <br>
-**Output Format:** [Markdown with inline command, JSON, and Python examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes diagnostic status checks and optional local repair commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The repair path may force-kill a local process using a PID found during CDP port diagnosis without proving it is the intended OpenClaw browser process.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the isolated openclaw profile where possible, inspect the reported PID before invoking repair actions, and only accept process termination when the process is confirmed to be OpenClaw-managed.
+
+## Reference(s):
+
+- [Browser Healthcheck ClawHub Skill Page](https://clawhub.ai/systiger/skills/browser-healthcheck)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline shell commands, configuration snippets, and troubleshooting steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes a Python healthcheck script that prints local browser, profile, port, and CDP status.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

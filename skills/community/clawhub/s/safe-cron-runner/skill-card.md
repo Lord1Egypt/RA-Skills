@@ -1,41 +1,58 @@
-## Description: <br>
-Executes background tasks safely by dropping privileges and enforcing timeouts, with an ISNAD signed manifest. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Executes background tasks safely by dropping privileges and enforcing timeouts.
 
-## Publisher: <br>
-[horn111](https://clawhub.ai/user/horn111) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[horn111](https://clawhub.ai/user/horn111)
 
-## Use Case: <br>
-Developers and agent operators use this skill to run local background tasks with timeouts, privilege dropping, and structured execution logs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can run local commands selected by the caller. <br>
-Mitigation: Install it only for agents that need local command execution and use explicit trusted command lists. <br>
-Risk: Command output previews are logged under /tmp and could expose sensitive data if a command prints secrets. <br>
-Mitigation: Avoid commands that print secrets and treat the log file as sensitive operational data. <br>
+## Use Case:
 
+Developers and engineers use this skill to run agent-triggered background commands with timeout handling, privilege dropping, and structured execution logs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/horn111/safe-cron-runner) <br>
-- [ISNAD manifest](artifact/isnad_manifest.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Shell commands, Logs] <br>
-**Output Format:** [JSON execution result with status, duration, command, and stdout/stderr previews] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [stdout_preview and stderr_preview are truncated to 500 characters and appended to /tmp/safe_cron.log when logging succeeds.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: SKILL.md frontmatter, package.json, release evidence) <br>
+Risk: The security scan reports privilege, timeout, logging, and release-verification weaknesses that reduce confidence in the skill's safety claims.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installation, avoid privileged or multi-user environments, and require fixes for supplementary groups, process-group termination, secure logging, and version-matched signed manifests before production use.
+
+Risk: The skill writes command previews to a /tmp log, which may expose sensitive command output or provide weak audit storage.
+
+Mitigation: Avoid running secret-bearing commands and route logs to controlled storage with appropriate permissions before production deployment.
+
+Risk: The command wrapper is not a complete sandbox.
+
+Mitigation: Use it only as a constrained command runner and pair it with external isolation, command allowlists, and human review for high-impact tasks.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/horn111/skills/safe-cron-runner)
+- [ISNAD Manifest](isnad_manifest.json)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with Python code examples and JSON execution results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces structured task status, duration, stdout preview, stderr preview, and log entries.]
+
+## Skill Version(s):
+
+1.0.2 (source: frontmatter and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

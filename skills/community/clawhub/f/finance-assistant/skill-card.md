@@ -1,43 +1,61 @@
-## Description: <br>
-智能财务报销助手帮助用户接收、解析、归档和跟踪多公司发票、无发票费用与重要财务事项，并生成待报销和待处理提醒。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+智能财务事项与报销跟踪系统。它能够对多公司、多发票抬头进行智能化管理，从发票文件的接收、解析、分类存储到最终报销，提供一站式全生命周期的跟踪与提醒服务。支持PyMuPDF智能发票解析归档、发票缺漏智能补录及重要财务日程提醒。
 
-## Publisher: <br>
-[afeicn](https://clawhub.ai/user/afeicn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[afeicn](https://clawhub.ai/user/afeicn)
 
-## Use Case: <br>
-Users who manage finance work across multiple companies use this skill to track invoice-backed reimbursements, expenses without invoices, and important tax or accounting tasks. It helps an agent parse invoice files, maintain local Markdown ledgers, classify invoice headers, and prepare recurring reminders. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can store invoice files, tax identifiers, company mappings, reimbursement ledgers, and reminder records in a local finance workspace. <br>
-Mitigation: Use a private directory with appropriate filesystem permissions and review parsed invoice fields before sharing or syncing records. <br>
-Risk: Recurring cron templates can repeatedly read and update finance records. <br>
-Mitigation: Enable scheduled jobs only when recurring reminders are intended, and periodically review the target files and delivery settings. <br>
-Risk: Generated reimbursement workflows may involve sharing finance details through Feishu or related tools. <br>
-Mitigation: Verify recipients, document permissions, and packaged files before sending reimbursement materials. <br>
+## Use Case:
 
+Employees and assistants managing business expenses use this skill to track invoice files, reimbursement status, no-invoice expenses, and important finance deadlines across multiple companies and invoice headers. It also guides weekly reminders and invoice parsing checks so unresolved items can be followed up consistently.
 
-## Reference(s): <br>
-- [Finance Assistant ClawHub Listing](https://clawhub.ai/afeicn/finance-assistant) <br>
-- [Invoice Header Mapping Reference](references/headers.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Configuration, Guidance] <br>
-**Output Format:** [Markdown responses, Markdown table records, and YAML cron templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read and update local finance workspace files and invoice originals under ~/finance or a user-selected finance directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release metadata) <br>
+Risk: The skill maintains sensitive invoice, reimbursement, and finance deadline records in local files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated finance directory, review file permissions, and avoid exposing the directory through shared sync or chat channels unless approved.
+
+Risk: Weekly reminder automation may read finance records, send summaries, and update reminder counts.
+
+Mitigation: Confirm the reminder schedule, delivery destination, read scope, and any write behavior before enabling automation.
+
+Risk: Invoice parsing can confuse buyer and seller fields in Chinese electronic invoices because text extraction may not preserve the visual column layout.
+
+Mitigation: Verify company names and tax IDs against references/headers.md and ask the user to confirm when extracted invoice details conflict.
+
+Risk: Invoice retention choices can affect records that may be needed later.
+
+Mitigation: Agree on deletion and retention rules before removing old invoice files.
+
+## Reference(s):
+
+- [发票抬头 → 公司映射表](references/headers.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, files, configuration, guidance]
+
+**Output Format:** [Markdown records, concise summaries, invoice file links, and optional YAML cron templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Maintains local finance records under ~/finance/ or a user-selected finance directory.]
+
+## Skill Version(s):
+
+0.1.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

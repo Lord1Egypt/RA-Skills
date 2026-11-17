@@ -1,40 +1,55 @@
-## Description: <br>
-Estimate whether one commerce channel is creating measurable spillover into another channel using simple exports, campaign timing, and directional evidence. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Estimate whether one commerce channel is creating measurable spillover into another channel using simple exports, campaign timing, and directional evidence.
 
-## Publisher: <br>
-[Leooooooow](https://clawhub.ai/user/Leooooooow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leooooooow](https://clawhub.ai/user/leooooooow)
 
-## Use Case: <br>
-External operators and commerce teams use this skill to compare source-channel activity with downstream channel performance and decide whether observed lift is likely related, weak, mixed, or unsupported by the available evidence. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may process channel exports or screenshots that contain unrelated customer details, account identifiers, payment data, or out-of-scope fields. <br>
-Mitigation: Remove unrelated customer details, payment data, account identifiers, and fields outside the needed date range and channels before sharing data with the agent. <br>
-Risk: Timing overlap between channels can be mistaken for causal attribution. <br>
-Mitigation: Treat outputs as directional unless the user provides stronger measurement evidence, and keep confidence caveats with the recommendation. <br>
+## Use Case:
 
+Commerce operators and growth teams use this skill to compare a source channel, such as TikTok, creator activity, paid traffic, or marketplace growth, against downstream sales channels. It helps produce a directional spillover estimate, confidence note, and next measurement recommendation.
 
-## Reference(s): <br>
-- [Output template](references/output-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns an executive summary, spillover estimate, evidence blocks, confidence caveats, and a recommended next step.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Commerce exports may contain sensitive customer, account, or business data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Redact customer PII, credentials, and unnecessary account details before sharing exports or screenshots with an agent.
+
+Risk: Timing overlap between channels can be mistaken for causal attribution.
+
+Mitigation: Label results as directional unless stronger measurement design or supporting evidence verifies lift.
+
+## Reference(s):
+
+- [Output template](artifact/references/output-template.md)
+- [ClawHub skill page](https://clawhub.ai/leooooooow/skills/spillover-estimator)
+- [Publisher profile](https://clawhub.ai/user/leooooooow)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Structured response with executive summary, spillover estimate, evidence blocks, confidence caveats, and recommended next step.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

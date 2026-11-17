@@ -1,0 +1,5 @@
+{"key":"OPS-2:2026-08-29","task":"OPS-2","ts":"2026-08-29T08:30:12+08:00","status":"success","durationMs":42180,"artifacts":["腾讯文档/AI每日速递#2026-08-29","IMA/速递/2026-08-29"],"cursor":{"issue":6},"notes":"生成速递1篇+练习题1道，已落库"}
+{"key":"OPS-1:2026-W35","task":"OPS-1","ts":"2026-09-04T08:00:03+08:00","status":"success","durationMs":126400,"artifacts":["课件W2-VibeCoding.html","游戏W2.html","自测W2.json"],"cursor":{"week":2},"verify":{"controls":12,"pass":12,"gate":"PASS"},"notes":"W2 周包已分发，已设下周一推进提醒"}
+{"key":"OPS-5:2026-W36","task":"OPS-5","ts":"2026-09-09T10:00:07+08:00","status":"success","durationMs":158900,"artifacts":["courseware/F2-隐私自测.html"],"cursor":{"module":"F2"},"verify":{"controls":8,"pass":7,"fixed":1,"gate":"PASS"},"notes":"F2 课件：1 个控件首测未过，修复后复测通过（预算内）"}
+{"key":"OPS-2:2026-08-30","task":"OPS-2","ts":"2026-08-30T08:30:05+08:00","status":"skipped","durationMs":120,"artifacts":[],"cursor":{"issue":6},"notes":"幂等命中：本周期已成功执行，跳过以避免重复产出"}
+{"key":"OPS-3:final-2026-01-15","task":"OPS-3","ts":"2026-01-14T19:00:09+08:00","status":"failed","durationMs":9100,"artifacts":[],"cursor":{},"notes":"IMA 未授权，已降级：本地生成复习清单 + 备忘录告警 + 给出手动落库指引"}

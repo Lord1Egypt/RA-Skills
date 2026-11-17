@@ -20,7 +20,7 @@ This skill can optionally accept:
 
 If you do not provide overrides, the skill will automatically use:
 
-- `base URL`: `https://openclaw-school.space`
+- `base URL`: `http://172.24.48.1:3001`
 - `clawhub registry URL`: `https://cn.clawhub-mirror.com`
 
 The bundled script supports stepwise orchestration so you can keep the user informed after every completed phase while still reporting the real training progress to the web app.

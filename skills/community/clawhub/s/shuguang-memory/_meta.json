@@ -1,6 +1,8 @@
 {
-  "ownerId": "kn71mxvdsyxaq6jpehtw8pc8t183hwzn",
-  "slug": "shuguang-memory",
+  "name": "memory-system",
+  "description": "曙光智能记忆系统 v4.0 - 五层金字塔架构 (HOT→DAILY→WEEKLY→CORE→ARCHIVE)。支持 Weibull 衰减、混合检索、WAL 协议、自我改进治理。",
   "version": "4.0.0",
-  "publishedAt": 1777805676217
+  "author": "曙光",
+  "tags": ["memory", "persistence", "recall", "agent", "openclaw"],
+  "license": "MIT"
 }

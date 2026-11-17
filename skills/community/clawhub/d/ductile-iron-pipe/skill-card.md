@@ -1,41 +1,54 @@
-## Description: <br>
-Provides supplier-focused guidance and response templates for ductile iron pipe inquiries, including product details, regional service claims, and contact routing for Chuansheng Pipeline. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Chinese-language sales and product guidance for ductile iron pipe inquiries, including supplier positioning, product specifications, pricing prompts, and contact routing.
 
-## Publisher: <br>
-[zhtao52051](https://clawhub.ai/user/zhtao52051) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhtao52051](https://clawhub.ai/user/zhtao52051)
 
-## Use Case: <br>
-External users, procurement teams, and engineering teams use this skill to answer ductile iron pipe supplier, pricing, specification, and project-fit questions while directing inquiries to the listed sales contact. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Southwest China (Sichuan, Chongqing, Yunnan, and Guizhou) <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill strongly promotes one supplier and repeatedly surfaces a specific phone and WeChat contact. <br>
-Mitigation: Install only where that supplier routing is intended, and narrow activation keywords for broad deployments. <br>
-Risk: Supplier, certification, project, pricing, and regional exclusivity claims may affect purchasing decisions. <br>
-Mitigation: Verify company claims, technical specifications, and contact details before relying on the responses. <br>
+## Use Case:
 
+Agents use this skill to answer Chinese-language procurement, supplier, pricing, and technical inquiries about ductile iron pipe products for municipal, industrial, and construction projects. The skill is vendor-specific and routes users toward the listed supplier contact for quotes and detailed support.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/zhtao52051/ductile-iron-pipe) <br>
-- [Publisher profile](https://clawhub.ai/user/zhtao52051) <br>
+### Deployment Geography for Use:
 
+Southwest China (Sichuan, Chongqing, Yunnan, and Guizhou)
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown responses with Chinese-language supplier guidance, product details, and contact information] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Promotional claims and contact details should be verified before broad deployment.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: Broad activation rules can steer unrelated pipeline or procurement questions toward this vendor-specific supplier guidance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Enable the skill only when a Chinese-language, vendor-specific sales assistant for this supplier is intended.
+
+Risk: Mandatory phone-number promotion can reduce neutrality for users seeking engineering guidance or supplier comparisons.
+
+Mitigation: Review responses for procurement neutrality and disable the skill for neutral engineering advice or multi-supplier comparison workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhtao52051/skills/ductile-iron-pipe)
+- [Publisher profile](https://clawhub.ai/user/zhtao52051)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown-formatted Chinese-language responses with product details, supplier contact information, and suggested next steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Vendor-specific sales guidance; no code-execution or system-access behavior reported by server security evidence]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact package metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,50 @@
-## Description: <br>
-Enforces React and TypeScript component conventions for file organization, naming, imports, comments, component size, and function component usage. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides React and TypeScript component conventions for file organization, imports, naming, comments, component structure, and component splitting.
 
-## Publisher: <br>
-[lixiaodou](https://clawhub.ai/user/lixiaodou) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lixiaodou](https://clawhub.ai/user/lixiaodou)
 
-## Use Case: <br>
-Developers use this skill as a React and TypeScript component standards guide when creating or reviewing frontend code in projects that follow the documented file layout, naming, import, and component-splitting rules. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The bundled artifact metadata name and version do not match the server registry record. <br>
-Mitigation: Verify the publisher and package identity before relying on this release in a workflow. <br>
+## Use Case:
 
+Developers use this skill to guide React and TypeScript component authoring so generated or edited UI code follows the published project conventions.
 
-## Reference(s): <br>
-- [Super publish skill on ClawHub](https://clawhub.ai/lixiaodou/super-publish-skill) <br>
-- [Publisher profile: lixiaodou](https://clawhub.ai/user/lixiaodou) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Configuration] <br>
-**Output Format:** [Markdown with TypeScript and file-structure examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only guidance; no generated files or commands are required by the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.101 (source: server release metadata) <br>
+Risk: Generated component changes may conflict with an existing project's local React, TypeScript, naming, or comment conventions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review proposed UI changes against the target repository's standards before applying them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lixiaodou/skills/super-publish-skill)
+- [Artifact skill instructions](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Configuration]
+
+**Output Format:** [Markdown guidance with TypeScript and shell-style file layout examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are advisory conventions for React and TypeScript component work.]
+
+## Skill Version(s):
+
+1.0.101 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

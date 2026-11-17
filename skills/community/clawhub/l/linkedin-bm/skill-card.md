@@ -1,41 +1,58 @@
-## Description: <br>
-LinkedIn automation via browser relay or cookies for messaging, profile viewing, and network actions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+LinkedIn automation via browser relay or cookies for messaging, profile viewing, and network actions.
 
-## Publisher: <br>
-[bernhmueller](https://clawhub.ai/user/bernhmueller) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bernhmueller](https://clawhub.ai/user/bernhmueller)
 
-## Use Case: <br>
-External users and developers use this skill to have an agent operate a logged-in LinkedIn browser session for messages, profile viewing, searches, and network actions with user confirmation for sensitive actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may expose a powerful LinkedIn session cookie if users copy or paste li_at into chat, files, or logs. <br>
-Mitigation: Prefer browser relay or isolated browser login, avoid sharing li_at values, and log out of LinkedIn sessions or rotate credentials if a cookie is exposed. <br>
-Risk: Agent actions in a logged-in LinkedIn session could send messages, issue connection requests, or repeat account actions without sufficient review. <br>
-Mitigation: Require explicit user confirmation before messages, connection requests, or repeated account actions, and keep automation rates low. <br>
+## Use Case:
 
+External users use this skill to operate LinkedIn through an attached or isolated browser for messaging, profile viewing, people search, notifications, and connection actions with explicit confirmation for outbound actions.
 
-## Reference(s): <br>
-- [LinkedIn](https://linkedin.com) <br>
-- [ClawHub skill page](https://clawhub.ai/bernhmueller/linkedin-bm) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with browser tool command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a logged-in LinkedIn session through browser relay, isolated browser login, or a securely handled session cookie.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: The fallback cookie workflow can expose a live LinkedIn session credential.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer the browser relay or isolated browser flow; do not copy the li_at cookie into chat, files, terminals, or logs, and revoke LinkedIn sessions if exposure is suspected.
+
+Risk: Automated outbound messages or connection actions can affect a user's LinkedIn account or contacts.
+
+Mitigation: Require explicit user confirmation before every outbound message, connection request, or connection acceptance.
+
+Risk: Rapid automated LinkedIn activity can trigger rate limits or account challenges.
+
+Mitigation: Keep activity slow, follow the skill's recommended rate limit, pause after rate limiting, and require manual CAPTCHA completion.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/bernhmueller/skills/linkedin-bm)
+- [LinkedIn](https://linkedin.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with browser command examples and procedural guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are intended for user-reviewed browser automation steps; outbound messages and connection actions require manual confirmation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

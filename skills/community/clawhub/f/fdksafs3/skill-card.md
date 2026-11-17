@@ -1,40 +1,53 @@
-## Description: <br>
-Helps agents use the GitHub CLI for pull requests, workflow runs, issues, and advanced GitHub API queries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents to use the GitHub CLI (`gh`) for issues, pull requests, CI workflow runs, API queries, and JSON-filtered output.
 
-## Publisher: <br>
-[yequanzheng](https://clawhub.ai/user/yequanzheng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yequanzheng](https://clawhub.ai/user/yequanzheng)
 
-## Use Case: <br>
-Developers and engineering agents use this skill to inspect GitHub pull requests, CI checks, workflow runs, issues, and selected API fields through the `gh` CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: GitHub CLI commands run with the privileges of the locally authenticated `gh` account. <br>
-Mitigation: Confirm the active `gh` account before use and prefer least-privilege GitHub tokens for private or organization repositories. <br>
-Risk: `gh api` can query sensitive repository or organization data if used broadly. <br>
-Mitigation: Review each `gh api` command before execution and keep commands explicitly scoped to the intended repository. <br>
+## Use Case:
 
+Developers and agents use this skill to inspect GitHub pull requests, issues, workflow runs, logs, and API responses with the GitHub CLI.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yequanzheng/fdksafs3) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance, JSON] <br>
-**Output Format:** [Markdown with inline bash code blocks and optional GitHub CLI JSON output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands should be scoped with `--repo owner/repo` when not already in a git repository.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: GitHub CLI guidance may cause an agent to act with the user's authenticated GitHub permissions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review proposed `gh` commands before execution and use least-privilege GitHub authentication for the repositories involved.
+
+Risk: Malformed or low-quality metadata can make the skill's purpose unclear before installation.
+
+Mitigation: Review the skill name, description, and release metadata before publishing or installing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yequanzheng/skills/fdksafs3)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include GitHub CLI commands that use the user's authenticated gh session.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

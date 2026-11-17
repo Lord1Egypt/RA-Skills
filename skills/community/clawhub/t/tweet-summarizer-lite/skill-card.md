@@ -1,44 +1,58 @@
-## Description: <br>
-Fetch and summarize single tweets from Twitter/X. Basic search and single tweet fetching. Lightweight version perfect for quick tweet lookups. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetch and summarize single tweets from Twitter/X. Basic search and single tweet fetching. Lightweight version perfect for quick tweet lookups.
 
-## Publisher: <br>
-[FranciscoBuiltDat](https://clawhub.ai/user/FranciscoBuiltDat) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[franciscobuiltdat](https://clawhub.ai/user/franciscobuiltdat)
 
-## Use Case: <br>
-External users and developers use this skill through an agent to fetch, save, summarize, and search individual Twitter/X posts from URLs or saved local tweet data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires Twitter/X session cookies through AUTH_TOKEN and CT0, which are sensitive account credentials. <br>
-Mitigation: Use only an account whose session cookies are acceptable to expose to the skill and bird CLI; keep credentials in environment variables and rotate them if exposure is suspected. <br>
-Risk: Fetched tweets are stored locally under tweets-lite, and saved content may reveal private research, protected-account content, or sensitive interests. <br>
-Mitigation: Review or delete the local workspace data when saved tweets contain sensitive content, and do not share stored tweet files without checking them first. <br>
-Risk: The declared storage permission names a tweets directory while the scripts store data under tweets-lite. <br>
-Mitigation: Review local data paths before installation and cleanup so storage expectations match the files the skill actually writes. <br>
+## Use Case:
 
+External users and developers use this skill to fetch, save, summarize, and search individual Twitter/X posts through an agent workflow.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/FranciscoBuiltDat/tweet-summarizer-lite) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/FranciscoBuiltDat) <br>
-- [bird CLI](https://github.com/steipete/bird) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and plain text responses with inline shell commands and local file references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May fetch tweet text through the bird CLI, summarize text, and write or search locally stored tweet records.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: ClawHub release metadata; package.json lists 1.0.1) <br>
+Risk: The skill requires Twitter/X session cookies that can grant account access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated low-risk account, store cookies only in environment variables, rotate them periodically, and remove them from the environment when not needed.
+
+Risk: The unpinned third-party bird CLI receives the Twitter/X cookies and the process environment.
+
+Mitigation: Verify and pin the bird CLI version before use, and run the skill in an environment without unrelated secrets or API keys.
+
+Risk: Fetched tweets and metadata are stored locally.
+
+Mitigation: Periodically delete stored tweet data from the local OpenClaw data directory, especially when it may include private or protected account content.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/franciscobuiltdat/skills/tweet-summarizer-lite)
+- [bird CLI](https://github.com/steipete/bird)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with tweet excerpts, short summaries, search results, troubleshooting guidance, and inline shell commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May save fetched tweet text and metadata to local JSON storage; requires Twitter/X session cookies and the bird CLI.]
+
+## Skill Version(s):
+
+1.0.2 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

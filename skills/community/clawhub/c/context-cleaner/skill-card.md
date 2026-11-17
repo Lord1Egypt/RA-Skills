@@ -1,40 +1,51 @@
-## Description: <br>
-Optimizes OpenClaw agent context Markdown files to reduce token usage with backups, previews, and rollback. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Optimize agent context files for 30-50% token reduction with backups, preview, rollback, and preservation of core functionality.
 
-## Publisher: <br>
-[sdotwinter](https://clawhub.ai/user/sdotwinter) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[sdotwinter](https://clawhub.ai/user/sdotwinter)
 
-## Use Case: <br>
-Developers and agent operators use this skill to compact OpenClaw agent workspace Markdown files while preserving workflows, IDs, and safety boundaries. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can rewrite persistent agent instruction files, which may alter agent behavior or remove important context. <br>
-Mitigation: Use it only with an explicit named target, require a current backup, review the exact proposed files and diff before rewrite, and verify that IDs, workflows, and safety rules are preserved. <br>
-Risk: All-agent or main-workspace cleanup has broad impact and can affect core behavior. <br>
-Mitigation: Avoid broad scopes unless necessary; require explicit confirmation for main workspace changes and keep rollback instructions available. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sdotwinter/context-cleaner) <br>
-- [Source skill definition](artifact/SKILL.md) <br>
+## Use Case:
+
+Developers and agent operators use this skill to reduce token usage in OpenClaw agent context files while retaining workflow steps, tool parameters, quality gates, and rollback paths.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can persistently rewrite OpenClaw agent behavior files.
+
+Mitigation: Create and verify backups before changes, review a full diff before writes, and use the rollback path if the optimized files do not preserve intended behavior.
+
+Risk: Broad templates may replace agent-specific behavior or introduce unwanted delivery instructions.
+
+Mitigation: Use explicit target names, avoid main workspace optimization unless necessary, and remove or verify any Discord delivery instructions introduced by templates.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks and summary tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces file rewrite guidance, backup and rollback commands, optimized Markdown templates, and before/after summaries.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown instructions with shell command examples and file rewrite guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May modify persistent agent workspace files after backup, preview, and explicit confirmation.]
+
+## Skill Version(s):
+
+1.0.2 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

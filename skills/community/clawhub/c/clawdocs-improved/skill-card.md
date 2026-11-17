@@ -1,51 +1,66 @@
-## Description: <br>
-OpenClaw documentation expert with config references, errata tracking, search scripts, and decision tree navigation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw documentation expert with config references, errata tracking, search scripts, and decision tree navigation.
 
-## Publisher: <br>
-[Sallvainian](https://clawhub.ai/user/Sallvainian) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[sallvainian](https://clawhub.ai/user/sallvainian)
 
-## Use Case: <br>
-Developers and operators use this skill to answer OpenClaw documentation questions, navigate configuration references, produce setup guidance, and troubleshoot configuration behavior with errata and validation reminders. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Optional shell scripts may fetch OpenClaw documentation and write a local documentation cache. <br>
-Mitigation: Review scripts before running them and run with normal user privileges in a workspace where local cache writes are acceptable. <br>
-Risk: The skill includes install commands and high-privilege configuration examples that may enable exec, elevated access, browser control, hooks, wildcard URL fetching, or message forwarding. <br>
-Mitigation: Review each command and configuration snippet before use, avoid pasting high-privilege examples blindly, and validate the security and privacy impact for the deployment. <br>
-Risk: Documentation and runtime behavior may differ, causing incorrect configuration guidance. <br>
-Mitigation: Check the bundled errata, apply changes incrementally, and inspect the OpenClaw reload log for unrecognized keys after configuration changes. <br>
+## Use Case:
 
+Developers and operators use this skill to answer OpenClaw setup, troubleshooting, and configuration questions with local references, errata checks, and document search commands.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/Sallvainian/clawdocs-improved) <br>
-- [OpenClaw documentation](https://docs.openclaw.ai/) <br>
-- [Agents Configuration Reference](references/agents.md) <br>
-- [Channels Configuration Reference](references/channels.md) <br>
-- [Gateway Configuration Reference](references/gateway.md) <br>
-- [Tools Configuration Reference](references/tools.md) <br>
-- [Session and Messages Configuration Reference](references/session-messages.md) <br>
-- [Environment Providers Reference](references/environment-providers.md) <br>
-- [OpenClaw Docs Errata](snippets/errata.md) <br>
-- [Validated OpenClaw Config Snippets](snippets/validated-configs.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline configuration snippets and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May cite OpenClaw documentation paths and recommend local validation commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and target metadata; artifact package.json states 1.3.0) <br>
+Risk: Bundled examples may include concrete account IDs, phone numbers, or ready-to-paste settings that are not safe defaults for every environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Replace identifiers with verified local values and audit snippets before applying them.
+
+Risk: The skill may suggest elevated execution or an upstream pipe-to-bash installer.
+
+Mitigation: Disable elevated execution unless strictly needed and independently verify installer contents before running them.
+
+Risk: The authoritative security scan marked the release as suspicious because some scripts and examples need review before installation.
+
+Mitigation: Install only after reviewing bundled scripts, snippets, and security guidance for the target environment.
+
+## Reference(s):
+
+- [Clawdocs Improved release page](https://clawhub.ai/sallvainian/skills/clawdocs-improved)
+- [OpenClaw documentation](https://docs.openclaw.ai/)
+- [Agents configuration reference](artifact/references/agents.md)
+- [Channels configuration reference](artifact/references/channels.md)
+- [Gateway configuration reference](artifact/references/gateway.md)
+- [Tools configuration reference](artifact/references/tools.md)
+- [Session and messages configuration reference](artifact/references/session-messages.md)
+- [Environment providers reference](artifact/references/environment-providers.md)
+- [OpenClaw docs errata](artifact/snippets/errata.md)
+- [Validated OpenClaw config snippets](artifact/snippets/validated-configs.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown with configuration snippets and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May cite local reference files and OpenClaw documentation URLs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

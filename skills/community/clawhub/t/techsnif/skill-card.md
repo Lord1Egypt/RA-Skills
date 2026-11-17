@@ -1,42 +1,56 @@
-## Description: <br>
-TechSnif queries TechSnif's public tech news API through a bundled CLI for current articles and trends across AI, startups, venture, and robotics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query TechSnif tech news intelligence through a bundled CLI for current articles across AI, Startups, Venture, and Robotics.
 
-## Publisher: <br>
-[coffeefuelbump](https://clawhub.ai/user/coffeefuelbump) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[coffeefuelbump](https://clawhub.ai/user/coffeefuelbump)
 
-## Use Case: <br>
-External users, developers, and analysts use this skill to retrieve, search, and summarize current technology news from TechSnif for briefings, research, and topical monitoring. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill runs bundled Node.js code. <br>
-Mitigation: Install only from a trusted release and review or scan the bundled CLI before deployment. <br>
-Risk: Tech-news search terms are sent to TechSnif or to the configured API endpoint. <br>
-Mitigation: Avoid confidential queries and verify TECHSNIF_API_URL or --api-url before use when endpoint control matters. <br>
+## Use Case:
 
+Developers, analysts, and agents use this skill to query current TechSnif technology news, retrieve full articles, and synthesize briefings about AI, startups, venture capital, robotics, companies, or topics.
 
-## Reference(s): <br>
-- [TechSnif homepage](https://techsnif.com/) <br>
-- [TechSnif CLI package](https://www.npmjs.com/package/@techsnif/cli) <br>
-- [TechSnif categories](references/categories.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, JSON data, Guidance] <br>
-**Output Format:** [JSON responses from the bundled CLI, with optional markdown, text, or HTML article bodies.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only public API access; listing commands omit full article content until an article slug is requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: release metadata) <br>
+Risk: The bundled CLI makes live network requests for tech-news queries.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only where sending query terms to TechSnif is acceptable and review returned sources before relying on summaries.
+
+Risk: The CLI endpoint can be redirected with --api-url or TECHSNIF_API_URL, allowing an alternate endpoint to receive query terms and supply content for summarization.
+
+Mitigation: Do not use endpoint overrides unless the alternate endpoint is intentionally trusted.
+
+## Reference(s):
+
+- [TechSnif homepage](https://techsnif.com/)
+- [TechSnif CLI npm package](https://www.npmjs.com/package/@techsnif/cli)
+- [TechSnif categories reference](references/categories.md)
+- [ClawHub skill page](https://clawhub.ai/coffeefuelbump/skills/techsnif)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown or text summaries based on JSON CLI responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Use --json for structured CLI output and check the ok field before reading data. Listing commands omit article content; retrieve full content with the article command.]
+
+## Skill Version(s):
+
+1.0.4 (source: server evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

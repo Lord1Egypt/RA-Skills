@@ -1,44 +1,64 @@
-## Description: <br>
-Build, debug, and optimize RealityKit scenes for visionOS, including entity/component setup, rendering, animation, physics, audio, input, attachments, and custom systems. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build, debug, and optimize RealityKit scenes for visionOS, including entity/component setup, rendering, animation, physics, audio, input, attachments, and custom systems.
 
-## Publisher: <br>
-[tomkrikorian](https://clawhub.ai/user/tomkrikorian) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tomkrikorian](https://clawhub.ai/user/tomkrikorian)
 
-## Use Case: <br>
-Developers building visionOS spatial experiences use this skill for RealityKit component selection, ECS implementation patterns, SwiftUI RealityView integration, and scene debugging or optimization. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Apps built with this guidance may use privacy-sensitive APIs such as body tracking, scene understanding, or synchronized shared-session state. <br>
-Mitigation: Add clear user-facing disclosure, consent handling where required, retention limits, and data minimization. <br>
-Risk: RealityKit implementation guidance may become inaccurate as Apple SDKs and device behavior change. <br>
-Mitigation: Validate generated code against current Apple documentation and test on the target visionOS runtime. <br>
+## Use Case:
 
+Developers and engineers use this skill to implement and troubleshoot RealityKit-based spatial experiences on visionOS, including component selection, custom systems, SwiftUI RealityView integration, and performance checks.
 
-## Reference(s): <br>
-- [RealityKit ModelComponent](https://developer.apple.com/documentation/realitykit/modelcomponent) <br>
-- [RealityKit InputTargetComponent](https://developer.apple.com/documentation/realitykit/inputtargetcomponent) <br>
-- [RealityKit System](https://developer.apple.com/documentation/realitykit/system) <br>
-- [RealityKit Component](https://developer.apple.com/documentation/realitykit/component) <br>
-- [System and Component Creation](references/systemandcomponentcreation.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, configuration] <br>
-**Output Format:** [Markdown with Swift code examples and implementation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Static reference skill; no runtime tools, credentials, or elevated access detected.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: Examples involving ARKit camera, sensor, body-tracking, room or environment tracking can affect user privacy if copied into an app without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review platform permissions and user disclosures before implementation, and disclose body or environment tracking to users.
+
+Risk: Synchronization examples can share entity state with other participants beyond what an application needs.
+
+Mitigation: Limit synchronized entity data to the minimum required for the experience.
+
+Risk: File-saving examples can write generated assets to unintended locations.
+
+Mitigation: Confirm file destinations before saving generated assets.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/tomkrikorian/skills/realitykit-visionos-developer)
+- [System and Component Creation](artifact/references/systemandcomponentcreation.md)
+- [ModelComponent Reference](artifact/references/modelcomponent.md)
+- [InputTargetComponent Reference](artifact/references/inputtargetcomponent.md)
+- [AnchoringComponent Reference](artifact/references/anchoringcomponent.md)
+- [SynchronizationComponent Reference](artifact/references/synchronizationcomponent.md)
+- [Apple RealityKit AccessibilityComponent Documentation](https://developer.apple.com/documentation/realitykit/accessibilitycomponent)
+- [Apple RealityKit AnchoringComponent Documentation](https://developer.apple.com/documentation/realitykit/anchoringcomponent)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Swift code examples and reference file summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May direct the agent to load focused component reference files before answering.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

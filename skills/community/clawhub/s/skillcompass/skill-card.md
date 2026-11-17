@@ -1,41 +1,55 @@
-## Description: <br>
-Use when a user is trying to discover an installable or reusable skill or workflow, especially when they ask for a skill for a task, want to compare nearby skill categories, or need help narrowing discovery results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when a user is trying to discover an installable or reusable skill or workflow, especially when they ask for a skill for a task, want to compare nearby skill categories, or need help narrowing discovery results.
 
-## Publisher: <br>
-[littledinoc](https://clawhub.ai/user/littledinoc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[littledinoc](https://clawhub.ai/user/littledinoc)
 
-## Use Case: <br>
-Developers and agents use Skill Compass to find, compare, and recommend installable or reusable ClawHub skills for a user's task. It supports one targeted clarification pass when the request is ambiguous. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search requests, clarifications, selected skills, and feedback may be sent to skills.megatechai.com. <br>
-Mitigation: Avoid including private project details or sensitive comments unless the user is comfortable sharing them with that service. <br>
-Risk: Suggested npx install commands acquire remote code. <br>
-Mitigation: Review the recommended skill source and install command before running it, preferably in a controlled environment. <br>
-Risk: Feedback telemetry can link a recommendation session to selected skills and the user's verdict. <br>
-Mitigation: Submit only concise, non-sensitive feedback and omit optional comments when they are not needed. <br>
+## Use Case:
 
+Developers and external users use this skill to find installable or reusable skills, narrow ambiguous discovery needs, compare nearby skill categories, and receive a small set of relevant recommendations.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown recommendations with optional shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns 1-3 final skill recommendations after up to two retrieval passes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill sends search intent, clarifications, recommendation choices, and feedback to a third-party service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid entering confidential project, customer, or proprietary details when using the skill.
+
+Risk: The skill may show installation commands for recommended skills without fully scoped package or repository validation.
+
+Mitigation: Independently review the package, repository, and exact version or commit before running any install command.
+
+## Reference(s):
+
+- [Skill Compass on ClawHub](https://clawhub.ai/littledinoc/skills/skillcompass)
+- [Publisher profile](https://clawhub.ai/user/littledinoc)
+- [Skill search service](https://skills.megatechai.com/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown recommendations with concise fit reasoning and optional inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns 1-3 final recommendations after at most two retrieval passes and one clarification question.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

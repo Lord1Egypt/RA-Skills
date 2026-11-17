@@ -1,40 +1,58 @@
-## Description: <br>
-Automated Skill development tool that takes a prompt and feature description, then helps an agent complete ClawHub skill creation, testing, and publishing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates ClawHub skill creation, local validation, and publishing from a user's prompt and feature description.
 
-## Publisher: <br>
-[bustes01](https://clawhub.ai/user/bustes01) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bustes01](https://clawhub.ai/user/bustes01)
 
-## Use Case: <br>
-Developers and skill authors use this skill to turn a requested capability into a ClawHub-ready skill directory, SKILL.md, validation flow, and publish command sequence. It is intended for normal ClawHub skill releases where the user reviews the generated skill before publishing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated skills can accidentally include credentials, personal information, local paths, or private implementation details. <br>
-Mitigation: Review each generated skill before publishing and run the documented privacy scan; keep credentials in environment variables rather than SKILL.md. <br>
-Risk: The skill can create local skill files and use an authenticated ClawHub CLI session to publish releases. <br>
-Mitigation: Install only when comfortable with that workflow, inspect generated files, and publish only after explicit confirmation. <br>
+## Use Case:
 
+Developers and skill publishers use this skill to turn a feature idea into a ClawHub-compatible SKILL.md, supporting files, validation steps, and publish commands.
 
-## Reference(s): <br>
-- [ClawHub skill homepage](https://clawhub.ai/BusTes01/skill-builder-pro) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown instructions with YAML frontmatter examples and shell command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local skill files and publish through the ClawHub CLI after user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.0 (source: server release metadata) <br>
+Risk: Generated skills may include unsafe command templates or user-provided names in shell commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use simple validated names and slugs, quote command arguments, and review every generated shell command before execution.
+
+Risk: The skill can publish new agent instructions to ClawHub.
+
+Mitigation: Review generated SKILL.md files, run dry-run validation and privacy/security scans, and publish only after human confirmation.
+
+Risk: Generated memory or usage-tracking patterns can create persistence and privacy concerns.
+
+Mitigation: Treat memory and usage tracking as opt-in and document what is stored before enabling it.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/bustes01/skills/skill-builder-pro)
+- [ClawHub Homepage Metadata](https://clawhub.ai/BusTes01/skill-builder-pro)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with YAML, file-structure examples, and bash command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces agent-facing instructions for skill generation, validation, privacy checks, and publishing.]
+
+## Skill Version(s):
+
+1.4.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

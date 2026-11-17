@@ -1,45 +1,60 @@
-## Description: <br>
-Perform global web searches using Google Custom Search API with customizable result counts and formatted results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Perform global web searches using the Google Custom Search API with configurable result counts.
 
-## Publisher: <br>
-[leohuang8688](https://clawhub.ai/user/leohuang8688) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leohuang8688](https://clawhub.ai/user/leohuang8688)
 
-## Use Case: <br>
-Developers and agents use this skill to retrieve current web search results for news, research, product, and academic queries through Google Custom Search. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Failed searches can expose the user's Google API key in returned error output. <br>
-Mitigation: Use a restricted Google Custom Search API key with quota and billing limits, and prefer a patched version that redacts HTTP error URLs before returning failures. <br>
-Risk: Search queries are sent to Google Custom Search and may contain sensitive user-provided text. <br>
-Mitigation: Avoid searching for secrets, private personal data, or confidential business information. <br>
-Risk: Unpinned dependencies can change behavior before production deployment. <br>
-Mitigation: Pin and review dependencies before production use. <br>
+## Use Case:
 
+Developers and agents use this skill to retrieve current web search results for news, research, product, and academic queries through Google Custom Search.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/leohuang8688/google-search-2) <br>
-- [Google Custom Search JSON API overview](https://developers.google.com/custom-search/v1/overview) <br>
-- [Google Cloud Custom Search documentation](https://cloud.google.com/custom-search/docs) <br>
-- [Google Programmable Search Engine](https://programmablesearchengine.google.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown] <br>
-**Output Format:** [Formatted search results with titles, URLs, snippets, and source domains.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires GOOGLE_API_KEY and GOOGLE_CX; returns up to 10 results per request.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Google API keys or sensitive query details may appear in provider errors or returned URLs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated restricted Google Custom Search key, avoid sensitive searches, and review or adjust error handling before deployment.
+
+Risk: The skill sends search queries to Google Custom Search.
+
+Mitigation: Do not submit confidential prompts, customer data, or regulated information unless that use is approved for the configured Google service.
+
+Risk: Dependencies are declared with minimum versions rather than pinned versions.
+
+Mitigation: Install in an isolated environment and pin reviewed dependency versions for controlled deployments.
+
+## Reference(s):
+
+- [Google Cloud Console](https://console.cloud.google.com/)
+- [Google Programmable Search Engine](https://programmablesearchengine.google.com/)
+- [Google Custom Search Documentation](https://cloud.google.com/custom-search/docs)
+- [Custom Search JSON API Reference](https://developers.google.com/custom-search/v1/overview)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown-formatted search results and setup guidance with Python and shell examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search results include titles, URLs, snippets, and display links; Google Custom Search returns up to 10 results per request.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

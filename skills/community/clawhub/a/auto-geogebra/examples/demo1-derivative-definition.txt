@@ -1,0 +1,18 @@
+# 导数定义：割线逼近切线（真机导出版 · h 非零初始值）
+f(x) = x^3 - 3x + 1
+a = Slider(-2, 2, 0.1)
+h = Slider(-1, 1, 0.01)
+SetValue(h, 0.5)
+A = (a, f(a))
+B = (a + h, f(a + h))
+secant = Line(A, B)
+tangentLn = Tangent(a, f)
+mSec = Slope(secant)
+mTan = Slope(tangentLn)
+dTan = Derivative(f)
+distAB = Distance(A, B)
+txt = Text("割线斜率 = " + mSec, (3, 2), true, true)
+ShowLabel(secant, false)
+ShowLabel(tangentLn, false)
+SetColor(secant, 0, 0, 1)
+SetColor(tangentLn, 1, 0, 0)

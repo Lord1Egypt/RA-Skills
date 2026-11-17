@@ -1,50 +1,64 @@
-## Description: <br>
-Generates patient-facing English hospital recommendation reports for medical travel to China, using intake data to produce a three-hospital shortlist with specialist-direction guidance, cost and logistics advice, evidence notes, and Markdown/PDF exports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates English hospital recommendation reports for medical travel to China, using patient intake to produce three default hospital matches with specialist-direction guidance, cost and logistics context, evidence notes, and Markdown/PDF export.
 
-## Publisher: <br>
-[helenalhq](https://clawhub.ai/user/helenalhq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[helenalhq](https://clawhub.ai/user/helenalhq)
 
-## Use Case: <br>
-External users and operators use this skill to turn paid patient intake details into an English hospital matching report for China medical travel. The report helps compare recommended hospitals, specialist directions, expected costs, travel logistics, next steps, and evidence limitations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Patient and medical-travel details may be sensitive, and generated Markdown/PDF reports can persist that information locally. <br>
-Mitigation: Use the skill only in environments approved for this data, store outputs in a secure directory, and remove or protect generated files after delivery. <br>
-Risk: Dynamic facts such as hospital access paths, JCI status, specialist profiles, visa details, transportation, and accommodation can change. <br>
-Mitigation: Verify dynamic facts with current authoritative sources and mark uncertain items as needing manual confirmation instead of presenting them as settled. <br>
-Risk: Hospital recommendations could overstate clinical certainty, exact pricing, teleconsult availability, or named-doctor suitability. <br>
-Mitigation: Keep recommendations evidence-aware, use scenario-based cost framing, separate administrative intake from doctor-led consultation, and avoid named doctors unless strong public evidence supports them. <br>
+## Use Case:
 
+External users and operators use this skill to turn paid medical-travel intake into an English hospital matching report for China. It supports a reasoned hospital shortlist, specialist direction, cost and logistics context, evidence notes, next steps, and delivery-ready Markdown/PDF files.
 
-## Reference(s): <br>
-- [Product Brief](references/product-brief.md) <br>
-- [Report Schema](references/report-schema.md) <br>
-- [Specialty Mapping](references/specialty-mapping.md) <br>
-- [Fudan Rankings 2025 Snapshot](references/fudan-rankings-2025.md) <br>
-- [Recommendation Method](references/recommendation-method.md) <br>
-- [Search Policy](references/search-policy.md) <br>
-- [PDF Spec](references/pdf-spec.md) <br>
-- [Quality Checklist](references/quality-checklist.md) <br>
-- [ChinaMed Select](https://www.chinamed.cc) <br>
+### Deployment Geography for Use:
 
+Global; report content is scoped to medical travel to China.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance, Files] <br>
-**Output Format:** [Patient-facing English Markdown report with optional PDF export generated from structured JSON input.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Defaults to 3 recommended hospitals, includes evidence notes and disclaimer text, and keeps Markdown as the editable intermediate artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Generated reports can be written outside the requested output folder when untrusted report_id or --basename values are used.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted basenames, sanitize path-like values before rendering, and write reports to a private output directory until filename containment is fixed.
+
+Risk: Every generated report appends branded ChinaMed Select consult-service contact text.
+
+Mitigation: Confirm that this branding and contact text is appropriate for the release and disclose or remove it before using the output in another service context.
+
+Risk: Reports may contain sensitive patient and medical-travel information.
+
+Mitigation: Store generated Markdown and PDF files only in private locations with access limited to the intended operators and recipients.
+
+## Reference(s):
+
+- [Product Brief](references/product-brief.md)
+- [Report Schema](references/report-schema.md)
+- [Specialty Mapping](references/specialty-mapping.md)
+- [Fudan Rankings 2025 Snapshot](references/fudan-rankings-2025.md)
+- [Recommendation Method](references/recommendation-method.md)
+- [Search Policy](references/search-policy.md)
+- [PDF Spec](references/pdf-spec.md)
+- [Quality Checklist](references/quality-checklist.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and PDF files generated from structured JSON input, with patient-facing English report text.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Defaults to three recommended hospitals unless the input includes a justified expansion reason.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

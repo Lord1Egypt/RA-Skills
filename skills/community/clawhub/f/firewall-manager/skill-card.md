@@ -1,38 +1,54 @@
-## Description: <br>
-Firewall Manager provides local reference documentation for firewall-management concepts, quickstarts, patterns, troubleshooting, performance, security, migration, and cheat sheets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reference tool for devtools that provides quick Firewall Manager guidance across introductory, quickstart, patterns, debugging, performance, security, migration, and cheatsheet topics.
 
-## Publisher: <br>
-[bytesagain3](https://clawhub.ai/user/bytesagain3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain3](https://clawhub.ai/user/bytesagain3)
 
-## Use Case: <br>
-Developers, operators, and security practitioners use this skill as a lightweight local reference for firewall-management concepts, common workflows, and general security practices. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Firewall guidance is generic and may not match a user's production environment or policies. <br>
-Mitigation: Treat the output as reference material and review real firewall changes against local requirements before use. <br>
+## Use Case:
 
+Developers and engineers use this skill as a static reference for Firewall Manager concepts, common workflows, troubleshooting, performance, security, migration, and quick-reference guidance.
 
-## Reference(s): <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown-formatted plain text emitted by local shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Static reference content; no credentials, network access, or external API calls required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.4 (source: server release metadata) <br>
+Risk: Users may mistake the static reference content for live firewall management or environment-specific policy enforcement.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the output as general reference guidance and review any firewall configuration or operational change against authoritative local policy before implementation.
+
+Risk: The release version differs from version strings embedded in the artifact files.
+
+Mitigation: Use the server-resolved release version for this Skill Card and have maintainers align embedded artifact version strings in a future release.
+
+## Reference(s):
+
+- [Firewall Manager Skill Page](https://clawhub.ai/bytesagain3/skills/firewall-manager)
+- [BytesAgain Homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Plain text reference documentation with Markdown headings and lists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static heredoc responses; no API keys, network access, credential access, persistence, or destructive behavior indicated by security evidence.]
+
+## Skill Version(s):
+
+2.0.4 (source: release evidence; artifact frontmatter reports 2.0.3 and script reports 2.0.2)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

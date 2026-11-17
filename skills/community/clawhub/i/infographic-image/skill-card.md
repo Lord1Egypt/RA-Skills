@@ -1,47 +1,62 @@
-## Description: <br>
-Turns topics, long-form text, reports, notes, or explanatory material into Chinese visual image-generation prompts, then optionally renders images with DashScope Qwen image models. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Infographic Image turns topics, long-form text, reports, meeting notes, or instructions into Chinese image-generation prompts and can optionally render the resulting infographic with DashScope Qwen image models.
 
-## Publisher: <br>
-[yeyitech](https://clawhub.ai/user/yeyitech) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[yeyitech](https://clawhub.ai/user/yeyitech)
 
-## Use Case: <br>
-External users and developers use this skill to convert topics, articles, reports, meeting notes, or document excerpts into Chinese infographic prompts and optionally rendered image files. It is suited to information graphics, story-comic long images, document-to-image workflows, and style-controlled visual summaries. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Selected text, reports, meeting notes, and optional style files may be sent to DashScope under the user's API key. <br>
-Mitigation: Avoid confidential or regulated documents unless approved, and use dry-run or prompt-output mode to review the generated prompt before image rendering. <br>
-Risk: Generated prompts or images may simplify, omit, or misrepresent source material. <br>
-Mitigation: Review the inferred prompt and final image for factual accuracy, readability, and appropriate use before publication. <br>
-Risk: The workflow requires a DashScope API key and external API availability. <br>
-Mitigation: Configure DASHSCOPE_API_KEY only in trusted environments and expect generation to fail when the key, network, or upstream service is unavailable. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Skill page](https://clawhub.ai/yeyitech/infographic-image) <br>
-- [DashScope API endpoint](https://dashscope.aliyuncs.com) <br>
-- [Infographic meta-prompt](references/meta-prompt.md) <br>
-- [Comic story meta-prompt](references/meta-prompts-comic-story.md) <br>
-- [Frosted whiteboard meta-prompt](references/meta-prompts-frosted-whiteboard.md) <br>
-- [Spatial gallery meta-prompt](references/meta-prompts-spatial-gallery.md) <br>
-- [Style presets](references/styles/) <br>
+## Use Case:
 
+Developers, content teams, and agents use this skill to convert topics, articles, reports, or meeting notes into Chinese infographic and story-comic prompts. It can run as a prompt-only workflow or call DashScope to render and save the final image locally.
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, files, shell commands, configuration] <br>
-**Output Format:** [Console text, optional JSON prompt file, and optional downloaded image file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses DashScope text and image API calls; dry-run mode emits prompts without rendering an image.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Source text submitted to the workflow may be sent to DashScope for prompt inference or image generation.
+
+Mitigation: Do not process confidential documents unless the user has approved sending that content to DashScope.
+
+Risk: Generated prompt payloads and image files can be written to local paths selected by the user or by the skill defaults.
+
+Mitigation: Choose output paths deliberately and review generated files before sharing or reusing them.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/yeyitech/skills/infographic-image)
+- [DashScope API Base](https://dashscope.aliyuncs.com)
+- [Infographic Meta Prompt](references/meta-prompt.md)
+- [Comic Story Meta Prompt](references/meta-prompts-comic-story.md)
+- [Frosted Whiteboard Meta Prompt](references/meta-prompts-frosted-whiteboard.md)
+- [Spatial Gallery Meta Prompt](references/meta-prompts-spatial-gallery.md)
+- [Clean Editorial Style](references/styles/clean-editorial.md)
+- [Comic Story Style](references/styles/comic-story.md)
+- [Default Style](references/styles/default.md)
+- [Frosted Whiteboard Style](references/styles/frosted-whiteboard.md)
+- [Spatial Gallery Style](references/styles/spatial-gallery.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, files, shell commands, configuration, guidance]
+
+**Output Format:** [Console text, optional JSON prompt payload, and optional image file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Prompt-only dry runs are supported; image rendering saves files locally and requires DASHSCOPE_API_KEY.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,53 @@
-## Description: <br>
-Guide users to create multi-factor stock selection strategies and generate independent YAML configuration files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides users to create multi-factor stock selection strategies and generate independent YAML configuration files.
 
-## Publisher: <br>
-[wumu2013](https://clawhub.ai/user/wumu2013) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[wumu2013](https://clawhub.ai/user/wumu2013)
 
-## Use Case: <br>
-Developers and quantitative strategy builders use this skill to define screening rules, factor expressions, ranking weights, and QuantCLI YAML configuration for stock selection workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Installing QuantCLI from PyPI or source may introduce normal third-party package supply-chain risk. <br>
-Mitigation: Trust the package or source repository before installation, and pin or review the installed version. <br>
-Risk: Generated stock-selection strategies may be mistaken for financial advice or an automatic trading system. <br>
-Mitigation: Treat generated YAML as configuration guidance, then review, test, and validate strategies before any investment or trading use. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [QuantCLI homepage](https://gitcode.com/datavoid/quantcli) <br>
+## Use Case:
 
+Developers, quantitative analysts, and investment workflow builders use this skill to design stock-screening and ranking strategies with fundamental and technical factors, then generate QuantCLI-compatible YAML configuration files.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with YAML and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces strategy configuration guidance; generated stock-selection YAML should be reviewed before use.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill includes normal but unpinned third-party QuantCLI installation steps.
+
+Mitigation: Verify the QuantCLI package and repository before installing, prefer a pinned reviewed version or commit, and run it in a virtual environment.
+
+Risk: Generated stock-screening strategies can be mistaken for investment advice.
+
+Mitigation: Treat generated strategies as decision-support material and review factor choices, screening thresholds, and outputs before making financial decisions.
+
+## Reference(s):
+
+- [QuantCLI homepage](https://gitcode.com/datavoid/quantcli)
+- [ClawHub skill page](https://clawhub.ai/wumu2013/skills/multi-factor-strategy)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with YAML and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces QuantCLI strategy configuration examples and decision-support guidance; generated stock-screening strategies should be reviewed before use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

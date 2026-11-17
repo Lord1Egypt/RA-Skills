@@ -1,42 +1,57 @@
-## Description: <br>
-Create animated WhatsApp-style chat videos with a realistic iPhone frame, dark mode chat UI, typing indicators, read receipts, sound effects, and auto-scrolling for social media formats. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates animated WhatsApp-style chat video templates with a realistic iPhone frame, dark mode chat UI, message animations, typing indicators, read receipts, link previews, sound effects, and auto-scrolling for social media formats.
 
-## Publisher: <br>
-[danpeg](https://clawhub.ai/user/danpeg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[danpeg](https://clawhub.ai/user/danpeg)
 
-## Use Case: <br>
-Content creators, social media teams, and agents use this skill to produce short WhatsApp-style conversation videos in Remotion for X, TikTok, Instagram Reels, and similar formats. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on an external Remotion prerequisite that may be installed globally. <br>
-Mitigation: Review the Remotion dependency before installation and install or run it only in the intended environment. <br>
-Risk: The render helper changes into a fixed local Remotion project path and writes an MP4 under the project's out directory. <br>
-Mitigation: Run the helper only in the intended Remotion project and use expected output names. <br>
-Risk: Generated WhatsApp-style videos could be mistaken for official or authentic chat captures. <br>
-Mitigation: Disclose, label, or watermark generated videos when sharing them publicly. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/danpeg/whatsapp-video-mockup) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/danpeg) <br>
+## Use Case:
 
+Developers and content creators use this skill to generate reusable Remotion-based WhatsApp chat videos for X, TikTok, Instagram Reels, YouTube Shorts, and similar social media formats.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with TSX template code and Remotion shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces guidance and local project files for rendering MP4 video output through Remotion.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The documented setup uses unpinned external Remotion and skill dependencies.
+
+Mitigation: Review dependency sources before installation, pin versions where possible, and keep installs scoped to the project.
+
+Risk: The skill documentation recommends a global install for an external skill dependency.
+
+Mitigation: Prefer a project-scoped install and review the external skill before use.
+
+Risk: The render helper accepts an output name that is interpolated into a local output path.
+
+Mitigation: Use simple basename-style output names and avoid path-like values when invoking the helper.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/danpeg/skills/whatsapp-video-mockup)
+- [ClawHub publisher profile](https://clawhub.ai/user/danpeg)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with TypeScript/TSX code snippets, Remotion configuration, and inline bash commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The generated workflow targets MP4 rendering through Remotion and includes customizable chat timing, dimensions, and message content.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

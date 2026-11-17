@@ -1,44 +1,56 @@
-## Description: <br>
-Turn plain text into persona-driven TTS scripts for narration, companion-style voice messages, emotional comfort audio, and expressive spoken responses, with optional SenseAudio TTS invocation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Turns plain text into persona-driven TTS scripts for narration, companion-style voice messages, emotional comfort audio, and expressive spoken responses.
 
-## Publisher: <br>
-[JSinBUPT](https://clawhub.ai/user/JSinBUPT) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jsinbupt](https://clawhub.ai/user/jsinbupt)
 
-## Use Case: <br>
-External users, employees, and developers use this skill to rewrite plain text into Chinese-first character-style voice scripts with persona summaries and TTS style notes. When audio generation is needed, the skill can guide an agent to call the bundled SenseAudio TTS wrapper with a selected voice ID and output path. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The TTS wrapper accepts an endpoint override that can send the SenseAudio API key to an arbitrary URL. <br>
-Mitigation: Use the default SenseAudio endpoint and do not pass --url unless the destination is fully controlled and trusted. <br>
-Risk: Text sent for synthesis is processed by a third-party TTS service. <br>
-Mitigation: Avoid sending secrets, private data, or sensitive personal content in TTS requests. <br>
-Risk: The bundled script performs network requests and writes audio output files locally. <br>
-Mitigation: Review the script before installation, provide credentials through SENSEAUDIO_API_KEY when possible, and choose an explicit output path. <br>
+## Use Case:
 
+Developers and content creators use SenseAudio to convert written text into natural, persona-driven spoken scripts with tone, pacing, and style guidance. When audio output is requested, the skill can provide or run a SenseAudio TTS command that saves generated audio locally.
 
-## Reference(s): <br>
-- [SenseAudio API Usage Notes](references/senseaudio-api.md) <br>
-- [Voice Broadcast Templates](references/voice-broadcast-templates.md) <br>
-- [SenseAudio ClawHub Release](https://clawhub.ai/JSinBUPT/senseaudio-voice-broadcast) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with optional shell command snippets and generated audio file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Defaults to Chinese output unless another language is requested; may instruct the agent to use SENSEAUDIO_API_KEY or an explicit API key for audio generation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release metadata) <br>
+Risk: Audio generation can send text and API credentials over the network with weak endpoint and download controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use script-only output for sensitive content, and generate audio only when the text is appropriate to send to SenseAudio.
+
+Risk: Using a custom or untrusted TTS endpoint can expose credentials or return unsafe media URLs.
+
+Mitigation: Do not pass a custom --url or untrusted endpoint unless the script is changed to bind credentials to approved hosts, validate returned media URLs, and enforce timeouts and size limits.
+
+## Reference(s):
+
+- [SenseAudio TTS API Notes](references/senseaudio-api.md)
+- [Voice Broadcast Templates](references/voice-broadcast-templates.md)
+- [SenseAudio TTS Wrapper](scripts/senseaudio_tts.py)
+- [ClawHub Skill Page](https://clawhub.ai/jsinbupt/skills/senseaudio-voice-broadcast)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Files, Guidance]
+
+**Output Format:** [Markdown with spoken-script sections, TTS style notes, optional bash commands, and optional local audio file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Defaults to Chinese unless another language is requested; audio generation requires a SenseAudio API key.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,49 +1,64 @@
-## Description: <br>
-Run long-running, multi-step work in OpenClaw with durable state, progress updates, explicit recovery, verification gates, and optional worker-lane coordination. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run long-running, multi-step work in OpenClaw with durable state, progress updates, smart recovery, verification before completion, and optional worker-lane coordination.
 
-## Publisher: <br>
-[wonko6x9](https://clawhub.ai/user/wonko6x9) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wonko6x9](https://clawhub.ai/user/wonko6x9)
 
-## Use Case: <br>
-Developers and agent operators use this skill to keep multi-phase OpenClaw work recoverable across resets by recording state, milestones, events, progress, and verification before completion. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Task snapshots, progress logs, or event logs may store sensitive work details if users put secrets into task state. <br>
-Mitigation: Avoid storing secrets in task snapshots or logs and secure the underlying workspace storage. <br>
-Risk: Live progress delivery can send task status externally when bound to an active chat or session. <br>
-Mitigation: Prefer stdout, noop, or log-only delivery unless live OpenClaw messages are intended, and verify any chat or session binding first. <br>
-Risk: Recurring tick helpers can create background status activity. <br>
-Mitigation: Enable the cron helper only when recurring background ticks are explicitly wanted. <br>
-Risk: The installer deletes the selected install target before linking or copying the skill. <br>
-Mitigation: Review the install target carefully before running install.sh with --target. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to keep long-running OpenClaw work recoverable across resets by recording task state, checkpoints, progress, controls, and verification steps.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/wonko6x9/durable-task-runner) <br>
-- [README](README.md) <br>
-- [Quickstart](references/quickstart.md) <br>
-- [Task Schema](references/task-schema.md) <br>
-- [Control Levels](references/control-levels.md) <br>
-- [Subagent Return Protocol](references/subagent-return-protocol.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write local task snapshots, event logs, and progress logs when helper scripts are used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.6 (source: server release metadata) <br>
+Risk: Recurring status ticks can add persistent local execution through the current user's crontab.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing and do not run the cron --apply helper unless recurring ticks are intended and removal is understood.
+
+Risk: Installer behavior can delete a chosen target directory.
+
+Mitigation: Use the default install path only, and avoid custom --target paths unless the target has been reviewed and backed up.
+
+Risk: Task goals, progress logs, and events can contain sensitive user-entered details.
+
+Mitigation: Do not store secrets in task goals, progress logs, or events, and secure the local task-state storage.
+
+Risk: Recovery can select the wrong task when more than one durable task exists.
+
+Mitigation: Use explicit task IDs for recovery when multiple durable tasks are present.
+
+## Reference(s):
+
+- [Quickstart](references/quickstart.md)
+- [Durable Task Runner Schema](references/task-schema.md)
+- [Control Levels](references/control-levels.md)
+- [Subagent Return Protocol](references/subagent-return-protocol.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON task-state files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local task snapshots, event logs, and progress logs when used.]
+
+## Skill Version(s):
+
+0.1.6 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

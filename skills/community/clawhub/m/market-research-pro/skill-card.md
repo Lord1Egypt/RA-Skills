@@ -1,44 +1,55 @@
-## Description: <br>
-Use this skill when you need to generate structured market research reports, competitive landscape analysis, industry trend summaries, or TAM/SAM/SOM sizing for a product, business, or investment decision. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates structured market research reports, competitive landscape analysis, industry trend summaries, and TAM/SAM/SOM sizing for product, business, or investment decisions.
 
-## Publisher: <br>
-[goldath](https://clawhub.ai/user/goldath) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[goldath](https://clawhub.ai/user/goldath)
 
-## Use Case: <br>
-Business strategists, founders, product teams, and analysts use this skill to structure market research, competitor analysis, TAM/SAM/SOM sizing, trend analysis, and investment or product opportunity reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated market-size figures, citations, or assumptions may be inaccurate or unsuitable for investment, strategy, or business decisions. <br>
-Mitigation: Verify cited sources, dates, assumptions, and calculations before relying on generated reports. <br>
-Risk: The skill provides instruction-only research guidance and does not independently validate external market data. <br>
-Mitigation: Use authoritative current data sources and mark estimates or unsupported claims clearly in the final report. <br>
+## Use Case:
 
+External users, business analysts, founders, and investors use this skill to scope markets, size opportunities, compare competitors, and draft report-ready recommendations for product, business, or investment decisions.
 
-## Reference(s): <br>
-- [Competitive Analysis Framework](references/competitive-analysis-framework.md) <br>
-- [Market Sizing Templates & Examples](references/market-sizing-templates.md) <br>
-- [Market Research Report Templates](references/report-templates.md) <br>
-- [ClawHub Release Page](https://clawhub.ai/goldath/market-research-pro) <br>
-- [Publisher Profile](https://clawhub.ai/user/goldath) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Structured Markdown reports, matrices, summaries, and recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Emphasizes cited data sources, explicit assumptions, ranges for estimates, and concise executive summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated market research may include outdated, weakly sourced, or assumption-heavy market-size estimates.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify cited data sources, source years, sizing assumptions, and calculations before relying on the report for business or investment decisions.
+
+Risk: Users may treat generated analysis as authoritative financial or strategic advice.
+
+Mitigation: Use the output as analysis support and review conclusions with qualified domain, finance, or strategy stakeholders before acting.
+
+## Reference(s):
+
+- [Competitive Analysis Framework](references/competitive-analysis-framework.md)
+- [Market Sizing Templates & Examples](references/market-sizing-templates.md)
+- [Market Research Report Templates](references/report-templates.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Analysis, Guidance]
+
+**Output Format:** [Structured Markdown report with tables, cited assumptions, market sizing, competitive analysis, opportunities, risks, and recommendations.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Market size figures should include source and year; assumptions should be clearly flagged.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

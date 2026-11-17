@@ -1,42 +1,53 @@
-## Description: <br>
-Firecrawl Local lets agents scrape pages, map sites, and crawl documentation through a trusted self-hosted Firecrawl v1 REST API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Firecrawl Local lets agents scrape web pages, map site structure, and crawl websites through a self-hosted Firecrawl v1 REST API running on localhost.
 
-## Publisher: <br>
-[saddamtechie](https://clawhub.ai/user/saddamtechie) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[saddamtechie](https://clawhub.ai/user/saddamtechie)
 
-## Use Case: <br>
-Developers and agents use this skill to extract clean web content, discover site URLs, and collect documentation content for ingestion or RAG workflows using a local Firecrawl service. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Scraping or crawling can collect private, sensitive, or unauthorized content if the skill is pointed at internal or restricted URLs. <br>
-Mitigation: Use only authorized targets, avoid private or sensitive URLs unless permission is clear, and keep crawl scope conservative. <br>
-Risk: FIRECRAWL_LOCAL_URL and FIRECRAWL_API_KEY determine where requests and any bearer token are sent. <br>
-Mitigation: Set these values only for trusted self-hosted Firecrawl instances and protect any API key in the shell environment. <br>
-Risk: Large crawls can consume service or site resources. <br>
-Mitigation: Use --limit, --max-depth, --include, and --exclude to keep crawls scoped to the intended pages. <br>
+## Use Case:
 
+Developers and agent operators use this skill to extract clean page content, discover site URLs, and bulk ingest documentation into RAG or analysis workflows through a local Firecrawl service.
 
-## Reference(s): <br>
-- [Firecrawl Local ClawHub release](https://clawhub.ai/saddamtechie/firecrawl-local) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Shell command invocations and JSON responses containing scraped markdown, HTML, links, metadata, or crawl result arrays.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl, jq, and a reachable trusted Firecrawl service at FIRECRAWL_LOCAL_URL; crawl polling can run for up to five minutes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Security evidence reports unsafe optional API-key handling in run.sh before installation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Fix FIRECRAWL_API_KEY header handling to pass the Authorization header as one quoted argument, for example with a Bash array, before using authenticated endpoints.
+
+Risk: Changing FIRECRAWL_LOCAL_URL can send scrape requests and any configured API key to a non-local server.
+
+Mitigation: Keep FIRECRAWL_LOCAL_URL on localhost unless the endpoint is intentionally trusted and controlled.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/saddamtechie/skills/firecrawl-local)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Shell command output as formatted JSON containing markdown, HTML, links, and metadata depending on the selected command.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl, jq, and a reachable local Firecrawl endpoint; crawl results are asynchronously polled.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

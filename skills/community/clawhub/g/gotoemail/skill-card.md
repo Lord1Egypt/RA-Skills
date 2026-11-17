@@ -1,44 +1,62 @@
-## Description: <br>
-绑定邮箱账户并管理邮件，支持 163、126、QQ、Yahoo、Gmail 和自定义企业邮箱的 IMAP/SMTP 配置，不支持需要 OAuth 的 Outlook、M365 或 iCloud 邮箱。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+GoToEmail binds mailbox accounts and lets agents test IMAP/SMTP access, list and read messages, and send email for 163, 126, QQ, Yahoo, Gmail app-password accounts, and custom enterprise mail servers; OAuth-only providers such as Outlook, M365, and iCloud are not supported.
 
-## Publisher: <br>
-[feixuelingcloud](https://clawhub.ai/user/feixuelingcloud) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[feixuelingcloud](https://clawhub.ai/user/feixuelingcloud)
 
-## Use Case: <br>
-Employees, external users, and agents use this skill to bind a mailbox, test IMAP/SMTP connectivity, list and read messages, and send email through supported providers. It is most relevant when mail access can be delegated through revocable app passwords or provider-specific authorization codes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles mailbox credentials and can read and send mail. <br>
-Mitigation: Use revocable app passwords or mail-specific authorization codes where possible, avoid primary corporate mailbox passwords unless approved, and confirm each read or send action before execution. <br>
-Risk: Reading a message can mark it as read by default. <br>
-Mitigation: Set mark_as_read to false when preserving unread state matters. <br>
-Risk: Mailbox configuration or credentials may remain available to the host after binding. <br>
-Mitigation: Verify where saved mailbox credentials can be deleted or revoked, and rotate or revoke app passwords after use. <br>
+## Use Case:
 
+External users and agents use this skill to bind supported email accounts, validate mailbox connectivity, retrieve message lists and message content, and send email through IMAP/SMTP. It is most useful when a workflow needs direct mailbox operations with app passwords, authorization codes, or trusted custom mail servers.
 
-## Reference(s): <br>
-- [GoToEmail provider reference](references/providers.md) <br>
-- [ClawHub release page](https://clawhub.ai/feixuelingcloud/gotoemail) <br>
-- [Publisher profile](https://clawhub.ai/user/feixuelingcloud) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON examples and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Agent-facing guidance invokes Python scripts that read JSON from stdin and return JSON status, mailbox metadata, message content, or send results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server evidence) <br>
+Risk: The skill handles powerful mailbox credentials and documented examples pass secrets through shell echo commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use disposable app passwords or authorization codes where possible, avoid typing real mailbox secrets directly into shell history, and rotate credentials that may have been exposed.
+
+Risk: The skill authenticates to user-supplied IMAP and SMTP hosts.
+
+Mitigation: Only connect to trusted mail servers that the user intends to authenticate to, and confirm custom enterprise hostnames and ports before use.
+
+Risk: Reading a message marks it as read by default.
+
+Mitigation: Set mark_as_read to false when preserving unread state matters.
+
+## Reference(s):
+
+- [GoToEmail provider guide](references/providers.md)
+- [GoToEmail ClawHub release](https://clawhub.ai/feixuelingcloud/skills/gotoemail)
+- [163 Mail](https://mail.163.com)
+- [QQ Mail](https://mail.qq.com)
+- [Google account security](https://myaccount.google.com)
+- [Yahoo account login](https://login.yahoo.com)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON inputs or responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses Python scripts that exchange JSON through stdin and stdout; email body HTML is truncated to 5000 characters when reading a message.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

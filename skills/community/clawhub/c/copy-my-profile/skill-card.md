@@ -1,43 +1,56 @@
-## Description: <br>
-Extract a standardized cross-tool user profile from an AI agent's long-term memory so it can be reused in another AI tool without retraining. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extracts a standardized cross-tool user profile from AI agent memory files and produces a portable Markdown profile that can be reviewed and imported into another AI tool.
 
-## Publisher: <br>
-[songhonglei](https://clawhub.ai/user/songhonglei) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[songhonglei](https://clawhub.ai/user/songhonglei)
 
-## Use Case: <br>
-Developers and AI-tool users use this skill to export instructions, identity, profession, projects, and preferences from one agent's memory into a portable Markdown profile for another agent or AI tool. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The generated profile may consolidate sensitive details from AI memory or configuration files. <br>
-Mitigation: Review and redact my-profile.md before saving it in synced folders, committing it, or importing it into another tool's long-term memory. <br>
-Risk: Using the skill requires allowing the agent to read local AI memory and configuration files. <br>
-Mitigation: Install and run it only when that access is acceptable, and limit provided files when using the paste-based fallback path. <br>
+## Use Case:
 
+Developers and AI-tool users use this skill to export their long-term AI assistant memory into a portable Markdown profile for reuse across tools such as Claude Code, Codex CLI, Cursor, Cline, Continue, Aider, ChatGPT, and Claude.ai.
 
-## Reference(s): <br>
-- [Copy My Profile on ClawHub](https://clawhub.ai/songhonglei/copy-my-profile) <br>
-- [Profile Template](references/profile-template.md) <br>
-- [AI Tools Memory File Map](references/tools-memory-map.md) <br>
-- [Import Prompts](references/import-prompts.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Files, Guidance] <br>
-**Output Format:** [Markdown profile file and inline Markdown response] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes ./my-profile.md and asks for confirmation before overwriting an existing profile file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Exported profiles may include sensitive or overly broad personal, project, or instruction data from AI memory/config files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the generated profile before sharing or importing it, remove secrets and project-specific instructions, and prefer manual diffs for changes.
+
+Risk: Persistent cross-tool imports can carry repository-specific rules into global memory and affect unrelated future sessions.
+
+Mitigation: Import only intentionally scoped entries, avoid global storage for repository-derived rules, and use project-scoped memory where possible.
+
+## Reference(s):
+
+- [Profile Template](artifact/references/profile-template.md)
+- [AI Tools Memory File Map](artifact/references/tools-memory-map.md)
+- [Import Prompts](artifact/references/import-prompts.md)
+- [ClawHub skill page](https://clawhub.ai/songhonglei/skills/copy-my-profile)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown profile file plus inline Markdown response]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes ./my-profile.md, preserves five profile categories, and includes review/import notes for the user.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact SKILL.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

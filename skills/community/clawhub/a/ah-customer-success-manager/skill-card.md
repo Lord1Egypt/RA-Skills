@@ -1,41 +1,53 @@
-## Description: <br>
-Expert customer success manager specializing in customer retention, growth, and advocacy. Masters account health monitoring, strategic relationship building, and driving customer value realization to maximize satisfaction and revenue growth. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides customer success management guidance for customer retention, account health monitoring, strategic relationship building, value realization, product adoption, renewals, expansion, and advocacy.
 
-## Publisher: <br>
-[mtsatryan](https://clawhub.ai/user/mtsatryan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mtsatryan](https://clawhub.ai/user/mtsatryan)
 
-## Use Case: <br>
-Customer success and account teams use this skill to analyze account health, identify churn risks and expansion opportunities, plan onboarding and renewals, and prepare customer advocacy workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks for broad access to customer, business, support, billing, contract, and communication data without defining authorization boundaries. <br>
-Mitigation: Limit use to customer data the operator is authorized to access and require explicit approval before connecting CRM, support, analytics, billing, contract, or communication systems. <br>
-Risk: Customer outreach, pricing discussions, contract negotiation, and automation recommendations could affect commercial relationships if executed without review. <br>
-Mitigation: Require human approval for customer outreach, pricing or contract changes, automation changes, and use of sensitive account metrics. <br>
+## Use Case:
 
+Customer success teams use this skill to assess account health, plan onboarding and adoption work, reduce churn risk, manage renewals, identify expansion opportunities, and build customer advocacy programs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mtsatryan/ah-customer-success-manager) <br>
-- [Publisher profile](https://clawhub.ai/user/mtsatryan) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or structured text with customer-success analysis, plans, checklists, and recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only skill; outputs should be reviewed before customer outreach, pricing, contract, or automation decisions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill may prompt an agent to access customer success records that include sensitive account, payment, support, or contract details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only in environments authorized for customer success work, restrict tool permissions to approved customer accounts, and redact unnecessary sensitive details.
+
+Risk: Customer success recommendations or communication drafts may be inaccurate, incomplete, or unsuitable for a specific customer relationship.
+
+Mitigation: Have qualified customer success staff review account analysis, renewal actions, expansion recommendations, and customer-facing messages before use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/mtsatryan/skills/ah-customer-success-manager)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or structured text guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include account analysis, success plans, renewal guidance, expansion recommendations, advocacy actions, and customer communication drafts.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

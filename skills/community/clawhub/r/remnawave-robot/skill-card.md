@@ -1,43 +1,65 @@
-## Description: <br>
-Automates Remnawave account administration, including setup, account creation, search, deletion, squad management, and account notification email workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates the Remnawave account lifecycle, including configuration, account creation, group synchronization, account lookup, deletion, and email notifications.
 
-## Publisher: <br>
-[uepuer](https://clawhub.ai/user/uepuer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[uepuer](https://clawhub.ai/user/uepuer)
 
-## Use Case: <br>
-Administrators and operations engineers use this skill to manage Remnawave user accounts, synchronize internal squads, and send account provisioning emails from an agent-assisted command workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive VPN subscription URLs, Remnawave API tokens, SMTP credentials, and account logs may be exposed or persisted in local files. <br>
-Mitigation: Use only in a controlled admin environment, rotate any exposed subscription URLs, keep generated .env/config/log files out of version control, and store credentials in a managed secret store. <br>
-Risk: The release can be configured to bypass TLS certificate verification for Remnawave API or SMTP connections. <br>
-Mitigation: Keep TLS verification enabled unless a managed internal trust setup explicitly requires otherwise. <br>
-Risk: Hard-coded recipients, operational email addresses, and example subscription links can leak operational details if reused as-is. <br>
-Mitigation: Redact package examples before sharing, replace hard-coded recipients with environment-specific configuration, and rotate any live links present in distributed artifacts. <br>
+## Use Case:
 
+Operators and developers use this skill to manage Remnawave user accounts and internal groups from shell commands, then send account-opening or follow-up email notifications.
 
-## Reference(s): <br>
-- [Remnawave Robot ClawHub release page](https://clawhub.ai/uepuer/remnawave-robot) <br>
-- [Publisher profile](https://clawhub.ai/user/uepuer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Markdown, Guidance] <br>
-**Output Format:** [Markdown guidance with Node.js command examples and generated configuration or log files when scripts are executed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local Remnawave and SMTP configuration, account creation logs, squad mappings, and notification email content.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: server release metadata and package.json) <br>
+Risk: The skill handles Remnawave credentials, SMTP credentials, and subscription links unsafely.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the configuration before installation, store secrets outside committed files, rotate exposed credentials or subscription URLs, and restrict access to generated configuration and logs.
+
+Risk: Test and email scripts can send access information to fixed or prefilled recipients.
+
+Mitigation: Remove hard-coded recipients and subscription URLs, require explicit recipient input, and disable test email sending before use with real accounts.
+
+Risk: The artifact includes behavior that can disable TLS certificate validation.
+
+Mitigation: Use valid TLS certificates for Remnawave and SMTP endpoints and require certificate validation in production.
+
+Risk: Console output and logs can expose account details and subscription URLs.
+
+Mitigation: Redact sensitive values from logs, limit log retention, and restrict log file permissions to responsible administrators.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/uepuer/skills/remnawave-robot)
+- [Artifact README](artifact/README.md)
+- [Artifact Skill Documentation](artifact/SKILL.md)
+- [Artifact Publish Summary](artifact/PUBLISH-SUMMARY.md)
+- [Package Manifest](artifact/package.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and generated local configuration or log files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Scripts may also perform Remnawave API calls and send SMTP email when executed by the user.]
+
+## Skill Version(s):
+
+1.0.6 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

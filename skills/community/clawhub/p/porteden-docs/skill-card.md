@@ -1,42 +1,59 @@
-## Description: <br>
-Secure Google Docs Management - permission-based create, read, and edit doc content; manage sharing, permissions, rename and delete. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Secure Google Docs management for permission-based document creation, reading, editing, sharing, permissions, renaming, and deletion.
 
-## Publisher: <br>
-[porteden](https://clawhub.ai/user/porteden) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[porteden](https://clawhub.ai/user/porteden)
 
-## Use Case: <br>
-OpenClaw users and agents use this skill to manage Google Docs through the PortEden CLI, including reading, creating, editing, sharing, renaming, exporting, and moving documents to trash. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill connects PortEden to a Google account with Drive access, which can expose document data to the connected CLI workflow. <br>
-Mitigation: Install only if PortEden is trusted, use the least-privileged token or profile available, and confirm the active token restrictions before use. <br>
-Risk: Editing, sharing publicly, changing permissions, renaming, or deleting documents can affect sensitive files or collaborators. <br>
-Mitigation: Verify provider-prefixed document IDs, sharing recipients, public access settings, and deletion intent before executing those commands. <br>
+## Use Case:
 
+Developers and agents use this skill to manage Google Docs through the PortEden CLI, including creating, reading, editing, sharing, permission review, renaming, and trashing documents.
 
-## Reference(s): <br>
-- [PortEden homepage](https://porteden.com) <br>
-- [ClawHub skill page](https://clawhub.ai/porteden/porteden-docs) <br>
-- [PortEden publisher profile](https://clawhub.ai/user/porteden) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference compact JSON output from PortEden commands when users request machine-readable Google Docs results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill installs and relies on a mutable external CLI that handles credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after trusting PortEden, verify the CLI source and release before installation, and prefer a dedicated least-privilege token or account.
+
+Risk: Google Docs and Drive access can expose or modify sensitive documents when broad scopes or unrestricted tokens are used.
+
+Mitigation: Use tokens with only the required access, confirm Drive access is intentionally enabled, and review accessInfo or account scope before operating on documents.
+
+Risk: Sharing and delete commands can change document availability or remove documents from normal views.
+
+Mitigation: Manually confirm recipients, public sharing settings, and delete targets before execution; use Google Drive trash restoration when a trashed document must be recovered.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/porteden/skills/porteden-docs)
+- [PortEden publisher profile](https://clawhub.ai/user/porteden)
+- [PortEden homepage](https://porteden.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference provider-prefixed Google Docs IDs, permission settings, document text, and JSON operation files; recommends compact JSON CLI output with -jc.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

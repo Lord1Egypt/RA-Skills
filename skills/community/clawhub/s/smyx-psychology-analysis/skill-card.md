@@ -1,45 +1,55 @@
-## Description: <br>
-Analyzes human mental health and psychological behavior from video inputs, identifies common psychological issue tendencies, and returns structured mental health reports with improvement suggestions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides an interface for submitting video for psychological analysis and returning structured reports and improvement suggestions.
 
-## Publisher: <br>
-[smyx-sunjinhui](https://clawhub.ai/user/smyx-sunjinhui) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[smyx-sunjinhui](https://clawhub.ai/user/smyx-sunjinhui)
 
-## Use Case: <br>
-External users and developers use this skill to submit video files or video URLs for psychological analysis, receive structured reports, and retrieve prior report records. The analysis is positioned as mental-health reference material and not a substitute for professional diagnosis or treatment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive mental-health or biometric media may be sent to lifeemergence cloud services for analysis. <br>
-Mitigation: Use only with informed consent, approved data handling terms, and media that is appropriate for third-party cloud processing. <br>
-Risk: Reports may be linked to local or service-created identities and retrievable later. <br>
-Mitigation: Review retention, deletion, access control, and identity-linking expectations before processing real user media. <br>
-Risk: The skill may create local identity records and store service tokens. <br>
-Mitigation: Deploy in an environment where local storage is protected and token lifecycle handling is reviewed. <br>
+## Use Case:
 
+Individuals or organizations can submit local videos or video URLs for psychological analysis and retrieve previously generated reports. The documentation says reports are for reference and do not replace professional diagnosis or treatment.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/smyx-sunjinhui/skills/smyx-psychology-analysis) <br>
-- [Skill demo](https://lifeemergence.com/sample.html) <br>
-- [API interface documentation](references/api_doc.md) <br>
-- [smyx_analysis API interface documentation](skills/smyx_analysis/references/api_doc.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Guidance] <br>
-**Output Format:** [Markdown report text with optional JSON-formatted structured analysis and report links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can write analysis output to a local file and can return historical report records from the cloud API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.11 (source: server release metadata; artifact frontmatter reports 1.0.5) <br>
+Risk: Video uploads and remote account setup may involve sensitive data and stored credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before uploading, verify what video and identity data the service receives, what credentials it stores, and whether analysis can be avoided in export-only use; obtain consent and use only appropriate footage.
+
+Risk: The advertised analysis capability may not match the supplied implementation, and scan coverage leaves some uncertainty.
+
+Mitigation: Verify the available behavior and service responses before relying on reports; treat results as informational and seek qualified professional help for mental health concerns.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/smyx-sunjinhui/skills/smyx-psychology-analysis)
+- [Skill demonstration](https://lifeemergence.com/sample.html)
+- [API documentation](references/api_doc.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Markdown, Report links]
+
+**Output Format:** [Structured text or JSON reports, with report export links; results can be saved to a file.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports may include suggested improvements; the documentation describes them as informational, not a professional diagnosis or treatment.]
+
+## Skill Version(s):
+
+1.0.26 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

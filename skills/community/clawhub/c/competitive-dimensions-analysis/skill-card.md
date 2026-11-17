@@ -1,42 +1,52 @@
-## Description: <br>
-Conduct comprehensive competitor research through feature comparison matrices, product positioning analysis, differentiation strategy, and competitive impact assessment. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Conduct comprehensive competitor research through feature comparison matrices, product positioning analysis, differentiation strategy, and competitive impact assessment.
 
-## Publisher: <br>
-[openlark](https://clawhub.ai/user/openlark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[openlark](https://clawhub.ai/user/openlark)
 
-## Use Case: <br>
-Employees, external users, and strategy teams use this skill to compare competitors, analyze market positioning, identify differentiation opportunities, and prepare competitive strategy briefs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Competitor research may include pricing, funding, market, or review claims that change over time or are incomplete. <br>
-Mitigation: Verify important claims against current primary sources before using the analysis for decisions. <br>
-Risk: Users may provide confidential strategy or proprietary product details during competitive analysis. <br>
-Mitigation: Share only information appropriate for the agent environment unless the environment is trusted for confidential work. <br>
+## Use Case:
 
+Developers, product managers, and strategy teams use this skill to research competitors, compare product capabilities, assess positioning, and prepare competitive strategy briefs.
 
-## Reference(s): <br>
-- [Feature Comparison Matrix Template](references/feature-matrix-template.md) <br>
-- [Competitor Positioning Analysis Framework](references/positioning-framework.md) <br>
-- [Strategic Impact Assessment Framework](references/strategic-impact-framework.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with comparison tables and structured strategy sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes feature comparison matrices, positioning analysis, SWOT analysis, differentiation opportunities, and strategic recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Competitive analysis may rely on public claims about pricing, funding, market share, roadmaps, or product capabilities that can be incomplete or outdated.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review source quality and verify business-critical claims before using the analysis for decisions.
+
+## Reference(s):
+
+- [Feature Comparison Matrix Template](references/feature-matrix-template.md)
+- [Competitor Positioning Analysis Framework](references/positioning-framework.md)
+- [Strategic Impact Assessment Framework](references/strategic-impact-framework.md)
+- [ClawHub skill page](https://clawhub.ai/openlark/skills/competitive-dimensions-analysis)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Analysis, Guidance]
+
+**Output Format:** [Markdown with tables and structured strategic recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces feature comparison matrices, positioning maps, SWOT analysis, differentiation opportunities, and strategic recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

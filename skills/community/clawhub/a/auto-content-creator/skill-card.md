@@ -1,43 +1,52 @@
-## Description: <br>
-Auto Content Creator generates draft titles, body copy, hashtags, and posting suggestions for Xiaohongshu, Douyin, WeChat, Weibo, and friend-circle style social posts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Chinese-language content creation assistant that generates titles, body copy, tags, and publishing suggestions for platforms such as Xiaohongshu, Douyin, WeChat, Weibo, and Moments.
 
-## Publisher: <br>
-[yofoan](https://clawhub.ai/user/yofoan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[yofoan](https://clawhub.ai/user/yofoan)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External creators, marketers, ecommerce sellers, and content operators use this skill to draft Chinese social media copy and platform-specific publishing suggestions. It is useful for quickly producing structured promotional or informational drafts for several Chinese social platforms.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Documentation claims unsupported or unreviewed capabilities such as image input, rewrite, batch mode, trend tracking, API access, and paid tiers.
+
+Mitigation: Treat those claims as unverified unless the deployed artifact demonstrates the capability, and rely on the reviewed script behavior for operational expectations.
+
+Risk: Generated promotional copy can include persuasive claims, monetization framing, or platform-specific engagement prompts that may be inaccurate for a real product or campaign.
+
+Mitigation: Review generated content for factual accuracy, compliance, and brand fit before publication.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External creators, marketers, ecommerce sellers, and social-media operators use this skill to draft platform-specific promotional and informational content. It helps produce reusable copy structures, captions, hashtags, and publishing suggestions for common Chinese social platforms. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, shell commands, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Generated promotional claims, product claims, or trend references may be inaccurate or misleading if published without review. <br>
-Mitigation: Review and edit generated drafts before publishing, especially claims about products, pricing, performance, or audience outcomes. <br>
-Risk: Sensitive source material may be included in generated drafts or saved local Markdown output. <br>
-Mitigation: Avoid using confidential material as input unless local saved copies are acceptable for the deployment environment. <br>
-Risk: An unrelated auto-content command on the system could be invoked by mistake. <br>
-Mitigation: Run the included script directly or verify the CLI path before execution. <br>
+**Output Format:** [Markdown and plain text with generated content fields such as titles, body copy, tags, outlines, and publishing suggestions.]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/yofoan/auto-content-creator) <br>
-- [Publisher Profile](https://clawhub.ai/user/yofoan) <br>
+**Other Properties Related to Output:** [Generated output is template-based and may include randomized phrasing, tags, calls to action, and optional saved Markdown files when the script is run with an output directory.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown and console text containing generated social-media drafts, outlines, hashtags, and posting suggestions.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write generated Markdown drafts to a local output directory when an output path is provided.] <br>
+2.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

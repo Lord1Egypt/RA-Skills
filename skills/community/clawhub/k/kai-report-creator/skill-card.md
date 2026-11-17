@@ -1,45 +1,63 @@
-## Description: <br>
-Creates bilingual single-file HTML reports, business summaries, dashboards, and research documents from notes, URLs, or `.report.md` intermediate representations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Kai Report Creator generates bilingual, single-file HTML reports, business summaries, research documents, and KPI dashboards from notes, data, URLs, or .report.md plans.
 
-## Publisher: <br>
-[kaisersong](https://clawhub.ai/user/kaisersong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kaisersong](https://clawhub.ai/user/kaisersong)
 
-## Use Case: <br>
-External users, developers, and analysts use this skill to plan, generate, review, theme, and optionally export async-friendly HTML reports from source material or approved report IR. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated HTML reports can load third-party CDN JavaScript when assets are not bundled or used offline. <br>
-Mitigation: Open sensitive reports without network access, or use the bundled/offline path when third-party dependencies are not trusted. <br>
-Risk: Report files include local edit and export controls that can affect the viewed or shared output. <br>
-Mitigation: Review generated reports before distribution and keep trusted copies of source `.report.md` IR or generated HTML. <br>
+## Use Case:
 
+Developers, analysts, and knowledge workers use this skill to turn raw notes, data, URLs, or approved report plans into polished bilingual HTML reports. It also supports report review, theme previews, offline bundling, and optional image export workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kaisersong/kai-report-creator) <br>
-- [Generated guide report](https://kaisersong.github.io/kai-report-creator/examples/zh/kai-report-creator-guide.html) <br>
-- [References index](artifact/references/INDEX.md) <br>
-- [Report IR contract](artifact/references/ir-contract.md) <br>
-- [HTML shell template](artifact/references/html-shell-template.md) <br>
-- [Review checklist](artifact/references/review-checklist.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown report IR, single-file HTML reports, review summaries, and optional image-export command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated reports may include local edit/export controls and either CDN or bundled assets depending on the selected path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.23.3 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: Generated HTML reports can load mutable third-party browser scripts when not bundled for offline use.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use offline bundling where practical, verify generated HTML before opening confidential reports, and review any external script loading before sharing.
+
+Risk: Report content may be sent to Telegram or another messaging channel after image export.
+
+Mitigation: Require explicit user confirmation of the destination and review the rendered report or image before any messaging send.
+
+Risk: Generated reports can mislead readers if source data is incomplete or placeholders remain.
+
+Mitigation: Check generated facts, KPI values, and placeholders before publication; missing values should remain visibly marked rather than being invented.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kaisersong/skills/kai-report-creator)
+- [Skill definition](artifact/SKILL.md)
+- [README](artifact/README.md)
+- [Reference index](artifact/references/INDEX.md)
+- [HTML shell contract](artifact/references/html-shell-template.md)
+- [IR contract](artifact/references/ir-contract.md)
+- [Generated guide example](https://kaisersong.github.io/kai-report-creator/examples/zh/kai-report-creator-guide.html)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown plans, .report.md intermediate representations, self-contained HTML files, review notes, and optional export commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated HTML can embed report-summary JSON, section summaries, component data, theme metadata, and export controls.]
+
+## Skill Version(s):
+
+1.23.3 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

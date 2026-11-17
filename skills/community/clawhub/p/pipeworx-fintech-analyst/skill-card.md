@@ -1,40 +1,54 @@
-## Description: <br>
-Provides comprehensive fintech company and bank financial analysis using SEC filings, CFPB complaints, FDIC data, and market snapshots. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides fintech company and bank financial analysis using SEC filings, CFPB complaints, FDIC data, market snapshots, and related financial data sources.
 
-## Publisher: <br>
-[brucegutman](https://clawhub.ai/user/brucegutman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[brucegutman](https://clawhub.ai/user/brucegutman)
 
-## Use Case: <br>
-Analysts and agents use this skill to query fintech, banking, consumer complaint, market, and macroeconomic data through a remote MCP gateway. It is suited for company deep dives, bank health checks, and market snapshots built from public financial data sources. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Fintech research prompts and supplied context are sent to Pipeworx's remote MCP gateway. <br>
-Mitigation: Use the skill only for information you are comfortable sharing with that remote provider. <br>
-Risk: The remember and recall features can persist sensitive research context. <br>
-Mitigation: Avoid using memory features for confidential strategy, customer data, or nonpublic financial information unless retention and deletion controls are understood. <br>
+## Use Case:
 
+Developers and analysts use this skill to connect an agent to Pipeworx-hosted fintech research tools for company deep dives, bank health checks, market snapshots, and granular public-data lookups.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/brucegutman/pipeworx-fintech-analyst) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown and text responses with MCP server configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include fintech analysis, source lookups, intermediate remembered findings, and tool-selection guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill routes financial research through a third-party gateway.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with information suitable for Pipeworx processing and avoid confidential plans, customer data, personal complaint details, or sensitive investment interests unless provider controls are documented.
+
+Risk: The artifact recommends remember/recall for intermediate findings without documenting storage scope, retention, deletion, or isolation controls.
+
+Mitigation: Avoid saving intermediate findings until Pipeworx documents storage, retention, deletion, and isolation behavior.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/brucegutman/skills/pipeworx-fintech-analyst)
+- [Pipeworx Fintech Intel MCP Gateway](https://gateway.pipeworx.io/mcp?task=fintech%20analysis)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with JSON configuration snippets and agent-facing analysis]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include financial summaries, public-data lookups, market snapshots, and intermediate findings saved through provider tools.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

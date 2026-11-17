@@ -1,44 +1,60 @@
-## Description: <br>
-对多平台商品价格进行聚合分析与风险评估，输出可行动的购买建议，避免伪低价与条件陷阱误导 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+对多平台商品价格进行聚合分析与风险评估，输出可行动的购买建议，避免伪低价与条件陷阱误导。
 
-## Publisher: <br>
-[long1973m](https://clawhub.ai/user/long1973m) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[long1973m](https://clawhub.ai/user/long1973m)
 
-## Use Case: <br>
-External users and shopping agents use this skill to compare public e-commerce prices for a clearly defined product, evaluate channel and condition risks, and produce actionable purchase recommendations. It is intended for advisory price comparison, not for payment, account access, or seller dispute resolution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Recommendations can be misleading when public price data is stale, incomplete, or not aligned to the same SKU. <br>
-Mitigation: Confirm the product configuration, region, platform list, source links, and collection time before acting on a recommendation. <br>
-Risk: Risk labels are advisory, and the security evidence notes that the current script may misclassify some recommendations. <br>
-Mitigation: Double-check unusually low prices and high-impact purchase decisions against official platform terms, seller status, warranty coverage, and return policy. <br>
-Risk: Users may over-share private shopping or account information while requesting price comparisons. <br>
-Mitigation: Do not provide account credentials, payment information, order histories, cookies, or other private shopping data. <br>
+## Use Case:
 
+External shoppers and shopping agents use this skill to compare Chinese-market ecommerce offers for a clearly specified product, weighing price, platform conditions, seller type, and risk before purchase decisions.
 
-## Reference(s): <br>
-- [电商比价输入数据格式规范](artifact/references/input_format.md) <br>
-- [电商价格采集指导](artifact/references/price_collection_guide.md) <br>
-- [电商比价风险评估规则](artifact/references/risk_assessment_rules.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, guidance] <br>
-**Output Format:** [Structured JSON recommendations by default, with optional natural-language risk explanations and internal analysis evidence when requested.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Default output separates user-facing recommendations from deeper risk explanations and internal model evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Risk recommendations may be inaccurate because the security evidence notes a risk-level handling bug.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat risk levels as advisory and manually verify important purchase decisions, seller status, and purchase conditions.
+
+Risk: Ecommerce prices and discounts can change quickly or depend on coupons, membership, region, inventory, or time-limited conditions.
+
+Mitigation: Record the collection time and confirm final checkout price, eligibility, shipping, tax, and return terms before acting.
+
+Risk: Comparing different SKUs, configurations, bundles, refurbished items, or gift listings can produce misleading recommendations.
+
+Mitigation: Compare only matching product specifications and exclude offers that are not directly comparable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/long1973m/skills/price-comparison-analyzer)
+- [Input data format](references/input_format.md)
+- [Price collection guide](references/price_collection_guide.md)
+- [Risk assessment rules](references/risk_assessment_rules.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Guidance]
+
+**Output Format:** [Structured JSON plus concise text or Markdown explanations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Default user-facing output is a short recommendation list with warnings; internal output may include price distribution, abnormal-price checks, and risk evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

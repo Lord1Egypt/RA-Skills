@@ -1,45 +1,56 @@
-## Description: <br>
-Three-layer sycophancy defense for AI coding assistants that rewrites confirmatory prompts, activates critical response behavior, and installs persistent rules for Claude Code and OpenClaw. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Anti-Sycophancy helps AI coding assistant users reduce agreeable default responses by installing prompt rewriting hooks, critical-response skill behavior, and persistent anti-sycophancy rules.
 
-## Publisher: <br>
-[0xcjl](https://clawhub.ai/user/0xcjl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[0xcjl](https://clawhub.ai/user/0xcjl)
 
-## Use Case: <br>
-Developers using Claude Code or OpenClaw use this skill to reduce sycophantic assistant behavior by transforming confirmatory prompts, activating critical response patterns, and installing persistent anti-sycophancy rules. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill changes local prompt handling and persistent assistant rules, which can make responses more critical or disruptive than intended. <br>
-Mitigation: Review the changes to ~/.claude/settings.json, ~/.claude/CLAUDE.md, and SOUL.md; use the documented status and uninstall commands if the behavior is not desired. <br>
-Risk: Layer 1 rewrites confirmatory prompts with pattern matching, so it can alter user intent or miss semantic cases. <br>
-Mitigation: Use the documented verify command to inspect transformations, and rely on the skill and persistent rules where text rewriting is not appropriate. <br>
-Risk: Layer 1 is Claude Code-specific and is not available through the OpenClaw shell-script path. <br>
-Mitigation: For OpenClaw, use the Layer 3 persistent rules and do not expect shell-hook prompt rewriting unless a compatible Plugin SDK hook is added. <br>
+## Use Case:
 
+Developers and AI coding assistant users use this skill to make Claude Code or OpenClaw challenge assumptions, surface counterarguments, and transform confirmatory prompts into more open-ended requests.
 
-## Reference(s): <br>
-- [ArXiv 2602.23971: Ask Don't Tell](https://arxiv.org/abs/2602.23971) <br>
-- [Design Notes](docs/DESIGN.md) <br>
-- [Installation Guide](docs/INSTALL.md) <br>
-- [openclaw-playbook sycophancy prompt research](https://github.com/0xcjl/openclaw-playbook/blob/main/docs/003-sycophancy-prompt-research.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, configuration edits, and plain-text prompt transformations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May update local Claude Code and OpenClaw prompt-handling and persistent instruction files when installation commands are executed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: The skill persistently changes future agent behavior by installing prompt hooks and long-lived rules.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when anti-sycophancy behavior is intended; review changes to Claude Code or OpenClaw settings, hooks, and persistent rule files, and keep backups so the changes can be removed cleanly.
+
+Risk: Prompt rewriting is textual and may alter the tone or framing of user requests in unintended cases.
+
+Mitigation: Use the verification command after installation and review transformed prompts before relying on the hook in regular workflows.
+
+## Reference(s):
+
+- [Ask Don't Tell: Reducing Sycophancy in Large Language Models](https://arxiv.org/abs/2602.23971)
+- [Anti-Sycophancy Design Notes](docs/DESIGN.md)
+- [Anti-Sycophancy Installation Guide](docs/INSTALL.md)
+- [OpenClaw Sycophancy Prompt Research Playbook](https://github.com/0xcjl/openclaw-playbook/blob/main/docs/003-sycophancy-prompt-research.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May install or remove hooks and persistent rule files when the user invokes the skill's management commands.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

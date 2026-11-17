@@ -1,38 +1,50 @@
-## Description: <br>
-Skill Creator Plus guides agents through creating, editing, optimizing, and reviewing OpenClaw AgentSkills with ClawHub metadata and validation checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Skill Creator Plus helps create, edit, optimize, and review OpenClaw AgentSkills, including skill structure, frontmatter, _meta.json metadata, scanner rules, progressive disclosure, validation checklists, and publishing workflow guidance.
 
-## Publisher: <br>
-[axelhu](https://clawhub.ai/user/axelhu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[axelhu](https://clawhub.ai/user/axelhu)
 
-## Use Case: <br>
-Developers and skill authors use this skill to create or revise OpenClaw skills, including SKILL.md instructions and _meta.json metadata for ClawHub publication. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated skill instructions or metadata may be incomplete or misaligned with the intended release. <br>
-Mitigation: Review generated SKILL.md and _meta.json content before publishing, including credential guidance, persistence declarations, and metadata. <br>
+## Use Case:
 
+Developers and skill authors use this skill when creating or modifying OpenClaw AgentSkills. It guides them through authoring SKILL.md and _meta.json files, checking scanner-facing requirements, and preparing a skill for publication.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/axelhu/skill-creator-plus) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, configuration, guidance] <br>
-**Output Format:** [Markdown skill instructions and JSON metadata guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces guidance for SKILL.md and _meta.json; no bundled executable code or credentials are required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.2 (source: server release metadata and _meta.json) <br>
+Risk: Guidance used to create or revise skills may produce incorrect credential, API, persistence, or publishing details if applied without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the generated SKILL.md and _meta.json before publishing, with special attention to credential paths, API domains, background-process declarations, and publish commands.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/axelhu/skills/skill-creator-plus)
+- [Publisher Profile](https://clawhub.ai/user/axelhu)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline code blocks and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Expected deliverables are SKILL.md and _meta.json; no bundled executable code is included.]
+
+## Skill Version(s):
+
+1.2.2 (source: server release evidence and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

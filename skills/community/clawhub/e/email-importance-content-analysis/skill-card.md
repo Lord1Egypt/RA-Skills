@@ -1,41 +1,47 @@
-## Description: <br>
-Judge whether an email is important or urgent using content-based analysis rather than sender name or mailbox labels, which can be spoofed. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Judges whether an email is important or urgent by triaging subject and sender signals, checking technical authentication evidence, and analyzing content for phishing or action risk.
 
-## Publisher: <br>
-[shingo0620](https://clawhub.ai/user/shingo0620) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[shingo0620](https://clawhub.ai/user/shingo0620)
 
-## Use Case: <br>
-Employees and external users use this skill to triage email importance and phishing risk from subject, sender, headers, links, attachments, and message content. It helps decide priority, safe verification paths, and immediate next actions without trusting display names or email links. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill may inspect sensitive email contents or headers that the user provides for triage. <br>
-Mitigation: Provide only the specific message text and headers needed for the review, and authorize mailbox access only for the specific message being evaluated. <br>
-Risk: Sender-based fast-drop heuristics can help prioritize review but do not prove that an email is safe or unimportant. <br>
-Mitigation: Treat sender signals as weak triage evidence and use technical verification plus out-of-band confirmation before acting on sensitive requests. <br>
-Risk: SPF, DKIM, or DMARC results can be unavailable or inconclusive. <br>
-Mitigation: Mark the technical verdict as unknown when headers are unavailable and increase caution, especially for money, credentials, permissions, downloads, or data-disclosure requests. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/shingo0620/email-importance-content-analysis) <br>
+## Use Case:
+
+Employees and other email users use this skill to decide whether a message should be ignored, escalated, or handled carefully. It helps produce an advisory priority, risk level, and safe next action for emails that may involve money, account access, downloads, sensitive data, or social engineering.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The triage result is advisory and may miss nuance, especially when only subject and sender signals are available or when messages are outside the examples emphasized by the skill.
+
+Mitigation: Verify sensitive requests through official channels, avoid email links for account or payment actions, and review headers, authentication alignment, links, and attachments when escalation is warranted.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance, markdown] <br>
-**Output Format:** [Markdown triage summary with verdicts, risk level, importance level, and recommended next steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include title triage, technical verification, summary, requested action, red flags, safe verification path, and do/don't recommendations.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release and changelog) <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown triage summary]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Advisory priority, technical-verdict, risk-level, and next-step recommendations for a single email-analysis workflow.]
+
+## Skill Version(s):
+
+1.0.1 (source: server evidence release and artifact CHANGELOG)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

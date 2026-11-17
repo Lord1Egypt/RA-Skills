@@ -1,41 +1,56 @@
-## Description: <br>
-Generates poetry recitation videos with synthesized or cloned voice narration, a starry background, and timed Chinese subtitles. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate poetry recitation videos using a cloned voice or system voice with a starry background and Chinese subtitles.
 
-## Publisher: <br>
-[zhangyanbo2007](https://clawhub.ai/user/zhangyanbo2007) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[zhangyanbo2007](https://clawhub.ai/user/zhangyanbo2007)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and agents use this skill to turn poem text into a narrated video with timed Chinese subtitles. It is intended for poetry or literary recitation workflows, not background video generation, music generation, or general text-to-speech.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can use an existing cloned voice automatically for poem recitations without an extra confirmation step.
+
+Mitigation: Review the selected voice and confirm appropriate authorization before generating or sharing recitation videos.
+
+Risk: The skill accepts user-supplied output paths and can write videos outside the expected workspace location.
+
+Mitigation: Use workspace-contained output paths, avoid sensitive directories, and review the final output path before execution.
+
+Risk: Generated videos combine spoken content and subtitles that may be shared beyond the local workspace.
+
+Mitigation: Review poem text, voice choice, and the finished video before distributing it.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users and agents use this skill to turn poems or short literary text into narrated MP4 recitation videos with voice audio and timed Chinese subtitles. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Files, Shell commands, Text]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can use locally available cloned voices, which may raise voice identity, consent, or impersonation concerns. <br>
-Mitigation: Use only voices you are authorized to use, and review the selected voice, poem text, and generated output before sharing the video. <br>
-Risk: The skill depends on a local TTS pipeline and writes generated audio/video files to the local workspace. <br>
-Mitigation: Run it in a trusted agent environment, verify the local TTS setup before use, and confirm the output path when handling sensitive content. <br>
+**Output Format:** [MP4 video file with console status text]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhangyanbo2007/poetry-recitation) <br>
-- [Publisher profile](https://clawhub.ai/user/zhangyanbo2007) <br>
+**Other Properties Related to Output:** [Generates 1920x1080, 24 fps H.264/AAC video and writes to the workspace audio directory by default.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [files, shell commands, guidance] <br>
-**Output Format:** [MP4 video file with console status text and agent guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces 1920x1080 H.264/AAC video files, typically saved under the local audio workspace.] <br>
+1.0.0 (source: server-resolved release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

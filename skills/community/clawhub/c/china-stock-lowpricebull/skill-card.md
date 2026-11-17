@@ -1,42 +1,57 @@
-## Description: <br>
-Screens China A-share stocks for low-price candidates using public East Money market data and approximate capital-strength criteria. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Screens China A-share stocks with public Eastmoney market data for low-price candidates using approximate price movement and capital-inflow criteria.
 
-## Publisher: <br>
-[luyao-inc](https://clawhub.ai/user/luyao-inc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[luyao-inc](https://clawhub.ai/user/luyao-inc)
 
-## Use Case: <br>
-Developers and agent users use this skill to run a public-data China A-share stock screener and receive structured candidate results for reference. The output is not investment advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global; market data and screening criteria focus on China A-shares. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill runs a local Python script and makes a network request to East Money for market data. <br>
-Mitigation: Install and run it only in environments where local script execution and outbound requests to East Money are acceptable. <br>
-Risk: Screening results can be mistaken for financial advice. <br>
-Mitigation: Treat the output as reference screening data only and review results independently before making investment decisions. <br>
+## Use Case:
 
+Developers and market analysts use this skill to run a Python-based China A-share stock screen and receive ranked JSON results for low-price public-market candidates. The output is informational and is not investment advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/luyao-inc/china-stock-lowpricebull) <br>
-- [Publisher profile](https://clawhub.ai/user/luyao-inc) <br>
-- [East Money public quote API](https://push2.eastmoney.com/api/qt/clist/get) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, JSON, guidance] <br>
-**Output Format:** [JSON stock-screening results with status, strategy metadata, ranked stocks, and messages.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 or python and makes a network request to East Money for public market data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: evidence release metadata and SKILL.md frontmatter) <br>
+Risk: Approximate stock-screening results may be incomplete, stale, or misleading because the skill relies on a public third-party market-data endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use results as informational screening output only, verify market data independently, and do not treat the output as investment advice or a trading signal.
+
+Risk: The selection strategy is an open-source approximation and is not equivalent to proprietary WenCai formulas.
+
+Mitigation: Review the disclosed criteria before use and confirm that the approximation fits the intended analysis workflow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/luyao-inc/skills/china-stock-lowpricebull)
+- [Publisher profile](https://clawhub.ai/user/luyao-inc)
+- [Artifact README](artifact/README.md)
+- [Artifact skill definition](artifact/SKILL.md)
+- [Eastmoney public quote API](https://push2.eastmoney.com/api/qt/clist/get)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, JSON, Guidance]
+
+**Output Format:** [JSON results with concise Markdown usage guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns ranked stock objects with symbols, names, prices, movement, turnover, market capitalization, capital inflow, valuation fields, and raw public-data rows; results are approximate and informational.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

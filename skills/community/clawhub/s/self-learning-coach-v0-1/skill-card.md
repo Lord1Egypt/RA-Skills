@@ -1,40 +1,53 @@
-## Description: <br>
-Business self-learning coach that helps agents turn business topics or source materials into learning paths, HTML lessons, teach-back dialogue, active recall, source notes, and next-step study plans. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Business self-learning coach for AI agents that helps employees turn business topics, documents, Feishu materials, web materials, or local sources into learning paths, HTML lessons, teach-back dialogue, active recall, critiques, source notes, and next-step study plans.
 
-## Publisher: <br>
-[zzj997](https://clawhub.ai/user/zzj997) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zzj997](https://clawhub.ai/user/zzj997)
 
-## Use Case: <br>
-Employees, trainers, and agents use this skill to convert authorized documents, web material, local files, or business concepts into structured self-study sessions with HTML lessons, source notes, teach-back review, and progress tracking. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may read authorized internal or local materials and create persistent lesson, progress, and source-index files that include source context. <br>
-Mitigation: Use only materials the agent is authorized to read, and review generated lesson and tracking files before sharing the workspace or forwarding outputs. <br>
-Risk: Generated lessons may be incomplete or stale when source material is thin or the topic depends on current facts. <br>
-Mitigation: Prefer authoritative sources or web verification for freshness-sensitive topics, and keep source limitations visible in the lesson. <br>
+## Use Case:
 
+Employees and business learners use this skill to transform an internal process, role, workflow, concept, or selected source material into a structured self-study experience. Agents can plan a short learning path, create HTML lesson pages, track sources and progress, and support teach-back review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zzj997/skills/self-learning-coach-v0-1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance plus self-contained HTML lesson files and learning status/source notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create lesson HTML files and persistent learning status/source index files in the workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.12 (source: server release metadata) <br>
+Risk: The skill may read user-provided or authorized business materials and include source-derived content in generated learning artifacts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with materials the user is comfortable granting read access to, and review generated HTML or delivered files before forwarding them.
+
+Risk: Generated lessons and local progress/source indexes can reflect internal learning context or sensitive source titles.
+
+Mitigation: Avoid exposing private URLs, local paths, account traces, or permission-sensitive metadata in shared lessons and source records.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zzj997/skills/self-learning-coach-v0-1)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown guidance and self-contained HTML lesson files, with optional Markdown source and progress records.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May generate local HTML lessons and lesson tracking files when file tools are available; generated lessons are intended for review before sharing.]
+
+## Skill Version(s):
+
+0.1.12 (source: server release metadata and skill title)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

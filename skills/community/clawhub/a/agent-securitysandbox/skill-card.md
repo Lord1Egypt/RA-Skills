@@ -1,41 +1,55 @@
-## Description: <br>
-Executes untrusted code or commands in a secure, isolated Docker environment. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent SecuritySandbox is intended to help agents run untrusted code or commands in an isolated Docker environment.
 
-## Publisher: <br>
-[assix](https://clawhub.ai/user/assix) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[assix](https://clawhub.ai/user/assix)
 
-## Use Case: <br>
-Developers and agent operators use this skill to identify untrusted command execution tasks and route them to a Docker-based sandbox for isolated execution and output review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release is described as a sandbox, but the security evidence says the runner script and Dockerfile are missing, so the package cannot prove or provide the claimed isolation. <br>
-Mitigation: Do not rely on it for untrusted code until those files are provided and audited for no network, dropped capabilities, non-root execution, seccomp use, no host-sensitive mounts, and disposable containers. <br>
-Risk: The skill is intended to execute untrusted commands, which can expose host systems if sandboxing is incomplete or misconfigured. <br>
-Mitigation: Review commands before execution and run them only inside an audited Docker configuration with dropped capabilities, disabled networking, a non-root user, seccomp filtering, no sensitive host mounts, and disposable containers. <br>
+## Use Case:
 
+Developers, security reviewers, and agent operators use this skill to route suspicious scripts, third-party skills, or unknown commands into an isolated Docker execution workflow before inspecting the resulting output.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/assix/agent-securitysandbox) <br>
-- [Docker installation documentation](https://docs.docker.com/get-docker/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, text] <br>
-**Output Format:** [Markdown guidance with inline shell commands and sandbox stdout/stderr text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Docker; claimed sandbox behavior depends on the missing runner script and Dockerfile being supplied and audited.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Sandbox security claims cannot be verified from the reviewed package because the evidence says the runner script, Dockerfile, image source, and Docker invocation are missing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the exact runner script, Dockerfile, image source, seccomp profile, and Docker command before installing or using the skill for untrusted code.
+
+Risk: The release has a suspicious security verdict.
+
+Mitigation: Use only in a controlled environment after audit, and do not rely on it as a verified isolation boundary.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/assix/skills/agent-securitysandbox)
+- [Publisher Profile](https://clawhub.ai/user/assix)
+- [Docker Installation Documentation](https://docs.docker.com/get-docker/)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Sandbox output depends on local Docker availability and the reviewed release's included runner assets.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

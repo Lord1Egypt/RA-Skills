@@ -1,55 +1,62 @@
-## Description: <br>
-Builds multi-channel revenue funnels by generating funnel architecture, offer copy, landing-page content, email sequences, and reconversion plans for supported business models. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Builds complete multi-channel revenue funnels by validating niches, structuring offers, drafting landing-page and email assets, and mapping reconversion channels.
 
-## Publisher: <br>
-[georges91560](https://clawhub.ai/user/georges91560) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[georges91560](https://clawhub.ai/user/georges91560)
 
-## Use Case: <br>
-External founders, marketers, and operators use this skill to design and diagnose sales funnels, including niche validation, ticket ladders, landing pages, email sequences, affiliate/referral paths, and reconversion campaigns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide broad sales, messaging, payment-page, webinar, and public-content workflows that may affect customers directly. <br>
-Mitigation: Keep human approval in the loop and review every outbound email, public post, Telegram message, payment page, and webinar before publishing. <br>
-Risk: Trading-signal templates can become financial promotions or imply investment performance. <br>
-Mitigation: Do not use trading-signal funnels without prominent financial-risk disclosures and compliance review. <br>
-Risk: Automated or prerecorded webinars may mislead users if presented as live human interaction. <br>
-Mitigation: Clearly label automated or prerecorded webinars and avoid fake scarcity or fake live claims. <br>
-Risk: Telegram integration requires bot credentials and can send messages through a customer-facing channel. <br>
-Mitigation: Use a dedicated Telegram bot, limit credential exposure, and review message content and recipients before enabling automation. <br>
+## Use Case:
 
+External builders, growth operators, and agent users can use this skill to design or rebuild revenue funnels for SaaS, subscriptions, trading-signal offers, content products, digital products, and services. It helps produce funnel architecture, sales copy, email sequences, landing-page structure, payment-flow guidance, and diagnosis checklists.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/georges91560/funnel-builder) <br>
-- [Publisher Profile](https://clawhub.ai/user/georges91560) <br>
-- [README](README.md) <br>
-- [Landing Page Templates](landing_page.md) <br>
-- [Email Sequence Templates](email_sequence.md) <br>
-- [Copywriting Reference](copywriting.md) <br>
-- [Masters Frameworks](masters_frameworks.md) <br>
-- [Funnel Configuration](funnel_config.json) <br>
-- [Reddit](https://www.reddit.com) <br>
-- [X](https://x.com) <br>
-- [YouTube](https://www.youtube.com) <br>
-- [Telegram Bot API](https://api.telegram.org) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown, JSON configuration, and HTML landing-page snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce funnel maps, landing-page drafts, email sequences, offer copy, checklists, audits, and configuration updates.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: ClawHub release evidence) <br>
+Risk: The skill can help create or operate customer-facing sales funnels.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require human approval before publishing pages, sending subscriber messages, or deploying payment flows.
+
+Risk: Telegram, public posting, and subscriber messaging can expose lead or customer data.
+
+Mitigation: Use privacy notices, minimize sensitive data sharing, and approve outbound messages before use.
+
+Risk: Trading-signal funnel content can imply financial outcomes or encourage risky decisions.
+
+Mitigation: Add clear financial-risk disclaimers and manually review all performance claims.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/georges91560/skills/funnel-builder)
+- [Publisher Profile](https://clawhub.ai/user/georges91560)
+- [Reddit public research target](https://www.reddit.com)
+- [X public signal target](https://x.com)
+- [YouTube public validation target](https://www.youtube.com)
+- [Telegram Bot API target](https://api.telegram.org)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown, HTML snippets or pages, JSON configuration, and implementation checklists.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce customer-facing sales copy, payment-page setup guidance, Telegram or email messaging plans, and funnel audit notes.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

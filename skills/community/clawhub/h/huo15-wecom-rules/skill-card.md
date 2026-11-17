@@ -1,43 +1,57 @@
-## Description: <br>
-Provides standardized rules for sending WeCom messages and files through the WeCom API, including fallback behavior, message formatting, and user identity handling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides standardized guidance for agents using WeCom APIs to send messages and files, including message formats, fallback handling, and user profile lookup behavior.
 
-## Publisher: <br>
-[jobzhao15](https://clawhub.ai/user/jobzhao15) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jobzhao15](https://clawhub.ai/user/jobzhao15)
 
-## Use Case: <br>
-Developers and operators use this skill to guide an agent when sending WeCom messages, cards, group notifications, and files while following the publisher's required WeCom API flow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Exposed WeCom credentials and webhook keys could allow unauthorized API use. <br>
-Mitigation: Rotate the exposed secret and webhook key before use, remove hardcoded credentials from the skill, and store replacements in a managed secret store. <br>
-Risk: Automatic collection and shared storage of user identity details can expose personal data across users. <br>
-Mitigation: Disable automatic profile collection and shared-memory storage unless users receive clear notice and consent controls, access is restricted, and retention rules are defined. <br>
-Risk: Gender-based personalization can create avoidable privacy and appropriateness issues. <br>
-Mitigation: Remove or disable gender-based forms of address unless there is a clear business need and user-approved profile data. <br>
+## Use Case:
 
+Agents serving WeCom users can use this skill as operational guidance for sending direct messages, group notifications, card-style notices, news items, and files through WeCom. It is intended for messaging workflow standardization rather than standalone application logic.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/jobzhao15/huo15-wecom-rules) <br>
-- [Publisher profile](https://clawhub.ai/user/jobzhao15) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes WeCom message and file-sending rules, API request examples, fallback behavior, and user information storage guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.7 (source: server release evidence) <br>
+Risk: The release evidence reports exposed WeCom credential and webhook material.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installation, remove the exposed material, rotate affected credentials, and replace examples with placeholders or a secure integration layer.
+
+Risk: The release evidence reports automatic cross-user storage of personal profile data in shared memory.
+
+Mitigation: Require explicit user consent and scope profile data storage to the minimum necessary audience before enabling the behavior.
+
+Risk: The skill directs agents to send WeCom messages and files, which can create unintended outbound communication.
+
+Mitigation: Require explicit confirmation before sending messages or files, especially to groups or external recipients.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jobzhao15/skills/huo15-wecom-rules)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline bash and API examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes WeCom message and file sending rules, fallback guidance, and user profile handling notes.]
+
+## Skill Version(s):
+
+1.0.7 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

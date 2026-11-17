@@ -1,47 +1,64 @@
-## Description: <br>
-Teach an agent to install Provenote's first-party MCP server, connect it in a host, and run read-first outcome workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Teach an agent to install Provenote's first-party MCP server, connect it in a host, and run read-first outcome workflows.
 
-## Publisher: <br>
-[xiaojiou176](https://clawhub.ai/user/xiaojiou176) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiaojiou176](https://clawhub.ai/user/xiaojiou176)
 
-## Use Case: <br>
-Developers and agents use this skill to connect a local Provenote MCP server in OpenHands or OpenClaw and run read-first note, research thread, and auditable run workflows before making a narrow write. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can lead an agent from read-only MCP inspection into write, download, chat, or settings-changing actions. <br>
-Mitigation: Start with draft.list, research_thread.list, and auditable_run.list, then approve each write, download, chat, or settings mutation one at a time. <br>
-Risk: A misconfigured or untrusted local Provenote repository could cause the host to launch the wrong MCP server. <br>
-Mitigation: Install only from a Provenote repository you trust and use an absolute path to the intended local clone in the host configuration. <br>
+## Use Case:
 
+Developers and agent operators use this skill to connect a local Provenote MCP server in OpenHands, OpenClaw, or similar hosts, then run read-first note and research workflows before attempting narrow mutations.
 
-## Reference(s): <br>
-- [Install and Connect Provenote MCP](references/INSTALL.md) <br>
-- [Provenote MCP Capabilities](references/CAPABILITIES.md) <br>
-- [OpenHands / OpenClaw Demo Walkthrough](references/DEMO.md) <br>
-- [OpenHands MCP Configuration](references/OPENHANDS_MCP_CONFIG.json) <br>
-- [OpenClaw MCP Configuration](references/OPENCLAW_MCP_CONFIG.json) <br>
-- [Provenote Troubleshooting](references/TROUBLESHOOTING.md) <br>
-- [Provenote MCP Source Repository](https://github.com/xiaojiou176-open/provenote) <br>
-- [ClawHub Skill Listing](https://clawhub.ai/xiaojiou176/provenote-mcp-outcome-workflows) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline shell commands and JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-first workflow guidance for MCP list calls, followed by one explicitly approved narrow mutation when appropriate.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: The skill asks the user to install and run mutable external code locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a trusted Provenote repository checkout, pin a reviewed commit or release, install with locked dependencies, and run the server in a restricted workspace or account.
+
+Risk: The MCP server exposes mutation-capable draft, research-thread, auditable-run, and settings tools.
+
+Mitigation: Start with the documented list calls and require explicit user confirmation before any write or settings mutation.
+
+Risk: Host configuration can point at the wrong local clone or workspace.
+
+Mitigation: Verify the configured path and confirm successful draft, research-thread, and auditable-run list calls before attempting a mutation.
+
+## Reference(s):
+
+- [Install and Connect Provenote MCP](references/INSTALL.md)
+- [Provenote MCP Capabilities](references/CAPABILITIES.md)
+- [OpenHands / OpenClaw Demo Walkthrough](references/DEMO.md)
+- [Provenote Troubleshooting](references/TROUBLESHOOTING.md)
+- [OpenHands MCP configuration](references/OPENHANDS_MCP_CONFIG.json)
+- [OpenClaw MCP configuration](references/OPENCLAW_MCP_CONFIG.json)
+- [Provenote repository](https://github.com/xiaojiou176-open/provenote)
+- [ClawHub skill listing](https://clawhub.ai/xiaojiou176/skills/provenote-mcp-outcome-workflows)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON configuration snippets and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-first workflow guidance for MCP list calls followed by a single narrow mutation.]
+
+## Skill Version(s):
+
+1.1.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

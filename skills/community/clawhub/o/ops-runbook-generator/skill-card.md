@@ -1,38 +1,53 @@
-## Description: <br>
-Generate operational runbooks from project files by scanning Dockerfiles, docker-compose.yml, systemd units, Makefiles, package.json, and configuration files for start, stop, restart, deploy, rollback, and troubleshooting procedures. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate operational runbooks by scanning project infrastructure files and producing start, stop, restart, deploy, rollback, troubleshooting, and monitoring procedures.
 
-## Publisher: <br>
-[charlie-morrison](https://clawhub.ai/user/charlie-morrison) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[charlie-morrison](https://clawhub.ai/user/charlie-morrison)
 
-## Use Case: <br>
-Developers, SREs, and operations teams use this skill to draft service runbooks from existing project infrastructure files. It helps turn detected build, deployment, lifecycle, health check, rollback, troubleshooting, monitoring, and contact details into reviewable operational documentation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated runbooks can include project paths, service names, ports, commands, environment variable names, and some raw configuration values. <br>
-Mitigation: Run the generator on reviewed project directories, avoid production folders containing real secrets when possible, and inspect Markdown or JSON output before sharing. <br>
+## Use Case:
 
+Developers, SREs, and operations engineers use this skill to generate draft operational runbooks from Docker, Docker Compose, systemd, Makefile, package.json, environment, and nginx configuration files. The generated runbook helps document deployment, lifecycle, health check, rollback, troubleshooting, monitoring, and contact procedures for review and customization.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/charlie-morrison/ops-runbook-generator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, text, configuration, shell commands, guidance] <br>
-**Output Format:** [Markdown by default, with optional structured JSON output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can write the generated runbook to a specified file with the -o flag.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill reads operational configuration from the target project and generated output may expose sensitive configuration details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it on trusted repositories, replace live .env files with examples before generation, and review Markdown or JSON output for secrets before sharing.
+
+Risk: Generated runbooks can include privileged shell commands such as sudo and systemctl commands, and scanner-derived names may be unsafe to execute blindly.
+
+Mitigation: Treat every shell block as a draft, validate project names and service names, and review privileged commands before use in production.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/charlie-morrison/skills/ops-runbook-generator)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance]
+
+**Output Format:** [Markdown runbook by default, with optional structured JSON output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May be written to a file with the -o flag; generated commands and configuration findings require human review before operational use.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

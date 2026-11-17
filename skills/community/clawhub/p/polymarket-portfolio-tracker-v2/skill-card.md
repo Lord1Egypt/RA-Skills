@@ -1,46 +1,58 @@
-## Description: <br>
-Monitors Polymarket positions, tracks portfolio P&L, emits alerts for resolved positions or large price moves, and can trigger reinvestment workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitors Polymarket positions, tracks profit and loss, sends portfolio alerts, enforces a daily-loss circuit breaker, and can trigger reinvestment helper scripts.
 
-## Publisher: <br>
-[themsquared](https://clawhub.ai/user/themsquared) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[themsquared](https://clawhub.ai/user/themsquared)
 
-## Use Case: <br>
-Developers and operators use this skill to monitor a Polymarket wallet, summarize open and resolved positions, and send alert output that can support portfolio oversight. It is also designed to run on a schedule and coordinate with separate reinvestment, weather scanning, and exit-management scripts when those are supplied. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The monitor can operate with wallet credentials and includes a hardcoded wallet fallback. <br>
-Mitigation: Use a dedicated low-balance wallet, replace the hardcoded wallet value, and keep private keys in protected environment variables outside logs and shell history. <br>
-Risk: Scheduled or daemon execution can repeatedly invoke trading-related helper scripts. <br>
-Mitigation: Do not enable cron or daemon mode until explicit trading limits, dry-run behavior, and a clear stop mechanism are in place. <br>
-Risk: The artifact references helper scripts that are not included in the release. <br>
-Mitigation: Inspect or supply the missing helper scripts before enabling reinvestment, weather scanning, or exit-management behavior. <br>
+## Use Case:
 
+Developers and trading-automation users can use this skill to monitor a Polymarket wallet, summarize open and resolved positions, receive alerts, and coordinate automated reinvestment workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/themsquared/polymarket-portfolio-tracker-v2) <br>
-- [Publisher profile](https://clawhub.ai/user/themsquared) <br>
-- [Polymarket Data API endpoint](https://data-api.polymarket.com) <br>
-- [Polymarket Gamma API endpoint](https://gamma-api.polymarket.com) <br>
-- [Polymarket CLOB API endpoint](https://clob.polymarket.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown instructions with shell and Python snippets; runtime output is plain text alert content and JSON state files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes local state files for position snapshots and daily P&L when executed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence, released 2026-03-22) <br>
+Risk: The skill can use wallet secrets and trigger automatic trading helper scripts that may spend funds without per-trade approval.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and supply the helper scripts yourself, use a dedicated low-balance wallet, pin dependencies, and confirm automatic trading behavior before enabling cron or daemon execution.
+
+Risk: Secrets such as private keys and Telegram tokens may be loaded from the runtime environment or a .env file.
+
+Mitigation: Do not use a main wallet private key, keep unrelated secrets out of the same .env file, and restrict file and process access on the host running the monitor.
+
+Risk: The bundled monitor invokes unbundled scripts including auto_reinvest.py, weather_scanner.py, and exit_manager.py when present.
+
+Mitigation: Inspect or replace those scripts before running the monitor, and verify spending limits and circuit-breaker behavior with small balances first.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/themsquared/skills/polymarket-portfolio-tracker-v2)
+- [Publisher profile](https://clawhub.ai/user/themsquared)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and Python configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces human-readable monitoring alerts and writes local JSON state files when the provided script runs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

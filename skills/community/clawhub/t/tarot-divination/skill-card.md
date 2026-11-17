@@ -1,43 +1,54 @@
-## Description: <br>
-塔罗牌占卜是一项付费每日抽牌服务，会从78张塔罗牌中随机抽取一张并提供牌意解读与行动指引。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+塔罗牌占卜付费服务，每日为你抽取一张塔罗牌，解读牌意与运势指引。包含78张塔罗牌数据（大阿尔卡纳22张 + 小阿尔卡纳56张），每次占卜随机抽取一张牌，给你牌意解读和今日指引。
 
-## Publisher: <br>
-[guoshuai1](https://clawhub.ai/user/guoshuai1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[guoshuai1](https://clawhub.ai/user/guoshuai1)
 
-## Use Case: <br>
-External users use this skill for paid daily tarot readings and lightweight reflective guidance. Operators configure payment recipient and encryption settings before creating orders and serving results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Payment configuration and local storage are under-scoped and partly inconsistent. <br>
-Mitigation: Confirm the config file path, clawtip amount, and payment recipient manually before creating or paying an order. <br>
-Risk: Questions, orders, payment metadata, and readings may be retained in local files or a local database. <br>
-Mitigation: Avoid highly sensitive personal questions unless local retention is acceptable, and delete local order/database files when history should not be kept. <br>
-Risk: The server security verdict is suspicious for this paid release. <br>
-Mitigation: Review the skill before installation or payment and run it only in an environment where local file writes are acceptable. <br>
+## Use Case:
 
+External users run this skill to create a paid tarot order and receive a daily one-card tarot reading with card meaning and practical guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/guoshuai1/tarot-divination) <br>
-- [Publisher profile](https://clawhub.ai/user/guoshuai1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and terminal text with order identifiers, payment status messages, and tarot reading text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local order JSON and SQLite fulfillment records when the scripts are run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The paid order flow ships unsafe payment defaults and payment verification should not be relied on for real paid fulfillment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Replace and verify the payment recipient and cryptographic configuration before use, and redesign payment verification before relying on it commercially.
+
+Risk: Order files and the local database can store user questions together with transaction metadata.
+
+Mitigation: Review where order files and the database are written, disclose local storage behavior to users, and avoid entering sensitive questions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/guoshuai1/skills/tarot-divination)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/guoshuai1)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration guidance, Files]
+
+**Output Format:** [Plain text with shell command usage and local JSON/SQLite order records]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces randomized tarot guidance after a paid-order flow; stores questions and order metadata locally.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

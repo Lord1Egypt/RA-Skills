@@ -1,47 +1,61 @@
-## Description: <br>
-PPT Master helps agents turn documents and web content into presentation decks, SVG visuals, social graphics, posters, and PPTX exports through a multi-role workflow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-driven multi-format SVG content generation system for presentations, social media graphics, and marketing materials.
 
-## Publisher: <br>
-[lzfxxx](https://clawhub.ai/user/lzfxxx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lzfxxx](https://clawhub.ai/user/lzfxxx)
 
-## Use Case: <br>
-Developers, creators, and business users use this skill to convert source PDFs, Markdown, and web pages into structured presentation or visual-content projects with planning, SVG generation, post-processing, and PPTX export guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The package includes and recommends a Gemini watermark-removal tool, which may create asset-rights or policy concerns. <br>
-Mitigation: Remove or avoid the watermark-removal workflow and confirm that generated or downloaded images are licensed for the intended presentation use. <br>
-Risk: Web-to-Markdown conversion can fetch arbitrary URLs and the security summary notes weak transport safeguards. <br>
-Mitigation: Run URL conversion only on public or authorized pages, review network behavior before use, and apply appropriate TLS and network safeguards. <br>
-Risk: Presentation workflows may send confidential project content to third-party image-generation services. <br>
-Mitigation: Do not submit confidential or regulated content to external services without approval; use approved internal tools or sanitized prompts when needed. <br>
+## Use Case:
 
+Developers, designers, and content teams use this skill to turn Markdown, PDF, or URL source material into SVG-based presentations, social media graphics, posters, and PPTX exports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lzfxxx/ppt-master) <br>
-- [README_EN.md](README_EN.md) <br>
-- [Tools usage guide](tools/README.md) <br>
-- [Role definitions](roles/README.md) <br>
-- [Chart template library](templates/charts/README.md) <br>
-- [Online examples preview](https://hugohe3.github.io/ppt-master/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and generated project files such as SVG pages and PPTX exports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include local project folders, converted Markdown, embedded image assets, finalized SVG files, speaker notes, and PowerPoint files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata and README badge) <br>
+Risk: Automatic URL fetching can expose internal networks or retrieve untrusted content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run URL conversion only in an isolated environment and avoid cloud or internal-network contexts unless egress and target URLs are controlled.
+
+Risk: Privileged install guidance using curl piped to sudo can execute remote scripts with elevated permissions.
+
+Mitigation: Use trusted package-manager packages, pinned installers, or a sandboxed environment instead of piping remote scripts into a privileged shell.
+
+Risk: Watermark removal can raise rights, attribution, or policy concerns for generated images.
+
+Mitigation: Review image ownership, usage rights, and organizational policy before removing marks or publishing derived assets.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lzfxxx/skills/ppt-master)
+- [GitHub Pages online preview](https://hugohe3.github.io/ppt-master/)
+- [README_EN.md](artifact/README_EN.md)
+- [Tools guide](artifact/tools/README.md)
+- [Role definitions](artifact/roles/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with shell commands and generated SVG, image, Markdown, and PPTX files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces project plans, SVG pages, image prompts or assets, speaker notes, and optional PPTX exports through local tools.]
+
+## Skill Version(s):
+
+1.1.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

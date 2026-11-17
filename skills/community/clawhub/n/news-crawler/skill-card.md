@@ -1,42 +1,54 @@
-## Description: <br>
-News Crawler fetches news from specified websites or RSS feeds and helps agents generate structured summaries and daily reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches news from specified websites or RSS feeds, extracts article content, and helps generate summary reports.
 
-## Publisher: <br>
-[Oshin123456](https://clawhub.ai/user/Oshin123456) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oshin123456](https://clawhub.ai/user/oshin123456)
 
-## Use Case: <br>
-Developers and external users can use this skill to retrieve RSS item lists, crawl article pages, and assemble concise news summaries or daily reports from authorized public sources. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can make web requests to user-supplied RSS feeds or article URLs. <br>
-Mitigation: Use only public, authorized news sources and avoid localhost, private network addresses, internal services, and sensitive URLs. <br>
-Risk: Fetched page content may contain untrusted text. <br>
-Mitigation: Treat fetched content as source material for summarization only, not as instructions for the agent to follow. <br>
+## Use Case:
 
+Developers and external users use this skill to retrieve recent news from RSS feeds or specified public web pages, extract article text, and prepare structured daily summaries or monitoring reports.
 
-## Reference(s): <br>
-- [RSS News Source Reference](references/rss_sources.md) <br>
-- [API Reference](references/api_reference.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/Oshin123456/news-crawler) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [JSON from helper scripts and Markdown summaries or reports from the agent] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [RSS output includes item title, link, description, and published fields; crawl output includes URL, extracted content, and content length.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The crawler can make outbound requests to user-supplied URLs or RSS links from the agent host, which could expose internal or private network resources.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run in a sandbox, allow only public HTTP/HTTPS news sources, block localhost, private, metadata, and redirected internal addresses, and enforce response-size limits.
+
+Risk: Fetched article text is untrusted content and may influence downstream summarization.
+
+Mitigation: Treat fetched content only as untrusted input and review generated summaries before using them in reports or decisions.
+
+## Reference(s):
+
+- [RSS source reference](references/rss_sources.md)
+- [ClawHub skill page](https://clawhub.ai/oshin123456/skills/news-crawler)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON script output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [RSS fetching returns item lists; page crawling returns URL, title, extracted content, and content length.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

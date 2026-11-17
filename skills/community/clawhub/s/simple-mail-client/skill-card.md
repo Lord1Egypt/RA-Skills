@@ -1,43 +1,55 @@
-## Description: <br>
-Send, receive, and manage email through configured IMAP, POP3, and SMTP mail accounts with support for multiple accounts, attachments, message listing, message retrieval, and IMAP status updates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Simple Mail Client lets agents send, receive, and manage email through SMTP and IMAP/POP3 account integrations with multi-account support, attachments, and message status controls.
 
-## Publisher: <br>
-[wallinex](https://clawhub.ai/user/wallinex) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wallinex](https://clawhub.ai/user/wallinex)
 
-## Use Case: <br>
-Developers and agent operators use this skill to let an agent work with dedicated mailboxes: send messages, list and read mail, inspect attachment metadata, and mark or move IMAP messages. It is best suited to controlled bot or workflow inboxes rather than primary personal or business accounts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send email and move or change mailbox state, giving an agent broad authority over configured accounts. <br>
-Mitigation: Use a dedicated low-privilege mailbox or app-specific password, require confirmation for sends and mailbox moves, and set recipient, attachment, and rate limits before autonomous use. <br>
-Risk: A configured primary personal or business inbox could expose sensitive messages and credentials to unintended workflows. <br>
-Mitigation: Avoid primary inboxes, keep credentials in host-side configuration, and scope accounts to the minimum mailbox privileges needed for the task. <br>
-Risk: Dependency or registry tampering could affect a mail-capable skill during installation. <br>
-Mitigation: Prefer HTTPS registry sources for dependency resolution and review dependency provenance during deployment. <br>
+## Use Case:
 
+Developers and agent operators use this skill to connect an agent to configured mailboxes for sending messages, listing and reading mail, retrieving attachment metadata, and updating IMAP read or folder state.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/wallinex/simple-mail-client) <br>
-- [Publisher profile](https://clawhub.ai/user/wallinex) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Text, JSON, Configuration, Code] <br>
-**Output Format:** [Structured handler responses and configuration-backed mail operations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can return message metadata, message bodies, attachment metadata, send status, and mailbox update status; attachment sending uses base64 content.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can send, read, and modify email, which could expose mailbox data or perform unwanted mailbox actions if installed without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, use a dedicated mailbox or app-specific password, and restrict which recipients and folders the agent may use.
+
+Risk: Security evidence flags risky dependency and transport settings before trusting the skill with real mail.
+
+Mitigation: Require TLS for SMTP and IMAP, regenerate the lockfile from an HTTPS registry, and update or audit the mail and YAML dependencies.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wallinex/skills/simple-mail-client)
+- [Skill documentation](artifact/SKILL.md)
+- [Configuration example](artifact/config.example.yaml)
+
+## Skill Output:
+
+**Output Type(s):** [text, configuration, guidance]
+
+**Output Format:** [JSON-style handler responses with message summaries, message content, attachment metadata, and send or update status.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires host-side YAML account configuration and mailbox credentials; can send email and modify IMAP message state.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

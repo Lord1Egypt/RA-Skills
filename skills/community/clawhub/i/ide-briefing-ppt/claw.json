@@ -1,0 +1,22 @@
+{
+  "name": "ide-briefing-ppt",
+  "version": "1.2.1",
+  "tagline": "Light IDE HTML PPT locked to one visual system / 单文件 HTML PPT，界面锁死为 Light IDE",
+  "description": "Generate a single-file 1280x720 HTML presentation that looks like the Light IDE briefing deck: gray canvas, white 14px panels, amber accent, monospace kickers, terminal windows, file trees, and speaker notes. Copy the frozen template and never rewrite CSS. 生成一份和参考 PPT 同一套界面的单文件 HTML 演示稿：浅灰底、白卡片、琥珀强调、等宽页脚、终端和目录树。只换内容，不换皮肤。",
+  "category": "productivity",
+  "tags": [
+    "html-ppt",
+    "presentation",
+    "light-ide",
+    "terminal",
+    "internal-sharing",
+    "single-file",
+    "chinese"
+  ],
+  "license": "MIT",
+  "author": "Chris1Wang3",
+  "pricing": "free",
+  "entry": "SKILL.md",
+  "support_url": "https://github.com/Chris1Wang3/Idea-on-Trial/issues",
+  "homepage": "https://github.com/Chris1Wang3/Idea-on-Trial/tree/master/ide-briefing-ppt"
+}

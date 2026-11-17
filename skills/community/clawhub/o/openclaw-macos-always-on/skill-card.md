@@ -1,47 +1,61 @@
-## Description: <br>
-Run OpenClaw as a system-level macOS LaunchDaemon for continuous operation through screen lock, logout, reboot, and user switching. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run OpenClaw as a system-level LaunchDaemon on macOS for 24/7 operation across screen lock, logout, and user switching.
 
-## Publisher: <br>
-[happydog-intj](https://clawhub.ai/user/happydog-intj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[happydog-intj](https://clawhub.ai/user/happydog-intj)
 
-## Use Case: <br>
-Developers and OpenClaw operators use this skill to configure an always-on macOS gateway service for bots that should keep responding while the screen is locked, the user is logged out, or the machine restarts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The install flow creates a persistent sudo-managed macOS LaunchDaemon that runs OpenClaw after lock, logout, and reboot. <br>
-Mitigation: Install only on Macs intended for always-on OpenClaw operation, review the generated plist before loading it, and uninstall or disable the LaunchDaemon when continuous background operation is no longer required. <br>
-Risk: The documented one-line curl-to-bash install path can execute remote shell content without local review. <br>
-Mitigation: Download a pinned release or artifact first, inspect install.sh and the LaunchDaemon plist, then run the reviewed copy locally. <br>
-Risk: The gateway token may be stored in the LaunchDaemon plist, which can expose it to local users who can read the plist. <br>
-Mitigation: Prefer a restricted secret store such as macOS Keychain where practical, limit use on shared Macs, and rotate the gateway token after testing, uninstalling, or any suspected exposure. <br>
+## Use Case:
 
+Developers and operators use this skill to keep an OpenClaw gateway running persistently on macOS when a machine is locked, logged out, or used as an always-on host. It provides setup, verification, management, troubleshooting, and uninstall guidance for a LaunchDaemon-based configuration.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/happydog-intj/openclaw-macos-always-on) <br>
-- [Publisher profile](https://clawhub.ai/user/happydog-intj) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [install.sh](artifact/install.sh) <br>
-- [OpenClaw project](https://github.com/openclaw/openclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, configuration, code, guidance] <br>
-**Output Format:** [Markdown instructions with bash commands and XML plist configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces setup, verification, management, troubleshooting, and uninstall guidance for a macOS LaunchDaemon.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The installer requires privileged LaunchDaemon installation and changes system service state.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only when always-on system-level OpenClaw behavior is required, inspect a pinned installer before running it, and prefer a LaunchAgent when logged-in-only operation is sufficient.
+
+Risk: The generated LaunchDaemon can expose the OpenClaw gateway token to local users through plist environment variables.
+
+Mitigation: Rotate the gateway token after prior use of the installer and prefer a Keychain-backed token design for stronger local secret handling.
+
+Risk: The documented one-line curl-to-bash install pattern executes remote code directly.
+
+Mitigation: Download the installer first, verify its source and integrity, review its contents, and run only the reviewed copy.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/happydog-intj/skills/openclaw-macos-always-on)
+- [README](artifact/README.md)
+- [Skill Documentation](artifact/SKILL.md)
+- [Chinese README](artifact/README.zh-CN.md)
+- [OpenClaw Project](https://github.com/openclaw/openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and LaunchDaemon plist configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Provides installation, verification, management, troubleshooting, and uninstall instructions for macOS systems.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

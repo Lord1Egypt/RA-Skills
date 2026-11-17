@@ -1,41 +1,59 @@
-## Description: <br>
-Memory Association helps an OpenClaw agent recall relevant local memory before starting a task and update memory records after useful decisions, conclusions, or lessons are found. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Memory Association helps an agent recall indexed prior task context before new work, analysis, problem solving, or questions about past work.
 
-## Publisher: <br>
-[wuxiao-code](https://clawhub.ai/user/wuxiao-code) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wuxiao-code](https://clawhub.ai/user/wuxiao-code)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to connect a new task with prior local memory, project notes, and lessons before spending context on fresh analysis. It also guides when to update daily memory files, project memory, and learning records after completing work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill intentionally reads and updates local OpenClaw memory and learning files, which may contain sensitive project, client, or personal context. <br>
-Mitigation: Review OpenClaw memory and .learnings files for secrets or sensitive data before installation, and use the skill only in workspaces where local memory automation is expected. <br>
-Risk: The bundled index-building script can write generated content to local MEMORY_INDEX.md files when run without dry-run mode. <br>
-Mitigation: Run the script in dry-run mode first and review the generated index before allowing it to write memory index files. <br>
+## Use Case:
 
+Developers and agents use this skill to recall relevant project memory before starting tasks, analyzing requirements, solving problems, or answering questions about prior work. It is intended to reduce repeated work and preserve context continuity across sessions.
 
-## Reference(s): <br>
-- [Memory Index](references/MEMORY_INDEX.md) <br>
-- [Task Association Examples](references/TASK_ASSOCIATION_EXAMPLES.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell command examples and memory file templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local-memory recall guidance and may update OpenClaw memory or learning files when the agent follows the workflow.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Broad memory recall can surface sensitive project history, credentials, client details, or externally supplied notes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review memory contents before installation and use the skill only in workspaces where broad recall is acceptable.
+
+Risk: Persistent memory and index updates can carry untrusted memory text into future agent context.
+
+Mitigation: Review proposed memory, index, and .learnings updates before accepting them, and avoid storing secrets or untrusted instructions as reusable memory.
+
+Risk: The index builder updates persistent OpenClaw memory files when run outside dry-run mode.
+
+Mitigation: Require explicit approval before running scripts/build_index.py or any workflow that writes daily memory, project memory, or learning files.
+
+## Reference(s):
+
+- [Memory Index](references/MEMORY_INDEX.md)
+- [Task Association Examples](references/TASK_ASSOCIATION_EXAMPLES.md)
+- [ClawHub Skill Page](https://clawhub.ai/wuxiao-code/skills/memory-association)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose or write persistent memory and index updates when invoked by an agent.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

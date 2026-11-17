@@ -1,44 +1,60 @@
-## Description: <br>
-Deploy MISP threat intelligence platform on any Docker-ready Linux host using the official misp-docker project with automatic MariaDB memory tuning, API key generation via cake CLI, and credential management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deploy MISP threat intelligence platform on any Docker-ready Linux host with the official misp-docker project, automatic MariaDB memory tuning, API key generation via cake CLI, and credential management.
 
-## Publisher: <br>
-[solomonneas](https://clawhub.ai/user/solomonneas) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[solomonneas](https://clawhub.ai/user/solomonneas)
 
-## Use Case: <br>
-Developers, SOC engineers, and security operators use this skill to deploy a MISP threat intelligence platform on an existing Docker-ready Linux host and receive connection details for follow-on automation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The deployment flow uses unsafe credential defaults and writes secrets to local files. <br>
-Mitigation: Use a strong unique admin password, restrict or delete ~/misp/api-key.txt after setup, lock down .env permissions, and rotate exposed secrets. <br>
-Risk: The generated connection guidance relies on self-signed TLS and disabled certificate verification. <br>
-Mitigation: Configure trusted TLS certificates or a trusted reverse proxy before production use instead of relying on curl -k or MISP_VERIFY_SSL=false. <br>
-Risk: Pulling the latest misp-docker state can change deployment behavior over time. <br>
-Mitigation: Pin the misp-docker version for production deployments and review changes before upgrading. <br>
+## Use Case:
 
+Developers and security engineers use this skill to deploy a MISP threat intelligence platform on an existing Docker-ready Linux host. It is suited for SOC automation workflows that need MISP setup, MariaDB sizing, admin provisioning, and API credential output.
 
-## Reference(s): <br>
-- [MISP Docker project](https://github.com/MISP/misp-docker.git) <br>
-- [MISP deployment gotchas](references/gotchas.md) <br>
-- [MISP environment template](references/env-template.env) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance, Text] <br>
-**Output Format:** [Markdown with inline bash commands and deployment details] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes generated credentials, API key details, service URL, and TLS verification notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill performs high-impact remote deployment and can expose credentials through defaults, logs, or plaintext files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only on an isolated Docker host you control, replace default admin credentials, avoid printing or storing secrets in plaintext, and lock credential files to owner-only permissions.
+
+Risk: The deployment uses unsafe TLS patterns such as self-signed certificates, MISP_VERIFY_SSL=false, or curl -k.
+
+Mitigation: Use verified TLS certificates or place MISP behind a properly configured reverse proxy before production use.
+
+Risk: The setup retrieves mutable MISP Docker code during deployment.
+
+Mitigation: Pin the MISP Docker repository and image versions before deployment.
+
+## Reference(s):
+
+- [Gotchas: MISP Deployment](references/gotchas.md)
+- [MISP .env template](references/env-template.env)
+- [MISP Docker project](https://github.com/MISP/misp-docker.git)
+- [ClawHub skill page](https://clawhub.ai/solomonneas/skills/soc-deploy-misp)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance, Markdown, Code]
+
+**Output Format:** [Markdown with inline bash commands, configuration values, and credential output guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include generated MISP access details, API key handling steps, Docker Compose status checks, and operational warnings.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

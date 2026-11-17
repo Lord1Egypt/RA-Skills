@@ -1,0 +1,165 @@
+{
+  "output_mode": "wechat-inline-image",
+  "sequence_id": "demo-wechat-inline-sequence-001",
+  "article_type": "reflective essay",
+  "source_anchor": "示例文章：一个故事结束后，生活如何继续向前",
+  "sample_kind": "data_contract_fixture",
+  "shared_illustration_grammar": {
+    "enabled": true,
+    "intensity": "sequence",
+    "scene_family": "quiet window reflection",
+    "recurring_subjects": [
+      "window",
+      "small lamp",
+      "open notebook",
+      "soft evening light"
+    ],
+    "composition_axis": "right-weighted",
+    "camera_distance": "medium",
+    "palette_temperature": "warm-neutral",
+    "line_character": "soft hand-drawn edges",
+    "texture_level": "paper-grain",
+    "text_load": "very_low",
+    "blocked_mimicry": [
+      "do not copy external scene composition",
+      "do not copy character designs, prop arrangements, prompt wording, or visual signatures"
+    ]
+  },
+  "frames": [
+    {
+      "frame_id": "inline-01-opening",
+      "target_paragraph_or_section": "after opening paragraph",
+      "image_role": "opening",
+      "reading_rhythm_purpose": "set a quiet reflective tone before the argument begins",
+      "background_asset": {
+        "asset_id": "bg-generated-quiet-window",
+        "url": "../data/quiet-window-placeholder.svg",
+        "object_position": "center",
+        "caption": "Generated local placeholder background used for contract validation only"
+      },
+      "illustration_grammar": {
+        "enabled": true,
+        "intensity": "scene",
+        "scene_family": "quiet window reflection",
+        "recurring_subjects": [
+          "window",
+          "small lamp",
+          "open notebook"
+        ],
+        "scene_role": "opening",
+        "subject_focus": "a quiet desk before anyone writes the next line",
+        "composition_axis": "right-weighted",
+        "camera_distance": "medium",
+        "motion_state": "still",
+        "environment_density": "sparse",
+        "palette_temperature": "warm-neutral",
+        "line_character": "soft hand-drawn edges",
+        "texture_level": "paper-grain",
+        "text_load": "very_low",
+        "prompt_style_phrase": "warm editorial illustration, quiet desk by window, sparse objects, soft paper grain, gentle ink edges",
+        "blocked_mimicry": [
+          "do not copy external scene composition",
+          "do not copy character designs, prop arrangements, prompt wording, or visual signatures"
+        ]
+      },
+      "text_visibility": "hidden",
+      "optional_text": ""
+    },
+    {
+      "frame_id": "inline-02-section-break",
+      "target_paragraph_or_section": "between reflection and turning point",
+      "image_role": "section-break",
+      "reading_rhythm_purpose": "create a pause before the essay shifts from memory to present action",
+      "background_asset": {
+        "asset_id": "bg-generated-quiet-window",
+        "url": "../data/quiet-window-placeholder.svg",
+        "object_position": "center",
+        "caption": "Generated local placeholder background used for contract validation only"
+      },
+      "illustration_grammar": {
+        "enabled": true,
+        "intensity": "scene",
+        "scene_family": "quiet window reflection",
+        "recurring_subjects": [
+          "window",
+          "small lamp",
+          "open notebook"
+        ],
+        "scene_role": "transition",
+        "subject_focus": "the notebook left open as the light shifts across the desk",
+        "composition_axis": "right-weighted",
+        "camera_distance": "medium",
+        "motion_state": "turning",
+        "environment_density": "sparse",
+        "palette_temperature": "warm-neutral",
+        "line_character": "soft hand-drawn edges",
+        "texture_level": "paper-grain",
+        "text_load": "none",
+        "prompt_style_phrase": "warm editorial illustration, open notebook, shifting evening light, sparse composition, paper grain",
+        "blocked_mimicry": [
+          "do not copy external scene composition",
+          "do not copy character designs, prop arrangements, prompt wording, or visual signatures"
+        ]
+      },
+      "text_visibility": "hidden",
+      "optional_text": ""
+    },
+    {
+      "frame_id": "inline-03-ending",
+      "target_paragraph_or_section": "after final paragraph",
+      "image_role": "ending",
+      "reading_rhythm_purpose": "close the essay with a soft emotional landing",
+      "background_asset": {
+        "asset_id": "bg-generated-quiet-window",
+        "url": "../data/quiet-window-placeholder.svg",
+        "object_position": "center",
+        "caption": "Generated local placeholder background used for contract validation only"
+      },
+      "illustration_grammar": {
+        "enabled": true,
+        "intensity": "scene",
+        "scene_family": "quiet window reflection",
+        "recurring_subjects": [
+          "window",
+          "small lamp",
+          "open notebook"
+        ],
+        "scene_role": "ending",
+        "subject_focus": "a quiet desk near a window after the story has moved on",
+        "composition_axis": "right-weighted",
+        "camera_distance": "medium",
+        "motion_state": "still",
+        "environment_density": "sparse",
+        "palette_temperature": "warm-neutral",
+        "line_character": "soft hand-drawn edges",
+        "texture_level": "paper-grain",
+        "text_load": "very_low",
+        "prompt_style_phrase": "warm editorial illustration, quiet window scene, sparse objects, soft paper grain, gentle ink edges",
+        "blocked_mimicry": [
+          "do not copy external scene composition",
+          "do not copy character designs, prop arrangements, prompt wording, or visual signatures"
+        ]
+      },
+      "text_visibility": "visible",
+      "optional_text": "故事会翻篇，生活会继续。"
+    }
+  ],
+  "asset_source_record": [
+    {
+      "asset_id": "bg-generated-quiet-window",
+      "role": "background",
+      "source_type": "generated_graphics",
+      "source_url": "../data/quiet-window-placeholder.svg",
+      "provider": "local_render_fixture",
+      "creator_or_owner": "content-visual-forge",
+      "license": "repo_fixture",
+      "attribution_required": false,
+      "attribution_text": "",
+      "commercial_use_allowed": true,
+      "transformation": "color_overlay",
+      "checked_at": "2026-05-31",
+      "decision": "use",
+      "notes": "Local generated placeholder used to exercise multi-frame wechat-inline contract validation only; not a finished illustration sample."
+    }
+  ]
+}

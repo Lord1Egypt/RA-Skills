@@ -1,42 +1,57 @@
-## Description: <br>
-Generates structured expense reports from receipt, invoice, and everyday spending descriptions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates structured expense reports from descriptions of receipts, invoices, or everyday expenses.
 
-## Publisher: <br>
-[andreataide86](https://clawhub.ai/user/andreataide86) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[andreataide86](https://clawhub.ai/user/andreataide86)
 
-## Use Case: <br>
-Independent professionals, freelancers, contractors, interns, and external sales workers use this skill to turn expense lists or receipt text into categorized reimbursement reports. It totals spending by category, separates reimbursable and personal expenses, and can produce simplified or formal report text. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Expense descriptions and receipts may contain sensitive personal, financial, or business information. <br>
-Mitigation: Provide only the receipt details needed for the report and avoid unnecessary sensitive information. <br>
-Risk: The skill can write files when the agent supports file-writing tools. <br>
-Mitigation: Ask the agent to return the report inline unless a file output is explicitly needed. <br>
-Risk: Automatically inferred categories, dates, currencies, or reimbursement status may be wrong when input details are incomplete. <br>
-Mitigation: Review totals, categories, dates, and reimbursable flags before submitting the report for reimbursement or accounting. <br>
+## Use Case:
 
+External professionals, freelancers, contractors, and employees use this skill to convert informal expense descriptions into categorized reports for reimbursement, client accounting, or personal tracking.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/andreataide86/expense-report) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown] <br>
-**Output Format:** [Markdown or plain text expense reports with totals, categories, reimbursement status, and optional email-ready wording] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports simplified and complete report styles, BRL and USD amounts, category summaries, and reimbursable versus personal expense separation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill may activate on broad expense-related requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the user wants an expense report before transforming loosely related financial notes.
+
+Risk: Generated reports may contain private financial details or need to satisfy employer or client formatting rules.
+
+Mitigation: Review the report before sharing it externally and adjust formatting, categories, and reimbursement labels as required.
+
+Risk: Formal reports may include generated-report attribution.
+
+Mitigation: Check whether attribution is acceptable for the intended reimbursement or accounting workflow.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/andreataide86/skills/expense-report)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown]
+
+**Output Format:** [Markdown expense report with categorized summaries, totals, and itemized details]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include BRL/USD amounts, reimbursement status, date ranges, category totals, and generated-report attribution.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

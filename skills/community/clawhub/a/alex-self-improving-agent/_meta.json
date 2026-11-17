@@ -1,6 +1,7 @@
 {
-  "ownerId": "kn7bjqgah2pz7wkacjvkqssb3s82n42f",
-  "slug": "alex-self-improving-agent",
+  "name": "Self Improving Agent",
+  "description": "Captures learnings, errors, and corrections to enable continuous improvement",
   "version": "1.0.0",
-  "publishedAt": 1775862864439
+  "author": "Alex",
+  "tags": ["self-improvement", "learning", "agent"]
 }

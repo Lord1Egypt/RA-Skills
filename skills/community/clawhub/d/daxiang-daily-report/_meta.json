@@ -1,6 +1,7 @@
 {
-  "ownerId": "kn75gwz6mw2x7s7b9t8xv2ggg1822ce4",
+  "ownerId": "shangshu",
   "slug": "daxiang-daily-report",
-  "version": "1.0.5",
-  "publishedAt": 1773766309188
+  "version": "1.0.0",
+  "publishedAt": 1752566400000,
+  "description": "大象沟通日报自动生成脚本，获取上一天的大象沟通记录生成分析报告"
 }

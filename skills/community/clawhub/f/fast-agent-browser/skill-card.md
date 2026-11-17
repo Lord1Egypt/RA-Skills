@@ -1,45 +1,60 @@
-## Description: <br>
-Python CLI tool for AI agents to automate web browsers with Playwright, supporting navigation, interaction, snapshots, screenshots, and form handling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Python CLI tool for AI agents to automate web browsers with Playwright, supporting navigation, interaction, snapshots, screenshots, and form handling.
 
-## Publisher: <br>
-[leohuang8688](https://clawhub.ai/user/leohuang8688) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leohuang8688](https://clawhub.ai/user/leohuang8688)
 
-## Use Case: <br>
-Developers and AI-agent builders use this skill to let agents drive browser workflows such as navigation, element interaction, screenshots, snapshots, form handling, and data extraction. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives an agent broad browser-control authority, including navigation, page interaction, screenshots, file upload, cookie or storage handling, and custom JavaScript execution. <br>
-Mitigation: Use isolated browser profiles or test accounts, avoid sensitive sessions unless necessary, and require explicit confirmation before submissions, uploads, purchases, account changes, or custom JavaScript execution. <br>
-Risk: Saved cookies, storage state, or persistent browser profiles can expose authenticated sessions if they are reused or shared casually. <br>
-Mitigation: Store authentication state only when needed, restrict access to those files, and delete or rotate them after the task is complete. <br>
-Risk: Server security evidence flags the release as suspicious because the browser-control surface is broad and the artifact makes overly broad safety claims. <br>
-Mitigation: Review the skill before deployment, scan it in the target environment, and constrain use to workflows where browser automation authority is acceptable. <br>
+## Use Case:
 
+Developers and AI agent builders use this skill to automate browser navigation, element interaction, page inspection, screenshots, and form workflows through a Python CLI backed by Playwright.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/leohuang8688/fast-agent-browser) <br>
-- [README](artifact/README.md) <br>
-- [API documentation](artifact/docs/api.md) <br>
-- [Playwright](https://playwright.dev/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, Python examples, browser snapshots, screenshots, and text command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce local browser artifacts such as screenshots, PDFs, cookies, storage state, and uploaded-file interactions when the agent invokes those commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: The skill can give an agent broad browser control over arbitrary URLs and page scripts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Approve browser actions explicitly and avoid authenticated, internal, financial, admin, or private sites unless the workflow is isolated and reviewed.
+
+Risk: Screenshots, extracted text or HTML, uploaded files, cookies, and auth state may contain sensitive information.
+
+Mitigation: Treat captured outputs and browser profiles as sensitive, use isolated test accounts, and restrict uploads to approved files.
+
+Risk: Server security review says the skill overstates its safety controls.
+
+Mitigation: Review commands before execution, pin dependencies, and validate behavior in a controlled environment before production use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/leohuang8688/skills/fast-agent-browser)
+- [README](artifact/README.md)
+- [API documentation](artifact/docs/api.md)
+- [Playwright](https://playwright.dev/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Files, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands; CLI output can include plain text, HTML snippets, screenshots, PDFs, and browser state data.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Browser outputs may include sensitive page content, uploaded files, cookies, or authenticated session state.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

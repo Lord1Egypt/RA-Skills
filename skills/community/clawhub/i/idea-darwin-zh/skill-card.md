@@ -1,44 +1,56 @@
-## Description: <br>
-Idea Darwin 中文版 helps an agent turn ideas from ideas.md into scored cards, run structured iteration rounds, and surface high-potential concepts through deepening, branching, crossing, critique, and validation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Idea Darwin 中文版 helps agents turn ideas from local project files into structured, scored cards and run iterative rounds of deepening, branching, crossing, critique, validation, and reporting.
 
-## Publisher: <br>
-[warmskull](https://clawhub.ai/user/warmskull) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jianyangzhai](https://clawhub.ai/user/jianyangzhai)
 
-## Use Case: <br>
-Developers, founders, and product teams use this skill to maintain a local idea pipeline, structure rough concepts into comparable cards, and run repeatable idea-evolution rounds with reports and decision prompts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads and writes local project idea files as part of its normal workflow. <br>
-Mitigation: Use it in a dedicated project folder and review generated cards, reports, configuration, and relation files before relying on them. <br>
-Risk: Broad idea-ranking or idea-iteration requests may trigger updates to local idea project files. <br>
-Mitigation: Confirm the target workspace and review proposed workflow outputs when requesting idea ranking, status, or iteration rounds. <br>
+## Use Case:
 
+External users and developers use this Chinese-language skill to manage an idea pool in local workspace files, score ideas across defined dimensions, and produce structured iteration reports that support human decisions about which concepts to continue, combine, or pause.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/warmskull/idea-darwin-zh) <br>
-- [Homepage](https://github.com/warmskull/idea-darwin) <br>
-- [Action reference](references/actions.md) <br>
-- [Prompt templates](references/prompts.md) <br>
-- [Idea card template](assets/card-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Configuration, Guidance, Files] <br>
-**Output Format:** [Markdown reports and idea cards, YAML configuration, JSON relation data, and conversational summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates and updates local idea workflow files such as cards, round reports, leaderboard data, config.yaml, stimuli.md, and graph/relations.json.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: The skill creates and updates project-local idea cards, reports, configuration, and graph data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it in a workspace where those file changes are expected, and review generated files before relying on them for planning decisions.
+
+Risk: Idea scores, critiques, validation outcomes, and next-step recommendations may be incomplete or subjective.
+
+Mitigation: Treat generated rankings and recommendations as decision support; keep the documented human review step before pausing, merging, or advancing ideas.
+
+## Reference(s):
+
+- [Idea Darwin homepage](https://github.com/warmskull/idea-darwin)
+- [Card template](assets/card-template.md)
+- [Standard actions reference](references/actions.md)
+- [Prompt templates](references/prompts.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown reports, Markdown idea cards, YAML configuration, JSON graph data, and concise conversational summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates and updates project-local idea-management files such as cards, round reports, leaderboard reports, config.yaml, stimuli.md, and graph relations.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

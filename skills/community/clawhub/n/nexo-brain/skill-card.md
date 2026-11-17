@@ -1,44 +1,54 @@
-## Description: <br>
-Cognitive memory system for AI agents with an Atkinson-Shiffrin memory model, semantic RAG, trust scoring, and metacognitive error prevention. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Runtime core for NEXO Desktop. Provides local memory, Deep Sleep, Evolution support-ticket mode, skills, watchdog, and MCP tools for the desktop product.
 
-## Publisher: <br>
-[wazionapps](https://clawhub.ai/user/wazionapps) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wazionapps](https://clawhub.ai/user/wazionapps)
 
-## Use Case: <br>
-Developers and agent users use NEXO Brain to add persistent local memory, semantic retrieval, session continuity, mistake prevention, reminders, entity tracking, and preference memory to an AI agent. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Durable local memory may preserve user, project, entity, and preference history across agent sessions. <br>
-Mitigation: Enable the skill only when persistent local memory is intended, and keep secrets or highly sensitive personal data out of captured sessions unless exclusion and deletion controls have been verified. <br>
-Risk: The installed runtime appears broader than the skill page clearly discloses, including possible local indexing or background automation behavior. <br>
-Mitigation: Review the npm package and project homepage behavior before enabling the runtime, and decide whether local file or email indexing and background automation are acceptable for the environment. <br>
-Risk: The MCP server runs from a local Python entry point under the user's NEXO home directory and can affect agent memory and workflow behavior. <br>
-Mitigation: Install from the expected `nexo-brain` package, review the generated OpenClaw MCP configuration, and restrict use to macOS or Linux environments where `python3` is available. <br>
+## Use Case:
 
+Developers and external OpenClaw users use this skill to install and configure the NEXO Desktop runtime core, including its local memory, watchdog, session, follow-up, and MCP tool support.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wazionapps/skills/nexo-brain) <br>
-- [Project homepage](https://github.com/wazionapps/nexo) <br>
-- [NEXO Brain npm package](https://www.npmjs.com/package/nexo-brain) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with shell commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes MCP server setup guidance for a local memory runtime on macOS and Linux.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-7.38.0 (source: frontmatter and server release evidence) <br>
+Risk: The install flow asks users to execute an unpinned npm package that can install a persistent local MCP runtime.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only a trusted, reviewed version of nexo-brain and verify what creates ~/.nexo/server.py before enabling the runtime in OpenClaw.
+
+Risk: The runtime maintains local memory across sessions.
+
+Mitigation: Review the contents and retention behavior under ~/.nexo and avoid enabling the runtime for workflows where persistent local memory is not acceptable.
+
+## Reference(s):
+
+- [NEXO Desktop homepage](https://nexo-desktop.com)
+- [nexo-brain npm package](https://www.npmjs.com/package/nexo-brain)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown with inline bash and JSON configuration blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes install guidance for npm, OpenClaw MCP configuration, and local runtime usage notes.]
+
+## Skill Version(s):
+
+7.38.7 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

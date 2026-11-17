@@ -1,44 +1,61 @@
-## Description: <br>
-Checks Huawei Cloud CTS anomaly records, including account debt status, failed operation analysis, and sensitive operation audits, and turns technical details into user-readable explanations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Checks Huawei Cloud CTS audit logs for anomalous operations, including account debt status, failed operations, sensitive actions, and security-relevant audit patterns, then presents findings in user-readable reports.
 
-## Publisher: <br>
-[chenyujie](https://clawhub.ai/user/chenyujie) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chenyujie](https://clawhub.ai/user/chenyujie)
 
-## Use Case: <br>
-Cloud security, operations, and compliance teams use this skill to inspect Huawei Cloud CTS logs for failed, warning, incident, sensitive, and deletion operations, and to produce readable remediation guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may read Huawei Cloud audit logs, account debt status, and user or resource operation details. <br>
-Mitigation: Install only where that data access is acceptable, and run with explicit region, project, account, time range, and output-log controls. <br>
-Risk: The skill creates temporary Huawei Cloud access keys and queries billing balance in addition to CTS traces. <br>
-Mitigation: Grant only the IAM temporary credential, BSS billing balance, and CTS trace permissions required for the intended audit, and review the skill before installation. <br>
+## Use Case:
 
+Developers, cloud operators, and security reviewers use this skill to inspect Huawei Cloud CTS activity for failed, sensitive, deletion, permission-change, and other audit-relevant operations. It supports routine account checks, security auditing, troubleshooting, and compliance review.
 
-## Reference(s): <br>
-- [CTS Anomaly Types](references/anomaly-types.md) <br>
-- [CTS Anomaly Check Examples](references/examples.md) <br>
-- [Huawei Cloud CTS API Reference](https://support.huaweicloud.com/api-cts/cts_04_0001.html) <br>
-- [Huawei Cloud CTS User Guide](https://support.huaweicloud.com/usermanual-icts/cts_01_0001.html) <br>
-- [Huawei Cloud IAM Best Practices](https://support.huaweicloud.com/bestpractice-iam/iam_01_0001.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Plain text reports or JSON output, with Markdown guidance and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires explicit Huawei Cloud region, project ID, time range, record limit, and output format controls.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release metadata; artifact frontmatter states 0.1.0) <br>
+Risk: The skill creates 24-hour Huawei Cloud temporary credentials and checks billing data, which can expose sensitive account context if run with broad privileges or without consent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, run only with a tightly scoped Huawei Cloud identity, and require explicit approval before temporary credential creation or billing checks.
+
+Risk: Generated reports may contain sensitive audit, account, user, and resource data.
+
+Mitigation: Limit access to report outputs, avoid broad cron logging or email forwarding, and route findings only to approved security or operations channels.
+
+Risk: CTS results depend on the selected region, project ID, tracker state, and granted permissions, so incomplete scope can produce misleading reassurance.
+
+Mitigation: Confirm the intended region and project before execution, verify CTS is enabled, and document any permission or data-scope limits with the report.
+
+## Reference(s):
+
+- [CTS Anomaly Types Reference](references/anomaly-types.md)
+- [CTS Anomaly Check Examples](references/examples.md)
+- [Huawei Cloud CTS API Reference](https://support.huaweicloud.com/api-cts/cts_04_0001.html)
+- [Huawei Cloud CTS User Guide](https://support.huaweicloud.com/usermanual-icts/cts_01_0001.html)
+- [Huawei Cloud IAM Best Practices](https://support.huaweicloud.com/bestpractice-iam/iam_01_0001.html)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Guidance]
+
+**Output Format:** [Plain text report or JSON, with command examples in Markdown documentation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports may include Huawei Cloud audit events, user names, resource names, operation status, region, timing, and billing status signals.]
+
+## Skill Version(s):
+
+0.1.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

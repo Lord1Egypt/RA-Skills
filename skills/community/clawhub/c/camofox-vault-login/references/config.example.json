@@ -1,0 +1,4 @@
+{
+  "expectedVaultServerUrl": "https://vault.example.invalid",
+  "expectedVaultEmail": "fixture@example.invalid"
+}

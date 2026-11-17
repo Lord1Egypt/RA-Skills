@@ -26,6 +26,14 @@ fleece mcc 5812                   # MCC lookup (no API key needed)
 fleece flights JFK NRT --date 2026-06-01 --cabin business --open
 ```
 
+### Install as an agent skill (55+ agents)
+
+```bash
+npx skills add chenyuan99/fleece
+```
+
+Works with Claude Code, Cursor, GitHub Copilot, Gemini CLI, Windsurf, Cline, Codex, Warp, Kiro, and more — all from one command.
+
 ## CLI Commands
 
 ### Research (requires `BRAVE_API_KEY`)
@@ -72,16 +80,21 @@ fleece wallet               # gap analysis tailored to your spend
 
 ## AI Agent Integration
 
-### Claude Code
+### Universal (55+ agents) — recommended
 ```bash
-bash install.sh --claude
-# Installs 13 slash commands: /fleece-card /fleece-wallet /fleece-mcc ...
+npx skills add chenyuan99/fleece
 ```
+Installs to Claude Code, Cursor, GitHub Copilot, Gemini CLI, Windsurf, Cline, Codex, Warp, Kiro, Continue, and Junie in one command.
 
-### OpenClaw / Codex
+### Platform-specific
 ```bash
-bash install.sh --agents
-# Installs .agents/skills/fleece/SKILL.md
+bash install.sh --claude    # Claude Code slash commands
+bash install.sh --agents    # OpenClaw / Codex SKILL.md
+bash install.sh --gemini    # Gemini CLI (GEMINI.md)
+bash install.sh --copilot   # GitHub Copilot
+bash install.sh --cursor    # Cursor
+bash install.sh --windsurf  # Windsurf
+bash install.sh --all       # everything above
 ```
 
 ### ClawHub Registry

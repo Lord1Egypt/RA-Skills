@@ -1,6 +1,17 @@
 {
-  "ownerId": "kn7dxr58ktjh28y80xrgmypzg582wtg5",
-  "slug": "claude-code-analyzer",
+  "name": "claude-code-analyzer",
+  "displayName": "Claude Code 源码分析工具",
   "version": "1.0.0",
-  "publishedAt": 1775197552921
+  "slug": "claude-code-analyzer",
+  "description": "🔥 蹭热点！分析 GitHub 爆火的 Claude Code 泄露源码，Python 爆改工具，AI 辅助编程神器",
+  "author": "@bingze00000",
+  "license": "MIT",
+  "tags": ["claude", "code", "analyzer", "ai", "python", "github", "hot", "trending"],
+  "pricing": {
+    "type": "paid",
+    "amount": 49,
+    "currency": "CNY"
+  },
+  "requirements": ["requests", "json"],
+  "category": "developer-tools"
 }

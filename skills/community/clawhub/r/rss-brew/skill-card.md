@@ -1,47 +1,62 @@
-## Description: <br>
-Run and operate the RSS-Brew digest pipeline, including app CLI usage, dry-runs, latest-run inspection, delivery status updates, and retry/finalize-aware operations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run and operate the RSS-Brew digest pipeline, including app CLI usage, dry-runs, latest-run inspection, delivery status updates, and retry/finalize-aware operations.
 
-## Publisher: <br>
-[sunsetchow](https://clawhub.ai/user/sunsetchow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sunsetchow](https://clawhub.ai/user/sunsetchow)
 
-## Use Case: <br>
-Developers and operators use this skill to run an RSS digest pipeline, inspect recent runs, perform dry-runs, update delivery status, and troubleshoot retry/finalize behavior. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The pipeline fetches configured feeds and articles, then may send article-derived content to external AI or search providers. <br>
-Mitigation: Use mock or dry-run modes first, avoid private or sensitive feeds unless provider sharing is acceptable, and review configured API providers before production use. <br>
-Risk: Pipeline execution writes persistent digest and run state under the selected data root. <br>
-Mitigation: Choose a deliberate data root, inspect run manifests after execution, and verify delivery status before relying on published outputs. <br>
-Risk: Runtime behavior depends on Python dependencies and environment configuration. <br>
-Mitigation: Pin and audit dependencies, confirm required environment variables, and prefer the documented app CLI and virtual environment workflow. <br>
+## Use Case:
 
+External users and developers use RSS-Brew to operate an RSS digest pipeline that fetches feeds, scores and ranks articles, enriches selected items, renders digests, and tracks delivery status.
 
-## Reference(s): <br>
-- [RSS-Brew README](README.md) <br>
-- [Usage Reference](references/usage.md) <br>
-- [Operations Reference](references/ops.md) <br>
-- [Pipeline Specification](references/pipeline-spec.md) <br>
-- [Retry / Finalize Architecture](references/retry-architecture.md) <br>
-- [App Architecture](app/docs/architecture.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, markdown, files] <br>
-**Output Format:** [Markdown guidance with inline shell commands and file references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill can guide pipeline runs that create persistent run records, digest files, and delivery status updates under the configured data root.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata and app/pyproject.toml) <br>
+Risk: Dry-run behavior may still commit pipeline state.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a throwaway data root for dry-runs and verify manifest changes before using production data.
+
+Risk: The pipeline uses broad network and credential flows for feed ingestion, model scoring, and search enrichment.
+
+Mitigation: Keep feed sources trusted, protect DEEPSEEK_API_KEY and TAVILY_API_KEY, and avoid custom DEEPSEEK_BASE_URL values unless the endpoint is controlled.
+
+Risk: Unpinned dependencies may change behavior before operational use.
+
+Mitigation: Pin dependencies and test the pipeline in an isolated environment before production use.
+
+## Reference(s):
+
+- [README](README.md)
+- [Usage Reference](references/usage.md)
+- [Operations Reference](references/ops.md)
+- [Pipeline Specification](references/pipeline-spec.md)
+- [Retry and Finalize Architecture](references/retry-architecture.md)
+- [App Architecture](app/docs/architecture.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Markdown, Files]
+
+**Output Format:** [Markdown guidance with shell command examples; runtime outputs include JSON state, Markdown digests, and PDF digests.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses configured data roots and external model/search API credentials during pipeline runs.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release metadata and app/pyproject.toml)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

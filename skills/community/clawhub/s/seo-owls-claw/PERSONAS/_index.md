@@ -1,4 +1,4 @@
-# SEOwlsClaw — Persona Index
+# SEOwlsClaw — Persona Index v0.8
 
 > Load this file first. Pick a persona, then load its individual file.  
 > Each persona file contains: Identity · Writing Style · Tone · Vocabulary · AI Overview Rules · E-E-A-T Injection · Heading Formula · Depth Standards.
@@ -20,20 +20,21 @@
 
 ## How to Apply a Persona
 
-```bash
-/persona ecommerce-manager
-/persona vintage-expert --tone authoritative
-/persona blogger --target ai-overview
-/personas --show vintage-expert    # show full details
+```text
+persona ecommerce-manager
+persona e-commerce-manager
+persona vintage-expert --tone authoritative
+persona blogger --target ai-overview
+personas --show vintage-expert    # show full details
 ```
 
 ---
 
 ## Default Persona Fallback
 
-If no `/persona` command is given before `/write`, the agent uses **`blogger`** as default.  
+If no `persona` command is given before `write`, the agent uses **`blogger`** as default.  
 Reason: neutral, structured, safest for SEO output across all page types.
 
 ---
 
-*Last updated: 2026-04-04 (v0.6)*
+*Last updated: 2026-04-04 (v0.8)*

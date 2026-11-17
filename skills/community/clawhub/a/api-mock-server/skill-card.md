@@ -1,44 +1,54 @@
-## Description: <br>
-A lightweight API mock server for prototyping and testing HTTP APIs with static or dynamic JSON responses, JSON Schema validation, generated test data, and latency simulation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Lightweight API mock server for prototyping and testing, supporting JSON and JSON Schema responses, dynamic data, validation, latency, and webhook simulation.
 
-## Publisher: <br>
-[kaiyuelv](https://clawhub.ai/user/kaiyuelv) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kaiyuelv](https://clawhub.ai/user/kaiyuelv)
 
-## Use Case: <br>
-Developers and QA engineers use this skill to stand up local mock REST endpoints for frontend-backend decoupling, automated tests, and rapid API prototyping. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Running the mock server on a non-loopback host can expose test endpoints to other machines. <br>
-Mitigation: Run with --host 127.0.0.1 unless shared network access is deliberate. <br>
-Risk: Unpinned dependencies can change behavior in CI or shared-team environments. <br>
-Mitigation: Install in a virtual environment and pin or lock dependencies before repeatable use. <br>
-Risk: Webhook simulation is described in the release materials, but the security guidance says not to assume it exists in this version. <br>
-Mitigation: Review or add webhook simulation behavior before relying on that feature. <br>
+## Use Case:
 
+Developers and QA engineers use this skill to create local mock HTTP APIs for frontend-backend decoupling, automated tests, prototyping, request validation, latency simulation, and webhook testing.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kaiyuelv/api-mock-server) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact skill documentation](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with Python, JSON, and bash snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include local server commands, mock route definitions, JSON configuration, and request validation examples.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The mock server can expose unauthenticated routes on all network interfaces by default.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Bind to 127.0.0.1 unless remote access is intentionally required, avoid sensitive test data in mock routes, and use firewall controls on shared networks.
+
+Risk: Runtime dependencies are specified as open version ranges.
+
+Mitigation: Review and pin dependencies before use in controlled or production-like environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kaiyuelv/skills/api-mock-server)
+- [Publisher profile](https://clawhub.ai/user/kaiyuelv)
+
+## Skill Output:
+
+**Output Type(s):** [code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with Python and shell code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include route definitions, JSON configuration examples, dependency installation commands, and local server startup guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

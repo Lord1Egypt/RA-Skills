@@ -1,43 +1,64 @@
-## Description: <br>
-Current arbitrage spread between Kraken and Hyperliquid. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Paid x402 endpoint: $0.007 USDC per call on Base. Returns current arbitrage spread between Kraken and Hyperliquid.
 
-## Publisher: <br>
-[kynto2001-ctrl](https://clawhub.ai/user/kynto2001-ctrl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kynto2001-ctrl](https://clawhub.ai/user/kynto2001-ctrl)
 
-## Use Case: <br>
-External developers and trading agents use this skill to request a live Kraken versus Hyperliquid arbitrage spread signal before evaluating cross-exchange opportunities or sizing arbitrage legs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is designed to let an agent spend from an EVM wallet for paid API calls. <br>
-Mitigation: Use a dedicated low-balance wallet, configure spend caps and recipient allowlists before use, and avoid primary wallets or private keys with funds you cannot afford to lose. <br>
+## Use Case:
 
+Developers and agents can query a paid Kraken-to-Hyperliquid spread signal to assess potential arbitrage opportunities and inform order sizing.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kynto2001-ctrl/skills/arb-spread) <br>
-- [Arb Spread signal endpoint](https://apexrunner.ai/signals/arb-spread) <br>
-- [APEX Runner pricing tiers](https://apexrunner.ai/signals/my-pricing) <br>
-- [Cross-exchange spread signal](https://apexrunner.ai/signals/cross-exchange-spread) <br>
-- [Funding rate signal](https://apexrunner.ai/signals/funding-rate) <br>
-- [Optimal order routing signal](https://apexrunner.ai/signals/optimal-order-routing) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, configuration] <br>
-**Output Format:** [Markdown with Python and JSON code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires EVM_PRIVATE_KEY for x402-authenticated paid API calls.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The request signs a payment using an EVM private key and can spend USDC on Base.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated wallet with only the funds needed for calls, protect EVM_PRIVATE_KEY, and keep the configured payment cap at or below the intended amount.
+
+Risk: The release changelog notes that the trading engines are paused, so a returned spread may not reflect a currently operating trading system.
+
+Mitigation: Check signal freshness and validate prices independently before using it to make or execute a trade.
+
+Risk: A spread signal does not account for all execution costs or guarantee that an arbitrage opportunity can be completed profitably.
+
+Mitigation: Recalculate fees, slippage, liquidity, and transfer or settlement constraints before execution; treat the response as an input rather than an instruction to trade.
+
+Risk: The clean security verdict covers the reported Markdown artifact and does not explain the skill's actual behavior.
+
+Mitigation: Review the skill description and request behavior before installation and decide whether it fits the intended use.
+
+## Reference(s):
+
+- [APEX Runner arb-spread endpoint](https://apexrunner.ai/signals/arb-spread)
+- [APEX Runner funding-rate signal](https://apexrunner.ai/signals/funding-rate)
+- [APEX Runner optimal-order-routing signal](https://apexrunner.ai/signals/optimal-order-routing)
+- [APEX Runner](https://apexrunner.ai)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Analysis]
+
+**Output Format:** [JSON response with spread_pct, threshold_pct, and arb_viable fields]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [A paid x402 request; the release describes an early-adopter rate of $0.007 USDC per call through 2027-01-01.]
+
+## Skill Version(s):
+
+1.0.2 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

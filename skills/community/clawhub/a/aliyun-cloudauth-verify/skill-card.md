@@ -1,41 +1,57 @@
-## Description: <br>
-Use when managing Alibaba Cloud ID Verification (Cloudauth) via OpenAPI/SDK, including the user is working on identity-verification resource operations, config updates, status checks, or troubleshooting Cloudauth API workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents manage Alibaba Cloud ID Verification (Cloudauth) workflows through OpenAPI metadata discovery, SDK/OpenAPI Explorer guidance, status checks, and troubleshooting.
 
-## Publisher: <br>
-[cinience](https://clawhub.ai/user/cinience) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cinience](https://clawhub.ai/user/cinience)
 
-## Use Case: <br>
-Developers and operators use this skill to discover and manage Alibaba Cloud ID Verification (Cloudauth) resources, update configuration, check status, and troubleshoot OpenAPI/SDK workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide Alibaba Cloud Cloudauth API operations that use cloud credentials and may create, update, modify, or set resources. <br>
-Mitigation: Use a least-privilege AccessKey, verify the region and resource IDs, approve mutating actions before execution, and avoid saving credential values in evidence files or logs. <br>
+## Use Case:
 
+Developers and cloud security engineers use this skill to discover Cloudauth APIs, plan or execute resource operations, validate configuration, and collect reproducible evidence for Alibaba Cloud identity-verification workflows.
 
-## Reference(s): <br>
-- [Sources](references/sources.md) <br>
-- [Alibaba Cloud Cloudauth OpenAPI Product Page](https://api.aliyun.com/product/Cloudauth) <br>
-- [Cloudauth 2022-11-25 API Metadata](https://api.aliyun.com/meta/v1/products/Cloudauth/versions/2022-11-25/api-docs.json) <br>
-- [Cloudauth Single API Definition Metadata](https://api.aliyun.com/meta/v1/products/Cloudauth/versions/2022-11-25/apis/{ApiName}/api.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, API calls, Files] <br>
-**Output Format:** [Markdown guidance with inline shell commands and generated JSON or Markdown artifacts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [API inventory artifacts are written under output/aliyun-cloudauth-verify/ when the helper script is run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill can guide mutating Alibaba Cloud API operations that change identity-verification resources or configuration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use least-privilege Alibaba Cloud credentials and review any mutating API call before execution.
+
+Risk: Output artifacts may accidentally include secrets, full identity records, or unredacted customer data.
+
+Mitigation: Redact secrets and sensitive identity data before saving artifacts under output/aliyun-cloudauth-verify/.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cinience/skills/aliyun-cloudauth-verify)
+- [Alibaba Cloud Cloudauth OpenAPI product page](https://api.aliyun.com/product/Cloudauth)
+- [Cloudauth 2022-11-25 API metadata list](https://api.aliyun.com/meta/v1/products/Cloudauth/versions/2022-11-25/api-docs.json)
+- [Cloudauth single API metadata template](https://api.aliyun.com/meta/v1/products/Cloudauth/versions/2022-11-25/apis/{ApiName}/api.json)
+- [Skill sources reference](references/sources.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and optional JSON or Markdown artifacts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May save API inventory and evidence artifacts under output/aliyun-cloudauth-verify/.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

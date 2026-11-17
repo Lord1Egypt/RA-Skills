@@ -1,6 +1,17 @@
 {
-  "ownerId": "kn7efwb6whhm372443tpnrjysd8293rg",
-  "slug": "self-improving-agent-ollieb89",
+  "slug": "self-improving-agent",
   "version": "1.1.0",
-  "publishedAt": 1772689662766
+  "files": [
+    "SKILL.md",
+    "agents/openai.yaml",
+    "references/*",
+    "scripts/*",
+    "hooks/*",
+    "assets/*",
+    ".learnings/*"
+  ],
+  "origin": {
+    "ownerId": "kn70cjr952qdec1nx70zs6wefn7ynq2t",
+    "publishedAt": 1771777713337
+  }
 }

@@ -1,43 +1,58 @@
-## Description: <br>
-Queries Garmin Connect CN personal health and activity data, including sleep, HRV, training metrics, activity details, and FIT, GPX, TCX, or CSV exports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connects agents to Garmin Connect CN so they can query personal health, sleep, training, and activity data, analyze activity details, and export activity files.
 
-## Publisher: <br>
-[xent9312](https://clawhub.ai/user/xent9312) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xent9312](https://clawhub.ai/user/xent9312)
 
-## Use Case: <br>
-Users and agents with access to a Garmin Connect CN account use this skill to retrieve personal health summaries, sleep and HRV metrics, activity details, running analysis, and activity exports for review or further analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global; intended for Garmin Connect CN accounts. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can access sensitive Garmin Connect CN health, activity, and location-linked data. <br>
-Mitigation: Use it only when the user explicitly wants Garmin account access, confirm before querying sensitive metrics, and keep exported activity files private. <br>
-Risk: Login stores Garmin credentials on the local machine. <br>
-Mitigation: Avoid entering passwords on shared machines or in logged shells, and remove ~/.config/garmin-cn/credentials.json after use when credentials should not persist. <br>
-Risk: Broad activation guidance could lead an agent to query Garmin data for a general health or fitness request. <br>
-Mitigation: Confirm user intent before running commands that access or export account data. <br>
+## Use Case:
 
+External users and their agents can retrieve Garmin Connect CN health, sleep, training, and activity records for user-authorized accounts. The skill also supports detailed running and activity analysis plus FIT, GPX, TCX, and CSV exports.
 
-## Reference(s): <br>
-- [Advanced Usage](references/advanced-usage.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/xent9312/garmin-connect-cn-data) <br>
+### Deployment Geography for Use:
 
+China (Garmin Connect CN service)
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance, Files] <br>
-**Output Format:** [Markdown guidance with inline shell commands; invoked scripts return JSON and can export activity files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local Garmin credential configuration and FIT, GPX, TCX, or CSV activity export files when commands are run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: The skill requires Garmin Connect CN account access and can expose sensitive health, activity, and possible GPS data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with user-authorized accounts, prefer a sandbox or dedicated account, and confirm intent before querying or exporting sensitive data.
+
+Risk: Reusable Garmin credentials are stored locally for later commands.
+
+Mitigation: Avoid entering passwords in shared terminals, inspect file permissions, and review or remove ~/.config/garmin-cn/credentials.json after use.
+
+Risk: Login may delete the ~/.garth session cache used by other Garmin or Garth tools.
+
+Mitigation: Run the skill in an isolated environment when other Garmin or Garth sessions must be preserved.
+
+## Reference(s):
+
+- [Advanced usage](references/advanced-usage.md)
+- [ClawHub skill page](https://clawhub.ai/xent9312/skills/garmin-connect-cn-data)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with shell command examples and JSON command outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can export FIT, GPX, TCX, and CSV activity files and parse FIT files into JSON.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

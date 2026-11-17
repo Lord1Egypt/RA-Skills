@@ -1,0 +1,27 @@
+{
+  "name": "dsh-my-bundle",
+  "version": "0.1.0",
+  "description": "Mount <外部能力> into DeepSeek Harness as native capabilities.",
+  "type": "module",
+  "license": "MIT",
+  "keywords": [
+    "dsh-plugin",
+    "deepseek-harness"
+  ],
+  "files": [
+    "cordis.patch.yml",
+    "README.md"
+  ],
+  "exports": {
+    "./cordis.patch.yml": "./cordis.patch.yml",
+    "./package.json": "./package.json"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

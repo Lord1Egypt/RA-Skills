@@ -1,40 +1,54 @@
-## Description: <br>
-FOUDF provides a five-operator framework for analyzing complex decisions through system structure, explanatory layers, probability, constraints, and game interactions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a five-operator framework for analyzing complex decisions across systems, layers, probabilities, constraints, and strategic interactions.
 
-## Publisher: <br>
-[kings0527](https://clawhub.ai/user/kings0527) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kings0527](https://clawhub.ai/user/kings0527)
 
-## Use Case: <br>
-People and agents use this skill to structure complex, high-uncertainty decisions across technical, business, policy, education, health, and relationship domains. It guides analysis through network effects, abstraction layers, scenario probabilities, hard constraints, and stakeholder incentives. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The framework may be applied to high-stakes medical, legal, financial, or mental-health decisions and produce overconfident guidance. <br>
-Mitigation: Use it as a reasoning template rather than expert advice, seek qualified review for high-stakes domains, and require reliable sources for probability or risk claims. <br>
-Risk: The broad activation trigger may produce heavier analysis than a simple user request needs. <br>
-Mitigation: Invoke it explicitly for complex multi-variable decisions and keep the depth of analysis proportional to the user's question. <br>
+## Use Case:
 
+External users and agents use this skill to structure multi-variable, high-uncertainty decisions in domains such as technology, business, policy, education, relationships, and health. It guides the agent to examine topology, explanatory layers, probability distributions, hard constraints, and game interactions before giving conditional recommendations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kings0527/foudf) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown decision analysis with structured checklists, scenario tables, and conditional recommendations.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution or file generation; outputs should preserve the user's preferred language when possible.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill.json) <br>
+Risk: The broad trigger can make answers more formal or framework-driven than a simple question requires.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the framework for complex decisions with multiple variables, uncertainty, or tradeoffs; ask the agent for a concise answer or to skip the framework for simple requests.
+
+Risk: The framework asks for probability weights and base rates, which can lead to overconfident estimates when reliable data is unavailable.
+
+Mitigation: Require the agent to label low-confidence estimates, use qualitative ranges when data is weak, and separate evidence-backed probabilities from assumptions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kings0527/skills/foudf)
+- [Source skill instructions](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown analysis with structured lists, tables, scenario branches, and conditional recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include system topology descriptions, layer maps, probability tables, constraint lists, game-structure analysis, monitoring indicators, and alternatives.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact/skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

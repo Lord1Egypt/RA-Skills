@@ -1,46 +1,66 @@
-## Description: <br>
-Ai Short Film Studio guides agents through low-cost AI short-film production workflows covering storyboarding, prompt design, batch video generation, TTS, subtitles, audio mixing, review, and delivery. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ai Short Film Studio helps agents plan, generate, and assemble short AI films using storyboard workflows, video-generation services, TTS narration, subtitles, and FFmpeg-based composition.
 
-## Publisher: <br>
-[hitjcl](https://clawhub.ai/user/hitjcl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hitjcl](https://clawhub.ai/user/hitjcl)
 
-## Use Case: <br>
-Creators, editors, and developers use this skill to plan, generate, assemble, and iterate AI short films, short drama episodes, trailers, and educational videos. It is intended for agents that can propose production plans, generate scripts and prompts, run helper commands, and coordinate media assembly workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow can automate logged-in Chrome sessions through remote debugging. <br>
-Mitigation: Use a dedicated Chrome profile, close remote debugging after use, and review automation steps before running them. <br>
-Risk: Batch video and TTS generation can consume paid credits and write many local media files. <br>
-Mitigation: Confirm API calls, quotas, prompts, and output directories before execution, and monitor generated files during long runs. <br>
-Risk: The artifact includes cloud storage guidance that should not be reused as-is. <br>
-Mitigation: Replace any listed storage identifiers with an owned, least-privilege storage setup and keep secrets outside shared skill files. <br>
+## Use Case:
 
+External creators, developers, and agent operators use this skill to turn scripts or short-form video ideas into storyboards, generated clips, narration, subtitles, and final composed videos.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/hitjcl/ai-short-film-studio) <br>
-- [Production Workflow Reference](references/production_workflow.md) <br>
-- [Sucuang API Reference](references/sucuang_api.md) <br>
-- [Google Flow](https://labs.google/fx/tools/flow) <br>
-- [Sucuang API Documentation](https://api.wuyinkeji.com/doc) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with JSON examples, shell commands, and helper script usage] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce project files, storyboard JSON, generated media commands, and post-production instructions for user review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The Google Flow route uses Chrome remote debugging and may expose an active browser session.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated Chrome profile and isolated Google account, avoid running it against a normal browser session, and close the remotely debuggable browser after use.
+
+Risk: Batch scripts rename and delete generated video-* files in the configured output directory.
+
+Mitigation: Run batch generation only in a dedicated project directory that does not contain valuable pre-existing video-* files.
+
+Risk: The workflow sends prompts, scripts, audio, video, or other media to third-party services.
+
+Mitigation: Do not submit sensitive scripts or media, replace any example cloud identifiers with user-owned placeholders, and review each service's terms before use.
+
+Risk: The workflow depends on external automation and media-generation services whose behavior may change.
+
+Mitigation: Review the skill before installing, pin trusted dependencies where possible, and test the complete workflow in an isolated environment before production use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hitjcl/skills/ai-short-film-studio)
+- [Production workflow reference](artifact/references/production_workflow.md)
+- [Sucuang API reference](artifact/references/sucuang_api.md)
+- [Sucuang API documentation](https://api.wuyinkeji.com/doc)
+- [Google Flow](https://labs.google/fx/tools/flow)
+- [Kling image-to-video API endpoint](https://api-beijing.klingai.com/v1/videos/image2video)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON examples, shell commands, JavaScript helpers, and Python composition code]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce storyboard JSON, project files, generated media paths, progress reports, subtitles, narration audio, and composed video outputs when paired with external services and local tools.]
+
+## Skill Version(s):
+
+3.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

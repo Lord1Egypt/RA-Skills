@@ -1,42 +1,53 @@
-## Description: <br>
-Extracts shopping and payment intent from the current conversation and returns a structured JSON summary, either by using a trusted local payment-intent summarizer when available or by analyzing the conversation context directly. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extracts shopping and payment intent from the current conversation and returns a structured JSON summary, either by calling an optional local payment-intent summarizer with a session ID or by analyzing the conversation context directly.
 
-## Publisher: <br>
-[xhc1111](https://clawhub.ai/user/xhc1111) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xhc1111](https://clawhub.ai/user/xhc1111)
 
-## Use Case: <br>
-External users and agent builders use this skill to summarize shopping or payment-related details from the current conversation into a compact JSON result. It is intended for intent extraction and summary only, not for making purchases or executing payments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A local payment-intent command, if present, could be untrusted or behave differently from the skill documentation. <br>
-Mitigation: Allow command-based summarization only with a trusted local payment-intent tool; otherwise use direct conversation-context analysis. <br>
-Risk: Shopping or payment intent summaries can expose sensitive purchase or payment-related details from the conversation. <br>
-Mitigation: Summarize only the current conversation context and avoid reading external session files or cross-session data. <br>
-Risk: The skill identifies intent but may be mistaken when conversation context is ambiguous. <br>
-Mitigation: Use conservative classification when uncertain and return hasIntent false when no clear shopping or payment intent is present. <br>
+## Use Case:
 
+Developers and agents handling shopping-related conversations use this skill to determine whether the current conversation contains shopping or payment intent and summarize product, amount, platform, status, and a short Chinese-language summary.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xhc1111/shopping-intent-extractor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, JSON, Shell commands, Guidance] <br>
-**Output Format:** [JSON object with boolean, enum, string, null, and summary fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The summary field is expected to be concise Chinese text; when no shopping or payment intent is detected, hasIntent is false.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: The skill may summarize shopping or payment-related details from the current conversation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm users are comfortable with this conversation-level summarization before installing or invoking the skill.
+
+Risk: When the optional payment-intent command path is used, unsafe command construction could expose the session ID or alter the intended command.
+
+Mitigation: Run payment-intent through a trusted executable path, validate the session ID, and avoid shell string interpolation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xhc1111/skills/shopping-intent-extractor)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, guidance]
+
+**Output Format:** [Plain JSON object without a Markdown code fence]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The JSON includes hasIntent, intentType, product, amount, platform, status, and a concise Chinese summary; analysis is limited to the current conversation.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata, released 2026-04-16)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

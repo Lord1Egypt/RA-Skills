@@ -1,40 +1,61 @@
-## Description: <br>
-Publishes a local skill directory to ClawHub and helps an agent check required inputs, run the ClawHub CLI, handle common publish errors, and verify the published listing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates publishing a local skill directory to ClawHub, including token checks, CLI patch guidance, slug conflict handling, and rate-limit retry handling.
 
-## Publisher: <br>
-[antonia-sz](https://clawhub.ai/user/antonia-sz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[antonia-sz](https://clawhub.ai/user/antonia-sz)
 
-## Use Case: <br>
-Developers and skill publishers use this skill to publish local OpenClaw skill directories to ClawHub with required metadata, duplicate checks, retry guidance, and post-publish verification. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can lead an agent to perform state-changing actions such as global CLI installation or patching, token-backed publication, and remote release updates. <br>
-Mitigation: Require a dry-run summary and explicit user confirmation before installing or patching CLI files, using a token, or publishing to ClawHub. <br>
-Risk: Publishing the wrong local directory, slug, display name, or changelog could expose unintended skill content or create an incorrect public listing. <br>
-Mitigation: Confirm the skill path, publisher account, slug, display name, version, changelog, and target listing URL before executing the publish command. <br>
+## Use Case:
 
+Developers and skill publishers use this skill to publish local agent skill directories to ClawHub with guided checks, publishing commands, duplicate detection, and recovery paths for common publish errors.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/antonia-sz/clawhub-publish-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and concise status guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include ClawHub CLI commands, token-use instructions, retry guidance, and publication verification steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill may patch globally installed ClawHub CLI files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only in a disposable or tightly scoped environment and require explicit review before applying any CLI patch.
+
+Risk: The publishing flow uses a ClawHub token.
+
+Mitigation: Provide tokens through a safer secret mechanism and avoid recording tokens in prompts, logs, or command history.
+
+Risk: The skill may install or rely on globally installed CLI packages.
+
+Mitigation: Prefer pinned, reviewed CLI versions and avoid unpinned global installs in sensitive environments.
+
+Risk: Automated publish or retry behavior can release content without enough oversight.
+
+Mitigation: Require explicit confirmation before publishing, changing slugs, or scheduling retries.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/antonia-sz/skills/clawhub-publish-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and status messages]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include publish commands, retry instructions, validation steps, and success or error summaries.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

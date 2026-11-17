@@ -1,47 +1,59 @@
-## Description: <br>
-Ultra Memory gives AI agents local, cross-session memory for logging operations, restoring prior work, and recalling past context by keyword. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ultra Memory gives AI agents persistent cross-session memory with operation logging, session restore, keyword recall, summarization, and optional local semantic retrieval.
 
-## Publisher: <br>
-[nanjingya](https://clawhub.ai/user/nanjingya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nanjingya](https://clawhub.ai/user/nanjingya)
 
-## Use Case: <br>
-Developers and agent users use Ultra Memory to persist local task history, restore previous sessions, search prior work, and maintain project knowledge across long-running workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores substantial local cross-session memory about agent activity. <br>
-Mitigation: Install only when persistent memory is desired and protect ~/.ultra-memory with restrictive local permissions. <br>
-Risk: Shared environments can expose or mix memory between users or agents. <br>
-Mitigation: Use scoped memory spaces for shared machines, multi-user workflows, or multiple agents. <br>
-Risk: The REST server can expose memory operations if made reachable without access control. <br>
-Mitigation: Configure a bearer token before exposing the REST server beyond local trusted use. <br>
-Risk: Automatic hooks or multimodal extraction can persist sensitive content unintentionally. <br>
-Mitigation: Enable those features only when the captured tool activity, documents, images, audio, or video are appropriate to retain. <br>
+## Use Case:
 
+Developers and agent users use Ultra Memory to preserve work history across long or recurring tasks, recover prior sessions, and retrieve decisions, files, errors, and project context. It is intended for local memory workflows across Claude Code, OpenClaw, MCP, and REST API clients.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/nanjingya/ultra-memory) <br>
-- [Advanced Configuration](references/advanced-config.md) <br>
-- [REST API Specification](platform/openapi.yaml) <br>
-- [npm Package](https://www.npmjs.com/package/ultra-memory) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, JSON, API calls, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, JSON configuration, and local tool or API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create and query local memory files under the configured Ultra Memory home directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-4.3.1 (source: server release metadata and package.json) <br>
+Risk: The skill can persist broad work history in a local long-term memory store.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a private storage directory, avoid logging secrets, and scope storage per user or project.
+
+Risk: The REST server can expose memory operations if made reachable without strong access controls.
+
+Mitigation: Keep the server local by default and require a strong token before exposing it to shared or browser-accessible environments.
+
+Risk: Shared environments may allow unintended access to session memory.
+
+Mitigation: Review session ID validation and prefer isolated scopes for each user, project, or agent.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nanjingya/skills/ultra-memory)
+- [Advanced configuration reference](references/advanced-config.md)
+- [npm package](https://www.npmjs.com/package/ultra-memory)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands, JSON configuration snippets, and local tool-call guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update local JSON, JSONL, and Markdown memory files when used in script, MCP, REST, or hook modes.]
+
+## Skill Version(s):
+
+4.3.1 (source: package.json and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

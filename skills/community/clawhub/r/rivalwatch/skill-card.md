@@ -1,40 +1,54 @@
-## Description: <br>
-Rivalwatch helps agents track, analyze, compare, and export local competitive intelligence data for competitor analysis workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Rivalwatch provides a local Bash CLI for recording, reviewing, searching, and exporting competitor-intelligence notes.
 
-## Publisher: <br>
-[bytesagain3](https://clawhub.ai/user/bytesagain3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain3](https://clawhub.ai/user/bytesagain3)
 
-## Use Case: <br>
-External users and developers use Rivalwatch to log competitor updates, compare positioning, search activity history, and export locally stored competitive intelligence for reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Entries and exports are stored locally under ~/.local/share/rivalwatch and may contain confidential competitor intelligence. <br>
-Mitigation: Avoid entering secrets or sensitive business data unless local storage is acceptable, and review or remove local logs and exports according to policy. <br>
-Risk: Documented export and status utility behavior may differ because the script contains duplicate command branches for those commands. <br>
-Mitigation: Test the intended command path before relying on export or status output in automated workflows. <br>
+## Use Case:
 
+Developers, analysts, and agents use Rivalwatch to keep local competitor-intelligence notes, review recent entries, search activity history, and export logged data for reports or stakeholder review.
 
-## Reference(s): <br>
-- [Rivalwatch on ClawHub](https://clawhub.ai/bytesagain3/rivalwatch) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Files, Guidance] <br>
-**Output Format:** [Plain text CLI output with optional JSON, CSV, and TXT export files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes local logs and export files under ~/.local/share/rivalwatch when the CLI is used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: evidence release and SKILL.md frontmatter) <br>
+Risk: Competitor notes may include confidential strategy, pricing, customer, or market information stored locally under ~/.local/share/rivalwatch/ and exported to local files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for information suitable for local storage, review entries before export, and avoid entering confidential data unless local retention and export are acceptable.
+
+Risk: The skill's analysis and reporting language can imply more automated competitive analysis than the local logging script performs.
+
+Mitigation: Treat output as logged notes and exported records, and have a human review any strategic interpretation before relying on it.
+
+## Reference(s):
+
+- [ClawHub Rivalwatch Skill Page](https://clawhub.ai/bytesagain3/skills/rivalwatch)
+- [bytesagain3 Publisher Profile](https://clawhub.ai/user/bytesagain3)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Structured terminal text with local JSON, CSV, or plain-text export files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores logs and generated exports under ~/.local/share/rivalwatch/.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release evidence and artifact frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

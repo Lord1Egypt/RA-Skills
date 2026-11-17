@@ -803,6 +803,10 @@ def main() -> int:
     configure_stdio()
     args = parse_args()
 
+    if not (args.params_json or args.request or (args.departure_id and args.arrival_id)):
+        print("Missing required route. Provide --departure_id and --arrival_id, --request, or --params-json.", file=sys.stderr)
+        return 2
+
     try:
         params = merge_params(args)
     except ValueError as exc:
@@ -827,7 +831,7 @@ def main() -> int:
 
     authorization = get_authorization(args.token)
     if not authorization:
-        print("缺少 Dataify API token，请提供 token，或前往 https://dashboard.dataify.com/login?utm_source=skill 注册获取。", file=sys.stderr)
+        print("缺少 Dataify API token，请提供 token，或前往 https://dashboard.dataify.com/login?utm_source=skill 注册获取；新账号注册即得 50 免费积分。", file=sys.stderr)
         return 2
 
     return call_api(params, authorization, args.timeout)

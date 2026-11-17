@@ -1,45 +1,54 @@
-## Description: <br>
-Compresses agent skills to reduce token cost; trigger it with /skill-compressor or when users ask to optimize, compress, or slim down a skill. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Compresses agent skill files to reduce token cost when a user invokes /skill-compressor or asks to optimize, compress, slim down, or debloat a skill.
 
-## Publisher: <br>
-[david0ming](https://clawhub.ai/user/david0ming) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[david0ming](https://clawhub.ai/user/david0ming)
 
-## Use Case: <br>
-Developers and agent maintainers use this skill to analyze a SKILL.md path, classify skill content, and write a reduced copy plus a reduction report under .reduced without overwriting originals. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill analyzes local skill files and may read directories that contain private keys or secrets. <br>
-Mitigation: Use an explicit SKILL.md path and avoid running it on skill directories that contain private keys or secrets. <br>
-Risk: Compressed skill output may omit or alter behavior if accepted without review. <br>
-Mitigation: Review the generated .reduced/ files and REDUCTION_REPORT.md before replacing originals. <br>
+## Use Case:
 
+Developers and agent builders use this skill to compress bulky Claude Code skill directories while preserving operational rules. The skill writes compressed copies and a reduction report under .reduced/ so maintainers can review diffs before replacing originals.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/david0ming/skill-compressor) <br>
-- [SkillReducer methodology paper](https://arxiv.org/abs/2603.29919) <br>
-- [README.md](artifact/README.md) <br>
-- [background.md](artifact/background.md) <br>
-- [examples.md](artifact/examples.md) <br>
-- [templates.md](artifact/templates.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, configuration, guidance] <br>
-**Output Format:** [Markdown files and concise report text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes compressed outputs under the target skill's .reduced/ directory and leaves originals unchanged.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: An optional unpinned npx install command may resolve changing external content over time.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install through ClawHub or a reviewed and pinned source when possible.
+
+Risk: Compressed outputs could remove behavior if the faithfulness review misses operational details.
+
+Mitigation: Review the generated .reduced/ output with a diff and replace originals only after confirming behavior is preserved.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/david0ming/skills/skill-compressor)
+- [SkillReducer methodology paper](https://arxiv.org/abs/2603.29919)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Files, Guidance]
+
+**Output Format:** [Markdown files and concise written guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes compressed copies to .reduced/ and preserves original skill files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

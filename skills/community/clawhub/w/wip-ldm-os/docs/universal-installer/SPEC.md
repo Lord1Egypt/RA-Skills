@@ -144,13 +144,15 @@ A plugin for OpenClaw agents. Lifecycle hooks, tool registration, settings.
 
 A markdown file that teaches agents when and how to use the tool. The instruction interface. Follows the [Agent Skills Spec](https://agentskills.io/specification).
 
-**Convention:** `SKILL.md` at the repo root. YAML frontmatter with name, description. Optional `references/` directory for context files.
+**Convention:** either `SKILL.md` at the repo root, or one or more skill folders at `skills/<skill-name>/SKILL.md`. YAML frontmatter includes name and description. Optional `references/`, `agents/`, `scripts/`, and `assets/` directories live beside `SKILL.md`.
 
 **Platform variants:** Codex CLI reads `AGENTS.md` instead of `SKILL.md`, with the same role and the same content shape. Treat `AGENTS.md` as the Codex-flavored filename for this same interface, not a separate interface. A repo may ship both (or symlink one to the other) so it works in Codex and SKILL.md-aware agents.
 
-**Detection:** `SKILL.md` exists.
+**Detection:** `SKILL.md` exists, or at least one `skills/<skill-name>/SKILL.md` exists.
 
-**Install:** `SKILL.md` deployed to `~/.openclaw/skills/<name>/`. If `references/` exists, deployed alongside SKILL.md and to `settings/docs/skills/<name>/` in the workspace.
+**Install:** the skill folder is deployed to every supported local agent skill surface, including OpenClaw, Codex, Claude Code, and WIP agent compatibility paths when present. If `references/` exists, it is deployed alongside SKILL.md and to `settings/docs/skills/<name>/` in the workspace.
+
+**Npm package shape:** a public skill package can expose `SKILL.md` at package root. For example, `@wipcomputer/wip-ai-chat-ui` is sourced from a private repo folder at `design/skills/wip-ai-chat-ui/`, but publishes a tarball with `SKILL.md`, `agents/`, and `references/` at package root so `ldm install @wipcomputer/wip-ai-chat-ui` installs the skill directly.
 
 **Structure:**
 ```
@@ -160,6 +162,17 @@ repo/
     ├── PRODUCT.md    # What the product is
     ├── TOOLS.md      # MCP tools, CLI commands
     └── ...
+```
+
+Multiple skills can also live in one repo:
+
+```text
+repo/
+└── skills/
+    └── wip-ai-chat-ui/
+        ├── SKILL.md
+        ├── agents/
+        └── references/
 ```
 
 **Key rules (from Agent Skills Spec):**

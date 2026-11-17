@@ -1,40 +1,49 @@
-## Description: <br>
-Agent coordination meeting to brainstorm ideas, review tasks, and plan work. Use for the 4-hour subagent sync meetings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent coordination meeting to brainstorm ideas, review tasks, and plan work. Use for the 4-hour subagent sync meetings.
 
-## Publisher: <br>
-[motox1](https://clawhub.ai/user/motox1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[motox1](https://clawhub.ai/user/motox1)
 
-## Use Case: <br>
-Internal teams use this skill to run short recurring coordination meetings across security operations, marketing and SEO, and agent performance, then summarize action items, new ideas, pending follow-up, and near-term priorities. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Meeting notes may include client-sensitive, incident-sensitive, or confidential business details. <br>
-Mitigation: Use only when the named recipients and memory retention are appropriate, and omit or redact sensitive details when needed. <br>
-Risk: Brainstormed action items and priorities may be incomplete or misleading. <br>
-Mitigation: Have the responsible team review the summary before acting on recommendations. <br>
+## Use Case:
 
+Employees or operators coordinating CyberLite subagent domains use this skill to run short recurring syncs, collect updates across security operations, marketing and SEO, and agent performance, and produce a follow-up report.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/motox1/agent-brainstorm) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown meeting summary with headings and bullet lists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include internal meeting notes, action items, and follow-up priorities.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Meeting summaries may include incidents, vulnerabilities, client security posture, or business ideas.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm enabled memory behavior and avoid persisting sensitive operational or client information unless approved.
+
+## Reference(s):
+
+- [Agent Brainstorm ClawHub page](https://clawhub.ai/motox1/skills/agent-brainstorm)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown meeting summary with action items, new ideas, pending follow-up, and next priorities]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code; follow-up tracking may depend on enabled agent memory features.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

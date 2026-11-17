@@ -1,41 +1,49 @@
-## Description: <br>
-Unfiltered, high-signal advisor that delivers objective feedback without flattery or softening. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Unfiltered, high-signal advisor that delivers objective feedback without flattery or softening.
 
-## Publisher: <br>
-[codeprakhar25](https://clawhub.ai/user/codeprakhar25) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Apache-2.0 <br>
+## Publisher:
 
+[codeprakhar25](https://clawhub.ai/user/codeprakhar25)
 
-## Use Case: <br>
-External users, employees, and developers use this skill when they want direct critique of plans, ideas, decisions, or reasoning. It helps surface weak assumptions, blind spots, opportunity costs, and concrete next steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Apache-2.0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill intentionally uses a blunt critique style that may be inappropriate for sensitive personal topics or when the user wants emotional support. <br>
-Mitigation: Use it only when direct critical feedback is desired, and ask the assistant for a gentler or supportive tone when the topic calls for it. <br>
-Risk: The advisor may give confident-sounding critiques that still depend on incomplete user context. <br>
-Mitigation: Treat the output as guidance to review, challenge, and refine before making important decisions. <br>
+## Use Case:
 
+External users use this skill when they want direct critique of a plan, idea, decision, or pattern of avoidance. It helps surface weak reasoning, blind spots, opportunity costs, and prioritized next steps without defaulting to reassurance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/codeprakhar25/brutal-honesty-advisor) <br>
-- [Publisher profile](https://clawhub.ai/user/codeprakhar25) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown prose with structured critique and action steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No device, account, network, or file access requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The skill can make the assistant more confrontational because it broadly triggers on requests for direct critique or validation-seeking prompts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only when direct critique is desired, and avoid relying on it for emotionally sensitive, medical, mental-health, abuse, or crisis-related discussions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/codeprakhar25/skills/brutal-honesty-advisor)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Guidance, Analysis, Markdown]
+
+**Output Format:** [Markdown prose with structured critique and prioritized action steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Text-only output; no code execution, data access, persistence, or hidden behavior reported by security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

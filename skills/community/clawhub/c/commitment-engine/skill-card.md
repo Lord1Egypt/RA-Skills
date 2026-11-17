@@ -1,40 +1,54 @@
-## Description: <br>
-Commitment Engine helps an agent record time-bound commitments in a persistent ledger, track status changes, and prepare or escalate tasks through heartbeat and cron checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Commitment Engine turns time-bound verbal tasks into trackable commitment records with heartbeat checks and optional OpenClaw cron scheduling.
 
-## Publisher: <br>
-[dottythehomeless](https://clawhub.ai/user/dottythehomeless) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dottythehomeless](https://clawhub.ai/user/dottythehomeless)
 
-## Use Case: <br>
-Agent users can use this skill to turn explicit time-bound requests and recurring obligations into trackable commitments. It is intended for agents that need reminders, status transitions, and follow-up behavior without relying on short-term conversational memory. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can persist user commitments and scheduled follow-up actions, which may retain sensitive tasks across sessions. <br>
-Mitigation: Use it only when persistent commitment tracking is desired; review, change, cancel, and delete ledger entries and avoid sensitive commitments unless persistence is acceptable. <br>
-Risk: The security review notes future cron-triggered actions without clear approval or cleanup controls. <br>
-Mitigation: Confirm cron jobs before enabling them and periodically audit active commitments and scheduled jobs for obsolete or unintended actions. <br>
+## Use Case:
 
+Developers and agent operators use this skill to make an assistant record, track, prepare, and escalate time-bound commitments instead of relying on conversational memory.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dottythehomeless/commitment-engine) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown instructions with ledger tables, state-machine guidance, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May maintain a commitments.md ledger and propose OpenClaw cron jobs for recurring commitments.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter states 2.0.0) <br>
+Risk: The skill may create durable commitment records and scheduled OpenClaw cron jobs that persist beyond the original conversation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit confirmation before any cron job is created, review the schedule and message, and maintain clear list, cancel, expire, and cleanup procedures.
+
+Risk: Priority interruption and overdue escalation can disrupt other agent work if commitments are recorded incorrectly or left stale.
+
+Mitigation: Review commitment entries before activation and regularly expire, complete, or cancel stale records.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dottythehomeless/skills/commitment-engine)
+- [Publisher profile](https://clawhub.ai/user/dottythehomeless)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown ledger entries, OpenClaw cron commands, and operational guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create durable commitment records and scheduled jobs when adopted by an agent.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter says 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

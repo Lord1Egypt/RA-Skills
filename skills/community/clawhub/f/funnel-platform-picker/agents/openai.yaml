@@ -1,0 +1,5 @@
+interface:
+  display_name: Funnel Platform Picker
+  short_description: Choose a landing page or sales funnel platform by working out the real total cost and lock-in for a specific case - comparing ClickFunnels, CartFlows, FunnelKit, systeme.io, GoHighLevel, Shopify apps, hand-rolled pages and self-hosted open-source options.
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg

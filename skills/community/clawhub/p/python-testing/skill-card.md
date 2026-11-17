@@ -1,47 +1,55 @@
-## Description: <br>
-Python Testing is a quick reference for running pytest, using mock and patch, parameterizing tests, working with fixtures, testing async code, and measuring coverage. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Python testing quick reference for running pytest, using mock and patch, parameterizing tests, fixtures, async tests, and coverage checks.
 
-## Publisher: <br>
-[afine907](https://clawhub.ai/user/afine907) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[afine907](https://clawhub.ai/user/afine907)
 
-## Use Case: <br>
-Developers use this skill as a concise Python testing reference for pytest commands, test examples, mock and patch usage, fixtures, async tests, and coverage configuration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Running pytest commands can execute code imported from the target repository. <br>
-Mitigation: Run test commands only in repositories you trust or inside an isolated environment. <br>
-Risk: Optional pip install examples can modify the active Python environment. <br>
-Mitigation: Use a virtual environment before installing pytest plugins such as pytest-asyncio, pytest-cov, or pytest-mock. <br>
+## Use Case:
 
+Developers and engineers use this skill as a compact Python testing reference for pytest commands, test patterns, mocks, fixtures, asynchronous tests, and coverage configuration.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/afine907/python-testing) <br>
-- [pytest Documentation](https://docs.pytest.org/) <br>
-- [pytest-cov Documentation](https://pytest-cov.readthedocs.io/) <br>
-- [pytest Reference](references/pytest.md) <br>
-- [Mocking Reference](references/mocking.md) <br>
-- [Fixtures Reference](references/fixtures.md) <br>
-- [Async Testing Reference](references/async.md) <br>
-- [Coverage Reference](references/coverage.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with bash, Python, INI, and TOML code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only reference material; no hidden execution behavior reported by security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Copied testing commands may install or run project dependencies in the user's environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a virtual environment and pin dependency versions for projects with stronger supply-chain requirements.
+
+## Reference(s):
+
+- [pytest](references/pytest.md)
+- [Mocking](references/mocking.md)
+- [Fixtures](references/fixtures.md)
+- [Async Testing](references/async.md)
+- [Coverage Testing](references/coverage.md)
+- [pytest documentation](https://docs.pytest.org/)
+- [pytest-cov documentation](https://pytest-cov.readthedocs.io/)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown with inline bash, Python, INI, and TOML examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Concise reference material intended for an agent to adapt into testing guidance or commands.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,54 @@
-## Description: <br>
-Searches installed macOS applications by keyword and opens selected apps with the macOS open command. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches installed macOS applications by keyword using Spotlight or common application directories and launches selected apps with the macOS open command.
 
-## Publisher: <br>
-[dlutwuwei](https://clawhub.ai/user/dlutwuwei) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dlutwuwei](https://clawhub.ai/user/dlutwuwei)
 
-## Use Case: <br>
-Developers and macOS users use this skill to find installed applications, review matches when there are multiple results, and launch the intended app from Spotlight or known application directories. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may launch a single matched macOS application automatically. <br>
-Mitigation: For extra control, have the agent list matching application paths and wait for confirmation before opening anything. <br>
+## Use Case:
 
+External users and developers use this skill to find installed macOS applications, review matching app paths, and launch a selected application from an agent workflow.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dlutwuwei/mac-app-launcher) <br>
-- [Publisher profile](https://clawhub.ai/user/dlutwuwei) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and application path lists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May execute local macOS application search and launch commands when used by an agent with shell access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can launch macOS applications automatically from an agent workflow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require user confirmation before executing open commands, especially when the selected application was inferred from a search result.
+
+Risk: User-provided app names and search text may be mishandled when inserted into shell commands.
+
+Mitigation: Treat app names and search terms as untrusted input, quote arguments safely, and prefer full application paths returned by Spotlight.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dlutwuwei/skills/mac-app-launcher)
+- [Publisher profile](https://clawhub.ai/user/dlutwuwei)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline bash commands and application path lists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May run macOS search and launch commands based on user-provided application names or keywords.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

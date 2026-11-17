@@ -1,3 +1,4 @@
+<!-- Locale: China / Sanya Yazhou. Reference language: Chinese; respond in the language requested by the user. Historical reference data; verify current official sources before applying policy terms. -->
 # 崖州区 招商常见问题解答（FAQ）
 > 供崖州区政府招商工作人员参考使用 | 更新日期：2026年4月
 
@@ -129,3 +130,4 @@
 - **官方网站**：https://www.yazhou-bay.com
 - **惠企服务平台**：https://qyfwq.yazhou-bay.com
 - **上班时间**：上午 08:30-12:00 ｜ 下午 14:30-18:30
+

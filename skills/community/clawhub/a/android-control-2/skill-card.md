@@ -1,42 +1,53 @@
-## Description: <br>
-Control an Android device via command-line tools (uiautomator, screencap, input, am), trying non-root execution first and falling back to root when available. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Control an Android device via command-line tools (uiautomator, screencap, input, am). Automatically attempts non-root execution first and falls back to root if necessary.
 
-## Publisher: <br>
-[kv0768](https://clawhub.ai/user/kv0768) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[kv0768](https://clawhub.ai/user/kv0768)
 
-## Use Case: <br>
-Developers and device automation operators use this skill to inspect and control an Android device from an agent session with Android command-line tools, including UI dumps, screenshots, taps, swipes, app launches, and text input. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can retry Android commands through root access when non-root execution fails. <br>
-Mitigation: Use it only on a device where root-backed control is intended, and require explicit confirmation before any root-backed action. <br>
-Risk: Screenshots and UI hierarchy captures can expose sensitive screen data. <br>
-Mitigation: Prefer a test device, keep sensitive screens closed, and confirm before captures are taken. <br>
-Risk: Input, launch, and settings actions can change device state or trigger user-facing actions. <br>
-Mitigation: Require explicit confirmation before text entry, settings changes, purchases, messages, or other state-changing operations. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Android UI Automator documentation](https://developer.android.com/studio/test/uiautomator) <br>
-- [ClawHub release page](https://clawhub.ai/kv0768/android-control-2) <br>
+## Use Case:
 
+Developers and device operators use this skill to inspect and control an Android device from an agent session by collecting UI snapshots, capturing screenshots, simulating touch and text input, and launching apps.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown instructions with inline shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include commands for UI hierarchy XML, screenshot data, input events, app launches, and text entry.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.1 (source: server-resolved release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can retry screenshots, UI dumps, taps, swipes, app launches, and text entry with already-authorized root access when normal Android commands fail.
+
+Mitigation: Install only when agent-controlled Android device operation is intended; remove automatic su fallbacks or require explicit confirmation before elevated actions.
+
+Risk: Screenshots and UI hierarchy dumps can expose visible sensitive data from the device.
+
+Mitigation: Avoid using the skill while credentials, private messages, financial apps, or other sensitive content are visible.
+
+## Reference(s):
+
+- [Android UI Automator documentation](https://developer.android.com/studio/test/uiautomator)
+- [ClawHub Android Control skill page](https://clawhub.ai/kv0768/skills/android-control-2)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include commands that collect UI hierarchy XML, base64-encoded screenshots, or perform device input actions.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

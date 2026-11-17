@@ -1,43 +1,61 @@
-## Description: <br>
-Downloads Douyin videos from shared links and returns video metadata with the saved local file path. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Douyin video downloader that parses a Douyin share link, downloads the video, and returns video metadata plus the saved local file path.
 
-## Publisher: <br>
-[andjie98](https://clawhub.ai/user/andjie98) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[andjie98](https://clawhub.ai/user/andjie98)
 
-## Use Case: <br>
-External users and developers use this skill to parse Douyin share links, download a video to the OpenClaw workspace, and receive basic metadata such as title, author, engagement counts, file path, and file size. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill downloads media from a user-provided URL and writes it to the local OpenClaw workspace. <br>
-Mitigation: Run it only with trusted Douyin share links and review the downloaded file before reuse or redistribution. <br>
-Risk: Each new download deletes the previous douyin_last.mp4 file. <br>
-Mitigation: Copy any video that must be retained before running another download. <br>
-Risk: Security confidence is limited by the available evidence even though the recorded verdict is clean. <br>
-Mitigation: Review the skill text before installing and avoid granting credentials, broad write access, or external-action authority unless a deployment requires them. <br>
+## Use Case:
 
+External users and agents use this skill to download an authorized Douyin video from a shared URL, retrieve basic video metadata, and get the local file path for downstream handling.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/andjie98/douyin-video) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/andjie98) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, files] <br>
-**Output Format:** [Console text followed by a JSON result and a downloaded MP4 file path] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires node; writes a single fixed file at ~/.openclaw/workspace/douyin-downloads/douyin_last.mp4 and replaces the previous download.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: The skill accepts and follows supplied or extracted URLs, which can trigger outbound network requests outside the user's intended destination.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it in an environment with restricted outbound networking and provide only trusted Douyin share links.
+
+Risk: Downloads can consume disk space because file size is not bounded by the skill.
+
+Mitigation: Use storage limits or a sandboxed workspace and monitor the download directory.
+
+Risk: Each run replaces ~/.openclaw/workspace/douyin-downloads/douyin_last.mp4.
+
+Mitigation: Copy any video that must be retained before starting another download.
+
+Risk: Downloaded content may be subject to platform terms or third-party rights.
+
+Mitigation: Use the skill only for videos the user is authorized to download and share.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/andjie98/skills/douyin-video)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Files]
+
+**Output Format:** [Console text with a JSON result object and a local MP4 file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Downloads to ~/.openclaw/workspace/douyin-downloads/douyin_last.mp4 and replaces the previous file at that path on each successful run.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

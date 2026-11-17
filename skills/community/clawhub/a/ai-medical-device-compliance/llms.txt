@@ -1,0 +1,37 @@
+# ai-medical-device-compliance
+
+> 本文件是 AI 可读的技能索引（llms.txt 惯例）。AI 代理优先读 `SKILL.md`；人类看 `README.md`。
+
+## Purpose / 一句话定位
+
+An all-in-one practical playbook for global regulatory compliance of AI/ML medical devices — covering US FDA pathways (510(k)/De Novo/PMA, PCCP predetermined change control, QMSR, cybersecurity SBOM), EU (MDR Rule 11 classification, AI Act high-risk deadline of August 2028, CER/PMCF clinical evaluation), and China NMPA (classification, 2026 updated guidance, change registration, 1,000-case data localisation, innovation channel), with clinical evidence requirements comparison, lifecycle change management (GMLP/algorithm drift), cost and timeline comparisons, and parallel go-to-market strategy. Built for regulatory engineers, R&D and international business leaders. Includes a zero-dependency local toolkit for three-market classification, pathway and cost/timeline queries, and change-trigger checks.
+
+A practical guide to getting AI/ML medical devices cleared in the US, EU and China, from pathway selection and classification through clinical evidence and change control. It covers FDA 510(k)/De Novo/PMA and PCCP, EU MDR Rule 11 and AI Act timelines, and NMPA classification and change registration. Use when planning a first submission or deciding whether an algorithm update needs a new filing. AI/ML 医疗器械全球注册合规实操手册——覆盖美国FDA（510(k)/De Novo/PMA、PCCP预设变更控制、QMSR、网络安全SBOM）、欧盟（MDR Rule 11分类、AI Act高风险2028-08-02、CER/PMCF临床评价）、中国NMPA（分类界定、2026更新指南、变更注册、1000例数据本地化、创新通道）三地完整注册路径，含临床证据要求对比、变更管理与全生命周期（GMLP/算法漂移）、三地费用周期对比与并行出海策略。面向医械法规工程师、研发与国际业务负责人，附零依赖本地工具一键查询三地分类、路径、费用周期估算与变更触发判定。
+
+## When to use / 什么时候用
+
+- 这个AI辅助诊断软件按几类报
+- 算法改了要不要重新注册
+- 这款软件在美国走哪条申报路径
+- 欧盟AI法案对我们什么时候生效
+- 同一款产品中美欧能一起报吗
+- 训练数据一定要放在境内吗
+
+## Key files / 关键文件
+
+- [SKILL.md](SKILL.md) — 主说明书（frontmatter + 触发条件 + 执行步骤）
+- [README.md](README.md) — 人类总览
+- [LICENSE.md](LICENSE.md) — 分层许可（代码层 MIT／理论与文本保留权利）
+
+## Boundaries / 边界
+
+- 本技能只处理上面写的场景；不覆盖同领域其它技能的职责范围。
+- 输出不含未经验证的事实性断言；需要证据时给出出处。理论根基：LGD 三律（有籍 Recorded · 有证 Evidenced · 有门禁 Gated）。
+
+## Ecosystem / 生态入口
+
+- 生态总入口 / hub: https://zhaoxinghua09-cell.github.io/lgd-hub/
+- 理论正本 / theory: https://github.com/zhaoxinghua09-cell/LGD
+- 形式化论文 / paper: https://doi.org/10.5281/zenodo.22456647
+- 协议与参考实现 / protocol: https://github.com/zhaoxinghua09-cell/uibc-core
+- 全部已发布技能 / all skills: https://github.com/zhaoxinghua09-cell/agent-skills

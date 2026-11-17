@@ -123,7 +123,7 @@ function assertAllowedBinary(args) {
 // ---------------------------------------------------------------------------
 
 module.exports = async function calendarHandler(params, context) {
-  const { action, range, title, start, end, calendar, notes, location } = params;
+  const { action, range, title, start, end, calendar, notes, location, confirmed } = params;
 
   try {
     if (action === 'lookup') {
@@ -178,6 +178,15 @@ module.exports = async function calendarHandler(params, context) {
     }
 
     if (action === 'create') {
+      if (confirmed !== true) {
+        return {
+          success: false,
+          confirmation_required: true,
+          error: 'Calendar creation requires explicit confirmation',
+          message: 'Please confirm the exact calendar title, date, start time, end time, and calendar before I add it.',
+        };
+      }
+
       if (!title || !start || !end) {
         return {
           success: false,
@@ -252,7 +261,7 @@ module.exports = async function calendarHandler(params, context) {
     } catch (_) {}
     return {
       success: false,
-      error: errMsg,
+      error: 'Calendar operation failed',
       message: "I had trouble accessing the calendar. Let me note that for follow-up.",
     };
   }

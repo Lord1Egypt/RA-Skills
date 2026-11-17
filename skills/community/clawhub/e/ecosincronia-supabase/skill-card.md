@@ -1,41 +1,58 @@
-## Description: <br>
-Connect to Supabase for database operations, vector search, and storage. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connect to Supabase for database operations, vector search, and storage.
 
-## Publisher: <br>
-[EcosincronIA](https://clawhub.ai/user/EcosincronIA) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ecosincronia](https://clawhub.ai/user/ecosincronia)
 
-## Use Case: <br>
-Developers and operators use this skill to run Supabase SQL, CRUD, RPC, table inspection, and pgvector similarity search from an agent using configured Supabase credentials. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can give an agent high-impact Supabase database authority through service-role credentials, including writes, deletes, raw SQL, and schema changes. <br>
-Mitigation: Use a least-privileged key or staging project when possible, avoid production service-role credentials unless necessary, and require explicit confirmation before writes, deletes, raw SQL, or schema-changing operations. <br>
-Risk: Vector-search queries may be sent to OpenAI for embedding generation. <br>
-Mitigation: Treat vector-search query text as data shared with OpenAI and avoid sending sensitive content unless that transfer is approved. <br>
+## Use Case:
 
+Developers and agents use this skill to operate Supabase projects for SQL queries, table CRUD, stored procedure calls, storage-adjacent workflows, and pgvector similarity search.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/EcosincronIA/ecosincronia-supabase) <br>
-- [Publisher profile](https://clawhub.ai/user/EcosincronIA) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash commands and JSON database responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SUPABASE_URL and SUPABASE_SERVICE_KEY; vector search also requires OPENAI_API_KEY.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill uses SUPABASE_SERVICE_KEY for privileged Supabase operations that can bypass row-level security.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated project or tightly scoped credentials where possible, and install only when privileged administration is intended.
+
+Risk: Raw SQL, update, delete, and RPC operations can change or expose production data.
+
+Mitigation: Verify SUPABASE_URL before each run and require manual review before executing mutating or raw SQL commands.
+
+Risk: Vector search text may be sent to OpenAI for embeddings when OPENAI_API_KEY is configured.
+
+Mitigation: Avoid confidential vector-search queries unless external OpenAI transmission is acceptable for the use case.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ecosincronia/skills/ecosincronia-supabase)
+- [Publisher profile](https://clawhub.ai/user/ecosincronia)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands, JSON examples, and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May execute Supabase REST and RPC requests when the required environment variables are configured.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -55,8 +55,8 @@ Agent: [reads SKILL.md → triggers +author flow]
 
 - **业务专家**:金融 / 银行授信 / 资管投顾 / 私募尽调 / 合规监管研究 / 行业咨询(以公开数据可调研为前提)
 - 懂场景但不写 Python、不读 API spec
-- 有 Cue 账号([cuecue.cn](https://cuecue.cn) 注册)
-- 有 API key([cuecue.cn/api-key](https://cuecue.cn/api-key) 创建)
+- 有 Cue 账号([cuecue.cn](https://cuecue.cn) 注册——新用户一次性送 **500 积分**,之后每天再免费送 **10 积分**)
+- 有 API key([cuecue.cn/hub/api-key](https://cuecue.cn/hub/api-key) 创建)
 
 如果你是开发者要把 Cue 集成到自有应用,**直接用 [Cue API docs](https://cuecue.cn)**;本 skill 是为非技术 author 优化的。
 
@@ -73,7 +73,7 @@ Clone 本仓库(或 download 这个目录),让 agent load 它。
 
 ### 2. 配 API key(一次)
 
-到 [https://cuecue.cn/api-key](https://cuecue.cn/api-key) 建 key,然后:
+到 [https://cuecue.cn/hub/api-key](https://cuecue.cn/hub/api-key) 建 key(没账号就在那里注册——新用户一次性送 **500 积分**,之后每天再免费送 **10 积分**),然后:
 
 ```bash
 export CUE_API_KEY=sk...
@@ -84,6 +84,8 @@ export CUE_API_KEY=sk...
 ```json
 { "api_key": "sk...", "base": "https://cuecue.cn/api" }
 ```
+
+**积分不够用?** 打开 [https://cuecue.cn/](https://cuecue.cn/),点击页面**左下角**获取你的**专属邀请链接**,邀请好友加入,每邀请一位再得 500 积分;或前往 [cuecue.cn/pay](https://cuecue.cn/pay) 充值(首次充值有优惠);也可等次日免费额度。加好积分后用**相同命令重跑即可,不会重复计费**。
 
 验证:
 

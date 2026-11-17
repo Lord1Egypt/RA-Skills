@@ -1,44 +1,59 @@
-## Description: <br>
-Trades altcoin (ETH/SOL/XRP) Up/Down markets based on BTC weekend price threshold momentum drift. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Trades ETH, SOL, and XRP Up/Down markets based on BTC weekend price-threshold momentum drift, defaulting to paper trading with optional live Polymarket execution.
 
-## Publisher: <br>
-[diagnostikon](https://clawhub.ai/user/diagnostikon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[diagnostikon](https://clawhub.ai/user/diagnostikon)
 
-## Use Case: <br>
-External users and developers use this skill to run or adapt a Polymarket trading agent that compares BTC weekend threshold-market drift against ETH, SOL, and XRP Up/Down markets. It defaults to paper trading and requires an explicit live mode for real trades. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: SIMMER_API_KEY is a sensitive trading credential. <br>
-Mitigation: Store it only in the runtime secret manager or environment and rotate it if exposed. <br>
-Risk: Running with --live can place real Polymarket trades and put USDC at risk. <br>
-Mitigation: Run in the default paper mode first, set account and position limits, and use live mode only with funds the operator is willing to risk. <br>
-Risk: The strategy depends on third-party market data and the simmer-sdk dependency. <br>
-Mitigation: Review the dependency and current market behavior before deployment, especially after SDK or venue changes. <br>
+## Use Case:
 
+External traders and agent developers use this skill to run or adapt a weekend Polymarket macro strategy that compares BTC threshold-market drift with lagging ETH, SOL, and XRP Up/Down markets. It can be used in paper mode for evaluation or, with explicit live configuration, to place real trades.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/diagnostikon/polymarket-macro-weekend-momentum-trader) <br>
-- [simmer-sdk on PyPI](https://pypi.org/project/simmer-sdk/) <br>
-- [simmer-sdk on GitHub](https://github.com/SpartanLabsXyz/simmer-sdk) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Console text and trade execution requests through simmer-sdk] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SIMMER_API_KEY; defaults to paper trading unless run with --live.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.3 (source: server release evidence) <br>
+Risk: Live mode can place real Polymarket trades using SIMMER_API_KEY, and server security guidance warns that advertised volume and concurrent-position limits are not fully enforced.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep paper mode as the default; run with --live only after accepting the financial risk, using a restricted API key, small balances, and venue-side spending limits.
+
+Risk: The trading strategy depends on weekend BTC-to-altcoin lag and can produce wrong or stale signals.
+
+Mitigation: Review market conditions before enabling live trading and tune max position, minimum volume, spread, and drift thresholds conservatively.
+
+Risk: The skill depends on simmer-sdk for market discovery, configuration, and order placement.
+
+Mitigation: Install a pinned and verified simmer-sdk version before live use.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/diagnostikon/skills/polymarket-macro-weekend-momentum-trader)
+- [simmer-sdk on PyPI](https://pypi.org/project/simmer-sdk/)
+- [simmer-sdk GitHub repository](https://github.com/SpartanLabsXyz/simmer-sdk)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Code, Shell commands, Configuration, API calls, Guidance]
+
+**Output Format:** [Markdown guidance, Python code, JSON configuration, and console log text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SIMMER_API_KEY and simmer-sdk; defaults to paper trading unless run with --live.]
+
+## Skill Version(s):
+
+0.0.3 (source: server release metadata; artifact frontmatter reports 1.0.0 and clawhub.json reports 0.0.2)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

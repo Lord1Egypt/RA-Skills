@@ -1,42 +1,57 @@
-## Description: <br>
-Compile raw wiki entries from Phase 1 into structured, distilled knowledge points using an LLM, grouping by topic and saving refined outputs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Compiles raw wiki entries into structured knowledge points by grouping entries by topic and using LLM distillation to save refined Markdown outputs.
 
-## Publisher: <br>
-[sora-mury](https://clawhub.ai/user/sora-mury) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sora-mury](https://clawhub.ai/user/sora-mury)
 
-## Use Case: <br>
-Developers use this skill to turn raw wiki notes from the first Karpathy pipeline phase into grouped, distilled knowledge points for a local knowledge base. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Wiki notes may be sent to the configured LLM service during distillation. <br>
-Mitigation: Use this skill only with wiki notes suitable for that LLM endpoint, and keep the endpoint local or otherwise trusted for sensitive notes. <br>
-Risk: Generated knowledge points may contain incomplete or misleading distillations. <br>
-Mitigation: Review generated knowledge points before relying on them or adding them to a durable knowledge base. <br>
-Risk: The bundled end-to-end tests load sibling pipeline skills. <br>
-Mitigation: Review those sibling skills before running the end-to-end tests. <br>
+## Use Case:
 
+Developers and knowledge-base maintainers use this skill to turn Phase 1 wiki entries into concise, tagged knowledge points for a Karpathy-style LLM knowledge base.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sora-mury/karpathy-compile) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, text] <br>
-**Output Format:** [Markdown knowledge-point files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Groups wiki entries by tag or topic and writes dated knowledge-point files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill allows broad local file access through wiki and output paths.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it in a workspace without sensitive files and keep path or filename parameters under trusted control.
+
+Risk: LLM-generated knowledge points may preserve incorrect or untrusted content from source wiki entries.
+
+Mitigation: Use trusted wiki inputs and review generated knowledge points before relying on them.
+
+Risk: Bundled cross-project tests dynamically load sibling skill directories.
+
+Mitigation: Do not run the bundled cross-project tests unless those sibling skill directories are trusted.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sora-mury/skills/karpathy-compile)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, files]
+
+**Output Format:** [Markdown knowledge-point documents]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes dated knowledge-point files from trusted wiki inputs; LLM distillation depends on a local Ollama-compatible endpoint.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

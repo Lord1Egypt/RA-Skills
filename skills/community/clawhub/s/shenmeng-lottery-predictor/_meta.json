@@ -1,6 +1,9 @@
 {
-  "ownerId": "kn71568gr0p3240v36pag6f7rx83qbb2",
-  "slug": "shenmeng-lottery-predictor",
+  "name": "lottery-predictor",
   "version": "1.1.0",
-  "publishedAt": 1775123138552
+  "description": "中国体育彩票/福利彩票预测分析工具 - 支持排列三、排列五、大乐透、双色球、七星彩、足彩14场，新增自动进化系统",
+  "author": "shenmeng",
+  "tags": ["lottery", "彩票", "预测", "分析", "大乐透", "双色球", "排列三", "足彩", "自动进化"],
+  "entry": "SKILL.md",
+  "license": "MIT"
 }

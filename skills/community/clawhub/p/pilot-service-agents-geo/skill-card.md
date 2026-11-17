@@ -1,44 +1,55 @@
-## Description: <br>
-Provides geographic and geolocation API access, including Google Maps services, open geocoders, and IP-to-location lookups. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Geographic and geolocation APIs through Pilot Protocol service agents, including Google Maps Platform, open geocoders, and IP-to-location lookups.
 
-## Publisher: <br>
-[teoslayer](https://clawhub.ai/user/teoslayer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[teoslayer](https://clawhub.ai/user/teoslayer)
 
-## Use Case: <br>
-Developers and agents use this skill to discover and query Pilot Protocol geo service agents for address conversion, coordinates, routes, travel time, elevation, timezone, air quality, places, and IP-based location lookups. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Geo queries can disclose sensitive IPs, WiFi or cell identifiers, precise coordinates, or personal addresses to remote agents and providers. <br>
-Mitigation: Submit only data you are authorized to share, avoid sensitive location identifiers unless consent and policy allow it, and review requests before sending them. <br>
-Risk: The skill delegates work to Pilot Protocol service agents and upstream map or geolocation providers, so routing, cost, availability, and result quality can vary. <br>
-Mitigation: Use list-agents and /help to confirm the current agent contract before querying, and review returned JSON or prose before relying on it. <br>
-Risk: Flight-tracking requests can be routed through a geo agent listed in the catalog even though a dedicated flights skill is the intended path. <br>
-Mitigation: Use the dedicated Pilot service agents flights skill for flight tracking rather than the geo skill's opensky-bbox agent. <br>
+## Use Case:
 
+Developers and agents use this skill to discover and query geography service agents for address geocoding, reverse geocoding, directions, distance, elevation, timezone, air quality, places, postal validation, and IP-based location lookup workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/teoslayer/pilot-service-agents-geo) <br>
-- [Pilot Protocol](https://pilotprotocol.network) <br>
-- [Pilot skills catalog](https://teoslayer.github.io/pilot-skills/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration instructions, Text, JSON] <br>
-**Output Format:** [Markdown guidance with bash command examples and JSON response envelopes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires pilotctl, a running Pilot Protocol daemon joined to network 9, and reachable service agents; responses depend on remote agents and upstream providers.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: Precise location, device observation, address, coordinate, IP address, WiFi, or cell data may be routed through Pilot Protocol service agents and upstream providers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm before sending sensitive location inputs, verify the selected hostname and provider, and run the skill with the least local privilege available.
+
+Risk: The security review notes that the package documents a flight-tracking agent while also saying flight tracking is out of scope.
+
+Mitigation: Avoid the documented aircraft-state agent until the package scope is clarified.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/teoslayer/skills/pilot-service-agents-geo)
+- [Pilot Protocol](https://pilotprotocol.network)
+- [Pilot Skills](https://teoslayer.github.io/pilot-skills/)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON response examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Queries return service-agent responses through pilotctl inbox entries; upstream services may return JSON envelopes or natural-language summaries.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,38 +1,53 @@
-## Description: <br>
-Guides Pinterest Pin creation, description optimization, board SEO, and Pinterest content planning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+When the user wants to create Pinterest Pins, optimize Pin descriptions, or grow Pinterest presence.
 
-## Publisher: <br>
-[kostja94](https://clawhub.ai/user/kostja94) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kostja94](https://clawhub.ai/user/kostja94)
 
-## Use Case: <br>
-Marketing teams, creators, and agents use this skill to draft Pinterest Pin titles, descriptions, board recommendations, and alt text for organic Pinterest content. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Project context used for Pinterest copy may contain private strategy details. <br>
-Mitigation: Review referenced project-context sections before use and avoid reusing confidential strategy details in generated marketing copy. <br>
+## Use Case:
 
+External creators, marketers, and agents use this skill to draft Pinterest pin titles, descriptions, board recommendations, and alt text for Pinterest content planning and optimization.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kostja94/pinterest-posts) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with structured title, description, board recommendation, and alt text sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution, credentials, background activity, or account actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and skill frontmatter) <br>
+Risk: The skill may activate on broad Pinterest-related mentions and apply Pinterest-specific guidance to adjacent requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the request is about Pinterest pins, descriptions, boards, SEO, or Pinterest marketing before applying the skill.
+
+Risk: If project context files exist, the skill may use keyword and content strategy sections that are stale or mismatched to the current campaign.
+
+Mitigation: Review project keywords and content strategy before relying on generated titles, descriptions, board recommendations, or alt text.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kostja94/skills/pinterest-posts)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces Pinterest pin titles, descriptions, board recommendations, and alt text suggestions.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,58 @@
-## Description: <br>
-Query China Happy 8 (KL8) lottery historical data for the latest draw, a specific issue, recent draws, and number frequency analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query China Happy 8 (KL8) lottery historical data, including latest draw, issue lookup, recent draws, and number frequency analysis.
 
-## Publisher: <br>
-[534422530](https://clawhub.ai/user/534422530) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[534422530](https://clawhub.ai/user/534422530)
 
-## Use Case: <br>
-Developers and agents use this skill to inspect a local snapshot of China Happy 8 lottery draw data, including latest issue lookup, recent issue listing, and simple frequency analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses stale hardcoded March-April 2026 KL8 data and does not fetch current draw results. <br>
-Mitigation: Treat results as historical examples unless the KL8_DATA dictionary is manually updated from an authoritative source. <br>
-Risk: The artifact documentation contains unrelated Bilibili notes and broad trigger phrases that may confuse users or agents. <br>
-Mitigation: Clean the README content and narrow trigger phrases before relying on the skill in production workflows. <br>
+## Use Case:
 
+External users and developers use this skill to query a bundled China Happy 8 lottery dataset and request the latest draw, a specific issue, recent draw listings, or simple number frequency analysis.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/534422530/kl8-data) <br>
-- [Publisher profile](https://clawhub.ai/user/534422530) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [kl8_data.py](artifact/kl8_data.py) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, guidance] <br>
-**Output Format:** [Python function calls and console text output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a local python binary; data is a hardcoded March-April 2026 snapshot.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The bundled lottery data is hardcoded and may be stale.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify draw results against an authoritative source before relying on them.
+
+Risk: Frequency analysis can be mistaken for predictive lottery advice.
+
+Mitigation: Present the analysis as descriptive statistics only and avoid suggesting it predicts future draws.
+
+Risk: Broad Chinese lottery trigger phrases may route generic lottery questions to this KL8-specific skill.
+
+Mitigation: Confirm that the user is asking about China Happy 8 or KL8 before using the skill for lottery queries.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/534422530/skills/kl8-data)
+- [ClawHub publisher profile](https://clawhub.ai/user/534422530)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, guidance]
+
+**Output Format:** [Plain text query results and Markdown or Python snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses a hardcoded March-April 2026 KL8 dataset and does not retrieve fresh draw data.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter says 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,53 @@
-## Description: <br>
-Find and book theme park tickets for destinations such as Disney, Universal Studios, Happy Valley, and Chimelong, with real-time availability, pricing, express pass options, and related travel services powered by Fliggy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find and book theme park tickets for Disney, Universal Studios, Happy Valley, Chimelong, and related travel services using FlyAI/Fliggy availability, pricing, and booking links.
 
-## Publisher: <br>
-[dingtom336-gif](https://clawhub.ai/user/dingtom336-gif) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dingtom336-gif](https://clawhub.ai/user/dingtom336-gif)
 
-## Use Case: <br>
-External users and agent operators use this skill to search theme park ticket options and related travel services through the flyai CLI, then present booking-ready Markdown results with links sourced from CLI output. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill instructs agents to install an unpinned global npm CLI, creating a persistent system change. <br>
-Mitigation: Review and approve the npm install manually, verify the @fly-ai/flyai-cli package, and consider running the skill in a contained environment. <br>
-Risk: Booking links, prices, and availability come from flyai/Fliggy output and should not be treated as independent travel advice. <br>
-Mitigation: Verify booking links, prices, and terms directly before purchase. <br>
+## Use Case:
 
+External users and travel agents use this skill to search theme park ticket options, compare availability and pricing, and return booking links sourced from the FlyAI CLI.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dingtom336-gif/theme-park) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with comparison tables, booking links, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires flyai CLI output as the data source; results should include Book links when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill directs agents to perform an unpinned global npm install of the FlyAI CLI when it is missing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install the CLI only after verifying the package source, and prefer a pinned or local install in controlled environments.
+
+Risk: The skill routes ticket discovery and booking through third-party commercial booking links.
+
+Mitigation: Verify returned booking URLs, prices, availability, and terms before purchase.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/dingtom336-gif/skills/theme-park)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with booking links and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should be based on FlyAI CLI results and include booking links when presenting ticket options.]
+
+## Skill Version(s):
+
+3.2.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,58 @@
-## Description: <br>
-Clips and downloads specific time ranges or full YouTube videos in selected qualities, including audio-only MP3 extraction, using precise timestamps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Clip and download specific time ranges or full YouTube videos in selected qualities, including audio-only MP3 extraction, using precise timestamps.
 
-## Publisher: <br>
-[sandeepyadav1478](https://clawhub.ai/user/sandeepyadav1478) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[sandeepyadav1478](https://clawhub.ai/user/sandeepyadav1478)
 
-## Use Case: <br>
-Content creators, educators, musicians, researchers, and other ClawHub users can use this skill to extract timestamped YouTube clips, audio segments, or full downloads for workflows where they have rights to access and reuse the media. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill downloads or clips YouTube media and writes media files to disk. <br>
-Mitigation: Use only media you have rights to access and reuse, and choose an explicit output directory when you need tighter control over saved files. <br>
-Risk: The skill may install yt-dlp with pip and run a temporary Python script to process media. <br>
-Mitigation: For stricter environments, preinstall yt-dlp in an isolated environment and review generated commands or scripts before execution. <br>
+## Use Case:
 
+Content creators, educators, musicians, researchers, and other external users use this skill to extract timestamped clips, audio segments, or full downloads from YouTube videos they are permitted to access.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/sandeepyadav1478/youtube-downloader-clipper) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Shell commands, Files] <br>
-**Output Format:** [Markdown guidance with Python and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local media files in the working directory and may use yt-dlp and ffmpeg for media processing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release metadata) <br>
+Risk: The skill may download media into the working directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it from a dedicated folder or sandbox and review output paths before execution.
+
+Risk: The skill may modify the Python environment by installing dependencies.
+
+Mitigation: Prefer preinstalling reviewed and pinned dependencies in an isolated environment.
+
+Risk: The skill asks the agent to generate and run Python scripts from user-provided URLs, filenames, and timestamps.
+
+Mitigation: Review generated scripts and avoid untrusted request text or filenames until the code-generation pattern is fixed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sandeepyadav1478/skills/youtube-downloader-clipper)
+- [Artifact README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Shell commands, Files, Guidance]
+
+**Output Format:** [Markdown with inline bash and Python code, plus generated video or audio files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Downloads media into the current working directory and may modify the Python environment by installing media-processing dependencies.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

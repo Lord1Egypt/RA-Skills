@@ -1,42 +1,59 @@
-## Description: <br>
-Sync Data Notion helps an agent synchronize CSV, JSON, or REST API data with a Notion database using schema validation, dry-run previews, incremental updates, and structured failure reporting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Syncs CSV, JSON, or REST API data with a Notion database, including schema validation, dry-run previews, incremental updates, reverse export, and structured per-record reporting.
 
-## Publisher: <br>
-[wangjipeng977](https://clawhub.ai/user/wangjipeng977) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangjipeng977](https://clawhub.ai/user/wangjipeng977)
 
-## Use Case: <br>
-Developers and operations teams use this skill to keep a Notion database aligned with external records while preserving traceability, validating field mappings, and reporting partial failures. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read and modify Notion database records. <br>
-Mitigation: Use a limited-scope Notion integration token, test with --dry-run or a sandbox database first, and confirm before writing to production databases. <br>
-Risk: Incorrect field mappings or untrusted external REST targets can move bad or sensitive data into Notion. <br>
-Mitigation: Review the field mapping table, validate source schemas, verify external targets, and inspect per-record failures before relying on the sync. <br>
+## Use Case:
 
+Developers and operations teams use this skill to keep external CSV, JSON, or REST API records synchronized with a Notion database. It supports initial full syncs, recurring incremental syncs, dry-run previews before writes, and Notion-to-external reverse export.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/wangjipeng977/sync-data-notion) <br>
-- [Skill Metadata Source](https://github.com/MiniMax-AI/skills) <br>
-- [references/index.md](references/index.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with command examples, field mapping tables, and structured JSON sync summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Notion integration token and user review before production writes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata) <br>
+Risk: The skill can modify Notion database records and can export Notion content through reverse sync.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a least-privilege Notion integration token, run dry-run mode against a test database first, require explicit approval for production data, and only reverse sync to trusted destinations.
+
+Risk: Persistence of last-run state and under-scoped documentation can make sync state harder to audit.
+
+Mitigation: Review the stored last-run path, keep operation logs with timestamps and record counts, and verify each run's structured summary before scheduling recurring syncs.
+
+Risk: Unsupported Notion property types, validation errors, or rate limits can cause partial sync results.
+
+Mitigation: Validate the source schema against the Notion database schema before writes, report every skipped or failed record with a reason, and retry rate-limited requests according to the API response.
+
+## Reference(s):
+
+- [Sync Data Notion reference index](references/index.md)
+- [ClawHub skill page](https://clawhub.ai/wangjipeng977/skills/sync-data-notion)
+- [Metadata source: MiniMax-AI/skills](https://github.com/MiniMax-AI/skills)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, API calls, JSON]
+
+**Output Format:** [Markdown guidance with API request examples and structured JSON summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include dry-run change previews, field-mapping tables, per-record failure reports, and last-run timestamp guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact metadata lists 1.0.1 and changelog lists 1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

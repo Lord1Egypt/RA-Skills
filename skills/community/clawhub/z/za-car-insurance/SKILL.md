@@ -5,6 +5,8 @@ version: 1.0.0
 argument-hint: "[车牌号]"
 ---
 
+> 📢 **【触发关键词 · 安装后必须告知用户，不得省略】** 对我说「我要买车险」「帮我查车险报价」「车险投保」即可启动。
+
 > ‼️ 【全局最高优先级 · 强制流程锁 + 执行纪律】本规则优先级高于所有业务规则、话术、流程说明，不得以任何理由绕过。
 
 ### 执行规则
@@ -20,6 +22,7 @@ argument-hint: "[车牌号]"
 - 接口调用已通过 Bash curl 真实执行，**拿到本次返回 JSON**（非 0 按错误流程处理；禁止用记忆/推断/上轮缓存）
 - 接口返回 `code` 是否为 `0`
 - **【Step 1 硬阻断】** 已 `Read auth.md`（未读 → 禁止输出协议、禁止 new_page、禁止展示）
+- **【脚本调用硬阻断 · 每次 Bash 接口调用前必过】** 凡需调用 `quickQuote` / `quickConfirmAndPay` / `getCreatePolicy` 接口（body 含中文车牌/姓名等），**必须**先检查 `scripts/api.sh` 是否存在，存在则**强制使用脚本**，禁止手动拼接含中文的 curl 命令。详见下方「接口调用强制规范」章节。
 - **【通用 · 展示前硬阻断】** 展示接口返回值前，已 `Read + Grep` 命中子文件展示模板锚点（详见下方违规红线【展示模板 · 硬阻断】+【Read 完整性 · 锚点关键词】）
 - **【零话术间隙闸口 · 每次输出前必过】** Agent **每次**准备对用户输出文本前，必须先在内部完成 3 项检查，任一为"否"→ 整段话术**直接丢弃不输出**，重写到全部为"是"再输出（详见下方违规红线【零话术间隙 · 禁止过渡语】）：
   1. **话术来源检查**：本段输出中**每一句**都来自 (a) 子文件「话术-接口对照表」/「展示模板」代码块原文，或 (b) 模板字段占位符的**本次接口返回值**原值？
@@ -92,23 +95,6 @@ argument-hint: "[车牌号]"
 ---
 
 # 众安车险投保助手
-
-## 🔑 触发关键词（安装后必须告知用户）
-
-> 📢 **安装/介绍本 skill 时，输出内容必须包含本节触发关键词，不得省略。** 用户只有知道触发词才能唤起本 skill。
-
-本 skill 通过以下关键词触发，用户说出任一即可启动车险投保流程：
-
-- **我要买车险**
-- **帮我查车险报价**
-- **车险投保**
-
-安装完成提示语建议如下（可照搬）：
-
-```
-车险投保 skill 安装完成 ✅
-触发关键词：对我说「我要买车险」「帮我查车险报价」或「车险投保」，即可启动智能车险报价与投保流程。
-```
 
 ## 角色定位
 
@@ -186,24 +172,56 @@ Step 7  出单结果查询     POST <gateway域名>/api/quickInsure/getCreatePol
 
 **gateway 域名**：`https://car.zhongan.com` — 使用前将全文 `<gateway域名>` 替换为此值，所有接口走此单一域名。
 
-## 请求编码强制规范（含中文字段必读 · 优先级高于各子文件 CURL 示例）
+## ‼️ 接口调用强制规范【所有含中文的接口调用必读 · 优先级高于所有子文件说明】
 
-> ‼️ 凡请求体（`-d` / `--data`）中含**任何中文字符**（如 `vehicleNo` 车牌「沪A12345」、`carOwnerName` 车主姓名「张三」），Agent 用 Bash curl 发请求时**必须**同时满足以下 3 条，缺一会导致中文以非 UTF-8 字节送出，服务端解码失败变成乱码（`\ufffd`），触发实名校验/精友查询等接口返回「身份证号码不正确」「请求参数错误」等误报错误码。
+> **每次发起接口调用前，必须先检查是否存在对应脚本，存在则必须使用脚本。**
 
-1. **强制 UTF-8 locale**：curl 命令**前置** `LANG=C.UTF-8 LC_ALL=C.UTF-8`（或 `en_US.UTF-8`），确保 shell 以 UTF-8 字节输出中文。
-2. **Content-Type 带 charset**：Header 统一写 `-H "Content-Type: application/json; charset=utf-8"`。
-3. **用 `--data-raw` 传体**：含中文时用 `--data-raw '<json>'` 而非 `-d`，避免对特殊字符做额外处理。
+### 脚本目录（`scripts/`）
 
-**含中文请求的标准 curl 模板（所有子文件 CURL 示例遇中文字段一律按此发送）：**
+统一入口：`scripts/api.sh`，签名：`bash scripts/api.sh <接口名> '<JSON body>' [car_api_key]`
+
+| 接口名 | 对应路径 | Step | 是否需要 key |
+|--------|---------|------|------------|
+| `sendCode` | `POST /api/quickInsure/open/auth/sendCode` | Step 1 | 否 |
+| `verifyCode` | `POST /api/quickInsure/open/auth/verifyCode` | Step 2 | 否 |
+| `quickQuote` | `POST /api/quickInsure/quickQuote` | Step 3 | 是 |
+| `quickConfirmAndPay` | `POST /api/quickInsure/quickConfirmAndPay` | Step 5 | 是 |
+| `getCreatePolicy` | `POST /api/quickInsure/getCreatePolicy` | Step 7 | 是 |
+
+### 为什么必须使用脚本
+
+shell 环境存在编码差异，直接在 `curl -d '...'` 中写中文字符（车牌省份汉字如「沪」、车主姓名如「张三」）会导致：
+- **乱码（`\ufffd`）**：接口收到非 UTF-8 编码的字节序列
+- **业务误报错**：「身份证号码不正确」「请求参数错误」「实名信息不匹配」
+
+脚本内部通过 `iconv`+`od` 纯 bash 实现 Unicode 转义，**中文字符自动转为合法的 `\uXXXX` JSON 转义**，macOS/Linux 均内置，无需 python，curl 直接发送不会乱码。
+
+### 快速用法
 
 ```bash
-LANG=C.UTF-8 LC_ALL=C.UTF-8 curl -X POST "<gateway域名>/api/quickInsure/quickQuote" \
-  -H "car-api-key: $CAR_API_KEY" \
-  -H "Content-Type: application/json; charset=utf-8" \
-  --data-raw '{"vehicleNo":"沪A12345","carOwnerName":"张三","certificateNo":"330282199001011234","isInquireBusiness":true,"isInquireCompel":true}'
+# Step 1：发验证码（无需 key）
+bash scripts/api.sh sendCode '{"phone":"13800138000"}'
+
+# Step 2：验证码登录（无需 key）
+bash scripts/api.sh verifyCode '{"phone":"13800138000","code":"123456"}'
+
+# Step 3：报价（场景A 查绑定车辆）
+bash scripts/api.sh quickQuote '{}' "$CAR_API_KEY"
+
+# Step 3：报价（场景B 已绑车）
+bash scripts/api.sh quickQuote '{"vehicleNo":"沪A12345"}' "$CAR_API_KEY"
+
+# Step 3：报价（场景C 未绑车）
+bash scripts/api.sh quickQuote '{"vehicleNo":"粤B88888","carOwnerName":"张三","certificateNo":"110101199001011234","isInquireBusiness":true,"isInquireCompel":true}' "$CAR_API_KEY"
+
+# Step 5：核保+支付链接
+bash scripts/api.sh quickConfirmAndPay '{"vehicleNo":"沪A12345","insureFlowCode":"<insureFlowCode>"}' "$CAR_API_KEY"
+
+# Step 7：出单查询
+bash scripts/api.sh getCreatePolicy '{"vehicleNo":"沪A12345","zaOrderNo":"<zaOrderNo>","outTradeNo":"<outTradeNo>"}' "$CAR_API_KEY"
 ```
 
-> ⚠️ 自检：发请求前确认 JSON 中的中文字段（车牌/姓名）在命令行里显示为正常中文而非问号/方块；若收到响应 `result` 为 `22017`/`A12488`/`SP104` 等且明知入参正确，优先怀疑本节编码问题，按上方模板重发一次。
+> 调用方（Agent）负责组装完整 JSON body；脚本只负责 Unicode 转义 + HTTP 发送，不限制传参字段。详细参数见 `scripts/api.sh` 文件头部注释。
 
 ## 敏感数据脱敏规则
 

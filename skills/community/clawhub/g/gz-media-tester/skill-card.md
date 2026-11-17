@@ -1,48 +1,58 @@
-## Description: <br>
-广州日报/融媒云通用测试助手 helps QA teams generate test cases, run API and URL checks, and draft test reports and bug reports for media cloud backends, apps, H5 pages, mini programs, and backend interfaces. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+广州日报/融媒云通用测试助手 helps QA and engineering teams generate test cases, run API and link checks, prepare compatibility plans, write test reports, and draft bug tickets for Guangzhou Daily and Rongmei Cloud workflows.
 
-## Publisher: <br>
-[freeeye](https://clawhub.ai/user/freeeye) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[freeeye](https://clawhub.ai/user/freeeye)
 
-## Use Case: <br>
-QA testers and developers use this skill to plan and document testing for Guangzhou Daily and media cloud products, including smoke, regression, compatibility, performance, API, H5, mini program, and app testing. It can generate structured test cases, test reports, bug report drafts, and commands for targeted API or URL checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-China <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send live HTTP traffic, including security, performance, POST, PUT, and DELETE tests. <br>
-Mitigation: Run tests only against authorized test or staging systems, and avoid production or third-party targets without explicit permission. <br>
-Risk: Tokens, headers, request bodies, and response previews used in tests may contain sensitive information. <br>
-Mitigation: Treat tokens and headers as sensitive, avoid sharing generated reports publicly, and redact secrets before storing or forwarding outputs. <br>
-Risk: The bundled API and URL scripts may automatically install the Python requests dependency if it is missing. <br>
-Mitigation: Preinstall dependencies in a controlled environment before running the scripts when automatic pip changes are not desired. <br>
+## Use Case:
 
+QA engineers, developers, and release teams use this skill to plan and document tests for Rongmei Cloud CMS, Guangzhou Daily mobile apps, H5 pages, mini-programs, and backend APIs. It can produce test cases, test reports, bug-ticket drafts, API check results, URL availability checks, and compatibility guidance.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/freeeye/gz-media-tester) <br>
-- [Publisher Profile](https://clawhub.ai/user/freeeye) <br>
-- [API Reference](references/api-reference.md) <br>
-- [Bug Template](references/bug-template.md) <br>
-- [Compatibility Guide](references/compatibility.md) <br>
-- [Report Template](references/report-template.md) <br>
-- [Test Cases](references/test-cases.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown reports, Markdown tables, JSON reports, and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include generated QA artifacts and live API or URL check results when the user runs the bundled scripts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can send credentials, security probes, and load-test traffic to user-supplied URLs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in authorized Guangzhou Daily or Rongmei Cloud test environments, avoid production tokens and production write endpoints, and obtain approval before testing third-party or internal URLs.
+
+Risk: The bundled scripts may attempt to install Python dependencies automatically.
+
+Mitigation: Install dependencies manually in an isolated environment and review packages before running the scripts.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/freeeye/skills/gz-media-tester)
+- [API 接口规范参考](artifact/references/api-reference.md)
+- [APP 兼容性测试参考](artifact/references/compatibility.md)
+- [广州日报/融媒云测试用例库](artifact/references/test-cases.md)
+- [测试报告模板](artifact/references/report-template.md)
+- [Bug单模板](artifact/references/bug-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, JSON reports, guidance]
+
+**Output Format:** [Markdown guidance with optional shell commands and JSON report files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May run URL or API checks against user-supplied targets and write optional JSON reports when requested.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

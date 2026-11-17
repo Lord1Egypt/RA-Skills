@@ -1,41 +1,50 @@
-## Description: <br>
-Applies Cognitive Load Theory to help agents diagnose overloaded learning experiences and redesign training, documentation, onboarding, tutorials, or interfaces for the target audience. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents in applying cognitive load theory to diagnose and improve training, documentation, onboarding, and other instructional materials.
 
-## Publisher: <br>
-[deciqai](https://clawhub.ai/user/deciqai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[deciqai](https://clawhub.ai/user/deciqai)
 
-## Use Case: <br>
-Employees, external users, and developers can use this skill to diagnose why instructional material is overwhelming and produce a CLT-informed redesign with load diagnosis, applied effects, expertise match, and a test plan. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may produce instructional redesign guidance that has not been tested with the target learners. <br>
-Mitigation: Review the proposed design with representative learners and use comprehension, completion, or error-pattern metrics before broad deployment. <br>
-Risk: Private learner or organizational failure examples could be retained if users paste them into persistent skill notes. <br>
-Mitigation: Avoid saving private examples unless retention is intentional and approved for the workspace. <br>
+## Use Case:
 
+Instructional designers, trainers, and documentation or onboarding authors use this skill to diagnose why learners struggle and redesign materials around cognitive load, learner expertise, and comprehension testing.
 
-## Reference(s): <br>
-- [Sources - cognitive-load-theory](references/sources.md) <br>
-- [Method in Action: Sweller 1988 and the Development of CLT](examples/sweller-1988-and-the-development-of-clt.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown using a CLT-informed design template] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes learner expertise, load diagnosis, CLT effects, and a test plan.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Teaching recommendations may not fit the intended learners or instructional material.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Check the learner expertise level and validate redesigned materials with the intended learners.
+
+## Reference(s):
+
+- [Primary sources](artifact/references/sources.md)
+- [Cognitive Load Theory on ClawHub](https://clawhub.ai/deciqai/skills/cognitive-load-theory)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown]
+
+**Output Format:** [Markdown CLT-informed design brief using the skill's output template]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Tailored to the learner's expertise, material, overload signals, and test plan.]
+
+## Skill Version(s):
+
+1.0.6 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

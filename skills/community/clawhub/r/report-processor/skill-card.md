@@ -1,41 +1,55 @@
-## Description: <br>
-Automatically parses PDF, TXT, and Markdown research reports to extract key viewpoints, data, investment advice, risks, and summaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically parses PDF and text research reports to extract key viewpoints, data, investment advice, risks, and summaries.
 
-## Publisher: <br>
-[zhangq0687](https://clawhub.ai/user/zhangq0687) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[zhangq0687](https://clawhub.ai/user/zhangq0687)
 
-## Use Case: <br>
-Developers and analysts use this skill to process individual or batches of research reports, extract structured insights with a local Ollama model, and save the results as JSON for later review or knowledge-base use. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Report text is sent to the configured local Ollama service for extraction, which can expose confidential report content depending on local deployment, logging, and access controls. <br>
-Mitigation: Use only trusted local Ollama deployments, review logging and access controls, and avoid processing confidential reports unless retention and cleanup expectations are understood. <br>
-Risk: Extracted report summaries and model responses are saved as JSON files under the user's home directory. <br>
-Mitigation: Review output files for sensitive content and apply local file retention, permissions, and cleanup policies appropriate to the reports being processed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Report Processor page](https://clawhub.ai/zhangq0687/report-processor) <br>
-- [artifact/SKILL.md](artifact/SKILL.md) <br>
-- [artifact/scripts/report_processor.py](artifact/scripts/report_processor.py) <br>
+## Use Case:
+
+Developers and analysts use this skill to process individual or batches of financial research reports, extracting structured highlights, risk warnings, investment advice, and summaries into a local knowledge base.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Sensitive reports are processed through a local Ollama setup and extracted results are stored persistently on disk.
+
+Mitigation: Process only reports approved for the local environment, restrict access to the output directory, and remove stored JSON results when retention is not needed.
+
+Risk: Generated investment advice, extracted figures, and summaries may be incomplete or inaccurate.
+
+Mitigation: Require human review before using extracted data or advice for financial, business, or compliance decisions.
+
+Risk: Reports from untrusted sources may contain misleading content or malformed files that affect extraction quality.
+
+Mitigation: Prefer trusted report sources and validate extracted results against the original document before sharing or acting on them.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration instructions, Files, JSON] <br>
-**Output Format:** [Markdown guidance with command examples and JSON report outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Saves extracted report data under ~/.openclaw/workspace/data/reports/ and truncates model input and stored raw responses.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+**Output Type(s):** [Text, JSON, Shell commands, Configuration, Guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown guidance with shell command examples; runtime report-processing results are saved as JSON files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a local Ollama model and PDF text extraction tooling; stores processed report outputs under ~/.openclaw/workspace/data/reports/.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

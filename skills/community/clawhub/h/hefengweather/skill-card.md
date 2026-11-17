@@ -1,43 +1,61 @@
-## Description: <br>
-Provides QWeather-based weather lookup capabilities for current conditions, multi-day and hourly forecasts, air quality, lifestyle indices, weather warnings, astronomy data, minute-level precipitation, grid weather, and geographic search. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides QWeather-based weather data lookups, including current conditions, multi-day and hourly forecasts, air quality, life indices, weather alerts, astronomy data, short-term precipitation, grid weather, city lists, and POI search.
 
-## Publisher: <br>
-[fengyucn](https://clawhub.ai/user/fengyucn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fengyucn](https://clawhub.ai/user/fengyucn)
 
-## Use Case: <br>
-External users and developers use this skill to let an agent answer weather, air quality, warning, astronomy, precipitation, grid-weather, and location-search questions through QWeather API-backed scripts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires QWeather API credentials, and saved credentials may be exposed if the local configuration file is not protected. <br>
-Mitigation: Prefer environment variables or the --no-save option; if credentials are saved, keep ~/.config/qweather/.env owner-only. <br>
-Risk: The configurable API host controls where weather API requests are sent. <br>
-Mitigation: Verify HEFENG_API_HOST points to an official or intended QWeather API domain before running queries. <br>
+## Use Case:
 
+External users and developers use this skill to answer weather, air quality, warning, astronomy, and location questions through QWeather API-backed command-line scripts. It helps an agent choose the relevant query, collect required parameters such as city or coordinates, and return concise weather guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fengyucn/hefengweather) <br>
-- [QWeather developer platform](https://dev.qweather.com/) <br>
-- [QWeather documentation](https://dev.qweather.com/docs/) <br>
-- [QWeather API reference](https://dev.qweather.com/docs/api/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Natural-language weather summaries and optional JSON API responses produced from script output.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires QWeather API configuration through environment variables or an optional local configuration file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: ClawHub release evidence) <br>
+Risk: API keys or private-key material may be persisted in a local .env file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer environment variables or the --no-save option; if credentials are saved, verify ~/.config/qweather is mode 700 and ~/.config/qweather/.env is mode 600.
+
+Risk: HEFENG_API_HOST controls the outbound weather API destination.
+
+Mitigation: Set HEFENG_API_HOST only to the legitimate QWeather API domain for the account being used.
+
+Risk: Raw private-key contents in configuration increase credential exposure if the file is copied or logged.
+
+Mitigation: Avoid storing raw private-key contents in .env; use a protected private-key file path or ephemeral environment configuration where possible.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fengyucn/skills/hefengweather)
+- [QWeather developer platform](https://dev.qweather.com/)
+- [QWeather official documentation](https://dev.qweather.com/docs/)
+- [QWeather API reference](https://dev.qweather.com/docs/api/)
+- [OpenClaw skill specification](https://openclaw.dev/skills)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Natural-language responses and JSON returned by QWeather API scripts.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires QWeather API credentials and a trusted HEFENG_API_HOST configuration.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata; artifact frontmatter says 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

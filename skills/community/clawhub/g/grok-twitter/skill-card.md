@@ -1,40 +1,58 @@
-## Description: <br>
-Query and summarize Twitter/X information using Grok AI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query and summarize Twitter/X trends, tweets, X platform content, and other Twitter-related information using Grok AI.
 
-## Publisher: <br>
-[danetteceola](https://clawhub.ai/user/danetteceola) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[danetteceola](https://clawhub.ai/user/danetteceola)
 
-## Use Case: <br>
-Developers and end users use this skill to send Twitter/X-related prompts to Grok and receive concise summaries about trends, tweets, accounts, or current topics. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Twitter/X prompts and the GROK_API_KEY bearer token are sent to the configured external API endpoint. <br>
-Mitigation: Use a trusted GROK_API_URL, verify that api.cheaprouter.club is intended for your use case, and avoid sending private or confidential prompts. <br>
-Risk: The skill relies on an external Grok-compatible API service to return Twitter/X summaries. <br>
-Mitigation: Review returned summaries before relying on them and confirm that the configured provider meets your availability and data-handling requirements. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/danetteceola/grok-twitter) <br>
-- [Default Grok API Endpoint](https://api.cheaprouter.club/v1/chat/completions) <br>
+## Use Case:
 
+External users and developers use this skill to send Twitter/X-related prompts to Grok and receive summarized answers about trends, topics, tweets, or specific accounts.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration] <br>
-**Output Format:** [Plain text responses with Markdown setup and usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires GROK_API_KEY and sends prompts to the configured GROK_API_URL.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Prompts and the bearer API key are sent to the configured third-party endpoint.
+
+Mitigation: Use a narrowly scoped, revocable API key and set GROK_API_URL only to a trusted, organization-approved endpoint.
+
+Risk: Sensitive prompt content may be exposed to the configured API provider.
+
+Mitigation: Avoid sensitive prompts and review the endpoint's privacy and data-handling terms before use.
+
+Risk: The default endpoint lacks enough disclosure and endpoint safeguards in the supplied evidence.
+
+Mitigation: Prefer a version with host allowlisting, clear endpoint ownership, and explicit privacy disclosure.
+
+## Reference(s):
+
+- [Grok Twitter Query ClawHub Page](https://clawhub.ai/danetteceola/skills/grok-twitter)
+- [Publisher Profile](https://clawhub.ai/user/danetteceola)
+- [Default API Endpoint Configured by Skill](https://api.cheaprouter.club/v1/chat/completions)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text responses from an API-backed command-line script, with setup guidance in Markdown.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires GROK_API_KEY; optional GROK_API_URL and GROK_MODEL environment variables control the endpoint and model.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

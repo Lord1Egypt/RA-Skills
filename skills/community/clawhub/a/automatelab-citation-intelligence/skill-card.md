@@ -1,44 +1,56 @@
-## Description: <br>
-Helps users analyze which URLs AI engines cite for a query, whether a domain is cited, how citation rates change over time, and how coverage compares with competitors. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Citation Intelligence helps users analyze which URLs AI engines cite for queries, whether their domain is cited, how citation rates change, and how coverage compares with competitors.
 
-## Publisher: <br>
-[automatelab](https://clawhub.ai/user/automatelab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[automatelab](https://clawhub.ai/user/automatelab)
 
-## Use Case: <br>
-External developers, marketers, SEO teams, and site owners use this skill to inspect AI citation coverage across queries, domains, engines, competitors, and historical trends. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The paired server may make external API calls for citation checks. <br>
-Mitigation: Provide API keys only for providers the user intends to query and review provider terms before use. <br>
-Risk: Citation history may rely on local cache data. <br>
-Mitigation: Treat cached history as local working data and manage retention according to the user's privacy and compliance needs. <br>
-Risk: A third-party npm package is required for the paired server. <br>
-Mitigation: Verify trust in the AutomateLab npm package before installation or deployment. <br>
+## Use Case:
 
+Developers, SEO teams, and site operators use this skill to query AI citation coverage across engines, inspect cited evidence, compare competitors, and track citation trends for domains or pages.
 
-## Reference(s): <br>
-- [Citation Intelligence homepage](https://github.com/AutomateLab-tech/citation-intelligence) <br>
-- [Citation Intelligence configuration](https://github.com/AutomateLab-tech/citation-intelligence#configuration) <br>
-- [ClawHub release page](https://clawhub.ai/automatelab/automatelab-citation-intelligence) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline JSON and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include citation matrices, per-engine breakdowns, snippets, trend summaries, competitor comparisons, setup guidance, and configuration examples.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.10.0 (source: server release metadata and frontmatter) <br>
+Risk: The skill asks users to run an unpinned external npm MCP server with local MCP host privileges.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and pin the npm package version before installation, verify the publisher and source, and expose only the provider API keys needed for planned engines.
+
+Risk: Citation analysis across third-party AI engines may require sensitive provider API keys.
+
+Mitigation: Configure only required engine credentials and avoid sharing unnecessary keys with the MCP server environment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/automatelab/skills/automatelab-citation-intelligence)
+- [Citation Intelligence Homepage](https://github.com/AutomateLab-tech/citation-intelligence)
+- [Citation Intelligence Configuration README](https://github.com/AutomateLab-tech/citation-intelligence#configuration)
+- [AutomateLab Publisher Profile](https://clawhub.ai/user/automatelab)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline JSON configuration examples and citation-analysis guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May require user-supplied provider API keys and Node 20+ when configuring the external MCP server.]
+
+## Skill Version(s):
+
+0.10.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

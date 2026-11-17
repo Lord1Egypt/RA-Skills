@@ -1,40 +1,52 @@
-## Description: <br>
-Convert a private repository to public open-source by scanning for personal data, checking cached artifacts, cleaning Git history, changing repository visibility, and verifying the public release. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert a private repository to public open-source by sanitizing personal information, cleaning history, and preparing it for public release.
 
-## Publisher: <br>
-[jini92](https://clawhub.ai/user/jini92) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jini92](https://clawhub.ai/user/jini92)
 
-## Use Case: <br>
-Developers and maintainers use this skill when preparing a private repository for open-source publication, including source and documentation scans, history cleanup decisions, repository visibility changes, and post-release checks. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill includes force-push and branch-deletion commands that can erase Git history. <br>
-Mitigation: Confirm the target GitHub account, owner/repo, current branch, backup or mirror clone, and sanitized repository contents before running destructive Git commands. <br>
-Risk: The skill includes repository visibility-change guidance that can expose private code publicly. <br>
-Mitigation: Complete source, documentation, cached-artifact, secret, and remote URL checks before changing repository visibility to public. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jini92/opensource-release) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/jini92) <br>
+## Use Case:
 
+Developers and maintainers use this skill when preparing a private repository for a normal open-source release. It guides repository scanning, sanitization, history handling, publication, and post-release verification.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown checklist with inline PowerShell, Git, and GitHub CLI command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Focuses on repository release preparation, sensitive-data review, Git history cleanup choices, and visibility verification.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: High-impact repository publication commands can force-push, delete branches, or make a repository public before the target state is confirmed.
+
+Mitigation: Require explicit approval after verifying the GitHub owner, repository, remote URL, current branch, backup state, and exact diff/history to be published.
+
+Risk: Repository sanitization may miss sensitive files or history entries if release scans are incomplete.
+
+Mitigation: Run final sensitive-string scans, confirm ignored artifacts are excluded, inspect git history, and verify the remote URL contains no token before publishing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jini92/skills/opensource-release)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline PowerShell, git, and GitHub CLI commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can include repository sanitization checklists, command sequences, and verification steps.]
+
+## Skill Version(s):
+
+1.1.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,6 +1,10 @@
 {
-  "ownerId": "kn74335njg4247vk2hs23bkd8h80e6ge",
   "slug": "autonomy-windowed",
-  "version": "1.0.0",
-  "publishedAt": 1771207064302
+  "displayName": "Windowed Autonomy",
+  "latest": {
+    "version": "1.0.0",
+    "publishedAt": 1739647520000,
+    "commit": "https://github.com/openclaw/skills/commit/placeholder"
+  },
+  "history": []
 }

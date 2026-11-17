@@ -1,49 +1,57 @@
-## Description: <br>
-Generates zero-dependency HTML presentations with 22 style presets, playback, presenter mode, and inline editing for pitches, launches, technical talks, and proposal decks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Slide Creator generates zero-dependency HTML presentations with 22 style presets, play mode, and presenter mode for pitch decks, product launches, technical talks, and solution presentations.
 
-## Publisher: <br>
-[kaisersong](https://clawhub.ai/user/kaisersong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kaisersong](https://clawhub.ai/user/kaisersong)
 
-## Use Case: <br>
-Developers, operators, and presentation authors use this skill to turn prompts, source content, or structured briefs into browser-native HTML slide decks with selected visual presets and validation gates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated decks are active HTML and may load remote fonts or run browser-side presentation and editing scripts. <br>
-Mitigation: Review generated HTML before sharing or hosting it, and treat decks as executable web content rather than static documents. <br>
-Risk: The inline save workflow may send edited deck content back to the page URL before downloading a copy. <br>
-Mitigation: Avoid hosting generated decks on origins that accept unauthenticated PUT or other unintended write methods. <br>
-Risk: The release includes an unrelated privileged desktop preload file. <br>
-Mitigation: Remove or ignore preload.cjs unless the desktop host behavior is understood and the file is intentionally loaded. <br>
+## Use Case:
 
+Developers, presenters, and content teams use this skill to turn prompts or structured briefs into browser-native HTML slide decks with selected visual styles, speaker notes, editing controls, and validation steps.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kaisersong/kai-slide-creator) <br>
-- [Publisher profile](https://clawhub.ai/user/kaisersong) <br>
-- [Homepage](https://github.com/kaisersong/slide-creator) <br>
-- [Live demo](https://kaisersong.github.io/slide-creator/demos/blue-sky-en.html) <br>
-- [Style index](references/style-index.md) <br>
-- [Workflow reference](references/workflow.md) <br>
-- [HTML template reference](references/html-template.md) <br>
-- [Generation brief schema](schemas/generation-brief.schema.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, code, configuration, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with JSON brief files, HTML deck code, validation commands, and optional evaluation reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated decks are browser-native HTML and may include presenter mode, inline editing, speaker notes, style-specific CSS, and validation artifacts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.27.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Generated decks can silently send edited presentation content, including speaker notes, back to the hosting server when saving.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Edit and save decks only from trusted local files or trusted origins; avoid saving generated non-Blue-Sky decks from untrusted HTTP/HTTPS origins.
+
+Risk: The Electron preload file requires review before use in a desktop wrapper.
+
+Mitigation: Remove preload.cjs from the skill package or audit it together with the desktop main-process handlers before desktop-wrapper deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/kaisersong/skills/kai-slide-creator)
+- [Project Homepage](https://github.com/kaisersong/slide-creator)
+- [Live Demo](https://kaisersong.github.io/slide-creator/demos/blue-sky-en.html)
+- [Style Index](references/style-index.md)
+- [Workflow](references/workflow.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Files, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance plus JSON briefs and self-contained HTML slide deck files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated decks may include presenter mode, inline editing, speaker notes, and optional per-deck evaluation JSON.]
+
+## Skill Version(s):
+
+2.27.0 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

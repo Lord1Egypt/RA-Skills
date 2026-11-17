@@ -1,42 +1,58 @@
-## Description: <br>
-Monitors online reviews, generates professional response drafts, and creates reputation reports. Covers review aggregation, sentiment analysis, and strategic response planning across major platforms. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitors online reviews, generates professional response drafts, and creates reputation reports. Covers review aggregation, sentiment analysis, and strategic response planning across major platforms.
 
-## Publisher: <br>
-[andreataide86](https://clawhub.ai/user/andreataide86) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[andreataide86](https://clawhub.ai/user/andreataide86)
 
-## Use Case: <br>
-Business owners, agencies, and reputation managers use this skill to audit public review profiles, analyze sentiment and topics, draft tailored responses, and assemble client-ready reputation reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Collected review content may contain names, sensitive details, or regulated context such as healthcare, employment, or legal issues. <br>
-Mitigation: Collect only the review text needed for the task, redact personal or sensitive details in shared reports, and apply extra human review before using outputs in sensitive domains. <br>
-Risk: Generated response drafts and reputation reports can misclassify sentiment, miss platform context, or provide misleading business guidance if source reviews are incomplete. <br>
-Mitigation: Verify ratings, review counts, response status, and draft responses against the original platforms before posting or sharing client-facing reports. <br>
-Risk: The release is installed through an npm CLI, which executes third-party package code in the user's environment. <br>
-Mitigation: Install only in environments where use of the npm package is acceptable, review package provenance and permissions, and avoid granting access to unnecessary local files or credentials. <br>
+## Use Case:
 
+External reputation managers, agencies, and business operators use this skill to audit public review platforms, draft platform-specific review responses, and assemble reputation reports with sentiment, topic, trend, and action-plan sections.
 
-## Reference(s): <br>
-- [Cashclaw Reputation Manager on ClawHub](https://clawhub.ai/andreataide86/cashclaw-reputation-manager) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports, response drafts, YAML/JSON snippets, and CLI command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include tier-specific deliverables for Basic, Standard, and Pro reputation workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill installs an unpinned external npm CLI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin and independently review the cashclaw npm package before installation, and run it with minimal filesystem and credential access.
+
+Risk: Ongoing review monitoring may collect public review text and personal data without explicit handling limits.
+
+Mitigation: Confirm review-platform terms and privacy obligations before use, and set retention, deletion, and access rules for collected review data.
+
+Risk: Generated response drafts or reports could misstate review facts or expose private customer details.
+
+Mitigation: Human-review all drafts against source reviews before posting, avoid private customer details in public replies, and make report branding opt-in.
+
+## Reference(s):
+
+- [Cashclaw Reputation Manager on ClawHub](https://clawhub.ai/andreataide86/skills/cashclaw-reputation-manager)
+- [Publisher profile: andreataide86](https://clawhub.ai/user/andreataide86)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports and response drafts with JSON/YAML-style data examples and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces reputation reports, review response drafts, brief summaries, monitoring setup guidance, and prioritized action plans.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

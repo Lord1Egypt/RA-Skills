@@ -1,55 +1,98 @@
 ---
 name: token-efficiency-guide
-version: 1.1.0
-description: "Go from weekly limit on Tuesday to weekly limit on Sunday. 10 steps, one afternoon. Built for the TinkerClaw fork — github.com/globalcaos/tinkerclaw."
-metadata:
-  openclaw:
-    owner: kn7623hrcwt6rg73a67xw3wyx580asdw
-    category: optimization
-    tags:
-      - tokens
-      - efficiency
-      - claude-max
-      - cost-reduction
-      - maintenance
-    license: MIT
+version: 1.2.0
+description: "Reference material, not an executable tool: one document (GUIDE.md) with ten concrete steps for cutting OpenClaw token consumption on a Claude subscription — heartbeat model, session compaction, cron model and frequency, bash-ified crons, workspace file size, cache retention. Read it when asked why token usage is high or how to lower it."
 ---
 
 # Token Efficiency Guide
 
-Make your Claude Max subscription last the whole week. One afternoon, 10 steps, 80-90% fewer tokens burned.
+## What this is
 
-## What You Get
+A single markdown document, `GUIDE.md`. There is no script, no CLI and no other
+file in this directory — nothing here executes. It is written for an operator
+running OpenClaw against a Claude subscription who is exhausting the weekly
+limit, and it lists ten changes with the config snippets or shell commands the
+operator applies by hand.
 
-10 changes ordered by impact. Most take minutes.
+The ten steps, in the order the guide gives them:
 
-| Step | Saves | Effort |
-|------|-------|--------|
-| 1. Heartbeat → Haiku | ~25% | 1 minute |
-| 2. Session compaction | ~20% | 10 minutes |
-| 3. Simple crons → bash | ~15% | 1-2 hours |
-| 4. Cron jobs → Sonnet | ~10% | 5 minutes |
-| 5. Isolate large outputs | ~10% | 10 minutes |
-| 6. Reduce cron frequency | ~8% | 5 minutes |
-| 7. Workspace file cleanup | ~7% | 30 minutes |
-| 8. Enable cache retention | ~3% | 1 minute |
-| 9. Coordinate multi-agent usage | ~2% | Agreement |
-| 10. Automated maintenance crons | ~5% | 1-2 hours |
+1. Set the heartbeat model to Haiku (`agents.defaults.heartbeat.model` in `openclaw.json`).
+2. Compact sessions and control context growth (`/compact`, a manual reset after big tasks).
+3. Rewrite cron jobs that are pure logic as bash scripts on the system crontab.
+4. Set the remaining cron jobs to Sonnet via a `model` field in the job payload.
+5. Keep large command output out of the main session (sub-agents; `head`/`grep`/`wc -l`).
+6. Lower cron frequency, with a small table of interval swaps.
+7. Shrink the workspace files that are injected into every message, with a
+   `wc -c` measuring snippet and a target of under 15 KB total.
+8. Enable `cacheRetention: "long"` in the model params.
+9. Coordinate time blocks when several agents share one subscription.
+10. Do housekeeping in bash instead of the LLM, with one session-archiver script
+    that is a dry run unless given `--apply`.
 
-Step 1 alone buys you an extra day. Steps 1-3 together cover 60%.
+Each step carries a percentage saving and the closing table totals them to
+"~80-90%". Those figures are the author's own estimates — the document shows no
+measurement or methodology behind them, so treat them as ordering hints (step 1
+matters more than step 9), not as numbers to quote. The guide states it is
+compatible with OpenClaw 2026.2+.
 
-## Who This Is For
+## When to use / when not to
 
-- OpenClaw users on Claude Max who know what "it's Tuesday and the limit hit" feels like
-- Teams sharing one subscription across multiple agents
-- Anyone who'd rather spend tokens on work than on heartbeats
+Use it when:
 
-## What's Included
+- The operator asks why token or subscription usage is high, or how to bring it down.
+- A weekly or 5-hour limit is being hit and the causes have to be enumerated.
+- Deciding which model a heartbeat or a cron job should run on.
+- Auditing the size of the workspace files that ship with every message.
+- A cron job is being written and the question is whether it needs an LLM at all.
 
-- Step-by-step instructions with config snippets
-- Ready-to-use maintenance scripts
-- Model routing recommendations per task type
+Do not use it for:
 
-*Clone it. Fork it. Break it. Make it yours.*
+- Measuring current usage. It contains no telemetry, no counters and no reporting.
+  It cannot tell anyone what is being spent right now.
+- Applying anything automatically. Every change in it is manual.
+- Provider pricing, rate-limit APIs, or billing questions — none are covered.
+- Anything outside OpenClaw's own config, sessions, crons and workspace files.
 
-👉 Explore the full project: [github.com/globalcaos/clawdbot-moltbot-openclaw](https://github.com/globalcaos/clawdbot-moltbot-openclaw)
+## Entry points
+
+There is one:
+
+```
+skills/token-efficiency-guide/GUIDE.md
+```
+
+Read it. That is the whole interface. The code blocks inside it are meant to be
+copied by the operator into `openclaw.json`, into `AGENTS.md`, or into
+`crontab -e`; nothing in this directory does that on its own.
+
+Two details worth knowing before quoting the file:
+
+- Section 10 gives one complete script, a session archiver. It is the only
+  maintenance script in the guide; the guide recommends no backup, upload,
+  scheduled session-reset or API-key-switching job.
+- The top of `GUIDE.md` is a promotional header for the wider project, not part
+  of the procedure.
+
+## Permissions & Data Flow
+
+- **Reads:** only `GUIDE.md`, from this directory. Nothing else.
+- **Writes:** nothing. This skill has no write path.
+- **Network:** no calls. The only URLs are two links to the project's public
+  repository in the header text, which nothing here fetches.
+- **Credentials:** none touched, none required. No API key, no token, no session
+  file is read.
+
+The caution is about what the operator does _after_ reading it, since the
+document hands over commands to run by hand:
+
+- Its config snippets change model selection in `openclaw.json`, which affects
+  cost and answer quality on heartbeats and cron jobs.
+- Its crontab lines schedule work on the operator's machine.
+- The session-archiver script in section 10 only lists session `.jsonl` files
+  untouched for 7 days unless run with `--apply`; with it, it moves them to a
+  `sessions-archive` directory and logs each move. It deletes nothing and never
+  overwrites an archived file.
+
+## Changelog
+
+- 1.2.0 — Section 10 session script is now dry-run by default (`--apply` to move), never deletes, never overwrites, logs moves; removed the recommended backup/upload, nightly session-reset and API-key-switching cron jobs and the automatic nightly reset in step 2.

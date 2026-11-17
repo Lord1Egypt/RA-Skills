@@ -1,45 +1,55 @@
-## Description: <br>
-Prepare for India's medical entrance exam with progress tracking, weak area analysis, spaced repetition, and college targeting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Prepare for India's medical entrance exam with progress tracking, weak area analysis, spaced repetition, and college targeting.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External learners, parents, and tutors preparing for India's NEET use this skill to build study schedules, track progress, analyze weak areas, review with spaced repetition, interpret mock exams, and plan college targets. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill may keep NEET preparation records locally, including personal goals, category, scores, study sessions, mock results, and feedback. <br>
-Mitigation: Install only if comfortable with local preparation records, review ~/neet/ and ~/neet-tutor/ periodically, avoid storing unnecessary personal or category details, and delete those folders when records are no longer needed. <br>
-Risk: Parents or tutors may track another learner's preparation records. <br>
-Mitigation: Get consent before tracking another student and limit records to information needed for study planning and progress review. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [NEET Skill Page](https://clawhub.ai/ivangdavila/neet) <br>
-- [NEET Exam Configuration](artifact/exam-config.md) <br>
-- [Progress Tracking System](artifact/tracking.md) <br>
-- [Study Methods for NEET](artifact/study-methods.md) <br>
-- [College and Seat Targeting](artifact/targets.md) <br>
-- [Stress Management and Wellbeing](artifact/wellbeing.md) <br>
-- [User Type Adaptations](artifact/user-types.md) <br>
+## Use Case:
+
+External learners, parents, and tutors use this skill to plan and track NEET preparation, analyze weak areas, manage mock-test review, and compare college targets.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill may retain sensitive study profile details, category, domicile, performance history, and feedback in local folders.
+
+Mitigation: Review or delete ~/neet/ and ~/neet-tutor/ when local retention is not desired, and avoid recording unnecessary personal details.
+
+Risk: College cutoff, rank, fee, and exam-pattern guidance can become outdated or vary by year, category, domicile, and counselling authority.
+
+Mitigation: Verify admission decisions, counselling steps, and eligibility details against current official NEET, MCC, state counselling, and college sources before acting.
+
+Risk: Stress and wellbeing guidance is supportive, not a substitute for professional care.
+
+Mitigation: Escalate serious distress, self-harm thoughts, panic symptoms, or sustained sleep and eating problems to qualified professionals or emergency support.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Guidance] <br>
-**Output Format:** [Markdown study plans, progress logs, mock analyses, flashcards, and college-targeting guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May maintain local Markdown records under ~/neet/ and ~/neet-tutor/ when the agent follows the skill.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+**Output Type(s):** [text, markdown, guidance, configuration]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown study plans, progress records, analysis summaries, checklists, and guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update local markdown records under ~/neet/ or ~/neet-tutor/ when the agent follows the skill guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

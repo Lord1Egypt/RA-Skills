@@ -1,0 +1,29 @@
+{
+  "schema_version": "1.0",
+  "diagram_id": "diag-001",
+  "title": "Production Flow",
+  "diagram_type": "process_flow",
+  "audience_question": "How does the PPT production path move from plan to QA?",
+  "message": "The main path is plan, build, and verify, with sources kept as supporting evidence.",
+  "direction": "left_to_right",
+  "reading_order": "main_path_then_supporting",
+  "nodes": [
+    {"id": "n1", "label": "Plan", "role": "start", "node_type": "stage", "priority": "primary", "sequence": 1, "shape": "rounded_rect", "status": "normal", "source_refs": ["src-001"]},
+    {"id": "n2", "label": "Build", "role": "work", "node_type": "capability", "priority": "primary", "sequence": 2, "shape": "rounded_rect", "status": "normal", "source_refs": ["src-001"]},
+    {"id": "n3", "label": "QA", "role": "gate", "node_type": "control", "priority": "primary", "sequence": 3, "shape": "rounded_rect", "status": "highlighted", "source_refs": ["src-001"]},
+    {"id": "n4", "label": "Sources", "role": "support", "node_type": "artifact", "priority": "supporting", "sequence": 4, "shape": "document", "status": "normal", "source_refs": ["src-001"]}
+  ],
+  "groups": [],
+  "edges": [
+    {"id": "e1", "source": "n1", "target": "n2", "relation": "sequence", "priority": "primary", "direction": "forward", "style": "orthogonal", "line_semantics": "solid"},
+    {"id": "e2", "source": "n2", "target": "n3", "relation": "validation", "priority": "primary", "direction": "forward", "style": "orthogonal", "line_semantics": "solid"},
+    {"id": "e3", "source": "n4", "target": "n2", "relation": "consume", "priority": "supporting", "direction": "forward", "style": "dashed", "line_semantics": "dashed", "optional": true}
+  ],
+  "main_paths": [{"id": "p1", "label": "Production path", "node_ids": ["n1", "n2", "n3"], "edge_ids": ["e1", "e2"], "priority": "primary"}],
+  "boundaries": [],
+  "annotations": [{"id": "a1", "annotation_type": "source", "target_type": "node", "target_id": "n4", "label": "Source evidence remains traceable", "priority": "low", "editable": true, "source_refs": ["src-001"]}],
+  "layout_constraints": {"preferred_layout": "process", "allow_layout_change": true, "max_primary_nodes": 8, "max_total_nodes": 14, "max_primary_edges": 9, "max_total_edges": 18},
+  "delivery_contract": {"preferred_route": "native_diagram", "allowed_fallbacks": ["hybrid_overlay", "svg_component"], "editable_core": ["nodes", "labels"], "raster_policy": {"allowed": false, "max_area_ratio": 0, "whole_slide_forbidden": true, "requires_disclosure": true, "requires_native_overlay": true}},
+  "qa_expectations": ["DIAGRAM_MAIN_PATH"],
+  "metadata": {}
+}

@@ -1,48 +1,62 @@
-## Description: <br>
-Run explicit Extruct API tasks through the bundled Extruct CLI. Covers Deep Search, semantic search, lookalike search, company and people tables, column operations, enrichment, and contact finding. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run explicit Extruct API tasks through the bundled Extruct CLI. Covers Deep Search, semantic search, lookalike search, company and people tables, column operations, enrichment, and contact finding.
 
-## Publisher: <br>
-[zkid18](https://clawhub.ai/user/zkid18) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zkid18](https://clawhub.ai/user/zkid18)
 
-## Use Case: <br>
-Developers and business users use this skill to operate Extruct company discovery, Deep Search, AI table, enrichment, and contact-finding workflows through CLI-guided commands. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent to change or delete remote Extruct data. <br>
-Mitigation: Inspect the target table or task before mutation, require explicit confirmation before deletes or broad table runs, and summarize affected IDs and counts. <br>
-Risk: Contact-finding workflows can collect personal contact details. <br>
-Mitigation: Use contact enrichment only for authorized business purposes, request the minimum fields needed, and apply appropriate retention controls. <br>
-Risk: The skill depends on resolving and running a bundled CLI. <br>
-Mitigation: Resolve the CLI from the skill directory, verify the path before first use, and run authentication or health checks before account operations. <br>
+## Use Case:
 
+Developers and external users use this skill to operate Extruct company discovery, Deep Search, AI Tables, enrichment, scoring, and contact-finding workflows through guided CLI commands.
 
-## Reference(s): <br>
-- [Extruct API Reference](https://www.extruct.ai/docs/api-reference/introduction) <br>
-- [Column Guide](references/column-guide.md) <br>
-- [Finding Companies](references/finding-companies.md) <br>
-- [Finding People At Companies](references/finding-people-at-companies.md) <br>
-- [Researching Companies](references/researching-companies.md) <br>
-- [Researching People](references/researching-people.md) <br>
-- [ClawHub Skill Listing](https://clawhub.ai/zkid18/extruct-api-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON payload examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce CLI commands that read, create, update, run, poll, or delete remote Extruct objects when the user authorizes those operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Authenticated Extruct operations can mutate tables, rows, columns, or run bulk work.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Inspect the target table, rows, and columns before changes, and require explicit confirmation before deletes or bulk runs.
+
+Risk: People and contact enrichment can involve email, phone, or LinkedIn data.
+
+Mitigation: Use contact enrichment only where the user has authorization and a lawful business basis.
+
+Risk: Documented command behavior may differ from the live Extruct API.
+
+Mitigation: Consult the official Extruct API reference when request shape, fields, response contracts, or endpoint capabilities are uncertain.
+
+## Reference(s):
+
+- [Extruct API Reference](https://www.extruct.ai/docs/api-reference/introduction)
+- [Column Guide](references/column-guide.md)
+- [Finding Companies](references/finding-companies.md)
+- [Researching Companies](references/researching-companies.md)
+- [Finding People At Companies](references/finding-people-at-companies.md)
+- [Researching People](references/researching-people.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON payload examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce Extruct CLI commands and operational summaries; authenticated actions depend on the user's Extruct account.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,47 @@
+/* Vue Global 业务样式写这里；不要修改 framework/styles/prototype.css。 */
+
+.wf-vue-screen-host {
+  width: 100%;
+  min-height: 100%;
+}
+
+.wf-vue-loading {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 24px;
+  border: 0;
+  color: var(--wf-500, #737373);
+  font: 14px/1.4 system-ui, -apple-system, sans-serif;
+  letter-spacing: 0.02em;
+  background: var(--board-bg, #f0f1f3);
+}
+
+.wf-vue-loading::before {
+  content: "";
+  width: 28px;
+  height: 28px;
+  border: 2px solid var(--wf-200, #d9d9d9);
+  border-top-color: var(--wf-700, #3d3d3d);
+  border-radius: 50%;
+  animation: wf-vue-loading-spin 0.75s linear infinite;
+}
+
+@keyframes wf-vue-loading-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.detail-page__counter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}

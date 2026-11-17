@@ -1,43 +1,59 @@
-## Description: <br>
-Run and integrate LM Studio with local model lifecycle control, OpenAI-compatible APIs, embeddings, and MCP-aware workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run and integrate LM Studio with local model lifecycle control, OpenAI-compatible APIs, embeddings, and MCP-aware workflows.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Developers and engineers use this skill to operate LM Studio locally, verify server readiness, manage local model lifecycle choices, connect OpenAI-compatible clients, and troubleshoot API, embedding, and MCP workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may keep local operational notes under ~/lm-studio/. <br>
-Mitigation: Store only verified runtime facts and avoid tokens, passwords, or copied credentials in local notes. <br>
-Risk: Guided commands may change which local models are loaded, affecting memory, GPU use, and runtime behavior. <br>
-Mitigation: Verify server reachability and model readiness after each runtime change, and record only known-good combinations. <br>
-Risk: MCP servers or remote endpoints can expand file, tool, or network access beyond the local LM Studio server. <br>
-Mitigation: Enable only trusted MCP servers or remote endpoints with explicit user intent, and test model serving separately from tool access. <br>
+## Use Case:
 
+Developers and engineers use this skill to run local models with LM Studio, verify server readiness, load and swap models, connect OpenAI-compatible clients, test embeddings, and debug MCP-aware local workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/lm-studio) <br>
-- [Skill homepage](https://clawic.com/skills/lm-studio) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline code and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce local runtime checks, OpenAI-compatible API examples, model-loading guidance, MCP configuration guidance, and troubleshooting steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill can keep persistent local notes in ~/lm-studio/ about activation preferences, runtime baselines, models, and incidents.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Allow creation or updates to ~/lm-studio/ only after agreeing what will be stored, and do not save credentials or sensitive prompt contents in those files.
+
+Risk: MCP servers or remote endpoints can change the local-only privacy boundary.
+
+Mitigation: Keep MCP and remote endpoint use explicit-only, install only trusted MCP servers, and state when data may leave the machine.
+
+## Reference(s):
+
+- [ClawHub LM Studio Skill](https://clawhub.ai/ivangdavila/skills/lm-studio)
+- [LM Studio Skill Homepage](https://clawic.com/skills/lm-studio)
+- [Server Workflows](artifact/server-workflows.md)
+- [Model Lifecycle](artifact/model-lifecycle.md)
+- [API Recipes](artifact/api-recipes.md)
+- [MCP Playbooks](artifact/mcp-playbooks.md)
+- [Troubleshooting](artifact/troubleshooting.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline code, shell commands, configuration examples, and concise operational guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Local-first guidance for LM Studio runtime checks, model operations, OpenAI-compatible API calls, embeddings, MCP setup, and troubleshooting]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

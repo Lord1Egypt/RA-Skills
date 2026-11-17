@@ -1,0 +1,8 @@
+interface:
+  display_name: "Codex 使用复盘"
+  short_description: "复盘 Codex 使用方式并生成本地 HTML 报告"
+  brand_color: "#2563EB"
+  default_prompt: "使用 $codex-review 复盘我最近 7 天的 Codex 使用情况，并生成本地 HTML 报告。"
+
+policy:
+  allow_implicit_invocation: true

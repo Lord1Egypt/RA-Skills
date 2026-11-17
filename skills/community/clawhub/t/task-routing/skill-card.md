@@ -1,38 +1,53 @@
-## Description: <br>
-A lightweight task routing engine for intelligent task assignment based on change type, size, risk, and urgency. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A lightweight task routing engine for intelligent task assignment based on change type, size, risk, and urgency.
 
-## Publisher: <br>
-[terr123123](https://clawhub.ai/user/terr123123) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[terr123123](https://clawhub.ai/user/terr123123)
 
-## Use Case: <br>
-Developers and agent operators use this skill to route development tasks, assign work to workflows or agents, batch-route tasks, and rank work by priority using task metadata and custom rules. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [Task Routing ClawHub page](https://clawhub.ai/terr123123/skills/task-routing) <br>
-- [Publisher profile](https://clawhub.ai/user/terr123123) <br>
+Developers and agent builders use this skill to route development tasks, assign workflows or teams, and rank work based on change type, size, risk, urgency, and custom routing rules.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [code, configuration, guidance] <br>
-**Output Format:** [Python objects and JSON-serializable dictionaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Routing outputs include targets, matched rules, confidence scores, alternatives, metadata, and priority rankings. Treat routing results as recommendations and review custom rules before using them for high-impact business or security decisions.] <br>
+Global
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and skill frontmatter) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: Custom routing rules can change which task metadata fields are compared and which workflow or team labels are returned.
+
+Mitigation: Review rule data before loading it and restrict trusted rule sources for production routing.
+
+Risk: Routing and priority decisions can be incorrect when task metadata is incomplete or stale.
+
+Mitigation: Review the returned target, confidence, alternatives, and priority ranking before acting on high-risk or urgent work.
+
+## Reference(s):
+
+- [Task Routing ClawHub release](https://clawhub.ai/terr123123/skills/task-routing)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Configuration, Guidance]
+
+**Output Format:** [Markdown with Python examples and JSON-compatible routing data]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces routing decisions, confidence values, alternatives, priority rankings, and serialized routing rules.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

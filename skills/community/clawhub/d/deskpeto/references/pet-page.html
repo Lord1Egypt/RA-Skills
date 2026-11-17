@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<!-- DeskPeto pet page template. Replace __PET_NAME__ and __SPRITESHEET_URL__ then present.
+     Grid: 8 columns x 11 rows, 192x208 cells. Row map below is contract-verified
+     (running-left/right rows are intentionally swapped vs their naming). -->
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>__PET_NAME__ · DeskPeto</title>
+<style>
+  :root { color-scheme: light dark;
+    --bg: light-dark(#faf7f2, #17161a); --fg: light-dark(#2a2723, #eceae6);
+    --card: light-dark(#ffffff, #211f24); --pill: light-dark(#f0ece4, #2e2b32);
+    --accent: light-dark(#e8833a, #f0975a); }
+  body { margin:0; min-height:100vh; display:flex; align-items:center; justify-content:center;
+    background:var(--bg); color:var(--fg); font-family:system-ui,-apple-system,"PingFang SC",sans-serif; }
+  .card { background:var(--card); border-radius:24px; padding:28px 36px; text-align:center;
+    box-shadow:0 12px 40px rgba(0,0,0,.08); }
+  canvas { width:224px; height:243px; image-rendering:auto; }
+  h1 { font-size:18px; margin:10px 0 4px; }
+  .state { display:inline-block; background:var(--accent); color:#fff; border-radius:999px;
+    padding:2px 12px; font-size:12px; margin-left:6px; vertical-align:middle; }
+  .row { margin-top:14px; display:flex; gap:8px; flex-wrap:wrap; justify-content:center; }
+  button { background:var(--pill); color:var(--fg); border:0; border-radius:999px;
+    padding:6px 14px; font-size:13px; cursor:pointer; }
+  button.active { background:var(--accent); color:#fff; }
+  .hint { margin-top:10px; font-size:12px; opacity:.55; }
+</style>
+</head>
+<body>
+<div class="card">
+  <canvas id="pet" width="192" height="208"></canvas>
+  <h1>__PET_NAME__<span class="state" id="state">idle</span></h1>
+  <div class="row" id="buttons"></div>
+  <div class="hint">DeskPeto · 一张照片，你自己的桌宠 · deskpeto.com</div>
+</div>
+<script>
+const SHEET_URL = "__SPRITESHEET_URL__";
+const CELL_W = 192, CELL_H = 208;
+const evenly = (n, each, last) => Array.from({ length: n }, (_, i) => i === n - 1 ? last : each);
+const ACTIONS = {
+  idle:    { row: 0, frames: 6, d: [280,110,110,140,140,320], loop: true,  label: "待机" },
+  waving:  { row: 3, frames: 4, d: evenly(4,140,280), loop: false, label: "挥手" },
+  jumping: { row: 4, frames: 5, d: evenly(5,140,280), loop: false, label: "跳跃" },
+  running: { row: 7, frames: 6, d: evenly(6,120,220), loop: true,  label: "工作" },
+  waiting: { row: 6, frames: 6, d: evenly(6,150,260), loop: true,  label: "等待" },
+  review:  { row: 8, frames: 6, d: evenly(6,150,280), loop: true,  label: "检视" },
+  failed:  { row: 5, frames: 8, d: evenly(8,140,240), loop: true,  label: "沮丧" },
+};
+const canvas = document.getElementById("pet"), ctx = canvas.getContext("2d");
+const stateTag = document.getElementById("state"), buttonRow = document.getElementById("buttons");
+let sheet = null, actionName = "idle", action = ACTIONS.idle, frame = 0, frameAt = performance.now(), fallback = "idle";
+function play(name) {
+  action = ACTIONS[name] || ACTIONS.idle; actionName = name;
+  if (action.loop) fallback = name;
+  frame = 0; frameAt = performance.now();
+  stateTag.textContent = name;
+  for (const b of buttonRow.children) b.classList.toggle("active", b.dataset.name === name);
+}
+for (const [name, spec] of Object.entries(ACTIONS)) {
+  const b = document.createElement("button");
+  b.textContent = spec.label; b.dataset.name = name;
+  b.onclick = () => play(name);
+  buttonRow.appendChild(b);
+}
+// No crossOrigin attribute: the sprite host sends no CORS headers. A tainted canvas
+// still DRAWS fine — we never read pixels back.
+const img = new Image();
+img.onload = () => { sheet = img; };
+img.onerror = () => { stateTag.textContent = "图片加载失败(链接可能过期,重新召唤)"; };
+img.src = SHEET_URL;
+function tick(now) {
+  requestAnimationFrame(tick);
+  if (!sheet) return;
+  if (now - frameAt >= action.d[frame]) {
+    frameAt = now;
+    if (frame + 1 >= action.frames) {
+      if (action.loop) frame = 0; else { play(fallback); return; }
+    } else frame += 1;
+  }
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  ctx.drawImage(sheet, frame * CELL_W, action.row * CELL_H, CELL_W, CELL_H, 0, 0, canvas.width, canvas.height);
+}
+requestAnimationFrame(tick);
+play("waving");
+</script>
+</body>
+</html>

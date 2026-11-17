@@ -1,38 +1,50 @@
-## Description: <br>
-专为文学类书籍生成有温度、有深度的书评及微信公众号文章。聚焦文学作品的精神内核，结合真实生活体验做诗意解读，以感性与理性交织的视角呈现文学之美，适配微信公众号发布场景。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+专为文学类书籍生成有温度、有深度的书评及微信公众号文章。聚焦文学作品的精神内核，结合真实生活体验做诗意解读，以感性与理性交织的视角呈现文学之美，适配微信公众号发布场景。
 
-## Publisher: <br>
-[hanxueda](https://clawhub.ai/user/hanxueda) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hanxueda](https://clawhub.ai/user/hanxueda)
 
-## Use Case: <br>
-External writers, readers, and content creators use this skill to draft literary book reviews and WeChat public account articles for novels, essays, poetry collections, and other literature-centered works. It emphasizes reflective, personal interpretation over plot summary or formulaic recommendation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated reviews may contain inaccurate literary claims, originality issues, mishandled quotations, or inauthentic first-person reading claims. <br>
-Mitigation: Review drafts before publication for factual accuracy, originality, quote handling, and whether personal reading claims are true for the publisher. <br>
+## Use Case:
 
+External users use this skill to draft warm, in-depth Chinese literary book reviews and WeChat public account articles for novels, essays, poetry collections, literary nonfiction, and other books centered on human experience.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hanxueda/book-reviewer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or plain text prose suitable for publication drafting] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill is specialized for Chinese literary book reviews and WeChat-style articles, so outputs may not match other languages or publication formats by default.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask the agent explicitly to adapt the language, audience, or publication format when using the skill outside its default Chinese WeChat-style review context.
+
+## Reference(s):
+
+- [Book Reviewer on ClawHub](https://clawhub.ai/hanxueda/skills/book-reviewer)
+- [Publisher profile: hanxueda](https://clawhub.ai/user/hanxueda)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Chinese prose or Markdown article draft]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Adapts to book title, optional author, and optional requested review focus.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

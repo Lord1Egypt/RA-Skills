@@ -1,0 +1,43 @@
+{
+  "name": "nature-paper-workflow",
+  "display_name": "Nature Paper Workflow 论文生产链",
+  "version": "2.0.0",
+  "description": "多学科端到端论文工作流顶层路由 skill，支持 STEM（Nature 系列）与经济学（AER/QJE/JPE + 中文顶刊）双分支。",
+  "author": "TRAE SOLO CN",
+  "license": "MIT",
+  "homepage": "https://github.com/EdwardWason/nature-paper-workflow",
+  "tags": ["paper", "workflow", "router", "nature", "academic", "research", "writing", "submission", "economics", "econ"],
+  "categories": ["research", "writing", "economics"],
+  "language": ["zh", "en"],
+  "entry": "SKILL.md",
+  "dependencies": [
+    "nature-reader",
+    "nature-writing",
+    "nature-polishing",
+    "nature-figure",
+    "nature-reviewer",
+    "nature-response",
+    "nature-citation",
+    "nature-ref-verifier",
+    "paper-bootstrap",
+    "manuscript-optimizer",
+    "submission-audit",
+    "stats-reporting-audit",
+    "figure-planner",
+    "nature-portfolio-playbook"
+  ],
+  "optionalDependencies": [
+    {
+      "package": "econ-TopJournal-writing-Skill",
+      "license": "CC BY-NC 4.0",
+      "repo": "https://github.com/juliaError/econ-TopJournal-writing-Skill",
+      "sub_skills": [
+        "econ-writing-workflow",
+        "econ-write",
+        "cn-top-econ-writing",
+        "econ-table-figure-design",
+        "econ-writing-workflow-multiagent"
+      ]
+    }
+  ]
+}

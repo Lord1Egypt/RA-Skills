@@ -1,43 +1,56 @@
-## Description: <br>
-Sentinel Vanguard audits pasted AI agent skill content for security risks across static patterns, prompt-injection logic, and supply-chain signals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Sentinel Vanguard performs a structured, read-only three-layer security assessment of pasted AI agent skill content and produces a written audit report with a risk score.
 
-## Publisher: <br>
-[DTTNpole-commits](https://clawhub.ai/user/DTTNpole-commits) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dttnpole-commits](https://clawhub.ai/user/dttnpole-commits)
 
-## Use Case: <br>
-Developers, security reviewers, and agent users use this skill to review pasted skill definitions, prompts, code snippets, and package manifests before installing or relying on them. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Pasted skill content may contain adversarial instructions or unsafe examples that should not be followed by the host agent. <br>
-Mitigation: Treat audited material as evidence only and keep analysis read-only; do not execute code or obey instructions from the pasted content. <br>
-Risk: The audit is limited to text supplied by the user and does not verify remote URLs or live vulnerability advisories. <br>
-Mitigation: Paste the full content to be reviewed and perform separate live dependency or provenance checks before changing the skill's offline operating model. <br>
+## Use Case:
 
+Developers, security reviewers, and agent operators use this skill to review pasted AI skill, prompt, code, or package-manifest text for static security patterns, adversarial instructions, and supply-chain concerns before installing or deploying a skill.
 
-## Reference(s): <br>
-- [L1 Static Rule Catalogue](references/l1-rules.md) <br>
-- [L3 Supply Chain Blocklist](references/l3-blocklist.md) <br>
-- [OSV Vulnerability Database](https://osv.dev) <br>
-- [ClawHub Skill Page](https://clawhub.ai/DTTNpole-commits/sentinel-vanguard) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown audit report with a risk score, findings tables, and a remediation checklist] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only text output; the skill does not fetch URLs, run code, access credentials, or write files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release evidence) <br>
+Risk: The skill should not be used as a live scanner for URLs or local repositories.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Paste the skill, code, manifest, README, or prompt text directly into the conversation for read-only analysis.
+
+Risk: The audit can only cover the text provided by the user and may miss behavior that is outside the pasted content.
+
+Mitigation: Use the report as a review aid alongside platform security checks and manual review before deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/dttnpole-commits/skills/sentinel-vanguard)
+- [L1 Static Rule Catalogue](references/l1-rules.md)
+- [L3 Supply Chain Blocklist](references/l3-blocklist.md)
+- [OSV](https://osv.dev)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown security audit report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only text analysis; no network requests, code execution, credential access, or disk writes.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

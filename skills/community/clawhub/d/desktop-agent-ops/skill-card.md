@@ -1,47 +1,71 @@
-## Description: <br>
-Guides an agent through cross-platform desktop GUI workflows using screenshots, OCR, focused windows, helper scripts, verification loops, setup, and cleanup on macOS, Windows, and Linux. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Desktop Agent Ops guides agents through verified, window-scoped desktop automation on macOS, Windows, and Linux, including setup, screenshots, OCR targeting, input actions, validation, and cleanup.
 
-## Publisher: <br>
-[appergb](https://clawhub.ai/user/appergb) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[appergb](https://clawhub.ai/user/appergb)
 
-## Use Case: <br>
-Developers and agent operators use this skill when they need a main agent to operate desktop applications through visible GUI state, window focus, screenshots, OCR targeting, click/type actions, and post-action verification. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can set up dependencies and operate the user's live desktop with broad authority. <br>
-Mitigation: Install only when live desktop automation is intended, review first-run setup, clear sensitive windows and clipboard contents, and require explicit confirmation before sending messages, changing settings, entering credentials, or performing irreversible actions. <br>
+## Use Case:
 
+Developers and agent operators use this skill to perform GUI tasks in native desktop apps when direct APIs are unavailable or unsuitable. It emphasizes scoped screenshots, OCR or template targeting, one-action-at-a-time execution, result verification, and cleanup.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/appergb/desktop-agent-ops) <br>
-- [Workflow](references/workflow.md) <br>
-- [Reproducible Setup](references/reproducible-setup.md) <br>
-- [Platform macOS](references/platform-macos.md) <br>
-- [Platform Windows](references/platform-windows.md) <br>
-- [Platform Linux](references/platform-linux.md) <br>
-- [Target Providers](references/target-providers.md) <br>
-- [Validation Patterns](references/validation-patterns.md) <br>
-- [Precise Targeting](references/precise-targeting.md) <br>
-- [Evaluation Scenarios](references/eval-scenarios.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, JSON command outputs, and file-oriented setup instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are intended to guide an agent step by step and may include helper-script commands, screenshots or OCR result paths, validation notes, and cleanup guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: The skill requires desktop screen-capture and input-control privileges.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in environments where those permissions are acceptable, and keep actions scoped to the intended app window with screenshot verification before and after input.
+
+Risk: Automatic setup can install packages, open permission settings, and run diagnostic screenshots or mouse movement.
+
+Mitigation: Require explicit user approval before setup and review the setup steps before granting operating-system permissions.
+
+Risk: The Windows clipboard command path was called out by security guidance for review.
+
+Mitigation: Review or fix the Windows clipboard implementation before Windows use, then verify text input in a non-sensitive test window.
+
+Risk: Unpinned dependencies or OCR assets can change desktop automation behavior over time.
+
+Mitigation: Pin Python dependencies and OCR assets for release deployments, and rerun smoke tests after environment changes.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/appergb/skills/desktop-agent-ops)
+- [Workflow](references/workflow.md)
+- [Platform macOS](references/platform-macos.md)
+- [Platform Windows](references/platform-windows.md)
+- [Platform Linux](references/platform-linux.md)
+- [Precise Targeting](references/precise-targeting.md)
+- [Target Providers](references/target-providers.md)
+- [Validation Patterns](references/validation-patterns.md)
+- [Cleanup Rules](references/cleanup-rules.md)
+- [Collaboration Rules](references/collaboration-rules.md)
+- [Eval Scenarios](references/eval-scenarios.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, code]
+
+**Output Format:** [Markdown guidance with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces operational guidance for desktop control and may direct helper scripts that capture screens, move the pointer, click, type, inspect windows, run OCR, and clean task context.]
+
+## Skill Version(s):
+
+1.0.3 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

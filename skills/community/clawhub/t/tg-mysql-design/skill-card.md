@@ -1,41 +1,54 @@
-## Description: <br>
-tg-mysql-design helps agents design MySQL 5.7/8.0 CREATE TABLE DDL from business requirements, Markdown documents, and existing SQL scripts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MySQL database design assistant that reads business-rule documents and existing SQL DDL scripts to generate MySQL 5.7/8.0 CREATE TABLE statements following Alibaba and Alibaba Cloud RDS conventions.
 
-## Publisher: <br>
-[2320117707](https://clawhub.ai/user/2320117707) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[2320117707](https://clawhub.ai/user/2320117707)
 
-## Use Case: <br>
-Developers and database engineers use this skill to turn business rules or existing schema notes into MySQL table designs with fields, indexes, audit columns, comments, and compatibility guidance. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated DDL may include destructive statements such as DROP TABLE examples or rebuild plans. <br>
-Mitigation: Review generated SQL before use, require backups and explicit confirmation, and avoid running destructive statements against production databases. <br>
-Risk: Broad activation wording may cause the skill to inspect local Markdown or SQL files beyond the intended design task. <br>
-Mitigation: Point the skill at specific files or folders and avoid giving it unrestricted workspace context when only a narrow schema design is needed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Alibaba Java Development Manual](https://github.com/alibaba/p3c) <br>
-- [MySQL 8.0 Reference Manual](https://dev.mysql.com/doc/refman/8.0/en/) <br>
-- [MySQL 5.7 Reference Manual](https://dev.mysql.com/doc/refman/5.7/en/) <br>
+## Use Case:
 
+Developers and engineers use this skill to turn business requirements, Markdown rule documents, or existing SQL scripts into MySQL table designs. It produces DDL, table-structure explanations, indexing guidance, and compatibility notes for MySQL 5.7 and 8.0.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown with SQL code blocks and explanatory notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated DDL should be reviewed before database execution.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated SQL defaults can include DROP TABLE IF EXISTS statements that may remove database objects if executed in a real environment.
+
+Mitigation: Review generated SQL before use, remove or explicitly approve DROP TABLE statements, confirm the target environment, and verify backups before execution.
+
+Risk: The skill may search or read local Markdown and SQL files broadly while gathering requirements or existing schema context.
+
+Mitigation: Constrain the agent's file access to the intended workspace and provide only the requirement and SQL files needed for the design task.
+
+## Reference(s):
+
+- [Alibaba Java Development Manual - Database Rules](https://github.com/alibaba/p3c)
+- [MySQL 8.0 Reference Manual](https://dev.mysql.com/doc/refman/8.0/en/)
+- [MySQL 5.7 Reference Manual](https://dev.mysql.com/doc/refman/5.7/en/)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Markdown, Guidance]
+
+**Output Format:** [Markdown with SQL code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include table structure explanations, index design notes, business-rule summaries, compatibility notes, and best-practice recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

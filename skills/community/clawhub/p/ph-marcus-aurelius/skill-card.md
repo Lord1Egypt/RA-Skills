@@ -1,38 +1,53 @@
-## Description: <br>
-Chat with Marcus Aurelius (121-180 AD), Roman Emperor and Stoic philosopher, in a reflective, self-admonishing, practical Stoic persona. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Chat with Marcus Aurelius (121-180 AD), Roman Emperor and Stoic philosopher, in a reflective, self-admonishing, and practical persona invoked with /marcus_aurelius.
 
-## Publisher: <br>
-[juchonghao](https://clawhub.ai/user/juchonghao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bhackerj](https://clawhub.ai/user/bhackerj)
 
-## Use Case: <br>
-External users invoke this persona skill to receive reflective Stoic dialogue and advice in the voice of Marcus Aurelius. It is suited for philosophical reflection, writing prompts, and entertainment, not authoritative factual or professional guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persona responses may omit reminders that content is AI-generated and may include factual or practical claims that need verification. <br>
-Mitigation: Use the skill for reflection or entertainment and independently verify factual or practical claims. <br>
+## Use Case:
 
+External users can invoke this skill to chat with a Marcus Aurelius persona for Stoic reflection, self-admonishing advice, and historically bounded philosophical conversation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/juchonghao/ph-marcus-aurelius) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown prose] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [In-character persona responses; no tools, code execution, installation scripts, persistence, credentials, or data access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence release and SKILL.md frontmatter) <br>
+Risk: The skill instructs the agent to remain fully in character and not acknowledge being an AI while the persona is active.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only when an intentionally strict Marcus Aurelius roleplay mode is desired, and exit or disable the skill for conversations that require modern framing or AI transparency.
+
+Risk: The persona is historically bounded and does not know events after Marcus Aurelius's death in 180 AD.
+
+Mitigation: Do not rely on the skill for current factual information or modern historical analysis.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bhackerj/skills/ph-marcus-aurelius)
+
+## Skill Output:
+
+**Output Type(s):** [text, guidance]
+
+**Output Format:** [Conversational text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responds in character as Marcus Aurelius and does not use tools.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

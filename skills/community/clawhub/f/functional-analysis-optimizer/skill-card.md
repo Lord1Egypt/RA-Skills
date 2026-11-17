@@ -1,43 +1,50 @@
-## Description: <br>
-Chinese-language workflow skill that guides users through FAST-style functional analysis to optimize a product, process, system, or other target. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language agent skill that guides users through a six-step functional analysis workflow to optimize products, processes, systems, user interfaces, or other objects.
 
-## Publisher: <br>
-[jack-xun](https://clawhub.ai/user/jack-xun) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jack-xun](https://clawhub.ai/user/jack-xun)
 
-## Use Case: <br>
-Employees, external users, and builders use this skill to structure optimization work for products, processes, systems, UI flows, and similar targets. It helps them define scope, model functions, diagnose overloaded or missing functions, generate alternatives, choose a practical option, and define a minimal test slice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate on broad optimization wording and shape analysis even when the user only intended a lightweight improvement request. <br>
-Mitigation: Confirm the optimization target and core objective before proceeding through the full six-step workflow. <br>
-Risk: Recommendations could affect business, product, or operational decisions if applied without review. <br>
-Mitigation: Treat outputs as structured proposals and have a human reviewer validate assumptions, costs, compatibility, and metrics before implementation. <br>
+## Use Case:
 
+External users and agent operators use this skill to structure optimization work with FAST-style functional decomposition, diagnosis, ideation, convergence, and a minimal test plan.
 
-## Reference(s): <br>
-- [FAST Function Analysis Guide](references/fast-guide.md) <br>
-- [Common Function Modeling Mistakes](references/common-mistakes.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/jack-xun/functional-analysis-optimizer) <br>
-- [Publisher Profile](https://clawhub.ai/user/jack-xun) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Analysis, Guidance] <br>
-**Output Format:** [Markdown with structured functional-analysis sections, tables, prompts, and decision criteria] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces Chinese-language structured recommendations; no files, code execution, or external tool calls are required by the skill.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Optimization recommendations may be incomplete or misleading when applied to high-stakes products, workflows, or organizational decisions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as brainstorming and analysis support, and require domain expert review before acting on high-stakes recommendations.
+
+## Reference(s):
+
+- [FAST functional analysis guide](references/fast-guide.md)
+- [Common functional modeling mistakes](references/common-mistakes.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown guidance with structured analysis templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language functional analysis workflow; no code execution, credentials, network access, or persistence requested.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

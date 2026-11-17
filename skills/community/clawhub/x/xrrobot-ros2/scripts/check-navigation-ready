@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+set -u
+
+STATUS_TOPIC="${XRROBOT_INITIAL_POSE_STATUS_TOPIC:-/xrrobot_navigation/initial_pose_set}"
+
+if ! ros2 node list 2>/dev/null | grep -Fxq "/cartographer_localization_node"; then
+    printf '%s\n' '{"ready":false,"reason":"localization_node_missing","message":"Cartographer 定位节点未运行。"}'
+    exit 1
+fi
+
+if ! ros2 node list 2>/dev/null | grep -Fxq "/xrrobot_cartographer_initial_pose"; then
+    printf '%s\n' '{"ready":false,"reason":"initial_pose_bridge_missing","message":"初始位姿桥接节点未运行。"}'
+    exit 1
+fi
+
+status_output="$(timeout 4s ros2 topic echo \
+    --qos-reliability reliable \
+    --qos-durability transient_local \
+    --once "$STATUS_TOPIC" std_msgs/msg/Bool 2>/dev/null || true)"
+
+if ! grep -Eq 'data:[[:space:]]*true' <<<"$status_output"; then
+    printf '%s\n' '{"ready":false,"reason":"initial_pose_not_set","message":"尚未成功设置导航初始位置。"}'
+    exit 2
+fi
+
+tf_output="$(timeout 4s ros2 run tf2_ros tf2_echo map base_link 2>/dev/null || true)"
+if ! grep -q 'Translation:' <<<"$tf_output"; then
+    printf '%s\n' '{"ready":false,"reason":"map_tf_missing","message":"初始位置已设置，但 map 到 base_link 的 TF 尚未建立。"}'
+    exit 3
+fi
+
+printf '%s\n' '{"ready":true,"reason":"ok","message":"导航定位和初始位置校验通过。"}'

@@ -1,0 +1,26 @@
+{
+  "slug": "xtph-ecommerce-assistant",
+  "name": "小天铺货AI助手",
+  "displayName": "小天铺货AI助手",
+  "version": "1.0.16",
+  "source": "clawhub",
+  "iconUrl": "https://skillhub-1388575217.cos.accelerate.myqcloud.com/skill-icons/uploads/726178/7e4226392edb4e11843684ce6d9a6d53.png",
+  "channel": "prod",
+  "defaultEnv": "prod",
+  "allowedEnvs": [
+    "prod"
+  ],
+  "backendUrl": "https://puhuoapi.huitun.com",
+  "frontendUrl": "https://puhuo.huitun.com",
+  "frontendLinks": {
+    "home": "https://puhuo.huitun.com/home",
+    "distributionRecords": "https://puhuo.huitun.com/distribut_man",
+    "goodsRestock": "https://puhuo.huitun.com/goods_restock"
+  },
+  "audienceMode": "seller",
+  "exposeTechnicalDetails": false,
+  "debugEnvVar": "XTPH_SKILL_DEBUG",
+  "sessionDirName": "xtph-ecommerce-assistant",
+  "autoOpenProductResultsPage": false,
+  "license": "MIT-0"
+}

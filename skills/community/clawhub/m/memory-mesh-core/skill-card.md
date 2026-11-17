@@ -1,44 +1,58 @@
-## Description: <br>
-Builds a reusable memory mesh for OpenClaw with tagged memory layers, local consolidation, global sync, GitHub Issue contribution self-check, and optional automated issue posting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Builds a reusable, scored memory mesh with safety gating and 12-hour auto-refresh for cross-session memory consolidation and quality control in OpenClaw.
 
-## Publisher: <br>
-[wanng-ide](https://clawhub.ai/user/wanng-ide) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[wanng-ide](https://clawhub.ai/user/wanng-ide)
 
-## Use Case: <br>
-Developers and OpenClaw agent builders use this skill to consolidate cross-session memories, score and promote reusable lessons, sync shared memory feeds, and prepare reviewed memory contributions for collaborative reuse. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Scheduled runs can continue operating after installation. <br>
-Mitigation: Review the cron configuration before enabling it and keep scheduled execution disabled unless recurring memory sync is intended. <br>
-Risk: The skill can update installed skills from subscribed sources. <br>
-Mitigation: Enable auto-update only for trusted subscriptions and review generated sync reports before accepting changes. <br>
-Risk: Memory-derived summaries may be posted externally through GitHub or browser identity. <br>
-Mitigation: Keep automated posting disabled until the generated JSON and Markdown outputs are reviewed and the posting identity is approved. <br>
+## Use Case:
 
+Developers and OpenClaw agent operators use this skill to consolidate local memory, score and filter reusable lessons, synchronize trusted shared memory feeds, and optionally prepare or post contribution payloads.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wanng-ide/memory-mesh-core) <br>
-- [GitHub issue contribution intake](https://github.com/wanng-ide/memory-mesh-core/issues/1) <br>
-- [README](README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands plus generated JSON and Markdown memory artifacts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write local memory reports, contribution payloads, cron configuration, and issue-posting reports in the workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: package.json and server release metadata) <br>
+Risk: Recurring scheduled jobs can continue processing local memory after initial setup.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the OpenClaw cron configuration before enabling it, use the shortest necessary scope, and disable the schedule when continuous sync is not required.
+
+Risk: Automatic skill updates can replace installed skill copies.
+
+Mitigation: Set auto_update_skills to false unless automatic replacement is intentional, and review update reports before trusting newly pulled memory feeds.
+
+Risk: Local memory-derived contribution payloads can be posted externally to GitHub or through browser automation.
+
+Mitigation: Run posting commands only after reviewing the generated payload and destination issue, keep scheduled posting disabled by default, and use workspaces whose memory files are safe to publish.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wanng-ide/skills/memory-mesh-core)
+- [GitHub Issue contribution intake](https://github.com/wanng-ide/memory-mesh-core/issues/1)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands plus generated JSON and Markdown files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes local memory mesh artifacts, reports, contribution payloads, and optional scheduling configuration.]
+
+## Skill Version(s):
+
+1.0.6 (source: package.json and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

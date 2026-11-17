@@ -1,0 +1,23 @@
+{
+  "notice": "Original public source URLs and replayed parse hashes only. Full original documents and parsed text are not redistributed.",
+  "sources": [
+    {
+      "id": "tencent-2026q1",
+      "url": "https://static.www.tencent.com/uploads/2026/05/13/47382ae415a209fd161bc19a1f9b3704.pdf",
+      "title": "Tencent 2026 Q1 results",
+      "published_at": "2026-05-13",
+      "accessed_at": "2026-09-28",
+      "sha256": "71b28f86c35f96bff76027f916203e16a29b14aa262cc4b5ea61ecb33cebe512",
+      "parse_origin": "omni_replay"
+    },
+    {
+      "id": "tencent-2026q2",
+      "url": "https://www.tencent.com/wp-content/uploads/2026/08/Tencent-Announces-2026-Second-Quarter-Results.pdf",
+      "title": "Tencent 2026 Q2 results",
+      "published_at": "2026-08-12",
+      "accessed_at": "2026-09-28",
+      "sha256": "2b929d3769d26b6b3af20feb8717d7333ab9da6a75f8ec7ff8961dc3949010ed",
+      "parse_origin": "omni_replay"
+    }
+  ]
+}

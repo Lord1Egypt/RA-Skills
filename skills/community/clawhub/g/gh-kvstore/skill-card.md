@@ -1,41 +1,53 @@
-## Description: <br>
-In-memory key-value store with TTL for AI agents. Set, get, delete, list, flush, and stats. Supports any JSON value, optional TTL per key, and prefix-based key listing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+In-memory key-value store with TTL for AI agents. Set, get, delete, list, flush, and stats. Supports any JSON value, optional TTL per key, and prefix-based key listing. Like a lightweight Redis for agent pipelines.
 
-## Publisher: <br>
-[mirni](https://clawhub.ai/user/mirni) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mirni](https://clawhub.ai/user/mirni)
 
-## Use Case: <br>
-Developers and agent builders use this skill to run a lightweight local key-value API for agent state, caching, and data sharing with optional per-key TTL. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The local API includes unauthenticated delete and flush endpoints that can remove stored values. <br>
-Mitigation: Keep the service bound to localhost, control access to the port, and use the flush endpoint only when clearing all in-memory keys is intended. <br>
-Risk: Stored values are held in memory by a temporary local service and may include sensitive data if users choose to store it. <br>
-Mitigation: Avoid storing secrets unless the runtime and port access are controlled. <br>
+## Use Case:
 
+Developers and agent builders use Kvstore to run a local HTTP key-value service for transient agent state, caching, and data sharing with optional TTL expiration.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/mirni/gh-kvstore) <br>
-- [Publisher Profile](https://clawhub.ai/user/mirni) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, API Calls, Shell commands, Configuration] <br>
-**Output Format:** [JSON HTTP responses from a local FastAPI service, with Markdown examples for shell usage] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [In-memory storage only; values may expire by TTL, and flush deletes all current keys.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The service exposes unauthenticated read, write, list, delete, and full-flush operations over stored data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep it bound to localhost, avoid sharing the port with untrusted users, processes, or containers, and treat /v1/flush as an admin-only destructive action.
+
+Risk: Data written to the store can include arbitrary JSON values that may be sensitive if callers choose to store secrets or personal data.
+
+Mitigation: Do not store real secrets or sensitive personal data in this local service.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mirni/skills/gh-kvstore)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, API Calls, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline bash and HTTP examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces instructions for starting and calling a local FastAPI key-value service; stored values are JSON.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

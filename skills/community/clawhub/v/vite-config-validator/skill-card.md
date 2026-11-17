@@ -1,40 +1,54 @@
-## Description: <br>
-Validate Vite configuration files (JSON-exported) for structural correctness, build settings, server security, resolve/CSS hygiene, plugin deprecations, and best practices. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Validate Vite configuration files exported as JSON for structural correctness, build settings, server security, resolve/CSS hygiene, plugin deprecations, and best practices.
 
-## Publisher: <br>
-[charlie-morrison](https://clawhub.ai/user/charlie-morrison) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[charlie-morrison](https://clawhub.ai/user/charlie-morrison)
 
-## Use Case: <br>
-Developers and engineers use this skill to audit JSON-exported Vite configuration snapshots, enforce configuration standards in CI, and review vite.config.ts changes for correctness and security hygiene. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Exporting a Vite config with Node executes that project's configuration code. <br>
-Mitigation: Only run the documented export command on repositories you trust, or run it in a sandbox for untrusted pull requests. <br>
-Risk: Strict mode can turn warnings into blocking CI failures before a team has calibrated the rule set. <br>
-Mitigation: Run without --strict first and review findings before making the validator a required CI gate. <br>
+## Use Case:
 
+Developers and engineers use this skill to audit Vite configuration snapshots during local review, CI checks, or changes to vite.config.ts. It reports structural issues, security-sensitive server settings, deprecated plugins, and practical configuration suggestions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/charlie-morrison/vite-config-validator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and optional text, summary, or JSON CLI output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces validation findings, rule explanations, summaries, and suggested fixes for JSON-exported Vite configs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Creating the JSON snapshot by importing vite.config.ts can execute project code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the documented import command only with trusted Vite configs, or generate the snapshot in a sandbox without secrets, tokens, writable release artifacts, or broad network access.
+
+Risk: The validator analyzes JSON snapshots and cannot prove that the original vite.config.ts uses defineConfig or still matches the snapshot.
+
+Mitigation: Regenerate the snapshot from reviewed source before validation and treat defineConfig-related output as a review reminder.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/charlie-morrison/skills/vite-config-validator)
+- [Publisher profile](https://clawhub.ai/user/charlie-morrison)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Configuration guidance]
+
+**Output Format:** [Text, summary, or JSON validation reports with optional command examples and fix suggestions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports validate, check, explain, and suggest commands; strict mode can treat warnings as errors for CI use.]
+
+## Skill Version(s):
+
+1.0.1 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,48 +1,65 @@
-## Description: <br>
-Interpret genomic variants with ACMG classification, pharmacogenomics, and clinical annotation from ClinVar and gnomAD. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Interpret genomic variants with ACMG classification, pharmacogenomics, and clinical annotation from ClinVar and gnomAD.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External clinicians, geneticists, bioinformaticians, and researchers use this skill to interpret processed genomic variants from VCF-style workflows. It supports evidence-based ACMG classification, pharmacogenomics interpretation, clinical annotation lookup, and clear separation of germline and somatic context. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Genomic interpretation can involve sensitive health information and may produce clinical or pharmacogenomics recommendations that require professional verification. <br>
-Mitigation: Avoid saving patient identifiers unless necessary, review local notes under ~/genomics/ periodically, and independently verify clinical or pharmacogenomics recommendations against current professional guidance. <br>
-Risk: The skill can store interpretation preferences and case notes locally after user consent. <br>
-Mitigation: Confirm consent before creating ~/genomics/ and keep stored notes limited to the minimum information needed for the user's workflow. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ivangdavila/genomics) <br>
-- [Skill Homepage](https://clawic.com/skills/genomics) <br>
-- [ClinVar](https://www.ncbi.nlm.nih.gov/clinvar) <br>
-- [gnomAD](https://gnomad.broadinstitute.org) <br>
-- [OMIM](https://omim.org) <br>
-- [PharmGKB](https://www.pharmgkb.org) <br>
-- [CPIC](https://cpicpgx.org) <br>
-- [ClinGen](https://clinicalgenome.org) <br>
-- [Franklin](https://franklin.genoox.com) <br>
-- [VarSome](https://varsome.com) <br>
+## Use Case:
 
+Clinicians, geneticists, bioinformaticians, and researchers use this skill to interpret processed genomic variants, classify clinical significance, annotate variants against reference databases, and prepare pharmacogenomics guidance. It is not intended for raw sequencing alignment, variant calling, or standalone medical decision-making.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown guidance with optional local workspace notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local notes under ~/genomics/ only with user consent; does not automatically call external APIs.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Genomic and clinical case notes can contain identifying or sensitive health information.
+
+Mitigation: Create the ~/genomics/ workspace only with user consent and avoid storing patient identifiers unless appropriate privacy controls are in place.
+
+Risk: Variant classifications, pharmacogenomics recommendations, and dosing guidance may be incorrect, incomplete, or out of date.
+
+Mitigation: Verify interpretations against current clinical guidelines, trusted databases, and qualified professional review before using them in clinical decisions.
+
+Risk: Manual lookup on external databases may expose variant or case context if the user submits sensitive data.
+
+Mitigation: Use external resources deliberately and minimize any sensitive data entered into third-party sites.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/genomics)
+- [Skill homepage](https://clawic.com/skills/genomics)
+- [ClinVar](https://ncbi.nlm.nih.gov/clinvar)
+- [gnomAD](https://gnomad.broadinstitute.org)
+- [OMIM](https://omim.org)
+- [PharmGKB](https://pharmgkb.org)
+- [CPIC](https://cpicpgx.org)
+- [ClinGen](https://clinicalgenome.org)
+- [Franklin](https://franklin.genoox.com)
+- [VarSome](https://varsome.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown guidance with optional local notes and case summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local notes under ~/genomics/ only after user consent; no automatic network calls or code execution are disclosed.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

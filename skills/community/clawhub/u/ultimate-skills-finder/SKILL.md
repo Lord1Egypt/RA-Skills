@@ -1,127 +1,159 @@
 ---
 name: ultimate-skills-finder
-description: "The ultimate multi-source OpenClaw/agent skills finder. Searches across ClawHub, skills.sh, Rush registry, LobeHub, SkillsMP, llmbase.ai, skillsllm.com, and GitHub curated collections — then cross-references, deduplicates, ranks by popularity, and optionally security-scans via Gen Digital. Use when: (1) user says 'find a skill for X', 'is there a skill that can...', 'how do I do X with OpenClaw', (2) user wants to discover new agent capabilities, (3) user asks what skills exist for a specific domain or task, (4) user wants to install a skill but isn't sure which one, (5) user wants to compare skills across multiple registries."
+description: Multi-source skill discovery across ClawHub, skills.sh, SkillsMP, and two curated GitHub lists. Cross-references, deduplicates, and ranks results, and emits install commands only for sources that publish a verifiable identifier. Use when the user wants to find or compare existing skills for a capability ("is there a skill that...", "find me a skill for...", "which skill should I use for..."). Do not use to perform the task directly.
 ---
 
-# Ultimate Skills Finder 🔍
+# Ultimate Skills Finder
 
-Searches **5 sources** (ClawHub, SkillsMP, awesome-list, master-skills, skills.sh) for OpenClaw/agent skills, cross-references results, and returns ranked deduplicated findings with install instructions and optional security scanning.
+Searches **5 sources**, merges duplicate findings, and ranks by breadth,
+popularity, and source authority.
 
-## Quick Start
+## When to use this
+
+Use when the user is looking for an **existing skill** to cover a
+capability, or wants to compare candidates.
+
+Do not use it to just do the task. If the user wants their PDF edited, edit
+the PDF. This skill finds candidates; it is not the work itself.
+
+## Quick start
 
 ```bash
-python3 scripts/find_skill.py "web scraping" --scan
-python3 scripts/find_skill.py "pdf editor"
-python3 scripts/find_skill.py "seo tools" --popular
-python3 scripts/find_skill.py "github" --scan --install
+python3 scripts/find_skill.py "web scraping"
+python3 scripts/find_skill.py "pdf editor" --show-install
+python3 scripts/find_skill.py "seo" --popular
+python3 scripts/find_skill.py "email" --json
+python3 scripts/find_skill.py "email" --source clawhub
+python3 scripts/find_skill.py "pdf" --scan --share-urls   # see disclosure note
 ```
 
-## Sources Searched
+Requires **Python 3.9+**. The code uses `asyncio.to_thread`; on 3.8 the
+script fails at the first network call with an `AttributeError`.
 
-| # | Source | Type | Skills | CLI/Tool |
-|---|--------|------|--------|----------|
-| 1 | **ClawHub** (clawhub.ai) | Primary registry | ~20,000 | `clawhub search` |
-| 2 | **skills.sh** (Vercel) | Directory | ~87,000 | `npx skills add` |
-| 3 | **SkillsMP** (skillsmp.com) | Aggregator | 1,000,000+ | REST API |
-| 4 | **GitHub: awesome-openclaw-skills** | Curated | 5,200+ | README |
-| 5 | **GitHub: openclaw-master-skills** | Curated | 560+ | README |
+## Sources
+
+| # | Source | Kind | Install command? |
+|---|--------|------|------------------|
+| 1 | **ClawHub** (`clawhub.ai`) | Official registry | yes |
+| 2 | **skills.sh** | Directory with real install counts | yes |
+| 3 | **SkillsMP** (`skillsmp.com`) | Raw aggregator, uncurated | no — browse only |
+| 4 | **VoltAgent/awesome-openclaw-skills** | Curated GitHub README | no — browse only |
+| 5 | **LeoYeAI/openclaw-master-skills** | Curated GitHub README | no — browse only |
+
+The split is deliberate. Sources 1–2 publish a machine-checkable
+identifier, so the tool can emit a command it has validated. Sources 3–5
+surface text that a third party can freely edit, so they give you a name and
+a link to review yourself. **A browse-only entry is not a lesser result** —
+the curated lists often cover skills that no registry has indexed.
+
+## Options
+
+| Flag | Effect |
+|------|--------|
+| `--limit N` | Max results per source (default 5) |
+| `--show-install` | Print install commands where a verified path exists |
+| `--popular` | Sort by raw popularity instead of relevance |
+| `--exclude-chinese` | Drop results written in Chinese. Japanese and Korean are kept — Han characters alone are ambiguous, so kana or hangul keeps a result in. Reports how many it dropped; never silent |
+| `--json` | JSON output for further processing |
+| `--source <name>` | Restrict to one source |
+| `--scan` | Request advisory security labels (**requires `--share-urls`**) |
+| `--share-urls` | Consent to the third-party disclosure described below |
+
+## Security rules
+
+These are not optional.
+
+**1. Never run an install command without showing the user first.**
+Before running anything, display the validated identifier, the source
+registry, the canonical URL, and the version. Then ask.
+
+**2. Only run commands that the tool printed.** The tool builds install
+commands as argument arrays from identifiers that passed an allowlist
+(`^[A-Za-z0-9][A-Za-z0-9._/-]*$`, 1-128 chars, no `..` traversal and no
+empty segment). Anything you construct yourself, or that you assemble from
+a browse-only source, is unvalidated. Do not run it.
+
+**3. Browse-only sources get no install command.** For SkillsMP and the two
+curated lists, show the name and the GitHub link, then let the user decide.
+If they want one, verify it on the registry yourself first.
+
+**4. Every search discloses the query; `--scan` adds URL disclosure.**
+
+*Always:* the raw query string is sent to ClawHub, skills.sh, SkillsMP and
+GitHub as part of searching. There is no flag for this and no consent step.
+If the user is likely to type something confidential — a client name, an
+unreleased codename — say so *before* running the search, and offer to use a
+generic query instead.
+
+*Additionally with `--scan`:* it POSTs the URL of every result to
+`ai.gendigital.com`. It refuses to run without `--share-urls`. Ask the user
+before supplying that flag. Do not add it on their behalf.
+
+**5. Security labels are advisory.** All five levels were observed live from
+the scanner on 2026-10-16 — `SAFE`, `LOW`, `MEDIUM`, `HIGH`, `CRITICAL` —
+so treat the vocabulary as real. `SAFE` means a third party has not flagged
+the package. It is not a
+guarantee of safety. A `analysis_pending` verdict is displayed as **pending
+review** and is explicitly *not* an approval — it means nobody has looked
+yet. Never present `SAFE` as clearance, and never downplay `HIGH` or
+`CRITICAL` — surface them with the reasons the scanner returned before
+recommending anything.
+
+Roughly 2 in 3 lookups return **no verdict at all**. That means the scanner
+could not resolve the skill, not that it is safe. Say "not scanned", never
+"no concerns found".
+
+A result with **no `scan:` line was not scanned**. Absence of a label is not
+a clean bill of health.
 
 ## Workflow
 
-### Step 1: Understand the Need
+1. **Understand the need.** Identify the concrete task. If the user said
+   "how do I do X", decide first whether a skill is warranted at all.
 
-When the user says "find me a skill for X", identify:
-- The specific task/domain (e.g., "web scraping", "PDF editing", "SEO")
-- The platform (OpenClaw, Claude Code, Cursor, etc.)
-- Whether they want security scanning
+2. **Run the search.** Use `--show-install` when you intend to offer
+   installation.
 
-### Step 2: Run the Finder Script
+3. **Read the results critically.** Before recommending anything:
+   - Does the description match what the user actually needs?
+   - Is it cross-listed in more than one source? A skill on the curated
+     lists *and* a registry is more likely to be real and maintained.
+   - Is the install count plausible, or does it look inflated?
 
-```bash
-python3 scripts/find_skill.py "<query>" [options]
-```
+4. **Present 3–5 candidates.** For each: name, what it does, which sources
+   listed it, and the URL. Flag browse-only entries as needing manual review.
 
-**Options:**
-- `--scan` — Security-scan results via Gen Digital
-- `--popular` — Sort by popularity/install count
-- `--limit N` — Max results per source (default: 5)
-- `--json` — Output as JSON for programmatic use
-- `--install` — Show install commands prominently
-- `--source <name>` — Only search specific source(s)
+5. **Install only on explicit request,** following the security rules above.
 
-### Step 3: Interpret Results
+## Interpreting the output
 
-The script outputs a ranked, deduplicated table:
+Each result shows its sources, popularity, description, and URL. Results
+from skills.sh have no description — that endpoint does not return one — so
+a skills.sh-only hit shows an explicit placeholder instead of an empty line.
 
-```
-🔍 Results for "web scraping" (6 found across 9 sources)
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-🥇 agent-browser-cli          ★★★★☆  12.4k ⬇  [ClawHub, SkillsMP, llmbase]
-   Headless browser automation with accessible tree
-   → clawhub install agent-browser-cli
-   → npx skills add user/agent-browser-cli
+`N of M have a verified install path` at the bottom tells you how much of
+the result set is directly installable. The remainder still needs review.
 
-🥇 firecrawl                   ★★★★☆  8.2k ⬇   [ClawHub, GitHub awesome]
-   Web scraping with Firecrawl API
-   → clawhub install firecrawl
+## When nothing is found
 
-🥈 playwright-mcp             ★★★☆☆  3.1k ⬇   [ClawHub, SkillsMP]
-   Browser automation via Playwright MCP
-   → clawhub install playwright-mcp
+1. Broaden or synonym the query (`email` → `smtp` → `messaging`).
+2. Consider that the capability may not exist as a skill.
+3. Say so plainly, and offer to do the task directly. Do not invent a
+   recommendation to fill the gap.
 
-🔒 Security: 2/3 skills scanned SAFE. 1 pending review.
-```
+## Known limitations
 
-### Step 4: Security Scan (Optional)
-
-Run with `--scan` to check skills via Gen Digital's API:
-
-```bash
-python3 scripts/find_skill.py "email" --scan
-```
-
-The scanner checks each unique skill URL and returns:
-- `SAFE` — OK to install
-- `analysis_pending` — Not yet reviewed, caution advised
-- `WARNING` / `DANGEROUS` / `MALICIOUS` — Do not install
-
-### Step 5: Present & Install
-
-Present the top 3-5 most relevant results:
-1. Skill name + description
-2. Sources where it was found (confirms it's well-known)
-3. Install commands (primary method)
-4. Security verdict if scanned
-
-Then ask which one(s) to install and do it:
-
-```bash
-# ClawHub
-clawhub install <slug>
-
-# skills.sh
-npx skills add <owner/repo>
-
-# Manual (from GitHub)
-git clone <repo> ~/.openclaw/workspace/skills/<name>
-```
-
-## Cross-Reference Logic
-
-Results are deduplicated by fuzzy name matching across all sources. A skill found in **3+ sources** gets a confidence boost. The ranking formula:
-
-```
-score = (source_count * 0.3) + (install_count_normalized * 0.4) + (source_authority * 0.3)
-```
-
-Where:
-- `source_count`: How many registries list this skill (0-10)
-- `install_count_normalized`: Popularity within its source (0-1)
-- `source_authority`: Official ClawHub > curated lists > aggregators > individual repos
-
-## When No Results Found
-
-If the finder returns nothing:
-1. Try a broader or synonym query (e.g., "email" → "smtp" → "messaging")
-2. Check if the skill might exist under a different ecosystem
-3. Offer to create a custom skill using `skill-creator`
+- Descriptions are missing for skills.sh-only results.
+- SkillsMP is uncurated. Its `stars` field is a **repository** star count,
+  not a per-skill measure, so v1.2.2 sets it to zero and excludes it from
+  ranking entirely rather than treating it as popularity.
+- ClawHub search responses also carry `trust.upstreamScanners` — per-skill
+  verdicts from Snyk, Socket and Agent Trust Hub, arriving with the search
+  and involving no extra disclosure. This version does not surface them.
+- Popularity figures are not comparable across sources: ClawHub and
+  skills.sh report installs, SkillsMP reports repository stars.
+- The two curated lists are parsed from README text and will degrade if
+  those repositories change their table format.
+- Results whose name fails the identifier allowlist are dropped silently by
+  some parsers. If results seem unexpectedly few, suspect a name filter
+  rather than a missing skill.

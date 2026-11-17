@@ -1,44 +1,58 @@
-## Description: <br>
-Control Sonos speakers with commands for discovery, status, playback, volume, grouping, favorites, queues, and optional Spotify search. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Control Sonos speakers for discovery, status, playback, volume, grouping, favorites, queue operations, and optional Spotify search.
 
-## Publisher: <br>
-[maddydci45-svg](https://clawhub.ai/user/maddydci45-svg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[maddydci45-svg](https://clawhub.ai/user/maddydci45-svg)
 
-## Use Case: <br>
-External users and developers use this skill to let an agent operate Sonos speakers on a local network, including playback, volume, grouping, favorites, queue actions, and optional Spotify search. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can control Sonos speakers on the local network, including playback, volume, grouping, and queue clearing. <br>
-Mitigation: Review agent prompts before allowing speaker-control actions, especially volume changes, grouping changes, and queue-clearing commands. <br>
-Risk: Optional Spotify Web API search may require Spotify credentials in the environment. <br>
-Mitigation: Provide Spotify credentials only when needed, keep them out of prompts and logs, and prefer scoped or disposable credentials where possible. <br>
-Risk: The Go install target uses a latest-version module reference, which may change over time. <br>
-Mitigation: Pin the Go module version when reproducible installs are required. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/maddydci45-svg/sonos) <br>
-- [Publisher profile](https://clawhub.ai/user/maddydci45-svg) <br>
-- [Sonos CLI homepage](https://sonoscli.sh) <br>
-- [sonoscli Go module](https://pkg.go.dev/github.com/steipete/sonoscli/cmd/sonos) <br>
+## Use Case:
 
+Developers and users with Sonos speakers use this skill to have an agent suggest or run Sonos CLI commands for local speaker discovery, playback control, volume control, grouping, favorites, queue management, and optional Spotify search.
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the sonos binary and local network access to Sonos speakers; optional Spotify Web API search uses SPOTIFY_CLIENT_ID and SPOTIFY_CLIENT_SECRET.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill installs and relies on an upstream third-party Go CLI package at the latest version, creating supply-chain and version drift risk.
+
+Mitigation: Install only after reviewing the upstream package, prefer a version pinned to a reviewed commit, and rerun security review when the dependency changes.
+
+Risk: Optional Spotify Web API search may require credential environment variables.
+
+Mitigation: Expose only the required Spotify credentials for the command being run and avoid sharing unrelated environment variables with the CLI process.
+
+Risk: Sonos control commands affect speakers on the local network and may target the wrong device if names or IP addresses are ambiguous.
+
+Mitigation: Confirm the speaker name or IP address with discovery/status commands before issuing playback, grouping, queue, or volume changes.
+
+## Reference(s):
+
+- [Sonos CLI homepage](https://sonoscli.sh)
+- [ClawHub skill page](https://clawhub.ai/maddydci45-svg/skills/sonos)
+- [Go install module: github.com/steipete/sonoscli/cmd/sonos](https://pkg.go.dev/github.com/steipete/sonoscli/cmd/sonos)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and concise configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference local-network speaker names or IP addresses and optional Spotify credential environment variables.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact origin.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

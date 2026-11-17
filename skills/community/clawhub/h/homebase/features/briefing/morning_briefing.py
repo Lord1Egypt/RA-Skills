@@ -12,15 +12,14 @@ import os
 import sys
 
 from core.config_loader import SKILL_DIR
-from core.keychain_secrets import load_google_secrets
-load_google_secrets()
 
 from datetime import datetime
 from features.calendar.calendar_aggregator import FamilyCalendarAggregator
 from features.meals.meal_tracker import MealTracker
 from features.school.snack_manager import SnackManager
 from features.briefing.weather import get_weather_briefing
-from utils import write_json_atomic
+from features.briefing.daily_thought import get_daily_thought
+from utils import write_json_atomic, locked_file
 
 
 # ─── Config ──────────────────────────────────────────────────────────────────
@@ -43,74 +42,6 @@ def has_dropoff_today(events):
         if any(n in title or n in desc for n in _DROPOFF_NEEDLES):
             out.append(e)
     return out
-
-
-def is_school_day(snacks: SnackManager) -> bool:
-    return not snacks.is_school_closed_today()
-
-
-def format_briefing_message(events, meal_suggestions, dropoffs, snacks,
-                             positive_message="Make today count.",
-                             weather_text=None) -> str:
-    today = datetime.now().strftime("%A, %B %d")
-    lines = [f"🌅 *Morning Briefing — {today}*\n"]
-
-    # ── Weather ───────────────────────────────────────────────────────────
-    if weather_text:
-        lines.append(weather_text)
-        lines.append("")
-
-    # ── Drop-off reminders (always at top) ───────────────────────────────
-    if dropoffs:
-        lines.append("🚗 *DROP-OFF TODAY*")
-        for d in dropoffs:
-            lines.append(f"  ⚠️ *{d['title']}* at {d.get('time', 'TBD')}")
-        lines.append("")
-
-    # ── Today's calendar events ───────────────────────────────────────────
-    lines.append("📅 *Today's Events*")
-    if events:
-        for event in events:
-            time_str = event.get('time', 'All day')
-            if time_str in ("00:00", "All day"):
-                display_time = "All day"
-            else:
-                h, m = map(int, time_str.split(':'))
-                ampm = "AM" if h < 12 else "PM"
-                h = h % 12 or 12
-                display_time = f"{h}:{m:02d} {ampm}"
-            lines.append(f"  • {event['title']} at {display_time}")
-    else:
-        lines.append("  No events today — enjoy the free day! 🎉")
-    lines.append("")
-
-    # ── School snacks (only on school days) ──────────────────────────────
-    if is_school_day(snacks):
-        snack_text = snacks.format_for_briefing()
-        if snack_text:
-            lines.append(snack_text)
-            lines.append("")
-        warning = snacks.should_warn_about_missing_schedule()
-        if warning and not snack_text:
-            lines.append(warning)
-            lines.append("")
-
-    # ── Meal plan ─────────────────────────────────────────────────────────
-    lines.append("🍽️ *Kids Meal Plan*")
-    for child_key, meals in meal_suggestions.items():
-        name = meals.get("name", child_key.capitalize())
-        lines.append(f"\n*{name}*")
-        lines.append(f"  Breakfast: {meals['breakfast']}")
-        lines.append(f"  Lunch: {meals['lunch']}")
-        lines.append(f"  Side: {meals['side']}")
-        if meals.get("note"):
-            lines.append(f"  _{meals['note']}_")
-
-    # ── Positive message ────────
-    if positive_message:
-        lines.append(f"\n_{positive_message}_")
-
-    return "\n".join(lines)
 
 
 # ─── Main ─────────────────────────────────────────────────────────────────────
@@ -163,7 +94,18 @@ def validate_briefing_data(data: dict) -> list:
 def _record_reliability(data: dict, warnings: list):
     tracker_path = os.path.join(SKILL_DIR, "household", "briefing_reliability.json")
     os.makedirs(os.path.dirname(tracker_path), exist_ok=True)
+    try:
+        with locked_file(tracker_path):
+            _record_reliability_locked(tracker_path, data, warnings)
+    except TimeoutError as e:
+        # locked_file's acquire is bounded, and this is the 6:05 AM path.
+        # Reliability bookkeeping losing one sample is a non-event; the
+        # briefing failing to send because a stale lock was held is not.
+        print(f"[morning_briefing] reliability tracker skipped: {e}",
+              file=sys.stderr)
 
+
+def _record_reliability_locked(tracker_path: str, data: dict, warnings: list):
     try:
         if os.path.exists(tracker_path):
             with open(tracker_path) as f:
@@ -220,9 +162,32 @@ def get_briefing_data() -> dict:
     meals     = MealTracker(SKILL_DIR)
     snacks    = SnackManager(SKILL_DIR)
 
-    assistant.sync_with_google_calendar()
+    assistant.sync_with_google_calendar(detect_restaurants=True, force=True)
     today_events = assistant.get_events_for_today()
     dropoffs     = has_dropoff_today(today_events)
+
+    # Events with no title (e.g. work calendar busy blocks stripped by org
+    # policy) carry no information worth showing in the family briefing.
+    # The untitled event itself stays in the calendar cache — other readers
+    # like the Club Studio recommender still need its time slot for
+    # conflict checks — it's just excluded from what gets displayed here.
+    visible_events = [e for e in today_events if e.get("title") != "Untitled"]
+
+    # Where is the household today? A trip event on the calendar redirects the
+    # forecast; without this the family reads Irvine's weather in another city
+    # and dresses for it. Computed off the already-synced cache, no round-trip.
+    from features.trips.travel_window import get_travel_window
+    travel = get_travel_window(
+        datetime.now().strftime("%Y-%m-%d"), list(assistant.calendar.values())
+    )
+
+    # The trip event itself is not a thing to do today. It only ever reaches
+    # this list on departure day (get_events_by_date matches start dates), and
+    # on that one day it would sit beside the flight under a header already
+    # naming the destination — three statements of one fact.
+    if travel.get("event_id"):
+        visible_events = [e for e in visible_events
+                          if e.get("id") != travel["event_id"]]
 
     try:
         from features.meals.weekly_meal_planner import get_todays_meals_from_locked_plan
@@ -231,20 +196,43 @@ def get_briefing_data() -> dict:
     except Exception:
         meal_suggestions = meals.get_meal_suggestions()
 
-    weather_raw = get_weather_briefing()
+    # `weather_location` is empty on departure day — they wake up at home that
+    # morning and this briefing is read in their own kitchen.
+    weather_raw = get_weather_briefing(travel.get("weather_location") or None)
 
-    snack_text    = snacks.format_for_briefing() if not snacks.is_school_closed_today() else None
-    snack_warning = snacks.should_warn_about_missing_schedule() if not snack_text else None
+    # Away means the kids are not at their school, whatever the school calendar
+    # says, so the daily snack menu is noise. This is a data question — there is
+    # no snack — not a presentation one, so it is answered here rather than left
+    # to the composer with a "skip this when travelling" instruction.
+    #
+    # Departure day is included: a midday flight means no school that morning
+    # either, and a snack menu for a day the kids are on a plane is noise
+    # whichever end of the trip it lands on.
+    #
+    # `snack_warning` deliberately still flows: it says next month's schedule is
+    # due, which stays true and actionable-on-return, and suppressing it across
+    # a trip that straddles a month boundary could swallow the only reminder.
+    at_school     = not snacks.is_school_closed_today() and not travel["away"]
+    snack_text    = snacks.format_for_briefing() if at_school else None
+    # Ungated on purpose. `if not snack_text` looks like "don't nag when we
+    # clearly have a schedule", but it never suppressed the missing-current-
+    # month warning (that one cannot fire when a snack exists) and always
+    # suppressed the end-of-month "send next month's photo" reminder, whose
+    # whole window is normal school days with snacks. September 2026's
+    # reminder was generated and discarded on every run of its window.
+    snack_warning = snacks.should_warn_about_missing_schedule()
 
     data = {
         "date":             datetime.now().strftime("%A, %B %d"),
         "weather":          weather_raw,
-        "events":           today_events,
+        "events":           visible_events,
         "dropoffs":         dropoffs,
         "meal_suggestions": meal_suggestions,
         "snack":            snack_text,
         "snack_warning":    snack_warning,
-        "school_day":       not snacks.is_school_closed_today(),
+        "school_day":       at_school,
+        "travel":           travel,
+        "daily_thought":    get_daily_thought(),
     }
 
     # ── Output validation ─────────────────────────────────────────────────

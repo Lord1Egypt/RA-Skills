@@ -1,43 +1,56 @@
-## Description: <br>
-Call GET /api/instagram/get-post-detail/v1 for Instagram Post Details through JustOneAPI with code. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Call GET /api/instagram/get-post-detail/v1 for Instagram Post Details through JustOneAPI with code.
 
-## Publisher: <br>
-[justoneapi](https://clawhub.ai/user/justoneapi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[justoneapi](https://clawhub.ai/user/justoneapi)
 
-## Use Case: <br>
-Developers and agents use this skill to fetch Instagram post details from JustOneAPI by shortcode, then summarize caption, media, publish time, and engagement-oriented fields for analysis or archiving. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends the user's JustOneAPI token and Instagram post shortcode to JustOneAPI. <br>
-Mitigation: Use a limited-scope or easily rotated token, keep token values out of chat and logs, and install only when the JustOneAPI service is trusted for the queried data. <br>
-Risk: The helper passes credentials as query parameters, which may appear in service or proxy logs. <br>
-Mitigation: Avoid sharing command output or request URLs that may contain credentials, and rotate the token if accidental exposure is suspected. <br>
+## Use Case:
 
+Developers and agents use this skill to retrieve details for a specific Instagram post through JustOneAPI, including caption, media content, publish time, and engagement-oriented fields for analysis or archiving.
 
-## Reference(s): <br>
-- [JustOneAPI Homepage](https://api.justoneapi.com) <br>
-- [Just One API Usage Guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_instagram_get_post_detail&utm_content=project_link) <br>
-- [Just One API Dashboard](https://dashboard.justoneapi.com/en/login?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_instagram_get_post_detail&utm_content=project_link) <br>
-- [ClawHub Skill Page](https://clawhub.ai/justoneapi/justoneapi-instagram-get-post-detail) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown summary followed by raw JSON] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires JUST_ONE_API_TOKEN and an Instagram post shortcode.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The JustOneAPI token is passed in command arguments and URL query parameters, which may expose it in process listings, logs, URLs, or diagnostics.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a narrowly scoped, revocable token, avoid shared machines and verbose command logging, and rotate the token if it may have appeared in process lists, logs, URLs, or diagnostics.
+
+Risk: The skill makes authenticated requests to api.justoneapi.com using the user's token.
+
+Mitigation: Install and run it only when you are comfortable granting a JustOneAPI token for this endpoint and external service.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/justoneapi/skills/justoneapi-instagram-get-post-detail)
+- [JustOneAPI homepage](https://api.justoneapi.com)
+- [JustOneAPI usage guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_instagram_get_post_detail&utm_content=project_link)
+- [JustOneAPI dashboard](https://dashboard.justoneapi.com/en/login?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_instagram_get_post_detail&utm_content=project_link)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js and JUST_ONE_API_TOKEN; calls the JustOneAPI Instagram post detail endpoint with a post code.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

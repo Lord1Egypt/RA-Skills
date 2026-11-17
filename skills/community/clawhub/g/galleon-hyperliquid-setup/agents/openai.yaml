@@ -1,0 +1,4 @@
+interface:
+  display_name: "Hyperliquid Setup"
+  short_description: "Connect tools and verify a first market read"
+  default_prompt: "Use $hyperliquid-setup to inspect available tools, complete a public read, and explain which workflows are ready."

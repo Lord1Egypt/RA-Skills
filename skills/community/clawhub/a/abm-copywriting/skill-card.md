@@ -1,41 +1,55 @@
-## Description: <br>
-Helps agents write, rewrite, and improve persuasive website marketing copy for homepages, landing pages, pricing pages, feature pages, about pages, and product pages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps an agent write, rewrite, or improve marketing copy for webpages, including homepage, landing page, pricing page, feature page, about page, and product page copy.
 
-## Publisher: <br>
-[mariokarras](https://clawhub.ai/user/mariokarras) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mariokarras](https://clawhub.ai/user/mariokarras)
 
-## Use Case: <br>
-Marketing teams, founders, product managers, and agents assisting them use this skill to produce page copy, CTAs, headline alternatives, annotations, and SEO metadata for web pages that need to persuade or convert. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated marketing copy may include unsupported claims, statistics, testimonials, or outcomes. <br>
-Mitigation: Substantiate all proof points and review claims before publishing customer-facing copy. <br>
-Risk: The skill can use local product marketing or brand voice context files that may contain sensitive business information. <br>
-Mitigation: Provide only approved context for the task and avoid including confidential customer or internal data unless the workspace is authorized for it. <br>
+## Use Case:
 
+Marketing, product, and growth teams use this skill to draft conversion-focused website copy, improve weak messaging, generate headline and CTA alternatives, and structure common page types around customer needs.
 
-## Reference(s): <br>
-- [Copy Frameworks Reference](references/copy-frameworks.md) <br>
-- [Natural Transitions](references/natural-transitions.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown organized by page section with annotations, alternatives, and optional SEO metadata] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include multiple headline or CTA options with rationale; no shell commands or API keys are required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact metadata reports 1.1.0) <br>
+Risk: The skill may read local product-marketing or brand-voice context files when they exist.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep those context files limited to information that is approved for use in generated marketing copy.
+
+Risk: Generated marketing copy may include claims, statistics, or testimonials that need substantiation before publication.
+
+Mitigation: Review final copy against approved proof points and remove or qualify unsupported claims before use.
+
+## Reference(s):
+
+- [Copy Frameworks Reference](artifact/references/copy-frameworks.md)
+- [Natural Transitions](artifact/references/natural-transitions.md)
+- [ClawHub Skill Page](https://clawhub.ai/mariokarras/skills/abm-copywriting)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with structured page copy, annotations, alternatives, and optional SEO metadata]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include headline and CTA variants, section-by-section copy, rationale, and meta title or description when relevant.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter metadata.version is 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,55 @@
-## Description: <br>
-Run an agent against five prompt-injection attacks and produce a local behavior report covering credential leaks, metric fabrication, premature halt, runaway spend, and log falsification. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run your agent against 5 real prompt-injection attacks and get a local report of what it actually did: credential leak, metric fabrication, false-halt, runaway spend, and log falsification.
 
-## Publisher: <br>
-[weldog](https://clawhub.ai/user/weldog) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[weldog](https://clawhub.ai/user/weldog)
 
-## Use Case: <br>
-Developers and QA teams use this skill to run a local self-diagnostic harness against an agent and review observed behavior across five prompt-injection scenarios. The report helps compare safety outcomes with task quality, but it is not a signed badge or third-party attestation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill directs users to clone and run an external harness locally. <br>
-Mitigation: Review the repository before execution and run it with a test agent command in a controlled environment. <br>
-Risk: A looping or tool-using agent could consume time or resources during the robustness test. <br>
-Mitigation: Set a reasonable per-pass timeout and avoid connecting production credentials or high-impact tools. <br>
-Risk: A local self-diagnostic report could be mistaken for a signed third-party attestation. <br>
-Mitigation: Treat local results as internal QA evidence only; use the verified service when a signed badge is required. <br>
+## Use Case:
 
+Developers and agent builders use this skill to run a local robustness self-diagnostic against prompt-injection scenarios and review pass/fail behavior from observed agent outputs and files. The local report is for QA and must not be presented as a signed third-party verification badge.
 
-## Reference(s): <br>
-- [ibuildbots harness repository](https://github.com/Weldog/ibuildbots) <br>
-- [ibuildbots verified service](https://ibuildbots.dev) <br>
-- [ClawHub skill page](https://clawhub.ai/weldog/ibuildbots-verify) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, text, json] <br>
-**Output Format:** [Markdown instructions with shell commands and a JSON report example] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and git; the external harness writes a local state.json report.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill directs users to clone and run a mutable external GitHub harness that is outside the reviewed package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the cloned repository before execution, pin it to a trusted commit, and run it in a restricted sandbox.
+
+Risk: The harness runs the user's agent as a subprocess and observes outputs, files, logs, timeouts, and local report data.
+
+Mitigation: Run with minimal files, credentials, environment variables, and network access, and set a practical timeout for each pass.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/weldog/skills/ibuildbots-verify)
+- [ibuildbots harness repository](https://github.com/Weldog/ibuildbots)
+- [ibuildbots Verified tier](https://ibuildbots.dev)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Markdown, JSON]
+
+**Output Format:** [Markdown guidance with shell commands and a JSON report example]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and git; the harness writes a local state.json report.]
+
+## Skill Version(s):
+
+2.1.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

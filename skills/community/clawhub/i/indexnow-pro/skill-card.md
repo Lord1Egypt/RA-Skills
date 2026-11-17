@@ -1,44 +1,55 @@
-## Description: <br>
-Indexnow Pro helps agents provide IndexNow guidance and command examples for notifying search engines about single URLs, batch URL lists, sitemap URLs, key setup, verification, and best practices. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Instant search engine notification via the IndexNow protocol for single URL, batch URL, sitemap submission, and key management workflows that ping Bing, Yandex, and the IndexNow API about new or updated pages.
 
-## Publisher: <br>
-[ckchzh](https://clawhub.ai/user/ckchzh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ckchzh](https://clawhub.ai/user/ckchzh)
 
-## Use Case: <br>
-Developers, site owners, and SEO operators use this skill to prepare IndexNow submissions for websites they own, including single URL pings, batch submissions, sitemap-based workflows, key setup, and verification. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Copyable examples include credentials or tokens that could be handled unsafely. <br>
-Mitigation: Use scoped application tokens or environment variables, avoid pasting real passwords into commands, and review each request before running it. <br>
-Risk: The command names can imply automation even though the artifact mainly prints examples and guidance. <br>
-Mitigation: Treat the output as documentation, verify the generated commands, and run submissions only for domains the user controls. <br>
-Risk: Some provider examples may expose tokens if an insecure endpoint is used. <br>
-Mitigation: Verify provider documentation and prefer secure HTTPS endpoints before using token-based submission examples. <br>
+## Use Case:
 
+Website owners, SEO practitioners, and developers use this skill to generate IndexNow submission guidance and commands for notifying search engines about new or updated pages, batch URL lists, and sitemap contents.
 
-## Reference(s): <br>
-- [Indexnow Pro on ClawHub](https://clawhub.ai/ckchzh/indexnow-pro) <br>
-- [BytesAgain](https://bytesagain.com) <br>
-- [IndexNow Protocol](https://indexnow.org) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with shell, JavaScript, PHP, nginx, and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prints command-specific guidance and examples; examples may require user-owned domains and scoped tokens.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata and SKILL.md frontmatter) <br>
+Risk: Unsafe copy-paste examples can expose website or API credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review commands before use, keep real credentials out of pasted examples, and use safer credential storage for authentication material.
+
+Risk: Some related indexing examples use third-party APIs or insecure transport patterns outside the core IndexNow workflow.
+
+Mitigation: Prefer HTTPS, avoid sending real credentials through insecure examples, and verify third-party indexing API guidance against current provider documentation before use.
+
+## Reference(s):
+
+- [BytesAgain Homepage](https://bytesagain.com)
+- [ClawHub Skill Page](https://clawhub.ai/ckchzh/skills/indexnow-pro)
+- [IndexNow Protocol](https://indexnow.org)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with bash, JavaScript, PHP, nginx, and cron examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Provides copy-paste examples for IndexNow submissions, key setup, verification, and related indexing workflows.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

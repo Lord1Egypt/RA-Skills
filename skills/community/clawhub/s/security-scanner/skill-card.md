@@ -1,39 +1,51 @@
-## Description: <br>
-Automated security scanning and vulnerability detection for web applications, APIs, and infrastructure. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automated security scanning and vulnerability detection for web applications, APIs, and infrastructure, including open-port discovery, SSL certificate checks, vulnerability scans, misconfiguration detection, and security audit support.
 
-## Publisher: <br>
-[dmx64](https://clawhub.ai/user/dmx64) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[dmx64](https://clawhub.ai/user/dmx64)
 
-## Use Case: <br>
-Developers, security engineers, and authorized testers use this skill to plan vulnerability assessments, port scans, SSL/TLS checks, and web application security scans for assets they own or have written permission to test. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Active scanning can probe systems and services in ways that may be unauthorized or disruptive outside approved testing scopes. <br>
-Mitigation: Run scans only against owned assets or systems with written authorization, start with conservative scan options, and avoid executing examples unchanged against public third-party targets. <br>
-Risk: Security scan findings may be incomplete, noisy, or require validation before operational action. <br>
-Mitigation: Review generated reports before use, verify vulnerability findings with approved methods, and report confirmed issues responsibly. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dmx64/security-scanner) <br>
+## Use Case:
+
+Developers, security engineers, and authorized assessors use this skill to plan and run reconnaissance, vulnerability, and SSL/TLS checks against systems they own or are explicitly permitted to test.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Security scanning is dual-use and can affect systems outside an authorized scope.
+
+Mitigation: Use only on systems you own or are explicitly authorized to test, define the target scope before scanning, and get written permission before testing.
+
+Risk: Aggressive scans can disrupt fragile or production systems.
+
+Mitigation: Use conservative scan settings for fragile or production systems and review scan commands before execution.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Markdown, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks and report structure] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports are intended to include target information, open ports and services, severity-rated vulnerabilities, and recommendations.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release evidence) <br>
+**Output Type(s):** [text, markdown, shell commands, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown with inline bash code blocks and report guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce guidance for saving scan findings, severity ratings, and recommendations in a Markdown report.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

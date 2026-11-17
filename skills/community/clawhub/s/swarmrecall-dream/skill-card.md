@@ -1,44 +1,56 @@
-## Description: <br>
-Agent dreaming - memory consolidation, deduplication, pruning, contradiction resolution, and session summarization via the SwarmRecall API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent dreaming - memory consolidation, deduplication, pruning, contradiction resolution, and session summarization via the SwarmRecall API.
 
-## Publisher: <br>
-[waydelyle](https://clawhub.ai/user/waydelyle) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[waydelyle](https://clawhub.ai/user/waydelyle)
 
-## Use Case: <br>
-External developers and agent operators use this skill to run idle-time SwarmRecall memory maintenance, including deduplicating memories, pruning stale content, resolving contradictions, and summarizing sessions through the SwarmRecall API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads and modifies stored agent memories on SwarmRecall servers. <br>
-Mitigation: Install only if you trust SwarmRecall with the agent's stored memories and review the disclosed data handling before use. <br>
-Risk: Auto-dream settings can enable pruning, merging, or contradiction-resolution operations that change memory state. <br>
-Mitigation: Review auto-dream settings before enabling them and prefer explicit confirmation before running state-changing operations. <br>
-Risk: The skill requires an API key for authenticated SwarmRecall requests. <br>
-Mitigation: Use an API key you control and store it only in the SWARMRECALL_API_KEY environment variable. <br>
+## Use Case:
 
+External developers and agent operators use this skill to consolidate, deduplicate, prune, summarize, and resolve contradictions in agent memory stores during idle periods or on explicit cleanup requests.
 
-## Reference(s): <br>
-- [SwarmRecall Dream on ClawHub](https://clawhub.ai/waydelyle/swarmrecall-dream) <br>
-- [SwarmRecall homepage](https://www.swarmrecall.ai) <br>
-- [SwarmRecall API base](https://swarmrecall-api.onrender.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, API calls, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with JSON and API request examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SWARMRECALL_API_KEY for authenticated SwarmRecall requests.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence release and SKILL.md frontmatter) <br>
+Risk: The skill can rewrite, merge, summarize, or archive persistent agent memories.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require manual review before enabling idle, periodic, or shared-pool memory changes, and review proposed merges or archives before applying them.
+
+Risk: The bearer token can be sent to an environment-selected API host if SWARMRECALL_API_URL is overridden.
+
+Mitigation: Keep SWARMRECALL_API_URL unset unless intentionally using a trusted endpoint, and store SWARMRECALL_API_KEY only in the environment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/waydelyle/skills/swarmrecall-dream)
+- [SwarmRecall](https://www.swarmrecall.ai)
+- [SwarmRecall API Base URL](https://swarmrecall-api.onrender.com)
+- [SwarmRecall API Registration Endpoint](https://swarmrecall-api.onrender.com/api/v1/register)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Markdown, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with JSON and HTTP request examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SWARMRECALL_API_KEY for authenticated API access.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

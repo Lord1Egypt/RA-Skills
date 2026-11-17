@@ -1,38 +1,53 @@
-## Description: <br>
-Compress verbose SKILL.md files using Chain-of-Density with skill-aware formatting. Use when a skill exceeds 200 lines or needs terse refactoring. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Compresses verbose SKILL.md files using Chain-of-Density with skill-aware formatting for skills that exceed 200 lines or need terse refactoring.
 
-## Publisher: <br>
-[killerapp](https://clawhub.ai/user/killerapp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Apache-2.0 <br>
+## Publisher:
 
+[killerapp](https://clawhub.ai/user/killerapp)
 
-## Use Case: <br>
-Developers and skill maintainers use this skill to condense verbose SKILL.md files into shorter, structured Markdown while preserving key metadata, workflow steps, examples, and constraints. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Apache-2.0
 
-## Known Risks and Mitigations: <br>
-Risk: Condensing a skill can accidentally omit safety instructions, prerequisites, or important examples. <br>
-Mitigation: Review the condensed result before overwriting the original and confirm that safety instructions, prerequisites, and important examples were preserved. <br>
+## Use Case:
 
+Developers and skill authors use this skill to condense long SKILL.md files while preserving frontmatter, section structure, commands, and concrete workflow examples.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/killerapp/skill-condenser) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown with structured frontmatter, bullets, tables, and code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces condensed SKILL.md content for review before replacing the original.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: ClawHub release metadata) <br>
+Risk: Condensed SKILL.md output could omit important guidance or change meaning if applied without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the generated condensed SKILL.md before applying it.
+
+Risk: Moved reference content could be placed outside the intended skill directory.
+
+Mitigation: Keep moved reference content within the intended skill directory.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/killerapp/skills/skill-condenser)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Guidance]
+
+**Output Format:** [Markdown with frontmatter, structured bullets, tables, and code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Preserves original frontmatter and required SKILL.md structure]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

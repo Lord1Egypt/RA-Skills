@@ -1,38 +1,57 @@
-## Description: <br>
-统计禅道中指定起始日期的版本Bug数量，以及今日新建、关闭、激活和问题引入的Bug数据。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Counts ZenTao bugs for a specified start date and for the current day, including created, closed, activated, defect-introduction, unresolved, and pending-verification totals.
 
-## Publisher: <br>
-[hanweify](https://clawhub.ai/user/hanweify) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hanweify](https://clawhub.ai/user/hanweify)
 
-## Use Case: <br>
-QA, engineering, and release teams use this skill to collect ZenTao bug counts for daily reporting and version-date summaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security evidence reports embedded default ZenTao credentials and a plain HTTP internal ZenTao URL. <br>
-Mitigation: Review before installing, treat the exposed password as compromised, set your own ZenTao URL and credentials explicitly, require HTTPS where possible, and use an account limited to the read access needed for bug statistics. <br>
+## Use Case:
 
+QA, engineering, and release teams with authorized ZenTao access use this skill to gather daily bug activity and version-date-range bug counts for release tracking.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/hanweify/zentao-bug-stats) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, code, configuration] <br>
-**Output Format:** [Console text from a Python command-line script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires ZenTao URL and credentials supplied through arguments or environment variables.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The artifact ships default ZenTao credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Replace embedded credentials with user-supplied secrets before use and rotate the exposed password if it may be real.
+
+Risk: The default ZenTao URL uses plaintext HTTP.
+
+Mitigation: Use an HTTPS ZenTao endpoint before running the script.
+
+Risk: The skill accesses a ZenTao instance and retrieves bug data.
+
+Mitigation: Install and run it only when authorized to access the target ZenTao environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hanweify/skills/zentao-bug-stats)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Text, Guidance]
+
+**Output Format:** [Markdown guidance with command examples and terminal text output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires authorized ZenTao connection details and credentials; reports aggregate bug counts.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

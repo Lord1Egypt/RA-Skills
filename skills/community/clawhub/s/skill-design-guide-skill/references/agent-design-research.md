@@ -1,4 +1,3 @@
-# How to Build a Good Skill / Agent: Industry Design Principles Research
 
 > Research date: 2026-04-14
 > Sources: Anthropic / OpenAI / Google / LangChain official docs and engineering blogs
@@ -77,7 +76,7 @@ One LLM generates, another evaluates with feedback, iterating until pass.
 |-----------|---------|----------|
 | **SKILL.md** | Core definition: triggers, workflow, rule constraints | Yes |
 | **scripts/** | Executable scripts (Python/JS, etc.) | As needed |
-| **reference/** | Reference docs (for Agent to read and understand context) | Strongly recommended |
+| **references/** | Reference docs (for Agent to read and understand context) | Strongly recommended |
 | **assets/** | Templates, configs, and supporting resources | As needed |
 
 ### Progressive Disclosure

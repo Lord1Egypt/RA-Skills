@@ -1,47 +1,63 @@
-## Description: <br>
-Queries Huawei Cloud network resources across VPC, EIP, ELB, NAT, VPN, and DNS using packaged read-only Python query scripts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Queries Huawei Cloud network resources across VPC, EIP, ELB, NAT, VPN, and DNS using read-only local Python scripts.
 
-## Publisher: <br>
-[huaweiclouddev](https://clawhub.ai/user/huaweiclouddev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[huaweicloudskill](https://clawhub.ai/user/huaweicloudskill)
 
-## Use Case: <br>
-Developers, cloud engineers, and operations teams use this skill to inspect Huawei Cloud network topology, configuration, identifiers, dependencies, and status without creating, modifying, or deleting resources. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires Huawei Cloud access credentials and can query account resource data. <br>
-Mitigation: Use temporary, least-privilege, read-only Huawei Cloud credentials and avoid exposing credential environment variable values in prompts, logs, or outputs. <br>
-Risk: Security evidence flags TLS verification bypasses and runtime dependency/bootstrap behavior. <br>
-Mitigation: Review the packaged scripts before installation, remove TLS verification bypasses, pin dependencies, and require explicit user consent before environment changes. <br>
-Risk: Returned inventory can include sensitive network topology, security group, load balancer, VPN, DNS, and resource identifier data. <br>
-Mitigation: Limit queries to necessary regions and resources, redact sensitive fields before sharing, and cache or store outputs only where access is controlled. <br>
+## Use Case:
 
+Developers and cloud operators use this skill to inventory Huawei Cloud network resources, inspect topology and configuration, and retrieve reusable identifiers for verification or automation planning. It is limited to queries and does not create, modify, or delete cloud resources.
 
-## Reference(s): <br>
-- [DNS Python Script Usage Guide](artifact/references/dns/guide.md) <br>
-- [EIP Python Script Usage Guide](artifact/references/eip/guide.md) <br>
-- [ELB Python Script Usage Guide](artifact/references/elb/guide.md) <br>
-- [NAT Gateway Python Script Usage Guide](artifact/references/nat/guide.md) <br>
-- [VPC Python Script Usage Guide](artifact/references/vpc/guide.md) <br>
-- [VPN Python Script Usage Guide](artifact/references/vpn/guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON query results from packaged scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include cloud resource IDs, names, status, topology, quotas, and dependency information returned by Huawei Cloud APIs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.1 (source: release evidence) <br>
+Risk: Mandatory setup may run local code and install dependencies before queries are performed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installing, use an isolated environment, and make dependency installation explicit and user-controlled.
+
+Risk: HTTPS handling and credential traffic are flagged as review-worthy by the security evidence.
+
+Mitigation: Use least-privilege, read-only Huawei Cloud credentials and avoid running setup until TLS verification is restored.
+
+Risk: Credential-bearing environment variables are required for Huawei Cloud queries.
+
+Mitigation: Use temporary or scoped credentials where possible and do not expose access keys, secret keys, or security tokens in outputs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/huaweicloudskill/skills/huawei-cloud-network-query)
+- [DNS Python Script Usage Guide](references/dns/guide.md)
+- [EIP Python Script Usage Guide](references/eip/guide.md)
+- [ELB Python Script Usage Guide](references/elb/guide.md)
+- [NAT Gateway Python Script Usage Guide](references/nat/guide.md)
+- [VPC Python Script Usage Guide](references/vpc/guide.md)
+- [VPN Python Script Usage Guide](references/vpn/guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with script commands and JSON query results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Query results commonly include total counts and item lists with resource IDs, names, statuses, and service-specific fields.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,47 +1,59 @@
-## Description: <br>
-Recommends stablecoin yield strategies based on risk tolerance, capital size, chain preference, and Barker yield data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Recommend stablecoin yield strategies based on risk tolerance, capital size, and chain preference.
 
-## Publisher: <br>
-[zuoyeweb3](https://clawhub.ai/user/zuoyeweb3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zuoyeweb3](https://clawhub.ai/user/zuoyeweb3)
 
-## Use Case: <br>
-External users can use this skill to compare stablecoin yield options and draft diversified allocation plans across lending, vault, CEX, and on-chain venues. It is intended for educational strategy guidance, not transaction execution or financial advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Yield recommendations may be outdated or incomplete because APY values change over time. <br>
-Mitigation: Refresh Barker public API data and verify protocol terms, capacity, and current APY before acting. <br>
-Risk: Users may treat educational allocation guidance as financial advice or transaction approval. <br>
-Mitigation: Present outputs as educational planning guidance and require independent review before moving funds. <br>
-Risk: Portfolio details, wallet addresses, credentials, or exact holdings could be shared in conversation unnecessarily. <br>
-Mitigation: Avoid requesting sensitive account data and remind users to share only the portfolio details they intentionally want considered. <br>
-Risk: Use of DeFi and CEX venues can involve smart contract, liquidity, custody, lockup, and venue-specific risks. <br>
-Mitigation: Include strategy-specific risk notes and encourage users to verify audits, TVL, lockups, and venue policies before depositing. <br>
+## Use Case:
 
+External users and agents use this skill to plan stablecoin yield allocations across DeFi and CEX venues based on risk tolerance, capital size, experience level, and chain or asset preferences. The skill frames results as educational financial information with allocation tables, blended APY estimates, and strategy-specific risk notes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zuoyeweb3/yield-strategy-advisor) <br>
-- [Barker stablecoin yield map](https://barker.money) <br>
-- [Barker public stablecoin yields API](https://api.barker.money/api/public/v1/stablecoin-yields?sort=apy&limit=50) <br>
-- [Barker public API root](https://api.barker.money/api/public/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown] <br>
-**Output Format:** [Markdown with allocation tables, blended APY estimates, risk notes, and source attribution] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference live Barker API data; recommendations should be verified before moving funds.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Yield recommendations may be mistaken for financial advice or relied on without checking current market and protocol conditions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat recommendations as educational information and independently verify APYs, protocol risks, audit status, TVL, and lockup terms before acting.
+
+Risk: Users may disclose wallet secrets or exchange credentials while discussing portfolio execution.
+
+Mitigation: Do not provide private keys, seed phrases, exchange passwords, or wallet-signing authority when using this skill.
+
+Risk: Skill outputs include Barker data usage and promotional attribution.
+
+Mitigation: Review outputs for Barker attribution and confirm that external Barker links and data usage are acceptable for the deployment context.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zuoyeweb3/skills/yield-strategy-advisor)
+- [Barker stablecoin yield map](https://barker.money)
+- [Barker public stablecoin yields API](https://api.barker.money/api/public/v1/stablecoin-yields?sort=apy&limit=50)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with allocation tables, blended APY estimates, and risk notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference live Barker yield data and includes Barker attribution in recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

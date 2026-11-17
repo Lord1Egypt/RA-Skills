@@ -29,7 +29,9 @@ if str(SCRIPT_DIR) not in sys.path:
 from core.signal_detect import load_context_text
 from review import load_tags
 from core.scoring import resurfacing_priority
+from core.matching import note_is_retrievable
 from core.common import DEFAULT_MEMORY_ROOT, parse_date, read_text_fallback, repetition_signal, resolve_memory_root as common_resolve_memory_root, load_json
+from core.safe_fs import safe_exists, lexical_path
 
 
 DEFAULT_CONFIG_PATH = DEFAULT_MEMORY_ROOT / "schedule.json"
@@ -67,7 +69,7 @@ def schedule_matches_now(schedule: dict, now: datetime) -> bool:
 
 
 def _iter_recent_log_datetimes(log_path: Path):
-    if not log_path.exists():
+    if not safe_exists(log_path):
         return
     for line in read_text_fallback(log_path).splitlines():
         if not line.startswith("|"):
@@ -170,6 +172,8 @@ def select_candidates(
                 continue
 
         for note in notes:
+            if not note_is_retrievable(note):
+                continue
             if not preview and not importance_ok(note, schedule.get("min_importance", "low")):
                 continue
             if not preview and note.get("state") not in (schedule.get("allowed_states") or ["warm", "cold"]):
@@ -191,6 +195,8 @@ def select_candidates(
 
             score, meta = resurfacing_priority(note, now.date(), context)
             min_relevance = float(schedule.get("min_relevance", 0.15) or 0.15)
+            if context and (not meta.get("match_eligible") or meta.get("relevance_value", 0.0) < min_relevance):
+                continue
             if not preview and schedule.get("require_relevance", False) and meta.get("relevance_value", 0.0) < min_relevance:
                 continue
             if not preview and schedule.get("context_required", False) and not context:
@@ -261,7 +267,6 @@ def build_json_payload(
         "configPath": str(config_path),
         "generatedAt": now.isoformat(timespec="seconds"),
         "context": {
-            "query": query,
             "hasContextFile": bool(context_file),
             "usedStdin": stdin_flag,
         },
@@ -309,12 +314,12 @@ def main() -> int:
     parser.add_argument("--query", default=None, help="short current topic")
     parser.add_argument("--context-file", default=None, help="path to richer context text")
     parser.add_argument("--stdin", action="store_true", help="read additional context from stdin")
-    parser.add_argument("--preview", action="store_true", help="preview candidates by bypassing due, importance, allowed_states, relevance-required, and cooldown gating for the selected schedule")
+    parser.add_argument("--preview", action="store_true", help="preview active candidates, bypassing scheduling/cooldown gates; supplied context must still match")
     parser.add_argument("--json", action="store_true", help="emit machine-readable JSON only")
     args = parser.parse_args()
 
     memory_root = resolve_memory_root(args.memory_root)
-    config_path = common_resolve_memory_root(args.config, default=DEFAULT_CONFIG_PATH) if args.config else DEFAULT_CONFIG_PATH
+    config_path = lexical_path(args.config) if args.config else memory_root / "schedule.json"
     config = load_json(config_path)
     now = datetime.now().astimezone()
     mode = "preview" if args.preview else "normal"

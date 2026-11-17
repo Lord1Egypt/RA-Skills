@@ -1,44 +1,57 @@
-## Description: <br>
-The video search layer for AI agents; it helps agents search video by meaning across speech, visuals, and on-screen text when users need video evidence, citations, or timestamped answers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cerul lets agents search video by meaning across speech, visuals, and on-screen text to answer questions with video evidence and timestamped citations.
 
-## Publisher: <br>
-[jessytsui](https://clawhub.ai/user/jessytsui) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jessytsui](https://clawhub.ai/user/jessytsui)
 
-## Use Case: <br>
-External users, developers, and agents use this skill to answer questions about videos, talks, podcasts, interviews, and presentations with cited video URLs and timestamps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks agents to persist the user's Cerul API key in a local credentials file, which can expose the key if the file is printed, copied, or reused. <br>
-Mitigation: Use a limited or revocable API key, keep the credentials file private, avoid displaying it in agent output, and prefer an environment variable or managed secret store when compatible. <br>
-Risk: The skill installs and runs an external CLI before performing video searches. <br>
-Mitigation: Review the CLI source and install command before use, install only from trusted Cerul sources, and run the skill in an environment where CLI access is appropriate. <br>
+## Use Case:
 
+Developers and agents use this skill to search video content for statements, presentations, visual context, and timestamped source links when answering questions about talks, podcasts, interviews, and conference material.
 
-## Reference(s): <br>
-- [Cerul homepage](https://github.com/cerul-ai/cerul) <br>
-- [Cerul CLI repository](https://github.com/cerul-ai/cerul-cli) <br>
-- [Cerul documentation](https://cerul.ai/docs) <br>
-- [Cerul Python SDK](https://pypi.org/project/cerul/) <br>
-- [Cerul TypeScript SDK](https://www.npmjs.com/package/cerul) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with video URLs, timestamps, transcript-based citations, and optional shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the cerul CLI and a Cerul API key; search output should use the agent-oriented CLI format.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill asks agents to install the Cerul CLI using an unverified remote curl-to-bash command.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the installer before use and prefer a pinned, verifiable Cerul CLI installation method.
+
+Risk: The skill directs agents to persist a Cerul API key on disk.
+
+Mitigation: Use a session-scoped or platform-managed CERUL_API_KEY and avoid printing or persisting credentials in ~/.config/cerul/credentials unless the deployment policy allows it.
+
+## Reference(s):
+
+- [Cerul Homepage](https://github.com/cerul-ai/cerul)
+- [Cerul CLI Repository](https://github.com/cerul-ai/cerul-cli)
+- [Cerul Python SDK](https://pypi.org/project/cerul/)
+- [Cerul TypeScript SDK](https://www.npmjs.com/package/cerul)
+- [Cerul Documentation](https://cerul.ai/docs)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with CLI commands, timestamped citations, and video URLs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses compact agent-oriented CLI output and requires CERUL_API_KEY for authenticated searches.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

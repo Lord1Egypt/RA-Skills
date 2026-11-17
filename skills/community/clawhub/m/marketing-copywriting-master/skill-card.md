@@ -1,38 +1,48 @@
-## Description: <br>
-A professional marketing copywriting skill that analyzes product features, extracts core selling points, crafts compelling headlines and copy, and adapts content for multiple distribution channels. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Professional marketing copywriter that analyzes product features to extract core selling points, crafts compelling headlines and copy, and adapts content for product marketing, advertising, promotional, and social media channels.
 
-## Publisher: <br>
-[openlark](https://clawhub.ai/user/openlark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[openlark](https://clawhub.ai/user/openlark)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and marketing teams use this skill to turn product features into concise marketing copy, headlines, calls to action, and channel-specific promotional content.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Generated marketing claims may be inaccurate, unsubstantiated, or unsuitable for advertising compliance, especially comparative or product-performance statements.
+
+Mitigation: Review generated copy against product evidence, approved claims, and applicable advertising compliance requirements before publication.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Marketing and product teams use this skill to turn product features into concise promotional copy, including headlines, body copy, calls to action, and channel-specific variants for social media, advertising, brochures, and websites. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Generated promotional claims may be inaccurate, non-compliant, or misaligned with brand requirements. <br>
-Mitigation: Review copy for factual accuracy, regulatory compliance, and brand fit before publication. <br>
+**Output Format:** [Markdown marketing copy templates and concise plain-language copy]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/openlark/marketing-copywriting-master) <br>
+**Other Properties Related to Output:** [The skill instructs the agent to return only the requested copy without additional descriptive text.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text marketing copy] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are intended to contain only the requested copy, without extra descriptive text.] <br>
+1.0.0 (source: release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

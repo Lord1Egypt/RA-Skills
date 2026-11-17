@@ -1,42 +1,51 @@
-## Description: <br>
-AI PM Agent guides product discovery, PRD definition, experiment design, and launch planning using structured product management frameworks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI PM Agent guides product teams through research, definition, validation, and launch workflows using established product-management frameworks.
 
-## Publisher: <br>
-[jahonn](https://clawhub.ai/user/jahonn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jahonn](https://clawhub.ai/user/jahonn)
 
-## Use Case: <br>
-Product managers, founders, and product teams use this skill to move from a product idea or problem statement through research, requirements, validation, and go-to-market planning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may create or update planning files such as DISCOVERY.md, PRD.md, EXPERIMENT.md, or GTM.md in the current project. <br>
-Mitigation: Run it in the intended workspace and check for existing planning files before allowing changes. <br>
-Risk: Generated product research, prioritization, and launch recommendations may include assumptions that are not validated for the user's market. <br>
-Mitigation: Review the generated artifacts with human stakeholders and validate key assumptions before relying on them for product decisions. <br>
+## Use Case:
 
+Product managers and product teams use this skill to turn a product idea or problem statement into staged discovery, PRD, validation, and launch artifacts with human checkpoints between phases.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jahonn/ai-pm-agent) <br>
-- [PM Agent framework reference](references/frameworks.md) <br>
-- [PM Agent phase prompts](references/prompts.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Files] <br>
-**Output Format:** [Markdown planning artifacts and conversational guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce DISCOVERY.md, PRD.md, EXPERIMENT.md, and GTM.md in the current project.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: The skill may activate on broad product-management phrases and create or update root-level planning files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Check whether DISCOVERY.md, PRD.md, EXPERIMENT.md, or GTM.md already exist before running it, and review generated artifacts before using them.
+
+## Reference(s):
+
+- [AI PM Agent ClawHub listing](https://clawhub.ai/jahonn/skills/ai-pm-agent)
+- [Framework Reference](references/frameworks.md)
+- [Phase Prompts](references/prompts.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown planning documents]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces root-level product-management artifacts including DISCOVERY.md, PRD.md, EXPERIMENT.md, and GTM.md.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

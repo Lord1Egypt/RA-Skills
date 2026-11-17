@@ -1,40 +1,55 @@
-## Description: <br>
-Analyzes and organizes PDFs in a local folder by extracting text, classifying documents by topic, moving PDFs into topic folders, and generating a structured report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes, classifies, organizes, summarizes, and reports on PDFs in a local folder for batch document management.
 
-## Publisher: <br>
-[wyj0124](https://clawhub.ai/user/wyj0124) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wyj0124](https://clawhub.ai/user/wyj0124)
 
-## Use Case: <br>
-Developers, analysts, and knowledge workers use this skill to batch-process PDFs in a local folder, classify them by topic, organize the original files into category folders, and produce a consolidated report. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read every PDF in the chosen folder and save full extracted document text into that folder. <br>
-Mitigation: Use it only on folders approved for agent access, and review where extracted text files will be stored before execution. <br>
-Risk: The skill can automatically move PDFs into newly created category folders without a required preview. <br>
-Mitigation: Run it on a copy of important folders first, request a dry-run plan, and require explicit confirmation before file moves. <br>
+## Use Case:
 
+External users and developers use this skill to process a local folder of PDFs, extract text, group documents by topic, move PDFs into category folders, and produce a consolidated Markdown report.
 
-## Reference(s): <br>
-- [Default report template](references/report-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown report with supporting extracted text JSON and local file organization actions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write extracted document text into the selected folder and move PDFs into generated topic folders.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can move PDFs into newly created topic folders, which may alter an important folder's organization.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it on a copied test folder or ensure backups exist before using it on important documents.
+
+Risk: The extraction step can write full extracted PDF text to a local _extracted_texts.json file.
+
+Mitigation: Review whether the folder contains sensitive PDFs before execution and remove the extracted JSON when it is no longer needed.
+
+## Reference(s):
+
+- [Default report template](artifact/references/report-template.md)
+- [ClawHub skill page](https://clawhub.ai/wyj0124/skills/document-management)
+- [Publisher profile](https://clawhub.ai/user/wyj0124)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Files, Guidance]
+
+**Output Format:** [Markdown report with supporting JSON extraction results and local file organization actions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write _extracted_texts.json in the target folder and move PDFs into topic subfolders.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

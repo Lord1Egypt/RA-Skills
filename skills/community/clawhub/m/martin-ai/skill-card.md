@@ -1,48 +1,62 @@
-## Description: <br>
-Complete Venice AI platform: text generation, web search, embeddings, TTS, speech-to-text, image generation, video creation, upscaling, and AI editing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Complete Venice AI platform access for text generation, web search, embeddings, text-to-speech, speech-to-text, image generation, video creation, upscaling, and AI editing.
 
-## Publisher: <br>
-[godferylindsay](https://clawhub.ai/user/godferylindsay) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[godferylindsay](https://clawhub.ai/user/godferylindsay)
 
-## Use Case: <br>
-Developers and agents use this skill to access Venice-style AI capabilities through SkillBoss/HeyBoss-hosted Python scripts for chat, search, embeddings, audio, image, video, upscaling, and image editing workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires an API key and sends prompts, files, audio, images, and videos through SkillBoss/HeyBoss and downstream AI services. <br>
-Mitigation: Use a dedicated low-privilege key, rotate it regularly, and avoid regulated, confidential, or sensitive personal data. <br>
-Risk: The security summary flags a mismatch between privacy-oriented Venice branding and the actual SkillBoss/HeyBoss routing path. <br>
-Mitigation: Review the service path and trust model before use, and disclose the routing behavior to users who provide content. <br>
-Risk: URL-based scraping and media inputs can retrieve or process untrusted external content. <br>
-Mitigation: Use trusted URLs, inspect inputs before execution, and keep generated outputs isolated until reviewed. <br>
-Risk: Generated files or embedded metadata may contain prompt details when metadata options are enabled. <br>
-Mitigation: Disable metadata embedding where possible and scrub generated media before sharing outside the workflow. <br>
+## Use Case:
 
+Developers and agents use this skill to call SkillBoss/HeyBoss-routed AI services for chat, search, embeddings, audio transcription and synthesis, image generation and editing, video generation, and upscaling.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/godferylindsay/martin-ai) <br>
-- [SkillBoss API Reference](references/api.md) <br>
-- [Venice AI](https://venice.ai) <br>
-- [Venice API Docs](https://docs.venice.ai) <br>
-- [Venice Status](https://veniceai-status.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with bash examples; scripts can return text, JSON, media URLs, and generated audio, image, or video files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Python 3 and SKILLBOSS_API_KEY; some operations write generated media under local tmp output directories.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Prompts, files, media, fetched URL contents, and SKILLBOSS_API_KEY may be sent through the SkillBoss/HeyBoss service path.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, avoid sensitive documents, and rotate the API key if it was expected to be used only with Venice or api.skillbossai.com.
+
+Risk: The skill can fetch user-supplied URLs from the local execution environment.
+
+Mitigation: Use trusted public URLs only and avoid internal, private-network, or credential-bearing URLs.
+
+Risk: The server security verdict is suspicious because the skill under-discloses its service routing.
+
+Mitigation: Confirm the intended provider path and data-handling expectations before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/godferylindsay/skills/martin-ai)
+- [SkillBoss API Hub reference](references/api.md)
+- [Venice AI](https://venice.ai)
+- [Venice API documentation](https://docs.venice.ai)
+- [SkillBoss API documentation](https://skillbossai.com/docs)
+- [SkillBoss API Hub](https://api.skillbossai.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Files, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands, JSON examples, text responses, and generated media file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Python 3.10+ and SKILLBOSS_API_KEY.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,56 @@
-## Description: <br>
-Aggregates profession-targeted news from X (Twitter), Google News, Grok, and global media into bilingual daily or on-demand career briefs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Daily profession-targeted news from X (Twitter), Google News, Grok, and global media, with bilingual briefs, multi-profession subscriptions, keyword filters, and scheduled morning push.
 
-## Publisher: <br>
-[cosmofang](https://clawhub.ai/user/cosmofang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cosmofang](https://clawhub.ai/user/cosmofang)
 
-## Use Case: <br>
-Professionals and individual users use this skill to register career interests, manage multi-profession subscriptions, and generate concise bilingual news prompts or briefs for daily and on-demand reading. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores local user preference files that may contain profession, region, language, and keyword interests. <br>
-Mitigation: Avoid sensitive keywords, treat data/users/*.json as personal preference data, and delete those files when the stored profile is no longer needed. <br>
-Risk: Scheduled daily runs can generate recurring prompts even after setup is complete. <br>
-Mitigation: Only add the cron job when scheduled daily prompt generation is intended, and disable or remove it when no longer needed. <br>
+## Use Case:
 
+External users and agents use this skill to register career-news preferences, manage profession subscriptions, and generate profession-targeted news query or morning brief prompts. It supports Chinese and English briefs across multiple professional categories.
 
-## Reference(s): <br>
-- [Career News on ClawHub](https://clawhub.ai/cosmofang/career-news) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Plain text and Markdown-style briefs with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Registration and subscription scripts may create local JSON preference files under data/users.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata and package.json) <br>
+Risk: The skill stores user profile text and can reuse regions or keywords in later prompts and executable command hints.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid untrusted text, shell characters, or multiline instructions in region and keyword fields, and review generated prompts or commands before allowing an agent to run them automatically.
+
+Risk: Scheduled morning pushes can run unattended through cron and repeatedly generate prompts from saved user preferences.
+
+Mitigation: Review output with dry-run or manual execution before enabling scheduled runs, and disable push for users that should no longer receive automated briefs.
+
+## Reference(s):
+
+- [Career News on ClawHub](https://clawhub.ai/cosmofang/skills/career-news)
+- [cosmofang Publisher Profile](https://clawhub.ai/user/cosmofang)
+- [Skill Definition](artifact/SKILL.md)
+- [Package Metadata](artifact/package.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and console text with inline shell commands and news-brief prompts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local user preference JSON files under data/users and prompt text for agents to execute news searches.]
+
+## Skill Version(s):
+
+1.1.0 (source: release evidence and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,53 @@
-## Description: <br>
-A conversational CRM skill that helps an administrator create, update, search, and analyze customer records stored as local YAML files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A conversational CRM skill for administrators to create, update, query, search, and analyze YAML-backed customer records from natural language.
 
-## Publisher: <br>
-[luis1232023](https://clawhub.ai/user/luis1232023) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[luis1232023](https://clawhub.ai/user/luis1232023)
 
-## Use Case: <br>
-Business operators and administrators use this skill to maintain lightweight CRM records, add follow-up and service activity, search customer data, and generate sales or service summaries from local YAML files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores sensitive customer contact, service, and sales data in local YAML files. <br>
-Mitigation: Use it only in a trusted workspace, define privacy and retention practices before real customer use, and keep backups of customer data. <br>
-Risk: Customer names are used to construct local filenames, and the security evidence flags unsafe file path handling. <br>
-Mitigation: Do not use customer names containing slashes, dots, or path-like characters; maintainers should add filename validation and path containment before production use. <br>
-Risk: Several workflows write or update CRM records. <br>
-Mitigation: Require manual confirmation for write actions and maintain recoverable backups before bulk or production usage. <br>
+## Use Case:
 
+Employees or operators managing customer relationships use this skill to record customers, update contact and service history, search records, and generate sales or service analytics from local CRM data.
 
-## Reference(s): <br>
-- [CRM Manager design reference](references/design_reference.md) <br>
-- [ClawHub skill page](https://clawhub.ai/luis1232023/crm-manager-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text or Markdown responses, CLI output, and YAML customer record files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes and updates local CRM YAML files under the skill data directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-4.0.0 (source: server release metadata) <br>
+Risk: Customer-name inputs can cause scripts to read or overwrite YAML files outside the intended CRM customer directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill only against a dedicated CRM data directory and reject untrusted customer names until path validation is fixed.
+
+Risk: Customer YAML files and console output may expose sensitive CRM contact, service, and sales data.
+
+Mitigation: Restrict runtime access to authorized users, require confirmation before writes or auto-tag updates, and treat generated reports as sensitive customer data.
+
+## Reference(s):
+
+- [CRM Manager Design Reference](references/design_reference.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, files]
+
+**Output Format:** [Markdown or plain-text agent responses with shell command examples and YAML customer records]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May read, write, and summarize customer YAML files when the packaged scripts are executed.]
+
+## Skill Version(s):
+
+4.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,50 @@
-## Description: <br>
-Creates Feishu cloud documents from Lark-flavored Markdown and supports folders, wiki nodes, and wiki spaces as creation targets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+创建飞书云文档，将 Lark-flavored Markdown 内容写入新文档，并支持指定文件夹、知识库节点或知识空间。
 
-## Publisher: <br>
-[chenfa188](https://clawhub.ai/user/chenfa188) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chenfa188](https://clawhub.ai/user/chenfa188)
 
-## Use Case: <br>
-Agents and users use this skill to create formatted Feishu cloud documents from Markdown and place them in a personal space, folder, wiki node, or wiki space. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A Feishu app with broad credentials could create documents in locations beyond the intended workspace area. <br>
-Mitigation: Use a least-privilege Feishu app and confirm the target folder, wiki node, or wiki space before creating documents. <br>
-Risk: Untrusted external media URLs in Markdown may be fetched and uploaded into Feishu documents. <br>
-Mitigation: Only include media URLs that the user trusts and intends to add to the target Feishu workspace. <br>
-Risk: Very long documents may fail or produce partial content when created in one request. <br>
-Mitigation: Create long documents in smaller sections and use append-style updates when appropriate. <br>
+## Use Case:
 
+Developers and workspace users use this skill to create Feishu cloud documents from structured Lark-flavored Markdown, optionally placing the new document in a folder, wiki node, or wiki space.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chenfa188/openclaw-feishu-create-doc) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, API calls, JSON] <br>
-**Output Format:** [JSON result after creating a Feishu document from Lark-flavored Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns document identifiers and a document URL; Feishu permissions determine valid creation targets.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can create documents in a user's Feishu account and upload media fetched from referenced URLs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the document title, destination, and content before use, and avoid sensitive, private, authenticated, temporary, or untrusted media URLs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chenfa188/skills/openclaw-feishu-create-doc)
+- [Publisher profile](https://clawhub.ai/user/chenfa188)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Markdown, Guidance]
+
+**Output Format:** [JSON result with document identifiers and a Feishu document URL]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates a Feishu document from supplied Markdown and may fetch referenced media URLs for upload.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

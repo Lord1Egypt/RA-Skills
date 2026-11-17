@@ -1,0 +1,31 @@
+{
+  "name": "gitea_repo_ingest",
+  "version": "0.4.2",
+  "description": "Research KB skill: ingest public Git repositories or configured Gitea repositories through OpenClaw code understanding plus deterministic ls-remote, optional shallow clone, bounded large-repository context sampling, source manifest, and catalog writers.",
+  "entry": "SKILL.md",
+  "runtime": {
+    "type": "python",
+    "workflow": [
+      "python3 scripts/run_task.py prepare --input <payload.json> --context-output <context.json>",
+      "python3 scripts/run_task.py validate-pages --input <payload.json> --context <context.json> --pages <pages.json>",
+      "python3 scripts/run_task.py apply --input <payload.json> --context <context.json> --pages <pages.json>"
+    ]
+  },
+  "selfContained": true,
+  "requiredEnv": [
+    "GITEA_URL",
+    "GITEA_BOT_TOKEN",
+    "GITEA_BOT_USERNAME",
+    "TEAM_KB_REPO"
+  ],
+  "optionalEnv": [
+    "GITEA_ORG",
+    "OPENCLAW_SHARED_DIR"
+  ],
+  "systemDependencies": [
+    "python3",
+    "git"
+  ],
+  "input": "Research KB backend task payload JSON from the payload file named in the OpenClaw message.",
+  "output": "prepare emits analysis context with repo metadata and analysisLimits or writes a skip result with a stable repository-level sourceItems[] record when unchanged; validate-pages checks generated pages JSON before Gitea writes; apply writes a resultFile JSON envelope with success, processedSources, createdPages, updatedPages, archivedFiles, skippedSources, errors, commitId, snapshot, and one repository-level sourceItems[] record for backend persistence."
+}

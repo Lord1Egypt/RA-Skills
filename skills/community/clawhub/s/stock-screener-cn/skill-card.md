@@ -1,41 +1,56 @@
-## Description: <br>
-A Chinese A-share and Hong Kong stock technical-pattern screening skill that supports moving-average alignment, volume pullbacks, volume breakouts, candlestick-style strategy conditions, and natural-language stock-screening requests. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Screens A-share and Hong Kong stocks for technical patterns such as moving-average alignment, volume pullbacks, volume breakouts, and candlestick setups.
 
-## Publisher: <br>
-[otouman](https://clawhub.ai/user/otouman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[otouman](https://clawhub.ai/user/otouman)
 
-## Use Case: <br>
-Developers, analysts, and external users use this skill to screen A-share and Hong Kong stocks against documented technical-analysis strategies and return ranked matches with reasons and scores. Results are informational and should not be treated as investment advice. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Users may treat technical screening output as investment advice. <br>
-Mitigation: Present results as informational analysis only and preserve the skill's investment-risk caveat. <br>
-Risk: Public market data may be delayed or incomplete. <br>
-Mitigation: Disclose data latency and verify market data before acting on any result. <br>
-Risk: Dependency changes could alter screening behavior over time. <br>
-Mitigation: Install dependencies in a virtual environment and pin package versions for repeated use. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [A-share technical-pattern screening strategies](references/strategies.md) <br>
+## Use Case:
 
+External users and developers use this skill to screen Chinese A-share and Hong Kong equities with configurable technical-analysis strategies and price filters. Results are intended as informational screening output, not investment advice.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON or table-style screening results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include stock code, name, price, matched strategy, score, reason, and percentage change.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Hong Kong stock screening results may be unreliable because the security evidence flags Hong Kong support as requiring validation.
+
+Mitigation: Validate Hong Kong results independently before relying on them, and prefer markets whose data retrieval path has been tested for the release.
+
+Risk: Dependency behavior may change over time because the artifact documents unpinned AKShare, pandas, and numpy dependencies.
+
+Mitigation: Run the skill in a virtual environment with reviewed or pinned dependencies.
+
+Risk: Technical-analysis signals could be mistaken for investment advice.
+
+Mitigation: Present outputs as informational screening results and require human review before any trading decision.
+
+## Reference(s):
+
+- [A-share technical screening strategies](references/strategies.md)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Shell commands, Guidance]
+
+**Output Format:** [JSON result arrays and Markdown summaries with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results include stock code, name, price, matched strategy, score, reason, and change percentage.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

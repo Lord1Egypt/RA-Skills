@@ -1,38 +1,50 @@
-## Description: <br>
-Web Interface Guidelines helps agents review or build accessible, performant web UI components against practical rules for accessibility, performance, animation, forms, content handling, and visual stability. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Vercel's web interface guidelines for reviewing and building accessible, performant UI components with stable layout, resilient content handling, and clear interaction behavior.
 
-## Publisher: <br>
-[wu-uk](https://clawhub.ai/user/wu-uk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wu-uk](https://clawhub.ai/user/wu-uk)
 
-## Use Case: <br>
-Developers and agents use this skill to review or build web interface components for accessibility, performance, animation, form behavior, content handling, and visual stability issues before release. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Guidance may be applied without checking project-specific interface standards. <br>
-Mitigation: Verify recommendations against the target project's accessibility, performance, design, and browser-support requirements before changing UI code. <br>
+## Use Case:
 
+Developers and UI reviewers use this skill to check web interface code and components against practical accessibility, performance, animation, form, focus, image, and visual stability guidelines.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wu-uk/fix-visual-stability-web-interface-guidelines) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code] <br>
-**Output Format:** [Markdown guidance with code-oriented review criteria] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance-only skill; does not execute code or call external services.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: Checklist guidance may miss project-specific accessibility or performance issues.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify important UI changes with automated tests, manual review, and project-specific acceptance criteria.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wu-uk/skills/fix-visual-stability-web-interface-guidelines)
+- [ClawHub publisher profile](https://clawhub.ai/user/wu-uk)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code]
+
+**Output Format:** [Markdown guidance with checklist-style findings and code-oriented recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static guidance only; no executable code, credential use, persistence, or hidden data access is identified in the security evidence.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,47 +1,62 @@
-## Description: <br>
-Generate a daily health brief from Oura, Whoop, and Withings. Unified re-auth script, local token persistence, Green/Yellow/Red morning summary. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate a daily health brief from Oura, Whoop, and Withings with unified re-auth, local token persistence, and a Green/Yellow/Red morning summary.
 
-## Publisher: <br>
-[NathanielWeiner](https://clawhub.ai/user/NathanielWeiner) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[nathanielweiner](https://clawhub.ai/user/nathanielweiner)
 
-## Use Case: <br>
-Individuals and OpenClaw users use this skill to collect daily health metrics from Oura, WHOOP, and Withings, normalize them into JSON, and receive a concise Markdown morning brief. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill handles long-lived health account tokens and provider credentials. <br>
-Mitigation: Inspect the reauthorization flow before entering credentials, use a dedicated least-privilege 1Password vault or scoped environment, and periodically clean up or revoke stored tokens. <br>
-Risk: Credential-handling scripts described in the documentation are missing from the package. <br>
-Mitigation: Ask the publisher to include the missing bin/ scripts and review the installed package before relying on authorization, refresh, or cron workflows. <br>
-Risk: Cron examples source secrets and write health JSON outputs to temporary paths. <br>
-Mitigation: Avoid sourcing broad secrets files in cron jobs and write health output only to paths with appropriate local access controls. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [OpenClaw Health Brief on ClawHub](https://clawhub.ai/NathanielWeiner/openclaw-health-brief) <br>
-- [1Password credential conventions](docs/1PASSWORD_CONVENTIONS.md) <br>
-- [Morning brief format](docs/MORNING_BRIEF.md) <br>
-- [Oura connector notes](docs/OURA.md) <br>
-- [WHOOP connector notes](docs/WHOOP.md) <br>
-- [Withings connector notes](docs/WITHINGS.md) <br>
-- [OpenClaw cron documentation](https://docs.openclaw.ai/automation/cron) <br>
+## Use Case:
 
+External users and developers use this skill to connect WHOOP, Oura, and Withings accounts, normalize daily sleep, activity, and body metrics, and produce a concise morning health brief for review or scheduled delivery.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration] <br>
-**Output Format:** [Markdown brief and normalized JSON file, with setup and cron commands documented in Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs live provider API calls when credentials are available; sample or null outputs may be used when credentials are absent.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill handles sensitive health-provider data and long-lived OAuth refresh tokens.
+
+Mitigation: Use a narrow 1Password vault or dedicated environment file containing only the required provider credentials, and restrict access to generated health outputs.
+
+Risk: Local token persistence can expose refreshed OAuth tokens if the local secrets file is readable by unintended users.
+
+Mitigation: Keep ~/.openclaw/secrets/health_tokens.json permission-restricted, monitor file access, and rotate or revoke provider tokens if exposure is suspected.
+
+Risk: Scheduled runs may receive broader credentials than needed if they source a general environment file.
+
+Mitigation: Provide cron with the smallest credential set needed for WHOOP, Oura, Withings, and the selected delivery channel.
+
+## Reference(s):
+
+- [OpenClaw Health Brief ClawHub listing](https://clawhub.ai/nathanielweiner/skills/openclaw-health-brief)
+- [Morning Brief Format](docs/MORNING_BRIEF.md)
+- [1Password Conventions](docs/1PASSWORD_CONVENTIONS.md)
+- [Oura Provider Notes](docs/OURA.md)
+- [WHOOP Provider Notes](docs/WHOOP.md)
+- [Withings Provider Notes](docs/WITHINGS.md)
+- [OpenClaw Cron Documentation](https://docs.openclaw.ai/automation/cron)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Configuration]
+
+**Output Format:** [Normalized JSON file plus Markdown morning brief]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Contains personal health metrics from configured providers; unavailable metrics are represented as null.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

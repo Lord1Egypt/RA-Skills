@@ -1,44 +1,59 @@
-## Description: <br>
-Monitors Kalshi portfolio positions and reports drift alerts when holdings, price, or P&L changes exceed a configured threshold. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Real-time Kalshi portfolio drift alerts that monitor positions and fire when any position moves beyond the configured threshold since the last check.
 
-## Publisher: <br>
-[kingmadellc](https://clawhub.ai/user/kingmadellc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kingmadellc](https://clawhub.ai/user/kingmadellc)
 
-## Use Case: <br>
-External traders and agents use this skill to monitor Kalshi positions, compare current portfolio state against a local snapshot, and surface drift alerts between scheduled portfolio reviews. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Slack webhook delivery can send portfolio details outside the local environment when OPENCLAW_SLACK_WEBHOOK or slack_webhook_url is configured. <br>
-Mitigation: Configure Slack delivery only when intentional, use a trusted destination, and avoid exposing webhook URLs or sensitive portfolio data. <br>
-Risk: The skill requires Kalshi API credentials and stores a local portfolio snapshot. <br>
-Mitigation: Use the least-privileged Kalshi API key available and protect both the private key file and ~/.openclaw/state/portfolio_snapshot.json with appropriate local permissions. <br>
-Risk: The artifact includes an agent bug-fix protocol that asks agents to edit files and commit changes. <br>
-Mitigation: Treat those instructions as artifact behavior only and authorize code edits or commits separately before allowing an agent to modify installed skill files. <br>
+## Use Case:
 
+External users and developers use this skill to monitor Kalshi portfolio positions, compare the current state with a local snapshot, and receive alerts when position, P&L, or price drift exceeds a configured threshold.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/kingmadellc/portfolio-drift-monitor) <br>
-- [Portfolio Drift Monitor Configuration Reference](references/drift-config.md) <br>
-- [Kalshi API Documentation](https://docs.kalshi.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text alerts and Markdown documentation with shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local snapshot state and optional Slack delivery when configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.4 (source: server release metadata) <br>
+Risk: The skill requires Kalshi API access and reads a private key file path configured by the user.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when Kalshi API access is appropriate, protect the key file, restrict file permissions, and avoid exposing credential values in logs or shared debug output.
+
+Risk: Portfolio state and drift alerts may reveal sensitive trading positions, and configured Slack delivery can transmit those details outside the local machine.
+
+Mitigation: Review or remove Slack webhook configuration before use and treat alert messages and ~/.openclaw/state/portfolio_snapshot.json as sensitive portfolio data.
+
+Risk: The artifact includes behavior guidance for agents to persistently modify installed source files.
+
+Mitigation: Review proposed code changes before applying them and scan updated skill files before redeployment.
+
+## Reference(s):
+
+- [Portfolio Drift Monitor Configuration Reference](references/drift-config.md)
+- [Kalshi API Documentation](https://docs.kalshi.com)
+- [Portfolio Drift Monitor on ClawHub](https://clawhub.ai/kingmadellc/skills/portfolio-drift-monitor)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown-style text with shell command examples and console alert output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write a local portfolio snapshot under ~/.openclaw/state and may send configured Slack notifications.]
+
+## Skill Version(s):
+
+1.1.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,63 @@
-## Description: <br>
-Translate text in images, extract text via OCR, and remove text using TranslateImage AI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Translate text in images, extract text via OCR, and remove text using TranslateImage AI.
 
-## Publisher: <br>
-[cottom](https://clawhub.ai/user/cottom) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cottom](https://clawhub.ai/user/cottom)
 
-## Use Case: <br>
-Developers and end users use this skill to process images through the TranslateImage API: translate visible text while preserving layout, extract OCR text, remove text, or extract and translate text in one call. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Chosen images are uploaded to the third-party TranslateImage API and may contain sensitive or regulated content. <br>
-Mitigation: Avoid sensitive screenshots, documents, IDs, secrets, personal photos, or regulated data unless the provider's privacy and retention practices are acceptable. <br>
-Risk: Text removal can alter watermarks, attribution, subtitles, or evidentiary annotations. <br>
-Mitigation: Use text removal only for images the user owns or has permission to modify, and preserve originals when provenance or auditability matters. <br>
-Risk: The skill requires a TranslateImage API key for authenticated API calls. <br>
-Mitigation: Store the key in TRANSLATEIMAGE_API_KEY and avoid exposing it in prompts, command history, shared logs, or generated output. <br>
+## Use Case:
 
+Developers and agents use this skill to call TranslateImage's REST API for image translation, OCR, text removal, and image-to-text translation workflows.
 
-## Reference(s): <br>
-- [TranslateImage](https://translateimage.io) <br>
-- [TranslateImage Dashboard](https://translateimage.io/dashboard) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown with inline bash commands, JSON examples, and Python snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses TRANSLATEIMAGE_API_KEY for TranslateImage API calls; image outputs may be returned as base64 data URLs or saved files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence; artifact frontmatter lists 1.0.0) <br>
+Risk: Images and extracted text are sent to translateimage.io.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for images that can be shared with that service, and avoid confidential, medical, financial, identity, or private-location content unless explicit consent exists.
+
+Risk: URL-based image downloads could reach local, private-network, metadata-service, or redirected resources.
+
+Mitigation: Allow only known local image files or ordinary public HTTPS image URLs explicitly provided by the user, and block file://, localhost, private-network, metadata-service, and redirected URLs.
+
+Risk: Text removal can alter watermarks, provenance marks, safety labels, or other protected image content.
+
+Mitigation: Use remove-text only on images the user has rights to edit, and avoid removing watermarks, provenance, or safety labels without authorization.
+
+Risk: API keys can grant endpoint-specific capabilities.
+
+Mitigation: Configure only the scopes required for the intended endpoint and keep TRANSLATEIMAGE_API_KEY out of logs and shared outputs.
+
+## Reference(s):
+
+- [TranslateImage](https://translateimage.io)
+- [TranslateImage Dashboard](https://translateimage.io/dashboard)
+- [ClawHub Translate Image Skill](https://clawhub.ai/cottom/skills/translate-image)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with shell command examples, JSON response examples, and generated image file outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses TRANSLATEIMAGE_API_KEY and curl/python3 to send image files to TranslateImage API endpoints.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata; artifact frontmatter reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

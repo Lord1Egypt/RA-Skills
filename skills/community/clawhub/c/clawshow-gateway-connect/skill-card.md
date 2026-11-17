@@ -1,42 +1,58 @@
-## Description: <br>
-Installs and activates @bowong/clawshow-gateway in OpenClaw and migrates existing Gateway channel configuration to ClawShow with rollback safety. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Installs and activates @bowong/clawshow-gateway in OpenClaw, then migrates existing Gateway channel configuration to ClawShow with rollback safety and no default outbound test traffic.
 
-## Publisher: <br>
-[yudi-xiao](https://clawhub.ai/user/yudi-xiao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yudi-xiao](https://clawhub.ai/user/yudi-xiao)
 
-## Use Case: <br>
-Developers and operators use this skill to install the ClawShow Gateway plugin for OpenClaw and migrate existing gateway channel configuration while preserving unrelated settings and rollback options. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill installs a Node dependency and an OpenClaw plugin, which can persistently change the project and gateway runtime. <br>
-Mitigation: Review the dependency and plugin install steps before execution, verify the package id is @bowong/clawshow-gateway, and keep the generated rollback copy. <br>
-Risk: The migrated channel configuration sets an open direct-message policy and wildcard allow list. <br>
-Mitigation: Confirm this access posture is intended before applying the configuration, and narrow dmPolicy or allowFrom after migration if the deployment requires stricter access. <br>
-Risk: Applying a full gateway configuration replacement can overwrite unintended fields if the current configuration is not rebased correctly. <br>
-Mitigation: Use config.get to capture the current payload hash, apply the full replacement through config.apply, and retry once only after rebasing on a fresh config when conflicts occur. <br>
+## Use Case:
 
+Developers and operators use this skill to install the ClawShow gateway plugin for OpenClaw and migrate an existing Gateway channel configuration while preserving unrelated settings and creating rollback coverage.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yudi-xiao/clawshow-gateway-connect) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes rollback, validation, and verification steps; does not send outbound test messages by default.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release evidence) <br>
+Risk: The migrated ClawShow channel enables allowFrom ["*"], which permits public relay access if deployed as written.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an explicit allowlist unless public relay access is intentional.
+
+Risk: The workflow handles CLAWSHOW_AUTH_TOKEN and token-bearing gateway configuration.
+
+Mitigation: Avoid exposing full token-bearing config on the command line when safer input methods exist, and protect or delete secret-bearing backups when they are no longer needed.
+
+Risk: The workflow installs @bowong/clawshow-gateway and ws during migration.
+
+Mitigation: Pin reviewed package and plugin versions where possible before use in environments with meaningful tool access.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yudi-xiao/skills/clawshow-gateway-connect)
+- [Publisher profile](https://clawhub.ai/user/yudi-xiao)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes backup path and verification command results when available.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

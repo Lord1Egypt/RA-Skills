@@ -1,50 +1,68 @@
-## Description: <br>
-1688 Distribution helps agents handle 1688 distribution workflows, including product search and listing, order management, knowledge-base lookup, and shop binding. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a single entry point for 1688 distribution workflows, including product selection and listing, order management, knowledge-base lookup, and shop binding.
 
-## Publisher: <br>
-[1688aiinfra](https://clawhub.ai/user/1688aiinfra) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[1688aiinfra](https://clawhub.ai/user/1688aiinfra)
 
-## Use Case: <br>
-External 1688 distribution operators and agents use this skill to search products, inspect distribution details, bind shops, publish products to downstream stores, query orders, send seller follow-ups, and retrieve 1688 workflow knowledge. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent 1688 Access Key handling can expose business account credentials if storage location, retention, or rotation is not managed. <br>
-Mitigation: Confirm where the AK file is stored before use, restrict workspace access, and delete or rotate the key when it is no longer needed. <br>
-Risk: The skill can publish or sync products to downstream shops, which may create commercial or compliance impact. <br>
-Mitigation: Require explicit user confirmation of the product list and destination shop before publishing or syncing products. <br>
-Risk: The skill can send seller messages during order follow-up workflows. <br>
-Mitigation: Review seller-facing message content before sending and keep the message tied to confirmed order data. <br>
+## Use Case:
 
+External users and commerce operators use this skill to manage 1688 distribution tasks through an agent, including selecting products, confirming shops, distributing listings, querying orders, sending seller follow-up messages, and retrieving 1688 distribution guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/1688aiinfra/1688-distribution) <br>
-- [1688aiinfra publisher profile](https://clawhub.ai/user/1688aiinfra) <br>
-- [README](README.md) <br>
-- [Product search helper reference](scripts/biz/product_search_helper/reference.md) <br>
-- [Offer information helper reference](scripts/biz/offer_info/reference.md) <br>
-- [Distribution execution helper reference](scripts/biz/distribute_helper/reference.md) <br>
-- [Shop information helper reference](scripts/biz/shop_info/reference.md) <br>
-- [Order helper reference](scripts/biz/order_helper/reference.md) <br>
-- [Knowledge helper reference](scripts/biz/knowledge_helper/reference.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON objects containing markdown strings, plus CLI command guidance for agent execution.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and a configured 1688 Access Key for authenticated business workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: The skill can store and use a 1688 Access Key for account-specific operations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only from a trusted publisher, review credential storage behavior before use, and avoid sharing or exposing the Access Key.
+
+Risk: The skill can query account, shop, and order data.
+
+Mitigation: Use it only in workspaces where access to 1688 account and order information is appropriate.
+
+Risk: The skill can perform distribution actions and send seller messages.
+
+Mitigation: Require explicit confirmation before browser authorization, credential reset or clear actions, product distribution, and outbound seller messaging.
+
+Risk: The security scan advises review of AK storage/status leakage and callback server binding/authentication before use.
+
+Mitigation: Review or fix those areas before deploying the skill in production or shared environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/1688aiinfra/skills/1688-distribution)
+- [1688 authentication portal](https://clawhub.1688.com/)
+- [Product selection reference](scripts/biz/product_search_helper/reference.md)
+- [Offer information reference](scripts/biz/offer_info/reference.md)
+- [Distribution execution reference](scripts/biz/distribute_helper/reference.md)
+- [Shop information reference](scripts/biz/shop_info/reference.md)
+- [Order management reference](scripts/biz/order_helper/reference.md)
+- [Knowledge-base query reference](scripts/biz/knowledge_helper/reference.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, JSON, Shell commands, API Calls, Guidance]
+
+**Output Format:** [JSON responses containing markdown, with shell command invocations for local CLI tools]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and uses 1688 Access Key authorization for account-specific operations.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

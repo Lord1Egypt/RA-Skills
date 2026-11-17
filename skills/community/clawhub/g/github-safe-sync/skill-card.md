@@ -1,45 +1,53 @@
-## Description: <br>
-Inspect, trigger, and clean up GitHub mirror repositories that use a safe-sync GitHub Actions workflow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Inspect, trigger, and clean up GitHub mirror repositories that use a safe-sync GitHub Actions workflow.
 
-## Publisher: <br>
-[grey0758](https://clawhub.ai/user/grey0758) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[grey0758](https://clawhub.ai/user/grey0758)
 
-## Use Case: <br>
-Developers and engineers use this skill to inspect GitHub mirror repositories, trigger safe-sync workflows, audit recent workflow runs, and clean up false-positive sync artifacts after review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can change GitHub repository state when dispatching workflows, closing issues, or deleting backup branches. <br>
-Mitigation: Run status before write actions, review the repository state, and re-run status after each write operation. <br>
-Risk: A broad GitHub token could allow unintended access beyond the target mirrors. <br>
-Mitigation: Use a fine-grained GitHub token limited to the target repositories and keep it only in the GITHUB_TOKEN environment variable. <br>
-Risk: Closing force-push alert issues can hide real upstream history problems. <br>
-Mitigation: Close force-push alert issues only after confirming the alerts are false positives. <br>
-Risk: Deleting backup branches can remove recovery points that may still be needed. <br>
-Mitigation: Delete backup branches only after confirming the mirror workflow is healthy; use dry-run mode to preview deletions when appropriate. <br>
+## Use Case:
 
+Developers and engineers use this skill to inspect GitHub mirror repository health, trigger safe-sync workflows, audit sync artifacts, and clean up false-positive force-push issues or stale backup branches after review.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/grey0758/github-safe-sync) <br>
-- [GitHub REST API](https://api.github.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, API Calls, Configuration instructions] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses GITHUB_TOKEN from the environment and repository identifiers in owner/repo form.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: Repository write commands can close force-push issues or delete backup branches in the wrong repository if scoped incorrectly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a GitHub token limited to the target repository, run status first, pass explicit owner/repo and branch values, and preview delete-backups with --dry-run.
+
+Risk: Closing force-push alerts can hide a real upstream history rewrite if the alert was not actually a false positive.
+
+Mitigation: Manually confirm the alert is false, verify the mirror workflow is healthy, and re-run status after each write operation.
+
+## Reference(s):
+
+- [GitHub API root used by the sync helper](https://api.github.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a GITHUB_TOKEN scoped to the target repository for GitHub API operations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

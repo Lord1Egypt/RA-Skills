@@ -1,43 +1,60 @@
-## Description: <br>
-Designs adaptive, task-driven higher math courses with Bloom taxonomy-based cognition training and immersive, multi-agent learning paths. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+DingJi smart course design for higher mathematics. Provides task-driven learning paths, adaptive diagnosis, Bloom high-level cognition training. Trigger: design math course, create teaching plan.
 
-## Publisher: <br>
-[daigxok](https://clawhub.ai/user/daigxok) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[daigxok](https://clawhub.ai/user/daigxok)
 
-## Use Case: <br>
-Educators, course designers, and math learning assistants use this skill to create adaptive higher-mathematics teaching plans, diagnostic activities, spaced review schedules, and immersive learning scenarios. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores learner profiles and progress data without clear consent, retention, or deletion controls. <br>
-Mitigation: Set explicit limits for stored learner data, obtain consent before retaining profiles, and define retention and deletion rules before use. <br>
-Risk: The skill can involve scheduled reminders, external visualization or messaging tools, and file-transfer workflows. <br>
-Mitigation: Restrict notification recipients and tool permissions, review external destinations, and approve file-transfer workflows before enabling them. <br>
+## Use Case:
 
+Educators, instructional designers, and agent operators use this skill to generate higher mathematics course plans, learning paths, diagnostics, practice workflows, and teaching feedback grounded in Bloom taxonomy and immersive learning patterns.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/daigxok/dingji-course-design) <br>
-- [Mathematics task SOP templates](references/task-templates.md) <br>
-- [Higher mathematics knowledge graph](references/math-knowledge-graph.md) <br>
-- [Higher mathematics error patterns](references/error-patterns.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Configuration, Guidance] <br>
-**Output Format:** [Markdown with structured tables, YAML or JSON snippets, and learning-plan templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include learner profile records, progress reports, reminder schedules, and visualization or file-transfer instructions when those workflows are enabled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: The skill may ask an agent to write persistent memory, schedule reminders, use subagents, upload content, send messages, or run exec/Python commands without clear consent boundaries.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation before any Memory write, cron setup, upload, external message, subagent delegation, or exec/Python run.
+
+Risk: Generated higher-math diagnostics, course plans, and feedback can be incomplete or pedagogically inappropriate for a real learner.
+
+Mitigation: Have a qualified educator review generated plans, assessments, and learner recommendations before using them in instruction.
+
+Risk: The source skill is primarily Chinese and may produce output in an unintended language for some users.
+
+Mitigation: Ask for the preferred output language before generating teaching materials or learner-facing feedback.
+
+## Reference(s):
+
+- [DingJi Course Design on ClawHub](https://clawhub.ai/daigxok/skills/dingji-course-design)
+- [Higher Mathematics Error Pattern Library](artifact/references/error-patterns.md)
+- [Higher Mathematics Knowledge Graph](artifact/references/math-knowledge-graph.md)
+- [Mathematics Task SOP Template Library](artifact/references/task-templates.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Configuration, Shell commands]
+
+**Output Format:** [Markdown with structured learning paths, diagnostic tables, task templates, and occasional code or shell command suggestions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include course plans, learner profiles, review schedules, assessment rubrics, visualization prompts, and agent workflow guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

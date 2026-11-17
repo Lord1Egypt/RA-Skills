@@ -1,0 +1,28 @@
+{
+  "runtime": { "type": "node", "version": "20" },
+  "init": {
+    "darwin": "{{安装命令，如 npm install -g your-cli}}",
+    "linux": "{{安装命令}}",
+    "win32": "{{安装命令，Windows 注意 .cmd 后缀惯例}}"
+  },
+  "auth": {
+    "darwin": "{{your-cli auth login}}",
+    "linux": "{{your-cli auth login}}",
+    "win32": "{{your-cli.cmd auth login}}"
+  },
+  "unAuth": {
+    "darwin": "{{your-cli auth logout}}",
+    "linux": "{{your-cli auth logout}}",
+    "win32": "{{your-cli.cmd auth logout}}"
+  },
+  "status": {
+    "darwin": "{{your-cli auth status（必须无副作用）}}",
+    "linux": "{{your-cli auth status}}",
+    "win32": "{{your-cli.cmd auth status}}"
+  },
+  "statusMatch": "{{判断已登录的文本正则，如 Logged in}}",
+  "authUrlDomain": "{{浏览器授权时限定可打开的认证域名}}",
+  "_optional_env": { "固定环境变量名": "${HOME}-支持 $HOME / ${HOME}" },
+  "_optional_versionCheck": "{{CLI 最低版本，过低时重新执行安装}}",
+  "_note": "statusMatch / statusMatchJson 二选一；有认证时 unAuth 与 status 必填；凭证由 CLI 自行安全存储，与安装目录分离"
+}

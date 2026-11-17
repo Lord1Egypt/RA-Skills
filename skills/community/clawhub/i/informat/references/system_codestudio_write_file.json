@@ -1,0 +1,30 @@
+{
+	"type": "function",
+	"function": {
+		"name": "_codestudio_write_file",
+		"description": "Create or overwrite a single source file in the AICodeStudio module (full content, not incremental). After writing a batch, call _codestudio_compile to validate and self-fix from the returned errors.",
+		"parameters": {
+			"type": "object",
+			"properties": {
+				"moduleId": {
+					"type": "string",
+					"description": "Module id."
+				},
+				"path": {
+					"type": "string",
+					"description": "Project-relative path, e.g. App.vue / components/Foo.vue / router/index.js."
+				},
+				"content": {
+					"type": "string",
+					"description": "Full file content."
+				}
+			},
+			"required": [
+				"moduleId",
+				"path",
+				"content"
+			],
+			"additionalProperties": false
+		}
+	}
+}

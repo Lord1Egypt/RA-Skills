@@ -1,6 +1,6 @@
 ---
-name: legal-cog
-description: "AI legal document generation powered by CellCog. Contracts, NDAs, terms of service, privacy policies, freelance agreements, employment contracts, compliance reviews, legal research. Precision legal drafting from natural language prompts. Not legal advice."
+name: legal-documents-cellcog
+description: "AI legal documents and contract drafting powered by CellCog. Contracts, NDAs, terms of service, privacy policies, freelance agreements, employment contracts, compliance reviews, legal research. Precision legal drafting from natural language prompts. Not legal advice."
 metadata:
   openclaw:
     emoji: "⚖️"
@@ -12,11 +12,11 @@ author: CellCog
 homepage: https://cellcog.ai
 dependencies: [cellcog]
 ---
-# Legal Cog - AI Legal Documents Powered by CellCog
+# Legal Documents - AI Legal Drafting Powered by CellCog
 
 **Legal demands two things: frontier-level reasoning and precision document generation.** CellCog delivers both.
 
-Legal is the frontier of human intelligence — and it's done best when powered by the frontier of AI intelligence. #1 on DeepResearch Bench (Apr 2026) for the deep reasoning that legal work requires, paired with state-of-the-art PDF generation for documents that look as professional as the thinking behind them.
+Legal is the frontier of human intelligence — and it's done best when powered by the frontier of AI intelligence. #1 on DeepResearch Bench (October 2026) for the deep reasoning that legal work requires, paired with state-of-the-art PDF generation for documents that look as professional as the thinking behind them.
 
 ## How to Use
 
@@ -29,6 +29,7 @@ result = client.create_chat(
     notify_session_key="agent:main:main",
     task_label="my-task",
     chat_mode="agent",
+    chat_tier="max",
 )
 ```
 
@@ -40,6 +41,7 @@ result = client.create_chat(
     prompt="[your task prompt]",
     task_label="my-task",
     chat_mode="agent",
+    chat_tier="max",
 )
 print(result["message"])
 ```
@@ -136,7 +138,7 @@ Essential documents for founders:
 
 ### The Two Pillars
 
-**1. Intelligence** — Legal work requires deep reasoning about context, jurisdiction, edge cases, and implications. CellCog's #1 ranking on DeepResearch Bench means it reasons about legal nuances at a level other AI tools can't match.
+**1. Intelligence** — Legal work requires deep reasoning about context, jurisdiction, edge cases, and implications. CellCog's #1 ranking on DeepResearch Bench (October 2026) means it reasons about legal nuances at a level other AI tools can't match.
 
 **2. Document Generation** — Legal documents need precise formatting, proper clause numbering, consistent terminology, and professional presentation. CellCog's state-of-the-art PDF generation produces documents that look like they came from a top law firm.
 
@@ -149,20 +151,18 @@ Essential documents for founders:
 
 ---
 
-## Chat Mode for Legal
+## Choosing Mode & Tier
 
-| Scenario | Recommended Mode |
-|----------|------------------|
-| Single contract, NDA, or policy | `"agent"` |
-| Complex multi-document legal packages | `"agent"` |
-| Deep regulatory research or compliance analysis | `"agent team"` |
-| High-stakes contracts, litigation research, regulatory filings | `"agent team max"` |
+**Use `chat_mode="agent", chat_tier="max"` for legal work.** Legal drafting is quality-critical — the cost of an error far exceeds the cost of deeper reasoning.
 
-**Use `"agent"` for most legal documents.** CellCog handles contracts, policies, and standard legal documents excellently in agent mode.
+| Scenario | Recommended |
+|----------|-------------|
+| Contracts, filings, compliance documents | `chat_mode="agent", chat_tier="max"` |
+| Informal summaries of a document you provide | `chat_mode="agent", chat_tier="flash"` |
 
-**Use `"agent team"` for complex legal research** — multi-jurisdiction compliance analysis, regulatory deep-dives, or when the legal reasoning itself is the deliverable.
+Agent Team (`chat_mode="team"`) is reserved for deep research — legal work runs best on Agent max.
+`chat_mode="team"` for multi-jurisdiction regulatory RESEARCH (research, not drafting).
 
-**Use `"agent team max"` for high-stakes legal work** — litigation preparation, M&A due diligence contracts, regulatory compliance for heavily regulated industries, or any legal work where the cost of an error far exceeds the cost of deeper analysis. All settings are maxed for the deepest reasoning. Requires ≥2,000 credits.
 
 ---
 
@@ -182,6 +182,7 @@ Essential documents for founders:
 
 ## If CellCog is not installed
 
-Run `/cellcog-setup` (or `/cellcog:cellcog-setup` depending on your tool) to install and authenticate.
-**OpenClaw users:** Run `clawhub install cellcog` instead.
+**Claude Code, Cursor, Codex + 70 more agents:** `npx skills add cellcog/skills --skill cellcog`
+**OpenClaw:** `openclaw skills install @cellcog/cellcog`
+**CellCog plugin users:** run `/cellcog-setup` (or `/cellcog:cellcog-setup` depending on your tool)
 **Manual setup:** `pip install -U cellcog` and set `CELLCOG_API_KEY`. See the **cellcog** skill for SDK reference.

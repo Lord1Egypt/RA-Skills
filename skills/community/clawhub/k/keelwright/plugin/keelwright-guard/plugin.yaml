@@ -1,0 +1,10 @@
+name: keelwright-guard
+version: "1.0.0"
+description: >
+  Companion plugin for the keelwright skill. Automatically injects the Web Guard
+  rule into EVERY agent turn — including subagents (delegate_task) and kanban
+  workers — so prompt-injection protection is not silently absent from spawned
+  agents. Runtime: Hermes. Other runtimes use the skill's documented mechanism
+  (project AGENTS.md / rules / hooks).
+author: ratingtesting (MIT-0)
+license: MIT-0

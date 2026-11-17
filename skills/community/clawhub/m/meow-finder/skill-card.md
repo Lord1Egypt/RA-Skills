@@ -1,44 +1,50 @@
-## Description: <br>
-CLI tool to discover AI tools. Search 40+ curated tools by category, pricing, and use case. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+CLI tool to discover AI tools. Search 40+ curated tools by category, pricing, and use case.
 
-## Publisher: <br>
-[abgohel](https://clawhub.ai/user/abgohel) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[abgohel](https://clawhub.ai/user/abgohel)
 
-## Use Case: <br>
-Developers, creators, and other CLI users use this skill to search an offline catalog of AI tools by keyword, category, pricing, and common use case. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Global npm installation carries ordinary third-party package supply-chain risk. <br>
-Mitigation: Install only from a trusted package source, review the package and dependency versions, and prefer pinned versions in managed environments. <br>
-Risk: Some declared dependencies are not used by the visible CLI code. <br>
-Mitigation: Review unused dependencies before deployment and remove or pin them if maintaining an internal copy. <br>
-Risk: The bundled AI tool catalog may become stale or contain outdated pricing or URLs. <br>
-Mitigation: Treat results as discovery guidance and verify tool availability, terms, and pricing before acting on recommendations. <br>
+## Use Case:
 
+External users and developers use Meow Finder to search a bundled catalog of AI tools from the command line by keyword, category, or free-tool status.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/abgohel/meow-finder) <br>
-- [Project Homepage](https://github.com/abgohel/meow-finder) <br>
-- [README](README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text CLI output with command examples in Markdown documentation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search results are read from a bundled local catalog and displayed in the terminal.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and package.json) <br>
+Risk: Global npm CLI installation from a third-party publisher can introduce supply-chain exposure in managed or sensitive environments.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an exact reviewed version or a lockfile-based install path, and scan the package before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/abgohel/skills/meow-finder)
+- [ClawHub publisher profile](https://clawhub.ai/user/abgohel)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Terminal text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Prints up to 10 matching bundled tool records, including name, description, category, pricing, and URL.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

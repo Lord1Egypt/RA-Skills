@@ -33,9 +33,34 @@ _HOME = str(Path.home())
 
 ADB = "/usr/bin/adb"
 
-# Samsung Messages app + the resource-id of its Send button
-MESSAGES_PKG = "com.samsung.android.messaging"
-SEND_BUTTON_ID = f"{MESSAGES_PKG}:id/send_button1"
+# Samsung Messages app + the resource-id of its Send button.
+# Both are overridable from ~/.config/paired/paired.conf for non-Samsung firmware:
+#   messages_pkg   = com.google.android.apps.messaging
+#   send_button_id = com.google.android.apps.messaging:id/send_message_button_icon
+# NOTE: the compose-detection resource-ids (composer_root_view / message_edit_text)
+# are still Samsung-tuned; non-Samsung phones may need those adjusted too.
+def _conf_value(key: str, default: str) -> str:
+    """Read a `key = value` (or `key: value`) line from paired.conf.
+
+    Returns `default` if the config file or key is absent. Never raises."""
+    conf = Path(f"{_HOME}/.config/paired/paired.conf")
+    if not conf.is_file():
+        return default
+    try:
+        for line in conf.read_text().splitlines():
+            line = line.strip()
+            if not line or line.startswith("#"):
+                continue
+            m = re.match(r"^" + re.escape(key) + r"\s*[=:]\s*(.+)$", line)
+            if m:
+                return m.group(1).strip().strip('"').strip("'")
+    except OSError:
+        pass
+    return default
+
+
+MESSAGES_PKG = _conf_value("messages_pkg", "com.samsung.android.messaging")
+SEND_BUTTON_ID = _conf_value("send_button_id", f"{MESSAGES_PKG}:id/send_button1")
 
 # PIN file for auto-unlock (mode 600). Optional - only used with --auto-unlock.
 PIN_FILE = f"{_HOME}/.config/paired-sms-send/pin"

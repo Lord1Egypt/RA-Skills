@@ -1,0 +1,211 @@
+{
+  "source": "../water.json",
+  "seconds": 22.3,
+  "fps": 30,
+  "width": 1080,
+  "height": 1920,
+  "coverFrame": 30,
+  "scenes": [
+    {
+      "type": "hook",
+      "start": 0,
+      "seconds": 2.23,
+      "blocks": {
+        "big": {
+          "fontSize": 242,
+          "lines": [
+            "2.5%"
+          ]
+        },
+        "main": {
+          "fontSize": 79,
+          "lines": [
+            "of Earth's",
+            "water is fresh"
+          ]
+        },
+        "footer": {
+          "fontSize": 40,
+          "lines": [
+            "Data: USGS. Earth image: NASA"
+          ]
+        }
+      }
+    },
+    {
+      "type": "stat",
+      "start": 2.23,
+      "seconds": 2.6,
+      "blocks": {
+        "value": {
+          "fontSize": 242,
+          "lines": [
+            "96.5%"
+          ]
+        },
+        "label": {
+          "fontSize": 71,
+          "lines": [
+            "is salt water",
+            "in the oceans"
+          ]
+        },
+        "footer": {
+          "fontSize": 40,
+          "lines": [
+            "Data: USGS. Earth image: NASA"
+          ]
+        }
+      }
+    },
+    {
+      "type": "stat",
+      "start": 4.83,
+      "seconds": 3.77,
+      "blocks": {
+        "value": {
+          "fontSize": 244,
+          "lines": [
+            "68.7%"
+          ]
+        },
+        "label": {
+          "fontSize": 71,
+          "lines": [
+            "of the fresh",
+            "water is locked in",
+            "ice and glaciers"
+          ]
+        },
+        "footer": {
+          "fontSize": 40,
+          "lines": [
+            "Data: USGS. Earth image: NASA"
+          ]
+        }
+      }
+    },
+    {
+      "type": "stat",
+      "start": 8.6,
+      "seconds": 2.73,
+      "blocks": {
+        "value": {
+          "fontSize": 244,
+          "lines": [
+            "30.1%"
+          ]
+        },
+        "label": {
+          "fontSize": 71,
+          "lines": [
+            "of the fresh water",
+            "is underground"
+          ]
+        },
+        "footer": {
+          "fontSize": 40,
+          "lines": [
+            "Data: USGS. Earth image: NASA"
+          ]
+        }
+      }
+    },
+    {
+      "type": "stat",
+      "start": 11.33,
+      "seconds": 2.93,
+      "blocks": {
+        "value": {
+          "fontSize": 244,
+          "lines": [
+            "1.2%"
+          ]
+        },
+        "label": {
+          "fontSize": 71,
+          "lines": [
+            "of the fresh water",
+            "is everything else"
+          ]
+        },
+        "footer": {
+          "fontSize": 40,
+          "lines": [
+            "Data: USGS. Earth image: NASA"
+          ]
+        }
+      }
+    },
+    {
+      "type": "text",
+      "start": 14.27,
+      "seconds": 3.83,
+      "blocks": {
+        "main": {
+          "fontSize": 68,
+          "lines": [
+            "Lakes, rivers, soil,",
+            "air and permafrost",
+            "share that 1.2%"
+          ]
+        },
+        "footer": {
+          "fontSize": 40,
+          "lines": [
+            "Data: USGS. Earth image: NASA"
+          ]
+        }
+      }
+    },
+    {
+      "type": "text",
+      "start": 18.1,
+      "seconds": 2.23,
+      "blocks": {
+        "main": {
+          "fontSize": 86,
+          "lines": [
+            "Rivers hold",
+            "just 0.49% of it"
+          ]
+        },
+        "footer": {
+          "fontSize": 40,
+          "lines": [
+            "Data: USGS. Earth image: NASA"
+          ]
+        }
+      }
+    },
+    {
+      "type": "end",
+      "start": 20.33,
+      "seconds": 1.97,
+      "blocks": {
+        "main": {
+          "fontSize": 100,
+          "lines": [
+            "Save this for",
+            "trivia night"
+          ]
+        },
+        "handle": {
+          "fontSize": 52,
+          "lines": [
+            "@yourhandle"
+          ]
+        },
+        "footer": {
+          "fontSize": 40,
+          "lines": [
+            "Data: USGS. Earth image: NASA"
+          ]
+        }
+      }
+    }
+  ],
+  "warnings": [],
+  "video": "water.mp4",
+  "bytes": 3977368
+}

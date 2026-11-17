@@ -1,40 +1,58 @@
-## Description: <br>
-Manages a stock and crypto watchlist with target and stop alerts using live AISA price checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage a stock and crypto watchlist with target and stop alerts using live AISA price checks.
 
-## Publisher: <br>
-[bibaofeng](https://clawhub.ai/user/bibaofeng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bibaofeng](https://clawhub.ai/user/bibaofeng)
 
-## Use Case: <br>
-External users and developers use this skill to maintain local stock and crypto watchlists, configure target or stop alerts, and run live AISA checks for ticker price and signal status. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Ticker symbols and watchlist context are sent to AIsa when live checks run. <br>
-Mitigation: Use this skill only for watchlists you are comfortable sharing with AIsa, and avoid sensitive or proprietary lists unless the publisher documents destination, retention, and privacy handling. <br>
-Risk: The skill requires an AISA_API_KEY to call the live price-check API. <br>
-Mitigation: Provide the key through the runtime environment and avoid committing it to shared files or watchlist state. <br>
+## Use Case:
 
+External users and developers use this skill to maintain a local stock and crypto watchlist, set target and stop alerts, and run live checks through AISA with an AISA API key.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bibaofeng/stock-watchlist-aisa) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, JSON] <br>
-**Output Format:** [Command-line text with local JSON watchlist state and optional alert summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires AISA_API_KEY; watchlist state is stored locally unless CLAWDBOT_STATE_DIR is set.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: A custom AISA_BASE_URL can redirect API-key-authenticated ticker checks to an untrusted endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Leave AISA_BASE_URL unset unless the endpoint is intentionally trusted, and use a limited AISA key with spending controls.
+
+Risk: Dependency resolution can install an unpinned openai package version.
+
+Mitigation: Pin and review dependencies before running the script in production or other sensitive environments.
+
+Risk: Watchlist tickers, targets, stops, and recent signals are stored in a local JSON state file.
+
+Mitigation: Run in a controlled workspace and set CLAWDBOT_STATE_DIR to an appropriate local state location when needed.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/bibaofeng/skills/stock-watchlist-aisa)
+- [Publisher Profile](https://clawhub.ai/user/bibaofeng)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Files]
+
+**Output Format:** [Plain text command output and Markdown guidance with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and AISA_API_KEY; stores watchlist state in a local JSON file by default.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

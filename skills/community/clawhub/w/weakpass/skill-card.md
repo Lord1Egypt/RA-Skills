@@ -1,44 +1,56 @@
-## Description: <br>
-Search hashes through 25 billion leaked passwords using the Weakpass API (no API key required). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search hashes through 25 billion leaked passwords using the Weakpass API (no API key required).
 
-## Publisher: <br>
-[ibnaleem](https://clawhub.ai/user/ibnaleem) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ibnaleem](https://clawhub.ai/user/ibnaleem)
 
-## Use Case: <br>
-Developers and security practitioners use Weakpass to query leaked-password hash lookups, hash-prefix ranges, generated wordlists, and available wordlist data during authorized password and security analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends user-selected hashes, prefixes, seed words, or wordlist names to weakpass.com and may return plaintext passwords or wordlists. <br>
-Mitigation: Use only with authorization; do not submit production credential material, regulated data, proprietary hashes, or sensitive investigation targets unless approved, and avoid storing or logging returned plaintext passwords. <br>
-Risk: Leaked-password results and generated wordlists are sensitive dual-use outputs. <br>
-Mitigation: Restrict use to approved defensive password auditing, incident response, or security research workflows and review outputs before acting on them. <br>
+## Use Case:
 
+Developers, security engineers, and authorized auditors use this skill to query Weakpass for hash lookups, hash-prefix ranges, generated wordlists, and available wordlist data.
 
-## Reference(s): <br>
-- [ClawHub Weakpass Release](https://clawhub.ai/ibnaleem/weakpass) <br>
-- [Weakpass](https://weakpass.com/) <br>
-- [Weakpass API](https://weakpass.com/api) <br>
-- [Weakpass OpenAPI JSON](https://weakpass.com/openapi.json) <br>
-- [Weakpass OpenAPI YAML](https://weakpass.com/openapi.yaml) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with curl command examples and JSON or text API responses.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Responses can include plaintext passwords, hash-password pairs, generated wordlists, and wordlist content from Weakpass.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and frontmatter) <br>
+Risk: The skill sends password-related hash material or wordlist inputs to an external API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for authorized password-auditing work and avoid submitting production secrets unless policy explicitly allows it.
+
+Risk: Directly substituting generated or user-supplied values into curl commands can be unsafe.
+
+Mitigation: Prefer URL-encoded structured HTTP calls and review generated shell commands before execution.
+
+## Reference(s):
+
+- [Weakpass](https://weakpass.com/)
+- [Weakpass API](https://weakpass.com/api)
+- [Weakpass OpenAPI JSON](https://weakpass.com/openapi.json)
+- [Weakpass OpenAPI YAML](https://weakpass.com/openapi.yaml)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, API Calls, Guidance, Text]
+
+**Output Format:** [Markdown with inline bash code blocks and API response examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl and calls an external Weakpass API; no API key is required.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

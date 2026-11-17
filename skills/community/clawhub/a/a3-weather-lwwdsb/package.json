@@ -1,0 +1,11 @@
+{
+  "name": "a3-weather",
+  "version": "1.0.0",
+  "description": "OpenClaw skill: daily forecast with a practical day plan (Open-Meteo, no API key).",
+  "type": "module",
+  "license": "MIT",
+  "private": true,
+  "bin": { "a3-weather": "scripts/a3-weather.mjs" },
+  "engines": { "node": ">=18" },
+  "scripts": { "test": "node --test test/*.test.mjs" }
+}

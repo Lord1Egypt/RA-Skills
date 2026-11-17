@@ -1,44 +1,56 @@
-## Description: <br>
-中文番茄钟专注计时工具。开始25分钟专注时段，统计今日完成数量，本地存储无需账号。支持开始、暂停、继续、查看状态、统计等功能。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+中文番茄钟专注计时工具。开始25分钟专注时段，统计今日完成数量，本地存储无需账号。支持开始、暂停、继续、查看状态、统计等功能。
 
-## Publisher: <br>
-[freedompixels](https://clawhub.ai/user/freedompixels) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[freedompixels](https://clawhub.ai/user/freedompixels)
 
-## Use Case: <br>
-People who use Chinese-language productivity workflows can use this skill to start, pause, resume, inspect, and summarize Pomodoro focus sessions. It stores session state and daily completion history locally without requiring an account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill writes focus-session state and history to a local JSON file in the user's home directory. <br>
-Mitigation: Review the local data path before use and back up or remove ~/.qclaw/data/pomodoro.json if local Pomodoro history should not be retained. <br>
-Risk: The timer scripts can run for the configured focus and break durations, which may occupy the terminal session. <br>
-Mitigation: Run the timer only in an intended interactive shell and interrupt it with Ctrl+C if the session should stop early. <br>
-Risk: Security evidence is clean, but the security guidance still recommends reviewing commands before running ClawHub skills. <br>
-Mitigation: Review the provided commands and local file behavior before execution, especially in shared or automated environments. <br>
+## Use Case:
 
+Employees and external users can use this Chinese-language Pomodoro skill to start, pause, resume, and check 25-minute focus sessions. It also helps users review today's completed sessions and locally stored focus history.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/freedompixels/cn-pomodoro-timer) <br>
-- [Publisher profile](https://clawhub.ai/user/freedompixels) <br>
-- [AISoBrand website](https://aisobrand.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, files] <br>
-**Output Format:** [Plain text Chinese status messages and local JSON records] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes Pomodoro state and history to ~/.qclaw/data/pomodoro.json.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.7 (source: server release evidence; artifact frontmatter reports 1.0.0) <br>
+Risk: The skill may write focus-session records to ~/.qclaw/data/pomodoro.json.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review local storage behavior before use and remove the local data file if session history should not persist.
+
+Risk: The included documentation and secondary script have quality mismatches, including an unrelated promotional footer.
+
+Mitigation: Confirm the intended timer entry point and user-facing copy before packaging or deploying the skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/freedompixels/skills/cn-pomodoro-timer)
+- [Publisher profile](https://clawhub.ai/user/freedompixels)
+- [AISoBrand](https://aisobrand.com)
+- [AISoBrand free diagnosis](https://aisobrand.com/free-diagnosis.html)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Guidance]
+
+**Output Format:** [Chinese-language plain text responses and command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update local focus-session records at ~/.qclaw/data/pomodoro.json.]
+
+## Skill Version(s):
+
+1.2.7 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,35 @@
+{
+  "schema": "v1",
+  "name": "meeting-assistant",
+  "displayName": "AI Meeting Assistant — Jitsi Meet & Google Meet",
+  "version": "1.0.1",
+  "description": "AI-powered meeting bot that joins Jitsi Meet and Google Meet calls, transcribes in real time with speaker diarization, interacts via duplex voice, and generates structured meeting minutes through a self-hosted MCP gateway.",
+  "keywords": [
+    "meeting",
+    "jitsi",
+    "google-meet",
+    "transcription",
+    "voice",
+    "realtime",
+    "gemini-live",
+    "openai-realtime",
+    "habilis",
+    "mcp",
+    "diarization",
+    "minutes"
+  ],
+  "author": "Rafa Martins",
+  "license": "MIT",
+  "repository": "https://github.com/<your-org>/meeting-assistant",
+  "homepage": "https://<your-domain>",
+  "dependencies": {
+    "hermes": ">=0.5.0"
+  },
+  "main": "SKILL.md",
+  "ignore": [
+    "references/**",
+    "scripts/**",
+    "*.py",
+    "*.js"
+  ]
+}

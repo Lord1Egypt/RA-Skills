@@ -1,44 +1,62 @@
-## Description: <br>
-OpenClaw agent starter kit that provides templates and customization guidance for SOUL.md, IDENTITY.md, AGENTS.md, USER.md, and HEARTBEAT.md. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent Starter Kit provides OpenClaw templates and customization guidance for creating agent workspaces.
 
-## Publisher: <br>
-[HiroFumiko](https://clawhub.ai/user/HiroFumiko) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hirofumiko](https://clawhub.ai/user/hirofumiko)
 
-## Use Case: <br>
-Developers and OpenClaw users use this starter kit to create a new agent workspace from reusable identity, behavior, user-profile, memory, and heartbeat templates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Future agents created from the templates may perform broad background checks against email, calendar, social, memory, or repository state without clear approval boundaries. <br>
-Mitigation: Review and edit the templates before starting an agent; remove or tighten background checks and require explicit approval before external account access. <br>
-Risk: Template memory rules may encourage storing sensitive personal details in persistent files. <br>
-Mitigation: Avoid storing secrets or sensitive personal information in persistent memory, and restrict memory loading or sharing in group and shared contexts. <br>
-Risk: Template behavior may allow remote repository changes such as git push without enough review. <br>
-Mitigation: Require explicit approval for remote changes and review generated agent rules before deployment. <br>
+## Use Case:
 
+Developers and agent builders use this skill to scaffold OpenClaw agent workspaces with starter files for identity, operating principles, workspace rules, user context, and heartbeat tasks.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/HiroFumiko/fumi-agent-starter-kit) <br>
-- [README](artifact/README.md) <br>
-- [Skill definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown templates with inline shell commands and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces starter template files for an agent workspace; users are expected to edit the templates before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter, release metadata) <br>
+Risk: Default template rules allow persistent memory and memory review, which can retain sensitive user context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Edit the templates before use so memory files are treated as untrusted notes, secrets are excluded, and MEMORY.md is loaded only in appropriate private sessions.
+
+Risk: The workspace rules direct an agent to follow and delete BOOTSTRAP.md and include broad 'do not ask permission' language.
+
+Mitigation: Remove or gate bootstrap-following behavior and require explicit confirmation for ambiguous, destructive, or externally visible actions.
+
+Risk: Heartbeat guidance encourages proactive checks of email, calendar, social notifications, weather, project state, and repository activity.
+
+Mitigation: Make each heartbeat integration opt-in, limit credentials until boundaries are explicit, and require confirmation before commits, pushes, messages, or other external actions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/hirofumiko/skills/fumi-agent-starter-kit)
+- [README](artifact/README.md)
+- [Skill Definition](artifact/SKILL.md)
+- [Changelog](artifact/CHANGELOG.md)
+- [Workspace Rules Template](artifact/templates/AGENTS.md)
+- [Heartbeat Template](artifact/templates/HEARTBEAT.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Files, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown templates with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces starter templates for SOUL.md, IDENTITY.md, AGENTS.md, USER.md, and HEARTBEAT.md.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence, frontmatter, changelog, and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

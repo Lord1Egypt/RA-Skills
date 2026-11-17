@@ -1,42 +1,54 @@
-## Description: <br>
-Preprocesses plain text by inserting line breaks and splitting long paragraphs so an AI or LLM can produce better structured Markdown. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+纯文本格式预处理工具，自动插入换行、拆分长段落，为后续 AI/LLM 生成 Markdown 提供结构化输入。
 
-## Publisher: <br>
-[cizixiu](https://clawhub.ai/user/cizixiu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cizixiu](https://clawhub.ai/user/cizixiu)
 
-## Use Case: <br>
-Developers, writers, and knowledge workers use this skill to turn unstructured plain text, including long exported notes, into cleaner input for Markdown generation while preserving the original wording. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local text processing may expose sensitive document contents to any agent or process that handles the input. <br>
-Mitigation: Run it only on files intended for processing and review the script first when inputs contain sensitive documents. <br>
-Risk: Formatting changes may imply structure that the source text did not explicitly provide. <br>
-Mitigation: Review the preprocessed output before using it as the basis for final Markdown. <br>
+## Use Case:
 
+Developers, writers, and agents use this skill to prepare Chinese plain text for Markdown conversion by inserting line breaks, splitting long paragraphs, and preserving the original wording before an AI/LLM adds final Markdown structure.
 
-## Reference(s): <br>
-- [Text to Markdown on ClawHub](https://clawhub.ai/cizixiu/text-to-markdown) <br>
-- [Conversion Examples](references/examples.md) <br>
-- [Markdown Format Reference](references/markdown-spec.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Plain text or Markdown, with optional shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Preserves source wording while adjusting structure and line breaks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server evidence) <br>
+Risk: The example command includes a local Windows path that may not match the user's environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and adapt the script path before running the command.
+
+Risk: The preprocessing script reads an input file and can write an output file.
+
+Mitigation: Provide only intended text files and choose an output path that will not overwrite important content.
+
+## Reference(s):
+
+- [IMA note examples](references/examples.md)
+- [Markdown format specification](references/markdown-spec.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown or preprocessed plain text with optional inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Preserves original wording while changing line breaks and paragraph structure.]
+
+## Skill Version(s):
+
+1.0.3 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

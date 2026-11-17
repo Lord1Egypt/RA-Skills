@@ -1,6 +1,17 @@
 {
-  "ownerId": "kn7dxr58ktjh28y80xrgmypzg582wtg5",
-  "slug": "short-video-writer",
+  "name": "video-script-gen",
+  "displayName": "短视频脚本生成器",
   "version": "1.0.0",
-  "publishedAt": 1774768004632
+  "slug": "short-video-writer",
+  "description": "AI 短视频脚本生成工具，支持抖音/快手/B 站/视频号",
+  "author": "@bingze00000",
+  "license": "MIT",
+  "tags": ["video", "script", "ai", "douyin", "tiktok", "short-video", "content"],
+  "pricing": {
+    "type": "paid",
+    "amount": 29,
+    "currency": "CNY"
+  },
+  "requirements": ["openai"],
+  "category": "content"
 }

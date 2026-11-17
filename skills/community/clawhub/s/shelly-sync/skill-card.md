@@ -1,38 +1,58 @@
-## Description: <br>
-Monitor real-time power consumption from Shelly Pro 3EM and control local appliances/automation based on solar yield or grid usage. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitor real-time power consumption from Shelly Pro 3EM and control local appliances/automation based on solar yield or grid usage.
 
-## Publisher: <br>
-[jcbuer](https://clawhub.ai/user/jcbuer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jcbuer](https://clawhub.ai/user/jcbuer)
 
-## Use Case: <br>
-Home energy users and automation developers use this skill to read Shelly Pro 3EM power metrics and decide whether to trigger configured local appliance loads when solar surplus is available. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can control real appliances through Home Assistant, including high-load devices, with limited safety gating. <br>
-Mitigation: Review before installing, configure only the intended Home Assistant entities, use the narrowest possible token permissions, and treat optimize_load as capable of switching appliances on immediately. <br>
+## Use Case:
 
+External users and home automation developers use this skill to check Shelly Pro 3EM power readings and decide whether surplus solar energy can be used by local appliances.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jcbuer/shelly-sync) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, configuration] <br>
-**Output Format:** [JSON status objects with Markdown command examples and configuration notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SHELLY_EM_IP; Home Assistant control also depends on local Home Assistant URL and token configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill can use Home Assistant credentials and may change appliance state when target_load is supplied.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated, minimally privileged Home Assistant token and only map appliances that are safe to turn on automatically.
+
+Risk: Network calls are directed at local Shelly and Home Assistant endpoints.
+
+Mitigation: Point SHELLY_EM_IP and HOME_ASSISTANT_URL only at trusted local endpoints, preferably over HTTPS or a trusted private network.
+
+Risk: The security review notes under-disclosed Home Assistant credential use and limited safety controls.
+
+Mitigation: Review the skill before installation and avoid target_load unless automatic activation of the mapped appliance is acceptable.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jcbuer/skills/shelly-sync)
+- [Publisher Profile](https://clawhub.ai/user/jcbuer)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Guidance]
+
+**Output Format:** [JSON responses and concise text guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May call local Shelly and Home Assistant APIs when configured.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

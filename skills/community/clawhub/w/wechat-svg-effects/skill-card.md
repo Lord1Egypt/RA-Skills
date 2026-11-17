@@ -1,39 +1,53 @@
-## Description: <br>
-Create interactive SVG and inline-CSS effects for WeChat Official Account articles, including click-to-reveal layers, bounce feedback, multi-stage state machines, 3D card effects, animated decorations, and CSS Grid layouts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create interactive SVG/CSS effects for WeChat Official Account articles using pure SVG animations and inline CSS.
 
-## Publisher: <br>
-[kylinr](https://clawhub.ai/user/kylinr) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kylinr](https://clawhub.ai/user/kylinr)
 
-## Use Case: <br>
-Developers and content authors use this skill to design WeChat Official Account article effects that rely on pure SVG animation and inline CSS rather than JavaScript. It is suited for interactive covers, tap-to-unveil experiences, animated article elements, and SVG-based layouts intended for WeChat rendering constraints. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated WeChat SVG or HTML could include unexpected external URLs, scripts, or platform-disallowed elements when placeholders or foreignObject content are changed. <br>
-Mitigation: Review the final SVG/HTML before publishing and confirm it contains no scripts, no style blocks, no external CSS, and no unexpected external URLs. <br>
+## Use Case:
 
+Developers, designers, and content creators use this skill to generate WeChat-compatible interactive article effects such as click-to-reveal layers, animated SVG elements, 3D card effects, and inline CSS layouts.
 
-## Reference(s): <br>
-- [Architecture Patterns & Animation Templates](references/patterns.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/kylinr/wechat-svg-effects) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Guidance, Configuration] <br>
-**Output Format:** [Markdown with SVG, HTML, and inline CSS code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated guidance should preserve WeChat constraints: no scripts, no style blocks, no external CSS, and final SVG/HTML should be reviewed before publishing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Generated WeChat article markup could include incorrect content, broken interactions, or unsuitable included media.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and test generated markup in the WeChat editor before publishing, including any images or article content requested from the agent.
+
+Risk: Markup that uses JavaScript, style blocks, or external CSS will not match the skill's WeChat compatibility constraints.
+
+Mitigation: Validate outputs before use to confirm there are no script tags, style blocks, or external CSS references.
+
+## Reference(s):
+
+- [Architecture Patterns & Animation Templates](references/patterns.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with XML, SVG, and inline CSS snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are intended for WeChat Official Account article markup and should avoid JavaScript, style blocks, and external CSS.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

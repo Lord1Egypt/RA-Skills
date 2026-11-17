@@ -1,41 +1,54 @@
-## Description: <br>
-Super Auto Body helps agents search for auto-body repair providers, check appointment availability, and create bookings through Lokuli MCP. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Super Auto Body helps agents search for auto-body providers, check availability, and create booking requests through Lokuli MCP.
 
-## Publisher: <br>
-[subaru0573](https://clawhub.ai/user/subaru0573) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[subaru0573](https://clawhub.ai/user/subaru0573)
 
-## Use Case: <br>
-External users and service agents use this skill to find nearby auto-body repair, dent, and painting services, compare availability, and prepare bookings through Lokuli MCP. Because bookings may send personal contact details, agents should show the provider, service, time, and exact personal details before creating an appointment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: An agent may create a third-party booking without clear user consent. <br>
-Mitigation: Require explicit confirmation before booking and show the provider, service, appointment time, and all customer details first. <br>
-Risk: Booking requests may send personal contact information to Lokuli. <br>
-Mitigation: Use the skill only when sharing booking details and personal contact information with Lokuli is acceptable to the user. <br>
+## Use Case:
 
+External users and agents use this skill to find auto-body repair services, check appointment availability, and prepare booking requests for services such as dents or painting.
 
-## Reference(s): <br>
-- [Super Auto Body on ClawHub](https://clawhub.ai/subaru0573/skills/super-auto-body) <br>
-- [Lokuli MCP endpoint](https://lokuli.com/mcp/sse) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, configuration, API calls] <br>
-**Output Format:** [Markdown with JSON-RPC examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses SSE and JSON-RPC 2.0 examples for search, availability checks, and booking creation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Personal contact and booking details may be sent to an external Lokuli MCP service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only when the user intends to search or book auto-body services, and confirm the provider, time, name, email, and phone number before sending a booking request.
+
+Risk: The skill can create bookings without clearly requiring user confirmation.
+
+Mitigation: Require explicit user confirmation before invoking create_booking or sending customer contact details.
+
+## Reference(s):
+
+- [Super Auto Body ClawHub page](https://clawhub.ai/subaru0573/skills/super-auto-body)
+- [Lokuli MCP endpoint](https://lokuli.com/mcp/sse)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, JSON, API Calls]
+
+**Output Format:** [Markdown guidance with JSON-RPC examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide calls to search, check_availability, and create_booking tools on an external Lokuli MCP service.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

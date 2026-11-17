@@ -1,44 +1,62 @@
-## Description: <br>
-Fetches social media timelines from supported platforms and saves filtered, tagged Markdown files into an Obsidian vault. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetch social media content and save it to Obsidian vaults across Twitter/X, Reddit, GitHub, HackerNews, Bilibili, Weibo, Xiaohongshu, and other bb-browser supported platforms.
 
-## Publisher: <br>
-[glassmarbles](https://clawhub.ai/user/glassmarbles) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[glassmarbles](https://clawhub.ai/user/glassmarbles)
 
-## Use Case: <br>
-External users and developers use this skill to configure account-based social content collection, run incremental syncs, and save selected posts as Obsidian Markdown notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can use logged-in browser sessions through bb-browser. <br>
-Mitigation: Configure only the specific accounts and platforms needed, avoid bookmarks or notifications unless explicitly required, and review scope before running. <br>
-Risk: The skill writes fetched content into an Obsidian vault. <br>
-Mitigation: Run with dry-run first, confirm the configured vault path, and inspect generated notes before enabling routine use. <br>
-Risk: Scheduled sync can create recurring jobs. <br>
-Mitigation: Inspect any cron entry before enabling it and keep clear instructions for disabling the schedule. <br>
+## Use Case:
 
+External users and developers use this skill to configure and run social-feed syncs that collect selected accounts and save filtered, tagged posts as Obsidian Markdown notes.
 
-## Reference(s): <br>
-- [Supported Platforms](references/platforms.md) <br>
-- [bb-sites](https://github.com/epiral/bb-sites) <br>
-- [ClawHub Skill Page](https://clawhub.ai/glassmarbles/claw-social-feed) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and configuration examples; generated vault content is Markdown files with YAML frontmatter.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local state and Obsidian Markdown files when the user runs the bundled script.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release evidence) <br>
+Risk: The skill relies on a third-party global bb-browser dependency while using the logged-in OpenClaw browser session.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin and verify the dependency before use, run with a minimal environment, and avoid using broader account access than the sync requires.
+
+Risk: The sync writes fetched social content into the configured Obsidian vault and persists local sync state.
+
+Mitigation: Use a dedicated vault or folder, confirm vault_base before running, and run with --dry-run before the first write.
+
+Risk: Scheduled sync can repeatedly collect and save content from configured accounts.
+
+Mitigation: Review any cron entry before enabling scheduled sync, confirm the account list and schedule, and remove jobs that are no longer needed.
+
+Risk: Incorrect platform usernames or filter settings can collect or retain unintended content.
+
+Mitigation: Validate account identifiers, blocked keywords, and tagging rules before enabling regular sync.
+
+## Reference(s):
+
+- [Supported Platforms](references/platforms.md)
+- [bb-sites](https://github.com/epiral/bb-sites)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance, Files]
+
+**Output Format:** [Markdown guidance with YAML configuration examples and shell commands; runtime sync writes Obsidian Markdown files with YAML frontmatter.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated notes are organized under vault_base/@username/, and incremental sync state is stored in .claw-social-feed-state.json.]
+
+## Skill Version(s):
+
+0.1.2 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

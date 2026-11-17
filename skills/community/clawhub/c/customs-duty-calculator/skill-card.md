@@ -1,44 +1,57 @@
-## Description: <br>
-Estimates import duties, tariffs, and landed costs for cross-border ecommerce shipments by HS code and destination, especially when sellers price export markets, compare DDP vs DDU shipping, or reconcile duty bills. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Estimate import duties, tariffs, and landed costs for cross-border ecommerce shipments by HS code and destination.
 
-## Publisher: <br>
-[leooooooow](https://clawhub.ai/user/leooooooow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leooooooow](https://clawhub.ai/user/leooooooow)
 
-## Use Case: <br>
-External ecommerce sellers and operations or finance teams use this skill to estimate per-SKU landed cost, compare DDP and DDU choices, and identify HS code, valuation, duty, VAT/GST, surcharge, or threshold assumptions that need verification before pricing or reconciliation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Customs rates, tariff programs, VAT thresholds, and legal requirements can change after release. <br>
-Mitigation: Verify live customs, tariff, and tax sources before using estimates for pricing, compliance, or shipment decisions. <br>
-Risk: Incorrect HS codes, valuation methods, origin assumptions, or Incoterm choices can make landed-cost estimates misleading. <br>
-Mitigation: Document assumptions, use the checklist, and seek binding rulings or customs expertise where the financial or compliance stakes are material. <br>
+## Use Case:
 
+External ecommerce sellers and operations teams use this skill to estimate per-SKU landed cost, compare DDP and DDU shipping choices, and investigate unexpected customs duty bills across export markets.
 
-## Reference(s): <br>
-- [HS Code Guide](references/hs-code-guide.md) <br>
-- [DDP vs DDU Tradeoffs](references/incoterm-tradeoffs.md) <br>
-- [De Minimis and Threshold Quick Reference](references/de-minimis-table.md) <br>
-- [Landed Cost Output Template](references/output-template.md) <br>
-- [Duty Estimate Quality Checklist](assets/quality-checklist.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, text, analysis] <br>
-**Output Format:** [Markdown landed-cost worksheet, checklists, and plain-language guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user-provided shipment inputs and current external customs and tax sources for decision-grade estimates.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: Duty, VAT/GST, de minimis, surcharge, and tariff rules can change, and estimates may become stale or jurisdiction-specific.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify current rates and thresholds with official customs sources or a customs broker before relying on estimates for pricing or compliance.
+
+Risk: Incorrect HS classification, customs valuation, or preferential-origin assumptions can materially change landed cost and compliance obligations.
+
+Mitigation: Document classification logic, valuation method, origin evidence, and consider binding rulings for high-value or high-volume shipments.
+
+## Reference(s):
+
+- [HS Code Guide](references/hs-code-guide.md)
+- [DDP vs DDU Tradeoffs](references/incoterm-tradeoffs.md)
+- [De Minimis and Threshold Quick Reference](references/de-minimis-table.md)
+- [Landed Cost Output Template](references/output-template.md)
+- [Duty Estimate Quality Checklist](assets/quality-checklist.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown worksheet with tables, calculations, assumptions, and checklist items]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Estimates depend on user-provided product, HS code, valuation, origin, destination, currency, Incoterm, and current duty or tax rates.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

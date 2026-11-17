@@ -1,40 +1,53 @@
-## Description: <br>
-Analyze ad creatives from a local directory of images, videos, or transcripts to score creative quality, messaging effectiveness, CTA strength, and engagement potential, then summarize cross-creative patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes image and video ad creatives to score ad quality, visual and messaging effectiveness, engagement potential, and cross-creative patterns.
 
-## Publisher: <br>
-[baitoxkevin](https://clawhub.ai/user/baitoxkevin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[baitoxkevin](https://clawhub.ai/user/baitoxkevin)
 
-## Use Case: <br>
-Marketing teams, creative strategists, and growth operators use this skill to review competitor or reference ad creatives, identify strong hooks and CTA patterns, and prioritize assets for testing or iteration. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill inspects a user-provided local folder, which could expose unintended files if pointed at a broad Downloads, Desktop, client, or project directory. <br>
-Mitigation: Use a dedicated folder containing only the ad images, videos, transcripts, and metadata intended for analysis. <br>
-Risk: Creative scores, target-audience labels, emotion appeals, and performance recommendations are subjective model judgments. <br>
-Mitigation: Review the generated analysis before using it for spend allocation, campaign changes, or client-facing recommendations. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Ad Creative Analysis Framework](references/analysis-framework.md) <br>
-- [ClawHub skill page](https://clawhub.ai/baitoxkevin/ad-creative-analysis) <br>
+## Use Case:
 
+Marketing teams, creative strategists, and agents use this skill to analyze folders of competitor or reference ad images, videos, and transcripts. It produces per-creative scoring and a summary of hooks, emotional appeals, CTA patterns, top performers, and improvement recommendations.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, analysis, guidance] <br>
-**Output Format:** [JSON array with per-creative analysis objects and a final cross-creative summary object, often accompanied by concise explanatory text.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Per-creative outputs include filenames, formats, dimensions, inferred objectives, platform fit, scores, extracted hooks, CTA details, emotion appeals, and unreadable-file status when applicable.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill reads filenames, ad media, transcripts, and optional metadata from a user-provided directory.
+
+Mitigation: Run it only on folders intended for ad review and avoid broad personal or business directories unrelated to the analysis task.
+
+Risk: Creative quality scores and recommendations may be subjective and may not predict actual campaign performance.
+
+Mitigation: Review recommendations before use and compare them with platform performance data, brand requirements, and campaign goals.
+
+## Reference(s):
+
+- [Ad Creative Analysis Framework](references/analysis-framework.md)
+- [ClawHub Skill Page](https://clawhub.ai/baitoxkevin/skills/ad-creative-analysis)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, JSON, Markdown, Guidance]
+
+**Output Format:** [JSON array with per-creative objects and a summary object; explanatory guidance may be returned in Markdown.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes filenames, creative type, aspect ratio, platform fit, scores, extracted message elements, hook and CTA classifications, unreadable-file status, and cross-creative recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

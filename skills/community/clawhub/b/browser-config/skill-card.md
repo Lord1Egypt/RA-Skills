@@ -1,41 +1,57 @@
-## Description: <br>
-配置和管理 OpenClaw-CN 浏览器模式（openclaw/chrome），解决浏览器连接问题. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Configures OpenClaw-CN browser modes for openclaw or chrome profiles and helps troubleshoot browser connection issues.
 
-## Publisher: <br>
-[Yishanjiu-3386](https://clawhub.ai/user/Yishanjiu-3386) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yishanjiu-3386](https://clawhub.ai/user/yishanjiu-3386)
 
-## Use Case: <br>
-Developers and OpenClaw-CN users use this skill to configure browser mode, switch between OpenClaw-managed and Chrome relay profiles, and troubleshoot browser connectivity issues. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Applying examples can change local OpenClaw-CN browser configuration. <br>
-Mitigation: Confirm the intended browser profile before editing settings and back up openclaw.json when needed. <br>
-Risk: Chrome mode can use existing browser login sessions. <br>
-Mitigation: Use Chrome mode only when sharing the current Chrome account state is intended; otherwise prefer the OpenClaw-managed browser profile. <br>
+## Use Case:
 
+Developers and OpenClaw-CN users use this skill to configure openclaw or chrome browser profiles, restart the gateway, start browser sessions, and troubleshoot browser connection failures.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/Yishanjiu-3386/browser-config) <br>
-- [ClawHub Publisher Profile](https://clawhub.ai/user/Yishanjiu-3386) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with JSON and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance assumes OpenClaw-CN is installed and available as openclaw-cn.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: Suggested edits can change OpenClaw-CN browser configuration and affect browser startup behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review proposed openclaw.json changes before applying them and keep a copy of the last working configuration.
+
+Risk: Chrome mode can rely on an existing Chrome login session.
+
+Mitigation: Confirm that sharing the current Chrome session is intended, or use openclaw mode for a more isolated browser profile.
+
+Risk: Frequent switching between browser modes may disrupt saved login state.
+
+Mitigation: Choose one browser profile for routine use and avoid unnecessary mode changes after login.
+
+## Reference(s):
+
+- [Browser Config on ClawHub](https://clawhub.ai/yishanjiu-3386/skills/browser-config)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON configuration examples and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the openclaw-cn binary; chrome mode may rely on an existing Chrome login session.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

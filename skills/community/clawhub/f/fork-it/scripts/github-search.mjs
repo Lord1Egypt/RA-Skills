@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 /**
- * No Reinvent Wheel - GitHub Repository Search Tool
- * Returns structured JSON with language tag for i18n.
+ * fork-it - GitHub Repository Search Tool
+ * Returns structured JSON (language-neutral; the AI presents results in the user's language).
+ *
+ * Uses Node's built-in fetch (no curl / shell dependency, no command injection).
  */
-
-import { execSync } from 'child_process';
 
 const GITHUB_API = 'https://api.github.com/search/repositories';
 
@@ -14,9 +14,9 @@ function parseArgs() {
   const options = {
     query: '',
     language: null,
-    minStars: 100,
+    minStars: 0,
     maxStars: null,
-    updatedWithin: 365,
+    updatedWithin: 0,
     createdAfter: null,
     sort: 'stars',
     order: 'desc',
@@ -63,28 +63,42 @@ function buildQuery(options) {
   return query;
 }
 
-// Call GitHub API via curl
+// Call GitHub Search API via fetch (no shell, no injection)
 async function searchGitHub(query, sort, order, perPage = 30) {
   const url = `${GITHUB_API}?q=${encodeURIComponent(query)}&sort=${sort}&order=${order}&per_page=${perPage}`;
-  const headers = [
-    '-H "Accept: application/vnd.github.v3+json"',
-    '-H "User-Agent: ForkIt-Skill"'
-  ];
+  const headers = {
+    'Accept': 'application/vnd.github.v3+json',
+    'User-Agent': 'fork-it-skill',
+    'X-GitHub-Api-Version': '2022-11-28'
+  };
   if (process.env.GITHUB_TOKEN) {
-    headers.push(`-H "Authorization: token ${process.env.GITHUB_TOKEN}"`);
+    headers['Authorization'] = `Bearer ${process.env.GITHUB_TOKEN}`;
   }
-  const cmd = `curl -s ${headers.join(' ')} "${url}"`;
+
+  let res;
   try {
-    return JSON.parse(execSync(cmd, { encoding: 'utf-8', timeout: 30000 }));
-  } catch (error) {
-    return null;
+    res = await fetch(url, { headers });
+  } catch (err) {
+    return { error: `Network error: ${err.message}`, code: 'NETWORK_ERROR' };
   }
+
+  const data = await res.json().catch(() => null);
+  if (!res.ok) {
+    const message = data?.message || `GitHub API returned HTTP ${res.status}`;
+    return { error: message, code: `HTTP_${res.status}` };
+  }
+  if (!data || !Array.isArray(data.items)) {
+    return { error: data?.message || 'Unexpected response from GitHub API', code: 'NO_ITEMS' };
+  }
+  return data;
 }
 
 // Return days diff (neutral, no language)
 function getDaysDiff(dateStr) {
   if (!dateStr) return null;
-  return Math.floor((Date.now() - new Date(dateStr)) / (1000 * 60 * 60 * 24));
+  const d = new Date(dateStr);
+  if (isNaN(d)) return null;
+  return Math.floor((Date.now() - d) / (1000 * 60 * 60 * 24));
 }
 
 // Normalize repo to neutral structure
@@ -104,38 +118,30 @@ function normalizeRepo(repo, index) {
   };
 }
 
+function fail(code, message) {
+  console.log(JSON.stringify({ status: 'error', code, message }));
+  process.exit(1);
+}
+
 // Main
 async function main() {
   const options = parseArgs();
 
   if (!options.query) {
-    // Usage in JSON
-    console.log(JSON.stringify({
-      lang: 'en',
-      status: 'error',
-      code: 'MISSING_QUERY',
-      message: 'Usage: node github-search.mjs <query> [--language js] [--min-stars 100] [--limit 10] [--updated-within 365]'
-    }));
-    process.exit(1);
+    fail('MISSING_QUERY',
+      'Usage: node github-search.mjs <query> [--language js] [--min-stars N] [--limit 10] [--updated-within N]');
   }
 
   const query = buildQuery(options);
   const data = await searchGitHub(query, options.sort, options.order, Math.min(options.limit, 100));
 
-  if (!data || !data.items) {
-    console.log(JSON.stringify({
-      lang: 'en',
-      status: 'error',
-      code: 'API_ERROR',
-      message: 'GitHub API request failed or no results found'
-    }));
-    process.exit(1);
+  if (data.error) {
+    fail(data.code || 'API_ERROR', data.error);
   }
 
   const repos = data.items.slice(0, options.limit).map(normalizeRepo);
 
   console.log(JSON.stringify({
-    lang: 'en',
     status: 'ok',
     query: options.query,
     total_count: data.total_count,
@@ -146,11 +152,5 @@ async function main() {
 }
 
 main().catch(err => {
-  console.log(JSON.stringify({
-    lang: 'en',
-    status: 'error',
-    code: 'UNKNOWN',
-    message: err.message
-  }));
-  process.exit(1);
+  fail('UNKNOWN', err.message);
 });

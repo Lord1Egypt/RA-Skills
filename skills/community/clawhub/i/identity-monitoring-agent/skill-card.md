@@ -1,41 +1,57 @@
-## Description: <br>
-An OSINT sentinel that monitors the public web for email exposure, username footprint, and identity leaks without API keys. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+An OSINT sentinel that monitors the public web for email exposure, username footprint, and identity leaks without API keys.
 
-## Publisher: <br>
-[assix](https://clawhub.ai/user/assix) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[assix](https://clawhub.ai/user/assix)
 
-## Use Case: <br>
-Security and privacy practitioners use this skill to check authorized identifiers for public exposure, account registration signals, username footprints, and leak mentions across public web sources. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send searched emails, usernames, phone numbers, or other identifiers to external services through third-party OSINT tools. <br>
-Mitigation: Use only for owned identities or authorized investigations, review the required packages before installation, and run the tooling in an isolated environment. <br>
-Risk: OSINT checks may be affected by rate limits, service terms, or incomplete public-source coverage. <br>
-Mitigation: Treat results as investigative leads, confirm findings independently, and respect applicable service terms. <br>
+## Use Case:
 
+Security and privacy practitioners use this skill to check authorized emails, usernames, phone numbers, or search terms for public exposure across OSINT sources and search results.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/assix/identity-monitoring-agent) <br>
-- [Publisher profile](https://clawhub.ai/user/assix) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, code, guidance] <br>
-**Output Format:** [Markdown instructions with shell commands and JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands may query third-party OSINT tools and public search services for user-provided identifiers.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: frontmatter and release evidence) <br>
+Risk: Sensitive identifiers such as emails, usernames, phone numbers, and search queries may be sent to external OSINT services or search providers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for owned or authorized targets, avoid unnecessary sensitive inputs, and disclose external-service use where required.
+
+Risk: Documented shell-style command templates can be unsafe when populated with untrusted input.
+
+Mitigation: Run the skill in an isolated environment, validate inputs before execution, and avoid passing untrusted values through shell commands.
+
+Risk: The skill depends on external OSINT packages and command-line tools that may change behavior over time.
+
+Mitigation: Pin and review dependencies before deployment, then retest the email, username, and search workflows after dependency updates.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/assix/skills/identity-monitoring-agent)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, guidance]
+
+**Output Format:** [JSON results and Markdown guidance with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results may include discovered account registrations, profile URLs, search-result links, or error messages from external OSINT tools.]
+
+## Skill Version(s):
+
+1.0.4 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,47 +1,64 @@
-## Description: <br>
-This skill helps users configure, spawn, and manage OpenClaw subagents, including subagent settings, agent identity files, cron heartbeats, tool access, and multi-agent orchestration patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill guides agents through configuring, spawning, and managing OpenClaw subagents, including OpenClaw configuration, agent identity files, cron heartbeats, tool access depth rules, and multi-agent orchestration patterns.
 
-## Publisher: <br>
-[vishnukool](https://clawhub.ai/user/vishnukool) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[vishnukool](https://clawhub.ai/user/vishnukool)
 
-## Use Case: <br>
-Developers and engineers use this skill to set up OpenClaw background agents, configure isolated workspaces, manage spawn depth and concurrency, and coordinate multi-agent work through shared operational files and Mission Control patterns. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill guides users to create persistent autonomous OpenClaw agents with broad tool, network, memory, and database authority. <br>
-Mitigation: Use least-privilege auth profiles, restrictive tool allow and deny lists, sandboxing, timeouts, explicit approval rules for database changes, and regular review of memory and session files. <br>
-Risk: Persistent cron jobs, gateway processes, notification loops, and spawned sessions can continue running after setup. <br>
-Mitigation: Document and test shutdown procedures for cron jobs, gateway processes, pm2 notification loops, and spawned sessions before deployment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [OpenClaw SubAgents Creator on ClawHub](https://clawhub.ai/vishnukool/openclaw-subagents) <br>
-- [OpenClaw Subagents Documentation](https://docs.openclaw.ai/tools/subagents) <br>
-- [OpenClaw Gateway Configuration](https://docs.openclaw.ai/gateway/configuration) <br>
-- [OpenClaw Multi-Agent Concepts](https://docs.openclaw.ai/concepts/multi-agent) <br>
-- [Mission Control Article](https://x.com/pbteja1998/status/2017662163540971756) <br>
-- [Agent Identity and Memory Files](references/agent-files.md) <br>
-- [OpenClaw Subagents Configuration Reference](references/config-reference.md) <br>
-- [Multi-Agent Architecture Reference](references/multi-agent-architecture.md) <br>
-- [sessions_spawn Tool Reference](references/sessions-spawn-tool.md) <br>
+## Use Case:
 
+Developers and agent operators use this skill to set up OpenClaw subagents for background work, nested orchestration, or multi-agent squads with isolated workspaces and Mission Control coordination.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with JSON, JSON5, bash, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include agent workspace file templates, OpenClaw configuration examples, cron commands, and subagent spawn instructions.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Persistent autonomous agents and heartbeat cron jobs can continue acting after initial setup.
+
+Mitigation: Configure clear controls to list, audit, pause, and remove heartbeat cron jobs, and use timeouts and concurrency limits for subagent runs.
+
+Risk: Database-driven work execution and command-line tooling can trigger consequential actions without adequate oversight.
+
+Mitigation: Use strict tool allowlists, pin the Convex CLI, and require approval before consequential actions are executed.
+
+Risk: Shared workspaces or authentication profiles can blur agent boundaries.
+
+Mitigation: Keep each agent workspace and auth profile isolated, and verify agent routing before enabling subagent spawning.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/vishnukool/skills/openclaw-subagents)
+- [Configuration reference](references/config-reference.md)
+- [sessions_spawn tool reference](references/sessions-spawn-tool.md)
+- [Agent identity and memory files](references/agent-files.md)
+- [Multi-agent architecture reference](references/multi-agent-architecture.md)
+- [OpenClaw subagents documentation](https://docs.openclaw.ai/tools/subagents)
+- [OpenClaw gateway configuration documentation](https://docs.openclaw.ai/gateway/configuration)
+- [OpenClaw multi-agent documentation](https://docs.openclaw.ai/concepts/multi-agent)
+- [Mission Control source article](https://x.com/pbteja1998/status/2017662163540971756)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON, shell, and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose OpenClaw configuration changes, cron commands, agent workspace files, and subagent spawn instructions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

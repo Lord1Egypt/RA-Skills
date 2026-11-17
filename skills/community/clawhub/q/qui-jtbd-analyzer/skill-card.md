@@ -1,43 +1,51 @@
-## Description: <br>
-Uncover the real job customers hire a product to do by analyzing functional, emotional, and social motivations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Uncover the real job customers hire a product to do by analyzing functional, emotional, and social motivations behind product use.
 
-## Publisher: <br>
-[marjoriebroad](https://clawhub.ai/user/marjoriebroad) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[marjoriebroad](https://clawhub.ai/user/marjoriebroad)
 
-## Use Case: <br>
-Product teams, founders, researchers, and strategy agents use this skill to analyze customer motivations with the Jobs-To-Be-Done framework. It helps map job statements, functional needs, emotional needs, social needs, alternatives, underserved gaps, and priority. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security evidence warns that crypto and purchase capability tags should not be treated as evidence that the skill can safely handle money, wallets, or purchases. <br>
-Mitigation: Use the skill for JTBD and product-strategy analysis only; do not rely on it for wallets, payments, purchases, or financial decisions. <br>
-Risk: The skill may trigger on generic product questions and produce strategy guidance that could be incomplete or misleading for a specific business context. <br>
-Mitigation: Review outputs against customer research, product data, and domain expertise before using them for roadmap or positioning decisions. <br>
+## Use Case:
 
+Product managers, founders, researchers, and product teams use this skill to structure Jobs-To-Be-Done analysis, identify customer motivations, compare alternatives, and prioritize underserved needs.
 
-## Reference(s): <br>
-- [Jobs-To-Be-Done Framework - Detailed Methodology](references/framework.md) <br>
-- [JTBD Examples - Artem's World](references/examples.md) <br>
-- [SkillBoss JTBD Analyzer](https://skillboss.co/skills/jtbd-analyzer) <br>
-- [ClawHub Skill Page](https://clawhub.ai/marjoriebroad/qui-jtbd-analyzer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown analysis template with structured job statements and recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution, credential access, persistence, or data-moving behavior is indicated by the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Broad trigger wording could make the skill activate during general product-research conversations where another strategy framework would be more appropriate.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Clarify the desired research framework when the task is not specifically a Jobs-To-Be-Done analysis.
+
+## Reference(s):
+
+- [Jobs-To-Be-Done Framework](references/framework.md)
+- [JTBD Examples](references/examples.md)
+- [SkillBoss JTBD Analyzer](https://skillboss.co/skills/jtbd-analyzer)
+
+## Skill Output:
+
+**Output Type(s):** [analysis, markdown, guidance]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Structured JTBD statements, functional/emotional/social job dimensions, alternatives, underserved aspects, and priority guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

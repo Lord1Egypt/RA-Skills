@@ -1,46 +1,57 @@
-## Description: <br>
-The most stable way to execute Stata commands, install ado packages, read help documents, and analyze data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Stata Skill helps agents execute Stata commands and do-files, install ado packages, read Stata help, inspect data files, and review execution logs.
 
-## Publisher: <br>
-[SepineTam](https://clawhub.ai/user/SepineTam) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sepinetam](https://clawhub.ai/user/sepinetam)
 
-## Use Case: <br>
-Developers, analysts, and agent operators use this skill to automate Stata workflows, including running do-files, installing ado packages, reading Stata help, inspecting datasets, and reviewing execution logs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can execute Stata do-files, so reviewed analysis code may still run commands that affect local files or produce misleading results. <br>
-Mitigation: Review do-files before execution and approve the intended analysis steps and file locations. <br>
-Risk: The skill can install ado packages from SSC, GitHub, or Net sources. <br>
-Mitigation: Approve package names and sources before installation and prefer trusted package sources. <br>
-Risk: Stata logs and analyzed datasets may contain sensitive or confidential data. <br>
-Mitigation: Handle datasets and logs according to the user's data policy and avoid sharing logs unless their contents have been reviewed. <br>
+## Use Case:
 
+Developers, analysts, and agents working with Stata use this skill to inspect datasets, create or run do-files, install needed ado packages, troubleshoot commands, and read execution logs.
 
-## Reference(s): <br>
-- [Stata-MCP Documentation](https://docs.statamcp.com) <br>
-- [OpenClaw Skill Installation](https://docs.statamcp.com/skills/openclaw) <br>
-- [Stata-MCP FAQ](https://docs.statamcp.com/faq) <br>
-- [Stata-MCP GitHub Repository](https://github.com/statamcp/stata-mcp) <br>
-- [Publisher Profile](https://clawhub.ai/user/SepineTam) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline Stata and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference generated do-files, Stata logs, dataset summaries, and ado package names.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can ask agents to run unpinned third-party tooling and install mutable ado packages from SSC, GitHub, or Net sources, which can affect local data and analysis results.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned, reviewed version of stata-mcp, avoid arbitrary Net or unreviewed GitHub ado sources, and run Stata work with only the filesystem and data access needed for the task.
+
+Risk: Executing Stata do-files or package installation commands may change local files, logs, or analysis outputs.
+
+Mitigation: Review proposed commands and do-files before execution, use controlled working directories, and inspect logs after each run.
+
+## Reference(s):
+
+- [Stata-MCP Documentation](https://docs.statamcp.com)
+- [Stata-MCP OpenClaw Skill Setup](https://docs.statamcp.com/skills/openclaw)
+- [Stata-MCP FAQ](https://docs.statamcp.com/faq)
+- [Stata-MCP GitHub Repository](https://github.com/statamcp/stata-mcp)
+- [Publisher Stata-MCP GitHub Repository](https://github.com/sepinetam/stata-mcp)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and Stata workflow guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Stata CLI commands, do-file guidance, package installation steps, dataset inspection guidance, and log review instructions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

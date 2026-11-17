@@ -1,0 +1,34 @@
+{
+	"type": "function",
+	"function": {
+		"name": "_wb_query_task_list",
+		"description": "Query the workbench workflow task list assigned to the current user (aggregated across apps and modules), filterable by pending or completed.",
+		"parameters": {
+			"type": "object",
+			"properties": {
+				"status": {
+					"type": "string",
+					"enum": ["doing", "done"],
+					"description": "'doing' for pending tasks, 'done' for completed tasks."
+				},
+				"taskName": {
+					"type": "string",
+					"description": "Filter by task name (fuzzy match)."
+				},
+				"processInstanceName": {
+					"type": "string",
+					"description": "Filter by process instance name (fuzzy match)."
+				},
+				"pageIndex": {
+					"type": "integer",
+					"description": "Page index, starting from 1. Default is 1."
+				},
+				"pageSize": {
+					"type": "integer",
+					"description": "Page size. Maximum 50, default is 20."
+				}
+			},
+			"required": ["status"]
+		}
+	}
+}

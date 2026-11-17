@@ -1,42 +1,55 @@
-## Description: <br>
-A comprehensive Git command assistant and workflow guide. Trigger whenever the user asks how to perform a specific Git operation, wants to know what a Git command does, needs help fixing a Git mistake, or wants guidance on Git best practices (like branching, rebasing, or squashing). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Git Helper provides Git command explanations, task-specific command guidance, troubleshooting help, and workflow best practices in English or Chinese.
 
-## Publisher: <br>
-[sunny0826](https://clawhub.ai/user/sunny0826) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sunny0826](https://clawhub.ai/user/sunny0826)
 
-## Use Case: <br>
-Developers and engineers use this skill to get Git command explanations, workflow guidance, recovery steps, and safer command options in English or Chinese. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Suggested destructive Git commands could cause data loss when used on the wrong repository state. <br>
-Mitigation: Review commands before running them, check repository state with commands such as git status or git log, and make backups before reset, clean, rebase, amend, or force-push operations. <br>
-Risk: History-rewriting guidance can disrupt shared branches if applied after commits have been pushed. <br>
-Mitigation: Confirm whether the branch is shared or public before rewriting history, prefer non-rewriting alternatives when appropriate, and use force-with-lease only after reviewing the remote state. <br>
-Risk: Guidance for accidentally committed secrets may be incomplete if credentials remain active after repository cleanup. <br>
-Mitigation: Revoke or rotate exposed credentials first, then use appropriate history-cleanup tools and verify that the secret is no longer present. <br>
+## Use Case:
 
+Developers and engineers use this skill to understand Git commands, plan repository workflows, recover from common Git mistakes, and receive safer command sequences for version-control tasks.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/sunny0826/git-helper-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with fenced bash command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Bilingual English or Chinese output based on the user's prompt language.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Suggested destructive or history-rewriting Git commands can lose local work or rewrite shared history when used in the wrong repository state.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review command intent and repository state before execution, especially for reset --hard, clean, rebase, amend, and force-push operations.
+
+Risk: The skill provides guidance but does not execute code or inspect the repository itself, so advice may depend on incomplete user-provided context.
+
+Mitigation: Ask for or run verification commands such as git status and git log before applying complex recovery, reset, rebase, or force-push workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sunny0826/skills/git-helper-skill)
+- [README](artifact/README.md)
+- [Evaluation prompts](artifact/evals/evals.json)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include English or Chinese explanations, verification commands, and safety warnings for destructive or history-rewriting Git operations.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

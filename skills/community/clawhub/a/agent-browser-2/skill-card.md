@@ -1,45 +1,65 @@
-## Description: <br>
-Automates browser interactions for web testing, form filling, screenshots, and data extraction. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates browser interactions for web testing, form filling, screenshots, and data extraction.
 
-## Publisher: <br>
-[murphykobe](https://clawhub.ai/user/murphykobe) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[murphykobe](https://clawhub.ai/user/murphykobe)
 
-## Use Case: <br>
-Developers and agents use this skill to navigate websites, interact with pages, fill forms, capture screenshots or PDFs, record browser sessions, and extract page information for testing or automation tasks. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Broad browser and session authority can expose cookies, storage, credentials, screenshots, recordings, and extracted private page data. <br>
-Mitigation: Use least-privilege test accounts where possible, keep saved state and captured artifacts out of source control, and delete sensitive files after use. <br>
-Risk: The skill can automate sites and use proxies in ways that may violate site terms, rate limits, or authorization boundaries. <br>
-Mitigation: Use it only on sites you are authorized to test or automate, avoid proxy-based ban or rate-limit evasion, and respect target-site usage policies. <br>
-Risk: Execution depends on the local agent-browser executable available in PATH. <br>
-Mitigation: Install only from a trusted source and verify the local executable before enabling this skill. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Authentication Patterns](references/authentication.md) <br>
-- [Proxy Support](references/proxy-support.md) <br>
-- [Session Management](references/session-management.md) <br>
-- [Snapshot + Refs Workflow](references/snapshot-refs.md) <br>
-- [Video Recording](references/video-recording.md) <br>
+## Use Case:
 
+Developers and automation engineers use this skill to navigate websites, interact with pages, fill forms, capture screenshots or PDFs, record browser sessions, and extract page information through agent-browser commands.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Code] <br>
-**Output Format:** [Markdown with inline shell commands and optional JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce screenshots, PDFs, videos, browser state files, traces, and extracted page data through agent-browser commands.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Saved browser state can contain cookies, tokens, and other authentication material.
+
+Mitigation: Use test accounts where possible, save state only when necessary, keep state files private with restrictive permissions, and delete them after use.
+
+Risk: Browser recordings, screenshots, PDFs, and extracted text can capture private data or login flows.
+
+Mitigation: Avoid recording credentials or sensitive pages, review generated artifacts before sharing, and remove sensitive files after the workflow completes.
+
+Risk: Proxy URLs and browser credentials can expose secrets through shell history or logs.
+
+Mitigation: Provide credentials through environment variables or a secure secret store, and keep proxy credentials out of command history and logs.
+
+Risk: Automation against logged-in or production sites can perform unintended actions.
+
+Mitigation: Review workflows before execution, prefer test environments, confirm element refs after page changes, and use isolated browser sessions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/murphykobe/skills/agent-browser-2)
+- [Snapshot + Refs Workflow](artifact/references/snapshot-refs.md)
+- [Session Management](artifact/references/session-management.md)
+- [Authentication Patterns](artifact/references/authentication.md)
+- [Video Recording](artifact/references/video-recording.md)
+- [Proxy Support](artifact/references/proxy-support.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with inline shell commands and optional JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce screenshots, PDFs, WebM recordings, browser state files, and extracted page text through agent-browser commands.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,64 @@
-## Description: <br>
-Starts a persistent macOS voice assistant that listens through the microphone, transcribes speech with SenseAudio ASR, sends turns to the audioclaw agent, and responds with SenseAudio TTS or macOS say. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Starts a persistent macOS voice assistant that captures speech, sends it to SenseAudio ASR, routes the recognized text to the audioclaw agent, and reads responses with SenseAudio TTS or macOS say.
 
-## Publisher: <br>
-[kikidouloveme79](https://clawhub.ai/user/kikidouloveme79) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kikidouloveme79](https://clawhub.ai/user/kikidouloveme79)
 
-## Use Case: <br>
-Developers and AudioClaw/OpenClaw users use this skill to run hands-free, multi-turn voice conversations on macOS with SenseAudio ASR/TTS, wake and sleep phrases, optional voice preferences, and optional WeSpeaker speaker filtering. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill runs a long-running microphone assistant and sends captured speech to SenseAudio for transcription. <br>
-Mitigation: Install and run it only when this microphone and network behavior is acceptable, review SenseAudio data handling terms, and stop the Terminal session when voice mode is no longer needed. <br>
-Risk: The skill may store local preferences and optional WeSpeaker voiceprint profiles. <br>
-Mitigation: Keep WeSpeaker disabled unless speaker filtering is required, and clear local profiles or state when they are no longer needed. <br>
-Risk: The skill depends on a SenseAudio API key and local macOS microphone tooling. <br>
-Mitigation: Use a scoped API key, keep local credentials protected, and run the startup self-check before relying on the assistant. <br>
+## Use Case:
 
+Developers and advanced macOS users use this skill to run a hands-free AudioClaw/OpenClaw voice assistant for local desktop conversations, voice control, and prototyping with SenseAudio ASR/TTS. It is intended for environments where long-running microphone capture and third-party speech APIs are acceptable.
 
-## Reference(s): <br>
-- [ClawHub skill release](https://clawhub.ai/kikidouloveme79/senseaudio-let-claw-talk) <br>
-- [Runtime tuning guide](references/runtime_tuning.md) <br>
-- [WeSpeaker user environment guide](references/wespeaker_user_setup.md) <br>
-- [WeSpeaker project](https://github.com/wenet-e2e/wespeaker.git) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and configuration values] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May launch a long-running local voice assistant process that uses microphone input, network API calls, local preference files, and optional local voiceprint state.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can run a long-lived macOS microphone workflow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Deploy only where continuous microphone capture is acceptable, make wake/sleep and stop behavior clear to users, and stop the process when it is not in use.
+
+Risk: Captured speech and recognized text are sent to SenseAudio services.
+
+Mitigation: Review SenseAudio data handling before deployment, avoid sensitive speech unless approved, and protect the SENSEAUDIO_API_KEY credential.
+
+Risk: The skill stores local state and can store voice preferences, runtime state, credentials, and optional voiceprint data under ~/.audioclaw.
+
+Mitigation: Restrict file permissions on the local state directory, protect or rotate stored API keys, and delete voiceprint samples that are no longer needed.
+
+Risk: The optional WeSpeaker service was flagged as not well constrained.
+
+Mitigation: Avoid enabling WeSpeaker until the local service is hardened with authentication, loopback-only binding, path validation, and pinned dependencies.
+
+## Reference(s):
+
+- [ClawHub Skill Release](https://clawhub.ai/kikidouloveme79/skills/senseaudio-let-claw-talk)
+- [Runtime Tuning](artifact/references/runtime_tuning.md)
+- [WeSpeaker User Environment Guide](artifact/references/wespeaker_user_setup.md)
+- [WeSpeaker Repository](https://github.com/wenet-e2e/wespeaker.git)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash commands and runtime configuration values]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May launch a long-running macOS microphone process and optional local WeSpeaker voiceprint service.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

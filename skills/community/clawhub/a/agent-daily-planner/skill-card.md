@@ -1,39 +1,53 @@
-## Description: <br>
-Organize and track daily AI agent tasks, progress, blockers, and shipments with repeatable, persistent planning across sessions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent Daily Planner helps agents organize daily work, carry context across sessions, track blockers, and record shipped work in persistent local planning notes.
 
-## Publisher: <br>
-[Gpunter](https://clawhub.ai/user/Gpunter) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[gpunter](https://clawhub.ai/user/gpunter)
 
-## Use Case: <br>
-Agents and their operators use this skill to create daily plans, carry forward unfinished work, log shipped items and blockers, and summarize progress across sessions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Planner notes may contain secrets, sensitive personal details, or operational context that should not be persisted casually. <br>
-Mitigation: Avoid placing secrets or sensitive personal details in planner notes, and review local memory files before sharing or committing them. <br>
-Risk: Commands that update today's plan or overwrite priority tasks can replace useful planning context. <br>
-Mitigation: Review the current daily plan before using update or priority-overwrite commands. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Gpunter/agent-daily-planner) <br>
+## Use Case:
 
+Developers and agent operators use this skill to create daily plans, carry unfinished work forward, log shipped outcomes, track blockers, and summarize weekly progress across agent sessions.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown planning notes and concise command-oriented guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates and updates local daily and weekly planning records under memory/.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact Version section) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill creates or modifies local planning files under memory/.
+
+Mitigation: Review proposed planning changes before relying on them, especially when commands update today's priorities or carry forward unfinished work.
+
+Risk: /plan priorities overwrites the current day's Priority Tasks section.
+
+Mitigation: Check the current daily plan before replacing priorities, and keep important context in Notes or project tracking files.
+
+## Reference(s):
+
+- [Agent Daily Planner on ClawHub](https://clawhub.ai/gpunter/skills/agent-daily-planner)
+- [gpunter ClawHub profile](https://clawhub.ai/user/gpunter)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Files, Guidance]
+
+**Output Format:** [Markdown planning notes and concise text summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates and updates local files under memory/ for daily logs and weekly summaries.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

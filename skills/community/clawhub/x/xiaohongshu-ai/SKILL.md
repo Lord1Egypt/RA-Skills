@@ -1,15 +1,15 @@
 ---
 name: xiaohongshu-ai
-version: 1.0.5
-description: 小红书 AI 宣传图和图文笔记技能 - 根据用户提示词判断生成单张或多张宣传图，调用 gpt-image-2 或火山引擎 Ark 文生图模型生成视觉素材并合成小红书图片；仅在用户明确要求发布到小红书时才执行发布。
+version: 1.1.1
+description: 小红书 AI 宣传图、图文笔记和视频发布技能 - 根据用户提示词生成单张或多张宣传图，并支持将用户提供的本地 MP4 视频发布为视频笔记；仅在用户明确要求发布到小红书时才执行发布。
 homepage: https://www.xiaohongshu.com
 author: OpenClaw Community
 metadata: {"openclaw":{"emoji":"📕","primaryEnv":"XHS_COOKIE","category":"social-media"}}
 ---
 
-# 小红书 AI 宣传图和图文笔记技能
+# 小红书 AI 宣传图、图文笔记和视频发布技能
 
-> 一体化工作流：理解用户意图 → 主题和文案生成 → AI 图片模型直接生成单张或多张宣传图 → 按需发布
+> 一体化工作流：理解用户意图 → 生成图文素材或接收本地 MP4 → 按需发布图文/视频笔记
 
 ## 🎯 使用场景
 
@@ -17,6 +17,7 @@ metadata: {"openclaw":{"emoji":"📕","primaryEnv":"XHS_COOKIE","category":"soci
 - 用户只提供一段产品、服务、活动、知识点或个人经历描述，需要自动转成小红书图文内容
 - 需要 AI 直接生成贴合主题的单张海报或多张组图
 - 批量创作多条笔记素材
+- 用户提供本地 MP4 视频，需要配合标题、描述和可选封面发布为视频笔记
 
 ## 🧭 意图判定与执行规则
 
@@ -28,13 +29,14 @@ metadata: {"openclaw":{"emoji":"📕","primaryEnv":"XHS_COOKIE","category":"soci
 - **多张宣传图**：用户说“多张”“组图”“轮播”“N 张”“一套”“系列图”时，按用户指定数量生成；未指定数量时生成封面 + 3-5 张正文卡片，总数不超过 9 张。
 - **图文笔记**：用户要求“小红书笔记”“种草文”“发布文案”“带正文分页”时，生成封面、正文卡片、发布描述和 Tags。
 - **发布内容来源**：发布时使用生成目录里的 `manifest.json` 读取标题和 `publish_desc`，图片按 `cover.png`、`card_*.png` 顺序上传，最多 9 张。
+- **视频笔记**：用户明确要求发布视频时，使用用户提供的本地 MP4 文件；可同时提供一张封面图片，未提供时自动使用视频第一帧。此技能不生成或编辑视频。
 
 执行顺序：
 
 1. 理解用户提示词，确定主题、受众、卖点、语气、是否单张/多张、是否发布。
-2. 调用 `gpt-image-2` 或火山引擎 Ark 文生图模型直接生成贴合主题的小红书规格宣传图。
-3. 保存 `cover.png` / `card_*.png` 和 `manifest.json`。
-4. 仅当用户明确要求发布到小红书时，再运行发布脚本。
+2. 图文任务调用 `gpt-image-2` 或火山引擎 Ark 文生图模型生成宣传图；视频任务验证用户提供的本地 MP4 和可选封面。
+3. 图文任务保存 `cover.png` / `card_*.png` 和 `manifest.json`。
+4. 仅当用户明确要求发布到小红书时，再运行发布脚本，并根据输入选择图文或视频发布。
 
 ## ✨ 核心功能
 
@@ -59,10 +61,16 @@ metadata: {"openclaw":{"emoji":"📕","primaryEnv":"XHS_COOKIE","category":"soci
 
 ### 4️⃣ 明确授权后发布
 - 自动登录（使用 Cookie）
-- 上传图片（最多 9 张）
+- 上传图片（最多 9 张）或一个本地 MP4 视频
+- 视频支持自定义封面；未指定时自动使用视频第一帧
 - 设置标题、描述、Tags
 - 发布后返回笔记链接
 - 不允许在用户未明确要求发布时自动发布
+
+### 5️⃣ 视频发布边界
+- 仅负责发布用户提供的本地 `.mp4` 文件，不生成、不下载、不转码、不剪辑视频
+- 图片参数与视频参数互斥，一条笔记只能选择图文或视频
+- `--dry-run` 可在不读取 Cookie、不实际发布的情况下验证本地文件和参数
 
 ## 🚀 快速开始
 
@@ -116,7 +124,7 @@ xiaohongshu-ai/
 │   ├── ai_services/         # 可扩展 AI 模型服务实现
 │   │   ├── chatgpt_service.py
 │   │   └── volcengine_service.py
-│   └── publish_xhs.py       # 明确要求发布时使用的发布脚本
+│   └── publish_xhs.py       # 明确要求发布时使用的图文/视频发布脚本
 ```
 
 ## 🤖 自动生成参数
@@ -163,46 +171,65 @@ python3 scripts/generate_xhs.py "你的描述" \
 
 ## 📤 发布参数
 
-发布是独立步骤，只能在用户明确要求”发布到小红书”时执行。
+发布是独立步骤，只能在用户明确要求“发布到小红书”时执行。
 
 ```bash
 python3 scripts/publish_xhs.py \
-  --title “笔记标题” \
-  --desc “笔记描述 #标签 1 #标签 2” \
+  --title "笔记标题" \
+  --desc "笔记描述 #标签 1 #标签 2" \
   --images cover.png card_1.png card_2.png
 
 # 使用 glob 匹配所有图片（自然排序）
 python3 scripts/publish_xhs.py \
-  --title “笔记标题” \
-  --desc “笔记描述” \
-  --images-glob “./output/*.png”
+  --title "笔记标题" \
+  --desc "笔记描述" \
+  --images-glob "./output/*.png"
 
 # 从文件读取描述
 python3 scripts/publish_xhs.py \
-  --title “笔记标题” \
+  --title "笔记标题" \
   --desc-file ./output/desc.txt \
   --images cover.png
 
 # 验证模式（不实际发布）
 python3 scripts/publish_xhs.py \
-  --title “笔记标题” \
-  --desc “笔记描述” \
+  --title "笔记标题" \
+  --desc "笔记描述" \
   --images cover.png \
   --dry-run
 
 # 设为公开笔记（默认为私密）
 python3 scripts/publish_xhs.py \
-  --title “笔记标题” \
-  --desc “笔记描述” \
+  --title "笔记标题" \
+  --desc "笔记描述" \
   --images cover.png \
   --public
 
 # 定时发布
 python3 scripts/publish_xhs.py \
-  --title “笔记标题” \
-  --desc “笔记描述” \
+  --title "笔记标题" \
+  --desc "笔记描述" \
   --images cover.png \
-  --post-time “2024-01-01 12:00:00”
+  --post-time "2024-01-01 12:00:00"
+
+# 发布本地 MP4 视频（未指定封面时自动使用视频第一帧）
+python3 scripts/publish_xhs.py \
+  --title "视频标题" \
+  --desc "视频描述 #标签" \
+  --video ./video.mp4
+
+# 发布本地 MP4 视频并指定封面
+python3 scripts/publish_xhs.py \
+  --title "视频标题" \
+  --desc "视频描述 #标签" \
+  --video ./video.mp4 \
+  --cover ./cover.png
+
+# 验证视频参数和文件（不需要 Cookie，不实际发布）
+python3 scripts/publish_xhs.py \
+  --title "视频标题" \
+  --video ./video.mp4 \
+  --dry-run
 ```
 
 ### 发布参数一览
@@ -210,10 +237,13 @@ python3 scripts/publish_xhs.py \
 | 参数 | 说明 | 默认值 |
 |------|------|--------|
 | `--title`, `-t` | 笔记标题（不超过 20 字） | 必填 |
-| `--desc`, `-d` | 笔记描述/正文内容 | `””` |
+| `--desc`, `-d` | 笔记描述/正文内容 | `""` |
 | `--desc-file` | 从 UTF-8 文件读取描述 | 无 |
 | `--images`, `-i` | 图片文件路径（空格分隔） | 无 |
 | `--images-glob` | 使用 glob 匹配图片，按自然序排序 | 无 |
+| `--video`, `-v` | 本地 MP4 视频路径；与图片参数互斥 | 无 |
+| `--cover` | 视频封面图片；仅能与 `--video` 一起使用 | 自动使用视频第一帧 |
+| `--video-wait-time` | 自动获取视频第一帧时的轮询间隔秒数 | `3` |
 | `--require-image-count` | 要求图片数量必须等于该值 | 不限制 |
 | `--private` | 设为私密笔记（默认） | 默认开启 |
 | `--public` | 设为公开笔记 | 关闭 |
@@ -229,7 +259,7 @@ python3 scripts/publish_xhs.py \
    - `export OPENAI_API_KEY="your_api_key"`
    - `export ARK_API_KEY="your_ark_api_key"`
 
-2. **配置 Cookie**（发布时必须使用环境变量）：
+2. **配置 Cookie**（实际发布时必须使用环境变量，`--dry-run` 不需要）：
    - `export XHS_COOKIE="your_cookie_string"`
 
 3. **获取 Cookie**：
@@ -260,16 +290,21 @@ python3 scripts/publish_xhs.py \
    - 正文卡片：1080×1440px（可动态调整）
    - 最多 9 张图片
 
-2. **Cookie 有效期**：
+2. **视频规格**：
+   - 当前发布接口仅接受本地 MP4 文件
+   - 每条视频笔记上传 1 个视频
+   - 封面可选；未提供时会等待平台提取视频第一帧
+
+3. **Cookie 有效期**：
    - Cookie 有有效期，过期需重新获取
    - 建议定期更新 `XHS_COOKIE`
 
-3. **发布限制**：
+4. **发布限制**：
    - 标题不超过 20 字
    - 描述不超过 1000 字
    - Tags 不超过 10 个
 
-4. **内容规范**：
+5. **内容规范**：
    - 遵守小红书社区规范
    - 避免违规内容
    - 原创内容优先
@@ -277,5 +312,6 @@ python3 scripts/publish_xhs.py \
 ## 🔧 依赖安装
 
 ```bash
-pip install openai xhs
+pip install openai
+pip install "xhs>=0.2.13"
 ```

@@ -1,42 +1,55 @@
-## Description: <br>
-Prediction markets data - Polymarket, Kalshi markets, prices, positions, and trades <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides agents with AIsa-backed commands and examples for querying Polymarket and Kalshi markets, prices, trades, orderbooks, positions, wallet data, and cross-platform sports market matches.
 
-## Publisher: <br>
-[chaimengphp](https://clawhub.ai/user/chaimengphp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chaimengphp](https://clawhub.ai/user/chaimengphp)
 
-## Use Case: <br>
-External developers and agents use this skill to query Polymarket and Kalshi market data through AIsa, including prices, order books, trades, historical candles, wallet positions, P&L, and cross-platform sports market matches. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: AIsa receives the API key and query history needed to service prediction-market requests. <br>
-Mitigation: Install only if the user trusts AIsa with that data, store the API key as a secret, and use a limited or read-only key if AIsa supports it. <br>
-Risk: Wallet-address lookups can reveal sensitive financial identifiers and trading history. <br>
-Mitigation: Prefer querying only owned or authorized wallets and avoid unnecessary third-party profiling. <br>
+## Use Case:
 
+Developers and agents use this skill to retrieve prediction-market data for research, market monitoring, trading analysis, portfolio review, and cross-platform comparison across Polymarket and Kalshi.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/chaimengphp/openclaw-aisa-prediction-market) <br>
-- [OpenClaw homepage](https://openclaw.ai) <br>
-- [AIsa API Reference](https://docs.aisa.one/reference/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, API calls, JSON] <br>
-**Output Format:** [Markdown guidance with bash, curl, Python commands, and JSON API responses.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires AISA_API_KEY; most downstream queries require market identifiers from a prior markets response.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Queries can send market searches, wallet addresses, portfolio data, and P&L lookups to the AIsa API using a bearer API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with wallets you own or are authorized to analyze, avoid retaining wallet results unnecessarily, and keep AISA_API_KEY out of logs and shared transcripts.
+
+Risk: The supplied security summary flags insufficient privacy and credential-safety guardrails for a valuable API key.
+
+Mitigation: Review credential handling before deployment, restrict the API key's exposure, and harden redirect handling before using the skill in sensitive or high-value environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chaimengphp/skills/openclaw-aisa-prediction-market)
+- [AIsa API Reference](https://docs.aisa.one/reference/)
+- [OpenClaw homepage](https://openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, Python CLI examples, curl examples, and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires AISA_API_KEY; examples query AIsa endpoints for market, price, trade, orderbook, wallet, position, P&L, and sports matching data.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

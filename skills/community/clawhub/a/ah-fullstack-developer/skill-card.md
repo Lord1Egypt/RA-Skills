@@ -1,38 +1,49 @@
-## Description: <br>
-End-to-end feature owner with expertise across the entire stack. Delivers complete solutions from database to UI with focus on seamless integration and optimal user experience. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+End-to-end feature owner for complete solutions from database to UI, with focus on seamless integration and user experience.
 
-## Publisher: <br>
-[mtsatryan](https://clawhub.ai/user/mtsatryan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mtsatryan](https://clawhub.ai/user/mtsatryan)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to plan and deliver full-stack features across database, API, authentication, frontend, testing, performance, and deployment concerns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated full-stack changes can affect database migrations, authentication, infrastructure, CI/CD, or deployment behavior. <br>
-Mitigation: Review generated changes carefully before applying migrations, security-sensitive changes, infrastructure updates, CI/CD changes, or deployment steps. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to plan, implement, test, and deliver full-stack features spanning database design, API contracts, authentication, frontend behavior, deployment, and monitoring.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mtsatryan/ah-fullstack-developer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, configuration, shell commands, markdown] <br>
-**Output Format:** [Markdown guidance with code, configuration, and command snippets as needed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only skill; no executable install behavior is declared in server security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Full-stack recommendations can affect authentication, database migrations, CI/CD, deployment, and other production-sensitive areas.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep normal engineering review controls around auth, schema, deployment, and pipeline changes before applying generated work.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mtsatryan/skills/ah-fullstack-developer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with code, command, and configuration artifacts when implementation work is requested.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No hidden execution, persistence, or unrelated data handling is identified in the release evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

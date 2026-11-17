@@ -66,10 +66,11 @@ page_number:
 quotes:
   convert_to_chinese: true
 
-# 表格设置
+# 表格设置（FIGURES-OUTLINE 配图风格规范配色）
+# 主蓝 #2C5282 / 浅灰 #EDF2F7 / 边框 #CBD5E0 / 文字深灰 #2D3436（T139 方案 A）
 table:
   border_enabled: true
-  border_color: "#000000"
+  border_color: "#CBD5E0"          # 边框：浅灰细线
   border_width: 4
   line_spacing: 1.2
   row_height_cm: 0.8
@@ -80,49 +81,66 @@ table:
     left: 60
     right: 60
   vertical_align: "center"
+  rounded_corners: true            # 圆角边框
 
-  # 表格标题行（第一行）格式
+  # 表格标题行（第一行）格式：主蓝底 + 白字
   header:
     font: "Times New Roman"
     size: 10.5
     bold: true
-    color: "#000000"
+    color: "#FFFFFF"                # 白字
+    background_color: "#2C5282"     # 主蓝底纹（点缀用）
 
   # 表格正文格式
   body:
     font: "仿宋"
     font_alt: "仿宋_GB2312"
     size: 10.5
-    color: "#000000"
+    color: "#2D3436"                # 深灰主色（T139 方案 A）
 
-# 代码块设置
+  # 隔行底纹（斑马纹）：浅灰交替
+  row_even:
+    background_color: "#EDF2F7"     # 偶数行浅灰底纹
+  row_odd:
+    background_color: "#FFFFFF"     # 奇数行白底
+
+# 代码块设置（出版级：等宽字体 + 浅灰底纹 + 细边框 + 关拼写检查）
 code_block:
-  # 语言标签格式（代码块开头的 [language] 标签）
+  # 语言标签格式（代码块开头的 [language] 标签；enabled=false 可隐藏标签）
   label:
+    enabled: false
     font: "Times New Roman"
     size: 10
     color: "#808080"
 
   # 代码内容格式
   content:
-    font: "Times New Roman"
-    size: 10
+    font: "Consolas"            # 等宽字体（ASCII/CS）
+    east_asia_font: "等线"      # 东亚字符（代码里的中文 prompt 等）
+    size: 9
     color: "#333333"
-    left_indent: 24
+    left_indent: 0
     line_spacing: 1.2
+    background_color: "#F5F5F5" # 浅灰底纹（留空则不加，向后兼容）
+    border_color: "#D0D0D0"     # 段落边框，相邻行自动连成完整框（留空则不加）
+    border_size: 4              # 边框粗细，1/8 pt 单位
+    no_proofread: true          # 关闭拼写检查
 
-# 行内代码设置
+# 行内代码设置（等宽 + 浅灰底，与代码块风格一致）
 inline_code:
-  font: "Times New Roman"
+  font: "Consolas"
+  east_asia_font: "等线"
   size: 10
   color: "#333333"
+  background_color: "#F0F0F0"
 
-# 引用块设置
+# 引用块设置（无视觉样式：与正文一致，不加底纹/边框/缩进）
 quote:
-  background_color: "#EAEAEA"
-  left_indent_inches: 0.2
-  font_size: 9
-  line_spacing: 1.5
+  background_color: null
+  left_indent_inches: 0
+  border_color: null
+  font_size: null   # null = 继承正文
+  line_spacing: null
 
 # 数学公式设置
 math:
@@ -135,7 +153,7 @@ math:
 image:
   display_ratio: 1.0
   max_width_cm: 14.64
-  target_dpi: 260
+  target_dpi: 400
   show_caption: true
 
 # 分割线设置

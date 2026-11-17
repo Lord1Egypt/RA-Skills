@@ -1,47 +1,66 @@
-## Description: <br>
-zmail helps agents sync email over IMAP into a local maildir and SQLite FTS index, then search, read threads, inspect contacts and attachments, and answer mailbox questions through its CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Local-first email skill for agents that guides IMAP sync into maildir and SQLite FTS5, then supports CLI search, read, thread, contact, attachment, inbox, and OpenAI-assisted mail questions.
 
-## Publisher: <br>
-[cirne](https://clawhub.ai/user/cirne) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cirne](https://clawhub.ai/user/cirne)
 
-## Use Case: <br>
-Developers, automation engineers, and agent users use zmail to give an assistant controlled access to a local email index for mailbox search, message review, contact lookup, attachment inspection, and synthesized answers about mail. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires IMAP mailbox credentials and an OpenAI API key for setup and LLM-backed features. <br>
-Mitigation: Use app-specific mailbox credentials, protect the local ~/.zmail directory and backups, and rotate credentials if they are exposed. <br>
-Risk: LLM-backed commands such as ask, inbox, and enriched contact lookup can send email-derived text to OpenAI or other providers. <br>
-Mitigation: Use those commands only when the mailbox owner accepts that data flow; use local search, read, thread, who, and attachment primitives when provider calls are not acceptable. <br>
-Risk: Shell command construction around email text can introduce command-injection risk. <br>
-Mitigation: Invoke zmail with argument arrays or careful quoting, and do not paste untrusted mail text into sh -c command strings. <br>
-Risk: Local cleanup can delete cached mail, indexes, credentials, and extracted local-only artifacts under ZMAIL_HOME. <br>
-Mitigation: Treat setup --clean --yes as a local destructive operation, confirm backups and expected state first, and resync from IMAP afterward when needed. <br>
+## Use Case:
 
+Developers and agent operators use this skill to configure zmail and query a user's mailbox through local-first CLI workflows. It is suited to email search, message reading, thread review, attachment extraction, contact lookup, and synthesized answers over indexed mail.
 
-## Reference(s): <br>
-- [ClawHub zmail release page](https://clawhub.ai/cirne/zmail) <br>
-- [zmail project homepage](https://github.com/cirne/zmail) <br>
-- [Canonical docs and discovery](references/CANONICAL-DOCS.md) <br>
-- [OpenClaw skill requirements](https://docs.openclaw.ai/tools/creating-skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and CLI-oriented configuration instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide agents to commands that return JSON, text tables, mailbox summaries, message content, thread context, contacts, and attachment metadata.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: server evidence and frontmatter) <br>
+Risk: Unpinned npm or npx installation can execute a newer package version than the reviewed release while handling mailbox credentials and email content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and pin @cirne/zmail to version 0.1.2 before installation or execution, and avoid sudo.
+
+Risk: IMAP credentials, OpenAI API keys, and email-derived content are sensitive and may be exposed through command lines, chat transcripts, local files, or provider calls.
+
+Mitigation: Provide secrets through the user's shell environment or protected config, avoid pasting secrets into chats or command arguments, and use the skill only when the mailbox owner accepts local caching and OpenAI or enrichment-provider processing.
+
+Risk: zmail stores a local mailbox cache, SQLite index, maildir data, and credentials under ZMAIL_HOME by default.
+
+Mitigation: Treat ZMAIL_HOME and its .env file as sensitive local data, apply appropriate file permissions and backup controls, and use documented local wipe behavior when removing cached data.
+
+Risk: Building shell command strings with untrusted email or chat content can create command-injection exposure.
+
+Mitigation: Invoke zmail with argument arrays or careful quoting, and do not interpolate untrusted message text into sh -c command strings.
+
+## Reference(s):
+
+- [ClawHub zmail skill page](https://clawhub.ai/cirne/skills/zmail)
+- [zmail project homepage](https://github.com/cirne/zmail)
+- [zmail repository](https://github.com/cirne/zmail)
+- [Canonical docs and agent discovery](references/CANONICAL-DOCS.md)
+- [OpenClaw creating skills](https://docs.openclaw.ai/tools/creating-skills)
+- [Agent Skills specification](https://agentskills.io/specification.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON-oriented CLI expectations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node 20+, npm, zmail on PATH after install, IMAP credentials, and an OpenAI API key for setup, ask, and inbox workflows.]
+
+## Skill Version(s):
+
+0.1.2 (source: server evidence, artifact metadata, and release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

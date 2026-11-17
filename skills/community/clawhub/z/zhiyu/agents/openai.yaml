@@ -1,0 +1,4 @@
+interface:
+  display_name: "来自股市的猩猩"
+  short_description: "用公开内容归纳的技术派框架分析A股指数、风格与板块走势"
+  default_prompt: "使用 $zhiyu 分析当前A股走势，并给出关键点位、情景推演和风险提示。"

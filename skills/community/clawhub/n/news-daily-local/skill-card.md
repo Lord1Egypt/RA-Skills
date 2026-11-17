@@ -1,40 +1,61 @@
-## Description: <br>
-Fetches RSS news across domestic, international, technology, and AI categories and sends formatted Feishu card messages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches top news from domestic, international, technology, and AI RSS feeds and sends the digest to a Feishu group.
 
-## Publisher: <br>
-[morrison230](https://clawhub.ai/user/morrison230) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[morrison230](https://clawhub.ai/user/morrison230)
 
-## Use Case: <br>
-OpenClaw users and operators use this skill to collect daily news from configured RSS sources and deliver a scheduled or manual briefing into a Feishu group. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The script sends messages through a Feishu webhook while HTTPS certificate verification is disabled. <br>
-Mitigation: Use a dedicated webhook, store it as a protected environment variable, and restore normal TLS certificate verification before scheduling the automation. <br>
-Risk: Webhook secrets may be exposed if stored in shared or checked-in configuration files. <br>
-Mitigation: Prefer the NEWS_DAILY_WEBHOOK environment variable and keep local config files out of version control. <br>
+## Use Case:
 
+External users and developers can use this skill to collect daily news from configured RSS feeds, format the results as Feishu card messages, and send them manually or on a schedule.
 
-## Reference(s): <br>
-- [Artifact README](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration] <br>
-**Output Format:** [Feishu interactive card JSON with markdown content, plus terminal status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [News categories, item counts, target date, and webhook destination are configurable through environment variables or config files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: The script disables HTTPS certificate verification while fetching RSS feeds and posting to a Feishu webhook.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Restore normal HTTPS certificate verification before deployment and rotate the Feishu webhook if this version has run on an untrusted network.
+
+Risk: One RSS source uses plaintext HTTP, which can expose the digest pipeline to network tampering.
+
+Mitigation: Replace or remove plaintext HTTP feeds and prefer HTTPS RSS sources.
+
+Risk: A webhook token stored in a local config file may be readable by other users or processes.
+
+Mitigation: Prefer the NEWS_DAILY_WEBHOOK environment variable or restrict permissions on any config file containing the webhook.
+
+Risk: Scheduled execution can repeatedly post unreviewed external feed content to a Feishu group.
+
+Mitigation: Review configured feeds and categories before enabling scheduled runs.
+
+## Reference(s):
+
+- [News Daily Local on ClawHub](https://clawhub.ai/morrison230/skills/news-daily-local)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, JSON, Shell commands, Configuration]
+
+**Output Format:** [Feishu card JSON, console status text, and Markdown-formatted news links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Feishu webhook and configurable RSS categories; can run manually or on a schedule.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

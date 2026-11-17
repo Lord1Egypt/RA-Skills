@@ -1,0 +1,61 @@
+part: ESP32-C5
+link_status: verified_2026-07-01 (datasheet-pdf-extracted)
+expected_family: "ESP32-C5 \u2014 Dual-Band Wi-Fi 6 + BLE 5 + 802.15.4 SoC"
+main_page: https://www.espressif.com/en/products/socs/esp32-c5
+datasheet_path_expected: ../../datasheets/esp32-c5.pdf
+created_at: '2026-06-30T09:43:00+08:00'
+specs:
+  wireless:
+    wifi:
+    - Wi-Fi 6 (802.11ax) dual-band (2.4 + 5 GHz)
+    - 802.11a/b/g/n/ac backward compatibility
+    - "TWT (Target Wake Time) \u2014 extended device sleep"
+    - MU-MIMO
+    - "OFDMA \u2014 increased device capacity + lower latency"
+    - "BSS coloring \u2014 stable connectivity in congested multi-SSID areas"
+    bluetooth:
+    - "Bluetooth 5 (LE) \u2014 long-range via advertising extensions + coded PHY"
+    - 2 Mbps high throughput PHY
+    - BLE SIG Mesh
+    - ESP-Mesh-Lite
+    ieee_802_15_4:
+    - Integrated PHY + MAC layers
+    - Software stacks: Thread, Zigbee, Matter, HomeKit, MQTT
+  security:
+  - Secure Boot
+  - Flash encryption (hardware-accelerated)
+  - PSRAM encryption (hardware-accelerated)
+  - Cryptographic accelerators
+  - Digital Signature Peripheral (hardware)
+  - Key Manager (secure storage and deployment)
+  - Trusted Execution Environment (TEE)
+  - Access Permission Management (APM) hardware block
+  - Physical Memory Protection (PMP)
+  modules:
+  - ESP32-C5-WROOM-1 (module)
+  - ESP32-C5-DevKitC-1 (dev kit)
+  software:
+  - ESP-IDF (open-source Espressif SDK)
+  - ESP-AT (co-processor mode)
+  - ESP-Hosted (co-processor mode)
+unverified:
+- exact RISC-V core (likely single-core 32-bit but not in fetched spec block)
+- exact SRAM size
+- exact PSRAM support size
+- exact package options and pinout
+- exact operating temperature range
+notes:
+- "New yaml entry on 2026-06-30 \u2014 extracted from espressif.com product page via Firecrawl (10,353 bytes raw; family page\
+  \ is short single-H1)."
+- 'Position: first Espressif SoC with Wi-Fi 6 + dual-band + 802.15.4 in one chip. Cross-reference: comparable to Nordic nRF54H20
+  (Matter + Wi-Fi) for Matter border router tier.'
+- 'Verified 2026-07-01 via firecrawl-html-extract against esp32-c5.html: 9/26 spec fields matched (35%). Source: https://www.espressif.com/en/products/socs/esp32-c5
+  (vendor product page scraped as HTML; no separate PDF available).'
+- 'Verified 2026-07-01 via vendor-direct datasheet PDF (datasheets/esp32-c5.pdf): 23/26 spec fields matched (88%). Source:
+  https://documentation.espressif.com/esp32-c5_datasheet_en.pdf.'
+extracted_at: '2026-06-30T09:43:00+08:00'
+extraction_method: firecrawl-extract (keyed) of espressif.com product page
+extraction_source: references/semiconductor-vendor/Espressif/firecrawl-snapshots/ESP32-C5-family_clean.md
+extraction_source_raw: references/semiconductor-vendor/Espressif/firecrawl-snapshots/ESP32-C5-family_raw.md
+extraction_credits_used: 1
+datasheet_source_url: https://documentation.espressif.com/esp32-c5_datasheet_en.pdf

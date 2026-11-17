@@ -1,46 +1,63 @@
-## Description: <br>
-Dexter Browser Automation provides Playwright-based browser automation for JavaScript-rendered pages, UI interaction, structured extraction, and screenshots when simpler web tools are insufficient. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Dexter Browser Automation uses Playwright to capture screenshots, scrape rendered HTML, extract structured page data, and interact with JavaScript-rendered pages when simpler web tools are insufficient.
 
-## Publisher: <br>
-[tylerdotai](https://clawhub.ai/user/tylerdotai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tylerdotai](https://clawhub.ai/user/tylerdotai)
 
-## Use Case: <br>
-Developers and agents use this skill as a last-resort browser layer when pages require JavaScript rendering, UI interaction, screenshots, or structured extraction that static fetch tools cannot provide. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad live-browser automation can interact with websites and accounts in ways that may be unauthorized or inappropriate. <br>
-Mitigation: Use only on sites and accounts where access is authorized, supervise actions, and prefer search or static fetch tools before browser automation. <br>
-Risk: Credentials, private page content, screenshots, or downloads can be exposed through command arguments or generated files. <br>
-Mitigation: Avoid passing real passwords on command lines, keep screenshots and downloads in safe temporary or workspace paths, and review outputs before sharing. <br>
-Risk: The JavaScript evaluation path can run arbitrary code in the browser context. <br>
-Mitigation: Review JavaScript before running cdp.py eval and restrict it to trusted pages and necessary tasks. <br>
-Risk: Anti-bot or stealth-oriented automation guidance can be misused to bypass site controls or policies. <br>
-Mitigation: Do not use the skill to evade access controls, rate limits, terms of service, or other site restrictions. <br>
+## Use Case:
 
+Developers and agents use this skill as a last-resort browser automation layer for JavaScript-rendered pages, UI interactions, screenshots, and structured extraction after search or static fetch tools are insufficient.
 
-## Reference(s): <br>
-- [CSS Selectors Reference](references/selectors.md) <br>
-- [Common Browser Automation Patterns](references/patterns.md) <br>
-- [ClawHub release page](https://clawhub.ai/tylerdotai/dex-browser) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands; invoked scripts return JSON and may write screenshot files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Playwright and Chromium; rendered HTML is truncated to 50000 characters, extracted items are capped at 50, and screenshots default to /tmp/screenshot.png unless a path is provided.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release evidence) <br>
+Risk: Broad browser navigation and UI interaction can reach untrusted pages or trigger unintended actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill as an unprivileged user in an isolated environment with restricted network access, and confirm target URLs and actions before use.
+
+Risk: Fill commands can handle passwords or other secrets, which may expose sensitive values through command lines or logs.
+
+Mitigation: Avoid passing passwords or secrets on the command line, and do not use authenticated workflows without explicit confirmation and appropriate secret handling.
+
+Risk: Screenshot and browser automation flows can write local files.
+
+Mitigation: Constrain output paths to scratch directories and review generated files before reuse.
+
+Risk: The browser scripts launch Chromium with no-sandbox-style flags.
+
+Mitigation: Use an external sandbox such as a container or VM and pin Playwright and browser versions before deployment.
+
+## Reference(s):
+
+- [Dexter Browser Automation on ClawHub](https://clawhub.ai/tylerdotai/skills/dex-browser)
+- [CSS Selectors Reference](references/selectors.md)
+- [Common Browser Automation Patterns](references/patterns.md)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, JSON, Files, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands; scripts return JSON responses and screenshot files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Rendered HTML is truncated to 50k characters, extraction is capped at 50 elements, and screenshots default to /tmp/screenshot.png.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

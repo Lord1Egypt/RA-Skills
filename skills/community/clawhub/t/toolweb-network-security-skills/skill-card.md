@@ -1,41 +1,52 @@
-## Description: <br>
-Generates comprehensive skill assessments and personalized learning roadmaps for network and security professionals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates comprehensive skill assessments and personalized learning roadmaps for network and security professionals.
 
-## Publisher: <br>
-[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd)
 
-## Use Case: <br>
-Security professionals, training providers, organizations, and educational institutions use this skill to generate skill assessments, personalized learning roadmaps, certification guidance, hands-on labs, and knowledge checks for network and security career development. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Requests may include real names, organization names, current roles, or other workplace profile details. <br>
-Mitigation: Use pseudonyms or non-identifying labels where possible, and confirm the provider's privacy, retention, logging, and data-processing terms before sending confidential details. <br>
+## Use Case:
 
+External users, developers, training providers, HR teams, educational institutions, and security professionals use this skill to generate skills assessments, learning roadmaps, certification guidance, hands-on lab scenarios, and knowledge checks for network and cybersecurity roles.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/krishnakumarmahadevan-cmd/toolweb-network-security-skills) <br>
-- [API Docs](https://api.mkkpro.com:8158/docs) <br>
-- [Network Security Skills API Route](https://api.mkkpro.com/security/network-security-skills) <br>
-- [ToolWeb OpenClaw](https://toolweb.in/openclaw/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Text, Guidance] <br>
-**Output Format:** [JSON response containing HTML report fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Optional lab scenarios and knowledge checks are included when requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and OpenAPI info.version) <br>
+Risk: Users may submit personal, employee, workplace, or career-profile data to a third-party hosted assessment API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use pseudonyms or omit optional organization details where possible, avoid confidential records and secrets, and verify the provider's privacy and retention practices before enterprise or HR use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/krishnakumarmahadevan-cmd/skills/toolweb-network-security-skills)
+- [API Documentation](https://api.mkkpro.com:8158/docs)
+- [Kong Route](https://api.mkkpro.com/security/network-security-skills)
+- [OpenAPI Specification](artifact/openapi.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, guidance]
+
+**Output Format:** [HTML-formatted assessment reports, learning roadmaps, certification guidance, lab scenarios, and knowledge checks returned through API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include assessment_html, roadmap_html, certification_html, optional labs_html, optional questions_html, and generated_at fields.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and OpenAPI info.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

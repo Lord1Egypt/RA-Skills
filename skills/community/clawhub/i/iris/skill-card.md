@@ -1,40 +1,59 @@
-## Description: <br>
-Iris reads a Gmail inbox, scores recent emails by urgency and sender importance, drafts replies for the top five, and produces a daily action list. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Iris reads a Gmail inbox, scores recent email by urgency and sender importance, drafts replies for the top five actionable messages, and writes a daily action report.
 
-## Publisher: <br>
-[occupythemilkyway](https://clawhub.ai/user/occupythemilkyway) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[occupythemilkyway](https://clawhub.ai/user/occupythemilkyway)
 
-## Use Case: <br>
-Individuals and teams use Iris to triage Gmail, identify messages needing attention, prepare draft responses, and save a local daily inbox report. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a sensitive Gmail app password to read inbox data. <br>
-Mitigation: Use a revocable Gmail app password, store it privately, and revoke it from Google Account settings when the skill is no longer needed. <br>
-Risk: The skill saves email-derived details to a local Markdown report by default. <br>
-Mitigation: Run it in a private directory, review the generated report, and delete reports that should not be retained. <br>
+## Use Case:
 
+Individuals and teams use Iris to triage recent Gmail messages, identify priority items, prepare draft replies, and keep a local markdown report for daily follow-up.
 
-## Reference(s): <br>
-- [Iris ClawHub skill page](https://clawhub.ai/occupythemilkyway/iris) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance] <br>
-**Output Format:** [Console output and a local Markdown inbox report with draft reply text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Gmail address and Gmail app password environment variables; writes an inbox_report_<date>.md file locally.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: frontmatter, server release metadata) <br>
+Risk: The skill handles Gmail credentials and email-derived content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a Gmail app password, keep credentials in environment variables, and revoke the app password from Google Account settings when it is no longer needed.
+
+Risk: The skill writes sender, subject, urgency, and draft-reply data to a local markdown report.
+
+Mitigation: Run it only in a trusted working directory and avoid regulated or highly sensitive mail unless report writing is changed or disabled.
+
+Risk: The documented install command uses system Python package installation.
+
+Mitigation: Install and run the skill in a dedicated virtual environment.
+
+## Reference(s):
+
+- [Iris ClawHub skill page](https://clawhub.ai/occupythemilkyway/skills/iris)
+- [Iris ClawHub homepage](https://clawhub.ai/occupythemilkyway/iris)
+- [OccupyTheMilkyWay publisher profile](https://clawhub.ai/user/occupythemilkyway)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Console output and markdown report with draft-reply text and setup commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes a local inbox_report_<date>.md file containing email-derived sender, subject, priority, and draft-reply content.]
+
+## Skill Version(s):
+
+1.0.4 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

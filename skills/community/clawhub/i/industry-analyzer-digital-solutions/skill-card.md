@@ -1,39 +1,55 @@
-## Description: <br>
-Analyzes digital transformation solutions for an industry across major Chinese cloud and technology vendors plus vertical solution providers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes digital transformation solutions for a given industry across Huawei, Alibaba, Baidu, Tencent, and vertical industry solution providers, including products, positioning, differentiation, and customer examples.
 
-## Publisher: <br>
-[zrxparley](https://clawhub.ai/user/zrxparley) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zrxparley](https://clawhub.ai/user/zrxparley)
 
-## Use Case: <br>
-Developers, analysts, and research agents use this skill to compare industry digital transformation offerings from Huawei, Alibaba, Baidu, Tencent, and vertical vendors, then produce a local industry solution report. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill writes local report and session files, which may overwrite or replace existing analysis work in the target output folder. <br>
-Mitigation: Check whether output/{industry-slug}/03-digital-solutions.md or session.json already contain work that should be preserved before running the skill. <br>
+## Use Case:
 
+Industry analysts, consultants, and agent workflows use this skill to produce the digital-solutions step of an industry analysis. It writes a Markdown analysis covering the four major vendors and at least three vertical providers, then updates the analysis session state.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zrxparley/industry-analyzer-digital-solutions) <br>
-- [Major vendors list](references/major-vendors-list.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration] <br>
-**Output Format:** [Markdown report with session.json status updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes output/{industry-slug}/03-digital-solutions.md and updates output/{industry-slug}/session.json.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: The generated industry analysis may contain outdated or unsupported vendor claims.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated claims and sources before relying on the analysis.
+
+Risk: The skill writes analysis output and session state under the relevant output/{industry-slug} directory.
+
+Mitigation: Run it in the intended workspace and review file changes before publishing or sharing results.
+
+## Reference(s):
+
+- [Major vendors search checklist](references/major-vendors-list.md)
+- [ClawHub skill page](https://clawhub.ai/zrxparley/skills/industry-analyzer-digital-solutions)
+- [Publisher profile](https://clawhub.ai/user/zrxparley)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration]
+
+**Output Format:** [Markdown analysis file plus session state update]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates or updates output/{industry-slug}/03-digital-solutions.md and output/{industry-slug}/session.json.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

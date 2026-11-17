@@ -1,40 +1,57 @@
-## Description: <br>
-Context-based skill auto-routing + federated skill composition. Analyzes user input to auto-select single or multiple skills and execute in order. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Skill Router analyzes user requests, selects one or more matching skills, and proposes or executes ordered skill chains.
 
-## Publisher: <br>
-[mupengi-bot](https://clawhub.ai/user/mupengi-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[mupengi-bot](https://clawhub.ai/user/mupengi-bot)
 
-## Use Case: <br>
-Developers and agent operators use this skill to classify a user request, select one or more matching skills, order them into a workflow, and synthesize the downstream results. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Broad automatic routing can run and chain other skills, including account and deployment workflows, without enough clear scoping or user control. <br>
-Mitigation: Disable universal routing by default, require explicit confirmation before script execution or account/deployment actions, and allowlist trusted downstream skills. <br>
-Risk: Chained hooks and event files can make automation behavior hard to inspect during multi-skill workflows. <br>
-Mitigation: Make event files and hooks easy to inspect and clear before and after execution. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/mupengi-bot/mupeng-skill-router) <br>
-- [Publisher profile](https://clawhub.ai/user/mupengi-bot) <br>
+## Use Case:
 
+Developers and agent operators use this skill to route user requests to available skills, compose multi-step workflows, and coordinate approval-gated downstream actions.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and text guidance with inline shell command examples and workflow descriptions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose or coordinate chained skill execution; external account, posting, email, payment, git, or deployment actions should require explicit approval.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The router can execute and chain other skills broadly, increasing the impact of an incorrect routing decision or unsafe downstream skill.
+
+Mitigation: Install it only in environments where downstream skills are trusted and constrained by an external policy or approval layer.
+
+Risk: Approval boundaries for side effects may be insufficient for sensitive actions such as repository changes, email, social posting, or recovery tooling.
+
+Mitigation: Require explicit human approval for external actions and avoid granting access to credentials, repositories, social accounts, email, or system-recovery tools unless separately governed.
+
+Risk: The skill describes event and log persistence that may retain operational context.
+
+Mitigation: Use it only where event and log persistence is acceptable, and review retention paths before handling sensitive data.
+
+## Reference(s):
+
+- [Skill Chain Templates](artifact/chains.md)
+- [ClawHub Skill Page](https://clawhub.ai/mupengi-bot/skills/mupeng-skill-router)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and plain text with shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May coordinate downstream skill execution and event or log persistence depending on the routed skills.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

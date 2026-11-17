@@ -32,11 +32,11 @@ Out of scope:
 
 Authoritative sources:
 
-- `SKILL.md` -- runtime instructions and reference routing.
-- `references/*.md` -- bundled supplementary content (22 file(s)).
-- `distillery/tests/fixtures/triggers/ia-agent-native-architecture.jsonl` -- positive and negative trigger phrasings under regression test.
-- `plugins/whetstone/hooks/skill-patterns.sh` -- regex pattern that fires this skill.
-- `distillery/.eval-data/ia-agent-native-architecture/` -- harvested session examples (when present).
+- `SKILL.md`: runtime instructions and reference routing.
+- `references/*.md`: bundled supplementary content (26 file(s)).
+- `distillery/tests/fixtures/triggers/ia-agent-native-architecture.jsonl`: positive and negative trigger phrasings under regression test.
+- `plugins/whetstone/hooks/skill-patterns.sh`: regex pattern that fires this skill.
+- `distillery/.eval-data/ia-agent-native-architecture/`: harvested session examples (when present).
 
 Data that must not be stored in this skill or its references:
 
@@ -50,7 +50,7 @@ Data that must not be stored in this skill or its references:
 |---|---|---|
 | Trigger fixtures | complete | distillery/tests/fixtures/triggers/ia-agent-native-architecture.jsonl (>=5 should_trigger, >=5 should_not_trigger) |
 | Hook regex pattern | complete | plugins/whetstone/hooks/skill-patterns.sh (`SKILL_PATTERNS[ia-agent-native-architecture]`) |
-| Reference architecture | complete | 22 file(s) under references/ |
+| Reference architecture | complete | 26 file(s) under references/ |
 | Real-usage signal | <!-- populated by harvest-sessions when sessions exist --> | distillery/.eval-data/ia-agent-native-architecture/ (created by harvest-sessions) |
 
 ## Evaluation
@@ -86,4 +86,4 @@ Acceptance gates:
 - Update this `SPEC.md` when intent, scope, evidence model, evaluation gates, or maintenance expectations change.
 - Update the trigger fixture when adding new positive phrasings, removing stale ones, or expanding scope (the 5/5 floor is a hard validator gate).
 - Update the hook regex in `skill-patterns.sh` whenever fixture positives expose a missed phrasing; verify F1 = 1.0 with `eval-triggers` before committing.
-- Run the full release pipeline via `/release` -- never bump versions or update CHANGELOG.md from a per-skill edit.
+- Run the full release pipeline via `/release`; never bump versions or update CHANGELOG.md from a per-skill edit.

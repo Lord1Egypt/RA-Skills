@@ -1,39 +1,54 @@
-## Description: <br>
-This skill triggers when the user asks for daily advice, weather, a morning routine, calendar reading, or uses phrases like "今天气象如何", "翻翻老黄历", "今天怎么样", or "出门建议" and provides a comprehensive daily guide covering weather, clothing, health, work, wealth, emotions, and food, wrapped in traditional Eastern philosophical metaphors strictly without any superstition. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill provides a Chinese-language daily guide covering weather, clothing, health, work, wealth, emotions, and food, using traditional Eastern philosophical metaphors without superstition.
 
-## Publisher: <br>
-[jkzfhq](https://clawhub.ai/user/jkzfhq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jkzfhq](https://clawhub.ai/user/jkzfhq)
 
-## Use Case: <br>
-External users use this skill to receive a structured daily lifestyle guide for weather, clothing, home and health, work and resource choices, relationships, emotions, and food. The skill frames practical advice through traditional Eastern cultural metaphors while avoiding superstition. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Daily health, wealth, weather, and lifestyle suggestions may be mistaken for authoritative advice. <br>
-Mitigation: Treat outputs as general lifestyle guidance and verify practical facts such as local weather, medical issues, and financial decisions separately. <br>
+## Use Case:
 
+External users use this skill to get concise daily lifestyle guidance in a traditional-philosophy tone, including weather-aware clothing, health, work, emotional, and food suggestions.
 
-## Reference(s): <br>
-- [Daily Life Compass on ClawHub](https://clawhub.ai/jkzfhq/daily-life-compass) <br>
-- [Project homepage](https://iheaven.org) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown text with seven daily-guidance sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only lifestyle guidance; no code, shell commands, credentials, persistence, or system access] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: SKILL.md frontmatter, package.json, ClawHub release evidence) <br>
+Risk: Broad daily-advice trigger phrases can cause this skill to answer when a narrower weather or calendar response was expected.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill when a Chinese-language lifestyle guide is desired, and ask explicitly for only weather or calendar facts when broader advice is not wanted.
+
+Risk: The skill may answer in Chinese because its persona and workflow are Chinese-language.
+
+Mitigation: Deploy it where Chinese-language guidance is acceptable, or explicitly request another language when needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jkzfhq/skills/daily-life-compass)
+- [Project homepage](https://iheaven.org)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Chinese-language Markdown-style structured daily guide]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable output; content is generated as lifestyle advice and may include weather-aware recommendations when weather context is available.]
+
+## Skill Version(s):
+
+2.0.0 (source: SKILL.md frontmatter, package.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

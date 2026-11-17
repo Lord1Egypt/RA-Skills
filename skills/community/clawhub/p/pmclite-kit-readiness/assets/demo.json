@@ -1,0 +1,34 @@
+{
+  "notice": "示例数据 · 不是你的真实工单",
+  "summary": {
+    "blocked": 1,
+    "shortage_items": 2,
+    "kit_rate": 0.33
+  },
+  "items": [
+    {
+      "work_order": "WO-0028",
+      "material": "SUB-001",
+      "required": 50,
+      "stock": 0,
+      "gap": 50,
+      "verdict": "阻断"
+    },
+    {
+      "work_order": "WO-0029",
+      "material": "M-2201",
+      "required": 120,
+      "stock": 118,
+      "gap": 2,
+      "verdict": "需关注"
+    },
+    {
+      "work_order": "WO-0030",
+      "material": "M-3305",
+      "required": 80,
+      "stock": 80,
+      "gap": 0,
+      "verdict": "可执行"
+    }
+  ]
+}

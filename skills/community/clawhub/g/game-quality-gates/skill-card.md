@@ -1,47 +1,65 @@
-## Description: <br>
-Game development quality gates and mandatory checks for building, reviewing, debugging, or deploying H5, Canvas, WebGL, Phaser, Three.js, 2D, and 3D game projects. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Game development quality gates and mandatory checks for building, reviewing, debugging, or deploying H5, Canvas, WebGL, Phaser, Three.js, 2D, and 3D game projects.
 
-## Publisher: <br>
-[abczsl520](https://clawhub.ai/user/abczsl520) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[abczsl520](https://clawhub.ai/user/abczsl520)
 
-## Use Case: <br>
-Developers and engineers use this skill as a pre-deploy checklist and diagnostic guide for game-specific issues such as state leaks, lifecycle bugs, memory growth, input handling, audio behavior, persistence, networking, anti-cheat, and performance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate for many game-development tasks and can influence broad implementation decisions. <br>
-Mitigation: Review generated guidance against the target engine, platform, and project constraints before applying it. <br>
-Risk: Manual installation from a Git repository can introduce changes beyond this reviewed release. <br>
-Mitigation: Review future updates before pulling or reinstalling, and prefer the validated ClawHub release when available. <br>
+## Use Case:
 
+Developers and engineers use this skill as a pre-deploy and diagnostic checklist for game projects, especially to catch lifecycle, cleanup, input, audio, persistence, networking, anti-cheat, asset loading, and performance issues. It provides universal game quality gates plus Phaser, Three.js, and web-game anti-cheat guidance.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/abczsl520/game-quality-gates) <br>
-- [Universal Rules](docs/Universal-Rules.md) <br>
-- [Phaser Engine Guide](docs/Phaser-Guide.md) <br>
-- [Three.js Engine Guide](docs/Threejs-Guide.md) <br>
-- [Anti-Cheat Patterns](docs/Anti-Cheat-Patterns.md) <br>
-- [Phaser Engine Quality Gates Reference](references/phaser.md) <br>
-- [Three.js Engine Quality Gates Reference](references/threejs.md) <br>
-- [Anti-Cheat Patterns Reference](references/anti-cheat.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with checklists, code examples, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only skill; no hidden execution or data access identified in security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: The skill can auto-trigger across a broad range of game-development work and may surface checklist items outside the immediate project context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the recommendations against the game engine, platform, and release stage before applying them.
+
+Risk: Three.js asset-compression examples use npx commands that may fetch package code at execution time.
+
+Mitigation: Pin @gltf-transform/cli to a reviewed version or run an already installed local binary under a lockfile.
+
+Risk: Manual clone or update installation depends on the integrity of external source content.
+
+Mitigation: Review the source and release evidence before manual git clone or git pull installs.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/abczsl520/skills/game-quality-gates)
+- [Universal Rules](docs/Universal-Rules.md)
+- [Phaser Guide](references/phaser.md)
+- [Three.js Guide](references/threejs.md)
+- [Anti-Cheat Patterns](references/anti-cheat.md)
+- [Game Quality Gates Wiki](https://github.com/abczsl520/game-quality-gates/wiki)
+- [Phaser Wiki Guide](https://github.com/abczsl520/game-quality-gates/wiki/Phaser-Guide)
+- [Three.js Wiki Guide](https://github.com/abczsl520/game-quality-gates/wiki/Threejs-Guide)
+- [Anti-Cheat Wiki Patterns](https://github.com/abczsl520/game-quality-gates/wiki/Anti-Cheat-Patterns)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with checklists, code examples, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Engine-specific references are loaded when Phaser, Three.js, or anti-cheat guidance is relevant.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,53 @@
-## Description: <br>
-Fetch KBO game schedules and results for a specific date with the kbo-game npm package. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetch KBO game schedules and results for a specific date with the kbo-game npm package.
 
-## Publisher: <br>
-[5eun](https://clawhub.ai/user/5eun) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[5eun](https://clawhub.ai/user/5eun)
 
-## Use Case: <br>
-External users and agents use this skill to fetch and summarize KBO schedules, scores, and game status for a specific date, including compact team-filtered scoreboard responses. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill installs and runs the third-party npm package kbo-game globally. <br>
-Mitigation: Review or pin the npm package version before use, especially in locked-down or sensitive environments. <br>
-Risk: KBO site changes or package response changes can break or alter returned scoreboard data. <br>
-Mitigation: Check date-specific results for plausibility and provide raw JSON when the user needs verification. <br>
+## Use Case:
 
+External users and sports-focused agents use this skill to fetch compact KBO game schedules, statuses, and scores for a requested absolute or relative date, with optional team filtering.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/5eun/kbo-results) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with compact scoreboard summaries and optional inline shell commands or JSON excerpts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can filter results by date and, when requested, by team.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill instructs the agent to globally install and execute an unpinned npm package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill in a sandbox or pin and review the kbo-game package version before installation.
+
+Risk: The underlying KBO package or upstream site can change, which may break results or produce empty schedules.
+
+Mitigation: Check returned data before presenting it as final and explain empty or failed responses as possible package or schedule issues.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/5eun/skills/kbo-results)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with compact scoreboard summaries and optional inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May summarize raw JSON from kbo-game and filter results by team when requested.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

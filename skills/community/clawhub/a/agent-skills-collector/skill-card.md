@@ -1,44 +1,61 @@
-## Description: <br>
-Collects AI skills relevant to an agent business type from SkillHub in real time and exports them as an Excel inventory, with interactive data-source selection. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Collects AI Skills related to a specified agent business type from SkillHub and exports the results as an Excel inventory.
 
-## Publisher: <br>
-[shmiss](https://clawhub.ai/user/shmiss) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shmiss](https://clawhub.ai/user/shmiss)
 
-## Use Case: <br>
-Developers and agent builders use this skill to discover public skills relevant to business agent categories such as HR, sales, customer service, data analysis, finance, IT, marketing, legal, content, and travel. It exports a deduplicated Excel inventory with descriptions, relevance labels, categories, install guidance or URLs, tags, stars, downloads, and versions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The script performs live network searches and results can change or be rate limited. <br>
-Mitigation: Run it against public catalog data, allow for retry or review time, and validate exported rows before relying on them. <br>
-Risk: Public skill description snippets may be sent to MyMemory for translation. <br>
-Mitigation: Avoid private or proprietary catalog data, or disable or replace translation before use. <br>
-Risk: Python dependencies are listed without pinned versions. <br>
-Mitigation: Pin dependencies to known patched versions before production or controlled-environment use. <br>
+## Use Case:
 
+Developers and agent builders use this skill to find, classify, and export candidate AI Skills for business agent types such as HR, sales, customer service, data analysis, finance, IT, marketing, legal, and content workflows.
 
-## Reference(s): <br>
-- [Agent Skills Collector on ClawHub](https://clawhub.ai/shmiss/agent-skills-collector) <br>
-- [ClawHub mirror API](https://cn.clawhub-mirror.com/api/v1) <br>
-- [SkillHub skill pages](https://skillhub.tencent.com/skill/{slug}) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Text, Shell commands] <br>
-**Output Format:** [Excel workbook (.xlsx) plus terminal status text and install guidance or skill URLs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Rows include skill name, relevance, category, description, install command or URL, tags, stars, downloads, and version.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Untrusted remote skill metadata may be written into Excel cells without formula neutralization.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Open generated workbooks with external content and automatic link updates disabled, and review workbook contents before sharing or operational use.
+
+Risk: The skill contacts SkillHub, cn.clawhub-mirror.com, and a third-party translation service.
+
+Mitigation: Use only in environments where these outbound data flows are acceptable, especially when collecting sensitive or internal skill search terms.
+
+Risk: Mutable dependency installs and external CLI behavior can change over time.
+
+Mitigation: Prefer a project-local install with pinned dependency versions and review the installed SkillHub CLI before use in sensitive environments.
+
+## Reference(s):
+
+- [Agent Skills Collector release page](https://clawhub.ai/shmiss/skills/agent-skills-collector)
+- [Publisher profile](https://clawhub.ai/user/shmiss)
+- [SkillHub skill pages](https://skillhub.tencent.com/skill/{slug})
+- [ClawHub mirror API](https://cn.clawhub-mirror.com/api/v1)
+- [ClawHub mirror skill pages](https://cn.clawhub-mirror.com/skill/{slug})
+
+## Skill Output:
+
+**Output Type(s):** [Files, Shell commands, Guidance]
+
+**Output Format:** [Excel workbook (.xlsx) with terminal status messages and install or URL guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Workbook rows include skill name, relevance, category, description, install guidance or URL, tags, stars, downloads, and version.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

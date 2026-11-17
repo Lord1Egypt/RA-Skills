@@ -1,41 +1,57 @@
-## Description: <br>
-A stateful, neuro-inspired thinking framework that guides users through excavation, architecture, and synthesis phases for complex problem-solving. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A stateful, neuro-inspired thinking framework that guides users through excavation, architecture, and synthesis phases for complex problem-solving.
 
-## Publisher: <br>
-[bruno-nimbledev](https://clawhub.ai/user/bruno-nimbledev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[bruno-nimbledev](https://clawhub.ai/user/bruno-nimbledev)
 
-## Use Case: <br>
-External users and developers use DeepThinking to guide complex decisions, idea exploration, and ambiguity resolution through a stateful coaching flow with persistent local memory. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill stores and reuses sensitive personal reflections and behavioral profiles in local files. <br>
-Mitigation: Review ~/.deepthinking before use, avoid storing secrets or regulated information, and inspect or remove stored memory and profile files when needed. <br>
-Risk: Optional scheduled execution can repeatedly consolidate behavioral data or propose prompt changes. <br>
-Mitigation: Enable cron or systemd setup only when intentionally needed, and keep review and approval of evolution proposals manual. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [DeepThinking ClawHub Page](https://clawhub.ai/bruno-nimbledev/deepthinking) <br>
-- [DeepThinking README](README.md) <br>
-- [Cognitive Modules Reference](references/modules.md) <br>
+## Use Case:
 
+External users use this skill to work through complex decisions, ambiguous ideas, and personal or professional uncertainty through structured coaching-style questions. It persists local session state and memory so the agent can pause, resume, and tailor later sessions.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Conversational Markdown with inline shell commands and local state/configuration file updates.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read and write local files under ~/.deepthinking and use Python helper scripts for state, memory, and evolution.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata; artifact frontmatter reports 1.0.2) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill stores and reuses sensitive personal reflections and inferred behavior patterns across sessions.
+
+Mitigation: Review ~/.deepthinking regularly, inspect the semantic profile before relying on it, and delete or protect the directory when long-term memory is not desired.
+
+Risk: Optional cron or systemd persistence can extend local memory consolidation beyond an interactive session.
+
+Mitigation: Enable scheduled evolution only when needed, keep it under the normal user account, and avoid sudo for routine setup.
+
+Risk: The skill has no server-provided license identifier.
+
+Mitigation: Confirm license and terms before deployment or redistribution.
+
+## Reference(s):
+
+- [Cognitive Modules Reference](artifact/references/modules.md)
+- [ClawHub skill page](https://clawhub.ai/bruno-nimbledev/skills/deepthinking)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and locally persisted state files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses local files under ~/.deepthinking for session state, memory, archives, and evolution data.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

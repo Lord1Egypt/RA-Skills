@@ -1,43 +1,58 @@
-## Description: <br>
-System Monitor helps agents run system health checks for disk, memory, CPU, services, Docker, network usage, and historical trend reporting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+System Monitor helps an agent run local host checks for disk, memory, CPU, network, Docker, service status, saved history, trend comparison, and threshold alerts.
 
-## Publisher: <br>
-[weznai](https://clawhub.ai/user/weznai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[weznai](https://clawhub.ai/user/weznai)
 
-## Use Case: <br>
-Developers and operators use this skill to inspect local system health, report resource pressure, compare recent monitoring snapshots, and support scheduled health checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads and stores local system health details, including process and service information. <br>
-Mitigation: Treat the history directory as sensitive operational data, restrict file permissions, and review cleanup behavior before scheduled use. <br>
-Risk: The trend script can expose aggregate disk and memory history through a QuickChart URL. <br>
-Mitigation: Run trend reporting only where sending aggregate monitoring data to quickchart.io is acceptable, or avoid opening the generated chart link on sensitive systems. <br>
-Risk: The artifact documents cross-platform behavior but the included wrapper depends on platform-specific helper scripts being present. <br>
-Mitigation: Validate the installed script set on each target platform before relying on scheduled monitoring outside Linux. <br>
+## Use Case:
 
+Developers and operators use this skill for manual or scheduled health checks of server environments, reviewing resource usage, service state, alerts, and changes across saved snapshots.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/weznai/skill-system-monitor) <br>
-- [QuickChart](https://quickchart.io/chart) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and terminal text with shell command examples and JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local health reports and history comparisons; trend reporting can include an external QuickChart URL.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Scheduled monitoring collects and retains host telemetry such as uptime, resource usage, network counters, Docker counts, service status, and top process names.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run as an unprivileged user, restrict access to the history directory, and deploy only where local telemetry retention is acceptable.
+
+Risk: Trend reports can expose disk and memory history through generated QuickChart links.
+
+Mitigation: Open or share generated chart links only when sending that history to quickchart.io is acceptable.
+
+Risk: The security summary flags ineffective disable settings, cleanup handling concerns, and configuration-handling issues.
+
+Mitigation: Review or fix cleanup and configuration behavior before use on shared or production systems.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/weznai/skills/skill-system-monitor)
+- [QuickChart chart endpoint used by trend reports](https://quickchart.io/chart?w=500&h=300&c={encoded})
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Plain-text monitoring reports with JSON history files and optional chart URLs.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores local host telemetry history for trend comparison.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

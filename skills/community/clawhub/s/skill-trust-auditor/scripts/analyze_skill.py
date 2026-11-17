@@ -17,13 +17,14 @@ Exits:
 """
 
 import argparse
+import fnmatch
 import json
 import os
 import re
-import subprocess
 import sys
 import urllib.request
 import urllib.error
+import urllib.parse
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
@@ -31,13 +32,22 @@ from typing import Any
 SCRIPT_DIR = Path(__file__).parent
 PATTERNS_FILE = SCRIPT_DIR / "patterns.json"
 
-# ClawHub URL templates (fictional platform)
-CLAWHUB_RAW_BASE = "https://clawhub.ai/{skill}/raw/{file}"
-CLAWHUB_API_BASE = "https://clawhub.ai/api/v1/skills/{skill}"
-GITHUB_RAW_BASE = "https://raw.githubusercontent.com/{path}"
+CLAWHUB_SITE = os.environ.get("CLAWHUB_SITE", "https://clawhub.ai").rstrip("/")
+CLAWHUB_REGISTRY = os.environ.get("CLAWHUB_REGISTRY", "").rstrip("/")
 
 # Max file size to download (bytes) — prevent OOM on huge files
 MAX_FETCH_BYTES = 512 * 1024  # 512 KB
+MAX_FETCH_FILES = 100
+TEXT_EXTENSIONS = {
+    ".md", ".txt", ".sh", ".bash", ".zsh", ".py", ".js", ".mjs", ".cjs",
+    ".ts", ".tsx", ".json", ".yaml", ".yml", ".toml", ".sql", ".plist",
+    ".html", ".css", ".svg",
+}
+PASSIVE_ASSET_EXTENSIONS = {
+    ".png", ".jpg", ".jpeg", ".gif", ".webp", ".ico",
+    ".woff", ".woff2", ".ttf", ".otf",
+    ".mp3", ".wav", ".m4a", ".mp4", ".mov",
+}
 
 # Score thresholds
 VERDICT_SAFE = 90
@@ -73,10 +83,24 @@ def parse_input(raw: str) -> dict:
     """
     raw = raw.strip()
     if raw.startswith("http://") or raw.startswith("https://"):
-        # Extract skill name from URL if possible
-        # e.g. https://clawhub.ai/steipete/git-summary -> steipete/git-summary
-        m = re.search(r"clawhub\.ai/([^/?#]+/[^/?#]+)", raw)
-        skill_name = m.group(1) if m else raw.split("/")[-2] + "/" + raw.split("/")[-1]
+        parsed = urllib.parse.urlparse(raw)
+        parts = [
+            urllib.parse.unquote(part)
+            for part in parsed.path.split("/")
+            if part
+        ]
+        if len(parts) >= 3 and parts[1] == "skills":
+            owner, slug = parts[0], parts[2]
+        elif len(parts) >= 2:
+            owner, slug = parts[0], parts[1]
+        else:
+            print(f"ERROR: Could not extract owner/skill from URL: {raw}", file=sys.stderr)
+            sys.exit(2)
+        owner = owner.lstrip("@")
+        if not owner or not slug:
+            print(f"ERROR: Could not extract owner/skill from URL: {raw}", file=sys.stderr)
+            sys.exit(2)
+        skill_name = f"{owner}/{slug}"
         return {"type": "url", "skill_name": skill_name, "url": raw}
     else:
         # Expect "user/skill" format
@@ -105,120 +129,135 @@ def _http_get(url: str, timeout: int = 10) -> str | None:
         return None
 
 
-def _clawhub_cli(args: list[str]) -> str | None:
-    """Run a clawhub CLI command, return stdout or None if CLI not available."""
-    if not _clawhub_cli.available:
+def _http_get_json(url: str, timeout: int = 10) -> dict | None:
+    """Fetch and decode a bounded JSON object."""
+    text = _http_get(url, timeout=timeout)
+    if not text:
         return None
     try:
-        result = subprocess.run(
-            ["clawhub"] + args,
-            capture_output=True, text=True, timeout=15
-        )
-        return result.stdout if result.returncode == 0 else None
-    except FileNotFoundError:
-        _clawhub_cli.available = False
-        return None
-    except subprocess.TimeoutExpired:
+        value = json.loads(text)
+        return value if isinstance(value, dict) else None
+    except json.JSONDecodeError:
         return None
 
-_clawhub_cli.available = True  # assume until proven otherwise
+
+def _split_skill_name(skill_name: str) -> tuple[str, str]:
+    owner, slug = skill_name.split("/", 1)
+    return owner.lstrip("@"), slug
 
 
-def fetch_skill_file(skill_name: str, filename: str) -> str | None:
-    """Fetch a single file from a skill. Try CLI first, then URL."""
-    # 1. Try clawhub CLI
-    content = _clawhub_cli(["show", skill_name, "--file", filename])
-    if content:
-        return content
-
-    # 2. Try ClawHub raw URL
-    url = CLAWHUB_RAW_BASE.format(skill=skill_name, file=filename)
-    content = _http_get(url)
-    if content:
-        return content
-
-    # 3. Try GitHub (common pattern: skills mirrored to GitHub)
-    # E.g. steipete/skill-name -> github.com/steipete/skill-name
-    github_url = f"https://raw.githubusercontent.com/{skill_name}/main/{filename}"
-    content = _http_get(github_url)
-    if content:
-        return content
-
-    return None
+def _discover_registry() -> str:
+    """Resolve the current registry through ClawHub's public discovery file."""
+    if CLAWHUB_REGISTRY:
+        return CLAWHUB_REGISTRY
+    for name in ("clawhub.json", "clawdhub.json"):
+        data = _http_get_json(f"{CLAWHUB_SITE}/.well-known/{name}")
+        api_base = data.get("apiBase") if data else None
+        if isinstance(api_base, str) and api_base.startswith("https://"):
+            return api_base.rstrip("/")
+    return CLAWHUB_SITE
 
 
-def get_skill_metadata(skill_name: str) -> dict:
-    """Fetch skill metadata (author_verified, featured badge, etc.)."""
-    meta = {"author_verified": False, "clawhub_featured": False, "clawhub_flagged": False}
-
-    # Try clawhub CLI for metadata
-    info = _clawhub_cli(["info", skill_name, "--json"])
-    if info:
-        try:
-            data = json.loads(info)
-            meta["author_verified"] = data.get("author", {}).get("verified", False)
-            meta["clawhub_featured"] = data.get("featured", False)
-            meta["clawhub_flagged"] = data.get("security_flagged", False)
-        except json.JSONDecodeError:
-            pass
-
-    return meta
+def _registry_url(registry: str, path: str, params: dict[str, str]) -> str:
+    query = urllib.parse.urlencode(params)
+    return f"{registry}{path}?{query}"
 
 
-def extract_referenced_scripts(skill_md: str) -> list[str]:
-    """
-    Parse SKILL.md to find referenced script files.
-    Looks for bash code blocks and file references.
-    """
-    scripts = set()
+def fetch_registry_snapshot(skill_name: str) -> tuple[dict, dict[str, str]]:
+    """Fetch metadata and every bounded text file from the latest release."""
+    owner, slug = _split_skill_name(skill_name)
+    registry = _discover_registry()
+    encoded_slug = urllib.parse.quote(slug, safe="")
+    owner_params = {"ownerHandle": owner}
 
-    # Code blocks: ```bash\nbash scripts/foo.sh
-    for m in re.finditer(r"bash\s+(scripts/[^\s\"'\n]+\.(?:sh|py|js|ts))", skill_md):
-        scripts.add(m.group(1))
+    detail_url = _registry_url(
+        registry, f"/api/v1/skills/{encoded_slug}", owner_params
+    )
+    detail = _http_get_json(detail_url)
+    if not detail:
+        return {}, {}
 
-    # Markdown links or inline paths: scripts/foo.sh, scripts/analyze_skill.py
-    for m in re.finditer(r"\b(scripts/[a-zA-Z0-9_/-]+\.(?:sh|py|js|ts|rb))\b", skill_md):
-        scripts.add(m.group(1))
+    latest = detail.get("latestVersion") or {}
+    skill = detail.get("skill") or {}
+    tags = skill.get("tags") or {}
+    version = latest.get("version") or tags.get("latest")
+    if not isinstance(version, str) or not version:
+        return {}, {}
 
-    # Front-matter or metadata references
-    for m in re.finditer(r"['\"]([a-zA-Z0-9_/-]+\.(?:sh|py|js|ts))['\"]", skill_md):
-        path = m.group(1)
-        if not path.startswith("/") and "scripts/" in path or path.endswith(".sh"):
-            scripts.add(path)
+    version_url = _registry_url(
+        registry,
+        f"/api/v1/skills/{encoded_slug}/versions/{urllib.parse.quote(version, safe='')}",
+        owner_params,
+    )
+    version_payload = _http_get_json(version_url) or {}
+    version_record = version_payload.get("version") or {}
+    listed_files = version_record.get("files") or []
 
-    return sorted(scripts)
-
-
-def fetch_all_files(skill_name: str, base_url: str | None = None) -> dict[str, str]:
-    """
-    Fetch SKILL.md plus any referenced scripts.
-    Returns {filename: content} dict.
-    """
     files: dict[str, str] = {}
+    scan_issues: list[str] = []
+    ignored_asset_count = 0
+    if len(listed_files) > MAX_FETCH_FILES:
+        scan_issues.append(
+            f"file_limit_exceeded: listed={len(listed_files)} limit={MAX_FETCH_FILES}"
+        )
 
-    # Always fetch SKILL.md first
-    print(f"  Fetching SKILL.md ...", file=sys.stderr)
-    skill_md = fetch_skill_file(skill_name, "SKILL.md")
-    if not skill_md:
-        # Try README.md as fallback
-        skill_md = fetch_skill_file(skill_name, "README.md")
-    if not skill_md:
-        print(f"  WARNING: Could not fetch SKILL.md for {skill_name}", file=sys.stderr)
-        return files
-
-    files["SKILL.md"] = skill_md
-
-    # Parse SKILL.md for referenced scripts
-    referenced = extract_referenced_scripts(skill_md)
-    for script_path in referenced:
-        print(f"  Fetching {script_path} ...", file=sys.stderr)
-        content = fetch_skill_file(skill_name, script_path)
-        if content:
-            files[script_path] = content
+    for entry in listed_files[:MAX_FETCH_FILES]:
+        path = entry.get("path") if isinstance(entry, dict) else None
+        size = entry.get("size", 0) if isinstance(entry, dict) else 0
+        if not isinstance(path, str) or path.startswith("/") or ".." in Path(path).parts:
+            scan_issues.append(f"invalid_path: {path!r}")
+            continue
+        if size and size > MAX_FETCH_BYTES:
+            scan_issues.append(f"oversized_file: {path} size={size}")
+            continue
+        suffix = Path(path).suffix.lower()
+        if suffix in PASSIVE_ASSET_EXTENSIONS:
+            ignored_asset_count += 1
+            continue
+        if suffix not in TEXT_EXTENSIONS and path != "SKILL.md":
+            scan_issues.append(f"unsupported_file_type: {path}")
+            continue
+        print(f"  Fetching {path} ...", file=sys.stderr)
+        file_url = _registry_url(
+            registry,
+            f"/api/v1/skills/{encoded_slug}/file",
+            {"ownerHandle": owner, "path": path, "version": version},
+        )
+        content = _http_get(file_url)
+        if content is not None:
+            files[path] = content
         else:
-            print(f"  WARNING: Could not fetch {script_path}", file=sys.stderr)
+            scan_issues.append(f"fetch_failed: {path}")
 
-    return files
+    moderation_url = _registry_url(
+        registry, f"/api/v1/skills/{encoded_slug}/moderation", owner_params
+    )
+    moderation_payload = _http_get_json(moderation_url) or {}
+    moderation = moderation_payload.get("moderation") or detail.get("moderation") or {}
+    version_security = version_record.get("security") or {}
+    registry_verdict = (
+        moderation.get("verdict")
+        or version_security.get("status")
+        or (version_security.get("scanners") or {}).get("llm", {}).get("normalizedStatus")
+    )
+    owner_record = detail.get("owner") or {}
+    metadata = {
+        "author_verified": bool(owner_record.get("verified", False)),
+        "clawhub_featured": bool(skill.get("featured", False)),
+        "clawhub_flagged": bool(
+            moderation.get("isSuspicious")
+            or moderation.get("isMalwareBlocked")
+            or registry_verdict in {"suspicious", "malware", "blocked"}
+        ),
+        "registry_verdict": registry_verdict,
+        "version": version,
+        "scan_complete": not scan_issues,
+        "scan_issues": scan_issues,
+        "listed_file_count": len(listed_files),
+        "fetched_file_count": len(files),
+        "ignored_asset_count": ignored_asset_count,
+    }
+    return metadata, files
 
 
 # ── Pattern matching ───────────────────────────────────────────────────────────
@@ -244,7 +283,14 @@ def match_patterns(
                 print(f"  Regex error in pattern {pat['id']}: {e}", file=sys.stderr)
                 continue
 
+            file_types = pat.get("file_types") or ["*"]
             for filename, content in files.items():
+                basename = Path(filename).name
+                if not any(
+                    fnmatch.fnmatch(filename, rule) or fnmatch.fnmatch(basename, rule)
+                    for rule in file_types
+                ):
+                    continue
                 for match in compiled.finditer(content):
                     # Find line number
                     line_num = content[: match.start()].count("\n") + 1
@@ -294,9 +340,12 @@ def calculate_score(findings: list[dict], metadata: dict) -> dict:
       + ClawHub featured badge: +5
     """
     base = 100
-    high_count = sum(1 for f in findings if f["level"] == "HIGH")
-    medium_count = sum(1 for f in findings if f["level"] == "MEDIUM")
-    low_count = sum(1 for f in findings if f["level"] == "LOW")
+    # Count distinct capabilities, not every repeated occurrence. The detailed
+    # findings still preserve per-file evidence, while the score avoids
+    # multiplying one disclosed behavior across many implementation files.
+    high_count = len({f["id"] for f in findings if f["level"] == "HIGH"})
+    medium_count = len({f["id"] for f in findings if f["level"] == "MEDIUM"})
+    low_count = len({f["id"] for f in findings if f["level"] == "LOW"})
 
     high_deduction = high_count * HIGH_RISK_PENALTY
     medium_deduction = medium_count * MEDIUM_RISK_PENALTY
@@ -332,6 +381,8 @@ def calculate_score(findings: list[dict], metadata: dict) -> dict:
 
 
 def verdict(score: int, metadata: dict) -> str:
+    if metadata.get("scan_complete") is False:
+        return "UNKNOWN"
     if metadata.get("clawhub_flagged"):
         return "DO NOT INSTALL"
     if score >= VERDICT_SAFE:
@@ -343,8 +394,10 @@ def verdict(score: int, metadata: dict) -> str:
     return "DO NOT INSTALL"
 
 
-def safe_pattern_summary(findings: list[dict], patterns: dict) -> list[str]:
+def safe_pattern_summary(findings: list[dict], metadata: dict) -> list[str]:
     """Return descriptions of high-risk categories that were NOT triggered."""
+    if metadata.get("scan_complete") is False:
+        return []
     triggered_ids = {f["id"] for f in findings}
     safe = []
     checks = {
@@ -491,6 +544,12 @@ def generate_recommendation(
     verdict_str: str,
     metadata: dict,
 ) -> str:
+    if metadata.get("scan_complete") is False:
+        issues = "; ".join(metadata.get("scan_issues", [])[:3])
+        return (
+            "The bounded scan was incomplete, so no safe installation conclusion is available. "
+            f"Review the omitted or failed files before installation. Issues: {issues}"
+        )
     if not findings and not metadata.get("clawhub_flagged"):
         return "No dangerous patterns detected. Safe to install."
 
@@ -537,7 +596,7 @@ def build_report(
     score = score_breakdown["final"]
     verdict_str = verdict(score, metadata)
     recommendation = generate_recommendation(findings, score, verdict_str, metadata)
-    safe = safe_pattern_summary(findings, {})
+    safe = safe_pattern_summary(findings, metadata)
 
     return {
         "skill": skill_name,
@@ -560,6 +619,13 @@ def build_report(
         "author_verified": metadata.get("author_verified", False),
         "clawhub_featured": metadata.get("clawhub_featured", False),
         "clawhub_flagged": metadata.get("clawhub_flagged", False),
+        "registry_verdict": metadata.get("registry_verdict"),
+        "registry_version": metadata.get("version"),
+        "scan_complete": metadata.get("scan_complete", True),
+        "scan_issues": metadata.get("scan_issues", []),
+        "listed_file_count": metadata.get("listed_file_count"),
+        "fetched_file_count": metadata.get("fetched_file_count", len(files)),
+        "ignored_asset_count": metadata.get("ignored_asset_count", 0),
         "recommendation": recommendation,
         "llm_analysis": llm_analysis,
         "llm_analysis_advisory_only": True if llm_analysis else None,
@@ -578,8 +644,10 @@ def print_human_report(report: dict) -> None:
         badge = "⚠️  INSTALL WITH CAUTION"
     elif verdict_str == "RISKY":
         badge = "🟠 RISKY"
-    else:
+    elif verdict_str == "DO NOT INSTALL":
         badge = "🔴 DO NOT INSTALL"
+    else:
+        badge = "⚪ UNKNOWN"
 
     print(f"\n{'='*60}")
     print(f"🛡️  Trust Audit: {report['skill']}")
@@ -590,6 +658,8 @@ def print_human_report(report: dict) -> None:
         print(f"    ✓   Author verified")
     if report.get("clawhub_featured"):
         print(f"    ⭐  ClawHub featured skill")
+    if not report.get("scan_complete", True):
+        print("    ⚠️   Bounded scan incomplete; verdict cannot be SAFE")
     print(f"{'='*60}\n")
 
     if not report["risks"]:
@@ -636,6 +706,10 @@ def print_human_report(report: dict) -> None:
     print(f"    ─────────────────────")
     print(f"    Final score:        {sb['final']}/100")
     print(f"\n  Fetched files: {', '.join(report['fetched_files']) or 'none'}")
+    if report.get("scan_issues"):
+        print("  Scan issues:")
+        for issue in report["scan_issues"]:
+            print(f"    - {issue}")
     print(f"  Audit time: {report['audit_timestamp']}")
     print(f"{'='*60}\n")
 
@@ -661,10 +735,7 @@ def main() -> None:
     # Fetch skill metadata
     if not args.json_only:
         print("Fetching metadata ...", file=sys.stderr)
-    metadata = get_skill_metadata(skill_name)
-
-    # Fetch skill files
-    files = fetch_all_files(skill_name, parsed.get("url"))
+    metadata, files = fetch_registry_snapshot(skill_name)
 
     if not files:
         error = {
@@ -703,6 +774,8 @@ def main() -> None:
     # Exit code
     if report["verdict"] == "DO NOT INSTALL":
         sys.exit(1)
+    if report["verdict"] == "UNKNOWN":
+        sys.exit(2)
     sys.exit(0)
 
 

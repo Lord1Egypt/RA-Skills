@@ -1,41 +1,56 @@
-## Description: <br>
-Manage Dokploy deployments, projects, applications, and domains via the Dokploy API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Dokploy deployments, projects, applications, and domains via the Dokploy API.
 
-## Publisher: <br>
-[JoshuaRileyDev](https://clawhub.ai/user/JoshuaRileyDev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
+
+[joshuarileydev](https://clawhub.ai/user/joshuarileydev)
+
+### License/Terms of Use:
+
+MIT
+
+## Use Case:
+
+Developers and operators use this skill to manage Dokploy projects, applications, deployments, domains, and application environment variables from an agent-assisted command-line workflow.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill handles Dokploy API keys and application secrets, and the security summary says users should review it before installing.
+
+Mitigation: Review or patch the shell scripts before use, prefer environment variables or a secret store, and rotate any API key that may have been printed or stored in a readable configuration file.
+
+Risk: Configuration and environment commands can expose sensitive API keys or application secrets in files, terminal output, logs, or transcripts.
+
+Mitigation: Avoid running config show or environment variable listing commands in shared logs or transcripts, and restrict access to any local configuration file containing credentials.
+
+Risk: The command scripts can create, update, delete, and deploy Dokploy resources against the configured server.
+
+Mitigation: Use least-privilege Dokploy API keys, confirm the target DOKPLOY_API_URL before mutating commands, and review destructive operations before execution.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and DevOps engineers use this skill to manage Dokploy projects, applications, deployments, domains, and environment variables from an agent-assisted command-line workflow. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Dokploy API keys can grant deployment-management authority and may be persisted in local configuration. <br>
-Mitigation: Use the narrowest API key possible, prefer environment variables for sensitive credentials, and protect or remove local config files that store keys. <br>
-Risk: Environment variable listings, deployment logs, and config output may expose application secrets. <br>
-Mitigation: Review output before sharing it, redact sensitive values, and avoid running secret-bearing commands in public or shared sessions. <br>
-Risk: Deployment, environment, domain, and delete commands can change live Dokploy resources. <br>
-Mitigation: Review every generated command and its target IDs before execution, especially destructive or production-impacting operations. <br>
+**Output Format:** [Markdown and shell command guidance with CLI output from Dokploy API calls]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Requires curl, jq, DOKPLOY_API_URL, and DOKPLOY_API_KEY.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl and jq; uses Dokploy API credentials supplied by the user.] <br>
+1.0.0 (source: package metadata and server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: .clawdhub/package.json and server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

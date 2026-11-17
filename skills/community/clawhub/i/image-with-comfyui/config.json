@@ -1,12 +1,16 @@
 {
   "comfyui_url": "http://localhost:8188",
-  "poll_interval_seconds": 3,
+  "comfyui_api_key": "",
+  "poll_interval_seconds": 10,
+  "keep_models_resident": false,
   "output_dir": "media/comfyui",
   "image": {
+    "output_format": "jpg",
+    "jpg_quality": 89,
     "t2i": {
       "z-image": {
         "workflow_path": "workflows/z-image_t2i_api.json",
-        "timeout_seconds": 100,
+        "timeout_seconds": 500,
         "default_width": 1280,
         "default_height": 720,
         "default_steps": 9,
@@ -14,11 +18,27 @@
       },
       "sd35": {
         "workflow_path": "workflows/sd3.5-med_t2i_api.json",
-        "timeout_seconds": 100,
+        "timeout_seconds": 500,
         "default_width": 1024,
         "default_height": 1024,
         "default_steps": 20,
         "default_cfg": 4.01,
+        "output_subdir": "images"
+      },
+      "qwen21": {
+        "workflow_path": "workflows/qwen_image_2.1_api.json",
+        "timeout_seconds": 500,
+        "default_aspect": "1:1",
+        "default_steps": 25,
+        "default_cfg": 1.0,
+        "output_subdir": "images"
+      },
+      "qwen21t": {
+        "workflow_path": "workflows/qwen_image_2.1_turbo_api.json",
+        "timeout_seconds": 500,
+        "default_aspect": "1:1",
+        "default_steps": 8,
+        "default_cfg": 1.0,
         "output_subdir": "images"
       }
     },
@@ -28,6 +48,52 @@
         "timeout_seconds": 600,
         "default_steps": 4,
         "output_subdir": "images"
+      },
+      "qwen21": {
+        "workflow_path": "workflows/qwen_image_2.1_api.json",
+        "timeout_seconds": 600,
+        "default_aspect": "1:1",
+        "default_steps": 25,
+        "default_cfg": 1.0,
+        "output_subdir": "images"
+      },
+      "qwen21t": {
+        "workflow_path": "workflows/qwen_image_2.1_turbo_api.json",
+        "timeout_seconds": 600,
+        "default_aspect": "1:1",
+        "default_steps": 8,
+        "default_cfg": 1.0,
+        "output_subdir": "images"
+      }
+    }
+  },
+  "mesh": {
+    "pi2m": {
+      "workflow_path": "workflows/trellis2-pixal3d_i2m_api.json",
+      "timeout_seconds": 1000,
+      "default_resolution": 512,
+      "default_seed": 56,
+      "default_scale": 1,
+      "output_subdir": "meshes",
+      "extract": {
+        "enabled": false,
+        "workflow": "none"
+      }
+    },
+    "hyi2m": {
+      "workflow_path": "workflows/hunyuan3d-v2.1_i2m_api.json",
+      "timeout_seconds": 900,
+      "default_resolution": 4096,
+      "default_steps": 30,
+      "default_cfg": 5.0,
+      "default_scale": 3000,
+      "output_subdir": "meshes",
+      "extract": {
+        "enabled": true,
+        "workflow": "i2i",
+        "model": "qwen21",
+        "aspect": "1:1",
+        "prompt_suffix": "isolate the main character, full body, centered, plain transparent background, nothing else"
       }
     }
   },
@@ -42,7 +108,34 @@
       "default_cfg": 4.5,
       "frame_rate": 16,
       "output_subdir": "video",
-      "keep_interpolated_only": true
+      "keep_interpolated_only": false
+    },
+    "h3_t2v": {
+      "workflow_path": "workflows/h3_fasth3_t2v_api.json",
+      "timeout_rule": "length_x600",
+      "timeout_seconds": 120,
+      "default_duration": 15,
+      "default_aspect": "1:1",
+      "default_steps": 8,
+      "output_subdir": "video",
+      "keep_interpolated_only": false
+    },
+    "h3_i2v": {
+      "workflow_path": "workflows/h3_fasth3_i2v_api.json",
+      "timeout_rule": "length_x600",
+      "timeout_seconds": 300,
+      "default_duration": 10,
+      "default_aspect": "1:1",
+      "default_steps": 8,
+      "output_subdir": "video",
+      "keep_interpolated_only": false
     }
-  }
+  },
+  "default_model": {
+    "t2i": "qwen21t",
+    "i2i": "qwen21t",
+    "i2m": "pi2m",
+    "video": "h3_i2v"
+  },
+  "purge_remote": true
 }

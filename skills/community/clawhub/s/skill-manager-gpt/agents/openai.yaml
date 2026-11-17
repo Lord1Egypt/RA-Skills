@@ -1,0 +1,11 @@
+interface:
+  display_name: ClawHub Skill Manager [GPT]
+  short_description: Inspect, publish, and adapt ClawHub skills
+  default_prompt: Use $clawhub-skill-manager to inspect or prepare a ClawHub skill.
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  products:
+  - chatgpt
+  - codex
+  allow_implicit_invocation: true

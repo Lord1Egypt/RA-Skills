@@ -1,0 +1,87 @@
+part: STM32WBA
+link_status: verified_2026-07-02 (datasheet-pdf-mirror-extracted)
+expected_family: "ST STM32WBA \u2014 BLE 5.4 + 802.15.4 single-chip with secure element"
+main_page: https://www.st.com/en/microcontrollers-microprocessors/stm32wba-series.html
+datasheet_path_expected: ../../datasheets/stm32wba52.pdf
+datasheet_source_url: https://www.st.com/resource/en/datasheet/stm32wba52ce.pdf
+datasheet_source_note: "ST official PDF \u2014 st.com datasheet CDN returns 401 to unauthenticated scrape (also Cloudflare-gated\
+  \ per v0.4.0 plan). Reachable only via authenticated Firecrawl scrape or human download. Snapshot of the product family\
+  \ page markdown at references/semiconductor-vendor/ST/firecrawl-snapshots/STM32WBA_clean.md is the basis for the spec values\
+  \ below; deep datasheet values (RX sensitivity, active-mode current, package pinouts) remain unverified."
+subfamilies:
+- id: STM32WBA2x
+  cpu: Cortex-M33 @ 64 MHz
+  flash_max: 512 KB
+  ram_max: 96 KB
+  protocols:
+  - Bluetooth LE
+  - Zigbee 3.0
+  - OpenThread 1.4
+  usb: USB 2.0 Full Speed
+  connectivity: "1x QSPI, 1x SPI, 2x I\xB2C, 1x UART, 1x LPUART, 1x SAI"
+- id: STM32WBA5x
+  cpu: Cortex-M33 @ 100 MHz
+  flash_max: 1 MB
+  ram_max: 128 KB
+  protocols:
+  - Bluetooth LE
+  - Zigbee 3.0
+  - OpenThread 1.4
+  - Aliro 1.0
+  usb: none
+  connectivity: "2x SPI, 2x I\xB2C, 3x UART, 1x SAI"
+- id: STM32WBA6x
+  cpu: Cortex-M33 @ 100 MHz
+  flash_max: 2 MB
+  ram_max: 512 KB
+  protocols:
+  - Bluetooth LE
+  - Zigbee 3.0
+  - OpenThread 1.4
+  - Matter 1.5
+  - Aliro 1.0
+  usb: USB 2.0 High Speed
+  connectivity: "3x SPI, 4x I\xB2C, 4x UART, 1x SAI"
+specs:
+  cores:
+  - Arm Cortex-M33 (WBA2x @ 64 MHz, WBA5x/WBA6x @ 100 MHz)
+  wireless:
+  - Bluetooth LE (LE Coded, LE 2M, extended advertising, LE Audio, direction finding)
+  - IEEE 802.15.4 (Zigbee 3.0, OpenThread, Matter, Aliro)
+  security:
+  - SESIP3 (Arm PSA L3 device capability)
+  - TrustZone
+  - Target certifications: RED, CRA, US CyberAct
+  flash_max: 2 MB
+  ram_max: 512 KB
+  tx_power_dbm_max: 10
+  voltage_v_min: 1.71
+  voltage_v_max: 3.6
+unverified:
+- rx_sensitivity_dbm
+- active_mode_current_ua_per_mhz
+- shutdown_current_na
+- standby_current_na
+- exact_package_pinouts
+- ble_audio_support_per_variant
+- crypto_accelerator_aes
+- package_options_per_subfamily
+notes:
+- "Promoted from placeholder to verified_2026-06-29 \u2014 extracted from ST product family page (Firecrawl scrape, 11KB clean\
+  \ markdown). Replaces 2026-06-28 placeholder that was created when all 4 datasheet download channels failed (st.com Cloudflare\
+  \ + Mouser anti-bot + alldatasheet.com paywall + akizukidenshi maintenance). Sub-family breakdown table (WBA2x/5x/6x) comes\
+  \ directly from the st.com product page comparison table."
+- "STM32WBA \u2014 ST Matter-ready single-chip SoC. Replaces STM32WB55 for new Matter designs."
+- 'Use case: Matter device (light bulb, sensor, door lock), BLE peripheral, Thread endpoint, Aliro smart lock / wearable.'
+- 'Family differentiator vs STM32WB55: Cortex-M33 (vs M4+M0+), Matter 1.5 support, SESIP3 / PSA L3 security, +10 dBm TX (vs
+  +6 dBm), up to 2 MB flash (vs 1 MB).'
+- "Family differentiator vs STM32WL55: BLE/Thread vs LoRa \u2014 different wireless protocols."
+- "NOTE: RX sensitivity, active-mode current, and shutdown current remain unverified \u2014 those live in the datasheet PDF\
+  \ which is still Cloudflare-gated. Re-verify once a datasheet mirror is reachable."
+- 'Re-labeled verified_2026-07-02 via Tavily-found mirror PDF: 9/11 spec fields matched (82%). Source: https://www.st.com/resource/en/datasheet/stm32wba52ce.pdf
+  . Replaces pre-v0.4.1 tag.'
+extracted_at: '2026-06-29T22:38:00+08:00'
+extracted_from_pages: []
+extraction_method: firecrawl-extract of st.com product family page markdown
+extraction_source: references/semiconductor-vendor/ST/firecrawl-snapshots/STM32WBA_clean.md
+extraction_credits_used: 1

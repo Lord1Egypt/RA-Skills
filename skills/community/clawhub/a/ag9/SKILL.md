@@ -86,7 +86,7 @@ Use the same shape:
 {
   "deviceId": "ag9_agent_...",
   "publicKeyPem": "-----BEGIN PUBLIC KEY-----\n...\n-----END PUBLIC KEY-----\n",
-  "privateKeyPem": "-----BEGIN PRIVATE KEY-----\n...\n-----END PRIVATE KEY-----\n",
+  "privateKeyPem": "REDACTED-SECRET\n",
   "createdAt": "2026-05-12T00:00:00.000Z",
   "provider": "ag9-local",
   "label": "local-agent"

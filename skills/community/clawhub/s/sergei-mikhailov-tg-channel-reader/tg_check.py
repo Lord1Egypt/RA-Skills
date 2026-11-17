@@ -33,6 +33,35 @@ _SESSION_NAMES = [
 ]
 
 
+def _parse_proxy(spec):
+    """Parse "host:port" or "socks5://[user:pass@]host:port" into a Pyrogram
+    proxy dict, or return None for an empty/invalid spec. Kept in sync with
+    reader.py._parse_proxy (cannot import reader — it pulls in pyrogram)."""
+    if not spec:
+        return None
+    spec = spec.strip()
+    scheme = "socks5"
+    if "://" in spec:
+        scheme, spec = spec.split("://", 1)
+    username = password = None
+    if "@" in spec:
+        creds, spec = spec.rsplit("@", 1)
+        if ":" in creds:
+            username, password = creds.split(":", 1)
+    if ":" not in spec:
+        return None
+    host, port = spec.rsplit(":", 1)
+    try:
+        port = int(port)
+    except ValueError:
+        return None
+    proxy = {"scheme": scheme, "hostname": host, "port": port}
+    if username:
+        proxy["username"] = username
+        proxy["password"] = password
+    return proxy
+
+
 def _find_session_files() -> list:
     """Find tg-reader session files in home directory and current working directory.
 
@@ -74,6 +103,7 @@ def _check_credentials(config_file=None, session_file=None) -> tuple:
     api_hash = os.environ.get("TG_API_HASH")
     default_session = str(Path.home() / ".tg-reader-session")
     session_name = os.environ.get("TG_SESSION", default_session)
+    proxy_spec = os.environ.get("TG_PROXY")
 
     result: dict = {
         "source": None,
@@ -110,6 +140,8 @@ def _check_credentials(config_file=None, session_file=None) -> tuple:
                 api_hash = cfg.get("api_hash")
             if cfg_session:
                 session_name = cfg_session
+            if not proxy_spec:
+                proxy_spec = cfg.get("socks_proxy")
         except (json.JSONDecodeError, OSError) as e:
             problems.append(f"Config file {config_path} is invalid: {e}")
 
@@ -123,6 +155,9 @@ def _check_credentials(config_file=None, session_file=None) -> tuple:
     # Determine source if not env
     if result["source"] is None and api_id and api_hash:
         result["source"] = "config_file"
+
+    proxy = _parse_proxy(proxy_spec)
+    result["proxy"] = f"{proxy['scheme']}://{proxy['hostname']}:{proxy['port']}" if proxy else None
 
     result["api_id_set"] = bool(api_id)
     result["api_hash_set"] = bool(api_hash)
@@ -145,7 +180,7 @@ def _check_credentials(config_file=None, session_file=None) -> tuple:
     # Return the resolved credentials too, so the --online check reuses this
     # single resolution instead of re-reading env/config and risking a
     # self-contradictory report.
-    return result, session_name, default_session, api_id, api_hash, problems
+    return result, session_name, default_session, api_id, api_hash, proxy, problems
 
 
 # ── Session check ────────────────────────────────────────────────────────────
@@ -294,7 +329,7 @@ def _check_backends() -> tuple:
 
 # ── Online authorization check (--online) ────────────────────────────────────
 
-async def _probe_pyrogram(session_name: str, api_id, api_hash) -> dict:
+async def _probe_pyrogram(session_name: str, api_id, api_hash, proxy=None) -> dict:
     """Connect with the Pyrogram-namespace backend and report authorization.
 
     Never prompts (connect(), not start()). Distinguishes "not authorized"
@@ -304,7 +339,7 @@ async def _probe_pyrogram(session_name: str, api_id, api_hash) -> dict:
     from pyrogram import Client
     from pyrogram.errors import Unauthorized
 
-    app = Client(session_name, api_id=int(api_id), api_hash=api_hash)
+    app = Client(session_name, api_id=int(api_id), api_hash=api_hash, proxy=proxy)
     try:
         try:
             authorized = await app.connect()
@@ -328,13 +363,20 @@ async def _probe_pyrogram(session_name: str, api_id, api_hash) -> dict:
             pass
 
 
-async def _probe_telethon(session_name: str, api_id, api_hash) -> dict:
+async def _probe_telethon(session_name: str, api_id, api_hash, proxy=None) -> dict:
     """Connect with the Telethon backend and report authorization."""
     import sqlite3
     from telethon import TelegramClient
 
+    tele_proxy = None
+    if proxy:
+        tele_proxy = {"proxy_type": proxy["scheme"], "addr": proxy["hostname"], "port": proxy["port"]}
+        if proxy.get("username"):
+            tele_proxy["username"] = proxy["username"]
+            tele_proxy["password"] = proxy.get("password")
+
     try:
-        client = TelegramClient(session_name, int(api_id), api_hash)
+        client = TelegramClient(session_name, int(api_id), api_hash, proxy=tele_proxy)
     except sqlite3.Error as e:
         return {"authorized": False, "detail": f"session file unreadable (corrupted?): {e}"}
     try:
@@ -358,7 +400,7 @@ async def _probe_telethon(session_name: str, api_id, api_hash) -> dict:
             pass
 
 
-def _check_authorization(session_name: str, api_id, api_hash) -> tuple:
+def _check_authorization(session_name: str, api_id, api_hash, proxy=None) -> tuple:
     """Online check: does the resolved session hold an authorized user?
 
     Runs only when the session file exists — connecting with a missing file
@@ -385,7 +427,7 @@ def _check_authorization(session_name: str, api_id, api_hash) -> tuple:
 
     try:
         with session_lock(session_name, timeout=5):
-            verdict = asyncio.run(probe(session_name, api_id, api_hash))
+            verdict = asyncio.run(probe(session_name, api_id, api_hash, proxy))
     except SessionLockTimeout:
         result["skipped"] = "session is busy (another tg-reader process holds the lock)"
         return result, problems
@@ -480,7 +522,7 @@ def run_check(config_file=None, session_file=None, online=False) -> dict:
     """Run all diagnostic checks and return combined result."""
     all_problems: list = []
 
-    credentials, session_name, default_session, api_id, api_hash, cred_problems = (
+    credentials, session_name, default_session, api_id, api_hash, proxy, cred_problems = (
         _check_credentials(config_file, session_file)
     )
     all_problems.extend(cred_problems)
@@ -504,7 +546,7 @@ def run_check(config_file=None, session_file=None, online=False) -> dict:
     if online:
         # Reuse the credentials already resolved by _check_credentials — no
         # second env/config read that could disagree with the report above.
-        authorization, auth_problems = _check_authorization(session_name, api_id, api_hash)
+        authorization, auth_problems = _check_authorization(session_name, api_id, api_hash, proxy)
         all_problems.extend(auth_problems)
         result["authorization"] = authorization
 

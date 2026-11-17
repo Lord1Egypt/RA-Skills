@@ -1,42 +1,57 @@
-## Description: <br>
-Reverse-engineers job descriptions across jargon translation, company culture inference, resume matching, and negotiation signals, producing Markdown and shareable HTML reports through a configured OpenAI-compatible LLM. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reverse-engineers job descriptions by translating jargon, inferring culture signals, comparing an optional resume, and identifying negotiation signals from pasted text, selected job-posting URLs, or text, Markdown, DOCX, and PDF files.
 
-## Publisher: <br>
-[ucsdzehualiu](https://clawhub.ai/user/ucsdzehualiu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[ucsdzehualiu](https://clawhub.ai/user/ucsdzehualiu)
 
-## Use Case: <br>
-External users and developers use this skill to analyze job descriptions, compare optional resume content, and identify jargon, culture signals, resume fit, and negotiation cues before applying or interviewing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive job descriptions or resume content may be sent to the configured LLM endpoint. <br>
-Mitigation: Use a trusted or local endpoint for sensitive material and avoid submitting resume details unless the endpoint is approved. <br>
-Risk: URL input contacts the target job site and depends on page scraping. <br>
-Mitigation: Use text paste or file input when external site contact, scraping reliability, or privacy is a concern. <br>
-Risk: Dependency ranges are not pinned with a lockfile. <br>
-Mitigation: Pin and review dependencies before production deployment. <br>
+## Use Case:
 
+Developers and job seekers use this skill to analyze job descriptions, surface likely real requirements and culture signals, compare a resume when provided, and prepare negotiation questions. It is intended for advisory analysis, not automated employment decision-making.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ucsdzehualiu/skills/jd-truth-detector) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, HTML, Guidance] <br>
-**Output Format:** [Markdown and HTML report files with CLI status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports are generated from user-provided job-description input and optional resume content using the configured LLM endpoint.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: URL scraping can fetch untrusted pages and may be unsuitable in environments with access to internal services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer pasted job-description text for untrusted postings and avoid URL mode from privileged networks.
+
+Risk: Job-description and resume content can be sent to the configured LLM endpoint.
+
+Mitigation: Use a trusted or local OpenAI-compatible endpoint for sensitive resumes and review configuration before running analysis.
+
+Risk: Generated reports can reflect misleading or manipulative language from the job posting.
+
+Mitigation: Treat the report as advisory and review findings before using them for application or negotiation decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ucsdzehualiu/skills/jd-truth-detector)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and HTML reports generated from structured analysis]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can use pasted text, URL scraping, or local files as input and can send job-description and resume content to a configured OpenAI-compatible LLM endpoint.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

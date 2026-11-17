@@ -1,48 +1,61 @@
-## Description: <br>
-Organize, rate, and share prompts with your team through a local command-line prompt library with JSON storage, search, import/export, and static HTML browsing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Organize, rate, and share prompts with a team using a local command-line prompt library with search, tags, ratings, imports, exports, and static HTML browsing.
 
-## Publisher: <br>
-[TheShadowRose](https://clawhub.ai/user/TheShadowRose) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[theshadowrose](https://clawhub.ai/user/theshadowrose)
 
-## Use Case: <br>
-Developers, prompt engineers, and teams use this skill to maintain a shared local prompt library, track ratings and usage, exchange prompt vaults, and generate a static browse page for review. It is best suited for prompt curation workflows where users control the local vault file and sharing process. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Prompt vaults are stored as plaintext local JSON and may contain sensitive prompt content. <br>
-Mitigation: Do not store credentials, regulated personal data, or confidential workflows unless the vault location is protected with appropriate filesystem permissions or encryption. <br>
-Risk: Exported JSON vaults and generated HTML browse pages can accidentally disclose prompt contents when shared. <br>
-Mitigation: Review exported files and generated HTML before sharing them outside the intended team. <br>
-Risk: Imported vault files can replace or merge local prompt content. <br>
-Mitigation: Import vault files only from trusted sources and review replace or merge behavior before applying changes. <br>
-Risk: Concurrent edits can overwrite changes because the tool does not provide file locking or automatic conflict resolution. <br>
-Mitigation: Use Git, coordinated edit windows, or another external sync process when multiple people maintain the same vault. <br>
+## Use Case:
 
+Developers and prompt-library maintainers use this skill to organize reusable prompts, track ratings and usage, and exchange prompt vaults across a team through JSON exports and imports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/TheShadowRose/prompt-vault) <br>
-- [README.md](artifact/README.md) <br>
-- [LIMITATIONS.md](artifact/LIMITATIONS.md) <br>
-- [LICENSE.md](artifact/LICENSE.md) <br>
-- [config_example.json](artifact/config_example.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with Python and shell command examples; bundled scripts produce JSON vault files and static HTML browse pages.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local files and Python standard-library scripts; no hosted service or AI API integration is provided.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: Shared imports can create unsafe generated HTML that exposes vault contents in the browser.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or fix the HTML-generation issue before using team imports from untrusted sources, and share generated HTML only with trusted recipients.
+
+Risk: Vaults, exports, backups, and generated HTML contain plaintext prompts that may include secrets or internal instructions.
+
+Mitigation: Redact sensitive data before sharing or sending prompt text to external APIs, and protect files with normal filesystem, Git, or storage permissions.
+
+Risk: Concurrent team edits have no file locking or automatic merge handling.
+
+Mitigation: Coordinate edits or use Git review and merge workflows before replacing shared vault files.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/theshadowrose/skills/prompt-vault)
+- [Publisher Profile](https://clawhub.ai/user/theshadowrose)
+- [README](artifact/README.md)
+- [Limitations](artifact/LIMITATIONS.md)
+- [License](artifact/LICENSE.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands plus local JSON, backup, export, and static HTML files created by the bundled scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Prompts and metadata are stored as plaintext JSON; generated HTML is static and view-only.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

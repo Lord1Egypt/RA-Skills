@@ -1,47 +1,60 @@
-## Description: <br>
-Provides semantic vector search over Aister memory files using PostgreSQL, pgvector, and e5-large-v2 embeddings for Russian and English recall. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides semantic vector search over Aister memory files using PostgreSQL, pgvector, and e5-large-v2 embeddings for Russian and English content.
 
-## Publisher: <br>
-[alekhm](https://clawhub.ai/user/alekhm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[alekhm](https://clawhub.ai/user/alekhm)
 
-## Use Case: <br>
-Developers and agent users use this skill to index local Aister/OpenClaw memory files and retrieve related content by semantic meaning rather than exact keyword matching. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT License
 
-## Known Risks and Mitigations: <br>
-Risk: Local memory files may contain private information that would be copied into the vector database. <br>
-Mitigation: Review memory files before indexing and exclude secrets, credentials, or other content that should not be stored for semantic recall. <br>
-Risk: The embedding service and database add local services that could expose sensitive memory data if bound or configured too broadly. <br>
-Mitigation: Keep the embedding service on localhost or another trusted endpoint and use a dedicated PostgreSQL user with minimal required permissions. <br>
-Risk: Installation can require privileged package and PostgreSQL setup. <br>
-Mitigation: Prefer the documented Docker setup or another isolated environment, and only enable shell autostart when automatic background operation is intended. <br>
-Risk: The first embedding-service run downloads a large model from Hugging Face. <br>
-Mitigation: Install only in environments where the initial network download and local model cache are acceptable. <br>
+## Use Case:
 
+Developers and Aister users use this skill to index local memory files and retrieve related context by semantic similarity instead of keyword matching. It supports memory search and reindexing workflows backed by a local PostgreSQL vector database and embedding service.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/alekhm/aister-vector-memory) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Installation guide](artifact/INSTALL.md) <br>
-- [e5-large-v2 model](https://huggingface.co/intfloat/e5-large-v2) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, JSON] <br>
-**Output Format:** [Markdown guidance, shell commands, Python scripts, environment configuration, and optional JSON search results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search output includes matched memory content, source metadata, timestamps, and similarity scores when JSON mode is used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata; artifact README states 1.1.0) <br>
+Risk: Private memory files are indexed into PostgreSQL and may include sensitive personal, credential, or operational content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review memory files before indexing, run the database in an isolated environment, and use a dedicated database user with minimal required privileges.
+
+Risk: Memory chunks and search queries can be sent to a configurable embedding service URL.
+
+Mitigation: Keep EMBEDDING_SERVICE_URL bound to 127.0.0.1 unless a remote service is explicitly trusted to receive that content.
+
+Risk: Optional autostart can keep the embedding service running after setup.
+
+Mitigation: Enable autostart only after reviewing how the service is launched, stopped, logged, and updated in the target environment.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/alekhm/skills/aister-vector-memory)
+- [Publisher profile](https://clawhub.ai/user/alekhm)
+- [Artifact README](artifact/README.md)
+- [Installation guide](artifact/INSTALL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, plus text or JSON search results from the bundled scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search output includes source metadata and similarity scores when results are returned.]
+
+## Skill Version(s):
+
+1.0.4 (source: server-resolved ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

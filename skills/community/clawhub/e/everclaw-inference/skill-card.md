@@ -1,54 +1,72 @@
-## Description: <br>
-Everclaw helps OpenClaw agents route inference through the Morpheus decentralized network with gateway setup, local proxy tooling, wallet-backed sessions, and open-source-first model fallback. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Everclaw connects OpenClaw agents to Morpheus decentralized inference with open-source-first model routing, OpenAI-compatible proxy setup, MOR staking workflows, gateway monitoring, and wallet/payment helpers.
 
-## Publisher: <br>
-[DavidAJohnston](https://clawhub.ai/user/DavidAJohnston) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[davidajohnston](https://clawhub.ai/user/davidajohnston)
 
-## Use Case: <br>
-Developers and operators use Everclaw to configure persistent OpenClaw inference through Morpheus gateway or local P2P paths, including model routing, proxy setup, session management, and wallet-backed access when enabled. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Persistent infrastructure and wallet-backed inference can make durable system and financial changes. <br>
-Mitigation: Install only when that behavior is intended, prefer gateway-only setup if local staking is unnecessary, and review launchd and power-management changes before enabling always-on mode. <br>
-Risk: One-line install and remote reinstall paths can execute fetched code. <br>
-Mitigation: Prefer manual review, pinned installs, and inspected scripts over curl-piped execution. <br>
-Risk: Wallet export, token swaps, and approvals can expose keys or create unintended on-chain spend authority. <br>
-Mitigation: Avoid export-key except in a controlled terminal, set explicit swap slippage and approval amounts, and use the gateway path when wallet staking is not required. <br>
-Risk: Repository-rewrite utilities may modify working copies or history outside the core inference workflow. <br>
-Mitigation: Avoid running repository-rewrite scripts unless that operation is intentional and backups have been reviewed. <br>
-Risk: Bootstrap and monitoring flows include device-fingerprinting and networked service checks. <br>
-Mitigation: Review bootstrap behavior and prefer user-owned API keys when device-identifying bootstrap flows are not desired. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/DavidAJohnston/everclaw-inference) <br>
-- [Publisher profile](https://clawhub.ai/user/DavidAJohnston) <br>
-- [Everclaw homepage](https://everclaw.com) <br>
-- [Morpheus](https://mor.org) <br>
-- [Morpheus API app](https://app.mor.org) <br>
-- [Acquiring MOR](references/acquiring-mor.md) <br>
-- [API reference](references/api.md) <br>
-- [Economics reference](references/economics.md) <br>
-- [Models reference](references/models.md) <br>
-- [Troubleshooting reference](references/troubleshooting.md) <br>
+## Use Case:
 
+External users, developers, and OpenClaw operators use Everclaw to configure owned inference through Morpheus, manage local or gateway-backed model access, and keep agents running with monitoring, session, and payment support.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose install, setup, wallet, proxy, and diagnostic commands that should be reviewed before execution.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.10.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Installer and update paths may execute remote or unattended code.
+
+Mitigation: Prefer a manual clone, inspect scripts before execution, and avoid curl-to-bash installation unless the source and command are reviewed.
+
+Risk: Wallet workflows and token approvals can expose funds if keys, balances, or approvals are over-scoped.
+
+Mitigation: Use your own API keys, keep only limited funds in any agent wallet, and avoid unlimited token approvals.
+
+Risk: Persistent launchd services, local proxies, and OpenClaw configuration changes may increase host exposure.
+
+Mitigation: Bind services to localhost, review persistent services before enabling them, and confirm OpenClaw configuration changes before applying.
+
+Risk: The evidence security verdict is suspicious due to broad wallet, persistence, network exposure, and remote-code execution behavior.
+
+Mitigation: Review the skill before installing and disable or patch unattended nuclear reinstall behavior.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/davidajohnston/skills/everclaw-inference)
+- [Everclaw homepage](https://everclaw.com)
+- [Everclaw API Reference](references/api.md)
+- [Everclaw Available Models](references/models.md)
+- [Everclaw MOR Staking Economics](references/economics.md)
+- [Everclaw Acquiring MOR Tokens](references/acquiring-mor.md)
+- [Everclaw Troubleshooting Guide](references/troubleshooting.md)
+- [Morpheus AI](https://mor.org)
+- [Morpheus Lumerin Node releases](https://github.com/MorpheusAIs/Morpheus-Lumerin-Node/releases)
+- [OpenClaw](https://github.com/openclaw/openclaw)
+- [x402 Protocol](https://x402.org)
+- [ERC-8004 specification](https://eips.ethereum.org/EIPS/eip-8004)
+- [8004scan](https://www.8004scan.io)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, JavaScript and JSON configuration snippets, and local script invocations.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose commands that install dependencies, modify OpenClaw configuration, start local proxy services, and interact with MOR/Base wallet workflows.]
+
+## Skill Version(s):
+
+0.10.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

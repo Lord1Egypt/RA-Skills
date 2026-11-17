@@ -1,0 +1,7 @@
+interface:
+  display_name: "OpenClaw EvoSkills"
+  short_description: "Permanent meta-skill for routing and evolving skills."
+  default_prompt: "Use $openclaw-evoskills as the always-on meta-skill to self-activate in the workspace, register native OpenClaw config and observer jobs, route skills, create new skills from repeated work, and evolve OpenClaw-compatible skills."
+
+policy:
+  allow_implicit_invocation: true

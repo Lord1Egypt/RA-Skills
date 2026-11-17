@@ -1,43 +1,63 @@
-## Description: <br>
-Build a second brain that AI can understand and maintain by providing decision logging, review generation, routing rules, task and execution tracking, decision support monitoring, and memory distillation for ongoing human-AI collaboration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build a second brain that AI can understand and maintain through decision logging, periodic reviews, routing rules, task tracking, execution monitoring, decision follow-up, and memory distillation.
 
-## Publisher: <br>
-[daowuu](https://clawhub.ai/user/daowuu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[daowuu](https://clawhub.ai/user/daowuu)
 
-## Use Case: <br>
-Knowledge workers, professionals, teams, and AI collaborators use this skill to maintain a personal operating system of Markdown files for decisions, tasks, reviews, routed notes, and structured knowledge. It is intended for ongoing personal knowledge-base collaboration where the AI reads and updates the workspace with user review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks an AI collaborator to proactively read and update persistent personal files, which can expose private information or create unwanted changes. <br>
-Mitigation: Install it in a dedicated folder, avoid secrets and highly sensitive data, require review of proposed file changes before writes, keep backups or version control, and enable scheduled maintenance only after explicitly approving what it can read and change. <br>
+## Use Case:
 
+External users, knowledge workers, professionals, and teams use this skill to set up and maintain a personal operating system for decisions, tasks, reviews, routing, and reusable knowledge with help from an AI collaborator.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/daowuu/personal-os-framework) <br>
-- [ClawHub Homepage](https://clawhub.ai) <br>
-- [Quick Start Examples](docs/quickstart.md) <br>
-- [AI Collaboration Prompts](docs/prompts.md) <br>
-- [Setup Guide](docs/setup.md) <br>
-- [Review Operator Guide](docs/review-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown guidance, templates, prompts, and proposed updates to personal-os Markdown files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces persistent personal knowledge-base content such as STATE.md, TODO.md, DECISIONS.md, PENDING-DECISIONS.md, HEARTBEAT-LOG.md, reviews, routed notes, and structured knowledge entries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.3.0 (source: server release metadata) <br>
+Risk: The skill asks an AI collaborator to continuously read and update a personal knowledge base, which can expose private context or create unwanted changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confine the AI to a dedicated personal-os workspace, avoid secrets and highly sensitive personal data, and require diffs or confirmation before writes.
+
+Risk: Periodic maintenance or review generation with broad filesystem access could update files outside the intended workspace.
+
+Mitigation: Do not enable cron-style maintenance with broad filesystem access; keep automated reviews scoped to the personal-os directory.
+
+Risk: The release security verdict is suspicious because approval, privacy, and rollback safeguards are not clearly defined in the artifact.
+
+Mitigation: Use version control or backups and review generated changes before accepting them.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/daowuu/skills/personal-os-framework)
+- [Project Homepage](https://clawhub.ai)
+- [README](artifact/README.md)
+- [Overview](artifact/docs/overview.md)
+- [Setup Guide](artifact/docs/setup.md)
+- [AI Collaboration Prompts](artifact/docs/prompts.md)
+- [Templates](artifact/template_docs/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Guidance, Configuration, Text]
+
+**Output Format:** [Markdown guidance, templates, and reusable prompts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only skill; expected outputs include personal-os file structures, decision logs, reviews, routing notes, task updates, and knowledge-entry templates.]
+
+## Skill Version(s):
+
+0.3.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

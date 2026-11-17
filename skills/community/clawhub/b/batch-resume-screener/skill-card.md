@@ -1,43 +1,56 @@
-## Description: <br>
-Batch screens multiple resumes against multiple job positions using strict evaluation rules from java-resume-screener skill. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Batch screens multiple resumes against multiple job positions using strict evaluation rules from java-resume-screener skill.
 
-## Publisher: <br>
-[mlin4020](https://clawhub.ai/user/mlin4020) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[mlin4020](https://clawhub.ai/user/mlin4020)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Recruiters, hiring teams, and interviewers use this skill to batch screen multiple candidate resumes against one or more job requirements. It extracts resume text, applies hard-requirement checks and weighted scoring, and produces candidate rankings, summaries, and review guidance.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Candidate resume data is extracted and stored locally in text, JSON, and report files.
+
+Mitigation: Use only an approved environment for candidate data, restrict access to generated files, and delete derived resume data when it is no longer needed.
+
+Risk: Untrusted ZIP resume packages may be extracted during resume ingestion.
+
+Mitigation: Avoid untrusted ZIP archives or add extraction limits and path validation before processing archive contents.
+
+Risk: Automated resume screening can produce low-confidence or incomplete evaluations.
+
+Mitigation: Flag low-confidence results for manual review and base conclusions only on resume text and stated job requirements.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Recruiters, hiring teams, and technical interviewers use this skill to batch screen multiple candidate resumes against one or more job requirements. It extracts resume text, applies hard requirement checks and weighted scoring, then produces ranked reports and review data for human hiring decisions. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, JSON, CSV-style tabular data, shell commands, guidance, files]
 
-## Known Risks and Mitigations: <br>
-Risk: The resume extraction step may process more local PDF files than intended if run against a broad or mixed directory. <br>
-Mitigation: Run the skill only in a dedicated folder containing the specific resumes intended for screening. <br>
-Risk: ZIP extraction and generated intermediate files can expose confidential candidate data or retain it longer than expected. <br>
-Mitigation: Use trusted ZIP files, treat generated text, JSON, CSV, and Markdown outputs as confidential, and delete intermediate files after review. <br>
-Risk: Automated resume scoring can produce incorrect or incomplete screening conclusions. <br>
-Mitigation: Use confidence scores and low-confidence flags to route results through human recruiter or interviewer review before hiring decisions. <br>
+**Output Format:** [Markdown reports, JSON evaluation files, CSV-style Excel-ready tables, candidate comparison tables, highlights summaries, and shell commands for resume text extraction.]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/mlin4020/batch-resume-screener) <br>
-- [Publisher Profile](https://clawhub.ai/user/mlin4020) <br>
+**Other Properties Related to Output:** [Outputs may include locally stored resume text, pre-filter JSON, evaluation JSON, ranked reports, confidence scores, and low-confidence manual-review flags.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports, JSON evaluation files, Excel-ready tabular text, comparison tables, highlights summaries, and extracted resume text files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Processes resume files in batches, includes confidence scores, and flags low-confidence evaluations for manual review.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,55 @@
-## Description: <br>
-Yufluentcn Review Intel helps agents format cross-border ecommerce buyer reviews, run Yufluent cloud review analysis, and summarize structured sentiment, complaint, praise, action item, and reply-template insights. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes user-provided cross-border ecommerce reviews to cluster sentiment themes, identify complaint causes, and produce structured improvement suggestions and reply-template drafts.
 
-## Publisher: <br>
-[metahuan](https://clawhub.ai/user/metahuan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[metahuan](https://clawhub.ai/user/metahuan)
 
-## Use Case: <br>
-External sellers, ecommerce operators, and their agents use this skill to analyze legally obtained Amazon, Shopify, or TikTok Shop review text for sentiment themes, complaint drivers, product or service improvements, and draft buyer response templates. The skill is intended for internal review intelligence and requires human review before acting on generated recommendations or reply drafts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review text and product or platform context are sent to Yufluent's cloud service using TOKENAPI_KEY. <br>
-Mitigation: Use only review data you are authorized to process and redact names, addresses, order IDs, and other sensitive or regulated data before analysis. <br>
-Risk: TOKENAPI_BASE_URL can redirect requests to a different endpoint if configured. <br>
-Mitigation: Leave TOKENAPI_BASE_URL unset for the default service or set it only to an endpoint you trust. <br>
-Risk: Generated action items and reply templates may be incomplete, inaccurate, or unsuitable for a marketplace policy context. <br>
-Mitigation: Treat outputs as drafts for internal review and have a human verify recommendations and buyer replies before use. <br>
+## Use Case:
 
+External sellers and ecommerce operators use this skill to analyze legally obtained Amazon, Shopify, or TikTok Shop review text for sentiment themes, complaint causes, prioritized improvements, and draft customer replies. Agents can use it to normalize review inputs, run the packaged CLI or API flow, and explain the resulting JSON insights.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/metahuan/yufluentcn-review-intel) <br>
-- [Publisher profile](https://clawhub.ai/user/metahuan) <br>
-- [Yufluent homepage](https://claw.changzhiai.com) <br>
-- [Yufluent OpenClaw integration](https://claw.changzhiai.com/app/openclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and structured JSON review insight output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires TOKENAPI_KEY. Review text can be passed inline or read from a UTF-8 file; optional output can be saved to a JSON file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.2 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: Review contents and the TOKENAPI_KEY account credential can be sent to a configured endpoint, including an arbitrary TOKENAPI_BASE_URL.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only a trusted HTTPS endpoint or trusted local proxy, avoid submitting buyer PII or confidential business data unless policy allows cloud processing, and rotate the token if it may have been used with an untrusted endpoint.
+
+Risk: Generated complaint themes, improvement suggestions, and reply templates may be inaccurate or unsuitable for customer-facing use.
+
+Mitigation: Review the structured analysis and all reply drafts before making product decisions or sending messages to buyers.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/metahuan/skills/yufluentcn-review-intel)
+- [Yufluent OpenClaw app](https://claw.changzhiai.com/app/openclaw)
+- [Yufluent homepage](https://claw.changzhiai.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, configuration, guidance]
+
+**Output Format:** [Structured JSON insights with optional Markdown explanations and CLI command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires TOKENAPI_KEY; accepts review text or a UTF-8 reviews file plus optional product, platform, and language settings.]
+
+## Skill Version(s):
+
+1.1.2 (source: server release and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,49 @@
-## Description: <br>
-专为 Claude 用户打造的提示词优化工具，节省 30% Token，内置 4 大角色预设，全场景自动结构化，降本提效 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+专为 Claude 用户打造的提示词优化工具，节省 30% Token，内置 4 大角色预设，全场景自动结构化，降本提效
 
-## Publisher: <br>
-[whantt](https://clawhub.ai/user/whantt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[whantt](https://clawhub.ai/user/whantt)
 
-## Use Case: <br>
-Claude users, developers, writers, product managers, and designers use this skill to rewrite rough prompts into concise structured prompts with role, task, constraints, and output format. It is intended for prompt optimization across coding, writing, product, design, operations, and data-summary workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may over-edit vague prompts when invoked too broadly. <br>
-Mitigation: Use it only when prompt optimization is intended, and review the rewritten prompt before sending it onward. <br>
-Risk: Rewritten prompts can alter sensitive, legal, medical, multilingual, or highly precise instructions. <br>
-Mitigation: Apply extra human review for sensitive or precision-critical prompts before relying on the optimized version. <br>
+## Use Case:
 
+Claude users use this skill to rewrite vague or inefficient prompts into concise, structured prompts for development, writing, product, design, operations, and data-summary tasks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/whantt/prompt-optimizer-chinese) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Structured Markdown text containing an optimized prompt and optimization benefits.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Preserves the detected input language and reports expected token savings or prompt-quality benefits.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may rewrite vague prompts based on its own interpretation, which can change intent for sensitive or high-stakes tasks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the optimized prompt before use, especially for legal, medical, financial, security, or other sensitive workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/whantt/skills/prompt-optimizer-chinese)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown text containing an optimized prompt and optimization benefits]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill preserves the user's input language when optimizing prompts.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,55 @@
-## Description: <br>
-Full Web3 community health audit with growth score, KOL mapping, 30-day blueprint, FUD containment strategy, and grant opportunities. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Full Web3 community health audit with growth score, KOL mapping, 30-day blueprint, FUD containment strategy, and grant opportunities.
 
-## Publisher: <br>
-[leodera](https://clawhub.ai/user/leodera) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leodera](https://clawhub.ai/user/leodera)
 
-## Use Case: <br>
-External Web3 project teams and community operators use this skill to assess community health, plan KOL outreach, prepare a 30-day growth plan, contain FUD, and identify relevant grant opportunities. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a Groq API key and may send prompts or supplied project context to the configured inference provider. <br>
-Mitigation: Use a dedicated key with appropriate limits, and avoid sharing private community data, unreleased business plans, or sensitive project details unless that use is approved. <br>
-Risk: The skill focuses on Web3 and crypto community planning, where recommendations may influence public communications, growth strategy, or grant targeting. <br>
-Mitigation: Review generated audit findings, outreach plans, FUD containment guidance, and grant suggestions before acting on them. <br>
+## Use Case:
 
+External Web3 project teams and community operators use this skill to generate a community health audit, KOL outreach direction, a 30-day growth plan, FUD containment guidance, and grant opportunity suggestions.
 
-## Reference(s): <br>
-- [FeliciaOS homepage](https://github.com/leodera-creator/feliciaos) <br>
-- [ClawHub skill page](https://clawhub.ai/leodera/feliciaos-community-audit) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Guidance, Markdown] <br>
-**Output Format:** [Markdown report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces community health scoring, outreach strategy, growth planning, FUD containment guidance, and grant suggestions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: The skill requires a Groq API key and may send project or community information to the configured inference provider.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an appropriately scoped API key and avoid submitting confidential community, project, or user data unless that provider use is approved.
+
+Risk: Generated Web3 growth, FUD containment, KOL, or grant guidance may be incomplete, incorrect, or unsuitable for public business decisions.
+
+Mitigation: Have a qualified reviewer validate recommendations before public use, outreach, grant submission, or operational changes.
+
+## Reference(s):
+
+- [FeliciaOS homepage](https://github.com/leodera-creator/feliciaos)
+- [ClawHub skill page](https://clawhub.ai/leodera/skills/feliciaos-community-audit)
+- [Publisher profile](https://clawhub.ai/user/leodera)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown-style community audit and growth guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Groq API key when the agent invokes the configured inference provider.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

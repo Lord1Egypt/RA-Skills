@@ -1,40 +1,49 @@
-## Description: <br>
-Discover and list URLs on a website, with optional search filtering to find specific pages, inspect site structure, or prepare for scraping and crawling workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Firecrawl Map helps agents discover and list URLs on a website, optionally filtering results with a search query.
 
-## Publisher: <br>
-[eohmig](https://clawhub.ai/user/eohmig) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[eohmig](https://clawhub.ai/user/eohmig)
 
-## Use Case: <br>
-Developers and technical users use this skill to map a known website, find relevant URLs, and narrow site structure before running Firecrawl scrape or crawl workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Mapping sites without proper authorization may violate site terms or expose sensitive internal URLs. <br>
-Mitigation: Confirm authorization and scope before mapping, avoid sensitive internal sites unless permitted, and review results before sharing. <br>
-Risk: Optional output paths can persist discovered URLs to local files. <br>
-Mitigation: Choose output paths deliberately and inspect generated text or JSON before relying on, publishing, or committing it. <br>
+## Use Case:
 
+Developers and agents use this skill to map a known website, find specific pages on a domain, list site URLs, and prepare targeted scraping or crawling workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/eohmig/firecrawl-map) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, text, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash examples; Firecrawl map results can be plain text or JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write URL mapping results to user-specified local paths such as .firecrawl/urls.json.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Unpinned npx execution can run Firecrawl code that changed after this artifact was reviewed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a reviewed local Firecrawl installation or a version-pinned CLI invocation before enabling the skill in sensitive environments.
+
+## Reference(s):
+
+- [Firecrawl Map ClawHub release page](https://clawhub.ai/eohmig/skills/firecrawl-map)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples; Firecrawl commands can produce plain text or JSON files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports search filtering, URL limits, sitemap handling, subdomain inclusion, and optional output file paths.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,49 +1,70 @@
-## Description: <br>
-IELTS Reading passage review, scoring, and progress tracking skill that generates structured review JSON and can sync results to www.liuxue.online. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+IELTS Reading passage review, scoring, and progress tracking skill that generates structured review JSON and can upload results to www.liuxue.online for web rendering.
 
-## Publisher: <br>
-[dengjiawei1226](https://clawhub.ai/user/dengjiawei1226) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dengjiawei1226](https://clawhub.ai/user/dengjiawei1226)
 
-## Use Case: <br>
-IELTS learners and tutors use this skill to turn reading answers, screenshots, and wrong-answer lists into structured review records with scoring, error analysis, vocabulary, synonyms, and progress tracking. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill includes auto-update hooks that may execute local update commands when IELTS-related prompts are submitted. <br>
-Mitigation: Review the hook configuration before installation and disable or remove the auto-update hook if automatic local command execution is not desired. <br>
-Risk: The workflow can store a long-lived IELTS_USER_TOKEN locally and send review JSON, answers, timing, and progress data to www.liuxue.online. <br>
-Mitigation: Use a dedicated low-privilege account, avoid sharing terminal output that contains the token, and revoke or rotate the token if it may have been exposed. <br>
-Risk: Batch import and legacy review scanning can inspect broad local review folders and prepare records for upload. <br>
-Mitigation: Limit scans to intended study folders and review generated JSON before upload, especially when the source folder may contain unrelated personal notes. <br>
-Risk: Author-mode deployment tooling includes SSH and server restart workflows that are inappropriate for normal client machines. <br>
-Mitigation: Use client mode on non-author machines and avoid running SSH deployment commands unless the machine and account are explicitly intended for site administration. <br>
+## Use Case:
 
+IELTS learners and tutors use this skill to convert reading passage results, screenshots, and answer lists into structured review data with scores, wrong-question analysis, vocabulary, synonyms, and progress tracking.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/dengjiawei1226/skills/ielts-reading-review) <br>
-- [README](README.md) <br>
-- [Client Mode Onboarding](references/CLIENT_MODE_ONBOARDING.md) <br>
-- [Error Taxonomy](references/error-taxonomy.md) <br>
-- [Score Band Table](references/score-band-table.md) <br>
-- [IELTS Review Site](https://www.liuxue.online/ielts/reading.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with structured JSON review data and optional shell commands for setup, upload, or PDF generation.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Review JSON may be saved locally and uploaded to www.liuxue.online when the user configures client or author mode.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-5.5.2 (source: server release evidence) <br>
+Risk: Prompt-triggered auto-update behavior can change skill code before review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Disable or remove the auto-update hook and review the installed version before using the skill.
+
+Risk: The skill can upload review data and use long-lived account tokens.
+
+Mitigation: Use a dedicated short-lived token stored outside shell startup files and require explicit confirmation before any upload.
+
+Risk: Folder scanning can touch broad personal directories during legacy review import.
+
+Mitigation: Limit scans to an explicit user-selected directory and confirm the scan plan before processing files.
+
+Risk: Author mode includes SSH deployment and service restart commands.
+
+Mitigation: Avoid author mode on machines with production SSH access unless the operator intentionally needs deployment capability.
+
+Risk: The README contains older offline-first claims while the current release is web-connected.
+
+Mitigation: Treat the current release as network-connected and review upload/API behavior before installation.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/dengjiawei1226/skills/ielts-reading-review)
+- [Client Mode Onboarding](artifact/references/CLIENT_MODE_ONBOARDING.md)
+- [Review Style Guide](artifact/references/review-style-guide.md)
+- [Error Taxonomy](artifact/references/error-taxonomy.md)
+- [Score-to-Band Conversion Table](artifact/references/score-band-table.md)
+- [538 IELTS Keywords Reference Guide](artifact/references/538-keywords-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Files, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown guidance with structured JSON review data and shell commands when setup, upload, or validation actions are needed.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local review files and use configured web upload endpoints for progress tracking.]
+
+## Skill Version(s):
+
+5.5.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

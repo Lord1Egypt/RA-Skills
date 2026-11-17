@@ -1,40 +1,53 @@
-## Description: <br>
-Build foreign-market user personas with multi-dimensional persona cards, cultural value overlays, jobs-to-be-done maps, and validation loops. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Builds foreign-market user personas with multi-dimensional persona cards, cultural value overlays, jobs-to-be-done maps, and validation loops.
 
-## Publisher: <br>
-[harrylabsj](https://clawhub.ai/user/harrylabsj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harrylabsj](https://clawhub.ai/user/harrylabsj)
 
-## Use Case: <br>
-Product managers, UX researchers, founders, and marketing strategists use this skill to draft and validate personas for unfamiliar international markets. It helps structure persona dimensions, cultural context, jobs-to-be-done, segment prioritization, and validation plans. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persona outputs may reinforce stereotypes if treated as facts. <br>
-Mitigation: Treat personas as hypotheses, label assumptions, and verify cultural claims with primary research before using them for product, marketing, or sales decisions. <br>
-Risk: Prompts may contain confidential customer, survey, or market-entry data. <br>
-Mitigation: Avoid providing confidential customer data unless it is approved for use with the agent and appropriate for the selected runtime. <br>
+## Use Case:
 
+Product managers, UX researchers, founders, and marketing strategists use this skill to build and validate evidence-labeled personas for unfamiliar international markets before making product, marketing, or sales decisions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/harrylabsj/cb-user-persona-builder) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Structured Markdown tables and narrative guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Persona dimensions include evidence quality labels, jobs-to-be-done maps, segment prioritization, and validation plans.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: Persona outputs may be mistaken for facts about cultures or demographic groups.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat personas as research hypotheses, keep evidence quality labels visible, and validate market claims with real customer evidence before making business decisions.
+
+Risk: Unvalidated personas can reinforce stereotypes or misallocate product and marketing effort.
+
+Mitigation: Use the validation loop, disconfirming questions, and recurring review schedule to replace assumptions with primary research.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/harrylabsj/skills/cb-user-persona-builder)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown persona profiles, research tables, jobs-to-be-done maps, prioritization matrices, and validation plans]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes evidence quality labels and validation checkpoints; does not require API access or code execution.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

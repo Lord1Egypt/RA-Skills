@@ -1,50 +1,60 @@
-## Description: <br>
-Build robots from hobby to industrial with hardware wiring, ROS2, motion planning, and safety constraints. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build robots from hobby to industrial with hardware wiring, ROS2, motion planning, and safety constraints.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Developers, robotics hobbyists, and automation engineers use this skill for robotics hardware selection, wiring, sensor and motor integration, ROS configuration, industrial robot programming, and systematic troubleshooting. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill may create and reuse local notes under ~/robot that could contain project, site, or operationally sensitive details. <br>
-Mitigation: Review those files periodically and do not store credentials, sensitive site details, or other secrets in the robot notes. <br>
-Risk: Robotics wiring, firmware, or control code guidance can damage equipment or create unsafe motion if applied to real machines without verification. <br>
-Mitigation: Treat generated robotics code as draft guidance; verify exact hardware, test with power limited, restrain mechanisms or lift wheels, and keep an emergency stop available. <br>
-Risk: Industrial robot examples can be unsafe when simulation status, safety systems, coordinate frames, speed limits, or tool calibration are unknown. <br>
-Mitigation: Clarify simulation versus real hardware, confirm safety systems and calibrated tooling, use low speeds, and review all motion paths before execution. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Robot Skill](https://clawhub.ai/ivangdavila/robot) <br>
-- [Publisher Profile](https://clawhub.ai/user/ivangdavila) <br>
-- [Memory Setup](artifact/memory-template.md) <br>
-- [Hardware](artifact/hardware.md) <br>
-- [Sensors](artifact/sensors.md) <br>
-- [Motors](artifact/motors.md) <br>
-- [ROS](artifact/ros.md) <br>
-- [Industrial Robotics](artifact/industrial.md) <br>
-- [Debugging](artifact/debugging.md) <br>
-- [Project Templates](artifact/projects.md) <br>
+## Use Case:
 
+Developers, robotics builders, and engineers use this skill for robotics hardware selection, wiring, ROS configuration, motor and sensor integration, industrial robot programming, and systematic debugging from hobby projects to professional robot work.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with code blocks and command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose local note files under ~/robot and draft robotics code that requires human review before use on hardware.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated motor, ESC, ROS, or industrial robot code may be unsafe if applied directly to real hardware.
+
+Mitigation: Test unloaded or in simulation first, use a physical cutoff or emergency stop, and verify power, current limits, wiring, speed limits, and safety systems before live operation.
+
+Risk: The skill may maintain local robotics notes under ~/robot.
+
+Mitigation: Install and use it only when local robotics memory is acceptable, and review notes for sensitive project or hardware details before sharing.
+
+## Reference(s):
+
+- [Robot Skill Page](https://clawhub.ai/ivangdavila/skills/robot)
+- [Memory Setup](artifact/memory-template.md)
+- [Hardware](artifact/hardware.md)
+- [Sensors](artifact/sensors.md)
+- [Motors](artifact/motors.md)
+- [ROS](artifact/ros.md)
+- [Industrial Robotics](artifact/industrial.md)
+- [Debugging](artifact/debugging.md)
+- [Project Templates](artifact/projects.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration instructions, Files]
+
+**Output Format:** [Markdown with inline code blocks, shell commands, wiring tables, checklists, and local note templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose local note files under ~/robot and robotics code that requires human review before use with physical hardware.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

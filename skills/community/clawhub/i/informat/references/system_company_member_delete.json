@@ -1,0 +1,18 @@
+{
+  "type": "function",
+  "function": {
+    "name": "_company_member_delete",
+    "description": "Remove a member from the company. (Dangerous operation, only allowed when the user explicitly requests to remove a specific member)",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "accountId": {
+          "type": "string",
+          "description": "Account ID of the member to remove (must exist)."
+        }
+      },
+      "required": ["accountId"],
+      "additionalProperties": false
+    }
+  }
+}

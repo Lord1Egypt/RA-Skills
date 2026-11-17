@@ -1,0 +1,19 @@
+{
+  "name": "framework",
+  "caption": "图 1  方法总体框架。(a) 输入经编码器得到表征，再送入解码器重建。",
+  "type": "pipeline",
+  "journal": "nature",
+  "width": "single",
+  "width_mm": 89,
+  "height_mm": 60,
+  "dpi": 600,
+  "font": "Arial",
+  "font_size_pt": 7,
+  "palette": "okabe-ito",
+  "panels": [
+    { "id": "a", "title": "主流程", "caption": "", "nodes": [], "edges": [] }
+  ],
+  "layout": { "direction": "left-right", "gap_mm": 6, "node_w_mm": 24, "node_h_mm": 14 },
+  "data": null,
+  "notes": "干净样例：Nature 单栏 89mm、7pt Arial、600dpi、Okabe-Ito 色盲安全配色，只用了蓝/橙。"
+}

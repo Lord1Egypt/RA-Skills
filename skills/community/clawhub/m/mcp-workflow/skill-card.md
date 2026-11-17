@@ -1,45 +1,63 @@
-## Description: <br>
-Workflow automation using MCP (Model Context Protocol) patterns inspired by Jason Zhou. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Workflow automation using MCP (Model Context Protocol) patterns inspired by Jason Zhou.
 
-## Publisher: <br>
-[slemo54](https://clawhub.ai/user/slemo54) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[slemo54](https://clawhub.ai/user/slemo54)
 
-## Use Case: <br>
-Developers and agent builders use this skill to create and run MCP-style workflows with prompt chains, resource templates, workflow templates, and local MCP server tooling. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The MCP server can read local files available to its process. <br>
-Mitigation: Run it only with trusted clients, preferably inside a restricted project directory or sandbox. <br>
-Risk: Persistent workflow memory or logs may retain sensitive data. <br>
-Mitigation: Avoid storing secrets in workflow memory or logs, and add redaction and retention practices before wider deployment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [MCP Workflow skill page](https://clawhub.ai/slemo54/mcp-workflow) <br>
-- [MCP Specification](references/mcp-spec.md) <br>
-- [Workflow Patterns](references/workflow-patterns.md) <br>
-- [Jason Zhou Insights](references/jason-zhou-insights.md) <br>
-- [MCP Official Site](https://modelcontextprotocol.io/) <br>
-- [MCP SDK Documentation](https://github.com/modelcontextprotocol/sdk) <br>
-- [MCP Example Servers](https://github.com/modelcontextprotocol/servers) <br>
+## Use Case:
 
+Developers and automation builders use this skill to create, validate, and run MCP-style workflows with prompt chains, reusable resource templates, memory, and built-in examples for code review, documentation, meal planning, and weekly reports.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, JSON workflow templates, and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes MCP server operations, workflow template usage, validation commands, and workflow design guidance.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The local MCP server can read files by arbitrary path.
+
+Mitigation: Run it only in a constrained project directory or sandbox and avoid connecting it to untrusted MCP clients.
+
+Risk: Workflow state is stored on disk without strong boundaries.
+
+Mitigation: Do not store secrets in workflow inputs or memory, and clear generated memory files when they are no longer needed.
+
+Risk: Workflows may export, post, deploy, email, or write generated files.
+
+Mitigation: Review those workflows before execution and require human approval for actions that publish, deploy, or modify files.
+
+## Reference(s):
+
+- [MCP Specification Reference](references/mcp-spec.md)
+- [Workflow Patterns](references/workflow-patterns.md)
+- [Jason Zhou Insights](references/jason-zhou-insights.md)
+- [MCP Official Site](https://modelcontextprotocol.io/)
+- [MCP Specification](https://modelcontextprotocol.io/specification/2025-06-18)
+- [Model Context Protocol Example Servers](https://github.com/modelcontextprotocol/servers)
+- [Model Context Protocol SDK](https://github.com/modelcontextprotocol/sdk)
+- [Jason Zhou Channel](https://www.youtube.com/@jasonzhou7824)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown, JSON workflow templates, shell commands, and MCP prompt/tool responses.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local workflow, prompt, resource, log, and memory files when its scripts are run.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

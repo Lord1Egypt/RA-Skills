@@ -1,0 +1,182 @@
+{
+  "schema": "2.0",
+  "config": {
+    "wide_screen_mode": true,
+    "update_multi": true
+  },
+  "header": {
+    "title": {
+      "tag": "plain_text",
+      "content": "20260719-行动清单-2即时-1中期-1长期"
+    },
+    "subtitle": {
+      "tag": "plain_text",
+      "content": "2026-07-19 · obsidian-loop v2.1 · 4 个高优先行动 · 估时 5h-8h"
+    },
+    "template": "green",
+    "icon": {
+      "tag": "standard_icon",
+      "token": "myai_colorful"
+    }
+  },
+  "body": {
+    "direction": "vertical",
+    "padding": "16px 16px 16px 16px",
+    "elements": [
+      {
+        "tag": "markdown",
+        "content": "**今日行动清单**：基于 4 反常识发现 + 1 跨域融合，沉淀为 4 个可执行行动\n\n**行动哲学**：每个行动必须有「关闭的 TRB 编号」「预期收益」「估时」三要素，否则不算行动。"
+      },
+      {
+        "tag": "hr"
+      },
+      {
+        "tag": "column_set",
+        "flex_mode": "none",
+        "background_style": "green-50",
+        "columns": [
+          {
+            "tag": "column",
+            "width": "weighted",
+            "weight": 1,
+            "vertical_align": "top",
+            "background_style": "green-50",
+            "elements": [
+              {
+                "tag": "markdown",
+                "content": "⚡ **行动 1【即时 · 15 分钟】**\n\n在 cron brief 中显式加入 dictionary_lookup.py 调用步骤\n\n▸ **关闭**：TRB-008\n▸ **对应**：atom-10（5★ INSIGHT）\n▸ **预期收益**：每日查表固定 4 次 / 命中 ≥10 条 / 融合解法 ≥1 个\n▸ **难度**：⭐⭐（机械修改）\n▸ **验收**：C5 子代理 prompt 中含 python 命令 + dry-run 产出 lookup-result.json"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tag": "hr"
+      },
+      {
+        "tag": "column_set",
+        "flex_mode": "none",
+        "background_style": "green-50",
+        "columns": [
+          {
+            "tag": "column",
+            "width": "weighted",
+            "weight": 1,
+            "vertical_align": "top",
+            "background_style": "green-50",
+            "elements": [
+              {
+                "tag": "markdown",
+                "content": "⚡ **行动 2【即时 · 30 分钟】**\n\n删除两个孤儿调试脚本（send_card.ps1 / send_card_v2.ps1）\n\n▸ **关闭**：TRB-014\n▸ **对应**：atom-12（5★ METHOD）\n▸ **预期收益**：避免用户身份发送非卡片消息造成混淆\n▸ **难度**：⭐（删除操作）\n▸ **验收**：obsidian-loop/scripts/ 下无 send_card*.ps1 + grep 全仓库无引用"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tag": "hr"
+      },
+      {
+        "tag": "column_set",
+        "flex_mode": "none",
+        "background_style": "default",
+        "columns": [
+          {
+            "tag": "column",
+            "width": "weighted",
+            "weight": 1,
+            "vertical_align": "top",
+            "elements": [
+              {
+                "tag": "markdown",
+                "content": "🔧 **行动 3【中期 · 1-2 小时】**\n\n为 xhs-crafter 编写 Design.md 试点文件，沉淀视觉风格规范\n\n▸ **关闭**：TRB-007\n▸ **对应**：Concept 3（视觉风格统一）\n▸ **预期收益**：图片视觉风格统一 + 用户可自定义主题\n▸ **难度**：⭐⭐⭐（设计决策）\n▸ **验收**：xhs-crafter/Design.md 含 6 个章节 + 3 个示例图对比"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tag": "hr"
+      },
+      {
+        "tag": "column_set",
+        "flex_mode": "none",
+        "background_style": "default",
+        "columns": [
+          {
+            "tag": "column",
+            "width": "weighted",
+            "weight": 1,
+            "vertical_align": "top",
+            "elements": [
+              {
+                "tag": "markdown",
+                "content": "🚀 **行动 4【长期 · 4-6 小时】**\n\nobsidian-loop v2.0.1 升级——04:00 整理归档轨增加排期建议环节\n\n▸ **关闭**：TRB-001 / TRB-011\n▸ **对应**：Concept 1（本日最重要发现）\n▸ **预期收益**：整理归档轨价值闭环 + 关闭两个长期 TRB\n▸ **难度**：⭐⭐⭐⭐（架构调整）\n▸ **验收**：04:00 cron 产出含「排期建议」段 + dry-run 通过"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tag": "hr"
+      },
+      {
+        "tag": "column_set",
+        "flex_mode": "none",
+        "background_style": "yellow-50",
+        "columns": [
+          {
+            "tag": "column",
+            "width": "weighted",
+            "weight": 1,
+            "vertical_align": "top",
+            "background_style": "yellow-50",
+            "elements": [
+              {
+                "tag": "markdown",
+                "content": "📋 **行动 1 一键复制提示词**\n\n```\n请修改 <your-project>/obsidian-loop/cron-prompts/compile-track-v2.1.md 文件，在 Stage C5 章节的「v2.1 字典表查表机制」段落前显式加入以下步骤：\n\n执行命令：\npython <your-project>/obsidian-loop/scripts/dictionary_lookup.py --atoms <your-vault>/99-Meta/tmp/atoms.draft.md --dictionary <your-vault>/20-Areas/skill-ecology-watch/skill-dictionary-detail.md --output <your-vault>/99-Meta/tmp/lookup-result.json\n\n要求：\n1. 命令必须作为 C5 认知连接员子代理 prompt 的第一步\n2. 子代理读 lookup-result.json 而非字典表原文件\n3. 若脚本执行失败，降级为 LLM 推理查表，记录告警到 log\n4. 修改完成后跑一次 dry-run 验证脚本调用正常\n\n验收标准：\n- C5 子代理 prompt 中含 python 命令\n- dry-run 产出 lookup-result.json 文件\n- 关闭 TRB-008（status: open → resolved）\n```"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tag": "hr"
+      },
+      {
+        "tag": "button",
+        "text": {
+          "tag": "plain_text",
+          "content": "📋 复制行动 1 提示词并开始（关闭 TRB-008）"
+        },
+        "type": "primary",
+        "width": "fill",
+        "behaviors": [
+          {
+            "type": "open_url",
+            "default_url": "https://example.com/copy-action-prompt"
+          }
+        ]
+      },
+      {
+        "tag": "button",
+        "text": {
+          "tag": "plain_text",
+          "content": "📄 查看完整行动清单（含 4 行动详细背景）"
+        },
+        "type": "default",
+        "width": "fill",
+        "behaviors": [
+          {
+            "type": "open_url",
+            "default_url": "https://example.com/action-list"
+          }
+        ]
+      },
+      {
+        "tag": "markdown",
+        "content": "> 🤖 obsidian-loop v2.1 · 行动清单 · schema 2.0 · 邻近色环 green+yellow（2 主色系）"
+      }
+    ]
+  }
+}

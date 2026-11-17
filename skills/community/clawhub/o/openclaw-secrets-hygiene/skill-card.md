@@ -1,40 +1,53 @@
-## Description: <br>
-Manage and audit OpenClaw secrets by coordinating gateway restarts, converting plaintext credentials to SecretRef format, and validating configuration accuracy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage and audit OpenClaw secrets by coordinating gateway restarts, converting plaintext credentials to SecretRef format, and validating configuration accuracy.
 
-## Publisher: <br>
-[jlab1201](https://clawhub.ai/user/jlab1201) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jlab1201](https://clawhub.ai/user/jlab1201)
 
-## Use Case: <br>
-Developers and maintainers use this skill to audit OpenClaw deployments for plaintext credentials, migrate secrets to SecretRef-backed configuration, and coordinate validation without disrupting gateway operations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Credential or repository operations may expose or change sensitive OpenClaw configuration if run against the wrong files. <br>
-Mitigation: Review target paths, commands, and credential scope before applying migrations; use only credentials and repositories you intend the skill to operate on. <br>
-Risk: Gateway restart or reload steps can disrupt active OpenClaw sessions. <br>
-Mitigation: Run gateway operations sequentially with a single authorized operator and validate gateway health before continuing. <br>
+## Use Case:
 
+Developers and engineers use this skill to audit OpenClaw deployments for plaintext credentials, migrate credentials into OpenClaw secrets management, and validate that gateway and integration behavior still works after the change.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jlab1201/openclaw-secrets-hygiene) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell, JSON, and Python snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces audit reports, migration plans, configuration templates, validation checklists, and troubleshooting guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Local secrets and configuration edits can expose credentials or leave old plaintext keys in place.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Back up affected config files, restrict secrets file permissions before adding real secrets, avoid pasting credentials into shared terminals, and rotate keys that were previously stored in plaintext.
+
+Risk: Gateway reloads and configuration changes can disrupt OpenClaw authentication or integrations.
+
+Mitigation: Apply gateway operations sequentially, reload secrets deliberately, and validate with OpenClaw audit and gateway health checks before treating migration as complete.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/jlab1201/skills/openclaw-secrets-hygiene)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell, JSON, and Python examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces audit reports, migration plans, configuration templates, testing checklists, and troubleshooting guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

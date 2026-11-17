@@ -1,42 +1,58 @@
-## Description: <br>
-sports-flight helps agents find sports-event and game-day flight options through the FlyAI CLI and present real-time booking links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Book flights for sports events, game days, and match travel with flexible date options, with related travel support powered by Fliggy through the flyai CLI.
 
-## Publisher: <br>
-[dingtom336-gif](https://clawhub.ai/user/dingtom336-gif) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dingtom336-gif](https://clawhub.ai/user/dingtom336-gif)
 
-## Use Case: <br>
-External users planning travel for sports events use this skill to collect flight search parameters, run the FlyAI CLI, and compare bookable options. Agents use it to produce concise travel guidance with booking links rather than relying on static travel knowledge. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires installing and running the external FlyAI npm CLI globally. <br>
-Mitigation: Install only in environments where that external dependency is approved, and review the package before use. <br>
-Risk: Travel-search details are sent through the external FlyAI provider. <br>
-Mitigation: Avoid submitting sensitive travel details unless the provider and data handling are acceptable for the user or organization. <br>
-Risk: Flight prices, availability, booking terms, and links can change after results are returned. <br>
-Mitigation: Review booking links, prices, and terms directly before purchase. <br>
+## Use Case:
 
+External users and travel-focused agents use this skill to search for flights around sports events, match days, and tournament windows, then present bookable options with provider-supplied links.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dingtom336-gif/sports-flight) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with comparison tables, inline shell commands, and booking links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires FlyAI CLI results; booking options should include detailUrl links when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill requires installing and running an unpinned global flyai npm CLI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install a reviewed, pinned CLI version in an isolated environment before using the skill.
+
+Risk: The skill presents provider-supplied booking links for flights or related travel purchases.
+
+Mitigation: Verify booking-link domains and purchase details before clicking links or completing transactions.
+
+Risk: Travel results can be misleading if the agent answers from memory instead of current CLI output.
+
+Mitigation: Require results to come from flyai CLI output and omit any option that lacks a provider detailUrl booking link.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dingtom336-gif/skills/sports-flight)
+- [Publisher profile](https://clawhub.ai/user/dingtom336-gif)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown recommendations with comparison tables, booking links, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires flyai CLI output for travel results and booking detailUrl links; raw JSON is not intended for end-user output.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata; artifact frontmatter reports 3.2.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

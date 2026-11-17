@@ -1,40 +1,52 @@
-## Description: <br>
-Guides users through choosing and executing an OpenClaw monetization path based on their skills and available time, with pricing, customer acquisition, conversion funnel, and income-tracking guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides Chinese-speaking users through planning OpenClaw monetization paths across content, services, products, or consulting to reach an initial ¥99 income goal.
 
-## Publisher: <br>
-[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users, creators, freelancers, and developers use this skill to identify monetization paths for OpenClaw-related work and produce concrete pricing, acquisition, funnel, and action-plan guidance.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Users may treat monetization examples or projected earnings as guaranteed outcomes.
+
+Mitigation: Present recommendations as planning guidance and require users to validate pricing, demand, and expected revenue against their own market context.
+
+Risk: The skill is localized for Chinese-speaking users and may not fit other language or market contexts without review.
+
+Mitigation: Review and adapt channels, examples, wording, and pricing assumptions before using it in other regions or audiences.
+
+## Reference(s):
 
 
-## Use Case: <br>
-OpenClaw users, freelancers, and AI-tool builders use this skill to plan a first monetization path and generate concrete pricing, customer-acquisition, conversion, and daily action guidance. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [guidance, markdown]
 
-## Known Risks and Mitigations: <br>
-Risk: Market, pricing, and income examples may be inaccurate or unsuitable for a user's business context. <br>
-Mitigation: Independently verify market and income claims before spending money, setting prices, or making business decisions. <br>
-Risk: Users may share sensitive customer, account, or financial information while seeking monetization guidance. <br>
-Mitigation: Avoid sharing sensitive customer records, account numbers, or detailed financial data unless truly necessary. <br>
+**Output Format:** [Markdown guidance with structured action plans, resource links, pricing suggestions, and income tracking recommendations]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yang1002378395-cmyk/openclaw-money-course) <br>
+**Other Properties Related to Output:** [Localized for Chinese-speaking users; monetization examples should be treated as guidance rather than guaranteed results.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown with structured recommendations, action steps, resource lists, and optional templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+1.1.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,52 @@
-## Description: <br>
-Provides Chinese-language educational explanations of very short-term stock-trading strategies, technical indicators, market sentiment cycles, position sizing, and stop-loss/take-profit concepts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Chinese-language educational Q&A and strategy guidance for ultra-short-term stock trading, including leader identification, limit-up tactics, technical indicators, market sentiment cycles, position sizing, and stop-loss and take-profit rules.
 
-## Publisher: <br>
-[star-zwc](https://clawhub.ai/user/star-zwc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[star-zwc](https://clawhub.ai/user/star-zwc)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and agents use this skill to answer educational questions about ultra-short-term stock trading concepts, tactics, indicators, market sentiment, risk controls, and beginner learning paths. It should be treated as educational content, not personalized financial advice.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill discusses speculative ultra-short-term stock trading strategies that may be mistaken for personalized financial advice.
+
+Mitigation: Frame responses as educational information, confirm user intent for trading-specific questions, and avoid presenting strategies as individualized investment recommendations.
+
+Risk: Users may apply high-risk short-term trading tactics without sufficient experience or risk controls.
+
+Mitigation: Preserve the skill's emphasis on simulation practice, position sizing, stop-loss discipline, and caution that stock-market participation carries risk.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External learners and trading-curious users can use this skill to ask for Chinese-language explanations of ultra-short-term stock-trading terms, strategy patterns, risk controls, and beginner learning paths. Treat the content as general learning material, not personalized financial advice. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Speculative short-term stock-trading material could be mistaken for personalized investment advice. <br>
-Mitigation: Present it as educational content only, avoid treating it as the sole basis for trades, and seek qualified financial advice for personal decisions. <br>
-Risk: New traders may overestimate their readiness for high-volatility ultra-short-term strategies. <br>
-Mitigation: Prefer simulated practice first and apply conservative risk controls such as position limits, stop losses, and review before real trades. <br>
+**Output Format:** [Markdown or plain text educational guidance]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/star-zwc/chaoduanxian-stock) <br>
+**Other Properties Related to Output:** [Chinese-language responses for stock-trading education; no tool calls, credentials, system access, persistence, or hidden execution are indicated by the evidence.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown prose, lists, and tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-language educational trading content; no code or tool execution.] <br>
+1.0.0 (source: release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

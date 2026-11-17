@@ -1,0 +1,15 @@
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "@id": "#organization",
+    "name": "青禾资料库（演示）",
+    "url": "https://example.org/"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": ["Article", "BlogPosting"],
+    "headline": "资料版本的保存方法（演示）",
+    "publisher": {"@id": "#organization"}
+  }
+]

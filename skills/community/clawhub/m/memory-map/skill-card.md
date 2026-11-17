@@ -1,40 +1,49 @@
-## Description: <br>
-Visualize and explore geo-tagged memories on interactive maps with clustering, temporal playback, conceptual grouping, and privacy-controlled sharing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Visualize and explore geo-tagged memories on interactive maps with clustering, temporal playback, conceptual topic mapping, and privacy-controlled sharing.
 
-## Publisher: <br>
-[kkw-21](https://clawhub.ai/user/kkw-21) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kkw-21](https://clawhub.ai/user/kkw-21)
 
-## Use Case: <br>
-Developers and agents use this skill to turn memory records into geographic or conceptual map views, including overlays, temporal playback, and exportable map artifacts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Map exports and shareable widgets can reveal sensitive locations, memory content, or movement patterns. <br>
-Mitigation: Review privacy controls before sharing, exclude sensitive pins, and limit widget access to the intended audience. <br>
-Risk: The authoritative security guidance flags maintainer workflows with powerful moderation and review actions. <br>
-Mitigation: Install only when those maintainer workflows are intended, and review any authenticated command or nested-review behavior before use. <br>
+## Use Case:
 
+External users and developers use this skill to turn memory records into geographic or conceptual maps, including clusters, temporal playback, overlays, and privacy-controlled exports.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/kkw-21/memory-map) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands; generated map artifacts may be interactive HTML or GeoJSON when the referenced map commands are run.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports geographic pins, clusters, temporal playback, conceptual map mode, overlays, exports, and shareable privacy-controlled widgets.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Location-linked memories can reveal sensitive home, work, travel, relationship, or routine information when exported or shared.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review memories before export, use privacy controls, and share HTML, GeoJSON, or embedded widgets only with the intended audience and an appropriate location precision.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kkw-21/skills/memory-map)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Files, Guidance]
+
+**Output Format:** [Markdown with inline bash commands and generated interactive HTML or GeoJSON files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include privacy-controlled map widgets and memory overlays.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

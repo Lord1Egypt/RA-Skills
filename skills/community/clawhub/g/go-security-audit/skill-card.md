@@ -1,41 +1,52 @@
-## Description: <br>
-Performs a security audit of a Go codebase, focusing on concurrency bugs, resource leaks, error handling gaps, command injection, and authentication bypasses. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Perform a security audit of a Go codebase, targeting SSH servers, BBS systems, API services, and CLI tools for race conditions, goroutine leaks, missing error handling, command injection, and authentication bypasses.
 
-## Publisher: <br>
-[forgou37](https://clawhub.ai/user/forgou37) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[forgou37](https://clawhub.ai/user/forgou37)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and security engineers use this skill to review Go repositories for concurrency, error handling, command execution, authentication, session, and resource-leak risks. It produces prioritized findings with file and line citations plus minimal suggested patches.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill may activate on broad Go repository review requests when a non-security code review was intended.
+
+Mitigation: Phrase requests clearly, for example by asking for either a Go security audit or a non-security code review.
+
+Risk: Security findings and suggested fixes may be incomplete or incorrect without project-specific validation.
+
+Mitigation: Review findings against the source code, run the project's tests and security checks, and apply suggested patches only after maintainer review.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and security engineers use this skill to review Go repositories for security and reliability issues and to produce prioritized findings with file and line citations plus minimal patch suggestions. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [analysis, markdown, code, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Suggested audit findings or patches may be incorrect or incomplete for a target repository. <br>
-Mitigation: Review findings and proposed patches before applying them, and validate changes with the repository's normal test and security review process. <br>
-Risk: The skill is intended to inspect Go repository code when explicitly used for an audit. <br>
-Mitigation: Run it only on repositories the user is authorized to review and limit shared context to code needed for the audit. <br>
+**Output Format:** [Markdown finding list with Go code snippets and minimal diff-style fixes]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/forgou37/go-security-audit) <br>
-- [Publisher profile](https://clawhub.ai/user/forgou37) <br>
+**Other Properties Related to Output:** [Findings are prioritized by severity from Critical through Low.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown findings with file:line citations and Go code blocks for suggested fixes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prioritized by severity from critical through low] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

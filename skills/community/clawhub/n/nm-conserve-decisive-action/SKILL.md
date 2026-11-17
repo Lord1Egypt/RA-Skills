@@ -2,7 +2,7 @@
 name: decisive-action
 description: |
   Guides when to ask clarifying questions versus proceed autonomously. Use to reduce unnecessary clarifying questions when intent is clear
-version: 1.9.8
+version: 1.10.3
 triggers:
   - efficiency
   - workflow
@@ -12,7 +12,7 @@ source: claude-night-market
 source_plugin: conserve
 ---
 
-> **Night Market Skill** — ported from [claude-night-market/conserve](https://github.com/athola/claude-night-market/tree/master/plugins/conserve). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
+> **Night Market Skill**: ported from [claude-night-market/conserve](https://github.com/athola/claude-night-market/tree/master/plugins/conserve). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
 
 # Decisive Action
@@ -45,6 +45,7 @@ Ask questions only when ambiguity would **materially impair correctness** or cap
 | **Security-Critical** | Wrong choice = vulnerability | "Which auth method?" |
 | **Data Migration** | Data loss risk | "Preserve or transform?" |
 | **Breaking Changes** | Affects downstream users | "Deprecate or remove?" |
+| **Second Model of a Concern** | Both models persist, and every later change pays for both | "Replace this `estimate_tokens`, or keep both?" asked with the count of call sites |
 
 ### Ask Threshold Checklist
 
@@ -60,7 +61,7 @@ Before asking, verify:
 
 | Scenario | Why | Assumption |
 |----------|-----|------------|
-| **Standard Approach Exists** | Industry convention | Use conventional pattern |
+| **Standard Approach Exists** | Repository or industry convention | Use this repository's model of the concern. Say how that model departs from industry convention, if it does. Use industry convention where the repository has none |
 | **Easily Reversible** | Low cost of error | Can undo via git/backup |
 | **Clear from Context** | Intent is obvious | Proceed with stated goal |
 | **User Can Review** | PR/dry-run available | Changes are inspectable |
@@ -182,3 +183,18 @@ Combine with:
 | "Optimize query" | **Ask** if multiple approaches |
 | "Format code" | **Proceed** with project style |
 | "Deploy to prod" | **Ask** for confirmation |
+
+## Exit Criteria
+
+- [ ] Every proposed autonomous action checked against the Decision
+  Matrix: reversibility and ambiguity axes produce an explicit
+  "Proceed", "Proceed with preview", or "Ask" verdict
+- [ ] Irreversible operations (destructive deletes, data migrations,
+  breaking changes) never executed without at least one clarifying
+  question regardless of apparent intent clarity
+- [ ] When proceeding autonomously, one of the four safety mechanisms
+  is applied: dry-run/preview, backup, incremental commits, or
+  documented assumptions in the commit message
+- [ ] No clarifying question asked for scenarios in the "Default to
+  Action" table where standard approach exists and changes are
+  easily reversible via git

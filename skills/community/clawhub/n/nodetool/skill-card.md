@@ -1,43 +1,55 @@
-## Description: <br>
-Nodetool is a local-first, AGPL-3.0 visual AI workflow builder that combines ComfyUI-style nodes with n8n-style automation for LLM agents, RAG pipelines, and multimodal data flows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Visual AI workflow builder - ComfyUI meets n8n for LLM agents, RAG pipelines, and multimodal data flows. Local-first, open source (AGPL-3.0).
 
-## Publisher: <br>
-[georgi](https://clawhub.ai/user/georgi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-AGPL-3.0 <br>
+## Publisher:
 
+[georgi](https://clawhub.ai/user/georgi)
 
-## Use Case: <br>
-Developers and engineers use this skill to install and operate Nodetool for local AI workflow execution, package documentation, model cache management, chat or server operation, proxying, and cloud deployment tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+AGPL-3.0
 
-## Known Risks and Mitigations: <br>
-Risk: Remote and silent installer commands can run upstream code without interactive review. <br>
-Mitigation: Download and review installers first, use pinned releases or checksums when available, and reserve silent installation for controlled environments. <br>
-Risk: Auth tokens, settings, and secrets may be exposed through shell history, logs, or displayed settings output. <br>
-Mitigation: Avoid pasting real tokens into commands, use environment or secret-management practices, and require explicit confirmation before showing secrets. <br>
-Risk: Server, proxy, background job, synchronization, and deployment commands can expose services or change cloud resources. <br>
-Mitigation: Confirm intent before starting public servers or proxies, launching background jobs, syncing data, or applying and destroying deployments. <br>
+## Use Case:
 
+Developers and engineers use this skill to install and operate NodeTool for local AI workflow building, workflow execution, package generation, deployment management, model cache administration, chat, and server workflows.
 
-## Reference(s): <br>
-- [Nodetool homepage](https://nodetool.ai) <br>
-- [ClawHub Nodetool release page](https://clawhub.ai/georgi/nodetool) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with shell command examples and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include commands that install software, start local services, manage secrets, run background jobs, synchronize data, or apply and destroy cloud deployments.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.6.3 (source: server release metadata; artifact package.json reports 0.6.2) <br>
+Risk: Installation guidance encourages direct execution of mutable remote scripts and unattended install modes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review installer contents before execution, prefer a pinned release or downloaded script with verified checksum or signature, and use unattended modes only in isolated least-privilege environments.
+
+Risk: Command examples include auth token parameters that could be exposed through shell history, logs, or process inspection.
+
+Mitigation: Use environment-specific secret handling and avoid pasting real authentication tokens directly into commands that may be logged.
+
+## Reference(s):
+
+- [NodeTool homepage](https://nodetool.ai)
+- [Linux/macOS install script](https://raw.githubusercontent.com/nodetool-ai/nodetool/refs/heads/main/install.sh)
+- [Windows install script](https://raw.githubusercontent.com/nodetool-ai/nodetool/refs/heads/main/install.ps1)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with shell, PowerShell, JSON, and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance includes CLI command patterns for workflow execution, package creation, deployment, model management, chat, server, proxy, and environment setup tasks.]
+
+## Skill Version(s):
+
+0.6.3 (source: ClawHub release evidence; package.json lists 0.6.2)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

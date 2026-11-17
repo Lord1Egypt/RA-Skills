@@ -1,48 +1,68 @@
-## Description: <br>
-Create, validate, and deploy forms with field types, validation patterns, conditional logic, and platform integrations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create, validate, and deploy forms with field types, validation patterns, conditional logic, and platform integrations.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Developers, product teams, and operators use this skill to choose form platforms, define fields, generate form code, apply validation patterns, and connect submissions to webhooks, CRMs, databases, notifications, or self-hosted storage. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated forms and integration snippets may route submissions, personal data, or regulated data to unintended tools or storage locations. <br>
-Mitigation: Confirm submission destinations before use, avoid sending sensitive fields to chat or broad automation tools, and define retention, deletion, access control, and encryption requirements for stored form data. <br>
-Risk: Webhook, CRM, database, notification, and email examples involve API keys, tokens, and webhook secrets. <br>
-Mitigation: Keep secrets out of prompts and logs, use environment variables or secret managers, use least-privilege tokens, require HTTPS, and verify webhook signatures and timestamps. <br>
-Risk: Code, Docker, and package examples are starting points and may be incomplete for production hardening. <br>
-Mitigation: Review generated snippets before deployment, pin package and container versions, enforce server-side validation, apply rate limiting and CSRF protection, and scan file uploads when enabled. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/forms) <br>
-- [Forms skill definition](artifact/SKILL.md) <br>
-- [Form types by use case](artifact/types.md) <br>
-- [Form platforms comparison](artifact/platforms.md) <br>
-- [Code generation for forms](artifact/code.md) <br>
-- [Form validation patterns](artifact/validation.md) <br>
-- [Form integrations](artifact/integrations.md) <br>
-- [Self-hosted form solutions](artifact/selfhosted.md) <br>
+## Use Case:
 
+Developers, builders, and operators use this skill to design mobile-friendly forms, choose form platforms, generate implementation snippets, add validation, and plan integrations or self-hosted deployments.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline code, shell commands, JSON, YAML, SQL, and TypeScript examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only skill; generated snippets and configuration examples should be reviewed before use.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Form submissions can contain personal or regulated data.
+
+Mitigation: Define consent, retention, deletion, encryption, and access controls before collecting real submissions.
+
+Risk: Integration examples may expose or mishandle API tokens and webhook secrets if copied directly.
+
+Mitigation: Keep credentials server-side and out of URLs, use HTTPS, verify webhook signatures, and review snippets before production use.
+
+Risk: Self-hosted deployment examples may rely on moving package or container versions.
+
+Mitigation: Pin Docker images and npm package versions before deploying.
+
+Risk: Notifications and integrations can over-share submission contents.
+
+Mitigation: Send only the fields needed for the workflow and avoid forwarding full submission contents to chat or email by default.
+
+## Reference(s):
+
+- [Forms Skill Page](https://clawhub.ai/ivangdavila/skills/forms)
+- [Publisher Profile](https://clawhub.ai/user/ivangdavila)
+- [SKILL.md](artifact/SKILL.md)
+- [Code Generation for Forms](artifact/code.md)
+- [Form Integrations](artifact/integrations.md)
+- [Form Platforms Comparison](artifact/platforms.md)
+- [Self-Hosted Form Solutions](artifact/selfhosted.md)
+- [Form Types by Use Case](artifact/types.md)
+- [Form Validation Patterns](artifact/validation.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline code blocks, shell commands, JSON, YAML, TypeScript, Dart, SQL, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces implementation guidance and examples for form design, validation, integrations, storage, and deployment; generated snippets should be reviewed before production use.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence, artifact frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

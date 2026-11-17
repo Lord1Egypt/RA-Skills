@@ -1,44 +1,57 @@
-## Description: <br>
-Provides offline Chinese and mixed Chinese-English speech-to-text recognition using qwen-asr with local C-based inference. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Offline Chinese and mixed Chinese-English speech-to-text recognition in pure C without Python or FFmpeg dependencies, suitable for edge devices.
 
-## Publisher: <br>
-[rightister](https://clawhub.ai/user/rightister) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rightister](https://clawhub.ai/user/rightister)
 
-## Use Case: <br>
-Developers and engineers use this skill to run local speech-to-text transcription for Chinese or mixed Chinese-English audio, including edge deployments where offline inference is preferred. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill runs local binaries and FFmpeg against user-provided audio files. <br>
-Mitigation: Use trusted qwen-asr sources, keep local dependencies minimal, and review audio inputs before running local processing. <br>
-Risk: Initial setup requires model files and local build dependencies. <br>
-Mitigation: Download models from trusted sources, confirm applicable model terms, and install only the required FFmpeg and BLAS dependencies. <br>
+## Use Case:
 
+Developers and engineers use this skill to transcribe Chinese or mixed Chinese-English audio locally with a C-based Qwen ASR implementation, including edge deployments where Python and external runtime dependencies are undesirable.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/rightister/rightister-qwen-asr) <br>
-- [qwen-asr reference notes](references/README.md) <br>
-- [qwen-asr GitHub repository](https://github.com/antirez/qwen-asr) <br>
-- [Qwen3-ASR-0.6B model](https://huggingface.co/antirez/qwen3-asr-0.6b) <br>
-- [Qwen3-ASR-1.7B model](https://huggingface.co/antirez/qwen3-asr-1.7b) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text transcription with Markdown usage guidance and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a local qwen-asr checkout, compiled binary, FFmpeg, a BLAS backend, and downloaded model files; inference runs offline after setup.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill builds and runs an unverified third-party ASR checkout from the user's home directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Clone and pin a known qwen-asr commit, review the repository and build output, and verify the binary before running the skill.
+
+Risk: Submitted audio may contain sensitive data, and temporary converted audio can remain if execution fails before cleanup.
+
+Mitigation: Treat input audio as sensitive, run in an appropriate local environment, and remove temporary audio artifacts after failures.
+
+## Reference(s):
+
+- [qwen-asr reference README](references/README.md)
+- [antirez/qwen-asr GitHub repository](https://github.com/antirez/qwen-asr)
+- [Qwen3-ASR-0.6B model](https://huggingface.co/antirez/qwen3-asr-0.6b)
+- [Qwen3-ASR-1.7B model](https://huggingface.co/antirez/qwen3-asr-1.7b)
+- [ClawHub skill page](https://clawhub.ai/rightister/skills/rightister-qwen-asr)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text transcription with Markdown usage guidance and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports small and large model selection plus configurable thread count; returns transcription text after local audio preprocessing and offline inference.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

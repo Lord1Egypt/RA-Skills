@@ -1,47 +1,59 @@
-## Description: <br>
-Fetch and manage Read AI meeting data, including summaries, transcripts, action items, engagement metrics, meeting search, digests, and webhook setup. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetch and manage Read AI meeting data, including summaries, transcripts, action items, search results, webhook payloads, and engagement metrics.
 
-## Publisher: <br>
-[brandons7](https://clawhub.ai/user/brandons7) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[brandons7](https://clawhub.ai/user/brandons7)
 
-## Use Case: <br>
-Employees, external users, developers, and engineers use this skill to retrieve, search, export, and receive Read AI meeting records and Limitless conversation lifelogs through API calls, local cache files, and a webhook receiver. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can access Read AI meeting records and Limitless conversation lifelogs that may contain sensitive transcripts, summaries, participants, decisions, and action items. <br>
-Mitigation: Install only when this access is intended, use a least-privilege API key where available, and review the records before sharing outputs. <br>
-Risk: The skill stores API keys, meeting data, lifelogs, webhook payloads, and logs on the local filesystem. <br>
-Mitigation: Restrict permissions on ~/.config/readai and ~/.readai, rotate exposed keys, and regularly secure or delete cached data that is no longer needed. <br>
-Risk: The optional AI summary mode can send conversation excerpts to the Claude CLI. <br>
-Mitigation: Avoid the --ai option unless sending those excerpts to Claude is acceptable for the user's data handling requirements. <br>
-Risk: The webhook receiver can expose incoming meeting payload handling if bound beyond localhost or deployed without external protection. <br>
-Mitigation: Keep the receiver bound to localhost where possible, or place it behind appropriate network access controls and webhook protections. <br>
+## Use Case:
 
+Employees, external users, and developers use this skill to retrieve, search, export, and receive meeting intelligence from Read AI and Limitless sources. It supports meeting summaries, transcripts, action items, participant details, decisions, local digests, and webhook ingestion.
 
-## Reference(s): <br>
-- [Read AI API Reference](references/api-reference.md) <br>
-- [Read AI API](https://api.read.ai/v1) <br>
-- [Limitless API](https://api.limitless.ai/v1) <br>
-- [ClawHub Skill Page](https://clawhub.ai/brandons7/readai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown, JSON, shell command output, and local files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local meeting, transcript, lifelog, digest, index, and webhook log files under user configuration and data directories.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Meeting transcripts, participant details, webhook payloads, and lifelog records can contain highly sensitive personal or business information stored under ~/.readai.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only where local storage of this data is approved, use restrictive directory and file permissions, and regularly review or purge cached records.
+
+Risk: A publicly exposed webhook receiver can accept untrusted meeting payloads without built-in signature or token validation.
+
+Mitigation: Keep the receiver bound to localhost unless protected by HTTPS, authentication or signature validation, rate limits, and request-size limits.
+
+Risk: Using the optional AI digest path can send conversation excerpts through the Claude CLI.
+
+Mitigation: Use --ai only when that external processing path is acceptable for the meeting or lifelog data being summarized.
+
+## Reference(s):
+
+- [Read AI API Reference](references/api-reference.md)
+- [Read AI API base URL](https://api.read.ai/v1)
+- [Limitless API base URL](https://api.limitless.ai/v1)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration]
+
+**Output Format:** [Markdown, JSON, and command-line text output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May cache meeting records, webhook payloads, transcripts, lifelogs, indexes, and generated digests under ~/.readai.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

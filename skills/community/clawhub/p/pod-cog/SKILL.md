@@ -1,6 +1,6 @@
 ---
-name: pod-cog
-description: "AI podcast production powered by CellCog. Full podcast episodes from a single prompt — multi-voice dialogue, intro/outro music, automatic editing to finished MP3. Episode scripts, show notes, interview prep, audiograms."
+name: podcast-generation-cellcog
+description: "AI podcast generation and production powered by CellCog. Full podcast episodes from a single prompt — multi-voice dialogue with up to 10 distinct speakers, structured episodes with cold opens and segment stingers, music beds ducked under speech, broadcast loudness mastering, finished MP3 plus chapter markers. Episode scripts, show notes, interview prep, audiograms."
 metadata:
   openclaw:
     emoji: "🎙️"
@@ -12,13 +12,13 @@ author: CellCog
 homepage: https://cellcog.ai
 dependencies: [cellcog]
 ---
-# Pod Cog - Complete Podcast Production
+# Podcast Generation - Complete Podcast Production
 
 **A great podcast needs three things: compelling content, natural-sounding voices, and polished production.** CellCog delivers all three.
 
-- **Content quality:** #1 on DeepResearch Bench (Apr 2026) — scripts built on deep reasoning, not surface-level takes
-- **Voice quality:** Frontier multi-voice dialogue with natural delivery, emotion, and pacing across distinct speakers
-- **Production quality:** Automatic intro/outro music generation, mixing, and final MP3 delivery — all from a single prompt
+- **Content quality:** #1 on DeepResearch Bench (October 2026) — scripts built on deep reasoning, not surface-level takes
+- **Voice quality:** Frontier multi-voice dialogue (up to 10 distinct speakers) with natural delivery, emotional direction, interruptions, and pacing across speakers
+- **Production quality:** Structured episodes with cold opens and segment transitions, original music beds ducked under speech, broadcast loudness mastering (−16 LUFS, the Apple Podcasts spec), and a ready-to-publish MP3 — all from a single prompt
 
 ## How to Use
 
@@ -31,6 +31,7 @@ result = client.create_chat(
     notify_session_key="agent:main:main",
     task_label="my-task",
     chat_mode="agent",
+    chat_tier="max",
 )
 ```
 
@@ -42,6 +43,7 @@ result = client.create_chat(
     prompt="[your task prompt]",
     task_label="my-task",
     chat_mode="agent",
+    chat_tier="max",
 )
 print(result["message"])
 ```
@@ -180,9 +182,12 @@ Strategic content development:
 | **Solo** | Just you, sharing expertise | Scripts, outlines, talking points |
 | **Interview** | Host + Guest | Questions, research, show notes |
 | **Co-Hosted** | Two regular hosts | Discussion outlines, segment ideas |
-| **Panel** | Multiple guests | Structure, moderation flow |
-| **Narrative** | Produced, story-driven | Scripts, story structure |
+| **Panel** | Up to 10 distinct voices | Full audio production, structure, moderation flow |
+| **Debate** | Moderator + advocates | Full audio production with distinct speaker roles |
+| **Narrative** | Produced, story-driven | Scripts, story structure, character voices |
 | **News/Recap** | Current events | Research, summaries, takes |
+
+**Multi-speaker audio:** panels, debates, and roundtables are fully producible as audio — up to 10 distinct voices in one episode, each with its own role (host, expert, skeptic, color commentator). Specify the roles in your prompt; distinct roles are what keep a big panel from sounding like everyone agreeing with each other.
 
 ---
 
@@ -214,16 +219,16 @@ Strategic content development:
 
 ---
 
-## Chat Mode for Podcasts
+## Choosing Mode & Tier
 
-| Scenario | Recommended Mode |
-|----------|------------------|
-| Scripts, show notes, interview questions, individual episodes | `"agent"` |
-| Season planning, narrative series, comprehensive guest research | `"agent team"` |
+**Use `chat_mode="agent", chat_tier="max"` for podcast production.** Episode structure, multi-voice scripting, and audio assembly are a deep multi-step pipeline.
 
-**Use `"agent"` for most podcast work.** Episode scripts, show notes, and interview prep execute well in agent mode.
+| Scenario | Recommended |
+|----------|-------------|
+| Full episodes, narrative series | `chat_mode="agent", chat_tier="max"` |
+| Short single-voice segments | `chat_mode="agent", chat_tier="flash"` |
 
-**Use `"agent team"` for deep work** - researching complex guests, planning multi-episode narratives, or developing comprehensive content strategies.
+Agent Team (`chat_mode="team"`) is reserved for deep research — podcast production runs best on Agent max.
 
 ---
 
@@ -287,50 +292,56 @@ Strategic content development:
 
 ## Full Audio Production
 
-When you request a **full podcast episode with audio**, CellCog produces a complete, ready-to-publish file with this default structure:
+When you request a **full podcast episode with audio**, CellCog produces a complete, ready-to-publish episode with a real show structure:
 
 ```
-[Intro Music] → [Dialogue/Conversation] → [Outro Music]
+[Cold Open] → [Branded Intro w/ music] → [Topic Segments + Stingers] → [Recap] → [Outro w/ music bed]
 ```
 
-**CellCog generates all three parts automatically** — the multi-voice dialogue AND short intro/outro music tracks — then stitches them into one final MP3.
+**What happens under the hood** — so you know what to ask for:
+
+- **Cold open**: the episode starts mid-conversation on its most compelling moment, then the branded intro hits — not "Welcome to the show" first
+- **Music that behaves like a real mix**: original intro/outro music and segment stingers, with music **ducked under speech** (sidechain compression), not just bookended
+- **Broadcast loudness**: the final file is mastered to **−16 LUFS / −1 dBTP** (Apple Podcasts spec) via two-pass normalization
+- **Expressive dialogue**: hosts laugh, hesitate, interrupt each other, and shift energy between segments — driven by emotional direction in the script
+- **Chapter markers**: computed from the episode timeline and delivered as `chapters.json` alongside the MP3
 
 ### Customizing the Music
 
-You can control the intro and outro music in your prompt:
+You can control the music in your prompt:
 
 **Specific direction:**
-> "Intro music: 8 seconds of upbeat electronic, think tech podcast energy. Outro music: 6 seconds of the same theme but softer, winding down."
+> "Intro music: 10 seconds of upbeat electronic, think tech podcast energy. Use a quiet lo-fi bed under the outro CTA."
 
 **Genre/mood direction:**
-> "Use jazzy lo-fi intro music and a calm acoustic outro."
+> "Use jazzy lo-fi intro music, short jazzy stingers between topics, and a calm acoustic outro."
 
-**Let CellCog decide:**
-> "Choose intro and outro music that fits the topic."
+**Recurring show (recommended):**
+> "This is episode 3 of 'The Indie Hacker Pod' — reuse the same sonic brand (opener, stingers, outro) from previous episodes."
 
-If you say nothing about music, CellCog will choose something appropriate for your topic and tone.
+CellCog generates a reusable **sonic brand package** (opener, stinger, outro, music bed) for a show and keeps it consistent across episodes. If you say nothing about music, CellCog will choose something appropriate for your topic and tone — by default, stingers are warm and playful (never tense or alarming) and the outro music plays out to a full, natural resolve after the final sign-off.
 
 ### What You Get
 
 | Component | What CellCog Produces |
 |-----------|----------------------|
-| **Intro music** | ~8 second original track matching your podcast vibe |
-| **Dialogue** | Full multi-voice conversation with natural delivery |
-| **Outro music** | ~6 second wind-down track |
-| **Final file** | Single MP3 with all three concatenated, ready to publish |
+| **Episode structure** | Cold open, branded intro, topic segments with stingers, recap, outro |
+| **Dialogue** | Multi-voice conversation (2-10 voices) with natural delivery, reactions, and interruptions |
+| **Music** | Original opener/stingers/outro + music beds ducked under speech, reusable across episodes |
+| **Mastering** | Two-pass loudness normalization to −16 LUFS / −1 dBTP |
+| **Final files** | Ready-to-publish MP3 + `chapters.json` for podcast apps |
 
-### Example with Music Direction
+### Example with Full Direction
 
 > "Create a 10-minute podcast episode:
 > 
 > Topic: Why startups should hire generalists first
 > Format: Interview between a host and a 3x founder
-> Tone: Casual, insightful, with some humor
+> Tone: Casual, insightful, with some humor — let them interrupt each other occasionally
 > 
-> Intro music: Upbeat indie rock, 8 seconds, energetic but not overwhelming
-> Outro music: Same vibe but mellower, 6 seconds
+> Music: Upbeat indie rock opener (~10s), short stingers between the 3 main topics, mellow outro bed under the CTA
 > 
-> Or if you prefer: just say 'Choose music that fits' and CellCog will pick."
+> Deliver: final MP3 + chapter markers"
 
 ---
 
@@ -346,12 +357,15 @@ If you say nothing about music, CellCog will choose something appropriate for yo
 
 5. **Include CTAs**: Tell us what actions you want listeners to take.
 
-6. **Think about chapters**: Modern podcast apps support chapters. Plan for them.
+6. **Ask for chapters**: Full audio episodes come with `chapters.json` — say so if you want them embedded in your show notes too.
+
+7. **Name your show for consistency**: mentioning the show name lets CellCog reuse the same sonic brand and voices across episodes.
 
 ---
 
 ## If CellCog is not installed
 
-Run `/cellcog-setup` (or `/cellcog:cellcog-setup` depending on your tool) to install and authenticate.
-**OpenClaw users:** Run `clawhub install cellcog` instead.
+**Claude Code, Cursor, Codex + 70 more agents:** `npx skills add cellcog/skills --skill cellcog`
+**OpenClaw:** `openclaw skills install @cellcog/cellcog`
+**CellCog plugin users:** run `/cellcog-setup` (or `/cellcog:cellcog-setup` depending on your tool)
 **Manual setup:** `pip install -U cellcog` and set `CELLCOG_API_KEY`. See the **cellcog** skill for SDK reference.

@@ -1,43 +1,57 @@
-## Description: <br>
-Force agent responses to scheduled/automated messages by using `openclaw agent` instead of `openclaw message send` to trigger actual agent turns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Self-Prompt helps automated jobs trigger real OpenClaw agent turns and relay the resulting responses back to a chat target.
 
-## Publisher: <br>
-[eliranwong](https://clawhub.ai/user/eliranwong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[eliranwong](https://clawhub.ai/user/eliranwong)
 
-## Use Case: <br>
-Developers and operators use this skill to make trusted scheduled jobs, monitoring scripts, and automation reliably trigger an agent response and deliver that response back to a chat channel. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Automation can trigger agent responses and post them into chat channels. <br>
-Mitigation: Use the scripts only for trusted automation and restrict which agent IDs and group IDs are allowed. <br>
-Risk: Responses or task content may expose confidential information in shared channels. <br>
-Mitigation: Avoid sending confidential data to shared chats and review the target channel before delivering responses. <br>
-Risk: The scripts execute the OpenClaw binary from OPENCLAW_PATH or a default local path. <br>
-Mitigation: Verify the OpenClaw executable path before use. <br>
-Risk: Task activity and response snippets may be written to ~/agent_task.log. <br>
-Mitigation: Review or clear the log when tasks may involve private information. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/eliranwong/self-prompt) <br>
+## Use Case:
 
+Developers and operators use this skill to make scheduled jobs, monitoring alerts, accountability checks, and research tasks receive an agent response instead of being treated as background chat messages.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Code, Configuration] <br>
-**Output Format:** [Markdown with inline bash and Python examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs operational patterns and helper script usage for OpenClaw agents.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Automated agent responses may be reposted to a chat target without enough human review.
+
+Mitigation: Use only with trusted agents and trusted chat targets, and add approval or filtering before automated responses are posted to a group.
+
+Risk: Task messages or agent responses can include sensitive information that is reposted or logged.
+
+Mitigation: Avoid secrets, credentials, personal data, private business data, and sensitive trading details; harden or disable response logging where needed.
+
+Risk: The helper scripts depend on the configured OpenClaw executable path.
+
+Mitigation: Validate the OpenClaw binary path before use and set OPENCLAW_PATH to an approved executable in managed environments.
+
+## Reference(s):
+
+- [ClawHub skill page: Self-Prompt](https://clawhub.ai/eliranwong/skills/self-prompt)
+- [ClawHub publisher profile: eliranwong](https://clawhub.ai/user/eliranwong)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Bash and Python examples plus helper scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Helper scripts accept an agent ID, group or target ID, task message, timeout, and channel.]
+
+## Skill Version(s):
+
+1.1.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

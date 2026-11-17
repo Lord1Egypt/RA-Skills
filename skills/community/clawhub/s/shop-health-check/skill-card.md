@@ -1,40 +1,58 @@
-## Description: <br>
-A shop health monitoring skill for cross-border e-commerce stores that checks site availability, response time, SSL certificate health, key page 404s, missing content, and sends Feishu alerts when issues are found. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Shop Health Check helps agents run automated health checks for cross-border e-commerce stores, including site availability, response time, SSL certificate status, key-page 404s, missing content, and Feishu alert delivery.
 
-## Publisher: <br>
-[zzhimin](https://clawhub.ai/user/zzhimin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zzhimin](https://clawhub.ai/user/zzhimin)
 
-## Use Case: <br>
-Store operators and developers use this skill to run periodic health checks across configured e-commerce shops, inspect availability, SSL, and sampled product-page problems, and receive operational alerts through Feishu. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends HTTP requests to configured store domains and sampled product pages. <br>
-Mitigation: Install and run it only for shops the user is authorized to monitor, and review the shop configuration before scheduling checks. <br>
-Risk: Feishu webhook values and report details may expose operational information outside the local environment. <br>
-Mitigation: Treat the webhook as a secret, prefer environment or protected configuration storage, and use the no-Feishu option when reports should remain local. <br>
+## Use Case:
 
+Developers, operators, and e-commerce teams use this skill to configure recurring health checks for one or more storefronts and receive concise reports or Feishu alerts when availability, SSL, product page, or content checks fail.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zzhimin/shop-health-check) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown instructions, shell commands, console text reports, optional JSON report data, and Feishu message cards.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires configured shop domains, paths, thresholds, Python dependencies, and an optional Feishu webhook.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Configured shop URLs can cause broad outbound network requests, including to sensitive internal services if untrusted configuration is used.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted shop URLs, allowlist expected domains, and restrict outbound network access where possible.
+
+Risk: Report posting can send operational details to a Feishu webhook when reporting is enabled.
+
+Mitigation: Validate or allowlist Feishu webhook domains and use --no-feishu unless external reporting is intended.
+
+Risk: Unpinned Python dependencies may change behavior across environments.
+
+Mitigation: Install dependencies in a virtual environment and pin dependency versions for production use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zzhimin/skills/shop-health-check)
+- [Publisher profile](https://clawhub.ai/user/zzhimin)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration]
+
+**Output Format:** [Console text, Feishu markdown card payload, or JSON report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires configured shop domains and paths; Feishu delivery is controlled by webhook configuration or --no-feishu.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

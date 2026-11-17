@@ -1,47 +1,63 @@
-## Description: <br>
-OpenClaw Free Models helps users configure free or low-cost AI model providers for OpenClaw. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw free model setup guidance for budget-conscious users, students, and testers configuring DeepSeek, GLM-4, Claude Haiku, and GPT-4o-mini.
 
-## Publisher: <br>
-[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk)
 
-## Use Case: <br>
-OpenClaw users, students, testers, and cost-conscious developers use this skill to choose model providers, set OpenClaw model and API-key configuration, compare expected costs, and check provider balances. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill guides users through API-key configuration for third-party model providers. <br>
-Mitigation: Use personal provider keys only, verify provider free-tier and pricing terms directly, avoid sharing keys with support contacts, and rotate any exposed key. <br>
-Risk: Free-tier quotas and pricing claims can become outdated. <br>
-Mitigation: Confirm current quota and billing details with each provider before relying on the configuration for regular use. <br>
+## Use Case:
 
+External OpenClaw users, students, and testers use this skill to choose free or low-cost model providers, configure OpenClaw model and API-key settings, and check provider balances.
 
-## Reference(s): <br>
-- [Openclaw Free Models on ClawHub](https://clawhub.ai/yang1002378395-cmyk/openclaw-free-models) <br>
-- [Publisher profile: yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk) <br>
-- [DeepSeek Platform](https://platform.deepseek.com/) <br>
-- [BigModel Open Platform](https://open.bigmodel.cn/) <br>
-- [Anthropic Console](https://console.anthropic.com/) <br>
-- [OpenAI Platform](https://platform.openai.com/) <br>
-- [DeepSeek balance endpoint](https://api.deepseek.com/user/balance) <br>
-- [BigModel balance endpoint](https://open.bigmodel.cn/api/paas/v4/balance) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash and YAML code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes provider setup steps, cost comparisons, OpenClaw configuration examples, and balance-check commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: API keys and prompts may be sent to the selected model provider.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only API keys you are comfortable storing in OpenClaw configuration, confirm each provider's data-handling terms, and avoid sending sensitive prompts unless the provider is trusted.
+
+Risk: Free quotas and pricing may change after publication.
+
+Mitigation: Confirm current provider pricing and free-quota terms before relying on the guide for cost planning.
+
+Risk: Sample configuration commands change future OpenClaw model and API-key behavior.
+
+Mitigation: Review the selected model and API key before running commands, and reset OpenClaw configuration when switching providers.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yang1002378395-cmyk/skills/openclaw-free-models)
+- [DeepSeek platform](https://platform.deepseek.com/)
+- [GLM / BigModel platform](https://open.bigmodel.cn/)
+- [Anthropic console](https://console.anthropic.com/)
+- [OpenAI platform](https://platform.openai.com/)
+- [DeepSeek balance API](https://api.deepseek.com/user/balance)
+- [BigModel balance API](https://open.bigmodel.cn/api/paas/v4/balance)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guide with bash and YAML examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes provider sign-up links, OpenClaw configuration commands, API balance curl examples, and cost-saving model selection guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

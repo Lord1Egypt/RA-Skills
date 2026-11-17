@@ -1,45 +1,57 @@
-## Description: <br>
-Queries multiple threat intelligence services to enrich IPs, domains, URLs, and hashes with reputation, DNS, scanning, malware, and infrastructure context. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query multiple threat intelligence services for IOC enrichment including IP reputation, domain analysis, URL scanning, hash lookups, and malware detection.
 
-## Publisher: <br>
-[nirhalfon](https://clawhub.ai/user/nirhalfon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nirhalfon](https://clawhub.ai/user/nirhalfon)
 
-## Use Case: <br>
-Security analysts, incident responders, and threat hunters use this skill to enrich IOCs across public and API-key threat intelligence services, compare service results, and produce triage outputs for investigations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive or confidential IOCs may be sent to external threat intelligence providers, including public URLscan submissions. <br>
-Mitigation: Query only indicators approved for external sharing; avoid `--services all`, bulk mode, and URLscan for confidential, internal, or customer indicators unless organizational policy permits it. <br>
-Risk: API keys can be saved in the skill-local configuration file, and results may be cached locally. <br>
-Mitigation: Prefer environment variables, restrict local file access, and clear saved configuration or cache data after sensitive investigations. <br>
-Risk: Bulk enrichment and all-service queries can disclose many indicators at once and consume provider quotas or paid-service capacity. <br>
-Mitigation: Limit service selection and batch size, review provider terms and rate limits, and use free triage services before broader enrichment when appropriate. <br>
+## Use Case:
 
+Security analysts, incident responders, and developers use this skill to enrich observables such as IP addresses, domains, URLs, and file hashes during triage and investigation. It supports single-observable checks, bulk enrichment, report-oriented output, and service-specific API key configuration.
 
-## Reference(s): <br>
-- [API Keys Setup Guide](references/api-keys.md) <br>
-- [Service Documentation](references/services.md) <br>
-- [Rate Limits Reference](references/rate-limits.md) <br>
-- [Tutorial](TUTORIAL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [CLI table, JSON, or Markdown threat intelligence results, with optional JSON or Markdown report files for bulk runs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Results depend on selected external services, configured API keys, provider rate limits, and local response caching.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Submitted indicators, internal URLs, customer data, or token-bearing URLs may be disclosed to external threat intelligence services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review targets before enrichment, avoid using all services for confidential investigations, and do not submit token-bearing or internal URLs to URLScan.
+
+Risk: API keys may be exposed if saved in local configuration files or cache-related files are handled carelessly.
+
+Mitigation: Prefer environment variables or a secret store, restrict file permissions when config.json is used, and rotate any Shodan key used after cache files were created.
+
+## Reference(s):
+
+- [API Keys Setup Guide](references/api-keys.md)
+- [Service Documentation](references/services.md)
+- [Rate Limits Reference](references/rate-limits.md)
+- [Tutorial](TUTORIAL.md)
+- [IONSEC](https://IONSEC.io)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Tables, JSON, Markdown, and shell command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May call external threat intelligence APIs, apply rate limits, cache service responses, and write optional configuration for API keys.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

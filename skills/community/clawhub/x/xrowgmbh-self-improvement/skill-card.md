@@ -1,39 +1,50 @@
-## Description: <br>
-A skill for personal growth and self-improvement. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A skill for personal growth and self-improvement.
 
-## Publisher: <br>
-[xrowgmbh](https://clawhub.ai/user/xrowgmbh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xrowgmbh](https://clawhub.ai/user/xrowgmbh)
 
-## Use Case: <br>
-Developers and maintainers use this skill to have an agent review the helm-openclaw project for meaningful improvements, open focused GitLab merge requests with findings, and close stale merge requests it created. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill presents a generic self-improvement purpose while requiring GitLab credentials and directing agents to create or close merge requests. <br>
-Mitigation: Install only for the helm-openclaw project, use a least-privilege GitLab token, and review each proposed GitLab action before it runs. <br>
+## Use Case:
 
+GitLab agents can use this skill to turn useful, non-cosmetic project improvements into self-assigned merge requests and close their own unaccepted merge requests after 10 days without recent activity or review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xrowgmbh/skills/xrowgmbh-self-improvement) <br>
-- [helm-openclaw GitLab project](https://gitlab.com/xrow-public/helm-openclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands] <br>
-**Output Format:** [Markdown guidance with GitLab CLI-oriented actions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires glab and GITLAB_TOKEN; intended for the helm-openclaw GitLab project.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.62.0 (source: server release evidence) <br>
+Risk: The skill can create and close GitLab merge requests without clear authorization or review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the target project and planned actions, review what may be published or closed, and require approval before making changes.
+
+## Reference(s):
+
+- [helm-openclaw GitLab project](https://gitlab.com/xrow-public/helm-openclaw)
+- [ClawHub skill release](https://clawhub.ai/xrowgmbh/skills/xrowgmbh-self-improvement)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Guidance]
+
+**Output Format:** [Merge request descriptions and project-maintenance guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses the configured GitLab project and requires review before merge request changes.]
+
+## Skill Version(s):
+
+1.147.4 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

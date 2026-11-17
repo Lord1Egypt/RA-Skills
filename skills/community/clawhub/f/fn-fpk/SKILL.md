@@ -1,13 +1,13 @@
 ---
 name: fn-fpk
-description: 飞牛NAS (fnOS) FPK 应用打包开发技能。使用此技能开发和打包飞牛NAS第三方应用（.fpk），包括：Native 应用（Node.js/Python/Java/Go/Shell 等）和 Docker 应用。涵盖整个开发周期：开发环境准备、fnpack 创建项目、manifest 配置、权限/资源配置、用户入口配置（应用入口 app/ui/config + 桌面图标 + 文件右键菜单）、生命周期脚本编写（cmd/main）、向导配置（wizard）、图标规范、CGI 反向代理、统一网关注册/认证、运行时环境（Python/Node.js/Java）、中间件服务（Redis/MinIO/RabbitMQ/MariaDB）、依赖管理、fnpack CLI 打包、appcenter-cli 测试安装、到上架发布。用户提到"飞牛"、"fnOS"、"FPK"、"飞牛应用"等关键词时触发。
+description: 飞牛NAS (fnOS) FPK 应用打包开发技能。使用此技能开发和打包飞牛NAS第三方应用（.fpk），包括：Native 应用（Node.js/Python/Java/Go/Shell 等）和 Docker 应用。涵盖整个开发周期：开发环境准备、fnpack 创建项目、manifest 配置、权限/资源配置、用户入口配置（应用入口 app/ui/config + 桌面图标 + 文件右键菜单）、生命周期脚本编写（cmd/main）、向导配置（wizard）、图标规范、CGI 反向代理、统一网关注册/认证、运行时环境（Python/Node.js/Java）、中间件服务（Redis/MinIO/RabbitMQ/MariaDB）、依赖管理、fnpack CLI 打包、appcenter-cli 测试安装、到上架发布；以及飞牛开放平台 Open API 接入（文件授权、页面路由、界面语言/主题、后端平台配置查询、前端 JS SDK @trimjs/web-app）。用户提到"飞牛"、"fnOS"、"FPK"、"飞牛应用"、"开放 API"、"Open API"、"@trimjs/web-app"、"文件授权"、"授权路径"、"trim.file"时触发。
 ---
 
 # fn-fpk — 飞牛 NAS fnOS FPK 应用开发
 
-> 基于官方文档 https://developer.fnnas.com 于 2026-06-02 全面更新。
-> 系统架构: x86_64, Linux 内核 6.12.18+, Debian 发行版。
-> fnpack 版本: 1.2.1, appcenter-cli 预装在 fnOS 中。
+> 基于官方文档 https://developer.fnnas.com 于 2026-08-28 全面更新（新增开放平台 Open API 整章）。
+> 系统架构: x86_64 (AMD64) 与 ARM64 均支持；Linux 内核 6.12.18+, Debian 发行版。
+> fnpack 版本: 1.2.3, appcenter-cli 预装在 fnOS 中。
 
 ---
 
@@ -15,7 +15,7 @@ description: 飞牛NAS (fnOS) FPK 应用打包开发技能。使用此技能开�
 
 ### 1.1 系统要求
 - **fnOS 版本**: ≥ 0.9.27
-- **架构**: 仅支持 x86_64 (AMD64) — 应用的编译选项也需选择 x86_64
+- **架构**: 支持 **x86_64 (AMD64)** 与 **ARM64**。manifest `platform` 字段可选 `x86` / `arm` / `all`（Docker 应用常用 `all`）；纯 Native 应用需按目标架构交叉编译。fnpack 同时提供 `linux-amd64` 与 `linux-arm64` 二进制
 - **存储**: 至少创建一个存储空间
 - **权限**: 管理员权限（安装/卸载/系统设置）
 
@@ -36,20 +36,20 @@ description: 飞牛NAS (fnOS) FPK 应用打包开发技能。使用此技能开�
 ### 1.4 CLI 工具
 
 #### fnpack 打包工具
-下载地址：https://static2.fnnas.com/fnpack/fnpack-1.2.1-{os}-{arch}
+下载地址：https://static2.fnnas.com/fnpack/fnpack-1.2.3-{os}-{arch}
 
 | 平台 | 二进制 |
 |------|--------|
-| Windows x86 | `fnpack-1.2.1-windows-amd64` |
-| Linux x86 | `fnpack-1.2.1-linux-amd64` |
-| Linux ARM | `fnpack-1.2.1-linux-arm64` |
-| macOS Intel | `fnpack-1.2.1-darwin-amd64` |
-| macOS M 系列 | `fnpack-1.2.1-darwin-arm64` |
+| Windows x86 | `fnpack-1.2.3-windows-amd64` |
+| Linux x86 | `fnpack-1.2.3-linux-amd64` |
+| Linux ARM | `fnpack-1.2.3-linux-arm64` |
+| macOS Intel | `fnpack-1.2.3-darwin-amd64` |
+| macOS M 系列 | `fnpack-1.2.3-darwin-arm64` |
 
 安装：
 ```bash
-chmod +x fnpack-1.2.1-linux-amd64
-sudo mv fnpack-1.2.1-linux-amd64 /usr/local/bin/fnpack
+chmod +x fnpack-1.2.3-linux-amd64
+sudo mv fnpack-1.2.3-linux-amd64 /usr/local/bin/fnpack
 fnpack --help
 ```
 
@@ -197,6 +197,7 @@ disable_authorization_path = false            # 是否禁用授权目录功能
 # ═══════════════ 用户界面 ═══════════════
 desktop_uidir          = ui                   # UI 组件目录（相对应用根目录）
 desktop_applaunchname  = myapp.Application    # 默认启动入口 ID
+micro_app              = true                 # 启用微应用环境；使用前端 JS SDK (@trimjs/web-app) 调用开放 API 时必须声明
 
 # ═══════════════ 依赖管理 ═══════════════
 install_dep_apps = mariaDB:redis              # 依赖应用列表，格式：app1>2.2.2:app2:app3
@@ -313,6 +314,29 @@ echo "应用专用用户: $TRIM_USERNAME"
 ## 6. 资源配置 (config/resource)
 
 `config/resource` 文件声明应用的扩展能力，JSON 格式，**必需**。
+
+### 6.0 开放 API Scope 声明 (api-scope)
+
+若应用要调用飞牛开放 API（文件授权、页面路由、平台配置等，见 §21），需在 `config/resource` 中声明用到的 Scope。**只声明确实会用到的**，不要写满。Scope 仅作为接入前提，实际可访问内容仍取决于用户授权、管理员设置与 token 校验。
+
+```json
+{
+  "api-scope": [
+    "trim.file.userAccess",
+    "trim.file.userAcl"
+  ]
+}
+```
+
+| Scope | 能力 |
+|-------|------|
+| `trim.file.sharedAccess` | 应用共享授权（管理员授权目录，查询/删除） |
+| `trim.file.userAccess` | 用户个人授权（用户选择/授权自己的目录或文件，查询/删除） |
+| `trim.file.userAcl` | 检查某用户对指定路径是否可读/写/删 |
+| `trim.file.path` | 内部路径 `/vol1/...` 转用户可读路径 |
+| `trim.system.getPlatformConfig` | 后端读取系统语言与系统版本 |
+
+> 前端 JS SDK 调用开放能力前，还需在 `manifest` 声明 `micro_app=true`（见 §4.1）。
 
 ### 6.1 数据共享 (data-share)
 
@@ -980,6 +1004,7 @@ fi
 | `$TRIM_USERNAME` | 应用专用用户名 |
 | `$TRIM_RUN_USERNAME` | 当前运行用户（`root` 或应用用户） |
 | `$TRIM_DATA_SHARE_PATHS` | 数据共享目录路径列表（冒号分隔） |
+| `$TRIM_API_TOKEN` | 开放 API 后端调用令牌，系统调用应用脚本时自动注入；每次调用从环境变量读取，切勿持久化或暴露给前端 |
 
 ### 9.2 向导输入变量
 
@@ -1696,13 +1721,209 @@ appcenter-cli install-local
 
 ---
 
-## 20. 文档更新历史
+## 21. 开放 API（Open API）
+
+> 飞牛应用开放平台自 **fnOS ≥ 1.2.0401 且 fnOS App ≥ 1.34.0** 起开放了第一批系统能力，让第三方应用深度接入 fnOS：文件授权、页面路由、界面语言/主题、后端平台配置查询。前 20 章讲"如何把应用打包成 fpk"，本章讲"怎样让你的 fpk 应用调用 fnOS 系统能力"。
+>
+> 官方文档：https://developer.fnnas.com/api/overview/
+
+### 21.1 两类接口与运行环境
+
+| 接口 | 调用位置 | 用途 |
+|------|----------|------|
+| 前端 JS SDK（`@trimjs/web-app`） | 应用 Web 页面 | 打开授权页/文件选择器、读取语言主题、打开系统页面 |
+| 后端 API（Unix Socket） | 应用服务端 | 查询授权结果、检查文件权限、转换路径、读平台配置 |
+
+**接入前置**：
+1. 在 `config/resource` 中声明用到的 `api-scope`（见 §6.0）。
+2. 若使用 JS SDK，必须在 `manifest` 声明 `micro_app=true`（见 §4.1），否则页面不按微应用环境加载，JS SDK 无法初始化。
+
+**安全边界**：开放能力不绕过系统权限。应用拿到授权路径后，仍须按当前使用用户的 `uid` 校验文件权限，不能把内容直接吐给所有用户。
+
+### 21.2 前端 JS SDK 接入
+
+```bash
+npm install @trimjs/web-app
+```
+```js
+import { TrimApp } from '@trimjs/web-app';
+const sdk = new TrimApp();
+const config = await sdk.getPlatformConfig();
+```
+
+**区分运行环境**（调用文件选择/授权前必判断）：
+- `sdk.isWeb` — 是否 Web 宿主环境（移动端 App 内嵌通常为 `false`）
+- `sdk.isStandaloneWeb` — 是否独立浏览器页面（`true` 时走 `openAppAuth` 路由授权）
+
+```js
+const authState = createAuthState();   // 应用生成的业务 state，回调时校验来源
+
+if (sdk.isStandaloneWeb) {
+  // 独立浏览器：打开系统授权页，redirectUri 收结果
+  await sdk.openAppAuth('pickUserFile', {
+    appName: 'your-app',
+    directory: true,
+    redirectUri: '/app/your-app/callback.html',
+    state: authState,
+  }, { target: '_blank', features: 'width=750,height=630' });
+} else {
+  // 宿主内：直接调用
+  await sdk.pickUserFile({ directory: true });
+}
+```
+
+> 路由授权建议结合统一网关（§13），使应用页与 `redirectUri` 回调页同源，便于 `window.opener.postMessage` 回传结果。
+
+**回调页处理**（`redirectUri` 指向的页面）：
+```js
+const sdk = new TrimApp();
+const result = sdk.parseAppAuthCallback(window.location.href);
+// 建议校验 result.state 确认来自本次授权请求
+if (window.opener && !window.opener.closed) {
+  window.opener.postMessage({ type: 'your-app:auth-result', result }, window.location.origin);
+}
+window.close();
+```
+> 移动端/平板浏览器可能不支持稳定子窗口，`window.opener` 可能为 `null`；原页面应保留"刷新授权状态"按钮作为兜底。`openAppAuth` 必须由用户点击触发，否则浏览器可能拦截弹窗。
+
+### 21.3 后端 API 接入
+
+所有后端 API 通过 **Unix Socket** 调用，**只能由应用服务端调用**，禁止前端直连或暴露 token：
+
+```
+POST /api/v1/trimapp
+Unix Socket: /var/run/trim_open_gateway_apiscope.socket
+Content-Type: application/json
+Authorization: Bearer <token>
+```
+
+`token` 由系统在调用应用脚本（如 `cmd/main`）时自动注入环境变量 **`TRIM_API_TOKEN`**，每次调用都从当前进程环境变量读取，**不要持久化或写进前端/静态文件**：
+
+```js
+const token = process.env.TRIM_API_TOKEN;
+const result = await request({
+  socketPath: '/var/run/trim_open_gateway_apiscope.socket',
+  path: '/api/v1/trimapp',
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+  body: { reqId: String(Date.now()), req: 'trim.system.getPlatformConfig', appName: 'your-app', data: {} },
+});
+```
+
+**请求结构** `{ "reqId": string, "req": string, "appName": string, "data": object }`
+**响应结构** `{ "reqId": string, "code": number, "msg": string, "data": any }`（`code` 为 `0` 表示成功）
+
+### 21.4 文件授权（核心能力）
+
+应用以独立应用用户运行，访问用户文件前需系统把目标路径 ACL 授予该应用用户。授权分两类：
+
+| 类型 | 适用 | Scope | 后端查询是否按用户 |
+|------|------|-------|--------------------|
+| **应用共享授权** | 管理员为应用授权固定目录，不按使用用户区分 | `trim.file.sharedAccess` | 不区分用户 |
+| **用户个人授权** | 按当前使用用户提供不同内容 | `trim.file.userAccess` | 需结合统一网关拿 `uid` |
+
+> 拿到授权路径 ≠ 可绕过当前用户权限。返回文件列表/预览/写入/删除前，仍应按当前用户 `uid` 调 `trim.file.checkUserACL` 校验。
+
+#### 21.4.1 应用共享授权（管理员操作，仅目录）
+```js
+// 前端：打开目录选择器（普通用户调用会失败，返回 code:1 "仅管理员可进行此操作"）
+const r = await sdk.pickSharedFile({ title: '选择授权目录', sidebarGroup: ['myFiles','otherShare','favorites'] });
+// 已知目录重新申请：sdk.authorizeSharedFile('/vol1/1000/data/shared')
+```
+```json
+// 后端查询：trim.file.getSharedAccessibleFolders
+{ "req": "trim.file.getSharedAccessibleFolders", "appName": "your-app", "data": {} }
+// → { "code":0, "data": { "paths": ["/vol1/1000/data"] } }
+// 后端删除：trim.file.delSharedAccessibleFolder
+{ "req": "trim.file.delSharedAccessibleFolder", "appName": "your-app", "data": { "path": "/vol1/1000/data" } }
+```
+
+#### 21.4.2 用户个人授权（当前用户，目录或文件）
+```js
+// 目录授权（只支持单选，即使传 multiple 也按单个处理）
+const r = await sdk.pickUserFile({ directory: true, sidebarGroup: ['myFiles','otherShare','favorites'] });
+// 文件授权（可用 accept 限制扩展名）
+const r = await sdk.pickUserFile({ directory: false, accept: ['.jpeg','.png'] });
+// 已知路径重新申请：sdk.authorizeUserFile(path)
+```
+```json
+// 后端按用户查询目录：trim.file.getUserAccessibleFolders（不返回文件授权结果）
+{ "req": "trim.file.getUserAccessibleFolders", "appName": "your-app", "data": { "uid": 1000 } }
+// 后端删除目录：trim.file.delUserAccessibleFolder
+{ "req": "trim.file.delUserAccessibleFolder", "appName": "your-app", "data": { "uid": 1000, "path": "/vol1/home/user" } }
+```
+
+#### 21.4.3 文件权限检查 `trim.file.checkUserACL`（Scope: `trim.file.userAcl`）
+```json
+{ "req": "trim.file.checkUserACL", "appName": "your-app",
+  "data": { "uid": 1000, "path": ["/vol1/1000/data/test.txt"] } }
+// → data: [{ "path": "...", "readable": true, "writable": false, "deletable": false }]
+// 路径不存在/应用无权读取 → readable/writable/deletable 全 false
+```
+
+#### 21.4.4 路径转换 `trim.file.convertPath`（Scope: `trim.file.path`）
+把 `/vol1/...` 内部路径转为用户可读路径（如 `存储空间1/admin 的文件/photo`）：
+```json
+{ "req": "trim.file.convertPath", "appName": "your-app",
+  "data": { "path": ["/vol1/1000/photo"], "language": "zh-CN" } }
+// → data.result: [{ "path": "...", "semanticPath": "存储空间1/admin 的文件/photo" }]
+// language 必传，按当前界面语言传入
+```
+
+### 21.5 页面路由（前端 JS SDK）
+| 方法 | 作用 |
+|------|------|
+| `openFile(path)` | 用宿主打开文件 |
+| `showFileDetails(paths[])` | 打开文件详情页 |
+| `openFileManager(path)` | 打开文件管理器并定位 |
+| `openAppSetting()` | 打开本应用设置页 |
+| `openURL(url, target?, features?)` | 打开外部地址（WebView 宿主走系统浏览器） |
+
+> 打开文件/管理器/详情前，确保路径来自授权范围并按需检查用户权限。
+
+### 21.6 页面交互（前端 JS SDK）
+| 方法 | 作用 |
+|------|------|
+| `setTitle(title)` | 设置窗口标题 |
+| `$on('os/theme', cb)` | 监听主题变化（仅 Web 宿主：`isWeb && !isStandaloneWeb`） |
+| `$on('os/language', cb)` | 监听语言变化（同上限制） |
+| `setExitPageTips({title,content})` / 无参调用 | 设置 / 清除离开提示 |
+| `close()` | 关闭当前应用页 |
+
+```js
+const config = await sdk.getPlatformConfig();      // 初始化时读语言/主题/系统版本
+applyTheme(config.theme);
+if (sdk.isWeb && !sdk.isStandaloneWeb) {
+  await sdk.$on('os/theme', (theme) => applyTheme(theme));
+}
+```
+
+### 21.7 平台配置
+- **前端**：`sdk.getPlatformConfig()` → `{ theme, language, systemLanguage, systemVersion, format:{date,time} }`
+- **后端**：`trim.system.getPlatformConfig`（Scope: `trim.system.getPlatformConfig`）→ `{ systemLanguage, systemVersion }`
+
+### 21.8 错误码
+**JSSDK**：`0` 成功；`1000000` 服务/内部异常；`1000001` 登录/认证失败；`1000002` Scope 不足；`1000030` 请求不合法/路径不支持；`1000300` 未找到应用；`1000701` 路径不存在；`1003103` 应用权限校验失败；`1003201` 管理员已关闭普通用户授权（仅管理员可操作）。普通用户调共享授权可能返回 `code:1` 或回调 `status:"error", error:"access_denied"`。
+
+**后端 API**（看 HTTP 状态码 + `code` + `msg`）：
+| HTTP | code | msg | 处理建议 |
+|------|------|-----|----------|
+| 200/400 | 200001 | Invalid Params | 检查 JSON 格式、字段类型 |
+| 401 | 200004 | Unauthorized | 检查是否拿到有效 token |
+| 403 | 200003 | Forbidden | 是否声明对应 Scope、token 是否含该 Scope |
+| 404 | 200005 | Not Found | `req` 是否写错、系统版本是否支持 |
+| 200/500 | 200006 | Internal Error | 业务模块内部错误 |
+
+---
+
+## 22. 文档更新历史
 
 | 版本 | 日期 | 主要内容 |
 |------|------|----------|
 | 20251216 | 2025-12-16 | manifest 新增 changelog；fnpack 更新至 1.0.4；新增搜索；优化创建应用教学案例（HelloFnosAppCenter） |
 | 20251231 | 2025-12-31 | 新增 New!/Update! 徽标；arch 废弃，platform 字段替代；入口配置支持环境变量；protocol 支持空字符串（自适应）；fnpack 1.2.0（新增 Linux ARM，补全校验错误处理）；新增错误异常展示处理（$TRIM_TEMP_LOGFILE）；框架文档结构调整 |
 | 20260509 | 2026-05-09 | 新增统一网关注册文档；新增登录认证文档（fnOS V1.1.3100+） |
+| 20260828 | 2026-08-28 | 新增"21. 开放 API（Open API）"整章（文件授权/页面路由/界面状态/后端配置/错误码）；fnpack 升级至 1.2.3；修正架构说明（新增 ARM64 支持）；manifest 新增 micro_app、config/resource 新增 api-scope、环境变量新增 TRIM_API_TOKEN |
 
 ---
 

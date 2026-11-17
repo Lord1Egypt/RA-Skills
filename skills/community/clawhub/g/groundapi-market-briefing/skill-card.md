@@ -1,42 +1,59 @@
-## Description: <br>
-Generate A-share market briefings with indices, limit-up and limit-down pools, sector rotation, IPO calendar, anomaly signals, gold and forex macro data, trending topics, and a daily news digest powered by GroundAPI MCP tools. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate A-share market briefings with indices, limit-up/down pools, sector rotation, IPO calendar, anomaly signals, gold and forex macro data, trending topics, and daily news digest using GroundAPI MCP tools.
 
-## Publisher: <br>
-[qingkongzhiqian](https://clawhub.ai/user/qingkongzhiqian) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qingkongzhiqian](https://clawhub.ai/user/qingkongzhiqian)
 
-## Use Case: <br>
-External users and market-focused agents use this skill to assemble A-share daily market briefings from GroundAPI market, macro, news, trend, and calendar data. The skill is suited for market summaries, post-market reviews, sector rotation checks, IPO calendar checks, and public-data news digests. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a GroundAPI key and sends market, news, and any user-provided sector focus to GroundAPI. <br>
-Mitigation: Configure only your own GROUNDAPI_KEY, treat it as a secret, and install the skill only when GroundAPI use is intended. <br>
-Risk: Market and news briefings can become misleading if unavailable data is filled in or presented as investment advice. <br>
-Mitigation: Skip failed data steps, disclose omissions, and preserve the skill's statement that the output is based on public data and is not investment advice. <br>
+## Use Case:
 
+External users and market analysts use this skill to ask an agent for concise A-share market briefings, including market overview, sector movement, hot stocks, macro references, trending topics, and finance news. It is intended for informational briefing workflows and should not be treated as investment advice.
 
-## Reference(s): <br>
-- [GroundAPI homepage](https://groundapi.net) <br>
-- [GroundAPI MCP endpoint](https://mcp.groundapi.net/mcp) <br>
-- [ClawHub skill page](https://clawhub.ai/qingkongzhiqian/groundapi-market-briefing) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown market briefing with tables, bullet lists, and concise explanatory text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Output language follows the user; failed data retrieval steps should be skipped and disclosed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: Market and news lookup requests are sent to GroundAPI using a configured API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when the operator accepts that service dependency and is comfortable configuring GROUNDAPI_KEY for the agent environment.
+
+Risk: Financial briefing content can be mistaken for investment advice or may be incomplete if a lookup fails.
+
+Mitigation: Present the output as informational, skip failed data sources with a clear note, and retain the skill's instruction not to fabricate missing data.
+
+Risk: Broad finance-related prompts may trigger the skill when a user only wants a narrow answer.
+
+Mitigation: Use clear trigger wording and let the agent tailor the briefing scope to the user's request.
+
+## Reference(s):
+
+- [GroundAPI homepage](https://groundapi.net)
+- [GroundAPI MCP endpoint](https://mcp.groundapi.net/mcp)
+- [ClawHub skill page](https://clawhub.ai/qingkongzhiqian/skills/groundapi-market-briefing)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown market briefing with tables, bullet lists, and concise explanatory text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a configured GroundAPI key for live market, news, calendar, gold price, and forex lookups; output language follows the user.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

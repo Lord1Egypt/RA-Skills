@@ -1,49 +1,63 @@
-## Description: <br>
-Deep-read research papers into authoritative, reproducible teaching reports, then turn them into source-grounded multi-image cartoon-comic storyboard workflows with camera/style/logic continuity and final image-PDF assembly guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deep-read research papers into authoritative, reproducible teaching reports, then turn them into source-grounded multi-image cartoon-comic storyboard workflows with camera/style/logic continuity and final image-PDF assembly guidance.
 
-## Publisher: <br>
-[c-narcissus](https://clawhub.ai/user/c-narcissus) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[c-narcissus](https://clawhub.ai/user/c-narcissus)
 
-## Use Case: <br>
-Researchers, educators, and paper-reading agents use this skill to convert user-provided research papers into rigorous deep-reading reports, teaching explanations, staged storyboard prompts, and final 16:9 PDF assembly guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: User-provided or unpublished papers may contain confidential content that appears in reports, prompts, handoff bundles, or storyboard planning. <br>
-Mitigation: Use a clean project workspace, include only intended paper artifacts, and avoid external image-generation APIs for confidential papers unless the user explicitly approves sending paper-derived content. <br>
-Risk: External image-generation tools may receive paper-derived prompts or visual details during storyboard creation. <br>
-Mitigation: Keep image generation as a separate user-approved phase and use only the already summarized report content and approved visual plan. <br>
-Risk: Zipped handoff bundles or final PDF assembly may accidentally include unintended local files. <br>
-Mitigation: Prepare bundles from a clean workspace and verify file lists before packaging or sharing outputs. <br>
+## Use Case:
 
+Researchers, students, educators, and technical readers use this skill to produce detailed paper deep-reading reports, source-grounded teaching explanations, staged comic storyboard prompts, and final storyboard PDF assembly guidance.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/c-narcissus/paper-deepread-comic-studio) <br>
-- [Publisher Profile](https://clawhub.ai/user/c-narcissus) <br>
-- [README](artifact/README.md) <br>
-- [Security and Privacy Notes](artifact/SECURITY_PRIVACY.md) <br>
-- [Publishing Page Information](artifact/PUBLISH_PAGE_INFO_CN.md) <br>
-- [Workflow: Request Sources](artifact/workflow/01_request_sources.md) <br>
-- [Workflow: Staged Cartoon Visual Storyboard](artifact/workflow/08_staged_cartoon_visual_storyboard.md) <br>
-- [Workflow: Storyboard PDF Assembly](artifact/workflow/09_storyboard_pdf_assembly.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports, structured prompts, JSON-compatible planning artifacts, Python helper commands, and PDF assembly guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-first workflow separates deep-reading reports from later image generation and final local PDF assembly.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: SKILL.md frontmatter, _meta.json, release evidence) <br>
+Risk: Bundle-building helpers may package more workspace data than intended, including files reached through symlinks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run bundle builders only in a dedicated clean workspace, remove symlinks and unrelated files, keep output ZIP files outside the input tree, and inspect archives before uploading or sharing.
+
+Risk: Workspace papers or unrelated documents may contain sensitive material that could be included in generated bundles or visual workflows.
+
+Mitigation: Do not place credentials, private keys, or unrelated sensitive documents in the working directory used with this skill.
+
+Risk: Image and storyboard stages can drift from the original paper if evidence strength is not tracked.
+
+Mitigation: Keep report generation separate from image generation and require storyboard prompts to distinguish paper-explicit facts, report-derived points, reasonable inferences, nearby-work inferences, and missing details.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/c-narcissus/skills/paper-deepread-comic-studio)
+- [Publisher Profile](https://clawhub.ai/user/c-narcissus)
+- [README](README.md)
+- [Security and Privacy Notes](SECURITY_PRIVACY.md)
+- [Detailed Report Contract](schemas/detailed_report_contract.md)
+- [Research Generative Overlay](schemas/research_generative_overlay.md)
+- [Teaching Explanation Overlay](schemas/teaching_explanation_overlay.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports, structured JSON templates, image-generation prompts, Python helper commands, and PDF assembly guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Text-only deep-read reporting is separated from image-generation turns; storyboard sections are generated as multiple source-grounded 16:9 cards before final PDF assembly.]
+
+## Skill Version(s):
+
+1.2.0 (source: SKILL.md frontmatter, ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

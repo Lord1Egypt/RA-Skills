@@ -1,40 +1,54 @@
-## Description: <br>
-ClawMe sends user-confirmed browser automation instructions through a Chrome extension so agents can fill forms, compose messages, click controls, open URLs, extract page text, and create reminders in the user's existing Chrome session. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Sends browser actions to the user's Chrome extension for review and confirmation before execution in their logged-in session.
 
-## Publisher: <br>
-[dongsheng123132](https://clawhub.ai/user/dongsheng123132) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[dongsheng123132](https://clawhub.ai/user/dongsheng123132)
 
-## Use Case: <br>
-External users and developers use ClawMe to let an agent propose browser actions such as filling forms, composing messages, clicking controls, opening URLs, extracting page text, and creating reminders in the user's existing Chrome session after user confirmation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can propose actions in logged-in browser sessions, including posts, submissions, clicks, and extraction from private pages. <br>
-Mitigation: Review every side-panel action before approval and avoid approving sensitive submissions, public posts, payments, or private-page extraction unless the user is comfortable with the action and data handling. <br>
-Risk: Use depends on trust in the ClawMe Chrome extension and service handling browser instructions and any extracted content. <br>
-Mitigation: Install and use the skill only when the user trusts the ClawMe extension and service, and limit instructions that include sensitive data. <br>
+## Use Case:
 
+People using an agent with the ClawMe Chrome extension can draft posts and emails, fill forms, click pages, and extract text in their own browser, approving actions in the side panel.
 
-## Reference(s): <br>
-- [ClawMe ClawHub release page](https://clawhub.ai/dongsheng123132/clawme) <br>
-- [ClawMe API base URL](https://api.clawme.net) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, JSON instruction payloads, Configuration guidance] <br>
-**Output Format:** [Markdown guidance with HTTP request examples and JSON request bodies] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires CLAWME_CLIENT_TOKEN and a configured ClawMe Chrome extension; extracted page text may be returned to the agent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Browser actions can post, send email, submit forms, or click in logged-in sessions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review each proposed action in the Chrome side panel before approving it.
+
+Risk: Extracting content from logged-in pages may expose private information to the agent.
+
+Mitigation: Approve extraction only for pages and content you intend to share.
+
+## Reference(s):
+
+- [ClawMe on ClawHub](https://clawhub.ai/dongsheng123132/skills/clawme)
+- [Project homepage listed in skill metadata](https://github.com/dongsheng123132/clawme)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON browser instructions]
+
+**Output Format:** [Text and structured browser-action requests]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Extracted page text can be returned to the agent; browser actions require user confirmation.]
+
+## Skill Version(s):
+
+1.0.1 (source: release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

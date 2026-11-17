@@ -1,11 +1,11 @@
 # ESYS\_Unit enum
 
-单位
+Unit
 
 ## Signature
 
 ```typescript
-declare enum ESYS_Unit 
+enum ESYS_Unit
 ```
 
 ## Enumeration Members
@@ -14,128 +14,90 @@ declare enum ESYS_Unit
 
 Member
 
-
 </th><th>
 
 Value
 
-
 </th><th>
 
 Description
-
 
 </th></tr></thead>
 <tbody><tr><td>
 
 CENTIMETER
 
-
 </td><td>
 
-`"cm"`
-
+`'cm'`
 
 </td><td>
-
-厘米
-
 
 </td></tr>
 <tr><td>
 
 DECIMETER
 
-
 </td><td>
 
-`"dm"`
-
+`'dm'`
 
 </td><td>
-
-分米
-
 
 </td></tr>
 <tr><td>
 
 IN
 
-
 </td><td>
 
-`"in"`
-
+`'in'`
 
 </td><td>
-
-英尺
-
 
 </td></tr>
 <tr><td>
 
 INCH
 
-
 </td><td>
 
-`"inch"`
-
+`'inch'`
 
 </td><td>
-
-英寸
-
 
 </td></tr>
 <tr><td>
 
 METER
 
-
 </td><td>
 
-`"m"`
-
+`'m'`
 
 </td><td>
-
-米
-
 
 </td></tr>
 <tr><td>
 
 MIL
 
-
 </td><td>
 
-`"mil"`
-
+`'mil'`
 
 </td><td>
-
-密尔
-
 
 </td></tr>
 <tr><td>
 
 MILLIMETER
 
-
 </td><td>
 
-`"mm"`
-
+`'mm'`
 
 </td><td>
-
-毫米
-
 
 </td></tr>
 </tbody></table>

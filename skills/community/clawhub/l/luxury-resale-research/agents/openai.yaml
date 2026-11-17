@@ -1,0 +1,4 @@
+interface:
+  display_name: "Luxury Resale Research"
+  short_description: "Compare luxury resale listings and sales"
+  default_prompt: "Use $luxury-resale-research to compare luxury resale listings and sold evidence."

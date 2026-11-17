@@ -4,36 +4,46 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>演读 DECK · 会勇禾口王的AI笔记 — 把复杂的 AI,读成一场演示</title>
-<meta name="description" content="演读 DECK 是一款沉浸式阅读产品:一屏一镜、可翻页、能自动播放,把复杂的 AI 主题做成一场安静的演示。会勇禾口王的AI笔记出品。在读:算力账本、偷师 AI 大佬。">
+<meta name="description" content="演读 DECK 是一款沉浸式阅读产品:一屏一镜、可翻页、能自动播放,把复杂主题做成一场安静的演示。会勇禾口王的AI笔记出品。在读:算力账本、偷师 AI 大佬、Harness 工程、FastMCP 中文入门、出行SaaS工程手记、股票识字。">
 <meta property="og:type" content="website">
 <meta property="og:title" content="演读 DECK · 会勇禾口王的AI笔记">
 <meta property="og:description" content="介于长文和视频之间的第三种读法 —— 把复杂的 AI,读成一场可翻页的演示。">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23161514'/%3E%3Cpath d='M13 5 6 18h6l-1 9 9-13h-6z' fill='none' stroke='%23e08a5f' stroke-width='2' stroke-linejoin='round'/%3E%3C/svg%3E">
-<link rel="preconnect" href="https://fonts.loli.net">
-<link rel="preconnect" href="https://gstatic.loli.net" crossorigin>
-<link href="https://fonts.loli.net/css2?family=Noto+Sans+SC:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%237c3aed'/%3E%3Cstop offset='.6' stop-color='%236d28d9'/%3E%3Cstop offset='1' stop-color='%23ff8a3d'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='32' height='32' rx='7' fill='%23faf9f5'/%3E%3Cpath d='M13 5 6 18h6l-1 9 9-13h-6z' fill='none' stroke='url(%23g)' stroke-width='2' stroke-linejoin='round'/%3E%3C/svg%3E">
+<!-- 字体自托管：publish.py localize() 注入 /fonts/；样例页勿挂第三方字体 CDN。 -->
 <style>
-  @font-face{font-family:'Anthropic Sans';src:url('/fonts/anthropicSans.woff2') format('woff2');font-weight:300 800;font-style:normal;font-display:swap;font-feature-settings:'dlig' 0}
-  @font-face{font-family:'Anthropic Mono';src:url('/fonts/anthropicMono.woff2') format('woff2');font-weight:300 800;font-style:normal;font-display:swap}
+  @font-face{font-family:'Mozilla Headline VF';src:url('/fonts/MozillaHeadline-Variable.woff2') format('woff2-variations');font-stretch:75% 125%;font-weight:100 900;font-style:normal;font-display:swap}
+  @font-face{font-family:'Mozilla Text VF';src:url('/fonts/MozillaText-Variable.woff2') format('woff2-variations');font-weight:100 900;font-style:normal;font-display:swap}
+  @font-face{font-family:'Noto Sans SC';src:url('/fonts/NotoSansSC-400.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap}
+  @font-face{font-family:'Noto Sans SC';src:url('/fonts/NotoSansSC-700.woff2') format('woff2');font-weight:700;font-style:normal;font-display:swap}
+  @font-face{font-family:'Noto Serif SC';src:url('/fonts/NotoSerifSC.woff2') format('woff2');font-weight:600 900;font-style:normal;font-display:swap}
   :root{
-    --bg:#161514;--surface:#221f1d;--surface2:#1b1917;
-    --line:rgba(244,242,235,.09);--line2:rgba(244,242,235,.16);--line3:rgba(244,242,235,.26);
-    --text:#f4f2eb;--read:#cdc8bd;--text2:#aea99f;--text3:#948e84;--text4:#5f5a52;
-    --hot:#e08a5f;--hot2:#efb79b;--hl0:#f6e1d1;--cool:#8fa6bd;--cool2:#aec2d4;
-    --font:'Anthropic Sans','Noto Sans SC','PingFang SC',system-ui,sans-serif;
-    --mono:'Anthropic Mono','PingFang SC',ui-monospace,monospace;
+    /* V6 焰彩白（亮色）：紫主色 + 焰彩橙/粉 + 蓝/金对照，Mozilla 可变字体 */
+    --bg:#fbfaff;--surface:#ffffff;--surface2:#f4eefc;--surfaceHi:#efe7fb;
+    --line:rgba(28,11,62,.10);--line2:rgba(28,11,62,.17);--line3:rgba(28,11,62,.30);
+    --text:#1c0b3e;--read:#2a2140;--text2:#5b4b78;--text3:#9086a5;--text4:#b4aac6;
+    --hot:#7c3aed;--hot2:#6d28d9;--hl0:#7c3aed;
+    --cool:#4f6ef0;--cool2:#ff8a3d;
+    --ochre:#e07a1a;--ochre2:#c8620a;--warn:#e0304f;
+    --flare:linear-gradient(96deg,#7c3aed 0%,#ff8a3d 55%,#ff4f8b 100%);
+    --head:'Mozilla Headline VF','Noto Sans SC','PingFang SC',system-ui,sans-serif;
+    --font:'Mozilla Text VF','Noto Sans SC','PingFang SC',system-ui,sans-serif;
+    --serif:'Noto Serif SC',Georgia,serif;
+    --mono:'Mozilla Text VF','PingFang SC',ui-monospace,monospace;
+    --shadow:0 1px 2px rgba(28,11,62,.05),0 8px 24px rgba(124,58,237,.09);
+    --shadow2:0 1px 2px rgba(28,11,62,.06),0 16px 38px rgba(124,58,237,.12);
   }
   *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth;background:var(--bg);color:var(--text);font-family:var(--font)}
   body{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;overflow-x:hidden;
-    background:radial-gradient(1100px 700px at 80% -8%,rgba(224,138,95,.13),transparent 60%),
-      radial-gradient(900px 800px at -8% 30%,rgba(143,166,189,.06),transparent 55%),var(--bg)}
-  ::selection{background:rgba(224,138,95,.3);color:#fff}
+    background:radial-gradient(1000px 620px at 82% -10%,rgba(124,58,237,.09),transparent 58%),
+      radial-gradient(880px 640px at 10% 4%,rgba(79,110,240,.07),transparent 56%),
+      radial-gradient(760px 560px at 50% 120%,rgba(224,122,26,.05),transparent 60%),var(--bg)}
+  ::selection{background:rgba(124,58,237,.18);color:var(--text)}
 
-  .grain{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.04;
+  .grain{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.02;mix-blend-mode:multiply;
     background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:200px 200px}
-  .mesh{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.5;
-    background-image:linear-gradient(rgba(244,242,235,.022) 1px,transparent 1px),linear-gradient(90deg,rgba(244,242,235,.022) 1px,transparent 1px);
+  .mesh{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.7;
+    background-image:linear-gradient(rgba(20,20,19,.022) 1px,transparent 1px),linear-gradient(90deg,rgba(20,20,19,.022) 1px,transparent 1px);
     background-size:64px 64px;mask:radial-gradient(circle at 50% 14%,#000,transparent 78%)}
   .frame{position:fixed;inset:18px;z-index:1;pointer-events:none}
   .frame i{position:absolute;width:22px;height:22px;border:1.5px solid var(--line3)}
@@ -48,46 +58,54 @@
   .masthead{display:flex;justify-content:space-between;align-items:center;
     padding:1.6rem 0 1.1rem;border-bottom:1px solid var(--line)}
   .mark{display:flex;align-items:center;gap:.7rem;text-decoration:none;color:var(--text)}
-  .mark .dot{width:7px;height:7px;border-radius:50%;background:var(--hot);box-shadow:0 0 0 0 rgba(224,138,95,.5);animation:pulse 2.6s infinite}
-  .mark b{font-weight:800;font-size:.98rem;letter-spacing:.01em}
+  .mark .dot{width:7px;height:7px;border-radius:50%;background:var(--hot);box-shadow:0 0 0 0 rgba(124,58,237,.5);animation:pulse 2.6s infinite}
+  .mark b{font-family:var(--head);font-weight:800;font-size:.98rem;letter-spacing:.01em}
   .mark .prod{display:inline-flex;align-items:baseline;gap:.4rem;border-left:1px solid var(--line2);padding-left:.75rem;margin-left:.15rem}
   .mark .prod .cn{font-weight:700;font-size:.9rem;letter-spacing:.06em;color:var(--read)}
-  .mark .prod .en{font-family:var(--mono);font-weight:700;font-size:.7rem;letter-spacing:.2em;color:var(--hot2);text-shadow:0 0 12px rgba(224,138,95,.4)}
+  .mark .prod .en{font-family:var(--mono);font-weight:700;font-size:.7rem;letter-spacing:.2em;background:var(--flare);-webkit-background-clip:text;background-clip:text;color:transparent}
   @media(max-width:600px){.mark .prod{display:none}}
-  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(224,138,95,.45)}70%{box-shadow:0 0 0 7px rgba(224,138,95,0)}100%{box-shadow:0 0 0 0 rgba(224,138,95,0)}}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(124,58,237,.42)}70%{box-shadow:0 0 0 7px rgba(124,58,237,0)}100%{box-shadow:0 0 0 0 rgba(124,58,237,0)}}
   .nav{display:flex;gap:1.6rem;font-family:var(--mono);font-size:.72rem;letter-spacing:.16em;text-transform:uppercase}
   .nav a{color:var(--text3);text-decoration:none;transition:color .2s}
-  .nav a:hover{color:var(--hot2)}
+  .nav a:hover{color:var(--hot)}
   @media(max-width:600px){.nav{display:none}}
 
   /* hero */
   .hero{padding:clamp(3.2rem,8vw,5.8rem) 0 clamp(2rem,5vw,3rem)}
-  .kicker{font-family:var(--mono);font-size:.74rem;font-weight:500;letter-spacing:.32em;color:var(--cool2);text-transform:uppercase;display:flex;align-items:center;gap:.9rem;margin-bottom:1.9rem}
-  .kicker span{width:3rem;height:1px;background:linear-gradient(90deg,var(--cool),transparent)}
-  .hero h1{font-family:var(--font);font-weight:900;font-size:clamp(3.1rem,9.2vw,6.7rem);line-height:1.0;letter-spacing:-.04em;margin-bottom:1.5rem}
-  .hero h1 em{font-style:normal;background:linear-gradient(96deg,var(--hl0),var(--hot2) 45%,var(--hot));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .kicker{font-family:var(--mono);font-size:.74rem;font-weight:600;letter-spacing:.28em;color:var(--hot);text-transform:uppercase;display:inline-flex;align-items:center;gap:.75rem;margin-bottom:1.9rem;background:rgba(124,58,237,.08);border:1px solid rgba(124,58,237,.16);border-radius:9999px;padding:.5rem 1.1rem}
+  .kicker span{width:1.6rem;height:1px;background:var(--flare)}
+  .hero h1{font-family:var(--head);font-weight:900;font-size:clamp(3.1rem,9.2vw,6.7rem);line-height:1.0;letter-spacing:-.04em;margin-bottom:1.5rem}
+  .hero h1 em{font-style:normal;background:var(--flare);-webkit-background-clip:text;background-clip:text;color:transparent}
   .hero .lede{font-size:clamp(1.08rem,2.3vw,1.34rem);color:var(--read);max-width:40rem;line-height:1.85}
   .hero .lede b{color:var(--text);font-weight:700}
 
-  .credit{margin-top:1.7rem;display:inline-flex;align-items:center;gap:.8rem;
-    border:1px solid var(--line2);border-radius:9999px;padding:.5rem 1.15rem;background:rgba(34,31,29,.5)}
+  .hero-band{width:100%;max-width:40rem;height:44px;display:block;margin-top:1.4rem}
+
+  .credit{margin-top:1.6rem;display:inline-flex;align-items:center;gap:.8rem;
+    border:1px solid var(--line2);border-radius:9999px;padding:.5rem 1.15rem;background:var(--surface);box-shadow:var(--shadow)}
   .credit .tri{color:var(--hot);font-size:.7rem}
   .credit b{font-weight:800;font-size:.9rem;color:var(--read)}
   .credit s{text-decoration:none;font-size:.86rem;color:var(--text3)}
+  /* 人设拆字梗（hero 立人） */
+  .persona{margin-top:1.6rem;display:flex;flex-wrap:wrap;align-items:baseline;gap:.5rem 1.05rem}
+  .persona .eq{font-size:clamp(1.04rem,2.1vw,1.3rem);font-weight:800;color:var(--read);letter-spacing:-.01em}
+  .persona .eq b{font-weight:900;background:var(--flare);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .persona .hint{font-family:var(--mono);font-size:.76rem;letter-spacing:.05em;color:var(--text3)}
+  .persona .hint b{color:var(--hot);font-weight:700}
 
   .cta-row{margin-top:2.2rem;display:flex;flex-wrap:wrap;gap:.9rem;align-items:center}
   .btn{display:inline-flex;align-items:center;gap:.6rem;text-decoration:none;font-weight:700;font-size:.96rem;
-    padding:.85rem 1.5rem;border-radius:9999px;transition:transform .18s ease,box-shadow .2s ease,border-color .2s,background .2s}
-  .btn.primary{color:#231a14;background:linear-gradient(120deg,var(--hot2),var(--hot));box-shadow:0 12px 30px -10px rgba(224,138,95,.6)}
-  .btn.primary:hover{transform:translateY(-2px);box-shadow:0 18px 38px -12px rgba(224,138,95,.7)}
-  .btn.ghost{color:var(--read);border:1px solid var(--line2);background:rgba(34,31,29,.4)}
-  .btn.ghost:hover{transform:translateY(-2px);border-color:rgba(224,138,95,.5);color:var(--text)}
+    padding:.85rem 1.6rem;border-radius:9999px;transition:transform .18s ease,box-shadow .2s ease,border-color .2s,background .2s}
+  .btn.primary{color:#fff;background:var(--flare);box-shadow:0 12px 30px -10px rgba(124,58,237,.42)}
+  .btn.primary:hover{transform:translateY(-2px);box-shadow:0 18px 40px -12px rgba(124,58,237,.5)}
+  .btn.ghost{color:var(--hot);border:1px solid var(--line2);background:var(--surface);box-shadow:var(--shadow)}
+  .btn.ghost:hover{transform:translateY(-2px);border-color:rgba(124,58,237,.5);color:var(--hot2)}
 
   /* proof — product attributes */
   .proof{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);
-    border:1px solid var(--line);border-radius:16px;overflow:hidden;margin-top:clamp(2.4rem,6vw,3.6rem)}
-  .proof .it{background:var(--surface2);padding:1.4rem 1.5rem}
-  .proof .n{font-size:1.18rem;font-weight:800;color:var(--hot2);letter-spacing:.01em;margin-bottom:.4rem}
+    border:1px solid var(--line);border-radius:18px;overflow:hidden;margin-top:clamp(2.4rem,6vw,3.6rem);box-shadow:var(--shadow)}
+  .proof .it{background:var(--surface);padding:1.4rem 1.5rem}
+  .proof .n{font-family:var(--head);font-size:1.18rem;font-weight:800;color:var(--hot);letter-spacing:.01em;margin-bottom:.4rem}
   .proof .d{font-size:.9rem;color:var(--text2);line-height:1.6}
   @media(max-width:680px){.proof{grid-template-columns:1fr}}
 
@@ -95,8 +113,8 @@
   .sec{padding:clamp(2.8rem,7vw,4.5rem) 0 0}
   .sec-bar{display:flex;align-items:baseline;justify-content:space-between;gap:1rem;margin-bottom:1.6rem;
     padding-bottom:1rem;border-bottom:1px solid var(--line)}
-  .sec-bar .en{font-family:var(--mono);font-size:.7rem;letter-spacing:.26em;text-transform:uppercase;color:var(--cool2)}
-  .sec-bar h2{font-size:clamp(1.5rem,3.6vw,2.1rem);font-weight:800;letter-spacing:-.02em}
+  .sec-bar .en{font-family:var(--mono);font-size:.7rem;letter-spacing:.26em;text-transform:uppercase;color:var(--cool);font-weight:600}
+  .sec-bar h2{font-family:var(--head);font-size:clamp(1.5rem,3.6vw,2.1rem);font-weight:800;letter-spacing:-.02em}
   .sec-bar .dek{color:var(--text3);font-size:.92rem;max-width:24rem;text-align:right;line-height:1.6}
   @media(max-width:600px){.sec-bar{flex-direction:column;gap:.5rem}.sec-bar .dek{text-align:left}}
 
@@ -105,55 +123,162 @@
   .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:1.1rem}
   .card{position:relative;display:flex;flex-direction:column;background:var(--surface);border:1px solid var(--line);
     border-radius:18px;padding:1.7rem 1.8rem;text-decoration:none;color:inherit;overflow:hidden;isolation:isolate;
-    box-shadow:0 1px 2px rgba(0,0,0,.25),0 16px 38px rgba(0,0,0,.28);
+    box-shadow:var(--shadow);
     transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease}
   .card::before{content:'';position:absolute;inset:0;z-index:-1;border-radius:inherit;pointer-events:none;
-    background:linear-gradient(158deg,rgba(244,242,235,.05),transparent 40%)}
-  .card .idx{position:absolute;top:1.2rem;right:1.4rem;font-family:var(--mono);font-weight:800;font-size:2.4rem;color:var(--line2);line-height:1;z-index:-1}
-  .card:hover{transform:translateY(-4px);border-color:rgba(224,138,95,.5);box-shadow:0 18px 42px -16px rgba(224,138,95,.4)}
+    background:linear-gradient(158deg,rgba(124,58,237,.05),transparent 42%)}
+  .card .idx{position:absolute;top:1.2rem;right:1.4rem;font-family:var(--mono);font-weight:800;font-size:2.4rem;color:var(--text);opacity:.06;line-height:1;z-index:-1}
+  .card:hover{transform:translateY(-4px);border-color:rgba(124,58,237,.42);box-shadow:var(--shadow2)}
   .card-top{display:flex;align-items:center;gap:.7rem;margin-bottom:1.05rem}
-  .badge{font-family:var(--mono);font-size:.72rem;font-weight:700;color:#231a14;background:var(--hot);padding:.25rem .65rem;border-radius:999px;letter-spacing:.04em}
+  .badge{font-family:var(--mono);font-size:.72rem;font-weight:700;color:#fff;background:var(--flare);padding:.25rem .7rem;border-radius:999px;letter-spacing:.04em}
   .cat{font-family:var(--mono);font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;color:var(--text3)}
-  .card h3{font-size:1.3rem;font-weight:800;line-height:1.32;margin-bottom:.6rem;letter-spacing:-.01em;text-wrap:balance}
+  .card h3{font-family:var(--head);font-size:1.3rem;font-weight:800;line-height:1.32;margin-bottom:.6rem;letter-spacing:-.01em;text-wrap:balance}
   .card p{color:var(--text2);font-size:.94rem;line-height:1.7;flex:1}
   .card-foot{display:flex;justify-content:space-between;align-items:center;margin-top:1.3rem;padding-top:1rem;border-top:1px solid var(--line)}
-  .screens{font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;color:var(--text4)}
-  .go{font-family:var(--mono);font-size:.78rem;font-weight:700;color:var(--hot2);letter-spacing:.02em}
+  .screens{font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;color:var(--text3)}
+  .go{font-family:var(--mono);font-size:.78rem;font-weight:700;color:var(--hot);letter-spacing:.02em}
 
   /* about / maker */
   .about{margin-top:clamp(2.8rem,7vw,4.5rem);display:grid;grid-template-columns:1.4fr 1fr;gap:clamp(1.5rem,4vw,3rem);align-items:start}
   @media(max-width:760px){.about{grid-template-columns:1fr}}
-  .about-en{font-family:var(--mono);font-size:.7rem;letter-spacing:.26em;text-transform:uppercase;color:var(--text3);margin-bottom:1rem}
-  .about-id{font-family:var(--font);font-size:clamp(1.3rem,2.8vw,1.7rem);font-weight:800;color:var(--text);line-height:1.5;letter-spacing:-.01em;margin-bottom:1.1rem;text-wrap:balance}
-  .about-id b{color:var(--hot2)}
+  .about-en{font-family:var(--mono);font-size:.7rem;letter-spacing:.26em;text-transform:uppercase;color:var(--cool);font-weight:600;margin-bottom:1rem}
+  .about-id{font-family:var(--serif);font-size:clamp(1.35rem,2.9vw,1.8rem);font-weight:700;color:var(--text);line-height:1.5;letter-spacing:-.005em;margin-bottom:1.1rem;text-wrap:balance}
+  .about-id b{font-weight:900;background:var(--flare);-webkit-background-clip:text;background-clip:text;color:transparent}
   .about-line{color:var(--text2);font-size:1.02rem;line-height:1.9}
-  .about-line b{color:var(--read);font-weight:700}
+  .about-line b{color:var(--text);font-weight:700}
+  .about-gh{margin-top:1.2rem;padding:1rem 1.2rem;background:var(--surface2);border:1px solid var(--line);border-radius:14px;
+    font-size:.95rem;line-height:1.85;color:var(--text2)}
+  .about-gh .k{font-family:var(--mono);font-size:.64rem;letter-spacing:.22em;text-transform:uppercase;color:var(--cool);font-weight:600;display:block;margin-bottom:.5rem}
+  .about-gh a{color:var(--hot);text-decoration:none;border-bottom:1px solid rgba(124,58,237,.35);transition:border-color .2s}
+  .about-gh a:hover{border-bottom-color:var(--hot)}
+  .about-gh code{font-family:var(--mono);font-size:.9em}
   .pillars{display:flex;flex-direction:column;gap:.8rem}
-  .pillar{background:var(--surface2);border:1px solid var(--line);border-radius:14px;padding:1rem 1.2rem}
-  .pillar .h{font-weight:800;font-size:.96rem;color:var(--text);margin-bottom:.3rem}
+  .pillar{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:1rem 1.2rem;box-shadow:var(--shadow)}
+  .pillar .h{font-family:var(--head);font-weight:800;font-size:.96rem;color:var(--text);margin-bottom:.3rem}
   .pillar .s{font-size:.86rem;color:var(--text3);line-height:1.55}
 
   /* subscribe / conversion */
-  .sub{margin-top:clamp(3rem,7vw,5rem);position:relative;border:1px solid rgba(224,138,95,.3);border-radius:24px;overflow:hidden;
-    background:linear-gradient(150deg,rgba(224,138,95,.12),rgba(34,31,29,.6) 55%);padding:clamp(2rem,5vw,3.3rem)}
+  .sub{margin-top:clamp(3rem,7vw,5rem);position:relative;border:1px solid rgba(124,58,237,.22);border-radius:24px;overflow:hidden;
+    background:linear-gradient(150deg,rgba(124,58,237,.08),rgba(79,110,240,.05) 55%,rgba(224,122,26,.05));padding:clamp(2rem,5vw,3.3rem);box-shadow:var(--shadow)}
   .sub::before{content:'';position:absolute;inset:0;pointer-events:none;
-    background:radial-gradient(600px 320px at 88% 0%,rgba(224,138,95,.18),transparent 60%)}
+    background:radial-gradient(600px 320px at 88% 0%,rgba(79,110,240,.12),transparent 60%)}
   .sub .inner{position:relative}
-  .sub .en{font-family:var(--mono);font-size:.7rem;letter-spacing:.28em;text-transform:uppercase;color:var(--hot2);margin-bottom:1rem}
-  .sub h2{font-family:var(--font);font-size:clamp(1.7rem,4vw,2.4rem);font-weight:900;line-height:1.3;letter-spacing:-.02em;margin-bottom:.8rem;text-wrap:balance}
+  .sub .en{font-family:var(--mono);font-size:.7rem;letter-spacing:.28em;text-transform:uppercase;color:var(--cool);font-weight:600;margin-bottom:1rem}
+  .sub h2{font-family:var(--head);font-size:clamp(1.7rem,4vw,2.4rem);font-weight:900;line-height:1.3;letter-spacing:-.02em;margin-bottom:.8rem;text-wrap:balance}
   .sub .dek{color:var(--read);font-size:1.04rem;line-height:1.8;max-width:34rem;margin-bottom:1.8rem}
   .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:.9rem;margin-bottom:1.8rem}
   @media(max-width:680px){.steps{grid-template-columns:1fr}}
-  .step{background:rgba(22,21,20,.55);border:1px solid var(--line2);border-radius:14px;padding:1.1rem 1.2rem}
+  .step{background:var(--surface);border:1px solid var(--line2);border-radius:14px;padding:1.1rem 1.2rem;box-shadow:var(--shadow)}
   .step .num{font-family:var(--mono);font-size:.72rem;font-weight:700;color:var(--hot);letter-spacing:.1em;margin-bottom:.5rem}
   .step .t{font-size:.96rem;color:var(--text);line-height:1.55}
-  .step .t b{color:var(--hot2);font-weight:800}
+  .step .t b{color:var(--hot);font-weight:800}
   .sub-note{font-family:var(--mono);font-size:.74rem;color:var(--text3);letter-spacing:.04em}
+
+  /* ── 双轨订阅 · 高端版 ── */
+  .tracks{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;margin-bottom:1.8rem;
+    position:relative}
+  @media(max-width:760px){.tracks{grid-template-columns:1fr;gap:.6rem}}
+  .tracks::before{content:'';position:absolute;left:50%;top:10%;bottom:10%;width:1px;
+    background:linear-gradient(to bottom,transparent,var(--line2) 20%,var(--line2) 80%,transparent);
+    transform:translateX(-.5px);z-index:1}
+  @media(max-width:760px){.tracks::before{display:none}}
+
+  .track{background:linear-gradient(165deg,
+      rgba(124,58,237,.06),var(--surface) 42%,var(--surface2));
+    border:1px solid rgba(124,58,237,.16);
+    border-radius:22px;padding:1.8rem 1.6rem 1.5rem;
+    position:relative;overflow:hidden;box-shadow:var(--shadow);
+    transition:border-color .35s ease,box-shadow .35s ease}
+  .track::before{content:'';position:absolute;top:-40%;right:-20%;width:180px;height:180px;
+    border-radius:50%;
+    background:radial-gradient(circle,rgba(124,58,237,.1),transparent 70%);
+    pointer-events:none}
+  .track:hover{border-color:rgba(124,58,237,.34);box-shadow:var(--shadow2)}
+
+  .track-h{display:flex;align-items:center;gap:.65rem;
+    font-family:var(--head);font-weight:800;font-size:1.06rem;color:var(--text);
+    margin-bottom:1.5rem;padding-bottom:1.1rem;border-bottom:1px solid var(--line)}
+  .badge.sub-tag{
+    display:inline-flex;align-items:center;gap:.35rem;
+    padding:.22rem .75rem;border-radius:999px;
+    font-family:var(--mono);font-size:.66rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;
+    flex-shrink:0}
+  .badge.sub-tag.cn{
+    color:#fff;background:var(--flare);box-shadow:0 4px 14px -3px rgba(124,58,237,.45)}
+  .badge.sub-tag.gl{
+    color:var(--cool);background:rgba(79,110,240,.12);
+    border:1px solid rgba(79,110,240,.3)}
+
+  .track-flow{display:flex;flex-direction:column;gap:0;position:relative;padding-left:.1rem}
+  .flow-item{display:flex;gap:1rem;align-items:flex-start;position:relative;padding:.55rem 0}
+  .flow-num{flex-shrink:0;width:30px;height:30px;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    font-family:var(--mono);font-size:.68rem;font-weight:700;letter-spacing:.03em;
+    margin-top:.05rem}
+  .flow-num.cn{color:#fff;background:linear-gradient(135deg,#7c3aed,#6d28d9);
+    box-shadow:0 3px 10px -2px rgba(124,58,237,.42)}
+  .flow-num.gl{color:var(--cool);background:rgba(79,110,240,.14);
+    border:1.5px solid rgba(79,110,240,.32)}
+  .flow-body{flex:1;min-width:0;padding-top:.15rem}
+  .flow-body p{font-size:.95rem;line-height:1.62;color:var(--read)}
+  .flow-body p b{color:var(--text);font-weight:700}
+  .flow-body a{color:var(--hot);text-decoration:none;border-bottom:1px solid rgba(124,58,237,.3);
+    transition:border-color .2s,color .2s}
+  .flow-body a:hover{border-bottom-color:var(--hot2);color:var(--hot2)}
+  .flow-icon{font-size:1.05rem;flex-shrink:0;margin-top:.04rem;width:1.4em;text-align:center}
+
+  .flow-line{position:absolute;left:14.5px;top:2.55rem;bottom:.3rem;width:1.5px;
+    background:linear-gradient(to bottom,var(--line2),transparent);opacity:.7;z-index:-1}
+
+  .sub-footer{margin-top:1.6rem;display:flex;align-items:center;justify-content:center;gap:.9rem;
+    flex-wrap:wrap}
+  .sub-pill{display:inline-flex;align-items:center;gap:.45rem;
+    padding:.42rem 1.1rem;border-radius:999px;
+    font-family:var(--mono);font-size:.72rem;color:var(--text3);
+    background:var(--surface);border:1px solid var(--line);box-shadow:var(--shadow);
+    transition:border-color .2s,color .2s}
+  .sub-pill:hover{border-color:rgba(124,58,237,.3);color:var(--read)}
+  .sub-pill em{font-style:normal;font-weight:600;color:var(--hot)}
+
+  /* ── 留言板 ── */
+  .talk{margin-top:clamp(3rem,7vw,5rem);padding-top:clamp(2.4rem,5vw,3.4rem);border-top:1px solid var(--line)}
+  .talk-head{margin-bottom:1.8rem}
+  .talk-head .en{font-family:var(--mono);font-size:.7rem;letter-spacing:.28em;text-transform:uppercase;color:var(--cool);font-weight:600;display:block;margin-bottom:.7rem}
+  .talk-head h2{font-family:var(--head);font-size:clamp(1.6rem,3.6vw,2.2rem);font-weight:900;line-height:1.25;letter-spacing:-.02em;margin-bottom:.55rem}
+  .talk-sub{font-size:.95rem;color:var(--text2);line-height:1.6;max-width:34em}
+  .talk-form{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:1.3rem;margin-bottom:2rem;box-shadow:var(--shadow)}
+  .talk-row{display:flex;gap:.8rem;margin-bottom:.8rem}
+  .talk-nick{flex:0 0 auto;width:min(15rem,50%)}
+  .talk-hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+  .talk-form input,.talk-form textarea{width:100%;background:var(--surface2);border:1px solid var(--line2);border-radius:10px;
+    color:var(--text);font-family:var(--font);font-size:.95rem;padding:.7rem .85rem;transition:border-color .2s}
+  .talk-form input::placeholder,.talk-form textarea::placeholder{color:var(--text4)}
+  .talk-form input:focus,.talk-form textarea:focus{outline:none;border-color:var(--hot)}
+  .talk-body{resize:vertical;min-height:3.2rem;line-height:1.55}
+  .talk-actions{display:flex;align-items:center;justify-content:space-between;margin-top:.85rem;gap:1rem}
+  .talk-count{font-family:var(--mono);font-size:.7rem;color:var(--text3);letter-spacing:.04em}
+  .talk-send{font-family:var(--mono);font-size:.8rem;font-weight:700;letter-spacing:.03em;color:#fff;
+    background:var(--flare);border:none;border-radius:999px;padding:.6rem 1.7rem;cursor:pointer;transition:transform .15s,opacity .2s,box-shadow .2s;box-shadow:0 8px 22px -8px rgba(124,58,237,.42)}
+  .talk-send:hover{transform:translateY(-1px)}
+  .talk-send:disabled{opacity:.5;cursor:not-allowed;transform:none}
+  .talk-msg{font-family:var(--mono);font-size:.74rem;margin-top:.7rem;min-height:1rem;letter-spacing:.02em}
+  .talk-msg.ok{color:var(--hot)}
+  .talk-msg.err{color:var(--warn)}
+  .talk-list{display:flex;flex-direction:column;gap:.9rem}
+  .talk-item{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:.95rem 1.1rem;box-shadow:var(--shadow)}
+  .talk-item .who{display:flex;align-items:baseline;gap:.7rem;margin-bottom:.4rem}
+  .talk-item .name{font-weight:700;font-size:.92rem;color:var(--hot)}
+  .talk-item .when{font-family:var(--mono);font-size:.68rem;color:var(--text3);letter-spacing:.03em}
+  .talk-item .text{font-size:.95rem;line-height:1.6;color:var(--read);white-space:pre-wrap;word-break:break-word}
+  .talk-empty{font-family:var(--mono);font-size:.78rem;color:var(--text3);padding:.6rem 0}
+  @media(max-width:520px){.talk-row{flex-direction:column}.talk-nick{width:100%}}
 
   footer{margin-top:clamp(2.6rem,6vw,4rem);padding:2.6rem 0 3.5rem;border-top:1px solid var(--line);
     display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;align-items:center}
-  footer .brand{font-family:var(--font);font-size:1.05rem;font-weight:800;color:var(--text)}
+  footer .brand{font-family:var(--head);font-size:1.05rem;font-weight:800;color:var(--text)}
   footer .meta{font-family:var(--mono);font-size:.74rem;color:var(--text3);letter-spacing:.05em}
+  footer .meta a{color:var(--hot);text-decoration:none;border-bottom:1px solid rgba(124,58,237,.3)}
+  footer .meta a:hover{border-bottom-color:var(--hot)}
 
   .pre{opacity:0;transform:translateY(22px);transition:opacity .7s cubic-bezier(.22,.61,.36,1),transform .7s cubic-bezier(.22,.61,.36,1)}
   .pre.in{opacity:1;transform:none}
@@ -184,8 +309,14 @@
     <div class="kicker pre"><span></span>演读 ⟨DECK⟩ · 沉浸式阅读产品</div>
     <h1 class="pre">把复杂的 AI,<br>读成一场<em>演示</em>。</h1>
     <p class="lede pre">介于长文和视频之间的<b>第三种读法</b> —— 一屏一镜、可翻页、能自动播放。<br>把一个复杂主题,安安静静、完整地讲给你看。</p>
+    <svg class="hero-band pre" viewBox="0 0 800 44" preserveAspectRatio="none" aria-hidden="true">
+      <defs><linearGradient id="band" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#7c3aed"/><stop offset="55%" stop-color="#4f6ef0"/><stop offset="100%" stop-color="#ff8a3d"/></linearGradient></defs>
+      <path d="M0,30 C130,6 240,38 380,22 C520,7 610,36 800,12" fill="none" stroke="url(#band)" stroke-width="3.5" stroke-linecap="round"/>
+      <circle cx="0" cy="30" r="4.5" fill="#7c3aed"/><circle cx="380" cy="22" r="4.5" fill="#4f6ef0"/><circle cx="800" cy="12" r="4.5" fill="#ff8a3d"/>
+    </svg>
+    <div class="persona pre"><span class="eq">会勇禾口王 = <b>AI 工作流 builder</b></span><span class="hint">「禾口王」→「<b>程</b>」 · 「会勇」→「<b>会用</b>」</span></div>
     <div class="credit pre">
-      <span class="tri">▶</span><b>会勇禾口王的AI笔记</b><s>出品 · 真会用 AI 的程序员</s>
+      <span class="tri">▶</span><b>会勇禾口王的AI笔记</b><s>出品 · @huiyonghkw</s>
     </div>
     <div class="cta-row pre">
       <a class="btn primary" href="#room">开始阅读 ↓</a>
@@ -234,6 +365,13 @@
         <p>从瓦特到 Token,把 AI 的能耗账算明白。</p>
         <div class="card-foot"><span class="screens">22 屏</span><span class="go">进入阅读 →</span></div>
       </a>
+      <a class="card pre" href="suanli/ep04">
+        <span class="idx">04</span>
+        <div class="card-top"><span class="badge">EP04</span><span class="cat">推理经济学 · INFERENCE</span></div>
+        <h3>训练烧一次,推理烧一辈子</h3>
+        <p>AI 进千家万户,烧钱的重心正从训练倒向推理——一笔成本反转的账。</p>
+        <div class="card-foot"><span class="screens">20 屏</span><span class="go">进入阅读 →</span></div>
+      </a>
     </div>
   </section>
 
@@ -264,14 +402,139 @@
         <p>执行交给 AI 之后,判断和品味怎么练。</p>
         <div class="card-foot"><span class="screens">13 屏</span><span class="go">进入阅读 →</span></div>
       </a>
+      <a class="card pre" href="toushi/zhuanti-dario">
+        <span class="idx">04</span>
+        <div class="card-top"><span class="badge">专题</span><span class="cat">真话 · DARIO</span></div>
+        <h3>AI 大佬的真话,没被剪辑前是什么样</h3>
+        <p>Dario 完整 70 分钟访谈、51 问答一句不删——让你看清 AI 世界到底在说什么。</p>
+        <div class="card-foot"><span class="screens">56 屏</span><span class="go">进入阅读 →</span></div>
+      </a>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-bar pre">
+      <div><div class="en">HARNESS ENGINEERING</div><h2>Harness 工程</h2></div>
+      <p class="dek">模型会说话之外,让它真会干活的「模型外面那层」——循环、工具、子代理,一集一个部件拆给你看。</p>
+    </div>
+    <div class="grid">
+      <a class="card pre" href="harness/ep05x">
+        <span class="idx">05</span>
+        <div class="card-top"><span class="badge">EP05·下集</span><span class="cat">工具 · TOOLS</span></div>
+        <h3>该用 MCP,还是直接敲命令(CLI)?</h3>
+        <p>都说抛弃 MCP 转 CLI,其实吵错了轴:登记层归 MCP、执行层归代码执行,一张两轴图讲清。</p>
+        <div class="card-foot"><span class="screens">17 屏</span><span class="go">进入阅读 →</span></div>
+      </a>
+      <a class="card pre" href="harness/ep06">
+        <span class="idx">06</span>
+        <div class="card-top"><span class="badge">EP06</span><span class="cat">协议深读 · MCP</span></div>
+        <h3>MCP 协议大改,我之前放弃的三个理由被一个个补上</h3>
+        <p>做 EP02 时我挑了 CLI 放弃 MCP,写了三个理由。2026-07-28 这一版,把这三个理由一个个补上——MCP 从「能连」变成「能上线」,是 AI 智能体的 HTTP/1.1 时刻。</p>
+        <div class="card-foot"><span class="screens">15 屏</span><span class="go">进入阅读 →</span></div>
+      </a>
+      <a class="card pre" href="harness/ep01">
+        <span class="idx">01</span>
+        <div class="card-top"><span class="badge">EP01</span><span class="cat">入门 · MODEL</span></div>
+        <h3>你以为在挑模型,其实在挑 harness</h3>
+        <p>2026 年模型分数一个比一个高,可用起来还是时好时坏。真正决定体验的不是模型,而是模型外面那整套系统——harness:循环、工具、子代理、校验、权限、记忆。</p>
+        <div class="card-foot"><span class="screens">12 屏</span><span class="go">进入阅读 →</span></div>
+      </a>
+      <a class="card pre" href="harness/ep02">
+        <span class="idx">02</span>
+        <div class="card-top"><span class="badge">EP02</span><span class="cat">循环 · LOOP</span></div>
+        <h3>你不再写提示了,你开始写循环</h3>
+        <p>2026 年最早把 AI 用到极致的人不再 prompt,而在设计替自己 prompt 的系统——循环工程。Ralph、六块拼图、翻车四地、最硬反方,外加一个最小可复制循环。</p>
+        <div class="card-foot"><span class="screens">14 屏</span><span class="go">进入阅读 →</span></div>
+      </a>
+      <a class="card pre" href="harness/ep03">
+        <span class="idx">03</span>
+        <div class="card-top"><span class="badge">EP03</span><span class="cat">指挥 · TEAM</span></div>
+        <h3>一个人怎么指挥一支 AI 小队</h3>
+        <p>同样 2025 年,Anthropic 说子代理把成绩拉高 90.2%,Cognition 说只会得到脆弱系统。这篇把 fan-out 这枚硬币两面摊开,给你一把「什么时候该派小队、什么时候单线程」的尺子。</p>
+        <div class="card-foot"><span class="screens">10 屏</span><span class="go">进入阅读 →</span></div>
+      </a>
+      <a class="card pre" href="harness/ep04">
+        <span class="idx">04</span>
+        <div class="card-top"><span class="badge">EP04</span><span class="cat">校验 · GATE</span></div>
+        <h3>AI 说它改好了,你信吗?</h3>
+        <p>AI 最爱说「搞定了」。这一篇用 4 个天天遇得到的场景,把「AI 怎么自己发现错了又改对」讲成大白话:真正让它改对的不是反思,是给它一份对不上就得重做的标准答案。</p>
+        <div class="card-foot"><span class="screens">12 屏</span><span class="go">进入阅读 →</span></div>
+      </a>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-bar pre">
+      <div><div class="en">FASTMCP LAB</div><h2>FastMCP 中文入门</h2></div>
+      <p class="dek">官方文档陪读、边造边学:装好 · 三分法 · 宿主接通——每课可跑代码 + 一屏一镜演示。</p>
+    </div>
+    <div class="grid">
+      <a class="card pre" href="fastmcp/ep01">
+        <span class="idx">01</span>
+        <div class="card-top"><span class="badge">EP01</span><span class="cat">入门 · HELLO</span></div>
+        <h3>FastMCP 是什么?装好并写出第一个 Tool</h3>
+        <p>官方文档陪读第1课:装好依赖、写出 @mcp.tool、用 verify 绿灯验收——函数写了 ≠ 模型能发现。</p>
+        <div class="card-foot"><span class="screens">15 屏</span><span class="go">进入阅读 →</span></div>
+      </a>
+      <a class="card pre" href="fastmcp/ep02">
+        <span class="idx">02</span>
+        <div class="card-top"><span class="badge">EP02</span><span class="cat">三分法 · TRP</span></div>
+        <h3>Tool 之外,还有 Resource 和 Prompt</h3>
+        <p>会写 Tool 不等于会设计 MCP server。待办玩具域各放一个最小例子,verify 一次验齐三分。</p>
+        <div class="card-foot"><span class="screens">13 屏</span><span class="go">进入阅读 →</span></div>
+      </a>
+      <a class="card pre" href="fastmcp/ep03">
+        <span class="idx">03</span>
+        <div class="card-top"><span class="badge">EP03</span><span class="cat">宿主 · HOST</span></div>
+        <h3>verify 全绿,为什么 Cursor 里还是找不到?</h3>
+        <p>两道验收:进程内绿灯只是入场券;CLI list + 真调 whoami 才算过关。</p>
+        <div class="card-foot"><span class="screens">16 屏</span><span class="go">进入阅读 →</span></div>
+      </a>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-bar pre">
+      <div><div class="en">RIDE-SAAS · FIELD NOTES</div><h2>出行SaaS工程手记</h2></div>
+      <p class="dek">面向企业出行的多租户 SaaS,怎么用一份代码服务一百个商户——真实项目里的架构、踩坑与 AI 协作,一期一个战场。</p>
+    </div>
+    <div class="grid">
+      <a class="card pre" href="saas/ep01">
+        <span class="idx">01</span>
+        <div class="card-top"><span class="badge">EP01</span><span class="cat">多租户 · SAAS</span></div>
+        <h3>一份代码,怎么变成 100 个商户各自的小程序</h3>
+        <p>微信「代运营」把复杂度的乘法改写成一条平线:授权令牌链 + 9 步代发布流水线 + 边际成本趋零,再让 AI 把它压到一个人扛得住。</p>
+        <div class="card-foot"><span class="screens">35 屏</span><span class="go">进入阅读 →</span></div>
+      </a>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-bar pre">
+      <div><div class="en">STOCK LITERACY</div><h2>股票识字</h2></div>
+      <p class="dek">用实盘例题把投资名词讲成人话:先给尺子,再谈软件上的数字——不喊单、不荐股、只识字。</p>
+    </div>
+    <div class="grid">
+      <a class="card pre" href="shizi/ep01">
+        <span class="idx">01</span>
+        <div class="card-top"><span class="badge">EP01</span><span class="cat">名词科普 · PE</span></div>
+        <h3>软件上三个市盈率,差了快四倍</h3>
+        <p>用利通电子例题学会静÷动尺子:别抄最小那个「动」,先看它们差多大。</p>
+        <div class="card-foot"><span class="screens">14 屏</span><span class="go">进入阅读 →</span></div>
+      </a>
     </div>
   </section>
 
   <section class="sec about" id="about">
     <div class="pre">
       <div class="about-en">ABOUT · 出品方</div>
-      <p class="about-id">「禾口王」拼起来是个「程」字 —— <b>真会用 AI 的程序员</b>。</p>
-      <p class="about-line">不聊 AI 会不会取代你,只聊<b>先用 AI 的人怎么取代你</b>。一个人 = 一支团队,怎么做到?编程、做图、写文、跑流程——<b>我先跑通,再演给你看</b>。你正在用的「演读 DECK」,本身就是这套流水线顺手产出的东西之一。</p>
+      <p class="about-id">「禾口王」拼起来是个「程」字；「会勇」谐音「会用」—— <b>会勇禾口王 = AI 工作流 builder</b>。</p>
+      <p class="about-line">不聊 AI 会不会取代你,只聊<b>先用 AI 的人怎么取代你</b>。我先把选题查清、文章母本和母版 HTML 跑通,再把同一套内容拆成公众号、头条、小红书和演读 DECK。你正在用的这个演示站,就是这套内容流水线顺手产出的东西之一。</p>
+      <p class="about-gh pre">
+        <span class="k">Open Source · GitHub</span>
+        你正在看的这套「演读 DECK」演示引擎,我开源成了一个 Claude Skill:<a href="https://github.com/huiyonghkw/hekouwang-yandu-deck-skill" target="_blank" rel="noopener"><code>hekouwang-yandu-deck-skill</code></a>。
+        内容母本和跨渠道编排由 <a href="https://github.com/huiyonghkw/hekouwang-content-master-skill" target="_blank" rel="noopener"><code>hekouwang-content-master-skill</code></a> 负责,小红书组图视觉由独立主题 Skill 负责；更多工程都在主页 <a href="https://github.com/huiyonghkw" target="_blank" rel="noopener">github.com/huiyonghkw</a>。
+      </p>
     </div>
     <div class="pillars pre">
       <div class="pillar"><div class="h">硬核</div><div class="s">讲到能上手的颗粒度,不停在“AI 很厉害”。</div></div>
@@ -283,20 +546,96 @@
   <section class="sub" id="subscribe">
     <div class="inner">
       <div class="en pre">SUBSCRIBE · 订阅 / 领取</div>
-      <h2 class="pre">订阅更新,顺手领一份<br>《AI 内容流水线手册》。</h2>
-      <p class="dek pre">新一期上线第一时间读到;手册把“一个人干完一支团队”的每个环节、工具、提示词都写明白。免费领。</p>
-      <div class="steps pre">
-        <div class="step"><div class="num">STEP 01</div><div class="t">微信搜 <b>会勇禾口王的AI笔记</b></div></div>
-        <div class="step"><div class="num">STEP 02</div><div class="t">关注后回复 <b>工厂</b></div></div>
-        <div class="step"><div class="num">STEP 03</div><div class="t">领《<b>AI 内容流水线手册</b>》+ 追更新</div></div>
+      <h2 class="pre">选你的方式,领《AI 内容流水线手册》<br>追每一期演读 DECK。</h2>
+      <p class="dek pre">从选题研究、文章母本到公众号、头条、小红书和演示版,把一个人内容工厂的每个环节、工具、提示词都写明白。免费领。</p>
+
+      <div class="tracks pre">
+
+        <!-- 国内轨 -->
+        <div class="track">
+          <div class="track-h pre">
+            <span class="badge sub-tag cn">国内</span> 微信 · 领手册
+          </div>
+          <div class="track-flow">
+            <div class="flow-line"></div>
+            <div class="flow-item pre">
+              <span class="flow-num cn">01</span>
+              <span class="flow-icon">💚</span>
+              <div class="flow-body"><p>加我微信 <b>huiyonghkw</b>（备注 <b>工厂</b>）</p></div>
+            </div>
+            <div class="flow-item pre">
+              <span class="flow-num cn">02</span>
+              <span class="flow-icon">📣</span>
+              <div class="flow-body"><p>或 关注公众号 <b>会勇禾口王的AI笔记</b></p></div>
+            </div>
+            <div class="flow-item pre">
+              <span class="flow-num cn">03</span>
+              <span class="flow-icon">📦</span>
+              <div class="flow-body"><p>回复 <b>工厂</b> 领《<b>AI 内容流水线手册</b>》+ 追更新</p></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 国际轨 -->
+        <div class="track">
+          <div class="track-h pre">
+            <span class="badge sub-tag gl">GLOBAL</span> Sponsors · Newsletter
+          </div>
+          <div class="track-flow">
+            <div class="flow-line" style="background:linear-gradient(to bottom,rgba(79,110,240,.22),transparent)"></div>
+            <div class="flow-item pre">
+              <span class="flow-num gl">01</span>
+              <span class="flow-icon">☕</span>
+              <div class="flow-body"><p><a href="https://github.com/sponsors/huiyonghkw">GitHub Sponsors</a> 请我喝杯咖啡</p></div>
+            </div>
+            <div class="flow-item pre">
+              <span class="flow-num gl">02</span>
+              <span class="flow-icon">✉️</span>
+              <div class="flow-body"><p>订阅 <a href="#">Newsletter</a> 收英文 DECK + 更新</p></div>
+            </div>
+            <div class="flow-item pre">
+              <span class="flow-num gl">03</span>
+              <span class="flow-icon">⚡</span>
+              <div class="flow-body"><p>追 <a href="https://github.com/huiyonghkw">@huiyonghkw</a> 看工程进展</p></div>
+            </div>
+          </div>
+        </div>
+
       </div>
-      <div class="sub-note pre">微信公众号 · 搜一搜「会勇禾口王的AI笔记」 → 回复「工厂」自动发送</div>
+
+      <div class="sub-footer pre">
+        <span class="sub-pill">国内 · 加微信 <em>huiyonghkw</em> 或公众号 <em>会勇禾口王的AI笔记</em></span>
+        <span class="sub-pill">Global · Sponsors · Newsletter</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="talk pre" id="talk">
+    <div class="talk-head">
+      <span class="en">TALK · 留言板</span>
+      <h2>看完了,聊两句</h2>
+      <p class="talk-sub">选题建议、哪一期想深挖、或者单纯打个招呼都行。我会看。</p>
+    </div>
+    <form class="talk-form" id="talkForm" autocomplete="off">
+      <div class="talk-row">
+        <input class="talk-nick" id="talkNick" name="nickname" maxlength="24" placeholder="昵称(可留空=匿名读者)">
+        <input class="talk-hp" type="text" name="website" tabindex="-1" aria-hidden="true">
+      </div>
+      <textarea class="talk-body" id="talkBody" name="content" maxlength="500" rows="3" placeholder="写点什么…"></textarea>
+      <div class="talk-actions">
+        <span class="talk-count" id="talkCount">0 / 500</span>
+        <button class="talk-send" id="talkSend" type="submit">发送</button>
+      </div>
+      <div class="talk-msg" id="talkMsg" role="status"></div>
+    </form>
+    <div class="talk-list" id="talkList">
+      <div class="talk-empty" id="talkLoading">加载中…</div>
     </div>
   </section>
 
   <footer>
     <span class="brand">演读 DECK</span>
-    <span class="meta">会勇禾口王的AI笔记 出品 · @huiyonghkw · 把复杂的 AI,读成一场演示</span>
+    <span class="meta">会勇禾口王的AI笔记 出品 · <a href="https://github.com/huiyonghkw" target="_blank" rel="noopener">GitHub @huiyonghkw</a> · 把复杂的 AI,读成一场演示</span>
   </footer>
 </div>
 
@@ -308,6 +647,70 @@
   var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target);}});},{rootMargin:'0px 0px -8% 0px',threshold:.06});
   els.forEach(function(e){io.observe(e)});
   setTimeout(function(){els.forEach(function(e){e.classList.add('in')});},1500);
+})();
+
+// ── 留言板 ──
+(function(){
+  var PAGE='home';
+  var API='/api/comments?page='+encodeURIComponent(PAGE);
+  var form=document.getElementById('talkForm');
+  if(!form)return;
+  var nick=document.getElementById('talkNick'),
+      bodyEl=document.getElementById('talkBody'),
+      countEl=document.getElementById('talkCount'),
+      sendBtn=document.getElementById('talkSend'),
+      msgEl=document.getElementById('talkMsg'),
+      listEl=document.getElementById('talkList');
+
+  function esc(s){var d=document.createElement('div');d.textContent=s==null?'':String(s);return d.innerHTML;}
+  function when(ts){
+    var now=Math.floor(Date.now()/1000),d=now-ts;
+    if(d<60)return '刚刚';
+    if(d<3600)return Math.floor(d/60)+' 分钟前';
+    if(d<86400)return Math.floor(d/3600)+' 小时前';
+    if(d<2592000)return Math.floor(d/86400)+' 天前';
+    var dt=new Date(ts*1000);
+    return (dt.getMonth()+1)+' 月 '+dt.getDate()+' 日';
+  }
+  function itemHTML(c){
+    return '<div class="talk-item"><div class="who"><span class="name">'+esc(c.nickname)+
+      '</span><span class="when">'+when(c.created_at)+'</span></div><div class="text">'+esc(c.content)+'</div></div>';
+  }
+  function render(list){
+    if(!list||!list.length){listEl.innerHTML='<div class="talk-empty">还没有留言,来做第一个 👋</div>';return;}
+    listEl.innerHTML=list.map(itemHTML).join('');
+  }
+  function setMsg(t,kind){msgEl.textContent=t||'';msgEl.className='talk-msg'+(kind?' '+kind:'');}
+
+  function load(){
+    fetch(API,{headers:{'accept':'application/json'}}).then(function(r){return r.json();}).then(function(d){
+      render(d&&d.comments);
+    }).catch(function(){listEl.innerHTML='<div class="talk-empty">留言加载失败,稍后再试</div>';});
+  }
+
+  bodyEl.addEventListener('input',function(){countEl.textContent=bodyEl.value.length+' / 500';});
+
+  form.addEventListener('submit',function(ev){
+    ev.preventDefault();
+    var content=bodyEl.value.trim();
+    if(!content){setMsg('写点什么再发吧','err');return;}
+    sendBtn.disabled=true;setMsg('发送中…','');
+    fetch(API,{method:'POST',headers:{'content-type':'application/json'},
+      body:JSON.stringify({page:PAGE,nickname:nick.value,content:content,website:form.website.value})})
+    .then(function(r){return r.json().then(function(d){return {ok:r.ok,d:d};});})
+    .then(function(res){
+      sendBtn.disabled=false;
+      if(!res.ok){setMsg((res.d&&res.d.error)||'发送失败','err');return;}
+      bodyEl.value='';countEl.textContent='0 / 500';setMsg('谢谢你的留言 ✓','ok');
+      if(res.d&&res.d.comment){
+        var empty=listEl.querySelector('.talk-empty');if(empty)listEl.innerHTML='';
+        listEl.insertAdjacentHTML('afterbegin',itemHTML(res.d.comment));
+      }else{load();}
+    })
+    .catch(function(){sendBtn.disabled=false;setMsg('网络出错,稍后再试','err');});
+  });
+
+  load();
 })();
 </script>
 </body>

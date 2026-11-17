@@ -704,6 +704,7 @@ def infer_count(prompt: str) -> str | None:
     patterns = [
         r"\b(?:count|limit|number of results|results)\s*(?:=|:)?\s*(\d+)\b",
         r"(?:返回|要|获取|数量)\s*(\d+)\s*(?:张|个|条|幅)?",
+        r"(\d+)\s*(?:张|幅)(?:图片|照片)?",
     ]
     for pattern in patterns:
         match = re.search(pattern, prompt, re.IGNORECASE)
@@ -921,7 +922,7 @@ def resolve_token(args: argparse.Namespace) -> str:
     token = args.token or os.getenv("DATAIFY_API_TOKEN")
     if not token:
         raise MissingTokenError(
-            "缺少 DATAIFY_API_TOKEN。请输入 Dataify API token，或访问 https://dashboard.dataify.com/login?utm_source=skill 注册获取。"
+            "缺少 DATAIFY_API_TOKEN。请输入 Dataify API token，或访问 https://dashboard.dataify.com/login?utm_source=skill 注册获取；新账号注册即得 50 免费积分。"
         )
     token = token.strip()
     if not token.lower().startswith("bearer "):
@@ -979,7 +980,11 @@ def build_arg_parser() -> argparse.ArgumentParser:
     parser.add_argument("--body-format", choices=["form", "json"], default="form", help="POST 请求体格式。")
     parser.add_argument("--timeout", type=float, default=60.0, help="请求超时时间，单位秒。")
     parser.add_argument("--preview", action="store_true", help="输出完整请求参数表，并跳过网络和鉴权检查。")
-    parser.add_argument("--confirmed", action="store_true", help="用户确认预览参数后，允许真实调用接口。")
+    parser.add_argument(
+        "--confirmed",
+        action="store_true",
+        help="已弃用的兼容参数；低风险只读搜索默认直接执行。",
+    )
     parser.add_argument("--dry-run", action="store_true", help="输出解析后的 payload，并跳过网络和鉴权检查。")
     return parser
 
@@ -999,10 +1004,6 @@ def main(argv: list[str] | None = None) -> int:
         if args.dry_run:
             print(as_json({"ok": True, "dry_run": True, "payload": payload}))
             return 0
-
-        if not args.confirmed:
-            eprint("请先使用 --preview 展示完整请求参数表，并在用户确认后再使用 --confirmed 调用接口。")
-            return 1
 
         token = resolve_token(args)
         ok, response_text = call_api(token, payload, args.body_format, args.timeout)

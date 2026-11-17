@@ -1,6 +1,13 @@
 {
-  "ownerId": "kn77mgy5g39xnczdv2vx2h1mhn8140e4",
-  "slug": "browser-extension-enabler",
+  "name": "browser-extension-enabler",
+  "description": "Auto-detect and enable OpenClaw Browser Relay Chrome extension when disconnected",
   "version": "1.0.0",
-  "publishedAt": 1772384956764
+  "author": "OpenClaw Community",
+  "license": "MIT",
+  "keywords": ["browser", "extension", "chrome", "automation", "mouse", "click"],
+  "os": ["windows"],
+  "requires": {
+    "skills": ["win-mouse-native"],
+    "bins": ["powershell"]
+  }
 }

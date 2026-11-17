@@ -1,0 +1,89 @@
+# Sink registry for scripts/backup_chain.py — read by tests/check_sinks.py (T40).
+#
+# Every call that writes the filesystem, spawns a process, or writes an archive
+# is listed by (enclosing function | kind | count), with a class and a reason.
+# The check fails when the code and this file disagree — a NEW sink, a CHANGED
+# count, a STALE row, a new import, a second script — so drift in what the tool
+# can DO has to be noticed and decided, not discovered. It fails on `TODO`.
+#
+# What a row means: "a reader looked at this call and recorded why it is
+# acceptable." What it does NOT mean: that the call is safe. The registry
+# records a decision; it does not verify one. Keep reasons specific enough
+# that a later reader can disagree with them. See references/METHOD.md.
+#
+# Not registrable (the check refuses them outright, whatever the reason):
+# pathname-reopening writers — shutil.copy/copy2/copyfile/copytree/move,
+# open(...,'w'/'x'), os.open. They follow a planted symlink at a predictable
+# name (the v1.2.1 stow incident). Write through secure_staging + os.replace.
+#
+# classes: staged-write, staged-meta, tar-into-staged, append-gated,
+#          consent-exec, dir-create, cleanup-own
+#
+# function | kind | count | class | why
+
+_stage_copy | os.fdopen | 1 | staged-write | fd comes from secure_staging (mkstemp, O_EXCL); never reopens a pathname
+_stage_copy | os.replace | 1 | staged-write | moves the verified staging file onto the final name; replaces a planted symlink instead of following it
+_stage_copy | os.utime | 1 | staged-meta | mtime parity applied to our own mkstemp file, unpredictable name
+_stage_copy | shutil.copyfileobj | 1 | staged-write | copies into the staged fd's file object, never to a pathname
+
+atomic_write | os.fdopen | 1 | staged-write | fd comes from secure_staging
+atomic_write | os.makedirs | 1 | dir-create | parent of a config/marker/receipt/state path; callers pass vault or output-dir paths
+atomic_write | os.replace | 1 | staged-write | moves the fsynced staging file into place
+
+cmd_build | archive.add | 1 | tar-into-staged | member bytes added to a tarfile whose file object is the staged fd
+cmd_build | archive.addfile | 2 | tar-into-staged | manifest and directory entries added to the same staged archive
+cmd_build | os.fdopen | 1 | staged-write | fd comes from secure_staging(out, "build")
+cmd_build | os.makedirs | 2 | dir-create | output directory; config-supplied dirs are containment-checked by output_abs, --output is the operator's CLI voice
+cmd_build | os.replace | 1 | staged-write | moves the finished staged archive to its final name
+cmd_build | tarfile.open(write) | 1 | tar-into-staged | opened on the staged fd (fileobj=), not on a pathname
+
+cmd_evict | archive.add | 1 | tar-into-staged | same staging discipline as cmd_build
+cmd_evict | archive.addfile | 2 | tar-into-staged | manifest and directory entries, staged
+cmd_evict | os.fdopen | 1 | staged-write | fd comes from secure_staging(out, "evict")
+cmd_evict | os.makedirs | 1 | dir-create | output directory, containment-checked by output_abs
+cmd_evict | os.replace | 1 | staged-write | moves the finished staged package to its final name
+cmd_evict | tarfile.open(write) | 1 | tar-into-staged | opened on the staged fd
+
+cmd_init | os.makedirs | 2 | dir-create | the vault dir, and the parent of a --ledger-file the operator typed on this command line
+
+cmd_restore | os.fdopen | 1 | staged-write | fd comes from secure_staging(tpath, "restore")
+cmd_restore | os.makedirs | 1 | dir-create | member parent under --target; runs only after the symlinked-component refusal gate
+cmd_restore | os.replace | 1 | staged-write | swaps the verified staged member in; replaces a final-component symlink, never follows it
+
+discard_staging | os.unlink | 1 | cleanup-own | removes the staging file this process created
+secure_staging | os.unlink | 1 | cleanup-own | removes the just-created staging file when it is not a regular file
+secure_staging | tempfile.mkstemp | 1 | staged-write | the primitive: random O_CREAT|O_EXCL name in the destination directory
+set_fd_mode | os.fchmod | 1 | staged-meta | mode applied through the fd of our own staging file: legacy 0666&~um for internal state (mode=None), explicit archive_mode (default 0600, v1.3.0) for artifacts; renamed from set_default_perms in 1.3.0 — it no longer only sets a default
+
+ledger_append | open(a) | 1 | append-gated | append-only; path is realpath-containment-checked, external paths need --allow-external-ledger; line refused if it holds a line break
+ledger_append | os.makedirs | 1 | dir-create | ledger parent directory, after the same containment/consent check
+ledger_append | subprocess.run | 1 | consent-exec | append_cmd: needs --allow-cmd-ledger every invocation, shell=False
+ledger_state | subprocess.run | 1 | consent-exec | read_cmd: needs --allow-cmd-ledger every invocation, shell=False
+run_stow_cmd | subprocess.run | 1 | consent-exec | --stow-cmd exists only as a CLI argument, never read from config; shell=False
+
+stow_to_dir | os.makedirs | 1 | dir-create | operator-chosen --stow-to directory (CLI voice); the copy itself goes through _stage_copy
+
+file | backup_chain.py
+
+# Imports. "No network, no upload code" is a headline claim of this tool; this
+# list is what makes the CODE half checkable. (Commands the operator supplies —
+# --stow-cmd, a ledger adapter — run through consent-exec and can reach a network
+# by design; that is consent-gated, not scanned.) Adding socket/urllib/http/ssl/ctypes/
+# importlib or any third-party module fails the check until it is registered
+# here with a reason in the pull request that adds it.
+import | argparse
+import | datetime
+import | fnmatch
+import | hashlib
+import | io
+import | json
+import | os
+import | re
+import | shlex
+import | shutil
+import | stat
+import | subprocess
+import | sys
+import | tarfile
+import | tempfile
+import | time

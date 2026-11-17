@@ -1,44 +1,58 @@
-## Description: <br>
-Voicenotes Official lets OpenClaw search Voicenotes notes semantically, retrieve transcripts, filter notes by tags or date range, and create text notes through the Voicenotes API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This official skill from the Voicenotes team gives OpenClaw access to APIs for semantic note search, full transcript retrieval, tag or date filtering, and text note creation through natural conversation.
 
-## Publisher: <br>
-[gthu-vn](https://clawhub.ai/user/gthu-vn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[gthu-vn](https://clawhub.ai/user/gthu-vn)
 
-## Use Case: <br>
-OpenClaw users with a Voicenotes account use this skill to search their notes, retrieve full transcripts when needed, filter recordings by tags or date range, and create text notes from natural-language requests. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a Voicenotes API key that can access notes and transcripts in the user's account. <br>
-Mitigation: Use a revocable or dedicated API key when available, avoid storing secrets in notes, and revoke the key if access is no longer needed. <br>
-Risk: Broad transcript retrieval or note creation can expose or modify personal account content. <br>
-Mitigation: Ask the agent to confirm before broad transcript retrieval or note creation. <br>
-Risk: Unsanitized user input in shell commands can alter API requests. <br>
-Mitigation: URL-encode search queries, validate recording IDs against the documented alphanumeric pattern, and JSON-encode request bodies. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Voicenotes](https://voicenotes.com) <br>
-- [Voicenotes OpenClaw integration setup](https://voicenotes.com/app?open-claw=true#settings) <br>
-- [ClawHub skill page](https://clawhub.ai/gthu-vn/voicenotes-official) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/gthu-vn) <br>
+## Use Case:
 
+External users and developers use this skill to let an OpenClaw agent search, retrieve, filter, and create notes in their own Voicenotes account through authenticated API calls.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash commands, JSON examples, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses VOICENOTES_API_KEY and curl to call Voicenotes API endpoints.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can expose note contents and search terms to Voicenotes through authenticated API requests.
+
+Mitigation: Use it only with Voicenotes accounts trusted for the relevant note contents, and avoid sending secrets or regulated information unless that is appropriate for the account.
+
+Risk: The skill can create notes or retrieve transcripts in the user's Voicenotes account.
+
+Mitigation: Review requested account actions before execution and keep the API key scoped to the intended Voicenotes account.
+
+Risk: Unsafe interpolation of search queries, recording IDs, or JSON fields could alter generated shell commands.
+
+Mitigation: URL-encode search queries, validate recording IDs against the documented alphanumeric pattern, and JSON-encode request bodies instead of concatenating raw user input.
+
+## Reference(s):
+
+- [Voicenotes homepage](https://voicenotes.com)
+- [Voicenotes OpenClaw integration setup](https://voicenotes.com/app?open-claw=true#settings)
+- [Voicenotes Official ClawHub listing](https://clawhub.ai/gthu-vn/skills/voicenotes-official)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, API Calls, Guidance]
+
+**Output Format:** [Markdown with curl commands, YAML configuration, and JSON response examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires VOICENOTES_API_KEY and curl; API calls operate on the user's authenticated Voicenotes account.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

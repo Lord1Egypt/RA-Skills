@@ -1,0 +1,32 @@
+name: 八字算命AI大师
+slug: real-ai-fortune
+version: 1.0.5
+description: "Bazi Fortune-Telling AI Master — a three-in-one consultant skill for traditional Chinese metaphysics. Bazi (Four Pillars): enter birth date/time to chart the four pillars and read life pattern, personality, marriage/wealth/career trends, luck cycles. Mei Hua Yi Shu: divine the outcome and timing of one specific matter. Feng Shui: self-check your home or office layout. Charting and hexagram casting are computed by bundled deterministic Python scripts (true solar time correction, body/use five-element analysis) — verifiable, not hallucinated. This is traditional-culture entertainment reference, not a scientific prediction. For cultural reference only."
+author: 后山人
+category: culture
+triggers:
+  - 八字算命AI大师
+  - 八字算命
+  - 算命大师
+  - 八字排盘
+  - AI算命
+  - 算命
+  - 八字
+  - 排盘
+  - 梅花易数
+  - 占卜
+  - 起卦
+  - 风水
+  - 命理
+  - 运势
+  - bazi
+  - meihua
+  - feng shui
+  - fortune telling
+tags:
+  - bazi
+  - meihua
+  - fengshui
+  - chinese-metaphysics
+  - divination
+  - fortune-teller

@@ -1,43 +1,57 @@
-## Description: <br>
-Fetches X/Twitter tweets, replies, timelines, X Lists, mentions, Chinese platform content, Google search results, and tweet growth signals for agent workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches X/Twitter tweets, replies, timelines, X Lists, Chinese-platform content, Google search results, and tweet growth signals, with basic tweet fetching available without login or API keys.
 
-## Publisher: <br>
-[rightister](https://clawhub.ai/user/rightister) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rightister](https://clawhub.ai/user/rightister)
 
-## Use Case: <br>
-Developers and agents use this skill to retrieve social-media content and monitoring signals from X/Twitter and supported Chinese platforms without paid platform APIs. It is suited for structured content extraction, timeline review, mention monitoring, search, and tweet growth analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Some execution paths use session cookies, SSH, or router command queues. <br>
-Mitigation: Prefer basic fetch paths, run browser automation in an isolated environment, avoid primary-account cookies, and use SSH or router modes only with hosts and agent files you control. <br>
-Risk: The release was classified as suspicious by the server security scan because it is broader than a simple tweet fetcher. <br>
-Mitigation: Review enabled commands before installation and limit use to the specific fetching or monitoring features needed. <br>
+## Use Case:
 
+Developers and agent builders use this skill to retrieve structured social-media content, monitor mentions or tweet growth, and integrate X/Twitter and supported Chinese-platform data into agent workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/rightister/rightister-x-tweet-fetcher) <br>
-- [Publisher profile](https://clawhub.ai/user/rightister) <br>
-- [Camoufox](https://camoufox.com) <br>
-- [FxEmbed](https://github.com/FxEmbed/FxEmbed) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and structured JSON result examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Basic tweet fetching has no external dependency; replies, timelines, search, and most Chinese platform fetches may require Camofox on localhost.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.0 (source: server release metadata) <br>
+Risk: Broad outbound scraping and search behavior can access unexpected external or internal targets through the local browser helper.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted URLs and queries, avoid cookies or sensitive searches, and restrict Camofox/browser access to intended destinations.
+
+Risk: The security summary flags under-disclosed router command queuing and weak URL controls.
+
+Mitigation: Disable or remove the router-agent fallback unless intentionally operating that external command queue and its home-network path.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/rightister/skills/rightister-x-tweet-fetcher)
+- [Publisher Profile](https://clawhub.ai/user/rightister)
+- [FxEmbed / FxTwitter](https://github.com/FxEmbed/FxEmbed)
+- [Camoufox](https://camoufox.com)
+- [Camofox Browser Plugin](https://github.com/jo-inc/camofox-browser)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with CLI and Python examples; fetched content is typically JSON, text, or Markdown.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Some advanced workflows require a local Camofox browser service; basic single-tweet and tweet-growth workflows are documented as zero dependency.]
+
+## Skill Version(s):
+
+1.4.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

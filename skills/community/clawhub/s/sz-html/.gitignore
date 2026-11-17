@@ -1,0 +1,11 @@
+# Python 缓存
+__pycache__/
+*.pyc
+
+# 打包产物（build.py 输出到包外 .private/sz-html/dist，此处为兜底）
+dist/
+*.zip
+
+# 系统文件
+Thumbs.db
+.DS_Store

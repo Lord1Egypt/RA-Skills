@@ -146,13 +146,10 @@ HASH="value-with-#-in-it"  # Values containing # must be wrapped in quotes
 
 ### Multiline Values (v15.0.0+)
 ```ini
-PRIVATE_KEY="-----BEGIN RSA PRIVATE KEY-----
-Line1
-Line2
------END RSA PRIVATE KEY-----"
+PRIVATE_KEY="REDACTED-SECRET"
 
 # Or use \n
-PRIVATE_KEY="-----BEGIN RSA PRIVATE KEY-----\nLine1\nLine2\n-----END RSA PRIVATE KEY-----"
+PRIVATE_KEY="REDACTED-SECRET"
 ```
 
 ## TypeScript

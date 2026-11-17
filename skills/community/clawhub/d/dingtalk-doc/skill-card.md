@@ -1,44 +1,59 @@
-## Description: <br>
-DingTalk Docs management skill for reading, summarizing, creating, updating, and deleting DingTalk Docs and DingTalk knowledge-base documents through the DingTalk Open Platform API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps an agent read, summarize, create, update, and delete DingTalk Docs and DingTalk knowledge-base documents when a DingTalk document link or context is provided.
 
-## Publisher: <br>
-[shyzhen](https://clawhub.ai/user/shyzhen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shyzhen](https://clawhub.ai/user/shyzhen)
 
-## Use Case: <br>
-Developers and operators use this skill to let an agent retrieve, summarize, search, create, update, and delete DingTalk Docs when the user provides a DingTalk document link or an already established DingTalk Docs context. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can overwrite and delete DingTalk documents. <br>
-Mitigation: Require explicit human confirmation before overwrite or delete requests and review the target document before execution. <br>
-Risk: The bundled whitelist allows workspace-wide writes with '/'. <br>
-Mitigation: Replace the bundled whitelist with narrow workspace and document rules before installation, and avoid '/' unless every document in that workspace may be changed or deleted. <br>
-Risk: The skill requires a DingTalk client secret. <br>
-Mitigation: Keep DINGTALK_CLIENTSECRET protected and provide it only through the intended environment-secret mechanism. <br>
+## Use Case:
 
+Developers and teams using OpenClaw with DingTalk use this skill to locate, read, summarize, create, overwrite, modify, insert into, and delete DingTalk knowledge-base documents through DingTalk APIs.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/shyzhen/dingtalk-doc) <br>
-- [DingTalk knowledge-base overview](https://open.dingtalk.com/document/development/knowledge-base-overview) <br>
-- [DingTalk API Explorer](https://open-dev.dingtalk.com/apiExplorer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON-shaped DingTalk API results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires DingTalk client credentials and sender identity; write operations depend on whitelist configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.8 (source: ClawHub release evidence; artifact package.json reports 1.0.6) <br>
+Risk: The skill exposes high-impact document overwrite, block modification, and delete operations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation before overwrite or delete actions and review proposed content changes before execution.
+
+Risk: The bundled whitelist configuration can allow broad workspace writes.
+
+Mitigation: Replace the bundled whitelist with narrow, user-approved workspace and document targets before installation.
+
+Risk: DingTalk app credentials and token access can affect remote documents outside the local workspace.
+
+Mitigation: Install only with trusted DingTalk credentials, avoid low-level client commands, and remove or disable the get-token command where it is not needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/shyzhen/skills/dingtalk-doc)
+- [DingTalk knowledge-base overview](https://open.dingtalk.com/document/development/knowledge-base-overview)
+- [DingTalk API Explorer](https://open-dev.dingtalk.com/apiExplorer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance, shell commands, configuration snippets, and JSON API responses.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires DingTalk app credentials and a sender identity; write actions can modify or delete remote DingTalk documents.]
+
+## Skill Version(s):
+
+1.0.8 (source: server release evidence; artifact package.json reports 1.0.6)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,58 @@
-## Description: <br>
-Generate, send, validate, and export AI-powered emails from the terminal; manage contacts, segments, tags, domains, and webhooks with Migma CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate, send, validate, and export AI-powered emails from the terminal; manage contacts, segments, tags, domains, and webhooks with Migma CLI.
 
-## Publisher: <br>
-[AdamSEY](https://clawhub.ai/user/AdamSEY) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[adamsey](https://clawhub.ai/user/adamsey)
 
-## Use Case: <br>
-Marketing operators, founders, and developers use this skill through an agent to create branded email campaigns, validate deliverability, send test or production messages, export to email platforms, and manage audience data with the Migma CLI. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can send real email, including to segments or tags. <br>
-Mitigation: Require the agent to show the subject, sender, audience or segment, and a test or preview result before any real or bulk send. <br>
-Risk: Contact import and list management can upload or change contact data. <br>
-Mitigation: Review contact CSVs and confirm target contacts, segments, or tags before import, removal, or campaign actions. <br>
-Risk: MIGMA_API_KEY enables account actions through the Migma CLI. <br>
-Mitigation: Protect the API key and install only if you trust Migma and the @migma/cli package. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Migma homepage](https://migma.ai) <br>
-- [Example Conversations](references/workflows.md) <br>
+## Use Case:
 
+Marketing teams, operators, and developers use this skill to generate branded email campaigns, validate deliverability, send individual or bulk emails, export to ESPs, and manage contacts, segments, tags, domains, and webhooks through Migma CLI.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance, JSON, Files] <br>
-**Output Format:** [Markdown with inline bash and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses --json for structured CLI responses; may save generated email HTML, PDF, or MJML files when requested.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.3.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can enable real bulk-email sends and contact-list mutations without enough built-in safeguards.
+
+Mitigation: Require the agent to show recipients, audience counts, sender, subject, and content before any real send or contact-list change.
+
+Risk: A Migma API key can authorize sensitive email and contact operations.
+
+Mitigation: Use a scoped, rotatable Migma API key and pin or verify the @migma/cli package where possible.
+
+Risk: CSV imports and contact removals can affect sensitive contact data.
+
+Mitigation: Require explicit confirmation and maintain backups or auditability for contact imports and removals.
+
+## Reference(s):
+
+- [Migma homepage](https://migma.ai)
+- [ClawHub skill page](https://clawhub.ai/adamsey/skills/migma)
+- [Example Conversations](references/workflows.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline Migma CLI commands and JSON-oriented command expectations.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the migma CLI and a MIGMA_API_KEY for live Migma operations.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

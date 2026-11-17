@@ -1,40 +1,54 @@
-## Description: <br>
-A Chinese-language AI prompt optimization skill that transforms vague user requests into precise, structured prompts for ChatGPT, Claude, Gemini, DeepSeek, and other AI platforms. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Yq Prompt Optimizer helps agents turn vague user requests into clearer, platform-aware prompts using a structured prompt optimization workflow.
 
-## Publisher: <br>
-[tianheihei002](https://clawhub.ai/user/tianheihei002) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tianheihei002](https://clawhub.ai/user/tianheihei002)
 
-## Use Case: <br>
-Employees, external users, and developers use this skill to refine prompts, choose a basic or detailed optimization flow, and receive platform-aware prompt engineering guidance for common AI assistants. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill operates primarily in Chinese, which may limit reviewability or usefulness for non-Chinese users. <br>
-Mitigation: Use reviewers or operators who can read Chinese, or pair the skill with language-aware review before deploying its prompt guidance. <br>
-Risk: Optimized prompts can still encode unclear requirements or produce misleading downstream AI behavior if the original request is incomplete. <br>
-Mitigation: Review generated prompts before use, answer clarification questions in detailed mode, and verify outputs from the target AI system. <br>
+## Use Case:
 
+External users and developers use this skill to refine prompts for ChatGPT, Claude, Gemini, DeepSeek, and general AI platforms. It supports quick basic optimization as well as detailed workflows that ask clarifying questions before delivering a final prompt.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tianheihei002/yq-prompt-optimizer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with optimized prompt text, improvement notes, usage guidance, and internal evaluation summary when applicable] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only; no executable code, persistence, credential access, or hidden data flow reported by server security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Prompt optimization may produce guidance that is unsuitable for a user's target model, language, or domain if the original request lacks context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the optimized prompt before use and provide clarifying details when the skill requests them.
+
+Risk: The skill is primarily written in Chinese, which may reduce usability for non-Chinese users.
+
+Mitigation: Ask the agent to translate or adapt the workflow and outputs when operating in another language.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tianheihei002/skills/yq-prompt-optimizer)
+- [Publisher profile](https://clawhub.ai/user/tianheihei002)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown prompt text with brief rationale and usage guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include clarifying questions, platform-specific prompt guidance, and a brief internal evaluation summary.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

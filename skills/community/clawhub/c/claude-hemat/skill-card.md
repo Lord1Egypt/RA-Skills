@@ -1,40 +1,48 @@
-## Description: <br>
-Provides model-routing guidance that keeps simple Q&A and routine tasks on Haiku 4.5 while escalating analysis, coding, planning, deep research, and critical decisions to stronger Claude models. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides model-routing guidance for Q&A, casual chat, simple tasks, coding, analysis, reasoning, and deep research across Claude-family models.
 
-## Publisher: <br>
-[axellageraldinc](https://clawhub.ai/user/axellageraldinc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[axellageraldinc](https://clawhub.ai/user/axellageraldinc)
 
-## Use Case: <br>
-Agent operators and developers use this skill to choose an appropriate Claude model for each request, reserving stronger and potentially more expensive models for reasoning-heavy or critical tasks. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The routing guidance may send complex tasks to stronger and potentially more expensive models. <br>
-Mitigation: Review the model-selection rules before use in sensitive or cost-controlled workflows. <br>
-Risk: The skill provides routing instructions rather than deterministic enforcement, so agents may still choose an unsuitable model. <br>
-Mitigation: Review outputs for the declared model choice and apply local policy when a request is critical or cost-sensitive. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/axellageraldinc/claude-hemat) <br>
-- [Publisher profile](https://clawhub.ai/user/axellageraldinc) <br>
+## Use Case:
 
+Agents and operators use this skill to decide when to answer with a default lightweight Claude model and when to escalate work to Sonnet or Opus for coding, analysis, planning, critical decisions, or deep research.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, text] <br>
-**Output Format:** [Markdown guidance with model-routing rules and example session-spawn calls] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should state which model was used and return to Haiku 4.5 after escalated work.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may send full task descriptions to more advanced Anthropic model sessions when escalation rules are triggered.
+
+Mitigation: Review the model-routing rules before installation and apply provider, privacy, or cost controls when strict routing is required.
+
+## Reference(s):
+
+- [Claude Hemat on ClawHub](https://clawhub.ai/axellageraldinc/skills/claude-hemat)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands]
+
+**Output Format:** [Markdown with inline code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces model-selection and escalation instructions for agent responses.]
+
+## Skill Version(s):
+
+1.0.3 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

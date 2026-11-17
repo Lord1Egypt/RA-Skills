@@ -1,39 +1,52 @@
-## Description: <br>
-Drafts short, natural Chinese relationship messages for comforting, flirting, apologizing, or resolving misunderstandings with a girl while emphasizing sincerity and boundaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill when a user wants Chinese-language help comforting, flirting with, or communicating with a girl, including a girlfriend, crush, friend, or stranger.
 
-## Publisher: <br>
-[moxin1044](https://clawhub.ai/user/moxin1044) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[moxin1044](https://clawhub.ai/user/moxin1044)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users can use this skill to draft respectful, short-form Chinese chat messages for relationship communication, apology, comfort, flirting, confession, and conflict repair. It guides the agent to ask for relationship context first, then produce multiple message sets and practical timing or tone suggestions.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Relationship-message coaching can produce wording that is poorly matched to the recipient or situation.
+
+Mitigation: Review and adapt generated messages so they remain respectful, consensual, and appropriate before sending.
+
+Risk: The skill may steer broad relationship questions into short, casual Chinese chat scripts.
+
+Mitigation: Use the output as drafting help, not as a substitute for judgment about boundaries, consent, or conflict severity.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Users ask this skill for Chinese-language relationship communication help, such as comforting a girlfriend, apologizing after conflict, starting or continuing a chat, or choosing a warmer message style. The skill gathers relationship stage, intent, recent behavior, and personality details before proposing concise chat-ready responses. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Relationship-message drafts could be used to pressure, manipulate, harass, or ignore another person's boundaries. <br>
-Mitigation: Use the skill only for respectful communication, review suggestions before sending, and stop when the other person does not want to continue. <br>
-Risk: Personalized advice may require sharing private details about another person. <br>
-Mitigation: Share only necessary context, avoid sensitive personal information, and keep the generated messages aligned with healthy relationship boundaries. <br>
+**Output Format:** [Markdown with short Chinese message templates and concise explanatory guidance]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [No code, shell commands, persistence, credential access, or hidden execution behavior; users should review outputs for respect, consent, and fit to the recipient.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-style Chinese chat templates with short message sequences and explanatory notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces at least three style variants, scenario fit explanations, non-verbal suggestions, and risk reminders.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

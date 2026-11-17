@@ -1,44 +1,61 @@
-## Description: <br>
-Helps agents prepare, submit, and follow up on PoYo Kling 3.0 4K video generation jobs for text-to-video, image-to-video, multi-shot, audio-enabled, and webhook-based workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents prepare and submit PoYo Kling 3.0 4K video generation requests, including text-to-video, image-to-video, multi-shot payloads, polling, and webhook follow-up.
 
-## Publisher: <br>
-[coolhackboy](https://clawhub.ai/user/coolhackboy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[coolhackboy](https://clawhub.ai/user/coolhackboy)
 
-## Use Case: <br>
-Developers and agents use this skill to construct PoYo Kling 3.0 4K video generation payloads, submit trusted asynchronous jobs with curl, and guide polling or webhook follow-up. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: POYO_API_KEY could be exposed if copied into browser code, public repositories, logs, screenshots, or chat output. <br>
-Mitigation: Keep POYO_API_KEY private in a server-side environment variable or backend secret manager. <br>
-Risk: Private prompts, source images, videos, or callback URLs may be sent to PoYo or a webhook receiver. <br>
-Mitigation: Submit private inputs only when the user trusts PoYo and the callback receiver. <br>
-Risk: The helper can submit live video generation jobs through curl when a prepared payload and API key are present. <br>
-Mitigation: Review payloads before submission and make live API calls only from a trusted shell. <br>
+## Use Case:
 
+Developers and agents use this skill to build PoYo Kling 3.0 4K video generation payloads, submit trusted asynchronous jobs, and guide polling or webhook follow-up.
 
-## Reference(s): <br>
-- [PoYo Kling 3.0 4K API Reference](references/api.md) <br>
-- [PoYo Kling 3.0 4K Documentation](https://docs.poyo.ai/api-manual/video-series/kling-3-0-4k) <br>
-- [PoYo Kling 3.0 4K Model Page](https://poyo.ai/models/kling-3-0-4k) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON payloads and curl commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include PoYo task IDs after live submission; live calls require POYO_API_KEY.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: POYO_API_KEY could be exposed if copied into browser code, logs, public repositories, screenshots, or chat output.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the key in server-side environment variables or a backend secret manager and avoid printing it in generated examples or command output.
+
+Risk: Private prompts, source images, videos, or callback URLs may be sent to PoYo or a callback receiver during generation workflows.
+
+Mitigation: Submit only content and callback endpoints the user has confirmed are appropriate for PoYo and the receiving service.
+
+Risk: Live API submission can create external tasks when a prepared payload is run from a trusted shell.
+
+Mitigation: Make live calls only after the user explicitly asks to submit a payload and POYO_API_KEY is available in the trusted environment.
+
+## Reference(s):
+
+- [PoYo Kling 3 API model page](https://poyo.ai/models/kling-3-api)
+- [PoYo Kling 3.0 4K API docs](https://docs.poyo.ai/api-manual/video-series/kling-3-0-4k)
+- [PoYo API key page](https://poyo.ai/dashboard/api-key)
+- [Artifact API reference](artifact/references/api.md)
+- [ClawHub skill page](https://clawhub.ai/coolhackboy/skills/poyo-kling-3-0-4k)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with JSON payloads and bash or curl examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May submit API requests only when explicitly requested and POYO_API_KEY is available in a trusted shell.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

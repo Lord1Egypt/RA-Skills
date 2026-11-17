@@ -1,0 +1,75 @@
+openapi: 3.1.0
+info:
+  title: DHX Tech 全球芯片库存搜索 API
+  description: >-
+    德鸿芯科技（DHX Tech）全球电子元器件实时库存查询接口。
+    供「芯片采购询价 GPT 助手」调用，根据型号(MPN)返回实时库存、品牌、数量与询价链接。
+  version: 1.0.0
+  contact:
+    name: DHX Tech (德鸿芯科技)
+    url: https://icdhxkj.com
+servers:
+  - url: https://icdhxkj.com
+paths:
+  /api/v1/public/search:
+    get:
+      operationId: searchComponents
+      summary: 按型号搜索全球电子元器件库存
+      description: >-
+        根据电子元器件型号(MPN)搜索德鸿芯科技全球实时库存。
+        返回库存数量、品牌、可用状态以及查看/询价链接。
+      parameters:
+        - name: q
+          in: query
+          required: true
+          description: 要查询的电子元器件型号/MPN，例如 STM32F103C8T6、TPS54331DR。
+          schema:
+            type: string
+          example: STM32F103C8T6
+      responses:
+        '200':
+          description: 查询成功，返回库存结果列表
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  source:
+                    type: string
+                    description: 接口来源标识
+                  status:
+                    type: string
+                    description: 请求状态，例如 Success
+                  results:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        mpn:
+                          type: string
+                          description: 制造商型号
+                        brand:
+                          type: string
+                          description: 品牌/制造商
+                        datasheet:
+                          type: string
+                          description: 描述或资料说明
+                        qty:
+                          type: integer
+                          description: 库存数量
+                        availability:
+                          type: string
+                          description: 可用状态，例如 InStock
+                        detail_url:
+                          type: string
+                          description: 查看与询价直达链接
+              example:
+                source: DHX Global API
+                status: Success
+                results:
+                  - mpn: STM32F103C8T6
+                    brand: STMicroelectronics
+                    datasheet: STM32F103C8T6 mainstream ARM Cortex-M3 MCU
+                    qty: 5200
+                    availability: InStock
+                    detail_url: https://icdhxkj.com/search?q=STM32F103C8T6

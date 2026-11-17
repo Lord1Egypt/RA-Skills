@@ -1,39 +1,52 @@
-## Description: <br>
-提供多多买菜/美团优选次日提货及优惠抢购指引。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+提供多多买菜/美团优选次日提货及优惠抢购指引。
 
-## Publisher: <br>
-[mike47512](https://clawhub.ai/user/mike47512) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[mike47512](https://clawhub.ai/user/mike47512)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users use this skill to get concise shopping guidance for community group-buying services, including next-day pickup, discount discovery, operation flows, feature highlights, and practical cautions.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Users may share unnecessary personal information or grant sensitive account permissions while following shopping app instructions.
+
+Mitigation: Share only required information, avoid unnecessary sensitive authorizations, and review permissions before acting.
+
+Risk: Discounts, pickup workflows, and third-party app features may change or become unstable.
+
+Mitigation: Confirm offers, pickup details, and availability inside the official shopping apps before purchase or pickup.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Shoppers and agents use this skill to get concise guidance for next-day community group-buy pickup, discount checks, key entry points, workflow steps, and privacy-aware safety reminders for services such as 多多买菜 and 美团优选. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Users may share shopping account credentials, payment details, or grant unnecessary permissions while following third-party platform workflows. <br>
-Mitigation: Avoid sharing sensitive credentials or payment information unless intentionally required by the chosen platform, and review permissions before authorizing access. <br>
-Risk: Discount availability, pickup details, or third-party service behavior may change outside the skill's control. <br>
-Mitigation: Confirm current offers, pickup times, and platform requirements in the official shopping app before relying on the guidance. <br>
+**Output Format:** [Markdown guidance with concise lists and procedural summaries]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Produces shopping workflow guidance, feature notes, status reminders, safety cautions, and third-party service stability caveats.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Text, Markdown] <br>
-**Output Format:** [Markdown guidance with concise summaries and bullet points] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include shopping workflow steps, discount guidance, status tracking notes, and privacy reminders.] <br>
+0.1.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-0.1.0 (source: server evidence release.version) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

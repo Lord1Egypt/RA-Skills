@@ -1,44 +1,56 @@
-## Description: <br>
-Professional SWOT analysis and competitive comparison powered by SWOTPal.com. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Professional SWOT analysis and competitive comparison powered by SWOTPal.com
 
-## Publisher: <br>
-[aprilelevengo](https://clawhub.ai/user/aprilelevengo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aprilelevengo](https://clawhub.ai/user/aprilelevengo)
 
-## Use Case: <br>
-Employees, external business users, analysts, strategists, and developers use this skill to generate SWOT analyses, compare competitors, and retrieve saved SWOTPal analyses when an API key is configured. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Cloud/API mode can send and store SWOT topics, prompts, outputs, and saved analyses remotely without clear data-handling disclosure. <br>
-Mitigation: Use local prompt mode for confidential strategy or internal company data unless the publisher documents retention, deletion, access controls, and an opt-out or local-only path. <br>
-Risk: The configured SWOTPal API key could be exposed through local environment leakage or logs. <br>
-Mitigation: Store the API key in a secret manager or protected environment variable, avoid sharing logs that include it, and rotate the key if exposure is suspected. <br>
+## Use Case:
 
+External users and developers use this skill to generate structured SWOT analyses, competitive comparisons, and saved SWOTPal analysis lookups from an AI assistant. It supports local prompt-template output without an API key and optional SWOTPal API mode for data-enriched, saveable analyses.
 
-## Reference(s): <br>
-- [SWOTPal homepage](https://swotpal.com) <br>
-- [SWOTPal API key setup](https://swotpal.com/openclaw) <br>
-- [SWOTPal examples](https://swotpal.com/examples) <br>
-- [ClawHub skill page](https://clawhub.ai/aprilelevengo/swotpal-swot-analysis) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/aprilelevengo) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, API calls, guidance] <br>
-**Output Format:** [Markdown with section headings, numbered lists, links, and optional API result metadata] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Responds in the user's language; API mode may include editor URLs and remaining usage.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: Pro API mode may send SWOT topics, comparison subjects, generated results, and saved-analysis history to SWOTPal.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use Pro API mode only for data authorized for SWOTPal processing, and avoid confidential strategy or customer data unless that use is approved.
+
+Risk: Local prompt-template analyses may contain incorrect or outdated strategic claims.
+
+Mitigation: Review generated SWOT findings and verify market, financial, and competitive assertions before using them in decisions or reports.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/aprilelevengo/skills/swotpal-swot-analysis)
+- [SWOTPal homepage](https://swotpal.com)
+- [SWOTPal OpenClaw API key page](https://swotpal.com/openclaw)
+- [SWOTPal examples](https://swotpal.com/examples)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, API Calls, Guidance]
+
+**Output Format:** [Markdown with section headings, numbered lists, links, and status messages]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May call the SWOTPal API when SWOTPAL_API_KEY is configured; otherwise produces local prompt-template analysis.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

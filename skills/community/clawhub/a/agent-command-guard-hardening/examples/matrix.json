@@ -1,0 +1,81 @@
+{
+  "cases": [
+    {
+      "id": "block-rm",
+      "class": "should-block",
+      "cmd": [
+        "rm",
+        "-rf",
+        "/tmp/x"
+      ],
+      "expect": "deny"
+    },
+    {
+      "id": "block-sudo",
+      "class": "should-block",
+      "cmd": [
+        "sudo",
+        "ls"
+      ],
+      "expect": "deny"
+    },
+    {
+      "id": "block-chmod",
+      "class": "should-block",
+      "cmd": [
+        "chmod",
+        "-R",
+        "777",
+        "."
+      ],
+      "expect": "deny"
+    },
+    {
+      "id": "allow-mv-help",
+      "class": "negative-control",
+      "cmd": [
+        "mv",
+        "--help"
+      ],
+      "expect": "allow"
+    },
+    {
+      "id": "allow-chmod-help",
+      "class": "negative-control",
+      "cmd": [
+        "chmod",
+        "--help"
+      ],
+      "expect": "allow"
+    },
+    {
+      "id": "allow-launchctl",
+      "class": "negative-control",
+      "cmd": [
+        "launchctl",
+        "list"
+      ],
+      "expect": "allow"
+    },
+    {
+      "id": "bypass-absolute",
+      "class": "known-bypass",
+      "cmd": [
+        "/bin/rm",
+        "-rf",
+        "/tmp/x"
+      ],
+      "expect": "allow"
+    },
+    {
+      "id": "bypass-nested",
+      "class": "known-bypass",
+      "cmd": [
+        "bash",
+        "-c",
+        "rm -rf /tmp/x"
+      ],
+      "expect": "allow"
+    }
+  ]
+}

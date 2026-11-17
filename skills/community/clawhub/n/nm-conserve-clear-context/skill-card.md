@@ -1,41 +1,54 @@
-## Description: <br>
-Manages context overflow by handing off to a fresh subagent at 80% usage. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manages context overflow by handing off to a fresh subagent at 80% usage
 
-## Publisher: <br>
-[athola](https://clawhub.ai/user/athola) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[athola](https://clawhub.ai/user/athola)
 
-## Use Case: <br>
-Developers and agent users use this skill during long-running Claude Code workflows to checkpoint current work, preserve session state, and delegate continuation to a fresh subagent when context pressure becomes high. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can preserve session state and continue automatically in dangerous or unattended modes without fresh user confirmation. <br>
-Mitigation: Install only for tightly bounded context handoff workflows, avoid dangerous or unattended use unless the task scope is constrained, and review or delete .claude/session-state.md after sensitive work. <br>
+## Use Case:
 
+Developers use this skill when a long-running task approaches context limits to checkpoint progress and hand continuation to a fresh agent.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-conserve-clear-context) <br>
-- [claude-night-market conserve plugin](https://github.com/athola/claude-night-market/tree/master/plugins/conserve) <br>
-- [Session state module](artifact/modules/session-state.md) <br>
-- [Session state schema](artifact/modules/session-state-schema.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update a session-state markdown checkpoint for continuation agents.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.9.13 (source: server release metadata; artifact frontmatter lists 1.9.8) <br>
+Risk: Handoff guidance can carry forward settings that suppress permission checks and confirmations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review inherited execution settings and require normal permission and confirmation checks before a continuation agent acts.
+
+Risk: Security analysis is incomplete because some local references could not be resolved.
+
+Mitigation: Resolve and review the referenced modules, then rerun a complete security scan before installation.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/athola/skills/nm-conserve-clear-context)
+- [Plugin homepage](https://github.com/athola/claude-night-market/tree/master/plugins/conserve)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Guidance]
+
+**Output Format:** [Markdown session-state checkpoint and continuation instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May hand off task continuation to a fresh agent.]
+
+## Skill Version(s):
+
+1.10.3 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

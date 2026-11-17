@@ -1,45 +1,61 @@
-## Description: <br>
-Generates images with Volcengine Jimeng AI Image Generation 4.0, supporting text-to-image, image-to-image, font design, poster-style prompts, and up to 4K output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Jimeng AI Image Generation helps agents generate images with Volcengine Jimeng AI Image Generation 4.0, including text-to-image, image-to-image, font-design poster mode, and up to 4K output.
 
-## Publisher: <br>
-[ken0521](https://clawhub.ai/user/ken0521) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ken0521](https://clawhub.ai/user/ken0521)
 
-## Use Case: <br>
-Developers and creators use this skill to request Jimeng image generation from an agent, including text prompts, reference-image edits, font design, poster concepts, resolution presets, and optional local image saving. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts and reference image URLs are sent to Volcengine for image generation. <br>
-Mitigation: Avoid private, internal, or sensitive image URLs and prompts unless their disclosure to Volcengine is acceptable. <br>
-Risk: Generation uses the user's Jimeng account quota and may incur costs based on output image count. <br>
-Mitigation: Use a dedicated API key where possible and pass --force-single when cost control matters. <br>
-Risk: Generated image URLs are temporary and may expire. <br>
-Mitigation: Save needed outputs promptly after generation. <br>
+## Use Case:
 
+External users and developers use this skill to ask an agent to create or edit images through Volcengine Jimeng, including wallpapers, posters, font designs, background replacement, and saved local image files.
 
-## Reference(s): <br>
-- [Jimeng AI Image Generation on ClawHub](https://clawhub.ai/ken0521/jimeng-image-gen) <br>
-- [Publisher Profile](https://clawhub.ai/user/ken0521) <br>
-- [Volcengine Jimeng Product Page](https://www.volcengine.com/product/jimeng) <br>
-- [Jimeng API Reference](references/api.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with shell commands and generated image file URLs or saved files from the helper script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js plus JIMENG_ACCESS_KEY and JIMENG_SECRET_KEY for Volcengine API access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: Prompts and optional reference image URLs are sent to Volcengine Jimeng for generation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and use the skill only when that data sharing is acceptable; avoid sending sensitive prompts or reference images.
+
+Risk: The configured Secret Key can authorize image-generation requests.
+
+Mitigation: Keep the Secret Key private and store credentials only in environment variables or a secret manager.
+
+Risk: Image generation may incur cost based on output image count.
+
+Mitigation: Use --force-single when limiting generation cost is important.
+
+## Reference(s):
+
+- [Jimeng AI Image Generation 4.0 API Reference](references/api.md)
+- [Volcengine Jimeng Product Page](https://www.volcengine.com/product/jimeng)
+- [Volcengine Console](https://console.volcengine.com/)
+- [ClawHub Skill Page](https://clawhub.ai/ken0521/skills/jimeng-image-gen)
+- [Publisher Profile](https://clawhub.ai/user/ken0521)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, API Calls, Files, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and generated image URLs or saved image files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js and JIMENG_ACCESS_KEY/JIMENG_SECRET_KEY environment variables; image URLs returned by the service are documented as time-limited.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

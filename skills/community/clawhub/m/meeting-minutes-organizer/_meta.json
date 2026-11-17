@@ -1,6 +1,9 @@
 {
-  "ownerId": "kn71h18yq7ayrcsa39r02ht4dd82pyc9",
-  "slug": "meeting-minutes-organizer",
+  "name": "meeting-minutes-organizer",
   "version": "1.0.0",
-  "publishedAt": 1774363970378
+  "description": "会议纪要自动整理工具 - 将原始会议记录智能整理为结构化会议纪要",
+  "tags": ["会议纪要", "效率工具", "办公", "整理"],
+  "author": "永杰团队",
+  "license": "MIT",
+  "language": "中文"
 }

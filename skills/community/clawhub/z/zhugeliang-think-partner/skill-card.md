@@ -1,41 +1,53 @@
-## Description: <br>
-A Chinese-first thinking partner that applies Zhuge Liang-inspired strategy, systems thinking, psychological game analysis, resource leverage, and priority-setting frameworks to planning questions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-first strategic thinking partner that uses Zhuge Liang inspired frameworks for planning, systems thinking, prioritization, and complex situations.
 
-## Publisher: <br>
-[gechengling](https://clawhub.ai/user/gechengling) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gechengling](https://clawhub.ai/user/gechengling)
 
-## Use Case: <br>
-External users and agents use this skill when they want a strategy-advice lens for project planning, complex stakeholder situations, resource allocation, long-term forecasting, system design, or prioritization. It is best suited for human-facing planning guidance rather than factual historical research or automated decision enforcement. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill's broad strategy and planning triggers may influence generic planning conversations more than expected. <br>
-Mitigation: Enable it only for users who want a Chinese-first, Zhuge Liang-themed strategy lens, and review recommendations before treating them as plans of record. <br>
-Risk: Advice is framed through historical and strategic analogies, which may be persuasive without being fact-checked for a specific modern context. <br>
-Mitigation: Use the output as advisory framing and require human review, current evidence, and domain-specific validation before acting on high-impact decisions. <br>
+## Use Case:
 
+Users seeking a structured thinking aid can use the skill to frame strategic choices, diagnose recurring system problems, prioritize limited resources, and explore cooperative approaches. Its outputs are reference guidance and should be checked against current facts and the user's circumstances.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gechengling/zhugeliang-think-partner) <br>
-- [Publisher profile](https://clawhub.ai/user/gechengling) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text strategic analysis and recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only advisory output; no code execution, data access, persistence, or hidden install behavior is indicated by the server security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release evidence) <br>
+Risk: Historical analogies and general frameworks may be mistaken for verified facts or situation-specific professional advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Check historical claims and current facts against reliable sources; use qualified review for consequential professional decisions.
+
+Risk: Psychological-strategy or resource-sharing examples could be applied in misleading or harmful ways.
+
+Mitigation: Keep their use to honest, lawful cooperation; do not use them to deceive, evade oversight, or harm others.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/gechengling/skills/zhugeliang-think-partner)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Analysis]
+
+**Output Format:** [Chinese or English prose with structured frameworks, tables, and checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Advisory reference text; no executable code or external actions.]
+
+## Skill Version(s):
+
+2.0.4 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

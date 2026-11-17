@@ -1,41 +1,53 @@
-## Description: <br>
-Process text templates with variable substitution. Use for generating dynamic content from template files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Process text templates with variable substitution. Use for generating dynamic content from template files.
 
-## Publisher: <br>
-[dinghaibin](https://clawhub.ai/user/dinghaibin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dinghaibin](https://clawhub.ai/user/dinghaibin)
 
-## Use Case: <br>
-Developers and engineers use this skill to generate text, markdown, code, shell-oriented templates, and configuration-like content by substituting variables into template files or initialized templates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The bundled scripts can create or overwrite files beyond the narrow text-substitution behavior described in the skill overview. <br>
-Mitigation: Review the target directory and generated file list before running the scripts, and use a disposable or controlled working directory. <br>
-Risk: Path-like template names, output directories, or initialized template names can write files in locations the user did not intend. <br>
-Mitigation: Avoid using important project folders as output targets unless the file writes have been reviewed and are expected. <br>
+## Use Case:
 
+Developers and engineers use this skill to process text templates with variable substitution and to generate starter project or content files from reusable templates.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dinghaibin/template-tool) <br>
-- [Publisher profile](https://clawhub.ai/user/dinghaibin) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Plain text and generated files from templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read JSON variable files and may create or overwrite files when template initialization or project template generation is used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The bundled scaffold generator can write or overwrite files outside the intended output directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill only in a controlled project directory, avoid untrusted template names or output paths, and inspect generated files before executing them.
+
+Risk: The release has a suspicious security verdict because the artifact includes scaffold-generation behavior beyond simple text-template processing.
+
+Mitigation: Review the skill before installing and confirm that scaffold generation is acceptable for the intended use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dinghaibin/skills/template-tool)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Files, Shell commands, Configuration]
+
+**Output Format:** [Plain text, Markdown, code/configuration file contents, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May generate or overwrite files when scaffold-generation behavior is used.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,58 @@
-## Description: <br>
-Generates earnings-review analysis for listed companies and stocks across supported China A-share, Beijing, Hong Kong, and U.S. markets using Eastmoney/Miaoxiang data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates earnings review commentary for listed companies and stocks across Shanghai, Shenzhen, Beijing, Hong Kong, and U.S. markets using Eastmoney data.
 
-## Publisher: <br>
-[financial-ai-analyst](https://clawhub.ai/user/financial-ai-analyst) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[financial-ai-analyst](https://clawhub.ai/user/financial-ai-analyst)
 
-## Use Case: <br>
-External users and analysts use this skill to identify a public company, choose an available reporting period, and generate an earnings review with analysis text, attachment paths, provenance notes, and a share link. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires EM_API_KEY for the Eastmoney/Miaoxiang API integration. <br>
-Mitigation: Store the key only in the environment, confirm the key source and scope before use, and avoid exposing it in prompts, logs, or outputs. <br>
-Risk: Generated report attachments and optional debug JSON can remain on local disk. <br>
-Mitigation: Keep debug mode off unless troubleshooting and review or clean the configured output directory after use. <br>
-Risk: Earnings commentary depends on the selected company and reporting period. <br>
-Mitigation: Stop on entity or report-period validation errors, and make any fallback or approximate report-period selection explicit to the user. <br>
+## Use Case:
 
+External users and financial analysis agents use this skill to validate a company or stock, select a disclosed reporting period, and produce an earnings review with analysis text, a share link, and saved report attachments.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/financial-ai-analyst/stock-earnings-review) <br>
-- [Publisher Profile](https://clawhub.ai/user/financial-ai-analyst) <br>
-- [Business Logic](BUSINESS_LOGIC.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, files, guidance] <br>
-**Output Format:** [Markdown response with structured text, share link, local attachment paths, and optional JSON debug artifacts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May save generated PDF, Word, and spreadsheet attachments locally; debug mode may also save intermediate JSON logs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server-resolved release evidence) <br>
+Risk: The skill sends user queries and stock or report identifiers to Eastmoney APIs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with data appropriate for that external service and provide an EM_API_KEY from a trusted, scoped source.
+
+Risk: The skill saves returned PDF, Word, or spreadsheet attachments locally and may write debug logs when debug mode is enabled.
+
+Mitigation: Review the output directory, avoid debug mode for sensitive workflows unless needed, and handle saved files according to local data-retention requirements.
+
+Risk: Generated links and saved attachments are external content returned by the API service.
+
+Mitigation: Review generated links and attachments before sharing or relying on them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/financial-ai-analyst/skills/stock-earnings-review)
+- [Publisher profile](https://clawhub.ai/user/financial-ai-analyst)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, files, configuration, guidance]
+
+**Output Format:** [Markdown response with generated earnings commentary, share link, and local attachment paths; scripts return JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May save PDF, Word, and spreadsheet attachments locally; debug mode may write intermediate JSON logs.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

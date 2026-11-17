@@ -1,40 +1,57 @@
-## Description: <br>
-Provides structured access to Home Assistant devices, sensors, and cameras via MCP, with documented handling for camera snapshots, garage doors, and device control. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides structured access to Home Assistant devices, sensors, and cameras via MCP, with handling for camera snapshots, garage doors, and device control.
 
-## Publisher: <br>
-[dsnkzdeny](https://clawhub.ai/user/dsnkzdeny) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dsnkzdeny](https://clawhub.ai/user/dsnkzdeny)
 
-## Use Case: <br>
-Developers and smart-home operators use this skill to connect an agent to their own Home Assistant environment for device, sensor, camera, and garage-door workflows. It is intended for environments where the user controls the Home Assistant endpoint and can manage access tokens safely. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A long-lived Home Assistant token can expose sensitive smart-home state, device controls, and camera data. <br>
-Mitigation: Install only for a Home Assistant endpoint you control, use the least-privileged token available, and rotate or revoke tokens that are no longer needed. <br>
-Risk: Shell-based REST fallbacks can retrieve camera snapshots or entity state outside normal MCP tool boundaries. <br>
-Mitigation: Prefer MCP tools when they work, require explicit confirmation before camera or garage actions, and delete saved snapshots when no longer needed. <br>
+## Use Case:
 
+Developers and smart-home operators use this skill to interact with Home Assistant entities through MCP, including status checks, device operations, camera snapshots, and garage-door workflows.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/dsnkzdeny/homeassistant-mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown instructions with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference MCP tools, REST API fallbacks, and local media files; requires a user-supplied Home Assistant endpoint and access token.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact metadata) <br>
+Risk: A long-lived Home Assistant access token may be passed through shell commands to a fixed plaintext HTTP endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with a trusted Home Assistant endpoint; prefer HTTPS, scoped credentials, and user-configured endpoints before deployment.
+
+Risk: Camera snapshots and entity mappings can expose private smart-home data in the workspace.
+
+Mitigation: Treat snapshots and entity lists as sensitive data, save them only when needed, and remove local copies after review.
+
+Risk: The skill can guide device and garage-door operations that affect the physical environment.
+
+Mitigation: Require explicit user intent before control actions and verify device state before and after any operation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dsnkzdeny/skills/homeassistant-mcp)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with inline shell commands and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Home Assistant entity names, endpoint configuration, REST API fallback commands, and camera snapshot handling guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

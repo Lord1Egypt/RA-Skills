@@ -38,11 +38,11 @@
 | 单次 `list-accounts -k`、P1 三步拉数、`-h` 查参 | **主会话**            | —                                                      | 为查一个账户开子会话     |
 | `balance-scan` / `accounts-digest` 单命令       | **主会话**            | —                                                      | 外层 for-loop 逐账户     |
 | 预计 CLI **>2 分钟** 或 stderr/stdout 很长      | **委派**              | 内置 **Bash** 或 Task + `snippets/handoff-*.md` 拉数段 | 在主会话逐行读日志       |
-| **P6 OKKI**：拉数 → 写 xlsx（两阶段）           | **委派**              | 阶段 1：Bash/Task 拉数；阶段 2：Task 只读 snap 写脚本  | 子会话做写操作确认       |
+| **P6 OKKI**：拉数 → 写 JSON → okki-render（两阶段） | **委派**              | 阶段 1：Bash/Task 拉数；阶段 2：Task 只读 snap 写叙事 JSON 并跑 `okki-render` | 子会话做写操作确认       |
 | **P7 询盘**：`m1`/`m2`/`m3` 三月拉数            | **并行委派**          | 3× Task（`handoff-p7-inquiry.md` 子目录变体）          | 3× 主会话顺序跑          |
 | **P5** `google-analysis-batch run` 全量         | **主会话或单次 Bash** | **一次** batch；CLI 内置并发                           | per-account 子会话调 API |
 | **P5** batch **完成后** 按账户聚合              | **可选并行**          | N× Task，只读 `results/<accountId>/`                   | 子会话 `run` 新 batch    |
-| 读 `references/google-ads/rules/*` 全文做方案              | **委派**              | **Explore** + `readonly`                               | 主会话 Read 全文进上下文 |
+| 读 `references/google-ads/rules/*` 全文做方案   | **委派**              | **Explore** + `readonly`                               | 主会话 Read 全文进上下文 |
 | 用户仅闲聊 / 解释字段口径                       | **主会话**            | —                                                      | —                        |
 
 ---
@@ -106,8 +106,8 @@ summary: <1-3 句中文，无业务数字除非来自 manifest>
 
 1. 主 Agent：确认账户与日期区间。
 2. **决策**：拉数阶段若日志长 → Bash/Task + `handoff-p6-okki.md` §拉数；否则主会话执行模板 §拉数命令。
-3. **决策**：写 xlsx 阶段 → Task handoff（只读 `snapDir`，先 outline 后 JSON，见 `references/core/tips.md`）；或主会话若上下文充足。
-4. 主 Agent：合并交付话术 + 文件路径；金额与 ID 与 manifest 一致。
+3. **决策**：写叙事 JSON + `okki-render` → Task handoff（只读 `snapDir`，先 outline 后 JSON，见 `references/core/tips.md`）；或主会话若上下文充足。**禁止** Agent 手写 xlsx。
+4. 主 Agent：最终回复只有 **xlsx 路径** + 一个话术代码块。行首用模板默认（「您好，同步一下谷歌」到 `7、账户余额：`），禁止另写「一、二、三、四」或结论摘要。用户本轮换了格式就用用户的。**没有 `.xlsx` 不得收口**（用户明确只要话术除外）。
 
 ### P5 · 多账户多维度
 

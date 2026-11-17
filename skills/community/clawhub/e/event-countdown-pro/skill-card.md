@@ -1,41 +1,58 @@
-## Description: <br>
-Set up a daily countdown reminder for a stock's next price-moving corporate event, including earnings releases, AGMs, product launches, investor days, dividend dates, FDA decisions, or other events likely to affect the stock price. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Set up daily countdown reminders for upcoming price-moving corporate events by resolving a company to its ticker, finding the event date, and scheduling daily price and fundamentals briefings.
 
-## Publisher: <br>
-[youpele52](https://clawhub.ai/user/youpele52) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[youpele52](https://clawhub.ai/user/youpele52)
 
-## Use Case: <br>
-External users and investors use this skill to set up daily reminders before a public company's next significant corporate event. The skill helps resolve the company ticker, discover or confirm the event, and schedule recurring countdown briefings with price and fundamentals checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create automated daily stock-event messages in the selected chat. <br>
-Mitigation: Confirm the event date, reminder start timing, timezone, and delivery chat before approving the cron reminder. <br>
-Risk: Countdown briefings depend on externally sourced event and market data that may be delayed, missing, or incorrect. <br>
-Mitigation: Review the discovered event source and cancel or update the reminder when the tracked event changes or the briefings are no longer needed. <br>
+## Use Case:
 
+External users and finance-focused agents use this skill to create daily countdown reminders for upcoming corporate events such as earnings, AGMs, product launches, investor days, dividends, FDA decisions, splits, or M&A votes. The reminders deliver price and fundamentals briefings until the confirmed event date.
 
-## Reference(s): <br>
-- [Yahoo Finance](https://finance.yahoo.com) <br>
-- [ClawHub skill release](https://clawhub.ai/youpele52/event-countdown-pro) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and reminder configuration details] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create a daily cron reminder that runs stock price and fundamentals checks until the confirmed event date.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill creates persistent daily reminders that can run other skills.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the reminder schedule, delivery target, timezone, and event date before creating the reminder, and ensure the reminder cancels on the event day.
+
+Risk: Reminder command text is assembled from ticker, company, and event values.
+
+Mitigation: Validate ticker and event fields, constrain user-provided values, and review generated reminder commands before execution.
+
+Risk: The skill depends on yfinance without a pinned version in the artifact.
+
+Mitigation: Pin dependencies and review dependency behavior before production deployment.
+
+## Reference(s):
+
+- [Event Countdown Pro on ClawHub](https://clawhub.ai/youpele52/skills/event-countdown-pro)
+- [Yahoo Finance](https://finance.yahoo.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and plain text command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create persistent daily scheduled reminders after user confirmation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,65 @@
-## Description: <br>
-SecondMind gives an OpenClaw agent persistent three-tier memory, social-context extraction, project tracking, and proactive proposal generation using OpenRouter-hosted models. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+SecondMind gives OpenClaw agents persistent memory, proactive project suggestions, project tracking, and social-context awareness using local storage and OpenRouter-based LLM processing.
 
-## Publisher: <br>
-[Emphaiser](https://clawhub.ai/user/Emphaiser) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[emphaiser](https://clawhub.ai/user/emphaiser)
 
-## Use Case: <br>
-Developers and OpenClaw users use SecondMind to configure persistent conversation memory, search prior sessions, archive reset-bound sessions, manage proposals and projects, and receive proactive suggestions through CLI or Telegram workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads OpenClaw session history and stores long-term memory, including emotional or social-context inferences. <br>
-Mitigation: Enable it only for workspaces where that retention is acceptable, review config.json before first run, and verify database retention or reset behavior before use on sensitive conversations. <br>
-Risk: Selected content may be sent to OpenRouter-hosted models and, when notifications are enabled, to Telegram. <br>
-Mitigation: Configure OpenRouter and notification settings deliberately, keep Telegram disabled unless needed, and avoid processing confidential sessions that should not leave the local environment. <br>
-Risk: Setup can create recurring background jobs that continue ingesting and processing session files. <br>
-Mitigation: Review installed cron or Task Scheduler entries after setup and remove or pause recurring jobs when background processing is not desired. <br>
+## Use Case:
 
+Developers and OpenClaw users use SecondMind to ingest conversation history, search persistent memory, and receive proactive proposals, reminders, and project-tracking updates.
 
-## Reference(s): <br>
-- [SecondMind ClawHub Release](https://clawhub.ai/Emphaiser/secondmind) <br>
-- [OpenRouter](https://openrouter.ai) <br>
-- [OpenRouter Models](https://openrouter.ai/models) <br>
-- [Node.js](https://nodejs.org) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May invoke local Node.js scripts that read OpenClaw session files, update a SQLite database, call OpenRouter, and optionally send Telegram notifications.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.0 (source: evidence release, SKILL.md frontmatter, package.json) <br>
+Risk: The skill persistently indexes private OpenClaw conversations in a local memory database.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the configured session path before use, protect the data directory, and install only if persistent local indexing is acceptable.
+
+Risk: Conversation-derived content is processed by cloud LLM calls through OpenRouter.
+
+Mitigation: Avoid placing secrets in agent chat, protect config.json, and pin endpoint configuration to OpenRouter over HTTPS.
+
+Risk: Optional Telegram or Discord notifications can contain memory-derived content.
+
+Mitigation: Keep notifications disabled unless needed, verify chat IDs and webhook destinations, and protect bot tokens.
+
+Risk: Scheduled jobs can process sessions and generate proposals automatically.
+
+Mitigation: Review or disable scheduled jobs before deployment if automatic background processing is not desired.
+
+## Reference(s):
+
+- [SecondMind on ClawHub](https://clawhub.ai/emphaiser/skills/secondmind)
+- [OpenRouter](https://openrouter.ai)
+- [OpenRouter Models](https://openrouter.ai/models)
+- [Node.js](https://nodejs.org)
+- [OpenClaw](https://github.com/openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and configuration values]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May direct Node.js scripts that create or update local SQLite memory data, proposal records, and optional notification content.]
+
+## Skill Version(s):
+
+1.4.0 (source: SKILL.md frontmatter, package.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

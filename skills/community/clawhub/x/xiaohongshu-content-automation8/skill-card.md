@@ -1,41 +1,55 @@
-## Description: <br>
-小红书内容自动化套件 - 爆款选题挖掘、文案生成、封面提示词、数据分析 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+小红书内容自动化套件 helps agents support Xiaohongshu content workflows, including topic mining, copywriting templates, cover prompt generation, and note data analysis.
 
-## Publisher: <br>
-[maomao52088](https://clawhub.ai/user/maomao52088) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[maomao52088](https://clawhub.ai/user/maomao52088)
 
-## Use Case: <br>
-Xiaohongshu creators, content operators, and small businesses use this skill to plan topics, draft note copy, generate cover-image prompts, and analyze recent post data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated topics, copy, cover prompts, or analysis may be inaccurate, outdated, or misaligned with the creator's audience. <br>
-Mitigation: Review generated content, verify performance claims against current account data, and edit drafts before publishing. <br>
-Risk: Automated content suggestions may produce repetitive or platform-inappropriate posts if used without editorial judgment. <br>
-Mitigation: Apply human editorial review for originality, brand fit, and compliance with Xiaohongshu publishing rules. <br>
+## Use Case:
 
+External content creators and content operations teams use this skill to plan Xiaohongshu topics, draft posts, generate image prompts for covers, and analyze recent note performance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/maomao52088/xiaohongshu-content-automation8) <br>
-- [Full Xiaohongshu automation skills repository](https://github.com/maomao52088/xiaohongshu-automation-skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Text] <br>
-**Output Format:** [Markdown and plain text content planning outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces topic ideas, copywriting templates, cover prompt text, and note-analysis guidance for human review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill links to fuller related prompt packs outside the packaged artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review those external materials separately before using or installing them.
+
+Risk: Generated Xiaohongshu topic, copywriting, cover prompt, or performance-analysis guidance may be inaccurate or unsuitable for a specific brand or campaign.
+
+Mitigation: Have a human reviewer check outputs for accuracy, compliance, and brand fit before publishing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/maomao52088/skills/xiaohongshu-content-automation8)
+- [Publisher profile](https://clawhub.ai/user/maomao52088)
+- [Related Xiaohongshu automation skills repository](https://github.com/maomao52088/xiaohongshu-automation-skills)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown and natural-language prompts or analysis]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language Xiaohongshu content guidance with templates, topic ideas, cover prompts, and analysis suggestions.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

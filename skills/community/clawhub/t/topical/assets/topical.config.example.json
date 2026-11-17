@@ -1,0 +1,7 @@
+{
+  "agentId": "main",
+  "deliver": true,
+  "channel": "last",
+  "to": "",
+  "accountId": "default"
+}

@@ -1,6 +1,9 @@
 {
-  "ownerId": "kn7f59rjdw92g48qp4r345de3n80xe7k",
-  "slug": "aoi-prompt-injection-sentinel",
+  "name": "aoi-prompt-injection-sentinel",
   "version": "0.1.2",
-  "publishedAt": 1771138670165
+  "description": "AOI prompt-injection sentinel: lightweight detector + severity scoring (public-safe).",
+  "author": "Aoineco & Co.",
+  "license": "MIT",
+  "tags": ["security", "prompt-injection", "detection"],
+  "sdna": "AOI-2026-0215-SDNA-PG01"
 }

@@ -1,48 +1,65 @@
-## Description: <br>
-Official skill for UpKuaJing that finds companies and global buyers using customs trade data, retrieves trade order details, business contact information, and lead generation data for import/export market research and supply chain analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find companies, global buyers, trade orders, company details, and contact information using UpKuaJing customs trade data.
 
-## Publisher: <br>
-[warmc](https://clawhub.ai/user/warmc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[warmc](https://clawhub.ai/user/warmc)
 
-## Use Case: <br>
-External users and trade researchers use this skill to query UpKuaJing customs trade data, identify buyers or suppliers, inspect trade records, and enrich company results with details or contact information. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires an UpKuaJing API key and stores it locally when generated through the auth script. <br>
-Mitigation: Use a dedicated API key where possible, avoid sharing the key, and remove it from local storage when it is no longer needed. <br>
-Risk: API calls may incur fees, including list searches, company detail lookups, contact lookups, and top-up flows. <br>
-Mitigation: Confirm query counts, fee counts, and any payment URL with the user before executing paid operations. <br>
-Risk: Search results may contain sensitive business leads or contact information saved in local task_data files. <br>
-Mitigation: Delete local result files when they are no longer needed and handle exported lead or contact data according to the user organization's data handling rules. <br>
+## Use Case:
 
+External users and developers use this skill for import/export market research, lead generation, buyer and supplier discovery, and customs trade record analysis through the UpKuaJing API.
 
-## Reference(s): <br>
-- [Company Detail API Reference](references/company-detail-api.md) <br>
-- [Company List API Reference](references/company-list-api.md) <br>
-- [Contact Fetch API Reference](references/contact-fetch-api.md) <br>
-- [Trade List API Reference](references/trade-list-api.md) <br>
-- [UpKuaJing Homepage](https://www.upkuajing.com) <br>
-- [UpKuaJing Open Platform](https://developer.upkuajing.com/) <br>
-- [UpKuaJing OpenAPI Pricing](https://www.upkuajing.com/web/openapi/price.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON responses, JSONL result files, and Markdown guidance with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [List-search scripts write task metadata and result.jsonl files under task_data; detail and contact scripts print JSON responses that include fee information.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: release evidence and SKILL.md metadata) <br>
+Risk: The skill uses a paid remote API service and can incur charges for searches, detail lookups, and contact lookups.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm expected query volume and fee impact before running billable API calls, and use the pricing endpoint or UpKuaJing price page for current pricing.
+
+Risk: The skill may store an API key in a plaintext home-directory file.
+
+Mitigation: Prefer environment-based secret handling where possible, restrict file permissions on ~/.upkuajing/.env, and rotate the key if it is exposed in logs or transcripts.
+
+Risk: Search result data can be persisted locally as task metadata and JSONL result files.
+
+Mitigation: Review local result files for sensitive business or contact data and remove them when they are no longer needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/warmc/skills/upkuajing-trade-company-search)
+- [Publisher profile](https://clawhub.ai/user/warmc)
+- [UpKuaJing homepage](https://www.upkuajing.com)
+- [UpKuaJing Open Platform](https://developer.upkuajing.com/)
+- [Detailed Price Description](https://www.upkuajing.com/web/openapi/price.html)
+- [Company Detail API reference](references/company-detail-api.md)
+- [Company List API reference](references/company-list-api.md)
+- [Contact Fetch API reference](references/contact-fetch-api.md)
+- [Trade List API reference](references/trade-list-api.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, API calls, JSON, files, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON or JSONL API results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search scripts may persist task metadata and result files locally under artifact/task_data; API key setup uses UPKUAJING_API_KEY.]
+
+## Skill Version(s):
+
+1.0.6 (source: release evidence and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

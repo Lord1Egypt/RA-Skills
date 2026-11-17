@@ -1,6 +1,7 @@
 {
-  "ownerId": "kn7d1amcrpmyp1ygz90wzxhcyh82he85",
+  "ownerId": "crazyrouter",
   "slug": "api-pricing-comparator",
   "version": "0.2.0",
-  "publishedAt": 1773650769307
+  "title": "API Pricing Comparator",
+  "status": "draft"
 }

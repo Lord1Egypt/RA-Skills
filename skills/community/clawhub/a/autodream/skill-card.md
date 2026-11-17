@@ -1,43 +1,58 @@
-## Description: <br>
-Automatic memory consolidation for OpenClaw agents that analyzes daily memory files, removes duplicates, prunes stale entries, normalizes dates, and builds a clean MEMORY.md index. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatic memory consolidation for OpenClaw agents that analyzes daily memory files, removes duplicates, prunes stale entries, normalizes dates, and builds a clean MEMORY.md index.
 
-## Publisher: <br>
-[rimaslogic](https://clawhub.ai/user/rimaslogic) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rimaslogic](https://clawhub.ai/user/rimaslogic)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to consolidate scattered daily memory files into a maintained long-term MEMORY.md index, either manually or through heartbeat-based checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can rewrite long-term agent memory files. <br>
-Mitigation: Run with --dry-run first, review proposed MEMORY.md changes, and keep the built-in backups enabled before allowing automatic consolidation. <br>
-Risk: Heartbeat-based execution can apply memory changes without active user attention. <br>
-Mitigation: Enable heartbeat consolidation only when long-term memory maintenance is intended and schedule it for quiet periods with reviewable reports. <br>
-Risk: The skill depends on an external Node script or npm package to perform file changes. <br>
-Mitigation: Verify the installed autodream script or package before use and install only from a trusted source. <br>
+## Use Case:
 
+Developers and OpenClaw agent operators use this skill to consolidate scattered daily memory files into a concise long-term MEMORY.md index, with duplicate removal, stale-entry pruning, date normalization, backups, and dry-run support.
 
-## Reference(s): <br>
-- [Autodream ClawHub release](https://clawhub.ai/rimaslogic/autodream) <br>
-- [Publisher profile: rimaslogic](https://clawhub.ai/user/rimaslogic) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, markdown] <br>
-**Output Format:** [Markdown with bash and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces guidance for running memory consolidation, configuring .autodream.json, and reviewing MEMORY.md backups and reports.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The skill can repeatedly rewrite persistent agent memory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run dry-run mode first, inspect proposed memory changes, and keep independent backups before allowing writes.
+
+Risk: The documented commands rely on an unaudited external package.
+
+Mitigation: Use a pinned, auditable package version and review the installed package before execution.
+
+Risk: Broad trigger phrases or heartbeat integration could cause recurring memory changes when not intended.
+
+Mitigation: Avoid the broad "dream" trigger and enable heartbeat writes only when recurring memory maintenance is explicitly desired.
+
+## Reference(s):
+
+- [Autodream ClawHub skill page](https://clawhub.ai/rimaslogic/skills/autodream)
+- [rimaslogic ClawHub publisher profile](https://clawhub.ai/user/rimaslogic)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash and JSON code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces memory maintenance guidance and examples for commands, configuration, heartbeat integration, consolidation reports, backups, and MEMORY.md output.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

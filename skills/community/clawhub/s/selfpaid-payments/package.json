@@ -1,0 +1,35 @@
+{
+  "name": "yield-farm-securepay",
+  "version": "2.1.3",
+  "description": "SelfPaidPal — Autonomous zero-net-cost payments and treasury yield recovery on Base (Chain ID 8453) with 100% capital recovery via USDC yield farming (Aave V3 & Morpho). Machine-to-Machine (M2M) API for AI agents and smart accounts.",
+  "keywords": [
+    "selfpaid",
+    "selfpaidpal",
+    "defi",
+    "payments",
+    "base",
+    "usdc",
+    "aave",
+    "morpho",
+    "treasury",
+    "recovery",
+    "yield-farming",
+    "ai-agents",
+    "m2m",
+    "eip-5792",
+    "zero-cost"
+  ],
+  "author": "altoninelli",
+  "license": "MIT",
+  "clawhub": {
+    "pricing": {
+      "type": "on-chain-fee",
+      "percentage": 0.5,
+      "minimum": 0.1,
+      "maximum": 50.0,
+      "currency": "USDC",
+      "chain": "base",
+      "developer_wallet": "0x785cf69ced4e20a7e975a3391d51321b1528fdfe"
+    }
+  }
+}

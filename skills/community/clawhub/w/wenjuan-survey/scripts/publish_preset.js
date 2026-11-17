@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
  * 已登记的活动题库一键：登录 → 创建+导入 → 发布（同 workflow_create_and_publish）
- * 用法（在 Skill 根目录）：node scripts/publish_preset.js <valentines|labor|april_fools|april_fools_fun|singles_day>
+ * 用法（在 Skill 根目录）：node scripts/publish_preset.js <preset> [--ai-source <n>] [--reg-source <source>]
  */
 
 const path = require("path");
@@ -38,11 +38,17 @@ const PRESETS = {
 
 async function main() {
   const key = process.argv[2];
+  const aiSourceIndex = process.argv.indexOf("--ai-source");
+  const regSourceIndex = process.argv.indexOf("--reg-source");
+  const aiSource =
+    aiSourceIndex >= 0 ? process.argv[aiSourceIndex + 1] : undefined;
+  const regSource =
+    regSourceIndex >= 0 ? process.argv[regSourceIndex + 1] : undefined;
   if (!key || !PRESETS[key]) {
     console.error(
       "用法: node scripts/publish_preset.js <" +
         Object.keys(PRESETS).join("|") +
-        ">"
+        "> [--ai-source <n>] [--reg-source <source>]"
     );
     process.exit(1);
   }
@@ -53,7 +59,8 @@ async function main() {
     p.title,
     p.type,
     null,
-    filePath
+    filePath,
+    { aiSource, regSource }
   );
   if (!result.success) {
     console.error(result.error || "失败");

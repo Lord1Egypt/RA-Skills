@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>样张 · 仪表盘</title>
+<link rel="stylesheet" href="../assets/theme.css">
+</head>
+<body>
+<!-- 原型 20:仪表盘(KPI 行 + pie/doughnut/area 三图;锚定 chart 全类型) -->
+<div class="slide-container" style="background:var(--off-white);">
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:1720px;top:92px;width:100px;text-align:right;z-index:10;">
+    <div class="num" style="font-size:16px;font-weight:600;color:var(--text-tertiary);letter-spacing:2px;">11 / 12</div>
+  </div>
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:100px;top:120px;width:1720px;z-index:10;">
+    <div style="font-size:52px;font-weight:700;line-height:1.2;color:var(--charcoal);">
+      机制运行仪表盘:覆盖、结构、趋势
+    </div>
+  </div>
+
+  <!-- KPI 行:3 大数字,深色底承载(2026-08-06 P5 补结构色面;原页色面 0%)
+       仪表板页的常规做法:KPI 带压深色,与下方三张图表形成明暗分区 -->
+  <div data-object="true" data-object-type="shape" style="position:absolute;left:100px;top:260px;width:1720px;height:220px;background:var(--deep-navy);z-index:1;"></div>
+  <div data-layout="columns" data-layout-gap="40" style="position:absolute;left:140px;top:300px;width:1640px;height:180px;">
+    <div data-object="true" data-layout-w="1fr" style="padding-left:0;">
+      <div class="num" style="font-size:64px;font-weight:800;line-height:1;color:var(--accent-orange);">78<span style="font-size:32px;">%</span></div>
+      <div style="font-size:20px;color:var(--on-navy-sub);margin-top:12px;line-height:1.4;">保质期标注覆盖率</div>
+    </div>
+    <div data-object="true" data-layout-w="1fr" style="border-left:1px solid #2C4B75;padding-left:32px;">
+      <div class="num" style="font-size:64px;font-weight:800;line-height:1;color:var(--on-navy-text);">9<span style="font-size:32px;">%</span></div>
+      <div style="font-size:20px;color:var(--on-navy-sub);margin-top:12px;line-height:1.4;">过期文档占比</div>
+    </div>
+    <div data-object="true" data-layout-w="1fr" style="border-left:1px solid #2C4B75;padding-left:32px;">
+      <div class="num" style="font-size:64px;font-weight:800;line-height:1;color:var(--on-navy-text);">6.4<span style="font-size:32px;">分</span></div>
+      <div style="font-size:20px;color:var(--on-navy-sub);margin-top:12px;line-height:1.4;">平均检索耗时(分钟)</div>
+    </div>
+  </div>
+
+  <!-- 三图行:pie / doughnut / area -->
+  <div data-object="true" data-chart='{"type":"pie","labels":["制度流程","产品文档","技术方案","其他"],"series":[{"name":"文档结构","values":[38,26,22,14]}]}'
+       style="position:absolute;left:100px;top:520px;width:546px;height:380px;"></div>
+  <div data-object="true" data-chart='{"type":"doughnut","labels":["新鲜","临期","过期"],"series":[{"name":"保鲜状态","values":[78,13,9]}]}'
+       style="position:absolute;left:686px;top:520px;width:546px;height:380px;"></div>
+  <div data-object="true" data-chart='{"type":"area","labels":["4月","5月","6月","7月"],"series":[{"name":"检索耗时(分钟)","values":[11.0,10.2,7.1,6.4]}]}'
+       style="position:absolute;left:1272px;top:520px;width:548px;height:380px;"></div>
+
+  <!-- 图注 -->
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:100px;top:920px;width:1720px;">
+    <div style="font-size:16px;line-height:1.5;color:var(--text-tertiary);">左:活跃文档结构;中:保鲜状态分布;右:检索耗时趋势。来源:文档系统审计日志,2026-07 周报。</div>
+  </div>
+</div>
+
+<template data-slide-notes>【核心逻辑】月报页:三个 KPI + 结构(pie)/状态(doughnut)/趋势(area)三视角。</template>
+</body>
+</html>

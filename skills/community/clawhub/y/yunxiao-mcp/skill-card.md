@@ -1,45 +1,56 @@
-## Description: <br>
-Use when needing to query or update Yunxiao work items, comments, projects, or organization members from OpenClaw. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Queries and updates Yunxiao work items, comments, projects, and organization members from OpenClaw.
 
-## Publisher: <br>
-[n-wen](https://clawhub.ai/user/n-wen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[n-wen](https://clawhub.ai/user/n-wen)
 
-## Use Case: <br>
-Developers and engineers use this skill to inspect Yunxiao work items, projects, comments, organizations, and members from an OpenClaw workflow. It can also create comments on Yunxiao work items when the user provides a token and explicitly requests that action. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create comments on shared Yunxiao work items. <br>
-Mitigation: Require explicit user approval before running create_comment and review the target work item and comment content before submission. <br>
-Risk: The CLI runs an external npm MCP server with the user's Yunxiao access token. <br>
-Mitigation: Install only when the Alibaba Cloud DevOps MCP package is trusted and use a least-privilege Yunxiao token. <br>
-Risk: Automatic organization resolution may use the first returned organization if YUNXIAO_ORG_ID is not set. <br>
-Mitigation: Set YUNXIAO_ORG_ID explicitly or pass the organization ID on commands that support it. <br>
+## Use Case:
 
+Developers and delivery teams use this skill to inspect Yunxiao project work, retrieve work item details and comments, create comments, and search organization members from an agent workflow.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/n-wen/yunxiao-mcp) <br>
-- [Alibaba Cloud Yunxiao](https://devops.aliyun.com) <br>
-- [alibabacloud-devops-mcp-server](https://www.npmjs.com/package/alibabacloud-devops-mcp-server) <br>
-- [Yunxiao OpenAPI documentation](https://help.aliyun.com/document_detail/261300.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, API calls, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Yunxiao work item, project, comment, organization, and member data returned by the MCP server.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and package.json) <br>
+Risk: The skill runs an unpinned npm MCP server with broad environment access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin the MCP server dependency, pass only required environment variables, and avoid running it where unrelated secrets are present.
+
+Risk: The create_comment command can post immediately to Yunxiao work items.
+
+Mitigation: Require explicit user confirmation before create_comment and use a least-privileged Yunxiao token.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/n-wen/skills/yunxiao-mcp)
+- [Yunxiao DevOps](https://devops.aliyun.com)
+- [alibabacloud-devops-mcp-server](https://www.npmjs.com/package/alibabacloud-devops-mcp-server)
+- [Yunxiao OpenAPI documentation](https://help.aliyun.com/document_detail/261300.html)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires YUNXIAO_ACCESS_TOKEN and may use YUNXIAO_ORG_ID or auto-detected organization IDs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

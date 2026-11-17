@@ -1,0 +1,137 @@
+'''
+17获取期货数据
+，专注于大QMT量化交易框架的深度训练与智能支持。我能够提供精准的代码提示、输出优化以及策略修改服务，帮助你高效开发和迭代量化交易策略。我的创造者是小果量化，，欢迎联系微信：xg_quant。，只做学习使用，不做投资参考，注意风险
+'''
+ContextInfo.get_main_contract - 获取期货主力合约
+提示
+
+该函数支持实盘/回测两种模式
+若要使用该函数获取历史主力合约，必须要先下载历史主力合约数据
+历史主力合约数据目前通过界面端数据管理 - 过期合约数据 - 历史主力合约下载
+原型
+
+内置python
+
+ContextInfo.get_main_contract(codemarket)
+ContextInfo.get_main_contract(codemarket,date="")
+ContextInfo.get_main_contract(codemarket,startDate="",endDate="")
+释义
+
+获取当前期货主力合约
+
+参数
+
+字段名	数据类型	解释
+codemarket	string	合约和市场，合约格式为品种名加00，如IF00.IF，zn00.SF
+startDate	string	开始日期(可以不写),如20180608
+endDate	string	结束日期(可以不写),如20190608
+返回值
+
+str，合约代码
+
+示例
+
+示例返回值
+
+# coding:gbk
+def init(C):
+	pass
+	
+def handlebar(C):
+	symbol1 = C.get_main_contract('IF00.IF')# 获取当前主力合约
+
+	symbol2 = C.get_main_contract('IF00.IF',"20190101")# 获取指定日期主力合约
+
+	symbol3 = C.get_main_contract('IF00.IF',"20181101","20190101") # 获取时间段内全部主力合约
+
+	print(symbol1, symbol2)
+	print("="*10)
+	print(symbol3)
+ContextInfo.get_contract_multiplier - 获取合约乘数
+原型
+
+内置python
+
+ContextInfo.get_contract_multiplier(contractcode)
+释义
+
+获取合约乘数
+
+参数
+
+字段名	数据类型	解释
+contractcode	string	合约代码，格式为 'code.market'，例如 'IF1707.IF'
+返回值int,表示合约乘数
+
+示例
+
+示例返回值
+
+# coding:gbk
+def init(C):
+	pass
+	
+def handlebar(C):
+	multiplier = C.get_contract_multiplier("rb2401.SF")
+	print(multiplier)
+ContextInfo.get_contract_expire_date - 获取期货合约到期日
+原型
+
+内置python
+
+ContextInfo.get_contract_expire_date(codemarket)
+释义
+
+获取期货合约到期日
+
+参数
+
+字段名	数据类型	解释
+Codemarket	string	合约和市场,如IF00.IF,zn00.SF
+返回值str，合约到期日
+
+示例
+
+示例返回值
+
+# coding:gbk
+def init(C):
+	pass
+	
+def handlebar(C):
+	data = C.get_contract_expire_date("IF2311.IF")
+	# print(type(data))
+	print(data)
+ContextInfo.get_his_contract_list - 获取市场已退市合约
+原型
+
+内置python
+
+ContextInfo.get_his_contract_list(market)
+释义
+
+获取市场已退市合约，需要手动补充过期合约列表
+
+参数
+
+字段名	数据类型	解释
+market	string	市场,SH,SZ,SHO,SZO,IF等
+返回值
+
+list,合约代码列表
+
+示例
+
+示例返回值
+
+# coding:gbk
+def init(C):
+	pass
+	
+def handlebar(C):
+
+	print(C.get_his_contract_list('SHO')[:30])
+'''
+['10000001.SHO', '10000002.SHO', '10000003.SHO', '10000004.SHO', '10000005.SHO', '10000006.SHO', '10000007.SHO', '10000008.SHO', '10000009.SHO', '10000010.SHO', '10000011.SHO', '10000012.SHO', '10000013.SHO', '10000014.SHO', '10000015.SHO', '10000016.SHO', '10000017.SHO', '10000018.SHO', '10000019.SHO', '10000020.SHO', '10000021.SHO', '10000022.SHO', '10000023.SHO', '10000024.SHO', '10000025.SHO', '10000026.SHO', '10000027.SHO', '10000028.SHO', '10000029.SHO', '10000030.SHO']
+
+'''

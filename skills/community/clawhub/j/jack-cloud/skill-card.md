@@ -1,45 +1,64 @@
-## Description: <br>
-Deploy web services to the cloud with Jack, including APIs, websites, backends, project creation, deployment, databases, logs, and Jack Cloud services. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deploy web services to the cloud with Jack, including project creation, deployment, databases, logs, and Jack Cloud services.
 
-## Publisher: <br>
-[hellno](https://clawhub.ai/user/hellno) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[hellno](https://clawhub.ai/user/hellno)
 
-## Use Case: <br>
-Developers and engineers use this skill to create, deploy, and manage Jack Cloud web services, including Cloudflare Workers projects with databases, storage, logs, secrets, cron, and custom domains. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Using the skill can upload source code and modify live Jack Cloud resources. <br>
-Mitigation: Before deployment or resource-changing commands, confirm the project directory, logged-in Jack account, target repository contents, and intended cloud resources. <br>
-Risk: Database-write, secret, and domain commands can change production application state or expose sensitive configuration if run in the wrong project. <br>
-Mitigation: Review command targets and parameters before execution, and use read-only status or list commands when verifying context. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hellno/jack-cloud) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/hellno) <br>
-- [ClawHub metadata homepage](https://github.com/getjack-org/skills) <br>
-- [Jack Cloud services guide](reference/services-guide.md) <br>
-- [Jack documentation](https://docs.getjack.org) <br>
-- [Jack CLI npm package](https://www.npmjs.com/package/@getjack/jack) <br>
-- [Jack homepage](https://getjack.org) <br>
+## Use Case:
 
+Developers and agents use this skill to create and deploy Jack Cloud projects, manage Cloudflare Worker services, inspect logs, configure secrets, and operate attached services such as D1, R2, Vectorize, cron schedules, and custom domains.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May recommend Jack MCP tools when available and CLI commands otherwise.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.3.1 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The Jack CLI stores an authentication token locally after browser OAuth login.
+
+Mitigation: Install and use the skill only in environments where local Jack credentials can be stored under the user's configuration directory.
+
+Risk: Deployment uploads project source code to Jack Cloud and creates or changes cloud resources.
+
+Mitigation: Review project contents before deployment and use non-production projects when testing service, database, cron, secret, storage, or domain changes.
+
+Risk: Database examples include write operations that can alter data.
+
+Mitigation: Run write SQL examples against test data first and require explicit write intent for database changes.
+
+Risk: The skill depends on installing the Jack CLI from npm.
+
+Mitigation: Verify or pin the npm package before installation when supply-chain controls are required.
+
+## Reference(s):
+
+- [Jack Cloud services guide](reference/services-guide.md)
+- [Jack documentation](https://docs.getjack.org)
+- [Jack homepage](https://getjack.org)
+- [Jack CLI npm package](https://www.npmjs.com/package/@getjack/jack)
+- [ClawHub metadata homepage](https://github.com/getjack-org/skills)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command, code, and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use Jack MCP tools when available; otherwise provides Jack CLI commands and configuration steps.]
+
+## Skill Version(s):
+
+0.3.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

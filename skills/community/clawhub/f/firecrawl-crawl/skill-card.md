@@ -1,38 +1,54 @@
-## Description: <br>
-Bulk extract content from an entire website or site section. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Bulk extract content from an entire website or site section by crawling pages under depth, path, page limit, delay, and concurrency controls.
 
-## Publisher: <br>
-[eohmig](https://clawhub.ai/user/eohmig) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[eohmig](https://clawhub.ai/user/eohmig)
 
-## Use Case: <br>
-Developers and agents use this skill to crawl a website or a scoped site section, extract multiple linked pages, and save crawl results for downstream analysis or documentation work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Crawling broad or poorly scoped sites can cause unnecessary page extraction, credit use, or load. <br>
-Mitigation: Specify the exact domain and path scope, set page limits, and configure concurrency, delay, or budget limits before running large crawls. <br>
+## Use Case:
 
+Developers and agents use this skill to collect content from many pages on a website, such as a documentation section or bounded site area, and export crawl results for downstream review or processing.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/eohmig/firecrawl-crawl) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance, Files] <br>
-**Output Format:** [Markdown guidance with inline bash commands and optional JSON output files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Crawl results may be written to a local JSON file when an output path is provided.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill allows unpinned runtime execution of a third-party npm package through npx.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a preinstalled and reviewed Firecrawl binary or pin npx to an exact package version before running the skill.
+
+Risk: Large or broad crawls can increase cost and collect more site data than intended.
+
+Mitigation: Keep crawls scoped with include paths, maximum depth, page limits, delays, and concurrency controls.
+
+## Reference(s):
+
+- [ClawHub Skill Release](https://clawhub.ai/eohmig/skills/firecrawl-crawl)
+- [Publisher Profile](https://clawhub.ai/user/eohmig)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash commands and crawl option guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides Firecrawl crawl execution and JSON export paths; crawl scope and cost depend on user-selected limits.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

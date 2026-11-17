@@ -1,40 +1,49 @@
-## Description: <br>
-根据产品和公司信息生成适合 TikTok 的 20-50 秒 B2B 引流视频脚本，支持普通、幽默、惊喜三种风格。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates 20-50 second TikTok B2B lead-generation video scripts from product, company, market, style, and contact URL inputs.
 
-## Publisher: <br>
-[1970168137](https://clawhub.ai/user/1970168137) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[1970168137](https://clawhub.ai/user/1970168137)
 
-## Use Case: <br>
-B2B marketers and export sales teams use this skill to turn product specs, company claims, target markets, and a contact URL into short TikTok lead-generation video scripts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated marketing scripts may include unverified claims about products, certifications, target markets, samples, factory ownership, or delivery. <br>
-Mitigation: Verify all generated claims against company and product records before posting publicly. <br>
-Risk: The default contact URL may send viewers to an unintended website if left unchanged. <br>
-Mitigation: Set contact_url to the intended service or sales URL before generating or publishing scripts. <br>
+## Use Case:
 
+External business users and marketers use this skill to draft short TikTok scripts for B2B product promotion, export trade lead generation, and contact-url conversion.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/1970168137/tiktok-b2b) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [Plain text video script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [About 20-50 seconds; generated text should be reviewed for factual marketing claims and the intended contact URL.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: evidence release and skill.json) <br>
+Risk: The generated script may direct viewers to the default contact URL or use an English-style opening that does not fit the user's campaign.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the contact URL, target market, and opening style before publishing or using the generated script.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/1970168137/skills/tiktok-b2b)
+
+## Skill Output:
+
+**Output Type(s):** [text, guidance]
+
+**Output Format:** [Plain text script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated script is intended to run about 20-50 seconds and may include the configured contact URL.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence and artifact/skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

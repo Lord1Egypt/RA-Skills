@@ -1,42 +1,54 @@
-## Description: <br>
-Anti-Bot Scraper is a Playwright-based web scraping skill with simple, stealth, and batch modes for extracting page text, links, images, metadata, screenshots, and HTML. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Playwright-based web scraping skill that supports simple, stealth, and batch scraping modes, with optional CSS selector extraction, screenshots, HTML capture, cookies, proxies, and anti-detection browser behavior.
 
-## Publisher: <br>
-[tttyix](https://clawhub.ai/user/tttyix) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tttyix](https://clawhub.ai/user/tttyix)
 
-## Use Case: <br>
-Developers and agents use this skill to run Playwright scrapers against permitted web targets, extract structured page content, and optionally save screenshots or HTML for review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Stealth scraping, proxies, and fingerprint changes can be used to evade access controls or site rules. <br>
-Mitigation: Use the skill only on targets where scraping is permitted, and do not use stealth or proxy features to bypass restrictions. <br>
-Risk: Saved HTML, screenshots, or authenticated cookies may expose private or account-linked data. <br>
-Mitigation: Avoid real account cookies unless necessary, review saved captures promptly, and delete sensitive outputs after use. <br>
-Risk: Batch scraping can create excessive traffic to target sites. <br>
-Mitigation: Keep concurrency low and scope URL lists to authorized collection tasks. <br>
+## Use Case:
 
+Developers and automation agents use this skill to collect web page text, links, images, metadata, screenshots, or saved HTML from authorized websites. It is suited to single-page collection, CSS-targeted extraction, and batch scraping workflows that need Playwright browser rendering.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tttyix/anti-bot-scraper) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Text, Files, Shell commands] <br>
-**Output Format:** [JSON to stdout with optional screenshot, HTML, or JSON output files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Simple and stealth modes return one scrape result; batch mode can process multiple URLs with configurable concurrency.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata and package.json) <br>
+Risk: The skill can automate browser scraping with stealth behavior and may be misused against websites where scraping is not authorized.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only on websites where the operator has authorization, and review target site terms, robots.txt, and applicable policies before execution.
+
+Risk: Cookie, proxy, browser, and install-time permissions can expose account context or route traffic through untrusted infrastructure.
+
+Mitigation: Avoid account session cookies unless account-level actions are intended, use only trusted proxies, avoid localhost, private-network, and cloud metadata targets, and install in a sandbox with reviewed dependencies.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/tttyix/skills/anti-bot-scraper)
+- [Publisher Profile](https://clawhub.ai/user/tttyix)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance and shell commands; scraper scripts emit JSON results and may write screenshot or HTML files when requested.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [JSON scraper output includes success status, URL, title, content, links, images, metadata, and elapsed time.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,54 @@
-## Description: <br>
-DeepContent provides recipe lookup, branded content generation, and asset management for social media posts, event posters, speaker cards, partnership posts, and reusable content templates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+DeepContent recipe lookup, content generation, and asset management for branded social media content, event posters, speaker cards, partnership posts, and recipe-based generation.
 
-## Publisher: <br>
-[scale-intelligence](https://clawhub.ai/user/scale-intelligence) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[scale-intelligence](https://clawhub.ai/user/scale-intelligence)
 
-## Use Case: <br>
-Content teams and external users use this skill to discover DeepContent recipes, generate branded social media assets, run user-created recipes, and manage recipe remixes through the DeepContent MCP server. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: DeepContent may receive and persistently store images uploaded for generation. <br>
-Mitigation: Avoid sending private or sensitive images unless DeepContent retention and deletion controls are understood and acceptable. <br>
-Risk: Recipe remixing or copying can save cloned recipe objects. <br>
-Mitigation: Confirm the user intends to create a saved recipe clone before using remix or copy workflows. <br>
-Risk: The security evidence flags under-scoped persistent uploads and a confusing recipe creation/remix mutation path. <br>
-Mitigation: Review generated actions before deployment and keep recipe creation routed through the DeepContent UI as instructed by the artifact. <br>
+## Use Case:
 
+Developers and content operators use this skill to list DeepContent recipes, run recipe-based content generation, remix recipes, and return generated image and text blocks for social media or event workflows.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/scale-intelligence/deep-content) <br>
-- [DeepContent Recipes UI](https://deepcontent-pair.vercel.app/recipes) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown responses with generated captions, image links, generation page URLs, and concise operating guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include generated image URLs, recipe IDs, generation IDs, and site URLs returned by DeepContent tools.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.6 (source: server-resolved release metadata) <br>
+Risk: Private images, temporary file links, personal headshots, company logos, or client assets may be uploaded to DeepContent and returned as permanent public URLs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm user consent before upload, avoid private or client-confidential assets unless approved, and verify rights to any online image before use.
+
+Risk: The skill may search for logos or headshots when users do not provide asset URLs, which can introduce incorrect identities or unlicensed imagery.
+
+Mitigation: Verify that discovered assets are direct public HTTPS image URLs, represent the intended person or organization, and are permitted for the intended use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/scale-intelligence/skills/deep-content)
+- [DeepContent Recipe UI](https://deepcontent-pair.vercel.app/recipes)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Images, URLs, Guidance]
+
+**Output Format:** [Markdown or chat text with generated content blocks and public URLs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generation responses may include recipe IDs, generation IDs, status values, generated image URLs, captions, and site URLs.]
+
+## Skill Version(s):
+
+1.3.6 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

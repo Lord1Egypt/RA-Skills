@@ -1,46 +1,51 @@
-## Description: <br>
-Systematic error recovery for AI agents that structures diagnosis, bounded retries, and reporting after tool failures to prevent silent failures, endless retries, and incorrect escalation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Systematic 4R framework for AI agent error diagnosis, retry, recovery, and reporting.
 
-## Publisher: <br>
-[aptratcn](https://clawhub.ai/user/aptratcn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aptratcn](https://clawhub.ai/user/aptratcn)
 
-## Use Case: <br>
-Developers and agent operators use this skill when tool calls, shell commands, network requests, or file operations fail so the agent records the error, reasons about likely causes, tries bounded recovery, and reports the outcome. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad triggers may activate the workflow more often than intended. <br>
-Mitigation: Apply it only to clear tool, HTTP, filesystem, authentication, timeout, or process failures, and confirm relevance before starting recovery. <br>
-Risk: Recovery suggestions can involve privileged commands, permission changes, repository pushes, API uploads, or credential handling. <br>
-Mitigation: Require explicit user confirmation before any privileged or external side-effecting action. <br>
-Risk: Error records and reports may capture credentials or sensitive operational details. <br>
-Mitigation: Redact tokens, secrets, private paths, and sensitive request or response data before logging, reporting, or saving errors to memory. <br>
+## Use Case:
 
+Developers and agents use this skill to handle tool failures, timeouts, permission errors, missing files, API errors, and process failures through a structured record, reason, recover, and report workflow.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/aptratcn/error-recovery-xiaobai) <br>
-- [Skill definition](artifact/SKILL.md) <br>
-- [README](artifact/README.md) <br>
-- [English README](artifact/README_EN.md) <br>
-- [Error diagnostic script](artifact/scripts/error-diagnose.mjs) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Code] <br>
-**Output Format:** [Markdown guidance with inline shell commands and optional local diagnostic script output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a 4R recovery flow and limits repeated recovery attempts to three changed attempts before reporting failure.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: The security review says the skill can steer agents toward elevated permissions and side-effecting upload paths without clear approval or scoping.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat remediation steps as suggestions and require user approval before sudo, chmod, API uploads, credential changes, or other state-changing alternatives.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/aptratcn/skills/error-recovery-xiaobai)
+- [README.md](artifact/README.md)
+- [README_EN.md](artifact/README_EN.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands]
+
+**Output Format:** [Markdown guidance with optional inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-first workflow with an English README summary; remediation steps are advisory.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

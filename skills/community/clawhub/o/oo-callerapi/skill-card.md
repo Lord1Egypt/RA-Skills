@@ -1,45 +1,55 @@
-## Description: <br>
-CallerAPI (callerapi.com) enables agents to search and read CallerAPI data through an OOMOL-connected account instead of calling the API directly. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use CallerAPI to search phone-number reputation and retrieve authenticated account information.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-External users and developers use this skill to look up phone-number intelligence, spam reputation, business details, complaints, optional HLR carrier data, and CallerAPI account information through the OOMOL CallerAPI connector. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The OOMOL CLI installer is a shell or PowerShell command that can execute with the user's account permissions. <br>
-Mitigation: Confirm cli.oomol.com is the official OOMOL distribution source and prefer a package-manager or signed release path if available. <br>
-Risk: The skill requires a CallerAPI connection and sensitive credentials. <br>
-Mitigation: Use the OOMOL connection flow so credentials are injected server-side, and avoid exposing raw API tokens in prompts, files, or shell history. <br>
-Risk: Phone-number intelligence queries may involve sensitive personal or business contact data. <br>
-Mitigation: Run lookups only for user-authorized purposes and review returned CallerAPI data before using it in downstream decisions. <br>
+## Use Case:
 
+Developers and agents use this skill to look up phone-number spam reputation, business details, complaints, and optional carrier data, or retrieve the authenticated CallerAPI account email and credit balance.
 
-## Reference(s): <br>
-- [CallerAPI homepage](https://callerapi.com) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [OOMOL CLI install guide](https://cli.oomol.com/install-guide.md) <br>
-- [ClawHub skill page](https://clawhub.ai/oomol/oo-callerapi) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, text, json] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON connector responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses live connector schemas before sending JSON payloads.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence and skill frontmatter) <br>
+Risk: Automatic CLI setup can execute unverified remote code, and its local changes are not fully disclosed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review setup before enabling it, install a vetted CLI release manually, and consider disabling automatic skill synchronization.
+
+Risk: CallerAPI requests are mediated by OOMOL.
+
+Mitigation: Understand the data flow and use the skill only for information you are comfortable routing through OOMOL.
+
+## Reference(s):
+
+- [CallerAPI homepage](https://callerapi.com)
+- [CallerAPI API documentation](https://docs.callerapi.com/)
+- [oo CLI](https://github.com/oomol-lab/oo-cli)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Text]
+
+**Output Format:** [JSON responses with optional text summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only CallerAPI queries; available fields depend on the selected action's live schema.]
+
+## Skill Version(s):
+
+1.0.5 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

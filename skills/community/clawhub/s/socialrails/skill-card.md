@@ -1,43 +1,56 @@
-## Description: <br>
-Manage social media by scheduling posts, viewing analytics, generating AI captions, and listing connected accounts via the SocialRails API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage social media from chat by scheduling posts, viewing analytics, generating AI content, and listing connected accounts through the SocialRails API.
 
-## Publisher: <br>
-[BuildsbyMatt](https://clawhub.ai/user/BuildsbyMatt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[buildsbymatt](https://clawhub.ai/user/buildsbymatt)
 
-## Use Case: <br>
-Developers and social media operators use this skill to manage SocialRails-connected accounts from an agent, including scheduling posts, reviewing analytics, generating captions, and listing posts or accounts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can affect connected social media accounts by scheduling or drafting content through the SocialRails API. <br>
-Mitigation: Review generated or scheduled content before write actions and use least-privilege API scopes for the intended commands. <br>
-Risk: A misconfigured API base URL could send requests to an unintended endpoint. <br>
-Mitigation: Keep the API base URL set to the intended SocialRails endpoint and verify configuration before deployment. <br>
+## Use Case:
 
+Social media managers, marketers, and developers use this skill to manage SocialRails-connected accounts from chat, including creating or scheduling posts, reviewing analytics, generating captions, and listing posts or accounts.
 
-## Reference(s): <br>
-- [SocialRails ClawHub listing](https://clawhub.ai/BuildsbyMatt/socialrails) <br>
-- [SocialRails API Documentation](https://socialrails.com/documentation/api-overview) <br>
-- [SocialRails OpenClaw Setup Guide](https://socialrails.com/documentation/openclaw-setup) <br>
-- [SocialRails Dashboard](https://socialrails.com/dashboard) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, API calls, configuration, guidance] <br>
-**Output Format:** [Markdown and structured command results from SocialRails API operations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May return scheduled post identifiers, analytics summaries, generated caption text, post listings, connected account listings, or API error messages.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, artifact skill.json, artifact package.json) <br>
+Risk: A SocialRails API key can read account data and schedule public posts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the least-privileged API key possible and manually confirm post content and schedules before creating or scheduling posts.
+
+Risk: A misconfigured API base URL can expose the SocialRails API key to an untrusted endpoint.
+
+Mitigation: Keep the default SocialRails API endpoint unless the replacement endpoint is fully trusted.
+
+## Reference(s):
+
+- [SocialRails API Documentation](https://socialrails.com/documentation/api-overview)
+- [SocialRails OpenClaw Setup Guide](https://socialrails.com/documentation/openclaw-setup)
+- [SocialRails Dashboard](https://socialrails.com/dashboard)
+- [ClawHub Skill Page](https://clawhub.ai/buildsbymatt/skills/socialrails)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Guidance]
+
+**Output Format:** [JSON command results with human-readable message fields]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include post IDs, generated content, analytics summaries, and account or post listings returned by SocialRails.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, skill.json, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

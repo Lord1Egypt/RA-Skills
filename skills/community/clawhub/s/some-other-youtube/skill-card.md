@@ -1,45 +1,56 @@
-## Description: <br>
-Fetches YouTube video transcripts through the Apify API with text or JSON output and optional language preference. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches YouTube video transcripts through the APIFY API using residential proxies, with plain-text and JSON output options.
 
-## Publisher: <br>
-[inaor](https://clawhub.ai/user/inaor) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[inaor](https://clawhub.ai/user/inaor)
 
-## Use Case: <br>
-Developers and agents use this skill to retrieve YouTube transcripts from environments where direct transcript access may be blocked, then return transcript content for summarization, analysis, or downstream processing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Requested YouTube URLs and transcript retrieval are processed through Apify and its residential proxy infrastructure. <br>
-Mitigation: Use the skill only when third-party processing is acceptable, and avoid submitting private or sensitive video URLs. <br>
-Risk: The skill requires an Apify API token and may incur Apify usage charges or expose billing activity. <br>
-Mitigation: Use a dedicated revocable Apify token, monitor Apify usage, and rotate or revoke the token if it is no longer needed. <br>
-Risk: Transcript retrieval through residential proxies may have privacy, logging, billing, or YouTube terms implications. <br>
-Mitigation: Review Apify terms, YouTube terms, and organizational policy before using the skill in production workflows. <br>
+## Use Case:
 
+Developers and agents use this skill to retrieve YouTube transcripts from environments where direct transcript access may be blocked. It supports transcript capture as text or timestamped JSON, optional file output, and language preference selection.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/inaor/some-other-youtube) <br>
-- [Apify pricing](https://apify.com/pricing) <br>
-- [Apify API token settings](https://console.apify.com/account/integrations) <br>
-- [YouTube Transcripts Actor](https://apify.com/karamelo/youtube-transcripts) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Files, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Plain text or JSON transcript output, with Markdown setup and usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can write transcript output to a user-specified file and includes timestamps when JSON output is requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill sends the requested YouTube video URL and related request metadata to APIFY.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when sharing that data with APIFY is acceptable for the intended workflow.
+
+Risk: The APIFY token is used by the transcript script and may appear in logs because the script sends it as a query parameter.
+
+Mitigation: Use a dedicated, least-privileged APIFY token, keep it out of source control, avoid permanent shell startup storage when possible, and rotate the token if it may have been exposed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/inaor/skills/some-other-youtube)
+- [APIFY Pricing](https://apify.com/pricing)
+- [APIFY API token setup](https://console.apify.com/account/integrations)
+- [YouTube Transcripts Actor](https://apify.com/karamelo/youtube-transcripts)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Files, Shell commands, Configuration guidance]
+
+**Output Format:** [Plain text or JSON transcript output, optionally written to a file; setup and usage guidance in Markdown.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires APIFY_API_TOKEN and sends the requested YouTube video URL and related request metadata to APIFY.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

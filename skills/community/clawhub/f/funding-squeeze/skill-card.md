@@ -1,45 +1,56 @@
-## Description: <br>
-Use when writing a strategy that captures short-squeeze setups on Hyperliquid perps by going long when funding APR is deeply negative and price has started rising, then exiting on funding normalization or a time stop. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents draft a Freqtrade strategy for Hyperliquid perpetuals that goes long when deeply negative funding and rising price action suggest short-squeeze fuel, then exits on funding normalization or a 24-hour time stop.
 
-## Publisher: <br>
-[superior-ai](https://clawhub.ai/user/superior-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[superior-ai](https://clawhub.ai/user/superior-ai)
 
-## Use Case: <br>
-Developers and trading-strategy builders use this skill to draft and tune a Freqtrade strategy for Hyperliquid perpetual futures short-squeeze setups. It provides entry, exit, configuration, backtest framing, and parameter guidance for negative-funding rallies. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The included futures and cross-margin strategy configuration can lose real money if used live without validation. <br>
-Mitigation: Review the generated strategy and configuration, run backtests and paper trading, and size any live deployment conservatively. <br>
-Risk: Long-only squeeze setups can perform poorly in structural downtrends, as shown by the included negative BTC backtest window. <br>
-Mitigation: Add a higher-timeframe trend filter or multi-pair scan before relying on the strategy in live markets. <br>
-Risk: The skill provides trading-strategy guidance but does not guarantee profitable execution. <br>
-Mitigation: Treat outputs as strategy drafts for expert review rather than financial advice or an automated trading decision. <br>
+## Use Case:
 
+Developers and trading-strategy builders use this skill to produce Freqtrade code, configuration, and tuning guidance for a long-only short-squeeze strategy on Hyperliquid perpetual futures. The strategy is intended for backtesting, paper trading, and carefully controlled live evaluation rather than guaranteed investment performance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/superior-ai/funding-squeeze) <br>
-- [Publisher profile](https://clawhub.ai/user/superior-ai) <br>
-- [Freqtrade DataProvider documentation](https://www.freqtrade.io/en/stable/strategy-customization/) <br>
-- [Alpha scan improvement plan](https://github.com/Superior-Trade/superior-turborepo/blob/main/docs/alpha-scan-improvement-plan.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown with Python and JSON code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces strategy-writing guidance for an agent; it does not execute trades by itself.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The strategy concerns live futures trading and can lose money, especially when using cross margin or unsuitable position sizing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Backtest and paper trade before live use, keep exchange credentials under explicit user control, and set position sizing and margin settings deliberately.
+
+Risk: The included backtest shows negative performance in the cited January 1, 2026 to May 1, 2026 BTC/USDC perpetuals window, so the strategy may fail in structural downtrends.
+
+Mitigation: Use regime filters, multi-pair scanning, and fresh market-specific validation before relying on the generated strategy.
+
+## Reference(s):
+
+- [Funding Squeeze on ClawHub](https://clawhub.ai/superior-ai/skills/funding-squeeze)
+- [Superior-AI publisher profile](https://clawhub.ai/user/superior-ai)
+- [Alpha scan improvement plan](https://github.com/Superior-Trade/superior-turborepo/blob/main/docs/alpha-scan-improvement-plan.md)
+- [Freqtrade DataProvider strategy customization](https://www.freqtrade.io/en/stable/strategy-customization/)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with Python and JSON code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces strategy logic, Freqtrade configuration, tuning notes, and operational cautions for the user to review before use.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

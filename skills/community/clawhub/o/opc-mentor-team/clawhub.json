@@ -1,0 +1,13 @@
+{
+  "name": "opc-mentor-team",
+  "displayName": "OPC导师团",
+  "version": "1.0.0",
+  "description": "五模块能力+陪跑调度双轮驱动的陪伴式创业导师系统。五大模块导师（AI技术、社区运营、项目辅导、孵化器升级、IP打造）覆盖创业者全生命周期，主动跟进、系统性赋能。",
+  "author": "golngod",
+  "license": "MIT",
+  "pricing": {
+    "model": "free"
+  },
+  "tags": ["OPC", "entrepreneurship", "mentoring", "startup", "incubation"],
+  "minOpenClawVersion": "1.2.0"
+}

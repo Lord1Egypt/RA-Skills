@@ -1,0 +1,11 @@
+{
+  "schema": "qto-project/skills-map/v1",
+  "note": "五件套正式 slug 与契约映射；发布包不携带本机绝对路径。tujian-suanliang 本机目录名(slug 不一致)统一按正式 slug 引用。",
+  "skills": [
+    {"slug": "cad-file-reader", "role": "recognition", "mandatory": true, "local_dir": "cad-file-reader", "note": "底座，统一契约/校验/目录约定所在地"},
+    {"slug": "tujian-suanliang", "role": "quantity", "mandatory": false, "local_dir": "shangwu-suanliang", "note": "土建算量"},
+    {"slug": "anzhuang-suanliang", "role": "quantity", "mandatory": false, "local_dir": "anzhuang-suanliang", "note": "安装算量"},
+    {"slug": "zhuangshi-suanliang", "role": "quantity", "mandatory": false, "local_dir": "zhuangshi-suanliang", "note": "装饰算量"},
+    {"slug": "yuanlin-suanliang", "role": "quantity", "mandatory": false, "local_dir": "yuanlin-suanliang", "note": "园林算量"}
+  ]
+}

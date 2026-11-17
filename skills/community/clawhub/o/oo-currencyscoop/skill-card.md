@@ -1,43 +1,56 @@
-## Description: <br>
-CurrencyBeacon (currencybeacon.com) helps agents search and read CurrencyBeacon exchange-rate data through the OOMOL currencyscoop connector instead of calling the API directly. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill for CurrencyBeacon currency conversion and for retrieving currency lists and exchange-rate data.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and agents use this skill to convert currencies, list supported currencies, and retrieve latest, historical, or time-series exchange rates through an OOMOL-connected CurrencyBeacon account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security review reports a suspicious provider-identity mismatch: CurrencyBeacon branding conflicts with the CurrencyScoop connector and credential setup path. <br>
-Mitigation: Confirm with OOMOL whether this release is intended to use CurrencyBeacon or CurrencyScoop before connecting credentials, and do not enter API credentials until the provider identity is clarified. <br>
-Risk: The skill may ask the agent to install or use an external oo CLI before running connector actions. <br>
-Mitigation: Use an already trusted oo CLI installation where possible, and avoid running the external installer unless the OOMOL install path is trusted. <br>
+## Use Case:
 
+Agents with a connected CurrencyBeacon account use this skill to convert currencies and retrieve supported currencies and latest, historical, or date-range exchange rates.
 
-## Reference(s): <br>
-- [CurrencyBeacon homepage](https://currencybeacon.com) <br>
-- [OOMOL oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [ClawHub skill page](https://clawhub.ai/oomol/oo-currencyscoop) <br>
-- [Publisher profile](https://clawhub.ai/user/oomol) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance with oo CLI shell commands and JSON payloads or responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an installed oo CLI, an authenticated OOMOL account, and a connected CurrencyBeacon or currencyscoop provider credential.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: release evidence and frontmatter) <br>
+Risk: Setup may execute a remote installer that has not been verified.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and install oo yourself before enabling the skill, and require approval before the agent runs either installer.
+
+Risk: The CLI may change other agent skills through startup synchronization.
+
+Mitigation: Consider whether to accept this behavior; the oo CLI command reference documents OO_SKILLS_SYNC_DISABLED as an option to disable startup synchronization.
+
+## Reference(s):
+
+- [CurrencyBeacon](https://currencybeacon.com)
+- [CurrencyBeacon API documentation](https://currencybeacon.com/api-documentation)
+- [oo CLI command reference: environment variables](https://github.com/oomol-lab/oo-cli/blob/main/docs/commands.md#environment-variables)
+- [ClawHub release page](https://clawhub.ai/oomol/skills/oo-currencyscoop)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Text]
+
+**Output Format:** [Currency and exchange-rate data as JSON, with concise text responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results depend on the selected currency action and provider response.]
+
+## Skill Version(s):
+
+1.0.6 (source: skill metadata frontmatter, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

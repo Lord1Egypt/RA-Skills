@@ -1,0 +1,14 @@
+{
+  "ownerId": "583963",
+  "slug": "weekly-operator",
+  "version": "1.5.3",
+  "workflow": "weekly",
+  "focus": "asin",
+  "outputTemplate": "ops_weekly",
+  "requiredCapabilities": [
+    "product-detail",
+    "reviews",
+    "product-snapshots"
+  ],
+  "releaseWave": 1
+}

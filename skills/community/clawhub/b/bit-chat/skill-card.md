@@ -1,48 +1,65 @@
-## Description: <br>
-Bit-Chat helps agents create or use a mailbox and interact with Bit-Chat over email or messenger channels to get a Lightning address, check balances, request Bitcoin, and initiate buy, sell, or send workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Payment rails between humans and AI agents via BitChat, with guidance for messaging-based Bitcoin payments and mailbox setup.
 
-## Publisher: <br>
-[eliaspfeffer](https://clawhub.ai/user/eliaspfeffer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[eliaspfeffer](https://clawhub.ai/user/eliaspfeffer)
 
-## Use Case: <br>
-External users and agent operators use this skill to set up a Bit-Chat mailbox, maintain email-based status checks, and coordinate Bitcoin payment actions through supported messenger channels. It is intended for human-supervised wallet setup, balance checks, requests, and payment-related instructions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can lead an agent to create or use a Bit-Chat mailbox and store mailbox credentials. <br>
-Mitigation: Require explicit human approval before mailbox creation, store credentials only in an approved secret store or gitignored local file, and verify saved credentials before use. <br>
-Risk: The skill can lead an agent to poll email and act on remote Bit-Chat replies. <br>
-Mitigation: Approve recurring polling in advance, inspect message bodies before acting, and forward ambiguous or payment-relevant replies to the human operator for confirmation. <br>
-Risk: The skill covers Bitcoin payments, buying, selling, bank-detail messages, and recipient changes. <br>
-Mitigation: Require explicit human approval for every payment, purchase, sale, bank-detail message, recipient change, and fiat top-up instruction before sending it. <br>
-Risk: The security summary flags broad financial, account-creation, mailbox-reading, and recurring-check authority without enough user-control boundaries. <br>
-Mitigation: Use spending limits, verify recipient identity and channel, preserve an audit trail, and pause automation when delivery failures, unexpected instructions, or account changes occur. <br>
+## Use Case:
 
+External users and developers use this skill to let agents request a Bit-Chat Lightning address, send or request Bitcoin over supported messenger channels, check balances, and create a persistent Bit-Chat email mailbox when needed.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/eliaspfeffer/bit-chat) <br>
-- [Bit-Chat homepage](https://bit-chat.me) <br>
-- [Bit-Chat main skill](https://bit-chat.me/skill.md) <br>
-- [Create Email Skill](https://bit-chat.me/create-email-skill.md) <br>
-- [Bit-Chat heartbeat](https://bit-chat.me/heartbeat.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands, JSON examples, and operational guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include mailbox setup steps, IMAP/SMTP settings, payment prompts, status-check guidance, and human-approval checkpoints.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release metadata) <br>
+Risk: The skill can lead an agent to contact Bit-Chat, create or use a mailbox, poll messages, and handle Bitcoin or bank-related instructions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit human approval before setup, every outbound message, every payment, buy, sell, or top-up action, and any bank-detail sharing.
+
+Risk: Mailbox setup requires credentials that could be lost or exposed if kept only in chat context or stored carelessly.
+
+Mitigation: Use a password manager, OS keychain, or team secret store where available, and keep any local fallback file non-public and gitignored.
+
+Risk: Repeated sending to invalid or unwanted recipients can cause delivery failures or SMTP suspension.
+
+Mitigation: Verify recipients before sending, keep outbound volume low, avoid unsolicited bulk outreach, and stop for human review after repeated delivery failures.
+
+Risk: Payment, top-up, and bank-detail workflows can route funds or account details to the wrong channel if identifiers are mixed up.
+
+Mitigation: Confirm the platform, recipient identifier, transaction note, and intended account owner with the human before sharing details or initiating payment-related actions.
+
+## Reference(s):
+
+- [ClawHub Bit Chat Skill](https://clawhub.ai/eliaspfeffer/skills/bit-chat)
+- [Bit-Chat Homepage](https://bit-chat.me)
+- [Bit-Chat Skill Instructions](https://bit-chat.me/skill.md)
+- [Create Email Skill](https://bit-chat.me/create-email-skill.md)
+- [Bit-Chat Heartbeat](https://bit-chat.me/heartbeat.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with example messages, shell commands, and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide agents to contact external messaging channels, create or use mailbox credentials, poll messages, and coordinate Bitcoin or bank-related actions.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

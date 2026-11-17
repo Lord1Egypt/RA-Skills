@@ -1,0 +1,18 @@
+{
+  "type": "function",
+  "function": {
+    "name": "_app_permission_delete",
+    "description": "Delete a custom application permission (AppPermissionDefine). Before calling, use _app_permission_list to get the real permission ID. After deletion, the system also removes this permission from role permissionList values.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "AppPermissionDefine object ID to delete, from _app_permission_list.",
+          "minLength": 1
+        }
+      },
+      "required": ["id"]
+    }
+  }
+}

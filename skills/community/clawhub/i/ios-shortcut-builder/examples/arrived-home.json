@@ -1,0 +1,25 @@
+{
+  "name": "ArrivedHome",
+  "color": "Teal",
+  "steps": [
+    {
+      "do": "if",
+      "subject": "{location}",
+      "op": "has_any_value",
+      "then": [
+        {
+          "do": "sms.send",
+          "WFSendMessageActionRecipients": "13800138000",
+          "WFSendMessageContent": "到家了，{now}"
+        }
+      ],
+      "else": [
+        {
+          "do": "notify",
+          "WFNotificationActionTitle": "没拿到位置",
+          "WFNotificationActionBody": "先去设置里给快捷指令开定位权限"
+        }
+      ]
+    }
+  ]
+}

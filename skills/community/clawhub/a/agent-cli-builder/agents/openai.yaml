@@ -1,0 +1,4 @@
+interface:
+  display_name: "Agent CLI Builder"
+  short_description: "Build production-grade CLIs for AI agents"
+  default_prompt: "Use $agent-cli-builder to build and validate a production-grade CLI for AI agents."

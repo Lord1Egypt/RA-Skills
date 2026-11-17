@@ -1,0 +1,950 @@
+[
+  {
+    "id": 1,
+    "name": "秋叶AI-表姐",
+    "category": "教程实测",
+    "fans": "400w",
+    "bio": "",
+    "primary_platform": "douyin",
+    "profile_url": "https://www.douyin.com/search/秋叶AI-表姐?type=user",
+    "follow_status": "FOLLOWED",
+    "followed_at": "2026-08-18 10:57:32",
+    "last_checked_at": "2026-08-18 11:07:38",
+    "platforms": {
+      "douyin": {
+        "profile_url": "https://www.douyin.com/search/秋叶AI-表姐?type=user",
+        "unique_id": "",
+        "status": "FOLLOWED",
+        "updated_at": "2026-08-18 11:07:38"
+      }
+    },
+    "industry": "科技 · 数码 · 编程"
+  },
+  {
+    "id": 2,
+    "name": "AI课代表小明",
+    "category": "AI教程",
+    "fans": "219w",
+    "bio": "",
+    "primary_platform": "douyin",
+    "profile_url": "https://www.douyin.com/user/MS4wLjABAAAAu1K73eFXi73h02uPPbNu9OWbncWhkZaPfgvbjC4nCUo?enter_from=search_result&enter_method=search_result&extra_params=%7B%22search_params%22%3A%7B%22search_result_id%22%3A%2298886159821%22%2C%22relation_tag%22%3A1%2C%22log_pb%22%3A%7B%22impr_id%22%3A%22202608181639049FFA28EF73090E95DA60%22%7D%2C%22search_type%22%3A%22user%22%2C%22impr_id%22%3A%22202608181639049FFA28EF73090E95DA60%22%2C%22search_id%22%3A%22202608181639049FFA28EF73090E95DA60%22%2C%22search_keyword%22%3A%22AI%E8%AF%BE%E4%BB%A3%E8%A1%A8%E5%B0%8F%E6%98%8E%22%7D%7D&from_tab_name=main",
+    "follow_status": "FOLLOWED",
+    "followed_at": "2026-08-18 10:57:32",
+    "last_checked_at": "2026-08-18 16:39:12",
+    "platforms": {
+      "douyin": {
+        "profile_url": "https://www.douyin.com/user/MS4wLjABAAAAu1K73eFXi73h02uPPbNu9OWbncWhkZaPfgvbjC4nCUo?enter_from=search_result&enter_method=search_result&extra_params=%7B%22search_params%22%3A%7B%22search_result_id%22%3A%2298886159821%22%2C%22relation_tag%22%3A1%2C%22log_pb%22%3A%7B%22impr_id%22%3A%22202608181639049FFA28EF73090E95DA60%22%7D%2C%22search_type%22%3A%22user%22%2C%22impr_id%22%3A%22202608181639049FFA28EF73090E95DA60%22%2C%22search_id%22%3A%22202608181639049FFA28EF73090E95DA60%22%2C%22search_keyword%22%3A%22AI%E8%AF%BE%E4%BB%A3%E8%A1%A8%E5%B0%8F%E6%98%8E%22%7D%7D&from_tab_name=main",
+        "unique_id": "",
+        "group": "AI",
+        "status": "FOLLOWED",
+        "updated_at": "2026-08-18 16:39:12"
+      }
+    },
+    "industry": "科技 · 数码 · 编程",
+    "group": "AI"
+  },
+  {
+    "id": 3,
+    "name": "羊叨叨AI",
+    "category": "AI教程",
+    "fans": "197w",
+    "bio": "",
+    "primary_platform": "douyin",
+    "profile_url": "https://www.douyin.com/search/羊叨叨AI?type=user",
+    "follow_status": "FOLLOWED",
+    "followed_at": "2026-08-18 10:57:32",
+    "last_checked_at": "2026-08-18 16:37:03",
+    "platforms": {
+      "douyin": {
+        "profile_url": "",
+        "unique_id": "",
+        "group": "AI",
+        "status": "FOLLOWED",
+        "updated_at": "2026-08-18 16:37:03"
+      }
+    },
+    "industry": "科技 · 数码 · 编程",
+    "group": "AI"
+  },
+  {
+    "id": 4,
+    "name": "怼怼教AI",
+    "category": "AI教程",
+    "fans": "186w",
+    "bio": "",
+    "primary_platform": "douyin",
+    "profile_url": "https://www.douyin.com/search/怼怼教AI?type=user",
+    "follow_status": "FOLLOWED",
+    "followed_at": "2026-08-18 10:57:32",
+    "last_checked_at": "2026-08-18 16:37:03",
+    "platforms": {
+      "douyin": {
+        "profile_url": "",
+        "unique_id": "",
+        "group": "AI",
+        "status": "FOLLOWED",
+        "updated_at": "2026-08-18 16:37:03"
+      }
+    },
+    "industry": "科技 · 数码 · 编程",
+    "group": "AI"
+  },
+  {
+    "id": 5,
+    "name": "卡卡大王（AI版）",
+    "category": "AI教程",
+    "fans": "160w",
+    "bio": "",
+    "primary_platform": "douyin",
+    "profile_url": "https://www.douyin.com/search/卡卡大王（AI版）?type=user",
+    "follow_status": "FOLLOWED",
+    "followed_at": "2026-08-18 10:57:32",
+    "last_checked_at": "2026-08-18 16:37:03",
+    "platforms": {
+      "douyin": {
+        "profile_url": "",
+        "unique_id": "",
+        "group": "AI",
+        "status": "FOLLOWED",
+        "updated_at": "2026-08-18 16:37:03"
+      }
+    },
+    "industry": "科技 · 数码 · 编程",
+    "group": "AI"
+  },
+  {
+    "id": 6,
+    "name": "秋芝2046",
+    "category": "AI教程",
+    "fans": "152w",
+    "bio": "",
+    "primary_platform": "douyin",
+    "profile_url": "https://www.douyin.com/search/秋芝2046?type=user",
+    "follow_status": "FOLLOWED",
+    "followed_at": "2026-08-18 10:57:32",
+    "last_checked_at": "2026-08-18 16:37:03",
+    "platforms": {
+      "douyin": {
+        "profile_url": "",
+        "unique_id": "",
+        "group": "AI",
+        "status": "FOLLOWED",
+        "updated_at": "2026-08-18 16:37:03"
+      }
+    },
+    "industry": "科技 · 数码 · 编程",
+    "group": "AI"
+  },
+  {
+    "id": 7,
+    "name": "AI便利峰",
+    "category": "AI教程",
+    "fans": "149w",
+    "bio": "",
+    "primary_platform": "douyin",
+    "profile_url": "https://www.douyin.com/search/AI便利峰?type=user",
+    "follow_status": "FOLLOWED",
+    "followed_at": "2026-08-18 10:57:32",
+    "last_checked_at": "2026-08-18 16:37:03",
+    "platforms": {
+      "douyin": {
+        "profile_url": "",
+        "unique_id": "",
+        "group": "AI",
+        "status": "FOLLOWED",
+        "updated_at": "2026-08-18 16:37:03"
+      }
+    },
+    "industry": "科技 · 数码 · 编程",
+    "group": "AI"
+  },
+  {
+    "id": 8,
+    "name": "海洋AI笔记",
+    "category": "AI教程",
+    "fans": "112w",
+    "bio": "",
+    "primary_platform": "douyin",
+    "profile_url": "https://www.douyin.com/search/海洋AI笔记?type=user",
+    "follow_status": "FOLLOWED",
+    "followed_at": "2026-08-18 10:57:32",
+    "last_checked_at": "2026-08-18 16:37:03",
+    "platforms": {
+      "douyin": {
+        "profile_url": "",
+        "unique_id": "",
+        "group": "AI",
+        "status": "FOLLOWED",
+        "updated_at": "2026-08-18 16:37:03"
+      }
+    },
+    "industry": "科技 · 数码 · 编程",
+    "group": "AI"
+  },
+  {
+    "id": 9,
+    "name": "脑三聊AI",
+    "category": "AI教程",
+    "fans": "108w",
+    "bio": "",
+    "primary_platform": "douyin",
+    "profile_url": "https://www.douyin.com/search/脑三聊AI?type=user",
+    "follow_status": "FOLLOWED",
+    "followed_at": "2026-08-18 10:57:32",
+    "last_checked_at": "2026-08-18 16:37:03",
+    "platforms": {
+      "douyin": {
+        "profile_url": "",
+        "unique_id": "",
+        "group": "AI",
+        "status": "FOLLOWED",
+        "updated_at": "2026-08-18 16:37:03"
+      }
+    },
+    "industry": "科技 · 数码 · 编程",
+    "group": "AI"
+  },
+  {
+    "id": 10,
+    "name": "AI娜娜",
+    "category": "AI教程",
+    "fans": "100w",
+    "bio": "",
+    "primary_platform": "douyin",
+    "profile_url": "https://www.douyin.com/search/AI娜娜?type=user",
+    "follow_status": "FOLLOWED",
+    "followed_at": "2026-08-18 10:57:32",
+    "last_checked_at": "2026-08-18 16:37:03",
+    "platforms": {
+      "douyin": {
+        "profile_url": "",
+        "unique_id": "",
+        "group": "AI",
+        "status": "FOLLOWED",
+        "updated_at": "2026-08-18 16:37:03"
+      }
+    },
+    "industry": "科技 · 数码 · 编程",
+    "group": "AI"
+  },
+  {
+    "id": 11,
+    "name": "Git源宝",
+    "category": "编程开发",
+    "fans": "53.9w",
+    "bio": "",
+    "primary_platform": "douyin",
+    "profile_url": "https://www.douyin.com/search/Git源宝?type=user",
+    "follow_status": "FOLLOWED",
+    "followed_at": "2026-08-18 10:57:32",
+    "last_checked_at": "2026-08-18 16:37:03",
+    "platforms": {
+      "douyin": {
+        "profile_url": "",
+        "unique_id": "",
+        "group": "AI",
+        "status": "FOLLOWED",
+        "updated_at": "2026-08-18 16:37:03"
+      }
+    },
+    "industry": "科技 · 数码 · 编程",
+    "group": "AI"
+  },
+  {
+    "id": 12,
+    "name": "清华姜学长",
+    "category": "AI认知",
+    "fans": "22.3w",
+    "bio": "",
+    "primary_platform": "douyin",
+    "profile_url": "https://www.douyin.com/search/清华姜学长?type=user",
+    "follow_status": "FOLLOWED",
+    "followed_at": "2026-08-18 10:57:32",
+    "last_checked_at": "2026-08-18 16:37:03",
+    "platforms": {
+      "douyin": {
+        "profile_url": "",
+        "unique_id": "",
+        "group": "AI",
+        "status": "FOLLOWED",
+        "updated_at": "2026-08-18 16:37:03"
+      }
+    },
+    "industry": "科技 · 数码 · 编程",
+    "group": "AI"
+  },
+  {
+    "id": 13,
+    "name": "木子不写代码",
+    "category": "AI实操",
+    "fans": "27.6w",
+    "bio": "",
+    "primary_platform": "douyin",
+    "profile_url": "https://www.douyin.com/search/木子不写代码?type=user",
+    "follow_status": "FOLLOWED",
+    "followed_at": "2026-08-18 10:57:32",
+    "last_checked_at": "2026-08-18 16:37:03",
+    "platforms": {
+      "douyin": {
+        "profile_url": "",
+        "unique_id": "",
+        "group": "AI",
+        "status": "FOLLOWED",
+        "updated_at": "2026-08-18 16:37:03"
+      }
+    },
+    "industry": "科技 · 数码 · 编程",
+    "group": "AI"
+  },
+  {
+    "id": 14,
+    "name": "夹缝儿AIGC",
+    "category": "AIGC 故事",
+    "fans": "503w",
+    "bio": "",
+    "primary_platform": "douyin",
+    "profile_url": "https://www.douyin.com/search/夹缝儿AIGC?type=user",
+    "follow_status": "FOLLOWED",
+    "followed_at": "2026-08-18 10:57:32",
+    "last_checked_at": "2026-08-18 11:07:38",
+    "platforms": {
+      "douyin": {
+        "profile_url": "https://www.douyin.com/search/夹缝儿AIGC?type=user",
+        "unique_id": "",
+        "status": "FOLLOWED",
+        "updated_at": "2026-08-18 11:07:38"
+      }
+    },
+    "industry": "科技 · 数码 · 编程"
+  },
+  {
+    "id": 15,
+    "name": "小奕AIGC",
+    "category": "AIGC 故事",
+    "fans": "325w",
+    "bio": "",
+    "primary_platform": "douyin",
+    "profile_url": "https://www.douyin.com/search/小奕AIGC?type=user",
+    "follow_status": "FOLLOWED",
+    "followed_at": "2026-08-18 10:57:32",
+    "last_checked_at": "2026-08-18 11:07:38",
+    "platforms": {
+      "douyin": {
+        "profile_url": "https://www.douyin.com/search/小奕AIGC?type=user",
+        "unique_id": "",
+        "status": "FOLLOWED",
+        "updated_at": "2026-08-18 11:07:38"
+      }
+    },
+    "industry": "科技 · 数码 · 编程"
+  },
+  {
+    "id": 16,
+    "name": "造梦AIGC",
+    "category": "AIGC 故事",
+    "fans": "264w",
+    "bio": "",
+    "primary_platform": "douyin",
+    "profile_url": "https://www.douyin.com/search/造梦AIGC?type=user",
+    "follow_status": "FOLLOWED",
+    "followed_at": "2026-08-18 10:57:32",
+    "last_checked_at": "2026-08-18 11:07:38",
+    "platforms": {
+      "douyin": {
+        "profile_url": "https://www.douyin.com/search/造梦AIGC?type=user",
+        "unique_id": "",
+        "status": "FOLLOWED",
+        "updated_at": "2026-08-18 11:07:38"
+      }
+    },
+    "industry": "科技 · 数码 · 编程"
+  },
+  {
+    "id": 17,
+    "name": "白袋子",
+    "category": "AI故事",
+    "fans": "134w",
+    "bio": "",
+    "primary_platform": "douyin",
+    "profile_url": "https://www.douyin.com/search/白袋子?type=user",
+    "follow_status": "FOLLOWED",
+    "followed_at": "2026-08-18 10:57:32",
+    "last_checked_at": "2026-08-18 16:37:03",
+    "platforms": {
+      "douyin": {
+        "profile_url": "",
+        "unique_id": "",
+        "group": "AI",
+        "status": "FOLLOWED",
+        "updated_at": "2026-08-18 16:37:03"
+      }
+    },
+    "industry": "科技 · 数码 · 编程",
+    "group": "AI"
+  },
+  {
+    "id": 18,
+    "name": "阿盐",
+    "category": "AI故事",
+    "fans": "118w",
+    "bio": "",
+    "primary_platform": "douyin",
+    "profile_url": "https://www.douyin.com/search/阿盐?type=user",
+    "follow_status": "FOLLOWED",
+    "followed_at": "2026-08-18 10:57:32",
+    "last_checked_at": "2026-08-18 16:37:03",
+    "platforms": {
+      "douyin": {
+        "profile_url": "",
+        "unique_id": "",
+        "group": "AI",
+        "status": "FOLLOWED",
+        "updated_at": "2026-08-18 16:37:03"
+      }
+    },
+    "industry": "科技 · 数码 · 编程",
+    "group": "AI"
+  },
+  {
+    "id": 19,
+    "name": "旧梦留声机",
+    "category": "AI故事",
+    "fans": "108w",
+    "bio": "",
+    "primary_platform": "douyin",
+    "profile_url": "https://www.douyin.com/search/旧梦留声机?type=user",
+    "follow_status": "FOLLOWED",
+    "followed_at": "2026-08-18 10:57:32",
+    "last_checked_at": "2026-08-18 16:37:03",
+    "platforms": {
+      "douyin": {
+        "profile_url": "",
+        "unique_id": "",
+        "group": "AI",
+        "status": "FOLLOWED",
+        "updated_at": "2026-08-18 16:37:03"
+      }
+    },
+    "industry": "影视 · 摄影 · 剪辑",
+    "group": "AI"
+  },
+  {
+    "id": 20,
+    "name": "公与山河",
+    "category": "AI视觉",
+    "fans": "58.1w",
+    "bio": "",
+    "primary_platform": "douyin",
+    "profile_url": "https://www.douyin.com/search/公与山河?type=user",
+    "follow_status": "FOLLOWED",
+    "followed_at": "2026-08-18 10:57:32",
+    "last_checked_at": "2026-08-18 16:37:03",
+    "platforms": {
+      "douyin": {
+        "profile_url": "",
+        "unique_id": "",
+        "group": "AI",
+        "status": "FOLLOWED",
+        "updated_at": "2026-08-18 16:37:03"
+      }
+    },
+    "industry": "影视 · 摄影 · 剪辑",
+    "group": "AI"
+  },
+  {
+    "id": 21,
+    "name": "Nenly同学",
+    "category": "AI绘画",
+    "fans": "9.7w",
+    "bio": "",
+    "primary_platform": "douyin",
+    "profile_url": "https://www.douyin.com/search/Nenly同学?type=user",
+    "follow_status": "FOLLOWED",
+    "followed_at": "2026-08-18 10:57:32",
+    "last_checked_at": "2026-08-18 16:37:03",
+    "platforms": {
+      "douyin": {
+        "profile_url": "",
+        "unique_id": "",
+        "group": "AI",
+        "status": "FOLLOWED",
+        "updated_at": "2026-08-18 16:37:03"
+      }
+    },
+    "industry": "设计 · 视觉 · 创意",
+    "group": "AI"
+  },
+  {
+    "id": 22,
+    "name": "数字游牧人Samuel",
+    "category": "AI工具",
+    "fans": "94.5w",
+    "bio": "",
+    "primary_platform": "douyin",
+    "profile_url": "https://www.douyin.com/search/数字游牧人Samuel?type=user",
+    "follow_status": "FOLLOWED",
+    "followed_at": "2026-08-18 10:57:32",
+    "last_checked_at": "2026-08-18 16:37:03",
+    "platforms": {
+      "douyin": {
+        "profile_url": "",
+        "unique_id": "",
+        "group": "AI",
+        "status": "FOLLOWED",
+        "updated_at": "2026-08-18 16:37:03"
+      }
+    },
+    "industry": "科技 · 数码 · 编程",
+    "group": "AI"
+  },
+  {
+    "id": 23,
+    "name": "林亦LYi",
+    "category": "硬核科技",
+    "fans": "75.2w",
+    "bio": "",
+    "primary_platform": "douyin",
+    "profile_url": "https://www.douyin.com/search/林亦LYi?type=user",
+    "follow_status": "FOLLOWED",
+    "followed_at": "2026-08-18 10:57:32",
+    "last_checked_at": "2026-08-18 16:37:03",
+    "platforms": {
+      "douyin": {
+        "profile_url": "",
+        "unique_id": "",
+        "group": "AI",
+        "status": "FOLLOWED",
+        "updated_at": "2026-08-18 16:37:03"
+      }
+    },
+    "industry": "科技 · 数码 · 编程",
+    "group": "AI"
+  },
+  {
+    "id": 24,
+    "name": "第四种黑猩猩",
+    "category": "前沿科技",
+    "fans": "51.4w",
+    "bio": "",
+    "primary_platform": "douyin",
+    "profile_url": "https://www.douyin.com/search/第四种黑猩猩?type=user",
+    "follow_status": "FOLLOWED",
+    "followed_at": "2026-08-18 10:57:32",
+    "last_checked_at": "2026-08-18 16:37:03",
+    "platforms": {
+      "douyin": {
+        "profile_url": "",
+        "unique_id": "",
+        "group": "AI",
+        "status": "FOLLOWED",
+        "updated_at": "2026-08-18 16:37:03"
+      }
+    },
+    "industry": "知识 · 人文 · 科普",
+    "group": "AI"
+  },
+  {
+    "id": 25,
+    "name": "技术爬爬虾",
+    "category": "编程开发",
+    "fans": "48.2w",
+    "bio": "",
+    "primary_platform": "douyin",
+    "profile_url": "https://www.douyin.com/search/技术爬爬虾?type=user",
+    "follow_status": "FOLLOWED",
+    "followed_at": "2026-08-18 10:57:32",
+    "last_checked_at": "2026-08-18 16:37:03",
+    "platforms": {
+      "douyin": {
+        "profile_url": "",
+        "unique_id": "",
+        "group": "AI",
+        "status": "FOLLOWED",
+        "updated_at": "2026-08-18 16:37:03"
+      }
+    },
+    "industry": "科技 · 数码 · 编程",
+    "group": "AI"
+  },
+  {
+    "id": 26,
+    "name": "柱子哥TzFilm",
+    "category": "AI摄影",
+    "fans": "19.5w",
+    "bio": "",
+    "primary_platform": "douyin",
+    "profile_url": "https://www.douyin.com/search/柱子哥TzFilm?type=user",
+    "follow_status": "FOLLOWED",
+    "followed_at": "2026-08-18 10:57:32",
+    "last_checked_at": "2026-08-18 16:37:03",
+    "platforms": {
+      "douyin": {
+        "profile_url": "",
+        "unique_id": "",
+        "group": "AI",
+        "status": "FOLLOWED",
+        "updated_at": "2026-08-18 16:37:03"
+      }
+    },
+    "industry": "影视 · 摄影 · 剪辑",
+    "group": "AI"
+  },
+  {
+    "id": 27,
+    "name": "小天fotos",
+    "category": "摄影后期",
+    "fans": "13.4w",
+    "bio": "",
+    "primary_platform": "douyin",
+    "profile_url": "https://www.douyin.com/search/小天fotos?type=user",
+    "follow_status": "FOLLOWED",
+    "followed_at": "2026-08-18 10:57:32",
+    "last_checked_at": "2026-08-18 16:37:03",
+    "platforms": {
+      "douyin": {
+        "profile_url": "",
+        "unique_id": "",
+        "group": "AI",
+        "status": "FOLLOWED",
+        "updated_at": "2026-08-18 16:37:03"
+      }
+    },
+    "industry": "影视 · 摄影 · 剪辑",
+    "group": "AI"
+  },
+  {
+    "id": 28,
+    "name": "痕继痕迹",
+    "category": "AI 实操/编程",
+    "fans": "6.6w",
+    "bio": "",
+    "primary_platform": "douyin",
+    "profile_url": "https://www.douyin.com/search/痕继痕迹?type=user",
+    "follow_status": "FOLLOWED",
+    "followed_at": "2026-08-18 10:57:32",
+    "last_checked_at": "2026-08-18 11:07:38",
+    "platforms": {
+      "douyin": {
+        "profile_url": "https://www.douyin.com/search/痕继痕迹?type=user",
+        "unique_id": "",
+        "status": "FOLLOWED",
+        "updated_at": "2026-08-18 11:07:38"
+      }
+    },
+    "industry": "科技 · 数码 · 编程"
+  },
+  {
+    "id": 29,
+    "name": "晓辉博士",
+    "category": "商业认知",
+    "fans": "49.8w",
+    "bio": "",
+    "primary_platform": "douyin",
+    "profile_url": "https://www.douyin.com/search/晓辉博士?type=user",
+    "follow_status": "FOLLOWED",
+    "followed_at": "2026-08-18 10:57:32",
+    "last_checked_at": "2026-08-18 16:37:03",
+    "platforms": {
+      "douyin": {
+        "profile_url": "",
+        "unique_id": "",
+        "group": "AI",
+        "status": "FOLLOWED",
+        "updated_at": "2026-08-18 16:37:03"
+      }
+    },
+    "industry": "商业 · 财经 · 创业",
+    "group": "AI"
+  },
+  {
+    "id": 30,
+    "name": "西门美月XD",
+    "category": "商业认知",
+    "fans": "8.4w",
+    "bio": "",
+    "primary_platform": "douyin",
+    "profile_url": "https://www.douyin.com/search/西门美月XD?type=user",
+    "follow_status": "FOLLOWED",
+    "followed_at": "2026-08-18 10:57:32",
+    "last_checked_at": "2026-08-18 16:37:03",
+    "platforms": {
+      "douyin": {
+        "profile_url": "",
+        "unique_id": "",
+        "group": "AI",
+        "status": "FOLLOWED",
+        "updated_at": "2026-08-18 16:37:03"
+      }
+    },
+    "industry": "商业 · 财经 · 创业",
+    "group": "AI"
+  },
+  {
+    "id": 31,
+    "name": "姜胡说",
+    "category": "商业认知",
+    "fans": "482w",
+    "bio": "",
+    "primary_platform": "douyin",
+    "profile_url": "https://www.douyin.com/search/姜胡说?type=user",
+    "follow_status": "FOLLOWED",
+    "followed_at": "2026-08-18 10:57:32",
+    "last_checked_at": "2026-08-18 16:37:03",
+    "platforms": {
+      "douyin": {
+        "profile_url": "",
+        "unique_id": "",
+        "group": "AI",
+        "status": "FOLLOWED",
+        "updated_at": "2026-08-18 16:37:03"
+      }
+    },
+    "industry": "商业 · 财经 · 创业",
+    "group": "AI"
+  },
+  {
+    "id": 32,
+    "name": "朴素之道",
+    "category": "商业认知",
+    "fans": "284w",
+    "bio": "",
+    "primary_platform": "douyin",
+    "profile_url": "https://www.douyin.com/search/朴素之道?type=user",
+    "follow_status": "FOLLOWED",
+    "followed_at": "2026-08-18 10:57:32",
+    "last_checked_at": "2026-08-18 16:37:03",
+    "platforms": {
+      "douyin": {
+        "profile_url": "",
+        "unique_id": "",
+        "group": "AI",
+        "status": "FOLLOWED",
+        "updated_at": "2026-08-18 16:37:03"
+      }
+    },
+    "industry": "商业 · 财经 · 创业",
+    "group": "AI"
+  },
+  {
+    "id": 33,
+    "name": "Don't be silent",
+    "category": "商业认知",
+    "fans": "49.5w",
+    "bio": "",
+    "primary_platform": "douyin",
+    "profile_url": "https://www.douyin.com/search/Don't be silent?type=user",
+    "follow_status": "FOLLOWED",
+    "followed_at": "2026-08-18 10:57:32",
+    "last_checked_at": "2026-08-18 16:37:03",
+    "platforms": {
+      "douyin": {
+        "profile_url": "",
+        "unique_id": "",
+        "group": "AI",
+        "status": "FOLLOWED",
+        "updated_at": "2026-08-18 16:37:03"
+      }
+    },
+    "industry": "商业 · 财经 · 创业",
+    "group": "AI"
+  },
+  {
+    "id": 34,
+    "name": "老徐",
+    "category": "参照组",
+    "fans": "3.2w",
+    "bio": "",
+    "primary_platform": "douyin",
+    "profile_url": "https://www.douyin.com/search/老徐?type=user",
+    "follow_status": "FOLLOWED",
+    "followed_at": "2026-08-18 10:57:32",
+    "last_checked_at": "2026-08-18 11:07:38",
+    "platforms": {
+      "douyin": {
+        "profile_url": "https://www.douyin.com/search/老徐?type=user",
+        "unique_id": "",
+        "status": "FOLLOWED",
+        "updated_at": "2026-08-18 11:07:38"
+      }
+    },
+    "industry": "综合 · 其他"
+  },
+  {
+    "id": 35,
+    "name": "半佛仙人",
+    "industry": "商业 · 财经 · 创业",
+    "category": "商业认知",
+    "fans": "680w",
+    "bio": "",
+    "primary_platform": "bilibili",
+    "profile_url": "https://space.bilibili.com/37663924",
+    "follow_status": "FOLLOWED",
+    "followed_at": "2026-08-18 11:01:03",
+    "last_checked_at": "2026-08-18 11:01:03",
+    "platforms": {
+      "bilibili": {
+        "profile_url": "https://space.bilibili.com/37663924",
+        "unique_id": "",
+        "status": "FOLLOWED",
+        "updated_at": "2026-08-18 11:01:03"
+      }
+    }
+  },
+  {
+    "id": 36,
+    "name": "影视飓风",
+    "industry": "影视 · 摄影 · 剪辑",
+    "category": "摄影数码与后期",
+    "fans": "1200w",
+    "bio": "",
+    "primary_platform": "bilibili",
+    "profile_url": "https://space.bilibili.com/946974",
+    "follow_status": "FOLLOWED",
+    "followed_at": "2026-08-18 11:01:03",
+    "last_checked_at": "2026-08-18 11:01:03",
+    "platforms": {
+      "bilibili": {
+        "profile_url": "https://space.bilibili.com/946974",
+        "unique_id": "",
+        "status": "FOLLOWED",
+        "updated_at": "2026-08-18 11:01:03"
+      }
+    }
+  },
+  {
+    "id": 37,
+    "name": "罗翔说刑法",
+    "industry": "知识 · 人文 · 科普",
+    "category": "法学与人文",
+    "fans": "3000w",
+    "bio": "",
+    "primary_platform": "bilibili",
+    "profile_url": "https://space.bilibili.com/517327498",
+    "follow_status": "FOLLOWED",
+    "followed_at": "2026-08-18 11:01:03",
+    "last_checked_at": "2026-08-18 11:01:03",
+    "platforms": {
+      "bilibili": {
+        "profile_url": "https://space.bilibili.com/517327498",
+        "unique_id": "",
+        "status": "FOLLOWED",
+        "updated_at": "2026-08-18 11:01:03"
+      }
+    }
+  },
+  {
+    "id": 38,
+    "name": "秋叶AI-袁姐",
+    "industry": "科技 · 数码 · 编程",
+    "category": "AI教程",
+    "fans": "",
+    "bio": "",
+    "group": "AI",
+    "primary_platform": "douyin",
+    "profile_url": "",
+    "follow_status": "FOLLOWED",
+    "followed_at": "2026-08-18 16:37:03",
+    "last_checked_at": "2026-08-18 16:37:03",
+    "platforms": {
+      "douyin": {
+        "profile_url": "",
+        "unique_id": "",
+        "group": "AI",
+        "status": "FOLLOWED",
+        "updated_at": "2026-08-18 16:37:03"
+      }
+    }
+  },
+  {
+    "id": 39,
+    "name": "英缝儿AIGC",
+    "industry": "科技 · 数码 · 编程",
+    "category": "AIGC故事",
+    "fans": "",
+    "bio": "",
+    "group": "AI",
+    "primary_platform": "douyin",
+    "profile_url": "",
+    "follow_status": "FOLLOWED",
+    "followed_at": "2026-08-18 16:37:03",
+    "last_checked_at": "2026-08-18 16:37:03",
+    "platforms": {
+      "douyin": {
+        "profile_url": "",
+        "unique_id": "",
+        "group": "AI",
+        "status": "FOLLOWED",
+        "updated_at": "2026-08-18 16:37:03"
+      }
+    }
+  },
+  {
+    "id": 40,
+    "name": "小突AIGC",
+    "industry": "科技 · 数码 · 编程",
+    "category": "AIGC故事",
+    "fans": "",
+    "bio": "",
+    "group": "AI",
+    "primary_platform": "douyin",
+    "profile_url": "",
+    "follow_status": "FOLLOWED",
+    "followed_at": "2026-08-18 16:37:03",
+    "last_checked_at": "2026-08-18 16:37:03",
+    "platforms": {
+      "douyin": {
+        "profile_url": "",
+        "unique_id": "",
+        "group": "AI",
+        "status": "FOLLOWED",
+        "updated_at": "2026-08-18 16:37:03"
+      }
+    }
+  },
+  {
+    "id": 41,
+    "name": "AI造梦AIGC",
+    "industry": "科技 · 数码 · 编程",
+    "category": "AIGC故事",
+    "fans": "",
+    "bio": "",
+    "group": "AI",
+    "primary_platform": "douyin",
+    "profile_url": "",
+    "follow_status": "FOLLOWED",
+    "followed_at": "2026-08-18 16:37:03",
+    "last_checked_at": "2026-08-18 16:37:03",
+    "platforms": {
+      "douyin": {
+        "profile_url": "",
+        "unique_id": "",
+        "group": "AI",
+        "status": "FOLLOWED",
+        "updated_at": "2026-08-18 16:37:03"
+      }
+    }
+  },
+  {
+    "id": 42,
+    "name": "疯继痕迹",
+    "industry": "设计 · 视觉 · 创意",
+    "category": "AI视觉",
+    "fans": "",
+    "bio": "",
+    "group": "AI",
+    "primary_platform": "douyin",
+    "profile_url": "",
+    "follow_status": "FOLLOWED",
+    "followed_at": "2026-08-18 16:37:03",
+    "last_checked_at": "2026-08-18 16:37:03",
+    "platforms": {
+      "douyin": {
+        "profile_url": "",
+        "unique_id": "",
+        "group": "AI",
+        "status": "FOLLOWED",
+        "updated_at": "2026-08-18 16:37:03"
+      }
+    }
+  }
+]

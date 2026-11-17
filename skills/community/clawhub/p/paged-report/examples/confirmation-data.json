@@ -1,0 +1,58 @@
+{
+  "family": "confirmation",
+  "toc": true,
+  "meta": {
+    "language": "zh-CN",
+    "title": "运费规则变更确认",
+    "client": "Example Client",
+    "category": "运营确认",
+    "subtitle": "请确认以下运费规则调整，确认后将正式生效",
+    "date": "2026-08-31",
+    "version": "v2.0",
+    "footer": "Example Client · 运费确认 · 2026-08-31 · 请回复确认或提出修改意见"
+  },
+  "pages": [
+    {
+      "sections": [
+        {
+          "id": "rules",
+          "title": "规则变更对比",
+          "components": [
+            {
+              "type": "compare_table",
+              "columns": ["项目", "变更前", "变更后"],
+              "rows": [
+                ["免运门槛", "$200", "$150"],
+                ["大件计费", "按件固定 $49", "按重量阶梯"],
+                ["偏远地区", "不配送", "加收 $25"],
+                ["重量数据", "38% 缺失", "100% 已补全"]
+              ]
+            },
+            {
+              "type": "callout",
+              "variant": "amber",
+              "label": "注意",
+              "text": "新规则将于确认后 48 小时内生效，请确保所有测试订单已完成。"
+            }
+          ]
+        },
+        {
+          "id": "checklist",
+          "title": "上线确认清单",
+          "components": [
+            {
+              "type": "checklist",
+              "items": [
+                {"text": "运费规则已在后台配置", "done": true},
+                {"text": "测试订单 3 笔，运费计算正确", "done": true},
+                {"text": "大件商品已标记特殊运费标签", "done": true},
+                {"text": "客户确认邮件已发送", "done": false},
+                {"text": "监控 7 天，无异常后正式上线", "done": false}
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

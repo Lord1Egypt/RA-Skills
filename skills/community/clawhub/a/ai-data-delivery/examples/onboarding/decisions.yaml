@@ -1,0 +1,21 @@
+# Synthetic business decisions for this example only, never defaults for a customer.
+dataset:orders/grain:
+  value: 一行一笔租户内订单
+  actor: 示例业务负责人
+  role: business_owner
+  basis: 示例需求订单金额按订单累计，不按商品行累计
+dataset:orders/temporal.kind:
+  value: current
+  actor: 示例数据负责人
+  role: data_owner
+  basis: 示例表保存当前状态，没有历史快照
+metric:gmv/caliber.note:
+  value: 累加当前状态 paid 的订单金额，单位元，按 ordered_at 归属；不是历史月末状态金额
+  actor: 示例业务负责人
+  role: business_owner
+  basis: 示例口径决议 DEMO-001
+metric:gmv/expr:
+  value: SUM(amount)
+  actor: 示例 FDE
+  role: fde
+  basis: DEMO-001 的金额字段映射；filters 中保留 paid 条件

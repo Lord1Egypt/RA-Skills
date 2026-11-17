@@ -1,0 +1,2 @@
+model,input_tokens,cached_input_tokens,output_tokens
+demo-model,1000000,100000,100000

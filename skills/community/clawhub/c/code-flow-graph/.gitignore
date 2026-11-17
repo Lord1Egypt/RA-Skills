@@ -1,0 +1,16 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+.vscode/
+.codebuddy/
+*.swp
+*.swo
+
+# Generated data files (project-specific)
+code_graph_data.js
+
+# Skill state (user-specific, persisted across sessions)
+state/

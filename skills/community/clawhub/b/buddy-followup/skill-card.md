@@ -1,40 +1,58 @@
-## Description: <br>
-Buddy Followup helps agents schedule one-time follow-up reminders through configured OpenClaw messaging channels after starting long-running tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Buddy Followup helps agents schedule timed follow-ups for long-running tasks and resume with the saved task context on configured OpenClaw channels.
 
-## Publisher: <br>
-[baiyishr](https://clawhub.ai/user/baiyishr) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[baiyishr](https://clawhub.ai/user/baiyishr)
 
-## Use Case: <br>
-Developers and agent operators use this skill to set reminders when a sub-agent, build, deployment, script, API call, or similar task may finish later. The follow-up prompt helps the agent check status, report results, or schedule another reminder if the task is still pending. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Reminder text may be delivered to every configured OpenClaw messaging channel. <br>
-Mitigation: Check configured Telegram and WhatsApp recipients before scheduling and include only short, non-sensitive task context. <br>
-Risk: Follow-up messages can expose secrets, internal identifiers, private customer details, or other sensitive information if included in the reminder text. <br>
-Mitigation: Keep reminder text brief and avoid sensitive or channel-inappropriate details. <br>
+## Use Case:
 
+Developers and agents use this skill to set timed reminders after launching builds, scripts, sub-agents, downloads, API calls, or other long-running work. It is intended to help the agent check status later and provide the promised user update.
 
-## Reference(s): <br>
-- [Buddy Followup on ClawHub](https://clawhub.ai/baiyishr/buddy-followup) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration guidance, Text] <br>
-**Output Format:** [Markdown with inline bash code blocks and shell output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Schedules one cron reminder per configured OpenClaw messaging channel and exits after scheduling.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release metadata; artifact frontmatter lists 1.0.0) <br>
+Risk: The scheduler has a command-injection bug around delay handling.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, use only simple delay values such as 30s, 5m, or 2h, and require a hardened delay parser before sensitive use.
+
+Risk: Saved task context may be broadcast automatically to every configured messaging channel.
+
+Mitigation: Avoid secrets or private project details in task context and verify configured channel recipients before scheduling follow-ups.
+
+Risk: Unverified installation sources can increase supply-chain exposure.
+
+Mitigation: Prefer a pinned, verified install command for deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/baiyishr/skills/buddy-followup)
+- [Publisher profile](https://clawhub.ai/user/baiyishr)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Guidance, Text, Configuration]
+
+**Output Format:** [Markdown guidance with inline bash command examples and scheduled follow-up message text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires OpenClaw gateway, openclaw CLI, and at least one configured messaging channel.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

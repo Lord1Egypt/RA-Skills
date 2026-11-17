@@ -1,0 +1,30 @@
+{
+  "contentSha256": "6c0efcba907e8d191dd9602b628813e3939db4cae7e71db29e387a4da65425a8",
+  "description": "通过 MCP 工具操作轻排桌面程序（MRP-PMC），完成生产排产、排程预演与落库、交期评审、插单评估、物料齐套检查、报工与生产看板查询。\n用户说出“帮我排产”“排一下明天的产”“这单能不能接”“交期来得及吗”“查一下工单”“齐套了吗”“缺什么料”“插个单行不行”“报工 50 件”“今天生产怎么样”“最近有哪些异常”时使用。\n不触发：新建物料/产品/BOM 等基础资料录入、财务报表、采购下单、与轻排程序无关的通用排产理论问答。",
+  "metadata": {
+    "dumate": {
+      "allow_implicit_invocation": true,
+      "category": "生产制造",
+      "displayName": "轻排生产排产",
+      "icon": "assets/icon.png",
+      "level": "L2",
+      "publishedAt": 1794321600000,
+      "publisher": "广州轻排信息科技有限公司",
+      "sensitive": false,
+      "summary": "驱动轻排 MRP-PMC 桌面程序完成工单排程、交期评审、插单评估与物料齐套检查；排程结果可解释、可复现，写库前必须经用户确认。",
+      "tags": [
+        "排产",
+        "PMC",
+        "齐套",
+        "交期",
+        "报工"
+      ],
+      "version": "1.1.0"
+    }
+  },
+  "name": "pmclite-scheduler",
+  "ownerId": "",
+  "publishedAt": 0,
+  "slug": "pmclite-scheduler",
+  "version": "1.0.0"
+}

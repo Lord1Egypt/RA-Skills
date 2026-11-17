@@ -1,6 +1,7 @@
 {
-  "ownerId": "kn75qfs77ks11v8e707repnydn82ydsj",
   "slug": "mp4-to-srt",
   "version": "1.1.0",
-  "publishedAt": 1774189645717
+  "description": "將本地 MP4 影片用 AI 轉成 SRT 字幕，自動轉為繁體中文！",
+  "tags": ["video", "subtitle", "srt", "whisper", "traditional-chinese"],
+  "author": "Kuanlin"
 }

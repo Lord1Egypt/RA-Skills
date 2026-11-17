@@ -1,44 +1,54 @@
-## Description: <br>
-Search for campgrounds, check availability and book campsites across the entire world. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search for campgrounds, check availability and book campsites across the entire world.
 
-## Publisher: <br>
-[jsuppers](https://clawhub.ai/user/jsuppers) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jsuppers](https://clawhub.ai/user/jsuppers)
 
-## Use Case: <br>
-External users and travel-planning agents use this skill to search campground, glamping, and RV listings, inspect amenities and reviews, check date-specific availability, and retrieve booking links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill runs a third-party npm MCP server. <br>
-Mitigation: Install and use it only when you trust Campertunity and the campertunity-ai-tools package. <br>
-Risk: Booking links can lead users to external providers that may request trip, account, or payment information. <br>
-Mitigation: Verify the booking provider before sharing sensitive information or completing a reservation. <br>
-Risk: Direct availability is not supported for every listing. <br>
-Mitigation: Treat manual availability links as handoff points and confirm availability directly with the provider when needed. <br>
+## Use Case:
 
+External users and travel-planning agents use this skill to search for campground, glamping, and RV site options, inspect listing details, check date-specific availability, and retrieve booking links.
 
-## Reference(s): <br>
-- [Campertunity homepage](https://campertunity.com) <br>
-- [ClawHub skill page](https://clawhub.ai/jsuppers/campertunity) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/jsuppers) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown responses with setup JSON, campground result tables, availability summaries, and booking links.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses the Campertunity MCP server through npx or campertunity-ai-tools; some listings may provide a manual availability link instead of direct availability results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server-resolved release metadata) <br>
+Risk: The setup runs the Campertunity MCP server through an unpinned npm package via npx.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin `campertunity-ai-tools` to a reviewed exact version where supported and run the MCP server with only the filesystem, environment-variable, and network access needed for campground search and booking-link workflows.
+
+Risk: Availability is not supported for all campground listings.
+
+Mitigation: When automated availability is unavailable, present the manual check or booking link clearly so users can verify dates before relying on the result.
+
+## Reference(s):
+
+- [Campertunity Homepage](https://campertunity.com)
+- [ClawHub Skill Page](https://clawhub.ai/jsuppers/skills/campertunity)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Configuration, Shell commands, Markdown]
+
+**Output Format:** [Markdown with JSON configuration and MCP tool workflow guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include campground result tables with name, distance, rating, and price, plus booking URLs when available.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

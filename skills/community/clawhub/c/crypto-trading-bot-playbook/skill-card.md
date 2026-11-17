@@ -1,39 +1,55 @@
-## Description: <br>
-A markdown playbook that outlines crypto trading bot types, technical setup, development steps, pricing, marketing, and trading-risk warnings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides guidance for building, deploying, and selling automated cryptocurrency trading bots using Python, exchange APIs, backtesting, paper trading, and monitoring.
 
-## Publisher: <br>
-[Katrina-jpg](https://clawhub.ai/user/Katrina-jpg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[katrina-jpg](https://clawhub.ai/user/katrina-jpg)
 
-## Use Case: <br>
-Developers and external users use this skill as educational guidance for planning, building, deploying, and selling crypto trading bots. It does not provide executable bot code, financial advice, or a promise of profits. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Readers may mistake trading-bot guidance for financial advice or a promise of profits. <br>
-Mitigation: Present it as educational material and require independent financial, legal, and compliance review before using it with real funds or selling a bot. <br>
-Risk: A bot built from the playbook could trade with excessive permissions or uncontrolled losses. <br>
-Mitigation: Use paper trading first, restricted exchange API keys, explicit loss limits, monitoring, and staged deployment before connecting real funds. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Katrina-jpg/crypto-trading-bot-playbook) <br>
+## Use Case:
+
+Developers and external users can use this skill as a concise checklist for crypto trading bot concepts, required stack, implementation steps, and commercialization considerations. It should be treated as planning guidance, not financial advice or production-ready trading logic.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Automated cryptocurrency trading can lose money quickly if strategies are poorly tested or operated without limits.
+
+Mitigation: Use paper trading first, backtest strategies, set strict position and loss limits, and add monitoring and kill switches before any live trading.
+
+Risk: Exchange API keys or client funds may be exposed if bots are implemented or sold without strong access controls.
+
+Mitigation: Restrict API key permissions, avoid withdrawal access, store secrets securely, and review custody and access patterns before operating bots for others.
+
+Risk: Selling or operating trading bots can introduce legal, compliance, and customer-funds risk.
+
+Mitigation: Get legal or compliance advice before selling bots or operating them on behalf of clients.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown educational playbook] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable code or hidden agent actions.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+**Output Type(s):** [text, markdown, guidance, configuration]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown playbook with lists, numbered workflow steps, and a pricing table]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Non-executable guidance; does not create trading code or connect to exchanges by itself.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

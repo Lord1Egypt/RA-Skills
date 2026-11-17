@@ -1,0 +1,69 @@
+{
+    "is_prj_leader" : {
+        "name" : "prj_info",
+        "type" : "call",
+        "method" : "GET",
+        "tokenSign" : "APP",
+        "cache" : "#PID#_@{#tokenAcc}",
+        "comment" : "查询帐号在项目中的角色",
+        "service" : "iproject",
+        "url" : "/role?id=#PID#&account=@{#tokenAcc}",
+        "onSuccess" : {
+            "errorCode":"NO_RIGHT",
+            "errorInfo":"not a leader",
+            "condition":"@{CONDITION|!role,'s.==','L'}"
+        }
+    },
+
+    "is_grp_leader" : { //可以是部门，也可以是虚拟群组
+        "name" : "check_grp_admin",
+        "type" : "dataexists",
+        "db" : "hr",
+        "expect" : true,
+        "errorCode" : "NO_RIGHT",
+        "errorInfo" : "no right",
+        "sql" : "select 1 from member where gid=#GID# 
+            and uid=@{#tokenCaller} and role='ADM'"
+    },
+    
+    "is_department_leader" : {
+        "name" : "check_department_admin",
+        "type" : "dataexists",
+        "db" : "hr",
+        "expect" : true,
+        "errorCode" : "NO_RIGHT",
+        "errorInfo" : "no right",
+        "sql" : "select 1 from member m,grp g where m.gid=#GID# 
+            and m.uid=@{#tokenCaller} and m.role='ADM'
+            and g.id=#GID# and g.type='D'"
+    },
+    
+    "is_his_leader" : {
+        "name" : "get_employee_grp",
+        "type" : "rdb",
+        "db" : "hr",
+        "convert" : {"code":"NOT_EXISTS","to":"NO_RIGHT","info":"no right"},
+        //在部门中不是领导，且调用接口的用户是领导，返回部门id
+        "sqls" :[{
+            "name":"get_grp_id",
+            "metas":"each",
+            "multi":false,
+            "merge":true,
+            "sql":"select gid from member
+           where gid in(select m.gid from member m,grp g
+             where m.uid=#UID# and m.role='NOR' and g.id=m.gid and g.type='D')
+              and uid=@{#tokenCaller} and role='ADM'"
+        }]
+    },
+    
+   "check_accounts":{
+        "name":"check_accounts",
+        "comment":"检查帐号是否都存在",
+        "type" : "call",
+        "service": "user",
+        "method":"POST",
+        "url":"/user/userid",
+        "tokenSign":"APP",
+        "parameters":"{\"accounts\":#ACCLIST#}"
+    }
+}

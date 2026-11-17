@@ -1,42 +1,54 @@
-## Description: <br>
-Spray Dryer guides agents through generating spray dryer CAD drawings on JixieTools by selecting a product, collecting parameters, calculating values, creating a guest production sheet, and polling for output files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates spray dryer CAD drawing workflows by guiding users through product selection, parameter collection, calculation, production sheet creation, and status tracking through jixietools.com.
 
-## Publisher: <br>
-[realsanyu](https://clawhub.ai/user/realsanyu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[realsanyu](https://clawhub.ai/user/realsanyu)
 
-## Use Case: <br>
-External users and engineering assistants use this skill to walk through a Chinese-language spray dryer CAD generation workflow, including product selection, parameter collection, calculation review, production sheet creation, and progress monitoring. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security evidence reports a concrete product/category mismatch that could send users into the wrong CAD generation workflow. <br>
-Mitigation: Verify that the listed category and product IDs match the intended spray dryer workflow on jixietools.com before using generated CAD artifacts or production sheets. <br>
-Risk: The workflow can generate production sheets and CAD outputs through unauthenticated guest endpoints. <br>
-Mitigation: Review selected products, parameters, calculated values, and output files before relying on them for engineering, purchasing, or fabrication decisions. <br>
+## Use Case:
 
+External users and engineering teams use this skill to configure spray dryer design parameters, review calculated values, create a guest production sheet, and track CAD drawing generation through jixietools.com.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/realsanyu/spray-dryer) <br>
-- [realsanyu publisher profile](https://clawhub.ai/user/realsanyu) <br>
-- [JixieTools API base](https://jixietools.com/api/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, API Calls, Markdown] <br>
-**Output Format:** [Chinese Markdown with curl command examples, parameter tables, status updates, and generated production-sheet links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are interactive and stepwise; the agent waits for user confirmation before proceeding between major workflow steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Spray dryer design inputs and generated workflow identifiers are sent to jixietools.com without login.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid confidential or proprietary engineering designs unless the external service is trusted for that data.
+
+Risk: The documented spray dryer category ID is inconsistent with the product-list request category ID.
+
+Mitigation: Verify the category and product selections before relying on generated CAD outputs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/realsanyu/skills/spray-dryer)
+- [JixieTools API](https://jixietools.com/api/v1)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Markdown, API Calls]
+
+**Output Format:** [Chinese-language conversational Markdown with curl commands, JSON examples, and tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses guest production sheet identifiers and periodic status polling; no login is required for the documented workflow.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

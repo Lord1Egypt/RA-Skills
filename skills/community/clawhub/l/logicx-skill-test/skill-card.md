@@ -1,47 +1,64 @@
-## Description: <br>
-Call LogicX frontend proxy APIs for health checks, browser binding, password login, user info, orders, payments, and account actions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Call LogicX frontend proxy APIs for health checks, browser binding, password login, user info, orders, payments, and account actions.
 
-## Publisher: <br>
-[QihangYang](https://clawhub.ai/user/QihangYang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qihangyang](https://clawhub.ai/user/qihangyang)
 
-## Use Case: <br>
-External users and agents use this skill to connect to LogicX, verify account state, review orders, and perform confirmed account or payment actions through the LogicX frontend proxy. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security review flags account API access and credential handling as suspicious. <br>
-Mitigation: Install only if the LogicX service and QihangYang publisher are trusted, and review the skill before use. <br>
-Risk: Password login can expose user credentials to the agent conversation. <br>
-Mitigation: Prefer browser binding and do not send passwords in chat unless the user explicitly accepts that fallback. <br>
-Risk: The default service endpoint is a plain-HTTP IP address. <br>
-Mitigation: Avoid using the default plain-HTTP endpoint for real accounts or payments. <br>
-Risk: The skill stores LogicX authorization state on the local machine. <br>
-Mitigation: Remove ~/.config/logicx/skill-state.json or unlink the agent when access should no longer persist. <br>
+## Use Case:
 
+External users and developers use this skill to connect an agent to a LogicX account, verify account status, review orders and payments, and perform confirmed account actions through the LogicX proxy API.
 
-## Reference(s): <br>
-- [LogicX skill page](https://clawhub.ai/QihangYang/logicx-skill-test) <br>
-- [Publisher profile](https://clawhub.ai/user/QihangYang) <br>
-- [API reference](references/api-reference.md) <br>
-- [Example dialogues](examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and summarized API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce or summarize LogicX account, order, payment, and authorization API responses.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.8 (source: server release metadata) <br>
+Risk: Password login can expose user credentials through chat history or command arguments.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer browser binding and do not send a password to the agent; the publisher should remove or replace the password-based flow.
+
+Risk: The default service endpoint uses HTTP, which is not appropriate for real account authentication.
+
+Mitigation: Use this only with a trusted HTTPS LogicX endpoint and avoid real accounts on the default HTTP endpoint.
+
+Risk: Authentication headers could be sent outside the intended service if untrusted absolute URLs are accepted.
+
+Mitigation: Restrict requests to the intended LogicX proxy API and reject untrusted absolute URLs before execution.
+
+Risk: Saved LogicX user tokens are sensitive local credentials.
+
+Mitigation: Protect the state file, avoid sharing its contents, and provide a clear token-clearing process before deployment.
+
+## Reference(s):
+
+- [API Reference](references/api-reference.md)
+- [Example Dialogues](examples.md)
+- [ClawHub Skill Page](https://clawhub.ai/qihangyang/skills/logicx-skill-test)
+- [Publisher Profile](https://clawhub.ai/user/qihangyang)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, API calls, guidance]
+
+**Output Format:** [Markdown or plain text summaries with inline shell commands and JSON API responses when requested.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May persist LogicX link state and user tokens in a local state file.]
+
+## Skill Version(s):
+
+0.0.8 (source: ClawHub release evidence, released 2026-03-19)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

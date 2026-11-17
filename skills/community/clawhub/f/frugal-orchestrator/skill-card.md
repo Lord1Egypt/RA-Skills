@@ -1,45 +1,58 @@
-## Description: <br>
-Token-efficient task orchestration system that delegates work to specialized subordinates while prioritizing system-level solutions over AI inference. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Token-efficient task orchestration system that delegates work to specialized subordinates while prioritizing system-level solutions over AI inference.
 
-## Publisher: <br>
-[nelohenriq](https://clawhub.ai/user/nelohenriq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nelohenriq](https://clawhub.ai/user/nelohenriq)
 
-## Use Case: <br>
-Developers and agent operators use this skill to route routine work toward system commands, reusable scripts, caching, batch execution, and delegation so agents spend fewer tokens on operational tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can propose or execute shell and script tasks through routing and batch-processing workflows. <br>
-Mitigation: Review generated commands, batch manifests, and script paths before execution, and run them only in a trusted workspace. <br>
-Risk: Delegation workflows may include user-provided context that could contain sensitive information. <br>
-Mitigation: Avoid attaching secrets, private files, or sensitive project context to delegation requests unless the receiving agent and environment are trusted. <br>
-Risk: The phase5_automation.sh workflow can commit and push metrics or log-related files to the configured Git remote. <br>
-Mitigation: Run phase5_automation.sh only after confirming the target repository, remote, branch, and files being committed. <br>
+## Use Case:
 
+Developers and agent operators use this skill to route work across system commands, scripts, cached results, delegated agents, batch workers, and scheduled tasks to reduce token use and execution cost.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/nelohenriq/frugal-orchestrator) <br>
-- [Publisher profile](https://clawhub.ai/user/nelohenriq) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON route summaries and inline shell or Python snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce commands, manifests, metrics logs, cache entries, and delegation instructions depending on the workflow.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Manifest-controlled tasks can run shell commands and scripts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install in a sandbox or low-privilege account, review task manifests before execution, and use dry-run mode for new manifests.
+
+Risk: Delegation context, logs, cache entries, metrics, and scheduled tasks may persist task data.
+
+Mitigation: Avoid passing secrets or sensitive prompts until retention and redaction behavior is clear, and review generated logs, cache files, and scheduled tasks.
+
+Risk: Automation can create scheduled tasks and includes git commit and push behavior.
+
+Mitigation: Review scheduled task definitions and git automation before enabling recurring or repository-writing workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nelohenriq/skills/frugal-orchestrator)
+- [ClawHub publisher profile](https://clawhub.ai/user/nelohenriq)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown, JSON status objects, TOON metrics, shell commands, and Python configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update local cache, log, metric, and scheduled-task files during use.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

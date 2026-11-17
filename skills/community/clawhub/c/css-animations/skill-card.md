@@ -1,41 +1,51 @@
-## Description: <br>
-CSS animation adapter patterns for HyperFrames. Use when authoring CSS keyframes, animation-delay based timing, animation-fill-mode, animation-play-state, or CSS-only motion that HyperFrames must seek deterministically during preview and rendering. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides CSS animation adapter patterns for HyperFrames when authoring seekable keyframes, delays, fill modes, play states, and CSS-only motion for deterministic preview and rendering.
 
-## Publisher: <br>
-[lucas-kay8](https://clawhub.ai/user/lucas-kay8) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lucas-kay8](https://clawhub.ai/user/lucas-kay8)
 
-## Use Case: <br>
-Developers and engineers use this skill to author HyperFrames CSS keyframe animations that can be previewed and rendered deterministically. It helps choose CSS timing, fill mode, data attributes, and validation steps for simple decorative or one-element motion. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: CSS-only motion may fail deterministic rendering if it depends on infinite animations, wall-clock JavaScript, user-triggered state, or layout-changing properties. <br>
-Mitigation: Use finite durations and iteration counts, data timing attributes, animation-fill-mode: both, transform-based motion, and the documented HyperFrames validation commands. <br>
-Risk: The suggested validation commands run local project tooling and may depend on the user's installed HyperFrames environment. <br>
-Mitigation: Review the commands before running them and execute them only in a trusted project workspace. <br>
+## Use Case:
 
+Developers and engineers use this skill to write CSS keyframe animation patterns for HyperFrames that can be sought deterministically during preview and rendering.
 
-## Reference(s): <br>
-- [MDN CSS animation documentation](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/animation) <br>
-- [MDN animation-fill-mode](https://developer.mozilla.org/en-US/docs/Web/CSS/animation-fill-mode) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Shell commands] <br>
-**Output Format:** [Markdown with HTML, CSS, and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Validation commands may execute an unpinned HyperFrames CLI through npx.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a project-pinned HyperFrames dependency or an exact npx package version so the executed CLI is reviewed and reproducible.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lucas-kay8/skills/css-animations)
+- [MDN CSS animation documentation](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/animation)
+- [MDN animation-fill-mode](https://developer.mozilla.org/en-US/docs/Web/CSS/animation-fill-mode)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance]
+
+**Output Format:** [Markdown with HTML, CSS, and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

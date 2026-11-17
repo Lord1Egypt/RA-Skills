@@ -1,45 +1,58 @@
-## Description: <br>
-Bark helps an agent read Bark server information and send Bark notifications through an OOMOL-connected Bark account. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Bark (bark.day.app). Use this skill for ANY Bark request — reading, creating, and updating data. Whenever a task involves Bark, use this skill instead of calling the API directly.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-External users and developers use this skill to operate Bark from an agent, including inspecting server information and sending single-device, batch, or pre-encrypted push notifications after approval for write actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires an OOMOL-connected Bark account and sensitive credentials handled through the OOMOL connection. <br>
-Mitigation: Install only if you are comfortable using the connected Bark account and the disclosed credential flow. <br>
-Risk: Notification actions can send messages to Bark devices or explicit device keys. <br>
-Mitigation: Confirm the exact payload and intended recipients before any write action is executed. <br>
-Risk: The oo CLI installer may run shell or PowerShell commands during setup. <br>
-Mitigation: Review the installer command and install guide before running setup on a new machine. <br>
+## Use Case:
 
+People using an OOMOL-connected Bark account can use this skill to read server information and send notifications through the oo CLI. It guides the agent to inspect each action's input schema and seek confirmation before sending notifications that change state.
 
-## Reference(s): <br>
-- [ClawHub Bark skill page](https://clawhub.ai/oomol/oo-bark) <br>
-- [Bark homepage](https://bark.day.app) <br>
-- [OOMOL oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [oo CLI install guide](https://cli.oomol.com/install-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON payload examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses live connector schemas before constructing action payloads; write actions require user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence and skill frontmatter) <br>
+Risk: First-time setup can execute an unverified remote CLI installer.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and approve CLI installation separately, prefer a verified fixed release, and check whether setup installs or updates other agent skills.
+
+Risk: Bark requests are mediated through OOMOL and may contain notification content or use connected-account access.
+
+Mitigation: Consider the notification content and the connected-account access entrusted to OOMOL.
+
+## Reference(s):
+
+- [Bark skill release](https://clawhub.ai/oomol/skills/oo-bark)
+- [OOMOL publisher profile](https://clawhub.ai/user/oomol)
+- [Bark homepage](https://bark.day.app)
+- [Bark API documentation](https://github.com/Finb/bark-server/blob/master/docs/API_V2.md)
+- [oo CLI](https://github.com/oomol-lab/oo-cli)
+- [oo CLI installation guide](https://cli.oomol.com/install-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, API Calls, JSON, Guidance]
+
+**Output Format:** [oo CLI commands with JSON payloads and JSON responses, plus concise action guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an already installed and connected oo CLI; write actions require confirmation of the exact payload and effect.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

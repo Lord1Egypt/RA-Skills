@@ -1,0 +1,42 @@
+# ---- Build / packaging artefacts -------------------------------------------------
+workled.zip
+
+# ---- JavaScript package managers: all local caches / state files ----------------
+# node_modules is purely the output of `pnpm install / npm install` and can be
+# regenerated at any time; never commit it (it would be hundreds of MBs of
+# third-party binary blobs that differ per OS / Node ABI).
+node_modules/
+
+# pnpm writes a family of dotfile caches under the `.pnpm*` prefix on every
+# install/update run. None of these are source-controlled inputs:
+#   - .pnpm-workspace-state-v1.json – dependency graph snapshot of a workspace
+#     (pnpm 9+); machine-specific, path-encoded, stale after any dep change.
+#   - .pnpm-store                – content-addressable mirror of the store;
+#     absolute-path sensitive and OS/Node-ABI locked.
+#   - .pnpmfile-local.cjs / etc  – local-only overrides (users keep those
+#     private; never share them in a skill repo).
+# We explicitly RE-ALLOW the two source-controlled pnpm files so a future
+# maintainer can opt this skill into a monorepo workspace without editing
+# .gitignore again:
+.pnpm*
+!.pnpmfile.cjs
+!pnpm-workspace.yaml
+
+# ---- pnpm-lock.yaml -------------------------------------------------------------
+# This skill declares ZERO npm dependencies (see package.json: there are no
+# `dependencies` or `devDependencies` fields). A generated lockfile is
+# therefore only pnpm boilerplate (lockfileVersion + `importers: .: {}`), with
+# nothing to pin. Keeping the empty boilerplate misleads future maintainers
+# into thinking `pnpm install` is required here, so we keep it out of git.
+#
+# If the skill ever grows a real dependency (e.g. you add `@abandonware/noble`
+# for native GATT), delete the line below and re-commit the generated
+# pnpm-lock.yaml together with the new dependency list in package.json.
+pnpm-lock.yaml
+
+# ---- npm / yarn garbage (defence-in-depth, harmless if unused) ----------------
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.DS_Store
+Thumbs.db

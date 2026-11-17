@@ -1,7 +1,7 @@
 ---
 name: vhs-recording
 description: Generates terminal recordings using VHS tape scripts and produces GIF outputs
-version: 1.9.8
+version: 1.10.3
 triggers:
   - vhs
   - terminal
@@ -15,7 +15,7 @@ source: claude-night-market
 source_plugin: scry
 ---
 
-> **Night Market Skill** — ported from [claude-night-market/scry](https://github.com/athola/claude-night-market/tree/master/plugins/scry). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
+> **Night Market Skill**: ported from [claude-night-market/scry](https://github.com/athola/claude-night-market/tree/master/plugins/scry). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
 
 # VHS Recording Skill
@@ -37,7 +37,7 @@ Generate professional terminal recordings from VHS tape files.
 
 VHS converts declarative tape files into animated GIFs of terminal sessions. Tape files define commands, timing, and terminal appearance.
 
-## Required TodoWrite Items
+## Required Progress Items
 
 ```
 - Locate and validate tape file
@@ -99,9 +99,9 @@ VHS will:
 
 ## Exit Criteria
 
-- GIF file created at specified Output path
-- File size indicates successful recording (typically >50KB)
-- No error messages from VHS execution
+- [ ] GIF file created at specified Output path
+- [ ] File size indicates successful recording (typically >50KB)
+- [ ] No error messages from VHS execution
 ## Troubleshooting
 
 ### Common Issues

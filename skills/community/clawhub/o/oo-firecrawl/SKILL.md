@@ -5,7 +5,7 @@ allowed-tools: [Bash(oo *)]
 metadata:
   title: "Firecrawl"
   author: "OOMOL"
-  version: "1.0.1"
+  version: "1.0.8"
   services: ["firecrawl"]
   icon: "https://static.oomol.com/logo/third-party/Firecrawl.svg"
 ---
@@ -37,32 +37,32 @@ Each action is listed below with a one-line description; actions that change sta
 
 ## Available actions
 
-- `agent_cancel` — Cancel a running Firecrawl agent job by job ID. [write]
-- `batch_scrape` — Start a Firecrawl batch scrape job for multiple URLs and return the async job ID.
-- `batch_scrape_cancel` — Cancel a running Firecrawl batch scrape job by job ID. [write]
+- `agent_cancel` — Cancel a running Firecrawl agent job by job ID. [destructive]
+- `batch_scrape` — Start a Firecrawl batch scrape job for multiple URLs and return the async job ID. [write]
+- `batch_scrape_cancel` — Cancel a running Firecrawl batch scrape job by job ID. [destructive]
 - `batch_scrape_get` — Get the current status and paged results of a Firecrawl batch scrape job by job ID.
 - `batch_scrape_get_errors` — Get the failed URLs and robots.txt blocks from a Firecrawl batch scrape job.
-- `crawl` — Start a Firecrawl crawl job with compatibility fields accepted from the Composio crawl action.
-- `crawl_cancel` — Cancel a running Firecrawl crawl job by job ID. [write]
-- `crawl_delete` — Compatibility alias of crawl_cancel for the Composio FIRECRAWL_CRAWL_DELETE action. [destructive]
+- `crawl` — Start a Firecrawl crawl job with compatibility fields accepted from legacy crawl inputs. [write]
+- `crawl_cancel` — Cancel a running Firecrawl crawl job by job ID. [destructive]
+- `crawl_delete` — Compatibility alias of crawl_cancel for the FIRECRAWL_CRAWL_DELETE action name. [destructive]
 - `crawl_get` — Get the current status and paged results of a Firecrawl crawl job by job ID.
 - `crawl_get_errors` — Get the failed URLs and robots.txt blocks from a Firecrawl crawl job.
 - `crawl_list_active` — List the currently active Firecrawl crawl jobs for the authenticated team.
 - `crawl_params_preview` — Preview the crawl parameters that Firecrawl would infer from a URL and prompt before starting the crawl.
-- `crawl_v2` — Start a Firecrawl crawl job with the official v2 crawl fields, including prompt-driven options generation.
+- `crawl_v2` — Start a Firecrawl crawl job with the official v2 crawl fields, including prompt-driven options generation. [write]
 - `credit_usage_get` — Get the authenticated Firecrawl team's current credit usage summary.
 - `credit_usage_get_historical` — Get the authenticated Firecrawl team's historical credit usage summary.
-- `deep_research` — Start a Firecrawl deep research job. This endpoint remains alpha and Firecrawl currently documents it outside the main v2 endpoint set.
-- `extract` — Start a Firecrawl extract job that returns structured data for one or more URLs.
+- `deep_research` — Start a Firecrawl deep research job. This endpoint remains alpha and Firecrawl currently documents it outside the main v2 endpoint set. [write]
+- `extract` — Start a Firecrawl extract job that returns structured data for one or more URLs. [write]
 - `extract_get` — Get the current status and output of a Firecrawl extract job by job ID.
 - `get_agent_status` — Get the current status and output of a Firecrawl agent job by job ID.
 - `get_deep_research_status` — Get the current status and output of a Firecrawl deep research job by job ID.
-- `get_the_status_of_a_crawl_job` — Compatibility alias of crawl_get for the Composio FIRECRAWL_GET_THE_STATUS_OF_A_CRAWL_JOB action.
-- `llms_txt_generate` — Start an LLMs.txt generation job for a website. This endpoint remains outside the main v2 endpoint set in Firecrawl's docs.
+- `get_the_status_of_a_crawl_job` — Compatibility alias of crawl_get for the FIRECRAWL_GET_THE_STATUS_OF_A_CRAWL_JOB action name.
+- `llms_txt_generate` — Start an LLMs.txt generation job for a website. This endpoint remains outside the main v2 endpoint set in Firecrawl's docs. [write]
 - `llms_txt_get` — Get the current status and generated content of an LLMs.txt job by job ID.
-- `map_multiple_urls_based_on_options` — Discover URLs from a website with Firecrawl's map endpoint using the Composio-compatible action name.
+- `map_multiple_urls_based_on_options` — Discover URLs from a website with Firecrawl's map endpoint using a legacy action name.
 - `queue_get` — Get the authenticated Firecrawl team's queue status and concurrency information.
-- `scrape` — Scrape a single URL with Firecrawl and return the extracted page content in the requested formats.
+- `scrape` — Scrape a URL with Firecrawl or execute an enabled Alexandria provider tool and return the requested output formats.
 - `search` — Search the web with Firecrawl and optionally scrape the top results in the requested formats.
 - `start_agent` — Start a Firecrawl agent job for multi-page autonomous browsing and extraction. [write]
 - `token_usage_get` — Get the authenticated Firecrawl team's current token usage summary.
@@ -97,11 +97,14 @@ These are **one-time** steps — do not repeat them on every call. Run a step on
 - **`scope_missing` / `credential_expired` / `app_not_ready` / `app_not_found`** — Firecrawl is not connected, or the connection expired or lacks a scope. Connect once (auth type: API key) at:
 
   ```text
-  https://console.oomol.com/app-connections?provider=firecrawl
+  https://console.oomol.com/connections/firecrawl
   ```
 
-- **HTTP 402 / `OOMOL_INSUFFICIENT_CREDIT`** — billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+- **`OOMOL_INSUFFICIENT_CREDIT`** — OOMOL billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+
+- **HTTP 402 without `OOMOL_INSUFFICIENT_CREDIT`** — the third-party account itself has no active plan or credit. Report the provider error message as is; do not ask the user to recharge OOMOL.
 
 ## Resources
 
 - Firecrawl homepage: https://www.firecrawl.dev
+- API documentation: https://docs.firecrawl.dev/

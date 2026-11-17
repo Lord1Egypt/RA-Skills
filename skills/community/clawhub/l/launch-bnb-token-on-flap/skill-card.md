@@ -1,48 +1,66 @@
-## Description: <br>
-Launch a token on Flap BNB. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Launch a token on Flap BNB.
 
-## Publisher: <br>
-[flapguy](https://clawhub.ai/user/flapguy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[flapguy](https://clawhub.ai/user/flapguy)
 
-## Use Case: <br>
-Developers and token launch operators use this skill to collect token parameters, upload public token metadata, mine a vanity CREATE2 salt, and construct the BNB Chain transaction needed to launch a Flap token. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill constructs and submits BNB Chain transactions, so incorrect contract addresses, calldata, chain ID, value, or gas settings can cause loss of funds or unintended token launches. <br>
-Mitigation: Verify Flap contract addresses from official sources and review chainId, to, value, data, and gas in a trusted wallet before signing. <br>
-Risk: Wallet signing can expose private keys or signing authority if handled through ad hoc scripts or untrusted tooling. <br>
-Mitigation: Use a trusted wallet, hardware wallet, browser wallet, or MPC signer, and never paste private keys into temporary scripts or prompts. <br>
-Risk: Token images and metadata uploaded through the Flap upload API can become public on IPFS. <br>
-Mitigation: Only upload images and metadata that are safe to publish permanently. <br>
+## Use Case:
 
+Developers and token launch operators use this skill to configure, validate, and launch Flap Tax Token V3 tokens on BNB Chain. It guides quote-token selection, metadata upload, tax parameters, optional vault setup, vanity salt finding, transaction construction, and transaction broadcast.
 
-## Reference(s): <br>
-- [Flap Documentation](https://docs.flap.sh) <br>
-- [Preflight Checks](references/preflight.md) <br>
-- [Vault Factory Setup](references/vault-factory.md) <br>
-- [Token Metadata Upload](references/meta-upload.md) <br>
-- [Tax Token Parameters](references/tax-params.md) <br>
-- [Finding the Vanity Salt](references/salt-finding.md) <br>
-- [Construct the EVM Transaction](references/construct-tx.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with TypeScript and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Constructs transaction details for external wallet review and signing; metadata uploads return an IPFS CID.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release evidence) <br>
+Risk: The skill can guide irreversible BNB Chain token-launch transactions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the final transaction before signing, especially `to`, `chainId`, `quoteToken`, `quoteAmt`, `beneficiary`, `vaultFactory`, and `vaultData`.
+
+Risk: Custom or unverified vault factories can route revenue through contracts the user has not independently trusted.
+
+Mitigation: Prefer official vault factories; independently verify any custom factory address and its `vaultDataSchema()` before launch.
+
+Risk: Running a fresh unpinned npm install during a token launch can introduce dependency risk.
+
+Mitigation: Install dependencies from a pinned, trusted environment before constructing or signing launch transactions.
+
+## Reference(s):
+
+- [Flap Documentation](https://docs.flap.sh)
+- [Quote Token API](https://flap.sh/api/launch/quote-tokens)
+- [Flap Upload API](https://funcs.flap.sh/api/upload)
+- [Preflight Checks](references/preflight.md)
+- [Choosing a Quote Token](references/quote-tokens.md)
+- [Vault Factory Setup](references/vault-factory.md)
+- [Token Metadata Upload](references/meta-upload.md)
+- [Tax Token Parameters](references/tax-params.md)
+- [Finding the Vanity Salt](references/salt-finding.md)
+- [Construct the EVM Transaction](references/construct-tx.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with TypeScript code blocks, shell commands, transaction fields, and final token launch links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce EVM transaction envelope fields (`to`, `value`, `data`) and may guide metadata upload or transaction broadcast when prerequisites are met.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

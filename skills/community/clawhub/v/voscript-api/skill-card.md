@@ -1,47 +1,61 @@
-## Description: <br>
-VoScript API helps agents operate a self-hosted speech transcription service, including audio submission, job polling, result retrieval, subtitle export, voiceprint enrollment, speaker assignment, and AS-norm cohort rebuilds. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+VoScript API helps agents operate a self-hosted speech transcription service by submitting audio, tracking jobs, fetching transcripts, exporting SRT/TXT/JSON, and managing voiceprints.
 
-## Publisher: <br>
-[mapleeve](https://clawhub.ai/user/mapleeve) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mapleeve](https://clawhub.ai/user/mapleeve)
 
-## Use Case: <br>
-Developers and external users use this skill to connect an agent to a configured VoScript server for transcription workflows, subtitle or transcript export, and voiceprint-based speaker management. It is useful when audio processing and speaker identity data must remain on a self-hosted service. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uploads audio and manages voiceprints, which can include sensitive personal or meeting data. <br>
-Mitigation: Use only trusted VoScript servers, confirm data handling expectations before upload, and treat transcription results and voiceprint identifiers as sensitive. <br>
-Risk: The skill requires an API key for the configured VoScript service. <br>
-Mitigation: Prefer environment variables or request headers for the API key, avoid placing keys in URLs or shell history, and rotate the key if exposure is suspected. <br>
-Risk: Voiceprint management can modify or delete speaker records. <br>
-Mitigation: Confirm voiceprint IDs and intended actions before rename or delete operations, especially when multiple speakers have similar names. <br>
+## Use Case:
 
+Developers and operators use this skill to guide agents through VoScript transcription workflows, including audio upload, job polling, transcript retrieval, subtitle export, speaker assignment, voiceprint enrollment, and AS-norm cohort rebuilds.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/mapleeve/voscript-api) <br>
-- [Project Homepage](https://github.com/MapleEve/voscript-skills) <br>
-- [Configuration Guide](artifact/references/configuration.md) <br>
-- [Job Lifecycle](artifact/references/job-lifecycle.md) <br>
-- [Voiceprint Guide](artifact/references/voiceprint-guide.md) <br>
-- [Export Formats](artifact/references/export-formats.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, Python script invocations, API request examples, and transcript outputs in SRT, TXT, or JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a configured VoScript server URL and API key; generated outputs may include transcription text, speaker labels, voiceprint identifiers, and exported transcript files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.2 (source: server release evidence; artifact metadata lists 1.1.1) <br>
+Risk: The skill handles sensitive recordings, transcripts, API keys, and voiceprints.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with authorized recordings, confirm speaker consent before uploading audio or enrolling voiceprints, and keep transcripts and voiceprint data under the deployment's data handling controls.
+
+Risk: The skill supports non-local HTTP endpoints and command-line API key arguments, which can expose traffic or secrets if used carelessly.
+
+Mitigation: Prefer HTTPS for any non-local VoScript server and provide API keys through environment variables instead of shell history or process-visible command-line arguments.
+
+Risk: Voiceprint rename, delete, speaker assignment, and cohort rebuild operations can change persistent server data.
+
+Mitigation: Review target transcription IDs, segment IDs, and speaker IDs before mutation; require explicit confirmation for destructive actions such as voiceprint deletion.
+
+## Reference(s):
+
+- [VoScript configuration guide](references/configuration.md)
+- [VoScript job lifecycle](references/job-lifecycle.md)
+- [VoScript voiceprint and AS-norm guide](references/voiceprint-guide.md)
+- [VoScript export formats](references/export-formats.md)
+- [VoScript skills homepage](https://github.com/MapleEve/voscript-skills)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands, Python script invocations, REST API examples, and JSON/SRT/TXT output guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce or retrieve transcription artifacts such as JSON results, SRT subtitles, TXT transcripts, and server-side voiceprint records.]
+
+## Skill Version(s):
+
+1.1.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

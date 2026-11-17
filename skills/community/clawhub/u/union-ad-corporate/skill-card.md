@@ -1,43 +1,55 @@
-## Description: <br>
-UnionSkill enterprise blue advertising PPT skill for turning documents, notes, or text prompts into branded business presentation assets through outline confirmation, slide image generation, and PPTX assembly. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Union Ad Corporate helps agents create UnionSkill-branded corporate-blue presentation decks by analyzing source material, confirming an outline, generating full-slide images, and assembling a PPTX package.
 
-## Publisher: <br>
-[timo2026](https://clawhub.ai/user/timo2026) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[timo2026](https://clawhub.ai/user/timo2026)
 
-## Use Case: <br>
-External users, marketers, and business teams use this skill to create UnionSkill-branded corporate blue presentations for B2B proposals, annual reports, roadshows, trade shows, and customer pitches. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated slides may include incorrect text, unreadable Chinese headings, or unwanted visual artifacts from the image generation step. <br>
-Mitigation: Confirm the outline before generation and perform the documented QA checks for slide count, blank pages, readable Chinese titles, and brand watermark placement before delivery. <br>
-Risk: The security review summary is clean, but the provided security guidance calls for careful confirmation before sensitive maintainer-style workflows. <br>
-Mitigation: Confirm the target, reason, dry-run output, backup status, and apply gate before using any workflow that can affect an operational environment. <br>
+## Use Case:
 
+External users and developers use this skill to create UnionSkill-branded business presentations for B2B proposals, annual reports, roadshows, exhibitions, and customer pitches. The workflow requires outline confirmation before slide image generation and PPTX assembly.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/timo2026/union-ad-corporate) <br>
-- [Publisher profile](https://clawhub.ai/user/timo2026) <br>
-- [README.md](README.md) <br>
-- [Enterprise business style guide](references/style_guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, text, markdown] <br>
-**Output Format:** [Markdown guidance with bash commands, file paths, and delivery notes for PPTX, image ZIP, text, and optional HTML outputs.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user confirmation of the slide outline before image generation; generated slide images are assembled into a UnionSkill-branded PPTX with watermark, closing page, and metadata.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated deliverables automatically include UnionSkill branding, watermarking, presentation metadata, and a cooperation file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and use the skill only for intended UnionSkill-branded presentation work, and review generated decks before sharing.
+
+Risk: The PPTX assembly path depends on a sibling ppt-generator assembler outside this skill package.
+
+Mitigation: Run the assembler only when the sibling dependency is trusted and protected from local tampering.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/timo2026/skills/union-ad-corporate)
+- [Enterprise business style guide](references/style_guide.md)
+- [UnionSkill website](https://www.unionskillai.com)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Files]
+
+**Output Format:** [Markdown guidance with inline shell commands, plus generated PPTX, PNG ZIP, text, and optional HTML files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user outline confirmation before image generation; generated decks include UnionSkill branding, watermarking, metadata, and a cooperation file.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

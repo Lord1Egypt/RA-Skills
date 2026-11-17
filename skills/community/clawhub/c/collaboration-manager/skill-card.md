@@ -1,44 +1,61 @@
-## Description: <br>
-Coordinates multi-agent Feishu group chats with mention-priority routing, task assignment, and relevance-based response rules. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A multi-agent collaboration manager for Feishu group chats that routes responses by mentions, keywords, task assignment, and pause/resume controls.
 
-## Publisher: <br>
-[Tazio7](https://clawhub.ai/user/Tazio7) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tazio7](https://clawhub.ai/user/tazio7)
 
-## Use Case: <br>
-Developers and teams use this skill to coordinate several agents in a Feishu group chat, route messages by @ mention or keywords, assign collaborative subtasks, and reduce duplicate agent responses. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill broadly changes when agents respond in group chat and may override local group-chat rules. <br>
-Mitigation: Review local chat policies before installation and allow the skill to override response rules only in approved groups. <br>
-Risk: The release contains environment-specific Feishu chat and user identifiers, and the sample configuration gives multiple agents the same identity. <br>
-Mitigation: Replace Feishu IDs with private configuration and give each agent a distinct identity before use. <br>
-Risk: Keyword-based routing can trigger ambiguous or unnecessary agent responses. <br>
-Mitigation: Narrow keyword triggers or require explicit @ mentions for sensitive or high-traffic chats. <br>
+## Use Case:
 
+Developers and workspace admins use this skill to coordinate multiple agents in Feishu group chats, routing work to named agents or keyword-matched roles while reducing duplicate replies.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/Tazio7/collaboration-manager) <br>
-- [Skill Instructions](artifact/SKILL.md) <br>
-- [Configuration](artifact/config.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, configuration, markdown, shell commands] <br>
-**Output Format:** [Markdown instructions with JSON configuration and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes Feishu group-chat routing rules, agent role guidance, task-status message templates, and troubleshooting commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill text claims its group-chat routing rules take priority over AGENTS.md, which can confuse instruction hierarchy in shared workspaces.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Make the routing guidance explicitly subordinate to system, developer, workspace, authorization, and safety rules before shared use.
+
+Risk: Broad keyword-based auto-routing can trigger agents that were not explicitly requested.
+
+Mitigation: Narrow keyword triggers, cap automatic responders, or require explicit mentions for sensitive or high-noise channels.
+
+Risk: Workspace task-state storage is described without access, retention, or deletion details.
+
+Mitigation: Document what state is stored, who can access it, where it is kept, and how it can be deleted.
+
+Risk: The included configuration assigns the same Feishu openId to multiple agents, which can prevent accurate mention targeting.
+
+Mitigation: Configure distinct agent openIds or a reliable sender/application identifier mapping before operational deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tazio7/skills/collaboration-manager)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with JSON examples, Feishu card payloads, and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes mention-priority routing, keyword matching, task coordination, and pause/resume controls.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and release changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

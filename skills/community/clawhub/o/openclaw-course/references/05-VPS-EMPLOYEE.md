@@ -421,9 +421,9 @@ http {
 
 ```bash
 # Copy to .env and fill in your values
-ANTHROPIC_API_KEY=sk-ant-api03-xxxxxxxxxxxxxxxx
-OPENAI_API_KEY=sk-xxxxxxxxxxxxxxxxxxxxxxxx
-OPENROUTER_API_KEY=sk-or-v1-xxxxxxxxxxxxxxxx
+ANTHROPIC_API_KEY=REDACTED-SECRET
+OPENAI_API_KEY=REDACTED-SECRET
+OPENROUTER_API_KEY=REDACTED-SECRET
 GATEWAY_PASSWORD=$(openssl rand -base64 32)
 ```
 

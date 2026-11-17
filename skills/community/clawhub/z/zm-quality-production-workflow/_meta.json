@@ -1,6 +1,9 @@
 {
-  "ownerId": "kn716ewtc7z7a76wre4bsckgas8398j1",
+  "ownerId": "local-zhumeng-openclaw",
   "slug": "zm-quality-production-workflow",
+  "displayName": "ZM 高质量产出流程",
   "version": "0.1.0",
-  "publishedAt": 1782235823856
+  "status": "local",
+  "createdAt": "2026-06-23",
+  "description": "适用于课程、PPT/HTML Deck、漫画/手册、公众号文章、行业方案等正式产出的标准流程：标准化输入、依赖检查、样章门禁、专业生产、双 Agent 审核、返工循环、main 终审、交付包归档。"
 }

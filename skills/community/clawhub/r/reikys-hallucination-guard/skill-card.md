@@ -1,45 +1,59 @@
-## Description: <br>
-Execution-based verification guardrail with 14 check items for AI agent output <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Execution-based verification guardrail with 14 check items for AI agent output.
 
-## Publisher: <br>
-[reikys](https://clawhub.ai/user/reikys) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[reikys](https://clawhub.ai/user/reikys)
 
-## Use Case: <br>
-Developers and agents use this skill to run a structured hallucination check on generated work, including file paths, commands, code syntax, completeness, consistency, dependencies, URLs, and source-backed claims. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad local verification commands can inspect more files than intended when the target or scope is unclear. <br>
-Mitigation: Run the skill manually with an explicit target path and scope before allowing any check to execute. <br>
-Risk: Network checks can contact external URLs or internal endpoints from the user's environment. <br>
-Mitigation: Review URLs first and require approval before running network checks. <br>
-Risk: The auto-run prompt asks the agent to fix failed items, which could lead to unintended file changes. <br>
-Mitigation: Avoid global auto-run use and require human review before applying fixes. <br>
+## Use Case:
 
+Developers and agents use this skill to verify agent outputs against concrete checks for file paths, commands, syntax, URLs, package references, completeness, consistency, and overconfident claims before final reporting.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/reikys/reikys-hallucination-guard) <br>
-- [Python ast module documentation](https://docs.python.org/3/library/ast.html) <br>
-- [npm registry API](https://registry.npmjs.org/) <br>
-- [PyPI JSON API](https://pypi.org/pypi/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown PASS/FAIL report with command snippets and optional JSON summary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can include local and network verification commands; target and scope should be explicit.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact frontmatter reports 1.0.0) <br>
+Risk: The skill may run shell commands, URL checks, and package registry lookups during verification.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use explicit target paths, prefer read-only or dry-run operation, and review commands before execution in sensitive workspaces.
+
+Risk: The skill can guide agents to modify files while fixing failed verification checks.
+
+Mitigation: Require approval before applying fixes and review resulting file changes before deployment.
+
+Risk: Custom command checks from untrusted repositories could expand what the agent executes.
+
+Mitigation: Disable arbitrary custom command checks from untrusted repositories.
+
+## Reference(s):
+
+- [Python ast module documentation](https://docs.python.org/3/library/ast.html)
+- [npm registry API](https://registry.npmjs.org/<package-name>)
+- [PyPI JSON API](https://pypi.org/pypi/<package-name>/json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown PASS/FAIL report with shell command snippets and optional JSON summary.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports full, quick, scoped, brief, and JSON-style report modes.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

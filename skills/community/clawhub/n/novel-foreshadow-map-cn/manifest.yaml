@@ -1,0 +1,24 @@
+name: novel-foreshadow-map-cn
+slug: novel-foreshadow-map-cn
+display_name: 伏笔回收清单
+description: 输入单次章节、场景摘要或短段落，梳理其中可验证的伏笔、首次埋点、已兑现与待兑现状态，并给出建议回收位置表。适用于修订前连续性核查与伏笔追踪；材料不足时明确列出缺项，不臆测整本剧情。单次最多处理100行，超量须分批提供。
+version: 1.0.1
+repository: https://github.com/xxjrq/novel-foreshadow-map-cn
+license: MIT-0
+tags:
+  - 小说创作
+  - 伏笔追踪
+  - 连续性修订
+  - 章节分析
+trigger_words:
+  - 伏笔回收
+  - 伏笔清单
+  - 章节伏笔
+  - 待兑现线索
+interface:
+  display_name: 伏笔回收清单
+  short_description: 从章节材料提取伏笔并追踪埋点、兑现状态与建议回收位置
+  default_prompt: 请粘贴一个章节摘要、场景梗概或短段落；我会只依据这份材料整理伏笔回收清单，缺少上下文会明确列出。
+  icon: assets/icon-512.png
+  promo_image: assets/promo-1600x900.png
+self_test: bash scripts/self-test.sh

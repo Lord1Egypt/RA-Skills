@@ -1,40 +1,53 @@
-## Description: <br>
-Dynamic attachment injection helps agents add changing context without modifying the system prompt. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides guidance for injecting dynamic skill, agent, and memory context as attachment-style content instead of modifying the system prompt.
 
-## Publisher: <br>
-[wangxiaofei860208-source](https://clawhub.ai/user/wangxiaofei860208-source) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangxiaofei860208-source](https://clawhub.ai/user/wangxiaofei860208-source)
 
-## Use Case: <br>
-Developers and agent builders use this skill to keep dynamic lists such as skills, agents, and memory summaries out of the system prompt while still making them available when needed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may read local agent and skill markdown files, which can include private workflows or sensitive notes. <br>
-Mitigation: Use it only in repositories where that local context is appropriate to inspect. <br>
-Risk: Generated registry or AGENTS.md changes could affect future agent behavior. <br>
-Mitigation: Review generated registry and prompt-context changes before relying on them. <br>
+## Use Case:
 
+Developers and agent maintainers use this skill to reduce repeated prompt content by keeping lightweight registries and loading full skill or agent definitions only when needed.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wangxiaofei860208-source/lobster-attachment-inject) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline shell command examples and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces registry and prompt-context guidance; no hidden code execution or data export was found in the release security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill can guide an agent to read additional agent and skill definitions, which may introduce unwanted context if loaded without confirmation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use explicit routing or confirmation before loading additional agents or skills.
+
+Risk: Registry or AGENTS.md injection content may be updated outside the intended files.
+
+Mitigation: Scope write access to the intended registry and configuration files before use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/wangxiaofei860208-source/skills/lobster-attachment-inject)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with inline shell command examples and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable files are bundled in the artifact.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

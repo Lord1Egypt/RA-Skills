@@ -1,0 +1,11 @@
+interface:
+  display_name: "Use Mermail CLI"
+  short_description: "Run Mermail terminal commands and scripts safely"
+  default_prompt: "Use $mermail-cli when this Mermail task needs shell commands, scripts, CI steps, or deterministic JSON output instead of direct MCP chat actions."
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "mermail"
+      description: "Optional Mermail MCP fallback for direct tool calling"
+      transport: "streamable_http"
+      url: "https://console.mermail.app/mcp"

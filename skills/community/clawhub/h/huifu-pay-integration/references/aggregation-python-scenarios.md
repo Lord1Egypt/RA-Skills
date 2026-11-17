@@ -16,7 +16,7 @@
 
 ## 公共前提
 
-- 已按 `references/aggregation-python-adapter.md` 安装并验证 `dg-sdk==2.0.22`
+- 已按 `references/aggregation-python-adapter.md` 安装并验证 `dg-sdk==2.0.28`
 - 已调用 `init_huifu_sdk()`
 - 每个 request 对象的 `huifu_id` 必须等于本次真实请求商户号，SDK 会据此生成 `jpt-x-skill-huifu_id`
 - 原交易字段必须来自业务订单表或上游响应

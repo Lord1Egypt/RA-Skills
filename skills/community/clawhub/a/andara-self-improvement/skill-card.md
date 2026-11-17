@@ -1,45 +1,61 @@
-## Description: <br>
-Captures learnings, errors, and corrections to enable continuous improvement. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Captures learnings, errors, and corrections to enable continuous improvement for coding agents.
 
-## Publisher: <br>
-[atiati82](https://clawhub.ai/user/atiati82) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[atiati82](https://clawhub.ai/user/atiati82)
 
-## Use Case: <br>
-Developers and coding-agent users use this skill to capture command failures, user corrections, missing capabilities, outdated assumptions, and reusable improvements as structured markdown records. The records can later be reviewed and promoted into project or agent memory files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent self-improvement records can capture sensitive conversation details, command output, secrets, tokens, or environment information. <br>
-Mitigation: Keep hooks project-scoped where possible, review hook scripts before enabling them, and do not store secrets, tokens, private transcripts, raw command output, or sensitive environment details in learning files. <br>
-Risk: Unreviewed learnings promoted into agent memory can influence future behavior with incorrect or overly broad guidance. <br>
-Mitigation: Require manual review before writing to .learnings or promoting entries into AGENTS.md, CLAUDE.md, SOUL.md, TOOLS.md, or Copilot instructions. <br>
+## Use Case:
 
+Developers and agent operators use this skill to capture corrections, command failures, knowledge gaps, feature requests, and reusable best practices as persistent markdown records. The skill also guides when to promote high-value learnings into agent instruction or workspace memory files.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/atiati82/andara-self-improvement) <br>
-- [Publisher Profile](https://clawhub.ai/user/atiati82) <br>
-- [OpenClaw Integration](references/openclaw-integration.md) <br>
-- [Hook Setup Guide](references/hooks-setup.md) <br>
-- [Entry Examples](references/examples.md) <br>
-- [Agent Skills Specification](https://agentskills.io/specification) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with structured entry templates and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces persistent learning, error, and feature-request records when the agent follows the documented workflow.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Persistent learning records can capture sensitive conversation details, credentials, private URLs, raw transcripts, or environment data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep `.learnings/` local or explicitly reviewed before committing, redact sensitive data, and avoid logging tokens, credentials, private URLs, raw transcripts, or full environment dumps.
+
+Risk: Unreviewed promotion into future agent instruction files can preserve incorrect, misleading, or unwanted behavioral guidance.
+
+Mitigation: Require a human diff review before adding promoted content to `CLAUDE.md`, `AGENTS.md`, Copilot instructions, `SOUL.md`, or `TOOLS.md`.
+
+Risk: Always-on or global hooks can broaden the reminder behavior beyond the intended project scope.
+
+Mitigation: Prefer project-scoped hooks with narrow matchers, avoid global hooks unless the scripts are trusted and audited, and periodically clean old learning records.
+
+## Reference(s):
+
+- [OpenClaw Integration](references/openclaw-integration.md)
+- [Hook Setup Guide](references/hooks-setup.md)
+- [Entry Examples](references/examples.md)
+- [Agent Skills Specification](https://agentskills.io/specification)
+- [ClawHub Skill Page](https://clawhub.ai/atiati82/skills/andara-self-improvement)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, hook configuration examples, and markdown record templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update local learning logs and propose promoted guidance for agent memory files when a user or agent follows the workflow.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

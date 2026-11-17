@@ -107,7 +107,7 @@ After:  mongodb://{user}:{pass}@{host}:{port}/{database}
 **Sanitize cloud-specific information:**
 
 - AWS Account IDs → `123456789012` (example)
-- AWS Access Keys → `AKIAIOSFODNN7EXAMPLE`
+- AWS Access Keys → `REDACTED-SECRET`
 - GCP Project IDs → `my-project-12345`
 - Azure Subscription IDs → `{subscription-id}`
 - Docker image names with private registry → `registry.example.com/image`

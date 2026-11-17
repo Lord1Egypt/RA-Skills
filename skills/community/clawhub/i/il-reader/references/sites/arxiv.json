@@ -1,0 +1,527 @@
+{
+  "version": "2.4.0",
+  "source_id": "arxiv",
+  "status": "entry_observed",
+  "checked_at": "2026-10-09T08:59:25.476Z",
+  "entry": {
+    "url": "https://arxiv.org/",
+    "final_url": "https://arxiv.org/",
+    "title": "arXiv.org e-Print archive",
+    "status": "accessible",
+    "http_status": 200,
+    "checked_at": "2026-10-09T08:59:25.476Z",
+    "identity": {
+      "declared_name": "arXiv",
+      "hostname": "arxiv.org",
+      "domain_matches": true
+    },
+    "links": [
+      {
+        "text": "Search",
+        "href": "https://arxiv.org/search",
+        "target": ""
+      },
+      {
+        "text": "search",
+        "href": "https://arxiv.org/search/astro-ph",
+        "target": ""
+      },
+      {
+        "text": "search",
+        "href": "https://arxiv.org/search/cond-mat",
+        "target": ""
+      },
+      {
+        "text": "search",
+        "href": "https://arxiv.org/search/gr-qc",
+        "target": ""
+      },
+      {
+        "text": "search",
+        "href": "https://arxiv.org/search/hep-ex",
+        "target": ""
+      },
+      {
+        "text": "search",
+        "href": "https://arxiv.org/search/hep-lat",
+        "target": ""
+      },
+      {
+        "text": "search",
+        "href": "https://arxiv.org/search/hep-ph",
+        "target": ""
+      },
+      {
+        "text": "search",
+        "href": "https://arxiv.org/search/hep-th",
+        "target": ""
+      },
+      {
+        "text": "search",
+        "href": "https://arxiv.org/search/math-ph",
+        "target": ""
+      },
+      {
+        "text": "search",
+        "href": "https://arxiv.org/search/nlin",
+        "target": ""
+      },
+      {
+        "text": "search",
+        "href": "https://arxiv.org/search/nucl-ex",
+        "target": ""
+      },
+      {
+        "text": "search",
+        "href": "https://arxiv.org/search/nucl-th",
+        "target": ""
+      },
+      {
+        "text": "search",
+        "href": "https://arxiv.org/search/physics",
+        "target": ""
+      },
+      {
+        "text": "search",
+        "href": "https://arxiv.org/search/quant-ph",
+        "target": ""
+      },
+      {
+        "text": "search",
+        "href": "https://arxiv.org/search/math",
+        "target": ""
+      },
+      {
+        "text": "Computing Research Repository",
+        "href": "https://info.arxiv.org/help/cs/index.html",
+        "target": ""
+      },
+      {
+        "text": "search",
+        "href": "https://arxiv.org/search/cs",
+        "target": ""
+      },
+      {
+        "text": "search",
+        "href": "https://arxiv.org/search/q-bio",
+        "target": ""
+      },
+      {
+        "text": "search",
+        "href": "https://arxiv.org/search/q-fin",
+        "target": ""
+      },
+      {
+        "text": "search",
+        "href": "https://arxiv.org/search/stat",
+        "target": ""
+      },
+      {
+        "text": "search",
+        "href": "https://arxiv.org/search/eess",
+        "target": ""
+      },
+      {
+        "text": "search",
+        "href": "https://arxiv.org/search/econ",
+        "target": ""
+      },
+      {
+        "text": "Help",
+        "href": "https://info.arxiv.org/help",
+        "target": ""
+      }
+    ],
+    "frames": []
+  },
+  "controls": [
+    {
+      "tag": "select",
+      "type": null,
+      "text": "Subject search and browse:",
+      "label": "Subject search and browse:",
+      "aria_label": null,
+      "placeholder": null,
+      "name": "group",
+      "id": "search-category",
+      "css": "#search-category",
+      "role": null,
+      "form_action": "https://arxiv.org/multi",
+      "locator": {
+        "css": "#search-category"
+      },
+      "observed_url": "https://arxiv.org/",
+      "observed_at": "2026-10-09T08:59:25.435Z"
+    },
+    {
+      "tag": "input",
+      "type": "button",
+      "text": "Search",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "adv-search-btn",
+      "css": "#adv-search-btn",
+      "role": null,
+      "form_action": "https://arxiv.org/multi",
+      "locator": {
+        "css": "#adv-search-btn"
+      },
+      "observed_url": "https://arxiv.org/",
+      "observed_at": "2026-10-09T08:59:25.435Z"
+    },
+    {
+      "tag": "input",
+      "type": "submit",
+      "text": "Form Interface",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": "/form",
+      "id": "",
+      "css": "input[name=\"/form\"]",
+      "role": null,
+      "form_action": "https://arxiv.org/multi",
+      "locator": {
+        "css": "input[name=\"/form\"]"
+      },
+      "observed_url": "https://arxiv.org/",
+      "observed_at": "2026-10-09T08:59:25.435Z"
+    },
+    {
+      "tag": "input",
+      "type": "submit",
+      "text": "Catchup",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": "/catchup",
+      "id": "catchup-btn",
+      "css": "#catchup-btn",
+      "role": null,
+      "form_action": "https://arxiv.org/multi",
+      "locator": {
+        "css": "#catchup-btn"
+      },
+      "observed_url": "https://arxiv.org/",
+      "observed_at": "2026-10-09T08:59:25.435Z"
+    }
+  ],
+  "recipes": [
+    {
+      "id": "arxiv:pdf-inspection",
+      "source_id": "arxiv",
+      "task_kind": "pdf-inspection",
+      "status": "entry_observed",
+      "parameters": [
+        "document_title_or_identifier",
+        "edition_or_language",
+        "body_page_or_pdf_page",
+        "target_section"
+      ],
+      "instructions": [
+        "使用本题书名、标识符、语言和版次定位记录，确认正文页码与PDF物理页码的偏移后读取目标页；只在页面/全文确实可读时取证。"
+      ],
+      "transitions": {},
+      "entry_url": "https://arxiv.org/",
+      "controls": [
+        {
+          "tag": "select",
+          "type": null,
+          "text": "Subject search and browse:",
+          "label": "Subject search and browse:",
+          "aria_label": null,
+          "placeholder": null,
+          "name": "group",
+          "id": "search-category",
+          "css": "#search-category",
+          "role": null,
+          "form_action": "https://arxiv.org/multi",
+          "locator": {
+            "css": "#search-category"
+          },
+          "observed_url": "https://arxiv.org/",
+          "observed_at": "2026-10-09T08:59:25.435Z"
+        },
+        {
+          "tag": "input",
+          "type": "button",
+          "text": "Search",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "adv-search-btn",
+          "css": "#adv-search-btn",
+          "role": null,
+          "form_action": "https://arxiv.org/multi",
+          "locator": {
+            "css": "#adv-search-btn"
+          },
+          "observed_url": "https://arxiv.org/",
+          "observed_at": "2026-10-09T08:59:25.435Z"
+        },
+        {
+          "tag": "input",
+          "type": "submit",
+          "text": "Form Interface",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": "/form",
+          "id": "",
+          "css": "input[name=\"/form\"]",
+          "role": null,
+          "form_action": "https://arxiv.org/multi",
+          "locator": {
+            "css": "input[name=\"/form\"]"
+          },
+          "observed_url": "https://arxiv.org/",
+          "observed_at": "2026-10-09T08:59:25.435Z"
+        },
+        {
+          "tag": "input",
+          "type": "submit",
+          "text": "Catchup",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": "/catchup",
+          "id": "catchup-btn",
+          "css": "#catchup-btn",
+          "role": null,
+          "form_action": "https://arxiv.org/multi",
+          "locator": {
+            "css": "#catchup-btn"
+          },
+          "observed_url": "https://arxiv.org/",
+          "observed_at": "2026-10-09T08:59:25.435Z"
+        }
+      ],
+      "pending": [
+        "结果容器、完成标志与页面打开方式仍需真实查询确认"
+      ],
+      "result_items": {
+        "status": "pending",
+        "locator": null,
+        "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+      },
+      "record_identity": {
+        "status": "pending",
+        "fields": []
+      },
+      "detail_fields": {
+        "status": "pending",
+        "fields": []
+      },
+      "completion": {
+        "status": "pending",
+        "ready": null,
+        "empty": null,
+        "loading": null,
+        "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+      }
+    },
+    {
+      "id": "arxiv:record-lookup",
+      "source_id": "arxiv",
+      "task_kind": "record-lookup",
+      "status": "entry_observed",
+      "parameters": [
+        "title_or_identifier",
+        "author",
+        "institution",
+        "date_or_year",
+        "resource_type",
+        "target_field"
+      ],
+      "instructions": [
+        "先按retrieval_channels选择覆盖本题缺口的官方API/指南；原status只描述浏览器。指南不能支持当前数量或排名，受阻渠道不重复预检；需要界面时再执行下列浏览器步骤。",
+        "使用本题实体或唯一标识查找；在真实结果容器内匹配题名、作者、机构、年份或ID，打开详情读取目标字段。"
+      ],
+      "transitions": {},
+      "entry_url": "https://arxiv.org/",
+      "controls": [
+        {
+          "tag": "select",
+          "type": null,
+          "text": "Subject search and browse:",
+          "label": "Subject search and browse:",
+          "aria_label": null,
+          "placeholder": null,
+          "name": "group",
+          "id": "search-category",
+          "css": "#search-category",
+          "role": null,
+          "form_action": "https://arxiv.org/multi",
+          "locator": {
+            "css": "#search-category"
+          },
+          "observed_url": "https://arxiv.org/",
+          "observed_at": "2026-10-09T08:59:25.435Z"
+        },
+        {
+          "tag": "input",
+          "type": "button",
+          "text": "Search",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "adv-search-btn",
+          "css": "#adv-search-btn",
+          "role": null,
+          "form_action": "https://arxiv.org/multi",
+          "locator": {
+            "css": "#adv-search-btn"
+          },
+          "observed_url": "https://arxiv.org/",
+          "observed_at": "2026-10-09T08:59:25.435Z"
+        },
+        {
+          "tag": "input",
+          "type": "submit",
+          "text": "Form Interface",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": "/form",
+          "id": "",
+          "css": "input[name=\"/form\"]",
+          "role": null,
+          "form_action": "https://arxiv.org/multi",
+          "locator": {
+            "css": "input[name=\"/form\"]"
+          },
+          "observed_url": "https://arxiv.org/",
+          "observed_at": "2026-10-09T08:59:25.435Z"
+        },
+        {
+          "tag": "input",
+          "type": "submit",
+          "text": "Catchup",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": "/catchup",
+          "id": "catchup-btn",
+          "css": "#catchup-btn",
+          "role": null,
+          "form_action": "https://arxiv.org/multi",
+          "locator": {
+            "css": "#catchup-btn"
+          },
+          "observed_url": "https://arxiv.org/",
+          "observed_at": "2026-10-09T08:59:25.435Z"
+        }
+      ],
+      "pending": [
+        "结果容器、完成标志与页面打开方式仍需真实查询确认"
+      ],
+      "result_items": {
+        "status": "pending",
+        "locator": null,
+        "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+      },
+      "record_identity": {
+        "status": "pending",
+        "fields": []
+      },
+      "detail_fields": {
+        "status": "pending",
+        "fields": []
+      },
+      "completion": {
+        "status": "pending",
+        "ready": null,
+        "empty": null,
+        "loading": null,
+        "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+      },
+      "status_scope": "browser",
+      "retrieval_channels": [
+        {
+          "id": "arxiv-public-record",
+          "kind": "official-api",
+          "method": "GET",
+          "url_template": "https://export.arxiv.org/api/query?id_list={id}&max_results=1",
+          "response_format": "Atom/XML",
+          "documentation": [
+            "https://info.arxiv.org/help/api/index.html",
+            "https://info.arxiv.org/help/api/user-manual.html"
+          ],
+          "use_when": "按题指定arXiv ID/版本，所问为元数据；不能用API代替PDF页数或全文参考文献。",
+          "verification": {
+            "status": "blocked",
+            "checked_at": "2026-10-10T03:26:27.068385+00:00",
+            "http_status": 429,
+            "reason": "Rate exceeded.",
+            "attempts": 1
+          },
+          "field_paths": [
+            "entry/id",
+            "entry/title",
+            "entry/published",
+            "entry/updated",
+            "entry/author/name",
+            "entry/author/arxiv:affiliation",
+            "entry/arxiv:doi"
+          ],
+          "constraints": [
+            "检查Atom错误entry及真实记录ID；published为首提交日期，updated为该版本日期。",
+            "单位及DOI可能缺失，缺失不是不存在。"
+          ],
+          "limits": {
+            "minimum_seconds_between_requests": 3,
+            "policy": "429按响应/官方冷却，不立即重复请求。"
+          },
+          "fallback": "使用可读的官方abs记录或正确版本全文；保留本轮限流状态。"
+        }
+      ]
+    }
+  ],
+  "blockers": [],
+  "provenance": {
+    "catalog_source_id": "arxiv",
+    "quiz_entries": [
+      "quiz-entry-098"
+    ],
+    "example_ids": [
+      "2025-M24-Q1",
+      "2026-M24-Q1",
+      "PT1-Q7"
+    ],
+    "method": "参数化操作学习；不分发整题、答案或解析",
+    "audit": {
+      "checked_at": "2026-10-09T08:59:25.476Z",
+      "browser": "Google Chrome",
+      "api": "Playwright JavaScript library",
+      "snapshot": "validation/site-audit-v24/arxiv-entry.json",
+      "original_entry_snapshot": "validation/site-audit-v24/arxiv-entry.json",
+      "identity_limit": "匹配来源域名不等于核验所有内容；查询未执行时不得声称检索验证完成。",
+      "published_url_policy": "动态验证码、登录回跳和会话令牌不固化为流程入口；原始现场快照仅在validation留存。"
+    }
+  },
+  "result_items": {
+    "status": "pending",
+    "locator": null,
+    "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+  },
+  "record_identity": {
+    "status": "pending",
+    "fields": []
+  },
+  "detail_fields": {
+    "status": "pending",
+    "fields": []
+  },
+  "completion": {
+    "status": "pending",
+    "ready": null,
+    "empty": null,
+    "loading": null,
+    "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+  },
+  "status_scope": "browser"
+}

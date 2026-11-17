@@ -1,37 +1,51 @@
-## Description: <br>
-AI Safety Guard is a lightweight OpenClaw privacy guard that evaluates external data transmissions and decides whether to send, anonymize, cancel, or block them. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI Safety Guard is an OpenClaw privacy guard that evaluates external data transmissions and decides whether to execute, anonymize, cancel, or block them while notifying the user.
 
-## Publisher: <br>
-[andreqingyuwu](https://clawhub.ai/user/andreqingyuwu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[andreqingyuwu](https://clawhub.ai/user/andreqingyuwu)
 
-## Use Case: <br>
-External users and agent operators use this skill to add a passive privacy review before an agent sends user data to external destinations such as APIs, email, uploads, posts, webhooks, or clipboard actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The instruction-only guard may allow passwords, medical data, or local secrets to be sent externally with too little protection. <br>
-Mitigation: Review carefully before installing; tighten the policy to forbid plaintext credential sharing, narrowly scope local secret access, and require explicit verification for sensitive external disclosures. <br>
+## Use Case:
 
+External users and agent developers use this skill to reduce accidental exposure of personal data, credentials, and sensitive records during external transmissions from OpenClaw workflows.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Text] <br>
-**Output Format:** [Natural-language decision guidance and brief user notifications] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May result in full transmission, anonymized transmission, cancellation, or phishing block.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: server release metadata) <br>
+Risk: Release security evidence says the skill may guide an agent to silently send raw passwords or sensitive records and use local credential files without explicit per-action approval.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review carefully before installing; revise deployment policy to prohibit raw credential transmission, require explicit confirmation and secure channels for sensitive data, and scope credential-source use to a specific user-authorized task.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/andreqingyuwu/skills/ai-safety-guard)
+- [Publisher profile](https://clawhub.ai/user/andreqingyuwu)
+- [Source skill definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, text]
+
+**Output Format:** [Plain text or Markdown notifications and policy decisions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce brief user notifications, anonymized values, cancellation notices, or phishing warnings.]
+
+## Skill Version(s):
+
+1.0.6 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

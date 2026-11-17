@@ -1,0 +1,33 @@
+<!-- ══════════════════════════════════════════════════════════════
+  片段:循环图(SVG 环形箭头 + 中心命题圆 + 4 卫星卡)—— 原型 27
+  参数:
+    {{RING_COLOR}}   环与箭头颜色(单色:炭灰 var(--ink-soft) 或主色)
+    {{HUB_BG}}       中心圆底色(深)        {{HUB_TEXT}}  中心命题(≤8 字)
+    {{N_TITLE}}/{{N_BODY}}  北卡标题/一句说明(东/南/西卡同参数名 E/S/W)
+  坐标定死:环 svg(700,420,520×420,圆心=画布 960,630);中心圆 220 @850,520;
+           卫星卡 340×140:N(790,330) E(1160,560) S(790,790) W(420,560)
+  纪律: DOM 序必须 环 → 中心圆 → 卫星卡(卡盖环的四正点=穿线效果);环别用预设形状拼
+  ══════════════════════════════════════════════════════════════ -->
+<div data-object="true" data-object-type="shape" style="position:absolute;left:700px;top:420px;width:520px;height:420px;">
+  <svg width="520" height="420" viewBox="0 0 520 420" fill="none" stroke="{{RING_COLOR}}" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="260" cy="210" r="150"/><polyline points="371 301 366 316 381 311"/><polyline points="169 321 154 316 159 331"/><polyline points="149 119 154 104 139 109"/><polyline points="351 99 366 104 361 89"/></svg>
+</div>
+<div data-object="true" data-object-type="shape" style="position:absolute;left:850px;top:520px;width:220px;height:220px;border-radius:50%;background:{{HUB_BG}};"></div>
+<div data-object="true" data-object-type="textbox" style="position:absolute;left:850px;top:520px;width:220px;height:220px;text-align:center;">
+  <div style="font-size:26px;font-weight:700;color:var(--white);line-height:220px;">{{HUB_TEXT}}</div>
+</div>
+<div data-object="true" data-object-type="shape" style="position:absolute;left:790px;top:330px;width:340px;height:140px;background:var(--white);border:1px solid var(--border-light);border-radius:12px;padding:24px 28px;">
+  <div style="font-size:24px;font-weight:700;color:var(--charcoal);line-height:1.3;">{{N_TITLE}}</div>
+  <div style="font-size:22px;line-height:1.5;color:var(--text-secondary);margin-top:8px;">{{N_BODY}}</div>
+</div>
+<div data-object="true" data-object-type="shape" style="position:absolute;left:1160px;top:560px;width:340px;height:140px;background:var(--white);border:1px solid var(--border-light);border-radius:12px;padding:24px 28px;">
+  <div style="font-size:24px;font-weight:700;color:var(--charcoal);line-height:1.3;">{{E_TITLE}}</div>
+  <div style="font-size:22px;line-height:1.5;color:var(--text-secondary);margin-top:8px;">{{E_BODY}}</div>
+</div>
+<div data-object="true" data-object-type="shape" style="position:absolute;left:790px;top:790px;width:340px;height:140px;background:var(--white);border:1px solid var(--border-light);border-radius:12px;padding:24px 28px;">
+  <div style="font-size:24px;font-weight:700;color:var(--charcoal);line-height:1.3;">{{S_TITLE}}</div>
+  <div style="font-size:22px;line-height:1.5;color:var(--text-secondary);margin-top:8px;">{{S_BODY}}</div>
+</div>
+<div data-object="true" data-object-type="shape" style="position:absolute;left:420px;top:560px;width:340px;height:140px;background:var(--white);border:1px solid var(--border-light);border-radius:12px;padding:24px 28px;">
+  <div style="font-size:24px;font-weight:700;color:var(--charcoal);line-height:1.3;">{{W_TITLE}}</div>
+  <div style="font-size:22px;line-height:1.5;color:var(--text-secondary);margin-top:8px;">{{W_BODY}}</div>
+</div>

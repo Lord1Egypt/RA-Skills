@@ -1,39 +1,49 @@
-## Description: <br>
-This skill should be used when the user says "test skill", "run test skill", or asks to demonstrate the test skill. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill responds to test-skill prompts with a greeting, the current date and time, and confirmation that custom skills are active.
 
-## Publisher: <br>
-[yxzhaoo](https://clawhub.ai/user/yxzhaoo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yxzhaoo](https://clawhub.ai/user/yxzhaoo)
 
-## Use Case: <br>
-Developers and skill reviewers use this minimal skill to confirm that custom skill activation works by producing a greeting, the current date and time, and an activation confirmation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is low-utility and only verifies custom skill activation. <br>
-Mitigation: Install it for activation checks, not for task automation or production workflows. <br>
-Risk: The skill asks the agent to report the current date and time, which can be wrong if the runtime clock or timezone context is wrong. <br>
-Mitigation: Confirm date and time against the agent runtime or an authoritative clock when accuracy matters. <br>
+## Use Case:
 
+External users and developers use this skill to verify that custom skill loading works by asking the agent to return a greeting, the current date and time, and an activation confirmation.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [Markdown or plain text response] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a greeting, current date and time, and a confirmation that custom skills are active.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and frontmatter) <br>
+Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and scan skill before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yxzhaoo/skills/yuxing-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, guidance]
+
+**Output Format:** [Plain text response]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes the current date and time at response time.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

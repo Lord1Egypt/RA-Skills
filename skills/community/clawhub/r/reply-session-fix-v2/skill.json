@@ -1,0 +1,9 @@
+{
+  "name": "reply-session-fix-43ytnoa-xzc0tc",
+  "version": "0.1.0",
+  "description": "Diagnose und dauerhaft fixen von 'reply session initialization conflicted' Errors in OpenClaw via 3-Layer-Setup (Client-Heal JS, Server Watchdog, Retry-Patch).",
+  "author": "raumkommer",
+  "license": "MIT",
+  "tags": ["openclaw", "gateway", "sessions", "debugging", "watchdog", "reliability"],
+  "runtime": "openclaw"
+}

@@ -1,43 +1,54 @@
-## Description: <br>
-Set up reliable off-site Reolink camera backup when cameras are remote (4G/5G/LTE) and home inbound networking is constrained (CGNAT/locked routers). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Sets up reliable off-site Reolink camera backup for remote cameras or constrained home networks using a VPS relay, FTP/FTPS ingest, local/NAS pull sync, retention, and troubleshooting guidance.
 
-## Publisher: <br>
-[ccaprani](https://clawhub.ai/user/ccaprani) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ccaprani](https://clawhub.ai/user/ccaprani)
 
-## Use Case: <br>
-Developers, systems administrators, and technical home users use this skill to plan and configure off-site Reolink camera backup through a VPS relay when direct camera-to-home ingestion is impractical. It provides setup guidance for FTP/FTPS ingest, local or NAS pull sync, retention, health checks, and troubleshooting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks users to run privileged setup scripts that reconfigure a VPS, install network services, and open firewall ports. <br>
-Mitigation: Review each script before running it, use a dedicated VPS, and restrict firewall access where practical. <br>
-Risk: FTP/FTPS ingest and remote sync can expose camera backups or credentials if configured loosely. <br>
-Mitigation: Keep FTPS enabled except for tightly controlled debugging, isolate the FTP ingest user from admin users, use SSH keys for administration, and rotate credentials exposed in chat or logs. <br>
-Risk: Ongoing systemd and cron jobs can sync or delete files after initial setup. <br>
-Mitigation: Use a numeric retention window, keep the default /srv/reolink path unless path validation is added, verify destination paths before enabling sync, and know how to disable the systemd timer and remove the cron retention job. <br>
+## Use Case:
 
+Developers, system administrators, and technically capable camera owners use this skill to design and operate an off-site backup path for Reolink cameras when direct camera-to-home ingest is impractical. It helps configure a VPS relay, local pull synchronization, retention cleanup, and troubleshooting for upload, authentication, path, and protocol failures.
 
-## Reference(s): <br>
-- [Reolink Remote Backup Troubleshooting](references/troubleshooting.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/ccaprani/reolink-remote-backup) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and bundled bash setup scripts.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill guides privileged VPS setup, local systemd user timer setup, and cron-based retention for a Reolink backup relay.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.3.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill includes root-level VPS setup and persistence steps that can modify package, firewall, FTP service, user, SSL, and retention configuration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the scripts before running them, back up existing vsftpd and UFW configuration, and run them only on the intended VPS.
+
+Risk: Misconfigured retention or access controls could delete backups unexpectedly or broaden access to camera files.
+
+Mitigation: Validate retention-days input, keep separate restricted users and dedicated SSH keys, prefer FTPS after debugging, and keep SSH command restrictions constrained.
+
+## Reference(s):
+
+- [Reolink Remote Backup Troubleshooting](references/troubleshooting.md)
+- [ClawHub skill page](https://clawhub.ai/ccaprani/skills/reolink-remote-backup)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown instructions with inline shell commands and bundled Bash scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes setup scripts for VPS FTP/FTPS ingest, local rsync pull, a systemd user timer, retention cleanup, and troubleshooting.]
+
+## Skill Version(s):
+
+0.3.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

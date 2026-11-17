@@ -1,6 +1,27 @@
 {
-  "ownerId": "kn7dk4dbthr5gprtqk18f7b0j18285t2",
-  "slug": "memory-manager-secure",
-  "version": "1.0.0",
-  "publishedAt": 1775644783671
+  "name": "memory-manager-secure",
+  "version": "1.0.14",
+  "description": "自动创建和维护 MEMORY.md 长期记忆文件，支持每日自动更新（智能筛选 + 脱敏检测）",
+  "descriptionEn": "Automatically creates and maintains MEMORY.md with smart filtering and sensitive data detection. Uses hybrid mode: rule-based prefiltering + LLM analysis + privacy protection.",
+  "summary": "📝 智能记忆管理 | 混合筛选 | 脱敏保护",
+  "summaryEn": "📝 Smart Memory Management | Hybrid Filtering | Privacy Protection",
+  "author": "Roxy (洛琪希)",
+  "license": "MIT",
+  "keywords": ["memory", "automation", "cron", "organization", "notes", "ai-filtering", "privacy"],
+  "homepage": "https://github.com/openclaw/openclaw",
+  "category": "productivity",
+  "requirements": ["curl", "jq", "python3", "bash"],
+  "optionalDependencies": [
+    "OpenClaw CLI (用于 cron 任务配置)",
+    "LLM API Key (可选，用于智能筛选。支持 BAILIAN_API_KEY/DEEPSEEK_API_KEY/OPENAI_API_KEY 等，无 Key 时自动降级为规则模式)"
+  ],
+  "configFiles": [
+    "~/.openclaw/openclaw.json (可选，用于自动读取 API 地址和模型配置)"
+  ],
+  "networkAccess": {
+    "required": false,
+    "description": "智能筛选模式会向 LLM 提供商 API 发送请求 (baseUrl 来自 openclaw.json 或用户配置)。规则模式无需网络。"
+  },
+  "scripts": ["scripts/init-memory.sh", "scripts/update-memory.sh"],
+  "changelog": "1.0.14: 🔐 安全更新 - 移除所有 sk-xxx 占位符，改用 your-api-key-here；添加 .gitignore；⚠️ 警告：v1.0.0-v1.0.9 可能包含不安全的占位符，请使用 v1.0.10+ 版本"
 }

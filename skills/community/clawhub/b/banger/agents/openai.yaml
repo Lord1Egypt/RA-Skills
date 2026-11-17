@@ -1,0 +1,16 @@
+interface:
+  display_name: "Operate company email"
+  short_description: "Build and run company email with Banger"
+  icon_small: "./assets/banger-app-icon-128.png"
+  icon_large: "./assets/banger-logo.png"
+  brand_color: "#C9FF2B"
+  default_prompt: "Use $operate-company-email to set up email for my business."
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "banger"
+      description: "Banger company email operating system"
+      transport: "streamable_http"
+      url: "https://api.bangermail.com/mcp"
+policy:
+  allow_implicit_invocation: true

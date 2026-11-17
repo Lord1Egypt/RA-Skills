@@ -1,44 +1,56 @@
-## Description: <br>
-Qimen Dunjia - Qi Men Dun Jia generates Chinese Qimen Dunjia charts, directional assessments, timing suggestions, and concise interpretive guidance from a requested or current time. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Chinese-language Qimen Dunjia charts and interpretive guidance using a deterministic four-layer Luoshu nine-palace charting workflow with no external API dependency.
 
-## Publisher: <br>
-[eamanc-lab](https://clawhub.ai/user/eamanc-lab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[eamanc-lab](https://clawhub.ai/user/eamanc-lab)
 
-## Use Case: <br>
-External users and agents use this skill to produce Qimen Dunjia divination-style reports for timing, direction, and decision reflection. It is intended as entertainment or auxiliary self-reflection, not as medical, legal, financial, or other professional advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat divination-style outputs as decisive guidance for high-stakes personal, financial, medical, or legal decisions. <br>
-Mitigation: Frame outputs as entertainment or reflective support and direct users to professional advice for high-stakes decisions. <br>
-Risk: Optional preference or reading history saved in MEMORY.md may retain sensitive personal context if the user requests it. <br>
-Mitigation: Only save preferences or records after explicit user request, and avoid storing sensitive life, relationship, financial, medical, or legal details unless intentionally requested. <br>
+## Use Case:
 
+External users and agents use this skill to produce Qimen Dunjia charts for timing, direction, and situation-analysis questions. It is intended for entertainment and auxiliary reflection, not as a substitute for medical, legal, financial, or other professional advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/eamanc-lab/qimen-dunjia-oracle) <br>
-- [Publisher profile](https://clawhub.ai/user/eamanc-lab) <br>
-- [Project homepage](https://github.com/eamanc-lab/fortune-telling-skills) <br>
-- [calculation-rules.md](artifact/references/calculation-rules.md) <br>
-- [interpretation-guide.md](artifact/references/interpretation-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown report with tables and prose interpretation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Qimen chart tables, derivation notes, directional ratings, timing recommendations, and optional MEMORY.md preference updates when the user explicitly asks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and target metadata) <br>
+Risk: Preference or session records may be saved locally in MEMORY.md when users request saved records or express defaults.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid saving sensitive personal details unless local persistence is intended, and review or delete MEMORY.md when preferences should no longer be retained.
+
+Risk: Divination-style timing and direction guidance may be over-relied on for high-stakes decisions.
+
+Mitigation: Use outputs as entertainment or auxiliary reflection and seek qualified professional advice for medical, legal, financial, or safety-critical matters.
+
+## Reference(s):
+
+- [Calculation Rules](references/calculation-rules.md)
+- [Interpretation Guide](references/interpretation-guide.md)
+- [Project homepage](https://github.com/eamanc-lab/fortune-telling-skills)
+- [ClawHub skill page](https://clawhub.ai/eamanc-lab/skills/qimen-dunjia-oracle)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown chart report with tables and concise interpretive guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include deterministic calculation steps, chart tables, directional ratings, and optional local preference notes when the user explicitly asks to save them.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

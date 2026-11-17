@@ -1,0 +1,33 @@
+{
+  "manifestVersion": 1,
+  "slug": "yotta-verify-mcp",
+  "name": "元信MCP",
+  "package": "@yottameta/yotta-verify-mcp",
+  "version": "0.4.7",
+  "trust": "yottameta",
+  "install": {
+    "idempotent": true
+  },
+  "permissions": {
+    "filesystem": "user-skills-dir",
+    "network": "none",
+    "process": "child-process",
+    "note": "只调用本包内静态扫描引擎，不执行被测代码、不联网。"
+  },
+  "auto_apply": {
+    "mode": "hook",
+    "note": "装前扫描工具暴露为 MCP；安装链路通过 wrapper 门禁执行。"
+  },
+  "hooks": [
+    {
+      "event": "before_install",
+      "require_tool": "scan_skill",
+      "condition": "安装或升级动作进入落位前",
+      "on_fail": "block",
+      "fallback": "wrapper",
+      "evidence": [
+        "audit_log"
+      ]
+    }
+  ]
+}

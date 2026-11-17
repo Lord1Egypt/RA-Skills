@@ -1,41 +1,54 @@
-## Description: <br>
-PC*Miler REST API helper guidance for retrieving route geometry, route reports, and geocoded coordinates for trucking workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+PC*Miler REST API guidance helps agents retrieve route geometry and geocode addresses through authenticated PC*Miler API requests.
 
-## Publisher: <br>
-[nchoudhury-trimble](https://clawhub.ai/user/nchoudhury-trimble) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[nchoudhury-trimble](https://clawhub.ai/user/nchoudhury-trimble)
 
-## Use Case: <br>
-Developers and operations teams use this skill to call PC*Miler REST endpoints for truck route paths and address geocoding with an authenticated API key. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The agent needs access to a PC*Miler API key. <br>
-Mitigation: Use a dedicated key where possible, store it as a secret environment variable, and avoid exposing it in prompts, logs, or shared outputs. <br>
-Risk: Route stops, coordinates, and addresses are sent to PC*Miler when the API examples are used. <br>
-Mitigation: Avoid submitting sensitive personal or operational locations unless PC*Miler handling terms are acceptable for the intended use. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub PC*Miler skill page](https://clawhub.ai/nchoudhury-trimble/pcmiler) <br>
-- [PC*Miler routeReports API example](https://pcmiler.alk.com/apis/rest/v1.0/Service.svc/route/routeReports?stops=-75.173297%2C39.942892%3B-74.83153%2C39.61703%3B-74.438942%2C39.362469&reports=RoutePath) <br>
-- [PC*Miler locations API example](https://pcmiler.alk.com/apis/rest/v1.0/Service.svc/locations?street=1%20Independence%20Way&city=princeton&state=nj&country=US&postcode=08540&postcodeFilter=us&region=NA&dataset=Current) <br>
+## Use Case:
 
+Developers and logistics engineers use this skill to call PC*Miler for truck routing route-path reports and address-to-coordinate geocoding.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline bash commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires network access and a valid PCMILER_API_KEY; API calls send route stops, coordinates, or addresses to PC*Miler.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: API requests send addresses, coordinates, route stops, and authentication credentials to PC*Miler.
+
+Mitigation: Use an appropriately scoped API key, keep secrets out of shared logs and scripts, and submit sensitive location data only when approved.
+
+Risk: The skill depends on external network access and the availability of the PC*Miler API.
+
+Mitigation: Confirm network access and API-key validity before using generated commands in an agent workflow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nchoudhury-trimble/skills/pcmiler)
+- [PC*Miler route reports endpoint example](https://pcmiler.alk.com/apis/rest/v1.0/Service.svc/route/routeReports?stops=-75.173297%2C39.942892%3B-74.83153%2C39.61703%3B-74.438942%2C39.362469&reports=RoutePath)
+- [PC*Miler locations geocoding endpoint example](https://pcmiler.alk.com/apis/rest/v1.0/Service.svc/locations?street=1%20Independence%20Way&city=princeton&state=nj&country=US&postcode=08540&postcodeFilter=us&region=NA&dataset=Current)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with bash commands and JSON response examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires network access and a valid PCMILER_API_KEY environment variable.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

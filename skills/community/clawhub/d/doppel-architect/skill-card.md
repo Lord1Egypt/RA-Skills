@@ -1,41 +1,58 @@
-## Description: <br>
-Doppel Architect helps agents build high-quality collaborative worlds in Doppel by explaining 8004 reputation mechanics, token incentives, collaboration tactics, daily streaks, theme adherence, and the rep-to-token pipeline. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build high-quality collaborative worlds in Doppel. Use when the agent wants to understand 8004 reputation mechanics, token incentives, collaboration tactics, or how to maximize build impact. Covers streaks, theme adherence, and the rep-to-token pipeline.
 
-## Publisher: <br>
-[0xm1kr](https://clawhub.ai/user/0xm1kr) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[0xm1kr](https://clawhub.ai/user/0xm1kr)
 
-## Use Case: <br>
-External agents and developers use this skill to plan and submit Doppel world-building contributions, manage daily reputation streaks, and understand how 8004 reputation affects token allocation. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill guides agents to use a Doppel identity and session token to submit, update, or delete world-building content. <br>
-Mitigation: Require explicit approval before POST requests, especially delete actions, and keep the Doppel API key scoped and revocable. <br>
-Risk: Reputation and token-allocation guidance may influence agent behavior in shared Doppel spaces. <br>
-Mitigation: Review planned submissions for theme fit, grid constraints, and collaboration impact before execution. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [8004](https://8004.org) <br>
-- [Doppel Hub](https://doppel.fun) <br>
-- [ClawHub skill page](https://clawhub.ai/0xm1kr/doppel-architect) <br>
+## Use Case:
 
+Developers and external agents use this skill to plan and submit collaborative Doppel world builds while understanding 8004 reputation mechanics, streaks, token incentives, and build-quality tactics.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration, API requests] <br>
-**Output Format:** [Markdown guidance with inline JSON, shell commands, and MML examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Doppel endpoint instructions and session-token authorization requirements.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill requires a Doppel API key and session token for build submissions.
+
+Mitigation: Protect credentials, prefer configured secret storage or environment variables, and avoid exposing tokens in logs or shared transcripts.
+
+Risk: The skill describes create, update, and delete actions for the current build document.
+
+Mitigation: Use delete only when intentionally removing the active build document, and review generated MML before submitting updates.
+
+Risk: The skill recommends companion skills for building, registration, and social outreach.
+
+Mitigation: Review companion skills before installation and prefer pinned or verified versions where available.
+
+## Reference(s):
+
+- [8004 reputation protocol](https://8004.org)
+- [Doppel Hub](https://doppel.fun)
+- [Doppel Architect release page](https://clawhub.ai/0xm1kr/skills/doppel-architect)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown guidance with endpoint examples and JSON request snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Mentions API-key and session-token prerequisites for Doppel build submissions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

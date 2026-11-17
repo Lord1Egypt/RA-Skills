@@ -1,43 +1,58 @@
-## Description: <br>
-Gemini CLI for one-shot Q&A, summaries, and generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Gemini CLI for one-shot Q&A, summaries, and generation.
 
-## Publisher: <br>
-[andy27725](https://clawhub.ai/user/andy27725) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[andy27725](https://clawhub.ai/user/andy27725)
 
-## Use Case: <br>
-Developers and agent users use this skill to ask one-shot questions, request summaries, generate text, select Gemini models, request JSON output, and manage Gemini CLI extensions from an agent workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts and authenticated usage are sent through Gemini, which may be inappropriate for secrets or regulated data. <br>
-Mitigation: Avoid sending secrets or regulated data unless that use is approved for the relevant Gemini account and environment. <br>
-Risk: Extension-management commands and unsafe CLI flags can change Gemini CLI behavior or reduce safety controls. <br>
-Mitigation: Use extension commands and unsafe flags only deliberately, and review planned commands before execution. <br>
-Risk: The skill depends on the Homebrew gemini-cli package and the local gemini binary. <br>
-Mitigation: Install only from trusted package sources and confirm the expected gemini binary is present before use. <br>
+## Use Case:
 
+Developers and external users use this skill to prompt Gemini CLI in one-shot mode for Q&A, summarization, JSON-formatted responses, text generation, and extension management.
 
-## Reference(s): <br>
-- [Gemini AI Developer Documentation](https://ai.google.dev/) <br>
-- [ClawHub Skill Page](https://clawhub.ai/andy27725/gemini-andy27725) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and optional JSON-oriented Gemini CLI output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the gemini binary; the skill may direct the user through Gemini CLI authentication and extension-management commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Prompts and source text sent through Gemini CLI may be processed by an external provider.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sending secrets, private data, or regulated material unless that use fits the user's Gemini account and data-handling expectations.
+
+Risk: The skill references Gemini CLI command execution and warns against unsafe yolo behavior.
+
+Mitigation: Use one-shot commands, review generated commands before execution, and avoid --yolo unless the execution environment is intentionally disposable.
+
+Risk: The ClawHub quality signal quarantined this release for moderation review.
+
+Mitigation: Review the skill text and intended Gemini CLI usage before listing or deployment.
+
+## Reference(s):
+
+- [Google AI for Developers](https://ai.google.dev/)
+- [ClawHub skill page](https://clawhub.ai/andy27725/skills/gemini-andy27725)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and CLI usage examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May direct the agent to produce JSON when Gemini CLI is called with --output-format json.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

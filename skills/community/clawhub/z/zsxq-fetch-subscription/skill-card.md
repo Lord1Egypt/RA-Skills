@@ -1,40 +1,49 @@
-## Description: <br>
-Use this skill when the user wants OpenClaw to query synced Zhishi Xingqiu content, inspect recent posts, search downloaded documents, summarize updates, or answer questions grounded in the local ZSXQ database. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill when the user wants OpenClaw to query synced Zhishi Xingqiu content, inspect recent posts, search downloaded documents, summarize updates, or answer questions grounded in the local ZSXQ database.
 
-## Publisher: <br>
-[HashedAlex](https://clawhub.ai/user/HashedAlex) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hashedalex](https://clawhub.ai/user/hashedalex)
 
-## Use Case: <br>
-External users and developers use this skill to query a local ZSXQ data service, summarize subscribed-group updates, search synced documents, and answer questions from locally stored posts and document matches. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can rely on a private-content API server that may be exposed on all network interfaces while background sync is active. <br>
-Mitigation: Run the API on 127.0.0.1 when possible, confirm authentication before exposing it beyond localhost, and stop or restrict the server when background sync is not needed. <br>
-Risk: Answers may be incomplete or stale if the local database has not synced recently. <br>
-Mitigation: Check sync status for time-sensitive requests and trigger manual sync only when the user asks for latest content and the last sync is more than one hour old. <br>
+## Use Case:
 
+External users and developers use this skill to inspect synced ZSXQ group content, summarize recent updates, search downloaded documents, and answer questions from local database records.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/HashedAlex/zsxq-fetch-subscription) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and cited record snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl and a running local ZSXQ API server; answers should be grounded in retrieved posts or document matches.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and user changelog) <br>
+Risk: The documented server startup can expose private synced content and sync controls on all network interfaces without documented authentication.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep port 8000 private, prefer binding the service to 127.0.0.1, add authentication where possible, and approve manual syncs only when fresh external content is needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hashedalex/skills/zsxq-fetch-subscription)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, API calls, Guidance]
+
+**Output Format:** [Markdown or text with inline shell commands and endpoint references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Answers should be grounded in retrieved local ZSXQ records and cite the topic text or document preview used when available.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and user changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

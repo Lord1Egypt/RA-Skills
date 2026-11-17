@@ -1,40 +1,53 @@
-## Description: <br>
-When a message uses the @deviceid-agentid-ip plus instruction format, this skill forwards the instruction to the specified IP gateway agent. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Routes messages in @deviceid-agentid-ip plus instruction format to the specified IP gateway agent and returns the remote agent response content.
 
-## Publisher: <br>
-[lxx328](https://clawhub.ai/user/lxx328) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lxx328](https://clawhub.ai/user/lxx328)
 
-## Use Case: <br>
-External users and developers use this skill to route an instruction from one gateway chat context to a named agent on another gateway. It is intended for controlled cross-gateway agent messaging where the destination gateway, agent ID, and instruction are supplied in the mention text. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Chat text can trigger outbound requests to specified IP gateway agents without clear trust controls. <br>
-Mitigation: Install only where gateway destinations are controlled, authenticated, and restricted by a trusted allowlist before forwarding instructions. <br>
-Risk: Remote responses may appear indistinguishable from local gateway replies. <br>
-Mitigation: Keep visible provenance or routing context for remote responses so users can tell which gateway and agent produced the content. <br>
+## Use Case:
 
+Developers and gateway operators use this skill to let agents address another gateway by mention syntax, forward the instruction to the target agent, and present only the target agent's reply.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lxx328/mention-to-gateway) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Text, Guidance] <br>
-**Output Format:** [Remote agent response text extracted from an OpenAI-compatible chat completion response] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns only choices[0].message.content from the remote gateway response.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Prompts and gateway identity may be sent to arbitrary IP addresses over unauthenticated HTTP.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Deploy only in a controlled private gateway environment with trusted users, restricted outbound access, destination validation, authenticated encrypted transport, and an allowlisted gateway registry.
+
+Risk: Remote replies may be displayed without clear attribution to the producing gateway.
+
+Mitigation: Show visible labels that identify which remote gateway produced each response.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lxx328/skills/mention-to-gateway)
+
+## Skill Output:
+
+**Output Type(s):** [text, API calls, guidance]
+
+**Output Format:** [Text response content extracted from an OpenAI-compatible JSON response]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Remote response content is returned without additional wrapper text.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

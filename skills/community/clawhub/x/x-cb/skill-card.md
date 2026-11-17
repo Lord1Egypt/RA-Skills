@@ -1,41 +1,54 @@
-## Description: <br>
-Interact with Codeberg using the `x cb` CLI to manage repositories, issues, pull requests, organizations, teams, and users. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Interact with Codeberg using the `x cb` CLI to manage repositories, issues, pull requests, organizations, teams, and users.
 
-## Publisher: <br>
-[curry798](https://clawhub.ai/user/curry798) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[curry798](https://clawhub.ai/user/curry798)
 
-## Use Case: <br>
-Developers and maintainers use this skill when they need an agent to propose or run `x cb` commands for Codeberg repository, issue, pull request, organization, team, and user workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Commands may create public repositories, open issues or pull requests, or change collaborator and team permissions. <br>
-Mitigation: Review the target repository, organization, username, permission level, title, body, and public/private impact before executing write commands. <br>
-Risk: A broad Codeberg token could expose more account or organization access than the workflow needs. <br>
-Mitigation: Use a least-privilege Codeberg token and install the skill only when the `x cb` CLI on PATH is already trusted. <br>
+## Use Case:
 
+Developers and engineers use this skill to have an agent propose `x cb` commands for Codeberg repository, issue, pull request, organization, team, and user workflows.
 
-## Reference(s): <br>
-- [Codeberg application tokens](https://codeberg.org/user/settings/applications) <br>
-- [ClawHub skill page](https://clawhub.ai/curry798/x-cb) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the `x cb` CLI on PATH and a Codeberg token for authenticated operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: A broad Codeberg token could allow unintended repository, issue, pull request, collaborator, or team changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a least-privilege Codeberg token and avoid exposing it in prompts or logs.
+
+Risk: State-changing `x cb` commands could create or modify Codeberg resources.
+
+Mitigation: Review and confirm commands before running actions that create repositories, issues, pull requests, collaborators, or teams.
+
+## Reference(s):
+
+- [Codeberg application tokens](https://codeberg.org/user/settings/applications)
+- [ClawHub skill page](https://clawhub.ai/curry798/skills/x-cb)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands may create or change Codeberg resources and should be reviewed before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

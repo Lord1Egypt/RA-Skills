@@ -1,17 +1,58 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "title": "CalibreSubagentAnalysisOutput",
+  "title": "Calibre analysis output",
+  "description": "Counts/identity/hashes are additionally compared to the immutable prepared input at completion.",
   "type": "object",
-  "required": ["book_id", "lang", "summary", "highlights", "reread", "tags"],
+  "additionalProperties": false,
+  "required": [
+    "run_id",
+    "book_id",
+    "library_id",
+    "file_hash",
+    "lang",
+    "summary",
+    "highlights",
+    "reread",
+    "tags",
+    "coverage"
+  ],
   "properties": {
-    "book_id": { "type": "integer", "minimum": 1 },
-    "lang": { "type": "string", "enum": ["ja", "en"] },
-    "summary": { "type": "string", "minLength": 1, "maxLength": 1200 },
+    "run_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]{0,100}$"
+    },
+    "book_id": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "library_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "file_hash": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "lang": {
+      "enum": [
+        "ja",
+        "en"
+      ]
+    },
+    "summary": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 1200
+    },
     "highlights": {
       "type": "array",
       "minItems": 2,
       "maxItems": 8,
-      "items": { "type": "string", "minLength": 1, "maxLength": 400 }
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 400
+      }
     },
     "reread": {
       "type": "array",
@@ -19,24 +60,87 @@
       "maxItems": 8,
       "items": {
         "type": "object",
-        "required": ["section", "page", "chunk_id", "reason"],
+        "additionalProperties": false,
+        "required": [
+          "section",
+          "page",
+          "chunk_id",
+          "reason"
+        ],
         "properties": {
-          "section": { "type": "string", "minLength": 1, "maxLength": 200 },
-          "page": { "type": "string", "minLength": 1, "maxLength": 120 },
-          "chunk_id": { "type": "string", "minLength": 1, "maxLength": 120 },
-          "reason": { "type": "string", "minLength": 1, "maxLength": 300 }
-        },
-        "additionalProperties": false
+          "section": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 400
+          },
+          "page": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 400
+          },
+          "chunk_id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 400
+          },
+          "reason": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 400
+          }
+        }
       }
     },
     "tags": {
       "type": "array",
       "minItems": 1,
       "maxItems": 12,
-      "items": { "type": "string", "minLength": 1, "maxLength": 80 }
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 100,
+        "pattern": "^[^,]+$"
+      }
     },
-    "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
-    "notes": { "type": "string", "maxLength": 1200 }
-  },
-  "additionalProperties": false
+    "coverage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "mode",
+        "expected_files",
+        "read_files",
+        "read_chars",
+        "part_ids"
+      ],
+      "properties": {
+        "mode": {
+          "enum": [
+            "full",
+            "partial"
+          ]
+        },
+        "expected_files": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "read_files": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "read_chars": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "part_ids": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^part-[0-9]+$"
+          }
+        }
+      }
+    }
+  }
 }

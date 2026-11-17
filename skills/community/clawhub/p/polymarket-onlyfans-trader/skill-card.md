@@ -1,44 +1,59 @@
-## Description: <br>
-Trades Polymarket markets about OnlyFans by classifying join, ban, and earnings markets, applying keyword-based trading signals, and optionally placing simulated or live orders. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Trades Polymarket markets on OnlyFans using structural signals for celebrity join events, platform ban markets, and creator earnings seasonality.
 
-## Publisher: <br>
-[diagnostikon](https://clawhub.ai/user/diagnostikon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[diagnostikon](https://clawhub.ai/user/diagnostikon)
 
-## Use Case: <br>
-External users and developers can use this skill to run a supervised Polymarket trading bot focused on OnlyFans-related markets. It is intended for paper trading by default, with live trading only when explicitly enabled and funded. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Live mode can spend real funds on prediction-market trades. <br>
-Mitigation: Start in paper mode, enable --live only after review, and use limited funding or a limited trading key. <br>
-Risk: Market discovery may include broader or unknown OnlyFans-related markets beyond the stated strategy. <br>
-Mitigation: Review candidate markets and keep conservative limits for maximum position size, open positions, spread, and minimum trade size. <br>
-Risk: The SIMMER_API_KEY grants trading authority. <br>
-Mitigation: Store the key securely, rotate it if exposed, and avoid using credentials with more trading authority or balance than needed. <br>
+## Use Case:
 
+External users and developers use this skill to discover OnlyFans-related Polymarket markets, size paper trades by configurable thresholds, and optionally execute live trades after review.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/diagnostikon/polymarket-onlyfans-trader) <br>
-- [simmer-sdk on PyPI](https://pypi.org/project/simmer-sdk/) <br>
-- [simmer-sdk GitHub repository](https://github.com/SpartanLabsXyz/simmer-sdk) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Console logs and trading API calls controlled by environment configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Paper trading is the default; live trading requires the --live flag and a SIMMER_API_KEY.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.3 (source: server release evidence) <br>
+Risk: Live mode can place real Polymarket trades using the configured trading credential.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the skill in paper mode until the strategy, SDK dependency, and account exposure are reviewed; use live mode only when real USDC risk is accepted.
+
+Risk: Advertised safeguards and market scoping may not fully constrain live trades.
+
+Mitigation: Review candidate markets and tune maximum position, volume, spread, days-to-resolution, and open-position limits before any live run.
+
+Risk: Low-volume markets, generic OnlyFans searches, and repeated runs may create exposure beyond the user's intent.
+
+Mitigation: Use small limits, monitor console output and account positions, and avoid unattended live automation unless operational controls are in place.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/diagnostikon/skills/polymarket-onlyfans-trader)
+- [simmer-sdk on PyPI](https://pypi.org/project/simmer-sdk/)
+- [simmer-sdk on GitHub](https://github.com/SpartanLabsXyz/simmer-sdk)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text console output with configurable environment parameters]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SIMMER_API_KEY; defaults to paper mode unless live trading is explicitly enabled.]
+
+## Skill Version(s):
+
+0.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

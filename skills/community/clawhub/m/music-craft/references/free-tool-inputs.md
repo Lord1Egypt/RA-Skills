@@ -262,22 +262,21 @@ The most powerful patterns combine multiple free tools:
 
 ### Pattern C: Memory + web
 
-1. `memory_search` for the user's past music preferences
-2. `web_search` for a new song in the user's preferred genre
-3. Build a personalized prompt
+1. `memory_search` for the user's past music preferences (only if the user has agreed to memory use)
+2. Ask before searching the web with anything derived from memory. Use only generic genre or style terms in the query (for example "warm 70s soul production"), never names, personal details, or quoted memory text
+3. Build a personalized prompt; if the user prefers, skip the web search and personalize from memory alone
 
 ## When Free Tools Are Not Enough
 
 Some inputs require tools outside the free runtime layer:
 
-- **Advanced audio file analysis** (BPM, key, energy, structure) — use `music-craft-minimax`
+- **Advanced audio file analysis** (BPM, key, energy, structure) — the analysis scripts in `music-craft-minimax` still run locally if that skill is installed
 - **YouTube audio download** — use the private `music-source-fetch` skill
 - **JioSaavn audio download** — use the private `music-source-fetch` skill (primary source for Bollywood and Indian regional music)
-- **Fast cloud cover workflow** — use `music-craft-minimax`
 - **Local source-audio cover/repaint experiment** — use ACE-Step in this skill, but only after the hardware/time-budget gate in `acestep-generation.md`
-- **Mashup of two songs** — needs emotion analysis + cover, use `music-craft-minimax`
+- **Mashup of two songs** — not available (MiniMax music generation was discontinued)
 
-Redirect to Skill 2 for the MiniMax-specific paths, or to `music-source-fetch` to get a URL-backed track onto local disk first. Do not try to fake them with the free tools.
+Use `music-source-fetch` to get a URL-backed track onto local disk first. Do not try to fake them with the free tools.
 
 **Audio source:** local file path only. URL downloads moved to the private `music-source-fetch` skill in v1.5.0.
 

@@ -1,41 +1,56 @@
-## Description: <br>
-Finds low-price subscription offers from Plati through a local MCP server and returns filtered, reliable options with listing links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find cheapest reliable subscription offers from Plati using the local MCP server.
 
-## Publisher: <br>
-[rybnikov](https://clawhub.ai/user/rybnikov) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[rybnikov](https://clawhub.ai/user/rybnikov)
 
-## Use Case: <br>
-External users and developers use this skill to search Plati marketplace listings for subscription offers, compare price, seller reliability, duration, and account type, and return a concise ranked list with links and filters used. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on the external `plati-mcp-server` npm package and a local MCP server. <br>
-Mitigation: Install only if the package and server source are trusted, and pin or review the package version where possible. <br>
-Risk: Marketplace searches can expose private account details if users include them in queries. <br>
-Mitigation: Do not include private account details or sensitive credentials in marketplace search terms. <br>
-Risk: Subscription marketplace listings may have seller-specific terms or purchase conditions. <br>
-Mitigation: Review seller terms and listing details before buying any subscription offer. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/rybnikov/plati-mcp-search) <br>
+## Use Case:
 
+External users and agents use this skill to search Plati marketplace listings for low-cost subscription offers, compare seller reliability, and return concise linked options.
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance, API calls, configuration] <br>
-**Output Format:** [Plain-text numbered list with listing links and a short summary line] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Avoids markdown tables and code blocks in final user messages; states filters used by the agent.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.6 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The workflow depends on an unpinned third-party npm MCP server whose code is not included in the skill artifact.
+
+Mitigation: Pin and verify the MCP package before use, inspect its source and publisher, avoid global installation when possible, and run it with limited filesystem and credential access.
+
+Risk: Marketplace results are raw offer data that may be incomplete, stale, or mismatched to the user's intended plan or duration.
+
+Mitigation: Apply explicit plan, duration, account-type, price, and seller filters in the agent response, and include direct listing links so users can verify offers before purchase.
+
+Risk: The artifact's final response template is Russian by default.
+
+Mitigation: Adapt the final response language to the user's locale or request while preserving the required concise numbered-list structure.
+
+## Reference(s):
+
+- [Plati MCP Search on ClawHub](https://clawhub.ai/rybnikov/skills/plati-mcp-search)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text or Markdown, typically a short numbered list with direct listing links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Final user messages avoid markdown tables and code blocks; results should state filters used and include direct lot links when available.]
+
+## Skill Version(s):
+
+0.1.6 (source: server release metadata, released 2026-02-23)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

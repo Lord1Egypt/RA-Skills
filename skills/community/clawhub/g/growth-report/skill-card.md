@@ -1,41 +1,52 @@
-## Description: <br>
-Generates periodic user growth and new media performance reports with data collection, period comparisons, anomaly notes, attribution analysis, executive summaries, and next-period plans. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Growth Report is a Chinese-language workflow for recurring user growth and new-media performance reports, covering metric collection, period-over-period comparison, anomaly explanation, attribution analysis, executive summaries, and next-period plans.
 
-## Publisher: <br>
-[mingginwan](https://clawhub.ai/user/mingginwan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[mingginwan](https://clawhub.ai/user/mingginwan)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and teams use this skill to turn supplied growth and new-media metrics into a standardized recurring performance report with comparisons, explanations, executive summary, and next-period action plan.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Reports may be misleading if the user supplies incomplete, inaccurate, or inconsistently defined metrics.
+
+Mitigation: Confirm the reporting period, data sources, metric definitions, and period-over-period calculations before treating the report as decision-ready.
+
+Risk: The workflow is written for Chinese-language reporting and may not fit audiences expecting another language.
+
+Mitigation: Ask explicitly for the desired output language and adapt terminology before sharing the report externally.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Business, growth, and marketing operators use this skill to turn user growth and new media metrics into consistent recurring reports. It helps structure raw metrics, compare periods, explain significant changes, summarize outcomes, and propose next actions. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: User-provided business metrics may include confidential growth, channel, or performance data. <br>
-Mitigation: Use only data appropriate for the active chat environment and avoid sharing confidential metrics without approval. <br>
-Risk: Incorrect period comparisons or percentage calculations could make the generated report misleading. <br>
-Mitigation: Verify source data, comparison windows, percentages, and significant-change explanations before using reports externally. <br>
+**Output Format:** [Markdown report structure with tables, checklists, and concise narrative guidance]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/mingginwan/growth-report) <br>
-- [Publisher Profile](https://clawhub.ai/user/mingginwan) <br>
+**Other Properties Related to Output:** [Requires user-supplied metrics and reporting context; does not collect platform data itself.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown report with tables, checklists, summaries, and action plans] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses user-provided business metrics and requires review of calculations and data sources before external use.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

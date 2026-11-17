@@ -1,50 +1,69 @@
-## Description: <br>
-Image Forge routes image generation and editing requests through use-case, style, and subject signals, selecting GPT Image 2 or Gemini/Nano Banana backends and returning generated image files with prompt guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Image Forge routes image generation and image editing requests through curated use-case, style, and subject signals across GPT Image 2-compatible and Gemini-compatible backends.
 
-## Publisher: <br>
-[chenyqthu](https://clawhub.ai/user/chenyqthu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chenyqthu](https://clawhub.ai/user/chenyqthu)
 
-## Use Case: <br>
-Developers and end users use this skill as a single OpenClaw image-generation entry point for posters, avatars, product images, social media visuals, UI mockups, comics, game assets, infographics, logo showcase images, style transfer, reference-image editing, and multi-reference composition. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Bundled prompt libraries may enable identity-document, celebrity-likeness, profiling, sexualized, or externally researched image workflows. <br>
-Mitigation: Review and prune the reference libraries before deployment, and enforce an image-use policy for disallowed or consent-sensitive requests. <br>
-Risk: Prompts and reference images can be sent to the configured GPT Image 2 or Gemini/Nano Banana backend. <br>
-Mitigation: Use only trusted endpoints and avoid private photos, government IDs, real-person likenesses, or private conversation context unless there is clear consent. <br>
-Risk: The skill requires sensitive backend credentials for image generation services. <br>
-Mitigation: Scope and protect API keys, keep credentials out of prompts and logs, and rotate keys if exposed. <br>
+## Use Case:
 
+External users and developers use this skill to generate, edit, restyle, and compose images for posters, product visuals, avatars, social posts, UI mockups, comics, game assets, infographics, and logo showcase backgrounds.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/chenyqthu/image-forge) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [README.md](artifact/README.md) <br>
-- [Backend Registry](artifact/backends.yaml) <br>
-- [Use-Case Index](artifact/use-cases/index.yaml) <br>
-- [Style Index](artifact/styles/index.yaml) <br>
-- [YouMind OpenLab awesome-gpt-image-2](https://github.com/YouMind-OpenLab/awesome-gpt-image-2) <br>
-- [EvoLinkAI awesome-gpt-image-2-prompts](https://github.com/EvoLinkAI/awesome-gpt-image-2-prompts) <br>
-- [YouMind OpenLab awesome-nano-banana-pro-prompts](https://github.com/YouMind-OpenLab/awesome-nano-banana-pro-prompts) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, files, guidance] <br>
-**Output Format:** [Markdown responses with shell commands and MEDIA file paths; generated image files saved to disk.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires configured backend credentials and may send prompts or reference images to the selected image service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: Prompts and selected reference images may be sent to configured GPT, Gemini, or CRS image backends.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when that data sharing is acceptable, and avoid sending sensitive or regulated images unless the selected backend is approved.
+
+Risk: The CRS backend can forward credentials and image payloads to a configured CRS_BASE_URL.
+
+Mitigation: Restrict CRS_BASE_URL to an approved HTTPS host or a trusted local loopback service before use.
+
+Risk: Some bundled prompt templates may steer the agent outside image generation or into sensitive image-use cases.
+
+Mitigation: Remove or quarantine templates that perform agent workflows, visible passport or ID verification imagery, or personal profiling before broad deployment.
+
+Risk: Unpinned dependencies or backend changes can alter runtime behavior.
+
+Mitigation: Pin dependencies and review backend configuration before operational use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chenyqthu/skills/image-forge)
+- [README.md](artifact/README.md)
+- [SKILL.md](artifact/SKILL.md)
+- [Backend registry](artifact/backends.yaml)
+- [Style library index](artifact/styles/index.yaml)
+- [Use-case index](artifact/use-cases/index.yaml)
+- [YouMind awesome-gpt-image-2](https://github.com/YouMind-OpenLab/awesome-gpt-image-2)
+- [EvoLinkAI awesome-gpt-image-2-prompts](https://github.com/EvoLinkAI/awesome-gpt-image-2-prompts)
+- [YouMind awesome-nano-banana-pro-prompts](https://github.com/YouMind-OpenLab/awesome-nano-banana-pro-prompts)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with shell commands, API payload guidance, and MEDIA file path outputs for generated image assets.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated images are saved as PNG, WebP, or JPEG files through configured external image backends.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

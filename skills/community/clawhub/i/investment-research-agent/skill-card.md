@@ -1,43 +1,63 @@
-## Description: <br>
-麦赛尔夫 is a US stock investment research agent that searches public financial data, performs fundamental analysis, and writes concise sourced Markdown reports without subjective investment recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+麦赛尔夫 is a US stock investment research agent for public-data search, fundamental analysis, and concise sourced report writing without investment advice.
 
-## Publisher: <br>
-[yuzed2](https://clawhub.ai/user/yuzed2) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yuzed2](https://clawhub.ai/user/yuzed2)
 
-## Use Case: <br>
-External users and investment research teams use this skill to configure an OpenClaw agent for public-source US equity research, financial data collection, valuation tables, and sourced report writing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Financial research outputs may be mistaken for investment advice or relied on without checking source freshness. <br>
-Mitigation: Treat reports as research references, review the cited sources and dates, and apply the skill's recency rules for prices, latest financial periods, and forward forecasts. <br>
-Risk: The skill writes research files and memory logs in the local workspace. <br>
-Mitigation: Run it in a scoped workspace and review generated files before sharing or using them in downstream workflows. <br>
-Risk: Large document parsing may require optional package installation. <br>
-Mitigation: Approve any package installation manually and prefer an isolated virtual environment for document-processing dependencies. <br>
+## Use Case:
 
+External users and developers use this skill to deploy an OpenClaw agent that gathers public market data, performs fundamental research workflows, and writes dense Markdown equity research reports for professional investors. The skill emphasizes traceable sources, current financial periods, self-calculated valuation multiples, and no unsourced investment judgments.
 
-## Reference(s): <br>
-- [Research Methodology](references/methodology.md) <br>
-- [Report Structure Reference](references/report-structure.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown files with inline source links, configuration templates, and shell command snippets.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports require inline citations, current financial periods, three forward forecast years, English file paths, and workspace memory log updates.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata) <br>
+Risk: Investment research outputs may be mistaken for investment advice or may contain stale or incomplete market data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use reports as research reference only, require inline sources for every data point, include latest financial periods and current price dates, and avoid unsourced recommendations.
+
+Risk: Workspace memory and skill files can persist user preferences, logs, and process changes.
+
+Mitigation: Install in a dedicated workspace and review changes to MEMORY.md and SKILLS.md before allowing them to persist.
+
+Risk: Login-gated data or brokerage credentials could expose sensitive information if provided to the agent.
+
+Mitigation: Use public sources only and do not provide brokerage credentials or login-gated datasets.
+
+Risk: The optional PDF parsing workflow installs and uses pdfminer.six.
+
+Mitigation: Pin or vet pdfminer.six before use, preferably in an isolated virtual environment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/yuzed2/skills/investment-research-agent)
+- [Research Methodology](references/methodology.md)
+- [Standard Report Structure](references/report-structure.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown reports and setup guidance with inline source links, file path conventions, shell commands, and occasional Python snippets.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports are written as .md files with full-English paths, immediate inline citations for data points, current price data, latest financial periods, and risk disclosure.]
+
+## Skill Version(s):
+
+1.0.4 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,54 @@
-## Description: <br>
-Helps agents implement browser drag-and-drop interactions with @shopify/draggable, including basic dragging, sorting, drop zones, swapping, plugins, sensors, events, and configuration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Implement drag-and-drop interactions with @shopify/draggable, including basic dragging, sortable reordering, drop zones, element swapping, plugins, and sensors.
 
-## Publisher: <br>
-[openlark](https://clawhub.ai/user/openlark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[openlark](https://clawhub.ai/user/openlark)
 
-## Use Case: <br>
-Developers and engineering agents use this skill to add drag-and-drop behavior to web interfaces such as sortable lists, kanban boards, draggable grids, and drop zones. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Production apps could inherit dependency or compatibility risk from an older community-maintained drag-and-drop library. <br>
-Mitigation: Pin the @shopify/draggable package version, review the library's maintenance and browser support status, and test drag behavior across target devices before release. <br>
-Risk: Runtime CDN imports can introduce availability and supply-chain exposure in production web apps. <br>
-Mitigation: Use CDN imports only for prototypes; prefer npm-installed, bundled builds for production deployments. <br>
+## Use Case:
 
+Developers and engineers use this skill to add or adapt browser drag-and-drop interfaces such as sortable lists, kanban boards, grids, drop zones, and custom drag interactions.
 
-## Reference(s): <br>
-- [ClawHub skill release](https://clawhub.ai/openlark/shopify-draggable) <br>
-- [jsDelivr @shopify/draggable ESM build](https://cdn.jsdelivr.net/npm/@shopify/draggable/build/esm/index.mjs) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JavaScript, HTML, CSS, and shell code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only; no tool execution or credentials required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Unpinned npm or CDN installation examples can pull different package contents over time.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin @shopify/draggable to a reviewed version, use a lockfile or deterministic install, and pin CDN URLs when using browser imports.
+
+Risk: The original @shopify/draggable project is no longer maintained by Shopify.
+
+Mitigation: Evaluate maintained alternatives or complete production review before relying on the package in customer-facing interfaces.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/openlark/skills/shopify-draggable)
+- [@shopify/draggable jsDelivr ESM package](https://cdn.jsdelivr.net/npm/@shopify/draggable/build/esm/index.mjs)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with JavaScript, HTML, CSS, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only guidance for browser drag-and-drop implementation patterns.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

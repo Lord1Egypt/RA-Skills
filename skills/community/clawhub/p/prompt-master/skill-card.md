@@ -1,41 +1,48 @@
-## Description: <br>
-基于 Claude Code 的9条核心规则，提供极简提示词速查和即用模板，帮助用户快速写出高质量提示词。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Prompt Master is a Chinese prompt-engineering reference skill that gives agents compact rules, reusable prompt templates, and scenario-specific shortcuts for producing clearer responses.
 
-## Publisher: <br>
-[jx-76](https://clawhub.ai/user/jx-76) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[jx-76](https://clawhub.ai/user/jx-76)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and agent operators use this skill when they want a concise prompt-writing playbook for rewriting, code review, information lookup, data analysis, email drafting, summarization, debugging, and translation tasks.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Optional auto-load can make the prompt-writing rules influence sessions by default.
+
+Mitigation: Review the auto-load setting before enabling it and keep it disabled unless the behavior is desired for the target agent sessions.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users and prompt authors use this skill as a compact prompt-engineering reference for structuring requests, adding constraints, reusing task templates, and checking common prompt failures. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Auto-loading or injecting the skill into the system prompt may apply its formatting and verification rules in conversations where the user did not explicitly request them. <br>
-Mitigation: Enable auto-load or system-prompt injection only in workspaces where those prompt-writing rules are desired by default. <br>
-Risk: Prompt templates that emphasize constraints may still be applied too broadly for simple or unrelated tasks. <br>
-Mitigation: Select only the relevant rules or use the compact modes for low-complexity tasks. <br>
+**Output Format:** [Markdown guidance with reusable prompt snippets and an optional JSON configuration example]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/jx-76/prompt-master) <br>
-- [Publisher profile](https://clawhub.ai/user/jx-76) <br>
+**Other Properties Related to Output:** [Produces human-readable Chinese prompt guidance; no executable files or data-access behavior are included in the release evidence.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Configuration, Guidance] <br>
-**Output Format:** [Markdown prompt-writing guidance with reusable text and JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution or data access; optional auto-load guidance affects how broadly the prompt rules may be applied.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

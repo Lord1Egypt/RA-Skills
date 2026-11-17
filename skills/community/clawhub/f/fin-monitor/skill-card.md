@@ -1,43 +1,59 @@
-## Description: <br>
-Fetches 18 financial indicators from CNBC, including macroeconomic, index ETF, and U.S. equity quotes, and stores them in a local SQLite database. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+从 CNBC 抓取 18 个金融指标数据（宏观经济、指数ETF、美股个股），写入本地 SQLite 数据库。纯 stdlib，无需任何 API Key。
 
-## Publisher: <br>
-[loonslo](https://clawhub.ai/user/loonslo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[loonslo](https://clawhub.ai/user/loonslo)
 
-## Use Case: <br>
-Developers and finance operators use this skill to refresh a local SQLite database with market indicators for monitoring, analysis, or downstream workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Security evidence reports conflicts about whether the skill is CNBC-only and keyless or requires Finnhub credentials. <br>
-Mitigation: Confirm the active data source and credential requirements before use; pass any required key via environment variable rather than command-line arguments or scheduled-job text. <br>
-Risk: The skill writes finance data and logs to local storage and may be run on a schedule. <br>
-Mitigation: Use explicit user-writable database and log paths, review retention and cleanup expectations, and enable scheduling only after confirming cadence and storage behavior. <br>
+## Use Case:
 
+External users and developers use this skill to fetch public CNBC market indicators for macro, ETF, index, and equity monitoring, then store the results in a local SQLite database for later review or automation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/loonslo/fin-monitor) <br>
-- [Publisher profile](https://clawhub.ai/user/loonslo) <br>
-- [CNBC SPY quote page](https://www.cnbc.com/quotes/SPY) <br>
-- [Finnhub registration](https://finnhub.io/register) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Files] <br>
-**Output Format:** [Markdown guidance with shell commands; runtime output is console text plus SQLite database and log files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3, a user-provided SQLite database path, and may use FINNHUB_API_KEY depending on the verified workflow.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata) <br>
+Risk: Documentation asks users to provide or persist a Finnhub API key even though this version does not use one.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not provide a Finnhub API key or include it in cron or OpenClaw scheduler configuration for this release.
+
+Risk: The skill writes a local SQLite database and log file at configured paths.
+
+Mitigation: Use explicit db and log paths in a user-owned directory and review recurring tasks before enabling scheduled runs.
+
+Risk: The skill depends on public CNBC pages, so fetches may fail or parse incomplete data if pages change or rate limits occur.
+
+Mitigation: Review the command output and fetch log after runs, and prefer manual execution until the documentation and scheduling configuration are corrected.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/loonslo/skills/fin-monitor)
+- [CNBC quote page for SPY](https://www.cnbc.com/quotes/SPY)
+- [CNBC quote page for US10Y](https://www.cnbc.com/quotes/US10Y)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, files]
+
+**Output Format:** [Plain text status and tabular fetch output, with SQLite database and log files written to user-selected local paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3; uses Python standard library modules only; fetches public CNBC quote pages and writes local SQLite and log files.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

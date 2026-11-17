@@ -1,42 +1,59 @@
-## Description: <br>
-Build higher-retention subscription relationships through scarcity design, audience intimacy, and tiered access logic for direct-to-fan monetization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build higher-retention subscription relationships through scarcity design, audience intimacy, and creator-owned private content strategy for direct-to-fan monetization, retention, and tiered access logic.
 
-## Publisher: <br>
-[AGImodel](https://clawhub.ai/user/AGImodel) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[agimodel](https://clawhub.ai/user/agimodel)
 
-## Use Case: <br>
-External direct-to-fan creators and subscription operators use this skill to assess subscription ladders, diagnose churn, and plan retention-focused tiering and scarcity. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate for broad subscription, retention, or churn questions when a user did not intend to use this specific creator-platform strategy. <br>
-Mitigation: Confirm that the request is about private subscription and retention strategy before applying its recommendations. <br>
-Risk: Pricing, customer communication, and platform strategy advice can be incorrect or unsuitable for a creator's legal, tax, or platform-policy context. <br>
-Mitigation: Review recommendations before implementation and seek specialist review for legal, tax, platform-policy, or prohibited-content questions. <br>
+## Use Case:
 
+External creators and operators use this skill to diagnose subscriber churn, design clearer subscription ladders, and improve paid-access value for direct-to-fan private membership businesses.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/AGImodel/onlyfans) <br>
-- [README](README.md) <br>
-- [Examples](examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown] <br>
-**Output Format:** [Markdown assessment with structured recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May ask for missing creator, subscription, pricing, offer, and retention details before advising.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: skill.md frontmatter, skill.json, server release metadata) <br>
+Risk: Users may treat the output as legal, tax, or platform-policy advice for creator monetization.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep guidance framed as subscription strategy and direct users to qualified legal, tax, or platform-policy review for compliance decisions.
+
+Risk: Adult-adjacent requests may drift into explicit-content optimization.
+
+Mitigation: Maintain the skill boundary around retention, tiering, and private membership strategy, and avoid explicit sexual-content guidance.
+
+Risk: Users may expect account operation, automation, or handling of sensitive platform data.
+
+Mitigation: Clarify that the skill is text-only and should not request credentials, operate accounts, or automate OnlyFans platform actions.
+
+## Reference(s):
+
+- [OnlyFans Skill Page](https://clawhub.ai/agimodel/skills/onlyfans)
+- [README](artifact/README.md)
+- [Examples](artifact/examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Structured Markdown assessment with diagnosis, tiering recommendations, scarcity logic, and next steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Text-only strategy guidance; does not execute account actions, request credentials, or automate platform behavior.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, skill.json, release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "diagram_type": "org",
+  "meta": {
+    "title": "Engineering Team",
+    "output": "examples/org-engineering-team-rendered.html",
+    "quality_profile": "showcase",
+    "views": [
+      { "id": "leadership", "label": "Leadership", "focus": ["cto", "vp-eng", "vp-infra"], "note": "The top reporting chain from CTO down." },
+      { "id": "product-side", "label": "Product side", "focus": ["vp-eng", "web-lead", "mobile-lead"], "note": "Engineering teams under the product VP." },
+      { "id": "platform-side", "label": "Platform side", "focus": ["vp-infra", "sre-lead", "data-lead"], "note": "Infrastructure and data teams." }
+    ]
+  },
+  "people": [
+    { "id": "cto", "name": "Alex Chen", "title": "CTO" },
+    { "id": "vp-eng", "name": "Sam Rivera", "title": "VP Engineering", "team": "Product" },
+    { "id": "vp-infra", "name": "Jordan Lee", "title": "VP Infrastructure", "team": "Platform" },
+    { "id": "web-lead", "name": "Priya Shah", "title": "Web Lead", "team": "Product" },
+    { "id": "mobile-lead", "name": "Diego Cruz", "title": "Mobile Lead", "team": "Product" },
+    { "id": "sre-lead", "name": "Maya Patel", "title": "SRE Lead", "team": "Platform" },
+    { "id": "data-lead", "name": "Ken Zhang", "title": "Data Lead", "team": "Platform" }
+  ],
+  "reports": [
+    { "id": "cto-vp-eng", "from": "cto", "to": "vp-eng", "variant": "emphasis" },
+    { "id": "cto-vp-infra", "from": "cto", "to": "vp-infra", "variant": "emphasis" },
+    { "id": "vp-eng-web", "from": "vp-eng", "to": "web-lead" },
+    { "id": "vp-eng-mobile", "from": "vp-eng", "to": "mobile-lead" },
+    { "id": "vp-infra-sre", "from": "vp-infra", "to": "sre-lead" },
+    { "id": "vp-infra-data", "from": "vp-infra", "to": "data-lead" }
+  ],
+  "cards": [
+    {
+      "dot": "emerald",
+      "title": "Reporting structure",
+      "items": [
+        "The CTO has two direct reports: product and platform VPs",
+        "Each VP leads two team leads in a clean tree",
+        "Solid emphasis edges mark the direct leadership chain"
+      ]
+    },
+    {
+      "dot": "cyan",
+      "title": "Team ownership",
+      "items": [
+        "Product side: web and mobile engineering",
+        "Platform side: site reliability and data",
+        "Team tags group people by their owning organization"
+      ]
+    }
+  ]
+}

@@ -1,42 +1,62 @@
-## Description: <br>
-Intelligently dispatches WeChat messages by extracting recipients and content, handling text, images, or files with confirmation and selection prompts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Intelligently dispatches WeChat messages by extracting recipients and content, then routing text, image, or file sends through confirmation and selection flows.
 
-## Publisher: <br>
-[aw11100](https://clawhub.ai/user/aw11100) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aw11100](https://clawhub.ai/user/aw11100)
 
-## Use Case: <br>
-Developers and agent operators use this skill to let an agent resolve WeChat contacts or group chats and prepare text, image, or file messages for sending after confirmation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Message text, recipient data, media URLs, file URLs, and credentials may be sent to the SynodeAI/WeChat gateway. <br>
-Mitigation: Install only when the gateway is trusted, prefer HTTPS, and rotate or replace bundled credentials before use. <br>
-Risk: The local bridge can send WeChat messages through a service that the security evidence describes as unauthenticated. <br>
-Mitigation: Restrict the service to trusted local access and require a server-side confirmation or allowlist before final sending. <br>
-Risk: Ambiguous contact or group matching could target the wrong recipient. <br>
-Mitigation: Use the provided choice and confirmation flow before invoking the final send endpoint. <br>
+## Use Case:
 
+Developers and automation users can use this skill to operate a WeChat bridge that matches contacts or chatrooms and sends text, image, or file messages after user confirmation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aw11100/wechat-new-tool) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Configuration, API calls] <br>
-**Output Format:** [Markdown guidance with JSON HTTP request and response patterns] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Routes text, image, and file requests through a local WeChat bridge and an external gateway; final sending depends on confirmation flow.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: The bridge can send messages for an account with poor safeguards.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only behind strong authentication and network restrictions, and require server-side confirmation tokens before sending messages.
+
+Risk: The release includes a reusable WeChat secret.
+
+Mitigation: Remove the exposed token from the release and rotate it before deployment.
+
+Risk: The backend transport should not rely on plain HTTP.
+
+Mitigation: Change the backend connection to HTTPS before use.
+
+Risk: Dependencies are not pinned with a lockfile.
+
+Mitigation: Pin dependencies and commit a lockfile before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aw11100/skills/wechat-new-tool)
+- [Publisher profile](https://clawhub.ai/user/aw11100)
+
+## Skill Output:
+
+**Output Type(s):** [Text, API calls, Guidance, Configuration]
+
+**Output Format:** [Markdown or plain text responses with JSON API payloads]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user confirmation or choice selection before final message sending.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

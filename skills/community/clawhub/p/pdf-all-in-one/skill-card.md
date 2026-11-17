@@ -1,46 +1,60 @@
-## Description: <br>
-All-in-one PDF processing tool for merging, splitting, extracting, converting, OCR, table recognition, PDF-to-image conversion, and PDF form workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+All-in-one PDF processing tool for merging, splitting, extracting, converting, OCR, PDF-to-image conversion, and table recognition.
 
-## Publisher: <br>
-[sonicrang](https://clawhub.ai/user/sonicrang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sonicrang](https://clawhub.ai/user/sonicrang)
 
-## Use Case: <br>
-Developers and agents use this skill to select and run local PDF workflows for extracting text and tables, converting pages to images, OCR, merging and splitting PDFs, and filling PDF forms. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Anthropic Consumer Terms of Service or Commercial Terms of Service
 
-## Known Risks and Mitigations: <br>
-Risk: Local PDF processing can create text, JSON, image, spreadsheet, and modified-PDF intermediates that expose sensitive document contents. <br>
-Mitigation: Use a controlled workspace, process only PDFs you own or are authorized to process, and delete sensitive intermediate files when finished. <br>
-Risk: Password-protected PDF examples include command-line password usage, which can expose secrets through shell history or process listings. <br>
-Mitigation: Avoid placing real passwords directly in commands; prefer secure input methods or temporary test credentials. <br>
-Risk: Repair, decrypt, merge, split, and form-filling operations can alter PDFs or create incorrect outputs. <br>
-Mitigation: Keep backups of source PDFs and review generated files, validation images, and form field values before relying on the result. <br>
+## Use Case:
 
+Developers, employees, and external users use this skill to inspect, transform, extract data from, convert, and fill PDFs in a local workspace.
 
-## Reference(s): <br>
-- [PDF All-in-One ClawHub Page](https://clawhub.ai/sonicrang/pdf-all-in-one) <br>
-- [Publisher Profile](https://clawhub.ai/user/sonicrang) <br>
-- [OpenClaw Fork Metadata](https://github.com/anthropics/skills) <br>
-- [Forms Guide](artifact/forms.md) <br>
-- [PDF Processing Advanced Reference](artifact/reference.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration, Files] <br>
-**Output Format:** [Markdown guidance with Python, JavaScript, and shell command snippets; bundled scripts can produce PDF, PNG, JSON, text, and spreadsheet files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Local filesystem outputs may contain extracted PDF content, form data, rendered page images, or modified PDFs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: evidence.release.version and artifact/_meta.json) <br>
+Risk: Local PDF processing can expose sensitive document contents or write files to unintended paths.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep input and output files inside the documented workspace and review paths before running commands.
+
+Risk: Dependency installation examples include package manager commands that can change the host environment.
+
+Mitigation: Install Python dependencies in a virtual environment when possible and review any sudo package installation before running it.
+
+Risk: Password removal and decryption examples can be misused on PDFs the user is not authorized to process.
+
+Mitigation: Use decryption or password-removal examples only for PDFs you own or are authorized to process.
+
+## Reference(s):
+
+- [PDF Processing Advanced Reference](artifact/reference.md)
+- [PDF Form Filling Reference](artifact/forms.md)
+- [ClawHub Skill Page](https://clawhub.ai/sonicrang/skills/pdf-all-in-one)
+- [OpenClaw Fork Metadata Link](https://github.com/anthropics/skills)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Files, Guidance]
+
+**Output Format:** [Markdown guidance with Python and shell code blocks; generated artifacts may include PDFs, images, text, tables, and JSON files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Local filesystem read/write for user-provided PDFs; no external API keys detected.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

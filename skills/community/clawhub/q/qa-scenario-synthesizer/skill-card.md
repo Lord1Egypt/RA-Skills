@@ -1,46 +1,61 @@
-## Description: <br>
-Generates structured QA scenario drafts from requirements, covering main flows, exceptions, cross-platform cases, invalid input, recovery paths, and priorities. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates structured QA scenario sets from requirements, covering main flows, exceptions, cross-platform behavior, invalid inputs, recovery, and priorities.
 
-## Publisher: <br>
-[52YuanChangXing](https://clawhub.ai/user/52YuanChangXing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[52yuanchangxing](https://clawhub.ai/user/52yuanchangxing)
 
-## Use Case: <br>
-QA engineers, developers, and product teams use this skill to turn requirements, user flows, and constraints into reviewable test scenario drafts and execution checklists. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated scenarios may be mistaken for completed QA execution. <br>
-Mitigation: Treat outputs as draft test design material and review or execute tests separately before relying on results. <br>
-Risk: Input requirements or user flows may contain sensitive information. <br>
-Mitigation: Run the skill only on files intended for processing and redact sensitive material unless it is required for test design. <br>
-Risk: The local script can write to user-selected output paths and includes dormant audit modes controlled by the spec file. <br>
-Mitigation: Choose output paths carefully and re-review the script and resources/spec.json before modifying modes or configuration. <br>
+## Use Case:
 
+QA engineers, developers, and product reviewers use this skill to turn requirements, user flows, and constraints into reviewable test-scenario drafts and execution checklists. It is suited for test design, integration preparation, and acceptance coverage planning.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/52YuanChangXing/qa-scenario-synthesizer) <br>
-- [README](README.md) <br>
-- [Scenario specification](resources/spec.json) <br>
-- [Output template](resources/template.md) <br>
-- [Smoke test](tests/smoke-test.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, shell commands] <br>
-**Output Format:** [Structured Markdown, with optional JSON output from the local script.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are reviewable drafts based on local input; users choose any output file path when running the script.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: Generated scenarios may omit important paths or imply more test coverage than was actually executed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as reviewable QA design drafts and have a human reviewer confirm coverage before using them for release decisions.
+
+Risk: Input requirements may contain sensitive business, user, or compliance details.
+
+Mitigation: Redact sensitive requirements before use and provide only files intended to be shared with the skill.
+
+Risk: The artifact contains inactive audit modes in addition to the default scenario-generation mode.
+
+Mitigation: Keep the provided specification in its default structured scenario mode unless local scanning behavior is explicitly desired.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/52yuanchangxing/skills/qa-scenario-synthesizer)
+- [README](artifact/README.md)
+- [Scenario Specification](artifact/resources/spec.json)
+- [Output Template](artifact/resources/template.md)
+- [Smoke Test](artifact/tests/smoke-test.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown by default, with optional JSON report output from the local script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs emphasize reviewable drafts, missing-information lists, priorities, and next-step checklists.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

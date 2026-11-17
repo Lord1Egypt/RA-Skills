@@ -1,37 +1,51 @@
-## Description: <br>
-Collaborative thinking partner for exploring complex problems through questioning <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Collaborative thinking partner for exploring complex problems through questioning.
 
-## Publisher: <br>
-[ItsFlow](https://clawhub.ai/user/ItsFlow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[itsflow](https://clawhub.ai/user/itsflow)
 
-## Use Case: <br>
-People working through complex problems use this skill to explore topics through clarifying questions, insight tracking, assumption surfacing, and periodic summaries before moving to solutions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill may draw on available notes or conversation context while helping users explore a problem. <br>
-Mitigation: Avoid sharing private material that should not appear in prompts, summaries, notes, or follow-up discussion. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ItsFlow/thinking-partner) <br>
+## Use Case:
+
+External users and developers use this skill to explore complex problems through clarifying questions, assumption checks, insight tracking, and periodic summaries before moving toward solutions.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill may search or draw on existing notes when the agent has access to them.
+
+Mitigation: Keep note lookup scoped to the user-selected topic and avoid broad searches over unrelated private context.
+
+Risk: Reflective questioning and summaries may preserve incorrect assumptions if the conversation starts from incomplete information.
+
+Mitigation: Use the skill's assumption-surfacing behavior to explicitly identify uncertainty and revisit conclusions before acting on them.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Conversational Markdown with questions, notes, summaries, and open questions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown conversation guidance with questions, summaries, notes, and suggested directions to explore.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference relevant existing notes or context when the agent has access and the user-selected topic warrants it.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

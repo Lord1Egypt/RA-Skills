@@ -1,46 +1,61 @@
-## Description: <br>
-Workspace Init guides an agent through collecting project details, scaffolding a dev-config-template workspace, cloning sub-repositories, configuring OpenSpec and development environments, and validating the setup. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill to initialize or update a multi-repo workspace created from dev-config-template, including workspace cloning, CLAUDE.md customization, sub-repository setup, development environment configuration, and template synchronization.
 
-## Publisher: <br>
-[niracler](https://clawhub.ai/user/niracler) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[niracler](https://clawhub.ai/user/niracler)
 
-## Use Case: <br>
-Developers and engineers use this skill to initialize or update a multi-repo workspace from dev-config-template, including project metadata, repository layout, OpenSpec configuration, local development setup, and validation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: User-supplied repository URLs may clone unintended or untrusted code into the workspace. <br>
-Mitigation: Review the target directory and every repository URL before confirming setup or template updates. <br>
-Risk: Dependency installation in cloned repositories can execute code from those projects and package ecosystems. <br>
-Mitigation: Install dependencies only for repositories and package sources the user has reviewed and intends to trust. <br>
-Risk: Generated CLAUDE.md and workspace configuration files can change agent behavior and project workflow. <br>
-Mitigation: Review generated CLAUDE.md, repos.json, OpenSpec config, and workspace files before committing or using the workspace. <br>
+## Use Case:
 
+Developers and engineers use this skill to turn a dev-config-template workspace into a working multi-repo development environment. It collects project details, writes workspace configuration files, clones repositories, initializes OpenSpec, configures Python or TypeScript environments, installs available pre-commit hooks, and validates the result.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/niracler/nini-workspace-init) <br>
-- [dev-config-template](https://github.com/niracler/dev-config-template) <br>
-- [Release v0.3.0](https://github.com/niracler/skill/releases/tag/v0.3.0) <br>
-- [CLAUDE.md placeholder fields](references/claude-md-fields.md) <br>
-- [OpenSpec configuration template](references/config-template.yaml) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and generated JSON, YAML, Markdown, and VS Code workspace configuration files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Interactive setup flow that may write workspace files, clone user-specified repositories, install dependencies, create commits, and report validation results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.3.0 (source: server release metadata) <br>
+Risk: The skill can make broad workspace changes, including generating agent-facing files and workspace configuration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the planned repository list, generated CLAUDE.md content, OpenSpec configuration, and template-update diff before allowing execution.
+
+Risk: The skill can clone user-provided repositories and run package installation steps that may execute code from those repositories.
+
+Mitigation: Use trusted repository URLs only, inspect dependency install steps, and avoid accepting free-form repository values supplied by an untrusted party.
+
+Risk: The skill may install persistent pre-commit hooks in cloned repositories.
+
+Mitigation: Review hook configuration before installation and disable or remove hooks that are not required for the workspace.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/niracler/skills/nini-workspace-init)
+- [dev-config-template](https://github.com/niracler/dev-config-template)
+- [CLAUDE.md Placeholder Fields](references/claude-md-fields.md)
+- [OpenSpec OPSX Configuration Template](references/config-template.yaml)
+- [Release v0.3.0](https://github.com/niracler/skill/releases/tag/v0.3.0)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline shell commands, JSON snippets, YAML configuration, and generated workspace files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces workspace setup instructions and may create or update repos.json, CLAUDE.md, openspec/config.yaml, VSCode workspace files, .workspace-init-version, virtual environments, node_modules, and pre-commit hooks.]
+
+## Skill Version(s):
+
+0.3.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,54 @@
-## Description: <br>
-Reviews pending repository changes for secrets, injection, XSS, SSRF, authorization bypass, and risky dependency patterns, then reports severity and remediation guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reviews pending code changes for common security issues, including secrets exposure, injection, XSS, SSRF, authorization bypass, and vulnerable dependencies, then reports severity and suggested fixes.
 
-## Publisher: <br>
-[zhaobod1](https://clawhub.ai/user/zhaobod1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhaobod1](https://clawhub.ai/user/zhaobod1)
 
-## Use Case: <br>
-Developers and security reviewers use this skill before PR merges, public releases, or incident follow-up to statically review repository changes for common vulnerability classes and receive severity-ranked findings with remediation guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Security review requires reading repository diffs and may inspect git history, which can expose secrets or sensitive code. <br>
-Mitigation: Install only in repositories where that access is acceptable, and keep generated reports redacted. <br>
-Risk: Static pattern matching can miss vulnerabilities or report false positives. <br>
-Mitigation: Treat findings as review guidance and confirm them against the affected code before merging or releasing. <br>
-Risk: Remediation advice can involve credentials, git history, or dependency updates. <br>
-Mitigation: Keep remediation user-controlled; do not automatically revoke keys, rewrite history, or force dependency updates. <br>
+## Use Case:
 
+Developers and code reviewers use this skill before merges, open-source releases, or incident reviews to scan scoped code changes and receive a prioritized security report.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhaobod1/huo15-openclaw-security-review) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown security review report with severity-ranked findings, CWE mappings, remediation guidance, and optional user-run shell commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Secrets are redacted; destructive remediation such as key revocation, history rewriting, and forced dependency updates remains user-controlled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact frontmatter) <br>
+Risk: The skill may read code diffs and surrounding file context that include secrets or sensitive implementation details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Invoke it with an explicit branch, file list, or commit range when scope matters, and review reports for accidental sensitive disclosure.
+
+Risk: Security fix suggestions can change application behavior or remove legitimate code when applied too broadly.
+
+Mitigation: Require user approval before edits and review proposed patches before merging.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhaobod1/skills/huo15-openclaw-security-review)
+- [Publisher profile](https://clawhub.ai/user/zhaobod1)
+
+## Skill Output:
+
+**Output Type(s):** [analysis, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown security review report with file references, severity ratings, CWE mappings, suggested fixes, and optional shell commands for user-run checks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose code changes only after user approval; avoids printing full secrets in reports.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

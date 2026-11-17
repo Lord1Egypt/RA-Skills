@@ -1,43 +1,60 @@
-## Description: <br>
-Publish content to Medium, Dev.to, and Hashnode from markdown files. Handles formatting, SEO optimization, scheduling, and cross-posting with canonical URLs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Publish markdown articles to Medium, Dev.to, and Hashnode with formatting, SEO optimization, scheduling, cross-posting, and canonical URL guidance.
 
-## Publisher: <br>
-[Qoohsuan](https://clawhub.ai/user/Qoohsuan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qoohsuan](https://clawhub.ai/user/qoohsuan)
 
-## Use Case: <br>
-Developers, content creators, and publishing teams use this skill to prepare and publish markdown articles across Medium, Dev.to, and Hashnode with SEO checks, tags, canonical URLs, and platform-specific publishing steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can help publish content publicly or cross-post it to multiple platforms. <br>
-Mitigation: Review the article text, destination platform, tags, canonical URL, and draft or public status before publishing. <br>
-Risk: Publishing workflows use API tokens for Dev.to and Hashnode. <br>
-Mitigation: Keep API tokens in environment variables and out of prompts, shared logs, article text, and committed files. <br>
+## Use Case:
 
+Developers, technical writers, and content publishers use this skill to prepare markdown articles, optimize them for SEO, and publish or cross-post them across Medium, Dev.to, and Hashnode.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Qoohsuan/content-publisher) <br>
-- [Medium new story](https://medium.com/new-story) <br>
-- [Dev.to articles API endpoint](https://dev.to/api/articles) <br>
-- [Hashnode GraphQL endpoint](https://gql.hashnode.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with checklists, shell command examples, and API request templates.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include public publishing instructions, SEO review steps, platform tags, canonical URL guidance, and API token environment variable usage.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Publishing actions can make draft article content public on external blogging platforms.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the content is approved for public release before using publish steps or API commands.
+
+Risk: Platform API tokens can grant publishing access beyond the immediate article workflow.
+
+Mitigation: Use least-privilege Dev.to and Hashnode tokens and keep credentials in environment variables rather than article files.
+
+Risk: Testing publish commands with live settings can create unintended public posts.
+
+Mitigation: Use draft or unpublished modes when testing, then explicitly switch to live publishing after review.
+
+## Reference(s):
+
+- [Content Publisher skill page](https://clawhub.ai/qoohsuan/skills/content-publisher)
+- [Medium new story](https://medium.com/new-story)
+- [Dev.to articles API endpoint](https://dev.to/api/articles)
+- [Hashnode GraphQL endpoint](https://gql.hashnode.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with checklists, ordered steps, and inline shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include platform API requests, browser publishing steps, SEO checks, and cross-posting guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

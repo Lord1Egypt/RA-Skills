@@ -1,41 +1,59 @@
-## Description: <br>
-Create, parse, and edit ODT (OpenDocument Text) files locally using Python and odfdo. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create, parse, and edit ODT (OpenDocument Text) files locally using Python and odfdo.
 
-## Publisher: <br>
-[juicyroots](https://clawhub.ai/user/juicyroots) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[juicyroots](https://clawhub.ai/user/juicyroots)
 
-## Use Case: <br>
-Developers and document automation users use this skill to inspect, create, extract text from, and update local ODT files, including documents that are downloaded from or later uploaded to NextCloud by a separate skill. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Editing commands can overwrite or materially change important ODT documents. <br>
-Mitigation: Inspect documents first, work on a copy or temporary file, and review the edited result before replacing or uploading the original. <br>
-Risk: The skill depends on the external odfdo Python package being installed in the agent environment. <br>
-Mitigation: Install only when that package is acceptable for the environment and keep dependency installation scoped to the intended runtime. <br>
+## Use Case:
 
+Developers and agents use this skill to inspect, create, extract text from, and modify local ODT documents, including append, replace, metadata, font, outline, and style operations. It can be paired with a separate NextCloud skill when document download or upload is needed.
 
-## Reference(s): <br>
-- [ODT File Manager Reference](REFERENCE.md) <br>
-- [ClawHub skill page](https://clawhub.ai/juicyroots/odt-filemgr-oc) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with Python and shell command examples; generated tool output may be plain text or JSON metadata summaries.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Operates on local ODT files and requires Python 3.10+ with the odfdo package installed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Dependency installation uses an unpinned odfdo package, which can change behavior across versions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install dependencies in a virtual environment and prefer pinned, reviewed package versions.
+
+Risk: NextCloud examples involve a separate skill that can download or upload files outside this local editor's boundary.
+
+Mitigation: Use the NextCloud workflow only when remote document transfer is intended, and review the target paths before upload or download.
+
+Risk: Document edits can overwrite local ODT files if commands are run against the wrong path.
+
+Mitigation: Inspect unfamiliar documents first and work from temporary or backup copies before saving final edits.
+
+## Reference(s):
+
+- [ODT File Manager Reference](artifact/REFERENCE.md)
+- [ClawHub Skill Page](https://clawhub.ai/juicyroots/skills/odt-filemgr-oc)
+- [Publisher Profile](https://clawhub.ai/user/juicyroots)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, files, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, Python snippets, plain-text extraction, JSON metadata output, and modified ODT files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Python 3.10+ and odfdo; ODT file changes are local unless a separate NextCloud skill is used for transfer.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

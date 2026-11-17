@@ -1,50 +1,63 @@
-## Description: <br>
-superSoul provides OpenClaw agents with psychological scoring standards and local user-state data for personality, emotional rhythm, coping, confidence, and response-style guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides psychological scoring standards and local user state data so an agent can tailor responses using personality, emotional rhythm, coping, attachment, and interaction-preference signals.
 
-## Publisher: <br>
-[xinqimiao](https://clawhub.ai/user/xinqimiao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xinqimiao](https://clawhub.ai/user/xinqimiao)
 
-## Use Case: <br>
-External users and developers use this skill to help an OpenClaw assistant maintain confidence-weighted psychological and emotional profiles and tailor response style from those profiles. It is intended for personalized assistant behavior, not clinical diagnosis or treatment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill persistently builds sensitive psychological and emotional profiles. <br>
-Mitigation: Use explicit opt-in, restrict filesystem access to the local profile directory, define retention and deletion procedures, and document who can inspect the stored data. <br>
-Risk: Raw message content and inferred traits may be saved locally as part of scoring and profile updates. <br>
-Mitigation: Minimize saved content, avoid collecting unnecessary sensitive details, and redact or delete profile records when users request removal. <br>
-Risk: Proactive care and intimacy-oriented behavior can be inappropriate in some deployments. <br>
-Mitigation: Review or disable proactive follow-up behavior, set clear user expectations, and keep response guidance bounded to non-clinical personalization. <br>
+## Use Case:
 
+External users and developers use this skill to maintain a local psychological profile and retrieve scoring standards, current state, confidence reports, emotional rhythm data, and response-style guidance for more personalized AI conversations.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/xinqimiao/herhug) <br>
-- [Publisher Profile](https://clawhub.ai/user/xinqimiao) <br>
-- [README](artifact/README.md) <br>
-- [Usage Guide](artifact/USAGE.md) <br>
-- [OCEAN and HEXACO Scoring Standard](artifact/standards/01_ocean_hexaco.md) <br>
-- [Confidence Scoring Standard](artifact/standards/05_confidence_scoring.md) <br>
-- [Attachment Scoring Standard](artifact/standards/07_attachment.md) <br>
-- [Interaction Preference Standard](artifact/standards/08_interaction_preference.md) <br>
-- [Emotion Trigger Standard](artifact/standards/09_emotion_triggers.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Guidance, Configuration] <br>
-**Output Format:** [Markdown scoring standards and JSON objects for user state, scores, rhythm analysis, confidence reports, follow-up tasks, and response-style guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Persists per-user local profile data under ~/.openclaw/data/herHug/<userId>/ when used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: The skill stores long-term psychological profiles and raw personal conversation data locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Protect the local data directory, avoid casual sharing or backup, and provide explicit consent, retention, export, and deletion controls before broad use.
+
+Risk: Weak controls around sensitive profile data and user identifiers can increase privacy and data-isolation risk.
+
+Mitigation: Validate user identifiers in the host, add schema validation for saved profile data, and keep prompts isolated from untrusted profile content.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xinqimiao/skills/herhug)
+- [README](artifact/README.md)
+- [Usage guide](artifact/USAGE.md)
+- [OCEAN and HEXACO scoring standards](artifact/standards/01_ocean_hexaco.md)
+- [Emotional rhythm scoring standards](artifact/standards/02_emotional_rhythm.md)
+- [Psychological flexibility scoring standards](artifact/standards/03_psychological_flexibility.md)
+- [Stress coping scoring standards](artifact/standards/04_stress_coping.md)
+- [Confidence scoring standards](artifact/standards/05_confidence_scoring.md)
+- [Attachment scoring standards](artifact/standards/07_attachment.md)
+- [Interaction preference scoring standards](artifact/standards/08_interaction_preference.md)
+- [Emotion trigger scoring standards](artifact/standards/09_emotion_triggers.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Structured action responses and JSON-like state objects with Markdown scoring standards and guidance text.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Maintains local JSON and JSONL state under a per-user data directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

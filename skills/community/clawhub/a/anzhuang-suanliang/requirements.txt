@@ -1,0 +1,3 @@
+# 依赖声明：优先走识图底座 cad-file-reader 的 vendor/；缺失时：
+#   python3 -m pip install -r requirements.txt
+openpyxl>=3.1

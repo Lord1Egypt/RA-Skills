@@ -1,0 +1,10 @@
+{
+  "eventId" : "2b4a58e7-8152-4864-bf80-7b817ff57ea9",
+  "operation" : "UPSERT",
+  "groupId" : "2067496336427061249",
+  "memberId" : "2067496336469004289",
+  "slug" : "amazon-asin-dynamic-scoring",
+  "agentId" : "gRXfb5J4dguNFy3BQVrpD3",
+  "version" : 1785760355431,
+  "syncedAt" : "2026-08-03T12:32:36.573987559Z"
+}

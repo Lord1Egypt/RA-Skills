@@ -1,39 +1,58 @@
-## Description: <br>
-Privacy redaction toolkit for reading, masking, and replacing sensitive information in images, PDFs, Word documents, and PowerPoint presentations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Privacy redaction toolkit for images, PDFs, Word documents, and PowerPoint presentations.
 
-## Publisher: <br>
-[darknoah](https://clawhub.ai/user/darknoah) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[darknoah](https://clawhub.ai/user/darknoah)
 
-## Use Case: <br>
-Employees, external users, and developers can use this skill to extract text from supported file formats and redact or replace private information before sharing documents, presentations, PDFs, or images. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Unredacted sensitive text can be exposed or retained through normal logging, debug output, OCR processing, or temporary cache files. <br>
-Mitigation: Review before installing, process only local files suitable for OCR and Office conversion, avoid debug modes for real PII, clear PPStructure/redact cache files after use, and treat terminal logs as sensitive. <br>
+## Use Case:
 
+Developers, privacy/compliance reviewers, and document handlers use this skill to read and redact sensitive text in images, PDFs, Word documents, and PowerPoint presentations before sharing files.
 
-## Reference(s): <br>
-- [ClawHub Redact skill page](https://clawhub.ai/darknoah/redact) <br>
-- [uv documentation](https://docs.astral.sh/uv/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, files, shell commands, configuration] <br>
-**Output Format:** [Markdown instructions with command examples; script outputs include plain text, JSON, and redacted image or document files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Python 3.10+ and OCR/document-processing dependencies.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: ClawHub release evidence) <br>
+Risk: Unredacted sensitive text may be left in temporary files or logs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill in an isolated workspace, clean temporary directories after use, and avoid highly sensitive documents until cleanup and logging behavior are fixed.
+
+Risk: Redaction can fail silently for embedded images in PowerPoint while still producing a saved output file.
+
+Mitigation: Inspect generated presentations before sharing them and treat warnings during processing as blockers for release of the redacted file.
+
+Risk: OCR-based redaction may miss text or preserve private content in unsupported document structures.
+
+Mitigation: Review outputs manually before distribution and keep the original files separate from redacted deliverables.
+
+## Reference(s):
+
+- [Redact ClawHub skill page](https://clawhub.ai/darknoah/skills/redact)
+- [uv documentation](https://docs.astral.sh/uv/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, files, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with shell commands; scripts output extracted text, structured JSON, or redacted image/document/presentation files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs depend on the input file type and CSV redaction rules.]
+
+## Skill Version(s):
+
+0.1.1 (source: ClawHub release evidence; artifact pyproject.toml reports 0.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

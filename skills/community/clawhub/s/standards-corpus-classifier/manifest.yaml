@@ -1,0 +1,28 @@
+# WorkBuddy 技能市场元数据（ClawHub 发布以 SKILL.md frontmatter 为准，本文件为客户端市场补充）
+name: standards-corpus-classifier
+display_name: 标准语料分类器
+version: 1.0.0
+description: >-
+  将国标(GB)/行标(QX等)/地标(DB11等) PDF 语料按"领域+级别+年份"自动归类、
+  生成 CSV 与 HTML 可视化报告，并支持按分类/年份/标准号/名称筛选打包下载。
+author: "老王子建工老孟"
+license: MIT-0
+category: document-processing
+icon: assets/cover.png
+tags:
+  - standards
+  - classification
+  - pdf
+  - 标准
+  - 语料库
+  - 归档
+triggers:
+  - 标准分类
+  - 标准语料归类
+  - 整理标准PDF
+  - 出标准目录CSV
+  - 下载某分类标准
+  - 下载某年度标准
+  - 按标准号下载
+  - classify standards
+entry: SKILL.md

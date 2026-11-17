@@ -1,40 +1,53 @@
-## Description: <br>
-为开发者提供代码、方案、Agent Skill 与 MCP Server 的多轴质量和安全审查清单。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language code and system review skill that guides agents through correctness, readability, architecture, security, performance, Agent Skill supply-chain checks, BIV review, and MCP Server security auditing.
 
-## Publisher: <br>
-[qqyougitcom](https://clawhub.ai/user/qqyougitcom) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qqyougitcom](https://clawhub.ai/user/qqyougitcom)
 
-## Use Case: <br>
-开发者、审查者和 Agent 操作者用于在合并 PR、安装 Skill、部署 MCP Server 或提交技术方案前进行质量门控和安全审计。 <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The review process may require broad repository inspection. <br>
-Mitigation: Use it only in workspaces where that review access is intended, and limit the agent context to the files needed for the review. <br>
-Risk: Checklist-based findings can be incomplete or misleading if applied without project context. <br>
-Mitigation: Validate findings against the code, tests, deployment model, and the author's stated intent before acting on them. <br>
+## Use Case:
 
+Developers and engineering agents use this skill to review pull requests, implementation plans, refactors, bug fixes, Agent Skills, and MCP Servers before merge, installation, or deployment. It helps structure findings by severity and review axis.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/qqyougitcom/mimo-code-review-and-quality) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands] <br>
-**Output Format:** [Markdown review checklist with optional shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces review findings, severity labels, verification prompts, and deployment or installation guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill may surface security-sensitive search commands and review prompts that could be misread as operational instructions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the commands as read-only audit checks and confirm any proposed action before changing code, credentials, deployments, or MCP Server configuration.
+
+Risk: Review checklists can produce overbroad or incorrect findings when the agent lacks repository context.
+
+Mitigation: Require findings to cite concrete files, behavior, or tests, and have a human reviewer confirm Critical and Important issues before blocking release.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/qqyougitcom/skills/mimo-code-review-and-quality)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands]
+
+**Output Format:** [Markdown guidance with checklists, tables, and inline shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language review structure with severity labels and security audit checklists.]
+
+## Skill Version(s):
+
+1.4.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

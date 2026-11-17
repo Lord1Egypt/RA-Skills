@@ -1,42 +1,59 @@
-## Description: <br>
-ByteForms (forms.bytesuite.io). Use this skill for ANY ByteForms request - searching and reading data. Whenever a task involves ByteForms, use this skill instead of calling the API directly. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use ByteForms to search for and read forms and response data through an OOMOL-connected account.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Agents use this skill to read ByteForms forms and form responses through an OOMOL-connected account. It is intended for users who want searchable access to ByteForms data without handling raw API tokens directly in the agent session. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can expose ByteForms form data and responses from the connected account into the agent session. <br>
-Mitigation: Install and use it only for ByteForms accounts and forms whose data is appropriate to share with the agent. <br>
-Risk: The skill depends on the OOMOL oo CLI and server-side managed credentials. <br>
-Mitigation: Confirm that the OOMOL publisher and oo CLI setup are trusted before connecting the ByteForms account. <br>
+## Use Case:
 
+Agents and developers use this skill to find ByteForms forms, retrieve a form, and read its responses through an account connected to OOMOL.
 
-## Reference(s): <br>
-- [ClawHub ByteForms skill page](https://clawhub.ai/oomol/oo-byteforms) <br>
-- [ByteForms homepage](https://forms.bytesuite.io/) <br>
-- [OOMOL oo CLI](https://github.com/oomol-lab/oo-cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, JSON] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON connector responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses OOMOL oo CLI actions for get_form, list_forms, and list_form_responses.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence and skill frontmatter) <br>
+Risk: Setup runs a remote installer that has not been verified.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the installer and use a separately reviewed, pinned oo CLI installation.
+
+Risk: The required CLI can silently install or refresh other agent skills.
+
+Mitigation: Set OO_SKILLS_SYNC_DISABLED=1 before invoking the CLI if other skills should not be installed or refreshed.
+
+Risk: Form responses may pass through OOMOL when using the connected account.
+
+Mitigation: Connect only the intended ByteForms account and consider whether its response data may pass through OOMOL.
+
+## Reference(s):
+
+- [ByteForms](https://forms.bytesuite.io/)
+- [ByteForms API documentation](https://dev.forms.bytesuite.io/docs/api)
+- [oo CLI](https://github.com/oomol-lab/oo-cli)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Guidance]
+
+**Output Format:** [JSON responses and concise usage guidance, with shell commands for the oo CLI]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns form and response data for the connected ByteForms account.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

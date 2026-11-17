@@ -1,46 +1,69 @@
-## Description: <br>
-Run a job search briefing, find job matches, draft outreach emails, or track job applications. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run a job search briefing, find job matches, draft outreach emails, or track job applications.
 
-## Publisher: <br>
-[orestes-garcia-martinez](https://clawhub.ai/user/orestes-garcia-martinez) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[orestes-garcia-martinez](https://clawhub.ai/user/orestes-garcia-martinez)
 
-## Use Case: <br>
-External job seekers use CareerClaw through an agent to fetch job listings, rank them against a local profile and resume, draft outreach, and maintain an application tracking log. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Resume text, profile data, and tracking state may be stored in plaintext under .careerclaw. <br>
-Mitigation: Review the local storage behavior before installation, keep .careerclaw out of version control, and use filesystem protections appropriate for resume and job-search data. <br>
-Risk: Pro features may send derived candidate or job signals to OpenAI or Anthropic and validate a license with Gumroad. <br>
-Mitigation: Use Pro features only after reviewing the configured provider, model, API key, and license validation behavior. <br>
-Risk: Debug scripts can expose license keys if run with real credentials. <br>
-Mitigation: Do not run debug scripts with real keys until raw key logging is removed or otherwise confirmed safe. <br>
-Risk: The release under-discloses sensitive resume and key handling in its permissions surface. <br>
-Mitigation: Require updated permissions documentation that explicitly covers resume.txt, profile.json, and .license_cache before broad deployment. <br>
+## Use Case:
 
+External users and agents use CareerClaw to turn a resume profile into job-search briefings, ranked matches, outreach drafts, and local application tracking.
 
-## Reference(s): <br>
-- [CareerClaw ClawHub listing](https://clawhub.ai/orestes-garcia-martinez/careerclaw) <br>
-- [careerclaw-js npm package](https://www.npmjs.com/package/careerclaw-js) <br>
-- [CareerClaw Pro purchase page](https://ogm.gumroad.com/l/careerclaw-pro) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, JSON, guidance] <br>
-**Output Format:** [Markdown summaries with CLI commands, optional JSON output, and outreach draft text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write local CareerClaw runtime files such as profile, resume text, run logs, and application tracking state.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: frontmatter, package.json, CHANGELOG, ClawHub release evidence) <br>
+Risk: The skill can install or update a global npm package before running.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user approval before any global npm install and verify the requested package version.
+
+Risk: The skill reads resume/profile data and writes local .careerclaw tracking files.
+
+Mitigation: Use it only in trusted workspaces and keep .careerclaw files out of version control and shared directories.
+
+Risk: The skill contacts RemoteOK and Hacker News, and Pro mode can send license validation to Gumroad and draft context to a configured LLM provider.
+
+Mitigation: Disclose network use before routine runs and review provider data-handling terms before enabling Pro LLM enhancement.
+
+Risk: Generated outreach is based on public job listings and profile extraction and may be incomplete or misleading.
+
+Mitigation: Review each briefing, match explanation, and outreach draft before saving jobs or sending messages.
+
+Risk: Debug license scripts may expose sensitive operational context if run with real keys.
+
+Mitigation: Avoid running debug license scripts with production credentials.
+
+## Reference(s):
+
+- [CareerClaw ClawHub Skill Page](https://clawhub.ai/orestes-garcia-martinez/skills/careerclaw)
+- [CareerClaw README](artifact/README.md)
+- [CareerClaw Security Policy](artifact/SECURITY.md)
+- [CareerClaw Changelog](artifact/CHANGELOG.md)
+- [careerclaw-js npm Package](https://www.npmjs.com/package/careerclaw-js)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, JSON, Files, Guidance]
+
+**Output Format:** [Markdown summaries with inline shell commands, JSON CLI output when requested, and local JSON tracking files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses Node.js and npm; reads resume/profile files; can write .careerclaw tracking and run-log files.]
+
+## Skill Version(s):
+
+1.0.3 (source: SKILL.md frontmatter, package.json, CHANGELOG released 2026-03-08, ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

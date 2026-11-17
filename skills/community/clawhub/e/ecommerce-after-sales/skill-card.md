@@ -1,39 +1,57 @@
-## Description: <br>
-Generates standardized ecommerce after-sales customer-service replies for returns and exchanges, logistics exceptions, and compensation negotiations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ecommerce After Sales helps customer service teams draft compliant, brand-consistent responses for returns and exchanges, logistics exceptions, and after-sales compensation negotiations.
 
-## Publisher: <br>
-[terrycarter1985](https://clawhub.ai/user/terrycarter1985) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[terrycarter1985](https://clawhub.ai/user/terrycarter1985)
 
-## Use Case: <br>
-Ecommerce support agents and operations teams use this skill to draft policy-aligned replies for return or exchange requests, shipping exceptions, and compensation negotiations while preserving brand voice and clear next steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated customer-service replies may include placeholder timelines, refund percentages, coupon amounts, or approval thresholds that do not match the store's actual policy. <br>
-Mitigation: Align all placeholders and compensation thresholds with approved store policy before using replies with customers. <br>
-Risk: After-sales conversations may involve customer order details or other personal information. <br>
-Mitigation: Use only the minimum customer data needed to draft the reply and avoid entering unnecessary personal information. <br>
+## Use Case:
 
+Customer service employees use this skill to generate structured, empathetic, policy-aligned replies for common e-commerce after-sales scenarios, including return or exchange requests, logistics issues, and compensation discussions.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text customer-service response guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes placeholders for order details, timelines, refund percentages, coupon amounts, and approval thresholds.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Generated replies may be treated as legal or platform-policy authority for after-sales decisions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Align the templates with the store's actual policies, platform rules, and applicable jurisdiction before use.
+
+Risk: Unresolved placeholders or compensation examples could create commitments outside approved support limits.
+
+Mitigation: Configure response-time windows, refund thresholds, compensation amounts, and escalation roles before agents use the skill with customers.
+
+Risk: After-sales case records can contain customer, order, and complaint details that require privacy and retention controls.
+
+Mitigation: Apply the store's retention practices, minimize stored personal data, and record only the details needed for consistent support follow-up.
+
+## Reference(s):
+
+- [ClawHub skill release page](https://clawhub.ai/terrycarter1985/skills/ecommerce-after-sales)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown response templates and concise prose guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes placeholders for customer context, order details, response time windows, compensation limits, and escalation roles.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

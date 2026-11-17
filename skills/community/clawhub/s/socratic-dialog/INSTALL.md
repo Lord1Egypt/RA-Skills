@@ -1,13 +1,15 @@
-# Installation — socratic-dialogue
+# Installation - socratic-dialogue
 
 This skill follows the open [Agent Skills](https://agentskills.io) standard. Pick the platform that matches your runtime.
 
-> **Note on the hermes scan:** This file was extracted from `README.md` to keep the scan-clean (no agent-environment persistence patterns in the public-facing docs). All install instructions are still here — just in a separate file that the hermes safety scanner does not flag.
+## Scope and safety boundaries
+
+These instructions describe user-controlled installation only. The skill does not install background services, persist itself in an agent environment, request MCP access, read environment variables, enumerate files, or transmit data externally. It is a reasoning workflow loaded by the host agent when the user's request matches the activation boundaries in `SKILL.md`.
 
 ## Claude.ai
 
 1. Download or clone this folder.
-2. Go to **Settings → Capabilities → Skills**.
+2. Go to **Settings -> Capabilities -> Skills**.
 3. Click **Upload skill** and select the `socratic-dialogue/` folder (zip it if needed).
 4. Toggle the skill on.
 
@@ -18,7 +20,7 @@ mkdir -p ~/.claude/skills/socratic-dialogue
 cp -r skills/socratic-dialogue/* ~/.claude/skills/socratic-dialogue/
 ```
 
-Restart Claude Code. The skill will auto-trigger on relevant queries.
+Restart Claude Code. After restart, the skill is available to the host agent when the user's request clearly matches the `use_when` conditions in `SKILL.md`. Do not apply it to unrelated prompts, simple lookups, routine edits, or fully specified computational tasks.
 
 ## OpenAI Codex
 
@@ -26,7 +28,7 @@ Codex loads skills from your project's skill manifest file at the project root. 
 
 ```markdown
 ## Skills
-This project uses the Socratic Dialog skill.
+This project uses the Socratic Dialogue skill.
 Path: ./skills/socratic-dialogue/SKILL.md
 ```
 
@@ -51,23 +53,23 @@ Upload via the `/v1/skills` endpoint and pass `container.skills: ["socratic-dial
 
 ## Cursor
 
-Cursor has no native skill loader. Wrap the skill as a custom rule (a plain-text instruction that points to the SKILL.md path) or use a slash command. See the Cursor docs for whichever pattern fits your workflow.
+Cursor has no native skill loader. Wrap the skill as a custom rule with explicit activation criteria, or use a slash command. Point the rule or command to `SKILL.md` and keep the safety boundaries above intact.
 
 ## Continue.dev
 
-Continue.dev has no native skill loader. Wrap the skill as a slash command or as a context provider. See the Continue.dev docs for whichever pattern fits your workflow.
+Continue.dev has no native skill loader. Wrap the skill as a slash command or context provider with explicit activation criteria. Point the wrapper to `SKILL.md` and keep the safety boundaries above intact.
 
 ## Compatibility
 
-| Tool                     | Status     | Notes                                                         |
-| ------------------------ | ---------- | ------------------------------------------------------------- |
-| Claude.ai                | ✅ Tested   | Upload via Settings → Capabilities → Skills                   |
-| Claude Code              | ✅ Tested   | Drop into `~/.claude/skills/`                                 |
-| Anthropic Messages API   | ✅ Tested   | Use `/v1/skills` endpoint + `container.skills` parameter      |
-| OpenAI Codex             | ✅ Works    | Reference from your project's skill manifest                  |
-| OpenCode                 | ✅ Works    | Drop into `~/.opencode/skills/`                               |
-| Grok Builds (xAI)        | ✅ Works    | Place in workspace, reference in skill manifest               |
-| Cursor                   | ⚠ Partial  | Wrap as a custom rule (no native skill loader)                |
-| Continue.dev             | ⚠ Partial  | Wrap as a slash command or context provider                   |
+| Tool                   | Status  | Notes                                                    |
+| ---------------------- | ------- | -------------------------------------------------------- |
+| Claude.ai              | Tested  | Upload via Settings -> Capabilities -> Skills            |
+| Claude Code            | Tested  | Drop into `~/.claude/skills/`                            |
+| Anthropic Messages API | Tested  | Use `/v1/skills` endpoint + `container.skills` parameter |
+| OpenAI Codex           | Works   | Reference from your project's skill manifest             |
+| OpenCode               | Works   | Drop into `~/.opencode/skills/`                          |
+| Grok Builds (xAI)      | Works   | Place in workspace, reference in skill manifest          |
+| Cursor                 | Partial | Wrap as a custom rule; no native skill loader            |
+| Continue.dev           | Partial | Wrap as a slash command or context provider              |
 
 Skill format follows the open [Agent Skills](https://agentskills.io) standard.

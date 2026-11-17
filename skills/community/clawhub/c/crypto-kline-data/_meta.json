@@ -1,6 +1,9 @@
 {
-  "ownerId": "kn78pc4xyg4q8sv0bkmpznzhv582mjn5",
-  "slug": "crypto-kline-data",
-  "version": "1.0.4",
-  "publishedAt": 1773179365316
+  "id": "huobi-kline",
+  "name": "Huobi K线",
+  "description": "获取火必Huobi K线历史数据和实时行情",
+  "version": "1.0.0",
+  "requires": {
+    "bins": ["node"]
+  }
 }

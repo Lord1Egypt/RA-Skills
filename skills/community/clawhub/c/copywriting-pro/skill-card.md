@@ -1,44 +1,60 @@
-## Description: <br>
-Helps agents write, improve, rewrite, and review marketing and sales copy for ads, landing pages, emails, sales pages, headlines, product descriptions, CTAs, and social posts using structured copywriting frameworks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Writes and reviews persuasive marketing and sales copy for ads, landing pages, emails, sales pages, headlines, product descriptions, CTAs, and social posts using structured copywriting frameworks.
 
-## Publisher: <br>
-[maverick-software](https://clawhub.ai/user/maverick-software) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[maverick-software](https://clawhub.ai/user/maverick-software)
 
-## Use Case: <br>
-Marketing teams, founders, and agents use this skill to draft or revise external marketing and sales copy and check it against research, framework, readability, persuasion, and CTA criteria. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Marketing copy can contain incorrect, misleading, or unsupported claims, statistics, deadlines, scarcity statements, testimonials, guarantees, or health and financial implications. <br>
-Mitigation: Verify each factual, legal, health, financial, testimonial, guarantee, deadline, and scarcity claim before publishing. <br>
-Risk: Persuasion and agitation guidance can be misapplied to vulnerable audiences or sensitive topics. <br>
-Mitigation: Avoid using pressure, scarcity, or agitation tactics for vulnerable audiences or sensitive subject matter; apply an ethics review before public use. <br>
-Risk: Voice-of-customer research may involve confidential customer records or proprietary business data. <br>
-Mitigation: Use only authorized customer material, redact confidential details, and avoid pasting confidential records into external readability tools without permission. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Awareness Stages & Copywriting Frameworks](references/awareness-and-frameworks.md) <br>
-- [Language & Readability Rules](references/language-and-readability.md) <br>
-- [Pre-Flight Checklist](references/preflight-checklist.md) <br>
-- [Hemingway Editor](https://hemingwayapp.com) <br>
+## Use Case:
 
+External marketers, founders, sales teams, and content creators use this skill to draft, improve, and review promotional copy with audience research, awareness-stage matching, copywriting frameworks, readability checks, and a publishing checklist.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown prose with headlines, body copy, CTAs, review notes, and checklists.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include framework selections, readability guidance, and publishing checks; verify claims before use.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill is designed for promotional persuasion and may be inappropriate for neutral, academic, legal, medical, or financial writing.
+
+Mitigation: Use it only when promotional copy is intended, and require domain review before publishing sensitive or regulated content.
+
+Risk: Persuasive techniques such as scarcity, urgency, social proof, and loss aversion can create misleading copy if the underlying claims are not true.
+
+Mitigation: Verify claims, deadlines, scarcity, testimonials, and numeric proof before publication.
+
+Risk: Optional external readability tools may receive pasted customer or campaign data.
+
+Mitigation: Use only organization-approved external tools and avoid pasting confidential customer data unless policy allows it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/maverick-software/skills/copywriting-pro)
+- [Awareness Stages & Copywriting Frameworks](references/awareness-and-frameworks.md)
+- [Language & Readability Rules](references/language-and-readability.md)
+- [Pre-Flight Checklist](references/preflight-checklist.md)
+- [Hemingway Editor](https://hemingwayapp.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain text copy, critique, checklist results, and revision guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include marketing claims, persuasion framing, suggested headlines, CTA text, and copy review notes.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

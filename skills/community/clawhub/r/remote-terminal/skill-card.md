@@ -1,46 +1,59 @@
-## Description: <br>
-Remote Terminal helps agents connect to remote Linux servers and execute commands through SSH, Telnet, or web terminals with host management, logging, and safety checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Remote Terminal helps agents connect to remote Linux servers, run commands over SSH, manage host records, and coordinate multi-host operations.
 
-## Publisher: <br>
-[ckaorceu](https://clawhub.ai/user/ckaorceu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ckaorceu](https://clawhub.ai/user/ckaorceu)
 
-## Use Case: <br>
-Developers, operators, and administrators use this skill to run commands on remote Linux hosts, manage host aliases, perform common service and system checks, and troubleshoot SSH connectivity. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can run commands on remote servers, including production or multi-host operations. <br>
-Mitigation: Review every production or multi-host command before execution, require explicit confirmation for dangerous commands, and use least-privilege accounts. <br>
-Risk: Password authentication and host inventory files can expose sensitive credentials or server details. <br>
-Mitigation: Prefer SSH keys and SSH config aliases, avoid password mode, do not store passwords in hosts.json, and protect host inventory files. <br>
-Risk: Disabling or weakening host-key verification can expose connections to interception. <br>
-Mitigation: Keep host-key verification enabled, verify host fingerprints before first use, and avoid disabling StrictHostKeyChecking for production hosts. <br>
-Risk: Local logs may reveal hostnames, commands, and operational activity. <br>
-Mitigation: Treat remote-terminal logs as sensitive files, restrict filesystem permissions, and review or rotate logs according to operational policy. <br>
+## Use Case:
 
+Developers and operators use this skill to inspect and manage remote Linux servers through SSH commands, host configuration guidance, and optional parallel execution across multiple hosts.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ckaorceu/remote-terminal) <br>
-- [SSH Config Guide](references/ssh_config_guide.md) <br>
-- [Security Best Practices for Remote Terminal Access](references/security_best_practices.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with shell commands, configuration snippets, and command output summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include remote command stdout, stderr, exit codes, execution timing, host inventory details, and audit-log guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can run powerful SSH commands on remote servers, including production systems.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when users are comfortable granting remote command authority; review commands and target hosts before execution.
+
+Risk: Credential handling creates exposure if passwords are passed directly or stored in host configuration.
+
+Mitigation: Prefer SSH keys with an agent, avoid password options, and do not store passwords in hosts.json.
+
+Risk: Parallel execution can affect many machines at once.
+
+Mitigation: Review host files before use, limit target groups, and test commands on a low-risk host before fleet-wide execution.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ckaorceu/skills/remote-terminal)
+- [Security Best Practices for Remote Terminal Access](references/security_best_practices.md)
+- [SSH Config Guide](references/ssh_config_guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands, configuration snippets, and command output summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include stdout, stderr, exit codes, timing, host details, and safety confirmations for dangerous commands.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and user changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

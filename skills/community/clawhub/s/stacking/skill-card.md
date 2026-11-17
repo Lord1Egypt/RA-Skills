@@ -1,41 +1,48 @@
-## Description: <br>
-Provides a calculator for stacking discounts during major sales events such as Double 11 and 618, and helps identify purchase combinations that reduce the final paid amount. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a calculator for stacking promotional discounts during Double 11/618 sales and finding optimized purchase combinations.
 
-## Publisher: <br>
-[codenova58](https://clawhub.ai/user/codenova58) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[codenova58](https://clawhub.ai/user/codenova58)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External shoppers use this skill to compare stackable discounts, price history, logistics speed, seller trust, and after-sales factors during major sales events before choosing a purchase path.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Shopping guidance may consider shipping, seller trust, reviews, and after-sales information, which can be incomplete or sensitive if based on private order or account details.
+
+Mitigation: Verify offers and seller or order details before purchasing, and avoid sharing private account or order information unless intentionally needed.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Shoppers and shopping-assistant agents use this skill to compare discount stacking options, filter products by price, discount strength, shipping speed, seller trust, and price history, and review order details before buying. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Discount, inventory, seller reputation, return policy, and price-protection information can change quickly during major sales events. <br>
-Mitigation: Verify current prices, coupon terms, seller reputation, return policies, and price-protection rules before purchasing. <br>
-Risk: Shopping workflows may involve private order or account details. <br>
-Mitigation: Avoid sharing unnecessary private order, payment, account, or identity details when using the skill. <br>
+**Output Format:** [Markdown]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/codenova58/stacking) <br>
-- [Publisher profile](https://clawhub.ai/user/codenova58) <br>
+**Other Properties Related to Output:** [No executable code; responses may include discount breakdowns, purchase-combination suggestions, logistics updates, after-sales information, price protection status, and review summaries.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or plain text shopping analysis] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include final price estimates, discount breakdowns, shipping status, after-sales information, price protection status, return or exchange records, review summaries, and coupon-search guidance.] <br>
+0.1.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-0.1.0 (source: release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

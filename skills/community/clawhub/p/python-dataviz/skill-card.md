@@ -1,42 +1,56 @@
-## Description: <br>
-Professional data visualization using Python (matplotlib, seaborn, plotly). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Professional data visualization using Python (matplotlib, seaborn, plotly). Create publication-quality static charts, statistical visualizations, and interactive plots. Use when generating charts/graphs/plots from data, creating infographics with data components, or producing scientific/statistical visualizations. Supports PNG/SVG (static) and HTML (interactive) export.
 
-## Publisher: <br>
-[matthew-a-gordon](https://clawhub.ai/user/matthew-a-gordon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[matthew-a-gordon](https://clawhub.ai/user/matthew-a-gordon)
 
-## Use Case: <br>
-Developers and agents use this skill to create static, statistical, and interactive Python visualizations from data for reports, analysis, and web-ready chart outputs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Python package dependencies must be trusted before use. <br>
-Mitigation: Install the skill in an isolated virtual environment and review dependency sources before running examples or generated commands. <br>
-Risk: Example scripts create chart output files in the working directory. <br>
-Mitigation: Run examples from a scratch or project directory and review output paths before execution. <br>
+## Use Case:
 
+Developers and agents use this skill to generate publication-quality static charts, statistical visualizations, and interactive web-ready plots from structured data. It is suited for reports, exploratory analysis, scientific graphics, and chart examples using matplotlib, seaborn, and plotly.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/matthew-a-gordon/python-dataviz) <br>
-- [Color Theory & Palettes](references/colors.md) <br>
-- [Statistical Visualizations](references/statistical.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Shell commands, Configuration instructions, Guidance, Files] <br>
-**Output Format:** [Markdown guidance with Python and shell code examples; generated charts may be PNG, SVG, PDF, or HTML files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Static exports use matplotlib or seaborn; interactive exports use plotly and may require kaleido for static image export.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and pyproject.toml) <br>
+Risk: Installing the skill fetches Python visualization dependencies from package indexes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install in a virtual environment and pin dependency versions when reproducible builds are required.
+
+Risk: Example scripts create PNG or HTML files in the directory where they are run and could overwrite similarly named files.
+
+Mitigation: Run examples in a dedicated directory and choose explicit output filenames before execution.
+
+## Reference(s):
+
+- [Python Dataviz on ClawHub](https://clawhub.ai/matthew-a-gordon/skills/python-dataviz)
+- [OpenClaw Documentation](https://docs.openclaw.ai)
+- [Color Theory & Palettes](references/colors.md)
+- [Statistical Visualizations](references/statistical.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with Python and shell code; generated chart files may be PNG, SVG, PDF, or HTML.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Example scripts create local chart files in the directory where they are run.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and pyproject.toml)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

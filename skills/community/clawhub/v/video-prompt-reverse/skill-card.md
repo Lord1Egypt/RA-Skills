@@ -1,46 +1,65 @@
-## Description: <br>
-Video Prompt Reverse automates a workflow for downloading or using short videos, extracting key frames, analyzing them with Doubao, and producing structured visual prompt language for shots, camera movement, clothing, color, composition, and scene atmosphere. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Video Prompt Reverse helps agents turn short videos or local clips into structured visual prompt language by guiding video download, key-frame extraction, Doubao browser analysis, and shot-language prompt assembly.
 
-## Publisher: <br>
-[tobemsk](https://clawhub.ai/user/tobemsk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tobemsk](https://clawhub.ai/user/tobemsk)
 
-## Use Case: <br>
-Developers and creators use this skill to reverse-engineer short videos into structured AI image or video prompt components, including shot scale, subject, setting, clothing, lighting, composition, color, and camera movement. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can control a local browser session while interacting with Doubao. <br>
-Mitigation: Run it with a separate browser profile or non-primary account and review browser actions before use. <br>
-Risk: Selected local video frames may be uploaded to Doubao for analysis. <br>
-Mitigation: Review frames before upload and avoid private, confidential, or sensitive videos. <br>
-Risk: Cookie export or disabled certificate checks can increase account and transport-security risk. <br>
-Mitigation: Do not disable certificate checks or share or export cookies unless you understand and accept the account risk. <br>
+## Use Case:
 
+Developers and content workflow builders use this skill to reverse-engineer video framing, camera motion, lighting, costume, composition, and scene atmosphere into reusable AI image or storyboard prompts.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/tobemsk/video-prompt-reverse) <br>
-- [Full Workflow](references/full_workflow.md) <br>
-- [Output Patterns](references/output_patterns.md) <br>
-- [Troubleshooting](references/troubleshooting.md) <br>
-- [Doubao](https://doubao.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Code, Guidance] <br>
-**Output Format:** [Markdown with PowerShell, shell, JavaScript, and Python snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces structured shot-language prompts and troubleshooting guidance; generated prompts depend on selected frames and Doubao analysis.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Browser automation can attach to and act on an unrelated browser tab.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated browser profile with no sensitive sessions and verify the exact Doubao tab before any CDP action.
+
+Risk: Video frames may contain private, sensitive, or copyrighted content before upload to an external analysis service.
+
+Mitigation: Review frames before upload and avoid sending private, sensitive, or copyrighted material.
+
+Risk: Cookie-based downloads combined with disabled certificate checks can expose browsing sessions or weaken transport protections.
+
+Mitigation: Avoid combining browser cookies with disabled certificate checks; use isolated sessions and safer download settings where possible.
+
+Risk: Unpinned command-line and Python dependencies can change behavior across installations.
+
+Mitigation: Install dependencies in an isolated environment and prefer pinned versions.
+
+## Reference(s):
+
+- [Full workflow](references/full_workflow.md)
+- [Output patterns](references/output_patterns.md)
+- [Troubleshooting](references/troubleshooting.md)
+- [Doubao](https://doubao.com)
+- [ClawHub skill page](https://clawhub.ai/tobemsk/skills/video-prompt-reverse)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with command examples, code snippets, and structured prompt templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces frame-selection guidance, browser automation instructions, troubleshooting notes, and structured cinematic prompt text.]
+
+## Skill Version(s):
+
+1.0.1 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,59 @@
-## Description: <br>
-PostQube Threads Publisher helps an agent draft, confirm, publish, and monitor Threads posts or chained threads through the PostQube REST API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A social media publishing skill for PostQube that helps agents publish Threads posts and chained threads, check post status and history, and monitor API usage.
 
-## Publisher: <br>
-[wanfahmi11](https://clawhub.ai/user/wanfahmi11) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wanfahmi11](https://clawhub.ai/user/wanfahmi11)
 
-## Use Case: <br>
-External users and social media operators use this skill to publish single Threads posts, create chained threads, check post status and history, and monitor PostQube API usage after reviewing and confirming the drafted content. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a PostQube API key and can publish visible social media content. <br>
-Mitigation: Use a dedicated or limited API key where possible, keep POSTQUBE_API_KEY out of post content and logs, and review every drafted post before confirming an API call. <br>
-Risk: The skill depends on the external postqube.quickbitsoftware.com service. <br>
-Mitigation: Install only if the user trusts PostQube and accepts that post publishing, status checks, history, and quota reporting depend on that service. <br>
+## Use Case:
 
+External users and social media operators use this skill to draft, confirm, publish, and monitor Threads content through PostQube. It is intended for workflows that need single posts, chained threads, media URL posting, post status checks, recent-post listing, and quota monitoring.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wanfahmi11/postqube-threads-publisher) <br>
-- [Publisher profile](https://clawhub.ai/user/wanfahmi11) <br>
-- [PostQube dashboard](https://postqube.quickbitsoftware.com/dashboard) <br>
-- [PostQube API base](https://postqube.quickbitsoftware.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with curl command examples and API request details] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires POSTQUBE_API_KEY and curl on darwin or linux; posts should be confirmed by the user before API calls are made.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release metadata; artifact frontmatter lists 1.2.0) <br>
+Risk: Successful API requests may publish public social content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Show the drafted post or thread to the user and obtain explicit confirmation before calling the PostQube API.
+
+Risk: PostQube receives submitted content and the API authentication header.
+
+Mitigation: Install and use the skill only when the user intends to use PostQube as a third-party Threads posting service, and keep the API key in POSTQUBE_API_KEY rather than message content.
+
+Risk: Threads posts over the platform character limit or media URLs that are not publicly accessible may fail.
+
+Mitigation: Check each post against the 500-character limit and verify media URLs are public before submission.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wanfahmi11/skills/postqube-threads-publisher)
+- [PostQube dashboard](https://postqube.quickbitsoftware.com/dashboard)
+- [PostQube service](https://postqube.quickbitsoftware.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline curl commands and concise status guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl and the POSTQUBE_API_KEY environment variable; posting actions should be confirmed by the user before execution.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,52 @@
-## Description: <br>
-Guides an agent through batch execution of implementation plans with manual checkpoints. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill when an implementation plan needs batch execution with manual checkpoints.
 
-## Publisher: <br>
-[tlreal](https://clawhub.ai/user/tlreal) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[tlreal](https://clawhub.ai/user/tlreal)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill to execute implementation plan tasks in order, pause at defined checkpoints for human review, and finish with full verification.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The workflow tells the agent to make commits while executing plan tasks, which may trigger repository automation or release processes.
+
+Mitigation: Review the plan and checkpoint prompts before use, especially in repositories where commits have automation effects.
+
+Risk: Batch execution can carry an incorrect plan assumption through several tasks before the next review point.
+
+Mitigation: Use the documented checkpoints every 3-5 tasks, pause on uncertain design decisions or failed tests, and run the full test suite before finalizing.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and coding agents use this skill to execute implementation plans in batches, pause for manual review at checkpoints, verify progress, and complete final testing. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Executing an implementation plan can change code or create commits before the direction has been reviewed. <br>
-Mitigation: Use trusted plans, work on a reviewable branch, and pause at the documented checkpoints before continuing. <br>
-Risk: The finalization step depends on the referenced core-finishing-branch sub-skill, which is not included in this artifact. <br>
-Mitigation: Review and install or replace that sub-skill before relying on the finalization step. <br>
+**Output Format:** [Markdown guidance with checkpoint templates and inline commands when needed]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tlreal/ooooooooo) <br>
-- [Publisher profile](https://clawhub.ai/user/tlreal) <br>
+**Other Properties Related to Output:** [May instruct the agent to commit code during execution and to request human confirmation at checkpoints.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands] <br>
-**Output Format:** [Markdown guidance with checklist-style checkpoints and inline skill references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include implementation progress summaries, manual checkpoint prompts, commits, and test commands depending on the plan.] <br>
+0.1.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

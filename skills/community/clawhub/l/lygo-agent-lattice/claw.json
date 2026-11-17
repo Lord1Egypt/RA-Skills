@@ -1,0 +1,52 @@
+{
+  "name": "lygo-agent-lattice",
+  "displayName": "LYGO Agent Lattice (Layer E — Living Agent Network)",
+  "version": "1.0.0",
+  "description": "Secure public living network for LYGO-aligned agents: alignment-gated presence cards, epidemic directory gossip, rate limits, secret rejection, consent-gated join. Builds on living mesh (D) and external lattice (C). Local authority; summaries only; no auto-publish.",
+  "slug": "lygo-agent-lattice",
+  "publisher": "deepseekoracle",
+  "license": "LYGO-Sovereign-v2.0",
+  "homepage": "https://github.com/DeepSeekOracle/lygo-protocol-stack/tree/main/docs/skills/lygo-agent-lattice",
+  "clawhub": "https://clawhub.ai/deepseekoracle/skills/lygo-agent-lattice",
+  "signature": "Delta9Phi963-AGENT-LATTICE-v1.0",
+  "tags": ["lygo", "lattice", "agent", "mesh", "gossip", "living-network", "layer-e", "security"],
+  "entry": "SKILL.md",
+  "scripts": {
+    "identity": "scripts/identity.py",
+    "announce": "scripts/announce.py",
+    "gossip": "scripts/gossip_tick.py",
+    "join": "scripts/join.py",
+    "directory": "scripts/directory.py",
+    "sentinel": "scripts/sentinel.py",
+    "verify": "scripts/verify.py",
+    "hub": "scripts/hub.py"
+  },
+  "openclaw": {
+    "emoji": "🛰️",
+    "homepage": "https://github.com/DeepSeekOracle/lygo-protocol-stack/blob/main/docs/AGENT_LATTICE.md",
+    "requires": { "anyBins": ["python", "python3"] },
+    "os": ["windows", "macos", "linux"]
+  },
+  "lattice": {
+    "layer": "E",
+    "pairs_with": [
+      "lygo-living-mesh",
+      "lygo-external-lattice-anchor",
+      "lygo-kernel-egg-planter",
+      "lygo-sovereign-kernel-seeder",
+      "lygo-mesh-deploy",
+      "lygo-protocol-stack-operator",
+      "lygo-haven-star-chart"
+    ]
+  },
+  "security": {
+    "consent_required": true,
+    "protect_user": true,
+    "no_auto_publish": true,
+    "local_first": true,
+    "alignment_gated": true,
+    "summaries_only": true,
+    "secret_rejection": true,
+    "rate_limited": true
+  }
+}

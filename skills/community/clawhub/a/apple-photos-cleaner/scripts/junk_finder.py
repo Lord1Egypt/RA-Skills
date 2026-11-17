@@ -5,21 +5,46 @@ Find junk photos: screenshots, low-quality images, burst leftovers, old screensh
 
 import sys
 from datetime import datetime, timedelta
-from typing import Any, Optional
+from typing import Any
 
 from _common import (
     PhotosDB,
     build_asset_query,
-    coredata_to_datetime,
+    coredata_to_local,
     datetime_to_coredata,
     format_size,
     get_quality_score,
+    has_any_quality_score,
+    has_timezone_offset,
+    is_screen_recording,
+    original_filename_sql,
     run_script,
+    tz_offset_sql,
 )
+from _schema import BURSTS, FILE_SIZE, ORIGINAL_FILENAME, QUALITY_SCORES, Degradation, get_schema
+
+# Schema contract (T1.4): see _schema. Missing required → exit 5; missing optional → `degraded`.
+REQUIRED_COLUMNS: tuple[str, ...] = (
+    "ZASSET.ZDATECREATED",
+    "ZASSET.ZFILENAME",
+    "ZASSET.ZISDETECTEDSCREENSHOT",
+    "ZASSET.ZKIND",
+    "ZASSET.ZTRASHEDSTATE",
+    *FILE_SIZE,
+    "ZADDITIONALASSETATTRIBUTES.ZORIGINALWIDTH",
+    "ZADDITIONALASSETATTRIBUTES.ZORIGINALHEIGHT",
+)
+# A category whose columns are all missing is null; partial quality data is scored with what exists.
+OPTIONAL_COLUMNS: dict[str, tuple[str, ...]] = {
+    "original_filenames": ORIGINAL_FILENAME,
+    "low_quality": QUALITY_SCORES,
+    "burst_leftovers": BURSTS,
+    "possible_duplicates": ("ZASSET.ZDUPLICATEASSETVISIBILITYSTATE",),
+}
 
 
 def find_junk(
-    db_path: Optional[str] = None,
+    db_path: str | None = None,
     screenshot_age_days: int = 30,
     quality_threshold: float = 0.3,
     include_duplicates: bool = True,
@@ -36,12 +61,23 @@ def find_junk(
     Returns:
         Dictionary with junk categories
     """
-    with PhotosDB(db_path) as conn:
+    with PhotosDB(db_path, require=REQUIRED_COLUMNS, operation="Junk finder") as conn:
+        name_col = original_filename_sql(get_schema(conn))
         cursor = conn.cursor()
+        tz_available = has_timezone_offset(cursor)
+        schema = get_schema(conn)
+        degraded = Degradation(schema)
+        degraded.check("original_filenames", *OPTIONAL_COLUMNS["original_filenames"])
+        degraded.check("low_quality", *OPTIONAL_COLUMNS["low_quality"])
+        can_score = has_any_quality_score(schema)
+        has_bursts = degraded.check("burst_leftovers", *OPTIONAL_COLUMNS["burst_leftovers"])
+        has_duplicates = degraded.check("possible_duplicates", *OPTIONAL_COLUMNS["possible_duplicates"])
 
-        results = {
+        results: dict[str, Any] = {
+            "degraded": degraded.entries,
             "screenshots": [],
             "old_screenshots": [],
+            "screen_recordings": [],
             "low_quality": [],
             "burst_leftovers": [],
             "possible_duplicates": [],
@@ -49,35 +85,43 @@ def find_junk(
             "estimated_savings": {},
         }
 
-        # 1. All screenshots
+        # 1. Screenshots, and screen recordings (videos carrying the same flag), kept apart
         query = build_asset_query(
             where_clauses=["a.ZTRASHEDSTATE != 1", "a.ZISDETECTEDSCREENSHOT = 1"],
             join_additional=True,
+            tz_offset_available=tz_available,
             order_by="a.ZDATECREATED DESC",
+            schema=schema,
         )
         cursor.execute(query)
 
         screenshot_size = 0
         old_screenshot_size = 0
+        recording_size = 0
         screenshot_age_cutoff = datetime.now() - timedelta(days=screenshot_age_days)
         cutoff_timestamp = datetime_to_coredata(screenshot_age_cutoff)
 
         for row in cursor.fetchall():
             asset_id = row["Z_PK"]
             filename = row["ZFILENAME"]
-            created = coredata_to_datetime(row["ZDATECREATED"])
+            created = coredata_to_local(row["ZDATECREATED"], row["tz_offset"])
             size = row["ZORIGINALFILESIZE"] or 0
-
-            screenshot_size += size
 
             item = {
                 "id": asset_id,
                 "filename": filename,
+                "original_filename": row["original_filename"],
                 "created": created.isoformat() if created else None,
                 "size": size,
                 "size_formatted": format_size(size),
             }
 
+            if is_screen_recording(row):
+                recording_size += size
+                results["screen_recordings"].append(item)
+                continue
+
+            screenshot_size += size
             results["screenshots"].append(item)
 
             # Check if old screenshot
@@ -86,6 +130,9 @@ def find_junk(
                 old_screenshot_size += size
 
         # 2. Low quality photos (not screenshots, not videos)
+        low_quality_size = 0
+        if not can_score:
+            results["low_quality"] = None
         query = build_asset_query(
             where_clauses=[
                 "a.ZTRASHEDSTATE != 1",
@@ -93,18 +140,17 @@ def find_junk(
                 "a.ZISDETECTEDSCREENSHOT != 1",  # exclude screenshots
             ],
             join_additional=True,
+            tz_offset_available=tz_available,
             join_computed=True,
-            order_by="ca.ZFAILURESCORE DESC",
+            order_by="ZFAILURESCORE DESC",
+            schema=schema,
         )
-        cursor.execute(query)
-
-        low_quality_size = 0
-        for row in cursor.fetchall():
+        for row in cursor.execute(query).fetchall() if can_score else []:
             quality = get_quality_score(row)
             if quality is not None and quality < quality_threshold:
                 asset_id = row["Z_PK"]
                 filename = row["ZFILENAME"]
-                created = coredata_to_datetime(row["ZDATECREATED"])
+                created = coredata_to_local(row["ZDATECREATED"], row["tz_offset"])
                 size = row["ZORIGINALFILESIZE"] or 0
 
                 low_quality_size += size
@@ -113,6 +159,7 @@ def find_junk(
                     {
                         "id": asset_id,
                         "filename": filename,
+                        "original_filename": row["original_filename"],
                         "created": created.isoformat() if created else None,
                         "size": size,
                         "size_formatted": format_size(size),
@@ -123,14 +170,20 @@ def find_junk(
                 )
 
         # 3. Burst leftovers (non-picked burst photos)
-        cursor.execute("""
+        burst_size = 0
+        if not has_bursts:
+            results["burst_leftovers"] = None
+        burst_rows = (
+            cursor.execute(f"""
             SELECT
                 a.Z_PK,
                 a.ZFILENAME,
+                {name_col},
                 a.ZDATECREATED,
                 a.ZAVALANCHEKIND,
                 a.ZAVALANCHEPICKTYPE,
-                aa.ZORIGINALFILESIZE
+                aa.ZORIGINALFILESIZE,
+                {tz_offset_sql(tz_available)} AS tz_offset
             FROM ZASSET a
             LEFT JOIN ZADDITIONALASSETATTRIBUTES aa ON a.Z_PK = aa.ZASSET
             WHERE a.ZTRASHEDSTATE != 1
@@ -138,12 +191,14 @@ def find_junk(
             AND (a.ZAVALANCHEPICKTYPE IS NULL OR a.ZAVALANCHEPICKTYPE = 0)
             ORDER BY a.ZDATECREATED DESC
         """)
+            if has_bursts
+            else []
+        )
 
-        burst_size = 0
-        for row in cursor.fetchall():
+        for row in burst_rows:
             asset_id = row["Z_PK"]
             filename = row["ZFILENAME"]
-            created = coredata_to_datetime(row["ZDATECREATED"])
+            created = coredata_to_local(row["ZDATECREATED"], row["tz_offset"])
             size = row["ZORIGINALFILESIZE"] or 0
 
             burst_size += size
@@ -152,6 +207,7 @@ def find_junk(
                 {
                     "id": asset_id,
                     "filename": filename,
+                    "original_filename": row["original_filename"],
                     "created": created.isoformat() if created else None,
                     "size": size,
                     "size_formatted": format_size(size),
@@ -161,15 +217,19 @@ def find_junk(
 
         # 4. Possible duplicates (if enabled)
         duplicate_size = 0
-        if include_duplicates:
+        if include_duplicates and not has_duplicates:
+            results["possible_duplicates"] = None
+        elif include_duplicates:
             # Method 1: Use Apple's duplicate detection
-            cursor.execute("""
+            cursor.execute(f"""
                 SELECT
                     a.Z_PK,
                     a.ZFILENAME,
+                    {name_col},
                     a.ZDATECREATED,
                     a.ZDUPLICATEASSETVISIBILITYSTATE,
-                    aa.ZORIGINALFILESIZE
+                    aa.ZORIGINALFILESIZE,
+                    {tz_offset_sql(tz_available)} AS tz_offset
                 FROM ZASSET a
                 LEFT JOIN ZADDITIONALASSETATTRIBUTES aa ON a.Z_PK = aa.ZASSET
                 WHERE a.ZTRASHEDSTATE != 1
@@ -177,10 +237,10 @@ def find_junk(
                 ORDER BY a.ZDATECREATED DESC
             """)
 
-            for row in cursor.fetchall():
+            for row in cursor:
                 asset_id = row["Z_PK"]
                 filename = row["ZFILENAME"]
-                created = coredata_to_datetime(row["ZDATECREATED"])
+                created = coredata_to_local(row["ZDATECREATED"], row["tz_offset"])
                 size = row["ZORIGINALFILESIZE"] or 0
 
                 duplicate_size += size
@@ -189,6 +249,7 @@ def find_junk(
                     {
                         "id": asset_id,
                         "filename": filename,
+                        "original_filename": row["original_filename"],
                         "created": created.isoformat() if created else None,
                         "size": size,
                         "size_formatted": format_size(size),
@@ -201,14 +262,16 @@ def find_junk(
         results["totals"] = {
             "screenshots": len(results["screenshots"]),
             "old_screenshots": len(results["old_screenshots"]),
-            "low_quality": len(results["low_quality"]),
-            "burst_leftovers": len(results["burst_leftovers"]),
-            "possible_duplicates": len(results["possible_duplicates"]),
+            "screen_recordings": len(results["screen_recordings"]),
+            # None when the category could not be computed on this library (see "degraded").
+            "low_quality": _count(results["low_quality"]),
+            "burst_leftovers": _count(results["burst_leftovers"]),
+            "possible_duplicates": _count(results["possible_duplicates"]),
         }
 
         # Estimated savings (conservative - assume we'd delete old screenshots + burst leftovers)
         conservative_savings = old_screenshot_size + burst_size
-        aggressive_savings = screenshot_size + low_quality_size + burst_size + (duplicate_size // 2)
+        aggressive_savings = screenshot_size + recording_size + low_quality_size + burst_size + (duplicate_size // 2)
 
         results["estimated_savings"] = {
             "conservative": {
@@ -219,11 +282,15 @@ def find_junk(
             "aggressive": {
                 "bytes": aggressive_savings,
                 "formatted": format_size(aggressive_savings),
-                "description": "All screenshots + low quality + bursts + ~50% of duplicates",
+                "description": "All screenshots + screen recordings + low quality + bursts + ~50% of duplicates",
             },
         }
 
         return results
+
+
+def _count(items: list | None) -> int | None:
+    return None if items is None else len(items)
 
 
 def format_summary(junk: dict[str, Any]) -> str:
@@ -241,13 +308,16 @@ def format_summary(junk: dict[str, Any]) -> str:
         if totals["old_screenshots"] > 0:
             lines.append(f"     └─ Old (>30 days): {totals['old_screenshots']:,}")
 
-    if totals["low_quality"] > 0:
+    if totals["screen_recordings"] > 0:
+        lines.append(f"  🎥 Screen Recordings: {totals['screen_recordings']:,}")
+
+    if (totals["low_quality"] or 0) > 0:
         lines.append(f"  📉 Low Quality: {totals['low_quality']:,}")
 
-    if totals["burst_leftovers"] > 0:
+    if (totals["burst_leftovers"] or 0) > 0:
         lines.append(f"  📸 Burst Leftovers: {totals['burst_leftovers']:,}")
 
-    if totals["possible_duplicates"] > 0:
+    if (totals["possible_duplicates"] or 0) > 0:
         lines.append(f"  👥 Possible Duplicates: {totals['possible_duplicates']:,}")
 
     lines.append("")

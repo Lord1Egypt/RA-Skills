@@ -1,6 +1,9 @@
 {
-  "ownerId": "kn78pc4xyg4q8sv0bkmpznzhv582mjn5",
-  "slug": "crypto-kline-okx",
+  "id": "okx-kline",
+  "name": "OKX K线",
+  "description": "获取OKX交易所K线历史数据，支持时间戳分页查询历史数据",
   "version": "1.0.0",
-  "publishedAt": 1773169862863
+  "requires": {
+    "bins": ["node"]
+  }
 }

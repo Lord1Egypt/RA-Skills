@@ -1,41 +1,51 @@
-## Description: <br>
-Manages user's news category preferences and information sources, stores them in news-sources.json, and supports add, remove, list, and export operations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manages a user's news category preferences and trusted information sources in a local news-sources.json configuration for add, remove, list, and export workflows.
 
-## Publisher: <br>
-[kedoupi](https://clawhub.ai/user/kedoupi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kedoupi](https://clawhub.ai/user/kedoupi)
 
-## Use Case: <br>
-Professionals, investors, founders, research teams, and other OpenClaw users use this skill to configure news categories and preferred sources for personalized briefings and related news workflows such as insight-radar. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A user may remove categories or change preferred source lists in a way that makes later news briefings less relevant. <br>
-Mitigation: Review proposed before-and-after changes before confirming removals or source updates. <br>
-Risk: Configured sources can affect the balance and quality of downstream news results. <br>
-Mitigation: Prefer clearly named, trusted sources and periodically review active categories and source priorities. <br>
+## Use Case:
 
+External users and developers use this skill to configure personalized news interests and source preferences for AI briefing workflows such as insight-radar. It helps initialize, view, update, disable, and export active news categories from local configuration.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kedoupi/news-source-manager) <br>
-- [keyword-templates.json](references/keyword-templates.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Configuration, JSON] <br>
-**Output Format:** [Markdown guidance and JSON configuration data] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes and reads local news preference configuration in news-sources.json after user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: Local news preferences may reveal interests such as finance, health, policy, or work focus on shared or synced machines.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or delete ~/.openclaw/workspace/memory/news-sources.json when preferences should no longer be retained.
+
+## Reference(s):
+
+- [Keyword templates](artifact/references/keyword-templates.json)
+- [News Source Manager ClawHub page](https://clawhub.ai/kedoupi/skills/news-source-manager)
+- [insight-radar ClawHub page](https://clawhub.ai/skills/insight-radar)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown responses and JSON-compatible configuration data]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update local news category, keyword, source, active-state, and search parameter settings.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

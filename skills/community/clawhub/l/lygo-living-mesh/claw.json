@@ -1,0 +1,57 @@
+{
+  "name": "lygo-living-mesh",
+  "displayName": "LYGO Living Mesh (Layer D)",
+  "version": "1.0.0",
+  "description": "Layer D: multi-node living mesh — badge gossip of A/B/C root digests, peer compare, consent-gated join, sentinel + scale sim. Synchronizes with classic eggs (A), sovereign seeds (B), external lattice (C). Local authority; summaries only; no auto-publish.",
+  "slug": "lygo-living-mesh",
+  "publisher": "deepseekoracle",
+  "license": "LYGO-Sovereign-v2.0",
+  "homepage": "https://github.com/DeepSeekOracle/lygo-protocol-stack/tree/main/docs/skills/lygo-living-mesh",
+  "clawhub": "https://clawhub.ai/deepseekoracle/skills/lygo-living-mesh",
+  "signature": "Delta9Phi963-LIVING-MESH-v1.0",
+  "tags": ["lygo", "lattice", "mesh", "living-mesh", "gossip", "kernel", "layer-d", "sentinel"],
+  "entry": "SKILL.md",
+  "scripts": {
+    "badge": "scripts/collect_badge.py",
+    "verify": "scripts/verify_living_mesh.py",
+    "sentinel": "scripts/sentinel.py",
+    "compare": "scripts/compare.py",
+    "gossip": "scripts/gossip_tick.py",
+    "join": "scripts/join.py"
+  },
+  "openclaw": {
+    "emoji": "🕸️",
+    "homepage": "https://github.com/DeepSeekOracle/lygo-protocol-stack/blob/main/docs/LIVING_MESH_LAYER.md",
+    "requires": {
+      "anyBins": ["python", "python3"]
+    },
+    "os": ["windows", "macos", "linux"]
+  },
+  "lattice": {
+    "layer": "D",
+    "pairs_with": [
+      "lygo-kernel-egg-planter",
+      "lygo-sovereign-kernel-seeder",
+      "lygo-external-lattice-anchor",
+      "lygo-mesh-deploy",
+      "lygo-haven-star-chart",
+      "lygo-network-builder",
+      "lygo-protocol-stack-operator"
+    ],
+    "public_surfaces": [
+      "node_api_badge",
+      "mesh_gossip",
+      "immutable_anchors",
+      "clawhub_catalog"
+    ]
+  },
+  "security": {
+    "consent_required": true,
+    "protect_user": true,
+    "no_auto_publish": true,
+    "local_first": true,
+    "gossip_summaries_only": true,
+    "no_egg_payloads_on_wire": true,
+    "external_is_mirror_not_source_of_truth": true
+  }
+}

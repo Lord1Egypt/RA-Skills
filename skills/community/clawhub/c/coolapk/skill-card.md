@@ -1,43 +1,58 @@
-## Description: <br>
-酷安社区搜索工具 - 搜索帖子、用户、应用、话题信息，并通过 CLI 输出精简 JSON。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+酷安社区搜索工具 — 搜索帖子、用户、应用、话题信息（CLI 直调，比 MCP Server 更省 token）
 
-## Publisher: <br>
-[lniosy](https://clawhub.ai/user/lniosy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lniosy](https://clawhub.ai/user/lniosy)
 
-## Use Case: <br>
-Developers using Claude Code can search and browse Coolapk community content through the coolapk CLI, including posts, users, apps, topics, feeds, and notifications. Logged-in users can also use it for account actions such as likes, replies, follows, and unfollows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks users to pass a Coolapk account cookie to the CLI, which can expose account credentials if copied into logs, shell history, or shared transcripts. <br>
-Mitigation: Use an isolated environment, avoid long-lived cookies in shell commands, and rotate or revoke the cookie after use. <br>
-Risk: Logged-in commands can change account state through likes, replies, follows, and unfollows. <br>
-Mitigation: Require explicit approval before account-changing actions and review the target post, user, or reply before execution. <br>
-Risk: The release depends on the third-party coolapk-mcp Python package. <br>
-Mitigation: Review and trust the package before installation, and install it in an isolated Python environment. <br>
+## Use Case:
 
+Developers and external users use this skill to let an agent search and browse Coolapk posts, users, applications, topics, home feeds, and notifications through the Coolapk CLI. With login, the agent can also prepare account actions such as likes, replies, follows, and unfollows.
 
-## Reference(s): <br>
-- [Coolapk MCP dependency](https://github.com/lniosy/coolapk-mcp) <br>
-- [ClawHub skill page](https://clawhub.ai/lniosy/coolapk) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and compact JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands omit empty JSON fields to reduce agent context usage.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The skill relies on an external coolapk-mcp Python package that is not pinned in the artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and pin a vetted package version before managed deployment.
+
+Risk: Cookie login and account-changing commands can act through the user's Coolapk account.
+
+Mitigation: Treat cookies as passwords and review reply, like, follow, and unfollow commands before execution.
+
+Risk: The artifact documents local Coolapk configuration under ~/.coolapk-mcp/config.json.
+
+Mitigation: Protect local configuration files and avoid sharing session or device data in transcripts.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/lniosy/skills/coolapk)
+- [coolapk-mcp dependency](https://github.com/lniosy/coolapk-mcp)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands; Coolapk CLI commands return compact JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Command output omits empty fields to reduce token use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

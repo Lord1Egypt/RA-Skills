@@ -1,42 +1,56 @@
-## Description: <br>
-Extracts structured case documents from chat records or spoken experience using the SPAS case-extraction method. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Case Extraction helps an agent review chat transcripts or oral experience descriptions and turn them into structured case-study documentation using the SPAS method.
 
-## Publisher: <br>
-[pengpengliu1212-art](https://clawhub.ai/user/pengpengliu1212-art) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pengpengliu1212-art](https://clawhub.ai/user/pengpengliu1212-art)
 
-## Use Case: <br>
-Business users, consultants, and knowledge managers use this skill to review interview or chat material, identify missing SPAS interview coverage, and turn qualified experience narratives into structured case documents for training or best-practice sharing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive interview, customer, or internal chat content may be processed by the skill. <br>
-Mitigation: Use only files the user is authorized to process and avoid confidential material unless the deployment environment and retention policy are approved. <br>
-Risk: The optional parser can persist cleaned chat content in a predictable _cleaned_temp.txt side file next to the source file. <br>
-Mitigation: Disable or modify the side-file behavior before use with sensitive data, or explicitly approve and manage the storage location. <br>
+## Use Case:
 
+Business users and knowledge-management teams use this skill to turn interviews, chat records, or narrated best-practice experiences into structured SPAS case documentation. The skill can first assess whether source material contains enough interview coverage, then guide follow-up questions or draft the case structure.
 
-## Reference(s): <br>
-- [Case Extraction ClawHub page](https://clawhub.ai/pengpengliu1212-art/case-extraction) <br>
-- [SPAS model reference](references/spas-model.md) <br>
-- [Case output template](references/case-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Guidance, Shell commands] <br>
-**Output Format:** [Markdown guidance and structured Word document output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce supplemental interview questions when source material lacks required SPAS coverage; the optional parser can write a _cleaned_temp.txt side file next to processed chat files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release evidence) <br>
+Risk: The optional parser can leave cleaned chat contents in a predictable local file named _cleaned_temp.txt.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the parser only on non-confidential material in trusted folders, and delete _cleaned_temp.txt after use unless retaining it is intentional.
+
+Risk: The skill may process sensitive chat or business materials supplied by the user.
+
+Mitigation: Review input sensitivity before use and avoid placing confidential transcripts in shared or untrusted workspaces.
+
+## Reference(s):
+
+- [SPAS model reference](references/spas-model.md)
+- [Case template reference](references/case-template.md)
+- [ClawHub skill page](https://clawhub.ai/pengpengliu1212-art/skills/case-extraction)
+- [ClawHub publisher profile](https://clawhub.ai/user/pengpengliu1212-art)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown guidance and structured case-document content; optional parser output is plain text.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce supplemental interview-question lists when source coverage is incomplete.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

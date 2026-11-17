@@ -1,3 +1,14 @@
+---
+name: skill-108
+description: "Master platform engineering principles to build self-service internal platforms that optimize developer experience, infrastructure abstraction, observability..."
+source: ClawHub
+version: 1.0.0
+tags: []
+compatible: [claude-code, openai-agents, hermes-agent, any-llm]
+---
+
+# Skill 108
+
 # Skill 108: Platform Engineering Fundamentals
 
 **Quality Grade:** 94-95/100  

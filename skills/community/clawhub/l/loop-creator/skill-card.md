@@ -1,39 +1,53 @@
-## Description: <br>
-Helps an agent design and build supervised self-running automation loops with triggers, state files, objective gates, stop conditions, command guardrails, and rollout guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Builds supervised self-running agent loops that use a trigger, state file, objective pass/fail gate, stop condition, and guarded rollout.
 
-## Publisher: <br>
-[hansraj316](https://clawhub.ai/user/hansraj316) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hansraj316](https://clawhub.ai/user/hansraj316)
 
-## Use Case: <br>
-Developers and engineers use this skill to turn recurring chores such as CI triage, PR checking, digests, dependency bumps, lint/build loops, and documentation refreshes into supervised agent loops with objective pass/fail gates and explicit stopping conditions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Unattended loops can keep running after the user stops prompting and may make account-visible changes if triggers, permissions, and stop conditions are too broad. <br>
-Mitigation: Before enabling a generated loop, verify the trigger, command allowlist, hard-stop gate, state file, maximum iterations, and whether it can push commits, open PRs, comment, label, or perform other visible actions. <br>
-Risk: A poorly proven loop can repeat incorrect work or incur unexpected cost. <br>
-Mitigation: Run the loop manually first, validate the objective gate on known-good and known-bad cases, measure token and wall-clock cost per iteration, and start at a low autonomy level. <br>
+## Use Case:
 
+Developers and engineers use this skill to turn recurring chores such as CI triage, PR checking, digests, dependency bumps, and documentation refreshes into supervised recurring agent workflows with objective gates and state tracking.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with file templates, shell commands, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce procedure skill files, state-file formats, command allowlists, trigger setup guidance, proof-run summaries, cost estimates, and autonomy-level guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: server release evidence) <br>
+Risk: The artifact tells agents to ignore some mandatory skill-routing hooks, which may bypass intended control hierarchy.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove or replace that wording with hierarchy-preserving guidance before installation; require review of any instruction that conflicts with higher-priority system or platform rules.
+
+Risk: Self-running loops can repeat commands, consume budget, or apply changes without enough supervision if configured too broadly.
+
+Mitigation: Use narrowly scoped commands, objective stop conditions, manual proof runs, explicit max-iteration limits, and human approval for scheduled routines, hooks, commits, pushes, merges, or publish actions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hansraj316/skills/loop-creator)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline code, shell commands, configuration snippets, and file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose loop procedure files, state-file structure, objective gate commands, command allowlists, rollout level, and proof-run reporting.]
+
+## Skill Version(s):
+
+0.2.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

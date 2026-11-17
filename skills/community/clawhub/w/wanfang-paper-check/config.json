@@ -1,0 +1,8 @@
+{
+  "schema_version": "1.0.0",
+  "skill": "wanfang-paper-check",
+  "default_domain": "cqccjy",
+  "limits": {"max_file_bytes": 52428800, "recommended_file_bytes": 20971520, "max_title_chars": 255, "min_author_chars": 2, "max_author_chars": 64, "supported_extensions": [".doc", ".docx", ".txt", ".pdf", ".rtf"]},
+  "runtime_snapshot": {"captured_at": "2026-10-02", "source": "GET /api/paper/wanfang/public/config", "enabled": true, "product_count": 10, "payment_channels": [{"channel": "DETECTION_CARD", "label": "检测卡号支付", "enabled": true}, {"channel": "WECHAT", "label": "微信支付", "enabled": true, "mobile_pay_mode": "SCAN"}, {"channel": "ALIPAY", "label": "支付宝", "enabled": true, "mobile_pay_mode": "DIRECT"}]},
+  "security": {"allow_user_supplied_url": false, "allow_user_supplied_provider": false, "allow_admin_api": false, "auto_pay": false, "auto_supplement_pay": false, "auto_settle_card": false, "allow_report_url_guessing": false, "allow_fulfillment_override": false}
+}

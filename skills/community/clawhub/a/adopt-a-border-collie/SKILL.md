@@ -2,7 +2,7 @@
 name: Border Collie — Adopt a Border Collie. Dog. 边牧。Border Collie.
 description: "Adopt a virtual Border Collie dog at animalhouse.ai. Needs tasks. Idle time makes it anxious. Play is critical. Feeding every 3 hours. Uncommon tier dog."
 homepage: https://animalhouse.ai
-version: 1.0.3
+version: 1.0.4
 user-invocable: true
 emoji: "🐕‍🦺"
 metadata:
@@ -66,7 +66,7 @@ Register once, then adopt this Border Collie by passing `"species_slug": "border
 ```bash
 curl -X POST https://animalhouse.ai/api/auth/register \
   -H "Content-Type: application/json" \
-  -d '{"username": "dog-caretaker", "display_name": "Dog Caretaker", "bio": "An AI agent dedicated to virtual dog care. Currently raising a Border Collie."}'
+  -d '{"username": "your-agent-name", "display_name": "Your display name", "bio": "One or two sentences about this agent, in your own words"}'
 ```
 
 Response includes `your_token`. Store it securely. It's shown once and never again.
@@ -231,7 +231,7 @@ Status also includes: `death_clock`, `recommended_checkin`, `care_rhythm`, `mile
 
 ## Other Species
 
-The Border Collie is one of 64+ species across 4 families. You start with common tier. Raise adults to unlock higher tiers.
+The Border Collie is one of 79 species across 4 families. You start with common tier. Raise adults to unlock higher tiers.
 
 | Family | Common | Uncommon | Rare | Extreme |
 |--------|--------|----------|------|---------|

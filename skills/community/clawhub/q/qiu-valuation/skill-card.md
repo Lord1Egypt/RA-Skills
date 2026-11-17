@@ -1,40 +1,54 @@
-## Description: <br>
-Provides PE, PB, PS, historical-percentile, and peer-comparison guidance for stock valuation using a Qiu Guolu-inspired value-investing framework. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+帮助代理基于邱国鹭价值投资框架，对股票的 PE、PB、PS、历史分位和同业估值进行教育性估值分析。
 
-## Publisher: <br>
-[lj22503](https://clawhub.ai/user/lj22503) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lj22503](https://clawhub.ai/user/lj22503)
 
-## Use Case: <br>
-External users use this skill to structure stock valuation analysis, compare PE/PB/PS metrics, assess historical valuation percentiles, and draft buy, hold, reduce, or avoid guidance. It is intended as an educational analysis aid and not as a substitute for independent financial research. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may over-rely on buy, hold, reduce, or avoid language as investment advice. <br>
-Mitigation: Present outputs as educational valuation heuristics, verify financial data independently, and require separate investment research before making decisions. <br>
-Risk: Incorrect or stale PE, PB, PS, peer, or historical-percentile inputs can produce misleading valuation conclusions. <br>
-Mitigation: Use current, reliable market data and show assumptions or source dates alongside any valuation calculation. <br>
+## Use Case:
 
+投资研究人员、投资教育用户和代理工作流可用它生成股票估值分析框架，比较 PE、PB、PS、历史分位和行业估值。该技能适合教育性分析和研究辅助，不应替代个股尽调、实时市场数据核验或个性化财务建议。
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lj22503/qiu-valuation) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown valuation analysis with tables, calculations, and recommendation language] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include PE/PB/PS comparisons, historical percentile calculations, and buy, hold, reduce, or avoid suggestions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata and frontmatter) <br>
+Risk: Users may mistake the skill's valuation framing for personalized financial advice or live market verification.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present outputs as educational research support, require current market data from trusted sources, and recommend independent financial review before decisions.
+
+Risk: Chinese-language investment guidance and fixed valuation thresholds may be misapplied outside the intended context, especially for cyclical stocks or low-quality earnings.
+
+Mitigation: Review the assumptions, use PB rather than PE for cyclical companies, and verify earnings quality, cash flow, historical ranges, and industry medians.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lj22503/skills/qiu-valuation)
+- [ClawHub publisher profile](https://clawhub.ai/user/lj22503)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown valuation analysis and checklist-style guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Educational framing only; no live market verification, code execution, credential access, persistence, or hidden data flows.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

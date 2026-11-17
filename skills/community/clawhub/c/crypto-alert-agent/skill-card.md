@@ -1,42 +1,52 @@
-## Description: <br>
-A proactive agent that monitors cryptocurrency prices, tracks your portfolio, and sends alerts via Telegram. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A proactive agent that monitors cryptocurrency prices, tracks your portfolio, and sends alerts via Telegram.
 
-## Publisher: <br>
-[Vitja1988](https://clawhub.ai/user/Vitja1988) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[vitja1988](https://clawhub.ai/user/vitja1988)
 
-## Use Case: <br>
-External users and developers use this skill to track cryptocurrency prices, manage simple portfolio holdings, and receive Telegram alerts when configured price conditions are met. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Portfolio holdings and alert details may be exposed through local skill state or Telegram notifications. <br>
-Mitigation: Use only non-sensitive portfolio information, protect local credentials, and install only if Telegram delivery is acceptable for this data. <br>
-Risk: Notifications can be sent to the wrong destination if the Telegram chat ID or bot configuration is incorrect. <br>
-Mitigation: Verify the destination chat ID and protect the Telegram bot token before enabling alerts. <br>
-Risk: Scheduled execution can repeatedly run the skill's shell entry point. <br>
-Mitigation: Inspect the run.sh implementation before adding a cron job or persistent agent loop. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Vitja1988/crypto-alert-agent) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/Vitja1988) <br>
+## Use Case:
 
+External users and developers use this skill to monitor cryptocurrency prices, track portfolio holdings, and receive Telegram alerts when configured price conditions are met.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash and cron code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Telegram notifications and command-line responses may include price, alert, and portfolio information.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Telegram notifications may send crypto alert activity and possible portfolio value information outside the local environment.
+
+Mitigation: Install and configure the skill only if Telegram delivery is acceptable for this information.
+
+Risk: The referenced run.sh implementation was not included in the inspected package.
+
+Mitigation: Review the actual script before running it manually or placing it on a cron schedule.
+
+## Reference(s):
+
+- [Crypto Alert Agent on ClawHub](https://clawhub.ai/vitja1988/skills/crypto-alert-agent)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline bash and cron command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs include cryptocurrency price checks, portfolio summaries, alert-management commands, and Telegram notification guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

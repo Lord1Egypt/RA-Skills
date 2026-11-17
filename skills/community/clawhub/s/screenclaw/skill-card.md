@@ -1,49 +1,67 @@
-## Description: <br>
-Screenclaw helps an agent operate Windows desktop software by using coordinate-grid screenshots to locate targets and then issue mouse, keyboard, screenshot, and batch automation commands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Screenclaw helps agents operate Windows desktop software by using grid-labeled screenshots to locate visible UI targets, then issuing mouse, keyboard, screenshot, and recording/template commands through the ScreenClaw service.
 
-## Publisher: <br>
-[ginsing1226](https://clawhub.ai/user/ginsing1226) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ginsing1226](https://clawhub.ai/user/ginsing1226)
 
-## Use Case: <br>
-Developers, operators, and external users use Screenclaw to automate visible Windows desktop applications when application APIs, CLI tools, browser automation, or specialized skills are not available. It is suited for screenshot-guided clicking, typing, keypresses, window discovery, desktop-level actions, and reusable scenario templates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can grant an agent broad desktop control through screenshots, mouse actions, keyboard input, remote transfer behavior, installation steps, and credential-handling workflows. <br>
-Mitigation: Install and use it only when intentional, keep the service bound to localhost where possible, use a unique token, and review actions before operating sensitive applications. <br>
-Risk: Screenshots and session data may expose passwords, financial information, private chats, regulated data, or other sensitive screen contents. <br>
-Mitigation: Avoid using the skill on sensitive screens, minimize captured data, and delete persisted screenshots and session data when finished. <br>
-Risk: The release workflow may require downloading a ScreenClaw binary before operation. <br>
-Mitigation: Verify any downloaded ScreenClaw binary yourself before running it. <br>
+## Use Case:
 
+Developers and automation operators use Screenclaw when Windows desktop applications, mobile emulators, games, or websites cannot be controlled through Playwright, CLI, or application APIs. It supports visible UI operation, screenshot-based verification, and reusable scenario templates.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ginsing1226/skills/screenclaw) <br>
-- [ScreenClaw releases](https://github.com/GinSing1226/ScreenClaw/releases) <br>
-- [ScreenClaw repository](https://github.com/GinSing1226/ScreenClaw) <br>
-- [ScreenClaw configuration](references/config.md) <br>
-- [ScreenClaw script usage](scripts/README.md) <br>
-- [ScreenClaw self-check checklist](references/self_check.md) <br>
-- [Scenario template workflow](references/scenarios/README.md) <br>
-- [Recording-to-scenario workflow](references/scenarios/recording_to_scenario.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API Calls, Markdown, Code, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, script outputs, JSON API summaries, and reusable scenario-template Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce local screenshot paths, session data paths, coordinate-adaptation results, and scenario templates; desktop actions require screenshot verification after execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.7 (source: server release metadata) <br>
+Risk: Desktop-control and delegated modes can operate sensitive screens or destructive dialogs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use delegated or desktop automation only after explicit review, and avoid passwords, payments, security prompts, destructive dialogs, and confidential screens.
+
+Risk: The executable install path and release source require trust review before use.
+
+Mitigation: Install from a trusted ScreenClaw release source and prefer a pinned, verified binary.
+
+Risk: Remote API use, screenshots, file upload behavior, and plaintext token handling can expose sensitive data or credentials.
+
+Mitigation: Keep the API bound to localhost or HTTPS trusted origins, avoid remote servers unless necessary, and rotate away from the documented default token.
+
+## Reference(s):
+
+- [ScreenClaw GitHub releases](https://github.com/GinSing1226/ScreenClaw/releases)
+- [ScreenClaw GitHub repository](https://github.com/GinSing1226/ScreenClaw)
+- [Connection configuration](references/config.md)
+- [Unified script usage](scripts/README.md)
+- [Self-check procedure](references/self_check.md)
+- [Scenario templates](references/scenarios/README.md)
+- [Recording to scenario workflow](references/scenarios/recording_to_scenario.md)
+- [Window screenshot API](references/api/screenshot.md)
+- [Desktop screenshot API](references/api/desktop_screenshot.md)
+- [Delegated mode API](references/api/delegated.md)
+- [Batch API](references/api/batch.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, text, markdown]
+
+**Output Format:** [Markdown guidance with inline shell commands and configuration values]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce local screenshot paths, API response summaries, coordinate values, and reusable scenario template files when the ScreenClaw service is used.]
+
+## Skill Version(s):
+
+0.1.7 (source: ClawHub release evidence, created 2026-06-23)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

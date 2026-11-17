@@ -1,44 +1,59 @@
-## Description: <br>
-Intelligent product management for AI service providers on Xianyu platform with professional templates, dry-run review, and enforced confirmation for product creation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Intelligent product management for AI service providers on Xianyu platform with professional templates, dry-run review, and enforced confirmation for product creation.
 
-## Publisher: <br>
-[crab-xieyujin](https://clawhub.ai/user/crab-xieyujin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[crab-xieyujin](https://clawhub.ai/user/crab-xieyujin)
 
-## Use Case: <br>
-External sellers and developers use this skill to prepare, preview, and publish Xianyu marketplace listings for AI services, including templated product descriptions, pricing tiers, batch variants, and poster prompts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can prepare and publish Xianyu marketplace listings, including batch listing creation, and the server security summary reports that some paths do not enforce an approval step in this artifact. <br>
-Mitigation: Use dry_run first, review all listing content and claims before publishing, and avoid the _unsafe methods unless a separate approval process is in place. <br>
-Risk: Unsafe publish methods can bypass confirmation and may create marketplace listings with privileged credentials. <br>
-Mitigation: Use dedicated low-permission credentials, supply user_name explicitly, and review the separate xianyu-api-client-skill security model before deployment. <br>
-Risk: Generated listings may contain inaccurate service claims, pricing, or customer outcome statements. <br>
-Mitigation: Verify titles, descriptions, prices, images, and performance claims against the actual service offering before any publish call. <br>
+## Use Case:
 
+External sellers and AI service providers use this skill to prepare, preview, and create Xianyu marketplace listings for AI services with reusable templates, listing data, poster prompts, and batch workflows.
 
-## Reference(s): <br>
-- [Goofish / Xianyu Open Platform](https://www.goofish.pro) <br>
-- [ClawHub source listing](https://clawhub.com/skills/xianyu-product-manager) <br>
-- [ClawHub skill page](https://clawhub.ai/crab-xieyujin/xianyu-product-manager-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, configuration, guidance, API calls] <br>
-**Output Format:** [Markdown/text guidance with Python data structures and JSON-like product payload previews] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can prepare Xianyu listing data, poster prompts, dry-run previews, and marketplace publish calls through the dependent API client.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release metadata; artifact frontmatter says 1.1.1) <br>
+Risk: The skill can create real Xianyu marketplace listings through unsafe and batch paths.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run dry_run first and avoid unsafe methods unless automation is tightly controlled.
+
+Risk: A hard-coded fallback account can be used if user_name is omitted.
+
+Mitigation: Always pass the intended user_name explicitly before creating listings.
+
+Risk: Credential misuse or configuration mistakes could affect a valuable marketplace account.
+
+Mitigation: Use limited credentials and install only when marketplace listing creation is intended.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/crab-xieyujin/skills/xianyu-product-manager-skill)
+- [OpenClaw source listing](https://clawhub.com/skills/xianyu-product-manager)
+- [Goofish homepage](https://www.goofish.pro)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python examples, JSON-like listing payloads, and generated poster prompts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can preview listings with dry_run before creation; batch operations are capped at 20 products.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release metadata; artifact frontmatter reports 1.1.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

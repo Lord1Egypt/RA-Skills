@@ -1,40 +1,52 @@
-## Description: <br>
-Execute terminal commands safely and reliably with clear pre-checks, output validation, and recovery steps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Execute terminal commands safely and reliably with clear pre-checks, output validation, and recovery steps.
 
-## Publisher: <br>
-[1215656](https://clawhub.ai/user/1215656) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[1215656](https://clawhub.ai/user/1215656)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and agents use this skill to plan, run, validate, and recover from shell commands while managing files, tools, services, or command-line workflows.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Terminal commands can affect files, packages, services, credentials, or system settings.
+
+Mitigation: Review impactful commands before approval, start with non-destructive inspection, and keep operations scoped to specific files, paths, or services.
+
+Risk: Ambiguous command targets can lead to actions in the wrong directory, service, or environment.
+
+Mitigation: Clarify risky ambiguity, confirm working directory and required binaries, and verify observable state after each state-changing step.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use this skill to have an agent run shell and CLI workflows with pre-checks, incremental execution, failure recovery, and outcome validation. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, shell commands, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Terminal command workflows can cause unintended file, service, permission, network, or package-management changes if high-impact commands are executed without review. <br>
-Mitigation: Review high-impact commands before execution, prefer scoped non-destructive probes first, validate state after each change, and request approval for privileged or destructive actions. <br>
-Risk: Command output can expose secrets or sensitive local state if logs are reported too broadly. <br>
-Mitigation: Keep secrets out of command output and logs, and summarize only the command results needed to verify the task. <br>
+**Output Format:** [Markdown with inline shell commands]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/1215656/terminal-command-execution-1-0-0) <br>
+**Other Properties Related to Output:** [Includes pre-checks, command output interpretation, recovery steps, and concise status summaries.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and command-output summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes pre-checks, incremental execution notes, validation results, and recovery guidance when commands fail.] <br>
+1.0.0 (source: server release metadata and artifact _meta.json)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

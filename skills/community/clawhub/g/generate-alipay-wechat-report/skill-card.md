@@ -1,41 +1,52 @@
-## Description: <br>
-Generates an interactive local HTML spending report from native Alipay CSV exports and WeChat Pay XLSX exports for expense categorization, trend review, recurring merchant analysis, spending habit diagnosis, and budget optimization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates an interactive local HTML spending report from native Alipay CSV exports and WeChat Pay XLSX exports for expense categorization, trend review, recurring merchant analysis, spending habit diagnosis, and budget optimization.
 
-## Publisher: <br>
-[yeyitech](https://clawhub.ai/user/yeyitech) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[yeyitech](https://clawhub.ai/user/yeyitech)
 
-## Use Case: <br>
-External users and agents use this skill to convert personal Alipay and WeChat Pay bill exports into a local spending dashboard. It helps review expense categories, monthly and daily trends, recurring merchants, spending habits, and budget optimization opportunities. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Payment exports and generated reports contain sensitive personal financial data. <br>
-Mitigation: Use explicit local file paths or a dedicated bills folder, write the report to a private location, and avoid opening or sharing the HTML where others can view it. <br>
-Risk: Directory auto-discovery may select the newest matching bill file rather than the intended export. <br>
-Mitigation: Use explicit --alipay and --wechat paths, or run the skill in a dedicated folder containing only the intended bill exports. <br>
-Risk: Password-protected WeChat ZIP exports are not parsed directly. <br>
-Mitigation: Unzip the WeChat export locally and provide the extracted XLSX file to the skill. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yeyitech/generate-alipay-wechat-report) <br>
+## Use Case:
 
+External users and agents use this skill to turn personal Alipay and WeChat Pay export files into a local dashboard for expense review, recurring merchant analysis, and budgeting guidance.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and a self-contained local HTML report file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Processes local Alipay CSV and WeChat XLSX exports; the generated report may contain personal financial details.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill processes sensitive payment exports and creates an HTML report containing private financial information.
+
+Mitigation: Run it locally, keep the input directory narrow, and do not host or share generated reports.
+
+Risk: Server security evidence says attacker-crafted transaction text can run script in the generated HTML.
+
+Mitigation: Avoid using --open on reports generated from untrusted or unusual transaction data until the HTML serialization issue is fixed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yeyitech/skills/generate-alipay-wechat-report)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with bash commands and a generated self-contained HTML report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The generated report is local HTML and contains private financial data.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

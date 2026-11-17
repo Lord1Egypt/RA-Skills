@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{TITLE}}</title>
+<style>
+  /* 仅用于独立页面渲染；微信渠道不使用本文件。 */
+  :root { --ink:#1a3a5c; --text:#333; --muted:#777; --line:#e6e9ef; }
+  * { box-sizing: border-box; }
+  body { margin:0; font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif; color:var(--text); background:#fafbfc; line-height:1.8; }
+  .wrap { max-width:760px; margin:0 auto; padding:48px 24px 80px; }
+  header { border-bottom:2px solid var(--ink); padding-bottom:20px; margin-bottom:32px; }
+  h1 { font-size:28px; color:var(--ink); margin:0 0 8px; }
+  .meta { color:var(--muted); font-size:14px; }
+  nav.toc { background:#fff; border:1px solid var(--line); border-radius:10px; padding:16px 20px; margin:24px 0; }
+  nav.toc h2 { font-size:15px; color:var(--ink); margin:0 0 10px; }
+  nav.toc a { color:var(--ink); text-decoration:none; display:block; padding:4px 0; font-size:14px; }
+  h2 { font-size:21px; color:var(--ink); margin:36px 0 12px; }
+  p { margin:0 0 16px; }
+  strong { color:var(--ink); }
+  blockquote { background:#f5f7fa; border-left:4px solid var(--ink); margin:20px 0; padding:14px 18px; color:#555; border-radius:0 8px 8px 0; }
+  table { width:100%; border-collapse:collapse; margin:20px 0; font-size:14px; }
+  th { background:var(--ink); color:#fff; text-align:left; padding:10px 12px; }
+  td { padding:10px 12px; border:1px solid var(--line); }
+  tbody tr:nth-child(even) { background:#f5f7fa; }
+  footer { margin-top:48px; padding-top:20px; border-top:1px solid var(--line); color:var(--muted); font-size:13px; }
+  a.ref { color:var(--ink); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>{{TITLE}}</h1>
+    <div class="meta">{{AUTHOR}} · {{DATE}} · {{CORE_JUDGMENT}}</div>
+  </header>
+
+  <nav class="toc" id="toc">
+    <h2>目录</h2>
+    <a href="#s1">{{SECTION_1}}</a>
+    <a href="#s2">{{SECTION_2}}</a>
+    <a href="#s3">{{SECTION_3}}</a>
+  </nav>
+
+  <h2 id="s1">{{SECTION_1}}</h2>
+  <p>{{PARAGRAPH}}</p>
+
+  <h2 id="s2">{{SECTION_2}}</h2>
+  <p>{{PARAGRAPH}}</p>
+
+  <h2 id="s3">{{SECTION_3}}</h2>
+  <p>{{PARAGRAPH}}</p>
+
+  <footer>
+    <p>参考链接：</p>
+    <ul>
+      <li><a class="ref" href="{{REF_URL}}">{{REF_TITLE}}</a></li>
+    </ul>
+  </footer>
+</div>
+</body>
+</html>

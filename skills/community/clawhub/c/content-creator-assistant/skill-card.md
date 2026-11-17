@@ -1,39 +1,57 @@
-## Description: <br>
-AI writing assistant using Reflection + Tree of Thoughts for high-quality content creation. Generates articles, blogs, and documentation with iterative refinement. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI writing assistant using Reflection + Tree of Thoughts for high-quality content creation. Generates articles, blogs, and documentation with iterative refinement.
 
-## Publisher: <br>
-[banxian87](https://clawhub.ai/user/banxian87) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[banxian87](https://clawhub.ai/user/banxian87)
 
-## Use Case: <br>
-Developers and content creators use this skill to generate and refine blog posts, technical articles, documentation, marketing copy, and social media content through multi-angle ideation and reflection-based revision. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Drafts may be sent to the LLM provider configured in the OpenClaw runtime. <br>
-Mitigation: Review the configured provider and its data handling terms before submitting unpublished, personal, or business-sensitive drafts. <br>
-Risk: The package may not run as published because the main file references agent modules that are not included in the artifact. <br>
-Mitigation: Verify package imports and runtime behavior before deployment. <br>
+## Use Case:
 
+External users and developers use this skill to generate and refine articles, blog posts, documentation, marketing copy, and social media content from a topic, audience, tone, length, and key points.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown content and JavaScript usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces drafted content with title, content, word count, outline, draft, and iteration count when used through the JavaScript API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: package.json and release metadata) <br>
+Risk: Writing prompts and draft text are sent to the configured LLM implementation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an LLM provider and deployment path approved for the sensitivity of the input content.
+
+Risk: The release evidence notes a packaging mismatch that may affect functionality.
+
+Mitigation: Fix and test package import paths before relying on the skill in production workflows.
+
+Risk: Generated content can contain inaccurate, incomplete, or misleading statements.
+
+Mitigation: Review generated drafts for factual accuracy, policy compliance, and audience fit before publication.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/banxian87/skills/content-creator-assistant)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown content and structured JavaScript return values]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include title, content, word count, outline, draft, and iteration count.]
+
+## Skill Version(s):
+
+1.0.0 (source: package.json and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

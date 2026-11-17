@@ -1,39 +1,56 @@
-## Description: <br>
-Helps DPOs, privacy counsel, and controller representatives draft GDPR Article 35 DPIAs with threshold determination, structured EDPB-template sections, risk scoring, mitigation planning, and DPO-review labeling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill when a DPO, privacy counsel, or controller representative needs to draft a GDPR Article 35 Data Protection Impact Assessment (DPIA), covering threshold determination, EDPB harmonised template sections 0-4, risk scoring, and a DRAFT DPIA with prior-consultation recommendation for DPO review and controller sign-off.
 
-## Publisher: <br>
-[archlab-space](https://clawhub.ai/user/archlab-space) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[archlab-space](https://clawhub.ai/user/archlab-space)
 
-## Use Case: <br>
-DPOs, privacy counsel, controller representatives, and privacy teams use this skill to prepare a structured draft DPIA for a single potentially high-risk processing activity. It supports threshold analysis, GDPR compliance tables, risk assessment, mitigation planning, open-question tracking, and Article 36 prior-consultation recommendations for human review and sign-off. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: DPIA inputs may include confidential processing details or unnecessary personal identifiers. <br>
-Mitigation: Treat inputs as confidential and describe data categories rather than pasting raw personal data or data-subject identifiers. <br>
-Risk: A draft DPIA could be mistaken for a completed legal determination or signed controller record. <br>
-Mitigation: Have a qualified DPO or privacy counsel review the draft, retain open questions, and obtain human controller sign-off before relying on it. <br>
+## Use Case:
 
+DPOs, privacy counsel, and controller representatives use this skill to draft a GDPR Article 35 DPIA for a single high-risk processing activity. It structures threshold analysis, processing descriptions, compliance checks, risk scoring, mitigations, residual-risk recommendations, open questions, and DPO/controller review material.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown draft DPIA document with structured sections, tables, risk register, mitigation plan, open questions, evidence index, and review banner] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Draft output is explicitly labeled for DPO review and remains unsigned for human controller sign-off.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: release evidence and changelog, released 2026-05-28) <br>
+Risk: The skill may collect confidential privacy, vendor, and architecture information needed to draft a DPIA.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use category-level descriptions instead of raw personal records, handle draft outputs as confidential, and avoid including data-subject identifiers.
+
+Risk: A draft DPIA may be mistaken for final legal approval or controller sign-off.
+
+Mitigation: Keep the DRAFT FOR DPO REVIEW posture, require DPO/controller review, and do not treat the generated assessment as signed or legally final.
+
+## Reference(s):
+
+- [DPIA Drafter README](artifact/README.md)
+- [DPIA Drafter changelog](artifact/CHANGELOG.md)
+- [ClawHub skill page](https://clawhub.ai/archlab-space/skills/dpia-drafter)
+- [ClawHub publisher profile](https://clawhub.ai/user/archlab-space)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown draft DPIA with structured sections, tables, risk register, open questions, evidence index, and review banner]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Output is labelled DRAFT for DPO review and controller sign-off; it should not include data-subject identifiers or raw personal records.]
+
+## Skill Version(s):
+
+0.1.1 (source: evidence release and artifact changelog, released 2026-05-28)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

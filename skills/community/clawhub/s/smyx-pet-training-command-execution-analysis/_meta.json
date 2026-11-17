@@ -1,6 +1,10 @@
 {
-  "ownerId": "kn7e2caqj7pnsvr9r7t8zenghs83xw7n",
   "slug": "smyx-pet-training-command-execution-analysis",
-  "version": "1.0.2",
-  "publishedAt": 1782251607842
+  "version": "1.0.0",
+  "dependencies": {
+    "skills": [
+      "smyx-common",
+      "risk-analysis"
+    ]
+  }
 }

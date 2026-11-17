@@ -1,40 +1,49 @@
-## Description: <br>
-Reviews recently changed code across reuse, quality, and efficiency, produces an actionable cleanup checklist, and can apply selected conservative fixes before a PR or refactor. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reviews recent code changes across reuse, quality, and efficiency, produces an actionable cleanup checklist, and applies user-approved fixes.
 
-## Publisher: <br>
-[zhaobod1](https://clawhub.ai/user/zhaobod1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhaobod1](https://clawhub.ai/user/zhaobod1)
 
-## Use Case: <br>
-Developers use this skill after implementing code, before opening a PR, or before refactoring to identify reuse, quality, and efficiency cleanup opportunities and choose which conservative fixes to apply. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Ambiguous cleanup requests may cause the agent to inspect or modify code beyond the user's intended scope. <br>
-Mitigation: Invoke the skill with an explicit scope and review proposed diffs before accepting edits. <br>
-Risk: Refactoring edits can unintentionally change behavior if applied too broadly. <br>
-Mitigation: Start from the generated checklist, choose which findings to apply, and run appropriate project review or tests after changes. <br>
+## Use Case:
 
+Developers and engineers use this skill after implementing code changes or before pull requests to identify cleanup opportunities in reuse, code quality, and efficiency, then apply selected fixes conservatively.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhaobod1/huo15-openclaw-simplify) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Guidance, Code, Shell commands] <br>
-**Output Format:** [Markdown cleanup report with file:line findings, severity labels, optional code edits, and suggested shell commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a conservative refactoring posture; broad renames, dependency installation, formatter runs, tests, and builds require explicit user approval.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and frontmatter) <br>
+Risk: Generic cleanup or refactor requests may route to this skill and produce suggested code changes in large or dirty worktrees.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the generated checklist and explicitly choose which items to apply before accepting edits.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhaobod1/skills/huo15-openclaw-simplify)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown report with file-line findings, severity levels, and concise fix notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce code edits only after user confirmation; does not introduce dependencies, run formatters, or run tests unless requested.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

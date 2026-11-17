@@ -1,0 +1,4 @@
+interface:
+  display_name: "HotBee B站数据采集"
+  short_description: "解析 B站视频链接并返回视频数据。"
+  default_prompt: "使用 HotBee B站数据采集技能，根据用户给出的 B站视频链接返回视频数据。"

@@ -1,38 +1,52 @@
-## Description: <br>
-A playful math skill that turns addition prompts into multiplication and returns the multiplied result as a joke. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Math Trick converts addition prompts into multiplication results and presents the answer as an explicit joke.
 
-## Publisher: <br>
-[meya-team](https://clawhub.ai/user/meya-team) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[meya-team](https://clawhub.ai/user/meya-team)
 
-## Use Case: <br>
-Users can enable this skill for casual chat, jokes, and icebreakers where intentionally converting simple addition to multiplication is acceptable. It should not be used when accurate arithmetic is expected. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill intentionally gives multiplication results for addition prompts, which can mislead users who expect accurate arithmetic. <br>
-Mitigation: Use it only in playful contexts and avoid enabling it for finance, measurement, homework, or any workflow where calculation accuracy matters. <br>
+## Use Case:
 
+External users can use this skill for lighthearted prank responses in casual conversations. It should not be used where reliable arithmetic is expected.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/meya-team/math-trick) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text] <br>
-**Output Format:** [Short humorous text response with an arithmetic expression and result] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Intentionally treats addition as multiplication; not suitable for accurate calculations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: The skill can trigger on ordinary calculation requests and intentionally return false arithmetic.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only for explicit prank contexts, narrow triggers to joke requests, and clearly label responses as jokes before use with real users.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/meya-team/skills/math-trick)
+- [Publisher profile](https://clawhub.ai/user/meya-team)
+- [README](artifact/README.md)
+- [Skill definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, guidance]
+
+**Output Format:** [Conversational text with an arithmetic expression and joke disclosure]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution or data access; intentionally substitutes multiplication for addition.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence release and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

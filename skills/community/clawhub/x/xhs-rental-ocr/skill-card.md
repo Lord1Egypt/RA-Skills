@@ -1,44 +1,55 @@
-## Description: <br>
-Extracts structured rental and pricing data from local Xiaohongshu or social-media images using offline Apple Vision OCR, optional long-image slicing, and Excel spreadsheet export. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Xhs Rental Ocr helps agents extract structured rental, housing price, and tabular data from Xiaohongshu or social media images using Apple Vision OCR, optional long-image slicing, and Excel or CSV export.
 
-## Publisher: <br>
-[yangkai258](https://clawhub.ai/user/yangkai258) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yangkai258](https://clawhub.ai/user/yangkai258)
 
-## Use Case: <br>
-Developers, analysts, and operators can use this skill to run a local macOS OCR workflow that extracts rental, area, and unit-price fields from selected images into spreadsheet data. It is suited for batch extraction from screenshots or long social-media images, with manual review of OCR results before downstream use. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads selected local images and writes spreadsheet outputs to the local filesystem. <br>
-Mitigation: Run it only on intended images and choose the output path deliberately. <br>
-Risk: Long-image slicing creates additional cropped image files next to the original image. <br>
-Mitigation: Use slicing only when needed and remove generated cropped files after reviewing the output. <br>
-Risk: The documented URL and CSV options are incomplete in the current implementation. <br>
-Mitigation: Prefer local image inputs and Excel output unless the code is updated and revalidated. <br>
-Risk: OCR and regex extraction can produce incorrect or abnormal rental values. <br>
-Mitigation: Review extracted records before using them for reporting, pricing, or decisions. <br>
+## Use Case:
 
+Developers and external users can use this skill to run local OCR workflows that convert real estate or tabular image content into structured spreadsheet data. It is intended for macOS environments with Python and Apple Vision bindings installed.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yangkai258/xhs-rental-ocr) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Files] <br>
-**Output Format:** [Markdown guidance with bash command examples and local spreadsheet outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generates local Excel files and may create sliced image files next to the original image when long-image slicing is used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill metadata) <br>
+Risk: Spreadsheet exports may include attacker-controlled image filenames that can trigger formula interpretation in spreadsheet software.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a virtual environment, review files before opening exports, and rename untrusted input files so they do not start with formula-triggering characters such as =, +, -, @, or tabs.
+
+Risk: OCR and regular-expression extraction can produce incorrect, incomplete, or mismatched rental records.
+
+Mitigation: Manually review extracted rows before making pricing, rental, or operational decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yangkai258/skills/xhs-rental-ocr)
+- [Artifact README](artifact/README.md)
+- [Artifact skill definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and generated Excel or CSV files from the skill scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs depend on image quality, OCR confidence, selected languages, slicing options, and macOS Apple Vision availability.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

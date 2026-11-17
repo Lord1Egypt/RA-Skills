@@ -1,9 +1,10 @@
 bundle: skill-provenance
-bundle_version: 4.9.0
-bundle_date: 2026-04-08
+bundle_version: 6.3.0
+bundle_date: 2026-09-05
 description: >
-  Metaskill for version tracking across Agent Skills sessions, surfaces,
-  and platforms. Manifest, changelog, deployment notes, and portable
+  Metaskill for portable provenance, integrity, and drift control across
+  Agent Skills local folders, registries, platform uploads, and multi-agent
+  sessions. Manifest, changelog, deployment notes, hashes, and portable
   internal version markers prevent version confusion during iterative
   skill development and cross-surface deployment.
 
@@ -69,45 +70,104 @@ compatibility:
 
 dependencies: []
 
+# Attestation records. Each entry binds a validation event to the exact
+# bundle_version it validated, unlike compatibility.tested_on which records
+# unbound design-time compatibility claims. Informational only: validate.sh
+# reports these but never gates on them. Integrity gates, attestation informs.
+validated_against:
+  - bundle_version: 5.1.0
+    harness: Anthropic Claude Code
+    model: claude-fable-5
+    date: 2026-07-16
+    result: pass
+    method: validate.sh verify + .github/scripts/test-validate.sh + release-surface-check.sh
+    notes: >
+      Full hash verification, validator regression suite, and release surface
+      checks run clean on this harness/model pair at release time.
+  - bundle_version: 6.0.0
+    harness: OpenAI Codex desktop
+    model: GPT-5
+    date: 2026-07-21
+    result: pass
+    method: validate.sh verify + adversarial regression suite + derived package validation + release-surface-check.sh
+    notes: >
+      Path traversal, ambiguous grammar, duplicate entry, symlink component,
+      null-opt-out reporting, 1000-entry resource, strict package, and ClawHub
+      package checks passed under Bash 5.3 and macOS system Bash 3.2.
+      Attestation remains informational.
+  - bundle_version: 6.1.0
+    harness: OpenAI Codex desktop
+    model: GPT-5
+    date: 2026-08-20
+    result: pass
+    method: validate.sh verify + regression suite + skill and plugin validation + search contract + gh skill publish dry-run + release-surface-check.sh
+    notes: >
+      Canonical hashes, focused skill metadata, OpenAI metadata, Codex plugin
+      package, repository search contract, derived archive, regression suite,
+      and GitHub publication dry-run passed. Attestation remains informational.
+  - bundle_version: 6.2.0
+    harness: OpenAI Codex desktop
+    model: GPT-5
+    date: 2026-08-28
+    result: pass
+    method: validate.sh verify + regression suite + standalone pin test + derived package validation + search contract + gh skill publish dry-run + release-surface-check.sh
+    notes: >
+      Canonical hashes, local and downloaded standalone verifier pinning,
+      tamper rejection, exit-code preservation, temporary cleanup, derived
+      strict and ClawHub packages, repository search contract, archive
+      agreement, and release surfaces passed. Attestation remains informational.
+  - bundle_version: 6.3.0
+    harness: OpenAI Codex desktop
+    model: GPT-5
+    date: 2026-09-05
+    result: pass
+    method: validate.sh verify + regression suite + skill validation + CFF schema validation + search contract + release-surface-check.sh
+    notes: >
+      Canonical hashes, verified-adoption classification, release-artifact
+      subjects, citation truthfulness, Scorecard evidence discipline, exact
+      archive contents, standalone verification, search, and release surfaces
+      passed. Attestation remains informational.
+
 files:
   - path: SKILL.md
     role: skill
-    version: 16
-    hash: sha256:aa4e7bae1789c4d72a81dc39b089b85691bddebca79f6c30f291a110d2ded20b
-    note: Canonical skill definition with full provenance metadata in frontmatter. Exemplifies its own convention.
+    version: 25
+    hash: sha256:75cf176b93f3bc3fbb3f7b7e8d440bd2f2f604fdd6874a1c3a39ef8de7970eee
+    note: Canonical skill definition with action-led triggers, concise progressive disclosure, constrained manifest grammar, standalone verification and bootstrap routing, exact package inventory, evidence-based staleness, package validation gates, origin metadata, and provenance metadata in frontmatter
 
   - path: README.md
     role: reference
-    version: 18
-    hash: sha256:049c20087f441c1e3442b7b36c00645664e663bcaef08a1cb96dd86da592061e
-    note: Human-facing instructions, worked example, three-state bundle model, local validation, packaging, use case walkthroughs (untrusted bundle, team sharing), troubleshooting, references
+    version: 28
+    hash: sha256:322865d66ff4f137939c42bf0cbdb44519ae4756ecf960cc27ec4a895b3b35b0
+    note: Human-facing instructions for GitHub CLI installation, exact bundle-versus-GuideCheck release tags, no-plugin verification and bootstrap, dated adoption evidence, OpenAI discovery metadata, constrained manifest paths, exact package inventory, fail-closed validation, packaging, trust, and troubleshooting
+
+  - path: references/packaging-and-changelog.md
+    role: reference
+    version: 1
+    hash: sha256:a6d178663d20e3862f11eccdf3bd0be9f4e42d9768f8a73164b4a7af68a79bc2
+    note: Load-on-demand package structure, exact inventory, and changelog format guidance
+
+  - path: references/platforms-and-trust.md
+    role: reference
+    version: 1
+    hash: sha256:dbd6a0e4b7035d0c9deb37e0a76b3385347b82a6d6b4d9bd4c2bee03956eac51
+    note: Load-on-demand canonical and derived states, platform notes, ecosystem boundaries, and trust guidance
+
+  - path: references/standalone-verification.md
+    role: reference
+    version: 1
+    hash: sha256:30ac69654d5712b9930ceb1172d6bd2216f3a5a4930ab2c3151a14fb6a1b0a6c
+    note: No-plugin verification procedure, pinned-validator trust boundary, exit semantics, and portable bootstrap prompt
 
   - path: evals.json
     role: evals
-    version: 10
-    hash: sha256:60c41bfa58d7b46579578a2856df9e5ecb82ca2715e0a44e4008fc82ecb9cd8f
-    note: 26 evals covering bootstrap, verify, save, conflict, optional handoff, cross-platform, frontmatter mode, compatibility block, Gemini CLI, Gemini Gems, git commit messaging, per-file handoff, local validation, API surface, dependencies, deployment drift, multi-surface installs, trust checks, redeploy events, deployment conflicts, hash mismatches, packaged subsets, Settings UI round-trip, Copilot/VS Code bootstrap, Cursor bootstrap, Cowork persistence
+    version: 17
+    hash: sha256:67fb6ab87028f968403a8200d22d3bb03807cacbbb0ea7de3ccfabc2300c23a2
+    note: 42 core evals including verified-adoption evidence classification, standalone verifier pinning and bootstrap decision gates, files-section scope, malformed attestation, exact package inventory, unsafe paths, duplicates, symlinks, fail-closed hashes, and prior provenance, portability, deployment, validation, and trust workflows
 
   - path: evals-distribution.json
     role: evals
-    version: 1
-    hash: sha256:b866c0b9fec3d0df6fc61724bd8ef1406a31e312bf25505713c0186a6b3fb148
-    note: 4 supplemental evals covering strict-platform copies, ClawHub package preparation, publish confirmation, and registry installs versus canonical bundles
+    version: 11
+    hash: sha256:0988a855783a1e621259c285552abb170e8b5151dbffc3bbbe396ccaaa1ea478
+    note: 21 supplemental evals covering release-artifact subjects, citation truthfulness, Scorecard evidence discipline, release tag-family separation, package-boundary safety, GitHub Action shell safety, derived packaging, origin metadata, release integrity, surface disclosure, and source-backed ecosystem workflows
 
-  - path: CHANGELOG.md
-    role: reference
-    version: 19
-    hash: sha256:5362dcef72414b6fc7f31e06e888562219a0abeeb79cbff55baed2fce2f7edaf
-    note: Active in-bundle changelog with the 5 most recent entries; older history lives in the repo root
-
-  - path: validate.sh
-    role: script
-    version: 5
-    hash: sha256:333b6585a72818ae2d0196ef517bebf4e4b909e4a17405b526c6d1ec37be0406
-    note: Zero-dependency bash script for local hash verification and update against MANIFEST.yaml
-
-  - path: package.sh
-    role: script
-    version: 2
-    hash: sha256:37773f959f2afb34b5ed566e5c64997887011934002776d0bb85e4de2550e811
-    note: Zero-dependency bash script for derived strict-platform copies and ClawHub upload packages

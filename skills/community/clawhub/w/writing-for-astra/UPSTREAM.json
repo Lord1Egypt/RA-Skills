@@ -1,0 +1,11 @@
+{
+  "repository": "https://github.com/mattpocock/skills.git",
+  "source_path": "skills/productivity/writing-for-agents",
+  "commit": "49dd158d1076134a641b33efb035946536778336",
+  "upstream_sha256": {
+    "SKILL-MECHANICS.md": "c768e6307c7c10728c401c213f2c4ba71c542127eeb7ad2956aabd15a0fa0059",
+    "SKILL.md": "551adca942227b44192edba88acd4e8db911f0121ce58ad16944ccf6a896a74a",
+    "agents/openai.yaml": "eacb24b2a618cfb81dacb0416f4fdd75ddf3a8060f8ddb99aae1b1e301907e4b",
+    "LICENSE": "0e7ac423bf2c6e223b7c5b156f8cf72da49d748e56a1641402c31f22ad07dbb5"
+  }
+}

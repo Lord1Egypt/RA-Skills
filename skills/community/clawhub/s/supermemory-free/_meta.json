@@ -1,6 +1,36 @@
 {
-  "ownerId": "kn7b72aym67gcmwkp05van1d8s800a7m",
   "slug": "supermemory-free",
-  "version": "1.0.0",
-  "publishedAt": 1771158158773
+  "version": "1.1.0",
+  "description": "Cloud knowledge backup via Supermemory.ai free tier. Store and retrieve insights using /v3/documents and /v3/search endpoints. Includes auto-capture cron for session memory logs.",
+  "author": "openclaw",
+  "tools": [
+    {
+      "name": "supermemory_cloud_store",
+      "script": "store.py",
+      "description": "Upload a knowledge string to Supermemory cloud. Args: content (required), --tag, --source, --custom-id, --entity-context, --json"
+    },
+    {
+      "name": "supermemory_cloud_search",
+      "script": "search.py",
+      "description": "Search Supermemory cloud for relevant knowledge. Args: query (required), --tag, --no-tag, --limit, --threshold, --json"
+    },
+    {
+      "name": "supermemory_auto_capture",
+      "script": "auto_capture.py",
+      "description": "Scan recent session memory logs and upload high-value insights to cloud. Args: --days, --dry-run, --force, --verbose"
+    }
+  ],
+  "env_required": ["SUPERMEMORY_OPENCLAW_API_KEY"],
+  "api_base": "https://api.supermemory.ai",
+  "endpoints": {
+    "store": "POST /v3/documents",
+    "search": "POST /v3/search"
+  },
+  "cron": {
+    "schedule": "0 2 * * *",
+    "description": "Daily at 2:00 AM UTC — auto-capture session insights",
+    "install": "bash skills/supermemory-free/install_cron.sh"
+  },
+  "createdAt": 1739620523000,
+  "updatedAt": 1739621800000
 }

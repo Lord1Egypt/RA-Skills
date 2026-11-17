@@ -1,0 +1,14 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+
+# OS
+.DS_Store
+__MACOSX__
+Thumbs.db
+
+# 编辑器
+*.swp
+*~

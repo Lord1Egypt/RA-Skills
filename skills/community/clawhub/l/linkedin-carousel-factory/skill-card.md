@@ -1,43 +1,54 @@
-## Description: <br>
-Generates a complete 10-slide LinkedIn carousel JSON with hook-driven, concise content and .NET 8+ code examples for a chosen topic. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate a complete 10-slide LinkedIn carousel JSON for .NET developers from a topic, with hook-driven concise content and .NET 8+ examples.
 
-## Publisher: <br>
-[Lnguyen1996](https://clawhub.ai/user/Lnguyen1996) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lnguyen1996](https://clawhub.ai/user/lnguyen1996)
 
-## Use Case: <br>
-Content creators and developers use this skill to draft structured LinkedIn carousel content for mid-to-senior .NET developers. It turns an approved topic, audience, goal, and optional hook angle into a ready-to-review 10-slide JSON draft. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated carousel topics and drafts may be saved into a local Obsidian vault. <br>
-Mitigation: Confirm the configured vault path is appropriate before use and avoid confidential campaign topics unless they may be stored there. <br>
-Risk: The workflow may announce draft completion in a Discord channel. <br>
-Mitigation: Confirm the Discord channel belongs to the intended workspace and is suitable for the generated topic. <br>
-Risk: Draft file names may collide with existing carousel drafts. <br>
-Mitigation: Check for existing draft files before overwriting or publishing revised content. <br>
+## Use Case:
 
+Developers and technical content creators use this skill to draft LinkedIn carousel JSON for mid-to-senior .NET audiences, including concise slide text, .NET 8+ code examples, and a clear call to action for later editorial review.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/Lnguyen1996/linkedin-carousel-factory) <br>
-- [Source skill instructions](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Code, Files, Text] <br>
-**Output Format:** [JSON object containing 10 carousel slide records and optional .NET 8+ code snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes a draft JSON file to the configured Obsidian path and may post a Discord status message.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill saves carousel drafts into a named local Obsidian vault path, which may not match the user's environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or adjust the destination path before use.
+
+Risk: The skill posts a draft-ready message to a specified Discord task channel, which can expose the selected topic or workflow activity.
+
+Mitigation: Require confirmation before posting to Discord when topic privacy matters.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/lnguyen1996/skills/linkedin-carousel-factory)
+- [ClawHub publisher profile](https://clawhub.ai/user/lnguyen1996)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [JSON object with exactly 10 carousel slide entries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes a local draft JSON file and posts a draft-ready notification to Discord when used as written.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

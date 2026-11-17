@@ -1,40 +1,54 @@
-## Description: <br>
-Calibration and validation scaffold for EPA SWMM that helps agents compare simulated and observed hydrographs, rank calibration candidates, run bounded searches, and produce SCE-UA or DREAM-ZS calibration outputs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Calibration and validation scaffold for EPA SWMM that helps agents compare simulated and observed hydrographs, evaluate candidate parameter sets, and run bounded search, SCE-UA, or DREAM-ZS calibration workflows.
 
-## Publisher: <br>
-[zhonghao1995](https://clawhub.ai/user/zhonghao1995) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhonghao1995](https://clawhub.ai/user/zhonghao1995)
 
-## Use Case: <br>
-Developers and engineers use this skill to calibrate and validate EPA SWMM models against observed flow, depth, head, or volume data. It supports candidate scoring, bounded search, SCE-UA point-estimate calibration, DREAM-ZS posterior calibration, and human-reviewed candidate handoff before canonical INP changes are accepted. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local calibration jobs can create many trial files and candidate patch artifacts. <br>
-Mitigation: Review output directories and patch maps before running, and inspect generated candidate artifacts before relying on them. <br>
-Risk: Calibration results can be misleading if observed data, calibration targets, or patch maps are incorrect. <br>
-Mitigation: Use observed data for calibration and validation, confirm the target series and patch map, and review generated summaries before accepting any model change. <br>
+## Use Case:
 
+Developers and stormwater modelers use this skill to calibrate or validate EPA SWMM models against observed flow data, rank candidate parameters, and produce audit artifacts for review before model changes are accepted.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhonghao1995/swmm-calibration) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, JSON files, Markdown reports] <br>
-**Output Format:** [Markdown guidance with shell command examples and generated JSON, CSV, and Markdown calibration artifacts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Calibration outputs can include summaries, rankings, best-parameter files, convergence traces, candidate INP patches, and posterior artifacts depending on the selected strategy.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.7.3 (source: server release evidence) <br>
+Risk: Calibration artifacts may be written outside the intended run directory when parameter-set JSON or validation trial names contain unsafe path components.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill with minimal filesystem privileges in a restricted workspace, trust or pre-validate calibration inputs, reject trial names containing path separators, absolute paths, '.', or '..', and review generated candidate artifacts before accepting INP changes.
+
+Risk: Calibration results can be misleading when observed data, patch maps, objectives, or search bounds are inappropriate for the modeled event.
+
+Mitigation: Use observed data as the calibration boundary, keep patch maps explicit, inspect KGE decomposition and secondary metrics, and require human review before promoting candidate INP patches.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhonghao1995/skills/swmm-calibration)
+- [Agentic SWMM project](https://github.com/Zhonghao1995/agentic-swmm-workflow)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON, CSV, PNG, and INP patch artifacts produced by the calibration scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces rankings, best-parameter JSON, calibration summaries, candidate handoff artifacts, convergence traces, and optional posterior diagnostics.]
+
+## Skill Version(s):
+
+0.7.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

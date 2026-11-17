@@ -13,8 +13,8 @@ def make_output(success: bool, markdown: str, data: dict) -> dict:
     return {"success": success, "markdown": markdown, "data": data}
 
 def print_output(success: bool, markdown: str, data: dict):
-    """打印标准 JSON 输出"""
-    print(json.dumps(make_output(success, markdown, data), ensure_ascii=False, indent=2))
+    """打印标准 JSON 输出（单行：indent 会把 {"success" 拆到多行，导致调用方按标记解析失败）"""
+    print(json.dumps(make_output(success, markdown, data), ensure_ascii=True))
 
 def print_error(e: Exception, default_data: dict = None):
     """将异常转为标准错误输出并打印"""

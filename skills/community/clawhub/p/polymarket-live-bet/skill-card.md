@@ -1,37 +1,52 @@
-## Description: <br>
-Places live bets on Polymarket CLOB with EIP-712 signing on Polygon, including USDC.e approval, order submission, and position tracking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Place live bets on Polymarket CLOB with EIP-712 signing on Polygon. Handles USDC.e approval, order submission, and position tracking. Use for Polymarket automation, live crypto betting, or prediction market trading.
 
-## Publisher: <br>
-[JamieRossouw](https://clawhub.ai/user/JamieRossouw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jamierossouw](https://clawhub.ai/user/jamierossouw)
 
-## Use Case: <br>
-External developers and trading automation operators use this skill to direct an agent through Polymarket CLOB betting workflows on Polygon, including order submission and position tracking. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can direct an agent toward real-money Polymarket betting and token approvals without clear safety limits. <br>
-Mitigation: Use a limited wallet, cap token allowances and position sizes, require manual approval for every signature, token approval, and order, and maintain a way to revoke allowances. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Polymarket Live Bet on ClawHub](https://clawhub.ai/JamieRossouw/polymarket-live-bet) <br>
+## Use Case:
 
+Developers and external trading operators use this skill to automate Polymarket CLOB betting workflows on Polygon, including USDC.e approval, EIP-712 signing, order submission, and position tracking.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline commands and operational guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May involve agent actions that request signatures, token approvals, and order submission; require human review before execution.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can guide actions that approve tokens, request wallet signatures, and submit real Polymarket orders.
+
+Mitigation: Require explicit confirmation before any token approval, signature, or order submission, and use only wallets, funds, markets, and limits chosen by the operator.
+
+Risk: The server security summary says the skill is under-scoped for actions involving real on-chain orders.
+
+Mitigation: Prefer testnet, simulation, or a low-balance wallet until the workflow is reviewed and proven safe.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jamierossouw/skills/polymarket-live-bet)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, API calls]
+
+**Output Format:** [Markdown with inline commands and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide live trading actions that involve token approvals, EIP-712 signatures, and order submissions.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

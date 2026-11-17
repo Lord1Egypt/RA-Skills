@@ -1,43 +1,52 @@
-## Description: <br>
-Self-hosted infrastructure monitoring with local checks for HTTP, TCP, Docker, resources, SSL, DNS, Proxmox, and alerts via WhatsApp, Telegram, or Discord. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Self-hosted infrastructure monitoring with local checks for HTTP and HTTPS endpoints, TCP ports, Docker containers, system resources, SSL expiry, DNS, Proxmox VMs and CTs, and alerts via WhatsApp, Telegram, or Discord.
 
-## Publisher: <br>
-[mariusfit](https://clawhub.ai/user/mariusfit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
+
+[mariusfit](https://clawhub.ai/user/mariusfit)
+
+### License/Terms of Use:
+
+MIT
+
+## Use Case:
+
+Developers and operators use this skill to configure and run local infrastructure health checks for self-hosted services, containers, system resources, certificates, DNS, and Proxmox resources. It is suited for homelab, API uptime, SSL expiry, and resource alerting workflows where monitoring data should remain local.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The security review reports broad monitoring-related capabilities that may be more permissive than some deployments need.
+
+Mitigation: Review the manifest before installation, use the skill only in trusted workspaces, and prefer a version with narrower permissions and explicit user control for alerts or scheduled checks.
+
+Risk: The security review reports unsafe HTTPS and SSL-expiry checks that may produce false health results.
+
+Mitigation: Do not rely on the skill's HTTPS or SSL-expiry results until certificate validation and expiry parsing are fixed; verify TLS status with an independent trusted check.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, operators, and homelab administrators use this skill to configure and run local uptime, service, resource, and certificate checks for self-hosted infrastructure. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: SSL validity and certificate-expiry results may be unreliable and could give false confidence. <br>
-Mitigation: Review and fix the SSL-checking behavior before relying on this skill for security monitoring. <br>
-Risk: Monitor names, targets, and alert messages may expose infrastructure details through selected alert channels. <br>
-Mitigation: Avoid sensitive monitor names or targets and enable external alerts only for channels approved for infrastructure status. <br>
-Risk: Scheduled checks can repeatedly probe configured services and generate recurring notifications. <br>
-Mitigation: Confirm check intervals, alert cooldowns, and monitored targets before enabling scheduled runs. <br>
+**Output Format:** [Markdown and terminal-oriented text with inline shell commands and configuration examples]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/mariusfit/clawhub-skill-infra-watchdog) <br>
-- [Publisher profile](https://clawhub.ai/user/mariusfit) <br>
+**Other Properties Related to Output:** [Produces local monitor setup guidance, command invocations, status summaries, dashboards, and alert configuration details.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and terminal-oriented text with inline shell commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local monitor configuration, SQLite state, and status summaries in the OpenClaw workspace.] <br>
+1.0.0 (source: server release evidence and artifact skill.json)
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata and artifact manifest) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

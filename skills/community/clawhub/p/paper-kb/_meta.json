@@ -1,6 +1,8 @@
 {
-  "ownerId": "kn7cp7eb6ymqv898hke0ersmc1847fed",
-  "slug": "paper-kb",
-  "version": "1.0.2",
-  "publishedAt": 1780154432408
+  "name": "paper-kb",
+  "version": "2.0.0",
+  "description": "科研知识记忆库：飞书发论文→自动入库Gitea→飞书表格展示→自然语言查询",
+  "author": "mayidan",
+  "tools": ["init_user", "ingest_paper", "query_papers"],
+  "env_required": ["GITEA_URL", "GITEA_ADMIN_TOKEN", "GITEA_SYSTEM_REPO"]
 }

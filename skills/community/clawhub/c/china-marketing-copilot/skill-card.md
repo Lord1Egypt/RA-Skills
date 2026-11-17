@@ -1,50 +1,65 @@
-## Description: <br>
-A China consumer-electronics marketing copilot that helps agents produce launch strategy, message architecture, KOL/channel briefs, creative concepts, competitive analysis, comment-risk simulations, negative-signal warnings, and data-processing guidance for 3C categories. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+中国3C营销助手帮助中国消费电子营销团队完成新品上市策略、信息架构、创意策划、KOL渠道计划、竞品洞察、负面预警、上线判断和复盘。
 
-## Publisher: <br>
-[killsnake01](https://clawhub.ai/user/killsnake01) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[killsnake01](https://clawhub.ai/user/killsnake01)
 
-## Use Case: <br>
-Marketing, social, channel, product, sales, and startup teams use this skill to plan and review China-market 3C product launches. Agents use its offline knowledge base, templates, risk rules, and evaluation samples to produce actionable marketing strategy, copy guidance, KOL briefs, competitive insights, and risk checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-China <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Imported comments, subtitles, scraped pages, or customer feedback may contain personal identifiers or content the user is not authorized to process. <br>
-Mitigation: Confirm authorization before import, remove usernames and identifiers where possible, and avoid login-gated scraping. <br>
-Risk: The skill can propose updates to knowledge-base files or SKILL.md that could introduce incorrect marketing guidance. <br>
-Mitigation: Review proposed content changes before applying them and run the package validation scripts before release. <br>
-Risk: The security summary notes routing cautions around implicit activation. <br>
-Mitigation: Use the skill when the task clearly concerns China 3C marketing, risk review, launch planning, competitive analysis, or related data processing. <br>
+## Use Case:
 
+Marketing, product, social media, KOL/channel, and startup teams use this skill to plan China-market consumer-electronics launches, review claims and creative assets, analyze competitors and comments, and decide whether to continue, adjust, or pause campaign activity.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/killsnake01/china-marketing-copilot) <br>
-- [README](README.md) <br>
-- [Data index and freshness rules](docs/data-index.md) <br>
-- [Machine-readable data source ledger](docs/data-sources.json) <br>
-- [Strategy decision system](docs/templates/strategy-decision-system.md) <br>
-- [Risk assessment template](docs/templates/risk-assessment.md) <br>
-- [Negative early warning library](docs/ecosystem/negative-early-warning.md) <br>
-- [Marketing task evaluation samples](docs/evals/marketing-task-samples.md) <br>
-- [Negative signal evaluation samples](docs/evals/negative-signal-samples.md) <br>
+### Deployment Geography for Use:
 
+China
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with structured tables, checklists, labeled confidence notes, and occasional shell command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should preserve source labels, mark uncertain claims as pending verification, and end substantive responses with the skill's self-check line.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.7 (source: server release metadata and VERSION) <br>
+Risk: Marketing strategy or launch guidance may rely on stale offline data for prices, rankings, product specs, KOL status, or platform trends.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify high-timeliness claims against current sources before real campaign use and label unverified claims as pending verification.
+
+Risk: Imported comments, briefs, or campaign data may contain confidential business information.
+
+Mitigation: Use only data intended for analysis and redact sensitive fields before providing comment exports or internal materials.
+
+Risk: Launch, pause, compliance, or safety recommendations could be mistaken for final approval.
+
+Mitigation: Treat outputs as marketing decision support and route final materials through legal, advertising compliance, and product safety review.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/killsnake01/skills/china-marketing-copilot)
+- [Skill instructions](SKILL.md)
+- [Agent router](docs/agent-router.md)
+- [Data index and freshness rules](docs/data-index.md)
+- [2026 market signal library](docs/ecosystem/market-signals-2026.md)
+- [Negative early-warning library](docs/ecosystem/negative-early-warning.md)
+- [Industry ecosystem framework](docs/references/industry-ecosystem.md)
+- [Market signal source: Campaign Asia](https://www.campaignasia.com/article/xiaomi-sacks-staff-and-penalises-executives-after-a-kol-tie-up-triggers-fan-backl/506868)
+- [Market signal source: People's Daily Online](https://finance.people.com.cn/n1/2026/0105/c1004-40638996.html)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown responses, structured decision JSON when requested, and optional shell commands for bundled validation scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses bundled offline docs first; Python scripts can process user-provided comment batches or validate structured decision outputs when available.]
+
+## Skill Version(s):
+
+1.4.33 (source: server release evidence and VERSION)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

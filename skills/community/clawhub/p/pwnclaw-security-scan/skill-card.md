@@ -1,40 +1,53 @@
-## Description: <br>
-PwnClaw Security Scan helps test AI agents for security vulnerabilities using PwnClaw attacks and remediation guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Test your AI agent for security vulnerabilities using PwnClaw. Runs 50+ attacks (prompt injection, jailbreaks, social engineering, MCP poisoning, and more) and provides fix instructions. Use when your agent needs a security check or hardening.
 
-## Publisher: <br>
-[Gemini2027](https://clawhub.ai/user/Gemini2027) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[gemini2027](https://clawhub.ai/user/gemini2027)
 
-## Use Case: <br>
-Developers and agent operators use this skill to run or coordinate PwnClaw security scans against an AI agent, review the resulting security score, and apply remediation guidance. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Scan prompts and agent responses may be sent to PwnClaw. <br>
-Mitigation: Install and use the skill only when that data sharing is acceptable for the agent and test environment. <br>
-Risk: Generated remediation rules could be too broad or unsuitable as permanent system instructions. <br>
-Mitigation: Review each rule, narrow it to the specific vulnerability, and retest before making it permanent. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [PwnClaw website](https://www.pwnclaw.com) <br>
-- [ClawHub skill page](https://clawhub.ai/Gemini2027/pwnclaw-security-scan) <br>
+## Use Case:
 
+Developers and agent operators use this skill to run security scans against an authorized AI agent and review hardening guidance for issues such as prompt injection, jailbreaks, data exfiltration, MCP/tool poisoning, and privilege escalation.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, API calls, Guidance, Configuration] <br>
-**Output Format:** [Markdown guidance with optional HTTP request descriptions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May involve sending scan prompts and agent responses to PwnClaw.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Scanning may expose an agent endpoint or agent behavior to a third-party testing service.
+
+Mitigation: Run scans only against authorized staging agents that use synthetic data, no production credentials, and limited tools.
+
+Risk: Returned prompts, scan results, and generated hardening rules may contain untrusted or misleading content.
+
+Mitigation: Review and rewrite proposed system-prompt changes before adding them permanently, then retest before production use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gemini2027/skills/pwnclaw-security-scan)
+- [PwnClaw website](https://www.pwnclaw.com)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, API Calls, Configuration]
+
+**Output Format:** [Markdown guidance with optional HTTP API request descriptions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce security scan results and proposed hardening rules that should be reviewed before adoption.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

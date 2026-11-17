@@ -1,46 +1,61 @@
-## Description: <br>
-Installs and enables Honcho with the @alloralabs/honcho-memory-mux extension, migrates legacy file memory, and updates workspace instructions so agents use Honcho-first memory retrieval with local-file fallback. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Install and enable Honcho and the @alloralabs/honcho-memory-mux extension, migrate legacy file memory, and update workspace instructions so agents use Honcho-first multiplexed retrieval with local-file fallback.
 
-## Publisher: <br>
-[spooktheducks](https://clawhub.ai/user/spooktheducks) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[spooktheducks](https://clawhub.ai/user/spooktheducks)
 
-## Use Case: <br>
-Developers and agent operators use this skill to install an OpenClaw memory extension, connect it to Honcho, migrate existing markdown memory, and document Honcho-first retrieval with local fallback behavior. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Conversations and selected memory files may be stored in Honcho, including the hosted Honcho API when configured as the default endpoint. <br>
-Mitigation: Review HONCHO_BASE_URL and HONCHO_API_KEY before use, confirm migration previews before upload, and avoid sensitive deployments until retention, deletion, opt-out, and session scoping controls are clear. <br>
-Risk: The release security summary reports that a session-history tool may not fully match its stated access scope. <br>
-Mitigation: Inspect the session-history behavior during validation and limit use to workspaces where the memory access model is acceptable. <br>
-Risk: The skill updates agent instruction files to change memory retrieval and write behavior. <br>
-Mitigation: Review all generated edits before accepting them and keep local memory files unchanged unless an explicit deletion or migration policy is approved. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to set up Honcho-backed memory retrieval, migrate existing markdown memory, and document fallback behavior. It is intended for workspaces that need persistent memory with local-file backup and clear migration reporting.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/spooktheducks/honcho-memory-mux) <br>
-- [Honcho homepage](https://honcho.dev) <br>
-- [Honcho documentation](https://docs.honcho.dev) <br>
-- [Honcho repository](https://github.com/plastic-labs/honcho) <br>
-- [honcho-memory-mux repository](https://github.com/allora-network/honcho-memory-mux) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with inline shell commands, configuration snippets, and workspace documentation edits] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write workspace memory files and agent instruction documents during setup.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: ClawHub release metadata and package.json) <br>
+Risk: Conversation memory, including sensitive prompts and assistant responses, may be sent to and retained by Honcho.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a self-hosted or approved Honcho endpoint, avoid sessions containing secrets, and require clear opt-in, deletion, and retention controls before broad deployment.
+
+Risk: Stored memory is injected into future prompts and may carry stale, misleading, or prompt-injected content.
+
+Mitigation: Treat recalled memory as untrusted context, prefer targeted retrieval with source awareness, and review memory-influenced behavior before acting on sensitive tasks.
+
+Risk: The skill updates workspace instruction files and may change agent behavior across later sessions.
+
+Mitigation: Review all instruction-file diffs before applying them, preserve custom content, and keep changes reversible.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/spooktheducks/skills/honcho-memory-mux)
+- [Honcho homepage](https://honcho.dev)
+- [Honcho documentation](https://docs.honcho.dev)
+- [Honcho repository](https://github.com/plastic-labs/honcho)
+- [honcho-memory-mux repository](https://github.com/allora-network/honcho-memory-mux)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown instructions with shell commands, JSON configuration, and TypeScript plugin behavior]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May update workspace instruction files, migrate memory files, install OpenClaw plugins, and configure Honcho environment variables.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

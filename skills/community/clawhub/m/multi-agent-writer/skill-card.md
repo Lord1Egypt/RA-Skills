@@ -1,46 +1,59 @@
-## Description: <br>
-Use when requests involve writing articles, generating news, fetching hotspots, or producing content for social media such as WeChat and Xiaohongshu. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents run a three-stage writing workflow that finds recent topics, drafts articles or social media content, and reviews revisions against scored writing criteria.
 
-## Publisher: <br>
-[gonelake](https://clawhub.ai/user/gonelake) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gonelake](https://clawhub.ai/user/gonelake)
 
-## Use Case: <br>
-External users and developers use this skill to run a multi-agent writing workflow that gathers recent topics, drafts articles or social posts, and reviews the result before producing final content. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The installer pulls mutable remote code and installs Python dependencies at install time. <br>
-Mitigation: Review the cloned project and its dependencies before running production mode. <br>
-Risk: The installer can register the skill across multiple local agent environments. <br>
-Mitigation: Use an explicit --agent target instead of automatic or all-agent installation when limiting scope matters. <br>
-Risk: Production mode may send user content to configured search or LLM providers. <br>
-Mitigation: Use a dedicated LLM API key and avoid sending sensitive unpublished content to those providers. <br>
+## Use Case:
 
+Developers and content creators use this skill to generate topical articles and social posts, configure LLM-backed writing runs, and inspect JSON or Markdown outputs from its review loop.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gonelake/multi-agent-writer) <br>
-- [Publisher profile](https://clawhub.ai/user/gonelake) <br>
-- [External project repository referenced by artifact](https://github.com/gonelake/multi-agent) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact SKILL definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown guidance with CLI examples; generated writing outputs may be Markdown or JSON files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can use demo mode without an API key or production mode with LLM configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact frontmatter states 1.1.0) <br>
+Risk: The installer pulls mutable remote code, installs Python dependencies, and registers into user-level agent skill directories.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the repository and installer before use, prefer a pinned commit, and install into a single intended agent environment.
+
+Risk: Prompts and topics may be sent to external search or LLM providers during production writing runs.
+
+Mitigation: Avoid confidential topics or secrets in prompts and use approved providers, credentials, and network settings.
+
+Risk: User-level skill registration and uninstall scripts modify local agent directories and the ~/.skills/multi-agent project path.
+
+Mitigation: Run installation and removal commands from a reviewed checkout and confirm target paths before execution.
+
+## Reference(s):
+
+- [Artifact README](artifact/README.md)
+- [ClawHub skill page](https://clawhub.ai/gonelake/skills/multi-agent-writer)
+- [Publisher profile](https://clawhub.ai/user/gonelake)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with bash and Python snippets; generated runs can produce JSON, Markdown, and TSV files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create output.json, output.md, and experiments.tsv when the installed project is run.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

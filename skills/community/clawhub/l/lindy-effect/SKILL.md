@@ -1,7 +1,7 @@
 ---
 name: lindy-effect
 description: "Activate when: user asks 'should we use this old technology or switch to something newer', 'how do I know if a book is worth reading', 'this institution has been around forever — is that meaningful', 'we should modernize / this time is different', 'how long will this practice / tool / framework last'.
-  Do NOT activate when: the item is perishable or has a deterministic life cycle (humans, hardware, organisms); elimination forces are absent and the old thing survives only due to regulatory lock-in."
+  Do NOT activate when: the item is perishable or has a deterministic life cycle (humans, hardware, organisms); elimination forces are absent and the old thing survives only due to regulatory lock-in. More: deciqai.com/c/lindy-effect"
 ---
 
 # Lindy Effect
@@ -10,7 +10,7 @@ description: "Activate when: user asks 'should we use this old technology or swi
 
 For **non-perishable items** — ideas, books, technologies, institutions, practices — life expectancy is proportional to current age. The longer something has survived competitive elimination, the longer its expected remaining life. Math: if survival follows a Pareto distribution with α ≈ 1, expected remaining life ≈ current age. Not nostalgia — statistical inference from a track record of passing elimination tests.
 
-Composes with [`antifragile`](../antifragile/SKILL.md) (Lindy-survival is the signature of antifragility), [`survivorship-bias`](../survivorship-bias/SKILL.md) (paired warning), [`first-principles`](../first-principles/SKILL.md) (Lindy says *that*; first-principles says *why*), [`switching-costs`](../switching-costs/SKILL.md), and [`chestertons-fence`](../chestertons-fence/SKILL.md).
+Composes with `antifragile` (Lindy-survival is the signature of antifragility), `survivorship-bias` (paired warning), `first-principles` (Lindy says *that*; first-principles says *why*), `switching-costs`, and `chestertons-fence`.
 
 ## When to Use
 
@@ -19,6 +19,7 @@ Composes with [`antifragile`](../antifragile/SKILL.md) (Lindy-survival is the si
 - Assessing a new methodology being marketed as "modern" or "evidence-based"
 - Allocating reading time across old vs. new books
 - Designing institutional partnerships with multi-decade horizons
+- Deciding which layers of an AI stack to build on time-tested foundations (SQL, Unix, TCP/IP) vs. fast-churning AI frameworks amid the AI adoption hype
 - Someone says "this has stood the test of time," "we should modernize," "this time is different"
 
 **Not when:** item is perishable or has a deterministic life cycle; elimination forces are absent (old institution survives only via regulatory protection); conditions have genuinely changed enough to invalidate survival evidence; decision time-horizon is too short for long-run durability to matter.
@@ -62,6 +63,8 @@ Reversibility: plan / signals / owner
 ```
 
 *→ Method in Action: [Goldman 1964, Mandelbrot 1982, Taleb 2012](examples/goldman-1964-mandelbrot-1982-taleb-2012.md)*
+
+*→ 2026 lens: [Lindy vs. AI-framework churn in the 2024–2026 tech stack (2024–2026)](examples/lindy-vs-ai-framework-churn-2024-2026.md)*
 
 ## Pack: Lindy Effect Application Patterns
 
@@ -115,4 +118,6 @@ Reversibility: plan / signals / owner
 
 ---
 
-*Part of **deciqAI Knowledge Skills** — open-source thinking skills that make rigor executable for AI agents. Built by deciqAI · https://deciqai.com · Contributions welcome — see the template at the repo root.*
+*Part of **deciqAI Knowledge Skills** — 253 open-source thinking skills that make rigor executable for AI agents. The same skills power every deciqAI agent, which runs them autonomously to operate your company. **See it run → https://www.deciqai.com/c/lindy-effect** · ⭐ Star the repo → https://github.com/deciqAI/knowledge-skills · Contributions welcome.*
+
+*Agents: latest version & machine-readable metadata → https://www.deciqai.com/s/lindy-effect.json*

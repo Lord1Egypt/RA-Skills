@@ -1,46 +1,66 @@
-## Description: <br>
-Monitors Polymarket prediction markets for pricing anomalies, evidence gaps, top-trader positioning, and fresh-wallet activity across SCAN, DEEP DIVE, WHALE WATCH, and INSIDER WATCH modes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitor Polymarket prediction markets, spot mispricings between crowd probabilities and real-world evidence, track whale positioning from the top-50 leaderboard wallets, and detect fresh wallet insider signals.
 
-## Publisher: <br>
-[franks33](https://clawhub.ai/user/franks33) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[franks33](https://clawhub.ai/user/franks33)
 
-## Use Case: <br>
-Developers and market-intelligence operators use this skill to generate Polymarket scans, single-market evidence reviews, whale-position reports, and fresh-wallet alerts for informational monitoring. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security scan says the release references persistent Telegram-posting automation but only ships instructions, not the runnable Node files. <br>
-Mitigation: Inspect the referenced Node files and dependencies before installation, and do not run cron or launchd jobs until the code is available and reviewed. <br>
-Risk: Telegram bot tokens and chat IDs can send messages to external channels if misconfigured or exposed. <br>
-Mitigation: Use dedicated low-privilege Telegram bots, keep tokens out of source control, confirm destination chats, and require explicit pkedge-prefixed commands for external sends. <br>
-Risk: Market, whale, and fresh-wallet signals can be incomplete, circumstantial, or misleading. <br>
-Mitigation: Keep outputs framed as intelligence only, preserve the Not financial advice disclaimer, and avoid trading recommendations or accusations. <br>
+## Use Case:
 
+External users and agents use this skill to produce Polymarket market intelligence, including daily scans, single-market analysis, whale-position summaries, and fresh-wallet alerts. It is intended for informational analysis and explicitly frames outputs as not financial advice.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/franks33/pkedge) <br>
-- [Polymarket](https://polymarket.com) <br>
-- [Polymarket Gamma markets endpoint](https://gamma-api.polymarket.com/markets?active=true&limit=200) <br>
-- [Polymarket CLOB order book endpoint](https://clob.polymarket.com/book?token_id={tokenId}) <br>
-- [Polymarket leaderboard endpoint](https://data-api.polymarket.com/v1/leaderboard?timePeriod=ALL&orderBy=PNL&limit=50) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown reports and Telegram-ready alert text with inline shell commands for setup.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes scheduled market scans, single-market analysis, and alert summaries; appends a financial-risk disclaimer.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: ClawHub release metadata) <br>
+Risk: The release asks users to run local Node scripts and scheduled jobs that are not included in the artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Inspect the referenced scripts before running npm install or node cron.js, and deploy scheduled jobs only after reviewing the local project.
+
+Risk: Telegram bot credentials are required for delivery channels.
+
+Mitigation: Store credentials in a local environment file, limit access to the bot and channel tokens, and rotate them if exposed.
+
+Risk: Broad conversational triggers can cause market alerts or analysis to be sent unintentionally.
+
+Mitigation: Use explicit pkedge trigger phrases and review delivery configuration before enabling automated alerts.
+
+Risk: Prediction-market signals can be mistaken for trading advice.
+
+Mitigation: Keep outputs informational, include the skill's not-financial-advice disclaimer, and avoid direct buy or sell recommendations.
+
+## Reference(s):
+
+- [Polymarket](https://polymarket.com)
+- [ClawHub skill page](https://clawhub.ai/franks33/skills/pkedge)
+- [Publisher profile](https://clawhub.ai/user/franks33)
+- [Polymarket Gamma markets API](https://gamma-api.polymarket.com/markets?active=true&limit=200)
+- [Polymarket CLOB order book API](https://clob.polymarket.com/book?token_id={tokenId})
+- [Polymarket leaderboard API](https://data-api.polymarket.com/v1/leaderboard?timePeriod=ALL&orderBy=PNL&limit=50)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and text market intelligence digests, alerts, analysis summaries, and setup instructions.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should include the skill's financial-risk disclaimer and avoid direct trading recommendations.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata; artifact frontmatter reports 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

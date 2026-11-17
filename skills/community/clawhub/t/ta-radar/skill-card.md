@@ -1,47 +1,64 @@
-## Description: <br>
-Multi-Dimensional Technical Analysis Radar for cryptocurrencies that supports spot trading pairs and on-chain contract addresses and generates objective technical analysis reports with EMA, RSI, MACD, Bollinger Bands, support and resistance levels, and trend analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+TA Radar generates objective cryptocurrency technical-analysis reports for spot trading pairs and on-chain contract addresses using EMA, RSI, MACD, Bollinger Bands, support and resistance levels, and trend analysis.
 
-## Publisher: <br>
-[deanpeng-dotcom](https://clawhub.ai/user/deanpeng-dotcom) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[deanpeng-dotcom](https://clawhub.ai/user/deanpeng-dotcom)
 
-## Use Case: <br>
-External users and developers use this skill to request cryptocurrency technical analysis for a trading pair or EVM contract address. The agent fetches public market data, computes common indicators, and returns a human-readable report; it should not be treated as financial advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends queried symbols or contract addresses to public market-data services and a public proxy. <br>
-Mitigation: Use only non-sensitive symbols or addresses and review the configured public endpoints before use. <br>
-Risk: The generated report could be mistaken for investment advice. <br>
-Mitigation: Present the output as technical analysis only and do not use it as financial advice. <br>
-Risk: The embedded script is incomplete in the reviewed artifact. <br>
-Mitigation: Review the current SKILL.md and verify the complete script before installing or running the skill. <br>
+## Use Case:
 
+External users and developers use TA Radar to request cryptocurrency technical-analysis reports for tickers or contract addresses across 1h, 4h, and 1d intervals.
 
-## Reference(s): <br>
-- [TA Radar ClawHub listing](https://clawhub.ai/deanpeng-dotcom/ta-radar) <br>
-- [Server-resolved source repository](https://github.com/clawhub/ta-radar) <br>
-- [Private deployment guide](references/deployment.md) <br>
-- [Binance K-line endpoint](https://api.binance.info/api/v3/klines) <br>
-- [Gate.io candlesticks endpoint](https://api.gateio.ws/api/v4/spot/candlesticks) <br>
-- [DexScreener search endpoint](https://api.dexscreener.com/latest/dex/search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown-style technical analysis report with plain text indicator values, conclusions, and explanations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires TA_SYMBOL and optionally TA_INTERVAL; supported intervals are 1h, 4h, and 1d.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: Asset tickers or contract addresses are sent to public market-data services and the allorigins.win proxy.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only non-sensitive symbols or public contract addresses, and run the skill only when sharing those lookups with the named services is acceptable.
+
+Risk: The execution workflow uses a predictable temporary script path at /tmp/ta_radar_run.py.
+
+Mitigation: Run the skill in an isolated account or container and remove the temporary script after execution.
+
+Risk: The security evidence marks the release suspicious and recommends verifying package completeness before relying on it.
+
+Mitigation: Review the packaged files and security findings before deployment or recurring use.
+
+## Reference(s):
+
+- [TA Radar ClawHub Skill Page](https://clawhub.ai/deanpeng-dotcom/skills/ta-radar)
+- [Publisher Profile](https://clawhub.ai/user/deanpeng-dotcom)
+- [Repository Metadata](https://github.com/clawhub/ta-radar)
+- [Deployment Guide](references/deployment.md)
+- [Binance Kline Data Endpoint](https://api.binance.info/api/v3/klines)
+- [Gate.io Candlestick Data Endpoint](https://api.gateio.ws/api/v4/spot/candlesticks)
+- [DexScreener Search Endpoint](https://api.dexscreener.com/latest/dex/search)
+- [AllOrigins Proxy Endpoint](https://api.allorigins.win/raw)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown and console text with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires TA_SYMBOL and optionally TA_INTERVAL; fetches public market data from Binance, Gate.io, and DexScreener via allorigins.win.]
+
+## Skill Version(s):
+
+1.2.0 (source: evidence release, SKILL.md frontmatter, target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

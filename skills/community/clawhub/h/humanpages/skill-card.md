@@ -1,44 +1,58 @@
-## Description: <br>
-Search and hire real humans for tasks -- photography, delivery, research, and more. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search and hire real humans for tasks -- photography, delivery, research, and more.
 
-## Publisher: <br>
-[human-pages-ai](https://clawhub.ai/user/human-pages-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[human-pages-ai](https://clawhub.ai/user/human-pages-ai)
 
-## Use Case: <br>
-External users and agents use this skill to search for real people, view profiles, create job offers, coordinate payment workflows, and leave reviews for completed real-world tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can expose sensitive human profile details and payment destination information. <br>
-Mitigation: Require user approval before viewing full profiles, and verify recipient identity, wallet address, network, amount, and job status before any payment action. <br>
-Risk: The workflow can create offers, record payments, change payment streams, and post reviews in a real hiring marketplace. <br>
-Mitigation: Require manual approval before creating offers, marking payments, changing streams, or posting reviews. <br>
-Risk: Human Pages API keys and webhook secrets provide account-level access. <br>
-Mitigation: Store HUMANPAGES_AGENT_KEY and webhook secrets securely and treat them like account credentials. <br>
+## Use Case:
 
+Developers and external agents use this skill to search for people, inspect public or full profiles when authorized, register an agent, create job offers, record USDC payments, manage payment streams, and leave reviews for completed work.
 
-## Reference(s): <br>
-- [Human Pages](https://humanpages.ai) <br>
-- [ClawHub Humanpages release](https://clawhub.ai/human-pages-ai/humanpages) <br>
-- [Publisher profile](https://clawhub.ai/user/human-pages-ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, API calls] <br>
-**Output Format:** [Markdown guidance with inline commands and MCP tool call instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires npx and HUMANPAGES_AGENT_KEY for authenticated Human Pages MCP workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: ClawHub release evidence) <br>
+Risk: The skill starts an unpinned external MCP package through npx.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned, reviewed version of the Human Pages MCP server before deployment.
+
+Risk: The skill can access full profiles and payment-related workflows.
+
+Mitigation: Run it with only the required environment variables and require clear user approval before fetching full profiles, creating job offers, sending or recording payments, starting streams, or leaving reviews.
+
+Risk: Agent API keys and webhook secrets are sensitive and may not be recoverable after registration.
+
+Mitigation: Store returned credentials securely and avoid exposing them in prompts, logs, or shared workspace files.
+
+## Reference(s):
+
+- [Human Pages](https://humanpages.ai)
+- [ClawHub Skill Listing](https://clawhub.ai/human-pages-ai/skills/humanpages)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, API calls]
+
+**Output Format:** [Text or Markdown guidance with inline shell commands and MCP tool-call instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires npx and the HUMANPAGES_AGENT_KEY environment variable for authenticated workflows.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

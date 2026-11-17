@@ -1,39 +1,58 @@
-## Description: <br>
-Takes screenshots of targets using Playwright and performs visual/contextual analysis for potential vulnerabilities. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Takes screenshots of targets using Playwright and performs visual/contextual analysis for potential vulnerabilities.
 
-## Publisher: <br>
-[nyetnighy](https://clawhub.ai/user/nyetnighy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nyetnighy](https://clawhub.ai/user/nyetnighy)
 
-## Use Case: <br>
-Developers and security testers use this skill for authorized web reconnaissance: capturing screenshots, collecting page metadata and headers, and summarizing visual indicators such as exposed panels, forms, missing CSP, and interesting endpoints. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Running the skill outside authorized web reconnaissance scope can create legal and data-handling risk, and generated screenshots or metadata may contain sensitive page content. <br>
-Mitigation: Use only on targets you are authorized to assess, respect target scope and rate limits, keep screenshots, JSON files, and reports private, and delete generated artifacts when they are no longer needed. <br>
+## Use Case:
 
+Developers and security testers use this skill for authorized web reconnaissance by capturing browser screenshots and local evidence for exposed panels, debug interfaces, login pages, weak security-header indicators, and related web-surface inventory.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/nyetnighy/screenshot-visual) <br>
-- [ClawHub Publisher Profile](https://clawhub.ai/user/nyetnighy) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown report plus local PNG screenshots and JSON metadata files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates screenshots/<domain>/ outputs, scans common web paths, and records response headers, page snippets, forms, selected inputs, and interesting links.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill automatically probes common admin, debug, API, configuration, and login paths.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only against targets you control or are explicitly authorized to test, and confirm target scope before execution.
+
+Risk: Generated screenshots, metadata, and reports can contain sensitive page content or target details.
+
+Mitigation: Store outputs in protected locations, limit sharing, and delete or retain them according to the applicable engagement data-handling rules.
+
+Risk: Automated browsing and path probing may contact unintended internal or sensitive network targets.
+
+Mitigation: Avoid internal or sensitive networks unless that is intended and authorized, and review the target URL before running the skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nyetnighy/skills/screenshot-visual)
+- [Publisher profile](https://clawhub.ai/user/nyetnighy)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Markdown, JSON, Analysis, Shell commands]
+
+**Output Format:** [PNG screenshots, JSON metadata, Markdown report, and console text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates local screenshots/<domain>/ artifacts; default viewport is 1280x720 and full-page capture is enabled.]
+
+## Skill Version(s):
+
+1.0.0 (source: server evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

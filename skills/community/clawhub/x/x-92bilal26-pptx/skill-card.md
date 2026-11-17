@@ -1,43 +1,60 @@
-## Description: <br>
-Presentation creation, editing, and analysis for PowerPoint (.pptx) files, including creating new presentations, modifying content, working with layouts, and adding comments or speaker notes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Presentation creation, editing, and analysis for creating new PowerPoint files, modifying existing presentations, working with layouts, and adding comments or speaker notes.
 
-## Publisher: <br>
-[nicky1108](https://clawhub.ai/user/nicky1108) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Proprietary <br>
+## Publisher:
 
+[nicky1108](https://clawhub.ai/user/nicky1108)
 
-## Use Case: <br>
-Developers and agent users use this skill to create, inspect, edit, and validate PowerPoint presentations through HTML-to-PPTX and Office Open XML workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Proprietary
 
-## Known Risks and Mitigations: <br>
-Risk: PowerPoint editing workflows can overwrite or corrupt important presentation content. <br>
-Mitigation: Use copies of important presentations and review generated replacement data, validation output, and thumbnails before relying on modified files. <br>
-Risk: Processing untrusted PPTX files can expose document-conversion or parser risk. <br>
-Mitigation: Avoid untrusted PPTX files unless conversion tools are patched and the workflow runs in a constrained environment. <br>
+## Use Case:
 
+Employees, external users, developers, and agent operators use this skill to create, inspect, edit, validate, and package PowerPoint presentations through HTML-to-PPTX and Office Open XML workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nicky1108/x-92bilal26-pptx) <br>
-- [README](README.md) <br>
-- [HTML to PowerPoint Guide](html2pptx.md) <br>
-- [OOXML Guide](ooxml.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline code and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce or modify presentation files when the agent follows the documented workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and README) <br>
+Risk: The skill processes Office files and includes broader DOCX/XLSX code paths beyond normal PowerPoint tasks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the bundled Office-document scripts before installation and limit use to the presentation workflows needed for the deployment.
+
+Risk: Untrusted PPTX, DOCX, or XLSX files can expose archive extraction and XML parsing risks.
+
+Mitigation: Run the skill in an isolated, non-admin environment, work on copies of documents, keep backups, and harden archive extraction and XML parsing before handling untrusted files.
+
+Risk: The artifact includes privileged or globally scoped dependency setup guidance.
+
+Mitigation: Pre-provision and pin dependencies instead of allowing agents to run sudo or global install commands during routine workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nicky1108/skills/x-92bilal26-pptx)
+- [Skillstore skill page](https://skillstore.io/skills/x-92bilal26-pptx)
+- [HTML to PowerPoint Guide](html2pptx.md)
+- [Office Open XML Technical Reference for PowerPoint](ooxml.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline code, shell commands, generated scripts, JSON inventories, thumbnails, and PowerPoint files when the agent executes the workflows.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Presentation workflows may create or modify .pptx files and supporting temporary files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and README)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

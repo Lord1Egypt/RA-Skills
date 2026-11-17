@@ -1,46 +1,60 @@
-## Description: <br>
-Monitors budget usage, checks single or batch expense requests against configured budgets, flags overspending or anomalies, and produces advisory budget reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+支出预警管控虾 helps agents check spending requests against budget rules, flag overspending or anomalous activity, and draft approval or notification recommendations.
 
-## Publisher: <br>
-[tujinsama](https://clawhub.ai/user/tujinsama) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tujinsama](https://clawhub.ai/user/tujinsama)
 
-## Use Case: <br>
-Finance, operations, and budget owners use this skill to check expense requests, batch-validate spending records, detect unusual spending patterns, and generate budget execution reports from configured budget and expense data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Budget red-light results may be mistaken for actual enforced spending controls. <br>
-Mitigation: Treat green, yellow, and red outcomes as recommendations unless the workflow is connected to a real approval system with human review, audit logs, and explicit fail-closed behavior. <br>
-Risk: Missing budget configuration defaults can allow an expense to pass without a configured budget. <br>
-Mitigation: Configure fallback rules before deployment and review any no-budget results before approving spend. <br>
-Risk: Budget calculations and anomaly flags depend on the accuracy of user-provided CSV or natural-language expense data. <br>
-Mitigation: Validate source budget and expense data, review generated reports, and reconcile high-impact decisions against authoritative finance systems. <br>
+## Use Case:
 
+Finance, operations, and budget owners use this skill to review expense requests, batch-check expense records against budget configurations, generate budget execution reports, and prepare alerts for yellow or red threshold cases.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tujinsama/budget-alert-claw) <br>
-- [Budget Rules](references/budget-rules.md) <br>
-- [Anomaly Detection Rules](references/anomaly-detection.md) <br>
-- [Notification Templates](references/notification-templates.md) <br>
-- [Publisher profile](https://clawhub.ai/user/tujinsama) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance, JSON check results, CSV batch outputs, and plain-text reports.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are advisory unless connected to a separate approval system with human review, audit logs, and explicit fail-closed behavior.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may produce unsafe financial recommendations if its budget checks are treated as automatic approval or rejection decisions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as recommendations only and require human approval for yellow, red, or missing-budget cases.
+
+Risk: Incorrect or malformed budget and expense inputs can affect the resulting alerts and reports.
+
+Mitigation: Validate input files independently before using the skill in production or approval workflows.
+
+Risk: Direct integration with notifications, budget updates, or automatic approvals could amplify an incorrect recommendation.
+
+Mitigation: Avoid wiring the skill directly to Feishu notifications, budget updates, or automatic approvals until scope limits and fail-closed validation are added.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tujinsama/skills/budget-alert-claw)
+- [Budget rules](references/budget-rules.md)
+- [Anomaly detection rules](references/anomaly-detection.md)
+- [Notification templates](references/notification-templates.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports and tables, JSON check results, CSV batch outputs, and notification text.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user-provided budget and expense data; financial recommendations should be reviewed before action.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

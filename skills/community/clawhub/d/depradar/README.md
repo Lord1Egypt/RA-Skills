@@ -248,7 +248,7 @@ python ~/.claude/skills/depradar-skill/scripts/depradar.py \
 
 ```bash
 python ~/.claude/skills/depradar-skill/scripts/depradar.py \
-  --notify=slack://https://hooks.slack.com/services/YOUR/WEBHOOK/URL
+  --notify=slack://REDACTED-SECRET
 ```
 
 ---

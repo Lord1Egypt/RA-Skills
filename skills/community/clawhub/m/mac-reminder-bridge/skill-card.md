@@ -1,46 +1,59 @@
-## Description: <br>
-Manage macOS Reminders.app from Docker via a local HTTP bridge for creating, listing, updating, completing, and deleting reminders. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage macOS Reminders.app from Docker through an HTTP bridge for creating, listing, updating, completing, and deleting reminders.
 
-## Publisher: <br>
-[MasteRyuuuu](https://clawhub.ai/user/MasteRyuuuu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[masteryuuuu](https://clawhub.ai/user/masteryuuuu)
 
-## Use Case: <br>
-Developers and agent users run this skill when an AI agent in Docker needs to manage native macOS Reminders through a host-side listener. It supports reminder creation, listing, updates, completion toggles, deletion, list discovery, and listener health checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The local HTTP bridge can read and change macOS Reminders. <br>
-Mitigation: Install only when this capability is intended, run the listener on a trusted Mac, and confirm the agent should have access before enabling it. <br>
-Risk: Default access controls may allow clients on broad local or Docker networks to call the bridge without a shared secret. <br>
-Mitigation: Set BRIDGE_SECRET, restrict BRIDGE_ALLOWED_IPS to exact trusted clients, and keep port 5000 off public networks. <br>
-Risk: Fuzzy delete, update, complete, or all-list operations may affect unintended reminders. <br>
-Mitigation: Require explicit user confirmation before fuzzy matching, destructive changes, completion toggles, or broad listing operations. <br>
+## Use Case:
 
+Developers and external agent users use this skill to let a containerized agent operate a local macOS Reminders.app bridge. It is intended for reminder CRUD workflows such as adding, listing, editing, completing, reopening, and deleting reminders.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/MasteRyuuuu/mac-reminder-bridge) <br>
-- [Publisher profile](https://clawhub.ai/user/MasteRyuuuu) <br>
-- [Skill instructions](artifact/SKILL.md) <br>
-- [Listener implementation](artifact/listener.py) <br>
-- [macOS platform reference](https://www.apple.com/macos/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with curl examples, JSON request and response shapes, and concise user-facing confirmations.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a host-side macOS listener on port 5000, curl in the agent environment, and optional X-Bridge-Secret authentication.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.2 (source: server release metadata) <br>
+Risk: The bridge can read, edit, complete, and delete real macOS Reminders data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only on a trusted local Mac, confirm Reminders permission prompts intentionally, and use DRY_RUN for testing when changes should not be written.
+
+Risk: The default HTTP bridge security is too broad for real reminder data and update or deletion authority.
+
+Mitigation: Set a strong BRIDGE_SECRET, keep BRIDGE_ALLOWED_IPS narrowed to the exact client or Docker subnet, and avoid exposing port 5000 to remote networks.
+
+Risk: Direct HTTP cloud access can expose reminder operations outside the local trust boundary.
+
+Mitigation: Do not use direct HTTP for cloud access; place any remote access behind an authenticated and encrypted channel.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/masteryuuuu/skills/mac-reminder-bridge)
+- [ClawHub publisher profile](https://clawhub.ai/user/masteryuuuu)
+- [macOS platform](https://www.apple.com/macos/)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, API calls, Configuration]
+
+**Output Format:** [Markdown guidance with JSON request bodies and curl commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Agent actions target HTTP JSON endpoints exposed by a local macOS listener.]
+
+## Skill Version(s):
+
+2.1.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,55 @@
-## Description: <br>
-Install, configure, validate, and run the news-fetcher Python CLI for aggregating RSS/Atom and HTML news sources with deduplication, clustering, ranking, source diversity, summaries, and GitHub project discovery. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents install, configure, validate, and run the news-fetcher Python CLI for aggregating RSS/Atom and HTML news sources with deduplication, clustering, ranking, source diversity, summaries, and GitHub project discovery.
 
-## Publisher: <br>
-[miniade](https://clawhub.ai/user/miniade) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[miniade](https://clawhub.ai/user/miniade)
 
-## Use Case: <br>
-Developers and agents use this skill to install and operate the news-fetcher CLI, create or validate source configuration, troubleshoot command usage, and produce aggregated news or GitHub project discovery outputs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill directs users to install a Python package from a GitHub tag. <br>
-Mitigation: Review and trust the referenced repository and tag before installation, use a virtual environment, and avoid installing as root. <br>
-Risk: The CLI fetches public RSS, Atom, HTML, and GitHub sources and can write local output files. <br>
-Mitigation: Use trusted source URLs, validate configuration before running, and choose output paths deliberately. <br>
+## Use Case:
 
+Developers and agent operators use this skill to set up and operate news-fetcher, create or validate configurations, troubleshoot installation, and run news collection workflows over RSS, Atom, HTML, and GitHub project sources.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/miniade/news-fetcher) <br>
-- [news-fetcher source](https://github.com/miniade/news-fetcher) <br>
-- [news-fetcher PyPI project](https://pypi.org/project/news-fetcher/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, markdown, code] <br>
-**Output Format:** [Markdown with inline bash and YAML examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide agents to produce JSON, Markdown, CSV, RSS, or local output files through the news-fetcher CLI.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.8 (source: server release evidence and skill release marker) <br>
+Risk: Installing the third-party news-fetcher package from GitHub introduces normal supply-chain risk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install in a dedicated virtual environment under a non-privileged account, review the upstream repository before use, and prefer an immutable commit or verified release for stronger assurance.
+
+Risk: Misconfigured RSS, Atom, or HTML sources can produce sparse, incomplete, or misleading results.
+
+Mitigation: Validate configurations with the news-fetcher config validator and review source selectors, thresholds, and generated outputs before relying on them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/miniade/skills/news-fetcher)
+- [news-fetcher source repository](https://github.com/miniade/news-fetcher)
+- [news-fetcher PyPI package](https://pypi.org/project/news-fetcher/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Bash and YAML examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can guide creation of configuration files and CLI commands for JSON, Markdown, CSV, or RSS news outputs.]
+
+## Skill Version(s):
+
+0.1.8 (source: server release evidence and artifact release marker)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

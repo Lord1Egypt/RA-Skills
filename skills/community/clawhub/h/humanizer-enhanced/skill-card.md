@@ -1,45 +1,57 @@
-## Description: <br>
-Humanizer Enhanced helps agents scan blog posts, articles, and drafts for AI-writing patterns, report severity, and rewrite selected content to sound more natural while preserving concrete attribution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Humanizer Enhanced helps agents scan and revise blog posts, articles, and drafts by detecting AI-writing patterns, scoring issues by severity, and suggesting more human-sounding edits for general and crypto/Web3 content.
 
-## Publisher: <br>
-[dorukardahan](https://clawhub.ai/user/dorukardahan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[dorukardahan](https://clawhub.ai/user/dorukardahan)
 
-## Use Case: <br>
-Writers, editors, content teams, and developer advocates use this skill to scan markdown drafts for common AI-generated writing tells, review severity-ranked findings, and apply humanizing edits with user approval. It is especially tuned for blog, crypto, and Web3 content. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Rewrites may change meaning, remove necessary disclosure, or make AI-assisted writing appear less transparent than a publication, workplace, academic, or legal policy allows. <br>
-Mitigation: Use scan-only mode first, review diffs before accepting edits, and follow the applicable disclosure and publication rules. <br>
-Risk: Batch editing can alter many drafts at once. <br>
-Mitigation: Keep backups or version control before batch runs and review generated changes before publishing. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Humanizer Enhanced on ClawHub](https://clawhub.ai/dorukardahan/humanizer-enhanced) <br>
-- [dorukardahan publisher profile](https://clawhub.ai/user/dorukardahan) <br>
-- [Wikipedia: Signs of AI writing](https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing) <br>
-- [GitHub: blader/humanizer](https://github.com/blader/humanizer) <br>
-- [Communication, crypto/Web3, and soul patterns](references/communication-crypto-soul-patterns.md) <br>
-- [Content patterns](references/content-patterns.md) <br>
-- [Language and style patterns](references/language-style-patterns.md) <br>
+## Use Case:
 
+External users and content teams use this skill to review draft writing for common AI-generated text patterns, then apply proposed edits to make the draft clearer, more specific, and less formulaic.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain-text scan reports and edited draft text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include severity labels, line references, edit estimates, batch summaries, and rewrite suggestions.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may substantially change a draft's voice, wording, formatting, or factual attribution.
+
+Mitigation: Review proposed changes before accepting them, especially when processing multiple files.
+
+Risk: Rewrite suggestions can alter factual nuance or attribution in published content.
+
+Mitigation: Check sources, dates, and claims after editing, with extra attention to statistics and crypto/Web3 assertions.
+
+## Reference(s):
+
+- [Humanizer Enhanced on ClawHub](https://clawhub.ai/dorukardahan/skills/humanizer-enhanced)
+- [Content patterns](references/content-patterns.md)
+- [Language and style patterns](references/language-style-patterns.md)
+- [Communication, crypto/Web3, and soul patterns](references/communication-crypto-soul-patterns.md)
+- [Wikipedia: Signs of AI writing](https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing)
+- [GitHub: blader/humanizer](https://github.com/blader/humanizer)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown scan reports and rewritten prose]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose edits for individual selections, files, or batches; user review is expected before accepting changes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; source skill metadata states 1.2.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

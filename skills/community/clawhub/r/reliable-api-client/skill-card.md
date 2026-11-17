@@ -1,41 +1,54 @@
-## Description: <br>
-A Node.js API client helper for endpoint failover, API-key rotation, rate limiting, retries, and circuit breakers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a Node.js API client pattern for OpenAI-compatible endpoints with endpoint failover, key rotation, rate limiting, retries, connection pooling, and circuit breakers.
 
-## Publisher: <br>
-[danihe001](https://clawhub.ai/user/danihe001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[danihe001](https://clawhub.ai/user/danihe001)
 
-## Use Case: <br>
-Developers use this skill to configure and reuse a resilient Node.js API client that can route requests across multiple endpoints and keys while applying retry, timeout, rate-limit, and circuit-breaker behavior. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Requests, payloads, and API keys may be sent to any configured primary or backup endpoint during retries or failover. <br>
-Mitigation: Configure only trusted endpoints and avoid hard-coding production keys in shared code. <br>
-Risk: A background health-check interval can keep running longer than intended. <br>
-Mitigation: Stop or disable the health-check interval when the client is no longer needed. <br>
+## Use Case:
 
+Developers and engineers use this skill as guidance and source code for building resilient Node.js API clients that route requests across multiple endpoints and API keys while applying rate limits, retries, and circuit breakers.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/danihe001/reliable-api-client) <br>
-- [Project homepage](https://github.com/tvvshow/openclaw-evomap) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [code, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JavaScript usage examples and a Node.js source file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The helper sends requests to user-configured API endpoints and can use user-provided API keys.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Credential-bearing authentication headers may be sent to unintended destinations if untrusted request paths or cross-origin absolute URLs are used.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted HTTPS endpoints, avoid user-controlled request paths, and patch the client to reject cross-origin absolute URLs or strip credentials when the destination differs from the configured endpoint.
+
+Risk: The server security verdict is suspicious, so using the skill directly with real API keys could expose sensitive credentials or route requests unexpectedly.
+
+Mitigation: Review the source before installation, test with non-production credentials first, and deploy only after confirming endpoint and authentication handling are acceptable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/danihe001/skills/reliable-api-client)
+- [Publisher profile](https://clawhub.ai/user/danihe001)
+
+## Skill Output:
+
+**Output Type(s):** [code, configuration, guidance]
+
+**Output Format:** [Markdown with JavaScript code examples and configuration options]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces reusable Node.js client code patterns for HTTP requests, endpoint selection, authentication headers, and operational resilience controls.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

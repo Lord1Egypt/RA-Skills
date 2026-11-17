@@ -1,43 +1,61 @@
-## Description: <br>
-GitHub automation toolset for multi-account management, pull request creation and cleanup, code review workflows, and notification delivery. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+老默 GitHub 助手 - 多账户管理、PR 一键推送/清理、代码审查、通知推送。v2.0 完整功能。
 
-## Publisher: <br>
-[mrzhangkris](https://clawhub.ai/user/mrzhangkris) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mrzhangkris](https://clawhub.ai/user/mrzhangkris)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to automate GitHub account switching, pull request creation, review actions, branch cleanup, and repository event notifications. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can make live repository changes, including pushing branches, merging pull requests, deleting remote branches, and changing pull request state. <br>
-Mitigation: Use it only with GitHub accounts and repositories where live mutation is acceptable, verify target repositories and branch lists before execution, and run cleanup commands with --dry-run first. <br>
-Risk: Notification commands can send project details to Discord, Dingtalk, Telegram, or Slack webhooks. <br>
-Mitigation: Configure chat webhooks only for approved destinations and do not send private or regulated repository data unless that disclosure is approved. <br>
-Risk: Multi-account management stores GitHub account metadata on the local machine. <br>
-Mitigation: Limit access to local account configuration files, remove stale account entries, and validate the active GitHub account before running repository-changing commands. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to automate common GitHub workflows, including multi-account GitHub CLI management, pull request creation and cleanup, local PR review, and notifications to team chat services.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mrzhangkris/laomo-github) <br>
-- [Publisher profile](https://clawhub.ai/user/mrzhangkris) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash command examples and shell-script driven actions.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses GitHub CLI, git, jq, and optional chat webhook environment variables.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release evidence and artifact metadata) <br>
+Risk: The skill can change GitHub repositories and pull requests using the current GitHub CLI identity.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when the publisher is trusted, verify the active GitHub CLI account before use, and review repository and pull request targets before executing mutating commands.
+
+Risk: Account add and switch workflows may log out the current GitHub CLI session.
+
+Mitigation: Use explicit account aliases, validate the active account after switching, and avoid running account changes in shared or production automation sessions.
+
+Risk: Branch cleanup and PR merge actions can delete remote branches or alter repository state.
+
+Mitigation: Use dry-run modes where available and manually review cleanup targets before approving destructive operations.
+
+Risk: Notification commands may send repository metadata or custom messages to external chat services.
+
+Mitigation: Configure webhooks only for approved destinations and avoid sending sensitive repository details in notification content.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mrzhangkris/skills/laomo-github)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration instructions, Guidance, Markdown]
+
+**Output Format:** [Markdown with inline bash code blocks and shell command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May operate through the local GitHub CLI identity and configured notification webhooks.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata and artifact _meta.json, released 2026-03-15)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

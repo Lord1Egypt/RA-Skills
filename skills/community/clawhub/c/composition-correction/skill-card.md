@@ -1,46 +1,60 @@
-## Description: <br>
-Submits Chinese gaokao essay prompts and student essays to InkCraft for automated correction, then returns structured feedback. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+墨灵高考作文批改调用 InkCraft API 提交高考作文批改任务并返回结构化点评结果。
 
-## Publisher: <br>
-[diyanqi](https://clawhub.ai/user/diyanqi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[diyanqi](https://clawhub.ai/user/diyanqi)
 
-## Use Case: <br>
-Students, teachers, and writing-support agents use this skill to submit a gaokao-style Chinese essay prompt and essay body to InkCraft and receive a status, score-oriented feedback, strengths, improvement areas, rewrite suggestions, and a detail link. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Essay prompts, essay bodies, and optional reference text are sent to InkCraft for correction. <br>
-Mitigation: Install only if you trust InkCraft for this data, and avoid submitting sensitive personal information unless that sharing is acceptable. <br>
-Risk: The skill requires an InkCraft API key for API calls. <br>
-Mitigation: Use a revocable API key and do not expose it in prompts, logs, or shared output. <br>
-Risk: INKCRAFT_BASE_URL can redirect requests away from the official service. <br>
-Mitigation: Keep INKCRAFT_BASE_URL set to https://www.inkcraft.cn unless you intentionally trust another endpoint. <br>
+## Use Case:
 
+Students, educators, and writing coaches use this skill to submit a Chinese gaokao essay prompt and essay text for automated scoring, critique, and rewrite suggestions. The skill is intended for structured feedback workflows backed by InkCraft.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/diyanqi/composition-correction) <br>
-- [InkCraft homepage](https://www.inkcraft.cn) <br>
-- [Artifact skill definition](artifact/SKILL.md) <br>
-- [Artifact README](artifact/README.md) <br>
-- [OpenClaw configuration example](artifact/openclaw.skills-config.example.json5) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with structured correction feedback and optional curl commands for API submission and polling.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl and INKCRAFT_API_KEY; may use INKCRAFT_BASE_URL; returns correction status, summary, scoring dimensions when available, highlights, improvement points, rewrite suggestions, and an InkCraft detail link.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and OpenClaw metadata) <br>
+Risk: Essay prompts and student writing are sent to InkCraft for correction.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for content that is appropriate to share with InkCraft, and remove unnecessary personal information before submission.
+
+Risk: The API key is sent to a configurable external endpoint.
+
+Mitigation: Protect INKCRAFT_API_KEY and keep INKCRAFT_BASE_URL on the official HTTPS host unless a trusted alternate deployment is required.
+
+Risk: Automated essay feedback may be incomplete or unsuitable as the only assessment source.
+
+Mitigation: Have an educator or qualified reviewer check scoring, critique, and rewrite suggestions before using them for high-stakes decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/diyanqi/skills/composition-correction)
+- [Publisher profile](https://clawhub.ai/user/diyanqi)
+- [InkCraft homepage](https://www.inkcraft.cn)
+- [Artifact README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown response with structured correction sections, troubleshooting guidance, and a detail link when available.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires originalText, essayText, curl, and INKCRAFT_API_KEY; may use INKCRAFT_BASE_URL when configured.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence, OpenClaw metadata, and artifact frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

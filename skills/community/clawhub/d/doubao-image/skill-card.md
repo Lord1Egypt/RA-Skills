@@ -1,43 +1,55 @@
-## Description: <br>
-使用火山引擎豆包模型生成图片，通过火山引擎豆包图片生成 API 创建图片，并支持自定义提示词、尺寸、模型等参数。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates images with the Volcengine Doubao image-generation API using custom prompts, size, model, and count parameters.
 
-## Publisher: <br>
-[wanxing0724](https://clawhub.ai/user/wanxing0724) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wanxing0724](https://clawhub.ai/user/wanxing0724)
 
-## Use Case: <br>
-Developers and agent users can use this skill to generate images from text prompts with Volcengine Doubao models, including control over model, image size, and image count. It requires the user's own Volcengine image API key and writes generated images to local storage. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts and generation settings are sent to Volcengine using the user's API key. <br>
-Mitigation: Use only prompts and settings that are acceptable to share with Volcengine, and configure VOLCENGINE_IMAGE_API_KEY with an appropriate account and permissions. <br>
-Risk: Generated images are written to local storage, and the artifact currently contains a hard-coded Windows output directory. <br>
-Mitigation: Review or change the output directory before use so generated files are saved to an intended, portable location. <br>
+## Use Case:
 
+Developers and external users use this skill to request images from the Volcengine Doubao API and save the generated image output locally. It supports prompt-driven generation with configurable image size, model, and image count.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wanxing0724/doubao-image) <br>
-- [Publisher profile](https://clawhub.ai/user/wanxing0724) <br>
-- [Volcengine console](https://console.volces.com/) <br>
-- [Volcengine Ark image generation endpoint](https://ark.cn-beijing.volces.com/api/v3/images/generations) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Generated image file with console status text and setup guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires VOLCENGINE_IMAGE_API_KEY; supports prompt, model, size, and image count parameters; saves generated images locally.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: release evidence) <br>
+Risk: Prompts and API-key-authenticated image-generation requests are sent to Volcengine.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if this external processing is acceptable, and do not include secrets, private data, or regulated content in prompts.
+
+Risk: The skill automatically downloads external image content to a hard-coded local path with weak safeguards.
+
+Mitigation: Review or change the script before use so downloads have timeouts, size and content checks, validated image hosts, and a user-chosen output directory.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wanxing0724/skills/doubao-image)
+- [Volcengine console](https://console.volces.com/)
+- [Volcengine image-generation API endpoint](https://ark.cn-beijing.volces.com/api/v3/images/generations)
+
+## Skill Output:
+
+**Output Type(s):** [text, files, shell commands, configuration]
+
+**Output Format:** [Terminal text with generated image URLs and local image file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires VOLCENGINE_IMAGE_API_KEY; generated images are downloaded to a local images directory.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

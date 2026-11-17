@@ -1,46 +1,58 @@
-## Description: <br>
-Provides retrieval-augmented semantic memory search, indexing, and context enhancement for OpenClaw conversations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Smart Memory System helps OpenClaw agents retrieve, organize, and inject relevant memories using semantic search and retrieval-augmented context.
 
-## Publisher: <br>
-[jazzqi](https://clawhub.ai/user/jazzqi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[jazzqi](https://clawhub.ai/user/jazzqi)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to index local memories or knowledge sources, retrieve relevant history by semantic similarity, and inject selected context into conversations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill persists and automatically reuses user history, which can expose sensitive or irrelevant stored content in later prompts. <br>
-Mitigation: Use narrow memory sources, review what is indexed, and confirm backup and deletion behavior before relying on automatic context enhancement. <br>
-Risk: Memory content may be sent to configured embedding or reranking providers during retrieval workflows. <br>
-Mitigation: Confirm provider data-handling terms and avoid indexing private folders or sensitive documents until the data flow is understood. <br>
-Risk: Automatic context enhancement can add stale or low-quality memories to a conversation. <br>
-Mitigation: Prefer disabling auto-enhance initially, monitor retrieved context, and tune similarity thresholds before broad use. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to build an agent memory layer that indexes approved conversation history or documents, retrieves relevant items semantically, and injects compact context into future interactions.
 
-## Reference(s): <br>
-- [Smart Memory System ClawHub Page](https://clawhub.ai/jazzqi/smart-memory-system) <br>
-- [README](artifact/README.md) <br>
-- [Skill Documentation](artifact/SKILL.md) <br>
-- [Package Metadata](artifact/package.json) <br>
-- [Smart Memory Configuration](artifact/config/smart_memory.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, JavaScript snippets, and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local memory indexes, semantic caches, backups, logs, and configuration files under the user's OpenClaw workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: ClawHub release evidence) <br>
+Risk: Conversation history or selected documents may be persisted and automatically reused from local memory indexes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Index only approved content and avoid secrets, credentials, regulated data, or confidential business documents unless retention, deletion, and backup behavior are clearly governed.
+
+Risk: Indexed content may be processed by configured embedding or reranker providers.
+
+Mitigation: Confirm provider privacy terms and data handling before enabling auto-enhancement, batch processing, or document indexing.
+
+Risk: Install and maintenance disclosures are weak for dependency pinning, lockfiles, hooks, auto-enhancement, cleanup, export, and deletion controls.
+
+Mitigation: Review dependencies, lockfiles, install hooks, and operational controls before deployment; prefer exact dependency pins and reviewable install behavior.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jazzqi/skills/smart-memory-system)
+- [Publisher profile](https://clawhub.ai/user/jazzqi)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with CLI commands, JSON configuration, and JavaScript examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May initialize local memory indexes, semantic caches, topic clusters, backups, logs, and configuration under ~/.openclaw.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

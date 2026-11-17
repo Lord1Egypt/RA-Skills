@@ -1,0 +1,12 @@
+{
+  "mode": "readonly",
+  "name": "youtube-public-api",
+  "operation_count": 7,
+  "payment_modes": [
+    "prepaid_credit"
+  ],
+  "platform": "youtube",
+  "source_of_truth": "services/youtube-fetcher/internal/capabilities/capabilities.go",
+  "title": "YouTube Public Reads",
+  "version": "2.0.1"
+}

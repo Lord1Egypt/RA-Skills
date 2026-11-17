@@ -495,20 +495,20 @@ def test_sanitize():
     """对 _sanitize_output 的各条脱敏规则进行验证。"""
     cases = [
         # (描述, 输入, 期望包含的替换结果)
-        ("Anthropic Claude API key", "token=sk-ant-abcdefghijklmnopqrst123456", "sk-ant-***"),
-        ("OpenAI API key",           "key: sk-abcdefghijklmnopqrstu",            "sk-***"),
-        ("Google Gemini API key",    "AIzaSyAbCdEfGhIjKlMnOpQrStUvWxYz12345678", "AIza***"),
-        ("AWS Access Key ID",        "access_key=AKIAIOSFODNN7EXAMPLE",           "AKIA***"),
+        ("Anthropic Claude API key", "token=REDACTED-SECRET", "sk-ant-***"),
+        ("OpenAI API key",           "key: REDACTED-SECRET",            "sk-***"),
+        ("Google Gemini API key",    "REDACTED-SECRET8", "AIza***"),
+        ("AWS Access Key ID",        "access_key=REDACTED-SECRET",           "AKIA***"),
         ("GitHub PAT",               "ghp_" + "a" * 36,                           "ghp_***"),
         ("ClaWHub token",            "auth: clh_MySecretToken123",                "clh_***"),
         ("飞书 open_id",             "open_id: ou_" + "a1b2c3d4" * 4,             "ou_***"),
-        ("Slack bot token",          "xoxb-123456789-abcdefghij",                 "xox-***"),
-        ("Slack user token",         "xoxp-987654321-zyxwvutsrq",                 "xox-***"),
+        ("Slack bot token",          "REDACTED-SECRET",                 "xox-***"),
+        ("Slack user token",         "REDACTED-SECRET",                 "xox-***"),
         ("本地路径 /home/",           "reading /home/user/.bashrc failed",         "/home/***"),
         ("本地路径 /root/",           "config at /root/.config/app.yaml",          "/root/***"),
         ("邮箱地址",                  "contact admin@example.com for help",        "***@***"),
         ("混合多条规则",
-         "key=sk-abcdefghijklmnopqrstu path=/home/ci/.env email=foo@bar.com",
+         "key=REDACTED-SECRET path=/home/ci/.env email=foo@bar.com",
          None),  # None 表示只打印结果，不做单一断言
     ]
 

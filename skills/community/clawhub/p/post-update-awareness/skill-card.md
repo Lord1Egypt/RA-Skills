@@ -1,48 +1,63 @@
-## Description: <br>
-After an OpenClaw version change, read the CHANGELOG entry pinned to the installed version and surface user-relevant changes, including new tools, breaking changes, and optional native dependencies that may need verification. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+After an OpenClaw version change, this skill reads the CHANGELOG entry pinned to the installed version and surfaces user-relevant changes, breaking changes, and optional native dependencies that may need verification.
 
-## Publisher: <br>
-[hussein1362](https://clawhub.ai/user/hussein1362) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hussein1362](https://clawhub.ai/user/hussein1362)
 
-## Use Case: <br>
-Developers and operators use this skill after OpenClaw updates to receive a concise, version-pinned summary of relevant release notes, plugin drift, optional dependency status, channel health, and configuration rewrite notices. It is intended for unattended or attended operational awareness without performing updates or configuration changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill runs local OpenClaw diagnostics and inspects plugin, channel, update-guard, and state-file information. <br>
-Mitigation: Review the diagnostic scope before unattended use and run it in the intended OpenClaw profile so notices reflect the correct deployment. <br>
-Risk: The skill may make an unauthenticated request to GitHub to fetch release notes for the installed OpenClaw version. <br>
-Mitigation: Use the local changelog path when available; otherwise allow only the documented OpenClaw release-note endpoints if network egress is restricted. <br>
-Risk: The skill writes a small per-profile state file so it can avoid repeating the same update notice. <br>
-Mitigation: Keep the state directory profile-scoped and writable only by the OpenClaw user; deleting the file only causes the skill to re-baseline or re-notify. <br>
-Risk: Plugin drift, stale config entries, missing optional dependencies, or unhealthy channels are reported but not fixed by this skill. <br>
-Mitigation: Treat surfaced shell commands as guidance for a human or hand off to a maintenance skill that is explicitly scoped for mutations. <br>
+## Use Case:
 
+OpenClaw users and operators use this skill after an update to detect version changes, summarize pinned release notes, and flag plugin drift, channel health, optional dependency, or config warnings without performing maintenance actions.
 
-## Reference(s): <br>
-- [Post Update Awareness on ClawHub](https://clawhub.ai/hussein1362/post-update-awareness) <br>
-- [Publisher profile](https://clawhub.ai/user/hussein1362) <br>
-- [Post Update Maintenance companion skill](https://clawhub.ai/skills/post-update-maintenance) <br>
-- [OpenClaw pinned changelog URL pattern](https://raw.githubusercontent.com/openclaw/openclaw/v<currentVersion>/CHANGELOG.md) <br>
-- [OpenClaw GitHub Releases API tag URL pattern](https://api.github.com/repos/openclaw/openclaw/releases/tags/v<currentVersion>) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Concise Markdown operational notice with short bullet buckets and inline shell commands when action is needed.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Hard cap of about 18 lines; empty buckets are omitted; state is persisted only after successful surfacing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.4.0 (source: server release evidence) <br>
+Risk: The skill reads local OpenClaw version, plugin, channel, update-guard, and per-profile state information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only where those local operational signals are appropriate to inspect, and keep surfaced output limited to update-relevant diagnostics.
+
+Risk: The skill may make unauthenticated GitHub requests for pinned release notes when no local changelog is available.
+
+Mitigation: Prefer the local changelog when present and request only the exact installed version tag; offline environments should expect the no-notes fallback.
+
+Risk: The skill may identify plugin drift, stale config entries, missing optional dependencies, or unhealthy channels but is not scoped to fix them.
+
+Mitigation: Leave updates, config edits, dependency installs, and restarts to the user or the separate post-update-maintenance skill.
+
+Risk: Writing notification state too early could suppress future update notices.
+
+Mitigation: Persist the per-profile state file only after the update notice has been successfully surfaced and acknowledged.
+
+## Reference(s):
+
+- [Post Update Awareness on ClawHub](https://clawhub.ai/hussein1362/skills/post-update-awareness)
+- [OpenClaw versioned CHANGELOG](https://github.com/openclaw/openclaw/blob/v<newVersion>/CHANGELOG.md)
+- [Post Update Maintenance companion skill](https://clawhub.ai/skills/post-update-maintenance)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance]
+
+**Output Format:** [Concise Markdown notice with short bullet buckets and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Caps the surfaced notice at about 18 lines and writes per-profile state only after successful surfacing.]
+
+## Skill Version(s):
+
+0.4.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

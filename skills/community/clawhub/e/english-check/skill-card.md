@@ -1,41 +1,54 @@
-## Description: <br>
-Multi-language writing coach for grammar, word choice, collocations, and idiom errors across English, Chinese, Spanish, French, and Japanese. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Language Coach reviews English, Chinese, Spanish, French, and Japanese text for grammar, word choice, collocation, idiom, and register issues.
 
-## Publisher: <br>
-[kaigegao1110](https://clawhub.ai/user/kaigegao1110) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kaigegao1110](https://clawhub.ai/user/kaigegao1110)
 
-## Use Case: <br>
-External users and agents use this skill to review short passages, identify the most meaningful grammar or usage issue, and return a concise correction with a brief explanation in the target language. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may process user-submitted text that contains sensitive or private information. <br>
-Mitigation: Avoid submitting sensitive text unless the user is comfortable having the agent process it. <br>
-Risk: Optional natural-language triggers may activate the skill outside explicit slash commands. <br>
-Mitigation: Use explicit language prefixes for predictable activation and review the correction before relying on it. <br>
+## Use Case:
 
+External users and developers use this skill to request concise proofreading suggestions for English, Chinese, Spanish, French, and Japanese writing. It returns a corrected version and a short explanation focused on the most meaningful language issue.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kaigegao1110/english-check) <br>
-- [Project homepage](https://github.com/KaigeGao1110/language-coach) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-style correction with original text, corrected text, and a brief explanation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns one meaningful correction per message when possible; supports //en, //cn, //es, //fr, and //ja command prefixes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release evidence) <br>
+Risk: Users may mistake concise proofreading suggestions for authoritative language review in sensitive, legal, academic, or customer-facing contexts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat corrections as suggestions and have important writing reviewed by an appropriate human reviewer before publication or submission.
+
+Risk: Activation phrases such as "check my English:" or "review this French:" may invoke proofreading, and the response may be in the target language.
+
+Mitigation: Document the slash commands and activation phrases so users understand when proofreading behavior is expected.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/kaigegao1110/skills/english-check)
+- [Project Homepage](https://github.com/KaigeGao1110/language-coach)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown text with original text, correction, and a brief explanation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [One meaningful correction per response; responses may be in the target language.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

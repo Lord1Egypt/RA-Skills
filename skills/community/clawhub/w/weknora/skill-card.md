@@ -1,42 +1,54 @@
-## Description: <br>
-WeKnora imports documents and supports knowledge retrieval through the WeKnora API for file, URL, Markdown, hybrid search, and knowledge-detail workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Import documents and perform knowledge retrieval via the WeKnora API for file, URL, Markdown, knowledge-base browsing, and hybrid search workflows.
 
-## Publisher: <br>
-[lyingbug](https://clawhub.ai/user/lyingbug) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lyingbug](https://clawhub.ai/user/lyingbug)
 
-## Use Case: <br>
-Developers and agents use this skill to load documents, URLs, or Markdown into WeKnora knowledge bases and retrieve relevant content through knowledge browsing and hybrid search. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Requests may target an untrusted or incorrect WeKnora base URL. <br>
-Mitigation: Confirm WEKNORA_BASE_URL points to the user's trusted WeKnora server before making API calls. <br>
-Risk: Long-lived API keys can be exposed if stored in shell startup files or shared environments. <br>
-Mitigation: Use a least-privilege API key where possible and avoid storing long-lived keys on shared machines. <br>
-Risk: Edit, reparse, or delete operations can change shared knowledge-base data. <br>
-Mitigation: Require explicit user confirmation of the exact knowledge entry before performing edit, reparse, or delete calls. <br>
+## Use Case:
 
+Developers and operators use this skill to configure WeKnora credentials, import documents or web content into knowledge bases, browse knowledge entries, and run single- or cross-knowledge-base retrieval workflows.
 
-## Reference(s): <br>
-- [WeKnora ClawHub Skill Page](https://clawhub.ai/lyingbug/weknora) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON API payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires WEKNORA_BASE_URL and WEKNORA_API_KEY; may propose curl requests that read, write, edit, or delete WeKnora knowledge entries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can guide edit and delete calls against WeKnora knowledge entries, which may affect business-critical knowledge-base content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation of the exact knowledge entry before edit or delete operations.
+
+Risk: WeKnora API credentials and base URL are required for use.
+
+Mitigation: Use least-privilege API keys, require HTTPS for WEKNORA_BASE_URL, and avoid storing keys directly in shell profiles.
+
+## Reference(s):
+
+- [ClawHub WeKnora skill page](https://clawhub.ai/lyingbug/skills/weknora)
+- [ClawHub publisher profile: lyingbug](https://clawhub.ai/user/lyingbug)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, API calls]
+
+**Output Format:** [Markdown with inline bash and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires WEKNORA_API_KEY and WEKNORA_BASE_URL environment variables.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

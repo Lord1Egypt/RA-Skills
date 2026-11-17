@@ -12,7 +12,7 @@ from _output import print_output, print_error
 
 from capabilities.seller_customer_business_province.service import get_customer_business_province
 
-COMMAND_NAME = "seller_customer_business_province"
+COMMAND_NAME = "alibaba.1688.seller.customer.business.province"
 COMMAND_DESC = "获取客户地域分布数据"
 
 def main():
@@ -31,6 +31,8 @@ def main():
     parser.add_argument("--page_size", "-s", type=int, default=50, help="每页数量,默认50")
     parser.add_argument("--no_translate", action="store_true",
                         help="关闭地域名称翻译（默认开启）")
+    parser.add_argument("--NEWTON_SHOP_LOGIN_ID", default=None,
+                        help="店铺登录ID，指定查询的店铺")
     args = parser.parse_args()
 
     try:
@@ -39,6 +41,7 @@ def main():
             page=args.page,
             page_size=args.page_size,
             is_translate=not args.no_translate,
+            login_id=args.NEWTON_SHOP_LOGIN_ID,
         )
         print_output(True, "客户地域分布查询成功", {
             "data": result,

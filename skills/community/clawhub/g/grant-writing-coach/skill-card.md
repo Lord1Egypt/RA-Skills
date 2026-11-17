@@ -1,43 +1,52 @@
-## Description: <br>
-Coaches grant writers through funder matching, proposal narratives, budgets, logic models, letters of inquiry, federal applications, reviewer feedback, and rejected-proposal revisions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Grant Writing Coach helps nonprofits, researchers, artists, and founders plan, draft, revise, and diagnose grant proposals, budgets, logic models, letters of inquiry, funder matches, and resubmissions.
 
-## Publisher: <br>
-[charlie-morrison](https://clawhub.ai/user/charlie-morrison) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[charlie-morrison](https://clawhub.ai/user/charlie-morrison)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External grant writers, nonprofit leaders, researchers, artists, and founders use this skill to match projects with funders, choose the right proposal path, draft proposal sections, structure budgets and logic models, and respond to rejection or reviewer feedback.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Grant deadlines, eligibility rules, and budget requirements can change after the skill's guidance is generated.
+
+Mitigation: Verify all deadlines, eligibility requirements, allowable costs, and submission rules against the funder's current official materials before filing.
+
+Risk: Proposal drafts may contain general or inaccurate guidance for a specific funder or grant program.
+
+Mitigation: Review drafts with the funder's current criteria, program officer guidance, and an appropriate human grant reviewer before submission.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users, nonprofits, researchers, artists, founders, and grant program staff use this skill to plan and draft grant applications, assess funder fit, structure budgets and logic models, and respond to proposal rejections. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Grant drafts, budgets, personnel details, and unpublished research can contain confidential information. <br>
-Mitigation: Avoid sharing sensitive proposal material unless the user is comfortable providing it to the host agent. <br>
-Risk: Funder deadlines, eligibility rules, award ranges, and application requirements can change. <br>
-Mitigation: Verify current funder instructions, deadlines, and requirements independently before submitting. <br>
-Risk: Proposal guidance can be persuasive but still inaccurate, incomplete, or misaligned with a funder's current priorities. <br>
-Mitigation: Review generated proposal language against the official solicitation, funder guidance, and the applicant organization's facts. <br>
+**Output Format:** [Markdown guidance with funder-fit assessments, proposal plans, outlines, narrative drafts, logic model frameworks, budget frameworks, reviewer checks, and resubmission strategies]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/charlie-morrison/grant-writing-coach) <br>
-- [Publisher profile](https://clawhub.ai/user/charlie-morrison) <br>
+**Other Properties Related to Output:** [Advisory content only; no code execution, persistence, credential use, or hidden behavior was identified in server security evidence.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Configuration] <br>
-**Output Format:** [Markdown with structured proposal sections, outlines, assessment notes, and draft narrative text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include funder match assessments, stage-specific proposal plans, logic model frameworks, budget frameworks, reviewer checks, and resubmission strategies.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

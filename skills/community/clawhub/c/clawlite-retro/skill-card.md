@@ -1,40 +1,49 @@
-## Description: <br>
-ClawLite Retro helps developers generate engineering retrospectives from local Git history, code-change metrics, contributor activity, file hotspots, and TODO backlog signals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ClawLite Retro helps engineering teams generate periodic retrospectives from Git history, quality metrics, contributor activity, and backlog signals.
 
-## Publisher: <br>
-[x-rayluan](https://clawhub.ai/user/x-rayluan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[x-rayluan](https://clawhub.ai/user/x-rayluan)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to review recent repository work over 24-hour, 7-day, 14-day, or 30-day windows and produce a data-backed retrospective with contributor feedback and next-step guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The retrospective may expose contributor names, email addresses, work timing, file hotspots, and TODO or backlog details from the repository. <br>
-Mitigation: Use it only in repositories where that project activity data is appropriate to inspect and share with the intended audience. <br>
-Risk: The skill may use existing Git remote credentials when fetching repository history. <br>
-Mitigation: Run it in trusted repository workspaces and review the target remote before invoking the retro workflow. <br>
+## Use Case:
 
+Developers and engineering leads use this skill to produce 24-hour, 7-day, 14-day, or 30-day engineering retrospectives from a repository's Git activity. It summarizes commits, contributors, testing activity, hotspots, work sessions, backlog health, and concrete follow-up focus areas.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/x-rayluan/clawlite-retro) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown retrospective with tables, histograms, ranked lists, and contributor sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Accepts /retro with optional 24h, 7d, 14d, or 30d windows and uses local Git data for the report.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill fetches from the repository origin and reads local Git author names, emails, commit history, file-change summaries, and TODOS.md.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in repositories where retrospective analysis is expected and where fetching origin and reviewing local repository metadata are acceptable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/x-rayluan/skills/clawlite-retro)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, shell commands, guidance]
+
+**Output Format:** [Markdown retrospective with tables, histograms, contributor analysis, and recommended next steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports /retro, /retro 24h, /retro 14d, and /retro 30d time windows.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

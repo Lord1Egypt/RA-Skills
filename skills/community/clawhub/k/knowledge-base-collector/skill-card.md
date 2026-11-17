@@ -1,44 +1,61 @@
-## Description: <br>
-Collects and organizes a personal knowledge base from web, X/Twitter, WeChat URLs, and screenshots, with local storage, tagging, search helpers, and fallback handling for blocked WeChat fetches. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Collects and organizes a personal knowledge base from URLs, X/Twitter and WeChat links, screenshots, tags, and searchable saved entries.
 
-## Publisher: <br>
-[reed1898](https://clawhub.ai/user/reed1898) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[reed1898](https://clawhub.ai/user/reed1898)
 
-## Use Case: <br>
-Developers, operators, and personal knowledge workers use this skill to save URLs, screenshots, notes, tags, and searchable metadata into a local knowledge base. It is suited to agent-assisted capture, later search, and digest preparation for user-selected material. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Saved URLs, screenshots, notes, OCR text, and search metadata can persist sensitive personal or credential-bearing content in the local knowledge base. <br>
-Mitigation: Redact tokens, verification codes, private links, screenshots, and OCR text before ingesting; use an appropriate KB_ROOT location and access controls for the saved files. <br>
-Risk: URL ingestion can send saved URLs and extracted content through r.jina.ai, which may be inappropriate for private or authenticated material. <br>
-Mitigation: Only ingest links that are acceptable to process through that extraction service, and avoid tokenized, private, or login-gated URLs unless the user has reviewed the exposure. <br>
-Risk: The WeChat fallback may depend on a connected macOS node and can run node-side fetch commands on a user-controlled device. <br>
-Mitigation: Confirm the exact target device and command before using the connected-node fallback, and fall back to placeholder entries when node access is unavailable or uncertain. <br>
-Risk: WeChat Official Account pages may be blocked or incomplete due to verification controls. <br>
-Mitigation: Accept placeholder entries with blocked status and manual-review tags, then backfill content only after a successful user-approved fetch. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/reed1898/knowledge-base-collector) <br>
-- [r.jina.ai extraction service](https://r.jina.ai/) <br>
+## Use Case:
 
+Developers and personal knowledge-base users use this skill to save URLs and screenshots, tag and index extracted content, search saved entries, and prepare digest candidate lists.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, plus local content.md, meta.json, and index.jsonl files produced by the skill scripts.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores entries under a configurable KB_ROOT and uses a deterministic local index for search and digest workflows.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.3 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Full submitted URLs may be sent to r.jina.ai during extraction, including private or token-bearing URLs.
+
+Mitigation: Redact or avoid ingesting private, signed, invite, password-reset, and token-bearing URLs before running URL ingestion.
+
+Risk: Saved links, screenshots, extracted text, metadata, and notes are written persistently to the configured KB.
+
+Mitigation: Review content for secrets before ingestion and restrict access to the KB_ROOT storage location.
+
+Risk: The WeChat macOS node path is an advanced manual action that may execute reviewed commands on a connected machine.
+
+Mitigation: Require explicit user approval and inspect the exact command before using any node-side fetch workflow.
+
+Risk: WeChat article fetching can be blocked by verification, producing placeholder entries instead of full content.
+
+Mitigation: Use the backlog output to review blocked items and refill them later from trusted screenshots or copied article text.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/reed1898/skills/knowledge-base-collector)
+- [r.jina.ai extraction endpoint](https://r.jina.ai/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, files, guidance]
+
+**Output Format:** [Markdown guidance with shell commands; generated KB entries use Markdown, JSON, JSONL, and copied image files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes persistent knowledge-base entries under KB_ROOT or the default OpenClaw KB path.]
+
+## Skill Version(s):
+
+0.1.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

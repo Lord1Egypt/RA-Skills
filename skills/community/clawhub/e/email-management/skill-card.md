@@ -1,40 +1,53 @@
-## Description: <br>
-Triage inbox email, draft clear replies, and manage follow-ups with priority routing, commitment tracking, and reusable templates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Triage inbox email, draft clear replies, and manage follow-ups with priority routing, commitment tracking, and reusable templates.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Employees and external users use this skill to triage provided email text, prepare context-aware draft replies, and track response commitments without connecting directly to mailbox APIs. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Email content and workflow notes may contain sensitive information if stored locally. <br>
-Mitigation: Keep secrets, credentials, full payment details, and raw email dumps out of ~/email-management/; store only durable preferences, decisions, and follow-up metadata. <br>
-Risk: Draft, forwarding, mailbox-rule, reminder, or digest actions could affect external communication if approved without review. <br>
-Mitigation: Review proposed send, forward, mailbox-rule, reminder, and digest actions before approving them, and keep activation explicit-only or scoped to selected projects/accounts when appropriate. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ivangdavila/email-management) <br>
-- [Skill Homepage](https://clawic.com/skills/email-management) <br>
+## Use Case:
 
+Employees and external users use this skill to organize inbox workload, draft context-aware email replies, and track commitments through closure.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with triage summaries, draft replies, follow-up records, and optional shell setup commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Draft-only by default; stores durable preferences and workflow notes under ~/email-management/ when approved.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Local email memory may contain preferences, contacts, deadlines, and follow-up commitments.
+
+Mitigation: Keep the ~/email-management/ folder protected and avoid storing raw email dumps, passwords, tokens, or payment details.
+
+Risk: Drafts, mailbox changes, forwarding, or scheduled reminders could affect external communications if used without review.
+
+Mitigation: Require explicit user approval before sending messages, forwarding email, changing mailbox rules, or enabling recurring automations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/email-management)
+- [Skill homepage](https://clawic.com/skills/email-management)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with concise lists and inline shell commands when setup is needed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Draft-only email guidance by default; external actions require explicit user approval.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

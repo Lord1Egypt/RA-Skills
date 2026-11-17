@@ -6,30 +6,121 @@
 # attested hash, surfacing a "[PLAN TAMPERED]" warning instead.
 #
 # Resolution:
-#   1. $PLAN_ID env var → ./.planning/$PLAN_ID/
-#   2. ./.planning/.active_plan
-#   3. Newest ./.planning/<dir>/ by mtime
-#   4. Legacy ./task_plan.md at project root
+#   1. --target root or <plan-id> → root or named plan under $PWF_PLAN_ROOT (default: cwd)
+#   2. $PLAN_ID env var → ./.planning/$PLAN_ID/
+#   3. ./.planning/.active_plan
+#   4. Newest ./.planning/<dir>/ by mtime
+#   5. Current directory when it is .planning/<valid-slug>/
+#   6. Legacy ./task_plan.md at project root
 #
 # Usage:
 #   sh scripts/attest-plan.sh         # attest the active plan
 #   sh scripts/attest-plan.sh --show  # print the stored hash
 #   sh scripts/attest-plan.sh --clear # remove the attestation (re-open the plan)
+#   sh scripts/attest-plan.sh --target root      # attest the legacy root plan
+#   sh scripts/attest-plan.sh --target <plan-id> # attest one named plan
 
 set -u
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 RESOLVER="${SCRIPT_DIR}/resolve-plan-dir.sh"
 
+slug_is_valid() {
+    case "$1" in
+        '') return 1 ;;
+        *[!A-Za-z0-9._-]*) return 1 ;;
+        [A-Za-z0-9_]*) return 0 ;;
+    esac
+    return 1
+}
+
+# An echoed selector must not forge output: a newline or an escape sequence
+# in PLAN_ID could otherwise print a fake status line.
+printable() {
+    # The sed step covers C1 controls, which are two bytes in UTF-8.
+    c1_lead="$(printf '\302')"
+    c1_low="$(printf '\200')"
+    c1_high="$(printf '\237')"
+    printf '%s' "$1" | LC_ALL=C tr '\000-\037\177' '?' \
+        | LC_ALL=C sed "s/${c1_lead}[${c1_low}-${c1_high}]/?/g"
+}
+
+pwf_plan_root_is_accepted() {
+    case "${PWF_PLAN_ROOT:-}" in
+        \\\\*|//*|[A-Za-z]:[!\\/]*) return 1 ;;
+        /*|[A-Za-z]:[\\/]*) ;;
+        *) return 1 ;;
+    esac
+    [ -d "${PWF_PLAN_ROOT}" ]
+}
+
+resolve_from_slug_cwd() {
+    slug_cwd="$(pwd -P 2>/dev/null)" || return 1
+    planning_dir="${slug_cwd%/*}"
+    [ "${planning_dir##*/}" = ".planning" ] || return 1
+    plan_id="${slug_cwd##*/}"
+    slug_is_valid "${plan_id}" || return 1
+    [ -f "${slug_cwd}/task_plan.md" ] || return 1
+    printf "%s\n" "${slug_cwd}/task_plan.md"
+}
+
 resolve_plan_file() {
+    if [ -n "${target:-}" ]; then
+        if [ "${target}" = "root" ]; then
+            target_root="."
+            if [ -n "${PWF_PLAN_ROOT:-}" ]; then
+                # Match the shared resolver's supported absolute local pins.
+                # A valid project-root junction is intentional, so resolve it.
+                pwf_plan_root_is_accepted || return 1
+                target_root="$(cd "${PWF_PLAN_ROOT}" 2>/dev/null && pwd -P)" || return 1
+            fi
+            [ ! -L "${target_root}/task_plan.md" ] || return 1
+            [ -f "${target_root}/task_plan.md" ] || return 1
+            printf "%s\n" "${target_root}/task_plan.md"
+            return 0
+        fi
+        slug_is_valid "${target}" || return 1
+        # Reuse the binding, project-pin and containment rules. A flag replaces
+        # PLAN_ID for this call only; it does not change the shared pointer.
+        [ -f "${RESOLVER}" ] || return 1
+        target_dir="$(PLAN_ID="${target}" sh "${RESOLVER}" 2>/dev/null)" || return 1
+        [ -n "${target_dir}" ] || return 1
+        # Use the shell's physical path spelling: native Windows backslashes
+        # make sha256sum prefix its output with an escaped-filename marker.
+        target_dir="$(cd "${target_dir}" 2>/dev/null && pwd -P)" || return 1
+        [ ! -L "${target_dir}/task_plan.md" ] || return 1
+        [ -f "${target_dir}/task_plan.md" ] || return 1
+        printf "%s\n" "${target_dir}/task_plan.md"
+        return 0
+    fi
+
     plan_dir=""
     if [ -f "${RESOLVER}" ]; then
         plan_dir="$(sh "${RESOLVER}" 2>/dev/null)"
+        if [ -z "$plan_dir" ] && [ "$(sh "${RESOLVER}" --check-ambiguity 2>/dev/null)" = "PWF_PLAN_AMBIGUOUS_V1" ]; then
+            return 2
+        fi
     fi
     if [ -n "${plan_dir}" ] && [ -f "${plan_dir}/task_plan.md" ]; then
         printf "%s\n" "${plan_dir}/task_plan.md"
         return 0
     fi
+
+    # Explicit selectors are bindings, not hints. If the shared resolver
+    # rejected one, do not attest a different plan through a cwd fallback.
+    if [ -n "${PWF_PLAN_ROOT:-}" ] || [ -n "${PLAN_ID:-}" ]; then
+        return 1
+    fi
+
+    # An absolute script path does not change the invoking shell's cwd. When
+    # that cwd is a slug plan directory, keep slug-mode storage semantics
+    # instead of misclassifying its task_plan.md as a legacy root plan.
+    slug_plan_file="$(resolve_from_slug_cwd)" || slug_plan_file=""
+    if [ -n "${slug_plan_file}" ]; then
+        printf "%s\n" "${slug_plan_file}"
+        return 0
+    fi
+
     if [ -f "./task_plan.md" ]; then
         printf "%s\n" "./task_plan.md"
         return 0
@@ -40,7 +131,9 @@ resolve_plan_file() {
 attestation_path_for() {
     plan_file="$1"
     plan_dir="$(dirname "${plan_file}")"
-    if [ "${plan_dir}" = "." ]; then
+    if [ "${target:-}" = "root" ]; then
+        printf "%s\n" "${plan_dir}/.plan-attestation"
+    elif [ "${plan_dir}" = "." ]; then
         # Legacy mode: store at project root.
         printf "%s\n" "./.plan-attestation"
     else
@@ -51,7 +144,9 @@ attestation_path_for() {
 compute_hash() {
     target="$1"
     if command -v sha256sum >/dev/null 2>&1; then
-        sha256sum "${target}" | awk '{print $1}'
+        # GNU sha256sum prefixes the hash with a backslash when the path holds
+        # one, which a native Windows PWF_PLAN_ROOT does.
+        sha256sum "${target}" | awk '{ sub(/^\\/, "", $1); print $1 }'
     elif command -v shasum >/dev/null 2>&1; then
         shasum -a 256 "${target}" | awk '{print $1}'
     else
@@ -61,20 +156,46 @@ compute_hash() {
 }
 
 mode="attest"
+target=""
+usage_error() {
+    printf "Usage: %s [--show|--clear|--target root|<plan-id>]\n" "$0" >&2
+    exit 2
+}
 case "${1:-}" in
-    --show)  mode="show"  ;;
-    --clear) mode="clear" ;;
-    "")      mode="attest" ;;
-    *)
-        printf "Usage: %s [--show|--clear]\n" "$0" >&2
-        exit 2
+    --show)  [ "$#" -eq 1 ] || usage_error; mode="show"  ;;
+    --clear) [ "$#" -eq 1 ] || usage_error; mode="clear" ;;
+    --target)
+        [ "$#" -eq 2 ] || usage_error
+        [ -n "$2" ] || usage_error
+        target="$2"
         ;;
+    "") [ "$#" -eq 0 ] || usage_error ;;
+    *) usage_error ;;
 esac
 
-plan_file="$(resolve_plan_file)" || {
-    printf "[plan-attest] No task_plan.md found. Create a plan first.\n" >&2
+plan_file="$(resolve_plan_file)"
+resolve_status=$?
+if [ "${resolve_status}" -ne 0 ]; then
+    # Name the actual cause. "No task_plan.md found" is true but misleading
+    # when the plan exists and an explicit selector was rejected: before #237
+    # a mistyped PLAN_ID attested a DIFFERENT plan at rc=0, and an operator
+    # who now sees a generic not-found is likely to go looking for the wrong
+    # problem. The selectors are bindings, so say which one refused.
+    if [ "${resolve_status}" -eq 2 ]; then
+        printf "[plan-attest] Multiple plans are available. Set PLAN_ID=<slug>; nothing was attested.\n" >&2
+    elif [ -n "${target:-}" ]; then
+        printf "[plan-attest] --target %s did not resolve to a plan. An explicit target is a binding: nothing was attested and no other plan was substituted.\n" "$(printable "${target}")" >&2
+    elif [ -n "${PWF_PLAN_ROOT:-}" ] && ! pwf_plan_root_is_accepted; then
+        printf "[plan-attest] PWF_PLAN_ROOT=%s did not resolve to a project root holding a plan. An explicit pin is a binding: nothing was attested and no other plan was substituted.\n" "$(printable "${PWF_PLAN_ROOT}")" >&2
+    elif [ -n "${PLAN_ID:-}" ]; then
+        printf "[plan-attest] PLAN_ID=%s names no plan directory under .planning. An explicit selector is a binding: nothing was attested and no other plan was substituted.\n" "$(printable "${PLAN_ID}")" >&2
+    elif [ -n "${PWF_PLAN_ROOT:-}" ]; then
+        printf "[plan-attest] PWF_PLAN_ROOT=%s did not resolve to a project root holding a plan. An explicit pin is a binding: nothing was attested and no other plan was substituted.\n" "$(printable "${PWF_PLAN_ROOT}")" >&2
+    else
+        printf "[plan-attest] No task_plan.md found. Create a plan first.\n" >&2
+    fi
     exit 1
-}
+fi
 
 attestation_file="$(attestation_path_for "${plan_file}")"
 
@@ -105,6 +226,8 @@ case "${mode}" in
         fi
         ;;
     attest)
+        printf "Plan: %s\n" "${plan_file}"
+        printf "Attestation: %s\n" "${attestation_file}"
         hash_val="$(compute_hash "${plan_file}")" || exit 1
 
         # v2.40: protect the write with an advisory flock when available so

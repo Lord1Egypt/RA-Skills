@@ -1,44 +1,64 @@
-## Description: <br>
-Track multi-chain crypto portfolios with real-time prices, P&L, wallet balance checks, and alerts across EVM chains, Solana, and manual entries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tracks multichain crypto portfolio values, native wallet balances, token prices, manual holdings, and price alerts across EVM chains and Solana.
 
-## Publisher: <br>
-[jimmyclanker](https://clawhub.ai/user/jimmyclanker) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jimmyclanker](https://clawhub.ai/user/jimmyclanker)
 
-## Use Case: <br>
-Developers, operators, and crypto portfolio maintainers use this skill to generate commands and configuration guidance for checking wallet balances, retrieving token prices, reviewing portfolio value, and monitoring price alerts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Crafted wallet, token, or configuration input could make local scripts run unintended code. <br>
-Mitigation: Review or fix the scripts before installation and use only trusted portfolio.json files and wallet/token/config inputs. <br>
-Risk: Wallet addresses queried through the skill may be visible to public RPC providers and price/API services. <br>
-Mitigation: Use the skill only for wallets whose exposure to those services is acceptable. <br>
-Risk: Cron usage can create ongoing network queries and portfolio history logs. <br>
-Mitigation: Avoid enabling cron until the network behavior and history logging location are understood and acceptable. <br>
+## Use Case:
 
+External users and developers use this skill to check configured wallet balances, fetch crypto token prices, summarize portfolio holdings, and evaluate configured price alerts from local portfolio data.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jimmyclanker/multichain-portfolio-tracker) <br>
-- [Publisher profile](https://clawhub.ai/user/jimmyclanker) <br>
-- [CoinGecko Simple Price API](https://api.coingecko.com/api/v3/simple/price) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide agents to run local shell scripts that emit human-readable text or JSON.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: Shell scripts can execute unintended local code from crafted inputs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and fix the scripts before installation; do not run them with untrusted token names, wallet addresses, alert values, or config paths.
+
+Risk: Documentation overstates some financial-tracking capabilities.
+
+Mitigation: Verify behavior against the bundled scripts and treat portfolio values, alerts, and P&L-related outputs as estimates rather than financial advice.
+
+Risk: Cron use may repeatedly run scripts before privacy and storage behavior is clear.
+
+Mitigation: Avoid cron automation until script interpolation issues are fixed and wallet/config data handling is reviewed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jimmyclanker/skills/multichain-portfolio-tracker)
+- [CoinGecko simple price endpoint](https://api.coingecko.com/api/v3/simple/price)
+- [Ethereum public RPC endpoint](https://eth.llamarpc.com)
+- [Base public RPC endpoint](https://mainnet.base.org)
+- [Arbitrum public RPC endpoint](https://arb1.arbitrum.io/rpc)
+- [Polygon public RPC endpoint](https://polygon-rpc.com)
+- [Optimism public RPC endpoint](https://mainnet.optimism.io)
+- [Solana mainnet-beta RPC endpoint](https://api.mainnet-beta.solana.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with bash commands and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May call public CoinGecko and blockchain RPC endpoints; no API keys are required for basic tracking.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

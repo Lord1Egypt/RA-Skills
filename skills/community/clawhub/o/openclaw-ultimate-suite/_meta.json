@@ -1,6 +1,42 @@
 {
-  "ownerId": "kn7e68xzm01gpx37rcmqtms3gs82t6vt",
+  "ownerId": "wd041216-bit",
   "slug": "openclaw-ultimate-suite",
   "version": "3.0.0",
-  "publishedAt": 1773577320138
+  "publishedAt": 1710482400000,
+  "suite": true,
+  "晴晴超级版": true,
+  "features": [
+    "29-skills-integrated",
+    "61-agents-complete",
+    "ironclaw-security",
+    "chinese-localization",
+    "auto-activation",
+    "feishu-integration",
+    "progress-tracking"
+  ],
+  "categories": {
+    "office": 6,
+    "life": 2,
+    "social-media": 3,
+    "info-collection": 4,
+    "ai-agents": 3,
+    "security": 3,
+    "github-clones": 4,
+    "晴晴优化": 2
+  },
+  "totalSkills": 29,
+  "totalAgents": 61,
+  "githubRepos": [
+    "openclaw-life-office-suite",
+    "openclaw-agency-agents-evolved",
+    "openclaw-autonomous-expert-swarm",
+    "openclaw-self-operator",
+    "openclaw-feishu-progress-heartbeat",
+    "openclaw-github-repo-commander",
+    "openclaw-ironclaw-security-guard",
+    "openclaw-hierarchical-task-spawn",
+    "openclaw-feishu-file-delivery",
+    "openclaw-free-web-search",
+    "awesome-openclaw-skills"
+  ]
 }

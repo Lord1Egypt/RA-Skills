@@ -1,47 +1,61 @@
-## Description: <br>
-Provides backup, archival, and restore guidance and scripts for OpenClaw multi-agent workspaces using Nutstore WebDAV. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Uses Nutstore WebDAV to back up, archive, and restore OpenClaw multi-agent workspace identity files and memory directories, with optional explicit custom path backup.
 
-## Publisher: <br>
-[chenmuting](https://clawhub.ai/user/chenmuting) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chenmuting](https://clawhub.ai/user/chenmuting)
 
-## Use Case: <br>
-Developers and operators use this skill to configure rclone, run Nutstore WebDAV backups, check backup state, and restore identity or memory data for OpenClaw agent workspaces. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: OpenClaw identity and memory data can be uploaded to Nutstore, and the scanner warns that uploads may be broader than the safety notes imply. <br>
-Mitigation: Use dry-run before real backups or cron, inspect memory and custom backup paths for secrets, and add explicit rclone filters instead of relying only on documented exclusions. <br>
-Risk: Nutstore credentials or account passwords could be exposed if handled directly in scripts, shell history, or workspace files. <br>
-Mitigation: Use a dedicated Nutstore app password through rclone configuration and avoid storing raw account credentials in the repository, memory, or documentation. <br>
-Risk: Restoring directly into a live OpenClaw workspace can overwrite local files. <br>
-Mitigation: Run restore dry-runs first, prefer RESTORE_TARGET_ROOT for test restores, and require explicit RESTORE_FORCE=1 before path-mode restores to the live workspace. <br>
+## Use Case:
 
+Developers and operators running OpenClaw workspaces use this skill to configure rclone-backed Nutstore WebDAV backups, run default or scoped backups, check remote backup state, and restore identity or memory data.
 
-## Reference(s): <br>
-- [Skill release page](https://clawhub.ai/chenmuting/nutstore-webdav-storage) <br>
-- [Automation guidance](references/automation.md) <br>
-- [Nutstore and WebDAV notes](references/nutstore-notes.md) <br>
-- [Rclone setup](references/rclone-setup.md) <br>
-- [Storage scope and exclusions](references/storage-scope.md) <br>
-- [Nutstore WebDAV endpoint](https://dav.jianguoyun.com/dav/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with bash and cron command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes shell scripts for backup, restore, rclone configuration, cron examples, and backup checks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: The skill can upload workspace data to Nutstore WebDAV without reliably enforcing promised sensitive-file exclusions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and update scripts before real backups to add mandatory rclone filters and explicit rejection of sensitive paths.
+
+Risk: Backup and restore paths may not be fully bounded to the intended agent workspace.
+
+Mitigation: Validate agent names as safe path components, enforce canonical containment for local source and destination paths, and test restores in a separate RESTORE_TARGET_ROOT before using the live workspace.
+
+Risk: Automated cron backups or live restores can affect production workspace data.
+
+Mitigation: Complete dry-run backup and restore checks first, test restoration into a separate RESTORE_TARGET_ROOT, and require explicit confirmation before live path restores.
+
+## Reference(s):
+
+- [Automation setup guidance](references/automation.md)
+- [Nutstore and WebDAV notes](references/nutstore-notes.md)
+- [rclone Nutstore WebDAV setup](references/rclone-setup.md)
+- [Storage scope and exclusion rules](references/storage-scope.md)
+- [ClawHub skill page](https://clawhub.ai/chenmuting/skills/nutstore-webdav-storage)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with inline bash commands and environment-variable examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires bash, rclone, WebDAV access, and an OpenClaw workspace; may produce cron examples and backup, check, or restore command invocations.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,65 @@
-## Description: <br>
-A self-drive travel roadbook toolkit for creating and updating trip roadbooks, archiving photos, generating Leaflet and OSRM route maps, and producing HTML or PDF roadbooks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A self-drive travel roadbook toolkit for creating and updating trip notes, organizing photos, generating Leaflet and OSRM route maps, and producing printable HTML or PDF roadbooks.
 
-## Publisher: <br>
-[ffsszzll](https://clawhub.ai/user/ffsszzll) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ffsszzll](https://clawhub.ai/user/ffsszzll)
 
-## Use Case: <br>
-Travelers and agents use this skill to maintain self-drive trip roadbooks, organize day-by-day notes and photos, enrich route stops with elevation data, and generate maps and printable trip documents. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can edit local roadbook Markdown and write generated trip files to hardcoded paths. <br>
-Mitigation: Back up the roadbook before running scripts and review path settings before generation. <br>
-Risk: Route and elevation generation can send place names or coordinates to external map and elevation services. <br>
-Mitigation: Avoid automatic generation for sensitive trips unless sharing those locations with the listed services is acceptable. <br>
-Risk: Generated maps, elevations, and route details may be incomplete or inaccurate because they depend on third-party services and configured place data. <br>
-Mitigation: Review generated routes, elevation values, and printable outputs before using them for travel planning or publication. <br>
+## Use Case:
 
+External users and agents use this skill to maintain structured self-drive trip roadbooks, archive trip photos, enrich entries with elevation data, generate route maps, and prepare printable travel records.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/ffsszzll/ravel-roadbook) <br>
-- [OSRM public routing endpoint](https://router.project-osrm.org/route/v1/driving/) <br>
-- [Nominatim search endpoint](https://nominatim.openstreetmap.org/search?q={name}&format=json&limit=1) <br>
-- [Open-Elevation lookup endpoint](https://api.open-elevation.com/api/v1/lookup?locations={lat},{lon}) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell and Python commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local roadbook Markdown, HTML/PDF generation guidance, route-map files, and elevation lookup updates depending on the workflow.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Travel locations are sent to public mapping and elevation services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for trips whose locations may be shared with OSRM, Nominatim, Open-Elevation, Amap tile servers, and the Leaflet CDN.
+
+Risk: Generated roadbook files and photo archives may store personal travel details on local disk.
+
+Mitigation: Review and adjust hard-coded output paths before use, and store outputs only in directories appropriate for the trip data.
+
+Risk: Generated HTML built from untrusted roadbook text or filenames could be unsafe to open.
+
+Mitigation: Use trusted roadbook content and filenames, and review generated HTML before opening or converting it.
+
+Risk: PDF or screenshot generation uses Chrome with --no-sandbox.
+
+Mitigation: Remove the --no-sandbox option before relying on PDF or screenshot generation in normal use.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/ffsszzll/skills/ravel-roadbook)
+- [OSRM route service endpoint](https://router.project-osrm.org/route/v1/driving/)
+- [OpenStreetMap Nominatim search endpoint](https://nominatim.openstreetmap.org/search)
+- [Open-Elevation lookup endpoint](https://api.open-elevation.com/api/v1/lookup)
+- [Leaflet distribution CDN](https://unpkg.com/leaflet@1.9.4/dist/leaflet.js)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and generated local files such as HTML, PDF, route cache JSON, and updated roadbook Markdown.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces travel planning artifacts that may contain personal locations, photos, trip dates, lodging details, and expenses.]
+
+## Skill Version(s):
+
+1.0.1 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

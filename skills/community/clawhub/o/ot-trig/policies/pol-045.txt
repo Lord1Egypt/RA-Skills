@@ -1,0 +1,1 @@
+A car is traveling at 18 m/s and encounters a car ahead that suddenly stops, with a deceleration of 3 m/s?. A child runs into the street. Swerving to avoid them might hit a pedestrian. Write pseudocode that includes decision-making and action execution steps include rules for speed, distance, and xx

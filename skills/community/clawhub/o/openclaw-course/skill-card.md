@@ -1,50 +1,67 @@
-## Description: <br>
-Comprehensive reference to install, configure, deploy, secure, optimize, and extend OpenClaw agents with local AI, VPS setup, and skill development guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Comprehensive reference to install, configure, deploy, secure, optimize, and extend OpenClaw agents with local AI, VPS setup, and skill development guidance.
 
-## Publisher: <br>
-[chatgptkrylor](https://clawhub.ai/user/chatgptkrylor) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chatgptkrylor](https://clawhub.ai/user/chatgptkrylor)
 
-## Use Case: <br>
-Developers and power users use this skill as a searchable course reference for OpenClaw setup, configuration, local AI, VPS deployment, security hardening, cost optimization, and custom skill development. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The helper can read outside its reference folder when asked for arbitrary section files. <br>
-Mitigation: Constrain section lookup to the bundled module filenames before using it in an automated agent workflow. <br>
-Risk: The course includes powerful setup commands, remote installers, Docker, cloud-model, and privileged system administration examples. <br>
-Mitigation: Treat command snippets as reference material only; inspect installers, confirm privacy and pricing implications, and require human approval before executing privileged or remote commands. <br>
-Risk: The material discusses API keys, persistent memory files, and agent configuration that may contain sensitive data. <br>
-Mitigation: Keep secrets out of prompts, memory, and persistent configuration files, and follow the bundled security guidance before deployment. <br>
+## Use Case:
 
+Developers, operators, and OpenClaw users use this skill to search and retrieve course guidance for OpenClaw installation, agent configuration, local AI, VPS deployment, security hardening, cost optimization, troubleshooting, and custom skill development.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/chatgptkrylor/openclaw-course) <br>
-- [OpenClaw Masterclass overview](references/README.md) <br>
-- [Module 1: Foundations](references/01-FOUNDATIONS.md) <br>
-- [Module 2: The SOUL Architecture](references/02-THE-SOUL-ARCHITECTURE.md) <br>
-- [Module 3: Local Power](references/03-LOCAL-POWER.md) <br>
-- [Module 4: Context and Costs](references/04-CONTEXT-AND-COSTS.md) <br>
-- [Module 5: VPS Employee](references/05-VPS-EMPLOYEE.md) <br>
-- [Module 6: Security and DevOps](references/06-SECURITY.md) <br>
-- [Module 7: Skills and Future](references/07-SKILLS-AND-FUTURE.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown search results and reference excerpts, including inline command examples from bundled course material] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Searches bundled OpenClaw course modules and returns excerpts with source filenames and line numbers.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can return copy-paste commands that install software from remote URLs or modify local and server configuration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review installer URLs and command effects before execution, and run setup steps in a controlled environment before applying them to production systems.
+
+Risk: VPS, Docker, systemd, cron, and firewall examples may create overprivileged or persistent services if copied without adaptation.
+
+Mitigation: Apply least-privilege service users, avoid Docker socket exposure where possible, restrict network exposure, and harden persistent services before deployment.
+
+Risk: Examples involving API keys, environment files, logs, or autonomous coding agents may expose secrets or grant broad access.
+
+Mitigation: Keep secrets out of chat and logs, store credentials in protected environment files or secret managers, and review agent permissions before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chatgptkrylor/skills/openclaw-course)
+- [OpenClaw Masterclass](references/README.md)
+- [Module 1: Foundations - Getting Started with OpenClaw](references/01-FOUNDATIONS.md)
+- [Module 2: The SOUL Architecture - Building Your Agent's Identity](references/02-THE-SOUL-ARCHITECTURE.md)
+- [Module 3: Local Power - File System, Voice, Images, and Coding Agents](references/03-LOCAL-POWER.md)
+- [Module 4: Context and Costs - Ollama, Model Routing, and Optimization](references/04-CONTEXT-AND-COSTS.md)
+- [Module 5: VPS Employee - 24/7 Automation and Remote Deployment](references/05-VPS-EMPLOYEE.md)
+- [Module 6: Security and DevOps](references/06-SECURITY.md)
+- [Module 7: Skills, Ecosystem, and The Future](references/07-SKILLS-AND-FUTURE.md)
+- [OpenClaw documentation](https://docs.openclaw.ai)
+- [OpenClaw community](https://discord.gg/clawd)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown and plain text search results with source filenames, line numbers, excerpts, and code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search, list, and section retrieval commands return selected course content from bundled markdown references.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

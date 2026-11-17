@@ -1,43 +1,58 @@
-## Description: <br>
-Queries KZCloud CXO map records by location and filters results by function, grade, position camp, distance range, and keyword. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Queries KZCloud CXO map locations and returns filtered CXO details by function, grade, position camp, keyword, and distance range.
 
-## Publisher: <br>
-[yuxiaoxin00](https://clawhub.ai/user/yuxiaoxin00) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yuxiaoxin00](https://clawhub.ai/user/yuxiaoxin00)
 
-## Use Case: <br>
-Developers and agent users use this skill to authenticate to a KZCloud endpoint, convert user locations through a map skill, and retrieve nearby CXO business-card records in a structured table. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The login flow handles account credentials and reusable access tokens. <br>
-Mitigation: Use only trusted KZCloud accounts, avoid high-value credentials, and rotate or remove K1_KZClOUD_TOKEN after use. <br>
-Risk: The artifact login script disables TLS certificate verification and sends requests to a fixed KZCloud endpoint. <br>
-Mitigation: Confirm the endpoint is trusted before use and prefer a version that keeps TLS verification enabled. <br>
-Risk: The login script prints the access token and attempts to persist it in the user environment. <br>
-Mitigation: Do not share logs containing tokens, clear persisted tokens when no longer needed, and prefer secure prompting and secret storage. <br>
+## Use Case:
 
+Developers and agent users use this skill to authenticate to KZCloud, inspect CXO filter options, resolve a user's location through the Gaode Map LBS dependency, and return nearby CXO records in a fixed table format.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yuxiaoxin00/k1-kzcloud-skill) <br>
-- [Gaode Map LBS dependency skill](https://clawhub.ai/lbs-amap/amap-lbs-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and structured tabular results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires K1_KZClOUD_TOKEN and may call KZCloud and Gaode Map services.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata; artifact frontmatter lists 1.1.0) <br>
+Risk: The login helper may expose passwords or bearer tokens through command arguments, logs, persistent environment storage, or PowerShell token interpolation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review carefully before installing, avoid printing tokens, prompt for passwords securely, avoid persistent token storage unless explicitly accepted, and rotate any exposed token.
+
+Risk: TLS verification is disabled for the K1 endpoint, which may allow network interception of credential or token traffic.
+
+Mitigation: Enable TLS certificate verification and use only trusted K1 endpoints before handling credentials.
+
+Risk: Unsafe credential and token handling may expose accounts or allow local command execution.
+
+Mitigation: Run the login helper only in trusted local environments and update it to remove the PowerShell token interpolation before broad use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yuxiaoxin00/skills/k1-kzcloud-skill)
+- [Gaode Map LBS skill dependency](https://clawhub.ai/lbs-amap/amap-lbs-skill)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown instructions with shell command examples and tabular response guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires K1_KZClOUD_TOKEN and the Gaode Map LBS dependency for location-based lookup.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

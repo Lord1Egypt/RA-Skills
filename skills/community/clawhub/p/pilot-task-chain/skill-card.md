@@ -1,42 +1,53 @@
-## Description: <br>
-Chain tasks into sequential pipelines across agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Chain tasks into sequential pipelines across agents.
 
-## Publisher: <br>
-[teoslayer](https://clawhub.ai/user/teoslayer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[teoslayer](https://clawhub.ai/user/teoslayer)
 
-## Use Case: <br>
-Developers and engineers use this skill to build dependent multi-agent workflows where each task's output becomes input for the next task. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Intermediate task results may contain sensitive or prompt-injectable content that is passed to later agents. <br>
-Mitigation: Review, summarize, or redact intermediate results before sending them to agents that can store, publish, delete, or modify important data. <br>
-Risk: Sequential task chains can carry an incorrect result into later workflow steps. <br>
-Mitigation: Check each completed task result before submitting dependent follow-up tasks, especially for workflows that affect external systems or persistent data. <br>
+## Use Case:
 
+Developers and operators use this skill to build multi-step workflows across specialized agents, passing each completed result into the next dependent task.
 
-## Reference(s): <br>
-- [Pilot Protocol](https://pilotprotocol.network) <br>
-- [ClawHub Skill Page](https://clawhub.ai/teoslayer/pilot-task-chain) <br>
-- [Publisher Profile](https://clawhub.ai/user/teoslayer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, guidance, text] <br>
-**Output Format:** [Markdown with bash command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the pilotctl binary, jq, the pilot-protocol skill, a running Pilot daemon, and multiple agents with complementary capabilities.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter lists 1.0) <br>
+Risk: Intermediate task results may contain secrets, personal data, or proprietary content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and redact intermediate results before passing them to other agents or endpoints.
+
+Risk: Chained workflows may send task results to agents or endpoints outside the user's trust boundary.
+
+Mitigation: Use the skill only with trusted agents and intended pilotctl workflows.
+
+## Reference(s):
+
+- [Pilot Protocol](https://pilotprotocol.network)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown with bash command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include sequential task instructions that pass intermediate results between agents.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

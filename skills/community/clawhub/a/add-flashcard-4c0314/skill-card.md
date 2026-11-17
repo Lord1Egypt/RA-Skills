@@ -1,39 +1,52 @@
-## Description: <br>
-Guides users through learning a geography flashcard app image tutorial from referenced Bilibili videos. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+从抖音视频学习: add-flashcard — #53-Build-a-Geography-Flashcard-App-Part-2-Add-Images
 
-## Publisher: <br>
-[534422530](https://clawhub.ai/user/534422530) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[534422530](https://clawhub.ai/user/534422530)
 
-## Use Case: <br>
-External learners and developers use this skill to get concise guidance and references for building a geography flashcard app with image support from the cited video tutorials. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [Bilibili tutorial: Geography Flashcard App Python Tkinter GUI](https://www.bilibili.com/video/BV12ScqzqERN) <br>
-- [Bilibili tutorial: Geography Flashcard App Part 2 Add Images](https://www.bilibili.com/video/BV12ScqzqESC) <br>
-- [Bilibili tutorial: Geography Flashcard App Part 2 Add Images alternate](https://www.bilibili.com/video/BV16hF5ztExA) <br>
+External users and developers use this skill as a learning aid for building or extending a geography flashcard app with image support from referenced tutorial material.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code] <br>
-**Output Format:** [Markdown guidance with links and optional code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable code or dependencies are bundled; scanner guidance notes broad activation phrases such as "53".] <br>
+Global
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: The trigger phrase includes broad terms and the number "53", which may activate the skill in unrelated workflows.
+
+Mitigation: Review and narrow trigger wording before relying on the skill in busy agent environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/534422530/skills/add-flashcard-4c0314)
+- [#52 Build a Geography Flashcard App Python Tkinter GUI Tutorial](https://www.bilibili.com/video/BV12ScqzqERN)
+- [#53 Build a Geography Flashcard App Part 2 Add Images](https://www.bilibili.com/video/BV12ScqzqESC)
+- [#53 Build a Geography Flashcard App Part 2 Add Images alternate source](https://www.bilibili.com/video/BV16hF5ztExA)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown]
+
+**Output Format:** [Markdown guidance and reference links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code or high-impact permissions are included in the artifact.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

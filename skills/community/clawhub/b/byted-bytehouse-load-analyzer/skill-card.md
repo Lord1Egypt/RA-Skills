@@ -1,41 +1,57 @@
-## Description: <br>
-ByteHouse cluster load analysis and performance monitoring helper for resource usage, query throughput, table load, and performance bottleneck identification. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes ByteHouse cluster load, query throughput, table activity, resource usage, and performance bottlenecks.
 
-## Publisher: <br>
-[volcengine-skills](https://clawhub.ai/user/volcengine-skills) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[volcengine-skills](https://clawhub.ai/user/volcengine-skills)
 
-## Use Case: <br>
-Developers and database operators use this skill to analyze ByteHouse cluster load through the ByteHouse MCP server and produce resource, query, table-load, bottleneck, and recommendation reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: ByteHouse credentials are required to run the analyzer and may be exposed through shared shells or logs. <br>
-Mitigation: Use a least-privilege ByteHouse account and avoid entering or pasting credentials in shared terminals, logs, or tickets. <br>
-Risk: Generated load reports can contain sensitive operational details about databases, tables, queries, and capacity. <br>
-Mitigation: Review and redact reports before committing them, publishing them, or attaching them to broad support bundles. <br>
+## Use Case:
 
+Developers and database engineers use this skill to inspect ByteHouse cluster load, query activity, table hot spots, and bottleneck indicators. It supports operational performance review and capacity-planning workflows for ByteHouse environments.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/volcengine-skills/byted-bytehouse-load-analyzer) <br>
-- [Volcengine ByteHouse MCP server dependency](https://github.com/volcengine/mcp-server@main#subdirectory=server/mcp_server_bytehouse) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON files, shell commands, guidance] <br>
-**Output Format:** [Console text and structured JSON report files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes timestamped load analysis reports under the skill output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill downloads mutable remote code at runtime with access to the process environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin the MCP server dependency to an immutable, reviewed source before deployment and run it only in a ByteHouse-scoped environment.
+
+Risk: Generated reports may contain sensitive table names, operational metadata, and active SQL text.
+
+Mitigation: Use low-privilege ByteHouse credentials, restrict report storage access, and treat generated output as sensitive operational data.
+
+Risk: The skill depends on ByteHouse credentials and an MCP server that is configured outside this artifact.
+
+Mitigation: Validate the dependent ByteHouse MCP server configuration and credential scope before running analysis.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/volcengine-skills/skills/byted-bytehouse-load-analyzer)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, JSON, Files, Shell commands, Guidance]
+
+**Output Format:** [JSON report files with console progress output and operational recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated reports may include table names, operational metadata, and active SQL text.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

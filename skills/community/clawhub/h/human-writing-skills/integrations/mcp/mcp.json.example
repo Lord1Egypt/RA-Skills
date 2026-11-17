@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "human-writing": {
+      "command": "python",
+      "args": [
+        "-m",
+        "humanwriting.mcp_server",
+        "--root",
+        "C:/writing-project"
+      ]
+    }
+  }
+}

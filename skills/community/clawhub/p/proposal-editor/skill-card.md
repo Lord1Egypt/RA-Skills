@@ -1,40 +1,55 @@
-## Description: <br>
-A Chinese-language document editing assistant for professional proposals, feasibility studies, project reports, and similar documents that involve data changes, logic updates, content edits, multi-color highlighting, and linkage checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Professional document editing assistant for project proposals, feasibility studies, initiation reports, and similar Chinese-language professional documents that need data edits, logic adjustments, content changes, multi-color highlights, and linked-consistency checks.
 
-## Publisher: <br>
-[rhymekkhuang](https://clawhub.ai/user/rhymekkhuang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rhymekkhuang](https://clawhub.ai/user/rhymekkhuang)
 
-## Use Case: <br>
-Employees and external users use this skill to revise Chinese-language proposal and report DOCX documents while tracking related data, logic, structure, and cross-reference changes. It guides the agent through document analysis, highlighted edits, consistency checks, and a concise modification report. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Professional document edits can introduce incorrect numbers, inconsistent references, or misleading conclusions. <br>
-Mitigation: Work on copies or backups, review proposed changes before accepting them, and use the workflow's data, logic, formatting, and omission checks before relying on the edited document. <br>
-Risk: The workflow may require document-conversion or DOCX-editing tools such as pandoc or python-docx. <br>
-Mitigation: Approve any tool installation or command execution explicitly and review generated files before replacing originals. <br>
+## Use Case:
 
+External users and document editors use this skill to revise Chinese professional proposal-style documents while tracking changed content, checking linked data and references, and producing a concise completion report.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/rhymekkhuang/proposal-editor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, code] <br>
-**Output Format:** [Markdown guidance with checklists, edit summaries, and optional shell commands or document-editing code] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce highlighted DOCX edits or verification summaries when the agent has user-approved document tooling available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server-resolved release metadata) <br>
+Risk: Edited proposal documents can lose formatting, omit requested highlights, or leave linked figures, references, and conclusions inconsistent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep an original copy before editing and review the generated DOCX output against the skill's checklist for highlights, data consistency, logic links, formatting, and omissions.
+
+Risk: Installing document-editing dependencies from an untrusted source can introduce dependency-hygiene risk.
+
+Mitigation: Install python-docx only in a trusted virtual environment or from an approved pinned dependency source.
+
+## Reference(s):
+
+- [Proposal Editor Skill Page](https://clawhub.ai/rhymekkhuang/skills/proposal-editor)
+- [Publisher Profile](https://clawhub.ai/user/rhymekkhuang)
+- [workflows/main.md](artifact/workflows/main.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with optional shell commands and document-editing code snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce edited document files when paired with document tools such as pandoc, python-docx, or direct DOCX XML editing.]
+
+## Skill Version(s):
+
+0.1.1 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

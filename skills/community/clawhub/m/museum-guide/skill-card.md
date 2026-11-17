@@ -1,45 +1,57 @@
-## Description: <br>
-Museum Guide helps an agent plan museum visits by extracting visitor preferences, finding relevant artifacts from offline museum CSV data or online search, and producing an ordered itinerary with must-see highlights. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Museum Guide helps visitors plan efficient museum routes, prioritize must-see artifacts, and tailor recommendations by visit length, interests, dynasty preferences, and whether children are attending.
 
-## Publisher: <br>
-[yangmingchen1994-dotcom](https://clawhub.ai/user/yangmingchen1994-dotcom) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yangmingchen1994-dotcom](https://clawhub.ai/user/yangmingchen1994-dotcom)
 
-## Use Case: <br>
-External users and agents use this skill to plan efficient museum visits based on the museum name, visit duration, child-friendly needs, interests, artifact types, and dynasty preferences. It returns a confirmation step first, then a route with prioritized artifacts, reasons, and basic visit information. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Museum requests, preferences, and possible family-travel details may be sent to the configured LLM provider. <br>
-Mitigation: Use a trusted LLM endpoint, configure a dedicated API key, and avoid entering sensitive personal details. <br>
-Risk: Online fallback can send museum search queries through the configured local ProSearch proxy when no offline CSV is available. <br>
-Mitigation: Prefer the bundled offline CSV data when possible and confirm that AUTH_GATEWAY_PORT points to an expected local service before using online search. <br>
-Risk: Generated opening hours, ticket, transit, or facility details may be incomplete or outdated. <br>
-Mitigation: Check the museum's official site before visiting, especially for time-sensitive logistics. <br>
+## Use Case:
 
+External museum visitors and trip planners use this skill to turn a museum name, available time, interests, and accessibility preferences into a practical visit plan with prioritized artifacts and a recommended viewing order.
 
-## Reference(s): <br>
-- [Museum Guide ClawHub release](https://clawhub.ai/yangmingchen1994-dotcom/museum-guide) <br>
-- [中国国家博物馆.csv](references/中国国家博物馆.csv) <br>
-- [上海博物馆.csv](references/上海博物馆.csv) <br>
-- [故宫珍宝馆.csv](references/故宫珍宝馆.csv) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [JSON confirmation output followed by a Markdown museum itinerary with tables and visit guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a two-phase flow: show the confirmation prompt before running route generation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.6 (source: server release evidence) <br>
+Risk: Museum hours, tickets, exhibit availability, and generated artifact details can be wrong, stale, or influenced by unreliable online search results.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify time-sensitive details and important exhibit claims with official museum sources before relying on the route.
+
+Risk: Configured LLM and search providers may process museum requests, visitor preferences, and generated itinerary context.
+
+Mitigation: Use trusted providers, prefer offline reference data where available, and avoid entering sensitive personal information.
+
+## Reference(s):
+
+- [China National Museum offline artifact data](references/中国国家博物馆.csv)
+- [Shanghai Museum offline artifact data](references/上海博物馆.csv)
+- [Palace Museum Treasure Gallery offline artifact data](references/故宫珍宝馆.csv)
+- [ClawHub skill page](https://clawhub.ai/yangmingchen1994-dotcom/skills/museum-guide)
+- [ClawHub publisher profile](https://clawhub.ai/user/yangmingchen1994-dotcom)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [JSON confirmation output followed by Markdown route guidance and tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses a two-phase flow: confirm the extracted visitor profile before generating the final route; supported museums can use offline CSV data, while other museums may require configured search and LLM services.]
+
+## Skill Version(s):
+
+1.4.6 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

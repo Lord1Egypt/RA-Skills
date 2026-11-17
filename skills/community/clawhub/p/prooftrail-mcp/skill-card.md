@@ -1,46 +1,59 @@
-## Description: <br>
-Teach an agent to install ProofTrail's governed stdio MCP server, use the safest read and proof tools first, and keep future package or listing claims honest. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Teach an agent to install ProofTrail's governed stdio MCP server, use the safest read and proof tools first, and keep future package or listing claims honest.
 
-## Publisher: <br>
-[xiaojiou176](https://clawhub.ai/user/xiaojiou176) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiaojiou176](https://clawhub.ai/user/xiaojiou176)
 
-## Use Case: <br>
-Developers and agent operators use this skill to connect a local ProofTrail stdio MCP server, inspect browser evidence and proof surfaces first, and only then move into broader governed runs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local setup commands run code from the selected ProofTrail repository checkout. <br>
-Mitigation: Install only from a trusted repository source, review package scripts and the lockfile when practical, and prefer a sandbox or non-sensitive machine for first use. <br>
-Risk: Agents may jump into broader run or automation tools before grounding the task in retained evidence. <br>
-Mitigation: Start with catalog and read-oriented tools, then use proof or report tools before widening into governed run and API automation tools. <br>
+## Use Case:
 
+Developers and agent operators use this skill to attach ProofTrail as a local stdio MCP server, inspect browser evidence through safe read-first tools, and avoid overclaiming unpublished package or hosted-service surfaces.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xiaojiou176/prooftrail-mcp) <br>
-- [ProofTrail MCP install guide](references/INSTALL.md) <br>
-- [ProofTrail MCP capabilities](references/CAPABILITIES.md) <br>
-- [ProofTrail MCP first-success path](references/DEMO.md) <br>
-- [ProofTrail MCP troubleshooting](references/TROUBLESHOOTING.md) <br>
-- [OpenHands MCP configuration](references/OPENHANDS_MCP_CONFIG.json) <br>
-- [OpenClaw MCP configuration](references/OPENCLAW_MCP_CONFIG.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides safe-first MCP usage; the skill itself does not execute MCP tools.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release, SKILL.md frontmatter, and manifest.yaml) <br>
+Risk: The skill instructs users to run an unpinned external repository as a local MCP server.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the ProofTrail repository before installing, pin it to a trusted commit, and run pnpm with normal supply-chain precautions.
+
+Risk: The local MCP process could receive unrelated credentials or broader filesystem access than the task requires.
+
+Mitigation: Avoid passing unrelated credentials to the MCP process and scope filesystem and environment access to the ProofTrail task.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xiaojiou176/skills/prooftrail-mcp)
+- [Install And Attach ProofTrail MCP](references/INSTALL.md)
+- [ProofTrail MCP Capabilities](references/CAPABILITIES.md)
+- [First-Success Path](references/DEMO.md)
+- [Troubleshooting](references/TROUBLESHOOTING.md)
+- [OpenHands MCP configuration](references/OPENHANDS_MCP_CONFIG.json)
+- [OpenClaw MCP configuration](references/OPENCLAW_MCP_CONFIG.json)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Directs agents toward catalog, read, quality-read, and proof tools before broader run tools.]
+
+## Skill Version(s):
+
+0.1.1 (source: frontmatter, manifest.yaml, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,50 @@
-## Description: <br>
-Compares system prompts and agent instruction files to produce a semantic changelog that highlights behavioral changes, contradictions, guardrail removals, permission expansions, and instruction-density shifts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Semantic diff for system prompts and agent instructions that compares prompt versions and reports behavior-level changes, contradictions, guardrail removals, permission expansions, instruction density changes, and a commit-ready changelog.
 
-## Publisher: <br>
-[PHY041](https://clawhub.ai/user/PHY041) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[phy041](https://clawhub.ai/user/phy041)
 
-## Use Case: <br>
-Developers, prompt engineers, and skill authors use this skill to compare versions of prompt or agent-instruction files and review behavior-level changes before publishing or committing them. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompt files or git revisions may contain secrets, private instructions, or sensitive internal context. <br>
-Mitigation: Use the skill only on files intentionally provided for analysis, and avoid unrelated private files, secrets, or sensitive internal prompts unless they are meant to be reviewed locally. <br>
+## Use Case:
 
+Developers, prompt authors, and agent maintainers use this skill to compare two versions of system prompts, skill files, or agent instructions and understand behavior-level changes before committing them.
 
-## Reference(s): <br>
-- [Canlah AI homepage](https://canlah.ai) <br>
-- [ClawHub skill page](https://clawhub.ai/PHY041/phy-prompt-diff) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/PHY041) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown report with summaries, risk sections, comparison tables, and a changelog entry] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Analyzes user-provided prompt files, pasted prompt versions, or git revisions locally; no external API use is indicated by the artifact or security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata and artifact metadata) <br>
+Risk: Prompt files provided for comparison may contain secrets or sensitive instructions, and those contents may appear in the diff report.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only on prompt files you explicitly choose to provide, and avoid comparing prompts that contain secrets unless the resulting report can safely include them.
+
+## Reference(s):
+
+- [Phy Prompt Diff on ClawHub](https://clawhub.ai/phy041/skills/phy-prompt-diff)
+- [Canlah AI](https://canlah.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown prompt diff report with tables and a changelog snippet]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Local prompt comparison; no external API is required.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata, target metadata, and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

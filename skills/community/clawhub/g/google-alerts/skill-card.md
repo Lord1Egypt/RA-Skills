@@ -1,44 +1,56 @@
-## Description: <br>
-Monitor keywords through Google Alerts RSS feeds and format results for brand, product, industry, and competitor tracking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitors user-configured Google Alerts RSS feeds for brand, product, industry, competitor, and market keywords and formats results for agent workflows.
 
-## Publisher: <br>
-[bgoodwinstudio](https://clawhub.ai/user/bgoodwinstudio) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bgoodwinstudio](https://clawhub.ai/user/bgoodwinstudio)
 
-## Use Case: <br>
-Marketing, communications, product, and competitive intelligence teams use this skill to fetch Google Alerts results for selected keywords and turn them into concise monitoring summaries. Agents can use the JSON output and formatted cards in recurring reports or review workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Monitored keywords and the Google Alerts feed identifier are sent to Google Alerts and may appear in shared logs or screenshots. <br>
-Mitigation: Run the skill as a normal user, keep the feed identifier out of shared material, and confirm that monitored keywords are appropriate to send to Google Alerts. <br>
-Risk: Automated monitoring summaries can include incomplete, stale, or misleading search results. <br>
-Mitigation: Review generated reports before forwarding them or using them in decisions. <br>
+## Use Case:
 
+Developers, analysts, and automation agents use this skill to fetch configured Google Alerts RSS results for keywords and turn them into concise monitoring output for brand, competitor, industry, and market tracking.
 
-## Reference(s): <br>
-- [Google Alerts](https://www.google.com/alerts) <br>
-- [Google Alerts feed endpoint](https://www.google.com/alerts/feeds/) <br>
-- [Setup guide](references/setup-guide.md) <br>
-- [Keyword examples](references/keywords.md) <br>
-- [ClawHub skill page](https://clawhub.ai/bgoodwinstudio/google-alerts) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration] <br>
-**Output Format:** [JSON arrays from search results plus formatted text monitoring cards] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires bash, curl, python3, and a GOOGLE_ALERT_FEED_ID value.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: A Google Alerts feed ID is a user-specific identifier that can appear in environment variables, shell profiles, or logs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only feed IDs you are comfortable exposing to the agent environment and avoid storing sensitive alert identifiers in shared profiles or logs.
+
+Risk: The skill reads only configured Google Alerts RSS feeds, so results depend on the user-created alerts and are not a complete general web search.
+
+Mitigation: Confirm that the configured alerts match the monitoring task and verify important findings against primary sources before acting on them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bgoodwinstudio/skills/google-alerts)
+- [Google Alerts](https://www.google.com/alerts)
+- [Setup guide](references/setup-guide.md)
+- [Keyword definitions](references/keywords.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration]
+
+**Output Format:** [JSON arrays from the search script and markdown-style formatted text cards from the formatter.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires bash, curl, python3, and GOOGLE_ALERT_FEED_ID; reads configured Google Alerts RSS feeds.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

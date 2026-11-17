@@ -1,37 +1,50 @@
-## Description: <br>
-Lookup UK postcode details including coordinates, administrative areas, parliamentary constituencies, NHS regions, and postcode validation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+UK postcode lookup skill for retrieving coordinates, administrative areas, parliamentary constituencies, NHS regions, neighbouring postcodes, validation results, and random valid postcodes.
 
-## Publisher: <br>
-[brucegutman](https://clawhub.ai/user/brucegutman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[brucegutman](https://clawhub.ai/user/brucegutman)
 
-## Use Case: <br>
-Developers and agents use this skill to validate UK postcodes and retrieve geographic and administrative postcode details from the Pipeworx postcode service. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: UK postcode queries are sent to the Pipeworx gateway, so the service provider may receive the postcode values being looked up. <br>
-Mitigation: Use the skill only when sharing those postcode queries with the Pipeworx service is acceptable for the intended workflow. <br>
+## Use Case:
 
+External users and developers use this skill to query UK postcode geography and validation through a Pipeworx-hosted MCP service.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, configuration, guidance] <br>
-**Output Format:** [Markdown with JSON and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include postcode validation results, coordinates, ONS codes, administrative geography, and nearby or random postcode data returned by the service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Postcode queries are sent to a Pipeworx-hosted MCP endpoint, which may expose location-related data to that external service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid submitting sensitive location data unless the service and its data handling practices are trusted.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/brucegutman/skills/pipeworx-postcodes)
+- [Pipeworx postcodes MCP endpoint](https://gateway.pipeworx.io/postcodes/mcp)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown with JSON configuration and inline bash examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Postcode lookups are fulfilled by an external Pipeworx-hosted MCP endpoint.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, released 2026-04-14)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

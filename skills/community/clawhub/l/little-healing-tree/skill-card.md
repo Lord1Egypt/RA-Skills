@@ -1,39 +1,55 @@
-## Description: <br>
-小愈树 provides structured, development-psychology-based guidance for parents of 6-12-year-old children, including behavior analysis, intervention tools, dialogue templates, and follow-up tracking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+小愈树为 6-12 岁儿童家长提供基于发展心理学框架的结构化行为分析、亲子沟通话术和可操作干预建议。
 
-## Publisher: <br>
-[benson126](https://clawhub.ai/user/benson126) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[benson126](https://clawhub.ai/user/benson126)
 
-## Use Case: <br>
-Parents and caregivers use this skill to understand common 6-12-year-old child behavior concerns and receive structured, practical intervention guidance. The skill produces an explanation layer, an action layer with tools and scripts, and a longer-term structure layer for follow-up. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can persistently store sensitive child and family details in agent memory. <br>
-Mitigation: Use it only with appropriate consent and memory controls; avoid sharing names, school identifiers, medical details, or crisis situations, and prefer no-memory or manual-confirmation workflows when available. <br>
+## Use Case:
 
+External parents and caregivers of 6-12 year-old children use this skill to interpret everyday behavior, emotion, homework, school, and peer issues and receive structured guidance with concrete conversation templates. It is parent-support guidance and should not be treated as medical diagnosis or therapy.
 
-## Reference(s): <br>
-- [理论速查表](references/theory-brief.md) <br>
-- [实践工具箱](references/toolkit.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown with structured analysis, step-by-step tools, and dialogue templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use agent memory to record child profile, problem history, guidance, and progress when supported.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill encourages persistent storage of sensitive child behavior and family context without clear consent, limits, correction, retention, or deletion controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use explicit caregiver opt-in for memory, review proposed memory entries before saving, avoid names, school names, addresses, medical identifiers, and other unnecessary identifiers, and provide data minimization, retention, correction, and deletion controls.
+
+Risk: Parents may over-rely on generated child-guidance advice in situations that require professional assessment or urgent support.
+
+Mitigation: Present the skill as parent-support guidance, require caregiver judgment before applying advice, and direct users to qualified professionals or emergency services for clinical, safety, abuse, self-harm, or crisis concerns.
+
+## Reference(s):
+
+- [README](README.md)
+- [理论速查表](references/theory-brief.md)
+- [实践工具箱](references/toolkit.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown guidance with structured sections and conversation templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose memory updates for child profile, problem records, advice, and progress tracking when memory is available.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

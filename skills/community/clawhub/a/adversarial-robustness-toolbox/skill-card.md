@@ -1,41 +1,51 @@
-## Description: <br>
-Provides plain-text reference guidance for Adversarial Robustness Toolbox concepts, quickstart, patterns, debugging, performance, security, migration, and cheatsheet topics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides plain-text reference documentation for Adversarial Robustness Toolbox concepts, quickstart, patterns, debugging, performance, security, migration, and cheatsheet topics.
 
-## Publisher: <br>
-[xueyetianya](https://clawhub.ai/user/xueyetianya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xueyetianya](https://clawhub.ai/user/xueyetianya)
 
-## Use Case: <br>
-Developers and engineers use this skill to quickly retrieve reference notes and shell-command help while working with Adversarial Robustness Toolbox concepts and related devtools workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Reference content may be generic or outdated for the actual Adversarial Robustness Toolbox project. <br>
-Mitigation: Verify technical details against authoritative Adversarial Robustness Toolbox documentation before relying on the guidance for security or engineering decisions. <br>
-Risk: Version strings differ between server release metadata, SKILL.md frontmatter, and the script output. <br>
-Mitigation: Treat the server release version as the package version and reconcile embedded artifact version strings before relying on version output. <br>
+## Use Case:
 
+Developers and engineers can use this skill as a quick reference for Adversarial Robustness Toolbox-related concepts and common devtools workflows. It is best understood as generic guidance text, not as a full technical integration with the real Adversarial Robustness Toolbox.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xueyetianya/adversarial-robustness-toolbox) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Plain text with Markdown-style headings and tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Command-selected reference sections; no network access or credentials required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.2 (source: server release metadata; artifact frontmatter reports 3.0.1 and script reports 3.0.0) <br>
+Risk: The skill content is mostly generic reference text and may be mistaken for a complete integration with the real Adversarial Robustness Toolbox.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it as quick-reference guidance only, and verify technical steps against authoritative project documentation before applying them.
+
+## Reference(s):
+
+- [Adversarial Robustness Toolbox skill page](https://clawhub.ai/xueyetianya/skills/adversarial-robustness-toolbox)
+- [Publisher profile](https://clawhub.ai/user/xueyetianya)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Shell commands]
+
+**Output Format:** [Plain text and Markdown emitted by shell command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No API keys, credentials, or network access are required by the artifact.]
+
+## Skill Version(s):
+
+3.0.2 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

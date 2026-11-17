@@ -1,45 +1,59 @@
-## Description: <br>
-This skill helps an agent generate Chinese web-novel chapters, convert them for Fanqie, and publish them through a configured Fanqie writer account. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates a Chinese web-novel workflow that helps generate, format, review, and publish chapters to Fanqie Novel through dependent OpenClaw skills.
 
-## Publisher: <br>
-[chenjiahui11](https://clawhub.ai/user/chenjiahui11) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chenjiahui11](https://clawhub.ai/user/chenjiahui11)
 
-## Use Case: <br>
-Writers and publishing operators use this skill to take a Chinese novel idea or existing chapter files through generation, formatting, review, and publication to a Fanqie writer account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow can publish generated or converted chapters to a live Fanqie author account. <br>
-Mitigation: Review every generated chapter manually and run status checks before allowing publication. <br>
-Risk: The Fanqie cookie file grants account access if exposed. <br>
-Mitigation: Protect the cookie file like a password, restrict file access, and rotate credentials if the file is shared or leaked. <br>
-Risk: Batch or automatic publication can make multiple external changes quickly. <br>
-Mitigation: Use single-chapter publishing or conservative intervals unless the operator has intentionally approved batch posting. <br>
-Risk: The workflow depends on separate generation and publishing skills. <br>
-Mitigation: Verify and configure open-novel-writing, novel-generator, and fanqie-publisher before relying on end-to-end automation. <br>
+## Use Case:
 
+Writers and operators use this skill to move from a story idea or existing chapter files to formatted chapters published under a configured Fanqie Novel author account.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chenjiahui11/fanqie-novel-auto-publish) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/chenjiahui11) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown chapter files, command-line status text, and publishing result messages] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May perform live Fanqie account actions when dependencies and account cookies are configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server-resolved release evidence) <br>
+Risk: The skill can publish chapters to a real Fanqie account without a strong confirmation boundary.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated chapters manually, test with non-critical works, and verify the target work title before publishing.
+
+Risk: The workflow depends on unpinned external generation and publishing skills.
+
+Mitigation: Pin or verify open-novel-writing, novel-generator, and fanqie-publisher before relying on the workflow.
+
+Risk: The workflow reads local novel chapter files and uses Fanqie author login or session data.
+
+Mitigation: Install only in an environment where those files and session credentials are appropriate for this workflow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chenjiahui11/skills/fanqie-novel-auto-publish)
+- [Artifact README](artifact/README.md)
+- [Artifact SKILL](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with Python and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May read local chapter files and publish externally through a configured Fanqie session.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

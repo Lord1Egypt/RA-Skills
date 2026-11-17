@@ -1,38 +1,54 @@
-## Description: <br>
-Book Spa helps an agent search for spa services, check availability, and create bookings through Lokuli's MCP server. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Book Spa helps agents search spa providers, check appointment availability, and create bookings through the Lokuli MCP service.
 
-## Publisher: <br>
-[edwardrodriguez703-design](https://clawhub.ai/user/edwardrodriguez703-design) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[edwardrodriguez703-design](https://clawhub.ai/user/edwardrodriguez703-design)
 
-## Use Case: <br>
-External users can ask an agent to find spa providers, check available service times, and prepare or create a booking through Lokuli after confirming booking details. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Creating a booking can send customer name, email, and phone number to Lokuli. <br>
-Mitigation: Before creating a booking, verify the provider, service, time, and contact details with the user. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/edwardrodriguez703-design/book-spa) <br>
-- [Lokuli MCP endpoint](https://lokuli.com/mcp/sse) <br>
+## Use Case:
 
+External users can use this skill to find spa services, check provider availability, and request a booking. Users should confirm the provider, service, time slot, and contact details before a booking is created.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, JSON, API Calls] <br>
-**Output Format:** [Markdown guidance with JSON-RPC request examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include booking details that require user confirmation before sending customer contact information.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server evidence release.version) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can create external spa bookings using personal contact details.
+
+Mitigation: Require explicit user confirmation of the provider, service, time slot, customer name, email, and phone number before allowing a booking call.
+
+Risk: The activation scope is broad for spa-related requests.
+
+Mitigation: Use this skill only when the user clearly intends to search for or book spa appointments.
+
+## Reference(s):
+
+- [Book Spa on ClawHub](https://clawhub.ai/edwardrodriguez703-design/skills/book-spa)
+- [Publisher profile](https://clawhub.ai/user/edwardrodriguez703-design)
+- [Lokuli MCP endpoint](https://lokuli.com/mcp/sse)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, API Calls, configuration]
+
+**Output Format:** [Markdown and JSON-RPC tool call guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use external MCP calls to search providers, check availability, and create bookings with user contact details.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

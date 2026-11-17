@@ -1,41 +1,55 @@
-## Description: <br>
-Grammar Check helps users review English grammar, correct errors, explain rules, assess CEFR difficulty, generate practice exercises, and compare Chinese and English grammar. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Grammar Check helps agents review and correct English grammar, explain grammar rules, estimate CEFR difficulty, generate practice exercises, and compare English and Chinese grammar.
 
-## Publisher: <br>
-[xueyetianya](https://clawhub.ai/user/xueyetianya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xueyetianya](https://clawhub.ai/user/xueyetianya)
 
-## Use Case: <br>
-External users, learners, educators, and writing reviewers use this skill to produce grammar-checking prompts, correction templates, explanations, CEFR-level assessments, practice exercises, and Chinese-English grammar comparisons. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: An auxiliary local utility can save and re-display user input. <br>
-Mitigation: Avoid entering sensitive drafts or private text into the auxiliary utility unless local storage is acceptable; prefer the grammar-specific templates for ordinary grammar review. <br>
-Risk: Grammar corrections, explanations, and CEFR assessments may be incomplete or misleading. <br>
-Mitigation: Review outputs before applying them to academic, professional, or high-stakes writing. <br>
+## Use Case:
 
+External users and developers use this skill to ask an agent for English grammar checking, correction, explanation, CEFR difficulty grading, practice exercise generation, and Chinese-English comparison.
 
-## Reference(s): <br>
-- [Grammar Check on ClawHub](https://clawhub.ai/xueyetianya/grammar-check) <br>
-- [BytesAgain Homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown templates and shell command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include bilingual Chinese-English examples, grammar explanations, checklists, correction tables, CEFR assessments, and practice-answer sections.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.3.5 (source: ClawHub release metadata) <br>
+Risk: The release includes an extra local utility script that can silently store user-provided text locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid passing private drafts, business text, credentials, or sensitive search terms to grammar-check commands unless the publisher clarifies or removes the local data/history storage behavior.
+
+Risk: Security evidence marks this release as suspicious.
+
+Mitigation: Review and scan the skill before deployment, with particular attention to local data and history storage behavior.
+
+## Reference(s):
+
+- [Grammar Check on ClawHub](https://clawhub.ai/xueyetianya/skills/grammar-check)
+- [xueyetianya Publisher Profile](https://clawhub.ai/user/xueyetianya)
+- [BytesAgain Homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with command-line help text and structured prompt templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are single-stream agent guidance; no structured machine-readable payload is specified.]
+
+## Skill Version(s):
+
+2.3.5 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

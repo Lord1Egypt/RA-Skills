@@ -1,41 +1,48 @@
-## Description: <br>
-Craft sincere, effective apology letters and messages for personal and professional situations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Craft sincere, effective apology letters and messages for personal and professional situations.
 
-## Publisher: <br>
-[huajianjiu000](https://clawhub.ai/user/huajianjiu000) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[huajianjiu000](https://clawhub.ai/user/huajianjiu000)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users use this skill to draft personal and professional apology messages that acknowledge mistakes, take responsibility, offer repair, and support rebuilding trust.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Apology drafting requests can include sensitive personal or workplace details.
+
+Mitigation: Share only the context needed for the draft and omit secrets, credentials, and unnecessary private information.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users use this skill to draft concise, sincere apology messages and longer apology letters for personal or professional situations. It helps structure acknowledgment, responsibility, remorse, reparation, and commitment to change. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Users may include confidential business details, secrets, or legally sensitive admissions when asking for an apology draft. <br>
-Mitigation: Review context before sharing it with the agent or model provider, and omit sensitive details unless disclosure is acceptable. <br>
-Risk: Generated apology wording may not match the user's intent, obligations, or the full relationship context. <br>
-Mitigation: Review and edit the generated apology before sending, especially in professional, legal, or high-conflict situations. <br>
+**Output Format:** [Markdown or plain text apology drafts with optional follow-up guidance]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/huajianjiu000/apology-letter-writer) <br>
-- [Publisher profile](https://clawhub.ai/user/huajianjiu000) <br>
+**Other Properties Related to Output:** [No code, dependencies, persistence, or data access are described in the release security evidence.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown prose with message drafts, letter templates, and follow-up guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No files, shell commands, credentials, or account access are requested.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

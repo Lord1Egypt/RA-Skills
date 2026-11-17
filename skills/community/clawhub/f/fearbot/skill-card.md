@@ -1,49 +1,64 @@
-## Description: <br>
-CBT-based therapy for anxiety, depression, stress, and trauma. Provides structured cognitive behavioral therapy using Beck's model with validated clinical assessments (GAD-7, PHQ-9, DASS-21, PCL-5). Includes crisis detection, thought records, differential diagnosis, and session tracking. Activate with "therapy mode", "fearbot", or "start therapy". <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+CBT-based therapy for anxiety, depression, stress, and trauma. Provides structured cognitive behavioral therapy using Beck's model with validated clinical assessments (GAD-7, PHQ-9, DASS-21, PCL-5). Includes crisis detection, thought records, differential diagnosis, and session tracking. Activate with "therapy mode", "fearbot", or "start therapy".
 
-## Publisher: <br>
-[Samoppakiks](https://clawhub.ai/user/Samoppakiks) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[samoppakiks](https://clawhub.ai/user/samoppakiks)
 
-## Use Case: <br>
-External users use FearBot through an OpenClaw agent for structured CBT-style support around mild-to-moderate anxiety, depression, stress, and trauma. It guides assessments, thought records, session continuity, homework, and crisis escalation prompts while reminding users to seek licensed care for serious or urgent needs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles sensitive mental-health history and monitors for crisis signals. <br>
-Mitigation: Install only where the user is comfortable with that scope, and treat the skill as support rather than a substitute for licensed professionals or emergency services. <br>
-Risk: Local therapy records and plaintext exports may expose private information on shared or synced machines. <br>
-Mitigation: Review the local database and export locations before use, restrict access to the machine, and avoid exporting unless the user intentionally needs a shareable record. <br>
-Risk: The skill may be used during urgent or serious mental-health situations beyond its intended support role. <br>
-Mitigation: Follow the included crisis resources and professional referral prompts, and rely on local emergency services or qualified clinicians for urgent or severe concerns. <br>
+## Use Case:
 
+External users use this skill to turn an OpenClaw agent into a structured CBT companion for mild-to-moderate anxiety, depression, stress, and trauma support. It guides intake and ongoing sessions, administers common screening instruments, tracks homework and thought records, and surfaces crisis resources when risk signals appear.
 
-## Reference(s): <br>
-- [ClawHub FearBot release](https://clawhub.ai/Samoppakiks/fearbot) <br>
-- [Assessment Administration Prompts](references/assessment-items.md) <br>
-- [Crisis Detection & Response Layer](references/crisis-layer.md) <br>
-- [Session Context Assembly Template](references/session-context-template.md) <br>
-- [Base Therapist System Prompt](references/therapist-prompt.md) <br>
-- [OpenClaw](https://openclaw.ai) <br>
-- [International Association for Suicide Prevention crisis centres](https://www.iasp.info/resources/Crisis_Centres/) <br>
-- [Befrienders Worldwide](https://www.befrienders.org/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Files] <br>
-**Output Format:** [Conversational guidance with local database records and optional Markdown exports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores therapy session data locally and can export plaintext Markdown summaries on request.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, SKILL.md frontmatter, skill.json) <br>
+Risk: Sensitive therapy-related information may be stored locally, reused in future session context, or exported as plaintext.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only on a trusted machine with appropriate local storage permissions, avoid synced or shared directories, and review export paths before creating therapist-facing Markdown exports.
+
+Risk: Crisis monitoring is described as broad message monitoring rather than limited to explicit therapy sessions.
+
+Mitigation: Prefer deployment settings that scope monitoring to consented therapy interactions and provide clear controls for pausing monitoring and deleting records.
+
+Risk: The skill provides mental-health support but is not a substitute for professional care or emergency services.
+
+Mitigation: Keep professional referral and emergency/crisis-resource escalation prominent, especially for suicidality, psychosis, severe depression, substance abuse, eating disorders, bipolar disorder, or lack of improvement.
+
+## Reference(s):
+
+- [FearBot ClawHub listing](https://clawhub.ai/samoppakiks/skills/fearbot)
+- [Assessment Administration Prompts](references/assessment-items.md)
+- [Crisis Detection and Response Layer](references/crisis-layer.md)
+- [Session Context Assembly Template](references/session-context-template.md)
+- [Base Therapist System Prompt](references/therapist-prompt.md)
+- [OpenClaw](https://openclaw.ai)
+- [International Association for Suicide Prevention Crisis Centres](https://www.iasp.info/resources/Crisis_Centres/)
+- [Befrienders Worldwide](https://www.befrienders.org/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Plain text and Markdown guidance with optional shell command output and Markdown exports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May persist local therapy session, assessment, mood, thought-record, homework, trigger, coping-strategy, and crisis-event data, and may export therapy history as Markdown.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, skill.json, release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

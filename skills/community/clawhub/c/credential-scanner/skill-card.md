@@ -1,43 +1,54 @@
-## Description: <br>
-Scans files, repos, and directories for leaked secrets, including API keys, tokens, passwords, connection strings, private keys, and credentials. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scans files, repos, and directories for leaked secrets, including API keys, tokens, passwords, connection strings, private keys, and credentials.
 
-## Publisher: <br>
-[nirwandogra](https://clawhub.ai/user/nirwandogra) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[nirwandogra](https://clawhub.ai/user/nirwandogra)
 
-## Use Case: <br>
-Developers and security reviewers use this skill to audit files, directories, or repositories for accidentally committed credentials before publishing, committing, or deploying code. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Scan reports can contain sensitive file paths and masked credential previews. <br>
-Mitigation: Keep generated reports private and avoid committing them or uploading them to shared CI artifacts. <br>
-Risk: The skill inspects files in the path selected for scanning. <br>
-Mitigation: Run it only against projects or folders you intend to inspect. <br>
-Risk: Detected real credentials may remain usable after the scan. <br>
-Mitigation: Rotate any real credentials the skill finds and remove them from code or history. <br>
+## Use Case:
 
+Developers and security reviewers use this skill to audit files, directories, and repositories for exposed credentials before committing, publishing, or deploying code.
 
-## Reference(s): <br>
-- [README.md](artifact/README.md) <br>
-- [ClawHub release page](https://clawhub.ai/nirwandogra/credential-scanner) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, shell commands, guidance] <br>
-**Output Format:** [Markdown report or JSON scan report, optionally written to a file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Masks detected secret previews, reports severity counts, includes remediation guidance, and exits with status codes for clean, high, or critical findings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: frontmatter and server release metadata) <br>
+Risk: Scanner reports may contain sensitive secret evidence, including previews and contextual lines.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat Markdown and JSON reports as sensitive artifacts, restrict sharing, and manually review reports before publishing or uploading them.
+
+Risk: Directory scans may follow symlinks outside the intended scan folder.
+
+Mitigation: Avoid running the scanner on untrusted repositories and inspect or remove symlinks before scanning until symlink handling is fixed.
+
+## Reference(s):
+
+- [Credential Scanner on ClawHub](https://clawhub.ai/nirwandogra/skills/credential-scanner)
+- [Publisher profile](https://clawhub.ai/user/nirwandogra)
+
+## Skill Output:
+
+**Output Type(s):** [analysis, markdown, JSON, shell commands, guidance]
+
+**Output Format:** [Markdown report or JSON with finding summaries, severity counts, file paths, line numbers, masked secret previews, and remediation guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [CLI output can be printed to stdout or saved to a report file; exit codes distinguish clean, high-severity, and critical findings.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

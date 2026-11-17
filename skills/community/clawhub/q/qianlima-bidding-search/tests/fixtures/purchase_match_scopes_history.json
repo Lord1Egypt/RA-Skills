@@ -1,0 +1,104 @@
+{
+  "source": "docs/audits/2026-10-22-purchase-match-scopes/admin-observations.json",
+  "source_records": 5,
+  "distinct_scenarios": 3,
+  "deduplication": "同一端点和完整查询参数完全一致的调用合并，不以调用时间或交易号区分",
+  "causality_basis": "用户提供技术确认：采购意向范围误用导致异常；后台已兼容，不在线重现500。",
+  "verification": "离线HTTP边界捕获：原始[2,9]零请求阻断；测试显式选择[2,8]后其他查询条件原样发送，不表示自动映射9为8。",
+  "scenarios": [
+    {
+      "id": "OBS-267-01",
+      "scene": "内窥镜类，按近两日发布时间，未指定预计采购时间",
+      "method": "POST",
+      "path": "/api/search/purchase",
+      "query": {
+        "keywords": [
+          "腹腔镜",
+          "内窥镜摄像系统",
+          "荧光内窥镜",
+          "电子内窥镜系统",
+          "关节镜",
+          "椎间孔镜",
+          "宫腔镜",
+          "气腹机",
+          "冷光源",
+          "图格"
+        ],
+        "matchScopes": [
+          2,
+          9
+        ],
+        "areaIds": [
+          6
+        ],
+        "beginTime": "2026-10-18",
+        "endTime": "2026-10-19",
+        "currentPage": 1,
+        "numPerPage": 50
+      }
+    },
+    {
+      "id": "OBS-267-02",
+      "scene": "手术室设备类，按近两日发布时间，未指定预计采购时间",
+      "method": "POST",
+      "path": "/api/search/purchase",
+      "query": {
+        "keywords": [
+          "手术无影灯",
+          "无影灯",
+          "手术灯",
+          "吊塔",
+          "手术床",
+          "手术台",
+          "一体化手术室",
+          "数字化手术室",
+          "迈柯唯",
+          "迈科唯"
+        ],
+        "matchScopes": [
+          2,
+          9
+        ],
+        "areaIds": [
+          6
+        ],
+        "beginTime": "2026-10-18",
+        "endTime": "2026-10-19",
+        "currentPage": 1,
+        "numPerPage": 50
+      }
+    },
+    {
+      "id": "OBS-267-03",
+      "scene": "手术室设备类，近一周发布时间并限定预计采购月份",
+      "method": "POST",
+      "path": "/api/search/purchase",
+      "query": {
+        "keywords": [
+          "手术无影灯",
+          "无影灯",
+          "手术床",
+          "吊塔",
+          "一体化手术室",
+          "数字化手术室",
+          "医用手术台",
+          "麻醉塔",
+          "手术灯"
+        ],
+        "matchScopes": [
+          2,
+          9
+        ],
+        "areaIds": [
+          6
+        ],
+        "beginTime": "2026-10-11",
+        "endTime": "2026-10-18",
+        "startPlanPurchaseDate": "2026-10",
+        "endPlanPurchaseDate": "2027-03",
+        "currentPage": 1,
+        "numPerPage": 100
+      }
+    }
+  ]
+}

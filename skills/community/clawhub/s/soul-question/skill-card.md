@@ -1,43 +1,57 @@
-## Description: <br>
-Soul Question generates deep, grounded questions from user-provided text by identifying cracks in the user's thinking, including contradictions, untested assumptions, value-behavior gaps, frame locks, avoidance, and meta-question signals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates deep, context-grounded reflection questions by finding contradictions, untested assumptions, value-behavior gaps, frame locks, avoidance, or meta-level issues in user-provided text.
 
-## Publisher: <br>
-[chenyipeng1](https://clawhub.ai/user/chenyipeng1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chenyipeng1](https://clawhub.ai/user/chenyipeng1)
 
-## Use Case: <br>
-External users and knowledge workers use this skill to examine conversations, meeting notes, journals, strategy documents, and similar text for blind spots. The skill returns concise questions anchored to the supplied material rather than summaries, advice, or generic reflection prompts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may paste secrets, credentials, regulated personal data, confidential business information, or private third-party communications for analysis. <br>
-Mitigation: Redact sensitive material first and only provide private third-party communications when you have permission to use them. <br>
-Risk: Questions about personal journals, team dynamics, or sensitive topics may feel confrontational if phrased carelessly. <br>
-Mitigation: Keep questions grounded in the supplied material, genuinely open, and respectful; avoid judgment, disguised advice, and unsupported claims. <br>
-Risk: Thin or low-signal input can lead to shallow or unsupported questions. <br>
-Mitigation: Ask for richer context when material is too short and decline to generate a question when no meaningful cognitive crack is supported. <br>
+## Use Case:
 
+External users provide conversations, meeting notes, journals, documents, or other text and use the skill to receive one to three specific questions that challenge blind spots, assumptions, contradictions, or value-behavior gaps. The skill is intended for reflection and metacognition, not summarization, coaching advice, or decision automation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chenyipeng1/soul-question) <br>
-- [Declared project homepage](https://github.com/plaud/soul-question) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown heading followed by 0-3 direct questions and a short source citation for each question] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The artifact describes no external calls, persistence, telemetry, or file writes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release and SKILL.md frontmatter) <br>
+Risk: Users may paste secrets, regulated data, or confidential business details as source material.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Redact credentials, regulated data, and confidential details before using the skill, consistent with the security guidance.
+
+Risk: Questions can feel personally challenging or judgmental when generated from sensitive personal or workplace material.
+
+Mitigation: Review the output before sharing it and rephrase or discard questions that are not respectful, well-grounded, or appropriate for the audience.
+
+Risk: The skill may produce misleading reflection prompts if the provided material is too short, incomplete, or lacks clear signals.
+
+Mitigation: Provide richer context when needed and do not force a question when the material does not support one.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/chenyipeng1/skills/soul-question)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown text containing 0-3 questions with a source-material citation for each question]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Output should be concise, in the same language as the input material, and should avoid preamble, summary, and advice.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, SKILL.md frontmatter, and clawhub.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

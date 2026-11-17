@@ -10,7 +10,7 @@ from urllib.request import Request, urlopen
 from urllib.error import URLError, HTTPError
 
 API_URL = "https://maas-api.hivoice.cn/v1/chat/completions"
-MODEL = "u1-insuremed"
+MODEL = "u2-med"
 
 from preprocess import (
     PreprocessError, SUPPORTED_FILE_TYPES,

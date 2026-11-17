@@ -1,47 +1,69 @@
-## Description: <br>
-Analyzes Imou device snapshot or image URLs for people, behaviors, workwear and absence, shelf and trash status, heatmap data, and face signals, and helps manage Imou AI detection repositories and targets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes Imou device snapshots or image URLs with Imou Open API for scene detections, heatmap statistics, face analysis, and detect repository or target management.
 
-## Publisher: <br>
-[Imou-OpenPlatform](https://clawhub.ai/user/Imou-OpenPlatform) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[imou-openplatform](https://clawhub.ai/user/imou-openplatform)
 
-## Use Case: <br>
-Developers and operations teams use this skill to run Imou Open API image analysis on device snapshots or image URLs and maintain detection repositories or target images for workflows such as workwear, absence, shelf, trash, heatmap, and face analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global, subject to selecting the appropriate Imou regional IMOU_BASE_URL and applicable Imou account or data-center terms. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends selected camera or image data and Imou credentials to the configured Imou Open API endpoint. <br>
-Mitigation: Use dedicated least-privilege Imou developer credentials, send only intended images, and choose the correct regional IMOU_BASE_URL. <br>
-Risk: Repository and target delete commands can remove Imou AI detection resources. <br>
-Mitigation: List repositories or targets first, verify IDs before deleting, and test with non-production resources where possible. <br>
-Risk: Credential exposure could grant access to Imou API operations supported by the account. <br>
-Mitigation: Keep credentials in environment variables or a secret manager, avoid logging them, and rotate them if exposure is suspected. <br>
+## Use Case:
 
+Developers and operations teams use this skill to run Imou Open API image analysis on device snapshots or accessible image URLs and to manage detect repositories and targets for workwear, absence, heatmap, and face workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Imou-OpenPlatform/imou-multimodal-analysis) <br>
-- [Imou Open API Reference - AI Multimodal Analysis](references/imou-ai-api.md) <br>
-- [Imou AI overview](https://open.imou.com/document/pages/f1b9a3/) <br>
-- [Imou development specification](https://open.imou.com/document/pages/c20750/) <br>
-- [Imou accessToken API](https://open.imou.com/document/pages/fef620/) <br>
-- [Imou overseas development specification](https://open.imoulife.com/book/http/develop.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples; CLI executions return JSON or status text.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses IMOU_APP_ID, IMOU_APP_SECRET, and optional IMOU_BASE_URL environment variables; image input may be a URL or base64 payload.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: Sensitive face, workwear, surveillance, or Base64 image data may be submitted to the configured Imou Open API endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat image inputs as sensitive and use the skill only with approved Imou accounts, data centers, and data handling policies.
+
+Risk: A custom or HTTP IMOU_BASE_URL can direct credentials and image data to an unintended API destination.
+
+Mitigation: Set IMOU_BASE_URL only to official Imou HTTPS base URLs for the intended region.
+
+Risk: Repository and target deletion commands can remove Imou detect assets.
+
+Mitigation: Confirm repository IDs and target IDs before deletion and prefer limited-scope credentials.
+
+Risk: The requests dependency is not pinned to an exact version.
+
+Mitigation: Use a reviewed lockfile or pinned dependency version before deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/imou-openplatform/skills/imou-multimodal-analysis)
+- [Imou Open API Reference - AI Multimodal Analysis](references/imou-ai-api.md)
+- [Imou Open Platform](https://open.imou.com)
+- [Imou Overseas Open Platform](https://open.imoulife.com)
+- [Imou Development Specification](https://open.imoulife.com/book/http/develop.html)
+- [Imou AI Overview](https://open.imou.com/document/pages/f1b9a3/)
+- [Imou Get Access Token](https://open.imou.com/document/pages/fef620/)
+- [Imou Human Detection API](https://open.imou.com/document/pages/93rflk/)
+- [Imou Face Analysis API](https://open.imou.com/document/pages/28d7ug/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Imou credentials and may submit image URLs, Base64 image data, repository IDs, thresholds, and detection regions to the configured Imou Open API base URL.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

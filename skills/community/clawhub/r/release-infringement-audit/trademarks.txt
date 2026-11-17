@@ -1,0 +1,73 @@
+# 知名商标清单（一行一个，# 开头为注释）
+# 判定仅做初筛：命中 ≠ 侵权。描述性使用（"X for Y"）+ 免责声明通常可主张指示性使用。
+# 用法：按需增删；中文商标直接写中文。
+OpenClaw
+Claude
+Anthropic
+ChatGPT
+OpenAI
+DeepSeek
+GitHub
+GitLab
+npm
+Visual Studio Code
+VSCode
+VS Code
+Microsoft
+Apple
+iOS
+macOS
+Windows
+Python
+PyTorch
+TensorFlow
+Hugging Face
+Docker
+Kubernetes
+Slack
+Discord
+Telegram
+WeChat
+微信
+支付宝
+Alipay
+淘宝
+天猫
+京东
+Bilibili
+哔哩哔哩
+抖音
+TikTok
+小红书
+知乎
+微博
+Notion
+Obsidian
+Figma
+Adobe
+Photoshop
+Photoshop 的商标为 Adobe 的
+Oracle
+Java
+MySQL
+Redis
+MongoDB
+AWS
+Amazon Web Services
+Google Cloud
+Azure
+Vercel
+Netlify
+Cloudflare
+Webpack
+Babel
+ESLint
+Prettier
+React
+Vue
+Angular
+Svelte
+Next.js
+Nuxt
+Node.js
+Node

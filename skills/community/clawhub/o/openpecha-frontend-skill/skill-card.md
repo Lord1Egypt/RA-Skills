@@ -1,40 +1,52 @@
-## Description: <br>
-Create distinctive, production-grade frontend interfaces with high design quality. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create distinctive, production-grade frontend interfaces with high design quality.
 
-## Publisher: <br>
-[tenkus47](https://clawhub.ai/user/tenkus47) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[tenkus47](https://clawhub.ai/user/tenkus47)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and design-focused agents use this skill to build polished web components, pages, and applications with distinctive typography, visual direction, motion, and cohesive content.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill strongly encourages bold frontend choices that may not fit a brand, accessibility target, or product context.
+
+Mitigation: Review generated interfaces against the intended brand system, accessibility requirements, and user workflow before release.
+
+Risk: The companion design-consistency guidance asks agents to research and fill realistic specs, pricing, and positioning, which can introduce stale or unsupported claims.
+
+Mitigation: Require source-backed review for factual product, pricing, specification, and competitive-positioning content.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and designers use this skill to build or refine web components, pages, and applications with cohesive, production-grade frontend implementation and distinctive visual direction. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Guidance, Code, Markdown]
 
-## Known Risks and Mitigations: <br>
-Risk: Generated frontend code, external fonts, third-party libraries, or researched content may be unsuitable for publication without review. <br>
-Mitigation: Review generated code, external assets, dependencies, and researched claims before publishing or deploying the interface. <br>
-Risk: Research-based copy such as specs, pricing, use cases, or competitive positioning may become inaccurate or unsupported. <br>
-Mitigation: Verify factual claims against authoritative sources and update page content before release. <br>
+**Output Format:** [Markdown prose with generated frontend code and configuration guidance]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tenkus47/openpecha-frontend-skill) <br>
+**Other Properties Related to Output:** [May include design rationale, implementation steps, UI copy, HTML/CSS/JavaScript, React, Vue, or related frontend assets depending on the user request.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Markdown, Guidance, Configuration] <br>
-**Output Format:** [Markdown with code, implementation guidance, and design direction] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include frontend source files, styling instructions, and recommendations for reviewing generated code and third-party assets before deployment.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

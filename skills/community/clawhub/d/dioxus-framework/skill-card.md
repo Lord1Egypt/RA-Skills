@@ -1,44 +1,54 @@
-## Description: <br>
-Dioxus Framework helps developers build Rust full-stack and cross-platform applications with React-like components, routing, state patterns, data fetching, and server-side rendering guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Dioxus 是一个 Rust 的全栈跨平台应用框架，支持服务端渲染、实时更新和类似 React 的组件模型。当用户需要使用 Dioxus 构建 Web 应用、创建组件、处理状态、路由、或处理数据获取时使用。
 
-## Publisher: <br>
-[space-water-bear](https://clawhub.ai/user/space-water-bear) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[space-water-bear](https://clawhub.ai/user/space-water-bear)
 
-## Use Case: <br>
-Developers and engineers use this skill for Dioxus project setup and implementation guidance, including components, hooks, routing, forms, server functions, SSR, testing, and deployment patterns. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Setup, build, and serve commands could affect a local Rust project if run in the wrong directory or against untrusted code. <br>
-Mitigation: Run commands only inside trusted projects and verify package names, sources, and project paths before execution. <br>
-Risk: Framework guidance may become stale as Dioxus APIs and CLI behavior change. <br>
-Mitigation: Check the linked Dioxus documentation before applying version-sensitive code or deployment patterns. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Dioxus Core Concepts](references/core-concepts.md) <br>
-- [Dioxus Documentation](https://dioxuslabs.com/learn/0.7/) <br>
-- [Dioxus Components](https://dioxuslabs.com/components) <br>
-- [Dioxus GitHub Repository](https://github.com/DioxusLabs/dioxus) <br>
-- [ClawHub Skill Page](https://clawhub.ai/space-water-bear/dioxus-framework) <br>
-- [ClawHub Publisher Profile](https://clawhub.ai/user/space-water-bear) <br>
+## Use Case:
 
+Developers and engineers use this skill for guidance when building Dioxus applications in Rust, including components, state management, routing, server-side rendering, data fetching, testing, and deployment.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with Rust, TOML, CSS, Dockerfile, and shell code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance; no tool calls or credentials are required by the skill.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Setup examples include unpinned package installation commands for Dioxus CLI tooling.
+
+Mitigation: Verify package provenance before running setup commands, and prefer pinned versions or official Cargo installation for production work.
+
+## Reference(s):
+
+- [Dioxus Core Concepts](references/core-concepts.md)
+- [Dioxus Documentation](https://dioxuslabs.com/learn/0.7/)
+- [Dioxus Components Reference](https://dioxuslabs.com/components)
+- [Dioxus GitHub Repository](https://github.com/DioxusLabs/dioxus)
+- [Dioxus Router Documentation](https://dioxuslabs.com/learn/0.7/essentials/router/)
+- [Dioxus Backend Tutorial](https://dioxuslabs.com/learn/0.7/tutorial/backend)
+- [Dioxus Deployment and Bundle Tutorial](https://dioxuslabs.com/learn/0.7/tutorial/bundle)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with Rust, TOML, CSS, HTML, Dockerfile, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill provides developer guidance and examples; it does not automatically execute commands.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

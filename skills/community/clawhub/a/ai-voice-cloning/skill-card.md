@@ -1,42 +1,55 @@
-## Description: <br>
-Ai Voice Cloning helps agents generate natural text-to-speech, voice synthesis, narration, conversations, voiceovers, audiobooks, podcasts, video narration, and accessibility audio through the inference.sh CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI voice generation, text-to-speech, and voice synthesis via inference.sh CLI for natural speech, narration, conversations, podcasts, video voiceovers, and accessibility workflows.
 
-## Publisher: <br>
-[okaris](https://clawhub.ai/user/okaris) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[okaris](https://clawhub.ai/user/okaris)
 
-## Use Case: <br>
-Developers, creators, and operators use this skill to produce AI-generated speech for voiceovers, audiobooks, podcasts, e-learning, accessibility, IVR, localization, and video narration. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Voice, text, portrait, video, or other media inputs may be sent to inference.sh during generation. <br>
-Mitigation: Do not submit private scripts, regulated data, unconsented voice samples, portraits, or videos unless the user has permission and accepts the provider's data handling terms. <br>
-Risk: The quick-start installer uses a remote shell script for CLI installation. <br>
-Mitigation: Install only if the user trusts inference.sh, or review and manually install the CLI with checksum verification before running it. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/okaris/ai-voice-cloning) <br>
-- [inference.sh](https://inference.sh) <br>
-- [inference.sh CLI installer](https://cli.inference.sh) <br>
-- [inference.sh CLI checksums](https://dist.inference.sh/cli/checksums.txt) <br>
+## Use Case:
 
+Developers, creators, and content teams use this skill to generate speech, narration, multi-voice dialogue, and voiceovers through inference.sh CLI examples and model guidance.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline bash and JSON code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides inference.sh CLI calls that may return generated audio or media URLs.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.5 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The installer and related skill commands rely on mutable remote code without independent verification.
+
+Mitigation: Use pinned, versioned artifacts where possible, review checksums before installing, and review related npx skill installs as separate dependencies.
+
+Risk: Voice-generation workflows may process sensitive text, private media, or likeness-related inputs through external services.
+
+Mitigation: Avoid submitting sensitive text or private media unless the provider's data handling, consent, and retention terms are acceptable for the intended use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/okaris/skills/ai-voice-cloning)
+- [inference.sh](https://inference.sh)
+- [inference.sh CLI installer](https://cli.inference.sh)
+- [inference.sh CLI checksums](https://dist.inference.sh/cli/checksums.txt)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash commands and JSON CLI inputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce CLI commands that generate audio, video voiceover, avatar, or media-merging outputs through external inference.sh applications.]
+
+## Skill Version(s):
+
+0.1.5 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

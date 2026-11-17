@@ -1,42 +1,53 @@
-## Description: <br>
-Composite stress index measuring systemic risk across all APEX modules. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Paid x402 endpoint: $0.007 USDC per call on Base. Returns composite stress index measuring systemic risk across all APEX modules.
 
-## Publisher: <br>
-[kynto2001-ctrl](https://clawhub.ai/user/kynto2001-ctrl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kynto2001-ctrl](https://clawhub.ai/user/kynto2001-ctrl)
 
-## Use Case: <br>
-External developers and agents use this skill to request a paid APEX Runner signal for monitoring systemic risk across APEX modules, reducing exposure when stress rises, and informing circuit-breaker decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires an agent environment to access an EVM wallet private key for automatic paid calls. <br>
-Mitigation: Use only a dedicated low-balance wallet and avoid exposing any primary wallet private key to the agent environment. <br>
-Risk: Each x402-authenticated call can spend USDC on Base mainnet and the skill does not describe built-in spending controls. <br>
-Mitigation: Confirm current costs before first use and apply external wallet, balance, or execution controls before allowing repeated calls. <br>
+## Use Case:
 
+Developers and agents use this paid endpoint to monitor systemic risk across APEX modules and consider it as one input to circuit-breaker decisions when stress rises.
 
-## Reference(s): <br>
-- [Agent Stress Index endpoint](https://apexrunner.ai/signals/agent-stress-index) <br>
-- [ClawHub skill page](https://clawhub.ai/kynto2001-ctrl/skills/agent-stress-index) <br>
-- [Publisher profile](https://clawhub.ai/user/kynto2001-ctrl) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Guidance] <br>
-**Output Format:** [Markdown guidance with Python example and JSON API response] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires EVM_PRIVATE_KEY for x402 payment authorization; endpoint responses include stress score, stress level, trend, anomalies, monitored agents, and timestamp.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The security evidence says the request may authorize up to $0.01 even though the stated discounted charge is $0.007; it does not establish that the higher amount is charged.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the payment authorization cap and current price before each use, and set a cap you are willing to authorize.
+
+## Reference(s):
+
+- [Agent Stress Index endpoint](https://apexrunner.ai/signals/agent-stress-index)
+- [Crowded Trade Detector](https://apexrunner.ai/signals/crowded-trade-detector)
+- [Portfolio Heat](https://apexrunner.ai/signals/portfolio-heat)
+- [APEX Runner](https://apexrunner.ai)
+- [ClawHub listing](https://clawhub.ai/kynto2001-ctrl/skills/agent-stress-index)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Analysis]
+
+**Output Format:** [JSON response]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Response fields include a stress score, stress level and trend, detected anomalies, monitored-agent count, and timestamp.]
+
+## Skill Version(s):
+
+1.0.2 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

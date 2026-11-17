@@ -1,43 +1,59 @@
-## Description: <br>
-Automates browser navigation, data extraction, screenshots, form filling, clicking, and web application interaction through a local browser CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automate web browser interactions via CLI for browsing websites, navigating pages, extracting data, taking screenshots, filling forms, clicking buttons, and interacting with web applications.
 
-## Publisher: <br>
-[nuradil](https://clawhub.ai/user/nuradil) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[nuradil](https://clawhub.ai/user/nuradil)
 
-## Use Case: <br>
-Developers and agent users can use this skill to control a local browser for web research, page navigation, structured extraction, screenshots, form filling, and other interactive web tasks. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can affect web accounts and local files through browser actions, downloads, screenshots, cookies, and cached browser data. <br>
-Mitigation: Use an isolated browser profile, confirm before submissions or account-changing clicks, and clear screenshots, downloads, cookies, and cached data after sensitive use. <br>
-Risk: The security review reports incomplete install provenance and weak guardrails. <br>
-Mitigation: Install only after independently verifying the CLI or source package and trusting the publisher. <br>
-Risk: Natural-language browser commands can expose credentials or perform unintended interactions. <br>
-Mitigation: Avoid real credentials in natural-language commands and review each action before execution on sensitive sites. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/nuradil/browser-automation-1) <br>
-- [Browser Automation CLI Reference](artifact/REFERENCE.md) <br>
-- [Browser Automation Examples](artifact/EXAMPLES.md) <br>
+## Use Case:
 
+External users and developers use this skill to control a local browser from an agent workflow for web navigation, form interaction, screenshots, downloads, and structured data extraction.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with browser CLI commands, JSON command results, and screenshot or download paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May rely on a persistent local browser profile and may create screenshots or downloaded files.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Broad web, local-network, persistent-session, download, and screenshot capabilities can expose sensitive data or reach unintended targets.
+
+Mitigation: Use a dedicated temporary browser profile, avoid internal or localhost targets unless explicitly intended, and delete profile, screenshot, and download artifacts after sensitive tasks.
+
+Risk: Authenticated browsing can persist saved passwords, cookies, and session state between runs.
+
+Mitigation: Avoid real credentials unless necessary and isolate browser sessions for sensitive work.
+
+Risk: Downloaded files and model-backed page extraction may expose or mishandle sensitive content.
+
+Mitigation: Treat downloads and extracted page data as untrusted, review outputs before reuse, and verify downloaded files before opening or processing them.
+
+## Reference(s):
+
+- [Browser Automation CLI Reference](artifact/REFERENCE.md)
+- [Browser Automation Examples](artifact/EXAMPLES.md)
+- [ClawHub skill page](https://clawhub.ai/nuradil/skills/browser-automation-1)
+- [ClawHub publisher profile](https://clawhub.ai/user/nuradil)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON command results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create browser screenshots, downloads, and persistent browser profile data during execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

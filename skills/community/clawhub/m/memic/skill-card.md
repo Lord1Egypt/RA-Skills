@@ -1,44 +1,59 @@
-## Description: <br>
-Memic helps agents integrate a managed context engineering platform for document ingestion, semantic and structured search, RAG, Text2SQL, hybrid search, metadata filtering, and grounded prompt context. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Context engineering platform for AI agents. Upload documents, search with semantic and structured queries, and inject relevant context into LLM prompts.
 
-## Publisher: <br>
-[punithg](https://clawhub.ai/user/punithg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[punithg](https://clawhub.ai/user/punithg)
 
-## Use Case: <br>
-Developers and agent builders use this skill to configure Memic, upload documents, search document and database content, and inject retrieved context into LLM prompts for grounded RAG or Text2SQL workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill instructs agents to install and use the Memic Python package. <br>
-Mitigation: Verify the package source and pin package versions before production use. <br>
-Risk: The skill relies on MEMIC_API_KEY and may access managed context data. <br>
-Mitigation: Use scoped API keys, store them outside prompts and source files, and rotate them when access changes. <br>
-Risk: Document uploads or database connectors could expose secrets, regulated data, or overbroad database access. <br>
-Mitigation: Avoid uploading sensitive data without approval, and use read-only least-privilege database credentials or non-production replicas for connectors. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/punithg/memic) <br>
-- [Memic Dashboard](https://app.memic.ai) <br>
-- [Memic Python Package](https://pypi.org/project/memic/) <br>
-- [Memic Python SDK](https://github.com/memic-ai/memic-python) <br>
+## Use Case:
 
+Developers and agent builders use this skill to integrate Memic document search, database search, RAG context retrieval, and setup guidance into AI agents, copilots, and applications that need grounded context.
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline Python and shell code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Memic API key and pip for SDK installation.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata; artifact frontmatter reports 0.3.0) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill encourages sending documents, database content, and retrieved RAG context to hosted services.
+
+Mitigation: Upload only approved or sanitized documents, avoid secrets and regulated data unless retention and access controls are approved, and use least-privilege read-only database credentials for connectors.
+
+Risk: Retrieved document text may carry prompt-injection content into downstream agents or LLM prompts.
+
+Mitigation: Keep retrieved document text out of system and developer prompts, treat it as untrusted user context, and review generated answers before sensitive use.
+
+Risk: The skill depends on the external memic Python package and a hosted API key.
+
+Mitigation: Use a virtual environment, pin and review the memic package version, and scope MEMIC_API_KEY access to the minimum required project and environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/punithg/skills/memic)
+- [Memic dashboard](https://app.memic.ai)
+- [Memic package on PyPI](https://pypi.org/project/memic/)
+- [Memic Python SDK repository](https://github.com/memic-ai/memic-python)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with Python and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes setup steps, API usage examples, troubleshooting guidance, and integration patterns for Memic-backed RAG and search.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata; artifact frontmatter: 0.3.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

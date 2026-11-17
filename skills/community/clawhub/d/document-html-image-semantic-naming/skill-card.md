@@ -1,41 +1,49 @@
-## Description: <br>
-文档转 HTML 时的图片语义命名技能。用于把 doc/docx/pdf 等文档导出的 `image1`、`image2` 这类无语义图片，结合文档上下文与图片内容重新命名，并同步更新 HTML 引用与映射清单。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A document-to-HTML image naming skill that renames generic exported image files using document context and visual content, then updates HTML references and filename mappings.
 
-## Publisher: <br>
-[tinglan803-coder](https://clawhub.ai/user/tinglan803-coder) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tinglan803-coder](https://clawhub.ai/user/tinglan803-coder)
 
-## Use Case: <br>
-External users, developers, and content operators use this skill to rename generic images exported from doc, docx, pdf, or HTML conversion workflows based on nearby document context and visible image content. It also guides updating HTML image references and preserving an original-to-final filename mapping. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Renaming exported image files can break HTML image links if references are not updated consistently. <br>
-Mitigation: Run the skill on a copy or keep backups, then verify every img src resolves after renaming. <br>
-Risk: Semantic image names may be inaccurate when document context and visible image content conflict. <br>
-Mitigation: Review the generated filename mapping and correct names where image content contradicts surrounding text. <br>
-Risk: The original relationship between exported filenames and final asset names can be lost. <br>
-Mitigation: Preserve an original-to-final filename mapping and avoid deleting the original export before validation. <br>
+## Use Case:
 
+Developers and content engineers use this skill when converting doc, docx, pdf, or similar documents to HTML and need generic exported image names replaced with useful semantic filenames. It guides agents to inspect nearby document context and image content, rename image assets, update HTML src references, and preserve a source-to-final mapping.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, configuration, shell commands] <br>
-**Output Format:** [Markdown guidance with suggested file outputs and optional shell-command workflow steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces human-readable renaming rules, updated HTML reference guidance, and an original-to-final image mapping; no network use or credentials are indicated by the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Semantic filenames may be inaccurate when document context is vague or image interpretation is uncertain.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the generated source-to-final mapping and spot-check updated HTML references before relying on the renamed assets.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tinglan803-coder/skills/document-html-image-semantic-naming)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with file edits, updated HTML references, and a source-to-final filename mapping]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May modify user-provided HTML and image asset filenames; review generated mappings because semantic names depend on context and visual interpretation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

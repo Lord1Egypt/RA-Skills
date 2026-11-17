@@ -1,49 +1,60 @@
-## Description: <br>
-叉车配件直播运营助手，支持直播话术生成、询盘整理、客户跟进、风险预警。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+叉车配件直播运营助手，支持直播话术生成、询盘整理、客户跟进、风险预警。关键词：叉车配件、直播带货、叉车轮胎、叉车电瓶、叉车滤芯、叉车油封、叉车链条、叉车货叉、询盘转化、客户跟进、直播话术
 
-## Publisher: <br>
-[zhengcookie](https://clawhub.ai/user/zhengcookie) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhengcookie](https://clawhub.ai/user/zhengcookie)
 
-## Use Case: <br>
-External forklift-parts sellers, livestream operators, and sales teams use this skill to draft product livestream scripts, organize customer inquiries, generate follow-up messages, and surface fitment and after-sales risks before quoting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated sales copy may contain unverified prices, stock status, fitment, warranty, shipping, promotion, or product claims. <br>
-Mitigation: Confirm these details manually before sharing them with customers or using them in a livestream. <br>
-Risk: Customer inquiry workflows collect contact details, equipment details, photos, usage conditions, and purchasing information. <br>
-Mitigation: Collect only necessary information with customer consent and store it in a controlled location. <br>
-Risk: Forklift parts such as batteries, tires, chains, forks, and seals can create fitment, installation, safety, and after-sales risks if misidentified. <br>
-Mitigation: Require model, tonnage, year, power type, nameplate or old-part photos, dimensions, and technician confirmation before quoting or recommending a part. <br>
+## Use Case:
 
+主播、运营人员和叉车配件销售团队可用该技能生成直播话术、整理客户询盘、准备跟进文案，并提醒人工确认价格、库存、适配、质保和发货等关键事项。
 
-## Reference(s): <br>
-- [Customer Inquiry Form](references/inquiry-forms/customer-inquiry.md) <br>
-- [Forklift Chain Livestream Script](references/live-scripts/chain.md) <br>
-- [Forklift Fork Livestream Script](references/live-scripts/fork.md) <br>
-- [Forklift Seal Livestream Script](references/live-scripts/seal.md) <br>
-- [Forklift Tire Livestream Script](references/live-scripts/tire.md) <br>
-- [Battery Risk Guide](references/risk-guides/battery.md) <br>
-- [Tire Risk Guide](references/risk-guides/tire.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/zhengcookie/forklift-live) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown with tables, scripts, checklists, and follow-up message templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs require human confirmation for prices, stock, fitment, warranty, shipping, promotions, and product claims.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Included sales scripts may contain unverified safety, compatibility, performance, OEM, warranty, price, stock, freight, or promotion claims.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and edit live-script references before use, and require human approval plus product documentation for those claims.
+
+Risk: Customer inquiry records may include personal or commercial contact information.
+
+Mitigation: Add clear privacy handling rules before collecting, storing, or sharing inquiry records.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/zhengcookie/skills/forklift-live)
+- [叉车配件客户询盘信息收集表](references/inquiry-forms/customer-inquiry.md)
+- [叉车链条直播话术包](references/live-scripts/chain.md)
+- [叉车货叉直播话术包](references/live-scripts/fork.md)
+- [叉车油封直播话术包](references/live-scripts/seal.md)
+- [叉车轮胎直播话术包](references/live-scripts/tire.md)
+- [叉车电瓶风险指南](references/risk-guides/battery.md)
+- [叉车轮胎风险指南](references/risk-guides/tire.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with Chinese-language scripts, tables, checklists, and follow-up templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes human-confirmation reminders for compatibility, price, stock, warranty, freight, and promotion claims.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

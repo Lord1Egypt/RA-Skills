@@ -1,41 +1,53 @@
-## Description: <br>
-Convert Markdown files to properly formatted Google Docs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert markdown files to properly formatted Google Docs.
 
-## Publisher: <br>
-[BrennerSpear](https://clawhub.ai/user/BrennerSpear) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[brennerspear](https://clawhub.ai/user/brennerspear)
 
-## Use Case: <br>
-Developers, writers, and operators use this skill to convert local Markdown documents into Google Docs while preserving headings, bold text, code blocks, lists, links, blockquotes, and tables. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The document may be created under the wrong Google account or Drive folder. <br>
-Mitigation: Confirm the authenticated gog account before use and pass --account and --parent when the destination matters. <br>
-Risk: Markdown content intended to stay local may be uploaded to Google Docs and Drive. <br>
-Mitigation: Convert only Markdown files intended for storage in the selected Google Workspace account. <br>
-Risk: An untrusted or over-permissioned gog installation could expose Google Workspace access. <br>
-Mitigation: Install gog only from a trusted source and review its Google permissions before authenticating. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [gog Google Workspace CLI](https://github.com/tychohq/gog) <br>
+## Use Case:
 
+Developers, researchers, and other document authors use this skill to convert local Markdown files into Google Docs while preserving common document formatting such as headings, bold text, code blocks, lists, links, blockquotes, and tables.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with bash commands and a Google Doc URL on successful conversion] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an authenticated gog CLI session and a Markdown input file.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Markdown file contents are uploaded to Google Docs and could be sent to the wrong Google account or Drive folder.
+
+Mitigation: Before execution, verify the selected Markdown file, Google account, document title, and Drive folder.
+
+Risk: Markdown without proper heading markers may convert with all content as body text.
+
+Mitigation: Check that headings use # through ###### syntax before running the conversion.
+
+## Reference(s):
+
+- [gog Google Workspace CLI](https://github.com/tychohq/gog)
+- [Md To Gdoc ClawHub Skill Page](https://clawhub.ai/brennerspear/skills/md-to-gdoc)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The script outputs the created Google Doc URL on success.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

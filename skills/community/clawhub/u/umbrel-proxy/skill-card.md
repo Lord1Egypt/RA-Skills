@@ -1,43 +1,60 @@
-## Description: <br>
-Efficiently manage and interact with Umbrel proxy services for Docker containers by discovering running services, mapping internal Docker IPs to accessible host ports, and updating OpenClaw config. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Efficiently manage and interact with Umbrel proxy services for Docker containers by discovering running services, mapping internal Docker IPs to accessible host ports, and updating OpenClaw config.
 
-## Publisher: <br>
-[gmoranxyz](https://clawhub.ai/user/gmoranxyz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gmoranxyz](https://clawhub.ai/user/gmoranxyz)
 
-## Use Case: <br>
-Developers and administrators managing Umbrel/OpenClaw hosts use this skill to discover Umbrel app proxy services, map accessible local ports, test connectivity, and update OpenClaw plugin configuration after restarts or setup changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sync commands can rewrite local OpenClaw plugin service URLs based on discovered or bundled mappings. <br>
-Mitigation: Run the skill only on an Umbrel/OpenClaw host you control, back up OpenClaw configuration first, and review proposed mappings before applying changes. <br>
-Risk: Broad Docker service discovery can expose local service topology and lead to incorrect mappings if the environment is unexpected. <br>
-Mitigation: Prefer discovery-only or connectivity-test commands first, and do not use mappings from untrusted sources. <br>
+## Use Case:
 
+Developers and operators managing OpenClaw with Umbrel use this skill to discover local Umbrel proxy endpoints, test service connectivity, and update plugin base URLs after service or container changes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gmoranxyz/umbrel-proxy) <br>
-- [Publisher profile](https://clawhub.ai/user/gmoranxyz) <br>
-- [README.md](README.md) <br>
-- [CHANGELOG.md](CHANGELOG.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and references to bundled scripts and configuration files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands may discover local Umbrel services and update OpenClaw configuration when executed by the operator.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: release evidence, package.json, CHANGELOG, target metadata; SKILL.md frontmatter says 1.0.0) <br>
+Risk: The config-updating workflow can turn service mapping data into OpenClaw configuration commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review mapping files before use, prefer dry-run mode where available, and back up OpenClaw configuration before applying updates.
+
+Risk: Running the sync scripts unattended could apply incorrect service URLs or stale mappings.
+
+Mitigation: Run the scripts interactively until command construction and write controls are reviewed, then verify connectivity and plugin behavior before restarting the gateway.
+
+Risk: Elevated privileges can increase the impact of unintended configuration changes.
+
+Mitigation: Avoid running the workflow as root unless required by the local Docker and OpenClaw setup.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gmoranxyz/skills/umbrel-proxy)
+- [Publisher profile](https://clawhub.ai/user/gmoranxyz)
+- [README](README.md)
+- [CHANGELOG](CHANGELOG.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands, local URLs, status summaries, and configuration values]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Scripts may generate or update local JSON mapping and connectivity result files when run.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence, package.json, and CHANGELOG; SKILL.md frontmatter says 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

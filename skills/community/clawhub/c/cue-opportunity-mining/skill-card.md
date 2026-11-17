@@ -1,47 +1,56 @@
-## Description: <br>
-Cue Opportunity Mining uses Cue to run deep research for opportunity-mining scenarios, cross-referencing public data sources and returning conclusions with source links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+用 Cue 跑“商机挖掘”场景的深度研究，扫描公开数据中的资金流动、资本动作和企业动态信号，产出带来源链接的商机清单、拜访简报和对公营销底稿。
 
-## Publisher: <br>
-[wangxiaoxu](https://clawhub.ai/user/wangxiaoxu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangxiaoxu](https://clawhub.ai/user/wangxiaoxu)
 
-## Use Case: <br>
-External users and business researchers use this skill to run Cue deep research for lead generation, company due diligence, industry-chain research, public-data opportunity analysis, and related business-development workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may fetch or update an external Cue runner before execution. <br>
-Mitigation: Review or pin the cue-skills runner source before use in controlled environments. <br>
-Risk: Business, company, or client queries are sent through online Cue research flows and may rely on a stored Cue API key. <br>
-Mitigation: Review sensitive queries and credential handling before approving a run. <br>
-Risk: Deep research runs consume Cue credits. <br>
-Mitigation: Require explicit confirmation before each credit-consuming run. <br>
-Risk: The output is based on public data and may be incomplete for diligence, legal, underwriting, or compliance decisions. <br>
-Mitigation: Treat reports as research inputs and verify conclusions against authoritative sources before acting on them. <br>
+## Use Case:
 
+External users and business development teams use this skill to run Cue research for corporate opportunity mining, including due diligence, industry-chain discovery, public-company events, deposit leads, customer monitoring, and visit briefs. The skill helps an agent select a live Cue template, confirm credit use, run the research, and return a sourced report without fabricating missing results.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wangxiaoxu/skills/cue-opportunity-mining) <br>
-- [Cue playbook API](https://cuecue.cn/api/playbook) <br>
-- [Cue runner source](https://github.com/sensedeal/cue-skills) <br>
-- [Cue runner mirror](https://gitee.com/sensedeal/cue-skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown research guidance and reports with source links, plus inline shell commands for runner setup when needed.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires explicit user confirmation before credit-consuming research runs; may return an empty result instead of fabricating content.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: The skill asks the agent to fetch and run mutable external Cue runner code that can read a local Cue API key and contact Cue services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or pin the Cue runner repository before first use, especially in sensitive environments.
+
+Risk: Running Cue deep research can consume user credits.
+
+Mitigation: Require explicit user confirmation for the selected template, subject, and credit use before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wangxiaoxu/skills/cue-opportunity-mining)
+- [Cue playbook API](https://cuecue.cn/api/playbook)
+- [Cue skills runner repository](https://github.com/sensedeal/cue-skills)
+- [Cue skills runner mirror](https://gitee.com/sensedeal/cue-skills)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown report with source links and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Cue API key access and explicit user confirmation before consuming credits; reports empty results without fabricating content.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

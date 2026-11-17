@@ -1,48 +1,64 @@
-## Description: <br>
-Routes Volcano Engine Serverless Flink requests to domain-specific subskills for CLI setup, project and configuration management, resources, connectors, job development, operations, monitoring, and diagnostics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A routing skill suite for Volcano Engine Serverless Flink that helps agents use the `volc_flink` CLI for tool setup, project and configuration management, Flink job development, operations, monitoring, diagnostics, and performance tuning.
 
-## Publisher: <br>
-[lvheyang](https://clawhub.ai/user/lvheyang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lvheyang](https://clawhub.ai/user/lvheyang)
 
-## Use Case: <br>
-Developers, SREs, and data platform engineers use this skill to administer Volcano Engine Serverless Flink through `volc_flink`, including setup, project selection, SQL, JAR, CDC job workflows, operations, monitoring, and diagnostics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Volcano Engine supported regions: cn-beijing, cn-shanghai, cn-guangzhou, and ap-singapore. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Credential-sensitive workflows may expose Volcano Engine access keys, secret keys, endpoints, or message payloads. <br>
-Mitigation: Use least-privilege credentials, prefer interactive or managed secret flows, redact sensitive output, and do not paste secrets into chat, SQL, YAML, or command examples. <br>
-Risk: The skill can guide create, update, delete, stop, restart, rescale, restore, and publish actions that affect running Flink resources. <br>
-Mitigation: Review each proposed command, resolve the exact target object, require explicit confirmation before state changes, and verify the result after execution. <br>
-Risk: Kafka sampling or log inspection may reveal confidential business data. <br>
-Mitigation: Avoid raw payload output unless the user has confirmed the data is safe to display, and summarize or redact sensitive values where possible. <br>
+## Use Case:
 
+Developers and platform engineers use this skill to route concrete Volcano Engine Flink requests to focused subskills for setup, authentication, resource inspection, SQL/JAR/CDC/batch job work, operations, savepoints, monitoring, diagnostics, and tuning.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lvheyang/volc-flink-skill) <br>
-- [Integrated skill overview](artifact/README.md) <br>
-- [Root routing skill](artifact/SKILL.md) <br>
-- [Security conventions](artifact/COMMON_SECURITY.md) <br>
-- [Mutation conventions](artifact/COMMON_MUTATION.md) <br>
-- [CDC volc_flink command reference](artifact/skills/flink-cdc/references/volc_flink_commands.md) <br>
-- [SQL volc_flink command reference](artifact/skills/flink-sql/references/volc_flink_commands.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands, SQL, YAML, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose read-only checks, change plans, and guarded execution steps that require user confirmation for state-changing operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata) <br>
+Risk: The skill can guide state-changing cloud operations such as create, delete, publish, start, stop, restart, rescale, endpoint, resource-pool, and default-configuration changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation with the target object, target ID, planned change, and expected operational impact before executing any state-changing workflow.
+
+Risk: The skill is credential-adjacent because it works with local `volc_flink` profiles and optional Volcano Engine access-key environment variables.
+
+Mitigation: Use interactive login or enterprise secret management, avoid command-line password or AK/SK examples, redact sensitive values, and do not print full credential-bearing files.
+
+Risk: Connector and dependency setup can affect data exposure, transport security, or package supply-chain trust.
+
+Mitigation: Prefer TLS-backed Kafka settings and secure secret entry, and pin or verify the `volc-flink-cli` package source where possible.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lvheyang/skills/volc-flink-skill)
+- [Artifact README](artifact/README.md)
+- [Common security conventions](artifact/COMMON_SECURITY.md)
+- [Common mutation conventions](artifact/COMMON_MUTATION.md)
+- [Flink CDC overview reference](artifact/skills/flink-cdc/references/overview.md)
+- [Flink CDC command reference](artifact/skills/flink-cdc/references/volc_flink_commands.md)
+- [Flink SQL connector reference](artifact/skills/flink-sql/references/connectors.md)
+- [Flink SQL command reference](artifact/skills/flink-sql/references/volc_flink_commands.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown responses with inline shell commands, code blocks, configuration snippets, and occasional JSON or YAML examples.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include risk confirmations, redacted status summaries, and generated SQL or CDC configuration templates.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

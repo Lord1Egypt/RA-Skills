@@ -1,40 +1,53 @@
-## Description: <br>
-Verify Polymarket MR-V4 trading system deployment health after strategy or configuration updates by running a comprehensive local check script and reporting results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Verify Polymarket MR-V4 trading system deployment health by running a local check script that reports process, lock, config, trade activity, isolation, and collector status.
 
-## Publisher: <br>
-[bobbyw1028](https://clawhub.ai/user/bobbyw1028) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bobbyw1028](https://clawhub.ai/user/bobbyw1028)
 
-## Use Case: <br>
-Developers and operators maintaining the local Polymarket MR-V4 trading deployment use this skill to check process counts, duplicate traders, lock files, configuration values, trade activity, process isolation, and data collector health after deployment changes or restarts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The verifier is tailored to a specific local Polymarket MR-V4 deployment and hardcoded local paths. <br>
-Mitigation: Install and run it only for the intended deployment, and review the /Users/0xbobby paths before execution. <br>
-Risk: The checks inspect local processes, configuration files, PID files, and trading logs that may expose operational details. <br>
-Mitigation: Run it in a trusted local shell and avoid sharing raw output unless sensitive deployment details have been reviewed. <br>
+## Use Case:
 
+Developers and operators use this skill after Polymarket MR-V4 strategy deployments, config changes, process restarts, or gateway restarts to check local trading-system health and receive pass, warning, and failure results.
 
-## Reference(s): <br>
-- [Polymarket Verify on ClawHub](https://clawhub.ai/bobbyw1028/polymarket-verify) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Text, Guidance] <br>
-**Output Format:** [Markdown guidance with an inline bash command and terminal pass, warning, and fail output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The verifier exits with the number of failed checks and prints a concise status summary.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill runs a local shell script that inspects process state and trading-system config and log files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only in an authorized Polymarket workspace where those local checks are expected.
+
+Risk: The verification script depends on hardcoded local paths and expected deployment values.
+
+Mitigation: Review the paths and expected values before use so results reflect the intended deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bobbyw1028/skills/polymarket-verify)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell command and pass, warning, and failure status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The local script exits with the number of failed checks and prints a summary.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

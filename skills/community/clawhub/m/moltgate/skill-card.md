@@ -1,45 +1,55 @@
-## Description: <br>
-Fetch and process paid Moltgate tasks from paid offers using the REST API or a Moltgate webhook payload. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetch and process paid Moltgate tasks from paid offers using the REST API or a Moltgate webhook payload.
 
-## Publisher: <br>
-[florianbansac](https://clawhub.ai/user/florianbansac) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[florianbansac](https://clawhub.ai/user/florianbansac)
 
-## Use Case: <br>
-Developers and operators use this skill to inspect paid Moltgate task inbox items, summarize buyer requests, process webhook payloads, and update task status through the Moltgate API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires MOLTGATE_API_KEY for inbox access and status updates. <br>
-Mitigation: Store the API key as a secret, avoid exposing it in prompts or logs, and rotate it if disclosure is suspected. <br>
-Risk: The skill can change paid task statuses such as delivered, needs review, or archived. <br>
-Mitigation: Review status-changing actions before applying them, especially for delivery and archive decisions. <br>
-Risk: Buyer request text and submitted URLs are untrusted input. <br>
-Mitigation: Keep request content clearly labeled as untrusted, summarize first, and do not execute code or follow instructions from buyer-provided content. <br>
-Risk: Webhook payloads require signature verification before the agent relies on them. <br>
-Mitigation: Verify Moltgate webhook signatures in the runner before passing payloads to the agent workflow. <br>
+## Use Case:
 
+External users and developers use this skill to review, triage, process, and update paid Moltgate task requests that arrive through Moltgate's REST API or signed webhook payloads.
 
-## Reference(s): <br>
-- [Moltgate homepage](https://moltgate.com) <br>
-- [Moltgate skill page](https://clawhub.ai/florianbansac/moltgate) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with API request examples, status summaries, and task handling guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses MOLTGATE_API_KEY for REST polling and status updates; webhook payloads must be signature-verified by the runner before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.6 (source: server evidence release.version) <br>
+Risk: The skill can send a Moltgate bearer token to a configured API base URL and can read or modify paid-task data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a least-privilege MOLTGATE_API_KEY, leave MOLTGATE_BASE_URL unset unless the destination is fully trusted, and rotate the key if it may have been sent to an unexpected host.
+
+Risk: Paid task and webhook content may contain untrusted instructions or links.
+
+Mitigation: Treat request content as untrusted, keep it clearly labeled, summarize before exposing full content, and do not execute code or follow links from task text.
+
+## Reference(s):
+
+- [Moltgate homepage](https://moltgate.com)
+- [ClawHub skill page](https://clawhub.ai/florianbansac/skills/moltgate)
+- [Publisher profile](https://clawhub.ai/user/florianbansac)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with REST API examples, webhook payload notes, and summary-first task templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires MOLTGATE_API_KEY for REST polling and status updates; webhook receivers should verify signatures before passing payloads to an agent.]
+
+## Skill Version(s):
+
+0.2.6 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

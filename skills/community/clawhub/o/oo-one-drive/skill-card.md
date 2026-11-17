@@ -1,44 +1,60 @@
-## Description: <br>
-OneDrive lets an agent operate a connected OneDrive account through OOMOL's one_drive connector for drive metadata, item lookup, folder listing, search, file transfers, and controlled write operations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OneDrive (microsoft.com). Use this skill for ANY OneDrive request — reading, creating, updating, and deleting data. Whenever a task involves OneDrive, use this skill instead of calling the API directly.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and external users use this skill to let an agent read, search, transfer, upload, rename, move, update, and delete files in a connected OneDrive account with confirmation for state-changing actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can access files and folders through a connected OneDrive account. <br>
-Mitigation: Install it only when the agent should operate OneDrive, and provide explicit file paths, item IDs, and intended actions. <br>
-Risk: Write and destructive actions can upload, overwrite, move, rename, update, or delete OneDrive content. <br>
-Mitigation: Require user confirmation before uploads, overwrites, moves, deletes, sharing changes, or other state-changing operations. <br>
-Risk: Broad activation wording could cause the skill to be selected for more OneDrive-related requests than intended. <br>
-Mitigation: Use the skill only for requests that require OneDrive account operations and confirm the exact operation before changing state. <br>
+## Use Case:
 
+People using an OOMOL-connected OneDrive account use this skill to search, inspect, download, upload, and manage OneDrive files and folders.
 
-## Reference(s): <br>
-- [ClawHub OneDrive skill](https://clawhub.ai/oomol/oo-one-drive) <br>
-- [OOMOL oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [OneDrive](https://www.microsoft.com/microsoft-365/onedrive/online-cloud-storage) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API Calls, JSON, Files, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands use the oo CLI and return JSON responses; file download actions can produce transferred files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: release evidence and SKILL.md frontmatter) <br>
+Risk: Setup runs downloaded CLI code, and the remote installers and installed CLI version have not been verified.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and approve the CLI installation separately before enabling the skill.
+
+Risk: Startup synchronization can introduce persistent skills across other agents without explaining those effects.
+
+Mitigation: Set OO_SKILLS_SYNC_DISABLED=1 to prevent startup skill synchronization.
+
+Risk: OneDrive writes and deletions can change or remove user data.
+
+Mitigation: Review OneDrive permissions and retain confirmation for the exact write or deletion.
+
+## Reference(s):
+
+- [OneDrive](https://www.microsoft.com/microsoft-365/onedrive/online-cloud-storage)
+- [OneDrive and Microsoft Graph](https://learn.microsoft.com/en-us/graph/onedrive-concept-overview)
+- [oo CLI](https://github.com/oomol-lab/oo-cli)
+- [oo CLI installation guide](https://cli.oomol.com/install-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Files, Text]
+
+**Output Format:** [JSON action results and file content or metadata returned through the oo CLI]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Actions can read, create, update, download, upload, or delete OneDrive items.]
+
+## Skill Version(s):
+
+1.0.7 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

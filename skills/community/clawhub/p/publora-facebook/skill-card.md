@@ -1,43 +1,64 @@
-## Description: <br>
-Post or schedule content to Facebook Pages using the Publora API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Post or schedule content to Facebook Pages using the Publora API.
 
-## Publisher: <br>
-[sergebulaev](https://clawhub.ai/user/sergebulaev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sergebulaev](https://clawhub.ai/user/sergebulaev)
 
-## Use Case: <br>
-Developers and social media operators use this skill to have an agent prepare guidance and API examples for publishing or scheduling Facebook Page posts through Publora. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Publora API keys could be exposed or misused if pasted into shared conversations, logs, or generated files. <br>
-Mitigation: Keep API keys private, avoid storing secrets in generated artifacts, and rotate or revoke access when the integration is no longer needed. <br>
-Risk: Incorrect Page IDs, media choices, or scheduled times could publish content to the wrong destination or at the wrong time. <br>
-Mitigation: Verify the Facebook Page platform ID, post content, media constraints, and scheduled timestamp before any API call is made. <br>
-Risk: Publora or Facebook token state can cause posting failures after permission changes or token refresh problems. <br>
-Mitigation: Reconnect the Facebook Page in the dashboard and confirm permissions before retrying failed publishing workflows. <br>
+## Use Case:
 
+External users and developers use this skill to have an agent draft Publora API requests and guidance for publishing or scheduling Facebook Page posts, including text, images, Reels, and scheduled posts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sergebulaev/publora-facebook) <br>
-- [Publora API base URL](https://api.publora.com/api/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, API calls, configuration] <br>
-**Output Format:** [Markdown with JavaScript fetch examples and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a private Publora API key and Facebook Page platform ID supplied by the user.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.1 (source: server release metadata) <br>
+Risk: The skill can guide an agent toward Publora API calls that publish public Facebook Page content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the final post text, media, destination Page, and scheduled time before sending publish or schedule requests.
+
+Risk: Publora API keys and Facebook Page IDs are sensitive operational credentials.
+
+Mitigation: Store API keys securely, avoid exposing them in shared transcripts or code, and limit access to users authorized to manage the Page.
+
+Risk: Facebook Page tokens may stop refreshing after permission changes, causing posting failures.
+
+Mitigation: Reconnect the Page in the Publora dashboard when posts fail unexpectedly or after permission changes.
+
+Risk: Unsupported media combinations or media exceeding platform limits can fail at publish time.
+
+Mitigation: Validate media type, size, video duration, Reels limits, and mixed-media constraints before creating or uploading a post.
+
+## Reference(s):
+
+- [Publora API base URL](https://api.publora.com/api/v1)
+- [Publora create-post endpoint](https://api.publora.com/api/v1/create-post)
+- [Publora get-upload-url endpoint](https://api.publora.com/api/v1/get-upload-url)
+- [ClawHub skill page](https://clawhub.ai/sergebulaev/skills/publora-facebook)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, API Calls, Configuration]
+
+**Output Format:** [Markdown with JavaScript fetch examples and JSON request bodies]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Publora platform IDs, scheduled times, content limits, media constraints, and authentication header guidance.]
+
+## Skill Version(s):
+
+1.2.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

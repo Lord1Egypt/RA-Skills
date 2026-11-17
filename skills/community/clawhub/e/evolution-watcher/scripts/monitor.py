@@ -26,23 +26,6 @@ except ImportError as e:
     print(f"⚠️  无法导入 AdapterAutoFixer: {e}")
     AdapterAutoFixer = None
 
-# 导入第一阶段增强模块
-try:
-    from diff_analyzer import DiffAnalyzer, ConflictDetector
-except ImportError as e:
-    print(f"⚠️  无法导入 DiffAnalyzer/ConflictDetector: {e}")
-    DiffAnalyzer = None
-    ConflictDetector = None
-
-# 导入邮件发送模块
-try:
-    from email_sender import send_report
-    EMAIL_SENDER_AVAILABLE = True
-except ImportError as e:
-    print(f"⚠️  无法导入 email_sender: {e}")
-    EMAIL_SENDER_AVAILABLE = False
-    send_report = None
-
 class ImpactAssessor:
     """插件更新影响评估器"""
     
@@ -54,14 +37,6 @@ class ImpactAssessor:
         """
         self.registry_path = registry_path or "/root/.openclaw/workspace/skills/star-plugin-upgrader/star_architecture_registry.json"
         self.registry = self.load_registry()
-        
-        # 初始化第一阶段增强模块
-        self.diff_analyzer = None
-        self.conflict_detector = None
-        if DiffAnalyzer is not None:
-            self.diff_analyzer = DiffAnalyzer()
-        if ConflictDetector is not None:
-            self.conflict_detector = ConflictDetector(self.registry_path)
     
     def load_registry(self) -> dict:
         """加载星型架构注册表"""
@@ -171,185 +146,14 @@ class ImpactAssessor:
         # 6. 置信度 (基于版本号解析的可靠性)
         confidence = 1.0 if current_semver != (0, 0, 0) and latest_semver != (0, 0, 0) else 0.5
         
-        # 7. 代码变更集分析（如果可用）
-        diff_analysis = None
-        if self.diff_analyzer:
-            try:
-                diff_analysis = self.diff_analyzer.analyze(plugin_name, current_version, latest_version)
-                if diff_analysis.get("available"):
-                    factors.append(f"代码变更: {diff_analysis.get('summary', '未知')}")
-                    if diff_analysis.get("breaking_changes"):
-                        factors.append(f"破坏性变更: {len(diff_analysis['breaking_changes'])} 处")
-                        risk_level = "high"  # 升级为高风险
-                else:
-                    factors.append("代码变更集: 无法获取")
-            except Exception as e:
-                factors.append(f"代码变更集分析失败: {e}")
-        
         return {
             "risk_level": risk_level,
             "change_type": change_type,
             "recommendation": recommendation,
             "confidence": confidence,
-            "factors": factors,
-            "diff_analysis": diff_analysis
+            "factors": factors
         }
 
-
-    def detect_conflicts(self, plugin_name: str, latest_version: str, dependencies: list) -> dict:
-        """检测插件升级的潜在冲突
-        
-        Args:
-            plugin_name: 插件名称
-            latest_version: 最新版本号
-            dependencies: 插件依赖列表
-            
-        Returns:
-            冲突检测结果
-        """
-        conflicts = []
-        
-        # 检查依赖版本冲突
-        for dep in dependencies:
-            # 简单冲突检测逻辑
-            # 实际应检查依赖版本范围是否兼容
-            if ">=" in dep or "<=" in dep:
-                # 假设存在版本冲突可能性
-                conflicts.append({
-                    "type": "dependency_version",
-                    "dependency": dep,
-                    "message": f"依赖版本约束可能与其他插件冲突: {dep}",
-                    "severity": "medium"
-                })
-        
-        # 检查星型架构中的角色冲突
-        if plugin_name in ["memory-sync-enhanced", "self-improving", "ontology"]:
-            conflicts.append({
-                "type": "architectural_role",
-                "message": f"插件 {plugin_name} 是星型架构核心组件，升级需谨慎",
-                "severity": "high"
-            })
-        
-        return {
-            "has_conflicts": len(conflicts) > 0,
-            "conflicts": conflicts,
-            "conflict_count": len(conflicts),
-            "severity": max([c.get("severity", "low") for c in conflicts], default="low")
-        }
-    
-    def detect_batch_conflicts(self, upgrades: List[Dict[str, str]]) -> Dict[str, Any]:
-        """批量检测插件升级冲突
-        
-        Args:
-            upgrades: 列表，每个元素为 {"plugin": "插件名", "from": "旧版本", "to": "新版本"}
-            
-        Returns:
-            冲突检测结果
-        """
-        if self.conflict_detector:
-            return self.conflict_detector.detect_conflicts(upgrades)
-        else:
-            return {
-                "has_conflicts": False,
-                "conflicts": [],
-                "recommendations": ["冲突检测器不可用"]
-            }
-    
-    def quantify_benefits(self, plugin_name: str, current_version: str, latest_version: str, changelog: dict = None) -> dict:
-        """量化升级收益
-        
-        Args:
-            plugin_name: 插件名称
-            current_version: 当前版本
-            latest_version: 最新版本
-            changelog: 变更日志内容
-            
-        Returns:
-            收益量化结果
-        """
-        benefits = []
-        total_score = 0.0
-        
-        # 解析版本号
-        current = self.parse_semver(current_version)
-        latest = self.parse_semver(latest_version)
-        
-        # 版本类型收益
-        if current[0] < latest[0]:
-            benefits.append({"type": "major", "description": "主要版本更新，可能包含重大改进", "score": 0.8})
-            total_score += 0.8
-        elif current[1] < latest[1]:
-            benefits.append({"type": "minor", "description": "次要版本更新，可能包含新功能", "score": 0.5})
-            total_score += 0.5
-        elif current[2] < latest[2]:
-            benefits.append({"type": "patch", "description": "补丁版本更新，错误修复与性能优化", "score": 0.3})
-            total_score += 0.3
-        
-        # 安全级别收益
-        safety_level = self.get_plugin_safety_level(plugin_name)
-        if safety_level == "low":
-            benefits.append({"type": "safety", "description": "低安全风险插件，升级风险小", "score": 0.2})
-            total_score += 0.2
-        
-        # 变更日志关键词收益
-        if changelog:
-            change_text = str(changelog).lower()
-            keywords = {
-                "feat": 0.3, "feature": 0.3, "新增": 0.3,
-                "fix": 0.2, "bug": 0.2, "修复": 0.2,
-                "perf": 0.4, "performance": 0.4, "性能": 0.4,
-                "security": 0.5, "安全": 0.5
-            }
-            for keyword, score in keywords.items():
-                if keyword in change_text:
-                    benefits.append({"type": "keyword", "keyword": keyword, "description": f"变更日志包含'{keyword}'", "score": score})
-                    total_score += score
-        
-        # 归一化分数到 0-1 范围
-        normalized_score = min(1.0, total_score)
-        
-        return {
-            "total_score": normalized_score,
-            "benefits": benefits,
-            "benefit_count": len(benefits),
-            "recommendation": "强烈建议升级" if normalized_score > 0.7 else "建议升级" if normalized_score > 0.4 else "可考虑升级"
-        }
-    
-    def generate_enhanced_report(self, plugin_name: str, current_version: str, latest_version: str, impact: dict, conflicts: dict, benefits: dict) -> str:
-        """生成增强升级报告
-        
-        Returns:
-            增强报告文本
-        """
-        report_lines = []
-        report_lines.append(f"🔍 **{plugin_name} 升级分析报告**")
-        report_lines.append(f"   当前版本: {current_version}")
-        report_lines.append(f"   最新版本: {latest_version}")
-        report_lines.append(f"   变更类型: {impact.get('change_type', 'unknown')}")
-        report_lines.append(f"   风险等级: {impact.get('risk_level', 'medium')}")
-        report_lines.append("")
-        
-        # 冲突部分
-        if conflicts.get('has_conflicts'):
-            report_lines.append("⚠️ **冲突检测**")
-            for conflict in conflicts.get('conflicts', [])[:3]:
-                report_lines.append(f"   • [{conflict.get('severity', 'medium').upper()}] {conflict.get('message')}")
-        else:
-            report_lines.append("✅ **无检测到冲突**")
-        
-        # 收益部分
-        report_lines.append("")
-        report_lines.append(f"📈 **升级收益评分: {benefits.get('total_score', 0):.2f}/1.0**")
-        for benefit in benefits.get('benefits', [])[:3]:
-            report_lines.append(f"   • {benefit.get('description')} (+{benefit.get('score', 0):.1f})")
-        
-        # 建议部分
-        report_lines.append("")
-        report_lines.append("💡 **升级建议**")
-        report_lines.append(f"   {impact.get('recommendation', '无建议')}")
-        report_lines.append(f"   收益建议: {benefits.get('recommendation', '无建议')}")
-        
-        return "\n".join(report_lines)
 class ChangelogParser:
     """变更日志解析器"""
     
@@ -2714,46 +2518,6 @@ class ClawHubMonitor:
             f.write(md_report)
         print(f"📋 Markdown 报告已保存: {md_file}")
         
-        # 增强报告（冲突检测 + 收益量化）
-        if self.updates:
-            enhanced_report_lines = []
-            enhanced_report_lines.append("# 插件升级增强报告")
-            enhanced_report_lines.append(f"**检查时间**: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
-            enhanced_report_lines.append("")
-            
-            for plugin in self.updates:
-                if plugin["needs_update"]:
-                    # 检测冲突
-                    dependencies = plugin.get("dependencies", [])
-                    conflicts = self.detect_conflicts(plugin["name"], plugin["latest_version"], dependencies)
-                    
-                    # 量化收益
-                    benefits = self.quantify_benefits(
-                        plugin["name"], 
-                        plugin["current_version"], 
-                        plugin["latest_version"],
-                        plugin.get("changelog", {})
-                    )
-                    
-                    # 生成增强报告段落
-                    enhanced_report = self.generate_enhanced_report(
-                        plugin["name"],
-                        plugin["current_version"],
-                        plugin["latest_version"],
-                        plugin.get("impact", {}),
-                        conflicts,
-                        benefits
-                    )
-                    enhanced_report_lines.append(enhanced_report)
-                    enhanced_report_lines.append("---")
-            
-            if len(enhanced_report_lines) > 4:  # 除了标题行外还有内容
-                enhanced_report_content = "\n".join(enhanced_report_lines)
-                enhanced_file = self.report_dir / f"updates_enhanced_{self.timestamp}.md"
-                with open(enhanced_file, 'w', encoding='utf-8') as f:
-                    f.write(enhanced_report_content)
-                print(f"📊 增强报告已保存: {enhanced_file}")
-        
         # JSON 日志
         log_entry = {
             "timestamp": datetime.now().isoformat(),
@@ -2803,23 +2567,6 @@ class ClawHubMonitor:
         }
         with open(summary_file, 'w', encoding='utf-8') as f:
             json.dump(summary, f, indent=2)
-        
-        # 发送邮件报告（如果启用且有待更新插件）
-        outdated_count = sum(1 for p in self.updates if p["needs_update"])
-        if outdated_count > 0 and EMAIL_SENDER_AVAILABLE and send_report:
-            try:
-                subject = f"evolution-watcher 报告: {outdated_count} 个插件需要更新"
-                # 获取Markdown报告内容
-                md_report = self.generate_markdown_report()
-                success = send_report(subject, md_report)
-                if success:
-                    print(f"📧 报告邮件已发送至 johnson007.ye@gmail.com")
-                else:
-                    print(f"⚠️  邮件发送失败，请检查邮箱配置")
-            except Exception as e:
-                print(f"⚠️  邮件发送异常: {e}")
-        elif outdated_count > 0 and not EMAIL_SENDER_AVAILABLE:
-            print(f"ℹ️  有待更新插件但邮件发送模块不可用，请配置邮箱功能")
     
     def cleanup_old_reports(self):
         """清理旧报告文件"""

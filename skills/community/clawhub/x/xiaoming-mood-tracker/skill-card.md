@@ -1,37 +1,57 @@
-## Description: <br>
-Mood Tracker helps users record moods, analyze patterns, identify triggers, and get general improvement suggestions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Mood Tracker helps agents record moods, analyze patterns, identify triggers, generate statistics, and suggest mood-improvement tips.
 
-## Publisher: <br>
-[kaising-openclaw1](https://clawhub.ai/user/kaising-openclaw1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kaising-openclaw1](https://clawhub.ai/user/kaising-openclaw1)
 
-## Use Case: <br>
-External users can use this skill to track mood entries, review mood patterns over time, and receive general suggestions for improving mood awareness. It is suitable for personal reflection workflows rather than clinical diagnosis or treatment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security scan reports maintainer tooling behavior that can run a nested Codex review with broad filesystem access and bypassed approval prompts. <br>
-Mitigation: Install only if comfortable with that access model, and prefer running the autoreview helper with --no-yolo or AUTOREVIEW_YOLO=0 unless broad local access is intentional. <br>
+## Use Case:
 
+External users and agents use this skill to track mood entries, review mood patterns over time, identify triggers, view statistics, and request improvement suggestions.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Analysis, Shell commands] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference user-provided mood labels, notes, triggers, and time windows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release and artifact _meta.json) <br>
+Risk: Mood notes can contain sensitive personal information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid recording unnecessary personal details and review how mood data is stored or shared before use.
+
+Risk: Installation guidance uses an unpinned latest-version command.
+
+Mitigation: Install only from a trusted ClawHub/npm source and pin the installer version when available.
+
+Risk: Documentation is not explicit about language support or why curl is required.
+
+Mitigation: Confirm Chinese-language expectations and runtime prerequisites before deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/kaising-openclaw1/skills/xiaoming-mood-tracker)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown responses with CLI command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language mood tracking guidance; no embedded executable code in the artifact evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata and artifact/_meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

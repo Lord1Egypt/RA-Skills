@@ -1,46 +1,65 @@
-## Description: <br>
-Guides agents through diagnosing acpx bridge timeouts and configuring OpenClaw Feishu multi-account setups. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides developers through troubleshooting acpx bridge timeouts and OpenClaw Feishu multi-account setup, including token files, acpx configuration, version updates, validation commands, and known routing limits.
 
-## Publisher: <br>
-[roger0808](https://clawhub.ai/user/roger0808) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[roger0808](https://clawhub.ai/user/roger0808)
 
-## Use Case: <br>
-Developers and operators use this skill to troubleshoot acpx and OpenClaw ACP bridge failures, verify gateway token setup, repair local acpx configuration, update acpx, and configure Feishu accounts without direct JSON edits. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Gateway tokens, Feishu app secrets, or diagnostic output could expose credentials. <br>
-Mitigation: Use placeholder secrets, restrict token-file permissions, protect Feishu credentials, and avoid sharing diagnostic output. <br>
-Risk: Repair scripts and guidance can overwrite local acpx or OpenClaw configuration. <br>
-Mitigation: Back up ~/.acpx/config.json and ~/.openclaw files before applying changes. <br>
-Risk: Restarting Gateway or globally updating acpx can interrupt active work. <br>
-Mitigation: Confirm the maintenance window and impact before running gateway restarts or npm global updates. <br>
+## Use Case:
 
+Developers and operators use this skill to diagnose OpenClaw/acpx bridge failures, repair local acpx and gateway token configuration, and configure Feishu multi-account routing with the recommended OpenClaw commands. It is especially relevant when connections hang during initialize, WebSocket 1005 errors appear, or bindings do not route as expected.
 
-## Reference(s): <br>
-- [ACP Protocol Troubleshooting Reference](references/acp-协议故障排查.md) <br>
-- [acpx Configuration Reference](references/acpx-配置参考.md) <br>
-- [OpenClaw Feishu Multi-Account Configuration Reference](references/openclaw-飞书多账户配置.md) <br>
-- [OpenClaw ACP CLI Documentation](https://docs.openclaw.ai/cli/acp) <br>
-- [OpenClaw GitHub Repository](https://github.com/openclaw/openclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash and JSON code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose local file edits, package updates, diagnostic commands, and service restarts that should be reviewed before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: A sample gateway token appears in the skill text and should be treated as exposed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not reuse the shown token; rotate any matching token and store real token files with owner-only permissions.
+
+Risk: Feishu app secrets may be exposed through shell history or process listings when passed as command-line arguments.
+
+Mitigation: Prefer secret-safe input methods where available and redact app secrets from logs, diagnostics, tickets, and shared terminal output.
+
+Risk: Companion scripts can overwrite local acpx configuration and restart OpenClaw gateway services.
+
+Mitigation: Review scripts before execution, back up affected configuration files, and run them only in the intended user environment.
+
+Risk: The guidance recommends a global acpx@latest upgrade, which changes local tooling supply chain state.
+
+Mitigation: Pin or review the acpx version before upgrading when reproducibility or change control is required.
+
+## Reference(s):
+
+- [ACP protocol troubleshooting reference](references/acp-协议故障排查.md)
+- [acpx configuration reference](references/acpx-配置参考.md)
+- [OpenClaw Feishu multi-account configuration reference](references/openclaw-飞书多账户配置.md)
+- [OpenClaw ACP CLI documentation](https://docs.openclaw.ai/cli/acp)
+- [OpenClaw GitHub repository](https://github.com/openclaw/openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference companion shell scripts that inspect or modify local OpenClaw and acpx configuration.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

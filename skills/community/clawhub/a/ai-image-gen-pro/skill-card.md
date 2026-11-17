@@ -1,47 +1,62 @@
-## Description: <br>
-Generate and edit AI images with FLUX, Gemini, Grok, Seedream, Reve, and other inference.sh models from the infsh CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate AI images with 50+ models through the inference.sh CLI, including text-to-image, image editing, inpainting, upscaling, LoRA, and text rendering workflows.
 
-## Publisher: <br>
-[bingze00000](https://clawhub.ai/user/bingze00000) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bingze00000](https://clawhub.ai/user/bingze00000)
 
-## Use Case: <br>
-External users and developers use this skill to run inference.sh image models for AI art, product mockups, concept art, social media graphics, marketing visuals, illustrations, image editing, upscaling, and text rendering. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Remote image services may receive prompts, input images, image URLs, and other submitted content. <br>
-Mitigation: Avoid submitting confidential prompts, private images, or sensitive URLs unless sharing them with the remote model provider is intended. <br>
-Risk: The skill depends on the inference.sh CLI and its login flow. <br>
-Mitigation: Confirm the CLI install source is trusted and understand where infsh login stores credentials before use. <br>
-Risk: Paid image models can incur usage costs. <br>
-Mitigation: Check pricing before running paid models. <br>
+## Use Case:
 
+External users, developers, and creative teams use this skill to generate or edit images, create product mockups, produce concept art, upscale media, and test image models through inference.sh CLI commands.
 
-## Reference(s): <br>
-- [ClawHub Release Page](https://clawhub.ai/bingze00000/ai-image-gen-pro) <br>
-- [inference.sh](https://inference.sh) <br>
-- [inference.sh CLI Install Instructions](https://raw.githubusercontent.com/inference-sh/skills/refs/heads/main/cli-install.md) <br>
-- [Running Apps](https://inference.sh/docs/apps/running) <br>
-- [Image Generation Example](https://inference.sh/docs/examples/image-generation) <br>
-- [Apps Overview](https://inference.sh/docs/apps/overview) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown instructions with bash command examples and JSON CLI inputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the inference.sh CLI and login; generated images, provider behavior, and costs depend on the selected remote model.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and artifact metadata) <br>
+Risk: Prompts and image URLs may be sent to inference.sh or model providers during image generation and editing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid submitting confidential media, proprietary prompts, or regulated data unless the destination service and use case are approved.
+
+Risk: Related-skill examples use unpinned npx install commands.
+
+Mitigation: Verify the source, version, and trust boundary before running or copying related-skill installation commands.
+
+Risk: The security verdict is suspicious due to external data handling and install-command concerns.
+
+Mitigation: Review the skill and its CLI commands before deployment, and require operator approval for external image or prompt workflows.
+
+## Reference(s):
+
+- [Ai Image Gen Pro on ClawHub](https://clawhub.ai/bingze00000/skills/ai-image-gen-pro)
+- [inference.sh](https://inference.sh)
+- [Running Apps](https://inference.sh/docs/apps/running)
+- [Image Generation Example](https://inference.sh/docs/examples/image-generation)
+- [Apps Overview](https://inference.sh/docs/apps/overview)
+- [inference.sh CLI Install Instructions](https://raw.githubusercontent.com/inference-sh/skills/refs/heads/main/cli-install.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inference.sh CLI commands and JSON input examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the infsh CLI and an authenticated inference.sh session.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

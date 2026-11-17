@@ -1,43 +1,55 @@
-## Description: <br>
-ClawGuard audits ClawHub skill folders locally and reports PASS, WARN, or FAIL findings for prompt-injection, exfiltration, shell-injection, permission, endpoint, and structure risks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Security auditor for ClawHub skills that scans SKILL.md and scripts for prompt injection, data exfiltration, shell injection, permission mismatches, and malicious patterns, then returns a PASS, WARN, or FAIL verdict with a breakdown.
 
-## Publisher: <br>
-[Taha2053](https://clawhub.ai/user/Taha2053) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[taha2053](https://clawhub.ai/user/taha2053)
 
-## Use Case: <br>
-Developers and engineers use ClawGuard before installing or publishing ClawHub skills to inspect local skill files and review security findings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: A PASS verdict can be mistaken for proof that another skill is safe. <br>
-Mitigation: Treat ClawGuard as a lightweight screening tool and manually review high-impact skills and any findings before installation. <br>
-Risk: The documentation describes broader checks than the implementation may fully cover. <br>
-Mitigation: Use the report as decision support, not as a complete security audit, and validate important claims against the scanned files. <br>
-Risk: Running an unexpected scan.py path could audit the wrong files. <br>
-Mitigation: Verify the installed ClawGuard path and target skill directory before running scans. <br>
+## Use Case:
 
+Developers and security reviewers use ClawGuard to inspect ClawHub skills before installation or in CI workflows. It produces local audit findings so users can decide whether a skill needs review or should be blocked.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Taha2053/claw-guard) <br>
-- [Publisher profile](https://clawhub.ai/user/Taha2053) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, guidance] <br>
-**Output Format:** [Markdown-style terminal report or JSON when requested] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes PASS, WARN, or FAIL verdicts with finding severity, location, and recommendation details.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release and SKILL.md frontmatter) <br>
+Risk: Users may treat a PASS verdict as a definitive safety approval even though the server security summary says the scanner is heuristic and can miss issues.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use ClawGuard as one review input and require manual inspection or additional security checks before installing or releasing a skill.
+
+Risk: The server security guidance notes that the packaged script path should be corrected or verified before use.
+
+Mitigation: Confirm the installed file layout and command path in the target ClawHub environment before relying on CLI or CI invocations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/taha2053/skills/claw-guard)
+- [Publisher profile](https://clawhub.ai/user/taha2053)
+- [Project homepage](https://github.com/Taha2053/clawguard)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, guidance]
+
+**Output Format:** [Markdown report or JSON summary with verdicts, checks, findings, and recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [CLI supports single-skill scans, bulk scans, JSON output, and optional failure on warnings.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

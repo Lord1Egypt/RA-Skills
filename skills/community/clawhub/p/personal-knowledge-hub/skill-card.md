@@ -1,42 +1,53 @@
-## Description: <br>
-Record, organize, search, and connect personal knowledge with note templates, metadata extraction, search, and lightweight knowledge graph exploration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Record, organize, search, and connect personal knowledge with note templates, metadata extraction, search, and lightweight knowledge graph exploration.
 
-## Publisher: <br>
-[harrylabsj](https://clawhub.ai/user/harrylabsj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harrylabsj](https://clawhub.ai/user/harrylabsj)
 
-## Use Case: <br>
-Employees, external users, and developers use this skill to capture user-owned notes, search and review personal knowledge, extract tags and entities, summarize learning material, and explore lightweight concept relationships. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad note-taking, study, or knowledge-management prompts may activate the skill. <br>
-Mitigation: Review activation behavior and only provide or connect note sources intended for processing. <br>
-Risk: Outputs can be based on local sample data when no user-owned knowledge source is supplied. <br>
-Mitigation: Check the response for sample-data indicators before treating results as personal knowledge. <br>
-Risk: The skill handles personal notes and may surface sensitive user-provided content. <br>
-Mitigation: Limit supplied notes to content appropriate for the agent environment and avoid connecting unintended private sources. <br>
+## Use Case:
 
+External users use this skill to capture, search, organize, summarize, and explore relationships in user-owned personal notes or supplied knowledge. It supports English and Chinese workflows for note capture, metadata extraction, search, review, and lightweight concept graph exploration.
 
-## Reference(s): <br>
-- [Personal Knowledge Hub ClawHub listing](https://clawhub.ai/harrylabsj/personal-knowledge-hub) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Human-facing prose or structured JSON-like fields with request type, message, results, note metadata, or graph data.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May indicate when results are based on supplied knowledge versus local sample data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: server release evidence and artifact skill.json; SKILL.md frontmatter lists v0.2.0) <br>
+Risk: The ingest action may be mistaken for durable storage.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat ingest results as draft note output unless the surrounding environment separately saves the returned draft.
+
+Risk: Search or analysis can rely on local sample data when no user knowledge base is supplied.
+
+Mitigation: Disclose when results come from the local sample/index and avoid claiming access to private notes unless supplied or connected by the environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/harrylabsj/skills/personal-knowledge-hub)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Guidance]
+
+**Output Format:** [Human-facing Markdown or structured JSON-like objects]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include note templates, tags, entities, ranked search results, summaries, review prompts, and lightweight graph connections.]
+
+## Skill Version(s):
+
+0.2.0 (source: server release metadata and skill.json; frontmatter reports v0.2.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

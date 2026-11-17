@@ -1,44 +1,58 @@
-## Description: <br>
-通过关键词和分类查询企业信息；包含企业基本信息、股东、高管等34个分类。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+通过关键词和分类查询企业信息；包含企业基本信息、股东、高管等34个分类。
 
-## Publisher: <br>
-[xinxin970620-prog](https://clawhub.ai/user/xinxin970620-prog) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xinxin970620-prog](https://clawhub.ai/user/xinxin970620-prog)
 
-## Use Case: <br>
-External users and agents use this skill to query enterprise registration, shareholder, executive, change-record, annual-report, and related company information by keyword and category. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: API keys may be exposed if pasted into shared chats or logs. <br>
-Mitigation: Provide API keys only through private configuration or trusted input channels and avoid logging them. <br>
-Risk: Raw company and person records may contain sensitive business identifiers, ownership details, or personal names. <br>
-Mitigation: Review raw JSON results before forwarding them and handle the data according to applicable privacy and business policies. <br>
-Risk: The skill returns API responses without analysis or formatting. <br>
-Mitigation: Validate important results against authoritative sources before using them for business decisions. <br>
+## Use Case:
 
+External users and agents use this skill to look up Chinese enterprise records by company keyword and requested information category, such as basic registration details, shareholders, executives, change records, risks, mortgages, penalties, annual reports, and historical data.
 
-## Reference(s): <br>
-- [Category Mapping Reference](references/category-map.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/xinxin970620-prog/rcd-enterprise) <br>
-- [Enterprise Information API Endpoint](https://rcd-test.dfwycredit.com/s1/skill/enterprise) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, JSON, Shell commands] <br>
-**Output Format:** [Raw JSON returned from the enterprise-information API] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a user-provided API key and a selected enterprise-information category.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release evidence) <br>
+Risk: API keys may be exposed because the skill documents command-line and chat-style API_KEY handling.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a disposable or tightly scoped API key, avoid placing real keys in command lines or chat transcripts, and rotate any key that was already shared that way.
+
+Risk: Company names, requested categories, API keys, and returned enterprise records are sent to and received from an external enterprise-data provider.
+
+Mitigation: Review the external provider and data-sharing requirements before installation, and avoid submitting sensitive business queries unless the provider is approved for that use.
+
+Risk: The skill instructs the agent to return raw API JSON without analysis or formatting, which may expose unexpected fields from provider responses.
+
+Mitigation: Inspect returned JSON before forwarding it into downstream systems or sharing it with users who should not receive all provider-returned fields.
+
+## Reference(s):
+
+- [Category map](references/category-map.md)
+- [ClawHub skill page](https://clawhub.ai/xinxin970620-prog/skills/rcd-enterprise)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration]
+
+**Output Format:** [JSON returned from the enterprise-information API, with setup and invocation guidance in text or shell-command form]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill instructs the agent to return API JSON responses without additional analysis or formatting.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

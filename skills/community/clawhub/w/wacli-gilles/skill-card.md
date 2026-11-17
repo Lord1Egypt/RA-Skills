@@ -1,44 +1,59 @@
-## Description: <br>
-Send WhatsApp messages to other people or search and sync WhatsApp history through the wacli CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Send WhatsApp messages to other people or search/sync WhatsApp history via the wacli CLI (not for normal user chats).
 
-## Publisher: <br>
-[gillescv](https://clawhub.ai/user/gillescv) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gillescv](https://clawhub.ai/user/gillescv)
 
-## Use Case: <br>
-External users and developers use this skill when they need an agent to send WhatsApp messages to specified recipients or search and sync WhatsApp history from the command line. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: WhatsApp messages or files could be sent to the wrong recipient or group. <br>
-Mitigation: Require explicit recipient, message text or file path, and confirmation of the recipient and content before sending. <br>
-Risk: The upstream wacli CLI receives access to the user's WhatsApp account and may store chat history locally. <br>
-Mitigation: Install only when the upstream CLI is trusted, and review or remove the ~/.wacli store when local chat history is no longer needed. <br>
-Risk: Sync and search commands can expose private WhatsApp history. <br>
-Mitigation: Run sync or search only on explicit user request and avoid using this skill for routine WhatsApp chats. <br>
+## Use Case:
 
+Developers and agent users use this skill when a user explicitly asks to contact someone on WhatsApp, or when they need to sync, search, or backfill WhatsApp history through the wacli CLI.
 
-## Reference(s): <br>
-- [Wacli homepage](https://wacli.sh) <br>
-- [ClawHub skill page](https://clawhub.ai/gillescv/wacli-gilles) <br>
-- [Publisher profile](https://clawhub.ai/user/gillescv) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance, Text] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the wacli binary and explicit confirmation before sending messages.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The wacli CLI can access WhatsApp login state and message history.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the CLI before installing, prefer a pinned and reviewed version, and protect or remove local WhatsApp data when it is no longer needed.
+
+Risk: The skill can send outbound WhatsApp messages.
+
+Mitigation: Require an explicit recipient and message text, then confirm both before sending.
+
+Risk: Continuous sync can keep local WhatsApp history available to the CLI.
+
+Mitigation: Run continuous sync only when intentionally needed and stop it after the requested task is complete.
+
+## Reference(s):
+
+- [wacli homepage](https://wacli.sh)
+- [ClawHub skill page](https://clawhub.ai/gillescv/skills/wacli-gilles)
+- [ClawHub publisher profile](https://clawhub.ai/user/gillescv)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use JSON output from wacli when parsing CLI results.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

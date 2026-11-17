@@ -1,45 +1,63 @@
-## Description: <br>
-智能数据采集器 automates collection, cleaning, scheduling, and export of data from web pages, APIs, databases, and files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+智能数据采集器 automates data collection, cleaning, transformation, and export from web pages, APIs, databases, and files.
 
-## Publisher: <br>
-[dxg852621787](https://clawhub.ai/user/dxg852621787) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[dxg852621787](https://clawhub.ai/user/dxg852621787)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to configure repeatable data collection jobs, process collected records, and export results as structured files or reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can use sensitive credentials to collect data from APIs, databases, and other configured systems. <br>
-Mitigation: Use least-privilege, read-only credentials, avoid sharing admin or publishing tokens, and review each configured source before running collection. <br>
-Risk: Security evidence reports under-disclosed OpenClaw platform-management methods that could install, uninstall, execute, or upload other skills if given a valid API key. <br>
-Mitigation: Do not provide OpenClaw admin or publishing tokens unless those actions are explicitly intended and reviewed. <br>
-Risk: Scheduled collection can repeatedly access external systems and export data to local paths. <br>
-Mitigation: Enable scheduled jobs only after reviewing the target systems and write exports only to approved, non-sensitive locations. <br>
+## Use Case:
 
+External users and developers use this OpenClaw skill to collect data from web, API, database, and file sources, then clean, transform, schedule, and export the results.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dxg852621787/data-harvester) <br>
-- [README](README.md) <br>
-- [Skill definition](SKILL.md) <br>
-- [OpenClaw homepage](https://openclawx.asia) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, configuration, files, guidance] <br>
-**Output Format:** [Markdown guidance with Python examples, shell commands, configuration objects, and exported data files such as JSON, CSV, Excel, SQLite, or PDF.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can schedule repeated collection jobs and write exported datasets or reports to configured paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release metadata and skill.json) <br>
+Risk: Broad file, network, and database access can collect or export data outside the intended scope.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run in an isolated environment with explicit URL/domain allowlists, confined input/output directories, and read-only database accounts.
+
+Risk: Credential and authentication support can expose sensitive tokens or database credentials if over-privileged.
+
+Mitigation: Use least-privilege credentials, avoid hard-coded secrets, and rotate any credentials used during testing or deployment.
+
+Risk: Recurring scheduled jobs can repeatedly access external services or local resources without ongoing review.
+
+Mitigation: Keep scheduling disabled unless needed, review each configured job, and monitor outputs and logs.
+
+Risk: Server provenance is unavailable and manual clone/install instructions may point to a source that does not match the validated release.
+
+Mitigation: Install only the validated ClawHub release unless the publisher provides a pinned matching source for manual installation.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/dxg852621787/skills/data-harvester)
+- [Publisher Profile](https://clawhub.ai/user/dxg852621787)
+- [OpenClaw Homepage](https://openclawx.asia)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, files]
+
+**Output Format:** [Markdown or text responses with Python snippets and configuration; exported data files may be JSON, CSV, Excel, SQLite, or PDF.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Python 3.12+, CLAWHUB_SITE, and scoped access to configured network, database, file, and scheduling resources.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata and skill.json; source files also contain 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

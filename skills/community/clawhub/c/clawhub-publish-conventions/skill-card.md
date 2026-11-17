@@ -1,40 +1,53 @@
-## Description: <br>
-ClawHub skill publishing conventions for file inclusion, metadata requirements, versioning, scanner false-positive defense, and publish iteration workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ClawHub skill publishing conventions \u2014 file inclusion rules, metadata requirements, versioning, and scanner false-positive defense.
 
-## Publisher: <br>
-[almohalhel1408](https://clawhub.ai/user/almohalhel1408) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[almohalhel1408](https://clawhub.ai/user/almohalhel1408)
 
-## Use Case: <br>
-Developers and skill maintainers use this skill to prepare and update ClawHub releases with the expected packaging, metadata, versioning, scanner review, and publish-fix-republish practices. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Docker and clawhub publish command examples can modify local images or publish releases if run without review. <br>
-Mitigation: Review and adapt command examples in a safe workspace before execution, and confirm the intended version and changelog before publishing. <br>
-Risk: Publishing materials and subprocess examples can expose secrets if users copy real credentials or pass full environments into subprocesses. <br>
-Mitigation: Keep secrets out of SKILL.md, README files, command examples, and subprocess environments; use whitelist-only subprocess environments for copied patterns. <br>
+## Use Case:
 
+Developers and skill publishers use this skill when preparing or updating ClawHub skills so they can align packaging, metadata, versioning, publishing, and scanner-response practices with observed ClawHub behavior.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/almohalhel1408/clawhub-publish-conventions) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with YAML, Dockerfile, Python, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only guidance; review command examples before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: release metadata and SKILL.md frontmatter) <br>
+Risk: Publishing or Docker commands copied from the guidance could affect a real ClawHub release or use mutable local image tags.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review commands before running them, set an explicit release version, and confirm image tags and publish targets in the local environment.
+
+Risk: Packaging or scanner guidance can become stale as ClawHub behavior changes.
+
+Mitigation: Verify current ClawHub publish and inspect results for the target skill before relying on the guidance for a release.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/almohalhel1408/skills/clawhub-publish-conventions)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with tables and inline shell, YAML, Dockerfile, and Python examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only skill; examples should be reviewed before use in a real publishing workflow.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

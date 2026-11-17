@@ -1,42 +1,55 @@
-## Description: <br>
-Identity Shift guides users through a seven-layer self-reflection dialogue based on Dan Koe's identity-shift method and produces a gamified life plan. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Identity Shift guides Chinese-language identity-reflection conversations through seven layers of questioning and produces a personalized, gamified life plan.
 
-## Publisher: <br>
-[bingle007](https://clawhub.ai/user/bingle007) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bingle007](https://clawhub.ai/user/bingle007)
 
-## Use Case: <br>
-Individuals use this skill when they want structured, direct self-reflection around repeated failed change, unclear direction, New Year planning, self-understanding, or hidden motivations. The agent asks sequential questions, challenges vague answers, and turns the user's responses into an identity declaration, goals, daily actions, and a Markdown life-game plan. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses emotionally intense self-reflection prompts that may feel destabilizing or too personal for some users. <br>
-Mitigation: Use it as coaching support only, stop if prompts feel destabilizing, and do not use it as therapy, crisis support, or a substitute for professional help. <br>
-Risk: Direct coaching output may be mistaken for authoritative mental health or life advice. <br>
-Mitigation: Review the generated plan critically, adapt it to the user's context, and seek qualified professional support for mental health, crisis, or high-stakes personal decisions. <br>
+## Use Case:
 
+External users use this skill for structured self-reflection when they feel stuck, repeatedly fail to change habits, want clearer life direction, or want a concrete identity-based plan. The agent asks sequential probing questions, synthesizes old and new identity patterns, and generates a Markdown life plan with goals, rules, daily actions, and identity anchors.
 
-## Reference(s): <br>
-- [Dan Koe Core Theory](artifact/references/dan-koe-core-theory.md) <br>
-- [Full Prompt](artifact/references/full-prompt.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/bingle007/identity-shift) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Conversational text and Markdown plan] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces sequential coaching questions, identity summaries, goals, action checklists, game-like rules, and optional reminder prompts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: release evidence) <br>
+Risk: Emotionally probing shame, regret, anxiety, or identity prompts may be unsuitable for users in crisis or users experiencing severe anxiety or depression.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill as reflective coaching only, include opt-out language and mental-health boundaries, and direct users in crisis or distress to appropriate human support.
+
+Risk: The workflow is designed for Chinese-language, direct identity-reflection conversations and may not match users expecting neutral coaching or another language.
+
+Mitigation: Set language and tone expectations before use, and add language preference handling where the hosting agent supports it.
+
+## Reference(s):
+
+- [Dan Koe Core Theory Reference](artifact/references/dan-koe-core-theory.md)
+- [Full Prompt Reference](artifact/references/full-prompt.md)
+- [ClawHub Skill Page](https://clawhub.ai/bingle007/skills/identity-shift)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Conversational Chinese text and Markdown plan documents]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces reflective prompts, identity summaries, goal structures, daily actions, and optional reminder questions.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

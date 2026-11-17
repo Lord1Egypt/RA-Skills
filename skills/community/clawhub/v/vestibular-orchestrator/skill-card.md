@@ -1,40 +1,48 @@
-## Description: <br>
-Agente orquestrador central do sistema de estudos para o vestibular de Antonio (FUVEST - Ciencia da Computacao), coordinating specialized study agents for tutoring, spaced repetition, planning, and mental-state support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Portuguese-language study orchestration agent for Antonio's FUVEST computer science preparation, coordinating study planning, Socratic tutoring, spaced repetition, and energy-aware session flow.
 
-## Publisher: <br>
-[AntonioVFranco](https://clawhub.ai/user/AntonioVFranco) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[antoniovfranco](https://clawhub.ai/user/antoniovfranco)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External learners and study-assistant agents use this skill to start and coordinate personalized FUVEST preparation sessions in Portuguese. It helps choose the next study thread, connect subjects naturally, account for SRS backlog and learner energy, and delegate to specialized study agents.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The package includes a named learner profile and health-related details.
+
+Mitigation: Remove or replace personal and health-related details with private runtime configuration before publishing or distributing the skill.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External learners or study-agent users use this skill as the entry-point coordinator for Antonio's FUVEST Computer Science preparation workflow, routing study sessions through conversational learning, SRS review, planning, and energy-aware pacing. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill contains broad mandatory-routing language for a personalized study workflow. <br>
-Mitigation: Review the routing behavior before installation and adapt it to the target user's agent setup. <br>
-Risk: The artifact includes personal profile and TDAH-related study-context details. <br>
-Mitigation: Remove or replace personal details before sharing or deploying the skill for another user. <br>
+**Output Format:** [Conversational Portuguese study guidance in Markdown or plain text]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/AntonioVFranco/vestibular-orchestrator) <br>
+**Other Properties Related to Output:** [May propose study prompts, session flow, SRS review, and handoffs to specialized study agents.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Text, Markdown] <br>
-**Output Format:** [Conversational Markdown guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable code, credential handling, external transmission, or destructive behavior is indicated by the security evidence.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

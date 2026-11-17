@@ -1,0 +1,451 @@
+{
+  "_snapshot_note": "Offline fallback only. ofox-video.sh fetches the live list from GET /v1/models (public, no API key) and only reads this file when that fetch fails. Regenerate with: references/refresh-snapshot.sh",
+  "_snapshot_date": "2026-09-22",
+  "object": "list",
+  "data": [
+    {
+      "id": "alibaba/happyhorse-1.0",
+      "aliases": [
+        "happyhorse-1.0",
+        "happyhorse-1.0-20260624"
+      ],
+      "is_deprecated": false,
+      "expiration_date": null,
+      "pricing": {
+        "output_video_per_second": "0.13"
+      },
+      "supported_endpoints": [
+        "/v1/videos"
+      ],
+      "video_attributes": {
+        "modes": [
+          "t2v",
+          "i2v",
+          "v2v"
+        ],
+        "resolutions": [
+          "720p",
+          "1080p"
+        ],
+        "default_resolution": "1080p",
+        "min_duration_seconds": 3,
+        "max_duration_seconds": 15,
+        "supports_audio": true,
+        "aspect_ratios": [
+          "16:9",
+          "9:16",
+          "1:1"
+        ]
+      }
+    },
+    {
+      "id": "alibaba/happyhorse-1.1",
+      "aliases": [
+        "happyhorse-1.1",
+        "happyhorse-1.1-20260624"
+      ],
+      "is_deprecated": false,
+      "expiration_date": null,
+      "pricing": {
+        "output_video_per_second": "0.13"
+      },
+      "supported_endpoints": [
+        "/v1/videos"
+      ],
+      "video_attributes": {
+        "modes": [
+          "t2v",
+          "i2v"
+        ],
+        "resolutions": [
+          "720p",
+          "1080p"
+        ],
+        "default_resolution": "1080p",
+        "min_duration_seconds": 3,
+        "max_duration_seconds": 15,
+        "supports_audio": true,
+        "aspect_ratios": [
+          "16:9",
+          "9:16",
+          "1:1"
+        ]
+      }
+    },
+    {
+      "id": "alibaba/wan-2.6",
+      "aliases": [
+        "wan-2.6",
+        "wan-2.6-20260327"
+      ],
+      "is_deprecated": false,
+      "expiration_date": null,
+      "pricing": {
+        "output_video_per_second": "0.1"
+      },
+      "supported_endpoints": [
+        "/v1/videos"
+      ],
+      "video_attributes": {
+        "modes": [
+          "t2v",
+          "i2v"
+        ],
+        "resolutions": [
+          "720p",
+          "1080p"
+        ],
+        "default_resolution": "1080p",
+        "min_duration_seconds": 2,
+        "max_duration_seconds": 15,
+        "supports_audio": true,
+        "aspect_ratios": [
+          "16:9",
+          "9:16",
+          "1:1"
+        ]
+      }
+    },
+    {
+      "id": "alibaba/wan-2.7",
+      "aliases": [
+        "wan-2.7",
+        "wan-2.7-20260414"
+      ],
+      "is_deprecated": false,
+      "expiration_date": null,
+      "pricing": {
+        "output_video_per_second": "0.1"
+      },
+      "supported_endpoints": [
+        "/v1/videos"
+      ],
+      "video_attributes": {
+        "modes": [
+          "t2v",
+          "i2v",
+          "v2v"
+        ],
+        "resolutions": [
+          "720p",
+          "1080p"
+        ],
+        "default_resolution": "1080p",
+        "min_duration_seconds": 2,
+        "max_duration_seconds": 15,
+        "supports_audio": true,
+        "aspect_ratios": [
+          "16:9",
+          "9:16",
+          "1:1"
+        ]
+      }
+    },
+    {
+      "id": "alibaba/wan-3.0",
+      "aliases": [
+        "wan-3.0",
+        "wan-3.0-20260824"
+      ],
+      "is_deprecated": false,
+      "expiration_date": null,
+      "pricing": {
+        "output_video_per_second": "0.054"
+      },
+      "supported_endpoints": [
+        "/v1/videos"
+      ],
+      "video_attributes": {
+        "modes": [
+          "t2v",
+          "i2v",
+          "v2v"
+        ],
+        "resolutions": [
+          "480p",
+          "720p",
+          "1080p"
+        ],
+        "default_resolution": "1080p",
+        "min_duration_seconds": 2,
+        "max_duration_seconds": 30,
+        "supports_audio": true,
+        "aspect_ratios": [
+          "16:9",
+          "4:3",
+          "1:1",
+          "3:4",
+          "9:16",
+          "adaptive"
+        ]
+      }
+    },
+    {
+      "id": "alibaba/wan-3.0-prime",
+      "aliases": [
+        "wan-3.0-prime",
+        "wan-3.0-prime-20260824"
+      ],
+      "is_deprecated": false,
+      "expiration_date": null,
+      "pricing": {
+        "output_video_per_second": "0.064"
+      },
+      "supported_endpoints": [
+        "/v1/videos"
+      ],
+      "video_attributes": {
+        "modes": [
+          "t2v",
+          "i2v",
+          "v2v"
+        ],
+        "resolutions": [
+          "480p",
+          "720p",
+          "1080p"
+        ],
+        "default_resolution": "1080p",
+        "min_duration_seconds": 2,
+        "max_duration_seconds": 30,
+        "supports_audio": true,
+        "aspect_ratios": [
+          "16:9",
+          "4:3",
+          "1:1",
+          "3:4",
+          "9:16",
+          "adaptive"
+        ]
+      }
+    },
+    {
+      "id": "bytedance/seedance-2.0",
+      "aliases": [
+        "seedance-2.0",
+        "seedance-2.0-20260414"
+      ],
+      "is_deprecated": false,
+      "expiration_date": null,
+      "pricing": {
+        "output_video_per_second": "0.07"
+      },
+      "supported_endpoints": [
+        "/v1/videos"
+      ],
+      "video_attributes": {
+        "modes": [
+          "t2v",
+          "i2v",
+          "v2v"
+        ],
+        "resolutions": [
+          "480p",
+          "720p",
+          "1080p",
+          "4k"
+        ],
+        "default_resolution": "1080p",
+        "min_duration_seconds": 4,
+        "max_duration_seconds": 15,
+        "supports_audio": true,
+        "aspect_ratios": [
+          "16:9",
+          "9:16",
+          "1:1",
+          "adaptive"
+        ]
+      }
+    },
+    {
+      "id": "bytedance/seedance-2.0-fast",
+      "aliases": [
+        "seedance-2.0-fast",
+        "seedance-2.0-fast-20260414"
+      ],
+      "is_deprecated": false,
+      "expiration_date": null,
+      "pricing": {
+        "output_video_per_second": "0.06"
+      },
+      "supported_endpoints": [
+        "/v1/videos"
+      ],
+      "video_attributes": {
+        "modes": [
+          "t2v",
+          "i2v",
+          "v2v"
+        ],
+        "resolutions": [
+          "480p",
+          "720p"
+        ],
+        "default_resolution": "720p",
+        "min_duration_seconds": 4,
+        "max_duration_seconds": 15,
+        "supports_audio": true,
+        "aspect_ratios": [
+          "16:9",
+          "9:16",
+          "1:1",
+          "adaptive"
+        ]
+      }
+    },
+    {
+      "id": "bytedance/seedance-2.0-mini",
+      "aliases": [
+        "seedance-2.0-mini",
+        "seedance-2.0-mini-20260615"
+      ],
+      "is_deprecated": false,
+      "expiration_date": null,
+      "pricing": {
+        "output_video_per_second": "0.04"
+      },
+      "supported_endpoints": [
+        "/v1/videos"
+      ],
+      "video_attributes": {
+        "modes": [
+          "t2v",
+          "i2v",
+          "v2v"
+        ],
+        "resolutions": [
+          "480p",
+          "720p"
+        ],
+        "default_resolution": "720p",
+        "min_duration_seconds": 4,
+        "max_duration_seconds": 15,
+        "supports_audio": true,
+        "aspect_ratios": [
+          "16:9",
+          "9:16",
+          "1:1",
+          "adaptive"
+        ]
+      }
+    },
+    {
+      "id": "bytedance/seedance-2.5",
+      "aliases": [
+        "seedance-2.5",
+        "seedance-2.5-20260807"
+      ],
+      "is_deprecated": false,
+      "expiration_date": null,
+      "pricing": {
+        "output_video_per_second": "0.11"
+      },
+      "supported_endpoints": [
+        "/v1/videos"
+      ],
+      "video_attributes": {
+        "modes": [
+          "t2v",
+          "i2v",
+          "v2v"
+        ],
+        "resolutions": [
+          "480p",
+          "720p",
+          "1080p"
+        ],
+        "default_resolution": "720p",
+        "min_duration_seconds": 4,
+        "max_duration_seconds": 30,
+        "supports_audio": true,
+        "aspect_ratios": [
+          "21:9",
+          "16:9",
+          "4:3",
+          "1:1",
+          "3:4",
+          "9:16",
+          "adaptive"
+        ]
+      }
+    },
+    {
+      "id": "minimax/hailuo-3",
+      "aliases": [
+        "hailuo-3",
+        "minimax-h3"
+      ],
+      "is_deprecated": false,
+      "expiration_date": null,
+      "pricing": {
+        "output_video_per_second": "0.08"
+      },
+      "supported_endpoints": [
+        "/v1/videos"
+      ],
+      "video_attributes": {
+        "modes": [
+          "t2v",
+          "i2v",
+          "v2v"
+        ],
+        "resolutions": [
+          "768p",
+          "2k"
+        ],
+        "default_resolution": "768p",
+        "min_duration_seconds": 4,
+        "max_duration_seconds": 15,
+        "supports_audio": true,
+        "aspect_ratios": [
+          "21:9",
+          "16:9",
+          "4:3",
+          "1:1",
+          "3:4",
+          "9:16",
+          "adaptive"
+        ]
+      }
+    },
+    {
+      "id": "minimax/hailuo-3-max",
+      "aliases": [
+        "hailuo-3-max",
+        "minimax-h3-max"
+      ],
+      "is_deprecated": false,
+      "expiration_date": null,
+      "pricing": {
+        "output_video_per_second": "0.05"
+      },
+      "supported_endpoints": [
+        "/v1/videos"
+      ],
+      "video_attributes": {
+        "modes": [
+          "t2v",
+          "i2v",
+          "v2v"
+        ],
+        "resolutions": [
+          "480p",
+          "768p"
+        ],
+        "default_resolution": "768p",
+        "min_duration_seconds": 5,
+        "max_duration_seconds": 15,
+        "supports_audio": true,
+        "aspect_ratios": [
+          "21:9",
+          "16:9",
+          "4:3",
+          "1:1",
+          "3:4",
+          "9:16",
+          "adaptive"
+        ]
+      }
+    }
+  ]
+}

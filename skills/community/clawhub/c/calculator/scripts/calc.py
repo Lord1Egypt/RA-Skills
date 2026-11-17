@@ -42,10 +42,6 @@ def calculate(expression: str) -> str:
     expr = expr.replace('÷', '/')
     expr = expr.replace('％', '%')
     
-    # Handle percentages: "100 * 15%" -> "100 * 0.15"
-    # Match patterns like "100 * 15%" or "100*15%"
-    expr = re.sub(r'(\d+(?:\.\d+)?)\s*\*\s*(\d+(?:\.\d+)?)\s*%', r'(\1 * \2 / 100)', expr)
-    
     # Handle implicit multiplication: 2(3) -> 2*(3)
     expr = re.sub(r'(\d)(\()', r'\1*\2', expr)
     expr = re.sub(r'(\))(\d)', r'\1*\2', expr)

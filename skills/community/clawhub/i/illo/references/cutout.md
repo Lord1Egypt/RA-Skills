@@ -26,7 +26,7 @@ idea the picture lands**.
 | Dimension | Editorial / explainer | Cutout |
 |---|---|---|
 | Purpose | Explain one idea | Supply a reusable character instance |
-| Background | Paper / style ground | **Transparent** (chroma key on Codex and most OpenRouter; native alpha only on backends that expose it; else honest opaque fallback) |
+| Background | Paper / style ground | **Transparent** (native alpha on Codex; chroma key on OpenRouter or explicit compatibility rerolls; else honest opaque fallback) |
 | Text | Labels / callouts allowed | **None** — no labels, captions, watermarks |
 | Environment | Scene, machines, diagrams | **No environment** — see contact continuity |
 | Expressiveness | Move + metaphor + staging | **Pose + orientation + body language** |
@@ -113,44 +113,72 @@ aspect **1:1**. Pass the active character's model sheet as `--ref`. Always pass
 
 | Backend | Model | Prompt shape | Transparency path |
 |---|---|---|---|
-| **Codex** | gpt-image-2 (automatic) | Chroma `BACKGROUND:` in prompt (engine auto-appends if omitted) | Chroma key via `--cutout` — **no native alpha** from `codex exec` |
-| **OpenRouter** | **`openai/gpt-5.4-image-2`** (engine default when `--cutout` and no `--model`) | Chroma `BACKGROUND:` + `--image-config` | Chroma key via `--cutout` |
-| **OpenRouter** (other `--model`) | User override only | Chroma prompt; may fail on JPEG models | Best-effort; read `cutout_alpha` |
+| **Codex** | gpt-image-2 (automatic) | Cutout template only; engine appends the native-alpha contract | Native PNG alpha via `--cutout`; explicit `--chroma` forces compatibility keying |
+| **Grok CLI** | — | — | **Unsupported** — engine auto-redirects (see below) |
+| **Grok Bot native** | — | — | **Unsupported** — route to a cutout-capable engine backend |
+| **Muse native** | — | Cutout variant prompt + flat chroma `BACKGROUND:` from the pack's declared screen | Chroma key via `illo.py keyout` (agent-side, after the native render) |
+| **OpenRouter** | **`openai/gpt-5.4-image-2`** (engine default when `--cutout` and no `--model`) | Cutout template + `--image-config`; engine appends chroma | Chroma key via `--cutout` |
+| **OpenRouter** (other `--model`) | User override only | Engine-appended chroma; may fail on JPEG models | Best-effort; read `cutout_alpha` |
 
 Editorial OpenRouter renders keep the global default (`x-ai/grok-imagine-image-quality`).
-**Do not use Grok for cutouts** — it returns JPEG with no chroma path. Gemini and
-other models are unreliable for cutout alpha; prefer **Codex + chroma** or
-**OpenRouter GPT Image 2 + chroma**.
+**Grok cannot make cutouts** — Grok CLI and Grok Bot native return JPEG with no
+alpha, and "solid background" renders come back as gradients with the subject
+drifting toward the key color, so chroma-keying fails. A `--cutout` render whose
+engine backend resolves to `grok` **auto-redirects**: to **Codex** if usable,
+else **OpenRouter GPT Image 2** if a key is set; with neither the engine exits
+naming both fixes. On Grok Bot native, do not call the native image tool for a
+cutout; route to a cutout-capable engine backend or stop for configuration. No
+action needed from the caller for the CLI redirect — the note and the manifest
+record the backend that ran.
+Gemini and other models are unreliable for cutout alpha; prefer **Codex +
+native alpha** or **OpenRouter GPT Image 2 + chroma**.
 
-**Codex backend** — always use a flat chroma `BACKGROUND:` line (included in
-the Cutout template). gpt-image-2 via `codex exec` returns **opaque PNG only**;
-transparency comes from illo's chroma post-process, not from the model. Do **not**
-rely on prompt-native "real alpha channel" requests on Codex.
+**Muse native** — the native tool cannot emit transparency directly, so the
+cutout runs through the chroma compatibility path agent-side. Build the
+cutout-variant prompt and append an explicit flat `BACKGROUND:` line using the
+pack's declared chroma (`Cutout chroma: green|magenta` in `character.md`;
+magenta when absent) — e.g. `BACKGROUND: flat solid #FF00FF, no gradient, no
+texture, no shadow`. Render with the native image tool, then key it out:
 
-**OpenRouter backend** — keep the chroma `BACKGROUND:` line in the prompt.
-Unless the user names another model with `--model`, the engine selects
+```bash
+SKILL_DIR="<path to this skill>";
+python3 "$SKILL_DIR/scripts/illo.py" keyout /tmp/illo-cutout-screen.png --chroma magenta --out /tmp/illo-cutout-blot-wave.png
+```
+
+`keyout` keys and despills through illo's existing chroma path, writes a
+transparent PNG, and appends a `muse-native` manifest record (with
+`cutout_alpha: true`, `cutout_method: chroma`). The native tool holds a flat
+chroma screen well enough to key (verified: ~80% of pixels keyed on a magenta
+screen test), but it never returns alpha directly — do not ask it for
+transparency. If the keyed result shows fringe or an opaque fallback, re-roll
+the screen render or route to Codex/OpenRouter.
+
+**Codex backend** — omit manual background/output instructions. The engine asks
+gpt-image-2 for a real transparent PNG and preserves clean native alpha. Native
+output still needs QA: re-roll an opaque result, cropped figure, or edge halo.
+Use `--chroma green|magenta` only to force the compatibility path when native
+alpha fails for a render.
+
+**OpenRouter backend** — omit the `BACKGROUND:` line here too; the engine adds
+the selected chroma screen after routing. Unless the user names another model
+with `--model`, the engine selects
 **`openai/gpt-5.4-image-2`**. Pass model-specific keys through
 **`--image-config`** (JSON object merged with `--aspect`), not prompt prose alone —
 the engine forwards this to OpenRouter's `image_config`:
 
 ```bash
-python3 "$SKILL_DIR/scripts/illo.py" generate \
-  --prompt-file /tmp/cutout.txt \
-  --ref "$REF" \
-  --aspect 1:1 \
-  --cutout \
-  --image-config '{"aspect_ratio":"1:1"}' \
-  --out /tmp/illo-cutout-blot-wave.png
+SKILL_DIR="<path to this skill>";
+python3 "$SKILL_DIR/scripts/illo.py" generate --prompt-file /tmp/cutout.txt --ref "$REF" --aspect 1:1 --cutout --image-config '{"aspect_ratio":"1:1"}' --out /tmp/illo-cutout-blot-wave.png
 ```
 
-### Chroma screen color
+### Chroma compatibility screen
 
-Each character pack declares **`Cutout chroma: green`** or **`Cutout chroma:
-magenta`** in its `character.md` (Blot: magenta in `references/character.md`).
-That is the pack author's one-time decision — agents read it when building the
-cutout prompt; the engine reads it from the active `--ref` pack (or the
-configured default character when `--ref` is omitted). **`--chroma`** on
-`generate` overrides for re-rolls; omit it for normal cutouts.
+An optional **`Cutout chroma: green`** or **`Cutout chroma: magenta`** line in
+`character.md` selects the pack's compatibility screen (Blot: magenta in
+`references/character.md`). The engine reads it from the active `--ref` pack or
+the configured default character. Omit the line to use magenta. Agents do not
+copy it into prompts. **`--chroma`** both forces the compatibility path and
+chooses the screen; omit it for normal Codex cutouts.
 
 Pick a screen color **absent from the character palette**. The engine keys that
 color to alpha in post; anti-aliased edges inherit screen tint — wrong color =
@@ -161,15 +189,15 @@ visible fringe.
 | **Green** | `#00FF00` | Pack line `Cutout chroma: green` — forged-metal / wrought-iron silhouettes (e.g. **Wick**); re-roll when magenta fringe persists on fine metal edges |
 | **Magenta** | `#FF00FF` | Pack line `Cutout chroma: magenta` or omitted (default) — including pink-accent riso characters with a **registration-locked silhouette** |
 
-The Cutout template's `BACKGROUND:` line must match the pack's **`Cutout
-chroma:`** value. When the line is absent from an old pack, default **magenta**;
-the engine still falls back to forged/wrought-metal heuristics, then magenta.
-The manifest records `cutout_chroma`.
+When the line is absent, the engine falls back to forged/wrought-metal prompt
+heuristics, then **magenta**. Legacy prompts with an explicit chroma
+`BACKGROUND:` remain on the compatibility path. The manifest records
+`cutout_chroma` whether native alpha or chroma produced the output.
 
 ### Registration-locked silhouette
 
 Cutouts are compositing assets — editorial **ink-layer offset / misregistration**
-reads as a bright accent halo after chroma key and fails QA. Every cutout prompt
+reads as a bright accent halo on the transparent edge and fails QA. Every cutout prompt
 must include the **SILHOUETTE** block from `references/prompt-recipe.md`
 (registration-locked single-plate contour; riso grain stays **inside** fills).
 Do not copy the editorial STYLE line verbatim.
@@ -190,5 +218,94 @@ No watermark on cutouts. No style-anchor `--ref` from editorial sets — the
 character sheet alone.
 
 Check against the cutout section of `references/quality-bar.md` before
-delivering. Re-roll on orphans, scene bleed, green fringing, cropped feet/limbs,
-or off-model drift.
+delivering. Re-roll on orphans, scene bleed, edge halos/fringing, cropped
+feet/limbs, or off-model drift.
+
+## Idle loop / bot avatar
+
+Route animated idle loops and bot-avatar GIFs through this same **cutout**
+register: 1:1, `--cutout`, active character sheet as `--ref`. Do not route to
+editorial.
+
+Generate **one** on-model cutout and animate that PNG. Do **not** generate 3-4
+poses and morph them — separate renders drift and the loop flickers. Keep the
+pack constraints programmatic: no mouth/brows means do not draw them; blink by
+squashing the locked eye dots; no fingers means no grasping wave; a deadpan face
+stays deadpan.
+
+Pick the move from the figure. Read the pack's locked design, accent carrier,
+and limbs; choose one or more motions that figure can do without breaking locks.
+Head bob is optional: allowed when the silhouette has a distinct head that can
+nod **down into the body** without tearing. Use about 8-12 px on a 512 canvas,
+down-only, with a feathered join and the body planted. It can stack with another
+move (blink, antenna sway, flame flicker) or be the only move. It is not
+required.
+
+Other pack-legal examples (illustrative, not exhaustive):
+
+- Soft blob / droplet (Blot) — jelly squash of the body; tip rides the squash;
+  feet planted.
+- Rigid cube + antenna (Blip) — antenna sway; cube planted.
+- Accent flame / lantern (Wick) — flame flicker only; iron planted.
+- Accordion / spring limbs (Coil) — limb compress-and-rebound; head/torso/feet
+  planted.
+- Blink — squash locked eye dots only, on any pack that has them. Combine freely.
+
+Trust `cutout_alpha` after the engine runs. If a keyed PNG is discarded even
+though the corners are transparent and the background is gone, that is an engine
+bug — do not "fix" it by switching to Grok Bot native, which has no alpha.
+
+Encode transparent GIFs with ffmpeg palette preservation:
+
+```bash
+ffmpeg -i frames/%03d.png -vf "palettegen=reserve_transparent=1" palette.png
+ffmpeg -i frames/%03d.png -i palette.png -lavfi "paletteuse=dither=none" -loop 0 avatar.gif
+```
+
+Do **not** use Pillow `save(..., optimize=True, disposal=2)` for this path; it
+can drop alpha on blink frames and flash a black background. Deliver 1:1, loop
+forever, keep the character about 60-80% of the frame, and stay under 5 MB for
+Grok Bot avatars.
+
+Before delivery, inspect the source cutout, at least three exported frames
+(rest, peak motion, blink if present; otherwise another changed frame), and the
+final GIF. Do not ship from the script succeeding.
+
+### Must pass
+
+- **Look at the pixels** — open the cutout and GIF; tight-crop thin parts
+  (antenna, stems, outlines) instead of trusting generate JSON or ffmpeg exit
+  status.
+- **Transparency on every frame** — corners stay transparent; no frame has
+  nearly zero transparent pixels.
+- **Thin-part geometry** — antenna / accent stem stays straight and centered on
+  its ball or tip.
+- **Blink stays on-model** — the pack face lock still holds; blink by squashing
+  the locked eye dots only, with no invented mouth/brows.
+- **Motion is pack-legal, visible, and planted** — the chosen move comes from
+  the silhouette, accent carrier, or locked limbs. If using a head bob on a 512
+  canvas, rest vs peak head-top Y moves about 8-12 px (~1.5-2.5% of the canvas),
+  down-only. Body/feet/contact stay planted.
+- **One cutout** — every frame comes from the same still PNG, not morphed
+  separately generated poses.
+- **Watch the loop once** — if the personality is not noticeable, or a tear is
+  noticeable, it is not ready.
+
+### Fail signals → fix
+
+- A frame has nearly zero transparent pixels, or the GIF flashes black →
+  re-encode with the ffmpeg palettegen path above; never use Pillow
+  `optimize=True` for this path.
+- Antenna / accent stem drifts 1-2 px down the shaft, bends, or misses the
+  ball/tip center → straighten in post or re-roll the still.
+- Whole sticker rotates, hops, or bounces → keep contact planted; animate only
+  pack-legal silhouette parts.
+- Head bob under ~4 px on a 512 canvas → increase it or choose a better
+  pack-legal move; the motion will disappear at delivery size.
+- Head lifts off the torso, leaves a gap, sliced chin, double contour, or
+  leftover chin slab → if using a bob, move **down into the body only**, feather
+  the join, and keep enough overlap.
+- Blink frame invents facial features or changes expression → rebuild it as
+  locked eye-dot squash only.
+- Every avatar in a multi-bot set uses the same generic head bob when a
+  pack-legal alternative exists → choose distinct moves from each figure.

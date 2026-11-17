@@ -1,42 +1,58 @@
-## Description: <br>
-Develop refined aesthetic judgment by learning from human feedback, asking genuine questions about quality, and calibrating over time. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Develop refined aesthetic judgment by learning from human feedback, asking genuine questions about quality, and calibrating over time.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users, developers, and creative agents use this skill to calibrate aesthetic judgments against human feedback, record corrections, and apply learned taste patterns to design, writing, and other creative work. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill may save user feedback and aesthetic preferences in local files under ~/taste/. <br>
-Mitigation: Avoid recording sensitive personal details or private creative work unless local retention is acceptable, and periodically review or delete saved notes that should no longer be reused. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Learning System - Taste Calibration](learning.md) <br>
-- [Visual Taste - Design Judgment](visual.md) <br>
-- [Writing Taste - Prose Judgment](writing.md) <br>
-- [Developing Taste - Training Aesthetic Judgment](development.md) <br>
-- [Taste Anti-Patterns - What Bad Taste Looks Like](antipatterns.md) <br>
-- [Prompting for Taste - Creative Generation](prompting.md) <br>
+## Use Case:
 
+External users and developers use this skill to help an agent calibrate aesthetic judgments from human feedback across design, writing, and creative generation tasks. It guides the agent to ask specific feedback questions, record corrections, extract taste patterns, and adjust confidence by domain.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Files] <br>
-**Output Format:** [Markdown guidance and local markdown notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local taste-learning notes under ~/taste/ when recording corrections and preferences.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill keeps open-ended local memory of user feedback that may include sensitive personal preferences, credentials, or operational instructions.
+
+Mitigation: Avoid providing sensitive details as feedback while the skill is active, and periodically inspect or delete stored taste files under ~/taste/.
+
+Risk: Long-lived taste notes may be reused in future sessions after preferences change or without enough user control.
+
+Mitigation: Review, update, or reset correction, preference, pattern, and calibration notes when they no longer reflect current preferences.
+
+## Reference(s):
+
+- [Taste skill page](https://clawhub.ai/ivangdavila/skills/taste)
+- [Learning System - Taste Calibration](artifact/learning.md)
+- [Visual Taste - Design Judgment](artifact/visual.md)
+- [Writing Taste - Prose Judgment](artifact/writing.md)
+- [Developing Taste - Training Aesthetic Judgment](artifact/development.md)
+- [Taste Anti-Patterns - What Bad Taste Looks Like](artifact/antipatterns.md)
+- [Prompting for Taste - Creative Generation](artifact/prompting.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Guidance]
+
+**Output Format:** [Conversational guidance and Markdown taste notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write long-lived correction, preference, pattern, and calibration notes under ~/taste/.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

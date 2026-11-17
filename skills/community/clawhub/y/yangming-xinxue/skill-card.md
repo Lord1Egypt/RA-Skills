@@ -1,46 +1,55 @@
-## Description: <br>
-阳明心学 is a Chinese-language assistant for explaining Wang Yangming's Xinxue philosophy, interpreting classic passages, applying its ideas to modern dilemmas, recommending learning resources, and generating optional interactive HTML reflection reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+阳明心学全维度智慧助手，面向中文用户提供心学理论讲解、经典原文解读、现代场景应用、生平故事、金句查询、修行指南、书单推荐，并可生成交互式 HTML 报告。
 
-## Publisher: <br>
-[bettermen](https://clawhub.ai/user/bettermen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bettermen](https://clawhub.ai/user/bettermen)
 
-## Use Case: <br>
-External users use this skill to learn Yangming Xinxue concepts, interpret selected classical passages, and receive structured philosophical reflection for workplace anxiety, life direction, relationships, procrastination, decisions, adversity, and leadership scenarios. The skill can also produce a Chinese classical-aesthetic HTML report for deeper scenario analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may include names, employers, health details, or other private facts while describing personal dilemmas for reflection or reports. <br>
-Mitigation: Avoid entering private facts unless comfortable with them appearing in generated output, and review any report before sharing it. <br>
-Risk: Philosophical reflection for anxiety, decisions, relationships, leadership, or adversity may be mistaken for professional advice. <br>
-Mitigation: Treat outputs as educational reflection and practical prompts; use qualified professional advice for high-stakes medical, legal, employment, or financial decisions. <br>
+## Use Case:
 
+External Chinese-language users use this skill to explore Wang Yangming's philosophy, interpret classic passages, and receive reflective guidance for work pressure, uncertainty, relationships, procrastination, decisions, adversity, and leadership. The skill frames outputs as educational philosophy guidance and can package deeper responses as an interactive HTML report.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bettermen/skills/yangming-xinxue) <br>
-- [阳明心学核心理论](references/core_theories.md) <br>
-- [传习录经典选段](references/classic_texts.md) <br>
-- [阳明心学现代应用实操指南](references/practical_guide.md) <br>
-- [王阳明生平大事记](references/biography.md) <br>
-- [王阳明经典金句库](references/quotes.md) <br>
-- [阳明心学推荐书单](references/book_list.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Guidance] <br>
-**Output Format:** [Chinese-language Markdown responses with optional interactive HTML report content] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses bundled Markdown references and an HTML report template; no external tools, credentials, hidden access, exfiltration, or system modification were identified in the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Users may treat reflective philosophy guidance about anxiety, relationships, decisions, or work as professional advice in high-stakes situations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill for education and reflection, and seek qualified medical, mental-health crisis, legal, financial, or other professional help when stakes require it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bettermen/skills/yangming-xinxue)
+- [阳明心学核心理论](references/core_theories.md)
+- [传习录经典选段](references/classic_texts.md)
+- [阳明心学现代应用实操指南](references/practical_guide.md)
+- [王阳明生平大事记](references/biography.md)
+- [王阳明经典金句库](references/quotes.md)
+- [阳明心学推荐书单](references/book_list.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Guidance]
+
+**Output Format:** [Chinese-language Markdown, with optional interactive HTML report code]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include structured diagnosis, classical quotation interpretation, action steps, recommended reading, and HTML styled with a bundled report template.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

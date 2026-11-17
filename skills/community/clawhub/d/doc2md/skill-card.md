@@ -1,42 +1,56 @@
-## Description: <br>
-Document to Markdown converter - convert DOCX, PPTX, Excel files to Markdown. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Document to Markdown converter - convert DOCX, PPTX, Excel files to Markdown.
 
-## Publisher: <br>
-[tanis90](https://clawhub.ai/user/tanis90) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tanis90](https://clawhub.ai/user/tanis90)
 
-## Use Case: <br>
-External users, developers, and document reviewers use this skill to convert Word, PowerPoint, and Excel files or URLs into Markdown for reading, extraction, summarization, and analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Documents are uploaded to MinerU's cloud service for processing. <br>
-Mitigation: Avoid confidential, regulated, or sensitive documents unless MinerU's processing and retention terms meet the user's requirements. <br>
-Risk: The skill depends on installing and running the third-party MinerU CLI. <br>
-Mitigation: Install only from the documented package channels and review the CLI before use in controlled environments. <br>
+## Use Case:
 
+Developers, analysts, and other external users use this skill to extract readable Markdown from Word documents, PowerPoint presentations, and Excel spreadsheets supplied as local files or URLs.
 
-## Reference(s): <br>
-- [Doc2md ClawHub Release](https://clawhub.ai/tanis90/doc2md) <br>
-- [MinerU](https://mineru.net) <br>
-- [MinerU CLI](https://mineru.net/ecosystem?tab=cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Text, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with CLI command examples and extracted document content] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs Markdown only; embedded images may be replaced with placeholders.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Documents are uploaded to MinerU's cloud service for processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid using the skill with sensitive documents unless cloud processing is acceptable for the data.
+
+Risk: The skill installs and invokes an unpinned third-party CLI.
+
+Mitigation: Install the CLI in a sandbox and pin or review the package version before operational use.
+
+## Reference(s):
+
+- [Doc2md ClawHub skill page](https://clawhub.ai/tanis90/skills/doc2md)
+- [tanis90 ClawHub publisher profile](https://clawhub.ai/user/tanis90)
+- [MinerU](https://mineru.net)
+- [MinerU CLI download](https://mineru.net/ecosystem?tab=cli)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Markdown-only document extraction; embedded images may be replaced with placeholders.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

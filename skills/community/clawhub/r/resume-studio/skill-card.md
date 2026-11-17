@@ -1,38 +1,58 @@
-## Description: <br>
-Resume Studio helps users create, optimize, and customize ATS-friendly resumes with Word and PDF output, multiple styles, industry templates, and Chinese/English support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Resume Studio helps agents create, optimize, and customize ATS-friendly resumes with Word and PDF output, multiple styles, and Chinese/English support.
 
-## Publisher: <br>
-[tobewin](https://clawhub.ai/user/tobewin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tobewin](https://clawhub.ai/user/tobewin)
 
-## Use Case: <br>
-Job seekers and career-support users use this skill to collect resume details, refine content, and generate ATS-friendly resume drafts in Word or PDF formats. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles sensitive personal, education, and employment details and may save resume drafts locally. <br>
-Mitigation: Provide only necessary details, use a private local folder for generated files, review drafts before sharing, and delete files no longer needed. <br>
+## Use Case:
 
+External users and resume-writing agents use this skill to collect resume details, improve job-application content, and generate polished resumes for target roles.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tobewin/resume-studio) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, files, guidance] <br>
-**Output Format:** [Conversational guidance with generated resume content, Python snippets, shell commands, and local .docx/.pdf files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 plus python-docx and fpdf2 for Word/PDF generation; generated resumes may contain sensitive personal data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: frontmatter and server release evidence) <br>
+Risk: Resume generation requires personal contact, education, and work-history data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Collect only necessary resume details, avoid shared folders, and delete files containing personal data when no longer needed.
+
+Risk: Generated resumes may contain content or formatting issues before submission.
+
+Mitigation: Review generated Word and PDF files before sharing them with employers or third parties.
+
+Risk: The skill writes local documents and depends on Python packages.
+
+Mitigation: Use a virtual environment, install only the declared dependencies, and choose explicit output paths.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tobewin/skills/resume-studio)
+- [Publisher profile](https://clawhub.ai/user/tobewin)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Files, Guidance]
+
+**Output Format:** [Markdown guidance with Python code snippets and generated DOCX/PDF resume files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes local resume documents to user-selected paths and may handle personal resume data.]
+
+## Skill Version(s):
+
+1.0.2 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

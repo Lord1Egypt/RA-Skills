@@ -1,44 +1,54 @@
-## Description: <br>
-Search GitHub repos, view issues, and look up user profiles via the public REST API; no token required. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search GitHub repositories, view issues, and look up user profiles via the public REST API without a token.
 
-## Publisher: <br>
-[b-gutman](https://clawhub.ai/user/b-gutman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[b-gutman](https://clawhub.ai/user/b-gutman)
 
-## Use Case: <br>
-Developers and technical users use this skill to search public GitHub repositories, inspect repository metadata and issues, and look up public GitHub user profiles through Pipeworx. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Public GitHub lookup queries are sent through Pipeworx. <br>
-Mitigation: Avoid entering confidential repository names, private investigation terms, or sensitive business context into queries. <br>
-Risk: The optional MCP configuration uses mcp-remote@latest. <br>
-Mitigation: Pin mcp-remote to a reviewed version when using the optional MCP configuration. <br>
-Risk: Unauthenticated GitHub API requests are limited to 60 requests per hour per IP. <br>
-Mitigation: Plan low-volume public lookups for this skill or use authenticated GitHub access through another approved path for heavier use. <br>
+## Use Case:
 
+Developers and external users can use this skill to discover public GitHub repositories, inspect repository metadata and issue status, and retrieve public user profile information.
 
-## Reference(s): <br>
-- [Pipeworx GitHub Pack](https://pipeworx.io/packs/github) <br>
-- [Pipeworx GitHub MCP Endpoint](https://gateway.pipeworx.io/github/mcp) <br>
-- [ClawHub Skill Page](https://clawhub.ai/b-gutman/pipeworx-github) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown/text with JSON MCP configuration and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Public GitHub lookup results may include repository names, descriptions, stars, forks, language, license, issue metadata, user profile fields, and URLs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: GitHub searches, repository names, usernames, or research interests may be sent through a third-party gateway.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid private repository identifiers and confidential query terms; review the gateway path before using the skill with sensitive work.
+
+Risk: The MCP configuration recommends auto-running an unpinned npm package.
+
+Mitigation: Use a pinned mcp-remote version or a vetted local MCP client before deployment.
+
+## Reference(s):
+
+- [Pipeworx GitHub Pack](https://pipeworx.io/packs/github)
+- [ClawHub Skill Page](https://clawhub.ai/b-gutman/skills/pipeworx-github)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline JSON and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May return public GitHub repository, issue, and user profile data; unauthenticated GitHub API usage is rate limited.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

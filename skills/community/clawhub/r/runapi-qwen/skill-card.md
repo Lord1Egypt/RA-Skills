@@ -1,41 +1,57 @@
-## Description: <br>
-Call the Qwen text API (qwen3-next-80b-a3b-instruct) through RunAPI using the official OpenAI SDK or compatible clients. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides developers in calling Qwen models through RunAPI for text, image understanding, and streaming, with compatibility guidance for existing clients.
 
-## Publisher: <br>
-[runapi-ai](https://clawhub.ai/user/runapi-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[runapi-ai](https://clawhub.ai/user/runapi-ai)
 
-## Use Case: <br>
-Developers and agents use this skill to configure OpenAI-compatible clients for RunAPI-hosted Qwen text chat, streaming completions, and protocol-compatible Anthropic or Gemini client surfaces. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill routes prompts to RunAPI and depends on a RunAPI API key. <br>
-Mitigation: Store the token in a secret manager or local environment file, and scope OPENAI_BASE_URL=https://runapi.ai/v1 only to projects or shells that should use RunAPI. <br>
+## Use Case:
 
+Developers use this skill to configure RunAPI credentials and make Qwen text or image requests through OpenAI-compatible Chat Completions. It also guides compatible text-only clients using other supported protocols.
 
-## Reference(s): <br>
-- [RunAPI Qwen model page](https://runapi.ai/models/qwen) <br>
-- [Qwen model documentation](https://runapi.ai/models/qwen.md) <br>
-- [RunAPI Alibaba provider documentation](https://runapi.ai/providers/alibaba.md) <br>
-- [RunAPI model catalog](https://runapi.ai/models.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with dotenv, Python, TypeScript, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires OPENAI_API_KEY and OPENAI_BASE_URL; keep the RunAPI token in a secret manager or local environment file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: A misconfigured endpoint or exposed credential could send the RunAPI key to an unintended service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a RunAPI-scoped key and confirm OPENAI_BASE_URL is https://runapi.ai/v1.
+
+Risk: Requests send user-provided text or images to an external model provider.
+
+Mitigation: Avoid sending information you would not share with that provider.
+
+## Reference(s):
+
+- [Qwen on RunAPI](https://runapi.ai/models/qwen)
+- [Qwen model documentation](https://runapi.ai/models/qwen.md)
+- [Alibaba provider documentation](https://runapi.ai/providers/alibaba.md)
+- [RunAPI model catalog](https://runapi.ai/models.md)
+- [Qwen compatibility protocols](artifact/references/compatibility-protocols.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Configuration instructions]
+
+**Output Format:** [Markdown with Python examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Response completion and usage checks for supported protocols.]
+
+## Skill Version(s):
+
+0.1.1 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

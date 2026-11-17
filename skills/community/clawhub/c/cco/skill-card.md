@@ -1,46 +1,59 @@
-## Description: <br>
-Lead customer success with retention strategies, health scoring, expansion revenue, and lifecycle management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Lead customer success with retention strategies, health scoring, expansion revenue, and lifecycle management.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Customer success leaders, founders, and go-to-market teams use this skill for CCO-level guidance on retention, churn prevention, customer health scoring, expansion revenue, lifecycle strategy, and CS operations. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can keep optional local notes about customer-success metrics, priorities, at-risk accounts, and expansion opportunities. <br>
-Mitigation: Treat ~/cco/memory.md as potentially sensitive and avoid storing credentials, raw personal data, confidential contract details, or sensitive customer information unless local storage is acceptable. <br>
-Risk: The skill may engage broadly on customer-success topics if configured that way. <br>
-Mitigation: Before installing or enabling memory, decide whether it should activate broadly for customer-success discussions or only when directly requested. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/cco) <br>
-- [Skill homepage](https://clawic.com/skills/cco) <br>
-- [Customer health scoring guide](health.md) <br>
-- [Retention and churn prevention guide](retention.md) <br>
-- [Expansion revenue guide](expansion.md) <br>
-- [Customer success operations guide](operations.md) <br>
-- [Setup guide](setup.md) <br>
-- [Memory template](memory-template.md) <br>
+## Use Case:
 
+Customer success leaders, founders, and operators use this skill for CCO-level guidance on retention strategy, customer health scoring, renewal planning, expansion revenue, and customer success operations.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Analysis, Markdown, Configuration] <br>
-**Output Format:** [Markdown with structured recommendations, tables, and occasional shell commands for optional local setup] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May maintain optional local customer-success notes in ~/cco/memory.md when the user consents.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.2 (source: frontmatter and server evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can help maintain customer-success strategy details and metrics in ~/cco/memory.md.
+
+Mitigation: Use only with approved customer-success information, avoid storing sensitive customer data unless permitted, and review or remove local memory when it is no longer needed.
+
+Risk: The skill provides advice for retention, renewals, expansion, escalations, and pricing-sensitive customer decisions.
+
+Mitigation: Keep human approval for high-value account saves, strategic escalations, pricing exceptions, renewal negotiations, and executive business reviews.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/cco)
+- [Skill homepage](https://clawic.com/skills/cco)
+- [First-time setup](artifact/setup.md)
+- [Memory template](artifact/memory-template.md)
+- [Customer health scoring](artifact/health.md)
+- [Retention and churn prevention](artifact/retention.md)
+- [Expansion revenue](artifact/expansion.md)
+- [Customer success operations](artifact/operations.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown with structured recommendations, checklists, tables, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May help create or update local customer-success memory in ~/cco/memory.md when the user approves setup.]
+
+## Skill Version(s):
+
+1.0.2 (source: server evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

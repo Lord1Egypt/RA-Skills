@@ -5,7 +5,7 @@ allowed-tools: [Bash(oo *)]
 metadata:
   title: "Systeme.io"
   author: "OOMOL"
-  version: "1.0.1"
+  version: "1.0.6"
   services: ["systeme_io"]
   icon: "https://static.oomol.com/logo/third-party/systeme_io.svg"
 ---
@@ -37,8 +37,8 @@ Each action is listed below with a one-line description; actions that change sta
 
 ## Available actions
 
-- `attach_contact_tag` — Attach a tag to a contact in Systeme.io.
-- `cancel_subscription` — Cancel a subscription in Systeme.io. [write]
+- `attach_contact_tag` — Attach a tag to a contact in Systeme.io. [write]
+- `cancel_subscription` — Cancel a subscription in Systeme.io. [destructive]
 - `create_contact` — Create a new contact in Systeme.io. [write]
 - `create_enrollment` — Enroll a contact in a course in Systeme.io. [write]
 - `create_tag` — Create a new tag in Systeme.io. [write]
@@ -47,7 +47,7 @@ Each action is listed below with a one-line description; actions that change sta
 - `delete_enrollment` — Remove a contact enrollment from a course in Systeme.io. [destructive]
 - `delete_tag` — Delete a tag from Systeme.io. [destructive]
 - `delete_webhook` — Delete a webhook from Systeme.io. [destructive]
-- `detach_contact_tag` — Detach a tag from a contact in Systeme.io.
+- `detach_contact_tag` — Detach a tag from a contact in Systeme.io. [destructive]
 - `get_contact` — Get a single contact from Systeme.io by ID.
 - `get_tag` — Get a single tag from Systeme.io by ID.
 - `get_webhook` — Get a single webhook from Systeme.io by ID.
@@ -91,11 +91,14 @@ These are **one-time** steps — do not repeat them on every call. Run a step on
 - **`scope_missing` / `credential_expired` / `app_not_ready` / `app_not_found`** — Systeme.io is not connected, or the connection expired or lacks a scope. Connect once (auth type: API key) at:
 
   ```text
-  https://console.oomol.com/app-connections?provider=systeme_io
+  https://console.oomol.com/connections/systeme_io
   ```
 
-- **HTTP 402 / `OOMOL_INSUFFICIENT_CREDIT`** — billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+- **`OOMOL_INSUFFICIENT_CREDIT`** — OOMOL billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+
+- **HTTP 402 without `OOMOL_INSUFFICIENT_CREDIT`** — the third-party account itself has no active plan or credit. Report the provider error message as is; do not ask the user to recharge OOMOL.
 
 ## Resources
 
 - Systeme.io homepage: https://systeme.io
+- API documentation: https://developer.systeme.io/

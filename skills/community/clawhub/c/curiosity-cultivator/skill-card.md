@@ -1,36 +1,54 @@
-## Description: <br>
-Develops and sustains curiosity as a skill through structured questioning frameworks and exploratory habits. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Develops and sustains curiosity as a skill through structured questioning frameworks and exploratory habits.
 
-## Publisher: <br>
-[harrylabsj](https://clawhub.ai/user/harrylabsj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harrylabsj](https://clawhub.ai/user/harrylabsj)
 
-## Use Case: <br>
-External users use this skill to turn a stated curiosity block or interest into structured questions, curiosity practices, and short exploration plans. It is intended for self-reflection and personal development, not professional medical, psychological, legal, or other regulated advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
+External users use this skill for self-reflection and personal development when they want to explore interests, challenge fixed assumptions, and build curiosity habits. It provides structured questioning, curiosity exercises, and short practice plans for everyday learning and fresh thinking.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, guidance] <br>
-**Output Format:** [JSON object with analysis, recommendations, next steps, frameworks, and a disclaimer] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No external APIs; descriptive output only] <br>
+Global
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: Users may treat reflective self-development output as professional mental health, legal, or other expert advice.
+
+Mitigation: Present the output as general guidance and consult qualified professionals for health, mental health, legal, or other serious concerns.
+
+Risk: Personal prompts could include sensitive details that appear in the agent session or response.
+
+Mitigation: Avoid entering sensitive personal details unless comfortable sharing them in the current agent session.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/harrylabsj/skills/curiosity-cultivator)
+- [Artifact README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Guidance]
+
+**Output Format:** [JSON object with input analysis, recommendations, next steps, frameworks, and a disclaimer.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No external APIs, hidden access, persistence, networking, or credential handling are indicated by the security evidence.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

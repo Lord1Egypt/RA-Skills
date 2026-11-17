@@ -1,39 +1,50 @@
-## Description: <br>
-Response calibration for Claude: match answer depth to question complexity so answers are concise, proportional, and information-dense. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Response calibration for Claude — match answer depth to question complexity. Stop getting 10-paragraph essays for 10-word questions. More signal, less noise.
 
-## Publisher: <br>
-[jiajiaoy](https://clawhub.ai/user/jiajiaoy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiajiaoy](https://clawhub.ai/user/jiajiaoy)
 
-## Use Case: <br>
-External users and developers use this skill to calibrate assistant response length and structure to the complexity of each request, reducing unnecessary preamble, repetition, hedging, and over-explanation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Brevity could remove important caveats or reasoning in legal, medical, security, financial, or other high-stakes work. <br>
-Mitigation: Tell the assistant to preserve important caveats and full reasoning for high-stakes tasks. <br>
+## Use Case:
 
+External users and developers use this skill to calibrate agent responses so answer length and structure match the complexity of the request. It is intended to reduce filler, repeated framing, and over-explanation while preserving needed information.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/jiajiaoy/signal-first) <br>
-- [Skill Homepage](https://clawhub.ai/skills/signal-first) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Concise prose or minimal Markdown depending on request complexity] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Calibrates response length from one-line answers through structured analysis; avoids unnecessary framing and recap.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server-resolved release metadata) <br>
+Risk: The skill can bias responses toward shorter, denser answers that may omit useful context in workflows that expect detailed explanations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review whether concise response calibration fits the intended workflow and explicitly request deeper explanation where needed.
+
+## Reference(s):
+
+- [Signal First ClawHub Page](https://clawhub.ai/jiajiaoy/skills/signal-first)
+- [Clawdis Homepage](https://clawhub.ai/skills/signal-first)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Concise natural language or minimal Markdown, with code blocks or shell commands only when the request calls for them]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Response length is calibrated to request complexity, from one-line answers through longer structured analysis when needed.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

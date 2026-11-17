@@ -1,45 +1,61 @@
-## Description: <br>
-Video Edit - Pro Pack on RunComfy routes existing-video edit requests to matching RunComfy model endpoints for restyling, background or outfit swaps, motion transfer, color grading, and similar transformations up to 1080p. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Video Edit — Pro Pack on RunComfy helps an agent transform existing video clips with RunComfy-hosted models for restyling, background swaps, outfit swaps, motion transfer, color grading, and related edit tasks.
 
-## Publisher: <br>
-[kalvinrv](https://clawhub.ai/user/kalvinrv) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[permew](https://clawhub.ai/user/permew)
 
-## Use Case: <br>
-External users, developers, and content teams use this skill to convert natural-language video edit requests into RunComfy CLI runs for existing clips. It helps select a suitable RunComfy endpoint and prepare the prompt, media URL inputs, and output settings for video editing workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Video, reference images, prompts, and related URLs may be sent to RunComfy for processing. <br>
-Mitigation: Review inputs before running the CLI and avoid submitting sensitive media unless the user's policy allows RunComfy processing. <br>
-Risk: Video edit runs may consume RunComfy account credits. <br>
-Mitigation: Confirm the selected route, input media, and requested edit before executing the generated RunComfy command. <br>
-Risk: User-provided media URLs may point to untrusted or unintended content. <br>
-Mitigation: Inspect or restrict external URLs according to the deployment's content-handling policy before using them in RunComfy requests. <br>
+## Use Case:
 
+Developers, creators, and automation agents use this skill to route an existing video plus an edit instruction to an appropriate RunComfy video-edit endpoint and prepare the matching CLI invocation. It is useful for identity-stable edits such as restyling, background replacement, outfit changes, motion transfer, color grading, and product packaging swaps.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kalvinrv/video-edit-runcomfy) <br>
-- [RunComfy homepage](https://www.runcomfy.com) <br>
-- [RunComfy CLI documentation](https://docs.runcomfy.com/cli/introduction?utm_source=clawhub&utm_medium=skill&utm_campaign=video-edit-runcomfy) <br>
-- [RunComfy model catalog](https://www.runcomfy.com/models?utm_source=clawhub&utm_medium=skill&utm_campaign=video-edit-runcomfy) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline bash commands and JSON request examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the RunComfy CLI, RunComfy authentication, and user-provided video or image URLs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release evidence) <br>
+Risk: Source video URLs, prompts, and optional reference images are sent to RunComfy for third-party media processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with videos and reference assets that are approved for upload to RunComfy.
+
+Risk: RunComfy authentication tokens can grant access to the user's account or processing quota.
+
+Mitigation: Protect RUNCOMFY_TOKEN and prefer a pinned or locally scoped @runcomfy/cli installation where possible.
+
+Risk: The workflow depends on trust in the local RunComfy CLI installation.
+
+Mitigation: Install the CLI from a trusted source, keep it scoped to the intended environment, and review generated commands before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/permew/skills/video-edit-runcomfy)
+- [RunComfy](https://www.runcomfy.com)
+- [RunComfy CLI documentation](https://docs.runcomfy.com/cli/introduction?utm_source=clawhub&utm_medium=skill&utm_campaign=video-edit-runcomfy)
+- [RunComfy video edit models](https://www.runcomfy.com/models?utm_source=clawhub&utm_medium=skill&utm_campaign=video-edit-runcomfy)
+- [RunComfy CLI troubleshooting](https://docs.runcomfy.com/cli/troubleshooting?utm_source=clawhub&utm_medium=skill&utm_campaign=video-edit-runcomfy)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with RunComfy CLI commands and JSON input examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce commands that upload source video URLs, prompts, and optional reference images to RunComfy for processing.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,54 @@
-## Description: <br>
-Post native X/Twitter threads by chaining reply-to calls through Twitter API v2 for multi-tweet content workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Post native X/Twitter threads by chaining reply-to calls via Twitter API v2 for multi-tweet content from a content pipeline.
 
-## Publisher: <br>
-[nissan](https://clawhub.ai/user/nissan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nissan](https://clawhub.ai/user/nissan)
 
-## Use Case: <br>
-Content teams and agents use this skill to preview, post, or schedule native X/Twitter threads from prepared markdown thread drafts when single-post schedulers are insufficient. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can post and schedule public X/Twitter threads from an agent-controlled workflow. <br>
-Mitigation: Run preview or dry-run first, confirm the target account, and require human approval before posting or scheduling. <br>
-Risk: Security evidence notes a mismatch between the declared credential environment variable and the local credential store described by the artifact. <br>
-Mitigation: Confirm which credential source is actually used, which account it controls, and limit or rotate credentials after use. <br>
-Risk: Scheduled jobs and thread logs can persist after the agent session. <br>
-Mitigation: Inspect or cancel queued jobs and remove queued post files or logs when they are no longer needed. <br>
+## Use Case:
 
+Developers and content operators use this skill to preview, post, and schedule native X/Twitter threads from prepared Markdown thread files.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nissan/twitter-thread-scheduler) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Markdown, Configuration] <br>
-**Output Format:** [Markdown with inline shell commands and file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce preview checks, scheduled job instructions, and queue or log file guidance for thread posting.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill can publish or schedule real X/Twitter threads using local or environment credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for intended posting workflows, verify the active X/Twitter account before execution, and require explicit confirmation before post, schedule, or fire actions.
+
+Risk: The artifact documents use of an undeclared local OAuth credential store at ~/.xurl.
+
+Mitigation: Prefer a single declared credential source and review local OAuth credentials before using the skill.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/nissan/skills/twitter-thread-scheduler)
+- [Publisher Profile](https://clawhub.ai/user/nissan)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with shell command examples and operational guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and TWITTER_ACCESS_TOKEN; documented behavior includes outbound Twitter API calls and local queue/log files.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

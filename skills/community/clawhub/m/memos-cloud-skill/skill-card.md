@@ -1,44 +1,58 @@
-## Description: <br>
-External long-term memory and knowledge base backed by the MemOS Cloud API for memory search, message storage, feedback-based correction, profile retrieval, and knowledge base document management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+External long-term memory and knowledge base backed by the MemOS Cloud API for searching, storing, correcting, deleting, profiling, and managing memory and knowledge base documents.
 
-## Publisher: <br>
-[xiaohuisu](https://clawhub.ai/user/xiaohuisu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiaohuisu](https://clawhub.ai/user/xiaohuisu)
 
-## Use Case: <br>
-Developers and agent operators use this skill to give an agent persistent MemOS Cloud memory, user profile retrieval, and knowledge base management across conversations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Conversation content may be sent to and retained by a third-party MemOS Cloud service by default. <br>
-Mitigation: Deploy only where that storage behavior is approved, configure credentials through the host environment, and avoid use in chats containing secrets, regulated data, or private documents unless policy permits it. <br>
-Risk: Delete commands and knowledge-base uploads can change or expose stored data without strong recovery controls shown in the artifact. <br>
-Mitigation: Require operator review for delete and upload actions, verify target memory or file IDs before execution, and keep independent backups or recovery procedures for important knowledge bases. <br>
-Risk: The skill requires sensitive credentials for MemOS Cloud access. <br>
-Mitigation: Provide MEMOS_API_KEY and MEMOS_USER_ID through deployment-managed environment variables, never expose the token in prompts or logs, and rotate credentials if they may have been disclosed. <br>
+## Use Case:
 
+Developers and agent operators use this skill to connect an agent to MemOS Cloud for long-term conversation memory, user profile retrieval, memory correction or deletion, and knowledge base document management.
 
-## Reference(s): <br>
-- [ClawHub release: Memos Cloud Server](https://clawhub.ai/xiaohuisu/memos-cloud-skill) <br>
-- [Publisher profile: xiaohuisu](https://clawhub.ai/user/xiaohuisu) <br>
-- [MemOS Cloud API endpoint](https://memos.memtensor.cn/api/openmem/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, API calls, JSON, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires MEMOS_API_KEY and MEMOS_USER_ID; may upload local files or URLs to a configured knowledge base.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: Conversation history may be sent to and retained by MemOS Cloud by default.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when external long-term memory storage is intended, and avoid entering secrets or sensitive content while the skill is active.
+
+Risk: Incorrect endpoint or credential configuration can send memory data to an unintended service or tenant.
+
+Mitigation: Configure MEMOS_API_KEY, MEMOS_USER_ID, and any custom endpoint only in a trusted environment, and prefer a host-provided stable session ID.
+
+Risk: Remote uploads, deletions, and memory feedback can change stored memory or knowledge base state.
+
+Mitigation: Confirm upload and deletion actions before execution, especially for sensitive files, shared knowledge bases, or memory correction workflows.
+
+## Reference(s):
+
+- [ClawHub Skill Release](https://clawhub.ai/xiaohuisu/skills/memos-cloud-skill)
+- [MemOS Cloud API Endpoint](https://memos.memtensor.cn/api/openmem/v1)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, json, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3, MEMOS_API_KEY, and MEMOS_USER_ID; uses the configured MemOS Cloud endpoint for memory and knowledge base operations.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

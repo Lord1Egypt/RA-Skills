@@ -1,43 +1,58 @@
-## Description: <br>
-fal.ai lets an agent operate fal.ai through an OOMOL-connected account by using the oo CLI connector for model discovery, pricing, queue status, results, and request cancellation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Operate fal.ai model endpoints through an OOMOL-connected account, including model discovery, pricing, queued job submission, monitoring, cancellation, and result retrieval.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and operators use this skill to inspect fal.ai model endpoints, estimate pricing, manage queued fal requests, retrieve completed results, and fetch JWKS data for webhook verification through their connected OOMOL account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can operate fal.ai through the user's OOMOL-connected account and includes a write action for request cancellation. <br>
-Mitigation: Install it only when that account access is intended, and confirm the exact payload and effect before running write actions. <br>
-Risk: The setup instructions include shell-based oo CLI installation commands. <br>
-Mitigation: Prefer a verified installation method for the oo CLI before running connector commands. <br>
+## Use Case:
 
+External users and developers can use the skill to discover fal.ai models and pricing, submit queued model jobs, monitor or cancel them, and retrieve completed results.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/oomol/oo-fal-ai) <br>
-- [Publisher profile](https://clawhub.ai/user/oomol) <br>
-- [fal.ai homepage](https://fal.ai) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON payload examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce or summarize JSON responses returned by the oo CLI connector.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: release evidence and frontmatter) <br>
+Risk: CLI setup may make broader, persistent changes to installed agent skills through synchronization.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the CLI before installing it; set OO_SKILLS_SYNC_DISABLED=1 before CLI use if you do not want skill synchronization.
+
+Risk: Using the connected service entrusts OOMOL with provider credentials and request processing, and submitted jobs may incur costs.
+
+Mitigation: Review the data sent and the relevant pricing before submission, and confirm the job's cancellation target.
+
+Risk: The external installer and hosted implementation were not verified in the security assessment.
+
+Mitigation: Review and install the CLI yourself before enabling the skill.
+
+## Reference(s):
+
+- [fal.ai](https://fal.ai)
+- [fal.ai Model API documentation](https://docs.fal.ai/model-apis)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Guidance]
+
+**Output Format:** [JSON action responses with concise task guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results depend on the selected fal.ai endpoint and action.]
+
+## Skill Version(s):
+
+1.0.7 (source: release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,53 @@
-## Description: <br>
-Scans Polymarket hourly BTC/ETH/SOL/XRP markets for edge opportunities using the Argus strategy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scan Polymarket hourly crypto markets (BTC/ETH/SOL/XRP) for edge opportunities, counter-consensus setups, freshness windows, and expected value using the Argus strategy.
 
-## Publisher: <br>
-[JamieRossouw](https://clawhub.ai/user/JamieRossouw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jamierossouw](https://clawhub.ai/user/jamierossouw)
 
-## Use Case: <br>
-External users and agents use this skill to scan current Polymarket hourly crypto prediction markets and rank potential edge opportunities for BTC/ETH/SOL/XRP. Treat the output as heuristic gambling and financial analysis rather than trading instructions or guaranteed returns. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill returns betting-edge estimates and Kelly sizing that could be mistaken for guaranteed financial advice. <br>
-Mitigation: Treat results as heuristic gambling and financial analysis, verify independently, and avoid risking funds based only on the skill output. <br>
-Risk: The skill depends on outbound requests to public Polymarket-related APIs, so market data may be unavailable, delayed, or stale. <br>
-Mitigation: Confirm market freshness and odds directly before acting on any suggested opportunity. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/JamieRossouw/polymarket-scout) <br>
+## Use Case:
 
+External users and agents use this skill to scan live Polymarket hourly crypto markets for ranked prediction-market edge signals. It supports market review and decision support, but recommendations should be treated as unverified betting or financial guidance.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown analysis with ranked edge opportunities and bet-sizing guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only analysis based on public Polymarket-related market data; no credentials or trade execution are required.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill produces betting-oriented market signals, edge estimates, win-rate claims, and Kelly sizing.
+
+Mitigation: Require explicit user confirmation before acting on any recommendation and treat all outputs as unverified gambling or financial guidance.
+
+Risk: The skill fetches live Polymarket data and may present time-sensitive opportunities.
+
+Mitigation: Confirm market state, timing, odds, and user intent immediately before any external action.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jamierossouw/skills/polymarket-scout)
+- [Publisher profile](https://clawhub.ai/user/jamierossouw)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, API Calls, Markdown, Guidance]
+
+**Output Format:** [Markdown with ranked market-signal analysis and sizing guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Fetches live Polymarket CLOB and Gamma API data without API keys; outputs should require explicit user confirmation before any betting action.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,65 @@
+{
+  "name": "excel2insights",
+  "version": "2.0.0",
+  "description": "Excel数据分析与可视化工具。自动加载、分析、可视化结构化数据（CSV/XLSX/TSV），生成洞察报告。支持统计概要、数据质量检查、多种图表和自定义分析。🎉 v2.0.0: 全新架构，完整分析管线，多格式图表输出。",
+  "author": "Wei Wu (wwumit)",
+  "license": "MIT-0",
+  "keywords": [
+    "excel",
+    "数据分析",
+    "data-analysis",
+    "visualization",
+    "csv",
+    "xlsx",
+    "pandas",
+    "charts",
+    "数据可视化",
+    "insights",
+    "reporting"
+  ],
+  "files": [
+    "SKILL.md",
+    "package.json",
+    "requirements.txt",
+    "CHANGELOG.md",
+    "README.md",
+    "scripts/",
+    "references/",
+    "assets/"
+  ],
+  "scripts": {
+    "scan": "python3 scripts/excel-reader.py",
+    "analyze": "python3 scripts/data-analyzer.py",
+    "chart": "python3 scripts/chart-generator.py",
+    "report": "python3 scripts/report-generator.py",
+    "pipeline": "python3 scripts/auto-pipeline.py"
+  },
+  "openclaw": {
+    "skill": true,
+    "category": "data-analysis",
+    "region": "global",
+    "dependencies": [
+      "python3",
+      "pandas",
+      "numpy",
+      "matplotlib",
+      "openpyxl",
+      "seaborn"
+    ],
+    "compatibility": {
+      "minOpenClawVersion": "1.0.0",
+      "testedModels": []
+    },
+    "emoji": "📊"
+  },
+  "security": {
+    "scanned": true,
+    "issues": 0,
+    "warnings": 0
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wwumit/excel2insights"
+  },
+  "homepage": "https://github.com/wwumit/excel2insights"
+}

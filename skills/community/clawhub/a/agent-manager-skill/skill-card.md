@@ -1,42 +1,59 @@
-## Description: <br>
-Manage OpenClaw agents by creating new agents, configuring workspaces, setting up Feishu bot integrations, and verifying multi-bot routing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage OpenClaw Agents by creating new agents, configuring workspaces, setting up Feishu bot integrations, and verifying multi-bot routing.
 
-## Publisher: <br>
-[zouxuyang](https://clawhub.ai/user/zouxuyang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zouxuyang](https://clawhub.ai/user/zouxuyang)
 
-## Use Case: <br>
-Developers and OpenClaw operators use this skill to create and configure local OpenClaw agents, bind them to Feishu bots, and verify routing before bringing agents online. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can change local OpenClaw agent workspaces and OpenClaw configuration. <br>
-Mitigation: Back up ~/.openclaw/openclaw.json before use and review the planned Agent ID, workspace path, and Feishu binding changes before confirming execution. <br>
-Risk: Feishu app secrets may be printed, captured, or stored during the authorization and binding flow. <br>
-Mitigation: Run authorization only in private terminals, avoid logged or shared sessions, prefer authenticated pairing for private bots, and rotate any Feishu secret that may have been exposed. <br>
+## Use Case:
 
+Developers and OpenClaw operators use this skill to create and configure agents, initialize workspaces, bind Feishu bots, and verify routing before enabling the new bot.
 
-## Reference(s): <br>
-- [Artifact README](README.md) <br>
-- [Artifact Skill Instructions](SKILL.md) <br>
-- [ClawHub skill page](https://clawhub.ai/zouxuyang/agent-manager-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and local configuration changes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May execute local OpenClaw commands and update ~/.openclaw/openclaw.json after user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Feishu app credentials may be exposed through logs, chat transcripts, or overly broad bot configuration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a test Feishu app or tightly scoped credentials, avoid the default all-open bot setting unless intended, and rotate any secret that appears in logs or chat transcripts.
+
+Risk: Agent creation can create persistent workspaces and edit global OpenClaw configuration.
+
+Mitigation: Review the generated agent ID and workspace path before execution, and run the skill first in an OpenClaw environment where those changes are acceptable.
+
+Risk: Restarting the OpenClaw gateway can affect bot availability.
+
+Mitigation: Require explicit user approval before restarting the gateway and verify gateway status after restart.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/zouxuyang/skills/agent-manager-skill)
+- [README.md](artifact/README.md)
+- [SKILL.md](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and configuration updates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide local OpenClaw CLI execution, Feishu authorization, workspace creation, configuration updates, and gateway restart checks.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

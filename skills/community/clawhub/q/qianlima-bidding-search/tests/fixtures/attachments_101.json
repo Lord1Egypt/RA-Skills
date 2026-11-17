@@ -1,0 +1,14 @@
+{
+  "code": 200,
+  "msg": "",
+  "data": [
+    {
+      "filepathId": 1,
+      "projectId": 101,
+      "fileName": "实验室设备采购需求.pdf",
+      "fileUrl": "https://example.invalid/attachments/1.pdf",
+      "fileSize": 125.5
+    }
+  ],
+  "success": true
+}

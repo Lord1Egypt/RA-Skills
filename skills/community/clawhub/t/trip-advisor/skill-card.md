@@ -1,46 +1,61 @@
-## Description: <br>
-Plan full trips with real-time FlyAI/Fliggy CLI data, including flights, hotels, attractions, day-by-day itineraries, visa information, and booking links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Plan your entire trip with AI, including flights, hotels, attractions, day-by-day itinerary, booking support, visa information, travel insurance, car rental, and related travel needs powered by Fliggy.
 
-## Publisher: <br>
-[xiejinsong](https://clawhub.ai/user/xiejinsong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiejinsong](https://clawhub.ai/user/xiejinsong)
 
-## Use Case: <br>
-External users and travel-planning agents use this skill to collect trip parameters, run FlyAI CLI searches, and produce comparison tables with booking links for flights, hotels, attractions, and related travel needs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may install and run an unpinned FlyAI/Fliggy CLI. <br>
-Mitigation: Manually approve installation, or preinstall a trusted pinned CLI version before using the skill. <br>
-Risk: Trip details are sent to the travel provider through CLI calls. <br>
-Mitigation: Use the skill only when sharing the requested itinerary, travel dates, and preferences with that provider is acceptable. <br>
-Risk: Raw travel requests may be retained in a local .flyai-execution-log.json file. <br>
-Mitigation: Delete or disable the local execution log when retained trip details are not needed. <br>
+## Use Case:
 
+External users and travel planners use this skill to collect trip parameters, run flyai travel-search commands, and turn real-time flight, hotel, attraction, visa, and itinerary results into user-facing travel plans with booking links.
 
-## Reference(s): <br>
-- [Trip Advisor ClawHub listing](https://clawhub.ai/xiejinsong/trip-advisor) <br>
-- [templates.md](references/templates.md) <br>
-- [playbooks.md](references/playbooks.md) <br>
-- [fallbacks.md](references/fallbacks.md) <br>
-- [runbook.md](references/runbook.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with comparison tables, booking links, and inline shell commands for retries or setup] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires real-time FlyAI CLI output; every listed travel result must include a booking link.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill asks agents to install and run an unpinned global flyai CLI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the package and version before installation and run the skill in a sandboxed environment.
+
+Risk: The skill uses user-filled shell command templates for travel searches.
+
+Mitigation: Validate command parameters against the documented tables before execution and do not invent or pass unsupported arguments.
+
+Risk: Travel requests may contain sensitive passport, identity, or private itinerary details.
+
+Mitigation: Avoid collecting unnecessary sensitive details and do not persist execution logs containing raw travel requests.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/xiejinsong/skills/trip-advisor)
+- [templates.md](references/templates.md)
+- [playbooks.md](references/playbooks.md)
+- [fallbacks.md](references/fallbacks.md)
+- [runbook.md](references/runbook.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with comparison tables, booking links, and inline shell commands when retry steps are needed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are expected to include flyai-sourced booking links and a flyai attribution tag; raw JSON is not intended for users.]
+
+## Skill Version(s):
+
+3.2.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

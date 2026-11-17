@@ -1,0 +1,13 @@
+interface:
+  display_name: "EU ebook accessibility"
+  short_description: "Verify release EPUB claim"
+policy:
+  products: ["CHAT", "CODEX"]
+  allow_implicit_invocation: true
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "powmcp-epub-accessibility-check"
+      description: "Ebook Accessibility Check (PowMCP)"
+      transport: "streamable_http"
+      url: "https://powmcp.com/epub-accessibility-check/mcp"

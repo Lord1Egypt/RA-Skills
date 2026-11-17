@@ -1,39 +1,54 @@
-## Description: <br>
-Install and verify Codex Claw for Codex Desktop AGENTS.md, Agent MD, SOUL.md, soul file, session memory, personality, and OpenClaw workspace context loading through the @openclaw/codex-claw plugin with post-compaction reinjection. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Install and verify Codex Claw for Codex Desktop AGENTS.md, Agent MD, SOUL.md, soul file, session memory, personality, and OpenClaw workspace context loading through the @openclaw/codex-claw plugin with post-compaction reinjection.
 
-## Publisher: <br>
-[100yenadmin](https://clawhub.ai/user/100yenadmin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[100yenadmin](https://clawhub.ai/user/100yenadmin)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to install and verify Codex Claw so Codex Desktop can load selected AGENTS.md and SOUL.md workspace context. They also use it to review those files before enabling them broadly. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Always-on AGENTS.md or SOUL.md context can expose secrets, private memories, local-only paths, or unsafe instructions to future Codex sessions. <br>
-Mitigation: Review and scope those files before enabling Codex Claw; remove secrets, private data, and instructions that conflict with native Codex behavior. <br>
-Risk: Plugin installation and marketplace configuration changes affect local Codex Desktop behavior. <br>
-Mitigation: Install only verified package artifacts, check bridge status and logs, and enable plugin hooks only where the user intends to load this context. <br>
+## Use Case:
 
+Developers and Codex Desktop users use this skill to install, configure, and verify the Codex Claw plugin for loading selected OpenClaw AGENTS.md and SOUL.md workspace context into fresh Codex Desktop sessions.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with bash and TOML snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes installation, configuration, verification, and review guidance; does not produce runtime artifacts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The setup installs and enables an external Codex hook plugin using mutable or forced install steps.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm trust in the exact @openclaw/codex-claw package version, verify the downloaded package before installation, and avoid forced or wildcard installs where possible.
+
+Risk: Configured AGENTS.md and SOUL.md files may contain secrets, unsafe instructions, or local-only context that would be loaded into future Codex sessions.
+
+Mitigation: Review and scope AGENTS.md and SOUL.md before enabling broad session loading, removing secrets and instructions that conflict with native Codex behavior.
+
+## Reference(s):
+
+- [Codex Claw on ClawHub](https://clawhub.ai/100yenadmin/skills/codex-claw)
+- [Publisher profile: 100yenadmin](https://clawhub.ai/user/100yenadmin)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline bash and TOML code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Provides installation, configuration, verification, diagnostics, and review guidance for local Codex Desktop context loading.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,58 @@
-## Description: <br>
-Quick reference for OpenClaw CLI commands, sub-commands, flags, safe usage rules, and copy-paste examples. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Quick reference for every OpenClaw CLI command, sub-command, and flag.
 
-## Publisher: <br>
-[TeeDDub](https://clawhub.ai/user/TeeDDub) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[teeddub](https://clawhub.ai/user/teeddub)
 
-## Use Case: <br>
-Developers and operators use this skill to answer OpenClaw CLI usage questions, verify command flags before running operations, and produce concise examples for messaging, configuration, gateway, cron, hooks, models, channels, sessions, skills, memory, and diagnostics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill includes broad OpenClaw administration commands, including state-changing operations. <br>
-Mitigation: Require explicit user confirmation before proposing or running send, create, set, unset, install, uninstall, delete, overwrite, restart, or script-run commands. <br>
-Risk: The referenced cheatsheet includes non-OpenClaw Google Calendar and Obsidian command examples. <br>
-Mitigation: Treat those sections as out of scope unless the user intentionally asks for those tools and their permissions are understood. <br>
+## Use Case:
 
+Developers, operators, and agent users use this skill to answer OpenClaw CLI usage questions, verify flags, and produce concise command examples before making operational changes.
 
-## Reference(s): <br>
-- [OpenClaw CLI Cheatsheet](artifact/references/openclaw-cheatsheet.md) <br>
-- [ClawHub release page](https://clawhub.ai/TeeDDub/openclaw-cheatsheet) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Concise, request-scoped answers with copy-paste-ready examples when appropriate.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: Copy-paste examples can target external accounts, message channels, vault paths, or other user-controlled resources.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Replace placeholder or hardcoded targets with user-confirmed values before execution, and confirm destructive or state-changing operations explicitly.
+
+Risk: Some examples can run local scripts or live operational commands whose behavior is outside the cheatsheet itself.
+
+Mitigation: Independently inspect local scripts, permissions, and runtime targets before running live commands.
+
+Risk: CLI reference material may be stale or incomplete for a specific installed OpenClaw version.
+
+Mitigation: Verify uncovered or uncertain flags with `openclaw <command> --help` before recommending execution.
+
+## Reference(s):
+
+- [OpenClaw CLI Cheatsheet](references/openclaw-cheatsheet.md)
+- [ClawHub skill page](https://clawhub.ai/teeddub/skills/openclaw-cheatsheet)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with concise explanations and inline bash command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Answers should be scoped to the requested OpenClaw command area, with warning language before destructive or state-changing operations.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

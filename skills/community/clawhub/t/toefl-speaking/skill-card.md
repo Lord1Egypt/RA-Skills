@@ -1,40 +1,55 @@
-## Description: <br>
-Generates TOEFL iBT speaking practice sets by selecting varied academic or campus topics and producing four progressive interview questions with stored reference answers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates TOEFL iBT speaking practice sets with four progressively structured interview questions, reference answers, and answer explanations.
 
-## Publisher: <br>
-[saikewei](https://clawhub.ai/user/saikewei) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[saikewei](https://clawhub.ai/user/saikewei)
 
-## Use Case: <br>
-TOEFL learners and study coaches use this skill to generate varied speaking interview practice, review reference answers, and request feedback on spoken-response quality across fluency, vocabulary, grammar, and content. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated questions, reference answers, topic history, and dated archives may remain in local files under toefl/. <br>
-Mitigation: Delete the local toefl/ folder when study history should not be retained, and avoid putting sensitive personal material in practice answers. <br>
-Risk: The generated TOEFL material is practice content and may not reflect official exam guidance. <br>
-Mitigation: Use the output as study practice and confirm official requirements against ETS or other authoritative TOEFL materials. <br>
+## Use Case:
 
+Students and TOEFL practice coaches use this skill to generate fresh speaking interview practice sets, reveal reference answers on request, and evaluate user responses against fluency, vocabulary, grammar, and content criteria.
 
-## Reference(s): <br>
-- [prompt-template.md](prompt-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Guidance] <br>
-**Output Format:** [Markdown practice questions with hidden reference answers and JSON topic history] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores latest questions, answers, topic history, and dated archives under the local toefl/ folder.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill may retain generated answers and practice history in local files under toefl/.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or clear the local toefl/ files before sharing a workspace or publishing generated practice records.
+
+Risk: Generating or changing a question set may update local Markdown and JSON files.
+
+Mitigation: Run the skill in a workspace where updates to toefl/latest.md, toefl/history.json, and dated archives are expected.
+
+## Reference(s):
+
+- [Prompt Template](artifact/prompt-template.md)
+- [ClawHub Skill Page](https://clawhub.ai/saikewei/skills/toefl-speaking)
+- [Publisher Profile](https://clawhub.ai/user/saikewei)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown question sets with separated reference answers and answer explanations.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The normal workflow may update local Markdown and JSON practice-history files under toefl/.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter says 2.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

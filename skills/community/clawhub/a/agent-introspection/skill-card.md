@@ -1,43 +1,53 @@
-## Description: <br>
-Agent Introspection triggers structured self-reflection at key task points to reduce blind execution, drift, and overconfidence. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent Introspection guides agents through structured self-review at task start, decision points, blockers, and before delivery to reduce drift, unchecked assumptions, and overconfidence.
 
-## Publisher: <br>
-[demo112](https://clawhub.ai/user/demo112) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[demo112](https://clawhub.ai/user/demo112)
 
-## Use Case: <br>
-Agents and agent developers use this skill to pause before important work, decisions, blockage handling, and delivery so they can check assumptions, choose corrective action, and verify behavior changed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Reflection notes may include sensitive task context if written broadly or stored in uncontrolled locations. <br>
-Mitigation: Keep reflection notes in a known limited location and avoid including unnecessary sensitive details. <br>
-Risk: An agent may treat introspection as permission to take irreversible, external, or high-impact action. <br>
-Mitigation: Require human confirmation before irreversible, external, or high-impact actions, including actions suggested during reflection. <br>
-Risk: The skill's guidance can be mistaken for completed remediation when it only produces reflection text. <br>
-Mitigation: Use the skill's action and verification fields to record a concrete completed action before considering the introspection complete. <br>
+## Use Case:
 
+Developers and agent operators use this skill to make an agent pause, inspect assumptions, choose corrective action, and verify changed behavior during normal task execution.
 
-## Reference(s): <br>
-- [Philosophical Foundations](references/philosophical-foundations.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/demo112/agent-introspection) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown text with structured introspection blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable output; reflection should state current status, findings, completed action, and verification.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Broad activation phrases could cause ordinary requests about reflection or review to trigger an introspection workflow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Narrow activation phrases or require explicit invocation when routine uses of words like reflect should not change the agent's workflow.
+
+Risk: Self-review output can be mistaken for completed validation if it does not lead to a concrete behavior change.
+
+Mitigation: Require the skill's action and verification fields to describe what was already changed and what result was observed.
+
+## Reference(s):
+
+- [Philosophical Foundations](references/philosophical-foundations.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Structured Markdown text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,95 @@
+{
+  "schema_version": "itp.agent_doc.v1",
+  "role": "buyer",
+  "product_scope": "itpay is the single public CLI entry point, and $itpay is its user-facing Skill invocation. Under that one product entry point, the two top-level commerce actions are buy and sell: Buyer workflows are available now; Seller workflows will use the same entry point and are not implemented yet.",
+  "topic": "render-hosts",
+  "title": "Agent Type And Checkout Handoff Rendering",
+  "purpose": "Use only the handoff fields returned for the current Agent Type and make the human Checkout visible on that surface.",
+  "when_to_use": [
+    "buy, services checkout, checkout, or pay returned a human handoff.",
+    "The human cannot see the QR image or Checkout link."
+  ],
+  "host_contracts": [
+    {
+      "agent_type": "codex-desktop",
+      "default_host": "codex",
+      "responsibility": "attach handoff.qr_local_path and show handoff.url or the returned markdown in the current desktop conversation"
+    },
+    {
+      "agent_type": "codex-cli",
+      "default_host": "terminal",
+      "responsibility": "render only in a terminal the human is actually watching and show the Checkout URL"
+    },
+    {
+      "agent_type": "claude-code-desktop",
+      "default_host": "claude-code",
+      "responsibility": "attach handoff.qr_local_path and show handoff.url or the returned markdown in the current desktop conversation"
+    },
+    {
+      "agent_type": "claude-code-cli",
+      "default_host": "terminal",
+      "responsibility": "render only in a terminal the human is actually watching and show the Checkout URL"
+    },
+    {
+      "agent_type": "workbuddy",
+      "default_host": "plain-chat",
+      "responsibility": "show the amount and send or open handoff.url, which is the fully rendered HTML Card Link; never call present_files; then stop"
+    },
+    {
+      "agent_type": "kimi-code",
+      "default_host": "terminal",
+      "responsibility": "use the standard CLI terminal QR and Checkout URL"
+    },
+    {
+      "agent_type": "openclaw",
+      "default_host": null,
+      "host_required": true,
+      "native_hosts": ["telegram"],
+      "responsibility": "pass the native OpenClaw entry target explicitly; for Telegram execute handoff.agent_action unchanged, then treat itp:grant_confirmed callbacks only as permission to query the same Checkout and follow Backend grant state; otherwise show the returned HTTPS QR image and Checkout URL"
+    }
+  ],
+  "commands": [
+    {
+      "intent": "confirm the current Agent Type contract",
+      "command": "itpay install <agent_type> --json",
+      "success_signal": "the exact default Host and presentation responsibility are returned"
+    },
+    {
+      "intent": "recover a Checkout handoff",
+      "command": "itpay checkout --id <checkout_id> --token <display_token> --json",
+      "success_signal": "only handoff fields usable by the current Host are returned"
+    }
+  ],
+  "agent_rules": [
+    "Agent Type is stable identity; Host is presentation and may be explicitly overridden.",
+    "A local QR path is not visible until a desktop Agent attaches or renders that file on the human-facing surface; WorkBuddy never receives a local QR path.",
+    "For workbuddy with plain-chat, send or open only the rendered handoff.url and never call present_files, inspect files, or rebuild a QR.",
+    "Do not claim the handoff was shown until both a usable payment image or QR and the Checkout URL are visible.",
+    "IM Hosts that require a target must receive --target before Checkout creation. OpenClaw has no default Host; Kimi Code uses terminal.",
+    "OpenClaw Telegram uses flat url/value buttons for deployed-version compatibility. A grant_confirmed callback carries only the Checkout ID, never a display token, and never proves payment or an active grant."
+  ],
+  "forbidden": [
+    "Do not expose display tokens separately from the tokenized Checkout handoff.",
+    "Do not print base64 images, mirror lists, renderer debug state, or provider QR URLs.",
+    "Do not claim a desktop attachment exists when only a filesystem path was printed.",
+    "Do not call present_files or inspect, download, or regenerate a local QR file for WorkBuddy."
+  ],
+  "next_docs": [
+    {
+      "condition": "Need payment verification rules",
+      "topic": "payment-flow"
+    }
+  ],
+  "search_terms": [
+    "host",
+    "agent type",
+    "QR",
+    "markdown",
+    "terminal",
+    "desktop",
+    "workbuddy",
+    "kimi code",
+    "openclaw",
+    "telegram"
+  ]
+}

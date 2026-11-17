@@ -1,42 +1,58 @@
-## Description: <br>
-Monitors Tom Doerr's X.com profile for new posts, verifies GitHub links, prepares Brazilian Portuguese social copy, requests Telegram approval, and can post approved updates to Twitter/X. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitors Tom Doerr's X.com profile for new posts, verifies real GitHub links, sends Telegram approval messages, and can publish approved updates to X.
 
-## Publisher: <br>
-[gbrokng](https://clawhub.ai/user/gbrokng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gbrokng](https://clawhub.ai/user/gbrokng)
 
-## Use Case: <br>
-Users who monitor Tom Doerr's X.com activity can use this skill to check for new GitHub repository posts, verify destination links, rewrite updates in Brazilian Portuguese, request Telegram approval, and publish approved posts from a logged-in X account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can run hourly and publish public social posts from a logged-in X account with limited built-in controls. <br>
-Mitigation: Before enabling cron, confirm the exact X account, change the Telegram recipient to an account the operator controls, require review of every rewritten post before approval, and keep a clear way to disable the recurring job. <br>
-Risk: Posts may share broken or misleading GitHub links if X displays truncated or redirected URLs. <br>
-Mitigation: Verify each repository link through the actual t.co redirect or by searching GitHub before drafting or approving a post. <br>
+## Use Case:
 
+External social media operators can use this skill to monitor Tom Doerr's X.com posts, identify real GitHub repository links, draft Portuguese-language updates, request Telegram approval, and publish approved posts to X.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gbrokng/twitterbrowserpost) <br>
-- [Tom Doerr X profile](https://x.com/tom_doerr) <br>
-- [X post composer](https://x.com/compose/post) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Text] <br>
-**Output Format:** [Markdown workflow with inline shell commands and drafted social post text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user approval before public posting and uses a browser profile logged into the target X account.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Recurring monitoring may run on an hourly schedule and continue after installation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the intended schedule before enabling the skill and document how to remove or disable the cron job.
+
+Risk: The skill can send messages to a hardcoded Telegram recipient and may post to X through an existing browser session.
+
+Mitigation: Verify the Telegram destination, active X account, approval process, and final message text before any automated delivery.
+
+Risk: Social posts may include incorrect or truncated GitHub links if link verification is skipped.
+
+Mitigation: Follow the artifact's link validation workflow by resolving t.co redirects or confirming the repository directly on GitHub before posting.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gbrokng/skills/twitterbrowserpost)
+- [Tom Doerr X profile](https://x.com/tom_doerr)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and drafted social post text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use browser automation and Telegram/X delivery after approval.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

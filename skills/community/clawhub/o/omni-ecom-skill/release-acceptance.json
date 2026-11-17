@@ -1,0 +1,27 @@
+{
+  "artifact_type": "omni-ecom.release-acceptance-receipt@2.0",
+  "status": "release_acceptance_verified",
+  "target_version": "2.0.3",
+  "verified_at": "2026-10-13T10:32:52.705944+00:00",
+  "ledger_sha256": "9af625953093fdc06a10c2bed4ad8d396e118323a76322165dd18cf63fba0881",
+  "domains": [
+    "codex_native_multi_agent_pdf",
+    "workbuddy_native_multi_agent_pdf"
+  ],
+  "optional_capabilities": {
+    "platform_api_read": "not_enabled",
+    "controlled_action_readback": "not_enabled",
+    "live_model_route_baseline": "not_enabled"
+  },
+  "evidence_fingerprints": [
+    {
+      "domain": "codex_native_multi_agent_pdf",
+      "sha256": "ee54be764279b186843a10951efe944a19e0b5491d9716d153562679bc87a56f"
+    },
+    {
+      "domain": "workbuddy_native_multi_agent_pdf",
+      "sha256": "9dd900c1ce1e5fdfb8594679531758ef7392540426a8375b8d5ced75d548d293"
+    }
+  ],
+  "errors": []
+}

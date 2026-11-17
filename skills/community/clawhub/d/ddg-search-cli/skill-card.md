@@ -1,40 +1,53 @@
-## Description: <br>
-DuckDuckGo HTML search scraper CLI with JSON, CSV, OpenSearch, markdown, and compact outputs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+DuckDuckGo HTML search scraper CLI with JSON, CSV, OpenSearch, markdown, and compact outputs.
 
-## Publisher: <br>
-[camohiddendj](https://clawhub.ai/user/camohiddendj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[camohiddendj](https://clawhub.ai/user/camohiddendj)
 
-## Use Case: <br>
-Developers and agents use this skill to run DuckDuckGo searches from the command line and capture results in structured or human-readable formats for downstream analysis, documents, or LLM context. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on installing and trusting the ddg-search npm package and any install-time behavior it performs. <br>
-Mitigation: Install only after reviewing the package source and supply-chain trust posture; use npm options such as disabling lifecycle scripts when install scripts are not desired. <br>
-Risk: Unbounded or broad web searches can create excessive scraping activity or return partial results if DuckDuckGo triggers bot detection. <br>
-Mitigation: Use bounded page or result limits for routine searches and treat early-stopped results as incomplete. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/camohiddendj/ddg-search-cli) <br>
-- [Project Homepage](https://github.com/camohiddendj/ddg-search) <br>
+## Use Case:
 
+Developers and agents use this skill to run DuckDuckGo searches from the command line and choose output formats suited for LLM context, structured processing, spreadsheets, documents, or OpenSearch feeds.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline shell command examples and structured output descriptions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports json, jsonl, csv, opensearch, markdown, and compact CLI result formats.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-2026.2.15 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The install metadata depends on the current npm release of ddg-search rather than a reviewed pinned version.
+
+Mitigation: Use a least-privilege environment and pin the npm package version when stronger supply-chain control is required.
+
+Risk: DuckDuckGo bot detection may stop scraping early and return only the results collected so far.
+
+Mitigation: Treat search results as potentially partial and verify important findings against source pages before relying on them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/camohiddendj/skills/ddg-search-cli)
+- [ddg-search project homepage](https://github.com/camohiddendj/ddg-search)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, CSV, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands; CLI output may be JSON, JSONL, CSV, Markdown, compact text, or OpenSearch XML.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results are written to stdout and progress to stderr; page, result-count, region, and time filters can constrain searches.]
+
+## Skill Version(s):
+
+2026.2.15 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

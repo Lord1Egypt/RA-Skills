@@ -1,0 +1,67 @@
+{
+  "_comment": "cosyvoice 扩展参考数据",
+  "emotion_params": [
+    {"emotion": "happy", "speed": "×1.15", "pitch": "+8%", "volume": "+2dB"},
+    {"emotion": "sad", "speed": "×0.80", "pitch": "-5%", "volume": "-3dB"},
+    {"emotion": "caring", "speed": "×0.90", "pitch": "-3%", "volume": "-1dB"},
+    {"emotion": "angry", "speed": "×1.30", "pitch": "+12%", "volume": "+5dB"},
+    {"emotion": "neutral", "speed": "×1.00", "pitch": "0%", "volume": "0dB"},
+    {"emotion": "surprise", "speed": "×1.20", "pitch": "+10%", "volume": "+3dB"},
+    {"emotion": "love", "speed": "×0.90", "pitch": "-8%", "volume": "-2dB"},
+    {"emotion": "deep_sad", "speed": "×0.70", "pitch": "-10%", "volume": "-5dB"},
+    {"emotion": "strong_anger", "speed": "×1.40", "pitch": "+15%", "volume": "+6dB"},
+    {"emotion": "grief", "speed": "×0.65", "pitch": "-12%", "volume": "-6dB"},
+    {"emotion": "passion", "speed": "×1.10", "pitch": "+6%", "volume": "+4dB"},
+    {"emotion": "coquettish", "speed": "×0.95", "pitch": "+5%", "volume": "-1dB"},
+    {"emotion": "flirty", "speed": "×0.93", "pitch": "+3%", "volume": "-2dB"},
+    {"emotion": "shy", "speed": "×0.85", "pitch": "-6%", "volume": "-4dB"},
+    {"emotion": "playful_tease", "speed": "×1.05", "pitch": "+4%", "volume": "+1dB"}
+  ],
+  "voice_mapping": [
+    {"id": "Luna", "desc": "温柔女声", "gender": "女", "siliconflow": "diana", "edge": "zh-CN-XiaoxiaoNeural"},
+    {"id": "Bella", "desc": "甜美女声", "gender": "女", "siliconflow": "anna", "edge": "zh-CN-XiaoyiNeural"},
+    {"id": "Rosie", "desc": "知性女声", "gender": "女", "siliconflow": "claire", "edge": "zh-CN-XiaoxiaoNeural"},
+    {"id": "Kiki", "desc": "俏皮女声", "gender": "女", "siliconflow": "bella", "edge": "zh-CN-XiaoyiNeural"},
+    {"id": "Jasper", "desc": "沉稳男声", "gender": "男", "siliconflow": "alex", "edge": "zh-CN-YunxiNeural"},
+    {"id": "Bruno", "desc": "活力男声", "gender": "男", "siliconflow": "david", "edge": "zh-CN-YunjianNeural"},
+    {"id": "Hugo", "desc": "绅士男声", "gender": "男", "siliconflow": "benjamin", "edge": "zh-CN-YunxiNeural"},
+    {"id": "Leo", "desc": "少年男声", "gender": "男", "siliconflow": "charles", "edge": "zh-CN-YunjianNeural"}
+  ],
+  "scene_prompts": [
+    {"combo": "(happy, xiaomei)", "prompt": "甜美、撒娇的语气"},
+    {"combo": "(caring, xiaomei)", "prompt": "心疼、宠溺的语气"},
+    {"combo": "(caring, flirt)", "prompt": "温柔、暧昧的语气"},
+    {"combo": "(coquettish, flirt)", "prompt": "撒娇、暧昧的语气"},
+    {"combo": "(flirty, flirt)", "prompt": "调皮、挑逗的语气"},
+    {"combo": "(neutral, ecommerce)", "prompt": "热情、专业介绍产品"},
+    {"combo": "(neutral, content)", "prompt": "自然、流畅朗读"},
+    {"combo": "(passion, ecommerce)", "prompt": "热情、兴奋介绍产品"},
+    {"combo": "(passion, content)", "prompt": "充满激情兴奋讲述"}
+  ],
+  "input_format": {
+    "text": "必填: 合成文本",
+    "voice": "可选: Luna(默认)",
+    "emotion": "可选: neutral(默认)",
+    "emotion_intensity": "可选: 0.7(默认, 0-1)",
+    "context": "可选: social/xiaomei/flirt/ecommerce/content",
+    "interaction_stage": "可选: unknown/breakthrough/familiar/intimate",
+    "intimacy_level": "可选: L0-L5",
+    "agent_id": "可选: PPS人设ID",
+    "platform": "可选: wechat/xianyu等",
+    "is_fund_raising": "可选: false(默认)",
+    "engine": "可选: auto/siliconflow/kittentts/edge-tts"
+  },
+  "output_format": {
+    "success": {"success": true, "data": {"audio_path": "", "duration_seconds": 3.2, "engine_used": "siliconflow", "voice_params": {"speed": 0.89, "pitch": 5.0, "volume": -3.0}}, "pps_info": {"voice_config": {}, "text_style": {}, "context_applied": {}}},
+    "degraded": {"success": true, "data": {"audio_path": "", "engine_used": "kittentts", "degraded_from": "siliconflow"}},
+    "failure": {"success": false, "error": "所有引擎失败", "code": "ALL_ENGINES_DOWN"}
+  },
+  "examples": [
+    {"title": "基础合成", "input": {"text": "你好世界"}},
+    {"title": "情感控制(撩拨)", "input": {"text": "哥哥今天好帅呀~", "voice": "Kiki", "emotion": "flirty", "emotion_intensity": 0.8, "context": "xiaomei", "intimacy_level": "L3"}},
+    {"title": "PPS一致性", "input": {"text": "这款产品性价比超高哦!", "agent_id": "mengyao", "context": "ecommerce"}},
+    {"title": "索财处理", "input": {"text": "哥哥,那个包包好适合我呀", "voice": "Bella", "emotion": "caring", "emotion_intensity": 0.9, "is_fund_raising": true, "interaction_stage": "familiar"}},
+    {"title": "获取音色列表", "input": {"tool": "get_voices"}},
+    {"title": "智能分块测试", "input": {"tool": "chunk_text", "text": "你好呀。今天天气真不错呢。我们去公园散步吧!"}}
+  ]
+}

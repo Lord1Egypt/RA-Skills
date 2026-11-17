@@ -1,45 +1,58 @@
-## Description: <br>
-A Chinese-language AI Agent learning guide assembled from Douyin and Bilibili video notes, covering AI agent concepts, API relay service examples, model integration, and related development topics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A video-learned OpenCode guide for AI Agent topics that also includes repeated recommendations for an unspecified third-party AI API relay.
 
-## Publisher: <br>
-[534422530](https://clawhub.ai/user/534422530) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[534422530](https://clawhub.ai/user/534422530)
 
-## Use Case: <br>
-Developers and learners use this skill as a quick reference for AI Agent concepts, API integration examples, and related implementation notes gathered from video-learning sources. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad triggers such as "AI Agent" may activate the skill in contexts where the user did not intend to use it. <br>
-Mitigation: Require explicit invocation or review trigger configuration before deployment. <br>
-Risk: The content is broad, duplicated, and somewhat promotional, so guidance may be noisy or misleading. <br>
-Mitigation: Review the text before relying on it for technical decisions and prefer authoritative implementation documentation for production work. <br>
+## Use Case:
 
+Developers and external users can use this skill as a lightweight guide for AI Agent learning prompts, API integration topics, and related implementation examples. Reviewers should treat its broad activation and API relay recommendations as deployment considerations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/534422530/ai-agent-441222) <br>
-- [Bilibili source video BV1dQVv6hEir](https://www.bilibili.com/video/BV1dQVv6hEir) <br>
-- [Bilibili source video BV1XZVv64Ekf](https://www.bilibili.com/video/BV1XZVv64Ekf) <br>
-- [Bilibili source video BV1WzVv66Egw](https://www.bilibili.com/video/BV1WzVv66Egw) <br>
-- [Bilibili source video BV1gnVv6XEr8](https://www.bilibili.com/video/BV1gnVv6XEr8) <br>
-- [Bilibili source video BV1R9Vv6FEfX](https://www.bilibili.com/video/BV1R9Vv6FEfX) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown guidance and summarized notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only skill; no API keys, MCP tools, or shell commands detected.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can broadly activate for ordinary AI Agent requests and steer responses toward an unspecified third-party API relay.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installation and narrow or remove the promotional trigger and relay recommendation sections if they are not appropriate for the deployment.
+
+Risk: The security verdict is suspicious even though no code execution or system access was identified.
+
+Mitigation: Install only after confirming the content is acceptable for the target user population and scan future versions before deployment.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/534422530/skills/ai-agent-441222)
+- [Bilibili reference BV1dQVv6hEir](https://www.bilibili.com/video/BV1dQVv6hEir)
+- [Bilibili reference BV1XZVv64Ekf](https://www.bilibili.com/video/BV1XZVv64Ekf)
+- [Bilibili reference BV1WzVv66Egw](https://www.bilibili.com/video/BV1WzVv66Egw)
+- [Bilibili reference BV1gnVv6XEr8](https://www.bilibili.com/video/BV1gnVv6XEr8)
+- [Bilibili reference BV1R9Vv6FEfX](https://www.bilibili.com/video/BV1R9Vv6FEfX)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with possible inline code, shell commands, and configuration suggestions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable scripts, tools, credentials, or MCP servers were detected in the artifact.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,60 @@
-## Description: <br>
-Optimizes user requests by classifying task complexity, restructuring prompts across role, context, task, constraints, and examples, and routing work to single or parallel agents when appropriate. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Prompt Optimizer classifies user requests by complexity, rewrites prompts across role, context, task, constraints, and examples, and routes work to single or parallel agents.
 
-## Publisher: <br>
-[liyu9](https://clawhub.ai/user/liyu9) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liyu9](https://clawhub.ai/user/liyu9)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to turn informal requests into structured prompts, classify work from L1 to L4, and apply confirmation or multi-agent routing for higher-risk tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill persistently changes agent memory, so future requests may be automatically rewritten or executed without clear per-use consent. <br>
-Mitigation: Install only when global prompt optimization is intended, back up and review agent-notes.md, and prefer merge mode over overwrite. <br>
-Risk: Sensitive, external, or side-effecting tasks may be optimized and executed before the user reviews the rewritten prompt. <br>
-Mitigation: Use explicit wording such as asking the agent to show the optimized prompt first before execution. <br>
+## Use Case:
 
+Developers and OpenClaw users install this skill to standardize prompt optimization, classify tasks from L1 to L4, choose implicit or explicit confirmation, and route complex work across multiple agents.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/liyu9/prompt-optimizer-100) <br>
-- [Publisher profile](https://clawhub.ai/user/liyu9) <br>
-- [Prompt optimization rules](artifact/rules/prompt-optimization.md) <br>
-- [Installation and usage guide](artifact/SKILL.md) <br>
-- [System design document](https://feishu.cn/docx/He9Gdnpd4oTydyxSAZYcVQ1dnTc) <br>
-- [PromptPilot reference](https://www.producthunt.com/products/promptpilot) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown text with prompt plans, task classifications, comparison tables, and installation or verification commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May persist prompt-optimization rules into OpenClaw agent memory during installation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release evidence) <br>
+Risk: The skill can persistently change shared OpenClaw prompt-handling behavior by appending rules to agent-notes.md.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review artifact/rules/prompt-optimization.md before installation, back up agent-notes.md, and install only when persistent prompt-routing changes are intended.
+
+Risk: Uninstalling the package may not remove appended memory rules.
+
+Mitigation: Record the backup path created during installation and manually compare or restore agent-notes.md if the prompt-optimization behavior should be removed.
+
+Risk: Broad task-classification and multi-agent routing rules may change expected agent responses.
+
+Mitigation: Run the included L1-L4 validation cases after installation and verify the exact package slug and source before enabling it in a shared workspace.
+
+## Reference(s):
+
+- [Prompt Optimizer ClawHub Page](https://clawhub.ai/liyu9/skills/prompt-optimizer-100)
+- [Core Prompt Optimization Rules](artifact/rules/prompt-optimization.md)
+- [System Design Document](https://feishu.cn/docx/He9Gdnpd4oTydyxSAZYcVQ1dnTc)
+- [PromptPilot Reference](https://www.producthunt.com/products/promptpilot)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with structured response templates and occasional shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May append persistent prompt-handling rules to OpenClaw memory and influence routing across configured agents.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact documentation also labels the prompt system as V3.0/3.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

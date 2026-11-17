@@ -1,44 +1,56 @@
-## Description: <br>
-Use one API key to pull Facebook page, group, marketplace, video, post, comment, and ad data as structured JSON for agents, automations, and analytics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Facebook pages, posts, groups, Marketplace listings, and the Ad Library for agents — no Facebook app, review, or login of yours.
 
-## Publisher: <br>
-[jaencarrodine](https://clawhub.ai/user/jaencarrodine) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[superagnt](https://clawhub.ai/user/superagnt)
 
-## Use Case: <br>
-Developers, automation builders, and data teams use this skill to configure and call agntdata Facebook endpoints for social listening, creator intelligence, marketplace research, ads discovery, alerts, dashboards, and analytics workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires an AGNTDATA_API_KEY and sends submitted Facebook links, queries, IDs, use-case descriptions, and media URLs to a third-party API provider. <br>
-Mitigation: Keep AGNTDATA_API_KEY in a secret environment variable and avoid confidential or private data unless the provider and use case are approved. <br>
-Risk: Calls to the third-party API may consume credits or create billing exposure. <br>
-Mitigation: Monitor agntdata credit and billing limits, and test with narrow queries before broad automation. <br>
-Risk: The artifact recommends a related plugin for native tooling, but that plugin is separate from this skill release. <br>
-Mitigation: Review the recommended plugin independently before installing or using it. <br>
+## Use Case:
 
+Developers, marketing teams, and researchers use the skill to retrieve Facebook page and group content, Marketplace listings, videos, and advertising data for social listening, creator intelligence, market research, monitoring, and analytics.
 
-## Reference(s): <br>
-- [agntdata Facebook API Reference](https://agnt.mintlify.app/apis/social/facebook) <br>
-- [agntdata Documentation](https://agnt.mintlify.app) <br>
-- [ClawHub Skill Page](https://clawhub.ai/jaencarrodine/agntdata-facebook) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, API calls] <br>
-**Output Format:** [Markdown instructions with curl examples and JSON tool schemas] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires AGNTDATA_API_KEY; API responses are structured JSON from a credit-based third-party Facebook data API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.15 (source: evidence release and SKILL.md frontmatter) <br>
+Risk: The skill depends on an external API service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the provider's terms and data handling before connecting an API key.
+
+Risk: The scanner notes a people-search capability broader than the manifest description.
+
+Mitigation: Review that capability before use and limit people searches to an appropriate user purpose.
+
+## Reference(s):
+
+- [Facebook Data documentation](https://superagnt.com/r/ch-facebook-data-docs)
+- [Facebook Data MCP setup](https://www.superagnt.com/install?facet=facebook)
+- [superagnt API keys](https://superagnt.com/r/ch-facebook-data-key)
+- [ClawHub listing](https://clawhub.ai/superagnt/skills/facebook-data)
+
+## Skill Output:
+
+**Output Type(s):** [JSON data, Shell commands, Configuration instructions, Usage guidance]
+
+**Output Format:** [Structured JSON results with Markdown setup guidance and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results and available fields depend on the selected Facebook data endpoint. A SUPERAGNT_API_KEY is required.]
+
+## Skill Version(s):
+
+2.0.14 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

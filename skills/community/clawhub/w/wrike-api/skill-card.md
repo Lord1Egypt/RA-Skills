@@ -1,43 +1,61 @@
-## Description: <br>
-Wrike API integration with managed OAuth for managing tasks, folders, projects, spaces, collaboration, and administrative functions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents manage Wrike project work, team resources, and administrative tasks through a connected account, with approval required before changes.
 
-## Publisher: <br>
-[byungkyu](https://clawhub.ai/user/byungkyu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[byungkyu](https://clawhub.ai/user/byungkyu)
 
-## Use Case: <br>
-Employees, administrators, and agents use this skill to inspect and manage Wrike workspaces, tasks, folders, projects, spaces, time logs, users, invitations, access roles, audit logs, and data exports through an authenticated Wrike connection. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a Maton API key that can access a connected Wrike account. <br>
-Mitigation: Keep MATON_API_KEY private, install only when Wrike access through Maton is intended, and scope usage to the correct connection. <br>
-Risk: Write, administrative, audit-log, invitation, user-management, and data-export operations can expose sensitive data or change account governance. <br>
-Mitigation: Review and explicitly approve the target, scope, and intended effect before any sensitive or account-changing operation. <br>
+## Use Case:
 
+Project teams and administrators use this skill to review and manage Wrike tasks, folders, projects, spaces, time logs, and team resources. Sensitive administrative and automation actions require specific user intent.
 
-## Reference(s): <br>
-- [ClawHub Wrike Skill](https://clawhub.ai/byungkyu/wrike-api) <br>
-- [Maton](https://maton.ai) <br>
-- [Wrike API Documentation](https://developers.wrike.com/) <br>
-- [Wrike OAuth 2.0 Authorization](https://developers.wrike.com/oauth-20-authorization/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, code, configuration, text] <br>
-**Output Format:** [Markdown with inline shell, Python, JavaScript, HTTP, and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires network access and MATON_API_KEY; use Maton-Connection when selecting among multiple Wrike connections.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: A connected account may expose sensitive Wrike data or allow broad access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use narrow, preferably read-only OAuth scopes; retrieve only needed data and delete unused connections.
+
+Risk: Writes, administrative actions, and exports can change account governance or disclose organizational data.
+
+Mitigation: Confirm the target and intended effect before each write, admin action, or export; default to read-only requests.
+
+Risk: Automation destinations may continuously forward event data to third parties.
+
+Mitigation: Require separate approval for each destination, verify the recipient and ongoing data flow, and remove unused triggers and destinations.
+
+## Reference(s):
+
+- [Wrike skill on ClawHub](https://clawhub.ai/byungkyu/skills/wrike-api)
+- [Maton](https://maton.ai)
+- [Wrike API documentation](https://developers.wrike.com/)
+- [Maton documentation](https://docs.maton.ai)
+- [Maton CLI manual](https://cli.maton.ai/manual)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Code, Configuration guidance]
+
+**Output Format:** [Markdown with command and code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a connected Wrike account and network access; confirm changes before execution.]
+
+## Skill Version(s):
+
+1.2.5 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

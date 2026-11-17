@@ -1,53 +1,60 @@
-## Description: <br>
-Aggregates current AI news from public news sites and web search into concise, categorized briefings with direct links to original articles. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Aggregates and summarizes the latest AI news from multiple sources including AI news websites and web search, then provides concise news briefs with direct links to original articles.
 
-## Publisher: <br>
-[khurramjamil12](https://clawhub.ai/user/khurramjamil12) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[khurramjamil12](https://clawhub.ai/user/khurramjamil12)
 
-## Use Case: <br>
-External users and developers use this skill to get daily or weekly AI news briefings, filter developments by topic, and follow links back to original sources for verification or deeper reading. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad AI-update wording may activate the skill and trigger public web fetching when the user wanted a conceptual answer. <br>
-Mitigation: Phrase requests narrowly when a news roundup is desired, or explicitly ask for a non-news conceptual answer when browsing is not needed. <br>
-Risk: Briefings depend on public articles and search results, so summaries may reflect source errors, stale pages, duplicate coverage, or inaccessible content. <br>
-Mitigation: Check original links and dates, prefer authoritative sources, remove duplicates, and skip or note inaccessible articles. <br>
+## Use Case:
 
+External users and developers use this skill to request daily AI news briefings, recent AI developments, or focused updates on AI research, industry, tools, policy, and ethics. The skill gathers current web sources, filters and deduplicates stories, and returns a categorized briefing with source links.
 
-## Reference(s): <br>
-- [AI News Sources Database](references/news_sources.md) <br>
-- [Search Query Templates](references/search_queries.md) <br>
-- [Output Format Templates](references/output_templates.md) <br>
-- [VentureBeat AI](https://venturebeat.com/category/ai/) <br>
-- [TechCrunch AI](https://techcrunch.com/category/artificial-intelligence/) <br>
-- [The Verge AI](https://www.theverge.com/ai-artificial-intelligence) <br>
-- [MIT Technology Review AI](https://www.technologyreview.com/topic/artificial-intelligence/) <br>
-- [AI News](https://artificialintelligence-news.com/) <br>
-- [AI Hub Today](https://ai.hubtoday.app/) <br>
-- [OpenAI Blog](https://openai.com/blog) <br>
-- [Google AI Blog](https://blog.google/technology/ai/) <br>
-- [DeepMind Blog](https://deepmind.google/discover/blog/) <br>
-- [Anthropic News](https://www.anthropic.com/news) <br>
-- [ClawHub Skill Release](https://clawhub.ai/khurramjamil12/daily-ai-news-skill-0-1-0) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown briefing with categorized summaries, source links, key takeaways, and optional follow-up guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses current public web sources and date-filtered search results when producing a briefing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Requests may contact third-party news sites and search providers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only in environments where external browsing is permitted, and avoid including private or sensitive context in news requests.
+
+Risk: News briefings can become stale or inaccurate if source pages change, links fail, or duplicate coverage is not filtered.
+
+Mitigation: Verify publication dates, source links, and source diversity before relying on a briefing for decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/khurramjamil12/skills/daily-ai-news-skill-0-1-0)
+- [AI News Sources Database](references/news_sources.md)
+- [Search Query Templates](references/search_queries.md)
+- [Output Format Templates](references/output_templates.md)
+- [VentureBeat AI](https://venturebeat.com/category/ai/)
+- [TechCrunch AI](https://techcrunch.com/category/artificial-intelligence/)
+- [The Verge AI](https://www.theverge.com/ai-artificial-intelligence)
+- [MIT Technology Review AI](https://www.technologyreview.com/topic/artificial-intelligence/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown news briefing with categorized summaries, key points, impact notes, timestamps, and source links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports brief, standard, deep, chronological, company-focused, category-focused, and custom time-range briefing formats.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,56 @@
-## Description: <br>
-Provides AI agents with web service health monitoring and quality assurance workflows for HTTP checks, response analysis, compliance validation, SSL certificate monitoring, API endpoint verification, and HTML reporting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Web Health Suite helps agents run HTTP health checks, response quality analysis, compliance validation, SSL certificate monitoring, API endpoint verification, and HTML report generation for web applications and services.
 
-## Publisher: <br>
-[guo5404](https://clawhub.ai/user/guo5404) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[guo5404](https://clawhub.ai/user/guo5404)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers, QA engineers, DevOps engineers, and SREs use this skill to check owned or authorized web services for availability, response quality, HTTP compliance, SSL certificate status, API endpoint behavior, and reportable health findings.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Live authenticated checks and broad endpoint verification can expose credentials or affect production services if run outside an approved scope.
+
+Mitigation: Use only systems you own or have written authorization to monitor, prefer test or least-privilege credentials, avoid real session cookies when possible, and document scope before running checks.
+
+Risk: Endpoint verification may use mutating HTTP methods such as POST, PUT, or DELETE.
+
+Mitigation: Override methods to safe read-only checks unless the target environment is designed for safe testing of mutating requests.
+
+Risk: Request rate, concurrency, or proxy settings can disrupt service availability or route sensitive traffic unexpectedly.
+
+Mitigation: Configure rate limits, threads, timeouts, and proxies conservatively, and align monitoring windows and exclusions with the target owner.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, QA engineers, SREs, and authorized security professionals use this skill to monitor owned or explicitly authorized web services, validate response quality and compliance, check SSL status, verify APIs, and prepare health reports. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [shell commands, configuration, guidance, files]
 
-## Known Risks and Mitigations: <br>
-Risk: The server metadata identifies the release as security-test-suite while the artifact describes web-health-suite, creating ambiguity about the intended package behavior. <br>
-Mitigation: Confirm the intended release identity and scope before installing or relying on the skill. <br>
-Risk: The artifact names Python scripts for monitoring, compliance checks, SSL monitoring, endpoint verification, and report generation, but the server security summary flags missing scripts. <br>
-Mitigation: Verify the referenced scripts are present, reviewed, and expected before running any commands. <br>
-Risk: Web monitoring or endpoint verification can affect systems outside the user's authority if pointed at unauthorized targets. <br>
-Mitigation: Use only owned systems or targets with explicit written authorization, documented scope, agreed time windows, and rate limits. <br>
-Risk: Default API verification methods may include state-changing requests such as POST, PUT, or DELETE. <br>
-Mitigation: Restrict API verification to read-only methods unless testing in a controlled environment with explicit approval. <br>
-Risk: Authenticated checks can expose sensitive production cookies or tokens. <br>
-Mitigation: Avoid production session cookies and use least-privilege test credentials where authenticated checks are required. <br>
+**Output Format:** [Markdown guidance with inline shell commands; referenced workflows produce JSON status files and HTML reports.]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [May reference target URLs, authentication tokens or cookies, proxy settings, request rates, HTTP methods, timeouts, and output file paths.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and references to JSON and HTML report outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Expected outputs depend on external scripts named by the artifact; server security evidence says those scripts should be verified before use.] <br>
+1.0.2 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.2 (source: server-resolved release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

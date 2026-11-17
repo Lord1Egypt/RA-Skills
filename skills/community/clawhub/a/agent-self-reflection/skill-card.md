@@ -1,39 +1,52 @@
-## Description: <br>
-Periodically analyzes recent sessions to identify what went well or wrong and writes concise, actionable insights to the appropriate workspace files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Periodic self-reflection on recent sessions. Analyzes what went well, what went wrong, and writes concise, actionable insights to the appropriate workspace files. Designed to run as a cron job.
 
-## Publisher: <br>
-[BrennerSpear](https://clawhub.ai/user/BrennerSpear) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[brennerspear](https://clawhub.ai/user/brennerspear)
 
-## Use Case: <br>
-Agents and operators use this skill to review recent OpenClaw session history, extract new and actionable lessons, and route those lessons into durable memory, tool notes, or skill instruction files. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can read recent conversation logs, which may contain sensitive user, project, or operational information. <br>
-Mitigation: Install only where session-log review is intended, keep reads bounded to recent transcript tails, and restrict readable session paths. <br>
-Risk: The skill can make lasting changes to memory files, tool notes, and skill instructions, which could preserve incorrect or poisoned guidance. <br>
-Mitigation: Require review of proposed diffs before persistence, avoid direct edits to skill definitions unless explicitly approved, and audit saved reflections for sensitive or misleading content. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/BrennerSpear/agent-self-reflection) <br>
+## Use Case:
 
+Developers and agent operators use this skill to review recent OpenClaw sessions and capture concise, actionable lessons in workspace instruction and memory files.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown summary with optional shell commands and file-edit guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Designed to produce a brief 2-4 sentence reflection summary after bounded session review.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can read private OpenClaw session transcripts and persist derived guidance into high-trust agent instruction and memory files.
+
+Mitigation: Use a dry-run or review workflow, restrict eligible sessions, redact sensitive content, and require owner approval before edits to AGENTS.md, TOOLS.md, MEMORY.md, or skill files.
+
+Risk: Unattended cron use can preserve sensitive or misleading reflections without timely review.
+
+Mitigation: Disable raw transcript output in cron logs and review generated insights before allowing persistent updates.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/brennerspear/skills/agent-self-reflection)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown updates and concise text summary]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May append or edit workspace instruction, tool, memory, and skill files with bounded session transcript review.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

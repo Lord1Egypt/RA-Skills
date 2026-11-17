@@ -1,38 +1,54 @@
-## Description: <br>
-Day Trip is intended to help plan same-day trips in a city or to nearby attractions, returning by evening. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Day Trip is listed as a day-trip planning skill, but the submitted v3.2.1 artifact contains no functional instructions or code.
 
-## Publisher: <br>
-[dingtom336-gif](https://clawhub.ai/user/dingtom336-gif) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dingtom336-gif](https://clawhub.ai/user/dingtom336-gif)
 
-## Use Case: <br>
-Travelers and planning agents use this skill to draft practical same-day itineraries without overnight lodging. This packaged release appears to contain empty skill and reference files, so users should verify they are installing a functional version before relying on it. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: This release appears to contain only empty documentation and reference files, so the skill may not work as advertised. <br>
-Mitigation: Verify that the installed Day Trip version contains non-empty skill instructions and reference materials before using it for trip planning. <br>
+## Use Case:
 
+External users or agents would use a functional Day Trip release to plan single-day itineraries that return by evening. This submitted release should be treated as an empty placeholder because the artifact files contain no usable instructions.
 
-## Reference(s): <br>
-- [Day Trip on ClawHub](https://clawhub.ai/dingtom336-gif/day-trip) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Guidance] <br>
-**Output Format:** [Markdown travel-planning guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The reviewed package contains empty artifact files, so expected runtime output should be verified against a non-empty release.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.1 (source: server release evidence) <br>
+Risk: The submitted artifact contains no functional skill instructions, so an agent may be unable to produce the intended day-trip planning output.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if an empty placeholder is expected; otherwise obtain a release with populated SKILL.md and references before use.
+
+Risk: The package has no observed active behavior, but its absence of instructions can create misleading expectations for users.
+
+Mitigation: Review the ClawHub release page, publisher profile, and package contents before deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/dingtom336-gif/skills/day-trip)
+- [Publisher Profile](https://clawhub.ai/user/dingtom336-gif)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [No concrete output format is observable from the submitted artifact; the public summary indicates day-trip planning guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Submitted files are empty; agents receive no functional instructions from this artifact.]
+
+## Skill Version(s):
+
+3.2.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

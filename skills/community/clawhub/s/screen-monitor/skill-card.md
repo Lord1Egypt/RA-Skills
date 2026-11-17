@@ -1,46 +1,57 @@
-## Description: <br>
-Dual-mode screen sharing and analysis. Model-agnostic (Gemini/Claude/Qwen3-VL). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Dual-mode screen sharing and analysis. Model-agnostic (Gemini/Claude/Qwen3-VL).
 
-## Publisher: <br>
-[emasoudy](https://clawhub.ai/user/emasoudy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[emasoudy](https://clawhub.ai/user/emasoudy)
 
-## Use Case: <br>
-Developers and technical users use this skill to share a browser-selected screen or capture a desktop screenshot so an agent with vision support can analyze visible UI state and answer questions about it. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Screen content may include sensitive data and may be captured or written locally under /tmp. <br>
-Mitigation: Share a single non-sensitive window when possible, avoid passwords, customer data, private messages, admin consoles, and regulated information, and stop sharing when finished. <br>
-Risk: The skill exposes local screen-sharing functionality intended for analysis, which can be inappropriate on untrusted networks. <br>
-Mitigation: Review before installing and use only on trusted networks. <br>
+## Use Case:
 
+Developers and engineers use this skill to share a browser or desktop view with a vision-capable agent for screen analysis, UI debugging, and visual checks.
 
-## Reference(s): <br>
-- [Screen Monitor ClawHub page](https://clawhub.ai/emasoudy/screen-monitor) <br>
-- [Publisher profile](https://clawhub.ai/user/emasoudy) <br>
-- [README](README.md) <br>
-- [Backend endpoint](references/backend-endpoint.js) <br>
-- [Screen analysis helper](references/screen-analyze.sh) <br>
-- [Share URL helper](references/get-share-url.sh) <br>
-- [Environment check helper](references/env-check.sh) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text analysis with shell command usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a vision-capable model and may use a browser screen-share frame or local screenshot file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and manifest.json) <br>
+Risk: Screen frames can expose sensitive information if used on untrusted networks or sensitive displays.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only on trusted networks and non-sensitive screens unless local-only binding, authentication, upload limits, and protected session cleanup are added.
+
+Risk: Capture cadence, retention, and OS screenshot fallback behavior may be unclear to users.
+
+Mitigation: Clearly disclose capture cadence and retention, confirm or remove OS screenshot fallback, and clean up per-session frame files.
+
+## Reference(s):
+
+- [Screen Monitor ClawHub Page](https://clawhub.ai/emasoudy/skills/screen-monitor)
+- [backend-endpoint.js](references/backend-endpoint.js)
+- [env-check.sh](references/env-check.sh)
+- [get-share-url.sh](references/get-share-url.sh)
+- [screen-analyze.sh](references/screen-analyze.sh)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with shell command snippets and text analysis prompts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a vision-capable model and user-initiated screen sharing.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata and manifest.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

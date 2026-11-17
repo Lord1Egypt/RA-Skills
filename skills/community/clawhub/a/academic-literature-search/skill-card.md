@@ -1,43 +1,65 @@
-## Description: <br>
-Searches academic literature across Semantic Scholar, Crossref, PubMed, and arXiv with filtering, deduplication, sorting, and multiple result formats. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches academic literature across Semantic Scholar, Crossref, PubMed, and arXiv with filtering, deduplication, sorting, and multiple export formats.
 
-## Publisher: <br>
-[jibeilindong](https://clawhub.ai/user/jibeilindong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jibeilindong](https://clawhub.ai/user/jibeilindong)
 
-## Use Case: <br>
-Researchers, students, and developer agents use this skill to find scholarly papers across public academic databases, refine results by year, citation count, access status, or venue, and export bibliographies or structured result sets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search terms and paper metadata are sent to third-party academic database APIs. <br>
-Mitigation: Avoid sensitive queries when privacy matters and use personal API keys or a non-sensitive Crossref email. <br>
-Risk: Optional result saving can write files to a caller-selected path. <br>
-Mitigation: Enable result saving only with an intentional output path and review generated files before reuse. <br>
+## Use Case:
 
+Researchers, developers, and agent workflows use this skill to search scholarly databases, filter and rank papers, and return paper metadata and citations in readable or machine-processable formats.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/jibeilindong/academic-literature-search) <br>
-- [Semantic Scholar API](https://www.semanticscholar.org/product/api) <br>
-- [PubMed API account](https://www.ncbi.nlm.nih.gov/account/) <br>
-- [OpenClaw Docs](https://docs.openclaw.dev) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, CSV, BibTeX, RIS, HTML, Excel] <br>
-**Output Format:** [Markdown by default, with optional structured exports and success/error metadata.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Results may include paper metadata, statistics, formatted result text, and optional saved files at a caller-selected output path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.3 (source: server release evidence) <br>
+Risk: Search terms and returned paper metadata are sent to third-party scholarly services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sensitive queries, use your own API credentials where supported, and review the configured data destinations before use.
+
+Risk: Saving results can overwrite local files when save_results and output_file are enabled.
+
+Mitigation: Keep result saving disabled by default or restrict output_file to a confined directory with appropriate filesystem permissions.
+
+Risk: arXiv queries use plaintext HTTP in the artifact.
+
+Mitigation: Prefer changing the arXiv endpoint to HTTPS or disable arXiv searches in sensitive environments until the endpoint is updated.
+
+Risk: Dependencies are specified as minimum versions rather than pinned versions.
+
+Mitigation: Pin and review dependencies before production deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jibeilindong/skills/academic-literature-search)
+- [Semantic Scholar API](https://www.semanticscholar.org/product/api)
+- [PubMed API key setup](https://www.ncbi.nlm.nih.gov/account/)
+- [Crossref works API endpoint](https://api.crossref.org/works)
+- [arXiv API endpoint](http://export.arxiv.org/api/query)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, csv, bibtex, ris, html, excel]
+
+**Output Format:** [Search results with paper metadata, statistics, citations, links, and optional formatted exports.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can include saved result files when save_results and output_file are enabled; default output is Markdown.]
+
+## Skill Version(s):
+
+0.1.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

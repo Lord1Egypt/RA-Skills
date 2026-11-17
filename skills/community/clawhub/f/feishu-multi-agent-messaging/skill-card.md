@@ -1,48 +1,60 @@
-## Description: <br>
-Helps OpenClaw agents coordinate Feishu group and direct messages across multiple bot accounts using accountId routing and user open_id mapping. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through Feishu group-chat collaboration with multiple bots, including message handoff, group mentions, direct messages, and per-bot user ID mapping.
 
-## Publisher: <br>
-[wulinsquarelikui](https://clawhub.ai/user/wulinsquarelikui) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wulinsquarelikui](https://clawhub.ai/user/wulinsquarelikui)
 
-## Use Case: <br>
-Developers and operators configuring OpenClaw multi-agent workflows use this skill to route Feishu group chat and direct messages through the correct bot identity, maintain user ID mappings, and support group handoff between agents. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Feishu bot credentials and appSecret values could be exposed if copied into repositories or shared documents. <br>
-Mitigation: Keep appSecret values out of repositories and shared docs, and store production credentials only in approved secret-management locations. <br>
-Risk: Incorrect accountId, target, or user open_id mappings can send messages to the wrong bot, user, or chat. <br>
-Mitigation: Verify accountId bindings, target IDs, allowlists, and user mapping files before sending messages through Feishu bots. <br>
-Risk: Feishu messages may include personal data, secrets, or sensitive document links in real group chats. <br>
-Mitigation: Avoid posting secrets, personal data, or sensitive document links into group chats and restrict bot permissions to the intended audience. <br>
+## Use Case:
 
+Developers and agents use this skill to coordinate OpenClaw multi-agent work over Feishu chats, especially when separate bots need to send group updates, @mentions, and direct messages under their own identities.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wulinsquarelikui/feishu-multi-agent-messaging) <br>
-- [Architecture design](docs/architecture.md) <br>
-- [User ID mapping](docs/id-mapping.md) <br>
-- [Collaboration workflow](docs/workflow.md) <br>
-- [Troubleshooting](docs/troubleshooting.md) <br>
-- [Message samples](examples/message-samples.md) <br>
-- [OpenClaw configuration example](examples/openclaw.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline JSON and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only skill; outputs operational messaging guidance and example configuration rather than executable code.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: Feishu bot secrets, per-bot open_id mappings, message contents, screenshots, or logs may expose sensitive workspace information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat appSecret values, open_id mappings, message contents, and screenshots or logs containing them as sensitive; store and share them only through approved channels.
+
+Risk: Incorrect accountId or open_id mappings can send private messages or group @mentions from the wrong bot identity or to the wrong recipient.
+
+Mitigation: Verify accountId values and recipient IDs against the maintained per-bot mapping table before sending direct messages or group mentions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/wulinsquarelikui/skills/feishu-multi-agent-messaging)
+- [README](artifact/README.md)
+- [Architecture](artifact/docs/architecture.md)
+- [User ID Mapping](artifact/docs/id-mapping.md)
+- [Group Collaboration Workflow](artifact/docs/workflow.md)
+- [Troubleshooting](artifact/docs/troubleshooting.md)
+- [OpenClaw Configuration Example](artifact/examples/openclaw.json)
+- [Message Samples](artifact/examples/message-samples.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON configuration examples and Feishu message command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only; no executable code or generated files are produced by the skill itself.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

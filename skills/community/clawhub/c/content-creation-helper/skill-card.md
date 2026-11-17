@@ -1,41 +1,52 @@
-## Description: <br>
-Generate finance and trading content for Chinese social platforms including Xiaohongshu, Zhihu, and WeChat Official Accounts, with platform-adapted style, SEO title optimization, and audience-aware tone adjustment. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate finance/trading content for Chinese social platforms: Xiaohongshu, Zhihu, and WeChat Official Accounts, with platform-adapted styling, SEO optimization, and audience-aware tone adjustment.
 
-## Publisher: <br>
-[zhaocaixia888](https://clawhub.ai/user/zhaocaixia888) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[zhaocaixia888](https://clawhub.ai/user/zhaocaixia888)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and content creators use this skill to draft Chinese-language finance and trading posts for Xiaohongshu, Zhihu, and WeChat Official Accounts. It helps adapt tone, structure, titles, hashtags, and disclaimers for each platform.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Generated finance or trading commentary may be inaccurate, incomplete, or unsuitable for publication without review.
+
+Mitigation: Review market facts, analysis, and investment-disclaimer compliance before publishing.
+
+Risk: The skill is specialized for Chinese finance and trading social content and may be inappropriate for other languages, topics, or platforms.
+
+Mitigation: Invoke it only when Chinese-language finance or trading social content for Xiaohongshu, Zhihu, or WeChat Official Accounts fits the request.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External creators, analysts, and agent operators use this skill to draft finance and trading posts, articles, titles, hashtags, and cross-platform adaptations for Chinese social publishing channels. The skill is intended as a drafting and formatting aid, not as financial advice. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Finance or trading drafts could be mistaken for investment advice or published with inaccurate market data. <br>
-Mitigation: Provide verified market data and review every output for compliance, accuracy, and clear risk disclaimers before publication. <br>
-Risk: Platform-optimized social copy can make financial claims sound more persuasive than the evidence supports. <br>
-Mitigation: Keep content educational, avoid specific trading instructions, and preserve prominent risk warnings in generated posts and articles. <br>
+**Output Format:** [Chinese-language Markdown and plain text social content with titles, sections, hashtags, and risk disclaimers]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhaocaixia888/content-creation-helper) <br>
-- [Publisher profile](https://clawhub.ai/user/zhaocaixia888) <br>
+**Other Properties Related to Output:** [Platform-specific outputs for Xiaohongshu, Zhihu, and WeChat Official Accounts; no external credentials or required binaries are declared.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Guidance] <br>
-**Output Format:** [Markdown and plain text drafts, with optional Python helper functions for generating platform-specific content.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should be reviewed for market-data accuracy, compliance, and clear risk disclaimers before publication.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: target metadata and server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

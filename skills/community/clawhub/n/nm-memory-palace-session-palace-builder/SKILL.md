@@ -1,7 +1,7 @@
 ---
 name: session-palace-builder
 description: Builds session-scoped temporary memory palaces for extended conversations
-version: 1.9.8
+version: 1.10.3
 triggers:
   - session
   - context
@@ -14,21 +14,7 @@ source: claude-night-market
 source_plugin: memory-palace
 ---
 
-> **Night Market Skill** — ported from [claude-night-market/memory-palace](https://github.com/athola/claude-night-market/tree/master/plugins/memory-palace). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
-
-
-## Table of Contents
-
-- [What It Is](#what-it-is)
-- [Quick Start](#quick-start)
-- [Mental Model](#mental-model)
-- [When to Use](#when-to-use)
-- [Session Palace Templates](#session-palace-templates)
-- [Information Categories](#information-categories)
-- [Core Workflow](#core-workflow)
-- [Session Lifecycle](#session-lifecycle)
-- [Detailed Resources](#detailed-resources)
-- [Integration](#integration)
+> **Night Market Skill**: ported from [claude-night-market/memory-palace](https://github.com/athola/claude-night-market/tree/master/plugins/memory-palace). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
 
 # Session Palace Builder
@@ -64,7 +50,7 @@ make test
 make test VERBOSE=1
 \`\`\`
 
-**Verification**: Run `make build && make test` to confirm build works.
+**Verification**: Run `make test` to confirm the plugin gate passes.
 ## When To Use
 
 - Extended conversations requiring context preservation
@@ -122,7 +108,39 @@ Create → Populate → Navigate → Export/Archive
    ↑         ↓          ↓
    └─── Checkpoint ←────┘
 ```
-**Verification:** Run the command with `--help` flag to verify availability.
+
+## Clarity Checkpoints
+
+A session palace decays silently: each `Populate` step can add
+ambiguity that only surfaces at `Export`, when it is too late to
+recover the lost state. MMPO (arXiv:2605.30159, Section 3) frames
+this as a case for sub-trajectory dense rewards: check intermediate
+quality at each transition as well as the final outcome.
+
+At every `Checkpoint` arrow in the lifecycle above (and before any
+`Export/Archive`), run the dual-probe gate against the current
+palace state:
+
+```
+Skill(memory-palace:memory-clarity-probe)
+```
+
+The probe returns a `Clarity Assessment` with progress/gap verdicts
+and a `Recommendation`:
+
+| Recommendation | Action at the checkpoint |
+|----------------|--------------------------|
+| Proceed | Palace state is clear; continue the session |
+| Expand memory | Add the gap probe's open items to the palace before continuing |
+| Regenerate | Flag the session as ambiguous: the progress probe hedges, so reconstruct the current-state room before more work lands on it |
+
+Flagging at the checkpoint, not at export, is the point: an
+ambiguous palace caught early costs one room rebuild. Caught at
+export it costs the session.
+
+When `memory-clarity-probe` is not installed, ask the two anchor
+questions inline (progress: what is done and what state is the task
+in, and gap: what concrete items remain) and apply the same table.
 
 ## Detailed Resources
 
@@ -135,3 +153,16 @@ Create → Populate → Navigate → Export/Archive
 - `memory-palace-architect` - Export important concepts to permanent palaces
 - `knowledge-locator` - Search session content
 - `digital-garden-cultivator` - Seed garden with session insights
+- `memory-clarity-probe` - Dual-probe clarity gate at session checkpoints
+
+## Exit Criteria
+
+- [ ] A session palace is created with a template and spatial layout
+  before any state is populated
+- [ ] The dual-probe clarity gate runs at each `Checkpoint` transition
+  and before `Export/Archive`, not only at the end
+- [ ] A checkpoint returning `Expand memory` or `Regenerate` is acted
+  on (gap items added or current-state room rebuilt) before more work
+  lands, and the ambiguous session is flagged
+- [ ] Exported concepts round-trip into a permanent palace via
+  `memory-palace-architect`

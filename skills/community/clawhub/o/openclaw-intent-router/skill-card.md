@@ -1,44 +1,57 @@
-## Description: <br>
-Intelligently routes natural language user intents to the best matching registered agent skill using keyword and semantic matching with confidence scores. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Routes natural language user intents to the best matching registered agent skill using keyword, semantic, or hybrid matching with confidence scores.
 
-## Publisher: <br>
-[ZhenStaff](https://clawhub.ai/user/ZhenStaff) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhenstaff](https://clawhub.ai/user/zhenstaff)
 
-## Use Case: <br>
-Developers building multi-agent systems, chatbots, API gateways, voice assistants, or workflow automation use this skill to route natural language requests to registered handlers with confidence scores. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The reviewed artifact documents an external npm package and GitHub repository that are not bundled in the artifact. <br>
-Mitigation: Verify the package and repository before installation, prefer pinned versions, and run dependency checks such as npm audit after installing. <br>
-Risk: Routed handlers may perform irreversible actions after an intent is matched. <br>
-Mitigation: Require explicit user confirmation before any handler sends messages, modifies accounts or data, publishes content, spends money, or performs other irreversible actions. <br>
+## Use Case:
 
+Developers building multi-agent systems, chatbots, voice assistants, API gateways, or workflow automation use it to map natural language requests to registered handlers with confidence thresholds and fallbacks.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/ZhenStaff/openclaw-intent-router) <br>
-- [npm package](https://www.npmjs.com/package/openclaw-intent-router) <br>
-- [GitHub repository](https://github.com/ZhenRobotics/openclaw-intent-router) <br>
-- [Quick Start](https://github.com/ZhenRobotics/openclaw-intent-router/blob/main/QUICKSTART.md) <br>
-- [Examples](https://github.com/ZhenRobotics/openclaw-intent-router/tree/main/examples) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with TypeScript and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes local installation, skill registration, routing, CLI usage, and confidence-threshold configuration guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact documentation) <br>
+Risk: The reviewed artifact directs users to install mutable external npm package code and an optional global CLI that were not included in the reviewed files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the npm package and repository source before installation, pin an exact package version, and avoid global installation unless it is necessary.
+
+Risk: Routing a natural-language intent to a registered handler can trigger consequential downstream actions if the integrating agent exposes such handlers.
+
+Mitigation: Require confirmation before handlers send messages, change accounts, spend money, post publicly, or modify important data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhenstaff/skills/openclaw-intent-router)
+- [npm package](https://www.npmjs.com/package/openclaw-intent-router)
+- [Publisher-referenced repository](https://github.com/ZhenRobotics/openclaw-intent-router)
+- [Quick start documentation](https://github.com/ZhenRobotics/openclaw-intent-router/blob/main/QUICKSTART.md)
+- [Examples](https://github.com/ZhenRobotics/openclaw-intent-router/tree/main/examples)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, code, shell commands, configuration]
+
+**Output Format:** [Markdown with TypeScript and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Routes intents locally to registered handlers and returns matched skill or capability names with confidence scores; handler behavior depends on the integrating agent.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact version text)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,57 @@
-## Description: <br>
-Guides structured help for Arabic Vocabulary Helper using clear templates, checks, and safe defaults (category: Faith & Language). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides structured help for Arabic Vocabulary Helper using clear templates, checks, and safe defaults (category: Faith & Language).
 
-## Publisher: <br>
-[abdullah944](https://clawhub.ai/user/abdullah944) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[abdullah944](https://clawhub.ai/user/abdullah944)
 
-## Use Case: <br>
-External users can use this skill to structure Arabic vocabulary planning, critique draft outputs, and create repeatable checklists or editable copy blocks without asking the agent to collect private data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may paste passwords, private identifiers, confidential notes, or other sensitive material while asking for vocabulary planning help. <br>
-Mitigation: Keep inputs limited to the user's goal and low-sensitivity notes; avoid passwords, private identifiers, confidential notes, and other secrets. <br>
-Risk: Generated vocabulary guidance or draft copy may be inaccurate or unsuitable for the intended audience. <br>
-Mitigation: Review outputs before reuse, keep wording factual and reversible, and prefer checklists or editable drafts over irreversible actions. <br>
+## Use Case:
 
+External users use this skill to structure Arabic vocabulary-related planning, checklists, and draft copy in the Faith & Language category without relying on external scraping or improvised shell commands.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/abdullah944/arabic-vocabulary-helper-skill) <br>
-- [Publisher profile](https://clawhub.ai/user/abdullah944) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown] <br>
-**Output Format:** [Markdown with concise plans, numbered checklists, next-action lists, and optional draft copy blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No shell commands, code execution, credentials, install steps, or hidden data access are indicated by the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: frontmatter and release evidence) <br>
+Risk: Users may paste private personal data or secrets into vocabulary-planning prompts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep inputs limited to owned notes with minimal PII, and exclude passwords, OTPs, private keys, wallets, seeds, and session secrets.
+
+Risk: The broad Faith & Language category may not fit every intended deployment.
+
+Mitigation: Review the category and positioning before installation or publication.
+
+Risk: Generated plans or draft wording may be inaccurate or unsuitable for the audience.
+
+Mitigation: Review outputs before use and keep recommendations editable and reversible.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/abdullah944/skills/arabic-vocabulary-helper-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with concise plans, numbered checklists, short next-action lists, and optional editable draft copy blocks.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code or shell-command output is produced by the skill.]
+
+## Skill Version(s):
+
+0.1.0 (source: artifact frontmatter, artifact metadata, server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

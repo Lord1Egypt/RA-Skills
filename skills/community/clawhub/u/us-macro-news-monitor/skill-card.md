@@ -1,49 +1,63 @@
-## Description: <br>
-Tracks US macro signals from Bloomberg, WSJ, and Reuters and maps potential spillover to Vietnam sectors; used when users ask about US macro news and likely impacts on Vietnamese equities. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tracks US macro signals from Bloomberg, WSJ, and Reuters and maps potential spillover to Vietnam sectors; used when users ask about US macro news and likely impacts on Vietnamese equities.
 
-## Publisher: <br>
-[ndtchan](https://clawhub.ai/user/ndtchan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[teahann](https://clawhub.ai/user/teahann)
 
-## Use Case: <br>
-External users and analysts use this skill to monitor recent US macroeconomic news, classify themes and tone, and map likely spillover channels to Vietnam sectors and watchlist tickers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Financial news coverage may be incomplete, stale, blocked, or paywalled. <br>
-Mitigation: Use the skill's freshness window, source-count threshold, missingness log, official-source fallbacks, and confidence downgrade rules before relying on results. <br>
-Risk: Vietnam sector and ticker impacts are inferred research signals, not personalized investment advice. <br>
-Mitigation: Label claims as Fact or Inference, avoid absolute buy/sell instructions, and verify cited financial news independently. <br>
-Risk: Macro narratives can be over-attributed to sector moves when source confirmation is weak. <br>
-Mitigation: Cross-check distinct sources, report the main uncertainty driver, and treat low-source or concentrated coverage as Low confidence. <br>
+## Use Case:
 
+External users and analysts use this skill to monitor recent US macro headlines, classify themes and tone, and map possible spillovers to Vietnam sectors and watchlists.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ndtchan/us-macro-news-monitor) <br>
-- [Bloomberg](https://www.bloomberg.com/) <br>
-- [Wall Street Journal](https://www.wsj.com/) <br>
-- [Reuters Markets](https://www.reuters.com/markets/) <br>
-- [Federal Reserve](https://www.federalreserve.gov/) <br>
-- [Bureau of Labor Statistics](https://www.bls.gov/) <br>
-- [Bureau of Economic Analysis](https://www.bea.gov/) <br>
-- [FRED](https://fred.stlouisfed.org/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown sections with source URLs, theme counts, tone distribution, Vietnam sector spillover map, watchlist items, and confidence notes.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires current web/news access; confidence depends on source availability, freshness, paywall coverage, and cross-confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: ClawHub release evidence) <br>
+Risk: Paywalls or blocked media sources can reduce coverage and confidence.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the documented official fallback sources and report blocked or missing sources with a lower confidence rating.
+
+Risk: Vietnam equities spillover mapping can be mistaken for investment advice.
+
+Mitigation: Present outputs as monitoring signals and watch items, clearly mark inferred impacts, and avoid absolute buy or sell instructions.
+
+Risk: Macro headlines can become stale quickly.
+
+Mitigation: Include items with explicit publish or update times and state the reporting window in ICT (UTC+7).
+
+## Reference(s):
+
+- [Bloomberg](https://www.bloomberg.com/)
+- [The Wall Street Journal](https://www.wsj.com/)
+- [Reuters Markets](https://www.reuters.com/markets/)
+- [Federal Reserve](https://www.federalreserve.gov/)
+- [BLS Releases](https://www.bls.gov/)
+- [BEA Releases](https://www.bea.gov/)
+- [FRED](https://fred.stlouisfed.org/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown report with source links, theme and tone summaries, Vietnam sector spillover mapping, and watchlist items.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires current web/news access; lowers confidence when fewer than three distinct sources are accessible.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

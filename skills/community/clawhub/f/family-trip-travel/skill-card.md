@@ -1,49 +1,68 @@
-## Description: <br>
-Helps agents produce family-friendly travel plans by using a disclosed travel-search CLI for hotels, flights, attractions, packages, images, and booking links when a destination is provided, while switching to text-only guidance when the user asks for non-booking advice. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Travel With Family helps agents produce family-friendly travel plans that combine kid-aware itinerary guidance with bookable hotels, attractions, packages, and flights when a destination is provided.
 
-## Publisher: <br>
-[zuckonit](https://clawhub.ai/user/zuckonit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zuckonit](https://clawhub.ai/user/zuckonit)
 
-## Use Case: <br>
-External users and travel-planning agents use this skill to turn family travel requests into practical itineraries, hotel and attraction comparisons, booking references, and pre-trip checklists that account for children, stroller needs, nap timing, weather alternatives, single-parent travel, allergies, and ticket-rule caveats. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send travel details such as destination, dates, child age, family composition, budget, and special needs to an external travel-search provider. <br>
-Mitigation: Use it only with a trusted @fly-ai/flyai-cli installation, avoid entering unnecessary sensitive details, and request text-only advice when searches or booking links are not desired. <br>
-Risk: Booking details, prices, child ticket rules, cancellation terms, allergy accommodations, and accessibility information may be incomplete or change after search results are returned. <br>
-Mitigation: Confirm these details on the booking page or directly with the hotel, airline, attraction, or provider before purchase or travel. <br>
-Risk: Optional API-key configuration may expose provider access if reused across environments. <br>
-Mitigation: Use a dedicated API key for this CLI and rotate or revoke it if it is no longer needed. <br>
+## Use Case:
 
+External users and travel-planning agents use this skill to answer family travel requests with child-aware itineraries, booking references, and pre-trip checks. It is aimed at trips involving children, stroller or nap needs, solo-parent logistics, rainy-day backups, child-ticket reminders, refund reminders, and similar constraints.
 
-## Reference(s): <br>
-- [README](README.md) <br>
-- [flyai CLI Capabilities and Family Travel Mapping](references/cli-capabilities.md) <br>
-- [Professional Family Trip Output Guidance](references/output-professional.md) <br>
-- [Family Query Patterns](references/family-queries.md) <br>
-- [Family Hotel Search Guidance](references/search-hotels-family.md) <br>
-- [Family Flight Search Guidance](references/search-flight-family.md) <br>
-- [Family POI Search Guidance](references/search-poi-family.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/zuckonit/family-trip-travel) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown travel-planning guidance with tables, checklists, optional shell commands, images, and booking links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search-backed recommendations should use provider-returned images and booking links when available; prices, child ticket rules, cancellation terms, allergy needs, and accessibility details should be confirmed on the booking page or with the provider.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill depends on an external travel CLI, so travel-search details may be shared with that provider.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when that data-sharing posture is acceptable and avoid submitting unnecessary sensitive personal, medical, or child information.
+
+Risk: Installing the required CLI through npm introduces supply-chain risk.
+
+Mitigation: Prefer a pinned, reviewed, isolated installation of @fly-ai/flyai-cli before enabling the skill in shared or production agent environments.
+
+Risk: Booking links, prices, child-ticket rules, facilities, and refund terms can change or may be incomplete in search results.
+
+Mitigation: Treat travel results as planning aids and verify purchase-critical details on the booking page, airline page, venue page, or with the provider before purchase.
+
+Risk: Optional API-key configuration may create long-lived credential exposure.
+
+Mitigation: Avoid storing long-lived API keys unless needed, and use normal secret-management practices if an API key is configured.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zuckonit/skills/family-trip-travel)
+- [README](README.md)
+- [flyai CLI capabilities and family travel mapping](references/cli-capabilities.md)
+- [Professional family itinerary output guidance](references/output-professional.md)
+- [Family query templates](references/family-queries.md)
+- [Family flight-search notes](references/search-flight-family.md)
+- [Family hotel-search notes](references/search-hotels-family.md)
+- [Family point-of-interest search notes](references/search-poi-family.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown travel guidance with optional inline shell command examples and booking-reference presentation rules]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responses should avoid user-visible internal tooling terms, show available images before booking links, and ask for missing trip constraints when needed.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and release changelog; artifact metadata.version reports 1.4.3)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

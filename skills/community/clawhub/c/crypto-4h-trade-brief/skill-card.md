@@ -1,39 +1,52 @@
-## Description: <br>
-Produces Chinese-language BTC/ETH four-hour market recaps and manual OKX contract and spot-grid trading templates using the referenced crypto market analyzer. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Produces a Chinese BTC/ETH four-hour market recap and OKX manual-entry contract and spot-grid parameter brief using local crypto-market-analyzer data.
 
-## Publisher: <br>
-[hmzo](https://clawhub.ai/user/hmzo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[hmzo](https://clawhub.ai/user/hmzo)
 
-## Use Case: <br>
-External users can ask an agent for a Chinese-language BTC/ETH trading brief with data-quality gates, observation-only cases, and manual OKX contract and spot-grid parameters. The output is decision support and requires independent price verification before use. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can produce crypto leverage and grid-trading parameters that may be incorrect, stale, or unsuitable for a user's risk tolerance. <br>
-Mitigation: Review the referenced analyzer dependency, verify market prices independently, and treat the output as decision support rather than financial advice. <br>
-Risk: The skill relies on a disclosed local market-data analyzer, so stale or incomplete data can affect generated trading templates. <br>
-Mitigation: Use the skill's data-availability gates and pause execution when data is incomplete, stale, or below the configured candle-count thresholds. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hmzo/crypto-4h-trade-brief) <br>
+## Use Case:
 
+External users and agents use this skill when they need a Chinese BTC/ETH four-hour trading brief with OKX contract and spot-grid parameters. The skill applies data-quality and signal-quality gates before presenting actionable manual-entry parameters.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Chinese Markdown with manual OKX contract and spot-grid templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes data-quality gates, risk disclaimers, and manually entered trading parameters; does not place trades.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill depends on an unaudited hard-coded local Python script outside the reviewed package.
+
+Mitigation: Review and trust the external crypto-market-analyzer script before installation or use.
+
+Risk: The skill can produce contract leverage, stop-loss, take-profit, and grid-trading parameters that may be mistaken for automated trading instructions.
+
+Mitigation: Treat all outputs as high-risk manual suggestions, confirm the Chinese output carefully, and start only with small position sizes.
+
+## Reference(s):
+
+- [Crypto 4h Trade Brief on ClawHub](https://clawhub.ai/hmzo/skills/crypto-4h-trade-brief)
+
+## Skill Output:
+
+**Output Type(s):** [analysis, markdown, shell commands, guidance]
+
+**Output Format:** [Chinese Markdown with OKX manual-entry parameter templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes data-availability gates, signal-quality gates, leverage and risk limits, spot-grid estimates, and a non-financial-advice notice.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

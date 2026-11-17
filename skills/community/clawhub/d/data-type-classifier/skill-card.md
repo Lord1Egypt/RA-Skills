@@ -1,41 +1,54 @@
-## Description: <br>
-Classify construction data by type (structured, unstructured, semi-structured) and recommend appropriate storage, processing, and integration methods. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Classify construction data by type (structured, unstructured, semi-structured), analyze data sources, and recommend appropriate storage and processing methods.
 
-## Publisher: <br>
-[datadrivenconstruction](https://clawhub.ai/user/datadrivenconstruction) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[datadrivenconstruction](https://clawhub.ai/user/datadrivenconstruction)
 
-## Use Case: <br>
-Construction data practitioners, developers, and project analytics teams use this skill to classify project data sources and choose suitable storage, processing, integration, and quality-control approaches. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can analyze local construction or project files and the sample behavior writes a classification_report.md file in the working directory. <br>
-Mitigation: Use it only with files intended for analysis, validate input paths, and review export locations before writing reports. <br>
-Risk: Storage and processing recommendations may be incomplete or unsuitable for a specific project context. <br>
-Mitigation: Review the generated classifications, confidence values, and recommendations before using them for project decisions. <br>
+## Use Case:
 
+Construction data analysts, engineers, and project teams use this skill to classify user-provided construction datasets or file paths, identify their structure and format, and choose storage, processing, and integration approaches.
 
-## Reference(s): <br>
-- [Data-Driven Construction](https://datadrivenconstruction.io) <br>
-- [ClawHub Skill Page](https://clawhub.ai/datadrivenconstruction/data-type-classifier) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown reports, structured tables, and Python code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May export classification results to Excel, CSV, JSON, or a local classification_report.md file when requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: server-resolved release metadata) <br>
+Risk: The skill can analyze local project files or file paths supplied by the user, which may expose unrelated private data if users provide broad or unnecessary inputs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only construction datasets intended for classification and avoid providing unrelated private files unless they are required for the analysis.
+
+Risk: Classification and storage recommendations may be incomplete or incorrect when source metadata, samples, or file extensions are limited.
+
+Mitigation: Validate inputs before processing and review recommendations against construction data requirements before acting on them.
+
+## Reference(s):
+
+- [Data-Driven Construction](https://datadrivenconstruction.io)
+- [ClawHub Skill Page](https://clawhub.ai/datadrivenconstruction/skills/data-type-classifier)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown with structured tables and optional JSON, CSV, or Excel export guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include classification summaries, storage recommendations, processing-tool suggestions, integration options, quality considerations, and confidence scores.]
+
+## Skill Version(s):
+
+2.1.0 (source: server release metadata; artifact/claw.json states 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

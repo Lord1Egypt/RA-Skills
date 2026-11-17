@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="240" viewBox="0 0 800 240">
+<rect width="800" height="240" fill="#0f1b2d"/>
+<rect x="16" y="16" width="768" height="208" rx="14" fill="none" stroke="#2e6f8e" stroke-width="2"/>
+<text x="40" y="62" fill="#e8f1f8" font-family="Segoe UI,Arial" font-size="22" font-weight="700">临床评价报告等同性论证要素检查器</text>
+<text x="40" y="96" fill="#8fb8cc" font-family="Segoe UI,Arial" font-size="14">零依赖 · 确定性 JSON IR · 离线可用 · 决策支持</text>
+<circle cx="60" cy="150" r="9" fill="#4fd1c5"/><text x="80" y="155" fill="#cfe6f0" font-family="Segoe UI,Arial" font-size="14">有籍 Registry</text>
+<circle cx="250" cy="150" r="9" fill="#63b3ed"/><text x="270" y="155" fill="#cfe6f0" font-family="Segoe UI,Arial" font-size="14">有证 Evidence</text>
+<circle cx="440" cy="150" r="9" fill="#f6ad55"/><text x="460" y="155" fill="#cfe6f0" font-family="Segoe UI,Arial" font-size="14">有门禁 Gate</text>
+<text x="40" y="200" fill="#6f93a8" font-family="Segoe UI,Arial" font-size="13">MedXpert · 注册老炮@MedXpert · MIT · https://medxpert.cn/knowledge/</text>
+</svg>

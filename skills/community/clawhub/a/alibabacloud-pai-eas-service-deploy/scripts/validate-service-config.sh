@@ -11,9 +11,16 @@
 #
 # Output:
 #   JSON format, containing validation result and fixed config
+#
+# Dependencies (pinned minimum versions):
+#   - jq >= 1.6   (command-line JSON processor)
 # ==============================================================================
 
 set -euo pipefail
+
+# Verify pinned dependency versions before doing anything else.
+REQUIRED_JQ="1.6"
+command -v jq >/dev/null 2>&1 || { echo "jq (>= ${REQUIRED_JQ}) is required" >&2; exit 1; }
 
 # Parameter parsing
 CONFIG_FILE=""

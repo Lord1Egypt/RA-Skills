@@ -1,6 +1,11 @@
 {
-  "ownerId": "kn7evggp87e9ksjb2b45ebw8rn837hx8",
+  "owner": "weryai",
   "slug": "social-media-data-hub",
-  "version": "1.0.0",
-  "publishedAt": 1774000306758
+  "displayName": "Social Media Data Hub",
+  "latest": {
+    "version": "1.0.0",
+    "publishedAt": 1742342400000,
+    "commit": ""
+  },
+  "history": []
 }

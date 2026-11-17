@@ -1,45 +1,63 @@
-## Description: <br>
-AI-powered matchmaking skill for dating and relationships, including profile analysis, compatibility matching, icebreaker generation, and relationship tracking for individuals seeking meaningful connections. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-powered matchmaking skill for dating and relationships - profile analysis, compatibility matching, icebreaker generation, and relationship tracking for individuals seeking meaningful connections.
 
-## Publisher: <br>
-[ZhenStaff](https://clawhub.ai/user/ZhenStaff) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[zhenstaff](https://clawhub.ai/user/zhenstaff)
 
-## Use Case: <br>
-External users use this skill to assess dating readiness, compare compatibility with a potential partner, generate icebreakers and date ideas, and track relationship development from profile and interaction details. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks for sensitive dating, relationship, personality, lifestyle, values, and interaction details. <br>
-Mitigation: Share only the minimum details needed, avoid contact details or highly identifying information, and anonymize other people unless they consent. <br>
-Risk: Compatibility scores and relationship guidance may be mistaken for certain predictions or professional counseling. <br>
-Mitigation: Present scores as guidance rather than verdicts, explain uncertainty and limitations, and recommend appropriate professional resources for safety concerns or therapy-level needs. <br>
-Risk: The documented setup uses an editable Python install command. <br>
-Mitigation: Inspect the external Python code and dependencies before running the documented pip install command. <br>
+## Use Case:
 
+External users use this skill to evaluate dating readiness, compare compatibility with a potential partner, generate conversation starters and date ideas, and track relationship development. The guidance is intended to support human judgment, not replace personal choice or professional counseling.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ZhenStaff/match-maker) <br>
-- [Publisher profile](https://clawhub.ai/user/ZhenStaff) <br>
-- [README](artifact/README.md) <br>
-- [Skill definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with structured sections, scores, recommendations, Python examples, and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs profile scores, compatibility analysis, icebreaker suggestions, relationship assessments, and actionable next steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may collect extensive sensitive personal, dating, and relationship details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Limit prompts to information necessary for the requested analysis, avoid unnecessary sensitive fields, and tell users not to share details they do not want processed.
+
+Risk: Compatibility analysis can include details about another person who has not consented.
+
+Mitigation: Ask users to confirm they have consent to include another person's information, and support generalized guidance when consent is unclear.
+
+Risk: The artifact makes privacy assurances that are not confirmed by the security evidence.
+
+Mitigation: Do not promise local-only handling unless runtime and storage behavior are separately verified.
+
+Risk: Dating scores and relationship predictions may be over-relied on for personal decisions.
+
+Mitigation: Frame outputs as guidance with limitations, encourage human judgment, and recommend professional support for safety, abuse, or counseling concerns.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhenstaff/skills/match-maker)
+- [README.md](artifact/README.md)
+- [SKILL.md](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown with structured scores, recommendations, and example Python code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include compatibility scores, profile assessments, conversation starters, date ideas, relationship health indicators, limitations, and next steps.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter and README report 0.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

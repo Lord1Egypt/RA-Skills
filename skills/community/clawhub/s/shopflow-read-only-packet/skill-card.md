@@ -1,50 +1,64 @@
-## Description: <br>
-Guides agents through installing, attaching, and using Shopflow's local read-only MCP packet surface for submission-readiness checks without live store claims. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides an agent through installing and connecting to Shopflow's local read-only MCP server for packet-based submission readiness and distribution checks.
 
-## Publisher: <br>
-[xiaojiou176](https://clawhub.ai/user/xiaojiou176) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiaojiou176](https://clawhub.ai/user/xiaojiou176)
 
-## Use Case: <br>
-Developers and operators use this skill to attach a local Shopflow stdio MCP server and inspect read-only integration, readiness, runtime, and distribution-truth packets. It helps agents separate repo-ready evidence from unsupported live listing, store, or hosted-runtime claims. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Repo-local command guidance can run package-manager scripts or MCP server commands. <br>
-Mitigation: Review the exact command, working directory, and target repository before approving execution. <br>
-Risk: Authenticated ClawHub or GitHub workflows may publish or moderate content if misapplied. <br>
-Mitigation: Require explicit operator approval for publishing, moderation, or registry actions and verify the target before execution. <br>
-Risk: The packet can be overstated as a live public listing or hosted runtime. <br>
-Mitigation: Keep responses limited to read-only packet evidence and require fresh receipts before claiming ClawHub, OpenHands, registry, store, or hosted-runtime status. <br>
+## Use Case:
 
+Developers and release operators use this skill to attach a local Shopflow MCP server, inspect read-only capability packets, and separate repo-ready evidence from claims that need a live registry or store receipt.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xiaojiou176/shopflow-read-only-packet) <br>
-- [Artifact README](README.md) <br>
-- [Skill instructions](SKILL.md) <br>
-- [Install and attach guide](references/INSTALL.md) <br>
-- [Capability map](references/CAPABILITIES.md) <br>
-- [First-success demo](references/DEMO.md) <br>
-- [OpenHands MCP config](references/OPENHANDS_MCP_CONFIG.json) <br>
-- [OpenClaw MCP config](references/OPENCLAW_MCP_CONFIG.json) <br>
-- [Troubleshooting](references/TROUBLESHOOTING.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only MCP packet guidance; no live store or hosted-runtime claims.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and manifest.yaml) <br>
+Risk: The setup asks users to install and run external Shopflow code that is not bundled or pinned in the skill artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin the exact repository commit, review package scripts and the lockfile, and run the MCP server with minimal filesystem and secret access.
+
+Risk: The attached MCP server could expose tools that differ from the expected read-only packet surface.
+
+Mitigation: Verify the available MCP tools before connecting the server to an agent host and use only the documented read-only packet tools.
+
+Risk: Distribution or store-readiness claims may be overstated if they are not backed by fresh receipts.
+
+Mitigation: Keep responses limited to repo-ready evidence unless a current ClawHub, OpenHands, registry, or store receipt is available.
+
+## Reference(s):
+
+- [Skill packet README](README.md)
+- [Install and attach guide](references/INSTALL.md)
+- [Shopflow MCP capabilities](references/CAPABILITIES.md)
+- [First-success demo](references/DEMO.md)
+- [OpenHands MCP config](references/OPENHANDS_MCP_CONFIG.json)
+- [OpenClaw MCP config](references/OPENCLAW_MCP_CONFIG.json)
+- [Troubleshooting guide](references/TROUBLESHOOTING.md)
+- [ClawHub skill page](https://clawhub.ai/xiaojiou176/skills/shopflow-read-only-packet)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with shell commands and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only MCP setup and packet review guidance; no live store or registry status is claimed without fresh receipts.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and manifest.yaml)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,57 @@
-## Description: <br>
-Design, replicate, or iterate terminal user interfaces from screenshots, descriptions, layout sketches, or existing .tui files, generating BubbleTea, Ink, or Textual code directly or through a .tui Schema. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Design, replicate, or iterate terminal user interfaces from screenshots, descriptions, layout sketches, or existing .tui files. Generate framework code (BubbleTea/Ink/Textual/Ratatui) directly or via .tui Schema intermediate representation.
 
-## Publisher: <br>
-[albert-lv](https://clawhub.ai/user/albert-lv) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[albert-lv](https://clawhub.ai/user/albert-lv)
 
-## Use Case: <br>
-Developers and engineers use this skill to design, replicate, and iterate terminal interfaces from screenshots, descriptions, sketches, or .tui files and to produce BubbleTea, Ink, or Textual implementations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated code or .tui edits may change project files or overwrite existing work. <br>
-Mitigation: Confirm the target framework and output path first, then review generated code or .tui content before running it or applying it to a project. <br>
-Risk: Terminal UI output can be misleading if responsive behavior, resize clearing, or character-width handling is omitted. <br>
-Mitigation: Validate previews at multiple terminal sizes and include rendering stability measures such as full redraws, clear-on-resize behavior, alternate screen usage, and width-aware text handling. <br>
+## Use Case:
 
+Developers can use this skill to design or refine terminal interfaces from screenshots, descriptions, layout sketches, or existing .tui files, then produce responsive framework code or a reusable schema.
 
-## Reference(s): <br>
-- [Components Cheatsheet](references/components-cheatsheet.md) <br>
-- [TUI Layout Inference Rules](references/layout-inference-rules.md) <br>
-- [Color Accessibility for TUI Design](references/color-accessibility.md) <br>
-- [Schema to Code Mapping Reference](references/schema-to-code-mapping.md) <br>
-- [Known Quirks for TUI Design](references/known-quirks.md) <br>
-- [Workflow Examples](references/workflow-examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Configuration, Shell commands] <br>
-**Output Format:** [Markdown responses with optional .tui schema content, framework code blocks, and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include file paths, layout summaries, proportion annotations, preview status, and responsive behavior notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Generated framework code may not fit the project or chosen dependencies.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated code and separately selected dependencies before running them.
+
+## Reference(s):
+
+- [Layout Inference Rules](artifact/references/layout-inference-rules.md)
+- [Components Cheatsheet](artifact/references/components-cheatsheet.md)
+- [Color Accessibility for TUI Design](artifact/references/color-accessibility.md)
+- [Schema to Code Mapping](artifact/references/schema-to-code-mapping.md)
+- [Designing TUIs project homepage](https://github.com/albert-lv/designing-tuis)
+- [Bubble Tea](https://github.com/charmbracelet/bubbletea)
+- [Ink](https://github.com/vadimdemedes/ink)
+- [Textual](https://github.com/Textualize/textual)
+- [Ratatui](https://github.com/ratatui/ratatui)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Configuration, Guidance]
+
+**Output Format:** [Framework code and optional .tui schema, with design guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Framework-dependent; supports direct code generation or schema-mediated generation]
+
+## Skill Version(s):
+
+1.0.1 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,60 @@
-## Description: <br>
-FTShare-market-data routes agent requests to FTShare market-data APIs for A-share, Hong Kong, US equity, ETF, fund, index, macroeconomic, news, and financial-statement data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+FTShare Market Data routes agent requests to FT market-data services for A-share, Hong Kong, and US stock data, ETFs, funds, indexes, macroeconomic indicators, market news, valuations, K-lines, index weights, and related financial datasets.
 
-## Publisher: <br>
-[shawn92](https://clawhub.ai/user/shawn92) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shawn92](https://clawhub.ai/user/shawn92)
 
-## Use Case: <br>
-External users and finance-oriented agents use this skill to retrieve current and historical market data, security metadata, index and ETF details, macroeconomic indicators, news, and financial statements across A-share, Hong Kong, and US markets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill makes outbound requests to market.ft.tech and ftai.chat, which can expose requested symbols, date ranges, and market-data queries to those services. <br>
-Mitigation: Use the skill only when external FTShare data access is acceptable, and review sensitive query terms before execution. <br>
-Risk: Download commands can write market-data files into the working directory when requested. <br>
-Mitigation: Use explicit output paths, review generated files before sharing them, and avoid overwriting important workspace files. <br>
+## Use Case:
 
+External users and agents use this skill to retrieve and summarize market data for A-share, Hong Kong, and US securities, including quotes, K-lines, fundamentals, fund and ETF data, index data, macro indicators, financial calendars, and related news. It is intended for data lookup and analysis support, not as investment advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/shawn92/skills/ftshare-market-data) <br>
-- [FTShare market data documentation](https://market.ft.tech/gateway/doc) <br>
-- [FTShare market data service](https://market.ft.tech) <br>
-- [FT AI Chat service](https://ftai.chat) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, API calls, files] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON or downloaded market-data files from API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Some sub-skills support pagination or all-page retrieval; download sub-skills can save market-data files when the user provides an output path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.10 (source: server release metadata) <br>
+Risk: The skill makes HTTPS requests to external FT market-data services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only where outbound access to those services is acceptable, and treat returned market data as provider-supplied information that may need independent verification.
+
+Risk: Download routes can write PDF, XML, or XLSX files into the current working directory.
+
+Mitigation: Use explicit output filenames in an appropriate working directory and review downloaded files before opening, sharing, or relying on them.
+
+Risk: Some documented announcement or report routes may be stale or unavailable.
+
+Mitigation: Handle route failures gracefully and confirm availability before building workflows that depend on those routes.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/shawn92/skills/ftshare-market-data)
+- [FT Market Data API Documentation](https://market.ft.tech/gateway/doc)
+- [FT Market Data Service](https://market.ft.tech)
+- [FT AI Chat Service](https://ftai.chat)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Files]
+
+**Output Format:** [JSON data that agents can summarize as Markdown tables or bullets; selected download routes may write PDF, XML, or XLSX files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Market data is returned from external HTTPS services and should be treated as provider-supplied financial data.]
+
+## Skill Version(s):
+
+1.0.10 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

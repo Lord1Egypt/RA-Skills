@@ -1,0 +1,12 @@
+{
+  "id": 1,
+  "task_type": "demo_task",
+  "target_id": "demo_target_1",
+  "input_id": "demo_input_42",
+  "input_title": "示例任务输入标题",
+  "status": "success",
+  "error_msg": null,
+  "result_summary": "{\"processed\": 10, \"skipped\": 0}",
+  "created_at": "2026-04-01T10:00:00",
+  "updated_at": "2026-04-01T10:00:00"
+}

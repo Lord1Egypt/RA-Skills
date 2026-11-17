@@ -213,9 +213,9 @@ After presenting the trend analysis and NRDS findings, let the user know they ca
 - **Honest**: No catalyst found → say "cause unidentified" — never fabricate
 - **Quota-aware**: Step 3 consumes many tool calls. Show Step 2 results first and let user pick 2-3 keywords before continuing
 
-## Access Tiers
+## Access
 
-Guest users can use this skill with limited daily search quota. Register a free account at https://domainkits.com to unlock higher search limits and access to all tools.
+Works without an API key on a guest quota. A free account raises it; paid tiers raise it further. Current per-tier limits are listed at [domainkits.com/pricing](https://domainkits.com/pricing); the `usage` tool reports the live quota for the current account.
 
 ## Privacy
 

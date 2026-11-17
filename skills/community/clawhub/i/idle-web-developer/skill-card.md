@@ -1,44 +1,64 @@
-## Description: <br>
-Idle Web Developer helps agents scaffold, build, and deploy polished web apps while idle, with optional analytics and waitlist integrations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Builds and deploys polished website and app prototypes with optional analytics and waitlist capture.
 
-## Publisher: <br>
-[Jaswir](https://clawhub.ai/user/Jaswir) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jaswir](https://clawhub.ai/user/jaswir)
 
-## Use Case: <br>
-Developers and builders use this skill to generate small, polished websites, configure optional analytics and waitlist capture, and deploy the result to Vercel. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores deployment and integration credentials for reuse. <br>
-Mitigation: Use a least-privileged Vercel token, avoid storing unnecessary secrets, never provide Supabase service-role keys, and inspect or delete .skill-config when finished. <br>
-Risk: Generated sites can include analytics or waitlist email collection. <br>
-Mitigation: Review each generated site before publishing and update privacy, analytics, and waitlist copy when tracking or email collection is enabled. <br>
-Risk: The skill can publish generated sites to Vercel. <br>
-Mitigation: Use --skip-deploy or perform a manual review before allowing production deployment. <br>
+## Use Case:
 
+Developers and makers use this skill to scaffold small static or Next.js websites, configure optional waitlist and analytics integrations, and deploy them to Vercel.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Jaswir/idle-web-developer) <br>
-- [Skill homepage](https://github.com/jaswirraghoe/idle-web-developer) <br>
-- [Website Builder Reference Workflow](references/workflow.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with generated web app files, configuration steps, and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May scaffold static or Next.js web apps, write configuration, and deploy to Vercel when credentials are configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: frontmatter and server release evidence) <br>
+Risk: The skill needs a Vercel token and can deploy public sites.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a narrowly scoped, revocable Vercel token and revoke or rotate it when the skill no longer needs deployment access.
+
+Risk: The local .skill-config file stores deployment and integration values.
+
+Mitigation: Treat .skill-config as sensitive local data and keep it out of source control, logs, and shared workspaces.
+
+Risk: Generated public pages may include analytics or privacy claims that need review.
+
+Mitigation: Review each generated page before publishing and enable analytics only when the intended credentials and disclosures are in place.
+
+Risk: Optional Google service-account credential paths increase credential-handling exposure.
+
+Mitigation: Avoid providing Google service-account credentials unless analytics setup requires them, and store credential files outside generated site folders.
+
+## Reference(s):
+
+- [Website Builder Reference Workflow](references/workflow.md)
+- [Idle Web Developer ClawHub page](https://clawhub.ai/jaswir/skills/idle-web-developer)
+- [Jaswir ClawHub publisher profile](https://clawhub.ai/user/jaswir)
+- [Vercel account tokens](https://vercel.com/account/tokens)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown status summaries with generated files, shell commands, and deployment URLs.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write website files under an app directory and optionally deploy a public Vercel site.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

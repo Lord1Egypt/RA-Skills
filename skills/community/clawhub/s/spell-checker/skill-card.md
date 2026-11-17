@@ -1,40 +1,54 @@
-## Description: <br>
-Use when interpreting user messages that may contain obvious spelling, grammar, speech-to-text, or casing errors, especially before acting on ambiguous instructions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when interpreting user messages that may contain obvious spelling, grammar, speech-to-text, or casing errors, especially before acting on ambiguous instructions.
 
-## Publisher: <br>
-[elimaine](https://clawhub.ai/user/elimaine) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[elimaine](https://clawhub.ai/user/elimaine)
 
-## Use Case: <br>
-Agents use this skill to interpret noisy or mistyped user instructions before reasoning, retrieval, planning, or tool use. It normalizes low-risk prose errors while preserving exact strings such as commands, filenames, URLs, configuration keys, code, quoted text, and identifiers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Normalization may change the action an agent takes when a typo overlaps with a command, filename, identifier, quoted string, or other exact artifact. <br>
-Mitigation: Preserve exact strings by default and ask for confirmation when a correction is ambiguous, risky, or action-changing. <br>
-Risk: Quiet typo correction may hide the original wording from downstream review. <br>
-Mitigation: Use normalized interpretations for reasoning and retrieval while retaining the original user wording for auditability and exact replay. <br>
+## Use Case:
 
+Agents and developers use this skill to interpret noisy or casually written user requests before reasoning, tool use, retrieval, graph updates, or embedding workflows. It normalizes obvious prose errors while preserving exact artifacts such as commands, filenames, URLs, code, config keys, and identifiers.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/elimaine/spell-checker) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Text] <br>
-**Output Format:** [Markdown instructions and concise interpretation notices] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces normalized interpretations for agent reasoning while preserving byte-sensitive strings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: server release evidence) <br>
+Risk: Quiet typo normalization could change how an agent understands a request before reasoning.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Normalize only obvious natural-language errors; surface ambiguity or action-changing corrections with a concise confirmation before acting.
+
+Risk: Exact strings such as code, commands, secrets, file names, URLs, and identifiers could be damaged if treated as prose.
+
+Mitigation: Preserve byte-sensitive strings exactly and avoid rewriting quoted text, code blocks, logs, configuration keys, and other exact artifacts unless the user explicitly requests correction.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/elimaine/skills/spell-checker)
+- [Publisher Profile](https://clawhub.ai/user/elimaine)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, text]
+
+**Output Format:** [Natural-language guidance or concise clarification notices]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Preserves exact user-provided artifacts and asks before applying ambiguous or action-changing corrections.]
+
+## Skill Version(s):
+
+1.0.6 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

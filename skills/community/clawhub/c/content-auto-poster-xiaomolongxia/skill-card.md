@@ -1,41 +1,49 @@
-## Description: <br>
-Publishes and schedules content across multiple platforms, including WeChat Official Accounts, Weibo, Zhihu, and Jianshu. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Content Auto Poster helps schedule and publish content across WeChat Official Accounts, Weibo, Zhihu, and Jianshu.
 
-## Publisher: <br>
-[linbo405](https://clawhub.ai/user/linbo405) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[linbo405](https://clawhub.ai/user/linbo405)
 
-## Use Case: <br>
-External creators, marketers, and operators can use this skill to adapt one content draft for multiple public content platforms, schedule publication, and summarize basic engagement results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can publish or schedule content on public or semi-public third-party platforms without documented confirmation safeguards. <br>
-Mitigation: Require manual preview and explicit approval for each target platform before any post is published or scheduled. <br>
-Risk: The artifact does not explain account-access handling, credential storage, or cancellation behavior. <br>
-Mitigation: Do not provide credentials or confidential drafts until authentication, storage, and cancellation procedures are clear and acceptable. <br>
+## Use Case:
 
+Content creators, marketing teams, and operators use this skill to synchronize articles, announcements, and recurring updates across multiple public content platforms with optional scheduling.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/linbo405/content-auto-poster-xiaomolongxia) <br>
-- [Publisher profile](https://clawhub.ai/user/linbo405) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with JSON examples for publication status, platform URLs, scheduling configuration, and engagement totals] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May describe public or scheduled posts across third-party content platforms.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill can publish content publicly or send content to external platforms.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review target platforms and scheduled time before use, and do not provide confidential, unpublished, regulated, or internal content unless it is intended for those services.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/linbo405/skills/content-auto-poster-xiaomolongxia)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include publication status, post URLs, schedule state, and aggregate reach.]
+
+## Skill Version(s):
+
+1.0.0 (source: artifact frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

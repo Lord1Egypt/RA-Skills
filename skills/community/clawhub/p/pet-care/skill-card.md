@@ -1,41 +1,54 @@
-## Description: <br>
-Pet Care is a static reference skill that provides quick plain-text guidance for introductory, quickstart, patterns, debugging, performance, security, migration, and cheatsheet topics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reference tool for life - covers intro, quickstart, patterns and more, with quick lookup material for Pet Care concepts, best practices, and implementation patterns.
 
-## Publisher: <br>
-[bytesagain1](https://clawhub.ai/user/bytesagain1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain1](https://clawhub.ai/user/bytesagain1)
 
-## Use Case: <br>
-Agent users can call this skill for concise reference material about Pet Care concepts, setup, common patterns, troubleshooting, security considerations, migration, and quick commands. It should be treated as a lightweight static reference, not as veterinary, emergency, medication, or species-specific care advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may mistake generic static Pet Care reference text for veterinary, emergency, medication, or species-specific care advice. <br>
-Mitigation: Use the skill only as a simple reference aid and verify health, emergency, medication, and species-specific topics with a qualified veterinarian or trusted source. <br>
-Risk: The executable script reports version 4.0.0 while server release metadata and SKILL.md identify version 4.0.1. <br>
-Mitigation: Treat 4.0.1 as the release version for this card and align the script-reported version before relying on CLI version output. <br>
+## Use Case:
 
+External users and developers use this skill as a static reference helper for Pet Care-themed concepts, quickstarts, troubleshooting, migration notes, and checklists. It is best suited for lightweight orientation and lookup rather than specialized veterinary or operational advice.
 
-## Reference(s): <br>
-- [Pet Care on ClawHub](https://clawhub.ai/bytesagain1/pet-care) <br>
-- [BytesAgain](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Plain text reference documentation with Markdown headings, lists, and tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No API keys, credentials, or network access required according to the release evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-4.0.1 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill is a generic static reference and may be mistaken for deeply specialized pet-care guidance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it for orientation and quick lookup only; verify important care, health, safety, or compliance decisions against qualified sources.
+
+Risk: The artifact script reports version 4.0.0 while release evidence and SKILL.md report version 4.0.1.
+
+Mitigation: Prefer the server release evidence for the public card and reconcile the script version before relying on command output for audits.
+
+## Reference(s):
+
+- [Pet Care on ClawHub](https://clawhub.ai/bytesagain1/skills/pet-care)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Plain text and Markdown-style reference sections emitted by shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static heredoc output; no credentials, network access, or external API calls indicated.]
+
+## Skill Version(s):
+
+4.0.1 (source: release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

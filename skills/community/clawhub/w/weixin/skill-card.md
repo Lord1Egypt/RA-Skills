@@ -1,41 +1,58 @@
-## Description: <br>
-Weixin is a WeChat ecosystem development assistant for Official Accounts, Mini Programs, WeChat Pay V3, and Enterprise WeChat integrations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Weixin provides a zero-dependency CLI and practical guidance for WeChat Official Account and Mini Program API workflows, including token checks, media upload, draft creation, publishing, OAuth, JSSDK, and payment development.
 
-## Publisher: <br>
-[zhangifonly](https://clawhub.ai/user/zhangifonly) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhangifonly](https://clawhub.ai/user/zhangifonly)
 
-## Use Case: <br>
-Developers and engineers use this skill for implementation guidance and examples across WeChat Official Account backends, Mini Program login and cloud development, WeChat Pay V3 orders and notifications, JSSDK setup, and Enterprise WeChat integrations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Credential exposure through WeChat AppSecret, access_token, session_key, or payment keys used in example workflows. <br>
-Mitigation: Keep secrets server-side, avoid pasting real credentials into chat, and use test accounts where possible. <br>
-Risk: Production-impacting changes from examples that create menus, send messages, create orders, issue refunds, or handle payment notifications. <br>
-Mitigation: Review generated code and commands before use, validate payment signatures and notification idempotency, and test against non-production accounts before deployment. <br>
+## Use Case:
 
+Developers and operators use this skill to automate and troubleshoot WeChat Official Account publishing flows and to reference implementation notes for Official Account, Mini Program, OAuth, JSSDK, and WeChat Pay V3 development.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhangifonly/weixin) <br>
-- [Publisher profile](https://clawhub.ai/user/zhangifonly) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline code blocks and command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only output; examples may reference live WeChat APIs and credential placeholders.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill can cache a powerful WeChat access token in a predictable temporary file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a private cache directory or disable disk caching, protect WX_SECRET, and avoid shared machines for production credentials.
+
+Risk: The generic API caller and publishing commands can perform broad posting, template-message, or group-message actions.
+
+Mitigation: Require explicit user approval before publishing content or sending template or group messages.
+
+Risk: Concurrent token refreshes can invalidate tokens used by production services.
+
+Mitigation: Use a centralized production token cache and avoid parallel refreshes from local scripts.
+
+## Reference(s):
+
+- [ClawHub Weixin skill page](https://clawhub.ai/zhangifonly/skills/weixin)
+- [WeChat Official Account API endpoint](https://api.weixin.qq.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, Python CLI usage, and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May call WeChat APIs when the user provides credentials and explicitly approves publishing or message-sending actions.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

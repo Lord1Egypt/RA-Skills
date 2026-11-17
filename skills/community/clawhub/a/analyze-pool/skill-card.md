@@ -1,43 +1,58 @@
-## Description: <br>
-Analyze a specific Uniswap pool's performance, liquidity depth, fee APY, and risk factors. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze a specific Uniswap pool's performance, liquidity depth, fee APY, and risk factors.
 
-## Publisher: <br>
-[wpank](https://clawhub.ai/user/wpank) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[wpank](https://clawhub.ai/user/wpank)
 
-## Use Case: <br>
-Developers, DeFi analysts, and liquidity providers use this skill to evaluate a specific Uniswap pool before LPing or trading significant size. It summarizes pool identity, TVL, price, historical volume, fee APY, liquidity depth, concentration, and risk factors. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill delegates analysis to a pool-researcher subagent, so output quality depends on that subagent and the data it retrieves. <br>
-Mitigation: Install only if you trust the publisher and the pool-researcher subagent your agent will call. <br>
-Risk: Fee APY and LP suitability analysis are based on historical pool data and may not predict future returns. <br>
-Mitigation: Treat fee APY and LP suitability output as informational financial analysis, not guaranteed returns. <br>
-Risk: Pool, token, chain, or fee-tier ambiguity can produce missing or limited analysis. <br>
-Mitigation: Provide explicit token contract addresses, chain, protocol version, and fee tier when available, and review any limited-data warning before acting. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wpank/analyze-pool) <br>
-- [Publisher profile](https://clawhub.ai/user/wpank) <br>
-- [README installation source](https://github.com/wpank/Agentic-Uniswap/tree/main/.ai/skills/analyze-pool) <br>
+## Use Case:
 
+Developers, analysts, and DeFi users use this skill to evaluate a specific Uniswap pool before LPing or trading heavy size. It summarizes pool identification, TVL, price, historical volume, fee APY, liquidity depth, concentration, and risk factors.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown summary with structured pool metrics and risk notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Delegates pool research to a pool-researcher subagent and presents the returned analysis in a concise user-facing summary.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: ClawHub release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Mutable install commands can change what is installed over time.
+
+Mitigation: Prefer a reviewed ClawHub release or pin the installer and source reference before installing.
+
+Risk: The skill delegates work to a pool-researcher subagent and uses the opus model, which may affect model access, cost, and review requirements.
+
+Mitigation: Confirm the subagent configuration and model choice are acceptable for the target environment before deployment.
+
+Risk: Pool metrics and fee APY can be misread as financial advice or guaranteed future performance.
+
+Mitigation: Present fee APY as historical, keep wallet/private-key workflows out of scope, and require users to make independent financial decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wpank/skills/analyze-pool)
+- [Artifact skill specification](artifact/SKILL.md)
+- [Artifact README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, analysis, guidance]
+
+**Output Format:** [Markdown summary with pool metrics, liquidity depth, performance figures, and risk notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Delegates pool research to a configured pool-researcher subagent and reports missing pools, unrecognized tokens, or limited data clearly.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

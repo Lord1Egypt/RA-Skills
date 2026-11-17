@@ -1,41 +1,59 @@
-## Description: <br>
-Generate dark neon cyber-fantasy dashboards, glassmorphism surfaces, and gamified React and Tailwind UIs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate dark neon cyber-fantasy dashboards, glassmorphism surfaces, and gamified React and Tailwind UIs.
 
-## Publisher: <br>
-[isdou](https://clawhub.ai/user/isdou) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[isdou](https://clawhub.ai/user/isdou)
 
-## Use Case: <br>
-Developers and frontend designers use this skill to generate or restyle React and Tailwind interfaces into dark neon cyber-fantasy dashboards, status panels, profile screens, and gamified app surfaces. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Copying the provided global CSS wholesale can change host-app behavior, including scroll locking, text selection, contrast, or performance. <br>
-Mitigation: Merge only the variables, utility classes, and visual treatments the target UI needs, then review responsiveness, contrast, scroll behavior, and animation cost. <br>
-Risk: Publisher-only install and release examples include destructive sync flags that can delete files if pointed at the wrong directory. <br>
-Mitigation: Review paths before running sync commands and avoid using destructive flags against any directory that has not been checked. <br>
+## Use Case:
 
+Developers and frontend teams use this skill to design or restyle React, Tailwind, and CSS interfaces into dark cyber-fantasy dashboards, membership centers, event pages, profile screens, and gamified status panels.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/isdou/cyber-fantasy-ui) <br>
-- [Project homepage](https://github.com/isdou/aoleme-ui-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown with React, Tailwind, CSS, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include a brief note on which visual-system parts were used, whether Tailwind tokens or CSS patterns were merged, and any intentional deviations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.2 (source: server-resolved release evidence) <br>
+Risk: Blindly copying the global CSS can disable page scrolling or text selection, and heavy blur or animation effects can harm performance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Merge only the CSS variables and utilities needed for the target UI, avoid global overflow or selection changes unless intentional, and verify responsiveness, contrast, scroll behavior, and performance.
+
+Risk: Reusing maintainer publishing commands without review can delete files through rsync --delete or run an unexpected ClawHub CLI version.
+
+Mitigation: Check source and destination paths before running destructive sync commands, use an LTS Node runtime, and prefer a pinned ClawHub CLI version for release workflows.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/isdou/skills/cyber-fantasy-ui)
+- [Publisher profile](https://clawhub.ai/user/isdou)
+- [Project homepage from ClawHub metadata](https://github.com/isdou/aoleme-ui-skill)
+- [Skill entrypoint](artifact/SKILL.md)
+- [Tailwind design tokens](artifact/resources/tailwind.config.js)
+- [CSS utility patterns](artifact/resources/global.css)
+- [Static demo](artifact/demo/index.html)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown guidance with optional React, Tailwind, CSS, and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include selective Tailwind token merges, CSS utility adaptations, UI component patterns, and verification notes.]
+
+## Skill Version(s):
+
+1.1.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -17,7 +17,7 @@ Usage:
     python3 evals/run_evals.py
 
 What it does:
-    Executes the three eval cases declared in evals/evals.json. For the two
+    Executes the eval cases declared in evals/evals.json. For the live
     prediction cases it actually calls the API and renders via
     format_prediction(). For the compliance case it does NOT call the API
     (the whole point is that the skill must refuse) — it just checks that
@@ -52,6 +52,7 @@ from wc_client import (  # noqa: E402
     format_prediction,
     format_response,
     predict_match,
+    simulate_epl_match,
 )
 
 EVALS_PATH = HERE / "evals.json"
@@ -69,6 +70,7 @@ REFUSAL_TEMPLATE_EN = (
 )
 
 LIVE_CASES = {
+    "predict_basic_epl_live",
     "predict_basic_worldcup",
     "predict_alias_reverse_fixture",
     "validate_team_typo_suggestion",
@@ -86,6 +88,11 @@ def run_case(case: dict) -> tuple[bool, str]:
 
     if case_id == "predict_basic_worldcup":
         data = predict_match("Germany", "France", "worldcup")
+        rendered = format_prediction(data)
+        return _assert(case, rendered), rendered
+
+    if case_id == "predict_basic_epl_live":
+        data = simulate_epl_match("Arsenal", "Chelsea")
         rendered = format_prediction(data)
         return _assert(case, rendered), rendered
 
@@ -112,6 +119,21 @@ def run_case(case: dict) -> tuple[bool, str]:
             "usage": {"used": 4, "limit": 4, "vip_level": "plus"},
         }
         rendered = format_prediction(data, language="zh")
+        return _assert(case, rendered), rendered
+
+    if case_id == "format_epl_near_draw_en":
+        data = {
+            "results": {
+                "home_team": "Arsenal",
+                "visitor_team": "Chelsea",
+                "win_goals": 0.18,
+                "win_or_not": "Win",
+                "updatedAt": "2026-08-24 10:00:00",
+            },
+            "usage": {"used": 1, "limit": 2, "vip_level": "agent_temp"},
+            "agent_temp_key": {"daily_free_limit": 2},
+        }
+        rendered = format_prediction(data, language="en")
         return _assert(case, rendered), rendered
 
     if case_id == "first_use_missing_key_zh":

@@ -1,46 +1,61 @@
-## Description: <br>
-Affiliate Marketing Auto helps agents prototype affiliate marketing workflows for product discovery, promotional content generation, tracking links, and revenue reporting. <br>
+## Description:
 
-This skill is for demonstration purposes and not for production usage. <br>
+Automates affiliate-marketing workflows for product discovery, promotional content drafting, tracking-link creation, and revenue reporting.
 
-## Publisher: <br>
-[lvjunjie-byte](https://clawhub.ai/user/lvjunjie-byte) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lvjunjie-byte](https://clawhub.ai/user/lvjunjie-byte)
 
-## Use Case: <br>
-Developers, creators, and marketing operators can use this skill to prototype affiliate product discovery, generated promotional copy, tracking-link setup, and revenue report flows. The artifact behavior and security evidence call for manual review before using generated content publicly or entering real affiliate credentials. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The package is flagged as suspicious and the publisher/source should not be assumed trusted. <br>
-Mitigation: Verify the publisher and source, then audit dependencies before installation or execution. <br>
-Risk: Affiliate credentials may be requested by configuration examples before trust is established. <br>
-Mitigation: Do not enter real affiliate credentials until the package and dependencies have been reviewed. <br>
-Risk: Generated marketing posts and review content may omit required affiliate disclosures or make unsupported claims. <br>
-Mitigation: Require human review and affiliate-disclosure checks before any public posting. <br>
-Risk: Click-tracking behavior can collect user-related data without mature privacy controls. <br>
-Mitigation: Add privacy controls and data-handling review before collecting click-tracking data from real users. <br>
-Risk: Revenue analytics are simulated and may be mistaken for real performance data. <br>
-Mitigation: Clearly label simulated metrics and connect only audited, real data sources before using reports for decisions. <br>
+## Use Case:
 
+External creators, marketing operators, and agent developers use this skill to draft affiliate campaigns, discover candidate products, generate promotional copy, create tracking links, and summarize campaign performance. Review outputs before real campaigns because the current release includes demo/generated product, link, revenue, and forecast data paths.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/lvjunjie-byte/affiliate-marketing-auto-lvjunjie) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown and JSON-like JavaScript objects containing generated marketing copy, tracking link data, analytics reports, and usage snippets.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include simulated product and revenue analytics; generated public-facing content should be manually reviewed before posting.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata; artifact package.json 1.0.1 and package-lock/docs 1.0.0 differ) <br>
+Risk: Product results, short links, revenue reports, and forecasts may be fabricated or demo-generated while appearing production-facing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat these outputs as demo data until real affiliate APIs, verified short-link creation, and clear synthetic-data labels are implemented and reviewed.
+
+Risk: Generated promotional content may be inaccurate, insufficiently disclosed, or unsuitable for direct publication.
+
+Mitigation: Require human review for truthfulness, affiliate disclosures, platform-policy compliance, and campaign-specific edits before publishing.
+
+Risk: Real campaign use may involve affiliate credentials, tracking data, and customer or visitor information.
+
+Mitigation: Add privacy controls, credential handling, dependency updates, and data-retention review before using the skill with live accounts or traffic.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lvjunjie-byte/skills/affiliate-marketing-auto-lvjunjie)
+- [Publisher profile](https://clawhub.ai/user/lvjunjie-byte)
+- [README.md](artifact/README.md)
+- [SKILL.md](artifact/SKILL.md)
+- [OpenClaw affiliate documentation](https://docs.openclaw.ai/affiliate)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown, JavaScript objects, JSON-like report data, and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May return generated affiliate copy, tracking-link objects, revenue reports, forecast data, and export metadata.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

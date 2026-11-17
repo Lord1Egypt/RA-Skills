@@ -1,42 +1,60 @@
-## Description: <br>
-Confidence-scored multi-source retrieval across web, scholar, Tavily, and Perplexity-backed research for cross-source verification, consensus checks, and synthesis-ready comparisons. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Confidence-scored multi-source retrieval across web, scholar, Tavily, and Perplexity-backed research.
 
-## Publisher: <br>
-[baofeng-tech](https://clawhub.ai/user/baofeng-tech) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[baofeng-tech](https://clawhub.ai/user/baofeng-tech)
 
-## Use Case: <br>
-Developers, researchers, and analysts use this skill to compare results from multiple search and research providers before producing recommendations, summaries, or decision-support reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search terms, research prompts, optional system instructions, and supplied URLs are sent to AIsa-backed external services. <br>
-Mitigation: Use only approved inputs for external processing, and avoid secrets, private or internal URLs, regulated data, and proprietary research context unless that processing is authorized. <br>
+## Use Case:
 
+Developers, researchers, and external agent users use this skill to compare search results across web, scholar, Tavily, and Perplexity-backed sources before synthesizing a research answer or recommendation.
 
-## Reference(s): <br>
-- [AIsa Documentation](https://aisa.one/docs) <br>
-- [AIsa API Reference](https://aisa.one/docs/api-reference/) <br>
-- [AIsa Verity](https://github.com/AIsa-team/verity) <br>
-- [Agent Skills Specification](https://agentskills.io/specification) <br>
-- [ClawHub Skill Page](https://clawhub.ai/baofeng-tech/multi-source-search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with shell examples and JSON API responses from the bundled Python client] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and AISA_API_KEY; verity mode returns confidence scoring and per-source result counts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Research queries, prompt text, optional system instructions, and submitted URLs are sent through api.aisa.one and downstream providers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only approved non-confidential prompts and URLs, and avoid authenticated or internal pages unless that data sharing has been approved.
+
+Risk: Search and research outputs may be incomplete, stale, or inconsistent across providers.
+
+Mitigation: Review cited sources and compare returned source coverage before relying on synthesized conclusions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/baofeng-tech/skills/multi-source-search)
+- [AIsa Documentation](https://aisa.one/docs)
+- [AIsa API Reference](https://aisa.one/docs/api-reference/)
+- [AIsa Verity](https://github.com/AIsa-team/verity)
+- [Perplexity Sonar](https://aisa.one/docs/api-reference/perplexity/post_perplexity-sonar)
+- [Perplexity Sonar Pro](https://aisa.one/docs/api-reference/perplexity/post_perplexity-sonar-pro)
+- [Perplexity Sonar Reasoning Pro](https://aisa.one/docs/api-reference/perplexity/post_perplexity-sonar-reasoning-pro)
+- [Perplexity Sonar Deep Research](https://aisa.one/docs/api-reference/perplexity/post_perplexity-sonar-deep-research)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Python 3 and AISA_API_KEY; remote requests may include user queries, prompt text, optional system instructions, and submitted URLs.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

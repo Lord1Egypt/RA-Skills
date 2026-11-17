@@ -1,41 +1,53 @@
-## Description: <br>
-Helps with U.S.-specific conventions such as time zones, date and number formats, holidays, and regional context. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps with U.S.-specific conventions such as time zones, date and number formats, holidays, and regional context.
 
-## Publisher: <br>
-[openlang-cn](https://clawhub.ai/user/openlang-cn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[openlang-cn](https://clawhub.ai/user/openlang-cn)
 
-## Use Case: <br>
-External users and agents use this skill to adapt responses for U.S. audiences, including American time zones, date and number formats, dollar amounts, common holidays, workweek assumptions, and American English conventions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: U.S. holidays, daylight saving offsets, and state-specific legal or tax details can vary by date and jurisdiction. <br>
-Mitigation: Verify current, state-specific, legal, tax, or holiday details from authoritative sources when precision matters. <br>
-Risk: Applying U.S. conventions when the user's context is not U.S.-specific could make answers less appropriate. <br>
-Mitigation: Use the skill only when the user mentions American time, currency, holidays, U.S. audience needs, or asks for U.S. conventions. <br>
+## Use Case:
 
+External users and agents use this skill to apply U.S.-specific time zone, date, number, currency, holiday, workweek, and American English conventions when a task is explicitly U.S.-focused.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/openlang-cn/america) <br>
-- [Publisher profile](https://clawhub.ai/user/openlang-cn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution, API calls, or file generation is described by the skill.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill may favor American English and U.S. date, currency, holiday, and workweek assumptions when a task is U.S.-targeted.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Specify a different locale or convention explicitly when the output should not follow U.S. norms.
+
+Risk: U.S. public holidays and daylight saving time rules can vary by year, jurisdiction, and date.
+
+Mitigation: For scheduling, legal, tax, compliance, or state-specific questions, verify the relevant year and jurisdiction against an official or authoritative source.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/openlang-cn/skills/america)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Text, Markdown]
+
+**Output Format:** [Natural language guidance, usually in text or Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution, sensitive access, persistence, or external data handling requested by the skill.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

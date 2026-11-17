@@ -1,41 +1,53 @@
-## Description: <br>
-Provides a Chinese-language ten-dimensional framework for deep industry and sector analysis using recent market data, news, financial data, and policy sources. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+行业深度分析框架 1.1.2 - 对行业/板块进行十维深度分析
 
-## Publisher: <br>
-[ghgh2026](https://clawhub.ai/user/ghgh2026) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ghgh2026](https://clawhub.ai/user/ghgh2026)
 
-## Use Case: <br>
-External users and analysts use this skill to request deep reports on industries, sectors, or supply chains, including market outlook, cost structure, competitive landscape, core companies, policy environment, and risks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may create Feishu documents during report generation without clear user opt-in or disclosure. <br>
-Mitigation: Before use, confirm where Feishu documents are stored, who can access them, and how exported reports can be disabled or deleted. <br>
-Risk: The skill relies on external search and market-data services for current industry and financial claims. <br>
-Mitigation: Review cited sources and dates, and verify investment-sensitive claims against authoritative sources before relying on the report. <br>
+## Use Case:
 
+External users can use this skill to generate structured, source-aware industry and sector analysis reports covering market outlook, industry chain structure, cost structure, competition, core companies, policy environment, and risks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ghgh2026/gh-industry-deep-analysis) <br>
-- [README.md](README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Files, Guidance] <br>
-**Output Format:** [Markdown report; may also create a Feishu document when the required integration is available.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Default deep-analysis output is 10,000-20,000 Chinese characters according to artifact documentation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.3 (source: server release metadata; artifact frontmatter reports 1.1.2 and package.json reports 1.1.0) <br>
+Risk: Generated reports may be archived locally, published to Lark/Feishu Wiki, and announced to a hard-coded group without clear user approval.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user approval before export, publication, or notification, and make storage and sharing behavior opt-in and documented.
+
+Risk: Industry reports may contain financial analysis and investment-oriented conclusions that depend on timely, source-verified data.
+
+Mitigation: Review generated analysis before use, verify cited data against current authoritative sources, and keep the skill's investment-risk disclaimer visible.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ghgh2026/skills/gh-industry-deep-analysis)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Long-form Markdown industry analysis report with tables and command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Default report length is 10000-20000 Chinese characters or words as specified by the skill; generated reports may include local archive, Lark/Feishu Wiki publication, and group notification steps.]
+
+## Skill Version(s):
+
+1.1.5 (source: server release metadata; artifact frontmatter lists 1.1.3 and package.json lists 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

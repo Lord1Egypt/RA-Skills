@@ -1,40 +1,49 @@
-## Description: <br>
-Miki nutrition and diet guidance evaluates nutrition intake for babies aged 6-36 months, judges whether the diet is balanced, and suggests adjustments. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Miki Nutrition Diet helps assess diet structure and nutritional balance for babies aged 6-36 months and provides adjustment guidance.
 
-## Publisher: <br>
-[nic-yuan](https://clawhub.ai/user/nic-yuan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nic-yuan](https://clawhub.ai/user/nic-yuan)
 
-## Use Case: <br>
-Parents and caregivers use this skill for general nutrition education for children aged 6-36 months, including reviewing meal structure, common nutrient concerns, and age-appropriate dietary adjustments. It should not be used as a substitute for pediatric or dietitian care. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Caregivers could treat nutrition guidance as individualized medical care. <br>
-Mitigation: Present the skill as general education and consult a pediatrician or registered dietitian for individualized nutrition decisions. <br>
-Risk: Deficiencies, poor growth, allergies, dehydration, vomiting, diarrhea, feeding refusal, or developmental concerns may require clinical assessment. <br>
-Mitigation: Escalate these concerns to a qualified clinician instead of relying on the generated diet report. <br>
+## Use Case:
 
+External caregivers use this skill to structure Chinese-language infant and toddler nutrition consultations, summarize dietary intake, and receive educational meal-adjustment guidance for ages 6-36 months.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nic-yuan/07-nutrition-diet) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown] <br>
-**Output Format:** [Markdown nutrition assessment report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Educational nutrition guidance based on user-provided child age, diet habits, supplements, growth context, and caregiver concerns.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Caregivers may mistake nutrition guidance for diagnosis or medical treatment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill as educational support only and consult a pediatrician for poor growth, suspected anemia, allergies, feeding problems, persistent symptoms, or urgent concerns.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nic-yuan/skills/07-nutrition-diet)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown-style nutrition assessment report with structured recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language educational guidance; no code execution or persistence is indicated by the security evidence.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

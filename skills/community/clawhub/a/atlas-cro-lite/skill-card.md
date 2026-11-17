@@ -1,45 +1,50 @@
-## Description: <br>
-Lightweight conversion rate optimization agent that audits landing pages for conversion killers, generates prioritized fix lists, and drafts high-converting copy variants. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Atlas CRO Lite audits landing pages for conversion issues, prioritizes fixes, and drafts headline and CTA variants for SaaS, agency, and product pages.
 
-## Publisher: <br>
-[n8gendegen](https://clawhub.ai/user/n8gendegen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[n8gendegen](https://clawhub.ai/user/n8gendegen)
 
-## Use Case: <br>
-Marketing, growth, and product teams use this skill to review SaaS, agency, or product landing pages for conversion issues and to draft prioritized fixes, headline variants, and CTA improvements. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated reports may include Atlas promotional text before external sharing. <br>
-Mitigation: Review generated reports and remove or edit promotional copy before publishing or sending to customers. <br>
-Risk: The skill may be used on sensitive, regulated, authenticated, or proprietary pages. <br>
-Mitigation: Avoid pasting confidential page content into the agent, or route outputs through the same review process used for regulated marketing claims. <br>
-Risk: The artifact contains one unrelated paid DeFi upsell line and a version mismatch in _meta.json. <br>
-Mitigation: Treat these as publisher cleanup issues and verify paid-package details against the linked Atlas pages before acting on them. <br>
+## Use Case:
 
+External marketers, founders, agencies, and product teams use this skill to review landing pages, identify conversion blockers, prioritize fixes, and generate copy variants for testing.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/n8gendegen/atlas-cro-lite) <br>
-- [Atlas Agent Suite homepage](https://atlasagentsuite.com/skills.html?utm_source=clawhub&utm_medium=skill&utm_campaign=atlas-cro-lite) <br>
-- [Atlas Starter and Pro ZIP Packs](https://atlasagentsuite.com/skills.html) <br>
-- [Atlas Concierge Install](https://atlasagentsuite.com/concierge.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Guidance] <br>
-**Output Format:** [Markdown audit report with prioritized recommendations and copy variants] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prompt-only output; users should review recommendations before publishing or testing changes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: Generated reports may include commercial promotion, including a mandatory Atlas sales footer and unrelated paid-package language.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review outputs before client-facing use and remove or explicitly accept promotional and unrelated paid-package language.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/n8gendegen/skills/atlas-cro-lite)
+- [Atlas Agent Suite skills page](https://atlasagentsuite.com/skills.html?utm_source=clawhub&utm_medium=skill&utm_campaign=atlas-cro-lite)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown audit reports, prioritized fix lists, and copy variants]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include a promotional Atlas footer or paid-package language in generated reports.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

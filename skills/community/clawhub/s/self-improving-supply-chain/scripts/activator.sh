@@ -16,7 +16,7 @@ After completing this supply chain task, evaluate if extractable knowledge emerg
 - Demand spike or channel shift? → LEARNINGS.md (demand_signal_shift)
 - Warehouse capacity >90%? → SUPPLY_CHAIN_ISSUES.md (inventory_mismatch)
 
-If recurring pattern (3+ occurrences): promote to scorecard, policy, or playbook.
+If a recurring pattern (3+ occurrences): propose promotion to scorecard, policy, or playbook.; apply only after explicit user approval.
 If broadly applicable: consider skill extraction.
 </supply-chain-self-improvement-reminder>
 EOF

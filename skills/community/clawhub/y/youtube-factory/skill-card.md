@@ -1,43 +1,53 @@
-## Description: <br>
-Generates YouTube video assets from a prompt, including a script, voiceover, stock footage, captions, thumbnail, and metadata. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate complete YouTube videos from a single prompt - script, voiceover, stock footage, captions, thumbnail. Self-contained, no external modules. 100% free tools.
 
-## Publisher: <br>
-[Mayank8290](https://clawhub.ai/user/Mayank8290) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[mayank8290](https://clawhub.ai/user/mayank8290)
 
-## Use Case: <br>
-Creators, marketers, and developers use this skill to automate draft YouTube video production from a topic prompt, including narration, stock media assembly, captions, thumbnails, and upload metadata. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Video topics, search phrases, and generated narration may be sent to external Pexels and Microsoft Edge TTS services. <br>
-Mitigation: Avoid confidential or regulated prompts, and review generated scripts and metadata before publishing. <br>
-Risk: The skill requires a Pexels API key plus local tools such as ffmpeg, edge-tts, and Python packages. <br>
-Mitigation: Use a dedicated Pexels key, install dependencies from trusted sources, and keep local media generation in an environment appropriate for the content. <br>
-Risk: The documentation overstates that the skill is self-contained. <br>
-Mitigation: Confirm the required external services, command-line tools, and environment variables are available before relying on the workflow. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Mayank8290/youtube-factory) <br>
-- [Project homepage](https://github.com/Mayank8290/openclaw-video-skills) <br>
-- [Pexels API](https://pexels.com/api) <br>
+## Use Case:
 
+Creators, marketers, and developers use this skill to turn a topic prompt into a YouTube-ready video package with script, voiceover, stock footage, captions, thumbnail, and metadata.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Files] <br>
-**Output Format:** [Markdown guidance with shell commands and generated local media files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local script.md, voiceover.mp3, video files, thumbnail.jpg, and metadata.json under the configured output directory.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.3.0 (source: server release and frontmatter) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: A custom output name can make generated files land outside the advertised video output folder.
+
+Mitigation: Use simple directory names for custom output values, run the skill in an isolated environment, and review output paths before execution.
+
+Risk: The skill uses a Pexels API key and leaves generated media files on disk under the user's account.
+
+Mitigation: Use a Pexels-only key, avoid sensitive topics or secrets in prompts, and review or clean generated files after use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/mayank8290/skills/youtube-factory)
+- [Pexels API](https://pexels.com/api)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and generated local video project files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires ffmpeg, edge-tts, and PEXELS_API_KEY; produces local script, audio, video, thumbnail, and metadata files.]
+
+## Skill Version(s):
+
+1.3.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

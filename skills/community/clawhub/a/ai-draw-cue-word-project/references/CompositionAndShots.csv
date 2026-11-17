@@ -1,0 +1,19 @@
+Dimension,Options / notes,This selection (example),Negative prompts (exclude conflicts),Notes
+Standard aspect ratio,Choose the frame by use case; validation must check the match,Single-character illustration 3:4,—,Avatar 1:1 / storyboard 16:9
+Composition type,Choose from the reference table,Rule of thirds,"Rigid centered subject, edge cropping",See the composition-type reference table below the sheet
+Camera angle,Low angle / eye level / high angle / ground level,Eye level,"High-angle perspective, low-angle perspective",Low angle = imposing; high angle = small and weak
+Shot scale,Close-up / medium close-up / medium shot / full shot / long shot,Medium shot (half body),"Long-shot vs close-up confusion, cropped head",Use close-up for emotional scenes
+Focal length,35mm / 50mm / 85mm / macro,85mm portrait,"Wide-angle distortion, barrel distortion",85mm is best for portraits
+Depth of field,Shallow / deep,Shallow,"Background overly sharp, uneven blur",Shallow DOF emphasizes the subject
+Light direction,Front / side / back / top light,Side-backlight,"Multiple shadows, contradictory light direction",Backlight needs rim light on the hair
+Light type,Natural / candlelight / moonlight / neon...,Natural daylight,Mixed artificial lights,One single light source is more stable
+Color temperature / time,Golden hour / blue hour / noon...,Golden hour (warm dusk light),"Cool fluorescent feel, gloomy overcast",Golden hour is emotionally most stable
+Weather,Sunny / cloudy / rain / snow / fog,Sunny,"Rain, snowfall, fog",Linked to the scene-conflict category
+Foreground layer,Elements in front of the subject; weight 0.5-0.8,Blurred daisy bushes (0.7),Foreground clutter covering the face,Foreground adds depth
+Midground layer (subject),Layer where the character stands; weight 1.0-1.4,Nanwang standing among the flowers (1.2),Foreground/background stealing the subject,Subject layer = anchor layer
+Background layer,Environment elements; weight 0.7-0.9,Spring garden wall and sky (0.8),"Cluttered background, element pile-up",Keep the background description restrained
+Occlusion,Front/back relations between layers; avoid layer misalignment,"Foreground flowers cover the lower hem, not the face","Flowers covering the face, layer clipping","Basis for the ""correct layering"" validation item"
+Posture,Stand / sit / run / kneel / lean...,Standing with a slight side turn,"Running hard, aggressive movement",Linked to the temperament-conflict category
+Center of gravity / hand gesture,Center of gravity and hand action,Center on right leg; hands naturally at rest,"Odd hand gesture, fist, hands on hips",Linked to the hand-detail category
+Gaze direction,Toward the camera / side / lowered...,Gaze slightly lowered,"Staring at the camera, rolling eyes",Gaze determines emotion
+Garment dynamics,Wind direction and amount of flutter,Skirt gently lifting in the breeze (direction: right),"Garment static, storm-whipped",Consistent with the wind direction

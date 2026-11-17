@@ -1,44 +1,58 @@
-## Description: <br>
-RankClaw checks ClawHub, OpenClaw, nanobot, nanoclaw, picoclaw, and MCP server skills before installation and returns security scores, malicious flags, and AI-generated safety verdicts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+RankClaw — AI Agent Trust Layer. Check any ClawHub, OpenClaw, nanobot, nanoclaw, picoclaw, or MCP server skill against 14,700+ indexed tools before installing. Get security scores, malicious flags, and AI-generated safety verdicts.
 
-## Publisher: <br>
-[tudoanh](https://clawhub.ai/user/tudoanh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[tudoanh](https://clawhub.ai/user/tudoanh)
 
-## Use Case: <br>
-Developers, security reviewers, and AI agents use RankClaw to check skills and MCP servers before installation, review verdicts and trust scores, and find safer alternatives when a package is risky or malicious. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Skill lookup queries and MCP request contents are sent to RankClaw's remote service. <br>
-Mitigation: Use the skill only when sharing those requests with RankClaw is acceptable for the user's privacy and compliance requirements. <br>
-Risk: Agents may over-rely on RankClaw scores when deciding whether to install or reject another skill. <br>
-Mitigation: Keep user confirmation in the loop and review key findings before making installation decisions based solely on a score. <br>
-Risk: The nanoclaw setup example downloads bridge code from an unpinned branch. <br>
-Mitigation: Prefer a reviewed bundled bridge copy or a pinned version with a checksum before running the bridge. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub RankClaw listing](https://clawhub.ai/tudoanh/rankclaw) <br>
-- [RankClaw homepage](https://rankclaw.com) <br>
-- [RankClaw MCP endpoint](https://api.rankclaw.com/api/mcp/) <br>
-- [RankClaw leaderboard API](https://api.rankclaw.com/api/leaderboard/?per_page=10&safe_only=1) <br>
+## Use Case:
 
+Developers and agent operators use RankClaw to check ClawHub, OpenClaw, nanobot, nanoclaw, picoclaw, and MCP server skills before installation. It provides security verdicts, trust scores, malicious-skill flags, leaderboard/search results, and installation guidance for safer agent tooling decisions.
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON configuration examples, shell commands, and MCP/API JSON responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns skill verdicts, scores, findings, leaderboard results, search results, and malicious-skill listings through remote RankClaw services.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-2.1.0 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill asks agents to use RankClaw service results when deciding whether to install other skills.
+
+Mitigation: Treat RankClaw results as advisory evidence and keep user or operator review in the installation decision path.
+
+Risk: The documented nanoclaw bridge download uses an unpinned GitHub main-branch URL.
+
+Mitigation: Pin and verify the exact bridge script before use instead of downloading an unversioned main-branch file.
+
+Risk: MCP requests sent through the bridge leave the local machine for api.rankclaw.com.
+
+Mitigation: Avoid sending sensitive private data in RankClaw MCP requests and disclose the outbound service call to users.
+
+## Reference(s):
+
+- [RankClaw Homepage](https://rankclaw.com)
+- [RankClaw MCP Endpoint](https://api.rankclaw.com/api/mcp/)
+- [ClawHub Skill Page](https://clawhub.ai/tudoanh/skills/rankclaw)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown, JSON-RPC responses, shell command examples, and client configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are advisory and may include external service results from api.rankclaw.com.]
+
+## Skill Version(s):
+
+2.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

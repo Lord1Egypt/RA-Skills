@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 """
-skill_extractor.py - Skill Step Extractor v1.19.0
+skill_extractor.py - Skill Step Extractor v1.32.1
 从 SKILL.md 中自动提取关键执行步骤，供调用链编排使用。
 
 v1.19.0 新增：提取指令名称填入 skill_instruction 字段。
+v1.32.1 新增：validate_llm_output — LLM 提取结果的格式校验函数
 
 零外部依赖，仅使用 Python 标准库。
 跨平台支持 Windows/Linux/macOS。
@@ -257,6 +258,14 @@ _CONSUMES_PATTERNS = [
     # v1.29.1: 更多常用模式
     r'(?:获取|取得|拉取|搜集|抓取|爬取)\s*([^\n，。；,.;]{2,40})',
     r'(?:处理|转换|解析|编译|渲染|构建|生成)\s*(?:的)?\s*([^\n，。；\s]{2,30})',
+    # v1.30.0: 更多常见模式
+    r'(?:基于|根据|按照|依照|参照)\s*([^\n，。；,.;]{2,40})',       # "基于分析报告"
+    r'(?:使用|利用|运用|借助)\s*([^\n，。；,.;]{2,40})',            # "使用数据文件"
+    r'(?:抓取|采集|收集|汇总|整理)\s*([^\n，。；,.;]{2,40})',      # "收集用户反馈"
+    r'(?:[输传]入)\s*([^\n，。；\s]{2,50})',                         # "传入JSON数据"
+    r'(?:参[考数]|源|原始)\s*([^\n，。；\s]{2,50})',                 # "源数据文件"
+    r'(?:提取|拆分|分割|筛选|过滤|清洗)\s*([^\n，。；\s]{2,40})',   # "提取特征"
+    r'(?:指定|传递|提供)\s*([^\n，。；\s]{2,40})',                   # "指定路径"
 ]
 
 _PRODUCES_PATTERNS = [
@@ -269,6 +278,13 @@ _PRODUCES_PATTERNS = [
     # v1.29.1: 更多常用模式
     r'(?:提供|发布|部署|推送|上传)\s*([^\n，。；,.;]{2,40})',
     r'(?:更新|修改|编辑|改写|重构)\s*([^\n，。；,.;]{2,40})',
+    # v1.30.0: 更多常见模式
+    r'(?:绘制|画|画出|展示|呈现|可视化)\s*([^\n，。；,.;]{2,50})',  # "绘制图表"
+    r'(?:渲染|编译|构建|打包|组装)\s*([^\n，。；,.;]{2,40})',       # "渲染页面"
+    r'(?:训练|调优|优化|拟合|学习)\s*([^\n，。；,.;]{2,50})',       # "训练模型"
+    r'(?:印刷|打印|展示|输出到)\s*([^\n，。；,.;]{2,50})',          # "打印报告"
+    r'(?:返回|提交|投递|发送)\s*([^\n，。；,.;]{2,40})',            # "发送通知"
+    r'(?:合并|整合|汇总|拼接)\s*([^\n，。；,.;]{2,40})',            # "合并数据"
 ]
 
 _USAGE_HINT_PATTERNS = [
@@ -322,6 +338,16 @@ _STEP_NAME_IO_INFERENCE = [
     (["帮助", "help"], "无", "帮助信息"),
     (["配置", "config", "设置"], "用户输入", "配置文件"),
     (["搜索", "search", "查询", "query"], "搜索关键词", "搜索结果列表"),
+    # v1.30.0: 更多步骤名推断
+    (["PPT", "演示", "slides", "幻灯片", "汇报"], "分析报告、数据、图表", "PPT文件、演示文稿"),
+    (["可视化", "图表", "plot", "chart", "图形", "画图"], "数据、分析结果", "可视化图表、图形文件"),
+    (["报告", "report", "总结", "汇总"], "分析结果、原始数据", "报告文件、总结文档"),
+    (["邮件", "mail", "email", "通知", "发送"], "报告、附件、收件人", "已发送邮件、通知消息"),
+    (["训练", "建模", "train", "model", "拟合"], "训练数据、参数配置", "训练模型、权重文件"),
+    (["提取", "抓取", "爬取", "scrape", "爬虫"], "目标URL、源数据", "提取结果、结构化数据"),
+    (["转换", "transform", "转码", "转格式"], "源数据、源文件", "转换后数据、目标文件"),
+    (["过滤", "筛", "筛选", "filter", "清洗"], "原始数据、过滤条件", "过滤结果"),
+    (["合并", "merge", "拼接", "整合", "融合"], "多个数据集", "合并结果"),
 ]
 
 
@@ -422,7 +448,7 @@ def extract_step_semantics(skill_dir):
             "step_name": step_name,
             "skill_name": skill_name,
             "section": f"### {step_name}",
-            "description": section_text[:200].strip() if section_text else step_name,
+            "description": _clean_io_text(section_text)[:120] if section_text else step_name,
             "call_address": call_address,
             "usage_hint": usage_hint,
             "interface": {
@@ -435,6 +461,9 @@ def extract_step_semantics(skill_dir):
     # ---- 从编号步骤提取补充蓝图 ----
     for step in steps:
         step_desc = step.get("description", "")
+        # v1.32.1: 跳过含表格碎片的伪步骤（markdown 表格行被误识别为步骤）
+        if '|' in step_desc or '`' in step_desc:
+            continue
         step_index = step.get("index", 0)
         step_name = f"步骤{step_index}"
         full_name = f"{step_name}: {step_desc[:40]}"
@@ -442,6 +471,7 @@ def extract_step_semantics(skill_dir):
             continue
         seen_step_names.add(full_name)
 
+        cleaned_desc = _clean_io_text(step_desc)
         consumes = _extract_io_clues(step_desc, _CONSUMES_PATTERNS)
         produces = _extract_io_clues(step_desc, _PRODUCES_PATTERNS)
 
@@ -455,7 +485,7 @@ def extract_step_semantics(skill_dir):
             "step_name": full_name,
             "skill_name": skill_name,
             "section": f"步骤{step_index}",
-            "description": step_desc[:200],
+            "description": cleaned_desc[:120] or step_desc[:120],
             "call_address": {"instructions": [], "cli": ""},
             "usage_hint": "",
             "interface": {
@@ -483,12 +513,46 @@ def _find_section_text(content, heading):
     return ""
 
 
+def _clean_io_text(raw):
+    """清洗 I/O 提取文本：去掉 markdown 符号、表格碎片、特殊标记。
+
+    清洗规则：
+    1. 去掉 ``` 代码块
+    2. 去掉 `|` 表格分隔符及表格行
+    3. 去掉 **加粗** 标记
+    4. 去掉 `行内代码符号`
+    5. 截断过长文本
+    """
+    if not raw:
+        return ""
+    text = raw
+    # 去掉代码块
+    text = re.sub(r'```.*?```', '', text, flags=re.DOTALL)
+    # 去掉行内代码
+    text = re.sub(r'`[^`]+`', '', text)
+    # 去掉表格碎片（含竖线的行）
+    text = re.sub(r'\|[^|]+\|', '', text)
+    # 去掉 markdown 加粗
+    text = text.replace('**', '').replace('__', '')
+    # 去掉多余空白
+    text = re.sub(r'\s+', ' ', text).strip()
+    # 去掉前后标点碎片
+    text = text.strip('| ,;:，。；：、')
+    # 截断到 80 字
+    if len(text) > 80:
+        text = text[:80] + '...'
+    return text
+
+
 def _extract_io_clues(text, patterns):
     """从文本中提取 I/O 语义线索"""
     clues = []
     for pattern in patterns:
         matches = re.findall(pattern, text)
-        clues.extend(m.strip() for m in matches if m.strip())
+        for m in matches:
+            cleaned = _clean_io_text(m)
+            if cleaned:
+                clues.append(cleaned)
     return _deduplicate_clues(clues)
 
 
@@ -1012,6 +1076,77 @@ def cmd_suggest(args):
             print("\n未检测到明显缺口")
 
     return 0
+
+
+# ============================================================
+# v1.32.1: LLM 提取结果校验器
+# ============================================================
+
+def validate_llm_output(steps_json):
+    """校验 LLM 提取的步骤蓝图格式。
+
+    LLM 输出格式要求：
+    [
+        {
+            "step_name": "步骤名（2-30字）",
+            "action": "步骤动作描述（选填，50字以内）",
+            "consumes": "输入描述（80字以内）",
+            "produces": "输出描述（80字以内）"
+        },
+        ...
+    ]
+
+    返回：{"valid": bool, "errors": [str], "steps": [dict]}
+    校验通过且 length≥1 才返回 valid=true。
+    """
+    errors = []
+
+    if not isinstance(steps_json, list):
+        errors.append(f"顶层结构应为数组，实际为 {type(steps_json).__name__}")
+        return {"valid": False, "errors": errors, "steps": []}
+
+    if len(steps_json) == 0:
+        errors.append("步骤列表为空")
+        return {"valid": False, "errors": errors, "steps": []}
+
+    validated = []
+    for i, step in enumerate(steps_json):
+        if not isinstance(step, dict):
+            errors.append(f"步骤[{i}] 不是对象")
+            continue
+
+        step_name = step.get("step_name", "").strip()
+        if not step_name:
+            errors.append(f"步骤[{i}] 缺少 step_name")
+            continue
+        if len(step_name) < 2:
+            errors.append(f"步骤[{i}] step_name 过短: \"{step_name}\"")
+            continue
+        if len(step_name) > 40:
+            step_name = step_name[:40]
+            errors.append(f"步骤[{i}] step_name 截断至40字: {step_name}")
+            continue
+
+        consumes = (step.get("consumes") or "").strip()
+        produces = (step.get("produces") or "").strip()
+
+        # consumes/produces 可空，但如果有则不能过长
+        if len(consumes) > 80:
+            consumes = consumes[:80]
+            errors.append(f"步骤[{i}] \"{step_name}\" consumes 截断至80字")
+        if len(produces) > 80:
+            produces = produces[:80]
+            errors.append(f"步骤[{i}] \"{step_name}\" produces 截断至80字")
+
+        validated.append({
+            "step_name": step_name,
+            "action": (step.get("action") or "")[:50],
+            "consumes": consumes,
+            "produces": produces,
+        })
+
+    valid = len(validated) >= 1
+    return {"valid": valid, "errors": errors, "steps": validated}
 
 
 def main():

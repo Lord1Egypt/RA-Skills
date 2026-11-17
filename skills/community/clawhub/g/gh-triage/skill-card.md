@@ -1,43 +1,53 @@
-## Description: <br>
-Automatically scans GitHub repositories to label, comment on, assign, and optionally fix issues and pull requests for maintainers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically scans GitHub repositories to label, comment on, assign, and optionally fix issues and pull requests for triage workflows.
 
-## Publisher: <br>
-[gruted](https://clawhub.ai/user/gruted) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[gruted](https://clawhub.ai/user/gruted)
 
-## Use Case: <br>
-Developers and repository maintainers use this skill to automate routine GitHub issue and pull request triage, including labels, assignment, comments, reports, and optional lightweight fix pull requests. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can automatically change GitHub repositories while authenticated with a GitHub token. <br>
-Mitigation: Install only for trusted repositories and use a dedicated least-privilege GitHub token. <br>
-Risk: The optional auto-fix behavior can run repository code and tooling on the host. <br>
-Mitigation: Disable or sandbox auto-fix unless intentional, and add dry-run or human approval before pushes and pull requests. <br>
-Risk: Temporary working directories may retain token-bearing git configuration. <br>
-Mitigation: Clean temporary work directories after use and avoid persistent credential material in cloned repositories. <br>
+## Use Case:
 
+Developers and maintainers use this skill to automate routine GitHub issue and pull request triage, including labeling, commenting, assigning, and producing maintainer follow-up work.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gruted/gh-triage) <br>
-- [Publisher profile](https://clawhub.ai/user/gruted) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Text, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [GitHub issue and pull request updates, console text, reports, configuration JSON, and optional code changes in pull requests] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses repository configuration and a GitHub token; optional auto-fix can run local shell commands against cloned repositories.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata and package.json) <br>
+Risk: The skill uses a GitHub token to make remote repository changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only with a narrowly scoped, short-lived GitHub token and only for repositories you fully trust.
+
+Risk: The optional auto-fix workflow can run repository code and push changes.
+
+Mitigation: Avoid enabling auto-fix until it runs in a credential-free sandbox, removes token-bearing clone metadata, cleans up temporary workspaces, validates command inputs, and offers dry-run or explicit approval controls.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/gruted/skills/gh-triage)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [GitHub issue and pull request updates, console output, configuration guidance, and optional pull requests]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses repository configuration and a GitHub token supplied outside the repository.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

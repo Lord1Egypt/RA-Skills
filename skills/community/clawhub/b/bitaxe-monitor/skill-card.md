@@ -1,41 +1,50 @@
-## Description: <br>
-Monitor Bitaxe Gamma Bitcoin miner status via HTTP API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitor Bitaxe Gamma Bitcoin miner status via HTTP API. Use when the user wants to check the status, hashrate, temperature, power consumption, or statistics of a Bitaxe Gamma miner. Supports config file or environment variable for device IP configuration, fetching system info, and formatting output as human-readable text or JSON.
 
-## Publisher: <br>
-[Pietro395](https://clawhub.ai/user/Pietro395) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[pietro395](https://clawhub.ai/user/pietro395)
 
-## Use Case: <br>
-Developers, operators, and Bitaxe users use this skill to configure a miner IP address and retrieve live miner status, including hashrate, temperature, power, fan, WiFi, pool, uptime, and share statistics. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The script contacts the HTTP address configured by the user. <br>
-Mitigation: Use an IP address for a Bitaxe device you control, preferably on a local network. <br>
-Risk: The script can save a miner IP address locally. <br>
-Mitigation: Remove ~/.config/bitaxe-monitor/config.json if you no longer want the address saved. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Bitaxe API Documentation](https://osmu.wiki/bitaxe/api/) <br>
-- [ESP-Miner OpenAPI Specification](https://github.com/bitaxeorg/ESP-Miner/blob/master/main/http_server/openapi.yaml) <br>
-- [ClawHub Skill Page](https://clawhub.ai/Pietro395/bitaxe-monitor) <br>
+## Use Case:
 
+External users, developers, and Bitcoin mining operators use this skill to configure a Bitaxe miner IP and retrieve status, hashrate, temperature, power, WiFi, pool, uptime, and share statistics from the miner's HTTP API.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Configuration] <br>
-**Output Format:** [Plain text status summaries or JSON API data, with Markdown command examples for setup and use.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Contacts the configured Bitaxe HTTP endpoint and can save the miner IP under ~/.config/bitaxe-monitor/config.json.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill makes HTTP requests to a user-configured IP address, so a mistaken or attacker-controlled address could reach sensitive internal HTTP services.
+
+Mitigation: Configure only a trusted Bitaxe or compatible miner IP, preferably on a private LAN, and avoid use in environments where arbitrary internal HTTP access is risky.
+
+## Reference(s):
+
+- [Bitaxe API documentation](https://osmu.wiki/bitaxe/api/)
+- [ESP-Miner OpenAPI specification](https://github.com/bitaxeorg/ESP-Miner/blob/master/main/http_server/openapi.yaml)
+- [ClawHub skill page](https://clawhub.ai/pietro395/skills/bitaxe-monitor)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Human-readable text or JSON produced by a Python command-line script, with setup and usage commands in Markdown.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reads the miner IP from a command argument, local config file, or BITAXE_IP environment variable.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

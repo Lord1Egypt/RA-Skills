@@ -1,0 +1,11 @@
+{
+  "operations": [
+    {
+      "peer": "peer-one",
+      "session": "agent:assistant:main"
+    },
+    {
+      "peer": "peer-two"
+    }
+  ]
+}

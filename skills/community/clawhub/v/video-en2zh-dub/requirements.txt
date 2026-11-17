@@ -1,0 +1,35 @@
+# Python 依赖，推荐安装顺序见文件末尾
+
+openai-whisper>=20230124
+edge-tts>=7.0.0
+pysrt>=1.1.2
+pydub>=0.25.1
+
+# Python 3.13 起标准库移除了 audioop，而 pydub 依赖它。
+# 在 3.13+ 上不装这个包，import pydub 会直接失败。
+audioop-lts>=0.2.1; python_version >= "3.13"
+
+# Windows 若缺 VC++ 2022 运行库，torch / whisper 会在导入阶段崩溃，
+# 且报错完全看不出是运行库问题。装这个包可一并补齐。
+msvc-runtime>=14.40; sys_platform == "win32"
+
+# ── 推荐安装顺序（重要）──────────────────────────────────
+#
+# 1) 先单独装 CPU 版 torch。直接 pip install openai-whisper 时，
+#    torch 有可能拉取体积达数 GB 的 CUDA 包，而本项目纯 CPU 就够用：
+#
+#      pip install torch --index-url https://download.pytorch.org/whl/cpu
+#
+# 2) 再装其余依赖：
+#
+#      pip install -r requirements.txt
+#
+# ── 系统级依赖（不在此文件安装）─────────────────────────
+#
+#   ffmpeg   —— whisper 解码音频、pydub 编码导出都要用
+#   ffprobe  —— pydub 读取音频时长、解码 mp3 时需要。通常随 ffmpeg 一起安装，
+#               但部分发行版或便携包只有 ffmpeg.exe，需单独补一个 ffprobe.exe
+#
+#     Windows: winget install ffmpeg   或   choco install ffmpeg
+#     macOS:   brew install ffmpeg
+#     Linux:   apt install ffmpeg

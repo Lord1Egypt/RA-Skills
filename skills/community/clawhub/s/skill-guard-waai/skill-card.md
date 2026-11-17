@@ -1,40 +1,54 @@
-## Description: <br>
-Skill Guard scans AI skill directories for keyword-based risk patterns before installation, use, or security review. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Skill Guard scans local AI skill files for heuristic risk patterns before installation, use, or audit.
 
-## Publisher: <br>
-[HuaiBuer](https://clawhub.ai/user/HuaiBuer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[huaibuer](https://clawhub.ai/user/huaibuer)
 
-## Use Case: <br>
-Developers, engineers, and security reviewers use this skill as a first-pass local scanner when evaluating unknown or third-party skills before installation or execution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The scanner is a first-pass keyword-based review aid and may miss unsafe behavior or report benign code as risky. <br>
-Mitigation: Use its findings to prioritize manual review, and do not treat a clean scan as a security guarantee. <br>
-Risk: Scanning broad private directories can expose sensitive filenames or code snippets in local scan output. <br>
-Mitigation: Run it only on the specific skill or code folder being evaluated and avoid broad private directories. <br>
+## Use Case:
 
+Developers and security reviewers use this skill to scan local AI skill packages before installing unknown skills, evaluating third-party code, auditing skill behavior, or running untrusted code.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/HuaiBuer/skill-guard-waai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, guidance] <br>
-**Output Format:** [JSON-like scan results with human-readable security guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports aggregate severity counts and a bounded list of matching risk findings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: server release metadata; artifact frontmatter reports 1.2) <br>
+Risk: The scanner can produce misleading safe results because it may miss malicious skill instructions in Markdown files or unreadable files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only as a lightweight heuristic checker and manually review important skill instructions and unreadable files before relying on the result.
+
+Risk: Users may install or run a different package version than the one represented by this evidence.
+
+Mitigation: Confirm the exact package version and release metadata before installing or executing the skill.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/huaibuer/skills/skill-guard-waai)
+- [Publisher Profile](https://clawhub.ai/user/huaibuer)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Code, Shell commands, Guidance]
+
+**Output Format:** [JSON-like scan report and Markdown usage guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports status, severity level, aggregate counts, and up to 15 detected risk details.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release metadata; artifact frontmatter metadata reports 1.2)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

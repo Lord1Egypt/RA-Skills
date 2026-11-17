@@ -1,42 +1,54 @@
-## Description: <br>
-从淘宝/1688下载商品图片。触发词：淘宝下载图片、1688下载图片、商品图片下载、淘宝主图、下载商品图、1688图片。支持通过商品名搜索或直接提供商品URL下载主图和详情图。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Downloads product images from Taobao and 1688 by using product URLs or product-name search to collect main and detail images.
 
-## Publisher: <br>
-[gufusheng1994-dev](https://clawhub.ai/user/gufusheng1994-dev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gufusheng1994-dev](https://clawhub.ai/user/gufusheng1994-dev)
 
-## Use Case: <br>
-Marketplace sellers, sourcing teams, and agents use this skill to collect main, color, and detail images from Taobao or 1688 product pages by URL or product-name search. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Browsing Taobao or 1688 can involve shopping-site cookies or logged-in sessions. <br>
-Mitigation: Use a clean browser profile when you do not want shopping-site cookies or account sessions involved. <br>
-Risk: Downloaded product images may be saved into local or shared folders. <br>
-Mitigation: Choose a non-shared output directory when product images or sourcing information should remain private. <br>
-Risk: Anti-hotlinking, lazy loading, or login requirements can make downloaded image sets incomplete. <br>
-Mitigation: Review the download summary, saved paths, and failed image list before relying on the output. <br>
+## Use Case:
 
+External users and agents use this skill to gather e-commerce product imagery from Taobao or 1688 listings, save the images locally, and report download results. It is most useful when a user provides a product URL, product name, or curated image URL list.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gufusheng1994-dev/1688) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, files] <br>
-**Output Format:** [Markdown-style agent instructions with shell and browser command examples, plus downloaded image files and a text download summary.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Downloads are organized by product and image category, with reported counts, file sizes, save paths, and failures when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The helper script can fetch and save arbitrary URL contents without strong validation or scope controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted image URL lists or product pages, avoid internal or private network URLs, and review the destination directory before running downloads.
+
+Risk: The advertised product URL and search workflow depends on separate browser extraction and may be incomplete when the script runs by itself.
+
+Mitigation: Confirm browser extraction has produced the intended image URLs before invoking the download helper, and review failed or missing downloads in the final report.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gufusheng1994-dev/skills/1688)
+- [Publisher profile](https://clawhub.ai/user/gufusheng1994-dev)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, browser-operation steps, and local file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create downloaded image files and report counts, file sizes, save paths, and failures.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

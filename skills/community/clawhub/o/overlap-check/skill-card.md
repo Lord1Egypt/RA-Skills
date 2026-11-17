@@ -1,38 +1,53 @@
-## Description: <br>
-Check for existing issues and PRs before creating new ones, using GitHub CLI searches to find potential duplicates before an agent files, opens, or comments on a thread. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Check for existing issues and PRs before creating new ones; the skill fires automatically when an agent intends to file an issue, open a PR, or comment on a thread, then searches the target repository for likely duplicates so the agent can decide whether to proceed or contribute to an existing thread instead.
 
-## Publisher: <br>
-[SeMmyT](https://clawhub.ai/user/SeMmyT) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[semmyt](https://clawhub.ai/user/semmyt)
 
-## Use Case: <br>
-Developers and agents use this skill before creating GitHub issues, opening pull requests, or commenting on unread threads to check whether the same topic is already covered and choose whether to proceed, link, or comment on an existing thread. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: GitHub CLI searches can target the wrong repository or mishandle user-provided search terms if the repository and query are not checked first. <br>
-Mitigation: Confirm the target repository before searching, keep search terms quoted or passed as separate command arguments, and review matches before taking action. <br>
-Risk: Search results may miss duplicates or return loosely related issues and pull requests. <br>
-Mitigation: Open likely matches and read enough context to decide whether to comment on an existing thread, reference a related thread, or proceed with a new issue or pull request. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+Developers and engineering agents use this skill before filing GitHub issues, opening pull requests, or commenting on existing threads. It helps reduce duplicate reports by checking related issues and pull requests and presenting possible matches for review.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Markdown] <br>
-**Output Format:** [Markdown guidance with inline bash commands and search-result summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires GitHub CLI access to the target repository.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill uses the existing GitHub CLI session, so repository visibility matches the authenticated user's current GitHub access.
+
+Mitigation: Run it only with GitHub accounts and repository access appropriate for the work being performed.
+
+Risk: Keyword searches can miss duplicate threads or return only loosely related issues and pull requests.
+
+Mitigation: Review the returned titles, states, and comments before deciding whether to create a new thread, comment on an existing one, or reference a related item.
+
+## Reference(s):
+
+- [Overlap Check on ClawHub](https://clawhub.ai/semmyt/skills/overlap-check)
+- [semmyt publisher profile](https://clawhub.ai/user/semmyt)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline GitHub CLI commands and concise match summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the GitHub CLI and uses the current GitHub session's repository visibility.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

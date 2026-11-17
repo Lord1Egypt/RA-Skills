@@ -1,42 +1,51 @@
-## Description: <br>
-Coordinates an end-to-end recruiting workflow for role definition, JD writing, resume screening, interview preparation, interview evaluation, and hiring-standard calibration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Coordinates end-to-end recruiting tasks, including role definition, JD drafting, resume screening, interview preparation, interview evaluation, and hiring-standard calibration from feedback.
 
-## Publisher: <br>
-[soulzhong](https://clawhub.ai/user/soulzhong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[soulzhong](https://clawhub.ai/user/soulzhong)
 
-## Use Case: <br>
-Recruiters, hiring managers, and recruiting operations teams use this skill to coordinate JD writing, resume screening, interview preparation, interview evaluations, and feedback-driven updates against one role-standard packet. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Suggested patches to recruiting skills or evolution logs may change how future hiring materials are evaluated. <br>
-Mitigation: Review proposed edits before accepting them and confirm they align with the intended hiring standards and organizational policy. <br>
-Risk: Recruiting evaluations can become inconsistent if JD, screening, and interview materials drift from the same role standard. <br>
-Mitigation: Use the role-standard packet as the shared reference and verify final recruiting reports trace back to the same criteria. <br>
+## Use Case:
 
+Recruiting and hiring teams use this skill to keep JD writing, resume screening, interview preparation, interview evaluation, and feedback-driven calibration aligned to one role standard.
 
-## Reference(s): <br>
-- [Role Standard Packet Template](role-standard-packet.md) <br>
-- [Evolution Log](EVOLUTION.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/soulzhong/recruiting-skillset) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Guidance, Configuration] <br>
-**Output Format:** [Markdown reports, tables, role-standard packets, JD drafts, screening summaries, interview questions, and interview evaluation recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are intended to preserve a consistent role standard across JD writing, screening, interview preparation, evaluation, and feedback updates.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server-resolved release metadata) <br>
+Risk: The skill may try to modify related recruiting skill files when feedback is given, without clear review boundaries.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat feedback-loop edits as proposed changes and require explicit human review plus scanning before accepting them.
+
+## Reference(s):
+
+- [Role Standard Packet Template](role-standard-packet.md)
+- [Evolution Log](EVOLUTION.md)
+- [ClawHub Skill Page](https://clawhub.ai/soulzhong/skills/recruiting-skillset)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown reports, templates, tables, and recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include JD drafts, role standard packets, resume screening summaries, interview cards, interview evaluations, and proposed standard updates.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,59 @@
-## Description: <br>
-Unified heterogeneous knowledge QA system that automatically routes natural language queries to SQL databases, Knowledge Graphs, or table files using 4-layer detection, multi-LLM providers, and bilingual query support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+HeteroMind routes natural language questions to SQL databases, knowledge graphs, or table files and generates answers through multi-stage source detection and query generation.
 
-## Publisher: <br>
-[bahuia](https://clawhub.ai/user/bahuia) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bahuia](https://clawhub.ai/user/bahuia)
 
-## Use Case: <br>
-Developers and data engineers use this skill to answer structured data questions by routing natural language queries across SQL databases, SPARQL knowledge graphs, and tabular files. It is suited for workflows that need source detection, query generation, result fusion, and concise natural language answers over heterogeneous knowledge sources. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated Python, SQL, and SPARQL may perform unintended actions or return misleading results if executed without review. <br>
-Mitigation: Treat generated code and queries as untrusted; require human approval or a real sandbox before live execution. <br>
-Risk: Database credentials, API keys, local files, and SPARQL endpoints may be exposed or misused during heterogeneous source access. <br>
-Mitigation: Use isolated environments, read-only database credentials, explicit table paths, trusted endpoints, and approved LLM providers for sensitive data. <br>
+## Use Case:
 
+Developers and data teams use this skill to answer structured-data questions across relational databases, knowledge graphs, and tabular files. It helps agents choose the likely data source, generate SQL, SPARQL, or Pandas code, and summarize the result.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bahuia/heteromind) <br>
-- [README](README.md) <br>
-- [Usage guide](USAGE.md) <br>
-- [Security documentation](SECURITY.md) <br>
-- [Comprehensive test report](tests/comprehensive_test_report.md) <br>
-- [Source detection configuration](config/source_detection.yaml) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Code, Configuration, Guidance] <br>
-**Output Format:** [Natural language answers with generated SQL, SPARQL, or Python code when applicable] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May require LLM API keys, database credentials, explicit table paths, and trusted SPARQL endpoints depending on the selected engine.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.3.0 (source: server release evidence) <br>
+Risk: Generated SQL, SPARQL, and table-analysis code may run with broader access than the documented safety controls justify.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use isolated runtimes, nonprivileged credentials, read-only database copies, trusted SPARQL endpoints, and non-sensitive table files.
+
+Risk: Documented sandboxing, read-only query validation, endpoint restrictions, and dependency controls should not be assumed complete.
+
+Mitigation: Keep execution disabled or gated by review until exec-based code execution, SQL validation, endpoint allowlisting, and dependency pinning are fixed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bahuia/skills/heteromind)
+- [README](README.md)
+- [Usage guide](USAGE.md)
+- [Security documentation](SECURITY.md)
+- [Source detection configuration](config/source_detection.yaml)
+- [Comprehensive test report](tests/comprehensive_test_report.md)
+- [DBpedia SPARQL endpoint](https://dbpedia.org/sparql)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Text and Markdown guidance with generated SQL, SPARQL, Pandas code, configuration snippets, and answer summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include selected sources, confidence values, generated queries, execution results, and review guidance.]
+
+## Skill Version(s):
+
+0.3.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,50 +1,69 @@
-## Description: <br>
-Production-grade WordPress REST API integration for managing posts, pages, media, WooCommerce products, Elementor content, SEO meta, ACF, and JetEngine fields. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+WordPress API Pro helps agents manage WordPress and WooCommerce content through REST APIs, including posts, pages, media, Elementor content, SEO metadata, ACF, JetEngine fields, and site audits.
 
-## Publisher: <br>
-[benkalsky](https://clawhub.ai/user/benkalsky) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[benkalsky](https://clawhub.ai/user/benkalsky)
 
-## Use Case: <br>
-Developers and site operators use this skill to inspect and manage WordPress or WooCommerce content through the REST API after the user supplies credentials. It also supports public pre-sale site audits and authenticated plugin and SEO-stack discovery. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can use WordPress or WooCommerce credentials to change live site content. <br>
-Mitigation: Use a dedicated least-privilege application password, confirm the site URL and target IDs before writes, and prefer drafts unless publication is explicitly approved. <br>
-Risk: Batch or multi-site operations can affect more content than intended. <br>
-Mitigation: Review dry-run output first, require explicit execution flags for batch writes, and use the all-sites option only after deliberate approval. <br>
-Risk: Credentials or site configuration could be exposed if stored in shared files. <br>
-Mitigation: Use environment variables or local untracked config files, protect local config permissions, and rotate or revoke application passwords when no longer needed. <br>
-Risk: Remote media imports and local file reads can introduce unwanted network or file access. <br>
-Mitigation: Keep remote URL fetching opt-in, allow HTTPS only, restrict local file reads to approved roots, and set WP_REQUIRE_HTTPS=1 for stricter production use. <br>
-Risk: Raw SEO metadata writes can create incorrect or unexpected SEO state. <br>
-Mitigation: Use the Rank Math or Yoast allowlisted keys where possible and set WP_REQUIRE_ALLOWLIST=1 to block unrecognized SEO meta keys. <br>
+## Use Case:
 
+Developers, site operators, and content teams use this skill to inspect, draft, create, update, and audit WordPress or WooCommerce sites after supplying explicit credentials and approval for live writes.
 
-## Reference(s): <br>
-- [WordPress API Pro Skill Page](https://clawhub.ai/benkalsky/wordpress-api-pro) <br>
-- [WordPress REST API Reference](references/api-reference.md) <br>
-- [Gutenberg Block Format](references/gutenberg-blocks.md) <br>
-- [Official WordPress REST API Documentation](https://developer.wordpress.org/rest-api/) <br>
-- [PageSpeed Insights API Endpoint](https://www.googleapis.com/pagespeedonline) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, JSON] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON results from helper scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include WordPress REST API results, audit summaries, configuration examples, and dry-run plans before live writes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.8.1 (source: frontmatter and server release evidence) <br>
+Risk: Configured WordPress or WooCommerce credentials can permit live content changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use dedicated least-privileged credentials, confirm target site, IDs, fields, status, and final action before writes, prefer drafts, and review dry-run output before batch or seed execution.
+
+Risk: Local configuration files may contain production credentials.
+
+Mitigation: Keep config/sites.json local and locked down, prefer environment variables or a secret manager, and avoid committing production credentials.
+
+Risk: PageSpeed audits may disclose private or confidential URLs to Google.
+
+Mitigation: Run PageSpeed audits only for public URLs or omit PageSpeed checks for confidential sites.
+
+Risk: Remote media fetches and local file reads can expose unintended resources if allowed too broadly.
+
+Mitigation: Keep remote media URLs opt-in, use HTTPS public URLs, and scope local file reads with WP_ALLOWED_FILE_ROOTS.
+
+Risk: Dependency installation can introduce environment or patch-management risk.
+
+Mitigation: Install dependencies in a virtual environment and keep the requests dependency within the documented secure version range.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/benkalsky/skills/wordpress-api-pro)
+- [WordPress REST API Reference](references/api-reference.md)
+- [Gutenberg Block Format](references/gutenberg-blocks.md)
+- [Official WordPress REST API Documentation](https://developer.wordpress.org/rest-api/)
+- [Google PageSpeed Online API Endpoint](https://www.googleapis.com/pagespeedonline)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown, JSON, shell command examples, and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose or run WordPress REST API operations, audits, and dry-run plans depending on user approval and configured credentials.]
+
+## Skill Version(s):
+
+3.9.5 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

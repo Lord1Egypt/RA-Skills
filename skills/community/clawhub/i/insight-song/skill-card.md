@@ -1,41 +1,54 @@
-## Description: <br>
-Transform technical insights into Suno-ready songs with lyrics, style tags, and emotional arc. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transform technical insights into Suno-ready songs with lyrics, style tags, and emotional arc.
 
-## Publisher: <br>
-[leegitw](https://clawhub.ai/user/leegitw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[leegitw](https://clawhub.ai/user/leegitw)
 
-## Use Case: <br>
-Developers, engineers, and creative users use this skill to synthesize a technical conversation or supplied topic into a memorable Suno-ready song with a title, style tags, sectioned lyrics, and an emotional arc. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Generated songs may reflect confidential technical, business, or personal details from the active conversation. <br>
-Mitigation: Review and sanitize the generated lyrics and style guidance before sharing them or pasting them into Suno.ai. <br>
-Risk: Surface-level or unclear context can produce misleading or low-quality lyrics. <br>
-Mitigation: Use the skill only when the conversation has a clear problem, discovery, solution, and impact, or provide clarifying context first. <br>
+## Use Case:
 
+Developers and technical teams use this skill to turn substantial technical conversations or user-supplied topics into memorable, Suno-ready songs with a clear narrative arc.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/leegitw/insight-song) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/leegitw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown song draft with title, Suno.ai style tags, and sectioned lyrics] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns results to the invoking agent; no files, external calls, or persistence are required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and ClawHub release metadata) <br>
+Risk: The skill may use the current conversation as source material by default, which can expose sensitive context in generated lyrics.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Invoke it with a specific sanitized topic or context when the surrounding conversation contains sensitive information.
+
+Risk: Generated lyrics may compress or stylize technical details in ways that reduce precision.
+
+Mitigation: Review the song before reuse and adjust lyrics where accuracy or confidentiality matters.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/leegitw/skills/insight-song)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/leegitw)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown song draft with title, Suno.ai style tags, and sectioned lyrics]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns results directly to the invoking agent; style tags are expected to be 300-500 characters.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

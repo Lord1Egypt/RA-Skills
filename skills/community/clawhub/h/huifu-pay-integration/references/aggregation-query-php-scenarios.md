@@ -2,6 +2,8 @@
 
 本文件覆盖聚合支付 PHP 的下单、扫码交易查询、关单、关单查询、退款、退款查询、对账。
 
+> 真实请求只使用官方 PHP SDK 的 `Payment` / `BsPayClient` 入口；不得改写 Guzzle、curl 或自实现 HTTP+签名客户端。联调/生产仍须满足共享凭据边界和 DEBUG 硬检查点。
+
 ## 目录
 
 - 聚合支付下单
@@ -11,7 +13,7 @@
 - 扫码交易退款
 - 扫码交易退款查询
 - 对账单查询
-- 生产写法约束
+- SDK 调用约束
 
 默认你已经按 `references/aggregation-php-adapter.md` 初始化了：
 
@@ -48,6 +50,14 @@ $request->setMethodExpand(json_encode([
 ], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES));
 
 $result = $payment->create($request);
+if ($result === null || $result->isError()) {
+    throw new RuntimeException('SDK请求或响应验签失败，拒绝处理业务结果');
+}
+$envelope = $result->getRspDatas();
+if (!is_array($envelope) || !isset($envelope['data']) || !is_array($envelope['data'])) {
+    throw new RuntimeException('SDK响应结构异常，拒绝处理业务结果');
+}
+$response = $envelope['data'];
 ```
 
 适合场景：
@@ -75,6 +85,14 @@ $request->setHuifuId(getenv('HUIFU_MERCHANT_ID'));
 $request->setHfSeqId($order->getHfSeqId());
 
 $result = $payment->query($request);
+if ($result === null || $result->isError()) {
+    throw new RuntimeException('SDK请求或响应验签失败，拒绝处理业务结果');
+}
+$envelope = $result->getRspDatas();
+if (!is_array($envelope) || !isset($envelope['data']) || !is_array($envelope['data'])) {
+    throw new RuntimeException('SDK响应结构异常，拒绝处理业务结果');
+}
+$response = $envelope['data'];
 ```
 
 适合场景：
@@ -102,6 +120,14 @@ $request->setOrgReqDate($order->getReqDate());
 $request->setOrgReqSeqId($order->getReqSeqId());
 
 $result = $payment->close($request);
+if ($result === null || $result->isError()) {
+    throw new RuntimeException('SDK请求或响应验签失败，拒绝处理业务结果');
+}
+$envelope = $result->getRspDatas();
+if (!is_array($envelope) || !isset($envelope['data']) || !is_array($envelope['data'])) {
+    throw new RuntimeException('SDK响应结构异常，拒绝处理业务结果');
+}
+$response = $envelope['data'];
 ```
 
 适合场景：
@@ -124,8 +150,14 @@ $request->setOrgReqDate($order->getReqDate());
 $request->setOrgReqSeqId($order->getReqSeqId());
 
 $result = $payment->closeQuery($request);
-
-$response = $result->getRspDatas()['data'] ?? [];
+if ($result === null || $result->isError()) {
+    throw new RuntimeException('SDK请求或响应验签失败，拒绝处理业务结果');
+}
+$envelope = $result->getRspDatas();
+if (!is_array($envelope) || !isset($envelope['data']) || !is_array($envelope['data'])) {
+    throw new RuntimeException('SDK响应结构异常，拒绝处理业务结果');
+}
+$response = $envelope['data'];
 $transStat = $response['trans_stat'] ?? 'P';
 ```
 
@@ -151,6 +183,14 @@ $request->setOrdAmt('0.10');
 $request->setNotifyUrl(getenv('HUIFU_NOTIFY_URL'));
 
 $result = $payment->refund($request);
+if ($result === null || $result->isError()) {
+    throw new RuntimeException('SDK请求或响应验签失败，拒绝处理业务结果');
+}
+$envelope = $result->getRspDatas();
+if (!is_array($envelope) || !isset($envelope['data']) || !is_array($envelope['data'])) {
+    throw new RuntimeException('SDK响应结构异常，拒绝处理业务结果');
+}
+$response = $envelope['data'];
 ```
 
 适合场景：
@@ -171,6 +211,14 @@ $request->setOrgReqDate($refundOrder->getReqDate());
 $request->setOrgReqSeqId($refundOrder->getReqSeqId());
 
 $result = $payment->refundQuery($request);
+if ($result === null || $result->isError()) {
+    throw new RuntimeException('SDK请求或响应验签失败，拒绝处理业务结果');
+}
+$envelope = $result->getRspDatas();
+if (!is_array($envelope) || !isset($envelope['data']) || !is_array($envelope['data'])) {
+    throw new RuntimeException('SDK响应结构异常，拒绝处理业务结果');
+}
+$response = $envelope['data'];
 ```
 
 适合场景：
@@ -197,6 +245,14 @@ $request->setExtendInfo([
 ]);
 
 $result = $client->postRequest($request);
+if ($result === null || $result->isError()) {
+    throw new RuntimeException('SDK请求或响应验签失败，拒绝处理业务结果');
+}
+$envelope = $result->getRspDatas();
+if (!is_array($envelope) || !isset($envelope['data']) || !is_array($envelope['data'])) {
+    throw new RuntimeException('SDK响应结构异常，拒绝处理业务结果');
+}
+$response = $envelope['data'];
 ```
 
 适合场景：
@@ -204,7 +260,7 @@ $result = $client->postRequest($request);
 - 下载交易账单或结算账单
 - 抽平业务对账和财务核对数据
 
-## 生产写法约束
+## SDK 调用约束
 
 1. 官网 demo 里的 `test` 只可作为字段占位，不可进入实际 skill 示例；所有交易定位键都必须来自原订单落库值。
 2. 聚合支付核心主链路优先 `BsPaySdk\core\Payment`；对账才使用 `BsPayClient::postRequest()`。

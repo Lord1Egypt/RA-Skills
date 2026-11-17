@@ -1,0 +1,233 @@
+# -*- coding: utf-8 -*-
+"""生成全运动演示数据（新 schema）：写入 assets/demo_match.json 与 assets/daily_sample.json。
+
+数据口径说明：
+- 本工具只做**赛事信息整理与可视化**，不涉及任何赛果判断或结论性建议。
+- 演示数据中的专家观点、情报、信息要点均为示例文本，仅用于展示报告结构与观赛辅助价值。
+- 本文件不包含、也不生成任何敏感类信息；仅用于合法赛事的观赛与研究演示。
+
+球员字段补充约定：
+- `achievement`：该球员「职业生涯最高成就」（公开荣誉整理，联网核实），显示在重点卡右侧金色竖条。
+- `star`：焦点星级（1~5★），依据统一公开成就分级标准评定（详见 analytics.py _player_star_rating）。
+  仅标注信息关注度，非实力排名、不构成任何赛果判断。
+"""
+import json
+import os
+
+HERE = os.path.dirname(os.path.abspath(__file__))
+ASSETS = os.path.join(HERE, "..", "assets")
+OUT_DEMO = os.path.join(ASSETS, "demo_match.json")
+OUT_DAY = os.path.join(ASSETS, "daily_sample.json")
+
+
+def match(**kw):
+    return kw
+
+
+def exp(tier, name, source, view):
+    return {"tier": tier, "name": name, "source": source, "view": view}
+
+
+# —— 演示赛事（新 schema：信息整理口径，无敏感方向字段）——
+M_FOOTBALL = match(
+    sport="football", league="英超", country="英格兰",
+    match="曼城 vs 阿森纳",
+    teams=[{"name": "曼城"}, {"name": "阿森纳"}],
+    kickoff_local="2026-08-15 23:30", kickoff_actual="2026-08-16 03:30",
+    venue="伊蒂哈德球场", city="曼彻斯特",
+    updated_at="2026-08-15",
+    weather={"temp": "18℃", "humidity": "65%", "condition": "多云", "wind": "3级", "rain": "10%",
+             "impact": "体感偏凉，对技术流传导影响有限。"},
+    formations=["4-3-3", "4-2-3-1"],
+    form_last5={"曼城": ["胜", "胜", "平", "胜", "胜"], "阿森纳": ["胜", "平", "胜", "胜", "平"]},
+    h2h_last5=["胜", "平", "负", "胜", "平"],
+    players=[{"name": "哈兰德", "team": "曼城", "status": "首发", "role": "中锋", "key": True, "note": "禁区终结效率高", "gender": "male", "number": "9", "region": "欧美", "star": 5, "achievement": "2022-23三冠王·3届英超金靴"},
+             {"name": "萨卡", "team": "阿森纳", "status": "首发", "role": "右边锋", "key": True, "note": "反击爆点", "gender": "male", "number": "7", "region": "欧美", "star": 4, "achievement": "2025/26英超冠军·2届欧洲杯亚军"}],
+    key_players=[{"name": "哈兰德", "team": "曼城", "role": "中锋", "gender": "male", "number": "9", "region": "欧美", "star": 5, "achievement": "2022-23三冠王·3届英超金靴"},
+                 {"name": "萨卡", "team": "阿森纳", "role": "右边锋", "gender": "male", "number": "7", "region": "欧美", "star": 4, "achievement": "2025/26英超冠军·2届欧洲杯亚军"}],
+    intel=[{"tier": "官方", "text": "曼城赛前发布会确认德布劳内复出进入大名单。"},
+           {"tier": "未证实传闻", "text": "网传阿森纳后防有轻伤隐患，待官方名单确认，请勿据此下结论。"}],
+    experts=[
+        exp("权威专家", "Michael Cox", "The Athletic（战术专栏）",
+            "曼城侧重控球与肋部渗透，阿森纳高位逼抢与边路一对一强度是近年焦点；本场观察中场控制权与攻防转换节奏。"),
+        exp("数据方分析师", "Mark Carey", "The Athletic（数据分析）",
+            "从进攻三区触球与压迫强度数据看，双方都在意转换瞬间的站位纪律；可重点看定位球质量与边路传中落点。"),
+        exp("知名解说", "Tifo Football", "Tifo（战术动画解说）",
+            "阵型对位上曼城4-3-3对阿森纳4-2-3-1，关键看阿森纳双后腰能否切断曼城中路出球线路。"),
+    ],
+    info_points=["曼城主场控球惯性明显，阿森纳需在中场绞杀中寻找反击空间。",
+                 "萨卡所在的右路是阿森纳最具威胁的反击发起点。"],
+    analysis="曼城控球与射门转化占优，阿森纳反击犀利。本场核心看点在中场控制权与边路一对一：信息层面曼城略占结构优势，但阿森纳防守硬度与反击质量足以制造变数。最终走向仍取决于临场发挥、判罚与伤停等大量偶然因素，不存在可确定的结论。",
+    confidence="中高", risk="足球含平局与意外，任何单场都不存在确定结果；本报告只做信息整理，请以理性观赛心态看待。",
+    key=True,
+)
+
+M_BASKETBALL = match(
+    sport="basketball", league="NBA", country="美国",
+    match="凯尔特人 vs 湖人",
+    teams=[{"name": "凯尔特人"}, {"name": "湖人"}],
+    kickoff_local="2026-08-16 08:00", kickoff_actual="2026-08-16 08:00",
+    venue="TD花园球馆", city="波士顿",
+    updated_at="2026-08-15",
+    weather={"temp": "室内", "humidity": "—", "condition": "室内", "wind": "—", "rain": "—"},
+    formations=["首发五虎", "首发五虎"],
+    form_last5={"凯尔特人": ["胜", "胜", "胜", "负", "胜"], "湖人": ["胜", "负", "胜", "胜", "负"]},
+    h2h_last5=["胜", "负", "胜", "胜", "负"],
+    players=[{"name": "塔图姆", "team": "凯尔特人", "status": "首发", "role": "小前锋", "key": True, "note": "攻防一体核心", "gender": "male", "number": "10", "region": "欧美", "star": 4, "achievement": "2024NBA总冠军·FMVP"},
+             {"name": "詹姆斯", "team": "湖人", "status": "首发", "role": "前锋", "key": True, "note": "经验与组织", "gender": "male", "number": "23", "region": "欧美", "star": 5, "achievement": "4届NBA总冠军·历史得分王"}],
+    key_players=[{"name": "塔图姆", "team": "凯尔特人", "role": "小前锋", "gender": "male", "number": "10", "region": "欧美", "star": 4, "achievement": "2024NBA总冠军·FMVP"},
+                 {"name": "詹姆斯", "team": "湖人", "role": "前锋", "gender": "male", "number": "23", "region": "欧美", "star": 5, "achievement": "4届NBA总冠军·历史得分王"}],
+    intel=[{"tier": "权威媒体", "text": "湖人客场作战，凯尔特人主场氛围加成被多方提及。"}],
+    experts=[
+        exp("权威专家", "Zach Lowe", "ESPN（进阶数据与录像）",
+            "凯尔特人外线火力与换防体系稳定，湖人依赖转换进攻与内线终结；可关注挡拆后错位与三分出手分布。"),
+        exp("数据方分析师", "Tim Legler", "ESPN（战术拆解/投篮机制）",
+            "从投篮选择与出手位置看，凯尔特人空间更优；湖人需提升转移球速度与弱侧出手把握。"),
+        exp("知名解说", "Ben Taylor", "Thinking Basketball（进阶指标与录像）",
+            "节奏控制与失误管控是系列赛关键变量，凯尔特人阵容深度在长轮换中占优。"),
+    ],
+    info_points=["凯尔特人卫冕底蕴强，主场火力稳定。", "湖人客场作战，转换进攻效率是关键。"],
+    analysis="两队实力接近，凯尔特人整体略强但湖人经验与主场加成可对冲；信息层面更看外线手感与失误控制。",
+    confidence="中", risk="篮球节奏快、单场波动大，任何判断都需结合临场。",
+    key=True,
+)
+
+M_VOLLEYBALL = match(
+    sport="volleyball", league="世界女排联赛", country="中国",
+    match="中国女排 vs 巴西女排",
+    teams=[{"name": "中国女排"}, {"name": "巴西女排"}],
+    kickoff_local="2026-08-16 19:30", kickoff_actual="2026-08-16 19:30",
+    venue="国家体育馆", city="北京",
+    updated_at="2026-08-15",
+    weather={"temp": "室内", "humidity": "—", "condition": "室内", "wind": "—", "rain": "—"},
+    formations=["主攻-副攻-接应", "主攻-副攻-接应"],
+    form_last5={"中国女排": ["胜", "胜", "负", "胜", "胜"], "巴西女排": ["胜", "负", "胜", "胜", "胜"]},
+    h2h_last5=["胜", "负", "胜", "负", "胜"],
+    players=[{"name": "李盈莹", "team": "中国女排", "status": "首发", "role": "主攻", "key": True, "note": "核心得分点", "gender": "female", "number": "12", "region": "亚洲", "star": 4, "achievement": "2019世界杯冠军·亚运金牌"},
+             {"name": "加比", "team": "巴西女排", "status": "首发", "role": "主攻", "key": True, "note": "巴西进攻核心", "gender": "female", "number": "10", "region": "欧美", "star": 3, "achievement": "奥运银铜牌·巴西核心"}],
+    key_players=[{"name": "李盈莹", "team": "中国女排", "role": "主攻", "gender": "female", "number": "12", "region": "亚洲", "star": 4, "achievement": "2019世界杯冠军·亚运金牌"},
+                 {"name": "加比", "team": "巴西女排", "role": "主攻", "gender": "female", "number": "10", "region": "欧美", "star": 3, "achievement": "奥运银铜牌·巴西核心"}],
+    intel=[{"tier": "官方", "text": "中国女排赛前训练公开，一传稳定性被教练组重点强调。"}],
+    experts=[
+        exp("权威专家", "惠若琪", "央视体育（前中国女排队长/解说）",
+            "中国女排网口与一传稳定性是关键，巴西反击速度与强攻点需重点限制；副攻牵制与拦网配合决定上限。"),
+        exp("数据方分析师", "Karch Kiraly", "美国排协（主教练/数据化训练）",
+            "从一传到位率与防反效率看，强队比拼的是衔接质量；可关注发球冲击与防守起球率。"),
+        exp("知名解说", "李颖", "排球解说席（前国手）",
+            "两边攻防转换快，观察中国队主攻线与巴西接应点的对位效率与节奏控制。"),
+    ],
+    info_points=["中国女排网口与一传稳定性是优势。", "巴西女排反击速度与串联配合出色。"],
+    analysis="信息层面中国女排在网口与控制球上占优，巴西女排反击质量构成变数；关键看一传到位率与拦网针对性。",
+    confidence="中高", risk="排球单局波动大，临场状态与关键分处理决定走向。",
+    key=True,
+)
+
+M_TENNIS = match(
+    sport="tennis", league="大满贯", country="英国",
+    match="德约科维奇 vs 阿尔卡拉斯",
+    teams=[{"name": "德约科维奇"}, {"name": "阿尔卡拉斯"}],
+    kickoff_local="2026-08-16 21:00", kickoff_actual="2026-08-16 21:00",
+    venue="中心球场", city="伦敦",
+    updated_at="2026-08-15",
+    weather={"temp": "室内", "humidity": "—", "condition": "室内", "wind": "—", "rain": "—"},
+    formations=["单打", "单打"],
+    form_last5={"德约科维奇": ["胜", "胜", "胜", "胜", "胜"], "阿尔卡拉斯": ["胜", "胜", "负", "胜", "胜"]},
+    h2h_last5=["胜", "负", "胜", "负", "胜"],
+    players=[{"name": "德约科维奇", "team": "德约科维奇", "status": "健康", "role": "男单", "key": True, "note": "大赛经验丰富", "gender": "male", "region": "欧美", "star": 5, "achievement": "24座大满贯·奥运金满贯"},
+             {"name": "阿尔卡拉斯", "team": "阿尔卡拉斯", "status": "健康", "role": "男单", "key": True, "note": "体能充沛、跑动覆盖强", "gender": "male", "region": "欧美", "star": 4, "achievement": "7座大满贯·最年轻金满贯"}],
+    key_players=[{"name": "德约科维奇", "team": "德约科维奇", "role": "男单", "gender": "male", "region": "欧美", "star": 5, "achievement": "24座大满贯·奥运金满贯"},
+                 {"name": "阿尔卡拉斯", "team": "阿尔卡拉斯", "role": "男单", "gender": "male", "region": "欧美", "star": 4, "achievement": "7座大满贯·最年轻金满贯"}],
+    intel=[{"tier": "权威媒体", "text": "两人近期交手互有占优，阿尔卡拉斯体能被认为是关键变量。"}],
+    experts=[
+        exp("权威专家", "Toni Nadal", "El País（名帅战术专栏）",
+            "阿尔卡拉斯以节奏变化与落点调动消耗对手，德约科维奇靠底线相持与关键分经验；关注二发得分率与底线对拉。"),
+        exp("数据方分析师", "D'Arcy Maine", "ESPN（网球记者）",
+            "从一发进球率与破发点转化看，阿尔卡拉斯体能优势在长盘更明显；德约科维奇关键分把握仍是顶级。"),
+        exp("知名解说", "Jake Michaels", "ESPN（网球解说）",
+            "发球改造是阿尔卡拉斯本赛季变量；德约科维奇反拍直线在压制对手正手内角上仍有效。"),
+    ],
+    info_points=["德约科维奇关键分处理与经验是优势。", "阿尔卡拉斯体能充沛、覆盖范围大。"],
+    analysis="两人实力接近，德约科维奇大赛稳定性略占优，阿尔卡拉斯体能优势在长盘更明显；信息层面更看关键分与体能分配。",
+    confidence="中", risk="网球单场淘汰、爆冷不低，盘数走势方差大。",
+    key=True,
+)
+
+M_TT = match(
+    sport="table_tennis", league="WTT总决赛", country="中国",
+    match="樊振东 vs 张本智和",
+    teams=[{"name": "樊振东"}, {"name": "张本智和"}],
+    kickoff_local="2026-08-16 20:00", kickoff_actual="2026-08-16 20:00",
+    venue="会展中心", city="深圳",
+    updated_at="2026-08-15",
+    weather={"temp": "室内", "humidity": "—", "condition": "室内", "wind": "—", "rain": "—"},
+    formations=["单打", "单打"],
+    form_last5={"樊振东": ["胜", "胜", "胜", "负", "胜"], "张本智和": ["胜", "负", "胜", "胜", "胜"]},
+    h2h_last5=["胜", "胜", "负", "胜", "胜"],
+    players=[{"name": "樊振东", "team": "樊振东", "status": "健康", "role": "男单", "key": True, "note": "实力与稳定性占优", "gender": "male", "region": "亚洲", "star": 5, "achievement": "巴黎奥运男单金牌·超级全满贯"},
+             {"name": "张本智和", "team": "张本智和", "status": "健康", "role": "男单", "key": True, "note": "速度型打法", "gender": "male", "region": "亚洲", "star": 3, "achievement": "世界顶级·速度型名将"}],
+    key_players=[{"name": "樊振东", "team": "樊振东", "role": "男单", "gender": "male", "region": "亚洲", "star": 5, "achievement": "巴黎奥运男单金牌·超级全满贯"},
+                 {"name": "张本智和", "team": "张本智和", "role": "男单", "gender": "male", "region": "亚洲", "star": 3, "achievement": "世界顶级·速度型名将"}],
+    intel=[{"tier": "官方", "text": "WTT官方公布两人近期世界排名接近。"}],
+    experts=[
+        exp("权威专家", "技战术专栏", "《乒乓世界》",
+            "樊振东实力与大赛稳定性占优，张本智和速度型打法构成挑战；关注发接发与前三板控制。"),
+        exp("数据方分析师", "WTT 官方数据", "WTT（国际乒联数据）",
+            "从相持得分率与关键分处理看，樊振东正手连续进攻质量高；张本智和需提升反手相持稳定性。"),
+        exp("知名解说", "赛事转播解说", "乒乓球赛事转播",
+            "节奏快慢切换是比赛关键，樊振东台内控制更细，张本智和需靠速度撕开角度。"),
+    ],
+    info_points=["樊振东综合实力与相持能力占优。", "张本智和前三板速度威胁大。"],
+    analysis="信息层面樊振东实力与稳定性占优，张本智和速度打法构成挑战；关键看发接发与前三板控制。",
+    confidence="中高", risk="乒乓球单场波动小但关键分容错低。",
+    key=True,
+)
+
+M_BADMINTON = match(
+    sport="badminton", league="世锦赛男单", country="丹麦",
+    match="安赛龙 vs 李诗沣",
+    teams=[{"name": "安赛龙"}, {"name": "李诗沣"}],
+    kickoff_local="2026-08-16 18:00", kickoff_actual="2026-08-16 18:00",
+    venue="皇家体育馆", city="哥本哈根",
+    updated_at="2026-08-15",
+    weather={"temp": "室内", "humidity": "—", "condition": "室内", "wind": "—", "rain": "—"},
+    formations=["单打", "单打"],
+    form_last5={"安赛龙": ["胜", "胜", "胜", "负", "胜"], "李诗沣": ["胜", "胜", "负", "胜", "胜"]},
+    h2h_last5=["胜", "负", "胜", "负", "胜"],
+    players=[{"name": "安赛龙", "team": "安赛龙", "status": "健康", "role": "奥运冠军", "key": True, "note": "高度压制", "gender": "male", "region": "欧美", "star": 5, "achievement": "2届奥运金牌·2届世锦赛冠军"},
+             {"name": "李诗沣", "team": "李诗沣", "status": "健康", "role": "中国主力", "key": True, "note": "拉吊突击", "gender": "male", "region": "亚洲", "star": 4, "achievement": "亚运男单金牌·全英冠军"}],
+    key_players=[{"name": "安赛龙", "team": "安赛龙", "role": "男单", "gender": "male", "region": "欧美", "star": 5, "achievement": "2届奥运金牌·2届世锦赛冠军"},
+                 {"name": "李诗沣", "team": "李诗沣", "role": "男单", "gender": "male", "region": "亚洲", "star": 4, "achievement": "亚运男单金牌·全英冠军"}],
+    intel=[{"tier": "权威媒体", "text": "安赛龙网前与高点占优，李诗沣突击犀利被多方提及。"}],
+    experts=[
+        exp("权威专家", "羽球名宿解说", "羽毛球赛事转播",
+            "安赛龙身高臂展与控网能力领先，李诗沣突击犀利；关注网前争夺与多拍相持中的体能分配。"),
+        exp("数据方分析师", "BWF 官方数据", "BWF（世界羽联数据）",
+            "从杀球成功率与回合拍数看，安赛龙进攻效率稳定；李诗沣需提升防守起球质量与反攻速度。"),
+        exp("知名解说", "赛事解说", "羽毛球赛事转播",
+            "关键分处理与落后追分能力决定走向，李诗沣的变速突击是突破口。"),
+    ],
+    info_points=["安赛龙网前与高点占优。", "李诗沣拉吊突击构成变数。"],
+    analysis="安赛龙综合实力领先，李诗沣突击犀利；信息层面更看关键分处理与体能分配。",
+    confidence="中高", risk="单打三局两胜，体能影响大。",
+    key=True,
+)
+
+DAILY = {
+    "title": "今日体育赛事总览",
+    "date": "2026-08-16",
+    "matches": [M_FOOTBALL, M_BASKETBALL, M_VOLLEYBALL, M_TENNIS, M_TT, M_BADMINTON],
+}
+
+
+def main():
+    os.makedirs(ASSETS, exist_ok=True)
+    with open(OUT_DEMO, "w", encoding="utf-8") as f:
+        json.dump(M_FOOTBALL, f, ensure_ascii=False, indent=2)
+    with open(OUT_DAY, "w", encoding="utf-8") as f:
+        json.dump(DAILY, f, ensure_ascii=False, indent=2)
+    print("WROTE", os.path.abspath(OUT_DEMO))
+    print("WROTE", os.path.abspath(OUT_DAY), "matches=", len(DAILY["matches"]))
+
+
+if __name__ == "__main__":
+    main()

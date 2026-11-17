@@ -1,47 +1,63 @@
-## Description: <br>
-Creates, clones, deletes, diagnoses, and manages Feishu group AI agents with OpenClaw workspace setup, group routing, scheduled reports, and memory files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates, clones, deletes, diagnoses, and schedules Feishu group AI agents for OpenClaw, including workspace files, group routing, cron reports, and persistent memory setup.
 
-## Publisher: <br>
-[lmqiang-711](https://clawhub.ai/user/lmqiang-711) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lmqiang-711](https://clawhub.ai/user/lmqiang-711)
 
-## Use Case: <br>
-Developers and OpenClaw operators use this skill to provision Feishu group agents, bind them to group routes, schedule reports, and manage lifecycle tasks such as clone, delete, diagnostics, and status review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create, clone, delete, and reconfigure local OpenClaw agents, cron tasks, Feishu group routes, and agent workspaces. <br>
-Mitigation: Install and run it only where the operator is comfortable granting administrative control over those resources, and review proposed OpenClaw configuration and shell commands before execution. <br>
-Risk: High-impact actions may be triggered too broadly or controlled inconsistently. <br>
-Mitigation: Use explicit skill-prefixed commands for create, clone, delete, diagnosis, and status workflows, and require the documented confirmation steps before destructive or persistent changes. <br>
-Risk: Scheduled reports can deliver messages to Feishu groups and may route to the wrong target if delivery settings are wrong. <br>
-Mitigation: Verify the Feishu group ID and cron delivery target before enabling scheduled reports, then send a test message and confirm route logs after configuration changes. <br>
-Risk: Long-term backup memory may retain sensitive business details or secrets. <br>
-Mitigation: Keep secrets and sensitive business data out of generated SOUL, USER, and backup memory files; store sensitive source data in separately controlled files when needed. <br>
-Risk: The delete helper's agent ID validation path has a delete-script import bug noted by security evidence. <br>
-Mitigation: Review and fix the validation/import issue before production use, then test deletion with a noncritical agent before relying on the workflow. <br>
+## Use Case:
 
+Developers and OpenClaw administrators use this skill to provision Feishu group-specific agents, manage group bindings, schedule recurring reports, clone existing agent workspaces, delete retired agents, and diagnose routing issues.
 
-## Reference(s): <br>
-- [Feishu Agent Provision on ClawHub](https://clawhub.ai/lmqiang-711/feishu-agent-provision) <br>
-- [Cron report template](references/cron-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON snippets, Python helper script outputs, and OpenClaw shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or modify local OpenClaw agent workspaces, routing configuration, cron tasks, and Feishu delivery settings when the helper scripts are run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.8 (source: server release metadata and target metadata) <br>
+Risk: The skill administers local OpenClaw agents, Feishu group bindings, scheduled jobs, and persistent memory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run it only when those administrative changes are intended, review the planned workspace, binding, cron, and gateway changes before approval, and keep a backup of the OpenClaw configuration.
+
+Risk: Unsafe file-write or command-generation behavior could affect the user's local OpenClaw setup when inputs are untrusted.
+
+Mitigation: Review or patch path validation and cron command generation before accepting untrusted agent IDs, paths, group IDs, or schedule values.
+
+Risk: Scheduled Feishu reports can send messages to a group if delivery settings are wrong or insufficiently reviewed.
+
+Mitigation: Validate delivery.channel, delivery.to, sessionTarget, and the send-before-confirmation wording before enabling cron jobs.
+
+Risk: Deletion cleanup may leave residual workspaces or remove active agent state unexpectedly.
+
+Mitigation: Use the preview and explicit confirmation flow, stop active sessions before deletion, verify trash-based cleanup in the target environment, and restart the gateway only after reviewing the result.
+
+## Reference(s):
+
+- [Cron Template](artifact/references/cron-template.md)
+- [ClawHub Skill Page](https://clawhub.ai/lmqiang-711/skills/feishu-agent-provision)
+- [Publisher Profile](https://clawhub.ai/user/lmqiang-711)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python helper scripts, JSON configuration snippets, and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Prompts for confirmation before sensitive configuration changes, scheduled-message setup, cloning, deletion, and gateway restart steps.]
+
+## Skill Version(s):
+
+3.2.8 (source: server release evidence and artifact version history, released 2026-06-14)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

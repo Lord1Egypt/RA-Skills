@@ -1,42 +1,54 @@
-## Description: <br>
-Create a polished explainer handout with visuals, FAQs, and clear next steps for a med spa business. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create polished client education handouts with visuals, FAQs, and clear next steps for med spa businesses.
 
-## Publisher: <br>
-[tobeyrebecca](https://clawhub.ai/user/tobeyrebecca) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tobeyrebecca](https://clawhub.ai/user/tobeyrebecca)
 
-## Use Case: <br>
-Med spa owners and aesthetic marketers use this skill to draft client education handouts with visuals, FAQs, and clear next steps. Human review is needed before patient-facing use or reliance on regulated medical or advertising claims. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requests broad Bash and file-reading access that is not explained by the writing workflow. <br>
-Mitigation: Install and run with least privilege, avoid broad local access, and prefer a version that removes Bash and limits Read to user-selected source files. <br>
-Risk: Patient-facing med spa handouts can contain inaccurate or regulated medical, treatment, or advertising claims. <br>
-Mitigation: Have a qualified reviewer check the handout before sending it to clients or relying on its claims. <br>
+## Use Case:
 
+External med spa owners, aesthetic marketers, and content teams use this skill to draft client education handouts that explain treatments or services with FAQs, visuals, and action-oriented next steps. Patient-facing content should be reviewed by a qualified human before use.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tobeyrebecca/toby-generate-med-spa-studio-client-education-handout) <br>
-- [SkillBoss skill page](https://www.skillboss.co/skills/generate-med-spa-studio-client-education-handout) <br>
-- [SkillBoss setup guide](https://skillboss.co/skill.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown handout draft with FAQs, visual suggestions, and next steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include patient-facing education language and visual concepts; content should be reviewed for accuracy and regulatory suitability before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill requests Bash and file-read access that does not fit its content-generation purpose.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in a runtime that restricts shell execution and broad file reads, or review and accept that authority before use.
+
+Risk: Generated med-spa handouts may include inaccurate, misleading, or regulated medical claims.
+
+Mitigation: Treat outputs as marketing and education drafts and require qualified human review before patient-facing use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tobeyrebecca/skills/toby-generate-med-spa-studio-client-education-handout)
+- [SkillBoss skill homepage](https://www.skillboss.co/skills/generate-med-spa-studio-client-education-handout)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown handout draft with FAQs, visual direction, and next steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated content is draft material and should receive human review before patient-facing use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

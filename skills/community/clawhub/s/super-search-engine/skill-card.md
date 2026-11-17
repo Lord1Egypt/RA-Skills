@@ -1,40 +1,54 @@
-## Description: <br>
-Super Search Engine helps agents construct public web search queries across 17 domestic and international engines, including advanced operators, time filters, privacy-oriented engines, DuckDuckGo bangs, and WolframAlpha queries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Integrates 17 China-region and global search engine URL templates for advanced operators, time filters, site search, privacy-oriented engines, and WolframAlpha knowledge queries without API keys.
 
-## Publisher: <br>
-[subaru0573](https://clawhub.ai/user/subaru0573) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[subaru0573](https://clawhub.ai/user/subaru0573)
 
-## Use Case: <br>
-Developers, researchers, and agents use this skill to choose a suitable public search provider and compose search URLs for web research, site-specific searches, time-filtered searches, privacy-oriented searches, and knowledge queries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search queries are shared with the selected external search provider. <br>
-Mitigation: Do not include secrets, credentials, internal hostnames, private incident details, personal data, or regulated information in search queries unless sharing with that provider is acceptable. <br>
-Risk: Advanced search operators can be misused for unauthorized research. <br>
-Mitigation: Use advanced operators only for legitimate, authorized research and follow applicable organizational policies. <br>
+## Use Case:
 
+Developers and external users can use this skill as a search-URL reference for constructing web searches across China-region and global providers, including site-specific, filetype, time-filtered, privacy-oriented, and knowledge-query searches.
 
-## Reference(s): <br>
-- [International Search Guide](references/international-search.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, API Calls] <br>
-**Output Format:** [Markdown with URL templates and JSON web_fetch examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No API keys required; queries are sent to the selected external search provider.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact documentation reports v2.0.1) <br>
+Risk: Search terms may be sent to third-party search providers across China-region and global services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sending confidential, regulated, or sensitive queries unless the selected provider is appropriate for the use case.
+
+Risk: Some examples may involve reduced-safety, exposed-password, or sensitive-query patterns.
+
+Mitigation: Use those examples only for legitimate purposes and review generated searches before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/subaru0573/skills/super-search-engine)
+- [International search guide](references/international-search.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with inline URL and web_fetch examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces search-provider URL patterns and example agent fetch calls; no API keys are required.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact documentation also lists v2.0.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

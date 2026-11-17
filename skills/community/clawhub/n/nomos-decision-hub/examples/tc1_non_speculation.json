@@ -1,0 +1,33 @@
+{
+  "objective": "TC1 Non-speculation test: evaluate an alternative whose metrics omit a required criterion field.",
+  "decision_owner": {"owner": "TestRunner", "role": "tester", "source": "test", "authorization_ref": "TC1"},
+  "time_horizon": "1 month",
+  "evaluation_as_of": "2026-10-07T00:00:00Z",
+  "evaluation_mode": "weighted",
+  "criteria": [
+    {"id": "K1", "name": "metric_a", "metric": "metric_a", "weight": "0.5", "scoring_rule": "higher_is_better", "min_value": "0", "max_value": "1", "responsibility": {"owner": "TestRunner", "role": "owner", "source": "test", "authorization_ref": "TC1"}},
+    {"id": "K2", "name": "metric_b", "metric": "metric_b", "weight": "0.5", "scoring_rule": "higher_is_better", "min_value": "0", "max_value": "1", "responsibility": {"owner": "TestRunner", "role": "owner", "source": "test", "authorization_ref": "TC1"}}
+  ],
+  "constraints": [],
+  "assumptions": [],
+  "alternatives": [
+    {
+      "id": "S1",
+      "name": "complete alternative",
+      "description": "has both metrics",
+      "metrics": {"metric_a": 0.8, "metric_b": 0.6},
+      "required_assumptions": [],
+      "evidence_ids": []
+    },
+    {
+      "id": "S2",
+      "name": "incomplete alternative",
+      "description": "omits metric_b - should trigger unresolved variable",
+      "metrics": {"metric_a": 0.9},
+      "required_assumptions": [],
+      "evidence_ids": []
+    }
+  ],
+  "evidence": [],
+  "metadata": {"language": "en", "test_case": "TC1_non_speculation"}
+}

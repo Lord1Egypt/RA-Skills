@@ -1,41 +1,54 @@
-## Description: <br>
-Diet Record logs meals from text descriptions or food photos, identifies food items, estimates portions and nutrition, and supports daily diet summaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Diet Record logs meals from text descriptions or food photos, identifies food items, and estimates nutrition and calories.
 
-## Publisher: <br>
-[734818028](https://clawhub.ai/user/734818028) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[734818028](https://clawhub.ai/user/734818028)
 
-## Use Case: <br>
-External users use this skill to record meals, estimate calories and nutrition from text or food photos, maintain local diet preferences, and retrieve daily diet summaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores meal history and diet-related preferences locally, which users should treat as sensitive personal data. <br>
-Mitigation: Install only when local storage of diet-log.jsonl and diet-preferences.json is acceptable, and periodically review or delete those files when the records are no longer needed. <br>
-Risk: Automatic photo logging can record food-photo-derived meal entries without repeated confirmation once enabled. <br>
-Mitigation: Keep photo_auto_log disabled or set to confirmation-first when users want to review recognized items before records are appended. <br>
+## Use Case:
 
+External users use this skill to record meals, estimate calories and nutrition from photos or text, maintain diet preferences, and review daily intake summaries.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/734818028/diet-record) <br>
-- [JSON Schema Draft 7](http://json-schema.org/draft-07/schema#) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration] <br>
-**Output Format:** [Markdown responses with tables, JSON/JSONL records, and inline shell commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes local diet-log.jsonl meal records and diet-preferences.json preference data when used as directed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release evidence) <br>
+Risk: The skill can build a local history of sensitive diet and health-related details over time.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use clear consent before logging and provide controls to review, correct, export, and delete diet records and preferences.
+
+Risk: Diet history and preference files may be stored in the skill package directory when the artifact is used as written.
+
+Mitigation: Store generated diet-log.jsonl and diet-preferences.json in a protected per-user data location.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/734818028/skills/diet-record)
+- [JSON Schema Draft 07](http://json-schema.org/draft-07/schema#)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Files, Shell commands, Guidance]
+
+**Output Format:** [Markdown tables and summaries, JSONL meal records, JSON preference files, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores diet history in diet-log.jsonl and user preferences in diet-preferences.json when used as written.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

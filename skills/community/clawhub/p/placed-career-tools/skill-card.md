@@ -1,44 +1,59 @@
-## Description: <br>
-This skill helps an agent use Placed career tools for resume-job matching, cover letters, interview preparation, LinkedIn profile generation, salary insights, salary negotiation, company research, resume gap analysis, and job application tracking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Placed Career Tools helps agents call the Placed API for resume-job matching, cover letters, LinkedIn optimization, interview questions, salary insights, offer analysis, application tracking, and company research.
 
-## Publisher: <br>
-[ajitsingh25](https://clawhub.ai/user/ajitsingh25) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ajitsingh25](https://clawhub.ai/user/ajitsingh25)
 
-## Use Case: <br>
-Job seekers and career-support agents use this skill to call Placed API tools for resume optimization, job matching, application tracking, salary research, negotiation preparation, company research, and career-document generation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores a Placed API key in ~/.config/placed/credentials. <br>
-Mitigation: Use a dedicated API key, protect the credentials file, and delete it when the skill is no longer needed. <br>
-Risk: Career information, including resumes, job descriptions, salary details, and application notes, may be sent to the Placed API. <br>
-Mitigation: Share only the career data needed for the task and avoid unnecessary sensitive compensation or personal details. <br>
-Risk: Job-application tracker tools can add, update, or delete application records. <br>
-Mitigation: Require explicit user confirmation before creating, changing, or deleting job-application records. <br>
+## Use Case:
 
+External job seekers and career-support agents use this skill to access Placed career tools with a Placed API key. It supports job-fit analysis, resume and cover-letter guidance, application tracking, salary negotiation, offer analysis, and company research.
 
-## Reference(s): <br>
-- [Placed Career Tools API Reference](references/api-guide.md) <br>
-- [Placed](https://placed.exidian.tech) <br>
-- [Placed Career Tools on ClawHub](https://clawhub.ai/ajitsingh25/placed-career-tools) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON API arguments] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Placed API key and sends career data to the Placed API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: The skill can persist a Placed API key in a plaintext shell-sourced credentials file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer a current-session environment variable or secure credential manager; if a file is used, restrict permissions and keep the token out of shared dotfiles and logs.
+
+Risk: Career-related data, including resumes, job descriptions, salary details, and application notes, may be sent to the Placed API.
+
+Mitigation: Use the skill only when the user accepts sending that data to Placed, and avoid unnecessary sensitive details.
+
+Risk: Application tracker tools can modify or delete job application records.
+
+Mitigation: Confirm status-changing actions with the user, especially delete_job_application, before allowing the API call to run.
+
+## Reference(s):
+
+- [Placed Career Tools API Reference](references/api-guide.md)
+- [Placed Homepage](https://placed.exidian.tech)
+- [Placed Career Tools on ClawHub](https://clawhub.ai/ajitsingh25/skills/placed-career-tools)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command snippets and Placed API responses that may be text or JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires PLACED_API_KEY and sends career-related data to the Placed API.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata; artifact frontmatter says 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

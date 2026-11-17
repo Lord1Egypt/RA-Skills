@@ -1,42 +1,55 @@
-## Description: <br>
-Diagnose Yggdrasil installation and daemon status for IPv6 P2P connectivity. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Diagnose Yggdrasil installation and daemon status for IPv6 P2P connectivity.
 
-## Publisher: <br>
-[Jing-yilin](https://clawhub.ai/user/Jing-yilin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jing-yilin](https://clawhub.ai/user/jing-yilin)
 
-## Use Case: <br>
-Developers and operators use this skill to check whether Yggdrasil is installed, running, and producing a routable IPv6 address for OpenClaw P2P connectivity. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Yggdrasil setup may require elevated networking privileges or container TUN access. <br>
-Mitigation: Grant only the needed CAP_NET_ADMIN or /dev/net/tun access, restart the OpenClaw gateway, and confirm status with yggdrasil_check. <br>
-Risk: Authenticated registry or moderation actions may be available when privileged credentials are configured. <br>
-Mitigation: Use least-privilege credentials and avoid staff-level tools unless they are required for the target environment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Yggdrasil Installation Guide](references/install.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/Jing-yilin/yggdrasil) <br>
-- [OpenClaw Homepage](https://github.com/ReScienceLab/declaw) <br>
-- [Yggdrasil Release Downloads](https://github.com/yggdrasil-network/yggdrasil-go/releases/latest) <br>
+## Use Case:
 
+Developers and operators use this skill to check whether Yggdrasil-backed IPv6 peer-to-peer connectivity is available, interpret connectivity states, and guide installation or troubleshooting when the daemon is missing or unreachable.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Explains yggdrasil_check results and install or restart steps.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.3 (source: server release metadata; artifact frontmatter says 0.1.2) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Installation and troubleshooting can require powerful system and network privileges.
+
+Mitigation: Review before installing, prefer official or distribution-maintained Yggdrasil packages, verify release keys or checksums, and avoid piping remote content into sudo.
+
+Risk: Running the gateway or daemon with broad privileges can expand the impact of a compromised process.
+
+Mitigation: Do not run the full OpenClaw gateway as root; grant only the minimum network capability needed for the Yggdrasil daemon, such as the specific TUN or network capability required by the platform.
+
+## Reference(s):
+
+- [Yggdrasil Installation Guide](references/install.md)
+- [ClawHub Skill Page](https://clawhub.ai/jing-yilin/skills/yggdrasil)
+- [OpenClaw Homepage](https://github.com/ReScienceLab/declaw)
+- [Yggdrasil Releases](https://github.com/yggdrasil-network/yggdrasil-go/releases/latest)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and troubleshooting guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include platform-specific installation steps and connectivity-state interpretation.]
+
+## Skill Version(s):
+
+0.1.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

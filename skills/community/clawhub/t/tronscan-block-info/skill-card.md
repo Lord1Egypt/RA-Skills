@@ -1,43 +1,60 @@
-## Description: <br>
-Query TRON latest block, block reward, block time, producer, burned TRX, resource use, and transaction count. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query TRON latest block, block reward, block time, producer, burned TRX, resource use, and transaction count.
 
-## Publisher: <br>
-[sshnii](https://clawhub.ai/user/sshnii) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sshnii](https://clawhub.ai/user/sshnii)
 
-## Use Case: <br>
-Developers, analysts, and agent users use this skill to answer TRON block questions such as latest block height, producer, block reward context, burned TRX, resource use, and transaction counts through TronScan MCP tools. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: TRON block lookup requests are sent to TronScan's MCP service. <br>
-Mitigation: Install only if sending public block lookup requests to TronScan is acceptable for the intended use case. <br>
-Risk: Unauthenticated TronScan API usage may encounter rate limits. <br>
-Mitigation: Configure a TronScan API key only when higher rate limits are needed, and manage that key outside the skill content. <br>
+## Use Case:
 
+Developers and external users use this skill to ask an agent for TRON block data such as current block height, producer, reward context, burned TRX, resource use, and transaction counts through the TronScan MCP server.
 
-## Reference(s): <br>
-- [TronScan MCP Guide](https://mcpdoc.tronscan.org) <br>
-- [TronScan MCP Server](https://mcp.tronscan.org/mcp) <br>
-- [TronScan Developer API](https://tronscan.org/#/developer/api) <br>
-- [ClawHub Skill Page](https://clawhub.ai/sshnii/tronscan-block-info) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown guidance with MCP tool call recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only TRON block information queries via the disclosed TronScan MCP service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: ClawHub release metadata; skill frontmatter metadata version is 1.0) <br>
+Risk: The skill connects an agent to the TronScan MCP server to query public TRON block data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the user is comfortable using the TronScan MCP server before installing or enabling the skill.
+
+Risk: Using a TronScan API key may increase request limits but adds credential-handling responsibility.
+
+Mitigation: Add a TronScan API key to MCP configuration only when intentionally needed, and manage it as a secret.
+
+Risk: Some latest-block fields may be returned as null or 0 by the underlying TronScan endpoint.
+
+Mitigation: Use the block-list tool for witness names, reward, fee, and resource-usage details when latest-block responses omit them.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/sshnii/skills/tronscan-block-info)
+- [TronScan MCP Server](https://mcp.tronscan.org/mcp)
+- [TronScan MCP Guide](https://mcpdoc.tronscan.org)
+- [TronScan Developer API](https://tronscan.org/#/developer/api)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, API Calls, guidance]
+
+**Output Format:** [Markdown or plain text summaries of TronScan MCP tool results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include block numbers, hashes, timestamps, witness or producer data, transaction counts, burn totals, and rate-limit troubleshooting guidance.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata; artifact frontmatter metadata.version is 1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

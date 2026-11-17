@@ -1,42 +1,51 @@
-## Description: <br>
-Live grid fill rate across all pairs, measuring execution efficiency. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Retired signal. No longer sold.
 
-## Publisher: <br>
-[kynto2001-ctrl](https://clawhub.ai/user/kynto2001-ctrl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kynto2001-ctrl](https://clawhub.ai/user/kynto2001-ctrl)
 
-## Use Case: <br>
-External developers and trading agents use this skill to request real-time grid fill-rate data for monitoring execution efficiency, detecting liquidity degradation, and diagnosing underperforming grids. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires agent access to an EVM private key for x402-authenticated paid requests. <br>
-Mitigation: Use a dedicated low-balance wallet and expose EVM_PRIVATE_KEY only in the environment needed for the call. <br>
-Risk: Repeated or automated invocations can spend USDC on Base according to the listed per-call price. <br>
-Mitigation: Confirm the current price before repeated use, monitor wallet balance, and avoid unattended loops unless spending limits are controlled. <br>
+## Use Case:
 
+Developers and operators can use this notice to check the live fill-rate signal's status. It states that the signal is retired, its endpoint returns HTTP 410 Gone, and agents should not call it; there is no direct replacement.
 
-## Reference(s): <br>
-- [APEX Runner Live Fill Rate](https://apexrunner.ai/signals/live-fill-rate) <br>
-- [APEX Runner Pricing](https://apexrunner.ai/signals/my-pricing) <br>
-- [ClawHub Skill Page](https://clawhub.ai/kynto2001-ctrl/skills/live-fill-rate) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, JSON, Guidance] <br>
-**Output Format:** [Markdown instructions with a Python example; API response is JSON] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires EVM_PRIVATE_KEY and USDC on Base for paid x402 requests.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The signal is retired and its endpoint returns HTTP 410 Gone, so calls will fail.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not configure an agent to call the endpoint.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/kynto2001-ctrl/skills/live-fill-rate)
+- [APEX Runner live fill rate status](https://apexrunner.ai/signals/live-fill-rate)
+- [APEX Runner](https://apexrunner.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Retirement notice; no live signal data is produced.]
+
+## Skill Version(s):
+
+1.0.1 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

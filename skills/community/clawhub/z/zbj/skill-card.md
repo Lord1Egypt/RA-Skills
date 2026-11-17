@@ -1,44 +1,55 @@
-## Description: <br>
-猪八戒网(ZBJ) MCP服务器 - AI智能需求发布、订单管理、服务搜索、类目匹配，连接百万服务商的一站式威客平台 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+猪八戒网(ZBJ) MCP服务器 - AI智能需求发布、订单管理、服务搜索、类目匹配，连接百万服务商的一站式威客平台
 
-## Publisher: <br>
-[nylk](https://clawhub.ai/user/nylk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nylk](https://clawhub.ai/user/nylk)
 
-## Use Case: <br>
-Developers and business operators use this skill to let an agent interact with ZBJ marketplace workflows, including demand publishing, order lookup, service search, shop search, category matching, seller evaluation, and payment-link retrieval. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can perform high-impact marketplace actions such as publishing or closing demands, selecting winners, evaluating sellers, and requesting payment links. <br>
-Mitigation: Use a least-privilege ZBJ API key and require human review before any state-changing request is sent. <br>
-Risk: Server provenance is unavailable and the security summary notes unclear provenance. <br>
-Mitigation: Install only when the publisher handle and third-party status are acceptable for the deployment. <br>
-Risk: Credential misuse could expose or abuse ZBJ account access. <br>
-Mitigation: Store ZBJ_API_KEY in the environment or a secret manager, rotate it regularly, and avoid embedding it in prompts, files, or logs. <br>
+## Use Case:
 
+External users and developers use this skill to let an agent search ZBJ services and shops, match service categories, publish and manage demands, manage orders, evaluate sellers, and request payment links through ZBJ APIs.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/nylk/zbj) <br>
-- [ZBJ MCP Homepage](https://zmcp.zbj.com) <br>
-- [ZBJ MCP Documentation](https://zmcp.zbj.com/docs) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, JSON, Shell commands, Configuration guidance] <br>
-**Output Format:** [JSON responses and Markdown guidance with inline shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires ZBJ_API_KEY and network access to zmcp.zbj.com over HTTPS.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: The skill can perform high-impact ZBJ account and marketplace actions, including publishing or closing demands, selecting sellers, evaluating sellers, and generating payment links.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated least-privilege ZBJ_API_KEY and manually confirm every publish, close, winner-selection, evaluation, or payment-related action before execution.
+
+Risk: ZBJ_API_URL is configurable, so the API key could be sent to a non-official endpoint if the environment is changed.
+
+Mitigation: Keep ZBJ_API_URL set to https://zmcp.zbj.com unless operating a fully controlled endpoint, and review environment configuration before use.
+
+## Reference(s):
+
+- [ZBJ MCP homepage](https://zmcp.zbj.com)
+- [ZBJ MCP documentation](https://zmcp.zbj.com/docs)
+- [ClawHub skill page](https://clawhub.ai/nylk/skills/zbj)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Guidance]
+
+**Output Format:** [JSON API responses with agent-facing text guidance as needed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires ZBJ_API_KEY; keep ZBJ_API_URL on the official endpoint unless using a controlled deployment.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

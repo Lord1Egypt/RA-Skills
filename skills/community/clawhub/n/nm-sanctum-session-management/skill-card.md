@@ -1,39 +1,49 @@
-## Description: <br>
-Manages Claude Code sessions with naming, checkpointing, and resume strategies. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manages Claude Code sessions with naming, checkpointing, and resume strategies
 
-## Publisher: <br>
-[athola](https://clawhub.ai/user/athola) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[athola](https://clawhub.ai/user/athola)
 
-## Use Case: <br>
-Developers and engineers use this skill to organize long-running Claude Code work, name checkpoints, and resume prior sessions with relevant context. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Named sessions and automatic memory can preserve summaries, results, and work logs across resumed sessions. <br>
-Mitigation: Avoid placing secrets, credentials, or sensitive client data into workflows that may be resumed or recalled later. <br>
+## Use Case:
 
+Developers using Claude Code use this skill to name, checkpoint, and resume long-running work across breaks or sessions.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/athola/skills/nm-sanctum-session-management) <br>
-- [Clawdis Homepage](https://github.com/athola/claude-night-market/tree/master/plugins/sanctum) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands] <br>
-**Output Format:** [Markdown with inline shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance; no executable files are included in the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.9.13 (source: server release evidence) <br>
+Risk: The security assessment flags context-capture wording as a potential context-leakage concern, while judging it expected for the skill's purpose.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review whether session context could contain sensitive information and limit what is carried into sessions before using the workflow.
+
+## Reference(s):
+
+- [Sanctum plugin homepage](https://github.com/athola/claude-night-market/tree/master/plugins/sanctum)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands]
+
+**Output Format:** [Markdown with inline command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.10.3 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

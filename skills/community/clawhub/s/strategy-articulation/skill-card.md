@@ -1,37 +1,48 @@
-## Description: <br>
-Develop clear, actionable strategy statements. Use for strategic planning and communication. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Develop clear, actionable strategy statements. Use for strategic planning and communication.
 
-## Publisher: <br>
-[linuszz](https://clawhub.ai/user/linuszz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[linuszz](https://clawhub.ai/user/linuszz)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Business leaders, strategists, and planning teams use this skill to turn strategic direction into clear vision, mission, objective, priority, action, and summary sections.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Generated strategy content may be inaccurate, unrealistic, or misaligned with business constraints.
+
+Mitigation: Review the generated strategy with accountable stakeholders before using it for planning or communication.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Employees, strategy leads, and planning teams use this skill to turn business or unit context into clear vision, mission, objectives, priorities, actions, and summary statements. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Users may include confidential business plans or internal strategy details in an agent session. <br>
-Mitigation: Use normal care with sensitive planning information and avoid entering confidential details unless the agent environment is approved for that data. <br>
+**Output Format:** [Markdown strategy articulation with headings, ordered priorities, and tables]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Includes sections for vision, mission, strategic objectives, priorities, key actions, and a strategy summary.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown strategy articulation template with statements, tables, priorities, actions, and summary fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses the user's provided business or unit context as the input topic.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

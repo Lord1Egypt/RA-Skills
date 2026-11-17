@@ -1,42 +1,51 @@
-## Description: <br>
-Humanizer Xiaoshu rewrites text to reduce common signs of AI-generated writing and make the result sound more natural and human-written. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Removes common signs of AI-generated writing from text so an agent can revise prose to sound more natural and human-written.
 
-## Publisher: <br>
-[xiaomaju-888](https://clawhub.ai/user/xiaomaju-888) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiaomaju-888](https://clawhub.ai/user/xiaomaju-888)
 
-## Use Case: <br>
-External users and writing teams use this skill to edit or review prose that should read less like AI-generated text while preserving the intended meaning and tone. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can change wording, tone, voice, and perceived authorship. <br>
-Mitigation: Review the rewritten text for accuracy, intended voice, and acceptable authorship representation before use. <br>
-Risk: Using a humanizing editor in sensitive settings may mislead readers about AI assistance. <br>
-Mitigation: Avoid use in academic, legal, journalistic, hiring, review, or compliance contexts where hiding AI assistance would be misleading. <br>
+## Use Case:
 
+External users, writers, editors, and developers use this skill to have an agent review and rewrite prose for a more natural voice while preserving the original meaning.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xiaomaju-888/humanizer-xiaoshu) <br>
-- [Wikipedia: Signs of AI writing](https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing) <br>
-- [Wikipedia: WikiProject AI Cleanup](https://en.wikipedia.org/wiki/Wikipedia:WikiProject_AI_Cleanup) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text containing rewritten prose and optional concise change notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may substantially change wording, tone, and perceived authorship; review edited text before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may make tone stronger or more personal while rewriting text, which can be inappropriate for factual, legal, academic, or brand-sensitive writing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the rewritten text before accepting it, especially where accuracy, compliance, or brand voice matters.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xiaomaju-888/skills/humanizer-xiaoshu)
+- [Wikipedia: Signs of AI writing](https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing)
+- [Wikipedia: WikiProject AI Cleanup](https://en.wikipedia.org/wiki/Wikipedia:WikiProject_AI_Cleanup)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text with rewritten prose and an optional change summary]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Review edits before accepting them for factual, legal, academic, or brand-sensitive writing.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

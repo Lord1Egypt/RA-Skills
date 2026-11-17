@@ -1,41 +1,64 @@
-## Description: <br>
-Track and manage sales orders with status updates, notifications, and dashboard reporting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tracks local sales orders with manual status updates, customer email notifications, and command-line dashboard reporting.
 
-## Publisher: <br>
-[cjboy007](https://clawhub.ai/user/cjboy007) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cjboy007](https://clawhub.ai/user/cjboy007)
 
-## Use Case: <br>
-Operations and sales staff use this skill to maintain local order records, update fulfillment status, review dashboard summaries, and prepare customer order-status emails. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores order and customer data in local JSON files, logs, and backups. <br>
-Mitigation: Use it only with order data approved for local storage, remove bundled sample customer data before production use, and manage local backups and logs according to the user's data-retention policy. <br>
-Risk: The notification script can send customer emails through the configured SMTP account. <br>
-Mitigation: Run dry-runs first, verify recipients and message content, and use a dedicated sender credential for this skill. <br>
+## Use Case:
 
+Operations staff and agents use this skill to inspect order status, move orders through a fixed fulfillment lifecycle, preview or send customer status emails, and generate dashboard summaries for urgent or overdue orders.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cjboy007/ssa-order-tracker) <br>
-- [Publisher profile](https://clawhub.ai/user/cjboy007) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands, JSON examples, and local file guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local order status updates, dashboard summaries, notification drafts or sends, logs, and JSON data changes depending on the invoked script.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and package.json) <br>
+Risk: The notification workflow can send real customer emails and update order records.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use dry-run mode during testing, require operator review before live sends or writes, and restrict who can execute the scripts.
+
+Risk: The skill reuses SMTP credentials from another skill's .env file.
+
+Mitigation: Use a dedicated SMTP account or managed secret source for this skill instead of reading another skill's credential file.
+
+Risk: Order data and logs may contain customer names, emails, addresses, order values, and shipment information.
+
+Mitigation: Limit filesystem access to the data and log files, avoid sharing generated logs broadly, and sanitize records before using untrusted inputs.
+
+Risk: Mail dependencies and order records may be deployed without enough independent validation.
+
+Mitigation: Verify or update the mail dependencies before deployment and validate order records against the included JSON schema.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/cjboy007/skills/ssa-order-tracker)
+- [Order Tracker README](artifact/README.md)
+- [Agent Skill Definition](artifact/SKILL.md)
+- [Order Data JSON Schema](artifact/config/order-schema.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, plus CLI table, compact text, and JSON output from the included scripts.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May update local orders JSON data and append local status or notification logs when run outside dry-run mode.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

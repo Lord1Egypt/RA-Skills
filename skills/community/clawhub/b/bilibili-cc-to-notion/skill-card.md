@@ -1,47 +1,60 @@
-## Description: <br>
-将B站视频字幕转换为带截图的Notion学习笔记。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+将B站视频字幕转换为带截图的 Notion 学习笔记，支持 BV 号或完整 URL 输入、字幕下载、内容整理、截图生成、图片上传和 Notion 页面创建。
 
-## Publisher: <br>
-[xinyuqinfeng](https://clawhub.ai/user/xinyuqinfeng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xinyuqinfeng](https://clawhub.ai/user/xinyuqinfeng)
 
-## Use Case: <br>
-Learners, researchers, and knowledge workers use this skill to turn Bilibili video captions into structured Notion learning notes with timestamped screenshots and embedded images. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can upload local files and video-derived screenshots to Notion. <br>
-Mitigation: Use a least-privilege Notion integration scoped only to the intended database and review generated content before upload. <br>
-Risk: Notion pages with matching generated titles may be archived during duplicate cleanup. <br>
-Mitigation: Run duplicate cleanup only when you are comfortable archiving older matching pages, and verify the target database before execution. <br>
-Risk: The workflow depends on a local BBDown binary and command execution paths. <br>
-Mitigation: Install BBDown from a trusted source, verify its checksum or package source, and run the skill in a controlled local environment. <br>
-Risk: Passing Notion tokens directly on command lines can expose credentials through shell history or process listings. <br>
-Mitigation: Prefer environment variables or a secret manager for Notion credentials and avoid pasting tokens into commands. <br>
+## Use Case:
 
+Developers and external users use this skill to turn Bilibili videos into structured learner-style notes in Notion, including captions, screenshot markers, uploaded images, and a returned Notion page link.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/xinyuqinfeng/bilibili-cc-to-notion) <br>
-- [Notion API Documentation](https://developers.notion.com/) <br>
-- [BBDown Project](https://github.com/nilaoda/BBDown) <br>
-- [BBDown 1.6.3 Linux x64 Release Artifact](https://github.com/nilaoda/BBDown/releases/download/1.6.3/BBDown_1.6.3_20240814_linux-x64.zip) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, JSON, Files, API Calls, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown learning notes, JSON subtitle segments, screenshot image files, and Notion page creation results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May upload local or video-derived content to Notion and return a Notion page URL.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: The skill asks users to run local scripts and external tools while processing video URLs, files, and generated command arguments.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installing, run it in a constrained environment, verify BBDown before execution, and avoid untrusted or specially crafted inputs.
+
+Risk: The skill writes to Notion and can upload local files or archive duplicate pages.
+
+Mitigation: Use a minimally scoped Notion integration, pass only intended files, and confirm the target database and pages before allowing cleanup or archive actions.
+
+Risk: Bilibili authentication may require cookies or account login, which can expose sensitive credentials if mishandled.
+
+Mitigation: Avoid passing sensitive Bilibili cookies unless necessary, keep credentials out of prompts and source files, and prefer temporary, least-privilege credentials where possible.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xinyuqinfeng/skills/bilibili-cc-to-notion)
+- [BBDown project](https://github.com/nilaoda/BBDown)
+- [Notion API documentation](https://developers.notion.com/)
+- [Bilibili user space](https://space.bilibili.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and JSON-like tool results with shell command examples and configuration instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Notion page URLs, file upload IDs, processed subtitle segments, screenshot counts, and embedded image counts.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

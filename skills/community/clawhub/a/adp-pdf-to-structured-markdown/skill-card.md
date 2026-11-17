@@ -1,50 +1,66 @@
-## Description: <br>
-A universal document parsing skill powered by Laiye ADP that helps agents convert PDFs, images, scanned documents, and Office files into structured Markdown while preserving headings, tables, lists, paragraphs, and other document structure. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts PDFs, images, scanned documents, and Office files into structured Markdown with preserved headings, tables, lists, paragraphs, and page structure using Laiye ADP.
 
-## Publisher: <br>
-[laiye-adp](https://clawhub.ai/user/laiye-adp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Commercial License Agreement <br>
+## Publisher:
 
+[laiye-adp](https://clawhub.ai/user/laiye-adp)
 
-## Use Case: <br>
-Developers, documentation teams, and AI-agent users use this skill to parse local, remote, or encoded documents into Markdown for technical documentation migration, content publishing, archival digitization, and LLM context preparation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Commercial License Agreement
 
-## Known Risks and Mitigations: <br>
-Risk: Documents may be sent to Laiye ADP's cloud service for parsing. <br>
-Mitigation: Install and use the skill only where organizational policy permits sending the target documents to that third-party service. <br>
-Risk: The ADP API key is a sensitive credential. <br>
-Mitigation: Protect the API key, prefer environment or approved local configuration storage, and avoid exposing it in prompts, logs, shared files, or command output. <br>
-Risk: Installer examples include remote shell and PowerShell scripts. <br>
-Mitigation: Prefer npm or verified release binaries, and review any remote installer script before execution. <br>
-Risk: The ADP CLI supports broader actions than Markdown parsing, including extraction, custom application changes, deletion, batch processing, and billable credit usage. <br>
-Mitigation: Constrain agent use to approved parse commands unless a user explicitly approves other ADP operations and related costs. <br>
+## Use Case:
 
+Developers, knowledge workers, and agent builders use this skill to convert local, remote, or Base64-encoded documents into Markdown for documentation migration, publishing, archive digitization, and LLM context preparation.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/laiye-adp/adp-pdf-to-structured-markdown) <br>
-- [Laiye ADP Global](https://adp-global.laiye.com/?utm_source=clawhub) <br>
-- [Laiye ADP Mainland China](https://adp.laiye.com/?utm_source=clawhub) <br>
-- [ADP CLI User Guide](https://laiye-tech.feishu.cn/wiki/YIaawiK2DimisZk5KfDc8a8cnLh) <br>
-- [ADP Open API User Guide](https://laiye-tech.feishu.cn/wiki/S1t2wYR04ivndKkMDxxcp2SFnKd) <br>
-- [ADP CLI GitHub Releases](https://github.com/laiye-ai/adp-cli/releases) <br>
-- [ADP CLI Issue Tracker](https://github.com/laiye-ai/adp-cli/issues) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with ADP CLI command guidance and structured parsing results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Parsing results should preserve source document structure as returned by ADP; batch jobs may also produce per-file JSON summaries or error files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Documents are processed by the ADP cloud service, which may expose document contents to an external provider.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for documents approved for ADP processing and confirm organizational data-handling requirements before sending sensitive files.
+
+Risk: The artifact documents curl-to-shell and PowerShell pipe-to-execute installer options that can run unreviewed remote code.
+
+Mitigation: Prefer a pinned npm package version or reviewed release binary, and inspect installer scripts before execution.
+
+Risk: The bundled CLI supports broader ADP account actions, including custom application creation, update, and deletion.
+
+Mitigation: Allow an agent to run extraction or custom-app management commands only after explicit user approval for those account changes.
+
+Risk: The skill requires ADP API credentials and application identifiers.
+
+Mitigation: Store API keys securely, avoid logging or sharing them, and verify the configured endpoint before running document parsing.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/laiye-adp/skills/adp-pdf-to-structured-markdown)
+- [ADP CLI User Guide](https://laiye-tech.feishu.cn/wiki/YIaawiK2DimisZk5KfDc8a8cnLh)
+- [OpenAPI User Guide](https://laiye-tech.feishu.cn/wiki/S1t2wYR04ivndKkMDxxcp2SFnKd)
+- [Public Cloud Manual](https://laiye-tech.feishu.cn/wiki/OfexwgVUQiOpEek4kO7c7NEJnAe)
+- [ADP CLI Releases](https://github.com/laiye-ai/adp-cli/releases)
+- [Laiye ADP Product Page](https://laiye.com/en/product/agentic-document-processing)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown text, with JSON summaries or structured error objects for batch and failure cases.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an ADP API key, an ADP document parsing app_id, supported document input, and ADP CLI availability.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

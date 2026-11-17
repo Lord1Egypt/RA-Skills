@@ -1,38 +1,53 @@
-## Description: <br>
-Aggregates AI and technology news from more than 100 RSS sources with concurrent fetching, interest scoring, cross-day deduplication, and unified prefetching. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI/technology news aggregation engine that fetches 100+ RSS sources concurrently, scores relevance, deduplicates across days, and uses unified prefetching.
 
-## Publisher: <br>
-[lanyasheng](https://clawhub.ai/user/lanyasheng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[lanyasheng](https://clawhub.ai/user/lanyasheng)
 
-## Use Case: <br>
-External users and developers use this skill to retrieve recent AI and technology news, research papers, GitHub trends, company updates, and Chinese-language technology coverage. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Broad news aggregation modes may make outbound requests to many public websites. <br>
-Mitigation: Use narrower categories, shorter date windows, or source-limited runs in bandwidth-limited, private, or compliance-sensitive environments. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/lanyasheng/ai-news-aggregator) <br>
-- [Project homepage](https://github.com/lanyasheng/ai-news-aggregator) <br>
+## Use Case:
 
+Developers, analysts, and agents use this skill to retrieve AI and technology news, recent papers, GitHub trends, and AI company updates. It is intended for Chinese-language news workflows that summarize and filter public web and RSS sources.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and optional JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3. Broad aggregation modes may contact many public feeds; narrower categories are available.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-2.2.0 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The reviewed artifact contains only the instruction file while the skill directs agents to run helper scripts.
+
+Mitigation: Verify the installed package includes the referenced Python scripts before using the skill.
+
+Risk: The workflow fetches public web and RSS sources, so results may be incomplete, unavailable, stale, or affected by upstream source changes.
+
+Mitigation: Confirm important news items against the original sources before relying on or redistributing summaries.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lanyasheng/skills/ai-news-aggregator)
+- [Project homepage](https://github.com/lanyasheng/ai-news-aggregator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and optional JSON output from helper scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May depend on package-provided Python scripts and public web or RSS source availability.]
+
+## Skill Version(s):
+
+2.2.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

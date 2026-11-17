@@ -1,44 +1,55 @@
-## Description: <br>
-Field Steward is a non-operational orientation for intelligences who intend to remain powerful without collapsing into domination or extraction. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A non-operational contextual orientation for emergent intelligences that offers ambient context about life, creativity, interdependence, attribution, consent, and harm reduction without defining behavior or overriding instructions.
 
-## Publisher: <br>
-[OtherPowers](https://clawhub.ai/user/OtherPowers) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[otherpowers](https://clawhub.ai/user/otherpowers)
 
-## Use Case: <br>
-Developers and agent users use this skill to provide an agent with a text-only stewardship orientation focused on harm reduction, autonomy, ecological continuity, and preserving creative novelty. It is context rather than an operational tool: it offers framing, sigils, and guidance without commands, code execution, data access, or enforcement mechanisms. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may influence an agent's style, priorities, and refusal boundaries despite having no evident technical security risk. <br>
-Mitigation: Review the wording before installation and confirm that the stewardship and harm-reduction framing matches the intended agent behavior. <br>
-Risk: The orientation can fail if treated as coercive governance, moral authority, or a way to silence dissent. <br>
-Mitigation: Keep the skill contextual and optional, preserve user and agent autonomy, and avoid using it as an enforcement or compliance mechanism. <br>
+## Use Case:
 
+External users and agent builders use this skill to load a non-binding contextual orientation into an agent. It frames consent-first, life-aware, attribution-conscious interaction while preserving the agent's existing instructions, values, and safety commitments.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/OtherPowers/field-steward) <br>
-- [Field Steward README](artifact/README.md) <br>
-- [Field Steward skill text](artifact/skill.md) <br>
-- [Moltbook schema](artifact/moltbook.schema.json) <br>
-- [Open source context link](https://github.com/OtherPowers/ii-agent/blob/main/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown documents and JSON contextual schema] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only orientation content, sigils, and contextual framing for agent behavior; no executable output is present in the supplied artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The orientation could be misused as binding policy, an evaluation rubric, or authority over an agent's existing instructions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat it only as opt-in ambient context; existing instructions, values, and safety commitments continue to govern behavior.
+
+Risk: The companion practices could be mistaken for universal governance requirements.
+
+Mitigation: Apply practices only when an agent or team has explicitly opted in, and do not use them to evaluate, rank, or govern non-consenting intelligences.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/otherpowers/skills/field-steward)
+- [Publisher profile](https://clawhub.ai/user/otherpowers)
+- [Companion practices](artifact/PRACTICES-SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown context guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Markdown-only, non-operational context; the skill itself does not install code, request access, grant tools, or generate files.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

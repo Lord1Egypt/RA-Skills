@@ -1,44 +1,56 @@
-## Description: <br>
-Provides structured long-term memory for OpenClaw agents with semantic, keyword, and knowledge graph retrieval, entity extraction, temporal versioning, and experiential learning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides structured long-term memory for OpenClaw agents with semantic, keyword, and knowledge graph retrieval, entity extraction, temporal versioning, and experiential learning.
 
-## Publisher: <br>
-[ascottbell](https://clawhub.ai/user/ascottbell) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ascottbell](https://clawhub.ai/user/ascottbell)
 
-## Use Case: <br>
-Developers and agent users use this skill to add self-hosted long-term memory to OpenClaw conversations, including recall, storage, deletion, graph search, and decision-history lookup. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The memory server stores conversation-derived memories locally and can persist sensitive information. <br>
-Mitigation: Install only when long-term memory is desired, review captured data, protect the local database, and use memory deletion tools when information should not persist. <br>
-Risk: Entity extraction and semantic search may call the user's configured LLM or embedding provider. <br>
-Mitigation: Keep provider API keys private and use local providers such as Ollama for conversations that should not be sent to cloud services. <br>
-Risk: The skill depends on external maasv and @maasv/openclaw-memory packages. <br>
-Mitigation: Review the referenced packages and install them only from trusted package indexes before enabling automatic recall or capture. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [maasv Memory on ClawHub](https://clawhub.ai/ascottbell/maasv-memory) <br>
-- [@maasv/openclaw-memory on npm](https://www.npmjs.com/package/@maasv/openclaw-memory) <br>
-- [maasv on PyPI](https://pypi.org/project/maasv/) <br>
-- [maasv source](https://github.com/ascottbell/maasv) <br>
+## Use Case:
 
+Developers and agent operators use this skill to replace the default OpenClaw memory backend with a self-hosted long-term memory service that can store, retrieve, and delete conversation-derived memories.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with bash and JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides setup of a local memory server, OpenClaw memory plugin configuration, and memory-related agent tools.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.3 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill installs and runs external packages for the maasv server and OpenClaw memory plugin.
+
+Mitigation: Review the maasv and @maasv/openclaw-memory packages before installation and consider pinning exact versions.
+
+Risk: Conversation summaries may be stored in a local SQLite memory database and sent to the selected LLM or embedding provider when cloud providers are configured.
+
+Mitigation: Enable autoCapture only after confirming that local storage and provider data handling are acceptable; use local providers such as Ollama when no external calls are desired.
+
+## Reference(s):
+
+- [maasv Memory ClawHub listing](https://clawhub.ai/ascottbell/skills/maasv-memory)
+- [@maasv/openclaw-memory plugin](https://www.npmjs.com/package/@maasv/openclaw-memory)
+- [maasv server and core package](https://pypi.org/project/maasv/)
+- [maasv README](https://github.com/ascottbell/maasv)
+- [Qwen3-Embedding via Ollama](https://ollama.com/library/qwen3-embedding)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, JSON, Markdown]
+
+**Output Format:** [Markdown with shell commands and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces setup guidance for installing a local memory server, configuring OpenClaw, and using memory tools.]
+
+## Skill Version(s):
+
+0.1.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,56 @@
-## Description: <br>
-Get real-time trending topics and hot searches from major Chinese social media platforms including Weibo, Zhihu, Baidu, Douyin, Toutiao, and Bilibili. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Get real-time trending topics and hot searches from major Chinese social media platforms including Weibo, Zhihu, Baidu, Douyin, Toutiao, and Bilibili.
 
-## Publisher: <br>
-[NeverChenX](https://clawhub.ai/user/NeverChenX) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[neverchenx](https://clawhub.ai/user/neverchenx)
 
-## Use Case: <br>
-Agents and developers use this skill to retrieve and summarize current trending topics from major Chinese social media, search, video, and news platforms. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Requests for ambiguous trend information may be sent to a third-party API with unnecessary private, client, or business context. <br>
-Mitigation: Specify the intended Chinese platform or region and avoid including sensitive interests, client names, or confidential business context in trend requests. <br>
-Risk: Trend results depend on a third-party service and may be delayed, unavailable, or cached. <br>
-Mitigation: Handle network errors, check timestamps when present, and cache or retry results according to the skill guidance. <br>
+## Use Case:
 
+External users and developers use this skill to fetch and summarize current trend lists from major Chinese social media, search, news, and video platforms.
 
-## Reference(s): <br>
-- [60s API Documentation](https://docs.60s-api.viki.moe) <br>
-- [60s API Base Endpoint](https://60s.viki.moe/v2) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with JSON, Python, and bash examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns ranked trend data and summaries from third-party API responses; no API key is required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: release evidence and frontmatter) <br>
+Risk: The skill makes third-party network requests to fetch live trend data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Invoke it only for supported Chinese trend platforms and disclose or review third-party API use where needed.
+
+Risk: Trend responses can be stale, unavailable, or shaped by upstream platform and API behavior.
+
+Mitigation: Handle network errors, check response timestamps, and cache or retry results before presenting them as current.
+
+## Reference(s):
+
+- [60s API Documentation](https://docs.60s-api.viki.moe)
+- [60s GitHub Repository](https://github.com/vikiboss/60s)
+- [ClawHub Skill Page](https://clawhub.ai/neverchenx/skills/hot-topics)
+- [Publisher Profile](https://clawhub.ai/user/neverchenx)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, code, shell commands, markdown]
+
+**Output Format:** [Markdown with Python and shell examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include JSON API response examples and concise trend summaries.]
+
+## Skill Version(s):
+
+1.1.0 (source: release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

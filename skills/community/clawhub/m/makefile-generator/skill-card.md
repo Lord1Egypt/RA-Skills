@@ -1,43 +1,53 @@
-## Description: <br>
-Makefile Generator helps developers create a local Makefile with standard npm-oriented install, test, build, dev, and clean targets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Makefile content for common project automation tasks; release evidence claims Node.js, Python, and Go support, while the packaged script currently emits a basic Node/npm Makefile.
 
-## Publisher: <br>
-[Sunshine-del-ux](https://clawhub.ai/user/Sunshine-del-ux) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[sunshine-del-ux](https://clawhub.ai/user/sunshine-del-ux)
 
-## Use Case: <br>
-Developers and engineers use this skill to generate a simple project Makefile that standardizes common local commands for development, testing, building, and cleanup. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Running the generator can overwrite an existing Makefile in the current project. <br>
-Mitigation: Check for an existing Makefile and back it up, or run the generator in a scratch directory before copying the result into a project. <br>
-Risk: Generated clean targets may remove local dependency and build directories. <br>
-Mitigation: Review generated targets before running them, especially clean, and adjust paths for the project. <br>
-Risk: The release describes multi-language support, but the packaged script is Node/npm-oriented. <br>
-Mitigation: Treat the generated Makefile as a Node/npm starting point unless the artifact is updated and reviewed for other ecosystems. <br>
+## Use Case:
 
+Developers and engineers can use this skill to create a simple project Makefile that standardizes install, test, build, development, and clean commands.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Sunshine-del-ux/makefile-generator) <br>
-- [Publisher profile](https://clawhub.ai/user/Sunshine-del-ux) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with shell commands and generated Makefile code] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local Makefile content; this release is Node/npm-oriented despite broader language claims.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: The packaged script can overwrite an existing Makefile in the current directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in a version-controlled project or empty test directory, and back up any existing Makefile before running.
+
+Risk: Release documentation claims Python, Go, package-manager, custom-target, and deployment behavior that the packaged script does not implement.
+
+Mitigation: Treat generated output as a basic Node/npm Makefile and review or edit it before using it in a project.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sunshine-del-ux/skills/makefile-generator)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Files, Shell commands, Configuration]
+
+**Output Format:** [Makefile text written to a project Makefile, with shell command guidance in documentation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Packaged script writes a basic npm-focused Makefile and overwrites any existing Makefile in the current directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact/_meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

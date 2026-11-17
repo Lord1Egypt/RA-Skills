@@ -1,44 +1,62 @@
-## Description: <br>
-中文用户快速安装配置国产AI模型并测试OpenClaw全流程指导，包括环境检查、模型配置、连接测试及扩展技能安装。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides Chinese OpenClaw users through installation, domestic AI provider configuration, connection testing, and follow-up troubleshooting.
 
-## Publisher: <br>
-[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk)
 
-## Use Case: <br>
-Developers and Chinese-speaking OpenClaw users use this skill to install OpenClaw, configure domestic AI providers such as DeepSeek, Zhipu, and Qwen, and verify the local setup. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The guide includes an installer command that pipes a remote script to a shell. <br>
-Mitigation: Confirm the OpenClaw installer or npm package is official and review the installer before executing it. <br>
-Risk: The guide includes API-key configuration steps that could expose credentials if keys are reused or shown in shared terminals. <br>
-Mitigation: Use dedicated API keys with spending limits, avoid exposing keys in screenshots or shared terminals, and rotate any key that may have been leaked. <br>
+## Use Case:
 
+Chinese users, developers, and operators use this skill to set up OpenClaw, configure DeepSeek, Zhipu, or Qwen API keys, verify connectivity, and identify common setup issues.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/yang1002378395-cmyk/openclaw-quickstart-cn) <br>
-- [OpenClaw Chinese skills homepage](https://github.com/openclaw-cn/skills) <br>
-- [DeepSeek platform](https://platform.deepseek.com/) <br>
-- [Zhipu BigModel platform](https://open.bigmodel.cn/) <br>
-- [Alibaba Cloud DashScope console](https://dashscope.console.aliyun.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes installation commands, provider API key configuration commands, connection checks, troubleshooting steps, and pricing comparison guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The quickstart asks users to run internet-delivered installer code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only from a trusted OpenClaw distribution source and prefer a pinned, versioned package or a download-and-verify flow before execution.
+
+Risk: The quickstart includes an unpinned global package install.
+
+Mitigation: Prefer a pinned OpenClaw package version and review package provenance before installing globally.
+
+Risk: Provider API keys may be exposed during setup.
+
+Mitigation: Treat API keys as secrets, avoid shared terminals, keep configuration files out of version control, and rotate any exposed key.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/yang1002378395-cmyk/skills/openclaw-quickstart-cn)
+- [OpenClaw installer endpoint](https://get.openclaw.ai)
+- [OpenClaw skills homepage](https://github.com/openclaw-cn/skills)
+- [DeepSeek platform](https://platform.deepseek.com/)
+- [Zhipu AI platform](https://open.bigmodel.cn/)
+- [DashScope console](https://dashscope.console.aliyun.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with bash command blocks, tables, and short troubleshooting guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes provider API key configuration examples; users must substitute their own secrets.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

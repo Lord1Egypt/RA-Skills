@@ -1,44 +1,60 @@
-## Description: <br>
-Converts user-provided text into spoken MP3 audio through a hosted text-to-speech API with provider, voice, emotion, rate, and pitch options. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill helps agents convert text into MP3 speech audio through the hosted tts.102465.xyz API with selectable providers, voices, emotions, speech rate, and pitch.
 
-## Publisher: <br>
-[fengwm64](https://clawhub.ai/user/fengwm64) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fengwm64](https://clawhub.ai/user/fengwm64)
 
-## Use Case: <br>
-Developers and agents use this skill to generate narration, voiceovers, read-aloud audio, or browser-playable TTS links from supplied text while selecting providers, voices, and speech tuning parameters. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Text supplied for speech synthesis is sent to an external TTS service. <br>
-Mitigation: Do not submit secrets, private documents, regulated data, or sensitive personal content unless the external service is trusted for that data. <br>
-Risk: Generated MP3 files may remain on disk after use. <br>
-Mitigation: Store generated audio only in intended output locations and delete files that should not persist. <br>
+## Use Case:
 
+Developers and agent users use this skill to turn supplied text into spoken MP3 audio for narration, read-aloud workflows, and voiceover drafts. The skill guides provider, voice, style, rate, and pitch selection before calling the hosted TTS API.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fengwm64/tts-api) <br>
-- [Publisher profile](https://clawhub.ai/user/fengwm64) <br>
-- [TTS API base URL](https://tts.102465.xyz) <br>
-- [TTS endpoint](https://tts.102465.xyz/api/tts) <br>
-- [Azure voices endpoint](https://tts.102465.xyz/api/voices?provider=azure) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, API Calls, Files] <br>
-**Output Format:** [Markdown guidance with curl examples, generated MP3 files, and optional browser-playable URLs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated audio is MP3; GET requests require URL-encoded text and parameters.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Text submitted for synthesis is transmitted to the third-party service tts.102465.xyz.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not send passwords, API keys, confidential scripts, private business data, regulated personal data, or other sensitive content.
+
+Risk: GET requests can expose synthesized text in URLs, browser history, server logs, or shared links.
+
+Mitigation: Prefer POST requests for generated audio, especially for longer or less public text.
+
+Risk: Generated MP3 files can retain sensitive spoken content after the task is complete.
+
+Mitigation: Delete generated MP3 files when they are no longer needed.
+
+## Reference(s):
+
+- [ClawHub TTS Skill](https://clawhub.ai/fengwm64/skills/tts-api)
+- [Hosted TTS API](https://tts.102465.xyz)
+- [Generate Speech Endpoint](https://tts.102465.xyz/api/tts)
+- [Azure Voices Endpoint](https://tts.102465.xyz/api/voices?provider=azure)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with curl examples and MP3 audio output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce MP3 files from text sent to a third-party hosted TTS service.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

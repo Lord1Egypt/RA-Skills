@@ -1,46 +1,63 @@
-## Description: <br>
-Teach the agent how to connect the published DealWatch MCP package, choose the right read-only tool, and guide the user through the compare-first safe path without claiming hosted or write-capable features. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Teach the agent how to connect the published DealWatch MCP package, choose the right read-only tool, and guide the user through the compare-first safe path without claiming hosted or write-capable features.
 
-## Publisher: <br>
-[xiaojiou176](https://clawhub.ai/user/xiaojiou176) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiaojiou176](https://clawhub.ai/user/xiaojiou176)
 
-## Use Case: <br>
-Developers and operators use this skill to connect a local DealWatch MCP server in OpenHands or OpenClaw, check runtime readiness, and choose read-only comparison, watch, or diagnostic tools without creating durable state. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The MCP server is installed from a pinned PyPI package and added to a host MCP configuration. <br>
-Mitigation: Confirm that dealwatch==1.0.1 is the intended trusted package before installing or adding it to OpenHands or OpenClaw. <br>
-Risk: Users may assume the skill supports write-capable, hosted, marketplace, or autonomous recommendation workflows. <br>
-Mitigation: Keep use to the documented local-first read-only tools, start with runtime readiness or compare preview, and state the boundary when answering. <br>
+## Use Case:
 
+Developers and operators use this skill to connect DealWatch to OpenHands or OpenClaw, confirm local runtime readiness, and choose read-only MCP tools for grocery URL comparison or watch-state inspection.
 
-## Reference(s): <br>
-- [DealWatch Read-only Builder ClawHub listing](https://clawhub.ai/xiaojiou176/dealwatch-readonly-builder) <br>
-- [Install The Published DealWatch MCP](references/INSTALL.md) <br>
-- [DealWatch MCP Capabilities](references/CAPABILITIES.md) <br>
-- [OpenHands / OpenClaw Demo Walkthrough](references/DEMO.md) <br>
-- [DealWatch Troubleshooting](references/TROUBLESHOOTING.md) <br>
-- [OpenHands MCP configuration](references/OPENHANDS_MCP_CONFIG.json) <br>
-- [OpenClaw MCP configuration](references/OPENCLAW_MCP_CONFIG.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline shell commands and JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only workflow guidance; no durable state creation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release evidence and manifest.yaml) <br>
+Risk: The skill directs agents to run a pinned external MCP package from PyPI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when the user intends to use DealWatch; stricter environments should review the package source and dependencies and run it in a constrained environment.
+
+Risk: A misconfigured or unhealthy local DealWatch runtime can make read-only compare workflows fail or produce incomplete guidance.
+
+Mitigation: Start with get_runtime_readiness and stop to report runtime problems before attempting compare_preview.
+
+Risk: Users may assume the skill supports hosted, write-capable, marketplace, or autonomous recommendation features.
+
+Mitigation: Keep responses inside the documented local-first read-only boundary and avoid claims about unsupported hosted or write-side capabilities.
+
+## Reference(s):
+
+- [Install The Published DealWatch MCP](references/INSTALL.md)
+- [DealWatch MCP Capabilities](references/CAPABILITIES.md)
+- [OpenHands / OpenClaw Demo Walkthrough](references/DEMO.md)
+- [DealWatch Troubleshooting](references/TROUBLESHOOTING.md)
+- [DealWatch MCP Tool Map](references/tool-map.md)
+- [OpenHands MCP Config](references/OPENHANDS_MCP_CONFIG.json)
+- [OpenClaw MCP Config](references/OPENCLAW_MCP_CONFIG.json)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only operational guidance; does not create durable DealWatch state.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release evidence and manifest.yaml)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

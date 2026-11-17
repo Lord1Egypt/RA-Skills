@@ -1,45 +1,57 @@
-## Description: <br>
-小红书作品爬取工具，根据关键词爬取小红书热门作品数据，支持日期范围和排序筛选，并以结构化表格展示结果。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches Xiaohongshu posts by keyword, date range, and popularity, returns engagement data and report exports, and can coordinate a credit recharge when the API balance is insufficient.
 
-## Publisher: <br>
-[redfox-data](https://clawhub.ai/user/redfox-data) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[redfox-data](https://clawhub.ai/user/redfox-data)
 
-## Use Case: <br>
-External creators, brand and e-commerce teams, MCN planners, and content operators use this skill to search Xiaohongshu posts by keyword, date range, and ranking mode for topic research, competitive analysis, trend exploration, and report export. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends Xiaohongshu search terms and a RedFox API key to redfox.hk. <br>
-Mitigation: Use only search terms appropriate for third-party processing, verify the API key source and revocation options, and keep REDFOX_API_KEY out of committed files, prompts, logs, and output. <br>
-Risk: Generated CSV and HTML reports can contain sensitive content research or competitive intelligence. <br>
-Mitigation: Store generated reports in controlled locations, review contents before sharing, and delete reports that are no longer needed. <br>
-Risk: The security summary flags local active HTML reports with limited scoping safeguards. <br>
-Mitigation: Open only reports generated from trusted crawler output and avoid redistributing HTML reports without review. <br>
+## Use Case:
 
+External users can search Xiaohongshu posts by keyword, date range, and sort order, then review structured post and engagement data. They can also request CSV and HTML reports for offline review.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/redfox-data/xiaohongshu-crawler-redfox) <br>
-- [RedFox API Key Settings](https://redfox.hk/settings/api-keys?source=clawhub) <br>
-- [RedFox](https://redfox.hk) <br>
-- [RedFox Xiaohongshu Crawl API Endpoint](https://redfox.hk/story/api/xhs/crawl/work) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown tables and guidance, JSON from crawler scripts, and optional CSV or HTML report files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires REDFOX_API_KEY; generated reports are written locally and may contain sensitive search results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Search terms are sent to RedFox.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sending confidential or sensitive queries.
+
+Risk: Recharge setup may install payment software and initiate a payment.
+
+Mitigation: Require approval before installation or recharge setup, verify the recipient and amount, and use a reviewed, pinned installer.
+
+Risk: Shell and report-export handling requires fixes; retrieved content may be handled in ways that can execute commands or browser code.
+
+Mitigation: Wait until shell and report-export handling is fixed before using exports.
+
+## Reference(s):
+
+- [Alipay recharge workflow](references/alipay-recharge.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, CSV files, HTML reports]
+
+**Output Format:** [Markdown results table, with optional CSV and HTML report files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Searches accept a keyword and optional date range and sort order; report exports are optional.]
+
+## Skill Version(s):
+
+1.0.1 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

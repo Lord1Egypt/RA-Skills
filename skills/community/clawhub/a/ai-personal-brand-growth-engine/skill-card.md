@@ -1,41 +1,60 @@
-## Description: <br>
-Data-driven AI strategist for formula-based audience growth and revenue conversion on X and LinkedIn through tracked content workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A file-backed agent workflow for generating, logging, and analyzing X and LinkedIn personal-brand content using audience context, brand voice, viral formulas, and performance feedback.
 
-## Publisher: <br>
-[DTTNpole-commits](https://clawhub.ai/user/DTTNpole-commits) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dttnpole-commits](https://clawhub.ai/user/dttnpole-commits)
 
-## Use Case: <br>
-Creators, consultants, founders, and service providers use this skill to plan, draft, track, and analyze X and LinkedIn content so that post performance can inform future content generation and offer promotion. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can persist audience details, brand positioning, offers, drafts, and performance history in local content files. <br>
-Mitigation: Avoid storing sensitive business details unless local persistence is acceptable, and review proposed file changes before accepting them. <br>
-Risk: Generated social posts and growth reports may be off-brand, inaccurate, or unsuitable for publication without review. <br>
-Mitigation: Use explicit prompts, review drafts and analysis before publishing, and verify any claims or metrics added to content records. <br>
+## Use Case:
 
+Creators, founders, and marketing operators use this skill to plan balanced batches of posts, record drafts and publishing status, feed performance data back into local logs, and turn winning patterns into reusable content formulas.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/DTTNpole-commits/ai-personal-brand-growth-engine) <br>
-- [Publisher profile](https://clawhub.ai/user/DTTNpole-commits) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown content drafts, structured growth reports, local post records, and optional shell command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Maintains local content logs and performance history when used in a file-system-aware agent environment.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill reads and writes local brand, audience, draft post, and performance-tracking files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only in a workspace where that information is appropriate for agent access, and review draft records and memory updates before relying on them.
+
+Risk: Optional helper scripts inspect and initialize content-tracking files relative to the current working directory.
+
+Mitigation: Review the scripts and run them only from the intended project directory.
+
+Risk: Generated social content and growth analysis may affect public brand perception or conversion claims.
+
+Mitigation: Review posts, metrics interpretations, and formula promotions before publishing or reusing them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dttnpole-commits/skills/ai-personal-brand-growth-engine)
+- [README.md](README.md)
+- [Post record template](assets/POST_TEMPLATE.md)
+- [Viral formulas library](assets/VIRAL_FORMULAS.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown drafts, markdown content records, growth reports, and shell command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses local workspace files for brand context, content logs, feedback tracking, and optional script-generated reminders.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

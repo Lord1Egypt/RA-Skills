@@ -1,46 +1,53 @@
-## Description: <br>
-Keep your constraints healthy with lifecycle management and automatic staleness detection. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Keep your constraints healthy -- lifecycle management with automatic staleness detection.
 
-## Publisher: <br>
-[leegitw](https://clawhub.ai/user/leegitw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leegitw](https://clawhub.ai/user/leegitw)
 
-## Use Case: <br>
-Developers and agent operators use this skill to maintain constraint governance state, run periodic reviews, generate indexes, verify generated constraint artifacts, and manage schema migrations in an agent workspace. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Governance checks can update reports and workspace state during periodic maintenance or HEARTBEAT runs. <br>
-Mitigation: Use the skill in trusted workspaces and review changes under output/governance/, output/constraints/, and agentic/INDEX.md before relying on them. <br>
-Risk: The documented review cadence is advisory and does not itself enforce compliance decisions. <br>
-Mitigation: Treat review output as decision support and require human approval before renewing, retiring, or migrating constraints. <br>
-Risk: Full governance behavior depends on constraint-engine and failure-memory data being present and intended for the workspace. <br>
-Mitigation: Install the documented governance stack and confirm .openclaw/governance.yaml or .claude/governance.yaml points to the expected workspace paths. <br>
+## Use Case:
 
+Developers and agent operators use this skill to manage constraint governance state, periodic reviews, index generation, round-trip verification, and schema migration within an agent workspace.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/leegitw/agentic-governance) <br>
-- [Publisher profile](https://clawhub.ai/user/leegitw) <br>
-- [Packaged skill definition](artifact/SKILL.md) <br>
-- [OpenClaw governance configuration](.openclaw/governance.yaml) <br>
-- [Claude governance configuration](.claude/governance.yaml) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown and structured workspace files for governance state, reviews, alerts, indexes, and verification results.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes expected workspace outputs under output/governance/, output/constraints/, and agentic/INDEX.md when invoked.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.1 (source: server release evidence) <br>
+Risk: Optional dependency install commands reference unpinned third-party packages.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the publisher and package contents before installation, and prefer pinned or internally reviewed versions for managed environments.
+
+Risk: The skill reads and writes governance-related workspace files and generated indexes.
+
+Mitigation: Review the configured workspace paths and generated changes before relying on governance status, indexes, or review records.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/leegitw/skills/agentic-governance)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and JSON reports with inline shell commands and configuration paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes governance state, review records, alerts, constraint metadata, and skill indexes to workspace paths.]
+
+## Skill Version(s):
+
+1.3.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

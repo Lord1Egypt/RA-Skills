@@ -1,41 +1,61 @@
-## Description: <br>
-Autonomous agent wallet management with MoonPay auto top-up, x402 payments, and OpenWallet Standard. Agents never run out of gas. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Autonomous agent wallet management with MoonPay auto top-up, x402 payments, and OpenWallet Standard. Agents never run out of gas.
 
-## Publisher: <br>
-[Zedit42](https://clawhub.ai/user/Zedit42) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zedit42](https://clawhub.ai/user/zedit42)
 
-## Use Case: <br>
-Developers and agent operators use Agent Fuel to monitor agent wallet balances, prepare MoonPay top-ups, and handle x402 payment flows with configurable spending limits. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Automatic wallet top-ups and x402 payments can spend real funds beyond the operator's intent if defaults are trusted or limits are misconfigured. <br>
-Mitigation: Use a dedicated low-limit wallet and funding source, disable daemon and x402 auto-pay by default, and require manual confirmation for buys and sends. <br>
-Risk: The security review reports unsafe shell execution patterns and weak scoping for payment actions. <br>
-Mitigation: Review commands before execution, validate recipients and 402 responses with allowlists, add cooldowns, and add a kill switch before deployment. <br>
+## Use Case:
 
+External developers and agent operators use this skill to monitor wallet balances, trigger MoonPay top-ups, and handle x402 payments while applying spending limits.
 
-## Reference(s): <br>
-- [Agent Fuel release page](https://clawhub.ai/Zedit42/agent-fuel) <br>
-- [x402 facilitator](https://x402.org/facilitator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May execute or recommend MoonPay CLI wallet actions when installed and configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: Automatic wallet top-ups and x402 payments can spend real funds if limits or approval controls are too broad.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated wallet with limited funds, disable autonomous top-up and x402 auto-pay until allowlists are configured, and require human approval above low thresholds.
+
+Risk: Shell-based notification configuration can execute unintended commands.
+
+Mitigation: Avoid the notifyCmd execution path unless it is fixed, reviewed, and restricted to a trusted command.
+
+Risk: Dependency or CLI behavior changes can alter payment behavior.
+
+Mitigation: Pin the MoonPay CLI version, review upgrades, and run the skill from a restricted account with scoped config, log, and state files.
+
+## Reference(s):
+
+- [Agent Fuel ClawHub Listing](https://clawhub.ai/zedit42/skills/agent-fuel)
+- [MoonPay CLI](https://agents.moonpay.com)
+- [x402 Protocol](https://x402.org)
+- [OpenWallet Standard](https://github.com/nickatmpb/open-wallet-standard)
+- [OpenClaw](https://openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands, JSON configuration, and code-oriented guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces wallet automation instructions and command examples; execution should remain subject to human-approved spending limits.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

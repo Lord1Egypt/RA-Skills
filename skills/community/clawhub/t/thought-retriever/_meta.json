@@ -1,6 +1,21 @@
 {
-  "ownerId": "kn79x001nn7jyyr96286zgg7e18338jr",
+  "name": "Thought-Retriever",
   "slug": "thought-retriever",
   "version": "1.0.0",
-  "publishedAt": 1777710999063
+  "description": "记忆进化的五步循环引擎。基于 arXiv:2604.12231 论文思想，每次对话后自动将LLM回答提炼成可积累、可复用的知识晶体，驱动AI记忆系统的自我进化。",
+  "tags": ["memory", "ontology", "evolution", "self-improving", "openclw"],
+  "author": "as1113435",
+  "license": "MIT-0",
+  "scripts": {
+    "thought_retriever.py": "python skills/thought-retriever/thought_retriever.py --query \"$QUERY\" --answer \"$ANSWER\""
+  },
+  "requirements": {
+    "python": ">=3.8",
+    "packages": ["requests"],
+    "apis": ["百炼 / SiliconFlow（用于LLM调用）"]
+  },
+  "dependencies": {
+    "ontology": "知识图谱存储基础设施",
+    "self-improving": "反馈记录日志"
+  }
 }

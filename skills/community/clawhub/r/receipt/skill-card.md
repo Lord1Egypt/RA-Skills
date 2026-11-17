@@ -1,38 +1,59 @@
-## Description: <br>
-Scan, categorize, and total receipts for expenses. Use when recording purchases, categorizing spending, balancing monthly totals, forecasting budgets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Receipt helps agents record, search, summarize, and export local receipt and expense notes for a manual expense journal.
 
-## Publisher: <br>
-[ckchzh](https://clawhub.ai/user/ckchzh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ckchzh](https://clawhub.ai/user/ckchzh)
 
-## Use Case: <br>
-Employees, external users, and developers can use this skill to record receipt and expense notes, categorize spending, review local history, search entries, and export local finance logs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Receipt, budget, balance, and tax notes are stored as plain-text files on the local machine. <br>
-Mitigation: Avoid entering account credentials or highly sensitive identifiers, and review or delete logs and exported files before sharing or syncing the data directory. <br>
+## Use Case:
 
+Developers and external users can use this skill to create shell-command based workflows for manually logging receipt and expense notes, viewing recent entries, searching logs, and exporting local files for review.
 
-## Reference(s): <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Files, Configuration] <br>
-**Output Format:** [Plain text command output with local log and export files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes receipt, budget, balance, history, and export data under ~/.local/share/receipt.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release metadata) <br>
+Risk: Security review flagged suspicious behavior because the skill overstates finance-analysis capabilities.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only as a manual local expense journal; verify totals, forecasts, tax notes, and any financial conclusions independently.
+
+Risk: Receipt notes and exports may contain sensitive purchase, tax, or account details stored in plaintext.
+
+Mitigation: Avoid entering sensitive details unless local file permissions and sharing controls are acceptable; protect or remove export files before sharing.
+
+Risk: The skill is not supported by evidence as a receipt scanner or OCR tool.
+
+Mitigation: Enter receipt information manually and do not rely on the skill to extract or validate receipt contents.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ckchzh/skills/receipt)
+- [Publisher profile](https://clawhub.ai/user/ckchzh)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Files, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and plain-text command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands can write plaintext logs and export files under ~/.local/share/receipt.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release metadata; artifact frontmatter and script report 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

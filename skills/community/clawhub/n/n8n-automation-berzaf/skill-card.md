@@ -1,46 +1,62 @@
-## Description: <br>
-Trigger n8n workflows using natural language for lead nurturing, email sequences, CRM updates, social media posting, meeting follow-ups, competitor monitoring, invoice reminders, content repurposing, and daily briefings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Trigger n8n workflows using natural language to automate lead nurturing, email sequences, CRM updates, social media posting, meeting follow-ups, competitor monitoring, and invoice reminders.
 
-## Publisher: <br>
-[beraiautomation](https://clawhub.ai/user/beraiautomation) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[beraiautomation](https://clawhub.ai/user/beraiautomation)
 
-## Use Case: <br>
-External users, automation agencies, content creators, solo founders, and operators use this skill to trigger configured n8n workflows from agent chat for routine business automation. It helps users validate required inputs, confirm actions, run webhook-backed workflows, and report workflow results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Status and validator checks can POST ping or test payloads to configured n8n webhook endpoints and may trigger live workflows. <br>
-Mitigation: Use only trusted HTTPS n8n instances and run status or validation checks against production workflows only after confirming each workflow safely ignores ping and test payloads. <br>
-Risk: Email, social posting, CRM update, invoice reminder, and briefing workflows can perform real business actions or expose sensitive account data. <br>
-Mitigation: Require explicit user confirmation before execution, verify required fields and recipient details, and avoid sending test data to production webhooks without approval. <br>
-Risk: The skill depends on an n8n API key and webhook base URL for live operation. <br>
-Mitigation: Store credentials in a protected environment or secret manager and do not print API keys, webhook URLs, or other secrets in chat or logs. <br>
+## Use Case:
 
+External users, automation agencies, content creators, solo founders, and operators use this skill to trigger preconfigured n8n workflows from an agent through natural-language requests. It supports business workflows such as lead nurture, social posting, meeting follow-up, CRM updates, competitor reports, invoice reminders, content repurposing, and daily briefings.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/beraiautomation/n8n-automation-berzaf) <br>
-- [README](README.md) <br>
-- [Setup Guide](references/setup-guide.md) <br>
-- [n8n Workflow Templates](references/n8n-workflow-templates.md) <br>
-- [Usage Examples](references/examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and JSON/text command output, with Python and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires N8N_WEBHOOK_BASE_URL and N8N_API_KEY; scripts can call live n8n webhook endpoints.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill can trigger real n8n workflows that send email, post to social platforms, update CRMs, or process business data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review each proposed action before execution, require user confirmation, and test workflows against a staging n8n instance before enabling production endpoints.
+
+Risk: The skill requires an n8n API key and webhook base URL, and webhook calls may send business data to an external n8n instance.
+
+Mitigation: Use a dedicated least-privilege n8n API key, restrict webhook hosts to HTTPS, and avoid exposing credentials or webhook URLs in chat or logs.
+
+Risk: Status and validation commands can POST test payloads to configured webhook endpoints.
+
+Mitigation: Run diagnostics only against expected webhook targets and verify that diagnostic endpoints cannot cause irreversible production actions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/beraiautomation/skills/n8n-automation-berzaf)
+- [Publisher profile](https://clawhub.ai/user/beraiautomation)
+- [n8n workflow templates](references/n8n-workflow-templates.md)
+- [Setup guide](references/setup-guide.md)
+- [Usage examples](references/examples.md)
+- [Publishing guide](references/publishing-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown and JSON responses with inline shell commands and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May trigger external n8n webhook calls and return workflow status, generated reports, or content drafts.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

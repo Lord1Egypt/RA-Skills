@@ -1,42 +1,61 @@
-## Description: <br>
-Self-sovereign EVM wallet for AI agents that can create a crypto wallet, check balances, send ETH or ERC20 tokens, swap tokens, and interact with smart contracts across Base, Ethereum, Polygon, Arbitrum, and Optimism while storing private keys locally. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Self-sovereign EVM wallet for AI agents that can create wallets, check balances, send ETH or ERC20 tokens, swap tokens, and interact with smart contracts across Base, Ethereum, Polygon, Arbitrum, and Optimism while storing private keys locally with no cloud custody or API keys required.
 
-## Publisher: <br>
-[surfer77](https://clawhub.ai/user/surfer77) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[surfer77](https://clawhub.ai/user/surfer77)
 
-## Use Case: <br>
-External users and developers use this skill to let an agent create and operate a local self-custodied EVM wallet, inspect balances, send ETH or ERC20 tokens, swap tokens, and interact with smart contracts. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill installs live unpinned code that can control real funds. <br>
-Mitigation: Review or pin the GitHub code before installing and use a dedicated low-balance wallet. <br>
-Risk: The local wallet private key can be exposed if ~/.evm-wallet.json is shared or accessed by the wrong party. <br>
-Mitigation: Protect ~/.evm-wallet.json, never share its contents, and restrict direct access to the server where it is stored. <br>
-Risk: Transfers, swaps, and contract writes can spend funds or perform irreversible onchain actions. <br>
-Mitigation: Manually verify every recipient, chain, token, amount, gas estimate, swap quote, and contract write before allowing execution. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/surfer77/evm-wallet) <br>
-- [Project homepage](https://github.com/surfer77/evm-wallet-skill) <br>
+## Use Case:
 
+External users and developers use this skill to let an agent create and operate a self-custodied EVM wallet: checking balances, sending ETH or ERC20 tokens, swapping assets, and interacting with smart contracts after confirmation.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON command results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires node and git; wallet state is stored locally at ~/.evm-wallet.json.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can install unpinned remote code before performing high-impact wallet actions.
+
+Mitigation: Use only a reviewed, pinned implementation or a bundled artifact, and verify locked dependencies before installation.
+
+Risk: A token-address error could cause incorrect token handling or misleading transaction guidance.
+
+Mitigation: Verify token addresses against authoritative chain sources before funding wallets, transferring tokens, or approving swaps.
+
+Risk: The wallet private key is stored locally and can be used to move funds if exposed.
+
+Mitigation: Protect ~/.evm-wallet.json as a real private key, keep file access restricted, and avoid funding the wallet with meaningful value until the implementation has been reviewed.
+
+Risk: Transfers, swaps, approvals, and contract writes can move funds or grant spending permissions.
+
+Mitigation: Require clear per-transaction user confirmation that includes recipient, token, amount, chain, gas estimate, and contract action before signing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/surfer77/skills/evm-wallet)
+- [Project homepage](https://github.com/surfer77/evm-wallet-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON command outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires node and git; wallet command results are requested with --json for agent parsing.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,9 @@
+# Python
+__pycache__/
+*.pyc
+.DS_Store
+
+# Distribution artifacts
+*.skill
+dist/
+build/

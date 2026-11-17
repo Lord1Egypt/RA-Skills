@@ -1,44 +1,53 @@
-## Description: <br>
-AnyGen: Download artifacts from a completed task. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AnyGen: Download artifacts from a completed task.
 
-## Publisher: <br>
-[supertilico2001](https://clawhub.ai/user/supertilico2001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[supertilico2001](https://clawhub.ai/user/supertilico2001)
 
-## Use Case: <br>
-Developers and operators use this skill to guide agents in downloading files or thumbnails from completed AnyGen tasks with the AnyGen CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires an ANYGEN_API_KEY for AnyGen CLI access. <br>
-Mitigation: Use a key with only the access needed for artifact downloads and avoid exposing it in prompts, logs, or shared shell history. <br>
-Risk: The command writes downloaded task artifacts to a local output directory. <br>
-Mitigation: Confirm the destination directory before running downloads and inspect downloaded files before opening or sharing them. <br>
-Risk: The skill depends on the third-party @anygen/cli package. <br>
-Mitigation: Install the CLI from a trusted package source and confirm the package is acceptable for the environment before use. <br>
+## Use Case:
 
+Developers and agents use this skill to download files or thumbnails from completed AnyGen tasks, choosing all artifacts or named files and a local output directory.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/supertilico2001/anygen-task-download) <br>
-- [AnyGen shared skill](../anygen-shared/SKILL.md) <br>
-- [AnyGen workflow generate skill](../anygen-workflow-generate/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, text] <br>
-**Output Format:** [Markdown with bash and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides AnyGen CLI usage that returns JSON listing downloaded file paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The command writes downloaded task artifacts to disk, so an unintended output directory can place files where the user does not expect.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the output directory before running the command and review the returned JSON file paths after download.
+
+Risk: The skill depends on @anygen/cli and ANYGEN_API_KEY, so an unexpected CLI package or overly broad credential can increase supply-chain or credential exposure.
+
+Mitigation: Verify the CLI package publisher before installing, pin or lock the reviewed CLI version where possible, and use a narrowly scoped API key.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/supertilico2001/skills/anygen-task-download)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, text]
+
+**Output Format:** [Markdown guidance with bash commands and JSON output examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the anygen CLI and ANYGEN_API_KEY; the command writes downloaded artifacts to the selected local directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

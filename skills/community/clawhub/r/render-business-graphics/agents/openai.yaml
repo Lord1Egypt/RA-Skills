@@ -1,0 +1,4 @@
+interface:
+  display_name: "业务图形生成"
+  short_description: "按业务语义选择并生成组织、流程、进度等图形"
+  default_prompt: "使用 $render-business-graphics，根据我的业务内容选择图形和色系，查询线上契约，生成精简且合法的数据并渲染图片。"

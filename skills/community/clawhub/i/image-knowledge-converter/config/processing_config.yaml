@@ -1,0 +1,42 @@
+# 图片知识库处理配置
+# 处理模式配置
+
+# 分批处理阈值
+# 当图片数量超过此值时，启用分批处理模式
+batch_threshold: 5
+
+# 每批图片数量
+batch_size: 10
+
+# 处理模式
+# auto: 自动判断（根据阈值）
+# single: 单批处理（AI直接处理所有图片）
+# batch: 强制分批处理
+processing_mode: auto
+
+# 是否启用状态管理（断点续传）
+enable_state_management: true
+
+# 状态文件保存位置（V9.5 使用相对路径）
+state_file: "batch_state.json"
+
+# 是否自动归档
+auto_archive: true
+
+# 是否自动同步到ima
+auto_sync_ima: true
+
+# 是否自动更新启动提示词
+auto_update_prompt: true
+
+# 日志配置
+log_level: INFO
+log_file: "logs/processing.log"
+
+# Word 文档模板配置
+# 可选模板: default（默认）、minimalist（极简）、detailed（详细）
+# 用户自定义模板请使用: user_custom/<模板名>
+word_template: "default"
+
+# 是否在生成 Word 时使用模板系统
+enable_template_system: true

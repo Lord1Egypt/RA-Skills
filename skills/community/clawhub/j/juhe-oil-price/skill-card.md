@@ -1,42 +1,52 @@
-## Description: <br>
-Queries current China oil prices for 92, 95, and 98 octane gasoline and 0 diesel by province or city using the Juhe API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+通过聚合数据（juhe.cn）API 查询中国各省市 92 号、95 号、98 号汽油和 0 号柴油的当日价格。
 
-## Publisher: <br>
-[juhemcp](https://clawhub.ai/user/juhemcp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[juhemcp](https://clawhub.ai/user/juhemcp)
 
-## Use Case: <br>
-External users and developers use this skill to answer oil-price questions for China, either nationwide or filtered to a province or city, and present the latest returned prices in a table or JSON. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global (data coverage is China oil-price data). <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a Juhe API key for oil-price lookups, and documented configuration options include plaintext .env storage or passing the key on the command line. <br>
-Mitigation: Prefer the JUHE_OIL_KEY environment variable, avoid passing the key with --key, and do not commit scripts/.env. <br>
-Risk: The script queries an HTTP API URL, which may expose requests on networks that do not protect transport. <br>
-Mitigation: Consider changing the API URL to HTTPS if Juhe supports it. <br>
+## Use Case:
 
+External users and agents use this skill to query current mainland China oil prices by province or city for 92, 95, and 98 octane gasoline and 0 diesel. It can return nationwide results or filter by a city/province keyword, then present a table and JSON result.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/juhemcp/juhe-oil-price) <br>
-- [Juhe oil price API documentation](https://www.juhe.cn/docs/api/id/540) <br>
-- [Juhe data platform](https://www.juhe.cn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown guidance with shell commands and table or JSON query results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Juhe API key, normally supplied through the JUHE_OIL_KEY environment variable.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The security evidence says the skill sends the required Juhe API key over unencrypted HTTP.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer an HTTPS-capable API endpoint or version before using a real key; avoid command-line key arguments, keep scripts/.env private, and rotate any key already used through the documented HTTP endpoint.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/juhemcp/skills/juhe-oil-price)
+- [Juhe oil price API documentation](https://www.juhe.cn/docs/api/id/540)
+- [Juhe data platform](https://www.juhe.cn)
+- [Juhe oil price API endpoint](http://apis.juhe.cn/gnyj/query)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, code, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, tabular text output, and JSON API results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and a JUHE_OIL_KEY credential; supports optional city/province filtering.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,59 @@
-## Description: <br>
-Trades logical inconsistencies in geopolitical event clusters on Polymarket by detecting probability constraint violations and sizing correction trades by conviction. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Trades logical inconsistencies in geopolitical event clusters on Polymarket.
 
-## Publisher: <br>
-[diagnostikon](https://clawhub.ai/user/diagnostikon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[diagnostikon](https://clawhub.ai/user/diagnostikon)
 
-## Use Case: <br>
-Developers and trading agents use this skill to scan Polymarket geopolitical markets for logical probability inconsistencies and run paper or explicitly enabled live correction trades through Simmer. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Running with --live can place real USDC trades on Polymarket. <br>
-Mitigation: Use paper mode first, require explicit live execution, and keep conservative position limits. <br>
-Risk: SIMMER_API_KEY grants trading authority and is a high-value credential. <br>
-Mitigation: Protect the key, avoid exposing it in logs or shared environments, and rotate it if disclosure is suspected. <br>
-Risk: The skill depends on simmer-sdk for market access and trade execution. <br>
-Mitigation: Review or pin simmer-sdk when supply-chain assurance matters. <br>
-Risk: The advertised minimum-volume filter does not appear to be implemented in the code according to the security evidence. <br>
-Mitigation: Do not rely on SIMMER_MIN_VOLUME alone; review candidate markets and use conservative sizing before live trading. <br>
+## Use Case:
 
+External users and developers use this skill to have an agent discover geopolitical Polymarket clusters, check them for probability consistency issues, and submit paper or explicitly live trades through Simmer.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/diagnostikon/polymarket-24h-geopolitics-cluster-trader) <br>
-- [simmer-sdk on PyPI](https://pypi.org/project/simmer-sdk/) <br>
-- [simmer-sdk GitHub repository](https://github.com/SpartanLabsXyz/simmer-sdk) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, API calls] <br>
-**Output Format:** [Console text from Python execution, configuration tunables, and Simmer trading requests] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Defaults to paper trading; live Polymarket orders require --live and SIMMER_API_KEY.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.3 (source: server release metadata) <br>
+Risk: Live execution can place real-money Polymarket trades when enabled.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, keep paper and live runs in separate processes, and require explicit operator approval before using --live.
+
+Risk: SIMMER_API_KEY provides trading authority.
+
+Mitigation: Treat the key as a high-value credential and scope, rotate, and store it according to local secret-management policy.
+
+Risk: Advertised open-position and volume limits may not reliably bound real exposure.
+
+Mitigation: Do not rely on those limits unless the implementation is fixed or limits are enforced server-side.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/diagnostikon/skills/polymarket-24h-geopolitics-cluster-trader)
+- [simmer-sdk on PyPI](https://pypi.org/project/simmer-sdk/)
+- [simmer-sdk GitHub repository](https://github.com/SpartanLabsXyz/simmer-sdk)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, API calls, guidance]
+
+**Output Format:** [Text logs, shell command invocation, configuration values, and trading API requests]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Defaults to paper trading; live trading requires an explicit --live flag and SIMMER_API_KEY.]
+
+## Skill Version(s):
+
+0.0.3 (source: server release metadata; artifact frontmatter says 1.0.0 and clawhub.json says 0.0.2)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

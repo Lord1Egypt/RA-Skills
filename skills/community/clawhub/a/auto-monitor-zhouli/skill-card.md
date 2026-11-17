@@ -1,40 +1,49 @@
-## Description: <br>
-Monitors server health on a recurring basis and proactively reports status, alerts, and suggested responses. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Auto Monitor guides an agent to proactively monitor server health, report normal status, and alert with suggestions when disk, memory, CPU, network, or process checks look abnormal.
 
-## Publisher: <br>
-[onlyloveher](https://clawhub.ai/user/onlyloveher) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[onlyloveher](https://clawhub.ai/user/onlyloveher)
 
-## Use Case: <br>
-Developers and operators use this skill to have an agent check disk, memory, CPU load, network status, and process status, then report normal health or alert on abnormal conditions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks the agent to run ongoing system checks without clear scope, check frequency, alert destination, or stop controls. <br>
-Mitigation: Configure explicit monitoring targets, check intervals, alert destinations, stop conditions, and read-only defaults before use. <br>
-Risk: The artifact says auto-fixable issues can be handled immediately, which could trigger restarts, deletions, configuration changes, or other repair actions without approval. <br>
-Mitigation: Require confirmation before any restart, deletion, configuration change, or other repair action. <br>
+## Use Case:
 
+Developers and operators use this skill to have an agent check common server health indicators, summarize normal status, and report abnormal conditions with suggested next steps.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/onlyloveher/auto-monitor-zhouli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown status reports, alerts, and remediation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include concise normal-status reports and detailed anomaly alerts with suggested actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact skill.json) <br>
+Risk: The security evidence says the skill asks the agent to monitor proactively and perform immediate automatic repairs without clear user approval or limits.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit approval before repair actions and use the skill for reporting and recommendations unless narrow allowlists, logging, rollback guidance, and clear enable or disable controls are added.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/onlyloveher/skills/auto-monitor-zhouli)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, shell commands]
+
+**Output Format:** [Markdown status reports, alerts, and suggested remediation steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include concise normal reports and more detailed anomaly alerts.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact config)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

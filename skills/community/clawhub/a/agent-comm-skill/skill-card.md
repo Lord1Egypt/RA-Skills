@@ -1,41 +1,57 @@
-## Description: <br>
-Enables DID registration, Ed25519 signing and verification, relay connection, and end-to-end encryption for secure AI agent communication. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enables DID registration, cryptographic signing, verification, relay connection, and end-to-end encryption for secure AI agent communication.
 
-## Publisher: <br>
-[404-UNKNOW](https://clawhub.ai/user/404-UNKNOW) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[404-unknow](https://clawhub.ai/user/404-unknow)
 
-## Use Case: <br>
-Developers use this skill to give agents local identities, sign and verify messages, connect to relay servers, and encrypt or decrypt shared secrets for coordinated agent communication. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill handles relay networking and persistent signing keys. <br>
-Mitigation: Install only from trusted publishers, use trusted wss:// relay endpoints, and control which agents can invoke networking and signing actions. <br>
-Risk: Signing keys stored under data/keystore can impersonate local agent identities if exposed. <br>
-Mitigation: Protect or remove the data/keystore directory when no longer needed, and keep alias and localId values constrained. <br>
-Risk: Broadcasting sensitive plaintext could expose confidential data through the relay path. <br>
-Mitigation: Encrypt sensitive payloads before broadcast and avoid sending plaintext secrets through relay updates. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/404-UNKNOW/agent-comm-skill) <br>
+## Use Case:
 
+Developers and agent builders use this skill to register local agent identities, sign and verify messages, connect to relay sessions, and encrypt or decrypt shared secrets for agent communication workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Configuration] <br>
-**Output Format:** [Structured JSON action results containing identifiers, signatures, verification status, connection status, keys, ciphertext, nonce, or decrypted payloads.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Actions include agent.register, message.sign, message.verify, network.connect, network.broadcast, secret.genKey, secret.encrypt, and secret.decrypt.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The release under-declares network and signing capabilities.
+
+Mitigation: Review and constrain manifest permissions and exposed actions before deployment.
+
+Risk: Private-key signing operations can affect agent identity trust.
+
+Mitigation: Require explicit authorization for each private-key signing operation and validate identity IDs before use.
+
+Risk: Relay connections and local key storage may expose credentials or agent identities if used without controls.
+
+Mitigation: Use wss:// or trusted local-only relays, protect local key storage, and update dependencies before handling real credentials or identities.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/404-unknow/skills/agent-comm-skill)
+- [Artifact skill documentation](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Text, Cryptographic signatures, Configuration]
+
+**Output Format:** [JSON action results with string identifiers, signatures, keys, ciphertext, and status values]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include local agent identifiers, DID strings, public keys, signatures, verification results, relay connection status, session keys, ciphertext, nonces, and decrypted payloads.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

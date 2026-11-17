@@ -1,46 +1,59 @@
-## Description: <br>
-Reference guidance for using iFinD/同花顺 Excel plugin functions, indicator codes, parameter codes, and examples across stocks, Hong Kong equities, U.S. equities, bonds, funds, futures, and related financial instruments. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a Chinese-language reference for iFinD/同花顺 Excel plugin formulas, parameter codes, and financial indicator definitions across stocks, Hong Kong stocks, U.S. stocks, bonds, funds, futures, and related markets.
 
-## Publisher: <br>
-[laigen](https://clawhub.ai/user/laigen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[laigen](https://clawhub.ai/user/laigen)
 
-## Use Case: <br>
-Developers, analysts, and agents use this skill to generate or review Excel formulas and workbook structures that reference iFinD market and financial data indicators. It is most useful when creating spreadsheet outputs that need correct thsiFinD function names, security-code formats, reporting dates, and parameter codes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated workbooks may contain iFinD formulas that query market data through a logged-in terminal or entitlement-bearing environment. <br>
-Mitigation: Review formulas and workbook contents before opening, sharing, or running them where iFinD credentials or market-data entitlements are available. <br>
-Risk: Incorrect dates, security codes, parameter codes, or unit conversions can produce misleading spreadsheet results. <br>
-Mitigation: Validate generated formulas against the relevant indicator catalog and review financial outputs before using them for decisions or distribution. <br>
+## Use Case:
 
+Developers and analysts use this skill to select iFinD Excel indicator codes and generate formulas or workbook-generation code for financial data retrieval. It is most relevant for workflows that already depend on iFinD/同花顺 Excel access.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/laigen/ifind-excel-plugin) <br>
-- [Skill instructions](artifact/SKILL.md) <br>
-- [Complete indicator catalog](artifact/ref/codes_all.json) <br>
-- [Stock indicator catalog](artifact/ref/codes_stock.json) <br>
-- [Bond indicator catalog](artifact/ref/codes_bond.json) <br>
-- [Hong Kong equity indicator catalog](artifact/ref/codes_hk.json) <br>
-- [U.S. equity indicator catalog](artifact/ref/codes_us.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, configuration] <br>
-**Output Format:** [Markdown guidance with Excel formulas, JSON indicator references, and code snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces formula and reference guidance; workbook creation depends on the calling agent and the user's Excel/iFinD environment.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-10.1.0 (source: server release metadata; artifact frontmatter: 10.1) <br>
+Risk: Generated Excel formulas may query financial data through the user's logged-in iFinD environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review formulas and target workbooks before opening, refreshing, or sharing them.
+
+Risk: Some catalog entries may be malformed.
+
+Mitigation: Validate selected indicator codes and parameters against the iFinD Excel plugin before relying on generated results.
+
+Risk: The reference material is primarily Chinese-language financial data documentation.
+
+Mitigation: Use it only in workflows where the user can interpret the Chinese indicator names, parameters, and market conventions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/laigen/skills/ifind-excel-plugin)
+- [iFinD Excel Plugin Skill Source](artifact/SKILL.md)
+- [iFinD Indicator Code Catalogs](artifact/ref/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown with Excel formulas and optional code snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include thsiFinD Excel formulas, indicator-code selections, parameter guidance, and workbook-generation examples.]
+
+## Skill Version(s):
+
+10.1.0 (source: server release metadata; artifact frontmatter lists 10.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

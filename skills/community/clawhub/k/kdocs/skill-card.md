@@ -1,41 +1,58 @@
-## Description: <br>
-Retrieve and summarize titles, authors, updates, and key content from public Kdocs document shares, templates, and product pages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Kdocs helps agents retrieve and summarize titles, authors, update times, links, and key content from public Kingsoft Docs shares, templates, and product pages.
 
-## Publisher: <br>
-[CodeKungfu](https://clawhub.ai/user/CodeKungfu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[codekungfu](https://clawhub.ai/user/codekungfu)
 
-## Use Case: <br>
-Developers and agents use this skill to retrieve and summarize publicly available Kdocs document shares, template pages, and product pages while staying within public access boundaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A user may provide private or access-controlled document links. <br>
-Mitigation: Only process public Kdocs pages unless the user intentionally grants access and wants the agent to read and summarize that content. <br>
-Risk: Summaries of public pages may accidentally include sensitive content that appears in the source material. <br>
-Mitigation: Avoid storing sensitive content and review generated summaries before sharing them further. <br>
+## Use Case:
 
+External users and developers can use this skill to organize visible information from public Kingsoft Docs document shares, template listings, and product pages into concise summaries with source links.
 
-## Reference(s): <br>
-- [Kdocs homepage](https://www.kdocs.cn/) <br>
-- [ClawHub Kdocs package page](https://clawhub.ai/CodeKungfu/kdocs) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or structured text summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Summaries may include titles, authors, update times, key passages, tags, and source links for public Kdocs pages.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: A user may provide a private or sensitive Kingsoft Docs link and expose visible document content to the agent session.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with public pages or documents the user is comfortable sharing in the agent session.
+
+Risk: Dynamic page loading may produce incomplete summaries if visible page content is collected too early.
+
+Mitigation: Wait for public pages to finish loading, preserve source links, and review extracted titles, timestamps, and summaries before relying on them.
+
+Risk: Repeated access to public pages can create unnecessary load or conflict with platform expectations.
+
+Mitigation: Apply frequency controls and avoid repeated visits when summarizing public shares, templates, or product pages.
+
+## Reference(s):
+
+- [Kingsoft Docs homepage](https://www.kdocs.cn/)
+- [ClawHub Kdocs skill page](https://clawhub.ai/codekungfu/skills/kdocs)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain-text summaries with extracted public-page metadata and links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include titles, authors, update times, paragraph summaries, tags, template names, product features, version information, and source URLs.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

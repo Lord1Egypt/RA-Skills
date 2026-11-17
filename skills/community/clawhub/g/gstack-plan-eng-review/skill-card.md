@@ -1,42 +1,53 @@
-## Description: <br>
-Provides an engineering manager-style review of implementation plans, covering architecture, data flow, diagrams, edge cases, tests, performance, and interactive decision points before coding begins. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Eng manager-mode plan review that helps lock in an execution plan by reviewing architecture, data flow, diagrams, edge cases, test coverage, and performance before implementation.
 
-## Publisher: <br>
-[loocor](https://clawhub.ai/user/loocor) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[loocor](https://clawhub.ai/user/loocor)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to stress-test plans and design docs before implementation. It helps identify scope issues, architecture risks, missing tests, performance concerns, TODO decisions, and failure modes through structured review and one-issue-at-a-time questions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can inspect local repository context and Git/GitHub metadata during review. <br>
-Mitigation: Use it in repositories where that inspection is acceptable, and review any proposed shell commands before execution. <br>
-Risk: The skill may create a test-plan Markdown file under ./test-plans. <br>
-Mitigation: Ask for an in-chat-only review when file creation is not desired, or review the generated test-plan file before committing it. <br>
-Risk: Opinionated plan-review guidance can be incomplete or misleading when the design doc, branch state, or project context is stale or missing. <br>
-Mitigation: Provide the current plan and relevant design docs, then verify recommendations against project constraints before implementation. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to review implementation plans before coding, with structured attention to architecture, existing code reuse, test coverage, failure modes, and operational risk.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/loocor/gstack-plan-eng-review) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown review guidance with ASCII diagrams, option prompts, shell command snippets, and a test-plan Markdown file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read local repository context and Git/GitHub metadata, and may write a bounded test-plan Markdown file under ./test-plans unless the user asks for an in-chat-only review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may create a test-plan file or ask to update TODO tracking during a review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Decline write-oriented options when a read-only plan review is required.
+
+Risk: Opinionated planning guidance could be incorrect or mismatched to repository constraints.
+
+Mitigation: Review recommendations against the actual codebase, design docs, and team requirements before implementation.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/loocor/skills/gstack-plan-eng-review)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with structured review sections and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce a test-plan Markdown file and may ask before updating TODO tracking.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -5,9 +5,9 @@ allowed-tools: [Bash(oo *)]
 metadata:
   title: "Dida365"
   author: "OOMOL"
-  version: "1.0.2"
+  version: "1.0.9"
   services: ["dida365"]
-  icon: "https://static.oomol.com/logo/third-party/ticktick.svg"
+  icon: "https://static.oomol.com/logo/third-party/dida365.svg"
 ---
 
 # Dida365
@@ -37,25 +37,25 @@ Each action is listed below with a one-line description; actions that change sta
 
 ## Available actions
 
-- `complete_task` — Mark a Dida365 (滴答清单) task as completed by project ID and task ID. [write]
-- `create_or_update_habit_checkin` — Create or update a Dida365 (滴答清单) habit check-in for a date stamp. [write]
-- `create_project` — Create a Dida365 (滴答清单) project with optional color, sort order, view mode, and kind. [write]
-- `create_task` — Create a Dida365 (滴答清单) task under a project with optional schedule, reminders, recurrence, and checklist items. [write]
-- `delete_project` — Delete a Dida365 (滴答清单) project by project ID. The connector treats a missing project as already deleted. [destructive]
-- `delete_task` — Delete a Dida365 (滴答清单) task by project ID and task ID. The connector treats a missing task as already deleted. [destructive]
-- `filter_tasks` — Filter Dida365 (滴答清单) tasks by project, date range, priority, tags, and status by using the official filter endpoint.
-- `get_habit` — Get a Dida365 (滴答清单) habit by its habit ID.
-- `get_project_by_id` — Get a Dida365 (滴答清单) project by its project ID.
-- `get_project_with_data` — Get a Dida365 (滴答清单) project together with its undone tasks and columns by project ID.
-- `get_task_by_project_and_id` — Get a Dida365 (滴答清单) task by project ID and task ID.
-- `get_user_project` — List the projects available to the connected Dida365 (滴答清单) account.
-- `list_all_tasks` — List undone Dida365 (滴答清单) tasks across projects. This is a connector-level aggregate helper over list-projects plus project-data fetches.
-- `list_completed_tasks` — List completed Dida365 (滴答清单) tasks within optional project and date filters by using the official completed-tasks endpoint.
-- `list_habit_checkins` — List Dida365 (滴答清单) habit check-ins for one or more habits over a date stamp range.
-- `list_habits` — List habits available to the connected Dida365 (滴答清单) account.
-- `move_tasks` — Move one or more Dida365 (滴答清单) tasks between projects by using the official move endpoint. [write]
-- `update_project` — Update a Dida365 (滴答清单) project by project ID. [write]
-- `update_task` — Update a Dida365 (滴答清单) task by task ID and project ID, including checklist items and recurrence fields. [write]
+- `complete_task` — Mark a Dida365 task as completed by project ID and task ID. [write]
+- `create_or_update_habit_checkin` — Create or update a Dida365 habit check-in for a date stamp. [write]
+- `create_project` — Create a Dida365 project with optional color, sort order, view mode, and kind. [write]
+- `create_task` — Create a Dida365 task under a project with optional schedule, reminders, recurrence, and checklist items. [write]
+- `delete_project` — Delete a Dida365 project by project ID. The connector treats a missing project as already deleted. [destructive]
+- `delete_task` — Delete a Dida365 task by project ID and task ID. The connector treats a missing task as already deleted. [destructive]
+- `filter_tasks` — Filter Dida365 tasks by project, date range, priority, tags, and status by using the official filter endpoint.
+- `get_habit` — Get a Dida365 habit by its habit ID.
+- `get_project_by_id` — Get a Dida365 project by its project ID.
+- `get_project_with_data` — Get a Dida365 project together with its undone tasks and columns by project ID.
+- `get_task_by_project_and_id` — Get a Dida365 task by project ID and task ID.
+- `get_user_project` — List the projects available to the connected Dida365 account.
+- `list_all_tasks` — List undone Dida365 tasks across projects. This is a connector-level aggregate helper over list-projects plus project-data fetches.
+- `list_completed_tasks` — List completed Dida365 tasks within optional project and date filters by using the official completed-tasks endpoint.
+- `list_habit_checkins` — List Dida365 habit check-ins for one or more habits over a date stamp range.
+- `list_habits` — List habits available to the connected Dida365 account.
+- `move_tasks` — Move one or more Dida365 tasks between projects by using the official move endpoint. [destructive]
+- `update_project` — Update a Dida365 project by project ID. [write]
+- `update_task` — Update a Dida365 task by task ID and project ID, including checklist items and recurrence fields. [write]
 
 ## Safety
 
@@ -86,11 +86,14 @@ These are **one-time** steps — do not repeat them on every call. Run a step on
 - **`scope_missing` / `credential_expired` / `app_not_ready` / `app_not_found`** — Dida365 is not connected, or the connection expired or lacks a scope. Connect once (auth type: OAuth2) at:
 
   ```text
-  https://console.oomol.com/app-connections?provider=dida365
+  https://console.oomol.com/connections/dida365
   ```
 
-- **HTTP 402 / `OOMOL_INSUFFICIENT_CREDIT`** — billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+- **`OOMOL_INSUFFICIENT_CREDIT`** — OOMOL billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+
+- **HTTP 402 without `OOMOL_INSUFFICIENT_CREDIT`** — the third-party account itself has no active plan or credit. Report the provider error message as is; do not ask the user to recharge OOMOL.
 
 ## Resources
 
 - Dida365 homepage: https://dida365.com
+- API documentation: https://developer.dida365.com/docs/index.html

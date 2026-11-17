@@ -5,7 +5,7 @@ allowed-tools: [Bash(oo *)]
 metadata:
   title: "Browserbase"
   author: "OOMOL"
-  version: "1.0.1"
+  version: "1.0.6"
   services: ["browserbase"]
   icon: "https://static.oomol.com/logo/third-party/Browserbase.svg"
 ---
@@ -47,7 +47,7 @@ Each action is listed below with a one-line description; actions that change sta
 - `list_projects` — List the Browserbase projects visible to the current API key.
 - `list_sessions` — List Browserbase sessions with optional status or metadata query filters.
 - `refresh_context_upload_credentials` — Refresh the Browserbase upload credentials for an existing context so a new encrypted archive can be uploaded. [write]
-- `request_session_release` — Request that Browserbase releases a session before timeout by sending status REQUEST_RELEASE.
+- `request_session_release` — Request that Browserbase releases a session before timeout by sending status REQUEST_RELEASE. [destructive]
 
 ## Safety
 
@@ -78,11 +78,14 @@ These are **one-time** steps — do not repeat them on every call. Run a step on
 - **`scope_missing` / `credential_expired` / `app_not_ready` / `app_not_found`** — Browserbase is not connected, or the connection expired or lacks a scope. Connect once (auth type: API key) at:
 
   ```text
-  https://console.oomol.com/app-connections?provider=browserbase
+  https://console.oomol.com/connections/browserbase
   ```
 
-- **HTTP 402 / `OOMOL_INSUFFICIENT_CREDIT`** — billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+- **`OOMOL_INSUFFICIENT_CREDIT`** — OOMOL billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+
+- **HTTP 402 without `OOMOL_INSUFFICIENT_CREDIT`** — the third-party account itself has no active plan or credit. Report the provider error message as is; do not ask the user to recharge OOMOL.
 
 ## Resources
 
 - Browserbase homepage: https://www.browserbase.com
+- API documentation: https://docs.browserbase.com/introduction/getting-started

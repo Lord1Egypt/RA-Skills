@@ -1,41 +1,56 @@
-## Description: <br>
-Performs thorough format validation, content quality assessment, and functional verification of OpenClaw skills for compliance and completeness. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Skill Reviewer Pro reviews OpenClaw skills for format validity, writing quality, functional alignment, best practices, optimization opportunities, and workflow completeness.
 
-## Publisher: <br>
-[YKaiXu](https://clawhub.ai/user/YKaiXu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ykaixu](https://clawhub.ai/user/ykaixu)
 
-## Use Case: <br>
-Developers and skill publishers use this skill to audit OpenClaw skills before publishing, evaluate downloaded skills, and improve existing skills with structured checks and recommendations. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Validation commands may be run against an unintended local path. <br>
-Mitigation: Verify the target path is the local skill directory intended for review before running validation commands. <br>
-Risk: Review recommendations could be incorrect or misleading if accepted without inspection. <br>
-Mitigation: Review recommendations and scan the skill before deployment. <br>
-Risk: Automatic language adaptation may choose a less clear language when the user's preference is ambiguous. <br>
-Mitigation: Use an explicit language preference when clarity matters. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/YKaiXu/skill-reviewer-pro) <br>
+## Use Case:
 
+Developers and skill maintainers use this skill to audit OpenClaw skills before publishing, evaluate downloaded skills, and identify concrete improvements to structure, validation, functional coverage, and workflow guidance.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown review reports with scorecards, checklists, findings, recommendations, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Adapts response language to the user's request when possible.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-2.1.1 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Language auto-adaptation may be over-applied as a hard instruction.
+
+Mitigation: Treat language matching as a user-experience preference while preserving higher-priority safety, system, and developer instructions.
+
+Risk: The review workflow includes a local validation command path that may not exist in every OpenClaw installation.
+
+Mitigation: Verify the local OpenClaw validator path before running validation commands against skill files.
+
+Risk: Review findings and recommendations can be incomplete or incorrect if accepted without human review.
+
+Mitigation: Have a maintainer review the generated findings and scan the skill before publishing or deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Reviewer Pro release page](https://clawhub.ai/ykaixu/skills/skill-reviewer-pro)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown review report with checklists, scorecards, findings, and prioritized recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Adapts response language to the user's request.]
+
+## Skill Version(s):
+
+2.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

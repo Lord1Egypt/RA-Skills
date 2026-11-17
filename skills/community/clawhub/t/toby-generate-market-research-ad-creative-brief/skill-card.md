@@ -1,40 +1,55 @@
-## Description: <br>
-Plan campaign visuals and hooks for market research promotions for paid campaign planning by analysts, founders, and strategy teams. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Plan campaign visuals and hooks for market research promotions for paid campaign planning by analysts, founders, and strategy teams.
 
-## Publisher: <br>
-[tobeyrebecca](https://clawhub.ai/user/tobeyrebecca) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tobeyrebecca](https://clawhub.ai/user/tobeyrebecca)
 
-## Use Case: <br>
-External analysts, founders, and strategy teams use this skill to plan paid campaign creative briefs, including audience framing, business goals, constraints, visual concepts, and messaging hooks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security review says the skill requests broad Bash and file-read access beyond its stated marketing-brief purpose. <br>
-Mitigation: Install only from the intended ClawHub publisher, restrict or approve Bash and file-read actions per use, and review generated campaign guidance before publication or execution. <br>
+## Use Case:
 
+External analysts, founders, and strategy teams use this skill to draft paid market research campaign briefs with audience, goal, creative hook, and visual-planning guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tobeyrebecca/toby-generate-market-research-ad-creative-brief) <br>
-- [SkillBoss skill page](https://www.skillboss.co/skills/generate-market-research-ad-creative-brief) <br>
-- [SkillBoss setup guide](https://skillboss.co/skill.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown creative brief with structured planning guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include suggested prompts and image-generation direction for campaign assets.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The skill requests shell-command and local file-reading authority that is not explained by its creative-brief workflow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and constrain the allowed tools before installation; prefer sandboxed execution or remove those permissions unless they are explicitly needed.
+
+Risk: Creative campaign briefs can contain inaccurate, unsubstantiated, or unsuitable claims for external advertising.
+
+Mitigation: Have a human review factual claims, audience assumptions, and publication suitability before using outputs in paid campaigns.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tobeyrebecca/skills/toby-generate-market-research-ad-creative-brief)
+- [SkillBoss skill page](https://www.skillboss.co/skills/generate-market-research-ad-creative-brief)
+- [SkillBoss setup guide](https://skillboss.co/skill.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown creative brief with campaign visual and messaging recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Draft creative recommendations should be reviewed before external publication.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

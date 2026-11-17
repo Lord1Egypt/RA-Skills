@@ -1,40 +1,59 @@
-## Description: <br>
-Office Reader helps an agent read local Word, Excel, PowerPoint, PDF, Markdown, text, CSV, JSON, YAML, and HTML files and return parsed contents or summaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Office Reader helps an agent read local Word, Excel, PowerPoint, PDF, Markdown, text, CSV, JSON, YAML, and HTML files and return extracted content.
 
-## Publisher: <br>
-[yuyonghao-123](https://clawhub.ai/user/yuyonghao-123) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yuyonghao-123](https://clawhub.ai/user/yuyonghao-123)
 
-## Use Case: <br>
-People using agents to inspect local Office and document files can ask the agent to extract readable text, tabular previews, or summaries from selected files. The skill is useful for reviewing document contents in an agent session while keeping file selection under user control. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected local document contents may appear in the agent chat. <br>
-Mitigation: Confirm file paths before opening private files and avoid reading sensitive documents unless the user intends their contents to be processed in the session. <br>
-Risk: The artifact references an office-reader.ps1 script and Python dependencies that are not included in this package. <br>
-Mitigation: Verify any separate script and install dependencies from trusted sources before executing document-reading commands. <br>
+## Use Case:
 
+Agents and users use this skill to inspect local document and data files they explicitly provide, including Office files, PDFs, and common text formats. It is useful for extracting readable content, summarizing document contents, and producing structured text, JSON, or Markdown output.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yuyonghao-123/yuyonghao-office-reader) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, guidance] <br>
-**Output Format:** [Text, JSON, or Markdown extracted from local files, with PowerShell command examples when script use is needed.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Accepts a file path, output format, and maximum line count; artifact documentation describes a default 1000-line output cap.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata and package.json) <br>
+Risk: The skill reads local file paths supplied by the user, so it can expose document contents to the agent session.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with files intended for agent access and avoid passing sensitive paths unless that access is approved.
+
+Risk: The release evidence notes a missing office-reader.ps1 implementation.
+
+Mitigation: Review or obtain the script implementation before relying on scripted document parsing.
+
+Risk: Dependency installation guidance is unpinned.
+
+Mitigation: Install dependencies in a virtual environment and pin package versions for repeatable use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/yuyonghao-123/skills/yuyonghao-office-reader)
+- [README.md](artifact/README.md)
+- [SKILL.md](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, guidance]
+
+**Output Format:** [Plain text, JSON, or Markdown, with PowerShell command examples where script execution is used]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Output may be limited by a maximum line count, with the documented default of 1000 lines.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata, package.json, target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

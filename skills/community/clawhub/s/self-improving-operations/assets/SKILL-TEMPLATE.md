@@ -9,7 +9,7 @@ Template for creating skills extracted from operations learnings. Copy and custo
 ```markdown
 ---
 name: skill-name-here
-description: "Concise description of the operational pattern, incident response procedure, or automation this skill addresses. Include trigger conditions."
+description: "Concise description of the operational pattern, incident response procedure, or automation this skill addresses. Require narrow, testable trigger conditions plus explicit exclusions (never empty or catch-all matchers)."
 ---
 
 # Skill Name
@@ -118,12 +118,17 @@ For simple operational skills that don't need all sections:
 ```markdown
 ---
 name: skill-name-here
-description: "What operational pattern this addresses and when to apply it."
+description: "What operational pattern this addresses and when to apply it. Require narrow, testable trigger conditions plus explicit exclusions (never empty or catch-all matchers)."
 ---
 
 # Skill Name
 
 [Problem statement in one sentence]
+
+## Triggers
+- Include when: [narrow, testable conditions]
+- Exclude when: [out-of-scope cases; never empty or catch-all matchers]
+
 
 ## Symptoms
 

@@ -1,40 +1,53 @@
-## Description: <br>
-Trim videos down to the useful part for creators, ecommerce teams, and operators who need shorter, cleaner clips fast. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Trim videos down to the useful part for creators, ecommerce teams, and operators who need shorter, cleaner clips fast.
 
-## Publisher: <br>
-[Leooooooow](https://clawhub.ai/user/Leooooooow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leooooooow](https://clawhub.ai/user/leooooooow)
 
-## Use Case: <br>
-Creators, ecommerce teams, and operators use this skill to identify and keep the useful segment of a longer source video while removing dead air, setup delay, unnecessary intros, or trailing filler. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A trim may remove context or create an awkward start or ending if the selected boundaries are wrong. <br>
-Mitigation: Review the selected start and end points before publishing or sharing the result. <br>
-Risk: Source videos may contain sensitive or private material. <br>
-Mitigation: Only provide videos you are comfortable having the agent inspect or edit. <br>
+## Use Case:
 
+Creators, ecommerce teams, and operators use this skill to isolate the useful segment of a longer video, choose trim boundaries, and produce a shorter clip for publishing, review, ads, product demos, or highlights.
 
-## Reference(s): <br>
-- [Video Trimmer Output Template](references/output-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Guidance] <br>
-**Output Format:** [Markdown trim summary with selected range, boundary rationale, use case, and remaining cleanup notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide creation of a shorter exported clip when the host agent has suitable video-editing tools.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The trim could remove context, create an awkward start or ending, or leave rough edges in the final clip.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the selected start and end points, the stated boundary rationale, and any remaining cleanup notes before publishing or sharing the clip.
+
+Risk: The agent may work with user-provided video files and create trimmed output clips.
+
+Mitigation: Provide only the intended source videos and confirm the generated clip contents and destination before distribution.
+
+## Reference(s):
+
+- [Video Trimmer Output Template](references/output-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes selected trim range, cut-boundary rationale, resulting clip use case, and remaining cleanup notes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

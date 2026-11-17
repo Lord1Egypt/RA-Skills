@@ -1,44 +1,57 @@
-## Description: <br>
-Polaris provides verified intelligence, market data, trading signals, social sentiment, and AI-generated reports from The Polaris Report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Polaris provides verified market and intelligence briefs, search, reports, entity data, and trading-oriented market signals from The Polaris Report.
 
-## Publisher: <br>
-[johnnytarrr](https://clawhub.ai/user/johnnytarrr) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[johnnytarrr](https://clawhub.ai/user/johnnytarrr)
 
-## Use Case: <br>
-External users and agents use Polaris to retrieve current news briefs, market data, ticker analysis, portfolio-aware feeds, social sentiment, and AI-generated reports. It is intended for read-only intelligence gathering and market research workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: User queries, portfolio holdings, trading strategies, private URLs, and report requests may be sent to a remote API despite artifact claims that no user data is stored or shared. <br>
-Mitigation: Review the publisher's privacy and retention terms before installation, and avoid entering sensitive holdings, trading strategies, research queries, or private URLs until those data flows are documented. <br>
-Risk: Market intelligence, trading signals, forecasts, backtests, and AI-generated reports can be incomplete, stale, or unsuitable for investment decisions. <br>
-Mitigation: Treat outputs as informational research, verify important results against primary sources, and require qualified human review before acting on financial guidance. <br>
+## Use Case:
 
+Developers and agents use Polaris to fetch market intelligence, entity and news search results, ticker data, portfolio-aware briefs, and generated analysis reports from The Polaris Report.
 
-## Reference(s): <br>
-- [ClawHub Skill Listing](https://clawhub.ai/johnnytarrr/polaris-report) <br>
-- [The Polaris Report](https://thepolarisreport.com) <br>
-- [API Reference](https://thepolarisreport.com/api-reference) <br>
-- [SDKs & Integrations](https://thepolarisreport.com/developers) <br>
-- [Privacy Policy](https://thepolarisreport.com/privacy) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown and plain text command responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Responses may include links, tables, generated briefs, analysis reports, portfolio summaries, technical indicators, and rate-limit or pricing notices.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.4.0 (source: server release evidence and artifact manifest) <br>
+Risk: User inputs such as research queries, portfolio tickers and weights, strategy JSON, report requests, and submitted URLs are sent to api.thepolarisreport.com.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid entering real portfolio allocations or URLs containing tokens, passwords, signed links, private document identifiers, or session material unless the publisher provides clearer privacy and retention guarantees.
+
+Risk: The documentation says queries are not stored, but server security evidence says privacy and retention guarantees are not clear enough for sensitive inputs.
+
+Mitigation: Review the publisher's privacy policy and restrict use to non-sensitive public research unless stronger retention terms are available.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/johnnytarrr/skills/polaris-report)
+- [The Polaris Report](https://thepolarisreport.com)
+- [The Polaris Report API Reference](https://thepolarisreport.com/api-reference)
+- [The Polaris Report SDKs and Integrations](https://thepolarisreport.com/developers)
+- [The Polaris Report Privacy Policy](https://thepolarisreport.com/privacy)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown-style text with command results, report summaries, tables, links, and status messages]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responses may include live API results, market data, generated briefs, report tiers, URLs, and rate-limit notices.]
+
+## Skill Version(s):
+
+2.4.0 (source: server release metadata and artifact/skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

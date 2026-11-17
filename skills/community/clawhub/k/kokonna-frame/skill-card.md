@@ -1,43 +1,62 @@
-## Description: <br>
-Control KoKonna AI e-ink art frames by uploading images, querying device info, and managing multiple frames when users ask to send or display images on a frame. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Control KoKonna AI e-ink art frames by uploading images, querying device info, and managing multiple frames.
 
-## Publisher: <br>
-[guooscar](https://clawhub.ai/user/guooscar) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[guooscar](https://clawhub.ai/user/guooscar)
 
-## Use Case: <br>
-External users and developers use this skill to connect OpenClaw agents to configured KoKonna e-ink frames, upload selected images, and query frame status such as battery, connectivity, and firmware. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected images and frame status requests are sent to the configured KoKonna API. <br>
-Mitigation: Verify the API host and device keys before use, and configure only devices the user intends to control. <br>
-Risk: Private or sensitive photos could be uploaded to a frame service. <br>
-Mitigation: Avoid uploading sensitive photos and confirm the selected image before sending it. <br>
-Risk: The all-device upload option can push an image to every configured frame. <br>
-Mitigation: Confirm the target device list before using the all-device option. <br>
+## Use Case:
 
+External users and developers use this skill to send images to configured KoKonna e-ink frames, check frame status, and manage one or more personal display devices through an OpenClaw agent.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/guooscar/kokonna-frame) <br>
-- [KoKonna](https://kokonna.art) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash, Python, and YAML examples; runtime commands may return text or JSON device status.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May upload user-selected images and query device status through the configured KoKonna API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: SKILL.md frontmatter, manifest.yaml, and server release metadata) <br>
+Risk: Configured API keys and uploaded images may be sent to any api_base_url set in the local configuration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep api_base_url set to the official HTTPS endpoint and review configuration changes before running upload or device-info commands.
+
+Risk: Uploaded images may contain sensitive personal, location, or business information.
+
+Mitigation: Review images before upload and avoid sending sensitive content to the KoKonna service.
+
+Risk: The all-devices option can update every configured frame.
+
+Mitigation: Use a specific device name for routine uploads and reserve all-devices operations for deliberate bulk updates.
+
+Risk: Device API keys are stored in a local configuration file.
+
+Mitigation: Restrict access to the configuration file and rotate keys if the file is exposed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/guooscar/skills/kokonna-frame)
+- [KoKonna website](https://kokonna.art)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands, Python snippets, and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May initiate KoKonna API calls that upload resized images or retrieve frame status when used with configured device API keys.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release evidence, SKILL.md frontmatter, and manifest.yaml)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

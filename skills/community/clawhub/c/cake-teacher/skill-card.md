@@ -1,43 +1,55 @@
-## Description: <br>
-AI 蛋糕烘焙培训老师，提供蛋糕配方生成、品类教学、步骤指导、翻车诊断、原料替换、装饰技巧、设备推荐、开店指导，并可生成交互式 HTML 教学报告。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI 蛋糕烘焙培训老师 helps users create cake recipes, learn cake categories and steps, diagnose baking failures, substitute ingredients, improve decoration techniques, choose equipment, plan bakery operations, and generate interactive HTML teaching reports.
 
-## Publisher: <br>
-[bettermen](https://clawhub.ai/user/bettermen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bettermen](https://clawhub.ai/user/bettermen)
 
-## Use Case: <br>
-External users and baking learners use this Chinese-language agent for cake recipes, step-by-step baking instruction, troubleshooting, ingredient substitutions, decorating guidance, equipment selection, and bakery opening guidance. The skill can also generate local HTML teaching reports with recipe cards, timelines, alerts, equipment lists, and diagnosis sections. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may generate local HTML teaching reports. <br>
-Mitigation: Keep generated reports in a normal output folder and review the chosen output path before running the report command. <br>
-Risk: The skill may activate on broad cake-related phrases. <br>
-Mitigation: Use explicit prompts when you want the baking tutor behavior, and pause or redirect the agent when a broad trigger is not intended. <br>
-Risk: The skill can supplement answers with web search when asked for outside information. <br>
-Mitigation: Treat web-search supplements as untrusted unless you explicitly requested current outside information. <br>
+## Use Case:
 
+External learners, baking instructors, and bakery operators use this skill for Chinese-language cake recipes, step-by-step baking instruction, failure diagnosis, ingredient substitution, decoration guidance, equipment selection, and shop-opening checklists.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bettermen/cake-teacher) <br>
-- [Project homepage](https://github.com/bettermen/cake-teacher) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, HTML files, guidance] <br>
-**Output Format:** [Chinese-language instructional text and Markdown, with optional shell commands that generate local HTML reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write local HTML report files to a user-selected output path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The report generator can write to arbitrary output paths.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Write reports only to a controlled safe directory and do not run the script with elevated privileges.
+
+Risk: Generated HTML may embed report content without escaping, which can create active browser content if untrusted text is included.
+
+Mitigation: Use trusted report inputs, avoid untrusted text in report fields, and treat generated HTML as active content until escaping is added.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bettermen/skills/cake-teacher)
+- [Publisher profile](https://clawhub.ai/user/bettermen)
+- [Homepage from ClawHub metadata](https://github.com/bettermen/cake-teacher)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with optional shell commands and generated HTML report files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can generate interactive HTML teaching reports through the bundled report generator.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

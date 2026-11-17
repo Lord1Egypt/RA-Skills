@@ -1,43 +1,53 @@
-## Description: <br>
-Interface with Google's Jules Tools CLI to manage AI coding sessions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Interface with Google's Jules Tools CLI to manage AI coding sessions.
 
-## Publisher: <br>
-[alexdavidswift](https://clawhub.ai/user/alexdavidswift) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[alexdavidswift](https://clawhub.ai/user/alexdavidswift)
 
-## Use Case: <br>
-Developers and engineers use this skill to help an agent install, authenticate, and operate the Google Jules CLI for remote AI coding sessions, including listing sessions, starting tasks, and pulling completed changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Installing the Jules CLI globally can require elevated npm permissions. <br>
-Mitigation: Prefer a normal user-level npm install and ask the user before using sudo or changing system-level package locations. <br>
-Risk: Jules authentication connects the agent workflow to a Google account. <br>
-Mitigation: Authenticate only with the intended account and log out or re-authenticate if account context is unclear. <br>
-Risk: Pulling Jules session results can modify repository files. <br>
-Mitigation: Pull results on a clean branch or disposable clone, then review `git status` and diffs before committing, merging, or deploying. <br>
+## Use Case:
 
+Developers and engineers use this skill to guide an agent through installing and authenticating the Jules CLI, then listing, starting, and pulling remote Jules coding sessions from the terminal.
 
-## Reference(s): <br>
-- [Google Jules CLI Reference](https://jules.google/docs/cli/reference/) <br>
-- [ClawHub Skill Page](https://clawhub.ai/alexdavidswift/google-jules-cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance, code] <br>
-**Output Format:** [Markdown with inline shell commands and operational guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide Jules CLI sessions that pull code changes into a repository.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: The skill recommends an unpinned global npm install with an optional sudo fallback.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer a pinned or user-scoped Jules CLI installation and avoid sudo unless the package and system-level impact have been independently reviewed.
+
+Risk: Pulling remote session results can introduce code changes into the workspace.
+
+Mitigation: Run pull commands in a clean branch or disposable workspace and inspect the resulting diff before executing or merging the code.
+
+## Reference(s):
+
+- [Google Jules CLI reference](https://jules.google/docs/cli/reference/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces terminal-oriented instructions for installing, authenticating, listing sessions, creating sessions, and pulling Jules session results.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,48 +1,62 @@
-## Description: <br>
-Extend or continue an existing video clip on RunComfy via the runcomfy CLI by routing to Google Veo 3-1 extend-video or fast/extend-video endpoints with a source video and continuation prompt. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extend or continue an existing video clip on RunComfy via the runcomfy CLI by routing to Google Veo 3-1 extend-video endpoints with a source video and continuation prompt.
 
-## Publisher: <br>
-[kalvinrv](https://clawhub.ai/user/kalvinrv) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[permew](https://clawhub.ai/user/permew)
 
-## Use Case: <br>
-Developers, creators, and agents use this skill to extend a user-provided video clip or build a longer chained video narrative through RunComfy's Veo 3-1 video continuation endpoints. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The selected video URL and continuation prompt are sent to RunComfy for external video generation. <br>
-Mitigation: Use only videos the user explicitly provides and avoid submitting sensitive videos unless the user accepts RunComfy processing. <br>
-Risk: RunComfy tokens can authorize paid model runs if exposed. <br>
-Mitigation: Protect RUNCOMFY_TOKEN and local token files, and never echo tokens into prompts, logs, or generated command output. <br>
-Risk: Chained video extensions can consume credits and produce large files. <br>
-Mitigation: Confirm expected cost before multi-step extensions and keep generated downloads within the CLI's file-size limits. <br>
+## Use Case:
 
+External users, creators, and developers use this skill to extend short video clips or build chained narrative shots with RunComfy's CLI and Google Veo 3-1 video-extension endpoints.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/kalvinrv/video-extend) <br>
-- [RunComfy](https://www.runcomfy.com) <br>
-- [Veo 3-1 Extend Video](https://www.runcomfy.com/models/google-deepmind/veo-3-1/extend-video?utm_source=clawhub&utm_medium=skill&utm_campaign=video-extend) <br>
-- [Veo 3-1 Fast Extend Video](https://www.runcomfy.com/models/google-deepmind/veo-3-1/fast/extend-video?utm_source=clawhub&utm_medium=skill&utm_campaign=video-extend) <br>
-- [Veo 3-1 Collection](https://www.runcomfy.com/models/collections/veo-3?utm_source=clawhub&utm_medium=skill&utm_campaign=video-extend) <br>
-- [RunComfy CLI Docs](https://docs.runcomfy.com/cli/introduction?utm_source=clawhub&utm_medium=skill&utm_campaign=video-extend) <br>
-- [RunComfy CLI Troubleshooting](https://docs.runcomfy.com/cli/troubleshooting?utm_source=clawhub&utm_medium=skill&utm_campaign=video-extend) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline bash commands and JSON CLI input examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the runcomfy CLI, a RunComfy token, and a user-provided source video URL; generated video files are downloaded to the selected output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: release evidence) <br>
+Risk: The skill relies on installing or invoking the RunComfy CLI, and server security guidance notes caution around unpinned npm or npx commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the @runcomfy/cli package source before installation and pin a reviewed version where operational policy requires reproducibility.
+
+Risk: The skill uses a RunComfy access token through RUNCOMFY_TOKEN or local CLI login configuration.
+
+Mitigation: Use a token with only the access needed for the task, keep it out of prompts and logs, and store it through the CLI or environment rather than embedding it in commands.
+
+Risk: Video URLs are externally supplied inputs and may contain content that causes the generated continuation to diverge from the user prompt.
+
+Mitigation: Only extend video URLs intentionally provided for the task and review generated clips for unexpected motion, identity drift, or prompt divergence.
+
+## Reference(s):
+
+- [RunComfy](https://www.runcomfy.com)
+- [Veo 3-1 Extend Video](https://www.runcomfy.com/models/google-deepmind/veo-3-1/extend-video?utm_source=clawhub&utm_medium=skill&utm_campaign=video-extend)
+- [Veo 3-1 Fast Extend Video](https://www.runcomfy.com/models/google-deepmind/veo-3-1/fast/extend-video?utm_source=clawhub&utm_medium=skill&utm_campaign=video-extend)
+- [Veo 3 Collection](https://www.runcomfy.com/models/collections/veo-3?utm_source=clawhub&utm_medium=skill&utm_campaign=video-extend)
+- [RunComfy CLI Introduction](https://docs.runcomfy.com/cli/introduction?utm_source=clawhub&utm_medium=skill&utm_campaign=video-extend)
+- [RunComfy CLI Troubleshooting](https://docs.runcomfy.com/cli/troubleshooting?utm_source=clawhub&utm_medium=skill&utm_campaign=video-extend)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline bash commands and JSON CLI input examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides the agent to select a RunComfy Veo 3-1 extend endpoint, prepare prompt and video URL inputs, run the CLI, and interpret common exit codes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,59 @@
-## Description: <br>
-Full-featured OSINT reconnaissance using the MerkleMap API for subdomain enumeration, SSL/TLS certificate inspection, certificate deep dives, real-time CT log monitoring, typosquatting detection, risk scoring, and HTML/JSON report generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Full-featured OSINT reconnaissance using the MerkleMap API: subdomain enumeration, SSL/TLS certificate inspection, certificate deep-dive, real-time CT log monitoring, typosquatting detection, risk scoring, and professional HTML/JSON report generation.
 
-## Publisher: <br>
-[laikhtman](https://clawhub.ai/user/laikhtman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[laikhtman](https://clawhub.ai/user/laikhtman)
 
-## Use Case: <br>
-Security teams, OSINT analysts, and developers use this skill to investigate domain attack surfaces, audit certificate transparency data, monitor newly issued certificates, and generate stakeholder-ready reconnaissance reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a MerkleMap API key. <br>
-Mitigation: Store MERKLEMAP_API_KEY as a secret environment variable and avoid logging, echoing, or sharing it in agent output. <br>
-Risk: OSINT and certificate-transparency scans can be sensitive when run against domains outside the user's scope. <br>
-Mitigation: Use the skill only for domains the user is authorized or comfortable investigating. <br>
-Risk: Generated HTML and JSON reports may persist reconnaissance results on disk. <br>
-Mitigation: Store reports in an appropriate location, limit sharing, and remove them when they are no longer needed. <br>
+## Use Case:
 
+Security teams, OSINT analysts, developers, and infrastructure owners use this skill to investigate domains, audit SSL/TLS certificates, monitor certificate transparency activity, detect typosquatting, and generate reconnaissance reports.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/laikhtman/merklemap-osint) <br>
-- [MerkleMap API Documentation](https://www.merklemap.com/documentation) <br>
-- [MerkleMap API Key Page](https://www.merklemap.com/user-profile/api) <br>
-- [MerkleMap](https://www.merklemap.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, html, guidance] <br>
-**Output Format:** [Markdown responses with optional self-contained HTML and JSON report files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include structured tables, risk scores, executive summaries, findings, and local report files when requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.1 (source: server release metadata and skill frontmatter metadata) <br>
+Risk: Investigation targets are sent to the MerkleMap API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only when sharing target domains with MerkleMap is acceptable for the investigation.
+
+Risk: Generated reconnaissance reports may contain sensitive infrastructure findings.
+
+Mitigation: Store HTML and JSON reports in private locations and avoid synced or public folders.
+
+Risk: HTML reports may include untrusted certificate data.
+
+Mitigation: Review or modify report generation to HTML-escape API-returned values before opening reports in a browser.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/laikhtman/skills/merklemap-osint)
+- [MerkleMap API Documentation](https://www.merklemap.com/documentation)
+- [MerkleMap API Key Profile](https://www.merklemap.com/user-profile/api)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown responses with optional HTML and JSON report files, API request guidance, and shell configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write sensitive reconnaissance reports to local HTML/JSON files when requested.]
+
+## Skill Version(s):
+
+3.0.1 (source: server release evidence and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

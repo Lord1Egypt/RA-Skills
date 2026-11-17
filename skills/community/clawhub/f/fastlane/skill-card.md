@@ -1,42 +1,59 @@
-## Description: <br>
-iOS/macOS app automation - builds, signing, TestFlight, App Store via CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+iOS/macOS app automation - builds, signing, TestFlight, App Store via CLI.
 
-## Publisher: <br>
-[alexissan](https://clawhub.ai/user/alexissan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alexissan](https://clawhub.ai/user/alexissan)
 
-## Use Case: <br>
-Developers and release engineers use this skill to get Fastlane CLI guidance for iOS and macOS build, signing, TestFlight, App Store submission, testing, screenshots, and metadata workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill includes Fastlane workflows that can upload builds, change testers, submit apps for review, automatically release apps, or reset signing assets. <br>
-Mitigation: Require explicit user confirmation before uploads, tester changes, certificate resets, App Store submission, automatic release, or force actions; prefer listing or validation commands before state-changing commands. <br>
-Risk: The skill handles Apple credentials, App Store Connect API keys, and signing repository secrets. <br>
-Mitigation: Use least-privileged App Store Connect API keys, store secrets in CI secret managers, avoid placing secrets in chat or shell history, and use read-only signing sync in CI. <br>
+## Use Case:
 
+Developers and release engineers use this skill to plan and generate Fastlane CLI commands for iOS and macOS builds, code signing, TestFlight distribution, App Store submission, testing, screenshots, and related App Store Connect workflows.
 
-## Reference(s): <br>
-- [ClawHub Fastlane release](https://clawhub.ai/alexissan/fastlane) <br>
-- [App Store Connect API keys](https://appstoreconnect.apple.com/access/api) <br>
-- [Apple ID account management](https://appleid.apple.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Fastlane CLI commands, environment variable guidance, and release workflow recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and artifact metadata) <br>
+Risk: Privileged installation commands can alter the host Ruby environment or require elevated permissions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer `brew install fastlane` or a pinned Bundler setup; require explicit user approval before using `sudo gem install fastlane -NV`.
+
+Risk: Release commands can submit an app for review, enable automatic release, or skip preview checks.
+
+Mitigation: Require explicit confirmation before commands using `--submit_for_review`, `--automatic_release`, or `--force`; review generated metadata and upload targets first.
+
+Risk: Signing commands can create, renew, or remove certificates and provisioning profiles.
+
+Mitigation: Use `--readonly` for CI and require explicit approval before `match nuke`, `--force`, or other commands that change signing assets.
+
+## Reference(s):
+
+- [ClawHub Fastlane skill page](https://clawhub.ai/alexissan/skills/fastlane)
+- [App Store Connect API keys](https://appstoreconnect.apple.com/access/api)
+- [Apple ID app-specific passwords](https://appleid.apple.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks and command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include commands that install Fastlane, authenticate to App Store Connect, upload builds, submit apps, or modify signing assets; commands should be reviewed before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

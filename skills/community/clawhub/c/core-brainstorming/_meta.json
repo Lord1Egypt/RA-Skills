@@ -1,6 +1,11 @@
 {
-  "ownerId": "kn763sve3gaj4zcg4c1kpym6bn82je4e",
+  "owner": "tlreal",
   "slug": "core-brainstorming",
-  "version": "0.1.0",
-  "publishedAt": 1773307734876
+  "displayName": "core-brainstorming",
+  "latest": {
+    "version": "1.0.0",
+    "publishedAt": 1773107539694,
+    "commit": "https://github.com/tlreal/skills-backup/commit/780b6d223306d3cb91501660ad556accb0a26d67"
+  },
+  "history": []
 }

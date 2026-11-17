@@ -1,45 +1,59 @@
-## Description: <br>
-ReelOnce orchestrates a text-to-video workflow from story planning through asset images, storyboard images, TTS, shot video generation, Remotion project creation, and final MP4 rendering. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ReelOnce orchestrates an end-to-end text-to-video workflow from story planning through asset images, storyboard images, TTS, shot video generation, Remotion project generation, and final MP4 rendering.
 
-## Publisher: <br>
-[pampas-lab](https://clawhub.ai/user/pampas-lab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pampas-lab](https://clawhub.ai/user/pampas-lab)
 
-## Use Case: <br>
-External users, developers, and video workflow teams use this skill to turn story text into a generated ReelOnce project, supporting assets, shot videos, a Remotion React project, and an optional final MP4 render. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: External generation services may receive story text, prompts, reference images, or generated media inputs. <br>
-Mitigation: Use a trusted configured video provider and avoid sensitive local images or story material unless that provider and workflow are acceptable for the data. <br>
-Risk: Normal use can install and run Remotion and npm rendering dependencies inside the generated project. <br>
-Mitigation: Install only in a trusted ReelOnce repository and inspect the generated Remotion project before full rendering when dependency execution matters. <br>
-Risk: API keys and environment configuration are required for video generation. <br>
-Mitigation: Keep env.local and API keys private, and load only the environment variables needed for the current run. <br>
+## Use Case:
 
+Developers and content teams use this skill to turn a story prompt or input file into ReelOnce project assets, a Remotion project, and an optional final MP4 video.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/pampas-lab/reelonce) <br>
-- [Primary skill documentation](artifact/SKILL.md) <br>
-- [ReelOnce workflow reference](artifact/references/README.md) <br>
-- [skills.video](https://skills.video/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Code, Shell commands, Configuration, Files, Video, Guidance] <br>
-**Output Format:** [JSON status output plus generated project files, media assets, a Remotion React project, and optional MP4 video output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports project IDs, shot counts, reference-image source selection, debug prompt export, no-render mode, subtitle control, partial-result continuation, and machine-readable JSON output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Installing and running the skill can execute project Python and npm dependencies.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only in trusted repositories and virtual environments, and review Python and npm dependency manifests before rendering.
+
+Risk: Text prompts, images, audio, or reference media may be sent to configured media-generation providers.
+
+Mitigation: Use only approved providers for the data involved, avoid sensitive inputs, and use no-render or no-upload style options when limiting rendering or provider transmission.
+
+Risk: Final video rendering can run npm install inside the generated Remotion project.
+
+Mitigation: Review the generated Remotion project and dependencies before rendering, or use --no-render when only project generation is needed.
+
+## Reference(s):
+
+- [ReelOnce skill reference](references/README.md)
+- [skills.video provider setup](https://skills.video/)
+- [ClawHub skill page](https://clawhub.ai/pampas-lab/skills/reelonce)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance, json, files]
+
+**Output Format:** [Markdown guidance with optional JSON results and generated project files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes ReelOnce project outputs under output/{project_id}/, including narration.json, assets.json, pipeline-result.json, a project database, a Remotion React project, and optionally a final MP4.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

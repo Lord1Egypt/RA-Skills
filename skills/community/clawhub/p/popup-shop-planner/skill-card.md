@@ -1,46 +1,57 @@
-## Description: <br>
-Plan, launch, and measure temporary retail experiences for ecommerce brands covering venue, design, staffing, marketing, and post-event analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Plan, launch, and measure temporary retail experiences for ecommerce brands covering venue, design, staffing, marketing, and post-event analysis.
 
-## Publisher: <br>
-[leooooooow](https://clawhub.ai/user/leooooooow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leooooooow](https://clawhub.ai/user/leooooooow)
 
-## Use Case: <br>
-Ecommerce brand operators, retail marketers, and founders use this skill to plan temporary retail experiences, compare venues, budget the launch, staff the shop, promote the event, and measure post-event results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can influence real spending decisions such as venue bookings, staffing, ad buys, inventory, and event services. <br>
-Mitigation: Require explicit human review and budget approval before committing funds or making purchases. <br>
-Risk: The planning workflow encourages customer contact capture, email/SMS follow-up, and retargeting. <br>
-Mitigation: Apply applicable privacy, consent, marketing, and data retention requirements before collecting or using customer data. <br>
-Risk: Temporary retail operations may require location-specific permits, tax registration, insurance, accessibility, and health or safety checks. <br>
-Mitigation: Confirm local legal, tax, permit, insurance, and venue requirements before launch. <br>
+## Use Case:
 
+External ecommerce brand operators, retail marketers, and founders use this skill to create practical plans for temporary retail experiences, including venue evaluation, budget allocation, staffing, marketing, inventory, measurement, and post-event follow-up.
 
-## Reference(s): <br>
-- [Output Template](references/output-template.md) <br>
-- [Venue Evaluation Scorecard](references/venue-evaluation-scorecard.md) <br>
-- [Budget Planning Guide](references/budget-planning-guide.md) <br>
-- [Quality Checklist](assets/quality-checklist.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/leooooooow/popup-shop-planner) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown planning guidance, templates, checklists, scorecards, and budget tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only planning output; no executable commands or API calls are produced.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: The skill recommends email, SMS, visitor behavior, photo, and retargeting data capture that may create privacy, consent, communications, advertising, or venue-rule obligations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require clear opt-in where applicable, privacy notice language, unsubscribe or opt-out handling, limited retention, and local review of privacy, SMS, email, ad-platform, and venue requirements before launch.
+
+Risk: Pop-up retail plans may omit local permits, insurance, sales tax registration, accessibility, or health and safety requirements if treated as complete compliance advice.
+
+Mitigation: Use the plan as an operational draft and verify local business licensing, temporary use permits, insurance certificates, sales tax, capacity, fire exit, ADA, and venue requirements before opening.
+
+## Reference(s):
+
+- [Output Template](references/output-template.md)
+- [Venue Evaluation Scorecard](references/venue-evaluation-scorecard.md)
+- [Budget Planning Guide](references/budget-planning-guide.md)
+- [Quality Checklist](assets/quality-checklist.md)
+- [ClawHub Skill Page](https://clawhub.ai/leooooooow/skills/popup-shop-planner)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Analysis]
+
+**Output Format:** [Markdown planning document with tables, checklists, budget calculations, scorecards, and recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include venue scores, budget ranges, staffing plans, marketing calendars, inventory plans, KPI targets, and post-event analysis.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

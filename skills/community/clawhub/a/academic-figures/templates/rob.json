@@ -1,0 +1,85 @@
+{
+ "_chart_type": "rob",
+ "_command": "python3 scripts/gen_figure.py -t rob -d templates/rob.json -o rob.png --cjk",
+ "_note": "场景：系统综述/Meta 分析的纳入研究偏倚风险可视化（模拟 ROB2 评估，5 研究×5 域）。交通灯网格+加权摘要条；判定 Low/Some concerns/High/No information（中英均可）；weights 可选各域权重。真实示例 examples/realworld/evidence_rob2_metformin.json。",
+ "title": "偏倚风险图（ROB2）",
+ "domains": [
+  {
+   "key": "D1",
+   "label": "随机化"
+  },
+  {
+   "key": "D2",
+   "label": "偏离干预"
+  },
+  {
+   "key": "D3",
+   "label": "数据缺失"
+  },
+  {
+   "key": "D4",
+   "label": "结局测量"
+  },
+  {
+   "key": "D5",
+   "label": "选择性报告"
+  }
+ ],
+ "studies": [
+  {
+   "name": "研究一",
+   "judgements": {
+    "D1": "Low",
+    "D2": "Low",
+    "D3": "Some concerns",
+    "D4": "Low",
+    "D5": "Low",
+    "Overall": "Some concerns"
+   }
+  },
+  {
+   "name": "研究二",
+   "judgements": {
+    "D1": "Low",
+    "D2": "High",
+    "D3": "Low",
+    "D4": "Low",
+    "D5": "Low",
+    "Overall": "High"
+   }
+  },
+  {
+   "name": "研究三",
+   "judgements": {
+    "D1": "Some concerns",
+    "D2": "Some concerns",
+    "D3": "Low",
+    "D4": "Low",
+    "D5": "Low",
+    "Overall": "Some concerns"
+   }
+  },
+  {
+   "name": "研究四",
+   "judgements": {
+    "D1": "Low",
+    "D2": "Low",
+    "D3": "High",
+    "D4": "Low",
+    "D5": "Low",
+    "Overall": "High"
+   }
+  },
+  {
+   "name": "研究五",
+   "judgements": {
+    "D1": "No information",
+    "D2": "Low",
+    "D3": "Low",
+    "D4": "Low",
+    "D5": "High",
+    "Overall": "High"
+   }
+  }
+ ]
+}

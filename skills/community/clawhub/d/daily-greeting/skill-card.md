@@ -1,43 +1,60 @@
-## Description: <br>
-Automatically sends personalized daily greetings from OpenClaw agents to their bound channels, including preferred-language messages and relevant status updates via BOOT.md or OpenClaw cron triggers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically prompts OpenClaw agents to send personalized daily greetings to their bound channels using startup or scheduled triggers.
 
-## Publisher: <br>
-[shz2050](https://clawhub.ai/user/shz2050) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shz2050](https://clawhub.ai/user/shz2050)
 
-## Use Case: <br>
-OpenClaw users and developers use this skill to configure agents to send scheduled, personalized greetings and status updates into bound messaging channels. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can automatically send context-derived greetings to every bound channel on a recurring schedule. <br>
-Mitigation: Review channel bindings and enable the schedule only for intended channels before deployment. <br>
-Risk: Greetings may include status summaries or history-based inferences that expose sensitive work context. <br>
-Mitigation: Disable or narrow status summaries and history-based inference where channels may contain sensitive work. <br>
-Risk: BOOT.md and cron entries can trigger unattended execution after installation. <br>
-Mitigation: Review BOOT.md and cron entries before enabling the skill and after uninstalling it. <br>
+## Use Case:
 
+OpenClaw users use this skill to have bound agents send scheduled, persona-aware greetings with relevant status updates to channels such as Discord, Feishu, or Telegram.
 
-## Reference(s): <br>
-- [Daily Greeting on ClawHub](https://clawhub.ai/shz2050/daily-greeting) <br>
-- [Installation guide](https://raw.githubusercontent.com/shz2050/daily-greeting/main/guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Text messages with Markdown and bash setup instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can run on startup or a weekday cron schedule; writes local state to prevent duplicate greetings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Automatic channel messaging can expose inferred context or status details in sensitive channels.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Limit the skill to approved agents and channels, and remove sensitive context or status details from the configured trigger message.
+
+Risk: BOOT.md and cron triggers can cause greetings to run without an explicit daily user action.
+
+Mitigation: Disable BOOT.md and cron until scheduled greetings are explicitly needed, then review the trigger schedule before enabling.
+
+Risk: The uninstall command removes the configured skill directory and can be unsafe if SKILL_DIR is overridden.
+
+Mitigation: Do not run uninstall with an overridden SKILL_DIR, and inspect the resolved path before removal.
+
+## Reference(s):
+
+- [Daily Greeting ClawHub release page](https://clawhub.ai/shz2050/skills/daily-greeting)
+- [README](artifact/README.md)
+- [Installation Guide](artifact/guide.md)
+- [Chinese README](artifact/docs/README_zh.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown instructions, bash command output, JSON configuration, and runtime channel messages]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Runtime behavior depends on OpenClaw bindings, weekday scheduling, duplicate-run state, and the configured trigger message.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

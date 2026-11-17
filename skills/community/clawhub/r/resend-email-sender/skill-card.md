@@ -1,42 +1,58 @@
-## Description: <br>
-Sends text or HTML email through the Resend API with support for multiple recipients, CC, BCC, and bulk-oriented workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Send emails using Resend API. Use when the user needs to send emails without configuring SMTP servers. Supports text and HTML emails, multiple recipients, CC/BCC, and bulk sending. Ideal for notifications, alerts, newsletters, and automated email workflows.
 
-## Publisher: <br>
-[aprilvkuo](https://clawhub.ai/user/aprilvkuo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[aprilvkuo](https://clawhub.ai/user/aprilvkuo)
 
-## Use Case: <br>
-Developers, operators, and automation agents use this skill to send notifications, alerts, newsletters, and workflow emails through a Resend account without configuring SMTP. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can send real outbound email through the user's Resend account. <br>
-Mitigation: Require manual review of recipients, subject, body, CC/BCC, and bulk sends before execution. <br>
-Risk: Email content or recipient lists may disclose sensitive or regulated information. <br>
-Mitigation: Avoid sensitive or regulated content unless intentionally approved for the account and use case. <br>
-Risk: A broadly scoped Resend API key could increase impact if exposed or misused. <br>
-Mitigation: Use a dedicated least-privilege Resend API key and rotate it according to account policy. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/aprilvkuo/resend-email-sender) <br>
-- [Resend](https://resend.com) <br>
+## Use Case:
 
+Developers and agents use this skill to send text or HTML email through Resend without configuring SMTP. It supports notification, alert, newsletter, and automated email workflows with single or multiple recipients, CC, and BCC.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, API calls, Guidance] <br>
-**Output Format:** [Plain text status messages and markdown usage examples with shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires RESEND_API_KEY and can optionally use RESEND_FROM; sends requests to the Resend email API.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill uses a Resend API key to send live outbound email, including bulk, CC, and BCC messages.
+
+Mitigation: Require explicit user confirmation of recipients and content before sending, especially for bulk, CC, or BCC messages.
+
+Risk: A broadly scoped or exposed Resend API key could allow unintended email sending.
+
+Mitigation: Use a Resend key with the minimum available permissions and review the skill before installation.
+
+Risk: Loading shared .env files can expose unrelated secrets to the skill runtime.
+
+Mitigation: Avoid placing unrelated secrets in the same .env file used for this skill.
+
+## Reference(s):
+
+- [Resend](https://resend.com)
+- [Resend Emails API endpoint](https://api.resend.com/emails)
+- [ClawHub skill page](https://clawhub.ai/aprilvkuo/skills/resend-email-sender)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with inline shell commands and plain-text command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill sends live outbound email through the Resend API and returns a success message with the Resend email ID or an error message.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

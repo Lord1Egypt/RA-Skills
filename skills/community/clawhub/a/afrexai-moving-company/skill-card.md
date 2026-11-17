@@ -1,40 +1,49 @@
-## Description: <br>
-Expert guidance for pricing, DOT/FMCSA compliance, crew management, claims handling, revenue optimization, and growth strategies in moving companies. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Expert guidance for pricing, DOT/FMCSA compliance, crew management, claims handling, revenue optimization, and growth strategies in moving companies.
 
-## Publisher: <br>
-[1kalin](https://clawhub.ai/user/1kalin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[1kalin](https://clawhub.ai/user/1kalin)
 
-## Use Case: <br>
-Moving company operators, consultants, and agents use this skill to answer operational questions about move pricing, federal compliance, crew management, claims handling, revenue benchmarks, and growth planning. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Pricing and regulatory details may become outdated or vary by jurisdiction. <br>
-Mitigation: Verify operational, FMCSA, and state-specific requirements against current authoritative sources before relying on the guidance. <br>
-Risk: Linked external context-pack content is outside the artifact and may change independently. <br>
-Mitigation: Review the linked GitHub Pages content separately before using it for business decisions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [AfrexAI Context Packs](https://afrexai-cto.github.io/context-packs/) <br>
-- [ClawHub Release Page](https://clawhub.ai/1kalin/afrexai-moving-company) <br>
+## Use Case:
 
+Moving company owners, operators, dispatch leads, and agent assistants use this skill to answer operational questions about move pricing, U.S. DOT/FMCSA compliance, crew planning, claims handling, and business growth.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Configuration] <br>
-**Output Format:** [Markdown text with operational recommendations, checklists, benchmarks, and reference values] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include pricing ranges, compliance checklists, claims timelines, KPI benchmarks, and growth playbooks.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+United States
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill includes business, pricing, insurance, and DOT/FMCSA compliance details that may become outdated or vary by jurisdiction.
+
+Mitigation: Treat outputs as advisory starting points and verify current federal, state, and local requirements before using them for legal, compliance, or financial decisions.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/1kalin/skills/afrexai-moving-company)
+- [AfrexAI context packs](https://afrexai-cto.github.io/context-packs/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown or plain text guidance with operational checklists, benchmarks, and configuration-ready context.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces advisory business, pricing, compliance, and claims guidance; users should verify current legal, financial, insurance, and regulatory requirements before relying on it.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

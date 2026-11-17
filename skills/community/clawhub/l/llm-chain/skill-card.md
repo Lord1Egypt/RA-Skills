@@ -1,42 +1,57 @@
-## Description: <br>
-Llm Chain is a Bash command-line logbook for recording LLM workflow notes, metrics, comparisons, costs, and exports in local plaintext files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Llm Chain records and exports local plaintext logs for LLM workflow configuration, benchmarks, comparisons, prompts, evaluations, costs, usage, tests, and reports.
 
-## Publisher: <br>
-[bytesagain3](https://clawhub.ai/user/bytesagain3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain3](https://clawhub.ai/user/bytesagain3)
 
-## Use Case: <br>
-Developers and engineers use this skill to log LLM experiments, prompt notes, evaluations, fine-tuning records, usage, costs, and operational reports during model workflow iteration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local plaintext logs may retain sensitive prompts, API usage details, customer data, proprietary code, or fine-tuning notes. <br>
-Mitigation: Use the skill only for non-sensitive entries, or manage access, retention, and deletion for ~/.local/share/llm-chain before recording confidential workflow data. <br>
-Risk: The release metadata describes LangChain4j/Java, while the reviewed artifact behaves as a local Bash logbook. <br>
-Mitigation: Confirm that the installed llm-chain command matches the reviewed artifact and expected local logging behavior before use. <br>
+## Use Case:
 
+Developers and engineers can use this skill to log LLM experiment activity, cost notes, prompt changes, model comparisons, and operational reports through a local Bash command-line tool.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/bytesagain3/llm-chain) <br>
-- [Artifact Skill Definition](artifact/SKILL.md) <br>
-- [Artifact Command Script](artifact/scripts/script.sh) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, files, configuration, guidance] <br>
-**Output Format:** [Plain text command output and local log/export files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes command-specific logs and exports under ~/.local/share/llm-chain by default.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The package label and description do not match the actual Bash logging and export behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installing and use it only when a local LLM workflow logging tool is intended.
+
+Risk: User-entered workflow data is stored as persistent plaintext on the local machine.
+
+Mitigation: Avoid entering secrets or regulated data, and manage filesystem permissions and retention for the log directory.
+
+Risk: CSV exports may be unsafe to open directly in spreadsheet applications if entries contain spreadsheet formulas.
+
+Mitigation: Treat exported CSV files as untrusted input and sanitize values before opening them in spreadsheet software.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bytesagain3/skills/llm-chain)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration]
+
+**Output Format:** [Plain text command output and local export files in JSON, CSV, or TXT format]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores timestamped plaintext entries under ~/.local/share/llm-chain/ by default.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter and ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

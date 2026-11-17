@@ -119,7 +119,7 @@
 
 ```html
 <div style="background:#556b2f;padding:16px;border-radius:10px;text-align:center;color:#fff;margin:24px 0 0;">
-    <div style="margin:0;color:#fff;font-size:15px;line-height:1.8;">如果你觉得文章对你有所帮助，请关注公众号。</div>
+    <div style="margin:0;color:#fff;font-size:15px;line-height:1.8;">如果你觉得文章对你有所帮助，请关注就行</div>
 </div>
 ```
 

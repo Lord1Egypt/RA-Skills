@@ -1,37 +1,53 @@
-## Description: <br>
-A non-executable architecture reference document for the V19 governance protocol V3.5 blueprint, covering governance clauses, a service matrix, orchestration concepts, GoalValueAnchor, and cognitive graph metrics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a Chinese-language V19 governance protocol architecture blueprint covering the V3.5 final kernel, nine governance clauses, service ports, orchestrator flow, cognitive graph metrics, and GoalValueAnchor evaluation model.
 
-## Publisher: <br>
-[liuyanfeng1234](https://clawhub.ai/user/liuyanfeng1234) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liuyanfeng1234](https://clawhub.ai/user/liuyanfeng1234)
 
-## Use Case: <br>
-Developers, architects, and reviewers can use this skill as reference material for understanding the V19 governance protocol's V3.5 architecture and evaluation concepts. Any claimed metrics or runtime details should be independently validated before operational reliance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Architecture claims, compliance scores, service ports, and runtime metrics may be unverified. <br>
-Mitigation: Treat the document as reference material and independently confirm the underlying system before relying on those claims. <br>
+## Use Case:
 
+Developers, architects, and governance reviewers use this skill as a reference blueprint for V19 governance protocol concepts, evaluation anchors, service boundaries, and audit-oriented architecture notes.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown reference document] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Non-executable documentation; no commands, files, or API calls are produced.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The abstract governance framing may shape agent responses when the skill is invoked.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it as a reference for governance architecture concepts and review agent outputs before applying them to policies, designs, or implementation plans.
+
+Risk: Readers may mistake the architecture blueprint's service matrix and orchestrator descriptions for runnable deployed services.
+
+Mitigation: Treat the artifact as non-executable Markdown guidance and verify any implementation or deployment details against separate operational evidence.
+
+## Reference(s):
+
+- [ClawHub skill release: V19 Architecture Blueprint V3.5 Final](https://clawhub.ai/liuyanfeng1234/skills/v19-architecture-blueprint-v35)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown prose and tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Non-executable reference content; no tools, install hooks, credential handling, persistence, or external data flow identified in security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,62 @@
-## Description: <br>
-RSyslog advanced system logging reference. RainerScript configuration, input/output modules (imtcp/imfile/omfwd/omelasticsearch), templates with property replacer, content-based filtering, TLS-encrypted remote logging, queue performance tuning, and debug troubleshooting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+RSyslog advanced system logging reference. RainerScript configuration, input/output modules (imtcp/imfile/omfwd/omelasticsearch), templates with property replacer, content-based filtering, TLS-encrypted remote logging, queue performance tuning, and debug troubleshooting.
 
-## Publisher: <br>
-[ckchzh](https://clawhub.ai/user/ckchzh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ckchzh](https://clawhub.ai/user/ckchzh)
 
-## Use Case: <br>
-Developers, system administrators, and operations engineers use this skill as a command-driven rsyslog reference for configuration syntax, modules, templates, filtering, remote logging, performance tuning, and troubleshooting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Copying remote logging examples without review can expose syslog listener ports or send logs to unintended forwarding destinations. <br>
-Mitigation: Review exposed ports, firewall rules, forwarding destinations, and queue behavior before applying examples in production. <br>
-Risk: TLS logging examples may need stronger authentication settings for production environments. <br>
-Mitigation: Confirm certificate paths, CA trust, key handling, and TLS authentication mode before enabling encrypted remote logging. <br>
-Risk: Forwarded or retained logs may contain sensitive data. <br>
-Mitigation: Review retention paths, log destinations, and data handling requirements before forwarding or storing logs. <br>
+## Use Case:
 
+Developers and systems engineers use this skill as a command-driven RSyslog reference for Linux logging configuration, forwarding, filtering, templates, performance tuning, and troubleshooting.
 
-## Reference(s): <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
-- [ClawHub skill page](https://clawhub.ai/ckchzh/rsyslog) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reference text with inline bash and rsyslog configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Command-selected reference sections for intro, config, modules, templates, filtering, remote logging, performance, and troubleshooting.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Remote logging examples may be copied into production without authenticated TLS peer validation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use authenticated TLS with permitted peer names before deploying remote forwarding examples.
+
+Risk: Dynamic file path examples can write logs into broad or unexpected filesystem paths.
+
+Mitigation: Constrain dynamic file paths to approved directories and naming patterns.
+
+Risk: Configuration snippets may fail or behave differently in a target RSyslog environment.
+
+Mitigation: Validate configurations with rsyslogd before applying them.
+
+Risk: Queue and disk settings may be too small, too large, or unsuitable for the deployment.
+
+Mitigation: Set queue and disk limits based on the environment's capacity and retention needs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ckchzh/skills/rsyslog)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reference text with shell and RainerScript configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Command-selected reference sections]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

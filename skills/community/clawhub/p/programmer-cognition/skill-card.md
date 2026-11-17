@@ -1,45 +1,58 @@
-## Description: <br>
-Programmer Cognition adapts the SOUL five-rule method to software development through four-direction code review, debugging discipline, deployment checks, and CI-oriented self-verification. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Programmer Cognition helps agents apply structured software engineering practices for code review, debugging, documentation, CI validation, and deployment checks.
 
-## Publisher: <br>
-[kingofzhao](https://clawhub.ai/user/kingofzhao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kingofzhao](https://clawhub.ai/user/kingofzhao)
 
-## Use Case: <br>
-Developers and engineering agents use this skill to structure code review, debugging, deployment readiness checks, and confidence labeling for software changes. It is most useful when an agent needs a repeatable checklist for identifying unknowns, reviewing failure modes, and verifying changes through tests and human review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can shape code review, debugging, and deployment decisions, so incorrect guidance may lead to faulty changes or missed edge cases. <br>
-Mitigation: Treat outputs as review guidance, require human engineering review, and verify changes with unit tests, integration tests, CI, and production-safe rollout checks. <br>
-Risk: The artifact emphasizes avoiding hardcoded secrets, skipped tests, direct production database changes, and unsafe deletion, which are concrete failure modes for agent-assisted development. <br>
-Mitigation: Use environment variables for credentials, catch specific exceptions, back up or sandbox database operations, prefer recoverable deletion workflows, and block deployment when tests or required checks fail. <br>
+## Use Case:
 
+Developers and engineering agents use this skill to structure coding work around explicit assumptions, four-direction code review, hypothesis-driven debugging, documentation memory, and pre-deployment red lines.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kingofzhao/programmer-cognition) <br>
-- [Publisher project homepage](https://github.com/KingOfZhao/AGI_PROJECT) <br>
-- [A Survey of Self-Evolving Agents](https://arxiv.org/abs/2507.21046) <br>
-- [SAGE: Multi-Agent Self-Evolution](https://arxiv.org/abs/2603.15255) <br>
-- [Memory in the Age of AI Agents](https://arxiv.org/abs/2512.13564) <br>
-- [Beyond RAG for Agent Memory](https://arxiv.org/abs/2602.02007) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands] <br>
-**Output Format:** [Markdown guidance with checklists, code examples, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes code-review prompts, debugging records, confidence labels, and deployment readiness checks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill content is primarily Chinese-language workflow guidance, which can be misapplied by teams that cannot review it accurately.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only where Chinese-language instructions are acceptable, or translate and review the workflow before use.
+
+Risk: Heartbeat and CI/CD references could be mistaken for authorization to run automation without explicit scheduling.
+
+Mitigation: Keep checks user-triggered or scheduled by trusted tooling, and review generated code, documentation, and deployment changes before applying them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kingofzhao/skills/programmer-cognition)
+- [Metadata homepage](https://github.com/KingOfZhao/AGI_PROJECT)
+- [A Survey of Self-Evolving Agents](https://arxiv.org/abs/2507.21046)
+- [SAGE: Multi-Agent Self-Evolution](https://arxiv.org/abs/2603.15255)
+- [Memory in the Age of AI Agents](https://arxiv.org/abs/2512.13564)
+- [Beyond RAG for Agent Memory](https://arxiv.org/abs/2602.02007)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with code examples and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include review findings, debugging hypotheses, checklists, and implementation guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, frontmatter, README changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

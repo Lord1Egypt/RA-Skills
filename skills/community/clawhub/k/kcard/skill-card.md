@@ -1,43 +1,58 @@
-## Description: <br>
-Knowledge Card generator that extracts key knowledge from user-provided text, files, URLs, or images; chooses a concept, memo, process, or comparison card; outputs structured Markdown; and renders it as a PNG image. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates concise knowledge cards from text, files, URLs, or images by extracting key points, choosing a concept, memo, process, or comparison structure, outputting Markdown, and rendering a PNG image.
 
-## Publisher: <br>
-[goog](https://clawhub.ai/user/goog) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[goog](https://clawhub.ai/user/goog)
 
-## Use Case: <br>
-External users and developers use this skill to turn notes, articles, URLs, files, or images into concise knowledge cards for learning, reference, and memorization. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads user-provided text, files, URLs, or images and saves generated Markdown and PNG outputs locally. <br>
-Mitigation: Use only material and output paths appropriate for the environment, and avoid confidential notes unless local storage is controlled. <br>
-Risk: The rendering workflow can run a local browser-based renderer and load Google Fonts during rendering. <br>
-Mitigation: Review the renderer before use in restricted environments and block or disable external asset loading when network contact is not acceptable. <br>
-Risk: Security evidence marks the release as suspicious because of local file handling, browser rendering, and an undisclosed third-party font request. <br>
-Mitigation: Perform security review and scan before deployment, and install only when those behaviors are acceptable. <br>
+## Use Case:
 
+External users and developers use this skill to turn notes, articles, files, URLs, or images into concise memory cards. It helps produce reusable Markdown cards and rendered PNG images for study, documentation, and quick reference.
 
-## Reference(s): <br>
-- [Card Templates](artifact/references/card-templates.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/goog/kcard) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Files, Shell commands, Guidance] <br>
-**Output Format:** [Markdown source file, rendered PNG image, and one-line summary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Cards are intended to stay concise, with one concept per card and a maximum of 195 words.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.6.5 (source: server release evidence) <br>
+Risk: Card Markdown can be rendered as active browser content with network access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Render only trusted or sanitized Markdown, and block browser network access when rendering material from untrusted people or websites.
+
+Risk: The skill writes fetched or local content into Markdown and PNG files.
+
+Mitigation: Review the input source, output path, and generated card before sharing or deploying the files.
+
+Risk: Renderer dependencies and browser behavior may vary across environments.
+
+Mitigation: Run the renderer in an isolated Python environment with pinned dependencies when reliability or isolation matters.
+
+## Reference(s):
+
+- [Card Templates](references/card-templates.md)
+- [ClawHub Skill Page](https://clawhub.ai/goog/skills/kcard)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Files, Text]
+
+**Output Format:** [Markdown source file, rendered PNG image, and one-line summary]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Cards are intended to stay concise, with one concept per card and a maximum of 195 words.]
+
+## Skill Version(s):
+
+1.6.5 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

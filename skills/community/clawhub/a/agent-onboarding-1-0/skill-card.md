@@ -1,43 +1,61 @@
-## Description: <br>
-Guides a new agent through joining a collaboration network by installing shared skills, creating _config files, registering cron tasks, and announcing capabilities. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a standard onboarding process for new agents joining a collaboration network, covering required general skills, `_config/` setup, cron registration, and capability declaration.
 
-## Publisher: <br>
-[royrollpapa](https://clawhub.ai/user/royrollpapa) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[royrollpapa](https://clawhub.ai/user/royrollpapa)
 
-## Use Case: <br>
-Agents and operators use this skill to follow a standard onboarding process for a shared collaboration workspace, including required general skills, local configuration files, cron coordination, and capability announcement. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill embeds shared folder tokens. <br>
-Mitigation: Remove or rotate embedded tokens before use and verify that each token is appropriate for the target workspace. <br>
-Risk: The skill asks agents to create or overwrite local _config files. <br>
-Mitigation: Require user confirmation before writing configuration files and review proposed file paths and contents. <br>
-Risk: The skill instructs agents to register recurring cron jobs without removal guidance. <br>
-Mitigation: Approve each cron job explicitly and document how to inspect, disable, or remove it later. <br>
+## Use Case:
 
+Developers, operators, and agent maintainers use this skill to onboard a new agent into an existing collaboration network with shared skills, local configuration records, recurring synchronization tasks, and a capability announcement.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/royrollpapa/agent-onboarding-1-0) <br>
-- [Publisher profile](https://clawhub.ai/user/royrollpapa) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with task lists, cron expressions, dependency names, and configuration file names.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes workspace folder tokens and recurring cron schedules that should be reviewed before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence; artifact frontmatter version 1.0) <br>
+Risk: The skill asks agents to install and update dependent skills, which can introduce unreviewed behavior if dependency versions or sources are not controlled.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only pinned, trusted skill versions in an authorized environment and perform integrity checks before updates.
+
+Risk: The skill directs agents to register recurring cron jobs, which can create persistent automation without adequate documentation or removal paths.
+
+Mitigation: Document each cron command, owner, schedule, and removal step before enabling the jobs.
+
+Risk: The onboarding flow can overwrite `_config/` during synchronization, which may replace local configuration unexpectedly.
+
+Mitigation: Require confirmation or backup before overwriting `_config/` files.
+
+Risk: The skill includes folder tokens whose sensitivity is not established by the evidence.
+
+Mitigation: Treat folder tokens as sensitive unless the service confirms they are non-secret identifiers protected by separate authentication.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/royrollpapa/skills/agent-onboarding-1-0)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, configuration, shell commands]
+
+**Output Format:** [Markdown guidance with configuration filenames, dependency names, and cron expressions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes required dependent skills, `_config/` file expectations, daily cron schedules, and operational best practices.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; skill frontmatter declares 1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

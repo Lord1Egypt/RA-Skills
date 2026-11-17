@@ -1,0 +1,131 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 500">
+  <!--
+    UML 交互概览图模板
+    展示活动框架+交互片段(ref)+决策+合并
+    像活动图但节点是交互片段引用
+  -->
+  <defs>
+    <filter id="shadow" x="-5%" y="-5%" width="115%" height="115%">
+      <feDropShadow dx="2" dy="2" stdDeviation="3" flood-opacity="0.12"/>
+    </filter>
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="{{ARROW_COLOR}}"/>
+    </marker>
+  </defs>
+
+  <rect width="900" height="500" fill="{{BG_COLOR}}" rx="6"/>
+
+  <!-- 外框 -->
+  <rect x="30" y="10" width="840" height="480" rx="6"
+        fill="none" stroke="{{NODE_STROKE}}" stroke-width="2"/>
+  <polygon points="30,10 200,10 215,30 30,30" fill="{{ACCENT_COLOR}}" fill-opacity="0.15"
+           stroke="{{NODE_STROKE}}" stroke-width="1.5"/>
+  <text x="110" y="24" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="11" font-weight="bold" fill="{{TEXT_COLOR}}">sd {{TITLE}}</text>
+
+  <!-- 初始节点 -->
+  <circle cx="450" cy="55" r="10" fill="{{ACCENT_COLOR}}"/>
+
+  <!-- 初始→交互片段1 -->
+  <line x1="450" y1="65" x2="450" y2="85" stroke="{{ARROW_COLOR}}" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- 交互片段1（ref框）: Authentication -->
+  <rect x="280" y="87" width="340" height="65" rx="4"
+        fill="{{NODE_FILL}}" stroke="{{ACCENT_COLOR}}" stroke-width="2" filter="url(#shadow)"/>
+  <polygon points="280,87 320,87 330,100 280,100" fill="{{ACCENT_COLOR}}" fill-opacity="0.2"
+           stroke="{{ACCENT_COLOR}}" stroke-width="1"/>
+  <text x="300" y="97" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="9" font-weight="bold" fill="{{ACCENT_COLOR}}">ref</text>
+  <text x="450" y="128" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="13" font-weight="bold" fill="{{TEXT_COLOR}}">{{INTERACTION_1}}</text>
+
+  <!-- 片段1→决策 -->
+  <line x1="450" y1="152" x2="450" y2="175" stroke="{{ARROW_COLOR}}" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- 决策节点 -->
+  <polygon points="450,177 480,207 450,237 420,207"
+           fill="{{BG_COLOR}}" stroke="{{ACCENT2_COLOR}}" stroke-width="2"/>
+
+  <!-- 决策→片段2 [success] -->
+  <line x1="420" y1="207" x2="265" y2="207" stroke="{{ARROW_COLOR}}" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="340" y="200" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="9" fill="{{ACCENT_COLOR}}">[success]</text>
+
+  <!-- 决策→片段3 [failure] -->
+  <line x1="480" y1="207" x2="590" y2="207" stroke="{{ARROW_COLOR}}" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="540" y="200" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="9" fill="{{ACCENT3_COLOR}}">[failure]</text>
+
+  <!-- 交互片段2: ProcessOrder -->
+  <rect x="80" y="185" width="185" height="65" rx="4"
+        fill="{{NODE_FILL}}" stroke="{{ACCENT2_COLOR}}" stroke-width="2" filter="url(#shadow)"/>
+  <polygon points="80,185 120,185 130,198 80,198" fill="{{ACCENT2_COLOR}}" fill-opacity="0.2"
+           stroke="{{ACCENT2_COLOR}}" stroke-width="1"/>
+  <text x="100" y="195" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="9" font-weight="bold" fill="{{ACCENT2_COLOR}}">ref</text>
+  <text x="172" y="225" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="12" font-weight="bold" fill="{{TEXT_COLOR}}">{{INTERACTION_2}}</text>
+
+  <!-- 交互片段3: ErrorHandling -->
+  <rect x="592" y="185" width="185" height="65" rx="4"
+        fill="{{NODE_FILL}}" stroke="{{ACCENT3_COLOR}}" stroke-width="2" filter="url(#shadow)"/>
+  <polygon points="592,185 632,185 642,198 592,198" fill="{{ACCENT3_COLOR}}" fill-opacity="0.2"
+           stroke="{{ACCENT3_COLOR}}" stroke-width="1"/>
+  <text x="612" y="195" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="9" font-weight="bold" fill="{{ACCENT3_COLOR}}">ref</text>
+  <text x="684" y="225" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="12" font-weight="bold" fill="{{TEXT_COLOR}}">{{INTERACTION_3}}</text>
+
+  <!-- 片段2→内联交互 -->
+  <line x1="172" y1="250" x2="172" y2="280" stroke="{{ARROW_COLOR}}" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- 内联交互片段（直接画时序片段） -->
+  <rect x="80" y="282" width="340" height="120" rx="4"
+        fill="{{NODE_FILL}}" stroke="{{ACCENT_COLOR}}" stroke-width="1.5" filter="url(#shadow)"/>
+  <polygon points="80,282 120,282 130,295 80,295" fill="{{ACCENT_COLOR}}" fill-opacity="0.2"
+           stroke="{{ACCENT_COLOR}}" stroke-width="1"/>
+  <text x="100" y="292" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="9" font-weight="bold" fill="{{ACCENT_COLOR}}">sd</text>
+  <text x="250" y="310" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="11" font-weight="bold" fill="{{TEXT_COLOR}}">{{INTERACTION_4}}</text>
+  <!-- 内联中的简单时序线 -->
+  <line x1="150" y1="320" x2="150" y2="390" stroke="{{BORDER_COLOR}}" stroke-width="1" stroke-dasharray="4,3"/>
+  <line x1="350" y1="320" x2="350" y2="390" stroke="{{BORDER_COLOR}}" stroke-width="1" stroke-dasharray="4,3"/>
+  <text x="150" y="318" text-anchor="middle" font-family="{{FONT_FAMILY}}" font-size="9" fill="{{SUBTITLE_COLOR}}">Sender</text>
+  <text x="350" y="318" text-anchor="middle" font-family="{{FONT_FAMILY}}" font-size="9" fill="{{SUBTITLE_COLOR}}">Receiver</text>
+  <line x1="150" y1="345" x2="340" y2="345" stroke="{{ARROW_COLOR}}" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text x="245" y="338" text-anchor="middle" font-family="{{FONT_FAMILY}}" font-size="9" fill="{{ACCENT_COLOR}}">send(data)</text>
+  <line x1="340" y1="370" x2="160" y2="370" stroke="{{ACCENT2_COLOR}}" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arrow)"/>
+  <text x="245" y="386" text-anchor="middle" font-family="{{FONT_FAMILY}}" font-size="9" fill="{{ACCENT2_COLOR}}">ack</text>
+
+  <!-- 合并节点 -->
+  <polygon points="450,410 480,440 450,470 420,440"
+           fill="{{BG_COLOR}}" stroke="{{ACCENT2_COLOR}}" stroke-width="2"/>
+
+  <!-- 片段3→合并 -->
+  <line x1="684" y1="250" x2="684" y2="440" stroke="{{ARROW_COLOR}}" stroke-width="1.5"/>
+  <line x1="684" y1="440" x2="482" y2="440" stroke="{{ARROW_COLOR}}" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- 内联→合并 -->
+  <line x1="250" y1="402" x2="250" y2="440" stroke="{{ARROW_COLOR}}" stroke-width="1.5"/>
+  <line x1="250" y1="440" x2="418" y2="440" stroke="{{ARROW_COLOR}}" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- 终止节点 -->
+  <circle cx="450" cy="485" r="8" fill="none" stroke="{{ACCENT_COLOR}}" stroke-width="2"/>
+  <circle cx="450" cy="485" r="5" fill="{{ACCENT_COLOR}}"/>
+  <line x1="450" y1="470" x2="450" y2="476" stroke="{{ARROW_COLOR}}" stroke-width="2"/>
+
+  <!-- 图例 -->
+  <rect x="600" y="310" width="250" height="85" rx="6"
+        fill="{{BG_COLOR}}" stroke="{{BORDER_COLOR}}" stroke-width="1"/>
+  <text x="615" y="328" font-family="{{FONT_FAMILY}}"
+        font-size="10" font-weight="bold" fill="{{TITLE_COLOR}}">图例 Legend</text>
+  <rect x="615" y="338" width="30" height="16" rx="2" fill="{{NODE_FILL}}" stroke="{{ACCENT_COLOR}}" stroke-width="1.5"/>
+  <text x="615" y="347" font-family="{{FONT_FAMILY}}" font-size="7" fill="{{ACCENT_COLOR}}">ref</text>
+  <text x="655" y="351" font-family="{{FONT_FAMILY}}" font-size="9" fill="{{TEXT_COLOR}}">交互片段引用</text>
+  <rect x="615" y="360" width="30" height="16" rx="2" fill="{{NODE_FILL}}" stroke="{{ACCENT_COLOR}}" stroke-width="1"/>
+  <text x="615" y="369" font-family="{{FONT_FAMILY}}" font-size="7" fill="{{ACCENT_COLOR}}">sd</text>
+  <text x="655" y="373" font-family="{{FONT_FAMILY}}" font-size="9" fill="{{TEXT_COLOR}}">内联交互 Inline</text>
+  <polygon points="625,382 633,390 625,398 617,390" fill="{{BG_COLOR}}" stroke="{{ACCENT2_COLOR}}" stroke-width="1"/>
+  <text x="655" y="394" font-family="{{FONT_FAMILY}}" font-size="9" fill="{{TEXT_COLOR}}">决策/合并</text>
+</svg>

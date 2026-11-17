@@ -1,43 +1,53 @@
-## Description: <br>
-Web Module Runner is a local command-line utility for logging, searching, and exporting notes about web module tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Web Module Runner is a command-line utility for logging, reviewing, searching, summarizing, and exporting web module task activity.
 
-## Publisher: <br>
-[xueyetianya](https://clawhub.ai/user/xueyetianya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xueyetianya](https://clawhub.ai/user/xueyetianya)
 
-## Use Case: <br>
-Developers and engineers can use this skill to propose shell commands and workflows for recording, reviewing, searching, and exporting local notes about web module-related tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Task notes and command arguments may include secrets, private code, customer data, or other sensitive project details. <br>
-Mitigation: Avoid entering sensitive values and review local logs or exports before sharing them. <br>
-Risk: The artifact uses broad build-runner language, while the security evidence describes the behavior as local command-history logging. <br>
-Mitigation: Treat generated records as notes or history unless results are independently verified with the relevant build or analysis tools. <br>
-Risk: Command use can create persistent local log and export files under the user's home directory. <br>
-Mitigation: Run in an appropriate environment and remove or protect ~/.local/share/web-module-runner/ data when it is no longer needed. <br>
+## Use Case:
 
+Developers and engineers can use this skill to operate a local shell utility that records web module runs, checks, conversions, analyses, comparisons, reports, and exports for later review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xueyetianya/web-module-runner) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/xueyetianya) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands; command output may include text, JSON, CSV, or TXT exports.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands store local logs and exports under ~/.local/share/web-module-runner/ when executed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence and SKILL.md frontmatter) <br>
+Risk: The artifact records arbitrary user input in local history files that can later be searched or exported.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not enter secrets, tokens, private paths, or sensitive project details; review local logs and exports before sharing them.
+
+Risk: The package is presented as a web development runner, while server security evidence says the artifacts mainly define a local activity logger.
+
+Mitigation: Review the shell script behavior before installation and use it as a logbook utility unless independent review confirms broader runner behavior.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/xueyetianya/skills/web-module-runner)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and local CLI output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write local log and export files under ~/.local/share/web-module-runner/ when the shell script is installed and run.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

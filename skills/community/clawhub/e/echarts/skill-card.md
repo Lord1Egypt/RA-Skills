@@ -1,43 +1,56 @@
-## Description: <br>
-Create Apache ECharts option JSON, standalone HTML chart pages, and export-ready chart artifacts from CSV, TSV, JSON tables, or existing option configs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create Apache ECharts option JSON, standalone HTML chart pages, and export-ready chart artifacts from CSV, TSV, JSON tables, or existing option configs.
 
-## Publisher: <br>
-[jvy](https://clawhub.ai/user/jvy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jvy](https://clawhub.ai/user/jvy)
 
-## Use Case: <br>
-Developers, analysts, and data-focused agents use this skill to turn chart ideas, table data, or existing ECharts options into reusable ECharts configuration, preview pages, and export-ready chart artifacts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated chart pages load the ECharts runtime from trusted external or user-specified URLs. <br>
-Mitigation: Use a trusted local or approved ECharts runtime URL for confidential work, and avoid opening generated chart.html files from untrusted sources. <br>
-Risk: Local scripts read user-selected data files and write chart artifacts that may include sensitive input data. <br>
-Mitigation: Keep generated chart folders private, sanitize confidential data before sharing artifacts, and review chart.data.json and chart.html before publication. <br>
+## Use Case:
 
+Developers and analysts use this skill to turn structured data or existing ECharts options into reviewable chart configs, standalone preview pages, and optional static image exports.
 
-## Reference(s): <br>
-- [Apache ECharts](https://echarts.apache.org/) <br>
-- [Chart Selection](references/chart-selection.md) <br>
-- [Option Patterns](references/option-patterns.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/jvy/echarts) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Files] <br>
-**Output Format:** [Markdown guidance with bash commands, plus generated JSON, HTML, PNG, or SVG chart artifacts.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated artifact directories can include chart.spec.json, chart.option.json, chart.data.json, chart.html, manifest.json, and optional exported image files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Generated chart pages contact public CDNs and execute the returned ECharts JavaScript.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a reviewed local ECharts bundle with --cdn, or avoid opening and rendering generated pages until the runtime source is pinned or bundled.
+
+Risk: Sensitive or offline data may be reviewed in generated pages that depend on an external runtime source.
+
+Mitigation: For sensitive or offline workflows, render only with a reviewed local or mirrored ECharts bundle.
+
+## Reference(s):
+
+- [Apache ECharts](https://echarts.apache.org/)
+- [Chart Selection](references/chart-selection.md)
+- [Option Patterns](references/option-patterns.md)
+- [ClawHub Skill Page](https://clawhub.ai/jvy/skills/echarts)
+
+## Skill Output:
+
+**Output Type(s):** [code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with bash commands plus generated JSON, HTML, and optional PNG or SVG files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated artifacts commonly include chart.option.json, chart.spec.json, chart.html, manifest.json, normalized data JSON, and optional exported images.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

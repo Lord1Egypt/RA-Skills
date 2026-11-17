@@ -1,42 +1,58 @@
-## Description: <br>
-Niche-Awesome guides beginners through a six-step niche research and market-validation process that produces a structured BRD for deciding what AI product to build. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Niche-Awesome guides beginners through a six-step market research process for niche product selection and validation, producing a structured Business Requirements Document from user-gathered evidence.
 
-## Publisher: <br>
-[adsorgcn](https://clawhub.ai/user/adsorgcn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[adsorgcn](https://clawhub.ai/user/adsorgcn)
 
-## Use Case: <br>
-Developers, indie hackers, and beginner AI-product builders use this skill to validate product ideas with real market searches before building. It helps turn a vague idea or product direction into a BRD covering trend validation, competitor pain points, user persona, market size, pricing, and positioning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Market conclusions can be wrong if the user provides thin, biased, or fabricated search results. <br>
-Mitigation: Cross-check multiple sources and review the BRD before deciding to build or invest. <br>
-Risk: Research notes may include sensitive business ideas, personal details, or copied user reviews. <br>
-Mitigation: Avoid storing secrets or sensitive personal details unless necessary, and set retention or deletion limits for any logged research. <br>
+## Use Case:
 
+External users, founders, indie hackers, and product builders use this skill to validate a product direction, mine competitor pain points, identify target users, estimate market size, choose pricing, and document the result as a BRD.
 
-## Reference(s): <br>
-- [Niche-Awesome on ClawHub](https://clawhub.ai/adsorgcn/niche-awesome) <br>
-- [iLang](https://ilang.ai) <br>
-- [AutoCode](https://github.com/ilang-ai/autocode) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown] <br>
-**Output Format:** [Conversational guidance followed by a structured BRD in Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user-provided search results; does not perform network requests, access files, generate code, or build products.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: target metadata) <br>
+Risk: The skill depends on user-supplied market research, so weak or incomplete searches can lead to an unreliable BRD.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the guided search steps across multiple public sources and keep unsupported conclusions out of the final BRD.
+
+Risk: The artifact recommends AutoCode or ZeroCode after validation, which may be promotional rather than necessary for the research workflow.
+
+Mitigation: Treat build-tool recommendations as optional follow-up and choose implementation tools independently after market validation.
+
+## Reference(s):
+
+- [Niche-Awesome ClawHub listing](https://clawhub.ai/adsorgcn/skills/niche-awesome)
+- [Publisher profile](https://clawhub.ai/user/adsorgcn)
+- [iLang homepage](https://ilang.ai)
+- [AutoCode](https://github.com/ilang-ai/autocode)
+- [OpenClaw Skills](https://github.com/ilang-ai/ilang-openclaw)
+- [ZeroCode Trae Plugin](https://gitee.com/palmmedia/iLang-Trae-Plugin)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown conversation guidance and a structured BRD]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the user to manually search public sites and paste findings back for analysis.]
+
+## Skill Version(s):
+
+1.0.6 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

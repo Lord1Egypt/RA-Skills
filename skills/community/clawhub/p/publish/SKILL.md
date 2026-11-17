@@ -141,7 +141,7 @@ bash sync.sh
 
 ```bash
 # Create a test file with a fake secret
-echo "My API key is ghp_test1234567890abcdefghijklmnopqrstuvwxyz" > /tmp/test-workspace/AGENTS.md
+echo "My API key is REDACTED-SECRET" > /tmp/test-workspace/AGENTS.md
 
 # Run sync - should abort with error
 bash sync.sh
@@ -161,7 +161,7 @@ export GITHUB_TOKEN="dummy"
 
 # Create workspace with secret in a non-staged file
 mkdir -p /tmp/test-workspace
-echo "Real API key: sk-realapikey12345678901234567890" > /tmp/test-workspace/AGENTS.md
+echo "Real API key: REDACTED-SECRET" > /tmp/test-workspace/AGENTS.md
 
 # Copy sync.sh to temp backup dir
 cd /tmp && rm -rf audit-test && mkdir audit-test && cd audit-test

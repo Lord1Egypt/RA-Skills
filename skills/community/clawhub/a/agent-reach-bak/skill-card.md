@@ -1,42 +1,54 @@
-## Description: <br>
-Agent Reach.Bak helps an agent search, read, and interact with web and social platforms including Twitter/X, Reddit, YouTube, GitHub, Bilibili, XiaoHongShu, Douyin, Weibo, WeChat Articles, LinkedIn, Instagram, RSS, Exa web search, and arbitrary web pages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent Reach gives agents command-oriented access to search, read, diagnose, configure, and in some cases interact with supported web and social platforms.
 
-## Publisher: <br>
-[reiy-leo](https://clawhub.ai/user/reiy-leo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[reiy-leo](https://clawhub.ai/user/reiy-leo)
 
-## Use Case: <br>
-Developers and agents use this skill to gather online information, read linked content, inspect platform-specific resources, configure supported channels, and perform guarded social-platform actions when explicitly requested. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Cookie-based account access and posting-capable commands can expose accounts or change account state. <br>
-Mitigation: Use secondary accounts or read-only workflows where possible, avoid sharing main-account cookies casually, and require explicit preview and confirmation before any post, comment, upload, or account-changing action. <br>
-Risk: The skill directs agents to inspect a remote install guide before setup, so installation steps may affect the local environment. <br>
-Mitigation: Review the remote install guide before running setup commands and only proceed with commands that match the intended channel configuration. <br>
+## Use Case:
 
+Developers and agent operators use this skill to help an agent search and read public web sources, inspect supported social or content platforms, troubleshoot channel availability, and configure optional platform access.
 
-## Reference(s): <br>
-- [Agent Reach homepage](https://github.com/Panniantong/Agent-Reach) <br>
-- [Agent Reach install guide](https://raw.githubusercontent.com/Panniantong/agent-reach/main/docs/install.md) <br>
-- [ClawHub skill page](https://clawhub.ai/reiy-leo/agent-reach-bak) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands, code snippets, URLs, and platform-specific guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include JSON returned by platform tools or command-line utilities.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Authenticated platform channels may expose browser or session credentials to agent-driven workflows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer read-only use first, use secondary accounts for cookie-based platforms, and approve each posting or publishing action explicitly.
+
+Risk: Mutable remote setup instructions, global package installs, browser-cookie access, and proxy configuration can change the local environment or account exposure.
+
+Mitigation: Review and approve the exact commands before allowing installation, browser-cookie use, proxy changes, or remote setup steps.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/reiy-leo/skills/agent-reach-bak)
+- [OpenClaw Homepage](https://github.com/Panniantong/Agent-Reach)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands, API/tool calls, and short Python snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference temporary files under /tmp/ and persistent channel data under ~/.agent-reach/ as described by the artifact.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

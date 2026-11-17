@@ -1,47 +1,63 @@
-## Description: <br>
-OpenClaw MVP v8.1 - Email Classification & Google Workspace Execution for Awalcom. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw MVP v8.1 for email classification and Google Workspace execution for Awalcom.
 
-## Publisher: <br>
-[strategy-awal](https://clawhub.ai/user/strategy-awal) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[strategy-awal](https://clawhub.ai/user/strategy-awal)
 
-## Use Case: <br>
-Employees and operators use this skill to monitor the strategy@awalcom.net mailbox, classify regional strategy emails, send Telegram summaries for approval, and create approved Google Docs, Sheets, or Slides assets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles sensitive mailbox data and can create or share Google Workspace assets. <br>
-Mitigation: Use only approved mailboxes and Google Workspace resources, restrict OAuth scopes and sharing destinations, and keep created assets private until reviewed. <br>
-Risk: Automation could execute document creation, modification, or sharing from incomplete or sensitive email context. <br>
-Mitigation: Require explicit human confirmation before any document creation, modification, or sharing action. <br>
-Risk: Telegram summaries may expose sensitive email metadata or content. <br>
-Mitigation: Use a private controlled Telegram channel and limit summaries to information needed for approval. <br>
+## Use Case:
 
+Awalcom strategy teams and their OpenClaw operator use this skill to check a strategy inbox, classify emails by Oman, Qatar, or MENA context, and prepare approved Google Workspace drafts, slides, or sheets.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/strategy-awal/strategy-awal) <br>
-- [README](README.md) <br>
-- [Approval Workflow](docs/approval-workflow.md) <br>
-- [Telegram Commands](docs/telegram-commands.md) <br>
-- [Troubleshooting](docs/troubleshooting.md) <br>
-- [Email Classification Keywords](context/email-classification-keywords.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, API calls, Files, Guidance] <br>
-**Output Format:** [Markdown instructions, Telegram response text, Google Workspace documents, and configuration JSON] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires authenticated gog CLI access, Google Workspace OAuth scopes, and a Telegram integration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Google OAuth setup may include unrelated Calendar and Contacts access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the narrowest OAuth scopes needed for Gmail, Drive, Docs, Sheets, and Slides, and remove Calendar and Contacts from the reauthorization command unless separately justified.
+
+Risk: Sensitive strategy emails may be copied into Telegram summaries or shared Google Workspace assets.
+
+Mitigation: Keep Telegram channels private and require explicit confirmation before copying email content into any shared document, sheet, or slide deck.
+
+Risk: Keyword-based regional classification can be ambiguous or incorrect.
+
+Mitigation: Ask for clarification on ambiguous emails and review generated Workspace assets before sharing, finalizing, or using them for external communication.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/strategy-awal/skills/strategy-awal)
+- [Publisher Profile](https://clawhub.ai/user/strategy-awal)
+- [README](artifact/README.md)
+- [Approval Workflow](artifact/docs/approval-workflow.md)
+- [Telegram Commands](artifact/docs/telegram-commands.md)
+- [Troubleshooting](artifact/docs/troubleshooting.md)
+- [Email Classification Keywords](artifact/context/email-classification-keywords.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, shell commands, guidance]
+
+**Output Format:** [Markdown, text summaries, command-oriented guidance, and links to generated Google Workspace assets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires configured gog and gh command-line tools, Google Workspace OAuth, and Telegram approval before external actions.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

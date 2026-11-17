@@ -1,46 +1,56 @@
-## Description: <br>
-Persistent per-project coding terminal (tmux). Run Codex CLI (codex exec) inside a stable session; mobile/SSH friendly. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Persistent per-project coding terminal (tmux). Run Codex CLI (codex exec) inside a stable session; mobile/SSH friendly.
 
-## Publisher: <br>
-[Justinzhq](https://clawhub.ai/user/Justinzhq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[justinzhq](https://clawhub.ai/user/justinzhq)
 
-## Use Case: <br>
-Developers and engineers use this skill to run coding, build, test, commit, and push workflows inside persistent tmux sessions so work can continue across SSH or mobile disconnects. It is also useful for OpenClaw workflows that need status, summaries, JSON output, or serial multi-project routing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can automatically run Codex and shell workflows that modify code. <br>
-Mitigation: Install it only for repositories where persistent local terminal automation is intended, and keep autoCodeRouting disabled unless automatic routing is deliberate. <br>
-Risk: Automated workflows can commit or push changes to a branch. <br>
-Mitigation: Use feature branches, review diffs plus branch and remote targets before commits or pushes, and do not force push unless explicitly requested. <br>
-Risk: Terminal sessions can preserve or expose sensitive command output. <br>
-Mitigation: Avoid printing secrets in the session, review summaries before sharing them, and kill tmux sessions when work is finished. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to run coding commands and Codex CLI work inside persistent tmux sessions, preserving output and shell state across SSH or mobile reconnects. It supports one-project and multi-project coding workflows with status, summary, JSON output, and optional auto-routing.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Justinzhq/persistent-code-terminal) <br>
-- [README](artifact/README.md) <br>
-- [Skill definition](artifact/SKILL.md) <br>
-- [Changelog](artifact/CHANGELOG.md) <br>
-- [Case study: patch to push](artifact/examples/case-study-patch-to-push.md) <br>
-- [Manual quickstart example](artifact/examples/quickstart-manual.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Markdown, Guidance, Configuration] <br>
-**Output Format:** [Terminal text, JSON status or summary output, and Markdown guidance with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires tmux on macOS or Linux; Codex CLI integration is optional but used for codex-exec workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata and CHANGELOG.md) <br>
+Risk: The skill can run Codex with write authority and retry coding tasks automatically.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only in repositories where automated code edits are acceptable, keep auto routing disabled unless intentionally enabled, and review diffs before commit or push.
+
+Risk: Persistent terminal output and state files may retain sensitive command or session data.
+
+Mitigation: Avoid putting secrets in prompts or shell commands, and add `.pct-state.json` and `.pct-routing.log` to gitignore or clean them regularly.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/justinzhq/skills/persistent-code-terminal)
+- [Skill definition](artifact/SKILL.md)
+- [README](artifact/README.md)
+- [Changelog](artifact/CHANGELOG.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and optional JSON command summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires tmux on macOS or Linux; Codex CLI is optional for Codex-driven workflows.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata and CHANGELOG)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

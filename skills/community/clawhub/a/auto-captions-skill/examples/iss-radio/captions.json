@@ -1,0 +1,57 @@
+{
+  "videos": [
+    {
+      "file": "clips/intro.mp4",
+      "id": "intro",
+      "position": {
+        "youtube": 0.66
+      }
+    },
+    {
+      "file": "clips/speed.mp4",
+      "id": "speed"
+    }
+  ],
+  "language": "en",
+  "vocab": [
+    "Nichole Ayers",
+    "International Space Station",
+    "ISS",
+    "ham radio"
+  ],
+  "translations": [
+    "es"
+  ],
+  "outputs": [
+    {
+      "id": "vertical",
+      "style": "pop",
+      "canvas": "9:16",
+      "fit": "crop",
+      "focus_x": 0.57
+    },
+    {
+      "id": "youtube",
+      "style": "clean",
+      "canvas": "source",
+      "languages": [
+        "en"
+      ]
+    },
+    {
+      "id": "linkedin",
+      "style": "clean",
+      "canvas": "4:5",
+      "fit": "blur",
+      "languages": [
+        "en"
+      ]
+    }
+  ],
+  "post_to": [
+    "TIKTOK",
+    "INSTAGRAM",
+    "YOUTUBE",
+    "LINKEDIN_PAGES"
+  ]
+}

@@ -1,40 +1,49 @@
-## Description: <br>
-Fetch recent GitHub activity from the Nom feed. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetch recent GitHub activity from the Nom feed.
 
-## Publisher: <br>
-[lws803](https://clawhub.ai/user/lws803) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[lws803](https://clawhub.ai/user/lws803)
 
-## Use Case: <br>
-Developers and repository maintainers use this skill to look up recent GitHub activity for a repository or global feed, filter by event type, organization, search text, date range, and result limit, and receive a readable activity summary. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Search terms, repository names, and filter values are sent to the disclosed Nom service. <br>
-Mitigation: Use the skill for public GitHub activity searches and avoid sensitive private search terms or repository details. <br>
-Risk: Unquoted or unencoded user input could produce malformed curl requests. <br>
-Mitigation: Quote and URL-encode user-provided arguments when forming requests. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lws803/nom-feed) <br>
-- [Nom feed service](https://beta.nomit.dev) <br>
+## Use Case:
 
+Developers and engineering teams use this skill to query recent GitHub repository or organization activity from Nom and receive concise summaries of pull requests, issues, releases, or pushes.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown summaries, with optional RSS XML when requested] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses curl requests to the Nom service; default result limit is 20 and maximum result limit is 100.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Queries are sent to beta.nomit.dev and may include repository names, organization names, date filters, or search terms supplied by the user.
+
+Mitigation: Review query content before use and avoid sending sensitive or private repository information to the external feed service.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lws803/skills/nom-feed)
+- [Nom feed service](https://beta.nomit.dev)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands]
+
+**Output Format:** [Markdown summaries with links, or RSS XML when requested]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses curl to request public feed data from beta.nomit.dev; supports filters for repository, organization, event type, search text, date range, result limit, and RSS output.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

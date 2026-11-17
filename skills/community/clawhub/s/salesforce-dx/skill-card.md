@@ -1,41 +1,57 @@
-## Description: <br>
-Query Salesforce data and manage sales pipelines with the `sf` CLI, including SOQL queries, opportunity analysis, forecast reporting, exports, schema exploration, and CRM record operations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query Salesforce data and manage sales pipelines using the `sf` CLI for SOQL queries, opportunity analysis, forecast reporting, data exports, schema exploration, and CRM data operations.
 
-## Publisher: <br>
-[rjmcgirr-pl](https://clawhub.ai/user/rjmcgirr-pl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[rjmcgirr-pl](https://clawhub.ai/user/rjmcgirr-pl)
 
-## Use Case: <br>
-Employees, sales operations teams, and CRM administrators use this skill to query Salesforce, review pipeline health, prepare deal and forecast summaries, and draft `sf` CLI commands for CRM data work. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can use an agent's Salesforce CLI session to read or export sensitive CRM data such as contacts, account notes, opportunity details, and pipeline reports. <br>
-Mitigation: Verify the target org before use, prefer sandbox or least-privilege accounts, and treat exported CRM data as confidential business data. <br>
-Risk: The skill includes Salesforce CLI patterns for creating, updating, importing, and bulk upserting records. <br>
-Mitigation: Require explicit approval before any export, import, bulk upsert, or record-changing command, and review target objects, filters, and record IDs before execution. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Salesforce ClawHub release](https://clawhub.ai/rjmcgirr-pl/salesforce-dx) <br>
-- [Pipeline & Forecast Queries](references/pipeline-queries.md) <br>
-- [Advanced SOQL Patterns](references/soql-patterns.md) <br>
+## Use Case:
 
+Employees, developers, and sales operations teams use this skill to query Salesforce, inspect schema, analyze opportunity pipeline and forecasts, export CRM data, and prepare sales workflows through the sf CLI.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline SOQL and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Salesforce CLI commands that read, export, create, update, import, or bulk upsert CRM records.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Authenticated Salesforce CLI commands can read or export sensitive CRM data.
+
+Mitigation: Use least-privilege Salesforce access, limit selected fields and result sizes, and review export commands before execution.
+
+Risk: The skill includes commands for creating, updating, and bulk upserting Salesforce records.
+
+Mitigation: Review write commands before running them, prefer sandbox testing, and restrict production permissions to necessary objects and fields.
+
+Risk: The schema export script writes an object-specific markdown file in the current directory.
+
+Mitigation: Use trusted object names and run the script only in directories where overwriting an existing schema file would be acceptable.
+
+## Reference(s):
+
+- [Pipeline & Forecast Queries](references/pipeline-queries.md)
+- [Advanced SOQL Patterns](references/soql-patterns.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline bash and SOQL code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Salesforce CLI commands that read, export, create, update, or upsert CRM records.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

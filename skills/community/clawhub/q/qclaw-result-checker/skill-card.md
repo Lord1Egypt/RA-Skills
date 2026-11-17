@@ -1,40 +1,53 @@
-## Description: <br>
-Checks a local QClaw and WorkBuddy queue for task status, completed task results, and result details when a user asks about WorkBuddy outcomes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Qclaw Result Checker helps an agent check WorkBuddy task status and retrieve completed task results through QClaw queue commands.
 
-## Publisher: <br>
-[liuboacean](https://clawhub.ai/user/liuboacean) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liuboacean](https://clawhub.ai/user/liuboacean)
 
-## Use Case: <br>
-Employees and agents use this skill to answer user questions about whether a WorkBuddy task has completed and to retrieve the latest completed result or a specific task result from the local queue. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad result-related prompts may reveal prior WorkBuddy task descriptions, full results, or local attachment paths from the queue. <br>
-Mitigation: Use the skill only in trusted local contexts and review retrieved WorkBuddy queue output before sharing it further. <br>
-Risk: The skill depends on a separate local qclaw-workbuddy-bridge helper that is outside this artifact. <br>
-Mitigation: Install and use the skill only if the local helper is already present and trusted. <br>
+## Use Case:
 
+External users and developers use this skill to ask an agent whether WorkBuddy tasks have completed, list queue status, and retrieve completed task summaries or full results.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/liuboacean/qclaw-result-checker) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown responses with shell command examples and formatted task status or result summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include task identifiers, task descriptions, result summaries, full result output, error details, or local attachment paths when present in the WorkBuddy queue.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release evidence) <br>
+Risk: The skill can reveal prior WorkBuddy task content, result details, and local paths in the current chat.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Narrow activation to explicit QClaw or WorkBuddy result requests, require a task ID or confirmation before showing full results, and redact file paths by default.
+
+Risk: The skill uses a shell command pattern that accepts a task ID supplied by the user.
+
+Mitigation: Validate task IDs against the local queue before running result commands and avoid passing untrusted free-form text as the task ID.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/liuboacean/skills/qclaw-result-checker)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and task result summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include WorkBuddy task IDs, task descriptions, result details, status, and local file paths when returned by the queue command.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata; artifact frontmatter says 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

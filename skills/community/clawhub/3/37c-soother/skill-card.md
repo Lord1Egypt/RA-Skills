@@ -1,40 +1,57 @@
-## Description: <br>
-37°C Soother generates exactly five warm, philosophy- and psychology-informed quotes for a supplied topic, emotion, scene, or title. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+37°C Soother generates five warm, philosophy- and psychology-informed quotes for a provided topic, emotion, scene, or title.
 
-## Publisher: <br>
-[daliying](https://clawhub.ai/user/daliying) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[daliying](https://clawhub.ai/user/daliying)
 
-## Use Case: <br>
-External users, writers, and agent users can use this skill to turn a topic or emotional scene into five concise, comforting quote-style outputs with short interpretations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger wording may cause the skill to activate for general emotional or topic prompts. <br>
-Mitigation: Require explicit skill selection or constrain activation to prompts that ask for soothing quote-style writing. <br>
-Risk: The skill uses philosophical and psychological framing that readers may overread as personal mental-health advice. <br>
-Mitigation: Use outputs as reflective writing or comfort copy, and route crisis, diagnosis, or treatment requests to appropriate professional-support workflows. <br>
+## Use Case:
 
+Writers, creators, and general users use this skill to turn a topic, emotion, scene, or article title into five gentle quote-style lines with short reflective interpretations.
 
-## Reference(s): <br>
-- [37°C Soother on ClawHub](https://clawhub.ai/daliying/37c-soother) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with numbered quote entries, attribution lines, and short interpretive blockquotes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces exactly 5 quotes; each main quote is constrained to 80 characters or fewer.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The README contains a placeholder GitHub install URL.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the verified ClawHub skill page or a pinned, verified source before installing.
+
+Risk: Broad trigger wording may cause the skill to activate in writing contexts where soothing quote generation was not intended.
+
+Mitigation: Invoke it for explicit quote, healing-title, or reflective-copy requests and review outputs before reuse.
+
+Risk: Psychology-themed comfort text could be mistaken for professional mental health advice.
+
+Mitigation: Treat outputs as reflective writing, not diagnosis, treatment, or crisis support.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/daliying/skills/37c-soother)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with five numbered quote entries and short blockquote interpretations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Each quote is constrained to a gentle tone and a maximum of 80 characters, with exactly five quotes per response.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,54 @@
-## Description: <br>
-AgentBox Twitter lets agents search Twitter/X posts, fetch tweets with conversation context, and retrieve user profiles through a paid x402 API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Twitter/X research via paid API: search tweets with 50+ operators, fetch tweets with threads/replies/quotes, get user profiles with tweets/followers/following.
 
-## Publisher: <br>
-[tenequm](https://clawhub.ai/user/tenequm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[tenequm](https://clawhub.ai/user/tenequm)
 
-## Use Case: <br>
-Developers and agents use this skill to research public Twitter/X activity by searching posts, fetching tweet threads, replies, and quotes, and inspecting user profiles when paid API access is acceptable. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Twitter/X research terms and lookup targets are sent to the AgentBox API, which may expose sensitive or confidential investigations to the provider. <br>
-Mitigation: Use the skill only when the provider's data handling is acceptable, and avoid sensitive or confidential investigations unless that risk has been reviewed. <br>
-Risk: Every API call, including each paginated request, incurs a $0.003 USDC payment. <br>
-Mitigation: Plan queries with specific operators and reasonable limits before running calls to control cost. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [AgentBox Twitter ClawHub release](https://clawhub.ai/tenequm/agentbox-twitter) <br>
-- [AgentBox Twitter API](https://twitter.x402.agentbox.fyi) <br>
+## Use Case:
 
+Developers and agents use this skill to search Twitter/X posts, inspect tweet context, and retrieve user profile activity through a paid x402 API.
 
-## Skill Output: <br>
-**Output Type(s):** [API calls, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance with x402_payment request examples and JSON API response descriptions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses the openclaw runtime and x402_payment tool; each API call costs $0.003 USDC on Solana, and paginated requests are billed separately.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Automatic paid API calls can create unexpected cumulative USDC costs when searches are repeated or paginated.
+
+Mitigation: Use specific queries, set deliberate result limits, and review pagination before requesting additional pages.
+
+Risk: Twitter/X API requests can fail for invalid parameters, missing records, payment requirements, or upstream API errors.
+
+Mitigation: Check returned HTTP errors and adjust query syntax, tweet or user references, payment setup, and retry posture before relying on results.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tenequm/skills/agentbox-twitter)
+- [Twitter/X paid API base endpoint](https://twitter.x402.agentbox.fyi)
+- [Twitter/X search endpoint](https://twitter.x402.agentbox.fyi/search)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Text, Markdown, Guidance]
+
+**Output Format:** [Markdown guidance with x402_payment request examples and JSON-shaped API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Each API request costs $0.003 USDC; pagination or repeated searches can increase total cost.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

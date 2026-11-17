@@ -1,42 +1,57 @@
-## Description: <br>
-Control an OctoPrint 3D printer by monitoring status, capturing webcam snapshots, managing prints, analyzing G-code, checking for errors, and optionally sending Telegram updates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Control OctoPrint 3D printer monitoring, webcam snapshots, print management, G-code analysis, and error detection for agent-assisted 3D printing workflows.
 
-## Publisher: <br>
-[peterhanily](https://clawhub.ai/user/peterhanily) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[peterhanily](https://clawhub.ai/user/peterhanily)
 
-## Use Case: <br>
-Developers and operators who manage OctoPrint-connected 3D printers use this skill to inspect printer state, review files and G-code, capture snapshots, and request print actions from an agent. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can control a real 3D printer by starting, pausing, canceling, uploading files, and changing temperatures. <br>
-Mitigation: Require explicit human confirmation before any print-control, upload, cancellation, or temperature-changing command. <br>
-Risk: OctoPrint API keys and optional Telegram credentials grant access to printer controls or external message delivery. <br>
-Mitigation: Keep credentials private, store them only in the local config file, and use the least-privileged OctoPrint account available. <br>
-Risk: Telegram status, snapshots, and messages can send printer data to an external chat. <br>
-Mitigation: Leave Telegram fields unset unless the user intentionally wants that integration and has verified the destination chat. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [OctoClaw on ClawHub](https://clawhub.ai/peterhanily/octoclaw-print) <br>
-- [peterhanily publisher profile](https://clawhub.ai/user/peterhanily) <br>
+## Use Case:
 
+External users and makers use OctoClaw to let an agent check OctoPrint printer status, inspect job and temperature details, capture webcam snapshots, analyze G-code, upload files, and request print controls.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, code] <br>
-**Output Format:** [Markdown and terminal output with optional JSON responses and generated local files such as webcam snapshots.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a local config.json containing OctoPrint and optional Telegram credentials.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can control a real 3D printer, including print, pause, resume, cancel, and temperature actions.
+
+Mitigation: Confirm every print, temperature, pause, resume, and cancel action manually before execution.
+
+Risk: The skill can send printer status, custom messages, and webcam snapshots through Telegram when configured.
+
+Mitigation: Avoid sending sensitive content with Telegram commands and only enable Telegram for approved chats.
+
+Risk: The skill requires an OctoPrint API key and can upload files to the printer.
+
+Mitigation: Use HTTPS for OctoPrint, a least-privileged API key, restricted config file permissions, and known safe directories and G-code files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/peterhanily/skills/octoclaw-print)
+- [Publisher profile](https://clawhub.ai/user/peterhanily)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Configuration, Files, Guidance]
+
+**Output Format:** [Terminal text, JSON responses, Markdown guidance, and image files for webcam snapshots]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May control printer hardware and send Telegram notifications when configured.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

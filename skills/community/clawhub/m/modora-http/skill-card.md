@@ -1,43 +1,60 @@
-## Description: <br>
-Use this skill to analyze PDFs with a remote MoDora HTTP service. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill to analyze PDFs with a remote MoDora HTTP service. Credentials are managed through declared environment variables and are not stored in the settings file.
 
-## Publisher: <br>
-[wu-uk](https://clawhub.ai/user/wu-uk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wu-uk](https://clawhub.ai/user/wu-uk)
 
-## Use Case: <br>
-External users and developers use this skill to upload PDFs to a configured MoDora service, wait for preprocessing, and ask questions about the uploaded document. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: PDF contents and questions are sent to the configured MoDora service. <br>
-Mitigation: Use the skill only with a trusted MoDora endpoint and avoid confidential or regulated PDFs unless that endpoint is approved for the data. <br>
-Risk: Environment-managed upstream model credentials are used when uploading or asking questions. <br>
-Mitigation: Use a dedicated, revocable API key and keep secrets in environment variables instead of settings files. <br>
-Risk: Remote service configuration can affect where documents and credentials are sent. <br>
-Mitigation: Use HTTPS for non-local endpoints and require explicit approval before running upload or chat commands. <br>
+## Use Case:
 
+Developers and external users use this skill to upload PDFs to a deployed MoDora HTTP service, wait for preprocessing, and ask questions about one uploaded document. It is intended for environments where the user trusts the MoDora server operator and supplies explicit model credentials through environment variables.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wu-uk/modora-http) <br>
-- [Default MoDora service endpoint](https://api.modora.pro) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON responses from helper scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uploads require an absolute PDF path, a user-owned non-secret settings JSON file, environment-managed credentials, and explicit approval before remote access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.3 (source: server release evidence) <br>
+Risk: A remote MoDora server receives PDF contents, questions, and the user model API key supplied in MODORA_USER_API_KEY.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when the server operator is trusted; prefer a local or tightly controlled endpoint and use a limited-scope, low-quota key.
+
+Risk: Sensitive PDFs may be processed outside the user's local environment.
+
+Mitigation: Avoid sensitive PDFs unless third-party processing is approved for the relevant data and workflow.
+
+Risk: Incorrect settings could route work through unintended model instances.
+
+Mitigation: Verify the settings file so every pipeline uses explicit user-owned model instances and does not fall back to server defaults.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wu-uk/skills/modora-http)
+- [Publisher profile](https://clawhub.ai/user/wu-uk)
+- [Default MoDora service endpoint](https://api.modora.pro)
+- [Example OpenAI-compatible model endpoint](https://api.openai.com/v1)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, JSON]
+
+**Output Format:** [Markdown guidance with shell commands and JSON responses from helper scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uploads require an absolute PDF path, a non-secret user-owned settings JSON file, environment-managed credentials, and explicit remote credential acknowledgement.]
+
+## Skill Version(s):
+
+0.1.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

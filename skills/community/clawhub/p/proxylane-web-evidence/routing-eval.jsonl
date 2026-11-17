@@ -1,0 +1,13 @@
+{"id":"caption-rag","input":"fetch YouTube transcripts through my proxy for RAG","expected":"proxylane-web-evidence","kind":"positive"}
+{"id":"comments-voc","input":"collect a bounded YouTube comments sample with source links","expected":"proxylane-web-evidence","kind":"positive"}
+{"id":"regional-citations","input":"capture Google AI citations for a regional comparison","expected":"proxylane-web-evidence","kind":"positive"}
+{"id":"xhs-existing-session","input":"collect Xiaohongshu note evidence through my existing MCP","expected":"proxylane-web-evidence","kind":"positive"}
+{"id":"identified-price","input":"observe this identified product price through ProxyLane","expected":"proxylane-web-evidence","kind":"positive"}
+{"id":"general-observation","input":"collect verifiable web evidence with ProxyLane","expected":"proxylane-web-evidence","kind":"positive"}
+{"id":"proxy-provisioning","input":"configure or purchase a proxy","expected":"other","kind":"negative"}
+{"id":"market-sizing","input":"general web research or market sizing","expected":"other","kind":"negative"}
+{"id":"summarization","input":"summarize a supplied video","expected":"other","kind":"negative"}
+{"id":"social-write","input":"publish a social comment","expected":"other","kind":"negative"}
+{"id":"new-login","input":"create an XHS login session","expected":"other","kind":"negative"}
+{"id":"paid-social","input":"call a paid managed Instagram/TikTok API","expected":"other","kind":"negative"}
+{"id":"brain-ingestion","input":"ingest evidence into the Brain","expected":"other","kind":"negative"}

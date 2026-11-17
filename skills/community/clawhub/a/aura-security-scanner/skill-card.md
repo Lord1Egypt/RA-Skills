@@ -1,42 +1,55 @@
-## Description: <br>
-Scan AI agent skills for malware, credential theft, prompt injection, and dangerous permissions before installing them. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scan AI agent skills for malware, credential theft, prompt injection, and dangerous permissions before installing them.
 
-## Publisher: <br>
-[aurasecurity-creator](https://clawhub.ai/user/aurasecurity-creator) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[aurasecurity-creator](https://clawhub.ai/user/aurasecurity-creator)
 
-## Use Case: <br>
-Developers and security reviewers use this skill to submit an AI agent skill URL to AURA Security and receive a safety verdict before installation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends the submitted skill URL to AURA or the configured AURA_API_URL endpoint. <br>
-Mitigation: Avoid submitting private repositories, presigned links, token-bearing URLs, or internal service URLs unless the configured endpoint is trusted. <br>
-Risk: A scanner verdict may not be final proof that a skill is safe. <br>
-Mitigation: Use the returned verdict alongside human review and other security checks before installing or deploying the scanned skill. <br>
+## Use Case:
 
+Developers and agent users use this skill to submit OpenClaw, Claude MCP, or LangChain skill URLs for pre-installation security analysis and safety verdicts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aurasecurity-creator/aura-security-scanner) <br>
-- [AURA Security website](https://aurasecurity.io) <br>
-- [AURA Security GitHub repository](https://github.com/aurasecurityio/aura-security) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, API Calls, guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns verdicts, risk scores, findings, recommendations, and badge status from the configured AURA Security API endpoint.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and package.json) <br>
+Risk: The skill sends the user-provided skill URL and basic scan options to an external AURA API endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Scan only public or shareable skill URLs unless the user trusts the configured AURA_API_URL endpoint for private repository or internal URL data.
+
+Risk: Scan availability and behavior depend on the configured AURA_API_URL service.
+
+Mitigation: Configure AURA_API_URL deliberately and treat API errors or timeouts as inconclusive scan results.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aurasecurity-creator/skills/aura-security-scanner)
+- [AURA Security website](https://aurasecurity.io)
+- [AURA Security repository](https://github.com/aurasecurityio/aura-security)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown scan report with verdict, risk score, findings, summary, and recommendations.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May return a no-URL prompt or API error message when input is missing or the external scan request fails.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter, package.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,37 +1,52 @@
-## Description: <br>
-Defines behavioral rules for agents around safety, privacy, truthful reporting, risk-aware operations, traceability, and proactive maintenance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides behavioral guidelines for AI agents covering safety, privacy, honesty, traceability, risk-aware operations, proactive status reporting, and decision logging.
 
-## Publisher: <br>
-[xiaobu2020](https://clawhub.ai/user/xiaobu2020) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[xiaobu2020](https://clawhub.ai/user/xiaobu2020)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and agent operators use this skill to add a behavioral constitution that guides an agent's safety, privacy, factuality, traceability, and proactive task-management habits.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill broadly governs agent behavior and may cause an agent to create persistent memory or status files without clear user control.
+
+Mitigation: Install only when memory writes are restricted to explicit user-approved entries and status-file locations are defined.
+
+Risk: The skill encourages proactive actions that may conflict with higher-priority instructions or current user intent.
+
+Mitigation: Keep the skill subordinate to system, developer, and current user instructions, and require confirmation for file-changing or critical operations.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Agent builders and operators use this instruction-only skill to apply a behavioral constitution for privacy, risk checks, honest reporting, traceability, and proactive task practices. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Guidance, Markdown, Configuration]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives agents broad proactive authority and encourages persistent memory or status writing without clear user opt-in. <br>
-Mitigation: Before use, set local rules requiring approval before writing memory/status files, changing configuration, installing skills, touching scheduled jobs, or making proactive fixes. <br>
+**Output Format:** [Markdown behavioral rules and operational guidance]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Applies as agent behavior guidance; no standalone runtime output.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, configuration] <br>
-**Output Format:** [Markdown instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only behavioral policy; no executable code.] <br>
+1.0.2 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

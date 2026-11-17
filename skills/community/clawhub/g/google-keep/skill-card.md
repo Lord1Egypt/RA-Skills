@@ -1,44 +1,59 @@
-## Description: <br>
-Read, create, edit, search, and manage Google Keep notes and lists via CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Read, create, edit, search, and manage Google Keep notes and lists via CLI.
 
-## Publisher: <br>
-[tag-assistant](https://clawhub.ai/user/tag-assistant) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[tag-assistant](https://clawhub.ai/user/tag-assistant)
 
-## Use Case: <br>
-Developers and agent users can use this skill to operate Google Keep from a terminal, including note search, creation, editing, checklist updates, labeling, archiving, and JSON export. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill stores a long-lived Google master token that can grant broader account access than a notes-only tool needs. <br>
-Mitigation: Use a dedicated or low-risk Google account, keep the skill configuration directory private, and remove the stored token and cached state when finished. <br>
-Risk: Create, edit, checklist, archive, label, and delete commands can change Google Keep data. <br>
-Mitigation: Export or back up important notes before bulk edits or deletes, and review command targets carefully before running write operations. <br>
-Risk: The skill depends on unofficial Google Keep and Google Play Services authentication libraries, so compatibility can change outside the skill publisher's control. <br>
-Mitigation: Review dependency behavior before deployment and be prepared to re-authenticate or pause use if Google changes the underlying service behavior. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/tag-assistant/google-keep) <br>
-- [gkeepapi](https://github.com/kiwiz/gkeepapi) <br>
-- [gpsoauth](https://github.com/simon-weber/gpsoauth) <br>
-- [Google Embedded Setup](https://accounts.google.com/EmbeddedSetup) <br>
+## Use Case:
 
+External users and developers use this skill to manage Google Keep notes and lists from an agent-assisted CLI, including reading, creating, editing, searching, labeling, and exporting notes.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Text, JSON, Configuration instructions] <br>
-**Output Format:** [Markdown guidance with CLI commands; runtime output is terminal text or JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The CLI can read and modify Google Keep notes and stores local credential and state files under the skill configuration directory.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill uses long-lived Google master tokens with broad account access, creating credential-exposure risk.
+
+Mitigation: Use it only on a private, trusted machine; treat the token like a password; avoid placing tokens in shell history; and prefer interactive secret entry or a secure credential store.
+
+Risk: Credentials and synced note state are cached in the skill directory.
+
+Mitigation: Keep the skill directory and backups private, do not commit the .config directory, and verify local credential files remain restricted to the current user.
+
+Risk: The skill relies on unofficial Google Keep access through gkeepapi and gpsoauth, so compatibility can change without notice.
+
+Mitigation: Test on non-critical notes first, maintain exports or backups before bulk changes, and review dependency updates before use.
+
+## Reference(s):
+
+- [ClawHub Google Keep skill page](https://clawhub.ai/tag-assistant/skills/google-keep)
+- [gkeepapi project](https://github.com/kiwiz/gkeepapi)
+- [gpsoauth project](https://github.com/simon-weber/gpsoauth)
+- [Google Embedded Setup](https://accounts.google.com/EmbeddedSetup)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands; CLI output is human-readable text or JSON when requested.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can read and modify Google Keep content after authentication; stores credentials and cached state locally.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

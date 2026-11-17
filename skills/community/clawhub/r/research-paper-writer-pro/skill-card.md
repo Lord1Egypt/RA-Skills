@@ -1,45 +1,61 @@
-## Description: <br>
-Complete research paper generation skill supporting IEEE, ACM, and Nature formats, including paper structure, abstracts, introductions, methods, results, discussion, and reference management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Complete research paper generation skill supporting IEEE/ACM/Nature formats, including paper structure generation, abstract writing, introduction, methods, results, discussion, and reference management.
 
-## Publisher: <br>
-[earthwalking](https://clawhub.ai/user/earthwalking) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[earthwalking](https://clawhub.ai/user/earthwalking)
 
-## Use Case: <br>
-External users, researchers, students, and writing assistants use this skill to draft and check research paper sections, format references, and plan manuscript structure for supported academic templates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated academic claims, citations, statistics, or references may be inaccurate or unsupported. <br>
-Mitigation: Review all generated claims, citations, statistics, and references against authoritative sources before academic use. <br>
-Risk: The artifact includes example shell commands for a referenced script, but server security evidence reports no bundled executable code. <br>
-Mitigation: Do not run any referenced external script unless its source is known, reviewed, and trusted. <br>
+## Use Case:
 
+External users, students, researchers, and academic-writing assistants use this skill to draft and check research paper sections, references, and journal-specific structure for IEEE, ACM, Nature, PNAS, and related formats.
 
-## Reference(s): <br>
-- [Scientific Data](https://www.nature.com/sdata/) <br>
-- [Nature Communications](https://www.nature.com/ncomms/) <br>
-- [IEEE Author Center](https://ieeeauthorcenter.ieee.org/) <br>
-- [APA Style](https://apastyle.apa.org/) <br>
-- [ClawHub Release Page](https://clawhub.ai/earthwalking/research-paper-writer-pro) <br>
-- [Publisher Profile](https://clawhub.ai/user/earthwalking) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown research paper drafts, section drafts, reference lists, figure and table plans, format checks, and word-count summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports journal-style templates and citation-style guidance; generated academic claims, citations, statistics, and references require review before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and artifact metadata) <br>
+Risk: Academic drafts may contain unsupported claims, incorrect statistical phrasing, invented citations, or venue-formatting errors.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review drafts against the source literature, verify all citations and DOI values, and check the target journal or conference instructions before submission.
+
+Risk: The documented Python command is not included in the package.
+
+Mitigation: Treat the skill as an instructional drafting helper unless another component supplies the referenced script.
+
+Risk: Use in academic writing can raise authorship, disclosure, or plagiarism concerns.
+
+Mitigation: Apply the relevant institution, publisher, and venue policies for AI assistance, attribution, originality checks, and author responsibility.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/earthwalking/skills/research-paper-writer-pro)
+- [Scientific Data](https://www.nature.com/sdata/)
+- [Nature Communications](https://www.nature.com/ncomms/)
+- [IEEE Author Center](https://ieeeauthorcenter.ieee.org/)
+- [APA Style](https://apastyle.apa.org/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Shell commands]
+
+**Output Format:** [Markdown with academic paper sections and inline bash examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include full paper drafts, section drafts, reference lists, figure and table plans, formatting checks, and word counts.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence, artifact metadata, openclaw.skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

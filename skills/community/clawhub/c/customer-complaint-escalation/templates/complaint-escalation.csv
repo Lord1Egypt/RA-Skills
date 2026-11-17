@@ -1,0 +1,11 @@
+# Customer Complaint Escalation - starting point
+# Copy this file, replace every empty value with your own data, keep the field names.
+complaint_id,received_on,channel,product_or_service,issue_summary,issue_category,severity_tier,first_response_due,resolution_due,owner_role,remedy_offered,approval_status,repeat_issue_count,record_addendum_date
+compl-001,<YYYY-MM-DD>,<email or phone or web>,<product>,<what the customer reports>,<category>,<tier 1 to 3>,<YYYY-MM-DD>,<YYYY-MM-DD>,<role>,<remedy>,<approved or pending>,0,
+compl-002,<YYYY-MM-DD>,<email or phone or web>,<product>,<what the customer reports>,<category>,<tier 1 to 3>,<YYYY-MM-DD>,<YYYY-MM-DD>,<role>,<remedy>,<approved or pending>,0,
+compl-003,<YYYY-MM-DD>,<email or phone or web>,<product>,<what the customer reports>,<category>,<tier 1 to 3>,<YYYY-MM-DD>,<YYYY-MM-DD>,<role>,<remedy>,<approved or pending>,0,
+compl-004,<YYYY-MM-DD>,<email or phone or web>,<product>,<what the customer reports>,<category>,<tier 1 to 3>,<YYYY-MM-DD>,<YYYY-MM-DD>,<role>,<remedy>,<approved or pending>,0,
+compl-005,<YYYY-MM-DD>,<email or phone or web>,<product>,<what the customer reports>,<category>,<tier 1 to 3>,<YYYY-MM-DD>,<YYYY-MM-DD>,<role>,<remedy>,<approved or pending>,0,
+compl-006,<YYYY-MM-DD>,<email or phone or web>,<product>,<what the customer reports>,<category>,<tier 1 to 3>,<YYYY-MM-DD>,<YYYY-MM-DD>,<role>,<remedy>,<approved or pending>,0,
+compl-007,<YYYY-MM-DD>,<email or phone or web>,<product>,<what the customer reports>,<category>,<tier 1 to 3>,<YYYY-MM-DD>,<YYYY-MM-DD>,<role>,<remedy>,<approved or pending>,0,
+compl-008,<YYYY-MM-DD>,<email or phone or web>,<product>,<what the customer reports>,<category>,<tier 1 to 3>,<YYYY-MM-DD>,<YYYY-MM-DD>,<role>,<remedy>,<approved or pending>,0,

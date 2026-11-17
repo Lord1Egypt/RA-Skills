@@ -1,40 +1,58 @@
-## Description: <br>
-Tracks daily habit check-ins and reports current streak, best streak, and total check-in days. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Habit Checkin tracks daily habit check-ins, including current streak, best streak, and total check-in days.
 
-## Publisher: <br>
-[534422530](https://clawhub.ai/user/534422530) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[534422530](https://clawhub.ai/user/534422530)
 
-## Use Case: <br>
-External users use this skill with an agent to record daily habit check-ins and monitor streak progress over time. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger phrases such as "check in", "打卡", or "签到" could cause an unintended habit check-in. <br>
-Mitigation: Use explicit habit-related prompts and confirm intent before recording ambiguous check-ins. <br>
-Risk: Habit streak data is stored locally and may reflect personal routine information. <br>
-Mitigation: Store the JSON file in a user-controlled location and avoid sharing or syncing it unless the user intends to. <br>
+## Use Case:
 
+External users use this skill to record daily habit check-ins and view habit streak statistics during agent conversations.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/534422530/habit-checkin) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Guidance] <br>
-**Output Format:** [Markdown or plain-text agent responses with local JSON state updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Records check-in state in a local habit_streaks.json file when the host agent implements the skill behavior.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and frontmatter) <br>
+Risk: Habit check-ins may be stored persistently in a local JSON file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the configured storage path before use and delete the local habit_streaks.json file when retained check-in history is no longer needed.
+
+Risk: Broad trigger phrases such as check-in and sign-in language may activate the skill unintentionally.
+
+Mitigation: Prefer the explicit habit-checkin trigger when installing or invoking the skill.
+
+Risk: Unrelated Bilibili learning notes can make the skill documentation harder to interpret.
+
+Mitigation: Remove unrelated video notes from deployment copies when cleaner documentation is required.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/534422530/skills/habit-checkin)
+- [Habit Loop learning resource](https://www.bilibili.com/video/BV1kLUxYBEUK)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, guidance]
+
+**Output Format:** [Natural-language check-in status with local JSON streak data]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May persist habit streak history in a local habit_streaks.json file.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

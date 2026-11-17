@@ -1,41 +1,52 @@
-## Description: <br>
-Migrate N8N/Zapier/Make workflows to production-grade Python or Node.js scripts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Migrate N8N/Zapier/Make workflows to production-grade Python or Node.js scripts. Given a workflow description or paste, rewrites automation logic with retry, backoff, logging, and self-healing.
 
-## Publisher: <br>
-[kevdogg102396-afk](https://clawhub.ai/user/kevdogg102396-afk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[kevdogg102396-afk](https://clawhub.ai/user/kevdogg102396-afk)
 
-## Use Case: <br>
-Developers and automation engineers use this skill to convert N8N, Zapier, or Make workflow descriptions or exports into runnable Python or Node.js automation projects with retry, logging, dry-run support, and deployment files. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated workflow failure alerts may use Kevin-specific Telegram settings and send workflow failure details to an unrelated destination. <br>
-Mitigation: Replace or remove the Telegram settings before use and provide only an alert destination that the user explicitly approves. <br>
-Risk: Generated automation scripts may make API, email, database, or file-system changes when run with real credentials. <br>
-Mitigation: Review generated files, test with --dry-run, and use non-production credentials before enabling live execution. <br>
-Risk: Recurring generated scripts may continue running after migration if they are not clearly scoped. <br>
-Mitigation: Keep recurring scripts in a dedicated directory and document a known stop or disable path before deployment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kevdogg102396-afk/workflow-migrate) <br>
+## Use Case:
 
+Developers and automation engineers use this skill to convert N8N, Zapier, or Make workflows into maintainable Python or Node.js scripts with retries, logging, dry-run support, environment configuration, and operational failure handling.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with generated Python or Node.js code, dependency manifests, environment examples, optional skill instructions, and run commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated projects are intended to be reviewed, tested with dry-run mode, and configured with user-provided credentials before use.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Person-specific defaults and the fixed Telegram chat ID could send workflow failure details to an unintended recipient.
+
+Mitigation: Remove person-specific instructions and require users to configure their own opt-in alert destination before using generated workflow alerts.
+
+Risk: Generated workflow scripts may log payloads or dry-run request bodies that contain business data, customer data, or secrets.
+
+Mitigation: Redact payload logging or disable it for sensitive workflows, and review generated scripts before running them against production systems.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kevdogg102396-afk/skills/workflow-migrate)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with generated Python or Node.js files, environment examples, dependency manifests, and command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create workflow scripts, .env.example files, requirements.txt or package.json files, README files, and optional reusable SKILL.md files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,47 +1,62 @@
-## Description: <br>
-OpenClaw Equity Research helps agents create, review, or update public-equity research work products with fresh sources, citations, assumptions, risks, and analyst-review guardrails. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw Equity Research helps agents draft and review public-equity research artifacts with fresh sources, explicit assumptions, citations, and human-review guardrails.
 
-## Publisher: <br>
-[x-rayluan](https://clawhub.ai/user/x-rayluan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[x-rayluan](https://clawhub.ai/user/x-rayluan)
 
-## Use Case: <br>
-External users and developers use this skill to draft equity research memos, earnings notes, model update summaries, catalyst calendars, thesis trackers, and related analyst work products with cited evidence and human review notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Live research may contact web or market-data providers, and market data can be delayed, incomplete, or inconsistent. <br>
-Mitigation: Verify sources, timestamps, provider caveats, assumptions, and conclusions before using outputs for investment decisions or external distribution. <br>
-Risk: Generated research drafts could be mistaken for financial, trading, legal, tax, accounting, or compliance advice. <br>
-Mitigation: Treat outputs as draft research for human review, keep the non-advice framing, and consult qualified professionals before relying on the work. <br>
-Risk: Unsupported conclusions can result if consensus estimates, market prices, valuation inputs, or filing data are unavailable or stale. <br>
-Mitigation: Require citations, explicit assumptions, stale or missing data disclosures, and review notes before sharing or acting on the research. <br>
+## Use Case:
 
+External users and analysts use this skill to create first-pass equity research notes, earnings previews, model-update summaries, sector overviews, catalyst calendars, thesis trackers, and idea screens for human review.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/x-rayluan/openclaw-equity-research) <br>
-- [Research workflows](references/workflows.md) <br>
-- [Research standard](references/research-standard.md) <br>
-- [Research framework](references/research-framework.md) <br>
-- [Data sources](references/data-sources.md) <br>
-- [Report rubric](references/report-rubric.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance, Files] <br>
-**Output Format:** [Markdown research notes, evidence tables, JSON snapshots, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write local ticker research memos, JSON snapshots, and watchlist summaries when the bundled script is used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.4 (source: server release metadata) <br>
+Risk: Financial facts, prices, estimates, filings, news, and calendar events may be stale, missing, delayed, or provider-dependent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify sources, timestamps, currencies, fiscal periods, and assumptions against fresh primary sources or approved market-data providers before relying on outputs.
+
+Risk: Research artifacts could be mistaken for investment, trading, legal, tax, accounting, or compliance advice.
+
+Mitigation: Treat outputs as draft analyst work product, preserve the human-review note, and obtain appropriate professional or compliance review before decisions or external distribution.
+
+Risk: The included ticker-report script can fetch data from configured providers and create local research files.
+
+Mitigation: Run it only in an approved workspace, review output paths, and inspect generated Markdown or JSON before sharing.
+
+## Reference(s):
+
+- [OpenClaw Equity Research on ClawHub](https://clawhub.ai/x-rayluan/skills/openclaw-equity-research)
+- [Research workflows](references/workflows.md)
+- [Research standard](references/research-standard.md)
+- [Research framework](references/research-framework.md)
+- [Data sources](references/data-sources.md)
+- [Report rubric](references/report-rubric.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Code, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown research artifacts, JSON ticker snapshots, shell commands, configuration snippets, and concise guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Draft analyst work product requiring source, timestamp, assumption, and human review before external use.]
+
+## Skill Version(s):
+
+0.1.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

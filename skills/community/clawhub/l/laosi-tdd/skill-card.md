@@ -1,39 +1,50 @@
-## Description: <br>
-提供中文测试驱动开发指导，强调红/绿/重构循环、垂直切片、测试先行、pytest 示例和覆盖率检查。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+测试驱动开发 - 严格红/绿/重构循环，一次一个垂直切片，测试先行。含pytest/mock示例和覆盖率检查
 
-## Publisher: <br>
-[534422530](https://clawhub.ai/user/534422530) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[534422530](https://clawhub.ai/user/534422530)
 
-## Use Case: <br>
-Developers and engineers use this skill to apply a strict test-driven development workflow for new features, bug fixes, refactoring, and API design exploration. It provides Chinese-language guidance plus Python and pytest examples for test-first development. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Python snippets are teaching examples and may not fit a production codebase unchanged. <br>
-Mitigation: Review and adapt examples before copying them into production code, then run the relevant project test suite. <br>
-Risk: The skill recommends pytest and coverage usage, which may add development dependencies. <br>
-Mitigation: Install pytest or coverage tooling only in projects where automated test support is desired. <br>
+## Use Case:
 
+Developers and engineers use this Chinese TDD guide to structure new feature work, bug fixes, refactoring, and API design exploration around strict red/green/refactor cycles.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands] <br>
-**Output Format:** [Markdown with Python examples and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-language TDD workflow guidance with pytest and coverage examples.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: ClawHub release evidence) <br>
+Risk: The tutorial includes an example that mutates builtins during a refactor demonstration, which may be inappropriate if copied into real test code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer normal module-local function replacement or dependency injection in production test examples, and review copied code before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/534422530/skills/laosi-tdd)
+- [Publisher profile](https://clawhub.ai/user/534422530)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown with Python examples and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language guidance focused on test-first development practices.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata; artifact frontmatter is 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

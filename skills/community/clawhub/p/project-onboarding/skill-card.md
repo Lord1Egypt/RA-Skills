@@ -1,40 +1,50 @@
-## Description: <br>
-Helps experienced developers quickly understand and take over unfamiliar software projects by identifying the project type and producing staged onboarding guidance for setup, structure, workflows, standards, risks, and release paths. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps experienced developers quickly understand an unfamiliar project and become ready to contribute safely.
 
-## Publisher: <br>
-[z-zihan](https://clawhub.ai/user/z-zihan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[z-zihan](https://clawhub.ai/user/z-zihan)
 
-## Use Case: <br>
-Developers and engineers use this skill to inspect an existing project workspace and get a concise onboarding guide before starting feature work, handoff, or project takeover tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger phrases may activate the skill for an unintended private or large repository. <br>
-Mitigation: Confirm the target project and scope before analysis, and limit inspection to files needed for onboarding. <br>
-Risk: Onboarding guidance can be incomplete when repository evidence is missing or ambiguous. <br>
-Mitigation: Treat conclusions as evidence-based guidance, preserve uncertainty in the output, and review before making development or release decisions. <br>
+## Use Case:
 
+Experienced developers use this skill when taking over a specific unfamiliar project. It provides staged, evidence-based orientation on project structure, development workflow, engineering practices, and relevant project-type guidance.
 
-## Reference(s): <br>
-- [Project homepage](https://github.com/z-Zihan/awesome-skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown onboarding guide with staged sections and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Responds in the user's language and pauses between onboarding stages.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: frontmatter and server evidence) <br>
+Risk: The security review was partial because some local path-like references could not be resolved, so its evidence is incomplete.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review unresolved local references and verify onboarding guidance against the target project's evidence before relying on it.
+
+## Reference(s):
+
+- [Project homepage](https://github.com/z-Zihan/awesome-skills)
+- [ClawHub skill page](https://clawhub.ai/z-zihan/skills/project-onboarding)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Shell commands]
+
+**Output Format:** [Staged Markdown project overview and development guidance, with shell commands where relevant]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Language follows the user's request; content is scoped to evidence available in the target project.]
+
+## Skill Version(s):
+
+2.0.5 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

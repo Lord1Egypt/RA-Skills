@@ -1,47 +1,58 @@
-## Description: <br>
-A research workflow companion for computer science PhD students that helps initialize projects, search literature, analyze papers, generate LaTeX templates, track revisions, check math notation, and prepare submission-readiness reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Supports CS PhD research projects with literature search, paper drafting, experiment planning, proof tracking, novelty checks, and pre-submission audits.
 
-## Publisher: <br>
-[yue123161](https://clawhub.ai/user/yue123161) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yue123161](https://clawhub.ai/user/yue123161)
 
-## Use Case: <br>
-Developers, researchers, and doctoral students use this skill to organize computer science research projects, automate literature and paper-review workflows, scaffold publication materials, and track revision and compliance evidence before advisor or venue review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The server security review says the skill overstates some capabilities and that generated analyses or search outputs may be placeholders. <br>
-Mitigation: Verify generated literature searches, paper analyses, and compliance reports against trusted source material before relying on them for research decisions. <br>
-Risk: The server security review identifies under-disclosed local scanning, secondary file writes, and code-executing validation behavior. <br>
-Mitigation: Run the skill in a dedicated test workspace first and review file paths and generated outputs before using it with important research materials. <br>
-Risk: Background or scheduled runs can operate on broad paths or continue after the initiating session. <br>
-Mitigation: Avoid enabling cron or background execution until output directories and input paths are constrained and monitored. <br>
-Risk: Research topics and search workflow data may be logged locally or later sent to third-party services. <br>
-Mitigation: Avoid sensitive or unpublished research topics unless logging and external-service exposure are acceptable for the project. <br>
+## Use Case:
 
+Researchers and graduate students use this skill to organize theory or empirical projects, search academic sources, prepare draft materials, track evidence, and identify gaps before submission.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yue123161/phd-research-companion) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [BACKGROUND-RUN.md](artifact/BACKGROUND-RUN.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples, generated project files, reports, LaTeX templates, BibTeX, JSON progress files, and YAML experiment configurations.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local research project files and progress logs when the bundled scripts are run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: Search terms and claims may be sent to third-party academic APIs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not submit confidential research details in external searches.
+
+Risk: Certificate or packaging commands may execute user-provided scripts.
+
+Mitigation: Review scripts before running them; do not execute untrusted code.
+
+Risk: Project commands write files into selected output directories.
+
+Mitigation: Keep generated outputs in a designated project workspace and review destination paths.
+
+## Reference(s):
+
+- [ClawHub release](https://clawhub.ai/yue123161/skills/phd-research-companion)
+- [Integrity workflow](references/integrity-workflow.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance and commands; generated BibTeX, LaTeX, JSON, YAML, and HTML project files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search and audit results identify unavailable sources, missing evidence, and unresolved claims.]
+
+## Skill Version(s):
+
+1.0.3 (source: server-resolved ClawHub release; bundled documentation labels itself 2.4.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

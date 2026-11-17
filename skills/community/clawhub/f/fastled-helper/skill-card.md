@@ -1,42 +1,57 @@
-## Description: <br>
-Use FastLED library for ESP32/Arduino LED strip control, covering setup, color management, animations, palettes, power management, and chipset-specific configurations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use FastLED library for ESP32/Arduino LED strip control, including setup, CRGB/CHSV color management, animations, palettes, power management, and chipset-specific configurations.
 
-## Publisher: <br>
-[547895019](https://clawhub.ai/user/547895019) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[547895019](https://clawhub.ai/user/547895019)
 
-## Use Case: <br>
-Developers and makers use this skill to get FastLED reference help for ESP32 and Arduino LED strip projects, including initialization, color handling, animation patterns, power budgeting, wiring, and chipset selection. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Embedded Arduino examples may not match a user's actual LED chipset, wiring, voltage, current capacity, or controller board. <br>
-Mitigation: Verify power, wiring, chipset, GPIO, and library details against the actual hardware before applying code or build guidance. <br>
+## Use Case:
 
+Developers and engineers use this skill for practical FastLED guidance when building ESP32 or Arduino addressable LED projects, including selecting chipsets, writing C++ snippets, tuning color output, and managing power constraints.
 
-## Reference(s): <br>
-- [ClawHub FastLED Helper Release](https://clawhub.ai/547895019/fastled-helper) <br>
-- [FastLED Documentation](http://fastled.io/docs) <br>
-- [FastLED GitHub Repository](https://github.com/FastLED/FastLED) <br>
-- [FastLED Wiki](https://github.com/FastLED/FastLED/wiki) <br>
-- [FastLED Examples](https://github.com/FastLED/FastLED/tree/master/examples) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Configuration] <br>
-**Output Format:** [Markdown with inline C++/Arduino code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance; no executable install steps or hidden system access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: ESP8266 setup notes include an outdated plaintext package-index URL.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use HTTPS package-index URLs where supported before following ESP8266 setup snippets.
+
+Risk: Hardware examples may not match the user's controller count, pin mappings, power supply, or LED strip limits.
+
+Mitigation: Verify pin conflicts, controller count, shared grounds, voltage, and current limits against the actual hardware before applying generated code.
+
+## Reference(s):
+
+- [FastLED GitHub Repository](https://github.com/FastLED/FastLED)
+- [FastLED Wiki](https://github.com/FastLED/FastLED/wiki)
+- [FastLED API Documentation](http://fastled.io/docs)
+- [FastLED Examples](https://github.com/FastLED/FastLED/tree/master/examples)
+- [ClawHub Skill Page](https://clawhub.ai/547895019/skills/fastled-helper)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown guidance with C++ and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only output; no executable or persistent behavior is included in the skill artifact.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

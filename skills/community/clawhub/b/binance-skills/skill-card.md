@@ -1,51 +1,94 @@
-## Description: <br>
-Use binance-cli for Binance Spot, Futures (USD-S), Convert and many more. Requires auth. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use binance-cli for Binance Spot, Futures (USD-S), Convert and many more. Requires auth.
 
-## Publisher: <br>
-[binance-skills-hub](https://clawhub.ai/user/binance-skills-hub) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[binance-skills-hub](https://clawhub.ai/user/binance-skills-hub)
 
-## Use Case: <br>
-External developers and agent operators use this skill to prepare Binance CLI commands, credential setup steps, and command references for Spot, Futures, Convert, wallet, margin, and related authenticated Binance workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can let an agent operate authenticated Binance trading, wallet, raw signed API, leverage, subscription, redemption, withdrawal, and Travel Rule PII workflows. <br>
-Mitigation: Use testnet or demo first, create least-privilege API keys, disable withdrawal permission unless absolutely required, and require explicit confirmation before high-risk account actions. <br>
-Risk: Incorrect order, transfer, leverage, redemption, subscription, or signed request parameters can affect live account assets. <br>
-Mitigation: Manually review every symbol, side, quantity, price, wallet, profile, environment, endpoint, and signed raw request parameter before execution. <br>
-Risk: Binance API keys and secrets are sensitive credentials. <br>
-Mitigation: Never echo or log raw credentials, avoid broad environment dumps, and inspect only specifically named credential variables when needed. <br>
+## Use Case:
 
+Developers and external users use this skill to have an agent prepare and run binance-cli commands for Binance market data, account, trading, streaming, wallet, loan, staking, and related workflows. Authenticated use can affect a live Binance account and should be limited to intentionally approved actions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/binance-skills-hub/binance-skills) <br>
-- [Publisher profile](https://clawhub.ai/user/binance-skills-hub) <br>
-- [binance-cli npm package](https://www.npmjs.com/package/@binance/binance-cli) <br>
-- [Authentication and security rules](references/auth.md) <br>
-- [Spot trading commands](references/spot.md) <br>
-- [USDS-M Futures commands](references/futures-usds.md) <br>
-- [COIN-M Futures commands](references/futures-coin.md) <br>
-- [Margin trading commands](references/margin-trading.md) <br>
-- [Wallet commands](references/wallet.md) <br>
-- [Spot trading streams](references/spot-streams.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and parameter guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May refer to stdout and stderr from binance-cli; authenticated workflows require configured Binance API credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata, skill frontmatter, and changelog dated 2026-05-14) <br>
+Risk: The skill can give an agent broad authority over a live Binance account, including trading and other account-affecting actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use testnet or demo first, create least-privilege API keys, disable withdrawals unless required, and require a fresh explicit confirmation for every trade, withdrawal, transfer, loan, staking, or permission change.
+
+Risk: Credential handling can expose API keys or secrets if commands print or search environment data.
+
+Mitigation: Avoid passing secrets in command arguments, never echo or log raw credentials, and follow the artifact authentication guidance for limiting environment inspection.
+
+Risk: Arbitrary signed request URLs can expand the action surface beyond the listed helper commands.
+
+Mitigation: Use signed request URLs only after independently verifying the destination is an intended Binance API endpoint.
+
+Risk: Installation provenance is not backed by server-resolved GitHub import provenance for this version.
+
+Mitigation: Install only when the user intentionally wants Binance account operation and verify the installed @binance/binance-cli package source before use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/binance-skills-hub/skills/binance-skills)
+- [Skill Definition](artifact/SKILL.md)
+- [Binance Authentication](artifact/references/auth.md)
+- [Algo Trading](artifact/references/algo.md)
+- [Alpha](artifact/references/alpha.md)
+- [C2C](artifact/references/c2c.md)
+- [Convert](artifact/references/convert.md)
+- [Copy Trading](artifact/references/copy-trading.md)
+- [Crypto Loan](artifact/references/crypto-loan.md)
+- [Derivatives Options](artifact/references/derivatives-options.md)
+- [Derivatives Options Streams](artifact/references/derivatives-options-streams.md)
+- [Derivatives Portfolio Margin](artifact/references/derivatives-portfolio-margin.md)
+- [Derivatives Portfolio Margin Streams](artifact/references/derivatives-portfolio-margin-streams.md)
+- [Derivatives Portfolio Margin Pro](artifact/references/derivatives-portfolio-margin-pro.md)
+- [Derivatives Portfolio Margin Pro Streams](artifact/references/derivatives-portfolio-margin-pro-streams.md)
+- [Dual Investment](artifact/references/dual-investment.md)
+- [Fiat](artifact/references/fiat.md)
+- [COIN-M Futures](artifact/references/futures-coin.md)
+- [COIN-M Futures Streams](artifact/references/futures-coin-streams.md)
+- [USDS-M Futures](artifact/references/futures-usds.md)
+- [USDS-M Futures Streams](artifact/references/futures-usds-streams.md)
+- [Gift Card](artifact/references/gift-card.md)
+- [Margin Trading](artifact/references/margin-trading.md)
+- [Margin Trading Streams](artifact/references/margin-trading-streams.md)
+- [Mining](artifact/references/mining.md)
+- [Pay](artifact/references/pay.md)
+- [Rebate](artifact/references/rebate.md)
+- [Simple Earn](artifact/references/simple-earn.md)
+- [Spot Trading](artifact/references/spot.md)
+- [Spot Trading Streams](artifact/references/spot-streams.md)
+- [Staking](artifact/references/staking.md)
+- [Sub Account](artifact/references/sub-account.md)
+- [VIP Loan](artifact/references/vip-loan.md)
+- [Wallet](artifact/references/wallet.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown text with inline binance-cli commands and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include commands that require Binance API credentials and explicit user confirmation before account-affecting actions.]
+
+## Skill Version(s):
+
+1.2.0 (source: frontmatter and changelog, released 2026-05-14)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

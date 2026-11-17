@@ -1,6 +1,18 @@
 {
-  "ownerId": "kn7359pxah65mmccra793j51qh8443ya",
-  "slug": "resume-jd-matcher",
+  "name": "resume-jd-matcher",
   "version": "2.0.3",
-  "publishedAt": 1775211045695
+  "description": "批量解析简历并与岗位 JD 进行 AI 智能匹配，生成结构化匹配报告（Excel）",
+  "entry": "main.py",
+  "handler": "handle_skill",
+  "mode": "subagent",
+  "permissions": ["sessions_spawn", "subagents", "sessions_history"],
+  "config": {
+    "jd_folder": "C:\\ResumeJD\\JD",
+    "jl_folder": "C:\\ResumeJD\\JL",
+    "output_folder": "C:\\ResumeJD\\JG"
+  },
+  "tags": ["hr", "resume", "jd", "matching", "excel", "ai"],
+  "author": "fly",
+  "authorEmail": "13416145728@163.com",
+  "license": "MIT"
 }

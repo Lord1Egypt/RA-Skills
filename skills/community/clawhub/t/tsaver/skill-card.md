@@ -1,41 +1,55 @@
-## Description: <br>
-Token Saver guides OpenClaw agents through a five-phase token audit and optimization workflow covering discovery, prioritization, optimization, validation, and monitoring. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Five-phase token audit and optimization framework for OpenClaw agents covering discovery, prioritization, optimization, validation, and monitoring.
 
-## Publisher: <br>
-[youxiyin](https://clawhub.ai/user/youxiyin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[youxiyin](https://clawhub.ai/user/youxiyin)
 
-## Use Case: <br>
-Developers and operators use this skill to inspect OpenClaw cron tasks, model routing, context load, and tool profiles, then produce token-saving recommendations and audit reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can lead an agent to change prompts, cron jobs, model routing, tool profiles, configs, bootstrap files, or monitoring jobs. <br>
-Mitigation: Require explicit approval before edits, and review proposed diffs, backups, rollback steps, and validation results before applying changes. <br>
-Risk: Generated audit reports may expose private workflow, scheduling, configuration, or model-routing details. <br>
-Mitigation: Review reports before sharing and remove sensitive operational details that are not needed by the audience. <br>
+## Use Case:
 
+Developers and operators use this skill to audit OpenClaw token consumption, prioritize high-impact savings, optimize prompts, model routing, context loading, and tool profiles, then validate and monitor the results.
 
-## Reference(s): <br>
-- [OpenClaw Cron Jobs](https://docs.openclaw.ai/automation/cron.md) <br>
-- [OpenClaw Standing Orders](https://docs.openclaw.ai/automation/standing-orders.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, shell commands, guidance] <br>
-**Output Format:** [Markdown reports, checklists, tables, configuration recommendations, and shell commands when validation requires them.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Full executions produce token-audit-report-YYYY-MM-DD.md with before/after comparisons, estimated weekly savings, deferred items, and recommended next steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: server release metadata) <br>
+Risk: The skill can change persistent OpenClaw configuration, prompts, model routing, tool settings, and memory or history files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it in read-only audit mode first, require exact diffs and backups before persistent changes, and keep a clear rollback plan.
+
+Risk: Quick Wins and Express Audit paths may encourage direct changes before a full validation pass.
+
+Mitigation: Use those paths only for explicitly approved files and run the validation steps before keeping configuration or prompt changes.
+
+## Reference(s):
+
+- [Token Saver ClawHub Page](https://clawhub.ai/youxiyin/skills/tsaver)
+- [OpenClaw Cron Jobs](https://docs.openclaw.ai/automation/cron.md)
+- [OpenClaw Standing Orders](https://docs.openclaw.ai/automation/standing-orders.md)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown reports with tables, recommendations, inline shell commands, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Full executions produce token-audit-report-YYYY-MM-DD.md with before/after comparisons, estimated savings, deferred items, and next steps.]
+
+## Skill Version(s):
+
+2.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

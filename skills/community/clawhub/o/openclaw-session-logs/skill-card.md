@@ -1,38 +1,54 @@
-## Description: <br>
-Search and analyze your own session logs (older/parent conversations) using jq. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search and analyze past OpenClaw session logs stored in JSONL files to retrieve prior conversation details and historical context.
 
-## Publisher: <br>
-[aaronmda](https://clawhub.ai/user/aaronmda) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aaronmda](https://clawhub.ai/user/aaronmda)
 
-## Use Case: <br>
-OpenClaw users and support engineers use this skill to locate, inspect, and summarize prior local session JSONL logs when current conversation context is incomplete. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is designed to search local OpenClaw conversation history, which may expose sensitive personal details or secrets from prior chats. <br>
-Mitigation: Ask for specific dates, sessions, or keywords when possible, and avoid returning secrets or sensitive personal details unless the user explicitly needs them. <br>
+## Use Case:
 
+OpenClaw users and agent operators use this skill to locate prior conversations, extract readable messages, summarize costs, and inspect tool usage from local session JSONL logs.
 
-## Reference(s): <br>
-- [OpenClaw Session Logs ClawHub page](https://clawhub.ai/aaronmda/openclaw-session-logs) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline bash and jq command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only guidance for querying local OpenClaw session JSONL files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may read complete local OpenClaw session transcripts, which can contain secrets or personal information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Scope requests to a specific session, date, or phrase, and review or redact sensitive content before sharing results.
+
+Risk: Broad all-session searches can expose more historical conversation content than intended.
+
+Mitigation: Use narrow searches first and avoid raw transcript display unless it is needed for the task.
+
+## Reference(s):
+
+- [ClawHub skill page: OpenClaw Session Logs](https://clawhub.ai/aaronmda/skills/openclaw-session-logs)
+- [ClawHub publisher profile: aaronmda](https://clawhub.ai/user/aaronmda)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline bash and jq command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands operate on local OpenClaw session JSONL files selected by agent id, session id, date, or phrase.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

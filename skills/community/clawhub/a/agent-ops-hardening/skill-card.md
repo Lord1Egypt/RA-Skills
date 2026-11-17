@@ -1,40 +1,53 @@
-## Description: <br>
-Agent Ops Hardening provides production hardening guidance for OpenClaw agents, including safer deletion practices, session rotation, context discipline, tool pre-flight checks, heartbeat batching, and memory trimming. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Production hardening patterns for AI agents running on OpenClaw, covering destructive command safety, session rotation, context window discipline, tool pre-flight checks, heartbeat batching with state-file gating, and memory trimming workflow.
 
-## Publisher: <br>
-[ricksmartbrain-boop](https://clawhub.ai/user/ricksmartbrain-boop) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ricksmartbrain-boop](https://clawhub.ai/user/ricksmartbrain-boop)
 
-## Use Case: <br>
-Developers and agent operators use this skill to harden OpenClaw agent workspaces before production use, audit existing deployments, and reduce operational drift, token waste, and unsafe file handling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The audit script inspects local workspace files and prints findings that may reveal workspace structure or operational state. <br>
-Mitigation: Run the audit only in a workspace you intend to inspect and review terminal output before sharing it. <br>
-Risk: External-service pre-flight checks can touch live services or credentials if applied without care. <br>
-Mitigation: Use read-only or low-risk test calls for pre-flight checks and confirm the target service before any write action. <br>
+## Use Case:
 
+Developers and operators use this skill to harden OpenClaw agent workspaces for production operation, audit common operational gaps, and apply routines for safer deletion, session rotation, context control, heartbeat checks, and persistent memory hygiene.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ricksmartbrain-boop/agent-ops-hardening) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with inline shell commands and optional terminal output from a local audit script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The optional audit script checks workspace files and prints recommendations without modifying files or sending data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Persistent memory and heartbeat recommendations can shape future agent behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and adapt those recommendations before adoption so they match the workspace's operating model and governance expectations.
+
+Risk: The bundled audit script checks for expected workspace files and a rick-vault path that may not apply to every environment.
+
+Mitigation: Run the script only in workspaces where those checks make sense and treat findings as prompts for review, not automatic changes.
+
+## Reference(s):
+
+- [Agent Ops Hardening on ClawHub](https://clawhub.ai/ricksmartbrain-boop/skills/agent-ops-hardening)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with inline shell commands and a read-only shell audit script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Audit output is terminal text that reports workspace hardening checks and suggested fixes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,54 @@
-## Description: <br>
-Applies layered n-tier architecture with enforced boundaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Layered n-tier architecture for moderate systems that need presentation, domain, and persistence layers.
 
-## Publisher: <br>
-[athola](https://clawhub.ai/user/athola) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[athola](https://clawhub.ai/user/athola)
 
-## Use Case: <br>
-Developers and architecture reviewers use this skill to decide when layered n-tier architecture fits a moderate system and to produce guidance for layer boundaries, dependency direction, enforcement, and ADR or diagram deliverables. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger wording may activate the skill during general architecture or domain-design discussions. <br>
-Mitigation: Confirm that the user wants layered architecture guidance before applying the paradigm, or tighten trigger wording for narrower activation. <br>
-Risk: Layered architecture can be a poor fit for systems needing independent component scaling, independent team deployments, frequent cross-layer business flows, or low-latency real-time processing. <br>
-Mitigation: Check those constraints before recommending the paradigm and consider another architecture when they dominate the system requirements. <br>
-Risk: Strict layers can become rigid or leaky when teams bypass dependency rules for expedience. <br>
-Mitigation: Document allowed dependencies in an ADR, maintain dependency diagrams, and enforce layer rules with automated architecture checks. <br>
+## Use Case:
 
+Developers and architects use this skill to decide when a layered design fits a moderate system and to plan layer responsibilities, dependency direction, and architecture checks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-archetypes-architecture-paradigm-layered) <br>
-- [OpenClaw homepage metadata](https://github.com/athola/claude-night-market/tree/master/plugins/archetypes) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, configuration] <br>
-**Output Format:** [Markdown guidance for architecture decisions, layer definitions, dependency rules, enforcement checks, and risk mitigations.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prompt-only skill; security evidence reports no code execution or data access behavior.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.9.13 (source: server release metadata; artifact frontmatter reports 1.9.8) <br>
+Risk: Strict layer boundaries can add pass-through code and latency for features that cross several layers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a façade to provide a more direct interface where appropriate.
+
+Risk: Bypassing layer rules can erode the intended architecture.
+
+Mitigation: Make architectural violations fail automated checks or treat them as critical code review issues.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/athola/skills/nm-archetypes-architecture-paradigm-layered)
+- [Project information](https://github.com/athola/claude-night-market/tree/master/plugins/archetypes)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.10.3 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

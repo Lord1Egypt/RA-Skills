@@ -1,40 +1,53 @@
-## Description: <br>
-Checks whether delayed Power BI data appears complete by comparing a late-night baseline with a morning value before reports are sent. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Checks whether delayed Power BI-style data has finished backfilling by comparing a late-night baseline against morning values for key metrics.
 
-## Publisher: <br>
-[mirowangl-ops](https://clawhub.ai/user/mirowangl-ops) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mirowangl-ops](https://clawhub.ai/user/mirowangl-ops)
 
-## Use Case: <br>
-Operations and reporting teams use this skill to decide whether delayed T+1 data has finished backfilling before sending scheduled reports. It guides users to compare a sentinel metric across two time points and escalate when values are unchanged or below the expected range. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Business metrics used for completeness checks may be sensitive if the workflow is later automated against Power BI or databases. <br>
-Mitigation: Use minimal-scope credentials and approved storage and access controls before automating metric retrieval. <br>
-Risk: Experience-based sentinel thresholds can become stale and may misclassify data completeness. <br>
-Mitigation: Review sentinel metrics and threshold ranges periodically, and confirm with the data owner before sending reports when values are unchanged or below range. <br>
+## Use Case:
 
+Business operations and reporting teams use this skill to decide whether delayed T+1 data appears complete before sending recurring reports. It guides agents to compare a sentinel metric at two time points and apply local threshold checks before escalating uncertain results.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mirowangl-ops/xiaozhua-data-completeness-check) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Text] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Business-specific threshold examples may not indicate completeness for other datasets, products, weekends, holidays, or reporting periods.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Replace the example benchmark values with locally validated ranges for the target sentinel metrics before relying on the guidance.
+
+Risk: The skill includes a named confirmation contact and Chinese-language operating guidance that may not match the installer's reporting workflow.
+
+Mitigation: Localize the instructions and update the escalation contact before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mirowangl-ops/skills/xiaozhua-data-completeness-check)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown]
+
+**Output Format:** [Markdown checklist and decision guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Business-specific benchmark values and escalation contacts should be adjusted before operational use.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

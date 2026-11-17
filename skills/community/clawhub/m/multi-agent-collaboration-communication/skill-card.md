@@ -1,47 +1,60 @@
-## Description: <br>
-Focused on multi-agent collaboration and communication scenarios, helping users build and manage complex distributed agent systems to achieve task decomposition, parallel processing, and collaborative work. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps users design multi-agent system architectures, task distribution schemes, inter-agent communication protocols, and distributed collaboration workflows.
 
-## Publisher: <br>
-[openlark](https://clawhub.ai/user/openlark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[openlark](https://clawhub.ai/user/openlark)
 
-## Use Case: <br>
-Developers and engineers use this skill to design multi-agent system architectures, decompose work across agents, define communication protocols, and plan distributed collaboration workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Helper scripts can read local design inputs and write generated architecture or configuration files to a selected output directory. <br>
-Mitigation: Review input and output paths before running scripts, and run them only in an intended workspace. <br>
-Risk: Configuration templates include placeholder security fields that users may be tempted to replace with real credentials. <br>
-Mitigation: Use placeholders, environment references, or a secrets manager instead of embedding real secrets in generated or shared files. <br>
+## Use Case:
 
+Developers and solution architects use this skill to plan distributed agent systems, decompose work across agents, define communication protocols, and produce architecture or workflow templates.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/openlark/multi-agent-collaboration-communication) <br>
-- [Multi-Agent System Architecture Patterns](references/architecture_patterns.md) <br>
-- [Task Decomposition Strategies](references/task_decomposition.md) <br>
-- [Agent Communication Protocol Design](references/communication_protocols.md) <br>
-- [Workflow Templates](references/workflow_templates.md) <br>
-- [Multi-Agent System Design Proposal Template](assets/templates/system-design-template.md) <br>
-- [Agent Configuration File Template](assets/templates/agent-config-template.yaml) <br>
-- [Intelligent Code Review System Example](assets/examples/code-review-system.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with YAML, JSON, Python, shell command, and plain-text diagram examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce design documents, architecture diagrams, agent role definitions, communication specifications, workflow code, and configuration files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Protocol examples and templates may expose repository diffs, author emails, credentials, or business data if copied directly into real deployments.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm which agents or services receive sensitive data and remove real secrets or sensitive business data before adapting examples.
+
+Risk: Generated architecture proposals or workflow configurations may be incomplete for production security, reliability, and compliance needs.
+
+Mitigation: Review agent roles, communication paths, authentication, encryption, retries, fallback behavior, and monitoring before implementation.
+
+## Reference(s):
+
+- [Multi-Agent System Architecture Patterns](artifact/references/architecture_patterns.md)
+- [Task Decomposition Strategies](artifact/references/task_decomposition.md)
+- [Communication Protocols](artifact/references/communication_protocols.md)
+- [Workflow Templates](artifact/references/workflow_templates.md)
+- [Multi-Agent System Design Proposal Template](artifact/assets/templates/system-design-template.md)
+- [Agent Configuration Template](artifact/assets/templates/agent-config-template.yaml)
+- [Intelligent Code Review System Example](artifact/assets/examples/code-review-system.md)
+- [ClawHub Skill Page](https://clawhub.ai/openlark/skills/multi-agent-collaboration-communication)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with YAML and JSON configuration snippets, Python helper commands, and generated text diagrams]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce architecture proposals, role definitions, communication specifications, workflow configurations, validation feedback, and text-based diagrams.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

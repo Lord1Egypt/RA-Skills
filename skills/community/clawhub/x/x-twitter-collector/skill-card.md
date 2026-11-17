@@ -1,44 +1,54 @@
-## Description: <br>
-Collects recent public X/Twitter posts from a specified account and produces a bilingual report with links, screenshots, engagement metrics, and topic analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically collects public X/Twitter posts for a specified user over a recent time window and produces a bilingual report with tweet links, engagement data, topic summaries, and screenshots.
 
-## Publisher: <br>
-[pinotao](https://clawhub.ai/user/pinotao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[pinotao](https://clawhub.ai/user/pinotao)
 
-## Use Case: <br>
-Analysts, operators, and content teams use this skill to collect and summarize public X/Twitter activity for a named handle over a requested time range, typically the past 24 hours. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+OpenClaw Skill License Agreement
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a browser profile to view X/Twitter and collect public posts, links, metrics, and screenshots. <br>
-Mitigation: Use explicit public handles and time ranges, avoid private or sensitive targets, and confirm the collection scope before running. <br>
-Risk: Generated reports and screenshots can retain social media content locally. <br>
-Mitigation: Store outputs only where appropriate and periodically delete reports or screenshots that are no longer needed. <br>
-Risk: X/Twitter login state, account visibility, deleted posts, and loading limits can affect report completeness. <br>
-Mitigation: Treat reports as best-effort snapshots and verify important findings against the live public account. <br>
+## Use Case:
 
+Developers, analysts, and communications teams use this skill to review recent public X/Twitter activity from selected accounts and turn it into a bilingual monitoring or summary report.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/pinotao/x-twitter-collector) <br>
-- [README.md](README.md) <br>
-- [SKILL.md](SKILL.md) <br>
-- [template.md](template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, text, files, guidance] <br>
-**Output Format:** [Markdown report with tables, bilingual text, tweet links, engagement metrics, and screenshot file references.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May save local screenshots and reports; default collection window is 24 hours and targets public accounts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may use a logged-in browser session to view X pages.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a browser profile and X account appropriate for the review task, and collect only accounts the user is permitted to review.
+
+Risk: Generated reports and full-page screenshots may retain public tweet content, links, engagement counts, and visible page context on disk.
+
+Mitigation: Review and clean the configured report and media directories when archived copies are no longer needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/pinotao/skills/x-twitter-collector)
+- [Publisher profile](https://clawhub.ai/user/pinotao)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Guidance]
+
+**Output Format:** [Markdown report with bilingual tables, tweet links, engagement metrics, topic summaries, and optional PNG screenshots.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Default collection window is 24 hours; reports and screenshots may be saved to local report and media directories.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact config)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

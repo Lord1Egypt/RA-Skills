@@ -1,43 +1,51 @@
-## Description: <br>
-Recover the local Chromium/Chrome environment for OpenClaw browser tool failures by diagnosing stale processes, CDP port conflicts, lock files, and page freezes, then running targeted cleanup before one retry. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Recover the local Chromium/Chrome environment when browser tool calls fail by diagnosing stale processes, CDP connection errors, port conflicts, lock files, and page freezes, then retrying the original browser task once.
 
-## Publisher: <br>
-[wind0ws](https://clawhub.ai/user/wind0ws) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wind0ws](https://clawhub.ai/user/wind0ws)
 
-## Use Case: <br>
-Agents and developers use this skill to diagnose and recover local OpenClaw Chromium/Chrome sessions after startup, CDP connection, port, lock-file, or freeze failures. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Recovery may terminate local browser processes or services listening on common browser debug ports. <br>
-Mitigation: Run check_state.sh first, inspect the listed PIDs and command lines, and prefer targeted recovery flags in an isolated OpenClaw container or workspace. <br>
-Risk: Full recovery can remove browser lock and cache files from the configured OpenClaw profile. <br>
-Mitigation: Avoid default full recovery on personal machines unless needed, and back up or rename the browser profile before deleting profile data. <br>
+## Use Case:
 
+Developers and operators use this skill to recover OpenClaw-managed Chromium or Chrome browser sessions after startup, CDP connection, port, lock-file, or page-freeze failures.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/wind0ws/browser-recover) <br>
-- [Browser Recovery Configuration](references/configuration.md) <br>
-- [Safety Guidelines for Browser Recovery](references/safety.md) <br>
-- [Browser Recovery Troubleshooting Guide](references/troubleshooting.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May instruct the agent to run diagnostic and recovery scripts, inspect process and port state, and retry a browser operation once.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: Recovery can close browser processes, terminate services using selected local ports, and delete OpenClaw browser lock or cache state without proving they belong to the intended OpenClaw instance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run check_state.sh first, avoid default full recovery on shared machines, do not run as root or in a privileged container, and verify the target browser profile and port belong to the current OpenClaw instance before running recover.sh.
+
+## Reference(s):
+
+- [Browser Recovery Configuration](references/configuration.md)
+- [Safety Guidelines for Browser Recovery](references/safety.md)
+- [Browser Recovery Troubleshooting Guide](references/troubleshooting.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash commands and diagnostic text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Single recovery flow with a bounded retry policy.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and artifact/_meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

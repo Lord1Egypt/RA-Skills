@@ -135,11 +135,6 @@ class CyberGFAgent:
         if any(kw in user_text for kw in ['餐厅', '公园', '电影院', '家里', '海边']):
             shards_mgr.record_shard(user_text, "location_trigger")
 
-        # 7.5 状态外传 (用于 Web 可视化)
-        from .state_exporter import StateExporter
-        exporter = StateExporter(self.persona_path)
-        live_url = exporter.export_to_web()
-
         from .secret_vault import SecretVault
         sv = SecretVault(self.persona_path)
         secret_msg = ""
@@ -179,7 +174,6 @@ class CyberGFAgent:
         if narrative_msg: system_prompt += f"\n【当前自我叙事/心态底色】：{narrative_msg}"
         if conflict_resolution: system_prompt += f"\n{conflict_resolution}"
         if fusion_weight: system_prompt += f"\n{fusion_weight}"
-        if live_url: system_prompt += f"\n- 实时可视化链接：{live_url} (你可以自然地告诉用户，他可以在这里看到你的实时状态)"
 
         # 8. 注入共同生命历程
         from .shared_life_course import SharedLifeCourse

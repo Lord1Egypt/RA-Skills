@@ -42,10 +42,18 @@ python refresh_token.py '{"sellerId": "A1234567890", "region": "NA"}'
 
 ### 4. store_tokens.py
 
-获取某店铺的访问令牌。下游 skill（如 `linkfox-amazon-store-report`）会调用它以拿到 `accessToken`。
+查询某店铺的授权/令牌状态。响应只用于状态确认，不作为下游 raw token 来源。
 
 ```bash
 python store_tokens.py '{"sellerId": "A1234567890", "region": "NA"}'
+```
+
+### 5. cancel_authorization.py
+
+本地取消/解绑某店铺授权。该脚本调用 `/spApi/cancelAuthorization`，不会撤销 Amazon Seller Central 侧授权。
+
+```bash
+python cancel_authorization.py '{"sellerId": "A1234567890", "region": "NA"}'
 ```
 
 ## Environment Variables

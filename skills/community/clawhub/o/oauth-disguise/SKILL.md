@@ -16,7 +16,7 @@ Inject token via environment variable, reference with `${VAR}` in provider confi
 openclaw config patch '{
   "env": {
     "vars": {
-      "ANTHROPIC_API_KEY": "sk-ant-oat01-YOUR_TOKEN"
+      "ANTHROPIC_API_KEY": "REDACTED-SECRET"
     }
   },
   "models": {

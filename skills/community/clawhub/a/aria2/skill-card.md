@@ -1,41 +1,56 @@
-## Description: <br>
-Aria2 Downloader helps an agent add and manage aria2 download tasks for magnet links, torrent files, and HTTP file URLs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Uses aria2 over RPC to download magnet links, torrent files, and HTTP files, with an optional completion workflow that transfers downloads to 115 cloud storage and removes local files.
 
-## Publisher: <br>
-[ahiven](https://clawhub.ai/user/ahiven) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ahiven](https://clawhub.ai/user/ahiven)
 
-## Use Case: <br>
-Developers and operators use this skill to control a local aria2 RPC service from an agent, including adding downloads, checking task status, pausing, resuming, and removing tasks. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill examples include a concrete aria2 RPC token. <br>
-Mitigation: Replace the token before use and prefer an environment variable or protected local configuration for the RPC secret. <br>
-Risk: The skill relies on an aria2 RPC service that can control downloads. <br>
-Mitigation: Keep the RPC service bound to localhost or otherwise protected, and avoid exposing it to untrusted networks. <br>
-Risk: The advertised completion workflow can transfer files to 115 cloud storage and delete local files through a separate host hook. <br>
-Mitigation: Inspect the hook script before enabling it, restrict it to a dedicated download directory, and confirm that local deletion is acceptable. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ahiven/aria2) <br>
+## Use Case:
 
+Developers and operators use this skill to manage aria2 download tasks through JSON-RPC commands for magnet links, torrent files, and HTTP downloads.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash and JSON-RPC examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses user-provided download URLs, torrent files, or magnet links against a host aria2 RPC service.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill publishes a fixed aria2 RPC token in command examples.
+
+Mitigation: Replace the token before use, rotate any exposed secret, and prefer environment-specific secret handling.
+
+Risk: aria2 RPC access can control downloads if reachable by unauthorized users.
+
+Mitigation: Bind RPC to localhost or otherwise restrict network access, and install only when you control the aria2 daemon.
+
+Risk: The documented completion workflow may transfer files to 115 cloud storage and delete local copies.
+
+Mitigation: Require explicit confirmation before cloud transfer or local deletion and review the host-side completion hook separately.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ahiven/skills/aria2)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with bash and JSON-RPC command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands target a user-controlled aria2 JSON-RPC daemon.]
+
+## Skill Version(s):
+
+1.0.2 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

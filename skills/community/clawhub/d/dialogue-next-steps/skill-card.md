@@ -1,41 +1,49 @@
-## Description: <br>
-Guides assistants to answer first and, when useful, add concise numbered next-step options that help users continue a conversation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Dialogue Next Steps guides an agent to answer first, then append up to five numbered next-step options for beginner, conceptual, underspecified, or explicitly plan-seeking requests.
 
-## Publisher: <br>
-[sqfcyily](https://clawhub.ai/user/sqfcyily) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sqfcyily](https://clawhub.ai/user/sqfcyily)
 
-## Use Case: <br>
-External users and agent builders use this skill to make conversational answers easier to continue, especially for beginner, conceptual, emotional, or underspecified requests. It helps an assistant provide a direct answer, then offer a small set of distinct follow-up actions or questions when appropriate. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Follow-up suggestions can add unwanted verbosity for users who prefer terse answers. <br>
-Mitigation: Suppress next steps when the user asks for just the answer, no suggestions, or no follow-up questions. <br>
-Risk: Next-step guidance can be less useful when the request is high-stakes, ambiguous, or missing key context. <br>
-Mitigation: Answer the core question first, state assumptions, ask only the most important missing detail when needed, and include critical or risk-oriented options for high-stakes topics. <br>
-Risk: Lightweight personalization could over-emphasize a preferred style of follow-up. <br>
-Mitigation: Keep personalization within the current session and ask a single preference question when the user's preferred direction is unclear. <br>
+## Use Case:
 
+External users and developers use this skill to turn single Q&A responses into guided conversations by answering first, then adding concise numbered next-step options when the request is beginner-level, conceptual, underspecified, or explicitly asks for a plan.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown text with optional numbered next-step lists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Answers should come first; next-step lists are gated, localized to the user's language, capped at five items, and suppressed when the user asks for no suggestions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Responses may become longer or feel over-guided when next steps are appended.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the documented gate and suggestion threshold: skip next steps for trivial, advanced execution-ready, or explicit no-suggestion requests, and cap lists at five items.
+
+## Reference(s):
+
+- [Dialogue Next Steps on ClawHub](https://clawhub.ai/sqfcyily/skills/dialogue-next-steps)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown response with an optional numbered next-steps list]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Answers first, then appends up to five localized next-step options when the gate applies.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

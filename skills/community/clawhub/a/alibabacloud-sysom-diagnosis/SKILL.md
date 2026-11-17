@@ -9,9 +9,11 @@ description: >
   surfaces recommendations; does not apply fixes automatically.
 license: Apache-2.0
 compatibility: >
-  Requires sysom-osops CLI. Remote diagnosis requires Alibaba Cloud credentials
-  through AK/SK or an ECS RAM Role, an online Cloud Assistant on the target ECS,
-  and a supported China Mainland or Hong Kong region.
+  Requires sysom-osops CLI. The control host running the CLI can be Linux or
+  macOS (x86_64 or aarch64); Windows is not supported. Remote diagnosis targets
+  a Linux ECS instance and requires Alibaba Cloud credentials through AK/SK or
+  an ECS RAM Role, an online Cloud Assistant on the target ECS, and a supported
+  China Mainland or Hong Kong region.
 metadata:
   domain: aiops
   product: sysom
@@ -28,9 +30,7 @@ allowed-tools: Bash Read
 
 # alibabacloud-sysom-diagnosis
 
-Use SysOM CLI and backend envelopes as the diagnosis source of truth. This Skill
-replaces the older SysOM diagnosis Skill and is the single entry point for SysOM
-ECS performance and stability diagnosis.
+Use SysOM CLI and backend envelopes as the diagnosis source of truth. This Skill replaces the older SysOM diagnosis Skill and is the single entry point for SysOM ECS performance and stability diagnosis.
 
 ## Immediate Route
 
@@ -58,10 +58,33 @@ Check whether the CLI is available:
 command -v sysom-osops
 ```
 
-If it is missing, install it:
+If it is missing, install it. The installer runs on **Linux or macOS** — it does
+not run on Windows. The target ECS being diagnosed must be Linux (see
+`references/supported-environments.md`), but the control host can be either OS.
+
+System-wide install (needs write access to `/usr/local/bin`, typically via
+`sudo`):
 
 ```bash
-curl -fsSL --connect-timeout 1000 https://sysom-prd-cn-hangzhou.oss-cn-hangzhou.aliyuncs.com/sysom_prd/skill_cli/install.sh | sudo bash
+curl -fsSL --connect-timeout 1000 https://sysom-prd-cn-hangzhou.oss-cn-hangzhou.aliyuncs.com/sysom_prd/skill_cli/install.sh \
+  | sudo bash
+```
+
+User-local install — no sudo, no root-owned paths. Works on both Linux and
+macOS, and is the recommended path when you do not have administrator
+privileges:
+
+```bash
+mkdir -p ~/.local/bin
+curl -fsSL --connect-timeout 1000 https://sysom-prd-cn-hangzhou.oss-cn-hangzhou.aliyuncs.com/sysom_prd/skill_cli/install.sh \
+  | bash -s -- -d "$HOME/.local/bin"
+```
+
+Then make sure the install directory is on your PATH (e.g. `~/.bashrc` /
+`~/.zshrc`):
+
+```bash
+export PATH="$HOME/.local/bin:$PATH"
 ```
 
 Then verify only the binary:
@@ -70,22 +93,92 @@ Then verify only the binary:
 command -v sysom-osops
 ```
 
+On macOS, the installer performs ad-hoc codesign and strips quarantine
+attributes automatically. If you are on Apple Silicon running an x86_64 shell
+under Rosetta, the installer detects the mismatch; pass `-f` to override only
+when you know the binary will run under translation.
+
+## Command Visibility Depends On Credentials
+
+Only local commands such as `memory classify` are always present. Every remote
+deep command is discovered at runtime from the SysOM skills catalog, which needs
+credentials. On a machine without credentials configured, expect:
+
+- `sysom-osops memory --help` to list only `classify`, with the deep memory
+  commands absent.
+- The top-level `sysom-osops --help` to omit the `io`, `net`, and `load` groups
+  entirely.
+
+This is a visibility limitation, not a capability limitation. Treat
+`references/deep-actions.md` as the authoritative command inventory for this
+Skill, and never infer from `--help` output that a domain or command is
+unsupported. Use `sysom-osops precheck` to report auth status.
+
 ## Core Workflow
 
 1. Classify the user's symptom into one SysOM domain: memory, IO, load/CPU,
-   network, or Java memory.
+   network, or Java (GC/memory/CPU).
 2. Run the smallest SysOM command that matches that domain. Prefer a local
    memory classify for unclear memory symptoms; for other domains, use the
    matching documented remote action.
 3. Read only the default envelope fields: `ok`, `error`, `command`, and
    `agent`.
-4. Build the answer from `agent.summary`, `agent.findings[].detail`,
-   `agent.findings[].category`, and `agent.next_steps[]`. Keep evidence
-   qualifiers that change interpretation, including currentness, unavailable
-   direct signals, fallback evidence, and remediation preconditions.
-5. If the root cause, key entities, evidence strength, and safe next action are
-   already visible, stop and answer. Run one targeted follow-up only when a
-   required entity is missing or the command explicitly recommends it.
+4. **Load domain references before building the answer.** This step is mandatory
+   and must not be skipped even when `agent.findings` and `agent.next_steps`
+   appear complete. Which references to load depends on the domain:
+   - Java (any type: gc/memory/cpu) → read `references/java/README.md` first
+     for symptom routing and parameter validation; then by type:
+     - gc: `references/java/gc/gc-guide.md`
+     - memory: `references/java/memory/memory-guide.md` (then glossary, envelope
+       guide, profiling playbook, decision tree under `references/java/memory/`)
+     - cpu: `references/java/cpu/cpu-guide.md`
+   - Other domains → load the matching reference from the References table below.
+   References add interpretation rules, entity definitions, and answer-shaping
+   guidance that the envelope alone does not convey. Do not infer Java terms,
+   native memory categories, or profiling semantics from raw envelope text.
+5. Relay the hop as visible progress: present `agent.summary` (plus key
+   findings) to the user, interpreted through the reference material loaded in
+   step 4. Keep evidence qualifiers that change interpretation, including
+   currentness, unavailable direct signals, fallback evidence, and remediation
+   preconditions.
+6. Branch on `agent.status`:
+   - `concluded` (or missing/unrecognized) → build the final answer from
+     `agent.summary`, `agent.findings[].detail/category`, and
+     `agent.next_steps[]`, then stop the loop.
+   - `in_progress` → the backend is requesting another collection hop: take
+     the `kind=command` entry from `agent.next_steps[]`, apply the
+     confirmation rules below, run it, and feed the new envelope back into
+     step 4.
+
+**Guided-diagnosis loop hard rules** (Java multi-hop sessions):
+
+- Pace ownership: never skip `agent.next_steps[]` to decide collection on
+  your own, and never run diagnostic commands outside the envelope.
+- Run commands **exactly as shown** — the gateway has already injected
+  `--session-id`; never rewrite, add, or remove flags. If a command fails,
+  relay the error envelope as-is instead of retrying with tweaked parameters.
+- Hop limit: stop the loop after 4 hops in the same session even if the
+  backend still says `in_progress`; present the conclusions so far and state
+  the evidence limits (the backend force-concludes at the same ceiling —
+  double safety).
+- User refusal: if the user declines a proposed command, stop the loop,
+  summarize from the evidence already collected, and state explicitly which
+  conclusions remain unconfirmed because that hop was not run.
+
+**Before executing a profiling or long-running follow-up command** (e.g.,
+`java analyze --type memory --duration N`, any command that injects an agent
+into the target process, or any command expected to run for multiple minutes):
+- Tell the user what the command does, how long it takes, and what performance
+  impact it may have on the target process (e.g., CPU overhead from sampling,
+  extra memory from the injected agent, potential safepoint pauses).
+- Ask the user whether to proceed. Do not run the command until the user
+  confirms, or until the user has previously given a standing instruction to
+  auto-run follow-ups.
+- Once the command starts, tell the user the expected wait time and keep them
+  informed if the operation is still in progress.
+
+Read-only query commands (e.g. `java analyze --type cpu`) do not apply here —
+see each domain guide's Execution Model for specifics.
 
 When classify returns a command in `agent.next_steps[]` and no root-cause
 finding already contains enough evidence to answer, run the first command next.
@@ -115,7 +208,10 @@ entities.
 | User symptom | First route |
 |--------------|-------------|
 | Unclear memory issue, OOM, high RSS, file cache, shmem/tmpfs, memory cgroup, socket memory, kernel memory | `sysom-osops memory classify` |
-| Java heap, GC, or JVM memory issue | `sysom-osops memory javamem` when Java is explicit; otherwise start with `memory classify` |
+| Java issue (symptom unclear) | Follow the Symptom Triage rules in `references/java/README.md` — ask the user about the symptom, then route to the matching type |
+| Java GC pause / frequent GC / low GC throughput | `sysom-osops java analyze --type gc` |
+| Java heap / OOM / heap leak / native leak | `sysom-osops java analyze --type memory` — without a pid/pod it returns a candidate list; STOP and wait for the user to choose before retrying |
+| Java CPU hotspot / high thread CPU / flame graph | `sysom-osops java analyze --type cpu --pid <PID>` |
 | Slow disk, high iowait, disk latency, blocked IO | `sysom-osops io iofsstat`, then `io iodiagnose` if the overview points to slow IO |
 | High load, runqueue backlog, task stuck waiting for CPU | `sysom-osops load loadtask` or `load delay` based on the visible symptom |
 | Packet loss, retransmits, network timeout, jitter | `sysom-osops net packetdrop` for loss/drop symptoms; `net netjitter` for latency fluctuation |
@@ -125,6 +221,7 @@ For command parameters, read `references/deep-actions.md` and
 `references/supported-environments.md`. These references are Skill material; do
 not use remote target file tools to open `.claude/skills` paths on the diagnosed
 host.
+For Java symptom-to-type routing, consult `references/java/README.md`.
 
 ## Memory Routing
 
@@ -133,6 +230,10 @@ from `sysom-osops memory classify`, then pick the next action from visible outpu
 or `agent.next_steps[]`. For choosing among memory deep actions or checking which
 entity is still missing, load `references/memory-triage.md` (parallel to
 `references/non-memory-triage.md` for other domains).
+
+Note: Java-related memory symptoms (OOM in Java process, heap leak, native leak)
+route to Java domain via `sysom-osops java analyze --type memory`, not through
+memory classify. See Domain Routing table above.
 
 Choose the next memory action from visible SysOM output. Do not infer a memory mechanism from symptom wording alone.
 
@@ -145,7 +246,8 @@ Default command output is the Agent contract:
   "ok": true,
   "command": "sysom-osops memory classify",
   "agent": {
-    "status": "warning",
+    "status": "concluded",
+    "session_id": "a1b2c3d4e5f6",
     "summary": "Concise diagnosis summary.",
     "findings": [
       {
@@ -172,6 +274,20 @@ Default command output is the Agent contract:
 victim, limit/current, residue, holder, or cleanup target must be written in
 `agent.summary` or `agent.findings[].detail`.
 
+Field semantics for guided diagnosis sessions:
+
+- `agent.status`: `in_progress` means the backend diagnosis agent requests
+  another collection hop; `concluded` means diagnosis has converged. Treat a
+  missing or unrecognized value as `concluded`. Legacy collector-level states
+  (`success`, `warning`, ...) may still appear on non-Java actions; interpret
+  them as before.
+- `agent.session_id`: backend-generated multi-hop session identifier. Never
+  generate or modify it; the gateway already injects it into `command`
+  strings, so run them verbatim.
+- `agent.next_steps[].kind`: `command` = backend-requested collection command
+  (subject to the confirmation rules above); `info` = user-side suggestion —
+  present it but never auto-run; `warning` = evidence or data-quality caveat.
+
 ## Follow-up Rules
 
 - Prefer `category=root_cause`, then highest severity, then the finding that
@@ -181,6 +297,13 @@ victim, limit/current, residue, holder, or cleanup target must be written in
 - Treat `agent.next_steps[]` as a priority plan, not a checklist.
 - Run another SysOM command only when it can fill a named missing entity or
   change remediation.
+- For long-running Java collection commands — `java analyze --type memory
+  --duration N` (profiling; legacy `memory javamem --duration N`) and `java
+  analyze --type gc` in `collect` mode (5–10 min JFR/GC collection) — the wait is
+  minutes-scale: tell the user, size the tool timeout accordingly, and never
+  re-fire the same command on client timeout. See
+  `references/java/memory/profiling-playbook.md` (memory) and
+  `references/java/gc/gc-guide.md` (gc).
 - Preserve visible qualifiers that affect interpretation, such as current versus
   historical evidence, unavailable direct signals, fallback evidence used to
   close currentness, and safety preconditions for remediation.
@@ -230,15 +353,67 @@ victim, limit/current, residue, holder, or cleanup target must be written in
 | `Sysom.DiagnosisJsonParseFailed` | Retry once only when the user still needs the same evidence |
 | `Sysom.PollError` | Retry the same focused action once when the missing evidence is still required |
 
+### Empty Output Is Not an Envelope
+
+A command can exit non-zero with **no stdout and no stderr at all**. This is not
+an envelope, so do not parse it — parsing empty output as JSON will fail. The
+dominant cause is an unsupported flag: the CLI rejects an undefined flag before
+any envelope is produced, and currently swallows the message.
+
+When a command produces no output:
+
+1. Do not retry the same command unchanged, and do not report a diagnosis result.
+2. Check the flags you passed against `references/parameter-guide.md`, and
+   confirm with `sysom-osops <group> <command> --help`. Note that `io`, `load`,
+   and `net` commands accept only `--region`, `--instance`, and `--scope`.
+3. Re-run once with the unsupported flags removed.
+4. If the output is still empty, tell the user the command failed without a
+   diagnosable error, name the command and flags used, and treat it the same as
+   `Sysom.InvalidParameter` instead of inventing findings.
+
+### Help Text Is Not an Envelope
+
+A domain subcommand can be **missing** rather than broken. Remote deep commands
+are discovered at runtime from the SysOM skills catalog, which requires
+credentials. When credentials are absent the catalog is unreachable, the
+subcommand is never registered, and the CLI falls back to printing the domain
+group's help text — with **exit code 0**.
+
+Treat output that begins with `Commands under "<domain>" are discovered at
+runtime` as a missing command, never as a diagnosis result:
+
+1. Do not parse it as an envelope and do not report "no issue found". Exit code
+   0 here means the command never ran.
+2. Do not conclude that the domain is unsupported, or that this Skill only
+   offers `memory classify`.
+3. Tell the user that deep diagnosis needs credentials. Point them to
+   `sysom-osops precheck` for auth status and `sysom-osops configure` to set it
+   up; credential setup happens outside the conversation.
+4. Re-run the command only after the user confirms credentials are configured.
+
 ## References
 
 | Reference | Use when |
 |-----------|----------|
 | `references/classify-output-guide.md` | Reading local memory classify output |
 | `references/memory-triage.md` | Choosing a memory deep action or checking memory entity completeness |
-| `references/non-memory-triage.md` | Routing IO, load/CPU, network, and Java diagnosis |
+| `references/non-memory-triage.md` | Routing IO, load/CPU, network diagnosis |
 | `references/deep-actions.md` | Looking up SysOM commands by domain |
 | `references/parameter-guide.md` | Validating command parameters |
 | `references/report-interpretation.md` | Interpreting envelope fields and answer shape |
 | `references/ram-policies.md` | Explaining RAM permissions |
 | `references/supported-environments.md` | Checking OS, architecture, and region support |
+
+### Java Analysis References
+
+| Reference | Use when |
+|-----------|----------|
+| `references/java/README.md` | **Primary Java entry point**: symptom triage, parameter guide, sub-domain index |
+| `references/java/gc/gc-guide.md` | Running or interpreting `--type gc` results |
+| `references/java/cpu/cpu-guide.md` | Running or interpreting `--type cpu` results |
+| `references/java/memory/memory-guide.md` | `--type memory` interpretation and discovery-first flow entry |
+| `references/java/memory/glossary.md` | Java memory terminology |
+| `references/java/memory/javamem-envelope-guide.md` | Interpreting `--type memory` envelope structure |
+| `references/java/memory/profiling-playbook.md` | Preparation and expected behavior before `--duration` collection |
+| `references/java/memory/decision-tree.md` | Following backend `next_steps` in Java multi-hop sessions |
+| `references/java/memory/case-library.md` | Case library and anti-patterns |

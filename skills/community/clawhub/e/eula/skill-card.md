@@ -1,41 +1,50 @@
-## Description: <br>
-EULA drafting reference - license grant, restrictions, termination, IP ownership, and enforceability for drafting or reviewing End User License Agreements for software products. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+EULA drafting reference — license grant, restrictions, termination, IP ownership, and enforceability. Use when drafting or reviewing End User License Agreements for software products.
 
-## Publisher: <br>
-[xueyetianya](https://clawhub.ai/user/xueyetianya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xueyetianya](https://clawhub.ai/user/xueyetianya)
 
-## Use Case: <br>
-Developers, product teams, and legal reviewers use this skill as a quick reference when drafting or checking EULA clauses for software, SaaS, SDKs, games, extensions, or embedded software. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill prints legal drafting reference material and may be mistaken for legal advice. <br>
-Mitigation: Treat outputs as drafting guidance and have qualified counsel review EULA language before use. <br>
-Risk: The skill invokes a local shell script, and future versions could add file writes, network access, credential handling, or document mutation. <br>
-Mitigation: Review and scan future updates before installation or execution. <br>
+## Use Case:
 
+Developers, product teams, and legal reviewers use this skill as a quick reference for drafting or reviewing End User License Agreements for software products and SaaS offerings.
 
-## Reference(s): <br>
-- [Eula on ClawHub](https://clawhub.ai/xueyetianya/eula) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Plain text guidance emitted by local shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Command-specific EULA reference sections and drafting checklists; no API keys or network services detected.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill provides general EULA drafting guidance that may not match a user's jurisdiction, product model, or enforceability requirements.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the output as reference material and have jurisdiction-specific terms reviewed by qualified legal counsel before relying on them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xueyetianya/skills/eula)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text reference output from shell commands, with Markdown command examples in the skill documentation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static legal drafting reference; security evidence reports no unsafe local, network, credential, or persistence behavior.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

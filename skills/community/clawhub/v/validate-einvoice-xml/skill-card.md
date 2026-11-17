@@ -1,38 +1,49 @@
-## Description: <br>
-验证XML文件是否为中国数电票（全面数字化电子发票）格式，检查XML结构、必需字段和数电票特征。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Validates whether an XML file matches China's fully digital electronic invoice, or 数电票, format by checking XML structure, required fields, invoice-number characteristics, and signature-related elements.
 
-## Publisher: <br>
-[hanw2039](https://clawhub.ai/user/hanw2039) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hanw2039](https://clawhub.ai/user/hanw2039)
 
-## Use Case: <br>
-Developers, finance teams, and invoice-processing agents use this skill to screen XML files for expected China fully digital electronic invoice structure and produce clear pass/fail validation guidance. It is suitable for quick local checks before deeper tax, accounting, or compliance review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The included validator is incomplete and could be mistaken for authoritative tax or compliance proof. <br>
-Mitigation: Use it as a quick local screening helper only, and rely on an official schema, validated parser, and domain review before trusting a pass result for tax, accounting, or compliance decisions. <br>
+## Use Case:
 
+Developers, finance operations teams, and agents handling Chinese e-invoice XML use this skill for local format triage before deeper tax, compliance, or authenticity review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hanw2039/validate-einvoice-xml) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, markdown] <br>
-**Output Format:** [Markdown with an inline Python validation script and report template] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces validation guidance and pass/fail reporting for XML invoice files; no network access or persistent storage is required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The sample validator performs shallow XML format checks and may be mistaken for proof of invoice authenticity or regulatory compliance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only as local triage, then apply full schema validation, trusted tax authority checks, and real digital-signature verification before making compliance, fraud, or payment decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hanw2039/skills/validate-einvoice-xml)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown with Python code blocks and validation-report text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local pass/fail format checks and human-readable error details; it does not prove invoice authenticity or tax compliance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

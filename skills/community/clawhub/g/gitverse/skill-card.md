@@ -1,43 +1,59 @@
-## Description: <br>
-GitVerse API integration for working with repositories, issues, and pull requests. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+GitVerse API lets an agent work with GitVerse repositories, issues, and pull requests through CLI commands that return JSON.
 
-## Publisher: <br>
-[webchi](https://clawhub.ai/user/webchi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[webchi](https://clawhub.ai/user/webchi)
 
-## Use Case: <br>
-Developers and engineers use this skill to let an agent inspect GitVerse repositories, issues, pull requests, comments, commits, and changed files, and to create pull requests when explicitly requested. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The GitVerse token can provide real account and repository access. <br>
-Mitigation: Use a token with the smallest needed scope and keep environment files out of commits and shared locations. <br>
-Risk: Pull request creation can affect repository workflows. <br>
-Mitigation: Confirm the repository owner, repository name, title, head branch, and base branch before creating a pull request. <br>
-Risk: A custom GITVERSE_BASE_URL can send authenticated requests to a non-default endpoint. <br>
-Mitigation: Leave GITVERSE_BASE_URL unset unless the endpoint is intentionally configured and trusted. <br>
+## Use Case:
 
+Developers and engineering agents use this skill to inspect GitVerse repositories, issues, and pull requests, and to create pull requests when repository changes are ready for review.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/webchi/gitverse) <br>
-- [OpenClaw documentation](https://docs.openclaw.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON] <br>
-**Output Format:** [JSON emitted to stdout from CLI commands, with errors emitted to stderr.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires GITVERSE_TOKEN; uses https://gitverse.ru/api/v1 unless GITVERSE_BASE_URL is intentionally set.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: package.json and server release metadata) <br>
+Risk: A GitVerse token could be sent to an unintended API endpoint if a custom endpoint is configured.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a narrowly scoped, revocable GitVerse token and only set GITVERSE_BASE_URL for endpoints you intentionally trust.
+
+Risk: A pull request could be created against the wrong repository or branch if command parameters are incorrect.
+
+Mitigation: Confirm the owner, repository, head branch, base branch, title, and body before executing pull request creation.
+
+Risk: Environment configuration from an untrusted directory can alter token or endpoint settings.
+
+Mitigation: Run the CLI from trusted directories and inspect environment variables before invoking commands.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/webchi/skills/gitverse)
+- [GitVerse API endpoint](https://gitverse.ru/api/v1)
+- [OpenClaw documentation](https://docs.openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [JSON from CLI commands, with Markdown guidance for setup and command selection]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a GITVERSE_TOKEN environment variable; command errors are reported to stderr.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

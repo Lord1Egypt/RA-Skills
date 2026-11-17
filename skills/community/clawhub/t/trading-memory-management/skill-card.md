@@ -1,39 +1,53 @@
-## Description: <br>
-Manage and standardize trading decision records, extract lessons, and support history retrieval and comparison within the PAI trading system. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manages trading decision memory by standardizing logs, extracting lessons, and supporting historical decision retrieval and comparison.
 
-## Publisher: <br>
-[WuZiMaKi](https://clawhub.ai/user/WuZiMaKi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[wuzimaki](https://clawhub.ai/user/wuzimaki)
 
-## Use Case: <br>
-Trading agents and developers use this skill to structure persistent trading memory, including decision logs, state snapshots, trading rules, and mistakes. It supports routine review, lesson extraction, history comparison, and scheduled cleanup of trading memory records. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Persistent workspace memory maintenance can archive, delete, or alter project memory records if automatic cleanup is enabled too broadly. <br>
-Mitigation: Set MG_WORKSPACE to a narrow project directory, run dry-runs before apply-mode or cron runs, and keep backups or snapshots. <br>
-Risk: Retained trading memory may include stale, duplicate, or low-quality records that affect future decision review. <br>
-Mitigation: Apply the documented daily and weekly review protocol and confirm a retention and deletion policy for archived or retired memories. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/WuZiMaKi/trading-memory-management) <br>
+## Use Case:
 
+External users and trading-system operators use this skill to keep consistent local records of trading decisions, state snapshots, rules, mistakes, and maintenance routines. It supports retrieval and comparison of past decisions inside a PAI trading workflow.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Guidance, Configuration] <br>
-**Output Format:** [Markdown guidance with file path conventions and maintenance protocols] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Defines daily and weekly memory maintenance routines for trading records.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact version note) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Local trading-memory files may contain sensitive strategy, decision rationale, or audit records.
+
+Mitigation: Keep memory paths under user-controlled storage and confirm before archiving or cleaning records needed for audit or review.
+
+Risk: The skill organizes trading decision records but does not validate trading strategy quality or financial suitability.
+
+Mitigation: Treat retrieved lessons and summaries as record-management support, not financial advice or an execution signal.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wuzimaki/skills/trading-memory-management)
+- [Publisher profile](https://clawhub.ai/user/wuzimaki)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown and structured local file guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces guidance for local trading-memory records; it does not bundle executable code.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata and artifact text)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

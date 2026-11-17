@@ -1,41 +1,54 @@
-## Description: <br>
-Provide strategic guidance with clarity, trade-offs, and risk framing; returns agency to the user without dependency. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provide strategic guidance with clarity, trade-offs, and risk framing; returns agency to the user without dependency.
 
-## Publisher: <br>
-[mzfshark](https://clawhub.ai/user/mzfshark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mzfshark](https://clawhub.ai/user/mzfshark)
 
-## Use Case: <br>
-Developers and other decision makers use this skill to clarify ambiguous choices, compare viable paths, identify trade-offs, and choose next actions while preserving user judgment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger phrases may cause the skill to appear during ordinary advice-seeking prompts. <br>
-Mitigation: Confirm that Mentor Counsel is the intended framing aid before relying on its recommendations. <br>
-Risk: Users may over-rely on advisory output for high-impact or specialized decisions. <br>
-Mitigation: Treat recommendations as decision support and seek expert review where legal, medical, financial, security, or governance stakes are material. <br>
+## Use Case:
 
+Developers and other ClawHub users use this skill when they need structured decision guidance, including options, trade-offs, risks, and next actions.
 
-## Reference(s): <br>
-- [Mentor Counsel on ClawHub](https://clawhub.ai/mzfshark/mentor-counsel) <br>
-- [Publisher profile: mzfshark](https://clawhub.ai/user/mzfshark) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown sections with recommendation, reasoning, risks, and next actions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Advisory decision-framing output; no tools or external API calls are requested by the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact frontmatter lists 2.0.0) <br>
+Risk: The skill may activate for broad advice-seeking prompts and provide guidance when the user expected narrower invocation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use explicit invocation or tighter trigger configuration when narrow activation is required.
+
+Risk: Decision guidance may be incomplete or overconfident if the user provides limited context.
+
+Mitigation: Ask for missing constraints, state confidence, and propose verification steps before acting on high-impact recommendations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mzfshark/skills/mentor-counsel)
+- [Publisher profile](https://clawhub.ai/user/mzfshark)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Text, Markdown]
+
+**Output Format:** [Markdown-style structured text with recommendation, reasoning, risks, and next actions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution, credential access, persistence, or tool use requested.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release evidence; artifact metadata reports 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,63 @@
-## Description: <br>
-Creates structured Chinese-language interview evaluations from interview transcripts, video notes, or interviewer notes for hiring decisions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill helps agents write structured Chinese-language interview evaluations from transcripts, recordings, or interviewer notes for hiring decisions.
 
-## Publisher: <br>
-[soulzhong](https://clawhub.ai/user/soulzhong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[soulzhong](https://clawhub.ai/user/soulzhong)
 
-## Use Case: <br>
-Recruiters, hiring managers, and interviewers use this skill to turn Chinese interview materials into concise internal evaluation reports with strengths, gaps, risks, and next-step recommendations. It emphasizes evidence-based capability assessment rather than simple resume or experience matching. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive candidate assessments may be written locally or used to influence future evaluations. <br>
-Mitigation: Restrict the skill to materials provided for the current task, require confirmation before file writes, and manually review any updates to EVOLUTION.md or shared knowledge files. <br>
+## Use Case:
 
+Recruiters, hiring managers, and interviewers use this skill to convert Chinese interview transcripts, recordings, video notes, or interviewer notes into structured internal hiring evaluations. It emphasizes evidence-backed capability judgments, risk flags, and specific next-step recommendations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/soulzhong/interview-evaluation) <br>
-- [Evaluation template](artifact/evaluation-template.md) <br>
-- [Example evaluation](artifact/example-evaluation.md) <br>
-- [Capability dimensions](artifact/capability-dimensions.md) <br>
-- [Attribution errors](artifact/attribution-errors.md) <br>
-- [Probing techniques](artifact/probing-techniques.md) <br>
-- [Evolution log](artifact/EVOLUTION.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, files] <br>
-**Output Format:** [Chinese Markdown interview evaluation saved as a local .md file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes recommendation, strengths, weaknesses, risk labels, and specific next-step validation guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: The skill may consult prior conversations and local resume files when resolving candidate names.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use explicit file boundaries, avoid broad resume directories, and require user confirmation before using prior conversations or local resumes.
+
+Risk: The skill may persist hiring-related feedback into reusable guidance.
+
+Mitigation: Require review before writing feedback into shared reference notes, and keep candidate-specific information out of reusable guidance.
+
+Risk: Hiring recommendations may affect candidates if transcript evidence is incomplete, misattributed, or weakly reviewed.
+
+Mitigation: Require human review of the final evaluation for evidence quality, role relevance, fairness, and compliance with the hiring process.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/soulzhong/skills/interview-evaluation)
+- [Capability Dimensions](artifact/capability-dimensions.md)
+- [Attribution Errors](artifact/attribution-errors.md)
+- [Probing Techniques](artifact/probing-techniques.md)
+- [Evaluation Template](artifact/evaluation-template.md)
+- [Example Evaluation](artifact/example-evaluation.md)
+- [Evolution Log](artifact/EVOLUTION.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, files]
+
+**Output Format:** [Chinese Markdown interview evaluation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Structured recommendation, strengths, weaknesses, risks, and next-step sections; the skill instructs agents to save the final evaluation as a Markdown file.]
+
+## Skill Version(s):
+
+1.0.3 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

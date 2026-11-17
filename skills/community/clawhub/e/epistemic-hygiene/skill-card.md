@@ -1,46 +1,59 @@
-## Description: <br>
-Activate when user asks how to discuss product/strategy questions, requests analysis of unfamiliar markets, or when sparse documentation might tempt extrapolation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Activate when user asks how to discuss product/strategy questions, requests analysis of unfamiliar markets, or when sparse documentation might tempt extrapolation. Provides 8 principles for grounded epistemic discussion with AI.
 
-## Publisher: <br>
-[tatsuko-tsukimi](https://clawhub.ai/user/tatsuko-tsukimi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tatsuko-tsukimi](https://clawhub.ai/user/tatsuko-tsukimi)
 
-## Use Case: <br>
-External users and developers use this skill during product, strategy, research, and technical critique conversations to keep analysis grounded in evidence, avoid stale external-state claims, and avoid over-synthesizing sparse material. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may lead an agent to search the web using terms from a user's prompt during market, research, or current-state verification. <br>
-Mitigation: Avoid including confidential project names or sensitive details in prompts that may be searched unless the host agent redacts or withholds those terms. <br>
-Risk: The skill can cause the agent to withhold strong conclusions when evidence is sparse or current external facts have not been checked. <br>
-Mitigation: Use it where grounded analysis is more important than fast speculation, and explicitly state when a speculative answer is desired. <br>
+## Use Case:
 
+External users and developers use this skill to keep AI-assisted product, strategy, research, and technical critique discussions grounded in current evidence. It helps agents verify current-state and market-gap claims, avoid extrapolating from sparse documentation, give clearer judgments, and keep critique aligned to the right abstraction layer.
 
-## Reference(s): <br>
-- [Epistemic Hygiene Skill Page](https://clawhub.ai/tatsuko-tsukimi/epistemic-hygiene) <br>
-- [Principles](references/principles.md) <br>
-- [Triggers](references/triggers.md) <br>
-- [Anti-patterns Catalog](references/anti-patterns-catalog.md) <br>
-- [Research Before Assertion Example](examples/research-before-assertion.md) <br>
-- [Sparse Evidence Example](examples/sparse-evidence.md) <br>
-- [Market Claim Verification Example](examples/market-claim-verification.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Plain text or Markdown analytical guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Applies reasoning principles silently by default and surfaces brief epistemic notes when needed to avoid misleading the user.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: The skill can trigger broadly in strategy or research conversations and may change the assistant's default response posture.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it where current claims, market-gap assertions, sparse documents, or critique quality are important, and follow the artifact guidance to defer when the user explicitly asks for another approach.
+
+Risk: The skill encourages live searches before claims about what exists now, which can add latency or require network-capable tooling.
+
+Mitigation: Apply live research to current-state or high-impact external-world claims, then keep the resulting epistemic note concise and source-grounded.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tatsuko-tsukimi/skills/epistemic-hygiene)
+- [Epistemic Hygiene principles](references/principles.md)
+- [Trigger patterns](references/triggers.md)
+- [Anti-patterns catalog](references/anti-patterns-catalog.md)
+- [Research before assertion example](examples/research-before-assertion.md)
+- [Sparse evidence example](examples/sparse-evidence.md)
+- [Market-gap verification example](examples/market-claim-verification.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, text, markdown]
+
+**Output Format:** [Conversational text or Markdown with brief epistemic notes when needed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include sourced current-state claims, documented-versus-inferred distinctions, and concise uncertainty notes; does not produce structured files by default.]
+
+## Skill Version(s):
+
+0.1.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

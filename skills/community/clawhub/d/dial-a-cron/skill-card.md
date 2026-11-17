@@ -1,46 +1,59 @@
-## Description: <br>
-Stateful cron system for OpenClaw with persistent memory, change detection, smart routing, token budget tracking, and self-healing; requires openclaw and gog CLIs and has broad I/O capabilities that require careful review. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Stateful cron system for OpenClaw with persistent memory, change detection, smart routing, token budget tracking, and self-healing.
 
-## Publisher: <br>
-[agenthyjack](https://clawhub.ai/user/agenthyjack) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[agenthyjack](https://clawhub.ai/user/agenthyjack)
 
-## Use Case: <br>
-Developers and engineers use Dial A Cron to add persistent state, change detection, routing, token-budget tracking, and self-healing behavior to scheduled OpenClaw jobs for monitoring, reporting, data pipeline, and maintenance workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Job configs can run shell commands and include unsanitized values in shell-based delivery paths. <br>
-Mitigation: Audit all job configs before use, restrict who can edit them, and run the skill with least privilege in an isolated account or container. <br>
-Risk: Diffs and routes can read local files, fetch arbitrary HTTP URLs, and send outputs to external endpoints. <br>
-Mitigation: Allowlist HTTP targets, restrict diff file paths to safe directories, disable or tightly control webhooks and external routes, and avoid jobs that collect secrets. <br>
-Risk: Persisted state and logs may contain sensitive job output. <br>
-Mitigation: Set DAC_JOBS_DIR, DAC_STATE_DIR, and DAC_LOG_DIR to controlled locations with restrictive permissions and review retained outputs regularly. <br>
-Risk: The skill depends on openclaw and gog CLIs for expected operation. <br>
-Mitigation: Confirm those CLIs are installed, patched, and configured with minimal credentials before enabling scheduled jobs. <br>
+## Use Case:
 
+Developers and operators use Dial A Cron to wrap scheduled OpenClaw jobs with persistent state, change detection, severity-based routing, token budget tracking, and retry or pause behavior.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/agenthyjack/dial-a-cron) <br>
-- [Job Config Schema Reference](references/job-config-schema.md) <br>
-- [Security Review](references/security-review.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON job configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce persistent state, logs, routed notifications, and DAC_CONTEXT text during job execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: ClawHub release metadata) <br>
+Risk: Job configs can grant broad command, file, and network access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill in a least-privilege, isolated environment and personally review every job config before use.
+
+Risk: Diffs, commands, routes, webhook URLs, file paths, and outputs may expose sensitive data.
+
+Mitigation: Avoid secrets and internal metadata services, restrict file paths and HTTP targets, and route only to trusted recipients.
+
+Risk: Arbitrary shell strings and shell-based delivery paths can be unsafe when influenced by untrusted configuration or output.
+
+Mitigation: Use only trusted job configs, avoid arbitrary shell strings, and ensure OpenClaw and gog CLIs run with limited credentials.
+
+## Reference(s):
+
+- [Dial A Cron ClawHub Skill Page](https://clawhub.ai/agenthyjack/skills/dial-a-cron)
+- [Job Config Schema Reference](references/job-config-schema.md)
+- [Security Review for dial-a-cron](references/security-review.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown and plain text with JSON job configuration and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update local job state, logs, and routed delivery outputs when used by an agent.]
+
+## Skill Version(s):
+
+2.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

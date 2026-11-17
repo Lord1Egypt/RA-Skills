@@ -1,41 +1,66 @@
-## Description: <br>
-Deploy an automated penetration testing pipeline with 4 agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deploy an automated penetration testing pipeline with 4 agents.
 
-## Publisher: <br>
-[teoslayer](https://clawhub.ai/user/teoslayer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[teoslayer](https://clawhub.ai/user/teoslayer)
 
-## Use Case: <br>
-Developers and security engineers use this skill to configure a four-agent penetration testing workflow for reconnaissance, vulnerability scanning, exploit validation, and reporting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill configures persistent agent state for a penetration testing workflow. <br>
-Mitigation: Install only for an approved pentest pipeline and keep a cleanup plan for ~/.pilot/setups/penetration-testing.json, handshakes, and installed role skills. <br>
-Risk: The reporter role can send sensitive findings to Slack or webhook destinations. <br>
-Mitigation: Confirm destinations are approved, restrict access, and redact exploit evidence where possible before enabling external reporting. <br>
+## Use Case:
 
+Security engineers and developers use this skill to configure a four-agent penetration testing workflow for authorized reconnaissance, vulnerability scanning, exploit validation, and reporting.
 
-## Reference(s): <br>
-- [ClawHub Skill Listing](https://clawhub.ai/teoslayer/pilot-penetration-testing-setup) <br>
-- [Pilot Protocol Homepage](https://pilotprotocol.network) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash and JSON code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces role-specific setup steps, hostname commands, trust handshakes, and setup manifest content.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: The setup is intended for penetration testing and could be misused outside an authorized assessment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for approved security assessments with defined targets, scope, and authorization.
+
+Risk: The setup installs dependency skills without pinned versions.
+
+Mitigation: Pin and verify dependency skills before installation.
+
+Risk: Prefix and role placeholders can lead to unsafe or unintended shell and hostname values.
+
+Mitigation: Restrict prefix and role values to reviewed, known-safe names before running setup commands.
+
+Risk: Reports may contain sensitive penetration test findings and can be sent to Slack or webhook destinations.
+
+Mitigation: Review report content and send it only to approved Slack or webhook destinations.
+
+Risk: Peer handshakes can establish trust between the wrong agents if identities are not checked.
+
+Mitigation: Verify peer identities before handshakes and remove ~/.pilot/setups/penetration-testing.json when the deployment is no longer needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/teoslayer/skills/pilot-penetration-testing-setup)
+- [Pilot Protocol homepage](https://pilotprotocol.network)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Markdown]
+
+**Output Format:** [Markdown with inline shell commands and JSON configuration templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces role-specific setup steps for a four-agent pipeline and a local penetration-testing manifest.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

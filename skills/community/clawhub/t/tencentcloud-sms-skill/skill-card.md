@@ -1,48 +1,62 @@
-## Description: <br>
-This skill helps agents use Tencent Cloud SMS APIs to send single or bulk SMS messages, manage SMS signatures and templates, inspect package usage, and check delivery, receipt, and reply status for domestic and international/HK/Macau/Taiwan SMS. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tencent Cloud SMS Skill helps agents send domestic and international SMS, manage SMS signatures and templates, monitor package usage, and query delivery or reply status through Tencent Cloud SMS APIs.
 
-## Publisher: <br>
-[tencent-adm](https://clawhub.ai/user/tencent-adm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tencent-adm](https://clawhub.ai/user/tencent-adm)
 
-## Use Case: <br>
-Developers and operations teams use this skill to guide Tencent Cloud SMS setup and execute the bundled SMS scripts for sending messages, managing signatures and templates, monitoring package usage, and troubleshooting delivery or reply status. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Normal use can handle Tencent Cloud SMS credentials, phone numbers, uploaded Excel sheets, and optional proof images. <br>
-Mitigation: Use a least-privilege Tencent Cloud CAM subaccount, keep credentials in environment variables, avoid sharing secrets in chat, and review dry-run previews before continuing. <br>
-Risk: Normal use can automatically install unpinned Python packages. <br>
-Mitigation: Use a dedicated Python environment and preinstall or pin required dependencies before running the scripts where possible. <br>
-Risk: Send, signature, and template actions can affect live SMS resources and may create cost or compliance impact. <br>
-Mitigation: Execute write actions only after the bundled dry-run preview and explicit user confirmation, and confirm signatures and templates are approved before sending. <br>
+## Use Case:
 
+Developers and operators use this skill to guide Tencent Cloud SMS workflows, including one-off or bulk sends, signature and template review, quota monitoring, and delivery or reply status investigation.
 
-## Reference(s): <br>
-- [Tencent Cloud SMS documentation](https://cloud.tencent.com/document/product/382) <br>
-- [Domestic SMS quickstart](https://cloud.tencent.com/document/product/382/37745) <br>
-- [International/HK/Macau/Taiwan SMS quickstart](https://cloud.tencent.com/document/product/382/37797) <br>
-- [Tencent Cloud CAM IP restriction documentation](https://cloud.tencent.com/document/product/598/38037) <br>
-- [API limits reference](references/api-limits.md) <br>
-- [Error codes reference](references/error-codes.md) <br>
-- [ClawHub skill page](https://clawhub.ai/tencent-adm/tencentcloud-sms-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, JSON, files] <br>
-**Output Format:** [Markdown guidance with shell commands, JSON script output, and generated Excel template files for bulk SMS workflows] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Scripts return structured JSON on success or failure; bulk workflows may copy blank Excel templates into the workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The security scan reports automatic installation of unpinned packages.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill in an isolated virtual environment and preinstall reviewed dependency versions before use.
+
+Risk: The security scan reports broad local configuration-file searches for cloud credentials.
+
+Mitigation: Use a dedicated low-privilege Tencent Cloud CAM subaccount, provide credentials only through the intended environment variables, and avoid storing reusable secrets in generic shell or system config files.
+
+Risk: SMS sends and signature or template changes can cost money or affect customers.
+
+Mitigation: Review dry-run previews, recipients, message content, templates, signatures, and account quotas before approving any live operation.
+
+## Reference(s):
+
+- [Tencent Cloud SMS Documentation](https://cloud.tencent.com/document/product/382)
+- [Tencent Cloud SMS Quick Start - Domestic SMS](https://cloud.tencent.com/document/product/382/37745)
+- [Tencent Cloud SMS Quick Start - International, Hong Kong, Macao, and Taiwan SMS](https://cloud.tencent.com/document/product/382/37797)
+- [Tencent Cloud SMS API Limits and Specifications](references/api-limits.md)
+- [Tencent Cloud SMS Common Error Codes](references/error-codes.md)
+- [ClawHub Skill Release Page](https://clawhub.ai/tencent-adm/skills/tencentcloud-sms-skill)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance, JSON]
+
+**Output Format:** [Markdown guidance with shell commands and JSON command results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [SMS sending and signature or template changes can affect a Tencent Cloud account and should be previewed and confirmed before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

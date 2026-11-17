@@ -1,49 +1,59 @@
-## Description: <br>
-AI-powered video generation skill. Use when the user wants to generate videos from text descriptions, browse video recipes, upload assets, or manage video creation workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-powered video generation skill for generating videos from text descriptions, browsing video recipes, uploading assets, and managing video creation workflows.
 
-## Publisher: <br>
-[sunnykui](https://clawhub.ai/user/sunnykui) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sunnykui](https://clawhub.ai/user/sunnykui)
 
-## Use Case: <br>
-External users, creators, and developers use this skill to ask an agent to generate videos from text prompts, user-provided media, or recipe templates and deliver the completed video through supported chat platforms. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Chat-platform tokens or token-bearing URLs may be exposed in logs during attachment handling. <br>
-Mitigation: Avoid Telegram attachment upload until token-bearing URL logging is fixed; use environment variables or a secret manager and least-privilege bot or app credentials. <br>
-Risk: Prompts, uploaded media, generated videos, and delivery data are sent to Medeo and selected chat platforms. <br>
-Mitigation: Use the skill only for content acceptable to share with those services, and avoid sensitive or regulated media unless approved by policy. <br>
-Risk: Local job history and configuration can remain in the medeo-video workspace after use. <br>
-Mitigation: Clear the local medeo-video workspace when prompts, media references, generated links, or job history are sensitive. <br>
+## Use Case:
 
+External users and developers use this skill to generate videos from text or supplied media, browse reusable video templates, upload assets, and deliver completed videos through supported chat platforms.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/sunnykui/medeo-video) <br>
-- [Medeo Platform](https://medeo.app) <br>
-- [Medeo API key setup](https://medeo.app/dev/apikey) <br>
-- [Medeo API documentation](https://docs.prd.medeo.app/) <br>
-- [Asset upload guide](docs/assets-upload.md) <br>
-- [Feishu delivery guide](docs/feishu-send.md) <br>
-- [Multi-platform delivery guide](docs/multi-platform.md) <br>
-- [Recipe guide](docs/recipes.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, API calls, Files] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON command outputs; generated video files or URLs may be delivered through chat platforms.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Medeo API key and may use chat-platform credentials for native delivery.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.5.2 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The security evidence flags review-worthy risks around command execution, credential handling, external messaging, and unrestricted URL fetching.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review carefully before installing, use scoped Medeo and chat-platform credentials, and deploy only in environments appropriate for this workflow.
+
+Risk: Untrusted prompts or URLs may increase exposure to command-construction and URL-fetch issues.
+
+Mitigation: Restrict use by untrusted users until those issues are fixed, avoid sending API keys in ordinary chat, and rotate any token that may appear in logs.
+
+## Reference(s):
+
+- [Medeo Video ClawHub Page](https://clawhub.ai/sunnykui/skills/medeo-video)
+- [Medeo Platform](https://medeo.app)
+- [Medeo API Docs](https://docs.prd.medeo.app/)
+- [Recipes Guide](docs/recipes.md)
+- [Uploading Assets](docs/assets-upload.md)
+- [Feishu Video Delivery](docs/feishu-send.md)
+- [Multi-Platform Video Delivery](docs/multi-platform.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance, Files]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON command outputs; generated videos are delivered as files or links through the user's chat platform.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generation is asynchronous, requires a Medeo API key, and may use scoped chat-platform credentials for native delivery.]
+
+## Skill Version(s):
+
+1.5.2 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

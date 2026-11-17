@@ -1,40 +1,55 @@
-## Description: <br>
-Local search/indexing CLI (BM25 + vectors + rerank) with MCP mode. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Local search/indexing CLI (BM25 + vectors + rerank) with MCP mode.
 
-## Publisher: <br>
-[sambiner](https://clawhub.ai/user/sambiner) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sambiner](https://clawhub.ai/user/sambiner)
 
-## Use Case: <br>
-Developers and knowledge workers use this skill to have an agent index local directories with qmd and run BM25, vector, hybrid, or document retrieval commands over local files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Indexed private files can remain searchable in the local qmd cache. <br>
-Mitigation: Index only directories intended for local search and treat ~/.cache/qmd as sensitive when it contains private notes, work documents, source code, or other confidential files. <br>
-Risk: The skill depends on installing and running the third-party qmd CLI package. <br>
-Mitigation: Install only if the upstream qmd package and publisher are trusted in the deployment environment. <br>
+## Use Case:
 
+Developers and technical users use this skill to index local files, search them with BM25, vector, or hybrid retrieval, and inspect matching documents through qmd commands or MCP mode.
 
-## Reference(s): <br>
-- [qmd GitHub repository](https://github.com/tobi/qmd) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the qmd CLI; vector and hybrid search depend on Ollama through OLLAMA_URL.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The qmd dependency is installed from an unpinned GitHub source.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer a pinned or reviewed qmd revision when stronger supply-chain control is required.
+
+Risk: Indexed file contents may be stored locally under ~/.cache/qmd.
+
+Mitigation: Index only directories intended to be searchable and review local cache handling before use with sensitive files.
+
+## Reference(s):
+
+- [qmd install package](https://github.com/tobi/qmd)
+- [Qmd2 on ClawHub](https://clawhub.ai/sambiner/skills/qmd2)
+- [sambiner publisher profile](https://clawhub.ai/user/sambiner)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide local qmd indexing, search, retrieval, and MCP usage.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

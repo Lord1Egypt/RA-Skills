@@ -1,38 +1,49 @@
-## Description: <br>
-Troubleshoot and secure wireless networks with channel optimization and diagnostics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Troubleshoot and secure wireless networks with channel optimization and diagnostics.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users, developers, and support teams use this skill to diagnose WiFi coverage, interference, security, and connectivity issues and to choose practical router or device setting changes. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Router or device setting changes can affect connectivity or security posture. <br>
-Mitigation: Review proposed WiFi security modes, WPS, DHCP lease settings, driver changes, and channel choices before applying them. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/wifi) <br>
-- [Publisher profile](https://clawhub.ai/user/ivangdavila) <br>
+## Use Case:
 
+External users and support agents use this skill to reason about WiFi performance, coverage, security settings, and troubleshooting steps for home or small-office wireless networks.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Configuration instructions, Analysis] <br>
-**Output Format:** [Markdown prose with bullet lists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Markdown-only guidance; no executable output.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Router or device configuration changes could disrupt connectivity or weaken settings if applied incorrectly.
+
+Mitigation: Review recommendations before applying them, preserve existing router settings, and keep router credentials private.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/wifi)
+- [Publisher profile](https://clawhub.ai/user/ivangdavila)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown text guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include diagnostic steps, security recommendations, and router or device configuration suggestions.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,48 @@
-## Description: <br>
-Teaches de-escalation sequences with verbal scripts, timing guidance, and non-verbal cues for angry customers, family conflicts, workplace outbursts, and public confrontations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides scripted de-escalation guidance for angry customer, family, workplace, and public confrontations, with safety caveats for danger, self-harm, and mandated reporting.
 
-## Publisher: <br>
-[howtousehumans](https://clawhub.ai/user/howtousehumans) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[howtousehumans](https://clawhub.ai/user/howtousehumans)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Employees, external support teams, and agents can use this skill to draft calm verbal responses, pauses, and non-verbal cues for de-escalating angry interactions. It is not a substitute for professional crisis intervention, therapy, law enforcement, or emergency response.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill instructs agents to log or document sensitive conflict conversations verbatim, which can create privacy, consent, retention, and access-control risk.
+
+Mitigation: Use only where recording is authorized and governed by consent, retention, access-control, and redaction policies; otherwise remove or override verbatim logging instructions before deployment.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Employees, support agents, managers, mediators, and personal assistants use this skill to structure calm responses during conflict and guide an angry person toward a specific next step. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks the agent to record sensitive conflict details and exact words too broadly. <br>
-Mitigation: Constrain use so the agent does not persist verbatim transcript details by default, asks before documenting anything, and records only the minimum necessary summary. <br>
-Risk: Users may apply the protocol in emergencies, imminent harm situations, legal matters, medical situations, therapy contexts, or situations involving minors. <br>
-Mitigation: Require the agent to disengage or escalate to appropriate emergency, mandated reporting, legal, medical, or professional support channels for those contexts. <br>
-Risk: The scripted language may not fit the user's language, culture, role, or organizational policy. <br>
-Mitigation: Adapt responses to the user's context and policy requirements before use, while preserving the safety guidance and escalation boundaries. <br>
+**Output Format:** [Markdown guidance with scripted dialogue and procedural steps]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Includes safety caveats and scenario-specific response scripts; no tools, API calls, or shell commands are required.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance with scripted response templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes scenario-specific language, timing prompts, non-verbal guidance, and escalation conditions.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

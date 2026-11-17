@@ -1,43 +1,57 @@
-## Description: <br>
-Generate images with an OpenAI-compatible image provider such as happy/gpt-image-2, with retries and bounded batch concurrency. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate images with an OpenAI-compatible image provider such as happy/gpt-image-2, with retries and bounded batch concurrency.
 
-## Publisher: <br>
-[jerryxn](https://clawhub.ai/user/jerryxn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jerryxn](https://clawhub.ai/user/jerryxn)
 
-## Use Case: <br>
-Developers and agent operators use this skill to generate single images or bounded-concurrency image batches through a configured OpenClaw image provider, with generated files and JSON run results written locally. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts are sent to the configured external image provider. <br>
-Mitigation: Use only trusted providers and avoid submitting secrets, regulated personal data, or confidential material unless that provider is approved for the data. <br>
-Risk: Prompts, generated images, JSON results, and logs are stored in local run or batch directories. <br>
-Mitigation: Review local retention practices, restrict filesystem access as appropriate, and remove generated run directories when the data no longer needs to be retained. <br>
-Risk: The skill requires provider credentials through the local OpenClaw configuration. <br>
-Mitigation: Configure least-privilege API keys, keep credentials out of prompts and source files, and rotate keys if logs or configuration are exposed. <br>
+## Use Case:
 
+Developers and agent operators use this skill to generate single or batched image files through a locally configured OpenAI-compatible image provider, with bounded retries and per-task result records.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jerryxn/happy-img2-direct) <br>
-- [Publisher profile](https://clawhub.ai/user/jerryxn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [files, JSON, shell commands, configuration] <br>
-**Output Format:** [PNG image files with JSON status and log files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports single-image generation and bounded batch execution with retries; generated prompts, outputs, and logs are retained in local run directories.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: Prompts and generator logs are saved locally in generated run directories.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid entering secrets or sensitive business data in prompts, and review or clean generated run directories after use.
+
+Risk: The skill can fetch provider-supplied image URLs that are not independently validated by the release evidence.
+
+Mitigation: Use trusted image providers and prefer bounded inline image data until URL validation controls are added.
+
+Risk: Image generation depends on the configured external provider and its handling of prompts and outputs.
+
+Mitigation: Install only with providers whose access, retention, and content policies are acceptable for the intended use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jerryxn/skills/happy-img2-direct)
+
+## Skill Output:
+
+**Output Type(s):** [Files, JSON, Shell commands, Configuration]
+
+**Output Format:** [PNG image files with JSON status and batch result records]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are written to local run directories; batch mode records one result per task and continues when individual tasks fail.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,56 @@
-## Description: <br>
-Extracts YouTube subtitles and produces structured lecture summaries with key points, evidence, and action items for review and teaching. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extracts YouTube lecture subtitles and produces structured lecture analysis with Chinese and English summaries.
 
-## Publisher: <br>
-[wallfacer-web](https://clawhub.ai/user/wallfacer-web) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[wallfacer-web](https://clawhub.ai/user/wallfacer-web)
 
-## Use Case: <br>
-Educators, learners, and reviewers use this skill to turn YouTube lecture subtitles into concise bilingual summaries and structured study or teaching notes. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Network requests are routed through a hardcoded local proxy at 127.0.0.1:26739. <br>
-Mitigation: Run the skill only where that proxy is expected and trusted, or review and adjust proxy settings before use. <br>
-Risk: Transcript text and summaries are saved to a local report, and --summary-only should not be treated as a privacy/no-save mode. <br>
-Mitigation: Use the skill only for videos whose transcript text may be stored locally, and remove generated reports when they are no longer needed. <br>
-Risk: The skill depends on external Python packages for YouTube transcript retrieval. <br>
-Mitigation: Install dependencies from trusted package sources and review dependency versions according to the target environment's software supply chain policy. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+Learners, reviewers, writers, and teachers use this skill to turn YouTube lecture captions into a structured review report with key questions, concepts, action items, uncertainties, and bilingual summaries.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands] <br>
-**Output Format:** [Console text and a local Markdown-style lecture analysis report.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Fetches YouTube subtitles through a local proxy and saves transcript-derived summaries locally.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The generated report can include lecture transcript content saved in the current directory.
+
+Mitigation: Run the skill only on videos whose transcript content may be stored locally, and remove generated reports when they are no longer needed.
+
+Risk: The --summary-only option is documented but the security guidance says not to rely on it for privacy until fixed.
+
+Mitigation: Assume transcript content may still be processed or saved, and verify behavior before using the flag in sensitive environments.
+
+Risk: The skill fetches YouTube transcript data through a configured localhost proxy and uses external Python dependencies.
+
+Mitigation: Use a trusted proxy configuration and pin dependencies before deploying in sensitive or controlled environments.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/wallfacer-web/skills/bradford-lecture-analyzer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Console text and a transcript-containing text report with Markdown-style headings]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Fetches YouTube transcript data through the configured localhost proxy and writes a lecture_analysis_<video_id>.txt report in the current directory.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

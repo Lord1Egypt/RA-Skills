@@ -1,23 +1,18 @@
 /**
  * Webhook Receiver with HMAC-SHA256 Verification - Veritier Example (JavaScript)
  * ================================================================================
- * A minimal Express server that receives async webhook deliveries from Veritier
- * and verifies their HMAC-SHA256 signatures before processing.
+ * Verifies X-Veritier-Signature against the raw body bytes, then processes
+ * extract / verify / validate / attestation deliveries.
  *
- * When you enable webhooks in your Veritier dashboard and set `use_webhook: true`
- * in API requests, results are delivered asynchronously to this endpoint.
+ * Retries send the same Idempotency-Key / X-Veritier-Idempotency-Key
+ * (attest: attestation:{action_id}:{transaction_id}). HMAC is over the body only.
  *
  * Setup:
- *   1. npm install express dotenv
- *   2. Set VERITIER_WEBHOOK_SECRET in your .env (the vtsec_... value from the dashboard)
+ *   1. npm install
+ *   2. Set VERITIER_WEBHOOK_SECRET in .env
  *   3. node webhook_receiver.mjs
- *   4. The server listens on http://localhost:5050/webhooks/veritier
  *
- * For production:
- *   - Use HTTPS (required by Veritier for non-localhost URLs)
- *   - Deploy behind a reverse proxy (nginx, Caddy, etc.)
- *
- * Full webhook docs: https://veritier.ai/docs
+ * Docs: https://veritier.ai/docs#webhooks
  */
 
 import "dotenv/config";
@@ -26,84 +21,71 @@ import { createHmac, timingSafeEqual } from "node:crypto";
 
 const app = express();
 const PORT = 5050;
-
 const WEBHOOK_SECRET = process.env.VERITIER_WEBHOOK_SECRET || "";
+const seenIdem = new Set();
 
 if (!WEBHOOK_SECRET) {
-  console.warn("⚠ Warning: VERITIER_WEBHOOK_SECRET is not set.");
-  console.warn("  Configure a webhook at https://veritier.ai/dashboard to get your secret.");
+  console.warn("Warning: VERITIER_WEBHOOK_SECRET is not set.");
 }
 
-// IMPORTANT: Use raw body for HMAC verification, NOT parsed JSON
-// Express must capture the raw bytes before any JSON middleware
-app.use(
-  "/webhooks/veritier",
-  express.raw({ type: "application/json" })
-);
+app.use("/webhooks/veritier", express.raw({ type: "application/json" }));
 app.use(express.json());
 
 app.post("/webhooks/veritier", (req, res) => {
-  /**
-   * Receive and verify a Veritier webhook delivery.
-   *
-   * Security flow:
-   *   1. Read the raw request body BEFORE any JSON parsing
-   *   2. Compute HMAC-SHA256 of the raw bytes using your webhook secret
-   *   3. Compare against the X-Veritier-Signature header (timing-safe)
-   *   4. Only then parse and process the payload
-   */
   const signature = req.headers["x-veritier-signature"] || "";
+  const idem =
+    req.headers["idempotency-key"] || req.headers["x-veritier-idempotency-key"] || "";
+  const actionId = req.headers["x-veritier-action-id"] || "";
 
   if (!WEBHOOK_SECRET) {
-    console.error("✗ Webhook secret not configured - rejecting request");
     return res.status(500).json({ error: "Webhook secret not configured" });
   }
 
-  // ── Step 1: Verify the signature ────────────────────────────────────
-  // req.body is a Buffer here because of express.raw() middleware
   const rawBody = req.body;
-
   const expectedSignature =
-    "vtsec_" +
-    createHmac("sha256", WEBHOOK_SECRET)
-      .update(rawBody)
-      .digest("hex");
+    "vtsec_" + createHmac("sha256", WEBHOOK_SECRET).update(rawBody).digest("hex");
 
-  // Timing-safe comparison prevents signature oracle attacks
   try {
     const sigBuffer = Buffer.from(signature, "utf8");
     const expectedBuffer = Buffer.from(expectedSignature, "utf8");
-
     if (
       sigBuffer.length !== expectedBuffer.length ||
       !timingSafeEqual(sigBuffer, expectedBuffer)
     ) {
-      console.error("✗ Invalid webhook signature - rejecting request");
       return res.status(401).json({ error: "Invalid signature" });
     }
   } catch {
-    console.error("✗ Signature comparison failed - rejecting request");
     return res.status(401).json({ error: "Invalid signature" });
   }
 
-  // ── Step 2: Parse and process the payload ───────────────────────────
+  if (idem) {
+    if (seenIdem.has(idem)) {
+      console.log(`Duplicate Idempotency-Key ${idem} - ignoring retry`);
+      return res.json({ status: "ok", duplicate: true });
+    }
+    seenIdem.add(idem);
+  }
+
   const payload = JSON.parse(rawBody.toString("utf8"));
   const transactionId = payload.transaction_id || "unknown";
-  const results = payload.results || [];
-
-  const icons = { true: "✅", false: "❌", null: "❓" };
+  const kind = payload.type || "event";
+  const results = payload.results;
 
   console.log(`\n${"─".repeat(50)}`);
-  console.log(`✓ Webhook received - Transaction: ${transactionId}`);
-  console.log(`  Claims verified: ${results.length}`);
+  if (payload.is_test) console.log("[TEST MODE] No quota was consumed.");
+  console.log(`type=${kind}  tx=${transactionId}  idem=${idem || "(none)"}`);
+  if (actionId) console.log(`X-Veritier-Action-Id=${actionId}`);
 
-  for (const r of results) {
-    const icon = icons[String(r.verdict)] || "❓";
-    console.log(`  ${icon} ${r.claim} → ${r.verdict}`);
+  if (kind === "attestation" && results && !Array.isArray(results)) {
+    console.log(`  decision=${results.decision}  credential_id=${results.credential_id}`);
+  } else if (Array.isArray(results)) {
+    console.log(`  claims: ${results.length}`);
+    for (const r of results) {
+      console.log(`    ${r.claim} -> ${r.verdict}`);
+    }
   }
 
   console.log(`${"─".repeat(50)}\n`);
-
   return res.json({ status: "ok" });
 });
 
@@ -112,8 +94,6 @@ app.get("/health", (_req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
-  console.log("  Veritier Webhook Receiver");
+  console.log("Veritier Webhook Receiver");
   console.log(`  Listening on http://localhost:${PORT}/webhooks/veritier`);
-  console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n");
 });

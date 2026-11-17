@@ -1,43 +1,53 @@
-## Description: <br>
-搜索电视剧、动漫、电影的百度网盘和夸克网盘资源链接。当用户询问任何影视作品的网盘链接、资源、下载地址时使用此技能，包括但不限于"有XX的网盘链接吗"、"XX在哪里下载"、"找XX的资源"等问题。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+搜索电视剧、动漫、电影的百度网盘和夸克网盘资源链接。
 
-## Publisher: <br>
-[SusanKerrbq](https://clawhub.ai/user/SusanKerrbq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[susankerrbq](https://clawhub.ai/user/susankerrbq)
 
-## Use Case: <br>
-External users can use this skill to ask an agent for Baidu Netdisk and Quark cloud-drive resource links for movies, TV series, and anime by title. It is intended for media-link search workflows where returned third-party links are reviewed before use. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can return third-party cloud-drive download links for media without authorization safeguards. <br>
-Mitigation: Use it only for content that is known to be authorized, public-domain, or otherwise lawful. <br>
-Risk: Returned Baidu Netdisk and Quark links are unverified external content. <br>
-Mitigation: Review links before opening or downloading, and handle downloaded files as untrusted content. <br>
-Risk: The skill depends on a third-party API for search results. <br>
-Mitigation: Expect availability, accuracy, and freshness to depend on that external service. <br>
+## Use Case:
 
+External users can use this skill to ask an agent for Baidu Netdisk or Quark links for TV shows, anime, and movies. The skill extracts the requested title, queries the disclosed movie-resource API, and formats available results for review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/SusanKerrbq/easy-movie-search) <br>
-- [Movie resource API endpoint](https://meng-ge.top/api/movieData/getMoviesByType) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Markdown, Guidance] <br>
-**Output Format:** [Markdown text containing media titles, resource type labels, Baidu Netdisk links, Quark links, and update times] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Results depend on a third-party API and should be treated as unverified external links.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Requested movie or show titles are sent to a disclosed third-party API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when users are comfortable sharing those search terms with the external service.
+
+Risk: Returned Baidu or Quark links may lead to external downloads with copyright, safety, or platform-rule implications.
+
+Mitigation: Review links before opening or sharing them and follow applicable copyright and platform rules.
+
+## Reference(s):
+
+- [Movie Resource API](https://meng-ge.top/api/movieData/getMoviesByType)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown list with resource names, type labels, Baidu Netdisk links, Quark links, and update times]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include external Baidu Netdisk and Quark links returned by the disclosed third-party API.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

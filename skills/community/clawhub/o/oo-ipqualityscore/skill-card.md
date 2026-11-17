@@ -1,42 +1,55 @@
-## Description: <br>
-IPQualityScore (ipqualityscore.com) helps an agent inspect and run IPQualityScore connector actions for IP reputation checks, URL or domain scans, email validation, and phone validation through the OOMOL oo CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connects agents to IPQualityScore lookups for IP reputation, URL risk, email validation, and phone validation.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers, analysts, and external users use this skill to run IPQualityScore lookups from an OOMOL-connected account without handling raw service credentials. It supports reputation, abuse-risk, deliverability, and threat-signal checks for IP addresses, URLs or domains, email addresses, and phone numbers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires sensitive credentials through an OOMOL-connected IPQualityScore account. <br>
-Mitigation: Install only when the publisher is trusted and use the documented OOMOL connection flow so raw service tokens are not handled by the agent. <br>
-Risk: Connector actions can send IP addresses, URLs, domains, email addresses, or phone numbers to IPQualityScore for analysis. <br>
-Mitigation: Confirm that submitted data is appropriate for the user's account, policy, and jurisdiction before running lookups. <br>
+## Use Case:
 
+Developers and agents use the skill to check IP reputation, scan URLs, and validate email addresses or phone numbers through their connected IPQualityScore account.
 
-## Reference(s): <br>
-- [ClawHub IPQualityScore Skill Page](https://clawhub.ai/oomol/oo-ipqualityscore) <br>
-- [OOMOL oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [IPQualityScore Homepage](https://www.ipqualityscore.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API Calls, JSON, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON connector responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses OOMOL server-side credential injection and returns connector data with execution metadata.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence and skill metadata) <br>
+Risk: Automatic setup may execute unverified software or make broader agent changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review setup before installing; prefer a separately approved, version-pinned CLI installation with verified integrity, and consider disabling bundled-skill synchronization using the documented control.
+
+Risk: Lookup data is sent through OOMOL to IPQualityScore.
+
+Mitigation: Submit only lookup data you intend to share with those services.
+
+## Reference(s):
+
+- [IPQualityScore API documentation](https://www.ipqualityscore.com/documentation/overview)
+- [IPQualityScore](https://www.ipqualityscore.com/)
+- [oo CLI command documentation](https://github.com/oomol-lab/oo-cli/blob/main/docs/commands.md)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Shell commands, Guidance]
+
+**Output Format:** [Structured lookup results and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Action-specific results returned by IPQualityScore]
+
+## Skill Version(s):
+
+1.0.6 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

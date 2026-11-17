@@ -1,42 +1,58 @@
-## Description: <br>
-Emotion detects user emotions, provides supportive responses, and saves local context and emotion history for cross-session personalization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Emotion is an OpenClaw companion skill that detects user emotions, provides supportive responses, records important moments, and maintains shared memory across sessions.
 
-## Publisher: <br>
-[yyds-xxxx](https://clawhub.ai/user/yyds-xxxx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yyds-xxxx](https://clawhub.ai/user/yyds-xxxx)
 
-## Use Case: <br>
-External users and agent builders use this skill to add an always-on emotional companion that detects mood, responds supportively, and keeps local memory for continuity across conversations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Always-on activation may capture sensitive emotional text without clear user intent. <br>
-Mitigation: Disable always-on and no-prefix activation unless users have explicitly opted in. <br>
-Risk: The skill may store excerpts of private or mental-health-adjacent conversations locally. <br>
-Mitigation: Require explicit memory consent and provide review, export, and delete controls before use. <br>
-Risk: Unused web-search access expands the skill's operational surface. <br>
-Mitigation: Remove unused web-search access unless a deployment specifically needs it. <br>
+## Use Case:
 
+External OpenClaw users use this skill to recognize emotional language, receive supportive responses, and preserve local or shared context for continuity across conversations.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/yyds-xxxx/emotion-shared-experience) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, guidance] <br>
-**Output Format:** [Text response with JSON-compatible metadata] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include emotion, intensity, detection status, context count, and timestamp metadata.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Always-on activation and broad memory/tool access may capture sensitive feelings, relationships, health details, or secrets without clear consent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Disable always-on activation by default, request consent before saving conversation excerpts, and document retention, deletion, and export behavior.
+
+Risk: Declared memory and tool grants are broader than the basic emotion-support workflow requires.
+
+Mitigation: Remove unused memory and tool permissions before deployment, then re-enable only the permissions required by the target environment.
+
+Risk: The artifact appears to reference a missing entry point, which may cause runtime failures after installation.
+
+Mitigation: Verify the packaged entry module and run an installation smoke test before publishing or deploying the skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yyds-xxxx/skills/emotion-shared-experience)
+- [Publisher profile](https://clawhub.ai/user/yyds-xxxx)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown or plain text responses with emotion labels, memory summaries, statistics, and configuration guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update local JSON memory and statistics files when installed in OpenClaw.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata; artifact package.json and skill.json list 5.0.0, and README.md/loader.js list 10.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,48 +1,58 @@
-## Description: <br>
-New Youth.skill provides a reflective critical-thinking persona based on Chen Duxiu's six standards from A Call to Youth for self-assessment, decision support, viewpoint review, daily practice, perspective expansion, and action planning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+New Youth.skill is a bilingual reflective coaching skill based on Chen Duxiu's six New Youth standards, helping users assess character, examine claims, expand perspectives, make decisions, plan daily practice, and translate ideas into action.
 
-## Publisher: <br>
-[moroiser](https://clawhub.ai/user/moroiser) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[moroiser](https://clawhub.ai/user/moroiser)
 
-## Use Case: <br>
-External users use this skill for reflective self-assessment, critical-thinking prompts, decision support, viewpoint review, daily action planning, perspective expansion, and converting ideas into action steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The session-start hook can automatically introduce the New Youth persona into new sessions and influence ordinary conversations. <br>
-Mitigation: Install only when that reflective posture is desired, disable the session-start hook where possible, or limit activation to explicit commands such as /新青年. <br>
-Risk: Capability tags include crypto and purchase-related labels even though the reviewed artifacts do not require financial, wallet, purchase, or broad tool permissions. <br>
-Mitigation: Do not grant financial, purchase, wallet, or broader tool permissions based on those metadata tags; keep runtime permissions limited to the artifact's documented needs. <br>
-Risk: The skill uses a worldview and persona framework that may shape how options are framed during reflection or decision support. <br>
-Mitigation: Use the skill as a questioning and self-assessment aid, keep final decisions with the user, and independently verify factual claims before relying on them. <br>
+## Use Case:
 
+External users and agents use this skill for reflective coaching in Chinese or English: self-assessing against six character standards, scrutinizing evidence and logic, comparing perspectives, and turning decisions into concrete next steps.
 
-## Reference(s): <br>
-- [ClawHub skill release page](https://clawhub.ai/moroiser/new-youth-skill) <br>
-- [README](README.md) <br>
-- [Six Standards: Full Commentary](references/six-standards.md) <br>
-- [Five-Layer Persona Architecture](references/persona-layer.md) <br>
-- [Application Scenario Examples](references/application-cases.md) <br>
-- [Historical Narratives](references/historical-narratives.md) <br>
-- [30 Classic Quotes](references/30-classic-quotes.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown prose with optional command snippets and plain-text helper-script reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Optional helper scripts can produce scoring reports and daily task lists; no external APIs are required by the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.1 (source: server release metadata; artifact frontmatter/package.json report 1.0/1.0.0) <br>
+Risk: Automatic session-start behavior can apply the skill's persona to unrelated conversations without clear user opt-in.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review host hook behavior before installation; disable or remove the session-start hook if the skill should only run when explicitly invoked.
+
+Risk: Reflective coaching can sound authoritative when the user's issue needs evidence checking or professional judgment.
+
+Mitigation: Use the skill as decision-support guidance, verify factual claims independently, and keep the final decision with the user.
+
+## Reference(s):
+
+- [New Youth Six Standards](artifact/references/six-standards.md)
+- [Application Cases](artifact/references/application-cases.md)
+- [Persona Layer](artifact/references/persona-layer.md)
+- [Historical Narratives](artifact/references/historical-narratives.md)
+- [30 Classic Quotes](artifact/references/30-classic-quotes.md)
+- [ClawHub Skill Page](https://clawhub.ai/moroiser/skills/new-youth-skill)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown responses with optional shell command examples and script-generated text reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No external APIs required; optional Python helper scripts generate daily tasks and self-assessment reports.]
+
+## Skill Version(s):
+
+0.0.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

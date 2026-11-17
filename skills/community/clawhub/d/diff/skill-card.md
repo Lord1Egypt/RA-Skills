@@ -1,39 +1,50 @@
-## Description: <br>
-Diff is a local reference skill that outputs diff-related documentation and guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Diff provides plain-text reference documentation for diff-related development tooling workflows.
 
-## Publisher: <br>
-[bytesagain3](https://clawhub.ai/user/bytesagain3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain3](https://clawhub.ai/user/bytesagain3)
 
-## Use Case: <br>
-Developers and engineers use Diff as a lightweight local reference helper for diff concepts, quickstarts, patterns, debugging, performance, security, migration, and cheat sheets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill provides static reference guidance and does not appear to perform real file comparisons. <br>
-Mitigation: Use it as a reference helper only, and rely on an actual diff tool when comparing files or validating changes. <br>
+## Use Case:
 
+Developers and engineers use this skill to retrieve concise reference guidance for diff-related workflows, including quick starts, patterns, debugging, performance, security, migration, and cheat-sheet material.
 
-## Reference(s): <br>
-- [Diff on ClawHub](https://clawhub.ai/bytesagain3/diff) <br>
-- [BytesAgain](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Plain text reference documentation with Markdown-style headings and lists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Static local reference output; security evidence reports no network, credential, persistence, or user-file access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.4 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill outputs generic reference guidance that may not match a user's specific diff tooling, environment, or internal policy.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the guidance before applying it to production workflows; the security evidence reports no credential collection, storage, transmission, or network use.
+
+## Reference(s):
+
+- [Diff skill page](https://clawhub.ai/bytesagain3/skills/diff)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Plain-text reference documentation with Markdown headings and tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No external API calls, credentials, or network access indicated by the release evidence.]
+
+## Skill Version(s):
+
+2.0.4 (source: release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

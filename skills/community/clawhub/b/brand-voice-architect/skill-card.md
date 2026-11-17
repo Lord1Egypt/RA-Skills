@@ -1,42 +1,54 @@
-## Description: <br>
-A high-precision engine for deconstructing, documenting, and synthesizing brand-specific linguistic patterns and tonal architectures. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Brand Voice Architect helps agents analyze writing samples, define brand voice systems, and generate voice guides, prompt templates, platform pivots, and preferred or prohibited lexicons.
 
-## Publisher: <br>
-[midnightstudioai](https://clawhub.ai/user/midnightstudioai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[midnightstudioai](https://clawhub.ai/user/midnightstudioai)
 
-## Use Case: <br>
-Brand, marketing, content, and developer teams use this skill to analyze writing samples, define brand voice pillars, generate voice guides, synthesize system prompts, and adapt tone across channels. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated system prompts may rewrite prohibited terms silently and can affect exact wording. <br>
-Mitigation: Review generated prompts and rewritten wording before using them in legal, compliance-sensitive, or quotation-sensitive contexts. <br>
-Risk: The workflow analyzes user-provided writing samples, which may contain sensitive brand or business content. <br>
-Mitigation: Provide only writing samples intended for analysis and avoid including confidential text that should not be processed. <br>
+## Use Case:
 
+Brand, marketing, product, and content teams use this skill to analyze a writing corpus, document the resulting voice architecture, and generate deployable brand voice prompts and style artifacts. Developers and agent builders can use its scripts to compute voice metrics and synthesize system prompts from structured brand configuration.
 
-## Reference(s): <br>
-- [Technical Methodology Reference](references/methodology.md) <br>
-- [Brand Voice Architect release page](https://clawhub.ai/midnightstudioai/brand-voice-architect) <br>
-- [midnightstudioai publisher profile](https://clawhub.ai/user/midnightstudioai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown reports, voice matrices, system prompts, platform pivot guidance, and optional JSON-like metric summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include corpus-derived metrics, preferred and prohibited lexicons, and prompt-level voice constraints.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: release evidence) <br>
+Risk: The skill analyzes writing samples supplied by the user, which may include sensitive brand, customer, or internal content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide only intended corpus or JSON files and avoid including sensitive material that should not be analyzed by the agent.
+
+Risk: Generated system prompts and prohibited-word replacements depend on the downstream model following the prompt.
+
+Mitigation: Review and test generated prompts before deploying them in another system.
+
+## Reference(s):
+
+- [Technical Methodology Reference](references/methodology.md)
+- [ClawHub Skill Page](https://clawhub.ai/midnightstudioai/skills/brand-voice-architect)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown, structured text, and generated system-prompt text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include metrics reports, voice matrices, system prompts, platform pivots, and prohibited or preferred lexicons.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

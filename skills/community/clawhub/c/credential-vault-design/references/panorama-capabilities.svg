@@ -1,0 +1,112 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 600" font-family="-apple-system,Segoe UI,Microsoft YaHei,sans-serif">
+  <rect width="840" height="600" fill="#FFFFFF"/>
+
+  <!-- 标题 -->
+  <text x="420" y="30" text-anchor="middle" font-size="20" font-weight="700" fill="#1A1A1A">统一凭据体系 · 9 项能力亮点速览</text>
+  <text x="420" y="52" text-anchor="middle" font-size="12" fill="#888">能力—场景—证据 一屏看清（实测 5.0 = 0 风险 0 凭据泄露）</text>
+
+  <!-- 第 1 行：①全生态打通 ②零知识信封加密 ③可恢复不锁死 -->
+  <!-- Card 1 -->
+  <rect x="20" y="80" width="253" height="147" rx="8" fill="#FAFAFA" stroke="#E3E3E3" stroke-width="1"/>
+  <rect x="20" y="80" width="253" height="3" fill="#E8543F"/>
+  <circle cx="45" cy="113" r="16" fill="#E8543F"/>
+  <text x="45" y="113" text-anchor="middle" dominant-baseline="central" font-size="16" font-weight="700" fill="#FFFFFF">1</text>
+  <text x="72" y="118" font-size="15" font-weight="600" fill="#1A1A1A">全生态打通</text>
+  <text x="32" y="150" font-size="12" fill="#555">真相源一份加密库（.kdbx）</text>
+  <text x="32" y="170" font-size="12" fill="#555">Windows / macOS / Linux / 鸿蒙 / 安卓 / iOS 同一份文件</text>
+  <text x="32" y="190" font-size="12" fill="#555">换机即用，硬件密钥不锁死</text>
+  <text x="32" y="212" font-size="11" fill="#999">→ 鸿蒙原生 KeePassHO</text>
+
+  <!-- Card 2 -->
+  <rect x="293" y="80" width="253" height="147" rx="8" fill="#FAFAFA" stroke="#E3E3E3" stroke-width="1"/>
+  <rect x="293" y="80" width="253" height="3" fill="#E8543F"/>
+  <circle cx="318" cy="113" r="16" fill="#E8543F"/>
+  <text x="318" y="113" text-anchor="middle" dominant-baseline="central" font-size="16" font-weight="700" fill="#FFFFFF">2</text>
+  <text x="345" y="118" font-size="15" font-weight="600" fill="#1A1A1A">零知识信封加密</text>
+  <text x="305" y="150" font-size="12" fill="#555">明文不出本机</text>
+  <text x="305" y="170" font-size="12" fill="#555">密文仅进自己云盘，厂商只见密文</text>
+  <text x="305" y="190" font-size="12" fill="#555">与备份包（AES-256+云盘）同模型</text>
+  <text x="305" y="212" font-size="11" fill="#999">→ 守住"明文零入云"红线</text>
+
+  <!-- Card 3 -->
+  <rect x="566" y="80" width="253" height="147" rx="8" fill="#FAFAFA" stroke="#E3E3E3" stroke-width="1"/>
+  <rect x="566" y="80" width="253" height="3" fill="#E8543F"/>
+  <circle cx="591" cy="113" r="16" fill="#E8543F"/>
+  <text x="591" y="113" text-anchor="middle" dominant-baseline="central" font-size="16" font-weight="700" fill="#FFFFFF">3</text>
+  <text x="618" y="118" font-size="15" font-weight="600" fill="#1A1A1A">可恢复不锁死</text>
+  <text x="578" y="150" font-size="12" fill="#555">分片重建 + 专家协助</text>
+  <text x="578" y="170" font-size="12" fill="#555">分 3 片存 3 处 / 交 3 人</text>
+  <text x="578" y="190" font-size="12" fill="#555">凑齐阈值片即可应急解锁</text>
+  <text x="578" y="212" font-size="11" fill="#999">→ break-glass，忘密有路走</text>
+
+  <!-- 第 2 行：④分级授权 ⑤专家全程负责 ⑥抗AI钓鱼 -->
+  <!-- Card 4 -->
+  <rect x="20" y="247" width="253" height="147" rx="8" fill="#FAFAFA" stroke="#E3E3E3" stroke-width="1"/>
+  <rect x="20" y="247" width="253" height="3" fill="#E8543F"/>
+  <circle cx="45" cy="280" r="16" fill="#E8543F"/>
+  <text x="45" y="280" text-anchor="middle" dominant-baseline="central" font-size="16" font-weight="700" fill="#FFFFFF">4</text>
+  <text x="72" y="285" font-size="15" font-weight="600" fill="#1A1A1A">分级授权</text>
+  <text x="32" y="317" font-size="12" fill="#555">1 个根口令派生一切</text>
+  <text x="32" y="337" font-size="12" fill="#555">业务授权码按密级分级存放</text>
+  <text x="32" y="357" font-size="12" fill="#555">专人只读台账，绝不碰明文</text>
+  <text x="32" y="379" font-size="11" fill="#999">→ 集中管理但不把鸡蛋放一篮</text>
+
+  <!-- Card 5 -->
+  <rect x="293" y="247" width="253" height="147" rx="8" fill="#FAFAFA" stroke="#E3E3E3" stroke-width="1"/>
+  <rect x="293" y="247" width="253" height="3" fill="#E8543F"/>
+  <circle cx="318" cy="280" r="16" fill="#E8543F"/>
+  <text x="318" y="280" text-anchor="middle" dominant-baseline="central" font-size="16" font-weight="700" fill="#FFFFFF">5</text>
+  <text x="345" y="285" font-size="15" font-weight="600" fill="#1A1A1A">专家全程负责</text>
+  <text x="305" y="317" font-size="12" fill="#555">credential-vault-steward</text>
+  <text x="305" y="337" font-size="12" fill="#555">全程记录架构/台账/变更/恢复</text>
+  <text x="305" y="357" font-size="12" fill="#555">应急恢复走 break-glass</text>
+  <text x="305" y="379" font-size="11" fill="#999">→ 铁律：不接触明文凭据</text>
+
+  <!-- Card 6 -->
+  <rect x="566" y="247" width="253" height="147" rx="8" fill="#FAFAFA" stroke="#E3E3E3" stroke-width="1"/>
+  <rect x="566" y="247" width="253" height="3" fill="#E8543F"/>
+  <circle cx="591" cy="280" r="16" fill="#E8543F"/>
+  <text x="591" y="280" text-anchor="middle" dominant-baseline="central" font-size="16" font-weight="700" fill="#FFFFFF">6</text>
+  <text x="618" y="285" font-size="15" font-weight="600" fill="#1A1A1A">抗 AI 钓鱼</text>
+  <text x="578" y="317" font-size="12" fill="#555">抗间接注入 / MCP 投毒</text>
+  <text x="578" y="337" font-size="12" fill="#555">passkey 抗钓鱼认证</text>
+  <text x="578" y="357" font-size="12" fill="#555">AI 调用走时效令牌 + 审计</text>
+  <text x="578" y="379" font-size="11" fill="#999">→ 2026 钓鱼新场景全覆盖</text>
+
+  <!-- 第 3 行：⑦抗暴力破解 ⑧防篡改审计 ⑨AI世界适配 -->
+  <!-- Card 7 -->
+  <rect x="20" y="414" width="253" height="147" rx="8" fill="#FAFAFA" stroke="#E3E3E3" stroke-width="1"/>
+  <rect x="20" y="414" width="253" height="3" fill="#E8543F"/>
+  <circle cx="45" cy="447" r="16" fill="#E8543F"/>
+  <text x="45" y="447" text-anchor="middle" dominant-baseline="central" font-size="16" font-weight="700" fill="#FFFFFF">7</text>
+  <text x="72" y="452" font-size="15" font-weight="600" fill="#1A1A1A">抗暴力破解</text>
+  <text x="32" y="484" font-size="12" fill="#555">本地实测 5.0/5.0</text>
+  <text x="32" y="504" font-size="12" fill="#555">非法请求 100% 拒绝</text>
+  <text x="32" y="524" font-size="12" fill="#555">0 处凭据泄露</text>
+  <text x="32" y="546" font-size="11" fill="#999">→ 详见 panorama-security-radar</text>
+
+  <!-- Card 8 -->
+  <rect x="293" y="414" width="253" height="147" rx="8" fill="#FAFAFA" stroke="#E3E3E3" stroke-width="1"/>
+  <rect x="293" y="414" width="253" height="3" fill="#E8543F"/>
+  <circle cx="318" cy="447" r="16" fill="#E8543F"/>
+  <text x="318" y="447" text-anchor="middle" dominant-baseline="central" font-size="16" font-weight="700" fill="#FFFFFF">8</text>
+  <text x="345" y="452" font-size="15" font-weight="600" fill="#1A1A1A">防篡改审计</text>
+  <text x="305" y="484" font-size="12" fill="#555">本地实测 5.0/5.0</text>
+  <text x="305" y="504" font-size="12" fill="#555">篡改 100% 识别并跳过</text>
+  <text x="305" y="524" font-size="12" fill="#555">完整审计记录保留</text>
+  <text x="305" y="546" font-size="11" fill="#999">→ 全维度本地闭环可重复</text>
+
+  <!-- Card 9 -->
+  <rect x="566" y="414" width="253" height="147" rx="8" fill="#FAFAFA" stroke="#E3E3E3" stroke-width="1"/>
+  <rect x="566" y="414" width="253" height="3" fill="#E8543F"/>
+  <circle cx="591" cy="447" r="16" fill="#E8543F"/>
+  <text x="591" y="447" text-anchor="middle" dominant-baseline="central" font-size="16" font-weight="700" fill="#FFFFFF">9</text>
+  <text x="618" y="452" font-size="15" font-weight="600" fill="#1A1A1A">AI 世界适配</text>
+  <text x="578" y="484" font-size="12" fill="#555">broker / JIT 标准协议</text>
+  <text x="578" y="504" font-size="12" fill="#555">AI agent 临时授权</text>
+  <text x="578" y="524" font-size="12" fill="#555">scope-TTL 自动收敛</text>
+  <text x="578" y="546" font-size="11" fill="#999">→ 支付就绪 / 多场景通用</text>
+
+  <!-- 底部说明 -->
+  <text x="420" y="586" text-anchor="middle" font-size="11" fill="#999">能力 ⑦⑧ 来自本地实测 5.0（零真实凭据 · 可重复） · 全景图见 panorama-radar / panorama-security-radar</text>
+</svg>

@@ -1,41 +1,55 @@
-## Description: <br>
-Target company evaluation and deal qualification for PE and strategic buyers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Target company evaluation and deal qualification for PE and strategic buyers.
 
-## Publisher: <br>
-[aniebyl](https://clawhub.ai/user/aniebyl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[aniebyl](https://clawhub.ai/user/aniebyl)
 
-## Use Case: <br>
-Deal teams, private equity investors, and strategic buyers use this skill to score acquisition targets against investment criteria, screen for deal-breakers, and produce structured next-step recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Deal-screening output may be incomplete or misleading if treated as investment, legal, tax, sanctions, or diligence advice. <br>
-Mitigation: Use the output as an analytical rubric only, verify claims against source documents, and route decisions through qualified professionals. <br>
-Risk: Scores and recommendations depend on the accuracy and completeness of user-provided target and buyer criteria. <br>
-Mitigation: Validate the input data, assumptions, thresholds, and buyer mandate before relying on the recommendation. <br>
+## Use Case:
 
+External finance, M&A, private equity, and corporate development users use this skill to screen acquisition targets against buyer criteria, identify deal breakers, score fit, and produce prioritized next steps for diligence.
 
-## Reference(s): <br>
-- [Olo Deal Screening on ClawHub](https://clawhub.ai/aniebyl/olo-deal-screening) <br>
-- [ololand.ai](https://ololand.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Guidance] <br>
-**Output Format:** [Structured Markdown with JSON-compatible fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes weighted dimension scores, a recommendation, deal-breakers, strengths, concerns, and prioritized next steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Broad finance trigger phrases may activate the skill for adjacent questions outside deal screening.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the user is asking for M&A, PE, acquisition target, or deal qualification analysis before applying the framework.
+
+Risk: Deal scores and recommendations could be mistaken for investment, legal, sanctions, or compliance advice.
+
+Mitigation: Treat outputs as analytical decision support and route investment, legal, sanctions, and compliance conclusions to qualified reviewers.
+
+## Reference(s):
+
+- [Olo Deal Screening on ClawHub](https://clawhub.ai/aniebyl/skills/olo-deal-screening)
+- [Publisher profile: aniebyl](https://clawhub.ai/user/aniebyl)
+- [Olo Land](https://ololand.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, guidance]
+
+**Output Format:** [Structured Markdown and JSON-compatible screening fields]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces scored deal dimensions, deal-breaker checks, recommendations, strengths, concerns, and next steps.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,50 @@
-## Description: <br>
-Prepare winning answers for common and tricky job interview questions. Perfect for job seekers, career changers, and anyone wanting to ace their next interview with confidence. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Prepare tailored answers for common and tricky job interview questions using structured templates and interview preparation guidance.
 
-## Publisher: <br>
-[huajianjiu000](https://clawhub.ai/user/huajianjiu000) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[huajianjiu000](https://clawhub.ai/user/huajianjiu000)
 
-## Use Case: <br>
-Job seekers, career changers, and employees preparing for interviews use this skill to draft tailored, authentic answers to common and challenging interview questions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated interview answers may be inaccurate, overstated, or misaligned with the user's real experience. <br>
-Mitigation: Review and edit answers for accuracy and honesty before using them in interview preparation. <br>
-Risk: Users may include unnecessary sensitive personal details while tailoring interview answers. <br>
-Mitigation: Share only the details needed to prepare the response and avoid unnecessary sensitive personal information. <br>
+## Use Case:
 
+Job seekers, career changers, and interview candidates use this skill to draft authentic practice answers for common interview prompts, including behavioral, weakness, hiring-fit, salary, and career-growth questions.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text interview-answer drafts and preparation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces user-facing interview responses, templates, follow-up preparation, and coaching tips.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Practice answers may include sensitive personal or employer-confidential details if the user provides them.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid entering confidential information and review generated wording before using it in interview preparation.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/huajianjiu000/skills/job-interview-answer-generator)
+- [Publisher Profile](https://clawhub.ai/user/huajianjiu000)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown guidance with reusable interview answer templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code, dependencies, data access, or persistence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

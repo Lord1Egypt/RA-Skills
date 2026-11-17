@@ -1,7 +1,7 @@
 ---
 name: makefile-generation
 description: Generates Makefiles with testing, linting, formatting, and automation targets
-version: 1.9.8
+version: 1.10.3
 triggers:
   - makefile
   - automation
@@ -13,24 +13,7 @@ source: claude-night-market
 source_plugin: attune
 ---
 
-> **Night Market Skill** — ported from [claude-night-market/attune](https://github.com/athola/claude-night-market/tree/master/plugins/attune). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
-
-
-## Table of Contents
-
-- [When To Use](#when-to-use)
-- [Standard Targets](#standard-targets)
-- [Python Makefile](#python-makefile)
-- [Rust Makefile](#rust-makefile)
-- [TypeScript Makefile](#typescript-makefile)
-- [Workflow](#workflow)
-- [1. Detect Language](#1-detect-language)
-- [2. Load Template](#2-load-template)
-- [3. Collect Project Info](#3-collect-project-info)
-- [4. Render Template](#4-render-template)
-- [5. Verify](#5-verify)
-- [Customization](#customization)
-- [Related Skills](#related-skills)
+> **Night Market Skill**: ported from [claude-night-market/attune](https://github.com/athola/claude-night-market/tree/master/plugins/attune). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
 
 # Makefile Generation Skill
@@ -163,3 +146,14 @@ deploy: build ## Deploy to production
 
 - `Skill(attune:project-init)` - Full project initialization
 - `/abstract:make-dogfood` command - Makefile testing and validation
+
+## Exit Criteria
+
+- [ ] A `Makefile` is created at the project root containing at minimum a `help` target and
+  all standard targets for the detected language (Python: install/lint/format/typecheck/test;
+  Rust: fmt/lint/check/test/build; TypeScript: install/lint/format/typecheck/test/build).
+- [ ] `make help` runs without error and lists all generated targets with descriptions.
+- [ ] `make --dry-run <target>` exits 0 for each standard target, confirming recipe syntax
+  is valid.
+- [ ] If no language is detected (no `pyproject.toml`, `Cargo.toml`, or `package.json`), the
+  skill reports the detection failure and stops rather than generating a blank Makefile.

@@ -1,51 +1,67 @@
-## Description: <br>
-Amazon product research and seller analytics for FBA and FBM businesses, including product selection, competitor tracking, BSR monitoring, review analysis, sales estimation, listing optimization, and market opportunity assessment via APIClaw. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Amazon product research and seller analytics for FBA and FBM businesses, including product selection, competitor tracking, BSR trend monitoring, review analysis, sales estimation, listing optimization, and market opportunity assessment using APIClaw data.
 
-## Publisher: <br>
-[christine-srp](https://clawhub.ai/user/christine-srp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[christine-srp](https://clawhub.ai/user/christine-srp)
 
-## Use Case: <br>
-External Amazon sellers, FBA and FBM operators, and ecommerce analysts use this skill to query APIClaw for product discovery, competitor analysis, risk assessment, pricing strategy, market monitoring, and listing optimization. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends Amazon research queries to the external APIClaw service and consumes APIClaw quota. <br>
-Mitigation: Use a dedicated APICLAW_API_KEY, confirm bulk lookups before execution, and make API usage visible in final analysis. <br>
-Risk: Credential guidance is inconsistent because artifact behavior supports both environment variables and config.json fallback storage. <br>
-Mitigation: Prefer APICLAW_API_KEY in the environment and avoid asking an agent to save API keys to disk. <br>
-Risk: Seller-location analysis can become unsafe when it infers Chinese seller status from brand or seller-name patterns instead of explicit sellerLocation data. <br>
-Mitigation: Use only explicit sellerLocation data for location-based seller analysis and disclose missing or low-coverage location data. <br>
+## Use Case:
 
+External sellers, ecommerce analysts, and agent users use this skill to research Amazon products, compare competitors, estimate demand, assess category risks, and draft or optimize listings. It is intended for explicit Amazon seller analytics workflows that can use a configured APIClaw account.
 
-## Reference(s): <br>
-- [APIClaw API Reference](references/reference.md) <br>
-- [Amazon Seller Comprehensive Analysis & Case Studies](references/scenarios-composite.md) <br>
-- [Amazon Product Evaluation & Risk Assessment](references/scenarios-eval.md) <br>
-- [Amazon Pricing Strategy & Profit Estimation](references/scenarios-pricing.md) <br>
-- [Amazon Seller Daily Operations & Monitoring](references/scenarios-ops.md) <br>
-- [Amazon Product Expansion & Market Trends](references/scenarios-expand.md) <br>
-- [Amazon Listing Optimization & Content Creation](references/scenarios-listing.md) <br>
-- [APIClaw](https://apiclaw.io) <br>
-- [APIClaw API Keys](https://apiclaw.io/api-keys) <br>
-- [APIClaw OpenAPI Spec](https://apiclaw.io/api/v1/openapi-spec) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports with API-derived tables, concise recommendations, command examples, and configuration guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires APICLAW_API_KEY and may consume APIClaw quota when the agent executes API-backed workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.2 (source: server release metadata; artifact frontmatter says 1.1.5) <br>
+Risk: The skill uses a paid or sensitive APIClaw account through APICLAW_API_KEY.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Load APICLAW_API_KEY from a secure environment or secret manager, avoid pasting keys into normal chat, and do not store keys in the skill directory.
+
+Risk: Workflows that identify Chinese sellers or infer seller origin from names can produce biased or inaccurate results.
+
+Mitigation: Treat seller-origin analysis as uncertain, review outputs before acting on them, and avoid using inferred nationality as the sole decision factor.
+
+Risk: Bulk API calls can consume account quota or incur cost.
+
+Mitigation: Confirm with the user before bulk lookups and keep requests scoped to the ASINs or categories needed for the task.
+
+## Reference(s):
+
+- [ClawHub Skill Listing](https://clawhub.ai/christine-srp/skills/apiclaw-analysis)
+- [APIClaw](https://apiclaw.io)
+- [APIClaw API Key Setup](https://apiclaw.io/api-keys)
+- [APIClaw OpenAPI Spec](https://apiclaw.io/api/v1/openapi-spec)
+- [APIClaw API Reference](references/reference.md)
+- [Amazon Seller Comprehensive Analysis & Case Studies](references/scenarios-composite.md)
+- [Amazon Product Evaluation & Risk Assessment](references/scenarios-eval.md)
+- [Amazon Pricing Strategy & Profit Estimation](references/scenarios-pricing.md)
+- [Amazon Listing Optimization & Content Creation](references/scenarios-listing.md)
+- [Amazon Seller Daily Operations & Monitoring](references/scenarios-ops.md)
+- [Amazon Product Expansion & Market Trends](references/scenarios-expand.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown responses with inline shell commands and API-derived analysis summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include structured tables, product recommendations, risk matrices, API usage notes, and listing copy.]
+
+## Skill Version(s):
+
+1.2.2 (source: server release metadata; artifact frontmatter reports 1.1.5)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

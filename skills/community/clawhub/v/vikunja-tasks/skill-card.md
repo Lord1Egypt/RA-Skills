@@ -1,42 +1,61 @@
-## Description: <br>
-Manage tasks and projects on a self-hosted Vikunja instance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage tasks and projects on a self-hosted Vikunja instance via the Vikunja REST API.
 
-## Publisher: <br>
-[nickian](https://clawhub.ai/user/nickian) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[nickian](https://clawhub.ai/user/nickian)
 
-## Use Case: <br>
-Developers and end users use this skill to manage task lists, projects, due dates, completions, and notifications on a self-hosted Vikunja instance through its REST API. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Specially crafted search or filter text may run local commands through the URL-encoding flaw reported by the security scan. <br>
-Mitigation: Patch scripts/vikunja.sh so user text is passed to Python as an argument or environment variable before installing or running the skill. <br>
-Risk: The skill uses a Vikunja API token to create, complete, and read tasks and projects. <br>
-Mitigation: Use a limited Vikunja token, store it as a secret, and confirm create, complete, and project-changing actions before execution. <br>
-Risk: Recurring due-date checks and Telegram delivery may disclose task information outside the Vikunja instance. <br>
-Mitigation: Enable the cron and Telegram notification workflow only when recurring checks and external task notifications are intended. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Vikunja filter syntax](https://vikunja.io/docs/filters) <br>
-- [ClawHub skill page](https://clawhub.ai/nickian/vikunja-tasks) <br>
+## Use Case:
 
+Developers and end users use this skill to let an agent list, search, create, complete, and inspect tasks and projects on a self-hosted Vikunja instance. It also supports due-date checks, overdue task summaries, notifications, and scheduled reminder workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown and plain text with shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May issue REST API requests to a configured Vikunja instance when commands are run.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The helper script has unsafe input handling that can run crafted local code.
+
+Mitigation: Review and fix argument URL encoding before routine use, and avoid passing untrusted search, filter, project, or task values to the script.
+
+Risk: The Vikunja API token may be exposed if the skill is configured with an HTTP endpoint.
+
+Mitigation: Use only trusted HTTPS Vikunja URLs and reject non-HTTPS remote URLs before sending authenticated requests.
+
+Risk: Write actions can create projects, create tasks, or mark tasks complete.
+
+Mitigation: Require clear user confirmation before write actions and use a least-privilege Vikunja API token.
+
+Risk: Due-date behavior assumes the America/Denver timezone.
+
+Mitigation: Make the timezone configurable before relying on scheduled or due-date workflows in other locales.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nickian/skills/vikunja-tasks)
+- [Vikunja filter documentation](https://vikunja.io/docs/filters)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and CLI text or JSON results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires VIKUNJA_URL and VIKUNJA_TOKEN environment variables and a reachable Vikunja REST API.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

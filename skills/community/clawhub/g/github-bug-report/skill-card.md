@@ -1,40 +1,58 @@
-## Description: <br>
-Submit bug reports to GitHub for OpenClaw issues, including issue templates, GitHub API workflows, and post-submission follow-up reminders. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Submit bug reports to GitHub for OpenClaw issues using an issue template, GitHub API workflow, and post-submission follow-up reminders.
 
-## Publisher: <br>
-[markma84](https://clawhub.ai/user/markma84) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[markma84](https://clawhub.ai/user/markma84)
 
-## Use Case: <br>
-Developers and support engineers use this skill to prepare, search, create, update, and follow up on OpenClaw GitHub bug reports with a consistent issue format. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The artifact contains a hardcoded GitHub token. <br>
-Mitigation: Revoke the embedded token, remove it from all skill files, and require a user-supplied least-privilege token through the runtime environment. <br>
-Risk: The workflow can create or modify public GitHub issues and comments. <br>
-Mitigation: Require human review before posting logs, configurations, screenshots, new issues, updates, or follow-up comments to GitHub. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to prepare, search for, submit, and follow up on GitHub bug reports for the OpenClaw repository.
 
-## Reference(s): <br>
-- [Quick Ref](references/quick-ref.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, code, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands, JSON snippets, and Python workflow references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May result in GitHub API calls that create, update, search, or follow up on public issues.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: The release evidence reports an embedded GitHub token.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not use this version with the embedded token; revoke the exposed token and require user-supplied credentials.
+
+Risk: The skill can create or update GitHub issues and describes automated follow-up comments.
+
+Mitigation: Require explicit confirmation before every GitHub write and make follow-up reminders one-time or notification-only.
+
+Risk: Bug reports may include logs, screenshots, or configuration that contain sensitive data.
+
+Mitigation: Sanitize logs, screenshots, and configuration before submitting them to GitHub.
+
+## Reference(s):
+
+- [Quick Ref - GitHub Bug Report](references/quick-ref.md)
+- [ClawHub skill page](https://clawhub.ai/markma84/skills/github-bug-report)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, code, configuration, guidance]
+
+**Output Format:** [Markdown with issue templates, inline shell commands, and GitHub API examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce or trigger GitHub issue search, create, and update operations when credentials are configured.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

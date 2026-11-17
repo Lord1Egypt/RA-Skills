@@ -1,45 +1,57 @@
-## Description: <br>
-Automatically triages GitHub issues by classifying new issues, applying labels, detecting likely duplicates, and posting FAQ-style replies. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically triages GitHub issues with AI-assisted labeling, duplicate detection, owner assignment guidance, and FAQ replies.
 
-## Publisher: <br>
-[SxLiuYu](https://clawhub.ai/user/SxLiuYu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sxliuyu](https://clawhub.ai/user/sxliuyu)
 
-## Use Case: <br>
-Developers and repository maintainers use this skill to review unclassified GitHub issues, preview triage behavior in dry-run mode, and apply labels or FAQ replies in configured repositories. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can make live changes to GitHub issues, including labels and comments. <br>
-Mitigation: Run dry-run first and use a fine-grained GitHub token limited to the intended repository and issue permissions. <br>
-Risk: Issue titles and body text may be sent to DashScope for classification. <br>
-Mitigation: Avoid private or security-sensitive issues unless the repository owner accepts that third-party LLM data flow. <br>
-Risk: Scheduled execution can repeatedly act on issues before behavior is validated. <br>
-Mitigation: Validate manually on a small repository or issue subset before enabling cron or other recurring automation. <br>
+## Use Case:
 
+Developers and maintainers use this skill to review newly opened GitHub issues, suggest classifications, identify likely duplicates, and apply configured triage actions. It is intended for repository issue-management workflows where automated labels, comments, and reports are useful after credential and data-sharing review.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/SxLiuYu/github-issue-auto-triage) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [TEST-REPORT.md](artifact/TEST-REPORT.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, JSON configuration examples, console logs, and JSON triage reports.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May perform GitHub API mutations and may write timestamped triage_results JSON files when executed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill can change GitHub issues by adding labels and comments when dry-run is disabled.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Start with dry-run, review the proposed labels and comments, and run with the narrowest GitHub token permissions available for the target repository.
+
+Risk: Issue titles and bodies may be sent to DashScope for LLM classification.
+
+Mitigation: Confirm that project policy allows this data sharing before enabling DashScope credentials; note that dry-run still contacts the LLM provider when configured.
+
+Risk: Unattended scheduled execution could repeatedly apply unwanted triage actions.
+
+Mitigation: Avoid cron or systemd deployment until repository owners have reviewed token scopes, labels, comments, and operating mode.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sxliuyu/skills/github-issue-auto-triage)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON configuration examples; runtime execution can write JSON triage reports.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires GitHub repository settings and credentials; optional DashScope credentials enable LLM-assisted classification.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter; artifact changelog and ClawHub config contain conflicting 2.0.0 signals)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

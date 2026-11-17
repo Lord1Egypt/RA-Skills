@@ -1,41 +1,54 @@
-## Description: <br>
-Excel 数据自动清洗引擎 Pro helps agents clean CSV, XLSX, and JSON datasets by deduplicating records, normalizing formats, handling missing values, classifying rows, validating cross-field logic, and producing quality reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Excel 数据自动清洗引擎 Pro helps agents clean CSV, XLSX, and JSON spreadsheet data by deduplicating rows, standardizing formats, handling missing values, classifying records, validating data logic, and producing quality reports.
 
-## Publisher: <br>
-[lijinhao123-dot](https://clawhub.ai/user/lijinhao123-dot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lijinhao123-dot](https://clawhub.ai/user/lijinhao123-dot)
 
-## Use Case: <br>
-Business users, analysts, operations teams, ecommerce sellers, and agents working on their behalf use this skill to inspect messy spreadsheet data, apply common cleaning rules, and generate cleaned files plus data quality reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Spreadsheet inputs may contain sensitive business or personal data. <br>
-Mitigation: Process only files the user explicitly provides, keep backups of originals, and review cleaned outputs and reports before use. <br>
-Risk: Optional web lookup or Feishu export can expose sensitive fields outside the local cleaning workflow. <br>
-Mitigation: Do not allow web search or Feishu export for customer, financial, ID, phone, address, or other sensitive data unless the exact fields and destination are approved first. <br>
+## Use Case:
 
+Finance, operations, purchasing, ecommerce, and data analysis users can use this skill to turn messy business spreadsheets into cleaner datasets and reviewable cleaning reports. It is intended for agent-assisted data preparation tasks such as deduplication, normalization, missing-value handling, validation, and basic reporting.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lijinhao123-dot/excel-auto-cleaner-pro) <br>
-- [Publisher profile](https://clawhub.ai/user/lijinhao123-dot) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, files, guidance] <br>
-**Output Format:** [Markdown guidance with optional Python data-cleaning code and generated spreadsheet or report files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce cleaned XLSX, CSV, or JSON files and Markdown reports from user-provided spreadsheet data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill reads business spreadsheets and creates cleaned output and report files, which may expose sensitive operational data if used on unapproved datasets.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with datasets the agent is permitted to read and write, and review generated cleaned files and reports before sharing them.
+
+Risk: The security assessment notes that personal phone numbers may be sent to external web search during validation without clear consent or limits.
+
+Mitigation: Require validation to remain local for datasets containing phone numbers, names, addresses, or ID numbers unless a specific external lookup is explicitly approved.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lijinhao123-dot/skills/excel-auto-cleaner-pro)
+- [ClawHub publisher profile](https://clawhub.ai/user/lijinhao123-dot)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Files, Guidance]
+
+**Output Format:** [Markdown guidance with generated cleaning scripts, shell commands, cleaned spreadsheet files, and report files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce cleaned XLSX files and Markdown quality reports derived from user-provided datasets.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

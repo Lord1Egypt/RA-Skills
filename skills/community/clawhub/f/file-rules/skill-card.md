@@ -1,39 +1,54 @@
-## Description: <br>
-Stop AI from scattering files everywhere by enforcing consistent naming and directory structure for agent-created outputs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Workspace Guardian stops AI from scattering files by enforcing consistent naming and directory structure for generated outputs.
 
-## Publisher: <br>
-[lujun2508](https://clawhub.ai/user/lujun2508) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lujun2508](https://clawhub.ai/user/lujun2508)
 
-## Use Case: <br>
-Developers, AI-agent users, and workspace maintainers use this skill to keep generated files in predictable project directories with consistent names. It helps reduce file-hunting and cleanup overhead when agents create deliverables, scripts, data, documentation, and temporary files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Cleanup guidance could remove rejected or temporary files too broadly if an agent applies it outside the current task scope. <br>
-Mitigation: Confirm exact paths before deleting files, limit cleanup to temporary or rejected files created during the current task, and use explicit output paths for important projects. <br>
+## Use Case:
 
+External users and developers use this skill to keep AI-generated files in predictable project folders, apply consistent naming rules, and manage temporary or rejected outputs.
 
-## Reference(s): <br>
-- [Workspace Guardian on ClawHub](https://clawhub.ai/lujun2508/file-rules) <br>
-- [Publisher profile](https://clawhub.ai/user/lujun2508) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with file paths, naming patterns, and brief saved-location confirmations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Applies to Windows, Linux, and macOS agent workspaces.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.9 (source: ClawHub release evidence; artifact frontmatter lists 1.0.7) <br>
+Risk: The skill includes cleanup behavior for temporary, rejected, or empty files and directories.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Tell the agent explicitly when drafts, rejected outputs, or temporary files must be kept for audit or recovery.
+
+Risk: Workspace organization rules can move outputs away from a user's expected location when no path is specified.
+
+Mitigation: Specify the desired path when location matters and review the agent's saved-location confirmation.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/lujun2508/skills/file-rules)
+- [Publisher Profile](https://clawhub.ai/user/lujun2508)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, text, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with concise file-location confirmations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide agents to create, organize, archive, or remove files according to user instructions and workspace cleanup rules.]
+
+## Skill Version(s):
+
+1.0.9 (source: server release metadata; artifact frontmatter says 1.0.7)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

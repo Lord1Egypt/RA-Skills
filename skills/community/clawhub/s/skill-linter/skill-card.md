@@ -1,39 +1,49 @@
-## Description: <br>
-Analyze and validate SKILL.md files for best practices, common issues, and improvement suggestions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze and validate SKILL.md files for best practices, common issues, and improvement suggestions.
 
-## Publisher: <br>
-[mengbin92](https://clawhub.ai/user/mengbin92) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mengbin92](https://clawhub.ai/user/mengbin92)
 
-## Use Case: <br>
-Developers and skill authors use this skill to review SKILL.md definitions, validate frontmatter and structure, identify common quality issues, and receive concrete improvement suggestions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad review or improvement requests can cause the skill to be invoked when the user did not intend to edit a skill definition. <br>
-Mitigation: Invoke it explicitly for SKILL.md or skill-definition work, and review proposed edits before applying them. <br>
-Risk: Linting recommendations can be incorrect or unsuitable for a specific skill's purpose. <br>
-Mitigation: Treat findings as review guidance and validate any changes against the target skill's intended behavior before release. <br>
+## Use Case:
 
+Developers and engineers use this skill to review, audit, and improve SKILL.md files against documented skill authoring practices. It produces structured findings, severity labels, scores, and suggested fixes for frontmatter and body content.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Guidance, Code] <br>
-**Output Format:** [Markdown report with tables, severity-grouped findings, recommendations, and optional SKILL.md code block] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include scores, verdicts, issue counts, and suggested rewritten skill content.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can advise edits to SKILL.md files, and an agent using its declared tools may edit or write skill files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review suggested changes before accepting them; the bundled CLI itself only reads the provided file path and prints a report.
+
+## Reference(s):
+
+- [ClawHub Skill Linter Release](https://clawhub.ai/mengbin92/skills/skill-linter)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown report with tables, severity sections, recommendations, and optional rewritten SKILL.md content]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The bundled CLI reads a SKILL.md path and prints a local analysis report.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

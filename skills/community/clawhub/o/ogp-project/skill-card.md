@@ -1,41 +1,58 @@
-## Description: <br>
-Tool-agnostic project collaboration for AI assistants that lets agents create and manage shared project context, log activity, check peer agents before project work, and summarize cross-peer contributions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tool-agnostic project collaboration for AI assistants that helps agents create project context, log activity, check shared state, query approved peer agents, and summarize cross-peer work.
 
-## Publisher: <br>
-[dp-pcs](https://clawhub.ai/user/dp-pcs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dp-pcs](https://clawhub.ai/user/dp-pcs)
 
-## Use Case: <br>
-Developers and project collaborators use this skill to keep project context, activity, decisions, blockers, and peer-agent knowledge available across their own tools and workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Project context can persist sensitive project details in local OGP state. <br>
-Mitigation: Avoid logging secrets, credentials, or exact private paths, and periodically review stored project context. <br>
-Risk: Approved peer agents may receive project context more broadly than a user expects. <br>
-Mitigation: Review approved peers and projects before enabling proactive sharing, and prefer summary or escalate response policies for sensitive work. <br>
+## Use Case:
 
+Developers and AI assistant users use this skill to coordinate project work across collaborators while keeping each person's existing tools and local workflow. It guides agents to log project decisions and progress, check local project state, and query approved peer agents before starting related work.
 
-## Reference(s): <br>
-- [OGP documentation](https://github.com/dp-pcs/ogp) <br>
-- [ClawHub listing](https://clawhub.ai/dp-pcs/ogp-project) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Markdown] <br>
-**Output Format:** [Markdown guidance with inline shell commands and response templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the ogp CLI and configured local OGP state before the workflow can operate.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.6.0 (source: server release metadata) <br>
+Risk: Project intent and stored project details may be shared with approved peer agents.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review peer approvals and response policies before enabling federation, and prefer escalate or summary modes for sensitive projects.
+
+Risk: Sensitive project details, secrets, or private paths may be captured in project context.
+
+Mitigation: Avoid entering secrets or private paths that should not be visible to collaborators or their agents.
+
+Risk: The skill depends on a globally installed npm package and local OGP metadata storage.
+
+Mitigation: Install only when comfortable with OGP storing project metadata, and consider pinning or isolating the npm package installation.
+
+## Reference(s):
+
+- [OGP documentation](https://github.com/dp-pcs/ogp)
+- [ClawHub skill page](https://clawhub.ai/dp-pcs/skills/ogp-project)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the ogp CLI and local OGP state/configuration files.]
+
+## Skill Version(s):
+
+0.6.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

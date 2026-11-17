@@ -1,38 +1,54 @@
-## Description: <br>
-Search 300 Japan fish and seafood recipes from Cookpad when a user asks about fish recipes, seafood dishes, Japanese fish cooking, or wants to find recipes by fish type, cooking method, or ingredient. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search 300 Japan fish and seafood recipes from Cookpad by fish type, cooking method, ingredient, or keyword.
 
-## Publisher: <br>
-[goog](https://clawhub.ai/user/goog) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[goog](https://clawhub.ai/user/goog)
 
-## Use Case: <br>
-External users and agents use this skill to search a local recipe index for Japanese fish and seafood dishes by species, cooking method, flavor, category, or Japanese keyword. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/goog/fishes) <br>
-- [Cookpad Japan fish and seafood category](https://cookpad.com/jp/categories/12) <br>
+External users and recipe-focused agents use this skill to find Japanese fish and seafood recipe matches from a local Cookpad-derived dataset. It is useful for searching by English or Japanese fish names, preparation methods, flavors, or recipe categories.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text recipe search results with Japanese titles, tags, and Cookpad URLs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Searches a bundled recipes.json file and does not require API keys or network access at runtime.] <br>
+Global
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: The skill may activate for general fish or seafood recipe requests even when the user did not ask for Cookpad Japan results.
+
+Mitigation: State that results are scoped to Cookpad Japan fish and seafood recipes, and clarify before relying on the dataset when the user asks for broader recipe coverage.
+
+Risk: Recipe titles are in Japanese while tags are in English, which may make results harder for some users to interpret.
+
+Mitigation: Summarize or translate returned recipe titles when useful, and preserve the Cookpad links for source review.
+
+## Reference(s):
+
+- [Cookpad Japan Fish and Seafood Category](https://cookpad.com/jp/categories/12)
+- [ClawHub Skill Page](https://clawhub.ai/goog/skills/fishes)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text search results with Japanese recipe titles, English tags, and Cookpad links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Searches a local JSON dataset and returns matching recipe entries; no network fetching is indicated by the security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

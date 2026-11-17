@@ -1,41 +1,54 @@
-## Description: <br>
-Automates publishing a Sina Weibo post from a logged-in browser session when the user asks to post to Weibo. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Posts user-provided content to Sina Weibo through browser automation when the user asks to publish a Weibo post.
 
-## Publisher: <br>
-[chinazkk](https://clawhub.ai/user/chinazkk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chinazkk](https://clawhub.ai/user/chinazkk)
 
-## Use Case: <br>
-External users use this skill to post content to Sina Weibo through browser automation, including emoji and topic tags. The skill is intended for a logged-in browser profile and requires careful review of the exact post before publishing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can publish publicly from a logged-in Weibo browser profile without a required final approval step. <br>
-Mitigation: Require a final confirmation that shows the exact account and exact post text before clicking send. <br>
-Risk: Topic tags may be posted incorrectly if they do not use the required #tag# format. <br>
-Mitigation: Validate topic tags before publishing and ask the user to correct malformed tags. <br>
+## Use Case:
 
+External users use this skill to publish prepared text, emoji, and correctly formatted topic tags to Sina Weibo from an existing logged-in browser session.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chinazkk/weibo-post) <br>
-- [Weibo](https://weibo.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, browser automation commands, guidance] <br>
-**Output Format:** [Browser automation tool calls with concise text guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Publishes to the active logged-in Weibo account; Markdown formatting is treated as plain text.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can publish directly to a user's Weibo account from a logged-in browser session.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the active Weibo account and full post text, then require explicit final confirmation before the agent clicks send.
+
+Risk: The published post may not match the user's intent if content, emoji, or topic tags are malformed.
+
+Mitigation: Review the final composed post before sending, including the required #tag# format for each topic tag.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chinazkk/skills/weibo-post)
+- [Sina Weibo](https://weibo.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, guidance, browser automation commands]
+
+**Output Format:** [Plain text instructions with browser automation command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a logged-in Weibo browser session and explicit final confirmation before clicking send.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

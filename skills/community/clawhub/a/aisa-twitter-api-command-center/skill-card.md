@@ -1,44 +1,59 @@
-## Description: <br>
-Run Twitter/X research, monitoring, watchlists, and OAuth-gated posting through AIsa for trend tracking, competitor monitoring, and publish-ready workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run Twitter/X research, monitoring, watchlists, and OAuth-gated posting through AIsa for trend tracking, competitor monitoring, and publish-ready workflows.
 
-## Publisher: <br>
-[aisadocs](https://clawhub.ai/user/aisadocs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aisadocs](https://clawhub.ai/user/aisadocs)
 
-## Use Case: <br>
-Developers and agents use this skill to research Twitter/X accounts and narratives, monitor watchlists or launch reactions, and prepare or publish posts after OAuth approval through AIsa. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The AIsa API key can appear in normal command output, which may leak a sensitive credential into logs or agent transcripts. <br>
-Mitigation: Avoid running authorize or post commands where terminal output is logged, shared, or captured; rotate the key if exposure is suspected. <br>
-Risk: The skill can publish externally to Twitter/X and upload selected local media files through AIsa. <br>
-Mitigation: Confirm the exact post text, target tweet or account context, and media file paths before publishing. <br>
-Risk: AIsa receives Twitter/X data, post content, selected media files, and the configured AISA_API_KEY. <br>
-Mitigation: Use this skill only when the user trusts AIsa for that data and provide only the intended API key and user-attached files. <br>
+## Use Case:
 
+External users, developers, and agent operators use this skill to research Twitter/X accounts and conversations, monitor trends or watchlists, and prepare approved posting workflows through AIsa.
 
-## Reference(s): <br>
-- [AIsa Twitter OAuth](references/post_twitter.md) <br>
-- [AIsa homepage](https://aisa.one) <br>
-- [AIsa Twitter/X API endpoint](https://api.aisa.one/apis/v1/twitter) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, API calls] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON client output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and AISA_API_KEY; may send approved text and selected media files to AIsa's Twitter/X API endpoint.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The AIsa API key can appear in local command logs or command output.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only an AIsa key acceptable for local exposure, avoid saving command output to shared logs, and rotate the key if it has already appeared in agent or CI output.
+
+Risk: Posting is a public Twitter/X account action mediated by the AIsa relay.
+
+Mitigation: Require explicit user approval before posting and do not claim publication succeeded until the API confirms it.
+
+Risk: Caller-selected local image or video files can be uploaded to the relay.
+
+Mitigation: Upload only files the user explicitly attached or approved, avoid sensitive local files, and confirm paths and media types before submission.
+
+## Reference(s):
+
+- [AIsa Twitter OAuth reference](references/post_twitter.md)
+- [AIsa homepage](https://aisa.one)
+- [ClawHub skill page](https://clawhub.ai/aisadocs/skills/aisa-twitter-api-command-center)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires AISA_API_KEY; Twitter/X read, OAuth, posting, and approved media upload actions are routed through AIsa.]
+
+## Skill Version(s):
+
+1.0.3 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

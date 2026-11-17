@@ -1,40 +1,49 @@
-## Description: <br>
-Yq Ppt Master helps agents create, revise, and optimize presentations, including structuring source material into slides and giving layout, typography, color, and visual-design guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Yq Ppt Master helps agents create, revise, optimize, and structure presentation decks from user prompts or source materials, with guidance on layout, typography, color, and visual design.
 
-## Publisher: <br>
-[tianheihei002](https://clawhub.ai/user/tianheihei002) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tianheihei002](https://clawhub.ai/user/tianheihei002)
 
-## Use Case: <br>
-External users, employees, and presentation creators use this skill to draft new slide decks, improve existing decks, and turn provided documents or web content into organized presentation outlines and design specifications. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Document-analysis workflows may expose source files or webpage content to the assistant. <br>
-Mitigation: Only provide material that the user is comfortable having the assistant read, summarize, and transform into presentation content. <br>
-Risk: Generated presentation guidance may misstate, omit, or overemphasize details from user-provided source material. <br>
-Mitigation: Review generated outlines, analysis reports, data excerpts, and design recommendations against the source material before use. <br>
+## Use Case:
 
+External users and presentation creators use this skill to turn topics, outlines, existing decks, or source documents into clear slide structures, design specifications, and improvement guidance.
 
-## Reference(s): <br>
-- [Yq Ppt Master on ClawHub](https://clawhub.ai/tianheihei002/yq-ppt-master) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown with presentation outlines, analysis reports, and design specifications] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include recommended slide structure, copy, visual hierarchy, color palettes, font guidance, chart suggestions, and revision notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence, frontmatter, and _meta.json) <br>
+Risk: User-supplied source documents may contain private or sensitive information that the skill is designed to read and summarize.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review source materials before providing them to an agent and avoid submitting content that should not be processed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tianheihei002/skills/yq-ppt-master)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown presentation outlines, source-material analysis reports, and design recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include slide-by-slide structure, content bullets, layout notes, color palettes, font recommendations, chart suggestions, and revision guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,60 @@
-## Description: <br>
-OpenClaw Security Auditor audits OpenClaw deployments by scanning configuration, scoring risk, producing bilingual reports, and suggesting remediation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw Security Auditor (OSA) audits OpenClaw deployments by scanning configuration, scoring security risk, generating Chinese/English reports, and suggesting remediation steps.
 
-## Publisher: <br>
-[Albertlsy588](https://clawhub.ai/user/Albertlsy588) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[albertlsy588](https://clawhub.ai/user/albertlsy588)
 
-## Use Case: <br>
-Developers and operators use this skill to audit OpenClaw security configuration, classify findings by severity, generate reports, and receive remediation guidance before deployment or during hardening. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The scanner imports an external OSA dependency from outside the skill package. <br>
-Mitigation: Review and verify the external dependency and its code path before running the scanner. <br>
-Risk: The configuration fixer can weaken OpenClaw security settings, especially when aggressive mode is used. <br>
-Mitigation: Use dry-run first, keep backups, prefer conservative or balanced modes, and reserve aggressive mode for isolated test environments. <br>
-Risk: Generated reports can expose sensitive configuration details or tokens if shared directly. <br>
-Mitigation: Mask tokens and sensitive paths before sharing reports outside the trusted environment. <br>
+## Use Case:
 
+Developers and operators use this skill to assess OpenClaw configuration posture, identify security issues, and receive remediation guidance before deployment or during routine audits.
 
-## Reference(s): <br>
-- [OpenClaw Security Configuration Guide](references/config-guide.md) <br>
-- [OpenClaw Security Modes](references/security-modes.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/Albertlsy588/openclaw-security-auditor-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, JSON, HTML, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown, JSON, HTML, or bilingual security audit report with risk scores and remediation commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports may include configuration paths, findings, risk scores, and recommended fixes; mask tokens before sharing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The scanner depends on external Python code that the release evidence identifies as unreviewed and not pinned.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin and verify the external `osa` dependency before using scan results for security decisions.
+
+Risk: The configuration fixer can persistently edit OpenClaw configuration files.
+
+Mitigation: Use dry-run behavior first, review intended changes, keep backups, and apply edits only with explicit user approval.
+
+Risk: The aggressive security profile disables authentication and expands permissions for testing.
+
+Mitigation: Use the aggressive profile only in disposable isolated environments and never with sensitive data or untrusted networks.
+
+## Reference(s):
+
+- [OpenClaw Security Configuration Guide](artifact/references/config-guide.md)
+- [OpenClaw Security Modes](artifact/references/security-modes.md)
+- [ClawHub skill page](https://clawhub.ai/albertlsy588/skills/openclaw-security-auditor-skill)
+- [Publisher profile](https://clawhub.ai/user/albertlsy588)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, html, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown, bilingual Markdown, JSON, or HTML reports with risk scores, issue details, fix commands, and configuration recommendations.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports may include severity levels, passed and failed check counts, current and recommended values, and mode-specific security guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

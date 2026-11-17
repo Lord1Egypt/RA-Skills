@@ -1,43 +1,61 @@
-## Description: <br>
-Given a stock name or code, auto-detect its market, fetch 6-month daily K-line, plot candlestick + MA/Bollinger/MACD/RSI/ATR with multi-timeframe confirmation, and deliver structured analysis with trend, momentum, valuation context, portfolio-relative strength, and event-aware risk notes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Given a stock name or code, this skill auto-detects the market, fetches six months of daily K-line data, computes technical indicators, renders a chart, and produces structured trend, valuation, relative-strength, and event-aware risk analysis.
 
-## Publisher: <br>
-[iideas18](https://clawhub.ai/user/iideas18) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[iideas18](https://clawhub.ai/user/iideas18)
 
-## Use Case: <br>
-External users, developers, and analysts use this skill to run stock K-line analysis from a stock name or code, including market detection, technical indicators, chart generation, valuation context, relative-strength comparison, and event-aware risk notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Market-data requests may send stock symbols or company names to external services. <br>
-Mitigation: Use the skill only in a trusted Python environment and avoid submitting confidential watchlists or private identifiers. <br>
-Risk: Generated technical and valuation analysis could be mistaken for investment advice. <br>
-Mitigation: Treat outputs as informational analysis and review conclusions before making trading or portfolio decisions. <br>
-Risk: Chart and report generation writes files locally. <br>
-Mitigation: Choose an appropriate output directory and review generated files before sharing or reusing them. <br>
+## Use Case:
 
+External users, analysts, and developers use this skill to generate stock K-line charts and concise technical analysis from a stock name or code. It is most directly supported for A-share symbols, with documented HK and US symbol handling.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/iideas18/stock-kline-analysis) <br>
-- [Publisher profile](https://clawhub.ai/user/iideas18) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, markdown, code, shell commands, files, guidance] <br>
-**Output Format:** [Markdown analysis with optional shell commands and locally generated chart/report files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May query external market-data services through AkShare and may write chart or report files to a local output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill contacts AkShare for public market, financial, and macro-event data, and those sources may be unavailable, delayed, or incomplete.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify important values against primary market or issuer sources before relying on the analysis.
+
+Risk: The generated analysis could be mistaken for investment advice.
+
+Mitigation: Treat the output as informational only and independently review any trading or portfolio decision.
+
+Risk: The skill saves chart and report files to the selected local output directory.
+
+Mitigation: Run it in a trusted workspace and review generated files before sharing them.
+
+Risk: Evidence indicates reliable operation is primarily expected for A-share symbols, despite HK and US examples in the documentation.
+
+Mitigation: Confirm non-A-share results against another data source and note unsupported valuation sections when data is unavailable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/iideas18/skills/stock-kline-analysis)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance, files]
+
+**Output Format:** [Structured text or Markdown-style analysis, plus locally saved TXT reports and PNG K-line charts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs depend on public AkShare market and financial data availability; reports are informational and not investment advice.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,57 @@
-## Description: <br>
-Generates tailored marketing images, videos, music, and ad copy using AI tools for social media, ads, and brand campaigns on demand. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-powered content generation agent using ComfyUI, Suno, and RunPod that generates images, videos, music, and marketing copy on demand.
 
-## Publisher: <br>
-[fuzzyb33s](https://clawhub.ai/user/fuzzyb33s) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fuzzyb33s](https://clawhub.ai/user/fuzzyb33s)
 
-## Use Case: <br>
-Marketing teams, creators, and businesses use this skill to request AI-generated campaign assets such as images, short videos, music, ad copy, social posts, emails, product descriptions, landing page copy, and video scripts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Connected generation services may involve installs, paid generation, or credential prompts outside the skill itself. <br>
-Mitigation: Use only trusted ComfyUI, Suno, or RunPod setups, and approve installs, paid generation, or credential prompts only when they match a service you selected. <br>
-Risk: Generated commercial assets may need review for licensing, brand fit, platform requirements, and factual accuracy. <br>
-Mitigation: Confirm dimensions, format, brand guidelines, target audience, and commercial-use permissions before publishing or delivering generated assets. <br>
+## Use Case:
 
+External users, marketers, creators, and sales teams use this skill to request marketing images, short videos, music, ad copy, social posts, emails, product descriptions, landing page copy, and campaign assets.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fuzzyb33s/sales-content-gen) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, files] <br>
-**Output Format:** [Markdown with generated copy, asset specifications, captions, hashtags, and links or files when connected generation tools are available.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May ask clarifying questions about platform, dimensions, brand guidelines, and target audience before generation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence) <br>
+Risk: Broad activation triggers may cause the skill to run in more contexts than expected.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and narrow activation phrases before installing or deploying the skill.
+
+Risk: Requests may flow through named third-party AI providers for image, video, and music generation.
+
+Mitigation: Avoid sending confidential launch plans, customer data, unpublished product details, or regulated content unless those providers' data handling is acceptable.
+
+Risk: The install metadata includes an unpinned npm dependency.
+
+Mitigation: Pin or verify the npm dependency before installation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fuzzyb33s/skills/sales-content-gen)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with generated content, asset guidance, captions, hashtags, and setup commands when needed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce or coordinate image, video, and audio assets through third-party AI providers.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

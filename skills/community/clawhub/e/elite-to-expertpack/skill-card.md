@@ -1,44 +1,54 @@
-## Description: <br>
-Convert Elite Longterm Memory data into a structured ExpertPack for portable, Obsidian-compatible agent knowledge migration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts Elite Longterm Memory data into a structured, Obsidian-compatible ExpertPack with YAML-frontmatter content files, a manifest, overview, indexes, and relationship metadata.
 
-## Publisher: <br>
-[brianhearn](https://clawhub.ai/user/brianhearn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[brianhearn](https://clawhub.ai/user/brianhearn)
 
-## Use Case: <br>
-Developers and agent operators use this skill to migrate Elite Longterm Memory workspaces into ExpertPack folders for backup, review, portability, and publishing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The generated ExpertPack may include local agent memory and user profile information. <br>
-Mitigation: Review the generated folder, especially relationships/primary-user.md, before committing, syncing, sharing, or publishing it. <br>
-Risk: The built-in secret stripping may not remove all sensitive information. <br>
-Mitigation: Treat secret stripping as a first pass only and perform a manual privacy and secret review before distribution. <br>
-Risk: The security review says the skill overstates parts of the generated package. <br>
-Mitigation: Verify overview.md, manifest.yaml, generated directories, and skipped sources before relying on the converted pack. <br>
+## Use Case:
 
+Developers and agent operators use this skill to migrate or back up Elite Longterm Memory workspaces into portable ExpertPack directories for review, retrieval, and publication workflows.
 
-## Reference(s): <br>
-- [ExpertPack](https://expertpack.ai) <br>
-- [ExpertPack skill on ClawHub](https://clawhub.com/skills/expertpack) <br>
-- [Elite To Expertpack on ClawHub](https://clawhub.ai/brianhearn/elite-to-expertpack) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Markdown, Configuration, Shell commands, Guidance] <br>
-**Output Format:** [ExpertPack folder with Markdown and YAML files plus command-line guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and pyyaml; generated packs should be reviewed before sharing or publishing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release metadata) <br>
+Risk: Generated ExpertPacks can contain sensitive local memory, and the automatic secret removal is incomplete.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat generated packs as private, manually review all output, and run a dedicated secret scanner before sharing or publishing.
+
+Risk: Conversion completeness can be overstated because LanceDB and cloud memory sources are skipped or require separate export.
+
+Mitigation: Confirm skipped sources separately and document any missing LanceDB, SuperMemory, or Mem0 content before relying on the converted pack.
+
+## Reference(s):
+
+- [ExpertPack homepage](https://expertpack.ai)
+- [ExpertPack skill on ClawHub](https://clawhub.com/skills/expertpack)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, configuration, shell commands, guidance]
+
+**Output Format:** [Markdown and YAML files with shell command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generates an ExpertPack directory; requires python3 and PyYAML.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

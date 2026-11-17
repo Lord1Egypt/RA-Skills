@@ -1,43 +1,55 @@
-## Description: <br>
-Monitor DX clusters for rare station spots, track active DX expeditions, and get daily band activity digests for amateur radio operators. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitor DX clusters for rare station spots, track active DX expeditions, and get daily band activity digests for amateur radio operators.
 
-## Publisher: <br>
-[capt-marbles](https://clawhub.ai/user/capt-marbles) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[capt-marbles](https://clawhub.ai/user/capt-marbles)
 
-## Use Case: <br>
-Amateur radio operators use this skill to check live DX cluster spots, identify rare stations or expeditions, and generate daily band-activity digests. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The monitor contacts DX cluster servers and may send the configured callsign during login. <br>
-Mitigation: Use the skill only when network access to DX clusters and callsign sharing are intended. <br>
-Risk: Optional cron entries can run ongoing background monitoring and create local logs or state files. <br>
-Mitigation: Enable cron entries deliberately, review the generated logs and state file, and remove them when monitoring is no longer needed. <br>
-Risk: The README references a setup script that is not included in the artifact. <br>
-Mitigation: Do not run setup scripts from outside the package unless they are inspected separately. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [NG3K Amateur Radio DX Peditions](https://www.ng3k.com/misc/adxo.html) <br>
-- [DX-World](https://www.dx-world.net/) <br>
-- [425 DX News](http://www.425dxn.org/) <br>
+## Use Case:
 
+External amateur radio operators use this skill to query DX cluster spots, monitor rare station activity, and generate daily band activity digests.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and terminal text with optional shell commands and cron examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write local log and state files when cron-based monitoring is enabled.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill encourages scheduled background monitoring that makes recurring network connections and writes ongoing logs.
+
+Mitigation: Run manual one-shot commands first, avoid root execution, and add cron jobs only after reviewing the network and logging behavior.
+
+Risk: The monitor stores state and example alert logs in shared temporary paths.
+
+Mitigation: Move state and logs to a private user-owned directory and define a cleanup or removal process before scheduled use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/capt-marbles/skills/ham-radio-dx)
+- [NG3K Amateur Radio DX Announcements](https://www.ng3k.com/misc/adxo.html)
+- [DX World](https://www.dx-world.net/)
+- [425 DX News](http://www.425dxn.org/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and optional JSON output from the monitor script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces command-line DX spot listings, daily digest text, cron configuration guidance, and optional JSON spot data.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

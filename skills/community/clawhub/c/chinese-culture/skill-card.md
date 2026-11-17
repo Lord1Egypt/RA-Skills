@@ -1,39 +1,50 @@
-## Description: <br>
-Provides a Chinese traditional culture reference covering poetry, classic literature, calligraphy, painting, opera, festivals, architecture, cuisine, and traditional virtues. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Chinese traditional culture reference material covering poetry, classics, calligraphy, painting, opera, festivals, architecture, cuisine, and traditional virtues.
 
-## Publisher: <br>
-[wenqin1688](https://clawhub.ai/user/wenqin1688) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wenqin1688](https://clawhub.ai/user/wenqin1688)
 
-## Use Case: <br>
-External users can use this skill as a concise Chinese culture reference for cultural interpretation, art appreciation, and everyday discussion. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Cultural or historical claims may be incomplete or inaccurate for high-stakes academic, publication, or professional use. <br>
-Mitigation: Treat the skill as a cultural reference aid and verify important historical or factual claims with authoritative sources. <br>
+## Use Case:
 
+External users and agents use this skill to answer everyday Chinese-culture questions and support cultural interpretation, art appreciation, and general conversation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wenqin1688/chinese-culture) <br>
-- [Publisher profile](https://clawhub.ai/user/wenqin1688) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text cultural reference guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Cultural or historical reference answers may be incomplete or inaccurate for scholarly or high-stakes use.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify factual details independently before using outputs for academic, professional, or other high-stakes purposes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wenqin1688/skills/chinese-culture)
+- [Publisher profile](https://clawhub.ai/user/wenqin1688)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text cultural reference responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static Chinese-language reference content; no commands, network use, credential access, persistence, or system changes were identified by the security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

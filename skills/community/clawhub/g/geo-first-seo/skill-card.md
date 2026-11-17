@@ -1,44 +1,59 @@
-## Description: <br>
-Use this skill when the user wants to make content more likely to be cited or surfaced by AI answer engines such as ChatGPT, Perplexity, Google AI Overviews, Gemini, and Copilot through GEO strategy, content creation or audit, technical markup, and scoring. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps users create, audit, rewrite, and mark up content so it is more likely to be cited by AI answer engines such as ChatGPT, Perplexity, Google AI Overviews, Gemini, and Copilot.
 
-## Publisher: <br>
-[archlab-space](https://clawhub.ai/user/archlab-space) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[archlab-space](https://clawhub.ai/user/archlab-space)
 
-## Use Case: <br>
-Content strategists, marketers, editors, and developers use this skill to create or revise pages so they are easier for AI answer engines to cite. It produces a GEO brief, optimized content or audit findings, structured-data and llms.txt guidance, and a scorecard for iteration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated content can include unverified claims, statistics, dates, author credentials, or source attributions if the user does not provide reliable evidence. <br>
-Mitigation: Review every factual claim before publishing and keep placeholders such as [verify] until the value is confirmed from a trusted source. <br>
-Risk: Structured data or llms.txt entries can misrepresent a page if placeholders are left unresolved or markup describes content that is not actually present. <br>
-Mitigation: Replace placeholders with real values, mark up only visible page content, and validate JSON-LD and crawler guidance before shipping. <br>
-Risk: Live citation-gap and competitor research may be stale, incomplete, or unavailable depending on web access and source quality. <br>
-Mitigation: Treat web research as read-only context, state when live results were unavailable, and avoid presenting unverified competitive claims as fact. <br>
+## Use Case:
 
+External users, content teams, marketers, and developers use this skill to plan GEO strategy, draft or audit AI-search-ready content, generate technical markup, and score the result against citation-oriented criteria.
 
-## Reference(s): <br>
-- [Geo Content Tactics](references/geo-content-tactics.md) <br>
-- [Technical GEO](references/technical-geo.md) <br>
-- [schema.org](https://schema.org) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown with structured content briefs, rewrites, scorecards, JSON-LD code blocks, and llms.txt examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include clearly labeled placeholders such as [verify] when facts, dates, authors, sources, or URLs are not confirmed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: evidence.release.version and CHANGELOG, released 2026-06-02) <br>
+Risk: Generated SEO or GEO content may contain unverified claims, sources, dates, quotes, or author details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review all generated claims before publishing and resolve any [verify] placeholders with real, attributed sources.
+
+Risk: Structured data may be misleading if JSON-LD, FAQ markup, or metadata describes content that is not visible on the page.
+
+Mitigation: Only publish markup that matches the page content and validate structured data before release.
+
+Risk: Citation-gap research can become stale or be unavailable when web access is limited.
+
+Mitigation: Use live read-only research when available, note when it is unavailable, and avoid presenting unverified search-citation findings as fact.
+
+## Reference(s):
+
+- [GEO Content Tactics](artifact/references/geo-content-tactics.md)
+- [Technical GEO](artifact/references/technical-geo.md)
+- [schema.org](https://schema.org)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown guidance with optional JSON-LD, llms.txt, FAQ, heading, and metadata snippets.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include [verify] placeholders for claims, sources, authors, URLs, or dates the agent cannot verify.]
+
+## Skill Version(s):
+
+0.1.0 (source: evidence.release.version and changelog, released 2026-06-02)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

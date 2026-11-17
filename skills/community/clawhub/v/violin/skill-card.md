@@ -1,38 +1,49 @@
-## Description: <br>
-Violin practice strategies, technique correction, intonation development, and progress tracking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Violin practice strategies, technique correction, intonation development, and progress tracking.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External learners and music practice assistants use this skill to structure violin practice, troubleshoot technique issues, and maintain local progress notes for repertoire, scales, shifting, and goals. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Local practice notes are stored under ~/violin/ and may include personal practice history or goals. <br>
-Mitigation: Confirm before saving logs, avoid sensitive personal details, and delete ~/violin/ when records are no longer wanted. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/violin) <br>
-- [Violin Progress Tracking](artifact/progress.md) <br>
+## Use Case:
 
+External users use this skill to receive violin practice guidance, identify common technique issues, plan intonation and tone work, and track repertoire, scales, shifting, etudes, goals, and session notes.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Configuration] <br>
-**Output Format:** [Conversational text with markdown practice-log templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create and update local markdown files under ~/violin/ after user confirmation.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may create a ~/violin/ folder and save violin practice details there.
+
+Mitigation: Install only if local practice logging is acceptable, or ask the agent to confirm before writing logs or to keep advice session-only.
+
+## Reference(s):
+
+- [Violin Skill Page](https://clawhub.ai/ivangdavila/skills/violin)
+- [Progress Tracking Reference](artifact/progress.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown and plain text guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include suggested local progress-log entries for the user's violin practice workspace.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

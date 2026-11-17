@@ -114,7 +114,7 @@ class TestPrescreenPS002Credentials:
 
     def test_detects_api_key_pattern(self, ps, tmp_path):
         f = tmp_path / "t.txt"
-        f.write_text('api_key = "sk-ant-api03-1234567890abcdefghijklmn"\n')
+        f.write_text('api_key = "REDACTED-SECRET"\n')
         result = ps.run(f, f.read_text())
         check = next(c for c in result.checks if c.id == "PS-002")
         assert check.result == "FAIL"

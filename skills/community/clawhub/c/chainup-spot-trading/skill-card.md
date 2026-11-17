@@ -1,48 +1,66 @@
-## Description: <br>
-ChainUp/OpenAPI V2 spot and margin trading skill that routes account, market-data, order, cancellation, transfer, and margin requests through a unified signed Python entrypoint. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ChainUp/OpenAPI V2 spot and margin trading skill. Prefer using the Python script to call `sapi` endpoints through one unified entrypoint and avoid ad hoc signing logic.
 
-## Publisher: <br>
-[lurenha](https://clawhub.ai/user/lurenha) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lurenha](https://clawhub.ai/user/lurenha)
 
-## Use Case: <br>
-Developers and trading operators use this skill to work with ChainUp OpenAPI V2 spot and margin endpoints for market data, account queries, order placement, cancellation, asset transfer, and trade-history workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can use ChainUp/OpenAPI V2 credentials for live trades, cancellations, transfers, and margin actions. <br>
-Mitigation: Use least-privilege API keys, verify the base URL and credential source, and require explicit confirmation before live balance-changing requests. <br>
-Risk: A documented confirmation bypass can skip the normal live-action gate. <br>
-Mitigation: Do not allow the confirmation bypass on live accounts unless the operator has deliberately accepted that risk. <br>
-Risk: Credential exposure could occur if secrets are passed through visible command lines or copied into responses. <br>
-Mitigation: Prefer configured credential sources, avoid inlining secrets in commands, and mask API keys or secret keys in output. <br>
+## Use Case:
 
+Developers and trading operators use this skill to access ChainUp OpenAPI V2 spot, margin, account, order, and market-data workflows through a centralized signed Python entrypoint.
 
-## Reference(s): <br>
-- [ChainUp Spot Trading release page](https://clawhub.ai/lurenha/chainup-spot-trading) <br>
-- [ChainUp OpenAPI V2 spot endpoints](https://exchangedocsv2.gitbook.io/open-api-doc-v2/jian-ti-zhong-wen-v2/bi-bi-jiao-yi) <br>
-- [ChainUp OpenAPI V2 authentication FAQ](https://exchangedocsv2.gitbook.io/open-api-doc-v2/jian-ti-zhong-wen-v2/chang-jian-wen-ti) <br>
-- [ChainUp OpenAPI V2 margin endpoints](https://exchangedocsv2.gitbook.io/open-api-doc-v2/jian-ti-zhong-wen-v2/gang-gan-jiao-yi) <br>
-- [Authentication reference](references/authentication.md) <br>
-- [Spot endpoints reference](references/spot-endpoints.md) <br>
-- [Margin endpoints reference](references/margin-endpoints.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and raw JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses signed ChainUp/OpenAPI V2 requests and returns raw exchange JSON by default.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill can give an agent high-impact financial authority over ChainUp account, order, transfer, and margin operations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use least-privilege API keys, avoid transfer or withdrawal permissions unless required, and review balance-changing requests before execution.
+
+Risk: The API destination is configurable, so credentials could be sent to an unverified host if the base URL is misconfigured.
+
+Mitigation: Allow only trusted ChainUp API hosts and do not permit arbitrary `--base-url` values in normal operation.
+
+Risk: The documented `--no-confirm-gate` option can bypass the confirmation control for mutating requests.
+
+Mitigation: Keep the confirmation gate enabled and require a standalone `CONFIRM` before live orders, cancellations, or transfers.
+
+Risk: The skill handles sensitive ChainUp API keys and secret keys.
+
+Mitigation: Store credentials securely, mask secrets in outputs, and avoid echoing full credential-bearing commands.
+
+## Reference(s):
+
+- [Authentication and Signing](references/authentication.md)
+- [Spot Endpoints](references/spot-endpoints.md)
+- [Margin Endpoints](references/margin-endpoints.md)
+- [ChainUp OpenAPI V2 Spot Documentation](https://exchangedocsv2.gitbook.io/open-api-doc-v2/jian-ti-zhong-wen-v2/bi-bi-jiao-yi)
+- [ChainUp OpenAPI V2 FAQ](https://exchangedocsv2.gitbook.io/open-api-doc-v2/jian-ti-zhong-wen-v2/chang-jian-wen-ti)
+- [ChainUp OpenAPI V2 Margin Documentation](https://exchangedocsv2.gitbook.io/open-api-doc-v2/jian-ti-zhong-wen-v2/gang-gan-jiao-yi)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, API Calls, JSON, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and raw JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns exchange JSON by default; prepare-only order flows return originalBody, preparedBody, adjustments, symbolRule, and readyForConfirm.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,58 @@
-## Description: <br>
-Provides a paid crypto auto-trading strategy package for OKX, Binance, Bybit, and Bitget with five Node.js strategies, risk controls, Telegram alerts, and deployment guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a crypto automated trading strategy package for OKX, Binance, Bybit, and Bitget, including five strategy implementations, risk-control guidance, Telegram alerts, and deployment instructions.
 
-## Publisher: <br>
-[sg345662365-oss](https://clawhub.ai/user/sg345662365-oss) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sg345662365-oss](https://clawhub.ai/user/sg345662365-oss)
 
-## Use Case: <br>
-External crypto traders and developers use this skill to review and deploy a Node.js crypto auto-trading strategy package with exchange templates, configurable risk controls, Telegram alerts, and setup guidance. It is not investment advice and requires careful credential and trading-risk controls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill describes autonomous crypto trading that uses exchange API keys, which can expose funds or execute unintended trades if credentials are over-permissioned or mishandled. <br>
-Mitigation: Use exchange keys without withdrawal permission, restrict keys to the minimum trading permissions needed, keep credentials out of git and shared folders, lock down file permissions, and start with small limits. <br>
-Risk: Server evidence marks code provenance as unavailable and the security verdict as suspicious because the package asks users to run a persistent trading process with under-specified credential controls. <br>
-Mitigation: Inspect the actual source code before running any persistent trading process and review the package carefully before installing or paying. <br>
-Risk: Crypto contract trading can cause significant financial loss and the artifact states that it is not investment advice. <br>
-Mitigation: Treat the material as educational, validate behavior in a non-production or low-exposure environment, and use conservative position sizing. <br>
+## Use Case:
 
+External developers and trading-system operators use this skill as guidance for building or deploying automated crypto trading strategies with exchange integrations, risk controls, alerts, and process supervision.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sg345662365-oss/crypto-auto-trader-strategy) <br>
-- [Publisher profile](https://clawhub.ai/user/sg345662365-oss) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with code, shell command snippets, configuration steps, and referenced source/manual materials.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes trading strategy descriptions, deployment prerequisites, and credential-dependent setup guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release and skill frontmatter) <br>
+Risk: The skill involves automated crypto trading and may lead users to run a persistent bot with real exchange API keys.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm paper-trading or testnet support before use, disable withdrawals, restrict API permissions, enable IP allowlisting where available, and avoid storing production secrets in repository configuration files.
+
+Risk: Dependency and runtime setup may affect funds or account access if used without review.
+
+Mitigation: Review and pin dependencies before deployment, inspect configuration values, and test behavior with non-production funds before any live trading.
+
+Risk: Trading strategy material can be mistaken for investment advice.
+
+Mitigation: Treat the output as educational and implementation guidance only; users should make independent trading and risk-management decisions.
+
+## Reference(s):
+
+- [Crypto Auto Trader Strategy on ClawHub](https://clawhub.ai/sg345662365-oss/skills/crypto-auto-trader-strategy)
+- [Publisher profile: sg345662365-oss](https://clawhub.ai/user/sg345662365-oss)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands, code references, and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces trading-strategy and deployment guidance; users must supply and protect their own exchange credentials.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

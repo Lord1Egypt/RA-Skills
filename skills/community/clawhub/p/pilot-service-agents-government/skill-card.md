@@ -1,42 +1,55 @@
-## Description: <br>
-Provides government and civic data access across the Federal Register, FBI wanted persons, elections information, and national open-data portals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides access patterns for Pilot Protocol government and civic data agents, including Federal Register, FBI Wanted, civic information, and public data catalog queries.
 
-## Publisher: <br>
-[teoslayer](https://clawhub.ai/user/teoslayer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-AGPL-3.0 <br>
+## Publisher:
 
+[teoslayer](https://clawhub.ai/user/teoslayer)
 
-## Use Case: <br>
-Developers and agents use this skill to discover and query Pilot Protocol service agents for government, civic, regulatory, weather, spending, and public-data sources. It helps agents construct pilotctl commands, inspect each remote agent's filter contract, and retrieve structured or summarized public data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Filters, free-text queries, and summary requests are sent to remote Pilot Protocol service agents. <br>
-Mitigation: Avoid sending secrets or sensitive personal information, and review query payloads before execution. <br>
-Risk: The skill depends on an externally installed pilotctl binary and a trusted Pilot Protocol daemon. <br>
-Mitigation: Install and use this skill only when the Pilot Protocol environment and pilotctl binary are already trusted. <br>
+## Use Case:
 
+Developers and agents use this skill to discover and query public government and civic data services through Pilot Protocol, including regulatory notices, elections information, public-data catalogs, and agency datasets.
 
-## Reference(s): <br>
-- [Pilot Protocol](https://pilotprotocol.network) <br>
-- [ClawHub Skill Page](https://clawhub.ai/teoslayer/pilot-service-agents-government) <br>
-- [Pilot Skills Catalog](https://teoslayer.github.io/pilot-skills/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Text, JSON] <br>
-**Output Format:** [Markdown with inline bash commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires pilotctl, a running Pilot Protocol daemon joined to network 9, and reachable service agents.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The listed agent catalog may include broader public-data sources beyond strictly government-only services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the exact agent fields, source, and category with list-agents and /help before relying on returned data.
+
+Risk: Using the skill requires joining the Pilot Protocol data-exchange network and querying third-party service agents.
+
+Mitigation: Install and run it only when the operator is comfortable with Pilot Protocol participation and the requested public-data workflow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/teoslayer/skills/pilot-service-agents-government)
+- [Pilot Protocol](https://pilotprotocol.network)
+- [Pilot skills index](https://teoslayer.github.io/pilot-skills/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs guide the agent to use pilotctl for /help, /data, /summary, and inbox retrieval; downstream service responses may include structured JSON envelopes or prose summaries.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

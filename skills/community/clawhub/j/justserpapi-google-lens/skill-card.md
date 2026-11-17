@@ -1,43 +1,56 @@
-## Description: <br>
-Call GET /api/v1/google/lens for Google SERP Lens through Just Serp API with a publicly accessible image URL. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Call GET /api/v1/google/lens for Google SERP Lens through Just Serp API with url.
 
-## Publisher: <br>
-[justserpapi](https://clawhub.ai/user/justserpapi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[justserpapi](https://clawhub.ai/user/justserpapi)
 
-## Use Case: <br>
-Developers and operators use this skill to query the Just Serp API Google Lens endpoint for visual matches, product matches, related links, and other image-search results from a supplied image URL. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a sensitive Just Serp API credential. <br>
-Mitigation: Provide JUST_SERP_API_KEY through the environment or the --api-key argument, and do not paste credential values into chat messages, screenshots, or logs. <br>
-Risk: The security evidence verdict is suspicious. <br>
-Mitigation: Review the skill before installation and run it only with explicit user-provided operation parameters and trusted execution settings. <br>
+## Use Case:
 
+Developers and agents use this skill to call Just Serp API's Google Lens endpoint for visual search analysis, product matching, visual matches, exact duplicate checks, and related links from a public image URL.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/justserpapi/justserpapi-google-lens) <br>
-- [Just Serp API](https://justserpapi.com/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justserpapi_google_lens&utm_content=project_link) <br>
-- [Just Serp API Docs](https://docs.justserpapi.com/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justserpapi_google_lens&utm_content=project_link) <br>
-- [Generated operations reference](generated/operations.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires JUST_SERP_API_KEY and a publicly accessible image URL; optional query parameters include country, language, product, visual_matches, and exact_matches.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Public image URLs and query options are sent to Just Serp API for Google Lens processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only public, non-sensitive image URLs and review query options before execution.
+
+Risk: The documented helper passes JUST_SERP_API_KEY as a command-line argument, which may be exposed through process listings or logs.
+
+Mitigation: Prefer reading the key directly from the environment where possible, avoid logging commands containing secrets, and rotate the key if it may have been exposed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/justserpapi/skills/justserpapi-google-lens)
+- [Just Serp API](https://justserpapi.com/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justserpapi_google_lens&utm_content=project_link)
+- [Just Serp API Docs](https://docs.justserpapi.com/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justserpapi_google_lens&utm_content=project_link)
+- [Generated operation reference](artifact/generated/operations.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, JSON]
+
+**Output Format:** [Markdown guidance with shell commands and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a JUST_SERP_API_KEY value and a publicly accessible image URL.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

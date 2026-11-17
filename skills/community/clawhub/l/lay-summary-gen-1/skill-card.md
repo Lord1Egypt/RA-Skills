@@ -1,41 +1,58 @@
-## Description: <br>
-Converts complex medical abstracts into plain language summaries for non-expert audiences. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates plain-language summaries of medical research abstracts for non-expert audiences.
 
-## Publisher: <br>
-[aipoch-ai](https://clawhub.ai/user/aipoch-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[aipoch-ai](https://clawhub.ai/user/aipoch-ai)
 
-## Use Case: <br>
-Medical writers, researchers, trial teams, and agents supporting public-facing health communication use this skill to turn medical abstracts into plain-language summaries with key takeaways, reading-level estimates, and jargon replacements. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Draft summaries may be medically or regulatorily inaccurate if used without review. <br>
-Mitigation: Review outputs for medical and regulatory accuracy, and do not treat them as clinical advice. <br>
-Risk: Medical abstracts or prompts may include patient-identifiable or confidential study information. <br>
-Mitigation: Use only workspaces appropriate for that data and avoid entering identifiable or confidential information unless handling controls are in place. <br>
+## Use Case:
 
+External readers, patient-communication teams, and researchers can use this skill to turn medical research abstracts into plain-language summaries with key takeaways and jargon replacements. Generated summaries require review before patient, public, or EU CTR-related use.
 
-## Reference(s): <br>
-- [Lay Summary Gen References](references/guidelines.md) <br>
-- [ClawHub release page](https://clawhub.ai/aipoch-ai/lay-summary-gen-1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, guidance] <br>
-**Output Format:** [JSON object containing a lay summary, reading level, key takeaways, word counts, target audience, and replaced jargon terms.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated summaries should be reviewed for medical and regulatory accuracy before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Generated medical summaries may be incomplete, inaccurate, or unsuitable for patient, public, or EU CTR-related communication.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review each generated summary for medical accuracy, audience fit, and regulatory suitability before sharing or relying on it.
+
+Risk: The skill is a draft-quality helper rather than a validated medical or regulatory compliance tool.
+
+Mitigation: Treat its output as a drafting aid and route patient-facing, public, or compliance-sensitive summaries through qualified domain review.
+
+Risk: The artifact includes a local Python execution path that processes user-provided abstract text.
+
+Mitigation: Run the script in a controlled workspace and avoid processing sensitive health data unless the environment and review process are approved for that data.
+
+## Reference(s):
+
+- [Lay Summary Gen References](artifact/references/guidelines.md)
+- [ClawHub Skill Page](https://clawhub.ai/aipoch-ai/skills/lay-summary-gen-1)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Guidance]
+
+**Output Format:** [JSON object or Markdown response with assumptions, risks, and next checks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes a lay summary, reading level estimate, key takeaways, word counts, and jargon replacements.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

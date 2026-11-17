@@ -30,7 +30,7 @@ meta:
     - "EIP-712 domain: EIP712('ClearMacro', '1'). verifyingContract = forwarder address for the chain. Inspect via eip712Domain()."
     - "Provider binding: Security.domain binds a signed payload to a specific provider. A payload signed for one provider cannot be relayed by another."
     - "SELF_PROVIDER: set Security.provider to the string 'self' to allow the signer to self-submit. In this mode msg.sender must equal signer; no relay provider is involved."
-    - "Gasless only from the signer's perspective: the relay provider fronts native gas. Provider relaying is a new capability still in BETA with no fee model yet — whether/how a provider eventually recovers that cost (e.g. charging the signer in Super Tokens) would be provider-specific and is NOT enforced by the forwarder. The current reference provider documents no fee scheme."
+    - "Gasless only from the signer's perspective: the relay provider fronts native gas. Provider relaying is still in BETA. The forwarder and provider enforce no fee; fees are a macro-level design choice (the Dashboard's public-source DashboardClearMacro charges a disclosed USDCx relay fee bound into the signed description)."
   source:
     - https://raw.githubusercontent.com/superfluid-org/protocol-monorepo/refs/heads/dev/packages/ethereum-contracts/contracts/utils/ClearMacroForwarderV1.sol
     - https://raw.githubusercontent.com/superfluid-org/protocol-monorepo/refs/heads/dev/packages/ethereum-contracts/contracts/interfaces/utils/IClearMacroForwarderV1.sol
@@ -51,13 +51,13 @@ meta:
       avalanche-c: "0xC1EaB73855155D4e021f7EB4f866996Bac2fe25e"
       celo-mainnet: "0xC1EaB73855155D4e021f7EB4f866996Bac2fe25e"
       scroll-mainnet: "0xC1EaB73855155D4e021f7EB4f866996Bac2fe25e"
-      degenchain: "0xC1EaB73855155D4e021f7EB4f866996Bac2fe25e"
+      arc-mainnet: "0xC1EaB73855155D4e021f7EB4f866996Bac2fe25e"
     testnet:
       avalanche-fuji: "0xC1EaB73855155D4e021f7EB4f866996Bac2fe25e"
       base-sepolia: "0xC1EaB73855155D4e021f7EB4f866996Bac2fe25e"
       eth-sepolia: "0xC1EaB73855155D4e021f7EB4f866996Bac2fe25e"
       optimism-sepolia: "0xC1EaB73855155D4e021f7EB4f866996Bac2fe25e"
-      scroll-sepolia: "0xC1EaB73855155D4e021f7EB4f866996Bac2fe25e"
+      arc-testnet: "0xC1EaB73855155D4e021f7EB4f866996Bac2fe25e"
 
 # == Glossary ==
 # encodedPayload — abi.encode(Payload{action: EncodedAction{params}, security: Security{...}})

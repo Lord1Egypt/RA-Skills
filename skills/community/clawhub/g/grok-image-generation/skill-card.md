@@ -1,43 +1,52 @@
-## Description: <br>
-Generate new images and edit existing images with xAI Grok Imagine from a local OpenClaw workspace. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate new images and edit existing images with xAI Grok Imagine from a local OpenClaw workspace.
 
-## Publisher: <br>
-[stanestane](https://clawhub.ai/user/stanestane) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[stanestane](https://clawhub.ai/user/stanestane)
 
-## Use Case: <br>
-Developers, designers, and agents use this skill to run xAI Grok Imagine image generation and editing from a local OpenClaw workspace. It supports prompt-based generation, batch variations, source-image edits, style transfer, cleanup, background replacement, product art, and poster concepts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts and source images are sent to xAI's remote API. <br>
-Mitigation: Do not submit private prompts or source images unless sending them to xAI is acceptable for the user's environment. <br>
-Risk: The xAI API key is sensitive credential material. <br>
-Mitigation: Keep XAI_API_KEY protected and avoid exposing it in commands, logs, committed files, or shared output. <br>
-Risk: Generated images, prompts, temporary URLs, and response metadata may remain in the local output directory. <br>
-Mitigation: Review or clean the output directory when generated artifacts or metadata should not be retained. <br>
+## Use Case:
 
+Developers and agent operators use this skill when they want Grok/xAI as the image source for prompt-based image generation, batch variations, reference-image edits, style transfer, cleanup, background replacement, product art, poster concepts, or local automation around xAI image APIs.
 
-## Reference(s): <br>
-- [xAI Grok Imagine reference](references/api-reference.md) <br>
-- [Prompt Templates](references/prompt-templates.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Files, JSON] <br>
-**Output Format:** [Markdown guidance with shell commands; the local script saves generated image files and JSON response metadata.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires XAI_API_KEY. Generation can request multiple outputs, and edit mode accepts one to three source images.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The edit command can upload any readable local file path supplied to it, which may expose unintended local content to xAI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only explicitly selected image files from trusted locations, avoid paths that may contain secrets, and add image validation, file-size limits, path restrictions, and upload disclosure before broader deployment.
+
+## Reference(s):
+
+- [xAI Grok Imagine reference](references/api-reference.md)
+- [Prompt Templates](references/prompt-templates.md)
+- [xAI API Base URL](https://api.x.ai/v1)
+- [ClawHub Skill Page](https://clawhub.ai/stanestane/skills/grok-image-generation)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with command examples; script output as JSON plus downloaded image files and response metadata]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires XAI_API_KEY and can generate or edit one to ten outputs depending on the selected xAI image endpoint options.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

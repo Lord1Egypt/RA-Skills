@@ -1,0 +1,15 @@
+{
+  "schema_version": 2,
+  "thinking_layers": {
+    "layers": [],
+    "cross_cutting_lenses": []
+  },
+  "topics": [],
+  "claims": [],
+  "preferences": [],
+  "protocols": {
+    "implicit_acceptance": "disabled_until_explicit_opt_in"
+  },
+  "decision_motive_library": [],
+  "narrative_exemplars": []
+}

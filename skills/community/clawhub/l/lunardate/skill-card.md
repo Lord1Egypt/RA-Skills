@@ -1,43 +1,55 @@
-## Description: <br>
-Reference tool for devtools that provides quick lookup material for Lunardate concepts, best practices, and implementation patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reference tool for devtools — covers intro, quickstart, patterns and more.
 
-## Publisher: <br>
-[xueyetianya](https://clawhub.ai/user/xueyetianya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xueyetianya](https://clawhub.ai/user/xueyetianya)
 
-## Use Case: <br>
-Developers and engineers use this skill to retrieve concise Lunardate reference guidance, including introductory material, quickstart notes, patterns, debugging, performance, security, migration, and cheat sheet content. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Reference guidance may be generic and may not match a user's specific Lunardate environment. <br>
-Mitigation: Treat the output as a starting point and verify recommendations against authoritative project documentation before applying changes. <br>
-Risk: The release and skill frontmatter report version 2.0.2, while the bundled script reports version 2.0.1. <br>
-Mitigation: Confirm the installed artifact version before relying on version-specific behavior or publishing release notes. <br>
-Risk: Security evidence advises care around registry tooling and protected tokens. <br>
-Mitigation: Review commands that publish, delete, moderate, update, or force-overwrite skills before running them, and keep registry or API tokens scoped and protected. <br>
+## Use Case:
 
+Developers and engineers use this skill as a local reference helper for Lunardate concepts, quickstart material, patterns, debugging, performance, security, migration, and cheat-sheet guidance.
 
-## Reference(s): <br>
-- [Lunardate on ClawHub](https://clawhub.ai/xueyetianya/lunardate) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Plain text reference documentation with Markdown-style headings, lists, and tables.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The artifact describes no external API calls, credential requirements, or network access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.2 (source: server release evidence and SKILL.md frontmatter; bundled script reports 2.0.1) <br>
+Risk: The skill includes an executable shell script, so users may run local code while accessing the reference helper.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the server security verdict and review the script before deployment; the inspected script only prints static documentation and does not install software, access credentials, call the network, or change files.
+
+Risk: The reference text is generic guidance and may not match a user's specific environment or policy requirements.
+
+Mitigation: Treat the output as reference material and validate operational, security, and migration steps against project-specific documentation before applying them.
+
+## Reference(s):
+
+- [Lunardate on ClawHub](https://clawhub.ai/xueyetianya/skills/lunardate)
+- [BytesAgain homepage](https://bytesagain.com)
+- [Publisher profile](https://clawhub.ai/user/xueyetianya)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Plain text with Markdown-style headings, lists, and tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static local reference output; no external API calls, credentials, or network access.]
+
+## Skill Version(s):
+
+2.0.2 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

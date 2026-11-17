@@ -1,0 +1,9 @@
+{
+  "name": "lottery-bark-check",
+  "displayName": "彩票开奖核对推送",
+  "version": "1.0.0",
+  "license": "MIT",
+  "tags": ["彩票", "双色球", "大乐透", "开奖核对", "Bark", "定时提醒"],
+  "entry": "scripts/lottery_check.py",
+  "requires": "python3, curl"
+}

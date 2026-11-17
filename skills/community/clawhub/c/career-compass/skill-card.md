@@ -1,48 +1,60 @@
-## Description: <br>
-职场罗盘 by Barry is a job-search assistant skill that combines resume parsing and optimization, employment-focused company research, local job search, and mock interview practice. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+职场罗盘 by Barry is a job-search assistant skill that helps users optimize resumes, research employers from an employment perspective, search local roles, and run mock interviews.
 
-## Publisher: <br>
-[barry0-0](https://clawhub.ai/user/barry0-0) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[barry0-0](https://clawhub.ai/user/barry0-0)
 
-## Use Case: <br>
-External job seekers use this skill to prepare for interviews, improve resumes, research target employers from an employment-risk perspective, search local BOSS/Zhipin roles, and rehearse mock interviews. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The BOSS/Zhipin integration can read or import account session cookies and store credentials locally. <br>
-Mitigation: Review the installation before use, prefer QR login, avoid BOSS_COOKIES unless necessary, and delete ~/.config/boss-cli/credential.json after use or on shared machines. <br>
-Risk: The bundled CLI includes employer-contact commands beyond the skill's advertised read-only workflow. <br>
-Mitigation: Use only intentional read-only job-search commands unless outreach is explicitly desired; do not run greet or batch-greet casually. <br>
-Risk: The install flow may add a Python CLI and optional PDF tooling to the local environment. <br>
-Mitigation: Review INSTALL.sh and dependency commands before running them, especially in managed or shared environments. <br>
+## Use Case:
 
+Job seekers and interview candidates use this skill to prepare applications and interviews by collecting resume, target-company, and job-description context, then producing resume improvement guidance, company research, role-search results, mock interview prompts, and interview review feedback.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/barry0-0/career-compass) <br>
-- [BOSS CLI README](boss-cli/README.md) <br>
-- [BOSS CLI command schema](boss-cli/SCHEMA.md) <br>
-- [Interview simulator reference](ref/interview-simulator/README.md) <br>
-- [Poppler Windows releases](https://github.com/oschwartz10612/poppler-windows/releases) <br>
-- [Tesseract Windows documentation](https://github.com/UB-Mannheim/tesseract/wiki) <br>
-- [Ghostscript releases](https://ghostscript.com/releases/gsdnld.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with tables, checklists, scoring rubrics, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include resume optimization notes, company research summaries, job-search command guidance, mock interview questions, and interview scoring cards.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter, package.json, server release metadata) <br>
+Risk: The skill can import browser cookies and store reusable BOSS credentials locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the security guidance before installing or running boss login/status, and proceed only if this local credential handling is acceptable.
+
+Risk: The install flow may install an unpinned package from the Python registry.
+
+Mitigation: Review the package and version source before running INSTALL.sh, or install in a controlled environment.
+
+Risk: The bundled tooling may include recruiter-contact commands beyond read-only job search.
+
+Mitigation: Use only read-only query commands unless recruiter contact is intentional, and avoid greet or batch-greet.
+
+## Reference(s):
+
+- [Career Compass ClawHub Page](https://clawhub.ai/barry0-0/skills/career-compass)
+- [Poppler Windows Releases](https://github.com/oschwartz10612/poppler-windows/releases)
+- [Tesseract Windows Wiki](https://github.com/UB-Mannheim/tesseract/wiki)
+- [Ghostscript Downloads](https://ghostscript.com/releases/gsdnld.html)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and structured tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference local resume text, PDF extraction tools, web search results, and BOSS job-search command output when available.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.release.version, SKILL.md frontmatter, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

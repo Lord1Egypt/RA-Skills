@@ -1,40 +1,64 @@
-## Description: <br>
-High-performance containerized Amazon scraper using Docker, Playwright Extra, and the Stealth plugin to collect Amazon best-seller, search-result, product-detail, and generic dynamic-page data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scrapes Amazon.com rankings, search results, and product pages for marketplace analysis using Docker and Playwright.
 
-## Publisher: <br>
-[jiafar](https://clawhub.ai/user/jiafar) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiafar](https://clawhub.ai/user/jiafar)
 
-## Use Case: <br>
-Developers, analysts, and agent operators use this skill to run containerized scraping workflows for Amazon product research, category ranking, search-result extraction, product-detail extraction, and limited generic webpage text capture. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security review marks the skill suspicious because it combines broad web scraping, stealth browser automation, and bundled third-party proxy credentials. <br>
-Mitigation: Install only for authorized scraping, review target-site terms and data-handling obligations, and replace or remove bundled proxies before use. <br>
-Risk: The skill can retrieve arbitrary web content and write JSON outputs to a mounted directory. <br>
-Mitigation: Avoid private, internal, or sensitive URLs and keep scraper outputs in a dedicated mounted directory with appropriate access controls. <br>
+## Use Case:
 
+Developers and marketplace analysts use this skill to collect Amazon product, ranking, and search data for product research, competitor analysis, and price monitoring.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/jiafar/amazon-scraper) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands; scraper runtime outputs JSON to stdout or a mounted output file.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Amazon mode returns product records with fields such as rank, title, ASIN, price, rating, review count, image URL, product URL, BSR, and bought-past-month when available; generic mode returns page title and body text capped at 10000 characters.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.4.1 (source: server release evidence and package.json) <br>
+Risk: Paid proxies can incur metered costs and expose proxy credentials if mishandled.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use dedicated proxy credentials, pass them at runtime rather than in shared files or command text, and limit unnecessary runs.
+
+Risk: Optional browser control can access an authenticated Amazon session.
+
+Mitigation: Use a dedicated Amazon account and keep Chrome's debugging interface bound to 127.0.0.1; never expose it publicly.
+
+Risk: Generic mode can scrape arbitrary websites beyond the intended Amazon use case.
+
+Mitigation: Avoid generic mode unless the user explicitly intends to scrape another site for an Amazon-related task.
+
+Risk: Saved scraping state can retain account or browsing data.
+
+Mitigation: Protect local scrape output and browser state, and remove stored data when no longer needed.
+
+## Reference(s):
+
+- [Amazon Scraper on ClawHub](https://clawhub.ai/jiafar/skills/amazon-scraper)
+- [BSR Top 100 strategy](references/bsr-top100-strategy.md)
+- [Reviews strategy](references/reviews-strategy.md)
+- [CDP fallback strategy](references/cdp-fallback-strategy.md)
+
+## Skill Output:
+
+**Output Type(s):** [JSON data, Markdown guidance, Shell commands, Configuration instructions]
+
+**Output Format:** [Structured JSON scrape results and Markdown guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Check the scrape status before relying on results; blocked pages may contain empty fields.]
+
+## Skill Version(s):
+
+4.0.1 (source: ClawHub release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

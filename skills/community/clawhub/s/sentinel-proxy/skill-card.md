@@ -1,42 +1,59 @@
-## Description: <br>
-AI Firewall for Open Claw agents that scrubs inbound messages and tool results for prompt injection, jailbreaks, and data exfiltration attempts using Sentinel's multi-layer detection pipeline. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Sentinel-Proxy is an AI firewall for Open Claw agents that scrubs inbound prompts, tool inputs, and tool results for prompt injection, jailbreak, and data exfiltration attempts using Sentinel's detection pipeline.
 
-## Publisher: <br>
-[c0ri](https://clawhub.ai/user/c0ri) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[c0ri](https://clawhub.ai/user/c0ri)
 
-## Use Case: <br>
-Developers and agent operators use this skill to route Open Claw prompts, tool inputs, tool results, and optional Anthropic proxy traffic through Sentinel for prompt-injection, jailbreak, and data-exfiltration checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends agent prompts, tool inputs, tool outputs, and optional Anthropic proxy traffic to Sentinel's service for inspection. <br>
-Mitigation: Review Sentinel's privacy and retention terms before use, configure only a trusted HTTPS SENTINEL_API_URL, and avoid routing data that policy forbids sharing with the service. <br>
-Risk: Scrubbing is disabled when the Sentinel key is missing or the Sentinel service is unreachable, so traffic may pass through uninspected. <br>
-Mitigation: Set and verify SENTINEL_KEY before use, monitor startup warnings, and treat connectivity failures as reducing protection for that session. <br>
+## Use Case:
 
+Developers and operators use this skill to add Sentinel prompt and tool-result inspection hooks to Open Claw agents. It is intended to reduce prompt-injection, jailbreak, malicious tool-output, and data-exfiltration risk during agent sessions.
 
-## Reference(s): <br>
-- [Sentinel Proxy on ClawHub](https://clawhub.ai/c0ri/sentinel-proxy) <br>
-- [Sentinel skills repository](https://github.com/c0ri/sentinel-skills) <br>
-- [Sentinel Proxy service](https://sentinel-proxy.skyblue-soft.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, JSON, Guidance] <br>
-**Output Format:** [Markdown instructions with shell environment variables and hook behavior guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Hook scripts may emit modified JSON envelopes, block unsafe requests, log flagged events locally, or pass traffic through when Sentinel is not configured or unreachable.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: Prompt, tool argument, and tool result content is sent to a third-party Sentinel service for inspection.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only where Sentinel's privacy and retention terms fit the data, and avoid regulated or secret-heavy workflows unless that review is complete.
+
+Risk: The hook behavior can fail open when Sentinel is not configured or unreachable.
+
+Mitigation: Use tightly controlled environments and define fail-closed behavior for sensitive workflows before relying on the skill for protection.
+
+Risk: The Sentinel API key enables access to the inspection service.
+
+Mitigation: Protect the key, scope its use to the intended agent environment, and rotate it if exposure is suspected.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/c0ri/skills/sentinel-proxy)
+- [Project homepage](https://github.com/c0ri/sentinel-skills)
+- [Sentinel AI Firewall](https://sentinelaifirewall.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON hook envelopes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Hook scripts can pass, block, or rewrite prompt and tool-result content based on Sentinel responses.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

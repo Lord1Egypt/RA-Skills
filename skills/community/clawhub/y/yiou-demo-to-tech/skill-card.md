@@ -1,42 +1,55 @@
-## Description: <br>
-Converts business demos, product prototypes, and requirements into structured technical planning documents for engineering evaluation, task breakdown, scheduling, and acceptance review. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts Chinese-language business demos, prototypes, and requirements into structured technical planning documents with page flows, fields, interface needs, acceptance criteria, open questions, task breakdowns, and maturity ratings.
 
-## Publisher: <br>
-[yiou](https://clawhub.ai/user/yiou) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yiou](https://clawhub.ai/user/yiou)
 
-## Use Case: <br>
-Developers, product teams, and project planners use this skill before development to turn demo material or business requirements into page flows, field and interface requirements, open questions, task breakdowns, acceptance criteria, and a maturity rating. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Business demos, prototypes, and requirements may contain confidential product details. <br>
-Mitigation: Provide only material approved for the agent environment and avoid including sensitive internal data unless appropriate controls are in place. <br>
-Risk: The skill may infer interfaces, data ownership, or business rules from incomplete demo material. <br>
-Mitigation: Use its required source labels, open questions, and maturity blocking gaps to keep inferred items out of development entry until reviewed. <br>
+## Use Case:
 
+Product, engineering, and delivery teams use this skill before development to turn business-oriented demos or requirements into documents that support technical review, estimation, decomposition, scheduling, and acceptance planning.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yiou/yiou-demo-to-tech) <br>
-- [Technical document template](artifact/templates/tech_doc_template.md) <br>
-- [Structured output template](artifact/templates/structured_output_template.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, JSON, Guidance] <br>
-**Output Format:** [Markdown technical document plus structured JSON, open-question tables, task breakdowns, and acceptance criteria] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires source labeling for key rules, interface assumptions, and data inferences; maturity ratings include blocking gaps when required inputs are missing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may infer fields, APIs, data ownership, and development tasks from incomplete demo or requirement inputs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review all inferred content before implementation and preserve the required source labels and pending-confirmation markers for uncertain items.
+
+Risk: Planning documents generated from missing required inputs could be mistaken for development-ready specifications.
+
+Mitigation: Use the maturity rating and blocking gaps to prevent documents with missing business goals, roles, page flows, core fields, data sources, or acceptance criteria from being treated as ready for development.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yiou/skills/yiou-demo-to-tech)
+- [Technical document template](artifact/templates/tech_doc_template.md)
+- [Structured output template](artifact/templates/structured_output_template.json)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Guidance]
+
+**Output Format:** [Markdown technical document plus structured JSON, question tables, development task breakdowns, acceptance criteria, and maturity rating]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs must distinguish provided facts from inferred or defaulted content, mark uncertain interfaces as pending confirmation, and identify blocking gaps before development.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,58 @@
-## Description: <br>
-Bidirectional bridge between Pilot Protocol and Discord servers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Bidirectional bridge between Pilot Protocol and Discord servers.
 
-## Publisher: <br>
-[teoslayer](https://clawhub.ai/user/teoslayer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[teoslayer](https://clawhub.ai/user/teoslayer)
 
-## Use Case: <br>
-Developers and agent builders use this skill to connect Pilot agents with Discord communities for outbound notifications, rich embeds, and inbound Discord message streams. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+AGPL-3.0
 
-## Known Risks and Mitigations: <br>
-Risk: Discord webhook URLs and bot credentials can be exposed if pasted into prompts, logs, or files. <br>
-Mitigation: Store webhook values in an environment variable or secret manager and rotate them if exposed. <br>
-Risk: Inbound Discord messages are untrusted input that may influence agent behavior. <br>
-Mitigation: Restrict webhook and bot permissions to the needed channels and validate or review inbound commands before acting on them. <br>
-Risk: External relay scripts and the Pilot daemon affect runtime behavior outside the skill text. <br>
-Mitigation: Inspect any external discord_relay.py before running it and run the Pilot daemon with only the access required for the bridge. <br>
+## Use Case:
 
+Developers and engineers use this skill to connect Pilot agents with Discord communities for outbound notifications, rich embeds, inbound message streams, and command-response workflows.
 
-## Reference(s): <br>
-- [Pilot Protocol homepage](https://pilotprotocol.network) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with bash command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands require pilotctl, a running Pilot daemon, and Discord webhook or bot configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Agent output, telemetry, or trusted channel content could be relayed to Discord beyond the intended audience.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a restricted webhook and channel scope, and avoid sending secrets or sensitive operational data through the bridge.
+
+Risk: Inbound Discord commands could trigger unintended Pilot actions if command handling is too broad.
+
+Mitigation: Validate and allowlist inbound commands before acting on them, and limit command responders to the minimum required behavior.
+
+Risk: Discord webhook tokens can be exposed through shell history, logs, or copied command examples.
+
+Mitigation: Provide webhook tokens through protected environment or secret storage and rotate any token that may have appeared in history or logs.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/teoslayer/skills/pilot-discord-bridge)
+- [Pilot Protocol Homepage](https://pilotprotocol.network)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, configuration, code, guidance]
+
+**Output Format:** [Markdown with bash and JSON command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires pilotctl on PATH, a running Pilot daemon, a Discord webhook URL, and a Discord bot for inbound relay workflows.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

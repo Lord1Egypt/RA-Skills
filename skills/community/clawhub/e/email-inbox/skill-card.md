@@ -1,39 +1,57 @@
-## Description: <br>
-Summarizes, triages, and drafts actions for incoming email when a user wants help checking an inbox, identifying important unread messages, grouping emails by urgency or topic, extracting action items, preparing reply drafts, or processing new mail from Gmail or another connected mail source. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Email Inbox Triage summarizes, prioritizes, and groups incoming email, extracts actions and deadlines, and drafts replies when requested.
 
-## Publisher: <br>
-[fangweifen2025-dotcom](https://clawhub.ai/user/fangweifen2025-dotcom) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fangweifen2025-dotcom](https://clawhub.ai/user/fangweifen2025-dotcom)
 
-## Use Case: <br>
-Employees and external users use this skill to review connected or provided mailbox content, identify priority messages, extract deadlines and action items, and draft replies for review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may access sensitive mailbox content through a connected mail tool or user-provided emails. <br>
-Mitigation: Confirm mailbox permissions before installation and scope requests by sender, date range, label, or unread status whenever possible. <br>
-Risk: Reply drafts could include incorrect assumptions or be sent before user review. <br>
-Mitigation: Review every draft before sending and leave clear placeholders when required information is missing. <br>
+## Use Case:
 
+Employees, external users, and assistants use this skill to review mailbox contents, find important unread or recent messages, identify deadlines and requested actions, and prepare concise reply drafts when asked.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with structured inbox summaries, priority lists, next steps, and reply drafts.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include placeholders in draft replies when information is missing; does not send email automatically.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Email messages can contain sensitive personal, business, financial, or legal information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review mailbox connector permissions before use and limit the agent to the mailbox content needed for the current task.
+
+Risk: Reply drafts or priority judgments can be incorrect or incomplete.
+
+Mitigation: Verify drafted replies, extracted deadlines, and recommended next steps before sending messages or taking action.
+
+Risk: A user may expect the skill to send mail automatically.
+
+Mitigation: The skill should only prepare drafts or send email after an explicit user request and review.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fangweifen2025-dotcom/skills/email-inbox)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown summaries, priority lists, next steps, and reply drafts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include grouped message summaries, extracted deadlines, requested actions, and placeholders for missing reply details.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

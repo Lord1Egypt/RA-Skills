@@ -1,40 +1,57 @@
-## Description: <br>
-Generate or edit images with Nano Banana Pro, Gemini 3 Pro Image, using text-to-image and image-to-image workflows with 1K, 2K, and 4K output options. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate/edit images with Nano Banana Pro (Gemini 3 Pro Image). Use for image create/modify requests incl. edits. Supports text-to-image + image-to-image; 1K/2K/4K; use --input-image.
 
-## Publisher: <br>
-[Keyserkazi1](https://clawhub.ai/user/Keyserkazi1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[keyserkazi1](https://clawhub.ai/user/keyserkazi1)
 
-## Use Case: <br>
-Developers and agents use this skill to generate new PNG images or edit existing images through Google's Gemini image API. It is suited for creative image creation, image modification, prompt iteration, and resolution-controlled output generation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Gemini API keys may be exposed if passed directly on the command line. <br>
-Mitigation: Prefer GEMINI_API_KEY or another secure secret workflow, and use a limited-scope Gemini key where possible. <br>
-Risk: Prompts and input images are processed by Google's Gemini service. <br>
-Mitigation: Avoid sending confidential prompts or images unless the user accepts external processing by Google. <br>
+## Use Case:
 
+Developers and creative users use this skill to generate new PNG images or edit existing images through Google's Gemini image API from an agent workflow.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Keyserkazi1/nano-banana-pro1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands; generated image files are saved as PNG by the skill script.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses prompt, filename, optional input image, optional resolution, and Gemini API key parameters.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Prompts and selected input images are sent to Google's Gemini service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sensitive prompts or images unless the user accepts the provider's data handling.
+
+Risk: The workflow requires a Gemini API key and may expose credentials if pasted into chat or command history.
+
+Mitigation: Prefer setting GEMINI_API_KEY outside chat and avoid sharing long-lived API keys in prompts or command lines.
+
+Risk: Runtime dependencies are resolved through google-genai and Pillow.
+
+Mitigation: Run with locked dependency versions in a restricted environment when stronger supply-chain control is required.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/keyserkazi1/skills/nano-banana-pro1)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands and saved PNG image paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The invoked script saves PNG files locally and prints the resolved output path.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

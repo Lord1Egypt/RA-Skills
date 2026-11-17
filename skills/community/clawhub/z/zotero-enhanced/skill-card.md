@@ -1,46 +1,61 @@
-## Description: <br>
-Manages the Zotero library with support for adding PDF documents with Crossref or arXiv metadata, searching items, reading attached files, and managing notes across Zotero cloud storage and WebDAV. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Zotero library management with PDF metadata auto-fetch (Crossref/arXiv), item search, file read, and note management. Supports cloud and WebDAV storage.
 
-## Publisher: <br>
-[guoxh](https://clawhub.ai/user/guoxh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[guoxh](https://clawhub.ai/user/guoxh)
 
-## Use Case: <br>
-Developers, researchers, and agents use this skill to search Zotero libraries, read attached PDFs, add PDF documents with fetched metadata, and create, update, read, or delete Zotero notes through shell scripts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read, upload, edit, and delete Zotero library content using user credentials. <br>
-Mitigation: Install only if you trust the publisher, use a least-privilege Zotero API key, and rotate or revoke credentials when the workflow is no longer needed. <br>
-Risk: Optional WebDAV storage sends files and credentials to a user-configured endpoint. <br>
-Mitigation: Use HTTPS WebDAV endpoints you control and avoid confidential PDFs unless the remote services are approved for that data. <br>
-Risk: Note deletion can remove library content without an interactive prompt when --no-confirm is used. <br>
-Mitigation: Keep delete confirmations enabled by default, use backup or dry-run options where available, and allow --no-confirm only after approving the exact note being deleted. <br>
+## Use Case:
 
+Researchers, students, and developers use this skill to search Zotero libraries, add PDFs with academic metadata, read stored documents, and manage Zotero notes from an agent workflow.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/guoxh/zotero-enhanced) <br>
-- [Zotero](https://www.zotero.org) <br>
-- [Zotero API](https://api.zotero.org/) <br>
-- [Crossref API](https://api.crossref.org/) <br>
-- [arXiv API](https://export.arxiv.org/api/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash commands; scripts return formatted text, JSON, or plain text depending on the operation.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Zotero API credentials and optional WebDAV credentials; several mutating operations provide dry-run, confirmation, backup, or conflict-checking behavior.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.7 (source: server release metadata) <br>
+Risk: The skill uses Zotero API credentials and may modify a user's remote library.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a Zotero API key with the minimum scopes needed and review dry-run output before write operations.
+
+Risk: Note deletion can be irreversible, especially when --no-confirm is used.
+
+Mitigation: Prefer confirmation prompts, use --dry-run before deletion, and enable --backup when preserving note content is required.
+
+Risk: Optional WebDAV storage requires sending credentials to a user-configured storage endpoint.
+
+Mitigation: Use only WebDAV servers the user controls and trusts; the artifact documents https:// enforcement for WebDAV URLs.
+
+## Reference(s):
+
+- [Zotero](https://www.zotero.org)
+- [Zotero API](https://api.zotero.org/)
+- [Crossref API](https://api.crossref.org/)
+- [arXiv API](https://export.arxiv.org/api/)
+- [ClawHub skill page](https://clawhub.ai/guoxh/skills/zotero-enhanced)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and terminal text with inline bash commands and JSON API responses where scripts expose raw item data.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses Zotero API credentials, optional WebDAV credentials, and local command-line dependencies including curl, jq, pdftotext, zip, unzip, and md5sum or md5.]
+
+## Skill Version(s):
+
+1.3.14 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

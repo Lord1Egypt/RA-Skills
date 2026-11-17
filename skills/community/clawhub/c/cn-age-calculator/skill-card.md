@@ -1,40 +1,53 @@
-## Description: <br>
-Calculates exact age, birthday countdowns, Western zodiac signs, and Chinese zodiac signs from local date input. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cn Age Calculator calculates precise age, birthday countdowns, Western zodiac signs, and Chinese zodiac animals from supported date formats using local Python.
 
-## Publisher: <br>
-[freedompixels](https://clawhub.ai/user/freedompixels) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[freedompixels](https://clawhub.ai/user/freedompixels)
 
-## Use Case: <br>
-Users and agents use this skill to calculate age, birthday countdowns, and zodiac information from dates entered locally. It is suited for lightweight personal date calculations without external services. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Birth dates are personal data and may be sensitive in some contexts. <br>
-Mitigation: Run the calculator locally and avoid storing, sharing, or pasting birth dates into unrelated services. <br>
-Risk: Promotional links in the documentation are separate from the calculator behavior. <br>
-Mitigation: Use the local Python script for calculations and review external links before opening them. <br>
+## Use Case:
 
+Chinese-language users and agents use this skill to calculate age, birthday countdowns, and zodiac information from a birth date when local Python execution is acceptable.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/freedompixels/cn-age-calculator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, guidance] <br>
-**Output Format:** [Plain text or JSON from a local Python command, with Markdown usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs locally with the Python standard library and no external dependencies; user-entered dates are sensitive personal data and should be handled locally.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.6 (source: server release evidence) <br>
+Risk: Documentation and output are Chinese-only, which may be unsuitable for non-Chinese workflows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use this skill only where Chinese-language output is acceptable, or translate and review results before relying on them.
+
+Risk: The markdown documentation includes promotional AISoBrand links.
+
+Mitigation: Review the documentation links before internal distribution and remove or ignore promotional links if policy requires.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/freedompixels/skills/cn-age-calculator)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, guidance]
+
+**Output Format:** [Plain text or JSON produced by a local Python command]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language output; no external dependencies or API key required.]
+
+## Skill Version(s):
+
+1.2.6 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

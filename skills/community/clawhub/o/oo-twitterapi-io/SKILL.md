@@ -5,7 +5,7 @@ allowed-tools: [Bash(oo *)]
 metadata:
   title: "TwitterAPI.io"
   author: "OOMOL"
-  version: "1.0.1"
+  version: "1.0.6"
   services: ["twitterapi_io"]
   icon: "https://static.oomol.com/logo/third-party/twitterapi_io.svg"
 ---
@@ -41,7 +41,7 @@ Each action is listed below with a one-line description; actions that change sta
 - `add_tweet_filter_rule` — Add a Webhook/WebSocket tweet filter rule. [write]
 - `advanced_search_tweets` — Run an advanced Twitter search query.
 - `batch_get_users` — Retrieve multiple X user profiles by user ID.
-- `check_follow_relationship` — Check whether one X user follows or is followed by another user. [write]
+- `check_follow_relationship` — Check whether one X user follows or is followed by another user.
 - `delete_tweet_filter_rule` — Delete a Webhook/WebSocket tweet filter rule. [destructive]
 - `get_account_info` — Retrieve twitterapi.io account credit information for the API key.
 - `get_article` — Retrieve an X article by Tweet ID.
@@ -106,11 +106,14 @@ These are **one-time** steps — do not repeat them on every call. Run a step on
 - **`scope_missing` / `credential_expired` / `app_not_ready` / `app_not_found`** — TwitterAPI.io is not connected, or the connection expired or lacks a scope. Connect once (auth type: API key) at:
 
   ```text
-  https://console.oomol.com/app-connections?provider=twitterapi_io
+  https://console.oomol.com/connections/twitterapi_io
   ```
 
-- **HTTP 402 / `OOMOL_INSUFFICIENT_CREDIT`** — billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+- **`OOMOL_INSUFFICIENT_CREDIT`** — OOMOL billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+
+- **HTTP 402 without `OOMOL_INSUFFICIENT_CREDIT`** — the third-party account itself has no active plan or credit. Report the provider error message as is; do not ask the user to recharge OOMOL.
 
 ## Resources
 
 - TwitterAPI.io homepage: https://twitterapi.io
+- API documentation: https://docs.twitterapi.io/

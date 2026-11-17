@@ -1,44 +1,57 @@
-## Description: <br>
-Sends user-selected images or files to Feishu users or group chats using local Feishu app credentials. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill helps an agent send user-specified images or files to Feishu users or group chats.
 
-## Publisher: <br>
-[Jlif](https://clawhub.ai/user/Jlif) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jlif](https://clawhub.ai/user/jlif)
 
-## Use Case: <br>
-Developers and agents use this skill when a workflow needs to send a specific local image or file to a Feishu user or group chat after the user provides the file path and recipient. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can upload and send a local file or image to a Feishu user or group chat. <br>
-Mitigation: Confirm the exact file path, recipient ID, recipient type, and intended content before execution. <br>
-Risk: The skill reads local Feishu app credentials from ~/.openclaw/openclaw.json. <br>
-Mitigation: Use Feishu app credentials scoped only to the upload and message permissions needed for this workflow. <br>
+## Use Case:
 
+Developers and operators use this skill to send local images or files to Feishu users or chats from an agent when Feishu app credentials are configured.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Jlif/feishu-send-image) <br>
-- [Feishu tenant access token API](https://open.feishu.cn/open-apis/auth/v3/tenant_access_token/internal) <br>
-- [Feishu image upload API](https://open.feishu.cn/open-apis/im/v1/images) <br>
-- [Feishu file upload API](https://open.feishu.cn/open-apis/im/v1/files) <br>
-- [Feishu message send API](https://open.feishu.cn/open-apis/im/v1/messages) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, API calls, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands and command output text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a local file path, Feishu recipient ID, recipient type, and Feishu app credentials in ~/.openclaw/openclaw.json.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.2 (source: server release evidence) <br>
+Risk: The skill uses local Feishu app credentials to upload and send files externally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only where those credentials are intended for agent use and confirm each recipient ID, recipient type, and file path before sending.
+
+Risk: A mistaken file path or recipient can disclose sensitive local files.
+
+Mitigation: Send only deliberately selected files and avoid sensitive content unless disclosure to the Feishu recipient is intended.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jlif/skills/feishu-send-image)
+- [Feishu tenant access token API endpoint](https://open.feishu.cn/open-apis/auth/v3/tenant_access_token/internal)
+- [Feishu image upload API endpoint](https://open.feishu.cn/open-apis/im/v1/images)
+- [Feishu file upload API endpoint](https://open.feishu.cn/open-apis/im/v1/files)
+- [Feishu message send API endpoint](https://open.feishu.cn/open-apis/im/v1/messages)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Guidance, Text]
+
+**Output Format:** [Markdown with inline bash commands and command output text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Sends user-specified local images or files to Feishu recipients using configured Feishu app credentials.]
+
+## Skill Version(s):
+
+0.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

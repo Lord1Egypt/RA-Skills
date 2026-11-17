@@ -1,38 +1,53 @@
-## Description: <br>
-Guides agents in helping users install and use gogcli to manage Google Workspace services including Gmail, Calendar, Drive, Sheets, Docs, Slides, Contacts, Tasks, People, Groups, and Keep. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Command-line helper for managing Google Workspace services including Gmail, Calendar, Drive, Sheets, Docs, Slides, Contacts, Tasks, People, Groups, and Keep.
 
-## Publisher: <br>
-[luccast](https://clawhub.ai/user/luccast) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[luccast](https://clawhub.ai/user/luccast)
 
-## Use Case: <br>
-Developers, administrators, and agents supporting Google Workspace users use this skill to install gogcli, configure OAuth credentials, and prepare commands for common Workspace tasks. It is intended for Gmail, Calendar, Drive, Sheets, Docs, Slides, Contacts, Tasks, People, Groups, and Keep workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill asks users to install an external CLI and grant Google OAuth access. <br>
-Mitigation: Verify the gogcli repository or Homebrew tap before installation, avoid sudo unless a global install is required, and enable only the Google APIs needed for the task. <br>
-Risk: Generated commands may send email, upload files, create calendar events, or modify Google Workspace data. <br>
-Mitigation: Confirm recipients, file paths, event details, target account, and intended service before running commands that create, send, upload, or modify data. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+Developers and operators use this skill to install, configure, authenticate, and run gogcli commands for Google Workspace services from an agent session.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands may require local OAuth credentials and access to selected Google Workspace APIs.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill asks users to install mutable third-party code before interacting with Google Workspace services.
+
+Mitigation: Inspect the upstream project before installation and avoid privileged install steps such as sudo make install unless they have been reviewed.
+
+Risk: The skill can grant persistent access to sensitive Google account data through OAuth credentials stored under ~/.config/gog/.
+
+Mitigation: Use a dedicated or least-privilege Google account where possible, enable only required APIs, and revoke stored OAuth credentials when access is no longer needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/luccast/skills/gogcli)
+- [Publisher profile](https://clawhub.ai/user/luccast)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include commands that authenticate a Google account and access Google Workspace data.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,61 @@
-## Description: <br>
-Fetch scheduled upcoming economic events and data releases from FMP API for specified date ranges with impact assessment in chronological markdown format. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetch upcoming economic events and data releases using FMP API. Retrieve scheduled central bank decisions, employment reports, inflation data, GDP releases, and other market-moving economic indicators for specified date ranges (default: next 7 days). Output chronological markdown reports with impact assessment.
 
-## Publisher: <br>
-[lean-zhouchao](https://clawhub.ai/user/lean-zhouchao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lean-zhouchao](https://clawhub.ai/user/lean-zhouchao)
 
-## Use Case: <br>
-External users, developers, and market analysts use this skill to fetch upcoming economic calendar events from the FMP API and turn them into chronological markdown reports with impact notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: FMP API keys can be exposed if durable credentials are passed directly on the command line. <br>
-Mitigation: Prefer providing FMP_API_KEY through a secret or environment mechanism and avoid logging command invocations that contain credentials. <br>
-Risk: Packaged metadata does not exactly match the registry identity. <br>
-Mitigation: Verify the ClawHub publisher handle, page URL, and release version before deployment. <br>
+## Use Case:
 
+Developers, analysts, and market-facing agents use this skill to retrieve scheduled economic data releases from FMP, filter them by date, country, event type, or impact level, and produce chronological market-calendar reports.
 
-## Reference(s): <br>
-- [Economic Calendar Fetcher Zc on ClawHub](https://clawhub.ai/lean-zhouchao/economic-calendar-fetcher-zc) <br>
-- [Publisher profile: lean-zhouchao](https://clawhub.ai/user/lean-zhouchao) <br>
-- [FMP Economic Calendar API Documentation](references/fmp_api_documentation.md) <br>
-- [Financial Modeling Prep Economic Calendar API](https://financialmodelingprep.com/api/v3/economic_calendar) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, JSON, shell commands, guidance] <br>
-**Output Format:** [Markdown reports, JSON event data, and command-line usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an FMP API key; date ranges are limited to 90 days by the API documentation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill requires an FMP API key, which could be exposed if pasted into chat, command examples, or logs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide the key through FMP_API_KEY or a secret manager, avoid echoing real keys in prompts or saved examples, and rotate any key that may have been exposed.
+
+Risk: Reports can be saved to disk, so an unintended output path could disclose or overwrite local files.
+
+Mitigation: Use an explicit, intended output path for saved reports and review the destination before execution.
+
+Risk: Economic calendar data and impact labels may be incomplete, delayed, revised, or unsuitable as a sole basis for financial decisions.
+
+Mitigation: Treat generated market implications as planning context, verify high-impact releases against authoritative sources, and avoid presenting the output as financial advice.
+
+## Reference(s):
+
+- [FMP Economic Calendar API Documentation](references/fmp_api_documentation.md)
+- [FMP Economic Calendar API Endpoint](https://financialmodelingprep.com/api/v3/economic_calendar)
+- [Financial Modeling Prep](https://financialmodelingprep.com)
+- [ClawHub Skill Page](https://clawhub.ai/lean-zhouchao/skills/economic-calendar-fetcher-zc)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/lean-zhouchao)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports with optional JSON or plain-text script output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can write economic calendar output to stdout or to a user-specified file path.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

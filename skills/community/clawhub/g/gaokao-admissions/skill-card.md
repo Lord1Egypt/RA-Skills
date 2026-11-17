@@ -1,46 +1,57 @@
-## Description: <br>
-Gaokao Admissions helps users estimate provincial rank from score and subject choices, then generate reach, match, and safety university recommendations, major guidance, and a four-year college plan. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+输入省份、分数、选科和家庭背景后，生成高考志愿位次换算、冲稳保院校清单、专业推荐和四年规划。
 
-## Publisher: <br>
-[dengjiangit](https://clawhub.ai/user/dengjiangit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dengjiangit](https://clawhub.ai/user/dengjiangit)
 
-## Use Case: <br>
-External students and families use this skill to support Chinese Gaokao admissions planning by combining province, score, subject choices, family context, rank estimation, university matching, and major selection guidance. The recommendations are advisory and should be checked against official provincial examination authority data before final decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-China <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Admissions recommendations can be incorrect or outdated when live sources fail, source data changes, or rank estimates are used. <br>
-Mitigation: Treat outputs as advisory and verify final school, major, score line, and rank data against official provincial examination authority sources. <br>
-Risk: Live data lookup may send admissions-related queries to external education or search sites. <br>
-Mitigation: Use live lookup only when acceptable for the user's privacy context, or rely on local reference files when sensitive details should not be sent externally. <br>
-Risk: External education sites may rate-limit, block, or return incomplete data. <br>
-Mitigation: Disclose when recommendations use fallback or estimated data, and prefer official provincial examination authority sources for final validation. <br>
+## Use Case:
 
+External users and families in China can use this skill to prepare Gaokao admissions options by combining province, score, subject selection, rank, interests, and family context into a structured recommendation report. The skill is intended to support planning and comparison, not to replace official admissions data or human judgment.
 
-## Reference(s): <br>
-- [Gaokao Admissions ClawHub page](https://clawhub.ai/dengjiangit/skills/gaokao-admissions) <br>
-- [31 Province Gaokao Mode Reference](references/provinces.md) <br>
-- [University Classification and Discipline Evaluation](references/universities.md) <br>
-- [Reach-Match-Safety Scoring Algorithm](references/scoring-model.md) <br>
-- [Major Outlook and Employment Analysis](references/career-outlook.md) <br>
+### Deployment Geography for Use:
 
+China
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Guidance, Shell commands] <br>
-**Output Format:** [Markdown admissions analysis with optional inline shell commands for data lookup] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include estimated rank, reach-match-safety recommendation groups, major recommendations, rationale, and data caveats.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Admissions recommendations, probability bands, school rankings, salary expectations, or score-to-rank conversions may be inaccurate or outdated.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify final decisions against official provincial exam authority data, university admissions pages, and current admissions plans.
+
+Risk: Web search snippets or fallback reference data may be incomplete when live sources are unavailable.
+
+Mitigation: Treat fallback outputs as planning estimates and label uncertain data before relying on it for application choices.
+
+## Reference(s):
+
+- [Province Gaokao Mode Reference](artifact/references/provinces.md)
+- [University Classification and Subject Evaluation](artifact/references/universities.md)
+- [Reach, Match, and Safety Scoring Model](artifact/references/scoring-model.md)
+- [Major Outlook and Employment Analysis](artifact/references/career-outlook.md)
+- [ClawHub Skill Page](https://clawhub.ai/dengjiangit/skills/gaokao-admissions)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown report with ranked recommendations, probability bands, rationale, and optional shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are estimates based on public web data, local reference files, and fallback assumptions; final decisions should be verified against official admissions sources.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

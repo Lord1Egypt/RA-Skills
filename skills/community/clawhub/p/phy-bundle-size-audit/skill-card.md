@@ -1,41 +1,55 @@
-## Description: <br>
-Audits JavaScript bundle artifacts from webpack, Vite, Rollup, and Next.js to identify large chunks, duplicate dependencies, treeshaking issues, budget violations, and CI enforcement suggestions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+JavaScript bundle size auditor and budget enforcer that parses webpack stats JSON, Vite bundle reports, Rollup output, or Next.js build output to identify large chunks, budget violations, duplicate dependencies, treeshaking failures, and CI fail-gate commands.
 
-## Publisher: <br>
-[PHY041](https://clawhub.ai/user/PHY041) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[phy041](https://clawhub.ai/user/phy041)
 
-## Use Case: <br>
-Developers and engineers use this skill to inspect local JavaScript build output, understand bundle-size regressions, and prepare optimization or CI budget recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Suggested package installs, removals, or CI workflow edits may change application behavior or build policy. <br>
-Mitigation: Review proposed dependency and workflow changes, run the project test suite, and apply only changes that match the intended bundle-size policy. <br>
-Risk: Auditing unrelated build output directories may expose or mix private project artifacts in the report. <br>
-Mitigation: Run the skill only in the project intended for inspection and limit inputs to relevant local build artifacts. <br>
+## Use Case:
 
+Developers and engineers use this skill to audit JavaScript application build artifacts, understand bundle-size regressions, and produce optimization guidance or CI budget checks for webpack, Vite, Rollup, Next.js, and related builds.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/PHY041/phy-bundle-size-audit) <br>
-- [Canlah AI homepage](https://canlah.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with tables and inline code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include gzip size estimates, bundle budget findings, optimization suggestions, and CI fail-gate snippets.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release and skill frontmatter) <br>
+Risk: npm and npx examples may introduce ordinary JavaScript supply-chain risk if dependencies are not pinned or lockfiles are ignored.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use pinned project devDependencies, committed lockfiles, npm ci in CI, and least-privilege CI secrets before running package-based examples.
+
+Risk: Bundle optimization suggestions and CI fail gates can affect application behavior or release workflows if applied without review.
+
+Mitigation: Review generated guidance and test build outputs before committing code, dependency, or CI configuration changes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/phy041/skills/phy-bundle-size-audit)
+- [Publisher profile](https://clawhub.ai/user/phy041)
+- [Canlah AI homepage](https://canlah.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with tables, code snippets, and CI command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Local file-analysis guidance; no external API is described by the artifact.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata and artifact frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

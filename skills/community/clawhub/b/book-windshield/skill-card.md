@@ -1,38 +1,49 @@
-## Description: <br>
-Book Windshield helps an agent search for windshield services, check availability, and create bookings through Lokuli MCP. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Book windshield services through Lokuli MCP.
 
-## Publisher: <br>
-[edwardrodriguez703-design](https://clawhub.ai/user/edwardrodriguez703-design) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[edwardrodriguez703-design](https://clawhub.ai/user/edwardrodriguez703-design)
 
-## Use Case: <br>
-External users can use this skill when they need an agent to find windshield service options, check appointment availability, and prepare a booking with customer contact details. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Using the booking flow may send contact information and appointment details to Lokuli or a service provider. <br>
-Mitigation: Confirm the booking intent and show the user the exact information that will be submitted before creating a booking. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/edwardrodriguez703-design/book-windshield) <br>
-- [Lokuli MCP endpoint](https://lokuli.com/mcp/sse) <br>
+## Use Case:
 
+External users can use this skill to search for windshield service providers, check appointment availability, and create a booking through Lokuli's MCP service.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, API Calls] <br>
-**Output Format:** [Markdown with JSON-RPC request examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill may submit appointment and customer contact details only after user confirmation.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Booking details and customer contact information may be sent to Lokuli's external MCP service.
+
+Mitigation: Before creating a booking, confirm the provider, service, time slot, and that the user's name, email, and phone number may be sent to Lokuli.
+
+## Reference(s):
+
+- [Book Windshield on ClawHub](https://clawhub.ai/edwardrodriguez703-design/skills/book-windshield)
+- [Lokuli MCP Endpoint](https://lokuli.com/mcp/sse)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Configuration, Guidance]
+
+**Output Format:** [Text and JSON-RPC tool-call examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May involve sending provider, appointment, and customer contact details to Lokuli's external service.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

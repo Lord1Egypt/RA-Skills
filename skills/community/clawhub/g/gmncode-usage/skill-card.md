@@ -1,41 +1,54 @@
-## Description: <br>
-GMNCODE Usage helps an agent query GMNCODE / gmncode.cn usage data through HTTP APIs, including dashboard summaries, daily trends, per-model token usage, and cost data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+GMNCODE Usage helps agents query GMNCODE/gmncode.cn dashboard usage over HTTP, including account quota, daily trends, and per-model token and cost data.
 
-## Publisher: <br>
-[alex-shen1121](https://clawhub.ai/user/alex-shen1121) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alex-shen1121](https://clawhub.ai/user/alex-shen1121)
 
-## Use Case: <br>
-Developers and operators use this skill to retrieve GMNCODE account quota, dashboard usage summaries, date-range trends, and per-model token and cost breakdowns without manually opening the web dashboard. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses GMNCODE account credentials and caches an access token locally. <br>
-Mitigation: Use a dedicated or limited-scope account where possible, avoid pasting passwords into chat, keep ~/.openclaw/.env and the token cache private, and rotate credentials or revoke tokens if the environment is shared or compromised. <br>
-Risk: The skill depends on a third-party service and sends authenticated requests to GMNCODE APIs. <br>
-Mitigation: Install and run it only if you trust the service and publisher, and review the configured account and requested date ranges before execution. <br>
+## Use Case:
 
+External developers and GMNCODE users use this skill to have an agent retrieve account daily quota, dashboard summaries, usage trends, and per-model token and cost reports without manually opening the web dashboard.
 
-## Reference(s): <br>
-- [GMNCODE Usage API Reference](references/api.md) <br>
-- [GMNCODE service](https://gmncode.cn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Concise Markdown summaries, compact tables, JSON output when requested, and shell commands for the bundled CLI.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses GMNCODE_EMAIL and GMNCODE_PASSWORD from environment variables or ~/.openclaw/.env; caches access tokens locally at ~/.cache/openclaw/gmncode-usage/token.json.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.3 (source: server release metadata) <br>
+Risk: The skill requires GMNCODE login credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer environment variables over a saved password file, avoid shared machines, and restrict any credential file to the current user.
+
+Risk: The skill can cache a bearer token locally.
+
+Mitigation: Restrict cache file permissions, clear the token cache when finished, and review the cache behavior before use.
+
+## Reference(s):
+
+- [GMNCODE Usage API Reference](references/api.md)
+- [GMNCODE](https://gmncode.cn)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands, configuration guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands; CLI output as compact text tables or JSON when requested]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results are scoped to the authenticated GMNCODE account and selected date range.]
+
+## Skill Version(s):
+
+0.1.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,58 @@
-## Description: <br>
-Provides production-tested SQL patterns for DWD, DWS, and ADS layered data warehouse modeling, including dimension explosion, multi-period aggregation, OLAP multi-select deduplication, and historical period freezing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides SQL patterns and design guidance for DWD, DWS, and ADS layered data warehouse architecture, including multi-period rollups, dimension explosion, OLAP multi-select deduplication, and historical period freezing.
 
-## Publisher: <br>
-[fang-zeqiang](https://clawhub.ai/user/fang-zeqiang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fang-zeqiang](https://clawhub.ai/user/fang-zeqiang)
 
-## Use Case: <br>
-Data engineers, analytics engineers, and warehouse architects use this skill to design layered DWD/DWS/ADS tables and generate SQL patterns for weekly and monthly rollups, deduplicated OLAP reporting, and dashboard-ready datasets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated SQL patterns can affect warehouse data if run with incorrect partition dates, INSERT OVERWRITE targets, or table definitions. <br>
-Mitigation: Review generated SQL carefully before execution, confirming write partitions, table targets, and DDL column order against the intended warehouse design. <br>
+## Use Case:
 
+Data engineers and analytics developers use this skill to design layered warehouse tables, generate SQL skeletons, choose aggregation patterns, and document DWD-to-DWS-to-ADS data flow with Mermaid diagrams.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fang-zeqiang/dwd-dws-ads-warehouse-patterns) <br>
-- [Publisher homepage](https://zeqiang.fun) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with SQL and Mermaid code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated SQL should be reviewed before warehouse execution, especially partition dates, INSERT OVERWRITE targets, and DDL column order.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release and artifact manifest) <br>
+Risk: SQL templates include INSERT OVERWRITE and partition placeholders that could affect production warehouse data if applied without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated SQL, partition dates, and target tables through normal data change controls before execution.
+
+Risk: Incorrect placeholder style or period-end logic can cause T-1/T-0 misalignment or incomplete-period reporting.
+
+Mitigation: Confirm scheduler placeholder conventions and validate period boundaries against the time dimension before release.
+
+Risk: Column order mismatch between INSERT SELECT output and DDL can silently write values into the wrong fields.
+
+Mitigation: Compare SELECT columns with the DDL field order during code review and test writes in a non-production environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fang-zeqiang/skills/dwd-dws-ads-warehouse-patterns)
+- [Publisher homepage](https://zeqiang.fun)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Guidance]
+
+**Output Format:** [Markdown with SQL and Mermaid code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces reference patterns and templates; generated SQL should be reviewed before warehouse execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact/claw.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

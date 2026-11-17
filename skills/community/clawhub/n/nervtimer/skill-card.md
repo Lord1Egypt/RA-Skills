@@ -1,44 +1,60 @@
-## Description: <br>
-Set one-shot or recurring timers across channels and keep nagging every 5 minutes until the user explicitly says it is done. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Set one-shot or recurring timers across channels and keep nagging every 5 minutes until the user explicitly says it is done. Uses cron for scheduling, deterministic local state for nagging lifecycle, and LLM-generated reminder text that escalates in urgency over time.
 
-## Publisher: <br>
-[fragwuerdig](https://clawhub.ai/user/fragwuerdig) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fragwuerdig](https://clawhub.ai/user/fragwuerdig)
 
-## Use Case: <br>
-Developers and agent users use this skill to create one-shot or recurring reminder timers, schedule reminder turns, and continue short escalating reminders until the user explicitly confirms completion. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security scan verdict is suspicious and notes behavior that may use full-access review helpers or external reviewer fallbacks. <br>
-Mitigation: Review the skill before installing it in sensitive workspaces and disable full-access or external fallback review behavior unless explicitly intended. <br>
-Risk: The skill creates scheduled reminder jobs and repeated nagging turns that can continue until explicit completion. <br>
-Mitigation: Confirm schedule details before creating timers, keep reminders scoped to the intended channel, and mark or cancel timers when they are no longer needed. <br>
-Risk: Timer state is persisted locally under the user's OpenClaw directory by default. <br>
-Mitigation: Use an isolated store path for sensitive workspaces and review stored timer data if timer titles or reasons may contain private information. <br>
+## Use Case:
 
+External users and developers use Nervtimer to create one-shot or recurring reminder timers that keep notifying the current channel until the user explicitly confirms completion.
 
-## Reference(s): <br>
-- [NervTimer Intent Schema](references/intent-schema.md) <br>
-- [NervTimer Escalation Policy](references/escalation-policy.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/fragwuerdig/nervtimer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline bash commands and JSON cron payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces short reminder text, cron scheduling payloads, and local timer state transitions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Persistent scheduled reminders and local timer state may continue until timers are completed or canceled.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review active cron jobs and the local Nervtimer state store during installation, use, and removal.
+
+Risk: Scheduled agent turns are instructed to run shell commands built from timer data.
+
+Mitigation: Validate timer IDs before scheduling and encode reminder title and reason as inert data rather than executable instructions.
+
+Risk: Escalating reminder language can become intrusive or inappropriate for some users or channels.
+
+Mitigation: Keep reminder text within the escalation policy guardrails and make reminder language user-configurable before broad deployment.
+
+## Reference(s):
+
+- [Nervtimer ClawHub release](https://clawhub.ai/fragwuerdig/skills/nervtimer)
+- [fragwuerdig publisher profile](https://clawhub.ai/user/fragwuerdig)
+- [NervTimer Intent Schema](artifact/references/intent-schema.md)
+- [NervTimer Escalation Policy](artifact/references/escalation-policy.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown with structured JSON examples and inline bash commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates cron scheduling payloads, persistent local timer state, and short reminder messages with escalation guardrails.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

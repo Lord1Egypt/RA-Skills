@@ -1,0 +1,35 @@
+{
+  "code": 200,
+  "msg": "",
+  "data": [
+    {
+      "id": 101,
+      "title": "北京市第一医院实验室设备采购招标公告",
+      "infoType": "招标公告",
+      "publishTime": "2026-04-10",
+      "budgetAmount": "1200000.00",
+      "biddingAmount": null,
+      "purchasingUnit": "北京市第一医院",
+      "winningBidderUnit": null,
+      "targetKeywords": [
+        "实验室设备"
+      ],
+      "url": "https://example.invalid/project/101"
+    },
+    {
+      "id": 103,
+      "title": "北京学校实验室设备采购中标通知",
+      "infoType": "中标通知",
+      "publishTime": "2026-04-12",
+      "budgetAmount": null,
+      "biddingAmount": "1000000",
+      "purchasingUnit": "测试学校",
+      "winningBidderUnit": "测试供应商",
+      "targetKeywords": [
+        "实验室设备"
+      ],
+      "url": "https://example.invalid/project/103"
+    }
+  ],
+  "success": true
+}

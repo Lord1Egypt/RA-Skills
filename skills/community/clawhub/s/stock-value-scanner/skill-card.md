@@ -1,41 +1,62 @@
-## Description: <br>
-Scans US stocks for reverse value opportunities using pullback depth, RSI, EMA crossover, volume rebound, volatility contraction, valuation analysis, and macroeconomic signals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language skill for scanning U.S. equities for reverse value opportunities using pullback depth, RSI, EMA crossover, rebound volume, volatility contraction, valuation analysis, and macroeconomic context.
 
-## Publisher: <br>
-[sg345662365-oss](https://clawhub.ai/user/sg345662365-oss) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sg345662365-oss](https://clawhub.ai/user/sg345662365-oss)
 
-## Use Case: <br>
-External users and market analysts use this skill to identify US equity value-scanner candidates and receive structured stock-screening analysis. Outputs should be treated as financial information, not guaranteed investment advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Stock-scanner output could be mistaken for guaranteed investment advice. <br>
-Mitigation: Treat outputs as financial information only and independently evaluate any investment decision. <br>
-Risk: The artifact advertises a paid USDT subscription and Telegram contact path. <br>
-Mitigation: Verify the subscription terms, recipient, and service legitimacy before paying or contacting external channels. <br>
+## Use Case:
 
+External users and market analysts use this skill to identify U.S. stock candidates that may have reached value-oriented reversal conditions. Outputs should be treated as informational analysis rather than financial advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sg345662365-oss/stock-value-scanner) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/sg345662365-oss) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown analysis and recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Financial scanner output may reference subscription details and Telegram contact information; users should independently verify financial claims before acting.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata and frontmatter) <br>
+Risk: Stock-screening analysis can be mistaken for investment advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as informational only and require independent financial review before trading or investment decisions.
+
+Risk: Market data, technical indicators, valuation assumptions, and macro signals may be stale or inaccurate.
+
+Mitigation: Verify all prices, indicators, company data, and macroeconomic inputs against current trusted market-data sources before acting.
+
+Risk: Subscription and payment details may be unverifiable or may change outside the skill artifact.
+
+Mitigation: Independently confirm payment terms, subscription access, and contact details before sending funds.
+
+Risk: Chinese-language documentation may be misunderstood by non-Chinese readers.
+
+Mitigation: Use qualified translation or bilingual review when evaluating terms, limitations, and analysis outputs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sg345662365-oss/skills/stock-value-scanner)
+- [Publisher profile](https://clawhub.ai/user/sg345662365-oss)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain text stock-screening analysis]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language documentation; analysis may include subscription/payment details and should be checked against current market data.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

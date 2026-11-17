@@ -1,42 +1,59 @@
-## Description: <br>
-Sling (getsling.com) skill for searching and reading Sling data through the OOMOL oo CLI connector. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use Sling through an OOMOL-connected account to search and read shifts, tasks, users, groups, and calendar events.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and operators use this skill to let an agent inspect Sling schedules, shifts, users, groups, tasks, and calendar events through an already connected OOMOL account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sling responses can expose sensitive schedule, user, group, task, and calendar data from the connected OOMOL account. <br>
-Mitigation: Install and use the skill only when those Sling queries are intended, and avoid invoking it for ambiguous Sling mentions. <br>
-Risk: Authentication, connection, scope, credential, or billing failures can interrupt connector access. <br>
-Mitigation: Use the documented setup and recovery steps only after a matching command failure, rather than proactively opening login or connection flows. <br>
+## Use Case:
 
+Sling users use the skill to retrieve shift and session details, look up tasks, users, groups, and coworkers, and read calendar events for their connected organization.
 
-## Reference(s): <br>
-- [ClawHub Sling skill page](https://clawhub.ai/oomol/skills/oo-sling) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [Sling homepage](https://getsling.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API Calls, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON payloads or responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses live Sling connector schemas before actions; current artifact actions are read-only get and list operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Setup runs downloaded CLI code without separate approval, and the remote installer payload remains unverified.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and approve CLI installation separately, preferably using a verified, fixed release.
+
+Risk: The CLI can make broader changes to installed agent skills through automatic synchronization.
+
+Mitigation: Before setup, consider disabling synchronization with OO_SKILLS_SYNC_DISABLED=1.
+
+Risk: Requests are made through the connected Sling account and OOMOL processes them.
+
+Mitigation: Connect only the intended Sling account and accept OOMOL's role in processing requests.
+
+## Reference(s):
+
+- [Sling](https://getsling.com)
+- [Sling API documentation](https://api.getsling.com/)
+- [oo CLI](https://github.com/oomol-lab/oo-cli)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Text, Analysis]
+
+**Output Format:** [Sling data returned as JSON, with information and summaries presented as text or Markdown.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responses depend on the connected Sling account, organization, and requested action.]
+
+## Skill Version(s):
+
+1.0.4 (source: release evidence, frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

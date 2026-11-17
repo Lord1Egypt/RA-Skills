@@ -1,0 +1,12 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-07-09/server.schema.json",
+  "name": "io.github.309441738/ola-tool-cruise-finder",
+  "description": "A powerful tool that assists users in finding the best cruises based on their preferences and requirements.",
+  "version": "0.1.0",
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://cruise-mcp.olavacations.com/api/gw/s/4e6b4800-96f1-48f6-bf19-4dcb946cab31/invoke"
+    }
+  ]
+}

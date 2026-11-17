@@ -1,43 +1,55 @@
-## Description: <br>
-Execute an approved implementation plan with visible preflight, update, and completion handoffs, including TDD guidance and optional worktree setup. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Execute an approved implementation plan with TDD, visible progress updates, and optional worktree setup.
 
-## Publisher: <br>
-[kkenny0](https://clawhub.ai/user/kkenny0) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kkenny0](https://clawhub.ai/user/kkenny0)
 
-## Use Case: <br>
-Developers and coding agents use this skill to execute an already-approved implementation plan, choose sequential, parallel, or hybrid execution, preserve a task ledger, and produce verification evidence before review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can change project files, run tests, install dependencies, and create worktrees while implementing approved plans. <br>
-Mitigation: Review the BUILD PREFLIGHT scope, require confirmation before dependency installs or commits in sensitive repositories, and inspect changed files plus verification evidence before accepting the work. <br>
-Risk: Worktree setup may alter repository housekeeping such as adding a project-local worktree path to .gitignore. <br>
-Mitigation: Use isolated branches or worktrees for implementation work and review any housekeeping changes separately from feature changes. <br>
+## Use Case:
 
+Developers and engineering agents use this skill to execute an approved plan, keep a task ledger, apply a test-first workflow, and hand off implementation evidence for review.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/kkenny0/taku-build) <br>
-- [Test-Driven Development](references/tdd.md) <br>
-- [Git Worktree Isolation](references/worktrees.md) <br>
-- [Publisher Profile](https://clawhub.ai/user/kkenny0) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown status blocks with command output summaries and changed-file evidence] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses BUILD PREFLIGHT, BUILD UPDATE, and BUILD COMPLETE handoff formats.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill may modify git state by creating branches or worktrees and by editing and committing .gitignore during setup.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in repositories where branch, worktree, and .gitignore changes are acceptable, and review planned git operations before allowing setup to proceed.
+
+Risk: The skill may install dependencies, run build commands, or execute tests in unfamiliar projects.
+
+Mitigation: Review dependency and build commands before execution, especially in repositories or dependency graphs you do not already trust.
+
+## Reference(s):
+
+- [Taku Build skill page](https://clawhub.ai/kkenny0/skills/taku-build)
+- [Test-Driven Development](artifact/references/tdd.md)
+- [Git Worktree Isolation](artifact/references/worktrees.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Structured Markdown status reports with task ledgers, verification evidence, code changes, configuration edits, and shell commands when implementation requires them.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces BUILD PREFLIGHT, BUILD UPDATE, and BUILD COMPLETE handoff formats.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

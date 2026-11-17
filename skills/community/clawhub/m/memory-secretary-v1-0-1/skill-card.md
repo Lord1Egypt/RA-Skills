@@ -1,43 +1,61 @@
-## Description: <br>
-Memory Secretary manages and analyzes local memory files with quality checks, duplicate-task detection, success-case extraction, work-pattern analysis, and reminder generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+记忆秘书 manages and analyzes local OpenClaw memory files, providing memory quality checks, repeated-task detection, success-case extraction, work-pattern analysis, smart reminders, and shareable reports.
 
-## Publisher: <br>
-[yhm2084](https://clawhub.ai/user/yhm2084) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yhm2084](https://clawhub.ai/user/yhm2084)
 
-## Use Case: <br>
-Developers and OpenClaw users can use this skill to inspect a workspace memory directory, find prior related work, summarize successful cases, and generate reminders or shareable status reports before starting new tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads local workspace memory files and can write generated reports into the configured memory directory. <br>
-Mitigation: Run it only against an intended workspace path and review generated reports before sharing them. <br>
-Risk: The security guidance flags --force usage as needing review because it can overwrite local skill files. <br>
-Mitigation: Review any --force install command before running it and confirm the artifact is the expected release. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to inspect local memory files, avoid repeated work, identify reusable successful cases, analyze recurring work patterns, generate reminders, and produce reports for agent workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yhm2084/memory-secretary-v1-0-1) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [CHANGELOG.md](artifact/CHANGELOG.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Configuration instructions, Guidance] <br>
-**Output Format:** [Python dictionaries and Markdown-oriented reports with example Python and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads workspace memory files and writes JSON reports under the configured memory/secretary directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and CHANGELOG.md, released 2026-04-14) <br>
+Risk: The skill reads local OpenClaw memory files and writes derived reports.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in workspaces where the agent is allowed to inspect memory contents, and review generated reports before sharing them.
+
+Risk: The packaged tests can execute Python files from paths outside the package.
+
+Mitigation: Run tests only in an isolated workspace or after reviewing and correcting test paths.
+
+Risk: The installation documentation encourages using a force flag to bypass security warnings.
+
+Mitigation: Do not use the force flag as a substitute for review; rely on scanner results, source review, and workspace isolation before installation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yhm2084/skills/memory-secretary-v1-0-1)
+- [Publisher profile](https://clawhub.ai/user/yhm2084)
+- [README](artifact/README.md)
+- [Skill instructions](artifact/SKILL.md)
+- [Changelog](artifact/CHANGELOG.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python usage examples and structured local analysis reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reads local workspace memory files and writes derived reports under the workspace memory area.]
+
+## Skill Version(s):
+
+1.0.1 (source: evidence.release.version, artifact/SKILL.md, artifact/README.md, artifact/CHANGELOG.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

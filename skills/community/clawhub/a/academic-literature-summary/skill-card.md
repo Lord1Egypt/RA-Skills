@@ -1,42 +1,51 @@
-## Description: <br>
-Academic Literature Summary helps agents read Chinese or English academic papers from PDF or text and produce structured Chinese summaries with citations, key study details, discussion, and conclusions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Summarizes Chinese and English academic literature into concise, structured Chinese summaries with preserved citations and optional Markdown, DOCX, or PDF output.
 
-## Publisher: <br>
-[xxx031211](https://clawhub.ai/user/xxx031211) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xxx031211](https://clawhub.ai/user/xxx031211)
 
-## Use Case: <br>
-Students, researchers, and analysts use this skill to turn academic articles, dissertations, and research reports into concise structured Chinese reading notes while preserving source citations and important methods, results, and statistics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Optional DOCX or PDF output can resemble publisher-branded journal material, which may be mistaken for an official paper or source-derived artifact. <br>
-Mitigation: Clearly label generated documents as AI-generated summaries and avoid using publisher logos, journal mastheads, or reconstructed official-looking branding. <br>
-Risk: Generated summaries may carry incorrect statistics, figures, or images if the agent misreads or over-reconstructs the source paper. <br>
-Mitigation: Verify statistics, figures, images, and conclusions against the original paper before relying on or sharing the summary. <br>
+## Use Case:
 
+Students, researchers, and knowledge workers use this skill to read PDFs or text from academic articles, theses, and research reports, then produce structured Chinese literature notes organized around review, hypotheses, model, study details, discussion, and conclusion.
 
-## Reference(s): <br>
-- [Skill page](https://clawhub.ai/xxx031211/academic-literature-summary) <br>
-- [Structure contract](references/structure_contract.md) <br>
-- [Style contract](references/style_contract.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown by default, with optional DOCX or PDF document guidance when explicitly requested] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-first summaries preserve source citation formats, key statistics, methods, and stated limitations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: When DOCX or PDF output is requested, generated files could overwrite existing work if the destination path is ambiguous.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the output path before file generation and avoid overwriting existing files.
+
+## Reference(s):
+
+- [Skill page](https://clawhub.ai/xxx031211/skills/academic-literature-summary)
+- [Structure Contract](references/structure_contract.md)
+- [Style Contract](references/style_contract.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Guidance]
+
+**Output Format:** [Structured Chinese Markdown by default, with optional DOCX or PDF academic document output when requested]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Preserves source citation formats and key statistics; DOCX/PDF output follows a two-column academic layout when requested.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

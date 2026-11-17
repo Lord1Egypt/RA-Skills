@@ -105,7 +105,7 @@ Generated JSON parameter schema:
 
 Action slug: `list`
 
-Price: `20` credits
+Price: `3` credits
 
 Show all your task trees sorted by most recently updated. Returns up to 50 trees with their IDs, objectives, task counts, and progress.
 
@@ -129,7 +129,7 @@ Generated JSON parameter schema:
 
 Action slug: `status`
 
-Price: `20` credits
+Price: `3` credits
 
 Check the current progress and status of a task tree. Returns overall progress, completed/remaining tasks, blocked items, and estimated completion time.
 

@@ -1,41 +1,58 @@
-## Description: <br>
-Professional Renewable Energy Engineering Career Roadmap Platform that generates personalized learning paths and specialization guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Professional Renewable Energy Engineering Career Roadmap Platform that generates personalized learning paths and specialization guidance.
 
-## Publisher: <br>
-[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd)
 
-## Use Case: <br>
-External developers, engineers, career changers, students, and talent-development teams use this skill to request personalized renewable-energy engineering roadmaps, specialization options, learning paths, skill-gap analysis, milestones, and recommended resources. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Assessment data is sent to an external roadmap service and may include career goals, experience, skills, timestamps, session IDs, or an optional user ID. <br>
-Mitigation: Use a pseudonymous session ID when possible, leave userId null unless needed, and avoid sharing sensitive personal details beyond what is necessary for career guidance. <br>
+## Use Case:
 
+External users, developers, and engineering professionals use this skill to generate renewable energy career roadmaps, explore specializations, and retrieve learning paths based on assessment data, skills, experience, and goals.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/krishnakumarmahadevan-cmd/toolweb-renewable-energy) <br>
-- [Renewable Energy API route](https://api.mkkpro.com/career/renewable-energy) <br>
-- [API documentation](https://api.mkkpro.com:8180/docs) <br>
-- [ToolWeb](https://toolweb.in) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Guidance, Markdown, Configuration] <br>
-**Output Format:** [Markdown guidance with JSON request and response examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces career-roadmap structures, specialization lists, learning paths, skill gaps, milestones, resource recommendations, and API usage details.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and OpenAPI info.version) <br>
+Risk: Roadmap requests may be sent to an external service and can include career goals, skills, session IDs, timestamps, and optionally a user ID.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid submitting sensitive personal details beyond what is needed for career guidance, and review data-sharing expectations before use.
+
+Risk: Generated career guidance may be incomplete or unsuitable for a user's specific professional, geographic, or certification context.
+
+Mitigation: Treat recommendations as planning support and verify courses, certifications, and milestones against current industry and local requirements.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/krishnakumarmahadevan-cmd/skills/toolweb-renewable-energy)
+- [Renewable Energy API Docs](https://api.mkkpro.com:8180/docs)
+- [Renewable Energy API Route](https://api.mkkpro.com/career/renewable-energy)
+- [ToolWeb](https://toolweb.in)
+- [ToolWeb OpenClaw](https://toolweb.in/openclaw/)
+- [ToolWeb RapidAPI Profile](https://rapidapi.com/user/mkrishna477)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON request and response examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May call an external roadmap API and return personalized roadmap, specialization, learning path, milestone, and resource guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and OpenAPI info.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

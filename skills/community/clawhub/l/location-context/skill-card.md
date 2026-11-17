@@ -1,43 +1,54 @@
-## Description: <br>
-Get comprehensive context about a location including nearby places, area description, and optional weather. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Get comprehensive context about a location including nearby places, area description, and optional weather.
 
-## Publisher: <br>
-[James-southendsolutions](https://clawhub.ai/user/James-southendsolutions) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[james-southendsolutions](https://clawhub.ai/user/james-southendsolutions)
 
-## Use Case: <br>
-External users and developers use this skill to provide location-aware context, including nearby places, area descriptions, tailored local recommendations, and optional weather context for trip planning, meeting locations, and outdoor activity planning. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill sends user-provided location details to the Camino API. <br>
-Mitigation: Use it only when sharing the submitted location details with Camino is acceptable. <br>
-Risk: The skill requires a CAMINO_API_KEY in the local environment. <br>
-Mitigation: Store the API key in the agent environment and avoid placing it in prompts, shell history, or shared files. <br>
-Risk: The skill documentation recommends optional companion skills. <br>
-Mitigation: Review and assess any companion skills separately before installing them. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/James-southendsolutions/location-context) <br>
-- [Camino API key activation](https://app.getcamino.ai/skills/activate) <br>
-- [Camino Context API endpoint](https://api.getcamino.ai/context) <br>
+## Use Case:
 
+Agents, developers, and external users use this skill to retrieve location-aware area summaries, nearby place context, tailored recommendations, and optional weather context for planning or recommendation workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, API calls, guidance] <br>
-**Output Format:** [Markdown usage guidance and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires CAMINO_API_KEY and sends user-provided location details to the Camino API.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill sends location coordinates, radius, optional context, and weather options to Camino AI.
+
+Mitigation: Avoid sending sensitive exact locations or private meeting details unless that disclosure is acceptable for the use case.
+
+Risk: The skill requires a CAMINO_API_KEY for repeated API access.
+
+Mitigation: Use a least-privilege API key, store it only in the intended environment configuration, and rotate it if exposure is suspected.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/james-southendsolutions/skills/location-context)
+- [Camino API key activation](https://app.getcamino.ai/skills/activate)
+- [Camino trial API key endpoint](https://api.getcamino.ai/trial/start)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [JSON API responses with Markdown usage guidance and shell examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a CAMINO_API_KEY environment variable and sends requested location details to Camino AI.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

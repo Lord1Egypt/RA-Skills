@@ -1,48 +1,66 @@
-## Description: <br>
-Operate Milvus vector database with pymilvus Python SDK for connection setup, collection management, vector search, hybrid search, full-text search, indexing, partitions, databases, and RBAC via Python code. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Operates Milvus vector databases with the pymilvus Python SDK for connection, collection, vector search, indexing, partition, database, and RBAC workflows.
 
-## Publisher: <br>
-[zhanshuyou](https://clawhub.ai/user/zhanshuyou) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhanshuyou](https://clawhub.ai/user/zhanshuyou)
 
-## Use Case: <br>
-Developers and engineers use this skill to have an agent draft Milvus and pymilvus workflows for vector database administration, semantic search, RAG, indexing, and access control tasks. It is intended for environments where users can supply their own Milvus connection details and review database-changing operations before execution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill includes examples for delete, drop, truncate, password, role, and privilege operations that can change or remove Milvus resources. <br>
-Mitigation: Use least-privilege credentials, verify the target database or collection, and require explicit user confirmation before destructive or administrative operations. <br>
-Risk: Generated connection code could expose or misuse database credentials if connection details are assumed or hardcoded. <br>
-Mitigation: Ask for the deployment type, URI, authentication method, and database name at runtime, and avoid embedding secrets in reusable files or examples. <br>
+## Use Case:
 
+Developers and engineers use this skill to have an agent generate Milvus and pymilvus code, shell commands, and configuration guidance for vector database administration, semantic search, RAG, hybrid search, full-text search, and RBAC workflows.
 
-## Reference(s): <br>
-- [Milvus documentation](https://milvus.io/) <br>
-- [pymilvus Python SDK](https://github.com/milvus-io/pymilvus) <br>
-- [Collection Management](references/collection.md) <br>
-- [Vector Operations](references/vector.md) <br>
-- [Index Management](references/index.md) <br>
-- [Partition Management](references/partition.md) <br>
-- [Database Management](references/database.md) <br>
-- [User and Role Management](references/user-role.md) <br>
-- [Common Patterns](references/patterns.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with Python and shell code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include pymilvus API examples, connection placeholders, schema definitions, index parameters, search filters, and operational cautions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.2 (source: ClawHub release metadata; artifact metadata lists 1.0.0) <br>
+Risk: The skill includes examples for destructive database and collection operations, including drops, truncates, deletes, and RBAC changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation before generating or executing destructive operations or access-control changes, especially in shared, staging, or production environments.
+
+Risk: The skill includes example passwords and wildcard privilege examples that could lead to weak credentials or overly broad access if copied directly.
+
+Mitigation: Replace example passwords with unique secret-managed values and avoid wildcard privileges unless cluster-wide access is deliberately intended.
+
+Risk: Incorrect connection targets or credential handling could affect the wrong Milvus deployment.
+
+Mitigation: Ask for the deployment type, URI, authentication method, and database name before writing connection code, and avoid hardcoding credentials.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhanshuyou/skills/milvus-skill)
+- [Milvus documentation](https://milvus.io/)
+- [pymilvus](https://github.com/milvus-io/pymilvus)
+- [Collection Management](references/collection.md)
+- [Database Management](references/database.md)
+- [Index Management](references/index.md)
+- [Partition Management](references/partition.md)
+- [Common Patterns](references/patterns.md)
+- [User and Role Management](references/user-role.md)
+- [Vector Operations](references/vector.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with Python code blocks and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user-supplied Milvus deployment details and credentials before generating connection code.]
+
+## Skill Version(s):
+
+0.0.2 (source: ClawHub release evidence; artifact metadata reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

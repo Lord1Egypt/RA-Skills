@@ -1,45 +1,64 @@
-## Description: <br>
-Extracts structured transaction data from receipt images or PDFs using the ReceiptExtract API, with JSON, CSV, and summary outputs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extract structured transaction data from receipt photos, scans, and PDFs with the ReceiptExtract API, then return JSON, summaries, or CSV for downstream workflows.
 
-## Publisher: <br>
-[yborunov](https://clawhub.ai/user/yborunov) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yborunov](https://clawhub.ai/user/yborunov)
 
-## Use Case: <br>
-External users, developers, and agents use this skill to upload receipt photos, scans, or PDFs to ReceiptExtract and return merchant, date, item, tax, and total data for review or downstream automation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Receipt images and PDFs can contain sensitive purchase history, addresses, timestamps, loyalty data, and payment details, and the skill uploads selected files to ReceiptExtract. <br>
-Mitigation: Review ReceiptExtract privacy and retention terms before use, upload only intended files, and use narrow input paths for bulk processing. <br>
-Risk: The ReceiptExtract API token could be exposed if pasted into chat, committed to source control, or printed in command output. <br>
-Mitigation: Store RECEIPTEXTRACT_API_TOKEN in an environment variable or secret manager and avoid echoing tokens or raw authorization headers. <br>
-Risk: OCR and parsing results may be incomplete or inaccurate for some receipts. <br>
-Mitigation: Sanity-check extracted totals, taxes, currencies, and line items against the original receipt before relying on the output. <br>
+## Use Case:
 
+External users and developers use this skill to extract merchant, date, line-item, tax, total, and traceability fields from receipt images or PDFs. It is suited for testing ReceiptExtract on sample files and wiring receipt parsing into scripts, automations, or agent workflows.
 
-## Reference(s): <br>
-- [ReceiptExtract API Notes](references/api.md) <br>
-- [ReceiptExtract](https://www.receiptextract.com) <br>
-- [ReceiptExtract upload endpoint](https://www.receiptextract.com/api/receipt/upload) <br>
-- [ClawHub skill page](https://clawhub.ai/yborunov/receiptextract) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, CSV, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands; runtime output can be JSON, CSV, or plain-text summaries.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports single-file and bulk receipt processing; bulk mode preserves per-file status and error details.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Receipt files sent to ReceiptExtract may contain merchant, location, purchase, tax, or payment-related details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Process only receipts the user is authorized to upload and avoid sending sensitive receipts unless the third-party API use is acceptable.
+
+Risk: The ReceiptExtract API token could be exposed if pasted into chat, embedded in commands, or committed with examples.
+
+Mitigation: Keep the token in `RECEIPTEXTRACT_API_TOKEN` or a secret manager, and never echo raw authorization headers in user-facing output.
+
+Risk: Bulk or recursive directory processing can upload more files than intended and consume one credit per receipt.
+
+Mitigation: Review the selected input directory and file list before running bulk mode, especially when `--recursive` is enabled.
+
+Risk: OCR and extraction results can be incomplete or imperfect even when the API returns useful data.
+
+Mitigation: Sanity-check currency, tax labels, totals, and suspicious line items against the visible receipt, and do not invent missing extracted data.
+
+## Reference(s):
+
+- [ReceiptExtract API Notes](references/api.md)
+- [ReceiptExtract](https://www.receiptextract.com)
+- [Receipt Upload Endpoint](https://www.receiptextract.com/api/receipt/upload)
+- [ClawHub Skill Page](https://clawhub.ai/yborunov/skills/receiptextract)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands; helper output can be JSON, CSV, or plain-text summary.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports single-file and directory modes; bulk JSON includes processed, succeeded, failed, and per-file results.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

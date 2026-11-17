@@ -1,41 +1,58 @@
-## Description: <br>
-Browse and search Reddit in read-only mode using public JSON endpoints for subreddit listings, post search, comment threads, and permalink shortlists. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Browse and search Reddit in read-only mode using public JSON endpoints.
 
-## Publisher: <br>
-[buksan1950](https://clawhub.ai/user/buksan1950) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[buksan1950](https://clawhub.ai/user/buksan1950)
 
-## Use Case: <br>
-External users and developers use this skill to research public Reddit discussions, inspect threads for context, and build shortlists of relevant permalinks for manual review or reply. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Search queries and returned Reddit content can include sensitive or untrusted public text. <br>
-Mitigation: Avoid placing sensitive personal information in Reddit queries and review returned content before relying on it. <br>
-Risk: Reddit public endpoints may rate limit, timeout, or return HTML instead of JSON. <br>
-Mitigation: Use small result limits first and reduce request rate with the documented delay and timeout environment variables. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/buksan1950/reddit-readonly) <br>
-- [Output schema](artifact/references/OUTPUT_SCHEMA.md) <br>
-- [Reddit public site](https://www.reddit.com) <br>
+## Use Case:
 
+Agents and their users use this skill to find Reddit posts, inspect public comment threads, and prepare shortlists of permalinks for manual review or reply drafting.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, JSON, guidance] <br>
-**Output Format:** [JSON command output with Markdown summaries and permalink shortlists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands return standardized ok/data or ok/error JSON and include Reddit permalinks in user-facing results.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence release.version) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can retrieve user-specified public Reddit content, which may include low-quality, offensive, or misleading material.
+
+Mitigation: Keep searches scoped to relevant subreddits and small result limits, then review selected posts and comments before using them.
+
+Risk: Draft reply ideas based on retrieved Reddit content could be inaccurate or inappropriate for the thread context.
+
+Mitigation: Use generated reply ideas only as drafts and post manually after human review.
+
+Risk: Large or repeated requests may trigger Reddit rate limits or return incomplete thread context.
+
+Mitigation: Use the documented small limits and slower pacing environment variables when requests fail or Reddit returns HTML.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/buksan1950/skills/reddit-readonly)
+- [Output schema](references/OUTPUT_SCHEMA.md)
+- [Reddit public website](https://www.reddit.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [JSON command output with concise Markdown summaries and optional shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only public Reddit data; commands return { ok, data } or { ok, error } envelopes and include permalinks.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

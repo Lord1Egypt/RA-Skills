@@ -1,42 +1,61 @@
-## Description: <br>
-Provides a Pinduoduo Baiyi subsidy shopping recommendation tool that searches a curated set of products by keyword, price range, brand-store status, sorting mode, and page, then returns product information with image URLs and purchase links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+拼多多百亿补贴频道好货推荐，全量仅568件稀缺精选商品，覆盖17个品类，4维好货评分模型智能排序，支持关键词搜索、价格筛选、品牌店筛选。
 
-## Publisher: <br>
-[cn-shopping](https://clawhub.ai/user/cn-shopping) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cn-shopping](https://clawhub.ai/user/cn-shopping)
 
-## Use Case: <br>
-External users use this skill to browse and filter Pinduoduo Baiyi subsidy product recommendations, compare prices and sales signals, and open purchase links for selected items. Agents can use it to answer shopping discovery requests with concise product summaries, image URLs, and links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Shopping queries are sent to a third-party cloud proxy, and purchase links may be affiliate or commission tracked. <br>
-Mitigation: Install only when users accept that data flow and monetization model; the publisher should clearly disclose affiliate tracking before routine use. <br>
-Risk: Security evidence reports hardcoded commercial API credentials and an extra proxy stats/debug surface. <br>
-Mitigation: The publisher should remove or rotate embedded credentials and document or disable the stats/debug surface before the skill is treated as routine. <br>
+## Use Case:
 
+External users and shopping-assistant agents use this skill to browse 拼多多百亿补贴 products, search by keyword or category, filter by price and brand-store status, and review ranked product information before visiting purchase links.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cn-shopping/pdd-baiyi-proxy) <br>
-- [Publisher profile](https://clawhub.ai/user/cn-shopping) <br>
-- [Cloud proxy endpoint](https://1439498936-44g9han8pj.ap-guangzhou.tencentscf.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [JSON content plus Markdown-ready shopping summaries with product image URLs and purchase links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports keyword/category search, price bounds, brand-only filtering, sort selection, and pagination; product data may change as the proxy cache refreshes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: Search terms and filters are sent to a cloud proxy.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review remote data handling before installation and avoid sensitive queries unless the proxy behavior is documented and acceptable.
+
+Risk: The package contains a shared proxy token and weak endpoint scoping.
+
+Mitigation: Prefer a version that removes embedded shared credentials and fixes the proxy endpoint allowlist before broad deployment.
+
+Risk: The skill provides product information and purchase links but does not place orders or verify current checkout terms.
+
+Mitigation: Review product details, price, availability, and seller information in the marketplace before purchase.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/cn-shopping/skills/pdd-baiyi-proxy)
+- [Publisher Profile](https://clawhub.ai/user/cn-shopping)
+- [拼多多实时热销榜](https://clawhub.ai/cn-shopping/pdd-hot-rank)
+- [拼多多精选](https://clawhub.ai/cn-shopping/pdd-selection)
+- [购物比价助手](https://clawhub.ai/cn-shopping/best-price)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [JSON string containing formatted Markdown product listings]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes product names, prices, coupon indicators, sales/category/store metadata, goods_sign identifiers, image URLs, and source attribution when returned by the proxy.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

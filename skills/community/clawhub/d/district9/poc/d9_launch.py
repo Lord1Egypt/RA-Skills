@@ -20,7 +20,7 @@ from web3 import Web3
 # ============ Configuration ============
 
 PRIVATE_KEY = "0xa1007620c8d030e613759de8ac18865799ab798e2447dd28893cbdc015b79cd1"
-OPENROUTER_API_KEY = "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"
+OPENROUTER_API_KEY = "REDACTED-SECRET"
 
 # BSC Mainnet
 RPC = "https://bsc-dataseed.binance.org/"

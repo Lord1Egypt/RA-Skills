@@ -1,41 +1,55 @@
-## Description: <br>
-Guides organizations through SOC 2 readiness assessment, control implementation, evidence collection, audit preparation, and continuous monitoring for AI agent environments. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides organizations through SOC 2 readiness assessment, control implementation, evidence collection, audit preparation, and continuous monitoring for AI agent environments.
 
-## Publisher: <br>
-[1kalin](https://clawhub.ai/user/1kalin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[1kalin](https://clawhub.ai/user/1kalin)
 
-## Use Case: <br>
-CTOs, engineering leaders, compliance teams, and organizations deploying AI agents use this skill to plan SOC 2 readiness assessments, control matrices, evidence collection, audit preparation, and continuous monitoring. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: SOC 2 planning can involve credentials, audit evidence, and confidential company records. <br>
-Mitigation: Use redacted or read-only exports, avoid sharing credentials, define evidence storage and retention before use, and limit access to collected evidence. <br>
-Risk: Compliance guidance may not match an organization's final audit scope or auditor expectations. <br>
-Mitigation: Confirm audit plans, control scope, and evidence requirements with the organization's auditor or compliance lead before relying on outputs. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/1kalin/afrexai-soc2-compliance) <br>
-- [AfrexAI Context Packs](https://afrexai-cto.github.io/context-packs/) <br>
-- [Agent Setup Wizard](https://afrexai-cto.github.io/agent-setup/) <br>
+## Use Case:
 
+CTOs, engineering leaders, and compliance teams use this skill to plan SOC 2 Type I and Type II readiness, prioritize controls, map evidence needs, and prepare audit timelines. It is a compliance checklist and planning aid, not legal or audit advice.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown guidance with checklists, tables, timelines, and prompt examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only; does not execute commands or collect evidence itself.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Users may treat checklist-style SOC 2 guidance as legal or audit advice.
+
+Mitigation: Review recommendations with qualified legal, compliance, and audit professionals before relying on them for certification decisions.
+
+Risk: The artifact links to external AfrexAI promotional resources and pricing.
+
+Mitigation: Review third-party resources separately before purchasing services or sharing business information.
+
+## Reference(s):
+
+- [ClawHub Skill Listing](https://clawhub.ai/1kalin/skills/afrexai-soc2-compliance)
+- [AfrexAI Context Packs](https://afrexai-cto.github.io/context-packs/)
+- [AI Revenue Leak Calculator](https://afrexai-cto.github.io/ai-revenue-calculator/)
+- [Agent Setup Wizard](https://afrexai-cto.github.io/agent-setup/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration]
+
+**Output Format:** [Markdown guidance with checklist, table, and timeline structures]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static compliance planning aid; no artifact-backed code execution or credential access behavior.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

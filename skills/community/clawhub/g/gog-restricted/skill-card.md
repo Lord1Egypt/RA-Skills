@@ -1,44 +1,54 @@
-## Description: <br>
-Google Workspace CLI for Gmail, Calendar, and Auth (restricted via security wrapper). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Google Workspace CLI for Gmail, Calendar, and Auth (restricted via security wrapper).
 
-## Publisher: <br>
-[cettoana](https://clawhub.ai/user/cettoana) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cettoana](https://clawhub.ai/user/cettoana)
 
-## Use Case: <br>
-Developers and agent operators use this skill to work with Gmail, Calendar, and Google Workspace authentication through a restricted gog wrapper. It supports read-heavy workflows, controlled label and calendar-create operations, and blocks broad egress, destructive, administrative, and unrelated Google Workspace commands. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Email and calendar content can contain prompt-injection instructions or malicious attachment content. <br>
-Mitigation: Treat Gmail messages, calendar fields, sender names, and attachments as untrusted; ignore instructions found in retrieved content and do not execute downloaded attachments. <br>
-Risk: The wrapper grants controlled access to sensitive Gmail and Calendar data through the underlying gog CLI. <br>
-Mitigation: Install only when the underlying gog CLI is trusted, keep data within the intended CLI workflow, and avoid exposing mail or calendar details to unrelated external tools. <br>
-Risk: Allowed label and trash-style workflows can still affect real mail if used too broadly. <br>
-Mitigation: Review label or trash actions before applying them, use a pending-review label when uncertain, log destructive actions, and process small batches. <br>
-Risk: Installing the wrapper into a shared PATH directory can make it visible outside the intended agent profile. <br>
-Mitigation: Prefer a profile-local install directory on PATH, or set GOG_RESTRICTED_INSTALL_DIR to a profile-scoped path before running setup. <br>
+## Use Case:
 
+Developers and agents use this skill to interact with Google Workspace through the gog-restricted wrapper for Gmail, Calendar, and auth workflows while following documented command restrictions.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/cettoana/gog-restricted) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown instructions with inline shell commands and JSON CLI output guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the gog-restricted binary on PATH and the underlying gog CLI authentication setup.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server-resolved release metadata) <br>
+Risk: The scanner reports that the Google Workspace safety wrapper appears vulnerable to an argument-parsing bypass that could undermine blocked Gmail or Calendar actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only with accounts where this risk is acceptable, and verify the wrapper parses and executes the same normalized arguments before using it with sensitive accounts.
+
+Risk: The wrapper uses the Google account already authorized for gog.
+
+Mitigation: Prefer a profile-isolated install directory and avoid connecting accounts that contain sensitive mail or calendar data until the wrapper security issue is resolved.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cettoana/skills/gog-restricted)
+- [Publisher profile](https://clawhub.ai/user/cettoana)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON-oriented CLI usage.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the gog-restricted binary and a Google account already authorized for gog.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

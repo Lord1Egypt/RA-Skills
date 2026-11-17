@@ -1,42 +1,57 @@
-## Description: <br>
-Video Craft Pro helps agents create short-video scripts, voice-over scripts, captions, platform-specific titles, tags, calls to action, and supporting slide or digital-human workflow guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Video Craft Pro helps short-video creators, media operators, and marketing teams create scripts, voiceover copy, subtitles, titles, tags, and platform-adapted short-video content.
 
-## Publisher: <br>
-[freeman88-tch](https://clawhub.ai/user/freeman88-tch) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[freeman88-tch](https://clawhub.ai/user/freeman88-tch)
 
-## Use Case: <br>
-External creators, media teams, and marketing teams use this skill to plan short-form videos by generating scripts, voice-over copy, subtitles, titles, tags, calls to action, and optional slide or digital-human workflow guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger wording and under-described digital-human or API workflows can lead the agent to use the skill outside the intended video-creation context. <br>
-Mitigation: Use explicit video-related prompts and review any Coze or other third-party integration before adding API keys or relying on generated workflow steps. <br>
-Risk: Digital-human workflows may involve likeness photos, voice choices, scripts, or other sensitive creative material. <br>
-Mitigation: Do not upload likeness photos or sensitive scripts unless the data flow is understood and the person represented has given permission. <br>
-Risk: Generated scripts, captions, titles, tags, and calls to action may be inaccurate, unsuitable for a platform, or inconsistent with brand requirements. <br>
-Mitigation: Review generated video materials before recording, publishing, or handing them to downstream production tools. <br>
+## Use Case:
 
+External creators, media teams, and marketing teams use this skill to turn a short-video idea into a platform-specific storyboard, voiceover script, subtitles, titles, tags, calls to action, and optional digital-human presentation workflow.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/freeman88-tch/lobster-video-craft) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown text, captions, scripts, shell commands, and Python helper code] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Some digital-human workflows may require third-party service setup or API credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The digital-human cloning workflow can involve personal images and generated likenesses.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the cloning workflow only with explicit consent and after confirming how the selected third-party service processes, stores, and retains submitted images and generated likenesses.
+
+Risk: Broad activation wording may trigger the skill for unrelated business requests.
+
+Mitigation: Narrow activation phrases to video-creation, captioning, voiceover, or digital-human production requests before broad deployment.
+
+Risk: The skill depends on third-party video or digital-human services that may require separate setup, credentials, or cost review.
+
+Mitigation: Configure and approve each external service before use, and verify cost, retention, and usage terms for the intended workflow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/freeman88-tch/skills/lobster-video-craft)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown or plain text with optional command and Python snippets.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May depend on third-party video or digital-human services, local font availability, and Python/Pillow for slide generation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, artifact frontmatter, and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

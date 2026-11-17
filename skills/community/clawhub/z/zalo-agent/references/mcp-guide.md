@@ -1,6 +1,6 @@
 # Hướng dẫn Zalo MCP Server
 
-Model Context Protocol (MCP) cho phép Claude Code và các MCP client tương tác với Zalo trực tiếp qua 4 tools tiêu chuẩn.
+Model Context Protocol (MCP) cho phép Claude Code và các MCP client tương tác với Zalo trực tiếp qua 8 tools: `zalo_get_messages`, `zalo_get_history`, `zalo_search_history`, `zalo_send_message`, `zalo_list_threads`, `zalo_search_threads`, `zalo_mark_read`, `zalo_view_media`.
 
 ---
 
@@ -52,6 +52,7 @@ Thêm vào cấu hình MCP client:
 Lấy tin nhắn từ buffer, hỗ trợ cursor để đọc tăng dần.
 
 **Tham số:**
+
 | Tên | Kiểu | Mô tả |
 |-----|------|--------|
 | `cursor` | string (tuỳ chọn) | Cursor từ lần gọi trước — chỉ lấy tin mới hơn |
@@ -71,10 +72,67 @@ Lấy tin nhắn từ buffer, hỗ trợ cursor để đọc tăng dần.
 
 ---
 
+### `zalo_get_history`
+Đọc lịch sử tin nhắn cũ của một DM/nhóm. Khác với `zalo_get_messages` (đọc buffer live), tool này phục vụ từ lịch sử mà server đã thu thập: nạp từ backfill của Zalo mỗi lần server (re)connect (cửa sổ ~2 tuần) và lớn dần theo tin mới. Trả về cũ→mới.
+
+**Tham số:**
+
+| Tên | Kiểu | Mô tả |
+|-----|------|--------|
+| `threadId` | string | ID của DM hoặc nhóm |
+| `threadType` | number (tuỳ chọn) | 0 = DM (mặc định), 1 = nhóm |
+| `senderId` | string (tuỳ chọn) | Chỉ lấy tin của một người |
+| `since` | string/number (tuỳ chọn) | Từ thời điểm — `YYYY-MM-DD`, ISO, hoặc epoch ms |
+| `until` | string/number (tuỳ chọn) | Đến thời điểm — `YYYY-MM-DD` (bao gồm cả ngày), ISO, hoặc epoch ms |
+| `limit` | number (tuỳ chọn) | Số tin tối đa (mặc định: 50, tối đa: 200) |
+| `lastMsgId` | string (tuỳ chọn) | Truyền `cursor` của lần trước để lùi xa hơn về quá khứ |
+
+**Kết quả mẫu:**
+```json
+{
+  "threadId": "gid789",
+  "threadType": "group",
+  "count": 2,
+  "messages": [
+    {
+      "msgId": "m1",
+      "senderName": "Minh",
+      "text": "ok anh",
+      "timestamp": 1710000000,
+      "type": "text",
+      "replyTo": { "senderName": "Le Doan", "text": "M6 trắng sáng thấp", "msgId": "m0" },
+      "mentions": ["u123"]
+    }
+  ],
+  "cursor": "m1",
+  "hasMore": true
+}
+```
+Lưu ý: kho lưu trữ cũ hơn cửa sổ replay của Zalo không thể lấy qua bất kỳ API nào.
+
+---
+
+### `zalo_search_history`
+Tìm trong lịch sử đã thu thập trên **tất cả** thread (hoặc một thread), lọc theo người gửi và/hoặc khoảng thời gian. Dùng cho "tất cả tin của người X" (DM + tin của họ trong mọi nhóm) hoặc "mọi tin trong khoảng ngày". Trả về cũ→mới, kèm `replyTo` + `mentions`.
+
+**Tham số:** (cần ít nhất một trong `senderId` / `since` / `until` / `threadId`)
+
+| Tên | Kiểu | Mô tả |
+|-----|------|--------|
+| `senderId` | string (tuỳ chọn) | Chỉ tin của người này |
+| `threadId` | string (tuỳ chọn) | Giới hạn một thread; bỏ trống = tất cả thread |
+| `since` | string/number (tuỳ chọn) | Từ thời điểm — `YYYY-MM-DD`, ISO, hoặc epoch ms |
+| `until` | string/number (tuỳ chọn) | Đến thời điểm — `YYYY-MM-DD` (bao gồm cả ngày), ISO, hoặc epoch ms |
+| `limit` | number (tuỳ chọn) | Số tin tối đa (mặc định: 50, tối đa: 200) |
+| `before` | string (tuỳ chọn) | Truyền `cursor` của lần trước để lùi xa hơn về quá khứ |
+
+---
+
 ### `zalo_send_message`
 Gửi tin nhắn văn bản đến một thread.
 
 **Tham số:**
+
 | Tên | Kiểu | Mô tả |
 |-----|------|--------|
 | `threadId` | string | ID của người dùng hoặc nhóm |
@@ -105,14 +163,41 @@ Liệt kê các thread đang hoạt động kèm số tin chưa đọc.
 
 ---
 
+### `zalo_search_threads`
+Tìm thread (nhóm/DM) theo tên. Khớp mờ, không phân biệt hoa thường và dấu tiếng Việt. Dùng để lấy `threadId` từ tên rồi truyền vào `zalo_get_history`.
+
+**Tham số:**
+
+| Tên | Kiểu | Mô tả |
+|-----|------|--------|
+| `query` | string | Từ khoá tìm kiếm |
+| `type` | string (tuỳ chọn) | `group`, `dm`, hoặc `all` (mặc định) |
+| `limit` | number (tuỳ chọn) | Số kết quả tối đa (mặc định: 10) |
+
+---
+
 ### `zalo_mark_read`
 Đánh dấu đã đọc — xoá tin khỏi buffer đến cursor chỉ định.
 
 **Tham số:**
+
 | Tên | Kiểu | Mô tả |
 |-----|------|--------|
 | `cursor` | string | Cursor trả về từ `zalo_get_messages` |
 | `threadId` | string (tuỳ chọn) | Chỉ mark một thread cụ thể |
+
+---
+
+### `zalo_view_media`
+Mở file media (ảnh/âm thanh/video) đã nhận bằng trình xem hệ thống. Media được tự tải khi nhận, sắp theo thư mục thread.
+
+**Tham số:**
+
+| Tên | Kiểu | Mô tả |
+|-----|------|--------|
+| `messageId` | string | ID tin nhắn có đính kèm media (từ `zalo_get_messages`) |
+| `threadId` | string (tuỳ chọn) | Thread để tìm; bỏ trống = tìm tất cả |
+| `open` | boolean (tuỳ chọn) | Mở bằng trình xem hệ thống (mặc định: true) |
 
 ---
 

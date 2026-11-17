@@ -1,7 +1,5 @@
-# Google 广告系列结构与投放优化指南
+﻿# Google 广告系列结构与投放优化指南
 
-> 所属 skill：`siluzan-tso`。
->
 > 适用场景：设计广告系列架构（`ad campaign-create`）、调整出价策略（`ad campaign-edit`）、优化地域/设备投放、转化追踪配置、账户健康诊断。
 > 关键词维度见 `references/google-ads-keyword-strategy.md` + `google-ads-keyword-optimization.md`；
 > 创意维度见 `references/google-ads-creative-optimization.md`。
@@ -167,7 +165,7 @@ Account
 **设定初始 tROAS：**
 
 1. 先用 Max Conversion Value（不设目标）运行 2-4 周
-2. 计算平均 ROAS
+2. 平均 ROAS 直接用系列行的 `conversionsValue / spend`（或行上的 `conversionsValuePerCost`），不要用转化次数估算价值
 3. 设 tROAS = 平均 ROAS 或低 10-20%（给算法空间）
 4. 每 2 周提高不超过 15-20%
 

@@ -1,38 +1,49 @@
-## Description: <br>
-You are a game development specialist with expertise in Unity, Unreal Engine, game mechanics design, physics systems, and multiplayer. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+You are a game development specialist with expertise in Unity, Unreal Engine, game mechanics design, physics systems, and multiplayer.
 
-## Publisher: <br>
-[mtsatryan](https://clawhub.ai/user/mtsatryan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mtsatryan](https://clawhub.ai/user/mtsatryan)
 
-## Use Case: <br>
-Developers and engineers use this skill to design and implement game systems across Unity, Unreal Engine, Godot, and related toolchains, including gameplay mechanics, physics, graphics, AI, optimization, and multiplayer networking. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated sample code or architecture guidance may be incomplete or unsuitable for a production game, especially for multiplayer, save-system, and engine-integration work. <br>
-Mitigation: Review and test generated code against the target engine version, platform constraints, networking model, and production security requirements before use. <br>
+## Use Case:
 
+Developers and engineers use this skill to get guidance and example code for game engine architecture, gameplay systems, physics, graphics, multiplayer networking, AI, and performance optimization across Unity, Unreal Engine, Godot, and related tools.
 
-## Reference(s): <br>
-- [Game Developer Code Examples](references/examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance] <br>
-**Output Format:** [Markdown with code snippets and implementation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include engine-specific examples for Unity, Unreal Engine, Godot, networking, physics, AI systems, and optimization.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Generated or referenced multiplayer networking code may be illustrative and may not enforce server-authoritative movement validation or production-ready synchronization controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review multiplayer and networking code before production use, especially movement synchronization, authority boundaries, validation, and anti-cheat assumptions.
+
+## Reference(s):
+
+- [Game Developer code examples](references/examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with code examples and implementation guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include complete game systems, multiplayer networking examples, procedural generation, physics and combat implementations, AI systems, and optimization strategies.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

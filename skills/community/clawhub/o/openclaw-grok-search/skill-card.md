@@ -1,40 +1,57 @@
-## Description: <br>
-Cross-platform real-time web research and search via an OpenAI-compatible Grok endpoint, returning JSON with content and sources. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Openclaw Grok Search provides cross-platform real-time web research through an OpenAI-compatible Grok endpoint and returns structured JSON with content, sources, and raw response data.
 
-## Publisher: <br>
-[moxunjinmu](https://clawhub.ai/user/moxunjinmu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[moxunjinmu](https://clawhub.ai/user/moxunjinmu)
 
-## Use Case: <br>
-Developers and agents use this skill to perform current web research, verify versions and documentation, troubleshoot issues, and return concise source-backed results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The bundled config includes a third-party endpoint and live-looking API key that users may unintentionally use. <br>
-Mitigation: Review config.json before use, remove the bundled key and endpoint, and configure a trusted endpoint through environment variables or config.local.json. <br>
-Risk: Search queries are sent to the configured external endpoint and may expose sensitive project details. <br>
-Mitigation: Do not submit private code, credentials, logs, regulated data, or confidential business information in search queries. <br>
+## Use Case:
 
+Developers and technical users use this skill to perform time-sensitive web research, verify versions and documentation, troubleshoot issues with source-backed results, and obtain structured JSON output from a configured Grok-compatible endpoint.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/moxunjinmu/openclaw-grok-search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON object with ok, content, sources, raw, and related request metadata] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search requests are sent to the configured OpenAI-compatible Grok endpoint and may include user query text.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The release ships a non-placeholder API key in config.json.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove artifact/config.json or replace it with a private local configuration, and rotate any exposed key before use.
+
+Risk: The default configuration sends requests through a third-party proxy endpoint.
+
+Mitigation: Verify that the endpoint is trusted before use and prefer an explicitly configured endpoint controlled by the user or organization.
+
+Risk: Search queries and related context are sent to the configured external endpoint.
+
+Mitigation: Avoid sending secrets, private code, personal data, credentials, or internal URLs as search queries.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/moxunjinmu/skills/openclaw-grok-search)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, configuration, guidance]
+
+**Output Format:** [JSON object with ok, content, sources, raw, and request metadata.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include source URLs, usage metadata, elapsed time, and error details.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

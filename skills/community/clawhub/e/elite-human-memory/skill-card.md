@@ -1,45 +1,55 @@
-## Description: <br>
-Elite Human Memory provides a portable ClawHub-compatible memory system for LLM agents with working, episodic, semantic, and optional vector memory layers plus metadata, promotion, conflict handling, and retrieval guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Portable Clawhub-compatible human-like memory system with layered storage (Working/Episodic/Semantic + optional Vector index), rich metadata schema, auto-promotion heuristics, conflict detection & resolution, and semantic retrieval.
 
-## Publisher: <br>
-[cliftonwknox](https://clawhub.ai/user/cliftonwknox) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cliftonwknox](https://clawhub.ai/user/cliftonwknox)
 
-## Use Case: <br>
-Developers and agent builders use this skill to add structured, searchable cross-session memory to ClawHub, custom, or multi-agent deployments while keeping storage paths and vector search implementation configurable. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent cross-session memory can retain sensitive conversation history, secrets, or regulated personal data. <br>
-Mitigation: Require explicit user approval before writing memories, avoid storing secrets or regulated personal data, and provide clear inspection and deletion controls. <br>
-Risk: Vector storage or external persistent stores can expose memory content outside the local environment if enabled without review. <br>
-Mitigation: Keep vector storage local unless deliberately enabled, and review any external vector database configuration before deployment. <br>
-Risk: Stale or conflicting memories can lead the agent to retrieve misleading context. <br>
-Mitigation: Use confidence, state, source, and expiration metadata, log conflicts, and ask the user to resolve higher-severity contradictions. <br>
+## Use Case:
 
+Developers and agent builders use this skill to add persistent, layered memory to LLM agents, including episodic notes, curated semantic memory, conflict tracking, and optional vector-based retrieval.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cliftonwknox/elite-human-memory) <br>
-- [Skill specification](artifact/SKILL.md) <br>
-- [README](artifact/README.md) <br>
-- [Integration examples](artifact/INTEGRATION.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Configuration] <br>
-**Output Format:** [Markdown guidance with pseudocode examples and file layout conventions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Framework-agnostic; optional vector index; no external service dependency unless the host configures one] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact README.md and SKILL.md list 1.0.0) <br>
+Risk: The skill enables broad automatic long-term storage and reuse of user context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Configure narrow storage paths and scopes, require explicit user consent for writes beyond direct remember-this requests, and provide review/delete controls before scheduled maintenance or automatic promotion.
+
+Risk: Sensitive information may be exposed if optional vector storage is external or loosely governed.
+
+Mitigation: Avoid external vector stores for sensitive data unless governance is in place, and keep memory storage scoped to the intended agent and user context.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/cliftonwknox/skills/elite-human-memory)
+- [README](artifact/README.md)
+- [Integration Examples](artifact/INTEGRATION.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Configuration]
+
+**Output Format:** [Markdown guidance with storage layout, behavioral triggers, and integration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces memory-management instructions for the host agent; persistent storage paths and optional vector index are configured by the integrator.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release metadata; artifact docs state 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

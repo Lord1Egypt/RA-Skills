@@ -1,0 +1,7 @@
+interface:
+  display_name: "AI Web Map"
+  short_description: "Discover site URLs through AI Web API"
+  default_prompt: "Use $ai-web-map to discover public page URLs from the requested website."
+
+policy:
+  allow_implicit_invocation: true

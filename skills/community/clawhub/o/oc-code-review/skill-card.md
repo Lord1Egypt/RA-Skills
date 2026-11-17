@@ -1,48 +1,61 @@
-## Description: <br>
-Provides an agent-assisted code review workflow that evaluates security, performance, quality, and maintainability, then produces scored findings and improvement recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OC Code Review helps agents review code, PRs, diffs, repositories, or files across security, performance, quality, and maintainability and produce scored improvement reports.
 
-## Publisher: <br>
-[penghang1223](https://clawhub.ai/user/penghang1223) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[penghang1223](https://clawhub.ai/user/penghang1223)
 
-## Use Case: <br>
-Developers and engineering reviewers use this skill to review pasted code, local files, PRs, or repository changes across security, performance, quality, and maintainability. It helps produce scored review reports, prioritized fixes, and approve/request-changes guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may require access to private code, PRs, repositories, documents, or URLs to perform reviews. <br>
-Mitigation: Grant only the specific files, PRs, repositories, documents, or URLs needed for the review. <br>
-Risk: The package references a performance checklist that is not included. <br>
-Mitigation: Verify performance review coverage manually until the missing checklist is supplied. <br>
-Risk: Agent-generated review findings can be incorrect or incomplete. <br>
-Mitigation: Have a human reviewer validate findings before using them for merge, release, or security decisions. <br>
+## Use Case:
 
+Developers and engineers use this skill to request quick, deep, or security-focused code reviews and receive prioritized findings, scores, and recommended next actions. It is especially suited to reviewing pasted code, local files, PRs, diffs, and repositories.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/penghang1223/oc-code-review) <br>
-- [Security checklist](artifact/templates/checklist-security.md) <br>
-- [Quality checklist](artifact/templates/checklist-quality.md) <br>
-- [Maintainability checklist](artifact/templates/checklist-maintainability.md) <br>
-- [Finding template](artifact/templates/finding-template.md) <br>
-- [Metrics analysis script](artifact/scripts/analyze-metrics.py) <br>
-- [Complexity comparison script](artifact/scripts/compare-complexity.py) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown review reports with scored tables, findings, code examples, and optional shell commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use packaged scripts for metrics and complexity comparison; the performance checklist referenced by the skill text is not included in the package.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, created 2026-04-01) <br>
+Risk: Reviewing PRs, repositories, files, or pasted code can expose proprietary code, secrets, or metadata to the agent context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Invoke the skill only for code the user intends to analyze, and avoid including secrets, credentials, or unnecessary sensitive data.
+
+Risk: The skill can suggest local commands or metrics scripts for deeper analysis.
+
+Mitigation: Run helper scripts only against intended local files and review any generated commands before execution.
+
+Risk: The artifact references a performance checklist file that is not included, which can make performance review less consistent.
+
+Mitigation: Use the performance criteria listed in SKILL.md or add the missing checklist before relying on standardized performance scoring.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/penghang1223/skills/oc-code-review)
+- [Security checklist](artifact/templates/checklist-security.md)
+- [Quality checklist](artifact/templates/checklist-quality.md)
+- [Maintainability checklist](artifact/templates/checklist-maintainability.md)
+- [Finding template](artifact/templates/finding-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown review reports with scoring tables, findings, recommendations, and optional shell command snippets.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Mostly Chinese-language output; supports quick review, deep review, and security audit modes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

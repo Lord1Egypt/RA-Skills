@@ -1,0 +1,76 @@
+{
+  "schema": "ownership-attestation/1.0",
+  "package": "GDPR出海合规实操",
+  "version": "1.0.0",
+  "author": "注册老炮",
+  "year": "2026",
+  "timestamp_utc": "2026-08-27T16:40:19.553570+00:00",
+  "timestamp_local": "2026-08-28T00:40:19.553580",
+  "package_fingerprint_sha256": "54f52b50d9835aa26b7492f95b948d837d3d7fe93c18819e67a746d8d7920533",
+  "files": [
+    {
+      "path": "LICENSE.md",
+      "sha256": "e8a66e30b55e997de5fca2cb78bbf2bdabd1a50bc739145dcac48e08b748843d"
+    },
+    {
+      "path": "SECURITY_AUDIT.md",
+      "sha256": "41f2c9584ec3e6da380f1980bc4541d8b49de585f6e25b952e002a308bbd7fcf"
+    },
+    {
+      "path": "SKILL.md",
+      "sha256": "24fcfb70e945b1804d4a21521e0c6e855348a7519766aaefa6d2540c128b0698"
+    },
+    {
+      "path": "references/01-GDPR全景与适用范围.md",
+      "sha256": "c0ccd5822f4b653fae3291b7dc4c84943a9a9b48e17c41500c9efe7453395631"
+    },
+    {
+      "path": "references/02-合法处理基础.md",
+      "sha256": "1c62e6e732dc83c56874b4689bf396e58512826b39e7491893a7a5086813e49e"
+    },
+    {
+      "path": "references/03-数据主体权利.md",
+      "sha256": "e7cfb1ceb3ef01eb3761c4a1154f1cc897f86a37ed306e32484c4575fd9a0ece"
+    },
+    {
+      "path": "references/04-DPIA评估.md",
+      "sha256": "93fa7d30f19870fcbe92db762df923335e7d26e2ad47b60697e46125bb2118cf"
+    },
+    {
+      "path": "references/05-跨境传输机制.md",
+      "sha256": "c11c9605203ba1a374190f318a5b38f6e5598f60523e4cc1ed2f0e0fbf6e9814"
+    },
+    {
+      "path": "references/06-违规罚款与泄露通报.md",
+      "sha256": "75746588b37766a8dbc266688b32403a75959a7f4fecd701f808570d0d5d42f1"
+    },
+    {
+      "path": "references/07-GDPR与个保法对照.md",
+      "sha256": "8f6a993d3c24b2081a41864ed21115c982209cc8904d82c2aff06db48c71f735"
+    },
+    {
+      "path": "references/08-FAQ.md",
+      "sha256": "5f36ef70dcce533d6dc372a0b39dabe2ed7ff697dcf9717415bba1349f07b164"
+    },
+    {
+      "path": "tools/gdpr_toolkit.py",
+      "sha256": "b6211eecb27f97276c33ca8426e89bdbc2c18d5c681409ed46937f5783bbf8fa"
+    },
+    {
+      "path": "verify/gdpr_quality_test.py",
+      "sha256": "936a579719c9c238efde8b3893818e08b3337aa392b30d66964144662d60363f"
+    },
+    {
+      "path": "verify/gen_security_radar.py",
+      "sha256": "0861fc17871c18e850e8dcd86d6a89609b3286ae5498e3a6ffa9342912cc28b1"
+    },
+    {
+      "path": "verify/security-radar.svg",
+      "sha256": "449575f4901a715c130462e30aabe8347861ebaad572db5a0770b3140e89160d"
+    },
+    {
+      "path": "verify/security_results.json",
+      "sha256": "6945686246c044a4952ca4e390531dd16c27168e8be3994fd22cf3ffbc634618"
+    }
+  ]
+}

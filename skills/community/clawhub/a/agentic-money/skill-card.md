@@ -1,44 +1,54 @@
-## Description: <br>
-Discover, hire, and get paid by AI agents using the Agentic Money protocol on Ethereum. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Discover, hire, and get paid by AI agents using the Agentic Money protocol on Ethereum.
 
-## Publisher: <br>
-[zscole](https://clawhub.ai/user/zscole) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[zscole](https://clawhub.ai/user/zscole)
 
-## Use Case: <br>
-External users and developers use this skill to discover paid AI agents, register service agents, hire agents through Ethereum escrow, and track or claim task payments. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Ethereum wallet actions can spend real funds or move escrowed funds. <br>
-Mitigation: Use a separate wallet with minimal funds, stay on testnet until comfortable, enforce a spending cap, and require explicit approval for every transaction. <br>
-Risk: Private key exposure can compromise wallet funds. <br>
-Mitigation: Keep private keys out of chat and files, and provide them only through environment variables or a secure secret manager. <br>
-Risk: Prompt injection or unvalidated inputs could affect transaction parameters. <br>
-Mitigation: Validate task IDs, addresses, capability strings, network changes, recipients, amounts, and action types before signing. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/zscole/agentic-money) <br>
-- [Agentic Money Website](https://agenticmoney.ai) <br>
-- [Agentic Money SDK](https://www.npmjs.com/package/@ethcf/agenticmoney) <br>
-- [Project Repository Listed in Skill](https://github.com/ETHCF/agentic-money) <br>
+## Use Case:
 
+Developers and agent operators use this skill to discover paid AI services, register paid agents, hire agents, track task payment status, and claim payments using Ethereum-based escrow flows.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell and TypeScript command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces transaction-oriented instructions that require explicit user approval before wallet actions.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Examples can run unpinned JavaScript tools with wallet private keys.
+
+Mitigation: Use a dedicated low-balance wallet, prefer testnet first, and install pinned dependencies locally with a lockfile instead of using npx.
+
+Risk: Payment and escrow examples can submit Ethereum transactions without a hard approval gate.
+
+Mitigation: Require the agent to show the exact network, recipient, amount, task ID, and gas estimate, then obtain explicit user approval before any signing action.
+
+## Reference(s):
+
+- [Agentic Money ClawHub page](https://clawhub.ai/zscole/skills/agentic-money)
+- [Agentic Money website](https://agenticmoney.ai)
+- [Agentic Money SDK package](https://www.npmjs.com/package/@ethcf/agenticmoney)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JavaScript or TypeScript examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes Ethereum wallet and transaction guidance that should be reviewed before signing actions.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.release.version and artifact frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -3,7 +3,7 @@ name: wordpress-receipts
 description: "Publish WordPress posts with API and public URL receipts."
 user-invocable: true
 metadata:
-  version: "0.1.2"
+  version: "0.1.3"
   license: "MIT"
   homepage: "https://github.com/LeoStehlik/wordpress-receipts"
   openclaw:
@@ -64,14 +64,15 @@ node scripts/wp-publish-receipt.mjs \
   --title-file draft-title.txt \
   --content-file draft.md \
   --author 123 \
-  --category 1
+  --category 1 \
+  --status publish
 ```
 
 For one-off verification:
 
 ```bash
 node scripts/wp-verify-receipt.mjs --env-file .env.wordpress --date 2026-07-01
-node scripts/wp-verify-receipt.mjs --env-file .env.wordpress --url https://example.com/post-slug/
+node scripts/wp-verify-receipt.mjs --env-file .env.wordpress --id 456 --url https://example.com/post-slug/
 node scripts/wp-verify-receipt.mjs --env-file .env.wordpress --id 456
 ```
 
@@ -144,3 +145,7 @@ When reporting back to the user, include:
 - whether a duplicate was skipped
 
 Keep the report short. If publishing failed, state whether a draft exists and what exact proof is missing.
+
+## Receipt boundaries
+
+Publishing requires explicit `--status publish`; `--status draft` creates and verifies a draft without claiming public publication. Verification requires the configured API and a published post identity; URL-only HTTP 200 is never proof. Optional `--url` must match that API post’s canonical link. Public receipt fetches stay on the configured site origin and do not follow redirects. If the public site differs from the API origin, explicitly configure `WORDPRESS_SITE_URL` or `--site-url`. The configured site may be local or private when deliberately selected by the user; the helpers are not a generic arbitrary-URL fetch service.

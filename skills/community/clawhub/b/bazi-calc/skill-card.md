@@ -1,40 +1,49 @@
-## Description: <br>
-Calculates structured Bazi chart data from birth date, time, optional birthplace, and sex, including four pillars, ten gods, day-master strength, useful and unfavorable elements, and luck-pillar sequence without fortune prediction. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Bazi Calc calculates structured BaZi chart data from birth date, time, optional location, and gender, including four pillars, Ten Gods relationships, day-master strength, useful and avoid elements, and decade luck cycles, without fortune prediction.
 
-## Publisher: <br>
-[KtKID](https://clawhub.ai/user/KtKID) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ktkid](https://clawhub.ai/user/ktkid)
 
-## Use Case: <br>
-External users and agents use this skill to compute and format Bazi chart data for a supplied birth profile. It is intended for structured calendrical and relationship calculations, not fortune-telling or predictive interpretation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Birth details used for calendar checks may expose sensitive personal context if submitted to web search. <br>
-Mitigation: Use the minimum necessary date, time, and location details, and avoid adding names or other personal identifiers. <br>
-Risk: The calculation output could be mistaken for a fortune or life-outcome prediction. <br>
-Mitigation: Present the result as structured Bazi chart data only and avoid predictive interpretation. <br>
+## Use Case:
 
+External users and developers use this skill to compute and format BaZi chart data for a supplied birth date, time, optional birthplace, and gender. It is intended to return structured calculation results rather than fortune-telling or predictive judgments.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/KtKID/bazi-calc) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown text with structured Bazi chart sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution; may require minimal web search for lunar-calendar conversion or almanac cross-checking.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: Birth date, birth time, and birthplace details may be exposed to external search services during calendar conversion or day-pillar validation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask explicitly before web lookup, minimize queried birth information, and prefer local calendar conversion and day-pillar validation when possible.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ktkid/skills/bazi-calc)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Structured text or Markdown report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes BaZi chart fields, calculation notes, optional true solar time correction, and validation notes; should not include fortune predictions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

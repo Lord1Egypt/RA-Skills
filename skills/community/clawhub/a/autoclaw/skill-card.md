@@ -1,42 +1,59 @@
-## Description: <br>
-Automates health monitoring, scheduled backups, and process logging for AI assistant workspaces. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Autoclaw automates health monitoring, scheduled backups, and process logging for AI assistant workspaces.
 
-## Publisher: <br>
-[shayuqiang671-rgb](https://clawhub.ai/user/shayuqiang671-rgb) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shayuqiang671-rgb](https://clawhub.ai/user/shayuqiang671-rgb)
 
-## Use Case: <br>
-Developers and operators use AutoClaw to check key AI workspace files, create local backups, and log workspace health and process status. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The script uses a hardcoded workspace path and creates local backup and log files. <br>
-Mitigation: Edit the workspace path before running and confirm that the configured workspace and backup directory are appropriate. <br>
-Risk: Backup cleanup prunes older backup folders after the configured retention limit. <br>
-Mitigation: Review the listed files and retention setting before scheduling the script or relying on its backups. <br>
-Risk: Running the script from cron or Task Scheduler can repeatedly modify local backup and log directories. <br>
-Mitigation: Run it manually first and schedule it only after confirming the local file changes are acceptable. <br>
+## Use Case:
 
+Developers and operators use Autoclaw to monitor AI assistant workspaces, back up key configuration and memory files, and log health and process checks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/shayuqiang671-rgb/autoclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The runtime script writes timestamped console and file logs, creates local backup folders, and prunes older backups after the configured retention limit.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: Plaintext backups may contain private workspace memory, configuration, and database contents.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill only on an intended workspace, restrict access to the backup directory, and remove or protect backups after use.
+
+Risk: A hard-coded Administrator workspace path may target the wrong local workspace.
+
+Mitigation: Verify or change the workspace path before execution and avoid running with unnecessary privileges.
+
+Risk: Process monitoring settings may not match the user's environment.
+
+Mitigation: Review monitored process names, script paths, and restart behavior before enabling monitoring.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/shayuqiang671-rgb/skills/autoclaw)
+- [Artifact README](artifact/README.md)
+- [Artifact skill description](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May lead an agent to run workspace health checks, create plaintext backups, and write timestamped logs.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

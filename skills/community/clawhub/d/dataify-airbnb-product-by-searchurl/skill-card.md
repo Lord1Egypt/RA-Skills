@@ -1,42 +1,59 @@
-## Description: <br>
-Prepares Dataify builder requests for Airbnb scraper tools rooted at airbnb_product_by-searchurl, guiding tool selection, parameter collection, and curl generation with DATAIFY_API_TOKEN. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Collect structured Airbnb listing results from a known Airbnb search-results URL through Dataify.
 
-## Publisher: <br>
-[dataify-server](https://clawhub.ai/user/dataify-server) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dataify-server](https://clawhub.ai/user/dataify-server)
 
-## Use Case: <br>
-Developers and operators use this skill to prepare Dataify builder curl requests for Airbnb scraping workflows, including tool choice, saved parameter options, and multi-row spider_parameters payloads. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated curl output can expose a real Dataify API token if shared or logged. <br>
-Mitigation: Prefer commands that reference $DATAIFY_API_TOKEN, review generated output before sharing, and avoid storing token-bearing curl commands in tickets, logs, or documentation. <br>
-Risk: The packaged artifact appears to be missing the parameter catalog required by the documented workflow. <br>
-Mitigation: Confirm that references/tool-params.json is available before relying on saved tool parameters, or provide parameter values explicitly during use. <br>
+## Use Case:
 
+External users and developers use this skill to collect structured Airbnb listing results from a provided Airbnb search URL, submit the Dataify Builder task, monitor completion, and return the final collected JSON result.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dataify-server/dataify-airbnb-product-by-searchurl) <br>
-- [Dataify Dashboard](https://dashboard.dataify.com?utm_source=skill) <br>
-- [Dataify builder endpoint](https://scraperapi.dataify.com/builder) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash, PowerShell, and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces curl requests and setup guidance; generated commands can contain sensitive Dataify token material if the helper expands the environment variable.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: The security review marks the skill as suspicious because an Airbnb-specific description is packaged with broader scraping and workflow code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installation and remove or isolate unrelated business workflow scripts if only Airbnb search-result collection is needed.
+
+Risk: Credential handling can expose or over-retain a Dataify API token if users paste tokens into chat or store broad tokens permanently.
+
+Mitigation: Use a limited Dataify token, never paste it into chat, avoid permanent shell-profile storage when unnecessary, and rotate or review the key if it is rejected.
+
+Risk: Generated curl commands or edited URLs can initiate paid Dataify requests against untrusted or unintended targets.
+
+Mitigation: Review the target URL and generated command before execution, use only trusted complete HTTP(S) Airbnb search URLs, and avoid executing commands for untrusted or edited URLs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dataify-server/skills/dataify-airbnb-product-by-searchurl)
+- [Tool parameter catalog](artifact/references/tool-params.json)
+- [Skill source](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, JSON]
+
+**Output Format:** [Markdown guidance with shell commands and JSON task results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Dataify API token and a valid Airbnb search URL; may return a task ID and resume command if monitoring times out.]
+
+## Skill Version(s):
+
+1.3.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

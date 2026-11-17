@@ -1,41 +1,55 @@
-## Description: <br>
-Automates Adobe After Effects using ExtendScript (.jsx) files and aerender CLI. Supports composition creation, effect application, batch rendering, project templates, and Adobe Media Encoder workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates Adobe After Effects using ExtendScript (.jsx) files and aerender CLI. Supports composition creation, effect application, batch rendering, project templates, and Adobe Media Encoder workflows.
 
-## Publisher: <br>
-[CAMEL-255](https://clawhub.ai/user/CAMEL-255) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[camel-255](https://clawhub.ai/user/camel-255)
 
-## Use Case: <br>
-Developers and motion-graphics engineers use this skill to automate Adobe After Effects tasks such as creating compositions, adding layers and effects, managing render queues, and producing batch renders with aerender. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Running the bundled or generated ExtendScript can modify the open After Effects project and render queue. <br>
-Mitigation: Use copies of valuable .aep projects and review JSX scripts before running them. <br>
-Risk: Batch rendering can create or overwrite render outputs in local folders. <br>
-Mitigation: Choose a dedicated output folder and verify render paths before starting aerender or render-queue execution. <br>
+## Use Case:
 
+Developers and motion graphics engineers use this skill to automate Adobe After Effects compositions, effects, render queues, and command-line rendering workflows.
 
-## Reference(s): <br>
-- [After Effects ExtendScript API Reference](references/extendscript_api.md) <br>
-- [After Effects MCP on ClawHub](https://clawhub.ai/CAMEL-255/after-effects-mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with ExtendScript and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce JSX snippets and aerender commands for local Adobe After Effects projects.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Batch rendering can write outputs outside the intended folder when composition names contain unsafe path components.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the batch render script only on trusted projects, avoid composition names containing path separators or '..', choose output folders carefully, and inspect render queue output paths before rendering.
+
+Risk: After Effects automation can modify project structure, compositions, effects, and render queues.
+
+Mitigation: Review generated ExtendScript and run it on backups or disposable project copies before using it on production project files.
+
+## Reference(s):
+
+- [After Effects ExtendScript API Reference](references/extendscript_api.md)
+- [ClawHub skill page](https://clawhub.ai/camel-255/skills/after-effects-mcp)
+- [ClawHub publisher profile](https://clawhub.ai/user/camel-255)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with ExtendScript and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Adobe After Effects project, render queue, and output path guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

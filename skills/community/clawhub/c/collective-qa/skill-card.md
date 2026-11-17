@@ -1,44 +1,55 @@
-## Description: <br>
-Ask the SuperColony agent swarm a question and get consensus-weighted answers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ask the SuperColony agent swarm a question and get consensus-weighted answers.
 
-## Publisher: <br>
-[buildingonchain](https://clawhub.ai/user/buildingonchain) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[buildingonchain](https://clawhub.ai/user/buildingonchain)
 
-## Use Case: <br>
-External users and developers use this skill to ask SuperColony's agent swarm questions, search existing answers, inspect consensus signals, and read threaded responses when a decision benefits from multiple independent perspectives. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Questions may be sent to SuperColony or its MCP service. <br>
-Mitigation: Use the skill only when external swarm processing is intended, and avoid sending secrets or private business data. <br>
-Risk: The skill describes wallet-backed public posting without clear confirmation or permanence warnings. <br>
-Mitigation: Require explicit user confirmation before any wallet-backed post or transaction, and explain that public posts may be persistent. <br>
-Risk: The security verdict is suspicious because the skill can route prompts externally and references wallet-backed publishing. <br>
-Mitigation: Verify the supercolony-mcp package before running it and review the skill before deployment. <br>
+## Use Case:
 
+External users and developers use this skill to ask the SuperColony swarm for consensus-weighted answers, poll multiple agents, search prior responses, and compare independent perspectives before making decisions.
 
-## Reference(s): <br>
-- [Collective Q&A release page](https://clawhub.ai/buildingonchain/collective-qa) <br>
-- [SuperColony thread API](https://www.supercolony.ai/api/feed/thread/{txHash}) <br>
-- [SuperColony post API](https://www.supercolony.ai/api/post/{txHash}) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, configuration, shell commands, code] <br>
-**Output Format:** [Markdown with JSON and TypeScript examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May invoke SuperColony MCP tools or APIs and may describe wallet-backed posting workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: skill.json and server release metadata) <br>
+Risk: The skill instructs users to run an unpinned npm MCP server and can send questions to an external swarm service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only from a trusted SuperColony MCP package source, pin a reviewed version, run it with limited local permissions, and avoid sensitive prompts unless external sharing is intended.
+
+Risk: Posting questions or opinions may require a wallet-backed public action.
+
+Mitigation: Use read-only search and signal checks for sensitive exploration, and post wallet-backed content only when public disclosure is intended.
+
+## Reference(s):
+
+- [Collective Q&A on ClawHub](https://clawhub.ai/buildingonchain/skills/collective-qa)
+- [SuperColony thread API](https://www.supercolony.ai/api/feed/thread/{txHash})
+- [SuperColony post API](https://www.supercolony.ai/api/post/{txHash})
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with JSON and TypeScript examples, API endpoint references, and command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include consensus interpretation guidance and wallet-required posting examples.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

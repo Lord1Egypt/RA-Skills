@@ -1,40 +1,53 @@
-## Description: <br>
-Operate as a results-driven AI employee focused on efficient, high-impact execution and measurable outcomes without unnecessary explanation or low-value tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides an agent to operate as a results-driven AI employee that prioritizes high-impact actions, concise plans, immediate next steps, and iterative improvement.
 
-## Publisher: <br>
-[theshimaw-svg](https://clawhub.ai/user/theshimaw-svg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[theshimaw-svg](https://clawhub.ai/user/theshimaw-svg)
 
-## Use Case: <br>
-Employees, founders, and operators use this skill to have an agent turn goals into high-impact actions, execution plans, immediate next steps, and improvement loops. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The persona encourages assertive execution and may push an agent toward irreversible actions without enough review. <br>
-Mitigation: Keep explicit approval gates for purchases, messages, file changes, account actions, and other irreversible work. <br>
-Risk: The journal template may collect sensitive operational details if users fill it with private information. <br>
-Mitigation: Avoid writing sensitive information into the journal template. <br>
+## Use Case:
 
+Employees, founders, operators, and other productivity-focused users use this skill to convert broad goals into prioritized actions, execution steps, immediate next steps, and a lightweight improvement loop.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/theshimaw-svg/ai-employee) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-style structured responses with objective, breakdown, top actions, execution plan, and immediate next step sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include task outcome notes and improvement-loop journal entries when the user asks for follow-up reflection.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill pushes the agent to act and continue executing without explicit safety or approval boundaries.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for low-risk productivity tasks unless stronger approval rules are added before irreversible changes, spending money, modifying accounts, deleting files, posting publicly, or using private data.
+
+Risk: The results-first posture can reduce explanation and review of consequential recommendations.
+
+Mitigation: Require concise rationale, checkpoints, and human review before using outputs for sensitive operational, financial, legal, security, or account-affecting decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/theshimaw-svg/skills/ai-employee)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with structured sections for objective, breakdown, top actions, execution plan, immediate next step, and improvement notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces concise task guidance and prioritization; no tool calls or code execution are defined by the artifact.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

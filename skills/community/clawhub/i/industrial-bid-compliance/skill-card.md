@@ -1,44 +1,67 @@
-## Description: <br>
-工业领域招投标技术方案智能审查，帮助用户对标国家和行业标准生成合规判定、整改建议和交互式报告。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+工业领域招投标技术方案智能审查，帮助用户逐条对标国家和行业强制性标准，输出9维合规评分、审查清单、整改建议和交互式HTML合规报告。
 
-## Publisher: <br>
-[bettermen](https://clawhub.ai/user/bettermen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bettermen](https://clawhub.ai/user/bettermen)
 
-## Use Case: <br>
-Bid, procurement, compliance, and engineering teams use this skill to review industrial tender technical proposals against applicable legal, safety, environmental, energy-efficiency, quality, acceptance, qualification, and intellectual-property requirements. It is intended to surface compliance gaps and remediation suggestions before users rely on a bid package. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads tender documents and may process sensitive commercial or procurement information. <br>
-Mitigation: Run it only on documents the user is authorized to share with the agent and keep generated JSON or HTML reports in approved local or organizational storage. <br>
-Risk: Legal, standards, and bid-compliance conclusions are advisory and may be incomplete or outdated. <br>
-Mitigation: Have qualified procurement, legal, or engineering professionals review critical findings before making bid decisions. <br>
+## Use Case:
 
+Procurement, legal, and technical review teams use this skill to pre-review industrial bid technical proposals against applicable Chinese bidding, safety, environmental, energy-efficiency, quality, acceptance, qualification, and intellectual-property requirements. It is intended to surface likely non-compliance, missing items, rejection risks, and remediation actions before professional review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bettermen/industrial-bid-compliance) <br>
-- [bid_compliance_checklist.md](references/bid_compliance_checklist.md) <br>
-- [bid_law_essentials.md](references/bid_law_essentials.md) <br>
-- [compliance_framework.md](references/compliance_framework.md) <br>
-- [industrial_standards_map.md](references/industrial_standards_map.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance plus local JSON and HTML compliance report artifacts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces clause-level findings, 9-dimension compliance scores, remediation guidance, and interactive HTML reports from user-provided tender documents.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence.release.version and SKILL.md frontmatter) <br>
+Risk: Generated HTML reports can embed bid document content, including untrusted user-supplied fields.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Open generated HTML reports only from trusted bid data until escaping or an auto-escaping template engine is verified.
+
+Risk: Compliance conclusions are high-stakes and may exceed the implemented checks.
+
+Mitigation: Treat findings as preliminary screening and require professional legal and technical review before relying on them.
+
+Risk: Python dependencies are specified as broad version ranges.
+
+Mitigation: Pin and audit dependencies before installation or operational use.
+
+Risk: Industrial standards and legal requirements can change over time.
+
+Mitigation: Verify cited standards and legal references against official sources at the time of review.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bettermen/skills/industrial-bid-compliance)
+- [9维合规审查框架](references/compliance_framework.md)
+- [工业领域标准分类映射表](references/industrial_standards_map.md)
+- [逐条合规检查清单模板](references/bid_compliance_checklist.md)
+- [招投标法律法规核心要点速查](references/bid_law_essentials.md)
+- [国家标准全文公开系统](https://openstd.samr.gov.cn)
+- [全国标准信息公共服务平台](https://std.samr.gov.cn)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance, JSON review data, and single-file HTML compliance reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include a 9-dimension compliance score, clause-level review records, rejection-risk summaries, remediation guidance, and generated report files.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,38 +1,54 @@
-## Description: <br>
-Uploads a selected image to the temporary third-party image host imgland.net, returning a public image URL and expiration details. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Uploads a selected local image file to the imgland.net temporary image host, defaulting to a 30-day expiration and returning a public link.
 
-## Publisher: <br>
-[maoruibin](https://clawhub.ai/user/maoruibin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[maoruibin](https://clawhub.ai/user/maoruibin)
 
-## Use Case: <br>
-Developers and agents use this skill to upload a local image for temporary public sharing and receive a machine-readable response with the image URL, file metadata, expiration timestamp, and delete URL. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/maoruibin/tmp-img) <br>
-- [imgland image upload API endpoint](https://api.imgland.net/v1/images) <br>
+Developers and agents use this skill to temporarily upload a single image and return a public URL, expiration timestamp, file metadata, and delete URL for sharing or short-lived inspection.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Guidance] <br>
-**Output Format:** [JSON response with public URL, image identifier, filename, file size, expiration timestamp, and delete URL, plus concise user-facing guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should treat the public image URL and delete URL as sensitive links; users should avoid uploading secrets, credentials, private screenshots, documents, or sensitive personal data.] <br>
+Global
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: The skill can upload any readable local file to a public third-party host without validating that the file is an image or requiring a clear confirmation.
+
+Mitigation: Verify the exact file path before execution and do not upload screenshots or files containing secrets, credentials, personal data, or internal documents.
+
+Risk: The returned delete_url may allow anyone who has it to delete the hosted image.
+
+Mitigation: Treat delete_url as sensitive and share only the public image URL unless deletion access is intentionally needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/maoruibin/skills/tmp-img)
+- [imgland.net image upload API endpoint](https://api.imgland.net/v1/images)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, JSON, guidance]
+
+**Output Format:** [JSON object with public image URL, image ID, filename, file size, expiration timestamp, and delete URL; agents may summarize the URL and expiry in text.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uploads one readable local file per invocation; default expiration is 30 days and may be configured with values such as 1d, 7d, or 30d.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

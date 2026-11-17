@@ -1,44 +1,55 @@
-## Description: <br>
-Vibe-Switch orchestrates multiple AI coding agents in parallel, running Claude Code, Codex CLI, and Gemini CLI on isolated Git branches with context handoff. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+tmux for AI Agents -- Orchestrate multiple AI coding agents in parallel with one command. Run Claude Code, Codex CLI, and Gemini CLI simultaneously on isolated Git branches with seamless context handoff.
 
-## Publisher: <br>
-[brianjhang](https://clawhub.ai/user/brianjhang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[brianjhang](https://clawhub.ai/user/brianjhang)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to coordinate multiple coding-agent CLIs across isolated Git worktrees, monitor their progress, and hand off context between agents during implementation workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill installs and runs a third-party npm CLI that can spawn other coding-agent CLIs. <br>
-Mitigation: Install only if the npm package publisher is trusted and review spawned-agent configuration before use. <br>
-Risk: Spawned agents may have different sandbox and network behavior, and some are documented as non-sandboxed. <br>
-Mitigation: Avoid sensitive repositories with non-sandboxed agents and choose an agent whose access model matches the task. <br>
-Risk: `vibe clean` is documented to remove completed task logs and worktrees. <br>
-Mitigation: Review, commit, or otherwise preserve important work before running cleanup commands. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to coordinate multiple AI coding agents across isolated Git worktrees, monitor their status, and hand off task context between agents.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/brianjhang/vibe-switch) <br>
-- [npm package](https://www.npmjs.com/package/vibe-switch) <br>
-- [GitHub repository](https://github.com/brianjhang/vibe-switch) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include agent selection, worktree orchestration, handoff, monitoring, and cleanup guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill asks users to globally install and run an external CLI with broad local process and repository control.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the npm package and source before installing, and install an exact trusted version such as vibe-switch@1.0.2.
+
+Risk: Spawned non-sandboxed agents may read or change repository files and may use their own network or authentication configuration.
+
+Mitigation: Run only trusted agent CLIs, limit repository and credential exposure, and review generated worktrees and changes before merging.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/brianjhang/skills/vibe-switch)
+- [npm package declared in artifact](https://www.npmjs.com/package/vibe-switch)
+- [GitHub project link declared in artifact](https://github.com/brianjhang/vibe-switch)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May describe local Git worktrees, branches, task prompts, logs, and agent handoff steps.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

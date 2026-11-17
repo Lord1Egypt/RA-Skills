@@ -1,40 +1,52 @@
-## Description: <br>
-Security Auditor X performs structured security audits of code, infrastructure configurations, API designs, and architecture documents, producing prioritized findings and remediation recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Performs structured security audits of codebases, infrastructure configuration, API designs, and architecture documents, producing prioritized findings with severity ratings and remediation recommendations.
 
-## Publisher: <br>
-[leewest0](https://clawhub.ai/user/leewest0) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[leewest0](https://clawhub.ai/user/leewest0)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers, engineers, and security reviewers use this skill to assess source code, infrastructure-as-code, cloud configuration, API design, dependencies, and architecture for security risks. It helps produce full audit reports, quick assessments, or executive summaries with severity, evidence, impact, and remediation guidance.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Broad trigger phrases such as "audit this" may route a general review request into a security-focused assessment.
+
+Mitigation: Confirm the intended review scope when the user's request is ambiguous, especially when they may want general code quality feedback rather than a security audit.
+
+Risk: Security-audit findings and remediation guidance can be incomplete or incorrect without project-specific deployment, threat-model, and compliance context.
+
+Mitigation: Have qualified reviewers validate high-impact findings and remediation steps before applying changes in production.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, security reviewers, and engineering teams use this skill to assess code, infrastructure-as-code, cloud configuration, API designs, dependency manifests, and architecture materials for security weaknesses and remediation priorities. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Analysis, Markdown, Code, Shell commands, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Security audit findings may include false positives or miss context-specific vulnerabilities. <br>
-Mitigation: Review findings against the actual source, deployment context, threat model, and security requirements before relying on remediation advice. <br>
-Risk: Broad audit trigger phrases may activate the skill for generic or underspecified review requests. <br>
-Mitigation: Confirm audit scope, deployment context, and required output format when the request is ambiguous. <br>
+**Output Format:** [Markdown security audit report with findings, severity ratings, evidence, impact, and remediation steps]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/leewest0/security-auditor-x) <br>
+**Other Properties Related to Output:** [May include code examples, authoritative security references, compliance mappings, and executive-summary prose when requested.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown security audit report with findings, severity ratings, evidence, impact, and remediation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include quick assessments or executive summaries when requested; default output is a full audit report.] <br>
+1.0.5 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.5 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

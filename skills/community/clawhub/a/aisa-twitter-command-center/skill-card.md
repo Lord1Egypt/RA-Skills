@@ -1,44 +1,59 @@
-## Description: <br>
-Search X/Twitter profiles, tweets, trends, lists, communities, and Spaces through the AIsa relay, then support approved posting workflows with OAuth. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search X/Twitter profiles, tweets, trends, lists, communities, and Spaces through the AIsa relay, then support approved posting workflows with OAuth.
 
-## Publisher: <br>
-[baofeng-tech](https://clawhub.ai/user/baofeng-tech) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[baofeng-tech](https://clawhub.ai/user/baofeng-tech)
 
-## Use Case: <br>
-Agents and operators use this skill to research and monitor X/Twitter content, then publish approved posts, replies, quotes, or media through an OAuth-based workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses the AIsa relay with Twitter/X posting authority, OAuth flows, and approved media uploads. <br>
-Mitigation: Install only if you trust the AIsa relay, configure the intended account, and require explicit user approval before posting or uploading media. <br>
-Risk: The security scan reports that OAuth and status flows may expose AISA_API_KEY or raw relay responses in CLI output. <br>
-Mitigation: Review or patch the OAuth client to redact secrets before use, avoid sharing raw logs, and rotate AISA_API_KEY if it appears in transcripts or logs. <br>
-Risk: External posting can publish incorrect text, replies, quotes, or attachments to X/Twitter. <br>
-Mitigation: Review post text, target tweet URLs, and local media paths before execution, and do not claim success until the publish command confirms it. <br>
+## Use Case:
 
+Developers and agents use this skill for Twitter/X research, monitoring, and content discovery, including profiles, timelines, mentions, trends, lists, communities, and Spaces. With explicit OAuth approval, it can also support publishing text, image, video, reply, and quote posts without requesting account passwords.
 
-## Reference(s): <br>
-- [AIsa Twitter OAuth posting guide](references/post_twitter.md) <br>
-- [AIsa homepage](https://aisa.one) <br>
-- [ClawHub skill page](https://clawhub.ai/baofeng-tech/aisa-twitter-command-center) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, API responses] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON API responses from the bundled clients] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires AISA_API_KEY and user-approved OAuth for posting workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata and skill frontmatter) <br>
+Risk: The OAuth/posting client may expose the configured AISA_API_KEY in normal command output.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not use a valuable key until the client masks secrets; keep authorize/post output out of shared logs and rotate the key if it appears in logs or transcripts.
+
+Risk: Twitter/X search, OAuth, posting, and approved media uploads are relay-based and are sent to api.aisa.one.
+
+Mitigation: Use the skill only when relay-based access is acceptable, and avoid sending sensitive content or media unless the user has approved that workflow.
+
+Risk: Posting actions can publish externally visible content from the authorized account.
+
+Mitigation: Require explicit user intent for publishing, replies, quotes, and media uploads, and do not report success until the publish command confirms completion.
+
+## Reference(s):
+
+- [AIsa Twitter OAuth Guide](references/post_twitter.md)
+- [AIsa Homepage](https://aisa.one)
+- [ClawHub Skill Page](https://clawhub.ai/baofeng-tech/skills/aisa-twitter-command-center)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, API calls]
+
+**Output Format:** [Markdown guidance with shell command examples and JSON-like command results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May return Twitter/X search or profile data, OAuth authorization links, publish status, tweet IDs or URLs, and relay error details.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

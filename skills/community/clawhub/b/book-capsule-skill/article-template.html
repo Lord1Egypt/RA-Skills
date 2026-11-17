@@ -1,0 +1,117 @@
+<!--
+  ================================================================================
+  公众号文章模板 — 微信草稿箱兼容 HTML 骨架
+  基于 dongye-wechat-v3.html 黄金版式固化，所有样式/颜色/字号/间距已验证通过
+  ================================================================================
+
+  占位符说明：
+  ┌─────────────────────┬──────────────────────────────────────────────────┐
+  │ {{DATE}}            │ 发布日期，格式如 "2026 - 0 7 - 3 0"（字间空格）      │
+  │ {{TITLE}}           │ 文章主标题，支持 <br> 换行                          │
+  │ {{SUBTITLE}}        │ 标题下方副标题                                     │
+  │ {{INTRO_PARAGRAPH_1}}│ 引言第一段                                        │
+  │ {{INTRO_PARAGRAPH_2}}│ 引言第二段                                        │
+  │ {{GOLD_QUOTE_1}}    │ 黄金金句1 — 正文（支持 <br> 换行）                  │
+  │ {{GOLD_QUOTE_1_SOURCE}}│ 黄金金句1出处（如 "—— 东野圭吾《白夜行》"）      │
+  │ {{GOLD_QUOTE_2}}    │ 黄金金句2 — 正文（卡片02后/卡片03前）              │
+  │ {{GOLD_QUOTE_3}}    │ 黄金金句3 — 正文（卡片04后/卡片05前）              │
+  │ {{COLLECTION_TITLE}}│ 页脚标题，完全由 JSON 控制（不含前缀）              │
+  │ {{FOOTER_SUBTITLE}} │ 页脚副标题，可用 {count}/{quotes}/{all_quotes} 占位符  │
+  │ {{FOOTER_QUOTE}}    │ 页脚引用句                                         │
+  │ {{CLOSING_QUOTE}}   │ 结尾金句正文（支持 <br> 换行）                      │
+  │ {{CLOSING_QUOTE_SOURCE}}│ 结尾金句出处                                    │
+  └─────────────────────┴──────────────────────────────────────────────────┘
+
+  卡片循环变量 — CARDS 数组（每个卡片一个对象）：
+  ┌─────────────────────┬──────────────────────────────────────────────────┐
+  │ {{CARD_NUMBER}}     │ 卡片序号，如 "01"、"02" …（2位数字）              │
+  │ {{BOOK_TITLE}}      │ 作品名称                                          │
+  │ {{BOOK_INFO}}       │ 作品信息（支持 <br> 换行，豆瓣评分/奖项/简介）     │
+  │ {{#each QUOTES}}    │ 该作品下的金句数组，每条金句包含：                 │
+  │   {{QUOTE_INDEX}}   │   金句序号（如 "01"、"02" …）                     │
+  │   {{QUOTE_TEXT}}    │   金句正文                                        │
+  │ {{@last}}           │   循环内判断是否最后一条（控制分割线）              │
+  │ {{@last}}(卡片级)   │   判断是否最后一张卡片（控制卡片间距 <br>）         │
+  └─────────────────────┴──────────────────────────────────────────────────┘
+
+  金句穿插位置（跟随 v3 实际结构）：
+  金句1 → 引言后、卡片01前
+  金句2 → 卡片02后、卡片03前
+  金句3 → 卡片04后、卡片05前
+  结尾金句 → 卡片08后、页脚前
+
+  重要约束：
+  - 仅使用 inline style，禁止 <style> 块和 class 选择器
+  - 卡片底色必须用 style="background-color:#F7F5F0"，不能用 bgcolor 属性
+  - 卡片间距用 <br>，不要用 margin-top
+  - 居中用 <center> 标签，不要用 margin:auto
+  - 全文包裹在 <center>...</center> 内
+  ================================================================================
+-->
+<div style="width:600px;margin:0 auto;">
+<center>
+
+<!-- ==================== 标题区 ==================== -->
+<p style="font-size:12px;color:#AAAAAA;text-align:center;line-height:1.5;padding:40px 0 0 0;">{{DATE}}</p>
+<p style="font-size:24px;font-weight:800;color:#111111;text-align:center;line-height:1.5;padding:10px 0 0 0;">{{TITLE}}</p>
+<p style="font-size:14px;color:#999999;text-align:center;line-height:1.7;padding:6px 0 16px 0;">{{SUBTITLE}}</p>
+
+<!-- ==================== 引言 ==================== -->
+<p style="font-size:14px;color:#666666;text-align:justify;line-height:2.0;padding:0 20px 8px 20px;">{{INTRO_PARAGRAPH_1}}</p>
+<p style="font-size:14px;color:#666666;text-align:justify;line-height:2.0;padding:0 20px 0 20px;">{{INTRO_PARAGRAPH_2}}</p>
+
+<!-- ==================== 黄金金句 1 ==================== -->
+<hr style="width:40px;border:none;border-top:2px solid #E63946;">
+<p style="font-size:17px;font-weight:700;color:#222222;text-align:center;line-height:1.9;padding:10px 20px 0 20px;">{{GOLD_QUOTE_1}}</p>
+<p style="font-size:12px;font-weight:400;color:#AAAAAA;text-align:center;line-height:1.5;padding:6px 0 10px 0;">{{GOLD_QUOTE_1_SOURCE}}</p>
+
+<!-- ==================== 卡片循环 ==================== -->
+{{#each CARDS}}
+<table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr>
+    <td style="background-color:#F7F5F0;padding:28px 20px 24px 20px;">
+
+      <p style="font-size:42px;font-weight:200;color:#E63946;text-align:center;line-height:1.0;padding:0;">{{CARD_NUMBER}}</p>
+      <p style="font-size:18px;font-weight:700;color:#1A1A1A;text-align:center;line-height:1.4;padding:4px 0 4px 0;">{{BOOK_TITLE}}</p>
+      <p style="font-size:12px;color:#999999;text-align:center;line-height:1.7;padding:0 0 0 0;">{{BOOK_INFO}}</p>
+
+      <hr style="width:30px;border:none;border-top:1px solid #DDDDDD;">
+
+      {{#each QUOTES}}
+      <p style="font-size:15px;color:#444444;line-height:1.8;padding:12px 0 0 0;">
+        <span style="font-size:12px;font-weight:700;color:#CCBBAA;">{{QUOTE_INDEX}} </span>{{QUOTE_TEXT}}
+      </p>
+      {{#unless @last}}<hr style="border:none;border-top:1px solid #E8E4DC;">{{/unless}}
+      {{/each}}
+
+    </td>
+  </tr>
+</table>
+{{#unless @last}}<br>{{/unless}}
+{{/each}}
+
+<!--
+  金句穿插占位说明（需在卡片循环中手动插入，因为需要精确定位在特定卡片之间）：
+
+  位置 1 — 黄金金句 2（卡片02后、卡片03前）：
+  <hr style="width:40px;border:none;border-top:2px solid #E63946;">
+  <p style="font-size:17px;font-weight:700;color:#222222;text-align:center;line-height:1.9;padding:10px 20px 0 20px;">{{GOLD_QUOTE_2}}</p>
+
+  位置 2 — 黄金金句 3（卡片04后、卡片05前）：
+  <hr style="width:40px;border:none;border-top:2px solid #E63946;">
+  <p style="font-size:17px;font-weight:700;color:#222222;text-align:center;line-height:1.9;padding:10px 20px 0 20px;">{{GOLD_QUOTE_3}}</p>
+-->
+
+<!-- ==================== 结尾金句 ==================== -->
+<hr style="width:40px;border:none;border-top:2px solid #E63946;">
+<p style="font-size:17px;font-weight:700;color:#222222;text-align:center;line-height:1.9;padding:10px 20px 0 20px;">{{CLOSING_QUOTE}}</p>
+<p style="font-size:13px;font-weight:400;color:#AAAAAA;text-align:center;line-height:1.5;padding:6px 0 0 0;">{{CLOSING_QUOTE_SOURCE}}</p>
+
+<!-- ==================== 页脚 ==================== -->
+<hr style="border:none;border-top:1px solid #EEEEEE;">
+<p style="font-size:15px;font-weight:700;color:#333333;text-align:center;line-height:1.5;padding:30px 0 0 0;">{{COLLECTION_TITLE}}</p>
+<p style="font-size:12px;color:#AAAAAA;text-align:center;line-height:1.9;padding:2px 0 0 0;">{{FOOTER_SUBTITLE}}</p>
+<p style="font-size:11px;color:#CCCCCC;text-align:center;line-height:1.5;padding:10px 0 40px 0;">{{FOOTER_QUOTE}}</p>
+
+</center>
+</div>

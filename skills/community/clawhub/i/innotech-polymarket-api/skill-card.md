@@ -1,46 +1,61 @@
-## Description: <br>
-Polymarket API and data access guide for connecting to Polymarket APIs, finding markets, getting real-time data via WebSocket, accessing order books, placing orders via CLOB SDK, and understanding market mechanics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Polymarket API and data access guide. Learn how to connect, find markets, get real-time data via WebSocket, access order books, place orders via CLOB SDK, and understand market mechanics.
 
-## Publisher: <br>
-[nwcalvin](https://clawhub.ai/user/nwcalvin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nwcalvin](https://clawhub.ai/user/nwcalvin)
 
-## Use Case: <br>
-Developers and engineers use this skill to build agents or applications that query Polymarket market data, monitor order books, use WebSocket updates, and understand CLOB order placement mechanics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill includes patterns for live Polymarket order placement and private-key based credential derivation. <br>
-Mitigation: Use a dedicated low-balance wallet or secret manager, keep private keys out of prompts and logs, and require explicit confirmation before enabling order placement. <br>
-Risk: Trading code can place financial orders if extended or run with valid credentials. <br>
-Mitigation: Default to dry-run behavior, set order-size and price limits, and keep audit logs for any execution path that posts orders. <br>
-Risk: Incorrect interpretation of market data can produce misleading trading decisions. <br>
-Mitigation: Use the documented reliable order book events, verify market resolution states before acting on outcomes, and review Polymarket's official order documentation before trading. <br>
+## Use Case:
 
+Developers and engineers use this skill to connect agents or applications to Polymarket market data, WebSocket streams, order books, and CLOB SDK trading flows. It is most useful for building prediction-market data tools or carefully reviewed trading integrations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nwcalvin/innotech-polymarket-api) <br>
-- [API Reference](references/API_REFERENCE.md) <br>
-- [WebSocket Guide](references/WEBSOCKET_GUIDE.md) <br>
-- [Polymarket create order documentation](https://docs.polymarket.com/trading/orders/create) <br>
-- [Polymarket order overview documentation](https://docs.polymarket.com/trading/orders/overview) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with Python examples and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include API endpoint descriptions, WebSocket subscription examples, order book parsing guidance, and optional trading-related code patterns.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release evidence and artifact skill.json) <br>
+Risk: The skill can guide or run live Polymarket trading code that places real orders.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require human confirmation or dry-run behavior before placing orders, and review order size, price, side, token ID, and market before execution.
+
+Risk: The trading helper handles wallet private keys and derives API credentials.
+
+Mitigation: Use a dedicated low-balance wallet, avoid primary private keys, and keep credentials out of shared logs, prompts, and committed files.
+
+Risk: Dependencies such as py-clob-client can affect wallet signing and order submission behavior.
+
+Mitigation: Pin, review, and update dependencies deliberately before deploying the skill in an agent environment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/nwcalvin/skills/innotech-polymarket-api)
+- [Polymarket API Reference](references/API_REFERENCE.md)
+- [Polymarket WebSocket Guide](references/WEBSOCKET_GUIDE.md)
+- [Polymarket Create Orders Documentation](https://docs.polymarket.com/trading/orders/create)
+- [Polymarket Orders Overview](https://docs.polymarket.com/trading/orders/overview)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python examples, shell commands, and configuration notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide live API calls, WebSocket subscriptions, and CLOB order placement when the user provides credentials and executes the examples.]
+
+## Skill Version(s):
+
+2.0.0 (source: evidence.release.version, artifact/skill.json, CHANGELOG.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

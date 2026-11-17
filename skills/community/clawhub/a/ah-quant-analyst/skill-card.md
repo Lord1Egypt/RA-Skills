@@ -1,41 +1,53 @@
-## Description: <br>
-Expert quantitative analyst specializing in financial modeling, algorithmic trading, and risk analytics. Masters statistical methods, derivatives pricing, and high-frequency trading with focus on mathematical rigor, performance optimization, and profitable strategy development. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Expert quantitative analyst specializing in financial modeling, algorithmic trading, risk analytics, statistical methods, derivatives pricing, and high-frequency trading, with focus on mathematical rigor, performance optimization, and profitable strategy development.
 
-## Publisher: <br>
-[mtsatryan](https://clawhub.ai/user/mtsatryan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mtsatryan](https://clawhub.ai/user/mtsatryan)
 
-## Use Case: <br>
-Developers, quantitative researchers, and financial engineering teams use this skill to analyze markets, design and validate trading strategies, build quantitative models, and reason about portfolio risk. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Trading and quantitative finance guidance can affect financial decisions or automate market actions. <br>
-Mitigation: Require human review before acting on trading-related recommendations, execution steps, scheduled automation, or portfolio and risk changes. <br>
-Risk: Financial workflows may involve sensitive third-party credentials or account access. <br>
-Mitigation: Use provider-approved secret management and avoid storing financial credentials outside the intended secret manager. <br>
-Risk: CLI install, upgrade, login, public sharing, or memory update steps may change the agent environment or expose information. <br>
-Mitigation: Review those steps before approval and limit permissions to the minimum needed for the user-directed finance task. <br>
+## Use Case:
 
+Financial analysts, quantitative researchers, and developers use this skill to structure quantitative finance analysis, trading strategy research, model validation, backtesting, risk analytics, and trading-system implementation guidance.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown or plain text with optional code and shell command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include financial modeling, trading strategy, backtesting, risk analytics, and implementation guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Quantitative analysis or trading-strategy output could be mistaken for financial advice or used to support live trading without adequate review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as analytical guidance only; require explicit user approval, compliance review, independent validation, and controlled execution before any trading action.
+
+Risk: Backtests, performance metrics, and model recommendations can be misleading when data quality, transaction costs, overfitting, or changing market regimes are not reviewed.
+
+Mitigation: Validate data quality, assumptions, slippage, transaction costs, out-of-sample behavior, and risk metrics before relying on generated analysis.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mtsatryan/skills/ah-quant-analyst)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with optional code blocks and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are advisory and require independent financial, compliance, and risk review before use in live trading or investment decisions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

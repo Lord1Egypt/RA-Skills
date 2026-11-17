@@ -1,41 +1,54 @@
-## Description: <br>
-AI agent operations reference covering multi-agent architectures, ReAct and chain-of-thought patterns, tool-use conventions, prompt injection defense, and evaluation metrics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI agent operations reference covering multi-agent architectures, ReAct and chain-of-thought patterns, tool-use conventions, prompt injection defense, and evaluation metrics.
 
-## Publisher: <br>
-[xueyetianya](https://clawhub.ai/user/xueyetianya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xueyetianya](https://clawhub.ai/user/xueyetianya)
 
-## Use Case: <br>
-Developers and engineers use this skill as a plain-text operations reference for designing, troubleshooting, securing, and evaluating AI agent and multi-agent systems. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Third-party skill installation requires trust in the publisher and review of any commands before execution. <br>
-Mitigation: Install only if the publisher is trusted, keep secrets in documented environment locations, and review privileged commands before running them. <br>
-Risk: Reference guidance may be applied without enough validation for a specific agent deployment. <br>
-Mitigation: Treat outputs as reference material and validate recommendations against current project, security, and compliance requirements before production use. <br>
+## Use Case:
 
+Developers and engineers use this skill as a quick reference for designing, operating, securing, troubleshooting, and evaluating AI agent systems.
 
-## Reference(s): <br>
-- [Agent Ops Framework on ClawHub](https://clawhub.ai/xueyetianya/agent-ops-framework) <br>
-- [BytesAgain](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Plain-text reference documentation with Markdown headings] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No external API calls, credentials, or network access required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-8.0.0 (source: server release and SKILL.md frontmatter) <br>
+Risk: The bundled shell script must be reviewed before execution.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Evidence security guidance states the inspected script prints static help text and documentation without accessing files, credentials, network services, or persistent system settings.
+
+Risk: Reference guidance may become stale as agent frameworks, pricing, and model capabilities change.
+
+Mitigation: Treat generated documentation as operational guidance and verify time-sensitive details against current vendor documentation before production decisions.
+
+## Reference(s):
+
+- [Agent Ops Framework on ClawHub](https://clawhub.ai/xueyetianya/skills/agent-ops-framework)
+- [BytesAgain Homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Plain-text reference documentation with Markdown-style headings emitted by shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No API keys, credentials, external API calls, or network access required.]
+
+## Skill Version(s):
+
+8.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

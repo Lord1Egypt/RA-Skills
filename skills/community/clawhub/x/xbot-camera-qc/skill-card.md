@@ -1,42 +1,53 @@
-## Description: <br>
-Professional visual inspection for xbot.coffee Lite, detecting drink volume, screen, table, robotic arm, dirt, environment and pests. Output structured English JSON for API automation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Professional visual inspection for xbot.coffee Lite, detecting drink volume, screen, table, robotic arm, dirt, environment and pests, and outputting structured English JSON for API automation.
 
-## Publisher: <br>
-[mszren](https://clawhub.ai/user/mszren) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mszren](https://clawhub.ai/user/mszren)
 
-## Use Case: <br>
-External operators and automation teams use this skill to inspect xbot.coffee Lite camera images for drink quality, screen state, cleanliness, robotic arm status, environment condition, and pest presence. The result can feed alerting, maintenance dispatch, API workflows, reports, or operational dashboards. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The JSON output may be used by business systems for alerts, maintenance workflows, or operational decisions. <br>
-Mitigation: Validate the JSON schema and keep human review or safeguards around high-impact maintenance, safety, or service-disruption decisions. <br>
-Risk: Image-based inspection can miss anomalies or misclassify ambiguous camera captures. <br>
-Mitigation: Use confidence checks, spot audits, and escalation paths for uncertain or high-impact results. <br>
+## Use Case:
 
+External operators and developers use this skill to classify xbot.coffee Lite camera images for automated quality control, anomaly alerting, API integration, reporting, and operations workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mszren/xbot-camera-qc) <br>
-- [Publisher profile](https://clawhub.ai/user/mszren) <br>
-- [Homepage listed by skill metadata](https://github.com/yourname/xbot-camera-qc-pro) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, JSON, guidance] <br>
-**Output Format:** [Structured English JSON] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns status fields for drink quality, screen state, table cleanliness, robotic arm state, equipment cleanliness, environment cleanliness, pest detection, anomaly flag, and alert message.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata and SKILL.md frontmatter) <br>
+Risk: The returned JSON may not match a backend parser or alerting workflow if the expected schema differs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the fixed output fields and allowed values before integrating the skill into production automation.
+
+Risk: Camera images may contain operational or sensitive visual information.
+
+Mitigation: Only provide images that are appropriate for analysis in the configured OpenClaw environment.
+
+## Reference(s):
+
+- [Project homepage](https://github.com/yourname/xbot-camera-qc-pro)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, guidance]
+
+**Output Format:** [Structured English JSON]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns fixed camera quality-check fields, a boolean anomaly indicator, and an alert message.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

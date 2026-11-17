@@ -1,40 +1,56 @@
-## Description: <br>
-Automatically track creator channels and transcribe new videos from YouTube, Bilibili, and TikTok while using memory-based updates to skip already processed items and avoid duplicate downloads. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically tracks creator channels on YouTube, Bilibili, and TikTok, transcribes new videos, and uses memory-based updates to avoid duplicate downloads.
 
-## Publisher: <br>
-[YutaiGu](https://clawhub.ai/user/YutaiGu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[yutaigu](https://clawhub.ai/user/yutaigu)
 
-## Use Case: <br>
-Developers and operators use this skill to run and manage the briefing CLI for tracking creator channels, updating tracked sources, and returning newly generated video transcription text. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can automatically run shell setup that fetches remote code, installs dependencies, and changes the local environment. <br>
-Mitigation: Review the installer, repository, and requirements before use, and prefer running setup manually in a sandbox or disposable environment. <br>
-Risk: The bundled installer may use privileged or global install paths and persistently modify PATH configuration. <br>
-Mitigation: Avoid privileged or global install paths unless explicitly intended, and inspect shell profile changes after installation. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/YutaiGu/briefing-skill) <br>
-- [Installer repository used by bundled install script](https://github.com/YutaiGu/skill-briefing.git) <br>
+## Use Case:
 
+Developers and external users use this skill to operate the briefing CLI for tracking creator channels, managing source URLs and configuration, and returning newly generated transcript text.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration guidance] <br>
-**Output Format:** [Plain text with CLI command invocations and extracted transcript content] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads output/<filename>/whisper.txt after CLI runs that report completed Whisper output.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.9 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The first-run bootstrap can execute shell commands, request sudo, install system and Python packages, and create a persistent launcher.
+
+Mitigation: Review and run the installer manually when possible, prefer a user-local install path, and confirm each privileged or persistent change before enabling the skill.
+
+Risk: The installer can download mutable remote code and current dependencies.
+
+Mitigation: Review or pin the remote repository and dependency set before installation.
+
+Risk: The installer can edit shell startup files to add the launcher directory to PATH.
+
+Mitigation: Inspect profile file changes and remove the added PATH entry if it is not wanted.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yutaigu/skills/briefing-skill)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and transcript text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May read transcript files from output/<filename>/whisper.txt after the CLI reports [WHISPER DONE].]
+
+## Skill Version(s):
+
+1.0.9 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

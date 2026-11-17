@@ -1,0 +1,27 @@
+date,product,category,region,revenue,quantity,customer_segment
+2024-01-05,Widget A,Electronics,North,12500.00,45,Enterprise
+2024-01-12,Widget B,Electronics,South,8900.00,32,SMB
+2024-01-19,Gadget X,Accessories,East,3200.00,18,Enterprise
+2024-01-26,Widget A,Electronics,West,15400.00,55,SMB
+2024-02-02,Gadget Y,Accessories,North,2100.00,12,Startup
+2024-02-09,Widget B,Electronics,East,10200.00,38,Enterprise
+2024-02-16,Gadget X,Accessories,South,4100.00,22,SMB
+2024-02-23,Widget A,Electronics,North,13800.00,48,Enterprise
+2024-03-02,Gadget Y,Accessories,West,2800.00,15,Startup
+2024-03-09,Widget B,Electronics,South,11500.00,42,SMB
+2024-03-16,Gadget X,Accessories,East,3800.00,20,Enterprise
+2024-03-23,Widget A,Electronics,North,16200.00,58,Enterprise
+2024-03-30,Gadget Y,Accessories,South,2400.00,13,Startup
+2024-04-06,Widget B,Electronics,West,9500.00,35,SMB
+2024-04-13,Gadget X,Accessories,North,4500.00,24,SMB
+2024-04-20,Widget A,Electronics,East,14100.00,50,Enterprise
+2024-04-27,Gadget Y,Accessories,South,3100.00,17,Startup
+2024-05-04,Widget B,Electronics,North,10800.00,40,SMB
+2024-05-11,Gadget X,Accessories,West,3600.00,19,Enterprise
+2024-05-18,Widget A,Electronics,South,12800.00,46,SMB
+2024-05-25,Gadget Y,Accessories,East,2600.00,14,Startup
+2024-06-01,Widget B,Electronics,North,13500.00,49,Enterprise
+2024-06-08,Gadget X,Accessories,South,4900.00,26,SMB
+2024-06-15,Widget A,Electronics,West,17200.00,62,Enterprise
+2024-06-22,Gadget Y,Accessories,East,2200.00,11,Startup
+2024-06-29,Widget B,Electronics,North,11900.00,44,SMB

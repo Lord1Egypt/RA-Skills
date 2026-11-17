@@ -1,40 +1,53 @@
-## Description: <br>
-Analyze and optimize Astro projects, including configuration, performance, SEO, accessibility, content collections, and integration setup. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audits Astro projects for configuration quality, performance, SEO, accessibility, content collections, and integration setup.
 
-## Publisher: <br>
-[charlie-morrison](https://clawhub.ai/user/charlie-morrison) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[charlie-morrison](https://clawhub.ai/user/charlie-morrison)
 
-## Use Case: <br>
-Developers and engineers use this skill to audit Astro projects, identify configuration and deployment issues, and produce prioritized recommendations for performance, SEO, accessibility, routing, and content collection improvements. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Suggested edits or package installs could change application behavior or add dependencies. <br>
-Mitigation: Review proposed configuration changes, code edits, and package installs before applying them. <br>
-Risk: Project inspection may read local Astro configuration, package metadata, and source file structure. <br>
-Mitigation: Run the skill only in projects where local file inspection is acceptable. <br>
+## Use Case:
 
+Developers and frontend engineers use this skill to audit and optimize Astro sites during setup, migration, performance tuning, and deployment readiness reviews.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/charlie-morrison/astro-project-analyzer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown analysis with prioritized findings and suggested commands or configuration changes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May inspect local Astro project files and propose edits or package installs for user review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server evidence) <br>
+Risk: The skill inspects Astro project files when asked to audit or optimize a project.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only on intended project workspaces and review findings before applying any suggested changes.
+
+Risk: Audit recommendations can be incomplete or unsuitable for a specific deployment target.
+
+Mitigation: Validate configuration, performance, SEO, accessibility, and deployment recommendations against project requirements before implementation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/charlie-morrison/skills/astro-project-analyzer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown analysis with prioritized findings and recommended fixes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces project audit summaries and optimization recommendations; does not modify files automatically.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

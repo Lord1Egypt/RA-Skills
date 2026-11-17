@@ -1,39 +1,47 @@
-## Description: <br>
-Maps unfamiliar codebases into modules, owners, and entrypoints for development work that needs repeatable steps, quality gates, and practical outputs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Map unfamiliar codebases into modules, owners, and entrypoints. Use when handling development work that needs repeatable steps, quality gates, and practical outputs.
 
-## Publisher: <br>
-[xammarie](https://clawhub.ai/user/xammarie) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[xammarie](https://clawhub.ai/user/xammarie)
 
-## Use Case: <br>
-Developers and engineers use this skill to turn unfamiliar codebases or messy project inputs into a mapped workflow with success criteria, checkpoints, quality gates, risks, and next actions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Suggested commands or checklists may be inappropriate for a specific repository or production environment. <br>
-Mitigation: Review the proposed steps, commands, and acceptance checks before running them, and prefer reversible changes for risky operations. <br>
-Risk: Codebase maps and owner assignments can be incomplete when the input artifacts are incomplete. <br>
-Mitigation: Confirm assumptions against repository files, documentation, logs, and team ownership records before relying on the plan. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xammarie/jarvis-codebase-mapper-01) <br>
+## Use Case:
+
+Developers and engineers use this skill to map unfamiliar repositories into modules, owners, entrypoints, ranked findings, action plans, risks, mitigations, and practical checklists or commands.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The trigger description may activate the skill for general development planning, not only codebase mapping.
+
+Mitigation: Install it when a lightweight planning checklist is desired, or narrow the trigger description before release if activation should be limited to repository mapping.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with concise summaries, ranked findings, action plans, risks, mitigations, and optional command checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include exact checklist items or commands when useful; the skill does not execute commands itself.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+**Output Type(s):** [text, markdown, shell commands, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include a five-line situation summary, ranked findings, today/this-week action plan, risk mitigations, and exact checklist or commands where useful.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,57 @@
-## Description: <br>
-Manage secrets through macOS Keychain instead of plaintext files, with migration, audit, read/write, file-bridge, and diagnostic workflows for OpenClaw agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage secrets via macOS Keychain by migrating plaintext secrets, reading and writing keychain entries, bridging selected secrets to files for bash tools, auditing leaks, and diagnosing access issues.
 
-## Publisher: <br>
-[Euda1mon1a](https://clawhub.ai/user/Euda1mon1a) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[euda1mon1a](https://clawhub.ai/user/euda1mon1a)
 
-## Use Case: <br>
-Developers and operators use this skill to move macOS-hosted OpenClaw secrets into Keychain, audit for plaintext leaks, diagnose Keychain access failures, and bridge selected secrets back to files when bash tools require them. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill handles high-value secrets and can lead an agent to access macOS Keychain and ~/.openclaw/secrets. <br>
-Mitigation: Review before installing, use only on macOS accounts where that access is acceptable, and avoid broad read or get-secret requests. <br>
-Risk: Some workflows can recreate plaintext credential files on disk for bash compatibility. <br>
-Mitigation: Run migrations with --dry-run first, review the hard-coded Group B service list, and avoid populate_secrets.sh unless the bash tools truly require plaintext files. <br>
-Risk: Keychain migrations depend on local Python keyring setup and per-binary access behavior. <br>
-Mitigation: Verify keyring availability for each Python version and keep original secret files until migration and read-back verification succeed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/Euda1mon1a/keychain-bridge) <br>
+## Use Case:
 
+Developers and operators running OpenClaw on macOS use this skill to move API keys from plaintext files into macOS Keychain, audit secret directories, and generate commands and configuration for Python and bash access patterns.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands, Python snippets, and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local macOS Keychain and filesystem workflows; no network endpoints are described in the artifact.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill handles high-impact secrets and includes file fallback and plaintext bridge behavior.
+
+Mitigation: Use it only after review; require explicit opt-in for bridge files, keep bridge files securely created, and avoid valuable credentials until the fallback path behavior is approved.
+
+Risk: Service names and filesystem paths influence where secrets are read or written.
+
+Mitigation: Validate service names and paths before use, restrict operations to intended secret directories, and review generated commands before execution.
+
+Risk: The artifact includes copy-pastable credential-handling examples and dependency installation guidance.
+
+Mitigation: Remove unsafe password or secret examples before operational use and pin or isolate dependency installation for each Python environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/euda1mon1a/skills/keychain-bridge)
+- [Publisher profile](https://clawhub.ai/user/euda1mon1a)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with shell commands and code snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local macOS Keychain and filesystem guidance for agent execution; no network endpoints are described by the artifact.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

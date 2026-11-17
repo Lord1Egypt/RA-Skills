@@ -1,37 +1,54 @@
-## Description: <br>
-Sougou Map assistant for route lookup, POI search, transit guidance, map platform migration, and map development advice. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Sougou Map helps agents explain the May 2022 Sogou Maps shutdown and guide migration of legacy references, APIs, and coordinate data to Amap, Baidu Maps, or Tencent Maps.
 
-## Publisher: <br>
-[zhangifonly](https://clawhub.ai/user/zhangifonly) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhangifonly](https://clawhub.ai/user/zhangifonly)
 
-## Use Case: <br>
-Developers and map application teams use this skill to answer Sougou Map usage questions and plan migration from Sougou Map APIs to Tencent Maps, Gaode Maps, or Baidu Maps. It also helps with route planning, POI search, transit guidance, coordinate-system considerations, and API adaptation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhangifonly/sougou-map) <br>
+External developers and agents use this skill to answer legacy Sogou Maps questions, explain the service shutdown, and plan migration of APIs, provider choices, and coordinate conversions for Chinese map platforms.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, configuration] <br>
-**Output Format:** [Markdown guidance with tables and implementation notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+Global
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: Current third-party map API details may differ from the static migration guidance.
+
+Mitigation: Verify provider documentation, API keys, request parameters, and quotas before implementation.
+
+Risk: Legacy Sogou coordinate data may shift if migrated without coordinate-system conversion.
+
+Mitigation: Use official provider coordinate-conversion interfaces and validate sample locations before bulk migration.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhangifonly/skills/sougou-map)
+- [Publisher profile](https://clawhub.ai/user/zhangifonly)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown guidance with migration notes and comparison tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution; verify current third-party map API details against provider documentation before implementation.]
+
+## Skill Version(s):
+
+1.1.0 (source: evidence release and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,58 @@
-## Description: <br>
-Audits Move contracts for security vulnerabilities before deployment using a seven-category checklist for access control, input validation, object safety, reference safety, arithmetic safety, generic type safety, and testing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audits Aptos Move contracts for security vulnerabilities before deployment using a seven-category checklist.
 
-## Publisher: <br>
-[iskysun96](https://clawhub.ai/user/iskysun96) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[iskysun96](https://clawhub.ai/user/iskysun96)
 
-## Use Case: <br>
-Developers and auditors use this skill to review Aptos Move contracts before deployment and produce a structured security audit report with findings and recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Checklist results may be incomplete or may not guarantee contract safety. <br>
-Mitigation: Treat the output as audit guidance, run the recommended tests and coverage checks, and perform human review before deployment. <br>
-Risk: The artifact metadata claims Aptos Labs authorship, but server evidence resolves the publisher as iskysun96. <br>
-Mitigation: Verify the publisher profile and release metadata before relying on the authorship claim. <br>
+## Use Case:
 
+Developers and auditors use this skill to review Aptos Move contracts for access control, input validation, object safety, reference safety, arithmetic safety, generic type safety, and test coverage issues before deployment.
 
-## Reference(s): <br>
-- [Aptos Move Security Guidelines](https://aptos.dev/build/smart-contracts/move-security-guidelines) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands] <br>
-**Output Format:** [Markdown security audit report with checklist results and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only audit guidance; no external data flow or hidden execution reported by security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Broad security wording may trigger the skill outside the intended Aptos Move contract review context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill when the target is an Aptos Move contract or clearly confirm the review scope before applying the checklist.
+
+Risk: Checklist-based audit guidance can miss project-specific vulnerabilities or produce incomplete assurance.
+
+Mitigation: Require human review and run the recommended Aptos compile, test, and coverage checks before deployment decisions.
+
+Risk: A security audit workflow may encounter private keys or secret-bearing local files.
+
+Mitigation: Do not read or disclose private key config, .env files, or secret-like values during review.
+
+## Reference(s):
+
+- [Aptos Move Security Guidelines](https://aptos.dev/build/smart-contracts/move-security-guidelines)
+- [ClawHub Skill Page](https://clawhub.ai/iskysun96/skills/aptos-security-audit)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown audit report with checklists, findings, recommendations, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No external tools or credentials are requested by the skill.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

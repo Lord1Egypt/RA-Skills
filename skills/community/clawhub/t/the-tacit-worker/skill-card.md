@@ -1,46 +1,57 @@
-## Description: <br>
-A unified AI Engineering Operating System that guides agents through tacit knowledge extraction, Agent OS file generation, and pre-deployment governance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A unified AI Engineering Operating System that helps agents extract tacit knowledge, structure an Agent OS, and run pre-deployment governance checks.
 
-## Publisher: <br>
-[danielfoojunwei](https://clawhub.ai/user/danielfoojunwei) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[danielfoojunwei](https://clawhub.ai/user/danielfoojunwei)
 
-## Use Case: <br>
-Developers and agent builders use this skill to interview domain experts, turn the results into structured Agent OS files, and audit an agent before deployment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The extraction interview can collect sensitive business, personal, or regulated details if users overshare. <br>
-Mitigation: Ask for only the minimum task context needed and avoid secrets, credentials, regulated data, and unnecessary personal details. <br>
-Risk: Proof-of-action checks can be pointed at unintended files if paths are chosen too broadly. <br>
-Mitigation: Limit verification paths to files intentionally created or modified for the current project. <br>
-Risk: Generated Agent OS files can encode incorrect assumptions if the interview synthesis is not reviewed. <br>
-Mitigation: Pause after synthesis and proceed only after the user confirms that the decision rules, edge cases, and preferences are accurate. <br>
+## Use Case:
 
+Developers and agent builders use this skill to interview domain experts, turn the resulting tacit knowledge into structured agent operating files, and review the agent before deployment.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/danielfoojunwei/the-tacit-worker) <br>
-- [SECI Externalization Interview Framework](artifact/references/extraction_framework.md) <br>
-- [Agent OS Architecture Guide](artifact/references/os_architecture_guide.md) <br>
-- [Pre-Deployment Governance Checklist](artifact/references/governance_checklist.md) <br>
-- [Verify Action Script](artifact/scripts/verify_action.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with templates, inline Python, bash commands, and JSON validation output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a tacit knowledge profile, Agent OS file templates, audit report structure, and proof-of-action verification guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The verification workflow can read and reveal snippets from local files when pointed at arbitrary paths.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run verification only inside a dedicated output workspace and restrict reviewed paths to expected agent artifacts.
+
+Risk: The self-improving loop proposes persistent updates to frameworks, templates, and governance checklists.
+
+Mitigation: Require human review before persisting template, framework, or checklist changes.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/danielfoojunwei/skills/the-tacit-worker)
+- [SECI Externalization Interview Framework](references/extraction_framework.md)
+- [Agent OS Architecture Guide](references/os_architecture_guide.md)
+- [Pre-Deployment Governance Checklist](references/governance_checklist.md)
+- [Verify Action Protocol](scripts/verify_action.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with templates and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces tacit knowledge profiles, Agent OS files, audit reports, and verification guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

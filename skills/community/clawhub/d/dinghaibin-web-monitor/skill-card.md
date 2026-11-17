@@ -1,43 +1,58 @@
-## Description: <br>
-Monitor web pages for content changes with CSS selector targeting, hash-based comparison, saved state, and notification integration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitor web pages for content changes with CSS selector targeting, change detection via hashing, and notification integration.
 
-## Publisher: <br>
-[dinghaibin](https://clawhub.ai/user/dinghaibin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dinghaibin](https://clawhub.ai/user/dinghaibin)
 
-## Use Case: <br>
-Developers and operators use this skill to check web pages or selected page elements for content changes, persist comparison state, and trigger notifications for price tracking, content alerts, and availability monitoring. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: HTTPS certificate verification is disabled during page fetching. <br>
-Mitigation: Avoid sensitive or security-critical monitoring unless TLS verification is fixed. <br>
-Risk: The notification option can run user-supplied shell commands when a webpage changes. <br>
-Mitigation: Do not use notification commands that modify files, expose secrets, or perform account actions. <br>
-Risk: Saved state may include full page content from monitored pages. <br>
-Mitigation: Prefer hash-only mode for private pages so full page content is not stored locally. <br>
+## Use Case:
 
+Developers and site operators use Web Monitor to track specific web page content such as prices, listings, and availability, compare snapshots, and trigger notifications when changes are detected.
 
-## Reference(s): <br>
-- [Web Monitor Examples](references/examples.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/dinghaibin/dinghaibin-web-monitor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, JSON] <br>
-**Output Format:** [Markdown guidance with bash commands and JSON state examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write JSON state files and optionally run notification commands through the bundled monitor script.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: HTTPS results are unauthenticated because the monitor disables TLS certificate verification.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Fix TLS verification before relying on sensitive HTTPS monitoring, or restrict monitored URLs to sources where this risk is accepted.
+
+Risk: Notification hooks can run unrestricted local shell commands when a page changes.
+
+Mitigation: Use fixed, reviewed notification commands, avoid untrusted or generated input in --notify, and run the monitor as a least-privileged account.
+
+Risk: Watch mode can repeatedly fetch URLs and execute notification commands.
+
+Mitigation: Use approved URLs, set conservative intervals, and avoid running continuous monitors with privileged accounts.
+
+## Reference(s):
+
+- [Web Monitor Examples](references/examples.md)
+- [ClawHub skill page](https://clawhub.ai/dinghaibin/skills/dinghaibin-web-monitor)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Configuration]
+
+**Output Format:** [Plain text or JSON output with command-line examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can write local state files and optionally invoke a notification command when a monitored page changes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

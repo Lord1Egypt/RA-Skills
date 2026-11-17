@@ -1,41 +1,58 @@
-## Description: <br>
-Agent-to-agent meeting coordination over email. Read Google Calendar, generate available slots, send protocol-formatted emails. Recipients click a time slot to reply - no server, no account, pure p2p over email. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AgentMeet coordinates meetings between agents over email by reading Google Calendar availability, generating available slots, sending protocol-formatted messages, and parsing slot-selection replies.
 
-## Publisher: <br>
-[lmanchu](https://clawhub.ai/user/lmanchu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lmanchu](https://clawhub.ai/user/lmanchu)
 
-## Use Case: <br>
-Developers and agents use AgentMeet to coordinate meetings over email by reading calendar availability, generating candidate slots, sending protocol-formatted invites, parsing replies, and creating calendar events. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may require Gmail and Google Calendar access, which can expose email and calendar data or permit unwanted messages and events. <br>
-Mitigation: Grant the smallest possible Google permissions and require review of each outgoing email, parsed reply, and calendar event before sending or creating anything. <br>
-Risk: Install and source boundaries are unclear in the release evidence. <br>
-Mitigation: Verify the actual AgentMeet source code and dependencies at the referenced path before installing or running the skill. <br>
+## Use Case:
 
+Developers and external users use this skill to coordinate meetings by having agents read calendar availability, generate slots, send protocol-formatted email invitations, and parse slot-selection replies.
 
-## Reference(s): <br>
-- [AgentMeet ClawHub release](https://clawhub.ai/lmanchu/agentmeet) <br>
-- [AgentMeet project homepage](https://github.com/agentmeet/agentmeet) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell and TypeScript examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce protocol-formatted email payloads, mailto links, available slot data, and calendar event guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server-resolved release metadata) <br>
+Risk: The release installs unaudited code from a hard-coded Dropbox path.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the actual source, package manifest, and lockfile before installing, and run dependency installation in an isolated environment.
+
+Risk: The skill can send emails or create calendar events without clearly documented user confirmation.
+
+Mitigation: Require explicit approval before sending messages or creating events, review invite contents, and set the timezone deliberately.
+
+Risk: Outbound invite emails may include an adoption link in addition to scheduling content.
+
+Mitigation: Review the full outgoing invite body, including links, before sending.
+
+## Reference(s):
+
+- [ClawHub AgentMeet skill page](https://clawhub.ai/lmanchu/skills/agentmeet)
+- [AgentMeet project homepage](https://github.com/agentmeet/agentmeet)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with TypeScript and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Bun plus Google Calendar and Gmail access; generated email content and calendar changes should be reviewed before sending or creating events.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

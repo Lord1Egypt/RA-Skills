@@ -1,40 +1,62 @@
-## Description: <br>
-Smart Memory sets up a five-layer memory architecture for OpenClaw agents to reduce context bloat, preserve active project knowledge, and support single-agent or multi-agent setups. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Smart Memory sets up a five-layer memory architecture for OpenClaw agents to reduce context bloat, preserve active project knowledge, and manage session cleanup.
 
-## Publisher: <br>
-[iret77](https://clawhub.ai/user/iret77) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[iret77](https://clawhub.ai/user/iret77)
 
-## Use Case: <br>
-Developers and operators of OpenClaw agents use this skill to organize long-running agent memory, keep active project context visible, and route project or agent-specific knowledge in single-agent and multi-agent setups. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Recurring session-history maintenance can rewrite internal OpenClaw session files, including an unsafe raw trim path. <br>
-Mitigation: Review and likely remove or rewrite the automatic session-trimming section before installation; back up MEMORY.md, AGENTS.md, HEARTBEAT.md, memory/, and .openclaw session files first. <br>
-Risk: Session trimming or repair can damage an active or incomplete tool-call exchange. <br>
-Mitigation: Prefer a vetted boundary-aware trim tool with explicit user approval, and only repair stale session files that have not been modified for more than five minutes. <br>
+## Use Case:
 
+Developers and operators configuring OpenClaw agents use this skill to organize persistent memory, active project context, agent-specific context, startup loading, heartbeat cleanup, and safe session trimming for long-running workspaces.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/iret77/iret77-smart-memory) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown setup guidance with bash and Python code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May direct agents to create or update OpenClaw memory, agent, heartbeat, and session-maintenance files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.5.5 (source: server release evidence) <br>
+Risk: Persistent memory and startup-loaded context can retain sensitive or untrusted instruction-like content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid storing secrets or untrusted instructions in memory files, and review startup-loaded memory before enabling the skill.
+
+Risk: Automatic session trimming can change or lose conversation state.
+
+Mitigation: Require explicit approval for auto-trim behavior, keep backups, use locking for session rewrites, and disable or replace force-trim and simple tail-based trimming.
+
+Risk: Heartbeat or cron automation can make recurring changes to memory and session-management files.
+
+Mitigation: Require user approval before adding heartbeat or cron tasks and review the configured cleanup scope before deployment.
+
+## Reference(s):
+
+- [Smart Memory ClawHub Release](https://clawhub.ai/iret77/skills/iret77-smart-memory)
+- [Publisher Profile](https://clawhub.ai/user/iret77)
+- [Skill Definition](artifact/SKILL.md)
+- [Safe Trim Tool](artifact/tools/safe-trim.py)
+- [Project Context Template](artifact/templates/projects/example/CONTEXT.md)
+- [Agent Context Template](artifact/templates/agents/example.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown instructions with shell commands, file templates, and Python code]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces setup guidance for memory files, heartbeat or cron cleanup, startup instructions, and safe session-trimming behavior.]
+
+## Skill Version(s):
+
+1.5.5 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

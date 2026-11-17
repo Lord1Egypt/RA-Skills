@@ -1,41 +1,56 @@
-## Description: <br>
-Generates a tailored .pre-commit-config.yaml by analyzing a project's language stack, linting tools, and CI setup, and can audit existing pre-commit configs for unpinned revisions and missing security hooks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates a tailored .pre-commit-config.yaml by analyzing a project's language stack, existing linting tools, CI setup, and current pre-commit configuration.
 
-## Publisher: <br>
-[PHY041](https://clawhub.ai/user/PHY041) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[phy041](https://clawhub.ai/user/phy041)
 
-## Use Case: <br>
-Developers and engineers use this skill to generate or audit pre-commit configurations tailored to a repository's language stack, linting tools, and CI setup. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated pre-commit configuration may replace or change an existing repository workflow. <br>
-Mitigation: Use --dry-run first, review the generated .pre-commit-config.yaml, and use --overwrite only when intentionally replacing an existing config. <br>
-Risk: Running pre-commit after generation may fetch pinned hook repositories and allow formatters to modify project files. <br>
-Mitigation: Run pre-commit from a clean working tree, review hook revisions, and inspect file changes before committing. <br>
+## Use Case:
 
+Developers and engineers use this skill to generate or audit pre-commit configurations that match the languages, formatters, linters, security hooks, and CI signals present in a project.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/PHY041/phy-pre-commit-gen) <br>
-- [Canlah AI homepage](https://canlah.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with bash examples and generated .pre-commit-config.yaml content] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can preview output with --dry-run, audit an existing config, or write a .pre-commit-config.yaml when file-writing options are used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server evidence and frontmatter) <br>
+Risk: Generated configuration can change a repository's pre-commit behavior or overwrite an existing .pre-commit-config.yaml when explicitly requested.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run with --dry-run first, keep the default output path unless a broader path is intentional, and use --overwrite only after reviewing the current file.
+
+Risk: Generated hook repositories and autoupdate results may introduce unwanted checks or CI failures if accepted without review.
+
+Mitigation: Review generated hook repos and pre-commit autoupdate diffs before running hooks across all files or enabling them in CI.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/phy041/skills/phy-pre-commit-gen)
+- [Publisher Profile](https://clawhub.ai/user/phy041)
+- [Canlah AI Homepage](https://canlah.ai)
+- [pre-commit Documentation](https://pre-commit.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with YAML configuration and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can print a dry-run preview, write .pre-commit-config.yaml, or emit audit findings for an existing pre-commit configuration.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,54 @@
-## Description: <br>
-Use when Codex, Hermes, OpenClaw, Claude Code, Cowork, or another AI agent needs to plan, review, implement, audit, or improve email work focused on time-based nurture streams, branching logic, lead scoring hooks, and conversion analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent-safe workflows for time-based nurture streams, branching logic, lead scoring hooks, and conversion analysis.
 
-## Publisher: <br>
-[polnikale](https://clawhub.ai/user/polnikale) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[polnikale](https://clawhub.ai/user/polnikale)
 
-## Use Case: <br>
-Marketing, growth, sales, and lifecycle teams use this agent skill to plan, audit, or improve drip campaigns with measurable branches, scoring hooks, handoff criteria, and approval gates for live-system changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Recommendations could affect live email systems, contact imports, suppression rules, DNS or authentication settings, or production automations. <br>
-Mitigation: Require explicit human approval before making high-impact changes, and keep analysis separate from execution. <br>
-Risk: Campaign guidance may be unreliable if consent, suppression state, source material, or platform data is missing. <br>
-Mitigation: Do not assume missing fields; identify the supporting evidence and the human owner for risky changes. <br>
+## Use Case:
 
+Marketing, lifecycle, revenue, and operations teams use this agent skill to plan, review, implement, audit, or improve time-based email nurture workflows. It helps agents produce drip maps, nurture briefs, branch logic tables, scoring hooks, drop-off diagnoses, and conversion-focused rewrite plans with approval gates for live-system changes.
 
-## Reference(s): <br>
-- [Drip Campaign Skill Operating Checklist](references/operating-checklist.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/polnikale/dripcampaignskill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown with structured tables and concise recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces drip maps, nurture briefs, branch logic tables, scoring hooks, drop-off diagnoses, and conversion-focused rewrite plans.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: release evidence) <br>
+Risk: Recommendations could affect real customer email workflows if applied directly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use human review before sends, imports, suppression changes, DNS or authentication updates, and production automation edits.
+
+Risk: Incomplete audience, consent, suppression, or performance data could lead to poor campaign guidance.
+
+Mitigation: Confirm source material and available platform fields before changing branches, scoring hooks, handoffs, or exit rules.
+
+## Reference(s):
+
+- [Operating Checklist](references/operating-checklist.md)
+- [ClawHub Skill Page](https://clawhub.ai/polnikale/skills/dripcampaignskill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Separates analysis from live-system actions and requires explicit approval before customer-impacting email changes.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

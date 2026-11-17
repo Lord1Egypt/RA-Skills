@@ -115,8 +115,9 @@ Delete a security group (checks for DFW references first).
 vmware-nsx-security group delete <group-id> [--dry-run] [--target <name>]
 ```
 
-Refuses deletion if the group is referenced by any DFW rule (source,
-destination, or applied-to scope) or by a policy-level scope. If the
+Refuses deletion if the group is a member of another group, or is
+referenced by any DFW or gateway-firewall rule (source, destination, or
+applied-to scope) or by a policy-level scope. If the
 reference scan itself fails, deletion is aborted rather than proceeding
 blind.
 
@@ -172,7 +173,10 @@ vmware-nsx-security tag remove <vm-external-id> \
 | `--value` | Tag value of the tag to remove |
 
 Removes only the exact scope/value pair; other tags are preserved. May
-change dynamic security group membership immediately. Uses
+change dynamic security group membership immediately — which is why this
+command **asks for confirmation twice**, like the other destructive commands
+here. It takes no bypass flag, so a script that called it unattended before
+will now wait for input; use `--dry-run` to preview. Uses
 `POST /api/v1/fabric/virtual-machines?action=remove_tags` with body
 `{"external_id", "tags"}`.
 

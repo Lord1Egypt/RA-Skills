@@ -1,6 +1,9 @@
 {
-  "ownerId": "kn74g5c7895wnda35vwv67gp2182zexc",
-  "slug": "jvs-enterprise-wechat",
-  "version": "1.0.2",
-  "publishedAt": 1773566235033
+  "name": "wecom-ai-bot-setup",
+  "description": "企业微信 AI Bot 一键配置技能。自动完成 OpenClaw 与企业微信的对接配置，支持 WebSocket 长连接模式。",
+  "version": "1.0.0",
+  "author": "harrybot",
+  "tags": ["wecom", "enterprise-wechat", "bot", "setup", "automation"],
+  "license": "MIT-0",
+  "repository": "https://github.com/harrybot/wecom-ai-bot-setup"
 }

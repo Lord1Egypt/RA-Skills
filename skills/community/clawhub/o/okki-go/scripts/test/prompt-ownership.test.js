@@ -77,13 +77,15 @@ test('paid action references use script-provided structured outputs', () => {
   const outputContracts = readSkillFile('references/output-contracts.md');
 
   assert.match(paidActions, /script-rendered `unlock_details_markdown` exactly as the chat display/);
-  assert.match(paidActions, /script-provided contact rows/);
+  assert.match(paidActions, /contact_search_retired/);
+  assert.match(paidActions, /does not call the API or charge credits/);
   assert.match(paidActions, /script-provided task IDs, counts, status, and next status-check command/);
   assert.match(outputContracts, /script-rendered `unlock_details_markdown` for chat display/);
   assert.match(outputContracts, /`company_details` compatibility data/);
   assert.match(outputContracts, /details_markdown_artifact/);
   assert.match(outputContracts, /DETAILS_MARKDOWN_PRECHECK_FAILED/);
   assert.match(outputContracts, /authorize_artifact_dir/);
+  assert.match(outputContracts, /no API call, no raw contact IDs, and no credit charge/);
   assert.match(outputContracts, /the model does not rebuild it from `company_details`/);
   assert.match(outputContracts, /model for prose around them/);
 });
@@ -114,7 +116,8 @@ test('processed unlock target sets and post-unlock outreach guidance are script-
   assert.match(paidActions, /If the user changes the final target set before confirmation/);
   assert.match(outputContracts, /`next_action`: `draft_outreach`/);
   assert.match(outputContracts, /Agent-provided writable artifact directories/);
-  assert.match(outputContracts, /Do not present paid `contacts\/search` as the normal next step after selected-company unlock/);
+  assert.match(outputContracts, /Do not present paid `contacts\/search` as a next step/);
+  assert.match(outputContracts, /the route is retired and unlocked company `profileEmails` data is the supported contact source/);
   assert.match(scriptsReadme, /processed target set/);
   assert.match(scriptsReadme, /OKKIGO_ARTIFACT_DIR/);
   assert.doesNotMatch(outputContracts, /attempted_count/);

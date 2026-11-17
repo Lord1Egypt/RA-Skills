@@ -1,7 +1,7 @@
 ---
 name: "infant-suffocation-warning-analysis"
 description: "Identifies prone sleeping positions, head covering, and occlusion of the mouth/nose by bedding or clothing; provides real-time high-risk alerts to safeguard infant sleep safety. | 婴儿趴睡窒息预警技能，识别俯卧睡姿、蒙头、口鼻被被褥/衣物遮挡，高风险实时报警，守护婴儿睡眠安全"
-version: "1.0.4"
+version: "1.0.24"
 license: "MIT-0"
 ---
 

@@ -1,45 +1,60 @@
-## Description: <br>
-Query Nile Markets -- on-chain FX markets powered by the Open Nile Protocol, starting with non-deliverable forwards (NDFs), through a read-only MCP integration for pool state, positions, oracle prices, and account data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query Nile Markets, an on-chain FX markets protocol powered by the Open Nile Protocol, starting with non-deliverable forwards (NDFs), through a read-only MCP integration for pool state, positions, oracle prices, and account data.
 
-## Publisher: <br>
-[taiyangc](https://clawhub.ai/user/taiyangc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[taiyangc](https://clawhub.ai/user/taiyangc)
 
-## Use Case: <br>
-Developers and DeFi users can use this skill to query Nile Markets testnet protocol data, including pool health, positions, oracle prices, account state, fee analytics, token balances, allowances, and trade simulations. It is intended for read-only analysis through a configured Nile Markets MCP endpoint, not wallet management or on-chain execution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Wallet addresses and query details may be visible to the configured MCP server. <br>
-Mitigation: Use an endpoint you trust and avoid sending sensitive addresses or query details unless that disclosure is acceptable. <br>
-Risk: The skill reports Sepolia testnet data and the API is under active development, so results may not reflect production market conditions. <br>
-Mitigation: Treat responses as testnet protocol data, verify network and freshness metadata when available, and avoid using outputs as real-money trading instructions. <br>
-Risk: Users may ask the agent to manage wallets, sign transactions, transfer tokens, or submit on-chain writes that this skill cannot perform. <br>
-Mitigation: Keep usage read-only and refuse requests for wallet control or transaction execution; use the Nile Markets web application or contract ABIs outside the skill for on-chain operations. <br>
+## Use Case:
 
+External users and developers use this skill to query Nile Markets protocol data, including pool health, account positions, oracle prices, fee analytics, token balances, allowances, and trade simulations. It is intended for read-only analysis of Ethereum Sepolia testnet protocol state, not wallet management or on-chain transaction execution.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/taiyangc/nile-markets) <br>
-- [Nile Markets Protocol Docs](https://docs.nilemarkets.com) <br>
-- [Nile Markets MCP Server Docs](https://docs.nilemarkets.com/ai-agents/mcp-server) <br>
-- [Nile Markets Smart Contract Reference](https://docs.nilemarkets.com/smart-contracts) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, configuration, guidance] <br>
-**Output Format:** [Natural-language responses grounded in MCP tool data, with setup guidance for the Nile Markets MCP endpoint.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires NILE_MCP_URL. MCP responses include protocol, network, data, and may include freshness metadata such as _meta.lastIndexedBlock.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.3.2 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: Queries and wallet addresses are sent to the configured Nile Markets MCP server.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a trusted NILE_MCP_URL endpoint and avoid sending wallet addresses or queries that exceed the user's privacy tolerance.
+
+Risk: The skill is read-only and cannot complete wallet management, transaction signing, transfers, approvals, deposits, withdrawals, or position changes.
+
+Mitigation: Refuse requests for on-chain writes or signing and direct users to the Nile Markets web application or contract tooling for those actions.
+
+Risk: The documented deployment targets Ethereum Sepolia testnet and the API is under active development.
+
+Mitigation: Treat returned market data as testnet information with no real monetary value and verify response freshness before relying on subgraph-sourced results.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/taiyangc/skills/nile-markets)
+- [Nile Markets protocol docs](https://docs.nilemarkets.com)
+- [Nile Markets MCP server docs](https://docs.nilemarkets.com/ai-agents/mcp-server)
+- [Nile Markets smart contract reference](https://docs.nilemarkets.com/smart-contracts)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown or plain text summaries backed by MCP JSON responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only MCP responses include protocol metadata, network information, data payloads, and freshness metadata for subgraph-sourced results.]
+
+## Skill Version(s):
+
+0.3.2 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

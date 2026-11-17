@@ -1,45 +1,53 @@
-## Description: <br>
-Intelligent meeting recording and transcription assistant with automated minutes generation, action item extraction, and sentiment analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Meeting Recorder Assistant records and transcribes meeting audio, then generates minutes, action items, summaries, and sentiment-oriented meeting insights.
 
-## Publisher: <br>
-[kaiyuelv](https://clawhub.ai/user/kaiyuelv) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kaiyuelv](https://clawhub.ai/user/kaiyuelv)
 
-## Use Case: <br>
-Employees, external users, and developers can use this skill to record meetings, transcribe audio, generate structured meeting minutes, extract action items, and analyze meeting content. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can capture sensitive meeting audio and create transcript or minutes files. <br>
-Mitigation: Use it only with participant consent, avoid regulated or confidential meetings unless policy permits, and deliberately manage retention and deletion of audio and transcript files. <br>
-Risk: Transcription can send meeting audio data to Google's speech recognition service. <br>
-Mitigation: Use Google-based transcription only where policy allows it; for sensitive deployments, consider replacing it with an approved local-only transcription option. <br>
-Risk: Runtime dependencies affect how audio is captured and processed. <br>
-Mitigation: Pin and review dependencies before deployment, especially in environments that process sensitive meeting data. <br>
+## Use Case:
 
+Developers and end users use this skill to record or transcribe meetings, generate structured minutes, and extract follow-up tasks from meeting transcripts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kaiyuelv/meeting-recorder-assistant) <br>
-- [Publisher profile](https://clawhub.ai/user/kaiyuelv) <br>
-- [README](artifact/README.md) <br>
-- [Skill definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Python usage examples, JSON transcript and minutes data, Markdown meeting minutes, and TXT transcript text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local audio, transcript, JSON, Markdown, and TXT files depending on how the agent uses the provided scripts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Meeting audio or transcripts may contain confidential, regulated, or personal information and can be sent to Google's speech-recognition service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only where recording is allowed, participants have provided required consent, and external transcription is acceptable; use a local transcription option for sensitive meetings.
+
+Risk: Dependency ranges are not pinned to exact versions.
+
+Mitigation: Pin and review dependencies before deployment, especially in environments that process sensitive meeting content.
+
+## Reference(s):
+
+- [Meeting Recorder Assistant on ClawHub](https://clawhub.ai/kaiyuelv/skills/meeting-recorder-assistant)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown, JSON, TXT, and Python usage examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May read and write transcript, audio, action-item, and meeting-minutes files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

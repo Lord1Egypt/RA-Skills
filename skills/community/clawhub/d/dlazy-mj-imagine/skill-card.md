@@ -1,45 +1,56 @@
-## Description: <br>
-Midjourney style generation, supports aspect ratio, Bot type, and output position (grid/U1-U4). Suitable for artistic and strongly stylized creative generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Midjourney-style images from prompts with configurable aspect ratio, bot type, and grid or upscaled output selection.
 
-## Publisher: <br>
-[dlazyai](https://clawhub.ai/user/dlazyai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dlazyai](https://clawhub.ai/user/dlazyai)
 
-## Use Case: <br>
-Developers and agents use this skill to generate stylized images through the dLazy hosted Midjourney-style CLI, with controls for prompt, aspect ratio, bot type, and grid or upscaled output selection. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill installs or invokes @dlazy/cli@latest, so CLI behavior can change after this skill release. <br>
-Mitigation: Review the @dlazy/cli package before installation and use a controlled or pinned CLI version where repeatability is required. <br>
-Risk: Authentication uses a dLazy API key that may be stored in ~/.dlazy/config.json. <br>
-Mitigation: Use DLAZY_API_KEY for temporary sessions when persistence is not desired, and rotate or revoke keys from the dLazy dashboard when needed. <br>
-Risk: Prompts and any media files explicitly passed to the CLI are sent to dLazy cloud endpoints for generation. <br>
-Mitigation: Avoid submitting sensitive prompts or files unless approved for dLazy processing, and review dLazy service terms before use. <br>
+## Use Case:
 
+External users and developers can use the skill to request artistic, strongly stylized images from an agent, selecting an aspect ratio, Midjourney or Niji Journey mode, and grid or individual upscale output.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dlazyai/dlazy-mj-imagine) <br>
-- [dLazy CLI source](https://github.com/dlazyai/cli) <br>
-- [@dlazy/cli npm package](https://www.npmjs.com/package/@dlazy/cli) <br>
-- [dLazy homepage](https://dlazy.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Guidance] <br>
-**Output Format:** [Markdown instructions with CLI commands and JSON result examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a dLazy API key; completed generations return image metadata and files.dlazy.com result URLs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: frontmatter and release evidence) <br>
+Risk: The security review notes that the documented image generation purpose does not fully explain reported login and authentication behavior, and that some package or local-path details were not fully resolved.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill purpose and pinned CLI installation requirements before installing; only provide prompts, files, and credentials you are comfortable sending to dLazy services.
+
+Risk: The skill sends prompts to dLazy's hosted API and uploads supplied local media files to its media storage; the CLI requires a dLazy API key.
+
+Mitigation: Use the skill only with prompts and media approved for that service, keep the API key in the user-level configuration or environment, and rotate or revoke it if needed.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/dlazyai/skills/dlazy-mj-imagine)
+- [CLI repository listed in skill metadata](https://github.com/dlazy-ai/cli)
+- [dLazy CLI package on npm](https://www.npmjs.com/package/@dlazy/cli)
+- [dLazy website](https://dlazy.com)
+
+## Skill Output:
+
+**Output Type(s):** [Image files, JSON]
+
+**Output Format:** [Generated image assets referenced by hosted URLs in a JSON response; asynchronous requests can return task status.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports configurable aspect ratio, Midjourney or Niji Journey mode, grid or U1–U4 output, and an optional local save path.]
+
+## Skill Version(s):
+
+1.3.40 (source: server-resolved release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

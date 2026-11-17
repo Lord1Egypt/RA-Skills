@@ -1,45 +1,58 @@
-## Description: <br>
-AI investment analysis assistant for stocks, cryptocurrency, real estate, portfolio optimization, risk assessment, and market forecasting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI Investment Analyzer helps agents draft investment analysis, portfolio optimization, risk assessment, and market forecast reports for assets such as stocks, cryptocurrency, real estate, forex, commodities, bonds, and funds.
 
-## Publisher: <br>
-[mwz747512353](https://clawhub.ai/user/mwz747512353) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mwz747512353](https://clawhub.ai/user/mwz747512353)
 
-## Use Case: <br>
-External users and developers use this skill to generate investment-analysis text, portfolio allocation suggestions, risk summaries, and market forecasts for multiple asset classes. Outputs should be treated as informational analysis rather than financial advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill presents mock or simplified analysis as investment analysis. <br>
-Mitigation: Review outputs as demo-grade information and do not treat them as financial advice. <br>
-Risk: Analysis history may be stored locally. <br>
-Mitigation: Make logging opt-in or clearly document local storage behavior before deployment. <br>
-Risk: Bundled documentation includes a credential-like publishing token. <br>
-Mitigation: Remove the token, rotate any exposed credential, and republish the artifact. <br>
-Risk: Metadata and artifact versions or license identifiers are inconsistent. <br>
-Mitigation: Confirm authoritative release metadata and license terms before public distribution. <br>
+## Use Case:
 
+External users and agents use this skill to draft investment analysis, risk review, portfolio allocation, and market forecast text. It should be treated as decision-support content, not as verified financial advice.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/mwz747512353/ai-investment-analyzer) <br>
-- [Project homepage from ClawHub metadata](https://github.com/AIFinanceAssistant/ai-investment-analyzer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Command-line text reports and JSON-like configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write local analysis history to analysis_log.json] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release metadata) <br>
+Risk: A ClawHub token is exposed in the distributed artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Revoke the token, remove it from all released copies, and audit for any use before installing or redistributing the skill.
+
+Risk: Mock financial outputs are presented as investment guidance.
+
+Mitigation: Do not use the output for real investment decisions unless verified market data, clear timestamps, validated methods, and prominent financial-risk disclaimers are added.
+
+Risk: Analysis requests and results may be saved locally in analysis_log.json.
+
+Mitigation: Disclose local logging to users, review retention needs, and remove or anonymize saved analysis records when appropriate.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mwz747512353/skills/ai-investment-analyzer)
+- [Project homepage from ClawHub metadata](https://github.com/AIFinanceAssistant/ai-investment-analyzer)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text reports with command examples and JSON-compatible analysis records]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Analysis commands may append local records to analysis_log.json.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release evidence; artifact files list 1.0.0 and 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

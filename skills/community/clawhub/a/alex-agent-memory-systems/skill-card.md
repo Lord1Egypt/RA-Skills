@@ -1,39 +1,48 @@
-## Description: <br>
-This skill guides agents through memory architecture for intelligent agents, including short-term memory, long-term memory, and retrieval strategies. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill gives agents guidance for designing memory architectures, including short-term context, long-term vector stores, and retrieval strategies.
 
-## Publisher: <br>
-[shendingyi](https://clawhub.ai/user/shendingyi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[shendingyi](https://clawhub.ai/user/shendingyi)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and agent builders use this skill to choose memory types, vector stores, chunking strategies, and retrieval practices for agents that need consistent recall across interactions.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill should be treated as high-level guidance because server security guidance notes quality limitations and the artifact text includes truncated or template-like sections.
+
+Mitigation: Review recommendations before adoption and validate memory designs with retrieval tests, metadata filtering, temporal scoring, and conflict checks.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and agent builders use this skill to design memory systems and choose memory types, vector stores, chunking, and retrieval strategies for agent workflows. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [guidance, markdown, text]
 
-## Known Risks and Mitigations: <br>
-Risk: Memory-system guidance may be applied to private documents, vector stores, or credentials through separate connectors. <br>
-Mitigation: Review any separate connector or memory-writing skill before granting access to private data stores or credentials. <br>
-Risk: Poor chunking, filtering, or retrieval choices can cause agents to miss, surface stale, or surface conflicting memories. <br>
-Mitigation: Test retrieval quality with representative data and use metadata filtering, temporal scoring, and conflict handling before production use. <br>
+**Output Format:** [Markdown guidance]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Advisory content only; no commands, credentials, persistence, or privileged access are requested by the skill.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown] <br>
-**Output Format:** [Markdown guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution or storage connector output; recommendations should be reviewed before implementation.] <br>
+1.0.0 (source: server release evidence and artifact/_meta.json)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and _meta.json) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

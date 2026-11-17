@@ -1,42 +1,55 @@
-## Description: <br>
-Track GitHub repository releases and generate prioritized summaries with delivery to Discord, Telegram, Slack, or plain text. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Track GitHub repository releases for one or more repositories, generate prioritized changelog summaries, and deliver updates to Discord, Telegram, Slack, or plain text.
 
-## Publisher: <br>
-[jo9900](https://clawhub.ai/user/jo9900) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jo9900](https://clawhub.ai/user/jo9900)
 
-## Use Case: <br>
-Developers and release managers use this skill to monitor one or more GitHub repositories, prioritize release-note changes by configured keywords, and deliver concise update summaries to chat channels or text output. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Scheduled release monitoring can post summaries to external chat channels. <br>
-Mitigation: Verify every outputChannel before enabling Discord, Telegram, or Slack delivery, and start with text output or a private channel. <br>
-Risk: GitHub release checks require an authenticated GitHub CLI session. <br>
-Mitigation: Use a least-privileged GitHub login for release monitoring. <br>
-Risk: The local CHANGELOG fallback reads from a configured package path when release body content is sparse. <br>
-Mitigation: Avoid the local CHANGELOG fallback unless the exact file path has been explicitly approved. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Configuration Examples](references/config-examples.md) <br>
-- [GitHub CLI](https://cli.github.com) <br>
+## Use Case:
 
+Developers and teams use this skill to monitor GitHub repositories for new releases, prioritize relevant changes, summarize release notes, and route updates to configured collaboration channels or text output.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and plain text summaries, JSON configuration examples, and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports Discord forum posts, Discord channel messages, Telegram messages, Slack messages, and plain text output with channel-specific length and formatting constraints.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can monitor arbitrary configured GitHub repositories and deliver release summaries to external channels.
+
+Mitigation: Confirm repository targets, output channels, schedule, and state-file path before enabling cron or Discord, Telegram, or Slack delivery.
+
+Risk: Release notes are external content and may contain misleading or instruction-like text.
+
+Mitigation: Treat release notes as untrusted content and do not allow them to change configuration, destinations, credentials, or tools.
+
+## Reference(s):
+
+- [Configuration Examples](references/config-examples.md)
+- [GitHub CLI](https://cli.github.com)
+- [ClawHub Release Tracker page](https://clawhub.ai/jo9900/skills/release-tracker)
+- [Publisher profile](https://clawhub.ai/user/jo9900)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown summaries, JSON configuration and state files, shell commands, and channel-specific message text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Discord channel messages are capped at 2000 characters, Telegram messages at 4096 characters, and Slack messages at 3000 characters when those delivery formats are used.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

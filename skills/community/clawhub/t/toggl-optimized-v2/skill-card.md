@@ -1,41 +1,50 @@
-## Description: <br>
-Toggl-Optimized-V2 helps agents use Toggl Track more efficiently with direct API reporting guidance and a shell script for JSON or PDF summaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Optimize Toggl Track usage with token-efficient API calls and fast reporting via a shell script for JSON and PDF summaries.
 
-## Publisher: <br>
-[alex1389](https://clawhub.ai/user/alex1389) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[alex1389](https://clawhub.ai/user/alex1389)
 
-## Use Case: <br>
-Developers and agents use this skill to configure Toggl Track API access and request compact time-reporting summaries without loading unnecessary context. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a Toggl API token, which is sensitive credential material. <br>
-Mitigation: Set TOGGL_API_TOKEN only in trusted shells, avoid committing or logging it, and rotate the token if it is exposed. <br>
-Risk: The bundled report script is incomplete and may not produce a usable Toggl report without further review. <br>
-Mitigation: Review and complete the client lookup and reporting logic before relying on generated summaries. <br>
+## Use Case:
 
+Developers and operators who track client work in Toggl use this skill to configure API-token based reporting and generate compact JSON or PDF summaries over client and date ranges.
 
-## Reference(s): <br>
-- [Toggl Profile Settings](https://track.toggl.com/profile) <br>
-- [ClawHub skill page](https://clawhub.ai/alex1389/toggl-optimized-v2) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, API calls] <br>
-**Output Format:** [Markdown with inline bash commands and script usage examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce JSON or PDF Toggl report requests through the bundled shell script.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: package.json and server release metadata) <br>
+Risk: The skill depends on a Toggl API token supplied through the environment, which can expose account data if the token is over-scoped or mishandled.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the minimum Toggl account access needed, keep the token out of shared logs and files, and unset or rotate it when reporting is complete.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/alex1389/skills/toggl-optimized-v2)
+- [Toggl Profile Settings](https://track.toggl.com/profile)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline bash commands and script usage examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The bundled shell script accepts client name, start date, end date, and output format arguments for Toggl reports.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

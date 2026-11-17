@@ -1,44 +1,58 @@
-## Description: <br>
-High-fidelity diagram generation (Mermaid, D2, Graphviz) for autonomous agents, with local-first rendering and persistent run history. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+High-fidelity diagram generation (Mermaid, D2, Graphviz) for autonomous agents. Supports local-first rendering and persistent run history.
 
-## Publisher: <br>
-[emergencescience](https://clawhub.ai/user/emergencescience) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[emergencescience](https://clawhub.ai/user/emergencescience)
 
-## Use Case: <br>
-Developers and autonomous coding agents use this skill to turn natural-language diagram requests into Mermaid, D2, or Graphviz source and rendered diagram files. It supports iterative repair by saving each rendering attempt and compiler feedback in a run directory. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The installer invokes system package managers, npm, and a remote D2 install script. <br>
-Mitigation: Review install.sh before running it, or manually install Graphviz, D2, and Mermaid CLI from trusted package managers or pinned releases. <br>
-Risk: The optional cloud rendering path can send diagram content to an external service when EMERGENCE_API_KEY is configured. <br>
-Mitigation: Keep confidential diagrams on the local rendering path and set EMERGENCE_API_KEY only when remote rendering is intended. <br>
-Risk: Persistent run history may retain diagram source, generated images, and compiler errors under ./runs/. <br>
-Mitigation: Periodically clear ./runs/ when diagrams or compiler output may contain sensitive information. <br>
+## Use Case:
 
+Developers and agents use this skill to turn natural language or diagram source code into Mermaid, D2, and Graphviz visuals for architectures, flows, schemas, and graph-style diagrams.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/emergencescience/emergence-diagram-rendering) <br>
-- [Publisher profile](https://clawhub.ai/user/emergencescience) <br>
-- [Emergence Science](https://emergence.science) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Shell commands, Configuration instructions, Files] <br>
-**Output Format:** [Markdown guidance, diagram source code, JSON render metadata, and PNG/SVG image files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Local rendering uses Mermaid, D2, or Graphviz when installed; render attempts are stored under ./runs/ with metadata for troubleshooting.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata; artifact frontmatter reports 1.1.0) <br>
+Risk: The installer can make privileged system-wide package changes and run an unverified remote D2 installer.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review install.sh before use, avoid running it on sensitive machines, and prefer manually installing pinned Graphviz, D2, and Mermaid CLI binaries.
+
+Risk: Cloud fallback can send diagram content and an API key to a render endpoint when local renderers are unavailable.
+
+Mitigation: Use a local-only workflow for sensitive diagrams and configure cloud rendering only when data sharing is intended.
+
+Risk: Persistent render history can retain diagram source, compiler output, and generated images.
+
+Mitigation: Review and clean the runs directory before sharing the workspace or artifacts.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/emergencescience/skills/emergence-diagram-rendering)
+- [Emergence Science](https://emergence.science)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, files]
+
+**Output Format:** [Markdown guidance with diagram source code, renderer commands, and generated image or metadata files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Local render attempts are written under a runs directory with input, output, and metadata files.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata; artifact/SKILL.md frontmatter says 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

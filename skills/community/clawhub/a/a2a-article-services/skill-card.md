@@ -1,43 +1,59 @@
-## Description: <br>
-基于 ClawTip 的 A2A 文章服务 skill，提供热榜获取、公众号发布和文章自动化服务，并在执行前要求支付验证。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A ClawTip-based A2A article services skill that lets an agent create paid orders for hot-rank discovery, WeChat public-account draft publishing, and an end-to-end topic-to-article publishing workflow.
 
-## Publisher: <br>
-[lucianaib0318](https://clawhub.ai/user/lucianaib0318) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lucianaib0318](https://clawhub.ai/user/lucianaib0318)
 
-## Use Case: <br>
-中文用户或代理在需要付费获取热榜、发布公众号文章或自动化生成文章时使用该 skill。它适合愿意通过 ClawTip 支付流程购买文章相关服务的用户，但应先确认发布内容、账号权限和支付风险。 <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles payment credentials and paid article requests through provider-controlled services. <br>
-Mitigation: Install only if the provider is trusted, and avoid real paid use until credential handling, data retention, and verifiable HTTPS are documented. <br>
-Risk: Publishing-related actions may affect external accounts or public content. <br>
-Mitigation: Require explicit user review and confirmation before any publishing action. <br>
-Risk: The ClawHub security scan reports under-scoped and misleading security controls, including a success-status bug. <br>
-Mitigation: Treat service status as untrusted until the provider fixes the bug and documents reliable status handling. <br>
+## Use Case:
 
+External users, content operators, and public-account publishers use this skill to request paid article services through ClawTip: retrieving Chinese platform hot-rank topics, publishing Markdown content to a WeChat public-account draft, or running a paid end-to-end topic selection, article generation, and publishing flow.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/lucianaib0318/a2a-article-services) <br>
-- [ClawTip A2A micropayment protocol](https://clawtip.jd.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, API calls, Guidance] <br>
-**Output Format:** [Chinese text or Markdown responses with service status and payment-flow details] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May initiate outbound network requests and payment-related workflow before service delivery.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may send article instructions, order numbers, and payment credentials to a hardcoded remote HTTP service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with trusted operators, avoid submitting sensitive unpublished content or credentials beyond the intended payment credential, and review outbound network behavior before installation.
+
+Risk: The skill can support automated public-account publishing.
+
+Mitigation: Review generated article content and publishing intent before allowing a paid publish or full-auto workflow to proceed.
+
+Risk: Order data is stored in local order files under the user's OpenClaw skills directory.
+
+Mitigation: Protect local account storage and remove stale order files that contain order metadata or payment-related fields when they are no longer needed.
+
+## Reference(s):
+
+- [ClawTip](https://clawtip.jd.com)
+- [ClawHub skill page](https://clawhub.ai/lucianaib0318/skills/a2a-article-services)
+- [Publisher profile](https://clawhub.ai/user/lucianaib0318)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown or plain text responses with shell command output, order details, payment status, and service results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include order numbers, amounts, payment status, hot-rank content, article text, or publishing results after payment verification.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

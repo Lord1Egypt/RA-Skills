@@ -1,50 +1,66 @@
-## Description: <br>
-OpenClaw 龙虾灵魂锻造炉 helps agents design OpenClaw persona packages by guiding or randomly drawing a lobster persona, then producing identity text, SOUL.md content, character boundary rules, names, avatar prompts, and optionally avatar images through an installed image-generation skill. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+为 OpenClaw AI Agent 生成完整的角色化龙虾灵魂方案，包括身份定位、SOUL.md/IDENTITY.md 内容、底线规则、命名和头像提示词。
 
-## Publisher: <br>
-[eamanc-lab](https://clawhub.ai/user/eamanc-lab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[eamanc-lab](https://clawhub.ai/user/eamanc-lab)
 
-## Use Case: <br>
-External developers and OpenClaw users use this skill to create or customize characterful OpenClaw agent personas with a guided workflow or random draw. The skill is intended for new OpenClaw persona design, not for editing an existing SOUL.md or building personality-free tool agents. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated persona context may contain tone, boundaries, or behavioral rules that do not match the user's intended agent behavior. <br>
-Mitigation: Review the generated SOUL.md and IDENTITY.md before using them as agent context. <br>
-Risk: The skill can create local output files after user approval, so an unsuitable target directory could overwrite or mix persona files with unrelated project files. <br>
-Mitigation: Choose the output directory deliberately and inspect generated files before committing or deploying them. <br>
-Risk: Automatic avatar generation depends on a separately installed image-generation skill and its provider. <br>
-Mitigation: Use automatic avatar generation only when that dependency and provider are trusted, or use the generated prompt manually instead. <br>
+## Use Case:
 
+External OpenClaw users and agent builders use this skill to design a persona-driven lobster agent, either through guided choices or randomized gacha output. The skill helps produce role identity, character boundaries, names, avatar prompts, and optional SOUL.md and IDENTITY.md files.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/eamanc-lab/openclaw-persona-forge) <br>
-- [Source homepage](https://github.com/eamanc-lab/openclaw-persona-forge) <br>
-- [Avatar style reference](references/avatar-style.md) <br>
-- [Boundary rules reference](references/boundary-rules.md) <br>
-- [Error handling reference](references/error-handling.md) <br>
-- [Identity tension reference](references/identity-tension.md) <br>
-- [Naming system reference](references/naming-system.md) <br>
-- [Output template reference](references/output-template.md) <br>
-- [Optional baoyu-image-gen dependency](https://github.com/JimLiu/baoyu-skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with generated SOUL.md and IDENTITY.md content, avatar prompts, optional file creation, and optional shell command execution for random draws.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Random-draw mode uses a local Python script with a maximum of five draws per invocation; avatar image generation is optional and depends on a separately installed image-generation skill.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.2.0 (source: server release metadata; artifact frontmatter reports 2.0.0) <br>
+Risk: The skill can write SOUL.md and IDENTITY.md after user confirmation, which could overwrite existing persona files in the chosen directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the exact target directory and whether existing SOUL.md or IDENTITY.md files should be replaced before allowing writes.
+
+Risk: The optional avatar workflow depends on a separate baoyu-image-gen skill that is outside this release.
+
+Mitigation: Review and install the image-generation dependency separately; if unavailable or unsuitable, use the emitted avatar prompt text manually.
+
+Risk: The avatar prompt workflow describes writing prompts to predictable /tmp paths.
+
+Mitigation: Prefer a safe temporary path when handling avatar prompts, especially on shared systems.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/eamanc-lab/skills/openclaw-persona-forge)
+- [Project Homepage](https://github.com/eamanc-lab/openclaw-persona-forge)
+- [baoyu-image-gen Optional Dependency](https://github.com/JimLiu/baoyu-skills)
+- [Adam Avatar Style Reference](https://raw.githubusercontent.com/eamanc-lab/openclaw-persona-forge/main/docs/adam-claw-logo.png)
+- [avatar-style.md](references/avatar-style.md)
+- [boundary-rules.md](references/boundary-rules.md)
+- [error-handling.md](references/error-handling.md)
+- [identity-tension.md](references/identity-tension.md)
+- [naming-system.md](references/naming-system.md)
+- [output-template.md](references/output-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Shell commands, Guidance]
+
+**Output Format:** [Markdown text with optional generated SOUL.md and IDENTITY.md files, shell command output from the gacha script, and avatar prompt text.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May optionally call a separate image-generation skill when installed; otherwise returns avatar prompts for manual use.]
+
+## Skill Version(s):
+
+2.2.0 (source: evidence.release.version; artifact frontmatter metadata lists 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

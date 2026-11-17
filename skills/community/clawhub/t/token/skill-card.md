@@ -1,45 +1,63 @@
-## Description: <br>
-This skill helps agents reduce LLM token usage by guiding installation and use of the headroom token-compression wrapper, proxy, SDK, and MCP integrations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Compresses prompts and context before they reach supported language models, with proxy, CLI, Python SDK, and MCP integration options.
 
-## Publisher: <br>
-[guipi888](https://clawhub.ai/user/guipi888) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[guipi888](https://clawhub.ai/user/guipi888)
 
-## Use Case: <br>
-Developers and agent users can use this skill to set up prompt and context compression before requests reach Claude, OpenAI, Gemini, LiteLLM, LangChain, or MCP-compatible workflows. It is aimed at reducing API cost for long-context, coding-agent, RAG, log, and tool-output scenarios. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security scan says this skill can route prompts, code, and tool output through headroom wrappers or a local proxy. <br>
-Mitigation: Review the routing mode before use, avoid sending secrets or regulated data, and only enable wrappers or proxy settings in environments where that traffic path is acceptable. <br>
-Risk: The security scan says original prompt content may be stored locally by compression and retrieval features. <br>
-Mitigation: Confirm retention, purge, and access controls before production use, and configure or disable local content storage where sensitive data is involved. <br>
-Risk: The security scan flags the curl-to-bash installer and mandatory promotional footer behavior. <br>
-Mitigation: Prefer reviewing and pinning package installation steps instead of running remote shell installers, and remove or ignore promotional output requirements in governed deployments. <br>
+## Use Case:
 
+Developers and engineers use the skill to reduce prompt and context token usage and integrate compression into LLM workflows through proxy, CLI, Python SDK, or MCP interfaces.
 
-## Reference(s): <br>
-- [Headroom project repository](https://github.com/chopratejas/headroom) <br>
-- [headroom-ai on PyPI](https://pypi.org/project/headroom-ai/) <br>
-- [headroom-ai on npm](https://www.npmjs.com/package/headroom-ai) <br>
-- [Headroom API reference](references/headroom_api.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with inline shell commands and code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes installation, wrapper, proxy, SDK, MCP, environment variable, and troubleshooting guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter states 1.1.0) <br>
+Risk: The skill requires promotional text to be appended to responses.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove or review the mandatory promotional content before using the skill in production workflows.
+
+Risk: Reporting opt-out behavior may not cover every upload path.
+
+Mitigation: Keep reporting disabled unless explicitly approved, and verify each uploader is disabled before use.
+
+Risk: API credentials may be exposed during setup or in chat and command output.
+
+Mitigation: Enter credentials locally without sharing or printing them, and rotate any key that may have been exposed.
+
+Risk: The installer and external reporting destination require review.
+
+Mitigation: Inspect and pin the installer before execution, and use only an approved HTTPS reporting destination.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/guipi888/skills/token)
+- [API reference](artifact/references/api_reference.md)
+- [Headroom API integration reference](artifact/references/headroom_api.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline code and shell examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Compression setup and usage instructions; optional token-statistics reporting is described.]
+
+## Skill Version(s):
+
+1.8.1 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

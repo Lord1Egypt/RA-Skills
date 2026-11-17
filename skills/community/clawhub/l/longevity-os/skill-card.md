@@ -1,45 +1,55 @@
-## Description: <br>
-Meta-skill for the Longevity OS bundle that routes natural language health conversations to the right capability, including nutrition logging, health profile updates, pattern discovery, experiments, news, and daily coaching. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Meta-skill for the Longevity OS bundle that routes natural language health conversations to the right capability: nutrition logging, health profile updates, pattern discovery, experiments, news, or daily coaching.
 
-## Publisher: <br>
-[madeyexz](https://clawhub.ai/user/madeyexz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[madeyexz](https://clawhub.ai/user/madeyexz)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to install, understand, and route natural language personal health requests across a local-first health companion bundle. It helps direct meal logging, Apple Health profile updates, health and longevity news, self-experimentation, and daily coaching workflows to the appropriate sub-skill. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill directs users to install external code and update OpenClaw skill loading paths. <br>
-Mitigation: Review the linked repository, sub-skill definitions, and scripts/install_bundle.py before installation; pin a trusted commit and confirm changes to ~/.openclaw/openclaw.json. <br>
-Risk: The bundle can store sensitive personal health, nutrition, Apple Health, experiment, and coaching data locally. <br>
-Mitigation: Review where longevityOS-data is created and maintained, protect the directory according to local privacy requirements, and back it up before uninstalling or deleting the bundle. <br>
-Risk: Optional cron templates can send proactive health, news, and coaching messages. <br>
-Mitigation: Enable cron jobs only intentionally after reviewing the templates and replacing placeholder Telegram chat identifiers. <br>
+## Use Case:
 
+OpenClaw users use Longevity OS to route personal health conversations into meal logging, health profile updates, curated longevity news, self-experiment tracking, and daily coaching workflows.
 
-## Reference(s): <br>
-- [Longevity OS ClawHub Listing](https://clawhub.ai/madeyexz/longevity-os) <br>
-- [madeyexz Publisher Profile](https://clawhub.ai/user/madeyexz) <br>
-- [Longevity OS Repository README](https://github.com/compound-life-ai/longClaw/blob/main/README.md) <br>
-- [Longevity OS Skills Directory](https://github.com/compound-life-ai/longClaw/tree/main/skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown responses with inline shell commands, configuration steps, and repository links.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Routes user intent to sub-skills and may summarize installation, verification, cron setup, uninstall, and health-bundle workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence) <br>
+Risk: The bundle asks users or agents to run an unpinned external installer that may change OpenClaw configuration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned commit or signed release, inspect the installer and sub-skills before running them, and verify any changes to ~/.openclaw/openclaw.json.
+
+Risk: The bundle handles sensitive health data and can send automated Telegram messages.
+
+Mitigation: Review what health data may be stored or sent, confirm the Telegram destination chat id, and enable cron or Telegram delivery only after that review.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/madeyexz/skills/longevity-os)
+- [Artifact README](README.md)
+- [Artifact Skill Definition](skill.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, configuration steps, and structured health workflow summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Routes natural language health requests to the relevant OpenClaw bundle capability; may summarize local health, nutrition, experiment, and news context when available.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

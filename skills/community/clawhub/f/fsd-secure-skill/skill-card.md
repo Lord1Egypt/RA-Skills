@@ -1,38 +1,54 @@
-## Description: <br>
-PolaBea runs a local camera-only autonomous-driving simulation with redundant safety checks and emergency-stop behavior. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+PolaBea runs a camera-only autonomous-driving simulation with dual-pass path checks, temporal consistency checks, and emergency-stop console output.
 
-## Publisher: <br>
-[AadiPapp](https://clawhub.ai/user/AadiPapp) <br>
+This skill is for demonstration purposes and not for production usage.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[aadipapp](https://clawhub.ai/user/aadipapp)
 
-## Use Case: <br>
-Developers and agents can use this skill to run a local autonomous-driving safety simulation and inspect frame-by-frame decisions such as accelerate, wait, or emergency stop. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Misusing the local simulation as real autonomous-driving or robotics control could create safety risk. <br>
-Mitigation: Use it only as a harmless local simulation; do not connect it to real vehicle controls or rely on it for real-world driving or robotics decisions. <br>
+## Use Case:
 
+Developers and safety reviewers use this demonstration skill to run a local autonomous-driving simulation and inspect frame-by-frame safety check output. It should not be used as evidence that any real vehicle-control system is safe or deployment-ready.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/AadiPapp/fsd-secure-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with shell command snippets and console text from the simulation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs locally; simulation output can vary because frame conditions are randomly generated.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release) <br>
+Risk: Users may mistake simulation-only camera safety logic or emergency-stop messages for evidence of real vehicle-control readiness.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only as a toy or demonstration simulation, and do not deploy it for any real vehicle or safety-critical control task.
+
+Risk: Randomized frame data and console actions can make the simulated safety behavior appear more complete than it is.
+
+Mitigation: Treat the output as illustrative console text for review, not as validation data or operational safety evidence.
+
+## Reference(s):
+
+- [Artifact README](artifact/README.md)
+- [ClawHub skill page](https://clawhub.ai/aadipapp/skills/fsd-secure-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Console text and Markdown usage guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Simulation output is randomized and intended for demonstration review only.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter lists 0.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

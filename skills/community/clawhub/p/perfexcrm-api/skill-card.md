@@ -1,46 +1,57 @@
-## Description: <br>
-Manage PerfexCRM from messaging apps with conversational CRUD access for customers, invoices, leads, tickets, projects, contracts, and other CRM resources through the PerfexCRM API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage PerfexCRM records from messaging apps through API-backed CRUD operations, filtering, pagination, search, and webhook-aware workflows.
 
-## Publisher: <br>
-[kostasmm](https://clawhub.ai/user/kostasmm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kostasmm](https://clawhub.ai/user/kostasmm)
 
-## Use Case: <br>
-Developers and CRM operators use this skill to let an agent retrieve, summarize, create, update, and delete PerfexCRM records through API calls from conversational channels such as WhatsApp, Telegram, Slack, or Discord. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can give an agent broad read and write access to sensitive CRM, customer, staff, and financial records. <br>
-Mitigation: Use a dedicated least-privilege PerfexCRM API key, limit write and delete permissions to required resources, and start in a sandbox environment. <br>
-Risk: Create, update, delete, ticket-reply, payment, staff, or customer-record actions can cause business-impacting changes. <br>
-Mitigation: Require explicit human confirmation before executing those actions and review generated requests before sending them. <br>
-Risk: Long-lived API keys can expose CRM data if leaked or over-scoped. <br>
-Mitigation: Store keys as environment variables or managed secrets, rotate them regularly, and revoke keys that are no longer needed. <br>
+## Use Case:
 
+Developers and CRM operators use this skill to let agents translate natural-language requests into PerfexCRM API calls for customers, invoices, leads, tickets, projects, and related business records. It supports conversational CRM administration across messaging surfaces while encouraging pagination, field filtering, search-first retrieval, summarization, and confirmation before destructive actions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kostasmm/perfexcrm-api) <br>
-- [PerfexAPI homepage](https://perfexapi.com) <br>
-- [PerfexAPI documentation](https://perfexapi.com/docs) <br>
-- [PerfexCRM API and Webhooks module repository](https://github.com/sattip/perfexcrm-api-webhooks-module) <br>
-- [PerfexAPI changelog](https://perfexapi.com/changelog) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Shell commands, Configuration, Guidance, Text] <br>
-**Output Format:** [Markdown with inline shell commands, API request examples, and text summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses PERFEXCRM_API_URL and PERFEXCRM_API_KEY; recommends pagination, response filtering, search-first access, and confirmation before destructive actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill can guide broad read and write access to sensitive CRM data including customer, invoice, ticket, staff, and payment records.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only with a PerfexCRM API key scoped to the operations the agent should perform, and avoid exposing the key in chat logs or shell history.
+
+Risk: Delete or other high-impact CRM operations can modify business records.
+
+Mitigation: Require explicit user confirmation before destructive or high-impact CRM changes.
+
+## Reference(s):
+
+- [PerfexAPI Homepage](https://perfexapi.com)
+- [PerfexAPI Documentation](https://perfexapi.com/docs)
+- [PerfexCRM API Webhooks Module Repository](https://github.com/sattip/perfexcrm-api-webhooks-module)
+- [PerfexAPI Changelog](https://perfexapi.com/changelog)
+- [PerfexAPI MCP Integration](https://perfexapi.com/mcp)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses PERFEXCRM_API_URL and PERFEXCRM_API_KEY; examples rely on curl and the X-API-KEY header.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

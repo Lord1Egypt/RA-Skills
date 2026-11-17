@@ -1,48 +1,67 @@
-## Description: <br>
-Plan travel price monitoring and visa or document reminders with safe, read-only guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Plan travel price monitoring and visa or document reminders with safe, read-only guidance for price drop alerts, travel checklists, and visa timelines without booking or payment actions.
 
-## Publisher: <br>
-[codedao12](https://clawhub.ai/user/codedao12) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[codedao12](https://clawhub.ai/user/codedao12)
 
-## Use Case: <br>
-External users use this skill to plan travel price watches, alert thresholds, and visa or document reminder timelines without booking, payment, or legal-advice actions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Travel and visa information may be incomplete, delayed, or jurisdiction-specific. <br>
-Mitigation: Use official or user-provided sources and verify visa requirements through official government sources. <br>
-Risk: Travel planning can involve sensitive passport, itinerary, or payment details. <br>
-Mitigation: Share only the minimum travel and passport metadata needed, avoid document scans, and do not provide payment details or booking credentials. <br>
-Risk: The skill could be mistaken for legal, booking, payment, or visa-processing support. <br>
-Mitigation: Keep use read-only and limited to monitoring plans, reminders, checklists, and source citations. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Skill Page](https://clawhub.ai/codedao12/travel-price-drop-visa-reminder) <br>
-- [Overview](references/overview.md) <br>
-- [Safety](references/safety.md) <br>
-- [UX](references/ux.md) <br>
-- [Auth](references/auth.md) <br>
-- [Endpoints](references/endpoints.md) <br>
-- [Webhooks](references/webhooks.md) <br>
-- [Troubleshooting](references/troubleshooting.md) <br>
+## Use Case:
 
+External travelers and travel planners use this skill to plan price-drop monitoring, alert cadence, and visa or document timelines from official or user-provided sources without booking, payment, or legal advice.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes price watch plans, visa or document checklists, reminder drafts, assumptions, and data source summaries.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Users may treat visa or document timelines as legal advice.
+
+Mitigation: State that the output is not legal advice and cite official government sources for visa rules.
+
+Risk: Travel prices may be delayed, incomplete, or drawn from inappropriate sources.
+
+Mitigation: Use official or user-provided data sources, identify assumptions and data sources, and avoid restricted-site scraping or access-control bypasses.
+
+Risk: Users may share sensitive documents, payment details, booking credentials, or API keys.
+
+Mitigation: Do not request payment details, booking credentials, or full document scans; collect API keys only when explicitly needed and avoid storing them in files.
+
+Risk: The skill could be misused for booking, payment, or visa-processing actions outside its disclosed scope.
+
+Mitigation: Keep behavior read-only and limited to monitoring plans, checklist drafting, reminder schedules, and alert payload guidance.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/codedao12/skills/travel-price-drop-visa-reminder)
+- [Overview](references/overview.md)
+- [UX](references/ux.md)
+- [Safety](references/safety.md)
+- [Auth](references/auth.md)
+- [Endpoints](references/endpoints.md)
+- [Webhooks](references/webhooks.md)
+- [Troubleshooting](references/troubleshooting.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration]
+
+**Output Format:** [Markdown with structured sections for price watch plans, visa checklists, reminder drafts, assumptions, and data sources.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only planning output; no booking, payment, visa-processing, credential handling, or persistent storage.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

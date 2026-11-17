@@ -1,40 +1,53 @@
-## Description: <br>
-Guides structured help for Unity Project Checklist using clear templates, checks, and safe defaults (category: Game Development). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides structured help for Unity Project Checklist using clear templates, checks, and safe defaults (category: Game Development).
 
-## Publisher: <br>
-[abdullah944](https://clawhub.ai/user/abdullah944) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[abdullah944](https://clawhub.ai/user/abdullah944)
 
-## Use Case: <br>
-Developers and Unity creators use this skill to turn a Unity project goal into a concise plan, reusable checklist, next actions, and optional editable draft copy while avoiding secrets and unsafe commands. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may include secrets or sensitive Unity project details in prompts. <br>
-Mitigation: Do not paste passwords, private keys, wallets, seeds, session secrets, or sensitive project data; keep personal information minimal. <br>
-Risk: The artifact includes an optional PayPal donation link. <br>
-Mitigation: Treat the donation link as optional and unrelated to skill operation. <br>
+## Use Case:
 
+Developers and game-development teams use this skill to turn a Unity project goal into a concise plan, numbered checklist, next actions, and editable draft copy while avoiding secret collection and unsafe installer guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/abdullah944/unity-project-checklist-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Text] <br>
-**Output Format:** [Markdown checklist and short prose] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include optional draft copy blocks; no executable code is produced by the skill itself.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: SKILL.md frontmatter and metadata.json changelog, released 2026-04-28) <br>
+Risk: The activation language may be selected for broader game-development or structured-planning requests that are not specifically about Unity project checklists.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill when the user is asking for Unity checklist planning or reusable project-planning structure; otherwise prefer a more specific game-development skill.
+
+Risk: Checklist guidance can still be incomplete or unsuitable for a specific Unity project even though the artifact does not execute code or access data.
+
+Mitigation: Review the generated plan and checklist against the project's technical constraints before applying it.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/abdullah944/skills/unity-project-checklist-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown checklist with a concise plan, numbered checklist, next-actions list, and optional draft copy blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution; outputs are planning guidance and copy-paste-safe checklist text.]
+
+## Skill Version(s):
+
+0.1.0 (source: frontmatter, metadata.json, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,55 @@
-## Description: <br>
-Evolver Plus helps an agent identify repeated errors, capability gaps, or inefficient workflows, propose self-improvements as Genes, and apply them under four safety levels with backups and approval gates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent self-evolution workflow that activates on repeated errors, capability gaps, inefficient processes, or explicit evolution requests, with L1-L4 safety gates, Gene records, backups, approvals, and restricted paths.
 
-## Publisher: <br>
-[tsangho](https://clawhub.ai/user/tsangho) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tsangho](https://clawhub.ai/user/tsangho)
 
-## Use Case: <br>
-Developers and agent operators use this skill to manage controlled self-improvement workflows for agents, including creating Gene proposals, assigning safety levels, backing up files, and routing higher-risk changes for approval. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can enable broad automatic self-modification and rollback behavior that affects persistent memory, documentation, scripts, or agent behavior. <br>
-Mitigation: Narrow allowed paths, require explicit approval for overwrites and behavior-changing edits, and review Gene proposals before execution. <br>
-Risk: Unsupervised periodic review could create or apply unnecessary changes. <br>
-Mitigation: Disable unsupervised periodic review unless it is needed, and keep PENDING, GENES, and AUDIT records for each change. <br>
-Risk: Failed evolution or rollback can leave files in an unintended state. <br>
-Mitigation: Verify backups before each change and test rollback paths before relying on automated recovery. <br>
+## Use Case:
 
+Developers and agent operators use this skill to capture recurring failures or process gaps as proposed Gene changes, route them through safety-level review, and preserve backups and audit records before changes become persistent agent behavior.
 
-## Reference(s): <br>
-- [Gene Format](references/gene-format.md) <br>
-- [Safety Levels](references/safety-levels.md) <br>
-- [ClawHub Release Page](https://clawhub.ai/tsangho/evolver-plus) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Gene records and bash command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose or apply file changes when permitted by its safety gates.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: frontmatter and server release evidence) <br>
+Risk: The skill can automatically alter persistent agent memory and skill documentation under broad self-modification triggers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require approval and an exact diff for every write to MEMORY.md, SKILL.md, GENES.md, PENDING.md, and rollback targets; keep use scoped to a dedicated workspace.
+
+Risk: Untrusted task content could be converted into durable agent rules or skill changes.
+
+Mitigation: Do not allow untrusted task content to become persistent rules automatically; review proposed Genes before accepting them.
+
+## Reference(s):
+
+- [Gene format reference](artifact/references/gene-format.md)
+- [Safety levels reference](artifact/references/safety-levels.md)
+- [ClawHub release page](https://clawhub.ai/tsangho/skills/evolver-plus)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with structured Gene records and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose or write persistent files such as PENDING.md, GENES.md, audit logs, backups, MEMORY.md, SKILL.md, or approved rollback targets depending on safety level.]
+
+## Skill Version(s):
+
+1.0.2 (source: release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

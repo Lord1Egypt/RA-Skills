@@ -1,43 +1,56 @@
-## Description: <br>
-Cross-platform video transcript extraction and optional AI summarization for YouTube and Bilibili. GPU auto-detect. Transcript-first with opt-in LLM summary. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cross-platform video transcript extraction and optional AI summarization for YouTube and Bilibili. GPU auto-detect. Transcript-first with opt-in LLM summary.
 
-## Publisher: <br>
-[huuuwnnn-droid](https://clawhub.ai/user/huuuwnnn-droid) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[huuuwnnn-droid](https://clawhub.ai/user/huuuwnnn-droid)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and agents use this skill to extract transcripts, metadata, and optional keyframes from YouTube or Bilibili videos, then optionally request a transcript summary. It supports single-video, channel-scan, and batch workflows where video content needs to be converted into agent-readable text.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill may use browser cookies when video access fails, which can expose private or account-restricted video access.
+
+Mitigation: Avoid private or account-restricted videos unless the browser-cookie fallback is removed or made explicitly opt-in.
+
+Risk: Optional summarization can send full transcripts to a configured LLM endpoint.
+
+Mitigation: Do not use summarization with sensitive transcripts unless the endpoint is trusted and uses safe transport.
+
+Risk: Network and credential handling requires review before installation and use.
+
+Mitigation: Review configuration before installing, avoid setting LLM_API_URL alongside OPENCLAW_GATEWAY_TOKEN, and prefer an isolated virtual environment with pinned dependencies.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and agent users use this skill to extract transcripts, metadata, optional keyframes, and optional summaries from YouTube and Bilibili videos for review, analysis, and channel monitoring workflows. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, files]
 
-## Known Risks and Mitigations: <br>
-Risk: Bilibili fallback behavior may access local Chrome browser cookies when standard downloads fail. <br>
-Mitigation: Review or disable the browser-cookie retry before deployment, and run the skill only in an environment where that browser session access is acceptable. <br>
-Risk: Video transcripts and metadata are cached under ~/.cache/video-insight by default. <br>
-Mitigation: Use --no-cache for sensitive videos, configure a controlled cache directory when needed, and clear cached transcript files after use. <br>
-Risk: Optional LLM summarization sends transcript content to the configured LLM endpoint. <br>
-Mitigation: Use --summarize only with a trusted endpoint and token setup, and keep the default transcript-only workflow for sensitive content. <br>
+**Output Format:** [JSON object with transcript text, timestamps, metadata, optional keyframe file paths, and optional Markdown summary]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/huuuwnnn-droid/video-insight) <br>
-- [Publisher profile](https://clawhub.ai/user/huuuwnnn-droid) <br>
+**Other Properties Related to Output:** [Default output is transcript-first and does not call an LLM unless summarization is explicitly enabled.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, markdown, files, shell commands, configuration, guidance] <br>
-**Output Format:** [Structured JSON to stdout or file, with optional Markdown summary text and optional keyframe image files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Transcript-first by default; optional LLM summarization requires a trusted OpenAI-compatible endpoint or OpenClaw Gateway token.] <br>
+1.0.0 (source: release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

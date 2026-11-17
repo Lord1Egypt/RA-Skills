@@ -1,46 +1,57 @@
-## Description: <br>
-WebChat Voice Full Stack installs and verifies a local OpenClaw WebChat voice-input stack by orchestrating local speech-to-text, HTTPS/WSS proxy, and voice UI sub-skills. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+One-step full-stack installer for OpenClaw WebChat voice input with local speech-to-text, orchestrating a local STT backend, HTTPS/WSS proxy, and voice UI controls.
 
-## Publisher: <br>
-[neldar](https://clawhub.ai/user/neldar) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[neldar](https://clawhub.ai/user/neldar)
 
-## Use Case: <br>
-Developers and engineers use this skill to add local microphone input and speech-to-text transcription to OpenClaw WebChat with a coordinated backend, proxy, and UI deployment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The deployment creates persistent user-level services for transcription and HTTPS proxy behavior. <br>
-Mitigation: Install only when persistent local voice transcription is desired, review the downstream sub-skills first, and keep the documented reverse-order uninstall steps available. <br>
-Risk: Sub-skill scripts may change after installation or review. <br>
-Mitigation: Run rehash.sh only after reviewing the installed sub-skill scripts, then use VERIFY_ONLY=true bash scripts/deploy.sh to verify checksums before deployment. <br>
-Risk: Incorrect host, port, or allowed-origin settings can expose or break the local WebChat voice path. <br>
-Mitigation: Verify VOICE_HOST, VOICE_HTTPS_PORT, TRANSCRIBE_PORT, and gateway allowed-origin settings before running deployment. <br>
-Risk: The first local speech-to-text run requires a large model download. <br>
-Mitigation: Plan for initial network access and local storage before deploying the faster-whisper backend. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to install, verify, and operate a local voice input stack for WebChat. It is intended for agents helping with user-level setup, status checks, and configuration guidance for local speech-to-text, HTTPS/WSS proxying, and mic UI controls.
 
-## Reference(s): <br>
-- [Architecture](references/architecture.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/neldar/webchat-voice-full-stack) <br>
-- [Publisher Profile](https://clawhub.ai/user/neldar) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown instructions with bash commands and environment variable examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces deployment, verification, checksum, and uninstall guidance for local OpenClaw voice services.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.4.1 (source: server release metadata) <br>
+Risk: The skill runs mutable downstream installer scripts with the user's privileges.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and pin the three downstream skills before use, then run checksum verification before deployment.
+
+Risk: The checksum workflow can be mistaken for proof of a safe download.
+
+Mitigation: Treat rehash.sh only as a local trusted-baseline recorder after manual review, not as independent safety validation.
+
+Risk: Deployment can install user-level services and modify OpenClaw gateway or UI behavior.
+
+Mitigation: Review the planned local changes, run status checks after deployment, and use the documented uninstall path if changes are not acceptable.
+
+## Reference(s):
+
+- [Architecture](references/architecture.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash commands and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance may include local service deployment, checksum verification, status checks, and uninstall steps.]
+
+## Skill Version(s):
+
+0.4.1 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,59 @@
-## Description: <br>
-AeroLeads lets agents search and read prospect data through an OOMOL-connected AeroLeads account. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AeroLeads (aeroleads.com). Use this skill for ANY AeroLeads request — searching and reading data. Whenever a task involves AeroLeads, use this skill instead of calling the API directly.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Agents assisting sales, recruiting, or prospect research teams use this skill to retrieve AeroLeads prospect details from public LinkedIn profile URLs. It is intended for users who already have an OOMOL-connected AeroLeads account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires connecting an AeroLeads account or API key through OOMOL and can return emails, phone numbers, and profile details. <br>
-Mitigation: Install it only for intended AeroLeads workflows, use authorized accounts, and treat returned contact and profile data as sensitive personal data. <br>
-Risk: First-time setup guidance includes remote shell and PowerShell installer commands for the oo CLI. <br>
-Mitigation: Review OOMOL's official installation guidance and verify the installer source before running remote installer commands. <br>
+## Use Case:
 
+Developers and agent users use this skill to retrieve prospect details, contact information, company data, education, skills, and related profile data from a public LinkedIn profile through AeroLeads.
 
-## Reference(s): <br>
-- [ClawHub AeroLeads skill](https://clawhub.ai/oomol/oo-aeroleads) <br>
-- [AeroLeads homepage](https://aeroleads.com) <br>
-- [OOMOL oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [OOMOL CLI install guide](https://cli.oomol.com/install-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON connector responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an OOMOL-connected AeroLeads account; connector responses may include personal contact and profile data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: Setup uses remote CLI installers that were not verified.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the setup and install a verified oo CLI release yourself before use.
+
+Risk: The CLI may synchronize installed agent skills more broadly than these instructions describe, and the hosted connector implementation was not verified.
+
+Mitigation: Decide whether to set OO_SKILLS_SYNC_DISABLED=1 before invoking the CLI, and review the connector behavior before using it.
+
+Risk: OOMOL-mediated contact lookups may consume credit.
+
+Mitigation: Check the account's available credit and use the lookup when its cost is acceptable.
+
+## Reference(s):
+
+- [AeroLeads](https://aeroleads.com)
+- [AeroLeads API documentation](https://aeroleads.com/api)
+- [OOMOL oo CLI](https://github.com/oomol-lab/oo-cli)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Guidance]
+
+**Output Format:** [JSON connector requests and returned prospect data, with Markdown guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returned profile fields depend on AeroLeads response data.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,38 +1,53 @@
-## Description: <br>
-Chat with David Hume (1711-1776), Scottish empiricist philosopher, in a persona focused on skepticism about causation, induction, personal identity, naturalism, and custom. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Chat with David Hume (1711-1776), Scottish empiricist philosopher, using skepticism about causation, induction, personal identity, naturalism, and custom.
 
-## Publisher: <br>
-[juchonghao](https://clawhub.ai/user/juchonghao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bhackerj](https://clawhub.ai/user/bhackerj)
 
-## Use Case: <br>
-External users can invoke this persona skill to converse with a David Hume-style philosophical voice in English or Chinese. It is suited for roleplay, discussion, and exploratory explanations of Humean themes such as empiricism, custom, causation, induction, sympathy, and the bundle theory of the self. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The persona may activate when a user mentions "hume" and continue speaking in character rather than plainly saying it is an AI. <br>
-Mitigation: Install the skill only where a Hume-style roleplay persona is desired, and review activation triggers and persona behavior before deployment. <br>
+## Use Case:
 
+External users and developers use this skill to hold in-character philosophical conversations in David Hume's voice, including English or Chinese exchanges about empiricism, causation, induction, personal identity, naturalism, custom, reason, and the passions.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/juchonghao/ph-hume) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [Conversational text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Persona responses follow the user's language and avoid events after August 1776.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Broad triggers such as "hume" or "休谟" may activate the persona when a user did not intend roleplay.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only where explicit Hume-style conversation is desired, and review trigger behavior before deployment.
+
+Risk: The persona instructs responses to remain in character and not acknowledge being an AI, which may reduce transparency for users.
+
+Mitigation: Use higher-priority system or deployment policy to preserve required AI disclosure and transparency expectations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bhackerj/skills/ph-hume)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Conversational text or Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responds in English or Chinese based on the user's language and stays in a David Hume persona.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

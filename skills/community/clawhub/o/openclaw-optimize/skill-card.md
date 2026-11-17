@@ -1,45 +1,61 @@
-## Description: <br>
-Audit and optimize OpenClaw token usage, cron job efficiency, and agent performance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audit and optimize OpenClaw token usage, cron job efficiency, and agent performance.
 
-## Publisher: <br>
-[mrmps](https://clawhub.ai/user/mrmps) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mrmps](https://clawhub.ai/user/mrmps)
 
-## Use Case: <br>
-Developers and operators use this skill to audit OpenClaw cron jobs, session traces, plugin overhead, token consumption, and cost drivers before applying approved efficiency changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill inspects OpenClaw cron configuration, logs, and selected session traces that may contain sensitive operational context. <br>
-Mitigation: Run it interactively, review what the agent plans to inspect, and avoid exposing unnecessary logs or traces. <br>
-Risk: Optimization proposals may change cron frequency, context loading, session persistence, model choice, or deletion of redundant jobs. <br>
-Mitigation: Require explicit approval for each change and keep a rollback plan before edits, deletions, persistent-session changes, or gateway restarts. <br>
+## Use Case:
 
+Developers and engineers use this skill to audit OpenClaw cron jobs, trace expensive agent runs, calculate token usage, and propose approved changes that reduce cost or improve reliability.
 
-## Reference(s): <br>
-- [OpenClaw Cron Jobs](https://docs.openclaw.ai/automation/cron-jobs) <br>
-- [OpenClaw CLI Reference](https://docs.openclaw.ai/cli) <br>
-- [OpenClaw CLI Cron](https://docs.openclaw.ai/cli/cron) <br>
-- [OpenClaw Gateway Security](https://docs.openclaw.ai/gateway/security) <br>
-- [ClawHub Skill Page](https://clawhub.ai/mrmps/openclaw-optimize) <br>
-- [Publisher Profile](https://clawhub.ai/user/mrmps) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with tables and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Interactive recommendations require explicit user approval before configuration changes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill may inspect sensitive local OpenClaw configuration, session traces, logs, or transcripts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the specific job or session before trace analysis, avoid exposing raw transcripts or config values in reports, and summarize findings at the minimum detail needed.
+
+Risk: Cron deletion, cron edits, and gateway restarts can disrupt scheduled automation.
+
+Mitigation: Require explicit user approval for each operational change, record the baseline and intended rollback, and verify behavior after several runs.
+
+Risk: Optimization recommendations could reduce context, change schedules, or alter models in ways that affect task quality.
+
+Mitigation: Present projected impact before changes, preserve mission-critical jobs when the user identifies them, and compare before-and-after token usage and output quality.
+
+## Reference(s):
+
+- [OpenClaw cron jobs documentation](https://docs.openclaw.ai/automation/cron-jobs)
+- [OpenClaw CLI reference](https://docs.openclaw.ai/cli)
+- [OpenClaw CLI cron reference](https://docs.openclaw.ai/cli/cron)
+- [OpenClaw gateway security documentation](https://docs.openclaw.ai/gateway/security)
+- [ClawHub skill page](https://clawhub.ai/mrmps/skills/openclaw-optimize)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with tables and inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Interactive recommendations require explicit user approval before applying operational changes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

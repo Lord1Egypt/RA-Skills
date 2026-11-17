@@ -1,43 +1,55 @@
-## Description: <br>
-Provides Avito API guidance for OAuth authorization, messenger chats, listings, statistics, scopes, and request examples. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Работа с API Авито (Авторизация, Мессенджер, Объявления, Статистика). Позволяет получать токены, читать/отправлять сообщения в чатах Авито и управлять объявлениями.
 
-## Publisher: <br>
-[thisisevgeniy](https://clawhub.ai/user/thisisevgeniy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[thisisevgeniy](https://clawhub.ai/user/thisisevgeniy)
 
-## Use Case: <br>
-Developers and operators use this skill to draft and review Avito API integrations for authentication, messaging workflows, listing information, statistics, paid services, and webhook management. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Avito client secrets and bearer tokens may be exposed when real credentials are pasted into prompts, command examples, or logs. <br>
-Mitigation: Use the minimum required scopes, keep secrets and bearer tokens out of prompts and logs, and substitute placeholders in examples. <br>
-Risk: Messaging, media upload, webhook, and paid-service endpoints can affect real Avito accounts or customers. <br>
-Mitigation: Require explicit user approval before sending messages, uploading media, changing webhooks, or applying VAS services. <br>
-Risk: Webhook subscriptions may continue receiving account events after they are no longer needed. <br>
-Mitigation: Track webhook subscriptions and unsubscribe when an integration is retired or no longer requires event delivery. <br>
+## Use Case:
 
+Developers and operators use this skill to work with Avito API authentication, messenger workflows, listings, statistics, webhooks, scopes, and CRM integration patterns.
 
-## Reference(s): <br>
-- [Avito Developer Documentation](https://developers.avito.ru/) <br>
-- [Avito Pro on ClawHub](https://clawhub.ai/thisisevgeniy/avito-pro) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration, API request examples] <br>
-**Output Format:** [Markdown with inline bash and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only; the skill describes API usage and request shapes but does not execute API calls by itself.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2026.3.16 (source: server release evidence) <br>
+Risk: OAuth client secrets and bearer tokens may be exposed through logs, commits, or chat transcripts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep credentials out of shared text, store them in approved secret storage, and redact tokens before sharing agent outputs.
+
+Risk: Agent-generated Avito API calls can send messages, modify listings, or apply paid services when authorized.
+
+Mitigation: Use least-privilege scopes and require explicit human approval before write actions or paid service operations.
+
+## Reference(s):
+
+- [Avito API Documentation](https://developers.avito.ru/)
+- [ClawHub Skill Page](https://clawhub.ai/thisisevgeniy/skills/avito-pro)
+- [Publisher Profile](https://clawhub.ai/user/thisisevgeniy)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown with API endpoint examples and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include OAuth parameters, scope names, webhook details, JSON request bodies, and cURL examples.]
+
+## Skill Version(s):
+
+2026.3.16 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

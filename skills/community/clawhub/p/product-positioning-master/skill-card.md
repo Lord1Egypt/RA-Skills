@@ -1,43 +1,58 @@
-## Description: <br>
-产品定位分析技能。当用户输入一个产品/服务/品牌并要求进行定位分析、市场分析、竞争分析、STP分析、SWOT分析、4P营销分析、产品战略或商业模式梳理时使用。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+产品定位大师 helps agents produce Chinese-language product positioning reports using ST-SWOT analysis, positioning theory, and 4P marketing recommendations.
 
-## Publisher: <br>
-[yinfeihaaaaaaaaaaa](https://clawhub.ai/user/yinfeihaaaaaaaaaaa) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yinfeihaaaaaaaaaaa](https://clawhub.ai/user/yinfeihaaaaaaaaaaa)
 
-## Use Case: <br>
-External business, product, and marketing users use this skill to analyze a product, service, or brand before positioning, launch planning, repositioning, competitor analysis, or marketing strategy work. It guides the agent through ST-SWOT analysis, positioning theory, and 4P marketing recommendations to produce a structured product positioning report. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger terms such as SWOT, STP, 4P, 市场分析, and 竞品分析 may activate the workflow during general business discussions. <br>
-Mitigation: Confirm that the user wants a full product positioning workflow before collecting or analyzing sensitive business details. <br>
-Risk: The generated market and positioning guidance may rely on assumptions when the user provides incomplete product, competitor, customer, pricing, or market evidence. <br>
-Mitigation: Label assumption-based analysis clearly and ask for missing inputs before presenting conclusions as decision-ready guidance. <br>
+## Use Case:
 
+External users and business teams use this skill to analyze a product, service, or brand before positioning, launch planning, repositioning, competitive differentiation, or marketing strategy work. The skill guides an agent to produce a structured report covering ST-SWOT analysis, a positioning statement, and 4P marketing recommendations.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/yinfeihaaaaaaaaaaa/product-positioning-master) <br>
-- [Publisher Profile](https://clawhub.ai/user/yinfeihaaaaaaaaaaa) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, analysis, guidance] <br>
-**Output Format:** [Markdown product positioning report with headings, tables, lists, positioning statements, brand manifesto, slogans, sales scripts, and action recommendations.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill may ask follow-up questions when product, market, competitor, pricing, or customer evidence is incomplete.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter, README, release metadata) <br>
+Risk: The skill activates on broad marketing-analysis terms and may overlap with other business strategy skills.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review trigger behavior during installation and adjust enablement, ordering, or routing when multiple strategy skills are available.
+
+Risk: The skill can produce strategic recommendations from incomplete product or market inputs.
+
+Mitigation: Require key product facts when possible, preserve assumption labels, and review recommendations before using them for business decisions.
+
+Risk: The skill primarily answers in Chinese, which may create review gaps for non-Chinese workflows.
+
+Mitigation: Confirm the expected output language and route reports through qualified translation or bilingual review when needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yinfeihaaaaaaaaaaa/skills/product-positioning-master)
+- [Publisher profile](https://clawhub.ai/user/yinfeihaaaaaaaaaaa)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Structured Markdown product positioning report in Chinese]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes ST-SWOT tables, positioning keywords, a positioning statement, 4P recommendations, brand manifesto, slogans, and sales scripts.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

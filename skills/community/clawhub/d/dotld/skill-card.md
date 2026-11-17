@@ -1,44 +1,59 @@
-## Description: <br>
-dotld helps agents search domain availability and registration prices by running the dotld CLI against the Dynadot API for real-time availability and pricing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+dotld helps agents search domain name availability and registration prices by running the dotld CLI against the Dynadot API.
 
-## Publisher: <br>
-[tedstonne](https://clawhub.ai/user/tedstonne) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[tedstonne](https://clawhub.ai/user/tedstonne)
 
-## Use Case: <br>
-Developers, operators, and domain buyers use this skill to check exact domains, expand brand keywords across common TLDs, compare availability and USD pricing, and present registration links or structured JSON results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The installer runs mutable remote code before the dotld binary is available. <br>
-Mitigation: Review or pin the upstream installer and binary before installation. <br>
-Risk: Passing a Dynadot production API key with --dynadot-key can persist the key to a local config file. <br>
-Mitigation: Prefer DYNADOT_API_PRODUCTION_KEY in the environment; if a config file is created, restrict it to owner-only permissions such as 0600. <br>
-Risk: The skill depends on a production Dynadot API key for live availability and pricing checks. <br>
-Mitigation: Use an appropriately scoped key, avoid sharing outputs that expose secrets, and rotate the key if local config storage or command history is suspected to be exposed. <br>
+## Use Case:
 
+Developers, founders, and naming teams use this skill to check exact domains, expand keywords across popular TLDs, compare USD registration prices, and prepare ranked domain options.
 
-## Reference(s): <br>
-- [dotld CLI Reference](references/cli-reference.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/tedstonne/dotld) <br>
-- [Dynadot API Settings](https://www.dynadot.com/account/domain/setting/api.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, JSON, Guidance] <br>
-**Output Format:** [Markdown summaries with inline shell commands; CLI results may be tree-formatted text or structured JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the dotld CLI and DYNADOT_API_PRODUCTION_KEY; prices are reported in USD for v1.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact frontmatter reports 1.0.7) <br>
+Risk: The skill documentation recommends installing dotld through an unverified remote installer.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing and prefer a pinned, verifiable dotld release instead of running the documented curl-to-bash command.
+
+Risk: Using --dynadot-key can persist a Dynadot API key to local configuration with insufficiently restrictive permissions.
+
+Mitigation: Prefer DYNADOT_API_PRODUCTION_KEY and avoid --dynadot-key until key storage uses restrictive permissions.
+
+Risk: Domain searches are disclosed to Dynadot when the CLI queries availability and pricing.
+
+Mitigation: Avoid searching confidential brands, product names, or unreleased project names unless disclosure to Dynadot is acceptable.
+
+## Reference(s):
+
+- [dotld CLI Reference](references/cli-reference.md)
+- [ClawHub Skill Page](https://clawhub.ai/tedstonne/skills/dotld)
+- [Dynadot API Key Settings](https://www.dynadot.com/account/domain/setting/api.html)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with shell command examples and optional JSON result interpretation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Domain availability results can include USD prices, registration links, timestamps, and error messages.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -669,6 +669,7 @@ def split_sql_file(
     dry_run: bool = False,
     show_progress: bool = True,
     convert_to: Optional[str] = None,
+    schema_prefix: Optional[str] = None,
 ) -> SplitResult:
     """
     拆分 SQL 文件（增强版）
@@ -682,6 +683,7 @@ def split_sql_file(
         dry_run: 预览模式，不实际生成文件
         show_progress: 是否显示进度条
         convert_to: 转换目标方言（可选，如 'dm' 将SQL Server拆分结果转换为达梦语法）
+        schema_prefix: dbo替换前缀（可选，如源文件名hrbi_stage），用于替换dbo前缀
     
     Returns:
         SplitResult: 拆分结果对象
@@ -751,31 +753,6 @@ def split_sql_file(
 
     if verbose:
         print(f"[scan] 找到 {len(found_objects)} 个对象")
-
-    # ---- 社区版限制检查 ----
-    try:
-        from license_checker import check_object_limit, check_file_size
-    except ImportError:
-        from .license_checker import check_object_limit, check_file_size
-
-    file_size = len(sql_content.encode('utf-8')) if isinstance(sql_content, str) else os.path.getsize(input_file)
-    size_allowed, size_msg = check_file_size(file_size)
-    if not size_allowed:
-        print(size_msg)
-        return SplitResult(
-            success=False, output_dir=None, files_created=[],
-            errors=[ErrorHandler.create_file_read_error(input_file, '文件大小超出社区版限制，升级专业版: https://sqlsplitter.com')],
-            warnings=[], stats={}, total=len(found_objects), dry_run=dry_run,
-        )
-
-    obj_allowed, obj_msg = check_object_limit(len(found_objects))
-    if not obj_allowed:
-        print(obj_msg)
-        return SplitResult(
-            success=False, output_dir=None, files_created=[],
-            errors=[ErrorHandler.create_file_read_error(input_file, '对象数量超出社区版限制，升级专业版: https://sqlsplitter.com')],
-            warnings=[], stats={}, total=len(found_objects), dry_run=dry_run,
-        )
 
     # ---- 提取并保存每个对象 ----
     all_objects_info = [] # 用于依赖分析
@@ -882,7 +859,8 @@ def split_sql_file(
     converted_files = []
     if convert_to and not dry_run and all_objects_info:
         converted_dir, converted_files = _convert_split_output(
-            output_dir, all_objects_info, convert_to, dialect, verbose
+            output_dir, all_objects_info, convert_to, dialect, verbose,
+            schema_prefix=schema_prefix or '',
         )
 
     # 返回结构化结果
@@ -906,6 +884,7 @@ def _convert_split_output(
     target_dialect: str,
     source_dialect: SQLDialect,
     verbose: bool = True,
+    schema_prefix: str = '',
 ) -> Tuple[Optional[str], List[str]]:
     """
     将拆分后的文件转换为目标方言，输出到子目录
@@ -916,6 +895,7 @@ def _convert_split_output(
         target_dialect: 目标方言 ('dm')
         source_dialect: 源方言
         verbose: 是否显示详细信息
+        schema_prefix: dbo替换前缀(如源文件名hrbi_stage)，用于替换dbo前缀
     
     Returns:
         (converted_dir, converted_files) 转换目录和文件列表
@@ -970,8 +950,8 @@ def _convert_split_output(
         }
         conv_type = type_map.get(obj_type, 'generic')
         
-        # 执行转换
-        result = convert_sqlserver_to_dm_with_result(obj_content, conv_type)
+        # 执行转换（传入schema_prefix用于dbo替换）
+        result = convert_sqlserver_to_dm_with_result(obj_content, conv_type, schema_prefix=schema_prefix)
         
         # 写入转换后的文件
         # 安全校验: 防止路径遍历 (filename中不应含..或路径分隔符)
@@ -1072,6 +1052,9 @@ def main():
     parser.add_argument('-q', '--quiet', action='store_true', help='静默模式')
     parser.add_argument('--dry-run', action='store_true', help='预览模式，不实际生成文件')
     parser.add_argument('--no-progress', action='store_true', help='不显示进度条')
+    parser.add_argument('--schema-prefix', default=None,
+                        help='dbo替换前缀(如hrbi_stage)，用于替换dbo.xxx中的dbo。默认从输入文件名自动提取')
+    parser.add_argument('--dm', action='store_true', help='拆分后自动转换为达梦语法(--convert-to dm的快捷方式)')
 
     args = parser.parse_args()
 
@@ -1089,6 +1072,16 @@ def main():
     generate_merge = not args.no_merge
     dry_run = args.dry_run
     show_progress = not args.no_progress
+    
+    # 自动确定schema_prefix: 命令行指定 > 从输入文件名提取
+    schema_prefix = args.schema_prefix
+    if not schema_prefix and not os.path.isdir(args.input):
+        # 从文件名提取: HRBI_Stage.sql -> HRBI_Stage
+        basename = os.path.basename(args.input)
+        schema_prefix = os.path.splitext(basename)[0]
+    
+    # --dm 是 --convert-to dm 的快捷方式
+    convert_to = 'dm' if args.dm else None
 
     if args.batch:
         input_paths = [args.input] if ',' not in args.input else args.input.split(',')
@@ -1104,6 +1097,8 @@ def main():
             generate_merge,
             dry_run=dry_run,
             show_progress=show_progress,
+            convert_to=convert_to,
+            schema_prefix=schema_prefix,
         )
         
         # 显示错误和警告

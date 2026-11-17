@@ -1,45 +1,59 @@
-## Description: <br>
-Searches Xiaohongshu trending notes by keyword, ranks popular posts by relevance, popularity, and timeliness, and returns Markdown results plus a local HTML report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+小红书热门笔记搜索工具，支持关键词搜索获取热门内容数据，基于数据评分排序推荐热门笔记，助力创作者发现热门趋势、获取创作灵感。
 
-## Publisher: <br>
-[if530770](https://clawhub.ai/user/if530770) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[if530770](https://clawhub.ai/user/if530770)
 
-## Use Case: <br>
-External creators, brands, MCN teams, and content operators use this skill to find high-engagement Xiaohongshu notes, compare topic trends, and generate benchmark reports for content planning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a Redfox API key and sends Xiaohongshu search keywords to the Redfox API. <br>
-Mitigation: Install only when this data flow is acceptable; keep REDFOX_API_KEY in environment or agent configuration and avoid exposing it in code, prompts, logs, or generated outputs. <br>
-Risk: Each search may create a local HTML report that contains the query, Xiaohongshu result links, and retrieved content metadata. <br>
-Mitigation: Review generated reports before sharing and retain or delete them according to the user's data-handling requirements. <br>
-Risk: Optional calendar subscriptions can persist the selected keyword and time range. <br>
-Mitigation: Create subscriptions only after explicit user choice, and record only the current search parameters needed for the reminder. <br>
+## Use Case:
 
+Content creators, brand marketers, and MCN teams use this skill to search Xiaohongshu hot notes by keyword, compare popularity and relevance signals, discover related searches, and generate trend-oriented result tables and reports.
 
-## Reference(s): <br>
-- [Skill page](https://clawhub.ai/if530770/xhs-explosive-content-detector) <br>
-- [Xiaohongshu hot article format](references/xhs_hot_article_format.md) <br>
-- [Redfox Hub API key settings](https://redfox.hk/settings/api-keys?source=clawhub) <br>
-- [Redfox Hub](https://redfox.hk) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Files, Guidance] <br>
-**Output Format:** [Markdown tables, plain text guidance, shell command snippets, JSON returned by the script, and local HTML report files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires REDFOX_API_KEY; sends Xiaohongshu search keywords to the Redfox API; creates local HTML reports; optional subscriptions retain the chosen keyword and time range.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release evidence) <br>
+Risk: Search keywords and date filters are sent to Redfox through the bundled API client.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sensitive query terms, configure a revocable REDFOX_API_KEY, and rotate or revoke the key if it may have been exposed.
+
+Risk: The generated HTML report path and report content may be unsafe if treated as trusted local output.
+
+Mitigation: Use trusted output directories, avoid custom output paths for sensitive locations, and review generated HTML before opening or sharing it.
+
+Risk: Calendar subscriptions may store search terms and schedules outside the immediate chat session.
+
+Mitigation: Create subscriptions only for non-sensitive searches and review the reminder details before confirming them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/if530770/skills/xhs-explosive-content-detector)
+- [Redfox API key settings](https://redfox.hk/settings/api-keys?source=clawhub)
+- [Xiaohongshu hot article format reference](references/xhs_hot_article_format.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, files, guidance]
+
+**Output Format:** [Markdown tables and guidance backed by JSON API results, with optional generated HTML report files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires REDFOX_API_KEY and sends search keywords, date filters, and pagination parameters to the Redfox API.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

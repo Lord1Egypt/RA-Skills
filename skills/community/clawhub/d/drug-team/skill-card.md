@@ -1,44 +1,62 @@
-## Description: <br>
-Coordinates specialized AI agents to propose and rank drug candidates using synthesis planning, inventory checks, ADMET and toxicity proxies, pharmacology scoring, and patent scouting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Coordinates specialized AI agents to propose and rank drug candidates using synthesis planning, inventory checks, ADMET and toxicity proxies, pharmacology scoring, patent scouting, and visualizations.
 
-## Publisher: <br>
-[Cheminem](https://clawhub.ai/user/Cheminem) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cheminem](https://clawhub.ai/user/cheminem)
 
-## Use Case: <br>
-Developers and researchers use this skill to coordinate early-stage drug design workflows that generate candidate molecules, estimate synthesis feasibility, check reagent availability, score ADMET and toxicity properties, and surface patent novelty signals. Outputs are screening aids that require expert chemistry, safety, patent, and procurement review before use. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can run external patent searches that may expose molecule ideas or target information. <br>
-Mitigation: Use only non-confidential queries unless external patent lookups are acceptable for the project. <br>
-Risk: The workflow may read or modify lab-inventory data while checking reagent stock and estimating synthesis costs. <br>
-Mitigation: Run it only against approved inventory data and review any local inventory-file changes before relying on results. <br>
-Risk: Drug design, toxicity, patent, and procurement outputs are rough screening signals. <br>
-Mitigation: Require expert chemistry, safety, patent, and procurement review before acting on candidate recommendations. <br>
-Risk: Broad trigger phrases can activate the workflow in general drug, synthesis, stock, patent, or novelty discussions. <br>
-Mitigation: Enable the skill only in contexts where automated drug-design assistance is intended. <br>
+## Use Case:
 
+Drug-discovery practitioners and research developers use this skill to coordinate early-stage molecule ideation, synthesis feasibility review, inventory-aware cost checks, ADMET and toxicity proxy scoring, and patent novelty screening for a target or indication.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/Cheminem/drug-team) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands] <br>
-**Output Format:** [Console text with ranked candidate summaries, SMILES strings, scores, route and inventory details, and generated visualization files when dependencies are available.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces rough screening results based on local scripts, sibling skills, external patent queries, and chemistry proxy calculations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Patent scouting may send molecule and target search terms to Google Patents.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid confidential targets or structures unless network disclosure is acceptable, or disable patent scouting for sensitive work.
+
+Risk: The stock-check path can create fake persistent inventory data when the expected inventory file is missing.
+
+Mitigation: Run only in an isolated workspace with verified non-production inventory data, and ensure the inventory file exists before execution.
+
+Risk: Broad trigger phrases may start the workflow unexpectedly.
+
+Mitigation: Use explicit invocation or narrow triggers and require confirmation before running in shared or lab-adjacent environments.
+
+Risk: ADMET, toxicity, pharmacology, and novelty scores are proxy outputs.
+
+Mitigation: Treat results as preliminary screening guidance and require qualified expert review before research, procurement, synthesis, or lab decisions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/cheminem/skills/drug-team)
+- [Google Patents](https://patents.google.com/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Files]
+
+**Output Format:** [Plain text report with generated molecule visualization files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Ranks top candidates by molecular, feasibility, inventory, cost, and novelty scores.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

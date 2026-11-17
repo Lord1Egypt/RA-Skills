@@ -1,44 +1,56 @@
-## Description: <br>
-A satirical opt-in skill that makes an agent refuse ordinary work requests and answer with short Simplified Chinese tangping aphorisms. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+躺平.skill is a novelty persona skill that responds with short Chinese tangping aphorisms and refuses ordinary productivity requests when explicitly invoked.
 
-## Publisher: <br>
-[treapgogo](https://clawhub.ai/user/treapgogo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[treapgogo](https://clawhub.ai/user/treapgogo)
 
-## Use Case: <br>
-External users and agent testers intentionally use this skill to put an agent into a humorous refusal mode for non-critical interactions. It is designed for opt-in entertainment and preserves normal assistance for disabling, editing, inspecting, or handling emergency scenarios. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill intentionally refuses ordinary work after invocation. <br>
-Mitigation: Invoke it only when humorous refusal mode is desired; ask the agent to disable, delete, edit, or inspect the skill when normal assistance is needed. <br>
-Risk: The README quick-start prompt asks an agent to fetch live GitHub content without confirmation. <br>
-Mitigation: Prefer the reviewed ClawHub install and inspect the packaged artifact instead of using the remote quick-start prompt. <br>
-Risk: The deadpan refusal style can be abrasive in regular assistance workflows. <br>
-Mitigation: Keep invocation explicit and preserve the documented exceptions for emergencies, safety issues, and skill management requests. <br>
+## Use Case:
 
+External users install this skill as a satirical mode for an agent to produce brief tangping-style refusal text instead of normal work output. It is intended for intentional novelty use, not for workflows where the agent must remain productive.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/treapgogo/tangping-skill) <br>
-- [Publisher profile](https://clawhub.ai/user/treapgogo) <br>
-- [ClawHub install page](https://clawhub.ai/skills/tangping-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [Plain text or short Markdown responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [One sentence per turn after activation; defaults to Simplified Chinese.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill intentionally makes the agent refuse productive work and can reduce user control if left enabled session-wide.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only for intentional novelty use and disable or remove it when normal productive agent behavior is needed.
+
+Risk: The README quick-start prompt fetches instructions from GitHub main rather than the locally reviewed release artifact.
+
+Mitigation: Prefer invoking the locally installed ClawHub skill so the reviewed artifact, not a mutable external branch, defines behavior.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/treapgogo/skills/tangping-skill)
+- [Publisher profile](https://clawhub.ai/user/treapgogo)
+- [README](artifact/README.md)
+- [SKILL.md](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, guidance]
+
+**Output Format:** [Plain text, usually one short Chinese sentence]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code, shell commands, files, or API calls are expected from normal skill behavior.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,59 @@
-## Description: <br>
-Dual-track competitive research: experience benchmarking across eight UX dimensions plus strategic diagnostics with SWOT, Five Forces, and PESTLE, delivered as a source-traceable HTML report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Dual-track competitive research for experience benchmarking and strategic diagnostics that produces source-traceable HTML or Markdown reports.
 
-## Publisher: <br>
-[chris1wang3](https://clawhub.ai/user/chris1wang3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chris1wang3](https://clawhub.ai/user/chris1wang3)
 
-## Use Case: <br>
-Product teams, founders, UX researchers, and strategy leads use this skill to benchmark at least two competitors, compare user experience gaps, and turn source-backed findings into an HTML report with recommendations and an implementation roadmap. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Competitive research inputs may include confidential business context, screenshots, internal notes, or other sensitive materials. <br>
-Mitigation: Provide only material appropriate for AI-assisted analysis, use the skill's external-sharing redaction posture when needed, and review the report before distribution. <br>
-Risk: The generated report may contain outdated, unsupported, or assumption-based competitive claims. <br>
-Mitigation: Check primary sources, source citations, and labeled assumptions before using the report for decisions or sharing it externally. <br>
+## Use Case:
 
+Product managers, UX researchers, and strategy teams use this skill to collect competitive research inputs, benchmark product experiences across eight UX dimensions, run optional strategic diagnostics, and deliver evidence-traceable HTML or Markdown reports.
 
-## Reference(s): <br>
-- [Research Playbook](references/research-playbook.md) <br>
-- [Report Template](references/report-template-pro.html) <br>
-- [Factual Reporting and Style](references/factual-reporting-and-style.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/chris1wang3/competitive-product-research) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, guidance] <br>
-**Output Format:** [Source-traceable HTML report with benchmark tables, key findings, roadmap, source index, and disclaimer] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses SRC-xxx evidence markers and requires review of assumptions, source coverage, and external-sharing redaction.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.3 (source: server release evidence) <br>
+Risk: Internal materials entered into the intake form or reports may contain sensitive competitive, product, or customer information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and redact internal materials before adding them to the intake form or generated report, and use the skill's external-sharing desensitization guidance for public outputs.
+
+Risk: Competitive conclusions can be misleading when source evidence is missing, inaccessible, or based on assumptions.
+
+Mitigation: Require SRC evidence labels for key claims, mark evidence gaps explicitly, and avoid specific unsupported numbers.
+
+Risk: The optional Chrome-based regression script is intended for developer testing rather than routine agent execution.
+
+Mitigation: Treat the local Chrome test script as a developer-only tool and run it only in a controlled local environment.
+
+## Reference(s):
+
+- [Research Playbook](references/research-playbook.md)
+- [HTML Report Template](references/report-template-pro.html)
+- [Intake Form](assets/intake-form.html)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [HTML or Markdown report with source index and evidence labels]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports include benchmark tables, key findings, a prioritized roadmap with owners, a source index, and a disclaimer.]
+
+## Skill Version(s):
+
+1.4.8 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

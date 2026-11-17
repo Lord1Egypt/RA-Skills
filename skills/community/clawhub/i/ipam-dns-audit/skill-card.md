@@ -1,46 +1,59 @@
-## Description: <br>
-IP Address Management and DNS record reconciliation audit covering subnet utilization analysis, DNS forward/reverse consistency, IP conflict detection, and DHCP scope health. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+IP Address Management and DNS record reconciliation audit covering subnet utilization analysis, DNS forward/reverse consistency, IP conflict detection, and DHCP scope health.
 
-## Publisher: <br>
-[vahagn-madatyan](https://clawhub.ai/user/vahagn-madatyan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vahagn-madatyan](https://clawhub.ai/user/vahagn-madatyan)
 
-## Use Case: <br>
-Network engineers, DNS administrators, and security or compliance teams use this skill to compare IPAM records, live subnet activity, DHCP state, and DNS records so they can identify stale records, duplicate assignments, subnet exhaustion, and reconciliation work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Auditing networks or DNS zones without authorization can expose sensitive infrastructure data. <br>
-Mitigation: Install and use the skill only for authorized targets and scope the audit to approved networks and zones. <br>
-Risk: Credentials or API tokens used for IPAM, DNS, or network device access could be exposed in prompts or shell history. <br>
-Mitigation: Use scoped read-only credentials and avoid placing real secrets directly in prompts, transcripts, or shell history. <br>
-Risk: TLS verification bypass patterns can normalize insecure access to management APIs. <br>
-Mitigation: Do not copy curl patterns that disable certificate checks unless explicitly approved by the organization. <br>
-Risk: Remediation advice such as deleting DNS records or changing network ports could disrupt production systems if applied automatically. <br>
-Mitigation: Treat remediation as manual change guidance and require separate human-reviewed change control before making changes. <br>
+## Use Case:
 
+Network, DNS, and infrastructure engineers use this skill to audit IPAM records against live subnet activity and DNS records, then produce reconciliation findings for conflicts, stale records, DHCP scope health, and capacity planning.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/vahagn-madatyan/ipam-dns-audit) <br>
-- [IPAM/DNS Audit CLI Reference](references/cli-reference.md) <br>
-- [Subnet and DNS Reference](references/subnet-dns-reference.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline shell commands, audit tables, and report structure] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces read-only audit guidance and remediation recommendations for human review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill metadata) <br>
+Risk: The skill is marked read-only but includes remediation examples such as deleting DNS records or disabling network ports.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat remediation as recommendations only and require operator review plus normal change-management approval before changing DNS or network state.
+
+Risk: Credential-handling examples can expose API tokens or passwords if pasted directly into shells, history, or logs.
+
+Mitigation: Use least-privileged read-only accounts and pass secrets through approved secret-management or environment mechanisms rather than inline command arguments.
+
+Risk: Some IPAM examples use disabled TLS certificate verification for Infoblox API calls.
+
+Mitigation: Use validated TLS for production access and reserve disabled certificate checks for controlled tests only.
+
+## Reference(s):
+
+- [IPAM/DNS Audit CLI Reference](references/cli-reference.md)
+- [Subnet and DNS Reference](references/subnet-dns-reference.md)
+- [ClawHub skill page](https://clawhub.ai/vahagn-madatyan/skills/ipam-dns-audit)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline command examples and structured audit report tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces audit and remediation guidance; it does not execute changes by itself.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

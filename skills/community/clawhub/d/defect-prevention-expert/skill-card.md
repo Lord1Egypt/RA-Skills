@@ -1,45 +1,64 @@
-## Description: <br>
-Defect Prevention Expert helps teams run lifecycle quality assurance across requirements, design, coding, testing, release, and operations by producing risk, review, metric, and improvement outputs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Defect Prevention Expert helps software teams run lifecycle quality assurance across requirements, design, coding, testing, release, and operations through prevention, review, measurement, and improvement workflows.
 
-## Publisher: <br>
-[zengqch](https://clawhub.ai/user/zengqch) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zengqch](https://clawhub.ai/user/zengqch)
 
-## Use Case: <br>
-Developers, QA engineers, and delivery teams use this skill to route quality-assurance work to the right prevention, review, measurement, or improvement workflow and produce stage-specific findings before and after release. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security review says the skill has broader write and command authority than its documented QA tasks clearly need. <br>
-Mitigation: Review requested file writes and command execution before approving them, and run the skill only in workspaces where report creation and local knowledge-base updates are acceptable. <br>
-Risk: Generated quality findings or process updates may be incorrect or too broad for the target project. <br>
-Mitigation: Treat reports, checklist changes, and improvement plans as review drafts until project owners validate the findings and proposed actions. <br>
+## Use Case:
 
+Software developers, QA engineers, and delivery teams use this skill to identify quality risks, review requirements, designs, code, and test cases, define quality gates, and produce improvement plans.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zengqch/defect-prevention-expert) <br>
-- [Quality Gate Workflow](docs/quality-gate-workflow.md) <br>
-- [Review Checklist](checklists/review-checklist.md) <br>
-- [Stage Output Templates](templates/stage-output-templates.md) <br>
-- [Examples](examples.md) <br>
-- [Test Report V3](TEST_REPORT_V3.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Files] <br>
-**Output Format:** [Markdown reports, checklists, risk lists, review findings, measurement summaries, and improvement plans] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose writing report files or updating local quality-knowledge artifacts when the user approves.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-4.2.0 (source: server release metadata and skill frontmatter) <br>
+Risk: The skill may write reports or persistently modify shared checklists, examples, templates, and workflow documentation during or after reviews.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill in read-only review mode by default and require explicit user approval before any write to project or skill knowledge files.
+
+Risk: The skill declares execute capability even though its normal quality-review workflows primarily produce analysis, reports, and recommendations.
+
+Mitigation: Disable execution permission unless a separate, specific workflow justifies it and the command scope has been reviewed.
+
+Risk: The artifact is a Chinese-language quality-review skill, so reviewers who cannot read Chinese may miss constraints or risk guidance.
+
+Mitigation: Have Chinese-language outputs reviewed by a fluent reviewer or translate them before acting on recommendations.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/zengqch/skills/defect-prevention-expert)
+- [Review Checklist](artifact/checklists/review-checklist.md)
+- [Quality Gate Workflow](artifact/docs/quality-gate-workflow.md)
+- [Example Scenarios](artifact/examples.md)
+- [Stage Output Templates](artifact/templates/stage-output-templates.md)
+- [Concept Clarification](artifact/templates/concept-clarification.md)
+- [Test Case Template](artifact/templates/test-case-template.md)
+- [Test Report V3](artifact/TEST_REPORT_V3.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown reports, checklists, review findings, testing suggestions, quality metrics, and improvement plans]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are selected by lifecycle stage and may include severity, priority, risk descriptions, recommendations, and follow-up items.]
+
+## Skill Version(s):
+
+4.2.0 (source: frontmatter and server evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,53 @@
-## Description: <br>
-Analyzes a GitHub repository URL or OWNER/REPO and produces a Chinese, usage-first user guide with Markdown and PDF outputs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze a GitHub repository URL or OWNER/REPO and produce a Chinese user guide focused on how to use the project, not how it is implemented.
 
-## Publisher: <br>
-[smile618](https://clawhub.ai/user/smile618) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[smile618](https://clawhub.ai/user/smile618)
 
-## Use Case: <br>
-External users, developers, and operators use this skill when they provide a GitHub repository and need a Chinese guide that explains how to install, configure, run, and troubleshoot the project. It is intended for usage documentation rather than implementation analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill clones and summarizes user-provided repositories, which may expose private or sensitive repository content in generated Markdown, PDF, or intermediate build files. <br>
-Mitigation: Use it only with repositories the user is comfortable processing locally, and review or remove generated files when handling sensitive content. <br>
-Risk: The PDF build converts repository-derived Markdown through local pandoc and TeX/PDF tooling. <br>
-Mitigation: Use trusted local gh, pandoc, and TeX/PDF installations, especially when processing untrusted repository Markdown. <br>
+## Use Case:
 
+Developers, operators, and external users use this skill to turn a GitHub repository into a usage-first Chinese Markdown guide and PDF manual. It is intended for repository introductions, quick starts, tutorials, and user guides rather than implementation analysis.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/smile618/github-repo-guide-pdf) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Files, Guidance] <br>
-**Output Format:** [Chinese Markdown guide, PDF file, and MEDIA lines] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generates output files under the workspace media directory and creates an intermediate combined Markdown file during PDF conversion.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: PDF generation processes Markdown with raw TeX enabled, which can create local file or resource exposure risks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run PDF generation in a restricted workspace without sensitive files or credentials, and disable or sanitize raw TeX unless the input is trusted.
+
+Risk: Processing untrusted repositories may incorporate misleading or unsafe project instructions into the generated guide.
+
+Mitigation: Review the generated Markdown and PDF before sharing or following the guide, especially for repositories from unknown publishers.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/smile618/skills/github-repo-guide-pdf)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands]
+
+**Output Format:** [Chinese Markdown guide, generated PDF, and MEDIA lines identifying the produced files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are written under the workspace media directory with timestamped Markdown and PDF filenames.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

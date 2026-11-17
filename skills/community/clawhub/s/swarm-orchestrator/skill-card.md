@@ -1,46 +1,64 @@
-## Description: <br>
-AI Agent cluster orchestration platform - manage, schedule, and coordinate multiple AI agents locally with FastAPI backend and React dashboard. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI Agent cluster orchestration platform that helps developers manage, schedule, and coordinate multiple AI agents locally with a FastAPI backend and React dashboard.
 
-## Publisher: <br>
-[ZhenStaff](https://clawhub.ai/user/ZhenStaff) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhenstaff](https://clawhub.ai/user/zhenstaff)
 
-## Use Case: <br>
-Developers and engineers use this skill to set up and operate a local multi-agent orchestration environment with an agent registry, task queue, dashboard, and REST API control. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Installing or running the referenced package or source may execute local services and dependencies that should be reviewed first. <br>
-Mitigation: Review the package or repository before installation and prefer Docker or another isolated environment for first runs. <br>
-Risk: The local dashboard, API, and Redis services can expose data or control surfaces if bound beyond localhost. <br>
-Mitigation: Keep ports bound to localhost, use firewall rules for local services, and enable stronger deployment controls before exposing the system. <br>
-Risk: Optional LLM API keys could be exposed or used unexpectedly if configured broadly. <br>
-Mitigation: Add OpenAI or Anthropic API keys only when needed, store them in a protected environment file, and do not commit secrets. <br>
-Risk: Tool and custom agents may run scripts, modify files, access accounts, or call external systems. <br>
-Mitigation: Require human approval and sandboxing for tool or custom agents that can affect files, credentials, accounts, or external services. <br>
+## Use Case:
 
+Developers and engineers use this skill to set up and operate a local multi-agent orchestration stack, including agent registration, task queues, monitoring, and REST API control.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ZhenStaff/swarm-orchestrator) <br>
-- [Artifact README](artifact/readme.md) <br>
-- [Artifact skill definition](artifact/skill.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline shell commands, configuration examples, and API examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes local setup, verification, usage, and safety guidance for the orchestration environment.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Install instructions pull and run unpinned external code with broad local privileges.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the referenced repository and package contents, pin to a full verified commit or signed release, and install in an isolated environment.
+
+Risk: Global npm installation and elevated execution can increase local system exposure.
+
+Mitigation: Avoid running as root and avoid global npm installation where possible.
+
+Risk: Dashboard and API ports may expose local orchestration controls if bound beyond localhost.
+
+Mitigation: Keep ports bound to localhost and restrict external access with firewall or deployment configuration.
+
+Risk: Optional OpenAI or Anthropic API keys can send selected agent prompts or task data to external LLM providers.
+
+Mitigation: Provide API keys only when intentionally enabling LLM agents and store secrets in a protected local environment file.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/zhenstaff/skills/swarm-orchestrator)
+- [Artifact-declared GitHub Repository](https://github.com/ZhenRobotics/openclaw-swarm-orchestrator)
+- [Artifact-declared README](https://github.com/ZhenRobotics/openclaw-swarm-orchestrator/blob/main/README.md)
+- [Artifact-declared Quickstart](https://github.com/ZhenRobotics/openclaw-swarm-orchestrator/blob/main/QUICKSTART.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with shell commands, configuration snippets, API examples, and operational guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance covers local setup, service configuration, agent and task API examples, and security practices.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter reports 0.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

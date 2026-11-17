@@ -1,39 +1,58 @@
-## Description: <br>
-Memory Integration syncs OpenClaw memory files into co-occurrence and semantic-vector stores, then supports combined semantic and relationship-based memory search. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Synchronizes OpenClaw memory files into co-occurrence and semantic vector stores and provides enhanced search over those memories.
 
-## Publisher: <br>
-[whoisme007](https://clawhub.ai/user/whoisme007) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[whoisme007](https://clawhub.ai/user/whoisme007)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to synchronize local memory files and improve recall with enhanced search across semantic-vector matches and co-occurrence relationships. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: OpenClaw memory contents and some search-query context may be indexed into local co-occurrence or semantic-vector systems. <br>
-Mitigation: Review the connected adapter plugins and their storage, retention, and deletion behavior before using the skill with sensitive memories. <br>
-Risk: The integration depends on separate co-occurrence and optional semantic-vector adapters that determine where memory-derived data is stored. <br>
-Mitigation: Install only trusted adapter implementations and confirm their configuration before running synchronization. <br>
+## Use Case:
 
+Developers and agent operators use this skill to connect OpenClaw MEMORY.md and memory/*.md files with co-occurrence and semantic-vector search so agents can retrieve related memories with stable IDs.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, configuration examples, and Python adapter usage] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The bundled script can emit console summaries and Python dictionaries or lists for sync counts, memory statistics, and ranked search results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: OpenClaw memory files may contain private notes, credentials, customer data, or sensitive project details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and scope memory files before syncing, and exclude sensitive files or workspaces from processing.
+
+Risk: Co-occurrence and semantic-vector adapters may store memory content, memory IDs, search terms, or metadata outside the original memory files.
+
+Mitigation: Confirm each adapter's storage location, retention behavior, remote-service use, and deletion process before enabling synchronization.
+
+Risk: The release evidence says the skill broadly processes OpenClaw memory files without clear scoping controls.
+
+Mitigation: Run it in an isolated workspace first and keep semantic or co-occurrence sync disabled until the intended files and adapters are approved.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/whoisme007/skills/memory-integration)
+- [Artifact skill documentation](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python code and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces adapter usage guidance, configuration details, and memory-search integration behavior for an agent.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

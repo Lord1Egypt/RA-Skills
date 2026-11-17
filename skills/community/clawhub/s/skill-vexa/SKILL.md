@@ -1,6 +1,6 @@
 ---
 name: vexa
-description: "Send bots to Zoom, Google Meet, and Microsoft Teams meetings. Get live transcripts, recordings, and reports. Self-hosted or cloud — no external API needed."
+description: "Live meeting transcription for Google Meet, Teams, and Zoom. Drop a meeting link — Vexa sends a bot that joins, records, and transcribes in real time. Get transcripts, recordings, shareable links, and post-meeting summaries. Works with any calendar workflow. Self-hostable or use Vexa Cloud."
 ---
 
 ## Chat-oriented interactions

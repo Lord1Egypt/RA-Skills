@@ -6,15 +6,16 @@
  * 2. 使用 cluster 命令查看状态
  */
 
-import { 
-  addServer, 
-  removeServer, 
+import {
+  addServer,
+  removeServer,
   getServersByTag,
   checkAllServersHealth,
   executeOnAllServers,
   getClusterSummary,
   loadServers,
-  type SSHConfig 
+  checkAllServersPasswordExpirationReport,
+  type SSHConfig
 } from '../src/index.ts'
 
 /**
@@ -101,12 +102,19 @@ export async function clusterHealth() {
 export async function batchExecute(cmd: string, tag?: string) {
   const tags = tag ? [tag] : undefined
   const results = await executeOnAllServers(cmd, tags)
-  
+
   console.log('\\n=== 批量执行结果 ===')
   for (const r of results) {
     console.log(`\\n>>> ${r.server}:`)
     console.log(r.output)
   }
+}
+
+/**
+ * 集群服务器密码过期检查
+ */
+export async function checkServersPassword() {
+  console.log(await checkAllServersPasswordExpirationReport())
 }
 
 // 如果直接运行此脚本

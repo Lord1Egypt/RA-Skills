@@ -1,42 +1,54 @@
-## Description: <br>
-Generates a KokoChat connection code through OpenClaw's official `openclaw qr` device-pair flow and relay tunnel, then guides the user to verify and approve or revoke the paired phone. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates a KokoChat connection code by starting a KokoChat relay tunnel and using OpenClaw's official device-pair flow to mint a short-lived gateway-signed bootstrap token.
 
-## Publisher: <br>
-[komako-workshop](https://clawhub.ai/user/komako-workshop) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[komako-workshop](https://clawhub.ai/user/komako-workshop)
 
-## Use Case: <br>
-OpenClaw Gateway users and developers use this skill to pair a KokoChat mobile client by generating a relay-backed setup code and checking device approval and scopes after redemption. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Pairing creates KokoChat relay state and may require running KokoChat relay connector processes for Gateway access. <br>
-Mitigation: Install only when relay-based Gateway access is acceptable, review the resulting relay/device state, and manage or remove connector state after pairing as needed. <br>
-Risk: The paired phone may receive device scopes that differ from KokoChat's expected read/write access depending on OpenClaw version or Gateway policy. <br>
-Mitigation: Inspect `openclaw devices list` after redemption and revoke or remove the device if its identity or scopes do not match the owner's consent. <br>
-Risk: Connection setup material includes a gateway-signed bootstrap token and should not expose raw Gateway authentication tokens. <br>
-Mitigation: Return only the generated setup code, avoid printing raw `gateway.auth.token`, and use the official `openclaw qr` flow rather than self-signing tokens. <br>
+## Use Case:
 
+External users and operators use this skill to pair a KokoChat mobile client with an OpenClaw Gateway, generate the connection code, and verify or revoke the paired device according to owner consent.
 
-## Reference(s): <br>
-- [Kokochat Pairing on ClawHub](https://clawhub.ai/komako-workshop/kokochat-pairing) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown containing a fenced raw KokoChat connection code plus concise follow-up commands or guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The connection code should be returned without exposing raw Gateway authentication tokens.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.4.1 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill creates a persistent relay path from a KokoChat relay endpoint to the local OpenClaw Gateway.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when the relay endpoint is trusted, confirm how to stop the connector and remove relay credentials, and revoke the paired device when access is no longer needed.
+
+Risk: The final device token scopes are controlled by the OpenClaw device-pair flow and may be broader than the owner intends.
+
+Mitigation: After pairing, inspect the device with openclaw devices list and revoke or remove it if the identity or scopes do not match the owner's consent.
+
+## Reference(s):
+
+- [Kokochat Pairing on ClawHub](https://clawhub.ai/komako-workshop/skills/kokochat-pairing)
+- [komako-workshop Publisher Profile](https://clawhub.ai/user/komako-workshop)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with a fenced code block containing the raw KokoChat connection code, plus concise device inspection guidance when needed.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js, the openclaw command, network access, and a trusted relay endpoint.]
+
+## Skill Version(s):
+
+0.4.1 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

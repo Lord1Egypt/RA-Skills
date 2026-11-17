@@ -1,39 +1,50 @@
-## Description: <br>
-Discovers AI prompts and topics that matter for a brand's Answer Engine Optimization using free web crawling, search, and model reasoning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Discover which AI prompts and topics matter for a brand's Answer Engine Optimization using free tools, site crawling, web search, and LLM reasoning.
 
-## Publisher: <br>
-[psyduckler](https://clawhub.ai/user/psyduckler) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[psyduckler](https://clawhub.ai/user/psyduckler)
 
-## Use Case: <br>
-Marketing, SEO, and content teams use this skill to research conversational AI prompts for a brand, prioritize AEO opportunities, audit existing content coverage, and identify content gaps. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can make outbound requests to user-provided domains while researching a brand website. <br>
-Mitigation: Use it on public sites, avoid internal or private network hosts, and review target domains before crawling. <br>
-Risk: Generated prompt priorities and content recommendations are model-derived and may be incomplete or inaccurate. <br>
-Mitigation: Review the report before using it for strategy decisions and validate high-priority recommendations against current business and market context. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [AEO Prompt Research Methodology](references/aeo-methodology.md) <br>
+## Use Case:
 
+Marketing, content, and growth teams use this skill to research conversational AI prompts for a brand, prioritize AEO opportunities, audit existing coverage, and identify content gaps without paid APIs.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown report with prompt tiers, scores, coverage status, content gap analysis, and recommended next steps.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include website crawl text when the optional crawl script is used.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The optional shell crawler can be directed at internal or private network targets without safeguards.
+
+Mitigation: Prefer web_fetch for public pages, and only run the shell crawler for intentionally trusted domains after adding public-host validation or network egress controls.
+
+## Reference(s):
+
+- [AEO Prompt Research Methodology](references/aeo-methodology.md)
+- [ClawHub skill page](https://clawhub.ai/psyduckler/skills/aeo-prompt-research-free)
+- [Publisher profile](https://clawhub.ai/user/psyduckler)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown report with prioritized prompts, coverage ratings, content gap analysis, and recommended next steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include optional shell crawler output when the user intentionally runs the bundled crawl script.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

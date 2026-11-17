@@ -1,39 +1,54 @@
-## Description: <br>
-Long-term memory management system for OpenClaw agents that automatically archives conversations, organizes memories, and provides semantic search capabilities. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Long-term memory management system for OpenClaw agents that archives conversations, organizes memories, and provides memory search capabilities.
 
-## Publisher: <br>
-[xiucheng](https://clawhub.ai/user/xiucheng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[xiucheng](https://clawhub.ai/user/xiucheng)
 
-## Use Case: <br>
-Developers and agent operators use this skill to persist OpenClaw conversations, curate long-term notes, and retrieve prior context through local keyword search. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Conversation logs and selected insights may contain passwords, tokens, personal data, or regulated information if users save sensitive content. <br>
-Mitigation: Avoid storing sensitive or regulated data, and periodically inspect or delete the memory directory and MEMORY.md when retained data is no longer needed. <br>
+## Use Case:
 
+Developers and OpenClaw agent operators use this skill to persist conversation history, maintain curated long-term notes, and retrieve prior memory entries during later agent work.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/xiucheng/xiucheng-memory-manager) <br>
-- [Memory Manager Homepage](https://github.com/xiucheng/memory-manager) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Files, Shell commands, Configuration] <br>
-**Output Format:** [Markdown memory files, JSON statistics, and plain-text CLI output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores conversation logs and long-term notes locally in the configured OpenClaw workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill persists conversations and selected insights locally, which may retain secrets, regulated data, or other sensitive content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid saving sensitive data, periodically review and delete memory files, and install the skill only when local persistence is intended.
+
+Risk: Retrieved memories may contain stale or untrusted historical content.
+
+Mitigation: Treat retrieved memory as context for review rather than authoritative instructions.
+
+## Reference(s):
+
+- [Memory Manager ClawHub page](https://clawhub.ai/xiucheng/skills/xiucheng-memory-manager)
+- [Memory Manager homepage](https://github.com/xiucheng/memory-manager)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown memory files, Python API results, and CLI text output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes daily Markdown memory files and a long-term MEMORY.md file in the configured OpenClaw workspace.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

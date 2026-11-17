@@ -1,116 +1,80 @@
 # Outcome Tracking
 
-Learn from every plan. Track what worked, what didn't, why.
+Log home: `~/Clawic/data/plan/outcomes.md`. Layout: a **Current Defaults** block at the top (per task type: plan level, strategy, validation status), append-only records below. The defaults block is re-derived from records at review time; records are never edited after the fact.
 
 ## Recording Outcomes
 
-After every planned task:
+Append after every L2+ task. L0/L1 are not logged unless they failed (→ SKILL.md, Learning Loop).
 
 ```
 ## [YYYY-MM-DD] [Brief description]
-Type: [task category]
-Plan level: L[0-4]
+Type: [task category, e.g. migration/data]
+Plan level: L[2-4]
 Strategy: [sequential/parallel/iterative/spike/checkpoint]
+Estimate: [the range given] → Actual: [what it took]
 
-### What was planned
-- [Key steps from original plan]
-
-### What actually happened
-- [How execution differed from plan]
+### Planned vs actual
+- [step that deviated: skipped / reordered / output differed — and why]
+- (none = plan held)
 
 ### Outcome
 [✅ Success | ⚠️ Partial | ❌ Failed]
 
-### Lessons
-- [What worked well]
-- [What should change]
+### Lesson
+- [one line: what the plan caught, or what it missed]
 
-### Adjustments for next time
-- [Concrete changes to planning approach]
+### Adjustment
+- [concrete change to depth, strategy, or format — or "none"]
 ```
+
+The "Planned vs actual" section is the payload: deviations feed the replan trigger and next time's plan (`replanning.md`). The Estimate → Actual pair is the calibration data (`estimation.md`, Calibration Loop). A record with empty deviations and no lesson is still worth appending — success streaks are the currency of auto-execute promotion.
 
 ## Outcome Analysis
 
-Periodically review outcomes to find patterns:
+Analyze the **last 5 records per type**, not lifetime rates — old records predate your adjustments and small samples make percentages fiction.
 
-### By Task Type
 ```
-code/feature:    ✅✅✅⚠️✅ (80% success)
-code/refactor:   ✅✅✅✅✅ (100% success)  
-migration/data:  ✅⚠️❌✅⚠️ (40% success) ← needs attention
-deploy/prod:     ✅✅✅✅✅ (100% success)
+migration/data:  ✅ ⚠️ ❌ ✅ ⚠️   ← 2+ non-successes in last 5: act
+code/refactor:   ✅ ✅ ✅ ✅ ✅   ← candidate for demotion check
 ```
 
-### By Plan Level
-```
-L1 (no doc):     90% success — appropriate for simple tasks
-L2 (bullets):    85% success — good default
-L3 (detailed):   95% success — worth the overhead for complex
-L4 (validated):  98% success — use for high stakes
-```
+When a type shows 2+ non-successes in its last 5, pick the fix by failure shape:
 
-### By Strategy
-```
-Sequential:      High success when dependencies are real
-Parallel:        Watch for integration issues at merge
-Iterative:       2-3 cycles usually enough, cap it
-Spike-First:     Saves time when spikes kill bad ideas early
-```
+| Failure shape | Fix |
+|---------------|-----|
+| Missed step, unhandled edge case, forgotten rollback | Promote plan depth |
+| Right steps, wrong order or wrong approach | Change strategy (`strategies.md`) |
+| Plan fine, execution drifted without replanning | Enforce the 2-consecutive-deviation replan trigger (`replanning.md`) |
+| Estimate → Actual consistently off for the type | Apply the type's multiplier before presenting (`estimation.md`) |
+| Unclear which | Promote depth first — cheaper to demote later than to fail again |
 
 ## Learning Triggers
 
-### Promote Plan Level
-When L[N] plans fail for a task type:
-- Record: "[Type] needs L[N+1], L[N] missed [what]"
-- Next time: Start at higher level
+Thresholds live in SKILL.md (Learning Loop); this is the procedure:
 
-### Demote Plan Level  
-When L[N] plans feel like overkill:
-- Record: "[Type] fine with L[N-1], L[N] overhead not needed"
-- After 3+ successes at lower level: make it default
-
-### Change Strategy
-When strategy doesn't fit task type:
-- Record: "[Strategy] failed for [type] because [reason]"
-- Record: "Try [alternative strategy] next time"
-- Test alternative, track result
+- **Promote:** on one attributable failure, write "[type] needs L[N+1]; L[N] missed [specific thing]". No specific thing named = no promotion.
+- **Demote:** after 3 consecutive successes with unused depth, write "[type] fine at L[N-1]; [which sections] went unconsulted", update Current Defaults.
+- **Strategy switch:** record why the old one failed and which alternative to test; the switch is confirmed only after the alternative succeeds once.
 
 ## Feedback Questions
 
-After significant plans, ask human:
+After L3/L4 plans only (after L2, the questions cost more attention than they return):
+
 - "Was this the right level of planning?"
-- "Would you have wanted more/less detail?"
-- "Did the plan miss anything important?"
+- "Would you have wanted more or less detail?"
+- "Did the plan miss anything you expected to see?"
 
-Record answers, adjust defaults.
+A user who consistently trims your plans is data: bias that user's defaults one level down and note it in Current Defaults.
 
-## Compound Learning
+## Review Cadence
 
-Patterns emerge over time:
-- [User] prefers less planning overhead → bias toward L1-L2
-- [Task type] consistently needs checkpoints → always include
-- [Strategy] fails in [context] → avoid that combination
-
-The skill gets smarter with use. Track diligently.
-
-## Monthly Review Template
+Trigger: every 10 new records, or monthly — whichever comes first. The review's only job is to re-derive the Current Defaults block from last-5-per-type analysis:
 
 ```
-## Planning Review [Month]
-
-### Stats
-- Plans created: [N]
-- Success rate: [%]
-- Average plan level: L[X]
-
-### Top lessons
-1. [Most impactful learning]
-2. [Second most impactful]
-3. [Third most impactful]
-
-### Adjustments made
-- [What changed in planning approach]
-
-### Next month focus
-- [What to watch/improve]
+## Planning Review [date]
+- Records since last review: [N]
+- Defaults changed: [type: old → new, one line each]
+- Watch next: [types in Learning state, streak counts]
 ```
+
+A review that changes nothing is a valid result — record it, so the next review starts from a known point.

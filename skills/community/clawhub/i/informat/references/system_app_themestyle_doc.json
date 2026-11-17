@@ -1,0 +1,11 @@
+{
+  "type": "function",
+  "function": {
+    "name": "_app_themestyle_doc",
+    "description": "Query the Informat APP theme style document",
+    "parameters": {
+      "type": "object",
+      "properties": {}
+    }
+  }
+}

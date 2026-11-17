@@ -1,41 +1,55 @@
-## Description: <br>
-Google Model Armor: Sanitize a user prompt through a Model Armor template. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Google Model Armor: Sanitize a user prompt through a Model Armor template.
 
-## Publisher: <br>
-[googleworkspace-bot](https://clawhub.ai/user/googleworkspace-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[googleworkspace-bot](https://clawhub.ai/user/googleworkspace-bot)
 
-## Use Case: <br>
-Developers and operators use this skill to prepare Google Workspace CLI commands that sanitize user prompt text through a named Google Model Armor template. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompt content may include secrets or regulated data sent through the configured Model Armor template. <br>
-Mitigation: Use only templates and Google Cloud configurations whose data-handling terms are appropriate for the submitted content. <br>
-Risk: The skill depends on the local gws CLI and Google Cloud configuration. <br>
-Mitigation: Install and run it only in environments where the local gws CLI, authentication, and project configuration are trusted. <br>
+## Use Case:
 
+Developers and operators who use the gws CLI use this skill to sanitize prompt text, stdin, or JSON request bodies through a specified Google Model Armor template.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/googleworkspace-bot/gws-modelarmor-sanitize-prompt) <br>
-- [Publisher profile](https://clawhub.ai/user/googleworkspace-bot) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the local gws CLI and a configured Google Cloud environment.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.12 (source: release evidence) <br>
+Risk: Prompt text or JSON is sent to the configured Google Model Armor template.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when you intend to use the gws CLI with Google Model Armor and review the selected Google Cloud project and template before sending sensitive content.
+
+Risk: The artifact depends on shared gws authentication and global settings that are not bundled with this skill.
+
+Mitigation: Review the shared gws environment configuration before use, including authentication, project, location, and global CLI behavior.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/googleworkspace-bot/skills/gws-modelarmor-sanitize-prompt)
+- [gws-shared](../gws-shared/SKILL.md)
+- [gws-modelarmor](../gws-modelarmor/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and CLI flag tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the gws CLI and a Google Model Armor template resource name; accepts prompt text, stdin, or a JSON request body.]
+
+## Skill Version(s):
+
+1.0.12 (source: ClawHub release evidence; artifact metadata version 0.22.5)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,50 +1,65 @@
-## Description: <br>
-MadStory is a cinematic storyboard design skill that guides users through video and image prompt development for Seedance, Runway, Kling, Sora, and Seedream workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MadStory helps creators plan cinematic storyboards and generation prompts for Seedance video and Seedream image workflows, including multi-shot, advertising, brand film, and short-drama modes.
 
-## Publisher: <br>
-[qomob](https://clawhub.ai/user/qomob) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[qomob](https://clawhub.ai/user/qomob)
 
-## Use Case: <br>
-Creative teams, filmmakers, marketers, content creators, and short-drama producers use this skill to turn rough story ideas, products, scripts, or references into structured storyboard prompts, shot plans, camera guidance, negative prompts, and quality checks for AI media generation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Storyboard or viral-replication guidance could be used to copy protected ads, films, brands, or identifiable creative expression too closely. <br>
-Mitigation: Use the skill for lawful inspiration and transformation, and review generated prompts for copyright, brand, and likeness concerns before production use. <br>
-Risk: Broad trigger phrases could activate the skill when a user only wants general visual design or non-storyboard AI drawing help. <br>
-Mitigation: Invoke it by the MadStory name or explicit storyboard, video-prompt, short-drama, Seedance, or Seedream requests when that behavior is intended. <br>
+## Use Case:
 
+External creators, production teams, marketers, and short-drama teams use this skill to turn concepts, references, scripts, or product ideas into structured storyboard plans and generation-ready prompts. It is intended for cinematic video and image-generation planning rather than general static visual design.
 
-## Reference(s): <br>
-- [MadStory ClawHub page](https://clawhub.ai/qomob/madstory) <br>
-- [qomob publisher profile](https://clawhub.ai/user/qomob) <br>
-- [Modes detail](references/modes_detail.md) <br>
-- [Phases detail](references/phases_detail.md) <br>
-- [Prompt engineering](references/prompt_engineering.md) <br>
-- [Seedance v2 rules](references/seedance_v2_rules.md) <br>
-- [Seedream 4.x rules](references/seedream_4x_rules.md) <br>
-- [Terminology](references/terminology.md) <br>
-- [Pre-flight checklist](references/pre_flight_checklist.md) <br>
-- [Short drama consistency](references/short_drama_consistency.md) <br>
-- [Short drama genres](references/short_drama_genres.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown and structured prompt blocks with JSON-style examples for video and image generation workflows] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces storyboard plans, timelines, camera and lighting guidance, negative prompts, mode labels, multimodal advice, shot lists, and quality-gate checks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.4.1 (source: frontmatter and server release evidence) <br>
+Risk: The optional HTML storyboard preview can expose a browser injection risk when rendering untrusted storyboard data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Sanitize storyboard fields before preview rendering and avoid hosting generated previews in a privileged browser origin.
+
+Risk: Voice, image, and video references may contain content that requires rights, consent, or identity-sensitive handling.
+
+Mitigation: Use uploaded reference media only with appropriate rights and consent, and review outputs before distribution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/qomob/skills/madstory)
+- [Publisher profile](https://clawhub.ai/user/qomob)
+- [qomob.ai](https://qomob.ai)
+- [Seedance 2.5 rules](artifact/references/seedance_25_rules.md)
+- [Modes detail](artifact/references/modes_detail.md)
+- [Phases detail](artifact/references/phases_detail.md)
+- [Prompt engineering](artifact/references/prompt_engineering.md)
+- [Seedance 2.0 rules](artifact/references/seedance_v2_rules.md)
+- [Seedream rules](artifact/references/seedream_4x_rules.md)
+- [Terminology](artifact/references/terminology.md)
+- [Pre-flight checklist](artifact/references/pre_flight_checklist.md)
+- [Short-drama consistency](artifact/references/short_drama_consistency.md)
+- [Short-drama genres](artifact/references/short_drama_genres.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown storyboard plans with structured prompt fields, shot lists, timelines, and optional HTML storyboard preview.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes engine/version labels, negative prompts, duration, timeline, camera, motion strength, multimodal reference advice, and quality gates.]
+
+## Skill Version(s):
+
+3.4.4 (source: server release metadata; artifact frontmatter reports 3.8.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

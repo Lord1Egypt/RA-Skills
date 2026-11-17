@@ -1,45 +1,59 @@
-## Description: <br>
-Bilingual EN/ZH project lifecycle navigator for non-technical users and AI Coding Agent workflows, routing users through new project intake, mid-project realignment, or code review and upgrade planning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audits project direction, scope drift, repository health, and recent delivery alignment to produce bounded go, narrow, pivot, archive, or stop recommendations without changing code or governance state.
 
-## Publisher: <br>
-[englandtong](https://clawhub.ai/user/englandtong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[englandtong](https://clawhub.ai/user/englandtong)
 
-## Use Case: <br>
-External users, non-technical builders, founders, operators, PMs, and AI Coding Agent users use this skill to clarify new project requirements, recalibrate drifting projects, or turn an existing codebase review into an actionable upgrade plan. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may provide sensitive project files or code during review. <br>
-Mitigation: Share only code the user is comfortable having the agent inspect; remove secrets before review, and rotate any exposed secrets found in code. <br>
-Risk: Generated deletion, refactor, or upgrade recommendations could be applied without sufficient review. <br>
-Mitigation: Treat recommendations as plans to verify, test, and approve before execution, with rollback steps for material changes. <br>
+## Use Case:
 
+External users, developers, and project owners use this skill to decide whether to start, continue, narrow, pivot, archive, or stop a project. It supports new project intake, mid-project realignment, read-only repository health review, latest delivery alignment, and owner-led target rebaseline.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/englandtong/project-lifecycle-navigator) <br>
-- [README](README.md) <br>
-- [Usage examples](examples/usage-examples.md) <br>
-- [New project intake prompt](prompts/en/01-new-project-intake.en.md) <br>
-- [Mid-project realignment prompt](prompts/en/02-midproject-realignment.en.md) <br>
-- [Code review and upgrade prompt](prompts/en/03-code-review-upgrade.en.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, shell commands] <br>
-**Output Format:** [Structured Markdown reports, question sets, plans, task queues, checklists, and occasional verification commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Bilingual English/Chinese output follows the user's language by default; recommendations are intended for human or Coding Agent review before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter, skill.json, and server release metadata) <br>
+Risk: Generated implementation plans, task queues, or code snippets may be mistaken for authorization to change a project.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit owner approval and a separate execution workflow before any agent or engineer modifies code, files, or governance state.
+
+Risk: Repository audits may encounter hardcoded credentials, personal contact data, or other sensitive values in shipped artifacts.
+
+Mitigation: Report only the file path and exposure category; do not copy secret or sensitive values into the report.
+
+Risk: Lifecycle recommendations can be based on incomplete or unverified evidence.
+
+Mitigation: Label unknowns as cannot-confirm or not-executed and keep facts, inferences, risks, and owner decisions visibly separate.
+
+## Reference(s):
+
+- [Project Lifecycle Navigator Skill Page](https://clawhub.ai/englandtong/skills/project-lifecycle-navigator)
+- [Quickstart](artifact/QUICKSTART.md)
+- [Security](artifact/SECURITY.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands]
+
+**Output Format:** [Markdown reports with structured findings, recommendations, and handoff instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only advisory output; implementation plans, task queues, and code snippets require explicit approval before execution.]
+
+## Skill Version(s):
+
+2.1.1 (source: server release evidence and artifact SKILL.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

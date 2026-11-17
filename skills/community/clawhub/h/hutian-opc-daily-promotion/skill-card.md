@@ -1,44 +1,62 @@
-## Description: <br>
-宣发=宣传+分发，IP打造和内容变现核心能力，每天进步一点点持续精进 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Curates daily Chinese-language case studies for digital humans, text-to-image, text-to-video, and entrepreneurship WeChat content to support IP promotion and content monetization workflows.
 
-## Publisher: <br>
-[golngod](https://clawhub.ai/user/golngod) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[golngod](https://clawhub.ai/user/golngod)
 
-## Use Case: <br>
-External creators and operators use this skill to curate daily examples of digital human, text-to-image, text-to-video, and entrepreneurship account promotion tactics, then produce a dated Markdown report with links, metrics, prompt breakdowns, and reusable takeaways. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow browses public content platforms and may surface third-party links, engagement data, or examples that change over time. <br>
-Mitigation: Review the generated report before use and verify that included links, metrics, prompts, and takeaways are current and relevant. <br>
-Risk: Scheduled daily runs can create or overwrite local report files under ./每日推荐/. <br>
-Mitigation: Enable scheduled execution only with the intended approval level and confirm the output path and overwrite behavior before unattended use. <br>
+## Use Case:
 
+External creators, content operators, and solo-business teams use this skill to build a daily Markdown report of high-performing AI creation and promotional content examples. The report emphasizes real links, reusable prompts or production methods, and practical takeaways for OPC-style IP promotion.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/golngod/hutian-opc-daily-promotion) <br>
-- [搜索源与评估标准](references/搜索源与评估标准.md) <br>
-- [商汤如影社区](https://digitalhumans.sensetime.com/) <br>
-- [Coze platform](https://coze.cn) <br>
-- [OPC platform](https://opc.cn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown daily report written to ./每日推荐/AI创作案例日报_YYYYMMDD.md] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The report is expected to cover 12 curated cases across four modules and include source links, engagement metrics, prompt or method breakdowns, and promotion takeaways.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence.release and SKILL.md frontmatter) <br>
+Risk: The security summary flags promotional referral instructions that could steer ordinary report-generation responses beyond the user's request.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or remove the referral and contact sections before deployment when neutral daily reporting is required.
+
+Risk: The skill researches public content platforms and asks the agent to report popularity metrics, prompts, and links that may be stale or inaccurate.
+
+Mitigation: Require the agent or reviewer to verify source links, dates, and engagement metrics before using the report for business decisions.
+
+Risk: The skill writes daily report files into a local recommendation directory.
+
+Mitigation: Run it in an approved workspace and review generated files before sharing or publishing them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/golngod/skills/hutian-opc-daily-promotion)
+- [Publisher profile](https://clawhub.ai/user/golngod)
+- [Search Sources and Evaluation Criteria](references/搜索源与评估标准.md)
+- [Coze platform](https://coze.cn)
+- [OPC platform](https://opc.cn)
+- [SenseTime Digital Humans](https://digitalhumans.sensetime.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, files, guidance]
+
+**Output Format:** [Markdown daily report written to ./每日推荐/AI创作案例日报_YYYYMMDD.md]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces 12 curated cases across four modules, with links, performance signals, prompt or method breakdowns, and OPC promotion takeaways.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

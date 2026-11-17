@@ -1,21 +1,26 @@
 ---
 name: polymarket-wallet-xray
-description: X-ray any Polymarket wallet — skill level, entry quality, bot detection, and edge analysis. Queries Polymarket's public APIs, no authentication needed. Inspired by @thejayden's "Autopsy of a Polymarket Whale" analysis.
+description: X-ray any Polymarket wallet for skill level, entry quality, bot detection, arbitrage research, trader-profile comparison, and edge analysis. Queries Polymarket's public APIs with no authentication; use for research, not blind copytrading, and never assume past returns predict future results.
 metadata:
   author: Simmer (@simmer_markets)
-  version: "1.1.4"
+  version: "1.1.11"
   displayName: Polymarket Wallet X-Ray
+  envVars:
+    - name: SIMMER_API_KEY
+      required: false
+      description: Optional, only for scripts/status.py to read your own Simmer account status. Public wallet analysis needs no key.
   difficulty: beginner
+  attribution: Inspired by @thejayden's "Autopsy of a Polymarket Whale" analysis.
 ---
 # Polymarket Wallet X-Ray
 
 Analyze **any** Polymarket wallet's trading patterns, skill level, and edge detection.
 
-**No authentication needed.** Queries Polymarket's public CLOB API directly.
+**No authentication needed.** Queries Polymarket's public Data API v2 directly.
 
 **Inspired by:** [The Autopsy: How to Read the Mind of a Polymarket Whale](https://x.com/thejayden/status/2020891572389224878) by [@thejayden](https://x.com/thejayden)
 
-> 🚨 **Framework, not a production trading system.** Read [DISCLAIMER.md](./DISCLAIMER.md) before connecting to a wallet with real funds.
+> **Read-only research.** Public analysis reads wallet activity; the optional status helper reads your own Simmer account. Read [DISCLAIMER.md](./DISCLAIMER.md) before interpreting results.
 
 > This skill implements the forensic trading analysis framework developed by @thejayden. Read the original post to understand the philosophy behind Time Profitable, hedge checks, bot detection, and accumulation signals.
 
@@ -44,79 +49,56 @@ Analyze **any** Polymarket wallet's trading patterns, skill level, and edge dete
 - ❌ Automatically copytrade wallets
 - ❌ Expect to replicate their returns
 - ❌ Trade on these metrics without understanding why
-- ❌ Risk significant capital on patterns you don't understand
-
-## When to Use This Skill
-
-Use this skill when you want to:
-- **Learn how skilled traders operate** — What metrics separate winners from losers?
-- **Understand trading psychology** — Who chases prices? Who has discipline?
-- **Detect bots and anomalies** — Identify suspicious patterns for research
-- **Research arbitrage activity** — Find wallets with hedged positions (educational)
-- **Compare trader profiles** — What does a consistent trader look like vs. a lucky one?
-- **Inform your own strategy** — Use patterns as input to YOUR decision-making, not as direct signals
-
-**NOT for:**
-- Copying trades blindly or automatically
-- Assuming past returns = future returns
-- Making large bets on these metrics alone
 
 ## Setup Flow
 
-When user asks to install or configure this skill:
+Public wallet analysis requires only Python's standard library. No package install, SDK, API key, or wallet connection is needed. Run `wallet_xray.py` with a public Polymarket wallet address.
 
-1. **Install the Simmer SDK**
-   ```bash
-   pip install simmer-sdk
-   ```
+Only if the user explicitly asks for their own Simmer account status, use `scripts/status.py`. `SIMMER_API_KEY` is optional for this skill and used only by that helper. Have the user configure it in their environment outside chat, using the SDK tab at https://simmer.markets/dashboard. Never ask them to paste a key into chat or print it.
 
-2. **Ask for Simmer API key**
-   - They can get it from simmer.markets/dashboard → SDK tab
-   - Store in environment as `SIMMER_API_KEY`
+The status helper sends the key as a Bearer header only to `https://api.simmer.markets` for read-only portfolio and position queries. It exits before making a request when the key is unset. Neither script places orders or changes account settings.
 
 ## Quick Commands
+
+All shortened `0x...` addresses below are placeholders. Replace them with complete public wallet addresses before running a command.
 
 ```bash
 # Analyze a single wallet
 python wallet_xray.py 0x1234...abcd
 
-# Analyze wallet + only look at specific market
-python wallet_xray.py 0x1234...abcd "Bitcoin"
-
 # Compare two wallets head-to-head
 python wallet_xray.py 0x1111... 0x2222... --compare
 
-# Find wallets matching criteria (top Time Profitable in market)
-python wallet_xray.py "Will BTC hit $100k?" --top-wallets 5 --dry-run
-
-# Check your account status
+# Optional: read your own Simmer account status (requires SIMMER_API_KEY)
 python scripts/status.py
 ```
 
-**APIs Used (Public, No Auth Required):**
-- Gamma API: `https://gamma-api.polymarket.com/markets/keyset` — Market search (cursor-paginated)
-- CLOB API: `https://clob.polymarket.com` — Trade history and orderbook
+**APIs Used:**
+- Data API v2: `https://data-api.polymarket.com/v2/activity` — Wallet activity (cursor-paginated)
+- Simmer API: `https://api.simmer.markets` — Optional authenticated account status via `scripts/status.py`
 
 ## What You Get Back
 
-The skill returns comprehensive forensic metrics:
+Illustrative report excerpt (`recommendation` omitted; values and wallet address are placeholders):
 
 ```json
 {
   "wallet": "0x1234...abcd",
   "total_trades": 156,
   "total_period_hours": 42.5,
+  "analysis_timestamp": "2026-11-03T00:00:00",
   "profitability": {
     "time_profitable_pct": 75.3,
     "win_rate_pct": 68.2,
     "avg_profit_per_win": 0.035,
     "avg_loss_per_loss": -0.018,
-    "realized_pnl_usd": 2450.00
+    "realized_pnl_usd": 2450.00,
+    "total_trades": 156
   },
   "entry_quality": {
-    "avg_slippage_bps": 28,
+    "avg_price_spread_bps": 128,
     "quality_rating": "B+",
-    "assessment": "Good entries, occasional FOMO"
+    "assessment": "Good consistency. Balanced speed/price."
   },
   "behavior": {
     "is_bot_detected": false,
@@ -127,153 +109,89 @@ The skill returns comprehensive forensic metrics:
   },
   "edge_detection": {
     "hedge_check_combined_avg": 0.98,
-    "has_arbitrage_edge": false,
-    "assessment": "No locked-in edge; relies on direction"
+    "has_arbitrage_edge": true,
+    "assessment": "Found arbitrage edge! Combined avg $0.98 < $1.00"
   },
   "risk_profile": {
     "max_drawdown_pct": 12.5,
     "volatility": "medium",
     "max_position_concentration": 0.22
-  },
-  "recommendation": "Good trader. Skilled entries, disciplined sizing. Good metrics for learning from. Not advice to copytrade."
+  }
 }
 ```
 
 ## How It Works
 
-1. **Fetch trade history** — Download all trades this wallet made from Polymarket via Simmer API
-2. **Compute profitability timeline** — When were they underwater vs. profitable?
-3. **Analyze entry quality** — Did they buy at optimal prices or chase?
-4. **Detect trading patterns** — Bot (inhuman speed) vs. human (deliberate timing)?
-5. **Check for arbitrage** — Combined YES+NO avg < $1.00? (Potential structural edge — depends on execution and fees)
-6. **Assess behavior** — FOMO accumulation? Disciplined sizing? Rotating positions?
-7. **Generate recommendation** — Is this wallet worth following? What's the risk?
+1. **Fetch wallet activity** — Download activity from Data API v2, following cursors up to the requested limit
+2. **Compute `profitability`** — Track realized P&L from sells/redeems with matching buys
+3. **Compute `entry_quality`** — Measure buy-price consistency within each market and outcome
+4. **Compute `behavior`** — Compare activity intervals, buy prices, and share counts
+5. **Compute `edge_detection`** — Average combined outcome buy prices for markets with exactly two outcomes bought
+6. **Compute `risk_profile`** — Estimate drawdown, activity-cost variation, and activity-share concentration
+7. **Generate `recommendation`** — Summarize a heuristic historical rating tier for research
 
 ## Understanding the Metrics
 
-### ⏱️ **Time Profitable** (e.g., 75.3%)
-Wallet was profitable (not underwater) for 75% of their trading period. This wallet endured only 25% painful drawdowns — that's discipline.
+Fields in a single-wallet JSON report (all metrics use only the fetched activity window):
 
-- **>80%** = Sniper-like (skilled entries, holds through drawdowns)
-- **50-80%** = Solid (good discipline)
-- **<50%** = Risky (likely panic-held losses)
+| Field | Meaning |
+| --- | --- |
+| `wallet` | Wallet address supplied to the analysis. |
+| `total_trades` | Number of fetched activity records, including non-trade activity. |
+| `total_period_hours` | Hours between the earliest and latest fetched activity timestamps. |
+| `analysis_timestamp` | UTC analysis timestamp in ISO format, without a timezone suffix. |
+| `profitability` | Realized P&L metrics from sells/redeems with matching buys in the window. |
+| `profitability.time_profitable_pct` | Percentage of realized outcomes after which cumulative realized P&L is positive, without elapsed-time weighting. |
+| `profitability.win_rate_pct` | Percentage of realized outcomes with P&L greater than $0.001, including breakeven outcomes in the denominator. |
+| `profitability.avg_profit_per_win` | Mean realized P&L in USD among outcomes above $0.001, or 0 if none. |
+| `profitability.avg_loss_per_loss` | Mean realized P&L in USD among outcomes below -$0.001, or 0 if none. |
+| `profitability.realized_pnl_usd` | Sum of realized P&L in USD from matched sells/redeems. |
+| `profitability.total_trades` | Number of fetched activity records, identical to top-level `total_trades`. |
+| `entry_quality` | Buy-price consistency metrics grouped by market and outcome. |
+| `entry_quality.avg_price_spread_bps` | Mean of `(max buy price - min buy price) / mean buy price * 10000` across groups with at least two buys and mean price above 0.01, or 0 if none. |
+| `entry_quality.quality_rating` | Spread tier: A below 50 bps, B+ below 150, B below 400, otherwise C; B for buys without eligible spreads, N/A for no buys. |
+| `entry_quality.assessment` | Heuristic text describing the spread tier or lack of eligible buys. |
+| `behavior` | Heuristics based on activity timing, buy prices, and share counts. |
+| `behavior.is_bot_detected` | True when the mean positive interval between activity records is below 5 seconds; false when no positive intervals exist. |
+| `behavior.trading_intensity` | Interval tier: very_high below 10 seconds, high below 60, medium below 300, otherwise low; very_low for fewer than two records, unknown for no positive intervals. |
+| `behavior.avg_seconds_between_trades` | Mean positive interval in seconds between consecutive activity timestamps, or 0 if none. |
+| `behavior.price_chasing` | Compares mean buy price in the later half with the earlier half across all markets: high above 105%, moderate above 100%, otherwise low; unknown with fewer than two buys. |
+| `behavior.accumulation_signal` | Compares mean shares per activity record in the later half with the earlier half: growing above 130%, stable above 100%, otherwise decreasing; unknown with fewer than two records. |
+| `edge_detection` | Heuristics for markets with buys in exactly two outcomes. |
+| `edge_detection.hedge_check_combined_avg` | Mean sum of the two share-weighted outcome buy prices across eligible markets, or 1.0 if none. |
+| `edge_detection.has_arbitrage_edge` | True when the unrounded combined average is below 0.99; does not account for fees or matched holdings. |
+| `edge_detection.assessment` | Heuristic text describing the combined average or absence of eligible markets. |
+| `risk_profile` | Estimates from activity prices, costs, and shares. |
+| `risk_profile.max_drawdown_pct` | Largest drop in open-position mark-to-market P&L, divided by the greater of total buy cost or $1, expressed as a percentage capped at 100. |
+| `risk_profile.volatility` | Sample standard deviation divided by mean of positive activity costs: low below 0.5, medium below 1.5, otherwise high; unknown with fewer than two positive costs. |
+| `risk_profile.max_position_concentration` | Largest single activity share count divided by total activity shares, or 0 if the total is nonpositive. |
+| `recommendation` | Heuristic historical rating tier and selected factors for research. |
 
-### 🎯 **Entry Quality** (e.g., 28 bps average slippage)
-They buy near the best available price. 28 basis points is normal for active traders. No evidence of FOMO market orders.
-
-- **<20 bps** = Expert. Limit orders, patience.
-- **20-40 bps** = Good. Balanced speed/price.
-- **>50 bps** = Weak. Chasing prices.
-
-### 🤖 **Bot Detection** (e.g., false)
-Average 45 seconds between trades. This is human. A bot would be <1 second.
-
-- **<5 sec** = Likely bot. Avoid unless you know it's a legitimate market maker.
-- **5-30 sec** = Possible bot.
-- **>30 sec** = Human.
-
-### 💰 **Hedge Check** (e.g., combined avg 0.98)
-If they bought YES at $0.70 and NO at $0.30, combined = $1.00. This wallet spent exactly what they should to be neutral.
-
-If combined < $1.00, they may have entered with a structural edge (lower combined cost than $1 payout). Actual profit depends on execution, fees, and spread.
-
-- **< $0.95** = Strong potential edge. Likely institutional/pro.
-- **$0.95-1.00** = Slight edge detected.
-- **> $1.00** = No edge; betting on direction.
+`--compare --json` returns `wallet1` and `wallet2`, each containing a report with these fields. Invalid wallet addresses or wallets with no fetched activity return `{}`.
 
 ## Usage Examples
 
-### **Example 1: Learning from a skilled trader (Analysis)**
+### Research one wallet
 
-```python
-import subprocess
-import json
-
-# Analyze a wallet known for skilled trading
-result = subprocess.run(
-    ["python", "wallet_xray.py", "0x123...abc", "--json"],
-    capture_output=True,
-    text=True
-)
-data = json.loads(result.stdout)
-
-# LEARN from their profile, don't copy blindly
-time_prof = data["profitability"]["time_profitable_pct"]
-entry_qual = data["entry_quality"]["quality_rating"]
-
-print(f"📊 What this trader does well:")
-print(f"  • Time Profitable: {time_prof}% (disciplined)")
-print(f"  • Entry Quality: {entry_qual} (patient buyer)")
-print(f"  • Behavior: {data['behavior']['accumulation_signal']} (not FOMO)")
-
-# THEN: Ask yourself
-# - Why are they profitable? (skill or luck?)
-# - Can I replicate their decision-making process?
-# - Do I have their capital size, timing, or information?
+```bash
+python wallet_xray.py 0x1234...abcd --json
 ```
 
-### **Example 2: Research anomalies (Education)**
+Review `profitability`, `entry_quality`, `behavior`, and `risk_profile` to describe historical patterns. The `recommendation` field summarizes a heuristic rating tier for research only. Test hypotheses against fresh data and consider fees, sample size, and missing activity.
 
-```python
-# Analyze multiple wallets to understand patterns
-wallets = ["0x111...", "0x222...", "0x333..."]
+### Compare historical profiles
 
-print("Comparing trader profiles:")
-for wallet in wallets:
-    result = subprocess.run(
-        ["python", "wallet_xray.py", wallet, "--json"],
-        capture_output=True,
-        text=True
-    )
-    data = json.loads(result.stdout)
-
-    is_bot = "🤖 BOT" if data["behavior"]["is_bot_detected"] else "👤 HUMAN"
-    print(f"\n{wallet}: {is_bot}")
-    print(f"  Win Rate: {data['profitability']['win_rate_pct']}%")
-    print(f"  Time Profitable: {data['profitability']['time_profitable_pct']}%")
-
-# Use this data to understand what successful trading LOOKS LIKE
-# Then build your own strategy based on these insights
+```bash
+python wallet_xray.py 0x1111... 0x2222... --compare --json --limit 100
 ```
 
-### **Example 3: Informed decision-making (NOT blind copying)**
-
-```python
-# Analyze before you decide what to do
-result = subprocess.run(
-    ["python", "wallet_xray.py", "0x123...abc", "--json"],
-    capture_output=True,
-    text=True
-)
-data = json.loads(result.stdout)
-
-# Make an INFORMED decision based on analysis + YOUR OWN JUDGMENT
-if data["profitability"]["time_profitable_pct"] > 75 and \
-   data["entry_quality"]["quality_rating"] in ["A", "A+"]:
-
-    print(f"✅ This wallet shows skill (high Time Profitable, good entries)")
-    print(f"⚠️  But I will NOT copytrade blindly.")
-    print(f"📋 Instead, I'll:")
-    print(f"   1. Backtest their patterns on fresh data")
-    print(f"   2. Add my own market signals")
-    print(f"   3. Start with small position (1-2% of capital)")
-    print(f"   4. Monitor for next 30 days")
-    print(f"   5. Adjust if it stops working")
-else:
-    print(f"❌ This wallet doesn't show strong enough metrics.")
-    print(f"   Safer to avoid or research further before deciding.")
-```
+Compare the two reports for differences in historical entries, drawdowns, and activity. Strong historical metrics do not establish future returns or justify copying positions.
 
 ## Running the Skill
 
 **Analyze a single wallet (default):**
 ```bash
 python wallet_xray.py 0x1234...abcd
-```
-
-**Analyze wallet for a specific market:**
-```bash
-python wallet_xray.py 0x1234...abcd "Bitcoin"
 ```
 
 **Output as JSON (for scripts):**
@@ -297,10 +215,6 @@ python wallet_xray.py 0x1234...abcd --limit 100
 - This wallet hasn't traded yet, or all trades are too old
 - Try a wallet you know is active
 
-**"Market not found"**
-- The market query didn't match anything on Polymarket
-- Try a more specific market name or leave it blank to analyze all markets
-
 **"Analysis took too long"**
 - For wallets with >500 trades, analysis can take 30+ seconds
 - Use `--limit 100` to analyze only recent trades for faster results
@@ -310,7 +224,7 @@ python wallet_xray.py 0x1234...abcd --limit 100
 - Wait a minute before trying again, or use `--limit` to speed up individual analyses
 
 **"Connection error"**
-- Check that Polymarket's CLOB API is reachable: `curl https://clob.polymarket.com/trades`
+- Check that Polymarket's Data API v2 is reachable: `curl 'https://data-api.polymarket.com/v2/activity?user=0xYOUR_WALLET&limit=1'`
 - If down, try again later or use `--limit 50` to reduce load
 
 ## Credits
@@ -329,5 +243,5 @@ All metrics and analysis patterns used here are derived from that work. If you f
 
 - **Full Simmer API Reference:** [docs.simmer.markets/api/overview](https://docs.simmer.markets/api/overview)
 - **Original Analysis:** [The Autopsy: How to Read the Mind of a Polymarket Whale](https://x.com/thejayden/status/2020891572389224878)
-- **Dashboard:** [simmer.markets/dashboard](https://simmer.markets/dashboard)
+- **Dashboard:** [simmer.markets/dashboard](https://simmer.markets/dashboard?ref=sdk-skill&utm_campaign=sdk-skill)
 - **Support:** [Telegram](https://t.me/+m7sN0OLM_780M2Fl)

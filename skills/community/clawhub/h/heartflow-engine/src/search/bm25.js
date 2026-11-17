@@ -11,9 +11,10 @@
  * 5. 前缀匹配（Prefix Matching）
  */
 
-const fs = require('fs');
+const fs = require('../utils/safe-fs');
 const path = require('path');
 const { EventEmitter } = require('events');
+const { LRUCache } = require('../utils/lru-cache.js');
 
 // ─── BM25 配置常量 ───────────────────────────────────────────────────────────
 
@@ -45,6 +46,8 @@ const SYNONYMS = {
  * @param {string} text 
  * @returns {string[]}
  */
+// [REFACTOR] TODO: tokenize (718行) — 建议拆分为独立子函数
+
 function tokenize(text) {
   if (!text || typeof text !== 'string') return [];
   
@@ -99,7 +102,7 @@ class BM25Engine extends EventEmitter {
     this.b = options.b || BM25_CONFIG.b;
     
     // 文档存储：{ id: { text, tokens, metadata } }
-    this.documents = new Map();
+    this.documents = new LRUCache(1000);
     
     // 倒排索引：{ token: { docId: { tf, positions } } }
     this.invertedIndex = new Map();

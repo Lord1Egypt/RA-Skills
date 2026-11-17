@@ -1,6 +1,51 @@
 {
-  "ownerId": "kn79yx9eg18yykdmrcwp143nf182wh9f",
-  "slug": "nsap-neural-sparse-processing",
+  "name": "nsap-neural-sparse-processing",
   "version": "1.0.0",
-  "publishedAt": 1774893573449
+  "description": "Neural Sparse Asynchronous Processing (NSAP): Brain-inspired AI architecture with sparse coding and async modules for energy-efficient computing. 神经稀疏异步处理架构：模拟人脑稀疏编码与异步模块激活的高效 AI 系统。",
+  "main": "SKILL.md",
+  "author": "Figo Cheung",
+  "license": "MIT",
+  "keywords": [
+    "neural-architecture",
+    "sparse-coding",
+    "asynchronous-processing",
+    "modular-ai",
+    "brain-inspired",
+    "nsap",
+    "efficiency",
+    "energy-saving",
+    "computing",
+    "optimization"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/skills"
+  },
+  "skill": {
+    "name": "神经稀疏异步处理架构 (NSAP)",
+    "name_en": "Neural Sparse Asynchronous Processing",
+    "description": "基于人脑启发的稀疏编码与异步模块激活架构，实现高效 AI 计算",
+    "version": "1.0.0",
+    "features": [
+      "稀疏编码（Sparse Coding）- 仅激活必要模块（<5%）",
+      "异步处理（Asynchronous Processing）- 模块并行执行",
+      "模块化架构（Modular Architecture）- 功能解耦",
+      "动态资源分配（Dynamic Resource Allocation）- 按需分配计算资源",
+      "人脑启发设计（Brain-Inspired Design）- 模拟生物神经网络",
+      "能量效率（Energy Efficiency）- 降低 20-30x 能耗"
+    ],
+    "useCases": [
+      "优化 AI 架构设计",
+      "降低计算成本",
+      "多任务并行处理",
+      "模拟人脑处理机制",
+      "高效能 AI 系统开发",
+      "稀疏神经网络实现"
+    ],
+    "efficiency": {
+      "energy_reduction": "20-30x",
+      "task_switching": "10-50x faster",
+      "multi_task_throughput": "3-5x"
+    }
+  }
 }

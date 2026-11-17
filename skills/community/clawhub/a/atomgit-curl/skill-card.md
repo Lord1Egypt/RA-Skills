@@ -1,47 +1,65 @@
-## Description: <br>
-AtomGit (GitCode) code hosting platform integration using Curl and Bash for pull request review, approval, merge, repository management, issue management, CI checks, and collaboration workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AtomGit (GitCode) integration for agents that use curl and bash to review, approve, merge, and manage pull requests, repositories, issues, CI checks, and collaborators across Windows Git Bash, Linux, and macOS.
 
-## Publisher: <br>
-[panchenbo](https://clawhub.ai/user/panchenbo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[panchenbo](https://clawhub.ai/user/panchenbo)
 
-## Use Case: <br>
-Developers and repository maintainers use this skill to inspect AtomGit repositories, review pull requests, trigger CI checks, approve or merge pull requests, manage issues, and administer collaborators through shell commands. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can perform high-impact AtomGit repository actions with a bearer token, including approving or merging pull requests, creating issues, and changing collaborator access. <br>
-Mitigation: Use a least-privilege ATOMGIT_TOKEN and verify owner, repository, pull request, issue, and collaborator arguments before running any write command. <br>
-Risk: Token handling relies on environment or local configuration and can expose credentials if tokens are copied into command lines, URLs, logs, or shared output. <br>
-Mitigation: Set ATOMGIT_TOKEN through environment or managed configuration, avoid URL token parameters, and redact command output before sharing. <br>
-Risk: Batch and merge commands can make remote repository changes quickly and may affect code or access if run against the wrong target. <br>
-Mitigation: Review command targets and prefer dry inspection commands before approve, merge, batch, issue update, or collaborator commands. <br>
+## Use Case:
 
+Developers and engineering agents use this skill to operate AtomGit repositories from shell workflows, including pull request review, approval, merge operations, repository inspection, issue management, CI status checks, and collaborator administration.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/panchenbo/atomgit-curl) <br>
-- [AtomGit API documentation](https://docs.atomgit.com/docs/apis/) <br>
-- [AtomGit token settings](https://atomgit.com/setting/token-classic) <br>
-- [AtomGit help center](https://atomgit.com/help) <br>
-- [API reference](artifact/API-REFERENCE.md) <br>
-- [Command reference](artifact/commands.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and terminal-oriented text with bash command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires bash, curl, network access to AtomGit, and ATOMGIT_TOKEN for authenticated operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.4 (source: frontmatter, server release evidence) <br>
+Risk: The skill uses persistent AtomGit tokens that may grant read or write access to repositories in the token scope.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a least-privilege token, keep it in environment or trusted configuration storage, and avoid passing tokens in command arguments or URLs.
+
+Risk: Pull request approval, merge, batch, issue, and collaborator commands can modify AtomGit repositories.
+
+Mitigation: Review the target owner, repository, pull request or issue number, and requested operation before running commands that approve, merge, update, or change collaborators.
+
+Risk: The skill may read AtomGit credentials from OpenClaw configuration files outside the current workspace.
+
+Mitigation: Confirm which configuration file is being used and remove or rotate credentials that should not be available to this skill.
+
+Risk: The security evidence says the release overstates its safety controls despite matching its stated purpose.
+
+Mitigation: Treat the ClawHub security verdict as authoritative, review the scripts before deployment, and monitor network operations performed with the configured token.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/panchenbo/skills/atomgit-curl)
+- [AtomGit API documentation](https://docs.atomgit.com/docs/apis/)
+- [API-REFERENCE.md](artifact/API-REFERENCE.md)
+- [commands.md](artifact/commands.md)
+- [README.md](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, API calls, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline bash commands and command output summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl, bash, network access to AtomGit, and an ATOMGIT_TOKEN with permissions scoped to the intended repositories.]
+
+## Skill Version(s):
+
+3.0.4 (source: frontmatter, release evidence, CHANGELOG)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

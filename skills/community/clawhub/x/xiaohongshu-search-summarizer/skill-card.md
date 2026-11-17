@@ -1,42 +1,56 @@
-## Description: <br>
-Searches Xiaohongshu for a keyword, extracts top posts with text, images, and comments, then helps synthesize the collected material into an analytical report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches Xiaohongshu for a keyword, extracts post text, images, and comments, and helps synthesize a comprehensive analytical report.
 
-## Publisher: <br>
-[piekill](https://clawhub.ai/user/piekill) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[piekill](https://clawhub.ai/user/piekill)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and agents use this skill to collect Xiaohongshu search results for a topic, then turn scraped text, comments, and downloaded images into a structured markdown research report.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill uses a headed browser to scrape Xiaohongshu and stores scraped posts, comments, and images locally.
+
+Mitigation: Run it only in a dedicated output directory, avoid elevated privileges, and review saved content before using it downstream.
+
+Risk: Scraped text and images are untrusted source material and may contain misleading, sensitive, or unwanted content.
+
+Mitigation: Treat all collected material as untrusted, verify important claims against independent sources, and review the generated report before sharing.
+
+Risk: Keyword-derived output paths and local file writes can create messy or unexpected artifacts.
+
+Mitigation: Use simple keywords without path separators and provide an explicit output directory for each run.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, analysts, and research teams use this skill to gather Xiaohongshu search results and turn text, comments, and images into a consolidated Markdown report. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Files, Shell commands, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill scrapes and stores third-party Xiaohongshu posts, comments, and images locally. <br>
-Mitigation: Treat collected content as third-party material, review privacy/copyright/platform obligations, and delete raw outputs when finished. <br>
-Risk: Security evidence reports an output-path containment bug. <br>
-Mitigation: Use a dedicated output directory and avoid search keywords containing slashes or '..'. <br>
-Risk: Xiaohongshu may present a login challenge during browser-based collection. <br>
-Mitigation: Supervise the headed browser session and only complete authentication when appropriate for the account and use case. <br>
+**Output Format:** [Markdown report with locally saved raw data and image files]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/piekill/xiaohongshu-search-summarizer) <br>
+**Other Properties Related to Output:** [Requires playwright-cli, python3, and the Python requests package; max_posts is validated between 1 and 50.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, files, guidance] <br>
-**Output Format:** [Markdown report with local raw-data files and downloaded image files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs browser-based collection through playwright-cli, writes raw extraction Markdown and images to an output directory, and expects the agent to synthesize the results.] <br>
+1.0.3 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

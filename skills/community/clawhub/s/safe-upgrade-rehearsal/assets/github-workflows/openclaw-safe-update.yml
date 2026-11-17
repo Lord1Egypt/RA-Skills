@@ -1,0 +1,215 @@
+name: OpenClaw safe-update rehearsal
+
+on:
+  workflow_dispatch:
+    inputs:
+      current-version:
+        description: Exact currently deployed OpenClaw version
+        required: true
+        type: string
+      target-version:
+        description: Exact target OpenClaw version
+        required: true
+        type: string
+      packages-json:
+        description: JSON package matrix; strings inherit global versions
+        required: true
+        default: '["openclaw"]'
+        type: string
+      customizations-file:
+        description: Repository-relative customization manifest
+        required: true
+        default: .openclaw-safe-update/customizations.json
+        type: string
+      require-customizations:
+        description: Fail closed when no customization manifest exists
+        required: true
+        default: true
+        type: boolean
+      coverage-file:
+        description: Repository-relative installation coverage profile
+        required: true
+        default: .openclaw-safe-update/coverage.json
+        type: string
+      installation-attestation-file:
+        description: Fresh public-safe local installation attestation
+        required: true
+        default: .openclaw-safe-update/installation-attestation.json
+        type: string
+      conservative-inputs-file:
+        description: Hash-bound rollback and deterministic gate evidence
+        required: true
+        default: .openclaw-safe-update/conservative-inputs.json
+        type: string
+  workflow_call:
+    inputs:
+      current-version:
+        required: true
+        type: string
+      target-version:
+        required: true
+        type: string
+      packages-json:
+        required: false
+        default: '["openclaw"]'
+        type: string
+      customizations-file:
+        required: false
+        default: .openclaw-safe-update/customizations.json
+        type: string
+      require-customizations:
+        required: false
+        default: true
+        type: boolean
+      coverage-file:
+        required: false
+        default: .openclaw-safe-update/coverage.json
+        type: string
+      installation-attestation-file:
+        required: false
+        default: .openclaw-safe-update/installation-attestation.json
+        type: string
+      conservative-inputs-file:
+        required: false
+        default: .openclaw-safe-update/conservative-inputs.json
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  rehearse:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      CURRENT_VERSION: ${{ inputs['current-version'] }}
+      TARGET_VERSION: ${{ inputs['target-version'] }}
+      PACKAGES_JSON: ${{ inputs['packages-json'] }}
+      CUSTOMIZATIONS_FILE: ${{ inputs['customizations-file'] }}
+      REQUIRE_CUSTOMIZATIONS: ${{ inputs['require-customizations'] }}
+      COVERAGE_FILE: ${{ inputs['coverage-file'] }}
+      INSTALLATION_ATTESTATION_FILE: ${{ inputs['installation-attestation-file'] }}
+      CONSERVATIVE_INPUTS_FILE: ${{ inputs['conservative-inputs-file'] }}
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+
+      - name: Set up Python
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+        with:
+          python-version: '3.12'
+
+      - name: Set up Node.js
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: '22'
+          registry-url: https://registry.npmjs.org
+
+      - name: Fetch immutable package evidence
+        run: |
+          python3 scripts/openclaw_safe_update.py fetch \
+            --current-version "$CURRENT_VERSION" \
+            --target-version "$TARGET_VERSION" \
+            --packages-json "$PACKAGES_JSON" \
+            --output-dir artifacts/input
+
+      - name: Prepare installation contract report
+        continue-on-error: true
+        run: |
+          if [[ -f "$CUSTOMIZATIONS_FILE" && -f "$COVERAGE_FILE" ]]; then
+            python3 scripts/openclaw_safe_update.py contract \
+              --customizations "$CUSTOMIZATIONS_FILE" \
+              --coverage "$COVERAGE_FILE" \
+              --output artifacts/installation-contract.json
+          fi
+
+      - name: Run synthetic update rehearsal
+        id: rehearsal
+        continue-on-error: true
+        run: |
+          arguments=(
+            --input-dir artifacts/input
+            --output-dir artifacts/safe-update
+          )
+          if [[ -f "$COVERAGE_FILE" ]]; then
+            arguments+=(--coverage "$COVERAGE_FILE")
+          fi
+          if [[ -f "$INSTALLATION_ATTESTATION_FILE" ]]; then
+            arguments+=(--installation-attestation "$INSTALLATION_ATTESTATION_FILE")
+          fi
+          if [[ -f "$CONSERVATIVE_INPUTS_FILE" ]]; then
+            arguments+=(--conservative-inputs "$CONSERVATIVE_INPUTS_FILE")
+          fi
+          if [[ -f "$CUSTOMIZATIONS_FILE" ]]; then
+            arguments+=(--customizations "$CUSTOMIZATIONS_FILE")
+          elif [[ "$REQUIRE_CUSTOMIZATIONS" != "true" ]]; then
+            arguments+=(--allow-no-customizations)
+          fi
+          if [[ -f artifacts/installation-contract.json ]]; then
+            arguments+=(--installation-contract artifacts/installation-contract.json)
+          fi
+          arguments+=(--archive-workers 4)
+          python3 scripts/openclaw_safe_update.py simulate "${arguments[@]}"
+
+      - name: Render the non-authoritative operator view
+        if: always()
+        continue-on-error: true
+        run: |
+          python3 scripts/openclaw_operator_view.py \
+            --artifact-dir artifacts/safe-update \
+            --repository-url "${{ github.server_url }}/${{ github.repository }}" \
+            --run-url "${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}" \
+            --shadow-runs-index references/shadow-runs-index.json \
+            --output artifacts/safe-update/operator-view.md
+          tee -a "$GITHUB_STEP_SUMMARY" < artifacts/safe-update/operator-view.md
+
+      - name: Upload fail-closed evidence
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: openclaw-safe-update-${{ inputs['target-version'] }}
+          path: |
+            artifacts/input/input-metadata.json
+            artifacts/installation-contract.json
+            artifacts/safe-update/runtime-truth.json
+            artifacts/safe-update/core-candidate-lock.json
+            artifacts/safe-update/installation-candidate-lock.json
+            artifacts/safe-update/installation-attestation.json
+            artifacts/safe-update/conservative-gates.json
+            artifacts/safe-update/impact-shadow.json
+            artifacts/safe-update/analysis-cache.json
+            artifacts/safe-update/archive-execution.json
+            artifacts/safe-update/synthetic-update.json
+            artifacts/safe-update/customization-compatibility.json
+            artifacts/safe-update/coverage-report.json
+            artifacts/safe-update/post-upgrade-e2e.json
+            artifacts/safe-update/evidence-bundle.json
+            artifacts/safe-update/verdict.json
+            artifacts/safe-update/summary.md
+            artifacts/safe-update/operator-plan.md
+            artifacts/safe-update/operator-view.md
+            artifacts/advisory-*.json
+            artifacts/benchmark/*.json
+            references/shadow-runs-index.json
+          if-no-files-found: error
+          retention-days: 14
+
+      - name: Enforce rehearsal verdict
+        if: always()
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+
+          path = Path("artifacts/safe-update/verdict.json")
+          if not path.is_file():
+              raise SystemExit("blocked: verdict artifact is missing")
+          verdict = json.loads(path.read_text(encoding="utf-8"))
+          if verdict.get("verdict") != "ready_for_operator_plan":
+              raise SystemExit(f"blocked: {verdict.get('verdict', 'invalid verdict')}")
+          if verdict.get("production_apply_allowed") is not False:
+              raise SystemExit("blocked: unsafe production apply flag")
+          if verdict.get("operator_approval") is not False:
+              raise SystemExit("blocked: automation cannot grant operator approval")
+          print("ready_for_operator_plan; stop before apply")
+          PY

@@ -76,7 +76,7 @@ Abel recently told shareholders that Berkshire's positions in five major Japanes
 > "The decision to keep every share is an economic decision, because I think the prospects of Berkshire will be better under Greg's management than mine."
 
 **Source:** CNBC, May 3, 2025
-**Link:** https://www.cnbc.com/2025/05/03/warren-buffett-to-ask-board-to-make-greg-abel-ceo-of-berkshire-hathaway-at-year-end.html
+**Link:** https://www.cnbc.com/2025/05/03/warren-buffett-to-aREDACTED-SECRET.html
 
 ### 2018 - Vice Chairman Appointment
 
@@ -204,7 +204,7 @@ Abel, sitting next to Buffett on stage, was apparently caught unaware by the ann
 | BBC News | https://www.bbc.com/news/articles/cqj4nev7p70o | Retirement announcement |
 | Business Standard | https://www.business-standard.com/world-news/who-is-greg-abel-warren-buffet-successor-berkshire-hathaway-ceo-125050400113_1.html | Profile, quotes |
 | CNBC | https://www.cnbc.com/2024/05/04/warren-buffett-says-greg-abel-will-make-berkshire-hathaway-investing-decisions-when-hes-gone.html | 2024 meeting |
-| CNBC | https://www.cnbc.com/2025/05/03/warren-buffett-to-ask-board-to-make-greg-abel-ceo-of-berkshire-hathaway-at-year-end.html | Succession announcement |
+| CNBC | https://www.cnbc.com/2025/05/03/warren-buffett-to-aREDACTED-SECRET.html | Succession announcement |
 | CNBC | https://www.cnbc.com/2018/01/10/berkshire-hathaways-warren-buffett-appoints-greg-abel-and-ajit-jain-as-vice-chairmen.html | Vice chair appointment |
 | Omaha World Herald | https://omaha.com/money/buffett/new-berkshire-vice-chairman-gregory-abel-called-truly-innovative-with-great-ideas/article_c2566e52-f623-11e7-b490-03b2b7ca8601.html | Buffett praise |
 | FOX Business | https://www.foxbusiness.com/business-leaders/greg-abel-holding-a-key-to-buffetts-kingdom | Rare Abel interview |

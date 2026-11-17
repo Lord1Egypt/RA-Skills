@@ -1,39 +1,48 @@
-## Description: <br>
-Explains, in Chinese and English, the cultural meanings and symbolic significance of the number 2. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides bilingual Chinese and English guidance about the cultural meaning and symbolism of the number 2.
 
-## Publisher: <br>
-[LeoCryptoFlow](https://clawhub.ai/user/LeoCryptoFlow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[leocryptoflow](https://clawhub.ai/user/leocryptoflow)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users can use this skill to answer questions about the philosophical, religious, cultural, and modern symbolism of the number 2 in Chinese and Western contexts.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Open-ended trigger wording may cause the skill to activate for unrelated math or technical questions about the number 2.
+
+Mitigation: Limit use to cultural-symbolism questions, or ask the publisher to add explicit exclusions for unrelated numeric, math, or technical requests.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users and general knowledge seekers use this skill to answer questions about the symbolism, cultural meanings, and modern interpretations of the number 2 in Chinese and Western contexts. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Future versions could introduce scripts, command execution, network access, credentials, or broader agent instructions. <br>
-Mitigation: Re-check security evidence and scan results before installing or deploying future versions. <br>
-Risk: Cultural symbolism may be overgeneralized if presented without context. <br>
-Mitigation: Present meanings as contextual cultural interpretations and adapt depth to the user's stated interest. <br>
+**Output Format:** [Markdown or plain text responses]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Bilingual Chinese and English cultural explanations; concise by default and expandable based on user interest.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or plain text explanatory response] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Bilingual Chinese and English cultural explanations.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

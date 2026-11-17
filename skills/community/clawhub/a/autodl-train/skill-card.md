@@ -1,45 +1,59 @@
-## Description: <br>
-Operates remote model training jobs on AutoDL Linux servers over SSH for launching runs, checking status, monitoring resources, reading logs, diagnosing interruptions, and summarizing outcomes with next-step recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Operates remote model training jobs on AutoDL Linux servers over SSH.
 
-## Publisher: <br>
-[Zhuoran-Liu](https://clawhub.ai/user/Zhuoran-Liu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhuoran-liu](https://clawhub.ai/user/zhuoran-liu)
 
-## Use Case: <br>
-Developers and ML engineers use this skill to operate AutoDL training runs over SSH, including launch, resume, health checks, resource monitoring, log review, failure diagnosis, and run summarization. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires SSH access to an AutoDL server and can use sensitive connection details. <br>
-Mitigation: Review config.json and any .env file before use, prefer SSH keys, and use a least-privileged remote account where possible. <br>
-Risk: Launched training jobs can continue consuming GPU time, disk, and cloud credits. <br>
-Mitigation: Monitor launched jobs with the bundled status, resource, and log summary scripts. <br>
-Risk: Incorrect host, project path, training command, log path, or resume arguments can affect the wrong environment or produce misleading diagnostics. <br>
-Mitigation: Confirm host, username, project_path, ssh_key_path, train_command, log_path, and resume arguments before running commands. <br>
+## Use Case:
 
+Developers and ML engineers use this skill to start, monitor, diagnose, and summarize remote training runs on configured AutoDL Linux servers. It helps inspect job status, GPU/CPU/memory/disk pressure, recent logs, common failures, and checkpoint-oriented next steps.
 
-## Reference(s): <br>
-- [Usage Guide](references/usage.md) <br>
-- [Troubleshooting](references/troubleshooting.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/Zhuoran-Liu/autodl-train) <br>
-- [Publisher Profile](https://clawhub.ai/user/Zhuoran-Liu) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Markdown, Text, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and concise status or diagnostic summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference JSON output from bundled scripts when the user requests structured status, resource, or log summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: SSH-based scripts can exceed the intended project-folder boundary when configuration is too broad.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the scripts before installation and use a dedicated non-root SSH account constrained to the training project with narrowly scoped project_path and allowed_project_roots.
+
+Risk: Status and log checks may inspect unrelated workloads or sensitive logs on shared servers.
+
+Mitigation: Use the skill only against appropriate training servers, keep log_path and log_candidates relative to the project, and set a specific process_match or train_command.
+
+Risk: Password-based SSH can increase credential exposure risk.
+
+Mitigation: Prefer key-based SSH; if password mode is unavoidable, provide AUTOCLAW_TRAIN_SSH_PASSWORD through the environment or an uncommitted local .env file.
+
+## Reference(s):
+
+- [Usage Guide](artifact/references/usage.md)
+- [Troubleshooting](artifact/references/troubleshooting.md)
+- [ClawHub Skill Page](https://clawhub.ai/zhuoran-liu/skills/autodl-train)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Markdown, JSON, Guidance]
+
+**Output Format:** [Markdown summaries with command snippets and optional JSON script output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include remote job status, resource summaries, log excerpts, parsed training metrics, failure hints, and recommended next steps.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

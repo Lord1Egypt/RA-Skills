@@ -1,39 +1,58 @@
-## Description: <br>
-Use when searching the web, documentation, or current information where token efficiency matters. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when searching the web, documentation, or current information where token efficiency matters.
 
-## Publisher: <br>
-[briefness](https://clawhub.ai/user/briefness) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[briefness](https://clawhub.ai/user/briefness)
 
-## Use Case: <br>
-Developers and agents use this skill to make web, documentation, API, pricing, and current-information searches more token efficient through local intent classification, query rewriting, caching, source checks, and answer assembly. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Recent search queries and assembled snippets may be cached locally for about 24 hours. <br>
-Mitigation: Avoid using the skill with secrets, private or internal URLs, credentials, regulated data, or sensitive client material unless the local cache is managed or cleared. <br>
+## Use Case:
 
+Developers and agent operators use this skill to answer web, documentation, pricing, and current-information questions with a token-conscious search pipeline that checks a local cache, rewrites queries, probes source credibility, and assembles concise answers.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/briefness/vryfik-skill) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/briefness) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown and JSON-producing shell command outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses Node.js helper scripts; can cache recent query text and assembled snippets locally for about 24 hours.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.7 (source: ClawHub release evidence) <br>
+Risk: Web probing and source-validation safeguards may be insufficient in environments with access to internal networks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and fix source checks before enabling network probes; restrict use to trusted URLs and external networks until reviewed.
+
+Risk: The local semantic cache can store recent query text and assembled snippets.
+
+Mitigation: Keep cache storage owner-restricted, avoid sensitive search topics, and clear cached data according to local data-handling policy.
+
+Risk: Source checks should not be relied on alone for prompt-injection resistance.
+
+Mitigation: Treat retrieved fragments as untrusted content and require the host agent to preserve its own citation, instruction-hierarchy, and safety controls.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/briefness/skills/vryfik-skill)
+- [ClawHub publisher profile](https://clawhub.ai/user/briefness)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown or text answers with helper-command results used during search]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include caution notes for unverified sources or incomplete assembled results.]
+
+## Skill Version(s):
+
+1.0.7 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

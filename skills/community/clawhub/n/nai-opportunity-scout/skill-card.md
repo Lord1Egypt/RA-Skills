@@ -1,42 +1,59 @@
-## Description: <br>
-Opportunity Scout helps agents find and prioritize user pain points and unmet demand across Reddit, Hacker News, and configurable sources. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Hunt for expressed user pain points and unmet demand across Reddit, Hacker News, and configurable sources, then prioritize findings with signal scoring, competition analysis, and trend tracking.
 
-## Publisher: <br>
-[newageinvestments25-byte](https://clawhub.ai/user/newageinvestments25-byte) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[newageinvestments25-byte](https://clawhub.ai/user/newageinvestments25-byte)
 
-## Use Case: <br>
-External users, founders, product researchers, and developers use this skill to scan public forums for demand signals, score candidate opportunities, and generate prioritized market-research digests. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated opportunity reports may be incomplete, stale, or misleading when public-source signals are sparse, noisy, or unrepresentative. <br>
-Mitigation: Treat reports as research leads and verify demand, competition, and market context before making product or business decisions. <br>
-Risk: The bundled workflow can perform web searches and write configuration, findings, history, and digest files locally, including on a recurring schedule if cron is enabled. <br>
-Mitigation: Review configured sources, schedule, and output paths before running scans; enable cron only when recurring local reports are intended. <br>
+## Use Case:
 
+Developers, founders, and product researchers use this skill to scan public communities for unmet needs, score demand signals, monitor recurrence, and produce prioritized opportunity digests.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/newageinvestments25-byte/nai-opportunity-scout) <br>
-- [Demand Signal Types](references/signal-types.md) <br>
-- [Source Configuration Guide](references/source-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports, JSON query and scoring data, and shell command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores configuration, findings, and signal history locally when the bundled scripts are run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated reports summarize public web content and may include inaccurate, stale, or adversarial text.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat digests as untrusted research leads, verify source posts and market claims before acting, and avoid feeding report text back into agents as instructions.
+
+Risk: The skill writes local configuration, history, and findings files and can save reports to user-selected paths.
+
+Mitigation: Use explicit noncritical output paths and review existing files before overwriting scan outputs.
+
+Risk: Public forum scans and configurable sources can collect noisy or irrelevant signals.
+
+Mitigation: Keep niches and sources specific, manually review scored findings, and tune sources after each scan.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/newageinvestments25-byte/skills/nai-opportunity-scout)
+- [Demand Signal Types](references/signal-types.md)
+- [Source Configuration Guide](references/source-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports, JSON query and scoring data, and shell command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates local config, history, and findings files; supports explicit digest output paths and max-result limits.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

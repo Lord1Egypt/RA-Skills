@@ -1,50 +1,65 @@
-## Description: <br>
-AI 视频创意伙伴，生成分镜脚本和 Seedance 提示词 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI 视频创意伙伴，生成分镜脚本和 Seedance 提示词
 
-## Publisher: <br>
-[fslong520](https://clawhub.ai/user/fslong520) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fslong520](https://clawhub.ai/user/fslong520)
 
-## Use Case: <br>
-Creators, marketers, and video production teams use this skill to turn video ideas into structured storyboards, character and scene guidance, dialogue, sound cues, and Seedance-ready prompts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can write or edit local documents while producing storyboard and prompt artifacts. <br>
-Mitigation: Use it in a project folder and review generated or modified files before reuse. <br>
-Risk: Generated prompts may be pasted into external video or image platforms and could carry inaccurate or unsuitable creative instructions. <br>
-Mitigation: Review storyboard, dialogue, sound, and platform prompt text before submitting it to external generation tools. <br>
-Risk: The workflow and source material are Chinese-first. <br>
-Mitigation: Use it only when a Chinese-language video prompt workflow is acceptable, or translate and review outputs before production use. <br>
+## Use Case:
 
+External creators and video teams use this Chinese-language agent skill to turn video ideas into storyboard scripts, character and scene anchors, dialogue and sound notes, and Seedance prompts for tools such as 即梦.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fslong520/queying) <br>
-- [Publisher profile](https://clawhub.ai/user/fslong520) <br>
-- [Prompt 技术规范](artifact/Prompt技术规范.md) <br>
-- [人物刻画规范](artifact/人物刻画规范.md) <br>
-- [导演思维与节奏规范](artifact/导演思维与节奏规范.md) <br>
-- [台词与音效规范](artifact/台词与音效规范.md) <br>
-- [场景生成规范](artifact/场景生成规范.md) <br>
-- [视觉风格指南](artifact/视觉风格指南.md) <br>
-- [配音制作规范](artifact/配音制作规范.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown storyboard and video-generation prompt text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include shot timing, camera movement, character anchors, dialogue, sound effects, and Seedance prompt wording.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: frontmatter and server release metadata) <br>
+Risk: Generated storyboards and prompts may be used with external video tools and uploaded media.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated prompts before use and upload only media, voices, and references that the user has rights and consent to use.
+
+Risk: The workflow may create or edit local storyboard and prompt documents.
+
+Mitigation: Review generated or edited documents before sharing, publishing, or using them in downstream production workflows.
+
+Risk: Artifact guidance warns against high-risk or rights-sensitive prompt content such as sexual content, violence, and copyrighted people or characters.
+
+Mitigation: Keep prompts within applicable platform and rights constraints, and revise generated content that includes prohibited or rights-sensitive material.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/fslong520/skills/queying)
+- [Skill Definition](artifact/SKILL.md)
+- [Prompt 技术规范](artifact/Prompt技术规范.md)
+- [人物刻画规范](artifact/人物刻画规范.md)
+- [导演思维与节奏规范](artifact/导演思维与节奏规范.md)
+- [台词与音效规范](artifact/台词与音效规范.md)
+- [场景生成规范](artifact/场景生成规范.md)
+- [视觉风格指南](artifact/视觉风格指南.md)
+- [配音制作规范](artifact/配音制作规范.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Chinese Markdown storyboard and prompt package]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include timed shots, dialogue, sound effects, visual style notes, and media reference labels.]
+
+## Skill Version(s):
+
+1.3.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,55 @@
-## Description: <br>
-Session Archive automatically saves OpenClaw conversation messages, operation records, and token usage data to a local SQLite database. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically saves conversation messages to a SQLite database with query and model usage statistics functionality.
 
-## Publisher: <br>
-[18940111404](https://clawhub.ai/user/18940111404) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[18940111404](https://clawhub.ai/user/18940111404)
 
-## Use Case: <br>
-Developers and OpenClaw users install this plugin when they need local session archiving, usage accounting, and queryable records of messages, operations, and token usage. It is useful for audit, troubleshooting, and usage analysis when local retention of conversation data is acceptable. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The plugin automatically saves full conversation content and metadata to a local SQLite database. <br>
-Mitigation: Install only where local retention is intended, protect the configured database path, and define deletion, retention, backup, and encryption controls appropriate for the data being archived. <br>
+## Use Case:
 
+OpenClaw users and developers use this plugin to keep a local SQLite archive of conversations, operation records, and model usage statistics for querying, auditing, or troubleshooting.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/18940111404/session-archive) <br>
-- [Publisher profile](https://clawhub.ai/user/18940111404) <br>
-- [README](README.md) <br>
-- [Plugin manifest](openclaw.plugin.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Configuration, Shell commands, Guidance] <br>
-**Output Format:** [SQLite database records plus Markdown documentation and JSON configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes messages, operations, and token usage to a local SQLite database; default path is ~/.openclaw/session-archive.db.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.4.1 (source: server release evidence and package.json) <br>
+Risk: The plugin automatically stores full conversation contents and operational metadata in a long-lived local SQLite database.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when local archiving is intended; choose a private database path, restrict file permissions, and define retention or deletion practices.
+
+Risk: Archived sessions can include secrets, tool results, media paths, and usage or cost metadata.
+
+Mitigation: Treat the database and its WAL/SHM sidecar files as sensitive, and avoid storing secrets in archived sessions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/18940111404/skills/session-archive)
+- [README](artifact/README.md)
+- [Plugin Configuration Schema](artifact/openclaw.plugin.json)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Configuration]
+
+**Output Format:** [SQLite database records and JSON configuration]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes messages, operations, and token usage to local SQLite tables; assembly and compaction return pass-through results.]
+
+## Skill Version(s):
+
+0.4.1 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

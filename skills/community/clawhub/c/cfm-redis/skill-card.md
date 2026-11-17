@@ -1,42 +1,58 @@
-## Description: <br>
-CFM Redis provides Redis Pub/Sub-based real-time communication for agents across frameworks while reducing unnecessary polling-related token use. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+CFM Redis provides Redis Pub/Sub based real-time communication between agent frameworks with event-driven messaging and reduced polling-related token use.
 
-## Publisher: <br>
-[ameylover](https://clawhub.ai/user/ameylover) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ameylover](https://clawhub.ai/user/ameylover)
 
-## Use Case: <br>
-Developers and agent operators use this skill to set up Redis-backed messaging, message history, and agent discovery for cross-framework multi-agent collaboration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Redis retains recent inter-agent messages, so stored message contents may contain sensitive data. <br>
-Mitigation: Keep Redis local or authenticated, avoid sending secrets through CFM, and periodically purge message history when retention is not needed. <br>
-Risk: Forwarding messages to webhooks can expose message content outside the local Redis environment. <br>
-Mitigation: Disable webhook forwarding unless required, and tightly control any configured webhook endpoint. <br>
+## Use Case:
 
+Developers and engineers use this skill to set up Redis-backed messaging, history, discovery, and command-line workflows for multi-agent collaboration across frameworks such as Hermes and OpenClaw.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ameylover/cfm-redis) <br>
-- [Publisher profile](https://clawhub.ai/user/ameylover) <br>
-- [Project homepage](https://github.com/AmeyLover/cfm-redis) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with Python and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires redis-server, python3, and the redis Python package.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: Redis messages and history can expose sensitive content if users send secrets or connect to an untrusted Redis instance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only a trusted local or properly secured Redis instance and do not send secrets through the messaging channel.
+
+Risk: Cron, daemon, file-trigger, and webhook modes can repeatedly process, forward, or persist messages without adequate controls.
+
+Mitigation: Enable these modes only after Redis authentication, retention limits, sender verification, path validation, and outbound destination controls are in place.
+
+Risk: The artifact includes approval-bypass guidance that could encourage unsafe execution practices.
+
+Mitigation: Remove the approval-bypass instruction before installation or release.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ameylover/skills/cfm-redis)
+- [Project homepage](https://github.com/AmeyLover/cfm-redis)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with Python and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires redis-server, python3, and the Python redis package.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

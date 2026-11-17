@@ -1,40 +1,55 @@
-## Description: <br>
-Twitch engagement via PizzaParty.gg - 4 daily sessions for LevelUpLove <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Twitch engagement via PizzaParty.gg - 4 daily sessions for LevelUpLove.
 
-## Publisher: <br>
-[wespeakallday](https://clawhub.ai/user/wespeakallday) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[wespeakallday](https://clawhub.ai/user/wespeakallday)
 
-## Use Case: <br>
-Developers and stream operators use this skill to run scheduled PizzaParty.gg and Twitch engagement sessions for spotlighted streamers. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can post automated Twitch chat using user credentials. <br>
-Mitigation: Review the exact channels and message volume before enabling automated chat, and confirm platform-policy risks. <br>
-Risk: Credential needs and controls are broader and less clear than the stated PizzaParty purpose supports. <br>
-Mitigation: Use only a limited, revocable Twitch token and avoid providing Discord passwords or Twitch client secrets unless their need is independently verified. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wespeakallday/pizzaparty-automation) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/wespeakallday) <br>
+## Use Case:
+
+Developers and operators use this skill to run scheduled Twitch chat engagement sessions for PizzaParty.gg point earning with configured Twitch credentials and streamer inputs.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can post public Twitch chat messages using the user's account.
+
+Mitigation: Use only a dedicated low-privilege Twitch token, validate streamer inputs before execution, and confirm that planned use complies with account and platform policies.
+
+Risk: OAuth tokens may be exposed through command history or process listings when passed as command-line arguments.
+
+Mitigation: Provide credentials through a protected secret manager or short-lived execution environment and avoid storing invocations that contain tokens.
+
+Risk: The released artifact asks for more secrets than the code uses and does not implement the advertised PizzaParty scraping or scheduling flow.
+
+Mitigation: Review the implementation before deployment, provide only secrets required by the executed code, and verify scheduling and scraping behavior outside the skill before relying on it.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Shell commands, Configuration] <br>
-**Output Format:** [JSON session summary plus command-line arguments and environment configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May send automated Twitch chat messages when run with user-provided credentials.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-2.0.0 (source: frontmatter and server release metadata) <br>
+**Output Type(s):** [JSON, Files, Shell commands, Configuration]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [JSON session summary file and command-line output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires caller-provided Twitch OAuth credentials and streamer input.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

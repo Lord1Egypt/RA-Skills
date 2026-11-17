@@ -1,47 +1,61 @@
-## Description: <br>
-Migration Runbook Generator turns migration plans into reviewable runbooks with cutover windows, prerequisites, rollback plans, and acceptance signals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates reviewable migration runbooks that organize scope, cutover windows, pre-checks, rollback plans, validation signals, and responsibilities.
 
-## Publisher: <br>
-[52YuanChangXing](https://clawhub.ai/user/52YuanChangXing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[52yuanchangxing](https://clawhub.ai/user/52yuanchangxing)
 
-## Use Case: <br>
-Developers and operations engineers use this skill to convert migration scope, timing, dependencies, rollback requirements, and validation needs into a structured runbook draft for human review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated runbooks may contain incomplete or incorrect operational guidance if source migration details are missing. <br>
-Mitigation: Review the generated draft before operational use and require explicit confirmation of missing scope, dependency, timing, rollback, and validation details. <br>
-Risk: Migration inputs may contain sensitive infrastructure or personal data. <br>
-Mitigation: Use scoped input files and redact sensitive migration details before processing or sharing generated runbooks. <br>
-Risk: The bundled helper reads a chosen input and writes to a chosen output path. <br>
-Mitigation: Review the local Python script when provenance matters and choose safe, intended output paths. <br>
+## Use Case:
 
+Developers, SREs, and migration owners use this skill to turn migration plans into structured, auditable runbooks for system migrations, data migrations, and platform cutovers. It is intended for documentation, review, and dry-run planning, not direct execution of database or infrastructure changes.
 
-## Reference(s): <br>
-- [ClawHub Release Page](https://clawhub.ai/52YuanChangXing/migration-runbook-generator) <br>
-- [README](artifact/README.md) <br>
-- [Runbook Specification](artifact/resources/spec.json) <br>
-- [Runbook Template](artifact/resources/template.md) <br>
-- [Example Input](artifact/examples/example-input.md) <br>
-- [Example Output](artifact/examples/example-output.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown runbook draft or JSON report from the local helper script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include pre-checks, migration steps, cutover window, validation signals, rollback plan, responsibilities, pending confirmations, and next steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence.release.version and SKILL.md frontmatter) <br>
+Risk: Generated runbooks may echo migration plans, rollback details, hostnames, or other operational data supplied as input.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and sanitize sensitive inputs before use, and treat generated reports as operational documents with the same handling requirements as the source material.
+
+Risk: A migration runbook draft may be incomplete or misleading if the source plan omits dependencies, switch windows, rollback conditions, or acceptance criteria.
+
+Mitigation: Use the skill's待确认项 output to collect missing details and require human review before any execution or system change.
+
+Risk: Changing script configuration or scanning broad directories can expose unrelated local files in generated summaries.
+
+Mitigation: Use the documented structured_brief flow with explicit input files or text, and avoid broad directory inputs unless the contents are intended for review.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/52yuanchangxing/skills/migration-runbook-generator)
+- [README](README.md)
+- [Output Template](resources/template.md)
+- [Structured Specification](resources/spec.json)
+- [Smoke Test](tests/smoke-test.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown runbook or JSON payload containing the generated report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are read-only drafts that may include待确认项 for missing migration details; the bundled script can write the generated report to a user-specified local output path.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

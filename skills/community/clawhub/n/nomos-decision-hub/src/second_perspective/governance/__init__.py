@@ -1,0 +1,1 @@
+"""Governance module — approval and human-gate logic."""

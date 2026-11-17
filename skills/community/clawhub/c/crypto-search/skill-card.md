@@ -1,41 +1,53 @@
-## Description: <br>
-Content search and synthesis primitive for Twitter/X and News sources using Kaito search tools. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches and synthesizes cryptocurrency-related content from Twitter/X and News using Kaito MCP search, with guidance for exact-match, boolean, topic, token, and username queries.
 
-## Publisher: <br>
-[YH9277](https://clawhub.ai/user/YH9277) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yh9277](https://clawhub.ai/user/yh9277)
 
-## Use Case: <br>
-External users and developers use this skill to search crypto-related Twitter/X and News content by token, keyword, topic, or username, then synthesize relevant findings with source links. It is intended for content discovery and summary, not mindshare tracking, sentiment analysis, or user profiling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search topics are sent to the configured Kaito MCP service and may reveal sensitive interests or research topics. <br>
-Mitigation: Do not include secrets, private account details, wallet-sensitive information, or confidential research in search queries. <br>
-Risk: Synthesized search results can be incomplete or misleading when retrieved source material is thin or ambiguous. <br>
-Mitigation: Verify important claims against the returned tweet or news URLs before relying on them. <br>
+## Use Case:
 
+External agents and developers use this skill to retrieve and summarize crypto-related Twitter/X and News content by token, keyword, indexed topic, or username.
 
-## Reference(s): <br>
-- [Crypto Search release page](https://clawhub.ai/YH9277/crypto-search) <br>
-- [YH9277 publisher profile](https://clawhub.ai/user/YH9277) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown summary with categorized findings, source URLs, and smart_engagement counts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Standalone output is grouped by Twitter sentiment categories and News results; workflow use can return structured search results for composition.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata) <br>
+Risk: Search queries are sent to Kaito MCP and may retrieve public Twitter/X and News results.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review requested queries before execution, especially when prompts are vague or may contain sensitive context.
+
+Risk: The skill depends on exact-match and boolean search behavior, so poorly structured queries can miss relevant content or over-narrow results.
+
+Mitigation: Use one entity field per call, apply boolean expansion for variants, and cite only claims present in retrieved results.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/yh9277/skills/crypto-search)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown summaries with source links and smart_engagement counts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May return structured search results when composed into higher-level workflow skills.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

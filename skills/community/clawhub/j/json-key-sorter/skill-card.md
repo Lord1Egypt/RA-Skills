@@ -1,40 +1,48 @@
-## Description: <br>
-Sort JSON objects alphabetically by key to standardize data, improve readability, and reduce merge conflicts in files and API responses. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Sort JSON objects alphabetically by key so developers can standardize data, improve readability, and reduce merge conflicts.
 
-## Publisher: <br>
-[albionaiinc-del](https://clawhub.ai/user/albionaiinc-del) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[albionaiinc-del](https://clawhub.ai/user/albionaiinc-del)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill to sort JSON from files or standard input for cleaner diffs, consistent API examples, and easier comparison during development workflows.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Using the -o option writes to the selected output path and can overwrite that file.
+
+Mitigation: Review the output path before running the command and write to a new file or version-controlled working copy when preserving the original matters.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use this skill to sort JSON keys for consistent formatting, easier diffs, and fewer merge conflicts when working with JSON files or API response examples. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, shell commands, configuration]
 
-## Known Risks and Mitigations: <br>
-Risk: Using the output-file option can overwrite the selected destination file. <br>
-Mitigation: Write to a new path or confirm the destination before running with the output option. <br>
-Risk: Very large JSON inputs may consume significant memory because the full document is loaded before sorting. <br>
-Mitigation: Use the skill on reasonably sized JSON files or validate resource limits before processing large inputs. <br>
+**Output Format:** [JSON text or Markdown with inline shell commands]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/albionaiinc-del/json-key-sorter) <br>
+**Other Properties Related to Output:** [Can write sorted JSON to standard output or to a user-selected output file.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON-oriented guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can read JSON from a file or standard input and write sorted JSON to standard output or an output file.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

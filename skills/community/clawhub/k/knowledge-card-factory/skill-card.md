@@ -1,47 +1,67 @@
-## Description: <br>
-Knowledge Card Factory automates topic discovery, content research, AI image and card creation, and publishing for social-media knowledge cards. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Knowledge Card Factory automates topic discovery, content research, AI-assisted visuals, and multi-platform publishing for knowledge-card content workflows.
 
-## Publisher: <br>
-[zlszhonglongshen](https://clawhub.ai/user/zlszhonglongshen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zlszhonglongshen](https://clawhub.ai/user/zlszhonglongshen)
 
-## Use Case: <br>
-Content creators, marketers, knowledge workers, and teams use this skill to turn topics or trends into researched knowledge cards, captions, draft assets, and optional social posts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated research, captions, or card copy may be inaccurate, incomplete, or misleading. <br>
-Mitigation: Keep user review enabled and verify the card, caption, tags, and cited source material before publishing. <br>
-Risk: Publishing automation can post content to external social platforms with account or brand impact. <br>
-Mitigation: Use a sandbox or low-risk account first, keep require_confirmation enabled, and avoid unattended scheduled or multi-channel publishing without review and rollback controls. <br>
-Risk: The workflow can scrape or reuse third-party platform content and generated images. <br>
-Mitigation: Restrict source platforms to content the user is allowed to reuse and review image provenance, attribution, and platform policy requirements before release. <br>
+## Use Case:
 
+Content creators, marketers, knowledge-sharing teams, and developers use this skill to turn a topic or trend into researched social content, knowledge-card visuals, captions, tags, and optional publishing output. It is intended for workflows that need search, cross-platform research, visual generation or rendering, and user-reviewed publication.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zlszhonglongshen/knowledge-card-factory) <br>
-- [brave-search dependency](https://clawhub.ai/brave-search) <br>
-- [agent-reach dependency](https://clawhub.ai/agent-reach) <br>
-- [nano-banana-pro dependency](https://clawhub.ai/nano-banana-pro) <br>
-- [xiaohongshu-mcp dependency](https://clawhub.ai/xiaohongshu-mcp) <br>
-- [card-renderer optional dependency](https://clawhub.ai/card-renderer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance, files] <br>
-**Output Format:** [Markdown guidance with workflow configuration, generated card assets, captions, tags, and publishing results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Default workflow keeps auto_publish false and require_confirmation true; failed publishing is saved as a local draft.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The workflow can publish content publicly through connected social-publishing skills.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require a visible preview, verify the target account and platform, and obtain explicit approval immediately before each public post.
+
+Risk: Search, cross-platform collection, and AI-generated content can introduce inaccurate, misleading, or rights-sensitive material.
+
+Mitigation: Review sources, generated claims, captions, and images before use, and retain drafts when confidence is low.
+
+Risk: Unpinned external skill dependencies may change behavior over time.
+
+Mitigation: Prefer pinned or reviewed dependency versions where available and re-scan the workflow after dependency updates.
+
+Risk: Notifications and workflow checkpoints may expose generated content or operational details to connected services.
+
+Mitigation: Use only approved notification channels and avoid sending sensitive draft content unless the destination is authorized.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/zlszhonglongshen/skills/knowledge-card-factory)
+- [Publisher Profile](https://clawhub.ai/user/zlszhonglongshen)
+- [brave-search Dependency](https://clawhub.ai/brave-search)
+- [agent-reach Dependency](https://clawhub.ai/agent-reach)
+- [nano-banana-pro Dependency](https://clawhub.ai/nano-banana-pro)
+- [xiaohongshu-mcp Dependency](https://clawhub.ai/xiaohongshu-mcp)
+- [card-renderer Optional Dependency](https://clawhub.ai/card-renderer)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Files, Guidance]
+
+**Output Format:** [Markdown guidance with code examples, JSON/YAML configuration snippets, generated content drafts, image file paths, tags, and publish URLs.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Normal operation may depend on third-party search, scraping, image-generation, card-rendering, notification, and social-publishing skills; public posting should require preview and explicit user approval.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, workflow.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

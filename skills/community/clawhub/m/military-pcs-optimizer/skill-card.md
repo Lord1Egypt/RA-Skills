@@ -1,40 +1,53 @@
-## Description: <br>
-Military PCS (Permanent Change of Station) entitlements calculator, timeline planner, and money maximizer for ALL branches (Army, Navy, Air Force, Marines, Space Force, Coast Guard). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Military PCS (Permanent Change of Station) entitlements calculator, timeline planner, and money maximizer for ALL branches (Army, Navy, Air Force, Marines, Space Force, Coast Guard). Covers officer, enlisted, and warrant officer ranks with and without dependents.
 
-## Publisher: <br>
-[Skulick19](https://clawhub.ai/user/Skulick19) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[skulick19](https://clawhub.ai/user/skulick19)
 
-## Use Case: <br>
-Service members and military families use this skill to estimate PCS entitlements, plan move timelines, and identify allowance-related questions to verify with finance or transportation offices. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: PCS rates, eligibility rules, and allowance calculations may be outdated or incomplete for a user's exact orders and circumstances. <br>
-Mitigation: Verify all estimates and eligibility with current DoD, finance office, or transportation office sources before making financial or travel decisions. <br>
-Risk: The artifact includes a paid premium offer that may affect user expectations or costs. <br>
-Mitigation: Review the paid Gumroad offer and terms before buying. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Military PCS Optimizer on ClawHub](https://clawhub.ai/Skulick19/military-pcs-optimizer) <br>
-- [Publisher profile](https://clawhub.ai/user/Skulick19) <br>
+## Use Case:
 
+External service members and military family planners use this skill to outline PCS entitlements, timeline items, and money-saving considerations for CONUS and OCONUS moves. Treat the free release as an overview rather than an authoritative calculator for reimbursement, allowance, tax, or PCS planning decisions.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance with entitlement estimates, checklist items, and planning notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Unofficial planning guidance; users should verify current allowances and eligibility with authoritative military sources.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill overstates calculator and planner capabilities while the free artifact primarily provides an overview and directs users to a paid external version for major promised features.
+
+Mitigation: Review outputs as general PCS guidance, verify entitlements and timelines against current DoD or service-specific sources, and disclose when calculations depend on unavailable premium material.
+
+Risk: PCS reimbursement, allowance, tax, and planning guidance can become inaccurate or incomplete if used as an official decision source.
+
+Mitigation: Do not rely on the skill for official decisions without checking current authoritative military finance, transportation, housing, and service-specific guidance.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/skulick19/skills/military-pcs-optimizer)
+- [Premium edition purchase page](https://kulickster0.gumroad.com/l/jhmvrc)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown guidance with entitlement summaries, checklist items, and planning notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Free overview content; major rate tables, calculators, OCONUS details, and money maximization material are presented as paid premium content.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

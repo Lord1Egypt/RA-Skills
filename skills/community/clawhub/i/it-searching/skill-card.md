@@ -1,48 +1,57 @@
-## Description: <br>
-Provides up-to-date technology news and AI research by scraping major AI company blogs and retrieving relevant papers from arXiv. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides up-to-date technology news and AI research by directing an agent to read public company blogs and arXiv sources.
 
-## Publisher: <br>
-[alvinecarn](https://clawhub.ai/user/alvinecarn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[alvinecarn](https://clawhub.ai/user/alvinecarn)
 
-## Use Case: <br>
-Developers and technical users use this skill to find recent AI papers and company updates from public sources such as arXiv and major technology blogs. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill retrieves and summarizes public web pages, so summaries may omit context or reflect outdated source content. <br>
-Mitigation: Verify important claims against the cited source pages before relying on them. <br>
-Risk: Providing private URLs or sensitive information could cause the agent to retrieve online content the user did not intend to expose. <br>
-Mitigation: Use the skill with public sources unless online retrieval of sensitive content is explicitly intended. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/alvinecarn/it-searching) <br>
-- [arXiv Recent cs.AI Papers](https://arxiv.org/list/cs.AI/recent) <br>
-- [OpenAI Blog](https://openai.com/blog/) <br>
-- [Google AI Blog](https://ai.googleblog.com/) <br>
-- [DeepMind Blog](https://deepmind.com/blog/) <br>
-- [Meta AI Blog](https://ai.facebook.com/blog/) <br>
-- [Microsoft Research Blog](https://www.microsoft.com/en-us/research/blog/) <br>
-- [Anthropic News](https://www.anthropic.com/news) <br>
-- [Hugging Face Blog](https://huggingface.co/blog) <br>
-- [NVIDIA Blog](https://blogs.nvidia.com/) <br>
+## Use Case:
 
+Developers, researchers, and technical users use this skill to retrieve current AI research and technology company updates from public web sources.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown summaries with source links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include links to public source pages; users should verify important claims against the cited sources.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill relies on live public web and arXiv content, so answers can reflect incomplete, outdated, or changed source pages.
+
+Mitigation: Review cited sources and publication dates before relying on time-sensitive technical or research claims.
+
+Risk: The skill artifact contains a malformed or truncated frontmatter description field.
+
+Mitigation: Clean up the frontmatter before republishing to improve parsing reliability and reviewer clarity.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/alvinecarn/skills/it-searching)
+- [Publisher profile](https://clawhub.ai/user/alvinecarn)
+- [arXiv recent AI papers](https://arxiv.org/list/cs.AI/recent)
+- [OpenAI blog](https://openai.com/blog/)
+- [Google AI blog](https://ai.googleblog.com/)
+- [NVIDIA blog](https://blogs.nvidia.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text responses with sourced summaries and links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May require runtime substitution for date-related template variables.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

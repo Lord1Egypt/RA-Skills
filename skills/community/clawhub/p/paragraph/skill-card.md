@@ -1,45 +1,60 @@
-## Description: <br>
-OpenClaw skill for Paragraph.com - Web3-native blogging with tokenization, onchain storage, and community features. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw skill for Paragraph.com, a Web3-native blogging platform with tokenization, onchain storage, and community features.
 
-## Publisher: <br>
-[ClaireAICodes](https://clawhub.ai/user/ClaireAICodes) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[claireaicodes](https://clawhub.ai/user/claireaicodes)
 
-## Use Case: <br>
-External creators, DAOs, Web3 teams, and developers use this skill to let an agent create Paragraph posts, inspect publications and feeds, manage subscribers, and query token or coin data through Paragraph's API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+ISC
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can let an agent publish Paragraph content that may become public, emailed, or onchain and difficult to fully undo. <br>
-Mitigation: Review every post before publishing, leave newsletter sending disabled unless intentional, and treat published/onchain content as persistent. <br>
-Risk: Subscriber import and email-related actions can affect real contacts and may involve consent-sensitive data. <br>
-Mitigation: Import only authorized and consented subscriber data, validate CSV contents before use, and disable welcome emails unless messages are intended. <br>
-Risk: The Paragraph API key gives the agent operational authority over the connected Paragraph account. <br>
-Mitigation: Use a scoped and revocable API key, store it only in the agent environment, rotate it when needed, and remove access when automation is no longer required. <br>
+## Use Case:
 
+Developers, creators, DAOs, and Web3 teams use this skill to let OpenClaw agents publish Markdown posts to Paragraph, manage publication subscribers, retrieve posts and publication metadata, and inspect tokenized post data.
 
-## Reference(s): <br>
-- [ClawHub Paragraph Skill Page](https://clawhub.ai/ClaireAICodes/paragraph) <br>
-- [Paragraph API Reference](https://paragraph.com/docs/api-reference) <br>
-- [Paragraph](https://paragraph.com) <br>
-- [Node.js](https://nodejs.org) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [JSON tool results and Markdown content submitted to Paragraph] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires PARAGRAPH_API_KEY and PARAGRAPH_PUBLICATION_SLUG; tools return standardized success, data, and error fields.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata, SKILL.md frontmatter, and package.json) <br>
+Risk: A Paragraph API key can publish public posts and manage subscribers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an intended, scoped API key, verify the target publication, and review generated content before creating posts or sending newsletters.
+
+Risk: A configurable PARAGRAPH_API_BASE_URL could send credentials to a non-official API host.
+
+Mitigation: Keep PARAGRAPH_API_BASE_URL unset or pinned to https://public.api.paragraph.com/api.
+
+Risk: Subscriber imports process email addresses and wallet addresses from local CSV files.
+
+Mitigation: Import only intentional, verified CSV paths and confirm consent and welcome-email settings before upload.
+
+## Reference(s):
+
+- [Paragraph API Reference](https://paragraph.com/docs/api-reference)
+- [Paragraph](https://paragraph.com)
+- [Paragraph OpenAPI Spec](https://raw.githubusercontent.com/paragraph-xyz/paragraph-sdk-js/main/openapi.json)
+- [Paragraph SDK](https://github.com/paragraph-xyz/paragraph-sdk-js)
+
+## Skill Output:
+
+**Output Type(s):** [API calls, JSON, Markdown, Configuration guidance]
+
+**Output Format:** [Tool responses as { success, data, error } objects; post content accepts Markdown and subscriber imports accept CSV files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires PARAGRAPH_API_KEY and PARAGRAPH_PUBLICATION_SLUG; uses Node.js 19+ native fetch with no external npm dependencies.]
+
+## Skill Version(s):
+
+1.2.0 (source: SKILL.md frontmatter, package.json, evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

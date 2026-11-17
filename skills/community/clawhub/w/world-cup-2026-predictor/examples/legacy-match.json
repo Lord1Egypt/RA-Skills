@@ -1,0 +1,34 @@
+{
+  "matches": [
+    {
+      "teams": ["Argentina", "Netherlands"],
+      "kickoff": "2026-07-19T20:00:00Z",
+      "moneyline": {
+        "opening": {
+          "home": "1.95",
+          "draw": "3.30",
+          "away": "+260"
+        },
+        "current": {
+          "home": "1.80",
+          "draw": "3.40",
+          "away": "+240"
+        }
+      },
+      "totals": {
+        "lean": "under 2.5"
+      },
+      "btts": {
+        "lean": "no"
+      },
+      "asian_handicap": {
+        "favorite": "Argentina",
+        "opening_line": "-0.75",
+        "current_line": "-1.0",
+        "opening_odds": "0.98",
+        "current_odds": "0.92",
+        "odds_format": "hong_kong"
+      }
+    }
+  ]
+}

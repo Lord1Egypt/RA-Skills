@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Step5 Graph Merger V1</title>
+<style>
+  :root {
+    --bg: #0d0e11;
+    --surface: #13151a;
+    --surface2: #1b1e26;
+    --border: #252830;
+    --accent: #5cffa0;
+    --accent2: #ff6b6b;
+    --accent3: #ffd166;
+    --text: #e8ecf0;
+    --muted: #6b7280;
+    --radius: 10px;
+    --blue: #5ca8ff;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; background: var(--bg); color: var(--text); font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 15px; }
+  body { display: flex; flex-direction: column; min-height: 100vh; padding: 32px 24px; gap: 24px; max-width: 860px; margin: 0 auto; }
+
+  header { display: flex; align-items: baseline; gap: 16px; flex-wrap: wrap; }
+  header h1 { font-size: 28px; font-weight: 800; letter-spacing: -0.5px; }
+  header h1 span { color: var(--accent); }
+  .badge { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', monospace; font-size: 11px; color: var(--muted); border: 1px solid var(--border); padding: 3px 8px; border-radius: 20px; }
+  .intro { color: var(--muted); font-size: 14px; line-height: 1.6; max-width: 720px; }
+  .intro strong { color: var(--text); }
+
+  /* Guided loader cards */
+  #loaders { display: flex; flex-direction: column; gap: 16px; }
+  .loader-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 18px 18px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    transition: border-color .2s, background .2s;
+  }
+  .loader-card.loaded { border-color: rgba(92,255,160,.35); background: rgba(92,255,160,.04); }
+  .loader-card.error { border-color: rgba(255,107,107,.4); }
+
+  .loader-header { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 13px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+  .step-num {
+    width: 22px; height: 22px; border-radius: 6px; background: var(--surface2); border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center; font-size: 12px; color: var(--text);
+  }
+  .loader-card.loaded .step-num { background: var(--accent); color: var(--bg); border-color: var(--accent); }
+
+  .loader-row { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+
+  .btn {
+    appearance: none; border: 1px solid var(--border); background: var(--surface2); color: var(--text);
+    padding: 9px 14px; border-radius: 8px; font-size: 13px; font-weight: 600; cursor: pointer;
+    transition: all .15s;
+  }
+  .btn:hover { border-color: var(--text); transform: translateY(-1px); }
+  .btn:disabled { opacity: .45; cursor: not-allowed; transform: none; border-color: var(--border); }
+  .btn-primary { background: var(--accent); color: var(--bg); border-color: var(--accent); font-weight: 800; }
+  .btn-primary:disabled { background: var(--surface2); color: var(--muted); border-color: var(--border); }
+  .btn-loaded { background: rgba(92,255,160,.12); border-color: var(--accent); color: var(--accent); }
+
+  .loader-status { font-family: ui-monospace, monospace; font-size: 12px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .status-pending { color: var(--muted); }
+  .status-loaded { color: var(--accent); font-weight: 700; }
+  .status-loaded .check { background: var(--accent); color: var(--bg); width: 18px; height: 18px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 11px; }
+  .file-meta { color: var(--muted); font-size: 11px; font-family: ui-monospace, monospace; min-height: 16px; }
+  .error-msg { color: var(--accent2); font-size: 12px; font-family: ui-monospace, monospace; min-height: 16px; }
+
+  .btn-small { font-size: 11px; padding: 4px 8px; background: transparent; border: 1px solid var(--border); color: var(--muted); cursor: pointer; border-radius: 20px; }
+  .btn-small:hover { color: var(--accent2); border-color: var(--accent2); }
+
+  /* Merge action */
+  #mergeArea {
+    background: var(--surface);
+    border: 1px dashed var(--border);
+    border-radius: var(--radius);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  #mergeArea.ready { border-style: solid; border-color: var(--accent); background: rgba(92,255,160,.03); }
+  #mergeArea h3 { font-size: 13px; text-transform: uppercase; letter-spacing: .07em; color: var(--muted); }
+  #mergeHint { color: var(--muted); font-size: 12px; font-family: ui-monospace, monospace; }
+
+  /* Stats & Log */
+  #statsPanel {
+    background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 16px 18px; display: none; flex-direction: column; gap: 14px;
+  }
+  #statsPanel.visible { display: flex; }
+  .stats-title { font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+  .stats-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 10px; }
+  .stat-box { background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; padding: 12px 14px; }
+  .stat-box .num { font-family: ui-monospace, monospace; font-size: 26px; font-weight: 700; color: var(--accent); line-height: 1; margin-bottom: 4px; }
+  .stat-box .label { font-size: 12px; color: var(--muted); }
+  #mergeLog {
+    font-family: ui-monospace, monospace; font-size: 12px; color: var(--muted);
+    background: var(--surface2); border: 1px solid var(--border); border-radius: 8px;
+    padding: 12px 14px; max-height: 180px; overflow-y: auto; white-space: pre-wrap; line-height: 1.5;
+  }
+  .log-ok { color: var(--accent); } .log-dup { color: var(--accent3); }
+
+  /* Final banner */
+  #finalBanner {
+    display: none; background: #101a2a; border: 1px solid rgba(92,168,255,.3); border-left: 5px solid var(--blue);
+    border-radius: var(--radius); padding: 16px 18px; flex-direction: column; gap: 8px;
+  }
+  #finalBanner.visible { display: flex; }
+  #finalBanner .banner-title { font-weight: 800; color: var(--blue); font-size: 14px; }
+  #finalBanner .banner-text { font-size: 13px; line-height: 1.6; color: var(--text); }
+  #finalBanner code { font-family: ui-monospace, monospace; background: rgba(92,168,255,.15); padding: 2px 6px; border-radius: 4px; font-size: 12px; }
+
+  #actions { display: flex; gap: 10px; flex-wrap: wrap; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Step5 <span>Graph Merger</span> V1</h1>
+  <span class="badge">PHASE 5 — OPTIMIZED MERGE</span>
+  <span class="badge">ENGINE: V5 UNIVERSAL</span>
+</header>
+
+<p class="intro">
+  Guided, foolproof merging for <strong>Phase 5</strong>. Load exactly 3 files in order. 
+  The core merge engine is unchanged from <code>JSON-Merge-Tool V5 universell.html</code> for performance and future adaptability. 
+  All interface text is English. Only whitelisted filenames are accepted.
+</p>
+
+<section id="loaders">
+  <!-- Base Graph -->
+  <div class="loader-card" id="card-base">
+    <div class="loader-header"><div class="step-num">1</div> Base Graph — existing knowledge</div>
+    <div class="loader-row">
+      <button class="btn" id="btnLoadBase">Load base graph</button>
+      <div class="loader-status" id="statusBase"><span class="status-pending">○ Pending</span> — waiting for <code>graph.json</code></div>
+      <button class="btn-small" id="btnResetBase" style="display:none">↺ Reset</button>
+    </div>
+    <div class="file-meta" id="metaBase"></div>
+    <div class="error-msg" id="errorBase"></div>
+    <input type="file" id="inputBase" accept=".json" hidden />
+  </div>
+
+  <!-- New Subgraph -->
+  <div class="loader-card" id="card-subgraph">
+    <div class="loader-header"><div class="step-num">2</div> New Subgraph — frozen entities</div>
+    <div class="loader-row">
+      <button class="btn" id="btnLoadSubgraph">Load new subgraph</button>
+      <div class="loader-status" id="statusSubgraph"><span class="status-pending">○ Pending</span> — waiting for <code>subgraph_breadth_new.json</code> or <code>subgraph_depth_new.json</code></div>
+      <button class="btn-small" id="btnResetSubgraph" style="display:none">↺ Reset</button>
+    </div>
+    <div class="file-meta" id="metaSubgraph"></div>
+    <div class="error-msg" id="errorSubgraph"></div>
+    <input type="file" id="inputSubgraph" accept=".json" hidden />
+  </div>
+
+  <!-- New Relations -->
+  <div class="loader-card" id="card-relations">
+    <div class="loader-header"><div class="step-num">3</div> New Relations — bridge relations</div>
+    <div class="loader-row">
+      <button class="btn" id="btnLoadRelations">Load new relations</button>
+      <div class="loader-status" id="statusRelations"><span class="status-pending">○ Pending</span> — waiting for <code>subgraph_breadth_new_relations.json</code> or <code>subgraph_depth_new_relations.json</code></div>
+      <button class="btn-small" id="btnResetRelations" style="display:none">↺ Reset</button>
+    </div>
+    <div class="file-meta" id="metaRelations"></div>
+    <div class="error-msg" id="errorRelations"></div>
+    <input type="file" id="inputRelations" accept=".json" hidden />
+  </div>
+</section>
+
+<section id="mergeArea">
+  <h3>4 — Generate Merged Graph</h3>
+  <div id="mergeHint">All 3 files must be loaded. The generate button will activate automatically.</div>
+  <div id="actions">
+    <button class="btn btn-primary" id="btnGenerate" disabled>Generate Merged Graph</button>
+    <button class="btn" id="btnClear" disabled>Clear All</button>
+    <button class="btn" id="btnDownload" disabled style="display:none">Download graph_vNEXT_optimized.json</button>
+  </div>
+</section>
+
+<section id="statsPanel">
+  <div class="stats-title">Merge Statistics</div>
+  <div class="stats-grid">
+    <div class="stat-box"><div class="num" id="statNodes">0</div><div class="label">Total Nodes (merged)</div></div>
+    <div class="stat-box"><div class="num" id="statRels">0</div><div class="label">Total Relations (merged)</div></div>
+    <div class="stat-box"><div class="num" id="statMerged">0</div><div class="label">Duplicate Nodes Skipped</div></div>
+    <div class="stat-box"><div class="num" id="statDups">0</div><div class="label">Duplicate Relations Skipped</div></div>
+  </div>
+  <div class="stats-title">Merge Log</div>
+  <div id="mergeLog"></div>
+</section>
+
+<div id="finalBanner">
+  <div class="banner-title">✔ Success — File generated: graph_vNEXT_optimized.json</div>
+  <div class="banner-text">
+    File <code>graph_vNEXT_optimized.json</code> has been generated and downloaded.<br><br>
+    <strong>NEXT STEP FOR NEW CYCLE:</strong><br>
+    To start a new optimization cycle for an advanced graph version, please manually rename
+    <code>graph_vNEXT_optimized.json</code> to <code>graph.json</code>.<br>
+    This renamed file will then be your new base graph for the next run.<br><br>
+    <em>Tip: Generate a new <code>graph_overview_vNEXT.json</code> via the Overview Generator after renaming, to prepare for the next cycle.</em>
+  </div>
+</div>
+
+<script>
+// ---- Configuration - Whitelist (strict) ----
+const ALLOWED = {
+  base: ['graph.json'],
+  subgraph: ['subgraph_breadth_new.json', 'subgraph_depth_new.json'],
+  relations: ['subgraph_breadth_new_relations.json', 'subgraph_depth_new_relations.json']
+};
+
+const OUTPUT_FILENAME = 'graph_vNEXT_optimized.json';
+
+// ---- State ----
+const state = {
+  base: null,
+  subgraph: null,
+  relations: null
+};
+let lastResult = null;
+
+// ---- Elements ----
+const els = {
+  btnLoadBase: document.getElementById('btnLoadBase'),
+  inputBase: document.getElementById('inputBase'),
+  statusBase: document.getElementById('statusBase'),
+  metaBase: document.getElementById('metaBase'),
+  errorBase: document.getElementById('errorBase'),
+  cardBase: document.getElementById('card-base'),
+  resetBase: document.getElementById('btnResetBase'),
+
+  btnLoadSubgraph: document.getElementById('btnLoadSubgraph'),
+  inputSubgraph: document.getElementById('inputSubgraph'),
+  statusSubgraph: document.getElementById('statusSubgraph'),
+  metaSubgraph: document.getElementById('metaSubgraph'),
+  errorSubgraph: document.getElementById('errorSubgraph'),
+  cardSubgraph: document.getElementById('card-subgraph'),
+  resetSubgraph: document.getElementById('btnResetSubgraph'),
+
+  btnLoadRelations: document.getElementById('btnLoadRelations'),
+  inputRelations: document.getElementById('inputRelations'),
+  statusRelations: document.getElementById('statusRelations'),
+  metaRelations: document.getElementById('metaRelations'),
+  errorRelations: document.getElementById('errorRelations'),
+  cardRelations: document.getElementById('card-relations'),
+  resetRelations: document.getElementById('btnResetRelations'),
+
+  btnGenerate: document.getElementById('btnGenerate'),
+  btnClear: document.getElementById('btnClear'),
+  btnDownload: document.getElementById('btnDownload'),
+  mergeArea: document.getElementById('mergeArea'),
+  mergeHint: document.getElementById('mergeHint'),
+
+  statsPanel: document.getElementById('statsPanel'),
+  statNodes: document.getElementById('statNodes'),
+  statRels: document.getElementById('statRels'),
+  statMerged: document.getElementById('statMerged'),
+  statDups: document.getElementById('statDups'),
+  mergeLog: document.getElementById('mergeLog'),
+  finalBanner: document.getElementById('finalBanner')
+};
+
+// ---- Button wiring ----
+els.btnLoadBase.addEventListener('click', () => els.inputBase.click());
+els.btnLoadSubgraph.addEventListener('click', () => els.inputSubgraph.click());
+els.btnLoadRelations.addEventListener('click', () => els.inputRelations.click());
+
+els.inputBase.addEventListener('change', e => { handleFile(e.target.files[0], 'base'); e.target.value=''; });
+els.inputSubgraph.addEventListener('change', e => { handleFile(e.target.files[0], 'subgraph'); e.target.value=''; });
+els.inputRelations.addEventListener('change', e => { handleFile(e.target.files[0], 'relations'); e.target.value=''; });
+
+els.resetBase.addEventListener('click', () => resetSlot('base'));
+els.resetSubgraph.addEventListener('click', () => resetSlot('subgraph'));
+els.resetRelations.addEventListener('click', () => resetSlot('relations'));
+
+els.btnClear.addEventListener('click', clearAll);
+els.btnGenerate.addEventListener('click', generateMerged);
+els.btnDownload.addEventListener('click', downloadResult);
+
+// ---- Core file handling ----
+function handleFile(file, slot) {
+  clearError(slot);
+  if (!file) return;
+
+  const allowedList = ALLOWED[slot];
+  if (!allowedList.includes(file.name)) {
+    showError(slot, `Invalid filename. Expected ${allowedList.map(n => `'${n}'`).join(' or ')} — got '${file.name}'.`);
+    return;
+  }
+
+  const reader = new FileReader();
+  reader.onload = ev => {
+    try {
+      const data = JSON.parse(ev.target.result);
+      if (!data.entities && !data.relations) {
+        throw new Error("Invalid format: neither 'entities' nor 'relations' found.");
+      }
+      if (!data.entities) data.entities = [];
+      if (!data.relations) data.relations = [];
+
+      const entityCount = Array.isArray(data.entities) ? data.entities.length : Object.keys(data.entities).length;
+      const relCount = data.relations.length;
+
+      state[slot] = {
+        name: file.name,
+        data,
+        meta: { size: file.size, entities: entityCount, relations: relCount }
+      };
+
+      markLoaded(slot);
+      updateGlobalState();
+
+    } catch (err) {
+      showError(slot, `Parse error: ${err.message}`);
+    }
+  };
+  reader.readAsText(file);
+}
+
+function markLoaded(slot) {
+  const map = {
+    base: { card: els.cardBase, btn: els.btnLoadBase, status: els.statusBase, meta: els.metaBase, reset: els.resetBase },
+    subgraph: { card: els.cardSubgraph, btn: els.btnLoadSubgraph, status: els.statusSubgraph, meta: els.metaSubgraph, reset: els.resetSubgraph },
+    relations: { card: els.cardRelations, btn: els.btnLoadRelations, status: els.statusRelations, meta: els.metaRelations, reset: els.resetRelations }
+  };
+  const m = map[slot];
+  const info = state[slot];
+
+  m.card.classList.add('loaded');
+  m.card.classList.remove('error');
+  m.btn.disabled = true;
+  m.btn.classList.add('btn-loaded');
+  m.reset.style.display = 'inline-block';
+  m.status.innerHTML = `<span class="status-loaded"><span class="check">✔</span> ${escHtml(info.name)} loaded</span>`;
+  m.meta.textContent = `${info.meta.entities} nodes · ${info.meta.relations} relations · ${(info.meta.size/1024).toFixed(1)} KB`;
+
+  clearError(slot);
+}
+
+function resetSlot(slot) {
+  state[slot] = null;
+  const map = {
+    base: { card: els.cardBase, btn: els.btnLoadBase, status: els.statusBase, meta: els.metaBase, reset: els.resetBase, expected: "graph.json" },
+    subgraph: { card: els.cardSubgraph, btn: els.btnLoadSubgraph, status: els.statusSubgraph, meta: els.metaSubgraph, reset: els.resetSubgraph, expected: "subgraph_breadth_new.json or subgraph_depth_new.json" },
+    relations: { card: els.cardRelations, btn: els.btnLoadRelations, status: els.statusRelations, meta: els.metaRelations, reset: els.resetRelations, expected: "subgraph_breadth_new_relations.json or subgraph_depth_new_relations.json" }
+  };
+  const m = map[slot];
+  m.card.classList.remove('loaded','error');
+  m.btn.disabled = false;
+  m.btn.classList.remove('btn-loaded');
+  m.reset.style.display = 'none';
+  m.status.innerHTML = `<span class="status-pending">○ Pending</span> — waiting for <code>${escHtml(m.expected)}</code>`;
+  m.meta.textContent = '';
+  clearError(slot);
+  updateGlobalState();
+  if (!state.base || !state.subgraph || !state.relations) {
+    els.statsPanel.classList.remove('visible');
+    els.finalBanner.classList.remove('visible');
+    els.btnDownload.style.display = 'none';
+    els.btnDownload.disabled = true;
+  }
+}
+
+function showError(slot, msg) {
+  const elMap = { base: els.errorBase, subgraph: els.errorSubgraph, relations: els.errorRelations };
+  const cardMap = { base: els.cardBase, subgraph: els.cardSubgraph, relations: els.cardRelations };
+  elMap[slot].textContent = msg;
+  cardMap[slot].classList.add('error');
+  cardMap[slot].classList.remove('loaded');
+}
+
+function clearError(slot) {
+  const elMap = { base: els.errorBase, subgraph: els.errorSubgraph, relations: els.errorRelations };
+  const cardMap = { base: els.cardBase, subgraph: els.cardSubgraph, relations: els.cardRelations };
+  elMap[slot].textContent = '';
+  cardMap[slot].classList.remove('error');
+}
+
+function updateGlobalState() {
+  const allLoaded = state.base && state.subgraph && state.relations;
+  els.btnGenerate.disabled = !allLoaded;
+  els.btnClear.disabled = !state.base && !state.subgraph && !state.relations;
+
+  if (allLoaded) {
+    els.mergeArea.classList.add('ready');
+    els.mergeHint.textContent = "All 3 files loaded — ready to generate merged graph.";
+    els.mergeHint.style.color = 'var(--accent)';
+  } else {
+    els.mergeArea.classList.remove('ready');
+    els.mergeHint.textContent = "All 3 files must be loaded. The generate button will activate automatically.";
+    els.mergeHint.style.color = 'var(--muted)';
+  }
+}
+
+function clearAll() {
+  ['base','subgraph','relations'].forEach(resetSlot);
+  lastResult = null;
+  els.statsPanel.classList.remove('visible');
+  els.finalBanner.classList.remove('visible');
+  els.btnDownload.style.display = 'none';
+}
+
+// ---- Merge Logic ----
+function normalizeEntities(entities) {
+  if (Array.isArray(entities)) {
+    return entities.map(e => ({ ...e }));
+  } else if (typeof entities === 'object' && entities !== null) {
+    return Object.entries(entities).map(([id, props]) => ({ id, ...props }));
+  }
+  return [];
+}
+
+function mergeAllThree() {
+  const orderedFiles = [
+    { role: 'base', obj: state.base },
+    { role: 'subgraph', obj: state.subgraph },
+    { role: 'relations', obj: state.relations }
+  ];
+
+  const seenIds = new Set();
+  const mergedEntitiesArr = [];
+  const mergedRelations = [];
+  const relSet = new Set();
+
+  let skippedNodeCount = 0;
+  let dupRelCount = 0;
+  const logLines = [];
+
+  orderedFiles.forEach((entry) => {
+    if (!entry.obj) return;
+    const fName = entry.obj.name;
+    const data = entry.obj.data;
+
+    const entities = normalizeEntities(data.entities);
+    entities.forEach(entity => {
+      const id = entity.id;
+      if (id === undefined || id === null) return;
+      if (!seenIds.has(id)) {
+        seenIds.add(id);
+        mergedEntitiesArr.push({ ...entity });
+        if (entry.role !== 'base') {
+          logLines.push({ cls: 'log-ok', text: `+ Node added: "${id}" (from ${fName})` });
+        }
+      } else {
+        skippedNodeCount++;
+        logLines.push({ cls: 'log-dup', text: `= Node skipped (already exists): "${id}" (from ${fName})` });
+      }
+    });
+
+    data.relations.forEach(r => {
+      const key = `${r.subject}||${r.predicate}||${r.object}`;
+      if (!relSet.has(key)) {
+        relSet.add(key);
+        mergedRelations.push({ ...r });
+      } else {
+        dupRelCount++;
+        if (entry.role !== 'base') {
+          logLines.push({ cls: 'log-dup', text: `= Relation duplicate, skipped: "${r.subject} → ${r.predicate} → ${r.object}" (from ${fName})` });
+        }
+      }
+    });
+  });
+
+  return {
+    result: { entities: mergedEntitiesArr, relations: mergedRelations },
+    stats: { nodes: mergedEntitiesArr.length, rels: mergedRelations.length, mergedNodes: skippedNodeCount, dups: dupRelCount },
+    logLines
+  };
+}
+
+function generateMerged() {
+  if (!state.base || !state.subgraph || !state.relations) return;
+
+  // Confirmation dialog before download (V1.0.1)
+  const confirmed = window.confirm(
+    'Generate and download graph_vNEXT_optimized.json?\n\n' +
+    'Files to be merged:\n' +
+    '  1. ' + state.base.name + ' (' + state.base.meta.entities + ' nodes)\n' +
+    '  2. ' + state.subgraph.name + ' (' + state.subgraph.meta.entities + ' nodes)\n' +
+    '  3. ' + state.relations.name + ' (' + state.relations.meta.relations + ' relations)\n\n' +
+    'The merged file will be downloaded automatically. Continue?'
+  );
+  if (!confirmed) return;
+
+  els.btnGenerate.textContent = 'Merging...';
+  els.btnGenerate.disabled = true;
+
+  setTimeout(() => {
+    const merged = mergeAllThree();
+    lastResult = merged.result;
+
+    els.statNodes.textContent = merged.stats.nodes;
+    els.statRels.textContent = merged.stats.rels;
+    els.statMerged.textContent = merged.stats.mergedNodes;
+    els.statDups.textContent = merged.stats.dups;
+
+    els.mergeLog.innerHTML = merged.logLines.length
+      ? merged.logLines.map(l => `<div class="${l.cls}">${escHtml(l.text)}</div>`).join('')
+      : '<div style="color:var(--muted)">No conflicts — all data merged directly.</div>';
+
+    els.statsPanel.classList.add('visible');
+    els.statsPanel.scrollIntoView({ behavior: 'smooth' });
+
+    els.btnDownload.style.display = 'inline-block';
+    els.btnDownload.disabled = false;
+    els.finalBanner.classList.add('visible');
+    els.btnGenerate.textContent = 'Generate Merged Graph';
+    els.btnGenerate.disabled = false;
+
+    downloadResult();
+  }, 120);
+}
+
+function downloadResult() {
+  if (!lastResult) return;
+  const json = JSON.stringify(lastResult, null, 2);
+  const blob = new Blob([json], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = OUTPUT_FILENAME;
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  URL.revokeObjectURL(url);
+}
+
+function escHtml(s) {
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+</script>
+</body>
+</html>

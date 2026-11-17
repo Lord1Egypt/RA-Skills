@@ -1,38 +1,58 @@
-## Description: <br>
-Generate professional LinkedIn posts for career milestones, industry insights, advice, and company updates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates professional LinkedIn post drafts for career milestones, industry insights, professional advice, recruiting, company updates, and event recaps.
 
-## Publisher: <br>
-[huajianjiu000](https://clawhub.ai/user/huajianjiu000) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[huajianjiu000](https://clawhub.ai/user/huajianjiu000)
 
-## Use Case: <br>
-Professionals, executives, recruiters, consultants, and content creators use this skill to draft LinkedIn posts tailored to a topic, audience, tone, and key points. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated LinkedIn drafts may contain confidential information, private personal details, regulated information, or unverified claims if those details are provided in the prompt. <br>
-Mitigation: Review every draft before posting and remove confidential, regulated, private, or unverified content. <br>
+## Use Case:
 
+Professionals, recruiters, consultants, executives, and content creators use this skill to draft audience-specific LinkedIn posts with hashtags, calls to action, engagement suggestions, and alternate versions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/huajianjiu000/linkedin-content-creator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-style LinkedIn post drafts with hashtags, call-to-action options, timing suggestions, and alternative versions.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Does not access LinkedIn accounts or publish content automatically.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Generated posts may include inaccurate or misleading claims if the user provides weak source material.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated posts for accuracy before publishing.
+
+Risk: Inputs or generated drafts could include confidential personal or company information.
+
+Mitigation: Avoid sharing confidential information with the skill and remove sensitive details before publication.
+
+Risk: The skill can suggest posting times and engagement tactics, but publishing decisions remain user-controlled.
+
+Mitigation: Manually decide whether and when to publish any generated content.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/huajianjiu000/skills/linkedin-content-creator)
+- [Publisher profile](https://clawhub.ai/user/huajianjiu000)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown-formatted LinkedIn post drafts with hashtags, call-to-action options, timing guidance, engagement notes, and alternate versions.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes optional post variants such as personal, data-driven, and concise versions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

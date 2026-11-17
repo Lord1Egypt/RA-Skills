@@ -1,45 +1,58 @@
-## Description: <br>
-A personal Chinese blog-writing assistant for turning topics, notes, and drafts into direct, natural Markdown posts with title options, humanization checks, and optional Halo publishing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese personal blog-writing assistant that helps turn ideas and drafts into direct, natural, opinionated Markdown posts for technical, AI, and life-observation topics.
 
-## Publisher: <br>
-[alex-shen1121](https://clawhub.ai/user/alex-shen1121) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alex-shen1121](https://clawhub.ai/user/alex-shen1121)
 
-## Use Case: <br>
-External users and content creators use this skill to plan, title, draft, revise, and optionally publish Chinese personal blog posts for technical, AI, and life-observation topics. It is tailored to one named personal voice and platform workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated posts may include inaccurate authorship, personal-experience claims, or tone mismatches. <br>
-Mitigation: Review drafts for factual accuracy, voice, and personal claims before publishing. <br>
-Risk: Optional Halo publishing can affect a live blog if paired with publishing credentials or a separate publishing skill. <br>
-Mitigation: Confirm intended blog access and permissions before enabling publishing workflows. <br>
+## Use Case:
 
+External users and writers use this skill to plan topics, generate scored headline options, draft personal blog posts, revise text to reduce obvious AI-writing patterns, and prepare platform-specific Chinese content. It can also guide an optional Halo blog publishing step after explicit user confirmation.
 
-## Reference(s): <br>
-- [AI writing patterns](references/ai-patterns.md) <br>
-- [Headline examples](references/headline-examples.md) <br>
-- [Platform style guide](references/platform-styles.md) <br>
-- [Blog style guide](references/style-guide.md) <br>
-- [Halo blog site](https://blog.codingshen.top) <br>
-- [ClawHub release page](https://clawhub.ai/alex-shen1121/danke-blog-writer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown prose with title options, scores, revision guidance, and optional shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should be reviewed before publishing for accuracy, authorship claims, and personal tone.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: The optional Halo publishing workflow could publish incorrect, private, or unfinished content if approved without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before publishing, explicitly review and approve the destination, title, content, and tags.
+
+Risk: The humanizing and platform-adaptation steps can change tone or meaning while reducing obvious AI-writing patterns.
+
+Mitigation: Review the revised draft against the original intent before sharing or publishing it.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/alex-shen1121/skills/danke-blog-writer)
+- [AI Writing Patterns](artifact/references/ai-patterns.md)
+- [Headline Examples](artifact/references/headline-examples.md)
+- [Platform Style Guide](artifact/references/platform-styles.md)
+- [Writing Style Guide](artifact/references/style-guide.md)
+- [Halo Blog Destination](https://blog.codingshen.top)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown drafts, headline options with scores, revised text, platform guidance, and optional shell command snippets.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are primarily Chinese and may include platform-specific style adaptations; Halo publishing requires user review and explicit approval.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact/_meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

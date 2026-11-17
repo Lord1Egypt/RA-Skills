@@ -1,39 +1,61 @@
-## Description: <br>
-Akshare Stock helps agents retrieve and analyze A-share market quotes, historical K-line data, financial data, sector information, fund flows, IPO data, margin trading data, and related stock lookup results through AkShare. <br>
+## Description:
 
-This skill is for research and development only. <br>
+Provides agent-facing guidance and a small CLI for retrieving China A-share market data, historical K-lines, financial indicators, sector data, fund flow data, IPO data, and margin trading data through AkShare.
 
-## Publisher: <br>
-[kenswj](https://clawhub.ai/user/kenswj) <br>
+This skill is for research and development only.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kenswj](https://clawhub.ai/user/kenswj)
 
-## Use Case: <br>
-Developers and market-data analysts use this skill to answer A-share stock lookup, market data, financial analysis, and screening questions. The artifact states that returned data is for academic research and is not investment advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on AkShare as a third-party market-data dependency, and upstream interfaces or network availability can affect results. <br>
-Mitigation: Use a virtual environment, pin a reviewed AkShare version, test in the local target environment, and add retry and error handling around data calls. <br>
-Risk: Returned financial data may be incomplete, delayed, or unsuitable for trading decisions. <br>
-Mitigation: Treat outputs as informational research data, verify important values against authoritative sources, and do not use the skill output alone as investment advice or trading authority. <br>
+## Use Case:
 
+Developers, analysts, and external agents use this skill to query A-share quotes, historical price data, financial indicators, board and concept data, fund flows, and stock search results. Outputs should be treated as research market data and not as investment advice.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Shell commands, JSON] <br>
-**Output Format:** [Markdown guidance with Python snippets and JSON CLI output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses AkShare public market-data calls; local network and upstream data-source availability may affect results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: AkShare and Baostock dependencies may change behavior or fail to install consistently.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install the skill in a dedicated virtual environment and pin AkShare or Baostock versions before operational use.
+
+Risk: Market data may be delayed, unavailable, or affected by upstream website changes.
+
+Mitigation: Treat returned data as research input, add retry and exception handling, and validate important results against authoritative data sources.
+
+Risk: Some advertised or scripted actions may require fixes or direct AkShare calls before working reliably.
+
+Mitigation: Review and test the specific CLI actions locally before relying on them in an agent workflow.
+
+Risk: Financial outputs could be mistaken for investment recommendations.
+
+Mitigation: Label outputs as market data for research only and keep investment decisions outside the skill workflow.
+
+## Reference(s):
+
+- [ClawHub Skill Release](https://clawhub.ai/kenswj/skills/akshare-stock-1-0-1)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, JSON, guidance]
+
+**Output Format:** [Markdown guidance with Python and shell snippets; the bundled CLI emits JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs depend on AkShare availability and upstream market-data sources.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

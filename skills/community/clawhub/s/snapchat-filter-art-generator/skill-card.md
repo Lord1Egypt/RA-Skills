@@ -1,42 +1,58 @@
-## Description: <br>
-Generates nostalgic selfie images with Snapchat-style filters such as puppy ears, flower crowns, dog tongues, sparkles, and bunny noses through the Neta AI image generation API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates nostalgic selfie photos with Snapchat-style filter effects such as puppy ears, flower crowns, dog tongues, sparkle overlays, and bunny noses using the Neta AI image generation API.
 
-## Publisher: <br>
-[omactiengartelle](https://clawhub.ai/user/omactiengartelle) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[omactiengartelle](https://clawhub.ai/user/omactiengartelle)
 
-## Use Case: <br>
-External users and creators use this skill to generate 2010s-style social media selfie art from text prompts, with optional size selection and reference-image UUIDs for style inheritance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, selected image settings, API token, and reference image UUIDs are sent to the Neta/TalesOfAI service. <br>
-Mitigation: Avoid confidential prompts or sensitive personal references, and use the skill only when sharing this data with Neta/TalesOfAI is acceptable. <br>
-Risk: Command-line API tokens may appear in shell history or process listings. <br>
-Mitigation: Treat the Neta token as a secret and prefer execution environments that limit shell history and process-list exposure. <br>
+## Use Case:
 
+External users and creators use this skill to generate 2016-style social media selfie images from text prompts, optionally choosing image size or a reference image UUID for style inheritance.
 
-## Reference(s): <br>
-- [ClawHub Skill Listing](https://clawhub.ai/omactiengartelle/snapchat-filter-art-generator) <br>
-- [Neta Open](https://www.neta.art/open/) <br>
-- [Neta/TalesOfAI Image Task API](https://api.talesofai.com/v3/make_image) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, API calls, Guidance] <br>
-**Output Format:** [Markdown guidance and shell commands that return a direct image URL] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Neta API token and may use an optional reference image UUID.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata and package.json) <br>
+Risk: API tokens can be exposed through shell history when passed directly on the command line.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a trusted execution environment, avoid reusing exposed tokens, and rotate the Neta API token if it may have been disclosed.
+
+Risk: Prompts and optional reference identifiers are sent to the Neta/TalesOfAI service.
+
+Mitigation: Avoid sending sensitive personal photos, names, or identifying prompts unless the user accepts sharing them with that service.
+
+Risk: Install commands run third-party skill code.
+
+Mitigation: Install only from the server-resolved publisher and review the skill before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/omactiengartelle/skills/snapchat-filter-art-generator)
+- [Neta API token signup](https://www.neta.art/open/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands]
+
+**Output Format:** [Plain text image URL with command-line progress and error messages]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Neta API token; supports portrait, landscape, square, and tall sizes plus an optional reference image UUID.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

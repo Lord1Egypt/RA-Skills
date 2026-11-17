@@ -1,44 +1,55 @@
-## Description: <br>
-Enable quantum-resistant encryption and secret management for blockchain applications with the CIFER SDK, including ML-KEM-768 encryption, wallet integration, multi-chain discovery, file encryption jobs, and transaction intents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enable quantum-resistant encryption and secret management for blockchain applications with post-quantum ML-KEM-768 key encapsulation and multi-chain support.
 
-## Publisher: <br>
-[mohsinriaz17](https://clawhub.ai/user/mohsinriaz17) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[mohsinriaz17](https://clawhub.ai/user/mohsinriaz17)
 
-## Use Case: <br>
-Developers and AI agents use this skill to integrate CIFER SDK encryption workflows into blockchain applications, including payload encryption, file encryption jobs, key authorization, on-chain commitments, and wallet-controlled transaction intents. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill documents blockchain wallet signatures and transaction intents that could authorize real on-chain actions. <br>
-Mitigation: Review every signature and transaction intent before execution, and start with least-privileged or test wallets. <br>
-Risk: Server-side examples rely on a PRIVATE_KEY environment variable. <br>
-Mitigation: Store private keys in a secrets manager or equivalent protected secret store, and avoid exposing them in logs, prompts, or source control. <br>
-Risk: File encryption and decryption workflows send data to the Blackbox service. <br>
-Mitigation: Confirm the service's data-handling and retention policies before sending regulated or highly sensitive files. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/mohsinriaz17/cifer-sdk) <br>
-- [CIFER SDK npm package](https://www.npmjs.com/package/cifer-sdk) <br>
-- [CIFER SDK GitHub repository](https://github.com/cifer-security/cifer-sdk) <br>
-- [Blackbox API endpoint](https://blackbox.cifer.network) <br>
+## Use Case:
 
+Developers and engineers use this skill to add CIFER SDK encryption, secret management, file encryption, and on-chain encrypted data reference workflows to blockchain applications.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown documentation with TypeScript examples and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes SDK installation commands, wallet integration examples, encryption and decryption flows, transaction intent guidance, and file job workflows.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.3.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Sensitive plaintext, files, and signer-backed operations may be routed through the remote CIFER Blackbox service.
+
+Mitigation: Do not send regulated, proprietary, credential-bearing, or highly sensitive data through the service unless that remote processing is explicitly accepted.
+
+Risk: Examples include wallet signing and server-side private-key integrations that can affect user assets or authorization.
+
+Mitigation: Use dedicated low-privilege keys or managed signers, pin and review SDK versions, and require explicit user approval before uploading files or signing messages.
+
+## Reference(s):
+
+- [Cifer SDK ClawHub page](https://clawhub.ai/mohsinriaz17/skills/cifer-sdk)
+- [Cifer SDK npm package](https://www.npmjs.com/package/cifer-sdk)
+- [Cifer SDK GitHub repository](https://github.com/cifer-security/cifer-sdk)
+- [CIFER Blackbox API](https://blackbox.cifer.network)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with TypeScript and shell code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes implementation examples for SDK initialization, wallet integration, encryption, decryption, file jobs, transaction intents, and error handling.]
+
+## Skill Version(s):
+
+0.3.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

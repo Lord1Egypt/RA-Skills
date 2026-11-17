@@ -223,6 +223,9 @@ while True:
     time.sleep(0.1)
 AI相关
 语音识别+语音合成
+
+> **固件限制：语音合成只存在于 K10 中文版固件。** 使用 `asr.add_tts_data()` 或 `asr.start_tts()` 前必须确认已刷写中文版 MicroPython 固件；英文/国际版固件不可使用这部分 API。
+
 import asr
 import time
 #asr.ASR_MODE_SINGLE 单次
@@ -484,6 +487,8 @@ while True:
     time.sleep(0.5)
 GPIO
 注：除板载P0/P1外，其余GPIO是通过I2C转GPIO芯片外接。只有基础的GPIO拉高/拉低功能
+
+需要增加外接模拟量输入通道时，推荐使用 [DFRobot Gravity I2C ADS1115 16位AD转换模块（DFR0553）](https://www.dfrobot.com.cn/goods-1734.html)。该模块通过I2C提供4路模拟量输入，支持3.3~5.0V供电，检测范围为`0~VCC`；模拟量输入不得超过`VCC + 0.3V`。
 
 from unihiker_k10 import pin
 import time

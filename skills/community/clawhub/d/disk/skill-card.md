@@ -1,42 +1,53 @@
-## Description: <br>
-Disk is a reference skill that outputs static disk-related devtools documentation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+disk reference tool
 
-## Publisher: <br>
-[bytesagain1](https://clawhub.ai/user/bytesagain1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain1](https://clawhub.ai/user/bytesagain1)
 
-## Use Case: <br>
-Developers and engineers use this skill to retrieve concise reference guidance for disk-related devtools topics such as quick starts, patterns, debugging, performance, security, migration, and cheatsheets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Future updates could add install steps, network access, file-changing behavior, or credential handling beyond the current static documentation behavior. <br>
-Mitigation: Review release changes and security scan evidence before deploying updated versions. <br>
-Risk: The reference content is broad boilerplate and may be incomplete for a specific environment. <br>
-Mitigation: Treat outputs as general guidance and validate operational decisions against project-specific documentation and requirements. <br>
+## Use Case:
 
+Developers and engineers use this skill to retrieve concise disk-related reference documentation, including introductions, quickstarts, patterns, debugging notes, performance guidance, security considerations, migration notes, and cheat sheets.
 
-## Reference(s): <br>
-- [Disk on ClawHub](https://clawhub.ai/bytesagain1/disk) <br>
-- [bytesagain1 publisher profile](https://clawhub.ai/user/bytesagain1) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Plain text and Markdown emitted by shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Static reference documentation; no external API calls, credentials, or network access indicated.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.3 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: Generic disk reference text may be incomplete or not specific to a user's environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the generated guidance against current internal documentation, platform constraints, and operational procedures before acting on it.
+
+Risk: Installers may assume the skill performs disk inspection or remediation.
+
+Mitigation: Set expectations that the inspected artifacts provide static reference documentation only and do not access local disk data, credentials, network services, or persistent system state.
+
+## Reference(s):
+
+- [BytesAgain Homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Plain text and Markdown-style reference documentation emitted by shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static reference output; no API keys, credentials, network access, hidden local disk data access, or persistent changes indicated by the security evidence.]
+
+## Skill Version(s):
+
+2.0.3 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

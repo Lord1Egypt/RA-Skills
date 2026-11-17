@@ -1,40 +1,57 @@
-## Description: <br>
-Finance Report Pro analyzes personal finance inputs, generates a finance report with health scores and recommendations, and includes disclosed paid-service recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates personal finance analysis and Markdown finance reports covering cash flow, asset-liability position, financial health, recommendations, passive-income ideas, and service offers.
 
-## Publisher: <br>
-[chungvic](https://clawhub.ai/user/chungvic) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chungvic](https://clawhub.ai/user/chungvic)
 
-## Use Case: <br>
-External users can enter income, expense, asset, liability, and goal details to receive a personal finance analysis report. The skill is suited for generating a structured planning report with financial metrics, recommendations, passive-income options, and disclosed promotional offers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may share personal financial details in the agent context. <br>
-Mitigation: Install only when comfortable sharing those details, and check any hosted or self-hosted version for clear privacy, email collection, and consent terms before entering contact or financial information. <br>
-Risk: The report includes paid-product recommendations that may look like financial or business advice. <br>
-Mitigation: Treat recommendations as generated planning content, not independent financial advice, and review paid-service suggestions before acting on them. <br>
+## Use Case:
 
+External users and agent operators use this skill to analyze personal income, expenses, assets, and liabilities and produce a finance report with recommendations. The release has a commercial posture because the server evidence describes a normal ClawHub release and the artifact includes paid service offers.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/chungvic/finance-report-pro) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown report text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes computed finance metrics, recommendations, passive-income options, promotional service recommendations, and a financial-advice disclaimer.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release evidence) <br>
+Risk: The skill asks for sensitive personal-finance information without clear privacy, retention, or marketing-consent disclosures.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review privacy and consent expectations before installation, and avoid entering real sensitive financial data unless those requirements are satisfied.
+
+Risk: Generated reports automatically include commercial upsells and external contact links.
+
+Mitigation: Review report content before sharing it and remove or revise promotional sections that are inappropriate for the intended audience.
+
+Risk: Financial recommendations may be incomplete, unsuitable, or mistaken for professional investment advice.
+
+Mitigation: Treat outputs as informational only and require qualified human review before acting on investment, debt, or planning recommendations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chungvic/skills/finance-report-pro)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown report text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes financial calculations, recommendations, passive-income ideas, and commercial service offers.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

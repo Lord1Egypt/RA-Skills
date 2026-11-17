@@ -1,39 +1,58 @@
-## Description: <br>
-Browser-driven web research and live site inspection using Chrome DevTools MCP over a remote-debugging Chrome session. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enables browser-driven web research and live site inspection through Chrome DevTools MCP over a remote-debugging Chrome session.
 
-## Publisher: <br>
-[hackerchai](https://clawhub.ai/user/hackerchai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hackerchai](https://clawhub.ai/user/hackerchai)
 
-## Use Case: <br>
-Developers and agent operators use this skill to inspect live websites, search engines, social platforms, documentation, dashboards, and login-aware or JavaScript-heavy pages, then cross-check and summarize findings from visible page state. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can let an agent control and inspect a live Chrome session, exposing tabs, cookies, logins, and page state. <br>
-Mitigation: Use a separate temporary Chrome profile with no sensitive accounts, close unrelated tabs, avoid authenticated pages unless truly needed, require confirmation before form submissions or account-changing actions, and turn off remote debugging when finished. <br>
+## Use Case:
 
+External developers, researchers, and agent operators use this skill to inspect dynamic websites, navigate browser-visible page state, and cross-check web findings across search, social, community, and source pages.
 
-## Reference(s): <br>
-- [Troubleshooting](references/troubleshooting.md) <br>
-- [ClawHub skill page](https://clawhub.ai/hackerchai/chrome-devtools-web-research) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and structured source-quality summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include browser-visible findings, source-quality grouping, caveats, and remediation steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: The skill asks for DevTools-level access to a live Chrome session, which can expose tabs, cookies, logins, and page state.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a separate temporary Chrome profile with no unrelated logged-in accounts, and close unrelated tabs before use.
+
+Risk: The skill uses unpinned install/runtime packages, so behavior can change across installs.
+
+Mitigation: Review and pin npm package versions where possible before deployment.
+
+Risk: Remote debugging access can remain enabled after the task is complete.
+
+Mitigation: Disable Chrome remote debugging when finished.
+
+## Reference(s):
+
+- [Troubleshooting](references/troubleshooting.md)
+- [ClawHub skill page](https://clawhub.ai/hackerchai/skills/chrome-devtools-web-research)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and source-quality summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include source-quality buckets, caveats, browser-access remediation, and concise audit notes.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -270,7 +270,7 @@ You **must** enable "Message Content Intent" in Discord Developer Portal under B
 ```json5
 channels: {
   slack: {
-    botToken: "xoxb-1234-5678-abcdef",
+    botToken: "REDACTED-SECRET",
     appToken: "xapp-1-...",           // Socket Mode only
     signingSecret: "...",              // HTTP Mode only
     mode: "socket",                    // socket (recommended) | http

@@ -1,44 +1,60 @@
-## Description: <br>
-Poyo Nano Banana 2 Lite helps agents prepare Nano Banana 2 Lite text-to-image and lightweight image-editing requests for PoYo, including payloads, curl commands, async task submission, and polling or webhook next steps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Poyo Nano Banana 2 Lite helps agents prepare and submit PoYo image generation and lightweight image editing jobs for nano-banana-2-lite and nano-banana-2-lite-edit.
 
-## Publisher: <br>
-[coolhackboy](https://clawhub.ai/user/coolhackboy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[coolhackboy](https://clawhub.ai/user/coolhackboy)
 
-## Use Case: <br>
-Developers and agents use this skill to prepare and submit PoYo Nano Banana 2 Lite generation and edit jobs, choose the correct model id, protect POYO_API_KEY, and track asynchronous task status. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: POYO_API_KEY or authorization headers could be exposed through browser code, logs, screenshots, repositories, or chat output. <br>
-Mitigation: Keep credentials in server-side environment variables or a secret manager, and never print raw authorization headers or API keys. <br>
-Risk: Live PoYo submissions may create external tasks or consume account resources. <br>
-Mitigation: Submit requests only when the user explicitly asks and provides a trusted shell or server-side environment. <br>
-Risk: Private prompts, source image URLs, callback URLs, or generated outputs may contain sensitive user data. <br>
-Mitigation: Avoid logging or sharing those values unless the user or product policy explicitly allows it. <br>
+## Use Case:
 
+Developers and agents use this skill to build PoYo Nano Banana 2 Lite text-to-image and image-editing requests, prepare JSON payloads, and submit reviewed asynchronous image jobs from a trusted shell.
 
-## Reference(s): <br>
-- [PoYo Nano Banana 2 Lite model page](https://poyo.ai/models/nano-banana-2-lite) <br>
-- [PoYo API key dashboard](https://poyo.ai/dashboard/api-key) <br>
-- [Skill API reference](references/api.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with JSON payloads and bash command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include model id, request type, source-image usage, task_id, and polling or webhook next step.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: PoYo API key exposure could allow unauthorized image-generation requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep POYO_API_KEY in a trusted server-side environment or secret manager, and do not place it in browser code, public repositories, logs, screenshots, or chat output.
+
+Risk: Prompts, source image URLs, callback URLs, and generated output URLs may contain private or sensitive information.
+
+Mitigation: Avoid sending or logging private prompts and image URLs unless that is acceptable for the workflow and the user has approved the data handling.
+
+Risk: Submitting an unreviewed payload can send unintended model, prompt, image, or callback data to PoYo.
+
+Mitigation: Run the submit script only with payloads that have been reviewed in a trusted shell environment.
+
+## Reference(s):
+
+- [PoYo Nano Banana 2 Lite model page](https://poyo.ai/models/nano-banana-2-lite)
+- [PoYo Nano Banana 2 Lite API docs](https://docs.poyo.ai/api-manual/image-series/nano-banana-2-lite)
+- [PoYo API key page](https://poyo.ai/dashboard/api-key)
+- [API reference](references/api.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON payload examples and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include a returned task_id when a reviewed API submission is actually made.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

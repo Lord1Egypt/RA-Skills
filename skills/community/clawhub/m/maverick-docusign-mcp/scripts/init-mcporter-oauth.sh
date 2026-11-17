@@ -68,9 +68,9 @@ mcp_expires_at="${mcp_expires_at}" mcp_expires_in="${mcp_expires_in}" mcp_refres
   jq -cn --arg token_endpoint_auth_method "${mcp_token_endpoint_auth_method}" '{
     tokens: (
       {access_token: env.mcp_access, refresh_token: env.mcp_refresh, token_type: "Bearer"}
-      + (if env.mcp_expires_at != "" then {expires_at: env.mcp_expires_at} else {} end)
+      + (if env.mcp_expires_at != "" then {expires_at: (env.mcp_expires_at | tonumber)} else {} end)
       + (if env.mcp_expires_in != "" then {expires_in: (env.mcp_expires_in | tonumber)} else {} end)
-      + (if env.mcp_refresh_expires_at != "" then {refresh_token_expires_at: env.mcp_refresh_expires_at} else {} end)
+      + (if env.mcp_refresh_expires_at != "" then {refresh_token_expires_at: (env.mcp_refresh_expires_at | tonumber)} else {} end)
     ),
     clientInfo: (
       {client_id: env.mcp_client_id}

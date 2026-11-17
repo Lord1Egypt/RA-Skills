@@ -1,0 +1,66 @@
+{
+  "schema_version": "1.0",
+  "provenance_note": "文本由调用方撰写；证据类型照录。时长、日期、地址及附件均为输入值，脚本未探测媒体或验证附件。",
+  "schema_note": "JSON-LD仅含已提供字段；fields_present只表示本工具列出的交接字段齐全，不表示搜索资格、收录或引用。",
+  "summary": {
+    "total": 1,
+    "by_type": {
+      "image": 0,
+      "video": 0,
+      "audio": 1
+    },
+    "needs_information": 1,
+    "by_evidence": {
+      "reviewed": 0,
+      "user_description": 1,
+      "unavailable": 0
+    }
+  },
+  "assets": [
+    {
+      "id": "sound-01",
+      "type": "audio",
+      "original_filename": "操作完成.WAV",
+      "suggested_filename": "操作完成-提示音.WAV",
+      "title": "操作完成提示音",
+      "evidence": {
+        "kind": "user_description",
+        "scope": "full",
+        "reference": "受控样例的提示音说明",
+        "details": "操作完成时播放的一声短提示音，不含人声。"
+      },
+      "caption": "操作完成提示音。",
+      "content_url": null,
+      "page_url": null,
+      "description": "在操作完成时播放的短提示音，不含语言内容。",
+      "duration_seconds": 1.25,
+      "duration_iso8601": "PT1.25S",
+      "upload_date": null,
+      "chapters": null,
+      "transcript": {
+        "status": "not_applicable",
+        "reference": null,
+        "reason": "输入说明为纯提示音，无语言内容"
+      },
+      "gaps": [
+        "content_url",
+        "upload_date"
+      ],
+      "status": "needs_information",
+      "schema": {
+        "status": "partial",
+        "jsonld": {
+          "@context": "https://schema.org",
+          "@type": "AudioObject",
+          "name": "操作完成提示音",
+          "description": "在操作完成时播放的短提示音，不含语言内容。",
+          "duration": "PT1.25S"
+        },
+        "missing_fields": [
+          "contentUrl",
+          "uploadDate"
+        ]
+      }
+    }
+  ]
+}

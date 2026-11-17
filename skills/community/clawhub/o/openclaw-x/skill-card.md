@@ -1,40 +1,57 @@
-## Description: <br>
-Control your X/Twitter account — view timeline, search tweets, post, like, retweet, bookmark. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Control your X/Twitter account - view timeline, search tweets, post, like, retweet, bookmark.
 
-## Publisher: <br>
-[bosshuman](https://clawhub.ai/user/bosshuman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[bosshuman](https://clawhub.ai/user/bosshuman)
 
-## Use Case: <br>
-External users and agents use this skill to read X/Twitter timelines, searches, tweet details, and user posts through a local API, and to perform account actions such as posting, liking, retweeting, and bookmarking. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill relies on an external executable and exported X/Twitter browser cookies, which can expose account session access. <br>
-Mitigation: Install only from a trusted release source, keep cookies.json private, use a secondary account where possible, and stop the localhost service when the task is complete. <br>
-Risk: The skill can perform account-changing actions such as posting, liking, retweeting, and bookmarking. <br>
-Mitigation: Require explicit user approval before any post, like, retweet, or bookmark action. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [OpenClaw X ClawHub listing](https://clawhub.ai/bosshuman/openclaw-x) <br>
-- [OpenClaw X GitHub releases](https://github.com/bosshuman/openclaw-x/releases) <br>
+## Use Case:
 
+External users and developers use this skill to control an X/Twitter account through a local API for reading timelines, searching tweets, posting, liking, retweeting, bookmarking, and viewing user information.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes local API endpoint patterns and curl examples; account-changing actions should require explicit user approval.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.2.2 (source: server release evidence; artifact frontmatter states 0.1.0) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can control an X/Twitter account, including posting and engagement actions.
+
+Mitigation: Review intended actions before execution and use the skill only in an isolated, trusted environment.
+
+Risk: The skill requires exported browser login cookies, which can grant account access if exposed.
+
+Mitigation: Treat cookies.json like a password, keep it out of synced or shared folders, and rotate or revoke account sessions if exposure is suspected.
+
+Risk: The skill depends on a downloaded executable that server security evidence describes as insufficiently scoped and unverified.
+
+Mitigation: Install only after careful review, prefer verified releases, and favor scoped or revocable authentication such as OAuth when available.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bosshuman/skills/openclaw-x)
+- [OpenClaw X GitHub releases](https://github.com/bosshuman/openclaw-x/releases)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, text]
+
+**Output Format:** [Markdown with curl command examples and concise instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill guides an agent to call a local API that can read from and act on an X/Twitter account.]
+
+## Skill Version(s):
+
+0.2.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

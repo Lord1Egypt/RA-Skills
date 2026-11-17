@@ -1,40 +1,57 @@
-## Description: <br>
-Orchestrates Feishu, DingTalk, and WeCom CLI workflows for unified inbox triage, task synchronization, notification broadcasts, platform-aware routing, and emergency communication. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Orchestrates cross-platform IM workflows across Feishu, DingTalk, and WeCom with their official CLIs for unified inbox triage, task sync, notification broadcast, platform-aware routing, and emergency communication.
 
-## Publisher: <br>
-[lm203688](https://clawhub.ai/user/lm203688) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lm203688](https://clawhub.ai/user/lm203688)
 
-## Use Case: <br>
-Employees, operators, and developers use this skill to plan and run coordinated enterprise messaging workflows across Feishu, DingTalk, and WeCom using their official CLI tools. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can support broad cross-platform messages, DING alerts, all-staff notifications, approval creation, customer messages, and content copying across platforms. <br>
-Mitigation: Use it only from accounts authorized for Feishu, DingTalk, and WeCom, and require a preview, recipient list, sensitivity check, and explicit user confirmation before sending or creating records. <br>
-Risk: Cross-platform automation can duplicate notifications or expose sensitive content to unintended recipients. <br>
-Mitigation: Limit broadcasts to the minimum necessary recipients, confirm urgency before intrusive alerts, and check that copied content is appropriate for each destination platform. <br>
+## Use Case:
 
+Developers and operators use this skill to plan and execute coordinated enterprise messaging workflows across Feishu, DingTalk, and WeCom, including triage, task synchronization, broadcasts, routing, and incident communications.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lm203688/cross-platform-im-cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes workflow templates, platform selection guidance, and safety checks for cross-platform IM automation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can guide installation and authentication of enterprise messaging CLIs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install in a controlled environment, verify and pin CLI packages before authentication, and use least-privileged platform accounts.
+
+Risk: Workflow examples include DING, all-user, and multi-platform broadcasts that could notify too many recipients or send unintended content.
+
+Mitigation: Require an explicit preview and user confirmation before DING, all-user, or multi-platform broadcast actions.
+
+Risk: Repeated cross-platform notifications can create duplicate messages or exceed practical messaging limits.
+
+Mitigation: Apply the artifact's safety rules: limit sending to 10 messages per minute per platform, 30 total messages per minute, and avoid duplicate notifications unless urgency requires them.
+
+## Reference(s):
+
+- [Cross-Platform IM CLI on ClawHub](https://clawhub.ai/lm203688/skills/cross-platform-im-cli)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with bash command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include platform-specific routing guidance, prerequisite checks, and preview or confirmation steps before messaging actions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

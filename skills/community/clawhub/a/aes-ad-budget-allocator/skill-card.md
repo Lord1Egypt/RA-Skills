@@ -1,45 +1,58 @@
-## Description: <br>
-Distributes ecommerce advertising budget across channels and campaigns based on ROAS targets, funnel stage, seasonality, and current performance data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Distribute advertising budget across channels and campaigns based on ROAS targets, funnel stage, and seasonality.
 
-## Publisher: <br>
-[leooooooow](https://clawhub.ai/user/leooooooow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leooooooow](https://clawhub.ai/user/leooooooow)
 
-## Use Case: <br>
-Ecommerce sellers, growth marketers, agencies, and brand teams use this skill to turn fixed monthly or quarterly ad budgets into channel, campaign, funnel-stage, and seasonal allocation plans with triggers for reallocating spend. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may include confidential campaign exports, margin data, or customer-level metrics while preparing an allocation plan. <br>
-Mitigation: Use aggregated channel metrics when possible and avoid pasting confidential or customer-level data into the agent session unless that use is acceptable for the organization. <br>
-Risk: Allocation recommendations depend on the freshness and quality of spend, revenue, ROAS, audience, and seasonality inputs. <br>
-Mitigation: Confirm the input checklist before planning and label thin, stale, or missing data as low confidence in the final allocation. <br>
+## Use Case:
 
+External ecommerce sellers, founders, brand managers, and agencies use this skill to build data-driven monthly or quarterly advertising budget allocations across channels, funnel stages, and seasonal windows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/leooooooow/aes-ad-budget-allocator) <br>
-- [Input Checklist for Budget Allocation](references/input-checklist.md) <br>
-- [Modeling Marginal ROAS](references/marginal-roas-model.md) <br>
-- [Seasonality Playbook](references/seasonality-playbook.md) <br>
-- [Ad Budget Allocation Output Template](references/output-template.md) <br>
-- [Allocation Quality Checklist](assets/quality-checklist.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown allocation plan with tables, assumptions, triggers, and review checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only skill; no scripts, credential handling, or hidden execution behavior found in security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: The agent may receive sensitive advertising performance, revenue, ROAS, audience, and seasonal planning data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only in environments where sharing that business data with the agent is acceptable.
+
+Risk: Budget allocation guidance could be mistaken for direct financial or ad-account changes.
+
+Mitigation: Treat outputs as advisory planning material and require human review before changing ad accounts or financial systems.
+
+## Reference(s):
+
+- [Input Checklist](references/input-checklist.md)
+- [Modeling Marginal ROAS](references/marginal-roas-model.md)
+- [Seasonality Playbook](references/seasonality-playbook.md)
+- [Ad Budget Allocation Output Template](references/output-template.md)
+- [Allocation Quality Checklist](assets/quality-checklist.md)
+- [ClawHub Skill Page](https://clawhub.ai/leooooooow/skills/aes-ad-budget-allocator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown tables and concise planning guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include budget allocation tables, funnel summaries, seasonality overlays, reallocation triggers, kill criteria, and assumptions.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

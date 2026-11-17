@@ -1,44 +1,57 @@
-## Description: <br>
-Smart TTS synthesizes speech by trying configured DashScope CosyVoice model and voice combinations until one succeeds. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Smart TTS synthesizes speech by automatically trying supported DashScope models and voices until generation succeeds.
 
-## Publisher: <br>
-[ppop0uuiu](https://clawhub.ai/user/ppop0uuiu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ppop0uuiu](https://clawhub.ai/user/ppop0uuiu)
 
-## Use Case: <br>
-Developers and operators use this skill to generate single or batch WAV speech files from provided text with an Aliyun DashScope API key. It is useful when a preferred model or voice may be unavailable and fallback synthesis options are needed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Text submitted for synthesis is sent to DashScope. <br>
-Mitigation: Only synthesize text that is appropriate to send to DashScope under the user's data-handling requirements. <br>
-Risk: A DashScope API key is required to run the scripts. <br>
-Mitigation: Use a limited-purpose API key and provide it through the DASHSCOPE_API_KEY environment variable or an approved runtime configuration. <br>
-Risk: Default WAV output paths can overwrite earlier generated audio files. <br>
-Mitigation: Move or rename generated WAV files when older outputs need to be retained. <br>
-Risk: The skill depends on the dashscope Python SDK at runtime. <br>
-Mitigation: Install the SDK from a trusted package source before running the scripts. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to generate single or batch WAV speech files from text with fallback across available DashScope model and voice combinations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ppop0uuiu/smart-tts) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with Python command examples and generated WAV audio files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires DASHSCOPE_API_KEY; default outputs are written under ~/.openclaw/workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: Text submitted for synthesis is sent to DashScope.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not submit secrets, private records, or confidential business content.
+
+Risk: Generated WAV files may overwrite existing files at the configured output path.
+
+Mitigation: Check or change the output path before running single or batch generation.
+
+Risk: The skill requires a DashScope API key.
+
+Mitigation: Provide DASHSCOPE_API_KEY through the environment and avoid placing credentials in shared files.
+
+## Reference(s):
+
+- [ClawHub smart-tts skill page](https://clawhub.ai/ppop0uuiu/skills/smart-tts)
+
+## Skill Output:
+
+**Output Type(s):** [Files, API Calls, Shell commands, Configuration instructions]
+
+**Output Format:** [WAV audio files with terminal status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses DASHSCOPE_API_KEY and writes generated audio to the OpenClaw workspace.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,60 @@
-## Description: <br>
-Uses multimodal vision models to describe the business meaning and data content of screenshots, charts, and document photos. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Minimax Image Understanding analyzes local images with MiniMax VLM, OpenAI GPT-4o, or Anthropic Claude Vision and returns a business-focused text description.
 
-## Publisher: <br>
-[aidescend](https://clawhub.ai/user/aidescend) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[aidescend](https://clawhub.ai/user/aidescend)
 
-## Use Case: <br>
-Developers and agents use this skill to send a local image to MiniMax VLM, OpenAI GPT-4o, or Claude Vision and receive a concise business-focused description. It is suited for interpreting screenshots, charts, and document photos when the selected provider is approved for the image content. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Selected images and prompts are sent to MiniMax, OpenAI, or Anthropic under the chosen provider's data policies. <br>
-Mitigation: Use only provider-approved data, and avoid confidential screenshots, regulated documents, IDs, credentials, or other sensitive images unless policy permits that transfer. <br>
-Risk: A custom MINIMAX_API_HOST can redirect image data and API credentials to an untrusted endpoint. <br>
-Mitigation: Keep MINIMAX_API_HOST set to an approved MiniMax endpoint and do not use untrusted hosts. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aidescend/minimax-image-understanding) <br>
-- [MiniMax API endpoint](https://api.minimaxi.com) <br>
-- [OpenAI Chat Completions endpoint](https://api.openai.com/v1/chat/completions) <br>
-- [Anthropic Messages endpoint](https://api.anthropic.com/v1/messages) <br>
+## Use Case:
 
+Developers and agents use this skill to describe screenshots, charts, and document photos with emphasis on content, data, and business meaning rather than visual element positions.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration guidance] <br>
-**Output Format:** [Plain text from a CLI command, with Markdown setup examples in the skill instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a local image path and one configured provider API key; optional model and prompt arguments change the selected provider and description focus.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can upload selected local images and prompts to external MiniMax, OpenAI, or Anthropic APIs.
+
+Mitigation: Use it only with images approved for those providers, and avoid confidential screenshots, credentials, regulated documents, or private files unless policy permits that upload.
+
+Risk: A custom MINIMAX_API_HOST can send MiniMax requests, image data, and credentials to an unintended host.
+
+Mitigation: Keep MINIMAX_API_HOST set to the intended trusted MiniMax endpoint and review host configuration before execution.
+
+Risk: The release was marked suspicious by the authoritative security evidence because file upload scope and image validation controls need review.
+
+Mitigation: Review the selected image path, file type, file size, and destination provider before running the script.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aidescend/skills/minimax-image-understanding)
+- [Publisher profile](https://clawhub.ai/user/aidescend)
+- [MiniMax API endpoint](https://api.minimaxi.com)
+- [OpenAI Chat Completions API endpoint](https://api.openai.com/v1/chat/completions)
+- [Anthropic Messages API endpoint](https://api.anthropic.com/v1/messages)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text image description, with Markdown setup and command examples in the skill documentation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Output focuses on business meaning, data content, and business logic. The script requests up to 1000 tokens for OpenAI and Anthropic responses.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

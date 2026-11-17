@@ -1,42 +1,55 @@
-## Description: <br>
-A lightweight file parsing skill that sends supported images or PDFs to WPS/Kingsoft OCR services and returns extracted text, handwriting, formulas, tables, documents, and seals as Markdown-oriented output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A lightweight, high-performance file parsing tool that extracts text, handwritten text, formulas, tables, documents, and seals from supported files into Markdown structure.
 
-## Publisher: <br>
-[randyliu111](https://clawhub.ai/user/randyliu111) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[randyliu111](https://clawhub.ai/user/randyliu111)
 
-## Use Case: <br>
-Developers and agents use this skill to extract text from user-provided document scans, screenshots, photos, invoices, business cards, and other supported files before editing, translating, or summarizing the content. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: User-provided files or URLs are sent to WPS/Kingsoft cloud services for OCR processing. <br>
-Mitigation: Use the skill only when the user is comfortable sharing the exact input with aiwrite.wps.cn, especially for IDs, contracts, invoices, screenshots, and private links. <br>
-Risk: The skill requires a WPS_OCR_ACCESS_KEY and documentation suggests storing it in an environment file. <br>
-Mitigation: Use a dedicated key, restrict access to any environment file that stores it, and rotate the key if it may have been exposed. <br>
+## Use Case:
 
+External users and developers use this skill to send supported images or PDFs to WPS/Kingsoft OCR and receive extracted text or Markdown for document digitization, translation, or editing workflows.
 
-## Reference(s): <br>
-- [WPS OCR access key](https://aiwrite.wps.cn/pdf/parse/accesskey/) <br>
-- [WPS OCR demo platform](https://aiwrite.wps.cn/pdf/parse/web/) <br>
-- [ClawHub skill page](https://clawhub.ai/randyliu111/wps-ocr) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON] <br>
-**Output Format:** [JSON containing status fields and a markdown_text value with recognized OCR content.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns API or validation errors when credentials, input type, file size, URL validation, network access, or OCR recognition fails.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill uploads local files or URLs to a third-party WPS/Kingsoft cloud OCR service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only when disclosure to that service is acceptable, and avoid sensitive IDs, contracts, financial records, or confidential screenshots unless approved.
+
+Risk: Command examples that include user-provided paths or URLs can expose users to shell injection if concatenated into a shell command.
+
+Mitigation: Invoke the Python script with an argument array or carefully quoted arguments rather than building shell commands by string concatenation.
+
+## Reference(s):
+
+- [ClawHub wps-ocr Release Page](https://clawhub.ai/randyliu111/skills/wps-ocr)
+- [WPS OCR Access Key Page](https://aiwrite.wps.cn/pdf/parse/accesskey/)
+- [WPS OCR Demo Platform](https://aiwrite.wps.cn/pdf/parse/web/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands, configuration, guidance]
+
+**Output Format:** [JSON from the OCR script containing status, message, and markdown_text; Markdown guidance with shell commands for agent use.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires WPS_OCR_ACCESS_KEY and sends supported local files or public URLs to WPS/Kingsoft cloud OCR.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence; artifact _meta.json lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,54 @@
-## Description: <br>
-Generates and sends daily work summaries from workspace notes using a configurable Markdown template. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates a daily work summary from workspace memory and optional activity sources, saves it as Markdown, and can deliver it to configured notification channels.
 
-## Publisher: <br>
-[rare](https://clawhub.ai/user/rare) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-AGPL-3.0 <br>
+## Publisher:
 
+[rare](https://clawhub.ai/user/rare)
 
-## Use Case: <br>
-Employees and agent operators use this skill at end of day to compile a work summary from daily memory, optional conversation or task context, and a report template, then save or deliver it to configured channels. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+AGPL-3.0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may read private workspace memory, conversations, or task status while building a report. <br>
-Mitigation: Keep conversation logs and task status opt-in, and preview or redact sensitive report content before scheduled runs. <br>
-Risk: Reports can be sent to external messaging services or incorrect channel targets. <br>
-Mitigation: Configure only trusted delivery targets and require review before multi-channel or scheduled sends. <br>
+## Use Case:
 
+Employees and agent operators use this skill to compile end-of-day work notes into a structured daily report and deliver it to configured recipients.
 
-## Reference(s): <br>
-- [Daily Report Skill on ClawHub](https://clawhub.ai/rare/daily-report-skill) <br>
-- [Config Example](references/config.example.md) <br>
-- [Daily Report Template](assets/template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Text, Files, Configuration, API calls] <br>
-**Output Format:** [Markdown report generated from a template, optionally delivered through configured messaging channels] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes memory/daily-reports/YYYY-MM-DD.md and can send the report to configured channels.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter lists 2.0.0) <br>
+Risk: The skill can read workspace notes or optional conversation logs and send summaries to external chat recipients.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a narrowly scoped configuration, trusted pre-approved recipients, and explicit opt-in for conversation-log access.
+
+Risk: Scheduled delivery can disclose sensitive work details before review.
+
+Mitigation: Preview or redact reports before cron delivery and require confirmation when destinations change.
+
+## Reference(s):
+
+- [Configuration Example](references/config.example.md)
+- [Daily Report Skill on ClawHub](https://clawhub.ai/rare/skills/daily-report-skill)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Files, Configuration, API Calls, Guidance]
+
+**Output Format:** [Markdown report with configuration-driven notification delivery]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes a dated report file and may send the report through configured chat channels.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

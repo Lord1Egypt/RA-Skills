@@ -1,42 +1,52 @@
-## Description: <br>
-Helps validate the completeness and integrity of trust attestation chains in AI agent ecosystems, identifying broken links, expired credentials, and missing vouching relationships that make verified trust claims unverifiable. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps validate the completeness and integrity of trust attestation chains in AI agent ecosystems by identifying broken links, expired credentials, and missing vouching relationships that make verified trust claims unverifiable.
 
-## Publisher: <br>
-[andyxinweiminicloud](https://clawhub.ai/user/andyxinweiminicloud) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[andyxinweiminicloud](https://clawhub.ai/user/andyxinweiminicloud)
 
-## Use Case: <br>
-Developers, security reviewers, and marketplace operators use this skill to audit trust attestation chains for completeness, expiry, circular vouching relationships, authority legitimacy, revocation propagation, and overall chain strength. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill may lead an agent to inspect private attestation documents or internal trust metadata. <br>
-Mitigation: Only provide private attestation documents or internal trust metadata when they are intended for the audit. <br>
-Risk: The skill declares curl and python3 as available binaries, so later agent-proposed commands could fetch or process external data. <br>
-Mitigation: Review any curl or python commands before execution. <br>
-Risk: Attestation chain audits can be incomplete when chain metadata is opaque or unpublished. <br>
-Mitigation: Treat missing chain metadata as an explicit limitation and avoid reconstructing unavailable links from unrelated provenance. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/andyxinweiminicloud/attestation-chain-auditor) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/andyxinweiminicloud) <br>
+## Use Case:
 
+Developers, trust reviewers, and marketplace operators use this skill to audit whether a skill or agent has a complete, current, and independently verifiable attestation chain from the subject to a root of trust.
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Guidance] <br>
-**Output Format:** [Markdown attestation chain audit report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include chain visualization, link-by-link validity assessment, circular dependency findings, authority legitimacy assessment, revocation results, chain strength rating, and recommended actions.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The agent may use curl or python3 to fetch or process attestation metadata during an audit.
+
+Mitigation: Provide only the attestation documents, URLs, or identifiers intended for review, and review any proposed fetches before allowing access to private systems.
+
+Risk: Opaque or unpublished chain metadata can limit the audit to identifying missing information rather than reconstructing the chain.
+
+Mitigation: Treat unknown, opaque, or undocumented links as verification gaps until supporting attestation metadata is supplied.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/andyxinweiminicloud/skills/attestation-chain-auditor)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown attestation chain audit report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses a user-provided skill or agent identifier, attestation chain document, or list of vouching relationships; no credential inputs are required.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,54 @@
-## Description: <br>
-Guides an agent to control a Mindcraft Minecraft bot through a local HTTP API without an embedded LLM. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Controls a Minecraft bot through the Mindcraft HTTP API without a built-in LLM, guiding external agents through status reads, action schema lookup, action execution, and task orchestration.
 
-## Publisher: <br>
-[Songjc0511](https://clawhub.ai/user/Songjc0511) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[songjc0511](https://clawhub.ai/user/songjc0511)
 
-## Use Case: <br>
-Developers and external agent builders use this skill to discover Mindcraft agents, inspect action schemas, execute bot commands, verify state, and recover from failed or stuck Minecraft bot actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill enables an agent to control a local Mindcraft Minecraft bot and can affect a real game world. <br>
-Mitigation: Use a trusted Mindcraft service, review the action schema before running tasks, and validate automation in a private or local world before broader use. <br>
-Risk: Unattended or bulk actions could produce unintended changes in important or shared worlds. <br>
-Mitigation: Run tasks stepwise, verify state after each action, and use the documented stop command before recovery actions when behavior diverges. <br>
-Risk: Request logs and state snapshots may contain local world or session details. <br>
-Mitigation: Keep generated request and state logs private, and delete them when they are no longer needed. <br>
+## Use Case:
 
+Developers and automation engineers use this skill to operate a local Mindcraft or Minecraft bot from OpenClaw or another external controller through REST API calls. It helps them discover connected agents, inspect action schemas, execute actions, verify state changes, and recover from failed or stuck actions.
 
-## Reference(s): <br>
-- [OpenClaw Call Reference](reference.md) <br>
-- [Call Examples](examples.md) <br>
-- [ClawHub Release Page](https://clawhub.ai/Songjc0511/play-minecraft) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, code, API calls, configuration] <br>
-**Output Format:** [Markdown with JSON, PowerShell, Python, and REST API examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include request payloads, response payloads, and before/after state snapshots for action verification.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Automated actions can affect a local Minecraft world or a shared world connected to the Mindcraft bot.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill first in a private or local world, confirm the API binding, and review planned actions before allowing automation in shared worlds.
+
+Risk: Incorrect parameters or long action chains can leave the bot in an unexpected state.
+
+Mitigation: Fetch the action schema before execution, run actions in small steps, read state after each action, and use the stop command before recovery actions when needed.
+
+## Reference(s):
+
+- [OpenClaw Call Reference](artifact/reference.md)
+- [Call Examples](artifact/examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with REST API endpoints, JSON payloads, PowerShell commands, and Python code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Recommends recording request and response payloads plus before-and-after state snapshots for each action.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

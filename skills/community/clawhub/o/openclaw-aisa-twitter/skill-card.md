@@ -1,46 +1,61 @@
-## Description: <br>
-Searches and reads X/Twitter data, supports social listening workflows, and can publish posts, like or unlike tweets, and follow or unfollow users after OAuth authorization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches and reads X (Twitter): profiles, timelines, mentions, followers, tweet search, trends, lists, communities, and Spaces. Publishes posts, likes/unlikes tweets, and follows/unfollows users after the user completes OAuth in the browser. Use when the user asks about Twitter/X data, social listening, posting, or interacting with tweets/users without sharing account passwords.
 
-## Publisher: <br>
-[chaimengphp](https://clawhub.ai/user/chaimengphp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chaimengphp](https://clawhub.ai/user/chaimengphp)
 
-## Use Case: <br>
-Developers and agent users use this skill to search Twitter/X, inspect profiles, timelines, mentions, followers, trends, lists, communities, and Spaces, and to perform authorized posting and engagement actions from an account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can post, like, follow, and unfollow through a Twitter/X account after OAuth authorization. <br>
-Mitigation: Manually verify every post, media file, target tweet, like, follow, and unfollow before executing commands. <br>
-Risk: Command output or shared transcripts can expose the AISA API key or authorization status. <br>
-Mitigation: Use a limited, revocable AISA API key and redact status, authorize, post, and engagement outputs before sharing logs. <br>
-Risk: Search and engagement workflows can act on the wrong account or tweet when natural-language targets are ambiguous. <br>
-Mitigation: Confirm ambiguous accounts or targets before action and rely on resolved tweet or user context rather than guessing identifiers. <br>
+## Use Case:
 
+External users and developers use this skill to search and analyze Twitter/X data, monitor accounts and trends, publish posts with OAuth authorization, and perform account interactions such as liking or following when explicitly requested.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/chaimengphp/openclaw-aisa-twitter) <br>
-- [OpenClaw homepage](https://openclaw.ai) <br>
-- [AIsa API Reference](https://docs.aisa.one/reference/) <br>
-- [OpenClaw Twitter Engagement](references/engage_twitter.md) <br>
-- [OpenClaw Twitter OAuth](references/post_twitter.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python and curl command examples plus JSON API responses from the service clients] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl, python3, AISA_API_KEY, and OAuth authorization for posting, liking, following, and unfollowing actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: server release metadata) <br>
+Risk: The configured AIsa API key may be exposed in command output.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a low-privilege or disposable AIsa key where possible and avoid status or authorize commands until key-printing behavior is fixed.
+
+Risk: Relay traffic can be redirected to arbitrary HTTP(S) hosts.
+
+Mitigation: Do not set TWITTER_RELAY_BASE_URL except to a trusted HTTPS endpoint.
+
+Risk: Posting, liking, unliking, following, and unfollowing are live changes to the authorized Twitter/X account.
+
+Mitigation: Review targets and content before execution, require OAuth authorization for account-changing actions, and do not report success unless the relay confirms it.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/chaimengphp/skills/openclaw-aisa-twitter)
+- [OpenClaw Homepage](https://openclaw.ai)
+- [AIsa API Reference](https://docs.aisa.one/reference/)
+- [OpenClaw Twitter OAuth](references/post_twitter.md)
+- [OpenClaw Twitter Engagement](references/engage_twitter.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses AISA_API_KEY and Python or curl commands to call Twitter/X read, posting, and engagement workflows.]
+
+## Skill Version(s):
+
+1.0.6 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

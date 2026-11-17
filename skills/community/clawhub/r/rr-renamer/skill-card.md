@@ -1,40 +1,53 @@
-## Description: <br>
-Use RenameRegex (RR.exe) as a generic Windows CLI bulk renamer from OpenClaw. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Runs RenameRegex (RR.exe) as a preview-first Windows PowerShell workflow for regex-based bulk file and directory renaming.
 
-## Publisher: <br>
-[NEXTAltair](https://clawhub.ai/user/NEXTAltair) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nextaltair](https://clawhub.ai/user/nextaltair)
 
-## Use Case: <br>
-Developers and operators use this skill to guide preview-first regex bulk renaming with RenameRegex on Windows, including recursive file or directory selection and explicit approval before applying changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Bulk rename operations can unintentionally affect many files or directories if the target folder or regex is too broad. <br>
-Mitigation: Use a narrow target folder, run the pretend preview first, inspect the proposed changes carefully, and apply only after explicit user approval. <br>
-Risk: The packaged artifact references RR.exe and a wrapper/logging workflow, but the wrapper script is not included in this package. <br>
-Mitigation: Verify RR.exe comes from a trusted source and do not rely on wrapper-provided logging or safeguards unless that wrapper is supplied separately. <br>
+## Use Case:
 
+Developers and operators use this skill when they need an agent to prepare safe RR.exe preview and apply commands for scoped regex bulk renaming on Windows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/NEXTAltair/rr-renamer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline PowerShell command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Preview-first workflow with explicit user approval before apply.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Bulk regex renaming can change unintended files when the root folder, pattern, or replacement is too broad.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Choose a narrow root folder, run the pretend preview first, and review the preview output before approving apply.
+
+Risk: The skill depends on an external RR.exe binary that is not bundled or validated by the artifact.
+
+Mitigation: Verify the RR.exe binary separately and install the skill only when RR.exe is already intended for the workflow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nextaltair/skills/rr-renamer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline PowerShell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Preview-first workflow; apply actions require explicit user approval.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

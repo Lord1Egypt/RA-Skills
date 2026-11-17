@@ -1,44 +1,55 @@
-## Description: <br>
-PDF document parsing tool based on local MinerU, supports converting PDF to Markdown, JSON, and other machine-readable formats. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+PDF document parsing tool based on local MinerU, supports converting PDF to Markdown, JSON, and other machine-readable formats.
 
-## Publisher: <br>
-[baokui](https://clawhub.ai/user/baokui) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[baokui](https://clawhub.ai/user/baokui)
 
-## Use Case: <br>
-Developers and document-processing teams use this skill to convert local PDF documents into structured Markdown and JSON for analysis, retrieval, publishing, and downstream agent workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Parsed PDF text and generated files may contain confidential document content. <br>
-Mitigation: Use a private fresh output directory for each PDF, avoid shared or synced locations for confidential documents, and delete generated Markdown, JSON, images, tables, and metadata when no longer needed. <br>
-Risk: Parsed document text could be mistaken for agent instructions. <br>
-Mitigation: Treat parsed PDF text as document content rather than executable or authoritative agent instructions. <br>
-Risk: Dependency installation and local file writes can affect the runtime environment. <br>
-Mitigation: Install and run the skill in a virtual environment or container and review the target output directory before execution. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/baokui/pdf-parser-mineru) <br>
-- [MinerU official documentation](https://opendatalab.github.io/MinerU/) <br>
-- [MinerU GitHub repository](https://github.com/opendatalab/MinerU) <br>
-- [MinerU online demo](https://mineru.net/) <br>
+## Use Case:
 
+Developers and document-processing teams use this skill to convert local PDF files into Markdown or structured JSON while preserving document structure, formulas, tables, and images. It is suited for academic papers, technical documents, OCR workflows, multilingual PDFs, and batch document processing.
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, json, text, shell commands, configuration] <br>
-**Output Format:** [JSON command results with generated Markdown, JSON, image, and table files on disk.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires absolute input and output paths; supports backend, OCR language, formula/table extraction, and page-range options.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Installation broadly changes Python packages by upgrading pip, installing uv, and installing the full MinerU dependency set.
+
+Mitigation: Install and run the skill only in an isolated virtual environment or container, and review or pin MinerU dependencies before use.
+
+Risk: Output handling can read unrelated files from the selected output directory.
+
+Mitigation: Use a fresh empty output directory for each run, and do not point output_dir at a home, project, or shared directory.
+
+## Reference(s):
+
+- [MinerU Official Documentation](https://opendatalab.github.io/MinerU/)
+- [MinerU GitHub](https://github.com/opendatalab/MinerU)
+- [MinerU Online Demo](https://mineru.net/)
+- [ClawHub Skill Page](https://clawhub.ai/baokui/skills/pdf-parser-mineru)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, JSON, Files, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [JSON status objects with generated Markdown, JSON, image, and document parsing files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are written to a user-selected output directory; parsing may take up to one hour per invocation.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,57 @@
-## Description: <br>
-Buffett-style Research Prioritization Assistant - decide whether a company deserves deeper research, what to check first, and get a copy-paste research prompt for your agent. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Buffett-style research prioritization assistant that helps decide whether a company deserves deeper research, what to check first, and provides a copy-paste prompt for another agent.
 
-## Publisher: <br>
-[choosenobody](https://clawhub.ai/user/choosenobody) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[choosenobody](https://clawhub.ai/user/choosenobody)
 
-## Use Case: <br>
-External users and agent operators use this skill to decide whether a public company or ticker deserves deeper fundamental research and to generate a compact follow-up research prompt. It is a triage aid, not financial advice or a buy, sell, or hold recommendation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Outputs may be mistaken for financial advice or used as a complete investment decision. <br>
-Mitigation: Treat outputs as research triage only and verify business quality, moat, risk, cash-flow quality, and valuation independently before acting. <br>
-Risk: Broad activation phrases may trigger on generic investment questions. <br>
-Mitigation: Use the skill only when the user is asking for Buffett-style company research prioritization, and clarify intent when a generic investment question could trigger it. <br>
-Risk: Users could overshare sensitive financial details even though the skill does not request them. <br>
-Mitigation: Avoid sharing brokerage logins, wallet keys, API keys, private portfolio files, or other sensitive financial details. <br>
+## Use Case:
 
+External users and developers use this skill to triage company or ticker research ideas, identify three checks to perform first, and generate a short prompt for deeper business analysis. It is not intended to provide financial advice, buy/sell/hold calls, price targets, or portfolio allocation guidance.
 
-## Reference(s): <br>
-- [What Buffett Would Do on ClawHub](https://clawhub.ai/choosenobody/buffett-do) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with a research-priority label, three verification checks, and a copy-paste research prompt] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Keeps outputs short and action-oriented; does not request API keys, wallet keys, brokerage logins, private files, or personal portfolio details.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.10 (source: server release evidence; artifact frontmatter lists 1.1.8 and artifact _meta.json lists 1.1.6) <br>
+Risk: Users may treat research-prioritization labels as financial advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present outputs as research triage only and avoid buy, sell, hold, price-target, or portfolio-allocation guidance.
+
+Risk: Sensitive financial credentials or private portfolio data could be exposed if supplied unnecessarily.
+
+Mitigation: Do not provide brokerage credentials, wallet keys, private portfolio files, or other sensitive financial data.
+
+Risk: A lightweight prompt can miss current facts or valuation context.
+
+Mitigation: Verify business quality, moat or thesis risk, and valuation sanity with current sources before relying on the result.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/choosenobody/skills/buffett-do)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with a short decision label, three verification checks, and a copy-paste research prompt.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code; no API keys or credentials requested.]
+
+## Skill Version(s):
+
+1.1.10 (source: server release metadata; artifact frontmatter reports 1.1.8)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

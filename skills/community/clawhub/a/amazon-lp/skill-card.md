@@ -1,38 +1,53 @@
-## Description: <br>
-Apply Amazon's Leadership Principles to product building, feature development, code review, and architecture decisions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Applies Amazon's Leadership Principles to product building, feature development, code review, architecture decisions, PRFAQs, prioritization, and quality checks.
 
-## Publisher: <br>
-[wholeinsoul](https://clawhub.ai/user/wholeinsoul) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wholeinsoul](https://clawhub.ai/user/wholeinsoul)
 
-## Use Case: <br>
-Developers, product builders, and technical reviewers use this skill to evaluate product ideas, feature plans, code reviews, architecture choices, prioritization, build-vs-buy decisions, and PRFAQs through an Amazon Leadership Principles lens. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can influence prioritization, review tone, or product direction without access to complete business context. <br>
-Mitigation: Treat its output as advisory guidance and have responsible reviewers validate recommendations before using them for decisions. <br>
+## Use Case:
 
+Developers, product builders, and reviewers use this skill to apply Amazon-style leadership principles when evaluating product ideas, designing features, reviewing code or architecture, writing PRFAQs, and prioritizing work.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wholeinsoul/amazon-lp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Text] <br>
-**Output Format:** [Markdown guidance with checklists, review prompts, and PRFAQ structure] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only output; no code execution, permissions, or data access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Broad trigger phrases may activate the skill during generic prioritization or review tasks when this framework is not desired.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Disable the skill or invoke a different skill when Amazon Leadership Principles should not influence the discussion.
+
+Risk: Guidance can affect product, feature, code review, and architecture decisions without direct access to customer evidence or system metrics.
+
+Mitigation: Review recommendations against customer complaints, data, tests, monitoring, and documented constraints before acting on them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wholeinsoul/skills/amazon-lp)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, text]
+
+**Output Format:** [Markdown or plain text guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution, persistence, credential access, or data movement identified in security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

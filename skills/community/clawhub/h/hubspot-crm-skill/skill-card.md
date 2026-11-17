@@ -1,41 +1,55 @@
-## Description: <br>
-Full HubSpot CRM automation - contacts, deals, companies, activities, and pipeline reports via the HubSpot API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Full HubSpot CRM automation — contacts, deals, companies, activities, and pipeline reports via the HubSpot API.
 
-## Publisher: <br>
-[fr3kstyle](https://clawhub.ai/user/fr3kstyle) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fr3kstyle](https://clawhub.ai/user/fr3kstyle)
 
-## Use Case: <br>
-Sales and operations teams use this skill to manage HubSpot CRM records from the command line, including contacts, deals, companies, activities, and pipeline reports. Developers and agents can use it to produce HubSpot API actions and JSON summaries for CRM workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can directly change or delete live HubSpot CRM records. <br>
-Mitigation: Use a dedicated least-privilege private app token, test commands on non-production records first, and require human review before update, association, stage-change, activity-log, or delete operations. <br>
-Risk: The HubSpot private app token grants access according to its assigned scopes. <br>
-Mitigation: Store the token only in the HUBSPOT_API_KEY environment variable, avoid broad write or delete scopes unless needed, and rotate the token if it may have been exposed. <br>
+## Use Case:
 
+Developers and CRM operators use this skill to run command-line HubSpot CRM workflows for contacts, deals, companies, activities, and pipeline reporting.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fr3kstyle/hubspot-crm-skill) <br>
-- [HubSpot API base endpoint](https://api.hubapi.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API calls, JSON, Configuration guidance] <br>
-**Output Format:** [Markdown usage examples and JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a HUBSPOT_API_KEY environment variable and the Python requests package.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can read, modify, and delete live HubSpot CRM records.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a least-privilege HubSpot private-app token, remove unused scopes, test against non-production data first, and manually confirm update or delete commands before running them.
+
+Risk: The required HubSpot token grants broad CRM authority if over-scoped or exposed.
+
+Mitigation: Store HUBSPOT_API_KEY outside shared files and rotate the token if it may have been disclosed.
+
+## Reference(s):
+
+- [HubSpot API](https://api.hubapi.com)
+- [ClawHub Skill Page](https://clawhub.ai/fr3kstyle/skills/hubspot-crm-skill)
+- [Publisher Profile](https://clawhub.ai/user/fr3kstyle)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a HubSpot private-app bearer token supplied through HUBSPOT_API_KEY.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

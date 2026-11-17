@@ -1,11 +1,11 @@
 # ILIB\_ExtendLibrarySearchProperty interface
 
-外部库搜索参数
+External library search property
 
 ## Signature
 
 ```typescript
-interface ILIB_ExtendLibrarySearchProperty<T> 
+interface ILIB_ExtendLibrarySearchProperty<T>
 ```
 
 ## Properties
@@ -14,78 +14,62 @@ interface ILIB_ExtendLibrarySearchProperty<T>
 
 Property
 
-
 </th><th>
 
 Modifiers
-
 
 </th><th>
 
 Type
 
-
 </th><th>
 
 Description
-
 
 </th></tr></thead>
 <tbody><tr><td>
 
 [page?](./ILIB_ExtendLibrarySearchProperty.md)
 
-
 </td><td>
-
 
 </td><td>
 
 number
 
-
 </td><td>
 
-_(Optional)_ 页数
-
+_(Optional)_ Page count
 
 </td></tr>
 <tr><td>
 
 [pageSize?](./ILIB_ExtendLibrarySearchProperty.md)
 
-
 </td><td>
-
 
 </td><td>
 
 number
 
-
 </td><td>
 
-_(Optional)_ 单页条目数
-
+_(Optional)_ Number of entries per page
 
 </td></tr>
 <tr><td>
 
 [query](./ILIB_ExtendLibrarySearchProperty.md)
 
+</td><td>
 
 </td><td>
 
+T &amp; { wd?: string; listByTitles?: Array&lt;string&gt;; classification?: [ILIB\_ExtendLibraryClassificationIndex](./ILIB_ExtendLibraryClassificationIndex.md) \| Array&lt;string&gt; }
 
 </td><td>
 
-T &amp; { wd?: string; listByTitles?: Array&lt;string&gt;; classification?: [ILIB\_ExtendLibraryClassificationIndex](./ILIB_ExtendLibraryClassificationIndex.md) \| Array&lt;string&gt;; }
-
-
-</td><td>
-
-查询参数
-
+Query parameter
 
 </td></tr>
 </tbody></table>
@@ -98,7 +82,7 @@ T &amp; { wd?: string; listByTitles?: Array&lt;string&gt;; classification?: [ILI
 
 # ILIB\_ExtendLibrarySearchProperty.page property
 
-页数
+Page count
 
 ## Signature
 
@@ -110,7 +94,7 @@ page?: number;
 
 # ILIB\_ExtendLibrarySearchProperty.pageSize property
 
-单页条目数
+Number of entries per page
 
 ## Signature
 
@@ -122,14 +106,10 @@ pageSize?: number;
 
 # ILIB\_ExtendLibrarySearchProperty.query property
 
-查询参数
+Query parameter
 
 ## Signature
 
 ```typescript
-query: T & {
-        wd?: string;
-        listByTitles?: Array<string>;
-        classification?: ILIB_ExtendLibraryClassificationIndex | Array<string>;
-    };
+query: T & { wd?: string; listByTitles?: Array<string>; classification?: ILIB_ExtendLibraryClassificationIndex | Array<string> };
 ```

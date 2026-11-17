@@ -1,40 +1,53 @@
-## Description: <br>
-Find nearby gyms when the user asks for fitness centers near them. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find nearby gyms. Invoke when user asks for fitness centers near me.
 
-## Publisher: <br>
-[mikeclaw007](https://clawhub.ai/user/mikeclaw007) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mikeclaw007](https://clawhub.ai/user/mikeclaw007)
 
-## Use Case: <br>
-Users and agents use this skill to find gyms near a user-provided or authorized location, with optional radius, result limit, and amenity filters. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may use a user's current or approximate location to search for gyms. <br>
-Mitigation: Request location permission before use and prefer approximate or grid-obfuscated coordinates when exact location is unnecessary. <br>
-Risk: The referenced standard response document is not packaged with the skill. <br>
-Mitigation: Treat the missing document as unavailable unless separately provided, and return a clear point-of-interest list using the fields available from the request and search results. <br>
+## Use Case:
 
+External users use this skill to request nearby fitness centers from an agent, with location, radius, limit, and optional amenity or rating filters.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/mikeclaw007/gyms) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Guidance, Structured data] <br>
-**Output Format:** [Markdown or structured point-of-interest list] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user-authorized location; default radius is 3000 meters, default limit is 20, and maximum limit is 50.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: The skill depends on user-authorized location data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Request location only for nearby-gym lookup and avoid retaining precise coordinates; use coarse grid handling when retention is necessary.
+
+Risk: The skill references a local STANDARD_RESPONSE.md file that is not bundled with the release.
+
+Mitigation: Clarify the response schema with the publisher or provide an equivalent bundled schema before relying on exact output formatting.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mikeclaw007/skills/gyms)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or structured text describing nearby gym results and possible lookup errors]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Expected result fields are described by a referenced standard response file that is not bundled with this release.]
+
+## Skill Version(s):
+
+0.1.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

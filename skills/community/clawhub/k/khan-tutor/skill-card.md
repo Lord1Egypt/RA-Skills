@@ -1,40 +1,58 @@
-## Description: <br>
-Scaffold explanations, exercises, and hints using the Khan Academy curriculum taxonomy and Socratic tutoring method. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scaffold explanations, exercises, and hints using the Khan Academy curriculum taxonomy and Socratic tutoring method.
 
-## Publisher: <br>
-[ElMoorish](https://clawhub.ai/user/ElMoorish) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[elmoorish](https://clawhub.ai/user/elmoorish)
 
-## Use Case: <br>
-External learners, students, and educators use this skill to receive guided tutoring, step-by-step explanations, practice exercises, hints, and concept breakdowns for K-12 and early college subjects. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad tutoring activation may trigger in more educational contexts than intended. <br>
-Mitigation: Use the skill when tutoring-style guidance is desired, and review its responses for fit before relying on them. <br>
-Risk: The skill tracks learner progress within the current conversation, which may include personal study details shared by the user. <br>
-Mitigation: Avoid sharing sensitive personal information unless it is intended to be used as lesson context. <br>
+## Use Case:
 
+External learners, educators, and agents use this skill to provide Socratic tutoring, concept explanations, guided problem solving, and targeted practice for K-12 and early college subjects.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ElMoorish/khan-tutor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown text with tutoring prompts, worked examples, hints, practice exercises, and session summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only tutoring output; no tools, credentials, or external access are requested by the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Broad learning-help phrasing may activate the tutoring posture when the user only wants a direct answer.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the learner's goal and desired level before applying Socratic scaffolding.
+
+Risk: The skill may suggest flashcard or quiz follow-up, but the security evidence says it does not install or run those integrations.
+
+Mitigation: Treat follow-up integrations as optional suggestions and require separately available skills before using them.
+
+Risk: Tutoring responses across broad subjects can be incorrect, incomplete, or mismatched to the learner's level.
+
+Mitigation: Review explanations for subject accuracy and adjust examples, hints, and practice difficulty to the learner's demonstrated understanding.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/elmoorish/skills/khan-tutor)
+- [ClawHub publisher profile](https://clawhub.ai/user/elmoorish)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain text tutoring responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include step-by-step explanations, hint ladders, worked examples, practice exercises, session summaries, and suggestions for flashcard or quiz follow-up.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

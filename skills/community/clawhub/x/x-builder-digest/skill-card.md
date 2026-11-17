@@ -1,42 +1,50 @@
-## Description: <br>
-Turns curated X/Twitter builder activity plus optional podcast and blog items into concise English and Chinese markdown digests with first-mention person blurbs and preserved source links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Turn curated X/Twitter builder activity plus optional podcast and blog items into concise English and Chinese markdown digests with first-mention person blurbs, link preservation, and an optional compressed executive-style output.
 
-## Publisher: <br>
-[keziqicoze09-del](https://clawhub.ai/user/keziqicoze09-del) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[keziqicoze09-del](https://clawhub.ai/user/keziqicoze09-del)
 
-## Use Case: <br>
-Developers, analysts, and editorial teams use this skill to transform already-collected X/Twitter, podcast, and blog feed JSON into bilingual markdown briefings for review or publication. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: User-provided text and URLs may be copied into the generated markdown digest. <br>
-Mitigation: Use curated, non-sensitive input and review generated markdown before publishing. <br>
+## Use Case:
 
+Developers, analysts, and publishing teams use this skill to transform structured X/Twitter, podcast, and blog feed JSON into bilingual daily digests or publishable briefings.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/keziqicoze09-del/x-builder-digest) <br>
-- [Sample Input JSON](references/sample-input.json) <br>
-- [Sample Chinese Output](references/sample-output-zh.md) <br>
-- [Demo English Digest](demo-output/digest-en.md) <br>
-- [Demo Chinese Digest](demo-output/digest-zh.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Files, Shell commands, Guidance] <br>
-**Output Format:** [English and Chinese Markdown digest files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Preserves source links, includes first-mention person blurbs when available, and can compress output into a more executive style on request.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: User-provided feed content can be copied into generated Markdown, including HTML-like text or unsafe URL schemes if the digest is later rendered publicly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use curated or trusted inputs where possible, and sanitize generated Markdown before publication or render it with raw HTML and unsafe URL schemes disabled.
+
+## Reference(s):
+
+- [Sample input JSON](references/sample-input.json)
+- [Sample Chinese output](references/sample-output-zh.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Files, Shell commands, Guidance]
+
+**Output Format:** [Markdown files with concise bilingual digest sections and preserved source links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes digest-en.md and digest-zh.md from structured JSON input.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

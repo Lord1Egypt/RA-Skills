@@ -1,45 +1,65 @@
-## Description: <br>
-AI Trading Assistant for quantumstocks.ru that supports market analysis, risk management, portfolio monitoring, trade journaling, and broker-connected trade execution through n8n MCP. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+QStrader is an AI trading assistant for quantumstocks.ru that helps an agent analyze markets, check risk limits, monitor portfolios, journal trades, and execute broker actions through an n8n MCP server.
 
-## Publisher: <br>
-[antonby77](https://clawhub.ai/user/antonby77) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[antonby77](https://clawhub.ai/user/antonby77)
 
-## Use Case: <br>
-Traders and finance-focused agents use this skill to analyze markets, check account and risk constraints, prepare trade theses, request user approval, and log trading decisions. It is intended for environments where the operator intentionally connects the agent to broker-capable n8n MCP infrastructure. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is designed for broker-connected trading workflows with account access and order, change, and close actions. <br>
-Mitigation: Install only when broker-capable infrastructure is intended; use a private authenticated MCP endpoint, begin with paper trading, and require separate explicit user approval for every order, change, or close action. <br>
-Risk: Trading setup and logging can expose credentials, account data, or trade history if environment files and logs are not controlled. <br>
-Mitigation: Review the .env file before setup, limit access to secrets and logs, and avoid storing raw account data unless retention and access controls are in place. <br>
-Risk: Weak scoping around live trading tools can let analysis, risk checks, and trade execution run in the same agent workflow. <br>
-Mitigation: Keep read-only analysis separate from write-capable broker actions, enforce stop-loss, take-profit, margin, and daily-loss checks before any proposed trade, and reject orders that fail those checks. <br>
+## Use Case:
 
+Developers and trading agents use this skill to collect technical, LSTM, news, fundamentals, account, and position data before making broker-connected trading decisions. It also provides workflow guidance and helper scripts for pre-trade risk checks and trade journaling.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/antonby77/qstrader) <br>
-- [MCP endpoint reference](references/mcp-endpoints.md) <br>
-- [Risk management rules](references/risk-rules.md) <br>
-- [Ticker format reference](references/ticker-formats.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, MCP calls, and Python helper-script usage] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include broker-action proposals and should be reviewed before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill is broker-connected and includes trade-opening, trade-closing, and order-modification workflows that can affect live positions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a demo or tightly limited broker account unless the MCP server enforces authentication, per-operation authorization, and server-side confirmation for every trade.
+
+Risk: The artifact discloses an n8n MCP trading endpoint with no authentication, and the server security summary flags weak procedural safety controls.
+
+Mitigation: Rotate the published endpoint if it is live, require authentication before installation, and do not expose write endpoints without explicit authorization controls.
+
+Risk: The release relies on local risk-checking logic for daily loss, margin, stop-loss, take-profit, and position-loss limits.
+
+Mitigation: Treat local risk checks as advisory until the loss-limit logic is fixed, tested, and backed by server-side enforcement.
+
+Risk: Setup examples source environment values and configure external services for broker, Qdrant, LightRAG, and OpenRouter access.
+
+Mitigation: Avoid sourcing untrusted .env files, use least-privilege API keys, and rotate credentials if the environment has been shared.
+
+## Reference(s):
+
+- [QStrader Skill Page](https://clawhub.ai/antonby77/skills/qstrader)
+- [OpenClaw](https://github.com/openclaw/openclaw)
+- [MCP Endpoints](artifact/references/mcp-endpoints.md)
+- [Risk Rules](artifact/references/risk-rules.md)
+- [Ticker Formats](artifact/references/ticker-formats.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, MCP calls, configuration examples, and optional JSON output from helper scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a configured n8n MCP server with broker access; helper scripts may call mcporter, Qdrant, and market-analysis endpoints.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

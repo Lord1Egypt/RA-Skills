@@ -1,41 +1,59 @@
-## Description: <br>
-Manage tasks and projects in 滴答清单 for task, to-do, reminder, and event workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage tasks and projects in 滴答清单. Use when user asks for tasks, to-dos, reminders, or event.
 
-## Publisher: <br>
-[ilooch](https://clawhub.ai/user/ilooch) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ilooch](https://clawhub.ai/user/ilooch)
 
-## Use Case: <br>
-External users and agents use this skill to install and authenticate the Dida CLI, then manage Dida projects and tasks with cautious selection, confirmation, and summary workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires access to a Dida account through OAuth PKCE or an API token. <br>
-Mitigation: Install and authenticate only when the user trusts @suibiji/dida-cli; prefer the browser OAuth flow over pasting an API token. <br>
-Risk: Task-changing commands can update, complete, move, or delete user tasks. <br>
-Mitigation: Review selected projects and tasks before changes, and require explicit confirmation before delete or bulk cleanup commands. <br>
+## Use Case:
 
+Agents use this skill to help users install and authenticate the Dida CLI, then list, create, update, complete, delete, and move Dida tasks and projects with confirmation for ambiguous or destructive actions.
 
-## Reference(s): <br>
-- [Dida homepage](https://dida365.com) <br>
-- [ClawHub skill page](https://clawhub.ai/ilooch/dida-cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and optional JSON command output handling] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the dida CLI and Dida account authentication through OAuth PKCE or an API token.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release evidence) <br>
+Risk: An unpinned global npm install can change behavior across releases and modify the user's global Node environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin a reviewed version of @suibiji/dida-cli when installing and prefer an isolated or local install when practical.
+
+Risk: Using a direct token login command can expose API tokens through shell history, logs, or chat transcripts.
+
+Mitigation: Prefer the browser OAuth PKCE login flow; use direct token authentication only when necessary and keep tokens out of chat, shell history, and logs.
+
+Risk: Task deletion or bulk changes can remove or irreversibly change user task data.
+
+Mitigation: Require explicit user confirmation and preview candidate task IDs, titles, and due dates before destructive or ambiguous operations.
+
+## Reference(s):
+
+- [Dida homepage](https://dida365.com)
+- [ClawHub skill page](https://clawhub.ai/ilooch/skills/dida-cli)
+- [ClawHub publisher profile](https://clawhub.ai/user/ilooch)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include short summaries of JSON CLI output when selecting projects or tasks.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

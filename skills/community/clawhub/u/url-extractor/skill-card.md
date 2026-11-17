@@ -1,38 +1,49 @@
-## Description: <br>
-Extract and validate URLs from text, presenting results in a clear format with brief descriptions and image previews. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extract and validate URLs from text, presenting results in a clear format with brief descriptions and image previews.
 
-## Publisher: <br>
-[openlark](https://clawhub.ai/user/openlark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[openlark](https://clawhub.ai/user/openlark)
 
-## Use Case: <br>
-External users and developers use this skill to extract web addresses from pasted text, validate accessibility when appropriate, and return a concise results table with titles, statuses, and image preview markers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: URL validation may contact websites found in user-provided text, including private, internal, or tracking links. <br>
-Mitigation: Use extraction without validation for sensitive text, or review and exclude private, internal, and tracking URLs before asking the agent to validate them. <br>
+## Use Case:
 
+Developers, analysts, and external users use this skill to extract web addresses from pasted text, validate accessibility, and receive a concise table with status, titles, and image-preview markers.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/openlark/url-extractor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with a summary count, status table, and optional image-preview section.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [For more than 20 extracted URLs, validation is prioritized for the first 20 and the remainder may be listed as pending.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Validating extracted URLs may cause the agent runtime to contact external, internal, localhost, cloud metadata, or private-network addresses found in user-provided text.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use this skill only in runtimes that block unsafe destinations, or avoid validation for untrusted text containing internal or private-network URLs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/openlark/skills/url-extractor)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Text, Guidance]
+
+**Output Format:** [Markdown table with counts, URL statuses, title or description text, and optional image preview notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [For large URL sets, validates the first 20 URLs and lists the rest as pending.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

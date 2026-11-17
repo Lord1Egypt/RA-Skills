@@ -1,45 +1,64 @@
-## Description: <br>
-Create, update, and delete calendar events and tasks in Lark (Feishu), including employee directory support for automatic name-to-user_id resolution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create, update, and delete calendar events and tasks in Lark (Feishu), with employee directory support for name-to-user_id resolution.
 
-## Publisher: <br>
-[litiao1224](https://clawhub.ai/user/litiao1224) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[litiao1224](https://clawhub.ai/user/litiao1224)
 
-## Use Case: <br>
-Employees and workplace automation agents use this skill to schedule Lark calendar events, manage attendees, and create or maintain Lark tasks with name-to-user-ID resolution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill has broad authority over business calendar and task data. <br>
-Mitigation: Install only when the publisher and Feishu tenant app credentials are trusted, and restrict Lark app scopes to the minimum needed. <br>
-Risk: Calendar actions may target the wrong default calendar or always include a specific attendee. <br>
-Mitigation: Before use, verify the default calendar ID and confirm that every created event should include Boyang. <br>
-Risk: Extra messaging helpers and employee fields may exceed the stated calendar and task workflow. <br>
-Mitigation: Review whether IM messaging helpers and excess employee fields are needed, and remove them if they are outside the deployment scope. <br>
+## Use Case:
 
+Employees and agents use this skill to manage Lark calendar events and tasks from command-line workflows, including attendee and assignee resolution from names. It is intended for a specific Lark tenant where the documented calendar, permissions, and employee directory behavior are acceptable.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/litiao1224/lark-calendar-litiao) <br>
-- [Lark Calendar Events API](https://open.larksuite.com/document/server-docs/calendar-v4/calendar-event/create) <br>
-- [Lark Calendar Attendees API](https://open.larksuite.com/document/server-docs/calendar-v4/calendar-event-attendee/create) <br>
-- [Lark Tasks API](https://open.larksuite.com/document/server-docs/task-v2/task/create) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, API calls, JSON, configuration guidance] <br>
-**Output Format:** [Command-line output and optional JSON responses from Lark API operations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Feishu app credentials and Lark app scopes for calendar, task, and contact operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter, package.json, server release evidence) <br>
+Risk: The skill can change real Lark calendar events, tasks, attendees, and task members.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation before deletes, attendee or member changes, and other write operations.
+
+Risk: Created calendar events automatically add a fixed attendee.
+
+Mitigation: Install only where the organization policy requires that attendee behavior, and verify the default calendar ID before use.
+
+Risk: The skill may access broad employee directory data for name resolution.
+
+Mitigation: Grant only the required calendar, task, and contact scopes, and avoid unrelated messaging scopes.
+
+Risk: Lark app credentials are required for operation.
+
+Mitigation: Protect .secrets.env and store FEISHU_APP_ID and FEISHU_APP_SECRET using the workspace's approved secret-handling process.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/litiao1224/skills/lark-calendar-litiao)
+- [Lark Calendar Events API](https://open.larksuite.com/document/server-docs/calendar-v4/calendar-event/create)
+- [Lark Calendar Attendees API](https://open.larksuite.com/document/server-docs/calendar-v4/calendar-event-attendee/create)
+- [Lark Tasks API](https://open.larksuite.com/document/server-docs/task-v2/task/create)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, API calls, JSON, Text]
+
+**Output Format:** [Markdown usage guidance with command-line examples and optional JSON responses from scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Lark app credentials and tenant-specific calendar, task, contact, and employee directory configuration.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, package.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,58 @@
-## Description: <br>
-OpenWRT router management and monitoring through the LuCI web interface, supporting DHCP lease lookup, online device listing, WiFi client management, network status checks, and related OpenWRT/LEDE router tasks without SSH. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manages and monitors OpenWRT routers through the LuCI web interface, including DHCP leases, connected devices, WiFi clients, network status, and package information.
 
-## Publisher: <br>
-[nary24](https://clawhub.ai/user/nary24) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nary24](https://clawhub.ai/user/nary24)
 
-## Use Case: <br>
-Developers, operators, and technically capable router owners use this skill to let an agent inspect and manage OpenWRT routers through LuCI RPC. Typical tasks include reviewing connected devices, DHCP leases, WiFi clients, system status, installed packages, and package installation requests. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can give an agent broad remote shell control over a target OpenWRT router using administrator credentials. <br>
-Mitigation: Install only for trusted agents, review commands before execution, and use the least-privileged router account available. <br>
-Risk: Router credentials may be stored in shared project files or passed to commands. <br>
-Mitigation: Avoid committing or sharing router passwords, restrict access to any configuration file that contains credentials, and rotate credentials if exposure is suspected. <br>
-Risk: LuCI RPC requests may use plain HTTP on the local network. <br>
-Mitigation: Prefer HTTPS or a trusted isolated network path, and avoid using the skill across untrusted networks. <br>
-Risk: Package installation or shell commands can change router behavior or availability. <br>
-Mitigation: Manually review package-install and configuration-changing requests before allowing the agent to run them. <br>
+## Use Case:
 
+Developers and network administrators use this skill to help an agent inspect OpenWRT, ImmortalWrt, and LEDE routers, summarize connected devices and WiFi status, check router health, and prepare LuCI RPC shell commands for approved administrative actions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nary24/openwrt-router) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and router status summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include LuCI RPC commands, parsed router inventory, DHCP lease summaries, WiFi client details, package lists, and operational guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.6 (source: server release metadata) <br>
+Risk: The skill can grant an agent high-impact administrative access to a router.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when this access is acceptable, avoid root credentials where possible, and require explicit review before configuration changes or package installation.
+
+Risk: Router credentials and LuCI sessions may be exposed when using insecure HTTP or storing passwords in agent-readable files or shell history.
+
+Mitigation: Prefer HTTPS or an encrypted tunnel, keep credentials out of TOOLS.md and shell history, and rotate credentials if they are exposed.
+
+Risk: LuCI RPC shell commands can disrupt network availability if incorrect commands are executed.
+
+Mitigation: Review generated commands before execution and limit routine use to read-only status checks unless a change has been explicitly approved.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/nary24/skills/openwrt-router)
+- [Publisher Profile](https://clawhub.ai/user/nary24)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce LuCI RPC command sequences that require router credentials and explicit review before configuration changes.]
+
+## Skill Version(s):
+
+1.1.6 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

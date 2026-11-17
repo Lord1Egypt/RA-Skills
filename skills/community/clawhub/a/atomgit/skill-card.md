@@ -1,45 +1,64 @@
-## Description: <br>
-AtomGit/GitCode repository-management skill that helps an agent call OpenAPI v5 for users, repositories, issues, pull requests, files, branches, and related account operations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AtomGit/GitCode repository management skill for operating user, repository, issue, pull request, file, branch, organization, enterprise, webhook, member, AI, and OAuth APIs through documented curl commands.
 
-## Publisher: <br>
-[weidongkl](https://clawhub.ai/user/weidongkl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[weidongkl](https://clawhub.ai/user/weidongkl)
 
-## Use Case: <br>
-Developers and repository maintainers use this skill to operate AtomGit or GitCode accounts and repositories through documented API calls, including user lookup, repository management, issues, pull requests, branches, files, releases, webhooks, and organization or enterprise endpoints. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives an agent broad AtomGit/GitCode account and repository authority through raw API calls. <br>
-Mitigation: Use a dedicated minimally scoped token and avoid broad long-lived credentials where possible. <br>
-Risk: Documented operations include destructive or sensitive changes such as delete, transfer, merge, collaborator, webhook, SSH-key, file, release, organization, and enterprise actions. <br>
-Mitigation: Require explicit human confirmation before executing sensitive account, repository, or organization changes. <br>
-Risk: The skill documents AI/media and OAuth endpoints beyond ordinary repository management. <br>
-Mitigation: Limit use to intended repository-management workflows unless the operator has reviewed and approved those additional endpoint categories. <br>
+## Use Case:
 
+Developers and engineers use this skill to generate and adapt AtomGit/GitCode API calls for repository administration, issue and pull request workflows, content access, organization management, and related platform operations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/weidongkl/atomgit) <br>
-- [GitCode API documentation](https://docs.gitcode.com/docs/apis/) <br>
-- [GitCode token management](https://gitcode.com/setting/token-classic) <br>
-- [AtomGit token management](https://atomgit.com/setting/token-classic) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with curl command examples and JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an ATOMGIT_TOKEN credential and may produce raw AtomGit/GitCode API requests.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.0 (source: server release metadata) <br>
+Risk: Broad AtomGit/GitCode tokens can expose account and repository operations beyond the immediate task.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the narrowest available token scopes, prefer read-only access for browsing or listing, and use separate short-lived tokens for write operations.
+
+Risk: Documented actions include deletion, repository transfer, SSH-key, collaborator, webhook, and pull-request merge operations.
+
+Mitigation: Require explicit user confirmation before these operations and verify the target owner, repository, branch, issue, or pull request before execution.
+
+Risk: The skill includes AI and media endpoints that may send prompts, audio, or video data to the platform.
+
+Mitigation: Use AI or media endpoints only when intentionally requested, and avoid sending sensitive content unless the user has approved the data flow.
+
+Risk: Some documented endpoints have known failures or unclear parameter requirements.
+
+Mitigation: Check the current API documentation and validate parameters with low-impact requests before relying on mutating calls.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/weidongkl/skills/atomgit)
+- [GitCode API documentation](https://docs.gitcode.com/docs/apis/)
+- [GitCode token management](https://gitcode.com/setting/token-classic)
+- [AtomGit token management](https://atomgit.com/setting/token-classic)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with curl command examples and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an ATOMGIT_TOKEN credential for authenticated API calls.]
+
+## Skill Version(s):
+
+3.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

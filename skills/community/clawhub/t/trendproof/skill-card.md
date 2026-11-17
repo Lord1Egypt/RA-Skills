@@ -1,44 +1,61 @@
-## Description: <br>
-TrendProof queries trendproof.dev to score keyword trend velocity and return direction, volume, CPC, peak timing, action hints, batch rankings, and related keyword suggestions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+TrendProof queries trendproof.dev for keyword trend velocity scores, trend direction, monthly search volume, CPC, peak window, action hints, batch comparisons, and related keyword discovery.
 
-## Publisher: <br>
-[akvise](https://clawhub.ai/user/akvise) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[akvise](https://clawhub.ai/user/akvise)
 
-## Use Case: <br>
-Developers, marketers, and content teams use this skill to check whether keywords or niches are rising, stable, or falling before planning content, ads, or product work. Agents can analyze a single keyword, compare batches, or request related keyword ideas. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: API keys may be exposed if pasted into chat or stored in the local plaintext configuration file. <br>
-Mitigation: Prefer TRENDPROOF_API_KEY through an environment variable or secret manager, avoid sharing keys in chat, and rotate any key that may have been exposed. <br>
-Risk: Keyword queries and batch-file contents are sent to trendproof.dev for analysis. <br>
-Mitigation: Review keywords for sensitive terms before use and keep batch files limited to the terms intended for the service. <br>
+## Use Case:
 
+External users and developers use TrendProof to check whether keywords, topics, and niches are rising, stable, or falling before creating content, running ads, or planning products.
 
-## Reference(s): <br>
-- [TrendProof service](https://trendproof.dev) <br>
-- [TrendProof API analyze endpoint](https://trendproof.dev/api/analyze) <br>
-- [TrendProof API related endpoint](https://trendproof.dev/api/related) <br>
-- [ClawHub TrendProof listing](https://clawhub.ai/akvise/trendproof) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/akvise) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown-formatted summaries, terminal tables, or JSON when requested] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May call trendproof.dev with user-provided keywords and optional location or language parameters.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.2 (source: server release evidence) <br>
+Risk: The skill handles a TrendProof API key and can save it in local configuration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer a temporary environment variable or limited API key, and check local config-file permissions when using configure.
+
+Risk: Keyword queries are sent to TrendProof for trend analysis.
+
+Mitigation: Avoid sending sensitive or confidential keywords unless that data sharing is acceptable.
+
+Risk: TRENDPROOF_BASE_URL can redirect requests to a non-default endpoint.
+
+Mitigation: Set TRENDPROOF_BASE_URL only when the endpoint is trusted.
+
+## Reference(s):
+
+- [TrendProof website](https://trendproof.dev)
+- [TrendProof analyze API](https://trendproof.dev/api/analyze)
+- [TrendProof related keywords API](https://trendproof.dev/api/related)
+- [TrendProof public leaderboard API](https://trendproof.dev/api/leaderboard?limit=10&sort=velocity)
+- [ClawHub skill page](https://clawhub.ai/akvise/skills/trendproof)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration guidance]
+
+**Output Format:** [Markdown-ready summaries, terminal tables, and optional JSON]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a TrendProof API key for authenticated endpoints; batch analysis accepts multiple keywords and can read newline-separated keyword files.]
+
+## Skill Version(s):
+
+1.2.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

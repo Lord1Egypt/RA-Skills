@@ -1,44 +1,63 @@
-## Description: <br>
-Self-healing China mirror source resolver that helps agents discover, validate, and configure domestic package, registry, and repository mirrors for developer tools in mainland China. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Self-healing China mirror source resolver that discovers, validates, and configures domestic mirror sources for common development tools when downloads are slow or timing out in mainland China.
 
-## Publisher: <br>
-[The-Ladder-of-Rrogress](https://clawhub.ai/user/The-Ladder-of-Rrogress) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[the-ladder-of-rrogress](https://clawhub.ai/user/the-ladder-of-rrogress)
 
-## Use Case: <br>
-Developers and engineers working in mainland China use this skill to diagnose slow or failed developer-tool downloads, test available mirror sources, and apply validated package-manager, registry, or repository configuration changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Mainland China <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can persistently change package-manager, Docker, operating-system package, and language-tool source configuration. <br>
-Mitigation: Require a preview of the exact tool, mirror URL, config file, backup path, commands, and rollback steps before applying any fix; manually approve sudo or administrator changes. <br>
-Risk: Search-discovered or untrusted mirrors can be unavailable, misleading, or malicious. <br>
-Mitigation: Prefer well-known HTTPS institutional mirrors, validate every candidate before use, and avoid unknown personal servers or unverifiable mirror lists. <br>
-Risk: Some package-manager options, such as pip trusted-host, can weaken certificate verification for a selected host. <br>
-Mitigation: Use trusted-host only for known institutional mirrors when necessary, and prefer mirrors with valid HTTPS certificates that do not require certificate-verification bypasses. <br>
+## Use Case:
 
+Developers and engineers use this skill to diagnose slow or failed package, source-code, model, and container downloads in mainland China, then select and apply a validated mirror configuration with rollback guidance.
 
-## Reference(s): <br>
-- [Configuration Templates](references/config-templates.md) <br>
-- [Mirror Validation Script](scripts/validate.sh) <br>
-- [ClawHub Skill Page](https://clawhub.ai/The-Ladder-of-Rrogress/china-mirror-resolver) <br>
+### Deployment Geography for Use:
 
+China (mainland)
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include proposed mirror URLs, config file paths, backup steps, validation results, and rollback steps before persistent changes are applied.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: The skill can persistently redirect package, source-code, model, and container downloads through third-party mirrors.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require the agent to show the exact old and new configuration, prefer official or institutional mirrors, and keep rollback commands available before applying changes.
+
+Risk: Using pip trusted-host can bypass TLS certificate verification for the configured host.
+
+Mitigation: Avoid trusted-host unless the user explicitly accepts the TLS trade-off and the mirror is a known institutional or major cloud provider source.
+
+Risk: GitHub accelerators may expose private repository paths or token-bearing URLs to third-party services.
+
+Mitigation: Do not use GitHub accelerators for private repositories, credentialed URLs, or other sensitive source-code access.
+
+Risk: Docker, apt, yum, shell-profile, and persistent environment changes can affect future builds and system package resolution.
+
+Mitigation: Back up existing configuration, merge rather than overwrite structured files, verify after changes, and document rollback steps.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/the-ladder-of-rrogress/skills/china-mirror-resolver)
+- [Configuration Templates](references/config-templates.md)
+- [Agent Skills specification](https://agentskills.io/specification)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose persistent development tool and system package source changes after validating candidate mirrors.]
+
+## Skill Version(s):
+
+2.1.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,61 @@
-## Description: <br>
-Publish Instagram images, Reels, and carousels, check Instagram publishing status, fetch recent Instagram direct messages, and send Instagram direct messages through a preconfigured MyBrandMetrics API connection. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Publish Instagram images, Reels, and carousels, check Instagram publishing status, fetch recent Instagram direct messages, and send Instagram direct messages through a preconfigured MyBrandMetrics API connection.
 
-## Publisher: <br>
-[clawbus](https://clawhub.ai/user/clawbus) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[clawbus](https://clawhub.ai/user/clawbus)
 
-## Use Case: <br>
-External users and developers use this skill to publish Instagram images, Reels, and carousels through a configured MyBrandMetrics connection, check publishing status, and fetch or send Instagram direct messages. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires sensitive MyBrandMetrics credentials and Instagram account identifiers. <br>
-Mitigation: Keep credentials out of committed files, prefer runtime arguments or environment variables in shared workspaces, and install only when the user trusts the skill and MyBrandMetrics with the connected account. <br>
-Risk: Publishing posts or sending direct messages can create external actions on the connected Instagram account. <br>
-Mitigation: Verify the exact account, caption, media, conversation ID, and message text before allowing posts or direct messages. <br>
+## Use Case:
 
+External users and developers use this skill to publish Instagram media, check publish status, and handle Instagram direct-message workflows through MyBrandMetrics after connecting Instagram Insights.
 
-## Reference(s): <br>
-- [Configuration](references/configuration.md) <br>
-- [Publishing Examples](references/publishing-examples.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/clawbus/clawbus-instagram-publish) <br>
-- [Clawbus](https://www.clawbus.com/) <br>
-- [MyBrandMetrics](https://mybrandmetrics.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON API responses from the bundled scripts.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Scripts print the real MyBrandMetrics JSON response and stderr errors; no token caps or post-processing constraints are specified.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.5 (source: server release metadata) <br>
+Risk: The skill can publish posts and send direct messages that affect an Instagram account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the Instagram account, media source, post type, caption, conversation ID, and exact message text before execution.
+
+Risk: Carousel publishing can fetch arbitrary remote URLs from the user's machine before upload.
+
+Mitigation: Use trusted local files or trusted media URLs only, and avoid untrusted remote carousel items until URL validation and size limits are added.
+
+Risk: Credentials may be exposed if API keys, connection IDs, or account IDs are stored carelessly.
+
+Mitigation: Prefer environment variables or runtime arguments in shared workspaces and do not commit real credentials.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/clawbus/skills/clawbus-instagram-publish)
+- [Configuration](references/configuration.md)
+- [Publishing Examples](references/publishing-examples.md)
+- [Clawbus Website](https://www.clawbus.com/)
+- [MyBrandMetrics](https://mybrandmetrics.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and JSON API responses from the bundled scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a MyBrandMetrics API key, Instagram connection ID, and for publishing workflows an Instagram account ID.]
+
+## Skill Version(s):
+
+1.1.5 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

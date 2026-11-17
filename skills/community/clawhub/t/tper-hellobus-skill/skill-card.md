@@ -1,42 +1,57 @@
-## Description: <br>
-Get real-time and scheduled bus arrival times for TPER buses in Bologna and Ferrara, Italy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Gets real-time and scheduled bus arrival times for TPER buses in Bologna and Ferrara, Italy.
 
-## Publisher: <br>
-[lore2601](https://clawhub.ai/user/lore2601) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[lore2601](https://clawhub.ai/user/lore2601)
 
-## Use Case: <br>
-External users and agents use this skill to look up TPER bus arrivals for specific numeric stop codes and line numbers in Bologna and Ferrara, including real-time arrivals and scheduled times. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill needs network access to the TPER Hellobus domain to return bus-arrival data. <br>
-Mitigation: Allow only the required Hellobus domain and install the skill only where external network requests are acceptable. <br>
-Risk: The skill demonstrates shell-based curl requests, which can be broader than a scoped HTTP request tool. <br>
-Mitigation: Use an environment that confirms shell commands before execution or replace the shell call with a scoped HTTP request tool. <br>
-Risk: Incorrect stop codes or line numbers can return no results or misleading arrival information. <br>
-Mitigation: Ask users to provide numeric TPER stop codes and line numbers, and report API errors clearly when the input does not match the service. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [TPER Hellobus API endpoint](https://hellobuswsweb.tper.it/web-services/hellobus.asmx/QueryHellobus) <br>
-- [ClawHub skill page](https://clawhub.ai/lore2601/tper-hellobus-skill) <br>
+## Use Case:
 
+Transit riders and agents assisting them use this skill to check TPER bus arrivals for Bologna or Ferrara when the request includes a numeric stop code and line number. It supports real-time arrivals when no time is provided and scheduled arrival lookups when a time is provided.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, API Calls, Guidance] <br>
-**Output Format:** [Markdown with bullet lists and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires numeric TPER stop codes and line numbers; real-time lookups require network access to the TPER Hellobus domain.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.0.2 (source: server release metadata) <br>
+Italy (Bologna and Ferrara transit use cases)
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Transit query details, including stop code, line number, and optional time, are sent to TPER's Hellobus service.
+
+Mitigation: Use the skill only for clear TPER transit requests and avoid adding unrelated personal data to the query.
+
+Risk: Ambiguous bus questions may target the wrong transit system, stop, or line.
+
+Mitigation: Ask for confirmation when the user has not provided TPER context, a numeric stop code, and a numeric line number.
+
+Risk: Arrival results depend on external Hellobus API availability and the validity of the provided stop and line combination.
+
+Mitigation: Report API failures or empty results clearly and suggest checking the stop code and line number or trying again later.
+
+## Reference(s):
+
+- [TPER Hellobus API endpoint](https://hellobuswsweb.tper.it/web-services/hellobus.asmx/QueryHellobus)
+- [ClawHub skill page](https://clawhub.ai/lore2601/skills/tper-hellobus-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown response with bullet-listed bus arrivals and optional shell command or API request details]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires network access to hellobuswsweb.tper.it plus numeric stop code and line number inputs.]
+
+## Skill Version(s):
+
+0.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,59 @@
-## Description: <br>
-Send images inline in Feishu chat by uploading them to the Feishu Open API and sending an image message with the returned image_key. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Sends inline images to Feishu chats by uploading through the Feishu Open API and sending an image message with the resulting image_key.
 
-## Publisher: <br>
-[jamesqin-cn](https://clawhub.ai/user/jamesqin-cn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jamesqin-cn](https://clawhub.ai/user/jamesqin-cn)
 
-## Use Case: <br>
-Developers and automation agents use this skill to send rendered image messages to Feishu users or chats when the standard message attachment path does not display images inline. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill exposes and uses Feishu app credentials in a way users should review before installation. <br>
-Mitigation: Do not use embedded Feishu secrets; rotate any real exposed secret, remove hardcoded credentials, and use a managed secret source. <br>
-Risk: The skill can send an image through a Feishu account to an unintended recipient or with the wrong file path. <br>
-Mitigation: Require explicit confirmation of the Feishu account, recipient, and exact absolute image path before sending. <br>
+## Use Case:
 
+Developers and automation agents use this skill to send images that render inline in Feishu chat when standard message-file delivery does not render images correctly.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/jamesqin-cn/send-feishu-image) <br>
-- [Feishu Upload Image API](https://open.feishu.cn/document/ukTMukTMukTM/ukTM5UjL5ETO14COxkTN/1images-1upload) <br>
-- [Feishu Send Message API](https://open.feishu.cn/document/ukTMukTMukTM/ukTM5UjL5ETO14COxkTN/1messages-1create) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Shell commands, Configuration instructions, API Calls, Guidance] <br>
-**Output Format:** [Markdown instructions with JavaScript and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Feishu app credentials, a recipient identifier, and an absolute path to a readable image file; supported image files are limited to 30 MB.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill evidence reports exposed and mishandled Feishu credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installation, rotate any real exposed Feishu app secret, and remove hardcoded credentials before use.
+
+Risk: Direct API sending can act under a Feishu app identity without the usual message-tool path.
+
+Mitigation: Require explicit user or administrator approval and use a narrowly scoped Feishu app identity.
+
+Risk: Temporary scripts can contain credentials while image sending is performed.
+
+Mitigation: Avoid writing secrets into temporary scripts, or delete temporary scripts immediately after execution and restrict file access.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jamesqin-cn/skills/send-feishu-image)
+- [Feishu Upload Image API](https://open.feishu.cn/document/ukTMukTMukTM/ukTM5UjL5ETO14COxkTN/1images-1upload)
+- [Feishu Send Message API](https://open.feishu.cn/document/ukTMukTMukTM/ukTM5UjL5ETO14COxkTN/1messages-1create)
+
+## Skill Output:
+
+**Output Type(s):** [code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JavaScript and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a temporary Node.js workflow for Feishu image upload and message sending.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

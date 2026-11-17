@@ -1,45 +1,66 @@
-## Description: <br>
-Assists academic writing by finding research sources, building evidence-mapped outlines, drafting cited essays, and optionally analyzing writing style locally. <br>
+## Description:
 
-This skill is for research and development only. <br>
+Assists with academic research and writing by collecting sources, building evidence-mapped outlines, drafting cited essays, and optionally improving style with local analysis.
 
-## Publisher: <br>
-[kevin0818-lxd](https://clawhub.ai/user/kevin0818-lxd) <br>
+This skill is for research and development only.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kevin0818-lxd](https://clawhub.ai/user/kevin0818-lxd)
 
-## Use Case: <br>
-Students, researchers, and writers use this skill to collect academic source metadata, organize evidence-backed outlines, draft cited essays, and review writing style for learning and research workflows. It is not intended for submitting AI-generated work as one's own. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may misuse generated essays for academic dishonesty. <br>
-Mitigation: Use the skill for research drafts, study aids, and learning; review institutional academic integrity policies before using any output. <br>
-Risk: Search queries are sent to Semantic Scholar and essay content may be processed by the configured LLM provider. <br>
-Mitigation: Avoid sensitive queries or essay content unless the agent's model and provider configuration are acceptable for that data. <br>
-Risk: Generated citations, source selections, and essay claims may be inaccurate or incomplete. <br>
-Mitigation: Manually verify selected sources, citation formatting, reference lists, and claims before relying on the output. <br>
+## Use Case:
 
+Students, researchers, and educators use this skill to find academic source metadata, create source-mapped outlines, format citations, and prepare research drafts or study aids. It is not intended for submitting AI-generated work as original academic assessment content.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/kevin0818-lxd/academic-composer) <br>
-- [Security and Intended Use](artifact/SECURITY.md) <br>
-- [Citation Formatting Rules](artifact/skill/references/citation_formats.md) <br>
-- [Essay Templates](artifact/skill/references/essay_templates.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Plain text or Markdown essays, outlines, source lists, citation sections, and style analysis tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include cited essay drafts, APA/MLA/Chicago reference sections, selected source lists, and optional local style metrics.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence and artifact metadata) <br>
+Risk: Shell command templates may include user-controlled topics or DOI strings.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installation, use an isolated environment, and pass user input through stdin or safely constructed argument arrays instead of shell interpolation.
+
+Risk: Essay content may be transmitted to a remote LLM provider depending on the host agent configuration.
+
+Mitigation: Avoid pasting sensitive or private essay text unless the agent's LLM data flow is understood; use a local model when content must remain on-device.
+
+Risk: A predictable temporary essay path such as /tmp/essay.txt can expose or overwrite draft content on shared systems.
+
+Mitigation: Prefer stdin or a unique, access-controlled temporary file for local style analysis.
+
+Risk: The skill can be misused to submit AI-generated work as original academic work.
+
+Mitigation: Keep the academic integrity disclaimer visible and limit use to research drafts, study aids, source organization, and citation learning.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kevin0818-lxd/skills/academic-composer)
+- [Publisher profile](https://clawhub.ai/user/kevin0818-lxd)
+- [Project homepage](https://github.com/kevin0818-lxd/academic-composer)
+- [Security and intended use](SECURITY.md)
+- [Essay templates](skill/references/essay_templates.md)
+- [Citation formatting rules](skill/references/citation_formats.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Plain text or Markdown with cited essay drafts, source lists, outlines, citation sections, and optional style-analysis tables.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May call local Python scripts for Semantic Scholar metadata search and local style analysis; essay generation and rewriting depend on the host agent's LLM configuration.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

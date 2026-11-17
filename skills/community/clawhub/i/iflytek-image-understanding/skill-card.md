@@ -1,45 +1,55 @@
-## Description: <br>
-Use when user asks to analyze an image, describe image contents, or answer questions about a picture. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Iflytek Image Understanding analyzes a single JPG or PNG image with iFlytek Spark Vision and returns a description or an answer to a user question.
 
-## Publisher: <br>
-[iflytek.skills](https://clawhub.ai/user/iflytek.skills) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[iflytek.skills](https://clawhub.ai/user/iflytek.skills)
 
-## Use Case: <br>
-Developers and agents use this skill to describe a user-selected image or answer targeted questions about its contents through iFlytek's Spark Vision image understanding service. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected images and prompts are sent to iFlytek's remote API for processing. <br>
-Mitigation: Use only images and prompts that your privacy, data handling, and compliance requirements allow you to share with iFlytek. <br>
-Risk: Images may contain IDs, receipts, medical documents, confidential screenshots, or other regulated information. <br>
-Mitigation: Screen inputs before use and avoid regulated or confidential images unless the third-party upload is explicitly approved. <br>
-Risk: The skill requires iFlytek API credentials in environment variables. <br>
-Mitigation: Provide credentials through the runtime environment, avoid committing them to files, and rotate them if exposed. <br>
+## Use Case:
 
+Developers and agent users use this skill to describe image contents, ask visual questions, or extract information from a selected image through iFlytek's image-understanding service.
 
-## Reference(s): <br>
-- [iFlytek Image Understanding service](https://www.xfyun.cn/services/image_understanding) <br>
-- [iFlytek image service documentation](https://console.xfyun.cn/services/image) <br>
-- [iFlytek console](https://console.xfyun.cn) <br>
-- [ClawHub skill page](https://clawhub.ai/iflytek.skills/iflytek-image-understanding) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and plain text image-analysis responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May output raw WebSocket JSON frames when requested; default responses are assembled text from the remote image understanding API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Selected image contents and prompts are sent to iFlytek's remote image-understanding API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only images and prompts approved for iFlytek processing, and avoid sensitive documents, faces, receipts, screenshots, or proprietary images unless that processing is acceptable under your policies.
+
+Risk: The skill requires user-provided iFlytek credentials.
+
+Mitigation: Provide credentials through managed environment variables or a secrets manager, limit access to them, and rotate them if exposure is suspected.
+
+## Reference(s):
+
+- [iFlytek Image Understanding Service](https://www.xfyun.cn/services/image_understanding)
+- [iFlytek Image Service Console Documentation](https://console.xfyun.cn/services/image)
+- [ClawHub Skill Page](https://clawhub.ai/iflytek.skills/skills/iflytek-image-understanding)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text response, with optional raw WebSocket JSON frames]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Single-image, single-turn command output; supports JPG, JPEG, and PNG images up to 4MB; response token limit is configurable from 1 to 8192.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,38 +1,52 @@
-## Description: <br>
-提供关于网红水族馆的推荐清单、打卡路线与指南。用户搜索网红水族馆或规划相关出行时调用。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+提供关于网红水族馆的推荐清单、打卡路线与指南。用户搜索网红水族馆或规划相关出行时调用。
 
-## Publisher: <br>
-[mike47512](https://clawhub.ai/user/mike47512) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[mike47512](https://clawhub.ai/user/mike47512)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users planning visits to popular aquariums use the skill to get venue recommendations, route or visit plans, logistics, photo spots, and on-site cautions.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill may mix aquarium visit planning with trail or route-planning criteria, which could lead to misleading logistics, reservation, or safety guidance.
+
+Mitigation: Review the requested scope and verify venue details, reservation requirements, transportation, weather, and safety information with current official sources before relying on the output.
+
+Risk: Venue conditions such as queue times, photography restrictions, minimum spend, and access rules can change.
+
+Mitigation: Confirm current on-site rules and costs with the venue before visiting or sharing recommendations.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users use this skill to ask an agent for popular aquarium recommendation lists, check-in routes, and trip-planning guidance. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The security summary reports that the aquarium label conflicts with hiking-style route and safety guidance, which could mislead users planning aquarium visits. <br>
-Mitigation: Review outputs before use and align recommendations with aquarium-specific facts such as exhibits, tickets, hours, transit, accessibility, crowd levels, and venue rules. <br>
+**Output Format:** [Markdown travel-planning guidance with checklist-style fields]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mike47512/aquariums) <br>
+**Other Properties Related to Output:** [Produces recommendations, route or visit details, timing, transportation, facilities, photo spots, crowd notes, weather alerts, equipment reminders, and risk notes.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text recommendations and planning guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution or external tool use is described by the artifact.] <br>
+0.1.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

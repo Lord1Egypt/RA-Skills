@@ -1,47 +1,62 @@
-## Description: <br>
-Bifrost SLPx helps agents query Bifrost liquid staking data and guide vETH wallet flows through the @bifrostio/slpx-cli CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Bifrost SLPx liquid staking via @bifrostio/slpx-cli: query vToken rates, APY, TVL, holders, and protocol information, and manage vETH balance, mint, redeem, and claim flows on supported EVM chains.
 
-## Publisher: <br>
-[bifrost-io](https://clawhub.ai/user/bifrost-io) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bifrost-io](https://clawhub.ai/user/bifrost-io)
 
-## Use Case: <br>
-External users and developers use this skill to query Bifrost vToken rates, APY, TVL, balances, and redemption status, and to prepare guarded vETH mint, redeem, and claim workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide mint, redeem, or claim flows that may broadcast real on-chain transactions from a configured wallet. <br>
-Mitigation: Use a limited-balance wallet and approve broadcasting only after verifying the chain, wallet, action, amount, and expected result. <br>
-Risk: Private key or signing material exposure could compromise wallet assets. <br>
-Mitigation: Keep private keys out of chat and logs, configure signing outside the agent session, and rotate any key that may have been exposed. <br>
-Risk: The workflow depends on the external @bifrostio/slpx-cli package and live Bifrost or RPC services. <br>
-Mitigation: Install only when you trust that package and review CLI JSON errors or unavailable-service responses before acting on results. <br>
+## Use Case:
 
+External users and developers use this skill to query Bifrost SLPx liquid-staking data and prepare vETH mint, redeem, claim, balance, and status workflows through the Bifrost CLI.
 
-## Reference(s): <br>
-- [@bifrostio/slpx-cli package](https://www.npmjs.com/package/@bifrostio/slpx-cli) <br>
-- [Command reference](references/commands.md) <br>
-- [Supported tokens and chains](references/tokens-and-chains.md) <br>
-- [Pre-broadcast checklist](references/pre-tx-checklist.md) <br>
-- [Signing key setup](references/private-key-env.md) <br>
-- [Error codes](references/errors.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON-aware explanations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses CLI JSON output as the grounding source for agent responses.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.3 (source: server release metadata and frontmatter) <br>
+Risk: The skill can ask an agent to run mutable npm package code while preparing wallet transactions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned and independently reviewed @bifrostio/slpx-cli version before installation or execution.
+
+Risk: Mint, redeem, and claim workflows may broadcast transactions on behalf of the configured signing wallet.
+
+Mitigation: Require the pre-broadcast checklist, explicit user approval, and independent verification of chain, amount, contract, and calldata before broadcast.
+
+Risk: Persistent plaintext signing-key setup can expose wallet credentials if reused or stored in shared shell configuration.
+
+Mitigation: Prefer a hardware wallet, isolated signer, or low-value operational wallet; do not use a primary wallet key or paste secrets into chat.
+
+## Reference(s):
+
+- [Bifrost SLPx CLI package](https://www.npmjs.com/package/@bifrostio/slpx-cli)
+- [Command reference](references/commands.md)
+- [Supported tokens and chains](references/tokens-and-chains.md)
+- [Pre-broadcast checklist](references/pre-tx-checklist.md)
+- [Error codes](references/errors.md)
+- [Signing key setup](references/private-key-env.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and summaries of JSON CLI output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses CLI JSON output as the grounding source; transaction broadcasts require checklist review and explicit user approval.]
+
+## Skill Version(s):
+
+0.1.3 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

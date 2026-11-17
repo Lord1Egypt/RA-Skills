@@ -1,0 +1,18 @@
+# Landscaping Bid Sheet - starting point
+# Copy this file, replace every empty value with your own data, keep the field names.
+contractor_name: ""
+license_info: ""
+customer_name: ""
+property_address: ""
+bid_date: ""
+phases:
+  - name: ""
+    tasks:
+      - description: ""
+        category: "materials|labor|equipment|sub"
+        quantity: 1
+        unit: "ea|hr|sqft|cy"
+        unit_price: 0.00
+maintenance_included: false
+exclusions:
+  - ""

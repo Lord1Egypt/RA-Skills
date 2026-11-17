@@ -1,43 +1,52 @@
-## Description: <br>
-Snibet-native OpenClaw tweet engine that generates exactly one high-performance X tweet for builders with strict formatting, creator modes, and anti-AI cleanup. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Snibet-native OpenClaw tweet engine. Generates exactly one high-performance X tweet for builders with strict formatting, creator modes, and anti-AI cleanup.
 
-## Publisher: <br>
-[aryanlabde](https://clawhub.ai/user/aryanlabde) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Apache-2.0 <br>
+## Publisher:
 
+[aryanlabde](https://clawhub.ai/user/aryanlabde)
 
-## Use Case: <br>
-External creators, founders, developers, indie hackers, and builder-focused teams use this skill to turn a single idea into one concise, post-ready X tweet. It supports creator modes, structural styles, tone selection, and optional voice examples while preserving a single-tweet output. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Apache-2.0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated tweets are intentionally optimized to trigger replies, disagreement, and engagement, which can produce polarizing or brand-sensitive wording. <br>
-Mitigation: Review each generated tweet before posting and adjust claims, tone, and audience fit against the account's publishing standards. <br>
-Risk: Server-resolved provenance is unavailable for this release. <br>
-Mitigation: Verify the publisher handle and package identity before relying on provenance-sensitive claims. <br>
+## Use Case:
 
+Founders, indie hackers, developers, AI creators, and build-in-public creators use this skill to turn a concrete idea into one polished X tweet with selectable creator mode, style, tone, and optional voice examples.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/aryanlabde/snibet-claw-for-x-virality) <br>
-- [Snibet Engine Spec](references/snibet-engine.md) <br>
-- [Creator Modes and Styles](references/modes-and-styles.md) <br>
-- [Validation and Cleanup](references/validation-and-cleanup.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [Plain text single tweet] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns exactly one tweet; no markdown, emojis, hashtags, em dashes, thread numbering, or CTA bait.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Generated posts may be intentionally tension-oriented and optimized for replies.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review each generated tweet before publishing to confirm it fits the account voice, audience, and reputational risk tolerance.
+
+## Reference(s):
+
+- [Snibet Engine Spec](references/snibet-engine.md)
+- [Creator Modes and Styles](references/modes-and-styles.md)
+- [Validation and Cleanup](references/validation-and-cleanup.md)
+- [ClawHub skill page](https://clawhub.ai/aryanlabde/skills/snibet-claw-for-x-virality)
+
+## Skill Output:
+
+**Output Type(s):** [text, guidance]
+
+**Output Format:** [Plain text single X tweet]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Exactly one tweet; no markdown, emojis, hashtags, em dashes, thread numbering, or CTA bait.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

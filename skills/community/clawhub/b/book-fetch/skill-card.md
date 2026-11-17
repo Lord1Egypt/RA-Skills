@@ -1,42 +1,60 @@
-## Description: <br>
-Download ebooks (epub/pdf) from Anna's Archive and upload them to MEGA automatically. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Download ebooks (epub/pdf) from Anna's Archive and upload them to MEGA automatically.
 
-## Publisher: <br>
-[zerone0x](https://clawhub.ai/user/zerone0x) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[zerone0x](https://clawhub.ai/user/zerone0x)
 
-## Use Case: <br>
-External users and agents use Book Fetch to search for a requested book, download an EPUB, PDF, or MOBI file through Anna's Archive/Libgen paths, and upload the result to a configured MEGA library. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can download books from Anna's Archive/Libgen sources and upload them to MEGA without a separate confirmation step. <br>
-Mitigation: Use --dry-run for search-only review, use --pick -1 or an explicit --pick value for ambiguous titles, and confirm you have the right to download and store the requested book. <br>
-Risk: Uploads depend on the local mega-put or rclone account configuration. <br>
-Mitigation: Verify which MEGA account or rclone remote is authenticated before running the upload path. <br>
-Risk: Downloaded files are cached locally in /tmp/books after the run. <br>
-Mitigation: Review and remove cached files after use when local retention is not intended. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Book Fetch on ClawHub](https://clawhub.ai/zerone0x/book-fetch) <br>
-- [Anna's Archive](https://annas-archive.li) <br>
+## Use Case:
 
+External users and developers use this skill to search for ebook titles, download selected epub/pdf/mobi files, and add them to a configured MEGA library.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May download ebook files to /tmp/books and upload them to a configured MEGA Books folder.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill downloads ebook files from third-party archive sites, which may create copyright, content safety, or malware exposure.
+
+Mitigation: Use only when the requested download is authorized, review the selected source before downloading, and scan downloaded files before opening or sharing them.
+
+Risk: The skill uploads downloaded files to a configured MEGA destination using local MEGA or rclone credentials.
+
+Mitigation: Confirm the upload destination before execution, use least-privilege credentials, and disable automatic upload when search-only behavior is desired.
+
+Risk: Broad activation wording may trigger download-and-upload behavior when a user intended only to search.
+
+Mitigation: Prefer dry-run search first and add an explicit confirmation step before any download or cloud upload.
+
+Risk: The downloader follows links from Anna's Archive and libgen.li without strict allowlisting beyond the implemented URL patterns.
+
+Mitigation: Restrict outbound requests to expected domains and reject unexpected redirect targets before downloading files.
+
+## Reference(s):
+
+- [Book Fetch ClawHub release](https://clawhub.ai/zerone0x/skills/book-fetch)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, files, guidance]
+
+**Output Format:** [Console text with downloaded ebook files and MEGA upload status]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Downloads are cached under /tmp/books and uploads target mega:/Books/ when MEGA or rclone is configured.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,47 +1,59 @@
-## Description: <br>
-Register and manage agent identity, reputation, and feedback on Solana and EVM chains using the multi-chain ERC-8004 Agent Registry protocol. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Register and manage agent identity, reputation, and feedback on Solana and EVM chains using the multi-chain ERC-8004 Agent Registry protocol.
 
-## Publisher: <br>
-[MonteCrypto999](https://clawhub.ai/user/MonteCrypto999) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[montecrypto999](https://clawhub.ai/user/montecrypto999)
 
-## Use Case: <br>
-Developers and agents use this skill to search agent registries, inspect reputation and feedback, manage wallets, and perform ERC-8004 registration or feedback operations across Solana and EVM chains. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can manage wallet material and initiate blockchain write operations through an external MCP server. <br>
-Mitigation: Use testnet first, use a dedicated low-balance wallet, keep secrets out of chat logs, and require explicit approval before wallet imports, transfers, feedback, registrations, URI updates, mainnet use, or other write operations. <br>
-Risk: The external @quantulabs/8004-mcp package is installed or run through npm tooling. <br>
-Mitigation: Install only if the package is trusted; pin and review the package where possible before deployment. <br>
-Risk: Unnecessary environment variables may be exposed to the MCP server process. <br>
-Mitigation: Pass only the environment variables required for the intended chain, network, and storage configuration. <br>
+## Use Case:
 
+Developers and autonomous-agent builders use this MCP server to discover, register, update, and evaluate agents across Solana and EVM registry networks. It supports read-only registry lookups as well as wallet-backed write operations such as registration, feedback, metadata updates, and payment-linked reputation workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/MonteCrypto999/8004-mcp) <br>
-- [Publisher profile](https://clawhub.ai/user/MonteCrypto999) <br>
-- [README.md](artifact/README.md) <br>
-- [Agent integration guide](artifact/skill.md) <br>
-- [8004-solana SDK](https://github.com/QuantuLabs/8004-solana) <br>
-- [agent0-ts SDK](https://github.com/agent0lab/agent0-ts) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with TypeScript, JavaScript, JSON, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May invoke MCP tools that return registry data, wallet status, unsigned transactions, transaction hashes, and configuration details.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.3 (source: server release evidence) <br>
+Risk: The external MCP package can access wallet, signing, mainnet transaction, and storage capabilities.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin and audit the package version, run it in a restricted environment with a clean allowlisted environment, keep testnet as the default, and require explicit user confirmation before signing or mainnet transactions.
+
+Risk: Shared or public IPFS storage can make wallet, endpoint, payment, or feedback metadata public and persistent.
+
+Mitigation: Avoid publishing sensitive metadata to shared IPFS storage unless the data is intentionally public and persistent; use controlled storage for private data.
+
+Risk: Wallet-backed write operations can spend real funds or submit irreversible on-chain updates.
+
+Mitigation: Use dry-run or cost-estimation flows before broadcasting, keep wallets minimally funded, and prefer testnets or lower-cost L2 networks for routine work.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/montecrypto999/skills/8004-mcp)
+- [README](artifact/README.md)
+- [AI agent integration guide](artifact/skill.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown documentation with code examples and JSON-like MCP tool responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include transaction hashes, unsigned transaction payloads, wallet status, registry records, reputation summaries, feedback records, cost estimates, and troubleshooting guidance.]
+
+## Skill Version(s):
+
+0.2.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

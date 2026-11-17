@@ -1,37 +1,53 @@
-## Description: <br>
-除秽·调优魄 helps agents analyze system performance, filter low-value noise, tune parameters, and produce cleanup-oriented optimization reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+除秽·调优魄 is a Chinese-language performance optimization skill that helps agents inspect system state, filter noise, tune parameters, clean environments, and report measured results.
 
-## Publisher: <br>
-[lt8899789](https://clawhub.ai/user/lt8899789) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lt8899789](https://clawhub.ai/user/lt8899789)
 
-## Use Case: <br>
-Developers and agent operators use this skill to diagnose slow environments, identify bottlenecks, recommend configuration changes, and report cleanup or tuning actions with before-and-after validation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lt8899789/chu-hui-optimizer) <br>
+Developers, operators, and agent builders use this skill to diagnose slow systems, identify bottlenecks, propose configuration and parameter tuning, and produce structured optimization reports. It also supports environment cleanup workflows when users explicitly request cleanup.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown optimization report with system status, bottleneck analysis, recommendations, executed actions, and validation notes.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose deletion, cache cleanup, process termination, startup changes, or cron monitoring actions that should be reviewed before approval.] <br>
+Global
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: Cleanup or tuning suggestions may delete files or change configuration if executed without review.
+
+Mitigation: Ask for diagnostics first, review proposed commands, require confirmation before deletion or configuration changes, and keep backups for important data.
+
+Risk: Performance recommendations may not improve every environment or workload.
+
+Mitigation: Apply changes incrementally, benchmark before and after each change, and continue monitoring after optimization.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lt8899789/skills/chu-hui-optimizer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown optimization reports with diagnostics, bottleneck analysis, recommendations, executed actions, and validation notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include proposed cleanup or tuning commands that should be reviewed before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,57 @@
-## Description: <br>
-Generate and stitch short videos via Google Veo 3.x using the Gemini API (google-genai). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate and stitch short MP4 video clips from text prompts and optional reference images using Google Veo 3.x via the Gemini API.
 
-## Publisher: <br>
-[Zero2Ai-hub](https://clawhub.ai/user/Zero2Ai-hub) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[zero2ai-hub](https://clawhub.ai/user/zero2ai-hub)
 
-## Use Case: <br>
-Developers and creators use this skill to generate short MP4 clips from prompts through Google Veo 3.x, with options to stitch segments, use reference images, and preserve continuity across longer videos. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Prompts and selected reference or last-frame images are sent to Google Gemini/Veo. <br>
-Mitigation: Use a scoped GEMINI_API_KEY through the environment and avoid submitting confidential or regulated media. <br>
-Risk: The script writes generated videos and temporary segment files to user-specified paths. <br>
-Mitigation: Review --filename and segment options before running so files are written only where expected. <br>
-Risk: Longer multi-segment videos depend on ffmpeg and external API quota or availability. <br>
-Mitigation: Install ffmpeg before using --segments greater than 1, and retry or adjust the workflow when the API returns quota or availability errors. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Zero2Ai-hub/skill-veo3-video-gen) <br>
+## Use Case:
 
+Developers and creators use this skill to generate short video clips from prompts, create longer videos by stitching multiple generated segments, and guide generation with style or product reference images.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Files, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks and local MP4 file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires GEMINI_API_KEY; multi-segment output requires ffmpeg and writes MP4 files to user-specified paths.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence release and artifact _meta.json) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Prompts and reference images are sent to Google's Gemini/Veo API.
+
+Mitigation: Avoid sensitive prompts or reference images, and use a private output directory for generated media.
+
+Risk: API keys may be exposed if passed directly on the command line.
+
+Mitigation: Prefer GEMINI_API_KEY, use a restricted key, and avoid passing secrets through shell history.
+
+Risk: Dependency setup and ffmpeg path handling need review before use.
+
+Mitigation: Review or pin Python dependencies and run a trusted ffmpeg binary from a known PATH.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zero2ai-hub/skills/skill-veo3-video-gen)
+- [zero2ai-hub publisher profile](https://clawhub.ai/user/zero2ai-hub)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, configuration, guidance, code]
+
+**Output Format:** [Markdown with inline bash code blocks and CLI guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The bundled script can save MP4 files and print MEDIA paths when generation succeeds.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

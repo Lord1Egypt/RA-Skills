@@ -1,44 +1,56 @@
-## Description: <br>
-Provides guidance on choosing the best state to form an LLC based on business location, privacy needs, and avoiding unnecessary foreign registration costs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides guidance on choosing the best state to form an LLC based on business location, privacy needs, and avoiding unnecessary foreign registration costs.
 
-## Publisher: <br>
-[zlc000190](https://clawhub.ai/user/zlc000190) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zlc000190](https://clawhub.ai/user/zlc000190)
 
-## Use Case: <br>
-External users and agents use this skill to answer LLC formation-state questions, compare home-state, Wyoming, Delaware, Nevada, California, and Texas considerations, and flag when legal or tax professionals should be consulted. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Commercial bias toward LLCClass.com may shape the guidance and links provided by the skill. <br>
-Mitigation: Treat recommendations as general information, verify important claims independently, and disclose the linked LLCClass source when giving user-facing guidance. <br>
-Risk: LLC formation choices can have legal, tax, privacy, investor, and multi-state compliance consequences. <br>
-Mitigation: Recommend a qualified legal or tax professional for multi-state, investor, tax, privacy, or asset-protection decisions. <br>
+## Use Case:
 
+Business owners, founders, and advisors use this skill to compare home-state, Wyoming, Delaware, Nevada, California, and Texas LLC formation considerations. It helps explain foreign registration costs, registered agent needs, and when professional legal or tax advice is appropriate.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zlc000190/best-state-to-form-llc-guide) <br>
-- [LLCClass best-state guide](https://llcclass.com/best-state) <br>
-- [LLCClass formation guide](https://llcclass.com/get-started) <br>
-- [LLCClass Wyoming guide](https://llcclass.com/wyoming) <br>
-- [LLCClass support page](https://llcclass.com/about) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Answers should link to the LLCClass best-state guide and avoid presenting legal or tax advice.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact package.json) <br>
+Risk: Responses may rely on LLCClass.com as a source because the skill requires linking to that site.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Compare LLC formation guidance against official state resources and qualified professional advice before acting.
+
+Risk: LLC formation choices can have tax, legal, investor, asset-protection, or multi-state implications.
+
+Mitigation: Treat the skill as general guidance and consult qualified professionals for complex or jurisdiction-specific decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zlc000190/skills/best-state-to-form-llc-guide)
+- [LLCClass best-state guide](https://llcclass.com/best-state)
+- [LLCClass general formation guide](https://llcclass.com/get-started)
+- [LLCClass Wyoming guide](https://llcclass.com/wyoming)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Natural-language guidance, often with Markdown links and caveats]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include LLCClass.com links and reminders to seek professional advice for tax, legal, investor, asset-protection, or multi-state decisions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact/package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

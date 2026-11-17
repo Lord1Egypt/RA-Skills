@@ -1,44 +1,59 @@
-## Description: <br>
-Benchmark harness for AI memory systems. Evaluates LongMemEval, LoCoMo, and ConvoMem datasets against any memory backend via the zouroboros-memory CLI. Includes Mimir judge for catching architectural drift. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Benchmark harness for AI memory systems. Evaluates LongMemEval, LoCoMo, and ConvoMem datasets against any memory backend via the zouroboros-memory CLI. Includes Mimir judge for catching architectural drift.
 
-## Publisher: <br>
-[marlandoj](https://clawhub.ai/user/marlandoj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[marlandoj](https://clawhub.ai/user/marlandoj)
 
-## Use Case: <br>
-Developers and engineers use this skill to run repeatable memory-system benchmarks against LongMemEval, LoCoMo, and ConvoMem-style datasets, then generate reports for comparing candidate memory backends. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Benchmark conversations, memory data, or evaluation prompts may be sent to model APIs when the GPT-based judge or answer generation path is used. <br>
-Mitigation: Use sanitized benchmark datasets, configure API credentials only in approved environments, and use a local model endpoint when external API transfer is not acceptable. <br>
-Risk: Memory writeback behavior can affect a persistent memory database if the benchmark is pointed at a real store. <br>
-Mitigation: Run benchmarks against an isolated database path via ZOUROBOROS_MEMORY_DB and avoid production memory stores unless writeback is intended. <br>
-Risk: Datasets, CLI paths, and endpoint environment variables are treated as trusted inputs. <br>
-Mitigation: Use trusted datasets, binaries, paths, and endpoints; review configuration before running benchmark jobs. <br>
+## Use Case:
 
+Developers and engineers use this skill to run repeatable memory-system benchmarks, compare LongMemEval, LoCoMo, and ConvoMem-style results, and generate reports for candidate memory backends.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/marlandoj/zouroboros-bench) <br>
-- [Zouroboros OpenClaw homepage](https://github.com/AlaricHQ/zouroboros-openclaw) <br>
-- [Runnable local benchmark example](https://github.com/AlaricHQ/zouroboros-openclaw-examples/tree/main/examples/bench-local) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Markdown, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands; CLI runs can produce benchmark data and reports.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js and benchmark/runtime environment variables for model judging and memory backend access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter, package.json, server release evidence) <br>
+Risk: Crafted benchmark inputs can reach shell-command execution paths.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted datasets, run the skill in an isolated workspace, and review generated commands before running them against shared systems.
+
+Risk: Benchmark conversation context can be sent to external model services when OpenAI-backed judging or answering is enabled.
+
+Mitigation: Use local-only model settings for sensitive data, or run with a restricted account and datasets cleared for external processing.
+
+Risk: Mimir writeback can persist changes into application memory state.
+
+Mitigation: Use an isolated benchmark database and keep rollback or disposable test data when evaluating non-production memory systems.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/marlandoj/skills/zouroboros-bench)
+- [OpenClaw homepage](https://github.com/AlaricHQ/zouroboros-openclaw)
+- [Runnable starter example](https://github.com/AlaricHQ/zouroboros-openclaw-examples/tree/main/examples/bench-local)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and configuration notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Benchmark runs may generate local run data and reports through the package CLI.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, package.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

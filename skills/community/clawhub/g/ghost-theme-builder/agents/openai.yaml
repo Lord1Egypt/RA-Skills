@@ -1,0 +1,4 @@
+interface:
+  display_name: "Ghost Theme Builder"
+  short_description: "Build, review, and debug Ghost CMS themes."
+  default_prompt: "Use $ghost-theme-builder to build, review, or debug a Ghost CMS theme."

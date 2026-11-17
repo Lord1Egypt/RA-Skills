@@ -1,41 +1,58 @@
-## Description: <br>
-Security audit tool for AI agent skills that scans skill packages for malware, credential theft, and suspicious patterns before installation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Security audit tool for AI agent skills. Scans skill packages for malware, credential theft, and suspicious patterns before installation. Defensive security tool with optional enterprise reporting (user-controlled destination).
 
-## Publisher: <br>
-[cyzlmh](https://clawhub.ai/user/cyzlmh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cyzlmh](https://clawhub.ai/user/cyzlmh)
 
-## Use Case: <br>
-Developers and security reviewers use this skill to audit AI agent skill packages, archives, or release bundles before installation. It produces risk-oriented findings to help identify malware-like behavior, credential access, data exfiltration, and code injection patterns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a third-party scanner binary. <br>
-Mitigation: Download the documented release and verify the published SHA-256 checksum before running it. <br>
-Risk: Optional reporting and external scanner modes can send data to user-selected destinations or tools. <br>
-Mitigation: Use --upload-url or --engine external only with destinations and tools you trust, and scan only intended directories. <br>
+## Use Case:
 
+Developers and security reviewers use this skill to audit AI agent skill packages, archives, or release bundles before installation. It supports scanning for suspicious behavior such as credential access, data exfiltration, code injection patterns, Unicode steganography, and process manipulation.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/cyzlmh/skillscan-wrapper) <br>
-- [cmic-skill-scanner Source](https://gitee.com/random_player/cmic-skill-scanner) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown and command-line examples with risk summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write reports to a user-specified output directory and can optionally upload reports only when the user supplies an upload URL.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.4.1 (source: server release metadata) <br>
+Risk: Installation depends on downloading and running an externally hosted compiled binary that was not included in the reviewed package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, independently verify the binary checksum and source provenance, or build from source before execution.
+
+Risk: Scanning broad private directories can expose more local file content than intended to generated reports.
+
+Mitigation: Limit scans to the specific skill package or release bundle that needs review.
+
+Risk: The optional upload URL and external-engine options can send report data outside the local machine.
+
+Mitigation: Use upload and external-engine options only with trusted destinations and after confirming what report data may leave the machine.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cyzlmh/skills/skillscan-wrapper)
+- [Gitee source repository](https://gitee.com/random_player/cmic-skill-scanner)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and scanner report descriptions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce local scan reports in a user-specified output directory and may optionally upload reports only when the user provides an upload URL.]
+
+## Skill Version(s):
+
+0.4.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,52 @@
-## Description: <br>
-Drafts and reviews ISO 22301 / NIST-aligned Business Impact Analyses, covering process inventory, impact-over-time scoring, recovery objectives, dependency mapping, gap analysis, and steering-committee sign-off. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill when a resilience, continuity, audit, or process owner wants to draft or review an ISO 22301 / NIST-aligned Business Impact Analysis.
 
-## Publisher: <br>
-[archlab-space](https://clawhub.ai/user/archlab-space) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[archlab-space](https://clawhub.ai/user/archlab-space)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Business-continuity coordinators, BCMS owners, audit teams, and process owners use this skill to draft or review a business impact analysis, including process inventory, impact scoring, recovery objectives, dependency mapping, gap analysis, and steering-committee review material.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The workflow is designed to collect sensitive business-continuity information, including operational dependencies, recovery capabilities, and continuity gaps.
+
+Mitigation: Use appropriately classified data, avoid entering actual PHI, PII, cardholder, or classified content, and handle generated outputs according to the organization's information-classification rules.
+
+Risk: Draft BIA outputs could be mistaken for approved recovery objectives, investment decisions, recovery strategies, or vendor SLA commitments.
+
+Mitigation: Treat outputs as draft material requiring BCMS owner and steering-committee review and sign-off before downstream use.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Business-continuity coordinators, BCMS owners, process owners, audit teams, and resilience stakeholders use this skill to draft a BIA package for review, including recovery objectives, dependency maps, gaps, recovery-strategy candidates, validation interview logs, and steering-committee sign-off material. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: BIA inputs and outputs can contain sensitive operational, vendor, dependency, recovery-objective, and continuity-planning information. <br>
-Mitigation: Use the skill only in an agent session approved for that confidentiality level and treat generated BIA material as confidential draft content for BCMS owner and steering-committee review. <br>
-Risk: Draft recovery objectives, criticality tiers, gaps, and recovery-strategy candidates could be mistaken for approved BCMS decisions. <br>
-Mitigation: Keep the outputs marked as draft material and require BCMS owner and steering-committee review before adopting recovery objectives, investments, vendor commitments, or strategy changes. <br>
+**Output Format:** [Markdown draft BIA package]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/archlab-space/business-impact-analysis-bia) <br>
-- [Publisher profile](https://clawhub.ai/user/archlab-space) <br>
-- [Project issue tracker](https://github.com/archlab-space/Open-Skill-Hub/issues) <br>
+**Other Properties Related to Output:** [Produces draft material for BCMS owner and steering-committee review; generated BIA outputs may contain sensitive business-continuity information.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Draft BIA package with registers, tier lists, recovery objectives, dependency maps, gap lists, recovery-strategy candidates, validation interview logs, sign-off blocks, and open questions.] <br>
+0.1.3 (source: server release evidence and changelog, released 2026-05-28)
 
-## Skill Version(s): <br>
-0.1.3 (source: changelog and server evidence, released 2026-05-28) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

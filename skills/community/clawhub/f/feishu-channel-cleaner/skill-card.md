@@ -1,38 +1,48 @@
-## Description: <br>
-Automatically detects and repairs conflicting Feishu channel configuration in OpenClaw, preserving the complete channel and helping restore bot responsiveness. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Detects and fixes Feishu channel configuration conflicts in OpenClaw by keeping the complete channel, merging allowlists and dmPolicy, removing duplicate channel entries, and prompting a Gateway restart.
 
-## Publisher: <br>
-[liuxuebin20260309](https://clawhub.ai/user/liuxuebin20260309) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[liuxuebin20260309](https://clawhub.ai/user/liuxuebin20260309)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+OpenClaw operators use this skill to repair Feishu bot non-response caused by duplicate feishu and openclaw-feishu channel entries, while preserving complete app credentials and merging access policies.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can change access-control settings, merge allowlists, change dmPolicy, delete a duplicate channel, and re-enable the retained Feishu channel.
+
+Mitigation: Review the planned OpenClaw configuration changes before running the skill, keep the generated backup, and restore the backup if access becomes too broad or the bot behaves unexpectedly.
+
+## Reference(s):
 
 
-## Use Case: <br>
-OpenClaw users and maintainers use this skill to clean duplicate Feishu channel entries in the local OpenClaw configuration, merge allowlists and direct-message policy, and prepare the gateway for restart. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can rewrite ~/.openclaw/openclaw.json, remove one duplicate Feishu channel entry, and clean unrecognized fields. <br>
-Mitigation: Use it only to repair Feishu channel conflicts in OpenClaw and keep the generated .bak backup available in case gateway behavior changes after restart. <br>
+**Output Format:** [Markdown or plain text with inline shell command guidance]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [Feishu Channel Cleaner on ClawHub](https://clawhub.ai/liuxuebin20260309/feishu-channel-cleaner) <br>
+**Other Properties Related to Output:** [May update ~/.openclaw/openclaw.json and create ~/.openclaw/openclaw.json.bak when executed.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration] <br>
-**Output Format:** [Plain text status messages and configuration file updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates a .bak backup before updating the OpenClaw configuration.] <br>
+1.1.1 (source: server release metadata; artifact frontmatter lists 1.1.0)
 
-## Skill Version(s): <br>
-1.1.1 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,59 @@
-## Description: <br>
-Daily Diary helps an agent review a user's daily conversation history, extract key events, decisions, and insights, and draft a structured Chinese diary entry for the user to review. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI assisted Chinese daily diary skill that reviews the day's conversation history, extracts key events, decisions, and insights, and generates a structured diary draft for user review.
 
-## Publisher: <br>
-[luyu925065781](https://clawhub.ai/user/luyu925065781) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[luyu925065781](https://clawhub.ai/user/luyu925065781)
 
-## Use Case: <br>
-External users who want a private daily journal use this skill to turn daily agent conversations into a structured diary draft. It is also useful for end-of-day work review, light reflection, and scheduled diary reminders. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reviews daily conversation history and may surface private or sensitive details in a diary draft. <br>
-Mitigation: Use it only where the conversation owner expects diary generation, keep the built-in sensitive-data filtering active, and review drafts before saving or sharing them. <br>
-Risk: Scheduled delivery can send diary drafts to a configured chat or notification channel. <br>
-Mitigation: Choose a private destination, verify the channel before enabling the cron example, and avoid broadcasting drafts to shared spaces. <br>
-Risk: Archived diary files may contain personal reflections or work context. <br>
-Mitigation: Store diary files in a private local directory and omit credentials, tokens, infrastructure details, and other sensitive identifiers from final entries. <br>
+## Use Case:
 
+External users and developers use this skill to turn daily agent conversation history into a private, structured Chinese diary draft, then review, supplement, and archive it locally.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/luyu925065781/daily-diary-zh) <br>
-- [Diary prompt library](references/quick-prompts.md) <br>
-- [Diary template](assets/diary-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Configuration, Guidance] <br>
-**Output Format:** [Markdown diary draft with optional JSON cron configuration example] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Drafts are intended for user review before archival and may be saved under ~/diary/YYYY/MM/YYYY-MM-DD.md after confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill processes broad daily conversation history and may access persistent profile or memory files to match the user's writing style.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when this private-history review is acceptable, keep diary drafts owner-only, and require review before recurring automatic saving or sending.
+
+Risk: The cron example includes group-message delivery for diary content, which could expose private diary drafts.
+
+Mitigation: Before enabling scheduled delivery, replace group chat delivery with a private owner-only destination and verify the channel and recipient.
+
+Risk: Diary drafts could accidentally include secrets, credentials, or personal sensitive information from conversation history.
+
+Mitigation: Apply the skill's sensitive-data filtering before saving or sending and omit uncertain sensitive content.
+
+## Reference(s):
+
+- [Daily Diary ClawHub skill page](https://clawhub.ai/luyu925065781/skills/daily-diary-zh)
+- [Diary template](assets/diary-template.md)
+- [Diary prompt question bank](references/quick-prompts.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, files, configuration, guidance]
+
+**Output Format:** [Markdown diary draft with optional local file archive and cron job JSON configuration]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Diary entries are intended for local storage under ~/diary/ after user review.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

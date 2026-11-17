@@ -1,43 +1,59 @@
-## Description: <br>
-Sensibo helps an agent list linked Sensibo devices, inspect device and AC state, and update AC state through an OOMOL-connected account. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use Sensibo to read device details and AC states, list linked devices, and update AC state through the OOMOL-connected account.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-External users and developers use this skill to operate Sensibo devices from an agent after the oo CLI is installed, the OOMOL account is signed in, and Sensibo is connected. It supports device discovery, state inspection, and confirmed AC state updates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can update AC state for a Sensibo device through the `set_ac_state` write action. <br>
-Mitigation: Confirm the exact device, payload, and intended AC state with the user before running any write action. <br>
-Risk: The skill requires access to an OOMOL-connected Sensibo account and depends on the local `oo` CLI installation. <br>
-Mitigation: Review the `oo` CLI installation path, connect only the intended Sensibo account, and use the connector only for requested Sensibo actions. <br>
+## Use Case:
 
+People using a Sensibo-connected account can ask an agent to inspect linked devices and their current or previous AC states, or change an AC state when they confirm the exact action.
 
-## Reference(s): <br>
-- [Sensibo homepage](https://home.sensibo.com) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [oo CLI install guide](https://cli.oomol.com/install-guide.md) <br>
-- [ClawHub skill page](https://clawhub.ai/oomol/oo-sensibo) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read actions may run directly; write actions require confirming the exact Sensibo device and AC state before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server evidence and SKILL.md frontmatter) <br>
+Risk: First-time setup executes a downloaded CLI installer that the security review says remains unverified.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and approve the CLI installation separately before running it.
+
+Risk: The CLI may make automatic changes to other agents' skills during installation or synchronization.
+
+Mitigation: Review those changes and disable skill synchronization if they are unwanted.
+
+Risk: Changing an AC state affects the user's Sensibo device.
+
+Mitigation: Confirm the exact action payload and effect with the user before running it.
+
+## Reference(s):
+
+- [Sensibo homepage](https://home.sensibo.com)
+- [Sensibo API documentation](https://support.sensibo.com/api/)
+- [oo CLI repository](https://github.com/oomol-lab/oo-cli)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Guidance]
+
+**Output Format:** [JSON action results with concise text summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [State-changing AC actions require confirmation of the exact payload and effect.]
+
+## Skill Version(s):
+
+1.0.5 (source: artifact frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,38 +1,51 @@
-## Description: <br>
-Creates ASCII art of a V shape by explaining the spacing logic and providing a small Python example for configurable heights. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates ASCII art of a V shape by explaining spacing logic and providing a Python snippet for customizable height.
 
-## Publisher: <br>
-[DuanC-Chao](https://clawhub.ai/user/DuanC-Chao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[duanc-chao](https://clawhub.ai/user/duanc-chao)
 
-## Use Case: <br>
-Developers, educators, and learners use this skill to understand or generate a text-based V shape, including the spacing calculation and a Python snippet they can adapt. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may copy and run generated sample code without reviewing it. <br>
-Mitigation: Review the displayed instructions and the Python snippet before use; the security evidence reports no concrete unsafe or hidden behavior. <br>
+## Use Case:
 
+Developers and learners use this skill to understand and generate simple ASCII V art in text, including how to calculate row spacing and adapt the height.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/DuanC-Chao/v) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown guidance with ASCII-art examples and a Python code snippet] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces human-readable instructions and sample code; it does not run commands or create files by itself.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Users may expect behavior beyond lightweight guidance or sample code for printing an ASCII V.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill for instructional text and sample code only, and review any copied code in the target environment before relying on it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/duanc-chao/skills/v)
+- [Publisher profile](https://clawhub.ai/user/duanc-chao)
+- [Artifact SKILL.md](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown guidance with a Python code block and ASCII text examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No external tools or runtime access required; sample code prints ASCII text to stdout.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

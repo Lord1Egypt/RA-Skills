@@ -1,38 +1,49 @@
-## Description: <br>
-Parse EDI X12 files (810 Invoice, 850 Purchase Order, 856 ASN). Extract structured data from ISA/GS envelopes, transaction sets, and segments. Use when working with EDI files, Walmart/retail supplier compliance, or extracting PO, invoice, and shipment data from X12 format. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Parse EDI X12 files (810 Invoice, 850 Purchase Order, 856 ASN). Extract structured data from ISA/GS envelopes, transaction sets, and segments. Use when working with EDI files, Walmart/retail supplier compliance, or extracting PO, invoice, and shipment data from X12 format.
 
-## Publisher: <br>
-[npfaerber](https://clawhub.ai/user/npfaerber) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[npfaerber](https://clawhub.ai/user/npfaerber)
 
-## Use Case: <br>
-Developers, analysts, and retail supplier teams use this skill to inspect EDI X12 810, 850, and 856 documents and extract envelope, purchase order, invoice, shipment, and line-item details into readable tables or CSV output. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: EDI documents can contain sensitive supplier, invoice, shipment, and customer-location data. <br>
-Mitigation: Provide only files or excerpts that are appropriate for the agent to process, and redact unnecessary sensitive values before sharing. <br>
-Risk: Incorrect extraction could misstate purchase order, invoice, shipment, or line-item details. <br>
-Mitigation: Review parsed tables or CSV output against the source EDI before using the results for compliance, fulfillment, or financial decisions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+Developers, engineers, and retail operations teams use this skill to interpret user-provided EDI X12 invoices, purchase orders, and advance ship notices and summarize key envelope, transaction, shipment, invoice, and line-item fields.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, CSV, Guidance] <br>
-**Output Format:** [Markdown table for single documents or CSV rows for bulk line-item parsing] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs extracted EDI fields such as transaction type, ISA sender and receiver, purchase order, ship date, totals, and item counts when present.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: EDI files can contain purchase orders, shipment details, invoice amounts, vendor numbers, and trading partner identifiers.
+
+Mitigation: Use the skill only with EDI files that are appropriate to share with the agent session, and review generated summaries before relying on them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/npfaerber/skills/edi-parser)
+- [ClawHub publisher profile](https://clawhub.ai/user/npfaerber)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown tables or CSV-style tabular summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Summaries are derived from user-provided EDI content; bulk parsing may produce one row per line item.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,53 @@
-## Description: <br>
-Converts Word documents (.docx and .doc) to clean HTML using the MinerU API and mineru-open-api CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts Word documents (.docx and .doc) to clean HTML through mineru-open-api, preserving formatting, tables, images, and layout when supported.
 
-## Publisher: <br>
-[veeicwgy](https://clawhub.ai/user/veeicwgy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[veeicwgy](https://clawhub.ai/user/veeicwgy)
 
-## Use Case: <br>
-Developers, content teams, and migration teams use this skill to convert Word documents into structured HTML for web publishing, CMS migration, email templates, and document digitization workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Word documents may contain confidential or regulated content that would be sent to a cloud document service. <br>
-Mitigation: Use the skill only with data approved for MinerU processing and avoid submitting confidential documents unless that service is authorized for the data. <br>
-Risk: The precision extraction path requires an API token. <br>
-Mitigation: Treat MinerU tokens as secrets, configure them through the supported authentication flow, and avoid placing tokens in prompts, logs, or checked-in files. <br>
-Risk: The skill relies on the external mineru-open-api package and service. <br>
-Mitigation: Verify the package and publisher before installation and review generated HTML before publishing. <br>
+## Use Case:
 
+Developers, content teams, and publishing teams use this skill to convert Word documents into HTML for web publishing, CMS migration, email templates, and document digitization workflows.
 
-## Reference(s): <br>
-- [Word to HTML on ClawHub](https://clawhub.ai/veeicwgy/word-to-html) <br>
-- [MinerU API token management](https://mineru.net/apiManage/token) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and operational guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides an agent to run mineru-open-api, choose flash-extract or extract, quote paths, and place generated HTML outputs in an output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: ClawHub release metadata) <br>
+Risk: Documents may be sent to the third-party MinerU service without an explicit privacy confirmation step.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for documents approved for that data flow and avoid confidential or regulated files unless that transfer has been reviewed.
+
+Risk: The installation guidance uses an unpinned global npm package.
+
+Mitigation: Prefer a pinned, local, non-admin install in a restricted environment and review the package before use.
+
+## Reference(s):
+
+- [MinerU API token management](https://mineru.net/apiManage/token)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Files, Configuration guidance]
+
+**Output Format:** [Markdown guidance with bash commands and generated HTML files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create an output directory under ~/MinerU-Skill/<name>_<hash>/ and may require a MinerU token for precision extraction or HTML export.]
+
+## Skill Version(s):
+
+0.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

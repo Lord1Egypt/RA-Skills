@@ -1,41 +1,54 @@
-## Description: <br>
-Calls Tencent Cloud FaceID CompareFace to compare two face images, return a similarity score, and indicate whether they appear to be the same person. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill compares two face images with Tencent Cloud FaceID CompareFace and returns a similarity score and same-person judgment.
 
-## Publisher: <br>
-[xiaoqiangjava](https://clawhub.ai/user/xiaoqiangjava) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiaoqiangjava](https://clawhub.ai/user/xiaoqiangjava)
 
-## Use Case: <br>
-Developers and operators use this skill when an agent needs to run a Tencent Cloud 1:1 face comparison workflow for two authorized images or image URLs and return a similarity result. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill processes biometric face images and may send local image data or supplied image URLs to Tencent Cloud for comparison. <br>
-Mitigation: Use only images you have permission to compare, use least-privileged Tencent Cloud credentials, and avoid remote URLs unless provider processing is intended. <br>
-Risk: Broad triggering and limited consent or privacy disclosure can lead to ambiguous or unintended face comparison requests. <br>
-Mitigation: Require explicit user intent and consent before running comparisons, and review image inputs before execution. <br>
+## Use Case:
 
+Developers and agents use this skill when they need to compare two face images, either from local image data or image URLs, and receive a Tencent Cloud similarity score with a threshold-based same-person judgment.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xiaoqiangjava/tencentcloud-faceid-compareface) <br>
-- [Tencent Cloud CompareFace API documentation](https://cloud.tencent.com/document/product/867/44987) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, text] <br>
-**Output Format:** [JSON] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns Score, ScoreDesc, IsSamePerson, FaceModelVersion, and RequestId.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Selected face images or image URLs are sent to Tencent Cloud for biometric comparison.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with appropriate consent and lawful authority, and avoid sensitive third-party faces unless privacy and compliance requirements are clear.
+
+Risk: Tencent Cloud credentials are required to call the API.
+
+Mitigation: Provide credentials with the minimum permissions needed for CompareFace and keep them out of prompts, logs, and shared artifacts.
+
+## Reference(s):
+
+- [Tencent Cloud CompareFace API documentation](https://cloud.tencent.com/document/product/867/44987)
+- [ClawHub skill page](https://clawhub.ai/xiaoqiangjava/skills/tencentcloud-faceid-compareface)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Shell commands, Configuration]
+
+**Output Format:** [JSON containing a similarity score, score description, same-person flag, model version, and request ID]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports image Base64 input, local image files converted to Base64, image URL input, optional quality control, and FaceModelVersion 2.0 or 3.0.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

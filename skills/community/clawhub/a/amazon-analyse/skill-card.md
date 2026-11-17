@@ -1,46 +1,62 @@
-## Description: <br>
-Analyzes Amazon competitor listings across copy strategy, reviews, keywords, and market dynamics, then saves a Markdown report to the reports directory. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Amazon Analyse analyzes Amazon competitor listings with Sorftime data, covering listing copy, reviews, keywords, market trends, and strategy recommendations, then produces a Markdown report.
 
-## Publisher: <br>
-[ChanaLii](https://clawhub.ai/user/ChanaLii) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chanalii](https://clawhub.ai/user/chanalii)
 
-## Use Case: <br>
-External operators and ecommerce analysts use this skill to investigate a competitor Amazon ASIN, collect Sorftime MCP product data, and produce a structured competitive intelligence report. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends product research queries and an API key to Sorftime MCP. <br>
-Mitigation: Install only when Sorftime is trusted for the relevant research data, and keep API keys out of generated reports and shared logs. <br>
-Risk: Generated Markdown reports become persistent business records under reports/. <br>
-Mitigation: Review reports for confidential product strategy, pricing, and market intelligence before sharing or committing them. <br>
-Risk: The artifact references broader Sorftime APIs, including keyword-library actions not clearly needed for reporting. <br>
-Mitigation: Restrict normal use to read-only Amazon analysis endpoints unless account-changing keyword-library actions are explicitly intended. <br>
+## Use Case:
 
+E-commerce operators, brand teams, and developers use this skill to analyze a competitor ASIN across supported Amazon marketplaces and generate a structured competitive intelligence report.
 
-## Reference(s): <br>
-- [Amazon Analyse ClawHub Page](https://clawhub.ai/ChanaLii/amazon-analyse) <br>
-- [Sorftime](https://www.sorftime.com) <br>
-- [Sorftime MCP API](references/sorftime-mcp-api.md) <br>
-- [API Tools Reference](references/api-tools-reference.md) <br>
-- [Report Management](references/report-management.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown report with inline shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Saves dated analysis reports under reports/ and may include decoded Sorftime MCP data summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill sends ASINs, keywords, and related analysis inputs to Sorftime.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when sharing those inputs with Sorftime is acceptable, and avoid including sensitive product plans in prompts or API arguments.
+
+Risk: The artifact shows API keys in command URLs and .mcp.json examples.
+
+Mitigation: Use a scoped, revocable API key and avoid placing real keys directly in shell history, command lines, or committed configuration files.
+
+Risk: The security summary notes broader account-changing keyword tools than the stated analysis task needs.
+
+Mitigation: Do not permit keyword collection changes unless explicitly requested, and verify the exact add, move, or remove action before execution.
+
+## Reference(s):
+
+- [API Tools Reference](references/api-tools-reference.md)
+- [Report Management](references/report-management.md)
+- [Sorftime MCP API](references/sorftime-mcp-api.md)
+- [Sorftime MCP Documentation](references/sorftime_mcp文档.txt)
+- [Sorftime](https://www.sorftime.com)
+- [Sorftime MCP Endpoint](https://mcp.sorftime.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown report with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Saves reports as reports/analysis_{ASIN}_{site}_{date}.md and may use Sorftime MCP data, including up to 100 reviews.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and auto changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

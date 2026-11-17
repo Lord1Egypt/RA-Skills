@@ -1,0 +1,4 @@
+interface:
+  display_name: "学稿"
+  short_description: "自动学习历史视频稿与Word，尽量少改成稿，并从人工修订持续更新写法"
+  default_prompt: "使用 $xuegao，自动学习我已有的稿件，按我的写法完成本次创作并吸收后续人工修改。"

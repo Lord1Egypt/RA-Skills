@@ -1,41 +1,54 @@
-## Description: <br>
-Configures local Whisper speech recognition with whisper.cpp so agents can convert Feishu, Telegram, and other voice messages into text offline. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Configures local Whisper speech recognition with whisper.cpp to convert voice messages from Feishu, Telegram, and similar channels into text.
 
-## Publisher: <br>
-[279458179](https://clawhub.ai/user/279458179) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[279458179](https://clawhub.ai/user/279458179)
 
-## Use Case: <br>
-Developers and operators use this skill to set up offline speech-to-text on Linux servers, including dependency installation, whisper.cpp build steps, model selection, audio conversion, transcription commands, and troubleshooting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Installing packages and building whisper.cpp can affect the host system. <br>
-Mitigation: Install only on machines where package installation and local builds are acceptable, and pin whisper.cpp to a trusted release or commit where possible. <br>
-Risk: Voice files and transcripts may contain private information. <br>
-Mitigation: Use unique restricted temporary filenames instead of shared paths such as /tmp/audio.wav, and delete audio and transcript files after processing when they may contain sensitive content. <br>
+## Use Case:
 
+Developers and engineers use this skill to set up offline speech-to-text on Linux servers for Chinese and multilingual voice messages. It provides installation, model selection, audio conversion, transcription, troubleshooting, and quantization guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/279458179/openclaw-whisper-asr) <br>
-- [whisper.cpp official documentation](https://github.com/ggml-org/whisper.cpp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline bash code blocks and command tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes local setup steps, model choices, audio conversion commands, transcription commands, paths, troubleshooting, and quantization guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill asks users to install and run mutable external code without version or integrity checks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin whisper.cpp to a known commit or release and verify model checksums where possible before use.
+
+Risk: Voice messages may contain sensitive information and temporary audio files can persist after transcription.
+
+Mitigation: Avoid running downloaded scripts as root and delete temporary audio files after transcription, especially for sensitive messages.
+
+## Reference(s):
+
+- [whisper.cpp](https://github.com/ggml-org/whisper.cpp)
+- [ClawHub skill page](https://clawhub.ai/279458179/skills/openclaw-whisper-asr)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes command examples for installing dependencies, building whisper.cpp, converting audio, running transcription, and quantizing models.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

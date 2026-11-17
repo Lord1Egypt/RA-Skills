@@ -1,6 +1,18 @@
 {
-  "ownerId": "kn75qxfry1fnmhnjajnt29773181t15v",
-  "slug": "video-audio-replace",
+  "name": "video-audio-replace",
   "version": "1.0.0",
-  "publishedAt": 1772181718101
+  "description": "Replace video audio with TTS while preserving original timing. Includes subtitle generation from video using Whisper.",
+  "files": [
+    "SKILL.md",
+    "replace.py",
+    "generate_subtitles.py",
+    "video-audio-replace"
+  ],
+  "requirements": {
+    "pip": ["requests", "srt", "faster-whisper", "edge-tts"],
+    "system": ["ffmpeg"]
+  },
+  "env": {
+    "ELEVENLABS_API_KEY": "Optional, for ElevenLabs TTS"
+  }
 }

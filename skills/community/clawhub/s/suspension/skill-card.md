@@ -1,42 +1,50 @@
-## Description: <br>
-悬架CAD图纸生成。当用户说"悬架"、"生成悬架图纸"、"做一个悬架"、"suspension"时使用此 skill。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides users through a Chinese-language suspension CAD drawing workflow for selecting a suspension product, collecting design parameters, calculating results, and creating a guest production sheet.
 
-## Publisher: <br>
-[liv09370](https://clawhub.ai/user/liv09370) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liv09370](https://clawhub.ai/user/liv09370)
 
-## Use Case: <br>
-Engineers and mechanical design users use this skill to generate suspension CAD drawing workflows by selecting a suspension product, entering design parameters, reviewing calculated results, and creating a guest production sheet. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Suspension design parameters are sent to jixietools.com, and the workflow can create a guest production sheet there. <br>
-Mitigation: Avoid proprietary or customer-sensitive engineering data unless the user trusts that service, and confirm before calculation or production-sheet creation. <br>
-Risk: Engineering calculations and production-sheet outputs may be unsuitable if inputs are wrong or the external service response is unexpected. <br>
-Mitigation: Have a qualified reviewer check the entered parameters, calculated results, and generated production sheet before using them for manufacturing or design decisions. <br>
+## Use Case:
 
+External users and mechanical design practitioners use this skill to collect suspension design inputs one at a time, call the JixieTools suspension workflow, review calculated parameters, and generate a no-login production sheet.
 
-## Reference(s): <br>
-- [Suspension ClawHub release](https://clawhub.ai/liv09370/suspension) <br>
-- [Publisher profile](https://clawhub.ai/user/liv09370) <br>
-- [JixieTools API base](https://jixietools.com/api/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, API calls, guidance] <br>
-**Output Format:** [Chinese Markdown with tables and inline shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides the user one parameter at a time and uses returned filenames and guest codes to continue the workflow.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server-resolved release metadata) <br>
+Risk: Suspension design inputs are sent to jixietools.com, and the resulting production sheet is exposed through a no-login guest link.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the workflow only when sending the design data to that external service and receiving a guest production link is acceptable; avoid proprietary or confidential engineering data unless that workflow is approved.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/liv09370/skills/suspension)
+- [JixieTools API base](https://jixietools.com/api/v1)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Chinese-language Markdown with tables and inline bash commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces stepwise prompts, calculated result summaries, production-sheet links, and progress updates.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

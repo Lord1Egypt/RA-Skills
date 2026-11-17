@@ -1,43 +1,56 @@
-## Description: <br>
-OpenClaw Visual turns OpenClaw messages, PhoenixClaw journals, and chat summaries into locally rendered shareable images. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw Visual helps agents turn OpenClaw content such as PhoenixClaw journals, chat logs, individual messages, summaries, and long-form text into shareable, locally rendered images.
 
-## Publisher: <br>
-[goforu](https://clawhub.ai/user/goforu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[goforu](https://clawhub.ai/user/goforu)
 
-## Use Case: <br>
-External OpenClaw users and developers use this skill to convert text, journals, and chat summaries into polished visual cards for sharing in chat and social workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may read local PhoenixClaw journals or OpenClaw session history and convert private content into shareable images. <br>
-Mitigation: Provide exact text when possible, confirm file paths and date ranges before scanning local records, and review generated images before sharing. <br>
-Risk: Rendering untrusted HTML or remote image URLs can expose the renderer to unsafe or unexpected content. <br>
-Mitigation: Avoid untrusted HTML and image URLs unless rendering is sandboxed, and prefer known local templates with trusted content. <br>
+## Use Case:
 
+External OpenClaw users and developers use this skill to convert personal notes, PhoenixClaw journals, chat records, quotes, photos, summaries, and article-style content into formatted PNG images for chat or social sharing.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/goforu/openclaw-visual) <br>
-- [Template design reference](references/templates.md) <br>
-- [Content parsing reference](references/content-parsing.md) <br>
-- [Local rendering setup](references/rendering-setup.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON content examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local image files through HTML/CSS templates and returns render metadata as JSON when the bundled script is run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.1 (source: SKILL.md frontmatter and package.json) <br>
+Risk: The skill may process private journals, chat logs, and summaries.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only the specific local files needed for the requested image, redact sensitive content before rendering, and preview generated images before sharing them.
+
+Risk: Rendering untrusted HTML or attacker-provided image URLs in a browser path could expose sensitive content or local network resources.
+
+Mitigation: Avoid untrusted HTML and unknown image URLs, run rendering in an isolated environment with no sensitive local network access, and pin or update browser-rendering dependencies before routine use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/goforu/skills/openclaw-visual)
+- [Template design specifications](references/templates.md)
+- [Content parsing rules](references/content-parsing.md)
+- [Local image rendering setup](references/rendering-setup.md)
+
+## Skill Output:
+
+**Output Type(s):** [Files, JSON, Shell commands, Guidance]
+
+**Output Format:** [PNG image files and JSON status, with Markdown guidance and shell command examples when invoked by an agent]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses local HTML/CSS templates with node-html-to-image by default and Playwright when advanced rendering is requested.]
+
+## Skill Version(s):
+
+0.0.1 (source: SKILL.md metadata, package.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

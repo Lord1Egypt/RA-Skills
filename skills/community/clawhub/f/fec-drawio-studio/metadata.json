@@ -13,7 +13,7 @@
     "shape-search"
   ],
   "summary": "Editable draw.io / diagrams.net workflow for technical diagrams, official shape lookup, brand symbols, Graphviz layout, code structure maps, validation, and export fallback.",
-  "version": "2.8.0",
+  "version": "2.9.0",
   "license": "MIT",
   "homepage": "https://github.com/bovinphang/frontend-craft",
   "repository": "https://github.com/bovinphang/frontend-craft",

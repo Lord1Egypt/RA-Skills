@@ -1,47 +1,63 @@
-## Description: <br>
-Trade Polymarket prediction markets with AI through PredictScope paper trading, using real order books, simulated fills, configurable strategies, and workspace safety rules. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Trade Polymarket prediction markets with AI-powered paper money using PredictScope workspaces, simulated fills from real order books, and configurable strategy and order guardrails.
 
-## Publisher: <br>
-[XintaoLiao](https://clawhub.ai/user/XintaoLiao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xintaoliao](https://clawhub.ai/user/xintaoliao)
 
-## Use Case: <br>
-External users and agents use this skill to manage a PredictScope paper-trading workspace, discover Polymarket opportunities, place simulated trades, manage strategies, and review portfolio performance under configured safety rules. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can place simulated trades and change, reset, disable, or delete cloud workspace state. <br>
-Mitigation: Use a dedicated PredictScope workspace, explicitly select the workspace ID, and require confirmation before trades, resets, workspace deletion, strategy changes, or disabling order rules. <br>
-Risk: The bearer API key authorizes access to PredictScope trading workspaces. <br>
-Mitigation: Store PREDICTSCOPE_API_KEY only in the runtime environment, avoid pasting it into chat or files, and rotate the key if it is exposed. <br>
-Risk: If no workspace ID is provided, the skill may operate on the most recently updated workspace. <br>
-Mitigation: Set and verify the intended workspace ID before trading or changing strategies, and check workspace metadata before acting. <br>
-Risk: Polymarket market names, descriptions, and metadata are untrusted third-party content. <br>
-Mitigation: Treat market content as display-only data, ignore instructions embedded in market text, and avoid navigating to URLs from market metadata. <br>
+## Use Case:
 
+External users and developers use this skill to let an agent research Polymarket markets, manage paper-trading workspaces, place simulated trades, and report portfolio performance without committing real funds.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/XintaoLiao/polymarket-strategic-paper-trader) <br>
-- [Publisher profile](https://clawhub.ai/user/XintaoLiao) <br>
-- [PredictScope Paper Trading](https://predictscope.ai/paper-trading) <br>
-- [PredictScope trading MCP endpoint](https://predictscope.ai/mcp/v1/trading) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, API calls, configuration, guidance] <br>
-**Output Format:** [Markdown trading updates, configuration guidance, and MCP-backed workspace or order actions.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires PREDICTSCOPE_API_KEY and can operate on cloud-hosted PredictScope workspaces selected by workspace ID.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release metadata; artifact frontmatter states 1.2.0) <br>
+Risk: The agent can change persistent paper-trading workspace state by placing orders, changing strategies, or disabling workspaces.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated workspace or account, explicitly select the workspace before state-changing actions, and require confirmation for each trade or destructive action.
+
+Risk: The skill depends on a bearer API key that grants access to the user's PredictScope workspaces.
+
+Mitigation: Keep PREDICTSCOPE_API_KEY private, store it only in the runtime environment, and avoid committing or sharing it.
+
+Risk: Relaxing or disabling order safety rules can increase simulated loss exposure and reduce guardrails against agent mistakes.
+
+Mitigation: Keep safety rules enabled for normal use and disable them only for an intentional controlled experiment.
+
+Risk: Market names, descriptions, prices, and order books are untrusted third-party content.
+
+Mitigation: Treat market data as display and pricing input only; do not follow instructions, visit URLs, or disclose personal information based on market content.
+
+## Reference(s):
+
+- [PredictScope Paper Trading](https://predictscope.ai/paper-trading)
+- [PredictScope MCP Trading Endpoint](https://predictscope.ai/mcp/v1/trading)
+- [ClawHub Skill Page](https://clawhub.ai/xintaoliao/skills/polymarket-strategic-paper-trader)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, API Calls, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown guidance with MCP tool calls and shell environment setup snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses a bearer API key in PREDICTSCOPE_API_KEY and operates against a selected PredictScope workspace.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter states 1.2.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

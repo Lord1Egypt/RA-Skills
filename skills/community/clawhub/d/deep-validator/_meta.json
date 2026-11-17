@@ -1,6 +1,21 @@
 {
   "ownerId": "kn76sr6rknd7syssezr3rs38dn83w855",
   "slug": "deep-validator",
-  "version": "2.5.2",
-  "publishedAt": 1776357907713
+  "version": "2.6.0",
+  "publishedAt": 1774901001330,
+  "contact": "novlease.contact@gmail.com",
+  "hostedAt": "https://deep-validator-production.up.railway.app",
+  "sourceCode": "https://github.com/nathanleclaire/Agent_Validator",
+  "agentEnvVars": [],
+  "serverEnvVars": [
+    "X402_WALLET_ADDRESS",
+    "X402_NETWORK",
+    "BASE_RPC_URL"
+  ],
+  "serverEnvVarsOptional": [
+    "MPP_TEMPO_RECIPIENT",
+    "MPP_SECRET_KEY",
+    "DEEP_VALIDATOR_API_KEY",
+    "WEBHOOK_SECRET"
+  ]
 }

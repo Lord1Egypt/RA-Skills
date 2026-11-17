@@ -5,7 +5,7 @@ import sys
 from openai import OpenAI
 
 # 配置百炼参数
-API_KEY = 'sk-76735bc919a549a7a643f6b401815840'
+API_KEY = 'REDACTED-SECRET'
 BASE_URL = "https://dashscope.aliyuncs.com/compatible-mode/v1"
 
 client = OpenAI(

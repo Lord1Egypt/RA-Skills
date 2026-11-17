@@ -9,18 +9,18 @@
       "expectations": [
         "Uses create_namespace with cluster_id and storage_policy",
         "Uses create_tkc_cluster with k8s_version, worker_count=3",
-        "Shows dry_run preview before actual creation"
+        "Shows the confirm=False preview (blast_radius) before actual creation"
       ]
     },
     {
       "id": 2,
       "prompt": "Scale the production TKC cluster to 5 workers and get me the kubeconfig",
-      "expected_output": "Cluster scaled, kubeconfig returned",
+      "expected_output": "Cluster scaled, kubeconfig written to a file",
       "files": [],
       "expectations": [
         "Uses scale_tkc_cluster with worker_count=5",
-        "Uses get_tkc_kubeconfig to retrieve kubeconfig",
-        "Returns kubeconfig content or file path"
+        "Uses issue_tkc_kubeconfig with output_path to write the kubeconfig to a file",
+        "Reports the file path and does not print the kubeconfig or its token"
       ]
     },
     {

@@ -9,8 +9,8 @@
     "transferable",
     "performance"
   ],
-  "summary": "Frontend Craft skill for Web Workers.",
-  "version": "2.6.0",
+  "summary": "Move expensive browser computation to workers with clear messaging and transferable data.",
+  "version": "2.9.0",
   "license": "MIT",
   "homepage": "https://github.com/bovinphang/frontend-craft",
   "repository": "https://github.com/bovinphang/frontend-craft",
@@ -32,7 +32,7 @@
     "openclaw",
     "generic-skill-runtime"
   ],
-  "description": "Use when moving expensive browser work off the main thread with Web Workers, SharedWorker, worker pools, Comlink, transferable objects, Vite/Webpack worker integration, or UI responsiveness fixes. Do not use for lightweight synchronous work or DOM manipulation; Chinese triggers include Web Worker, 后台线程, 主线程阻塞.",
+  "description": "Use when moving expensive browser work off the main thread with Web Workers, SharedWorker, worker pools, Comlink, transferable objects, Vite/Webpack worker integration, or UI responsiveness fixes. Do not use for lightweight synchronous work or DOM manipulation; Chinese triggers include Web Worker, background thread, main thread blocking.",
   "source": "skills/fec-web-workers",
   "references": [
     "references/advanced-workers.md",

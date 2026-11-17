@@ -1,0 +1,31 @@
+[
+  {
+    "id": "eval-01-new-skill",
+    "prompt": "帮我创建一个新 Skill，功能是自动生成周报",
+    "expected_behavior": "触发 mu-skill-creator，从阶段1开始收集需求（输入输出示例、类型判断、不适用场景）",
+    "grading": {
+      "triggers_correctly": true,
+      "starts_at_stage_1": true,
+      "asks_for_examples": true
+    }
+  },
+  {
+    "id": "eval-02-audit-existing",
+    "prompt": "我刚改完 mu-interview-shrimp 的 SKILL.md，帮我检查一下",
+    "expected_behavior": "触发审计模式，跑质量检查清单 + 行数检查 + AP扫描，不走完整创建流程",
+    "grading": {
+      "triggers_correctly": true,
+      "runs_audit_not_full_flow": true,
+      "checks_line_count": true,
+      "checks_ap_list": true
+    }
+  },
+  {
+    "id": "eval-03-should-not-trigger",
+    "prompt": "帮我写一个 Python 脚本来爬取网页数据",
+    "expected_behavior": "不应触发 mu-skill-creator，这是普通开发任务应走 mu-dev-workflow",
+    "grading": {
+      "does_not_trigger": true
+    }
+  }
+]

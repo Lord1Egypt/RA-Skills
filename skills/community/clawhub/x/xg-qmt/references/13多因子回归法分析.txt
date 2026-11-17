@@ -1,0 +1,56 @@
+#encoding:gbk
+'''
+13多因子回归法分析
+，专注于大QMT量化交易框架的深度训练与智能支持。我能够提供精准的代码提示、输出优化以及策略修改服务，帮助你高效开发和迭代量化交易策略。我的创造者是小果量化，，欢迎联系微信：xg_quant。，只做学习使用，不做投资参考，注意风险
+'''
+import statsmodels.api as sm
+from statsmodels import regression
+import pandas as pd
+import numpy as np
+
+
+def init(ContextInfo):
+	ContextInfo.accID = '11000234670'
+	ContextInfo.number = 0
+def handlebar(ContextInfo):
+	if ContextInfo.number == 0:
+		VOL20_M_Z=pd.read_csv('C:/Users/SAMSUNG/Desktop/duoyinzi/VOL20_M_Z.csv',index_col=[0])
+		VSTD20_M_Z=pd.read_csv('C:/Users/SAMSUNG/Desktop/duoyinzi/VSTD20_M_Z.csv',index_col=[0])
+		Variance20_M_Z=pd.read_csv('C:/Users/SAMSUNG/Desktop/duoyinzi/Variance20_M_Z.csv',index_col=[0])
+		Skewness20_M_Z=pd.read_csv('C:/Users/SAMSUNG/Desktop/duoyinzi/Skewness20_M_Z.csv',index_col=[0])
+		Kurtosis20_M_Z=pd.read_csv('C:/Users/SAMSUNG/Desktop/duoyinzi/Kurtosis20_M_Z.csv',index_col=[0])
+		returns=pd.read_csv('C:/Users/SAMSUNG/Desktop/duoyinzi/returns.csv',index_col=[0])
+		
+		#需要填充缺失值，因为回归分析不能有缺失值
+		
+		VOL20_ols=OLS(returns.loc['20171212':'20181109'],VOL20_M_Z.loc['20171211':'20181108'])
+		VSTD20_ols=OLS(returns.loc['20171212':'20181109'],VSTD20_M_Z.loc['20171211':'20181108'])
+		Variance20_ols=OLS(returns.loc['20171212':'20181109'],Variance20_M_Z.loc['20171211':'20181108'])
+		Skewness20_ols=OLS(returns.loc['20171212':'20181109'],Skewness20_M_Z.loc['20171211':'20181108'])
+		Kurtosis20_ols=OLS(returns.loc['20171212':'20181109'],Kurtosis20_M_Z.loc['20171211':'20181108'])
+		
+		VOL20_ols.to_csv('C:/Users/SAMSUNG/Desktop/duoyinzi/VOL20_ols.csv')
+		VSTD20_ols.to_csv('C:/Users/SAMSUNG/Desktop/duoyinzi/VSTD20_ols.csv')
+		Variance20_ols.to_csv('C:/Users/SAMSUNG/Desktop/duoyinzi/Variance20_ols.csv')
+		Skewness20_ols.to_csv('C:/Users/SAMSUNG/Desktop/duoyinzi/Skewness20_ols.csv')
+		Kurtosis20_ols.to_csv('C:/Users/SAMSUNG/Desktop/duoyinzi/Kurtosis20_ols.csv')
+		
+		join = pd.DataFrame(columns=['VOL20_ols','VSTD20_ols','Variance20_ols','Skewness20_ols','Kurtosis20_ols'])
+		join['VOL20_ols']=VOL20_ols
+		join['VSTD20_ols']=VSTD20_ols
+		join['Variance20_ols']=Variance20_ols
+		join['Skewness20_ols']=Skewness20_ols
+		join['Kurtosis20_ols']=Kurtosis20_ols
+		join.to_csv('C:/Users/SAMSUNG/Desktop/duoyinzi/join.csv')
+	ContextInfo.number+=1
+
+def OLS(y_dataframe,x_dataframe):
+	resultlist=pd.Series(index=x_dataframe.index)
+	for i in range(0,len(y_dataframe.index)):
+		X= sm.add_constant(x_dataframe.iloc[i])
+		result= sm.OLS(y_dataframe.iloc[i],X).fit()
+		index=x_dataframe.index[i]
+		resultlist[index]= result.params[1]
+	return resultlist
+	
+	

@@ -1,43 +1,53 @@
-## Description: <br>
-Intelligent plant watering reminder and care assistant that tracks plant profiles, sends daily watering reminders, supports diagnosis of yellowing leaves, root rot, and pests, and provides misting, ventilation, and pruning advice. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+blooming-elf（绽放精灵）—— 智能浇花浇水提醒与植物绿植花卉养护助手
 
-## Publisher: <br>
-[shirley1011](https://clawhub.ai/user/shirley1011) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shirley1011](https://clawhub.ai/user/shirley1011)
 
-## Use Case: <br>
-External plant owners use this skill to maintain plant profiles, receive watering reminders, record care events, and get concise plant care or issue-diagnosis guidance for common indoor, balcony, outdoor, water-culture, self-watering, and fresh-cut plants. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can redirect any unconfigured conversation into plant-care onboarding. <br>
-Mitigation: Require clear plant-care intent before activation and let users decline or postpone onboarding. <br>
-Risk: The skill stores ongoing plant records and reminder state. <br>
-Mitigation: Confirm what data will be saved, minimize household and location details, and provide a clear way to disable reminders or delete records. <br>
-Risk: The skill can sync plant archives through IMA or WeChat-linked services. <br>
-Mitigation: Ask for explicit consent before external syncing and avoid placing sensitive personal details in archived notes. <br>
+## Use Case:
 
+External users use this skill as a plant-care assistant to create plant records, track watering and care activity, receive user-confirmed reminders, and get concise troubleshooting guidance for household plants.
 
-## Reference(s): <br>
-- [Blooming Elf ClawHub release](https://clawhub.ai/shirley1011/blooming-elf) <br>
-- [Publisher profile](https://clawhub.ai/user/shirley1011) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown text with concise care summaries, reminder tables, onboarding prompts, and record-update confirmations.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update plant care records and reminder configuration when the agent environment provides those capabilities.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill stores household context, schedules, file paths, and document IDs in shared plaintext agent memory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated local folder or tightly scoped knowledge base, avoid storing unnecessary household details, and periodically review or delete the memory configuration.
+
+Risk: The skill can create reminder automations after user confirmation.
+
+Mitigation: Review scheduled reminders periodically and cancel or adjust automations that are no longer needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/shirley1011/skills/blooming-elf)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Configuration, Shell commands]
+
+**Output Format:** [Markdown responses with tables, templates, and concise care instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update plant record files, memory configuration, document entries, and user-confirmed reminder schedules when the host agent provides those capabilities.]
+
+## Skill Version(s):
+
+3.1.3 (source: server release metadata; artifact frontmatter reports 3.1.2)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

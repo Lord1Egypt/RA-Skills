@@ -1,0 +1,158 @@
+{
+  "_template_meta": {
+    "name": "alert-card-template",
+    "type": "alert",
+    "description": "告警类卡片模板（紧急程度 + 4 维状态 + Critical 修复清单）",
+    "header_template": "red",
+    "color_scheme": "red 系独占（red-50 + yellow-50 + grey-50）",
+    "usage": "适合系统告警、健康报告、Critical 修复、错误通知"
+  },
+  "schema": "2.0",
+  "config": {
+    "wide_screen_mode": true,
+    "update_multi": true
+  },
+  "header": {
+    "title": {
+      "tag": "plain_text",
+      "content": "{{YYYYMMDD}}-{{告警通知/健康报告}}-{{评分XX}}-{{X级}}-{{关键缺陷}}"
+    },
+    "subtitle": {
+      "tag": "plain_text",
+      "content": "{{YYYY-MM-DD}} · {{Critical 告警 / Vault 健康检查}}"
+    },
+    "template": "red"
+  },
+  "body": {
+    "direction": "vertical",
+    "padding": "16px 16px 16px 16px",
+    "elements": [
+      {
+        "tag": "column_set",
+        "flex_mode": "none",
+        "background_style": "red-50",
+        "columns": [
+          {
+            "tag": "column",
+            "width": "weighted",
+            "weight": 1,
+            "vertical_align": "top",
+            "background_style": "red-50",
+            "elements": [
+              {
+                "tag": "markdown",
+                "content": "### 🚨 紧急程度：{{Critical/High/Medium}}\n\n**{{告警标题}}**\n\n{{告警描述}}\n\n⏰ 触发时间：{{YYYY-MM-DD HH:MM}}\n📍 影响范围：{{影响系统/用户数}}"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tag": "hr"
+      },
+      {
+        "tag": "column_set",
+        "flex_mode": "none",
+        "background_style": "yellow-50",
+        "columns": [
+          {
+            "tag": "column",
+            "width": "weighted",
+            "weight": 1,
+            "vertical_align": "top",
+            "background_style": "yellow-50",
+            "elements": [
+              {
+                "tag": "markdown",
+                "content": "### 📈 四维状态\n\n| 维度 | 当前 | 阈值 | 状态 |\n|------|------|------|------|\n| {{维度1}} | {{数值1}} | {{阈值1}} | {{状态1}} |\n| {{维度2}} | {{数值2}} | {{阈值2}} | {{状态2}} |\n| {{维度3}} | {{数值3}} | {{阈值3}} | {{状态3}} |\n| {{维度4}} | {{数值4}} | {{阈值4}} | {{状态4}} |"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tag": "hr"
+      },
+      {
+        "tag": "column_set",
+        "flex_mode": "none",
+        "background_style": "red-50",
+        "columns": [
+          {
+            "tag": "column",
+            "width": "weighted",
+            "weight": 1,
+            "vertical_align": "top",
+            "background_style": "red-50",
+            "elements": [
+              {
+                "tag": "markdown",
+                "content": "### 🚨 Critical 修复清单 Top 3\n\n1. **[P0] {{修复项1}}**\n   {{修复描述1}}\n   📁 涉及文件：{{文件路径1}}\n\n2. **[P0] {{修复项2}}**\n   {{修复描述2}}\n   📁 涉及文件：{{文件路径2}}\n\n3. **[P1] {{修复项3}}**\n   {{修复描述3}}\n   📁 涉及文件：{{文件路径3}}"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tag": "hr"
+      },
+      {
+        "tag": "column_set",
+        "flex_mode": "none",
+        "background_style": "grey-50",
+        "columns": [
+          {
+            "tag": "column",
+            "width": "weighted",
+            "weight": 1,
+            "vertical_align": "top",
+            "background_style": "grey-50",
+            "elements": [
+              {
+                "tag": "markdown",
+                "content": "### 📊 增长数据\n\n- 昨日告警数：{{N}}\n- 今日告警数：{{N}}（{{+/-X%}}）\n- 修复中：{{N}}\n- 已修复：{{N}}\n- 待处理：{{N}}"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tag": "hr"
+      },
+      {
+        "tag": "button",
+        "text": {
+          "tag": "plain_text",
+          "content": "🛠️ 立即修复"
+        },
+        "type": "primary",
+        "width": "fill",
+        "behaviors": [
+          {
+            "type": "open_url",
+            "default_url": "https://example.com/fix-prompt"
+          }
+        ]
+      },
+      {
+        "tag": "button",
+        "text": {
+          "tag": "plain_text",
+          "content": "📄 查看完整健康报告"
+        },
+        "type": "default",
+        "width": "fill",
+        "behaviors": [
+          {
+            "type": "open_url",
+            "default_url": "{{文档URL}}"
+          }
+        ]
+      },
+      {
+        "tag": "markdown",
+        "content": "> 🤖 {{来源标识}} · {{触发时间}} 自动检测 · 评分 {{XX}} / 100（{{X}} 级）"
+      }
+    ]
+  }
+}

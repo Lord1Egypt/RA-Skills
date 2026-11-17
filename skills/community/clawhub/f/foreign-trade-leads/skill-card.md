@@ -1,43 +1,58 @@
-## Description: <br>
-Collects B2B foreign-trade leads from Google Maps for overseas distributors, wholesalers, buyers, and local businesses. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Collects B2B foreign-trade leads from Google Maps for overseas distributors, wholesalers, buyers, and local businesses.
 
-## Publisher: <br>
-[xingfan0828](https://clawhub.ai/user/xingfan0828) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xingfan0828](https://clawhub.ai/user/xingfan0828)
 
-## Use Case: <br>
-External users and sales teams use this skill to collect overseas B2B leads by confirming a product keyword, target region, and count, then running the bundled Google Maps scraper to save results as CSV. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Google Maps scraping may be rate-limited, blocked, or restricted by platform-use terms. <br>
-Mitigation: Confirm platform-use requirements before running the scraper and keep target counts moderate. <br>
-Risk: Generated CSV files may contain identifiable business contact information. <br>
-Mitigation: Store and share CSV outputs according to applicable privacy, legal, and compliance requirements. <br>
-Risk: The scraper requires a local Selenium and Chrome driver environment. <br>
-Mitigation: Verify Chrome and driver availability before use, and stop if the environment cannot run the bundled script. <br>
+## Use Case:
 
+Sales and export teams use this skill to collect overseas B2B lead lists from Google Maps after specifying an English product keyword, target region, and desired count.
 
-## Reference(s): <br>
-- [Foreign Trade Leads release page](https://clawhub.ai/xingfan0828/foreign-trade-leads) <br>
-- [Publisher profile](https://clawhub.ai/user/xingfan0828) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, code, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and CSV file output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The bundled script writes a local CSV containing name, phone, address, website, and email columns.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: CSV export uses user-controlled keyword and region values in the filename.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill only in a controlled workspace and review generated filenames before sharing, moving, or opening outputs.
+
+Risk: CSV rows contain untrusted third-party business data that may be unsafe for spreadsheet tools.
+
+Mitigation: Treat generated CSV files as untrusted data and inspect or sanitize them before opening in spreadsheet software or distributing them.
+
+Risk: Google Maps scraping may be rate-limited or blocked.
+
+Mitigation: Use moderate target counts and avoid aggressive repeated runs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xingfan0828/skills/foreign-trade-leads)
+- [Publisher profile](https://clawhub.ai/user/xingfan0828)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Code, Files]
+
+**Output Format:** [Markdown guidance with bash commands and CSV output files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [CSV columns: name, phone, address, website, email.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

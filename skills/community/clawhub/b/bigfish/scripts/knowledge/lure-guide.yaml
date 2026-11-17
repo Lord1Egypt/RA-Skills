@@ -1,0 +1,168 @@
+# 🪝 BigFish 路亚钓法知识库
+# 假饵分类、颜色选择、操作手法、装备搭配
+
+lure_categories:
+  - category: 硬饵 Hard Bait
+    types:
+      - name: 米诺 Minnow
+        alias: [悬浮米诺, 浮水米诺, 沉水米诺]
+        water_layer: 表层-中层
+        action: 抽停，模仿受伤小鱼
+        retrieve: 匀速收线 + 抽停（stop & go）
+        target: 翘嘴, 鳜鱼, 海鲈, 鳡鱼
+        size_guide:
+          small: 50-70mm 小溪/白条
+          medium: 70-100mm 通用
+          large: 100-130mm 大翘嘴/鳡鱼
+        brand_rec: [Megabass, DUO, Rapala, 国产]
+
+      - name: 铅笔 Pencil
+        alias: [水面铅笔]
+        water_layer: 水面系
+        action: "Z字走位，左右摆动"
+        retrieve: 抽动 + 停顿（dog walking）
+        target: 翘嘴, 黑鱼, 海鲈
+        tips: 清晨/黄昏水面系最刺激
+
+      - name: 波扒 Popper
+        alias: [水面狗]
+        water_layer: 水面系
+        action: 撞水发声
+        retrieve: 抽 + 停（制造水花）
+        target: 鲈鱼, 翘嘴, 海鲈, 黑鱼
+        tips: 有结构的水面效果极佳
+
+      - name: 胖子 Crankbait
+        alias: [深潜胖子, 摇摆米诺]
+        water_layer: 中层-底层
+        action: 摆动幅度大，带扰流板
+        retrieve: 匀速收线
+        target: 鲈鱼, 翘嘴, 鳜鱼
+        tips: |
+          有舌板决定潜深。
+          撞底停顿时常触发咬口。
+
+      - name: VIB
+        alias: [振动饵, 金属VIB]
+        water_layer: 全水层
+        action: 高频率振动
+        retrieve: 匀速 / 跳底
+        target: 翘嘴, 鳜鱼, 鲈鱼
+        tips: |
+          金属VIB远投之王。
+          挂底率高，要注意。
+
+      - name: 铁板 Metal Jig
+        alias: [铁板路亚]
+        water_layer: 中层-底层
+        action: 快速下沉
+        retrieve: 抽 + 跳底 / 快速匀收
+        target: 翘嘴, 海鲈, 各种海鱼
+        tips: 远投+速攻的最佳选择
+
+  - category: 软饵 Soft Bait
+    types:
+      - name: 卷尾蛆 Grub
+        alias: [T尾, 卷尾]
+        retrieve: 匀收卷尾转动
+        target: 鳜鱼, 鲈鱼, 翘嘴
+        tips: 铅头钩+卷尾是最经典的组合
+
+      - name: T尾鱼
+        alias: [T尾蠕虫]
+        retrieve: 匀收 + 抽停
+        target: 翘嘴, 鳜鱼, 海鲈
+        tips: 各种水层都适用
+
+      - name: 面条虫 Worm
+        alias: [德州钓组]
+        retrieve: 拖底 + 停顿
+        target: 鲈鱼
+        tips: 德州/卡罗来纳钓组的主饵
+
+      - name: 虾形 Soft Craw
+        retrieve: 跳底 / 拖底
+        target: 鲈鱼
+        tips: 模仿小龙虾
+
+      - name: 蛙形 Frog
+        water_layer: 水面系
+        target: 黑鱼
+        tips: 草区神饵，装备要暴力
+
+  - category: 金属饵 Metal Lure
+    types:
+      - name: 亮片 Spoon
+        subtype: [旋转亮片, 斜切亮片, 勺型亮片]
+        water_layer: 全水层
+        retrieve: 匀速 / 变速
+        target: 翘嘴, 马口, 鳡鱼, 各种
+        tips: 最古老最通用的路亚饵
+
+      - name: 复合亮片 Spinnerbait
+        retrieve: 匀速
+        target: 鲈鱼
+        tips: 搜索效率极高，草区不太挂
+
+color_selection:
+  season:
+    spring: 浅色系（白/银/浅绿）— 清水
+    summer_low: 自然色（褐/绿/黑）— 晴空烈日
+    summer_high: 暗色系 — 早晨傍晚
+    autumn: 亮色系 — 水质开始变清
+    winter: 暗色自然色 — 鱼活性低
+  water:
+    clear: 自然色, 银色, 浅色
+    murky: 亮色（红头白身, 荧光, 金色）
+    dark: 亮色, 亮片加亮珠
+  light:
+    sunny: 自然色, 暗色
+    cloudy: 亮色, 金属色
+    dawn_dusk: 暗色, 黑色剪影
+
+equipment_setup:
+  - setup: 翘嘴通用
+    rod: 2.1-2.4m ML-M调
+    reel: 2500-3000型纺车
+    line: 0.8-1.5# PE + 2-3# 前导
+    lure: 7-15g亮片/米诺/VIB
+
+  - setup: 鳜鱼跳底
+    rod: 1.98-2.1m ML-M调快调
+    reel: 2000-2500型纺车/水滴
+    line: 0.6-1.0# PE + 1.5-2.5# 碳前导
+    lure: 3.5-10g铅头钩+卷尾
+
+  - setup: 鲈鱼精细
+    rod: 1.98-2.1m ML-F快调
+    reel: 2500型纺车/水滴
+    line: 0.8-1.2# PE + 2-3# 碳前导
+    lure: 德州/倒吊/铅头钩
+
+  - setup: 黑鱼暴力
+    rod: 2.1-2.4m H-XH
+    reel: 300型强力水滴
+    line: 5-8# PE
+    lure: 雷蛙
+
+  - setup: 溪流马口
+    rod: 1.5-1.8m UL-L
+    reel: 500-1000型纺车
+    line: 0.4-0.6# PE + 1.0-1.5# 前导
+    lure: 1-3g亮片
+
+  - setup: 海鲈远投
+    rod: 2.4-2.7m M-MH
+    reel: 4000-5000型纺车
+    line: 1.5-2.0# PE + 4-5# 前导
+    lure: 15-30g铁板/米诺
+
+terminology:
+  打龟: 空军，一条鱼没钓到
+  放枪: 断前导线把饵打飞
+  炒粉: 水滴轮炸线
+  挂底: 饵被水底障碍物钩住
+  洗鳃: 鱼跳出水面洗鳃脱钩
+  窗口期: 鱼活跃觅食的时间段
+  标点: 可能有鱼的钓点
+  找底: 探明水深和水底结构

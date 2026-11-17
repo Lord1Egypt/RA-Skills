@@ -1,40 +1,52 @@
-## Description: <br>
-Axiom Css Specificity calculates CSS selector specificity as (a, b, c) tuples and compares selectors for debugging cascade conflicts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+CSS specificity calculator that computes (a, b, c) specificity for CSS selectors, including :is(), :not(), :where(), combinators, and attribute selectors.
 
-## Publisher: <br>
-[kofna3369](https://clawhub.ai/user/kofna3369) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[kofna3369](https://clawhub.ai/user/kofna3369)
+
+### License/Terms of Use:
+
+Apache-2.0
+
+## Use Case:
+
+Developers and engineers use this skill to debug CSS specificity conflicts, audit selectors for excessive specificity, and compare two selector rules during CSS maintenance.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Server-resolved GitHub import provenance is unavailable for this version.
+
+Mitigation: Use the server release metadata and artifact hashes for review, and require separate provenance confirmation when package origin matters.
+
+Risk: The helper does not render CSS, resolve !important, support @scope, or support CSS preprocessor syntax.
+
+Mitigation: Use browser or CSS tooling for cascade rendering and preprocessor-specific validation, and treat this skill as a specificity calculator only.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and frontend engineers use this skill to debug CSS cascade conflicts, audit selectors for excessive specificity, and compare selectors during refactoring. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The documentation references compute_specificity for Python imports, but the code exports calculate. <br>
-Mitigation: Use calculate for Python imports or verify examples before embedding them in downstream guidance. <br>
-Risk: The artifact states limitations for @scope, simplified functional pseudo-class handling, and no !important resolution. <br>
-Mitigation: Use a browser or full CSS cascade tool when decisions depend on complete cascade behavior beyond selector specificity. <br>
+**Output Format:** [Markdown guidance with Python and shell command examples; the helper can emit JSON specificity breakdowns.]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kofna3369/axiom-css-specificity) <br>
+**Other Properties Related to Output:** [Deterministic local Python helper using the standard library; no LLM, network use, persistence, or destructive behavior indicated by security evidence.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [JSON or plain text specificity results with markdown usage guidance and Python or shell examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Deterministic local calculation; no network access or LLM calls are described in the evidence.] <br>
+0.1.2 (source: frontmatter and server release evidence)
 
-## Skill Version(s): <br>
-0.1.2 (source: server release metadata and SKILL.md frontmatter) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

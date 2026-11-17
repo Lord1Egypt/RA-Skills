@@ -1,42 +1,54 @@
-## Description: <br>
-为河南油田工程科技股份有限公司制作符合指定模板、配色、字体、页码和底部标语规范的中文 PowerPoint 演示文稿。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Chinese presentation decks for 河南油田工程科技股份有限公司 using uploaded PPT templates and reference materials.
 
-## Publisher: <br>
-[112297720](https://clawhub.ai/user/112297720) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[112297720](https://clawhub.ai/user/112297720)
 
-## Use Case: <br>
-Employees or collaborators preparing Chinese business, training, proposal, or technical-report presentations use this skill to plan slide structure and generate a company-styled PPT from a topic, template expectations, and source content. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on a separate PPT-generation skill to create the final presentation. <br>
-Mitigation: Install and trust the referenced PPT-generation skill before use, and review the generated slides before sharing them. <br>
-Risk: The fixed output path could overwrite or conflict with an existing presentation file. <br>
-Mitigation: Confirm the intended output path and whether a file already exists before generating the presentation. <br>
-Risk: Company-specific template constraints may be unsuitable for unrelated brands or presentation styles. <br>
-Mitigation: Use the skill only when the 河南油田工程科技 template and style rules are intended. <br>
+## Use Case:
 
+Employees or agents preparing company-style Chinese business, technical, training, or reporting presentations use this skill to plan and generate PPT decks that follow the provided corporate template rules.
 
-## Reference(s): <br>
-- [河南油田工程科技 PPT 模板规范](references/template-specs.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, files, guidance] <br>
-**Output Format:** [Chinese conversational guidance plus a generated .pptx file and final file-location summary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated presentations are saved under /workspace/skills/ppt-templates/output/ and the user is told the file path and slide count.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill writes generated decks to a fixed local output path.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the intended output location before generation, especially when working with sensitive content.
+
+Risk: The skill may activate on broad PPT-making requests.
+
+Mitigation: Confirm that the user intends to use the 河南油田工程科技 corporate template before applying this skill.
+
+## Reference(s):
+
+- [河南油田工程科技 PPT 模板规范](references/template-specs.md)
+- [ClawHub skill page](https://clawhub.ai/112297720/skills/hnytit-ppt-generator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown guidance with PPT generation instructions and generated presentation files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated decks are saved to the configured local PPT output directory and the agent reports the file location and slide count.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

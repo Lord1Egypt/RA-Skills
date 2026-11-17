@@ -1,0 +1,5 @@
+interface:
+  display_name: Browser Fingerprint Audit
+  short_description: Audit a browser fingerprint for internal contradictions with the liarjs CLI - canvas, WebGL, WebGL2, WebGPU, audio, 220 fonts, WebRTC and timezone probes, scored against the TLS/HTTP/ASN view of the same request.
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.png

@@ -1,0 +1,4 @@
+interface:
+  display_name: "巴娜房产"
+  short_description: "查询全国城市、小区、二手房、租房和新房数据"
+  default_prompt: "使用 $bana-real-estate 查询指定城市的房产信息，并在收费调用前说明费用。"

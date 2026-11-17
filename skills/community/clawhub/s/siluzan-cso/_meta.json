@@ -1,6 +1,21 @@
 {
-  "ownerId": "kn7fvww6xcwp6e93b3qgnjy7s183jy5k",
   "slug": "siluzan-cso",
-  "version": "1.1.30",
-  "publishedAt": 1782895445501
+  "version": "1.1.46",
+  "publishedAt": 1794833835570,
+  "homepage": "https://www.siluzan.com",
+  "source": "https://dev.azure.com/jack4it/Sammamish/_git/siluzan-skill",
+  "requiredBinaries": [
+    "node",
+    "npm"
+  ],
+  "optionalBinaries": [
+    "ffmpeg"
+  ],
+  "requiredEnv": [],
+  "optionalEnv": [
+    "SILUZAN_AUTH_TOKEN"
+  ],
+  "configPaths": [
+    "~/.siluzan/config.json"
+  ]
 }

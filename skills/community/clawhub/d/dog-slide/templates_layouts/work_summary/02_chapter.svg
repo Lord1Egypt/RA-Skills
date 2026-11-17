@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720">
+  <defs>
+    <linearGradient id="chBgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#D02300;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#801500;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect x="0" y="0" width="1280" height="720" fill="url(#chBgGrad)" />
+  <text x="120" y="300" font-family="Arial, sans-serif" font-size="160" font-weight="bold" fill="#FFFFFF" fill-opacity="0.08">{{CHAPTER_NUM}}</text>
+  <rect x="120" y="340" width="6" height="80" fill="#FFFFFF" fill-opacity="0.8" />
+  <text x="150" y="400" font-family="Microsoft YaHei, SimHei, sans-serif" font-size="48" font-weight="bold" fill="#FFFFFF">{{CHAPTER_TITLE}}</text>
+  <rect x="120" y="680" width="400" height="4" fill="#FFFFFF" fill-opacity="0.3" />
+</svg>

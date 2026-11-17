@@ -46,13 +46,13 @@ meta:
       celo-mainnet: "0xCb0Ff4D0cA186f0Fc0301258066Fe3fA258417a6"
       base-mainnet: "0x6b008BAc0e5846cB5d9Ca02ca0e801fCbF88B6f9"
       scroll-mainnet: "0x2eaa49BeB4Aa4fcC709DC14c0FA0fF1B292077b5"
-      degenchain: "0x7BCE8e8401dc98E3Da26F1D701c3C2168b8e466c"
+      arc-mainnet: "0x3024A39099D4FAE7c9eA8329FAfe05576AEd2c00"
     testnet:
       avalanche-fuji: "0x85AfCf531aF1a853AC65F6bfa4de99C742B8e432"
       eth-sepolia: "0x79aE8BF8EE9238d8E848F7dbBF74Ddb3365f6c11"
       optimism-sepolia: "0x9539B21cC67844417E80aE168bc28c831E7Ed271"
-      scroll-sepolia: "0x70bbB7a057A13070dF11d533e8f299357D778637"
       base-sepolia: "0x95043eC349476B413eF5c369c4d2454a1a65eaB9"
+      arc-testnet: "0x992805ED822C786BCdBA4Cb1F07b5CadA3bC3CBa"
 
 # == Protocol Info ==
 

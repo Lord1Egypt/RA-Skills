@@ -1,0 +1,13 @@
+{
+  "name": "training-execution",
+  "displayName": "培训执行跟踪",
+  "version": "1.0.0",
+  "description": "培训现场执行全流程跟踪：课程执行状态、学员签到考勤、物料发放管理、考评测试组织、现场问题记录与应急处理。",
+  "author": "golngod",
+  "license": "MIT",
+  "pricing": {
+    "model": "free"
+  },
+  "tags": ["training", "execution", "attendance", "on-site", "event-logistics"],
+  "minOpenClawVersion": "1.2.0"
+}

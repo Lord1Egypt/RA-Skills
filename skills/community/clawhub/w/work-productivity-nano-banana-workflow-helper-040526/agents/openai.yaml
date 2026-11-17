@@ -1,0 +1,7 @@
+interface:
+  display_name: "Nano Banana Image Workflow Helper"
+  short_description: "Build practical AI image generation and editing workflows inspired by Nano Banana Pro demand, including pro..."
+  default_prompt: "Use $work-productivity-nano-banana-workflow-helper to build prompts for this product image set."
+
+policy:
+  allow_implicit_invocation: true

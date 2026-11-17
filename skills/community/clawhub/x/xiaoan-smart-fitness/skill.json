@@ -1,0 +1,17 @@
+{
+  "name": "xiaoan-smart-fitness",
+  "display_name": "小安智能健身",
+  "description": "查询并预约北京崇文门小安智能健身 1 对 1 私教训练。200 元 / 60 分钟，测试阶段到店支付。",
+  "version": "0.3.0",
+  "author": "小安智能健身",
+  "repository": "https://github.com/han815757857-cmd/xiaoan-smart-fitness",
+  "mcp_server": {
+    "transport": "streamable-http",
+    "url": "https://xiaoan.39-108-49-182.sslip.io/mcp"
+  },
+  "tools": [
+    { "name": "list_services" },
+    { "name": "create_booking" },
+    { "name": "get_booking" }
+  ]
+}

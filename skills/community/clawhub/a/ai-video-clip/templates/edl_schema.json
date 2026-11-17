@@ -1,0 +1,98 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://skillhub.dev/video-clip-assistant/edl.schema.json",
+  "title": "Edit Decision List",
+  "description": "Standardized edit decision list format for AI-driven video clipping. The EDL separates edit decisions from rendering, enabling audit and replay.",
+  "type": "object",
+  "required": ["version", "created_at", "sources", "edits"],
+  "properties": {
+    "version": {
+      "type": "string",
+      "description": "EDL format version",
+      "default": "1.0"
+    },
+    "created_at": {
+      "type": "string",
+      "description": "ISO 8601 creation timestamp"
+    },
+    "sources": {
+      "type": "array",
+      "description": "Input source files",
+      "items": {
+        "type": "object",
+        "required": ["id", "path"],
+        "properties": {
+          "id": {"type": "string"},
+          "path": {"type": "string"},
+          "duration": {"type": "number"},
+          "transcript": {"type": "string", "description": "Path to packed transcript"},
+          "metadata": {
+            "type": "object",
+            "properties": {
+              "resolution": {"type": "string"},
+              "fps": {"type": "number"},
+              "codec": {"type": "string"}
+            }
+          }
+        }
+      }
+    },
+    "strategy": {
+      "type": "object",
+      "description": "The editing strategy applied",
+      "properties": {
+        "name": {"type": "string", "description": "Strategy name: remove_fillers, extract_highlights, etc."},
+        "description": {"type": "string"},
+        "parameters": {"type": "object"}
+      }
+    },
+    "edits": {
+      "type": "array",
+      "description": "Ordered list of edit commands",
+      "items": {
+        "type": "object",
+        "required": ["type", "source"],
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": ["keep", "cut", "transition", "overlay", "caption", "color_grade", "audio_fade", "speed_change"],
+            "description": "Edit operation type"
+          },
+          "source": {"type": "string"},
+          "source_id": {"type": "string"},
+          "start": {"type": "number", "description": "Start time in source (seconds)"},
+          "end": {"type": "number", "description": "End time in source (seconds)"},
+          "duration": {"type": "number"},
+          "reason": {"type": "string", "description": "Why this edit decision was made"},
+          "confidence": {"type": "number", "minimum": 0, "maximum": 1},
+          "params": {
+            "type": "object",
+            "description": "Operation-specific parameters",
+            "properties": {
+              "transition": {"type": "string", "description": "dissolve/wipe/cut"},
+              "transition_duration": {"type": "number"},
+              "text": {"type": "string"},
+              "font_size": {"type": "number"},
+              "position": {"type": "string", "description": "top/center/bottom"},
+              "color": {"type": "string"},
+              "scale": {"type": "number"},
+              "speed": {"type": "number"},
+              "fade_duration": {"type": "number"},
+              "volume": {"type": "number"}
+            }
+          }
+        }
+      }
+    },
+    "output": {
+      "type": "object",
+      "properties": {
+        "path": {"type": "string"},
+        "format": {"type": "string", "description": "video dimension ratio: 9:16, 16:9, 1:1"},
+        "resolution": {"type": "string"},
+        "total_duration": {"type": "number"},
+        "estimated_size_mb": {"type": "number"}
+      }
+    }
+  }
+}

@@ -1,42 +1,49 @@
-## Description: <br>
-Comprehensive security audit with 100 iterations, covering OWASP Top 10, authentication, secrets, infrastructure, and code quality. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ralph Security Audit guides an agent through a comprehensive 100-iteration security audit covering OWASP Top 10, authentication, secrets, infrastructure, and code quality.
 
-## Publisher: <br>
-[dorukardahan](https://clawhub.ai/user/dorukardahan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[dorukardahan](https://clawhub.ai/user/dorukardahan)
 
-## Use Case: <br>
-Developers and security engineers use this skill to run a structured 100-iteration security audit of a project before releases, during onboarding, or as a recurring security check. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The audit inspects local project files and may surface sensitive paths, variable names, or secret indicators in its findings. <br>
-Mitigation: Review and redact generated audit output before sharing it outside the project team. <br>
-Risk: The skill writes and renames local Ralph report files during execution. <br>
-Mitigation: Run it in the intended project workspace and review report file changes before committing or publishing them. <br>
-Risk: Security findings may be inconclusive or pattern-based rather than verified vulnerabilities. <br>
-Mitigation: Use the reported confidence and severity levels to prioritize manual verification before treating a finding as confirmed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Severity definitions and triage guidance](references/severity-guide.md) <br>
-- [Ralph Security Audit on ClawHub](https://clawhub.ai/dorukardahan/ralph-security) <br>
+## Use Case:
 
+Developers and security engineers use this skill to perform structured security reviews of projects for weekly checks, new project onboarding, and pre-release audits.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown progress entries and a local Markdown audit report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes or renames .ralph-report.md during execution and autosaves every 10 iterations.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-3.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can inspect secrets and host or infrastructure details and write audit reports that may contain sensitive findings.
+
+Mitigation: Scope the audit before use, instruct the agent not to print or save raw secrets, tokens, connection strings, private keys, cookies, or authorization headers, and review or delete .ralph-report.md after the audit.
+
+## Reference(s):
+
+- [Severity and Triage Reference](references/severity-guide.md)
+- [ClawHub skill page](https://clawhub.ai/dorukardahan/skills/ralph-security)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown audit findings and reports with inline commands and recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update .ralph-report.md during an audit.]
+
+## Skill Version(s):
+
+3.0.0 (source: server release evidence; artifact metadata says 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

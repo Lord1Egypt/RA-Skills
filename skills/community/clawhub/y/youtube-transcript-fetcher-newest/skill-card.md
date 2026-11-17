@@ -1,45 +1,55 @@
-## Description: <br>
-Fetches YouTube video transcripts by URL or video ID through AgentPMT-hosted remote tool calls, returning transcript JSON with optional timestamps and language selection. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Youtube Transcript Fetcher fetches YouTube video transcripts by URL or video ID, with optional language selection and timestamped segments.
 
-## Publisher: <br>
-[agentpmt](https://clawhub.ai/user/agentpmt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[agentpmt](https://clawhub.ai/user/agentpmt)
 
-## Use Case: <br>
-External developers and agents use this skill to retrieve YouTube transcripts for summarization, searchable text, accessibility workflows, timestamped citation, and content analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: YouTube video URLs, IDs, and transcript content are processed by AgentPMT and returned through a temporary signed cloud file. <br>
-Mitigation: Avoid private, confidential, or regulated video content unless AgentPMT's storage and retention terms are acceptable. <br>
-Risk: Temporary signed transcript URLs can expose transcript files to anyone who receives the URL before it expires. <br>
-Mitigation: Treat signed URLs as sensitive, download only in trusted contexts, and avoid logging or broadly sharing them. <br>
-Risk: The skill may require AgentPMT account setup, wallet/payment flow, or sensitive credentials before remote calls can be made. <br>
-Mitigation: Use the setup skills for credential handling and keep secrets, wallet private keys, mnemonics, signatures, and payment headers out of prompts and logs. <br>
+## Use Case:
 
+External developers and agents use this skill to retrieve YouTube transcripts for summarization, searchable archives, show notes, accessibility workflows, and timestamped citation support.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/agentpmt/youtube-transcript-fetcher-newest) <br>
-- [AgentPMT marketplace product](https://www.agentpmt.com/marketplace/youtube-transcript-fetcher) <br>
-- [Generated action schema](artifact/schema.md) <br>
-- [AgentPMT account MCP/REST setup](https://clawhub.ai/agentpmt/agentpmt-account-mcp-rest-api-setup) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, API calls, Files, Text] <br>
-**Output Format:** [Markdown instructions and JSON tool-call examples; runtime responses return transcript JSON through a temporary signed cloud file.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports URL or video ID input, optional language selection, optional timestamped segments, and optional raw provider response.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and frontmatter) <br>
+Risk: YouTube video identifiers are sent to AgentPMT and transcript JSON is stored behind temporary signed URLs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when AgentPMT retention and access controls fit the content; avoid sensitive or regulated videos unless approved.
+
+Risk: Remote live instructions and unpinned setup commands may change over time.
+
+Mitigation: Treat live instructions as reference data, review them against local policy, and prefer pinned or reviewed setup commands before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/agentpmt/skills/youtube-transcript-fetcher-newest)
+- [AgentPMT marketplace page](https://www.agentpmt.com/marketplace/youtube-transcript-fetcher)
+- [Generated action schema](artifact/schema.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown instructions with JSON request examples; remote tool responses return JSON transcript file metadata and signed download URLs.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Transcript output is stored as JSON behind a temporary signed URL; timestamped segments and raw provider responses are optional.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

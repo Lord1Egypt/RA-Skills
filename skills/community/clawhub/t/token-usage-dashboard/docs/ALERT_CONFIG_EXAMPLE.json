@@ -6,7 +6,7 @@
   },
   "notificationChannels": [
     "email:finops@example.com",
-    "slack:webhook:https://hooks.slack.com/services/xxx/yyy/zzz",
+    "slack:webhook:REDACTED-SECRET",
     "discord:webhook:https://discord.com/api/webhooks/..."
   ]
 }

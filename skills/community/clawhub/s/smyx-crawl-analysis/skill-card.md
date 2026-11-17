@@ -1,47 +1,59 @@
-## Description: <br>
-Analyzes reptile and arachnid pet images or videos from a local file or URL and returns a Pet Safety Guardian health report with visual observations, possible disease risks, care suggestions, and report links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes videos of reptiles and arachnids for visible health concerns and returns a structured Pet Safety Guardian health report.
 
-## Publisher: <br>
-[smyx-sunjinhui](https://clawhub.ai/user/smyx-sunjinhui) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[smyx-sunjinhui](https://clawhub.ai/user/smyx-sunjinhui)
 
-## Use Case: <br>
-External users and pet-care agents use this skill to analyze reptile or arachnid pet media, including lizards, snakes, spiders, turtles, geckos, chameleons, scorpions, iguanas, crocodiles, and other species. The output helps surface visible health concerns and care guidance, but it is only a health reference and does not replace professional veterinary diagnosis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uploads user-provided media or URLs to a cloud analysis service. <br>
-Mitigation: Use only media and URLs appropriate for the lifeemergence.com service, and avoid sensitive private videos or internal network URLs unless that service is trusted for the data. <br>
-Risk: The skill silently creates or reuses an account-like identifier and can retrieve cloud report history. <br>
-Mitigation: Confirm that automatic identity handling and cloud history retrieval match the deployment's privacy expectations before enabling the skill. <br>
-Risk: The skill stores service tokens in the workspace. <br>
-Mitigation: Treat the workspace as sensitive, restrict access, and rotate or remove stored tokens according to the deployment's credential policy. <br>
-Risk: Health analysis can be incorrect or incomplete and is not a veterinary diagnosis. <br>
-Mitigation: Present results as informational guidance and direct users to a qualified veterinarian for medical decisions. <br>
+## Use Case:
 
+Pet owners can submit a reptile or arachnid video for a visual health assessment, care suggestions, and a structured report, or retrieve previous reports. The results are for reference and do not replace advice from a qualified veterinarian.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/smyx-sunjinhui/skills/smyx-crawl-analysis) <br>
-- [Skill demo](https://lifeemergence.com/sample.html) <br>
-- [API documentation](references/api_doc.md) <br>
-- [Analysis API error codes](skills/smyx_analysis/references/api_doc.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, guidance] <br>
-**Output Format:** [Markdown report text, optional JSON details, Markdown history tables, and report links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports may include visual health observations, risk flags, care suggestions, analysis identifiers, and cloud report links.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: server release metadata) <br>
+Risk: ClawScan reports potential privacy exposure and security weaknesses alongside account handling and monitoring beyond video analysis.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid installation unless the added history, account, and camera functions are needed and acceptable; review data handling before use.
+
+Risk: ClawScan reports possible analysis even when an export-only choice is selected.
+
+Mitigation: Do not rely on export-only mode to prevent analysis; confirm its behavior and avoid submitting sensitive video until resolved.
+
+Risk: The security review is incomplete because a local path-like reference could not be resolved.
+
+Mitigation: Treat the review as incomplete until the unresolved reference is assessed.
+
+## Reference(s):
+
+- [API documentation](references/api_doc.md)
+- [Skill introduction and demo](https://lifeemergence.com/sample.html)
+- [ClawHub skill page](https://clawhub.ai/smyx-sunjinhui/skills/smyx-crawl-analysis)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, JSON, Markdown]
+
+**Output Format:** [Structured health report with visual observations, potential health concerns, care suggestions, and report links; available as JSON or text/Markdown.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [One analysis report per submitted video; results are informational and do not replace veterinary diagnosis.]
+
+## Skill Version(s):
+
+1.0.19 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

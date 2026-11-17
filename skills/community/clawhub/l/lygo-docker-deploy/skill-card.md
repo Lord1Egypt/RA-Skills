@@ -1,44 +1,59 @@
-## Description: <br>
-Deploy a sovereign LYGO Protocol Stack community node via Docker or docker compose. Builds lygo-node image, starts health API on port 8787, optional Phase 4 worker profile. No secrets; human approval for registry push. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deploy a sovereign LYGO Protocol Stack community node via Docker or docker compose. Builds lygo-node image, starts health API on port 8787, optional Phase 4 worker profile. No secrets; human approval for registry push.
 
-## Publisher: <br>
-[deepseekoracle](https://clawhub.ai/user/deepseekoracle) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[deepseekoracle](https://clawhub.ai/user/deepseekoracle)
 
-## Use Case: <br>
-Developers and operators use this skill to deploy a local LYGO Protocol Stack community node, check its health and badge endpoints, and optionally run scaled worker profiles. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill directs agents to build and run Docker assets from an external project repository. <br>
-Mitigation: Review the referenced repository, docker compose file, and setup script before running the commands. <br>
-Risk: The deployed health API listens on port 8787 and could be exposed beyond local use if networking is changed. <br>
-Mitigation: Keep port 8787 bound locally unless intentional exposure is approved and protected with TLS and appropriate access controls. <br>
-Risk: Publishing images or deploying to cloud infrastructure can change the release boundary. <br>
-Mitigation: Require an explicit user request before any registry push or cloud deployment. <br>
+## Use Case:
 
+Developers and engineers use this skill to deploy and check a local LYGO Protocol Stack community node with Docker or a non-Docker setup path.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/deepseekoracle/skills/lygo-docker-deploy) <br>
-- [LYGO Protocol Stack repository](https://github.com/DeepSeekOracle/lygo-protocol-stack) <br>
-- [LYGO Protocol Stack documentation](https://deepseekoracle.github.io/lygo-protocol-stack/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes local Docker, docker compose, curl health checks, and optional non-Docker commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: release evidence and skill metadata) <br>
+Risk: The skill asks users to run unpinned remote code and an unpinned installer with Docker-level impact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned and reviewed repository commit plus a pinned ClawHub installer version before installation or execution.
+
+Risk: Docker Compose files, setup scripts, mounts, network exposure, or cleanup commands may affect the host environment.
+
+Mitigation: Inspect those files and commands before running the skill, and use an environment where Docker-level access is acceptable.
+
+Risk: The local health API on port 8787 could be exposed beyond the intended machine.
+
+Mitigation: Keep port 8787 bound locally unless TLS and explicit user approval are in place.
+
+## Reference(s):
+
+- [LYGO Protocol Stack repository](https://github.com/DeepSeekOracle/lygo-protocol-stack)
+- [LYGO Protocol Stack documentation](https://deepseekoracle.github.io/lygo-protocol-stack/)
+- [ClawHub skill page](https://clawhub.ai/deepseekoracle/skills/lygo-docker-deploy)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes local health, badge, and gossip endpoint checks after deployment.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

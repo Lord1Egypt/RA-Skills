@@ -1,40 +1,57 @@
-## Description: <br>
-A safe security layer plugin for OpenClaw that intercepts dangerous tool calls (exec, write, edit) through multi-layer blacklist/whitelist filtering and intent validation with comprehensive audit logs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Safe Guardian provides a JavaScript helper for checking OpenClaw-style operations against configurable blacklist and whitelist rules and recording audit logs.
 
-## Publisher: <br>
-[confidentkai](https://clawhub.ai/user/confidentkai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[confidentkai](https://clawhub.ai/user/confidentkai)
 
-## Use Case: <br>
-Developers and engineers use Safe Guardian to screen agent tool calls against blacklist, whitelist, and optional intent checks before execution, and to maintain audit records of allowed and blocked operations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The default allowlist permits reading /etc/passwd, which may expose sensitive local account data. <br>
-Mitigation: Review and narrow the whitelist before installation, and remove the /etc/passwd allow entry unless it is explicitly required. <br>
-Risk: Audit logs record tool calls and results in plaintext, which may capture prompts, commands, paths, or credentials. <br>
-Mitigation: Enable redaction for sensitive fields, restrict log file permissions, and define a retention policy before using the skill. <br>
+## Use Case:
 
+Developers and engineers use this skill to screen proposed OpenClaw operations, tune blacklist and whitelist rules, and review audit logs before allowing automation workflows. It should be treated as advisory screening rather than the sole enforcement boundary.
 
-## Reference(s): <br>
-- [Safe Guardian ClawHub Page](https://clawhub.ai/confidentkai/safe-guardian) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Structured text, JSON configuration, JavaScript code, and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces allow/block decisions, reasons, audit log entries, and security report summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release metadata) <br>
+Risk: The skill presents itself as a protective OpenClaw enforcement layer, but server security evidence says the shipped code is a weak helper and can approve dangerous operations if users rely on the documented API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not rely on it as an OpenClaw enforcement boundary; review proposed operations before execution and pair it with real tool interception or sandbox controls.
+
+Risk: The documented API and implementation behavior may not match the actual tool-call shape expected by an OpenClaw integration.
+
+Mitigation: Validate the integration API shape with tests before deployment and apply deny rules before any allow exceptions.
+
+Risk: Initialization and default policy behavior can affect local policy files, including broad sensitive-file defaults and overwriting administrator policy.
+
+Mitigation: Review and lock down policy files before use, remove broad sensitive-file defaults, and prevent initialization from replacing administrator-managed policy.
+
+## Reference(s):
+
+- [Safe Guardian ClawHub Page](https://clawhub.ai/confidentkai/skills/safe-guardian)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, configuration, code]
+
+**Output Format:** [JSON-like JavaScript objects, audit log entries, and concise text reasons]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns allow or block decisions with reasons; may write audit logs and policy configuration files.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release metadata; artifact frontmatter and package.json report 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

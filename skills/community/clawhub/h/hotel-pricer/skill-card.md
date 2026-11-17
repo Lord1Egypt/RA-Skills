@@ -1,38 +1,52 @@
-## Description: <br>
-Searches hotel availability and pricing by city, dates, and guest count using the Amadeus API and returns JSON results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Hotel Pricer helps agents search hotel availability and pricing by city, dates, guests, and radius through the Amadeus Self-Service API.
 
-## Publisher: <br>
-[jrojas537](https://clawhub.ai/user/jrojas537) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jrojas537](https://clawhub.ai/user/jrojas537)
 
-## Use Case: <br>
-Developers, agents, and travel-planning users use this skill to configure Amadeus API credentials and search hotel offers from a CLI by IATA city code, stay dates, guests, and radius. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Amadeus API credentials and cached access tokens are stored locally without clearly documented or enforced secret-storage protections. <br>
-Mitigation: Use a private account, avoid shared or synced home directories, ensure ~/.config/hotel-pricer/config.yaml is readable only by your user, and rotate the Amadeus secret if it may have been exposed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Hotel Pricer on ClawHub](https://clawhub.ai/jrojas537/hotel-pricer) <br>
-- [Amadeus for Developers](https://developers.amadeus.com/) <br>
+## Use Case:
 
+Agents and developers use this skill to retrieve hotel availability and pricing for a city and stay window, returning formatted hotel offer data for travel planning workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON from the hotel search command, with Markdown guidance and shell commands for setup.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Amadeus API credentials and network access to the Amadeus test API.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release evidence and package.json) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Amadeus API keys and secrets may be exposed through command-line arguments, shell history, or plaintext config backups.
+
+Mitigation: Avoid entering production secrets in reusable shell commands, inspect shell history and backups, and rotate Amadeus credentials if exposure is possible.
+
+Risk: Cached OAuth tokens and credentials are stored under ~/.config/hotel-pricer/config.yaml with weak disclosure of local file protections.
+
+Mitigation: Restrict permissions on the config file and prefer a user-local install path so the skill does not require sudo-managed deployment.
+
+## Reference(s):
+
+- [Amadeus for Developers](https://developers.amadeus.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration]
+
+**Output Format:** [JSON]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Amadeus API credentials; hotel search accepts city, check-in date, check-out date, guests, and search radius.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

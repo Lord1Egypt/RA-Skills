@@ -1,0 +1,70 @@
+{
+  "artifactKind": "html",
+  "generatedAt": "2026-09-01T00:41:52.410416+00:00",
+  "input": {
+    "bytes": 2427,
+    "path": "examples/showcase-pr-delta.json",
+    "sha256": "3bb4afc4ac1fa8e27d2cb06c9fc1ff6f33e4194fffeebc23a4aeec7c3cfd5fe4"
+  },
+  "mode": "pr-delta",
+  "output": {
+    "bytes": 13668,
+    "path": "examples/showcase-pr-delta.html",
+    "sha256": "0ba79ed5500ef1954eaa645925fa0a720695f8317030686043d202550b2444bf"
+  },
+  "tool": "visual-architecture",
+  "validation": {
+    "errors": [],
+    "metrics": {
+      "edgeKinds": [
+        "control",
+        "memory-write",
+        "primary-data"
+      ],
+      "edges": 6,
+      "evidenceItems": 0,
+      "mode": "pr-delta",
+      "nodeKinds": [
+        "agent",
+        "llm",
+        "memory",
+        "service"
+      ],
+      "nodes": 6,
+      "quality": {
+        "checks": [
+          {
+            "code": "quality.node.spacing",
+            "level": "warn",
+            "subjects": [
+              "base",
+              "head"
+            ]
+          },
+          {
+            "code": "quality.node.spacing",
+            "level": "warn",
+            "subjects": [
+              "routes",
+              "risk"
+            ]
+          }
+        ],
+        "rating": "good",
+        "routeCrossings": 0,
+        "score": 84
+      },
+      "sourceBacked": false,
+      "sourceConfidence": {
+        "high": 0,
+        "low": 0,
+        "medium": 0,
+        "unspecified": 0
+      },
+      "theme": "showcase"
+    },
+    "ok": true,
+    "warnings": []
+  },
+  "version": "1.8.0"
+}

@@ -1,39 +1,50 @@
-## Description: <br>
-Files, sockets, subscriptions, or other finite resources are acquired without a guaranteed release path. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Files, sockets, subscriptions, or other finite resources are acquired without a guaranteed release path.
 
-## Publisher: <br>
-[mvogt99](https://clawhub.ai/user/mvogt99) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mvogt99](https://clawhub.ai/user/mvogt99)
 
-## Use Case: <br>
-Developers and engineers use this skill to help an agent recognize resource leaks in code and suggest reliable acquire/release patterns for files, sockets, database or HTTP clients, event listeners, background tasks, and timers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The surrounding agent may inspect repository files while applying this resource-leak guidance. <br>
-Mitigation: Grant the agent access only to repositories and files that are intended for analysis. <br>
-Risk: Resource-management advice may be incomplete or mismatched to a specific language, framework, or runtime. <br>
-Mitigation: Review proposed changes and test teardown and error paths before deployment. <br>
+## Use Case:
 
+Developers and code reviewers use this skill to identify resource leaks and recommend reliable acquire-and-release patterns for files, sockets, database clients, HTTP clients, event listeners, background tasks, and timers.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown prose with bullet-point findings and recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only helper; does not run code or request sensitive access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Teardown tests that terminate processes or force error paths can disrupt live services if run against production systems.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Apply the skill's testing advice in development or staging environments and review teardown changes before deployment.
+
+## Reference(s):
+
+- [Resource Leak ClawHub release](https://clawhub.ai/mvogt99/skills/resource-leak)
+- [mvogt99 ClawHub publisher profile](https://clawhub.ai/user/mvogt99)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Code, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with review findings and code or shell examples when useful]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable behavior is bundled in the skill artifact.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

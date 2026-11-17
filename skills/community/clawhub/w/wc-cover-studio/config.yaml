@@ -1,0 +1,39 @@
+# SkillHub / WorkBuddy 技能市场上传配置
+# 依据 SkillHub SKILL.md 规范 + WorkBuddy 技能市场要求整理
+
+name: wc-cover-studio
+display_name: 公众号封面生成
+version: 1.1.0
+description: 读文章→定风格→选行业意象→生成1:1主图→PIL后处理，一次交付三种版式（900×383头条 / 1080×1080方版 / 单图双用），单图双用通吃微信两种裁切比例，中文标题100%无错字，内置程序化QA，适用所有公众号/自媒体创作者
+author: 幽壑潜蛟
+category: content    # 内容创作
+platforms:
+  - WorkBuddy
+  - QClaw
+  - Claude Code
+  - Cursor
+trigger:
+  - "公众号封面"
+  - "封面图"
+  - "文章配图"
+  - "设计封面"
+  - "微信封面"
+  - "单图双用"
+  - "WeChat cover"
+  - "cover image"
+  - "给这篇文章做一个封面"
+  - "帮我重新设计封面"
+permission:
+  - 文件系统访问（读写文章目录与图片）
+  - 图像生成（ImageGen 或等价能力）
+  - 系统字体读取（标题叠加用）
+dependency:
+  - Python 3.8+
+  - Pillow
+pricing: 免费
+tags:
+  - 公众号
+  - 封面设计
+  - 内容创作
+  - 图片生成
+  - 自媒体

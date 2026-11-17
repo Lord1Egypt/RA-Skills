@@ -1,0 +1,8 @@
+{
+  "id": "refire",
+  "version": "0.1.0",
+  "tests": [
+    "bash ../../../tests/lint-skills.sh refire"
+  ],
+  "trust_level": "workspace"
+}

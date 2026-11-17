@@ -1,40 +1,47 @@
-## Description: <br>
-Model Guard monitors Anti-Gravity model quotas and changes the OpenClaw default model to the highest remaining quota, falling back to Gemini Flash when quota is low. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitors Anti-Gravity model quotas and automatically switches the default model to the highest-quota candidate, falling back to Gemini Flash when all tracked quotas are below the configured threshold.
 
-## Publisher: <br>
-[SarielWang93](https://clawhub.ai/user/SarielWang93) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[sarielwang93](https://clawhub.ai/user/sarielwang93)
 
-## Use Case: <br>
-Developers and operators using OpenClaw with Anti-Gravity models use this skill to keep the default model on the model with the most remaining quota. It can be run manually or scheduled for automatic quota-based model selection. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Automatic model switching can change the model used by OpenClaw without a prompt at the time of use. <br>
-Mitigation: Install or schedule it only when automatic default-model changes are desired, and review guard.js settings before enabling scheduled runs. <br>
-Risk: Quota parsing and fixed candidate lists may select a model that does not match local policy or current quota reporting behavior. <br>
-Mitigation: Confirm the candidate model list, 20% threshold, fallback model, and Gemini quota assumption before running in an operational environment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Model Guard on ClawHub](https://clawhub.ai/SarielWang93/model-guard) <br>
-- [SarielWang93 publisher profile](https://clawhub.ai/user/SarielWang93) <br>
+## Use Case:
+
+Developers and agent operators use this skill to keep OpenClaw model selection aligned with remaining Anti-Gravity quota during normal work. It can be run manually or scheduled when automatic default-model changes are desired.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can automatically change the OpenClaw default model, including when run on a schedule.
+
+Mitigation: Review guard.js to confirm the candidate models, threshold, and fallback model, then run it manually before enabling cron or heartbeat execution.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration] <br>
-**Output Format:** [CLI text output and OpenClaw model configuration changes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May be silent when the current default model already matches the selected model.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact package.json) <br>
+**Output Type(s):** [text, shell commands, configuration]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Command-line text output with configuration in JavaScript]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Updates the OpenClaw default model through the local openclaw CLI when quota conditions trigger a switch.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

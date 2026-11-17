@@ -1,42 +1,53 @@
-## Description: <br>
-Read-only security auditing for OpenClaw deployments, repositories, and local project directories. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides read-only file-inspection security audits for OpenClaw deployments, repositories, and local project directories.
 
-## Publisher: <br>
-[OTweihan](https://clawhub.ai/user/OTweihan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[otweihan](https://clawhub.ai/user/otweihan)
 
-## Use Case: <br>
-Developers and engineers use this skill to run read-only security reviews of deployment directories, server checkouts, workspaces, or repositories before release, after setup, during periodic hardening checks, or in CI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Audit reports can reveal sensitive local paths, hostnames, and security findings. <br>
-Mitigation: Keep generated reports private and share them only with people authorized to review the target environment. <br>
-Risk: The skill inspects files under the requested target directory. <br>
-Mitigation: Run it only on directories you are authorized to inspect and pass an explicit --target when auditing outside the current directory. <br>
-Risk: Findings are advisory and may require environment-specific interpretation. <br>
-Mitigation: Review findings before making changes and use --allow-port or --exclude-dir to suppress expected local configuration. <br>
+## Use Case:
 
+Developers and operators use this skill to review deployments, server checkouts, workspaces, repositories, and CI targets for exposed credentials, risky configuration, port exposure hints, Docker or compose issues, Git exposure, and Unix permission concerns.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/OTweihan/portable-deployment-audit) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, markdown, json, shell commands, guidance] <br>
-**Output Format:** [Text or JSON audit report with findings, counts, and remediation recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only file inspection; JSON reports include the local hostname; --strict can return a non-zero exit code for CI.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: Symlinks in untrusted repositories may cause the scanner to inspect files outside the selected target directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill only on directories you control, and review or remove unexpected symlinks before scanning untrusted repositories.
+
+Risk: Audit findings are advisory and may require environment-specific judgment before changes are made.
+
+Mitigation: Review findings and remediation recommendations manually before changing deployment or repository configuration.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/otweihan/skills/portable-deployment-audit)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Guidance]
+
+**Output Format:** [Plain text or JSON audit report with remediation recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only file inspection; JSON mode writes a structured report to stdout.]
+
+## Skill Version(s):
+
+1.0.2 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

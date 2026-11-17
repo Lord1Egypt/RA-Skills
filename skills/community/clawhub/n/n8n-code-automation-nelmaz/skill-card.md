@@ -1,44 +1,62 @@
-## Description: <br>
-Integrates n8n workflow automation into coding tasks for building, executing, modifying, and managing automation workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Integrates n8n workflow automation into coding tasks for building, executing, modifying, and configuring development workflow automations.
 
-## Publisher: <br>
-[nelmaz](https://clawhub.ai/user/nelmaz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nelmaz](https://clawhub.ai/user/nelmaz)
 
-## Use Case: <br>
-Developers and engineers use this skill to integrate n8n workflow operations into coding tasks, including inspecting, executing, cloning, updating, and documenting workflows for development pipelines, data processing, and API integrations. Mutating and execution actions should be reviewed against the connected n8n instance before use. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide agents to execute, modify, clone, or delete workflows on a remote n8n instance when an API key is available. <br>
-Mitigation: Use a dedicated least-privilege API key, start in read-only mode where possible, and require manual review before workflow execution, update, clone, webhook trigger, or deletion. <br>
-Risk: The artifact contains conflicting old and new instructions, including older examples that reference a fixed n8n host and configuration-file credentials. <br>
-Mitigation: Verify which SKILL.md is active, keep credentials out of shared config files, use environment variables or a secrets manager, and require HTTPS for the target n8n URL. <br>
+## Use Case:
 
+Developers and engineers use this skill to connect coding workflows with n8n automation, including CI/CD triggers, workflow execution, API integrations, data processing, scheduled maintenance, and workflow configuration changes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nelmaz/n8n-code-automation-nelmaz) <br>
-- [n8n Documentation](https://docs.n8n.io) <br>
-- [n8n API Reference](https://docs.n8n.io/api/) <br>
-- [n8n Webhooks](https://docs.n8n.io/workflows/webhooks/) <br>
-- [n8n Node Reference](https://docs.n8n.io/nodes/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Code, Configuration] <br>
-**Output Format:** [Markdown with inline shell, JSON, YAML, and JavaScript examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include n8n API calls and workflow examples that require user-supplied n8n URLs, workflow IDs, and API keys.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: frontmatter and server release evidence) <br>
+Risk: The package includes an older nested v1.0.0 skill that still directs credentials and workflow operations to a fixed third-party host.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, avoid loading the bundled nested v1.0.0 skill unless it is removed or corrected, and use only the current v1.1.0 behavior.
+
+Risk: n8n API keys and workflow operations can expose credentials or trigger unintended automation when configured broadly.
+
+Mitigation: Use only a user-controlled N8N_URL, keep n8n API keys out of OpenClaw config files, prefer read-only or narrowly scoped keys, and require confirmation for workflow-changing operations.
+
+Risk: Workflow execution, cloning, updating, or deletion can change external systems connected to n8n.
+
+Mitigation: Use the lowest permission mode that supports the task, review workflow state and diffs before changes, and keep audit logging and rate limits enabled.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/nelmaz/skills/n8n-code-automation-nelmaz)
+- [n8n Documentation](https://docs.n8n.io)
+- [n8n API Reference](https://docs.n8n.io/api/)
+- [n8n Webhooks](https://docs.n8n.io/workflows/webhooks/)
+- [n8n Community Workflows](https://community.n8n.io/)
+- [n8n Node Reference](https://docs.n8n.io/nodes/)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline bash, JSON, YAML, and JavaScript examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose n8n API calls and workflow configuration changes that require review before execution.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence, artifact metadata, and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

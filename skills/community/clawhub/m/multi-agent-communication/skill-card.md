@@ -1,42 +1,58 @@
-## Description: <br>
-Based on two core tools, sessions_spawn and sessions_send, this skill helps users build, manage, and optimize distributed Agent systems for task decomposition, parallel processing, and efficient coordination among Agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill helps users build, manage, and optimize distributed agent systems with sessions_spawn and sessions_send for task decomposition, parallel processing, and agent coordination.
 
-## Publisher: <br>
-[openlark](https://clawhub.ai/user/openlark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[openlark](https://clawhub.ai/user/openlark)
 
-## Use Case: <br>
-Developers and agent builders use this skill to choose and configure multi-agent spawning, messaging, collaboration, and workflow patterns with sessions_spawn and sessions_send. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Background child agents and copied attachments can reduce user visibility or keep sensitive material available outside the parent agent lifecycle. <br>
-Mitigation: Use visible session mode for sensitive work and do not pass sensitive attachments to child agents unless the copy and retention behavior is acceptable. <br>
-Risk: Broad cross-agent permissions, high child-agent limits, or long-running tasks can increase coordination and resource-exhaustion risk. <br>
-Mitigation: Prefer explicit allow lists, avoid allow-all communication settings, and keep recursion depth, child-agent limits, and timeouts conservative. <br>
+## Use Case:
 
+Developers and engineers use this skill to coordinate multi-agent workflows, including background child-agent tasks, persistent expert-agent sessions, parallel decomposition, and agent-to-agent messaging.
 
-## Reference(s): <br>
-- [Agent Configuration Reference](references/config.md) <br>
-- [Design Pattern Reference](references/patterns.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/openlark/multi-agent-communication) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, configuration, code] <br>
-**Output Format:** [Markdown with inline JSON5 and JavaScript examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include sessions_spawn and sessions_send call patterns, workflow recommendations, and configuration examples.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Invisible child-agent work can reduce user visibility during sensitive tasks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user approval for background agents on sensitive work and bind persistent sessions to visible threads when follow-up interaction is needed.
+
+Risk: Wildcard cross-agent access can broaden agent communication beyond the intended team.
+
+Mitigation: Use explicit allowlists for agent-to-agent access and child-agent spawning.
+
+Risk: Parallel spawning and multi-round negotiation can exhaust resources or run longer than intended.
+
+Mitigation: Keep recursion depth, child count, ping-pong turns, and timeouts capped to reviewed defaults.
+
+## Reference(s):
+
+- [Agent Configuration Reference](references/config.md)
+- [Design Pattern Reference](references/patterns.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Configuration]
+
+**Output Format:** [Markdown with inline JSON and JavaScript code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes configuration examples, tool-selection guidance, and multi-agent workflow patterns.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,59 @@
-## Description: <br>
-Screen markets across 6 asset classes using TradingView data with API pre-filters, pandas computed signals, and YAML-driven strategies. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Screen markets across 6 asset classes using TradingView data. API pre-filters + pandas computed signals. YAML-driven strategies.
 
-## Publisher: <br>
-[lukebaze](https://clawhub.ai/user/lukebaze) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[lukebaze](https://clawhub.ai/user/lukebaze)
 
-## Use Case: <br>
-Developers, analysts, and traders use this skill to run one-time market screens or YAML-defined computed signals across TradingView asset classes and receive markdown result tables. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Dependency drift may affect reproducibility in financial workflows because dependencies are version-ranged. <br>
-Mitigation: Use a locked or reviewed dependency set before installation in high-assurance workflows. <br>
-Risk: Generated screening signals can be mistaken for trading recommendations. <br>
-Mitigation: Treat results as informational and review market context before acting on any screen result. <br>
-Risk: Custom YAML expression signals may encode incorrect or unintended logic. <br>
-Mitigation: Review custom signal expressions before running them and rely on the skill's expression validation as a guardrail, not as full strategy validation. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [TradingView Screener API Guide](references/tvscreener-api-guide.md) <br>
-- [Computed Signals Guide](references/computed-signals-guide.md) <br>
-- [Strategy Templates](references/strategy-templates.md) <br>
-- [Field Presets](references/field-presets.md) <br>
+## Use Case:
 
+Developers and market analysts use this skill to run TradingView-backed market screens and YAML-driven technical signals across stocks, crypto, forex, bonds, futures, and coins.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown tables with command examples and YAML signal configurations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses TradingView data through tvscreener; results are informational market screens, not trading recommendations.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Python dependencies are specified as version ranges and may resolve to newer package versions during installation.
+
+Mitigation: Pin and hash dependencies before higher-assurance or repeatable deployments.
+
+Risk: Screening filters and strategy parameters are sent through the TradingView/tvscreener data path.
+
+Mitigation: Use only screening inputs that are acceptable to share with that external market-data path.
+
+Risk: Custom YAML expressions can affect computed signal filtering behavior.
+
+Mitigation: Review signal YAML expressions before execution and keep them within the documented field and operator patterns.
+
+## Reference(s):
+
+- [TradingView Screener API Guide](references/tvscreener-api-guide.md)
+- [Computed Signals Guide](references/computed-signals-guide.md)
+- [Strategy Templates](references/strategy-templates.md)
+- [Field Presets](references/field-presets.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown tables with CLI command snippets and YAML strategy configuration]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses TradingView/tvscreener market data and supports JSON filters, column selection, sorting, limits, timeframes, and YAML signal files.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

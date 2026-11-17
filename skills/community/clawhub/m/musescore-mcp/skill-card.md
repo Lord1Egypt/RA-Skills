@@ -1,42 +1,57 @@
-## Description: <br>
-Search MuseScore sheet music and read score metadata via MCP using an installed musescore-mcp server and a fetchproxy-backed signed-in browser session. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches MuseScore sheet music, reads score metadata, and helps resolve download or PDF links through a configured musescore-mcp MCP server.
 
-## Publisher: <br>
-[chrischall](https://clawhub.ai/user/chrischall) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chrischall](https://clawhub.ai/user/chrischall)
 
-## Use Case: <br>
-Developers and agents use this skill to search MuseScore scores, inspect sheet-music metadata, and resolve download or PDF links when musescore-mcp and fetchproxy are already configured. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow relies on an external MCP server and fetchproxy extension using a signed-in MuseScore browser session. <br>
-Mitigation: Install only after reviewing the external musescore-mcp and fetchproxy code and confirming that use of the signed-in session is acceptable. <br>
-Risk: The submitted skill artifact contains instructions only, so runtime behavior depends on separately installed external components. <br>
-Mitigation: Verify the external MCP server path, browser extension, and MuseScore session before using the skill in an agent workflow. <br>
+## Use Case:
 
+Developers and music-focused agents use this skill to search MuseScore scores, inspect score metadata such as license and duration, and route eligible download or PDF workflows through a local MCP server.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chrischall/musescore-mcp) <br>
-- [musescore-mcp source](https://github.com/chrischall/musescore-mcp) <br>
-- [fetchproxy source](https://github.com/chrischall/fetchproxy) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Configuration, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline JSON and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May refer to MCP tool outputs containing score metadata, download links, or local PDF paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.13.3 (source: server release evidence) <br>
+Risk: The skill asks users to run a private MCP server and fetchproxy browser extension.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after trusting the publisher, use project-scoped MCP configuration, and inspect and pin the exact server and extension versions.
+
+Risk: Requests run through a signed-in MuseScore browser tab.
+
+Mitigation: Use a separate browser profile or MuseScore account when possible, and avoid using accounts or sessions with broader access than the workflow requires.
+
+Risk: MuseScore has no public consumer API, so the workflow depends on server-rendered web app data and browser-session behavior.
+
+Mitigation: Run the healthcheck, verify score metadata and download eligibility before relying on results, and expect behavior to change if MuseScore changes its web app.
+
+## Reference(s):
+
+- [fetchproxy browser extension](https://github.com/chrischall/fetchproxy)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, files]
+
+**Output Format:** [Markdown text with MCP setup snippets, score metadata, URLs, and optional local PDF file output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires musescore-mcp, the fetchproxy extension, and a signed-in MuseScore browser tab; PDF file creation depends on the SVG fallback path and rsvg-convert.]
+
+## Skill Version(s):
+
+0.14.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

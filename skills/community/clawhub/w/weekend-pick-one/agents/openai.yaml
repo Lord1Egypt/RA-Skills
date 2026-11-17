@@ -1,0 +1,4 @@
+interface:
+  display_name: "周末去哪玩｜只推一个"
+  short_description: "把日期和现实条件核清，只推一个本周末真能去的具名方案"
+  default_prompt: "请用 $weekend-pick-one 把这个周末换算成明确日期，从本城、近郊和周边一起筛；有实时搜索能力时只推一个核验过的具名地点，并附核验依据，缺少实时能力时明确给方向版。"

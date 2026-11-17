@@ -1,44 +1,54 @@
-## Description: <br>
-Helps an agent prepare and run a WeChat Official Account draft-publishing workflow for Markdown or HTML articles, including cover image upload and simple HTML formatting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+一键将 Markdown 或 HTML 文章和封面图上传到微信公众号草稿箱，并生成适合公众号阅读的草稿内容。
 
-## Publisher: <br>
-[qujingyang28](https://clawhub.ai/user/qujingyang28) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qujingyang28](https://clawhub.ai/user/qujingyang28)
 
-## Use Case: <br>
-Developers and content operators use this skill to configure WeChat Official Account credentials, convert article content, upload a cover image, and create a draft for manual review before publication. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow requires WeChat APPID and APPSECRET credentials that can authorize account actions. <br>
-Mitigation: Treat APPSECRET like a password, provide it only at runtime, and keep it out of committed files, prompts, logs, screenshots, and shell history. <br>
-Risk: The package can create WeChat drafts from local article and image files through external API calls. <br>
-Mitigation: Use only accounts and files intended for this workflow, and manually inspect every created draft in WeChat before publishing publicly. <br>
-Risk: Server security guidance reports weak safety controls and inconsistent setup instructions for some options. <br>
-Mitigation: Review the package before installing and verify paths, dry-run behavior, environment-variable loading, digest, beautify, and author options before operational use. <br>
+## Use Case:
 
+Content publishers and agent operators use this skill to prepare WeChat Official Account drafts from local Markdown or HTML articles, including cover image upload and basic formatting before manual review and publication.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/qujingyang28/wechat-publisher-pro) <br>
-- [Publisher profile](https://clawhub.ai/user/qujingyang28) <br>
-- [WeChat Official Accounts Platform](https://mp.weixin.qq.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create WeChat draft content through the WeChat API when executed with user-provided account credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.1.3 (source: evidence.json release.version) <br>
+Risk: The skill handles WeChat account secrets and can upload selected article text, title, and cover image to WeChat.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use protected environment injection or a secret manager for APPSECRET, avoid passing secrets in prompts or shell history, and rotate exposed credentials.
+
+Risk: Draft creation can publish incorrect or unreviewed article content into a WeChat account workflow.
+
+Mitigation: Keep the draft-review step, preview on mobile, and complete the provided pre-publication accuracy checklist before publishing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/qujingyang28/skills/wechat-publisher-pro)
+- [WeChat Official Accounts Platform](https://mp.weixin.qq.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python and shell command examples; runtime actions create WeChat draft API requests.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an article path, cover image path, title, and WeChat APPID/APPSECRET supplied through protected configuration.]
+
+## Skill Version(s):
+
+3.1.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

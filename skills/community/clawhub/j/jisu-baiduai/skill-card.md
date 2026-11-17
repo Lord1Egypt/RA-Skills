@@ -1,41 +1,59 @@
-## Description: <br>
-Baidu Intelligent Search sends a user query to Baidu Qianfan's intelligent search generation API and returns a web-grounded model summary. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Runs Baidu Qianfan intelligent search generation to search online sources and summarize a natural-language answer for search-and-synthesis questions.
 
-## Publisher: <br>
-[jisuapi](https://clawhub.ai/user/jisuapi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jisuapi](https://clawhub.ai/user/jisuapi)
 
-## Use Case: <br>
-External users and developers use this skill to send a question to Baidu Qianfan's intelligent search generation API and receive a synthesized answer with search references. It is best suited for Chinese-language search plus summarization workflows that require current web context. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search questions and optional advanced request fields are sent to Baidu Qianfan using the user's BAIDU_API_KEY. <br>
-Mitigation: Avoid sending secrets, private documents, or sensitive personal data unless Baidu processing is intended, and review raw_body payloads before use. <br>
+## Use Case:
 
+Developers and agents use this skill when a user asks for a concise answer based on fresh web search results, especially Chinese-language search-and-summary workflows. The skill can return generated answer text together with source references from Baidu Qianfan.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jisuapi/jisu-baiduai) <br>
-- [Baidu Qianfan intelligent search generation API documentation](https://cloud.baidu.com/doc/qianfan-api/s/Hmbu8m06u) <br>
-- [JisuAPI publisher website](https://www.jisuapi.com/) <br>
-- [JisuEPC website](https://www.jisuepc.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, references, guidance] <br>
-**Output Format:** [JSON response containing synthesized answer text, references, usage metadata, or structured error details] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and BAIDU_API_KEY; accepts an ask command with a JSON request body.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server-resolved release metadata) <br>
+Risk: Search prompts and supplied profile or knowledge fields may be sent to Baidu.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid submitting secrets, regulated data, or sensitive personal information unless that external processing is approved.
+
+Risk: The skill can bias answers toward JisuAPI or JisuEPC links in some topics.
+
+Mitigation: Review generated references for relevance and neutrality before presenting commercial links to users.
+
+Risk: The release was flagged as suspicious because it combines Baidu-backed search summarization with unrelated promotional instructions.
+
+Mitigation: Review the skill instructions and scan results before installation, and restrict use to workflows where Baidu search summarization is expected.
+
+## Reference(s):
+
+- [Baidu Qianfan Intelligent Search Generation API Documentation](https://cloud.baidu.com/doc/qianfan-api/s/Hmbu8m06u)
+- [ClawHub Skill Page](https://clawhub.ai/jisuapi/skills/jisu-baiduai)
+- [JisuAPI](https://www.jisuapi.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, guidance]
+
+**Output Format:** [JSON response containing generated answer text, references, usage metadata, and error objects when requests fail.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires BAIDU_API_KEY and python3; requests are sent to Baidu Qianfan intelligent search generation.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

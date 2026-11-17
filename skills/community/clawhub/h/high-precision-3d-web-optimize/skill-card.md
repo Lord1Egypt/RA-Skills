@@ -1,46 +1,59 @@
-## Description: <br>
-Optimize high-precision .glb/.gltf models for Web 3D and digital twin delivery, including UV-safe simplification, slot-based texture compression, LOD generation, Draco compression, manifest outputs, and browser loading guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Optimizes high-precision GLB/GLTF assets for Web 3D and digital twin delivery with UV-safe simplification, slot-aware texture compression, LOD generation, Draco compression, manifest output, and browser loading guidance.
 
-## Publisher: <br>
-[neowalker69](https://clawhub.ai/user/neowalker69) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[neowalker69](https://clawhub.ai/user/neowalker69)
 
-## Use Case: <br>
-Developers and 3D engineers use this skill to prepare high-precision GLB/GLTF assets for Three.js, Babylon.js, digital twin, and Web 3D delivery while preserving UVs, materials, and texture appearance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local model optimization may overwrite or transform source assets in ways that are hard to reverse. <br>
-Mitigation: Run the workflow in a dedicated project folder and keep backups of original GLB/GLTF files before processing. <br>
-Risk: Unpinned npm dependencies can change optimization output or behavior between runs. <br>
-Mitigation: Pin dependency versions before repeated or production use. <br>
-Risk: Compression, simplification, or KTX2 loader setup can introduce blur, deformation, decode-path issues, or loading failures. <br>
-Mitigation: Validate optimized assets in the target Three.js or Babylon.js viewer and tune texture sizes, LOD ratios, and KTX2 support before deployment. <br>
+## Use Case:
 
+Developers and 3D engineers use this skill to prepare large or texture-heavy GLB/GLTF models for browser delivery while preserving UV alignment, material appearance, and practical LOD behavior.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/neowalker69/high-precision-3d-web-optimize) <br>
-- [Publisher profile](https://clawhub.ai/user/neowalker69) <br>
-- [Optimization automation template](artifact/references/optimize-glb.mjs) <br>
-- [Three.js LOD loading example](artifact/references/threejs-load-lod.js) <br>
-- [Node project package template](artifact/references/package-template.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with code snippets and file-oriented implementation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide creation of optimized GLB files, LOD GLB files, and manifest JSON through local tooling.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata) <br>
+Risk: Unpinned npm dependencies may change optimization behavior across installs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and pin dependency versions in a lockfile before production use.
+
+Risk: Automated simplification or texture compression can blur materials, deform geometry, or change color and lighting.
+
+Mitigation: Visually inspect optimized LOD files and tune ratios, texture sizes, color spaces, and compression settings before release.
+
+Risk: KTX2 assets can fail to display if loader support is not initialized for the renderer.
+
+Mitigation: Call KTX2Loader.detectSupport(renderer), verify Draco and KTX2 decoder paths, and test browser loading before deployment.
+
+## Reference(s):
+
+- [optimize-glb.mjs](references/optimize-glb.mjs)
+- [threejs-load-lod.js](references/threejs-load-lod.js)
+- [package-template.json](references/package-template.json)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown response with code snippets, configuration examples, shell commands, and generated asset path summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May describe optimized GLB outputs, LOD files, manifest settings, browser loading status, and tuning advice.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

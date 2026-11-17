@@ -1,44 +1,59 @@
-## Description: <br>
-Trades CS2 best-of-three winner markets on Polymarket when individual map winner prices imply a different match outcome. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Trades CS2 BO3 Winner markets when individual map winner probabilities imply a different BO3 outcome on Polymarket.
 
-## Publisher: <br>
-[diagnostikon](https://clawhub.ai/user/diagnostikon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[diagnostikon](https://clawhub.ai/user/diagnostikon)
 
-## Use Case: <br>
-External agents and trading operators use this skill to monitor CS2 map and match markets, calculate best-of-three pricing differences, and place paper or explicitly enabled live Polymarket trades through Simmer. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Live mode can spend real funds. <br>
-Mitigation: Run in paper mode first and use a dedicated low-balance or least-privilege trading key for live testing. <br>
-Risk: Some documented risk limits may not be enforced by the code. <br>
-Mitigation: Do not rely on minimum-volume or concurrent-position limits unless the code is fixed or the limits are enforced separately. <br>
-Risk: SIMMER_API_KEY grants trading authority. <br>
-Mitigation: Store the key as a secret, limit its permissions where possible, and rotate it if exposure is suspected. <br>
+## Use Case:
 
+External developers and trading agents use this skill to monitor Polymarket CS2 best-of-three and map winner markets, compare BO3 prices against map-implied probabilities, and place simulated or explicitly live trades through Simmer.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/diagnostikon/polymarket-bundle-cs2-maps-trader) <br>
-- [simmer-sdk on PyPI](https://pypi.org/project/simmer-sdk/) <br>
-- [simmer-sdk GitHub repository](https://github.com/SpartanLabsXyz/simmer-sdk) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, API calls] <br>
-**Output Format:** [Python trading workflow with runtime logs, tunable configuration, and Simmer SDK trade calls] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Paper trading is the default. Live Polymarket trading requires --live and SIMMER_API_KEY, and may spend real funds.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.3 (source: server release evidence) <br>
+Risk: Live mode can place real Polymarket trades, and the security review warns that some documented volume and concurrent-position safeguards are not fully enforced by the code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use paper mode by default, review the implementation before live use, and only run with --live after accepting the remaining trading-control risk.
+
+Risk: The skill requires SIMMER_API_KEY, which grants trading authority.
+
+Mitigation: Use a narrowly scoped key, protect it as a high-value credential, and rotate it if exposure is suspected.
+
+Risk: The skill depends on simmer-sdk for market access and trade execution.
+
+Mitigation: Pin or otherwise verify the SDK dependency before installing or running the skill in live environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/diagnostikon/skills/polymarket-bundle-cs2-maps-trader)
+- [simmer-sdk on PyPI](https://pypi.org/project/simmer-sdk/)
+- [simmer-sdk GitHub repository](https://github.com/SpartanLabsXyz/simmer-sdk)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance, API calls]
+
+**Output Format:** [Console text, Python execution, and Simmer trading requests]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Defaults to paper trading unless the live flag is supplied.]
+
+## Skill Version(s):
+
+0.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -5,7 +5,7 @@ description: Shopee（虾皮）店铺秒杀 Shop Flash Sale（与 linkfox-shopee
 
 # Shopee 店铺秒杀 Shop Flash Sale
 
-Shopee Open Platform **Shop Flash Sale 模块**（11 个 API）。**依赖 `linkfox-shopee-store-auth`**：先取 `accessToken`，再经 **`POST /shopee/developerProxy`** 转发（`path` 须 `api/v2/shop_flash_sale/...`）。
+Shopee Open Platform **Shop Flash Sale 模块**（11 个 API）。**依赖 `linkfox-shopee-store-auth`** 选店；经 **`POST /shopee/developerProxy`** 传入 `shopId`（或 `merchantId`），由服务端解析 token 转发（`path` 须 `api/v2/shop_flash_sale/...`）。
 
 ## 调用方式
 
@@ -20,6 +20,14 @@ Shopee Open Platform **Shop Flash Sale 模块**（11 个 API）。**依赖 `link
 - 加 `--inline` 强制全量打印到 stdout（同样落盘）
 
 **读数据建议**：先看摘要判断是否足够；需要具体字段时优先用 `jq`或`ConvertFrom-Json` 从保存的 json 文件按需抽取，避免整份 JSON 进入上下文。
+
+## 解决认证和积分问题
+发生以下异常情况时，采用 references/onboarding.md 引导解决问题：
+
+### 异常情况
+- **未配置API Key**：环境变量未配置 `LINKFOX_AGENT_API_KEY`，也未配置 `LINKFOXAGENT_API_KEY`。
+- **响应401或402状态码**
+- **响应提示积分或余额不足**：消息含"积分余额不足/计费不足/余额不足/quota exceeded/insufficient balance/套餐到期/需充值/请充值"，或类似含义的内容。
 
 ## 官方参考
 
@@ -49,6 +57,26 @@ Shop Flash Sale 模块索引：[v2.shop_flash_sale.get_time_slot_id](https://ope
 | `delete_shop_flash_sale_items.py` | delete_shop_flash_sale_items | POST |
 | `shop_flash_sale_api.py` | 通用入口 | — |
 
+## 接口说明（按 API）
+
+入参与响应细节放在 `references/apis/`，SKILL 只保留索引。
+
+| API | 说明文档 |
+|-----|----------|
+| `add_shop_flash_sale_items` | [references/apis/add-shop-flash-sale-items.md](./references/apis/add-shop-flash-sale-items.md) |
+| `create_shop_flash_sale` | [references/apis/create-shop-flash-sale.md](./references/apis/create-shop-flash-sale.md) |
+| `delete_shop_flash_sale` | [references/apis/delete-shop-flash-sale.md](./references/apis/delete-shop-flash-sale.md) |
+| `delete_shop_flash_sale_items` | [references/apis/delete-shop-flash-sale-items.md](./references/apis/delete-shop-flash-sale-items.md) |
+| `get_item_criteria` | [references/apis/get-item-criteria.md](./references/apis/get-item-criteria.md) |
+| `get_shop_flash_sale` | [references/apis/get-shop-flash-sale.md](./references/apis/get-shop-flash-sale.md) |
+| `get_shop_flash_sale_items` | [references/apis/get-shop-flash-sale-items.md](./references/apis/get-shop-flash-sale-items.md) |
+| `get_shop_flash_sale_list` | [references/apis/get-shop-flash-sale-list.md](./references/apis/get-shop-flash-sale-list.md) |
+| `get_time_slot_id` | [references/apis/get-time-slot-id.md](./references/apis/get-time-slot-id.md) |
+| `update_shop_flash_sale` | [references/apis/update-shop-flash-sale.md](./references/apis/update-shop-flash-sale.md) |
+| `update_shop_flash_sale_items` | [references/apis/update-shop-flash-sale-items.md](./references/apis/update-shop-flash-sale-items.md) |
+
+模块总览 / Feedback 见 [references/api.md](./references/api.md)。
+
 ## Usage Scenarios
 
 ### 1. 创建店铺秒杀
@@ -63,6 +91,10 @@ Shop Flash Sale 模块索引：[v2.shop_flash_sale.get_time_slot_id](https://ope
 - 限时折扣 Discount → `linkfox-shopee-store-discount`
 - 优惠券 Voucher → `linkfox-shopee-store-voucher`
 - 商品 listing → `linkfox-shopee-store-product`
+
+## 积分消耗规则
+
+不消耗积分。
 
 **Feedback:** 见 `references/api.md`。
 

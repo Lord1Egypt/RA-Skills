@@ -1,0 +1,5 @@
+interface:
+  display_name: "钢结构算量 · 吨位估算带"
+  short_description: "消费 cad-file-reader 经 lis-skill-bus 传递的钢结构识图契约，输出可复核的吨位估算带。"
+  icon_small: icon.png
+  icon_large: icon.png

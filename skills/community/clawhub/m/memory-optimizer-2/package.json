@@ -1,0 +1,28 @@
+{
+  "name": "memory-optimizer",
+  "version": "1.0.0",
+  "description": "Analyzes AI agent memory files, detects duplicates, stale information, and structural issues. Generates optimization reports and can auto-fix common issues.",
+  "author": "Peru 🇵🇪",
+  "price": "$3.99",
+  "main": "analyze.py",
+  "scripts": {
+    "analyze": "python3 analyze.py",
+    "optimize": "python3 optimize.py"
+  },
+  "keywords": [
+    "memory",
+    "optimization",
+    "agent",
+    "deduplication",
+    "analysis",
+    "markdown",
+    "cleanup"
+  ],
+  "license": "MIT",
+  "engines": {
+    "python": ">=3.8"
+  },
+  "dependencies": {
+    "system": ["python3"]
+  }
+}

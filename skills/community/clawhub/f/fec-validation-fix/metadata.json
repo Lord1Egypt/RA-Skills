@@ -1,6 +1,6 @@
 {
   "id": "fec-validation-fix",
-  "name": "验证与修复",
+  "name": "Verification and repair",
   "category": "review-quality",
   "tags": [
     "validation",
@@ -10,8 +10,8 @@
     "build",
     "fix"
   ],
-  "summary": "Frontend Craft skill for 验证与修复.",
-  "version": "2.6.0",
+  "summary": "Diagnose and repair failures in existing lint, typecheck, test, and build commands.",
+  "version": "2.9.0",
   "license": "MIT",
   "homepage": "https://github.com/bovinphang/frontend-craft",
   "repository": "https://github.com/bovinphang/frontend-craft",
@@ -34,7 +34,7 @@
     "openclaw",
     "generic-skill-runtime"
   ],
-  "description": "Use when running existing project validation commands and fixing failures after code changes, including lint, type-check, unit/integration test, build, CI, or local script failures. Do not use when the task is to design or author new component/E2E tests; Chinese triggers include 验证, 检查失败, 修复失败, CI 失败.",
+  "description": "Use when running existing project validation commands and fixing failures after code changes, including lint, type-check, unit/integration test, build, CI, or local script failures. Do not use when the task is to design or author new component/E2E tests; Chinese triggers include validation, check failures, fix failures, CI failures.",
   "source": "skills/fec-validation-fix",
   "references": [
     "references/report-template.md"

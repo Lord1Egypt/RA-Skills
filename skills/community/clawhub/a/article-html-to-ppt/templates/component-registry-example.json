@@ -1,0 +1,25 @@
+{
+  "deprecated": "example only; machine source is references/component-registry.json",
+  "schema_version": "1.0",
+  "components": [
+    {
+      "component_type": "comparison_matrix",
+      "display_name": "Comparison Matrix",
+      "category": "table",
+      "supported_primary_expressions": ["table_matrix"],
+      "supported_slide_roles": ["comparison", "decision"],
+      "semantic_capabilities": ["exact_lookup", "dimension_comparison", "winner_highlight"],
+      "native_capability": "full",
+      "builder_support": {"pptxgenjs": {"level": "full"}},
+      "editable_core": ["headers", "cells", "highlight", "source_note"],
+      "allowed_delivery_routes": ["native_table"],
+      "preferred_delivery_route": "native_table",
+      "fallback_chain": [],
+      "raster_policy": {"allowed": false, "max_area_ratio": 0, "whole_slide_forbidden": true, "requires_disclosure": true, "requires_native_overlay": false},
+      "complexity_limits": {"native": {"max_rows": 8, "max_columns": 6}, "warning": {"max_rows": 12, "max_columns": 8}},
+      "required_qa_checks": ["TABLE_NATIVE", "TEXT_OVERFLOW", "COLOR_CONTRACT", "FONT_MINIMUM"],
+      "style_dependencies": ["table_tokens.default"],
+      "notes": []
+    }
+  ]
+}

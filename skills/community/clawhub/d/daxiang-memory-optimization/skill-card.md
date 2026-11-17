@@ -1,40 +1,55 @@
-## Description: <br>
-Optimizes memory management by scoring, pruning low-value entries, controlling size, and smartly retrieving top relevant memories for efficient access. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Optimizes memory management by scoring, pruning low-value entries, controlling memory size, and retrieving top relevant memories for efficient agent access.
 
-## Publisher: <br>
-[daxiangnaoyang](https://clawhub.ai/user/daxiangnaoyang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[daxiangnaoyang](https://clawhub.ai/user/daxiangnaoyang)
 
-## Use Case: <br>
-Developers and agent operators use this skill to manage long-running agent memory stores by scoring relevance, retrieving the most useful memories, and pruning or archiving low-value entries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Automatic pruning or archiving can remove or move stored memories before a user verifies that they are low value. <br>
-Mitigation: Back up memory files, run pruning in dry-run or approval mode first, verify the archive destination, and test relevance thresholds on non-critical memory stores. <br>
+## Use Case:
 
+Developers and agent operators use this skill to keep agent memory useful and bounded by scoring memories, retrieving the most relevant items, and pruning or archiving low-value entries.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/daxiangnaoyang/daxiang-memory-optimization) <br>
-- [Artifact skill instructions](artifact/SKILL.md) <br>
-- [Artifact configuration](artifact/config.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with Python, PowerShell, JSON, and YAML examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Provides configurable thresholds for pruning, memory window size, retrieval count, archive location, cache TTL, and batch size.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Automatic pruning can remove or overwrite useful agent memory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review defaults before use, disable auto-prune or require dry-run confirmation, and keep backups or rollback before saving pruned memory.
+
+Risk: Archived memory can expose retained context if stored in plaintext or an unsafe path.
+
+Mitigation: Use workspace-relative archive locations, protect or encrypt archived memory, and apply retention controls.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/daxiangnaoyang/skills/daxiang-memory-optimization)
+- [Artifact skill documentation](artifact/SKILL.md)
+- [Artifact configuration](artifact/config.json)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with Python, PowerShell, JSON, and YAML examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes configurable memory window, pruning threshold, retrieval limit, scoring weights, cache settings, and archive behavior.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

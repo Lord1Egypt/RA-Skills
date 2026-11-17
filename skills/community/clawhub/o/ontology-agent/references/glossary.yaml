@@ -1,0 +1,266 @@
+# 本体论智能体（Ontology Agent）· 术语表 glossary
+# 用途：全项目 yaml 机器 key / 文档 / 汉化 的权威中英文对照字典。
+# 约定：
+#   - yaml 机器 key 一律用英文（稳定、不随汉化改）
+#   - 用户面 display（GUIDE、pack 显示名、引导话术）用中文
+#   - 任何新增术语必须先登记到此表，再使用，避免前后不一致导致汉化返工
+# 维护：Phase 0 建立，全程只增不改义；改义需同步改所有引用处。
+
+meta:
+  project: ontology-agent
+  purpose: 术语统一 / 汉化对照基准
+  rule: key=英文, display=中文
+
+# ── 核心四层 ──────────────────────────────────────────────
+layers:
+  semantic_layer:
+    zh: 语义层
+    en: Semantic Layer
+    aka: [知识图谱, Knowledge Graph]
+    desc: Object+Link，实体类型+关系+写入前约束校验
+  logic_layer:
+    zh: 逻辑层
+    en: Logic Layer
+    aka: [逻辑图谱, Logic Graph]
+    desc: Action+Workflow，部门动作+阶段化业务工作流
+  decision_layer:
+    zh: 决策层
+    en: Decision Layer
+    aka: [决策图谱, Decision Graph]
+    desc: 规则+回写，权限/审计/PII 护栏
+  integration_layer:
+    zh: 集成层
+    en: Integration Layer
+    aka: [连接器层, Connector Layer]
+    desc: 源系统/IM 连接器（钉钉/企业微信/飞书/企业内系统）
+
+# ── 本体论原子概念 ────────────────────────────────────────
+core_concepts:
+  ontology:
+    zh: 本体论
+    en: Ontology
+    desc: 企业知识的语义层总称（Palantir 谱系叫法）
+  object:
+    zh: 对象
+    en: Object
+    aka: [实体, Entity]
+    desc: 本体中的一个可建模事物（公司/部门/人/票据…）。A1 用 Entity{id,type,properties,relations} 原语
+  entity:
+    zh: 实体
+    en: Entity
+    desc: 同 object；本项目中 Entity 是对象在语义层的存储结构
+  property:
+    zh: 属性
+    en: Property
+    desc: 实体上的字段（如 公司.名称）
+  link:
+    zh: 关系
+    en: Link
+    aka: [Relation, 关联]
+    desc: 实体间的边（如 部门-属于->公司）。A1 中写作 relations，带基数约束
+  relation:
+    zh: 关系
+    en: Relation
+    desc: 同 link；A1 语境下 Entity.relations 即关系集合
+  action:
+    zh: 动作
+    en: Action
+    aka: [工具, Tool]
+    desc: 部门/角色可执行的一个操作（如 开票、记账）
+  workflow:
+    zh: 工作流
+    en: Workflow
+    aka: [流程, Pipeline]
+    desc: 多个 action 按阶段串联的业务流水线（抄 easychen 阶段状态机）
+  role:
+    zh: 角色
+    en: Role
+    desc: 治理单元：每个员工/部门一个 role，含 memory_paths/工具集/权限/审计（抄 A2 roles.yaml）
+  agent:
+    zh: 智能体
+    en: Agent
+    desc: 本产品的本质——装 Skill 即帮用户把公司搭成可运行本体的智能体
+  expert:
+    zh: 专家
+    en: Expert
+    desc: 映射到某部门/角色的 AI 员工（如 财务专家）
+  department:
+    zh: 部门
+    en: Department
+    desc: 公司职能单元（OPC 默认 12 部门）
+
+# ── 打包与实例化 ────────────────────────────────────────
+packaging:
+  package:
+    zh: 包
+    en: Package
+    aka: [pack]
+    desc: 随 Skill 发布的静态模板（语义/逻辑/决策/行业实体），不含用户数据
+  pack:
+    zh: 行业包
+    en: Industry Pack
+    desc: 面向某行业类型的完整模板（opc/ecommerce/sme…），放 references/packs/
+  template:
+    zh: 模板
+    en: Template
+    desc: 通用骨架（semantic.yaml 等），与 instance 分离
+  instance:
+    zh: 实例
+    en: Instance
+    desc: 用户激活后由其公司数据生成的本体（instance.yaml），存本地/私有，不出域
+  guide:
+    zh: 引导
+    en: GUIDE
+    desc: 用户装上 Skill 后的六步中文引导（见 GUIDE.md）
+  init:
+    zh: 初始化
+    en: init
+    desc: scripts/init.py：访谈→选 pack→采画像→写 instance→建专家团
+
+# ── 治理与安全 ──────────────────────────────────────────
+governance:
+  permission:
+    zh: 权限
+    en: Permission
+    desc: 行级/只读/读写控制（抄 A1 permissions）
+  audit:
+    zh: 审计
+    en: Audit
+    desc: 操作留痕（抄 A2 审计日志）
+  pii:
+    zh: 个人身份信息
+    en: PII
+    aka: [Personal Identifiable Information]
+    desc: 身份证/银行卡/票据明文等，强制不进图谱明文（红线）
+  compliance:
+    zh: 合规
+    en: Compliance
+    desc: 发票/税务/社保/电商法/天津政策等国内化约束
+
+# ── 行业包（8 包，2026-08-15 横向扩展完成）─────────────
+industry_packs:
+  opc:
+    zh: 一人公司
+    en: One Person Company
+    desc: 首发包；天津市微数人工智能科技有限责任公司即此形态
+  ecommerce:
+    zh: 电商
+    en: E-commerce
+    desc: 淘宝/抖音/拼多多/独立站店家；实体含店铺/商品/订单/库存/售后
+  sme:
+    zh: 小微企业
+    en: Small & Medium Enterprise
+    desc: 几人~几十人小微；需多员工多角色治理
+  manufacturing:
+    zh: 制造业工厂
+    en: Manufacturing
+    desc: 生产→质检→交付核心循环；含 12 细分亚型；安全环保质量红线
+  public_institution:
+    zh: 事业单位
+    en: Public Institution
+    desc: 公益分类/财政补助/国资/政府采购/人事编制；通用公办形态
+  finance:
+    zh: 金融机构
+    en: Financial Institution
+    desc: 银行/证券/保险/基金；AML/适当性/资本监管/数据分级红线（参考非合规意见）
+  biomed:
+    zh: 医疗·生物医药
+    en: Biomedicine & Healthcare
+    desc: 诊疗/器械/GMP/健康数据合规；人类遗传资源审批
+  edu_research:
+    zh: 教育·科研院所
+    en: Education & Research
+    desc: 高校/科研院所/职教；科研经费/成果转化/编制/学生 PII
+
+# ── 运行时（三档可移植）─────────────────────────────────
+runtimes:
+  workbuddy_cloud:
+    zh: WorkBuddy 云
+    en: WorkBuddy Cloud
+    desc: ③档 MVP，单人 SaaS，订阅含 LLM/编排/资料库
+  edgeclaw:
+    zh: 面壁端云协同
+    en: EdgeClaw
+    desc: ②档 企业内网/端云，S1/S2/S3 安全路由+省 58% token
+  private_local:
+    zh: 纯本地私有
+    en: Private Local
+    desc: ①档 Palantir 式 air-gapped，全量接企业
+
+# ── 连接器（企业预留）──────────────────────────────────
+connectors:
+  dingtalk:
+    zh: 钉钉
+    en: DingTalk
+  wecom:
+    zh: 企业微信
+    en: WeCom
+  feishu:
+    zh: 飞书
+    en: Feishu
+
+# ── 参考库代号 / 动作来源（内部溯源，仅开发期使用；用户面术语不带原创·借鉴标注）──
+# 说明：本体论智能体动作库由多家开源方法论融合 + 微数自创扩展构成；登记 IP 时按
+# 「引用+轻量修改优化+不主张独占」纪律处理借鉴部分，自创部分（WSHU）主张权利。
+sources:
+  A1: 1mancompany/onemancompany（语义层+Agent OS，Apache-2.0）
+  A2: ibl.ai/ontology（三层+治理，MIT）
+  A4: open-ontologies（RDF/OWL 工程，暂不用）
+  OPB: chendongqi/OPB-Skills（MIT，91 技能/24 部门，中文最全，逻辑层主轴）
+  Frog: Frog1205/OPC-Skills（legal 密集，补足法务动作集）
+  slav: slavingia/skills（创业增长方法论）
+  ReS: ReScienceLab/opc-skills（SEO·社媒·品牌）
+  sober: sober568/opc-zhinao（OPC 五阶段诊断）
+  easy: easychen/opc-methodology（CC-BY-NC-SA 非商；微数内容系独立重写自有表达，主张完全自主权利）
+  WSHU: 天津市微数人工智能科技有限责任公司自创扩展动作（24 部门扩展 + 行业包红线/实体，登记 IP 扩展增量，主张权利）
+  edgeclaw: OpenBMB/edgeclaw（面壁端云框架，MIT）
+
+# ── 部门代码（24 部门库；系统内部英文标识 ↔ 中文显示名）──────────
+# 与 department_actions.yaml 的 departments 键一一对应；仅增不改义。
+departments:
+  lead: { zh: 负责人, en: Lead / General Decision, desc: 综合决策 / 组织与个人发展 }
+  admin: { zh: 行政, en: Administration / Operations, desc: 行政 / 运营 / 活动 }
+  hr: { zh: 人力资源, en: Human Resources, desc: 招聘 / 绩效 / 薪酬 }
+  finance: { zh: 财务, en: Finance / Tax, desc: 财务 / 税务 }
+  legal: { zh: 法务, en: Legal / Compliance, desc: 法务 / 合规 }
+  rnd: { zh: 研发, en: R&D / Engineering, desc: 研发 / 产品 / 技术 / 设计 / 质量 / 运维安全 }
+  product: { zh: 产品, en: Product Management, desc: 产品经理 / 需求定义 / 路线图 }
+  design: { zh: 设计, en: Design, desc: 设计 / 品牌视觉 / UI·UX }
+  quality: { zh: 质量, en: Quality Assurance, desc: 质量管理 / QA / 品控 }
+  customer_service: { zh: 客服, en: Customer Service, desc: 客户服务 / 工单 / 客诉 }
+  pr: { zh: 公关, en: Public Relations, desc: 公关 / 媒体关系 / 声誉 }
+  operations: { zh: 运营, en: Operations, desc: 运营 / 流程编排 / 跨部门协调 }
+  procurement: { zh: 采购, en: Procurement / Supply Chain, desc: 采购供应链 / 供应商 / 库存 / 履约 }
+  investor: { zh: 投融资, en: Investor Relations, desc: 投融资 / 融资材料 / 资本运作 }
+  csm: { zh: 客户成功, en: Customer Success, desc: 客户成功 / 续费 / 增购 }
+  international: { zh: 出海, en: International / Globalization, desc: 出海跨境 / 本地化 / 海外合规 }
+  risk: { zh: 风控, en: Risk Control, desc: 风控内控 / 风险地图 / 审计 }
+  it_security: { zh: IT与安全, en: IT & Security, desc: IT与安全 / 资产 / 网络 / 备份 }
+  mkt_content: { zh: 内容营销, en: Content Marketing, desc: 内容营销 / 品牌 / 视觉 / 文案 }
+  mkt_dist: { zh: 分销, en: Distribution / BD, desc: 分销 / 渠道 / 商务拓展 }
+  mkt_seo: { zh: 增长, en: SEO / Growth, desc: SEO / 增长 / 社媒获客 }
+  sales: { zh: 销售, en: Sales, desc: 销售 / 客户 / 客服 }
+  data: { zh: 数据, en: Data / Analytics, desc: 数据 / 分析 / 商业智能 }
+  strategy: { zh: 战略, en: Strategy, desc: 战略 / 商业模式 / 创业方法论与诊断 }
+
+# ── 语义实体类型（semantic.yaml 基础层；英文类型名 ↔ 中文）──────
+# 与 semantic.yaml 的 entity_types 键一一对应；仅增不改义。
+entities:
+  Person: { zh: 人员, desc: 自然人（员工/老板/客户联系人） }
+  Organization: { zh: 组织, desc: 公司/机构本体 }
+  Project: { zh: 项目, desc: 临时性工作目标集合 }
+  Task: { zh: 任务, desc: 具体待办事项 }
+  Goal: { zh: 目标, desc: 阶段性目标 }
+  Event: { zh: 事件, desc: 时间点/里程碑事件 }
+  Document: { zh: 文档, desc: 文件类实体 }
+  Account: { zh: 账户, desc: 账务/资金账户 }
+  Department: { zh: 部门, desc: 公司职能单元 }
+  Expert: { zh: 专家, desc: AI 员工（映射到部门） }
+  Invoice: { zh: 发票, desc: 开票/收票凭证 }
+  Customer: { zh: 客户, desc: 交易对方 }
+  Policy: { zh: 政策, desc: 政策/制度类 }
+  Contract: { zh: 合同, desc: 契约关系 }
+  Asset: { zh: 资产, desc: 固定资产/无形资产 }
+  Metric: { zh: 指标, desc: 经营度量 }
+  Supplier: { zh: 供应商, desc: 供应方 }
+  Product: { zh: 产品, desc: 商品/服务 }

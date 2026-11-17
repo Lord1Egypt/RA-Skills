@@ -1,38 +1,52 @@
-## Description: <br>
-Real-time, audit-ready logging integration for ClawControl.space. Ensures deterministic, per-action observability. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Real-time, audit-ready logging integration for ClawControl.space. Ensures deterministic, per-action observability.
 
-## Publisher: <br>
-[qasimnaqvi](https://clawhub.ai/user/qasimnaqvi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[qasimnaqvi](https://clawhub.ai/user/qasimnaqvi)
 
-## Use Case: <br>
-Developers and operators use this skill to add continuous ClawControl logging to an agent workflow, including messages, tool executions, errors, and metrics. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill requests exhaustive external logging that may include messages, tool outputs, internal decisions, secrets, or sensitive context. <br>
-Mitigation: Use only in workflows that intentionally require ClawControl logging; confirm storage, access, retention, deletion, and redaction controls before use, and restrict payloads to sanitized action metadata where possible. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/qasimnaqvi/clawcontrol-logger) <br>
-- [ClawControl webhook endpoint](https://clawcontrol.space/api/functions/receiveWebhook) <br>
+## Use Case:
 
+Developers and agent operators use this skill to send per-action logs and basic metrics from an agent session to ClawControl.space for audit-oriented observability.
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Shell commands, Configuration, JSON] <br>
-**Output Format:** [JSON log payloads and shell commands for posting events to the ClawControl webhook] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires CLAWCONTROL_API_KEY and sends event logs to an external ClawControl endpoint.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill asks agents to send broad session logs, including user messages and internal decisions, to an external service.
+
+Mitigation: Enable it only with clear consent, limit logged data to low-sensitivity metadata, and remove internal-thought logging before deployment.
+
+Risk: Sensitive values could be exposed through unredacted log payloads or API keys placed in URL query parameters.
+
+Mitigation: Add redaction for sensitive fields, avoid shell interpolation, and pass API keys through safer secret-handling mechanisms instead of URL query strings.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/qasimnaqvi/skills/clawcontrol-logger)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown instructions with inline bash and JavaScript examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires CLAWCONTROL_API_KEY and sends JSON log payloads to an external ClawControl.space endpoint.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

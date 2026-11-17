@@ -1,0 +1,49 @@
+{
+  "title": "AI-POLC Data",
+  "description": "Per-project data shape for AI-POLC (Product Ownership Life Cycle).",
+  "type": "object",
+  "required": ["$schemaVersion","$generatedBy","$generatedOn","$family","$package","data"],
+  "properties": {
+    "$schema": {"type":"string"},
+    "$schemaVersion": {"type":"string","pattern":"^[0-9]+\\.[0-9]+\\.[0-9]+$"},
+    "$generatedBy": {"type":"string","const":"AI-DFE"},
+    "$generatedOn": {"type":"string","format":"date-time"},
+    "$family": {"type":"string"},
+    "$package": {"type":"string","const":"ai-polc"},
+    "data": {
+      "type":"object","required":["projectId","status"],
+      "properties": {
+        "projectId":{"type":["string","null"]},
+        "productName":{"type":["string","null"]},
+        "status":{"type":["string","null"]},
+        "phase":{"type":["integer","null"]},
+        "stage":{"type":["integer","null"]},
+        "depth":{"type":["string","null"]},
+        "mode":{"type":["string","null"]},
+        "tier2Active":{"type":["boolean","null"]},
+        "activeExtensions":{"type":"array","items":{"type":"string"}},
+        "contextFactors":{"type":["object","null"]},
+        "backlog":{"type":["object","null"],"properties":{"totalEpics":{"type":["integer","null"]},"prioritized":{"type":["integer","null"]},"inReleasePlan":{"type":["integer","null"]},"priorityModel":{"type":["string","null"]}}},
+        "dorVersion":{"type":["string","null"]},
+        "dodVersion":{"type":["string","null"]},
+        "pendingDecisions":{"type":"array","items":{"type":"string"}},
+        "epics":{"type":"array","items":{"type":"object","properties":{"id":{"type":"string"},"name":{"type":"string"},"score":{"type":["number","null"]},"priority":{"type":["string","integer","null"]},"releaseTarget":{"type":["string","null"]}}}},
+        "risks":{"type":"array","items":{"type":"object","properties":{"id":{"type":"string"},"risk":{"type":"string"},"probability":{"type":["string","null"]},"impact":{"type":["string","null"]},"score":{"type":["number","null"]},"mitigation":{"type":["string","null"]},"owner":{"type":["string","null"]},"status":{"type":["string","null"]}}}},
+        "decisions":{"type":"array","items":{"type":"object","properties":{"id":{"type":"string"},"date":{"type":"string"},"summary":{"type":"string"},"status":{"type":"string"}}}},
+        "po":{"type":["object","null"],"description":"Product-ownership pane for the dashboard PO tab (BUILD_GUIDE §2.1.3). Assembled by AI-DFE into dashboard-data.json projects[].po.","properties":{
+          "vision":{"type":["object","null"],"properties":{"status":{"type":["string","null"],"description":"draft|approved"},"statement":{"type":["string","null"]}}},
+          "roadmap":{"type":["object","null"],"description":"Now/Next/Later horizons from roadmap.md Epic Horizon Mapping","properties":{
+            "now":{"type":"array","items":{"type":"object","properties":{"epic":{"type":"string"},"stories":{"type":["integer","null"]},"done":{"type":["integer","null"]},"status":{"type":["string","null"]},"items":{"type":"array"}}}},
+            "next":{"type":"array","items":{"type":"object"}},
+            "later":{"type":"array","items":{"type":"object"}}
+          }},
+          "releases":{"type":"array","items":{"type":"object","properties":{"name":{"type":"string"},"date":{"type":["string","null"]},"status":{"type":["string","null"]},"stories":{"type":["integer","null"]},"done":{"type":["integer","null"]},"scope":{"type":"array"}}}},
+          "backlog":{"type":["object","null"],"properties":{"totalEpics":{"type":["integer","null"]},"totalStories":{"type":["integer","null"]},"prioritised":{"type":["integer","null"]},"inReleasePlan":{"type":["integer","null"]},"dorReady":{"type":["boolean","null"]},"dodReady":{"type":["boolean","null"]},"dorPath":{"type":["string","null"]},"dodPath":{"type":["string","null"]}}},
+          "acceptance":{"type":["object","null"],"properties":{"totalCriteria":{"type":["integer","null"]},"validated":{"type":["integer","null"]}}},
+          "velocity":{"type":["object","null"],"properties":{"trend":{"type":["string","null"],"description":"stable|up|down"}}},
+          "stakeholders":{"type":"array","items":{"type":"object","properties":{"name":{"type":"string"},"engagement":{"type":["string","null"],"description":"champion|supportive|neutral|resistant"},"influence":{"type":["string","null"],"description":"high|low"}}}}
+        }}
+      }
+    }
+  }
+}

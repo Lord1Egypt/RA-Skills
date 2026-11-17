@@ -1,43 +1,59 @@
-## Description: <br>
-Yabbie Net is a safety layer for AI agents that catches unsafe MCP tool calls before they execute. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A safety net for AI agents. Catches unsafe tool calls before they execute.
 
-## Publisher: <br>
-[devlines](https://clawhub.ai/user/devlines) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[devlines](https://clawhub.ai/user/devlines)
 
-## Use Case: <br>
-Developers and agent operators use Yabbie Net to route selected MCP server calls through a proxy that can block unsafe tool calls using local rules, optional intent judging, and human escalation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Routing MCP server calls through a proxy exposes selected tool names and arguments to that proxy and can block or delay calls. <br>
-Mitigation: Route only the MCP servers that need protection, review the proxy behavior before sensitive use, and start with tier1 local rules. <br>
-Risk: Optional tier2 judging or telemetry can send limited summaries or aggregate metrics outside the local environment when enabled. <br>
-Mitigation: Keep tier2 and telemetry disabled unless the data flow is acceptable, and prefer the local Ollama provider when external API routing is not appropriate. <br>
-Risk: Installing the external npm package introduces supply-chain risk for sensitive projects. <br>
-Mitigation: Pin the package version and verify the package or source before deploying it in sensitive environments. <br>
+## Use Case:
 
+Developers and agent operators use Yabbie Net to route MCP tool calls through a safety proxy that can block unsafe actions before execution.
 
-## Reference(s): <br>
-- [Yabbie Net homepage](https://yabbie.net) <br>
-- [ClawHub listing](https://clawhub.ai/devlines/yabbie-net) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with bash, JSON, and YAML code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include configuration snippets for MCP server wrapping, tier settings, credentials, and local audit commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: server release metadata and frontmatter) <br>
+Risk: A third-party npm proxy sits in the path of MCP tool calls and can block or delay tool execution.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the package before deployment, run it with least privilege, and wrap only MCP servers whose calls you are comfortable routing through the proxy.
+
+Risk: Unpinned npx execution examples can install or run unexpected package versions.
+
+Mitigation: Pin npm package versions before installation and prefer a project dependency over global installation.
+
+Risk: Optional tier2 judging or telemetry can introduce additional data flows when intentionally enabled.
+
+Mitigation: Keep tier2 and telemetry disabled unless those flows are intended, and review the configured provider and transmitted summaries before enabling them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/devlines/skills/yabbie-net)
+- [Publisher profile](https://clawhub.ai/user/devlines)
+- [Homepage](https://yabbie.net)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include setup guidance for npm installation, MCP server wrapping, yabbie.yaml configuration, audit commands, and operational cautions.]
+
+## Skill Version(s):
+
+0.2.0 (source: frontmatter and server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

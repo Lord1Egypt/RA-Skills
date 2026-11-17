@@ -1,0 +1,219 @@
+{
+  "objective": "Select a market-entry structure for Japan within the approved first-year budget.",
+  "decision_owner": {
+    "owner": "Board Strategy Committee",
+    "role": "final decision authority",
+    "source": "2026 governance charter",
+    "authorization_ref": "GOV-2026-01"
+  },
+  "time_horizon": "12 months",
+  "evaluation_as_of": "2026-07-15T12:00:00Z",
+  "evaluation_mode": "weighted",
+  "criteria": [
+    {
+      "id": "K1",
+      "name": "First-year capital requirement",
+      "metric": "capital_required",
+      "weight": "0.45",
+      "scoring_rule": "lower_is_better",
+      "min_value": "0",
+      "max_value": "5000000",
+      "responsibility": {
+        "owner": "Board Strategy Committee",
+        "role": "weight owner",
+        "source": "approved decision brief",
+        "authorization_ref": "BRIEF-2026-JP"
+      }
+    },
+    {
+      "id": "K2",
+      "name": "Local distribution coverage",
+      "metric": "distribution_coverage",
+      "weight": "0.55",
+      "scoring_rule": "higher_is_better",
+      "min_value": "0",
+      "max_value": "100",
+      "responsibility": {
+        "owner": "Board Strategy Committee",
+        "role": "weight owner",
+        "source": "approved decision brief",
+        "authorization_ref": "BRIEF-2026-JP"
+      }
+    }
+  ],
+  "constraints": [
+    {
+      "id": "C1",
+      "name": "Approved first-year budget",
+      "kind": "hard",
+      "metric": "capital_required",
+      "operator": "lte",
+      "expected": 5000000,
+      "responsibility": {
+        "owner": "Chief Financial Officer",
+        "role": "budget authority",
+        "source": "FY2026 approved budget",
+        "authorization_ref": "BUDGET-2026"
+      }
+    },
+    {
+      "id": "C2",
+      "name": "No heavy factory construction",
+      "kind": "hard",
+      "metric": "requires_factory",
+      "operator": "eq",
+      "expected": false,
+      "responsibility": {
+        "owner": "Board Strategy Committee",
+        "role": "strategic constraint owner",
+        "source": "approved decision brief",
+        "authorization_ref": "BRIEF-2026-JP"
+      }
+    },
+    {
+      "id": "C3",
+      "name": "Preferred minimum distribution coverage",
+      "kind": "soft",
+      "metric": "distribution_coverage",
+      "operator": "gte",
+      "expected": 60,
+      "penalty": "0.10",
+      "responsibility": {
+        "owner": "Board Strategy Committee",
+        "role": "preference owner",
+        "source": "approved decision brief",
+        "authorization_ref": "BRIEF-2026-JP"
+      }
+    }
+  ],
+  "assumptions": [
+{
+      "id": "A1",
+      "statement": "The local partner can provide the declared distribution coverage.",
+      "source": "explicit",
+      "falsification_condition": "Partner due diligence shows coverage below 60 percent.",
+      "critical": true,
+      "dependencies": [],
+      "evidence_ids": [
+        "E1"
+      ],
+      "responsibility": {
+        "owner": "Head of Japan Expansion",
+        "role": "assumption acceptance owner",
+        "source": "Japan entry memo",
+        "authorization_ref": "JP-MEMO-01"
+      }
+    },
+    {
+      "id": "A2",
+      "statement": "A wholly-owned local sales team can reach 45 percent coverage within the first-year budget.",
+      "source": "explicit",
+      "falsification_condition": "Hiring plan shows headcount or cost overruns above the approved budget.",
+      "critical": false,
+      "dependencies": [],
+      "evidence_ids": [
+        "E2"
+      ],
+      "responsibility": {
+        "owner": "Head of Japan Expansion",
+        "role": "assumption acceptance owner",
+        "source": "Japan entry memo",
+        "authorization_ref": "JP-MEMO-01"
+      }
+    }
+  ],
+  "alternatives": [
+    {
+      "id": "S1",
+      "name": "Independent market entry",
+      "description": "Create a wholly controlled local sales operation.",
+      "metrics": {
+        "capital_required": 4800000,
+        "distribution_coverage": 45,
+        "requires_factory": false
+      },
+      "required_assumptions": [
+        "A2"
+      ],
+      "evidence_ids": [
+        "E2"
+      ]
+    },
+    {
+      "id": "S2",
+      "name": "Local distribution partnership",
+      "description": "Enter through a contracted local distribution partner.",
+      "metrics": {
+        "capital_required": 1800000,
+        "distribution_coverage": 82,
+        "requires_factory": false
+      },
+      "required_assumptions": [
+        "A1"
+      ],
+      "evidence_ids": [
+        "E1"
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "id": "E1",
+      "statement": "Partner supplied a current list of active retail channels.",
+      "source": "Partner due-diligence package dated 2026-07-01",
+      "status": "supplied",
+      "observed_at": "2026-07-01T09:00:00Z",
+      "valid_until": "2027-07-01T09:00:00Z",
+      "quality": {
+        "reliability": "0.80",
+        "relevance": "0.95",
+        "independence": "0.70",
+        "freshness": "0.95",
+        "assessed_by": {
+          "owner": "Head of Japan Expansion",
+          "role": "evidence quality assessor",
+          "source": "due-diligence assignment",
+          "authorization_ref": "DD-2026-JP"
+        },
+        "method": "channel-list sampling and document review"
+      },
+"responsibility": {
+        "owner": "Head of Japan Expansion",
+        "role": "evidence custodian",
+        "source": "due-diligence assignment",
+        "authorization_ref": "DD-2026-JP"
+      }
+    },
+    {
+      "id": "E2",
+      "statement": "Local staffing benchmark confirms a wholly-owned team can reach 45 percent coverage within the first-year budget.",
+      "source": "Internal feasibility study dated 2026-06-20",
+      "status": "supplied",
+      "observed_at": "2026-06-20T09:00:00Z",
+      "valid_until": "2027-06-20T09:00:00Z",
+      "quality": {
+        "reliability": "0.70",
+        "relevance": "0.90",
+        "independence": "0.80",
+        "freshness": "0.90",
+        "assessed_by": {
+          "owner": "Head of Japan Expansion",
+          "role": "evidence quality assessor",
+          "source": "feasibility study review",
+          "authorization_ref": "FS-2026-JP"
+        },
+        "method": "benchmark comparison and cost model review"
+      },
+      "responsibility": {
+        "owner": "Head of Japan Expansion",
+        "role": "evidence custodian",
+        "source": "feasibility study review",
+        "authorization_ref": "FS-2026-JP"
+      }
+    }
+  ],
+  "metadata": {
+    "language": "en",
+    "example": true
+  }
+}

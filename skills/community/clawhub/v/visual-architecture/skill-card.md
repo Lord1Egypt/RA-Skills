@@ -1,41 +1,50 @@
-## Description: <br>
-Render restrained architecture diagrams from structured JSON with a deterministic local SVG renderer. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create deterministic, local-first architecture artifacts from typed JSON or TypeScript-aware repo extraction: validate specs, render SVG/HTML diagrams, and emit source-backed receipts agents can cite.
 
-## Publisher: <br>
-[leostehlik](https://clawhub.ai/user/leostehlik) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[leostehlik](https://clawhub.ai/user/leostehlik)
 
-## Use Case: <br>
-Developers and engineers use this skill to turn structured node-and-edge JSON into clean SVG architecture diagrams for service maps, routing maps, and system relationship visuals. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The renderer writes to the SVG output path supplied by the user and can create parent directories. <br>
-Mitigation: Use intentional output paths, avoid pointing the renderer at files that should be preserved, and review generated SVGs before publishing or embedding them. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to create reviewable architecture, workflow, sequence, data-flow, lifecycle, repo-evidence, and PR-delta diagrams from typed JSON or local repository evidence.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/leostehlik/visual-architecture) <br>
-- [Publisher Profile](https://clawhub.ai/user/leostehlik) <br>
-- [README](README.md) <br>
-- [Example Service Map JSON](examples/service-map.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with JSON examples and shell commands; the bundled renderer produces SVG files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Input JSON describes diagram title, nodes, edges, optional labels, routing hints, and grid display.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.5 (source: frontmatter and server release metadata) <br>
+Risk: The scan verdict is benign with medium confidence, but coverage was incomplete and a component with obfuscated instruction text could not be fully evaluated; the tool scope and environment installation command merit review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before installing, review the skill’s permissions and installation behavior, and confirm its tool scope and environment installation command fit the intended environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/leostehlik/skills/visual-architecture)
+- [Visual Architecture gallery](https://leostehlik.github.io/visual-architecture/)
+
+## Skill Output:
+
+**Output Type(s):** [JSON specs, SVG diagrams, HTML artifacts, Shell commands]
+
+**Output Format:** [JSON specs and receipts, SVG diagrams, and self-contained HTML artifacts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Local, deterministic files; generated diagrams and source evidence should be reviewed before sharing.]
+
+## Skill Version(s):
+
+1.8.3 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

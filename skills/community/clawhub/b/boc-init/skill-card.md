@@ -1,43 +1,57 @@
-## Description: <br>
-Initializes a BOC container platform deployment machine by checking the host environment, verifying and unpacking the deployment package, running bocctl init, and validating key services. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Initializes a BOC container platform deployment host by checking the environment, verifying and unpacking the deployment package, running bocctl init, and validating key services.
 
-## Publisher: <br>
-[hongruiji](https://clawhub.ai/user/hongruiji) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hongruiji](https://clawhub.ai/user/hongruiji)
 
-## Use Case: <br>
-Developers and platform operators use this skill to initialize a BOC deployment machine by supplying the deployment package location, SSH connection details, and package filename. It guides environment checks, SHA256 verification, package extraction, bocctl init execution, and post-init service validation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks for privileged SSH access and may expose plaintext root credentials if users paste passwords into chat or logs. <br>
-Mitigation: Prefer SSH keys or temporary credentials, confirm the target host before use, and avoid placing passwords in chat transcripts or log files. <br>
-Risk: The workflow includes destructive cleanup of an existing BOC_k8s_noarch directory before unpacking. <br>
-Mitigation: Confirm the deployment directory and back up or rename any existing BOC_k8s_noarch directory before running removal commands. <br>
-Risk: The skill references installing an sshpass binary from an external source. <br>
-Mitigation: Do not install the suggested binary unless the source is verified and trusted; use an already approved SSH method when available. <br>
+## Use Case:
 
+Developers and deployment engineers use this skill to initialize a BOC container platform deployment host from a local deployment package. It guides environment checks, SHA256 verification, package extraction, bocctl init execution, and post-initialization service checks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hongruiji/boc-init) <br>
-- [sshpass-win32 release referenced by the skill](https://github.com/xhcoding/sshpass-win32/releases/download/v1.0.7/sshpass.exe) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with shell command snippets and status checks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes privileged SSH setup guidance, deployment package verification, destructive cleanup before extraction, bocctl init execution, and container/service validation checks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release metadata) <br>
+Risk: Root SSH and password-based access can expose privileged credentials or allow unintended host changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an approved SSH key or secret-manager workflow on a dedicated deployment host, and avoid root password authentication where possible.
+
+Risk: Unverified deployment packages or password-tool downloads can introduce compromised binaries into the deployment process.
+
+Mitigation: Verify deployment packages and tools with trusted checksums or signatures, and replace ad hoc sshpass installation guidance with managed tooling.
+
+Risk: Deleting an existing deployment directory before unpacking can remove useful state or damage a deployment host.
+
+Mitigation: Require operator confirmation and backups before removing any existing deployment directory.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hongruiji/skills/boc-init)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports deployment-host initialization status and key component checks such as ansible, nerdctl containers, and containerd service state.]
+
+## Skill Version(s):
+
+1.0.1 (source: SKILL.md frontmatter, artifact/_meta.json, evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

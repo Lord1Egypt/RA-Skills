@@ -1,43 +1,55 @@
-## Description: <br>
-Profile messy CSV files, standardize columns, detect data quality issues, and produce a reproducible cleanup plan. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Profile messy CSV files, standardize columns, detect data quality issues, and produce a reproducible cleanup plan.
 
-## Publisher: <br>
-[52YuanChangXing](https://clawhub.ai/user/52YuanChangXing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[52yuanchangxing](https://clawhub.ai/user/52yuanchangxing)
 
-## Use Case: <br>
-Developers, data analysts, and operations teams use this skill to inspect CSV datasets, normalize schemas, identify data quality issues, and prepare cleanup plans before applying changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The helper script reads local CSV data, which may contain sensitive information. <br>
-Mitigation: Run it only on datasets the user intends to inspect locally and avoid sharing generated reports unless their contents have been reviewed. <br>
-Risk: The report output path could overwrite an existing file if the user chooses an existing location. <br>
-Mitigation: Use a safe new output path when preserving files matters and review proposed cleanup steps before applying changes to original data. <br>
+## Use Case:
 
+Developers, analysts, and operations teams use this skill to profile messy CSV data, normalize schemas, identify data quality issues, and draft reproducible cleanup plans before applying changes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/52YuanChangXing/csv-cleanroom) <br>
-- [README](artifact/README.md) <br>
-- [Skill instructions](artifact/SKILL.md) <br>
-- [Data quality checklist](artifact/resources/data_quality_checklist.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with optional JSON profile files produced by the local helper script.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The helper script reads a user-specified CSV path and writes a user-specified local report path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The skill may process sensitive CSV data that the user provides.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with files intentionally shared for the task, avoid sensitive datasets unless intended, and review generated JSON before acting on it.
+
+Risk: Cleanup plans or generated outputs could lead to destructive data changes if applied without review.
+
+Mitigation: Prefer preview, draft, or simulation mode first and document irreversible operations before applying them.
+
+## Reference(s):
+
+- [CSV Cleanroom on ClawHub](https://clawhub.ai/52yuanchangxing/skills/csv-cleanroom)
+- [Publisher profile](https://clawhub.ai/user/52yuanchangxing)
+- [Data Quality Checklist](resources/data_quality_checklist.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with optional JSON profile output from the bundled Python script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs can include a profile report, normalized schema, cleanup plan, quality scorecard, remediation checklist, and preview-first recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

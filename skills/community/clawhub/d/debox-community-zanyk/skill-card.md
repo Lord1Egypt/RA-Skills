@@ -1,46 +1,60 @@
-## Description: <br>
-DeBox Community helps agents query DeBox group information, verify membership and eligibility, and produce community engagement reports for DAO and NFT communities. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage DeBox communities, DAOs, and NFT groups. Use when you need to verify group membership, check voting/lottery participation, query group info, or validate user eligibility for DAO/NFT communities.
 
-## Publisher: <br>
-[ZanyK4502](https://clawhub.ai/user/ZanyK4502) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zanyk4502](https://clawhub.ai/user/zanyk4502)
 
-## Use Case: <br>
-External developers and community operators use this skill to check DeBox group membership, validate DAO or NFT community eligibility, batch-verify wallet lists, and generate user or group activity reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release includes an API-key-like value in config.json. <br>
-Mitigation: Delete or replace the bundled config.json, use DEBOX_API_KEY from an environment variable or secret manager, and rotate any key that may have been published. <br>
-Risk: Membership, profile, wallet, voting, lottery, and praise lookups can expose sensitive community or user information. <br>
-Mitigation: Run lookups and batch verification only for users, wallets, and groups you are authorized to check, and limit sharing of generated reports. <br>
-Risk: The optional image report mode can fetch remote avatar images and write local PNG files. <br>
-Mitigation: Use image output only when remote avatar fetching and local report files are acceptable, and review output paths before sharing generated images. <br>
+## Use Case:
 
+Developers and community operators use this skill to query DeBox group information, verify DAO or NFT community membership, check voting and lottery participation, and generate user profile reports.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/ZanyK4502/debox-community-zanyk) <br>
-- [DeBox API Reference](references/api.md) <br>
-- [DeBox Developer Platform](https://developer.debox.pro) <br>
-- [DeBox API Base URL](https://open.debox.pro/openapi) <br>
-- [DeBox Documentation](https://docs.debox.pro) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with bash examples; command output is text or JSON, with optional PNG profile reports.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires DEBOX_API_KEY and network access to DeBox APIs; batch verification reads local wallet-list files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and package.json) <br>
+Risk: The release includes a bundled config.json with a real-looking DeBox API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove the bundled key before installation and provide a user-controlled key through environment variables or another secret-management mechanism.
+
+Risk: Profile and image-report commands can send user IDs or wallet addresses to DeBox and write files locally.
+
+Mitigation: Use these commands only for intended users and paths, review identifiers before execution, and avoid running the CLI with elevated privileges.
+
+Risk: Server security evidence marks the skill as suspicious due to secret handling and profile-image network and file behavior.
+
+Mitigation: Review the skill and its configuration before deployment, rotate any exposed API key, and limit execution to trusted workspaces.
+
+## Reference(s):
+
+- [DeBox API Reference](references/api.md)
+- [DeBox Developer Platform](https://developer.debox.pro)
+- [DeBox Open API](https://open.debox.pro/openapi)
+- [ClawHub Skill Page](https://clawhub.ai/zanyk4502/skills/debox-community-zanyk)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [CLI text output, JSON-like API responses, Markdown documentation, and optional generated image files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands require a DeBox API key and may send wallet addresses, user IDs, group URLs, and chain IDs to DeBox APIs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

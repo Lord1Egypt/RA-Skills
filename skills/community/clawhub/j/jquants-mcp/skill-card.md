@@ -1,41 +1,59 @@
-## Description: <br>
-Access JPX stock market data via the J-Quants API, including stock search, daily OHLCV prices, financial summaries, and earnings calendars for Tokyo Stock Exchange listed companies. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Access JPX stock market data via J-Quants API - search stocks, get daily OHLCV prices, financial summaries (revenue, profit, EPS, ROE), and earnings calendar for Tokyo Stock Exchange (TSE) listed companies.
 
-## Publisher: <br>
-[ajtgjmdjp](https://clawhub.ai/user/ajtgjmdjp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ajtgjmdjp](https://clawhub.ai/user/ajtgjmdjp)
 
-## Use Case: <br>
-Developers and market-data users use this skill to query J-Quants market data for TSE-listed companies, including stock lookup, price history, financial metrics, and earnings dates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+J-Quants Terms of Service
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires J-Quants account credentials through environment variables. <br>
-Mitigation: Provide only the required J-Quants credentials and confirm the installed jquants-mcp package source is trusted before use. <br>
-Risk: Retrieved market data may be subject to J-Quants personal-use and redistribution restrictions. <br>
-Mitigation: Review and follow J-Quants terms before using or sharing retrieved market data. <br>
+## Use Case:
 
+External users and agents use this skill to query TSE-listed company search results, daily OHLCV prices, financial summaries, and earnings calendar data through the jquants-mcp command.
 
-## Reference(s): <br>
-- [J-Quants](https://jpx-jquants.com/) <br>
-- [J-Quants Terms of Service](https://jpx-jquants.com/termsofservice) <br>
-- [ClawHub Skill Page](https://clawhub.ai/ajtgjmdjp/jquants-mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, API Calls, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and optional JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the jquants-mcp command and JQUANTS_MAIL_ADDRESS and JQUANTS_PASSWORD environment variables.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release metadata) <br>
+Risk: The skill installs an unpinned third-party jquants-mcp command that handles J-Quants credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the package source is trusted, pin a reviewed version before deployment, and update only after review.
+
+Risk: J-Quants credentials are supplied through environment variables.
+
+Mitigation: Use credentials scoped to the intended J-Quants account, avoid exposing unrelated secrets in the same environment, and rotate the password if compromise is suspected.
+
+Risk: J-Quants data redistribution is restricted by the service terms.
+
+Mitigation: Use retrieved market data only within the allowed personal-use scope and review the J-Quants Terms of Service before sharing outputs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ajtgjmdjp/skills/jquants-mcp)
+- [J-Quants service](https://jpx-jquants.com/)
+- [J-Quants Terms of Service](https://jpx-jquants.com/termsofservice)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples; command results may be text or JSON when --json-output is used.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the jquants-mcp command and JQUANTS_MAIL_ADDRESS and JQUANTS_PASSWORD environment variables.]
+
+## Skill Version(s):
+
+0.1.2 (source: evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,50 @@
-## Description: <br>
-Provides classical Chinese poetry generation and poetry lookup using the chinese-poetry dataset. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Poetry helps agents generate classical Chinese poems and query a local chinese-poetry dataset by author, title, keyword, dynasty, and related literary criteria.
 
-## Publisher: <br>
-[Wscats](https://clawhub.ai/user/Wscats) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wscats](https://clawhub.ai/user/wscats)
 
-## Use Case: <br>
-External users and developers use this skill to generate classical Chinese poems by theme, style, and form, or to retrieve and analyze poems by author, title, keyword, dynasty, or collection. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The setup script downloads a large external poetry dataset from GitHub before first use. <br>
-Mitigation: For reproducible or higher-trust environments, pin the dataset repository to a known commit and verify the downloaded contents before use. <br>
+## Use Case:
 
+External users and developers use this skill to create classical Chinese poetry, retrieve poems from a local corpus, compare literary themes, and analyze authors, forms, imagery, and styles.
 
-## Reference(s): <br>
-- [Poetry on ClawHub](https://clawhub.ai/Wscats/poetry) <br>
-- [chinese-poetry dataset](https://github.com/chinese-poetry/chinese-poetry) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or structured Chinese text containing generated poetry, lookup results, annotations, and creation notes.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May rely on a local chinese-poetry dataset downloaded before first use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The setup script downloads the public chinese-poetry dataset from GitHub without pinning or verifying an exact revision.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: For reproducible or high-integrity deployments, pin a reviewed dataset commit or verify the downloaded dataset before use.
+
+## Reference(s):
+
+- [chinese-poetry dataset](https://github.com/chinese-poetry/chinese-poetry)
+- [Poetry skill on ClawHub](https://clawhub.ai/wscats/skills/poetry)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown text with poetry, query results, analysis, and occasional shell commands for dataset setup]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May rely on a separately downloaded local chinese-poetry dataset for retrieval-oriented responses.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

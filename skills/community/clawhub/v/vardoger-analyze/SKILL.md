@@ -1,7 +1,7 @@
 ---
 name: analyze
 description: "Use when the user asks to personalize their assistant, to use vardoger, or to analyze their OpenClaw conversation history. Runs the vardoger CLI to read past conversations and generate tailored instructions."
-version: "0.3.1"
+version: "0.3.2"
 license: Apache-2.0
 homepage: "https://github.com/dstrupl/vardoger"
 metadata:

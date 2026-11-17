@@ -1,39 +1,55 @@
-## Description: <br>
-Converts images from local files or URLs into Perler, Hama, or fuse-bead patterns with offline background removal and generated pattern outputs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Perler Pattern converts photos, local images, or image URLs into perler, hama, and fuse bead patterns with offline background removal and printable or viewable outputs.
 
-## Publisher: <br>
-[ToBeWin](https://clawhub.ai/user/ToBeWin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tobewin](https://clawhub.ai/user/tobewin)
 
-## Use Case: <br>
-External users and creators use this skill to turn photos, images, or URLs into bead-making patterns with palette choices, grid sizes, background options, and bead counts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: URL inputs and dependency setup can use the network, which may affect privacy and reproducibility. <br>
-Mitigation: Use local image files when privacy matters and preinstall pinned Python dependencies in a virtual environment. <br>
+## Use Case:
 
+External users and developers use this skill to transform photos, cartoons, logos, or image URLs into bead-pattern assets for crafting, printing, and assembly planning.
 
-## Reference(s): <br>
-- [Palette Reference](artifact/references/palettes.md) <br>
-- [Pattern Style Parameters](artifact/references/styles.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown with inline bash and Python plus generated HTML, SVG, PNG, and text files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated outputs include pattern.html, pattern.svg, preview_beads.png, preview_flat.png, and bead_list.txt.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: The skill may install Python image-processing libraries during dependency setup.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the package installation commands and run the skill in an isolated environment when package provenance matters.
+
+Risk: The skill can fetch user-provided image URLs.
+
+Mitigation: Prefer local image files or trusted public URLs, especially when internal-network request exposure is a concern.
+
+## Reference(s):
+
+- [Palette Reference](artifact/references/palettes.md)
+- [Pattern Style Parameters](artifact/references/styles.md)
+- [ClawHub Skill Page](https://clawhub.ai/tobewin/skills/perler-pattern)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with Python and shell code blocks that produce HTML, SVG, PNG, and text files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated artifacts include an interactive HTML viewer, print-ready SVG, 3D bead preview PNG, flat preview PNG, and bead count list.]
+
+## Skill Version(s):
+
+1.2.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

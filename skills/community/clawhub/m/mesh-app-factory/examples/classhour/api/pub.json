@@ -1,0 +1,32 @@
+{
+"roles": {
+    "admin":{
+        "name":"主任",
+        "rights":{
+            "student":"*",
+            "order":"*",
+            "consume":"*",
+            "package":"*",
+            "template":"*",
+            "report":"*"
+        }
+    },
+
+    "sales":{
+        "name":"销售",
+        "rights":{
+            "student":"write",
+            "order":"write",
+            "package":"*"
+        }
+    },
+
+    "teacher":{
+        "name":"老师",
+        "rights":{
+            "student":"*",
+            "consume":"*"
+        }
+    }
+}
+}

@@ -1,41 +1,58 @@
-## Description: <br>
-Log anything fast and find it later with search and export. Use when running lookups, checking entries, converting formats, generating summaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Log anything fast and find it later with search and export. Use when running lookups, checking entries, converting formats, generating summaries.
 
-## Publisher: <br>
-[bytesagain1](https://clawhub.ai/user/bytesagain1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain1](https://clawhub.ai/user/bytesagain1)
 
-## Use Case: <br>
-Developers, operators, and other external users can use Spell to keep a local command-line log of short notes, lookup results, conversion inputs, generated snippets, and similar working text, then search recent entries or export retained data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Spell saves user-entered text in plaintext local logs under ~/.local/share/spell, which can retain sensitive data longer than intended. <br>
-Mitigation: Do not use Spell for passwords, tokens, regulated data, confidential work, or personal information unless local plaintext retention is acceptable. <br>
-Risk: The release evidence notes that export and status behavior appears incorrectly wired in this version. <br>
-Mitigation: Validate export and status commands in a disposable environment before relying on them for backup, reporting, or operational workflows. <br>
+## Use Case:
 
+Developers and agents use Spell as a local command-line activity logger for saving lookup notes, checking recent entries, searching history, and exporting saved entries.
 
-## Reference(s): <br>
-- [Spell on ClawHub](https://clawhub.ai/bytesagain1/spell) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Files, Configuration] <br>
-**Output Format:** [Plain text command-line output with local log and export files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores entries locally under ~/.local/share/spell and can search or export retained logs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: release evidence and frontmatter) <br>
+Risk: Inputs passed to Spell are persisted on disk under ~/.local/share/spell.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid entering secrets or private data, and review or delete local logs before sharing the machine or exports.
+
+Risk: Several utility-sounding commands mostly create log entries rather than performing the named operation.
+
+Mitigation: Treat command output as local note-taking unless the command visibly returns the expected conversion, analysis, report, or export result.
+
+Risk: Routing bugs may make some intended status or export behavior unreachable.
+
+Mitigation: Run spell help and verify the produced files or terminal output before relying on a command in a workflow.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/bytesagain1/skills/spell)
+- [BytesAgain Homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Files, Configuration]
+
+**Output Format:** [Terminal text with local log files and JSON, CSV, or plain text exports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores entries locally under ~/.local/share/spell.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

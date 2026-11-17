@@ -1,0 +1,102 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 800" font-family="'PingFang SC','Microsoft YaHei',sans-serif">
+  <rect width="680" height="800" fill="#F7F8FA"/>
+
+  <!-- Title -->
+  <text x="340" y="42" text-anchor="middle" font-size="22" font-weight="700" fill="#111827">统一凭据体系 · 家庭版：槽点 vs 我们的方案</text>
+  <text x="340" y="70" text-anchor="middle" font-size="13" fill="#5B6B7B">全家一套库 · 全设备同步含鸿蒙 · 分级恢复 · 专家托管</text>
+
+  <!-- Column headers -->
+  <rect x="20" y="92" width="310" height="32" rx="8" fill="#FDECEC" stroke="#F5C2C2"/>
+  <text x="175" y="113" text-anchor="middle" font-size="15" font-weight="700" fill="#E5484D">当前槽点（家庭场景）</text>
+  <rect x="350" y="92" width="310" height="32" rx="8" fill="#E9F7EF" stroke="#B7E4C7"/>
+  <text x="505" y="113" text-anchor="middle" font-size="15" font-weight="700" fill="#15A05A">我们的方案（家庭版）</text>
+
+  <!-- ===== LEFT cards (pain points) ===== -->
+  <rect x="20" y="140" width="310" height="96" rx="10" fill="#FFFFFF" stroke="#E3E8EF"/>
+  <rect x="26" y="150" width="5" height="76" rx="2.5" fill="#E5484D"/>
+  <circle cx="50" cy="170" r="13" fill="#E5484D"/>
+  <text x="50" y="175" text-anchor="middle" font-size="14" font-weight="700" fill="#FFFFFF">1</text>
+  <text x="72" y="175" font-size="15" font-weight="700" fill="#1F2933">全家口令各记各的</text>
+  <text x="44" y="202" font-size="12" fill="#5B6B7B">老人孩子配偶各管各的</text>
+  <text x="44" y="222" font-size="12" fill="#5B6B7B">微信·支付宝·网银·会员卡散落</text>
+
+  <rect x="20" y="248" width="310" height="96" rx="10" fill="#FFFFFF" stroke="#E3E8EF"/>
+  <rect x="26" y="258" width="5" height="76" rx="2.5" fill="#E5484D"/>
+  <circle cx="50" cy="278" r="13" fill="#E5484D"/>
+  <text x="50" y="283" text-anchor="middle" font-size="14" font-weight="700" fill="#FFFFFF">2</text>
+  <text x="72" y="283" font-size="15" font-weight="700" fill="#1F2933">设备越来越多</text>
+  <text x="44" y="310" font-size="12" fill="#5B6B7B">PC·Mac·华为手机·孩子平板</text>
+  <text x="44" y="330" font-size="12" fill="#5B6B7B">换机重装 = 整库丢失</text>
+
+  <rect x="20" y="356" width="310" height="96" rx="10" fill="#FFFFFF" stroke="#E3E8EF"/>
+  <rect x="26" y="366" width="5" height="76" rx="2.5" fill="#E5484D"/>
+  <circle cx="50" cy="386" r="13" fill="#E5484D"/>
+  <text x="50" y="391" text-anchor="middle" font-size="14" font-weight="700" fill="#FFFFFF">3</text>
+  <text x="72" y="391" font-size="15" font-weight="700" fill="#1F2933">忘密码束手无策</text>
+  <text x="44" y="418" font-size="12" fill="#5B6B7B">老人孩子忘主密码 = 锁死</text>
+  <text x="44" y="438" font-size="12" fill="#5B6B7B">无人能救，只能重置</text>
+
+  <rect x="20" y="464" width="310" height="96" rx="10" fill="#FFFFFF" stroke="#E3E8EF"/>
+  <rect x="26" y="474" width="5" height="76" rx="2.5" fill="#E5484D"/>
+  <circle cx="50" cy="494" r="13" fill="#E5484D"/>
+  <text x="50" y="499" text-anchor="middle" font-size="14" font-weight="700" fill="#FFFFFF">4</text>
+  <text x="72" y="499" font-size="15" font-weight="700" fill="#1F2933">鸿蒙安卓覆盖不全</text>
+  <text x="44" y="526" font-size="12" fill="#5B6B7B">华为手机没顺手客户端</text>
+  <text x="44" y="546" font-size="12" fill="#5B6B7B">家庭共享账号尴尬</text>
+
+  <rect x="20" y="572" width="310" height="96" rx="10" fill="#FFFFFF" stroke="#E3E8EF"/>
+  <rect x="26" y="582" width="5" height="76" rx="2.5" fill="#E5484D"/>
+  <circle cx="50" cy="602" r="13" fill="#E5484D"/>
+  <text x="50" y="607" text-anchor="middle" font-size="14" font-weight="700" fill="#FFFFFF">5</text>
+  <text x="72" y="607" font-size="15" font-weight="700" fill="#1F2933">共享账号难管理</text>
+  <text x="44" y="634" font-size="12" fill="#5B6B7B">家庭云盘·视频会员共用</text>
+  <text x="44" y="654" font-size="12" fill="#5B6B7B">泄露难追责任</text>
+
+  <!-- ===== RIGHT cards (our solution) ===== -->
+  <rect x="350" y="140" width="310" height="96" rx="10" fill="#FFFFFF" stroke="#E3E8EF"/>
+  <rect x="356" y="150" width="5" height="76" rx="2.5" fill="#15A05A"/>
+  <circle cx="380" cy="170" r="13" fill="#15A05A"/>
+  <text x="380" y="175" text-anchor="middle" font-size="14" font-weight="700" fill="#FFFFFF">1</text>
+  <text x="402" y="175" font-size="15" font-weight="700" fill="#1F2933">全家一套库·分组</text>
+  <text x="374" y="202" font-size="12" fill="#5B6B7B">同一 .kdbx 按「我/家人/共享」</text>
+  <text x="374" y="222" font-size="12" fill="#5B6B7B">各自密级，互不干扰</text>
+
+  <rect x="350" y="248" width="310" height="96" rx="10" fill="#FFFFFF" stroke="#E3E8EF"/>
+  <rect x="356" y="258" width="5" height="76" rx="2.5" fill="#15A05A"/>
+  <circle cx="380" cy="278" r="13" fill="#15A05A"/>
+  <text x="380" y="283" text-anchor="middle" font-size="14" font-weight="700" fill="#FFFFFF">2</text>
+  <text x="402" y="283" font-size="15" font-weight="700" fill="#1F2933">全设备同步含鸿蒙</text>
+  <text x="374" y="310" font-size="12" fill="#5B6B7B">云盘同步 Win/Mac/鸿蒙/安卓</text>
+  <text x="374" y="330" font-size="12" fill="#5B6B7B">iOS 通用，KeePassHO 原生</text>
+
+  <rect x="350" y="356" width="310" height="96" rx="10" fill="#FFFFFF" stroke="#E3E8EF"/>
+  <rect x="356" y="366" width="5" height="76" rx="2.5" fill="#15A05A"/>
+  <circle cx="380" cy="386" r="13" fill="#15A05A"/>
+  <text x="380" y="391" text-anchor="middle" font-size="14" font-weight="700" fill="#FFFFFF">3</text>
+  <text x="402" y="391" font-size="15" font-weight="700" fill="#1F2933">分级恢复 break-glass</text>
+  <text x="374" y="418" font-size="12" fill="#5B6B7B">主密码忘→SSS 分片给可信家人</text>
+  <text x="374" y="438" font-size="12" fill="#5B6B7B">老人孩子有紧急联系人</text>
+
+  <rect x="350" y="464" width="310" height="96" rx="10" fill="#FFFFFF" stroke="#E3E8EF"/>
+  <rect x="356" y="474" width="5" height="76" rx="2.5" fill="#15A05A"/>
+  <circle cx="380" cy="494" r="13" fill="#15A05A"/>
+  <text x="380" y="499" text-anchor="middle" font-size="14" font-weight="700" fill="#FFFFFF">4</text>
+  <text x="402" y="499" font-size="15" font-weight="700" fill="#1F2933">零知识加密</text>
+  <text x="374" y="526" font-size="12" fill="#5B6B7B">Argon2id + AES-256-GCM</text>
+  <text x="374" y="546" font-size="12" fill="#5B6B7B">blob 仅进自家云盘</text>
+
+  <rect x="350" y="572" width="310" height="96" rx="10" fill="#FFFFFF" stroke="#E3E8EF"/>
+  <rect x="356" y="582" width="5" height="76" rx="2.5" fill="#15A05A"/>
+  <circle cx="380" cy="602" r="13" fill="#15A05A"/>
+  <text x="380" y="607" text-anchor="middle" font-size="14" font-weight="700" fill="#FFFFFF">5</text>
+  <text x="402" y="607" font-size="15" font-weight="700" fill="#1F2933">专家托管运维</text>
+  <text x="374" y="634" font-size="12" fill="#5B6B7B">统一凭据安全专家维护</text>
+  <text x="374" y="654" font-size="12" fill="#5B6B7B">家庭台账 + 恢复预案</text>
+
+  <!-- ===== Bottom architecture banner ===== -->
+  <rect x="20" y="688" width="640" height="96" rx="12" fill="#EEF4FF" stroke="#3B82F6"/>
+  <text x="36" y="712" font-size="13" font-weight="700" fill="#1E40AF">核心架构 · 零知识信封加密（家庭真相源 = 可移植 .kdbx，云盘同步，本机仅为登录缓存）</text>
+  <text x="36" y="738" font-size="12" fill="#334155">① 核心根口令 → ② Argon2id 派生 256 位 Vault Key → ③ AES-256-GCM 信封加密</text>
+  <text x="36" y="760" font-size="12" fill="#334155">④ 加密库仅进自家云盘（零知识，明文不触网）→ ⑤ 各端客户端（含鸿蒙 KeePassHO）解封即用</text>
+  <text x="36" y="780" font-size="11" fill="#475569">负责专家：credential-vault-steward（统一凭据安全专家）全程记录维护 + 家庭应急恢复</text>
+</svg>

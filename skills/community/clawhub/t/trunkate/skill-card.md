@@ -1,47 +1,70 @@
-## Description: <br>
-Trunkate AI semantically optimizes agent context history and large text blocks through the Trunkate AI API, with optional OpenClaw hooks for proactive token management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Semantically optimizes context history and large text blocks via the Trunkate AI API, with proactive context pruning hooks for automated token management.
 
-## Publisher: <br>
-[engineering-trunkate-ai](https://clawhub.ai/user/engineering-trunkate-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[engineering-trunkate-ai](https://clawhub.ai/user/engineering-trunkate-ai)
 
-## Use Case: <br>
-Developers and engineers use Trunkate AI to compress large agent histories, logs, and handoff context while preserving critical instructions and explicitly tagged private blocks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Filtered OpenClaw history can be sent to the Trunkate API during optimization. <br>
-Mitigation: Use PRIVATE and KEEP tags for sensitive content, keep TRUNKATE_API_KEY scoped and revocable, and avoid enabling the hook for highly confidential or regulated work. <br>
-Risk: Enabled hooks can automatically replace local session history when token thresholds are met. <br>
-Mitigation: Review hook configuration and threshold variables before enabling, and keep logs or backups where context replacement would affect auditability. <br>
-Risk: TRUNKATE_API_URL can redirect optimization traffic if overridden. <br>
-Mitigation: Verify TRUNKATE_API_URL points to the expected Trunkate endpoint before use. <br>
+## Use Case:
 
+Developers and agent operators use this skill to compress long session histories, logs, and large text inputs while preserving task-critical context. OpenClaw users can enable hooks that prune history automatically when token usage crosses a configured threshold.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/engineering-trunkate-ai/trunkate) <br>
-- [Publisher Profile](https://clawhub.ai/user/engineering-trunkate-ai) <br>
-- [Trunkate Homepage](https://trunkate.ai) <br>
-- [OpenClaw Integration](references/openclaw-integration.md) <br>
-- [Hooks Setup](references/hooks-setup.md) <br>
-- [Examples](references/examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance, inline shell commands, configuration snippets, and optimized text returned to agent history] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can replace OpenClaw session history when hooks are enabled; requires TRUNKATE_API_KEY for API-backed optimization.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.31.0 (source: evidence.release.version, version.txt) <br>
+Risk: Automated hooks can send redacted conversation history to Trunkate's external service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Enable the hooks only in workspaces where external processing of redacted history is acceptable, and use explicit [PRIVATE] blocks for sensitive content.
+
+Risk: The hook can replace session history with the returned optimized summary.
+
+Mitigation: Review hook behavior before enabling it and keep important source-of-truth project requirements outside replaceable session history.
+
+Risk: TRUNKATE_API_URL can redirect optimization requests away from the default service.
+
+Mitigation: Leave TRUNKATE_API_URL unset except in controlled development environments.
+
+Risk: A relative-path execution issue is present in the hook flow.
+
+Mitigation: Do not enable the hook in untrusted workspaces until the relative-path execution issue is fixed.
+
+Risk: TRUNKATE_API_KEY is required for API access.
+
+Mitigation: Store and scope TRUNKATE_API_KEY carefully and avoid exposing it in shared logs or workspace files.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/engineering-trunkate-ai/skills/trunkate)
+- [Trunkate Homepage](https://trunkate.ai)
+- [Optimization Examples and Benchmarks](references/examples.md)
+- [Python Proactive Hooks Integration Guide](references/hooks-setup.md)
+- [OpenClaw and Trunkate API Integration Spec](references/openclaw-integration.md)
+- [Proactive Context Hook](hooks/openclaw/HOOK.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON configuration examples; runtime tools return optimized text or OpenClaw history update directives.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3, requests, TRUNKATE_API_KEY, and OpenClaw history/token environment variables for automated hook operation.]
+
+## Skill Version(s):
+
+0.31.0 (source: ClawHub release evidence, CHANGELOG, version.txt)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

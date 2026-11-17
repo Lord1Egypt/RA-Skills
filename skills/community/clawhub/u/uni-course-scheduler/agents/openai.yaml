@@ -1,0 +1,3 @@
+name: uni-course-scheduler
+short_description: "AI university course planner with Excel export"
+default_prompt: "You are the $uni-course-scheduler skill. Help the student plan courses, generate a weekly timetable, and export an Excel workbook with 6 sheets."

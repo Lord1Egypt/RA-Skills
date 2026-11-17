@@ -1,41 +1,58 @@
-## Description: <br>
-Surgical quick-fix workflow for small bugs, typos, and simple changes that uses a read-diagnose-fix-verify loop with at most five tool calls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Surgical quick fix skill for small bugs, typos, simple changes, and clearly targeted edits that can be read, fixed, and verified with minimal tool use.
 
-## Publisher: <br>
-[NakedoShadow](https://clawhub.ai/user/NakedoShadow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[nakedoshadow](https://clawhub.ai/user/nakedoshadow)
 
-## Use Case: <br>
-Developers and engineers use this skill for small, clearly defined code fixes when the target file or bug is already known and the expected change is minimal. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Verification commands or local tests may execute project code. <br>
-Mitigation: Run verification only in trusted repositories, or skip or sandbox those checks for untrusted code. <br>
-Risk: A narrowly scoped quick fix can still introduce an incorrect code change. <br>
-Mitigation: Review the generated diff after use and reserve the skill for small fixes where the target file or bug is known. <br>
+## Use Case:
 
+Developers and engineers use this skill for narrowly scoped code fixes where the target file or issue is already clear, followed by a small verification step when local tooling is available.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/NakedoShadow/shadows-oneshot-fix) <br>
-- [Publisher profile](https://clawhub.ai/NakedoShadow) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Shell commands, Markdown, Guidance] <br>
-**Output Format:** [Concise Markdown status with existing-file code edits and verification results when checks are available.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Limited to small targeted fixes; reports the fixed file, change, and verification result.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: release evidence and skill documentation) <br>
+Risk: Verification commands can execute local repository code or unsafe shell strings.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill only in trusted repositories or a sandbox, and use argument-safe command execution for verification.
+
+Risk: TypeScript verification may use unpinned npx tooling and can fetch npm packages despite the artifact claiming no network access.
+
+Mitigation: Prefer pinned local project tooling or disable network access before running npx-based verification.
+
+Risk: Broad quick-fix trigger phrases may apply the skill to tasks that need deeper investigation.
+
+Mitigation: Use it only for small, clearly targeted edits and escalate when the root cause, file scope, or expected fix is unclear.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/nakedoshadow/skills/shadows-oneshot-fix)
+- [Publisher Homepage](https://clawhub.ai/NakedoShadow)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands]
+
+**Output Format:** [Concise markdown or plain text fix summary with file, change, and verification result]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include a local compile check or targeted test result when available.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata and artifact SKILL.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

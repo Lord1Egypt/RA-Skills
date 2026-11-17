@@ -1,0 +1,63 @@
+{
+  "business": {
+    "description": "为小团队推广免费多账号内容工具；未提供功能明细和教程正文。",
+    "audience": "小型内容团队",
+    "goal": "整理首批问题和选题",
+    "inventory_status": "unprovided"
+  },
+  "articles": [],
+  "questions": [
+    {
+      "id": "M01",
+      "merge_key": "first-trial",
+      "question": "小团队第一次试用免费多账号工具，要先确认哪些限制？",
+      "audience": "小型内容团队",
+      "entity": "免费多账号内容工具",
+      "intent": "decision",
+      "theme": "试用边界",
+      "scope": "试用前的限制核对",
+      "origin": {
+        "kind": "agent_hypothesis",
+        "source": "Agent 仅依据业务介绍提出，待用户或真实提问验证"
+      },
+      "facts": [
+        {
+          "need": "账号额度、支持平台和任务限制",
+          "status": "missing",
+          "source": ""
+        }
+      ],
+      "format": "试用前核对清单",
+      "next_step": "先向产品负责人确认限制，再给出可执行的试用范围",
+      "impact": "high",
+      "impact_reason": "影响团队试用或持续使用的决策",
+      "article_links": []
+    },
+    {
+      "id": "M02",
+      "merge_key": "first-trial",
+      "question": "大型代理公司能批量管理客户账号吗？",
+      "audience": "大型代理公司",
+      "entity": "免费多账号内容工具",
+      "intent": "decision",
+      "theme": "试用边界",
+      "scope": "试用前的限制核对",
+      "origin": {
+        "kind": "agent_hypothesis",
+        "source": "Agent 仅依据业务介绍提出，待用户或真实提问验证"
+      },
+      "facts": [
+        {
+          "need": "账号额度、支持平台和任务限制",
+          "status": "missing",
+          "source": ""
+        }
+      ],
+      "format": "试用前核对清单",
+      "next_step": "先向产品负责人确认限制，再给出可执行的试用范围",
+      "impact": "high",
+      "impact_reason": "影响团队试用或持续使用的决策",
+      "article_links": []
+    }
+  ]
+}

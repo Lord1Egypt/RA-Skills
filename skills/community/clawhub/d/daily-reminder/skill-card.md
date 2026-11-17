@@ -1,39 +1,58 @@
-## Description: <br>
-Daily Reminder helps agents set and list reminders, countdowns, and anniversaries from user messages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language local reminder-note skill for storing reminders, countdown labels, and anniversaries.
 
-## Publisher: <br>
-[huangjingzhi07](https://clawhub.ai/user/huangjingzhi07) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[huangjingzhi07](https://clawhub.ai/user/huangjingzhi07)
 
-## Use Case: <br>
-External users and agents use this skill to capture personal schedule items, track target-date countdowns, record anniversaries, and retrieve saved reminder lists. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Reminder, countdown, and anniversary details are saved in local JSON files and may contain personal schedule information. <br>
-Mitigation: Review where the skill stores its JSON files, avoid entering highly sensitive details, and prefer workflows that allow listing, editing, exporting, and deleting saved data. <br>
+## Use Case:
 
+External users can use this skill to capture simple Chinese-language reminder, countdown, and anniversary notes and view the saved list later.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/huangjingzhi07/daily-reminder) <br>
-- [Publisher profile](https://clawhub.ai/user/huangjingzhi07) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Files] <br>
-**Output Format:** [Text responses with local JSON persistence] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores reminders, countdowns, and anniversaries in local JSON files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and package.json) <br>
+Risk: User-entered reminders, countdowns, and anniversaries are stored as plaintext JSON files in the skill directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid storing sensitive personal details unless plaintext local storage is acceptable for the deployment.
+
+Risk: The skill presents reminder and countdown features, but the security assessment says it is not a real notification or countdown engine.
+
+Mitigation: Use it as a local reminder-note list and do not rely on it for time-critical notifications.
+
+Risk: The security guidance notes no built-in delete or export command.
+
+Mitigation: Plan an external data-management process before using it for reminders that may need retention, removal, or transfer.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/huangjingzhi07/skills/daily-reminder)
+- [ClawHub publisher profile](https://clawhub.ai/user/huangjingzhi07)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON files]
+
+**Output Format:** [Chinese-language text responses with locally stored JSON records]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores user-entered reminders, countdowns, and anniversaries in local JSON files.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter, package.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

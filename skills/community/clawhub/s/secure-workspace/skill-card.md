@@ -1,42 +1,53 @@
-## Description: <br>
-Encrypts API keys, tokens, and passwords with age to protect workspace secrets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents encrypt workspace API keys, tokens, and passwords with age and decrypt them when needed.
 
-## Publisher: <br>
-[asistentegordito](https://clawhub.ai/user/asistentegordito) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[asistentegordito](https://clawhub.ai/user/asistentegordito)
 
-## Use Case: <br>
-Developers and operators use Secure Workspace to create age keys and encrypt or decrypt workspace secret files for local repositories and backups. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The local private age key can decrypt protected workspace secrets if it is exposed. <br>
-Mitigation: Protect the private key carefully, keep it out of repositories and backups that do not require it, and restrict file access to trusted users. <br>
-Risk: Sourcing decrypted secrets can expose values in shared shells, logs, CI steps, or sessions that later run untrusted commands. <br>
-Mitigation: Decrypt or source secrets only in trusted local sessions and avoid printing, logging, or reusing decrypted values in shared automation. <br>
-Risk: Encryption and decryption depend on the expected local age key path and can fail or use the wrong key if setup is skipped or inconsistent. <br>
-Mitigation: Run setup first, verify the helper scripts use the intended key path, and test decryption before relying on encrypted secret files. <br>
+## Use Case:
 
+Developers and engineers use this skill to set up age key material and encrypt or decrypt workspace secret files during local automation and repository backup workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/asistentegordito/secure-workspace) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the age CLI and a local age key file before encryption or decryption.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The recommended decrypt workflow can run decrypted secret files as shell code and expose secrets in the live shell environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sourcing decrypted content from repositories, backups, or other people; prefer decrypting only for a specific command or parsing a strict dotenv format after review.
+
+Risk: The age private key file unlocks encrypted workspace secrets.
+
+Mitigation: Treat /root/.age/key.txt or $HOME/.age/key.txt as highly sensitive private key material and protect it with appropriate filesystem permissions and backup controls.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/asistentegordito/skills/secure-workspace)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses the age command-line tool and local key files.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

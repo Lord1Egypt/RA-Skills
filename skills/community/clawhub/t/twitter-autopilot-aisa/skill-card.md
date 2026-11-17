@@ -1,44 +1,59 @@
-## Description: <br>
-Searches X/Twitter data, monitors accounts and trends, and supports authorized posting and engagement through the AISA relay. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches Twitter/X data, monitors accounts and trends, and supports authorized posting, replies, likes, follows, and media publishing through the AISA relay.
 
-## Publisher: <br>
-[aisadocs](https://clawhub.ai/user/aisadocs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aisadocs](https://clawhub.ai/user/aisadocs)
 
-## Use Case: <br>
-Developers and agents use this skill to search and monitor Twitter/X data, summarize social activity, and carry out authorized posting, reply, like, follow, unfollow, and media workflows through AISA. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can perform public Twitter/X account actions, including posts, replies, likes, follows, unfollows, and media uploads. <br>
-Mitigation: Require explicit human approval for every public action and use only a dedicated or tightly scoped Twitter/X account. <br>
-Risk: The configured API key may be exposed in normal command output. <br>
-Mitigation: Avoid running status, authorization, or posting commands in logged or shared contexts until API key redaction is fixed. <br>
-Risk: Changing the relay endpoint can send requests and credentials to an untrusted service. <br>
-Mitigation: Keep TWITTER_RELAY_BASE_URL unset unless the endpoint is fully trusted. <br>
+## Use Case:
 
+External developers and autonomous-agent operators use this skill to search and monitor Twitter/X data, summarize social signals, and perform authorized posting or engagement through AISA relay workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aisadocs/twitter-autopilot-aisa) <br>
-- [AISA](https://aisa.one) <br>
-- [AISA API Reference](https://docs.aisa.one/reference/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, API calls] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May trigger external Twitter/X read, posting, engagement, and media workflows through AISA APIs when configured and authorized.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: The configured AISA API key can appear in normal command output, logs, or transcripts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid running status, authorization, or posting commands with sensitive keys until the key-output issue is fixed; rotate any key that may have been exposed.
+
+Risk: Credentials and media can be sent to arbitrary HTTP or HTTPS relay URLs when TWITTER_RELAY_BASE_URL is changed.
+
+Mitigation: Use the default trusted HTTPS relay unless a custom endpoint is fully trusted and approved.
+
+Risk: The skill can perform real Twitter/X account actions, including publishing posts, likes, follows, replies, and media uploads.
+
+Mitigation: Review intended write or engagement actions before execution and use OAuth authorization only for the account that should perform them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aisadocs/skills/twitter-autopilot-aisa)
+- [AISA](https://aisa.one)
+- [AISA API Reference](https://docs.aisa.one/reference/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and JSON API/client responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and AISA_API_KEY; write and engagement actions require OAuth authorization.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

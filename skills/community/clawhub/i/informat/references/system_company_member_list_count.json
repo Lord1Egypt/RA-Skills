@@ -1,0 +1,11 @@
+{
+  "type": "function",
+  "function": {
+    "name": "_company_member_list_count",
+    "description": "Get the total count of company members.",
+    "parameters": {
+      "type": "object",
+      "properties": {}
+    }
+  }
+}

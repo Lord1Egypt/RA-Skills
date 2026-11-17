@@ -1,0 +1,52 @@
+{
+  "skill": "shutter-speed-motion",
+  "version": "0.1.0",
+  "source_book": "纽约摄影学院摄影教程 — 美国纽约摄影学院",
+  "darwin_compatible": true,
+  "test_cases": [
+    {
+      "id": "should-trigger-01",
+      "type": "should_trigger",
+      "prompt": "拍运动物体用什么快门速度？",
+      "expected_behavior": "调用 shutter-speed-motion，讲解四因素框架和具体速度建议",
+      "notes": "正面场景：运动摄影快门选择"
+    },
+    {
+      "id": "should-trigger-02",
+      "type": "should_trigger",
+      "prompt": "怎么拍出流水的丝滑感/运动模糊效果？",
+      "expected_behavior": "调用 shutter-speed-motion，讲解慢速快门和追随拍摄技术",
+      "notes": "正面场景：动感表现"
+    },
+    {
+      "id": "should-trigger-03",
+      "type": "should_trigger",
+      "prompt": "panning technique怎么操作？",
+      "expected_behavior": "调用 shutter-speed-motion，讲解追随拍摄的具体步骤",
+      "notes": "正面场景：追随拍摄技术"
+    },
+    {
+      "id": "should-not-trigger-01",
+      "type": "should_not_trigger",
+      "prompt": "怎么让背景更虚化？",
+      "expected_behavior": "不应调用 shutter-speed-motion，应调用 depth-of-field-control",
+      "notes": "跨 skill 混淆诱饵：背景虚化是景深问题"
+    },
+    {
+      "id": "should-not-trigger-02",
+      "type": "should_not_trigger",
+      "prompt": "我的照片整体模糊，是相机坏了吗？",
+      "expected_behavior": "不应调用 shutter-speed-motion（可能是相机震动或聚焦问题），应先诊断原因",
+      "notes": "诱饵：故障诊断"
+    },
+    {
+      "id": "edge-01",
+      "type": "edge_case",
+      "prompt": "手持拍摄最低用多慢的快门？",
+      "expected_behavior": "边界模糊——涉及手持安全快门规则（已降级为引用），可部分回答但不应完全调用",
+      "notes": "边界：手持安全快门"
+    }
+  ],
+  "minimum_pass_rate": 0.8,
+  "notes": "至少 3 条 should_trigger + 2 条 should_not_trigger + 1 条 edge_case。"
+}

@@ -1,0 +1,66 @@
+{
+  "disease": {
+    "primary": ["hepatocellular carcinoma", "HCC", "liver cancer", "primary liver cancer", "hepatoma"],
+    "exclude": ["metastatic liver cancer", "cholangiocarcinoma", "intrahepatic cholangiocarcinoma", "gallbladder cancer", "liver metastases"]
+  },
+  "project_1": {
+    "intervention_A": ["CT-guided radiofrequency ablation", "CT-guided RFA", "computed tomography-guided radiofrequency ablation", "CT-guided ablation"],
+    "intervention_B": ["ultrasound-guided radiofrequency ablation", "US-guided RFA", "ultrasonography-guided radiofrequency ablation", "US-guided ablation"],
+    "topic_specific_baseline": {
+      "liver_cirrhosis": ["cirrhosis", "liver cirrhosis", "hepatic cirrhosis"],
+      "antiviral_therapy": ["antiviral", "nucleos(t)ide analogue", "NA therapy", "entecavir", "tenofovir"],
+      "child_pugh": ["Child-Pugh", "Child Pugh", "Child class", "CP class", "CP score"],
+      "ALBI": ["ALBI", "albumin-bilirubin", "albumin bilirubin index", "ALBI grade"]
+    }
+  },
+  "project_2": {
+    "intervention_A": ["robotic surgery", "robotic-assisted surgery", "robotic hepatectomy", "robotic liver resection", "Da Vinci surgery"],
+    "intervention_B": ["open surgery", "open resection", "open hepatectomy", "conventional hepatectomy"],
+    "condition": ["large hepatocellular carcinoma", "large HCC", "giant HCC", "huge HCC", "massive HCC", "HCC ≥5 cm", "HCC ≥ 5cm", "tumor diameter ≥5 cm"],
+    "topic_specific_baseline": {
+      "comorbidities": ["hypertension", "diabetes", "cardiovascular", "COPD"],
+      "treatment_history": ["previous chemotherapy", "prior chemotherapy", "previous TACE", "prior TACE", "targeted therapy", "sorafenib", "lenvatinib"],
+      "virology": ["HBV", "hepatitis B", "HBsAg", "HCV", "hepatitis C", "anti-HCV"]
+    }
+  },
+  "core_baseline_fields": {
+    "author": "First author surname + year",
+    "study_design": ["RCT", "randomized controlled trial", "prospective cohort", "retrospective cohort", "case-control"],
+    "treatment_groups": "Group A name, Group B name",
+    "sample_size": "N per group",
+    "age": "Mean ± SD or Median (IQR)",
+    "sex_ratio": "Male/Female or Male%",
+    "tumor_size": "Mean ± SD in cm",
+    "tumor_number": "Solitary vs Multiple",
+    "tumor_stage": "BCLC stage distribution",
+    "follow_up": "Mean or Median in months",
+    "lab_values": {
+      "ALB": "Albumin (g/dL or g/L)",
+      "TBIL": "Total bilirubin (mg/dL or μmol/L)",
+      "AST": "Aspartate aminotransferase (U/L)",
+      "ALT": "Alanine aminotransferase (U/L)",
+      "AFP": "Alpha-fetoprotein (ng/mL)"
+    }
+  },
+  "core_outcome_fields": {
+    "OS_1yr": "1-year overall survival rate (%)",
+    "OS_3yr": "3-year overall survival rate (%)",
+    "OS_5yr": "5-year overall survival rate (%)",
+    "RFS_1yr": "1-year recurrence-free survival rate (%)",
+    "RFS_3yr": "3-year recurrence-free survival rate (%)",
+    "RFS_5yr": "5-year recurrence-free survival rate (%)",
+    "local_tumor_progression": "Local tumor progression rate (%)",
+    "distant_recurrence": "Distant recurrence rate (%)",
+    "technical_success": "Technical success rate (%)",
+    "major_complications": {
+      "total": "Total major complication rate (%)",
+      "subtypes": ["abdominal infection", "wound infection", "bile leakage", "pleural effusion", "postoperative bleeding", "thrombosis", "hematoma", "liver failure"]
+    }
+  },
+  "exclusion_criteria": {
+    "non_original": ["review", "systematic review", "meta-analysis", "case report", "editorial", "commentary", "conference abstract", "letter"],
+    "non_comparative": ["single-arm study", "case series without comparison", "descriptive study"],
+    "small_sample": "N < 10",
+    "data_not_separable": ["pooled outcomes", "data not separable by group"]
+  }
+}

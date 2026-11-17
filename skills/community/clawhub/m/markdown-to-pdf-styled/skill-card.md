@@ -1,40 +1,53 @@
-## Description: <br>
-Convert Markdown files to styled PDF documents using pandoc and wkhtmltopdf with built-in or custom CSS styles. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert Markdown files to styled PDFs using pandoc and wkhtmltopdf with built-in or custom CSS style options.
 
-## Publisher: <br>
-[mengwuzhi](https://clawhub.ai/user/mengwuzhi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[mengwuzhi](https://clawhub.ai/user/mengwuzhi)
 
-## Use Case: <br>
-Developers and writers use this skill to convert Markdown documents into consistently styled PDFs with selectable built-in CSS themes or a custom CSS file. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Rendering enables local file access, so untrusted Markdown or CSS may cause local or remote resources to be included in the PDF. <br>
-Mitigation: Use trusted Markdown and CSS inputs, inspect resource references before conversion, and avoid rendering documents from unknown sources. <br>
-Risk: Supplying an existing output path can overwrite a PDF file. <br>
-Mitigation: Choose an explicit output path in a safe working directory and check whether the target file already exists before running the conversion. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Usage Guide](references/usage.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/mengwuzhi/markdown-to-pdf-styled) <br>
+## Use Case:
 
+Developers and engineers use this skill to convert Markdown documents into consistently styled PDF files with selectable built-in CSS styles or a trusted custom CSS file.
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash commands and generated PDF file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a local PDF file from a Markdown input and selected CSS style.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The renderer is given broad local file access, which could expose local files when converting untrusted Markdown or CSS.
+
+Mitigation: Convert only trusted Markdown and CSS, or run the skill in a sandboxed, low-privilege environment with local file access restricted or removed.
+
+Risk: Conversion depends on local pandoc and wkhtmltopdf installations.
+
+Mitigation: Verify both tools are installed and available before using the skill in a workflow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mengwuzhi/skills/markdown-to-pdf-styled)
+- [Usage guide](references/usage.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Files]
+
+**Output Format:** [Markdown guidance with bash command examples and generated PDF file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces PDF files from Markdown using clean, modern, paper, or trusted custom CSS styles.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill documentation)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

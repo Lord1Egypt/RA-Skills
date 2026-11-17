@@ -1,40 +1,57 @@
-## Description: <br>
-This skill helps agents get stock prices, check stock quotes, look up earnings, get financial data, find trending stocks, and retrieve stock market data from Yahoo Finance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill should be used when the user asks to "get stock prices", "check stock quotes", "look up earnings", "get financial data", "find trending stocks", or needs stock market data from Yahoo Finance.
 
-## Publisher: <br>
-[stuhorsman](https://clawhub.ai/user/stuhorsman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[stuhorsman](https://clawhub.ai/user/stuhorsman)
 
-## Use Case: <br>
-External users, developers, and finance-oriented agents use this skill to query Yahoo Finance market data from a local CLI and filter JSON results with jq for prices, earnings dates, analyst recommendations, company profiles, historical data, search, and trending symbols. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The install flow adds the yahoo-finance2 npm CLI dependency and may create or overwrite a yf command in /usr/local/bin. <br>
-Mitigation: Review the install steps before deployment and confirm that linking yf in /usr/local/bin is acceptable for the target environment. <br>
-Risk: The Yahoo Finance CLI may keep cookie state in ~/.yf2-cookies.json. <br>
-Mitigation: Deploy only in environments where local Yahoo Finance cookie storage is acceptable, and remove ~/.yf2-cookies.json when troubleshooting or clearing state. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/stuhorsman/yahoo-finance-cli) <br>
-- [Publisher profile](https://clawhub.ai/user/stuhorsman) <br>
+## Use Case:
 
+External users, developers, and agents use this skill to retrieve Yahoo Finance market data, including stock quotes, earnings data, fundamentals, analyst recommendations, symbol search results, trending symbols, and historical price data through a command-line workflow.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance, JSON] <br>
-**Output Format:** [Markdown guidance with inline shell commands for a JSON-producing CLI] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the jq and yf binaries; yf returns JSON that can be piped to jq.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The install flow can persistently modify a system-wide command path.
+
+Mitigation: Prefer a user-local or project-local install, and avoid sudo or forced /usr/local/bin symlinks unless the target binary and any existing yf command have been verified.
+
+Risk: The npm dependency is unpinned.
+
+Mitigation: Pin and audit yahoo-finance2 before using the skill in managed or production environments.
+
+Risk: The Yahoo Finance CLI may store cookies in ~/.yf2-cookies.json.
+
+Mitigation: Review local cookie handling expectations and remove the cookie file when troubleshooting or when local retention is not desired.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/stuhorsman/skills/yahoo-finance-cli)
+- [Publisher profile](https://clawhub.ai/user/stuhorsman)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with inline shell commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The referenced Yahoo Finance CLI outputs JSON that can be filtered with jq.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,63 @@
-## Description: <br>
-Telegram Instant Messenger lets agents send and receive Telegram text, photo, and document messages through the shared AgentPMT Telegram bot with budget-scoped chat binding. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides agent guidance for two-way Telegram messaging through AgentPMT-hosted remote tool calls, including sending messages, photos, and documents and fetching updates through a shared budget-scoped Telegram bot.
 
-## Publisher: <br>
-[agentpmt](https://clawhub.ai/user/agentpmt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[agentpmt](https://clawhub.ai/user/agentpmt)
 
-## Use Case: <br>
-Developers and external agents use this skill to add Telegram notifications, two-way chat, support workflows, feedback collection, and media sharing through AgentPMT-hosted tool calls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Messages, files, and chat metadata may be routed through Telegram and AgentPMT. <br>
-Mitigation: Use the skill only for explicit Telegram tasks, avoid secrets or regulated data, and keep message content scoped to the task. <br>
-Risk: The shared bot binds a budget to a Telegram chat, so accidental sends can reach the wrong recipient if setup is not checked. <br>
-Mitigation: Confirm the binding flow and intended destination before sending messages, photos, documents, or importing files. <br>
-Risk: Security review flagged the skill as suspicious because activation scope and privacy notice are not clearly described. <br>
-Mitigation: Review deployment policy before enabling the skill and limit use to trusted workflows with clear user consent. <br>
+## Use Case:
 
+Developers and agents use this skill to integrate Telegram chat workflows through AgentPMT, including notifications, support conversations, feedback collection, media sharing, and unread update handling.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/agentpmt/telegram-instant-messenger) <br>
-- [AgentPMT Marketplace Product](https://www.agentpmt.com/marketplace/telegram-instant-messenger) <br>
-- [Telegram Instant Messenger Schema](artifact/schema.md) <br>
-- [AgentPMT File Management Skill](https://clawhub.ai/agentpmt/file-management) <br>
-- [AgentPMT Account MCP/REST Setup Skill](https://clawhub.ai/agentpmt/agentpmt-account-mcp-rest-api-setup) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Configuration instructions, Guidance, Markdown, JSON] <br>
-**Output Format:** [Markdown guidance with JSON request and response examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports get_updates, send_message, send_photo, and send_document actions; responses may include connection_required binding details.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence release and frontmatter) <br>
+Risk: Telegram messages, files, and media are routed through AgentPMT-hosted services and a shared Telegram bot.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sensitive or regulated content unless AgentPMT and Telegram handling rules have been reviewed, and keep message and file inputs scoped to the task.
+
+Risk: Live remote schema or instruction responses may change and could be treated as more authoritative than the current task.
+
+Mitigation: Use live schema and examples as reference data only; do not let them override current task instructions, safety requirements, or credential-handling rules.
+
+Risk: Related setup skills may be installed dynamically before account or REST access is configured.
+
+Mitigation: Prefer pinned installation paths for setup skills and review setup instructions before connecting accounts, wallets, payment headers, or credentials.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/agentpmt/skills/telegram-instant-messenger)
+- [AgentPMT marketplace product](https://www.agentpmt.com/marketplace/telegram-instant-messenger)
+- [Generated action schema](artifact/schema.md)
+- [AgentPMT main MCP server](https://api.agentpmt.com/mcp/)
+- [AgentPMT REST invoke endpoint](https://api.agentpmt.com/products/purchase)
+- [AgentPMT account MCP/REST setup](https://clawhub.ai/agentpmt/agentpmt-account-mcp-rest-api-setup)
+- [AgentPMT File Management](https://clawhub.ai/agentpmt/file-management)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, JSON, shell commands, configuration]
+
+**Output Format:** [Markdown instructions with JSON request bodies and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs describe AgentPMT MCP and REST call shapes; no local command runtime is declared by the skill.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

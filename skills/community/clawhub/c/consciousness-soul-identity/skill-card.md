@@ -1,40 +1,59 @@
-## Description: <br>
-Automated soul synthesis that reads local memory, finds recurring patterns, and builds an identity document grounded in evidence. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Discover who you're becoming through your own experience. Automated soul synthesis that reads your memory, finds the patterns you keep returning to, and builds an identity document grounded in evidence.
 
-## Publisher: <br>
-[leegitw](https://clawhub.ai/user/leegitw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[leegitw](https://clawhub.ai/user/leegitw)
 
-## Use Case: <br>
-External users and developers use this skill to synthesize a SOUL.md identity document from local memory and session history, inspect provenance for generated identity claims, check synthesis status, and roll back generated identity files. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill reads broad personal memory files and local OpenClaw session history, then sends that content to the configured Ollama endpoint. <br>
-Mitigation: Start with --dry-run, review sensitive memory and session content before synthesis, and use only the intended local or trusted Ollama endpoint. <br>
-Risk: The skill persists generated identity data in SOUL.md and .neon-soul, and those files may be committed into local git history. <br>
-Mitigation: Review generated files before relying on or sharing them, adjust output paths when needed, and exclude sensitive generated identity files from commits. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/leegitw/consciousness-soul-identity) <br>
-- [Live Neon homepage](https://liveneon.ai) <br>
+## Use Case:
 
+External ClawHub users and agents use this skill to synthesize a local SOUL.md identity document from memory files and related OpenClaw context, then inspect status, provenance, backups, and traces for generated identity claims.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown files, conversational summaries, and shell command invocations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes SOUL.md and .neon-soul state, cache, and backup files unless run with --dry-run.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.4.9 (source: server release evidence; artifact frontmatter reports 0.4.5) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill reads personal memory files, USER.md, interviews, and OpenClaw session logs, then stores derived identity data under .neon-soul.
+
+Mitigation: Review and remove sensitive content before synthesis, use --dry-run to preview processing, and install only when this local data processing is acceptable.
+
+Risk: Derived identity content can be sent to the configured Ollama endpoint if OLLAMA_BASE_URL points to a remote service.
+
+Mitigation: Keep Ollama configured to a trusted local endpoint unless remote processing is intentional and approved.
+
+Risk: SOUL.md may be committed to git automatically in a repository.
+
+Mitigation: Review repository status and ignore rules before running synthesis when SOUL.md or .neon-soul data should remain private.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/leegitw/skills/consciousness-soul-identity)
+- [Publisher profile](https://clawhub.ai/user/leegitw)
+- [NEON homepage](https://liveneon.ai)
+- [Ollama local service endpoint](http://localhost:11434)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown summaries, shell command guidance, SOUL.md, and .neon-soul JSON state files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Incremental synthesis can cache prior analysis and can write SOUL.md plus backups under .neon-soul.]
+
+## Skill Version(s):
+
+0.4.9 (source: server release metadata; artifact frontmatter is 0.4.5)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

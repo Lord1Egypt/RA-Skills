@@ -1,48 +1,64 @@
-## Description: <br>
-OpenClaw skill for managing long-term plans as rolling stages with tasks, milestones, reminders, structured reviews, optional asset snapshots, and plan relationships. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+长期计划推进技能（v2.0）。支持心跳联动内置、条件触发提醒、资产追踪、里程碑系统、多任务状态。当用户说"开一个长期计划"、"今天计划任务"、"阶段复盘"、"滚动下一阶段"、"列出所有计划"时使用。
 
-## Publisher: <br>
-[141553](https://clawhub.ai/user/141553) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[141553](https://clawhub.ai/user/141553)
 
-## Use Case: <br>
-OpenClaw users and developers use this skill to create, maintain, review, pause, resume, and relate long-running goals across short rolling phases. It is especially suited to local task plans that need reminders, milestones, review records, and optional fund-code based asset snapshots. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Plan files can contain personal goals, tasks, optional holdings, and fund codes in local memory. <br>
-Mitigation: Avoid storing brokerage credentials, account numbers, or sensitive financial records in plans, and review local plan files before sharing them. <br>
-Risk: Asset tracking uses a third-party fund quote lookup and may return stale, unavailable, or incomplete market data. <br>
-Mitigation: Confirm prices and any financial decisions with an authoritative source outside the skill. <br>
-Risk: Fuzzy and bulk task-completion features may match the wrong task or update more tasks than intended. <br>
-Mitigation: Confirm candidate matches and review the updated plan state before relying on completion status. <br>
-Risk: Reminder and trigger behavior depends on local heartbeat execution and quote availability. <br>
-Mitigation: Use the skill as an assistive tracker and keep separate reminders for critical deadlines or financial alerts. <br>
+## Use Case:
 
+Chinese-speaking users and agents use this skill to create, maintain, review, and roll forward long-term plans with stage tasks, milestones, reminders, asset snapshots, and plan relationships.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/141553/long-term-plan) <br>
-- [Publisher profile](https://clawhub.ai/user/141553) <br>
-- [Skill instructions](artifact/SKILL.md) <br>
-- [Plan templates](artifact/templates.md) <br>
-- [Fund quote endpoint used by asset tracking](https://fundgz.1234567.com.cn/js/${code}.js) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Configuration, Guidance] <br>
-**Output Format:** [Markdown plan files, JSON trigger and index configuration, and short natural-language reminders or review summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores plan state locally under memory/tasks and may query fund quote data for asset snapshots when asset tracking is used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: The skill stores durable plan state, registers heartbeat-style checks, and mutates local task files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the target workspace and filename validation before installation, and keep plan-state writes scoped to the intended tasks directory.
+
+Risk: Asset tracking may send fund codes to a third-party market-data service.
+
+Mitigation: Enable asset tracking only after user consent, and avoid entering sensitive holdings when external fund lookups are not acceptable.
+
+Risk: Fuzzy matching and bulk completion can mark the wrong task as complete.
+
+Mitigation: Require confirmation before bulk task completion or low-confidence matches, and review changed plan files after updates.
+
+Risk: Automatic trigger setup can create reminders or checks the user did not intend.
+
+Mitigation: Show proposed trigger configuration before registration and allow users to decline or edit it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/141553/skills/long-term-plan)
+- [Publisher profile](https://clawhub.ai/user/141553)
+- [Plan templates](artifact/templates.md)
+- [Fund quote API pattern used by asset tracking](https://fundgz.1234567.com.cn/js/{fundCode}.js)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Chinese-language Markdown and JSON plan artifacts with reminder text, review summaries, trigger configuration, and optional shell command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May update local plan state under the agent workspace and may call a third-party fund quote endpoint when asset tracking is enabled.]
+
+## Skill Version(s):
+
+2.1.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

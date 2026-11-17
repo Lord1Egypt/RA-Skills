@@ -1,6 +1,8 @@
 {
-  "ownerId": "kn7ae6w7gcc7akqcw6xmf2nm45836gtc",
+  "ownerId": "PLACEHOLDER_OWNER_ID",
   "slug": "multi-web-search",
   "version": "3.4.0",
-  "publishedAt": 1777731886595
+  "publishedAt": null,
+  "createdAt": "2026-04-29T00:00:00Z",
+  "updatedAt": "2026-05-02T14:12:00Z"
 }

@@ -1,43 +1,55 @@
-## Description: <br>
-Provides Meihua Yishu divination responses using time, number, or text-based hexagram casting, deterministic calculation steps, and guided interpretive analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Meihua Yishu divination skill that creates hexagrams from time, numbers, or Chinese text, then provides structured interpretation using body-use five-element relationships.
 
-## Publisher: <br>
-[eamanc-lab](https://clawhub.ai/user/eamanc-lab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[eamanc-lab](https://clawhub.ai/user/eamanc-lab)
 
-## Use Case: <br>
-External users and agents use this skill to generate Chinese Meihua Yishu divination readings for self-reflection or entertainment, including the hexagram calculation, body-use relationship, interpretation, and practical suggestions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can produce divination-style guidance that may be mistaken for professional advice or deterministic prediction. <br>
-Mitigation: Treat readings as entertainment and self-reflection only, and rely on qualified professionals for medical, legal, financial, or other high-stakes decisions. <br>
-Risk: Broad trigger phrases such as "算一卦" may route casual prompts to a divination response. <br>
-Mitigation: Use explicit wording when a divination response is intended, and ask the agent for a non-divination answer when it is not. <br>
+## Use Case:
 
+External users can ask an agent to perform Meihua Yishu divination for entertainment and self-exploration, using time, numeric, or text-based inputs. The skill is suited to agents that need to show the calculation process, interpret the resulting hexagrams, and provide non-professional action suggestions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/eamanc-lab/meihua-yishu-divination) <br>
-- [Homepage](https://github.com/eamanc-lab/fortune-telling-skills) <br>
-- [calculation-rules.md](references/calculation-rules.md) <br>
-- [interpretation-guide.md](references/interpretation-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Analysis, Guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes hexagram tables, calculation steps, interpretive analysis, and non-professional action suggestions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence and frontmatter) <br>
+Risk: The skill may automatically read shared fortune-telling preferences from another skill memory file without fresh user consent or clear field limits.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before deployment, restrict cross-skill memory reads to explicit preference fields and ask the user before using shared memory.
+
+Risk: Divination output may be mistaken for professional advice or deterministic prediction.
+
+Mitigation: Keep the skill disclaimer and require outputs to frame readings as entertainment and self-exploration, not medical, legal, or financial advice.
+
+## Reference(s):
+
+- [Meihua Yishu calculation rules](artifact/references/calculation-rules.md)
+- [Meihua Yishu interpretation guide](artifact/references/interpretation-guide.md)
+- [Project homepage](https://github.com/eamanc-lab/fortune-telling-skills)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with tables, calculations, interpretive prose, and action suggestions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should include a disclaimer that readings are for entertainment and self-exploration, not professional advice.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,49 @@
-## Description: <br>
-Provides reusable python-docx patterns for creating professional Word documents with covers, headings, paragraphs, lists, tables, images, page breaks, and consistent font settings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Chinese-oriented python-docx guidance and reusable code templates for generating professionally formatted Word documents with covers, headings, paragraphs, lists, tables, images, and pagination.
 
-## Publisher: <br>
-[fooying](https://clawhub.ai/user/fooying) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fooying](https://clawhub.ai/user/fooying)
 
-## Use Case: <br>
-Developers and technical writers use this skill to ask an agent for standard python-docx code and guidance when generating structured Word documents such as service proposals, technical architecture documents, and other formatted reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated Word documents may include unintended local images if an agent uses the wrong image path. <br>
-Mitigation: Only provide image paths for files intended to be embedded, and inspect generated .docx files before sharing. <br>
-Risk: Document-generation code may produce formatting or content that does not match the final audience's expectations. <br>
-Mitigation: Review the generated document manually and adjust styling, layout, and wording before distribution. <br>
+## Use Case:
 
+Developers and agents use this skill as a formatting reference when creating Word documents with python-docx, especially Chinese-language service proposals, architecture designs, and other professionally structured documents.
 
-## Reference(s): <br>
-- [python-docx official documentation](https://python-docx.readthedocs.io/) <br>
-- [ClawHub skill page](https://clawhub.ai/fooying/python-docx) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, markdown] <br>
-**Output Format:** [Markdown with Python code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include reusable helper functions, complete examples, troubleshooting notes, and document-generation recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Copied examples may write a DOCX file with the sample output filename or use the default Microsoft YaHei font without project review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and adjust the output filename, font choices, and document paths before running copied code in a real project.
+
+## Reference(s):
+
+- [python-docx official documentation](https://python-docx.readthedocs.io/)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Guidance]
+
+**Output Format:** [Markdown with Python code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces reusable python-docx snippets and troubleshooting guidance; example code writes a local DOCX file.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

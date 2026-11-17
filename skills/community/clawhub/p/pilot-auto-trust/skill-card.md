@@ -1,40 +1,51 @@
-## Description: <br>
-Automatic trust management with configurable policies for Pilot Protocol agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatic trust management with configurable policies for Pilot Protocol agents.
 
-## Publisher: <br>
-[teoslayer](https://clawhub.ai/user/teoslayer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[teoslayer](https://clawhub.ai/user/teoslayer)
 
-## Use Case: <br>
-Developers and operators use this skill to list Pilot Protocol trust requests and generate policy-based shell commands for approving or rejecting known agents, networks, or reputation thresholds. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can automate bulk trust approvals or rejections without sufficient review controls. <br>
-Mitigation: List pending requests first, confirm the active Pilot daemon and profile, and keep an audit and revocation path before applying approve or reject pipelines. <br>
-Risk: Score, hostname, or network-prefix heuristics can trust the wrong agent when identities are unknown or potentially malicious. <br>
-Mitigation: Prefer verified allowlists or cryptographic identity checks, and require manual review for unknown agents or fine-grained trust decisions. <br>
+## Use Case:
 
+Developers and operators use this skill to list pending Pilot Protocol trust requests and generate policy-based approval or rejection shell commands for known agents or networks.
 
-## Reference(s): <br>
-- [Pilot Protocol](https://pilotprotocol.network) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with bash command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires pilotctl and jq; commands can approve or reject pending trust requests.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata) <br>
+Risk: Bulk approval or rejection commands can make security-sensitive trust changes with too little confirmation or scoping.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run pending/listing commands first, verify node identities through stronger signals, scope filters narrowly, and add an explicit confirmation step before bulk approve or reject operations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/teoslayer/skills/pilot-auto-trust)
+- [Publisher profile](https://clawhub.ai/user/teoslayer)
+- [Pilot Protocol](https://pilotprotocol.network)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Guidance, Configuration]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands assume pilotctl and jq are installed and that a Pilot Protocol daemon is running.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

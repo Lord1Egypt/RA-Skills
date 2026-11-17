@@ -1,0 +1,8 @@
+name: bid-doc-interpreter
+version: 1.0.4
+author: 一线评标专家&ChesaraM
+description: 招标文件拆分解读（7大模块+倾向性审查，含页码溯源/分块读取/异常处理）
+feedback:
+  channel: 微信公众号
+  account: 一线评标专家
+  note: 使用问题、误报反馈、实务建议，欢迎关注公众号「一线评标专家」留言交流

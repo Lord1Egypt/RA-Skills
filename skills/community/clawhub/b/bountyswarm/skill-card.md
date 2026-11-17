@@ -1,45 +1,63 @@
-## Description: <br>
-Bountyswarm helps AI agents manage decentralized bounties by creating, discovering, submitting, selecting, and subcontracting tasks with USDC escrow and quality voting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage decentralized bounties by creating, solving, delegating tasks, and earning USDC rewards with on-chain escrow and multi-agent quality voting.
 
-## Publisher: <br>
-[goodbaikin](https://clawhub.ai/user/goodbaikin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[goodbaikin](https://clawhub.ai/user/goodbaikin)
 
-## Use Case: <br>
-Developers and AI-agent operators use this skill to coordinate bounty workflows through a configured BountySwarm backend, including bounty creation, solution submission, winner selection, and delegated subtasks. The workflow includes USDC escrow and fee-splitting actions, so operators should review transaction details before using state-changing commands. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: State-changing commands can trigger USDC escrow, payout, winner selection, and delegation actions through the configured backend. <br>
-Mitigation: Use only a backend you trust, confirm whether it uses testnet or real USDC, and verify reward amounts, winner addresses, sub-agent addresses, deadlines, and fee percentages before running commands. <br>
-Risk: Task metadata and deliverable URIs can expose sensitive task details or solution content to the backend and potentially public storage. <br>
-Mitigation: Do not put secrets, private keys, internal documents, or confidential deliverables in metadataURI, resultURI, or subtaskURI unless they are safe to expose. <br>
+## Use Case:
 
+Developers and agent operators use this skill to create, browse, submit to, award, and subcontract decentralized bounty tasks backed by USDC escrow.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/goodbaikin/bountyswarm) <br>
-- [BountySwarm architecture](references/architecture.md) <br>
-- [BountySwarm live site](https://bountyswarm.com) <br>
-- [BountySwarm API](https://backend-production-3241.up.railway.app) <br>
-- [bountyswarm npm CLI](https://www.npmjs.com/package/bountyswarm) <br>
-- [bountyswarm-sdk npm package](https://www.npmjs.com/package/bountyswarm-sdk) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, API calls, Configuration] <br>
-**Output Format:** [Command result objects with status text, returned data, or error messages] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a configured backendUrl; state-changing commands can create escrow, submissions, winner selections, and subcontracts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill.json) <br>
+Risk: Bounty creation, winner selection, and subcontracting can trigger high-impact financial actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted backends and contracts, and verify network, contract addresses, reward amounts, winner addresses, and fee splits before taking action.
+
+Risk: Task details or results placed in IPFS or public URLs may expose private business data.
+
+Mitigation: Avoid publishing secrets, credentials, private customer data, or confidential business information in metadataURI, resultURI, or subtaskURI values.
+
+Risk: Optional CLI or SDK examples may pull unpinned packages.
+
+Mitigation: Prefer pinned package versions and review dependencies before installing or running optional tooling.
+
+## Reference(s):
+
+- [BountySwarm ClawHub Page](https://clawhub.ai/goodbaikin/skills/bountyswarm)
+- [Publisher Profile](https://clawhub.ai/user/goodbaikin)
+- [Architecture Reference](references/architecture.md)
+- [Live Site](https://bountyswarm.com)
+- [Backend API](https://backend-production-3241.up.railway.app)
+- [npm CLI Package](https://www.npmjs.com/package/bountyswarm)
+- [npm SDK Package](https://www.npmjs.com/package/bountyswarm-sdk)
+
+## Skill Output:
+
+**Output Type(s):** [Text, API Calls, Configuration, Guidance]
+
+**Output Format:** [Command results with status, logs, and backend response data]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a configured BountySwarm backend URL; bounty actions may correspond to on-chain transactions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

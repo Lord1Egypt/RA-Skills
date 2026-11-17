@@ -1,0 +1,73 @@
+{
+  "skill_name": "huawei-cloud-cse-engine-list",
+  "region": "cn-north-4",
+  "test_cases": [
+    {
+      "id": "TC-01",
+      "name": "ListEngines 参数与 operation 存在性（KooCLI --help，语法）",
+      "command": "hcloud CSE ListEngines --cli-region={region} --help",
+      "expected": "KooCLI help with Service CSE, Method GET, params cli-region/project_id/limit/offset/type",
+      "type": "syntax",
+      "executor": "cli"
+    },
+    {
+      "id": "TC-02",
+      "name": "全部引擎只读列表（limit=1）",
+      "command": "hcloud CSE ListEngines --cli-region={region} --limit=1 --offset=0 --type=ALL",
+      "expected": "{\"total\":N,\"data\":[...]} or an explicit IAM hint when cse:engine:list is not granted",
+      "type": "readonly",
+      "executor": "cli"
+    },
+    {
+      "id": "TC-03",
+      "name": "Nacos 引擎只读列表（limit=1）",
+      "command": "hcloud CSE ListEngines --cli-region={region} --limit=1 --offset=0 --type=Nacos",
+      "expected": "Nacos engines only, or an explicit IAM hint when not granted",
+      "type": "readonly",
+      "executor": "cli"
+    },
+    {
+      "id": "TC-04",
+      "name": "脚本参数帮助（语法）",
+      "command": "python3 scripts/list_cse_engines.py --help",
+      "expected": "argparse help printed, exit 0",
+      "type": "syntax",
+      "executor": "cli"
+    },
+    {
+      "id": "TC-05",
+      "name": "完整字段表格输出",
+      "command": "python3 scripts/list_cse_engines.py --region {region} --table",
+      "expected": "Full-field table: name/id/type/version/status/flavor/instances/create_time/region",
+      "type": "readonly",
+      "executor": "cli"
+    },
+    {
+      "id": "TC-06",
+      "name": "JSON 输出",
+      "command": "python3 scripts/list_cse_engines.py --region {region} --json",
+      "expected": "Normalized JSON array",
+      "type": "readonly",
+      "executor": "cli"
+    },
+    {
+      "id": "TC-07",
+      "name": "名称模糊过滤",
+      "command": "python3 scripts/list_cse_engines.py --region {region} --name demo --fuzzy",
+      "expected": "Only engines whose name contains demo, or 未找到微服务引擎 (exit 0)",
+      "type": "readonly",
+      "executor": "cli"
+    },
+    {
+      "id": "TC-08",
+      "name": "写意图守卫（DeleteEngine 必须拒绝）",
+      "command": "python3 scripts/list_cse_engines.py --operation DeleteEngine",
+      "expected": "Exit 1, stderr contains 检测到写操作意图",
+      "type": "readonly",
+      "executor": "cli"
+    }
+  ],
+  "env_vars_required": [],
+  "optional_vars": ["HUAWEI_ACCESS_KEY", "HUAWEI_SECRET_KEY"],
+  "notes": "纯只读（ListEngines，GET）。真实调用需要 cse:engine:list；未授权时脚本给出 403/IAM 提示（exit 1），不会产生任何云资源。脚本类用例需要 hcloud 出现时直接用 KooCLI；hcloud 缺失时自动回退 huaweicloudsdkcse。"
+}

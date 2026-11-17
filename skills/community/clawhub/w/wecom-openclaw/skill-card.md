@@ -1,45 +1,59 @@
-## Description: <br>
-Integrate WeChat Work (Enterprise WeChat) with OpenClaw for intelligent messaging, receiving messages from WeChat Work, processing them with Claude AI, and sending async replies. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Integrates WeChat Work (Enterprise WeChat) with OpenClaw so agents can configure bidirectional messaging, verify and decrypt webhook payloads, and send asynchronous AI replies.
 
-## Publisher: <br>
-[richagain](https://clawhub.ai/user/richagain) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[richagain](https://clawhub.ai/user/richagain)
 
-## Use Case: <br>
-Developers and administrators use this skill to deploy and configure a WeChat Work webhook adapter that forwards text messages to OpenClaw and sends asynchronous replies back through the WeChat Work API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Business chat contents may be routed through OpenClaw without sufficiently narrow scope or user disclosure. <br>
-Mitigation: Install only with organizational approval, disclose the webhook behavior to administrators and affected users, and restrict which users or chats are routed. <br>
-Risk: Webhook, WeChat Work, and OpenClaw credentials are required and could expose messaging systems if leaked. <br>
-Mitigation: Store secrets outside source control with tight file permissions, rotate any leaked credentials, and review logs for accidental secret exposure. <br>
-Risk: Automated replies can send sensitive or inappropriate generated content back into business chats. <br>
-Mitigation: Review the security guidance before deployment and add response filtering, rate limits, and monitoring appropriate for the organization. <br>
+## Use Case:
 
+Developers and engineers use this skill to deploy and configure a Node.js adapter that receives WeChat Work messages, routes text to OpenClaw, and sends asynchronous replies through the WeChat Work API.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/richagain/wecom-openclaw) <br>
-- [Setup Guide](references/setup-guide.md) <br>
-- [Security Guide](references/security-guide.md) <br>
-- [WeChat Work](https://work.weixin.qq.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with shell commands, JavaScript adapter code, and environment configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces deployment steps and local adapter files for a WeChat Work to OpenClaw bridge.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The adapter handles sensitive enterprise chat content and credentials while bridging an internet-facing WeChat Work webhook to a local OpenClaw service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing and use only in a controlled environment until webhook authentication, log handling, .env permissions, loopback binding, and dependency pinning meet deployment requirements.
+
+Risk: Stale or replayed webhook requests could cause repeated or unauthorized processing if replay controls are absent.
+
+Mitigation: Reject stale timestamps and duplicate message IDs before routing content to OpenClaw or sending WeChat Work replies.
+
+Risk: AI replies could expose sensitive data from prompts, credentials, logs, or local context.
+
+Mitigation: Apply response filtering, sanitize logs, restrict credential file permissions, and avoid logging full tokens or message content in production.
+
+## Reference(s):
+
+- [WeChat Work + OpenClaw Setup Guide](artifact/references/setup-guide.md)
+- [Security Guide](artifact/references/security-guide.md)
+- [WeChat Work Admin Console](https://work.weixin.qq.com)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands, environment configuration, and deployable JavaScript code]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a local adapter deployment flow, .env template, and setup and security hardening guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.json release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

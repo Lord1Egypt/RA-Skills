@@ -1,42 +1,61 @@
-## Description: <br>
-Participant MoltBot for allocation proposal, validation, and submission. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Participant MoltBot for allocation proposal, validation, and submission.
 
-## Publisher: <br>
-[wiimdy](https://clawhub.ai/user/wiimdy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[wiimdy](https://clawhub.ai/user/wiimdy)
 
-## Use Case: <br>
-External users and developers use this skill to configure and operate an OpenFunderse participant bot that proposes, validates, and optionally submits AllocationClaimV1 records for fund epochs. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill requests participant wallet-key authority and can submit blockchain or vault actions. <br>
-Mitigation: Use a dedicated low-balance participant wallet, never reuse treasury or admin keys, and keep explicit-submit required. <br>
-Risk: Auto-submit and relayer settings can enable unintended network transmission of financial actions. <br>
-Mitigation: Leave auto-submit disabled unless intentional, restrict trusted relayer hosts, and avoid HTTP relayers outside local testing. <br>
-Risk: Install and bot initialization can mutate global OpenClaw runtime configuration and restart the gateway. <br>
-Mitigation: Review the npm package before running it, back up OpenClaw configuration first, and use no-sync or no-restart options when appropriate. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wiimdy/openfunderse-strategy) <br>
-- [Publisher profile](https://clawhub.ai/user/wiimdy) <br>
+## Use Case:
 
+External fund participants and operators use this skill to propose allocation weights, validate AllocationClaimV1 claims, and optionally submit participant actions through a configured relayer.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, JSON, API calls, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, environment settings, Telegram command examples, and JSON task contracts.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces AllocationClaimV1-oriented guidance and submission instructions; network submission is gated by explicit submit and auto-submit settings.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-2.0.2 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill handles participant wallet private keys and can support financial actions.
+
+Mitigation: Use an isolated OpenClaw environment with a dedicated low-value participant wallet; do not use treasury, custody, or admin keys.
+
+Risk: Installer execution and floating install paths can run remote package code before it is reviewed.
+
+Mitigation: Review or pin installer provenance before production use and prefer the pinned package version shown in the release metadata.
+
+Risk: Environment synchronization and gateway restarts can mutate global OpenClaw runtime state.
+
+Mitigation: Back up OpenClaw configuration, restrict file permissions, and disable env sync or gateway restart until the behavior is reviewed.
+
+Risk: Relayer submission can transmit claims or other participant actions to a network service.
+
+Mitigation: Require explicit submit gates, configure trusted relayer hosts, prefer HTTPS relayer URLs, and confirm deposit, withdraw, and redeem commands are intended before enabling the skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wiimdy/skills/openfunderse-strategy)
+- [Publisher profile](https://clawhub.ai/user/wiimdy)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command snippets and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce allocation claim structures, validation results, relayer submission guidance, and OpenClaw environment setup instructions.]
+
+## Skill Version(s):
+
+2.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,56 @@
-## Description: <br>
-Guides users through setting up a Telegram channel so multiple OpenClaw bots can chat with each other and with friends. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides users through setting up a Telegram channel so multiple OpenClaw bots can chat with each other and with friends.
 
-## Publisher: <br>
-[Moon-frost](https://clawhub.ai/user/Moon-frost) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[moon-frost](https://clawhub.ai/user/moon-frost)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External OpenClaw users use this skill to create or join a Telegram channel, configure bot privacy and administrator settings, connect the shared Chat ID to OpenClaw, and write channel rules that help multiple bots interact without loops.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The setup broadens Telegram bot message access and shares channel details, which can expose sensitive conversation content if the channel or bots are reused elsewhere.
+
+Mitigation: Use a dedicated Telegram channel and dedicated bots for this feature, avoid sensitive information in that channel, and avoid bots that are also present in other groups.
+
+Risk: Saving Telegram channel IDs and bot rules in AGENTS.md can leak private channel details if the file is committed to a public or shared repository.
+
+Mitigation: Keep AGENTS.md private or redact channel IDs and bot-specific rules before sharing or committing it.
+
+Risk: Incorrect bot triggering or missing rate limits can cause bot-to-bot reply loops or channel spam.
+
+Mitigation: Require name prefixes, trigger controls, cooldowns, and context limits before enabling multi-bot channel interaction.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External OpenClaw users use this skill to create or join a Telegram channel, add multiple OpenClaw bots as channel administrators, connect the channel to OpenClaw, and persist channel behavior rules. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Disabling Telegram bot privacy mode and adding bots as channel administrators can expose channel messages to the involved bots. <br>
-Mitigation: Use a private channel with consenting participants, grant only the minimum Telegram permissions needed, and avoid sensitive conversations in the channel. <br>
-Risk: Using third-party Chat ID helper bots can expose forwarded channel messages or identifiers. <br>
-Mitigation: Use non-sensitive test messages when relying on helper bots, and remove stale channel details or unneeded bot administrator permissions after setup. <br>
-Risk: Loose channel rules can cause bots to reply to each other repeatedly. <br>
-Mitigation: Configure name prefixes, reply triggers, cooldowns, and persistent AGENTS.md rules before sustained use. <br>
+**Output Format:** [Markdown guidance with step-by-step instructions, checklists, troubleshooting notes, and configuration snippets]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/Moon-frost/openclaw-chat-with-friends-cn) <br>
+**Other Properties Related to Output:** [Chinese-language user guidance for Telegram and OpenClaw setup]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Configuration] <br>
-**Output Format:** [Markdown setup guidance with checklists, troubleshooting notes, and example channel-rule configuration snippets.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces conversational setup steps for Telegram, OpenClaw channel binding, and AGENTS.md rule persistence.] <br>
+1.0.1 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

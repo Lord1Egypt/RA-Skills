@@ -1,40 +1,61 @@
-## Description: <br>
-Orchestrates collaborative agent sessions with persistent CRDT storage, signed update synchronization, and crash recovery. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Orchestrates collaborative agent sessions with CRDT-backed persistent storage, append-only update logs, and session recovery actions.
 
-## Publisher: <br>
-[404-UNKNOW](https://clawhub.ai/user/404-UNKNOW) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[404-unknow](https://clawhub.ai/user/404-unknow)
 
-## Use Case: <br>
-Developers and agent operators use this skill to create, synchronize, and reload persistent collaborative sessions for multi-agent workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Persistent shared session data may contain sensitive or unintended state. <br>
-Mitigation: Use only non-sensitive collaborative session data in an isolated workspace and define clear retention or purge controls before broader use. <br>
-Risk: Session updates mutate shared state and are too loosely scoped without stronger controls. <br>
-Mitigation: Require strict sessionId validation, participant allowlists, and auditable signature verification before using the skill with trusted workflows. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/404-UNKNOW/operator-skill) <br>
-- [Publisher profile](https://clawhub.ai/user/404-UNKNOW) <br>
+## Use Case:
 
+Developers and agent builders use this skill to create, synchronize, and reload collaborative agent sessions that persist CRDT state on disk. It is intended for multi-agent workflows that need durable session recovery across runs.
 
-## Skill Output: <br>
-**Output Type(s):** [Structured data, Files, Configuration] <br>
-**Output Format:** [JSON-style action responses with persisted CRDT snapshot and update-log files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns session identifiers, synchronization status, and base64-encoded merged session snapshots.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Session IDs and caller-chosen keys may have too much authority over persisted collaboration data.
+
+Mitigation: Validate session IDs, enforce session ownership or participant ACLs, and bind accepted signatures to authorized session keys and nonces before using shared or sensitive sessions.
+
+Risk: Unbounded payload or storage growth could affect workspace stability.
+
+Mitigation: Add payload size limits, storage quotas, and retention controls for session snapshots and update logs.
+
+Risk: The implementation and package metadata reference different Loro package names.
+
+Mitigation: Resolve the loro versus loro-crdt dependency mismatch and rebuild before release or installation.
+
+Risk: Persisted collaboration data may contain sensitive information.
+
+Mitigation: Use an isolated workspace and avoid storing secrets or sensitive collaboration data until the security guidance is addressed.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/404-unknow/skills/operator-skill)
+- [Publisher profile](https://clawhub.ai/user/404-unknow)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Files, Configuration, Guidance]
+
+**Output Format:** [JSON action responses with persisted snapshot and update-log files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates and reads session data under data/sessions; team.load returns a base64 full-merged snapshot.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

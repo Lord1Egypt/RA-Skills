@@ -1,48 +1,61 @@
-## Description: <br>
-Finds economy flights and low-cost airfare by guiding an agent to run the flyai CLI and format live results with booking links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find economy flights, cheapest airfare and budget airline tickets with basic economy fares and low-cost options. Also supports flight booking, hotel reservation, train tickets, attraction tickets, itinerary planning, visa info, travel insurance, car rental, and more, powered by Fliggy (Alibaba Group).
 
-## Publisher: <br>
-[xiejinsong](https://clawhub.ai/user/xiejinsong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiejinsong](https://clawhub.ai/user/xiejinsong)
 
-## Use Case: <br>
-Travelers and travel-support agents use this skill to search for economy flight options, collect route, date, and budget parameters, execute flyai searches, and present bookable low-fare results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may install and run a global npm CLI. <br>
-Mitigation: Require explicit user confirmation before installing @fly-ai/flyai-cli globally, and provide the manual install command if automated installation fails. <br>
-Risk: Travel search details may be sent to flyai/Fliggy. <br>
-Mitigation: Tell users before execution that route, date, and budget details may be sent to the travel provider, and avoid collecting passport numbers or other sensitive personal details. <br>
-Risk: Fallback searches may broaden dates, airports, or budget assumptions. <br>
-Mitigation: Confirm broader searches with the user before expanding beyond the requested route, dates, or price constraints. <br>
-Risk: Execution logs may persist raw user queries locally. <br>
-Mitigation: Avoid writing local logs unless the user consents, and delete or disable .flyai-execution-log.json when logs are not needed. <br>
+## Use Case:
 
+External users and travel agents use this skill to search for low-cost economy flight options, compare prices, and produce booking-oriented Markdown results from live flyai CLI data.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xiejinsong/economy-flights) <br>
-- [Parameter and output templates](references/templates.md) <br>
-- [Economy flight playbooks](references/playbooks.md) <br>
-- [Fallback guidance](references/fallbacks.md) <br>
-- [Execution log runbook](references/runbook.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown flight summaries and comparison tables with inline shell commands and booking links.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses live flyai CLI output, includes [Book](detailUrl) links for flight results, and avoids raw JSON in user-facing responses.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.0 (source: SKILL.md frontmatter and release evidence) <br>
+Risk: The skill can install a global flyai CLI and the security summary notes that sudo installation is recommended in fallback guidance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, avoid sudo installation, and pin and verify the flyai CLI package before use.
+
+Risk: The skill runs user-derived flight-search parameters through shell commands.
+
+Mitigation: Require explicit user consent before executing installs or broadening fallback searches, and keep commands limited to documented flyai parameters.
+
+Risk: The runbook describes persistent logging of raw travel requests.
+
+Mitigation: Disable persistent logs where possible or redact travel request details before storage.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/xiejinsong/skills/economy-flights)
+- [Playbooks](references/playbooks.md)
+- [Templates](references/templates.md)
+- [Fallbacks](references/fallbacks.md)
+- [Runbook](references/runbook.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with booking links and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Flight-search output should be based on flyai CLI results, include booking links when results are shown, and avoid raw JSON.]
+
+## Skill Version(s):
+
+3.2.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

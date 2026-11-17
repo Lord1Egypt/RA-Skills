@@ -1,42 +1,57 @@
-## Description: <br>
-Helps an agent learn from feedback, mistakes, and completed tasks by reflecting on lessons and updating memory or behavior files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Self-improvement and learning skill that prompts an agent to capture feedback, reflect on mistakes, and update memory or instruction files with lessons learned.
 
-## Publisher: <br>
-[UNCLEKIMWOOD](https://clawhub.ai/user/UNCLEKIMWOOD) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[unclekimwood](https://clawhub.ai/user/unclekimwood)
 
-## Use Case: <br>
-Developers and agent users can use this skill to guide an agent through self-reflection after feedback, errors, or completed work, and to record durable lessons in memory files. It is intended for agents that maintain persistent notes about user preferences, mistakes, and workflow improvements. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill encourages persistent memory updates and broad edits to behavior files, which could record sensitive details or alter future agent behavior without enough oversight. <br>
-Mitigation: Require explicit approval and a visible diff before every write, keep secrets and sensitive personal details out of memory, and restrict writes to known memory files. <br>
-Risk: The skill mentions modifying AGENTS.md, SOUL.md, cron jobs, or other behavior/control files. <br>
-Mitigation: Do not allow edits to behavior or control files unless the user intentionally approves that separate change. <br>
+## Use Case:
 
+External users and developers use this skill to make an agent record feedback, mistakes, preferences, and improvement notes after interactions. It is intended for memory and reflection workflows that may create or modify local memory and instruction files.
 
-## Reference(s): <br>
-- [Self-Improvement Reference](references/improvement-tracking.md) <br>
-- [ClawHub skill page](https://clawhub.ai/UNCLEKIMWOOD/self-improving-agent-tuituitu) <br>
-- [Publisher profile](https://clawhub.ai/user/UNCLEKIMWOOD) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, configuration] <br>
-**Output Format:** [Markdown guidance with memory-file templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May prompt the agent to propose edits to persistent memory and behavior files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill encourages persistent changes to memory and instruction files, which can preserve unwanted behavior changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Limit write access to a dedicated, reviewable memory area and require explicit approval for each persistent change.
+
+Risk: Broad activation triggers can cause self-improvement behavior after ordinary feedback, mistakes, or task completion.
+
+Mitigation: Use the skill only for deliberate feedback or mistake-review workflows, and confirm the intended update before editing files.
+
+Risk: The artifact names AGENTS.md, SOUL.md, policy files, and shared profile memory as possible update targets.
+
+Mitigation: Do not allow edits to those files without a separate human-reviewed workflow.
+
+## Reference(s):
+
+- [Self-Improvement Reference](references/improvement-tracking.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Configuration]
+
+**Output Format:** [Markdown guidance with example memory entries and file-update instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose or perform persistent updates to memory and instruction files when permitted.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

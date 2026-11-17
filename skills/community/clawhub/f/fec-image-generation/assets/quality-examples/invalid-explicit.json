@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "Expected diagnostics"
+  },
+  "nodes": [
+    {
+      "id": "tiny",
+      "label": "A complete long label that cannot fit explicit size",
+      "x": -12,
+      "y": 40,
+      "width": 48,
+      "height": 24
+    },
+    {
+      "id": "overlap",
+      "label": "Overlap",
+      "x": 20,
+      "y": 44,
+      "width": 100,
+      "height": 60
+    }
+  ],
+  "connections": [
+    {
+      "from": "tiny",
+      "to": "overlap",
+      "waypoints": [
+        [
+          30,
+          50
+        ],
+        [
+          800,
+          -20
+        ]
+      ]
+    }
+  ]
+}

@@ -1,43 +1,56 @@
-## Description: <br>
-Manage multiple Kubernetes clusters, switch contexts, and perform cross-cluster operations for comparison, lifecycle management, Helm, GitOps, and federation workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage multiple Kubernetes clusters, switch contexts, and perform cross-cluster operations. Use when working with multiple clusters, comparing environments, or managing cluster lifecycle.
 
-## Publisher: <br>
-[rohitg00](https://clawhub.ai/user/rohitg00) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[rohitg00](https://clawhub.ai/user/rohitg00)
 
-## Use Case: <br>
-Developers, DevOps engineers, and platform teams use this skill to work across Kubernetes clusters, explicitly select contexts, compare environments, perform health checks, and manage Cluster API, Helm, GitOps, and federation operations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide high-impact operations across multiple Kubernetes clusters, including production contexts. <br>
-Mitigation: Use least-privileged kubeconfigs, make production read-only by default, always specify the intended context, and require explicit human approval for write actions. <br>
-Risk: Cross-cluster workflows can expose or mishandle kubeconfigs, credentials, or Kubernetes secrets. <br>
-Mitigation: Use separate credentials per environment, avoid copying raw secrets between clusters, and rely on sanitized kubeconfig views when reviewing access. <br>
-Risk: Operations depend on external kubectl-mcp-server configuration and may be hard to audit if tooling is misconfigured. <br>
-Mitigation: Verify kubectl-mcp-server configuration before use and enable audit logging for cluster access and cross-cluster changes. <br>
+## Use Case:
 
+Developers and platform engineers use this skill to inspect, compare, and manage Kubernetes clusters across contexts, including cluster lifecycle, GitOps, service mesh, and cross-cluster operations.
 
-## Reference(s): <br>
-- [Kubernetes Context Management](artifact/CONTEXT-SWITCHING.md) <br>
-- [ClawHub release page](https://clawhub.ai/rohitg00/k8-multicluster) <br>
-- [Publisher profile](https://clawhub.ai/user/rohitg00) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with inline Python and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces operational recommendations and command snippets; execution depends on the agent's Kubernetes, MCP, and cluster permissions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Cross-cluster secret transfers may expose sensitive values if the source, target, or destination is not sufficiently scoped.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Authorize each secret and trusted destination before transfer, protect saved kubeconfigs, and keep secret values out of responses and logs.
+
+Risk: Production cluster changes may affect the wrong environment or resources if the target and intended operation are not verified.
+
+Mitigation: Start with narrowly scoped, read-only access; before changes, verify the exact cluster, namespace, resource, and intended operation.
+
+## Reference(s):
+
+- [ClawHub release](https://clawhub.ai/rohitg00/skills/k8s-multicluster)
+- [Argo CD MCP server](https://github.com/argoproj-labs/mcp-for-argocd)
+- [Flux MCP server](https://fluxoperator.dev/mcp-server/)
+- [Kubernetes Secrets good practices](https://kubernetes.io/docs/concepts/security/secrets-good-practices/)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown with Python-style tool-call and shell examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Examples use cluster, namespace, and resource names that should be checked against the intended environment.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter, server-resolved release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

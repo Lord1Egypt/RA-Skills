@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "omni-ecom://schemas/behavior-monitor-comparison-2.0.json",
+  "title": "Omni E-commerce Behavior Monitor Comparison Record",
+  "type": "object",
+  "additionalProperties": true,
+  "required": ["schema_version", "artifact_type", "contract_name", "contract_version", "created_by_team_version", "legacy_compatibility", "output", "sha256", "policy_sha256", "next_action", "automatic_changes"],
+  "properties": {
+    "schema_version": {"const": "2.0"},
+    "artifact_type": {"const": "behavior_monitor_comparison_record"},
+    "contract_name": {"const": "omni-ecom.behavior-monitor-comparison"},
+    "contract_version": {"const": "2.0"},
+    "created_by_team_version": {"type": "string", "minLength": 1},
+    "legacy_compatibility": {"const": {"read_only_import": ["omni-ecom.behavior-monitor-comparison@1.0"], "current_quality_authority": false}},
+    "output": {"type": "string", "minLength": 1},
+    "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "policy_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "next_action": {"enum": ["inspect_flagged_runs_before_next_report", "continue_observation"]},
+    "automatic_changes": {"const": false}
+  }
+}

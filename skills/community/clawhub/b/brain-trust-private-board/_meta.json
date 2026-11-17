@@ -1,6 +1,52 @@
 {
-  "ownerId": "kn79s6s4n5qvd0qjwrn3bt0pts81y47b",
-  "slug": "brain-trust-private-board",
+  "skill_id": 180419,
+  "name": "brain-trust-private-board",
+  "display_name": "智囊团：私董会",
+  "description": "智囊团式私董会多专家协作分析框架，支持2-5位专家私董会式动态讨论、正反辩论、红队审查、方案对比和综合决策判断。当用户需要多角度分析复杂问题、战略决策、产品方向、商业方案评审、管理困惑、学习规划、研究分析时使用。",
   "version": "1.0.0",
-  "publishedAt": 1775043273292
+  "author": "MiniMax Agent",
+  "release_type": "closed-source",
+  "release_date": "2026-04-01",
+  "tags": ["专家思维", "私董会", "多专家协作", "决策分析", "战略分析", "商业顾问"],
+  "category": "productivity",
+  "pricing": "paid",
+  "license": {
+    "type": "exclusive",
+    "二次开发": false,
+    "源码可见": false,
+    "仅限使用": true
+  },
+  "features": [
+    "私董会式动态讨论模式",
+    "多专家协作分析",
+    "正反辩论与红队审查",
+    "方案对比与综合判断",
+    "结构化决策输出"
+  ],
+  "supported_modes": [
+    "single",
+    "compare",
+    "debate",
+    "panel",
+    "boardroom",
+    "critique",
+    "red-team",
+    "synthesis"
+  ],
+  "file_structure": {
+    "main": "SKILL.md",
+    "agents": "agents/openai.yaml",
+    "references": [
+      "references/call-patterns.md",
+      "references/deliverable-templates.md",
+      "references/expert-frameworks.md",
+      "references/expert-selection.md",
+      "references/high-frequency-use-cases.md",
+      "references/output-modes.md",
+      "references/output-style-templates.md",
+      "references/quality-guardrails.md",
+      "references/skill-prompt-review.md",
+      "references/task-recipes.md"
+    ]
+  }
 }

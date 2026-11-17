@@ -1,46 +1,60 @@
-## Description: <br>
-Check WeryAI account credits and API balance through the official WeryAI account endpoint. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Check WeryAI account credits and API balance through the official WeryAI account endpoint.
 
-## Publisher: <br>
-[WeryAI-Developer](https://clawhub.ai/user/WeryAI-Developer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[weryai-developer](https://clawhub.ai/user/weryai-developer)
 
-## Use Case: <br>
-External users and developers use this skill to check remaining WeryAI API credits, verify that WERYAI_API_KEY can access the account endpoint, and decide whether credits are available before paid generation work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires WERYAI_API_KEY access and sends authenticated requests to WeryAI. <br>
-Mitigation: Provide the key only through the runtime environment, use a least-privileged or short-lived key where available, and avoid storing the secret in skill files or prompts. <br>
-Risk: Bundled but undeclared vendor helper code can query generation status endpoints and retrieve generation outputs, even though the public skill purpose is account balance checking. <br>
-Mitigation: Review the package before deployment and remove or block unused vendor status/polling helpers if strict account-only behavior is required. <br>
-Risk: WERYAI_BASE_URL can redirect API requests if overridden. <br>
-Mitigation: Leave the default WeryAI API host in place or override it only with a trusted endpoint under an approved deployment policy. <br>
+## Use Case:
 
+External developers and agents use this skill to check WeryAI API account credits before account verification or paid generation workflows. It is scoped to read-only balance lookup and does not perform image, video, music, or effect generation.
 
-## Reference(s): <br>
-- [WeryAI Account API](references/account-api.md) <br>
-- [WeryAI documentation index](https://docs.weryai.com/llms.txt) <br>
-- [Query API Account Credits](https://docs.weryai.com/api-reference/account/query-api-account-credits.md) <br>
-- [WeryAI Account on ClawHub](https://clawhub.ai/WeryAI-Developer/weryai-account) <br>
-- [WeryAI-Developer publisher profile](https://clawhub.ai/user/WeryAI-Developer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, guidance, text] <br>
-**Output Format:** [JSON command output with concise Markdown guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires WERYAI_API_KEY, Node.js 18 or newer, and network access to the WeryAI API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server-resolved release metadata) <br>
+Risk: The WERYAI_API_KEY may be sent to a non-official host if WERYAI_BASE_URL is overridden.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep WERYAI_BASE_URL unset or pin it to the official HTTPS WeryAI API, and rotate any key used with an untrusted base URL.
+
+Risk: The package includes generation-status vendor files that are unnecessary for a balance-only skill.
+
+Mitigation: Review the installed artifact before deployment and rely only on the read-only balance command for this release.
+
+Risk: The skill requires a WeryAI API key at runtime.
+
+Mitigation: Use a limited key where possible and keep WERYAI_API_KEY only in the runtime environment, never in repository files.
+
+## Reference(s):
+
+- [WeryAI Account API](references/account-api.md)
+- [WeryAI documentation index](https://docs.weryai.com/llms.txt)
+- [Query API Account Credits](https://docs.weryai.com/api-reference/account/query-api-account-credits.md)
+- [WeryAI Account ClawHub listing](https://clawhub.ai/weryai-developer/skills/weryai-account)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [JSON balance result with concise Markdown or text guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires WERYAI_API_KEY and Node.js 18 or newer; network access is required for the WeryAI account endpoint.]
+
+## Skill Version(s):
+
+0.1.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

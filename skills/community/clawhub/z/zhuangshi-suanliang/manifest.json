@@ -1,0 +1,81 @@
+{
+  "name": "zhuangshi-suanliang",
+  "version": "0.9.36",
+  "entry_policy": "contract-only",
+  "author": "lis",
+  "license": "CC-BY-NC-SA-4.0",
+  "entry": "SKILL.md",
+  "requires": {
+    "skills": {
+      "cad-file-reader": ">=0.41.0",
+      "lis-skill-bus": ">=0.1.11"
+    },
+    "python": ">=3.10"
+  },
+  "scripts": [
+    "scripts/cad_measure_to_input.cmd",
+    "scripts/cad_measure_to_input.py",
+    "scripts/cad_measure_to_input.sh",
+    "scripts/decor_qty.cmd",
+    "scripts/decor_qty.py",
+    "scripts/decor_qty.sh",
+    "scripts/ensure_base.sh",
+    "scripts/lint_cross_platform.py",
+    "scripts/pyboot.py",
+    "scripts/i18n.py",
+    "scripts/run_preflight.sh",
+    "scripts/self_test.py",
+    "scripts/setup.sh",
+    "scripts/smoke_utf8_json.py",
+    "scripts/zhuangshi_statesync.py",
+    "scripts/zhuangshi_statesync.sh",
+    "scripts/zhuangshi_statesync.cmd",
+    "scripts/contract_guard.py",
+    "scripts/contract_support.py",
+    "scripts/entry_gate.py"
+  ],
+  "references": [
+    ".gitignore",
+    "CHANGELOG.md",
+    "LICENSE.md",
+    "README.md",
+    "README.en.md",
+    "docs/history.md",
+    "docs/bus-integration.md",
+    "docs/integration.md",
+    "docs/runtime.md",
+    "docs/README.md"
+  ],
+  "rules": [
+    "rules/国家规范要求.json",
+    "rules/标准房间模板.json",
+    "rules/概算综合单价.json",
+    "rules/清单工程量规则.json",
+    "rules/物资分类规则.json",
+    "rules/装饰做法.json"
+  ],
+  "templates": [
+    "templates/快速概算输入表.csv",
+    "templates/装饰算量输入表.csv",
+    "templates/项目专属规则示例.json"
+  ],
+  "tests": [
+    "scripts/self_test.py"
+  ],
+  "privacy": "本机运行；脚本只处理用户提供的文件，不联网，不上传图纸或项目资料。",
+  "notes": "计划口径估算，不替代清单计价、竣工结算或下料单。",
+  "contract_schema": "装饰概算与物资计划（cad-file-reader/v0 兼容）; qto-project/v1(联动可选: 识别/<slug>/ + 算量/<slug>/ + cad-file-reader/scripts/qto_p1_link.py 登记)",
+  "linkage": {
+    "qto_spec": "qto-project/v1",
+    "recognize_dir": "识别/<slug>/",
+    "qty_dir": "算量/<slug>/",
+    "adapter": "cad-file-reader/scripts/qto_p1_link.py",
+    "boundary": "只登记输入/输出与缺口，不替代本技能算法、口径与复核"
+  },
+  "description": "从房间类型、明细部位或 cad-file-reader 测量候选生成装饰概算与物资计划：概算按清单/商务口径，物资计划含损耗、搭接和附加层；输出六表台账与待确认项。内置15项国家规范/清单标准参考约束，项目专属做法必须绑定节点详图。",
+  "platforms": [
+    "macos",
+    "windows",
+    "linux"
+  ]
+}

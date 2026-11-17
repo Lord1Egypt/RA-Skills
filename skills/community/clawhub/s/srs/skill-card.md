@@ -1,42 +1,58 @@
-## Description: <br>
-SRS evaluates security research tasks, matches them to operational roles, and supports knowledge-base review, task handoff, and parallel task execution workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+SRS evaluates security research tasks and maps accepted work to security research, operations, knowledge-management, and exploration roles.
 
-## Publisher: <br>
-[caidongyun](https://clawhub.ai/user/caidongyun) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[caidongyun](https://clawhub.ai/user/caidongyun)
 
-## Use Case: <br>
-Security researchers, SecOps teams, and knowledge managers use SRS to score incoming security research tasks, assign them to roles, review local research notes, and record follow-up work. It is most relevant for teams organizing OpenClaw or AI-security research workflows that involve local workspace scans and generated task files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill scans broad local research and OpenClaw workspace directories, which may expose sensitive local files to task review logic. <br>
-Mitigation: Run it in a sandbox or dedicated non-sensitive workspace and review the default paths before using scan, review, daily, evaluate, improve, or parallel execution commands. <br>
-Risk: The skill creates persistent role, review, handoff, feedback, result, and TODO files that may retain details from local research workflows. <br>
-Mitigation: Inspect generated state files regularly, avoid using sensitive source directories, and remove generated files that should not persist. <br>
+## Use Case:
 
+Security researchers, SecOps teams, and developers use SRS to triage AI and security research tasks, assign suitable roles, review local research notes, and coordinate delivery handoffs.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/caidongyun/srs) <br>
-- [Publisher profile](https://clawhub.ai/user/caidongyun) <br>
-- [OpenClaw Security Guide: Data Governance and Incident Response](artifact/reports/OpenClaw-Security-Guide-Data-Incident.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown documentation, JSON status and evaluation objects, and CLI-oriented shell commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands may write persistent local files for roles, reviews, handoffs, feedback, execution results, and TODO entries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact metadata) <br>
+Risk: The skill can scan broad local OpenClaw, workspace, and research directories.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review scan roots before use and patch the skill to require explicit, narrowly scoped scan paths.
+
+Risk: The skill can persist TODO, capability, role, handoff, feedback, and result files in local workspace locations.
+
+Mitigation: Run it in a reviewed workspace and require confirmation before self-improvement or coordination writes.
+
+Risk: Task IDs, role names, and Markdown-derived content can flow into filenames or generated TODO entries.
+
+Mitigation: Validate task IDs and role names, and escape or sanitize Markdown-derived content before writing files.
+
+## Reference(s):
+
+- [ClawHub Srs skill page](https://clawhub.ai/caidongyun/skills/srs)
+- [OpenClaw Security Guide: Data Governance and Incident Response](artifact/reports/OpenClaw-Security-Guide-Data-Incident.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown instructions with CLI examples, JSON evaluation/status records, and local task or coordination files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May persist TODO, capability, role, handoff, feedback, and result files when its commands run.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and SKILL.md metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

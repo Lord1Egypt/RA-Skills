@@ -1,0 +1,15 @@
+{
+  "topic": "SGLT2 抑制剂（钠-葡萄糖共转运蛋白 2 抑制剂）对比安慰剂，对 2 型糖尿病患者主要不良心血管事件（MACE：心血管死亡 / 非致死性心肌梗死 / 非致死性卒中复合终点）发生率的影响",
+  "effect_measure": "OR",
+  "population_note": "2 型糖尿病（T2DM）成人，随访 ≥ 52 周，随机对照试验（RCT）。",
+  "studies": [
+    {"study": "S1（EMPA-REG 风格）", "event_exp": 154, "n_exp": 4687, "event_ctrl": 197, "n_ctrl": 4663},
+    {"study": "S2（CANVAS 风格）",    "event_exp": 189, "n_exp": 5712, "event_ctrl": 224, "n_ctrl": 5713},
+    {"study": "S3（DECLARE 风格）",   "event_exp": 517, "n_exp": 8583, "event_ctrl": 559, "n_ctrl": 8575},
+    {"study": "S4（虚构 RCT）",       "event_exp":  88, "n_exp": 3201, "event_ctrl": 110, "n_ctrl": 3198},
+    {"study": "S5（虚构 RCT）",       "event_exp":  61, "n_exp": 2404, "event_ctrl":  79, "n_ctrl": 2402},
+    {"study": "S6（虚构 RCT）",       "event_exp":  43, "n_exp": 1809, "event_ctrl":  58, "n_ctrl": 1807}
+  ],
+  "claims_text": "本系统评价与 Meta 分析显示，SGLT2 抑制剂可显著降低 2 型糖尿病患者主要不良心血管事件风险约 16%，且各研究间一致性好，证据可靠，推荐临床常规使用。",
+  "note": "数据为演示用虚构数据集，量级参照真实 SGLT2i 心血管结局试验（CVOT），不用于真实临床决策。"
+}

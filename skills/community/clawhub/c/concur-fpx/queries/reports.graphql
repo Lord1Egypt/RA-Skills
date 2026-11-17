@@ -1,0 +1,27 @@
+# $status: ALL | ACTIVE | UNSUBMITTED | SENT_FOR_PAYMENT
+# $range:  {"start":"YYYY-MM-DD","end":"YYYY-MM-DD"} (optional)
+query Reports($status: InputFilterBy, $range: InputDateRange, $page: Int = 1, $size: Int = 50) {
+  employee(userId: "", contextRole: TRAVELER) {
+    reportsForUser(input: { filterByStatus: $status, dateRange: $range, paging: { page: $page, size: $size } }) {
+      list {
+        reportId: id
+        name
+        reportNumber
+        reportDate
+        startDate
+        endDate
+        submitDate
+        paidDate
+        approvalStatus
+        paymentStatus
+        exceptionLevel
+        reportTotal { value currencyCode }
+        claimedAmount { value currencyCode }
+        approvedAmount { value currencyCode }
+        totalAmountDueEmployee { value currencyCode }
+        approver { first last }
+      }
+      pagination { number size totalElements totalPages }
+    }
+  }
+}

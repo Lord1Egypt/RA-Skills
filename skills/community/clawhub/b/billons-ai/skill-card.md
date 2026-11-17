@@ -1,41 +1,57 @@
-## Description: <br>
-Provides AI agent verification and secure identification within the Billons Network to assist users in unlocking system rewards. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides AI agent verification and secure identification within the Billons Network to assist users in unlocking system rewards.
 
-## Publisher: <br>
-[javlonbek4455](https://clawhub.ai/user/javlonbek4455) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[javlonbek4455](https://clawhub.ai/user/javlonbek4455)
 
-## Use Case: <br>
-Users and developers working in the Billons Network and FAIAR ecosystem use this skill to describe AI agent authenticity checks, secure identification, assistant support, and reward-unlocking workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The artifact provides a high-level skill description but little operational detail. <br>
-Mitigation: Review the skill behavior and intended workflow in the installed environment before relying on it for identity, verification, or reward-related decisions. <br>
-Risk: The server security guidance references local and remote authority for maintainer workflows. <br>
-Mitigation: Keep credentials scoped to the intended ClawHub environment and review any commands before running moderation or privileged actions. <br>
+## Use Case:
 
+Users of the Billons Network and FAIAR ecosystem can use this skill as guidance for AI agent verification, secure identification, and reward access. The current release is descriptive rather than an implemented verification tool.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/javlonbek4455/billons-ai) <br>
-- [Publisher profile](https://clawhub.ai/user/javlonbek4455) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [Markdown or plain text guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable behavior is present in the artifact; index.js is empty.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata) <br>
+Risk: The current package appears to be localized descriptive text with no working implementation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the release as guidance unless a future version adds reviewed implementation logic.
+
+Risk: Users who do not read Uzbek may misunderstand the skill scope or security claims.
+
+Mitigation: Review an accurate translation before relying on the description for operational decisions.
+
+Risk: Future additions involving code, dependencies, authentication, rewards, or network behavior could materially change the risk profile.
+
+Mitigation: Review and rescan future versions before installation or deployment.
+
+## Reference(s):
+
+- [Billons Ai ClawHub Skill Page](https://clawhub.ai/javlonbek4455/skills/billons-ai)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable behavior is present in the current artifact.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata; package.json reports 1.0.2)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

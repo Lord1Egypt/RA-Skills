@@ -1,39 +1,51 @@
-## Description: <br>
-Estimate API token costs from OpenClaw session transcripts by analyzing agent sessions and comparing per-token pricing with subscription plans. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Estimate API token costs from OpenClaw session transcripts. Analyzes all agent sessions to calculate what you'd pay on per-token pricing vs subscription plans. Use when asked about API costs, token usage, billing estimates, or comparing Max/Pro plans to pay-per-use.
 
-## Publisher: <br>
-[npfaerber](https://clawhub.ai/user/npfaerber) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[npfaerber](https://clawhub.ai/user/npfaerber)
 
-## Use Case: <br>
-Developers and agent operators use this skill to estimate OpenClaw API token usage and approximate costs from local session transcripts. It helps compare pay-per-use pricing against subscription plans using the user's own transcript data. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The estimation script reads local OpenClaw session transcripts, which may contain sensitive conversation content. <br>
-Mitigation: Run it only in an environment where local transcript access is acceptable, and narrow the script to specific agents, sessions, or date ranges when broad transcript analysis is unnecessary. <br>
-Risk: Cost estimates can be incomplete because transcripts may omit system prompts, tool definitions, internal retries, or current pricing changes. <br>
-Mitigation: Treat estimates as planning guidance, update pricing before relying on results, and compare with provider billing data when making spending decisions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/npfaerber/token-cost-estimator) <br>
+## Use Case:
+
+Developers and operators use this skill to estimate token usage and compare likely API costs against subscription plans from local OpenClaw session transcript data.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill directs users to read historical OpenClaw session transcripts across all agents, which may include secrets or sensitive personal or business data.
+
+Mitigation: Run it only in trusted local environments and narrow the script to a specific agent or session folder before use when transcript sensitivity is uncertain.
+
+Risk: Cost estimates may understate real usage because transcripts can miss system prompts, tool definitions, and internal retries.
+
+Mitigation: Treat the output as a planning estimate and compare it against provider billing data before making purchasing or usage decisions.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, guidance] <br>
-**Output Format:** [Markdown with an inline Python script and explanatory tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces approximate token and cost estimates from local OpenClaw session JSONL files; pricing values may need updates before use.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown guidance with an inline Python script and cost estimate output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Estimates are approximate because transcripts can omit system prompts, tool definitions, and internal retries.]
+
+## Skill Version(s):
+
+1.0.1 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

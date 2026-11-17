@@ -1,38 +1,53 @@
-## Description: <br>
-Find nearby BnB stays. Invoke when user asks for BnB stays near me. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find nearby BnB stays when a user asks for local BnB or short-term rental options.
 
-## Publisher: <br>
-[CodeKungfu](https://clawhub.ai/user/CodeKungfu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[codekungfu](https://clawhub.ai/user/codekungfu)
 
-## Use Case: <br>
-External users invoke this skill when they want nearby BnB, short-term rental, or guesthouse options based on an authorized location or city. It standardizes lodging search inputs, result fields, and common error handling for agent responses. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Location-based lodging searches can expose sensitive precise-location information. <br>
-Mitigation: Use the skill only with user-authorized location data, prefer approximate location when exact coordinates are unnecessary, and avoid retaining precise coordinates. <br>
+## Use Case:
 
+External users use the skill to ask an agent for nearby BnB, short-term rental, or guesthouse options based on an authorized location, radius, result limit, and optional filters.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/CodeKungfu/bnb-stays) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Guidance] <br>
-**Output Format:** [Markdown or structured text describing nearby lodging results and errors] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses location, radius, limit, and optional filters; results should avoid retaining precise coordinates unless needed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Location data could expose precise user coordinates if retained or shared unnecessarily.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Request location only after user authorization and avoid retaining exact coordinates; blur coordinates when needed.
+
+Risk: Provider availability or rate limits can prevent complete nearby-stay results.
+
+Mitigation: Return clear provider or rate-limit errors and use short-term caching for similar location, category, and radius requests.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/codekungfu/skills/bnb-stays)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or structured text list of nearby stay results with standardized POI fields.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses authorized location input and standardized response fields; default radius 5000 meters, default limit 20, maximum limit 50.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

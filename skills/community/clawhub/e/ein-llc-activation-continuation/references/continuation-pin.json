@@ -1,0 +1,271 @@
+{
+  "schema": "ein.llc-activation-continuation.pin.v1",
+  "package": "ein-activation-continuation",
+  "version": "0.1.5",
+  "origin": "https://ein.llc",
+  "prefix": "ein-activation-continuation/",
+  "runtime": "node>=22",
+  "npmInstall": false,
+  "historicalDescriptor": {
+    "published": false,
+    "field": "published",
+    "note": "Frozen descriptor field. Hosted acquisition is recorded separately and does not rewrite this field."
+  },
+  "vendor": {
+    "name": "ein-formation-http-client",
+    "packageName": "ein-public-http-client",
+    "version": "0.1.1",
+    "spdxLicense": "MIT",
+    "path": "vendor/ein-formation-http-client"
+  },
+  "files": {
+    "descriptor": {
+      "path": "/downloads/ein-activation-continuation-v0.1.5.json",
+      "bytes": 9131,
+      "sha256": "3734639536ee9104549592e46271148e12ed2e4c69191b858116fdbd3ad7da4f"
+    },
+    "archive": {
+      "path": "/downloads/ein-activation-continuation-v0.1.5.tgz",
+      "bytes": 50590,
+      "sha256": "e490d78753e8bb8e18aa517b882107f667f088546ace4888e5f86b86b9afb6f0",
+      "uncompressedBytes": 225280,
+      "members": 39
+    }
+  },
+  "members": [
+    {
+      "path": "ACQUISITION.json",
+      "bytes": 1489,
+      "mode": 420,
+      "sha256": "56f4660259b0e2947f39a469bd77f94321fd861f69dfbd1c3fec9698edff03ef"
+    },
+    {
+      "path": "INSTALL.md",
+      "bytes": 6801,
+      "mode": 420,
+      "sha256": "bdc59ffd12643a22cef977dca83764edda0dfd1e27c110d18f78ce9454e1f68c"
+    },
+    {
+      "path": "LICENSE",
+      "bytes": 1079,
+      "mode": 420,
+      "sha256": "bf4623255db76888a7b6919c4011ee054b19bb6b089491ec2106772ecc4e375b"
+    },
+    {
+      "path": "PROVENANCE.md",
+      "bytes": 2711,
+      "mode": 420,
+      "sha256": "c040cd4d7ea341d2fc2092eec3ad667522d743f5e4e48f46d9bfc9bfb1fd0ada"
+    },
+    {
+      "path": "README.md",
+      "bytes": 2722,
+      "mode": 420,
+      "sha256": "8a2370e3ee4ad08091f035b75f9ffd34010c6d7f419c588b82b210e8ff818a5d"
+    },
+    {
+      "path": "RECEIVING.md",
+      "bytes": 2587,
+      "mode": 420,
+      "sha256": "10eb64e9f869e52cece7f43dfbfa68d9446defa9288bd2d82076faa1ccc0b1ba"
+    },
+    {
+      "path": "bin/ein-continuation.mjs",
+      "bytes": 297,
+      "mode": 493,
+      "sha256": "bc1e5281771eecc2aee65d6a4613cc4af2093ae5067a2e2a4ff78ad45ec720ca"
+    },
+    {
+      "path": "examples/context-payment-onboarding.json",
+      "bytes": 405,
+      "mode": 420,
+      "sha256": "733124567bdafeca3ee71c8c23c1d681a6b18201a181c4872e45f8e1cafcf8a2"
+    },
+    {
+      "path": "examples/context-supplier-onboarding.json",
+      "bytes": 398,
+      "mode": 420,
+      "sha256": "22412c03b871adb236e123821a85cc1f4d9c015695b0540383a120f6396f821f"
+    },
+    {
+      "path": "examples/context-technical.json",
+      "bytes": 284,
+      "mode": 420,
+      "sha256": "4947ad67283871ceee75df268317fcc2c218bf5ab9e8fc9f531277318dd25d9e"
+    },
+    {
+      "path": "examples/context-unconfirmed.json",
+      "bytes": 284,
+      "mode": 420,
+      "sha256": "2fb49388c587afa4321470898368b869cda76302b1324056ceea276ff55f30fa"
+    },
+    {
+      "path": "examples/task-qualifying.json",
+      "bytes": 262,
+      "mode": 420,
+      "sha256": "639093b144f364ea2668c4c5f1fb0e8e0ce5f6a7cef7fba40540e06df61999bc"
+    },
+    {
+      "path": "examples/task-satisfied.json",
+      "bytes": 92,
+      "mode": 420,
+      "sha256": "bc6c21ee3d746a7f6ac8d5bf9fc339517ee1df23485ace431c0a5684d933434c"
+    },
+    {
+      "path": "examples/task-unknown.json",
+      "bytes": 163,
+      "mode": 420,
+      "sha256": "a0c90de0f1e4695c132521030961e78f8095781e85a99802a09a0f7f6347ea57"
+    },
+    {
+      "path": "package.json",
+      "bytes": 673,
+      "mode": 420,
+      "sha256": "cbfe1ed789a49e842fbe7b992247fe9fb3ccf570ebb770d1f526147cea0b2a94"
+    },
+    {
+      "path": "src/adapters.mjs",
+      "bytes": 24952,
+      "mode": 420,
+      "sha256": "f4bd544cd3881de1fa2f208c7990fdb18936a16674ed66bb93569921145913be"
+    },
+    {
+      "path": "src/catalog.mjs",
+      "bytes": 11613,
+      "mode": 420,
+      "sha256": "8c5a351d5845212f7a07a30d5be5f944d036c5768be265d5e697e6e80171364b"
+    },
+    {
+      "path": "src/cli.mjs",
+      "bytes": 5214,
+      "mode": 420,
+      "sha256": "5263ed8749bc5c298b5f181e639146faa0dcfa736eacdc2854150337a6bfdf16"
+    },
+    {
+      "path": "src/context.mjs",
+      "bytes": 1382,
+      "mode": 420,
+      "sha256": "2e7a84ba731d293e5712cb6f157440215255475f5a1ff2ac6d72e7f50496ba3a"
+    },
+    {
+      "path": "src/deadline.mjs",
+      "bytes": 1675,
+      "mode": 420,
+      "sha256": "aabd8020d1da6a07045509848d9db0b52f7a28616459e6b98f8a0fcef763feca"
+    },
+    {
+      "path": "src/errors.mjs",
+      "bytes": 956,
+      "mode": 420,
+      "sha256": "5ad43916558df63a85c6e0381c67d9dffa2de7948db0fbef56aa05c63ffb3ea4"
+    },
+    {
+      "path": "src/index.mjs",
+      "bytes": 174,
+      "mode": 420,
+      "sha256": "60225b4a7f98984ee70dae123d038892c0e2d80d2674ba0b07adc961fab8d438"
+    },
+    {
+      "path": "src/journey.mjs",
+      "bytes": 46074,
+      "mode": 420,
+      "sha256": "2bc54d4e34fc6de12d08fc538e87276c24afb1fbac76f8b71b8df6b07dcd6470"
+    },
+    {
+      "path": "src/locate.mjs",
+      "bytes": 1435,
+      "mode": 420,
+      "sha256": "dbbb5a1368eec65050b4075a87140c12ff3c699e8bdbdcb62d9352d3411ff9e3"
+    },
+    {
+      "path": "src/store.mjs",
+      "bytes": 4366,
+      "mode": 420,
+      "sha256": "8674271dcd521c5a1a57faf2c1b8f9999cbd5244ace2b452291f103929d03b02"
+    },
+    {
+      "path": "src/transport.mjs",
+      "bytes": 11677,
+      "mode": 420,
+      "sha256": "27ded75bf1cdf0ea3b0ce9f5cc323242aa4d41fca1ef5d29d4d1f02fe4d44b0e"
+    },
+    {
+      "path": "src/view.mjs",
+      "bytes": 4288,
+      "mode": 420,
+      "sha256": "93455354f61df7475ca8532e3f62ac783cd0abc188ba21d567b38fcd237a6846"
+    },
+    {
+      "path": "vendor/ein-formation-http-client/LICENSE",
+      "bytes": 1079,
+      "mode": 420,
+      "sha256": "bf4623255db76888a7b6919c4011ee054b19bb6b089491ec2106772ecc4e375b"
+    },
+    {
+      "path": "vendor/ein-formation-http-client/PROVENANCE.md",
+      "bytes": 2426,
+      "mode": 420,
+      "sha256": "7528f0964cbef0019d065331ae6ea40d5c9e6e995da0a64b79c7f873f31e90b9"
+    },
+    {
+      "path": "vendor/ein-formation-http-client/README.md",
+      "bytes": 9030,
+      "mode": 420,
+      "sha256": "9a5c03be33a377555617b602ac3da9828a12295a8bb78535159bd49a5704ba6e"
+    },
+    {
+      "path": "vendor/ein-formation-http-client/cli.mjs",
+      "bytes": 6656,
+      "mode": 420,
+      "sha256": "8a0339d5dba255c2ebca0e4eecf8892a8f5411a228dcf058c01b925508723e18"
+    },
+    {
+      "path": "vendor/ein-formation-http-client/client.mjs",
+      "bytes": 19512,
+      "mode": 420,
+      "sha256": "0eafe6996753d9e16e3f055b944f1b53842af56d3d9e977eb8e808218bd6a391"
+    },
+    {
+      "path": "vendor/ein-formation-http-client/examples/assess-positive.json",
+      "bytes": 222,
+      "mode": 420,
+      "sha256": "20cd4525267afd4cf628df14867ea7ba2b344bcb1a7c2096fe4a4a58cfae23e0"
+    },
+    {
+      "path": "vendor/ein-formation-http-client/examples/assess-satisfied.json",
+      "bytes": 93,
+      "mode": 420,
+      "sha256": "6c6f8aefeae17cbfd4e34e64286d8f6df7341c7993a69b115c66697bd25fd8f5"
+    },
+    {
+      "path": "vendor/ein-formation-http-client/examples/prepare.json",
+      "bytes": 267,
+      "mode": 420,
+      "sha256": "f4a66f66cce0ea3d9a3d997249d540f8c2c7140d30ae1d40e7a46476f2e68a6d"
+    },
+    {
+      "path": "vendor/ein-formation-http-client/lib/grant.mjs",
+      "bytes": 2812,
+      "mode": 420,
+      "sha256": "1c912a06bab6f79d80527bbf091e8c61150465cdaa78bedae62852e0dfa931de"
+    },
+    {
+      "path": "vendor/ein-formation-http-client/lib/http.mjs",
+      "bytes": 10223,
+      "mode": 420,
+      "sha256": "ccc837a306d037006f86098d4ad3d738a3a2587b968357d73de5a7be0f9fd181"
+    },
+    {
+      "path": "vendor/ein-formation-http-client/lib/redact.mjs",
+      "bytes": 2258,
+      "mode": 420,
+      "sha256": "777fa3f082b9ad9c4dbbcb0c55e44fd75bda74ac94b52a206582e5981c3ab830"
+    },
+    {
+      "path": "vendor/ein-formation-http-client/package.json",
+      "bytes": 898,
+      "mode": 420,
+      "sha256": "7342fd0eefbb345ac2b6c6379f23d3eef56a3609374e6a61d2d46d73bcad8a90"
+    }
+  ]
+}

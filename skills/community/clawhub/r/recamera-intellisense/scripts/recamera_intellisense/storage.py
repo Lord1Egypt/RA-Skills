@@ -1,10 +1,22 @@
-"""Storage slots, quota, and async tasks (``/record/storage/{status,config,control}``)."""
+"""Storage slots, quota, and async tasks (`/record/storage/{status,config,control}`)."""
 
 from __future__ import annotations
 
+if __name__ == "__main__" and __package__ is None:
+    import os
+    import sys
+
+    sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+    from recamera_intellisense._cli import main
+
+    raise SystemExit(main())
+
+import sys
+import time
 from typing import Any, Dict, List, Optional
 
 from . import _config, _http
+from ._coerce import require_confirm, to_bool
 
 __all__ = [
     "get_storage_status",
@@ -84,7 +96,7 @@ def _parse_slot(s: Dict[str, Any], data_dir: str) -> Dict[str, Any]:
     }
 
 
-def get_storage_status(device_name: str) -> List[Dict[str, Any]]:
+def get_storage_status(device_name: Optional[str] = None) -> List[Dict[str, Any]]:
     """List the storage slots (each as a dict)."""
     dev = _config.resolve(device_name)
     data = _http.get_json(dev, PATH_STATUS) or {}
@@ -94,7 +106,7 @@ def get_storage_status(device_name: str) -> List[Dict[str, Any]]:
 
 
 def set_storage_slot(
-    device_name: str,
+    device_name: Optional[str] = None,
     *,
     by_dev_path: str = "",
     by_uuid: str = "",
@@ -110,13 +122,13 @@ def set_storage_slot(
 
 
 def configure_storage_quota(
-    device_name: str,
+    device_name: Optional[str] = None,
     *,
     dev_path: str,
     quota_limit_bytes: int,
     quota_rotate: bool = True,
 ) -> None:
-    """Set per-slot quota. ``quota_limit_bytes = -1`` means no limit."""
+    """Set per-slot quota. `quota_limit_bytes = -1` means no limit."""
     dev = _config.resolve(device_name)
     payload = {
         "sTask": "SYNC",
@@ -124,7 +136,7 @@ def configure_storage_quota(
         "sSlotDevPath": dev_path,
         "dSlotConfig": {
             "iQuotaLimitBytes": int(quota_limit_bytes),
-            "bQuotaRotate": bool(quota_rotate),
+            "bQuotaRotate": to_bool(quota_rotate, "quota_rotate"),
         },
     }
     resp = _http.post_json(dev, PATH_CONTROL, payload=payload)
@@ -154,19 +166,24 @@ def _task_payload(
 
 
 def storage_task_submit(
-    device_name: str,
+    device_name: Optional[str] = None,
     *,
     action: str,
     dev_path: str,
     sync: bool = False,
     files: Optional[List[str]] = None,
+    confirm: bool = False,
 ) -> Dict[str, Any]:
-    """Submit a storage action. ``sync=True`` blocks until completion.
+    """Submit a storage action. `sync=True` blocks until completion.
 
-    ``FORMAT`` and ``FREE_UP`` can take a long time and are rejected with
-    ``sync=True`` (submit async and poll :func:`storage_task_status` instead).
+    All actions are destructive (FORMAT, FREE_UP, EJECT,
+    REMOVE_FILES_OR_DIRECTORIES) and require `confirm=True`.
+    `FORMAT` and `FREE_UP` can take a long time and are rejected with
+    `sync=True` (submit async and poll :func:`storage_task_status` instead).
     """
     action_canonical = normalize_action(action)
+    require_confirm(confirm, f"storage task {action_canonical}")
+    sync = to_bool(sync, "sync")
     if sync and action_canonical in ("FORMAT", "FREE_UP"):
         raise ValueError(
             f"Action '{action_canonical}' may take a long time and cannot be run "
@@ -181,7 +198,7 @@ def storage_task_submit(
 
 
 def storage_task_status(
-    device_name: str,
+    device_name: Optional[str] = None,
     *,
     action: str,
     dev_path: str,
@@ -196,7 +213,7 @@ def storage_task_status(
 
 
 def storage_task_cancel(
-    device_name: str,
+    device_name: Optional[str] = None,
     *,
     action: str,
     dev_path: str,
@@ -210,10 +227,8 @@ def storage_task_cancel(
     return resp if isinstance(resp, dict) else {}
 
 
-def ensure_storage(device_name: str, *, timeout_s: float = 3.0) -> None:
-    """Ensure one slot is enabled with rotate-quota on (mirrors Rust ``storage::ensure_storage``)."""
-    import time
-
+def ensure_storage(device_name: Optional[str] = None, *, timeout_s: float = 3.0) -> None:
+    """Ensure one slot is enabled with rotate-quota on (mirrors Rust `storage::ensure_storage`)."""
     slots = get_storage_status(device_name)
     if not any(s["enabled"] for s in slots):
         default = next(
@@ -225,6 +240,11 @@ def ensure_storage(device_name: str, *, timeout_s: float = 3.0) -> None:
                 "call set_storage_slot to pick one."
             )
         set_storage_slot(device_name, by_dev_path=default["dev_path"])
+        print(
+            f"note: auto-enabled internal storage slot {default['dev_path']} "
+            "with quota rotation",
+            file=sys.stderr,
+        )
         deadline = time.time() + timeout_s
         while time.time() < deadline:
             current = get_storage_status(device_name)
@@ -253,6 +273,10 @@ def ensure_storage(device_name: str, *, timeout_s: float = 3.0) -> None:
                 quota_limit_bytes=s["quota_limit_bytes"],
                 quota_rotate=True,
             )
+            print(
+                f"note: enabled quota rotation on {s['dev_path']}",
+                file=sys.stderr,
+            )
 
 
 COMMANDS = {
@@ -262,27 +286,4 @@ COMMANDS = {
     "storage_task_submit": storage_task_submit,
     "storage_task_status": storage_task_status,
     "storage_task_cancel": storage_task_cancel,
-}
-COMMAND_SCHEMAS = {
-    "get_storage_status": {"required": {"device_name"}, "optional": set()},
-    "set_storage_slot": {
-        "required": {"device_name"},
-        "optional": {"by_dev_path", "by_uuid"},
-    },
-    "configure_storage_quota": {
-        "required": {"device_name", "dev_path", "quota_limit_bytes"},
-        "optional": {"quota_rotate"},
-    },
-    "storage_task_submit": {
-        "required": {"device_name", "action", "dev_path"},
-        "optional": {"sync", "files"},
-    },
-    "storage_task_status": {
-        "required": {"device_name", "action", "dev_path"},
-        "optional": {"task_uid"},
-    },
-    "storage_task_cancel": {
-        "required": {"device_name", "action", "dev_path"},
-        "optional": {"task_uid"},
-    },
 }

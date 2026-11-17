@@ -5,7 +5,7 @@ allowed-tools: [Bash(oo *)]
 metadata:
   title: "X (Twitter)"
   author: "OOMOL"
-  version: "1.0.2"
+  version: "1.0.7"
   services: ["twitter"]
   icon: "https://static.oomol.com/logo/third-party/Twitter.svg"
 ---
@@ -50,7 +50,7 @@ Each action is listed below with a one-line description; actions that change sta
 - `follow_user` — Follow a target user from the authenticated user account. [write]
 - `followers_by_user_id` — Get followers for a user account.
 - `following_by_user_id` — Get followed accounts for a user account.
-- `full_archive_search` — Search the full public Tweet archive using app-only auth. [write]
+- `full_archive_search` — Search the full public Tweet archive using app-only auth.
 - `get_compliance_job` — Get a compliance job by job ID using app-only auth.
 - `get_compliance_jobs` — List compliance jobs using app-only auth.
 - `get_dm_conversation_events` — Get Direct Message events for a one-to-one conversation with a participant.
@@ -58,10 +58,10 @@ Each action is listed below with a one-line description; actions that change sta
 - `get_list` — Get a List by List ID and optional expanded owner objects.
 - `get_list_followers` — Get users who follow a given X List.
 - `get_list_members` — Get users who are members of a given X List.
-- `get_media_upload_status` — Get the processing status for a chunked X media upload. [write]
+- `get_media_upload_status` — Get the processing status for a chunked X media upload.
 - `get_muted_users` — Get muted accounts for a user account.
-- `get_post_retweeters_action` — Get users who retweeted a given Tweet ID. [write]
-- `get_post_retweets` — Get Tweet objects that retweeted a given Tweet ID. [write]
+- `get_post_retweeters_action` — Get users who retweeted a given Tweet ID.
+- `get_post_retweets` — Get Tweet objects that retweeted a given Tweet ID.
 - `get_recent_dm_events` — Get recent Direct Message events for the authenticated user account.
 - `get_space_by_id` — Get a Space by Space ID and optional expanded objects.
 - `get_space_posts` — Get Tweets that were shared in a given X Space.
@@ -74,32 +74,32 @@ Each action is listed below with a one-line description; actions that change sta
 - `get_user_owned_lists` — Get Lists owned by a given user account.
 - `get_user_pinned_lists` — Get Lists pinned by a given user account.
 - `get_users_by_ids` — Get up to 100 public X user profiles by user ID and optional expanded objects.
-- `hide_replies` — Hide or unhide replies for a Tweet authored by the authenticated X user. [write]
-- `list_post_likers` — Get users who liked a given Tweet ID. [write]
+- `hide_replies` — Hide or unhide replies for a Tweet authored by the authenticated X user.
+- `list_post_likers` — Get users who liked a given Tweet ID.
 - `list_posts_timeline_by_list_id` — Get Tweets from a given X List timeline.
-- `mute_user` — Mute a target user from the authenticated user account. [write]
-- `pin_list` — Pin an X List for the authenticated user account. [write]
+- `mute_user` — Mute a target user from the authenticated user account. [destructive]
+- `pin_list` — Pin an X List for the authenticated user account.
 - `post_delete_by_post_id` — Delete a Tweet authored by the authenticated X user. [destructive]
-- `post_lookup_by_post_id` — Get a public Tweet by Tweet ID and optional expanded objects. [write]
-- `post_lookup_by_post_ids` — Get up to 100 public Tweets by Tweet ID and optional expanded objects. [write]
+- `post_lookup_by_post_id` — Get a public Tweet by Tweet ID and optional expanded objects.
+- `post_lookup_by_post_ids` — Get up to 100 public Tweets by Tweet ID and optional expanded objects.
 - `recent_search` — Search recent Tweets from the last seven days using X search syntax.
 - `remove_list_member` — Remove a user account from an X List. [destructive]
 - `remove_post_from_bookmarks` — Remove a Tweet from bookmarks for the authenticated user account. [destructive]
 - `retrieve_dm_conversation_events` — Get Direct Message events for a Direct Message conversation ID.
-- `retrieve_posts_that_quote_a_post` — Get Tweets that quote a given Tweet ID. [write]
-- `returns_post_objects_liked_by_the_provided_user_id` — Get Tweets liked by a user account. [write]
+- `retrieve_posts_that_quote_a_post` — Get Tweets that quote a given Tweet ID.
+- `returns_post_objects_liked_by_the_provided_user_id` — Get Tweets liked by a user account.
 - `retweet_post` — Retweet a Tweet from the authenticated user account. [write]
-- `search_full_archive_counts` — Count Tweets over the full public archive using app-only auth. [write]
+- `search_full_archive_counts` — Count Tweets over the full public archive using app-only auth.
 - `search_recent_counts` — Count recent Tweets from the last seven days using X search syntax.
 - `search_spaces` — Search X Spaces by query text and optional Space filters.
 - `send_a_new_message_to_a_user` — Send a new Direct Message to a user account. [write]
 - `send_dm_to_conversation` — Send a new Direct Message to an existing conversation. [write]
-- `unfollow_list` — Unfollow an X List from the authenticated user account. [write]
-- `unfollow_user` — Unfollow a target user from the authenticated user account. [write]
-- `unlike_post` — Unlike a Tweet from the authenticated user account. [write]
-- `unmute_user` — Unmute a target user from the authenticated user account. [write]
-- `unpin_list` — Unpin an X List for the authenticated user account. [write]
-- `unretweet_post` — Undo a Retweet from the authenticated user account. [write]
+- `unfollow_list` — Unfollow an X List from the authenticated user account. [destructive]
+- `unfollow_user` — Unfollow a target user from the authenticated user account. [destructive]
+- `unlike_post` — Unlike a Tweet from the authenticated user account. [destructive]
+- `unmute_user` — Unmute a target user from the authenticated user account. [destructive]
+- `unpin_list` — Unpin an X List for the authenticated user account. [destructive]
+- `unretweet_post` — Undo a Retweet from the authenticated user account. [destructive]
 - `update_list` — Update List attributes for a List owned by the authenticated user account. [write]
 - `upload_large_media` — Upload a video or other large media file to X from a temporary HTTP URL using chunked media upload. [write]
 - `upload_media` — Upload a single image to X and return the created media identifiers. [write]
@@ -138,11 +138,14 @@ These are **one-time** steps — do not repeat them on every call. Run a step on
 - **`scope_missing` / `credential_expired` / `app_not_ready` / `app_not_found`** — X (Twitter) is not connected, or the connection expired or lacks a scope. Connect once (auth type: OAuth2) at:
 
   ```text
-  https://console.oomol.com/app-connections?provider=twitter
+  https://console.oomol.com/connections/twitter
   ```
 
-- **HTTP 402 / `OOMOL_INSUFFICIENT_CREDIT`** — billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+- **`OOMOL_INSUFFICIENT_CREDIT`** — OOMOL billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+
+- **HTTP 402 without `OOMOL_INSUFFICIENT_CREDIT`** — the third-party account itself has no active plan or credit. Report the provider error message as is; do not ask the user to recharge OOMOL.
 
 ## Resources
 
 - X (Twitter) homepage: https://x.com
+- API documentation: https://docs.x.com/x-api/introduction

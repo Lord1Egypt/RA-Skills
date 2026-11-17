@@ -1,6 +1,10 @@
 {
-  "ownerId": "kn72cqttfa4en7epyybjca4m2x85ppvj",
+  "owner": "jikeapi",
   "slug": "jike-vehicle-plate-query",
   "version": "1.0.0",
-  "publishedAt": 1778294727245
+  "title": "车牌号码归属地 - 即刻数据",
+  "description": "输入车牌号码或至少前两位车牌前缀，查询车牌前缀、省份简称、省份和城市。",
+  "env": "JIKE_VEHICLE_PLATE_QUERY_KEY",
+  "api_url": "https://api.jikeapi.cn/v1/vehicle/plate/query",
+  "homepage": "https://www.jikeapi.cn/"
 }

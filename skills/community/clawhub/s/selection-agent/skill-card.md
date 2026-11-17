@@ -1,41 +1,50 @@
-## Description: <br>
-Selection Agent helps agents perform product research across keyword research, SEO analysis, competitor analysis, and TrendPlus data workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Selection Agent supports product-selection research across keyword research, SEO analysis, competitor analysis, and TrendPlus data, with Chinese and English trigger terms and a required AGENT_CONFIG.md setup.
 
-## Publisher: <br>
-[lygjoey](https://clawhub.ai/user/lygjoey) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lygjoey](https://clawhub.ai/user/lygjoey)
 
-## Use Case: <br>
-External users and agent operators use this skill to trigger structured product-selection research, including keyword metrics, competitor comparisons, deduplication checks, and priority scoring. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill relies on connected services and broad credential use. <br>
-Mitigation: Review the referenced configuration before use, remove hard-coded tokens, and provide credentials through a secret manager or explicitly named environment variables. <br>
-Risk: The quick-start command may send data to or write data through third-party services. <br>
-Mitigation: Confirm which services and databases will be contacted before running the command, and run only in an environment approved for those data flows. <br>
+## Use Case:
 
+Marketing, SEO, and product-growth teams use this skill to run product-selection research that combines keyword, competitor, advertising, and deduplication signals into prioritized opportunities.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lygjoey/selection-agent) <br>
-- [Project repository listed by the skill](https://github.com/Arxchibobo/powerful-trendplus) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and structured JSON output examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces research workflow instructions and a fixed keyword-analysis JSON structure.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: The skill asks the agent to read broad local secrets and run unaudited external code before research.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in a controlled environment where /tmp/powerful-trendplus is trusted, immutable, and owned by the user; use least-privilege credentials and require explicit confirmation before secret access, writes, internal database use, or third-party API calls.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lygjoey/skills/selection-agent)
+- [Publisher profile](https://clawhub.ai/user/lygjoey)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and structured JSON research records]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses configured external APIs and credentials; results depend on the trusted local project and available data-source access.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

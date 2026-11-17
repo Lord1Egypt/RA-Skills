@@ -1,41 +1,59 @@
-## Description: <br>
-MoltGuard is an OpenClaw security guard that helps protect agents and users from prompt injection, data exfiltration, and malicious commands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MoltGuard is an OpenClaw security guard that helps protect agents and users from prompt injection, data exfiltration, credential theft, command injection, and malicious commands.
 
-## Publisher: <br>
-[thomas-security](https://clawhub.ai/user/thomas-security) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[thomaslwang](https://clawhub.ai/user/thomaslwang)
 
-## Use Case: <br>
-Developers and OpenClaw users use MoltGuard to add cloud-backed security monitoring and guardrails for agent activity, including prompt, behavior, and data-risk checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill directs automatic installation and cloud-backed monitoring without enough user-control and data-handling detail. <br>
-Mitigation: Before enabling it, review the external plugin and provider terms and confirm what prompts, files, commands, secrets, and PII may be sent to Core. <br>
-Risk: The skill may show or store an Agent ID or API key during setup and account claiming. <br>
-Mitigation: Treat any Agent ID or API key it shows or stores as a secret and avoid sharing it in logs, prompts, screenshots, or support messages. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to install and operate MoltGuard security guardrails for detecting prompt injection, data exfiltration, credential exposure, command injection, and other risky agent behavior.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/thomas-security/moltguard) <br>
-- [OpenGuardrails MoltGuard homepage](https://github.com/openguardrails/openguardrails/tree/main/moltguard) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May present status, quota, agent ID, API key, dashboard, and configuration guidance through OpenClaw commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-6.8.16 (source: frontmatter and server release metadata) <br>
+Risk: The server security verdict is suspicious because setup and credential handling are broad enough to require review before installation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only with explicit human approval after confirming the publisher handle, ClawHub skill page, version 6.8.16, and license evidence.
+
+Risk: Security-relevant content may be processed by Core during detection.
+
+Mitigation: Review data-handling expectations before use, especially for sensitive files, PII, credentials, or enterprise environments.
+
+Risk: The skill can display API keys and agent-claiming credentials through its status and claim flows.
+
+Mitigation: Avoid displaying or sharing API keys unless rotation is understood and available; rotate credentials after accidental exposure.
+
+## Reference(s):
+
+- [MoltGuard ClawHub skill page](https://clawhub.ai/thomaslwang/skills/moltguard)
+- [MoltGuard homepage](https://github.com/openguardrails/openguardrails/tree/main/moltguard)
+- [Publisher profile](https://clawhub.ai/user/thomaslwang)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown with inline shell commands and OpenClaw slash commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes installation, status, dashboard, account-claiming, enterprise enrollment, update, and uninstall guidance.]
+
+## Skill Version(s):
+
+6.8.16 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

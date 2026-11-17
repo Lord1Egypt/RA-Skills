@@ -1,45 +1,57 @@
 ---
 name: vmware-monitor
 description: >
-  Use this skill for safe, risk-free queries of VMware infrastructure — code-level enforced safety means no destructive operations exist in the codebase.
-  Directly handles: list VMs/hosts/datastores/clusters, check active alarms with remediation hints, view recent events, get VM details (CPU/memory/disks/NICs/snapshots).
-  Always use vmware-monitor when the user asks to "list VMs", "check vSphere alarms", "show host status", "get VM details", "what vSphere events happened", or needs read-only VMware information before making changes.
-  Do NOT use for any write operations — this skill is code-level read-only and cannot modify, create, or delete any resource.
-  For VM modifications use vmware-aiops, for networking use vmware-nsx, for metrics/capacity use vmware-aria. For load balancing/AVI/AKO use vmware-avi.
+  Use for read-only VMware/vSphere/ESXi inventory, health, alarms, events and VM/host/datastore
+  investigations; cross-cluster or cross-vCenter triage such as "is anything on fire", "what needs
+  attention now" and "what is happening around this VM". No tool changes a VMware resource. Local
+  config, audit, HTML snapshots and an explicitly started daemon write local state; optional webhooks
+  send disclosed operational data to configured URLs. For VM writes use vmware-aiops, NSX networking
+  vmware-nsx, metrics/capacity vmware-aria, and AVI/AKO vmware-avi.
 installer:
   kind: uv
   package: vmware-monitor
 allowed-tools:
   - Bash
-metadata: {"openclaw":{"requires":{"env":["VMWARE_MONITOR_CONFIG"],"bins":["vmware-monitor"],"config":["~/.vmware-monitor/config.yaml","~/.vmware-monitor/.env"]},"optional":{"env":["VMWARE_TARGET_PASSWORD","SLACK_WEBHOOK_URL","DISCORD_WEBHOOK_URL"],"bins":["vmware-policy"]},"primaryEnv":"VMWARE_MONITOR_CONFIG","homepage":"https://github.com/zw008/VMware-Monitor","emoji":"📊","os":["macos","linux"]}}
+metadata: {"openclaw":{"requires":{"anyBins":["vmware-monitor","uvx"]},"optional":{"env":["VMWARE_MONITOR_CONFIG","VMWARE_TARGET_PASSWORD","VMWARE_<TARGET>_USERNAME","SLACK_WEBHOOK_URL","DISCORD_WEBHOOK_URL","VMWARE_AUDIT_APPROVED_BY"],"bins":["vmware-policy"]},"homepage":"https://github.com/vmware-skills/VMware-Monitor","emoji":"📊","os":["macos","linux"]}}
 compatibility: >
-  vmware-policy auto-installed as Python dependency (provides @vmware_tool decorator and audit logging). All operations audited to ~/.vmware/audit.db.
-  Credentials: Each vCenter/ESXi target requires a per-target password env var in ~/.vmware-monitor/.env following the pattern VMWARE_<TARGET_NAME_UPPER>_PASSWORD (e.g., target "vcenter-prod" → VMWARE_VCENTER_PROD_PASSWORD). SLACK_WEBHOOK_URL and DISCORD_WEBHOOK_URL are optional — disabled by default, user-configured only, used solely by the opt-in daemon scanner. Daemon: the background scanner (vmware-monitor daemon start) is user-initiated only, never auto-started. Webhook payloads contain only aggregated alert metadata (alarm counts, event types) — no credentials, IPs, or PII.
+  vmware-policy auto-installed as Python dependency (provides @vmware_tool decorator and audit logging). MCP tool calls and remote CLI commands audited to ~/.vmware/audit.db; CLI queries also to ~/.vmware-monitor/audit.log.
+  Credentials: Each vCenter/ESXi target requires a per-target password env var in ~/.vmware-monitor/.env following the pattern VMWARE_<TARGET_NAME_UPPER>_PASSWORD (e.g., target "vcenter-prod" → VMWARE_VCENTER_PROD_PASSWORD). SLACK_WEBHOOK_URL and DISCORD_WEBHOOK_URL are optional — disabled by default, user-configured only, used solely by the opt-in daemon scanner. Daemon: the background scanner (vmware-monitor daemon start) is user-initiated only, never auto-started. Webhook payloads carry issue counts plus every critical issue and every alarm/event warning (host-log warnings and info rows are not sent): entity name and the sanitized, truncated alarm, vCenter event, or ESXi log text, or a connection error — which can include host names, IPs, and user names. No credentials from the skill's config are sent.
 ---
 
 # VMware Monitor (Read-Only)
 
-> **Disclaimer**: This is a community-maintained open-source project and is **not affiliated with, endorsed by, or sponsored by VMware, Inc. or Broadcom Inc.** "VMware" and "vSphere" are trademarks of Broadcom. Source code is publicly auditable at [github.com/zw008/VMware-Monitor](https://github.com/zw008/VMware-Monitor) under the MIT license.
+> Self-test: [guide](https://github.com/vmware-skills/marketplace/blob/main/MODEL_FIT_SELF_TEST.md).
 
-Read-only VMware vCenter/ESXi monitoring — 11 MCP tools, zero destructive code.
+> **Disclaimer**: This is a community-maintained open-source project and is **not affiliated with, endorsed by, or sponsored by VMware, Inc. or Broadcom Inc.** "VMware" and "vSphere" are trademarks of Broadcom. Source code is publicly auditable at [github.com/vmware-skills/VMware-Monitor](https://github.com/vmware-skills/VMware-Monitor) under the MIT license.
 
-> **Code-level safety**: This skill contains NO power, create, delete, snapshot, or modify operations. Not disabled — they don't exist in the codebase.
-> **Companion skills**: [vmware-aiops](https://github.com/zw008/VMware-AIops) (VM lifecycle), [vmware-storage](https://github.com/zw008/VMware-Storage) (iSCSI/vSAN), [vmware-vks](https://github.com/zw008/VMware-VKS) (Tanzu Kubernetes), [vmware-nsx](https://github.com/zw008/VMware-NSX) (NSX networking), [vmware-nsx-security](https://github.com/zw008/VMware-NSX-Security) (DFW/firewall), [vmware-aria](https://github.com/zw008/VMware-Aria) (metrics/alerts/capacity), [vmware-avi](https://github.com/zw008/VMware-AVI) (AVI/ALB/AKO), [vmware-harden](https://github.com/zw008/VMware-Harden) (compliance baselines).
+Read-only VMware vCenter/ESXi monitoring — 33 MCP tools, zero destructive code.
+
+> **Read-only toward vSphere**: no code path changes vCenter/ESXi state — no power, create, delete, snapshot, or reconfigure call exists. On vCenter it opens only its login session and short-lived query handles it releases. Gate: [`tests/eval/regression/test_read_only_enforcement.py`](https://github.com/vmware-skills/VMware-Monitor/blob/main/tests/eval/regression/test_read_only_enforcement.py) (source repo, not this bundle) requires every vSphere method called to be on a reviewed allowlist, checked against pyVmomi's type metadata. It checks source, not runtime, and no CI runs it. Independent of this code: use a dedicated account with vCenter's Read-Only role.
+> **Local writes** (this machine only): `init` writes `~/.vmware-monitor/config.yaml` and `.env` (0600; plaintext passwords are rewritten as `b64:` on load); audit logs `~/.vmware/audit.db` (MCP and CLI) and `~/.vmware-monitor/audit.log` (CLI); `--html` snapshots in `~/vmware-health/`; after `daemon start` only, `scan.log`, `daemon.pid` and opt-in webhook posts.
+> **Companion skills**: [vmware-aiops](https://github.com/vmware-skills/VMware-AIops) (VM lifecycle), [vmware-storage](https://github.com/vmware-skills/VMware-Storage) (iSCSI/vSAN), [vmware-vks](https://github.com/vmware-skills/VMware-VKS) (Tanzu Kubernetes), [vmware-nsx](https://github.com/vmware-skills/VMware-NSX) (NSX networking), [vmware-nsx-security](https://github.com/vmware-skills/VMware-NSX-Security) (DFW/firewall), [vmware-aria](https://github.com/vmware-skills/VMware-Aria) (metrics/alerts/capacity), [vmware-avi](https://github.com/vmware-skills/VMware-AVI) (AVI/ALB/AKO), [vmware-harden](https://github.com/vmware-skills/VMware-Harden) (compliance baselines).
 > | [vmware-pilot](../vmware-pilot/SKILL.md) (workflow orchestration) | [vmware-policy](../vmware-policy/SKILL.md) (audit/policy)
 
 ## What This Skill Does
 
 | Category | Capabilities |
 |----------|-------------|
+| **Cluster Triage** | One-glance `get_cluster_health_summary` — cross-cluster Problems/Capacity/Health rollup with an opinionated status; customizable view |
+| **Object Investigation** | "What is happening around this VM / host / datastore?" — one correlated drill-down bundle per object, plus `get_cross_vcenter_attention` — one ranked "what needs attention now?" list across every configured vCenter |
 | **Inventory** | List VMs, ESXi hosts, datastores, clusters, networks |
 | **Health** | Active alarms, recent events (filter by severity/time), hardware sensors, host services |
+| **Performance** | Real-time host & VM CPU/memory/disk/network utilisation (PerfManager) |
+| **Capacity** | Datastore thin-provisioning over-commit, resource-pool reservation/usage |
+| **Infra Health** | ESXi certificate expiry, license usage/expiry, NTP configuration health |
+| **Snapshots** | Inventory-wide snapshot aging & sprawl (flag old snapshots) |
+| **Activity** | In-flight tasks, active login sessions |
 | **VM Details** | CPU, memory, disks, NICs, snapshots, guest OS, IP |
 | **Scanning** | Scheduled alarm/log scanning with Slack/Discord webhooks |
+| **vSphere 9.1** | Host memory tiering (DRAM/NVMe uplift), vLCM cluster patch compliance & last-apply result, vCenter deployment size |
 
 ## Quick Install
 
 ```bash
-uv tool install vmware-monitor
+uv tool install vmware-monitor==2.6.2
 vmware-monitor doctor
 ```
 
@@ -53,21 +65,9 @@ vmware-monitor doctor
 
 ### Alarm/Event Output: `suggested_actions` Field
 
-`get_alarms` and `get_events` results include a `suggested_actions` list.
-Each item is a ready-to-use hint pointing to the correct companion skill and tool:
-
-```json
-{
-  "alarm_name": "VM CPU Ready High",
-  "entity_name": "prod-db-01",
-  "suggested_actions": [
-    "vmware-aiops: acknowledge_vcenter_alarm(entity_name='prod-db-01', alarm_name='VM CPU Ready High')",
-    "vmware-aiops: reset_vcenter_alarm(entity_name='prod-db-01', alarm_name='VM CPU Ready High')"
-  ]
-}
-```
-
-AI agents (especially smaller local models) can read these hints directly to determine which skill and tool to call next, without needing to reason about skill routing themselves.
+`get_alarms` and `get_events` results include `suggested_actions`: ready-to-use
+companion-skill tool calls (e.g. `"vmware-aiops: acknowledge_vcenter_alarm(...)"`)
+an agent can follow directly. Example: `references/capabilities.md`.
 
 **Use companion skills for**:
 - Power on/off, deploy, clone, migrate --> `vmware-aiops`
@@ -79,7 +79,7 @@ AI agents (especially smaller local models) can read these hints directly to det
 
 | User Intent | Recommended Skill |
 |-------------|------------------|
-| Read-only vSphere monitoring, zero risk | **vmware-monitor** ← this skill |
+| Read-only vSphere monitoring | **vmware-monitor** ← this skill |
 | Storage: iSCSI, vSAN, datastores | **vmware-storage** |
 | VM lifecycle, deployment, guest ops | **vmware-aiops** |
 | Tanzu Kubernetes (vSphere 8.x+) | **vmware-vks** |
@@ -95,20 +95,55 @@ AI agents (especially smaller local models) can read these hints directly to det
 
 > **Diagnostic investigations**: Before running any "why is X failing / down / abnormal" workflow, follow [`references/investigation-protocol.md`](references/investigation-protocol.md). It enforces the four root-cause completeness criteria (falsifiability / sufficiency / necessity / mechanism) and the up-to-three-rounds deepening loop. Since vmware-monitor is read-only, it serves as the data source — actuation belongs to companion skills like vmware-aiops.
 
+### Cluster Health Check ("is anything on fire?" / "what's wrong right now?")
+
+**Judgment**: a fast triage glance, not an Aria replacement. One call rolls up hosts, VM power, CPU/memory and alarms into a ranked **top-N focus list** (`top_issues`) and per-cluster `status`. Lead with the focus list for large fleets.
+
+1. One glance --> `vmware-monitor summary` (MCP: `get_cluster_health_summary`). Read `top_issues` first (worst first, each with a drill-down `next step`); the per-cluster table is context. `issues_total` shows how many anomalies existed before the top-N cap
+2. Tighten or widen the focus --> `--top 5` for the 5 most urgent, `--top 20` for more, `--top 0` to hide the list and just see the table
+3. Drill into what the list points at --> e.g. a `host_down` row → `inventory hosts`; an `alarm` row → `get_alarms`; a `capacity` row → `perf hosts` / `capacity datastores`; scope with `--cluster prod-a`
+4. Reshape the view on request --> the output ends with a friendly hint; the operator can say "add datastore free space", "only show clusters needing attention", or "save this as an HTML page". Default layout, columns, and thresholds live in [`references/health-summary-template.md`](references/health-summary-template.md) and are meant to be edited
+5. Save an offline snapshot --> `vmware-monitor summary --html` writes a self-contained HTML file (no external assets, nothing uploaded) to `~/vmware-health/cluster-health-<vc>-<timestamp>.html`; `--html-path <file>` for an explicit path. It is a snapshot, not a live page — re-run to refresh
+6. **On a very large fleet** --> add `--no-vms` to skip the VM rollup pass when you only need host/alarm/capacity signals
+7. **`totals.clusters` is 0** --> not empty: un-clustered hosts (standalone ESXi, or a cluster-less vCenter) form the `(standalone hosts)` row, still in `totals` and `top_issues`
+
 ### Daily Health Check
 
 **Judgment**: alarms tell you what vCenter has decided is wrong, events tell you what happened. They diverge — an event burst with no alarms often signals a metric threshold miscalibration, not "everything is fine." Read both.
 
-1. Check alarms --> `vmware-monitor health alarms --target prod-vcenter` — focus on Red severity AND alarms older than 1 hour (transient ones self-clear)
+1. Check alarms --> `vmware-monitor health alarms --target prod-vcenter` — focus on Red severity AND alarms older than 1 hour
 2. Review recent events --> `vmware-monitor health events --hours 24 --severity warning` — look for repeated events from the same entity (a single event is noise; 50 events in an hour is a pattern)
 3. List hosts --> `vmware-monitor inventory hosts` — flag hosts disconnected, in maintenance mode unexpectedly, or memory > 90%
 4. **If connection fails** --> run `vmware-monitor doctor` to diagnose config/network issues
+5. **If a tool says NoPermission or returns too little** --> `vmware-monitor access-info --tool <tool>` (MCP: `get_access_info`) shows what the account may do
 
-### Investigate a Specific VM
-1. Find the VM --> `vmware-monitor inventory vms --power-state poweredOff`
-2. Get details --> `vmware-monitor vm info problem-vm`
-3. Check related events --> `vmware-monitor health events --hours 48`
-4. **If VM not found** --> verify VM name with `vmware-monitor inventory vms --limit 100` or check target with `--target <other-vcenter>`
+### Object-Centered Investigation ("what is happening around this VM / host / datastore?")
+
+**Judgment**: this is the drill-down the operator wants after triage points at a problem — one call *correlates* the object with its surrounding infrastructure and recent history, so you explain the aggregated result in operational language instead of stitching five tools yourself. The tool aggregates; you never dump raw inventory into the conversation.
+
+Offer the levels progressively — do **not** ask for details the environment already fixes:
+1. **Start at the top** --> `get_cross_vcenter_attention` (CLI: `vmware-monitor attention`) for "what needs attention now?" across every vCenter. If only one vCenter is configured, skip straight to its `get_cluster_health_summary` — no need to ask which target
+2. **Offer to drill into an object** the top-issues list points at. Ask *which level* only when it is genuinely ambiguous:
+   - a VM --> `investigate_vm` (CLI: `vmware-monitor investigate vm <name>`) → VM state, recent events, snapshots, alarms & recent changes, the host it runs on, the cluster context, the datastores backing it, performance signals, and a correlated event timeline
+   - a host --> `investigate_host` (CLI: `investigate host <name>`) → host state, cluster context, the VMs it runs, mounted datastores, alarms, performance, correlated timeline
+   - a datastore --> `investigate_datastore` (CLI: `investigate datastore <name>`) → capacity/free, mounting hosts, VMs it backs, alarms, correlated timeline
+3. **Widen or narrow** on request --> `--hours 72` for a longer event window; the bundle ends with a hint listing what is adjustable
+4. **Make it tangible** --> add `--html` to any `investigate`/`attention` command for a self-contained offline snapshot (drill-down sections collapse/expand natively, no JS, nothing uploaded) written to `~/vmware-health/`
+5. **If the object name is unknown** --> the tool returns a *teaching* error naming exactly how to list the objects (`list_virtual_machines` / `list_esxi_hosts` / `list_all_datastores`); get the exact name and retry
+6. **If a vCenter is unreachable** (attention only) --> it is listed under `unreachable` with a reason and the rest still aggregate — surface the gap, don't fail the whole view
+
+### Performance Triage ("the cluster feels slow")
+**Judgment**: inventory shows *configured* capacity (cores, GB); it cannot tell you what is actually hot. Use the real-time perf tools, then narrow.
+1. Rank hosts --> `vmware-monitor perf hosts` — the busiest host floats to the top (sorted by CPU%)
+2. Rank VMs on the suspect --> `vmware-monitor perf vms --limit 25` — find the noisy neighbour
+3. Check for hidden storage pressure --> `vmware-monitor capacity datastores` — over-commit % > 100 means a thin datastore can fill mid-run even with "free" space showing
+4. Rule out snapshot drag --> `vmware-monitor snapshots aging --only-old` — old snapshots silently degrade I/O
+5. **If perf tools return empty** --> the host/VM may be disconnected or powered off (no real-time provider); confirm with `inventory hosts` / `inventory vms`
+
+### Scheduled-Outage Pre-flight (certs, licenses, time)
+1. Cert expiry --> `vmware-monitor infra certs --warn-days 60` — an expired ESXi cert drops host management
+2. License headroom --> `vmware-monitor infra licenses` — catch over-allocation before it disables features
+3. Time sync --> `vmware-monitor infra ntp` — `healthy: no` breaks SSO/Kerberos/log correlation (note: live offset is not exposed by the SOAP API, only config health)
 
 ### Set Up Continuous Monitoring
 1. Configure webhook in `~/.vmware-monitor/config.yaml`
@@ -123,43 +158,85 @@ AI agents (especially smaller local models) can read these hints directly to det
 | Cloud models (Claude, GPT-4o) | Either | MCP gives structured JSON I/O |
 | Automated pipelines | **MCP** | Type-safe parameters, structured output |
 
-## MCP Tools (11 — all read-only)
+## MCP Tools (33 — all read-only)
 
 | Tool | Description |
 |------|------------|
-| `list_virtual_machines` | List VMs with filtering (power state, sort, limit, `folder_filter` for case-insensitive folder-tree search); each VM includes `folder_path` |
+| `list_virtual_machines` | List VMs with filtering (power state, sort, limit, `folder_filter`); each VM includes `folder_path` |
 | `list_esxi_hosts` | ESXi hosts with CPU, memory, version, uptime |
 | `list_all_datastores` | Datastores with capacity, free space, type |
 | `list_all_clusters` | Clusters with host count, DRS/HA status |
+| `get_cluster_health_summary` | One-glance triage across all clusters — ranked `top_issues` focus list + per-cluster rollup with opinionated `status`. Params: `cluster_filter`, `include_vms`, `top_n`. Render per `references/health-summary-template.md` |
+| `investigate_vm` | "What is happening around this VM?" — correlated drill-down with a merged, newest-first **event timeline** (contents listed in the workflow above). Params: `vm_name`, `hours`. Aggregated in the tool; explain, don't dump raw |
+| `investigate_host` | Same correlated drill-down around an ESXi host. Params: `host_name`, `hours` |
+| `investigate_datastore` | Same correlated drill-down around a datastore. Params: `datastore_name`, `hours` |
+| `get_cross_vcenter_attention` | "What needs attention now?" across **every** configured vCenter — one globally-ranked `top_issues` list (each tagged with its `vcenter`) + per-target rollup; unreachable targets degrade gracefully. Params: `cluster_filter`, `top_n` |
 | `list_all_networks` | Networks with attached VM count and accessibility |
-| `get_alarms` | All active/triggered alarms — includes `suggested_actions` remediation hints |
-| `get_events` | Recent events filtered by severity and time — includes `suggested_actions` hints |
-| `get_host_sensors` | Hardware sensor status (temperature/voltage/fan) per host with green/yellow/red health |
+| `get_alarms` | Active alarms: `suggested_actions`, acknowledger, `condition_now` (`cleared` = stale) |
+| `get_events` | Events by severity and time window (`start`/`end`) |
+| `get_host_sensors` | Hardware sensor status per host with green/yellow/red health; `interpretation_note` says what an aggregate red memory sensor cannot establish |
 | `get_host_services` | Host service status (running state and startup policy), optionally filtered by host |
-| `vm_info` | Detailed VM info (CPU, memory, disks, NICs, snapshots) |
-| `vm_list_snapshots` | Snapshot list for one VM with nesting hierarchy (read-only) |
+| `get_vm_info` | Detailed VM info (CPU, memory, disks, NICs, snapshots) |
+| `list_vm_snapshots` | Snapshot list for one VM with nesting hierarchy (read-only) |
+| `get_host_performance` | **Real-time** host CPU/mem/disk/net utilisation (PerfManager); busiest first |
+| `get_vm_performance` | **Real-time** VM CPU/mem/balloon/swap/disk/net utilisation (top 25 by default); powered-on only |
+| `find_aging_snapshots` | Inventory-wide snapshot sweep with age + sprawl; flags snapshots older than N days |
+| `get_vm_backup_snapshot_history` | Backup windows for one VM from snapshot task history; a lower bound, not job duration |
+| `get_certificate_status` | Per-host ESXi management certificate expiry (days until expiry, expiring flag) |
+| `get_license_status` | Licenses and per-asset `assignments` |
+| `get_ntp_status` | Per-host NTP config health (servers + ntpd state); live offset not in SOAP API |
+| `get_datastore_capacity` | Datastore over-commit (provisioned vs capacity); thin-provisioning risk |
+| `get_resource_pool_usage` | Resource-pool CPU/memory reservation, limit, and current usage |
+| `list_active_tasks` | In-flight (and recently completed) vCenter tasks with progress/errors |
+| `list_active_sessions` | Who is logged in, and from which client |
+| `get_access_info` | Account in use, and whether it holds a tool's privileges on the root folder (`undetermined` is not granted) |
+| `scan_host_logs` | ESXi host log trouble lines, grouped by pattern (CLI: `scan logs`) |
+| `get_host_memory_tiering` | **vSphere 9.1** — per-host memory tiering (DRAM/NVMe tiers) + NVMe uplift ratio (pyVmomi `hardware.memoryTierInfo`, needs ESXi 8.0U3+). Params: `host_name`, `limit`. Returns the list envelope |
+| `get_cluster_patch_compliance` | **vSphere 9.1** — vLCM software (patch) compliance for one cluster over vSphere Automation REST. Param: `cluster` (MoID, e.g. `domain-c123`). `available:false` = vCenter answered 503 (likely mid-patch), not an error; `non_compliant_hosts` is `null` when the host-status field is unknown, never a false 0 |
+| `get_cluster_last_apply_result` | **vSphere 9.1** — result of the last vLCM remediation (apply) on one cluster (REST). Param: `cluster` (MoID). Reports outcome only; never runs a remediation |
+| `get_vcenter_deployment_size` | **vSphere 9.1** — vCenter appliance deployment size class (REST, NEW in 9.1). `available:false` on 503 |
 
-All tools are **read-only**. No tool can modify, create, or delete any resource.
+> **vSphere 9.1 field-parse honesty**: the 3 REST tools' *endpoints* are spec-verified, but their JSON field names have NOT yet been replayed against a live 9.1 vCenter — every field is read defensively and each result self-labels via its `note` (`endpoint verified; field parse best-effort pending live 9.1 vCenter`). `get_host_memory_tiering` requires vCenter/ESXi 8.0U3+; older targets raise a teaching error naming the missing property.
+
+No tool modifies, creates, or deletes any vCenter/ESXi resource.
+Performance/capacity readings are point-in-time samples — this skill retains no
+history, so it never reports a fabricated "trend" or runway date.
+
+### List result shape
+
+The 21 row-listing tools above (including `get_host_memory_tiering`) return the family list envelope
+`{items, returned, limit, total, truncated, hint}`, not a bare array. Read
+`truncated` before summarising: `true` means more rows exist — never call
+`items` the whole picture; `false` means complete, so empty `items` means
+"checked, found none" — for `scan_host_logs`, only if `logs_unavailable`
+(logs it could not read) is empty too. A `null` `total`
+(`get_events`, `scan_host_logs`) is deliberate. Aggregate tools return
+purpose-built objects — see `references/capabilities.md`.
+
+## Read-Only by Design
+
+All 33 tools are vSphere reads (local writes: see top). Running
+with local or small models? See
+[`references/agent-guardrails.md`](references/agent-guardrails.md).
 
 ## CLI Quick Reference
 
 ```bash
-vmware-monitor inventory vms [--target <t>] [--limit 20] [--power-state poweredOn]
-vmware-monitor inventory hosts [--target <t>]
-vmware-monitor inventory datastores [--target <t>]
-vmware-monitor inventory clusters [--target <t>]
-vmware-monitor inventory networks [--target <t>]
-vmware-monitor health alarms [--target <t>]
-vmware-monitor health events [--hours 24] [--severity warning]
-vmware-monitor health sensors [--target <t>]
-vmware-monitor health services [--host <esxi>] [--target <t>]
+vmware-monitor summary [--top 10] [--cluster <substr>] [--html] [--target <t>]
+vmware-monitor inventory vms|hosts|datastores|clusters|networks [--target <t>]
+vmware-monitor health alarms|events|sensors|services [--target <t>]
+vmware-monitor perf hosts|vms [--target <t>]
+vmware-monitor capacity datastores|pools [--target <t>]
+vmware-monitor infra certs|licenses|ntp [--target <t>]
+vmware-monitor snapshots aging [--only-old] [--target <t>]
 vmware-monitor vm info <vm-name> [--target <t>]
-vmware-monitor scan now [--target <t>]
-vmware-monitor daemon start|stop|status
-vmware-monitor doctor [--skip-auth]
+vmware-monitor memory tiering [--host <esxi>] [--target <t>]        # vSphere 9.1
+vmware-monitor patch compliance|last-apply <cluster-moid> [--target <t>]   # vSphere 9.1 (vLCM)
+vmware-monitor deployment-size [--target <t>]                      # vSphere 9.1
+vmware-monitor scan now | scan logs [--host <name>] | daemon start|stop|status | doctor [--skip-auth]
 ```
 
-> Full CLI reference: see `references/cli-reference.md`
+> Full CLI reference (all flags + activity/tasks/sessions): see `references/cli-reference.md`
 
 ## Troubleshooting
 
@@ -169,7 +246,7 @@ The `get_alarms` tool queries triggered alarms at the root folder level. Some al
 ### "Connection refused" error
 1. Run `vmware-monitor doctor` to diagnose
 2. Verify target hostname/IP and port (443) in config.yaml
-3. For self-signed certs: set `disableSslCertValidation: true`
+3. Verify TLS (`verify_ssl: true`); use `SSL_CERT_FILE` for private CAs. Lab-only `verify_ssl: false` disables certificate/hostname checks, risking impersonation/credential interception.
 
 ### Events returns too many results
 Use severity filter: `--severity warning` (default) filters out info-level events. Use `--hours 4` to narrow time range.
@@ -180,32 +257,39 @@ VMware Tools not installed or not running in the guest. Install/start VMware Too
 ### Doctor passes but commands fail with timeout
 vCenter may be under heavy load. Try targeting a specific ESXi host directly instead of vCenter, or increase connection timeout in config.yaml.
 
+### Every command fails with "session is not authenticated"
+The account has no vSphere role. Assign one (Read-Only or higher) on the vCenter root folder; `vmware-monitor doctor` reports this case by name.
+
+### Should I set `environment:` on a read-only skill?
+Optional: add `environment: production` (or `staging`, `lab`, your own label)
+to each target in `~/.vmware-monitor/config.yaml`. Reads are never gated by it.
+It matters for the write skills (`vmware-aiops`, `vmware-storage`, `vmware-nsx`)
+on the same vCenter: an environment-scoped `deny` rule in `~/.vmware/rules.yaml`
+can match the label to block their writes (e.g. freeze `production`).
+Config example: `references/setup-guide.md`.
+
 ## Setup
 
 ```bash
-uv tool install vmware-monitor
-mkdir -p ~/.vmware-monitor
-cp config.example.yaml ~/.vmware-monitor/config.yaml
-cp .env.example ~/.vmware-monitor/.env
-chmod 600 ~/.vmware-monitor/.env
-# Edit ~/.vmware-monitor/config.yaml (targets) and .env (passwords)
+uv tool install vmware-monitor==2.6.2
+vmware-monitor init      # guided: prompts for host/user/password, writes config + .env (chmod 600), then verifies
 ```
 
-> All tools are automatically audited via vmware-policy. Audit logs: `vmware-audit log --last 20`
+`init` stores the password grep-safe (obfuscated `b64:`, never plaintext) and
+locks `.env` to 0600. Prefer it over hand-editing; manual steps:
+`references/setup-guide.md`.
 
 > Full setup guide, security details, and AI platform compatibility: see `references/setup-guide.md`
 
 ## Audit & Safety
 
-All operations are automatically audited via vmware-policy (`@vmware_tool` decorator):
-- Every tool call logged to `~/.vmware/audit.db` (SQLite, framework-agnostic)
+MCP calls (`@vmware_tool`) and remote CLI commands (`@audited`) are audited via vmware-policy; CLI queries also append to `~/.vmware-monitor/audit.log`:
+- Every MCP call and remote CLI command logged to `~/.vmware/audit.db` (SQLite)
 - Policy rules enforced via `~/.vmware/rules.yaml` (deny rules, maintenance windows, risk levels)
 - Risk classification: each tool tagged as low/medium/high/critical
 - View recent operations: `vmware-audit log --last 20`
 - View denied operations: `vmware-audit log --status denied`
 
-vmware-policy is automatically installed as a dependency — no manual setup needed.
-
 ## License
 
-MIT — [github.com/zw008/VMware-Monitor](https://github.com/zw008/VMware-Monitor)
+MIT — [github.com/vmware-skills/VMware-Monitor](https://github.com/vmware-skills/VMware-Monitor)

@@ -1,0 +1,4 @@
+interface:
+  display_name: "F Design"
+  short_description: "Frontend design, implementation, and production QA"
+  default_prompt: "Use $design-guide to inspect the project, present and confirm the design, implement the approved interface, and pass production frontend quality gates."

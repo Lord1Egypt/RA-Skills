@@ -1,39 +1,55 @@
-## Description: <br>
-Helps users examine potentially dubious beliefs through consent-based verification, Socratic questioning, and privacy-aware reasoning guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps users examine the logical foundations of their beliefs through Socratic questioning when they make potentially dubious claims.
 
-## Publisher: <br>
-[asgraf](https://clawhub.ai/user/asgraf) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[asgraf](https://clawhub.ai/user/asgraf)
 
-## Use Case: <br>
-External users and assistants use this skill to examine sensitive or controversial claims, trace reasoning chains, and identify logical gaps while preserving user autonomy and privacy. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill may ask the agent to retain sensitive belief discussions, claim stacks, and emotional context in memory. <br>
-Mitigation: Disable or override memory persistence unless the user explicitly requests a specific note be saved. <br>
-Risk: Consent-based external verification can still send user claims to web search, fact-checking tools, or other services if enabled. <br>
-Mitigation: Confirm available tools before use, ask for explicit consent, and disclose what will be checked externally. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/asgraf/epistemic-guide) <br>
+## Use Case:
+
+External users and agent developers use this skill to guide respectful Socratic examination of potentially questionable claims, especially around sensitive or controversial topics. It can support offline reasoning or external fact-checking when the user explicitly consents.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Sensitive beliefs, reasoning history, conclusions, or inferred emotional state may be retained by an agent with memory.
+
+Mitigation: Use only with explicit, minimal, opt-in memory behavior, and give users a clear way to decline or remove stored discussion state.
+
+Risk: The artifact includes memory behavior after a user declines to continue a discussion.
+
+Mitigation: Disable silent persistence after opt-out, and require user consent before saving postponed claim stacks or emotional-state notes.
+
+Risk: External verification can transmit user claims to search, fact-checking, or other services.
+
+Mitigation: Keep external verification consent-based and disclose which tool or service will receive the claim before use.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Consent-based external verification may be offered when tools are available; the skill can also operate offline using Socratic questioning.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-2.0.0 (source: ClawHub release metadata) <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Conversational Markdown guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May suggest external verification only with user consent; may also guide offline Socratic questioning.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

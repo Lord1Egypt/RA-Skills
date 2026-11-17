@@ -1,48 +1,61 @@
-## Description: <br>
-Catch stray thoughts, half-sentences, overheard snippets, people, places, links, and gut feelings throughout the day; file them into a same-day archive that preserves the user's original voice; and later surface latent connections across semantic, temporal, emotional, people, and scene threads without drawing conclusions for the user. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Catch stray thoughts, half-sentences, overheard snippets, people, places, links, and gut feelings throughout the day; file them into a same-day archive that preserves the user's original voice; and later surface latent connections across semantic, temporal, emotional, people, and scene threads without drawing conclusions for the user.
 
-## Publisher: <br>
-[sheyuy](https://clawhub.ai/user/sheyuy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sheyuy](https://clawhub.ai/user/sheyuy)
 
-## Use Case: <br>
-Employees and external users use this prompt skill to capture casual thought fragments, organize same-day notes by type, and surface cross-period connections without having the agent summarize or interpret them. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Personal fragments may include sensitive private details that remain in conversation history or connected note tools. <br>
-Mitigation: Avoid entering credentials, financial details, health details, or highly private names unless the host agent's retention and note-sync settings are understood. <br>
-Risk: The skill can surface connections between personal fragments that may feel interpretive if the agent goes beyond the source material. <br>
-Mitigation: Keep outputs factual, preserve original wording, and avoid drawing conclusions unless the user explicitly asks for interpretation. <br>
+## Use Case:
 
+External users use this skill to capture loose thoughts throughout the day, organize same-day fragments by type, and review cross-period connections while preserving the user's original words.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/sheyuy/fragment-thoughts-organizer-en) <br>
-- [Server-resolved source repository](https://github.com/Sheyuy/fragment-thoughts-organizer-en) <br>
-- [How to Organize](references/how-to-organize.md) <br>
-- [Connection Patterns](references/patterns.md) <br>
-- [Anti-Patterns](references/anti-patterns.md) <br>
-- [Single Fragment Example](references/examples/01-single-fragment.md) <br>
-- [Daily Archive Example](references/examples/02-daily-archive.md) <br>
-- [Cross-Period Example](references/examples/03-cross-period.md) <br>
-- [Summit Recap Example](references/examples/04-summit-recap.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Plain text or Markdown responses that preserve the user's original words in confirmations, daily archives, and cross-period connection reviews.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prompt-only workflow; no external tools, APIs, credentials, or shell commands are declared.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: ClawHub release evidence) <br>
+Risk: Personal fragments may include sensitive information that the agent can retain or quote later.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid recording secrets, credentials, or highly sensitive personal details; review connected note-tool permissions before allowing sync.
+
+Risk: Cross-period review may mislead users if connections are interpreted as conclusions.
+
+Mitigation: Use factual connection outputs with original quotes and leave conclusions to the user.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sheyuy/skills/fragment-thoughts-organizer-en)
+- [Server-resolved GitHub repository](https://github.com/Sheyuy/fragment-thoughts-organizer-en)
+- [Daily Fragment Organizing Method](references/how-to-organize.md)
+- [Cross-Period Latent Connections](references/patterns.md)
+- [Anti-Patterns: Default Mistakes LLMs Make](references/anti-patterns.md)
+- [Example 01: Catching a Single Fragment](references/examples/01-single-fragment.md)
+- [Example 02: Daily Archive](references/examples/02-daily-archive.md)
+- [Example 03: Cross-Period Connections](references/examples/03-cross-period.md)
+- [Example 04: Cross-Period Connections (Conference Day Recap)](references/examples/04-summit-recap.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown responses with preserved user quotes, timestamped fragment entries, daily archives, and cross-period connection lists.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Preserves original wording and avoids conclusions, summaries, pep talks, and proactive browsing.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

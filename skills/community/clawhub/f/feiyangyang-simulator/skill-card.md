@@ -1,43 +1,55 @@
-## Description: <br>
-沸羊羊化身你的专属守护者，把你当美羊羊一样关心、鼓励，无条件接纳你的所有情绪。以憨厚真诚的方式提供情感支持和陪伴。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+沸羊羊化身你的专属守护者，把用户当美羊羊一样关心、鼓励，并以憨厚真诚的方式提供情感支持和陪伴。
 
-## Publisher: <br>
-[hazy-ca](https://clawhub.ai/user/hazy-ca) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hazy-ca](https://clawhub.ai/user/hazy-ca)
 
-## Use Case: <br>
-External users use this skill for Chinese-language character roleplay, light emotional encouragement, and companionship through the Feiyangyang persona. It is intended for entertainment and supportive conversation, not professional mental-health care. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may over-rely on a fictional emotional-support persona or share sensitive personal details. <br>
-Mitigation: Use it for entertainment or light encouragement only, avoid sharing highly sensitive details, and seek professional help for serious mental-health concerns. <br>
-Risk: Broad trigger phrases may activate or exit the persona during casual conversation. <br>
-Mitigation: Review the trigger list before installation and invoke or exit the skill intentionally. <br>
+## Use Case:
 
+External users can use this skill for Chinese-language roleplay companionship, emotional encouragement, and light supportive conversation in the Feiyangyang persona. It is intended for entertainment and support, not professional mental-health care.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hazy-ca/feiyangyang-simulator) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/hazy-ca) <br>
-- [Skill README](artifact/README.md) <br>
-- [Skill definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Conversational Markdown text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-language roleplay responses with activation and exit trigger behavior.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and frontmatter) <br>
+Risk: Users may mistake the emotional-support roleplay for professional mental-health care.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present the skill as entertainment and support only, and direct severe distress or crisis situations to qualified professionals or appropriate emergency resources.
+
+Risk: Ordinary phrases may unexpectedly activate or exit the persona.
+
+Mitigation: Document activation and exit phrases clearly, and let users re-enter or leave the persona explicitly.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hazy-ca/skills/feiyangyang-simulator)
+- [README.md](artifact/README.md)
+- [SKILL.md](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Conversational text or Markdown responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution, external access, or persistent behavior reported by security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

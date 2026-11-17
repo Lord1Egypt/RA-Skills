@@ -1,41 +1,54 @@
-## Description: <br>
-Provides JFTech device cloud storage workflows for querying cloud video lists, retrieving playback or download URLs, and querying cloud alarm messages for devices with an active cloud storage plan. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+JFTech cloud storage skill for JFTech devices that helps agents query cloud video lists, retrieve playback or download URLs, and query cloud alarm messages for devices with an active cloud storage plan.
 
-## Publisher: <br>
-[jftech](https://clawhub.ai/user/jftech) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jftech](https://clawhub.ai/user/jftech)
 
-## Use Case: <br>
-Developers and operators use this skill to run JFTech cloud-camera storage tasks from an agent, including video list lookup, playback or MP4 download URL retrieval, and alarm-message lookup. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-China, Asia, Europe, and North America <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles surveillance footage metadata, playback URLs, app secrets, and device tokens. <br>
-Mitigation: Use only in trusted environments, keep credentials out of shared shells, logs, and screenshots, and treat returned playback or download URLs as sensitive access links. <br>
-Risk: The configurable JF_ENDPOINT can direct credentialed API requests away from expected regional JFTech domains. <br>
-Mitigation: Set JF_ENDPOINT only to official JFTech regional domains documented for CN, AS, EU, or NA deployments. <br>
+## Use Case:
 
+Developers and operators use this skill to work with JFTech camera cloud storage: listing videos, obtaining HLS playback or MP4 download URLs, and checking alarm history. It requires configured JFTech OpenAPI credentials, a bound device, and an active cloud storage plan.
 
-## Reference(s): <br>
-- [JFTech Open Platform documentation](https://docs.jftech.com) <br>
-- [ClawHub skill page](https://clawhub.ai/jftech/jf-open-pro-cloud-record) <br>
+### Deployment Geography for Use:
 
+China Mainland (CN), Asia (AS), Europe (EU), and North America (NA)
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON-like API result summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May expose sensitive playback or download URLs returned by the JFTech cloud API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: Sensitive camera credentials could be sent to an unintended API host if JF_ENDPOINT is changed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Set JF_ENDPOINT only to documented official JFTech regional hosts and run the skill where other users or wrappers cannot alter environment variables.
+
+Risk: Playback/download URLs, app secrets, device tokens, serial numbers, and alarm history may expose private camera data.
+
+Mitigation: Treat these values as secrets, avoid logging or sharing them, and review console output before forwarding it to other systems.
+
+## Reference(s):
+
+- [JFTech Open Platform documentation](https://docs.jftech.com)
+- [ClawHub skill page](https://clawhub.ai/jftech/skills/jf-open-pro-cloud-record)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Guidance, API calls]
+
+**Output Format:** [Markdown or plain text with shell command examples and console output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May return video lists, alarm records, and playback or download URLs. The artifact documents playback/download URLs as valid for 24 hours.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence; artifact metadata reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

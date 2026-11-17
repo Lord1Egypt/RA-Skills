@@ -1,44 +1,58 @@
-## Description: <br>
-StockScanner Pro is a social-media automation skill for generating, scheduling, publishing, and listing posts across Twitter/X, Weibo, and Xiaohongshu with optional comment auto-replies. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Social media automation agent that generates, schedules, publishes, and optionally replies to posts for Twitter, Weibo, and Xiaohongshu.
 
-## Publisher: <br>
-[anson125chen](https://clawhub.ai/user/anson125chen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[anson125chen](https://clawhub.ai/user/anson125chen)
 
-## Use Case: <br>
-External creators, marketing operators, and developers use this skill to generate platform-specific social posts, schedule publication, run due tasks, and manage basic social-media automation workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can publish or reply from public social-media accounts when configured with platform credentials. <br>
-Mitigation: Use dry-run or manual review before enabling posting, scheduled execution, or auto-reply workflows; keep a quick disable path available. <br>
-Risk: The skill relies on sensitive platform credentials, including API keys, access tokens, and browser cookies. <br>
-Mitigation: Use least-privileged tokens where available, avoid browser cookies when possible, store credentials outside shared files, and rotate credentials after testing. <br>
-Risk: Scheduled and automated replies can create unintended public activity at scale. <br>
-Mitigation: Set explicit rate limits, review reply rules before activation, and monitor scheduled jobs after deployment. <br>
+## Use Case:
 
+External creators, marketers, and operators use this agent to draft, queue, publish, and review scheduled social posts across supported platforms. It can be run manually or via cron after platform credentials are configured.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/anson125chen/stockscanner-pro) <br>
-- [Publisher profile](https://clawhub.ai/user/anson125chen) <br>
-- [Project website](https://asmartglobal.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline JSON and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local scheduled-task records and may propose cron-based execution when configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release, SKILL.md frontmatter, package.json) <br>
+Risk: Configured API keys, tokens, and cookies can grant access to social accounts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Store credentials outside shared repositories, restrict account privileges where possible, and rotate tokens if exposed.
+
+Risk: Scheduled cron execution can publish queued public posts without a fresh confirmation.
+
+Mitigation: Enable cron only for accounts and workflows where unattended posting is acceptable; review queued tasks before scheduled run windows.
+
+Risk: Generated posts or auto-replies may be inaccurate, off-brand, or inappropriate for public channels.
+
+Mitigation: Require human review for generated content and comment reply rules before publication.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/anson125chen/skills/stockscanner-pro)
+- [Project website](https://asmartglobal.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with JSON configuration and shell command examples; runtime script output is plain text.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May queue scheduled public posts and write task state under the skill data directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata, SKILL.md frontmatter, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

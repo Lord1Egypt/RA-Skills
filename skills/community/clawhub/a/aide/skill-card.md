@@ -1,41 +1,54 @@
-## Description: <br>
-AIDE file integrity monitoring reference. Database initialization, integrity checks, update workflow, aide.conf configuration, selection rules, report parsing, and production deployment with CIS benchmark compliance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AIDE file integrity monitoring reference. Database initialization, integrity checks, update workflow, aide.conf configuration, selection rules, report parsing, and production deployment with CIS benchmark compliance.
 
-## Publisher: <br>
-[xueyetianya](https://clawhub.ai/user/xueyetianya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xueyetianya](https://clawhub.ai/user/xueyetianya)
 
-## Use Case: <br>
-Developers, security engineers, and system administrators use this skill as AIDE reference material for file integrity monitoring, baseline database workflows, configuration rules, reporting, and production deployment planning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill includes administrative deployment snippets for package installation, cron scheduling, file moves, permissions, immutable flags, and offsite copies. <br>
-Mitigation: Review OS-specific paths, replace email and backup destinations, and run cron, chmod, chattr, mv, scp, or package-install commands only after administrator approval. <br>
-Risk: AIDE baseline rotation can accept unauthorized changes if performed without reviewing integrity-check output. <br>
-Mitigation: Review reported changes before rotating or replacing the baseline database, and investigate unexpected differences before accepting a new baseline. <br>
+## Use Case:
 
+Developers and system administrators use this skill for AIDE file-integrity monitoring guidance, including baseline initialization, integrity checks, configuration, reporting, and production deployment.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xueyetianya/aide) <br>
-- [Publisher homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown text with command snippets and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reference commands are emitted as guidance and should be reviewed before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Privileged cron and database-protection examples can affect system monitoring or recovery when copied without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm target paths, replace placeholder email and backup hosts, avoid duplicate cron entries, and prefer a reviewed cron.d or systemd timer setup with a rollback path.
+
+Risk: Accepting an AIDE database update without review can turn unexpected filesystem changes into the trusted baseline.
+
+Mitigation: Review reported changes before replacing the active database and keep protected backups of known-good baselines.
+
+## Reference(s):
+
+- [Aide on ClawHub](https://clawhub.ai/xueyetianya/skills/aide)
+- [BytesAgain](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown reference text with bash and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Command-specific reference output; no API calls or credential environment variables were detected in the provided evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

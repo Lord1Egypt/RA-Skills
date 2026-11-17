@@ -1,43 +1,58 @@
-## Description: <br>
-Searches local personal and internal documents, including Word, Excel, PDF, and Markdown files, using semantic keywords and returns relevant snippets with file paths. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+使用语义关键词搜索本地个人和内部文档(Word/Excel/PDF/Markdown)。当用户询问本地文件、私人数据或内部知识时使用此工具。它会返回高度相关的文本片段和文件路径。注意：始终使用提取的核心实体作为关键词，而不是完整句子。
 
-## Publisher: <br>
-[whyischen](https://clawhub.ai/user/whyischen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[whyischen](https://clawhub.ai/user/whyischen)
 
-## Use Case: <br>
-Employees, developers, and external users use this skill to search local or internal document collections from an agent workflow and retrieve relevant text snippets and file paths. It is intended for local knowledge retrieval where the user has intentionally added document folders to the ContextBridge index. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can install and invoke a third-party package that indexes local personal or internal files. <br>
-Mitigation: Install only when the user trusts cbridge-agent, add narrowly chosen folders, and review watched folders regularly. <br>
-Risk: Search results can expose private snippets and local file paths to the agent conversation. <br>
-Mitigation: Avoid highly sensitive directories and treat returned snippets and paths as private data. <br>
-Risk: The supporting local service or index may remain active after it is no longer needed. <br>
-Mitigation: Use the documented remove and stop controls when folders, indexes, or services should no longer be available. <br>
+## Use Case:
 
+Developers and agent users use this skill to install and operate ContextBridge so an agent can search local Word, Excel, PDF, and Markdown documents by focused semantic keywords.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/whyischen/local-context-bridge-cn) <br>
-- [Publisher profile](https://clawhub.ai/user/whyischen) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and prose guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search results may include private snippets and local file paths from indexed folders.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: The skill can give an agent persistent access to private or internal local documents, including returned snippets and file paths.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Add only narrow folders that are explicitly intended for agent search, and avoid home directories, shared drives, secrets, regulated data, customer data, legal, medical, or financial files.
+
+Risk: The installed ContextBridge package and indexed document scope may be broader than intended.
+
+Mitigation: Review before installing, use a dedicated virtual environment, and pin or verify the cbridge-agent version.
+
+Risk: Users may not realize when the agent is searching local documents.
+
+Mitigation: Require the agent to state when it searches local documents and summarize which scoped sources were queried.
+
+## Reference(s):
+
+- [ContextBridge GitHub repository](https://github.com/whyischen/context-bridge)
+- [ClawHub skill page](https://clawhub.ai/whyischen/skills/local-context-bridge-cn)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include local document snippets and file paths returned by ContextBridge searches.]
+
+## Skill Version(s):
+
+1.0.2 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

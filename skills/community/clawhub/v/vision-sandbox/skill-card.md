@@ -1,42 +1,55 @@
-## Description: <br>
-Vision Sandbox sends an image and prompt to Gemini with code execution enabled for spatial grounding, visual math, and UI auditing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agentic Vision via Gemini's native Code Execution sandbox. Use for spatial grounding, visual math, and UI auditing.
 
-## Publisher: <br>
-[johanesalxd](https://clawhub.ai/user/johanesalxd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[johanesalxd](https://clawhub.ai/user/johanesalxd)
 
-## Use Case: <br>
-Developers and coding agents use Vision Sandbox to analyze screenshots and images, returning grounded observations such as coordinates, counts, layout issues, generated code, and model reasoning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Images, screenshots, prompts, and resulting analysis are sent to Google Gemini under the user's API key. <br>
-Mitigation: Avoid submitting secrets, credentials, private customer data, or confidential screenshots unless permitted by the user's data-handling policy; use a constrained or monitored Gemini key where possible. <br>
-Risk: Vision analysis and generated sandbox code may produce incorrect coordinates, counts, or layout conclusions. <br>
-Mitigation: Review model responses and code execution output before applying results to user-facing interfaces or automated changes. <br>
+## Use Case:
 
+Developers and agent builders use Vision Sandbox to send images and prompts to Gemini for spatial grounding, visual calculation, UI auditing, and visual reasoning that can inform coding or review workflows.
 
-## Reference(s): <br>
-- [Vision Sandbox on ClawHub](https://clawhub.ai/johanesalxd/vision-sandbox) <br>
-- [README](README.md) <br>
-- [Skill definition](SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, files, guidance] <br>
-**Output Format:** [Markdown-style terminal output with model text, fenced Python code, code execution output, and optional generated image file paths.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires uv and GEMINI_API_KEY; may write sandbox_output PNG files when Gemini returns inline media.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: Chosen images and prompts are sent to Gemini/Google for processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not use sensitive screenshots, secrets, regulated data, or private customer material unless policy permits that external processing.
+
+Risk: Generated inline image outputs can be written as sandbox_output_*.png in the current directory, where names may collide.
+
+Mitigation: Run the skill from a working directory where these output filenames are acceptable, or move existing sandbox_output_*.png files before execution.
+
+## Reference(s):
+
+- [Vision Sandbox on ClawHub](https://clawhub.ai/johanesalxd/skills/vision-sandbox)
+- [Vision Sandbox source repository](https://github.com/johanesalxd/vision-sandbox)
+- [uv Python package manager](https://github.com/astral-sh/uv)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, files]
+
+**Output Format:** [Markdown-like CLI output with model text, Python code blocks, sandbox output blocks, and optional generated image files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write sandbox_output_<candidate>_<part>.png files when Gemini returns inline image data.]
+
+## Skill Version(s):
+
+1.1.0 (source: SKILL.md frontmatter and ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

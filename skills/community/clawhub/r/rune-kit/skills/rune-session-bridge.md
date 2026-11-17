@@ -47,6 +47,7 @@ Solve the #1 developer complaint: context loss across sessions. Session-bridge a
 - `context-pack` (L3): coordinate state for sub-agent handoff
 - `neural-memory` (L3): sync key decisions back to `.rune/` files after Capture Mode
 - `adversary` (L2): (oracle-mode) detach protocol when target model is opus-class for non-blocking dispatch
+- `logic-guardian` (L2): preserve logic-manifest state across sessions
 
 ## State Files Managed
 
@@ -559,7 +560,7 @@ When `oracle.dispatched` arrives, payload contains:
 - `sessionId` — caller-provided unique id
 - `triggerSignal` — `agent.stuck` or manual
 - `sourceSkill` — `debug` | `fix` | manual
-- `targetModel` — concrete model name (e.g. `gpt-5-pro`, `gemini-3-pro`, `claude-opus-4-7`)
+- `targetModel` — concrete model name (e.g. `gpt-5.6-sol`, `gemini-3-pro`, `claude-opus-4-8`, `claude-fable-5`)
 - `bundleHash` — sha256 of the bundled context (idempotency key)
 
 ### Step D2 — Idempotency check
@@ -576,7 +577,7 @@ Create `.rune/oracle-pending/<sessionId>.json`:
   "dispatchedAt": "2026-04-27T12:34:56Z",
   "triggerSignal": "agent.stuck",
   "sourceSkill": "debug",
-  "targetModel": "claude-opus-4-7",
+  "targetModel": "claude-opus-4-8",
   "bundleHash": "sha256:9f3a...",
   "status": "pending",
   "timeoutAt": "2026-04-27T12:44:56Z",
@@ -688,7 +689,7 @@ Known failure modes for this skill. Check these before declaring done.
 ~100-300 tokens per save. ~500-1000 tokens per load. Always haiku. Negligible cost.
 
 ---
-> **Rune Skill Mesh** — 64 skills, 204 connections + 40 signals, 14 extension packs
+> **Rune Skill Mesh** — 66 skills, 248 connections + 45 signals, 14 extension packs
 > [Landing Page](https://rune-kit.github.io/rune) · [Source](https://github.com/rune-kit/rune) (MIT)
-> **Rune Pro** ($49 lifetime) — product, sales, data-science, support packs → [rune-kit/rune-pro](https://github.com/rune-kit/rune-pro)
+> **Rune Pro** ($49 lifetime) — 9 domain packs + context intelligence → [rune-kit/rune-pro](https://github.com/rune-kit/rune-pro)
 > **Rune Business** ($149 lifetime) — finance, legal, HR, enterprise-search packs → [rune-kit/rune-business](https://github.com/rune-kit/rune-business)

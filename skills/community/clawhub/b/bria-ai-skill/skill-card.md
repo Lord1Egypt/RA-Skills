@@ -1,46 +1,63 @@
-## Description: <br>
-Helps agents generate, edit, upscale, restyle, and remove backgrounds from images through Bria AI's hosted image APIs for product photography, visual assets, and batch workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents generate, edit, upscale, restyle, and remove image backgrounds through Bria AI API workflows for product, marketing, and visual asset creation.
 
-## Publisher: <br>
-[galbria](https://clawhub.ai/user/galbria) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[galbria](https://clawhub.ai/user/galbria)
 
-## Use Case: <br>
-Developers, designers, and content teams use this skill to guide image generation, background removal, image editing, product lifestyle-shot creation, upscaling, and batch visual-asset workflows with Bria AI APIs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, image URLs, masks, or local image paths may be sent to Bria's hosted API for processing. <br>
-Mitigation: Use the skill only where policy permits external API processing, and avoid sensitive or regulated images unless that use is approved. <br>
-Risk: The Bria API key could be exposed if pasted into chat or committed into files. <br>
-Mitigation: Store BRIA_API_KEY in an environment variable or secret manager and avoid including the secret in prompts, examples, or source files. <br>
+## Use Case:
 
+Developers, marketers, and e-commerce teams use this skill to ask an agent for Bria-powered image generation, editing, background removal, product photography, and batch visual asset workflows.
 
-## Reference(s): <br>
-- [Bria AI homepage](https://bria.ai) <br>
-- [ClawHub skill page](https://clawhub.ai/galbria/bria-ai-skill) <br>
-- [Bria.ai API Reference](references/api-endpoints.md) <br>
-- [Bria AI Workflows & Advanced Patterns](references/workflows.md) <br>
-- [Python Client](references/code-examples/bria_client.py) <br>
-- [TypeScript Client](references/code-examples/bria_client.ts) <br>
-- [Bash/curl Reference](references/code-examples/bria_client.sh) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with JSON payload examples, shell commands, and Python, TypeScript, and bash code snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires BRIA_API_KEY for API-backed image generation and editing workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.5 (source: server release metadata and skill metadata) <br>
+Risk: Prompts and selected image content are sent to Bria when the skill is used for generation or editing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for content that may be shared with Bria, and avoid submitting sensitive, confidential, or regulated image data unless approved for that service.
+
+Risk: API keys may be exposed if users paste them into chat, print them with echo, or copy examples without secret handling.
+
+Mitigation: Configure BRIA_API_KEY through a private environment or secret manager and avoid displaying the token in agent transcripts or logs.
+
+Risk: Bundled clients can upload local files, download remote image URLs, and poll returned status URLs.
+
+Mitigation: Before production use, restrict allowed local upload paths and remote URL sources, and validate status URLs before polling.
+
+## Reference(s):
+
+- [Bria AI homepage](https://bria.ai)
+- [ClawHub skill page](https://clawhub.ai/galbria/skills/bria-ai-skill)
+- [API Endpoints Reference](references/api-endpoints.md)
+- [Workflows and Pipelines](references/workflows.md)
+- [Python Client Example](references/code-examples/bria_client.py)
+- [TypeScript Client Example](references/code-examples/bria_client.ts)
+- [Bash/curl Reference](references/code-examples/bria_client.sh)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON payloads, curl commands, and Python, TypeScript, or shell code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May help an agent issue Bria API requests and relay returned image URLs; background removal workflows return PNG images with transparency.]
+
+## Skill Version(s):
+
+1.2.5 (source: server release and artifact frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

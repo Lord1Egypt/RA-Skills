@@ -1,49 +1,71 @@
-## Description: <br>
-Full-stack frontend development combining premium UI design, cinematic animations, AI-generated media assets, persuasive copywriting, and visual art. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Builds complete frontend experiences with UI design, cinematic animation, AI-generated MiniMax media assets, persuasive copy, and generative art guidance.
 
-## Publisher: <br>
-[daidai8910g](https://clawhub.ai/user/daidai8910g) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[daidai8910g](https://clawhub.ai/user/daidai8910g)
 
-## Use Case: <br>
-Developers and frontend engineers use this skill to plan and build visually rich web pages, landing pages, product pages, dashboards, and generated media assets with MiniMax-backed image, video, music, and text-to-speech workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill's MiniMax API scripts can send prompts, text, lyrics, and related content to an environment-configured API endpoint. <br>
-Mitigation: Use only an official HTTPS MiniMax endpoint for MINIMAX_API_BASE and avoid submitting confidential, regulated, or sensitive content in prompts. <br>
-Risk: MiniMax API keys may be exposed through terminal output, logs, screenshots, or shared support threads. <br>
-Mitigation: Keep MINIMAX_API_KEY out of pasted commands, logs, screenshots, and shared transcripts; rotate the key if exposure is suspected. <br>
+## Use Case:
 
+Developers and frontend engineers use this skill to build landing pages, marketing sites, product pages, dashboards, and rich web experiences that combine local media assets, motion, copywriting, and implementation guidance.
 
-## Reference(s): <br>
-- [MiniMax CLI Reference](references/minimax-cli-reference.md) <br>
-- [Environment Setup](references/env-setup.md) <br>
-- [Asset Prompt Guide](references/asset-prompt-guide.md) <br>
-- [MiniMax Image Guide](references/minimax-image-guide.md) <br>
-- [MiniMax Video Guide](references/minimax-video-guide.md) <br>
-- [MiniMax TTS Guide](references/minimax-tts-guide.md) <br>
-- [MiniMax Music Guide](references/minimax-music-guide.md) <br>
-- [MiniMax Voice Catalog](references/minimax-voice-catalog.md) <br>
-- [Motion Recipes](references/motion-recipes.md) <br>
-- [Troubleshooting](references/troubleshooting.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown guidance with inline code, shell commands, configuration steps, and generated frontend or media asset files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce local image, video, audio, HTML, CSS, JavaScript, and framework project files depending on the user request.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: API keys and prompts may be sent to a user-configured MiniMax endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Set MINIMAX_API_BASE only to official MiniMax HTTPS endpoints and use a narrowly scoped, revocable API key.
+
+Risk: Generated image, video, or audio downloads may come from unvalidated URLs returned by the provider.
+
+Mitigation: Treat downloaded media as untrusted until the URL, file type, and content are reviewed before publication or reuse.
+
+Risk: Prompt text, lyrics, or narration sent to the media APIs may contain confidential or rights-sensitive material.
+
+Mitigation: Avoid confidential inputs and verify rights for text, lyrics, voices, imagery, and generated assets before commercial use.
+
+Risk: Dependency setup guidance uses unpinned package installation.
+
+Mitigation: Install dependencies in a managed environment and pin package versions before production use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/daidai8910g/skills/minimax-frontend-dev)
+- [MiniMax provider reference](references/minimax-cli-reference.md)
+- [Environment setup](references/env-setup.md)
+- [Asset prompt guide](references/asset-prompt-guide.md)
+- [MiniMax image guide](references/minimax-image-guide.md)
+- [MiniMax video guide](references/minimax-video-guide.md)
+- [MiniMax TTS guide](references/minimax-tts-guide.md)
+- [MiniMax music guide](references/minimax-music-guide.md)
+- [MiniMax voice catalog](references/minimax-voice-catalog.md)
+- [Motion recipes](references/motion-recipes.md)
+- [Troubleshooting](references/troubleshooting.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with code snippets, shell commands, and generated project files or assets when used by an agent.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May call MiniMax APIs through bundled scripts when MINIMAX_API_KEY and MINIMAX_API_BASE are configured.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact metadata version is 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

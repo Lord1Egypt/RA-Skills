@@ -3,7 +3,7 @@ title: TeacherKit - AI 备课助手
 author: dongsheng123132
 author_url: https://github.com/dongsheng123132
 funding_url: https://github.com/dongsheng123132
-version: 1.0.0
+version: 1.1.0
 license: MIT
 description: AI-powered lesson preparation toolkit for educators. Generate lesson plans, quizzes, and course outlines with structured, professional output. Zero dependencies, works with any LLM. 为教师打造的 AI 备课助手——一键生成教案、试题、课程大纲。
 required_open_webui_version: 0.4.0
@@ -27,7 +27,7 @@ class Tools:
         )
         student_level: str = Field(
             default="本科",
-            description="Student level: 本科(Undergraduate) / 研究生(Graduate) / 高职(Vocational) / 高中(High School)",
+            description="Student level: 小学(Primary) / 初中(Middle School) / 高中(High School) / 高职(Vocational) / 本科(Undergraduate) / 研究生(Graduate)",
         )
         language: str = Field(
             default="中文",
@@ -43,7 +43,7 @@ class Tools:
         topic: str,
         duration: str = "2学时",
         teaching_goals: str = "",
-        __user__: dict = {},
+        __user__: dict = None,
         __event_emitter__: Callable[[dict], Awaitable[None]] = None,
     ) -> str:
         """
@@ -69,7 +69,7 @@ class Tools:
                 }
             )
 
-        user_valves = __user__.get("valves", self.UserValves())
+        user_valves = self._user_valves(__user__)
         subject = user_valves.subject or ""
         level = user_valves.student_level or "本科"
         lang = user_valves.language or "中文"
@@ -116,25 +116,25 @@ class Tools:
 
 按时间线详细展开，包含以下环节：
 
-#### 1️⃣ 课程导入（约{self._calc_time(duration, 0.1)}）
+#### 1️⃣ 课程导入（约{self._calc_time(duration, 0.1, level)}）
 - 引入方式（案例/问题/回顾）
 - 具体内容
 
-#### 2️⃣ 新知讲授（约{self._calc_time(duration, 0.5)}）
+#### 2️⃣ 新知讲授（约{self._calc_time(duration, 0.5, level)}）
 - 知识点分解与讲授顺序
 - 每个知识点的讲解方式
 - 关键例题/案例
 - 师生互动设计
 
-#### 3️⃣ 实践环节（约{self._calc_time(duration, 0.25)}）
+#### 3️⃣ 实践环节（约{self._calc_time(duration, 0.25, level)}）
 - 课堂练习/讨论/实验
 - 具体任务描述
 
-#### 4️⃣ 总结提升（约{self._calc_time(duration, 0.1)}）
+#### 4️⃣ 总结提升（约{self._calc_time(duration, 0.1, level)}）
 - 知识梳理与总结
 - 思维导图/知识框架
 
-#### 5️⃣ 课后作业（约{self._calc_time(duration, 0.05)}）
+#### 5️⃣ 课后作业（约{self._calc_time(duration, 0.05, level)}）
 - 必做题（巩固基础）
 - 选做题（拓展提升）
 
@@ -165,7 +165,7 @@ class Tools:
         num_questions: int = 5,
         question_types: str = "选择题,判断题,简答题",
         difficulty: str = "中等",
-        __user__: dict = {},
+        __user__: dict = None,
         __event_emitter__: Callable[[dict], Awaitable[None]] = None,
     ) -> str:
         """
@@ -190,13 +190,12 @@ class Tools:
                 }
             )
 
-        user_valves = __user__.get("valves", self.UserValves())
+        user_valves = self._user_valves(__user__)
         level = user_valves.student_level or "本科"
         lang = user_valves.language or "中文"
 
         max_q = self.valves.max_quiz_questions
-        if num_questions > max_q:
-            num_questions = max_q
+        num_questions = max(1, min(int(num_questions or 5), max_q))
 
         lang_instruction = self._get_lang_instruction(lang)
 
@@ -311,7 +310,7 @@ D. 选项4
         total_hours: str = "32学时",
         textbook: str = "",
         additional_requirements: str = "",
-        __user__: dict = {},
+        __user__: dict = None,
         __event_emitter__: Callable[[dict], Awaitable[None]] = None,
     ) -> str:
         """
@@ -336,7 +335,7 @@ D. 选项4
                 }
             )
 
-        user_valves = __user__.get("valves", self.UserValves())
+        user_valves = self._user_valves(__user__)
         subject = user_valves.subject or ""
         level = user_valves.student_level or "本科"
         lang = user_valves.language or "中文"
@@ -455,7 +454,103 @@ D. 选项4
 
         return prompt
 
+    async def generate_slides_outline(
+        self,
+        topic: str,
+        course_name: str = "",
+        duration: str = "1课时",
+        num_slides: int = 14,
+        __user__: dict = None,
+        __event_emitter__: Callable[[dict], Awaitable[None]] = None,
+    ) -> str:
+        """
+        Generate a page-by-page courseware / PPT outline (课件PPT大纲) for a lesson.
+        Use this when the user wants 课件, PPT, slides, or 幻灯片 for a topic.
+
+        :param topic: Lesson topic (e.g. 光合作用, 二次函数的图像与性质)
+        :param course_name: Optional course or subject name
+        :param duration: Class duration (e.g. 1课时, 45分钟). Default: 1课时
+        :param num_slides: Target number of slides (default: 14, range 6-40)
+        :return: A structured prompt for the LLM to generate the slide outline
+        """
+        await self._status(__event_emitter__, f"正在规划「{topic}」课件大纲...", False)
+        uv = self._user_valves(__user__)
+        level = uv.student_level or "本科"
+        lang_instruction = self._get_lang_instruction(uv.language or "中文")
+        num_slides = max(6, min(int(num_slides or 14), 40))
+        course_hint = f"- **课程**：{course_name}\n" if course_name else ""
+
+        prompt = f"""你是一位擅长课件设计的教学设计师。请为以下课题设计一份逐页课件（PPT）大纲。
+
+{course_hint}- **课题**：{topic}
+- **学段**：{level}
+- **时长**：{duration}
+- **页数**：约 {num_slides} 页
+
+请用表格逐页输出：
+
+| 页码 | 页面类型 | 标题 | 要点（≤4条，每条≤20字） | 配图/动画建议 | 讲解备注 |
+
+页面类型依次覆盖：封面 → 学习目标 → 情境导入 → 新知讲解（多页）→ 例题/互动 → 课堂练习 → 小结 → 作业 → 结束页。
+
+要求：
+1. 一页一个核心观点，文字精简，适合投影
+2. 互动页标明形式（提问/投票/小组讨论）
+3. 讲解备注写出教师口述要点，便于直接试讲
+4. 风格与难度符合{level}学生认知水平
+{lang_instruction}"""
+        await self._status(__event_emitter__, "课件大纲提示已准备就绪", True)
+        return prompt
+
+    async def generate_lesson_talk(
+        self,
+        topic: str,
+        textbook: str = "",
+        duration: str = "15分钟",
+        __user__: dict = None,
+        __event_emitter__: Callable[[dict], Awaitable[None]] = None,
+    ) -> str:
+        """
+        Generate a lesson-presentation script (说课稿) for teaching competitions, interviews, or evaluations.
+        Use this when the user mentions 说课, 说课稿, 试讲, or 教学比赛.
+
+        :param topic: Lesson topic (e.g. 《背影》, 一元一次方程)
+        :param textbook: Optional textbook edition and chapter (e.g. 人教版八年级上册第四单元)
+        :param duration: Target speaking time (default: 15分钟)
+        :return: A structured prompt for the LLM to generate the script
+        """
+        await self._status(__event_emitter__, f"正在撰写「{topic}」说课稿...", False)
+        uv = self._user_valves(__user__)
+        level = uv.student_level or "本科"
+        lang_instruction = self._get_lang_instruction(uv.language or "中文")
+        book_hint = f"- **教材**：{textbook}\n" if textbook else ""
+
+        prompt = f"""你是一位多次获得教学比赛奖项的资深教师。请撰写一份可直接朗读的说课稿。
+
+- **课题**：{topic}
+{book_hint}- **学段**：{level}
+- **时长**：{duration}
+
+按以下结构输出，每部分标注建议用时：
+1. **说教材**：地位与作用、前后知识联系
+2. **说学情**：学生已有基础、认知特点、可能障碍
+3. **说教学目标**（中小学按新课标核心素养表述）与**重难点**
+4. **说教法与学法**：采用什么方法、为什么
+5. **说教学过程**：各环节做法与设计意图（重点，约占50%篇幅）
+6. **说板书设计**
+7. **说教学特色与反思**
+
+要求：语言口语化、有过渡句，总字数与{duration}朗读时长匹配（约每分钟220字）；
+结尾附"评委可能追问的3个问题及回答要点"。不编造教材页码。
+{lang_instruction}"""
+        await self._status(__event_emitter__, "说课稿提示已准备就绪", True)
+        return prompt
+
     # ── Helper Methods ──────────────────────────────────────
+
+    async def _status(self, emitter, description: str, done: bool) -> None:
+        if emitter:
+            await emitter({"type": "status", "data": {"description": description, "done": done}})
 
     def _get_lang_instruction(self, lang: str) -> str:
         if lang.lower() in ["english", "英文", "en"]:
@@ -465,19 +560,39 @@ D. 选项4
         else:
             return "\n## 语言\n请使用**中文**输出全部内容。专业术语可附英文标注。"
 
-    def _calc_time(self, duration: str, ratio: float) -> str:
-        """Calculate time allocation based on duration string and ratio."""
+    def _user_valves(self, user: Optional[dict]) -> Any:
+        """OpenWebUI may pass no user, no valves, or a plain dict."""
+        valves = (user or {}).get("valves")
+        if valves is None:
+            return self.UserValves()
+        if isinstance(valves, dict):
+            return self.UserValves(**valves)
+        return valves
+
+    def _period_minutes(self, level: str) -> int:
+        """Minutes per class period: 小学 40, others 45."""
+        return 40 if "小学" in (level or "") else 45
+
+    def _calc_time(self, duration: str, ratio: float, level: str = "") -> str:
+        """Calculate time allocation from strings like 2学时 / 1课时 / 90分钟 / 1.5小时 / 2 hours."""
         import re
 
-        match = re.search(r"(\d+)", duration)
-        if match:
-            total_min = int(match.group(1))
-            # If the number looks like 学时 (small number), convert to minutes
-            if total_min <= 10:
-                total_min = total_min * 45  # 1学时 = 45分钟
-            minutes = int(total_min * ratio)
-            return f"{minutes}分钟"
-        return f"{int(ratio * 100)}%时间"
+        text = (duration or "").lower()
+        for cn, n in zip("一二两三四五六七八九", "1223456789"):
+            text = text.replace(cn, n)
+        match = re.search(r"(\d+(?:\.\d+)?)", text)
+        if not match:
+            return f"{int(ratio * 100)}%时间"
+        value = float(match.group(1))
+        if any(u in text for u in ("分钟", "min")):
+            total_min = value
+        elif any(u in text for u in ("小时", "hour", "hr")):
+            total_min = value * 60
+        elif any(u in text for u in ("学时", "课时", "节")) or value <= 10:
+            total_min = value * self._period_minutes(level)
+        else:
+            total_min = value
+        return f"{max(1, round(total_min * ratio))}分钟"
 
     def _calc_weeks(self, total_hours: str) -> int:
         """Estimate number of teaching weeks from total hours."""

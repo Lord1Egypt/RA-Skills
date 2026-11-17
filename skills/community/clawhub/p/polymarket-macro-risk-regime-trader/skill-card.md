@@ -1,43 +1,58 @@
-## Description: <br>
-Detects macro risk regimes by scanning Polymarket categories for risk-on or risk-off signals and trading lagging markets that have not repriced yet. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Detects macro risk regimes (risk-on vs risk-off) by scanning ALL Polymarket categories simultaneously. When crypto drops, geopolitical escalation rises, and commodity stress increases, the regime is risk-off. Trades markets in other categories that have not repriced to the new regime yet.
 
-## Publisher: <br>
-[diagnostikon](https://clawhub.ai/user/diagnostikon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[diagnostikon](https://clawhub.ai/user/diagnostikon)
 
-## Use Case: <br>
-External users and developers use this skill to run a configurable Polymarket macro regime strategy that scans market categories, computes cross-category sentiment, and proposes or places paper trades by default. Live trading requires an explicit live flag and acceptance of real USDC trading risk. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Live mode can place real Polymarket trades using USDC. <br>
-Mitigation: Start in paper mode and use --live only after reviewing position limits, spread limits, and market-selection behavior. <br>
-Risk: The skill requires SIMMER_API_KEY, a credential with trading authority. <br>
-Mitigation: Use a scoped, rotateable key and rotate it if exposed or no longer needed. <br>
-Risk: Macro regime signals and cross-category assumptions can be wrong or stale. <br>
-Mitigation: Review the configured thresholds and monitor generated trade reasoning before relying on live execution. <br>
+## Use Case:
 
+External developers and trading agents use this skill to detect cross-category Polymarket macro regimes and identify lagging markets for simulated or explicitly enabled live trades.
 
-## Reference(s): <br>
-- [Simmer SDK on PyPI](https://pypi.org/project/simmer-sdk/) <br>
-- [Simmer SDK GitHub Repository](https://github.com/SpartanLabsXyz/simmer-sdk) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Code, Shell commands, Configuration, API calls] <br>
-**Output Format:** [Python script, JSON configuration, and console status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SIMMER_API_KEY and tunable risk parameters; defaults to paper trading unless --live is used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.3 (source: server release evidence) <br>
+Risk: Live mode can place real USDC trades on Polymarket.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep paper mode unless live trading risk is accepted, and use only a limited Simmer or Polymarket key.
+
+Risk: The security summary says live-trading risk controls do not fully match documented safeguards users may rely on.
+
+Mitigation: Review before installing and do not rely on the documented minimum-volume or max-open-position safeguards until the implementation enforces them.
+
+Risk: The Simmer SDK dependency is not pinned in the artifact.
+
+Mitigation: Pin simmer-sdk to a reviewed version before deployment.
+
+## Reference(s):
+
+- [simmer-sdk on PyPI](https://pypi.org/project/simmer-sdk/)
+- [simmer-sdk on GitHub](https://github.com/SpartanLabsXyz/simmer-sdk)
+
+## Skill Output:
+
+**Output Type(s):** [text, API calls, configuration, guidance]
+
+**Output Format:** [Plain text logs with Simmer SDK market scans and trade actions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Defaults to paper trading; live trading requires the explicit --live flag and SIMMER_API_KEY.]
+
+## Skill Version(s):
+
+0.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

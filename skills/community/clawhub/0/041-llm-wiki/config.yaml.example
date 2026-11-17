@@ -1,0 +1,144 @@
+# LLM-Wiki 配置文件
+# 将此文件复制为 config.yaml 并修改为你的环境
+
+lint:
+  depth:
+    # 启发式内容深度检查默认启用，但只报告 warning，不改变 lint 退出码。
+    enabled: true
+    min_knowledge_chars: 500
+    min_meaningful_paragraphs: 3
+    multi_source_threshold: 3
+    multi_source_min_knowledge_chars: 800
+    source_volume_threshold: 10000
+    compression_ratio_warning: 0.01
+    extreme_source_volume_threshold: 20000
+    extreme_compression_max_knowledge_chars: 1500
+    # 下列标签默认跳过深度检查；页面也可用 frontmatter `lint_depth: skip` 显式豁免。
+    skip_tags:
+      - QRF
+
+embedding:
+  # 是否启用 embedding 检索（默认 false，保持纯符号导航）
+  enabled: false
+
+  # 提供者: ollama | openai | mcp
+  provider: ollama
+
+  # 模型名称（Provider 特定）
+  model: nomic-embed-text
+
+  ollama:
+    base_url: http://localhost:11434
+
+  openai:
+    api_key: "${OPENAI_API_KEY}"
+    # 可选：自定义 endpoint（如兼容 OpenAI 的第三方服务）
+    # base_url: https://api.openai.com/v1
+
+  mcp:
+    # 传输方式: stdio | sse
+    transport: stdio
+    # stdio 配置
+    command: python
+    args: ["-m", "my_embedding_server"]
+    env: {}
+    # sse 配置
+    # url: http://localhost:3000/sse
+    # 工具名（可选，留空则自动发现）
+    tool_name: embed
+
+zotero_enrichment:
+  # 显式运行 zotero-refresh 时可用；enabled 供后续调度器判断是否启用。
+  enabled: false
+  cache_path: var/zotero-enrichment.sqlite
+  request_timeout_seconds: 20
+  max_concurrency: 3
+  candidate_threshold: 0.92
+  candidate_margin: 0.05
+  verification_threshold: 0.72
+
+  crossref:
+    # 推荐使用联系邮箱进入 Crossref polite pool。
+    mailto: "${CROSSREF_MAILTO:-}"
+
+  openalex:
+    # 当前无 key 也可尝试请求；配置 key 可获得更稳定的额度。
+    api_key: "${OPENALEX_API_KEY:-}"
+    mailto: "${OPENALEX_MAILTO:-}"
+
+  stale_after_days:
+    citations: 90
+    missing_doi: 30
+    verified_doi: 365
+    preprint_publication: 30
+    journal_metrics: 365
+
+  apply:
+    # 只管理 llm-wiki:* 状态标签，不触碰用户标签。
+    add_status_tags: true
+    # 仅规范空 URL 或错误的 doi.org URL；保留 publisher/arXiv URL。
+    normalize_doi_url: true
+
+  # 临时：直连 Zotero 10 本地写 API（zotero-refresh --write-backend local 或受限 zotero-writeback）。
+  # 读仍走 MCP；仅审核后的写可直连本地。可先跑 zotero-local-auth 持久授权，
+  # 或在 zotero-writeback apply 时用 --memory-authorize 仅保存在当前进程。
+  # 上游 zotero-mcp 采纳本地写后移除此段。
+  local:
+    base_url: "http://127.0.0.1:23119"
+
+zotero_relocation:
+  # 附件搬迁默认关闭；启用前先阅读 docs/ZOTERO_ATTACHMENT_RELOCATION.md。
+  enabled: false
+  # 必须是绝对路径；不能放在项目 sources/ 或 Zotero 数据库目录中。
+  # 推荐在这里配置而不是每次用 --root 传入；config.yaml 已被 gitignore，可按机器各自维护。
+  # 跨设备同步时，把它指向网盘同步目录，并用环境变量保持路径可移植，例如：
+  #   root: "${OneDrive}/zotero-attachments"   # Windows 上由 OneDrive 环境变量解析
+  # 注意:stored→linked 后文件字节可能不再由 Zotero 同步管理；每台设备都必须能访问同一网盘根目录。
+  root: ""
+  # imported_file 的 storage:filename 需要显式的 Zotero storage 根目录才能解析。
+  storage_root: ""
+  path_template: "%c/%y-%a-%t"
+  max_component_bytes: 120
+  collision_policy: "suffix"
+  max_collision_attempts: 100
+  # 旧源删除必须另外配置允许的源根目录，默认不删除。
+  delete_source: false
+  allowed_source_roots: []
+  update_metadata: true
+  materialize_aliases: true
+  on_symlink_error: "metadata"
+  # true 时写回 Zotero 的 path 为 "attachments:<相对路径>"(相对于 root),由每台设备的
+  # Zotero Linked Attachment Base Directory 各自解析——这是跨设备(Windows/Linux)唯一
+  # 可移植的形式。要求每台设备的 Base Directory 都指向本机的同一网盘根目录(即 root)。
+  # false 时写绝对路径,仅适用于单设备或各设备绝对路径完全一致的场景。
+  base_dir_relative: false
+
+zotero_import:
+  # sources/zotero/ 别名命名模板（方案五;仅别名,不含 wiki 页面命名）。
+  # 通配符: %a 主作者 %y 年份 %t 标题 %c 分类层级路径 %b CiteKey %T 条目类型, %% 为字面值。
+  # 所有替换值都经跨平台清洗(去音标/非法字符/字节截断);用 `agent-bridge.py zotero-alias` 渲染。
+  alias_pattern: "%c/%t"
+
+retrieval:
+  # 混合搜索返回的 top-k 结果数
+  top_k: 10
+
+  # 各信号权重（总和不必为 1，仅影响相对比例）
+  keyword_weight: 0.3
+  vector_weight: 0.5
+  link_weight: 0.2
+
+  # 是否启用链接遍历增强
+  enable_link_traversal: true
+
+# 能力契约:对每个 agent-bridge 命令做收紧覆盖(可选)。
+# 默认契约声明在 src/llm_wiki/capabilities.py;此处只能收紧——
+# 禁用命令或缩小 write_scope,放宽会被拒绝。
+# 查看有效契约:python scripts/agent-bridge.py capabilities
+capabilities: {}
+# 示例:
+# capabilities:
+#   apply-bundle:
+#     enabled: false              # 完全禁用某命令
+#   merge:
+#     write_scope: ["wiki/"]      # 缩小写范围(不能超出默认值)

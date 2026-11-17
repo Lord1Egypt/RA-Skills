@@ -1,7 +1,7 @@
 ---
 name: codex-ppt
 description: Generate visually unified image-based PPT/PPTX decks from articles, reports, papers, notes, or outlines.
-version: 0.5.2
+version: 0.6.0
 metadata:
   openclaw:
     requires:
@@ -17,7 +17,7 @@ metadata:
         description: API base URL.
       - name: CODEX_PPT_IMAGE_MODEL
         required: false
-        description: Image model, defaults to gpt-image-2.
+        description: Image model, defaults to gpt-image-2.5-flare.
       - name: CODEX_PPT_HOME
         required: false
         description: Runtime home override.
@@ -118,8 +118,9 @@ Do not mark a step complete from chat alone; use real files or script-recorded s
     - Use the final report checklist in `docs/project-assembly-and-reporting.md`.
     - Include paths, slide count, backend used, recorded-result status, and any limitations or blockers.
 
-13. Save reusable styles when requested.
+13. Save reusable styles.
     - If asked to save the current deck style or a supplied image/PDF/PPT/PPTX style, read `docs/style-library.md`.
+    - If the final deck used a custom or adapted style, proactively offer to save it in the final report, per `docs/project-assembly-and-reporting.md`. User custom styles are stored in `${CODEX_PPT_HOME:-~/.codex-ppt-skill}/references/`, outside the skill install.
 
 ## Subagent Dispatch
 
@@ -151,7 +152,7 @@ Subagents must not edit `outline.md`, `deck_spec.json`, other slide jobs, `origi
 - `docs/image-model-configuration.md`: API key, base URL, model, `.env`; read only when config is needed.
 - `docs/project-assembly-and-reporting.md`: project directory, notes, assembly, final report, prompting principles.
 - `prompts/slide-worker.md`: slide subagent handoff template.
-- `references/*.md`: visual style references.
+- `references/*.md`: built-in visual style references. User custom styles live in `${CODEX_PPT_HOME:-~/.codex-ppt-skill}/references/` and take priority over built-in styles with the same name.
 
 ## Documentation and Updates
 

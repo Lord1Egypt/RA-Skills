@@ -1,0 +1,36 @@
+{
+  "schema": "ownership-attestation/1.0",
+  "package": "workbuddy-health-check",
+  "version": "1.0.0",
+  "author": "注册老炮",
+  "year": "2026",
+  "timestamp_utc": "2026-08-25T15:49:18.736073+00:00",
+  "timestamp_local": "2026-08-25T23:49:18.736080",
+  "package_fingerprint_sha256": "88c3818ef47452683e0458b189ab6ffdfd1d3501bf36a71eda587123ffb59078",
+  "files": [
+    {
+      "path": "LICENSE.md",
+      "sha256": "5416746360f13e79761cd77b2a7655ff5446803e513f206e31e93a7abd3091ac"
+    },
+    {
+      "path": "SKILL.md",
+      "sha256": "5aa5f6dcaad5c2cbf8d584b7ceb4f91d736112dfd9b3df57c3af3eb2cf927206"
+    },
+    {
+      "path": "scripts/wb_health_check.py",
+      "sha256": "e00d4dd79104404cf37f78f3a21e5b3e052f27e4f02842f6466dc442b1444881"
+    },
+    {
+      "path": "tests/security_radar.svg",
+      "sha256": "ad329a5c698de081179660ce0b07f58d5597fb5bfc21da7258ff2ec754de418b"
+    },
+    {
+      "path": "tests/security_results.json",
+      "sha256": "1a5e75d3bc7e9f74ccd539d6483e2e0d18d4662f2a46ced5908f9c2055ae2706"
+    },
+    {
+      "path": "tests/wb_health_security_test.py",
+      "sha256": "bb585455b687af0d10561da9c5d6b51e6604eafdcb9c543d814ca476a4815d42"
+    }
+  ]
+}

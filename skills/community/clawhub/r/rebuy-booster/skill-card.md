@@ -1,45 +1,56 @@
-## Description: <br>
-Design post-purchase sequences, loyalty incentives, and re-order triggers that turn one-time buyers into repeat customers for ecommerce brands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Design post-purchase sequences, loyalty incentives, and re-order triggers that turn one-time buyers into repeat customers for ecommerce brands.
 
-## Publisher: <br>
-[leooooooow](https://clawhub.ai/user/leooooooow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leooooooow](https://clawhub.ai/user/leooooooow)
 
-## Use Case: <br>
-External ecommerce operators and retention marketers use this skill to design second-purchase flows, loyalty programs, reorder triggers, referral activation, and win-back campaigns. It helps translate customer lifecycle, RFM, purchase-history, and platform constraints into launch-ready retention guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Retention plans may use unnecessary customer or order data when applied to a live store. <br>
-Mitigation: Provide only the fields needed to build the retention plan and avoid broad admin access to marketing or ecommerce platforms. <br>
-Risk: Generated email and SMS flows can create compliance exposure if consent, unsubscribe, or regional marketing requirements are missed. <br>
-Mitigation: Review every generated flow for consent, unsubscribe, GDPR, CASL, CAN-SPAM, and SMS opt-in requirements before launch. <br>
-Risk: Timing and tier thresholds may be inaccurate if benchmark assumptions are used instead of store data. <br>
-Mitigation: Validate repurchase intervals, product consumption windows, loyalty thresholds, and suppression rules against actual order history before activating campaigns. <br>
+## Use Case:
 
+Ecommerce retention teams and marketing operators use this skill to design second-purchase, re-order, win-back, VIP escalation, referral, and loyalty onboarding flows. The skill produces campaign structure, email copy, timing logic, loyalty tier definitions, suppression rules, and platform setup notes for common retention stacks.
 
-## Reference(s): <br>
-- [Rebuy Booster - Output Template](references/output-template.md) <br>
-- [Retention Strategy Guide - Lifecycle Stages, RFM Segmentation, and Repurchase Timing](references/retention-strategy-guide.md) <br>
-- [Loyalty Platform Guide - Klaviyo, LoyaltyLion, Yotpo, Smile.io](references/loyalty-platform-guide.md) <br>
-- [Rebuy Booster Quality Checklist](assets/rebuy-quality-checklist.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Configuration, Guidance] <br>
-**Output Format:** [Markdown with sequence tables, email copy blocks, timing logic, suppression rules, platform setup notes, and assumption flags] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should be reviewed against store data, platform behavior, consent requirements, and regional marketing rules before launch.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: Generated retention campaigns may be launched with incorrect consent, suppression, opt-out, or regional email/SMS compliance assumptions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify consent status, unsubscribe handling, suppression lists, and applicable email/SMS rules before activation.
+
+Risk: Timing, loyalty thresholds, and platform setup recommendations may rely on benchmarks or assumptions rather than store-specific data.
+
+Mitigation: Validate repurchase intervals, customer segments, tier economics, and platform settings against current order data and the active marketing stack.
+
+## Reference(s):
+
+- [Rebuy Booster Output Template](references/output-template.md)
+- [Retention Strategy Guide](references/retention-strategy-guide.md)
+- [Loyalty Platform Guide](references/loyalty-platform-guide.md)
+- [Rebuy Booster Quality Checklist](assets/rebuy-quality-checklist.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Configuration, Guidance]
+
+**Output Format:** [Markdown campaign plans with tables, email copy, timing logic, and platform setup notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include assumptions and verification flags for repurchase intervals, segmentation, compliance, and platform configuration.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

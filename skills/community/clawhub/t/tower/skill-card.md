@@ -1,42 +1,58 @@
-## Description: <br>
-提取公开 Tower 项目和公告页的标题、作者、更新时间、任务状态及文档资源等信息并进行摘要整理。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tower helps agents extract and summarize information from public Tower project and announcement pages.
 
-## Publisher: <br>
-[codenova58](https://clawhub.ai/user/codenova58) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[codenova58](https://clawhub.ai/user/codenova58)
 
-## Use Case: <br>
-Employees, external users, and developers use Tower to summarize public Tower announcement and project pages, extracting page metadata, task grouping and status counts, and resource links for internal analysis or reminders. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A user could provide a Tower link that is not genuinely public or is not approved for summarization. <br>
-Mitigation: Use only genuinely public Tower links and confirm that the team or organization allows summarizing those pages. <br>
-Risk: Dynamic Tower pages may be summarized before all public content is fully rendered. <br>
-Mitigation: Wait for page rendering to complete before extracting titles, authors, timestamps, body summaries, task groups, statuses, or resource links. <br>
+## Use Case:
 
+Employees, external users, and developers can use this skill to summarize public Tower announcements, count visible project task groups and statuses, and organize public document or resource links.
 
-## Reference(s): <br>
-- [Tower homepage](https://tower.im/) <br>
-- [ClawHub skill page](https://clawhub.ai/codenova58/tower) <br>
-- [Publisher profile](https://clawhub.ai/user/codenova58) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown summaries and structured lists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Only public Tower pages are in scope; the skill does not perform account login or task-changing actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill is intended for public Tower pages only; using it on private workspace or logged-in content may expose non-public information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only publicly accessible Tower links unless a separate review approves private or authenticated content handling.
+
+Risk: Dynamic Tower pages may not be fully rendered when parsed, which can lead to incomplete summaries or counts.
+
+Mitigation: Wait for page rendering to complete and verify extracted task counts, timestamps, and document links against the visible page.
+
+Risk: Repeated access to public Tower pages can create unnecessary traffic.
+
+Mitigation: Apply rate limits and avoid repeated fetches of the same page.
+
+## Reference(s):
+
+- [Tower homepage](https://tower.im/)
+- [ClawHub Tower skill page](https://clawhub.ai/codenova58/skills/tower)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text summaries and lists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are based on publicly accessible Tower pages and should include source links when available.]
+
+## Skill Version(s):
+
+0.1.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

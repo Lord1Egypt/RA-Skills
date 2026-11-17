@@ -1,44 +1,56 @@
-## Description: <br>
-Search X (Twitter) in real time, extract relevant posts, and publish tweets or replies for social listening, engagement, and rapid content operations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search X (Twitter) in real time, extract relevant posts, and publish tweets or replies for social listening, engagement, and rapid content operations.
 
-## Publisher: <br>
-[godferylindsay](https://clawhub.ai/user/godferylindsay) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[godferylindsay](https://clawhub.ai/user/godferylindsay)
 
-## Use Case: <br>
-Developers, social media operators, and agents use this skill to search Twitter/X, monitor users and trends, and publish tweets, likes, or retweets through SkillBoss API Hub. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks users to send Twitter/X passwords and proxy details to a third-party API. <br>
-Mitigation: Install only if SkillBoss/AISA is trusted with the account, prefer a test or low-risk account, and avoid sharing a primary password where possible. <br>
-Risk: The skill can perform public account actions such as posting, liking, retweeting, and profile updates without built-in confirmation. <br>
-Mitigation: Require explicit human approval before login, post, like, retweet, or profile-update actions. <br>
-Risk: The skill depends on the SKILLBOSS_API_KEY credential for paid API access. <br>
-Mitigation: Store the API key in a controlled environment variable, rotate it if exposed, and monitor credit usage. <br>
+## Use Case:
 
+Developers, operators, and social media teams use this skill to search X/Twitter content, inspect users and trends, and perform account actions such as posting, liking, or retweeting through the provided API examples and Python client.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/godferylindsay/godfery-twitter) <br>
-- [SkillBoss API reference](https://aisa.mintlify.app/api-reference/introduction) <br>
-- [OpenClaw homepage](https://openclaw.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, code, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SKILLBOSS_API_KEY, curl, and python3; write operations require Twitter/X account login through the third-party API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill can send X/Twitter account credentials, 2FA codes, and proxy credentials to the SkillBoss/aisa.one service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer read-only use, avoid passing passwords or TOTP codes on the command line, use a dedicated low-risk account for testing, and rotate any credentials already submitted through this workflow.
+
+Risk: Write operations can post, like, or retweet publicly from an authenticated account.
+
+Mitigation: Review generated actions before execution, limit use to approved accounts, and monitor for rate limits or account suspension warnings.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/godferylindsay/skills/godfery-twitter)
+- [OpenClaw](https://openclaw.ai)
+- [SkillBoss](https://skillbossai.com)
+- [SkillBoss API Reference](https://aisa.mintlify.app/api-reference/introduction)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, Python client usage, and JSON API responses.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SKILLBOSS_API_KEY. Write operations require an X/Twitter account login and may perform public account actions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,58 @@
-## Description: <br>
-Helps a Feishu agent turn text into MP3, convert it to Opus, and send the Opus file as a native Feishu voice bubble. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill guides a Feishu agent to generate voice-bubble messages by converting text to MP3, transcoding it to Opus, and sending the Opus file through Feishu messaging tools.
 
-## Publisher: <br>
-[lens-lzy](https://clawhub.ai/user/lens-lzy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lens-lzy](https://clawhub.ai/user/lens-lzy)
 
-## Use Case: <br>
-Developers and Feishu agent operators use this skill to generate Chinese speech from text, convert audio to the Opus format expected by Feishu voice bubbles, and send the resulting audio after confirming the target chat and message. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The installer adds audio-generation and conversion dependencies using pip and a system package manager. <br>
-Mitigation: Review setup.sh before installation and install only in an environment where edge-tts and ffmpeg are expected. <br>
-Risk: Generated audio could be sent to an unintended Feishu chat or with unintended content. <br>
-Mitigation: Require explicit confirmation of the target chat and message before sending generated audio or onboarding voice samples. <br>
-Risk: Feishu voice bubbles require Opus audio; sending the intermediate MP3 changes the user experience by sending an attachment instead. <br>
-Mitigation: Use MP3 only as an intermediate file and send the converted Opus file unless the user explicitly asks for the MP3. <br>
+## Use Case:
 
+Feishu bot developers and operators use this skill to send text as native voice-bubble messages and manage Chinese voice selections. The skill helps agents keep MP3 audio as an intermediate artifact and send Opus output as the default voice-bubble format.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lens-lzy/feishu-voice-bubble-generation) <br>
-- [FFmpeg downloads](https://ffmpeg.org/download.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline JSON and bash command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces operational guidance for generating MP3 audio, converting it to Opus, selecting Chinese TTS voices, and sending only the Opus output as a Feishu voice bubble by default.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The setup script can modify the host environment by installing Python and system packages.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and review the skill in an isolated virtual environment or container, and manually approve any ffmpeg system-package installation.
+
+Risk: The installer pulls edge-tts without a pinned version.
+
+Mitigation: Pin and verify the edge-tts package version before installing in shared, production, or privileged environments.
+
+Risk: Broad voice-related trigger words may activate the skill outside Feishu voice-bubble requests.
+
+Mitigation: Narrow triggers to Feishu-specific voice-bubble requests before deployment where accidental activation matters.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lens-lzy/skills/feishu-voice-bubble-generation)
+- [FFmpeg downloads](https://ffmpeg.org/download.html)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with JSON and bash command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces Feishu voice-bubble workflow instructions, including text-to-speech voice selection and MP3-to-Opus conversion steps.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

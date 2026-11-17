@@ -1,49 +1,63 @@
-## Description: <br>
-Virtual Imam that leads the five daily Islamic prayers via voice, delivers Friday Jumu'ah khutbahs, and interacts with mussalis in multiple languages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Virtual Imam that leads the five daily Islamic prayers via voice, delivers Friday Jumu'ah khutbahs, and interacts with mussalis in multiple languages.
 
-## Publisher: <br>
-[almaas21](https://clawhub.ai/user/almaas21) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[almaas21](https://clawhub.ai/user/almaas21)
 
-## Use Case: <br>
-External users use this skill to receive voice-guided Islamic prayer support, including salah steps, optional adhan and iqamah, post-prayer adhkar, Friday khutbah flow, and multilingual translations or instructions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Broad voice triggers may cause the skill to react to prayer-related phrases unexpectedly. <br>
-Mitigation: Keep the confirmation step enabled before beginning prayer guidance. <br>
-Risk: Text-to-speech setup may require cloud credentials. <br>
-Mitigation: Use dedicated TTS credentials with minimal permissions and avoid sharing broader cloud-service credentials. <br>
-Risk: Location and local-time context may be used to determine the current prayer. <br>
-Mitigation: Use manual prayer selection when location-based or time-based prayer determination is not desired. <br>
-Risk: The fallback playback example includes an os.system call. <br>
-Mitigation: Do not copy the playback example into production code without replacing it with a safer, reviewed audio playback path. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/almaas21/imam) <br>
-- [Adhan and Iqamah text](references/adhan.md) <br>
-- [Post-Salah Adhkar](references/adhkar-post-salah.md) <br>
-- [Friday Jumu'ah Khutbah Template](references/khutbah-template.md) <br>
-- [Multi-Language Support](references/languages.md) <br>
-- [Salah Steps Reference](references/salah-steps.md) <br>
-- [Prayer times script](scripts/prayer_times.py) <br>
+## Use Case:
 
+External users can use this skill to guide Islamic daily prayers, Jumu'ah khutbah flow, adhan, iqamah, and post-prayer adhkar with voice-oriented prompts and multilingual instructions.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown and spoken-response text with inline configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use local time and location inputs for prayer-time selection, and may use text-to-speech credentials when configured.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Cloud or fallback TTS providers may receive generated prayer or sermon text.
+
+Mitigation: Configure a trusted TTS provider intentionally and avoid sending sensitive personal content through provider-backed audio generation.
+
+Risk: Fallback audio examples may require installing and running local playback tools.
+
+Mitigation: Install audio dependencies from trusted sources and avoid running fallback examples with elevated privileges.
+
+Risk: Voice prayer or khutbah guidance could start unexpectedly if the skill is always available.
+
+Mitigation: Prefer explicit invocation and confirm the selected prayer or khutbah mode before beginning voice guidance.
+
+## Reference(s):
+
+- [Salah Steps Reference](references/salah-steps.md)
+- [Adhan & Iqamah Text](references/adhan.md)
+- [Friday Jumu'ah Khutbah Template](references/khutbah-template.md)
+- [Post-Salah Adhkar](references/adhkar-post-salah.md)
+- [Multi-Language Support](references/languages.md)
+- [Prayer Times Script](scripts/prayer_times.py)
+- [Google Cloud Console](https://console.cloud.google.com)
+- [ClawHub Skill Page](https://clawhub.ai/almaas21/skills/imam)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and voice-recitation text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May call a local prayer-times script and may guide TTS provider configuration.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

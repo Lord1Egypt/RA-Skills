@@ -1,44 +1,56 @@
-## Description: <br>
-Fetches accessible WeChat public-account articles with local Chrome and Puppeteer, extracting article text, metadata, and optional images to local files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Uses Puppeteer and local Chrome to fetch WeChat public-account articles, extract article text and metadata, and optionally save the result as Markdown, HTML, or plain text.
 
-## Publisher: <br>
-[adgai115](https://clawhub.ai/user/adgai115) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[adgai115](https://clawhub.ai/user/adgai115)
 
-## Use Case: <br>
-Developers and agents use this skill to extract content from accessible WeChat public-account article URLs into local Markdown, text, or HTML files for summarization, archiving, or downstream processing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The tool contacts WeChat article and image servers through a local headless browser. <br>
-Mitigation: Use known article URLs and avoid running it from sensitive browsing contexts or networks. <br>
-Risk: Extracted article content and downloaded images are written to local storage. <br>
-Mitigation: Choose an appropriate output directory and review saved files before sharing or committing them. <br>
-Risk: Dependency versions may change during installation without a lockfile. <br>
-Mitigation: Pin dependencies or use a lockfile for reproducible installs. <br>
+## Use Case:
 
+Developers and content-operations users can use this skill to extract accessible WeChat article content, metadata, and images into local files for review, archiving, or downstream processing.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/adgai115/wechat-article-fetcher-safe) <br>
-- [Skill documentation](SKILL.md) <br>
-- [Quick start README](README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, JSON] <br>
-**Output Format:** [Markdown, plain text, HTML, and JSON image manifest files, with console status output.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Saves extracted article metadata, article content, and optional downloaded images locally.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release evidence) <br>
+Risk: The skill launches a local browser with browser sandbox disabled against caller-supplied article URLs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted WeChat article URLs and run the skill in a restricted environment without access to sensitive local or private-network services.
+
+Risk: The skill can download page-selected images without adequate limits.
+
+Mitigation: Disable image downloads unless needed, monitor output size, and review downloaded files before using them downstream.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/adgai115/skills/wechat-article-fetcher-safe)
+- [Artifact README](artifact/README.md)
+- [Artifact Skill Documentation](artifact/SKILL.md)
+- [Artifact GitHub README](artifact/README.github.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Files, Configuration]
+
+**Output Format:** [Console text plus optional Markdown, HTML, plain-text, image, and JSON manifest files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js 18+, puppeteer-core, and a local Chrome or Chromium executable.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,57 @@
-## Description: <br>
-Fleece is a credit card research and redemption CLI for rewards rates, fees, welcome bonuses, statement credits, transfer partners, wallet analysis, ROI estimates, recommendations, merchant category codes, and award travel search. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Credit card research and redemption CLI. Looks up rewards rates, annual fees, welcome bonuses, statement credits, transfer partners, point valuations, application rules, lounge access, and travel protections for Chase, Amex, Citi, Capital One, Bilt, and all major US issuers. Compare cards, analyze wallet gaps, estimate ROI, get recommendations, look up merchant category codes, and search award flights and hotels. Install with pip install fleece-cli.
 
-## Publisher: <br>
-[chenyuan99](https://clawhub.ai/user/chenyuan99) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chenyuan99](https://clawhub.ai/user/chenyuan99)
 
-## Use Case: <br>
-Developers, agents, and credit card rewards users use Fleece to query current US card information, compare card portfolios, analyze spending profiles, and generate JSON-friendly redemption research workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Fleece can store personal card inventory, spending habits, travel goals, credit limits, expiration dates, and other profile details. <br>
-Mitigation: Enter only the minimum profile data needed, avoid full account details, and review or remove local profile data when it is no longer needed. <br>
-Risk: Personalized research may send profile or card context to external services such as Brave Search or OpenAI. <br>
-Mitigation: Avoid entering sensitive financial details, keep API keys scoped to this use case, and review prompts or command inputs before running personalized searches. <br>
-Risk: Running the Streamlit app on a shared server can expose debug, history, image-fetching, or stored-profile behavior to other users. <br>
-Mitigation: Prefer local execution for personal finance research and harden access controls, history handling, and image-fetching behavior before shared deployment. <br>
+## Use Case:
 
+External users and agents use Fleece to research US credit cards, compare rewards and benefits, analyze wallet gaps and first-year value, and generate award travel search URLs. Research commands can use live Brave Search data, while some profile, MCC, and redemption URL workflows run offline.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/chenyuan99/fleece) <br>
-- [PyPI Package](https://pypi.org/project/fleece-cli/) <br>
-- [Project Website](https://getfleece.io/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with CLI examples and JSON command-output expectations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands commonly return JSON with ok and error fields; some workflows require BRAVE_API_KEY or OPENAI_API_KEY.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.6.0 (source: ClawHub release) <br>
+Risk: Saved spending profile and wallet details may be included in live research workflows and sent to external services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Store only the minimum profile details needed, avoid highly personal goal or preference text, and review saved profile values before running live research commands.
+
+Risk: API keys and the Streamlit interface can increase exposure if configured casually or made available to untrusted users.
+
+Mitigation: Use an isolated virtual environment, provide BRAVE_API_KEY through a protected environment variable or .env file, and avoid exposing the Streamlit interface unless URL fetching and access controls are hardened.
+
+## Reference(s):
+
+- [Fleece on ClawHub](https://clawhub.ai/chenyuan99/skills/fleece)
+- [Fleece CLI on PyPI](https://pypi.org/project/fleece-cli/)
+- [Fleece website](https://getfleece.io/)
+- [README](README.md)
+- [Fleece design notes](docs/DESIGN.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and JSON CLI output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Research commands may require BRAVE_API_KEY; profile, MCC lookup, and PointsYeah URL generation workflows can run without a Brave API key.]
+
+## Skill Version(s):
+
+1.6.1 (source: server release metadata; artifact frontmatter reports 1.6.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

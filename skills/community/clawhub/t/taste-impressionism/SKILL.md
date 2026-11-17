@@ -2,6 +2,9 @@
 
 > The revolution of the open eye — Impressionism abandoned the studio for the riverbank and discovered that light is not a property of objects but a relationship between them, changing every moment.
 
+> **Try it first →** [Live Demo — no account needed](https://inspiredhub.ai/demo?skill=impressionism)
+
+
 ## Overview
 | Property | Value |
 |----------|-------|
@@ -67,3 +70,23 @@ Brands that deal in sensory experience — food, hospitality, beauty, the outdoo
 
 ---
 *Distilled by InspiredHub Taste Engine from 4900 works in the collection, spanning Monet, Renoir, Degas, Pissarro, Morisot, and Cassatt.*
+
+---
+
+---
+
+## Explore on InspiredHub
+
+- **[See this public Taste Skill in practice](https://inspiredhub.ai/demo?skill=impressionism)** — a source-aware comparison using the public Skill.
+- **[Use this public Skill as an optional Personal Taste Brief reference](https://inspiredhub.ai/personal-taste-brief#clawhub/taste-impressionism)** — add it only if you choose, then edit or remove it in your own working Brief.
+
+A public cultural Skill is not a diagnosis of your taste. Opening the Brief does not create a profile, save a draft, synchronize an agent, or send ClawHub account, installation, or download data to InspiredHub.
+
+*Powered by [InspiredHub](https://inspiredhub.ai/) — public cultural references and private, user-controlled working Briefs.*
+
+
+---
+
+Using this in a real project?
+We'd love to see what you're building.
+Drop us a note: contact@inspiredhub.ai

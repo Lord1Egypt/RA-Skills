@@ -1,40 +1,49 @@
-## Description: <br>
-Securely copy files between local and remote hosts over SSH for file transfers, remote backups, and deployment tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Securely copy files between local and remote hosts over SSH. Use for file transfers, remote backups, and deployment tasks.
 
-## Publisher: <br>
-[dinghaibin](https://clawhub.ai/user/dinghaibin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dinghaibin](https://clawhub.ai/user/dinghaibin)
 
-## Use Case: <br>
-Developers and operators use this skill to prepare SCP-based file transfer commands between local and remote systems over SSH. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: SCP transfers can overwrite files or copy data to the wrong host or directory. <br>
-Mitigation: Verify source and destination paths before running transfer commands. <br>
-Risk: Transfers may use existing SSH keys, SSH agent state, or SSH configuration. <br>
-Mitigation: Confirm the SSH identity, host, and trust boundary before installing or using the skill. <br>
+## Use Case:
 
+Developers and operators use this skill to plan and run SCP transfers for deployments, backups, and moving files between local and remote hosts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dinghaibin/scp-tool) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a trusted system scp binary and valid SSH access for the chosen source and destination.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: SCP transfers can send local data to another machine or overwrite destination files when the source path, destination host, account, or remote path is wrong.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the exact source path, destination host, account, and remote path before execution, and run only transfers the user explicitly intends.
+
+## Reference(s):
+
+- [Scp Tool on ClawHub](https://clawhub.ai/dinghaibin/skills/scp-tool)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

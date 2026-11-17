@@ -1,0 +1,75 @@
+#!/bin/sh
+# Runs the renfe CLI for this skill, in order of preference:
+#   1. the binary bundled with the skill (../bin/renfe, from a release bundle
+#      or "renfe skill install"), copied to the cache if it lost its exec bit;
+#   2. a renfe on PATH whose version matches this skill;
+#   3. this skill's release binary, downloaded once from GitHub Releases into
+#      ~/.cache/renfe-cli and checked against the release's SHA-256 checksums.
+set -eu
+
+VERSION="0.1.0"
+REPO="mejiasd3v/renfe-cli"
+
+skill_dir=$(CDPATH='' cd -- "$(dirname -- "$0")/.." && pwd)
+cache="${XDG_CACHE_HOME:-$HOME/.cache}/renfe-cli/v$VERSION"
+if [ -x "$skill_dir/bin/renfe" ]; then
+	exec "$skill_dir/bin/renfe" "$@"
+fi
+if [ -f "$skill_dir/bin/renfe" ]; then
+	# Some skill installers drop executable bits. Run a copy rather than editing
+	# the skill folder, which installers checksum to detect local changes.
+	mkdir -p "$cache"
+	cp "$skill_dir/bin/renfe" "$cache/renfe.bundled"
+	chmod 755 "$cache/renfe.bundled"
+	exec "$cache/renfe.bundled" "$@"
+fi
+
+if command -v renfe >/dev/null 2>&1; then
+	case "$(renfe version 2>/dev/null)" in
+	"renfe v$VERSION" | "renfe dev") exec renfe "$@" ;;
+	esac
+fi
+
+case "$(uname -s)" in
+Darwin) os=darwin ;;
+Linux) os=linux ;;
+*) echo "renfe: unsupported OS $(uname -s); install with: go install github.com/$REPO/cmd/renfe@v$VERSION" >&2; exit 1 ;;
+esac
+case "$(uname -m)" in
+x86_64 | amd64) arch=amd64 ;;
+arm64 | aarch64) arch=arm64 ;;
+*) echo "renfe: unsupported CPU $(uname -m); install with: go install github.com/$REPO/cmd/renfe@v$VERSION" >&2; exit 1 ;;
+esac
+
+bin="$cache/renfe"
+if [ ! -x "$bin" ]; then
+	archive="renfe_${VERSION}_${os}_${arch}.tar.gz"
+	base="https://github.com/$REPO/releases/download/v$VERSION"
+	mkdir -p "$cache"
+	tmp=$(mktemp -d "$cache/.download.XXXXXX")
+	trap 'rm -rf "$tmp"' EXIT
+	echo "renfe: downloading $archive from github.com/$REPO (first run only)" >&2
+	if command -v curl >/dev/null 2>&1; then
+		curl -fsSL --proto '=https' -o "$tmp/$archive" "$base/$archive"
+		curl -fsSL --proto '=https' -o "$tmp/checksums.txt" "$base/checksums.txt"
+	else
+		wget -q -O "$tmp/$archive" "$base/$archive"
+		wget -q -O "$tmp/checksums.txt" "$base/checksums.txt"
+	fi
+	want=$(awk -v f="$archive" '$2 == f { print $1 }' "$tmp/checksums.txt")
+	if command -v sha256sum >/dev/null 2>&1; then
+		got=$(sha256sum "$tmp/$archive" | awk '{ print $1 }')
+	else
+		got=$(shasum -a 256 "$tmp/$archive" | awk '{ print $1 }')
+	fi
+	if [ -z "$want" ] || [ "$want" != "$got" ]; then
+		echo "renfe: checksum mismatch for $archive; not running it" >&2
+		exit 1
+	fi
+	tar -xzf "$tmp/$archive" -C "$tmp" renfe
+	chmod 755 "$tmp/renfe"
+	mv -f "$tmp/renfe" "$bin"
+	rm -rf "$tmp"
+	trap - EXIT
+fi
+exec "$bin" "$@"

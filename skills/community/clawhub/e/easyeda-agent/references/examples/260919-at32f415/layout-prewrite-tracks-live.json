@@ -1,0 +1,262 @@
+{
+  "schemaVersion": 1,
+  "status": "live-typed-read",
+  "source": {
+    "command": "easyeda pcb track-list --project ceshi --doc 2e719e9419653c72",
+    "capturedAt": "2026-09-20T14:59:38.888337Z",
+    "documentUuid": "2e719e9419653c72"
+  },
+  "purpose": "Layout 写入前确认已有铜仅位于 LDO 模块区域；不证明逐段电气连接。",
+  "ldoMembers": [
+    "C3",
+    "C4",
+    "C5",
+    "C6",
+    "U2"
+  ],
+  "ldoEnvelopeWith30MilMargin": {
+    "minXMil": 1586.4250000000002,
+    "minYMil": 236.04699999999997,
+    "maxXMil": 2140.232,
+    "maxYMil": 737.307
+  },
+  "trackCount": 15,
+  "arcCount": 0,
+  "allTracksWithinLdoEnvelope": true,
+  "nets": [
+    "+3V3",
+    "+5V",
+    "GND"
+  ],
+  "tracks": [
+    {
+      "primitiveId": "7bd72cc6f11aff72",
+      "net": "+5V",
+      "withinLdoEnvelope": true,
+      "start": [
+        1655,
+        310
+      ],
+      "end": [
+        1744,
+        310
+      ],
+      "layer": 1,
+      "widthMil": 20
+    },
+    {
+      "primitiveId": "0aaa4d295313a675",
+      "net": "+5V",
+      "withinLdoEnvelope": true,
+      "start": [
+        1744,
+        310
+      ],
+      "end": [
+        1838.4,
+        310
+      ],
+      "layer": 1,
+      "widthMil": 20
+    },
+    {
+      "primitiveId": "65bf587acb91c574",
+      "net": "+3V3",
+      "withinLdoEnvelope": true,
+      "start": [
+        1838.4,
+        400
+      ],
+      "end": [
+        2061.6,
+        400
+      ],
+      "layer": 1,
+      "widthMil": 20
+    },
+    {
+      "primitiveId": "9e231bc7a3ade0df",
+      "net": "+3V3",
+      "withinLdoEnvelope": true,
+      "start": [
+        2050,
+        470
+      ],
+      "end": [
+        2050,
+        587.6
+      ],
+      "layer": 1,
+      "widthMil": 20
+    },
+    {
+      "primitiveId": "c732c9e439d1d599",
+      "net": "+3V3",
+      "withinLdoEnvelope": true,
+      "start": [
+        2050,
+        587.6
+      ],
+      "end": [
+        1900,
+        587.6
+      ],
+      "layer": 1,
+      "widthMil": 20
+    },
+    {
+      "primitiveId": "a76f0b60f508dff4",
+      "net": "GND",
+      "withinLdoEnvelope": true,
+      "start": [
+        1655,
+        388.8
+      ],
+      "end": [
+        1720.4,
+        388.8
+      ],
+      "layer": 1,
+      "widthMil": 20
+    },
+    {
+      "primitiveId": "75171014b835305e",
+      "net": "GND",
+      "withinLdoEnvelope": true,
+      "start": [
+        1744,
+        365.19999999999993
+      ],
+      "end": [
+        1720.4,
+        388.8
+      ],
+      "layer": 1,
+      "widthMil": 20
+    },
+    {
+      "primitiveId": "369544daea524190",
+      "net": "GND",
+      "withinLdoEnvelope": true,
+      "start": [
+        2050,
+        666.4
+      ],
+      "end": [
+        1923.6,
+        666.4
+      ],
+      "layer": 1,
+      "widthMil": 20
+    },
+    {
+      "primitiveId": "23755f26a7632060",
+      "net": "GND",
+      "withinLdoEnvelope": true,
+      "start": [
+        1923.6,
+        666.4
+      ],
+      "end": [
+        1900,
+        642.8
+      ],
+      "layer": 1,
+      "widthMil": 20
+    },
+    {
+      "primitiveId": "8adfda64b67d84d4",
+      "net": "GND",
+      "withinLdoEnvelope": true,
+      "start": [
+        1900,
+        642.8
+      ],
+      "end": [
+        1850,
+        642.8
+      ],
+      "layer": 1,
+      "widthMil": 20
+    },
+    {
+      "primitiveId": "1b08f7dee26a2bc8",
+      "net": "GND",
+      "withinLdoEnvelope": true,
+      "start": [
+        1850,
+        642.8
+      ],
+      "end": [
+        1830,
+        622.8
+      ],
+      "layer": 1,
+      "widthMil": 20
+    },
+    {
+      "primitiveId": "9a97e2ffa60b9e67",
+      "net": "GND",
+      "withinLdoEnvelope": true,
+      "start": [
+        1830,
+        622.8
+      ],
+      "end": [
+        1830,
+        500
+      ],
+      "layer": 1,
+      "widthMil": 20
+    },
+    {
+      "primitiveId": "1a814ea8de58ebbc",
+      "net": "GND",
+      "withinLdoEnvelope": true,
+      "start": [
+        1744,
+        365.19999999999993
+      ],
+      "end": [
+        1773,
+        394.20000000000005
+      ],
+      "layer": 1,
+      "widthMil": 20
+    },
+    {
+      "primitiveId": "986527a04ce736f0",
+      "net": "GND",
+      "withinLdoEnvelope": true,
+      "start": [
+        1773,
+        394.20000000000005
+      ],
+      "end": [
+        1773,
+        460
+      ],
+      "layer": 1,
+      "widthMil": 20
+    },
+    {
+      "primitiveId": "86acbf0382cc9dd3",
+      "net": "GND",
+      "withinLdoEnvelope": true,
+      "start": [
+        1773,
+        460
+      ],
+      "end": [
+        1803.6,
+        490.6
+      ],
+      "layer": 1,
+      "widthMil": 20
+    }
+  ],
+  "limitations": [
+    "基于线段端点与 LDO 五个封装 bbox 外扩 30mil 的几何归属；未运行逐焊盘 net-path。",
+    "pcb dump 只有 routedLines 计数，不含铜几何；因此另存本 typed track-list 证据。"
+  ]
+}

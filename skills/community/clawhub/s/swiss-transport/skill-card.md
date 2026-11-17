@@ -1,40 +1,49 @@
-## Description: <br>
-Swiss Public Transport real-time information for querying train, bus, tram, or boat schedules in Switzerland, including station search, departure boards, journey planning, and connection details. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides real-time Swiss public transport station search, departure boards, journey planning, and connection details using transport.opendata.ch.
 
-## Publisher: <br>
-[xenofex7](https://clawhub.ai/user/xenofex7) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[xenofex7](https://clawhub.ai/user/xenofex7)
 
-## Use Case: <br>
-External users and developers use this skill to look up Swiss public transport stations, real-time departure boards, and point-to-point journey options without an API key. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Origin, destination, date, and time queries are sent to transport.opendata.ch. <br>
-Mitigation: Avoid using the skill for travel details considered sensitive. <br>
-Risk: The upstream transport.opendata.ch service is described in evidence security guidance as unofficial. <br>
-Mitigation: Treat returned schedules as lookup assistance and verify critical travel plans with an official transport provider when needed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [transport.opendata.ch API](https://transport.opendata.ch) <br>
-- [Swiss Public Transport on ClawHub](https://clawhub.ai/xenofex7/swiss-transport) <br>
+## Use Case:
 
+External users, travelers, and developers use this skill to search Swiss transit stations, inspect live departures, and plan point-to-point journeys through an agent or the included command-line helper.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, code, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and optional formatted text output from the helper script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May return live schedule data, station matches, departure times, route sections, platform information, and delays from transport.opendata.ch.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Station names, routes, dates, and times may be sent to the public transport.opendata.ch service.
+
+Mitigation: Avoid using the skill for travel queries that require strict privacy, and review outbound query details before execution.
+
+## Reference(s):
+
+- [transport.opendata.ch API](https://transport.opendata.ch)
+- [ClawHub skill release page](https://clawhub.ai/xenofex7/skills/swiss-transport)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Code, Guidance]
+
+**Output Format:** [Markdown with inline bash commands and plain-text journey results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use HTTPS requests to transport.opendata.ch; no API key is required.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

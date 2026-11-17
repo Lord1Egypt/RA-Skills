@@ -1,50 +1,65 @@
-## Description: <br>
-Fetches URLs through Chrome CDP and site-specific adapters, then converts pages, X/Twitter posts, YouTube transcripts, Hacker News threads, and generic pages into Markdown or JSON. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetch any URL and convert to markdown using baoyu-fetch CLI with Chrome CDP and site-specific adapters for X/Twitter, YouTube transcripts, Hacker News threads, and generic pages.
 
-## Publisher: <br>
-[jimliu](https://clawhub.ai/user/jimliu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jimliu](https://clawhub.ai/user/jimliu)
 
-## Use Case: <br>
-Developers and content workflows use this skill to save web pages, social posts, video transcripts, and discussion threads as Markdown or JSON, with optional local media capture. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Logged-in or private pages may expose sensitive session content during browser-based capture. <br>
-Mitigation: Use a dedicated Chrome profile and avoid private or internal URLs unless the capture behavior has been reviewed. <br>
-Risk: Debug mode can write page HTML and network data to disk. <br>
-Mitigation: Enable debug mode only when needed, store artifacts in a controlled location, and delete them after review. <br>
-Risk: X/Twitter sessions may be saved in a local plaintext cookie sidecar. <br>
-Mitigation: Use a dedicated profile for authenticated capture and remove the profile or cookie sidecar when finished. <br>
-Risk: Generic conversion may send the target URL to defuddle.md as a fallback. <br>
-Mitigation: Do not process private or internal URLs when third-party URL sharing is not acceptable. <br>
-Risk: Headless capture can produce incomplete or misleading Markdown without a command failure. <br>
-Mitigation: Inspect saved Markdown after each run and retry with interaction mode when content appears incomplete, gated, or boilerplate-heavy. <br>
+## Use Case:
 
+Developers and agents use this skill to fetch web pages, convert them into Markdown or JSON, and optionally save page media beside the generated document. It is intended for webpage capture workflows that may require site-specific handling or interactive login/CAPTCHA resolution.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jimliu/baoyu-url-to-markdown) <br>
-- [OpenClaw homepage](https://github.com/JimLiu/baoyu-skills#baoyu-url-to-markdown) <br>
-- [Adapters & Media](references/adapters.md) <br>
-- [Quality Gate & Recovery](references/quality-gate.md) <br>
-- [First-Time Setup](references/config/first-time-setup.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, json, files, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown or JSON, usually written to stdout or a user-selected file; optional media downloads are written as local files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses Chrome/CDP capture, site-specific adapters, optional media download, and quality-gate checks for low-quality captures.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.117.2 (source: server release metadata) <br>
+Risk: Authenticated browser sessions may expose private page content or account state during capture.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only on URLs approved for browser automation, and avoid private, internal, invitation-only, password-reset, or token-bearing URLs unless the workflow has been reviewed.
+
+Risk: Generic Markdown extraction can send target URLs to defuddle.md as a remote fallback.
+
+Mitigation: Review remote fallback behavior before use on confidential pages, and disable or modify the fallback path when sensitive URLs must remain local.
+
+Risk: X/Twitter session cookies can be persisted in a plaintext sidecar file.
+
+Mitigation: Treat the Chrome profile directory and x-session-cookies.json as sensitive, restrict access to them, and delete saved session files when they are no longer needed.
+
+Risk: Debug output can save page HTML, generated Markdown, document metadata, and network contents.
+
+Mitigation: Avoid --debug-dir on confidential pages, or store debug artifacts only in approved protected locations and remove them after review.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jimliu/skills/baoyu-url-to-markdown)
+- [Project homepage](https://github.com/JimLiu/baoyu-skills#baoyu-url-to-markdown)
+- [Adapters & Media](references/adapters.md)
+- [Quality Gate & Recovery](references/quality-gate.md)
+- [First-Time Setup](references/config/first-time-setup.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, JSON, Files, Shell commands, Configuration]
+
+**Output Format:** [Markdown or JSON output, optionally written to files with downloaded media assets in adjacent directories]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Bun and a Chrome or Chromium browser; output quality should be checked after headless captures.]
+
+## Skill Version(s):
+
+1.117.2 (source: ClawHub release metadata, changelog dated 2026-05-17)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

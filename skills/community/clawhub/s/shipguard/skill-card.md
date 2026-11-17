@@ -1,43 +1,55 @@
-## Description: <br>
-Structured software development workflow for AI-assisted codebases: gated requirement intake with test cases, change impact analysis, typed implementation boundaries, verified delivery, full regression testing, and experience accumulation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Structured software development workflow for AI-assisted codebases: gated requirement intake with test cases, change impact analysis, typed implementation boundaries, verified delivery, full regression testing, and experience accumulation.
 
-## Publisher: <br>
-[morelapai](https://clawhub.ai/user/morelapai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[morelapai](https://clawhub.ai/user/morelapai)
 
-## Use Case: <br>
-Developers and engineering teams use ShipGuard to add a gated workflow around AI-assisted software changes, including requirement intake, impact analysis, implementation boundaries, feature QA, regression checks, and lessons capture. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create and update persistent project workflow files that influence future agent behavior. <br>
-Mitigation: Review the generated `.dev-workflow/` changes before relying on them, especially permanent rules, lessons, cumulative test cases, and changelog entries. <br>
-Risk: Automatic activation on code-change requests may apply the workflow more broadly than intended. <br>
-Mitigation: Narrow the activation criteria during installation or require explicit approval before ShipGuard updates persistent project memory. <br>
+## Use Case:
 
+Developers and engineering teams use ShipGuard to structure AI-assisted code changes through requirement intake, impact analysis, implementation boundaries, feature QA, regression checks, and lessons capture.
 
-## Reference(s): <br>
-- [ShipGuard repository homepage](https://github.com/morelapAI/shipguard) <br>
-- [ShipGuard ClawHub page](https://clawhub.ai/morelapai/shipguard) <br>
-- [Hard rules](references/hard-rules.md) <br>
-- [Lessons template](references/lessons.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with structured workflow cards, checklists, code blocks, and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update persistent project workflow files under .dev-workflow/ when used in a project.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.3 (source: ClawHub release metadata) <br>
+Risk: Persistent project workflow files and reloaded rules can influence future AI sessions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review .dev-workflow changes before committing and require approval before adding hard rules or persistent project memory.
+
+Risk: Some changes may be auto-executed based on the agent's own task classification.
+
+Mitigation: Disable or manually control auto-execute behavior for production or shared repositories, especially for critical paths.
+
+## Reference(s):
+
+- [ShipGuard Project Homepage](https://github.com/morelapAI/shipguard)
+- [Hard Rules](references/hard-rules.md)
+- [Lessons Learned](references/lessons.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with structured workflow cards and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create and maintain project-local .dev-workflow files for requirements, change records, test cases, regression results, lessons, and changelog entries.]
+
+## Skill Version(s):
+
+0.1.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

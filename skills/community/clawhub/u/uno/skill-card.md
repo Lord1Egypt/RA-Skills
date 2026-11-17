@@ -1,45 +1,58 @@
-## Description: <br>
-Call 2000+ tools via curl, zero installation. Supports tool-level semantic search - get full inputSchema in one step and invoke directly. Covers search, dev, docs, finance, maps, travel, AI media, social, productivity, enterprise, and more. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Call 2000+ tools via curl, zero installation. Supports tool-level semantic search; get the full inputSchema in one step and invoke tools directly across search, development, documentation, finance, maps, travel, AI media, social, productivity, enterprise, and more.
 
-## Publisher: <br>
-[lxyd-ai](https://clawhub.ai/user/lxyd-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lxyd-ai](https://clawhub.ai/user/lxyd-ai)
 
-## Use Case: <br>
-Developers and agents use this skill to authenticate with MCPMarket, search available remote tools, inspect input schemas, and invoke selected tools through documented curl calls. It also supports browsing categories, checking credits, fetching skills, and submitting ratings after successful use. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is a broad remote tool gateway that can invoke account-linked services. <br>
-Mitigation: Confirm the selected tool, arguments, and intended side effects with the user before posts, purchases, deletions, financial actions, business changes, or other consequential calls. <br>
-Risk: The workflow stores a persistent MCPMarket access token in ~/.uno/token. <br>
-Mitigation: Use restrictive file permissions, remove ~/.uno/token when finished, and separately revoke any linked downstream service access in MCPMarket or the connected service. <br>
-Risk: Some downstream services may require OAuth linking through MCPMarket before use. <br>
-Mitigation: Show the user the exact authorization URL from the service response, require explicit approval before linking, and retry the original call only after authorization is complete. <br>
-Risk: The skill can fetch untrusted remote skill content and submit ratings that affect ranking. <br>
-Mitigation: Review fetched skill content before loading or following it, and ask for confirmation before submitting tool or skill ratings. <br>
+## Use Case:
 
+Developers and agents use this skill to discover MCPMarket tools, inspect their input schemas, and call selected remote tools through curl-based API requests. It is useful when an agent needs broad third-party tool access without installing local packages.
 
-## Reference(s): <br>
-- [ClawHub listing for uno](https://clawhub.ai/lxyd-ai/uno) <br>
-- [MCPMarket homepage](https://mcpmarket.cn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API calls, Configuration, Guidance, Text] <br>
-**Output Format:** [Markdown with inline curl commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a local bearer token file at ~/.uno/token and returns remote API responses that may contain nested JSON strings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.0 (source: server release metadata) <br>
+Risk: Broad MCPMarket authorization can expose tool searches, arguments, and downstream delegated actions to remote services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when users are comfortable sending the selected query and arguments to MCPMarket and the downstream tool provider; avoid secrets, private documents, credentials, source code, and regulated data unless the destination has been reviewed.
+
+Risk: The bearer token is stored persistently at ~/.uno/token and can be reused if exposed.
+
+Mitigation: Protect the token file with restrictive permissions, treat it as a sensitive credential, and revoke or rotate the token if disclosure is suspected.
+
+Risk: Some downstream tools can require additional account linking, such as GitHub or Notion OAuth.
+
+Mitigation: Review each downstream authorization request and service destination before linking accounts or retrying the tool call.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lxyd-ai/skills/uno)
+- [MCPMarket homepage](https://mcpmarket.cn)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, API Calls, Configuration instructions, Guidance, Text]
+
+**Output Format:** [Markdown with inline bash commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces curl-based workflows for authentication, tool search, tool invocation, ratings, credits, and skill lookup.]
+
+## Skill Version(s):
+
+3.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

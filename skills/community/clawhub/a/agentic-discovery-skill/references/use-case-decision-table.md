@@ -11,7 +11,7 @@
 | Access/data readiness | `systems-and-data-access-checklist` | Checks systems, documents, and permissions. |
 | API/tool feasibility | `tool-api-readiness-checklist` | Checks integration constraints. |
 | Approval model unclear | `human-approval-gate-checklist` | Identifies decisions requiring human review. |
-| Sensitive or regulated concern | `risk-and-excluded-use-checklist` | Captures risk and excluded uses. |
+| Sensitive or regulated concern | `riREDACTED-SECRET` | Captures risk and excluded uses. |
 | Buyer asks what success means | `success-criteria-worksheet` | Defines acceptance and outcome measures. |
 | Need test cases | `evaluation-example-worksheet` | Captures representative examples. |
 | Decide whether to propose pilot | `pilot-readiness-scorecard` | Scores readiness and recommends next step. |

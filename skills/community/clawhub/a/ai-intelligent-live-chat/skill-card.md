@@ -1,43 +1,54 @@
-## Description: <br>
-在线客服，实时聊天 + AI 问答。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Online customer service for real-time chat and AI question answering.
 
-## Publisher: <br>
-[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk)
 
-## Use Case: <br>
-External support and operations teams can use this skill to guide setup of a web-based customer chat service with real-time messaging, GPT-backed Q&A, multi-agent routing, chat history, and satisfaction ratings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release guidance references an external repository and requirements file that are not bundled in the artifact. <br>
-Mitigation: Inspect the referenced repository and dependency list before installation or deployment. <br>
-Risk: Live chat systems may process customer chat logs through staff workflows and a GPT provider. <br>
-Mitigation: Define retention, deletion, staff-access, and provider-processing controls before using real customer data. <br>
-Risk: Publisher identity affects trust decisions for deployment. <br>
-Mitigation: Verify the publisher profile and release ownership before installing in a production environment. <br>
+## Use Case:
 
+Customer support and sales teams use this skill to operate a web-based live chat system with AI Q&A, agent routing, chat history, and satisfaction ratings.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yang1002378395-cmyk/ai-intelligent-live-chat) <br>
-- [Referenced installation repository](https://github.com/openclaw-skills/ai-intelligent-live-chat) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill provides setup guidance and operational notes; it does not bundle executable code in the ClawHub artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Install steps may run unreviewed code from a mutable remote GitHub repository.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill carefully before installing, verify the repository source, pin a reviewed commit, and run installation commands only in an isolated environment.
+
+Risk: Customer chat logs and GPT-bound data may contain sensitive information.
+
+Mitigation: Decide how chat logs and model-bound data will be protected before deployment, including retention, access controls, and data handling rules.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yang1002378395-cmyk/skills/ai-intelligent-live-chat)
+- [Publisher profile](https://clawhub.ai/user/yang1002378395-cmyk)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include setup guidance for Python, FastAPI, WebSocket, and GPT-integrated customer chat workflows.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

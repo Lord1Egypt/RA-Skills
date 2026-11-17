@@ -46,7 +46,7 @@ metadata:
 - `answer`：模型原始输出文本  
 - `question`：本次送入模型的用户消息全文  
 - `meta`：来自输入的 `meta`（无则为 `{}`）  
-- `record_index`、`model`、`input_mode`、`input_path` 等（含义同 medbench 类脚本）
+- `record_index`、`model`、`input_mode`、`input_path` 等（含义同医疗大模型直连问答脚本）
 
 ## 用法示例
 
@@ -68,7 +68,7 @@ python3 scripts/run.py --input case.jsonl --index 0 --batch 3 --appkey YOUR_KEY
 
 ## 模型
 
-- 默认 `u1-insuremed`，接口 `https://maas-api.hivoice.cn/v1/chat/completions`。
+- 默认 `u2-med`，接口 `https://maas-api.hivoice.cn/v1/chat/completions`。
 
 ## 合规说明
 

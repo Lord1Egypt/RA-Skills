@@ -1,40 +1,53 @@
-## Description: <br>
-Amazon Ops Agents provides Amazon seller operations strategy guidance across product research, listing optimization, advertising, inventory, pricing, reviews, brand protection, analytics, customer service, and compliance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Amazon Ops Agents is a Chinese-language strategy advisor for Amazon sellers that provides guidance across product research, listings, advertising, inventory, pricing, reviews, brand protection, analytics, customer service, and compliance.
 
-## Publisher: <br>
-[wangm-a3](https://clawhub.ai/user/wangm-a3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangm-a3](https://clawhub.ai/user/wangm-a3)
 
-## Use Case: <br>
-Amazon sellers, ecommerce operators, and marketplace consultants use this skill to draft and review operational strategies for product launches, PPC, FBA inventory, pricing, review response, account health, and related Amazon marketplace workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may include Seller Central credentials, API keys, customer personal data, or confidential supplier terms when asking for operations advice. <br>
-Mitigation: Provide only the non-sensitive business context needed for the strategy question and keep credentials, keys, personal data, and confidential terms out of prompts. <br>
-Risk: Marketplace strategy guidance can be incomplete, outdated, or unsuitable for a specific account, product category, or jurisdiction. <br>
-Mitigation: Treat outputs as planning support and verify recommendations against current Amazon policies, account data, and professional judgment before acting. <br>
+## Use Case:
 
+Amazon sellers and ecommerce operators use this skill to generate strategy recommendations for marketplace operations, including product selection, listing optimization, PPC planning, inventory planning, pricing, review handling, brand protection, analytics, support responses, and compliance checks. The reviewed artifact presents the skill as an advisory tool that does not require account credentials or perform live marketplace actions.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/wangm-a3/amazon-ops-agents) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text strategy advice, checklists, analysis summaries, and response drafts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance; does not require account authorization or execute Amazon account actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: server release metadata) <br>
+Risk: The reviewed artifact uses package-name signals that differ from the install name shown in the README, which can create package identity confusion.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before installation, verify that the registry package and version match the reviewed release or a verified alias controlled by publisher wangm-a3.
+
+Risk: Marketplace strategy advice may be incomplete or stale if applied directly to a live seller account.
+
+Mitigation: Treat outputs as advisory, do not provide marketplace credentials, and validate recommendations against current seller account data and marketplace policy before taking action.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wangm-a3/skills/amazon-ops-agents)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Chinese-language strategy recommendations, checklists, analysis summaries, and response drafts in plain text or Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The reviewed artifact is advisory and does not require credentials, API access, or automated account actions.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

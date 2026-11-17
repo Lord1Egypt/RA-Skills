@@ -1,6 +1,5 @@
 {
-  "ownerId": "kn7240w6zjjthqkar6qtyx814181rj2k",
-  "slug": "multisource-intel-radar",
-  "version": "0.1.1",
-  "publishedAt": 1772248496814
+  "source": "custom",
+  "createdBy": "openclaw-main",
+  "createdAt": "2026-02-27"
 }

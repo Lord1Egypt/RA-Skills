@@ -1,38 +1,54 @@
-## Description: <br>
-Tracks OpenClaw session token usage with daily, weekly, and cumulative statistics plus token-saving suggestions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Records and tracks OpenClaw session token usage with daily, weekly, and cumulative statistics plus token-saving suggestions.
 
-## Publisher: <br>
-[longziruo-max](https://clawhub.ai/user/longziruo-max) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[longziruo-max](https://clawhub.ai/user/longziruo-max)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to inspect token consumption, review daily, weekly, and cumulative usage, launch a dashboard, and get token-saving suggestions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The submitted skill documents installation and token-tracker commands without bundled implementation code for those commands. <br>
-Mitigation: Before installing or running the commands, confirm that you trust the ClawHub npm package, the token-tracker command provider, and the publisher. <br>
+## Use Case:
 
+OpenClaw users and developers use this skill to inspect token consumption trends, view period-based usage totals, launch a dashboard, and get suggestions for reducing token usage.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/longziruo-max/token-tracker-pro-2026) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Command examples for token-tracker usage and ClawHub installation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.2.0 (source: server release metadata) <br>
+Risk: The skill instructs users to perform a global npm installation and install a ClawHub package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only from trusted ClawHub and npm sources, prefer pinned versions, and use an isolated environment when evaluating the package.
+
+Risk: The artifact does not document what local token data the installed tracker reads or where it stores statistics.
+
+Mitigation: Review the installed package behavior and storage locations before using it with sensitive OpenClaw session data.
+
+## Reference(s):
+
+- [Token Tracker Pro ClawHub skill page](https://clawhub.ai/longziruo-max/skills/token-tracker-pro-2026)
+- [longziruo-max ClawHub publisher profile](https://clawhub.ai/user/longziruo-max)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline bash commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill guides users to run token-tracker commands for token statistics, recommendations, and dashboard access.]
+
+## Skill Version(s):
+
+2.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,130 @@
+#encoding:gbk
+'''
+3获取行情数据
+，专注于大QMT量化交易框架的深度训练与智能支持。我能够提供精准的代码提示、输出优化以及策略修改服务，帮助你高效开发和迭代量化交易策略。我的创造者是小果量化，，欢迎联系微信：xg_quant。，只做学习使用，不做投资参考，注意风险
+该目录下的函数用于获取实时行情,历史行情
+
+ContextInfo.get_market_data_ex - 获取行情数据
+注意
+
+该函数不建议在init中运行,在init中运行时仅能取到本地数据
+关于获取行情函数之间的区别与注意事项可在 - 常见问题-行情相关 查看
+除实时行情外，该函数还可用于获取特色数据，如资金流向数据,订单流数据等，获取方式见数据字典
+原型
+
+内置python
+
+ContextInfo.get_market_data_ex(
+    fields=[], 
+    stock_code=[], 
+    period='follow', 
+    start_time='', 
+    end_time='', 
+    count=-1, 
+    dividend_type='follow', 
+    fill_data=True, 
+    subscribe=True)
+释义
+
+获取实时行情与历史行情数据
+
+参数
+
+名称	类型	描述
+field	list	数据字段，详情见下方field字段表
+stock_list	list	合约代码列表
+period	str	数据周期，可选字段为:
+"tick"
+"1m"：1分钟线
+"5m"：5分钟线；"15m"：15分钟线；"30m"：30分钟线
+"1h"小时线
+"1d"：日线
+"1w"：周线
+"1mon"：月线
+"1q"：季线
+"1hy"：半年线
+"1y"：年线
+'l2quote'：Level2行情快照
+'l2quoteaux'：Level2行情快照补充
+'l2order'：Level2逐笔委托
+'l2transaction'：Level2逐笔成交
+'l2transactioncount'：Level2大单统计
+'l2orderqueue'：Level2委买委卖队列
+start_time	str	数据起始时间，格式为 %Y%m%d 或 %Y%m%d%H%M%S，填""为获取历史最早一天
+end_time	str	数据结束时间，格式为 %Y%m%d 或 %Y%m%d%H%M%S ，填""为截止到最新一天
+count	int	数据个数
+dividend_type	str	除权方式,可选值为
+'none'：不复权
+'front':前复权
+'back':后复权
+'front_ratio': 等比前复权
+'back_ratio': 等比后复权
+fill_data	bool	是否填充数据
+subscribe	bool	订阅数据开关，默认为True，设置为False时不做数据订阅，只读取本地已有数据。
+field字段可选：
+field	数据类型	含义
+time	int	时间
+open	float	开盘价
+high	float	最高价
+low	float	最低价
+close	float	收盘价
+volume	float	成交量
+amount	float	成交额
+settle	float	今结算
+openInterest	float	持仓量
+preClose	float	前收盘价
+suspendFlag	int	停牌 1停牌，0 不停牌
+period周期为tick时，field字段可选:
+field	数据类型	含义
+time	int	时间
+lastPrice	float	最新价
+lastClose	float	前收盘价
+open	float	开盘价
+high	float	最高价
+low	float	最低价
+close	float	收盘价
+volume	float	成交量
+amount	float	成交额
+settle	float	今结算
+openInterest	float	持仓量
+stockStatus	int	停牌 1停牌，0 不停牌
+period周期为Level2数据时，字段参考数据结构
+返回值
+
+返回dict { stock_code1 : value1, stock_code2 : value2, ... }
+value1, value2, ... ：pd.DataFrame 数据集，index为time_list，columns为fields,可参考Bar字段
+各标的对应的DataFrame维度相同、索引相同
+示例
+'''
+import pandas as pd
+import numpy as np
+
+def init(c):	
+	c.stock_list = ["000001.SZ","600519.SH", "510050.SH"]# 指定获取的标的
+	c.start_time = "20230901"# 指定获取数据的开始时间
+	c.end_time = "20231101"# 指定获取数据的结束时间
+	
+def handlebar(c):
+	# 获取多只股票，多个字段，一条数据
+	data1 = c.get_market_data_ex([],c.stock_list, period = "1d",count = 1)
+	# 获取多只股票，多个字段，指定时间数据
+	data2 = c.get_market_data_ex([],c.stock_list, period = "1d", start_time = c.start_time, end_time = c.end_time)
+	# 获取多只股票，多个字段，指定时间15m数据
+	data3 = c.get_market_data_ex([],c.stock_list, period = "15m", start_time = c.start_time, end_time = c.end_time)
+	# 获取多只股票，指定字段，指定时间15m数据
+	data4 = c.get_market_data_ex(["close","open"],c.stock_list, period = "15m", start_time = c.start_time, end_time = c.end_time)
+	# 获取多只股票，历史tick
+	tick = c.get_market_data_ex([],c.stock_list, period = "tick", start_time = c.start_time, end_time = c.end_time)
+	# 获取期货5档盘口tick
+	future_lv2_quote = c.get_market_data_ex([],["rb2405.SF","ec2404.INE"], period = "l2quote", count = 1)
+	print(data1)
+	print(data2["000001.SZ"].tail())
+	print(data3)
+	print(data4["000001.SZ"])
+	print(data4["000001.SZ"].to_csv("your_path")) # 导出文件为csv格式，路径填本机路径
+	print(tick["000001.SZ"])
+	print(future_lv2_quote)
+'''
+运行结果
+20260317  1.187565e+09  11.03  11.07  10.9  10.91            15     10.92   
+'''

@@ -5,7 +5,7 @@ allowed-tools: [Bash(oo *)]
 metadata:
   title: "Zoom"
   author: "OOMOL"
-  version: "1.0.2"
+  version: "1.0.7"
   services: ["zoom"]
   icon: "https://static.oomol.com/logo/third-party/zoom.svg"
 ---
@@ -38,8 +38,8 @@ Each action is listed below with a one-line description; actions that change sta
 ## Available actions
 
 - `create_meeting` — Create a Zoom meeting for a user with the core official scheduling fields and first-pass settings. [write]
-- `get_user` — Fetch one Zoom user by user ID, email address, or me when supported by the app. [write]
-- `list_meetings` — List scheduled, live, upcoming, or previous meetings for a Zoom user using official pagination. [write]
+- `get_user` — Fetch one Zoom user by user ID, email address, or me when supported by the app.
+- `list_meetings` — List scheduled, live, upcoming, or previous meetings for a Zoom user using official pagination.
 - `update_meeting` — Update a Zoom meeting by meeting ID with the core official scheduling fields and first-pass settings. [write]
 
 ## Safety
@@ -71,11 +71,14 @@ These are **one-time** steps — do not repeat them on every call. Run a step on
 - **`scope_missing` / `credential_expired` / `app_not_ready` / `app_not_found`** — Zoom is not connected, or the connection expired or lacks a scope. Connect once (auth type: OAuth2) at:
 
   ```text
-  https://console.oomol.com/app-connections?provider=zoom
+  https://console.oomol.com/connections/zoom
   ```
 
-- **HTTP 402 / `OOMOL_INSUFFICIENT_CREDIT`** — billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+- **`OOMOL_INSUFFICIENT_CREDIT`** — OOMOL billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+
+- **HTTP 402 without `OOMOL_INSUFFICIENT_CREDIT`** — the third-party account itself has no active plan or credit. Report the provider error message as is; do not ask the user to recharge OOMOL.
 
 ## Resources
 
 - Zoom homepage: https://www.zoom.com
+- API documentation: https://developers.zoom.us/docs/api/meetings/

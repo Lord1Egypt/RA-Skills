@@ -1,43 +1,56 @@
-## Description: <br>
-零配置即装即用，提供拼多多商品搜索、商品详情和频道好货浏览3项工具，支持百亿补贴、秒杀、销量榜等频道，返回优惠价格、优惠券和购买链接。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+拼多多商品搜索、详情查询和频道好货浏览三合一工具，支持百亿补贴/秒杀/销量榜等频道，返回优惠价格、优惠券和购买链接。
 
-## Publisher: <br>
-[cn-shopping](https://clawhub.ai/user/cn-shopping) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cn-shopping](https://clawhub.ai/user/cn-shopping)
 
-## Use Case: <br>
-External shoppers and shopping assistants use this skill to search Pinduoduo products, inspect item details, and browse deal channels such as 百亿补贴, 秒杀, and 销量榜. It supports product discovery and comparison within Pinduoduo, but it does not place orders or access account, order, or logistics data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Shopping queries are forwarded through a disclosed cloud proxy to retrieve Pinduoduo product data. <br>
-Mitigation: Avoid private or sensitive search terms and review the proxy data flow before use. <br>
-Risk: Product prices, coupons, availability, and item details can change in real time. <br>
-Mitigation: Confirm specifications, seller details, coupon terms, and final checkout price on Pinduoduo before acting on results. <br>
-Risk: The skill returns product information and purchase links, but does not complete purchases or access orders. <br>
-Mitigation: Use it for discovery only; complete any purchase review and checkout outside the skill. <br>
+## Use Case:
 
+External users use this skill to search Pinduoduo products, inspect product details, and browse deal channels such as subsidy, flash-sale, and sales-ranking feeds before deciding what to buy.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cn-shopping/pdd-selection) <br>
-- [Publisher profile](https://clawhub.ai/user/cn-shopping) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [JSON object containing a human-readable Chinese text response] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include product names, prices, coupons, sales labels, image URLs, goods_sign identifiers, and purchase links when returned by the upstream product data service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Product searches and product identifiers are sent to a third-party proxy service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when the publisher and proxy service are trusted for the relevant shopping queries.
+
+Risk: The artifact includes a hard-coded shared proxy token and weak endpoint scoping.
+
+Mitigation: Rotate or remove the embedded token and restrict the proxy destination before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cn-shopping/skills/pdd-selection)
+- [拼多多百亿补贴](https://clawhub.ai/cn-shopping/pdd-baiyi-proxy)
+- [拼多多实时热销榜](https://clawhub.ai/cn-shopping/pdd-hot-rank)
+- [购物比价助手](https://clawhub.ai/cn-shopping/best-price)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, guidance]
+
+**Output Format:** [JSON containing Chinese text summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes product names, prices, coupon information, sales hints, store/category data, image URLs, and product identifiers when available.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

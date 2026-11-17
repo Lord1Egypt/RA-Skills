@@ -1,45 +1,60 @@
-## Description: <br>
-Turn a Douyin or Xiaohongshu link into a concise summary, an actionable todo list, and a recommended reminder time. The hosted service handles the platform access on the server side, and the user only needs to paste the link. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Turn a Douyin or Xiaohongshu link into a concise summary, an actionable todo list, and a recommended reminder time. The hosted service handles the platform access on the server side, and the user only needs to paste the link.
 
-## Publisher: <br>
-[bobobo2026](https://clawhub.ai/user/bobobo2026) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bobobo2026](https://clawhub.ai/user/bobobo2026)
 
-## Use Case: <br>
-External users and operators use this skill to turn Douyin or Xiaohongshu links they provide into a concise summary, action-oriented todo items, and a proposed reminder time through a hosted transcription service. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The release metadata advertises unrelated crypto and purchase capabilities. <br>
-Mitigation: Do not grant or rely on those capabilities for this skill unless the publisher explains and corrects the mismatch. <br>
-Risk: User-provided Douyin or Xiaohongshu links are sent to a hosted service for processing. <br>
-Mitigation: Avoid private, tokenized, or sensitive URLs unless the operator accepts that disclosure or self-hosts the service. <br>
-Risk: Backend-provided comment candidates may be copied into public channels. <br>
-Mitigation: Review suggested comments before using them publicly. <br>
+## Use Case:
 
+External users and developers use this skill to turn a supported Douyin or Xiaohongshu link into a concise summary, an actionable todo list, and a recommended reminder time. It is intended for content review and planning workflows where the user wants a structured result without managing platform credentials locally.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/bobobo2026/link-transcriber) <br>
-- [Hosted public API origin](https://linktranscriber.store) <br>
-- [README](README.md) <br>
-- [Deployment notes](docs/DEPLOY.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-style structured text with a summary, todo list, recommended reminder time, and optional comment candidates.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The bundled runner can also return JSON for debugging; normal user-facing output should stay concise.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.26 (source: server release metadata) <br>
+Risk: User-provided Douyin or Xiaohongshu links are sent to the publisher-operated hosted service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when that link sharing is acceptable; use a self-hosted service for privacy-sensitive workflows.
+
+Risk: Backend-provided comment candidates can be relayed verbatim as user-facing comment suggestions.
+
+Mitigation: Review generated comment suggestions before posting or reusing them publicly.
+
+Risk: The documented install commands use a mutable latest package with force installation.
+
+Mitigation: Prefer a pinned, trusted install path or a reviewed release version for managed environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bobobo2026/skills/link-transcriber)
+- [Publisher profile](https://clawhub.ai/user/bobobo2026)
+- [Public service endpoint](https://linktranscriber.store)
+- [Deployment notes](artifact/docs/DEPLOY.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with structured Chinese sections for summary, todo list, reminder recommendation, and optional comment references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or poll a hosted transcription task, may return backend-provided comment candidates verbatim, and may coordinate a reminder only after user confirmation.]
+
+## Skill Version(s):
+
+0.1.26 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

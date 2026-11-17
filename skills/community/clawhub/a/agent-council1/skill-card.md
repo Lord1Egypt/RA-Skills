@@ -1,47 +1,59 @@
-## Description: <br>
-Complete toolkit for creating autonomous AI agents and managing Discord channels for OpenClaw. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent Council helps developers create autonomous OpenClaw agents and manage Discord channel integration for multi-agent systems.
 
-## Publisher: <br>
-[abeltennyson](https://clawhub.ai/user/abeltennyson) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[abeltennyson](https://clawhub.ai/user/abeltennyson)
 
-## Use Case: <br>
-Developers and operators use this skill to set up OpenClaw multi-agent systems, create autonomous agents with isolated workspaces and memory files, and manage Discord channel bindings and organization. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill references shell and Python scripts for OpenClaw, Discord, workspace, and cron changes that were not included in the evidence bundle for review. <br>
-Mitigation: Obtain the referenced scripts from a trusted source and inspect them before running any command. <br>
-Risk: Gateway and Discord changes can affect channel access, bindings, and system prompts if IDs or configuration patches are wrong. <br>
-Mitigation: Back up gateway configuration, confirm every Discord guild and channel ID, and review generated patches before applying them. <br>
-Risk: Optional workspace search and channel rename flows may update local files outside the intended scope. <br>
-Mitigation: Limit workspace paths to the intended project and review file diffs before committing or deploying changes. <br>
-Risk: Cron jobs and long-running agents can continue operating after setup. <br>
-Mitigation: Enable scheduled or long-running agents only with a documented stop and cleanup plan. <br>
+## Use Case:
 
+Developers and operators use this skill to set up OpenClaw agents with isolated workspaces, memory files, optional scheduled activity, and Discord channel bindings. It also guides Discord channel creation, renaming, and gateway configuration for coordinated multi-agent workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/abeltennyson/agent-council1) <br>
-- [OpenClaw documentation](https://docs.openclaw.ai) <br>
-- [OpenClaw agents documentation](https://docs.openclaw.ai/agents) <br>
-- [OpenClaw Discord channel documentation](https://docs.openclaw.ai/channels/discord) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Code, Guidance] <br>
-**Output Format:** [Markdown with shell, JSON, and TypeScript code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes commands and configuration patches for OpenClaw agent workspaces, gateway settings, Discord channels, and optional scheduled memory updates.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and changelog) <br>
+Risk: The skill can guide broad changes to OpenClaw agents, gateway configuration, Discord channels, workspace files, and scheduled or background activity.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm exact workspace paths, channel IDs, gateway patch contents, cron jobs, and spawned sessions before running workflows.
+
+Risk: Discord channel creation or renaming can affect the wrong channel if IDs, names, category IDs, or bot permissions are incorrect.
+
+Mitigation: Verify Discord IDs and permissions before applying channel operations, and review generated gateway patch commands before use.
+
+Risk: Workspace-wide rename workflows may update unintended files.
+
+Mitigation: Use previews, backups, or version control review before committing workspace file changes.
+
+## Reference(s):
+
+- [OpenClaw documentation](https://docs.openclaw.ai)
+- [OpenClaw agents documentation](https://docs.openclaw.ai/agents)
+- [OpenClaw Discord channel documentation](https://docs.openclaw.ai/channels/discord)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline bash, JSON, and TypeScript examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces agent workspace setup guidance, gateway configuration snippets, Discord channel operations, and multi-agent coordination examples.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

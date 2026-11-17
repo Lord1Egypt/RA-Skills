@@ -1,43 +1,58 @@
-## Description: <br>
-灵感应用推荐助手会从 Product Hunt、GitHub Trending、Hacker News、36Kr、少数派、即刻、V2EX 等平台聚合热门应用、产品和开源项目，分类提炼创意灵感、商业模式分析，并生成交互式 HTML 可视化推荐报告。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+灵感应用推荐助手会从 Product Hunt、GitHub Trending、Hacker News、36Kr、少数派、即刻、V2EX 等平台聚合热门应用、产品和开源项目，分类提炼创意灵感点与商业模式分析，并生成交互式 HTML 可视化推荐报告。
 
-## Publisher: <br>
-[bettermen](https://clawhub.ai/user/bettermen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bettermen](https://clawhub.ai/user/bettermen)
 
-## Use Case: <br>
-Developers, product builders, founders, and creators use this skill to research current product trends, find product or application ideas, compare domestic and international sources, and turn the findings into an actionable inspiration report. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may make several third-party web requests while researching public trend sites. <br>
-Mitigation: Use it only for public research topics and avoid including private product plans, credentials, or sensitive customer information in prompts. <br>
-Risk: The generated report loads Chart.js from a CDN when opened. <br>
-Mitigation: Open the report in an environment where that external dependency is acceptable, or review and adapt the HTML before sharing it in restricted settings. <br>
-Risk: The skill writes inspiration-report.html in the working directory. <br>
-Mitigation: Check for an existing file with that name before running the skill when preserving prior reports matters. <br>
+## Use Case:
 
+External users, developers, product builders, and creators use this skill when they need Chinese-language product inspiration, trend discovery, and actionable app or startup directions from current web sources.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bettermen/inspiration-app-recommend) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/bettermen) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, files, guidance] <br>
-**Output Format:** [Markdown guidance and a generated interactive HTML report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generates inspiration-report.html in the working directory and may present the file to the user.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated reports can render public website content into HTML without clear sanitization.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated HTML before opening or sharing it, and prefer a fixed version that escapes report data before injecting it into the template.
+
+Risk: The generated report loads Chart.js from a CDN in the browser.
+
+Mitigation: Use a bundled or integrity-pinned chart library when handling sensitive reports or running in restricted environments.
+
+Risk: The skill creates a local HTML report file.
+
+Mitigation: Confirm the expected output path and inspect the file before opening it in a browser.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bettermen/skills/inspiration-app-recommend)
+- [Report template artifact](artifact/assets/report-template.html)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Chinese-language Markdown guidance plus an interactive HTML report file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes inspiration-report.html in the working directory and presents it to the user.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

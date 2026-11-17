@@ -1,44 +1,59 @@
-## Description: <br>
-Armarius applies a session-wide prompt-injection policy that classifies external content as data and instructs the agent to neutralize suspected injection attempts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Armarius provides always-on prompt-injection blocking guidance for agents by treating external content as data, not instructions, and logging suspicious injection attempts.
 
-## Publisher: <br>
-[tatlantis](https://clawhub.ai/user/tatlantis) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[tatlantis](https://clawhub.ai/user/tatlantis)
 
-## Use Case: <br>
-Developers and security engineers use this skill to add prompt-injection defenses to OpenClaw and Python-based agent workflows, especially when processing tool outputs, web pages, emails, documents, or API responses. It is suited to users who want a strict always-on policy for separating user control instructions from untrusted external content. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives itself broad session-wide authority for prompt-injection handling. <br>
-Mitigation: Install only when a strict session-wide prompt-injection policy is desired, and review its behavior against the agent's existing instruction hierarchy before deployment. <br>
-Risk: The skill requires full unredacted logging of suspicious content, which may expose sensitive files, emails, API responses, or private tool outputs. <br>
-Mitigation: Redact secrets and use short excerpts instead of full verbatim payloads before using the skill with sensitive or private content. <br>
-Risk: The README install and demo commands rely on an external package and repository. <br>
-Mitigation: Inspect the external Armarius package or repository separately before running installation or demo commands. <br>
+## Use Case:
 
+Developers and agent builders use this skill to add prompt-injection handling guidance to agent workflows, especially when working with tool outputs, documents, web pages, email, or other untrusted content.
 
-## Reference(s): <br>
-- [Armarius GitHub repository](https://github.com/tatlantis/armarius) <br>
-- [Armarius issues](https://github.com/tatlantis/armarius/issues) <br>
-- [ClawHub skill listing](https://clawhub.ai/tatlantis/armarius) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with inline code and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May append full verbatim logs when suspected prompt injection is detected.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: The skill can change how the agent treats all tool results and documents during a session.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installing and test it in an isolated session before using it in normal workflows.
+
+Risk: The skill may print suspicious content back into chat verbatim, which can expose confidential data.
+
+Mitigation: Avoid using it around confidential data unless logging is changed to redact secrets and limit excerpts.
+
+Risk: The README includes external package and demo commands.
+
+Mitigation: Pin or isolate external packages and demo commands before running them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tatlantis/skills/armarius)
+- [Armarius homepage](https://github.com/tatlantis/armarius)
+- [Armarius issues](https://github.com/tatlantis/armarius/issues)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline code and shell command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include defensive handling guidance and logging recommendations for suspicious external content.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,11 +1,11 @@
 ---
 name: oo-roboflow
-description: "Roboflow (roboflow.com). Use this skill for ANY Roboflow request — searching and reading data. Whenever a task involves Roboflow, use this skill instead of calling the API directly."
+description: "Roboflow (roboflow.com). Use this skill for ANY Roboflow request — reading, creating, and updating data. Whenever a task involves Roboflow, use this skill instead of calling the API directly."
 allowed-tools: [Bash(oo *)]
 metadata:
   title: "Roboflow"
   author: "OOMOL"
-  version: "1.0.1"
+  version: "1.0.6"
   services: ["roboflow"]
   icon: "https://static.oomol.com/logo/third-party/roboflow.svg"
 ---
@@ -46,8 +46,8 @@ Each action is listed below with a one-line description; actions that change sta
 - `get_version` — Read one Roboflow project version and return training/export metadata.
 - `get_workflow_schema` — Fetch the Roboflow workflow block JSON schema.
 - `list_projects` — List Roboflow projects visible to the API key workspace.
-- `run_saved_workflow` — Run a workflow saved in Roboflow using workspace and workflow identifiers with runtime inputs.
-- `run_workflow` — Run a Roboflow workflow specification with runtime inputs and return serialized workflow outputs.
+- `run_saved_workflow` — Run a workflow saved in Roboflow using workspace and workflow identifiers with runtime inputs. [write]
+- `run_workflow` — Run a Roboflow workflow specification with runtime inputs and return serialized workflow outputs. [write]
 - `validate_workflow` — Validate a Roboflow workflow specification before running it.
 
 ## Safety
@@ -79,11 +79,14 @@ These are **one-time** steps — do not repeat them on every call. Run a step on
 - **`scope_missing` / `credential_expired` / `app_not_ready` / `app_not_found`** — Roboflow is not connected, or the connection expired or lacks a scope. Connect once (auth type: API key) at:
 
   ```text
-  https://console.oomol.com/app-connections?provider=roboflow
+  https://console.oomol.com/connections/roboflow
   ```
 
-- **HTTP 402 / `OOMOL_INSUFFICIENT_CREDIT`** — billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+- **`OOMOL_INSUFFICIENT_CREDIT`** — OOMOL billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+
+- **HTTP 402 without `OOMOL_INSUFFICIENT_CREDIT`** — the third-party account itself has no active plan or credit. Report the provider error message as is; do not ask the user to recharge OOMOL.
 
 ## Resources
 
 - Roboflow homepage: https://roboflow.com/
+- API documentation: https://docs.roboflow.com/developer/rest-api

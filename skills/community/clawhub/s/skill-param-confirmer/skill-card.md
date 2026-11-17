@@ -1,41 +1,53 @@
-## Description: <br>
-Downstream skill execution preflight layer that inspects a target skill, extracts explicit and implicit confirmation fields, normalizes candidate parameters, resolves ambiguity, applies risk gating, and returns a structured confirmation payload before handoff. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Downstream skill execution preflight layer. It inspects a target skill, extracts explicit and implicit confirmation fields, normalizes candidate parameters, resolves ambiguity, applies risk gating, and returns a structured confirmation payload before handing off to the downstream skill.
 
-## Publisher: <br>
-[pm-geeker](https://clawhub.ai/user/pm-geeker) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pm-geeker](https://clawhub.ai/user/pm-geeker)
 
-## Use Case: <br>
-Developers and agent operators use this skill before invoking downstream skills to align required parameters, resolve ambiguity, confirm high-risk actions, and produce a traceable handoff payload. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Session logging can expose sensitive user inputs, identifiers, or downstream metadata if stored without controls. <br>
-Mitigation: Store logs securely, redact secrets and sensitive identifiers, and limit retention before using the confirmation flow with confidential data. <br>
-Risk: Ambiguous or inferred parameters can lead a downstream skill to act on the wrong target or scope. <br>
-Mitigation: Use the skill's blocking and clarification flow for missing, conflicting, or unstable values, and require explicit confirmation for high-risk actions. <br>
+## Use Case:
 
+Developers and agents use this skill before running downstream skills to convert user intent, downstream metadata, and risk gates into confirmed execution-ready parameters.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/pm-geeker/skill-param-confirmer) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/pm-geeker) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Guidance] <br>
-**Output Format:** [Structured JSON handoff payloads and concise confirmation prompts or blocking guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include numbered confirmation menus, risk gates, uncertainty reports, decision mode, session identifiers, and audit fields.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release evidence) <br>
+Risk: Session-level confirmation state and audit logs may contain user inputs and selected parameters.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid entering secrets unless the host environment protects logs appropriately.
+
+Risk: A confirmation flow could be mistaken for downstream authorization.
+
+Mitigation: Keep downstream skill authorization checks in place; this skill confirms parameters but does not replace authorization.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/pm-geeker/skills/skill-param-confirmer)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Guidance]
+
+**Output Format:** [Markdown prompts and JSON handoff payloads]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes numbered confirmation menus, blocking reasons, session state, and audit fields when applicable.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

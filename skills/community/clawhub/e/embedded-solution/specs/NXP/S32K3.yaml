@@ -1,0 +1,53 @@
+part: S32K3
+link_status: verified_2026-07-01 (datasheet-pdf-extracted)
+expected_family: "NXP S32K3 \u2014 Automotive Arm Cortex-M7 MCU (ASIL-D capable)"
+main_page: https://www.nxp.com/products/S32K3
+datasheet_path_expected: ../../datasheets/s32k3xx.pdf
+created_at: '2026-06-30T18:42:00+08:00'
+specs:
+  family: S32K3 (Automotive General-Purpose MCUs)
+  cores:
+  - Arm Cortex-M7 (32-bit)
+  sub_series:
+  - name: S32K3
+    focus: general-purpose
+    applications: body/chassis/ADAS
+  - name: S32K39/37/36
+    focus: electrification
+    applications: BMS
+    motor control: null
+    OBC: null
+  package_options:
+  - HDQFP
+  - LFBGA
+  safety:
+    asil_d_capable: true
+  automotive_qualified: yes (AEC-Q100 implied)
+  use_cases:
+  - High-compute automotive body & chassis ECUs
+  - Battery Management System (BMS)
+  - Motor control (electrification)
+  - On-board charger (OBC)
+  - ADAS domain controllers (subordinate ECUs)
+unverified:
+- exact core count (single / dual)
+- exact flash range
+- exact safety level per sub-series
+- exact operating temperature range
+- exact peripheral count per sub-series
+- exact product longevity commitment
+notes:
+- "New yaml entry on 2026-06-30 \u2014 extracted from nxp.com S32K3 family page via Firecrawl (193,622 bytes raw)."
+- 'Family differentiator vs S32K1 (existing yaml): S32K3 is Cortex-M7 (vs M0+/M4F on S32K1). S32K3 is higher-tier safety (ASIL-D
+  capable vs ASIL-B on S32K1).'
+- 'Use case: pick S32K3 over S32K1 for high-compute automotive body domain, BMS, motor control. Pick S32K39/37/36 specifically
+  for electrification.'
+- 'Verified 2026-07-01 via firecrawl-html-extract against s32k3.html: 8/16 spec fields matched (50%). Source: https://www.nxp.com/products/S32K3
+  (vendor product page scraped as HTML; no separate PDF available).'
+- 'Verified 2026-07-01 via vendor-direct datasheet PDF (datasheets/s32k3xx.pdf): 9/16 spec fields matched (56%). Source: https://www.farnell.com/datasheets/4146071.pdf.'
+extracted_at: '2026-06-30T18:42:00+08:00'
+extraction_method: firecrawl-extract (keyed) of nxp.com product page
+extraction_source: references/semiconductor-vendor/NXP/firecrawl-snapshots/S32K3-series_clean.md
+extraction_source_raw: references/semiconductor-vendor/NXP/firecrawl-snapshots/S32K3-series_raw.md
+extraction_credits_used: 1
+datasheet_source_url: https://www.farnell.com/datasheets/4146071.pdf

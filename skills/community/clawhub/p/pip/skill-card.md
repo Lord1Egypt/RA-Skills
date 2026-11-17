@@ -1,37 +1,58 @@
-## Description: <br>
-Use pip for Python package installs, upgrades, freezes, requirements.txt workflows, troubleshooting, and reproducible dependency setup with virtual environments first. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use pip for Python package install, upgrade, freeze, and dependency file workflows with virtual environments first. Use when handling requirements.txt, pip install errors, pipx vs pip decisions, or reproducible Python dependency setup.
 
-## Publisher: <br>
-[jvy](https://clawhub.ai/user/jvy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jvy](https://clawhub.ai/user/jvy)
 
-## Use Case: <br>
-Developers and engineers use this skill to manage Python project dependencies with pip, create virtual environments, install from requirements files, freeze pinned dependencies, and troubleshoot common pip failures. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Package-management commands can install, uninstall, upgrade, or freeze dependencies and may alter a project or Python environment. <br>
-Mitigation: Prefer project virtual environments, review package names and requirements files before execution, and avoid global Python environment changes unless explicitly intended. <br>
+## Use Case:
 
+Developers and engineers use this skill to manage Python project dependencies, create virtual environments, install or pin requirements, and troubleshoot common pip failures.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, code] <br>
-**Output Format:** [Markdown with inline bash code blocks and helper script commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces proposed pip and virtual environment commands for review before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Package installation can run untrusted dependency code or install unexpected versions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review requirements and package names before installing; pin versions or use hashes for sensitive projects.
+
+Risk: Global pip installs can alter the user's system Python environment.
+
+Mitigation: Prefer project-local virtual environments with --venv and use python3 -m pip to avoid interpreter mismatch.
+
+Risk: The helper confirms package removal with -y during uninstall.
+
+Mitigation: Review uninstall package names before execution and prefer running inside a virtual environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jvy/skills/pip)
+- [Publisher profile](https://clawhub.ai/user/jvy)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks and command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose package installation, virtual environment, requirements, freeze, and uninstall commands for user review before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

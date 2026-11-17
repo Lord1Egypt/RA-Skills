@@ -1,38 +1,58 @@
-## Description: <br>
-Builds full-stack applications after collecting project requirements, with a React, Vite, and Tailwind frontend plus a Node, Express, and MongoDB MVC backend. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build full-stack applications after collecting project requirements, including React, Vite, Tailwind, Express, and MongoDB starter scaffolds.
 
-## Publisher: <br>
-[ChinmayaGit](https://clawhub.ai/user/ChinmayaGit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[chinmayagit](https://clawhub.ai/user/chinmayagit)
 
-## Use Case: <br>
-Developers use this skill to gather app requirements and scaffold a full-stack web application starter with authentication, dashboard, CRUD routes, environment examples, and run instructions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated scaffold files and package manifests may be used directly in a local application. <br>
-Mitigation: Use an explicit project name, generate into a new empty directory, and review generated files and package.json files before running npm install or starting the app. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Default Requirements](references/default-requirements.md) <br>
-- [ClawHub release page](https://clawhub.ai/ChinmayaGit/webappbuilder) <br>
+## Use Case:
 
+Developers use this skill to collect application requirements and scaffold a full-stack web application starter with a React frontend, Node/Express backend, MongoDB configuration, JWT authentication, and an MVC project structure.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, code, configuration, markdown] <br>
-**Output Format:** [Markdown guidance with shell commands and generated project files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generates frontend, backend, environment example, and README files for a local full-stack scaffold.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The scaffolding script can overwrite writable paths if pointed at an existing or unintended target.
+
+Mitigation: Use a safe new project name under the intended directory and avoid existing targets until path validation and overwrite protection are added.
+
+Risk: The generated authenticated API is reported to have serious authorization gaps.
+
+Mitigation: Treat the backend as a prototype until object-level authorization and update field whitelisting are fixed.
+
+Risk: The server security verdict is suspicious.
+
+Mitigation: Review the skill before installing or using it, and apply the security guidance from the server evidence.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chinmayagit/skills/webappbuilder)
+- [Publisher profile](https://clawhub.ai/user/chinmayagit)
+- [Default requirements](artifact/references/default-requirements.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, code, configuration, markdown]
+
+**Output Format:** [Markdown guidance with bash commands and generated project files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The generated scaffold includes frontend and backend directories, environment examples, a starter README, API routes, and MVC backend modules.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

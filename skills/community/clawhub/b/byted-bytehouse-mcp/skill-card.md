@@ -1,46 +1,62 @@
-## Description: <br>
-Helps an agent start and use a local ByteHouse MCP Server to connect to ByteHouse, query databases, interact through MCP tools, and generate data asset catalog and lineage analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Starts a local ByteHouse MCP Server and helps agents connect to ByteHouse, run database queries through MCP tools, and generate database asset catalog and lineage analysis outputs.
 
-## Publisher: <br>
-[volcengine-skills](https://clawhub.ai/user/volcengine-skills) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[volcengine-skills](https://clawhub.ai/user/volcengine-skills)
 
-## Use Case: <br>
-Developers and data engineers use this skill to configure ByteHouse credentials, start or manage the ByteHouse MCP server, list databases and tables, run ByteHouse queries, and create data catalog or lineage outputs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill fetches ByteHouse MCP server code from a moving branch at runtime. <br>
-Mitigation: Review and pin the upstream server source before use, or install only from a trusted reviewed revision. <br>
-Risk: The skill uses ByteHouse credentials and can expose database-changing DML/DDL tools. <br>
-Mitigation: Use a least-privilege or read-only ByteHouse account unless write operations are explicitly required. <br>
-Risk: Generated schema, catalog, lineage, and log files may contain sensitive database metadata. <br>
-Mitigation: Store generated outputs and logs in protected locations and remove them when no longer needed. <br>
-Risk: The background MCP service can remain active after the agent workflow finishes. <br>
-Mitigation: Check service status and stop the MCP service when the task is complete. <br>
+## Use Case:
 
+Developers and data engineers use this skill to configure a ByteHouse MCP connection, inspect databases and tables, run SELECT, DML, and DDL queries, and produce schema, catalog, and lineage reports for ByteHouse data assets.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/volcengine-skills/byted-bytehouse-mcp) <br>
-- [Publisher profile](https://clawhub.ai/user/volcengine-skills) <br>
-- [Volcengine MCP server runtime source referenced by the skill](https://github.com/volcengine/mcp-server/tree/main/server/mcp_server_bytehouse) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, Python examples, and JSON-oriented analysis outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May start a local background MCP service and may create logs, PID files, and schema, catalog, or lineage JSON files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill downloads changing remote MCP server code at install or run time.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the referenced MCP server source and service scripts before use, and install only when that runtime dependency is acceptable.
+
+Risk: The MCP server process can receive the full local environment, including ByteHouse credentials.
+
+Mitigation: Run it in a clean environment containing only required BYTEHOUSE_* variables and avoid privileged shells or CI environments with broad secrets.
+
+Risk: Database access and generated outputs can expose sensitive schema, catalog, lineage, or log metadata.
+
+Mitigation: Use a dedicated low-privilege, preferably read-only ByteHouse account and treat generated files and logs as sensitive database metadata.
+
+Risk: The skill can run a background service through start, stop, restart, and status scripts.
+
+Mitigation: Review service management scripts before running them and monitor PID and log files during operation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/volcengine-skills/skills/byted-bytehouse-mcp)
+- [Volcengine ByteHouse MCP server runtime source](https://github.com/volcengine/mcp-server@main#subdirectory=server/mcp_server_bytehouse)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, JSON]
+
+**Output Format:** [Markdown guidance with shell and Python code examples; runtime scripts can produce JSON schema, catalog, and lineage files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires ByteHouse connection environment variables and may start a background MCP server process that writes PID and log files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

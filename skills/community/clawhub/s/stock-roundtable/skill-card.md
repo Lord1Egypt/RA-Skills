@@ -1,48 +1,65 @@
-## Description: <br>
-Chinese-language stock and ETF research skill that structures investment questions as a multi-perspective roundtable, using real-time public information checks to support debate, risk review, and traceable conclusions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Stock Roundtable guides agents through evidence-based bull and bear debates for stock and ETF analysis, including earnings, valuation, risk, position-management, and comparison questions.
 
-## Publisher: <br>
-[yujintang](https://clawhub.ai/user/yujintang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yujintang](https://clawhub.ai/user/yujintang)
 
-## Use Case: <br>
-External users and agents use this skill to discuss whether a stock or ETF is worth buying, selling, holding, comparing, or reviewing after earnings. It is designed for research support through visible bull/bear debate, source checking, risk framing, and follow-up metrics rather than licensed financial advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Outputs may be mistaken for financial advice or may rely on incomplete or time-sensitive market information. <br>
-Mitigation: Present conclusions as research support, cite and date key sources, verify cited information independently, and avoid absolute buy or sell instructions. <br>
-Risk: The workflow depends on current public web access for prices, filings, news, policy, macroeconomic data, and geopolitical context. <br>
-Mitigation: Refuse or defer the analysis when current web search is unavailable, and clearly mark stale, conflicting, or unverified data. <br>
-Risk: Users may disclose sensitive portfolio details that could appear in searches, prompts, or agent logs. <br>
-Mitigation: Ask only for necessary position context and advise users not to share sensitive portfolio information they would not want included in search or agent logs. <br>
+## Use Case:
 
+External users and agents use this skill to structure stock or ETF research as a visible debate that checks public market information before reaching a conclusion. It is suited to buy, sell, hold, earnings-reaction, valuation, risk, position-management, and two-security comparison questions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yujintang/stock-roundtable) <br>
-- [Core debate reference](references/core-debate.md) <br>
-- [Search recipes](references/search-recipes.md) <br>
-- [Industry playbooks](references/industry-playbooks.md) <br>
-- [Output templates](references/output-templates.md) <br>
-- [Compare mode reference](references/compare-mode.md) <br>
-- [Earnings mode reference](references/earnings-mode.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Guidance] <br>
-**Output Format:** [Markdown stock or ETF roundtable with debate rounds, evidence checks, conclusion, risk points, action conditions, and tracking metrics] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires current public web research; outputs should be treated as research support and verified by the user.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and skill frontmatter) <br>
+Risk: Users may treat generated hold, reduce, stop-loss, or take-profit conditions as trading instructions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present outputs as informational research support, preserve the skill's non-advice disclaimer, and require users to verify market data and make independent decisions.
+
+Risk: Market data, earnings, policy, macroeconomic, or geopolitical information may be stale, incomplete, or conflicting.
+
+Mitigation: Use current public sources during execution, cite source timing, acknowledge conflicts, and avoid strong conclusions without at least one higher-confidence source.
+
+Risk: The workflow depends on internet search; without it, analysis can become unreliable.
+
+Mitigation: Follow the skill's refusal path when current web access is unavailable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yujintang/skills/stock-roundtable)
+- [Publisher profile](https://clawhub.ai/user/yujintang)
+- [Core debate reference](references/core-debate.md)
+- [Search recipes](references/search-recipes.md)
+- [Output templates](references/output-templates.md)
+- [Examples](references/examples.md)
+- [Compare mode reference](references/compare-mode.md)
+- [Earnings mode reference](references/earnings-mode.md)
+- [Industry playbooks](references/industry-playbooks.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown research discussion with evidence checks, round-by-round debate, conclusions, risk points, and follow-up metrics.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires current market information to support conclusions; outputs are informational and not financial advice.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, release evidence, artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

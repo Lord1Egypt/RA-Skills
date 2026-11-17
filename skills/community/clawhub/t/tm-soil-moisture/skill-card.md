@@ -1,40 +1,54 @@
-## Description: <br>
-TM Soil Moisture Skill analyzes local multi-depth soil temperature and moisture sensor data for Shiny-leaved yellowhorn plantings and provides irrigation guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+TM Soil Moisture Skill helps agents query local multi-depth soil temperature and moisture sensor data, aggregate field conditions, and provide irrigation decision support for Shiny-leaved yellowhorn planting.
 
-## Publisher: <br>
-[lu87985](https://clawhub.ai/user/lu87985) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lu87985](https://clawhub.ai/user/lu87985)
 
-## Use Case: <br>
-Farm operators and agricultural support teams use this skill to query device-level soil temperature and moisture readings, compare depth averages across a site, and receive practical irrigation guidance for Shiny-leaved yellowhorn plantings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads local agricultural sensor data, including device identifiers, location fields, and device health information. <br>
-Mitigation: Install only where read access to the expected local agriculture database is intended, and restrict local file or database permissions to the needed dataset. <br>
-Risk: Irrigation recommendations are advisory and may be based mainly on local soil readings with simulated weather data. <br>
-Mitigation: Confirm recommendations against current local weather, field observations, and agronomic judgment before taking operational action. <br>
+## Use Case:
 
+Farm operators, agricultural advisors, and external developers use this skill to inspect device-level soil profiles, compare moisture and temperature across field depths, and receive irrigation guidance from local sensor records.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lu87985/tm-soil-moisture) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown-style text with sensor readings, summaries, alerts, and advisory recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs include soil temperature and moisture units, device health notes, and irrigation advice based on available local readings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Irrigation recommendations may be misleading if local database values are stale, malformed, or unvalidated, and weather is simulated.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the skill as decision support only; verify sensor freshness and field conditions before taking irrigation action.
+
+Risk: The skill depends on local database access and the MCP dependency in the host environment.
+
+Mitigation: Install it in an isolated environment, pin the MCP dependency, and connect it only to the intended agriculture database.
+
+## Reference(s):
+
+- [Skill README](artifact/README.md)
+- [ClawHub skill page](https://clawhub.ai/lu87985/skills/tm-soil-moisture)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Analysis, Guidance]
+
+**Output Format:** [Markdown-formatted text with sensor readings, aggregate statistics, alerts, and irrigation recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs include soil temperature in degrees Celsius, moisture percentages, device health indicators, and decision-support guidance based on local database records.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

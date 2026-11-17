@@ -1,6 +1,10 @@
 {
-  "ownerId": "kn713038fbwbmf0q5wjnyv7k6n82473d",
-  "slug": "feishu-image-webhook",
+  "name": "feishu-image-webhook",
   "version": "1.0.0",
-  "publishedAt": 1773240618524
+  "description": "上传本地图片到飞书并通过 webhook 发送到群",
+  "author": "Betty",
+  "requires": {
+    "python": ">=3.7",
+    "packages": ["requests"]
+  }
 }

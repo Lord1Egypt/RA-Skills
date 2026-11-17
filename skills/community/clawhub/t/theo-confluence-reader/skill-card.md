@@ -1,42 +1,57 @@
-## Description: <br>
-Reads Confluence requirement pages and exports each page as Markdown, metadata, and downloaded images while preserving the original content. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts Confluence requirement pages and their child pages into faithful Markdown exports with metadata and images.
 
-## Publisher: <br>
-[mcxxtyhd](https://clawhub.ai/user/mcxxtyhd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mcxxtyhd](https://clawhub.ai/user/mcxxtyhd)
 
-## Use Case: <br>
-Product, QA, and engineering teams use this skill to export an authenticated Confluence page tree into a local Markdown requirement bundle with metadata and images for review or handoff. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Raw Confluence login cookies can expose private workspace access if shared or stored carelessly. <br>
-Mitigation: Use this only for exports you are authorized to perform, prefer scoped Confluence API tokens or platform-managed authentication, and avoid pasting session cookies when a safer option is available. <br>
-Risk: Private Confluence page HTML or attachments could be exposed if sent to online conversion services. <br>
-Mitigation: Keep HTML-to-Markdown conversion local and avoid sending private page content to external converters. <br>
-Risk: Automatic cleanup and ZIP steps could remove prior workspace outputs outside the current export. <br>
-Mitigation: Review and adjust cleanup commands so they only touch the current export directory after explicit approval. <br>
+## Use Case:
 
+Developers, product teams, and analysts use this skill to export Confluence requirement trees into local Markdown files, a collection metadata file, downloaded images, and a ZIP package while preserving source detail.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mcxxtyhd/theo-confluence-reader) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown files, image files, metadata Markdown, and a ZIP archive] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates a timestamped export directory for the selected Confluence page tree.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server evidence release.version) <br>
+Risk: The skill asks the user to provide Confluence session cookies for private page and image access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a scoped read-only token or protected browser/session integration when possible, and do not paste raw browser cookies into chat.
+
+Risk: The skill can export all reachable Confluence child pages and images from the supplied root page.
+
+Mitigation: Run it only against pages whose full descendant tree may be exported, and review the planned page list before approving long or broad crawls.
+
+Risk: Cleanup and ZIP behavior may affect broader workspace output than expected.
+
+Mitigation: Review and restrict cleanup and packaging steps so they operate only on the current export directory.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mcxxtyhd/skills/theo-confluence-reader)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, files, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown files, image files, metadata Markdown, ZIP archive, and command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates one export directory per run and may package the export as a ZIP archive.]
+
+## Skill Version(s):
+
+1.0.1 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

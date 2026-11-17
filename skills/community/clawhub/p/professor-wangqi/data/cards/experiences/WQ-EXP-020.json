@@ -1,0 +1,196 @@
+{
+  "card_id": "WQ-EXP-020",
+  "source_type": "clinical_experience",
+  "source_file": "王琦教授治疗泛发性湿疹1例_郑璐玉.pdf",
+  "title": "2012 年12 月第29 卷第6 期",
+  "authors": [
+    "王琦"
+  ],
+  "year": 2023,
+  "language": "zh",
+  "experience_type": "treatment_method",
+  "clinical_focus": {
+    "disease": "",
+    "syndrome": "",
+    "constitution": []
+  },
+  "diagnostic_approach": {
+    "key_points": "证候三者之间的相互关系为前提，以“体病相关”和“体质可调”理论为依据，以辨体论治为核心的临床诊疗体系。"
+  },
+  "treatment_approach": {
+    "main_formula": "",
+    "related_formulas": [],
+    "principle": "清热利湿",
+    "herbs": [
+      "茯苓",
+      "丹皮"
+    ]
+  },
+  "case_studies": [],
+  "clinical_insights": "体—辨病—辨证诊疗模式”以体质、疾病、证候三者之间的相互关系为前提，以“体病相关”和“体质可调”理论为依据，以辨体论治为核心的临床诊疗体系。笔者介绍北京中医药大学王琦教授以内服中药复方汤剂辨体辨病治愈特禀质人泛发型湿疹1 例，伴随访半年。 为“急性湿疹”。予以抗过敏药及糖皮质激素类药膏治疗（具体不详），无显效。之后红疹逐渐遍布全身，部分皮疹出现脓疱，因剧烈瘙痒反复搔抓，皮损部位逐渐出现糜烂，渗液结痂。患者平素体健，本人及家族中无类似病史。就诊时诊疗情况：患者自述因疾病困扰有轻微抑郁，不喜见人。平素纳可，睡眠可，大便偶干结不畅，舌淡苔白腻，脉弦数。 为棘手，特别是急性、亚急性患者，临床常以糖皮质激素外用治疗，皮损好转显效，但其用时用量难以控制，最终反复发作而致皮损加重，前功尽弃[2]。本例患者正是由急性湿疹失治后延误病情所致。",
+  "knowledge_points": [
+    {
+      "category": "treatment",
+      "content": "二诊在前方基础上加牡丹皮 10 g，徐长卿20 g，白蒺藜15 g，冬瓜皮30 g，21 剂，予以巩固作者简介：郑璐玉（1984-），女，博士在读，主要从事痰湿体质的分子生物学研究",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "insight",
+      "content": "而王教授指出，仅仅通过限制患者对过敏原的接触来防治过敏性疾病是不够的，更重要是在于调治患者本身的过敏体质",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "treatment",
+      "content": "体质状况在疾病的发生、发展、转归等方面起着重要的决定作用，体质具有可调性，体质秉承于先天，得养于后天",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "diagnosis",
+      "content": "辨证要点：证候三者之间的相互关系为前提，以“体病相关”和“体质可调”理论为依据，以辨体论治为核心的临床诊疗体系。",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "treatment",
+      "content": "治疗原则为清热利湿。",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "treatment",
+      "content": "常用药物包括茯苓、丹皮。",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "diagnosis",
+      "content": "体—辨病—辨证诊疗模式”以体质、疾病、证候三者之间的相互关系为前提，以“体病相关”和“体质可调”理论为依据，以辨体论治为核心的临床诊疗体系",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "diagnosis",
+      "content": "笔者介绍北京中医药大学王琦教授以内服中药复方汤剂辨体辨病治愈特禀质人泛发型湿疹1 例，伴随访半年",
+      "importance": "high",
+      "evidence_level": "C"
+    }
+  ],
+  "related_constitutions": [
+    "湿热质",
+    "特禀质"
+  ],
+  "related_diseases": [],
+  "evidence_sentences": [
+    {
+      "sentence": "二诊在前方基础上加牡丹皮 10 g，徐长卿20 g，白蒺藜15 g，冬瓜皮30 g，21 剂，予以巩固作者简介：郑璐玉（1984-），女，博士在读，主要从事痰湿体质的分子生物学研究",
+      "section": "main_text",
+      "claim_type": "statement",
+      "page_num": 1
+    },
+    {
+      "sentence": "而王教授指出，仅仅通过限制患者对过敏原的接触来防治过敏性疾病是不够的，更重要是在于调治患者本身的过敏体质",
+      "section": "main_text",
+      "claim_type": "statement",
+      "page_num": 2
+    },
+    {
+      "sentence": "体质状况在疾病的发生、发展、转归等方面起着重要的决定作用，体质具有可调性，体质秉承于先天，得养于后天",
+      "section": "main_text",
+      "claim_type": "statement",
+      "page_num": 2
+    }
+  ],
+  "research_focus": {
+    "constitution_type": [
+      "湿热质",
+      "特禀质"
+    ],
+    "disease": [],
+    "topic": []
+  },
+  "page_info": {
+    "total_pages": 2,
+    "sections": {}
+  },
+  "created_at": "2026-04-22T15:38:13.805982",
+  "methods": {
+    "sample_size": 1
+  },
+  "_field_meta": {
+    "title": {
+      "confidence": 0.8,
+      "source": "migrated",
+      "level": "medium",
+      "reasoning": "Confidence estimated during migration from legacy cards"
+    },
+    "authors": {
+      "confidence": 0.8,
+      "source": "migrated",
+      "level": "medium",
+      "reasoning": "Confidence estimated during migration from legacy cards"
+    },
+    "year": {
+      "confidence": 0.85,
+      "source": "migrated",
+      "level": "high",
+      "reasoning": "Confidence estimated during migration from legacy cards"
+    },
+    "journal": {
+      "confidence": 0.0,
+      "source": "none",
+      "level": "none",
+      "reasoning": "Field not populated in original extraction"
+    },
+    "doi": {
+      "confidence": 0.0,
+      "source": "none",
+      "level": "none",
+      "reasoning": "Field not populated in original extraction"
+    },
+    "keywords": {
+      "confidence": 0.0,
+      "source": "none",
+      "level": "none",
+      "reasoning": "Field not populated in original extraction"
+    },
+    "abstract": {
+      "confidence": 0.0,
+      "source": "none",
+      "level": "none",
+      "reasoning": "Field not populated in original extraction"
+    },
+    "conclusions": {
+      "confidence": 0.0,
+      "source": "none",
+      "level": "none",
+      "reasoning": "Field not populated in original extraction"
+    }
+  },
+  "_review": {
+    "status": "needs_review",
+    "priority": 2,
+    "fields": [
+      "doi",
+      "title",
+      "journal",
+      "keywords",
+      "abstract",
+      "conclusions"
+    ],
+    "thresholds_used": {
+      "doi": 0.95,
+      "title": 0.85,
+      "journal": 0.8,
+      "keywords": 0.8,
+      "abstract": 0.7,
+      "conclusions": 0.7
+    },
+    "auto_reviewed_at": "2026-04-25T15:10:31.560209",
+    "manual_reviewed_at": null,
+    "reviewer_notes": "Confidence data backfilled by migration script",
+    "migrated_at": "2026-04-25T15:10:31.560215"
+  }
+}

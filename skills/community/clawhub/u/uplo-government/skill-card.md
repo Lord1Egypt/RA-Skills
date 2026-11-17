@@ -1,42 +1,59 @@
-## Description: <br>
-AI-powered government knowledge management. Search policy documents, regulatory filings, public records, and inter-agency coordination data with structured extraction. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-powered government knowledge management. Search policy documents, regulatory filings, public records, and inter-agency coordination data with structured extraction.
 
-## Publisher: <br>
-[RooJenkins](https://clawhub.ai/user/RooJenkins) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[roojenkins](https://clawhub.ai/user/roojenkins)
 
-## Use Case: <br>
-Government analysts, policy staff, counsel, budget offices, auditors, and congressional liaisons use this skill to search agency policy, regulatory, public-record, inter-agency, and coordination knowledge while preserving authoritative citations and classification-tier awareness. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can access sensitive government or organizational knowledge through API-backed search and context export. <br>
-Mitigation: Install only for authorized deployments, use narrowly scoped UPLO tokens, require HTTPS endpoints, and avoid confidential, restricted, regulated, or classified data unless the deployment is approved for that handling. <br>
-Risk: The export_org_context capability may expose broad agency context if the connected knowledge base and token are not scoped appropriately. <br>
-Mitigation: Confirm what export_org_context includes before use and restrict token permissions to the minimum organizational scope needed. <br>
+## Use Case:
 
+Government analysts, policy staff, counsel, budget offices, and program managers use this skill to search agency knowledge, compare policy and regulatory requirements, coordinate audit or rulemaking responses, and prepare grounded briefing materials.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/RooJenkins/uplo-government) <br>
-- [UPLO](https://uplo.ai) <br>
-- [UPLO schemas](https://uplo.ai/schemas) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a UPLO instance URL and narrowly scoped UPLO MCP token for connected use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill.json) <br>
+Risk: Unpinned runtime package execution can introduce unexpected MCP server behavior during installation or launch.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin and review the MCP server package before use, and run it in a controlled environment with minimal filesystem and network access.
+
+Risk: API-token use can expose government knowledge if credentials are over-scoped or mishandled.
+
+Mitigation: Use a least-privilege UPLO token, store it as a secret, rotate it regularly, and limit access to approved users.
+
+Risk: Full organizational exports may include sensitive, pre-decisional, classified, or law-enforcement-sensitive materials.
+
+Mitigation: Restrict export and search access by classification tier, require authorized review for exported context, and follow agency handling rules.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/roojenkins/skills/uplo-government)
+- [UPLO](https://uplo.ai)
+- [UPLO schemas](https://uplo.ai/schemas)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline tool calls, shell commands, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses an UPLO instance URL, API key, and the government pack; responses should cite authoritative policy, regulatory, or organizational sources when available.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

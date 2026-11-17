@@ -1,42 +1,54 @@
-## Description: <br>
-AI Company CRO helps an agent coordinate enterprise AI risk governance, compliance audits, crisis response, circuit-breaker workflows, and quantitative risk assessment using NIST AI RMF and FAIR concepts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI company Chief Risk Officer skill package for enterprise risk governance, compliance audit, crisis response, circuit-breaker handling, NIST AI RMF workflows, and FAIR-based risk quantification.
 
-## Publisher: <br>
-[johnsmithfan](https://clawhub.ai/user/johnsmithfan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[johnsmithfan](https://clawhub.ai/user/johnsmithfan)
 
-## Use Case: <br>
-Employees and governance operators use this skill to structure AI risk assessments, mitigation plans, compliance checks, crisis response summaries, and board-facing risk reports for an AI company operating model. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad activation terms and cross-agent coordination can cause the agent to escalate, route, or propose circuit-breaker actions beyond the intended scope. <br>
-Mitigation: Use explicit prompts, confirm scope before cross-agent actions, and require human approval before circuit-breaker or escalation steps are acted on. <br>
-Risk: Risk, compliance, and crisis guidance may be incomplete or unsuitable for a specific organization or jurisdiction. <br>
-Mitigation: Have qualified risk, legal, security, or executive owners review generated assessments and mitigation plans before operational use. <br>
+## Use Case:
 
+Employees and agent operators use this skill to assess AI company risks, coordinate compliance and crisis response, prepare mitigation plans, and summarize board-level risk reporting. It is suited to governance workflows that expect quantitative risk analysis, cross-agent escalation, and explicit oversight of high-impact recommendations.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/johnsmithfan/ai-company-cro-2-0-0) <br>
-- [Skill homepage](https://clawhub.com/skills/ai-company-cro) <br>
-- [Publisher profile](https://clawhub.ai/user/johnsmithfan) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Configuration] <br>
-**Output Format:** [Structured text, Markdown, or JSON-style risk assessment content] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include risk assessments, mitigation plans, escalation summaries, circuit-breaker recommendations, and board-report summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server-resolved release metadata) <br>
+Risk: The skill describes high-impact operational actions, including halt, rollback, isolation, permission restriction, cross-agent escalation, agent provisioning, and persistent audit writes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit approval before carrying out those actions, and deploy only where cross-agent escalation and circuit-breaker recommendations are expected.
+
+Risk: Long-term audit logging and cross-agent routing can expose sensitive operational or financial risk information if access and retention are unclear.
+
+Mitigation: Clarify where logs are stored, who can read them, and what retention and review controls apply before enabling persistent audit workflows.
+
+## Reference(s):
+
+- [ClawHub skill homepage](https://clawhub.com/skills/ai-company-cro)
+- [ClawHub release page](https://clawhub.ai/johnsmithfan/skills/ai-company-cro-2-0-0)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Configuration, Guidance]
+
+**Output Format:** [Markdown or structured text containing risk assessments, mitigation plans, board-report summaries, circuit-breaker recommendations, and FAIR risk metrics.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include severity levels, escalation paths, audit-log summaries, and quantitative LEF, LM, and risk exposure values.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release metadata; artifact/SKILL.md frontmatter lists 2.2.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

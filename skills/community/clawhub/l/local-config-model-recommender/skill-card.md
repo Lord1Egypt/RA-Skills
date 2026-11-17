@@ -1,39 +1,53 @@
-## Description: <br>
-Intelligently recommends optimal AI models based on task requirements by reading the user's OpenCLAW configuration and providing context-aware model suggestions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Intelligently recommends optimal AI models based on task requirements by reading the user's OpenCLAW configuration and providing context-aware model suggestions across major global and domestic model providers.
 
-## Publisher: <br>
-[garygou1024](https://clawhub.ai/user/garygou1024) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[garygou1024](https://clawhub.ai/user/garygou1024)
 
-## Use Case: <br>
-Developers and agent users use this skill to choose an appropriate AI model from the models already configured in their local OpenCLAW setup for tasks such as coding, image analysis, reasoning, long-document work, and fast responses. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads local OpenCLAW configuration to identify available model IDs, and that configuration may contain endpoints, provider details, tokens, or other sensitive settings. <br>
-Mitigation: Use the skill for model selection without asking it to print or share the full configuration, and review any output before copying configuration details elsewhere. <br>
+## Use Case:
 
+Developers and OpenCLAW users use this skill to choose suitable configured AI models for coding, image analysis, reasoning, long-document, fast-response, and Chinese-language tasks. It adapts recommendations to model IDs available in the user's local OpenCLAW configuration.
 
-## Reference(s): <br>
-- [Model Capability Reference](references/comparison.md) <br>
-- [ClawHub skill page](https://clawhub.ai/garygou1024/local-config-model-recommender) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown recommendations with optional inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Recommendations are scoped to models available in the user's local OpenCLAW configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: skill.json and server release evidence) <br>
+Risk: The skill may guide an agent to read local OpenCLAW model configuration, and model IDs or provider names may be sensitive in some environments.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only where reading configured model IDs is acceptable, and avoid it in contexts where model configuration names are sensitive.
+
+Risk: Keyword-based model matching can produce recommendations that do not fully reflect current model capabilities or policy constraints.
+
+Mitigation: Review the recommended model against the user's task, available configuration, and applicable model-use policies before acting on the recommendation.
+
+## Reference(s):
+
+- [Model Capability Reference](references/comparison.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown recommendations with optional shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Recommendations are scoped to models available in the user's OpenCLAW configuration.]
+
+## Skill Version(s):
+
+1.0.0 (source: skill.json and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

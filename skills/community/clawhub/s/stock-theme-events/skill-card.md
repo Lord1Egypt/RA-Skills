@@ -1,42 +1,64 @@
-## Description: <br>
-Analyzes A-share stock themes, clusters related concepts, searches recent finance and news events, and generates a Markdown report linking themes to market-moving events. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Stock Theme Events analyzes leading A-share stocks, clusters related market themes, searches recent finance and news sources, and generates a theme-to-event report.
 
-## Publisher: <br>
-[shinelp100](https://clawhub.ai/user/shinelp100) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shinelp100](https://clawhub.ai/user/shinelp100)
 
-## Use Case: <br>
-Developers, agents, and market-analysis users can use this skill to connect recent A-share stock-theme clusters with supporting news events and produce a structured daily-review report. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may access external market and news services while collecting finance context. <br>
-Mitigation: Run it only in environments where those external requests are acceptable, and review generated reports before relying on them. <br>
-Risk: The skill may write report and cache files to local paths selected during execution. <br>
-Mitigation: Review the output path before running and restrict execution to a workspace where generated files are expected. <br>
-Risk: The skill may download Python or model dependencies and invoke a related stock-theme lookup subagent. <br>
-Mitigation: Install dependencies from trusted package sources and review subagent usage before deployment. <br>
+## Use Case:
 
+External analysts, developers, and agent workflows use this skill to connect A-share market themes with recent news events and produce daily review reports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/shinelp100/stock-theme-events) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown report with structured tables and supporting JSON-style analysis data] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local report and cache files, query external market/news services, and invoke a related stock-theme lookup subagent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata) <br>
+Risk: User-controlled stock-code text is delegated to a spawned OpenClaw subagent without clear validation or permission limits.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Validate stock lists before use and constrain or review subagent permissions before processing untrusted inputs.
+
+Risk: Network-based finance and news sources can be unavailable, stale, rate-limited, or misleading.
+
+Mitigation: Review generated reports against the cited source links, keep request rates conservative, and avoid treating results as trading advice.
+
+Risk: Dependencies and model downloads can change behavior if installed without pinning.
+
+Mitigation: Install in an isolated environment and pin package versions before production use.
+
+Risk: Artifact documentation includes a destructive repository reset command.
+
+Mitigation: Do not run destructive Git commands from documentation unless working in a backed-up or disposable clone.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/shinelp100/skills/stock-theme-events)
+- [Jin10 news search](https://xnews.jin10.com/search?keyword={theme})
+- [Eastmoney news search](https://so.eastmoney.com/news.aspx?q={keyword})
+- [CLS news search](https://www.cls.cn/search?keyword={keyword})
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands, guidance]
+
+**Output Format:** [Markdown reports with JSON intermediate data and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes stock theme clusters, related news items, source names, timestamps, and report-level risk notes when data is available.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

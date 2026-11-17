@@ -1,42 +1,54 @@
-## Description: <br>
-Generates Chinese official documents such as notices, reports, requests, and letters with GB/T 9704-2012 formatting and Word export support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Chinese party and government official documents such as notices, reports, requests, and letters, with guided information collection and GB/T 9704-2012 formatting for Word export.
 
-## Publisher: <br>
-[wonderslife](https://clawhub.ai/user/wonderslife) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wonderslife](https://clawhub.ai/user/wonderslife)
 
-## Use Case: <br>
-External users and developers can use this skill to collect official-document elements through guided prompts and generate standards-oriented Chinese .docx documents for notices, reports, requests, letters, and related official formats. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The optional font installer can make persistent local font changes. <br>
-Mitigation: Review the installer before running it, confirm font-use rights, and prefer manual user-scoped installation on managed systems. <br>
-Risk: Official documents may contain confidential or regulated information. <br>
-Mitigation: Use this workflow only with content your organization permits to process locally. <br>
+## Use Case:
 
+Employees, external users, and agents drafting Chinese official documents use this skill to collect required document elements, compose standard phrasing, and generate GB/T 9704-2012-style Word documents.
 
-## Reference(s): <br>
-- [GB/T 9704-2012 党政机关公文格式](references/GBT_9704-2012_党政机关公文格式.md) <br>
-- [Font Founder official site](http://www.foundertype.com/) <br>
-- [ClawHub skill page](https://clawhub.ai/wonderslife/official-doc-writer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration instructions, Files] <br>
-**Output Format:** [Guided prompts and Python-based .docx document generation instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can produce Word .docx files when the bundled Python scripts and required fonts are available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: The font installer can permanently change system fonts and Windows registry settings.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installing; prefer manual per-user font installation or project-local font handling unless elevated OS changes are understood and approved.
+
+Risk: Document generation writes output files to local paths.
+
+Mitigation: Use explicit trusted output paths and review generated .docx files before distribution.
+
+## Reference(s):
+
+- [GB/T 9704-2012 党政机关公文格式](references/GBT_9704-2012_党政机关公文格式.md)
+- [方正字库官网](http://www.foundertype.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, files, guidance]
+
+**Output Format:** [Markdown guidance with Python and shell code blocks; generated documents are .docx files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local .docx outputs and font-list files when the bundled scripts are used.]
+
+## Skill Version(s):
+
+1.1.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

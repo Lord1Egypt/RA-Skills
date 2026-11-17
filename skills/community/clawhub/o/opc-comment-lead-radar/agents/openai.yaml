@@ -1,5 +1,5 @@
 interface:
-  display_name: "OPC 评论线索雷达"
+  display_name: "找客户 · Find Customers｜销售线索与评论区获客"
   short_description: "从抖音/小红书/快手评论试跑找客户，生成在线战报、客户池入口、跟进话术和下一轮搜索建议"
   default_prompt: "使用 $ppxc-find-customers：我卖【产品/服务】，帮我从【抖音/小红书/快手】公开评论里先试跑一批想买的人，先给在线战报和客户池入口，再给首批线索、跟进话术和下一轮搜索词。"
 policy:

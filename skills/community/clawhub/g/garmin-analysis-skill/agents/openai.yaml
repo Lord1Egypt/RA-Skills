@@ -1,0 +1,4 @@
+interface:
+  display_name: "Garmin & Intervals Cycling Analysis"
+  short_description: "Sync health and analyze supported cycling data sources"
+  default_prompt: "Use $garmin-analysis-skill to sync Garmin CN wellness, analyze supported cycling data, query Strava activities and routes, and work with Xingzhe route books."

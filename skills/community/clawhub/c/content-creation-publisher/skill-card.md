@@ -1,38 +1,51 @@
-## Description: <br>
-This skill points users to external content creation and publishing instructions synced from a cloud repository. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A ClawHub skill release for a content creation and publishing workflow, with the packaged artifact indicating that the complete skill content is not included.
 
-## Publisher: <br>
-[anbeime](https://clawhub.ai/user/anbeime) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[anbeime](https://clawhub.ai/user/anbeime)
 
-## Use Case: <br>
-Content creators and operators can use this skill as a pointer to a third-party workflow for creating and publishing content. Because the packaged artifact only links to external instructions, users should review the linked repository and perform final manual review before publishing. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The packaged artifact is a thin pointer to mutable external instructions for account-based content publishing. <br>
-Mitigation: Review the linked repository before use, use dedicated WeChat/X accounts or an isolated browser profile, avoid storing primary-account credentials, and require final manual review before posting publicly. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/anbeime/content-creation-publisher) <br>
-- [Publisher profile](https://clawhub.ai/user/anbeime) <br>
+## Use Case:
+
+Content creators, publishing teams, and developers use this skill as a workflow aid for creating and publishing content after the complete implementation is reviewed and installed.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The package does not include the actual skill implementation but grants unrestricted Bash access.
+
+Mitigation: Review before installing; vendor or pin the complete content to a reviewed version and narrow or clearly justify shell access.
+
+Risk: The release points users to unreviewed external content.
+
+Mitigation: Install only after the complete source content has been reviewed and matched to the server-resolved release evidence.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Configuration instructions] <br>
-**Output Format:** [Markdown guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Thin pointer to mutable external instructions; final publishing actions require manual review.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+**Output Type(s):** [Guidance, Markdown, Shell commands]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown or text guidance with possible shell command proposals]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The reviewed artifact is a placeholder and does not include the complete implementation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

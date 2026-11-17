@@ -1,0 +1,10 @@
+# 开发期代码风格规范（不引入运行时依赖）
+# 格式化/检查工具：black + isort + flake8（仅开发环境使用）
+# flake8 配置见仓库根 .flake8（flake8 对 pyproject.toml 的发现存在优先级问题，故用 .flake8）
+[tool.black]
+line-length = 100
+target-version = ["py38"]
+
+[tool.isort]
+profile = "black"
+line_length = 100

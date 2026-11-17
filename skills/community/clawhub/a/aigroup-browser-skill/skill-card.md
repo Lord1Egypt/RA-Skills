@@ -1,41 +1,60 @@
-## Description: <br>
-Open pages with the real CN or global browser profile on spark and return the live page title plus final URL. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Open pages with the real CN or global browser profile on spark and return the live page title plus final URL.
 
-## Publisher: <br>
-[jackdark425](https://clawhub.ai/user/jackdark425) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jackdark425](https://clawhub.ai/user/jackdark425)
 
-## Use Case: <br>
-Developers and agent operators use this skill when a task explicitly requires opening a site in a live browser session, especially when CN and global browser routing matters. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses live browser profiles, which may expose cookies, login state, or unrelated tab data to the agent workflow. <br>
-Mitigation: Install and run it only on hosts where a live browser session is intended, and avoid sensitive logged-in profiles unless the task requires them. <br>
-Risk: If the requested URL cannot be matched, the script can return an existing browser tab as a fallback. <br>
-Mitigation: Review returned titles and final URLs before relying on the result; consider changing the script to fail when no matching page is found. <br>
+## Use Case:
 
+Developers and agents use this skill when a task explicitly requires opening a site in a live browser profile and returning the browser-reported page title and final URL.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/jackdark425/aigroup-browser-skill) <br>
-- [Publisher profile](https://clawhub.ai/user/jackdark425) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, guidance, text] <br>
-**Output Format:** [JSON from the browser-opening script, with human-facing guidance from the agent] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns browser-reported ok, mode, port, title, and final URL fields.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server-resolved release metadata and package.json) <br>
+Risk: Agents can open arbitrary URLs in persistent browser profiles.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in trusted agent environments and prefer isolated or temporary browser profiles for untrusted tasks.
+
+Risk: Browser access can reach local, private, internal, or non-http(s) destinations if not constrained.
+
+Mitigation: Add URL validation and block local, private, internal, and non-http(s) destinations unless explicitly required.
+
+Risk: Fallback page selection can expose metadata from unrelated browser tabs.
+
+Mitigation: Remove the unrelated-tab fallback before broader use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jackdark425/skills/aigroup-browser-skill)
+- [Project homepage](https://github.com/jackdark425/aigroup-browser-skill)
+- [README](README.md)
+- [SKILL definition](SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Shell commands, Guidance]
+
+**Output Format:** [JSON object with page status, selected mode, browser port, live page title, and final URL]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Python 3 and existing oc-cn, oc-global, and oc-browser commands on the target host.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,63 @@
-## Description: <br>
-Generates 4K information posters from text, files, or existing images through the Datu external API, with support for AI image editing and optional deep research reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill sends text, documents, or existing images to Datu to generate 4K information posters, perform optional deep research, and edit images.
 
-## Publisher: <br>
-[laozhangai](https://clawhub.ai/user/laozhangai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[laozhangai](https://clawhub.ai/user/laozhangai)
 
-## Use Case: <br>
-Marketing teams, content creators, brand operators, and business users use this skill to turn source material into high-resolution information posters, edit existing posters, and optionally request deep research outputs before image generation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected text, documents, files, and image URLs may be sent to Datu's external service. <br>
-Mitigation: Run the upload safety check first and obtain explicit approval before sending secrets, regulated data, or highly sensitive personal data. <br>
-Risk: DATU_API_KEY is a sensitive credential used to access the external Datu service. <br>
-Mitigation: Store DATU_API_KEY in the host credential vault, avoid exposing it in public records, and reconfigure it only when missing, expired, deleted, or rejected. <br>
-Risk: Deep research and generic edit requests can send content off-platform and consume additional credits and time. <br>
-Mitigation: Require confirmation before enabling deep_research or proceeding with ambiguous edit requests. <br>
+## Use Case:
 
+Marketing teams, content creators, brand operators, and knowledge-sharing teams use this skill to turn text, files, or existing poster images into high-quality information posters and follow-up image edits. Users can optionally request deep research when they need supporting background analysis and a Word report alongside the generated image.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/laozhangai/datu-ai-poster-generator) <br>
-- [Datu documentation](https://datu.digilifeform.com/docs) <br>
-- [Datu homepage](https://datu.digilifeform.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Files] <br>
-**Output Format:** [Markdown responses with API payloads, image links, status updates, and optional Word document downloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires DATU_API_KEY for Datu API access; outputs may include image_url, download_url, and research_report_download_url values.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.8 (source: server release evidence) <br>
+Risk: The skill sends prompts, documents, image URLs, and images to the external Datu service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use non-sensitive material first, confirm user acceptance before upload, and do not send credentials, confidential documents, or regulated data without explicit approval.
+
+Risk: The host may store the user's Datu API key for reuse.
+
+Mitigation: Store the key only in the host credential vault as DATU_API_KEY and avoid placing it in public code, shared documents, or ordinary chat history.
+
+Risk: Generated results may be retained by the service for about 30 days.
+
+Mitigation: Review the Datu privacy policy and avoid submitting content whose retention would violate user, company, or regulatory requirements.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/laozhangai/skills/datu-ai-poster-generator)
+- [Datu documentation](https://datu.digilifeform.com/docs)
+- [Datu homepage](https://datu.digilifeform.com)
+- [Datu privacy policy](https://datu.digilifeform.com/privacy)
+- [Packaged README](artifact/README.md)
+- [Security and privacy notes](artifact/SECURITY.md)
+- [Usage examples](artifact/EXAMPLES.md)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Markdown, Files, Guidance]
+
+**Output Format:** [Markdown responses with Datu task status, generated image URLs, and optional Word .docx research report files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a user-controlled DATU_API_KEY sent through the X-API-Key header; generated results may be retained for about 30 days.]
+
+## Skill Version(s):
+
+1.1.8 (source: server release evidence, released 2026-05-19)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

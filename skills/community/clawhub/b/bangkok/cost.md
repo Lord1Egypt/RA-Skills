@@ -24,7 +24,7 @@ The biggest cost variation.
 
 | Area | Studio | 1BR | 2BR |
 |------|--------|-----|-----|
-| **On Nut** | ฿8,000-12,000 | ฿12,000-20,000 | ฿18,000-30,000 |
+| **On Nut** | ฿8,000-12,000 | ฿12,000-25,000 | ฿18,000-30,000 |
 | **Ari** | ฿12,000-18,000 | ฿18,000-35,000 | ฿30,000-50,000 |
 | **Asok** | ฿15,000-25,000 | ฿20,000-45,000 | ฿35,000-70,000 |
 | **Thonglor** | ฿18,000-30,000 | ฿25,000-55,000 | ฿45,000-90,000 |
@@ -40,7 +40,7 @@ The biggest cost variation.
 ### Additional Costs
 - **Electricity**: ฿1,500-4,000/month (A/C usage = big factor)
 - **Water**: ฿100-300/month
-- **Internet**: ฿600-1,000/month (or included)
+- **Internet**: ฿400-600/month for standard 100 Mbps fiber (or included); up to ฿1,500 for 1 Gbps
 - **Deposit**: 2 months rent
 
 ### Rent Tips
@@ -136,7 +136,7 @@ A/C usage dominates your bill.
 
 ### Other Utilities
 - **Water**: ฿100-300
-- **Internet**: ฿600-1,000 (100-1000 Mbps)
+- **Internet**: ฿400-600 (100 Mbps standard); up to ฿1,500 (1 Gbps)
 - **Mobile**: ฿300-700 (with data)
 
 ---
@@ -178,8 +178,8 @@ Major hospitalization can cost ฿100,000-1,000,000+. Get insurance.
 - VIP/first class: ฿500-1,500
 
 ### Coworking
-- Hot desk: ฿300-500/day
-- Monthly membership: ฿3,000-8,000
+- Hot desk: ฿100-500/day (budget/design spaces from ฿100, e.g. TCDC)
+- Monthly membership: ฿1,200-8,000 (design/budget spaces ฿1,200-2,000; full-service ฿3,000-8,000)
 
 ---
 

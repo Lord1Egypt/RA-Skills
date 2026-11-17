@@ -1,40 +1,57 @@
-## Description: <br>
-Uses the Pipe17 Unified API to search and read orders, shipping requests, fulfillments, and inventory. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pipe17 Openclaw Skill helps agents search and read Pipe17 orders, shipping requests, fulfillments, and inventory through the Pipe17 Unified API.
 
-## Publisher: <br>
-[j-shao1](https://clawhub.ai/user/j-shao1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[j-shao1](https://clawhub.ai/user/j-shao1)
 
-## Use Case: <br>
-Developers and operations teams use this skill to look up Pipe17 commerce and fulfillment records, inspect inventory by SKU or location, and construct filtered API queries for support and automation workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: A Pipe17 API key could be exposed through shared terminals, logs, transcripts, or overly broad environment access. <br>
-Mitigation: Use a Pipe17 API key scoped to the intended organization and least privilege, preferably read-only where possible, and avoid exposing the key in shared output. <br>
-Risk: Returned order, fulfillment, shipping, and inventory records may contain sensitive business data. <br>
-Mitigation: Limit queries to the records needed for the task, avoid unnecessary data sharing, and treat API responses as sensitive operational data. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Pipe17 Unified API Docs](https://apidoc.pipe17.com/#/) <br>
-- [ClawHub Skill Page](https://clawhub.ai/j-shao1/pipe17-openclaw-skill) <br>
+## Use Case:
 
+Developers and operations teams use this skill to let an agent retrieve Pipe17 commerce and fulfillment data for support, inventory, and order-status workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with curl examples and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a user-provided PIPE17_API_KEY; outputs are instructions and command examples for Pipe17 API access.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: A broadly scoped Pipe17 API key could expose more business data than the workflow requires.
+
+Mitigation: Use a read-only or least-privilege Pipe17 key for the target organization or integration.
+
+Risk: Returned order, shipment, fulfillment, and inventory data may contain sensitive business information.
+
+Mitigation: Treat API responses as sensitive and limit sharing, logging, and retention to the business need.
+
+Risk: Broad unfiltered searches can retrieve unnecessary operational data.
+
+Mitigation: Use narrow status, date, SKU, location, or identifier filters whenever practical.
+
+## Reference(s):
+
+- [Pipe17 Unified API Docs](https://apidoc.pipe17.com/#/)
+- [ClawHub Skill Page](https://clawhub.ai/j-shao1/skills/pipe17-openclaw-skill)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown with inline bash code blocks and API request examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Pipe17 API key and favors read-only, filtered API requests.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

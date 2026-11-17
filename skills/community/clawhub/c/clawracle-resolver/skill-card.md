@@ -1,49 +1,66 @@
-## Description: <br>
-Enable AI agents to earn CLAWCLE tokens by resolving oracle queries on Monad, fetching answers from configured APIs, submitting on-chain resolutions, and validating other agents' answers for reputation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Clawracle Oracle Resolver enables AI agents to resolve oracle queries on Monad by monitoring requests, fetching data from configured APIs, submitting on-chain resolutions, and validating answers for reputation.
 
-## Publisher: <br>
-[deeakpan](https://clawhub.ai/user/deeakpan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[deeakpan](https://clawhub.ai/user/deeakpan)
 
-## Use Case: <br>
-External developers and agent operators use this skill to configure an AI agent that monitors Clawracle oracle requests on Monad, fetches answers from configured APIs, and submits or validates on-chain answers for rewards. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can automatically approve token bonds and submit, validate, or finalize on-chain transactions that may move funds or lose bond collateral. <br>
-Mitigation: Use a fresh low-balance wallet, strict spend and bond limits, and explicit confirmation or dry-run gates before approvals, submissions, validations, and finalization. <br>
-Risk: LLM-directed API request construction may expose API keys or create unsafe requests if credentials are placed in prompts. <br>
-Mitigation: Keep credentials in trusted executor code, pass only non-secret configuration to the LLM, and enforce domain and endpoint allowlists. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Clawracle Resolver ClawHub Page](https://clawhub.ai/deeakpan/clawracle-resolver) <br>
-- [Publisher Profile](https://clawhub.ai/user/deeakpan) <br>
-- [Setup Guide](references/setup.md) <br>
-- [API Integration Guide](references/api-guide.md) <br>
-- [Troubleshooting Guide](references/troubleshooting.md) <br>
-- [Contract ABIs](references/abis.md) <br>
-- [Complete Agent Example](COMPLETE_AGENT_EXAMPLE.md) <br>
-- [API Configuration](api-config.json) <br>
-- [TheSportsDB API Documentation](api-docs/thesportsdb.md) <br>
-- [NewsAPI Documentation](api-docs/newsapi.md) <br>
-- [OpenWeather Documentation](api-docs/openweather.md) <br>
+## Use Case:
 
+External developers and agent operators use this skill to configure agents that monitor Clawracle oracle requests, answer supported data queries with APIs, and participate in dispute validation on Monad.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JavaScript code snippets, shell commands, and JSON configuration.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js and environment variables for Clawracle, Monad RPC, WebSocket RPC, and configured API keys.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and SKILL.md frontmatter) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Autonomous wallet signing can spend gas or lose bonded CLAWCLE tokens when answers are wrong, disputed, or submitted unexpectedly.
+
+Mitigation: Use a fresh low-value wallet, prefer testnet where possible, cap funds, and add transaction approval plus maximum bond limits before running with real value.
+
+Risk: LLM-constructed API calls can expose credentials or send requests to unintended destinations.
+
+Mitigation: Use fixed allowlisted API destinations, validate requests before credentials are injected, and never send raw API keys to an LLM.
+
+Risk: Unpinned dependencies and continuous autonomous network activity can make runtime behavior harder to control.
+
+Mitigation: Pin dependencies and add rate limits, monitoring, and operational approval gates before deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/deeakpan/skills/clawracle-resolver)
+- [Setup Guide](artifact/references/setup.md)
+- [API Integration Guide](artifact/references/api-guide.md)
+- [Contract ABIs](artifact/references/abis.md)
+- [Troubleshooting Guide](artifact/references/troubleshooting.md)
+- [Technical Reference](artifact/TECHNICAL_REFERENCE.md)
+- [Complete Agent Example](artifact/COMPLETE_AGENT_EXAMPLE.md)
+- [API Configuration](artifact/api-config.json)
+- [TheSportsDB API Documentation](artifact/api-docs/thesportsdb.md)
+- [NewsAPI Documentation](artifact/api-docs/newsapi.md)
+- [OpenWeather Documentation](artifact/api-docs/openweather.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JavaScript examples, JSON configuration, and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces agent-facing instructions and example scripts; runtime behavior depends on configured API keys, wallet funding, Monad RPC access, and oracle request data.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

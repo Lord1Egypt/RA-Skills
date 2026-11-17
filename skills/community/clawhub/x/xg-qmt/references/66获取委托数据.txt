@@ -1,0 +1,34 @@
+'''
+66获取委托数据
+，专注于大QMT量化交易框架的深度训练与智能支持。我能够提供精准的代码提示、输出优化以及策略修改服务，帮助你高效开发和迭代量化交易策略。我的创造者是小果量化，，欢迎联系微信：xg_quant。，只做学习使用，不做投资参考，注意风险
+'''
+def get_order(c,accountid,datatype):
+	'''
+	获取委托
+	'''
+	data=pd.DataFrame()
+	orders = get_trade_detail_data(accountid,datatype, 'order')
+	print('委托数量{}'.format(len(orders)))
+	if len(orders)>0:
+		df=pd.DataFrame()
+		for o in orders:
+			df['股票代码']=[o.m_strInstrumentID]
+			df['市场类型']=[o.m_strExchangeID]
+			df['证券代码']=df['股票代码']+'.'+df['市场类型']
+			df['买卖方向']=[o.m_nOffsetFlag]
+			df['委托数量']=[o.m_nVolumeTotalOriginal]
+			df['成交均价']=[o.m_dTradedPrice]
+			df['成交数量']=[o.m_nVolumeTraded]
+			df['成交金额']=[o.m_dTradeAmount]
+			df['投资备注']=[o.m_strRemark]
+			df['委托状态']=[o.m_nOrderStatus]
+			df['委托数量']=[o.m_nVolumeTotalOriginal]
+			df['委托价格']=[o.m_dLimitPrice]
+			df['成交数量']=[o.m_nVolumeTraded]
+			df['订单编号']=[o.m_strOrderSysID]
+			df['未成交数量']=df['委托数量']-df['成交数量']
+			df['未成交金额']=df['未成交数量']*df['委托价格']
+			data=pd.concat([data,df],ignore_index=True)
+	else:
+		data=pd.DataFrame()
+	return data

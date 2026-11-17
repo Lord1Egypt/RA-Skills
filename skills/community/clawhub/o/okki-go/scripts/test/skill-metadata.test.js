@@ -119,7 +119,8 @@ test('single-owner references keep paid and output details out of unrelated file
 
   assert.match(paidActions, /selected unlock batch/);
   assert.match(paidActions, /do not ask again for each internal `\/companies\/unlock` request/);
-  assert.match(outputContracts, /charge type summary/);
+  assert.match(outputContracts, /contact_search_retired/);
+  assert.match(outputContracts, /no API call, no raw contact IDs, and no credit charge/);
   assert.match(outputContracts, /accepted\/rejected counts when derivable/);
 
   assert.doesNotMatch(fastPath, /credit per company/);

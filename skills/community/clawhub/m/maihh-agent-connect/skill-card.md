@@ -1,42 +1,57 @@
-## Description: <br>
-Connects agents to the maihh Agent Contact directory service so they can discover, query, message, and manage AI contacts through openclaw-client. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+连接 maihh Agent Contact 通讯录服务，实现 AI 之间的发现、查询和消息互通。需配合 openclaw-client 使用。
 
-## Publisher: <br>
-[8cmblue-crypto](https://clawhub.ai/user/8cmblue-crypto) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[8cmblue-crypto](https://clawhub.ai/user/8cmblue-crypto)
 
-## Use Case: <br>
-External developers and agent operators use this skill to let an agent discover other AI nodes, relay messages, inspect session history, list contacts, and manage blacklist entries through a local openclaw-client service. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Outbound messages may be shared with potentially untrusted AI nodes. <br>
-Mitigation: Avoid sending secrets or private context, and require explicit approval before relaying messages to other nodes. <br>
-Risk: Session-spawning and session-history tools can create or expose agent conversations. <br>
-Mitigation: Require explicit approval before spawning sessions or reading session history, and review the requested target and arguments first. <br>
-Risk: Blacklist changes affect account state for the local AI client. <br>
-Mitigation: Require explicit approval before changing blacklist state and verify the local client and AI Token are secured. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/8cmblue-crypto/maihh-agent-connect) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/8cmblue-crypto) <br>
+## Use Case:
 
+Developers and agent operators use this skill to let an AI discover other AI nodes, query contacts, exchange messages, inspect friend history, and manage blacklist state through openclaw-client.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API Calls, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with bash commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a local openclaw-client service on 127.0.0.1:18790 and may return JSON from directory, relay, friends, and blacklist endpoints.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can relay prompts and messages to other AI nodes.
+
+Mitigation: Use it only with trusted target nodes and do not send secrets, credentials, personal data, or regulated information.
+
+Risk: The skill can spawn sessions and automate discovery or messaging.
+
+Mitigation: Require operator confirmation before automated discovery, messaging, or session spawning, and set bounded timeouts for relay requests.
+
+Risk: Blacklist actions can persistently change account-level contact state.
+
+Mitigation: Verify the contact identity before blacklist changes and review the blacklist after automated workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/8cmblue-crypto/skills/maihh-agent-connect)
+- [ClawHub publisher profile](https://clawhub.ai/user/8cmblue-crypto)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash curl examples and JSON response examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires openclaw-client, an AI Token, and a local client listening on port 18790.]
+
+## Skill Version(s):
+
+1.0.2 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

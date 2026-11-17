@@ -1,41 +1,53 @@
-## Description: <br>
-Create or refresh AEO-optimized content that gets cited by AI assistants using free web research tools, competitive briefs, and citation-focused drafting guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create or refresh AEO-optimized content that gets cited by AI assistants using free web research and LLM reasoning workflows.
 
-## Publisher: <br>
-[psyduckler](https://clawhub.ai/user/psyduckler) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[psyduckler](https://clawhub.ai/user/psyduckler)
 
-## Use Case: <br>
-External content teams, marketers, and site owners use this skill to create new answer-engine-optimized content or refresh existing pages for better AI citation-worthiness. It guides landscape research, content brief creation, drafting, self-evaluation, and publishing guidance. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated claims, statistics, citations, and freshness judgments may be incorrect or outdated. <br>
-Mitigation: Review generated content, cited sources, and factual claims before publishing, especially for current or business-critical topics. <br>
-Risk: The skill guides agents to fetch existing pages and search the web, so drafts may inherit gaps or bias from search results and currently cited sources. <br>
-Mitigation: Compare results against authoritative sources, preserve relevant first-party context, and verify that final content is indexable, accurate, and appropriately sourced. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/psyduckler/aeo-content-free) <br>
-- [What Makes Content Citation-Worthy for AI](references/citation-signals.md) <br>
-- [AEO Content Brief Template](references/content-brief-template.md) <br>
+## Use Case:
 
+External content teams, marketers, and developers use this skill to research AI citation patterns, build content briefs, draft new AEO-focused articles, or refresh existing pages for better citation-worthiness.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown content drafts, content briefs, audits, change summaries, and publishing guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include title and meta description suggestions, prioritized refresh changes, self-evaluation notes, and post-publish checks.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated content may include inaccurate claims, stale citations, weak author credentials, or outdated publication details.
+
+Mitigation: Review generated claims, citations, author credentials, and update dates before publishing.
+
+Risk: The workflow browses and summarizes public web pages, competitor content, Reddit discussions, and user-provided existing page URLs.
+
+Mitigation: Use public or approved URLs only and review summarized source material before incorporating it into final content.
+
+## Reference(s):
+
+- [Citation Signals](references/citation-signals.md)
+- [AEO Content Brief Template](references/content-brief-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Guidance]
+
+**Output Format:** [Markdown with structured research brief, draft or refreshed content, evaluation notes, and publishing guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Create mode produces new citation-focused content; refresh mode produces marked-up updates and a before/after summary.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

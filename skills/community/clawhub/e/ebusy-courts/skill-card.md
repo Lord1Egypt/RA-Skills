@@ -1,43 +1,53 @@
-## Description: <br>
-Query eBusy-based tennis hall bookings via a small Python client. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query eBusy-based tennis hall bookings via a small Python client.
 
-## Publisher: <br>
-[ogruenig](https://clawhub.ai/user/ogruenig) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ogruenig](https://clawhub.ai/user/ogruenig)
 
-## Use Case: <br>
-Developers and agents use this skill to log into a configured eBusy tennis booking site, fetch reservations for a selected court module and date, and present booking information or availability summaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires eBusy login credentials for the selected hall. <br>
-Mitigation: Provide credentials only through the runtime environment or local secret management, and do not publish secret-bearing files with the skill. <br>
-Risk: A misconfigured EBUSY_BASE_URL could send credentials or booking requests to the wrong site. <br>
-Mitigation: Verify EBUSY_BASE_URL points to the intended club site before running the client. <br>
-Risk: Returned reservation names or notes may contain private booking information. <br>
-Mitigation: Treat reservation output as private and limit sharing to the intended user or authorized workflow. <br>
+## Use Case:
 
+External users and agents use this skill to query configured eBusy tennis hall reservation data for a selected court module, date, and optional time window.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ogruenig/ebusy-courts) <br>
-- [Medenhalle Wiesbaden-Medenbach eBusy example](https://medenhalle.ebusy.de) <br>
-- [KTEV Kelkheim eBusy example](https://ktev.ebusy.de) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text reservation lines and Markdown setup guidance with shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires eBusy base URL, credentials, court module ID, and date configuration from the runtime environment.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill needs an eBusy username and password and may send credentials to any configured EBUSY_BASE_URL.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only runtimes that validate EBUSY_BASE_URL against real https://*.ebusy.de hosts before login and prefer a dedicated low-privilege eBusy account.
+
+Risk: The permissions manifest includes filesystem read access that is not necessary for normal reservation lookup.
+
+Mitigation: Remove unnecessary filesystem read permission or restrict it to the skill files required by the runtime.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ogruenig/skills/ebusy-courts)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance and shell commands; the bundled Python client prints JSON reservation and availability data.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires environment-provided eBusy base URL, username, password, court module ID, and optional first court number.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

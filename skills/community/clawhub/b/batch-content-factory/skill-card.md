@@ -1,43 +1,61 @@
-## Description: <br>
-Multi-platform content production line. Automates the entire workflow from topic research to content creation. Suitable for self-media operators producing high-quality content in bulk, content team collaboration, and brand content matrix management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Batch Content Factory helps agents create platform-specific content outlines, publishing calendars, and SEO recommendations for bulk content workflows.
 
-## Publisher: <br>
-[openlark](https://clawhub.ai/user/openlark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[openlark](https://clawhub.ai/user/openlark)
 
-## Use Case: <br>
-External content operators, marketing teams, and brand teams use this skill to draft multi-platform content frameworks, plan publishing calendars, and generate SEO recommendations for existing articles. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The SEO command reads a user-supplied local file and includes derived recommendations in its output. <br>
-Mitigation: Run SEO analysis only on documents approved for local processing and review the generated report before sharing or publishing it. <br>
-Risk: Generated content frameworks, calendars, and SEO suggestions may be generic, incomplete, or unsuitable for a specific brand or platform policy. <br>
-Mitigation: Review outputs for factual accuracy, brand fit, platform rules, and human editorial judgment before deployment. <br>
+## Use Case:
 
+Content creators, self-media operators, and brand content teams use this skill to draft platform-specific content frameworks, plan weekly publishing calendars, and review article SEO.
 
-## Reference(s): <br>
-- [Content Creation Templates](references/content_templates.md) <br>
-- [Platform Content Guidelines Reference](references/platform_guidelines.md) <br>
-- [Content Marketing Institute Strategy Guide](https://contentmarketinginstitute.com/developing-a-strategy/) <br>
-- [Content Factory Agent Full Use Case](https://github.com/hesamsheikh/awesome-openclaw-usecases/blob/main/usecases/content-factory.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown and plain text reports, optionally written to a local file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports write, calendar, and seo commands for platform-specific drafts, publishing schedules, and SEO recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The documentation overstates the automation scope relative to the local helper script.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat generated outputs as templates and guidance; verify facts, claims, and platform fit before publication.
+
+Risk: The documented pip install command recommends unnecessary dependencies for the bundled script.
+
+Mitigation: Run the script with standard Python unless the publisher adds real dependency usage.
+
+Risk: Using an output path can replace content at the selected file path.
+
+Mitigation: Use explicit output paths in a working directory and review target filenames before running commands.
+
+## Reference(s):
+
+- [ClawHub Release Page](https://clawhub.ai/openlark/skills/batch-content-factory)
+- [Content Marketing Institute Strategy Guide](https://contentmarketinginstitute.com/developing-a-strategy/)
+- [Content Templates](references/content_templates.md)
+- [Platform Content Guidelines Reference](references/platform_guidelines.md)
+- [Content Factory Agent Full Use Case](https://github.com/hesamsheikh/awesome-openclaw-usecases/blob/main/usecases/content-factory.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown and plain text, with optional files written to a user-provided output path]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [CLI commands cover content drafting, calendar generation, and SEO review; generated material should be reviewed before publication.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

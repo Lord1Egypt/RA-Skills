@@ -1,45 +1,65 @@
-## Description: <br>
-Weather Max Bot is a ClawHub skill package identified as a weather trading agent, while its evidence also contains Simmer and Polymarket prediction-market trading materials. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Weather Max Bot is a Simmer-based prediction-market skill package that queries weather markets and includes guidance and code for trading through Simmer, including a Polymarket BTC Up/Down strategy.
 
-## Publisher: <br>
-[pasichnuk969](https://clawhub.ai/user/pasichnuk969) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pasichnuk969](https://clawhub.ai/user/pasichnuk969)
 
-## Use Case: <br>
-External users and developers use this skill to inspect weather-related prediction markets and, based on bundled materials, may configure or run Simmer or Polymarket trading workflows. Review the package identity mismatch and trading settings before any live use. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Package identity is inconsistent: server evidence identifies Weather Max Bot, while artifact metadata and content mix a weather bot, Simmer documentation, and a Polymarket BTC trading strategy. <br>
-Mitigation: Confirm the exact skill intended before installation or execution; avoid cron, quiet mode, and live trading until the publisher resolves the mismatch. <br>
-Risk: The bundled trading strategy can make real-money Polymarket trades and may use sensitive wallet credentials. <br>
-Mitigation: Run dry-run mode first, provide wallet keys only when live trading is intended, and use a dedicated low-balance or managed wallet. <br>
-Risk: Automated or quiet execution can make repeated trades harder to observe. <br>
-Mitigation: Review configuration, budgets, and exit settings manually before unattended runs. <br>
+## Use Case:
 
+External users and developers use this skill to orient agents to Simmer prediction-market workflows, query weather markets, and configure or run prediction-market trading behavior. The package should be reviewed carefully before live trading because server evidence flags inconsistent identities and bundled real-money Polymarket automation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/pasichnuk969/weather-max-bot) <br>
-- [Publisher profile](https://clawhub.ai/user/pasichnuk969) <br>
-- [Simmer homepage](https://simmer.markets) <br>
-- [Simmer documentation](https://docs.simmer.markets) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands, code snippets, configuration examples, and runtime text output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include API market listings, dry-run output, position summaries, trade status, and configuration guidance when executed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server evidence release metadata) <br>
+Risk: The package includes an automated real-money Polymarket BTC trading strategy.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Start in dry-run mode, review the strategy output and configuration, and enable live trading only with explicit limits and monitoring.
+
+Risk: The package handles trading credentials and may use wallet credentials for live external-wallet trading.
+
+Mitigation: Use managed or dedicated low-balance wallets, keep credentials in environment variables, and review SDK version pinning before exposing keys.
+
+Risk: Cron or quiet mode can make repeated trading harder to observe.
+
+Mitigation: Avoid unattended quiet cron until dry-run behavior, budgets, exits, and external monitoring are verified.
+
+Risk: Server evidence reports inconsistent identities across the target metadata, artifact metadata, and bundled strategy files.
+
+Mitigation: Confirm the installed package identity, publisher profile, and intended skill behavior before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/pasichnuk969/skills/weather-max-bot)
+- [Publisher profile](https://clawhub.ai/user/pasichnuk969)
+- [Simmer homepage](https://simmer.markets)
+- [Simmer documentation](https://docs.simmer.markets)
+- [Simmer full reference for agents](https://docs.simmer.markets/llms-full.txt)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands, configuration examples, and executable code references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include market lists, dry-run output, position summaries, trade status, and configuration guidance when executed.]
+
+## Skill Version(s):
+
+1.0.1 (source: server evidence release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

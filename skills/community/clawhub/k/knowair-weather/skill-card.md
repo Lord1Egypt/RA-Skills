@@ -1,42 +1,55 @@
-## Description: <br>
-Get comprehensive air quality forecast from monitoring stations with up to 15-day coverage via the Caiyun Weather API, including AQI, PM2.5, PM10, O3, NO2, SO2, CO values, trends, best and worst periods, and health recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides air quality forecasts through the Caiyun Weather API, including AQI, pollutant values, trend summaries, best and worst forecast periods, and health-oriented activity guidance.
 
-## Publisher: <br>
-[shuowang-ai](https://clawhub.ai/user/shuowang-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shuowang-ai](https://clawhub.ai/user/shuowang-ai)
 
-## Use Case: <br>
-External users and developers use this skill to retrieve current and forecast air-quality conditions for a requested location, then present pollutant trends, best or worst periods, and practical health guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a Caiyun Weather API token that may be exposed if stored or logged carelessly. <br>
-Mitigation: Use a service-specific token, keep local token files protected, and avoid pasting credentials into prompts or shared logs. <br>
-Risk: Queried coordinates are sent to Caiyun to fetch AQI forecasts. <br>
-Mitigation: Use approximate coordinates when precise location is not necessary and disclose that location coordinates are shared with Caiyun. <br>
+## Use Case:
 
+External users and agents use this skill to answer air quality, pollution, AQI, PM2.5, and outdoor activity questions for a requested location. It is most useful when an agent needs structured forecast data plus a short user-facing interpretation.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/shuowang-ai/knowair-weather) <br>
-- [Caiyun Weather API](https://api.caiyunapp.com/v2.6) <br>
-- [Caiyun AQI Station Forecast API](https://singer.caiyunhub.com/v3/aqi/forecast/station) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown summary with optional bash command examples and structured air-quality readings] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Caiyun Weather API token, longitude and latitude coordinates, and internet access; supports English or Chinese output and configurable forecast duration/detail.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill sends the requested coordinates and a Caiyun API token to Caiyun services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only when sharing those coordinates with Caiyun is acceptable, and prefer the CAIYUN_TOKEN environment variable over a local token file when possible.
+
+Risk: Health and exercise recommendations are air-quality guidance and may not account for individual medical needs.
+
+Mitigation: Present recommendations as general guidance and avoid treating them as medical advice.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/shuowang-ai/skills/knowair-weather)
+- [Caiyun Weather API endpoint](https://api.caiyunapp.com/v2.6)
+- [Caiyun station AQI forecast endpoint](https://singer.caiyunhub.com/v3/aqi/forecast/station)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and summarized JSON results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include current AQI level, pollutant values, trend summaries, best and worst periods, station fallback details, and exercise recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

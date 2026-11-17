@@ -1,40 +1,51 @@
-## Description: <br>
-Set up email forwarding for custom domains to receive verification codes, password resets, and other messages at an accessible inbox using GoDaddy, Namecheap, Cloudflare Email Routing, or ImprovMX. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Set up email forwarding for custom domains to receive verification codes, password resets, and other emails at a domain you own but don't actively use for email.
 
-## Publisher: <br>
-[brandonwadepackard-cell](https://clawhub.ai/user/brandonwadepackard-cell) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[brandonwadepackard-cell](https://clawhub.ai/user/brandonwadepackard-cell)
 
-## Use Case: <br>
-Domain owners, administrators, and account recovery users use this skill to route mail for domains they control to an inbox they can access, especially for verification codes, password resets, catch-all forwarding, or low-cost receive-only domain email. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Changing MX records or forwarding settings can interrupt existing domain mail delivery. <br>
-Mitigation: Use the skill only for domains you own or administer, save the current DNS and MX settings first, and check whether existing mailboxes depend on the current configuration. <br>
-Risk: Catch-all or broad forwarding can route sensitive messages for many addresses at the domain to one inbox. <br>
-Mitigation: Forward only to an inbox you control, test forwarding before relying on it, and remove or narrow temporary forwarding after the recovery or routing task is complete. <br>
-Risk: Account recovery codes and password reset emails are sensitive and can change account access. <br>
-Mitigation: Use forwarding only for accounts and domains you are authorized to administer, then update recovered accounts to a current primary email address. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
+
+Domain owners and administrators use this skill to route mail for custom-domain addresses to an accessible inbox for account recovery, verification codes, password resets, or low-cost receive-only email forwarding.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Catch-all routing and account recovery workflows can expose reset codes or private mail beyond a narrow authorized use.
+
+Mitigation: Use the skill only for domains and accounts you administer, prefer a specific forwarding address, and avoid catch-all routing unless it is necessary.
+
+Risk: Temporary forwarding can continue to route sensitive domain mail after the immediate recovery task is complete.
+
+Mitigation: Disable temporary forwarding after use when it is no longer needed and update recovered accounts to a primary email address.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with setup steps, decision tables, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes provider-specific DNS and forwarding guidance; no executable code.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown guidance with provider-specific setup steps, DNS record examples, and verification checks.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Covers GoDaddy, Cloudflare Email Routing, Namecheap, and ImprovMX forwarding workflows.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,56 @@
-## Description: <br>
-Performs technical SEO audits covering site speed, crawlability, indexability, mobile-friendliness, security, structured data, URL structure, and international SEO to identify issues preventing optimal search performance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Performs technical SEO audits covering site speed, crawlability, indexability, mobile-friendliness, security, and structured data to identify issues that can prevent optimal search performance.
 
-## Publisher: <br>
-[SKULLHAVEN](https://clawhub.ai/user/SKULLHAVEN) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Apache-2.0 <br>
+## Publisher:
 
+[skullhaven](https://clawhub.ai/user/skullhaven)
 
-## Use Case: <br>
-External site owners, SEO practitioners, and developers use this skill to audit websites for crawlability, indexability, Core Web Vitals, mobile usability, HTTPS/security, structured data, redirects, URL structure, and migration readiness. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Apache-2.0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may request access to Search Console, crawler, PageSpeed, or CDN data for a domain. <br>
-Mitigation: Confirm the exact domain and provide only accounts, properties, reports, or screenshots the user is authorized to audit. <br>
-Risk: Broad SEO triggers can route general website performance or crawlability questions to this skill. <br>
-Mitigation: Confirm the user wants a technical SEO audit and route content, heading, or link-architecture issues to the specialized skills named in the artifact. <br>
+## Use Case:
 
+SEO practitioners, site operators, and developers use this skill to audit technical search performance issues, including crawlability, indexability, Core Web Vitals, mobile readiness, HTTPS, redirects, and structured data.
 
-## Reference(s): <br>
-- [HTTP Status Codes for SEO](references/http-status-codes.md) <br>
-- [Robots.txt Reference Guide](references/robots-txt-reference.md) <br>
-- [SEO & GEO Skills Library](https://skills.sh/aaron-he-zhu/seo-geo-claude-skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Guidance, Configuration] <br>
-**Output Format:** [Markdown audit report with tables, checklists, scores, and recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can include robots.txt, redirect, sitemap, performance, and security-header recommendations when supported by audit evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: ClawHub release metadata) <br>
+Risk: The broader skills library install command shown in the artifact is unpinned.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned, trusted installer version or avoid the optional library install path before deployment.
+
+Risk: Technical SEO audits may require site URLs, crawl results, PageSpeed reports, search-console data, or CDN data.
+
+Mitigation: Provide only approved URLs and SEO data to connected tools, and label each finding by its data source.
+
+## Reference(s):
+
+- [Robots.txt Reference Guide](references/robots-txt-reference.md)
+- [HTTP Status Codes for SEO](references/http-status-codes.md)
+- [ClawHub Skill Page](https://clawhub.ai/skullhaven/skills/technical-seo-checker-2)
+- [Publisher Profile](https://clawhub.ai/user/skullhaven)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown audit reports, checklists, diagnostic tables, configuration snippets, and remediation guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should state whether findings came from connected crawler, page-speed, search-console, CDN tools, or user-provided data.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata); artifact frontmatter lists 2.0.0
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

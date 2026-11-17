@@ -1,44 +1,55 @@
-## Description: <br>
-Mission control dashboard for OpenClaw - real-time session monitoring, LLM usage tracking, cost intelligence, and system vitals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Mission control dashboard for OpenClaw - real-time session monitoring, LLM usage tracking, cost intelligence, and system vitals.
 
-## Publisher: <br>
-[jcdentoncore](https://clawhub.ai/user/jcdentoncore) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jcdentoncore](https://clawhub.ai/user/jcdentoncore)
 
-## Use Case: <br>
-Developers and operators use this skill to run a local OpenClaw dashboard for monitoring agent sessions, LLM usage, costs, scheduled jobs, and system health. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The dashboard can expose sensitive agent sessions, workspace metadata, operator identities, and local dashboard/topic state. <br>
-Mitigation: Run it only on a trusted machine, bind or firewall it to localhost, and enable strong authentication before any LAN, VPN, tunnel, or public exposure. <br>
-Risk: The skill includes operational controls for OpenClaw jobs and helper scripts for setup, dependencies, tunnels, and Linear synchronization. <br>
-Mitigation: Review commands and scripts before execution, use least-privilege credentials, and avoid unattended use until the operator has verified the configured actions. <br>
-Risk: Server evidence flags sensitive credentials, OAuth token needs, and purchase-related capability tags. <br>
-Mitigation: Install only in environments where those permissions are intended, keep credentials scoped and local, and avoid exposing secrets through dashboard configuration or logs. <br>
+## Use Case:
 
+Developers and operators use this skill to run a local OpenClaw dashboard for monitoring AI sessions, LLM usage, costs, scheduled jobs, and system health.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/jcdentoncore/command-center-1-4-1) <br>
-- [README](README.md) <br>
-- [Architecture overview](docs/architecture/OVERVIEW.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, JSON, HTML dashboard] <br>
-**Output Format:** [Markdown guidance, shell commands, local web dashboard pages, and JSON/SSE API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs as a local Node.js dashboard server on port 3333 by default.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.1 (source: SKILL.md frontmatter and package.json; ClawHub release metadata version 1.0.0) <br>
+Risk: The local dashboard can expose sensitive OpenClaw session activity, transcript excerpts, operator identities, memory metadata, vitals, and job state if run without appropriate access controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Bind the service to loopback, enable authentication, and avoid exposing port 3333 to LAN, VPN, or public networks unless access controls are in place.
+
+Risk: The quick-start flow uses an unpinned npx installer.
+
+Mitigation: Review the package source and prefer pinned, trusted versions before installing in sensitive environments.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jcdentoncore/skills/command-center-1-4-1)
+- [OpenClaw Command Center Documentation](https://github.com/jontsai/openclaw-command-center#readme)
+- [Architecture Overview](docs/architecture/OVERVIEW.md)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration values]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Starts a local dashboard service for OpenClaw visibility.]
+
+## Skill Version(s):
+
+1.4.1 (source: SKILL.md frontmatter and package.json); ClawHub release version 1.0.0
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

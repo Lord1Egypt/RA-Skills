@@ -1,6 +1,8 @@
 {
-  "ownerId": "kn75y72degw5hfkn8zhd4m6std83pv3h",
-  "slug": "quant-stock",
+  "name": "quant-stock-picker",
   "version": "1.0.0",
-  "publishedAt": 1775553698544
+  "description": "AI量化选股系统 - 基于多维度评分模型的A股选股分析工具",
+  "author": "Rix",
+  "tags": ["quant", "stock", "a股", "选股", "投资"],
+  "entry_point": "scripts/main.py"
 }

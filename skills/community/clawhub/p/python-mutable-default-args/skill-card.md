@@ -1,37 +1,53 @@
-## Description: <br>
-A Python function uses a mutable object (list, dict, set) as a default argument, sharing state across calls in a way that produces silent bugs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Python function uses a mutable object (list, dict, set) as a default argument, sharing state across calls in a way that produces silent bugs.
 
-## Publisher: <br>
-[mvogt99](https://clawhub.ai/user/mvogt99) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mvogt99](https://clawhub.ai/user/mvogt99)
 
-## Use Case: <br>
-Developers and engineers use this skill to recognize Python mutable default argument bugs, understand their symptoms, and apply the standard None-default initialization pattern during code review or repair. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Suggested code edits may change function behavior if applied without review. <br>
-Mitigation: Review proposed signature and initialization changes, and run relevant tests before committing. <br>
+## Use Case:
 
+Developers and engineers use this skill during Python code review to identify mutable default argument bugs and apply the canonical None-default initialization pattern.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code] <br>
-**Output Format:** [Markdown with Python code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The skill may flag deliberate stateful defaults, such as a documented cache, as defects.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the function's intent before changing behavior and keep intentional stateful defaults only when they are clearly documented.
+
+Risk: Refactoring a mutable default can change behavior for callers that accidentally relied on shared state across calls.
+
+Mitigation: Add or update tests around repeated calls before applying the None-default initialization pattern.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mvogt99/skills/python-mutable-default-args)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code]
+
+**Output Format:** [Markdown with Python code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No tool execution or external service calls are required.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

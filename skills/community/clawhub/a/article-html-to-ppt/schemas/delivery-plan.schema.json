@@ -1,0 +1,121 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://skillmelody.dev/schemas/delivery-plan.schema.json",
+  "title": "Article HTML to PPT Delivery Plan",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "ppt_ir_ref", "style_contract_ref", "component_registry_ref", "profile", "builder", "slides", "summary"],
+  "properties": {
+    "schema_version": {"const": "1.0"},
+    "ppt_ir_ref": {"type": "string"},
+    "style_contract_ref": {"type": "string"},
+    "component_registry_ref": {"type": "string"},
+    "capability_report_ref": {"type": ["string", "null"]},
+    "profile": {"enum": ["fast", "standard", "premium"]},
+    "builder": {
+      "type": "object",
+      "required": ["requested", "selected"],
+      "properties": {
+        "requested": {"type": "string"},
+        "selected": {"type": "string"},
+        "version": {"type": ["string", "null"]},
+        "selection_score": {"type": "number", "minimum": 0},
+        "selection_reasons": {"type": "array", "items": {"type": "string"}},
+        "candidates": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": true,
+            "required": ["builder", "available", "score", "reasons", "errors"],
+            "properties": {
+              "builder": {"type": "string"},
+              "available": {"type": "boolean"},
+              "version": {"type": ["string", "null"]},
+              "score": {"type": "number", "minimum": 0},
+              "native_component_coverage": {"type": "number", "minimum": 0},
+              "editable_core_coverage": {"type": "number", "minimum": 0},
+              "fallback_count": {"type": "integer", "minimum": 0},
+              "reasons": {"type": "array", "items": {"type": "string"}},
+              "errors": {"type": "array", "items": {"type": "string"}}
+            }
+          }
+        },
+        "warnings": {"type": "array", "items": {"type": "string"}},
+        "errors": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "slides": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["slide_id", "objects"],
+        "properties": {
+          "slide_id": {"type": "string"},
+          "objects": {"type": "array", "items": {"$ref": "#/$defs/objectPlan"}}
+        }
+      }
+    },
+    "summary": {
+      "type": "object",
+      "required": ["total_objects", "fallback_count", "unsupported_count", "risk_codes"],
+      "properties": {
+        "total_objects": {"type": "integer", "minimum": 0},
+        "fallback_count": {"type": "integer", "minimum": 0},
+        "unsupported_count": {"type": "integer", "minimum": 0},
+        "risk_codes": {"type": "array", "items": {"type": "string"}}
+      }
+    }
+  },
+  "$defs": {
+    "objectPlan": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "slide_id",
+        "object_id",
+        "component_type",
+        "preferred_route",
+        "selected_route",
+        "decision",
+        "reason_codes",
+        "editable_core",
+        "rasterized_parts",
+        "svg_parts",
+        "native_overlay_parts",
+        "qa_checks",
+        "fallback_chain"
+      ],
+      "properties": {
+        "slide_id": {"type": "string"},
+        "object_id": {"type": "string"},
+        "component_type": {"type": "string"},
+        "preferred_route": {"$ref": "#/$defs/deliveryRoute"},
+        "selected_route": {"$ref": "#/$defs/deliveryRoute"},
+        "decision": {"enum": ["selected", "fallback", "unsupported", "error"]},
+        "reason_codes": {"type": "array", "items": {"type": "string"}},
+        "editable_core": {"type": "array", "items": {"type": "string"}},
+        "rasterized_parts": {"type": "array", "items": {"type": "string"}},
+        "svg_parts": {"type": "array", "items": {"type": "string"}},
+        "native_overlay_parts": {"type": "array", "items": {"type": "string"}},
+        "qa_checks": {"type": "array", "items": {"type": "string"}},
+        "fallback_chain": {"type": "array", "items": {"$ref": "#/$defs/deliveryRoute"}},
+        "diagram_analysis": {
+          "type": "object",
+          "properties": {
+            "node_count": {"type": "integer", "minimum": 0},
+            "edge_count": {"type": "integer", "minimum": 0},
+            "group_count": {"type": "integer", "minimum": 0},
+            "boundary_count": {"type": "integer", "minimum": 0},
+            "connector_web_risk": {"enum": ["low", "medium", "high"]},
+            "layout_recommendation": {"type": "string"},
+            "recommended_delivery_route": {"$ref": "#/$defs/deliveryRoute"},
+            "split_recommended": {"type": "boolean"}
+          }
+        }
+      }
+    },
+    "deliveryRoute": {
+      "enum": ["native_ppt", "native_chart", "native_table", "native_diagram", "svg_component", "raster_component", "generated_image", "background_image", "hybrid_overlay", "unsupported"]
+    }
+  }
+}

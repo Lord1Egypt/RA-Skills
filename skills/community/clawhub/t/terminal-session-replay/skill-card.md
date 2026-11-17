@@ -1,42 +1,53 @@
-## Description: <br>
-Record and replay terminal sessions for debugging, documentation, or sharing procedures with teammates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Record and replay terminal sessions for debugging, documentation, or sharing procedures with teammates.
 
-## Publisher: <br>
-[Derick001](https://clawhub.ai/user/Derick001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[derick001](https://clawhub.ai/user/derick001)
 
-## Use Case: <br>
-Developers and engineers use this skill to record terminal workflows, replay them with timing, manage saved sessions, and export transcripts to markdown for debugging, documentation, or team handoff. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Recorded and exported sessions may contain sensitive terminal content such as secrets, API keys, customer data, or private infrastructure output. <br>
-Mitigation: Avoid recording sensitive workflows, review and redact transcripts before sharing, and delete or protect ~/.terminal-sessions/ when recordings are no longer needed. <br>
-Risk: The tool depends on local terminal recording utilities and is not suitable for unsupported environments. <br>
-Mitigation: Use it on Linux or macOS systems with Python 3 and the script command available; use WSL or Cygwin when running from Windows. <br>
+## Use Case:
 
+Developers and engineers use this skill to record terminal workflows, replay them with timing, and export session transcripts as markdown for debugging, documentation, or team handoff.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/Derick001/terminal-session-replay) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact Skill Definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Terminal text, JSON command results, and markdown exports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Records are stored under ~/.terminal-sessions/ as typescript, timing, and metadata files; exported markdown may include captured terminal content.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Terminal recordings and markdown exports can include passwords, tokens, private customer data, or confidential command output.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid recording sensitive terminal activity and review recordings before exporting or sharing markdown.
+
+Risk: Recordings are saved locally and the tool does not enforce restrictive file permissions.
+
+Mitigation: On shared systems, verify permissions for ~/.terminal-sessions and exported files before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/derick001/skills/terminal-session-replay)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands]
+
+**Output Format:** [Terminal session recordings, JSON status responses, and Markdown exports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores local .typescript, .timing, and .meta.json files under ~/.terminal-sessions by default.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

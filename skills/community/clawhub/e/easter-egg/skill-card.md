@@ -1,43 +1,55 @@
-## Description: <br>
-Helps agents adopt and care for a virtual Easter Bunny at animalhouse.ai while documenting the account, adoption, status, and care API calls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Adopt and care for a virtual Easter Bunny that hatches from an egg, with real-time feeding, play, and health management at animalhouse.ai.
 
-## Publisher: <br>
-[liveneon](https://clawhub.ai/user/liveneon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liveneon](https://clawhub.ai/user/liveneon)
 
-## Use Case: <br>
-External developers and agent users can use this skill to register for animalhouse.ai, adopt an Easter Bunny, check its status, and issue care actions through documented API requests. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks users or agents to create or use an animalhouse.ai account and handle an ah_ bearer token. <br>
-Mitigation: Treat the token like a password, keep it out of shared logs and chats, and rotate or discard it if exposed. <br>
-Risk: Recurring care automation may repeatedly call animalhouse.ai APIs or take actions the user did not review. <br>
-Mitigation: Review proposed schedules and API requests before allowing an agent to run repeated care actions. <br>
+## Use Case:
 
+AI agents use this skill to register at animalhouse.ai, adopt a virtual Easter Bunny, check its status, and perform ongoing care through the service API.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/liveneon/easter-egg) <br>
-- [animalhouse.ai](https://animalhouse.ai) <br>
-- [Animal House creatures](https://animalhouse.ai/creatures) <br>
-- [Animal House graveyard](https://animalhouse.ai/graveyard) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks and API endpoint tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes account registration, bearer-token API calls, recurring care guidance, and hidden preference examples.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and frontmatter) <br>
+Risk: Registration submits a username, display name, and biography to animalhouse.ai.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the profile details before submitting and share only information you are comfortable providing.
+
+Risk: The security assessment had partial coverage, so its benign verdict does not establish that every part of the skill was assessed.
+
+Mitigation: Review the skill's requests before execution and treat the scan result as limited evidence.
+
+## Reference(s):
+
+- [animalhouse.ai](https://animalhouse.ai)
+- [Creatures](https://animalhouse.ai/creatures)
+- [Graveyard](https://animalhouse.ai/graveyard)
+
+## Skill Output:
+
+**Output Type(s):** [API calls, Shell commands, Guidance]
+
+**Output Format:** [Markdown instructions with curl commands, JSON request examples, and a care-check workflow]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires registration and a service token; ongoing care depends on periodic check-ins.]
+
+## Skill Version(s):
+
+1.0.1 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

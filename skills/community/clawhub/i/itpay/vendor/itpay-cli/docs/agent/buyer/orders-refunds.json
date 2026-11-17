@@ -1,0 +1,65 @@
+{
+  "schema_version": "itp.agent_doc.v1",
+  "role": "buyer",
+  "product_scope": "itpay is the single public CLI entry point, and $itpay is its user-facing Skill invocation. Under that one product entry point, the two top-level commerce actions are buy and sell: Buyer workflows are available now; Seller workflows will use the same entry point and are not implemented yet.",
+  "topic": "orders-refunds",
+  "title": "Order, Delivery And Refund Recovery",
+  "purpose": "Read owned orders and manage refunds through signed Agent authority without guessing payment or refund state.",
+  "when_to_use": [
+    "An order or Service Execution was interrupted after payment.",
+    "The buyer asks to request, track, or cancel a refund."
+  ],
+  "commands": [
+    {
+      "intent": "read one order",
+      "command": "itpay --agent-type <agent_type> order <order_id> --json",
+      "success_signal": "one compact owned-order summary and one current next step are returned"
+    },
+    {
+      "intent": "request a refund",
+      "command": "itpay --agent-type <agent_type> refund create --order <order_id> --reason buyer_requested --json",
+      "success_signal": "the Refund Owner returns its request id, policy status, consumption state, and access lock"
+    },
+    {
+      "intent": "recover one refund",
+      "command": "itpay --agent-type <agent_type> refund get <refund_request_id> --json",
+      "success_signal": "one authoritative refund snapshot is returned"
+    },
+    {
+      "intent": "wait through provider processing",
+      "command": "itpay --agent-type <agent_type> refund watch <refund_request_id> --json",
+      "success_signal": "one terminal refund envelope or one resumable timeout envelope is returned"
+    },
+    {
+      "intent": "cancel before provider submission",
+      "command": "itpay --agent-type <agent_type> refund cancel <refund_request_id> --json",
+      "success_signal": "the Refund Owner cancels the request and requires a new delivery authorization"
+    }
+  ],
+  "agent_rules": [
+    "The Backend derives payment, amount, currency, Buyer and refund policy from the owned order.",
+    "A refund request freezes all delivery paths and revokes existing grants immediately.",
+    "Cancellation or rejection restores eligibility but never reactivates an old grant.",
+    "Use get or watch after interruption; do not infer success from elapsed time.",
+    "Account-wide orders requires an account-scoped Buyer bearer; exact order and refund routes support the bound signed Agent where documented."
+  ],
+  "forbidden": [
+    "Do not fabricate Buyer sessions, Device IDs or payment references.",
+    "Do not read delivery while refund access_locked is true.",
+    "Do not claim a refund succeeded before the Refund Owner says succeeded."
+  ],
+  "next_docs": [
+    {
+      "condition": "Need the original purchase path",
+      "topic": "quickstart"
+    }
+  ],
+  "search_terms": [
+    "order",
+    "refund",
+    "cancel",
+    "watch",
+    "delivery lock",
+    "grant"
+  ]
+}

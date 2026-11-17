@@ -9,14 +9,14 @@ optional archival layer.
 | v2.x | v3.0 |
 |------|------|
 | MEMORY.md as lean index | MEMORY.md as routing table (same concept, clearer rules) |
-| daily/ as primary intake | daily/ as intake (unchanged) |
+| daily notes as primary intake | daily notes as intake (unchanged; v3.2 moves them to `memory/YYYY-MM-DD.md`) |
 | weekly/monthly/yearly as main distillation path | weekly/monthly/yearly as optional archival layer |
 | No topic files | topics/ as primary working memory |
 | No contact files | contacts/ for people information |
 
 ## What's Preserved
 
-- All existing `memory/daily/` files — untouched
+- All existing daily notes — untouched (v3.2 offers to move `memory/daily/` to `memory/`, see SKILL.md)
 - All existing `memory/weekly/` files — untouched
 - All existing `memory/monthly/` files — untouched
 - All existing `memory/yearly/` files — untouched
@@ -72,4 +72,4 @@ To get the exact same behavior as v2.x with no new features:
 }
 ```
 
-This gives you daily/weekly/monthly/yearly without topics or contacts.
+This gives you daily notes plus weekly/monthly/yearly archives without topics or contacts.

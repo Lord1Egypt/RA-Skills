@@ -1,0 +1,32 @@
+{
+  "schema": "ownership-attestation/1.0",
+  "package": "喂料专家五步投喂工作流",
+  "version": "1.0.0",
+  "author": "注册老炮",
+  "year": "2026",
+  "timestamp_utc": "2026-08-27T13:58:36.047570+00:00",
+  "timestamp_local": "2026-08-27T21:58:36.047582",
+  "package_fingerprint_sha256": "642d979357c6f5ba4943c10e1b797a291956fd8f0b469233006672938bc4c04b",
+  "files": [
+    {
+      "path": "LICENSE.md",
+      "sha256": "5416746360f13e79761cd77b2a7655ff5446803e513f206e31e93a7abd3091ac"
+    },
+    {
+      "path": "SKILL.md",
+      "sha256": "c688e9e383e63ec0e36239ab0875985ce693013191ec8598b5e4bfb4401d196c"
+    },
+    {
+      "path": "references/喂料包模板.md",
+      "sha256": "b39d2e64d33f57b4320fe3ace62477258a57c04860052758d8141bfa2e0c66d3"
+    },
+    {
+      "path": "references/喂料纪律.md",
+      "sha256": "89512bca9c37f8ac3b5ed05073afe37df70e4522415ecbf7baa16119008a9f7b"
+    },
+    {
+      "path": "安全审计报告.md",
+      "sha256": "9f1e29c0858aeb8136f5469c8494eb85aa79368b45c4f5018023390fe38dee01"
+    }
+  ]
+}

@@ -1,46 +1,52 @@
-## Description: <br>
-Provides read-oriented Laravel Cloud operations through the OOMOL laravel_cloud connector and oo CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Laravel Cloud (cloud.laravel.com). Use this skill for ANY Laravel Cloud request — searching and reading data. Whenever a task involves Laravel Cloud, use this skill instead of calling the API directly.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and operators use this skill to inspect Laravel Cloud applications, environments, deployments, regions, and organization details from an OOMOL-connected account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads Laravel Cloud data through an OOMOL-connected account. <br>
-Mitigation: Install it only when the agent should read Laravel Cloud data, and review the OOMOL connection and API key scopes before use. <br>
-Risk: Future connector actions labeled write or destructive could change or remove Laravel Cloud data. <br>
-Mitigation: Require explicit user confirmation of the exact payload and expected effect before running any write or destructive action. <br>
-Risk: Initial setup may require installing the oo CLI and connecting Laravel Cloud credentials. <br>
-Mitigation: Run setup only after an authentication or connection failure, and keep credentials managed through OOMOL rather than exposing raw tokens to the agent. <br>
+## Use Case:
 
+Developers and operators use it to search and read the connected Laravel Cloud organization's applications, environments, deployments, and available regions.
 
-## Reference(s): <br>
-- [ClawHub Laravel Cloud skill page](https://clawhub.ai/oomol/skills/oo-laravel-cloud) <br>
-- [OOMOL publisher profile](https://clawhub.ai/user/oomol) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [oo CLI install guide](https://cli.oomol.com/install-guide.md) <br>
-- [Laravel Cloud homepage](https://cloud.laravel.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance, JSON] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON connector payloads or responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses live oo connector schemas before constructing action payloads.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: The setup fallback runs an unverified remote installer, and its local changes are not clearly controlled.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and approve CLI installation separately. Check whether the chosen CLI release installs or updates other agent skills, and disable that behavior if unwanted. Grant only the Laravel Cloud permissions needed and account for OOMOL-mediated access.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/oomol/skills/oo-laravel-cloud)
+- [Laravel Cloud](https://cloud.laravel.com)
+- [Laravel Cloud API authentication documentation](https://cloud.laravel.com/docs/api/authentication)
+- [oo CLI installation guide](https://cli.oomol.com/install-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Structured data, Guidance]
+
+**Output Format:** [Text summaries and structured data from Laravel Cloud queries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Account-specific results depend on the connected Laravel Cloud organization and permissions.]
+
+## Skill Version(s):
+
+1.0.4 (source: frontmatter, server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,48 +1,67 @@
-## Description: <br>
-Creates personalized triathlon, marathon, and ultra-endurance training plans from Strava-synced or manually provided fitness data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create personalized triathlon, marathon, and ultra-endurance training plans using Strava-synced training history or manually provided fitness data.
 
-## Publisher: <br>
-[shiv19](https://clawhub.ai/user/shiv19) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[shiv19](https://clawhub.ai/user/shiv19)
 
-## Use Case: <br>
-External athletes use this skill to assess endurance fitness, set training zones, and generate structured race preparation plans. It supports triathlon, marathon, and ultra-endurance planning using either Strava activity history or manually supplied training context. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Strava account linking asks users to provide sensitive OAuth material in chat, including a Client Secret or redirect URL. <br>
-Mitigation: Prefer manual data entry or a safer OAuth flow when possible; if connecting Strava, avoid sharing secrets beyond setup and review local token and database storage before proceeding. <br>
-Risk: Training, nutrition, caffeine, and field-test guidance can be inappropriate for some health conditions, medications, injuries, heat exposure, or limited training history. <br>
-Mitigation: Treat outputs as coaching suggestions, validate zones and volume conservatively, and seek qualified medical or coaching advice for health-sensitive decisions. <br>
-Risk: Plans based on incomplete manual data or stale activity history can overestimate current capacity. <br>
-Mitigation: Validate the assessment with the athlete, confirm injuries and constraints, refresh Strava data when used, and start with conservative volume when uncertain. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/shiv19/clawd-coach) <br>
-- [SQL Queries for Athlete Assessment](reference/queries.md) <br>
-- [Athlete Assessment Guide](reference/assessment.md) <br>
-- [Training Zones & Field Testing](reference/zones.md) <br>
-- [Training Load Management](reference/load-management.md) <br>
-- [Periodization & Progressive Overload](reference/periodization.md) <br>
-- [Sport-Specific Workout Library](reference/workouts.md) <br>
-- [Race Execution & Nutrition Strategy](reference/race-day.md) <br>
+## Use Case:
 
+External athletes and coaches use this skill to assess current fitness, validate constraints and goals, and generate endurance training plans with periodization, workouts, zones, and race-day strategy.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, structured JSON training plans, and HTML render instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local JSON and HTML plan files and may guide local Strava data sync through claude-coach commands.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Strava Client Secrets and OAuth redirect URLs can expose account access if pasted into shared or retained chat contexts.
+
+Mitigation: Use a trusted local authorization flow, avoid sharing secrets or redirect URLs in chat, and revoke or rotate tokens if exposed.
+
+Risk: Unpinned npx claude-coach commands may execute package code that the installer has not independently reviewed.
+
+Mitigation: Pin and audit the package version before running commands, and run it only in an environment where the user is comfortable storing training data.
+
+Risk: Strava sync may store up to two years of private activity history and tokens locally.
+
+Mitigation: Confirm the storage location, deletion process, and token revocation path before syncing personal fitness data.
+
+Risk: Training, testing, caffeine, hydration, and nutrition guidance may be inappropriate for some athletes or medical situations.
+
+Mitigation: Treat recommendations as general coaching ranges, validate assessment details with the athlete, and seek qualified medical guidance for injuries or health concerns.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/shiv19/skills/clawd-coach)
+- [Athlete assessment guide](reference/assessment.md)
+- [Training load management](reference/load-management.md)
+- [Periodization and progressive overload](reference/periodization.md)
+- [SQL queries for athlete assessment](reference/queries.md)
+- [Race execution and nutrition strategy](reference/race-day.md)
+- [Sport-specific workout library](reference/workouts.md)
+- [Training zones and field testing](reference/zones.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with inline shell commands plus structured JSON training plans and HTML render instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use Strava authorization, local activity data, SQL queries, and manually entered fitness details when the user provides them.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,54 @@
-## Description: <br>
-Scan websites and files for broken links with HTTP status details. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scans websites and files for broken links with HTTP status details for audits, broken URL discovery, and reference validation.
 
-## Publisher: <br>
-[bytesagain3](https://clawhub.ai/user/bytesagain3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain3](https://clawhub.ai/user/bytesagain3)
 
-## Use Case: <br>
-Developers, documentation maintainers, and site owners use this skill to audit URLs in pages and files, check HTTP status details, and generate broken-link reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill contacts URLs discovered in input files or web pages, which can send outbound requests to external sites. <br>
-Mitigation: Run it only on files and sites you are authorized to audit and in environments where outbound link-checking traffic is acceptable. <br>
-Risk: The report command writes timestamped report files in the current working directory. <br>
-Mitigation: Run it from the intended workspace and review generated report files before sharing or relying on them. <br>
+## Use Case:
 
+Developers, site maintainers, and documentation authors use Deadlink to audit URLs in pages and files, identify broken links, inspect redirect behavior, and generate plain-text reports with HTTP status details.
 
-## Reference(s): <br>
-- [ClawHub Deadlink Skill Page](https://clawhub.ai/bytesagain3/deadlink) <br>
-- [BytesAgain Homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, files, guidance] <br>
-**Output Format:** [Plain text CLI output and timestamped text report files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl and network access; checks use a 10-second per-URL timeout.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill makes outbound web requests to user-provided URLs and URLs discovered during scans.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only where those requests are acceptable, and avoid untrusted inputs that could trigger requests to localhost, private networks, or cloud metadata services.
+
+Risk: Generated reports are saved as plain text in the current directory.
+
+Mitigation: Run the skill from an appropriate working directory and review generated reports before sharing or retaining them.
+
+## Reference(s):
+
+- [Deadlink ClawHub page](https://clawhub.ai/bytesagain3/skills/deadlink)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, files]
+
+**Output Format:** [Markdown guidance with shell command examples and plain-text link check reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl and network access; reports are saved as timestamped plain-text files in the current directory.]
+
+## Skill Version(s):
+
+3.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

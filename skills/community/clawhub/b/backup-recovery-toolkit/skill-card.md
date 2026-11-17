@@ -1,44 +1,58 @@
-## Description: <br>
-Enterprise-grade backup and recovery toolkit supporting file backup, database backup, incremental backup, scheduled tasks, and disaster recovery. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enterprise-grade backup and recovery toolkit supporting file backup, database backup, incremental backup, scheduled tasks, and disaster recovery.
 
-## Publisher: <br>
-[kaiyuelv](https://clawhub.ai/user/kaiyuelv) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kaiyuelv](https://clawhub.ai/user/kaiyuelv)
 
-## Use Case: <br>
-Developers, site reliability engineers, and operators use this skill to create, schedule, and restore file and database backups. It supports backup planning for local files, MySQL, PostgreSQL, MongoDB, incremental archives, versioned rollback, and disaster recovery workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Restore operations can overwrite files or extract unsafe tar archives. <br>
-Mitigation: Restore only trusted backups into a staging directory first, inspect archive contents, and verify source and destination paths before promoting data. <br>
-Risk: Database backup commands require credentials that could grant broad access. <br>
-Mitigation: Use least-privilege database accounts and avoid root or production admin credentials. <br>
-Risk: Unpinned dependency ranges can change installed code over time. <br>
-Mitigation: Install in a virtual environment with a reviewed lockfile or pinned dependency versions. <br>
+## Use Case:
 
+Developers and operators use this skill to create, schedule, and restore file and database backups for data protection and disaster recovery workflows.
 
-## Reference(s): <br>
-- [Artifact README](README.md) <br>
-- [Skill Definition](SKILL.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/kaiyuelv/backup-recovery-toolkit) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline shell and Python code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include backup paths, restore destinations, cron expressions, and database connection settings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Restore and backup-path handling can overwrite files outside intended folders.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and preferably fix path validation before installation; restore only trusted archives into empty staging directories.
+
+Risk: Database backup examples and commands may expose long-lived database passwords through command-line arguments or process environments.
+
+Mitigation: Use least-privileged database accounts and avoid passing long-lived passwords on command lines.
+
+Risk: Dependencies may change over time if installed from broad version ranges.
+
+Mitigation: Pin or remove dependencies before production use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/kaiyuelv/skills/backup-recovery-toolkit)
+- [Publisher Profile](https://clawhub.ai/user/kaiyuelv)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline code and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May describe file paths, backup names, database settings, schedules, and restore procedures.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

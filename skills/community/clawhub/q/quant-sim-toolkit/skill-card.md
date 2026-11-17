@@ -1,43 +1,53 @@
-## Description: <br>
-7 runnable Monte Carlo simulation tools extracted from a viral quant article. Importance sampling, particle filters, copulas, agent-based markets, variance reduction. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+7 runnable Monte Carlo simulation tools extracted from a viral quant article. Importance sampling, particle filters, copulas, agent-based markets, variance reduction.
 
-## Publisher: <br>
-[MarcinDudekDev](https://clawhub.ai/user/MarcinDudekDev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[marcindudekdev](https://clawhub.ai/user/marcindudekdev)
 
-## Use Case: <br>
-External developers, quant learners, and finance-focused analysts use this skill to run local Monte Carlo examples for binary pricing, tail-risk estimation, particle filtering, variance reduction, copula simulation, agent-based market microstructure, and an end-to-end pipeline. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Local execution of third-party Python and shell scripts can affect the user's environment. <br>
-Mitigation: Review the scripts before running them and execute them in an isolated virtual environment. <br>
-Risk: Unpinned numpy and scipy dependency ranges can make simulation results less reproducible over time. <br>
-Mitigation: Pin dependency versions in a project-specific environment when reproducibility matters. <br>
-Risk: Educational simulation outputs may be mistaken for financial advice or production trading infrastructure. <br>
-Mitigation: Use the outputs for learning and model exploration only, and validate any financial model independently before operational use. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Quant Simulation Toolkit on ClawHub](https://clawhub.ai/MarcinDudekDev/quant-sim-toolkit) <br>
-- [gemchange_ltd source thread](https://x.com/gemchange_ltd) <br>
-- [Claude Code documentation](https://docs.anthropic.com/en/docs/claude-code) <br>
+## Use Case:
 
+Developers, quant researchers, and finance learners use this skill to run local Monte Carlo simulations for option pricing, tail-risk estimation, particle filtering, copula dependency modeling, and prediction-market microstructure experiments.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with Python and bash examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local educational simulation scripts and console output; no network activity is indicated by the security evidence.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Financial simulation outputs can be mistaken for validated trading signals or investment advice.
+
+Mitigation: Use the toolkit for educational or local simulation workflows, and require independent validation, safeguards, and domain review before any real-money use.
+
+Risk: Unpinned numpy/scipy versions can affect reproducibility of numerical results.
+
+Mitigation: Pin or review dependency versions when reproducible quantitative results matter.
+
+## Reference(s):
+
+- [How to Simulate Like a Quant Desk source thread](https://x.com/gemchange_ltd)
+- [Quant Simulation Toolkit on ClawHub](https://clawhub.ai/marcindudekdev/skills/quant-sim-toolkit)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with Python and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Local Python simulations using numpy and scipy; scripts print tables, confidence intervals, variance metrics, and summary results.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

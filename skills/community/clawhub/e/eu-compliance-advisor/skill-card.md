@@ -1,42 +1,54 @@
-## Description: <br>
-A Chinese-language EU trade compliance advisor for Chinese cross-border sellers that routes VAT, EPR compliance, and certificate-verification questions to the eu-compliance-skill plugin. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+专为中国跨境卖家设计的欧盟合规智能助手，提供27国VAT试算、EPR合规检测及证书验证指导。
 
-## Publisher: <br>
-[luongkim20222022-crypto](https://clawhub.ai/user/luongkim20222022-crypto) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[luongkim20222022-crypto](https://clawhub.ai/user/luongkim20222022-crypto)
 
-## Use Case: <br>
-Chinese cross-border sellers, marketplace operators, and their agents use this skill to receive Chinese-language advisory guidance on EU VAT, IOSS thresholds, EPR obligations, and certificate checks before seeking official registration or professional advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Compliance and tax outputs may be incomplete or outdated for a seller's specific filing situation. <br>
-Mitigation: Treat responses as advisory and verify official registration, tax, and product-compliance requirements with the relevant authority or a qualified professional. <br>
-Risk: Certificate verification may involve sensitive business documents or certificate text. <br>
-Mitigation: Review the separate eu-compliance-skill plugin and avoid submitting sensitive certificates or business documents unless the deployment environment is approved for that data. <br>
-Risk: Generic price questions may trigger VAT calculation when the user intended a different pricing task. <br>
-Mitigation: Ask for clarification before VAT calculation when the country, transaction type, or compliance intent is ambiguous. <br>
+## Use Case:
 
+Chinese cross-border sellers and their support agents use this skill to answer EU VAT, IOSS, EPR, product-compliance, and certificate-review questions in Chinese. It is intended to provide advisory compliance guidance and should not replace professional or official advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/luongkim20222022-crypto/eu-compliance-advisor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Text, API Calls] <br>
-**Output Format:** [Chinese markdown-style advisory text with structured lists and plugin-routed compliance results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Tax amounts are expected to use euro values with two decimal places when VAT calculation results are returned.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Users may treat VAT, product-compliance, or certificate-review output as definitive legal or tax advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present results as advisory, include the stated official-registration caveat, and direct users to professional or official sources for final decisions.
+
+Risk: Certificate-verification workflows may expose personal or business-sensitive document details.
+
+Mitigation: Avoid submitting unnecessary sensitive certificate data and limit shared content to what is needed for the compliance task.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/luongkim20222022-crypto/skills/eu-compliance-advisor)
+- [Publisher profile](https://clawhub.ai/user/luongkim20222022-crypto)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Chinese Markdown with structured advisory responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Tax and compliance responses are advisory and should include official-registration caveats when applicable.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact version history, released 2026-04-03)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

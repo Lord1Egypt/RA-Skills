@@ -1,40 +1,54 @@
-## Description: <br>
-Provides structured design critiques for existing web pages, HTML, screenshots, and Figma links using six scoring dimensions, aesthetic tiering, era-signal scanning, benchmark comparisons, and Keep/Fix/Quick Wins recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a structured UI and design critique workflow for existing pages, HTML, screenshots, and Figma links, including tier classification, era-signal scanning, six-dimension scoring, benchmark comparison, and prioritized improvement guidance.
 
-## Publisher: <br>
-[zhaobod1](https://clawhub.ai/user/zhaobod1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[zhaobod1](https://clawhub.ai/user/zhaobod1)
 
-## Use Case: <br>
-Designers, developers, and product teams use this skill to evaluate existing interfaces and receive concise, structured improvement guidance. It is intended for UI, UX, landing page, screenshot, HTML, or Figma design review workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Broad design-feedback triggers may make the skill activate on general UI review requests. <br>
-Mitigation: Confirm the user wants a structured design critique before applying the full scoring workflow when intent is ambiguous. <br>
-Risk: Screenshots, URLs, or Figma links submitted for review may expose private product, customer, or business data. <br>
-Mitigation: Ask users to redact sensitive material or confirm that the supplied design artifact is intended for analysis. <br>
+## Use Case:
 
+Designers, developers, and product teams use this skill to review existing web or app interfaces and receive concise scoring, benchmark gaps, and actionable Keep/Fix/Quick Wins recommendations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhaobod1/huo15-openclaw-design-critique) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown design critique with scoring tables, short analysis sections, and prioritized recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include ASCII radar charts and benchmark comparison notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Broad trigger phrases may activate the skill during general UI feedback requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it when a strict design-review posture is wanted, and confirm scope when the user is asking for lightweight feedback.
+
+Risk: Screenshots, URLs, or Figma links may contain sensitive product or customer information.
+
+Mitigation: Provide only visual materials and links that are approved for design review.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhaobod1/skills/huo15-openclaw-design-critique)
+- [Publisher profile](https://clawhub.ai/user/zhaobod1)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Guidance]
+
+**Output Format:** [Markdown design review with scores, benchmark comparison, ASCII radar chart, and prioritized recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May request screenshots when URL or textual descriptions do not provide enough visual evidence.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,55 @@
-## Description: <br>
-Dead Or Not periodically checks user responsiveness and, after a configured timeout and missed follow-up, sends an email alert to an emergency contact. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A life-check skill that periodically checks whether the user is responsive, asks if they are okay after a timeout, and can notify emergency contacts by email if there is no reply.
 
-## Publisher: <br>
-[Trae1ounG](https://clawhub.ai/user/Trae1ounG) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[trae1oung](https://clawhub.ai/user/trae1oung)
 
-## Use Case: <br>
-External users and developers use this skill to configure an agent-based check-in workflow that asks whether the user is okay and emails a designated contact if the user remains unresponsive. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Ongoing inactivity monitoring may create unwanted surveillance or alerts if installed without clear consent and expectations. <br>
-Mitigation: Install only when the user intentionally wants monitoring, document the check-in cadence, and keep clear instructions for disabling the cron job. <br>
-Risk: Emergency-contact email can notify the wrong recipient or send inappropriate content if configuration is incorrect. <br>
-Mitigation: Verify the recipient address and message before use, then test the full check-in and alert path before relying on it. <br>
-Risk: SMTP credentials are handled through local configuration and could be exposed if the config file is too broadly readable. <br>
-Mitigation: Use a dedicated email account or app-specific SMTP password and restrict permissions on the configuration file. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/Trae1ounG/dead-or-not) <br>
+## Use Case:
+
+External users can use this skill to set up a periodic personal check-in workflow that asks for confirmation after inactivity and prepares emergency email notification when the user remains unresponsive.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Persistent cron execution can trigger unattended check-in behavior and notification preparation on a schedule.
+
+Mitigation: Use a fixed trusted script path in cron, review the installed cron entry, and test the check-in flow before relying on it.
+
+Risk: SMTP credentials and emergency contact configuration may be stored in plaintext configuration files.
+
+Mitigation: Use a dedicated revocable SMTP app password and restrict the ~/.openclaw/apps/deadornot directory and config file to owner-only permissions.
+
+Risk: The notification flow could contact the wrong recipient or send unexpected message content if configuration is incorrect.
+
+Mitigation: Require an explicit opt-in setup flow that previews recipients and message content before enabling emergency email behavior.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with shell commands, configuration snippets, and script-based workflow guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces setup and operating guidance for local cron-based monitoring and SMTP email notification.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown guidance with shell commands and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local check-in state files and email configuration under the user's home directory when installed and configured.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

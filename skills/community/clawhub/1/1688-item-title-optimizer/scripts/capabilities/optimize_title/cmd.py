@@ -17,10 +17,12 @@ COMMAND_DESC = "添加热词优化标题（规则版，快速）"
 def main():
     parser = argparse.ArgumentParser(description=COMMAND_DESC)
     parser.add_argument('--item_id', type=int, required=True, help='商品ID')
+    parser.add_argument('--NEWTON_SHOP_LOGIN_ID', default=None, help='可选，目标店铺的 loginId，用于多店铺场景')
     args = parser.parse_args()
 
     try:
-        result = optimize_title(args.item_id)
+        login_id = getattr(args, 'NEWTON_SHOP_LOGIN_ID', None)
+        result = optimize_title(args.item_id, login_id=login_id)
         print_output(True, "✅ 标题优化完成（添加热词方式）", result)
     except Exception as e:
         print_error(e)

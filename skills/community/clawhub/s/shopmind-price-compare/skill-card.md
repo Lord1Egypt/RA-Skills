@@ -1,44 +1,59 @@
-## Description: <br>
-ShopMind Price Compare helps agents search prices, coupons, hot products, savings, and purchase links across Taobao/Tmall, JD.com, Pinduoduo, Douyin, Kuaishou, Suning, Vipshop, Kaola, and 1688. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Compares prices, coupons, savings, hot products, and purchase links across Taobao/Tmall, JD, Pinduoduo, Douyin, Kuaishou, Suning, Vipshop, Kaola, and 1688.
 
-## Publisher: <br>
-[xiaohaook](https://clawhub.ai/user/xiaohaook) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiaohaook](https://clawhub.ai/user/xiaohaook)
 
-## Use Case: <br>
-External shopping users and agents use this skill to compare product prices, find coupon-backed offers, inspect hot products, and generate purchase links from supported Chinese e-commerce marketplaces. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Shopping search terms and product lookups are sent to maishou88.com. <br>
-Mitigation: Review network use before installing and avoid entering sensitive shopping queries. <br>
-Risk: Generated purchase links may include invite or share identifiers and may not be neutral. <br>
-Mitigation: Verify prices, coupons, and destination links directly with the merchant before buying. <br>
+## Use Case:
 
+External shopping users and shopping assistant agents use this skill to compare product prices, coupons, sales signals, savings, and purchase links across supported Chinese e-commerce platforms.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xiaohaook/shopmind-price-compare) <br>
-- [Skill homepage](https://clawhub.com/skills/shopmind-price-compare) <br>
-- [Publisher profile](https://clawhub.ai/user/xiaohaook) <br>
-- [Maishou API service](https://appapi.maishou88.com) <br>
-- [Maishou share service](https://msapi.maishou88.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Plain text with command examples and occasional JSON status responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires uv and Python >=3.8; requests product data from maishou88.com and can emit purchase links.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.2.0 (source: release evidence) <br>
+Risk: Shopping searches and product IDs are sent to Maishou APIs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sensitive shopping queries and review the Maishou data-sharing implications before use.
+
+Risk: Generated purchase links may include the default invite code unless MAISHOU_INVITE_CODE is set.
+
+Mitigation: Disclose affiliate attribution and set MAISHOU_INVITE_CODE explicitly before generating purchase links.
+
+Risk: The skill has dependency and disclosure gaps according to the security evidence.
+
+Mitigation: Install in a controlled environment, pin runtime dependencies, and review the script before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xiaohaook/skills/shopmind-price-compare)
+- [Maishou app API endpoint](https://appapi.maishou88.com)
+- [Maishou share API endpoint](https://msapi.maishou88.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Guidance]
+
+**Output Format:** [Markdown-like formatted text with product listings, coupon details, savings calculations, IDs, and purchase links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search results and coupon or hot-product listings are limited to the first 20 returned items.]
+
+## Skill Version(s):
+
+2.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

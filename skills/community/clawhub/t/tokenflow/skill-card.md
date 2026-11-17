@@ -1,45 +1,59 @@
-## Description: <br>
-Convert files and URLs to structured text using the TokenFlow API with agent-side per-filetype configuration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts files and URLs to structured text through the TokenFlow API with per-filetype conversion settings and fallback behavior.
 
-## Publisher: <br>
-[kolemaravilla](https://clawhub.ai/user/kolemaravilla) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kolemaravilla](https://clawhub.ai/user/kolemaravilla)
 
-## Use Case: <br>
-Developers and agents use TokenFlow to turn supported attachments and pasted URLs into structured text before downstream AI analysis, summarization, or extraction. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Supported attachments, pasted URLs, and optional sign-in credentials are sent to TokenFlow's remote service for processing. <br>
-Mitigation: Install only when remote processing is acceptable, avoid private or internal URLs, and prefer an existing API key over entering passwords on the command line. <br>
-Risk: Sensitive file types may be converted automatically if default configuration is left unchanged. <br>
-Mitigation: Review config.json before use and set askEachTime=true or action=skip for sensitive file types. <br>
-Risk: Quota, size, unsupported-format, or service failures can prevent conversion. <br>
-Mitigation: Use the configured fallback behavior to keep the original file available and report quota or conversion failures to the user. <br>
+## Use Case:
 
+Developers and external users can use this skill to let an agent convert supported documents, spreadsheets, archives, audio files, and pasted URLs into structured text for downstream analysis or conversation.
 
-## Reference(s): <br>
-- [ClawHub TokenFlow release page](https://clawhub.ai/kolemaravilla/tokenflow) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/kolemaravilla) <br>
-- [TokenFlow service](https://tokenflow.ironlion.cc) <br>
-- [TokenFlow API service](https://tokenflow.fly.dev) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown or JSON-derived text returned from TokenFlow API calls, plus concise agent-facing configuration guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires TOKENFLOW_API_KEY and network access; conversion can fall back to the original file when configured or when quota, size, format, or service errors occur.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter reports 2.0.0) <br>
+Risk: Selected files, pasted URLs, and possibly authentication data may be sent to TokenFlow's external service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for data approved for external processing, avoid confidential documents, regulated data, internal-only URLs, and secrets, and review TokenFlow data handling before broader deployment.
+
+Risk: Broad conversion triggers can automatically send supported attachments or URLs with limited consent guidance.
+
+Mitigation: Configure ask-before-convert behavior or skip rules for sensitive file types, and require explicit user approval where conversion could expose private content.
+
+Risk: Quota, size, unsupported-format, timeout, or service errors can prevent conversion and return the original file instead.
+
+Mitigation: Keep fallback behavior visible to users, check quota and service status when conversion fails, and verify important outputs against the source file.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/kolemaravilla/skills/tokenflow)
+- [TokenFlow Service](https://tokenflow.ironlion.cc)
+- [TokenFlow API Endpoint](https://tokenflow.fly.dev)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Guidance]
+
+**Output Format:** [Markdown or HTML text, with JSON responses for structured conversion results and status data]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires TOKENFLOW_API_KEY and network access; output depends on per-filetype conversion settings, retry count, and fallback behavior.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and release changelog, released 2026-04-27)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

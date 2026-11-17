@@ -56,10 +56,10 @@ SERVICE="my-service"
 REGION="cn-hangzhou"
 
 # View container logs
-aliyun eas describe-service-log --cluster-id $REGION --service-name $SERVICE --keyword "error" --limit 50 --user-agent AlibabaCloud-Agent-Skills
+aliyun eas describe-service-log --cluster-id $REGION --service-name $SERVICE --keyword "error" --limit 50 --user-agent AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-diagnose
 
 # View startup events
-aliyun eas describe-service-event --cluster-id $REGION --service-name $SERVICE --user-agent AlibabaCloud-Agent-Skills | \
+aliyun eas describe-service-event --cluster-id $REGION --service-name $SERVICE --user-agent AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-diagnose | \
   jq '.Events[] | select(.Reason == "Started" or .Reason == "Failed")'
 ```
 
@@ -131,13 +131,13 @@ SERVICE="my-service"
 REGION="cn-hangzhou"
 
 # 1. Check events
-aliyun eas describe-service-event --cluster-id $REGION --service-name $SERVICE --user-agent AlibabaCloud-Agent-Skills
+aliyun eas describe-service-event --cluster-id $REGION --service-name $SERVICE --user-agent AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-diagnose
 
 # 2. Check logs
-aliyun eas describe-service-log --cluster-id $REGION --service-name $SERVICE --limit 100 --user-agent AlibabaCloud-Agent-Skills
+aliyun eas describe-service-log --cluster-id $REGION --service-name $SERVICE --limit 100 --user-agent AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-diagnose
 
 # 3. Check instance status
-aliyun eas list-service-instances --cluster-id $REGION --service-name $SERVICE --user-agent AlibabaCloud-Agent-Skills
+aliyun eas list-service-instances --cluster-id $REGION --service-name $SERVICE --user-agent AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-diagnose
 ```
 
 ### Failed (Service Failure)
@@ -150,11 +150,11 @@ SERVICE="my-service"
 REGION="cn-hangzhou"
 
 # 1. Get failure reason
-aliyun eas describe-service --cluster-id $REGION --service-name $SERVICE --user-agent AlibabaCloud-Agent-Skills | \
+aliyun eas describe-service --cluster-id $REGION --service-name $SERVICE --user-agent AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-diagnose | \
   jq '{Status, Message, Reason}'
 
 # 2. View failure events
-aliyun eas describe-service-event --cluster-id $REGION --service-name $SERVICE --user-agent AlibabaCloud-Agent-Skills | \
+aliyun eas describe-service-event --cluster-id $REGION --service-name $SERVICE --user-agent AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-diagnose | \
   jq '.Events[] | select(.Type == "Warning" or .Type == "Normal") | select(.Reason | test("Fail|Error"; "i"))'
 ```
 
@@ -176,11 +176,11 @@ SERVICE="my-service"
 REGION="cn-hangzhou"
 
 # 1. Check gateway status
-aliyun eas describe-gateway --cluster-id $REGION --gateway-id gw-xxx --user-agent AlibabaCloud-Agent-Skills | \
+aliyun eas describe-gateway --cluster-id $REGION --gateway-id gw-xxx --user-agent AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-diagnose | \
   jq '{Status: .LoadBalancerList[0].Status}'
 
 # 2. Check service endpoints
-aliyun eas describe-service-endpoints --cluster-id $REGION --service-name $SERVICE --user-agent AlibabaCloud-Agent-Skills
+aliyun eas describe-service-endpoints --cluster-id $REGION --service-name $SERVICE --user-agent AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-diagnose
 
 # 3. Test connectivity (execute within VPC)
 curl --connect-timeout 10 --max-time 30 -H "Authorization: xxx" http://xxx.vpc.cn-hangzhou.pai-eas.aliyuncs.com/api/predict/my-service
@@ -203,7 +203,7 @@ SERVICE="my-service"
 REGION="cn-hangzhou"
 
 # Get Token
-aliyun eas describe-service-endpoints --cluster-id $REGION --service-name $SERVICE --user-agent AlibabaCloud-Agent-Skills | \
+aliyun eas describe-service-endpoints --cluster-id $REGION --service-name $SERVICE --user-agent AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-diagnose | \
   jq -r '.Token'
 ```
 
@@ -218,11 +218,11 @@ aliyun eas describe-service-endpoints --cluster-id $REGION --service-name $SERVI
 REGION="cn-hangzhou"
 
 # Check resource group status
-aliyun eas describe-resource --cluster-id $REGION --resource-id eas-r-xxx --user-agent AlibabaCloud-Agent-Skills | \
+aliyun eas describe-resource --cluster-id $REGION --resource-id eas-r-xxx --user-agent AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-diagnose | \
   jq '{Name, Status, TotalNodes, HealthyNodes}'
 
 # Check node details
-aliyun eas describe-resource --cluster-id $REGION --resource-id eas-r-xxx --user-agent AlibabaCloud-Agent-Skills | \
+aliyun eas describe-resource --cluster-id $REGION --resource-id eas-r-xxx --user-agent AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-diagnose | \
   jq '.Nodes[] | select(.Status != "Running")'
 ```
 

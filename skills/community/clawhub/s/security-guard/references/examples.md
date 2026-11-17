@@ -138,11 +138,11 @@
 
 ```bash
 # Default (show 4 first, 4 last)
-scripts/sanitize.sh "sk-sp-og0iCo23HWh6uaHLhStDM8i5AM5Rq2wz"
+scripts/sanitize.sh "REDACTED-SECRET"
 # Output: sk-s****q2wz
 
 # Show 8 first, 4 last
-scripts/sanitize.sh "sk-sp-og0iCo23HWh6uaHLhStDM8i5AM5Rq2wz" "show-first=8,show-last=4"
+scripts/sanitize.sh "REDACTED-SECRET" "show-first=8,show-last=4"
 # Output: sk-sp-og0****q2wz
 
 # Short string

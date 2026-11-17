@@ -1,39 +1,53 @@
-## Description: <br>
-Analyze and price Canadian residential properties using comps, price-per-square-foot reasoning, market context, and pricing strategy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze and price Canadian residential properties using comps, price-per-square-foot reasoning, market context, and pricing strategy.
 
-## Publisher: <br>
-[allenweisongzhou-cpu](https://clawhub.ai/user/allenweisongzhou-cpu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[allenweisongzhou-cpu](https://clawhub.ai/user/allenweisongzhou-cpu)
 
-## Use Case: <br>
-External users, real estate professionals, sellers, buyers, and investors use this skill to estimate Canadian residential property value, compare comparable sales, and choose a practical listing or sale strategy. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Canada <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may produce misleading property pricing guidance if comparable sales, market conditions, or property inputs are incomplete or inaccurate. <br>
-Mitigation: Verify comparable sales and market assumptions independently before relying on the output. <br>
-Risk: Users could rely on the skill for a major real estate transaction as though it were a formal appraisal or licensed professional advice. <br>
-Mitigation: Consult a licensed real estate or appraisal professional before relying on the result for a major transaction. <br>
+## Use Case:
 
+External users, real estate professionals, buyers, sellers, and investors use this skill to estimate Canadian residential property value, compare comparable sales, and choose a practical listing or negotiation strategy.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Canada
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces estimated value ranges, best estimates, listing-price recommendations, sale scenarios, value drivers, risks, uncertainties, and confidence levels.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Home pricing recommendations may be inaccurate if property inputs, comparable sales, or market conditions are incomplete or stale.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify comparable sales and current local market conditions with qualified real estate professionals before using the output for a transaction.
+
+Risk: Users may overread the valuation output as a formal appraisal or regulated financial advice.
+
+Mitigation: Present the skill as decision support and clearly distinguish market value estimates from formal appraisal, legal, or financial advice.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/allenweisongzhou-cpu/skills/ai-home-pricing-strategist-canada)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, analysis, guidance]
+
+**Output Format:** [Markdown with structured valuation ranges, pricing scenarios, confidence level, and risk notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Decision-support output only; not a formal appraisal, legal advice, or financial advice.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,49 +1,61 @@
-## Description: <br>
-Sync mailbox context, triage important messages, answer history questions, and create safe draft replies through a self-hosted ai-email-gateway API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Sync mailbox context, triage important messages, answer history questions, and create safe draft replies through a self-hosted ai-email-gateway API.
 
-## Publisher: <br>
-[remimikalsen](https://clawhub.ai/user/remimikalsen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[remimikalsen](https://clawhub.ai/user/remimikalsen)
 
-## Use Case: <br>
-Developers and operators use this skill to connect an agent to a self-hosted email gateway for mailbox synchronization, important-message triage, email history questions, and draft reply preparation. It is intended to create reviewable drafts, not to send email. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can expose selected mailbox content to the agent session and the configured gateway. <br>
-Mitigation: Use a trusted self-hosted gateway, scoped API keys, intended ACCOUNT_ID or ACCOUNT_IDS values, and private logs. <br>
-Risk: Suspicious or malicious messages may influence triage or draft content. <br>
-Mitigation: Keep suspicious filtering enabled by default and require an explicit user override before using flagged content for drafting. <br>
-Risk: Generated replies may contain mistakes or commitments the user has not approved. <br>
-Mitigation: Create drafts only and require manual review before any email is sent. <br>
-Risk: The polling helper writes local state that may reveal account ids or message identifiers. <br>
-Mitigation: Keep the state file private and change its location only with user approval. <br>
+## Use Case:
 
+People who connect an agent to a self-hosted email gateway use this skill to sync selected mailbox context, identify important new messages, answer email-history questions, and prepare draft replies without sending mail.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/remimikalsen/a-safer-email-assistant) <br>
-- [API Reference](api-reference.md) <br>
-- [Importance Classifier Template](prompts/importance-classifier.md) <br>
-- [Drafting Style Template](prompts/drafting-style.md) <br>
-- [Monitoring Script Scaffold](scripts/check_new_messages.py) <br>
-- [ai-email-gateway project documentation](https://github.com/ArktIQ-IT/ai-email-gateway) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, API calls, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown summaries, JSON draft payloads, API request guidance, and optional shell command usage for the polling helper] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Draft-only workflow; message evidence should cite canonical message ids.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server evidence and SKILL.md frontmatter) <br>
+Risk: Mailbox contents or message metadata may be exposed through helper output or shared logs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the helper only in trusted environments, avoid shared stdout logging, and limit output to the messages needed for the task.
+
+Risk: Bearer-token access to the configured gateway can expose selected mailbox accounts if the endpoint or key is mismanaged.
+
+Mitigation: Use HTTPS for non-local gateways, prefer narrowly scoped and revocable API keys, and protect required environment variables.
+
+Risk: The local state file records polling metadata for mailbox accounts.
+
+Mitigation: Keep the state file in a restricted location with appropriate file permissions and change its path only intentionally.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/remimikalsen/skills/a-safer-email-assistant)
+- [ai-email-gateway source and deployment docs](https://github.com/ArktIQ-IT/ai-email-gateway)
+- [API reference](api-reference.md)
+- [Importance classifier template](prompts/importance-classifier.md)
+- [Drafting style template](prompts/drafting-style.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown summaries, JSON draft payloads, and shell/API command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can cite message ids, draft ids, account ids, timeframes, findings, and suggested actions.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

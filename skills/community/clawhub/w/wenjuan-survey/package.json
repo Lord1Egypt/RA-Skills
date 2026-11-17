@@ -1,6 +1,6 @@
 {
   "name": "wenjuan-survey",
-  "version": "1.0.13",
+  "version": "1.0.15",
   "description": "问卷网（www.wenjuan.com）- 人人都好用的在线问卷调查平台",
   "main": "index.js",
   "scripts": {
@@ -22,8 +22,10 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "axios": "^1.6.0",
-    "open": "^10.0.0"
+    "axios": "^1.20.0",
+    "open": "^10.0.0",
+    "qrcode": "^1.5.4",
+    "sharp": "^0.35.3"
   },
   "engines": {
     "node": ">=18.0.0"

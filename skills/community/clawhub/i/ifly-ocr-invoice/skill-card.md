@@ -1,42 +1,56 @@
-## Description: <br>
-Recognize and extract structured data from invoices, receipts, and bills using iFlytek OCR API (科大讯飞票据识别). Supports VAT invoices, taxi receipts, train tickets, toll invoices, medical bills, bank receipts, and more. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Recognize and extract structured data from invoices, receipts, and bills using the iFlytek OCR API.
 
-## Publisher: <br>
-[qingzhe2020](https://clawhub.ai/user/qingzhe2020) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qingzhe2020](https://clawhub.ai/user/qingzhe2020)
 
-## Use Case: <br>
-External users, developers, and expense operations teams use this skill to submit invoice, receipt, and bill images or PDFs to iFlytek OCR and receive structured invoice data for digitization or expense workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The troubleshooting guide includes commands that print XFYUN_API_KEY and XFYUN_API_SECRET in full. <br>
-Mitigation: Do not run commands that echo secrets; verify environment variables with redacted checks and rotate any credentials that were printed or shared. <br>
-Risk: Invoice and receipt files are sent to the iFlytek OCR API for processing. <br>
-Mitigation: Use only documents you are authorized to send to iFlytek and confirm the service terms, data handling requirements, and regional compliance obligations before use. <br>
+## Use Case:
 
+Developers and business users use this skill to send invoice, receipt, and bill images to iFlytek OCR and receive structured extracted fields for expense, finance, and document processing workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/qingzhe2020/ifly-ocr-invoice) <br>
-- [iFlytek Console](https://console.xfyun.cn) <br>
-- [iFlytek invoice recognition service](https://www.xfyun.cn/services/Invoice_recognition?target=price) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, guidance] <br>
-**Output Format:** [Human-readable text or raw JSON from a command-line Python script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires XFYUN_APP_ID, XFYUN_API_KEY, and XFYUN_API_SECRET environment variables and sends provided document files to the iFlytek OCR API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Invoice, receipt, medical, bank, tax, or other sensitive financial images may be sent to iFlytek's OCR service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when sharing those documents with the third-party OCR service is acceptable under the user's privacy, contractual, and compliance requirements.
+
+Risk: Troubleshooting commands in the artifact can print XFYUN_API_KEY or XFYUN_API_SECRET into logs, screenshots, or support chats.
+
+Mitigation: Use presence-only or masked credential checks, and rotate iFlytek credentials if secrets were exposed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/qingzhe2020/skills/ifly-ocr-invoice)
+- [iFlytek Console](https://console.xfyun.cn)
+- [iFlytek Invoice Recognition Service](https://www.xfyun.cn/services/Invoice_recognition?target=price)
+- [iFlytek Invoice Recognition API endpoint](https://api.xf-yun.com/v1/private/sc45f0684)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Configuration guidance]
+
+**Output Format:** [Human-readable text or raw JSON from the command-line OCR script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires XFYUN_APP_ID, XFYUN_API_KEY, and XFYUN_API_SECRET environment variables; processes local image or PDF paths.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

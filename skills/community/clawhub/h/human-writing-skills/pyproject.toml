@@ -1,0 +1,33 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "human-writing-skills"
+version = "0.17.2"
+description = "Advanced multilingual AI humanizer with dialogue-performance review, scene-ending review, chunked long-form audit, style consistency, and character continuity."
+readme = "README.md"
+requires-python = ">=3.9"
+license = "MIT"
+authors = [{ name = "Advanced Human Writing & AI Humanizer contributors" }]
+keywords = ["writing", "humanizer", "ai-humanizer", "text-humanizer", "de-ai-writing", "ai-writing-tool", "natural-writing", "fiction-editing", "novel-writing", "dialogue-editing", "dialogue-performance", "multilingual-writing", "story-continuity", "scene-ending-audit", "reflective-ending", "long-form-audit", "style-consistency", "character-consistency", "proofreading", "prompting"]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: Developers",
+  "Intended Audience :: Education",
+  "Programming Language :: Python :: 3",
+  "Topic :: Text Processing",
+]
+
+[project.scripts]
+human-writing-skills = "humanwriting.cli:main"
+human-writing-mcp = "humanwriting.mcp_server:main"
+
+[tool.setuptools]
+packages = ["humanwriting", "humanwriting_skill_data"]
+
+[tool.setuptools.package-dir]
+humanwriting_skill_data = "skills"
+
+[tool.setuptools.package-data]
+humanwriting_skill_data = ["*.md"]

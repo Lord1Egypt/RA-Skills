@@ -1,46 +1,62 @@
-## Description: <br>
-MyKnowledge helps agents create local knowledge bases, manage project documentation, track requirements, and organize personal knowledge. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create knowledge bases, manage project documentation, track requirements, and organize personal knowledge.
 
-## Publisher: <br>
-[codermoray](https://clawhub.ai/user/codermoray) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Apache 2.0 <br>
+## Publisher:
 
+[codermoray](https://clawhub.ai/user/codermoray)
 
-## Use Case: <br>
-External users and developers use MyKnowledge to maintain local Markdown/YAML knowledge bases, track requirement lifecycles, preserve project status, and optionally capture complex tasks from agent conversations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Apache 2.0
 
-## Known Risks and Mitigations: <br>
-Risk: Optional hooks and auto-recording can inspect user messages and persist local task records. <br>
-Mitigation: Review hook behavior before enabling it, keep auto_record disabled unless wanted, and periodically review or delete generated knowledge-base records. <br>
-Risk: Recorded project notes may contain sensitive client data, credentials, or other private conversation details. <br>
-Mitigation: Avoid storing secrets in recorded tasks, inspect exported knowledge bases before sharing, and delete sensitive records from the local Markdown/YAML files. <br>
-Risk: Automatic update checks may conflict with environments that require no-network operation. <br>
-Mitigation: Disable update checks in configuration when a no-network workflow is required. <br>
+## Use Case:
 
+External users and developers use this skill to create local knowledge bases, manage requirement lifecycles, maintain project status notes, and resume work from saved Markdown and YAML records.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/codermoray/myknowledge) <br>
-- [Publisher Profile](https://clawhub.ai/user/codermoray) <br>
-- [README](README.md) <br>
-- [Privacy Statement](PRIVACY.md) <br>
-- [OpenClaw Hook Guide](hooks/openclaw/hook-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, shell commands, guidance] <br>
-**Output Format:** [Markdown and YAML files with setup guidance and occasional shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates local knowledge-base records, requirement documents, project status files, and optional platform hook configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.89 (source: SKILL.md frontmatter, release evidence) <br>
+Risk: Persistent local records and optional hooks can store message or task content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the auto_record setting before use, avoid secrets in complex-task prompts, and review or delete local records when needed.
+
+Risk: Shared ZIP imports and exports can expose sensitive project data or introduce untrusted archive content.
+
+Mitigation: Manually review archives before sharing or importing, and treat shared ZIP files as untrusted unless archive path validation has been confirmed.
+
+Risk: Automatic update checks may be unsuitable for strict no-network or no-shell environments.
+
+Mitigation: Disable automatic update checks when a strict no-network or no-shell setup is required.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/codermoray/skills/myknowledge)
+- [README](README.md)
+- [Quickstart](QUICKSTART.md)
+- [Usage Guide](USAGE.md)
+- [Privacy Statement](PRIVACY.md)
+- [Pitfalls Guide](docs/PITFALLS.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Files, Configuration, Guidance]
+
+**Output Format:** [Markdown and YAML-backed local knowledge-base records]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces persistent local project notes, requirement records, status summaries, and optional import/export archives.]
+
+## Skill Version(s):
+
+1.4.89 (source: frontmatter, release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

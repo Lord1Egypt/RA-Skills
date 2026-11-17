@@ -1,43 +1,56 @@
-## Description: <br>
-MiniMax TTS helps agents generate speech audio from text through the MiniMax HTTP REST API with multilingual voices, streaming or non-streaming requests, and mp3, wav, or pcm output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MiniMax Text-to-Speech synthesis using the HTTP REST API generates audio from text in 40+ languages with streaming and non-streaming modes, mp3, wav, and pcm formats, voice effects, and MiniMax TTS voice selection.
 
-## Publisher: <br>
-[fuzzyb33s](https://clawhub.ai/user/fuzzyb33s) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fuzzyb33s](https://clawhub.ai/user/fuzzyb33s)
 
-## Use Case: <br>
-Developers and content creators use this skill to convert text into narrated audio, voiceovers, or multilingual speech assets with MiniMax voices. It is useful when an agent needs to propose or run text-to-speech commands and save generated audio locally. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Supplied synthesis text is sent to MiniMax's external API. <br>
-Mitigation: Avoid submitting secrets, regulated data, or private content unless the MiniMax account and data-handling terms are acceptable for the use case. <br>
-Risk: Overriding the API URL can send both text and the bearer token to the chosen endpoint. <br>
-Mitigation: Use the documented MiniMax endpoints unless the alternate endpoint is trusted and approved. <br>
+## Use Case:
 
+Developers and content creators use this skill to generate narrated audio, voiceovers, and text-to-speech files through MiniMax REST APIs. It supports multilingual voice selection, streaming or non-streaming synthesis, and mp3, wav, or pcm output.
 
-## Reference(s): <br>
-- [MiniMax TTS Voice Reference](references/voices.md) <br>
-- [MiniMax Text-to-Speech API endpoint](https://api.minimax.io/v1/t2a_v2) <br>
-- [MiniMax lower-latency Text-to-Speech API endpoint](https://api-uw.minimax.io/v1/t2a_v2) <br>
-- [MiniMax Voice Management API documentation](https://platform.minimax.io/docs/api-reference/voice-management-get) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, code, files] <br>
-**Output Format:** [Markdown guidance with bash commands and local audio files such as mp3, wav, or pcm] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a MiniMax bearer token, sends supplied text to the configured MiniMax API endpoint, and writes generated audio to the requested local output path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release evidence) <br>
+Risk: The skill sends submitted text to MiniMax for synthesis.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with text that is appropriate to share with MiniMax and review data-handling requirements before routine use.
+
+Risk: The skill allows overriding the API URL, which can expose the MiniMax API key and submitted text to an untrusted endpoint.
+
+Mitigation: Use only trusted MiniMax endpoints; avoid passing --api_url in routine use or restrict the endpoint override before installation.
+
+## Reference(s):
+
+- [MiniMax TTS Voice Reference](references/voices.md)
+- [MiniMax Voice Management API](https://platform.minimax.io/docs/api-reference/voice-management-get)
+- [ClawHub skill page](https://clawhub.ai/fuzzyb33s/skills/minimax-tts)
+- [ClawHub publisher profile](https://clawhub.ai/user/fuzzyb33s)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, code, files]
+
+**Output Format:** [Markdown guidance with bash commands; scripts write audio files in mp3, wav, or pcm format.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a MiniMax API key and sends submitted text to the configured MiniMax-compatible endpoint.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

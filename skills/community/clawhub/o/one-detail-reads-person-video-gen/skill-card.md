@@ -1,44 +1,58 @@
-## Description: <br>
-Create vertical social-read shorts: one-cue thesis, example beat, playful closer, timed English captions (WeryAI). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create vertical short-form videos that frame a respectful social cue as a thesis, example beat, playful debate closer, and timed English captions using WeryAI.
 
-## Publisher: <br>
-[zoucdr](https://clawhub.ai/user/zoucdr) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zoucdr](https://clawhub.ai/user/zoucdr)
 
-## Use Case: <br>
-External creators and developers use this skill to produce short vertical WeryAI videos about a single social cue, with a thesis, concrete B-roll example, playful closer, and timed English captions. It is intended for psychology hooks, micro-behavior reads, and respectful debate-style short-form content. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts and selected image inputs may be sent to WeryAI during generation. <br>
-Mitigation: Use the skill only when sharing those prompts or images with WeryAI is acceptable, and avoid sensitive or private inputs. <br>
-Risk: Local image paths can be read and uploaded to WeryAI by the helper script. <br>
-Mitigation: Prefer public HTTPS image URLs; use local paths only after confirming the file is non-sensitive and explicitly approving upload. <br>
-Risk: The skill requires a WERYAI_API_KEY for live model, generation, status, and local-upload operations. <br>
-Mitigation: Store the API key in the environment, keep it out of prompts and repositories, and use an isolated or short-lived environment for higher assurance. <br>
+## Use Case:
 
+External creators and content operators use this skill to turn a single social cue into a short vertical psychology-style video with timed English subtitles. It supports text-to-video, image-to-video, and limited multi-image video generation through WeryAI.
 
-## Reference(s): <br>
-- [WeryAI Video API reference](resources/WERYAI_VIDEO_API.md) <br>
-- [ClawHub skill page](https://clawhub.ai/zoucdr/one-detail-reads-person-video-gen) <br>
-- [Publisher profile](https://clawhub.ai/user/zoucdr) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with CLI JSON examples and generated video links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires WERYAI_API_KEY, Node.js 18+, network access, and WeryAI model parameters for video generation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter, server release metadata) <br>
+Risk: The helper script can upload arbitrary readable local files to WeryAI when given a non-HTTPS image path.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use public HTTPS image URLs by default; only use local paths after review and explicit consent, and avoid paths containing secrets, credentials, private documents, or workspace configuration.
+
+Risk: The skill requires a WERYAI_API_KEY for paid network API calls.
+
+Mitigation: Run in a limited workspace with an isolated or short-lived WERYAI_API_KEY and avoid exposing the key in prompts, logs, or generated files.
+
+Risk: Social-cue prompts can drift into targeting, harassment, or professional diagnosis.
+
+Mitigation: Keep examples generic and filmable, avoid real or private individuals and protected groups, and do not present outputs as professional psychology advice.
+
+## Reference(s):
+
+- [WeryAI video CLI and JSON reference](resources/WERYAI_VIDEO_API.md)
+- [ClawHub skill page](https://clawhub.ai/zoucdr/skills/one-detail-reads-person-video-gen)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, text, shell commands, guidance]
+
+**Output Format:** [Markdown video link or concise status/error text, with optional shell command examples for WeryAI generation.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires WERYAI_API_KEY, Node.js 18+, network access, and paid WeryAI API usage.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

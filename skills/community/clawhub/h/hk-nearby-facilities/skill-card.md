@@ -1,43 +1,60 @@
-## Description: <br>
-Find nearby Hong Kong public toilets by place keyword or shared coordinates using FEHD public data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find nearby Hong Kong public toilets from official FEHD data by place keyword or shared coordinates, with support for Cantonese, Chinese, and English queries.
 
-## Publisher: <br>
-[jimpang8](https://clawhub.ai/user/jimpang8) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jimpang8](https://clawhub.ai/user/jimpang8)
 
-## Use Case: <br>
-External users and agents use this skill to answer nearby Hong Kong public-toilet requests in Cantonese, Chinese, or English with practical facility names, districts, addresses, distances when coordinates are provided, and map links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Hong Kong <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The bundled script makes outbound requests to FEHD public data endpoints. <br>
-Mitigation: Use the skill only in environments where outbound access to FEHD public endpoints is acceptable. <br>
-Risk: Precise live coordinates can reveal sensitive location information. <br>
-Mitigation: Share exact latitude and longitude only when distance-ranked nearby results are needed. <br>
-Risk: Keyword matches may be approximate and are not turn-by-turn routing directions. <br>
-Mitigation: Present broad or low-confidence results as nearby matches and use map links for navigation checks. <br>
+## Use Case:
 
+External users and agents use this skill to answer nearby public-toilet requests in Hong Kong by searching official FEHD facility data and returning practical navigation details.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jimpang8/hk-nearby-facilities) <br>
-- [FEHD map data endpoints](https://www.fehd.gov.hk/english/map) <br>
+### Deployment Geography for Use:
 
+Hong Kong
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown or plain text facility summaries; optional JSON from the bundled script.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Google Maps links, distances, accessibility flags, and approximate-match notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill contacts FEHD government endpoints when used, so endpoint availability or data changes can affect results.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Tell users results come from FEHD data and qualify answers when the endpoint fails or no likely match is returned.
+
+Risk: User requests may include place names or precise coordinates for nearby-facility ranking.
+
+Mitigation: Use only the minimum location detail needed for the lookup and avoid exposing precise coordinates except in user-facing navigation links.
+
+Risk: The quick-start examples include a hardcoded local install path that may not match another environment.
+
+Mitigation: Adjust script paths to the actual installed skill location before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jimpang8/skills/hk-nearby-facilities)
+- [FEHD public toilet map data](https://www.fehd.gov.hk/english/map/getMapData.php?type=toilet)
+- [FEHD accessible toilets data](https://www.fehd.gov.hk/english/map/getAccessibleToilets.php?type=toilet)
+- [FEHD universal toilets data](https://www.fehd.gov.hk/english/map/getUniversalToilets.php?type=toilet)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, JSON]
+
+**Output Format:** [Markdown or plain text with optional JSON from the bundled script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include facility name, address, district, distance, accessibility flags, and Google Maps links.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

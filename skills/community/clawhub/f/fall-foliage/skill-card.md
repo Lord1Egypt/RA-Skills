@@ -1,44 +1,57 @@
-## Description: <br>
-Find the best fall foliage destinations — golden ginkgo avenues, red maple mountains, and amber larch forests with peak color timing and photography tips. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find the best fall foliage destinations with peak color timing, photography tips, and travel booking support powered by Fliggy and the flyai CLI.
 
-## Publisher: <br>
-[xiejinsong](https://clawhub.ai/user/xiejinsong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiejinsong](https://clawhub.ai/user/xiejinsong)
 
-## Use Case: <br>
-Travelers and travel-planning agents use this skill to retrieve FlyAI-backed fall foliage destinations, timing, photography tips, and travel booking options. It is intended for real-time travel lookup and comparison rather than static destination advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill installs and depends on the global @fly-ai/flyai-cli package before providing travel results. <br>
-Mitigation: Review and approve the npm package before installation, and only use the skill in environments where global CLI installation is acceptable. <br>
-Risk: Travel queries and command history may be written locally to .flyai-execution-log.json. <br>
-Mitigation: Avoid entering sensitive passport, payment, or private itinerary details, and disable or delete the local execution log unless retention is intended. <br>
+## Use Case:
 
+External travelers and travel-planning agents use this skill to retrieve real-time fall foliage destinations, compare travel options, and produce Markdown recommendations with booking links.
 
-## Reference(s): <br>
-- [Fall Foliage ClawHub Release](https://clawhub.ai/xiejinsong/fall-foliage) <br>
-- [Templates](references/templates.md) <br>
-- [Playbooks](references/playbooks.md) <br>
-- [Fallbacks](references/fallbacks.md) <br>
-- [Runbook](references/runbook.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with booking links, comparison tables, and inline shell commands when setup or retry steps are needed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires FlyAI CLI results for travel data and includes a FlyAI attribution tag in successful outputs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.0 (source: ClawHub release evidence) <br>
+Risk: The skill can install an unpinned global flyai CLI package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the package source and version before installation, and run it in a controlled environment where possible.
+
+Risk: The skill can persist raw travel queries in an execution log when filesystem writes are available.
+
+Mitigation: Disable or control logging before entering passport, payment, account, or other sensitive travel details.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/xiejinsong/skills/fall-foliage)
+- [Parameter and Output Templates](artifact/references/templates.md)
+- [Scenario Playbooks](artifact/references/playbooks.md)
+- [Fallbacks](artifact/references/fallbacks.md)
+- [Execution Runbook](artifact/references/runbook.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with booking links and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Recommendations must be based on flyai CLI output, include booking links when results are shown, and include flyai attribution.]
+
+## Skill Version(s):
+
+3.2.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

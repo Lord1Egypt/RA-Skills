@@ -1,0 +1,301 @@
+/* Locale: zh-CN (documented in SKILL.md metadata) — part of "Lan Folder Share",
+ * a LAN knowledge-base tool for Chinese-speaking users; comments are Chinese by
+ * design. 语言声明：本文件面向中文用户，注释默认中文。
+ * ---------------------------------------------------------------------------
+ * 表格在线预览 —— 内联铺开样式（配合 assets/js/table-preview.js）
+ * 页面里所有表格链接下方自动展开卡片，支持单个收起/展开与全页全部展开/收起 */
+
+/* ---------- 页面顶部工具栏 ---------- */
+.kb-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 20px;
+  padding: 8px 14px;
+  font-size: 13px;
+  color: #475569;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+}
+
+.kb-toolbar-info { color: #64748b; }
+
+.kb-toolbar-gap { flex: 1 1 auto; }
+
+.kb-toolbar-btn {
+  padding: 4px 12px;
+  font-size: 13px;
+  color: #4a6ee0;
+  background: #fff;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.kb-toolbar-btn:hover {
+  background: #eef2ff;
+  border-color: #4a6ee0;
+}
+
+/* ---------- 内联卡片 ---------- */
+.kb-in {
+  margin: 10px 0 18px;
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.06);
+  overflow: hidden;
+}
+
+/* 目录页（auto-dir-index 网格列表）内铺开的表格卡片横跨整行，避免被网格挤压 */
+.kb-dir-index-list > .kb-in { grid-column: 1 / -1; }
+
+.kb-in-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  background: #f8fafc;
+  border-bottom: 1px solid #e5e7eb;
+  flex-wrap: wrap;
+}
+
+.kb-in-toggle {
+  width: 26px;
+  height: 26px;
+  flex: 0 0 auto;
+  font-size: 14px;
+  line-height: 1;
+  color: #64748b;
+  background: transparent;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.kb-in-toggle:hover {
+  background: #e2e8f0;
+  color: #0f172a;
+}
+
+.kb-in-title {
+  flex: 1 1 auto;
+  min-width: 120px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #0f172a;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  user-select: none;
+}
+
+.kb-in-title:hover { color: #4a6ee0; }
+
+.kb-in-tools {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 0 0 auto;
+}
+
+.kb-in-hselect {
+  max-width: 240px;
+  padding: 4px 6px;
+  font-size: 12px;
+  color: #0f172a;
+  background: #fff;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  outline: none;
+}
+
+.kb-in-hselect:focus { border-color: #4a6ee0; }
+
+.kb-in-search {
+  width: 160px;
+  padding: 4px 8px;
+  font-size: 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  outline: none;
+}
+
+.kb-in-search:focus {
+  border-color: #4a6ee0;
+  box-shadow: 0 0 0 2px rgba(74, 110, 224, 0.15);
+}
+
+.kb-in-btn {
+  padding: 4px 10px;
+  font-size: 12px;
+  color: #0f172a;
+  text-decoration: none;
+  background: #fff;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.kb-in-btn:hover {
+  background: #f1f5f9;
+  border-color: #4a6ee0;
+  color: #4a6ee0;
+}
+
+/* 收起状态：只保留头部一行 */
+.kb-in.is-collapsed .kb-in-tabs,
+.kb-in.is-collapsed .kb-in-body { display: none; }
+
+.kb-in.is-collapsed { margin-bottom: 6px; }
+
+/* ---------- Sheet 标签 ---------- */
+.kb-in-tabs {
+  display: flex;
+  gap: 4px;
+  padding: 6px 12px 0;
+  border-bottom: 1px solid #e5e7eb;
+  background: #fff;
+  overflow-x: auto;
+}
+
+.kb-in-tab {
+  padding: 4px 12px;
+  font-size: 12px;
+  color: #64748b;
+  background: #f1f5f9;
+  border: 1px solid transparent;
+  border-bottom: none;
+  border-radius: 6px 6px 0 0;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.kb-in-tab.is-active {
+  color: #4a6ee0;
+  font-weight: 600;
+  background: #fff;
+  border-color: #e5e7eb;
+  margin-bottom: -1px;
+  padding-bottom: 5px;
+}
+
+/* ---------- 内容区 ---------- */
+.kb-in-body {
+  padding: 10px 12px 14px;
+  background: #fff;
+  max-height: 520px;
+  overflow: auto;
+}
+
+.kb-in-notes {
+  margin-bottom: 10px;
+  padding: 8px 10px;
+  font-size: 12px;
+  line-height: 1.8;
+  color: #475569;
+  background: #f8fafc;
+  border-left: 3px solid #cbd5e1;
+  border-radius: 0 6px 6px 0;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.kb-in-meta {
+  margin-bottom: 6px;
+  font-size: 12px;
+  color: #94a3b8;
+}
+
+.kb-in-loading,
+.kb-in-empty,
+.kb-in-error {
+  padding: 24px 0;
+  font-size: 13px;
+  color: #64748b;
+  text-align: center;
+}
+
+.kb-in-error {
+  color: #dc2626;
+  line-height: 1.8;
+}
+
+/* ---------- 表格 ---------- */
+.kb-in-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  color: #1f2937;
+}
+
+.kb-in-table th,
+.kb-in-table td {
+  padding: 5px 10px;
+  border: 1px solid #e5e7eb;
+  text-align: left;
+  vertical-align: top;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.kb-in-table thead th {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background: #f1f5f9;
+  font-weight: 600;
+  color: #0f172a;
+  white-space: nowrap;
+}
+
+.kb-in-table tbody tr:nth-child(even) { background: #f9fafb; }
+
+.kb-in-table tbody tr:hover { background: #eef2ff; }
+
+.kb-in-rownum {
+  width: 44px;
+  color: #94a3b8;
+  text-align: right;
+  background: #f8fafc;
+  white-space: nowrap;
+}
+
+/* ---------- 搜索定位：命中行高亮（从搜索结果点进表格后） ---------- */
+.kb-in-table tbody tr.kb-in-hit,
+.kb-in-table tbody tr.kb-in-hit:nth-child(even) {
+  background: #fff3c4 !important;
+  animation: kb-hit-flash 1.4s ease 2;
+}
+.kb-in-table tbody tr.kb-in-hit:hover { background: #ffe9a0 !important; }
+@keyframes kb-hit-flash {
+  0%, 100% { background: #fff3c4; }
+  50% { background: #ffdc7e; }
+}
+.kb-in-table thead tr.kb-in-hit-head th {
+  background: #fff3c4 !important;
+  animation: kb-hit-flash 1.4s ease 2;
+}
+.kb-in-search.kb-in-search-hit {
+  border-color: #f5b301;
+  box-shadow: 0 0 0 2px rgba(245, 179, 1, .2);
+}
+
+.kb-in-table thead th.kb-in-rownum { background: #f1f5f9; }
+
+/* ---------- 直接访问表格路由时，在右侧内容区平铺预览 ---------- */
+.kb-in-page {
+  padding-top: 8px;
+}
+.kb-in-page-title {
+  margin-bottom: 6px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #0f172a;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

@@ -1,42 +1,56 @@
-## Description: <br>
-Combination skill that adds the Beckmann Knowledge Graph as a deep-reasoning escalation layer on top of the Self-Improving + Proactive Agent while keeping everyday tasks on the default self-improving workflow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Combination skill that adds the Beckmann Knowledge Graph as a consent-gated deep-reasoning escalation layer on top of ivangdavila/self-improving while leaving everyday tasks on the default self-improving workflow.
 
-## Publisher: <br>
-[matthiasbeckmann987-spec](https://clawhub.ai/user/matthiasbeckmann987-spec) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[matthiasbeckmann987-spec](https://clawhub.ai/user/matthiasbeckmann987-spec)
 
-## Use Case: <br>
-Developers and agent users use this skill to coordinate a self-improving memory workflow with optional Beckmann Knowledge Graph escalation for paradoxes, open scientific or philosophical questions, strategic dead ends, AI safety questions, and other high-complexity reasoning tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill orchestrates two required base skills, so users may misunderstand its behavior if those skills are not reviewed or installed. <br>
-Mitigation: Review the required base skills before installation and confirm both are available before relying on the combined workflow. <br>
-Risk: Beckmann escalation can produce slower and more speculative deep-reasoning output than standard answers. <br>
-Mitigation: Escalate only after user confirmation and reserve the workflow for the documented complex question categories. <br>
-Risk: The workflow may store Beckmann insights and related notes in self-improving memory files under ~/self-improving/. <br>
-Mitigation: Periodically inspect those memory files and avoid saving secrets or sensitive information there. <br>
+## Use Case:
 
+Developers and agent users use this skill to keep routine tasks on the Self-Improving + Proactive Agent while offering confirmed escalation to the Beckmann Knowledge Graph for paradoxes, open scientific or philosophical questions, long-horizon forecasts, strategic dead ends, AI safety questions, and epistemological limits. It also defines consent-based quarantine, review, promotion, and uninstall behavior for Beckmann-derived memory.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/matthiasbeckmann987-spec/beckmann-x-self-improving-proactive) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown guidance with optional JavaScript and markdown examples for graph loading, graph-grounded answers, self-reflection entries, and tiered memory logging.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the independent ivangdavila/self-improving and matthiasbeckmann987-spec/beckmann-knowledge-graph skills to be installed for the full workflow.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata and SKILL.md frontmatter) <br>
+Risk: The skill can maintain persistent Beckmann-related memory under ~/self-improving after user-approved analyses.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the built-in consent, quarantine, review, and clean-uninstall flow; delete or archive #beckmann entries when persistence is no longer desired.
+
+Risk: The skill depends on two other ClawHub skills and should not be loaded with unexpected dependency versions.
+
+Mitigation: Verify the pinned dependency versions and sha256 hashes before loading; fail closed on any integrity mismatch.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/matthiasbeckmann987-spec/skills/beckmann-x-self-improving-proactive)
+- [Publisher profile](https://clawhub.ai/user/matthiasbeckmann987-spec)
+- [README.md](artifact/README.md)
+- [SKILL.md](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Configuration, Shell commands]
+
+**Output Format:** [Markdown guidance with structured answer templates, consent prompts, memory-entry formats, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses pinned dependency versions and requires explicit user consent before Beckmann insights are persisted or promoted.]
+
+## Skill Version(s):
+
+1.1.0 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

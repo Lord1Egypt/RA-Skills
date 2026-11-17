@@ -1,6 +1,33 @@
 {
-  "ownerId": "kn7cgh9mamggkv9yf5zma1jtq98217cy",
-  "slug": "ssh-batch-manager",
+  "name": "ssh-batch-manager",
   "version": "2.1.9",
-  "publishedAt": 1772588101355
+  "description": "批量管理 SSH 免密登录授权 (智能预检 + 来源标识)",
+  "author": "TK",
+  "created": "2026-03-03",
+  "entry": "ssh-batch-manager.py",
+  "commands": [
+    "enable-all",
+    "disable-all",
+    "enable <target>",
+    "disable <target>",
+    "generate-key",
+    "encrypt <password>"
+  ],
+  "dependencies": {
+    "apt": ["sshpass"],
+    "pip": ["cryptography"]
+  },
+  "files": {
+    "config": "~/.openclaw/credentials/ssh-batch.json",
+    "key": "~/.openclaw/credentials/ssh-batch.key"
+  },
+  "safety_rules": {
+    "enable_requires_confirmation": true,
+    "description": "MUST obtain explicit user confirmation before ANY enable operation. NEVER execute without approval."
+  },
+  "features": {
+    "connectivity_check": "Skip servers that are already accessible",
+    "source_identifier": "Add source info to authorized_keys",
+    "smart_retry": "Auto-retry on failure"
+  }
 }

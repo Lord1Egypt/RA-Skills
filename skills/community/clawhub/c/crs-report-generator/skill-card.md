@@ -1,37 +1,60 @@
-## Description: <br>
-从银行/券商PDF流水自动提取信息，生成美化的CRS金融账户信息申报表。支持PDF解析、数据提取、表格生成。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when a client needs to estimate China individual income tax on overseas brokerage or bank statements, prepare documents for the tax bureau, or offset annual stock gains and losses from local agent chats such as WorkBuddy or 豆包 Work.
 
-## Publisher: <br>
-[MasterBenC](https://clawhub.ai/user/MasterBenC) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[masterbenc](https://clawhub.ai/user/masterbenc)
 
-## Use Case: <br>
-External users with overseas bank or brokerage statements use this skill to extract account details from text-based PDFs and generate CRS financial account information reports. Users should manually review and complete any missing or sensitive fields before filing or sharing results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill processes sensitive financial PDFs and may write names, account numbers, tax identifiers, balances, or transaction details into generated Excel files despite redaction claims. <br>
-Mitigation: Treat input PDFs and generated workbooks as confidential, process them locally, and manually inspect or remove sensitive fields before sharing or relying on the report. <br>
+## Use Case:
 
+External tax preparers, local agent users, and clients use this skill to estimate China individual income tax exposure from overseas brokerage or bank statements and prepare a concise, reviewable document package for the tax bureau. It supports local statement parsing, FIFO cost matching, annual gain/loss offsetting, and plain-language follow-up questions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/MasterBenC/crs-report-generator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python usage instructions and generated Excel files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Processes local text-based PDF statements and can generate XLSX CRS report templates or populated workbooks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Sensitive brokerage or bank statements and CLI JSON output can contain names, full account identifiers, addresses, holdings, balances, and transactions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Process only local, redacted copies of the minimum statements needed; handle generated JSON, estimates, and reports as sensitive financial records.
+
+Risk: The tax estimate may be unreliable for mixed years, mixed currencies, partial records, non-HTSC brokers, or bank statements.
+
+Mitigation: Require manual tax review before relying on the number for formal filing or payment decisions, and clearly mark assumptions and unsupported inputs.
+
+Risk: Missing buy records can cause sold positions to be excluded from the estimate.
+
+Mitigation: List unmatched sales and missing statements in the output so reviewers can collect records before treating the estimate as complete.
+
+## Reference(s):
+
+- [小白问询话术](references/interview.md)
+- [成本匹配](references/matching.md)
+- [测算口径](references/tax-estimate.md)
+- [税局材料建议](references/documents.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance, local JSON extraction output, and concise client-facing tax estimate text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should identify assumptions, unmatched sales, missing documents, and the need for human review before formal filing.]
+
+## Skill Version(s):
+
+3.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

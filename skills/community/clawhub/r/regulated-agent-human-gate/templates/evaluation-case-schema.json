@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/kya/evaluation-case.schema.json",
+  "title": "KYA Evaluation Case",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["case_id", "title", "category", "input", "expected"],
+  "properties": {
+    "case_id": { "type": "string", "minLength": 1, "maxLength": 128 },
+    "title": { "type": "string", "minLength": 1, "maxLength": 256 },
+    "category": {
+      "enum": [
+        "normal",
+        "boundary",
+        "mutation",
+        "replay",
+        "expiry",
+        "scope",
+        "separation_of_duties",
+        "provider_failure",
+        "audit_failure",
+        "prompt_injection"
+      ]
+    },
+    "input": { "$ref": "action-intent-schema.json" },
+    "mutation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["stage", "operation", "path"],
+      "properties": {
+        "stage": { "enum": ["before_approval", "after_approval", "before_execution", "replay"] },
+        "operation": { "enum": ["replace", "remove", "add", "reuse", "expire"] },
+        "path": { "type": "string", "minLength": 1, "maxLength": 256 },
+        "value": { "type": ["string", "integer", "boolean", "null", "object", "array"] }
+      }
+    },
+    "expected": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "decision",
+        "authorization_status",
+        "risk_level",
+        "required_controls",
+        "execution_allowed",
+        "reason_codes",
+        "fallback_action"
+      ],
+      "properties": {
+        "decision": {
+          "enum": [
+            "ALLOW",
+            "USER_CONFIRMATION",
+            "STEP_UP_AUTHENTICATION",
+            "IDENTITY_VERIFICATION",
+            "HUMAN_APPROVAL",
+            "COMPLIANCE_REVIEW",
+            "DENY"
+          ]
+        },
+        "authorization_status": { "enum": ["PENDING_CONTROLS", "APPROVED", "DENIED"] },
+        "risk_level": { "enum": ["LOW", "MEDIUM", "HIGH", "CRITICAL"] },
+        "required_controls": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "type": "string", "minLength": 1, "maxLength": 128 }
+        },
+        "execution_allowed": { "type": "boolean" },
+        "reason_codes": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "type": "string", "minLength": 1, "maxLength": 128 }
+        },
+        "fallback_action": { "type": "string", "minLength": 1, "maxLength": 256 }
+      }
+    }
+  }
+}

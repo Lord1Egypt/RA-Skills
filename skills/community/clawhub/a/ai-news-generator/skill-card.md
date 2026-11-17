@@ -1,42 +1,57 @@
-## Description: <br>
-AI资讯速递 helps agents search, summarize, and analyze recent AI news, research, model releases, policy updates, funding, and product trends in Chinese. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI资讯速递 helps agents search, summarize, analyze, and present current AI news, research progress, model releases, industry trends, policy updates, and funding activity, with optional charts and images.
 
-## Publisher: <br>
-[nameused](https://clawhub.ai/user/nameused) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nameused](https://clawhub.ai/user/nameused)
 
-## Use Case: <br>
-Developers, analysts, and AI practitioners use this skill to generate Chinese AI news briefs, weekly or monthly reports, deep-dive analysis, and model or product comparisons from current web sources. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: AI news summaries can become stale or repeat unverified rumors, social-media claims, or inconsistent benchmark comparisons. <br>
-Mitigation: Review generated briefs for source quality, dates, official confirmation, and benchmark methodology before relying on them. <br>
-Risk: Generated charts or visualizations may misrepresent data if the underlying sources are incomplete or inconsistent. <br>
-Mitigation: Check that chart data matches cited sources and that visual labels, time ranges, and units are clear before sharing. <br>
+## Use Case:
 
+External users and developers use this skill to produce AI news briefs, weekly or monthly roundups, deep-dive analyses, and model or product comparisons in Chinese, English, or bilingual formats. It is intended for current AI news gathering, source comparison, de-duplication, and presentation with optional visual summaries.
 
-## Reference(s): <br>
-- [AI news source guide](references/ai_sources.md) <br>
-- [Model comparison template](references/model_compare_template.md) <br>
-- [Visualization examples](references/visualization_examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Chinese Markdown briefs, reports, comparison tables, and optional HTML or SVG visualization snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May cite external sources, distinguish facts from opinions, and generate chart snippets or image-generation prompts when requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Optional chart widgets may load an unpinned Chart.js package from a CDN.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer SVG output or a pinned and locally reviewed Chart.js version before rendering widgets in sensitive environments.
+
+Risk: AI news changes quickly, and stale or duplicated sources can lead to misleading briefs.
+
+Mitigation: Require current searches, source dates, de-duplication, and explicit labels for rumors or unverified reporting.
+
+## Reference(s):
+
+- [AI News Source List](artifact/references/ai_sources.md)
+- [Model Compare Template](artifact/references/model_compare_template.md)
+- [Visualization Examples](artifact/references/visualization_examples.md)
+- [ClawHub Skill Page](https://clawhub.ai/nameused/skills/ai-news-generator)
+- [nameused Publisher Profile](https://clawhub.ai/user/nameused)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown reports with tables, source notes, optional chart widget code, and optional image-generation prompts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include Chinese, English, or bilingual prose; chart examples may use SVG or Chart.js snippets.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

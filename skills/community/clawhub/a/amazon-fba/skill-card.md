@@ -1,42 +1,53 @@
-## Description: <br>
-Guides agents in producing Amazon FBA monetization plans, operational checklists, metric templates, and compliance reminders for users planning or optimizing FBA work. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill provides Chinese-language guidance for planning and optimizing Amazon FBA monetization workflows.
 
-## Publisher: <br>
-[mike47512](https://clawhub.ai/user/mike47512) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mike47512](https://clawhub.ai/user/mike47512)
 
-## Use Case: <br>
-External sellers, operators, and teams use this skill to structure Amazon FBA monetization work, including positioning, MVP validation, traffic acquisition, fulfillment, metrics tracking, and compliance review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Amazon FBA policies, tax rules, and local business requirements can change or vary by jurisdiction. <br>
-Mitigation: Verify current Amazon policies and applicable legal, tax, and business requirements before acting on generated guidance. <br>
-Risk: The skill discusses account setup and payment-related workflows that may involve sensitive identity, business, or payment information. <br>
-Mitigation: Provide sensitive information only through trusted official platform workflows and avoid sharing it with the agent unless necessary. <br>
-Risk: Business projections, traffic plans, and monetization advice may be incomplete or unsuitable for a specific product category. <br>
-Mitigation: Treat outputs as planning support, then review assumptions, costs, margins, and compliance constraints before execution. <br>
+## Use Case:
 
+External sellers or teams with foundational Amazon FBA knowledge use this skill to plan FBA positioning, MVP validation, channel growth, conversion, fulfillment, review cadence, and compliance checks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mike47512/amazon-fba) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Text] <br>
-**Output Format:** [Markdown guidance with checklists, execution plans, SOP outlines, and metric-tracking templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution or system access; business guidance should be checked against current platform policies and legal requirements.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Amazon FBA platform rules, tax obligations, legal requirements, and compliance expectations may differ by market or change after publication.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Independently confirm current Amazon policies and applicable tax, legal, and compliance requirements before acting on the guidance.
+
+Risk: Marketing, review, and channel-growth advice can be misused for false claims, infringement, or prohibited review manipulation.
+
+Mitigation: Apply the skill's compliance checks, avoid false advertising, brushing, review manipulation, and infringement, and review launch materials before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mike47512/skills/amazon-fba)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, configuration]
+
+**Output Format:** [Markdown guidance with plans, checklists, SOP outlines, metrics templates, and risk controls]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static guidance only; no commands, tools, persistence, or hidden data access.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

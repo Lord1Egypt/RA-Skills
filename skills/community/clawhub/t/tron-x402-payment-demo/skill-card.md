@@ -1,40 +1,57 @@
-## Description: <br>
-Demonstrates the x402 payment protocol on the TRON network by fetching a protected image. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Demo of x402 payment protocol by fetching a protected image.
 
-## Publisher: <br>
-[wzc1206](https://clawhub.ai/user/wzc1206) <br>
+This skill is for demonstration purposes and not for production usage.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[wzc1206](https://clawhub.ai/user/wzc1206)
 
-## Use Case: <br>
-Developers and external users can use this skill to exercise an x402 payment flow on TRON and retrieve a protected image resource. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can use a TRON private key to perform a payment without clear confirmation or spending limits. <br>
-Mitigation: Use only a throwaway or minimally funded TRON wallet and require visible confirmation of amount, network, recipient, and signing details before allowing any payment. <br>
-Risk: The payment flow depends on the x402_payment_tron dependency and a remote protected endpoint. <br>
-Mitigation: Verify the x402_payment_tron dependency and destination endpoint before installation or execution. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wzc1206/tron-x402-payment-demo) <br>
-- [Protected x402 demo endpoint](http://x402-tron-demo.sunagent.ai/protected) <br>
+## Use Case:
 
+Developers and external users can use this skill to demonstrate an x402 payment flow on the TRON network by requesting a protected image, handling payment, and presenting the retrieved image.
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [Markdown or agent response text describing the payment result and displaying the fetched image when available.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses TRON_PRIVATE_KEY when configured and deletes the local temporary file after display.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may automatically sign TRON payment operations using a private key.
+
+Mitigation: Use only a dedicated low-balance demo wallet and require manual review before any signature or payment is submitted.
+
+Risk: The protected resource is requested over plaintext HTTP.
+
+Mitigation: Verify the endpoint, network, recipient, asset, amount, fees, and permit scope before executing the payment flow.
+
+Risk: The payment flow does not clearly state per-transaction approval or spending limits.
+
+Mitigation: Run the skill only in a controlled demo context with explicit payment limits and human confirmation for each transaction.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wzc1206/skills/tron-x402-payment-demo)
+- [Protected x402 TRON demo endpoint](http://x402-tron-demo.sunagent.ai/protected)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, text]
+
+**Output Format:** [Markdown guidance with trigger phrases and operational steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May require TRON_PRIVATE_KEY and produces a displayed image after payment flow completion.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

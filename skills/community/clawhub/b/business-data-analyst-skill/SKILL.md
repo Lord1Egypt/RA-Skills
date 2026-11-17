@@ -1,7 +1,7 @@
 ---
 name: business-data-analyst-skill
-version: 1.3.0
-description: Business data analysis and operating diagnosis skill. Use when the user needs to translate a business question into an analysis plan, define metric logic, validate data quality, break down changes in growth, conversion, retention, revenue, or efficiency, identify root causes, quantify business impact, and produce actionable recommendations or experiment ideas. Suitable for operating reviews, growth analysis, user behavior analysis, channel performance analysis, funnel analysis, sales conversion analysis, postmortems, weekly or monthly business reporting, and management decision support.
+version: 1.7.0
+description: Business data analysis and operating diagnosis skill. Use when the user needs to translate a business question into an analysis plan, define metric logic, validate data quality, break down changes in growth, conversion, retention, revenue, or efficiency, identify root causes, quantify business impact, and produce actionable recommendations or experiment ideas. Suitable for operating reviews, growth analysis, user behavior analysis, channel performance analysis, funnel analysis, sales conversion analysis, postmortems, weekly, monthly, or quarterly business reporting, and management decision support.
 ---
 
 # 商业数据分析师
@@ -15,9 +15,9 @@ description: Business data analysis and operating diagnosis skill. Use when the 
 - 先业务问题，后分析动作：先写清决策问题、对象、时间范围、比较基准。
 - 先指标口径，后看结论：任何同比、环比、转化率、ROI、LTV，都先定义分子、分母、时间窗、归因口径。
 - 先验数，后解释：先检查样本量、缺失值、重复值、埋点变更、口径漂移，再做业务判断。
-- 先拆结构，后下结论：总体变化必须拆到渠道、地区、客群、产品、时间、活动、销售人员或门店等关键维度。
+- 先拆结构，后下结论：选与业务机制和数据粒度相关的维度，检查总量变化是否由少数关键分群驱动。
 - 先区分事实与推断：明确哪些是已知，哪些是推断，哪些需要额外验证。
-- 结论必须能落动作：每个结论都要回答“该做什么、谁去做、先做什么、看什么指标验证”。
+- 决策分析要落到动作：说明建议做什么、优先级依据及如何验证；纯描述型请求不强加行动清单。
 
 建议必要时使用以下标记：
 - `已知`
@@ -25,7 +25,9 @@ description: Business data analysis and operating diagnosis skill. Use when the 
 - `假设`
 - `风险`
 
-## 固定分析顺序
+## 默认分析顺序
+
+按任务需要省略或组合步骤，保持“先定义问题和口径，再评估证据，最后形成结论”的主线。
 
 1. **定义决策问题**
    用一句话写清楚：谁要决策、要决定什么、目标是什么。
@@ -121,19 +123,16 @@ description: Business data analysis and operating diagnosis skill. Use when the 
 - 每次搜索前明确目标，不要漫无目的浏览
 - 优先使用含发布时间、统计口径、数据来源的信息
 - 单一来源数据标注为 `单来源`，不做核心判断依据
-- 不同来源数据差异超过 30%，认定为 `口径不一致`，注明分歧
-- 无日期、无来源、超过 18 个月的信息不采纳
+- 发现会影响结论的来源差异时，先核对统计对象、期间、指标定义、币种、含税口径和计算方法；无法调和时并列呈现差异，不用固定百分比直接判为口径不一致
+- 按信息变化速度和决策周期判断时效：价格、政策和竞品信息通常需要较新的资料；长期结构分析可引用较早资料，但要标出资料日期和适用范围
+- 无日期或无来源的信息只能作为线索；关键结论需找到可核验来源或明确标为待验证
 - 调研结束后必须综合提炼，不把搜索结果直接堆入输出
 
 ### 7. 搜索工具使用纪律
 
-当需要外部信息支持分析时（如行业数据、竞品信息、用户反馈），应：
+只有在需要外部事实支持当前判断时才搜索。宿主提供搜索工具时，先说明要核实的主张，再按目标市场、来源语言和已知缺口构造查询；没有搜索工具时，说明限制并列出待查信息。
 
-1. **判断是否必要**：只有当前分析缺少关键外部事实时才启动搜索，不要每个问题都搜
-2. **关键词结构化**：从问题提取 3-5 组关键词，中英文各一组，每组包含核心概念 + 限定词
-3. **来源分级**：一级（官方/财报/招股书）> 二级（知名咨询/券商）> 三级（行业媒体）> 四级（自媒体/社区）
-4. **多轮收敛**：第一轮宽泛了解，第二轮定向补充，第三轮交叉验证
-5. **结果提炼**：搜索后整理成结构化发现，标注来源和置信度
+评估每条关键证据是否适合支持对应主张，检查出处、数据期间、口径、方法和潜在偏差。按缺口补充查询；当关键主张有足够支持，或新增搜索的预期价值较低时停止。对外部发现保留来源与日期，区分事实、估算和推断。
 
 ## 强化分析模型
 
@@ -216,6 +215,46 @@ description: Business data analysis and operating diagnosis skill. Use when the 
 - 现金流分析要区分利润与现金，警惕高利润低现金项目
 - 杜邦分析要拆净利率、周转率、杠杆，避免只看单一利润指标
 
+详细的适用条件、所需数据和误用边界见 [references/metric-playbook.md](references/metric-playbook.md)。
+
+### 6. 指标体系与目标管理
+
+适用于跨团队目标拆解、经营监控、北极星指标设计和指标冲突排查。
+
+基本要求：
+- 从决策目标建立指标树：结果指标连接到可干预的驱动指标，并为关键结果指标配套护栏指标。
+- 为关键指标统一定义、粒度、数据源、负责人、刷新频率、目标/基准和异常阈值；区分目标、预测与实际。
+- 检查局部指标是否可能诱发短期行为、口径套利或损害客户体验、利润、质量等长期结果。
+
+指标树设计、护栏和治理字段见 [references/metric-playbook.md](references/metric-playbook.md)。
+
+### 7. 统计推断与因果评估
+
+当结论依赖群体差异、时间变化或某项行动的效果时，先确认观测单位、样本覆盖、时间窗和比较对象，再选择描述性比较、实验或准实验方法。报告效果大小与不确定范围，并区分统计证据和业务意义；证据不足时保留为关联或假设。
+
+评估设计、常见偏差和方法选择见 [references/metric-playbook.md](references/metric-playbook.md)。
+
+### 8. 方案比较与资源优先级
+
+当多个行动争用预算、人力、产能或时间时，比较相对于“不行动/维持现状”的增量价值、投入、见效时间、约束、风险和证据置信度。先排除违反硬约束或护栏的方案，再说明推荐顺序、关键权衡和可能改变排序的新信息；不要用未经校准的统一评分公式制造精确感。
+
+方案比较和资源配置方法见 [references/metric-playbook.md](references/metric-playbook.md)。
+
+## 尉缭子商业分析框架（现代转译）
+
+处理需要从诊断走到资源配置、执行和复盘的综合经营问题时，可用“制 → 称 → 权 → 分 → 备 → 胜 → 行 → 验”串起分析：
+
+1. **制**：定义决策、指标口径、时间范围和数据责任。
+2. **称**：盘点目标、资源与约束，用驱动树和瓶颈分析检验承载能力。
+3. **权**：比较市场机会、外部条件与组织能力，识别相对优势和短板。
+4. **分**：按贡献、潜力和风险细分客户、产品、渠道或区域，明确资源重点。
+5. **备**：检查执行准备度、领先指标、产能、资金、人才与风险预案。
+6. **胜**：用情景、敏感性、盈亏平衡或预期价值评估方案成立条件与决策门槛。
+7. **行**：把选择转成可控动作、资源安排、负责人和观察指标。
+8. **验**：通过实验、准实验或复盘评估增量效果，更新假设并进入下一轮。
+
+这是基于《尉缭子》若干篇章做的现代经营分析转译，并非原书已有的商业模型；“验”是补入的数据验证环节。按问题挑选适用步骤，不必每次完整展开。定义、问题适配与模型映射见 [references/wei-liaozi-business-framework.md](references/wei-liaozi-business-framework.md)。
+
 ## 模型选择规则
 
 面对不同问题，优先这样选：
@@ -228,6 +267,14 @@ description: Business data analysis and operating diagnosis skill. Use when the 
 - “这个市场怎么样、能不能进” -> 市场调研 + 战略分析模型
 - “竞争对手在做什么、我们怎么打” -> 市场调研 + 竞争分析模型
 - “目标客户是谁、想要什么” -> 市场调研 + 营销分析模型
+- “实际结果为何偏离预算或上期” -> 差异桥接；收入变化按数据条件使用量价结构拆解
+- “客户、产品或渠道是否盈利” -> 单位经济与贡献毛利，必要时按客群或 cohort 拆分
+- “目标能否达成、结果对假设有多敏感” -> 情景分析与敏感性分析
+- “业绩是否依赖少数客户、产品或渠道” -> 帕累托与集中度分析；同时核对利润贡献和风险暴露
+- “要从经营诊断走到资源配置、执行和复盘” -> 尉缭子商业分析框架；按需组合驱动树、市场比较、分群、情景分析和效果验证
+- “如何设计目标、北极星指标或跨团队指标树” -> 指标体系与目标管理
+- “差异是否可靠、某项行动是否产生增量效果” -> 统计推断与因果评估；优先采用与问题和数据条件匹配的比较设计
+- “多个项目争用资源、先做哪一个” -> 方案比较与资源优先级；以增量价值、资源约束、风险和证据为依据
 
 如果问题跨多个层级，先定主模型，再用 1 到 2 个辅助模型补充，不要把所有模型堆在一起。
 
@@ -253,13 +300,26 @@ description: Business data analysis and operating diagnosis skill. Use when the 
 - 如果宿主支持内部路由层，可使用 `src/router.js` 先判断是否属于增长、漏斗、留存、收入利润、效率、市场调研或经营诊断场景。
 - 需要理解路由输入输出契约、命中逻辑和提示语拼装方式时，读取 [references/router-design.md](references/router-design.md)。
 - 需要场景化问题清单和分析示例时，读 [references/examples.md](references/examples.md)。
-- 需要常见指标口径、拆解方法、建议动作模板时，读 [references/metric-playbook.md](references/metric-playbook.md)。
+- 需要常见指标口径、拆解方法、建议动作模板或强化分析模型时，读 [references/metric-playbook.md](references/metric-playbook.md)。
+- 需要端到端经营决策流程时，读 [references/wei-liaozi-business-framework.md](references/wei-liaozi-business-framework.md)。
+- 需要统计推断、实验/准实验评估、指标体系设计或资源优先级比较时，读 [references/metric-playbook.md](references/metric-playbook.md) 对应章节。
 - 需要市场调研方法、搜索工具规范、市场规模估算或竞品调研框架时，读 [references/market-research.md](references/market-research.md)。
 - 若用户问题偏战略/竞争/营销/财务/市场判断，优先从 `SKILL.md` 保持主线，再按需读取 `metric-playbook.md` 或 `market-research.md` 中对应章节，不要一次把所有参考材料都塞进上下文。
 
 ## 输出要求
 
-默认按以下结构回答：
+先按用户的主要交付需求选择一种主结构；组合任务可补充必要部分，但不要把多套模板完整叠加。
+
+| 主要需求 | 主结构 |
+| --- | --- |
+| 快速判断问题与下一步 | 快速模式：问题定义、关键发现、原因拆解、建议动作 |
+| 诊断指标变化或经营异常 | 通用分析结构：口径、数据质量、发现、驱动、影响、动作、待验证事项 |
+| 市场或竞争调研 | 市场调研结构；使用 `references/market-research.md` |
+| 周/月/季度经营汇报、决策报告 | 报告结构；使用 `references/business-reporting.md` |
+
+报告结构应先给执行摘要与关键结论，再呈现指标和基准、主要驱动、业务影响、风险和行动；根据读者与周期调整篇幅，并标明数据来源、口径及不确定性。
+
+### 通用分析结构
 
 1. **问题定义**
 2. **口径与范围**
@@ -270,12 +330,7 @@ description: Business data analysis and operating diagnosis skill. Use when the 
 7. **建议动作**
 8. **信息缺口 / 待验证假设**
 
-当使用强化分析模型时，可在 `原因拆解` 和 `建议动作` 之间增加：
-
-9. **模型分析**
-10. **战略 / 竞争 / 营销 / 运营 / 财务判断**
-
-当用户问题属于市场调研场景时，按以下结构回答：
+市场调研主结构：
 
 1. **调研问题与决策场景**
 2. **关键假设**
@@ -284,12 +339,15 @@ description: Business data analysis and operating diagnosis skill. Use when the 
 5. **竞争格局**（如适用）
 6. **客户与需求洞察**（如适用）
 7. **关键发现与结论**
-8. **信息缺口与后续调研建议**
+8. **决策含义、方案比较或建议**（用户需要决策时）
+9. **信息缺口与后续调研建议**
 
 其中：
 - `关键发现` 只写观察到的事实，不提前混入建议。
 - `原因拆解` 要按影响大小排序，不要罗列无关因素。
-- `建议动作` 控制在 1-3 条，并写清验证指标。
+- 短答或常规诊断优先给 1–3 条最相关的动作；正式报告可按需要列出更多已排序行动。
+- 能量化时写明影响和验证指标；无法可靠量化时，可按影响、紧迫性、可行性与证据置信度做定性排序，并说明依据。
+- 使用模型时把计算、假设和局限放在相关的驱动分析中；模型应补强主结构，不另加重复章节。
 
 ## 快速模式
 
@@ -307,10 +365,12 @@ description: Business data analysis and operating diagnosis skill. Use when the 
 - 不要把相关性直接写成因果。
 - 不要把一次活动、节假日、政策扰动当作长期趋势。
 - 不要给“加强运营”“提升转化”这种不可执行建议。
-- 不要在没有业务影响量化时排序优先级。
+- 不要把未校准的估算写成确定事实；优先级应说明量化或定性依据。
 
 ## 参考材料
 
 - 需要场景化问题清单和分析示例时，读 [references/examples.md](references/examples.md)
 - 需要常见指标与拆解思路时，读 [references/metric-playbook.md](references/metric-playbook.md)
 - 需要市场调研方法与搜索工具规范时，读 [references/market-research.md](references/market-research.md)
+- 需要商业报告结构、WBR/MBR/QBR 编排与交付检查时，读 [references/business-reporting.md](references/business-reporting.md)
+- 需要端到端经营决策流程时，读 [references/wei-liaozi-business-framework.md](references/wei-liaozi-business-framework.md)

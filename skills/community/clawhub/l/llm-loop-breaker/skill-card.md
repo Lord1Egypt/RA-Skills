@@ -1,44 +1,62 @@
-## Description: <br>
-Two-layer defense for the OpenClaw gateway that aborts hallucinating LLM streams using entropy analysis and monitors host CPU, memory, and disk exhaustion. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Two-layer defense for Openclaw gateway: kills hallucinating LLM streams via entropy analysis, and watchdogs host CPU/RAM/Disk to prevent resource exhaustion.
 
-## Publisher: <br>
-[hehkcaspar](https://clawhub.ai/user/hehkcaspar) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hehkcaspar](https://clawhub.ai/user/hehkcaspar)
 
-## Use Case: <br>
-Developers and operators of OpenClaw gateways use this skill to deploy runtime loop detection for LLM streams and host resource monitoring for gateway stability. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill modifies the OpenClaw gateway and injects runtime stream-abortion behavior. <br>
-Mitigation: Review the injected gateway block and keep the generated backup and uninstall procedure available before restarting the gateway. <br>
-Risk: The persistent watchdog can terminate process trees after resource or process-health heuristics fire. <br>
-Mitigation: Install only on a dedicated gateway host where false-positive process termination is acceptable and monitor incidents after deployment. <br>
-Risk: Incident handling captures host logs and resource metrics. <br>
-Mitigation: Confirm workspace permissions, log retention expectations, and sensitivity of retained host logs before installation. <br>
+## Use Case:
 
+Developers and Openclaw operators use this skill to deploy runtime safeguards that interrupt repetitive LLM streams and monitor host resource exhaustion around a gateway deployment.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/hehkcaspar/llm-loop-breaker) <br>
-- [OpenClaw ClawHub homepage](https://github.com/openclaw/clawhub) <br>
-- [Publisher profile](https://clawhub.ai/user/hehkcaspar) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces deployment guidance for a Linux OpenClaw gateway requiring node, python3, bash, psutil, and OPENCLAW_APP_DIR.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Persistent gateway modification and global fetch patching can alter runtime behavior after installation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the deploy script before installation, test in a staging environment, keep the generated backup, and maintain a clear rollback plan.
+
+Risk: The watchdog starts a detached background process and can kill selected gateway child process trees.
+
+Mitigation: Run under a dedicated unprivileged account, use explicit service management, and confirm process-kill thresholds before production deployment.
+
+Risk: Local host diagnostics and incident snapshots may include operational details from system logs.
+
+Mitigation: Restrict log and incident paths, control file permissions, and review captured diagnostics before sharing.
+
+Risk: Dependency installation and shell/path handling should be reviewed before execution.
+
+Mitigation: Pin dependencies where possible and install only after reviewing the shell script in the target environment.
+
+## Reference(s):
+
+- [Openclaw ClawHub](https://github.com/openclaw/clawhub)
+- [LLM Loop Breaker on ClawHub](https://clawhub.ai/hehkcaspar/skills/llm-loop-breaker)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with bash commands and deployment file descriptions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Linux-focused deployment guidance requiring node, python3, bash, psutil, and OPENCLAW_APP_DIR.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

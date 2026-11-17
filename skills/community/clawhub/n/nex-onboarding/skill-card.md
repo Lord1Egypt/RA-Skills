@@ -1,41 +1,59 @@
-## Description: <br>
-Nex Onboarding helps agency operators manage client onboarding workflows from contract through go-live with local checklists, progress tracking, task status updates, statistics, and JSON/CSV exports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Nex Onboarding helps agency operators manage client onboarding workflows from contract through go-live with local checklists, progress tracking, blocked-step handling, statistics, templates, and JSON or CSV exports.
 
-## Publisher: <br>
-[nexaiguy](https://clawhub.ai/user/nexaiguy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nexaiguy](https://clawhub.ai/user/nexaiguy)
 
-## Use Case: <br>
-Agency operators and service providers use this skill to start and manage client onboarding workflows, track blocked or completed steps, assign work, report statistics, and export local onboarding records. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores client onboarding records locally and can export them as JSON or CSV, so those files may contain sensitive client information. <br>
-Mitigation: Treat the database and exports as sensitive records, avoid storing passwords or service credentials in notes, and review CSV exports before opening them in spreadsheet tools. <br>
-Risk: The setup script creates files under ~/.nex-onboarding and installs a command wrapper in ~/.local/bin. <br>
-Mitigation: Review the setup behavior before installation and remove the local data directory and wrapper if the skill should no longer retain data on the machine. <br>
+## Use Case:
 
+External agency operators, web agencies, design studios, and service providers use this skill to start, track, update, pause, complete, and report on client onboarding work. It is designed for structured onboarding across administrative, technical, design, content, communication, delivery, and QA steps.
 
-## Reference(s): <br>
-- [Nex AI](https://nex-ai.be) <br>
-- [ClawHub skill page](https://clawhub.ai/nexaiguy/nex-onboarding) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, files, guidance] <br>
-**Output Format:** [Markdown guidance with bash commands; CLI output as terminal text; exports as JSON or CSV files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores onboarding data locally in ~/.nex-onboarding and uses a nex-onboarding command wrapper created in ~/.local/bin during setup.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence release and SKILL.md frontmatter) <br>
+Risk: Stored onboarding records may contain client contact details or project notes in a local SQLite database.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Protect ~/.nex-onboarding like business records and avoid storing unnecessary sensitive client data in onboarding notes.
+
+Risk: CSV exports may be opened in spreadsheet software when data includes untrusted client-provided text.
+
+Mitigation: Prefer JSON for untrusted data or sanitize CSV exports before opening them in spreadsheet tools.
+
+Risk: Setup creates local files under ~/.nex-onboarding and ~/.local/bin.
+
+Mitigation: Install only on machines where creating those local files and command wrappers is acceptable.
+
+## Reference(s):
+
+- [Nex Onboarding README](artifact/README.md)
+- [ClawHub skill page](https://clawhub.ai/nexaiguy/skills/nex-onboarding)
+- [Nex AI homepage](https://nex-ai.be)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Files]
+
+**Output Format:** [Markdown guidance with shell commands; CLI output as plain text, JSON, or CSV]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses local SQLite persistence under ~/.nex-onboarding and can write JSON or CSV export files.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter, release evidence, lib/__init__.py)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

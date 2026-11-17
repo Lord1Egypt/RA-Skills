@@ -1,39 +1,53 @@
-## Description: <br>
-CSS implementation patterns for layout, typography, color, spacing, and responsive design. Complements ui-design (fundamentals) with code-focused examples. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+CSS implementation patterns for layout, typography, color, spacing, and responsive design. Complements ui-design (fundamentals) with code-focused examples.
 
-## Publisher: <br>
-[wpank](https://clawhub.ai/user/wpank) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[wpank](https://clawhub.ai/user/wpank)
 
-## Use Case: <br>
-Developers and designers use this skill to implement and review production web interface CSS for layouts, typography, color systems, spacing, responsive behavior, accessibility, components, and interaction states. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: An unpinned GitHub install example may fetch a changing repository revision. <br>
-Mitigation: Prefer the ClawHub install command or a pinned, reviewed source; use the GitHub install path only when the repository and revision are trusted. <br>
-Risk: Generated CSS or design guidance can still be unsuitable for a specific product, brand, or accessibility requirement. <br>
-Mitigation: Review generated styles against product requirements, test responsive behavior, and verify accessibility before deployment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wpank/web-design) <br>
+## Use Case:
 
+Developers and designers use this skill to guide CSS implementation for responsive layouts, typography, color systems, spacing, accessibility, component states, and production web interface quality.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Markdown] <br>
-**Output Format:** [Markdown guidance with CSS code snippets, tables, and checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Installer commands use mutable, unpinned remote executors.
+
+Mitigation: Review and preferably pin installer versions and repository commits before installing; avoid running install commands in environments with unnecessary secrets.
+
+Risk: Guidance changes could introduce incorrect or misleading design recommendations into generated interfaces.
+
+Mitigation: Review generated CSS, accessibility behavior, and responsive layouts before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wpank/skills/web-design)
+- [Publisher profile](https://clawhub.ai/user/wpank)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with CSS and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include responsive design checklists, accessibility criteria, design token examples, and implementation recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

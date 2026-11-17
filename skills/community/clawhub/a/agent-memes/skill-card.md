@@ -1,42 +1,59 @@
-## Description: <br>
-Send meme reaction images in chat with one command across Discord, Feishu, Telegram, LINE, and other OpenClaw-supported platforms. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent Memes lets agents pick and send meme reaction images across chat platforms with the `memes` command.
 
-## Publisher: <br>
-[kagura-agent](https://clawhub.ai/user/kagura-agent) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kagura-agent](https://clawhub.ai/user/kagura-agent)
 
-## Use Case: <br>
-AI agents and their operators use this skill to pick and send meme reaction images into configured chat channels for celebration, humor, encouragement, greetings, or other conversational reactions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can give an agent broad, proactive ability to post images into real chat channels. <br>
-Mitigation: Install only where chat posting is intended, configure explicit accounts and targets, and require confirmation before sends. <br>
-Risk: The skill requires OAuth tokens or other sensitive chat-platform credentials. <br>
-Mitigation: Use least-privileged bot tokens, keep credentials in environment variables or private config, and avoid sharing credential files. <br>
-Risk: Target, file, and shell execution handling are under-scoped, including an OpenClaw fallback sender called out by security guidance. <br>
-Mitigation: Review targets and image paths before execution, avoid the OpenClaw fallback sender until its command construction is fixed, and avoid LINE for sensitive local images unless the hosting path is changed. <br>
+## Use Case:
 
+External users and agent developers use this skill to add lightweight visual reactions to chat workflows by selecting local meme images and sending them to supported messaging platforms.
 
-## Reference(s): <br>
-- [Agent Memes ClawHub listing](https://clawhub.ai/kagura-agent/agent-memes) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May invoke chat-platform APIs to send selected image files; sending requires configured credentials and targets.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.11.0 (source: server release metadata) <br>
+Risk: The skill can send external messages proactively when messaging credentials and targets are configured.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit confirmation for every send and avoid ambient default targets.
+
+Risk: Unsafe scripts may misuse credentials or allow command injection.
+
+Mitigation: Review or fix command-injection paths before deployment and limit credential scope to only the messaging platforms needed.
+
+Risk: LINE local-file sending uploads private images to a third-party temporary hosting service.
+
+Mitigation: Do not use LINE local-file sending for private images.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kagura-agent/skills/agent-memes)
+- [Artifact README](artifact/README.md)
+- [Artifact skill definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and command-line text output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May trigger outbound messaging API calls when the user or agent runs send commands with configured credentials.]
+
+## Skill Version(s):
+
+2.11.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

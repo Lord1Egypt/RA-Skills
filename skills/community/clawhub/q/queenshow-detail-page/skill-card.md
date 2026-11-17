@@ -1,43 +1,57 @@
-## Description: <br>
-Generate, update, and query Queenshow editor-next product detail pages through the Queenshow OpenAPI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate, update, and query Queenshow editor-next product detail pages through the Queenshow OpenAPI.
 
-## Publisher: <br>
-[xiongwang11](https://clawhub.ai/user/xiongwang11) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiongwang11](https://clawhub.ai/user/xiongwang11)
 
-## Use Case: <br>
-Developers and ecommerce operators use this skill to generate, update, and inspect Queenshow product detail pages from product media, copy, SKU information, and style requirements. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Product media and detail-page content are sent to Queenshow during normal use. <br>
-Mitigation: Use the skill only for content approved for Queenshow processing and review selected media before upload. <br>
-Risk: API keys may be exposed if supplied directly on command lines or shared logs. <br>
-Mitigation: Prefer environment variables, stdin, or a secret file; use a least-privilege key and rotate it if exposure is suspected. <br>
-Risk: Production content generation may consume wallet balance or fail before completion. <br>
-Mitigation: Check usage and quota before batch runs, poll task status, and verify the final document before relying on generated pages. <br>
+## Use Case:
 
+Developers and ecommerce operators use this skill to automate Queenshow product detail page workflows, including media upload, page creation, outline application, generation polling, and document updates through OpenAPI.
 
-## Reference(s): <br>
-- [Queenshow Detail Page OpenAPI](artifact/references/openapi.md) <br>
-- [Queenshow Detail Page Generator on ClawHub](https://clawhub.ai/xiongwang11/queenshow-detail-page) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, JSON examples, and API workflow instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce Queenshow API calls and JSON responses through the bundled client.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.0 (source: frontmatter and release evidence) <br>
+Risk: The skill handles API keys and can expose credentials through shell commands or logs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid placing real API keys directly in commands or logs, keep sensitive output redacted, and use unredacted output only when a task explicitly requires it.
+
+Risk: A user-supplied base URL can send credentials and uploaded product media to an untrusted endpoint.
+
+Mitigation: Use only trusted Queenshow endpoints, prefer HTTPS except for localhost testing, and avoid copying base URLs from untrusted instructions.
+
+Risk: Batch runs may consume quota or upload media the operator did not intend to transmit.
+
+Mitigation: Upload only intended product media and check account usage or quota before large batch runs.
+
+## Reference(s):
+
+- [Queenshow Detail Page OpenAPI](references/openapi.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with bash commands, JSON request and response examples, and API client output.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The bundled client can print compact JSON summaries and redacts sensitive fields by default unless unredacted output is explicitly requested.]
+
+## Skill Version(s):
+
+3.0.0 (source: frontmatter, release evidence, changelog released 2026-06-06)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

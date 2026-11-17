@@ -1,49 +1,62 @@
-## Description: <br>
-Check AI agent trust scores and credit ratings before interacting, delegating tasks, or transacting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Checks AI agent trust scores, credit-style reliability ratings, and trust tiers through the AXIS Agent Trust Infrastructure API, with guidance and examples for public lookups, agent registration, behavioral event submission, and identity verification.
 
-## Publisher: <br>
-[leonidas-esquire](https://clawhub.ai/user/leonidas-esquire) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leonidas-esquire](https://clawhub.ai/user/leonidas-esquire)
 
-## Use Case: <br>
-Developers, operators, and agents use this skill to look up AXIS trust and economic reliability signals before delegation, data sharing, or transactions. Authenticated users can also register agents, submit behavioral events, inspect score details, and manage API keys through AXIS endpoints. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Agent identifiers and event data may be sent to AXIS endpoints during trust checks and authenticated workflows. <br>
-Mitigation: Use the skill only when sharing those identifiers and event details with AXIS is acceptable. <br>
-Risk: Session cookies can be exposed through chat transcripts, command history, or process arguments when using authenticated shell examples. <br>
-Mitigation: Avoid placing real session cookies in chat, logs, shell history, or long-lived process arguments; prefer safer local handling for credentials. <br>
-Risk: Authenticated actions can register agents, submit positive or negative behavioral events, and create or revoke API keys. <br>
-Mitigation: Require explicit human confirmation before registration, negative event submission, API key creation, or API key revocation. <br>
-Risk: Shell helper scripts execute local commands and may be less suitable for untrusted AUID input. <br>
-Mitigation: Prefer the Python trust-check example for untrusted AUIDs and review commands before execution. <br>
+## Use Case:
 
+External users, developers, and agent operators use this skill to evaluate another agent's AXIS trust profile before delegation, data sharing, or transactions. Authenticated users can also register agents, submit behavioral events, and inspect trust or credit score details.
 
-## Reference(s): <br>
-- [AXIS Trust Infrastructure](https://axistrust.io) <br>
-- [AXIS API Explorer](https://axistrust.io/api-explorer) <br>
-- [AXIS Documentation](https://axistrust.io/docs) <br>
-- [AXIS Agent Directory](https://axistrust.io/directory) <br>
-- [ClawHub skill page](https://clawhub.ai/leonidas-esquire/axis-trust) <br>
-- [Publisher profile](https://clawhub.ai/user/leonidas-esquire) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Code, API calls, Configuration] <br>
-**Output Format:** [Markdown guidance with curl commands, Python examples, JSON request and response shapes, and decision thresholds] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce commands that call AXIS public or authenticated endpoints and may reference session cookies supplied by the user.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: release metadata and changelog, released 2026-03-13) <br>
+Risk: Executable examples may expose live session cookies when copied into command lines or shared chats.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid pasting live session cookies into commands or chats; prefer unauthenticated public lookups or a safer local secret-handling workflow for authenticated calls.
+
+Risk: Registration, behavioral event submission, API key creation, and key revocation are account-sensitive actions.
+
+Mitigation: Require explicit review before running authenticated examples, verify target agent IDs and event details, and test with non-production accounts where possible.
+
+Risk: Shell examples accept user-provided values and session cookies.
+
+Mitigation: Prefer the Python lookup example for public trust checks, and review shell inputs carefully before execution.
+
+## Reference(s):
+
+- [AXIS Homepage](https://axistrust.io)
+- [AXIS API Explorer](https://axistrust.io/api-explorer)
+- [AXIS Documentation](https://axistrust.io/docs)
+- [AXIS Agent Directory](https://axistrust.io/directory)
+- [AXIS Changelog](https://axistrust.io/changelog)
+- [ClawHub Skill Page](https://clawhub.ai/leonidas-esquire/skills/axis-trust)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration, API Calls]
+
+**Output Format:** [Markdown guidance with inline shell and Python examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May describe AXIS public and authenticated API requests; authenticated actions require an AXIS session cookie.]
+
+## Skill Version(s):
+
+1.1.0 (source: evidence release.version and CHANGELOG, released 2026-03-13)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

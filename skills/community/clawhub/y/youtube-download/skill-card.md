@@ -1,41 +1,53 @@
-## Description: <br>
-Downloads YouTube videos to ~/Downloads when the user wants a local copy on their machine. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Downloads YouTube videos to ~/Downloads when the user wants to save a YouTube video to their machine.
 
-## Publisher: <br>
-[bestisblessed](https://clawhub.ai/user/bestisblessed) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bestisblessed](https://clawhub.ai/user/bestisblessed)
 
-## Use Case: <br>
-External users and developers use this skill to download a user-provided YouTube URL into the local ~/Downloads folder with yt-dlp. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill creates video files in ~/Downloads, which can consume local storage. <br>
-Mitigation: Review expected file size before downloading large videos and remove unwanted files after use. <br>
-Risk: Downloaded content may be restricted by copyright or site policy. <br>
-Mitigation: Download only content the user is permitted to save under applicable rights and platform rules. <br>
-Risk: The skill depends on the local yt-dlp executable. <br>
-Mitigation: Install yt-dlp from the declared package-manager path and keep it updated before running downloads. <br>
+## Use Case:
 
+External users and developers use this skill to have an agent download a user-provided YouTube URL to the local Downloads folder using yt-dlp.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Files, Guidance] <br>
-**Output Format:** [Shell command output and downloaded MP4 file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Saves video files under ~/Downloads using yt-dlp best-available video and audio merge settings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata) <br>
+Risk: The skill downloads media to the local Downloads folder and creates files named from video metadata.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the URL before execution and only run the skill when local media downloads are intended.
+
+Risk: The skill depends on the locally installed yt-dlp command.
+
+Mitigation: Install yt-dlp from a trusted package source such as Homebrew and keep it updated.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bestisblessed/skills/youtube-download)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Files, Guidance]
+
+**Output Format:** [Shell command execution with terminal text and a downloaded MP4 file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires yt-dlp and writes downloaded media to ~/Downloads using the video title as the filename.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

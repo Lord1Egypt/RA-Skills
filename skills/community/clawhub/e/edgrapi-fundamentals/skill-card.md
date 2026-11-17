@@ -1,45 +1,57 @@
-## Description: <br>
-Provides normalized company financial statements and computed ratios from SEC EDGAR via Edgrapi.com for US-listed tickers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Normalized company financial statements and computed ratios from SEC EDGAR via Edgrapi.com for US-listed tickers, including income, balance-sheet, cash-flow, margin, return, leverage, and liquidity data parsed from EDGAR XBRL.
 
-## Publisher: <br>
-[paperandbeyond23-gif](https://clawhub.ai/user/paperandbeyond23-gif) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[paperandbeyond23-gif](https://clawhub.ai/user/paperandbeyond23-gif)
 
-## Use Case: <br>
-Developers, analysts, and agents use this skill when a user explicitly asks for US-listed company fundamentals or ratios, such as revenue, assets, cash flow, margins, return, leverage, or liquidity. It is not intended for live stock prices or incidental ticker mentions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires an Edgrapi API key and sends requests to an external service. <br>
-Mitigation: Configure EDGRAPI_KEY only in trusted environments and install the skill only when Edgrapi fundamentals data is intended. <br>
-Risk: Each Edgrapi tool call may consume account credits. <br>
-Mitigation: Use the skill only for deliberate financial-statement or ratio requests and avoid activating it for incidental ticker mentions. <br>
-Risk: The skill provides filings-derived fundamentals and ratios, not live market prices or price-based multiples. <br>
-Mitigation: Use a separate market data source for live prices, P/E, P/B, or other price-dependent analysis. <br>
+## Use Case:
 
+Developers, analysts, and research agents use this skill when a user explicitly asks for US-listed company fundamentals or ratios from SEC EDGAR-derived data. It is not intended for live stock prices or incidental ticker mentions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/paperandbeyond23-gif/skills/edgrapi-fundamentals) <br>
-- [Server-resolved GitHub import](https://github.com/paperandbeyond23-gif/edgrapi-skills/tree/main/skills/edgrapi-fundamentals) <br>
-- [Edgrapi homepage](https://edgrapi.com) <br>
-- [Edgrapi pricing](https://edgrapi.com/pricing) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, API calls, configuration guidance] <br>
-**Output Format:** [Markdown responses with structured financial figures and ratio values; API helper results are dictionaries.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires EDGRAPI_KEY; each Edgrapi tool call may consume one credit and should be used for deliberate fundamentals or ratio requests.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: release evidence) <br>
+Risk: The skill requires an Edgrapi API key and spends Edgrapi credits on each request.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only for workflows that need Edgrapi fundamentals, set EDGRAPI_KEY deliberately, and monitor credit usage.
+
+Risk: The skill provides filings-derived fundamentals and ratios, not live market prices.
+
+Mitigation: Use a separate market-data source for live prices or price-based ratios.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/paperandbeyond23-gif/skills/edgrapi-fundamentals)
+- [Server-resolved GitHub provenance](https://github.com/paperandbeyond23-gif/edgrapi-skills/tree/main/skills/edgrapi-fundamentals)
+- [Edgrapi homepage](https://edgrapi.com)
+- [Edgrapi app](https://edgrapi.com/app)
+- [Edgrapi pricing](https://edgrapi.com/pricing)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with tool-call descriptions and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires EDGRAPI_KEY; each Edgrapi request consumes one credit.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata; artifact frontmatter reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

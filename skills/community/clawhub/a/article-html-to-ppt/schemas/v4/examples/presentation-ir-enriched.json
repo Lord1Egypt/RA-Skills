@@ -1,0 +1,82 @@
+{
+  "schema_version": "4.0.0",
+  "deck": {
+    "title": "2025 年度经营回顾",
+    "language": "zh-CN",
+    "purpose": "向管理层解释增长来源与随之而来的毛利风险",
+    "audience": "管理层",
+    "narrative_intent": "report"
+  },
+  "sources": [
+    { "source_id": "annual-report", "type": "markdown", "title": "2025 年度经营总结", "path": "input/annual-report.md" }
+  ],
+  "slides": [
+    {
+      "id": "s1",
+      "title": "增长由海外业务驱动，但毛利承压",
+      "message": "收入增长主要来自海外业务，毛利率下滑是需要正视的代价",
+      "slide_role": "content",
+      "blocks": [
+        {
+          "id": "m-total",
+          "role": "metric",
+          "label": "总收入",
+          "value": "+36%",
+          "baseline": "2024",
+          "source_ref": { "source_id": "annual-report", "loc": "para_12", "quote": "销售收入增长 36%" }
+        },
+        {
+          "id": "m-overseas",
+          "role": "metric",
+          "label": "海外业务",
+          "value": "+52%",
+          "source_ref": { "source_id": "annual-report", "loc": "para_12" }
+        },
+        {
+          "id": "m-domestic",
+          "role": "metric",
+          "label": "国内业务",
+          "value": "+8%",
+          "source_ref": { "source_id": "annual-report", "loc": "para_13" }
+        },
+        {
+          "id": "r-margin",
+          "role": "risk",
+          "text": "毛利率同比下降 2.8 个百分点，海外扩张的价格策略是主因",
+          "source_refs": [ { "source_id": "annual-report", "loc": "para_14" } ]
+        },
+        {
+          "id": "i-driver",
+          "role": "insight",
+          "text": "增长结构已从国内转向海外，2026 年计划的产能与汇率对冲能力将决定这一增长是否可持续",
+          "source_refs": [
+            { "source_id": "annual-report", "loc": "para_12" },
+            { "source_id": "annual-report", "loc": "para_18" }
+          ]
+        }
+      ],
+      "relations": [
+        { "type": "causal", "from": "m-overseas", "to": "m-total", "label": "主要驱动" },
+        { "type": "contrast", "from": "m-total", "to": "r-margin", "label": "增长与代价并存" }
+      ],
+      "hints": {
+        "emphasis_block_ids": ["m-total", "r-margin"],
+        "tone": "professional"
+      }
+    },
+    {
+      "id": "s2",
+      "title": "分区域收入明细",
+      "slide_role": "content",
+      "blocks": [
+        {
+          "role": "table",
+          "source_ref": { "source_id": "annual-report", "loc": "table_1" },
+          "caption": "分区域收入与毛利（摘自年度总结表 1）",
+          "column_filter": [0, 1, 2, 4],
+          "row_limit": 8
+        }
+      ]
+    }
+  ]
+}

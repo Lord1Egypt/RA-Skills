@@ -1,42 +1,57 @@
-## Description: <br>
-M估值法 is a stock valuation skill that uses a five-step ROIC and CAPM framework to screen stocks, calculate valuation parameters, estimate intrinsic value, and summarize risks and scenarios. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+M估值法 provides a five-step stock valuation workflow based on ROIC and CAPM, including screening, intrinsic value calculation, risk analysis, scenario analysis, and investment guidance.
 
-## Publisher: <br>
-[oldhouse-g](https://clawhub.ai/user/oldhouse-g) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[oldhouse-g](https://clawhub.ai/user/oldhouse-g)
 
-## Use Case: <br>
-Investors, analysts, and agents use this skill to run a structured stock valuation report for a supplied ticker and optional company name. It is intended to support financial analysis by combining market data lookups, ROIC qualification, CAPM-derived discount-rate calculations, intrinsic value estimates, risk checks, scenario analysis, and an investment suggestion. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The security review says the skill embeds third-party API credentials. <br>
-Mitigation: Replace embedded tokens with user-provided configuration or environment variables before installation or execution. <br>
-Risk: The security review says the skill relies on outbound financial lookups and external helpers that users cannot easily control. <br>
-Mitigation: Review and approve external service use, dependencies, and network access before running the valuation workflow. <br>
-Risk: The security review says some financial inputs may be placeholders or require clearer labeling. <br>
-Mitigation: Verify all financial assumptions and source data before using the report for investment decisions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/oldhouse-g/m-valuation) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/oldhouse-g) <br>
+## Use Case:
 
+Investors, analysts, and agents use this skill to generate structured stock valuation reports for A-share and Hong Kong-listed companies. The workflow supports qualification screening, valuation parameter calculation, intrinsic value review, risk analysis, scenario analysis, and investment guidance.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Console text report with valuation sections and command-line usage examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a stock ticker and optionally a company name; may depend on third-party financial data and search services.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The release includes exposed Tavily and Tushare API credentials.
+
+Mitigation: Remove embedded tokens before distribution and require users to configure their own API keys through a secure local environment.
+
+Risk: Hong Kong stock analysis can rely on hardcoded financial assumptions.
+
+Mitigation: Expose those assumptions clearly or replace them with sourced data before treating the output as financial analysis.
+
+Risk: The skill produces investment guidance that may be incorrect or incomplete.
+
+Mitigation: Verify all data sources, calculations, and conclusions independently before making investment decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/oldhouse-g/skills/m-valuation)
+- [Publisher profile](https://clawhub.ai/user/oldhouse-g)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Console text report with markdown-style sections and shell command usage examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces financial analysis guidance that should be independently verified before use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,116 @@
+{
+  "_comment": "agency-portal 扩展参考数据。SKILL.md通过'详见 scripts/agency_portal_reference.json'引用",
+  "input_formats": {
+    "portal_login": {"username": "客户用户名", "password": "客户密码"},
+    "portal_register": {"tenant_slug": "租户标识(kebab-case)", "username": "登录用户名", "password": "登录密码", "tenant_name": "租户名称", "plan": "basic|standard|premium"},
+    "portal_upload_asset": {"token": "JWT Token", "file_path": "文件路径", "asset_type": "image|video|document", "description": "素材描述"},
+    "portal_approve_content": {"token": "JWT Token", "content_id": "内容ID", "action": "approve|reject"},
+    "admin_login": {"password": "管理员密码"},
+    "admin_update_tenant_plan": {"admin_token": "管理员Token", "tenant_slug": "租户标识", "new_plan": "basic|standard|premium"}
+  },
+  "output_formats": {
+    "success": {"success": true, "data": {}, "error": null, "code": null},
+    "failure": {"success": false, "data": {}, "error": "错误描述", "code": "ERROR_CODE"},
+    "dashboard": {
+      "success": true,
+      "data": {
+        "tenant_name": "租户名称", "tenant_slug": "tenant-slug", "plan": "standard",
+        "plan_detail": {"name": "专业版", "price": 698, "articles": 10, "videos": 1, "platforms": 12, "geo": true},
+        "subscription": {"status": "active", "end_date": "2026-06-14"},
+        "assets_count": 12, "recent_reports": [], "auto_publish": true, "status": "active",
+        "today_published": 3, "recent_publishes": []
+      }
+    },
+    "patrol": {
+      "success": true,
+      "data": {
+        "patrol_time": "2026-05-14T10:00:00", "total_active": 5, "issues_count": 2,
+        "issues": ["tenant-a: 素材不足(0个)"],
+        "tenants": [{"tenant_slug": "tenant-a", "checks": {"assets_sufficient": false, "auto_publish": true, "directions_set": true, "publish_on_track": true}, "today_published": 2, "expected_daily": 3}]
+      }
+    }
+  },
+  "error_codes": [
+    {"code": "AUTH_001", "scene": "用户名或密码错误", "action": "重新输入凭据"},
+    {"code": "AUTH_002", "scene": "登录已过期", "action": "调用portal_login/admin_login重新获取Token"},
+    {"code": "AUTH_003", "scene": "账号已被暂停", "action": "联系管理员调用admin_toggle_tenant恢复"},
+    {"code": "AUTH_004", "scene": "管理员认证失败", "action": "检查AGENCY_ADMIN_SECRET环境变量"},
+    {"code": "AUTH_005", "scene": "旧密码错误", "action": "重新输入旧密码"},
+    {"code": "PLAN_001", "scene": "无效套餐", "action": "使用basic/standard/premium之一"},
+    {"code": "REG_001", "scene": "租户标识已存在", "action": "更换tenant_slug"},
+    {"code": "REG_002", "scene": "用户名已存在", "action": "更换username"},
+    {"code": "TENANT_001", "scene": "租户不存在", "action": "检查tenant_slug拼写"},
+    {"code": "CONTENT_001", "scene": "未找到待审批内容", "action": "检查content_id"},
+    {"code": "CONTENT_002", "scene": "无效操作(审批)", "action": "使用approve或reject"},
+    {"code": "FEEDBACK_001", "scene": "反馈内容为空", "action": "填写反馈内容"},
+    {"code": "FEEDBACK_002", "scene": "反馈不存在", "action": "检查feedback_id"},
+    {"code": "STATUS_001", "scene": "无效状态(租户)", "action": "使用active或suspended"},
+    {"code": "DEL_001", "scene": "删除未确认", "action": "传入confirm=True"},
+    {"code": "EXEC_001", "scene": "依赖脚本执行失败", "action": "检查agency-client-manager脚本"},
+    {"code": "MCP_001", "scene": "依赖MCP不可用", "action": "检查MCP Server状态,重启后重试"}
+  ],
+  "mcp_tools": {
+    "tenant_side": [
+      {"name": "portal_login", "desc": "客户登录", "params": "username, password"},
+      {"name": "portal_register", "desc": "客户注册", "params": "tenant_slug, username, password, tenant_name"},
+      {"name": "portal_get_plans", "desc": "获取套餐信息", "params": "无"},
+      {"name": "portal_get_dashboard", "desc": "获取仪表盘", "params": "token"},
+      {"name": "portal_list_assets", "desc": "获取素材列表", "params": "token"},
+      {"name": "portal_upload_asset", "desc": "上传素材", "params": "token, file_path"},
+      {"name": "portal_delete_asset", "desc": "删除素材", "params": "token, asset_id"},
+      {"name": "portal_get_reports", "desc": "获取报告", "params": "token"},
+      {"name": "portal_renew_subscription", "desc": "续费", "params": "token, plan"},
+      {"name": "portal_update_directions", "desc": "更新内容方向", "params": "token, directions"},
+      {"name": "portal_change_password", "desc": "修改密码", "params": "token, old_password, new_password"},
+      {"name": "portal_unified_publish_list", "desc": "发布历史", "params": "token"},
+      {"name": "portal_toggle_auto_publish", "desc": "暂停/恢复自动发布", "params": "token, enabled"},
+      {"name": "portal_list_pending_content", "desc": "待审批内容", "params": "token"},
+      {"name": "portal_approve_content", "desc": "审批内容", "params": "token, content_id, action"},
+      {"name": "portal_get_platforms", "desc": "发布平台列表", "params": "token"},
+      {"name": "portal_submit_feedback", "desc": "提交反馈", "params": "token, content"}
+    ],
+    "admin_side": [
+      {"name": "admin_login", "desc": "管理员登录", "params": "password"},
+      {"name": "admin_list_tenants", "desc": "查看所有租户", "params": "admin_token"},
+      {"name": "admin_get_tenant_detail", "desc": "查看租户详情", "params": "admin_token, tenant_slug"},
+      {"name": "admin_update_tenant_plan", "desc": "修改租户套餐", "params": "admin_token, tenant_slug, new_plan"},
+      {"name": "admin_toggle_tenant", "desc": "暂停/恢复租户", "params": "admin_token, tenant_slug, status"},
+      {"name": "admin_delete_tenant", "desc": "删除租户", "params": "admin_token, tenant_slug, confirm"},
+      {"name": "admin_get_overview", "desc": "全局概览", "params": "admin_token"},
+      {"name": "admin_check_expiry", "desc": "检查到期", "params": "admin_token"},
+      {"name": "admin_patrol", "desc": "代运营巡检", "params": "admin_token"},
+      {"name": "admin_list_publish_history", "desc": "发布历史", "params": "admin_token"},
+      {"name": "admin_list_feedbacks", "desc": "查看反馈", "params": "admin_token"},
+      {"name": "admin_reply_feedback", "desc": "回复反馈", "params": "admin_token, feedback_id, reply"}
+    ]
+  },
+  "data_storage": [
+    {"data": "租户凭证", "path": "data/portal/tenant_credentials.json", "desc": "用户名/密码哈希/套餐/状态"},
+    {"data": "管理员凭证", "path": "data/portal/admin_credentials.json", "desc": "管理员账号信息"},
+    {"data": "待审批内容", "path": "data/portal/pending_content.json", "desc": "租户待审批内容队列"},
+    {"data": "反馈记录", "path": "data/portal/feedbacks.json", "desc": "租户反馈+管理员回复"},
+    {"data": "运营报告", "path": "data/reports/{tenant_id}/", "desc": "HTML格式报告文件"},
+    {"data": "素材文件", "path": "data/assets/{tenant_slug}/", "desc": "租户素材目录"},
+    {"data": "发布日志", "path": "data/publish_logs/{tenant_id}/", "desc": "JSON格式发布记录"}
+  ],
+  "examples": {
+    "example2_admin_patrol": {
+      "title": "管理员巡检+处理问题",
+      "steps": [
+        "admin_login(password='<ADMIN_PASSWORD>')",
+        "admin_patrol(admin_token='admin_xxx...')",
+        "发现问题: xingchen-tech素材不足(0个)",
+        "admin_list_feedbacks(admin_token='admin_xxx...', status='open')",
+        "通知租户上传素材"
+      ]
+    },
+    "example3_content_approval": {
+      "title": "租户内容审批",
+      "steps": [
+        "portal_login(username='xingchen', password='<YOUR_PASSWORD>')",
+        "portal_list_pending_content(token='abc123...')",
+        "portal_approve_content(token='abc123...', content_id='cnt_001', action='approve')"
+      ]
+    }
+  }
+}

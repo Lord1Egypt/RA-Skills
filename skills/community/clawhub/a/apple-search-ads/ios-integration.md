@@ -1,12 +1,20 @@
 # iOS Integration — Apple Search Ads
 
-Complete guide for integrating Apple Search Ads attribution in your iOS app.
+Complete guide for integrating Apple Search Ads attribution in your iOS app. Reading and reconciling the resulting numbers is the analysis side — `measurement.md`.
+
+Contents: Overview · AdServices Framework · SKAdNetwork · MMP Integration · Testing Attribution · Best Practices
 
 ## Overview
 
 Two complementary systems:
 1. **AdServices** (iOS 14.3+) — Direct attribution with campaign details
 2. **SKAdNetwork** — Privacy-focused conversion tracking
+
+Mechanics that shape the integration:
+- The AdServices attribution token is valid for 24 hours after generation — fetch and resolve it on first launch; there is no second chance after the window.
+- Attribution works **without** ATT consent: it returns campaign-level IDs, no user identifiers.
+- Apple's endpoint can return 404 before attribution data is ready. Apple's documented guidance: retry up to 3 times at 5-second intervals before treating the install as organic. Skipping the retry silently undercounts paid installs.
+- The old iAd attribution API is dead (shut down 2023) — AdServices is the only direct path.
 
 ## AdServices Framework
 
@@ -45,9 +53,6 @@ class AttributionManager {
             // Mark as fetched
             UserDefaults.standard.set(true, forKey: "asa_attribution_fetched")
             
-        } catch AAAttribution.ErrorCode.denied {
-            // User denied tracking (ATT)
-            print("Attribution denied")
         } catch {
             // Not from ASA or network error
             print("Attribution error: \(error)")
@@ -60,14 +65,22 @@ class AttributionManager {
         request.setValue("text/plain", forHTTPHeaderField: "Content-Type")
         request.httpBody = token.data(using: .utf8)
         
-        let (data, response) = try await URLSession.shared.data(for: request)
-        
-        guard let httpResponse = response as? HTTPURLResponse,
-              httpResponse.statusCode == 200 else {
+        // Apple's guidance: data may not be ready yet — on 404, retry up to 3x, 5s apart
+        for attempt in 1...3 {
+            let (data, response) = try await URLSession.shared.data(for: request)
+            guard let httpResponse = response as? HTTPURLResponse else {
+                throw AttributionError.invalidResponse
+            }
+            if httpResponse.statusCode == 200 {
+                return try JSONDecoder().decode(AttributionResponse.self, from: data)
+            }
+            if httpResponse.statusCode == 404 && attempt < 3 {
+                try await Task.sleep(nanoseconds: 5_000_000_000)
+                continue
+            }
             throw AttributionError.serverError
         }
-        
-        return try JSONDecoder().decode(AttributionResponse.self, from: data)
+        throw AttributionError.serverError
     }
     
     private func handleAttribution(_ response: AttributionResponse) async {
@@ -157,6 +170,12 @@ func requestTrackingAndAttribution() async {
 
 ## SKAdNetwork
 
+Facts that shape the conversion strategy:
+- Conversion value is 6 bits (0-63). Design the full mapping **before launch** — installs measured under an old mapping cannot be reinterpreted.
+- SKAN 4 sends up to three postbacks per install, over windows of 0-2, 3-7, and 8-35 days. The fine-grained value (0-63) arrives only in the first postback; the second and third carry only the coarse value (low/medium/high).
+- Under SKAN 3, every conversion update resets a 24-hour timer; the postback fires with a randomized delay after it expires. Consequence: never expect same-day install counts, and never daypart on SKAN install data.
+- Fine-grained values are withheld below Apple's crowd-anonymity thresholds — low-volume campaigns receive coarse or null values by design, not by bug.
+
 ### Info.plist Setup
 
 Add Apple's network ID to your Info.plist:
@@ -183,8 +202,16 @@ class SKAdNetworkManager {
     
     /// Call on app install/first launch
     func registerInstall() {
-        if #available(iOS 15.4, *) {
+        if #available(iOS 16.1, *) {
+            // SKAN 4: coarseValue is available from iOS 16.1 only
             SKAdNetwork.updatePostbackConversionValue(0, coarseValue: .low) { error in
+                if let error = error {
+                    print("SKAdNetwork register error: \(error)")
+                }
+            }
+        } else if #available(iOS 15.4, *) {
+            // iOS 15.4–16.0: fine-only completion-handler variant
+            SKAdNetwork.updatePostbackConversionValue(0) { error in
                 if let error = error {
                     print("SKAdNetwork register error: \(error)")
                 }
@@ -205,8 +232,11 @@ class SKAdNetworkManager {
                 }
             }
         } else if #available(iOS 15.4, *) {
-            SKAdNetwork.updatePostbackConversionValue(value, coarseValue: coarse ?? .medium) { error in
-                // Handle error
+            // Fine-only variant — coarseValue does not exist before 16.1
+            SKAdNetwork.updatePostbackConversionValue(value) { error in
+                if let error = error {
+                    print("SKAdNetwork update error: \(error)")
+                }
             }
         } else if #available(iOS 14.0, *) {
             SKAdNetwork.updateConversionValue(value)
@@ -368,13 +398,13 @@ func application(_ application: UIApplication,
 func fetchAttribution() async {
     do {
         let token = try AAAttribution.attributionToken()
-        print("🍎 ASA Token: \(token.prefix(50))...")
+        print("[ASA] Token: \(token.prefix(50))...")
         
         let attribution = try await fetchAttributionData(token: token)
-        print("🍎 ASA Attribution: \(attribution)")
+        print("[ASA] Attribution: \(attribution)")
         
     } catch {
-        print("🍎 ASA Error: \(error)")
+        print("[ASA] Error: \(error)")
     }
 }
 ```
@@ -383,17 +413,17 @@ func fetchAttribution() async {
 
 | Issue | Cause | Solution |
 |-------|-------|----------|
-| Token error | Simulator | Use real device |
-| No attribution | Organic install | Expected if not from ad |
-| Network error | No internet | Retry later |
+| Token error | Simulator | Use real device — the simulator has no attribution token |
+| 404 from endpoint | Attribution data not ready yet | Retry up to 3x at 5s intervals (Apple's guidance), then treat as organic |
+| `attribution: false` | Organic install | Expected — most installs are not from ads; not an error |
+| No attribution despite ad tap | Token fetched later than 24h after generation | Fetch and resolve on first launch, within the token window |
 | Server error | Apple API down | Retry with backoff |
 
 ## Best Practices
 
-1. **Fetch attribution early** — On first app launch, before user interaction
-2. **Don't block UI** — Run attribution in background
-3. **Handle errors gracefully** — Most installs won't be attributed
-4. **Store locally** — Save attribution data for later analysis
-5. **Use both systems** — AdServices for details, SKAdNetwork for privacy-safe
-6. **Test on device** — Attribution doesn't work in simulator
-7. **Coordinate with MMP** — If using MMP, let them handle attribution
+1. **Fetch on first launch, off the main thread** — the token window is 24h and you get one shot per install; retry 404s (→ Overview)
+2. **Persist the attribution result immediately** — token and window expire; re-fetching later returns nothing
+3. **`attribution: false` is the normal case** — most installs are organic; log it, don't alert on it
+4. **Design the 0-63 mapping around your paywall funnel** — updates only move the value upward, so order events by revenue proximity, not by chronology
+5. **If an MMP is installed, let it own both AdServices and SKAN** — a second direct integration double-counts and can clobber the MMP's conversion values
+6. **Use both systems** — AdServices gives campaign/keyword detail for optimization; SKAN gives the privacy-safe install counts Apple's ecosystem reports against

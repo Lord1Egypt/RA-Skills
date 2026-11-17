@@ -1,6 +1,6 @@
 {
-  "ownerId": "kn7fehp5rjd0sfwn6sqjc19yax83b5bk",
-  "slug": "ths-stock-themes",
-  "version": "2.0.0",
-  "publishedAt": 1774147279218
+  "name": "ths-stock-themes",
+  "version": "1.0.1",
+  "description": "获取同花顺个股题材/概念板块和人气排名数据",
+  "slug": "ths-stock-themes"
 }

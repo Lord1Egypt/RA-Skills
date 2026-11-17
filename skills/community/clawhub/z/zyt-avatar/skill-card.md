@@ -1,42 +1,53 @@
-## Description: <br>
-Zyt avatar helps agents use the Chanjing Avatar API to upload source media, create lip-sync video tasks, and poll for generated video URLs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use the Chanjing avatar API to create lip-sync videos by uploading source media, creating avatar tasks, and polling task status.
 
-## Publisher: <br>
-[zuoyuting214](https://clawhub.ai/user/zuoyuting214) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zuoyuting214](https://clawhub.ai/user/zuoyuting214)
 
-## Use Case: <br>
-Developers and agents use this skill to create text-driven or audio-driven lip-sync avatar videos through Chanjing, including media upload, task creation, status polling, and returning generated video URLs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles Chanjing credentials and sends user-provided media, text, audio, and generated video URLs to Chanjing. <br>
-Mitigation: Keep credentials in a private local configuration file with restrictive permissions and only submit media intended for Chanjing processing. <br>
-Risk: The API base URL can be changed with CHANJING_API_BASE, which could send credentials or media to an unintended endpoint. <br>
-Mitigation: Keep CHANJING_API_BASE pointed at https://open-api.chanjing.cc unless another endpoint is deliberately trusted. <br>
-Risk: Some helper scripts described by the skill are not present in this artifact. <br>
-Mitigation: Confirm available files before running documented examples and add missing helpers only from a trusted source. <br>
+## Use Case:
 
+Developers and creators use this skill to create Chanjing lip-sync avatar videos from a source video and either text-to-speech input or an uploaded audio file.
 
-## Reference(s): <br>
-- [Chanjing Open API](https://open-api.chanjing.cc) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and returned URLs or status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns remote video URLs by default and task status or progress while polling.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: server release metadata) <br>
+Risk: The skill stores reusable Chanjing credentials and cached access tokens in a local credentials file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a private configuration directory, restrict credentials.json to the local user account, and install only where the Chanjing credentials are trusted.
+
+Risk: CHANJING_API_BASE can change the API endpoint used for credential and token requests.
+
+Mitigation: Leave CHANJING_API_BASE unset unless intentionally using a trusted HTTPS endpoint.
+
+## Reference(s):
+
+- [Chanjing Open API](https://open-api.chanjing.cc)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Guidance, API calls]
+
+**Output Format:** [Markdown guidance with shell commands and JSON examples; runtime outputs include remote video URLs, task status, progress, and Chanjing file or task identifiers.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Does not auto-download generated videos by default; uses local Chanjing credentials and returns login guidance when credentials are missing or invalid.]
+
+## Skill Version(s):
+
+0.2.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

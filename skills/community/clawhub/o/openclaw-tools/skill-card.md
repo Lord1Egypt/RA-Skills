@@ -1,45 +1,56 @@
-## Description: <br>
-Search and discover OpenClaw skills from various sources. Use when: user wants to find available skills, search for specific functionality, or discover new skills to install. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search and discover OpenClaw skills from various sources for users who want to find available skills, search for specific functionality, or discover new skills to install.
 
-## Publisher: <br>
-[mr-liu-lang](https://clawhub.ai/user/mr-liu-lang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mr-liu-lang](https://clawhub.ai/user/mr-liu-lang)
 
-## Use Case: <br>
-Developers and agent users use this skill to find available OpenClaw skills, compare discovery sources, and gather search, installation, and troubleshooting guidance before adding a skill. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Suggested npx clawhub commands can download and execute remote package code. <br>
-Mitigation: Verify the package source before execution or use a trusted pinned version. <br>
-Risk: Skill discovery guidance can point users to third-party marketplaces, forums, or community links whose content may change. <br>
-Mitigation: Review linked skills and their requirements, licenses, and security posture before installation or production use. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to locate available skills across ClawHub, directories, marketplaces, GitHub, and community sources before deciding what to install or evaluate.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mr-liu-lang/openclaw-tools) <br>
-- [ClawHub](https://clawhub.com) <br>
-- [OpenClaw Directory skills](https://www.openclawdirectory.dev/skills) <br>
-- [LobeHub Skills Marketplace](https://lobehub.com/skills) <br>
-- [SitePoint community](https://www.sitepoint.com/community/) <br>
-- [ClawHub Discord](https://discord.com/invite/clawd) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, markdown] <br>
-**Output Format:** [Markdown with inline shell commands and reference links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable code is bundled; suggested commands should be reviewed before running.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Examples use unpinned npx commands for the ClawHub CLI, which can execute the currently resolved package version.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a verified local ClawHub install or pin the clawhub package to a reviewed version before running examples in sensitive workspaces.
+
+Risk: Installing skills from discovery sources can introduce unreviewed third-party instructions into an agent workspace.
+
+Mitigation: Read each discovered skill's documentation and test new skills in isolation before production or sensitive use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mr-liu-lang/skills/openclaw-tools)
+- [ClawHub](https://clawhub.com)
+- [OpenClaw Directory skills](https://www.openclawdirectory.dev/skills)
+- [LobeHub Skills Marketplace](https://lobehub.com/skills)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Provides search strategies, source links, installation evaluation tips, and troubleshooting guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,56 @@
-## Description: <br>
-Automated lead generation assistant - finds companies, scores them, writes personalized outreach emails, and tracks pipeline. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automated lead generation assistant - finds companies, scores them, writes personalized outreach emails, and tracks pipeline.
 
-## Publisher: <br>
-[Clawdquip](https://clawhub.ai/user/Clawdquip) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[clawdquip](https://clawhub.ai/user/clawdquip)
 
-## Use Case: <br>
-Sales and growth users use this skill in OpenClaw to discover and track prospective companies, score leads, draft personalized outreach, export pipeline data, and manage follow-ups. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill retains prospect, contact, outreach, and pipeline data locally. <br>
-Mitigation: Review the local storage location, restrict access to the workspace, and keep backups before overwriting JSON lead data. <br>
-Risk: The skill can send Gmail outreach and may act with too little confirmation or scoping. <br>
-Mitigation: Require preview-and-confirm behavior for every outbound email and review outreach practices for compliance before use. <br>
-Risk: The skill can support unsolicited or high-volume outreach workflows. <br>
-Mitigation: Use only with approved prospecting policies, appropriate consent or lawful basis, and rate limits suited to the user's organization. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Clawdquip/lead-gen-operator) <br>
-- [README](README.md) <br>
-- [Setup Guide](SETUP-GUIDE.md) <br>
-- [Agent Persona](SOUL.md) <br>
+## Use Case:
 
+Sales teams and business development operators use this skill to find prospects, enrich and score leads, draft outreach, send Gmail-backed messages when connected, and track pipeline follow-ups in OpenClaw.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, JSON, CSV, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, local JSON lead records, CSV exports, and generated email draft text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local OpenClaw workspace files for lead storage and may optionally support Gmail outreach through a separate connected skill.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill stores prospect data and outreach drafts in local workspace memory and can export that data to CSV.
+
+Mitigation: Avoid sensitive or regulated contact data, protect exported files, and document deletion and retention controls before operational use.
+
+Risk: The skill can send outreach through a connected Gmail tool and mutates lead status automatically.
+
+Mitigation: Review generated recipients, message content, and status updates before sending or bulk-updating leads.
+
+Risk: Security guidance identifies unsafe local file and command patterns, unvalidated memory filenames, CSV serialization concerns, and unpinned dependencies.
+
+Mitigation: Prefer a patched version that validates memory filenames, avoids shell command construction from web-derived fields, safely serializes CSV, and pins dependencies.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/clawdquip/skills/lead-gen-operator)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, JSON, CSV]
+
+**Output Format:** [Markdown and plain text guidance with JSON memory records, CSV exports, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires OpenClaw, Node.js, web search/fetch skills, and optional Gmail/gog integration; stores lead data in local workspace memory.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter metadata and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

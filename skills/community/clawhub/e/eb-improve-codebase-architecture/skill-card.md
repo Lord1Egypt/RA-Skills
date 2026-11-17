@@ -1,39 +1,54 @@
-## Description: <br>
-Explore a codebase to find opportunities for architectural improvement, focusing on making the codebase more testable by deepening shallow modules. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Explore a codebase to identify architectural refactoring opportunities that improve testability by deepening shallow modules.
 
-## Publisher: <br>
-[emersonbraun](https://clawhub.ai/user/emersonbraun) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[emersonbraun](https://clawhub.ai/user/emersonbraun)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to inspect codebases, identify shallow or tightly coupled modules, compare interface designs, and prepare refactor RFCs that improve testability and maintainability. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may create a GitHub issue without final user review. <br>
-Mitigation: Require the agent to draft the RFC locally, show the target repository, title, labels, and full issue body, and run `gh issue create` only after explicit approval. <br>
+## Use Case:
 
+Developers and engineers use this skill to inspect a codebase for shallow, tightly coupled modules and design deeper module interfaces that are easier to test and maintain. It helps compare refactoring candidates, dependency strategies, test impact, and RFC-style issue content.
 
-## Reference(s): <br>
-- [Reference](artifact/REFERENCE.md) <br>
-- [ClawHub skill page](https://clawhub.ai/emersonbraun/eb-improve-codebase-architecture) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown with prose, code sketches, issue RFC content, and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include GitHub issue creation commands after the user has selected a refactor interface.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill may publish a GitHub issue before the user reviews the repository target and full issue content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Change or override the workflow so it drafts the issue, displays the target repository and complete content, and requires explicit user approval before running the publish command.
+
+Risk: Architecture recommendations may be incomplete or unsuitable if the exploration misses important coupling, ownership, or test constraints.
+
+Mitigation: Review candidate modules, dependency categories, and proposed test changes before accepting a refactor plan.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/emersonbraun/skills/eb-improve-codebase-architecture)
+- [REFERENCE.md](artifact/REFERENCE.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with code sketches, comparison notes, RFC issue content, and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create a GitHub issue after the user selects an interface.]
+
+## Skill Version(s):
+
+1.0.0 (source: skill metadata and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

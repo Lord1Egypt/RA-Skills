@@ -1,44 +1,56 @@
-## Description: <br>
-Guides agents through exporting, validating, searching, summarizing, and reporting on Claude.ai web chat history from a local conversations.json file. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill guides agents through locally analyzing a Claude.ai web export (`conversations.json`) for search, timelines, theme extraction, statistics, and reports while preserving user privacy.
 
-## Publisher: <br>
-[shaoqing404](https://clawhub.ai/user/shaoqing404) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shaoqing404](https://clawhub.ai/user/shaoqing404)
 
-## Use Case: <br>
-Developers, analysts, and Claude.ai users use this skill to inspect local Claude.ai web chat exports, find prior conversations, build timelines, summarize themes, and prepare readable reports while avoiding full-file disclosure. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Claude.ai export files can contain sensitive personal data, credentials, or private work content. <br>
-Mitigation: Analyze the local file selectively, avoid echoing full contents, redact sensitive fields in reports by default, and advise the user to remove the export from the workspace after use. <br>
-Risk: Large conversations.json files can exceed context or terminal output limits if read or printed wholesale. <br>
-Mitigation: Use targeted jq queries, validate the top-level structure first, and summarize or page long sessions instead of reading or printing the full export. <br>
-Risk: The guidance includes shell commands that operate on user-provided file paths. <br>
-Mitigation: Confirm the path and export source before running commands, and stop if the file shape suggests Claude Code, API, or another unsupported format. <br>
+## Use Case:
 
+Users and developers use this skill when they need an agent to help inspect a local Claude.ai web chat export, locate past conversations, summarize activity over time, extract themes, compute basic conversation statistics, or prepare privacy-conscious reports.
 
-## Reference(s): <br>
-- [Server-resolved GitHub source](https://github.com/shaoqing404/ai-chat-timeline-skills/tree/main/skills/claude-chat-export-analyze) <br>
-- [Claude.ai](https://claude.ai) <br>
-- [ClawHub skill page](https://clawhub.ai/shaoqing404/skills/claude-chat-export-analyze) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, markdown, text] <br>
-**Output Format:** [Markdown guidance with jq command examples and concise analysis outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce local summaries, timelines, selected excerpts, and redacted reports from user-provided Claude.ai export files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Claude.ai chat exports may contain secrets, personal information, or other sensitive conversation content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep processing local, provide only the file path to the agent, review generated reports for sensitive content, and move or delete the export when analysis is complete.
+
+Risk: Using the skill on an unsupported export format could produce incorrect analysis.
+
+Mitigation: Validate that the file is a Claude.ai web `conversations.json` array with the expected session fields before running jq analysis, and stop for source clarification if the structure differs.
+
+## Reference(s):
+
+- [Claude.ai](https://claude.ai)
+- [Server-resolved GitHub source](https://github.com/shaoqing404/ai-chat-timeline-skills/tree/main/skills/claude-chat-export-analyze)
+- [ClawHub skill page](https://clawhub.ai/shaoqing404/skills/claude-chat-export-analyze)
+- [ClawHub publisher profile](https://clawhub.ai/user/shaoqing404)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance, Analysis]
+
+**Output Format:** [Markdown and text with inline jq and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce local analysis summaries, timelines, selected conversation excerpts, or report drafts; sensitive output should be reviewed and redacted before sharing.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,59 @@
-## Description: <br>
-Essential Docker commands and workflows for container management, image operations, and debugging. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Essential Docker commands and workflows for container management, image operations, and debugging.
 
-## Publisher: <br>
-[a2mus](https://clawhub.ai/user/a2mus) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[a2mus](https://clawhub.ai/user/a2mus)
 
-## Use Case: <br>
-Developers and engineers use this skill as a concise Docker command reference for container lifecycle tasks, image management, debugging, Docker Compose workflows, networking, volumes, and system cleanup. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Some referenced Docker commands can remove containers, images, networks, volumes, or other local Docker resources if run carelessly. <br>
-Mitigation: Review container, image, network, and volume names before running destructive commands such as prune, rm, rmi, or compose down -v. <br>
-Risk: Commands that mount host paths, push images, or open root shells can expose local files, publish unintended images, or alter container state. <br>
-Mitigation: Verify host mount paths, registry targets, and shell user context before executing these examples. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Docker Documentation](https://docs.docker.com/) <br>
-- [Dockerfile Reference](https://docs.docker.com/engine/reference/builder/) <br>
-- [Compose File Reference](https://docs.docker.com/compose/compose-file/) <br>
+## Use Case:
 
+Developers and engineers use this skill as a quick reference for common Docker container, image, Compose, networking, volume, system management, and debugging commands.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Code, Guidance] <br>
-**Output Format:** [Markdown with inline bash and Dockerfile code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Docker for command execution; examples should be reviewed before running against local containers, images, networks, volumes, or registries.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Cleanup commands such as Docker prune operations can remove containers, images, networks, volumes, or build cache that users still need.
+
+Mitigation: Review each cleanup command before use, scope it to the intended environment, and avoid running broad prune commands against production or shared Docker hosts.
+
+Risk: Examples using unpinned or latest images can produce non-repeatable or unexpected runtime behavior.
+
+Mitigation: Pin trusted image versions or digests for real workloads and review images before pulling or running them.
+
+Risk: The PostgreSQL example includes a simple password and exposed port that are only appropriate for isolated local testing.
+
+Mitigation: Use strong secrets, limit network exposure, and apply production database hardening before adapting the example outside local development.
+
+## Reference(s):
+
+- [Doro Docker Essentials on ClawHub](https://clawhub.ai/a2mus/skills/doro-docker-essentials)
+- [Docker documentation](https://docs.docker.com/)
+- [Dockerfile reference](https://docs.docker.com/engine/reference/builder/)
+- [Compose file reference](https://docs.docker.com/compose/compose-file/)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline bash and Dockerfile code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Docker CLI availability for commands that users choose to run.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

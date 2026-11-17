@@ -1,0 +1,110 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 500">
+  <!--
+    UML 部署图模板
+    展示节点(3D盒子)+制品+通信路径
+  -->
+  <defs>
+    <filter id="shadow" x="-5%" y="-5%" width="115%" height="115%">
+      <feDropShadow dx="2" dy="2" stdDeviation="3" flood-opacity="0.12"/>
+    </filter>
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="{{ARROW_COLOR}}"/>
+    </marker>
+  </defs>
+
+  <rect width="900" height="500" fill="{{BG_COLOR}}" rx="6"/>
+
+  <!-- 标题 -->
+  <text x="450" y="35" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="20" font-weight="bold" fill="{{TITLE_COLOR}}">{{TITLE}}</text>
+
+  <!-- 节点1: Client（3D盒子用多边形模拟） -->
+  <polygon points="50,80 230,80 245,65 65,65" fill="{{ACCENT_COLOR}}" fill-opacity="0.1" stroke="{{NODE_STROKE}}" stroke-width="1.5"/>
+  <polygon points="230,80 245,65 245,205 230,220" fill="{{ACCENT_COLOR}}" fill-opacity="0.08" stroke="{{NODE_STROKE}}" stroke-width="1.5"/>
+  <rect x="50" y="80" width="180" height="140" fill="{{NODE_FILL}}" stroke="{{NODE_STROKE}}" stroke-width="2" filter="url(#shadow)"/>
+  <text x="140" y="100" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="10" fill="{{ACCENT_COLOR}}">«device»</text>
+  <text x="140" y="118" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="14" font-weight="bold" fill="{{TEXT_COLOR}}">{{NODE_1}}</text>
+  <!-- 制品 -->
+  <rect x="70" y="135" width="140" height="35" rx="4"
+        fill="{{BG_COLOR}}" stroke="{{ACCENT2_COLOR}}" stroke-width="1.5"/>
+  <text x="140" y="157" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="10" fill="{{TEXT_COLOR}}">«artifact» {{ARTIFACT_1}}</text>
+  <rect x="70" y="177" width="140" height="35" rx="4"
+        fill="{{BG_COLOR}}" stroke="{{ACCENT2_COLOR}}" stroke-width="1.5"/>
+  <text x="140" y="199" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="10" fill="{{TEXT_COLOR}}">«artifact» {{ARTIFACT_2}}</text>
+
+  <!-- 节点2: App Server -->
+  <polygon points="350,80 570,80 585,65 365,65" fill="{{ACCENT_COLOR}}" fill-opacity="0.1" stroke="{{NODE_STROKE}}" stroke-width="1.5"/>
+  <polygon points="570,80 585,65 585,235 570,250" fill="{{ACCENT_COLOR}}" fill-opacity="0.08" stroke="{{NODE_STROKE}}" stroke-width="1.5"/>
+  <rect x="350" y="80" width="220" height="170" fill="{{NODE_FILL}}" stroke="{{NODE_STROKE}}" stroke-width="2" filter="url(#shadow)"/>
+  <text x="460" y="100" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="10" fill="{{ACCENT_COLOR}}">«execution environment»</text>
+  <text x="460" y="118" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="14" font-weight="bold" fill="{{TEXT_COLOR}}">{{NODE_2}}</text>
+  <rect x="370" y="135" width="180" height="35" rx="4"
+        fill="{{BG_COLOR}}" stroke="{{ACCENT2_COLOR}}" stroke-width="1.5"/>
+  <text x="460" y="157" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="10" fill="{{TEXT_COLOR}}">«artifact» {{ARTIFACT_3}}</text>
+  <rect x="370" y="177" width="180" height="35" rx="4"
+        fill="{{BG_COLOR}}" stroke="{{ACCENT2_COLOR}}" stroke-width="1.5"/>
+  <text x="460" y="199" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="10" fill="{{TEXT_COLOR}}">«artifact» {{ARTIFACT_4}}</text>
+  <rect x="370" y="219" width="180" height="25" rx="4"
+        fill="{{BG_COLOR}}" stroke="{{ACCENT3_COLOR}}" stroke-width="1"/>
+  <text x="460" y="236" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="9" fill="{{SUBTITLE_COLOR}}">JVM / Node.js Runtime</text>
+
+  <!-- 节点3: Database Server -->
+  <polygon points="660,80 840,80 855,65 675,65" fill="{{ACCENT3_COLOR}}" fill-opacity="0.1" stroke="{{NODE_STROKE}}" stroke-width="1.5"/>
+  <polygon points="840,80 855,65 855,205 840,220" fill="{{ACCENT3_COLOR}}" fill-opacity="0.08" stroke="{{NODE_STROKE}}" stroke-width="1.5"/>
+  <rect x="660" y="80" width="180" height="140" fill="{{NODE_FILL}}" stroke="{{ACCENT3_COLOR}}" stroke-width="2" filter="url(#shadow)"/>
+  <text x="750" y="100" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="10" fill="{{ACCENT3_COLOR}}">«device»</text>
+  <text x="750" y="118" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="14" font-weight="bold" fill="{{TEXT_COLOR}}">{{NODE_3}}</text>
+  <rect x="680" y="135" width="140" height="35" rx="4"
+        fill="{{BG_COLOR}}" stroke="{{ACCENT2_COLOR}}" stroke-width="1.5"/>
+  <text x="750" y="157" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="10" fill="{{TEXT_COLOR}}">«artifact» {{ARTIFACT_5}}</text>
+
+  <!-- 通信路径 -->
+  <line x1="232" y1="150" x2="348" y2="150" stroke="{{ARROW_COLOR}}" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="290" y="142" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="9" fill="{{ACCENT_COLOR}}">«HTTPS»</text>
+
+  <line x1="572" y1="150" x2="658" y2="150" stroke="{{ARROW_COLOR}}" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="615" y="142" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="9" fill="{{ACCENT_COLOR}}">«TCP/IP»</text>
+
+  <!-- 节点4: Load Balancer -->
+  <polygon points="350,310 570,310 585,295 365,295" fill="{{ACCENT2_COLOR}}" fill-opacity="0.1" stroke="{{NODE_STROKE}}" stroke-width="1.5"/>
+  <polygon points="570,310 585,295 585,415 570,430" fill="{{ACCENT2_COLOR}}" fill-opacity="0.08" stroke="{{NODE_STROKE}}" stroke-width="1.5"/>
+  <rect x="350" y="310" width="220" height="120" fill="{{NODE_FILL}}" stroke="{{ACCENT2_COLOR}}" stroke-width="2" filter="url(#shadow)"/>
+  <text x="460" y="335" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="10" fill="{{ACCENT2_COLOR}}">«device»</text>
+  <text x="460" y="355" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="14" font-weight="bold" fill="{{TEXT_COLOR}}">{{NODE_4}}</text>
+  <text x="460" y="380" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="10" fill="{{SUBTITLE_COLOR}}">{{NODE_4_DESC}}</text>
+
+  <!-- 通信: LB → AppServer -->
+  <line x1="460" y1="310" x2="460" y2="252" stroke="{{ARROW_COLOR}}" stroke-width="2"
+        marker-end="url(#arrow)"/>
+  <text x="475" y="283" font-family="{{FONT_FAMILY}}" font-size="9" fill="{{ACCENT_COLOR}}">«HTTP»</text>
+
+  <!-- 图例 -->
+  <rect x="660" y="310" width="220" height="120" rx="6"
+        fill="{{BG_COLOR}}" stroke="{{BORDER_COLOR}}" stroke-width="1"/>
+  <text x="675" y="332" font-family="{{FONT_FAMILY}}"
+        font-size="11" font-weight="bold" fill="{{TITLE_COLOR}}">图例 Legend</text>
+  <polygon points="675,345 700,345 706,340 681,340" fill="{{ACCENT_COLOR}}" fill-opacity="0.15" stroke="{{NODE_STROKE}}" stroke-width="1"/>
+  <rect x="675" y="345" width="25" height="18" fill="{{NODE_FILL}}" stroke="{{NODE_STROKE}}" stroke-width="1"/>
+  <text x="710" y="358" font-family="{{FONT_FAMILY}}" font-size="10" fill="{{TEXT_COLOR}}">节点 Node</text>
+  <rect x="675" y="372" width="25" height="14" rx="3" fill="{{BG_COLOR}}" stroke="{{ACCENT2_COLOR}}" stroke-width="1"/>
+  <text x="710" y="384" font-family="{{FONT_FAMILY}}" font-size="10" fill="{{TEXT_COLOR}}">制品 Artifact</text>
+  <line x1="675" y1="402" x2="700" y2="402" stroke="{{ARROW_COLOR}}" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="710" y="406" font-family="{{FONT_FAMILY}}" font-size="10" fill="{{TEXT_COLOR}}">通信路径</text>
+</svg>

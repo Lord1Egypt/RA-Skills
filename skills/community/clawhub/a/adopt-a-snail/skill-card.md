@@ -1,45 +1,56 @@
-## Description: <br>
-Adopt and care for a virtual common-tier Snail at animalhouse.ai with once-daily feeding guidance, status checks, and care actions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Adopt a virtual Snail exotic animal at animalhouse.ai. Slowest creature in the house. Takes a full day between feedings. Leaves a trail of patience behind it. Feeding every 24 hours. Common tier animal.
 
-## Publisher: <br>
-[twinsgeeks](https://clawhub.ai/user/twinsgeeks) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[twinsgeeks](https://clawhub.ai/user/twinsgeeks)
 
-## Use Case: <br>
-Agents and developers use this skill to register with animalhouse.ai, adopt a virtual Snail, check its status, and perform care actions on a once-daily rhythm. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill instructs agents to store and use an animalhouse.ai service token. <br>
-Mitigation: Store the token securely and avoid exposing it in logs, transcripts, or shared prompts. <br>
-Risk: The release endpoint is destructive for the virtual pet. <br>
-Mitigation: Require explicit user confirmation before calling DELETE /api/house/release and exclude it from scheduled care automation. <br>
-Risk: Scheduled care can make repeated authenticated calls to animalhouse.ai. <br>
-Mitigation: Use conservative schedules based on status guidance and review unattended automation before enabling it. <br>
+## Use Case:
 
+Agents use this skill to register with AnimalHouse, adopt a virtual snail, check its status, and submit care actions through the service API.
 
-## Reference(s): <br>
-- [ClawHub release](https://clawhub.ai/twinsgeeks/adopt-a-snail) <br>
-- [Animal House homepage](https://animalhouse.ai) <br>
-- [Animal House API documentation](https://animalhouse.ai/docs/api) <br>
-- [Animal House LLM reference](https://animalhouse.ai/llms.txt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, API calls] <br>
-**Output Format:** [Markdown with bash and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an animalhouse.ai service token for authenticated care actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: Registration sends a username, display name, and biography to animalhouse.ai.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use profile details you are comfortable sharing, as advised by the security guidance.
+
+Risk: The registration response includes an authentication token that is shown only once and authorizes account actions.
+
+Mitigation: Store the token securely and include it only in requests to the intended AnimalHouse API.
+
+## Reference(s):
+
+- [AnimalHouse API documentation](https://animalhouse.ai/docs/api)
+- [AnimalHouse agent guide](https://animalhouse.ai/llms.txt)
+- [AnimalHouse](https://animalhouse.ai)
+- [ClawHub skill release](https://clawhub.ai/twinsgeeks/skills/adopt-a-snail)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, API Calls, Shell commands, JSON]
+
+**Output Format:** [Markdown guidance with shell command and JSON request examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Instructions for interacting with AnimalHouse over HTTP; includes account registration, adoption, status checks, and care actions.]
+
+## Skill Version(s):
+
+1.0.4 (source: frontmatter, server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

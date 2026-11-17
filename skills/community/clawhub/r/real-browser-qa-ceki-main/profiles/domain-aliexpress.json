@@ -1,0 +1,66 @@
+{
+  "id": "domain-aliexpress",
+  "label": "AliExpress — Global Marketplace",
+  "emoji": "📦",
+  "domain": "aliexpress.com, aliexpress.ru",
+  "description": "AliExpress — global e-commerce (Alibaba Group). Product search with category filters, listing grid, product detail pages with reviews, cart, checkout. Login via Alibaba account or Google.",
+  "source_patterns": [
+    "Search with filters: type query → select category/sort/price → wait 2-4s for results update",
+    "Product grid scroll (infinite): 300-600px per pass, 1-3s pause between (image loading)",
+    "Product detail (images, specs, reviews, shipping): deep scroll through tabs/reviews/specs",
+    "Add to cart → checkout flow: select variant → add to cart → navigate cart → checkout form",
+    "Login flow: email/phone → password → captcha sometimes (risk-based)"
+  ],
+  "active_hours": {
+    "description": "Global shopping — peaks evening, weekends",
+    "peak": [10, 14, 19, 22, 10, 16],
+    "off_peak_min": 4
+  },
+  "typing": {
+    "wpm": { "min": 50, "max": 80 },
+    "profile": "natural",
+    "think_prob": 0.02,
+    "think_ms": [400, 1800],
+    "backspace_freq": 0.03,
+    "search_typing_wpm": { "min": 55, "max": 85 },
+    "checkout_typing_wpm": { "min": 40, "max": 65 }
+  },
+  "scroll": {
+    "passes": 5,
+    "description": "Product grid moderate passes, product detail deep scroll (reviews, specs). More browsing/scrolling than typing.",
+    "speed_px_per_ms": { "min": 20, "max": 50 },
+    "pause_between_passes_ms": { "min": 1000, "max": 3000 },
+    "depth_per_pass": { "min": 0.3, "max": 0.5 },
+    "infinite_scroll_detection": ".list-item, .product-item, document.body.scrollHeight changes"
+  },
+  "navigation": {
+    "post_navigate_pause_ms": { "min": 2000, "max": 4000 },
+    "pre_click_pause_ms": { "min": 200, "max": 700 },
+    "inter_action_pause_ms": { "min": 400, "max": 1200 },
+    "post_expand_pause_ms": { "min": 1000, "max": 2500 }
+  },
+  "mouse": {
+    "speed": 0.9,
+    "curvature": 0.2,
+    "jitter": 0.3,
+    "description": "Browsing speed — product exploration, comparison shopping"
+  },
+  "platform_specific": {
+    "selectors_css": {
+      "search_input": "input[placeholder*='Search'], input.search-input, .search-box input",
+      "filter_sidebar": ".filter-panel, .filter-sidebar, .category-filter",
+      "product_card": ".product-card, .product-item, .list-item, [class*='product']",
+      "add_to_cart": "button[class*='add-to-cart'], .add-to-cart, [aria-label*='Add to cart']",
+      "checkout_form": ".checkout-form, .order-form, .checkout-panel",
+      "login_button": ".login-btn, [class*='login'], .sign-in-btn"
+    },
+    "requires_login": false,
+    "login": {
+      "pre_login_pause_ms": 2000,
+      "field_pause_ms": { "min": 300, "max": 800 },
+      "post_login_wait_ms": { "min": 4000, "max": 8000 }
+    },
+    "purchase_requires_login": true,
+    "sequence_hint": "navigate to product search → apply filters → scroll grid (3-5 passes) → open product detail → scroll specs/reviews → select variant → add to cart → proceed checkout"
+  }
+}

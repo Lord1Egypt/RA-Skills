@@ -1,0 +1,712 @@
+{
+  "schema_version": "1.0",
+  "generated": "2026-10-06",
+  "export_root": "G:\\Data\\Tools\\Quicker\\export",
+  "source": "Quicker 维护工具全量备份：设置 → 维护工具 → 备份数据（官方文档：https://getquicker.net/KC/Manual/Doc/settings-BasicToolsSettingPage）。备份会复制 quicker.db 并移除访问密码，并将所有动作页和动作拆分为独立 JSON 文件。",
+  "file_types": [
+    {
+      "id": "actionpage",
+      "pattern": "actionpage_*.json",
+      "location": "export_root 根目录",
+      "purpose": "动作页（Profile）定义：面板布局与动作项",
+      "quicker_feature": "动作页/面板",
+      "description": "每个文件是一个动作页。ActionItems 是页面上放置的动作项；ExeFile/ExeFullpath 指示关联程序；ProfileType 3=单程序页。",
+      "key_fields": [
+        {
+          "name": "Id",
+          "desc": "动作页 ID"
+        },
+        {
+          "name": "Name/DisplayName",
+          "desc": "动作页名称"
+        },
+        {
+          "name": "ExeFile/ExeFullpath",
+          "desc": "关联程序（空/全局=通用页）"
+        },
+        {
+          "name": "ProfileType",
+          "desc": "页面类型（3=单程序页）"
+        },
+        {
+          "name": "ActionItems",
+          "desc": "动作项数组：[{Row, Col, ActionType, Title, Description, Icon, Data(步骤JSON字符串), Id, TemplateId, TemplateRevision, UseTemplate, ContextMenuData, EnableEvaluateVariable, Association, Children}]"
+        },
+        {
+          "name": "AliasOfProfile",
+          "desc": "别名指向的 Profile ID"
+        },
+        {
+          "name": "Settings",
+          "desc": "页面设置（ValidForMachines 等）"
+        },
+        {
+          "name": "SharedActionIds",
+          "desc": "关联共享动作 ID"
+        }
+      ],
+      "read_hint": "按 ExeFile 或 Id 定位动作页；ActionItems[].Data 为动作步骤定义 JSON 字符串，需 json.loads 二次解析。动作页与 actions\\ 下独立文件内容是同一动作的两处来源。",
+      "import_mode": "batch",
+      "import_method": "无单文件导入通道→批量导入：批量分享→导入动作页数据（可只勾选该动作页，把影响范围压到最小）。"
+    },
+    {
+      "id": "action",
+      "pattern": "actions\\action_*.json",
+      "location": "export_root\\actions",
+      "purpose": "单个动作的完整定义",
+      "quicker_feature": "动作定义（步骤+变量+右键菜单）",
+      "description": "维护工具备份将每个动作拆为独立文件，文件名含动作 ID 和标题。外层为动作元数据，Data 为步骤/变量定义（JSON 字符串）。",
+      "key_fields": [
+        {
+          "name": "Id",
+          "desc": "动作 ID（与文件名 actionId 一致，是唯一标识）"
+        },
+        {
+          "name": "Title",
+          "desc": "动作名称"
+        },
+        {
+          "name": "Description",
+          "desc": "动作说明"
+        },
+        {
+          "name": "ActionType",
+          "desc": "动作类型（24=组合动作 XAction）"
+        },
+        {
+          "name": "Data",
+          "desc": "JSON 字符串：{LimitSingleInstance, SummaryExpression, Variables[], SubPrograms[], Steps[]}"
+        },
+        {
+          "name": "TemplateId/TemplateRevision/UseTemplate",
+          "desc": "模板来源；UseTemplate=false 表示已脱离模板本地修改"
+        },
+        {
+          "name": "ContextMenuData",
+          "desc": "右键菜单定义（每行 [fa:图标]标题|参数）"
+        },
+        {
+          "name": "EnableEvaluateVariable",
+          "desc": "是否启用变量计算"
+        },
+        {
+          "name": "Association",
+          "desc": "动作关联（文件/文本/图片处理器、AllowedFileExtensions 等）"
+        },
+        {
+          "name": "LastEditTimeUtc/CreateTimeUtc",
+          "desc": "最后编辑/创建时间"
+        },
+        {
+          "name": "AsSubProgram",
+          "desc": "是否作为子程序"
+        },
+        {
+          "name": "SharedActionId/ShareTimeUtc",
+          "desc": "共享来源"
+        }
+      ],
+      "read_hint": "Data 为 JSON 字符串，读取步骤需 json.loads；Variables[].Key 变量名，Steps[].StepRunnerKey 步骤类型（sys:runScript/sys:csscript/sys:if/sys:each 等）；步骤 InputParams 中 pattern/script 等为具体内容。",
+      "import_mode": "single",
+      "import_method": "可单文件导回：将修改后的 JSON 复制到剪贴板，在 Quicker 面板空白格右键→粘贴动作；或在动作上右键→信息→导入动作定义（支持文件/剪贴板）。ID 相同则覆盖原动作，不同则新建。"
+    },
+    {
+      "id": "state",
+      "pattern": "states\\state_*.json",
+      "location": "export_root\\states",
+      "purpose": "动作状态变量快照",
+      "quicker_feature": "动作状态/变量当前值",
+      "description": "记录动作中 SaveState=true 的变量当前值。例如视频旋转动作的「不支持扩展名」= avi|mkv|webm|mp4|ts|jpg。",
+      "key_fields": [
+        {
+          "name": "ActionId",
+          "desc": "动作 ID"
+        },
+        {
+          "name": "IconUrl",
+          "desc": "图标"
+        },
+        {
+          "name": "States",
+          "desc": "变量快照字典：\"$var:变量名\": 值；\"sys:xxx\": 系统状态（如窗口位置）"
+        }
+      ],
+      "read_hint": "直接读 States 字典即得变量当前值；此文件是改动作默认值/状态时的权威来源之一。",
+      "import_mode": "single",
+      "import_method": "可单文件导回（动作级）：动作右键→信息→动作数据→从云端恢复（仅该动作）；批量：V2 设置→数据同步→从备份恢复（ZIP）。"
+    },
+    {
+      "id": "action_adorn",
+      "pattern": "states\\_action_adorn.json",
+      "location": "export_root\\states",
+      "purpose": "动作修饰数据",
+      "quicker_feature": "动作图标修饰、徽标、右键菜单装饰",
+      "description": "键为动作 ID，值为修饰配置。",
+      "key_fields": [
+        {
+          "name": "<动作ID>",
+          "desc": "修饰对象"
+        },
+        {
+          "name": "Icon/OverlayIcon/OverlayTooltip",
+          "desc": "图标与叠加角标"
+        },
+        {
+          "name": "BadgeText/BadgeColor/BadgeTextColor",
+          "desc": "徽标文字与颜色"
+        },
+        {
+          "name": "ContextMenu",
+          "desc": "扩展右键菜单（[+]/[-] 分组、菜单项|参数）"
+        }
+      ],
+      "import_mode": "single",
+      "import_method": "可单文件导回（随状态）：动作右键→信息→动作数据→从云端恢复。"
+    },
+    {
+      "id": "exe_common",
+      "pattern": "common_exe_*.json",
+      "location": "export_root 根目录",
+      "purpose": "程序公共动作页 + 触发配置",
+      "quicker_feature": "按程序的轮盘菜单/手势/按键增强/组合键监听/公共动作页关联",
+      "description": "每个 exe 一份（common_exe__global.json 为全局公共页）。",
+      "key_fields": [
+        {
+          "name": "Exe/Name/Path/UrlPattern/IconUrl",
+          "desc": "程序标识"
+        },
+        {
+          "name": "ProfileList",
+          "desc": "关联的动作页 ID 列表"
+        },
+        {
+          "name": "CircleMenuActions",
+          "desc": "轮盘菜单动作：{\"位置编号\": \"json:{Title, ActionType, Data}\"} 或动作 ID 字符串；Data 为动作 ID 或按键\"修饰|键码\""
+        },
+        {
+          "name": "GestureActions",
+          "desc": "手势绑定：[{GestureId: preset:(Up-Right) 等, ActionType, Data, Description, IsDisabled}]"
+        },
+        {
+          "name": "KeyActionItems",
+          "desc": "按键增强（连击/长按/单击）：[{Key: 虚拟键码, DoubleClickAction/LongPressAction/SingleClickAction, AutoBackspace, IsDisabled}]"
+        },
+        {
+          "name": "HotkeyWatcherItems",
+          "desc": "组合键监听：[{Hotkey1Data/Hotkey2Data: \"修饰|键码\", BindingProcessName, ActionType, Data, IsEnabled}]"
+        },
+        {
+          "name": "LeftButtonPlusActions",
+          "desc": "该程序左键增强（null=未配置，跟随全局）"
+        },
+        {
+          "name": "AliasExeList",
+          "desc": "别名程序列表（q-dir.exe/xyplorer.exe/dopus.exe 等）"
+        },
+        {
+          "name": "AttachAllCommonProfiles/AttachProfiles",
+          "desc": "公共页附加方式"
+        },
+        {
+          "name": "DisableCircleMenu/DisableGesture/DisableMiddleButton",
+          "desc": "功能开关"
+        }
+      ],
+      "read_hint": "轮盘/手势/按键增强既可在全局（_global）也可按 exe 覆盖；修改某程序的轮盘请定位对应 common_exe_<exe>.json。",
+      "import_mode": "batch",
+      "import_method": "无单文件导入通道→批量导入：批量分享→导入常规数据（含该程序的轮盘/手势/按键增强；覆盖式，先导出再导入）。"
+    },
+    {
+      "id": "shared_subprogram",
+      "pattern": "common_shared_subprogram_*.json",
+      "location": "export_root 根目录",
+      "purpose": "共享子程序定义",
+      "quicker_feature": "子程序（函数式模块）",
+      "description": "与动作 Data 结构一致（Variables+Steps+SubPrograms），常含 C# 代码步骤（sys:csscript）。",
+      "key_fields": [
+        {
+          "name": "Id/Name/Description/SummaryExpression",
+          "desc": "标识"
+        },
+        {
+          "name": "Variables/Steps/SubPrograms",
+          "desc": "子程序内部定义"
+        },
+        {
+          "name": "TemplateId/TemplateRevision",
+          "desc": "来源模板"
+        },
+        {
+          "name": "IsLocalEdited",
+          "desc": "是否本地修改过"
+        }
+      ],
+      "import_mode": "single",
+      "import_method": "可单文件导回：Quicker 子程序管理→导入子程序文件（.qka）。"
+    },
+    {
+      "id": "settings",
+      "pattern": "common_user_settings.json",
+      "location": "export_root 根目录",
+      "purpose": "Quicker 全局设置（最大配置集）",
+      "quicker_feature": "全局设置：快捷键/触发方式/轮盘参数/手势开关/左键增强/PowerKeys/文本指令/定时任务/WebSocket 等",
+      "description": "单文件 JSON 对象，涵盖绝大部分全局配置。",
+      "key_fields": [
+        {
+          "name": "HotKeysData",
+          "desc": "JSON 字符串：{KeysForPausePopup/KeysForOpenSettings/KeysForExeSettings/KeysForAppStartVoiceInput/KeysForCancelRunningTasks/KeysForSearch 等全局快捷键, ActionHotkeys: 扩展热键列表[{ActionId, BindingProcessName, BlackList, Keys:\"修饰|键码\", Title, WaitKeyUp, ActionParam, IsEnabled}]}"
+        },
+        {
+          "name": "KeyTriggers",
+          "desc": "按键直接触发（键码→动作编号）"
+        },
+        {
+          "name": "OpenPopWithMiddleClick/XButton1Click/XButton2Click/CtrlMiddleClick/CtrlClick/CtrlRightClick/LongRightPress/LongMiddlePress/RightPressMove",
+          "desc": "面板弹出方式开关"
+        },
+        {
+          "name": "EnableCircleMenu/CircleMenuTrigger/CircleMenuSize/CircleMenuFontSize/CirclemMenuCircle2ActionCount/CircleMenuTimeoutMs/CircleMenuAutoMoveCursor/CircleMenuShowExternalWhenPopup",
+          "desc": "轮盘菜单开关与参数"
+        },
+        {
+          "name": "GestureTrigger/GestureMinScore/GestureEnableTriggerByKey/GesturePlaybackUnknownGesture",
+          "desc": "手势开关与参数"
+        },
+        {
+          "name": "LeftButtonPlusActions",
+          "desc": "左键增强（组合键辅助）：[{SecondaryKey: 键码, AdornKey, Shift/Control/Alt, Title, ActionType, Data, LongPressActionType, LongPressData, LongPressNotification, IsDisabled}]"
+        },
+        {
+          "name": "X1ButtonPlusActions/X2ButtonPlusActions/RightButtonPlusActions",
+          "desc": "侧键/右键增强（null=未配置）"
+        },
+        {
+          "name": "PowerKeys_DelayBeforeCtrlKey/PowerKeys_ContinuousInputCheckTime/PowerKeys_HintWindowDelay/PowerKeys_CancelLongPressKeyDelayMs/PowerKeys_EnableBlackList 等",
+          "desc": "PowerKeys 长按增强参数"
+        },
+        {
+          "name": "EnableTextCommand/TextCommandTriggerAfterDelimiter/TextCommandDelimiterChars/TextCommandTriggerKey/TextCommandBlackList",
+          "desc": "文本指令"
+        },
+        {
+          "name": "AutoRunTaskList",
+          "desc": "定时任务：[{TaskType(1=启动时/2=定时cron), Data, ActionIdOrName, ActionParam, IsEnabled, ValidForMachines, DelaySeconds, OnlyFirstStartInSameDay}]"
+        },
+        {
+          "name": "TriggerTasks",
+          "desc": "触发任务：[{EventType: ProcessStarted 等, Params, ActionIdOrName, IsEnabled}]"
+        },
+        {
+          "name": "QuickRunItems",
+          "desc": "快捷运行命令：[{CmdText, Data(动作ID), ActionType}]"
+        },
+        {
+          "name": "WebsocketServerSettings",
+          "desc": "本地 WebSocket 服务：{IsEnabled, Port, Password, EnableSecure}"
+        },
+        {
+          "name": "ScreenShotSettings",
+          "desc": "截图触发：{IsEnabled, Trigger, AdornKey, PinImage, AutoCopy, AutoSave, AutoRunAction}"
+        },
+        {
+          "name": "ContextMenuSettings",
+          "desc": "右键菜单/搜索 URL/文件移动目标（FileMoveTargets）"
+        },
+        {
+          "name": "SearchSettings",
+          "desc": "搜索插件与触发器"
+        },
+        {
+          "name": "UiSettings/DarkUiSettings",
+          "desc": "界面样式（含 CircleMenu 子样式）"
+        },
+        {
+          "name": "ExternScreenCaptureHotkey",
+          "desc": "外部截图快捷键（\"修饰|键码\"）"
+        },
+        {
+          "name": "EnableSwitchDesk/EnableSwitchDeskOnScreenBottom",
+          "desc": "边缘触发切换桌面"
+        },
+        {
+          "name": "ReplaceCapsToCtrlSpace/RemapKeyCapsLock/RemapKeyPauseBreak/RemapKeyPrintScreen",
+          "desc": "按键映射"
+        }
+      ],
+      "read_hint": "HotKeysData、CircleMenuActions 等字段是 JSON 字符串，需二次 json.loads；按键格式\"修饰码|虚拟键码\"；修改后保存需保持 UTF-8 编码与缩进。",
+      "import_mode": "batch",
+      "import_method": "无单文件导入通道→批量导入：批量分享→导入常规数据（含快捷键/轮盘参数/文本指令/定时任务等；覆盖式，先导出再导入）。界面内逐项修改最精准。"
+    },
+    {
+      "id": "gestures",
+      "pattern": "common_user_gestures.json",
+      "location": "export_root 根目录",
+      "purpose": "手势预设形状库",
+      "quicker_feature": "手势形状定义",
+      "description": "数组：[{Id: preset:(Up-Right)/B/(Down)/S/(Up)/C 等, Name, Points: [{X,Y}]}]。仅形状定义，绑定关系在 common_exe_*.json 的 GestureActions。",
+      "import_mode": "batch",
+      "import_method": "无单文件导入通道→批量导入：手势定义随批量分享的常规数据导入（覆盖式，先导出再导入）。"
+    },
+    {
+      "id": "mouse_actions",
+      "pattern": "common_user_mouseActions.json",
+      "location": "export_root 根目录",
+      "purpose": "鼠标动作（滚轮/侧键等）",
+      "quicker_feature": "鼠标动作绑定",
+      "description": "数组：[{MouseActionType, Location, Operation, ActionType, Data, Description, IsEnabled, BlackList, WhiteList, DisableInFullScreen}]。",
+      "import_mode": "batch",
+      "import_method": "无单文件导入通道→批量导入：鼠标动作随批量分享的常规数据导入（覆盖式，先导出再导入）。"
+    },
+    {
+      "id": "power_keys",
+      "pattern": "common_user_powerKeys.json",
+      "location": "export_root 根目录",
+      "purpose": "PowerKeys 按键增强配置",
+      "quicker_feature": "长按/组合键辅助（PowerKeys）",
+      "description": "字典：{键码: {Key, KeepOriginKeyFunc, IsEnabled, BlackList, KeyActions}}。IsEnabled=false 表示未启用。",
+      "import_mode": "batch",
+      "import_method": "无单文件导入通道→批量导入：PowerKeys 随批量分享的常规数据导入（覆盖式，先导出再导入）。"
+    },
+    {
+      "id": "preferences",
+      "pattern": "common_user_preferences.json",
+      "location": "export_root 根目录",
+      "purpose": "用户偏好",
+      "quicker_feature": "界面偏好（设置分组方式、上次编辑键等）",
+      "import_mode": "batch",
+      "import_method": "无单文件导入通道→批量导入：偏好随批量分享的常规数据导入（覆盖式，先导出再导入）。"
+    },
+    {
+      "id": "favor_blocks",
+      "pattern": "common_user_favorBlocks.json",
+      "location": "export_root 根目录",
+      "purpose": "收藏的步骤模块",
+      "quicker_feature": "收藏块（sys:runScript/sys:csscript 等步骤类型列表）",
+      "import_mode": "batch",
+      "import_method": "无单文件导入通道→批量导入：收藏块随批量分享的常规数据导入（覆盖式，先导出再导入）。"
+    }
+  ],
+  "config_index": [
+    {
+      "feature": "全局快捷键（截图/搜索/语音输入/暂停弹窗等）",
+      "file": "settings",
+      "json_path": "HotKeysData.KeysFor*",
+      "writable": true,
+      "import_mode": "batch",
+      "import_method": "无单文件导入通道→批量导入：批量分享→导入常规数据（含快捷键/轮盘参数/文本指令/定时任务等；覆盖式，先导出再导入）。界面内逐项修改最精准。"
+    },
+    {
+      "feature": "扩展热键（按进程绑定动作的快捷键）",
+      "file": "settings",
+      "json_path": "HotKeysData.ActionHotkeys[]",
+      "writable": true,
+      "import_mode": "batch",
+      "import_method": "无单文件导入通道→批量导入：批量分享→导入常规数据（含快捷键/轮盘参数/文本指令/定时任务等；覆盖式，先导出再导入）。界面内逐项修改最精准。"
+    },
+    {
+      "feature": "按键直接触发",
+      "file": "settings",
+      "json_path": "KeyTriggers",
+      "writable": true,
+      "import_mode": "batch",
+      "import_method": "无单文件导入通道→批量导入：批量分享→导入常规数据（含快捷键/轮盘参数/文本指令/定时任务等；覆盖式，先导出再导入）。界面内逐项修改最精准。"
+    },
+    {
+      "feature": "面板弹出方式（Ctrl+右键/长按右键/中键等）",
+      "file": "settings",
+      "json_path": "OpenPopWith*",
+      "writable": true,
+      "import_mode": "batch",
+      "import_method": "无单文件导入通道→批量导入：批量分享→导入常规数据（含快捷键/轮盘参数/文本指令/定时任务等；覆盖式，先导出再导入）。界面内逐项修改最精准。"
+    },
+    {
+      "feature": "轮盘菜单开关与参数",
+      "file": "settings",
+      "json_path": "EnableCircleMenu/CircleMenuTrigger/CircleMenuSize/CirclemMenuCircle2ActionCount 等",
+      "writable": true,
+      "import_mode": "batch",
+      "import_method": "无单文件导入通道→批量导入：批量分享→导入常规数据（含快捷键/轮盘参数/文本指令/定时任务等；覆盖式，先导出再导入）。界面内逐项修改最精准。"
+    },
+    {
+      "feature": "轮盘菜单动作（全局）",
+      "file": "exe_common",
+      "match": "common_exe__global.json",
+      "json_path": "CircleMenuActions",
+      "writable": true,
+      "import_mode": "batch",
+      "import_method": "无单文件导入通道→批量导入：批量分享→导入常规数据（含该程序的轮盘/手势/按键增强；覆盖式，先导出再导入）。"
+    },
+    {
+      "feature": "轮盘菜单动作（按程序）",
+      "file": "exe_common",
+      "match": "common_exe_<exe>.json",
+      "json_path": "CircleMenuActions",
+      "writable": true,
+      "import_mode": "batch",
+      "import_method": "无单文件导入通道→批量导入：批量分享→导入常规数据（含该程序的轮盘/手势/按键增强；覆盖式，先导出再导入）。"
+    },
+    {
+      "feature": "鼠标手势绑定（按程序）",
+      "file": "exe_common",
+      "json_path": "GestureActions",
+      "writable": true,
+      "import_mode": "batch",
+      "import_method": "无单文件导入通道→批量导入：批量分享→导入常规数据（含该程序的轮盘/手势/按键增强；覆盖式，先导出再导入）。"
+    },
+    {
+      "feature": "鼠标手势开关与参数",
+      "file": "settings",
+      "json_path": "GestureTrigger/GestureMinScore/GestureEnableTriggerByKey",
+      "writable": true,
+      "import_mode": "batch",
+      "import_method": "无单文件导入通道→批量导入：批量分享→导入常规数据（含快捷键/轮盘参数/文本指令/定时任务等；覆盖式，先导出再导入）。界面内逐项修改最精准。"
+    },
+    {
+      "feature": "手势预设形状",
+      "file": "gestures",
+      "json_path": "$root",
+      "writable": true,
+      "import_mode": "batch",
+      "import_method": "无单文件导入通道→批量导入：手势定义随批量分享的常规数据导入（覆盖式，先导出再导入）。"
+    },
+    {
+      "feature": "左键增强/组合键辅助",
+      "file": "settings",
+      "json_path": "LeftButtonPlusActions",
+      "writable": true,
+      "import_mode": "batch",
+      "import_method": "无单文件导入通道→批量导入：批量分享→导入常规数据（含快捷键/轮盘参数/文本指令/定时任务等；覆盖式，先导出再导入）。界面内逐项修改最精准。"
+    },
+    {
+      "feature": "侧键/右键增强",
+      "file": "settings",
+      "json_path": "X1ButtonPlusActions/X2ButtonPlusActions/RightButtonPlusActions",
+      "writable": true,
+      "import_mode": "batch",
+      "import_method": "无单文件导入通道→批量导入：批量分享→导入常规数据（含快捷键/轮盘参数/文本指令/定时任务等；覆盖式，先导出再导入）。界面内逐项修改最精准。"
+    },
+    {
+      "feature": "按键连击/长按辅助（KeyActionItems）",
+      "file": "exe_common",
+      "json_path": "KeyActionItems",
+      "writable": true,
+      "import_mode": "batch",
+      "import_method": "无单文件导入通道→批量导入：批量分享→导入常规数据（含该程序的轮盘/手势/按键增强；覆盖式，先导出再导入）。"
+    },
+    {
+      "feature": "组合键监听（HotkeyWatcherItems）",
+      "file": "exe_common",
+      "json_path": "HotkeyWatcherItems",
+      "writable": true,
+      "import_mode": "batch",
+      "import_method": "无单文件导入通道→批量导入：批量分享→导入常规数据（含该程序的轮盘/手势/按键增强；覆盖式，先导出再导入）。"
+    },
+    {
+      "feature": "PowerKeys 长按增强",
+      "file": "power_keys",
+      "json_path": "$root",
+      "writable": true,
+      "import_mode": "batch",
+      "import_method": "无单文件导入通道→批量导入：PowerKeys 随批量分享的常规数据导入（覆盖式，先导出再导入）。"
+    },
+    {
+      "feature": "PowerKeys 参数",
+      "file": "settings",
+      "json_path": "PowerKeys_*",
+      "writable": true,
+      "import_mode": "batch",
+      "import_method": "无单文件导入通道→批量导入：批量分享→导入常规数据（含快捷键/轮盘参数/文本指令/定时任务等；覆盖式，先导出再导入）。界面内逐项修改最精准。"
+    },
+    {
+      "feature": "鼠标动作",
+      "file": "mouse_actions",
+      "json_path": "$root",
+      "writable": true,
+      "import_mode": "batch",
+      "import_method": "无单文件导入通道→批量导入：鼠标动作随批量分享的常规数据导入（覆盖式，先导出再导入）。"
+    },
+    {
+      "feature": "文本指令",
+      "file": "settings",
+      "json_path": "EnableTextCommand/TextCommand*",
+      "writable": true,
+      "import_mode": "batch",
+      "import_method": "无单文件导入通道→批量导入：批量分享→导入常规数据（含快捷键/轮盘参数/文本指令/定时任务等；覆盖式，先导出再导入）。界面内逐项修改最精准。"
+    },
+    {
+      "feature": "定时任务（开机自启/定时运行）",
+      "file": "settings",
+      "json_path": "AutoRunTaskList",
+      "writable": true,
+      "import_mode": "batch",
+      "import_method": "无单文件导入通道→批量导入：批量分享→导入常规数据（含快捷键/轮盘参数/文本指令/定时任务等；覆盖式，先导出再导入）。界面内逐项修改最精准。"
+    },
+    {
+      "feature": "触发任务（进程启动等事件）",
+      "file": "settings",
+      "json_path": "TriggerTasks",
+      "writable": true,
+      "import_mode": "batch",
+      "import_method": "无单文件导入通道→批量导入：批量分享→导入常规数据（含快捷键/轮盘参数/文本指令/定时任务等；覆盖式，先导出再导入）。界面内逐项修改最精准。"
+    },
+    {
+      "feature": "快捷运行命令",
+      "file": "settings",
+      "json_path": "QuickRunItems",
+      "writable": true,
+      "import_mode": "batch",
+      "import_method": "无单文件导入通道→批量导入：批量分享→导入常规数据（含快捷键/轮盘参数/文本指令/定时任务等；覆盖式，先导出再导入）。界面内逐项修改最精准。"
+    },
+    {
+      "feature": "WebSocket 本地服务",
+      "file": "settings",
+      "json_path": "WebsocketServerSettings",
+      "writable": true,
+      "import_mode": "batch",
+      "import_method": "无单文件导入通道→批量导入：批量分享→导入常规数据（含快捷键/轮盘参数/文本指令/定时任务等；覆盖式，先导出再导入）。界面内逐项修改最精准。"
+    },
+    {
+      "feature": "截图设置",
+      "file": "settings",
+      "json_path": "ScreenShotSettings",
+      "writable": true,
+      "import_mode": "batch",
+      "import_method": "无单文件导入通道→批量导入：批量分享→导入常规数据（含快捷键/轮盘参数/文本指令/定时任务等；覆盖式，先导出再导入）。界面内逐项修改最精准。"
+    },
+    {
+      "feature": "右键菜单/上下文设置",
+      "file": "settings",
+      "json_path": "ContextMenuSettings",
+      "writable": true,
+      "import_mode": "batch",
+      "import_method": "无单文件导入通道→批量导入：批量分享→导入常规数据（含快捷键/轮盘参数/文本指令/定时任务等；覆盖式，先导出再导入）。界面内逐项修改最精准。"
+    },
+    {
+      "feature": "搜索设置",
+      "file": "settings",
+      "json_path": "SearchSettings",
+      "writable": true,
+      "import_mode": "batch",
+      "import_method": "无单文件导入通道→批量导入：批量分享→导入常规数据（含快捷键/轮盘参数/文本指令/定时任务等；覆盖式，先导出再导入）。界面内逐项修改最精准。"
+    },
+    {
+      "feature": "界面样式（含轮盘样式）",
+      "file": "settings",
+      "json_path": "UiSettings/DarkUiSettings",
+      "writable": true,
+      "import_mode": "batch",
+      "import_method": "无单文件导入通道→批量导入：批量分享→导入常规数据（含快捷键/轮盘参数/文本指令/定时任务等；覆盖式，先导出再导入）。界面内逐项修改最精准。"
+    },
+    {
+      "feature": "按键映射（CapsLock/Pause/PrintScreen）",
+      "file": "settings",
+      "json_path": "RemapKey*/ReplaceCapsToCtrlSpace",
+      "writable": true,
+      "import_mode": "batch",
+      "import_method": "无单文件导入通道→批量导入：批量分享→导入常规数据（含快捷键/轮盘参数/文本指令/定时任务等；覆盖式，先导出再导入）。界面内逐项修改最精准。"
+    },
+    {
+      "feature": "动作页布局",
+      "file": "actionpage",
+      "json_path": "ActionItems",
+      "writable": true,
+      "import_mode": "batch",
+      "import_method": "无单文件导入通道→批量导入：批量分享→导入动作页数据（可只勾选该动作页，把影响范围压到最小）。"
+    },
+    {
+      "feature": "单个动作定义（步骤/变量/右键菜单）",
+      "file": "action",
+      "json_path": "Data",
+      "writable": true,
+      "import_mode": "single",
+      "import_method": "可单文件导回：将修改后的 JSON 复制到剪贴板，在 Quicker 面板空白格右键→粘贴动作；或在动作上右键→信息→导入动作定义（支持文件/剪贴板）。ID 相同则覆盖原动作，不同则新建。"
+    },
+    {
+      "feature": "动作状态变量当前值",
+      "file": "state",
+      "json_path": "States",
+      "writable": true,
+      "import_mode": "single",
+      "import_method": "可单文件导回（动作级）：动作右键→信息→动作数据→从云端恢复（仅该动作）；批量：V2 设置→数据同步→从备份恢复（ZIP）。"
+    },
+    {
+      "feature": "动作修饰（徽标/角标/右键菜单扩展）",
+      "file": "action_adorn",
+      "json_path": "$root",
+      "writable": true,
+      "import_mode": "single",
+      "import_method": "可单文件导回（随状态）：动作右键→信息→动作数据→从云端恢复。"
+    },
+    {
+      "feature": "共享子程序",
+      "file": "shared_subprogram",
+      "json_path": "$root",
+      "writable": true,
+      "import_mode": "single",
+      "import_method": "可单文件导回：Quicker 子程序管理→导入子程序文件（.qka）。"
+    },
+    {
+      "feature": "收藏步骤模块",
+      "file": "favor_blocks",
+      "json_path": "$root",
+      "writable": true,
+      "import_mode": "batch",
+      "import_method": "无单文件导入通道→批量导入：收藏块随批量分享的常规数据导入（覆盖式，先导出再导入）。"
+    }
+  ],
+  "key_format": {
+    "description": "按键字符串格式为 \"修饰码|虚拟键码\"（如 \"2|65\" = Ctrl+A）。常见虚拟键码：65-90=A-Z，13=Enter，27=Esc，37/38/39/40=←↑→↓，44=PrintScreen，45=Insert，46=Delete，91=Win，96-105=小键盘0-9，107=小键盘+，112-123=F1-F12，144=NumLock，191=/，192=`。",
+    "modifier_codes_known": {
+      "0": "无修饰",
+      "2": "Ctrl",
+      "5": "Win"
+    },
+    "modifier_codes_inferred": {
+      "1": "Alt",
+      "3": "Ctrl+Shift",
+      "6": "Win+Shift",
+      "10": "Alt+组合",
+      "11": "Win+Alt",
+      "12": "Win+Alt+Ctrl",
+      "14": "Win+Ctrl"
+    },
+    "caution": "修饰码表为实测推断（基于本机数据），完整权威表请查 Quicker 帮助文档：https://getquicker.net/help/doc/keycode"
+  },
+  "usage": {
+    "readme": "本映射由 Quicker Connector 技能加载（quicker_connector.py 的 QuickerExportMap 类）。用户询问\"某配置在哪/怎么改\"时：1) 用 config_index 按 feature 定位文件类型；2) 用 file_types 的 pattern 定位具体文件；3) json_path 指示字段；4) 用 QuickerExportMap.read_config/update_config 直接读写。修改动作定义（Data）属高风险操作，改前应备份原文件。",
+    "regenerate": "用户重新执行维护工具备份后，export_root 内容整体刷新，映射的结构描述仍然适用，无需改动映射文件。",
+    "search_keywords": [
+      "快捷键",
+      "热键",
+      "扩展热键",
+      "轮盘",
+      "手势",
+      "左键",
+      "组合键",
+      "按键",
+      "PowerKeys",
+      "文本指令",
+      "定时任务",
+      "WebSocket",
+      "动作",
+      "动作页",
+      "状态",
+      "变量",
+      "子程序",
+      "徽标",
+      "右键菜单",
+      "鼠标"
+    ]
+  },
+  "import_guide": {
+    "principle": "限制导入影响范围：能单文件导回的尽量单文件导回（动作/状态/子程序）；无单文件通道的设置类配置走批量分享导入，且只勾选最小必要数据。",
+    "batch_workflow": [
+      "1) 先导出、保住现状：Quicker → 设置 → 维护工具 → 备份数据（全量备份到 export 目录）；或先用批量分享把当前数据分享给自己留底",
+      "2) 打开批量分享的导入链接（或自己分享给自己后打开）",
+      "3) 确认账号，勾选要导入的数据：常规数据（个人设置/手势/轮盘/快捷键等）按需勾选，动作页数据只勾本次涉及的动作页",
+      "4) 不要勾选『清空本地数据』（否则删除本账号所有现有设置）",
+      "5) 导入并核对：确认改动生效、其它设置未受影响；若异常用第 1 步的备份恢复"
+    ],
+    "note": "批量导入常规数据时，同账号已有设置会被覆盖（官方说明），因此必须先导出再导入。"
+  }
+}

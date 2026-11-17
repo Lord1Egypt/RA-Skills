@@ -1,47 +1,66 @@
-## Description: <br>
-Provides a local Markdown reference for Feishu Open Platform APIs, including permissions, fields, request and response examples, and documentation rules that require complete, verifiable API records. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides local Feishu Open Platform API reference material with complete permissions, fields, examples, and documentation rules for Feishu-related work.
 
-## Publisher: <br>
-[lentiancn](https://clawhub.ai/user/lentiancn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lentiancn](https://clawhub.ai/user/lentiancn)
 
-## Use Case: <br>
-Developers and operators use this skill as local Feishu API reference material when creating, reviewing, or updating Feishu integrations that involve authentication, contacts, messaging, and session APIs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Feishu API examples involve credentials, OAuth tokens, directory data, sessions, and messaging operations that may expose sensitive information if copied into production without controls. <br>
-Mitigation: Store credentials in environment variables or a secret manager, avoid logging raw token or directory responses, and treat contact, session, and messaging APIs as sensitive administrative operations. <br>
-Risk: Over-broad Feishu scopes can grant access to more contact or user data than an integration needs. <br>
-Mitigation: Request the minimum Feishu scopes needed for the target operation and review each documented permission before use. <br>
+## Use Case:
 
+Developers and engineers use this skill as local reference material when documenting or working with Feishu Open Platform APIs for authentication, contacts, messaging, passport sessions, permissions, IDs, and request or response examples.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lentiancn/skill-feishu) <br>
-- [Feishu Open Platform](https://open.feishu.cn/) <br>
-- [Feishu API documentation](https://open.feishu.cn/document/server-docs) <br>
-- [Feishu app permission configuration](https://open.feishu.cn/document/ugTN1YjL4UTN24CO1UjN/uQzN1YjL0cTN24CN3UjN) <br>
-- [Feishu user identity concepts](https://open.feishu.cn/document/home/user-identity-introduction/introduction) <br>
-- [Feishu department ID overview](https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/reference/contact-v3/department/field-overview) <br>
-- [Feishu permission scope guidance](https://open.feishu.cn/document/ukTMukTMukTM/uETNz4SM1MjLxUzM/v3/guides/scope_authority) <br>
-- [Feishu common error codes](https://open.feishu.cn/document/ukTMukTMukTM/ugjM14COyUjL4ITN) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown documentation with API tables and code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only reference material; examples may include placeholder Feishu tokens, scopes, API paths, request bodies, and response bodies.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Example code or placeholders may lead users to expose Feishu app secrets or access tokens if copied directly into projects.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Store credentials in secure storage or environment variables, replace placeholders deliberately, and avoid hardcoding secrets.
+
+Risk: Contact or messaging API usage may access data outside the intended Feishu tenant scope if permissions are not checked.
+
+Mitigation: Confirm the application has only the required Feishu tenant permissions and call APIs within the authorized scope.
+
+Risk: Incomplete or simplified API documentation can cause incorrect Feishu requests or permission handling.
+
+Mitigation: Use the included documentation rules and Feishu references to preserve complete parameters, permission notes, examples, and error-code guidance.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lentiancn/skills/skill-feishu)
+- [Feishu Open Platform](https://open.feishu.cn/)
+- [Feishu API documentation](https://open.feishu.cn/document/server-docs)
+- [Feishu app permission configuration](https://open.feishu.cn/document/ugTN1YjL4UTN24CO1UjN/uQzN1YjL0cTN24CN3UjN)
+- [Feishu user identity introduction](https://open.feishu.cn/document/home/user-identity-introduction/introduction)
+- [Feishu department ID field overview](https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/reference/contact-v3/department/field-overview)
+- [Feishu scope authority guide](https://open.feishu.cn/document/ukTMukTMukTM/uETNz4SM1MjLxUzM/v3/guides/scope_authority)
+- [Feishu common error codes](https://open.feishu.cn/document/ukTMukTMukTM/ugjM14COyUjL4ITN)
+- [Local Feishu API index](open-apis/README.md)
+- [Local Feishu API documentation template](open-apis/TEMPLATE.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown reference material with API examples, permission notes, configuration guidance, and documentation rules]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Local reference content only; replace placeholders carefully and keep Feishu app credentials outside generated or copied code.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

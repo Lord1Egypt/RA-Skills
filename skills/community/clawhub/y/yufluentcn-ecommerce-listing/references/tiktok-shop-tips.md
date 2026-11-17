@@ -33,6 +33,7 @@
 - **禁止**：全大写、连续「!!!」、未授权「官方」「旗舰店」宣称（除非品牌授权）。
 
 ### 标题禁用模式
+- - **FIFA World Cup 26™, FIFA, World Cup** 等受保护赛事术语：未经官方授权，不得在商品标题、描述、图片中使用。
 
 - 「全网最低价」「销量第一」「网红同款」**无依据时禁止**。
 - 堆砌 #话题 在标题内（话题应放 tags 字段，非标题）。
@@ -113,6 +114,7 @@
 - 医疗器械：需类目资质；consumer 文案不得写 prescription。
 
 ### 认证与资质
+- - **路由器（Router）**：必须持有有效的FCC授权且FCC ID与所售产品完全对应，方可销售。详见官方电子商品要求。
 
 - **CCC、CE、FCC、FDA** 等：仅在有文件时写；跨境站点规则不同。
 - 化妆品备案号（中国）、SCPN（欧）等按站点要求，勿虚构编号。
@@ -271,3 +273,17 @@
 ---
 
 *本文件为 TokenApi Harness Layer 2 权威规则源；技能目录 references/ 仅为副本。*
+
+## 政策与平台动态
+- - **图片尺寸**：主图和附图分辨率至少 600x600 像素，高清彩色，产品主体不得被遮挡。
+- - **内容合规新增**：禁止推广粗俗、低俗或令人不安的商品；推广内容不得包含露骨、暴力或骚扰性材料。
+
+- - **户外照明和风扇卖家**：须在2026年6月20日前审核并修正产品Listing信息，确保描述、属性、促销声明准确代表产品。
+
+<!-- EVOLUTION CHANGELOG -->
+
+- 2026-06-22 08:49 | ADD: 认证与资质 | source: https://seller-us.tiktok.com/university/essay?knowledge_id=6747273381791534&lang=en
+- 2026-06-22 08:49 | ADD: 类目合规要点（电子产品） | source: https://seller-vn.tiktok.com/university/essay?knowledge_id=8831988245645057&lang=en
+- 2026-06-22 08:49 | ADD: 禁用词汇与合规（内容合规） | source: https://www.reddit.com/r/TikTokShopAffiliate/comments/1sjvskc/tiktok_shop_affiliate_spring_2026_ban_wave
+- 2026-06-26 08:37 | ADD: 标题禁用模式 | source: https://seller-vn.tiktok.com/university/essay?knowledge_id=8831988245645057&lang=en
+- 2026-06-26 08:37 | ADD: 图片、视频与Listing一致性 | source: https://seller-sg.tiktok.com/university/essay?knowledge_id=7651420421883649&default_language=en

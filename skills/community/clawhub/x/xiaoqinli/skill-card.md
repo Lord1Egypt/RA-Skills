@@ -1,41 +1,49 @@
-## Description: <br>
-Xiaoqinli helps agents write structured .xql.json AST files and compile them to Go, Rust, TypeScript, Kotlin, Swift, or Python with type, effect, and capability checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Xiaoqinli (XQL) helps agents write structured .xql.json AST files and compile them to Go, Rust, TypeScript, Kotlin, Swift, or Python with type, effect, and capability checks.
 
-## Publisher: <br>
-[freecode100year](https://clawhub.ai/user/freecode100year) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[freecode100year](https://clawhub.ai/user/freecode100year)
 
-## Use Case: <br>
-Developers and agent builders use this skill to create, validate, and compile .xql.json AST programs into common target languages. It is useful when an agent needs structured code generation guidance without relying on free-form source syntax. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill directs agents to build and use an external xql binary. <br>
-Mitigation: Review the linked Xiaoqinli source repository and build the binary only if you trust it. <br>
-Risk: Generated source code may not match user intent or target-language safety expectations. <br>
-Mitigation: Run xql validate, choose output paths deliberately, and inspect generated code before building or running it. <br>
+## Use Case:
 
+Developers and AI-agent builders use Xiaoqinli to validate structured XQL AST files and generate source code for supported languages while checking types, effects, and declared capabilities.
 
-## Reference(s): <br>
-- [ClawHub Xiaoqinli Skill Page](https://clawhub.ai/freecode100year/xiaoqinli) <br>
-- [Xiaoqinli Project Repository](https://github.com/Freecode100Year/xiaoqinli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Code, Configuration] <br>
-**Output Format:** [Markdown instructions with shell, JSON, and generated-code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides validation and compilation of .xql.json files; generated code should be inspected before building or running it.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: frontmatter and server release evidence) <br>
+Risk: Installation guidance builds mutable third-party source and may place the resulting binary on the system PATH.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the upstream repository before installing, pin a release or commit with a verified checksum, build as an unprivileged user, and prefer a user-local bin directory unless system-wide access is required.
+
+## Reference(s):
+
+- [Xiaoqinli ClawHub skill page](https://clawhub.ai/freecode100year/skills/xiaoqinli)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with JSON and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the xql binary; building from source requires Go 1.23 or later.]
+
+## Skill Version(s):
+
+2.1.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

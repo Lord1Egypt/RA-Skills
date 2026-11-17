@@ -13,6 +13,7 @@ import argparse
 import ast
 import hashlib
 import json
+import importlib.util
 import os
 import re
 import shutil
@@ -31,9 +32,24 @@ from uuid import uuid4
 # (ADR-0017). This is the chicken-and-egg site: it makes erpclaw_lib importable,
 # so it resolves the lib dir inline (equivalent to erpclaw_lib.paths.lib_dir()).
 # With ERPCLAW_HOME unset this equals os.path.expanduser("~/.openclaw/erpclaw/lib").
-sys.path.insert(0, os.path.join(os.path.expanduser(os.environ.get("ERPCLAW_HOME", "~/.openclaw/erpclaw")), "lib"))
-from erpclaw_lib.db import get_connection
-from erpclaw_lib.paths import db_default, install_state_dir, lib_dir, modules_dir
+#
+# Only when erpclaw_lib is not already reachable. The insert was unconditional
+# and at position 0, so it overrode a caller that had deliberately put a
+# different tree first — every L0 test that imports this module got the DEPLOYED
+# lib rather than the one under test. That was invisible while both trees
+# exported the same names; the moment a branch ADDED a lib module (seam.py,
+# ADR-0034), the test imported the old lib and failed. The constitution
+# conftest warns about exactly this shape: "a branch that adds a lib module
+# would import the OLD one and pass for the wrong reason."
+#
+# On a real install nothing else provides erpclaw_lib, so the insert still
+# happens and behaviour is unchanged.
+if importlib.util.find_spec("erpclaw_lib") is None:
+    sys.path.insert(0, os.path.join(os.path.expanduser(os.environ.get("ERPCLAW_HOME", "~/.openclaw/erpclaw")), "lib"))
+from erpclaw_lib.db import get_connection, db_error_types
+from erpclaw_lib.paths import (
+    db_default, erpclaw_home, install_state_dir, lib_dir, modules_dir,
+)
 from erpclaw_lib.response import ok, err, rows_to_list, row_to_dict
 
 # ---------------------------------------------------------------------------
@@ -52,6 +68,27 @@ MODULES_DIR = modules_dir()
 OPENCLAW_WORKSPACE_SKILLS_DIR = os.path.expanduser(
     "~/.openclaw/workspace/skills"
 )
+
+# The canonical OpenClaw install root. The workspace/skills publish + un-publish
+# steps below only touch ~/.openclaw/workspace/skills when the *resolved*
+# ERPCLAW_HOME (ADR-0017 point of truth) equals this — i.e. we are actually
+# managing an OpenClaw install. Under a Hermes/other-runtime home (ERPCLAW_HOME
+# pointed elsewhere), writing into ~/.openclaw/workspace/skills would silently
+# desync the OTHER runtime's live skill dir on any version skew (F10, ADR-0029;
+# the M23-class cross-runtime-write miss found by the M34 Lane-B validation).
+OPENCLAW_DEFAULT_HOME = os.path.expanduser("~/.openclaw/erpclaw")
+
+
+def _is_openclaw_default_home():
+    """True when the resolved ERPCLAW_HOME is the OpenClaw default home.
+
+    Only then may install/uninstall touch ~/.openclaw/workspace/skills. Reads
+    the environment live (via erpclaw_home()) so the decision follows the active
+    ERPCLAW_HOME, not an import-time snapshot. ERPCLAW_HOME unset ⇒ the default
+    home ⇒ True (byte-identical to pre-F10 behavior)."""
+    return os.path.normpath(erpclaw_home()) == os.path.normpath(OPENCLAW_DEFAULT_HOME)
+
+
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 REGISTRY_PATH = os.path.join(SCRIPT_DIR, "module_registry.json")
 REMOTE_REGISTRY_URL = "https://raw.githubusercontent.com/avansaber/erpclaw/main/scripts/module_registry.json"
@@ -68,14 +105,25 @@ LAST_SYNC_MARKER = os.path.join(install_state_dir(), ".last_sync")
 NO_AUTOSYNC_MARKER = os.path.join(install_state_dir(), ".no_autosync")
 SYNC_LOG_PATH = os.path.join(install_state_dir(), "logs", "sync.log")
 
-# Skip filters (must match install_module's full-tree verification block)
-SYNC_SKIP_DIRS = {".git", "__pycache__", ".pytest_cache", "node_modules", "dist", "build"}
+# Skip filters (must match install_module's full-tree verification block).
+# `.clawhub` is the ClawHub CLI's per-skill metadata directory (CLI v0.12.3
+# installs by FILE EXTRACTION into the skill dir, then writes its own tracking
+# metadata under `.clawhub/` and a top-level `_meta.json`). Neither is part of
+# the ed25519-signed foundation manifest, so the reconcile walk must exclude
+# them — otherwise `update-foundation`'s orphan-cleanup (ADR-0028: files +
+# migrations converge) would flag CLI-owned metadata as "orphaned" and delete
+# it, corrupting ClawHub's own upgrade tracking on the next `clawhub update`.
+SYNC_SKIP_DIRS = {".git", "__pycache__", ".pytest_cache", "node_modules", "dist", "build", ".clawhub"}
 SYNC_SKIP_SUFFIXES = (".pyc", ".pyo", ".bak", ".tmp", ".DS_Store")
 SYNC_SKIP_RELPATHS_FOUNDATION = {
     "scripts/module_registry.json",
     "scripts/module_registry.json.sig",
     "scripts/signing_log.txt",
 }
+# ClawHub-owned metadata filenames excluded at ANY depth (basename match),
+# mirroring erpclaw_lib.skip_filters.SKIP_FILE_EXACT's handling of the sibling
+# `.clawhubignore`. See the SYNC_SKIP_DIRS note above for the ADR-0028 rationale.
+SYNC_SKIP_BASENAMES_FOUNDATION = {"_meta.json"}
 
 
 def _now_iso():
@@ -92,6 +140,28 @@ class _RegistrySignatureError(Exception):
     """Raised when registry signature verification fails (strict mode)."""
 
 
+_CRYPTO_INSTALL_HINT = (
+    "The 'cryptography' package is required to verify the signed module "
+    "registry. Install it (e.g. `pip install cryptography`) and retry."
+)
+
+
+def _signing_import_hint(exc):
+    """F15/M43: an actionable install hint for a *cryptography*-specific
+    ImportError, else ``None``.
+
+    The signing import can fail for two very different reasons: the
+    ``cryptography`` package is genuinely absent (actionable — install it), or
+    ``erpclaw_lib.signing`` itself is missing/broken (a packaging bug, NOT a
+    crypto problem). Discriminate on the missing module name so a non-crypto
+    ImportError is never mislabeled with the install-cryptography hint.
+    """
+    name = getattr(exc, "name", None) or ""
+    if name == "cryptography" or name.startswith("cryptography."):
+        return _CRYPTO_INSTALL_HINT
+    return None
+
+
 def _verify_registry_payload(raw_bytes, sig_hex, *, label):
     """Run ed25519 verification + monotonic-version check on a registry payload.
 
@@ -100,14 +170,22 @@ def _verify_registry_payload(raw_bytes, sig_hex, *, label):
     """
     # Late import so non-foundation paths (e.g., scripts that import
     # module_manager for testing) don't require the lib to be installed.
-    sys.path.insert(0, os.path.join(os.path.expanduser(os.environ.get("ERPCLAW_HOME", "~/.openclaw/erpclaw")), "lib"))
+    if importlib.util.find_spec("erpclaw_lib") is None:
+        sys.path.insert(0, os.path.join(os.path.expanduser(os.environ.get("ERPCLAW_HOME", "~/.openclaw/erpclaw")), "lib"))
     try:
         from erpclaw_lib.signing import (
             verify_registry_signature, REGISTRY_VERSION_FIELD, fingerprint,
         )
         from cryptography.exceptions import InvalidSignature
     except ImportError as e:
-        raise _RegistrySignatureError(f"signing library unavailable: {e}")
+        # F15/M43: this raise is re-wrapped into the operator-facing `err()` at
+        # the update-foundation call site, so the hint must travel in the message
+        # string here. Only paint the cryptography hint on a genuine crypto miss.
+        hint = _signing_import_hint(e)
+        msg = f"signing library unavailable: {e}"
+        if hint:
+            msg = f"{msg}. {hint}"
+        raise _RegistrySignatureError(msg)
 
     try:
         trusted = verify_registry_signature(raw_bytes, sig_hex)
@@ -944,6 +1022,14 @@ def _install_module_inner(args, conn, modules_by_name, depth=0):
     init_db_path = os.path.join(install_path, "init_db.py")
     tables_created = 0
     if os.path.isfile(init_db_path):
+        # Snapshot the DB's table set BEFORE running init_db so tables_created
+        # reflects the honest count of tables THIS module creates, name-agnostic
+        # (F11, ADR-0029). The prior heuristic counted
+        # `sqlite_master … name LIKE 'module_name_%'` and reported 0 for every
+        # grouped module whose tables don't carry the module-name prefix — e.g.
+        # erpclaw-growth creates 35 tables named crm_*/crmadv_*/analytics_*,
+        # none starting with 'erpclaw_growth_'. The sqlite_master delta is exact.
+        tables_before = _snapshot_data_tables()
         try:
             # Set PYTHONPATH so init_db.py can find erpclaw_lib
             env = os.environ.copy()
@@ -965,33 +1051,28 @@ def _install_module_inner(args, conn, modules_by_name, depth=0):
             _mark_failed(conn, module_name, "init_db.py timed out after 60s")
             err(f"init_db.py timed out for {module_name}")
 
-        # Authoritative table count: query the DB after init_db.py finishes.
+        # Authoritative table count: sqlite_master delta across the init_db run.
         # Parsing init_db.py output is unreliable across modules (some print to
-        # stderr, some use "Tables: N" rather than "N tables", JSON is rare),
-        # and the historical regex `(\d+)\s+tables?` silently missed
-        # healthclaw/constructclaw/foundation outputs — install_module would
-        # report tables_created=0 even when 59 tables were just created.
-        # Commit any pending registry writes first so the fresh connection
-        # below sees a consistent DB snapshot.
+        # stderr, some use "Tables: N" rather than "N tables", JSON is rare) and
+        # the module-name prefix heuristic missed every grouped module (F11).
+        # Commit any pending registry writes first so the after-snapshot below
+        # sees a consistent DB state.
         try:
             conn.commit()
-        except sqlite3.Error:
+        except db_error_types()[1]:
+            # Dialect-aware: sqlite3.Error cannot catch a psycopg2 failure, so on
+            # PostgreSQL this handler used to let a commit error propagate raw
+            # out of an install rather than being tolerated as intended.
             pass
-        try:
-            data_db = db_default()
-            if os.path.isfile(data_db):
-                dconn = sqlite3.connect(data_db)
-                prefix = module_name.replace("-", "_") + "_"
-                cursor = dconn.execute(
-                    "SELECT COUNT(*) FROM sqlite_master WHERE type='table' AND name LIKE ?",
-                    (prefix + "%",))
-                tables_created = cursor.fetchone()[0]
-                dconn.close()
-        except sqlite3.Error as e:
-            # Surface the failure instead of burying it (this was a silent
-            # swallow in the prior implementation; install would report 0 with
-            # no indication anything went wrong).
-            print(f"WARN: install_module could not count {module_name} tables: {e}", file=sys.stderr)
+        tables_after = _snapshot_data_tables()
+        if tables_before is not None and tables_after is not None:
+            # New tables (by name) that appeared across the init_db run. On a
+            # fresh install this is every table the module owns; on a re-run
+            # where they already exist (CREATE TABLE IF NOT EXISTS) it is 0,
+            # which is honest for that run. install_module short-circuits an
+            # already-'installed' module upstream, so the reaching path is the
+            # fresh install.
+            tables_created = len(tables_after - tables_before)
 
     # Apply the module's own migrations (P1 — additive/alter changes init_db can't make)
     try:
@@ -1044,9 +1125,10 @@ def _install_module_inner(args, conn, modules_by_name, depth=0):
 
     # Publish to OpenClaw's workspace skills dir so the agent can find it.
     # See OPENCLAW_WORKSPACE_SKILLS_DIR comment at the top of this file.
-    workspace_published = _publish_to_openclaw_skills(install_path, module_name)
+    workspace_published, workspace_note = _publish_to_openclaw_skills(
+        install_path, module_name)
 
-    return {
+    result = {
         "module": module_name,
         "display_name": display_name,
         "version": version,
@@ -1057,6 +1139,42 @@ def _install_module_inner(args, conn, modules_by_name, depth=0):
         "git_commit": git_commit,
         "installed_at": now,
     }
+    # F10: only annotate when we deliberately skipped the cross-runtime write
+    # (non-default ERPCLAW_HOME). On the OpenClaw default home workspace_note is
+    # None, so the response stays byte-identical to the pre-F10 shape.
+    if workspace_note is not None:
+        result["workspace_skill_note"] = workspace_note
+    return result
+
+
+def _snapshot_data_tables():
+    """Return the set of user-table names in the shared data DB, on any backend.
+
+    Empty set when the database has no tables yet (e.g. the very first module
+    install creates them). Returns None on a read error so the caller can tell
+    "no tables" apart from "couldn't read" and avoid reporting a bogus delta.
+    Name-agnostic basis for install_module's honest tables_created count
+    (F11, ADR-0029): the module-name prefix heuristic it replaces missed every
+    grouped module whose tables aren't prefixed with the module name.
+
+    ADR-0034 phase 2 step 1. This used to resolve the database as a FILE PATH,
+    open it with ``sqlite3.connect`` and read ``sqlite_master`` — which on a
+    PostgreSQL install did not fail. It silently read whatever SQLite file
+    happened to sit at the default path and reported ITS tables: measured on the
+    devbox2 box, 297 tables from a leftover local file for a PostgreSQL database
+    that held 215. The install's ``tables_created`` delta was therefore computed
+    across an unrelated database, and being a delta it usually came out 0 —
+    plausible rather than obviously broken. Routing through the seam asks the
+    configured backend, whichever it is.
+    """
+    from erpclaw_lib import seam
+
+    try:
+        return set(seam.table_names())
+    except seam.error_types() as e:
+        print(f"WARN: install_module could not snapshot data tables: {e}",
+              file=sys.stderr)
+        return None
 
 
 def _publish_to_openclaw_skills(install_path, module_name):
@@ -1064,25 +1182,42 @@ def _publish_to_openclaw_skills(install_path, module_name):
 
     OpenClaw's agent only sees skills under workspace/skills, not under
     erpclaw/modules. We mirror each install into both so the agent can
-    invoke module actions (e.g., shopify-status). Best-effort: returns
-    the published path on success, None if OpenClaw isn't installed
-    (workspace dir missing) or if the copy fails. We never raise, since
-    the module install itself was already successful.
+    invoke module actions (e.g., shopify-status). Best-effort: never raises,
+    since the module install itself was already successful.
+
+    Returns a ``(published_path, note)`` tuple:
+      * ``(dest, None)``  — copied into OpenClaw's workspace/skills.
+      * ``(None, None)``  — OpenClaw not installed here, or the copy failed
+        (byte-identical to the pre-F10 "return None" outcome).
+      * ``(None, reason)`` — F10: the resolved ERPCLAW_HOME is NOT the OpenClaw
+        default, so this is a Hermes/other-runtime install; we refuse to write
+        into OpenClaw's live workspace/skills dir (cross-runtime desync risk)
+        and surface the reason (ADR-0029).
     """
+    if not _is_openclaw_default_home():
+        # F10: a non-default ERPCLAW_HOME means another runtime owns this
+        # install. Writing into ~/.openclaw/workspace/skills would silently
+        # rewrite OpenClaw's copy of the skill (M23-class cross-runtime write).
+        return None, (
+            "skipped workspace-skill publish: ERPCLAW_HOME resolves to "
+            f"{erpclaw_home()!r}, not the OpenClaw default "
+            f"{OPENCLAW_DEFAULT_HOME!r}; refusing to write into another "
+            "runtime's workspace/skills (F10, ADR-0029)"
+        )
     if not os.path.isdir(os.path.dirname(OPENCLAW_WORKSPACE_SKILLS_DIR)):
         # OpenClaw not installed on this host. Nothing to do.
-        return None
+        return None, None
     try:
         os.makedirs(OPENCLAW_WORKSPACE_SKILLS_DIR, exist_ok=True)
         dest = os.path.join(OPENCLAW_WORKSPACE_SKILLS_DIR, module_name)
         if os.path.isdir(dest):
             shutil.rmtree(dest)
         shutil.copytree(install_path, dest)
-        return dest
+        return dest, None
     except (OSError, shutil.Error):
         # Don't fail the whole install over this. Surface via the
         # returned None so callers + tests can react if they want.
-        return None
+        return None, None
 
 
 def _run_module_migrations(module_name, install_path):
@@ -1110,6 +1245,206 @@ def _run_module_migrations(module_name, install_path):
         raise RuntimeError(
             f"module migration '{res['failed']}' failed for {module_name}: {res['error']}")
     return res.get("applied", [])
+
+
+def _run_foundation_migrations():
+    """Apply pending foundation (erpclaw-setup) migrations after a successful
+    update-foundation reconcile (M31 H1 / FINDINGS B1). Mirrors
+    _run_module_migrations but targets the foundation's own migrations/ dir, so a
+    reconcile that lands new DDL-bearing migration files also runs them instead of
+    silently shipping schema the DB never applied.
+
+    Returns a JSON-safe dict (never raises — a runner problem must not mask the
+    file reconcile the caller already completed):
+      - {"ran": False, "reason": ...}                       migrations/runner absent
+      - {"ran": True, "ok": True,  "applied": [...], ...}    all pending applied
+      - {"ran": True, "ok": False, "failed": stem, ...}      a migration raised; the
+        runner recorded ledger state ('failed' + each 'applied') and left the DB at
+        the last good migration. The caller surfaces this loudly and exits non-zero.
+    """
+    migrations_dir = os.path.join(SCRIPT_DIR, "erpclaw-setup", "migrations")
+    runner_path = os.path.join(SCRIPT_DIR, "erpclaw-setup", "migration_runner.py")
+    if not os.path.isdir(migrations_dir) or not os.path.isfile(runner_path):
+        return {"ran": False, "reason": "no foundation migrations dir / runner present"}
+    import importlib.util
+    spec = importlib.util.spec_from_file_location("migration_runner", runner_path)
+    runner = importlib.util.module_from_spec(spec)
+    try:
+        spec.loader.exec_module(runner)
+    except Exception as e:  # noqa: BLE001 — surface, never mask the reconcile
+        return {"ran": True, "ok": False, "failed": "<runner-import>", "applied": [],
+                "error": str(e), "detail": "migration_runner failed to import"}
+
+    db_path = db_default()
+    # Migrations UPGRADE an already-initialized foundation DB (fresh installs get
+    # the current schema from init_schema). Running ALTERs against an absent or
+    # schema-less DB is nonsensical, so skip cleanly when the core schema is not
+    # present — dialect-agnostic via the runner's own _connect.
+    if not _foundation_db_initialized(runner, db_path):
+        return {"ran": False, "reason": "foundation DB not initialized (nothing to migrate)"}
+
+    try:
+        res = runner.run_pending(
+            db_path, migrations_dir=migrations_dir, module_name="erpclaw-setup")
+    except Exception as e:  # noqa: BLE001 — surface, never mask the reconcile
+        return {"ran": True, "ok": False, "failed": "<runner>", "applied": [],
+                "error": str(e), "detail": "migration_runner failed to execute"}
+    res["ran"] = True
+    return res
+
+
+def _foundation_db_initialized(runner, db_path):
+    """True if ``db_path`` is an initialized foundation DB (has the core schema).
+
+    Dialect-agnostic: uses the runner's own ``_connect`` so SQLite and Postgres
+    both work, and probes a core table (``company``). Any error — absent DB,
+    missing table, connect failure — means "not initialized" → skip migrations.
+    A non-existent SQLite path short-circuits so we never create a stray empty DB.
+    """
+    if "://" not in str(db_path) and not os.path.isfile(db_path):
+        return False
+    try:
+        conn, _ = runner._connect(db_path)
+    except Exception:  # noqa: BLE001
+        return False
+    try:
+        conn.cursor().execute("SELECT 1 FROM company LIMIT 1")
+        return True
+    except Exception:  # noqa: BLE001 — missing table / uninitialized
+        return False
+    finally:
+        try:
+            conn.close()
+        except Exception:  # noqa: BLE001
+            pass
+
+
+def _open_foundation_db():
+    """Open the foundation DB the observable readers use, or say why not.
+
+    Returns ``(conn, None)`` when the DB is initialized AND carries
+    ``erpclaw_module``; ``(None, reason)`` otherwise. Shared by the ADR-0028 §2
+    version-row bump and the M39 catalog-row heal so the two can never drift on
+    what "initialized" means, and so both stay caller-closed (each returns an
+    open connection the caller must close).
+
+    DB-less / uninitialized installs skip cleanly and visibly (ADR-0028 §6): the
+    SQLite file short-circuit avoids opening a connection (never creates a stray
+    empty DB, mirroring ``_foundation_db_initialized``), and the target-table
+    probe catches an initialized-but-tableless DB / an uninitialized Postgres.
+
+    Uses ``get_connection`` (no arg) — the exact dialect-aware resolution
+    ``list_modules`` reads with — so a healed row is the one the reader observes.
+    """
+    # Postgres resolves via URL, so skip the file probe there and let the table
+    # probe below decide.
+    if os.environ.get("ERPCLAW_DB_DIALECT", "sqlite") != "postgresql":
+        db_path = os.environ.get("ERPCLAW_DB_PATH") or db_default()
+        if not os.path.isfile(db_path):
+            return None, "foundation DB not initialized"
+
+    conn = get_connection()
+    try:
+        conn.execute("SELECT 1 FROM erpclaw_module LIMIT 1")
+    except Exception:  # noqa: BLE001 — absent table / uninitialized DB
+        try:
+            conn.close()
+        except Exception:  # noqa: BLE001
+            pass
+        return None, "foundation DB not initialized"
+    return conn, None
+
+
+def _ensure_foundation_module_row(foundation_entry):
+    """INSERT the foundation's own ``erpclaw_module`` catalog row when absent
+    (M39 / Wave G F6), on the ``update-foundation`` reconcile path.
+
+    ADR-0028 §2's version bump below is an UPDATE and therefore cannot heal a row
+    that was never inserted — the exact state every ClawHub install was in, since
+    its post hook runs ``initialize-database`` and nothing else. Fresh installs
+    now get the row from ``initialize-database``; installs that predate that fix
+    get it here, from the same shared helper, on the first reconcile.
+
+    Runs BEFORE the version bump so a freshly-healed row is then bumped to the
+    registry version by the existing rider in the same run. Returns a JSON-safe
+    dict for the caller to surface.
+
+    The shared helper is imported HERE, not at module import time: this manager
+    is the tool that repairs a partially-reconciled install, so a lib copy that
+    predates M39 must degrade to a reported skip, never to an ImportError that
+    stops the manager from running at all.
+    """
+    try:
+        from erpclaw_lib.foundation_registry import ensure_foundation_module_row
+    except ImportError as e:
+        return {"ensured": False, "inserted": False,
+                "reason": f"shared foundation-registry helper unavailable: {e}"}
+
+    conn, reason = _open_foundation_db()
+    if conn is None:
+        return {"ensured": False, "inserted": False, "reason": reason}
+    try:
+        return ensure_foundation_module_row(
+            conn, foundation_entry, install_path=FOUNDATION_INSTALL_ROOT)
+    finally:
+        try:
+            conn.close()
+        except Exception:  # noqa: BLE001
+            pass
+
+
+def _bump_foundation_version_row(version):
+    """Heal the ``erpclaw_module.version`` bookkeeping row for the foundation to
+    ``version`` on a CONFIRMED-SUCCESS ``update-foundation`` (ADR-0028 §2 rider,
+    M33 Item 7).
+
+    ``list_modules`` reads ``erpclaw_module.version``; before this heal an
+    upgraded ClawHub install under-reported its version indefinitely, because
+    ``update-foundation`` reconciled files and (since M31) ran pending migrations
+    but never touched the bookkeeping row. (This docstring used to add "fresh
+    installs were unaffected — ``install-module`` inserts the current version";
+    that was false for the foundation, which ClawHub installs via its post hook,
+    not via ``install-module``. M39 is the fix; see
+    ``_ensure_foundation_module_row``.)
+
+    Called ONLY on converged-success paths (files AND migrations both green),
+    extending ADR-0028's "a run reporting ok means files AND schema are converged"
+    to include the observable version row. NEVER called on:
+      - dry-run / preview (§2 previews are read-only), or
+      - a failed migration (§3 leaves the DB at the last good migration and exits
+        1 — the version row must reflect a fully-converged upgrade, never a
+        half-applied one).
+
+    Idempotent: re-setting the same version is a no-op UPDATE, so the in-sync
+    early-return path also HEALS rows left stale by pre-rider upgrades (files
+    already in sync, row never bumped) on the next reconcile.
+
+    Stays a pure heal primitive: a row that does not exist is a clean no-op here
+    (0 rows updated), because CREATING it is ``_ensure_foundation_module_row``'s
+    job (M39) and runs just before this on both reconcile paths.
+
+    DB-less / uninitialized installs skip cleanly and visibly (§6) via the shared
+    ``_open_foundation_db`` probe. Returns a JSON-safe dict for the caller.
+    """
+    if not version:
+        return {"bumped": False, "reason": "registry has no foundation version"}
+
+    conn, reason = _open_foundation_db()
+    if conn is None:
+        return {"bumped": False, "reason": reason}
+    try:
+        cur = conn.execute(
+            "UPDATE erpclaw_module SET version = ?, updated_at = ? WHERE name = ?",
+            (version, _now_iso(), "erpclaw"),
+        )
+        conn.commit()
+        rows = cur.rowcount if getattr(cur, "rowcount", None) is not None else 0
+        return {"bumped": rows > 0, "version": version, "rows": rows}
+    finally:
+        try:
+            conn.close()
+        except Exception:  # noqa: BLE001
+            pass
 
 
 def _mark_failed(conn, module_name, error_msg):
@@ -1195,10 +1530,14 @@ def remove_module(args):
     if install_path and os.path.isdir(install_path):
         shutil.rmtree(install_path, ignore_errors=True)
 
-    # Also remove the workspace-skills mirror so OpenClaw stops listing it.
-    workspace_dest = os.path.join(OPENCLAW_WORKSPACE_SKILLS_DIR, module_name)
-    if os.path.isdir(workspace_dest):
-        shutil.rmtree(workspace_dest, ignore_errors=True)
+    # Also remove the workspace-skills mirror so OpenClaw stops listing it —
+    # but only when we own that dir. Under a non-default ERPCLAW_HOME
+    # (Hermes/other runtime) we never wrote it, and deleting OpenClaw's copy
+    # would be the same cross-runtime mutation F10 forbids on the install side.
+    if _is_openclaw_default_home():
+        workspace_dest = os.path.join(OPENCLAW_WORKSPACE_SKILLS_DIR, module_name)
+        if os.path.isdir(workspace_dest):
+            shutil.rmtree(workspace_dest, ignore_errors=True)
 
     # Regenerate SKILL.md without removed module
     _regenerate_skill_md(conn)
@@ -1215,13 +1554,28 @@ def remove_module(args):
 # ---------------------------------------------------------------------------
 
 def update_modules(args):
-    """Update all or a specific installed module.
+    """Update all or a specific installed GitHub-hosted module.
 
     For each module: fetches from origin, compares HEAD with origin/main,
     pulls if different, re-runs init_db.py, and rebuilds the action cache.
+
+    The foundation is EXCLUDED from this path (M39 / Wave G F6). Now that
+    ``erpclaw`` is catalogued in ``erpclaw_module``, iterating it here would run
+    ``_check_remote_updates`` against a non-git ClawHub install directory, which
+    returns "no updates" silently — so a real pending foundation bump would be
+    reported as "already up to date". The foundation owns ``update-foundation``
+    as its dedicated reconcile path: catalogued is not the same as
+    updatable-by-this-path, and a targeted request says so instead of lying.
     """
     conn = get_connection()
     target_name = getattr(args, "module_name", None)
+
+    if target_name == "erpclaw":
+        err(
+            "'erpclaw' is the foundation, not a git-hosted module; "
+            "update-modules cannot update it",
+            suggestion="Use --action update-foundation (with --user-confirmed) instead",
+        )
 
     if target_name:
         rows = conn.execute(
@@ -1232,7 +1586,8 @@ def update_modules(args):
             err(f"Module '{target_name}' is not installed or not in 'installed' state")
     else:
         rows = conn.execute(
-            "SELECT * FROM erpclaw_module WHERE install_status = 'installed'"
+            "SELECT * FROM erpclaw_module WHERE install_status = 'installed' AND name != ?",
+            ("erpclaw",)
         ).fetchall()
 
     if not rows:
@@ -1725,6 +2080,8 @@ def _walk_foundation_tree():
         for fname in files:
             if any(fname.endswith(s) for s in SYNC_SKIP_SUFFIXES):
                 continue
+            if fname in SYNC_SKIP_BASENAMES_FOUNDATION:
+                continue
             rel = os.path.relpath(os.path.join(root, fname), FOUNDATION_INSTALL_ROOT)
             if rel in SYNC_SKIP_RELPATHS_FOUNDATION:
                 continue
@@ -1818,19 +2175,26 @@ def _is_dev_source_tree(path):
     """True if `path` is a developer's git checkout, not a clawhub-installed skill.
 
     Reconciliation must never overwrite a developer's source checkout of the
-    foundation. We can't simply test "is SKILL.md tracked by some git repo"
-    because clawhub-installed skills ARE git clones (clawhub install does a
-    git clone of avansaber/erpclaw); their SKILL.md is always tracked.
+    foundation.
 
-    Distinguishing signal: the git remote URL.
-      - ClawHub install: single `origin` pointing at github.com/avansaber/erpclaw
+    ClawHub CLI v0.12.3 installs a skill by FILE EXTRACTION (it unpacks the
+    published package into the skill dir); the install is NOT a git repository,
+    so `git ls-files SKILL.md` returns non-zero and this function returns False
+    — correctly classifying an extracted install as reconcilable, not a dev
+    tree. (Older CLI builds git-cloned avansaber/erpclaw; the remote heuristic
+    below keeps those safe to reconcile too.)
+
+    We therefore can't classify by "is SKILL.md tracked by some git repo" alone,
+    because a legacy clawhub git-clone's SKILL.md IS tracked. Distinguishing
+    signal for the tracked case: the git remote URL.
+      - Legacy ClawHub git-clone: single `origin` at github.com/avansaber/erpclaw
       - Dev checkout: remote points at the private monorepo, a fork, or has
         no remote, or has multiple remotes that include a non-avansaber one.
 
     A path is "dev tree" only when SKILL.md is tracked AND the remote set is
-    NOT exclusively the canonical avansaber/erpclaw upstream. That keeps
-    clawhub deployments safe to reconcile while still refusing to stomp on
-    any developer's working copy.
+    NOT exclusively the canonical avansaber/erpclaw upstream. That keeps both
+    extracted and legacy-clone clawhub deployments safe to reconcile while still
+    refusing to stomp on any developer's working copy.
     """
     skill_md = os.path.join(path, "SKILL.md")
     if not os.path.isfile(skill_md):
@@ -1930,12 +2294,51 @@ def update_foundation_action(args):
                     f.write(_now_iso())
             except OSError:
                 pass
-            print(json.dumps({
+            result = {
                 "status": "ok",
                 "version": foundation.get("version"),
                 "in_sync": True,
                 "modified": [], "missing": [], "orphaned": [],
-            }))
+            }
+            # ADR-0028 / BDFL checkpoint ② condition (b): a confirmed apply-path
+            # run converges files AND schema — the in-sync early return must not
+            # silently skip pending migrations. Without this, the retry after a
+            # files-ok/migration-failed run reports "ok, in_sync" while pending
+            # DDL sits unapplied (the exact FINDINGS B1 silent-skip class this
+            # wiring exists to kill). Idempotent no-op when nothing is pending.
+            # NOTE the dry-run check sits BELOW this block, so guard explicitly:
+            # previews must stay read-only.
+            if not getattr(args, "dry_run", False):
+                migrations = _run_foundation_migrations()
+                _sync_log(f"foundation migrations (in-sync path): {migrations}")
+                result["migrations"] = migrations
+                if migrations.get("ran") and migrations.get("ok") is False:
+                    result["status"] = "error"
+                    result["message"] = (
+                        f"Foundation files already in sync at "
+                        f"{foundation.get('version')}, but migration "
+                        f"'{migrations.get('failed')}' FAILED: "
+                        f"{migrations.get('error')}. {migrations.get('detail', '')} "
+                        f"Applied before failure: {migrations.get('applied', [])}."
+                    )
+                    print(json.dumps(result, indent=2))
+                    sys.exit(1)
+                # M39 (Wave G F6): create the catalog row first when it is
+                # missing — the bump below is an UPDATE and cannot heal a row
+                # that was never inserted (every pre-fix ClawHub install).
+                module_row = _ensure_foundation_module_row(foundation)
+                _sync_log(f"foundation module row (in-sync path): {module_row}")
+                result["module_row"] = module_row
+                # ADR-0028 §2 rider (M33 Item 7): converged-success also heals the
+                # observable erpclaw_module.version row. This in-sync path is
+                # exactly where a pre-rider upgrade left the row stale (files
+                # already in sync, row never bumped) — the idempotent bump heals
+                # it here. Reached only when NOT dry-run (previews stay read-only)
+                # and migrations did not fail (exited above).
+                version_bump = _bump_foundation_version_row(foundation.get("version"))
+                _sync_log(f"foundation version-row bump (in-sync path): {version_bump}")
+                result["version_bump"] = version_bump
+            print(json.dumps(result))
             return
 
         if getattr(args, "dry_run", False):
@@ -1997,24 +2400,68 @@ def update_foundation_action(args):
             f"version={foundation.get('version')}"
         )
 
-        print(json.dumps({
+        # M31 H1 / FINDINGS B1 (BDFL checkpoint ②): a reconcile can land new
+        # DDL-bearing migration files, so apply pending foundation migrations
+        # here — an upgrade can never silently ship schema it never ran. This
+        # runs only on the apply path (dry-run + in-sync returned above) and
+        # inherits the reconcile's --user-confirmed dangerous-action gate, so it
+        # is never triggered by a preview or an unconfirmed call. Loud on failure.
+        migrations = _run_foundation_migrations()
+        _sync_log(f"foundation migrations: {migrations}")
+
+        result = {
             "status": "ok",
             "version": foundation.get("version"),
             "in_sync": True,
             "replaced": replaced,
             "deleted": deleted,
-        }))
+            "migrations": migrations,
+        }
+        if migrations.get("ran") and migrations.get("ok") is False:
+            # Files reconciled, but a migration failed. Do NOT claim success: the
+            # runner recorded ledger state (the failed stem + each applied one)
+            # and left the DB at the last good migration. Surface loudly + exit 1
+            # so operators and CI see the half-applied upgrade and re-run.
+            result["status"] = "error"
+            result["message"] = (
+                f"Foundation files reconciled to {foundation.get('version')}, but "
+                f"migration '{migrations.get('failed')}' FAILED: "
+                f"{migrations.get('error')}. {migrations.get('detail', '')} "
+                f"Applied before failure: {migrations.get('applied', [])}."
+            )
+            print(json.dumps(result, indent=2))
+            sys.exit(1)
+
+        # M39 (Wave G F6): create the catalog row first when it is missing — the
+        # bump below is an UPDATE and cannot heal a never-inserted row.
+        module_row = _ensure_foundation_module_row(foundation)
+        _sync_log(f"foundation module row: {module_row}")
+        result["module_row"] = module_row
+
+        # ADR-0028 §2 rider (M33 Item 7): a converged apply-path reconcile also
+        # heals the observable erpclaw_module.version row (list-modules reads it).
+        # Reached only on confirmed apply-path success — dry-run returned above, a
+        # failed migration exited above — so this never fires on a preview or a
+        # half-applied upgrade.
+        version_bump = _bump_foundation_version_row(foundation.get("version"))
+        _sync_log(f"foundation version-row bump: {version_bump}")
+        result["version_bump"] = version_bump
+
+        print(json.dumps(result))
     finally:
         _release_sync_lock(lock)
 
 
 def verify_trust_root_action(args):
     """Print embedded public key fingerprint(s) for out-of-band verification."""
-    sys.path.insert(0, os.path.join(os.path.expanduser(os.environ.get("ERPCLAW_HOME", "~/.openclaw/erpclaw")), "lib"))
+    if importlib.util.find_spec("erpclaw_lib") is None:
+        sys.path.insert(0, os.path.join(os.path.expanduser(os.environ.get("ERPCLAW_HOME", "~/.openclaw/erpclaw")), "lib"))
     try:
         from erpclaw_lib.signing import TRUSTED_KEYS, fingerprint
     except ImportError as e:
-        err(f"signing library unavailable: {e}")
+        # F15/M43: route the crypto-specific hint through err()'s suggestion
+        # contract; a non-cryptography ImportError leaves suggestion=None.
+        err(f"signing library unavailable: {e}", suggestion=_signing_import_hint(e))
 
     keys = []
     for tk in TRUSTED_KEYS:

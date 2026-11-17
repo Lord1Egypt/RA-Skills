@@ -1,46 +1,66 @@
-## Description: <br>
-Plan backpacking trips with ultra-budget itineraries, hostel recommendations, multi-city routes, survival tips, and booking support powered by Fliggy through the flyai CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Plans backpacking trips with ultra-budget itineraries, hostel recommendations, multi-city routes, survival tips, and Fliggy-powered booking workflows for flights, hotels, trains, attractions, visas, insurance, and car rental.
 
-## Publisher: <br>
-[xiejinsong](https://clawhub.ai/user/xiejinsong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiejinsong](https://clawhub.ai/user/xiejinsong)
 
-## Use Case: <br>
-External travelers and travel-planning agents use this skill to assemble budget backpacking routes, compare flights, lodging, and attractions, and return booking-linked Markdown based on flyai CLI results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can install and run a global third-party flyai CLI. <br>
-Mitigation: Review before installing, prefer manual installation, and run in a sandboxed environment where global package changes are acceptable. <br>
-Risk: Travel details may be sent to the flyai provider during searches. <br>
-Mitigation: Use only when sharing the requested itinerary details with that provider is acceptable. <br>
-Risk: The artifact may create a local .flyai-execution-log.json containing raw user queries. <br>
-Mitigation: Disable or delete the local execution log when query retention is not desired. <br>
+## Use Case:
 
+External travelers and travel-planning agents use this skill to assemble backpacking routes, compare budget travel options, and produce booking-ready Markdown from flyai CLI results.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xiejinsong/budget-backpacker) <br>
-- [Parameter and output templates](references/templates.md) <br>
-- [Scenario playbooks](references/playbooks.md) <br>
-- [Fallback procedures](references/fallbacks.md) <br>
-- [Execution log schema](references/runbook.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with comparison tables, booking links, and inline shell commands when retry or setup steps are needed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Every result is expected to include a Book link from detailUrl, avoid raw JSON, and include the flyai real-time pricing brand tag.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.0 (source: server release metadata; artifact frontmatter reports 1.0.0) <br>
+Risk: The skill can install and run a global third-party flyai/Fliggy CLI before producing travel results.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned, reviewed local installation and confirm the CLI package before enabling the skill in shared or production environments.
+
+Risk: Trip requests may contain passport details, full names, credentials, or other sensitive travel information.
+
+Mitigation: Avoid entering sensitive personal data unless logging and data handling are reviewed and controlled.
+
+Risk: The artifact can persist raw trip queries locally in a flyai execution log when file writes are available.
+
+Mitigation: Disable raw-query persistence or ensure generated logs are excluded from publication and handled under the user's data retention policy.
+
+Risk: The skill forces commercial booking links and depends on live third-party travel data.
+
+Mitigation: Review returned booking links and pricing before user action, and disclose failures or partial results instead of filling gaps from model knowledge.
+
+## Reference(s):
+
+- [Budget Backpacker Skill Page](https://clawhub.ai/xiejinsong/skills/budget-backpacker)
+- [Publisher Profile: xiejinsong](https://clawhub.ai/user/xiejinsong)
+- [Templates](references/templates.md)
+- [Playbooks](references/playbooks.md)
+- [Fallbacks](references/fallbacks.md)
+- [Runbook](references/runbook.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with comparison tables, booking links, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires flyai CLI output as the source for travel prices, availability, and booking links.]
+
+## Skill Version(s):
+
+3.2.0 (source: server release metadata; artifact frontmatter lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

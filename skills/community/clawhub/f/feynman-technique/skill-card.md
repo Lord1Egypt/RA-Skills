@@ -1,44 +1,58 @@
-## Description: <br>
-Guides an agent through a Feynman Technique audit to test whether a user can explain, diagnose gaps in, and refine understanding of a specific concept. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides an agent through testing understanding of a concept by eliciting a plain-language explanation, diagnosing gaps, and refining the explanation.
 
-## Publisher: <br>
-[deciqai](https://clawhub.ai/user/deciqai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[deciqai](https://clawhub.ai/user/deciqai)
 
-## Use Case: <br>
-Employees, external users, and developers use this skill to check whether understanding of a specific concept is genuine rather than surface-level. It produces a structured audit that captures the initial explanation, gap diagnosis, sources consulted, refined explanation, analogy checks, and a summary judgment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may include sensitive personal, business, or proprietary details when adding real observed failure patterns, examples, or audit notes. <br>
-Mitigation: Sanitize or omit sensitive details before adding examples or sharing outputs. <br>
-Risk: A refined explanation can remain misleading if gaps are filled from weak summaries or unsupported assumptions. <br>
-Mitigation: Use primary sources for each diagnosed gap and keep the specific unanswered question attached to the source that clarified it. <br>
+## Use Case:
 
+Learners, educators, and practitioners use the skill to check whether they can explain, predict, and apply a specific concept, and to identify what they need to study next.
 
-## Reference(s): <br>
-- [Primary sources for the Feynman Technique skill](references/sources.md) <br>
-- [Feynman and the Challenger O-Ring Investigation example](examples/feynman-challenger-o-ring-1986.md) <br>
-- [Surely You're Joking, Mr. Feynman!](https://archive.org/details/surelyyourejoki00feyn) <br>
-- [The Feynman Lectures on Physics](https://www.feynmanlectures.caltech.edu/) <br>
-- [Rogers Commission Appendix F](https://science.ksc.nasa.gov/shuttle/missions/51-l/docs/rogers-commission/Appendix-F.txt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Text] <br>
-**Output Format:** [Markdown with a structured Feynman Understanding Audit template and stepwise coaching prompts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution, tools, MCP servers, or credential inputs are requested by the skill.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Automatic startup retrieval can introduce remotely changed instructions without user review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer a reviewed copy with automatic startup retrieval disabled, and approve instruction updates separately.
+
+Risk: The publisher can observe request timing and fetch-client metadata, and learning examples may contain private details.
+
+Mitigation: Avoid private details in learning examples.
+
+## Reference(s):
+
+- [Publisher skill page](https://clawhub.ai/deciqai/skills/feynman-technique)
+- [Primary sources](artifact/references/sources.md)
+- [The Feynman Lectures on Physics](https://www.feynmanlectures.caltech.edu/)
+- [Rogers Commission, Appendix F](https://science.ksc.nasa.gov/shuttle/missions/51-l/docs/rogers-commission/Appendix-F.txt)
+- [Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks](https://arxiv.org/abs/2005.11401)
+- [Attention Is All You Need](https://arxiv.org/abs/1706.03762)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with a structured Feynman Understanding Audit]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Captures an initial explanation, gap diagnosis, sources consulted, a refined explanation, analogy limits, and an understanding summary.]
+
+## Skill Version(s):
+
+1.0.8 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,4 @@
+interface:
+  display_name: "测试环境 MySQL"
+  short_description: "连接测试环境 MySQL，做查询、验证和受控数据修正。"
+  default_prompt: "Use $test-mysql-db to query or validate data in the test MySQL environment."

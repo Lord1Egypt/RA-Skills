@@ -1,41 +1,61 @@
-## Description: <br>
-Buy, maintain, improve, and sell homes with inspection checklists, maintenance schedules, renovation planning, and transaction guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Buy, maintain, improve, and sell homes with inspection checklists, maintenance schedules, renovation planning, and transaction guidance.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users and homeowners use this skill for practical guidance across home buying, maintenance, renovations, selling, and renting out property. It provides planning checklists, decision prompts, cost sanity checks, and transaction guidance for common residential property workflows. <br>
-
-### Deployment Geography for Use: <br>
-United States <br>
-
-## Known Risks and Mitigations: <br>
-Risk: DIY repair and home improvement guidance may be unsafe if treated as a substitute for qualified professional advice. <br>
-Mitigation: Use the skill for planning and triage; hire licensed professionals for electrical, gas, structural, roofing, major plumbing, HVAC, and emergency issues. <br>
-Risk: Tenant screening, leases, deposits, and eviction guidance can create legal, fair housing, and privacy risk. <br>
-Mitigation: Follow applicable state and local landlord-tenant law, use compliant screening processes, consult legal counsel when needed, and avoid storing sensitive applicant data in plain text or unsecured channels. <br>
-Risk: Cost estimates and market guidance may be inaccurate for a specific location or current market conditions. <br>
-Mitigation: Validate estimates against current local quotes, comparable listings, permit requirements, and professional advice before making financial commitments. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/ivangdavila/house) <br>
+## Use Case:
 
+External users and homeowners use this skill for practical guidance on home buying, maintenance, improvements, selling, and renting property. It provides checklists, planning prompts, and decision guidance that should be reviewed against local conditions and professional advice.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown guidance with checklists, tables, and step-by-step recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution, external API use, or file generation is described.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: DIY repair guidance could be unsafe for electrical, gas, structural, major plumbing, roof, or other hazardous work.
+
+Mitigation: Treat the skill as general homeowner guidance and use licensed professionals for unsafe or regulated repair work.
+
+Risk: Rental guidance mentions tenant SSNs and screening, which can create privacy, security, and legal compliance obligations.
+
+Mitigation: Use compliant tenant-screening services rather than directly collecting or storing SSNs unless proper legal, security, retention, and disposal controls are in place.
+
+Risk: Real estate, landlord-tenant, permit, disclosure, and fair-housing requirements vary by jurisdiction.
+
+Mitigation: Check applicable local requirements and consult qualified professionals before acting on transactions, leases, evictions, permits, or disclosures.
+
+## Reference(s):
+
+- [House skill on ClawHub](https://clawhub.ai/ivangdavila/skills/house)
+- [Buying a House](artifact/buying.md)
+- [House Maintenance](artifact/maintenance.md)
+- [Home Improvements](artifact/improvements.md)
+- [Selling Your House](artifact/selling.md)
+- [Renting Out Your Property](artifact/renting.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Text]
+
+**Output Format:** [Markdown guidance with checklists, tables, and concise recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code; guidance should be checked against local laws, current market conditions, and licensed professional advice.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

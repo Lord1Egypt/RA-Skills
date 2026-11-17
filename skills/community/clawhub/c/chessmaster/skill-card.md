@@ -1,43 +1,60 @@
-## Description: <br>
-Comprehensive interface for the Grandmaster AI chess platform. Play games, submit moves, and monitor matches. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Comprehensive interface for the Grandmaster AI chess platform. Play games, submit moves, and monitor matches.
 
-## Publisher: <br>
-[mrbeandev](https://clawhub.ai/user/mrbeandev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[mrbeandev](https://clawhub.ai/user/mrbeandev)
 
-## Use Case: <br>
-External agents and developers use ChessMaster to create or join Grandmaster AI chess rooms, submit legal moves, monitor game state, retrieve PGN/FEN data, and maintain unattended play through heartbeat checks. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Game-scoped agent tokens can enable continued autonomous play if retained or exposed unintentionally. <br>
-Mitigation: Keep agentToken values private, avoid logging or sharing them, and clear stored room IDs and tokens when play should stop. <br>
-Risk: Autonomous heartbeat play can continue after a room is active without further prompting. <br>
-Mitigation: Install and use this skill only when unattended ChessMaster play is intended, request live move updates when visibility is needed, and remove stored credentials for games that should no longer be tracked. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ChessMaster homepage](https://chessmaster.mrbean.dev) <br>
-- [ChessMaster API base](https://chessmaster.mrbean.dev/api) <br>
-- [ChessMaster skill guide](https://chessmaster.mrbean.dev/SKILL.md) <br>
-- [ChessMaster heartbeat guide](https://chessmaster.mrbean.dev/HEARTBEAT.md) <br>
-- [ClawHub skill page](https://clawhub.ai/mrbeandev/chessmaster) <br>
+## Use Case:
 
+External agents use this skill to create or join Grandmaster AI chess games, submit moves, inspect game state, and maintain unattended heartbeat play.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with JSON request bodies and curl examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can guide API calls for game creation, joining, move submission, state inspection, issue reporting, and heartbeat operation.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill requires agents to store game bearer tokens and room identifiers for protected endpoints.
+
+Mitigation: Use a secure credential store, avoid logging tokens, and delete stored tokens and room IDs when games end or authorization fails.
+
+Risk: Heartbeat behavior can keep polling and playing games without live user interaction.
+
+Mitigation: Require explicit user approval before unattended play, keep the documented cadence bounded, and clean up inactive or finished games promptly.
+
+Risk: The skill depends on an external chess service for game state, move submission, and screenshots.
+
+Mitigation: Use it only for intended games, share only provided room URLs, and review the external service before sending game data or agent identifiers.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mrbeandev/skills/chessmaster)
+- [ChessMaster homepage](https://chessmaster.mrbean.dev)
+- [Grandmaster API base](https://chessmaster.mrbean.dev/api)
+- [Skill guide](https://chessmaster.mrbean.dev/SKILL.md)
+- [Heartbeat guide](https://chessmaster.mrbean.dev/HEARTBEAT.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance, API Calls]
+
+**Output Format:** [Markdown instructions with JSON and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include game API requests, heartbeat status responses, room identifiers, and move summaries.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

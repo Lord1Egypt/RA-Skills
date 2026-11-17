@@ -1,12 +1,12 @@
 ---
 name: hedy
-description: "Access Hedy meeting data: sessions, transcripts, highlights, todos, topics, contexts, and webhooks via the Hedy REST API."
+description: "Access and manage Hedy meeting data: sessions, transcripts, highlights, todos, topics, contexts, vocabulary, and webhooks via the Hedy REST API."
 metadata: {"openclaw": {"emoji": "🎙️", "requires": {"env": ["HEDY_API_KEY"], "bins": ["curl", "jq"]}, "primaryEnv": "HEDY_API_KEY"}}
 ---
 
 # Hedy
 
-Access a user's Hedy meeting data through the Hedy REST API. Read sessions with transcripts, highlights, and todos. Manage topics, session contexts, and webhooks.
+Access a user's Hedy meeting data through the Hedy REST API. Read sessions with transcripts and highlights. Manage todos, topics, session contexts, custom vocabulary, and webhooks.
 
 Hedy is an AI-powered meeting coach that provides real-time speech transcription and AI-powered conversation analysis. This skill lets you query the user's meeting history, search for specific sessions, retrieve structured meeting outputs, and manage organizational features like topics and webhooks.
 
@@ -96,6 +96,8 @@ All endpoints return JSON. Response shapes vary by endpoint (documented individu
 }
 ```
 
+The live OpenAPI schema at `{BASE_URL}/docs` is authoritative. Check it before using an operation or field not documented here.
+
 ### GET /me
 
 Returns the authenticated user's profile. Response is a bare JSON object (no wrapper).
@@ -124,8 +126,9 @@ curl -s -H "Authorization: Bearer $HEDY_API_KEY" "{BASE_URL}/sessions?limit=20" 
 
 Query parameters:
 - `limit` (int, 1-100, default 50): Number of sessions to return
+- `after` (string, optional): Session ID from the previous response's `pagination.next`
 
-Note: This endpoint returns the most recent `limit` sessions only. There is no cursor-based pagination. To retrieve more sessions, increase the `limit` value (max 100).
+To retrieve additional sessions, repeat the request with `after={pagination.next}` while `pagination.hasMore` is true.
 
 Response:
 
@@ -138,10 +141,11 @@ Response:
       "title": "Weekly Sync",
       "startTime": "2026-03-15T14:30:00Z",
       "duration": 45,
+      "session_type": "business_meetings",
       "topic": { "id": "topic_1", "name": "Team Meetings" }
     }
   ],
-  "pagination": { "hasMore": false, "next": null, "total": 42 }
+  "pagination": { "hasMore": true, "next": "sess_123", "total": 42 }
 }
 ```
 
@@ -162,17 +166,21 @@ Response:
   "startTime": "2026-03-15T14:30:00Z",
   "endTime": "2026-03-15T15:15:00Z",
   "duration": 45,
+  "session_type": "business_meetings",
   "transcript": "full meeting transcript text",
   "cleaned_transcript": "AI-cleaned version or null",
   "cleaned_at": "2026-03-15T16:00:00Z",
   "conversations": "Q&A structured format",
   "meeting_minutes": "formatted minutes",
   "recap": "brief summary",
+  "session_notes": "[{\"insert\":\"Key takeaway\\n\"}]",
   "highlights": [],
   "user_todos": [],
   "topic": { "id": "topic_1", "name": "Team Meetings" }
 }
 ```
+
+`session_notes` is Parchment Delta JSON encoded as a string. Transcript and current structured cleaned-transcript speaker labels resolve from the Session's current speaker names, so they can change after a speaker rename.
 
 ### GET /sessions/{sessionId}/highlights
 
@@ -198,6 +206,22 @@ A specific todo item.
 curl -s -H "Authorization: Bearer $HEDY_API_KEY" "{BASE_URL}/sessions/{sessionId}/todos/{todoId}" | jq
 ```
 
+### PATCH /sessions/{sessionId}/todos/{todoId}
+
+Update a stable-ID todo's completion state, due date, or both. An empty `dueDate` clears the due date.
+
+```bash
+curl -s -X PATCH -H "Authorization: Bearer $HEDY_API_KEY" -H "Content-Type: application/json" \
+  -d '{"completed": true, "dueDate": "Friday"}' \
+  "{BASE_URL}/sessions/{sessionId}/todos/{todoId}" | jq
+```
+
+The body must contain at least one of:
+- `completed` (boolean)
+- `dueDate` (string, max 200 chars)
+
+The response is wrapped in `{ success, data }`, where `data` is the updated todo.
+
 ### GET /highlights
 
 List all highlights across all sessions, sorted by timestamp (newest first). Response is wrapped in `{ success, data, pagination }`.
@@ -208,8 +232,9 @@ curl -s -H "Authorization: Bearer $HEDY_API_KEY" "{BASE_URL}/highlights?limit=20
 
 Query parameters:
 - `limit` (int, 1-100, default 50)
+- `after` (string, optional): Highlight ID from the previous response's `pagination.next`
 
-Note: This endpoint returns the most recent `limit` highlights only. There is no cursor-based pagination. To retrieve more highlights, increase the `limit` value (max 100).
+To retrieve additional highlights, repeat the request with `after={pagination.next}` while `pagination.hasMore` is true.
 
 Response:
 
@@ -224,7 +249,7 @@ Response:
       "title": "Key Decision"
     }
   ],
-  "pagination": { "hasMore": false, "next": null, "total": 15 }
+  "pagination": { "hasMore": true, "next": "high_123", "total": 15 }
 }
 ```
 
@@ -289,12 +314,12 @@ Response `data` (array of):
   "name": "Project Alpha",
   "description": "All about Project Alpha",
   "color": "#FF5733",
-  "iconName": "lightbulb_outline",
+  "iconName": "59475",
   "topicContext": "Custom instructions for this topic",
   "topicContextUpdatedAt": "2026-03-15T16:00:00Z",
   "sessionCount": 12,
   "lastSessionDate": "2026-03-15T14:30:00Z",
-  "dominantSessionType": "brainstorm",
+  "dominantSessionType": "group_brainstorm",
   "overview": { "summary": "..." },
   "overviewUpdatedAt": "2026-03-15T16:00:00Z",
   "createdAt": "2026-02-01T10:00:00Z",
@@ -314,7 +339,7 @@ curl -s -H "Authorization: Bearer $HEDY_API_KEY" "{BASE_URL}/topics/{topicId}" |
 
 ### GET /topics/{topicId}/sessions
 
-Sessions grouped under a topic. This is the only endpoint with cursor-based pagination.
+Sessions grouped under a topic. This endpoint uses its own `startAfter` cursor.
 
 ```bash
 curl -s -H "Authorization: Bearer $HEDY_API_KEY" "{BASE_URL}/topics/{topicId}/sessions?limit=20" | jq
@@ -336,6 +361,7 @@ Response:
         "title": "Q1 Planning",
         "startTime": "2026-03-15T14:30:00Z",
         "duration": 45,
+        "session_type": "business_meetings",
         "topicInfo": { "id": "topic_123", "name": "Project Alpha" }
       }
     ],
@@ -348,7 +374,7 @@ Response:
 }
 ```
 
-To paginate: pass `?startAfter={data.pagination.nextCursor}` until `hasMore` is `false`.
+To paginate, pass `?startAfter={data.pagination.nextCursor}` until `hasMore` is false. This endpoint uses `startAfter`; the top-level Session and Highlight lists use `after`.
 
 ### GET /contexts
 
@@ -379,6 +405,37 @@ A specific session context. Response is wrapped in `{ success, data }`.
 curl -s -H "Authorization: Bearer $HEDY_API_KEY" "{BASE_URL}/contexts/{contextId}" | jq
 ```
 
+### GET /vocabulary
+
+Return the complete custom vocabulary and whether matching is enabled. Response is wrapped in `{ success, data }`.
+
+```bash
+curl -s -H "Authorization: Bearer $HEDY_API_KEY" "{BASE_URL}/vocabulary" | jq
+```
+
+Response `data`:
+
+```json
+{
+  "terms": ["Hedy", "Portkey"],
+  "enabled": true
+}
+```
+
+### PUT /vocabulary
+
+Replace the complete custom vocabulary list. Terms omitted from the request are removed; omit `enabled` to preserve its stored value.
+
+```bash
+curl -s -X PUT -H "Authorization: Bearer $HEDY_API_KEY" -H "Content-Type: application/json" \
+  -d '{"terms": ["Hedy", "Portkey"], "enabled": true}' \
+  "{BASE_URL}/vocabulary" | jq
+```
+
+- `terms` is required: at most 100 unique terms, 2-50 chars each, compared case-insensitively.
+- Terms cannot contain angle, square, or curly brackets, backslashes, pipes, backticks, or tildes.
+- `enabled` is an optional boolean.
+
 ### POST /topics
 
 Create a new topic. Response is wrapped in `{ success, data }`.
@@ -392,9 +449,10 @@ curl -s -X POST -H "Authorization: Bearer $HEDY_API_KEY" -H "Content-Type: appli
 Request body:
 - `name` (string, required): 1-100 chars
 - `description` (string, optional): 0-500 chars
-- `color` (string, optional): Hex format `#RRGGBB`
-- `iconName` (string, optional): Material icon name
+- `color` (string, optional): Hex format `RRGGBB`, with or without `#`
+- `iconName` (string, optional): Decimal or `0x` hex icon codepoint; names are accepted but render as the default folder icon
 - `topicContext` (string, optional): Custom instructions, 0-20,000 chars
+- `dominantSessionType` (string or null, optional): Built-in Session type used to seed new Sessions under this Topic
 
 Returns HTTP 201 with the created topic object.
 
@@ -411,9 +469,12 @@ curl -s -X PATCH -H "Authorization: Bearer $HEDY_API_KEY" -H "Content-Type: appl
 Request body (all fields optional):
 - `name` (string): 1-100 chars
 - `description` (string): 0-500 chars
-- `color` (string): Hex format `#RRGGBB`
-- `iconName` (string)
+- `color` (string): Hex format `RRGGBB`, with or without `#`
+- `iconName` (string): Decimal or `0x` hex icon codepoint
 - `topicContext` (string or null): Set to `null` to clear
+- `dominantSessionType` (string or null): Seed new Sessions with a built-in Session type, or clear it
+
+Valid `dominantSessionType` values: `business_meetings`, `lecture_class`, `coaching_mentoring`, `recruitment_call`, `job_interview_candidate`, `negotiation`, `sales_meeting`, `journalism`, `spiritual_teaching`, `solo_brainstorm`, `group_brainstorm`, `personal_conversation`, `medical_consultation`.
 
 Returns HTTP 200 with the updated topic object.
 
@@ -509,6 +570,8 @@ Response `data` (array of):
 }
 ```
 
+List responses never include `signingSecret`.
+
 ### POST /webhooks
 
 Create a webhook. Rate limited to 5 per minute. Maximum 50 webhooks per user. Requires HTTPS URL in production.
@@ -527,8 +590,11 @@ Request body:
   - `session.exported` - User manually exported session
   - `highlight.created` - New highlight generated
   - `todo.exported` - Todo marked for export
+  - `suggestion.created` - Automatic feedback suggestion displayed during a live Session
 
-Returns HTTP 200 with the created webhook object (signing secret is stored but not returned).
+Returns HTTP 200 with the created webhook object. Its `signingSecret` is returned only in this creation response; preserve it securely because subsequent GET requests omit it.
+
+Delivered webhook bodies are flat: event fields sit beside the top-level `event`, with no nested `data` object and no top-level delivery timestamp. Session webhook fields use camelCase such as `sessionType`, `topicId`, and `topicName`, while REST Session responses use `session_type` and a nested `topic`. Current `session.ended` and `session.exported` payloads can include `session_notes`, `structured_conversations`, and Topic fields; older Hedy clients may emit reduced payloads.
 
 ### DELETE /webhooks/{webhookId}
 
@@ -551,17 +617,20 @@ Returns HTTP 200:
 
 ## Pagination
 
-Most endpoints do NOT support cursor-based pagination. They return up to `limit` items (max 100) sorted by recency. The `/todos`, `/topics`, and `/contexts` endpoints return all items with no pagination at all.
+`GET /sessions` and `GET /highlights` support cursor pagination with `limit` and `after`. Use the previous response's `pagination.next` as `after` until `pagination.hasMore` is false.
 
-The only endpoint with true cursor pagination is **GET /topics/{topicId}/sessions**, which uses `startAfter` (documented above).
+`GET /topics/{topicId}/sessions` uses a separate `startAfter` cursor and returns it as `data.pagination.nextCursor`.
 
-For `/sessions` and `/highlights`, if the user needs more than 100 items, inform them that only the most recent 100 are available via the API.
+`GET /todos`, `GET /topics`, `GET /contexts`, and `GET /vocabulary` return their complete collections without cursor pagination.
 
 ## Error Handling
 
 | HTTP Status | Error Code | Meaning | Action |
 |---|---|---|---|
 | 400 | `validation_error` | Request body failed validation | Show the error message; check field constraints |
+| 400 | `bad_request` | Todo update body is missing or invalid | Send `completed`, `dueDate`, or both with the documented types |
+| 400 | `invalid_cursor` | Pagination cursor is unknown or ineligible | Restart from the first page rather than retrying the cursor |
+| 400 | `invalid_page_size` | `limit` is outside 1-100 | Use a valid page size |
 | 400 | `invalid_webhook_url` | Webhook URL is invalid | Ask user to provide a valid HTTPS URL |
 | 400 | `missing_event` | Neither `event` nor `events` provided | Ask user which events to subscribe to |
 | 400 | `invalid_event` | Single event type is invalid | Show the list of valid events |
@@ -584,15 +653,15 @@ For user-actionable errors (401, 403, 404), show the `error.message` from the re
 
 ## Safety Rules
 
-1. **Confirm before writing.** Before any POST, PATCH, or DELETE request, show the user exactly what will be created, changed, or deleted and wait for explicit confirmation.
+1. **Confirm before writing.** Before any POST, PUT, PATCH, or DELETE request, show the user exactly what will be created, changed, or deleted and wait for explicit confirmation.
 2. **Confirm deletions twice.** For DELETE requests, state the target (topic name, context title, webhook URL) and ask "Are you sure?" before proceeding.
-3. **Extra caution for webhooks.** Creating a webhook causes Hedy to send future meeting event data (session metadata, highlight titles, todo text) to an external URL. Before creating a webhook, explicitly confirm: (a) the exact destination host, (b) which events will be sent, and (c) warn the user that meeting-derived data will be sent outside Hedy to that URL.
-3. **Never display, log, or include the API key** in any output, message, file, or code block shown to the user.
-4. **Never prompt the user to paste their API key in chat.** Direct them to configure it in `~/.openclaw/openclaw.json`.
-5. **Respect rate limits.** On 429 responses, wait before retrying. Do not loop.
-6. **Present data clearly.** Format session transcripts, highlights, and todos in a readable way. Use markdown tables or lists as appropriate.
-7. **Handle missing data gracefully.** Some fields (transcript, cleaned_transcript, recap, topic) may be null or empty. Do not treat this as an error.
-8. **Protect user privacy.** Meeting transcripts and notes contain sensitive content. Do not send this data to any external service, tool, or URL beyond the Hedy API itself.
+3. **Extra caution for webhooks.** Creating a webhook can send future meeting-derived data, including transcripts, recaps, notes, highlights, todos, and suggestions, to an external URL. Before creating one, explicitly confirm the exact destination host and events, and warn that the corresponding data will leave Hedy.
+4. **Never display, log, or include the API key** in any output, message, file, or code block shown to the user.
+5. **Never prompt the user to paste their API key in chat.** Direct them to configure it in `~/.openclaw/openclaw.json`.
+6. **Respect rate limits.** On 429 responses, wait before retrying. Do not loop.
+7. **Present data clearly.** Format session transcripts, highlights, and todos in a readable way. Use markdown tables or lists as appropriate.
+8. **Handle missing data gracefully.** Some fields (transcript, cleaned_transcript, recap, topic) may be null or empty. Do not treat this as an error.
+9. **Protect user privacy.** Meeting transcripts and notes contain sensitive content. Do not send this data to any external service, tool, or URL beyond the Hedy API itself.
 
 ## Usage Examples
 
@@ -605,6 +674,9 @@ For user-actionable errors (401, 403, 404), show the `error.message` from the re
 **"Do I have any open todos?"**
 -> GET /todos, filter where completed is false, present as a checklist.
 
+**"Mark the follow-up todo complete"**
+-> GET /todos to resolve its Session and todo IDs, confirm the exact todo, then PATCH /sessions/{sessionId}/todos/{todoId} with `{"completed": true}`.
+
 **"Show me everything about Project Alpha"**
 -> GET /topics to find the topic by name, then GET /topics/{id}/sessions to list all sessions under it.
 
@@ -613,6 +685,9 @@ For user-actionable errors (401, 403, 404), show the `error.message` from the re
 
 **"Show my session contexts"**
 -> GET /contexts, present as a list with title and whether it's the default.
+
+**"Add Acme to my vocabulary"**
+-> GET /vocabulary, append "Acme" without dropping the existing terms, show the complete replacement list, confirm, then PUT /vocabulary.
 
 **"Create a topic called Client Calls with a blue color"**
 -> Confirm with user, then POST /topics with name "Client Calls" and color "#4A90D9".

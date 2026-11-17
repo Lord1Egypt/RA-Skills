@@ -1,41 +1,54 @@
-## Description: <br>
-Provides BaZi charting, destiny analysis, fate interpretation, and fortune prediction based on Liu Bowei's Di Tian Sui tradition. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ditiansui Publish provides AI-assisted BaZi birth-chart analysis, fate interpretation, and fortune guidance based on the Ditiansui tradition.
 
-## Publisher: <br>
-[alisa-xh](https://clawhub.ai/user/alisa-xh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alisa-xh](https://clawhub.ai/user/alisa-xh)
 
-## Use Case: <br>
-External users provide birth date and time to receive a BaZi chart, Five Elements interpretation, and fortune guidance. The output should be treated as entertainment or cultural interpretation rather than professional advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks for birth date and time, which can be personal information. <br>
-Mitigation: Use approximate or sample details when privacy matters, and avoid adding extra identifying information. <br>
-Risk: Users may over-rely on astrology or fortune guidance for important decisions. <br>
-Mitigation: Treat the analysis as entertainment or cultural interpretation, not professional, medical, legal, financial, or safety advice. <br>
+## Use Case:
 
+External users can provide birth date and time details to receive a BaZi chart, Five Elements interpretation, luck-cycle discussion, and astrology-style personal guidance. The skill is suited for cultural, reflective, or entertainment-oriented fortune analysis rather than high-stakes decision-making.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/alisa-xh/ditiansui) <br>
-- [Artifact skill instructions](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain-text BaZi analysis report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Depends on user-supplied birth date and time; no code, shell commands, or configuration files are produced.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill may ask for birth date and time, which can be personally sensitive.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Share only information needed for the reading and avoid including unnecessary personal identifiers.
+
+Risk: Astrology-style personal guidance can be over-relied on for important financial, medical, legal, or relationship decisions.
+
+Mitigation: Use the output for reflection or entertainment and consult qualified professionals for high-stakes decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/alisa-xh/skills/ditiansui)
+- [Publisher profile](https://clawhub.ai/user/alisa-xh)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include BaZi chart details, Five Elements analysis, luck-cycle interpretation, yearly trends, and decision-oriented guidance.]
+
+## Skill Version(s):
+
+1.0.1 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,7 +1,7 @@
 ---
 name: kinema-tdd-injector
 displayName: "Kinema's TDD Injector (CLAUDE.md generator)"
-version: 1.4.0
+version: 1.4.1
 description: |
   一次性注入器，为目标仓库生成定制版 CLAUDE.md 记忆文件，植入 kinema 的 TDD 方法论（三阶测试体系、分层 conftest、网络/IO 边界、命名规则、覆盖率门槛、fixture 治理）。适用场景：用户想在新仓库初始化 TDD 规范、把测试标准注入/导入到另一个仓库、或在正式开发前确立测试约定。每个仓库只运行一次——这**不是**开发期间的常驻助手。当用户说出诸如 "把测试规范注入到这个仓库" / "init tdd standard here" / "set up testing methodology" / "import kinema's test rules" 之类的话时，请主动提及本 skill。如果检测到仓库已被注入过，进入升级模式而非拒绝。
 ---
@@ -197,6 +197,7 @@ testenv 阶段是否启用，由 `testenv_integration` 控制（前后端可各�
 
 ```bash
 uv run --with jinja2 python "<skill_root>/scripts/render.py" \
+  --target claude \
   --params "<repo>/.kinema-params.tmp.json" \
   --out "<repo>/.kinema-claude.draft.md"
 ```

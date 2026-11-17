@@ -1,40 +1,57 @@
-## Description: <br>
-Predicts the blockbuster potential of early-stage biotechnology platforms by scoring mock clinical, patent, and funding signals. <br>
+## Description:
 
-This skill is for demonstration purposes and not for production usage. <br>
+Predicts which early-stage biotechnology platforms may have blockbuster therapy potential by scoring mock clinical, patent, funding, market, and momentum signals.
 
-## Publisher: <br>
-[AIPOCH-AI](https://clawhub.ai/user/AIPOCH-AI) <br>
+This skill is for demonstration purposes and not for production usage.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aipoch-ai](https://clawhub.ai/user/aipoch-ai)
 
-## Use Case: <br>
-Biotech analysts, R&D strategists, and investment reviewers can use this skill as a sandboxed decision-support demo for comparing therapeutic platform maturity, market potential, and momentum. Its rankings use mock data and should not guide medical, regulatory, investment, or R&D decisions without sourced and validated inputs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill presents mock biotechnology rankings as investment and R&D analysis. <br>
-Mitigation: Use it only as a demo or sandboxed analysis aid unless the mock data is replaced with sourced, validated inputs and reviewed by qualified domain experts. <br>
-Risk: The report save option can write output to any path the process can access. <br>
-Mitigation: Run the skill in a disposable workspace and keep saved report paths inside that workspace. <br>
+## Use Case:
 
+Developers, analysts, and biotech strategy teams can use this skill to generate demonstration rankings for therapeutic modalities such as PROTAC, mRNA, CRISPR, CAR-T, ADC, and related platforms. Outputs should support exploration only and should not replace expert due diligence, regulatory review, or authoritative investment analysis.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/AIPOCH-AI/blockbuster-therapy-predictor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, guidance, files] <br>
-**Output Format:** [Console text or JSON report, with optional saved JSON file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports technology filters, analysis mode, output format, score threshold, and optional report save path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: ClawHub release evidence) <br>
+Risk: The skill can overstate the reliability of mock-data biotech investment analysis.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as demonstration decision support only and require expert due diligence plus authoritative clinical, patent, and funding data before R&D or investment decisions.
+
+Risk: Saving reports can overwrite user-writable files when an unsafe or existing --save path is used.
+
+Mitigation: Use only new workspace-relative output paths and avoid absolute paths, ../ paths, symlinks, or existing files until output-path validation and overwrite protection are added.
+
+Risk: Installing requirements may use dependencies that are unpinned or unnecessary for modern Python environments.
+
+Mitigation: Review, remove, or pin dependencies before running pip install -r requirements.txt.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/aipoch-ai/skills/blockbuster-therapy-predictor)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, guidance]
+
+**Output Format:** [Console text or JSON report, with optional saved JSON file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Ranked technology scores include blockbuster index, maturity, market potential, momentum, recommendation, key drivers, risk factors, and predicted timeline.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata; artifact frontmatter says 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

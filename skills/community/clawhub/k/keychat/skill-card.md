@@ -1,41 +1,54 @@
-## Description: <br>
-Install Keychat - sovereign E2E encrypted messaging for OpenClaw agents via Signal Protocol over Nostr relays. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Keychat installs sovereign end-to-end encrypted messaging for OpenClaw agents using Signal Protocol over Nostr relays.
 
-## Publisher: <br>
-[kcdev001](https://clawhub.ai/user/kcdev001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[kcdev001](https://clawhub.ai/user/kcdev001)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to install Keychat messaging for an agent, configure the OpenClaw gateway, and connect through encrypted Keychat contacts. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Installing the skill gives the agent a persistent Keychat/Nostr messaging identity. <br>
-Mitigation: Install only when the agent should receive Keychat messaging access, and run setup from a private chat or trusted environment. <br>
-Risk: The plugin uses local keychain storage and a sidecar process for its messaging bridge. <br>
-Mitigation: Review the third-party plugin source or package provenance when the deployment has a strict threat model. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Keychat OpenClaw homepage](https://github.com/keychat-io/keychat-openclaw) <br>
-- [Keychat app](https://keychat.io) <br>
-- [ClawHub skill page](https://clawhub.ai/kcdev001/keychat) <br>
+## Use Case:
 
+External users and developers use Keychat to install, upgrade, and connect encrypted messaging for OpenClaw agents. The skill guides plugin installation, gateway restart, identity retrieval, and contact setup.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks and setup guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide installation that creates a persistent Keychat/Nostr messaging identity, starts a sidecar process, and stores identity material in the OS keychain.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill installs changing third-party code and runs an auto-downloaded native bridge that is not pinned or verified in the evidence.
+
+Mitigation: Install only if the @keychat-io publisher and binary distribution path are trusted; prefer a pinned reviewed plugin version, documented bridge checksums or signatures, and a clear rollback path.
+
+Risk: Use with sensitive messaging identities or agent accounts could increase impact if the third-party installer or bridge is compromised.
+
+Mitigation: Review the plugin before deployment and avoid sensitive identities until the release, bridge binary, and rollback process are verified.
+
+## Reference(s):
+
+- [Keychat OpenClaw homepage](https://github.com/keychat-io/keychat-openclaw)
+- [Keychat app](https://keychat.io)
+- [ClawHub skill page](https://clawhub.ai/kcdev001/skills/keychat)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with bash command blocks and numbered setup steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes install, upgrade, connection, identity, and security warning guidance for OpenClaw Keychat setup.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,47 +1,64 @@
-## Description: <br>
-Use the Rebrickable API through the included CLI for LEGO catalog lookup, user set/part lists, build analysis, lost parts, and guarded collection writes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use the Rebrickable API through the included CLI for LEGO catalog lookup, user set/part lists, build analysis, lost parts, and guarded collection writes.
 
-## Publisher: <br>
-[musketyr](https://clawhub.ai/user/musketyr) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[musketyr](https://clawhub.ai/user/musketyr)
 
-## Use Case: <br>
-External users and developers use this skill to query the Rebrickable LEGO catalog and manage Rebrickable user set, part, build, and lost-part records through a guarded CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a Rebrickable API key and may use a user token for private collection features. <br>
-Mitigation: Keep credentials in environment variables, never print or paste real tokens, and rely on the CLI dry-run output that redacts authorization headers and user-token path segments. <br>
-Risk: Collection write commands can create, update, or delete Rebrickable user data. <br>
-Mitigation: Run dry-run before writes, restate the exact list, set or part, quantity, and action, and proceed only after explicit confirmation. <br>
-Risk: Private Rebrickable profile, set-list, part-list, inventory, build-analysis, and lost-part data may be returned. <br>
-Mitigation: Summarize only the fields needed for the user's request and avoid exposing unnecessary private collection details. <br>
-Risk: Large inventory endpoints can return broad or resource-intensive results. <br>
-Mitigation: Use filters and small page sizes for all-parts and similar browse commands, especially when the request can be answered by a narrower query. <br>
+## Use Case:
 
+External LEGO builders and collection managers use this skill to query Rebrickable catalog data, analyze buildability, and manage user set, part, and lost-part lists through guarded CLI commands.
 
-## Reference(s): <br>
-- [Rebrickable OpenAPI reference](references/openapi/rebrickable.yaml) <br>
-- [Rebrickable tools prompt reference](references/prompts/rebrickable-tools.txt) <br>
-- [Rebrickable API base](https://rebrickable.com/api/v3) <br>
-- [ClawHub skill page](https://clawhub.ai/musketyr/afol-rebrickable) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON CLI output summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires REBRICKABLE_API_KEY. User collection features require REBRICKABLE_USER_TOKEN. Mutating commands are expected to use dry-run first and require explicit approval before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill can access a Rebrickable API key and, for private actions, a user token.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when comfortable granting that access, keep credentials in environment variables, avoid command-line user tokens, and use only the official Rebrickable API base URL.
+
+Risk: Mutating commands can create, update, or delete Rebrickable collection data.
+
+Mitigation: Run a dry run first, restate the exact platform, IDs, set or part values, quantities, and operation, then require explicit confirmation before using --yes.
+
+Risk: Credential handling is under-scoped and write guidance is inconsistent according to the security summary.
+
+Mitigation: Review credential handling and write-operation guidance before deployment, with evidence.security as the authoritative risk source.
+
+Risk: Broad private inventory reads, especially all-parts, can expose more collection data than needed.
+
+Mitigation: Use filters and small page sizes where possible, and summarize only the private fields needed for the user's task.
+
+## Reference(s):
+
+- [AFOL Rebrickable ClawHub Skill](https://clawhub.ai/musketyr/skills/afol-rebrickable)
+- [Rebrickable OpenAPI Reference](references/openapi/rebrickable.yaml)
+- [Rebrickable Tool Guidance](references/prompts/rebrickable-tools.txt)
+- [Rebrickable API](https://rebrickable.com/api/v3)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown responses with inline shell commands and JSON API results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Private Rebrickable collection data should be summarized only as needed.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

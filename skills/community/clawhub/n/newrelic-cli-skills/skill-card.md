@@ -1,48 +1,52 @@
-## Description: <br>
-Monitor, query, and manage New Relic observability data via the newrelic CLI for NRQL queries, APM performance triage, deployment markers, alert management, infrastructure monitoring, and agent diagnostics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitor, query, and manage New Relic observability data through the newrelic CLI.
 
-## Publisher: <br>
-[vince-winkintel](https://clawhub.ai/user/vince-winkintel) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vince-winkintel](https://clawhub.ai/user/vince-winkintel)
 
-## Use Case: <br>
-Developers and operations engineers use this skill to inspect New Relic observability data, triage application and infrastructure issues, record deployment markers, and manage alert configuration through the newrelic CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires New Relic account credentials and can read observability data from the configured account. <br>
-Mitigation: Use a least-privilege New Relic user key scoped to the intended account and verify the active CLI profile before use. <br>
-Risk: The skill includes workflows that can create deployment markers and alert configuration, and it documents alert condition deletion. <br>
-Mitigation: Review proposed write commands before execution and manually confirm policy, condition, account, and application IDs before applying changes. <br>
-Risk: Deleting an alert condition can reduce monitoring coverage. <br>
-Mitigation: Require an explicit human confirmation step before running deletion commands and validate that replacement monitoring remains in place. <br>
+## Use Case:
 
+Developers and site reliability engineers use this skill to inspect New Relic telemetry, investigate application and infrastructure health, and perform targeted deployment, NRQL macro, IAM, or diagnostic workflows through the New Relic CLI.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/vince-winkintel/newrelic-cli-skills) <br>
-- [Publisher profile](https://clawhub.ai/user/vince-winkintel) <br>
-- [New Relic CLI](https://github.com/newrelic/newrelic-cli) <br>
-- [New Relic CLI releases](https://github.com/newrelic/newrelic-cli/releases) <br>
-- [NRQL query patterns](references/nrql-patterns.md) <br>
-- [Performance triage guide](references/performance-triage.md) <br>
-- [New Relic data exploration](https://one.newrelic.com/data-exploration) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and New Relic CLI examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a configured newrelic CLI profile and New Relic account credentials for live queries or write actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: frontmatter and server release evidence) <br>
+Risk: ClawScan reports a suspicious verdict due to possible alert-scope guidance concerns and incomplete analysis; the available scan does not establish malicious intent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Consider delaying installation until the alert-condition guidance is clarified and the partially inspected material has been reviewed.
+
+## Reference(s):
+
+- [NRQL query patterns](references/nrql-patterns.md)
+- [Performance triage guide](references/performance-triage.md)
+- [Configuration validation safeguards](diagnostics/references/config-validation.md)
+- [New Relic CLI releases](https://github.com/newrelic/newrelic-cli/releases)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Analysis, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown with inline shell commands and JSON CLI output examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands and queries use the user's selected New Relic account and requested entities, time ranges, and filters.]
+
+## Skill Version(s):
+
+1.0.11 (source: frontmatter, VERSION)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

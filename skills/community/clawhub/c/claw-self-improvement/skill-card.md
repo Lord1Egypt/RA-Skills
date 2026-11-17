@@ -1,41 +1,58 @@
-## Description: <br>
-Capture errors, corrections, knowledge gaps, better practices, and feature requests in `.learnings/`, then distill proven recurring patterns into `.learnings/PROMOTED.md`. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Capture errors, corrections, knowledge gaps, better practices, and feature requests in `.learnings/`, then distill proven recurring patterns into `.learnings/PROMOTED.md`.
 
-## Publisher: <br>
-[paul-tian](https://clawhub.ai/user/paul-tian) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[paul-tian](https://clawhub.ai/user/paul-tian)
 
-## Use Case: <br>
-Developers and agent users use this skill to maintain a local, reversible learning workflow for corrections, failures, feature requests, and promoted recurring rules. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can turn corrections, errors, and requests into persistent local memory without enough privacy controls. <br>
-Mitigation: Before enabling hooks, decide where `.learnings/` files live, keep them out of shared repos unless reviewed, and instruct the agent not to save credentials, tokens, personal data, customer data, or confidential workspace details. <br>
-Risk: The bootstrap hook can keep reminding future agent sessions to capture and promote local learnings. <br>
-Mitigation: Install only when a persistent local learning system is intended; disable the hook and remove the skill files when the workflow is no longer desired. <br>
+## Use Case:
 
+Developers and agent users use this skill to preserve local learning notes about errors, corrections, knowledge gaps, better practices, and feature requests, then promote durable patterns into reusable Markdown guidance.
 
-## Reference(s): <br>
-- [Format Reference](references/FORMAT.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/paul-tian/claw-self-improvement) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Guidance, Configuration, Shell commands] <br>
-**Output Format:** [Markdown instructions, starter Markdown files, and hook configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes local learning notes under `.learnings/` when the agent follows the workflow.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.1 (source: server release evidence) <br>
+Risk: Persistent `.learnings/` files may capture sensitive operational details if users record them directly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Redact tokens, passwords, private keys, customer data, request bodies, and sensitive environment details before writing entries.
+
+Risk: Promoted entries can become durable behavior guidance even when the underlying lesson is incomplete or too specific.
+
+Mitigation: Review `.learnings/PROMOTED.md` before relying on entries as rules, and promote only mature recurring patterns.
+
+Risk: The bootstrap reminder changes future agent context and may be unwanted in some sessions.
+
+Mitigation: Disable the hook and keep or delete the learning files according to retention needs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/paul-tian/skills/claw-self-improvement)
+- [Format Reference](artifact/references/FORMAT.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates and updates local `.learnings/` Markdown files when the agent follows the workflow.]
+
+## Skill Version(s):
+
+0.2.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

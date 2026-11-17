@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "spark-dashboard-today",
+  "type": "object",
+  "properties": {
+    "ok": { "type": "boolean" },
+    "date": { "type": ["string", "null"] },
+    "generatedAt": { "type": "string" },
+    "summary": {
+      "type": "object",
+      "properties": {
+        "totalTasks": { "type": "number" },
+        "completedTasks": { "type": "number" },
+        "runningTasks": { "type": "number" },
+        "failedTasks": { "type": "number" },
+        "totalTokens": { "type": "number" },
+        "gpuBusyMinutes": { "type": "number" },
+        "gpuIdleMinutes": { "type": "number" },
+        "gpuUtilizationPct": { "type": "number" },
+        "estimatedCloudCostUsd": { "type": "number" },
+        "estimatedSavingsUsd": { "type": "number" }
+      },
+      "required": ["totalTasks", "completedTasks", "runningTasks", "failedTasks", "totalTokens", "gpuBusyMinutes", "gpuIdleMinutes", "gpuUtilizationPct", "estimatedCloudCostUsd", "estimatedSavingsUsd"]
+    },
+    "byTaskType": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "taskType": { "type": "string" },
+          "runs": { "type": "number" },
+          "tokens": { "type": "number" },
+          "avgDurationSec": { "type": "number" },
+          "estimatedCloudCostUsd": { "type": "number" }
+        },
+        "required": ["taskType", "runs", "tokens", "avgDurationSec", "estimatedCloudCostUsd"]
+      }
+    },
+    "recent": { "type": "array" },
+    "gpu": {
+      "type": "object",
+      "properties": {
+        "avgGpu": { "type": "number" },
+        "maxGpu": { "type": "number" },
+        "busyPoints": { "type": "number" },
+        "totalPoints": { "type": "number" }
+      },
+      "required": ["avgGpu", "maxGpu", "busyPoints", "totalPoints"]
+    }
+  },
+  "required": ["ok", "date", "generatedAt", "summary", "byTaskType", "recent", "gpu"]
+}

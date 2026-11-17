@@ -1,39 +1,55 @@
-## Description: <br>
-Agent Memory Patterns provides implementation guidance for persistent agent memory using daily logs, curated long-term memory, grep-based search, queued external content review, scheduled maintenance, and heartbeat checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides architecture patterns for persistent agent memory, including daily logs, long-term memory curation, search, staged external-content handling, maintenance schedules, archiving, and heartbeat checks.
 
-## Publisher: <br>
-[Byron-McKeeby](https://clawhub.ai/user/Byron-McKeeby) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[byron-mckeeby](https://clawhub.ai/user/byron-mckeeby)
 
-## Use Case: <br>
-Developers and agent operators use this skill to design workspace-based memory systems for long-running agents, including daily notes, long-term curated memory, searchable logs, external-content review queues, scheduled maintenance, and memory health checks. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Example scripts write persistent local memory files that may accumulate secrets, sensitive personal data, or stale context. <br>
-Mitigation: Review paths and content before use, avoid storing secrets or sensitive personal data, and periodically prune or archive stale memories. <br>
-Risk: External content queued into memory may be inaccurate or untrusted before review. <br>
-Mitigation: Use the pending-memory review steps to verify source reliability, consistency with existing memory, value, and classification before promoting content. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Byron-McKeeby/agent-memory-patterns) <br>
+## Use Case:
+
+Developers and agent operators use this skill as implementation guidance for maintaining persistent workspace memory, promoting selected notes into long-term memory, and periodically reviewing memory health.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Untrusted or inaccurate notes could be promoted into long-term agent memory.
+
+Mitigation: Require human review before promoting entries to MEMORY.md, and treat recalled memory as untrusted historical context.
+
+Risk: Automated cron or curation workflows could preserve or amplify low-quality memory without review.
+
+Mitigation: Enable scheduled maintenance only after reviewing the workflow and keeping backups of memory files.
+
+Risk: Example shell snippets use shared temporary paths and grep inputs that may be unsafe in some deployments.
+
+Mitigation: Replace shared /tmp paths with mktemp-managed files and validate search inputs before operational use.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with bash and JSON code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only examples for local workspace memory files and maintenance schedules.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and SKILL.md frontmatter) <br>
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown with inline bash, JSON, and cron examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes example file layouts, scripts, and maintenance patterns for agent memory workflows.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

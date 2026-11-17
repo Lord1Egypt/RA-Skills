@@ -1,44 +1,55 @@
-## Description: <br>
-Pretext Reporter Bao measures multilingual text, computes line layouts, and produces Markdown, JSON, and Canvas-oriented layout reports using the bundled Pretext library. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Measures multilingual text layout with Pretext and generates Markdown, JSON, and Canvas-oriented layout reports.
 
-## Publisher: <br>
-[baojun-billion](https://clawhub.ai/user/baojun-billion) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[baojun-billion](https://clawhub.ai/user/baojun-billion)
 
-## Use Case: <br>
-Developers and engineers use this skill to measure text, validate UI layout behavior, generate layout reports, and prepare Canvas or SVG text-rendering data for multilingual interfaces. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The package ships browser automation, local report-server, and demo or browser-check scripts beyond the public text-measurement API. <br>
-Mitigation: Use the core text-measurement APIs for normal workflows and review those scripts before running them. <br>
-Risk: Some bundled diagnostic flows may open or control browsers, start local services, collect browser environment details, or post diagnostic reports to a URL supplied in a page query string. <br>
-Mitigation: Run diagnostics only in a controlled environment and avoid supplying untrusted report URLs. <br>
+## Use Case:
 
+Developers and engineers use this skill to measure multilingual text, calculate wrapped line layouts, estimate UI element height, and generate layout reports for virtual lists, Canvas/SVG rendering, editors, and layout validation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/baojun-billion/pretext-reporter-bao) <br>
-- [Publisher profile](https://clawhub.ai/user/baojun-billion) <br>
-- [Pretext GitHub repository](https://github.com/chenglou/pretext) <br>
-- [Pretext documentation](https://github.com/chenglou/pretext#readme) <br>
-- [Pretext demo](https://chenglou.me/pretext) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, code, configuration, guidance] <br>
-**Output Format:** [Markdown reports, JSON objects, TypeScript API results, and Canvas report configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs include measured dimensions, line counts, line-level layout details, and optional Canvas rendering settings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence and package.json) <br>
+Risk: The published package bundles browser diagnostic and development tooling that can run local servers, automate desktop browsers, and post reports to URL-controlled endpoints.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: For production use, keep to the normal text-measurement API or trim the package to the runtime dist library; run bundled diagnostics only in a reviewed, controlled local environment.
+
+Risk: Bundled diagnostic pages can be risky when opened from untrusted links or combined with unreviewed report endpoints.
+
+Mitigation: Open diagnostic pages only from trusted local package paths and review any report collection endpoint before execution.
+
+## Reference(s):
+
+- [Pretext GitHub](https://github.com/chenglou/pretext)
+- [Pretext Demo](https://chenglou.me/pretext)
+- [Pretext README](https://github.com/chenglou/pretext#readme)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, configuration]
+
+**Output Format:** [Structured measurement objects, Markdown reports, JSON reports, and Canvas layout configuration]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are derived from caller-provided text plus font, width, line-height, whitespace, and Canvas styling options.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

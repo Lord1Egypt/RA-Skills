@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OPC创业AI融资顾问 · HTML设计规范文档</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;600;700;900&family=Inter:wght@300;400;500;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#FAFAF8;--card:#FFF;--text:#1E1C18;--text2:#3D3A35;--text3:#6B6760;--gold:#B8923E;--gold-l:#E0C991;--gold-d:#7A5F25;--sage:#7E9A6E;--sage-l:#B5CAA8;--coral:#C49292;--coral-l:#E0C4C4;--ink:#141210;--border:#DDD8D0;--shadow:0 2px 16px rgba(0,0,0,.05),0 1px 4px rgba(0,0,0,.02)}
+html{font-size:clamp(15px,1.2vw,18px);-webkit-text-size-adjust:100%}
+body{font-family:'Inter','Noto Serif SC',serif;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased;line-height:1.6}
+.micro-grain{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:9999;opacity:.012;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");background-repeat:repeat}
+.wrapper{max-width:900px;margin:0 auto;padding:0 5vw 80px}
+
+.hero{text-align:center;padding:clamp(40px,6vw,72px) 5vw clamp(36px,4vw,56px);background:linear-gradient(180deg,rgba(184,146,62,.04) 0%,transparent 100%)}
+.hero .badge{display:inline-block;padding:2px 14px;border:1px solid var(--gold-l);border-radius:100px;font-size:clamp(10px,.9vw,12px);color:var(--gold-d);letter-spacing:.12em;margin-bottom:clamp(10px,1.2vw,16px)}
+.hero .date{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(12px,1.1vw,15px);color:var(--gold);letter-spacing:4px;margin-bottom:clamp(6px,.8vw,10px)}
+.hero h1{font-family:'Noto Serif SC',serif;font-size:clamp(26px,5vw,52px);font-weight:300;letter-spacing:.06em;line-height:1.2;color:var(--ink)}
+.hero h1 strong{font-weight:700;background:linear-gradient(135deg,var(--gold),var(--gold-d));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero .line{width:clamp(40px,5vw,60px);height:1.5px;background:var(--gold);margin:clamp(12px,1.5vw,18px) auto}
+.hero .sub{font-size:clamp(13px,1.1vw,16px);color:var(--text2);font-weight:300;letter-spacing:.04em;line-height:1.7}
+.hero .sub strong{color:var(--ink);font-weight:500}
+
+.sec{margin:clamp(36px,5vw,56px) 0 clamp(16px,2.5vw,28px)}
+.sec-tag{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(11px,1vw,13px);color:var(--gold);letter-spacing:3px;margin-bottom:4px}
+.sec h2{font-family:'Noto Serif SC',serif;font-size:clamp(18px,2.8vw,30px);font-weight:300;color:var(--ink);letter-spacing:.06em;border-left:3px solid var(--gold);padding-left:12px;line-height:1.3}
+.sec h2 em{font-style:normal;color:var(--gold-d);font-weight:600}
+
+.card{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:clamp(18px,2.5vw,28px) clamp(16px,2.5vw,30px);margin-top:14px;box-shadow:var(--shadow);overflow:hidden}
+.card-bdr{position:relative}
+.card-bdr::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;border-radius:8px 8px 0 0}
+.card-bdr.gold::before{background:var(--gold)}
+.card-bdr.sage::before{background:var(--sage)}
+.card-bdr.coral::before{background:var(--coral)}
+.cbdr{display:flex;align-items:baseline;gap:clamp(8px,1.2vw,14px);margin-bottom:clamp(12px,1.8vw,18px);flex-wrap:wrap}
+.cn{font-family:'Cormorant Garamond',serif;font-size:clamp(18px,2vw,24px);font-weight:600;color:var(--gold);line-height:1}
+.card-bdr.sage .cn{color:var(--sage)}
+.card-bdr.coral .cn{color:var(--coral)}
+.cl{font-family:'Noto Serif SC',serif;font-size:clamp(14px,1.5vw,18px);font-weight:400;color:var(--ink)}
+
+.tbl{width:100%;border-collapse:collapse;margin-top:12px;font-size:clamp(11px,1vw,13.5px)}
+.tbl th{font-family:'Inter',sans-serif;font-weight:500;font-size:clamp(10px,.9vw,12px);background:rgba(184,146,62,.08);color:var(--text);padding:clamp(6px,1vw,9px) clamp(8px,1.2vw,14px);border-bottom:1.5px solid var(--gold-l);text-align:left;letter-spacing:.04em;text-transform:uppercase}
+.tbl.sage th{background:rgba(126,154,110,.08);border-bottom-color:var(--sage-l)}
+.tbl.coral th{background:rgba(196,146,146,.08);border-bottom-color:var(--coral-l)}
+.tbl td{padding:clamp(6px,1vw,9px) clamp(8px,1.2vw,14px);border-bottom:1px solid rgba(221,216,208,.3);color:var(--text2);font-weight:300;vertical-align:top;line-height:1.5}
+.tbl tr:last-child td{border-bottom:none}
+.tbl tr:nth-child(even) td{background:rgba(250,250,248,.4)}
+.tbl .lk{color:var(--text);font-weight:450}
+
+.box{background:rgba(184,146,62,.04);border:1px solid var(--gold-l);border-radius:6px;padding:clamp(14px,1.8vw,18px) clamp(14px,1.8vw,20px);margin-top:10px}
+.box .bl{font-size:clamp(10px,.9vw,11px);color:var(--gold-d);font-weight:500;letter-spacing:.06em;margin-bottom:3px}
+.box .bt{font-size:clamp(12px,1.1vw,14px);color:var(--text);font-weight:300;line-height:1.7}
+.box.sage{background:rgba(126,154,110,.04);border-color:var(--sage-l)}.box.sage .bl{color:var(--sage)}
+.box.coral{background:rgba(196,146,146,.04);border-color:var(--coral-l)}.box.coral .bl{color:var(--coral)}
+
+.code{background:#1E1C18;color:#E8E4DC;border-radius:6px;padding:clamp(14px,1.8vw,20px) clamp(14px,1.8vw,20px);margin-top:12px;font-family:ui-monospace,Menlo,monospace;font-size:clamp(11px,.95vw,13px);line-height:1.7;overflow-x:auto}
+.code .kw{color:var(--gold-l)}.code .str{color:var(--sage-l)}.code .cmt{color:var(--text3)}
+
+.chip{display:inline-block;padding:1px 8px;border-radius:3px;font-size:clamp(9px,.85vw,11px);font-weight:500}
+.chip.red{background:#C0392B;color:#fff}
+.chip.org{background:#E67E22;color:#fff}
+.chip.gr{background:var(--sage);color:#fff}
+
+.color-swatch{display:inline-flex;align-items:center;gap:8px;margin:4px 12px 4px 0}
+.color-swatch .sw{width:28px;height:28px;border-radius:4px;border:1px solid var(--border);flex-shrink:0}
+
+.hr{width:100%;height:1px;background:linear-gradient(90deg,transparent,var(--border),transparent);margin:clamp(32px,4.5vw,52px) 0}
+.ftr{text-align:center;padding:clamp(28px,4vw,48px) 5vw clamp(20px,3vw,32px)}
+.ftr .fm{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(12px,1.1vw,14px);color:var(--gold);letter-spacing:3px}
+.ftr .ft{font-size:clamp(11px,1vw,13px);color:var(--text3);margin-top:4px;font-weight:300;line-height:1.6}
+
+@media(max-width:768px){.hero h1{font-size:clamp(22px,4vw,34px)}}
+@media(max-width:480px){.tbl,.tbl th,.tbl td{font-size:10.5px}.tbl th,.tbl td{padding:5px 7px}.card{padding:14px 12px}.hero h1{font-size:clamp(20px,6vw,28px)}}
+</style>
+</head>
+<body>
+<div class="micro-grain"></div>
+<div class="wrapper">
+
+<div class="hero">
+  <div class="badge">OPC · 创业AI融资顾问</div>
+  <div class="date">v3.0.2 · 2026-08-11</div>
+  <h1>HTML<strong>设计规范文档</strong></h1>
+  <div class="line"></div>
+  <div class="sub"><strong>焕智AI FaSkill Pro — OPC超级个体资本智能体</strong><br>HTML成果输出·设计系统·强制执行</div>
+</div>
+
+<!-- 1: TRIGGER -->
+<div class="sec"><div class="sec-tag">—— rule 1 ——</div><h2>输出<em>触发规则</em></h2></div>
+
+<div class="card card-bdr gold">
+  <div class="cbdr"><span class="cn">01</span><span class="cl">主动提醒场景（5种）</span></div>
+  <table class="tbl">
+    <thead><tr><th style="width:22%">场景</th><th>提示时机</th><th>提示话术</th></tr></thead>
+    <tbody>
+      <tr><td class="lk">完成融资诊断</td><td>输出诊断报告后</td><td>「需要我把这份诊断报告生成HTML版，方便保存/打印/分享给投资人吗？」</td></tr>
+      <tr><td class="lk">完成投资人匹配方案</td><td>输出匹配列表后</td><td>「要生成一份HTML版的WAIC投资人匹配方案吗？可以发给投资人看。」</td></tr>
+      <tr><td class="lk">完成BP评审</td><td>输出评审结论后</td><td>「需要我把BP评审结果导出为HTML报告吗？」</td></tr>
+      <tr><td class="lk">完成TS条款分析</td><td>输出分析结论后</td><td>「条款分析结果要生成HTML版方便存档吗？」</td></tr>
+      <tr><td class="lk">用户主动要求</td><td>「做成HTML」「导出」「保存」</td><td>立即生成HTML版成果</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- 2: FONT SYSTEM -->
+<div class="sec"><div class="sec-tag">—— rule 2 ——</div><h2>3字体<em>系统</em></h2></div>
+
+<div class="card card-bdr gold">
+  <div class="cbdr"><span class="cn">02</span><span class="cl">字体分配表（禁止第4种字体）</span></div>
+  <table class="tbl">
+    <thead><tr><th style="width:12%">层级</th><th style="width:20%">字体</th><th style="width:28%">用途</th><th>字号范围</th></tr></thead>
+    <tbody>
+      <tr><td class="lk"><strong>标题</strong></td><td class="lk" style="font-family:'Noto Serif SC',serif;font-size:1.1em">Noto Serif SC（衬线）</td><td>Hero / 卡片标题 / 强调</td><td>clamp(20px,5vw,52px) → clamp(16px,2.8vw,30px)</td></tr>
+      <tr><td class="lk"><strong>正文</strong></td><td class="lk" style="font-family:'Inter',sans-serif;font-size:1.1em">Inter（无衬线）</td><td>表格数据 / 描述 / 标签</td><td>clamp(10px,1vw,14px) · 粗度300/400/500/700 分级</td></tr>
+      <tr><td class="lk"><strong>装饰</strong></td><td class="lk" style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.1em">Cormorant Garamond（斜体）</td><td>序号 / 时间戳 / 章节标记 / 页脚</td><td>clamp(12px,1.1vw,15px) · 仅italic 400/600</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- 3: WEIGHT LADDER -->
+<div class="sec"><div class="sec-tag">—— rule 3 ——</div><h2>粗度<em>阶梯</em></h2></div>
+
+<div class="card card-bdr sage">
+  <div class="cbdr"><span class="cn">03</span><span class="cl">只用粗度+字号+颜色区分，不靠新增字体</span></div>
+  <table class="tbl sage">
+    <thead><tr><th style="width:12%">粗度</th><th style="width:20%">用途</th><th>说明</th></tr></thead>
+    <tbody>
+      <tr><td class="lk" style="font-weight:300">300</td><td>正文轻量</td><td>表格正文、描述文字、辅助信息</td></tr>
+      <tr><td class="lk" style="font-weight:400">400</td><td>表格标签</td><td>表格第一列、默认文本</td></tr>
+      <tr><td class="lk" style="font-weight:500">500</td><td>数据关键值 / 卡片名</td><td>评分数字、卡片标题、标签文字</td></tr>
+      <tr><td class="lk" style="font-weight:600">600</td><td>模块序号 / 装饰</td><td>Cormorant Garamond 序号、数据卡片大数字</td></tr>
+      <tr><td class="lk" style="font-weight:700">700</td><td>标题强调 / 渐变</td><td>Hero 标题渐变文字、强调粗体</td></tr>
+      <tr><td class="lk" style="font-weight:900">900</td><td>极粗重</td><td>仅 Hero 大标题可用</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- 4: COLOR -->
+<div class="sec"><div class="sec-tag">—— rule 4 ——</div><h2>颜色<em>体系</em></h2></div>
+
+<div class="card card-bdr gold">
+  <div class="cbdr"><span class="cn">04</span><span class="cl">文字色号规范（强制执行）</span></div>
+  <table class="tbl">
+    <thead><tr><th style="width:14%">变量</th><th style="width:12%">色号</th><th>用途</th></tr></thead>
+    <tbody>
+      <tr><td class="lk">--text</td><td><span class="color-swatch"><span class="sw" style="background:#1E1C18"></span>#1E1C18</span></td><td>主要正文、标题</td></tr>
+      <tr><td class="lk">--text2</td><td><span class="color-swatch"><span class="sw" style="background:#3D3A35"></span>#3D3A35</span></td><td>表格正文、描述文字（不低于此深度）</td></tr>
+      <tr><td class="lk">--text3</td><td><span class="color-swatch"><span class="sw" style="background:#6B6760"></span>#6B6760</span></td><td>辅助标签（最低可读灰度）</td></tr>
+      <tr><td class="lk">--ink</td><td><span class="color-swatch"><span class="sw" style="background:#141210"></span>#141210</span></td><td>Hero标题、最深黑</td></tr>
+      <tr><td class="lk" style="color:var(--coral)">🚫 禁用</td><td>#59554F</td><td>作为正文颜色不可低于此深度</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="card card-bdr sage" style="margin-top:12px">
+  <div class="cbdr"><span class="cn">05</span><span class="cl">主题配色</span></div>
+  <table class="tbl sage">
+    <thead><tr><th style="width:12%">角色</th><th style="width:12%">主色</th><th style="width:12%">浅色</th><th style="width:12%">深色</th><th>说明</th></tr></thead>
+    <tbody>
+      <tr><td class="lk">🏛️ 主色</td><td><span class="color-swatch"><span class="sw" style="background:#B8923E"></span>#B8923E</span></td><td>#E0C991</td><td>#7A5F25</td><td>金色-权威·专业·温暖</td></tr>
+      <tr><td class="lk">🌿 辅助</td><td><span class="color-swatch"><span class="sw" style="background:#7E9A6E"></span>#7E9A6E</span></td><td>#B5CAA8</td><td>—</td><td>鼠尾绿-优势·通过·健康</td></tr>
+      <tr><td class="lk">🌸 警示</td><td><span class="color-swatch"><span class="sw" style="background:#C49292"></span>#C49292</span></td><td>#E0C4C4</td><td>—</td><td>珊瑚色-风险·短板·警示</td></tr>
+      <tr><td class="lk">🖼 背景</td><td><span class="color-swatch"><span class="sw" style="background:#FAFAF8"></span>#FAFAF8</span></td><td>—</td><td>—</td><td>暖白底色</td></tr>
+      <tr><td class="lk">🃏 卡片</td><td><span class="color-swatch"><span class="sw" style="background:#FFFFFF"></span>#FFFFFF</span></td><td>—</td><td>—</td><td>纯白卡片</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- 5: VISUAL -->
+<div class="sec"><div class="sec-tag">—— rule 5 ——</div><h2>视觉<em>元素</em></h2></div>
+
+<div class="card card-bdr gold">
+  <div class="cbdr"><span class="cn">06</span><span class="cl">全局视觉设定</span></div>
+  <table class="tbl">
+    <thead><tr><th style="width:18%">元素</th><th>设定</th></tr></thead>
+    <tbody>
+      <tr><td class="lk">微噪点纹理</td><td>固定 SVG 叠加层，opacity 0.012，背景重复平铺</td></tr>
+      <tr><td class="lk">卡片阴影</td><td>0 2px 16px rgba(0,0,0,.05), 0 1px 4px rgba(0,0,0,.02)</td></tr>
+      <tr><td class="lk">卡边顶线</td><td>3px 彩色条（金/绿/珊瑚），通过 .card-bdr::before 实现</td></tr>
+      <tr><td class="lk">表格表头</td><td>背景 rgba(金,.08)、底边线 gold-l 1.5px、大写字母、粗度500</td></tr>
+      <tr><td class="lk">表格斑马纹</td><td>偶数行背景 rgba(FAFAF8,.4)</td></tr>
+      <tr><td class="lk">数据卡片</td><td>大数字 Cormorant Garamond 600 + 小标签 Inter 10-12px</td></tr>
+      <tr><td class="lk">Hero区域</td><td>金色渐变背景 + 环形评分圈 + 标签行 + 装饰线</td></tr>
+      <tr><td class="lk">分隔线</td><td>渐变 transparent→border→transparent</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- 6: RESPONSIVE -->
+<div class="sec"><div class="sec-tag">—— rule 6 ——</div><h2>响应式<em>断点</em></h2></div>
+
+<div class="card card-bdr sage">
+  <div class="cbdr"><span class="cn">07</span><span class="cl">三档自适应</span></div>
+  <table class="tbl sage">
+    <thead><tr><th style="width:10%">断点</th><th style="width:16%">适配目标</th><th>调整内容</th></tr></thead>
+    <tbody>
+      <tr><td class="lk">≤768px</td><td>平板</td><td>卡片纵向排列，Hero h1 字号缩小</td></tr>
+      <tr><td class="lk">≤480px</td><td>手机</td><td>表格字号→10.5px · padding 缩至 5-7px · 卡片内边距→14px 12px</td></tr>
+      <tr><td class="lk">≤360px</td><td>极小屏</td><td>网格强行1列 · 标签字号缩小</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- 7: CSS VARS -->
+<div class="sec"><div class="sec-tag">—— rule 7 ——</div><h2>CSS变量<em>完整定义</em></h2></div>
+
+<div class="card card-bdr gold">
+  <div class="cbdr"><span class="cn">08</span><span class="cl">:root 变量集</span></div>
+  <div class="code">
+    <span class="cmt">/* ══ 颜色变量 ══ */</span>
+    <span class="kw">--bg:</span> <span class="str">#FAFAF8</span>;     <span class="cmt">// 背景暖白</span>
+    <span class="kw">--card:</span> <span class="str">#FFFFFF</span>;    <span class="cmt">// 卡片白</span>
+    <span class="kw">--text:</span> <span class="str">#1E1C18</span>;    <span class="cmt">// 主要正文（深黑）</span>
+    <span class="kw">--text2:</span> <span class="str">#3D3A35</span>;   <span class="cmt">// 描述/表格（深灰）</span>
+    <span class="kw">--text3:</span> <span class="str">#6B6760</span>;   <span class="cmt">// 辅助标签（中灰）</span>
+    <br>
+    <span class="cmt">/* ══ 金色系（主色） ══ */</span>
+    <span class="kw">--gold:</span> <span class="str">#B8923E</span>;     <span class="cmt">// 标准金</span>
+    <span class="kw">--gold-l:</span> <span class="str">#E0C991</span>;   <span class="cmt">// 浅金（边框/分隔）</span>
+    <span class="kw">--gold-d:</span> <span class="str">#7A5F25</span>;   <span class="cmt">// 深金（强调/标签）</span>
+    <br>
+    <span class="cmt">/* ══ 鼠尾绿（辅助·优势） ══ */</span>
+    <span class="kw">--sage:</span> <span class="str">#7E9A6E</span>;     <span class="cmt">// 标准绿</span>
+    <span class="kw">--sage-l:</span> <span class="str">#B5CAA8</span>;  <span class="cmt">// 浅绿</span>
+    <br>
+    <span class="cmt">/* ══ 珊瑚色（警示·风险·短板） ══ */</span>
+    <span class="kw">--coral:</span> <span class="str">#C49292</span>;    <span class="cmt">// 标准珊瑚</span>
+    <span class="kw">--coral-l:</span> <span class="str">#E0C4C4</span>; <span class="cmt">// 浅珊瑚</span>
+    <br>
+    <span class="cmt">/* ══ 辅助 ══ */</span>
+    <span class="kw">--ink:</span> <span class="str">#141210</span>;      <span class="cmt">// 最深黑（Hero标题）</span>
+    <span class="kw">--border:</span> <span class="str">#DDD8D0</span>;   <span class="cmt">// 边框</span>
+    <span class="kw">--shadow:</span> <span class="str">0 2px 16px rgba(0,0,0,.05), 0 1px 4px rgba(0,0,0,.02)</span>;
+  </div>
+</div>
+
+<!-- SOURCE -->
+<div class="sec"><div class="sec-tag">—— source ——</div><h2>规则<em>来源</em></h2></div>
+
+<div class="card card-bdr coral">
+  <table class="tbl coral">
+    <thead><tr><th style="width:24%">文件</th><th style="width:10%">行号</th><th>内容</th></tr></thead>
+    <tbody>
+      <tr><td class="lk">system-prompt.md</td><td>80-83</td><td>HTML成果输出 → 触发路由表</td></tr>
+      <tr><td class="lk">system-prompt.md</td><td>84-94</td><td>主动提醒规则（5场景+话术）</td></tr>
+      <tr><td class="lk">system-prompt.md</td><td>96-102</td><td>3字体分配表</td></tr>
+      <tr><td class="lk">system-prompt.md</td><td>104-114</td><td>字体层次规则+粗度阶+色号+配色+响应式断点</td></tr>
+      <tr><td class="lk">SKILL.md</td><td>trigger</td><td>HTML成果输出触发词：「生成HTML」「导出报告」「保存成果」</td></tr>
+      <tr><td class="lk">SKILL.md</td><td>全景图</td><td>能力全景JSON：export.html_report = true</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="hr"></div>
+<div class="ftr">
+  <div class="fm">~ OPC创业AI融资顾问 · 设计规范文档 ~</div>
+  <div class="ft">焕智AI FaSkill Pro v3.0.2 · references/system-prompt.md 第80-114行<br>2026-08-11 整理</div>
+</div>
+
+</div>
+</body>
+</html>

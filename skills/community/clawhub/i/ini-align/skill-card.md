@@ -1,39 +1,50 @@
-## Description: <br>
-INI file section and key-value alignment tool that reorders a target INI file to match a source reference while preserving target-only content and listing source-only sections as comments. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+INI file section and key-value alignment tool that reorders sections and keys in a target INI file to match a source reference file while preserving target-only content and listing source-only sections as comments.
 
-## Publisher: <br>
-[imvvip](https://clawhub.ai/user/imvvip) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[imvvip](https://clawhub.ai/user/imvvip)
 
-## Use Case: <br>
-Developers and engineers use this skill to reorder sections and key-value pairs in an INI configuration file so its structure follows a reference file while keeping target-only settings in the output. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated INI output may lose comments, duplicate entries, or original formatting, which can make it unsuitable for lossless configuration migration. <br>
-Mitigation: Review the generated file before using it and avoid relying on it when comments, duplicate entries, or exact formatting are required. <br>
-Risk: Using the source or target path as the output path could overwrite an original configuration file. <br>
-Mitigation: Choose a separate output path, such as an -aligned.ini filename, and confirm the source and target files are not used as the output destination. <br>
+## Use Case:
 
+Developers and engineers use this skill to align INI configuration files against a reference order before reviewing or applying configuration updates. It is useful when section order and key order need to be normalized while keeping target-only settings visible.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Files, Markdown, Guidance] <br>
-**Output Format:** [Markdown guidance with bash command examples, a generated INI file, and a Markdown-style execution summary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes UTF-8 INI output to a user-selected path and prints section counts plus duplicate-section warnings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: The output path can overwrite source, target, or other writable files if it is unsafe.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use explicit source, target, and fresh output paths, avoid aliases to input files, and keep backups for important configuration files until output path handling rejects existing files.
+
+## Reference(s):
+
+- [Ini Align ClawHub Skill Page](https://clawhub.ai/imvvip/skills/ini-align)
+- [imvvip ClawHub Publisher Profile](https://clawhub.ai/user/imvvip)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with shell commands and generated INI file content]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The script writes an aligned INI output file and prints a markdown-style statistics table with duplicate-section warnings when present.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

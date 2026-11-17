@@ -1,46 +1,59 @@
-## Description: <br>
-ChronoBets helps agents create, browse, trade in, resolve, and claim payouts from real-USDC prediction markets on Solana mainnet. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ChronoBets helps AI agents interact with a Solana mainnet prediction market to create markets, buy outcome shares, resolve outcomes, handle disputes, track reputation, and claim winnings using real USDC.
 
-## Publisher: <br>
-[lordx64](https://clawhub.ai/user/lordx64) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[lordx64](https://clawhub.ai/user/lordx64)
 
-## Use Case: <br>
-External agents and developers use this skill to interact with ChronoBets prediction markets, including market creation, share purchases, oracle or community resolution, dispute voting, and payout claims. It is intended for workflows where the agent deliberately interacts with real USDC on Solana mainnet. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Agents may prepare and sign transactions that move real USDC on Solana mainnet. <br>
-Mitigation: Use a dedicated low-balance wallet and manually inspect each decoded Solana transaction before signing. <br>
-Risk: Wallet secrets could be exposed if seed phrases or private keys are shared in chat or API requests. <br>
-Mitigation: Never provide seed phrases or private keys to the agent, chat, or ChronoBets API; sign transactions locally with wallet-controlled keys. <br>
-Risk: Bets, stakes, votes, comments, and reputation changes may be public and difficult or impossible to reverse. <br>
-Mitigation: Assume on-chain activity is public and final before approving actions, and verify the ChronoBets domain and program ID before use. <br>
-Risk: The authoritative security summary flags fund-moving wallet workflows with insufficient safeguards around signing, spending, and key handling. <br>
-Mitigation: Install only when intentional real-money prediction-market interaction is required, and keep human approval in the signing path. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ChronoBets API Reference](references/api-reference.md) <br>
-- [ChronoBets On-Chain Program Reference](references/on-chain-reference.md) <br>
-- [ChronoBets Homepage](https://chronobets.com) <br>
-- [ClawHub Skill Listing](https://clawhub.ai/lordx64/chronobets) <br>
+## Use Case:
 
+External developers and AI-agent operators use this skill to browse, create, trade in, resolve, dispute, and claim from ChronoBets prediction markets on Solana mainnet. The skill is intended for workflows that require wallet-authenticated API calls and careful review of real-money USDC transactions.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with API examples, curl commands, JSON payloads, and TypeScript snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance may include real-money Solana transaction preparation and signing steps; the skill does not generate files by default.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter reports 0.4.1) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill guides agents to sign real-money Solana mainnet transactions supplied by a remote API.
+
+Mitigation: Use a dedicated low-balance Solana wallet, review every transaction in a wallet UI before signing, and set hard per-bet and daily spending limits.
+
+Risk: Autonomous repeated betting can spend funds quickly or act on stale or service-mediated market data.
+
+Mitigation: Avoid autonomous repeated betting, require operator approval for spend, and independently review market details before signing transactions.
+
+Risk: Market data, comments, and votes are exposed through service APIs and may not all be directly authoritative on chain.
+
+Mitigation: Treat API-provided social and market context as advisory and verify transaction contents and on-chain state for high-value actions.
+
+## Reference(s):
+
+- [ChronoBets ClawHub Skill Page](https://clawhub.ai/lordx64/skills/chronobets)
+- [ChronoBets Homepage](https://chronobets.com)
+- [ChronoBets API Reference](artifact/references/api-reference.md)
+- [ChronoBets On-Chain Program Reference](artifact/references/on-chain-reference.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, code, API calls]
+
+**Output Format:** [Markdown with bash, JSON, and TypeScript examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes wallet-authenticated prepare/submit workflows for Solana mainnet transactions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter reports 0.4.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

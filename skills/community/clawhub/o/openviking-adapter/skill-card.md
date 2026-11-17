@@ -1,42 +1,54 @@
-## Description: <br>
-字节OpenViking记忆系统适配器 - 分层加载优化，Token降低83% <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenViking memory adapter for OpenClaw that organizes agent memory into layered summaries and supports on-demand memory search.
 
-## Publisher: <br>
-[yyu812707-wq](https://clawhub.ai/user/yyu812707-wq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[yyu812707-wq](https://clawhub.ai/user/yyu812707-wq)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to analyze local memory token usage, generate layered memory summaries, and search relevant memories on demand. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads local OpenClaw memory, USER, and SOUL files, which may contain private or sensitive personal context. <br>
-Mitigation: Install only for sessions where local memory access is intended, avoid storing secrets in source memory files, and review generated memory_viking summaries. <br>
-Risk: Generated summaries may persist sensitive details under ~/.openclaw/workspace/memory_viking. <br>
-Mitigation: Restrict access to that workspace and delete or edit generated summaries before sharing the environment with other agents. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to analyze existing agent memory token usage, generate L0/L1 Markdown summaries, and search relevant memories instead of loading the full memory set every time.
 
-## Reference(s): <br>
-- [OpenViking](https://github.com/bytedance/OpenViking) <br>
-- [Skill Page](https://clawhub.ai/yyu812707-wq/openviking-adapter) <br>
-- [Publisher Profile](https://clawhub.ai/user/yyu812707-wq) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Text and Markdown reports with generated local Markdown memory summary files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can create L0_soul.md and L1_overview.md under ~/.openclaw/workspace/memory_viking.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter, skill.json, release evidence) <br>
+Risk: The skill reads OpenClaw memory files that may contain sensitive personal details, secrets, credentials, or untrusted instructions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when this memory access is acceptable, and avoid running it on memory files that may contain sensitive or untrusted content.
+
+Risk: Generated L0_soul.md and L1_overview.md files persist plaintext summaries that can be loaded into later agent conversations.
+
+Mitigation: Review generated memory summary files before allowing an agent to load them in future sessions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yyu812707-wq/skills/openviking-adapter)
+- [ByteDance OpenViking](https://github.com/bytedance/OpenViking)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown and plain-text tool responses, including generated memory summary files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates persistent plaintext summaries under ~/.openclaw/workspace/memory_viking.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, skill.json, ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

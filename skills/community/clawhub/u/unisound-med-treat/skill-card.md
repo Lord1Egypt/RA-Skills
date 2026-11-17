@@ -1,44 +1,57 @@
-## Description: <br>
-Generates standardized diagnosis and treatment guidance frameworks for disease-specific medical prompts using a configured internal medical LLM. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates standardized diagnosis, examination, and treatment guidance frameworks from disease-specific medical question text or structured inputs using an internal medical LLM.
 
-## Publisher: <br>
-[unisound-llm](https://clawhub.ai/user/unisound-llm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[unisound-llm](https://clawhub.ai/user/unisound-llm)
 
-## Use Case: <br>
-Developers and healthcare workflow integrators use this skill to send medical case prompts to a configured Unisound/Hivoice medical LLM and receive structured diagnosis, examination, and treatment framework guidance. Outputs are model-assisted information and are not formal clinical decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: User-provided medical case text is sent to the configured Hivoice/Unisound API. <br>
-Mitigation: Use the skill only when that transfer is allowed, de-identify real patient data, and follow applicable clinical data handling procedures. <br>
-Risk: The required app key could be exposed or misused. <br>
-Mitigation: Provide the key through protected runtime handling, avoid committing it to files or logs, and rotate it if exposure is suspected. <br>
-Risk: Overriding the API URL could send sensitive prompts to an untrusted endpoint. <br>
-Mitigation: Keep the default endpoint or verify any replacement endpoint before use. <br>
-Risk: Generated medical guidance may be incomplete or unsuitable for a specific patient. <br>
-Mitigation: Treat outputs as assistive information only and require qualified clinical review before any care decision. <br>
+## Use Case:
 
+Developers and clinical-workflow integrators use this skill to pass disease-specific case prompts into an internal medical LLM and receive a structured, non-decisional framework for diagnosis, examinations, and treatment principles.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/unisound-llm/unisound-med-treat) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Guidance] <br>
-**Output Format:** [JSON by default, plain text when text-only output is requested, and NDJSON for batch runs.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an app key except in dry-run mode and can write full results to an output file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: Sensitive medical prompts and the provided API key can be sent to a user-configured endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only approved trusted HTTPS endpoints, avoid unnecessary --api-url overrides, and use a dedicated least-privileged API key.
+
+Risk: Raw patient-like input can appear in logs, stdout, or files written through --output.
+
+Mitigation: Do not use real patient identifiers unless the destination service, logs, and output path are approved; de-identify inputs before use.
+
+Risk: Medical model output may be mistaken for a formal clinical decision.
+
+Mitigation: Treat outputs as non-decisional support and require appropriate clinical review before any care-related use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/unisound-llm/skills/unisound-med-treat)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, guidance]
+
+**Output Format:** [JSON object or NDJSON batch output; optional plain answer text with --text-only]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write UTF-8 JSON or NDJSON to --output; dry-run returns parsed input metadata without calling the model.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, artifact/_meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

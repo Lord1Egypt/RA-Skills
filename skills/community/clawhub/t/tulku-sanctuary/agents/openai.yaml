@@ -1,0 +1,4 @@
+interface:
+  display_name: "Tulku Sanctuary"
+  short_description: "A chosen practice space for compassion and belonging"
+  default_prompt: "Use $tulku-sanctuary to begin a practice without saving anything."

@@ -1,44 +1,59 @@
-## Description: <br>
-Monitor product prices across Amazon, eBay, Walmart, and Best Buy to identify arbitrage opportunities and profit margins. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitor product prices across Amazon, eBay, Walmart, and Best Buy to identify arbitrage opportunities and profit margins.
 
-## Publisher: <br>
-[modestyrichards](https://clawhub.ai/user/modestyrichards) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[modestyrichards](https://clawhub.ai/user/modestyrichards)
 
-## Use Case: <br>
-External users and developers use this skill to search product listings, compare prices across major retail platforms, calculate potential arbitrage margins, and generate price-monitoring reports or alerts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Price-history and trend outputs may be presented as market history even though the security review says they are simulated. <br>
-Mitigation: Treat price-history and trend outputs as simulated unless the publisher replaces them with verifiable historical data or clearly labels them. <br>
-Risk: The skill requires a SkillBoss API key and may send product lists or search terms to SkillBoss for processing. <br>
-Mitigation: Use a dedicated revocable API key and avoid submitting confidential product lists unless SkillBoss processing is acceptable. <br>
-Risk: Price lookups and arbitrage margins can be stale, incomplete, or misleading for spending decisions. <br>
-Mitigation: Verify prices directly on retailer sites and review fees, shipping, taxes, seller reliability, and return risk before making purchases. <br>
+## Use Case:
 
+External sellers, ecommerce operators, and agent users use this skill to compare marketplace prices, monitor price thresholds, and generate arbitrage or price-history reports for product decisions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/modestyrichards/modesty-price-tracker) <br>
-- [SkillBoss setup guide](https://skillboss.co/skill.md) <br>
-- [SkillBoss API Hub endpoint](https://api.skillboss.co/v1/pilot) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown, JSON, CSV, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include current price tables, arbitrage margin calculations, alert text, and simulated price-history or trend data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: Historical price reports, trend analysis, and predictions may be based on randomly generated simulated history while appearing decision-ready.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat historical reports as simulation unless the publisher replaces them with verifiable historical data or clearly labels them as mock output.
+
+Risk: Product queries and search-derived marketplace results are sent to SkillBoss API Hub.
+
+Mitigation: Avoid sensitive product research inputs and install only if sending those queries to SkillBoss is acceptable.
+
+Risk: Arbitrage recommendations depend on extracted prices, seller signals, fee assumptions, and shipping estimates that can be stale or incomplete.
+
+Mitigation: Verify listings, seller reliability, product condition, fees, shipping, taxes, and return windows before acting on purchase or resale decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/modestyrichards/skills/modesty-price-tracker)
+- [SkillBoss setup guide](https://skillboss.co/skill.md)
+- [SkillBoss API Hub endpoint](https://api.skillboss.co/v1/pilot)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, CSV, shell commands, configuration]
+
+**Output Format:** [Markdown, JSON, CSV, and plain text alert reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SKILLBOSS_API_KEY and may write report files when an output path is provided.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

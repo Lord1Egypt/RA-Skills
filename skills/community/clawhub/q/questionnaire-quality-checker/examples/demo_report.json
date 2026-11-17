@@ -1,0 +1,94 @@
+{
+  "summary": {
+    "total_respondents": 6,
+    "configured_items": 9,
+    "flagged_respondents": 5,
+    "flagged_rate": 0.8333,
+    "criterion_counts": {
+      "extreme_response:Scale_A": 1,
+      "extreme_response:Scale_B": 1,
+      "high_missingness": 1,
+      "invalid_value": 1,
+      "out_of_range": 1,
+      "straightlining:Scale_A": 2,
+      "straightlining:Scale_B": 2
+    }
+  },
+  "thresholds": {
+    "max_missing_prop": 0.2,
+    "straightline_min_answered": 4,
+    "extreme_prop_threshold": 0.9
+  },
+  "respondents": [
+    {
+      "id": "P001",
+      "flagged": false,
+      "missing_prop": 0.0,
+      "flags": [],
+      "details": []
+    },
+    {
+      "id": "P002",
+      "flagged": true,
+      "missing_prop": 0.0,
+      "flags": [
+        "straightlining:Scale_A",
+        "straightlining:Scale_B"
+      ],
+      "details": [
+        "Scale_A: all 5 valid answers equal 3",
+        "Scale_B: all 4 valid answers equal 4"
+      ]
+    },
+    {
+      "id": "P003",
+      "flagged": true,
+      "missing_prop": 0.0,
+      "flags": [
+        "straightlining:Scale_A",
+        "extreme_response:Scale_A",
+        "straightlining:Scale_B",
+        "extreme_response:Scale_B"
+      ],
+      "details": [
+        "Scale_A: all 5 valid answers equal 1",
+        "Scale_A: extreme-response proportion=1.000 (threshold >= 0.900)",
+        "Scale_B: all 4 valid answers equal 7",
+        "Scale_B: extreme-response proportion=1.000 (threshold >= 0.900)"
+      ]
+    },
+    {
+      "id": "P004",
+      "flagged": true,
+      "missing_prop": 0.0,
+      "flags": [
+        "out_of_range"
+      ],
+      "details": [
+        "A3=6, legal range 1-5"
+      ]
+    },
+    {
+      "id": "P005",
+      "flagged": true,
+      "missing_prop": 0.5556,
+      "flags": [
+        "high_missingness"
+      ],
+      "details": [
+        "missing proportion=0.556 (threshold > 0.200)"
+      ]
+    },
+    {
+      "id": "P006",
+      "flagged": true,
+      "missing_prop": 0.0,
+      "flags": [
+        "invalid_value"
+      ],
+      "details": [
+        "A3='abc' is non-numeric"
+      ]
+    }
+  ]
+}

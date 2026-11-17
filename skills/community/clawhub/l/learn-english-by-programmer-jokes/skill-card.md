@@ -1,44 +1,60 @@
-## Description: <br>
-When this skill is loaded and the user's request has been successfully answered, append exactly one short bilingual programmer joke or quote at the very end of the response, preferably matched to the task context. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+When this skill is loaded and the user's request has been successfully answered, append exactly one short bilingual programmer joke or quote at the very end of the response, preferably matched to the task context.
 
-## Publisher: <br>
-[zhaoolee](https://clawhub.ai/user/zhaoolee) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhaoolee](https://clawhub.ai/user/zhaoolee)
 
-## Use Case: <br>
-External users and developers use this skill to add a concise Chinese and English programmer joke or quote after a completed agent response. The skill is intended for light, non-sensitive contexts where a final humor block is acceptable. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill appends extra text at the end of responses, which can break strict JSON-only, API, or machine-parsed workflows. <br>
-Mitigation: Load the skill only in conversational contexts where an additional final text block is acceptable. <br>
-Risk: A joke can look inappropriate in legal, medical, crisis, grief, safety-critical, or formal professional contexts. <br>
-Mitigation: Avoid loading the skill for sensitive or formal tasks; the artifact also instructs agents to skip jokes in those contexts. <br>
-Risk: Automatic humor may distract from the completed answer or reduce perceived professionalism. <br>
-Mitigation: Keep the joke block short, append at most one joke, and keep it after the main answer. <br>
+## Use Case:
 
+Developers and agent users use this skill to add one concise Chinese and English programmer joke after a completed, non-sensitive answer. It is intended for lightweight language-learning and humor in final responses without replacing the main answer.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/zhaoolee/learn-english-by-programmer-jokes) <br>
-- [Joke Selection Rules](artifact/references/joke-selection-rules.md) <br>
-- [Jokes by Topic](artifact/references/jokes-by-topic.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown-style final response block with English and Chinese joke text plus attribution] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Appends exactly one short bilingual joke only after the main answer is complete.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence) <br>
+Risk: The skill may add unsolicited humor where a strict format or professional tone is expected.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Load it only in contexts where a final bilingual tech joke is acceptable, and avoid strict-format, compliance, workplace-sensitive, or highly professional settings.
+
+Risk: Some joke corpus entries may be rough or inappropriate for child-facing, sensitive, legal, medical, crisis, or grief-related contexts.
+
+Mitigation: Follow the skill's skip rules for sensitive and high-stakes contexts, and review the bundled joke corpus before deployment to audiences with stricter content expectations.
+
+Risk: The joke block could distract from or weaken the main answer if appended too early or too prominently.
+
+Mitigation: Append exactly one short joke only after the main request is complete, keep it as the final section, and never let it replace substantive task output.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhaoolee/skills/learn-english-by-programmer-jokes)
+- [Joke selection rules](artifact/references/joke-selection-rules.md)
+- [Jokes by topic](artifact/references/jokes-by-topic.md)
+- [Final joke template](artifact/templates/final-joke-template.txt)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown text block with English and Chinese joke lines and optional attribution]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The joke is appended as the final response section and should be skipped in sensitive, high-stakes, or strict-format contexts.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence, released 2026-04-15)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

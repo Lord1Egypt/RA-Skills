@@ -1,45 +1,63 @@
-## Description: <br>
-Connects agents to the AlphaPai/PaiPai financial research API for investment Q&A, RAG data retrieval, stock research agents, announcement lookup, and chart search. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Alphapai Research helps agents call AlphaPai/PaiPai financial research APIs for question answering, data recall, stock research workflows, announcement lookup, and chart search.
 
-## Publisher: <br>
-[boteeenchan-ship-it](https://clawhub.ai/user/boteeenchan-ship-it) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[boteeenchan-ship-it](https://clawhub.ai/user/boteeenchan-ship-it)
 
-## Use Case: <br>
-External financial research users and developers use this skill to call AlphaPai/PaiPai APIs for market research questions, source-data retrieval, stock and industry research workflows, announcement lookup, and chart discovery. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The submitted artifact includes a plaintext API key in config.json. <br>
-Mitigation: Remove the bundled key before installation and configure a user-owned credential securely with the provided config command. <br>
-Risk: The skill includes a remote self-upgrade flow that can replace local files. <br>
-Mitigation: Avoid the self-upgrade flow unless the update source and resulting file changes have been independently verified. <br>
-Risk: Queries and contextual data are sent to AlphaPai/Rabyte. <br>
-Mitigation: Use the skill only with data the user is comfortable sending to that third-party service. <br>
+## Use Case:
 
+Developers and research users use this skill to configure an AlphaPai API key and run CLI-backed financial research workflows, including investment Q&A, source-data recall, stock and industry analysis, announcement retrieval, and chart search.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/boteeenchan-ship-it/alphapai-research) <br>
-- [AlphaPai Open API reference](references/api_reference.md) <br>
-- [AlphaPai API service endpoint](https://open-api.rabyte.cn) <br>
-- [AlphaPai install and update document](https://open-api.rabyte.cn/alpha/open-api/v1/file/api-docs/install.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown and JSON returned from AlphaPai API calls, with shell commands for CLI usage and configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill instructs agents to preserve AlphaPai response formatting and references, and supports optional raw JSON output for API responses.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The artifact includes a plaintext API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove the bundled key before installation, rotate it with the provider, and require users to configure their own AlphaPai API key locally.
+
+Risk: The client can be configured to use a custom API endpoint.
+
+Mitigation: Use the trusted AlphaPai host by default and approve any alternate endpoint only after reviewing the host and data handling implications.
+
+Risk: The upgrade workflow depends on remote Markdown instructions.
+
+Mitigation: Replace the remote Markdown-driven upgrade path with a pinned, reviewable updater before relying on upgrades in managed environments.
+
+Risk: Financial research prompts and API responses may include confidential client or investment information.
+
+Mitigation: Use the skill only when AlphaPai data handling terms are acceptable for the information being submitted.
+
+## Reference(s):
+
+- [AlphaPai Open API reference](artifact/references/api_reference.md)
+- [AlphaPai install and upgrade documentation](https://open-api.rabyte.cn/alpha/open-api/v1/file/api-docs/install.md)
+- [ClawHub skill page](https://clawhub.ai/boteeenchan-ship-it/skills/alphapai-research)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and optional raw JSON]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill directs agents to preserve AlphaPai API responses and cited sources without summarizing or truncating them unless the user separately asks for a summary.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

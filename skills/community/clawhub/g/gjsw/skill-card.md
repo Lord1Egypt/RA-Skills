@@ -1,44 +1,60 @@
-## Description: <br>
-Automates login to China's 12366 tax service platform by controlling Google Chrome, filling credentials, recognizing graphic CAPTCHA challenges, submitting the login form, and preserving browser session state. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates login to China's State Taxation Administration 12366 taxpayer service platform using Chrome browser control, form detection, CAPTCHA OCR, retry handling, and persistent browser sessions.
 
-## Publisher: <br>
-[edwn](https://clawhub.ai/user/edwn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[edwn](https://clawhub.ai/user/edwn)
 
-## Use Case: <br>
-Developers and operators use this skill to automate a controlled login flow for an account they are authorized to access on the 12366 tax service platform. It is useful when an agent needs to invoke a browser-based login process using a supplied login URL, username, password, and optional debugging or window-size parameters. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles sensitive account credentials and may expose passwords if they are passed through command histories, logs, or shared terminals. <br>
-Mitigation: Use it only on a private machine for accounts you control, avoid putting real passwords in logged shell commands, and prefer secure secret handling where available. <br>
-Risk: The skill preserves reusable browser session data in ./chrome_profile. <br>
-Mitigation: Remove ./chrome_profile after use when persistent sessions are not needed, and restrict access to the machine and workspace where it runs. <br>
-Risk: Automated CAPTCHA and login workflows may be restricted by the target service's terms or operational controls. <br>
-Mitigation: Confirm that the tax service permits the intended automated login workflow before deployment. <br>
+## Use Case:
 
+Developers and operators use this skill to run local browser automation for 12366 tax-platform login flows when they provide a username, password, and login URL or configure GJSW_LOGIN_URL.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/edwn/gjsw) <br>
-- [12366 tax service login](https://12366.chinatax.gov.cn/login) <br>
-- [12366 user center login](https://12366.chinatax.gov.cn/usercenter/login/page) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and parameter guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and Google Chrome; uses GJSW_LOGIN_URL as the primary environment variable when a login URL is not passed explicitly.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release evidence and artifact _meta.json) <br>
+Risk: The skill handles tax-platform usernames and passwords during local browser automation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in a trusted local account or virtual environment and avoid placing real passwords in shell history.
+
+Risk: A user-supplied login URL could direct credentials to the wrong destination.
+
+Mitigation: Use a carefully verified official HTTPS 12366 login URL before running the automation.
+
+Risk: Persistent browser state can retain cookies and login sessions after the run completes.
+
+Mitigation: Remove ./chrome_profile after use if retained cookies or login state are not desired.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/edwn/skills/gjsw)
+- [Publisher profile](https://clawhub.ai/user/edwn)
+- [12366 login URL](https://12366.chinatax.gov.cn/login)
+- [12366 user center login page](https://12366.chinatax.gov.cn/usercenter/login/page)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline bash commands and command-line arguments]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires local Python dependencies, Google Chrome, credentials supplied as command-line arguments, and a login URL supplied with --url or GJSW_LOGIN_URL.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

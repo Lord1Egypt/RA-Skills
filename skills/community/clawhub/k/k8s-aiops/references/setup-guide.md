@@ -81,13 +81,16 @@ that CLI is installed and logged in.
 Bundled under `k8s_aiops.governance` — no external dependency. State lives under
 `~/.k8s-aiops/` (override with `K8S_AIOPS_HOME`):
 
-- `audit.db` — every tool call (skill, tool, params, status, duration, agent).
-- `rules.yaml` — policy deny rules, maintenance windows, risk tiers.
+- `audit.db` — every tool call (skill, tool, params, status, duration, agent),
+  each carrying a descriptive risk-tier label derived from the tool's
+  `risk_level`. The tier is a label, not a gate.
 - Token/runaway budget guard (`K8S_MAX_TOOL_CALLS`, `K8S_MAX_TOOL_SECONDS`,
-  `K8S_RUNAWAY_MAX`, `K8S_RUNAWAY_WINDOW_SEC`).
+  `K8S_RUNAWAY_MAX`, `K8S_RUNAWAY_WINDOW_SEC`) — a safety backstop, not
+  authorization.
 - Undo store — inverse descriptors for reversible writes.
-- Accountability: set `K8S_AUDIT_APPROVED_BY` / `K8S_AUDIT_RATIONALE` to record who
-  authorized a high-tier operation and why.
+- Accountability: `K8S_AUDIT_APPROVED_BY` / `K8S_AUDIT_RATIONALE` are optional
+  annotations recorded on the audit row when set — never required, never
+  blocking. Authorization is the RBAC of the kubeconfig context, not this tool.
 
 ## MCP client config
 
@@ -105,5 +108,5 @@ installed entry point — it does not re-resolve PyPI at launch.
 ## Static analysis
 
 ```bash
-uvx bandit -r k8s_aiops/ mcp_server/
+uvx bandit -r k8s_aiops/
 ```

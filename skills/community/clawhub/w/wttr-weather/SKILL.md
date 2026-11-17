@@ -1,423 +1,135 @@
 ---
 name: wttr-weather
-description: How to check weather forecasts using wttr.in service. Make sure to use this skill whenever the user mentions weather, forecast, temperature, or wants to check weather conditions for any location. Supports 54+ languages, multiple output formats (terminal, JSON, PNG), moon phases, and custom locations worldwide.
+description: Check weather via the free wttr.in service (all free capabilities, live-verified 2026-10). Use when the user mentions weather, forecast, temperature, moon phase, or 天气/预报/气温/月相 for any location. Covers: city/POI/Unicode/airport-code/@domain/ZIP/GPS locations; ANSI/plain/compact/HTML/PNG/JSON(j1,j2)/Prometheus/one-line outputs; view flags 0/1/2/n/q/Q/F/A/d/T; PNG opts (frame, background=RRGGBB, transparency=0..255); languages incl. zh/zh-tw (invalid codes return ERR008); Moon (/Moon, Moon@date, ,+region); v2 rich + v2d/v2n nerd-font, v3 map (PNG/Sixel); {a,b,c} batch with period= throttle; wttr.is drop-in; :help /:bash.function /:translation. Ships scripts/weather.py CLI.
 ---
 
-# wttr.in 天气查询服务
+# wttr.in 天气查询（全免费能力版）
 
-> **💡 快捷工具**：本 skill 包含辅助脚本和参考文档
-> - **Python 脚本**: `scripts/weather.py` - 多功能天气查询工具（统一使用）
-> - **参考指南**: `references/quick-reference.md` - 速查手册
+wttr.in 是免费控制台天气服务。本技能以 2026-10 live 探针为准，逐项实测；服务端未实现的功能
+不再写进文档（见文末「不支持清单」）。所有 URL 走 HTTPS；UA 为浏览器时自动 HTML，curl 默认 ANSI。
 
+## 1. 地点形态（全部 live 验证）
 
-## 核心功能
+| 形态 | 示例 | 说明 |
+|------|------|------|
+| 城市名 | `wttr.in/Beijing` | 任意语言 Unicode 名均可，如 `wttr.in/Москва`、`wttr.in/长城` |
+| 任意 POI | `wttr.in/Eiffel+tower` | 空格用 `+` |
+| 机场三字码 | `wttr.in/MUC` | IATA 码直接命中机场 |
+| 域名 | `wttr.in/@wikipedia.org` | `@` 前缀按域名定位 |
+| 邮编 | `wttr.in/94107` | 美国邮编等 |
+| GPS 坐标 | `wttr.in/-78.46,106.79` | `纬度,经度` |
+| IP 定位 | `curl wttr.in` | 不带路径按请求 IP |
+| 地点别名 | `~` 前缀 | `/~Eiffel+tower` 与直接 `/Eiffel+tower` 等效 |
 
-wttr.in 是一个功能强大的基于控制台天气预报服务，支持多种输出格式和全球位置查询。
+## 2. 输出格式
 
-### 主要能力
+- **ANSI 终端卡片**：默认（curl UA）。`?A` 强制 ANSI（即使浏览器 UA）。
+- **纯文本**：`?T` 关闭颜色转义；`?d` 限制到标准控制台字体字符（去 emoji）。
+- **视图详略**：`?0` 只看当前；`?1` 当前+今日；`?2` 当前+今+明；完整三天为默认。
+  `?n` 窄版（只昼夜两栏）；`?q` 去“Weather report”标题行；`?Q` 再去城市名；`?F` 去 Follow 引导行。
+  可组合：`?0qT`。
+- **HTML**：浏览器 User-Agent 自动返回网页版。
+- **PNG**：地点后加 `.png`。选项写在文件名里，短选项连写、长选项用 `_` 分隔：
+  选项规则：短字母连写、顺序即语义无强制排列（惯用 `0`/`1`/`2` 在前，再 `p`、`q`），长选项以下划线分隔附后、`lang=` 放最后。
+  `wttr.in/Beijing_0pq.png`（当前天气+边框+去标题）、
+  `wttr.in/Beijing_background=00aaaa.png`（背景色 RRGGBB）、
+  `wttr.in/Beijing_transparency=150.png`（0..255，255 不透明）、
+  `wttr.in/Beijing_0qp_lang=zh.png`。长语言选项放最后。
+- **JSON**：`?format=j1` 完整（3 天 × 每日 8 组 hourly）；`?format=j2` 精简——
+  `weather[]` 每天**无 hourly**，只留日级 max/min/avg/uvIndex/astronomy/sunHour（实测键集，别盲猜）。
+- **Prometheus**：`?format=p1`，`# HELP` 开头的指标文本。
+- **一行输出**：预设 `format=1..4`（1 天气+温度｜2 加风温湿度｜3 带城市名｜4 全细节）。
+- **自定义 `%-notation`**，实测可用集：
 
-1. **天气预报查询** - 支持全球任意地点的天气预报
-2. **多格式输出** - ANSI 终端、HTML、PNG 图片、JSON、Prometheus 指标
-3. **多语言支持** - 54+ 种语言，包括中文
-4. **天文信息** - 月相、日出日落时间
-5. **自定义格式** - 灵活配置输出内容
-6. **一行输出** - 适合集成到 tmux、状态栏等
+| 码 | 含义 | 码 | 含义 |
+|----|------|----|------|
+| `%l` | 地点 | `%p` | 降水 mm/3h |
+| `%c` | 天气图标(emoji) | `%P` | 气压 hPa |
+| `%C` | 天气文本 | `%u` | UV 指数 1-12 |
+| `%x` | 天气纯文本符号 | `%m` | 月相 |
+| `%t` | 实际温度 | `%M` | 月龄天 |
+| `%f` | 体感温度 | `%D %S %z %s %d` | 黎明/日出/天顶/日落/黄昏 |
+| `%h` | 湿度 | `%T` | 本地当前时间 |
+| `%w` | 风向风速 | `%Z` | 本地时区 |
 
----
+## 3. 批量与节流
 
-## 基本用法
+- **一次多家**：花括号 `wttr.in/{Beijing,Shanghai,Guangzhou}?format=3` 每行一家全输出。
+  注意冒号形式 `Beijing:Shanghai` 是**重复查询**（旧客户端轮询场景），一行输出下只回最后一家的值——
+  想要全量请用花括号。
+- **节流**：`&period=60` 参数（重复查询场景两次刷新间隔秒数）。
 
-### 标准查询（使用 Python 脚本）
+## 4. 语言与单位
 
+- 语言三种给法：查询参数 `?lang=zh`；**wttr.in 子域** `zh.wttr.in/Beijing`；请求头 `Accept-Language: fr`。
+  实测：`zh` 简体、`zh-tw` 繁体可用；`zh-hans`/`zh_cn`/`zh_HANT` 这类变体会返回 **ERR008**（invalid lang）。
+  语言全集见 `:translation` 页面（含各语言的贡献者名单）。
+- 单位：`?m` 公制（默认非美系）、`?u` 英制、`?M` 公制但风速 m/s。
+
+## 5. 月相
+
+- `wttr.in/Moon` 当前月相卡片；`wttr.in/Moon@2026-12-25` 指定日期；`wttr.in/Moon,+China` 按地区。
+- 一行里嵌入：`?format=%m`（图标）或 `%M`（月龄）。
+
+## 6. v2 / v3 扩展服务
+
+- **v2**：`v2.wttr.in/Beijing` 富数据版——三天温度/降水曲线、逐段天气图标、风向风速行、
+  月相、时区、黎明日出天顶日落黄昏、精确坐标。日/夜字体集分别走 `v2d.wttr.in` / `v2n.wttr.in`。
+- **v3 地图**：`v3.wttr.in/California.png`（区域天气图）、`v3.wttr.in/Bayern.sxl`（Sixel 内联图），
+  浏览器直接访问 `v3.wttr.in/Region`。区域名用行政区划（California/Bayern 实测 OK）。
+
+## 7. 特殊 URL 与备用域
+
+- `wttr.in/:help` 用法页；`wttr.in/:bash.function` 官方推荐 bash 函数 `wttr()`（source 即用）；
+  `wttr.in/:translation` 译者与语言清单。
+- **wttr.is**：等价备用域，全部路径直接替换即可（drop-in）。脚本提供 `--base-url wttr.is`。
+
+## 8. CLI 工具（scripts/weather.py）
+
+```
+python scripts/weather.py [地点] [-f FMT] [-l LANG] [-u m|u|M] [--base-url wttr.in|wttr.is]
+
+-f terminal|view0|view1|view2|narrow|quiet|superquiet|nofollow|plain|compact
+   json|json-lite|prometheus|oneline|batch|png|moon|v2|v2-day|v2-night|v3|v3-sixel|html|help|special
+-V FLAGS 视图字母组合直通(012nqQFTdA) ｜ --ansi 保彩色 ｜ --follow 留 Follow ｜ --keep-title PNG 不去标题
+```
+
+常用：
 ```bash
-# 当前位置（基于 IP）
-python scripts/weather.py
-
-# 指定城市
-python scripts/weather.py Beijing
-python scripts/weather.py Shanghai
-python scripts/weather.py "New+York"
-python scripts/weather.py London
-
-# 使用 ~ 查询特殊地点（景点、山脉等）
-python scripts/weather.py "~Eiffel+Tower"
-python scripts/weather.py "~Mount+Everest"
-
-# 机场代码查询
-python scripts/weather.py PEX    # 北京首都机场
-python scripts/weather.py PVG    # 上海浦东机场
-python scripts/weather.py LAX    # 洛杉矶机场
+python scripts/weather.py Beijing                      # 中文纯文本视图（默认，自动去 Follow 行）
+python scripts/weather.py Beijing --ansi               # 保留 ANSI 彩色
+python scripts/weather.py Beijing -V 0q                # 任意视图组合直通（?0q）
+python scripts/weather.py Beijing --follow             # 保留 Follow 行
+python scripts/weather.py Beijing -f view0 -u u        # 只看当前，英制
+python scripts/weather.py Beijing -f oneline --custom-format '%l:+%c+%t+%h+%w'
+python scripts/weather.py -f batch --locations Beijing Shanghai Guangzhou
+python scripts/weather.py Paris -f png -o p.png --frame --transparency 150 --background 00aabb --view 0
+python scripts/weather.py -f moon --moon-date 2026-12-25
+python scripts/weather.py Beijing -f moon --region China
+python scripts/weather.py California -f v3 -o map.png
+python scripts/weather.py -f special --special bash.function
+python scripts/weather.py -f json | jq '.current_condition[0].temp_C'
 ```
-
-### 单位设置
-
-```bash
-# 公制单位（摄氏度，默认除美国外）
-python scripts/weather.py Beijing -u m
-
-# 英制单位（华氏度）
-python scripts/weather.py Beijing -u u
-
-# 公制 + m/s 风速
-python scripts/weather.py Beijing -u M
-```
-
----
-
-## 输出格式
-
-### 1. 终端 ANSI/纯文本
-
-```bash
-# 标准输出（自动检测）
-python scripts/weather.py Beijing
-
-# 强制纯文本（无颜色）
-python scripts/weather.py Beijing -f plain
-
-# 限制为标准控制台字符
-python scripts/weather.py Beijing -f compact
-```
-
-### 2. PNG 图片格式
-
-```bash
-# 下载 PNG 天气图
-python scripts/weather.py Beijing -f png -o weather.png
-
-# 透明背景
-python scripts/weather.py Beijing -f png --transparent -o weather.png
-
-# 自定义透明度 (0-255)
-python scripts/weather.py Beijing -f png --transparent --transparency 150
-```
-
-### 3. JSON 格式（API 使用）
-
-```bash
-# 完整 JSON 数据
-python scripts/weather.py Beijing -f json
-
-# 精简 JSON（不含小时数据）
-python scripts/weather.py Beijing -f json-lite
-```
-
-JSON 输出包含：
-- `current_condition`: 当前天气状况
-- `weather`: 天气预报数据
-- `astronomy`: 天文信息（日出、日落、月相）
-
-### 4. Prometheus 监控指标
-
-```bash
-# Prometheus 格式
-python scripts/weather.py Beijing -f prometheus
-```
-
----
-
-## 一行输出格式（format 参数）
-
-适合集成到 tmux、weechat、状态栏等。
-
-### 预设格式
-
-```bash
-# 格式 1: 当前天气
-python scripts/weather.py Beijing -f oneline --custom-format "1"
-# 🌦 +11⁰C
-
-# 格式 2: 详细信息
-python scripts/weather.py Beijing -f oneline --custom-format "2"
-# 🌦   🌡️+11°C 🌬️↓4km/h
-
-# 格式 3: 位置 + 天气
-python scripts/weather.py Beijing -f oneline --custom-format "3"
-# Beijing: 🌦 +11⁰C
-
-# 格式 4: 完整信息
-python scripts/weather.py Beijing -f oneline --custom-format "4"
-# Beijing: 🌦   🌡️+11°C 🌬️↓4km/h
-```
-
-### 自定义格式（%-notation）
-
-| 代码 | 含义 | 代码 | 含义 |
-|------|------|------|------|
-| `%c` | 天气状况图标 | `%C` | 天气状况文本 |
-| `%x` | 天气符号（纯文本） | `%h` | 湿度 |
-| `%t` | 实际温度 | `%f` | 体感温度 |
-| `%w` | 风速和方向 | `%l` | 位置名称 |
-| `%m` | 月相 🌑🌒🌓🌔🌕🌖🌗🌘 | `%M` | 月龄 |
-| `%p` | 降水量 (mm/3h) | `%P` | 气压 (hPa) |
-| `%u` | UV 指数 (1-12) | `%D` | 黎明时间* |
-| `%S` | 日出时间* | `%z` | 天顶时间* |
-| `%s` | 日落时间* | `%d` | 黄昏时间* |
-| `%T` | 当前时间* | `%Z` | 本地时区 |
-
-*时间以本地时区显示
-
-```bash
-# 自定义输出示例
-python scripts/weather.py Beijing --custom-format "%l:+%c+%t+%h+%w\n"
-# Beijing: ⛅️ +7°C 45% ↓12km/h
-
-# 多地点查询
-python scripts/weather.py "Beijing:Shanghai:Guangzhou" -f oneline --custom-format "3"
-```
-
----
-
-## 数据丰富格式 (v2)
-
-实验性功能，提供详细天气和天文信息。
-
-```bash
-# 使用 v2 格式
-python scripts/weather.py Beijing -f v2
-
-# 使用 Nerd Fonts（日间模式）
-python scripts/weather.py Beijing -f v2-day
-
-# 使用 Nerd Fonts（夜间模式）
-python scripts/weather.py Beijing -f v2-night
-```
-
-包含信息：
-- 温度和降水变化预测
-- 月相（今天及未来 3 天）
-- 当前天气状况、温度、湿度、风速、气压
-- 时区信息
-- 黎明、日出、正午、日落、黄昏时间
-- 精确地理坐标
-
----
-
-## 地图视图 (v3)
-
-显示地理区域的天气信息。
-
-```bash
-# PNG 格式（浏览器）
-python scripts/weather.py California -f v3
-
-# Sixel 格式（支持内联图像的终端）
-python scripts/weather.py Bayern -f v3
-```
-
----
-
-## 月相查询
-
-```bash
-# 当前位置月相
-python scripts/weather.py -f moon
-
-# 指定日期
-python scripts/weather.py -f moon --moon-date 2025-12-25
-
-# 作为天气查询的一部分
-python scripts/weather.py Beijing --custom-format "%m"
-# 🌖
-```
-
----
-
-## 多语言支持
-
-```bash
-# 通过语言参数设置
-python scripts/weather.py Beijing -l zh
-python scripts/weather.py Paris -l fr
-python scripts/weather.py Berlin -l de
-python scripts/weather.py Tokyo -l ja
-
-# 查询非英文名称位置
-python scripts/weather.py "станция+Восток"
-python scripts/weather.py "~长城"
-```
-
-支持 54+ 种语言，包括：zh（中文）、en（英语）、fr（法语）、de（德语）、ru（俄语）、ja（日语）等。
-
----
-
-## 集成示例
-
-### tmux 状态栏
-
-```tmux
-# ~/.tmux.conf
-set -g status-interval 60
-# 使用 Python 脚本查询天气
-WEATHER='#(python /path/to/weather.py Beijing -f oneline --custom-format "%%l:+%%c+%%t&period=60")'
-set -g status-right "$WEATHER | %Y-%m-%d %H:%M"
-```
-
-### Shell 别名
-
-```bash
-# ~/.bashrc 或 ~/.zshrc
-alias weather='python /path/to/weather.py'
-alias weather-json='python /path/to/weather.py -f json'
-```
-
-### Python 程序集成
-
-```python
-from weather import WeatherQuery
-
-weather = WeatherQuery("Beijing")
-
-# 获取 JSON 数据
-data = weather.json_full()
-print(f"当前温度：{data['current_condition'][0]['temp_C']}°C")
-
-# 获取一行输出
-print(weather.oneline("3"))
-```
-
----
-
-## 使用建议
-
-### 最佳实践
-
-1. **自动查询场景**（如 tmux）设置合理更新间隔（60-300 秒）
-2. **多地点查询** 使用 `:` 分隔，配合 `period` 参数
-3. **脚本集成** 使用 JSON 格式 (`format=j1`) 便于解析
-4. **终端显示** 确保字体支持 emoji（推荐 Noto Color Emoji）
-
-### 常见问题
-
-**Emoji 显示问题**：
-- 安装 Noto Color Emoji 字体
-- 配置 fontconfig 优先使用 emoji 字体
-- 运行 `fc-cache -f -v` 刷新字体缓存
-
-**终端不支持**：
-- 使用 `?T` 参数强制纯文本
-- 使用 `?d` 限制为标准字符
-
----
-
-## API 参考
-
-### 端点
-
-| 端点 | 用途 |
-|------|------|
-| `wttr.in` | 标准天气预报 |
-| `v2.wttr.in` | 数据丰富格式 |
-| `v3.wttr.in` | 地图视图 |
-
-### 查询参数
-
-| 参数 | 说明 |
-|------|------|
-| `?m` | 公制单位 |
-| `?u` | 英制单位 |
-| `?M` | 公制 + m/s |
-| `?T` | 纯文本 |
-| `?d` | 限制字符 |
-| `?format=X` | 输出格式 |
-| `?lang=XX` | 语言代码 |
-| `period=N` | 更新周期（秒） |
-
-### 天气代码
-
-| 代码 | 描述 |
-|------|------|
-| 113 | 晴朗/少云 |
-| 116 | 局部多云 |
-| 119 | 多云 |
-| 122 | 阴天 |
-| 176/263/266/293/296/299/302/305/308/353/356/359/386/389 | 各种降雨/雷暴 |
-| 179/311/314/317/320/323/326/329/332/335/338/350/377 | 各种降雪/冰雹 |
-| 143/182/248/260 | 雾/霾 |
-
----
-
-## 相关资源
-
-- 官方文档：https://wttr.in/:help
-- 源码仓库：https://github.com/chubin/wttr.in
-- 翻译贡献：/translation
-
----
-
-## 使用流程总结
-
-当用户需要查询天气时：
-
-1. **确定位置** - 城市名、机场代码、特殊地点（加~）
-2. **选择格式** - 终端显示、JSON API、PNG 图片
-3. **设置参数** - 单位、语言、自定义输出
-4. **执行查询** - 使用 curl/wget/httpie 或辅助脚本
-5. **解析结果** - 直接显示或程序处理
-
----
-
-## 辅助脚本使用
-
-### Python 脚本 (`scripts/weather.py`)
-
-功能丰富的查询工具，支持多种输出格式：
-
-```bash
-# 标准天气查询
-python scripts/weather.py Beijing
-
-# JSON 格式（适合程序处理）
-python scripts/weather.py Beijing -f json
-
-# 精简 JSON（不含小时数据）
-python scripts/weather.py Beijing -f json-lite
-
-# 一行输出（适合状态栏）
-python scripts/weather.py Beijing -f oneline
-
-# 自定义格式
-python scripts/weather.py Tokyo --custom-format "%l: %c %t"
-
-# 下载 PNG 图片
-python scripts/weather.py Paris -f png -o weather.png
-
-# 详细预报 (v2)
-python scripts/weather.py Beijing -f v2
-
-# 地图视图 (v3)
-python scripts/weather.py California -f v3
-
-# 月相查询
-python scripts/weather.py -f moon
-
-# 指定日期月相
-python scripts/weather.py -f moon --moon-date 2025-12-25
-```
-
-### 参数说明
-
-| 参数 | 说明 |
-|------|------|
-| `location` | 地点名称（可选，默认为当前位置） |
-| `-f, --format` | 输出格式：terminal, json, json-lite, oneline, png, v2, v2-day, v2-night, v3, plain, compact, prometheus, moon |
-| `-l, --lang` | 语言代码（默认 zh） |
-| `-u, --unit` | 单位：m=公制，u=英制，M=公制+m/s |
-| `-o, --output` | 输出文件路径（PNG 格式用） |
-| `--custom-format` | 自定义 format 参数（%-notation） |
-| `--moon-date` | 月相查询日期 (YYYY-MM-DD) |
-| `--transparent` | PNG 透明背景 |
-| `--transparency` | PNG 透明度 (0-255) |
-
-### 参考指南 (`references/quick-reference.md`)
-
-速查手册，包含：
-- 常用命令速查表
-- 自定义格式代码对照
-- 预设格式示例
-- 支持的语言代码
-- 天气代码对照表
-- tmux 配置示例
-- 故障排除指南
-
-**建议**：查询具体参数或忘记语法时，参考 `references/quick-reference.md`
+库用法：`from weather import WeatherQuery; WeatherQuery("Beijing").json_full()`。
+
+## 9. 集成
+
+- **tmux**：`set -g status-right '#(curl -s wttr.in/Beijing?format=3&period=60)'`
+- **shell alias**：`alias weather='python ~/.agents/skills/wttr-weather/scripts/weather.py'`
+- **bash 函数**：`eval "$(curl -s wttr.in/:bash.function)"`，然后 `wttr Paris`。
+- **图片叠天气**：`convert source.jpg <(curl wttr.in/Oymyakon_pq_transparency=0.png) -geometry +50+50 -composite out.jpg`（透明必须长写法 `transparency=N`，短写 `_t` 系列实测全挂）。
+
+## 10. 不支持清单（实测死项，勿写进产出）
+
+- `format` 代码 `%e`（露点）、`%H`（最高温）、`%L`（最低温）：README 有提及但**服务端原样回显、未实现**。
+  （注意 tmux strftime 的 `%H:%M` 与此无关，那是 shell 时间格式。）
+- `lang=zh-hans`、`zh_cn`、`zh_HANT`：ERR008 invalid。
+- 一行输出里的 `%C`（天气文本）**本地化不完整**：`lang=ru` 回 `Солнечно`，但 `lang=zh` 仍回英文
+  `Haze`（2026-10 实测）。要中文天气词走全量视图（`?0&lang=zh`）或 j1 JSON。
+- 裸 PNG 后缀 `_tqp.png`（无参 transparency 短写）：返回 `fail`——用 `transparency=0..255` 长写法。
+- PNG 短选项 `t`（透明）整体失效：`_t.png`、`_0t.png`、`_0tqp_lang=zh.png`、`_0pq_t.png` 实测全部返回 `fail`；
+  **README 自己的示例已死**。只有 `transparency=N` 长写法可用（已验证出图）。
+- 旧文档宣称的「54+ 种语言」无官方计数佐证（`:translation` 页面模板变量未渲染）；
+  按语言码逐个实测为准，别引用固定总数。
+
+速查细节见 `references/quick-reference.md`。

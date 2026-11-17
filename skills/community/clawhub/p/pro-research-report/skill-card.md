@@ -1,40 +1,52 @@
-## Description: <br>
-生成基于中英文资料检索、事实核查、图表和 DOCX/PDF 导出的专业行业研究报告。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates professional industry research reports through a structured workflow for research, report writing, fact-checking, and DOCX/PDF formatting.
 
-## Publisher: <br>
-[gudai1972](https://clawhub.ai/user/gudai1972) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[gudai1972](https://clawhub.ai/user/gudai1972)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Analysts, researchers, and business users use this skill to create comprehensive industry or company research reports with sourced market analysis, charts, and formatted deliverables.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The workflow may expose sensitive topics through web research queries and persist generated Markdown, JSON, DOCX, and PDF files in the workspace.
+
+Mitigation: Avoid invoking the skill with sensitive topics unless query exposure and local file persistence are acceptable; review and clean generated workspace files after use.
+
+Risk: The report workflow can produce misleading analysis if sourced data, projections, or charts are not verified before delivery.
+
+Mitigation: Require cited sources, independent verification for critical facts, and review of charts and formatted DOCX/PDF outputs before relying on the report.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Analysts, consultants, and business users use this skill to turn an industry or company research request into a structured research workflow and final report files with citations and charts. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Files, Code, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Generated reports may contain stale market data, incorrect claims, or projections that readers could mistake for verified facts. <br>
-Mitigation: Review cited sources, cross-check critical claims against the collected research, and clearly label projections before relying on the report. <br>
-Risk: The workflow creates workspace files, charts, DOCX documents, and PDFs as part of normal operation. <br>
-Mitigation: Run it in an appropriate workspace and review generated files before sharing or committing them. <br>
+**Output Format:** [Markdown, JSON data files, DOCX, and PDF]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gudai1972/pro-research-report) <br>
+**Other Properties Related to Output:** [Produces workspace files, including research notes, market data, charts, DOCX, and PDF deliverables.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Files] <br>
-**Output Format:** [Markdown research notes, JSON data files, generated chart assets, and final DOCX/PDF report files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates docs/ and data/ workspace outputs and requires source URLs for reported statistics.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

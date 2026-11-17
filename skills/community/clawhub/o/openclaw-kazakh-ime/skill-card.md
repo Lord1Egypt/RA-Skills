@@ -1,41 +1,54 @@
-## Description: <br>
-Adds a Kazakh input method for OpenClaw and web pages, with English, Arabic-script Kazakh, Cyrillic-script Kazakh, keyboard shortcuts, and a draggable virtual keyboard. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Adds a Kazakh input method for OpenClaw and web text fields, with English, Arabic-script Kazakh, Cyrillic-script Kazakh, shortcut switching, and a virtual keyboard.
 
-## Publisher: <br>
-[ayden76](https://clawhub.ai/user/ayden76) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ayden76](https://clawhub.ai/user/ayden76)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to install and operate a Kazakh IME in the OpenClaw control UI or another web page. It helps users enter Kazakh text in Arabic or Cyrillic script using an English keyboard or the included virtual keyboard. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The IME script changes behavior for text inputs on pages where it is loaded. <br>
-Mitigation: Install it only on pages where Kazakh IME behavior is intended, and remove the script tag and copied script file when the IME should no longer be active. <br>
-Risk: Incorrect installation paths or missing fonts can prevent the IME or Kazakh characters from displaying as expected. <br>
-Mitigation: Confirm the script path in the target HTML and install a Kazakh-capable font such as UKK TZK1 or Microsoft Uighur before relying on the IME. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to install and use a browser-based Kazakh input helper for text fields. It is intended for typing Kazakh in Arabic or Cyrillic script with keyboard mapping, mode switching, and an optional virtual keyboard.
 
-## Reference(s): <br>
-- [OpenClaw Kazakh IME documentation](references/README.md) <br>
-- [ClawHub release page](https://clawhub.ai/ayden76/openclaw-kazakh-ime) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown with inline code and shell command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces installation steps, keyboard usage guidance, mapping references, and configuration notes for loading the IME script.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: server release evidence and artifact documentation) <br>
+Risk: The installed browser script runs persistently in the OpenClaw control UI and modifies web text fields.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the script before installation and deploy it only on pages where this input-method behavior is intended.
+
+Risk: The script intercepts Ctrl+Shift+K and changes text-field language, input mode, direction, font, and autocomplete attributes.
+
+Mitigation: Check accessibility, shortcut, and locale-sensitive workflows after installation; adjust the language attribute behavior if required.
+
+## Reference(s):
+
+- [OpenClaw Kazakh IME README](references/README.md)
+- [ClawHub skill page](https://clawhub.ai/ayden76/skills/openclaw-kazakh-ime)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with installation steps, usage guidance, and inline code or shell snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include JavaScript and HTML snippets for installing or configuring the input method.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

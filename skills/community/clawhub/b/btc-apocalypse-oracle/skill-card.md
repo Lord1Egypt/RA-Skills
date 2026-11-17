@@ -1,38 +1,49 @@
-## Description: <br>
-AI-powered Bitcoin market analysis skill combining UAP disclosure data with Bitcoin survival metrics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides informational Bitcoin market analysis that combines UAP disclosure data with Bitcoin survival metrics.
 
-## Publisher: <br>
-[welove111](https://clawhub.ai/user/welove111) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[welove111](https://clawhub.ai/user/welove111)
 
-## Use Case: <br>
-Users seeking speculative crypto commentary can use this skill to generate Bitcoin market analysis framed around UAP disclosure themes and survival-oriented metrics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Bitcoin and survival framing could be mistaken for financial, safety, or emergency-planning advice. <br>
-Mitigation: Treat outputs as speculative commentary and verify any financial, safety, or emergency decisions with qualified sources before acting. <br>
+## Use Case:
 
+External users can invoke this skill for informational Bitcoin commentary that frames market analysis through UAP disclosure and survival metrics. Outputs should be reviewed as speculative analysis and not treated as investment advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/welove111/skills/btc-apocalypse-oracle) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown narrative analysis] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No tools, credentials, persistence, or system access are requested by the markdown-only artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: release evidence) <br>
+Risk: The skill is extremely sparse and may be mistaken for a reliable financial analysis framework or investment advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as informational commentary, require human review, and do not rely on them for financial decisions without additional transparent methodology.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/welove111/skills/btc-apocalypse-oracle)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text analysis]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code, install scripts, persistence, or hidden authority are evidenced; outputs should be reviewed as informational commentary.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

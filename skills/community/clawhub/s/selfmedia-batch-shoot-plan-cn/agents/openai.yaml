@@ -1,0 +1,8 @@
+interface:
+  display_name: "批量拍摄排期单"
+  short_description: "将已定稿脚本按场景机位合并成现场拍摄顺序与素材命名表"
+  default_prompt: "使用 $selfmedia-batch-shoot-plan-cn。请根据我提供的已确定脚本、人物、场地、道具和机位信息，生成按场景/机位合并的拍摄顺序和素材命名表；若信息不足，先列缺项。"
+  icon_small: "./icon-512.png"
+  icon_large: "./icon-512.png"
+policy:
+  allow_implicit_invocation: true

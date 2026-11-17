@@ -1,0 +1,93 @@
+
+:root{
+  --pe-paper:#FFFCF0;--pe-ink:#100F0F;--pe-muted:#6F6E69;--pe-faint:#B7B5AC;--pe-border:#CECDC3;--pe-surface:#F2F0E5;--pe-surface-2:#E6E4D9;
+  --pe-blue:#205EA6;--pe-red:#AF3029;--pe-green:#66800B;--pe-yellow:#AD8301;--pe-orange:#BC5215;--pe-cyan:#24837B;--pe-purple:#5E409D;--pe-magenta:#A02F6F;
+  --pe-accent:var(--pe-blue);
+  --pe-font:-apple-system,BlinkMacSystemFont,"Inter","PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif;
+  --pe-mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+  --pe-radius:4px;--pe-measure:44rem;color-scheme:light dark;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]){
+  --pe-paper:#100F0F;--pe-ink:#CECDC3;--pe-muted:#878580;--pe-faint:#575653;--pe-border:#403E3C;--pe-surface:#1C1B1A;--pe-surface-2:#282726;
+  --pe-blue:#4385BE;--pe-red:#D14D41;--pe-green:#879A39;--pe-yellow:#D0A215;--pe-orange:#DA702C;--pe-cyan:#3AA99F;--pe-purple:#8B7EC8;--pe-magenta:#CE5D97;}}
+:root[data-theme=dark]{
+  --pe-paper:#100F0F;--pe-ink:#CECDC3;--pe-muted:#878580;--pe-faint:#575653;--pe-border:#403E3C;--pe-surface:#1C1B1A;--pe-surface-2:#282726;
+  --pe-blue:#4385BE;--pe-red:#D14D41;--pe-green:#879A39;--pe-yellow:#D0A215;--pe-orange:#DA702C;--pe-cyan:#3AA99F;--pe-purple:#8B7EC8;--pe-magenta:#CE5D97;}
+/* diagrams read the same tokens as the prose: one palette, swapped without re-rendering */
+.pele{--pele-bg:var(--pe-paper);--pele-fg:var(--pe-ink);--pele-muted:var(--pe-muted);--pele-line:var(--pe-ink);--pele-surface:var(--pe-surface);
+  --pele-surface-alt:var(--pe-surface-2);--pele-border:var(--pe-border);--pele-accent:var(--pe-accent);--pele-critical:var(--pe-red);--pele-radius:var(--pe-radius);
+  --pele-series-1:var(--pe-blue);--pele-series-2:var(--pe-orange);--pele-series-3:var(--pe-green);--pele-series-4:var(--pe-red);
+  --pele-series-5:var(--pe-cyan);--pele-series-6:var(--pe-yellow);--pele-series-7:var(--pe-purple);--pele-series-8:var(--pe-magenta);
+  --pele-font:var(--pe-font);--pele-font-mono:var(--pe-mono);max-width:100%;height:auto}
+*{box-sizing:border-box}
+html{background:var(--pe-paper);color:var(--pe-ink);font:16px/1.7 var(--pe-font);-webkit-text-size-adjust:100%}
+body{margin:0;padding:3.5rem 1.25rem 4rem}
+main{max-width:var(--pe-measure);margin:0 auto}
+header.pe-head{margin-bottom:2rem}
+.pe-meta{font:12px/1.4 var(--pe-mono);color:var(--pe-muted);letter-spacing:.02em;display:flex;gap:.75rem;flex-wrap:wrap;align-items:center}
+h1{font-size:1.75rem;line-height:1.25;font-weight:650;margin:.4rem 0 .3rem;letter-spacing:-.01em}
+.pe-sub{color:var(--pe-muted);margin:0}
+.pe-lead{font-size:1.125rem;line-height:1.65;padding:0 0 1.75rem;border-bottom:1px solid var(--pe-border)}
+.pe-lead p{margin:.25rem 0}
+section.pe-panel{padding:1.75rem 0;border-bottom:1px solid var(--pe-border)}
+section.pe-panel>h2{font-size:1.125rem;font-weight:650;margin:0 0 .75rem;display:flex;gap:.6rem;align-items:baseline}
+.pe-n{font:12px var(--pe-mono);color:var(--pe-faint);min-width:1.4rem}
+h3,h4{font-size:1rem;font-weight:650;margin:1.25rem 0 .4rem}
+p{margin:.5rem 0}
+ul,ol{margin:.5rem 0;padding-left:1.4rem}
+li{margin:.2rem 0}
+a{color:var(--pe-accent);text-decoration:underline;text-underline-offset:2px;text-decoration-thickness:1px}
+code{font:.875em var(--pe-mono);background:var(--pe-surface);border-radius:3px;padding:.08em .32em}
+strong{font-weight:650}
+del{color:var(--pe-muted)}
+blockquote{margin:.75rem 0;padding:.1rem 0 .1rem 1rem;border-left:2px solid var(--pe-border);color:var(--pe-muted)}
+.pe-fig{margin:1rem 0;padding:1rem;background:var(--pe-paper);border:1px solid var(--pe-border);border-radius:var(--pe-radius);overflow-x:auto}
+.pe-svg{display:flex;justify-content:center}
+.pe-narrow{display:none}
+@media (max-width:640px){.pe-fig:has(.pe-narrow) .pe-wide{display:none}.pe-narrow{display:flex}body{padding-top:2rem}h1{font-size:1.45rem}}
+.pe-table{overflow-x:auto;margin:.75rem 0}
+table{border-collapse:collapse;width:100%;font-size:.9375rem}
+th,td{text-align:left;padding:.45rem .7rem .45rem 0;border-bottom:1px solid var(--pe-border);vertical-align:top}
+th{font-weight:600;color:var(--pe-muted);font-size:.8125rem}
+tr.pe-row-no td{color:var(--pe-muted)}
+.pe-badge{display:inline-block;min-width:1.15rem;font:600 12px/1.15rem var(--pe-mono);text-align:center;border-radius:3px}
+.pe-ok{color:var(--pe-green);background:color-mix(in srgb,var(--pe-green) 12%,transparent)}
+.pe-no{color:var(--pe-red);background:color-mix(in srgb,var(--pe-red) 12%,transparent)}
+.pe-warn{color:var(--pe-yellow);background:color-mix(in srgb,var(--pe-yellow) 14%,transparent)}
+.pe-code{margin:1rem 0}
+.pe-code figcaption{font:12px var(--pe-mono);color:var(--pe-muted);margin-bottom:.3rem}
+pre{margin:0;padding:.9rem 1rem;background:var(--pe-surface);border-radius:var(--pe-radius);overflow-x:auto;font:13px/1.6 var(--pe-mono)}
+pre code{background:none;padding:0;font:inherit}
+.pe-w-title{display:block;font-size:.875rem;color:var(--pe-muted);margin-bottom:.5rem}
+.pe-w-title output{color:var(--pe-ink);font:600 .9375rem var(--pe-mono)}
+.pe-steps,.pe-slider,.pe-tabs{margin:1rem 0;padding:1rem;border:1px solid var(--pe-border);border-radius:var(--pe-radius)}
+.pe-steps .pe-fig,.pe-slider .pe-fig,.pe-tabs .pe-fig{border:0;padding:.25rem 0;margin:.5rem 0}
+button{font:inherit;color:var(--pe-ink);background:var(--pe-paper);border:1px solid var(--pe-border);border-radius:var(--pe-radius);min-width:2rem;height:2rem;cursor:pointer}
+button:hover{background:var(--pe-surface)}
+button:focus-visible,input:focus-visible{outline:2px solid var(--pe-accent);outline-offset:2px}
+footer.pe-foot{margin-top:2rem;font-size:.8125rem;color:var(--pe-muted)}
+footer details pre{max-height:24rem;margin-top:.5rem;white-space:pre-wrap}
+footer summary{cursor:pointer}
+.pe-theme{margin-left:auto;height:1.6rem;min-width:auto;padding:0 .5rem;font:11px var(--pe-mono);color:var(--pe-muted)}
+.js .pe-beat[hidden],.js .pe-stop[hidden],.js .pe-tab[hidden]{display:none}
+.nojs .pe-bar,.nojs input[type=range],.nojs .pe-tablist,.nojs .pe-theme{display:none}
+.nojs [hidden]{display:block}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+@media print{body{padding:0}.pe-bar,.pe-theme,footer details{display:none}.pe-beat[hidden],.pe-stop[hidden],.pe-tab[hidden]{display:block!important}.pe-wide{display:flex!important}.pe-narrow{display:none!important}}
+
+/* semantic node classes — `class A,B bad` or `A:::ok` in any diagram. Colours follow the theme and the palette. */
+:is(.pe-svg g,.pe-chip):is(.bad,.bug,.error,.danger){--k:var(--pe-red)}
+:is(.pe-svg g,.pe-chip):is(.ok,.good,.fixed,.done,.pass){--k:var(--pe-green)}
+:is(.pe-svg g,.pe-chip):is(.warn,.risk,.todo){--k:var(--pe-yellow)}
+:is(.pe-svg g,.pe-chip):is(.new,.focus,.hot){--k:var(--pe-blue)}
+:is(.pe-svg g,.pe-chip).muted{--k:var(--pe-faint)}
+:is(.pe-svg g,.pe-chip).blue{--k:var(--pe-blue)}:is(.pe-svg g,.pe-chip).green{--k:var(--pe-green)}:is(.pe-svg g,.pe-chip).red{--k:var(--pe-red)}
+:is(.pe-svg g,.pe-chip).yellow{--k:var(--pe-yellow)}:is(.pe-svg g,.pe-chip).orange{--k:var(--pe-orange)}:is(.pe-svg g,.pe-chip).cyan{--k:var(--pe-cyan)}
+:is(.pe-svg g,.pe-chip).purple{--k:var(--pe-purple)}:is(.pe-svg g,.pe-chip).magenta{--k:var(--pe-magenta)}
+.pe-svg g[class]:is(.bad,.bug,.error,.danger,.ok,.good,.fixed,.done,.pass,.warn,.risk,.todo,.new,.focus,.hot,.muted,.blue,.green,.red,.yellow,.orange,.cyan,.purple,.magenta){
+  --_s:color-mix(in srgb,var(--k) 13%,var(--pe-paper));--_b:color-mix(in srgb,var(--k) 55%,var(--pe-border));}
+.pe-svg g:is(.bad,.bug,.error,.danger,.fixed,.pass){--_b:var(--k);--_fg:color-mix(in srgb,var(--k) 80%,var(--pe-ink))}
+.pe-svg g:is(.bad,.bug,.error,.danger,.fixed,.pass)>:is(rect,path,polygon,circle,ellipse){stroke-width:2px}
+.pe-legend{display:flex;flex-wrap:wrap;gap:.4rem .5rem;justify-content:center;margin:.25rem 0 .6rem;font-size:.8rem;color:var(--pe-muted)}
+.pe-chip{display:inline-flex;align-items:center;gap:.35rem;padding:.1rem .55rem;border-radius:999px;border:1px solid color-mix(in srgb,var(--k,var(--pe-border)) 55%,var(--pe-border));background:color-mix(in srgb,var(--k,var(--pe-surface)) 13%,var(--pe-paper));color:var(--pe-ink)}
+.pe-chip:is(.bad,.bug,.error,.danger,.fixed,.pass){border:2px solid var(--k);color:color-mix(in srgb,var(--k) 80%,var(--pe-ink))}

@@ -1,43 +1,57 @@
-## Description: <br>
-Connect an AI agent to a Mobazha store via MCP (Model Context Protocol). Use when the user wants their agent to directly manage store products, orders, and settings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connect an AI agent to a Mobazha store via MCP (Model Context Protocol) so the agent can manage store products, orders, and settings.
 
-## Publisher: <br>
-[fengzie](https://clawhub.ai/user/fengzie) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fengzie](https://clawhub.ai/user/fengzie)
 
-## Use Case: <br>
-Store owners, operators, and developers use this skill to connect an AI agent to a Mobazha store so it can help manage products, orders, messages, discounts, collections, profiles, notifications, search, and finance-related store workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The connected agent can have persistent control over products, orders, refunds, customer messages, and store settings. <br>
-Mitigation: Install only when agent administration is intended, use scoped or temporary tokens where possible, and require manual confirmation for refunds, deletions, buyer messages, profile changes, and other business-impacting actions. <br>
-Risk: API tokens or token-bearing MCP configuration can expose store access if committed, logged, or shared. <br>
-Mitigation: Store tokens in environment variables or a secrets manager, keep token-bearing config files out of git, avoid displaying tokens, and revoke tokens when access is no longer needed. <br>
-Risk: Remote or non-HTTPS store connections can expose credentials or administrative traffic. <br>
-Mitigation: Prefer HTTPS for store endpoints and use an SSH or VPN tunnel for remote VPS access when appropriate. <br>
+## Use Case:
 
+Store owners, operators, and developers use this skill to connect an AI agent to a Mobazha store over MCP for store administration tasks such as product, order, message, discount, profile, notification, search, and payment-related workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fengzie/mobazha-store-mcp-connect) <br>
-- [Publisher profile](https://clawhub.ai/user/fengzie) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with MCP configuration examples, JSON snippets, shell commands, and troubleshooting guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Mobazha API token and may optionally use SSH credentials for tunneled remote store connections.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: server release metadata) <br>
+Risk: The skill connects an AI agent to high-impact store administration controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only after explicit consent, limit token scopes to the required store actions, and review proposed destructive or financial changes before execution.
+
+Risk: Bearer tokens can be exposed through committed MCP configuration files, project files, logs, or shell history.
+
+Mitigation: Store tokens in environment variables or a secrets manager, keep token-bearing config files out of source control, and revoke or regenerate tokens after suspected exposure.
+
+Risk: Remote VPS or tunneled connections can expose store access if transport or SSH access is too broad.
+
+Mitigation: Prefer HTTPS or a local SSH/VPN tunnel, use a narrowly scoped and revocable token, and use an unprivileged SSH account for forwarding.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fengzie/skills/mobazha-store-mcp-connect)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, configuration, shell commands]
+
+**Output Format:** [Markdown with JSON and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Mobazha store API token; SSH credentials are optional for tunneled remote VPS connections.]
+
+## Skill Version(s):
+
+0.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

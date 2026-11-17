@@ -1,47 +1,54 @@
-## Description: <br>
-Automatically creates and maintains OpenClaw MEMORY.md long-term memory files with rule-based filtering, optional LLM analysis, and sensitive-data detection. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically creates and maintains an OpenClaw MEMORY.md long-term memory file with scheduled updates, rule-based filtering, optional LLM analysis, and sensitive-data detection.
 
-## Publisher: <br>
-[zx0018](https://clawhub.ai/user/zx0018) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zx0018](https://clawhub.ai/user/zx0018)
 
-## Use Case: <br>
-OpenClaw users and developers use this skill to initialize a MEMORY.md file and optionally maintain it from daily session logs. It supports cron-driven updates that filter notable events, call a configured LLM provider when available, and flag possible sensitive content. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Session logs may contain secrets or sensitive personal data that are retained in MEMORY.md or sent to the configured LLM provider. <br>
-Mitigation: Use local rule mode by leaving provider API keys unset when privacy matters, review MEMORY.md and daily logs for sensitive content, and keep restrictive file permissions. <br>
-Risk: Recurring cron updates can create ongoing retention beyond the user's expectations. <br>
-Mitigation: Enable the cron job only after confirming the desired retention behavior, and audit or disable the OpenClaw cron job when automatic updates are no longer needed. <br>
-Risk: API keys are read from environment variables and partial key values may be printed in command output. <br>
-Mitigation: Avoid running the updater in shared terminals or log collectors, use provider-scoped credentials, and rotate credentials if exposed. <br>
+## Use Case:
 
+OpenClaw users and developers use this skill to initialize a MEMORY.md file and keep selected session-derived events organized through manual commands or scheduled updates.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/zx0018/memory-manager-secure) <br>
-- [Publisher Profile](https://clawhub.ai/user/zx0018) <br>
-- [OpenClaw Cron Documentation](https://docs.openclaw.ai/cron) <br>
-- [OpenClaw Sessions Documentation](https://docs.openclaw.ai/sessions) <br>
-- [OpenClaw Memory Best Practices](https://docs.openclaw.ai/best-practices/memory) <br>
-- [OpenClaw Project](https://github.com/openclaw/openclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown files, shell scripts, and inline command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write or update MEMORY.md and OpenClaw cron configuration when installed or run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can retain conversation-derived details in MEMORY.md.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review stored content periodically, purge stale or sensitive entries, and keep MEMORY.md permissions restrictive.
+
+Risk: When an API key is configured, selected session-log lines may be sent to the configured LLM provider endpoint.
+
+Mitigation: Use a trusted HTTPS provider URL, use a dedicated low-privilege API key, and disable scheduled updates until the script and provider settings are reviewed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zx0018/skills/memory-manager-secure)
+- [OpenClaw project](https://github.com/openclaw/openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown instructions with bash command snippets and generated MEMORY.md content]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update MEMORY.md and OpenClaw cron configuration in the user's workspace.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

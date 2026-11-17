@@ -1,39 +1,51 @@
-## Description: <br>
-Automate Photoshop, Illustrator, InDesign, Premiere Pro, and After Effects using ExtendScript scripts executed through a cross-platform bridge. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Universal Adobe application automation via ExtendScript bridge. Supports Photoshop, Illustrator, InDesign, Premiere Pro, and After Effects.
 
-## Publisher: <br>
-[abdul-karim-mia](https://clawhub.ai/user/abdul-karim-mia) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[abdul-karim-mia](https://clawhub.ai/user/abdul-karim-mia)
 
-## Use Case: <br>
-Developers, designers, and automation-focused Adobe users use this skill to run trusted ExtendScript automation in supported Adobe desktop applications from an agent workflow. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Caller-provided ExtendScript can access the host filesystem and perform destructive or sensitive actions. <br>
-Mitigation: Run only reviewed scripts from trusted sources, use a low-privilege or dedicated account, and avoid sensitive folders when possible. <br>
-Risk: Adobe automation may change creative project files or application state on the local machine. <br>
-Mitigation: Test scripts on copies or isolated workspaces before using them on production assets. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/abdul-karim-mia/adobe-automator) <br>
+## Use Case:
+
+Developers and automation engineers use this skill to run reviewed ExtendScript against installed Adobe desktop applications for creative production and workflow automation.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill runs arbitrary Adobe ExtendScript, which server security evidence identifies as high-impact local automation with weak execution safeguards.
+
+Mitigation: Install only when raw Adobe automation is required, inspect every script before execution, and avoid scripts from documents, websites, chats, or other untrusted sources.
+
+Risk: Temporary script execution and broad host access can increase local file and system-impact risk.
+
+Mitigation: Prefer scoped, reviewed script templates and use controlled workstations or limited-permission accounts for automation runs.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands] <br>
-**Output Format:** [Markdown-formatted text status or error output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Windows or macOS with supported Adobe applications installed; executes caller-provided ExtendScript.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.1.2 (source: server release metadata, package.json, _meta.json, handler.js) <br>
+**Output Type(s):** [text, markdown, code execution result]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown-formatted status text with execution success or error details.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Runs user-provided ExtendScript for a selected supported Adobe application on Windows or macOS.]
+
+## Skill Version(s):
+
+1.1.2 (source: package.json, _meta.json, server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

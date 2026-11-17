@@ -1,44 +1,64 @@
-## Description: <br>
-Helps an agent use Yunzhan APIs to convert PDF, PPT, Word, and JPG files into online flipbook links, cover previews, and QR codes for sharing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+调用云展网 API，将 PDF、PPT、Word 和 JPG 文件转换为可在线浏览和分享的电子画册链接、封面和二维码。
 
-## Publisher: <br>
-[wancai12](https://clawhub.ai/user/wancai12) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wancai12](https://clawhub.ai/user/wancai12)
 
-## Use Case: <br>
-External users and agents use this skill to upload or reference documents and create Yunzhan-hosted online flipbooks with shareable links and QR codes. It is intended for documents the user deliberately wants to publish or share online through their own Yunzhan account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks the agent to collect Yunzhan account passwords. <br>
-Mitigation: Avoid pasting a real account password into chat; prefer a dedicated low-privilege account or a safer provider-controlled login flow when available. <br>
-Risk: The skill uploads documents to Yunzhan and creates online flipbooks intended for viewing and sharing. <br>
-Mitigation: Use it only for files the user explicitly wants to upload to Yunzhan and publish or share online. <br>
-Risk: The artifact includes broader account actions such as listing and deleting existing books. <br>
-Mitigation: Do not list or delete existing books unless the user explicitly requests that action and confirms the exact book IDs. <br>
+## Use Case:
 
+External users use this skill to turn local or remote PDF, PPT, Word, and JPG files into Yunzhan-hosted flipbooks for online reading and sharing. The skill guides login, upload, conversion polling, permission checks, and returns the resulting viewing link, cover image, and QR code.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wancai12/yunzhan-huace) <br>
-- [Yunzhan API reference](references/api_docs.md) <br>
-- [Yunzhan service site](https://www.yunzhan365.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, API calls, guidance] <br>
-**Output Format:** [Markdown-style progress updates and results containing online viewing links, copy/view actions, cover image references, and QR code display instructions.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May upload user-selected files to Yunzhan and poll conversion status before returning final sharing outputs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill asks for Yunzhan account passwords and saves tokens for follow-on API calls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a separate Yunzhan account when possible, do not reuse passwords, and treat tokens as sensitive session credentials.
+
+Risk: Documents and account credentials are sent to Yunzhan through the agent workflow.
+
+Mitigation: Avoid sensitive documents unless the user accepts Yunzhan processing and account exposure for this task.
+
+Risk: The skill documents account listing and deletion actions in addition to the conversion flow.
+
+Mitigation: Require explicit user confirmation before listing account contents or deleting any book or folder.
+
+Risk: The workflow may include promotional support QR output and hides some audit status details.
+
+Mitigation: Treat support QR prompts as service marketing and distinguish them from the conversion result.
+
+## Reference(s):
+
+- [云展网 API 参考文档](artifact/references/api_docs.md)
+- [ClawHub skill page](https://clawhub.ai/wancai12/skills/yunzhan-huace)
+- [Yunzhan service](https://www.yunzhan365.com)
+- [Yunzhan product service plans](https://www.yunzhan365.com/product-serve/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, API Calls, Guidance]
+
+**Output Format:** [Markdown response with Yunzhan viewing links, copy/view actions, cover image, QR code image, and status messages]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Yunzhan account and user-provided credentials or token for API requests; uploaded documents are sent to Yunzhan.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

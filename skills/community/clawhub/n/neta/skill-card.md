@@ -1,38 +1,49 @@
-## Description: <br>
-Neta is a capability index and routing skill that helps choose the appropriate Neta-related sub-skill for space exploration, creative content, community interaction, research, character management, or visual concept management tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Neta capability index and routing skill - help choose the appropriate Neta-related skill (neta-space / neta-creative / neta-community / neta-suggest).
 
-## Publisher: <br>
-[huxiuhan](https://clawhub.ai/user/huxiuhan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[huxiuhan](https://clawhub.ai/user/huxiuhan)
 
-## Use Case: <br>
-Developers and agent users use this skill to classify a Neta-related task and route it to the focused sub-skill that fits the request, especially when boundaries are unclear or legacy Neta documentation needs migration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Referenced sub-skills may install or guide actions that create, update, like, or otherwise interact with account-visible or public content. <br>
-Mitigation: Review each referenced sub-skill separately before installation or use, and confirm the selected sub-skill matches the user's intended task. <br>
+## Use Case:
 
+Developers and agents use Neta to classify Neta-related requests, choose the appropriate focused sub-skill, and migrate older workflows away from the legacy monolithic Neta skill.
 
-## Reference(s): <br>
-- [Neta skill page](https://clawhub.ai/huxiuhan/neta) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands] <br>
-**Output Format:** [Markdown guidance with optional shell command examples for installing referenced sub-skills] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Routes users to focused Neta sub-skills rather than executing concrete commands itself.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server evidence release.version) <br>
+Risk: Unpinned remote `npx skills add` commands can install code that changes local agent behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify trust in the `skills` npm package and the `talesofai/neta-skills` repository before installation, prefer pinned versions or commit hashes, and review each sub-skill before use.
+
+## Reference(s):
+
+- [Neta skill page on ClawHub](https://clawhub.ai/huxiuhan/skills/neta)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Routes the user to focused Neta sub-skills and may suggest optional installation commands.]
+
+## Skill Version(s):
+
+1.0.3 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,59 @@
-## Description: <br>
-Get cryptocurrency token price and generate candlestick charts via CoinGecko API or Hyperliquid API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Gets cryptocurrency token prices and generates candlestick charts using CoinGecko or Hyperliquid market data.
 
-## Publisher: <br>
-[evgyur](https://clawhub.ai/user/evgyur) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[evgyur](https://clawhub.ai/user/evgyur)
 
-## Use Case: <br>
-External users and developers use this skill to fetch current cryptocurrency prices and generate candlestick charts for supported CoinGecko or Hyperliquid tokens. It is intended for market-data lookup and chart generation, not financial advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill contacts public CoinGecko or Hyperliquid APIs and depends on their availability, rate limits, and market-data accuracy. <br>
-Mitigation: Use the output as informational market data, surface API errors clearly, and avoid presenting prices or charts as financial advice. <br>
-Risk: The local Python script writes temporary cache and chart files under /tmp. <br>
-Mitigation: Run it in an environment where temporary file writes are acceptable and clear generated files according to local retention needs. <br>
-Risk: The dependency requirement allows a range of matplotlib versions, which can affect reproducibility. <br>
-Mitigation: Pin dependencies in controlled deployments when reproducible installs or stable chart rendering are required. <br>
+## Use Case:
 
+External users and developers use this skill to look up cryptocurrency token prices, recent percentage changes, and generated candlestick charts for supported CoinGecko or Hyperliquid assets.
 
-## Reference(s): <br>
-- [Crypto Price on ClawHub](https://clawhub.ai/evgyur/crypto-price) <br>
-- [CoinGecko API](https://api.coingecko.com/api/v3/) <br>
-- [Hyperliquid API](https://api.hyperliquid.xyz/info) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, files] <br>
-**Output Format:** [JSON containing price fields, text_plain, and chart_path; agents may present text_plain with the generated PNG chart as media.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes temporary cache and chart files under /tmp; market data comes from public CoinGecko or Hyperliquid APIs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.2 (source: server release metadata) <br>
+Risk: Token lookup requests are sent to CoinGecko and Hyperliquid.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when those public market-data API requests are acceptable for the user's environment.
+
+Risk: Generated chart and cache files are written under /tmp.
+
+Mitigation: On shared or multi-user hosts, use a hardened deployment with a private temp/cache directory.
+
+Risk: The Python dependency is specified as a minimum version rather than pinned exactly.
+
+Mitigation: Pin and review dependencies before deploying in controlled production environments.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/evgyur/skills/crypto-price)
+- [CoinGecko API](https://api.coingecko.com/api/v3/)
+- [Hyperliquid Info API](https://api.hyperliquid.xyz/info)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Files]
+
+**Output Format:** [JSON object containing price fields, text_plain, and chart_path for a generated PNG chart.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes short-lived price cache JSON files and generated chart PNG files under /tmp.]
+
+## Skill Version(s):
+
+0.2.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

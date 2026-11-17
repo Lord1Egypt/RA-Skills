@@ -1,37 +1,57 @@
-## Description: <br>
-Integrates MuninnDB as a cognitive memory system for Hermes Agent. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Integrates MuninnDB as a cognitive memory system for Hermes Agent.
 
-## Publisher: <br>
-[bitsonwheels](https://clawhub.ai/user/bitsonwheels) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bitsonwheels](https://clawhub.ai/user/bitsonwheels)
 
-## Use Case: <br>
-Developers and agent operators use this skill to configure Hermes Agent to use a local MuninnDB service as persistent cognitive memory through MCP. It provides setup guidance, local health checks, vault activation steps, and cautions for bearer-token configuration and memory snapshots. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bitsonwheels/muninndb-integration) <br>
+Developers and operators use this skill to configure Hermes Agent to connect to a local MuninnDB MCP server and use MuninnDB as cognitive memory. It also documents setup checks and a periodic memory snapshot workflow.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with YAML and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes local service checks, MCP bearer-token configuration guidance, and notes about persistent memory snapshot behavior.] <br>
+Global
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and ClawHub release metadata) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: Connecting Hermes to a local MuninnDB service can persist agent memory outside a single session.
+
+Mitigation: Verify that local MuninnDB integration is intended before installing or activating the skill.
+
+Risk: A separate cron-based memory snapshot workflow can continue capturing memory periodically after setup.
+
+Mitigation: Review and explicitly enable any periodic memory snapshot workflow only when persistent capture is acceptable.
+
+Risk: Incorrect Hermes MCP header configuration can cause authentication failures while the server appears enabled.
+
+Mitigation: Use the documented `headers` key for the MCP Authorization bearer token and check this key first when troubleshooting 401 responses.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bitsonwheels/skills/muninndb-integration)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with YAML and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Focuses on local MuninnDB and Hermes MCP configuration.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

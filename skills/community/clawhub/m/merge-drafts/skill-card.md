@@ -1,40 +1,61 @@
-## Description: <br>
-Merges multiple drafts into a polished article by assessing quality, detecting conflicts, selecting a base draft, fusing highlights, and producing a merge report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Merges supplied drafts and review comments into one coherent document while preserving useful contributions, source attribution, and unresolved conflicts.
 
-## Publisher: <br>
-[0xcjl](https://clawhub.ai/user/0xcjl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[0xcjl](https://clawhub.ai/user/0xcjl)
 
-## Use Case: <br>
-Writers, editors, and content teams use this skill to combine two or more drafts into a single coherent article while preserving useful ideas, resolving conflicts, and documenting each draft's contribution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Drafts and Feishu links may contain sensitive information that the agent must read to perform the merge. <br>
-Mitigation: Provide only documents appropriate for agent review, confirm public-link sharing is acceptable, and remove public sharing after merging sensitive drafts. <br>
-Risk: Conflicting claims or data across drafts could lead to an incorrect merged article if resolved without review. <br>
-Mitigation: Use sourced claims where available and ask the user to decide unresolved conflicts before continuing. <br>
+## Use Case:
 
+Writers, editors, and other users merge multiple supplied drafts or integrate review comments into a coherent document without losing attribution or concealing unresolved factual conflicts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/0xcjl/merge-drafts) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown article with a merge report; HTML, PDF, or Feishu document output may be used when requested.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes base-draft selection, contribution notes, major changes, and a quality score.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: Installation instructions may change local agent skill directories.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the README commands before installing and run only those for agents in use.
+
+Risk: The skill may read private documents through host connectors already authorized for the agent.
+
+Mitigation: Provide only drafts and documents you are authorized to merge; do not broaden access or share documents publicly.
+
+Risk: Conflicting or unavailable source material could lead to misleading merged claims.
+
+Mitigation: Keep citations and unresolved claims visible, and label missing inputs rather than inventing a complete merge.
+
+## Reference(s):
+
+- [Merge Drafts on ClawHub](https://clawhub.ai/0xcjl/skills/merge-drafts)
+- [Codex skills documentation](https://developers.openai.com/codex/skills/)
+- [Claude Code skills documentation](https://code.claude.com/docs/en/skills)
+- [Hermes skills documentation](https://hermes-agent.nousresearch.com/docs/user-guide/features/skills/)
+- [OpenClaw skills documentation](https://docs.openclaw.ai/cli/skills)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files]
+
+**Output Format:** [Markdown or plain text by default; other formats only when supported and requested]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Merged document first, with brief source and decision notes and any unresolved conflicts; a separate file when saving is requested.]
+
+## Skill Version(s):
+
+1.2.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

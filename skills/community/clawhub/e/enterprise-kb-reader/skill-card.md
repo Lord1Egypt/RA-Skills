@@ -1,48 +1,58 @@
-## Description: <br>
-Lightweight enterprise knowledge base query system that provides read-only retrieval capabilities for AI agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Retrieves and reads existing enterprise knowledge base content for business questions, policies, FAQs, procedures, product information, and project information.
 
-## Publisher: <br>
-[apanghu](https://clawhub.ai/user/apanghu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[apanghu](https://clawhub.ai/user/apanghu)
 
-## Use Case: <br>
-Employees, support agents, and AI agent users use this skill to search existing enterprise knowledge base content for business questions, product information, company policies, procedures, FAQs, and project information. It is intended for read-only retrieval from a knowledge base already initialized and populated by an administrator. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read shared internal knowledge base data, including confidential content if the local kb-data directory is accessible. <br>
-Mitigation: Install only for users authorized to query the shared enterprise knowledge base and restrict filesystem access to the kb-data directory. <br>
-Risk: Query text is sent to DashScope or OpenAI-compatible embedding services, which may expose sensitive prompts or business terms to an external provider. <br>
-Mitigation: Use dedicated API keys and deploy only where sending query text to the configured embedding provider is acceptable. <br>
-Risk: The documentation describes local-only access, but embedding calls require external API access when configured with DashScope or OpenAI. <br>
-Mitigation: Clarify deployment documentation so operators understand which data stays local and which query text is transmitted to embedding services. <br>
-Risk: Dependencies are version-ranged rather than pinned, which can introduce supply-chain or reproducibility risk in managed deployments. <br>
-Mitigation: Pin dependencies with a lockfile and review updates before deployment in environments with confidential knowledge base content. <br>
+## Use Case:
 
+Employees, support agents, and developers use this skill to query an already-initialized enterprise knowledge base, list available documents, view statistics, and retrieve read-only answers from existing content.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/apanghu/enterprise-kb-reader) <br>
-- [Publisher profile](https://clawhub.ai/user/apanghu) <br>
-- [Skill README](artifact/README.md) <br>
-- [Skill definition](artifact/SKILL.md) <br>
-- [DashScope OpenAI-compatible endpoint](https://dashscope.aliyuncs.com/compatible-mode/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text or Markdown responses with command-line examples and retrieval results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only knowledge retrieval results may include document names, similarity scores, content snippets, document lists, or knowledge base statistics.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata and OpenClaw metadata) <br>
+Risk: Query text can be sent to the configured external embedding provider even though the skill describes local-only knowledge base access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only where external processing of query text is approved, review config.json before use, and avoid confidential questions unless the configured embedding provider is authorized for that data.
+
+Risk: Unauthorized users may query enterprise knowledge base content if the skill is installed in a broadly accessible agent environment.
+
+Mitigation: Restrict installation and execution to users who are allowed to query the enterprise KB, and use limited-scope API keys for the embedding provider.
+
+Risk: Changing the embedding endpoint or related configuration can alter where query text is processed.
+
+Mitigation: Limit who can modify configuration files and review the embedding provider, model, endpoint, and API key handling before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/apanghu/skills/enterprise-kb-reader)
+- [Configured DashScope-compatible embedding endpoint](https://dashscope.aliyuncs.com/compatible-mode/v1)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text and Markdown with command-line examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces read-only query answers, detailed search results, document listings, and knowledge base statistics from an existing KB.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata and OpenClaw metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

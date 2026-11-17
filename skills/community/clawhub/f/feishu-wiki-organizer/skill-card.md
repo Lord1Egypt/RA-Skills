@@ -1,42 +1,58 @@
-## Description: <br>
-Organizes Feishu wiki content by analyzing document titles and selected content, then proposing and executing user-approved moves into clearer knowledge-base categories. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+飞书知识库整理专家 helps agents classify and organize Feishu wiki content without merging, deleting, or editing source documents.
 
-## Publisher: <br>
-[lgugeng](https://clawhub.ai/user/lgugeng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lgugeng](https://clawhub.ai/user/lgugeng)
 
-## Use Case: <br>
-Employees, knowledge managers, and operations teams use this skill to classify Feishu wiki documents, create folder structures, and move documents after reviewing a preview plan. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can grant an agent broad authority to move Feishu wiki documents. <br>
-Mitigation: Start with one knowledge base and review every preview plan before approving document moves. <br>
-Risk: Cross-library, merge, or failed-move handling could place documents in unexpected locations. <br>
-Mitigation: Avoid cross-library or merge operations unless explicitly requested, and confirm how failed items will be handled before execution. <br>
-Risk: Hourly automation can continue making or proposing changes after the initial organizing task. <br>
-Mitigation: Do not enable hourly automation until the disable process, log locations, and protected status files are understood. <br>
+## Use Case:
 
+Teams and knowledge-base maintainers use this skill to plan Feishu wiki folder structures, classify scattered root documents, and prepare or execute approved document moves. It is intended for single-wiki cleanup and multi-wiki organization workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lgugeng/feishu-wiki-organizer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Feishu API call examples and structured move plans.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user approval before document moves and may produce local move logs or status files when automation is enabled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill can reorganize Feishu wiki content, so incorrect plans or approvals could move documents into the wrong locations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require a dry-run plan with specific target knowledge bases and explicit approval for each move batch before executing changes.
+
+Risk: The release security summary flags ambiguous hourly background-check behavior that could continue accessing or logging wiki data after the session.
+
+Mitigation: Treat automatic checks as disabled unless personally configured, and verify or remove any cron entry plus local .kb_organizer logs or status files when finished.
+
+Risk: Cross-library moves and moves involving nodes with children can have broader effects than simple leaf-document reclassification.
+
+Mitigation: Require separate approval for cross-library moves and for moving documents that have child nodes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lgugeng/skills/feishu-wiki-organizer)
+- [Source skill definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown plans, previews, checklists, and inline code or command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires explicit user approval before move batches and separate approval for higher-risk wiki moves.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

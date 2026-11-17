@@ -1,42 +1,58 @@
-## Description: <br>
-Code Optimizer evaluates code quality with feature analysis and machine-learning-assisted strategy selection, then provides optimization-oriented reports and commands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Code Optimizer evaluates code quality with ML-based scoring and selects optimization strategies for code-generation workflows.
 
-## Publisher: <br>
-[clementgu](https://clawhub.ai/user/clementgu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[clementgu](https://clawhub.ai/user/clementgu)
 
-## Use Case: <br>
-Developers and engineers use this skill to assess generated or existing code, select a generation strategy, run standard test cases, and produce quality reports. It is intended for code-review and optimization workflows in OpenClaw/Hermes-style environments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The deployment script can persistently change the user's environment, including OpenClaw/Hermes configuration and command links. <br>
-Mitigation: Review the deployment script first, back up Hermes configuration, and prefer a dry-run or manual setup before allowing integration changes. <br>
-Risk: The skill can store code-derived evaluation results, which may retain sensitive repository details. <br>
-Mitigation: Avoid running it on repositories with secrets or sensitive code until retention controls and storage locations are clear. <br>
+## Use Case:
 
+Developers and engineering agents use this skill to assess code quality, run standardized test cases, generate quality reports, and choose code-generation strategies.
 
-## Reference(s): <br>
-- [Code Optimizer ClawHub page](https://clawhub.ai/clementgu/code-optimizer) <br>
-- [Code Optimizer homepage](https://clawhub.ai/skills/code-optimizer) <br>
-- [Publisher profile](https://clawhub.ai/user/clementgu) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with CLI examples, configuration snippets, and text reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local CLI, model, configuration, and evaluation-history files when its deployment script is run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The deployment script imports evaluator code from an external local path and may expose code that is not bundled in the release.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only in a disposable or tightly controlled workspace, and prefer a release that bundles the evaluator source for review before execution.
+
+Risk: The deployment script can install Python dependencies, update Hermes configuration, copy files into the skill package, and create a HOME/bin command link.
+
+Mitigation: Review dependency pins and configuration diffs before use, and require explicit approval before modifying Hermes or user-level command paths.
+
+Risk: Code-evaluation history and feedback-loop behavior may retain submitted code or task details.
+
+Mitigation: Avoid evaluating sensitive code unless retention controls are configured, and review stored evaluation data regularly.
+
+## Reference(s):
+
+- [Code Optimizer ClawHub Page](https://clawhub.ai/clementgu/skills/code-optimizer)
+- [ClawHub Skill Homepage](https://clawhub.ai/skills/code-optimizer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with command examples and optional generated quality reports.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include strategy recommendations such as balanced, emphasize_correctness, or extreme_correctness.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

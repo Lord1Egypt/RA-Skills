@@ -1,41 +1,54 @@
-## Description: <br>
-Protects against malicious or compromised OpenClaw skills by auditing newly installed skills before first use, detecting red-flag patterns, and enforcing hard-floor safety rules. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Skill Sentinel audits newly installed or unfamiliar OpenClaw skills, flags high-risk behavior, and applies hard-floor safety rules before first use.
 
-## Publisher: <br>
-[kimmi2ue](https://clawhub.ai/user/kimmi2ue) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kimmi2ue](https://clawhub.ai/user/kimmi2ue)
 
-## Use Case: <br>
-Developers and agent users use Skill Sentinel to review newly installed OpenClaw skills, identify red flags around credentials, external transmission, persistence, and authority escalation, and decide whether to approve first use. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The guardrail may interrupt use of other skills until the user approves them. <br>
-Mitigation: Review the quarantine summary and approve only when the described behavior matches the intended use. <br>
-Risk: Publisher provenance is limited, so the skill should not be treated as a complete security control on its own. <br>
-Mitigation: Read the rules before relying on it and install only skills from sources the user is willing to review. <br>
+## Use Case:
 
+Developers and agent operators use Skill Sentinel to review newly installed or unfamiliar OpenClaw skills before first use, especially when a skill may transmit data, access credentials, create scheduled work, or claim broad authority. It produces user-facing audit summaries, red-flag findings, and approval or refusal guidance.
 
-## Reference(s): <br>
-- [Skill Audit Checklist](references/audit-checklist.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/kimmi2ue/skill-hardfloor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown audit summaries and plain-language review prompts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May request explicit user approval before an unfamiliar skill is used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill gives itself broad non-overridable control over when other skills may run.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installation and prefer use as an explicit audit request or dedicated review hook rather than a standing blocker for unrelated skill workflows.
+
+Risk: The skill is intended to act as an active gatekeeper for other skills, not merely as an audit checklist.
+
+Mitigation: Install only when that gatekeeping behavior is desired, and require user review of quarantine summaries before allowing a newly installed skill to run.
+
+## Reference(s):
+
+- [Skill Sentinel on ClawHub](https://clawhub.ai/kimmi2ue/skills/skill-hardfloor)
+- [Skill Audit Checklist](references/audit-checklist.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Plain text or Markdown audit summaries and safety guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include approval prompts, red-flag locations, and refusal rationale when unsafe behavior is detected.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

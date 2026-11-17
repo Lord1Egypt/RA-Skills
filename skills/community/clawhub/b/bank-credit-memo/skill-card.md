@@ -1,42 +1,57 @@
-## Description: <br>
-AI-powered bank credit memo and credit analysis report writer that generates structured credit analysis reports, credit ratings, and facility recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Drafts structured corporate bank credit analyses, ratings, facility recommendations, and credit memos from user-provided information.
 
-## Publisher: <br>
-[gechengling](https://clawhub.ai/user/gechengling) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gechengling](https://clawhub.ai/user/gechengling)
 
-## Use Case: <br>
-Bank credit officers, credit committee members, and relationship managers use this skill to draft internal commercial credit memos for new applications, renewals, rating changes, group credit assessments, and green credit facilities. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Credit memo drafting may involve borrower, customer, UBO, or other confidential banking data. <br>
-Mitigation: Use redacted or synthetic inputs unless the environment is approved for regulated financial information, and avoid pasting real confidential data into unapproved systems. <br>
-Risk: AI-generated credit analysis can be incomplete, outdated, or unsuitable for final lending decisions. <br>
-Mitigation: Have qualified credit staff review all outputs and route final decisions through authorized bank approval processes. <br>
+## Use Case:
 
+Bank credit officers, risk managers, and relationship managers use it to draft corporate lending analyses and credit memo reports from aggregated borrower information. Outputs are drafts for qualified human review and do not make final approval decisions.
 
-## Reference(s): <br>
-- [Bank Credit Memo README](README.md) <br>
-- [Bank Credit Memo Skill Definition](SKILL.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/gechengling/skills/bank-credit-memo) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown credit memo drafts with structured tables and narrative analysis] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs require review by qualified credit staff before use in lending decisions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-4.1.1 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: The security inspection was incomplete: the manifest could not be parsed and two references were unresolved, despite a benign verdict.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the unresolved references and manifest, and assess the skill before installation; the benign verdict is not a safety guarantee.
+
+Risk: Borrower materials may contain confidential business or personal information.
+
+Mitigation: Provide aggregated, anonymized summaries and keep raw statements, account records, names, and personal identifiers out of prompts and drafts.
+
+Risk: Draft ratings and facility recommendations could be mistaken for final credit decisions.
+
+Mitigation: Have qualified credit and risk staff independently verify the facts and analysis, record their review, and obtain approval from authorized decision makers.
+
+## Reference(s):
+
+- [Bank Credit Memo on ClawHub](https://clawhub.ai/gechengling/skills/bank-credit-memo)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Text, Markdown, Guidance]
+
+**Output Format:** [Structured Chinese or English Markdown credit analysis and memo drafts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Draft content based on user-provided summaries; requires qualified human review before use in credit decisions.]
+
+## Skill Version(s):
+
+4.1.5 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,53 @@
-## Description: <br>
-Explores user intent, requirements, and design before implementation for creative work such as creating features, building components, adding functionality, or modifying behavior. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through a design-first brainstorming workflow that explores user intent, requirements, options, and approval before implementation.
 
-## Publisher: <br>
-[usipipo](https://clawhub.ai/user/usipipo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[usipipo](https://clawhub.ai/user/usipipo)
 
-## Use Case: <br>
-Developers and agents use this skill to turn early implementation ideas into approved designs before code changes begin. It supports collaborative requirement discovery, option comparison, design documentation, and transition into planning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can slow or block direct implementation by requiring design discussion and approval first. <br>
-Mitigation: Use it for workflows where design review is desired before implementation begins. <br>
-Risk: The skill may create and commit a design document under docs/plans after approval. <br>
-Mitigation: Review the proposed design and resulting document before proceeding to implementation. <br>
+## Use Case:
 
+Developers and agent users use this skill to turn feature, component, or behavior-change ideas into approved designs before implementation begins.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/usipipo/sipbrainstorming) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Conversational Markdown and design documents] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create a design document under docs/plans after user approval.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can force a broad design-first workflow that may slow or block straightforward implementation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only when a strict planning gate is desired, and confirm that current user instructions still allow the workflow.
+
+Risk: The skill can direct agents to create design files and git commits as part of the workflow.
+
+Mitigation: Require separate confirmation before writing files or creating commits, and review generated changes before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/usipipo/skills/sipbrainstorming)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Files]
+
+**Output Format:** [Conversational guidance and Markdown design documentation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires design approval before implementation and may produce a design document after approval.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

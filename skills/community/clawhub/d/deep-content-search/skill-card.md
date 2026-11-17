@@ -1,40 +1,61 @@
-## Description: <br>
-深度内容搜索工具，整合微信公众号、知乎、豆瓣、今日头条、百家号、微博、B站专栏等多平台内容抓取，支持获取微信公众号完整正文、知乎日报完整正文、豆瓣电影信息，并支持直接解析微信链接获取全文。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches and extracts content from WeChat public articles, Zhihu, Douban, Toutiao, Baijiahao, Weibo, and Bilibili column sources, returning platform-labeled text or JSON results.
 
-## Publisher: <br>
-[lyl340321](https://clawhub.ai/user/lyl340321) <br>
+This skill is for research and development only.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lyl340321](https://clawhub.ai/user/lyl340321)
 
-## Use Case: <br>
-External users and agent developers use this skill to search across Chinese content platforms, retrieve full text where supported, parse WeChat article links, and return sourced text or JSON results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search terms and article URLs are sent to third-party services, and retrieved content may be stored locally when --output is used. <br>
-Mitigation: Use non-sensitive queries and URLs, avoid storing confidential results, and review saved output paths before running the command. <br>
-Risk: The skill depends on unpinned Python packages and live third-party platform behavior. <br>
-Mitigation: Install in a controlled Python environment, keep result limits modest, and re-run validation when dependencies or platform responses change. <br>
+## Use Case:
 
+External users and developers use this skill when an agent needs to search Chinese content platforms, extract full WeChat or Zhihu Daily article text where available, or return source-labeled summaries and links from platforms with anti-scraping limits.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lyl340321/deep-content-search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, files, shell commands, guidance] <br>
-**Output Format:** [Plain text, Markdown-style summaries, JSON, or saved output files from command-line execution] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Searches default to three results per platform, can write retrieved content locally with --output, and require python3 plus requests, beautifulsoup4, lxml, and fake-useragent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release evidence) <br>
+Risk: Search terms and pasted URLs may be sent to Chinese search and content services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid private links, secrets, internal hostnames, and sensitive research terms; review queries and URLs before running the skill.
+
+Risk: Weak WeChat URL validation can cause requests to unintended internal or arbitrary URLs.
+
+Mitigation: Validate WeChat URLs strictly, block private-network destinations and redirects, and restrict execution to expected public hosts.
+
+Risk: The --output option can overwrite user-chosen paths.
+
+Mitigation: Confirm output paths before execution and avoid accepting arbitrary output paths from untrusted input.
+
+Risk: Some platform results are summaries or links only because anti-scraping controls block full extraction.
+
+Mitigation: Treat partial results as leads, preserve source labels, and verify important claims against the original source.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lyl340321/skills/deep-content-search)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, guidance]
+
+**Output Format:** [Plain text, JSON, or Markdown file output from a Python CLI]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results include platform labels and per-channel counts; the CLI can write output to a user-specified path with --output.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

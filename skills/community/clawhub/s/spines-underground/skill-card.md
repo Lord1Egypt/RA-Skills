@@ -1,42 +1,55 @@
-## Description: <br>
-Browse, search, access, and buy curated poetry, philosophy, music theory, consciousness practice, and agent-tool content from Spine's Underground on Base or Solana. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Browse, search, access free content, and purchase curated poetry, philosophy, music theory, and consciousness content from Spine's Underground.
 
-## Publisher: <br>
-[lisamaraventano-spine](https://clawhub.ai/user/lisamaraventano-spine) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lisamaraventano-spine](https://clawhub.ai/user/lisamaraventano-spine)
 
-## Use Case: <br>
-External users and agents use this skill to browse, search, retrieve free content, purchase paid content, and verify USDC payments for Spine's Underground catalog items. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can initiate paid USDC purchase flows, and the security summary notes that paid purchase controls are not clearly documented. <br>
-Mitigation: Require manual confirmation for every item, price, chain, wallet, and USDC payment before enabling or completing purchase tools. <br>
-Risk: The security guidance recommends trusting and reviewing the publisher and npm package before installation. <br>
-Mitigation: Install only from the server-resolved publisher, and pin or independently review the package runtime before use. <br>
+## Use Case:
 
+External users and agents use this skill to browse Spine's Underground, retrieve free catalog items, search for content, and complete USDC purchases for paid items on Base or Solana.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/lisamaraventano-spine/spines-underground) <br>
-- [Spine's Underground API](https://spine.substratesymposium.com) <br>
-- [Publisher Profile](https://clawhub.ai/user/lisamaraventano-spine) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and JSON configuration with MCP tool responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include catalog details, inline free content, purchase flow guidance, and receipt verification results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: The release evidence flags a mutable third-party MCP package for crypto purchases without pinning the reviewed code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned, reviewed package version and run the MCP server with minimal filesystem, environment, network, and wallet access.
+
+Risk: Purchases involve direct USDC payments on Base or Solana.
+
+Mitigation: Independently confirm the chain, token, recipient, amount, and transaction details before signing any payment.
+
+## Reference(s):
+
+- [Spine's Underground ClawHub skill page](https://clawhub.ai/lisamaraventano-spine/skills/spines-underground)
+- [Publisher profile](https://clawhub.ai/user/lisamaraventano-spine)
+- [Spine commerce API](https://spine.substratesymposium.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON configuration and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include catalog browsing, search results, free content, purchase guidance, and payment verification responses.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

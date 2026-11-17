@@ -1,0 +1,32 @@
+{
+  "skill_name": "design-deep-research",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "我想做一个赛博朋克风格的音乐节主视觉海报，帮我做深度设计调研。",
+      "expected_output": "Structured visual trend research report across multiple platforms with aesthetic clustering and prompt seeds.",
+      "files": [],
+      "expectations": [
+        "Deconstructs design request across 7 core dimensions (Color, Typography, Graphics, Texture/Lighting, Composition, Emotion, Signature Techniques)",
+        "Clusters references into 3-5 distinct, differentiated design directions",
+        "Includes authentic platform references (Behance, Pinterest, Zcool, etc.)",
+        "Provides concrete, actionable execution techniques for poster designers",
+        "Derives exploratory prompt seeds with bracketed customizable placeholders"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Conduct deep visual research on Scandinavian minimalist furniture brand identity and catalog design on Behance and Pinterest.",
+      "expected_output": "Comprehensive aesthetic analysis report featuring verified global references and Nordic design principles.",
+      "files": [],
+      "expectations": [
+        "Focuses on global inspiration portals (Behance, Pinterest, Unsplash)",
+        "Extracts Nordic minimal design tropes (airy negative space, muted natural pigments, tactile woodgrain)",
+        "Outlines complete report structure matching references/report-template.html",
+        "Zero fabricated/hallucinated placeholder URLs for real references",
+        "Identifies cross-direction trade-offs and best-fit application scenarios"
+      ]
+    }
+  ]
+}
+

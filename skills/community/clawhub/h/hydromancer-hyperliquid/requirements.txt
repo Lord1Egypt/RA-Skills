@@ -1,0 +1,15 @@
+# Exact versions this skill was tested with. Install only the groups you use.
+
+# scripts/stream_trades.py
+websockets==15.0.1
+
+# DuckDB examples in references/reservoir.md
+duckdb==1.4.5
+pytz==2026.6
+
+# Decoding perpSnapshots, spotSnapshots, accountValueSnapshots
+zstandard==0.25.0
+msgpack==1.2.4
+
+# Python example in references/rest-api.md
+requests==2.34.2

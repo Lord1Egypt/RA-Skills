@@ -1,52 +1,65 @@
-## Description: <br>
-OpenClaw skill for Twilio APIs: Messaging, WhatsApp, Voice, Conversations, Verify, plus Studio, Lookup, Proxy, Sync, TaskRouter, and Segment/Engage. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw skill for Twilio APIs: Messaging, WhatsApp, Voice, Conversations, Verify, plus Studio, Lookup, Proxy, Sync, TaskRouter, and Segment/Engage.
 
-## Publisher: <br>
-[codedao12](https://clawhub.ai/user/codedao12) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[codedao12](https://clawhub.ai/user/codedao12)
 
-## Use Case: <br>
-Developers and engineers use this skill to plan Twilio and SendGrid API workflows for messaging, WhatsApp, voice, conversations, verification, email, and related communications services. It emphasizes direct HTTPS requests, webhook validation, credential handling, and operational guardrails. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Twilio API keys, Auth Tokens, phone numbers, email addresses, and webhook payloads are sensitive. <br>
-Mitigation: Use least-privileged keys, store secrets in a vault, avoid logging credentials or unnecessary personal data, and rotate credentials regularly. <br>
-Risk: Outbound messages, emails, calls, or account-affecting requests can create cost, compliance, or user-impacting effects. <br>
-Mitigation: Require human confirmation before sending or modifying account state, enforce opt-in and regional compliance, and throttle or retry safely. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Twilio API Overview](references/twilio-api-overview.md) <br>
-- [Auth and Webhook Validation](references/twilio-auth-and-webhooks.md) <br>
-- [Messaging (SMS/MMS)](references/twilio-messaging-sms-mms.md) <br>
-- [WhatsApp (Twilio Messaging API)](references/twilio-whatsapp.md) <br>
-- [Voice (Calls API)](references/twilio-voice.md) <br>
-- [Conversations API](references/twilio-conversations.md) <br>
-- [Verify API](references/twilio-verify.md) <br>
-- [SendGrid (Email)](references/twilio-sendgrid.md) <br>
-- [Studio (Flow Builder)](references/twilio-studio.md) <br>
-- [Lookup API](references/twilio-lookup.md) <br>
-- [Proxy](references/twilio-proxy.md) <br>
-- [Sync](references/twilio-sync.md) <br>
-- [TaskRouter](references/twilio-taskrouter.md) <br>
-- [Segment / Engage (Twilio)](references/twilio-segment-engage.md) <br>
+## Use Case:
 
+Developers and engineers use this skill to plan Twilio API workflows for messaging, WhatsApp, voice, verification, email, and related communications surfaces. It helps produce workflow plans, method checklists, direct HTTP request guidance, and operational guardrails.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with endpoint, authentication, webhook, and operational checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces plans and guardrails; it does not execute API calls by itself.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Twilio and SendGrid API actions can contact real people and incur charges.
+
+Mitigation: Require clear user confirmation before sending messages, emails, OTPs, WhatsApp messages, or placing or ending calls.
+
+Risk: Twilio Auth Tokens, API keys, webhook payloads, and communications metadata can expose credentials or personal information.
+
+Mitigation: Use limited API keys, protect Auth Tokens, validate webhook signatures, avoid logging credentials, and minimize unnecessary PII.
+
+## Reference(s):
+
+- [Twilio API Overview](references/twilio-api-overview.md)
+- [Auth and Webhook Validation](references/twilio-auth-and-webhooks.md)
+- [Messaging (SMS/MMS)](references/twilio-messaging-sms-mms.md)
+- [WhatsApp (Twilio Messaging API)](references/twilio-whatsapp.md)
+- [Voice (Calls API)](references/twilio-voice.md)
+- [Conversations API](references/twilio-conversations.md)
+- [Verify API](references/twilio-verify.md)
+- [SendGrid (Email)](references/twilio-sendgrid.md)
+- [Studio (Flow Builder)](references/twilio-studio.md)
+- [Lookup API](references/twilio-lookup.md)
+- [Proxy](references/twilio-proxy.md)
+- [Sync](references/twilio-sync.md)
+- [TaskRouter](references/twilio-taskrouter.md)
+- [Segment / Engage (Twilio)](references/twilio-segment-engage.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with workflow plans, checklists, operational guardrails, and inline HTTP or shell examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference Twilio credentials, sender identities, webhook URLs, and compliance constraints supplied by the user.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

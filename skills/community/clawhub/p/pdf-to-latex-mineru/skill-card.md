@@ -1,46 +1,60 @@
-## Description: <br>
-Convert PDF documents to LaTeX source code using MinerU AI extraction for researchers, academics, and scientists who need to re-edit, re-typeset, or recover LaTeX markup from published papers, theses, and technical reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts PDF documents to LaTeX source code using MinerU AI extraction for academic papers, theses, and technical reports.
 
-## Publisher: <br>
-[decrystal](https://clawhub.ai/user/decrystal) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[decrystal](https://clawhub.ai/user/decrystal)
 
-## Use Case: <br>
-Developers, researchers, academics, and scientists use this skill to convert local or URL-based PDF papers into editable LaTeX, especially for math-heavy, multi-column, tabular, or scientific documents. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: PDF contents submitted through the MinerU API may leave the user's machine. <br>
-Mitigation: Do not process unpublished, proprietary, regulated, or confidential documents unless sharing them with MinerU/OpenDataLab has been approved. <br>
-Risk: The skill requires installing and running the mineru-open-api CLI from npm or a Go repository. <br>
-Mitigation: Verify the package or repository source before installation and install only in environments approved for this workflow. <br>
-Risk: The workflow requires a MINERU_TOKEN credential. <br>
-Mitigation: Provide the token through the environment or CLI authentication flow and avoid committing or exposing it in prompts, logs, or source files. <br>
+## Use Case:
 
+Researchers, academics, scientists, and developers use this skill to recover editable LaTeX from PDFs, including local files and PDF URLs. It is best suited for papers and technical documents with equations, tables, figures, multi-column layouts, or scientific notation.
 
-## Reference(s): <br>
-- [MinerU homepage](https://mineru.net) <br>
-- [MinerU token management](https://mineru.net/apiManage/token) <br>
-- [MinerU GitHub repository](https://github.com/opendatalab/MinerU) <br>
-- [ClawHub skill page](https://clawhub.ai/decrystal/pdf-to-latex-mineru) <br>
-- [Publisher profile](https://clawhub.ai/user/decrystal) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, guidance, text] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides use of mineru-open-api to produce LaTeX output from PDF inputs, optionally saved to an output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill sends PDFs to an external MinerU/OpenDataLab service through mineru-open-api.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid submitting confidential PDFs unless organizational policy allows that service.
+
+Risk: The skill depends on installing and running mineru-open-api from npm or Go package sources.
+
+Mitigation: Install only from trusted package sources and prefer a pinned, reviewed CLI version in an isolated environment.
+
+Risk: The workflow requires a MINERU_TOKEN credential.
+
+Mitigation: Keep MINERU_TOKEN scoped and protected, and avoid exposing it in shared logs, shell history, or generated files.
+
+## Reference(s):
+
+- [MinerU homepage](https://mineru.net)
+- [MinerU GitHub repository](https://github.com/opendatalab/MinerU)
+- [MinerU token management](https://mineru.net/apiManage/token)
+- [ClawHub skill page](https://clawhub.ai/decrystal/skills/pdf-to-latex-mineru)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown with inline bash commands and LaTeX-oriented guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides use of mineru-open-api to produce LaTeX output from PDF files or PDF URLs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,55 @@
-## Description: <br>
-Analyzes team size, workload, utilization, pipeline, and seasonal data to forecast capacity, identify bottlenecks, and recommend actions 4-8 weeks before constraints occur. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes team size, workload, utilization, project pipeline, and seasonal patterns to forecast capacity, identify bottlenecks, and recommend actions before capacity issues become urgent.
 
-## Publisher: <br>
-[1kalin](https://clawhub.ai/user/1kalin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[1kalin](https://clawhub.ai/user/1kalin)
 
-## Use Case: <br>
-Employees, operators, managers, and planning teams use this skill to model team or infrastructure capacity, test scenarios such as new work or attrition, and decide whether to hire, redistribute work, defer work, or decline new commitments. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Capacity planning can involve sensitive staffing, project, revenue, infrastructure, or customer information. <br>
-Mitigation: Use only data approved for the agent environment, and avoid sharing secrets, credentials, private customer data, or confidential financials unless the environment is cleared for that data. <br>
-Risk: Forecasts and recommendations may be wrong if workload, utilization, pipeline, or seasonal assumptions are incomplete or stale. <br>
-Mitigation: Review capacity snapshots with current operational data and refresh assumptions weekly during planning. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Capacity Planner on ClawHub](https://clawhub.ai/1kalin/afrexai-capacity-planner) <br>
-- [AfrexAI Context Packs](https://afrexai-cto.github.io/context-packs/) <br>
-- [AI Revenue Calculator](https://afrexai-cto.github.io/ai-revenue-calculator/) <br>
-- [Agent Setup Wizard](https://afrexai-cto.github.io/agent-setup/) <br>
+## Use Case:
 
+Developers, managers, and operations teams use this skill to turn staffing, utilization, project pipeline, and seasonal workload inputs into capacity snapshots, risk summaries, scenarios, and recommended actions.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown capacity snapshot with risk summaries, scenario analysis, and recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include utilization bands, buffer ratios, pipeline assumptions, skill gaps, cost impacts, and confidence levels.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Capacity planning prompts may involve confidential staffing, utilization, cost, project pipeline, and hiring information.
+
+Mitigation: Use only in an agent environment approved for that business data and omit confidential details when approval is unclear.
+
+Risk: Planning recommendations can be incomplete or misleading if the user provides stale, partial, or biased workload data.
+
+Mitigation: Review outputs against current operational data before making staffing, scheduling, hiring, or client-commitment decisions.
+
+## Reference(s):
+
+- [Capacity Planner on ClawHub](https://clawhub.ai/1kalin/skills/afrexai-capacity-planner)
+- [AfrexAI Context Packs](https://afrexai-cto.github.io/context-packs/)
+- [AI Revenue Calculator](https://afrexai-cto.github.io/ai-revenue-calculator/)
+- [Agent Setup Wizard](https://afrexai-cto.github.io/agent-setup/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown capacity snapshots with risk summaries, scenario comparisons, and recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use sensitive staffing, project pipeline, utilization, cost, and hiring information supplied by the user.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

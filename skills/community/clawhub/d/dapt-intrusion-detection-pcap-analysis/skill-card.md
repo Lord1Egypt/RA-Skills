@@ -1,40 +1,57 @@
-## Description: <br>
-Guidance for analyzing network packet captures (PCAP files) and computing network statistics using Python, with tested utility functions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guidance for analyzing network packet captures (PCAP files) and computing network statistics using Python, with tested utility functions.
 
-## Publisher: <br>
-[wu-uk](https://clawhub.ai/user/wu-uk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wu-uk](https://clawhub.ai/user/wu-uk)
 
-## Use Case: <br>
-Developers, security analysts, and incident-response teams use this skill to compute packet, protocol, graph, temporal, and flow metrics from local PCAP files and interpret port-scan, DoS, beaconing, and benign-traffic indicators. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Packet captures and generated CSV outputs can contain private traffic, credentials, payload data, or other sensitive network information. <br>
-Mitigation: Keep PCAP inputs and generated outputs in trusted locations, limit sharing, and adjust example file paths for the local environment before use. <br>
-Risk: The helper module depends on Scapy and local packet parsing; missing or mismatched dependencies can lead to failed analysis. <br>
-Mitigation: Install Scapy in the intended environment and review helper output before relying on analysis results. <br>
+## Use Case:
 
+Developers and security analysts use this skill to analyze PCAP files, compute packet, protocol, graph, temporal, and flow statistics, and apply heuristic checks for port scanning, DoS-like spikes, and beaconing behavior.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wu-uk/dapt-intrusion-detection-pcap-analysis) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with Python code examples and helper-module usage instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local PCAP analysis guidance and Python helper function usage; no external service calls are described.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: PCAP analysis and security detections are best-effort heuristics and may misclassify network behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the results as analyst-supporting signals, review the underlying packet context, and confirm conclusions before acting on them.
+
+Risk: The sample CSV workflow rewrites network_stats.csv in the current directory.
+
+Mitigation: Run file-writing examples on a copy or confirm the target path before writing results.
+
+Risk: The helper reads local PCAP files, which can contain sensitive network data.
+
+Mitigation: Handle capture files under the applicable data-handling policy and avoid exposing raw packet contents unnecessarily.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wu-uk/skills/dapt-intrusion-detection-pcap-analysis)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Shell commands, Configuration, Markdown]
+
+**Output Format:** [Markdown with Python code examples and utility-module guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose local Python/Scapy analysis steps and CSV-writing workflows for network statistics.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

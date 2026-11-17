@@ -1,42 +1,58 @@
-## Description: <br>
-Agent-Browser-Bridge-AI provides anti-detection browser control for AI agents with DOM-first interactions, human-like timing, lead generation, extraction, and MCP integration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent-Browser-Bridge-AI provides anti-detection browser control for AI agents with DOM-first interaction, human-like input simulation, lead generation, extraction, and MCP integration.
 
-## Publisher: <br>
-[alexandre-leng](https://clawhub.ai/user/alexandre-leng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alexandre-leng](https://clawhub.ai/user/alexandre-leng)
 
-## Use Case: <br>
-Developers and agents use this skill to automate browser navigation, page annotation, form interaction, web search, and structured extraction through CLI and MCP workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill provides stealth browser automation for scraping, lead generation, and bypassing site defenses. <br>
-Mitigation: Use only with explicit authorization for the sites and accounts being automated, and restrict activity to approved domains and permitted workflows. <br>
-Risk: Use for unsolicited lead harvesting, protected-site scraping, or access-control bypass may violate policies, terms, or legal obligations. <br>
-Mitigation: Avoid those uses, review target-site terms before deployment, and monitor the local bridge process during operation. <br>
-Risk: The raw MCP browser command can run arbitrary bridge commands when enabled. <br>
-Mitigation: Keep raw MCP disabled unless necessary, and enable it only in controlled environments with clear task boundaries. <br>
+## Use Case:
 
+Developers and engineers use this skill to connect AI agents to browser automation workflows for authorized navigation, page annotation, form interaction, web search, structured extraction, and lead-generation tasks through CLI or MCP interfaces.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/alexandre-leng/agentbridge) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Guidance, JSON, CSV] <br>
-**Output Format:** [Markdown guidance with inline shell commands; runtime outputs may include text, JSON, CSV, and screenshots.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the agentbridge CLI and local bridge process; raw MCP commands should remain disabled unless explicitly needed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.3.5 (source: server release evidence) <br>
+Risk: Stealth browser automation can be used to bypass anti-bot controls or access protected sites without authorization.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only on authorized, lawful targets, confine runs to isolated environments, and require explicit permission before scraping protected sites.
+
+Risk: The package controls a browser session and may expose local browsing context if run against a personal authenticated profile.
+
+Mitigation: Use a dedicated browser profile or disposable environment, avoid authenticated personal profiles, pin and verify the npm package, and keep Chrome sandboxing enabled.
+
+Risk: Lead-generation and contact-extraction workflows can create privacy, compliance, or abuse concerns.
+
+Mitigation: Avoid bulk contact collection without explicit permission and review workflows against applicable laws, site terms, and internal data-handling policy.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/alexandre-leng/skills/agentbridge)
+- [ClawHub Release Link](https://clawhub.ai/alexandre-leng/agentbridge)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, CSV, Files, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with inline shell commands; AgentBridge commands can return text, JSON, CSV, screenshots, and saved files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May interact with live websites and browser sessions; the raw MCP command requires BRIDGE_MCP_ALLOW_RAW=1.]
+
+## Skill Version(s):
+
+3.3.5 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

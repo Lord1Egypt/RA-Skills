@@ -1,41 +1,58 @@
-## Description: <br>
-Send user prompts to a local ComfyUI endpoint using the included workflow.json to generate images. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Comfy Skill sends prompts to a local ComfyUI endpoint using the bundled workflow to generate images.
 
-## Publisher: <br>
-[edward-hsiao](https://clawhub.ai/user/edward-hsiao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[edward-hsiao](https://clawhub.ai/user/edward-hsiao)
 
-## Use Case: <br>
-Developers and agent users use this skill to turn text prompts into locally generated images through a ComfyUI workflow. It is intended for environments where the user controls or trusts the local ComfyUI service and selected image model. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on a local ComfyUI endpoint and workflow, so execution can affect local files or development environments. <br>
-Mitigation: Install only if the publisher is trusted, review the workflow before use, and run it against a ComfyUI instance and model configuration you control. <br>
-Risk: Generated images depend on the configured model, prompt, and workflow behavior. <br>
-Mitigation: Review generated outputs before publication or downstream use and apply the user's normal content and safety checks. <br>
+## Use Case:
 
+Developers, designers, and AI artists use this skill to ask an agent to generate images through a local ComfyUI service with the included workflow.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/edward-hsiao/comfy-skill) <br>
-- [Publisher profile](https://clawhub.ai/user/edward-hsiao) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Configuration instructions, API calls, Guidance] <br>
-**Output Format:** [Markdown guidance with command-style invocation and configuration details] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a local ComfyUI endpoint and the bundled workflow.json; generated image files are produced by ComfyUI.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Image prompts may contain secrets or sensitive personal data that the local ComfyUI service could save in outputs or logs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid putting secrets or sensitive personal data in prompts, and review local ComfyUI logging and output retention before use.
+
+Risk: The skill depends on a local ComfyUI instance at 127.0.0.1:8188.
+
+Mitigation: Install only when you intend to use that local ComfyUI service and have reviewed the bundled workflow.
+
+Risk: The skill documentation is Chinese-only.
+
+Mitigation: Non-Chinese readers should translate and review the documentation before deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/edward-hsiao/skills/comfy-skill)
+- [Publisher Profile](https://clawhub.ai/user/edward-hsiao)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Generated image files, Configuration]
+
+**Output Format:** [Local ComfyUI image output using a JSON workflow]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses a local ComfyUI endpoint at http://127.0.0.1:8188 with workflow.json.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

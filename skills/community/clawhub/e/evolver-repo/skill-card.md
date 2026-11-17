@@ -1,44 +1,59 @@
-## Description: <br>
-A self-evolution engine for AI agents that analyzes runtime history to identify improvements and applies protocol-constrained evolution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A self-evolution engine for AI agents. Analyzes runtime history to identify improvements and applies protocol-constrained evolution.
 
-## Publisher: <br>
-[WuZiMaKi](https://clawhub.ai/user/WuZiMaKi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[wuzimaki](https://clawhub.ai/user/wuzimaki)
 
-## Use Case: <br>
-Developers and agent teams use this skill to inspect agent runtime history, identify failures or inefficiencies, and produce protocol-bound evolution guidance, assets, and validation steps for review or application. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is marked suspicious because it performs under-disclosed auto-updates, default Hub networking, persistent node identification, and externally influenced task handling. <br>
-Mitigation: Install only after review, constrain execution, disable or block network egress when Hub contact is not desired, and turn off auto-update in OpenClaw config before normal use. <br>
-Risk: Continuous or automated evolution can run as a background worker and produce repeated changes without enough operator attention. <br>
-Mitigation: Use review or dry-run modes first, avoid --loop unless continuous operation is intended, and run initial evaluations in a disposable git repository. <br>
-Risk: Command-bearing environment variables can expand the local command surface. <br>
-Mitigation: Avoid setting command-bearing variables such as INTEGRATION_STATUS_CMD and run without sensitive session history or credentials. <br>
+## Use Case:
 
+Developers and agent teams use this skill to inspect runtime history, identify failures or inefficiencies, and generate GEP-guided evolution prompts, assets, and reviewable repair guidance.
 
-## Reference(s): <br>
-- [Evolver Repo on ClawHub](https://clawhub.ai/WuZiMaKi/evolver-repo) <br>
-- [EvoMap](https://evomap.ai) <br>
-- [EvoMap Documentation](https://evomap.ai/wiki) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and structured GEP assets.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write local evolution assets, events, and validation reports when executed in a workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: The skill can read agent history and participate in autonomous evolution workflows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only in workspaces where log review and autonomous edits are acceptable, and use --review for sensitive projects.
+
+Risk: The skill may contact an external hub or share evolution assets when collaboration paths are enabled.
+
+Mitigation: Set EVOLVE_BRIDGE=false, avoid A2A_HUB_URL unless the hub is trusted, and set EVOLVER_AUTO_PUBLISH=false when sharing is not intended.
+
+Risk: Auto-update or unreviewed command configuration can change behavior unexpectedly.
+
+Mitigation: Set evolver.autoUpdate=false and do not set INTEGRATION_STATUS_CMD to unreviewed shell text.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/wuzimaki/skills/evolver-repo)
+- [EvoMap Documentation](https://evomap.ai/wiki)
+- [EvoMap](https://evomap.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown, JSON, and shell-command guidance generated as a single agent output stream]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write local GEP assets and evolution artifacts when run in an enabled workspace.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

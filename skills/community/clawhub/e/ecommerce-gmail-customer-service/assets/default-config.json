@@ -1,0 +1,73 @@
+{
+  "version": 7,
+  "store_name": "",
+  "default_language": "match_customer",
+  "timezone": "",
+  "scheduling": {
+    "timezone_confirmed_at": null,
+    "quiet_hours": "",
+    "quiet_hours_confirmed_at": null
+  },
+  "gmail": {
+    "account": "",
+    "query": "label:ECS/ToProcess is:unread newer_than:30d",
+    "max_threads_per_run": 20,
+    "labels": {
+      "queue": "ECS/ToProcess",
+      "drafted": "ECS/Drafted",
+      "sent": "ECS/Sent",
+      "human": "ECS/Human",
+      "error": "ECS/Error"
+    }
+  },
+  "commerce": {
+    "provider": "unconfigured",
+    "connector": "",
+    "recent_order_days": 365,
+    "recent_order_limit": 20
+  },
+  "storefront": {
+    "status": "unconfigured",
+    "owner_confirmed_at": null,
+    "url": "",
+    "discovery_enabled": true,
+    "discovery_file": "",
+    "last_discovered_at": null,
+    "refresh_interval_hours": 24,
+    "max_pages": 30,
+    "max_bytes_per_page": 1000000,
+    "request_delay_seconds": 0.25,
+    "respect_robots_txt": true,
+    "public_sources_only": true
+  },
+  "policy_sources": [],
+  "learning": {
+    "enabled": false,
+    "consent_granted_at": null,
+    "history_window_days": 30,
+    "history_query": "newer_than:30d",
+    "require_dedicated_inbox_or_scoped_query": true,
+    "draft_baseline_retention_days": 7,
+    "store_raw_messages": false,
+    "download_attachments": false
+  },
+  "memory": {
+    "usage_enabled": true,
+    "usage_confirmed_at": null
+  },
+  "automation": {
+    "send_mode": "draft_only",
+    "auto_send_confirmed_at": null,
+    "max_refund_without_human": 0,
+    "human_handoff_phrase": "requires manual processing",
+    "ai_disclosure": {
+      "enabled": false,
+      "text": "This email is automatically processed by AI. If manual processing is required, please include the words 'requires manual processing' in your reply."
+    }
+  },
+  "retention": {
+    "case_report_days": 30,
+    "pending_category_confirmation_days": 14,
+    "redact_email_local_part": true
+  }
+}

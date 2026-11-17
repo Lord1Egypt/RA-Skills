@@ -1,44 +1,55 @@
-## Description: <br>
-A textbook-style medical cell biology skill collection that helps agents explain, compare, and structure guidance across core topics from the PMPH 7th edition curriculum. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Systematically integrates core Medical Cell Biology skills based on the 7th edition PMPH textbook, covering 146 competencies across major cell biology domains.
 
-## Publisher: <br>
-[xllgreen](https://clawhub.ai/user/xllgreen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xllgreen](https://clawhub.ai/user/xllgreen)
 
-## Use Case: <br>
-Medical students, educators, researchers, and clinical practitioners use this skill to ask for educational explanations, structured comparisons, mechanism analysis, and study guidance across cell biology, molecular pathology, research methods, and related textbook topics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat educational cell biology content as patient-specific medical, diagnostic, dosing, or treatment guidance. <br>
-Mitigation: Use outputs only for education or supervised research, and require qualified clinical review before applying any information to patient care. <br>
-Risk: Some topics include experimental techniques that could become under-scoped wet-lab guidance. <br>
-Mitigation: Do not use the skill as a standalone lab protocol; require domain, legal, ethical, and biosafety review before any wet-lab execution. <br>
+## Use Case:
 
+External learners, educators, researchers, and clinical practitioners use this skill set as an educational and research reference for medical cell biology concepts, mechanisms, disease links, and experimental-method selection. Outputs should not be used as standalone clinical advice or wet-lab protocols.
 
-## Reference(s): <br>
-- [ClawHub skill release page](https://clawhub.ai/xllgreen/medical-cell-biology-pmph-7edition) <br>
-- [Publisher profile](https://clawhub.ai/user/xllgreen) <br>
-- [Project homepage from release metadata](https://github.com/xllgreen/Medical-Cell-Biology-7edition) <br>
-- [Artifact README](artifact/README_EN.md) <br>
-- [Artifact skill registry](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text explanations with structured lists, comparisons, and study-oriented guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should remain educational and should not be treated as independent medical, patient-specific, or wet-lab execution guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and target metadata; artifact frontmatter lists 2.0.0) <br>
+Risk: Medical or experimental content may be mistaken for standalone clinical advice or wet-lab protocol guidance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use outputs only as educational or research references and verify them against current guidelines, domain consensus, and institutional review requirements.
+
+Risk: The skill set includes topics involving cloning, embryo work, hazardous chemistry, radioactive assays, cell-culture engineering, and cancer-treatment reasoning.
+
+Mitigation: Require qualified medical, biosafety, legal, and institutional review before applying any output to clinical, experimental, or operational decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xllgreen/skills/medical-cell-biology-pmph-7edition)
+- [Project homepage](https://github.com/xllgreen/Medical-Cell-Biology-7edition)
+- [PMPH digital resources](https://zengzhi.ipmph.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown educational explanations, comparisons, tables, and stepwise guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include domain-specific cautions, textbook-style summaries, and references to subskill materials.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence; artifact frontmatter states 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

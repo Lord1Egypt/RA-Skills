@@ -1,0 +1,22 @@
+{
+  "data": [
+    {
+      "id": "p1", "title": "市级政务大模型运维服务项目", "purchaser": "某市政务服务数据管理局",
+      "budget": 180, "location": "广东省深圳市", "category": "C05",
+      "publish_date": "2026-07-28", "link": "http://example.com/p1",
+      "required_certifications": ["CMMI3", "ISO9001"]
+    },
+    {
+      "id": "p2", "title": "区医院智能诊疗系统采购", "purchaser": "某区人民医院",
+      "budget": 320, "location": "上海市", "category": "C05",
+      "publish_date": "2026-07-28", "link": "http://example.com/p2",
+      "required_certifications": ["CMMI5", "医疗器械经营许可证"]
+    },
+    {
+      "id": "p3", "title": "南方某市AI大模型产业园集成", "purchaser": "某城投集团",
+      "budget": 800, "location": "广东省深圳市", "category": "C05",
+      "publish_date": "2026-07-28", "link": "http://example.com/p3",
+      "required_certifications": ["CMMI3"]
+    }
+  ]
+}

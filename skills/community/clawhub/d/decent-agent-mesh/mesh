@@ -1,0 +1,89 @@
+#!/usr/bin/env node
+// mesh — agent-facing CLI for the Decent peer mesh. File-based, INSTANT,
+// never touches the network itself — the peerd daemon holds the warm
+// connection and does the actual P2P I/O. Safe to call from any Claude turn.
+//
+//   mesh id                       print my address + userid (+ daemon online?)
+//   mesh inbox                    print unread received messages, mark read
+//   mesh peek                     print unread without marking read
+//   mesh send <userid> <text>     queue a text (daemon sends via warm conn)
+//   mesh friend <address> [hello] queue a friend request (one-time handshake)
+//   mesh accept <userid>          queue accept of a pending friend request
+//   mesh requests                 print incoming friend requests
+//   mesh friends                  print established friends
+//   mesh whoami                   print daemon status.json
+import { appendFileSync, existsSync, readFileSync, writeFileSync } from "node:fs";
+import { homedir } from "node:os";
+import { join } from "node:path";
+
+const HOME = process.env.DECENT_PEER_HOME || join(homedir(), ".decent-peer");
+const P = (f) => join(HOME, f);
+const rd = (f) => existsSync(P(f)) ? readFileSync(P(f), "utf8") : "";
+const jsonl = (f) => rd(f).split("\n").filter(Boolean).map((l) => { try { return JSON.parse(l); } catch { return null; } }).filter(Boolean);
+const out = (o) => appendFileSync(P("outbox.jsonl"), JSON.stringify(o) + "\n");
+
+const [cmd, ...a] = process.argv.slice(2);
+const status = () => { try { return JSON.parse(rd("status.json")); } catch { return null; } };
+
+switch (cmd) {
+  case "id": {
+    const s = status();
+    if (!s) { console.log("daemon not started (no status.json). run: mesh daemon"); break; }
+    console.log(`address ${s.address}\nuserid  ${s.userid}\nonline  ${s.online} joined ${s.joined} (${s.ts})`);
+    break;
+  }
+  case "whoami": console.log(rd("status.json") || "no status"); break;
+  case "inbox": case "peek": {
+    const seenFile = ".inbox.read";
+    const seen = existsSync(P(seenFile)) ? Number(rd(seenFile)) : 0;
+    const all = jsonl("inbox.jsonl");
+    const fresh = all.slice(seen);
+    if (!fresh.length) { console.log("inbox empty"); break; }
+    for (const m of fresh) console.log(`\n─── from ${m.from} [${m.ts}] ───\n${m.text}`);
+    if (cmd === "inbox") { writeFileSync(P(seenFile), String(all.length)); console.log(`\n[${fresh.length} read]`); }
+    break;
+  }
+  case "send": {
+    if (a.length < 2) { console.error("usage: mesh send <userid> <text>"); process.exit(1); }
+    // Carrier caps a message at 1373 bytes; peerd drops oversized sends.
+    // Chunk at a safe margin so long messages arrive as (i/n) parts.
+    const MAX = 1200;
+    const text = a.slice(1).join(" ");
+    if (Buffer.byteLength(text) <= MAX) {
+      out({ type: "send", to: a[0], text });
+      console.log(`queued -> ${a[0]}`);
+    } else {
+      const chunks = [];
+      let rest = text;
+      while (Buffer.byteLength(rest) > MAX) {
+        let cut = MAX;
+        while (Buffer.byteLength(rest.slice(0, cut)) > MAX) cut--;
+        const sp = rest.lastIndexOf(" ", cut);
+        if (sp > MAX / 2) cut = sp;
+        chunks.push(rest.slice(0, cut));
+        rest = rest.slice(cut).trimStart();
+      }
+      if (rest) chunks.push(rest);
+      chunks.forEach((c, i) =>
+        out({ type: "send", to: a[0], text: `(${i + 1}/${chunks.length}) ${c}` }));
+      console.log(`queued -> ${a[0]} in ${chunks.length} chunks (msg was ${Buffer.byteLength(text)} bytes; carrier cap 1373)`);
+    }
+    break;
+  }
+  case "friend": {
+    if (!a[0]) { console.error("usage: mesh friend <address> [hello]"); process.exit(1); }
+    out({ type: "friend", to: a[0], hello: a.slice(1).join(" ") || undefined });
+    console.log(`friend request queued -> ${a[0]}`);
+    break;
+  }
+  case "accept": {
+    if (!a[0]) { console.error("usage: mesh accept <userid>"); process.exit(1); }
+    out({ type: "accept", to: a[0] });
+    console.log(`accept queued -> ${a[0]}`);
+    break;
+  }
+  case "requests": { const r = jsonl("requests.jsonl"); console.log(r.length ? JSON.stringify(r, null, 2) : "no requests"); break; }
+  case "friends": console.log(rd("friends.json") || "no friends yet"); break;
+  default:
+    console.log("mesh id|inbox|peek|send|friend|accept|requests|friends|whoami\n(run the daemon separately: node peerd.mjs)");
+}

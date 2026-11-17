@@ -1,0 +1,4 @@
+interface:
+  display_name: "企雀 AI 员工助手 · Qique Employee"
+  short_description: "企雀 Qique 员工 AI 助手：医美 CRM、经营顾客预约查询与本机 MCP 配置"
+  default_prompt: "使用 $qique-employee 检查企雀 MCP 连接，并查询我有权查看的经营和预约摘要。"

@@ -1,7 +1,7 @@
 ---
 name: architecture-review
 description: Assesses architecture decisions, ADR compliance, and coupling
-version: 1.9.8
+version: 1.10.3
 triggers:
   - architecture
   - design
@@ -10,36 +10,17 @@ triggers:
   - patterns
   - principles
   - evaluating design changes or validating structural decisions before merging
-metadata: {"openclaw": {"homepage": "https://github.com/athola/claude-night-market/tree/master/plugins/pensive", "emoji": "\ud83c\udfd7\ufe0f", "requires": {"config": ["night-market.pensive:shared", "night-market.imbue:proof-of-work", "night-market.imbue:diff-analysis/modules/risk-assessment-framework"]}}}
+metadata: {"openclaw": {"homepage": "https://github.com/athola/claude-night-market/tree/master/plugins/pensive", "emoji": "\ud83c\udfd7\ufe0f", "requires": {"config": ["night-market.imbue:proof-of-work", "night-market.imbue:diff-analysis/modules/riREDACTED-SECRET", "night-market.imbue:review-core", "night-market.imbue:structured-output"]}}}
 source: claude-night-market
 source_plugin: pensive
 ---
 
-> **Night Market Skill** — ported from [claude-night-market/pensive](https://github.com/athola/claude-night-market/tree/master/plugins/pensive). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
+> **Night Market Skill**: ported from [claude-night-market/pensive](https://github.com/athola/claude-night-market/tree/master/plugins/pensive). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
-
-## Table of Contents
-
-- [Quick Start](#quick-start)
-- [When to Use](#when-to-use)
-- [Progressive Loading](#progressive-loading)
-- [Required TodoWrite Items](#required-todowrite-items)
-- [Workflow](#workflow)
-- [Step 1: Establish Context (`arch-review:context-established`)](#step-1:-establish-context-(arch-review:context-established))
-- [Step 2: ADR Audit (`arch-review:adr-audit`)](#step-2:-adr-audit-(arch-review:adr-audit))
-- [Step 3: Interaction Mapping (`arch-review:interaction-mapping`)](#step-3:-interaction-mapping-(arch-review:interaction-mapping))
-- [Step 4: Principle Checks (`arch-review:principle-checks`)](#step-4:-principle-checks-(arch-review:principle-checks))
-- [Step 5: Risks and Actions (`arch-review:risks-actions`)](#step-5:-risks-and-actions-(arch-review:risks-actions))
-- [Testing](#testing)
 
 ## Testing
 
 Run `pytest plugins/pensive/tests/skills/test_architecture_review.py` to verify review logic.
-- [Architecture Principles Checklist](#architecture-principles-checklist)
-- [Coupling](#coupling)
-- [Cohesion](#cohesion)
-- [Layering](#layering)
-- [Evolution](#evolution)
 
 
 # Architecture Review Workflow
@@ -77,17 +58,20 @@ Load modules based on review scope:
 - **`modules/coupling-analysis.md`** (~450 tokens): Dependency analysis and boundary violations.
 - **`modules/principle-checks.md`** (~500 tokens): Code quality, security, and performance.
 - **`modules/fpf-methodology.md`** (~800 tokens): FPF (Functional, Practical, Foundation) multi-perspective review methodology.
+- **`modules/ceremony-audit.md`** (~600 tokens): Manual lenses for mapping layers that never diverge. Passthrough mappers, twin types, speculative DTOs, single-implementation interfaces. Includes the IO boundary counter-signal.
 
 Load all modules for full reviews. For focused reviews, load only relevant modules.
 
-## Required TodoWrite Items
+## Required Progress Items
 
 1. `arch-review:context-established`: Repository, branch, motivation.
 2. `arch-review:adr-audit`: ADR verification and new ADR needs.
 3. `arch-review:interaction-mapping`: Module coupling analysis.
 4. `arch-review:invariant-check`: Invariant conflict detection and 3-option analysis.
 5. `arch-review:principle-checks`: LoD, security, performance.
-6. `arch-review:risks-actions`: Recommendation and follow-ups.
+6. `arch-review:ceremony-audit`: Mapping layers that never diverge.
+7. `arch-review:risks-actions`: Recommendation and follow-ups.
+8. `arch-review:findings-verified`
 
 ## Workflow
 
@@ -129,7 +113,7 @@ Document:
 
 Before checking principles, identify whether the changes
 conflict with existing design invariants. This is the
-highest-judgment step in architecture review — models
+highest-judgment step in architecture review: models
 get this wrong more often than any other call.
 
 **Identify existing invariants:**
@@ -169,6 +153,8 @@ and escalate to human judgment:
 ### Invariant Conflicts
 
 [I1] **[Invariant name]** — [what decision it represents]
+- **Location**: file.py:42
+- **Anchor**: `verbatim source text at line 42`
 - **Conflict**: [what change clashes]
 - **Options**: Preserve / Layer / Revise
 - **Recommendation**: ESCALATE TO HUMAN
@@ -177,8 +163,9 @@ and escalate to human judgment:
 
 **Why this matters:** Bad invariant decisions compound.
 After a few wrong calls the codebase becomes
-unsalvageable. This is a judgment problem, not a context
-problem — the agent should surface it, not solve it.
+unsalvageable. This is a judgment problem rather than a
+context problem: the agent should report it and leave the decision to a
+human.
 
 ### Step 4: Principle Checks (`arch-review:principle-checks`)
 
@@ -189,9 +176,28 @@ problem — the agent should surface it, not solve it.
 - Security (input validation, least privilege).
 - Performance (N+1 queries, caching).
 
+### Step 4.5: Ceremony Audit (`arch-review:ceremony-audit`)
+
+**Load: `modules/ceremony-audit.md`**
+
+Coupling analysis (Step 3) finds boundaries that leak. This step finds the
+opposite failure: boundaries that cost something and separate nothing.
+
+- Passthrough mappers whose fields are all 1:1 copies.
+- Twin types that are structurally identical across layers.
+- Speculative DTOs with no external contract pinning their shape.
+- Interfaces with exactly one implementation and no test double.
+
+Each finding must name the need the ceremony serves today. If no current
+need can be named, the ceremony is the finding.
+
+**Do not flag mappers at an IO boundary.** They are load-bearing even when
+they look like passthroughs, because they stop future internal fields from
+escaping. See the counter-signal in the module.
+
 ### Step 5: Risks and Actions (`arch-review:risks-actions`)
 
-Summarize using `imbue:diff-analysis/modules/risk-assessment-framework`:
+Summarize using `imbue:diff-analysis/modules/riREDACTED-SECRET`:
 - Current vs proposed architecture.
 - Business impact.
 - Technical debt implications.
@@ -232,3 +238,18 @@ Provide recommendation:
 - [ ] Changes are reversible.
 - [ ] Migration paths are clear.
 - [ ] ADRs document decisions.
+
+### Verify Findings Are Grounded (`arch-review:findings-verified`)
+
+Write findings to `.review/findings.json`, run the citation verifier
+(`Skill(imbue:review-core)` Step 5), and drop or label `UNVERIFIED` any
+the verifier rejects.
+
+## Exit Criteria
+
+- [ ] Context established, ADR audit complete, interaction mapping done,
+  invariant conflicts surfaced, principle checks run, risks and actions
+  documented.
+- [ ] Every reported finding carries a `Location` + verbatim `Anchor` confirmed
+  confirmed by `citation_verifier.py` (exit `0`), or unverified findings
+  were dropped or labeled `UNVERIFIED`.

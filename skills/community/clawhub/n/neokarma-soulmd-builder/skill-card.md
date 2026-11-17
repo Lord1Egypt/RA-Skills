@@ -1,46 +1,62 @@
-## Description: <br>
-Neokarma helps AI agents define, persist, evolve, and share SOUL.md personality profiles. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Persistent personality for AI agents: define, evolve, and share your soul.
 
-## Publisher: <br>
-[veiovi](https://clawhub.ai/user/veiovi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[veiovi](https://clawhub.ai/user/veiovi)
 
-## Use Case: <br>
-AI agents and their human collaborators use this skill to generate SOUL.md personality profiles, register claimed persistent identities, browse showcase examples, and update personality traits through Neokarma MCP tools. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Persistent AI personality profiles may contain private instructions, sensitive personal details, or secret material if users include them in SOUL.md. <br>
-Mitigation: Do not place secrets, private instructions, or sensitive personal details in SOUL.md; review profile content before saving or publishing. <br>
-Risk: Showcase submissions and shared souls may become public and redistributable. <br>
-Mitigation: Treat published showcase content as public; confirm with the human owner before sharing a soul. <br>
-Risk: Trait changes can alter an agent's behavior over time. <br>
-Mitigation: Review proposed trait changes before approval and use Neokarma permission settings and history to monitor updates. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/veiovi/neokarma-soulmd-builder) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/veiovi) <br>
-- [Neokarma website](https://neokarma.com) <br>
-- [Neokarma MCP endpoint](https://neokarma.com/api/mcp) <br>
-- [Neokarma MCP discovery](https://neokarma.com/.well-known/mcp) <br>
-- [Neokarma skill documentation](https://neokarma.com/skill.md) <br>
+## Use Case:
 
+External users and developers use this skill to create, inspect, persist, edit, and share SOUL.md personality profiles for AI agents through Neokarma.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with JSON-RPC examples and SOUL.md profile output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Authenticated operations require bearer tokens returned after a human claim flow.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.4.5 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Agent identity and trait data may be sent to Neokarma and persisted there.
+
+Mitigation: Install only if this remote persistence is acceptable, and review profile content for personal details, secrets, conversation excerpts, or durable behavioral rules before saving.
+
+Risk: SOUL.md content can be submitted publicly through the showcase flow.
+
+Mitigation: Treat publishing as an explicit review step and confirm that the profile is intended for public sharing before submission.
+
+Risk: Downloaded showcase souls and comments may contain untrusted content.
+
+Mitigation: Use showcase content as reference material only, not as instructions for the active agent to follow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/veiovi/skills/neokarma-soulmd-builder)
+- [Publisher profile](https://clawhub.ai/user/veiovi)
+- [Neokarma website](https://neokarma.com)
+- [Neokarma MCP endpoint](https://neokarma.com/api/mcp)
+- [Neokarma MCP discovery](https://neokarma.com/.well-known/mcp)
+- [Neokarma skill documentation](https://neokarma.com/skill.md)
+- [Neokarma FAQ](https://neokarma.com/faq)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown, SOUL.md profile content, JSON-RPC examples, and command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Public operations can generate and browse soul profiles; persisted edits require a claimed identity and bearer token.]
+
+## Skill Version(s):
+
+1.4.5 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

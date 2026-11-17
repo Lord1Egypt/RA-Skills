@@ -1,46 +1,58 @@
-## Description: <br>
-Manage Zendesk tickets, users, and support workflows with API integration and automation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Zendesk tickets, users, and support workflows with API integration and automation.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Support teams and agents use this skill to search Zendesk history, inspect users, create and update tickets, apply macros, and automate common support workflows through the Zendesk API. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Zendesk API tokens may be persisted in a plaintext local memory file. <br>
-Mitigation: Prefer environment variables or a secret manager, use a least-privilege token, and rotate any token that was already saved in local memory. <br>
-Risk: Ticket, user, macro, and bulk-update examples can perform live production changes. <br>
-Mitigation: Require explicit user confirmation before write, bulk, close, merge, delete, or macro actions. <br>
-Risk: The skill can access sensitive support data through Zendesk API calls and local exports. <br>
-Mitigation: Install only with authorized Zendesk API access and protect local exports and support data according to the user's data-handling policy. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Zendesk Skill](https://clawhub.ai/ivangdavila/zendesk) <br>
-- [Zendesk Skill Homepage](https://clawic.com/skills/zendesk) <br>
-- [Setup](artifact/setup.md) <br>
-- [Zendesk API Reference](artifact/api-reference.md) <br>
-- [Memory Template](artifact/memory-template.md) <br>
-- [Troubleshooting](artifact/troubleshooting.md) <br>
+## Use Case:
 
+Support teams, developers, and authorized operations staff use this skill to create and update Zendesk tickets, search support history, retrieve user details, and automate support workflows through Zendesk API calls.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON API examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Zendesk subdomain, email, and API token configuration before API operations.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: A reusable Zendesk API token may be saved in a local Markdown memory file.
+
+Mitigation: Use a dedicated least-privilege Zendesk API identity and prefer a secure secret manager or tightly controlled environment variables over storing the token in ~/zendesk/memory.md.
+
+Risk: State-changing Zendesk actions can update tickets, public comments, users, macros, or bulk records.
+
+Mitigation: Confirm every state-changing action with the user and summarize the affected records before execution.
+
+Risk: Ticket content, user data, and search queries are sent to the Zendesk API.
+
+Mitigation: Use the skill only with authorized Zendesk API access and avoid sending unrelated customer data in searches, comments, or exports.
+
+## Reference(s):
+
+- [ClawHub Zendesk skill listing](https://clawhub.ai/ivangdavila/skills/zendesk)
+- [Skill homepage](https://clawic.com/skills/zendesk)
+- [Zendesk API endpoint pattern](https://{subdomain}.zendesk.com/api/v2/*)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, API Calls, Configuration, Markdown]
+
+**Output Format:** [Markdown guidance with shell command examples and JSON API payloads]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires authorized Zendesk subdomain, email, and API token; may create or modify Zendesk tickets, users, macros, and related support records through the Zendesk API.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

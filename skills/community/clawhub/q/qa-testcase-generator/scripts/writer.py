@@ -5,10 +5,17 @@ Reads structured JSON from stdin/file, writes formatted Excel.
 No business logic - formatting (output) only.
 
 Supports both Chinese and English field names.
+
+Usage:
+    python scripts/writer.py input.json                              # 输出路径从 JSON 内部取
+    python scripts/writer.py input.json --output output/report.xlsx  # 命令行覆盖输出路径
+    echo '<JSON>' | python scripts/writer.py                         # 从标准输入
+    python scripts/writer.py -                                       # 从标准输入
 """
 
 import json
 import sys
+import argparse
 from pathlib import Path
 from datetime import datetime
 from openpyxl import Workbook
@@ -68,7 +75,6 @@ def write_excel(test_cases, output_path):
     seq_num = 1
 
     for tc in test_cases:
-        # Support both Chinese and English field names
         domain = tc.get("业务域", tc.get("business_domain", tc.get("module", "未分类")))
 
         # Module separator
@@ -113,21 +119,9 @@ def write_excel(test_cases, output_path):
         req_source = tc.get("需求来源", tc.get("requirement_source", ""))
 
         row_data = [
-            seq_num,
-            case_id,
-            priority,
-            test_dim,
-            case_type,
-            domain,
-            design,
-            scenario,
-            test_point,
-            steps_text,
-            expected_text,
-            test_data,
-            precondition,
-            req_source,
-            "",
+            seq_num, case_id, priority, test_dim, case_type, domain,
+            design, scenario, test_point, steps_text, expected_text,
+            test_data, precondition, req_source, "",
         ]
 
         for col, value in enumerate(row_data, 1):
@@ -154,15 +148,27 @@ def write_excel(test_cases, output_path):
 
 
 def main():
-    # Input validation
-    if len(sys.argv) > 1 and sys.argv[1] != "-":
-        src = sys.argv[1]
+    parser = argparse.ArgumentParser(description="测试用例 Excel 生成器")
+    parser.add_argument("input", nargs="?", default="-",
+                        help="输入 JSON 文件路径（默认: 标准输入, 使用 - 显式指定标准输入）")
+    parser.add_argument("-o", "--output", help="输出 Excel 文件路径（覆盖 JSON 中的输出路径）")
+    args = parser.parse_args()
+
+    # Read input JSON
+    data = None
+    if args.input == "-":
+        try:
+            data = json.load(sys.stdin)
+        except json.JSONDecodeError as e:
+            print(f"错误: 标准输入 JSON 解析失败 - {e}", file=sys.stderr)
+            print("提示: 请检查 JSON 是否格式正确", file=sys.stderr)
+            sys.exit(1)
+    else:
+        src = args.input
         src_path = Path(src)
         if not src_path.exists():
             print(f"错误: 文件不存在 - {src}", file=sys.stderr)
             sys.exit(1)
-        if src_path.suffix.lower() not in (".json",):
-            print(f"警告: 输入文件不是 .json 格式，将尝试解析: {src}", file=sys.stderr)
         try:
             with open(src, "r", encoding="utf-8-sig") as f:
                 data = json.load(f)
@@ -170,14 +176,8 @@ def main():
             print(f"错误: JSON 解析失败 - {e}", file=sys.stderr)
             print("提示: 请检查 JSON 是否格式正确（常见问题：中英文引号混用、尾部多余逗号）", file=sys.stderr)
             sys.exit(1)
-    else:
-        try:
-            data = json.load(sys.stdin)
-        except json.JSONDecodeError as e:
-            print(f"错误: 标准输入 JSON 解析失败 - {e}", file=sys.stderr)
-            sys.exit(1)
 
-    # Support both Chinese and English field names
+    # Extract test cases
     test_cases = data.get("测试用例", data.get("test_cases", []))
 
     if not isinstance(test_cases, list):
@@ -185,9 +185,11 @@ def main():
         sys.exit(1)
 
     if len(test_cases) == 0:
-        print("警告: 测试用例列表为空，将生成空白的 Excel 文件", file=sys.stderr)
+        print("错误: '测试用例' 列表为空，无法生成 Excel", file=sys.stderr)
+        sys.exit(1)
 
-    output = data.get("输出路径", data.get("output", ""))
+    # Determine output path: CLI > JSON > default
+    output = args.output or data.get("输出路径", data.get("output", ""))
     if not output:
         ts = datetime.now().strftime("%Y%m%d_%H%M%S")
         output = f"output/testcases_{ts}.xlsx"

@@ -1,50 +1,67 @@
-## Description: <br>
-PokeCron helps agents create and manage local reminder schedules, recurring nudges, deferred tasks, reply-aware escalation, quiet hours, and optional command hooks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+PokeCron is a power-user reminder scheduler that creates persisted OS-native timers for reminders, recurring nudges, deferred agent tasks, reply-aware escalation, quiet hours, and trusted command hooks.
 
-## Publisher: <br>
-[plaer1](https://clawhub.ai/user/plaer1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[plaer1](https://clawhub.ai/user/plaer1)
 
-## Use Case: <br>
-Developers and agent operators use this skill to turn time-based requests into persisted local reminders, scheduled agent tasks, reply-driven followups, and managed reminder state. It is most useful when an agent needs durable wakeups without a long-running daemon. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill creates user-level OS timers and can run delayed local command hooks. <br>
-Mitigation: Install only when that behavior is intentional, and review active reminders and hook commands before relying on them. <br>
-Risk: Stored commitments may be injected into later agent prompts more broadly than documented. <br>
-Mitigation: Avoid storing sensitive commitments until the scope-filtering issue is fixed. <br>
-Risk: Runtime state, history, hook logs, and opt-in hook environment values may contain sensitive operational details. <br>
-Mitigation: Review active reminders, .runtime logs, and any --hook-env values during setup and maintenance. <br>
-Risk: Optional vector-tone matching can send tone or intent text to OLLAMA_URL when enabled. <br>
-Mitigation: Keep vector-tone endpoints loopback-only unless a trusted remote endpoint is intentionally enabled with POKE_ALLOW_REMOTE_OLLAMA=1. <br>
+## Use Case:
 
+Developers and power users use PokeCron to turn time-based requests into durable OS-scheduled reminders or deferred agent tasks, including recurring check-ins, wakeups, and follow-up loops. It can also help migrate heartbeat-style polling to scheduled tasks when the user explicitly opts in.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/plaer1/pokecron) <br>
-- [Scheduling guide](sub-skills/scheduling.md) <br>
-- [Escalation and followups guide](sub-skills/escalation.md) <br>
-- [Reply handling guide](sub-skills/replies.md) <br>
-- [Quiet hours guide](sub-skills/quiet-hours.md) <br>
-- [Management guide](sub-skills/management.md) <br>
-- [Heartbeat migration guide](sub-skills/migration.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and configuration notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include dry-run recommendations, reminder management commands, and safety checks for hooks or migration steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release evidence; artifact frontmatter and package.json report 1.0.3) <br>
+Risk: The skill can create persistent user-level scheduled jobs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review scheduled reminders before installation and use the management commands to inspect or remove reminders when they are no longer needed.
+
+Risk: Command hooks can execute local programs under the user's account.
+
+Mitigation: Avoid command hooks unless the target scripts are trusted and intentionally configured by the user.
+
+Risk: The migration helper can change OpenClaw heartbeat configuration when run with --apply.
+
+Mitigation: Use the migration helper in dry-run mode first and only apply changes when the user explicitly wants heartbeat polling disabled.
+
+Risk: Vector-tone matching can send reminder or intent text to an Ollama endpoint when enabled.
+
+Mitigation: Keep the endpoint on loopback unless the user explicitly opts into a remote endpoint with POKE_ALLOW_REMOTE_OLLAMA=1.
+
+## Reference(s):
+
+- [PokeCron ClawHub listing](https://clawhub.ai/plaer1/skills/pokecron)
+- [SKILL.md](artifact/SKILL.md)
+- [Scheduling guide](artifact/sub-skills/scheduling.md)
+- [Escalation and followups guide](artifact/sub-skills/escalation.md)
+- [Stages and command hooks guide](artifact/sub-skills/stages.md)
+- [Migration guide](artifact/sub-skills/migration.md)
+- [Management guide](artifact/sub-skills/management.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node and may create user-level scheduler entries when generated commands are applied.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,57 @@
-## Description: <br>
-Use when refactoring research code for publication, adding documentation to existing analysis scripts, creating reproducible computational workflows, or preparing code for sharing with collaborators. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Refactors research code into publication-ready, reproducible workflows by adding documentation, error handling, environment specifications, and validation guidance.
 
-## Publisher: <br>
-[aipoch-ai](https://clawhub.ai/user/aipoch-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aipoch-ai](https://clawhub.ai/user/aipoch-ai)
 
-## Use Case: <br>
-Developers, researchers, and research software engineers use this skill to refactor analysis scripts into reproducible, publication-ready workflows with clearer documentation, environment specifications, validation steps, and explicit assumptions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated files and refactoring output may overwrite or expose local research project details if run directly in a working repository. <br>
-Mitigation: Run the skill in a sandbox or disposable working directory, choose a fresh output directory, and review generated files before sharing. <br>
-Risk: Environment setup may install dependencies that need project-specific review. <br>
-Mitigation: Inspect requirements.txt and any generated environment files before installing dependencies. <br>
-Risk: Generated reproducibility metadata may include hostname or package inventory. <br>
-Mitigation: Review reproducibility_info.json before publishing or sharing results. <br>
+## Use Case:
 
+Developers and researchers use this skill to refactor research analysis code for publication, collaboration, and reproducible execution. It helps analyze existing scripts, add documentation and error handling, define environments, and validate that results remain reproducible.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aipoch-ai/code-refactor-for-reproducibility-1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with code blocks, command examples, and generated project files or configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May generate local files for reproducible project structure, environment setup, tests, documentation, and reproducibility metadata.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The packaged requirements include an unjustified `src` entry and unpinned dependencies.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove `src` and pin real dependency versions before installing the requirements in a clean environment.
+
+Risk: Generated reproducibility metadata may include local machine details such as hostname and package inventory.
+
+Mitigation: Review generated `reproducibility_info.json` before sharing or publishing outputs.
+
+Risk: The generator writes refactored project files to an output directory.
+
+Mitigation: Run it only against an intended project directory and choose a new empty output directory.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aipoch-ai/skills/code-refactor-for-reproducibility-1)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with code snippets, shell commands, and generated project-file guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should separate assumptions, deliverables, risks, validation needs, and unresolved items.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,21 +1,21 @@
 ---
 name: fec-form-handling
-description: Use when building or reviewing substantial forms with React Hook Form, Zod schemas, typed validation, dynamic fields, controlled third-party inputs, file upload, multi-step flows, dependent validation, or form performance. Do not use for trivial 1-3 field forms without validation; Chinese triggers include 表单, 表单校验, 动态字段.
+description: Use when building or reviewing substantial forms with React Hook Form, Zod schemas, typed validation, dynamic fields, controlled third-party inputs, file upload, multi-step flows, dependent validation, or form performance. Do not use for trivial 1-3 field forms without validation; Chinese triggers include form, form validation, dynamic fields.
 ---
 
-# 表单处理
+# Form processing
 
 ## Purpose
 
-管理表单状态、校验和提交，避免复杂表单输入卡顿。
+Manage form status, verification and submission to avoid lags in complex form input.
 
 ## Procedure
 
-1. 先识别框架、项目既有表单库、schema 校验库、组件库和复杂度；10+ 字段、动态字段、联动校验、文件上传、多步流程或输入卡顿时再引入专门表单方案。
-2. 按项目栈选型：React 可考虑 React Hook Form + Zod；Vue 可考虑 vee-validate / FormKit + Zod、Yup 或 Valibot；简单表单可用框架原生状态和基础校验。
-3. 用运行时 schema 或明确校验函数守住外部输入边界；TypeScript 类型可从 schema 推导，但不要只写 TS 类型。
-4. 明确默认值、字段注册、受控/非受控边界和组件库适配；错误提示用 `aria-invalid`、`aria-describedby` 和 `role="alert"`。
-5. 提交时处理 loading、服务端错误、重复提交和 reset；大型表单用局部订阅和子组件隔离控制重渲染。
+1. First identify the framework, existing form library of the project, schema verification library, component library and complexity; then introduce special form solutions when there are 10+ fields, dynamic fields, linkage verification, file upload, multi-step process or input lag.
+2. Select according to project stack: React can consider React Hook Form + Zod; Vue can consider vee-validate / FormKit + Zod, Yup or Valibot; simple forms can use the framework's native state and basic verification.
+3. Use runtime schema or explicit validation functions to guard external input boundaries; TypeScript types can be deduced from the schema, but don’t just write TS types.
+4. Clarify default values, field registration, controlled/uncontrolled boundaries and component library adaptation; use `aria-invalid`, `aria-describedby` and `role="alert"` for error prompts.
+5. Handle loading, server-side errors, repeated submissions and resets when submitting; use local subscriptions and sub-component isolation to control re-rendering of large forms.
 
 ## React Quick Start
 
@@ -25,8 +25,8 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 
 const loginSchema = z.object({
-  email: z.string().email("请输入有效的邮箱地址"),
-  password: z.string().min(8, "密码至少 8 个字符"),
+  email: z.string().email("Please enter a valid email address"),
+  password: z.string().min(8, "Password must be at least 8 characters"),
 });
 
 type LoginForm = z.infer<typeof loginSchema>;
@@ -43,34 +43,34 @@ export function LoginFormView() {
 
   return (
     <form onSubmit={handleSubmit((data) => api.login(data))} noValidate>
-      <label htmlFor="email">邮箱</label>
+      <label htmlFor="email">Email</label>
       <input id="email" {...register("email")} aria-invalid={!!errors.email} />
       {errors.email && <span role="alert">{errors.email.message}</span>}
 
-      <label htmlFor="password">密码</label>
+      <label htmlFor="password">Password</label>
       <input id="password" type="password" {...register("password")} />
       {errors.password && <span role="alert">{errors.password.message}</span>}
 
       <button disabled={isSubmitting}>
-        {isSubmitting ? "提交中..." : "提交"}
+        {isSubmitting ? "Submitting..." : "Submitting"}
       </button>
     </form>
   );
 }
 ```
 
-## 详细参考
+## Detailed reference
 
-涉及是否需要表单库、框架选型、`Controller`、`useFieldArray`、联动校验、文件上传、多步表单、异步校验和性能模式时，加载 [references/advanced-form-patterns.md](references/advanced-form-patterns.md)。
+When it comes to whether you need a form library, framework selection, `Controller`, `useFieldArray`, linkage verification, file upload, multi-step form, asynchronous verification and performance mode, load [references/advanced-form-patterns.md](references/advanced-form-patterns.md).
 
 ## Constraints
 
-- 沿用仓库既有表单库、schema 库和组件库适配方式，不为单个表单引入第二套体系。
-- 默认值必须完整，避免 undefined 触发受控/非受控警告或初始化抖动。
-- reset 应传服务器返回或明确的完整默认对象。
-- 异步校验必须 debounce 或放到提交边界，避免每次键入请求。
-- schema 级联动校验的错误 path 必须指向实际字段。
+- Inherit the existing form library, schema library and component library adaptation method of the warehouse, and do not introduce a second system for a single form.
+- Default values must be complete to avoid undefined triggering controlled/uncontrolled warnings or initialization flutter.
+- reset should be passed the full default object returned by the server or explicit.
+- Asynchronous validation must be debounced or placed on a commit boundary to avoid typing requests every time.
+- The error path of schema cascade dynamic verification must point to the actual field.
 
 ## Expected Output
 
-产出类型安全、可访问、提交状态明确的表单；复杂字段和文件上传有 schema 约束，输入过程无明显卡顿，服务端错误能回填到用户可理解的位置。
+The output form is type-safe, accessible, and has a clear submission status; complex fields and file uploads have schema constraints, there is no obvious lag in the input process, and server-side errors can be backfilled to a position that the user can understand.

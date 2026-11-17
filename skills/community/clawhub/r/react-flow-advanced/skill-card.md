@@ -1,38 +1,49 @@
-## Description: <br>
-Advanced React Flow patterns for complex use cases. Use when implementing sub-flows, custom connection lines, programmatic layouts, drag-and-drop, undo/redo, or complex state synchronization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Advanced React Flow patterns for complex use cases. Use when implementing sub-flows, custom connection lines, programmatic layouts, drag-and-drop, undo/redo, or complex state synchronization.
 
-## Publisher: <br>
-[anderskev](https://clawhub.ai/user/anderskev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[anderskev](https://clawhub.ai/user/anderskev)
 
-## Use Case: <br>
-Developers and engineers use this skill for implementation guidance and code patterns when building advanced React Flow diagrams with nested nodes, custom connection lines, drag-and-drop, undo/redo, layouts, selectors, and graph state synchronization. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Code snippets that change graph state, delete selected elements, or alter layout behavior may cause incorrect application behavior if copied without adaptation. <br>
-Mitigation: Review and test snippets in the target React Flow app, with particular attention to undo/redo, deletion, layout, and state synchronization paths. <br>
+## Use Case:
 
+Developers and engineers use this skill for implementation guidance on advanced React Flow features, including nested nodes, custom connection lines, drag-and-drop workflows, undo/redo behavior, layouts, and state synchronization checks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/anderskev/react-flow-advanced) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Guidance] <br>
-**Output Format:** [Markdown with TypeScript/TSX code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance; code snippets should be reviewed and tested before being copied into an application.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release evidence) <br>
+Risk: Generated React Flow code may change graph state or delete selected nodes and edges when keyboard or UI handlers are adapted into an application.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated handlers and test undo, redo, deletion, drag-and-drop, and edge-creation flows against the application's intended behavior before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/anderskev/skills/react-flow-advanced)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code]
+
+**Output Format:** [Markdown with TypeScript and TSX code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes implementation checklists for validating React Flow behavior before shipping.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

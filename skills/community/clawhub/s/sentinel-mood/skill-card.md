@@ -1,40 +1,50 @@
-## Description: <br>
-Analyze the sentiment and emotional tone of text using NLTK and VADER. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze the sentiment and emotional tone of text using NLTK and VADER. Use this to gauge user mood, detect urgency, or analyze content tone.
 
-## Publisher: <br>
-[numbpill3d](https://clawhub.ai/user/numbpill3d) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[numbpill3d](https://clawhub.ai/user/numbpill3d)
 
-## Use Case: <br>
-Developers and agents use this skill to score short-form or conversational text for positive, negative, neutral, and compound sentiment signals. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: First use may download NLTK's VADER lexicon and store it locally. <br>
-Mitigation: Preinstall the VADER lexicon before deployment or avoid this skill in tightly controlled offline environments. <br>
-Risk: Sentiment scores can miss context, sarcasm, or domain-specific meaning. <br>
-Mitigation: Use the scores as a signal for review or routing, not as the sole basis for high-impact decisions. <br>
+## Use Case:
 
+Developers and external agents use this skill to score the sentiment and emotional tone of short-form or conversational text, such as user messages, social posts, and content snippets.
 
-## Reference(s): <br>
-- [Sentinel Mood on ClawHub](https://clawhub.ai/numbpill3d/sentinel-mood) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, JSON] <br>
-**Output Format:** [JSON object with positive, negative, neutral, and compound sentiment scores] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns an error JSON object when no input text is provided or analysis fails.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata, package.json) <br>
+Risk: The skill may install or fetch NLTK/VADER dependency data if the VADER lexicon is missing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Preinstall and verify the NLTK package and vader_lexicon resource in locked-down or offline environments before enabling the skill.
+
+## Reference(s):
+
+- [Sentinel Mood on ClawHub](https://clawhub.ai/numbpill3d/skills/sentinel-mood)
+- [Publisher profile](https://clawhub.ai/user/numbpill3d)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, configuration, guidance]
+
+**Output Format:** [JSON sentiment scores with positive, negative, neutral, and compound values]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns an error object when no text is provided or sentiment analysis fails.]
+
+## Skill Version(s):
+
+1.0.0 (source: package.json and ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

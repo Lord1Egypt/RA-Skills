@@ -1,43 +1,62 @@
-## Description: <br>
-Analyzes businesses, public securities, startups, acquisition targets, websites, products, and ideas through a value-investor moat lens while avoiding financial advice, price targets, and buy/sell recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes businesses, stocks, startups, acquisition targets, websites, products, and business ideas through a value-investor moat lens while keeping the output educational and avoiding financial advice, price targets, or buy/sell recommendations.
 
-## Publisher: <br>
-[sheepdontmoo](https://clawhub.ai/user/sheepdontmoo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sheepdontmoo](https://clawhub.ai/user/sheepdontmoo)
 
-## Use Case: <br>
-External users and business analysts use this skill to evaluate business quality, competitive advantage, pricing power, cashflow quality, management quality, red flags, and long-term durability. It supports public company moat analysis, private acquisition screening, startup idea review, competitor analysis, website audits, and founder pitch review as educational analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may mistake educational business or investment-risk analysis for personalized financial advice. <br>
-Mitigation: Treat outputs as educational only; do not rely on them for buy, sell, hold, price target, legal, tax, suitability, or valuation decisions without independent verification and a qualified professional where appropriate. <br>
-Risk: Moat analysis may be misleading when current primary sources are unavailable or user-provided evidence is incomplete. <br>
-Mitigation: Use current primary sources when available, state when current data is unavailable, avoid unsupported certainty, and explain assumptions and evidence gaps. <br>
+## Use Case:
 
+External users, analysts, founders, operators, and acquisition screeners use this skill to evaluate business quality, competitive durability, pricing power, cashflow quality, management evidence, and downside risks without receiving investment instructions.
 
-## Reference(s): <br>
-- [Moat Framework](references/moat-framework.md) <br>
-- [Output Examples](references/output-examples.md) <br>
-- [Private Business And Startup Analysis](references/private-business.md) <br>
-- [Red Flags](references/red-flags.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Guidance] <br>
-**Output Format:** [Markdown scorecard and narrative analysis with tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes an educational disclaimer for public securities, stocks, funds, crypto, and acquisition targets.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Users may treat public-security analysis as investment advice or a buy/sell recommendation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep outputs framed as educational research support, include the required disclaimer for public securities, and avoid price targets, valuation opinions, and buy/sell recommendations.
+
+Risk: Business-quality conclusions may be wrong or stale when current primary sources are missing.
+
+Mitigation: Use current primary sources when available, cite or identify source limits, and state when current data is unavailable.
+
+Risk: Outputs can overstate certainty about management quality, moat durability, or future compounding.
+
+Mitigation: Ground claims in evidence, separate assumptions from facts, call out red flags, and classify unclear cases as too hard when evidence is insufficient.
+
+## Reference(s):
+
+- [Moat Framework](references/moat-framework.md)
+- [Output Examples](references/output-examples.md)
+- [Private Business And Startup Analysis](references/private-business.md)
+- [Red Flags](references/red-flags.md)
+- [ClawHub skill page](https://clawhub.ai/sheepdontmoo/skills/buffett-style-moat-analyzer)
+- [Publisher profile](https://clawhub.ai/user/sheepdontmoo)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown business-quality analysis with a scorecard, evidence-based sections, risk discussion, and final classification]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes an educational disclaimer for public securities and avoids price targets, valuation opinions, buy/sell recommendations, and unsupported certainty.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

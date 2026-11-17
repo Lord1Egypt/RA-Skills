@@ -1,43 +1,54 @@
-## Description: <br>
-Optimize LLM token usage and API costs for the openclaw-manager proxy platform with model-tier routing, heartbeat cost reduction, context lazy loading, and platform usage analytics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Optimizes LLM token usage and API costs for the openclaw-manager proxy platform through model-tier routing, heartbeat cost reduction, context lazy loading, and usage analytics.
 
-## Publisher: <br>
-[whyhit2005](https://clawhub.ai/user/whyhit2005) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[whyhit2005](https://clawhub.ai/user/whyhit2005)
 
-## Use Case: <br>
-Developers and OpenClaw operators use this skill to route prompts to cost-appropriate models, reduce heartbeat spend, generate lazy-loading agent context guidance, and analyze PostgreSQL-backed usage records for quota planning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Usage and quota reports may expose sensitive operational data. <br>
-Mitigation: Run DB-backed reporting commands only with authorization and handle generated reports as sensitive operational data. <br>
-Risk: Generated AGENTS.md.optimized guidance could change live agent context-loading behavior. <br>
-Mitigation: Review AGENTS.md.optimized before adopting it as live agent instructions. <br>
-Risk: The skill is intended for the openclaw-manager environment. <br>
-Mitigation: Install and run it only in the intended openclaw-manager deployment context. <br>
+## Use Case:
 
+Developers and platform operators use this skill to reduce LLM proxy costs by selecting cheaper capable models, generating heartbeat configuration patches, recommending leaner context loading, and analyzing PostgreSQL-backed usage and quota data.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/whyhit2005/proxy-token-optimizer) <br>
-- [Publisher profile](https://clawhub.ai/user/whyhit2005) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, markdown, code, shell commands, configuration] <br>
-**Output Format:** [JSON reports, Markdown agent guidance, shell command recommendations, and configuration patches] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Local routing, context, and heartbeat commands can run without network access; usage reports and quota advice require authorized database access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Generated optimization guidance or AGENTS.md.optimized content could be inappropriate for a specific deployment if applied without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated AGENTS.md.optimized and configuration patches before replacing project files or changing runtime settings.
+
+Risk: Database-backed report and advisor commands read instance usage and quota data.
+
+Mitigation: Run platform-side analytics only in environments where access to usage_records, instance metadata, and quota data is authorized and appropriate.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/whyhit2005/skills/proxy-token-optimizer)
+- [ClawHub publisher profile](https://clawhub.ai/user/whyhit2005)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance, JSON command output, and generated configuration snippets or AGENTS.md.optimized files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Some platform-side outputs depend on PostgreSQL usage_records and quota data from an openclaw-manager environment.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

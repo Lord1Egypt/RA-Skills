@@ -1,44 +1,59 @@
-## Description: <br>
-Plans intentionally low-comfort novelty travel itineraries using FlyAI travel search, with booking links, humorous commentary, trip interaction, and post-trip markdown content generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Plans intentionally poor travel challenge itineraries using FlyAI travel search, with snarky commentary, booking links, photo explanations, a trip diary, and short-video scripts.
 
-## Publisher: <br>
-[catshcrozhang](https://clawhub.ai/user/catshcrozhang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[catshcrozhang](https://clawhub.ai/user/catshcrozhang)
 
-## Use Case: <br>
-External users use this skill to generate intentionally rough, humorous travel challenge plans that can include real-time transport, hotel, and attraction searches through FlyAI. The skill also supports in-trip commentary and produces markdown trip diaries, reversal reports, short-video titles, scripts, and share copy. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can surface real third-party booking links for travel purchases. <br>
-Mitigation: Review destination, dates, prices, refund terms, merchant domain, and booking details before clicking through or paying. <br>
-Risk: The skill depends on the third-party FlyAI CLI for live travel search. <br>
-Mitigation: Install and use the FlyAI CLI only if the operator trusts that dependency and its returned travel data. <br>
-Risk: Randomized or intentionally low-comfort travel suggestions may not match user constraints. <br>
-Mitigation: Confirm budget, dates, health constraints, and explicit user approval before acting on any proposed itinerary. <br>
+## Use Case:
 
+External users use this skill to create deliberately uncomfortable, parody-style travel plans from FlyAI travel data, then turn the trip into shareable commentary, diary, report, and short-video script content. The skill asks for travel basics, proposes transport, lodging, and activity options, and includes a rescue mode when the user wants to switch to higher-quality choices.
 
-## Reference(s): <br>
-- [Detailed reference document](references/README.md) <br>
-- [ClawHub skill page](https://clawhub.ai/catshcrozhang/worst-travel-challenge) <br>
-- [FlyAI](https://flyai.open.fliggy.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with travel options, booking links, commentary, and generated script content] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include real third-party Fliggy booking links and FlyAI CLI commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.5 (source: release evidence; artifact frontmatter reports 1.1.4) <br>
+Risk: The skill depends on installing the FlyAI CLI globally, and the dependency is not pinned in the artifact instructions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install the CLI only from a trusted source, review the installed package and version, and manage updates through a controlled environment.
+
+Risk: Travel searches can send destination, date, budget, and preference details to FlyAI.
+
+Mitigation: Avoid entering sensitive personal details unless necessary, and review the FlyAI service terms and data handling before use.
+
+Risk: Generated booking links can lead to real commercial purchases for intentionally poor or randomized travel choices.
+
+Mitigation: Manually verify destination, dates, traveler details, total cost, cancellation terms, safety, health constraints, and budget before clicking or purchasing.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/catshcrozhang/skills/worst-travel-challenge)
+- [FlyAI Open Platform](https://flyai.open.fliggy.com)
+- [Detailed Reference](artifact/references/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown-style itinerary sections, booking-link summaries, trip diary/report content, and short-video script templates.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include real travel booking links that require user review before purchase.]
+
+## Skill Version(s):
+
+1.1.5 (source: ClawHub release evidence; artifact frontmatter reports 1.1.4)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

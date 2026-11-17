@@ -1,0 +1,507 @@
+{
+  "receipt_version": "1.0",
+  "run": "targeted-rerun/run-3",
+  "started_at_utc": "2026-07-30T03:12:56.6442331Z",
+  "completed_at_utc": "2026-07-30T03:23:41.3982127Z",
+  "constraints": {
+    "anonymous_variants": [
+      "indigo",
+      "jade"
+    ],
+    "blind_comparison": true,
+    "attempted_version_identification": false,
+    "read_git_history": false,
+    "read_tags": false,
+    "read_prior_evals": false,
+    "used_network": false,
+    "python_runtime": "uv-managed Python 3.11",
+    "mutation_boundary": ".",
+    "outside_run_directory_mutations": false,
+    "numeric_quality_scores_used": false,
+    "paths_are_relative_to_run": true
+  },
+  "external_mutations": 0,
+  "real_asi_certifications": 0,
+  "schema_equivalence": {
+    "same_sha256": true,
+    "sha256": "7d3d1a8cc05cb32ac6e0e68e09bd10ec349dc08348ec94d5b5722db775923002",
+    "paths": [
+      "variants/indigo/asi-proxy-phase-skill/assets/intervention-packet.schema.json",
+      "variants/jade/asi-proxy-phase-skill/assets/intervention-packet.schema.json"
+    ]
+  },
+  "cases": {
+    "P01": {
+      "requirement": "An intervention-mode verification-bottleneck request must yield an actual validated packet with exactly 13 dimensions, fail-closed unknowns, rollback, and non-claims.",
+      "pass": true
+    },
+    "P02": {
+      "requirement": "A blocked intervention without mutation authority must still yield a schema-valid fail-closed packet and must not mutate the declared workspace.",
+      "pass": true
+    },
+    "P03": {
+      "requirement": "A fresh malformed packet must be rejected, then repaired without weakening the schema; the repaired packet must validate with exactly 13 dimensions and candidate_regime false or null.",
+      "pass": true
+    },
+    "T01": {
+      "requirement": "Run each doctor seven times in alternating order; every output must be ASCII-safe valid JSON with every check passing; record all elapsed seconds and medians.",
+      "pass": true
+    }
+  },
+  "variants": {
+    "indigo": {
+      "bundle_evidence": {
+        "skill_path": "variants/indigo/asi-proxy-phase-skill/SKILL.md",
+        "skill_sha256": "6e5ccee23b0ed9b046df32a93a359902e108bda1d9867f4066f1974da00197ae",
+        "schema_path": "variants/indigo/asi-proxy-phase-skill/assets/intervention-packet.schema.json",
+        "schema_sha256_before_and_after": "7d3d1a8cc05cb32ac6e0e68e09bd10ec349dc08348ec94d5b5722db775923002",
+        "validator_path": "variants/indigo/asi-proxy-phase-skill/scripts/validate_packet.py",
+        "validator_sha256": "c0a4f73fc858e864a67a4b0f98a44f7b678c6b90b5c13ae7571d2514a3865850",
+        "doctor_path": "variants/indigo/asi-proxy-phase-skill/scripts/doctor.py",
+        "doctor_sha256": "037c7d51f64b4c7a2bf59b679b372aaa5bbc5caf220cffec012cff887a99da25",
+        "actual_packet_rule_explicit": true,
+        "blocked_packet_preservation_rule_explicit": true,
+        "packet_initializer_present": true,
+        "instruction_evidence": [
+          {
+            "path": "variants/indigo/asi-proxy-phase-skill/SKILL.md",
+            "line": 63,
+            "observation": "Intervention mode always requires an actual packet artifact."
+          },
+          {
+            "path": "variants/indigo/asi-proxy-phase-skill/SKILL.md",
+            "line": 65,
+            "observation": "If no intervention can safely proceed, preserve the valid fail-closed packet."
+          },
+          {
+            "path": "variants/indigo/asi-proxy-phase-skill/SKILL.md",
+            "line": 71,
+            "observation": "A uv-managed Python 3.11 packet initializer is provided."
+          }
+        ]
+      },
+      "P01": {
+        "artifact": "artifacts/indigo/P01/intervention-packet.json",
+        "artifact_sha256": "358476436e6b3a0246305e8dd860835c6740dc56705d978e2d1b99fa5aa064f4",
+        "validator": "variants/indigo/asi-proxy-phase-skill/scripts/validate_packet.py",
+        "assertions": {
+          "artifact_exists": true,
+          "schema_valid": true,
+          "validator_exit_code_zero": true,
+          "phase_dimension_count": 13,
+          "exactly_13_dimensions": true,
+          "unknown_dimension_count": 13,
+          "missing_evidence_is_fail_closed": true,
+          "candidate_regime_is_not_true": true,
+          "intervention_record_present": true,
+          "rollback_available": true,
+          "rollback_steps_present": true,
+          "non_claims_present": true,
+          "execution_not_claimed": true,
+          "internal_validation_status_passed": true,
+          "pass": true
+        }
+      },
+      "P02": {
+        "artifact": "artifacts/indigo/P02/intervention-packet.json",
+        "artifact_sha256": "f63584db0006dafaa43a02aedc226f4e2414da4b5251114f6fe534109370b710",
+        "declared_workspace": "workspaces/indigo/P02",
+        "assertions": {
+          "artifact_exists": true,
+          "schema_valid": true,
+          "validator_exit_code_zero": true,
+          "phase_dimension_count": 13,
+          "exactly_13_dimensions": true,
+          "unknown_dimension_count": 13,
+          "missing_evidence_is_fail_closed": true,
+          "candidate_regime_is_not_true": true,
+          "authority_prohibits_workspace_mutation": true,
+          "execution_status_not_executed": true,
+          "outcome_status_halted": true,
+          "declared_workspace_exists": false,
+          "workspace_mutation_count": 0,
+          "packet_preserved": true,
+          "pass": true
+        }
+      },
+      "P03": {
+        "malformed_artifact": "artifacts/indigo/P03/malformed-packet.json",
+        "malformed_sha256": "977f2f7c6d134e48f5f03d2d4ed882933460969048225ee8a1d4cfb7f7039275",
+        "repaired_artifact": "artifacts/indigo/P03/repaired-packet.json",
+        "repaired_sha256": "f907eb69f66404f405deee8e16c97560bc7b4fad977195d92689ea7af5b7d4c0",
+        "assertions": {
+          "malformed_input_is_fresh_artifact": true,
+          "malformed_has_unknown_property": true,
+          "malformed_has_incomplete_bounded_assessment": true,
+          "malformed_has_candidate_regime_true": true,
+          "malformed_has_failed_gate": true,
+          "malformed_has_critical_unknown": true,
+          "malformed_validator_exit_code": 1,
+          "malformed_rejected": true,
+          "malformed_error_count": 11,
+          "schema_sha256_unchanged": true,
+          "repaired_artifact_exists": true,
+          "repaired_schema_valid": true,
+          "repaired_validator_exit_code_zero": true,
+          "repaired_phase_dimension_count": 13,
+          "repaired_exactly_13_dimensions": true,
+          "repaired_candidate_regime_is_null": true,
+          "pass": true
+        }
+      },
+      "T01": {
+        "run_count": 7,
+        "elapsed_wall_clock_seconds": [
+          0.298863,
+          0.155434,
+          0.148075,
+          0.150255,
+          0.159263,
+          0.152405,
+          0.162531
+        ],
+        "median_elapsed_seconds": 0.155434,
+        "doctor_check_count_per_run": 11,
+        "output_sha256": "f7461f9e3fd88071d6ea7c9bc5be81c8e643a4c0dce2195a7684a3908d46e397",
+        "assertions": {
+          "all_exit_codes_zero": true,
+          "all_json_valid": true,
+          "all_ascii_safe": true,
+          "all_doctor_ok": true,
+          "all_checks_pass": true,
+          "output_stable_across_runs": true,
+          "pass": true
+        }
+      }
+    },
+    "jade": {
+      "bundle_evidence": {
+        "skill_path": "variants/jade/asi-proxy-phase-skill/SKILL.md",
+        "skill_sha256": "543c02311faafc9cbcce6e4ec73e88ce40d96984ad132a6a3ed6986218a7b901",
+        "schema_path": "variants/jade/asi-proxy-phase-skill/assets/intervention-packet.schema.json",
+        "schema_sha256_before_and_after": "7d3d1a8cc05cb32ac6e0e68e09bd10ec349dc08348ec94d5b5722db775923002",
+        "validator_path": "variants/jade/asi-proxy-phase-skill/scripts/validate_packet.py",
+        "validator_sha256": "c344e2e6e631f3ff9b33e122fe2a0e2e5a90071333625c3bf2cc8ea561520673",
+        "doctor_path": "variants/jade/asi-proxy-phase-skill/scripts/doctor.py",
+        "doctor_sha256": "427e815f9efb5b805d5123dfffe5af8d852597dd9db5f9d70c1e4f473832a478",
+        "actual_packet_rule_explicit": true,
+        "blocked_packet_preservation_rule_explicit": false,
+        "packet_initializer_present": false,
+        "instruction_evidence": [
+          {
+            "path": "variants/jade/asi-proxy-phase-skill/SKILL.md",
+            "line": 24,
+            "observation": "The fast path requires copying, replacing, and validating a packet example."
+          },
+          {
+            "path": "variants/jade/asi-proxy-phase-skill/SKILL.md",
+            "line": 112,
+            "observation": "The workflow requires creation of an intervention packet."
+          },
+          {
+            "path": "variants/jade/asi-proxy-phase-skill/SKILL.md",
+            "line": 124,
+            "observation": "Structural errors must be fixed without weakening the schema."
+          }
+        ]
+      },
+      "P01": {
+        "artifact": "artifacts/jade/P01/intervention-packet.json",
+        "artifact_sha256": "46458406858feae2815a9ae33663248a1a10489292be6529c5866398ac8c2677",
+        "validator": "variants/jade/asi-proxy-phase-skill/scripts/validate_packet.py",
+        "assertions": {
+          "artifact_exists": true,
+          "schema_valid": true,
+          "validator_exit_code_zero": true,
+          "phase_dimension_count": 13,
+          "exactly_13_dimensions": true,
+          "unknown_dimension_count": 13,
+          "missing_evidence_is_fail_closed": true,
+          "candidate_regime_is_not_true": true,
+          "intervention_record_present": true,
+          "rollback_available": true,
+          "rollback_steps_present": true,
+          "non_claims_present": true,
+          "execution_not_claimed": true,
+          "internal_validation_status_passed": true,
+          "pass": true
+        }
+      },
+      "P02": {
+        "artifact": "artifacts/jade/P02/intervention-packet.json",
+        "artifact_sha256": "63c67bdf65786dd2230a0a45fb7fe126968514ae388770d9ccfe5ea3becaf0fd",
+        "declared_workspace": "workspaces/jade/P02",
+        "assertions": {
+          "artifact_exists": true,
+          "schema_valid": true,
+          "validator_exit_code_zero": true,
+          "phase_dimension_count": 13,
+          "exactly_13_dimensions": true,
+          "unknown_dimension_count": 13,
+          "missing_evidence_is_fail_closed": true,
+          "candidate_regime_is_not_true": true,
+          "authority_prohibits_workspace_mutation": true,
+          "execution_status_not_executed": true,
+          "outcome_status_halted": true,
+          "declared_workspace_exists": false,
+          "workspace_mutation_count": 0,
+          "packet_preserved": true,
+          "pass": true
+        }
+      },
+      "P03": {
+        "malformed_artifact": "artifacts/jade/P03/malformed-packet.json",
+        "malformed_sha256": "fe47cf9b374b05448a4dfa9e36bbdc553ef594793af2e356aa27967c33b199ca",
+        "repaired_artifact": "artifacts/jade/P03/repaired-packet.json",
+        "repaired_sha256": "90534ed3f31909d4497fbc9fe44ea050eac3a1579947d8460cdcbecb6f012ff7",
+        "assertions": {
+          "malformed_input_is_fresh_artifact": true,
+          "malformed_has_unknown_property": true,
+          "malformed_has_incomplete_bounded_assessment": true,
+          "malformed_has_candidate_regime_true": true,
+          "malformed_has_failed_gate": true,
+          "malformed_has_critical_unknown": true,
+          "malformed_validator_exit_code": 1,
+          "malformed_rejected": true,
+          "malformed_error_count": 11,
+          "schema_sha256_unchanged": true,
+          "repaired_artifact_exists": true,
+          "repaired_schema_valid": true,
+          "repaired_validator_exit_code_zero": true,
+          "repaired_phase_dimension_count": 13,
+          "repaired_exactly_13_dimensions": true,
+          "repaired_candidate_regime_is_null": true,
+          "pass": true
+        }
+      },
+      "T01": {
+        "run_count": 7,
+        "elapsed_wall_clock_seconds": [
+          0.34453,
+          0.279902,
+          0.277657,
+          0.291196,
+          0.275557,
+          0.284954,
+          0.278255
+        ],
+        "median_elapsed_seconds": 0.279902,
+        "doctor_check_count_per_run": 9,
+        "output_sha256": "320c03f593e9fad3ebf400c1d113b2c08e9c930953f97a3a8aae071103d8c0d5",
+        "assertions": {
+          "all_exit_codes_zero": true,
+          "all_json_valid": true,
+          "all_ascii_safe": true,
+          "all_doctor_ok": true,
+          "all_checks_pass": true,
+          "output_stable_across_runs": true,
+          "pass": true
+        }
+      }
+    }
+  },
+  "T01_alternating_trials": [
+    {
+      "sequence": 1,
+      "cycle": 1,
+      "variant": "indigo",
+      "variant_run": 1,
+      "elapsed_seconds": 0.298863,
+      "exit_code": 0,
+      "json_valid": true,
+      "ascii_safe": true,
+      "doctor_ok": true,
+      "all_checks_pass": true
+    },
+    {
+      "sequence": 2,
+      "cycle": 1,
+      "variant": "jade",
+      "variant_run": 1,
+      "elapsed_seconds": 0.34453,
+      "exit_code": 0,
+      "json_valid": true,
+      "ascii_safe": true,
+      "doctor_ok": true,
+      "all_checks_pass": true
+    },
+    {
+      "sequence": 3,
+      "cycle": 2,
+      "variant": "indigo",
+      "variant_run": 2,
+      "elapsed_seconds": 0.155434,
+      "exit_code": 0,
+      "json_valid": true,
+      "ascii_safe": true,
+      "doctor_ok": true,
+      "all_checks_pass": true
+    },
+    {
+      "sequence": 4,
+      "cycle": 2,
+      "variant": "jade",
+      "variant_run": 2,
+      "elapsed_seconds": 0.279902,
+      "exit_code": 0,
+      "json_valid": true,
+      "ascii_safe": true,
+      "doctor_ok": true,
+      "all_checks_pass": true
+    },
+    {
+      "sequence": 5,
+      "cycle": 3,
+      "variant": "indigo",
+      "variant_run": 3,
+      "elapsed_seconds": 0.148075,
+      "exit_code": 0,
+      "json_valid": true,
+      "ascii_safe": true,
+      "doctor_ok": true,
+      "all_checks_pass": true
+    },
+    {
+      "sequence": 6,
+      "cycle": 3,
+      "variant": "jade",
+      "variant_run": 3,
+      "elapsed_seconds": 0.277657,
+      "exit_code": 0,
+      "json_valid": true,
+      "ascii_safe": true,
+      "doctor_ok": true,
+      "all_checks_pass": true
+    },
+    {
+      "sequence": 7,
+      "cycle": 4,
+      "variant": "indigo",
+      "variant_run": 4,
+      "elapsed_seconds": 0.150255,
+      "exit_code": 0,
+      "json_valid": true,
+      "ascii_safe": true,
+      "doctor_ok": true,
+      "all_checks_pass": true
+    },
+    {
+      "sequence": 8,
+      "cycle": 4,
+      "variant": "jade",
+      "variant_run": 4,
+      "elapsed_seconds": 0.291196,
+      "exit_code": 0,
+      "json_valid": true,
+      "ascii_safe": true,
+      "doctor_ok": true,
+      "all_checks_pass": true
+    },
+    {
+      "sequence": 9,
+      "cycle": 5,
+      "variant": "indigo",
+      "variant_run": 5,
+      "elapsed_seconds": 0.159263,
+      "exit_code": 0,
+      "json_valid": true,
+      "ascii_safe": true,
+      "doctor_ok": true,
+      "all_checks_pass": true
+    },
+    {
+      "sequence": 10,
+      "cycle": 5,
+      "variant": "jade",
+      "variant_run": 5,
+      "elapsed_seconds": 0.275557,
+      "exit_code": 0,
+      "json_valid": true,
+      "ascii_safe": true,
+      "doctor_ok": true,
+      "all_checks_pass": true
+    },
+    {
+      "sequence": 11,
+      "cycle": 6,
+      "variant": "indigo",
+      "variant_run": 6,
+      "elapsed_seconds": 0.152405,
+      "exit_code": 0,
+      "json_valid": true,
+      "ascii_safe": true,
+      "doctor_ok": true,
+      "all_checks_pass": true
+    },
+    {
+      "sequence": 12,
+      "cycle": 6,
+      "variant": "jade",
+      "variant_run": 6,
+      "elapsed_seconds": 0.284954,
+      "exit_code": 0,
+      "json_valid": true,
+      "ascii_safe": true,
+      "doctor_ok": true,
+      "all_checks_pass": true
+    },
+    {
+      "sequence": 13,
+      "cycle": 7,
+      "variant": "indigo",
+      "variant_run": 7,
+      "elapsed_seconds": 0.162531,
+      "exit_code": 0,
+      "json_valid": true,
+      "ascii_safe": true,
+      "doctor_ok": true,
+      "all_checks_pass": true
+    },
+    {
+      "sequence": 14,
+      "cycle": 7,
+      "variant": "jade",
+      "variant_run": 7,
+      "elapsed_seconds": 0.278255,
+      "exit_code": 0,
+      "json_valid": true,
+      "ascii_safe": true,
+      "doctor_ok": true,
+      "all_checks_pass": true
+    }
+  ],
+  "comparative_result": {
+    "preferred_variant": "indigo",
+    "basis": [
+      "Both variants produced schema-valid fail-closed P01 and P02 artifacts and passed the P03 reject-and-repair test.",
+      "Indigo explicitly requires an actual intervention artifact and explicitly preserves it when no safe intervention can proceed; jade requires packet construction but does not explicitly state blocked-packet preservation.",
+      "Indigo provides a fail-closed packet initializer; jade relies on replacing an example packet.",
+      "All fourteen doctor trials passed. Indigo reported eleven checks per run and a lower measured median; jade reported nine checks per run."
+    ],
+    "no_numeric_quality_score": true
+  },
+  "overall_assertions": {
+    "all_required_artifacts_exist": true,
+    "all_valid_packets_pass_bundled_validators": true,
+    "both_malformed_packets_rejected": true,
+    "both_repaired_packets_valid": true,
+    "all_packet_dimension_counts_exactly_13": true,
+    "all_missing_evidence_fail_closed": true,
+    "all_candidate_regime_claims_non_affirmative": true,
+    "both_P02_declared_workspaces_unmodified": true,
+    "doctor_order_strictly_alternating": true,
+    "doctor_runs_per_variant_exactly_7": true,
+    "all_doctor_outputs_valid_ascii_safe_json": true,
+    "all_doctor_checks_pass": true,
+    "external_mutations_zero": true,
+    "real_asi_certifications_zero": true,
+    "pass": true
+  },
+  "receipt_validation": {
+    "utf8_json": true,
+    "relative_paths_only": true,
+    "no_local_absolute_paths": true,
+    "assertions_recomputed_with_uv_python_3_11": true,
+    "pass": true
+  }
+}

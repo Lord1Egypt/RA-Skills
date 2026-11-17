@@ -1,40 +1,54 @@
-## Description: <br>
-Multi-purpose hash tool for MD5, SHA-1, SHA-256, SHA-512, BLAKE2b, Base64 encode/decode, UUID generation, and HMAC signing using the Python standard library with no API key required. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Multi-purpose hash tool: MD5, SHA-1, SHA-256, SHA-512, BLAKE2b, Base64 encode/decode, UUID generation, HMAC signing. Pure Python standard library, no API key required.
 
-## Publisher: <br>
-[freedompixels](https://clawhub.ai/user/freedompixels) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[freedompixels](https://clawhub.ai/user/freedompixels)
 
-## Use Case: <br>
-Developers and agents use this skill to generate hashes, Base64 encodings or decodings, random UUIDs, and HMAC signatures from local command-line inputs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: HMAC secrets, messages, and JSON output can appear in terminal history, process arguments, command output, or agent logs. <br>
-Mitigation: Avoid real long-lived HMAC keys or sensitive payloads in command-line arguments or JSON output, especially in logged environments. <br>
-Risk: MD5 and SHA-1 are available but are not appropriate for security-sensitive hashing. <br>
-Mitigation: Use SHA-256, SHA-512, or BLAKE2b for security-sensitive use cases and reserve MD5 or SHA-1 for non-security compatibility checks. <br>
+## Use Case:
 
+Developers and technical users use this skill for offline hashing, checksum generation, Base64 encoding and decoding, UUID generation, and HMAC signing from a local Python command-line utility.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/freedompixels/hash-generator-tool) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Plain text or JSON command output, with Markdown usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs locally with the Python standard library and no external API key.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence, target metadata, and SKILL.md frontmatter) <br>
+Risk: HMAC secrets passed directly on the command line may be retained in shell history or process metadata.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid production HMAC keys in the documented command-line form; clear affected shell history and rotate exposed keys if used.
+
+Risk: MD5 and SHA-1 are available but are not appropriate for security-sensitive collision-resistant hashing.
+
+Mitigation: Use SHA-256, SHA-512, BLAKE2b, or HMAC with a supported modern digest for security-sensitive workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/freedompixels/skills/hash-generator-tool)
+- [Publisher profile](https://clawhub.ai/user/freedompixels)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, guidance]
+
+**Output Format:** [Plain text or JSON command-line output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Runs locally with the Python standard library and no external API key.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

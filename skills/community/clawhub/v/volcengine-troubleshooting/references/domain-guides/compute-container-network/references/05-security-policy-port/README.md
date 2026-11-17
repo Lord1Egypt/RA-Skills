@@ -66,4 +66,3 @@ ve clb DescribeServerGroupAttributes --Region "<region>" --ServerGroupId "<serve
 ## 变更边界
 
 本 ref 只做查询。新增/删除安全组规则、更新 ACL、调整 CLB 后端都属于写操作，必须先让用户确认具体资源、协议、端口、CIDR 和影响面。
-

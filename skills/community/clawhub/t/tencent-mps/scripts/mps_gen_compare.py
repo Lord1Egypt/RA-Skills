@@ -26,18 +26,19 @@
   python3 mps_gen_compare.py --config compare_config.json
 """
 
-from mps_auto_upgrade import check_sdk_version  # noqa: F401 (import triggers urllib3 warning filter)
 import argparse
 import json
 import os
 import sys
-import re
 from datetime import datetime
 from urllib.parse import unquote
 
 # 尝试导入本地上传模块
 try:
     sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    from mps_auto_upgrade import check_sdk_version
+    # 依赖检查/自动安装：必须在第三方包首次 import 之前调用
+    check_sdk_version()
     from mps_poll_task import auto_upload_local_file
     _UPLOAD_AVAILABLE = True
 except ImportError:

@@ -1,44 +1,58 @@
-## Description: <br>
-Control Xiaomi smart home devices via Home Assistant API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Controls Xiaomi and Xiao AI smart-home devices through the Home Assistant API.
 
-## Publisher: <br>
-[Pipluuup](https://clawhub.ai/user/Pipluuup) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pipluuup](https://clawhub.ai/user/pipluuup)
 
-## Use Case: <br>
-External users and home automation operators use this skill to translate Xiaomi or Xiao AI device requests into Home Assistant service calls for configured speakers, air conditioners, and other smart home devices. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Token-backed Home Assistant API calls can change real Xiaomi smart home devices. <br>
-Mitigation: Use a dedicated least-privilege Home Assistant token and install only when device control is intended. <br>
-Risk: Broad natural-language triggers may send unintended state-changing commands. <br>
-Mitigation: Restrict the Home Assistant URL and entity list, and require explicit confirmation for ambiguous or state-changing requests. <br>
-Risk: Access tokens can be exposed if placed in shared prompt or configuration files. <br>
-Mitigation: Keep tokens in a secure environment variable or protected local configuration and avoid logging them. <br>
+## Use Case:
 
+External users and smart-home operators use this skill to turn Xiaomi device requests into Home Assistant service calls for configured speakers, air conditioners, lights, and other entities.
 
-## Reference(s): <br>
-- [Home Assistant Entity Reference](references/entities.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/Pipluuup/haxiaomicontrol) <br>
-- [Publisher Profile](https://clawhub.ai/user/Pipluuup) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, JSON payload examples, and Python helper code] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses Home Assistant entity IDs, service names, HA_URL, and HA_TOKEN supplied by the user environment or configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill can issue authenticated Home Assistant commands that affect physical smart-home devices.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated least-privileged Home Assistant token, restrict allowed entities and actions, and require confirmation for speaker, HVAC, lock, alarm, or other physical-device commands.
+
+Risk: The default Home Assistant URL uses HTTP on a local network.
+
+Mitigation: Prefer HTTPS for Home Assistant access, including remote or shared-network deployments.
+
+Risk: Broad or weakly scoped entity control can trigger unintended device actions.
+
+Mitigation: Limit the skill to known entity IDs and reviewed service calls before enabling it for an agent.
+
+## Reference(s):
+
+- [Home Assistant Entity Reference](references/entities.md)
+- [ClawHub Skill Page](https://clawhub.ai/pipluuup/skills/haxiaomicontrol)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with Home Assistant API examples and optional Python command usage]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include authenticated Home Assistant service calls for user-configured smart-home entities.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

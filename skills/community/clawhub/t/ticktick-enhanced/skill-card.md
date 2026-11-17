@@ -1,44 +1,55 @@
-## Description: <br>
-Manage TickTick tasks and projects. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage TickTick tasks and projects.
 
-## Publisher: <br>
-[halr9000](https://clawhub.ai/user/halr9000) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[halr9000](https://clawhub.ai/user/halr9000)
 
-## Use Case: <br>
-External users and developers use this skill to list, create, edit, complete, abandon, and triage TickTick tasks and projects from an agent session. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Commands can immediately create, edit, complete, or abandon remote TickTick tasks. <br>
-Mitigation: Review commands before execution and confirm task IDs with list or details output before mutating tasks. <br>
-Risk: OAuth credentials and tokens are stored on disk under ~/.clawdbot/credentials/ticktick-cli/. <br>
-Mitigation: Install only if the publisher is trusted with TickTick read/write access, protect local credential files, and revoke the OAuth app when no longer using the skill. <br>
-Risk: Batch abandon operations can affect multiple tasks at once. <br>
-Mitigation: Use batch operations only after verifying every task ID and prefer single-task commands for uncertain changes. <br>
+## Use Case:
 
+External users and developers use this skill to connect an agent to TickTick so it can list, create, edit, complete, and abandon tasks and manage project configuration.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/halr9000/ticktick-enhanced) <br>
-- [TickTick Open API Endpoint](https://api.ticktick.com/open/v1) <br>
-- [TickTick OAuth Endpoint](https://ticktick.com/oauth) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, yaml, configuration] <br>
-**Output Format:** [Terminal text with optional JSON or YAML command output.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands can read and immediately change remote TickTick task data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: release evidence; CLI command metadata also reports 0.2.0) <br>
+Risk: Persistent OAuth credentials grant the skill read/write access to TickTick tasks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if this access is acceptable, keep the credential store protected, and prefer a setup flow that receives the OAuth client secret interactively or through a protected channel.
+
+Risk: Task-changing commands can edit, complete, abandon, or batch-abandon remote TickTick tasks without an additional confirmation step.
+
+Mitigation: Review task IDs from machine-readable task output before issuing modifying commands, and require human approval before automated bulk changes.
+
+## Reference(s):
+
+- [ClawHub Ticktick skill page](https://clawhub.ai/halr9000/skills/ticktick-enhanced)
+- [TickTick Open API endpoint](https://api.ticktick.com/open/v1)
+- [TickTick OAuth endpoint](https://ticktick.com/oauth)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, YAML, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text, rich text, JSON, or YAML depending on command options.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May modify remote TickTick tasks through create, edit, complete, abandon, and batch-abandon commands.]
+
+## Skill Version(s):
+
+0.2.0 (source: ClawHub release evidence; artifact package.json reports 0.1.0 and _meta.json reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,54 @@
-## Description: <br>
-Analiza mercados, dólar, inversiones, macro, cripto y riesgo con foco conciso e incertidumbre explícita. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analiza mercados, dólar, inversiones, macro, cripto y riesgo con foco conciso e incertidumbre explícita.
 
-## Publisher: <br>
-[juanbastias](https://clawhub.ai/user/juanbastias) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[juanbastias](https://clawhub.ai/user/juanbastias)
 
-## Use Case: <br>
-External users use this skill for concise financial and market analysis across investments, USD/CLP and other currencies, Chilean and global macro context, cryptocurrencies, equities, news, and portfolio risk. It frames conclusions as scenarios with explicit uncertainty and risk caveats. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Market prices, rates, tax values, and financial news can become stale or be misread. <br>
-Mitigation: Verify time-sensitive values and news against primary or official sources before relying on the analysis. <br>
-Risk: Financial commentary may be mistaken for personalized investment advice or a guaranteed return. <br>
-Mitigation: Treat outputs as market commentary, avoid guarantees about returns or timing, and present conclusions as risk/reward scenarios. <br>
-Risk: Use of restricted financial news could create source-access or licensing issues. <br>
-Mitigation: Use only public or authorized content and do not bypass paywalls. <br>
+## Use Case:
 
+External users use this Spanish-language skill to analyze investments, currencies, crypto, Chilean and global markets, macro conditions, financial news, and portfolio risk. It frames conclusions as scenarios and risk/reward judgments rather than guarantees.
 
-## Reference(s): <br>
-- [Metodología](references/metodologia.md) <br>
-- [mindicador.cl API](https://mindicador.cl/api) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Concise prose with source caveats, uncertainty, and risk/reward framing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Market analysis can be outdated or misleading when prices, rates, laws, or news have changed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify current prices and official data before making decisions, especially for USD/CLP, rates, macro series, and market-moving news.
+
+Risk: Outputs may be mistaken for personal financial advice or guaranteed timing guidance.
+
+Mitigation: Treat outputs as market analysis, not personal financial advice; avoid guaranteed returns or best-entry claims and use scenario-based risk/reward framing.
+
+## Reference(s):
+
+- [Metodología](references/metodologia.md)
+- [mindicador.cl API](https://mindicador.cl/api)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Concise Spanish financial analysis with explicit source limits, stale-data caveats, and uncertainty.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

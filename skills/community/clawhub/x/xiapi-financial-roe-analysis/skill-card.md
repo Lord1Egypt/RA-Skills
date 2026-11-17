@@ -1,45 +1,57 @@
-## Description: <br>
-基于大虾皮财报命令对上市公司进行ROE/杜邦财务分析，用于单公司财务拆解、ROE驱动分析、盈利质量评估与结构化报告输出。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes public-company financial statements from DaxiAPI report data to produce ROE and DuPont breakdowns, profit-quality checks, leverage risk review, and structured financial reports.
 
-## Publisher: <br>
-[ksky521](https://clawhub.ai/user/ksky521) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ksky521](https://clawhub.ai/user/ksky521)
 
-## Use Case: <br>
-External users and analysts use this skill to analyze a listed company's financial quality after a stock code is available. It retrieves or accepts financial statement data, applies ROE and DuPont analysis, checks profitability and cash-flow quality, and produces a structured report without giving trading advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on the external DaxiAPI CLI and token-based access, so analysis can fail or be incomplete when credentials, permissions, network access, or API responses are unavailable. <br>
-Mitigation: Install only if the DaxiAPI service and CLI are trusted, prefer a pinned CLI version when reproducibility matters, avoid sharing real tokens in chat, and pause or narrow the analysis when data retrieval fails. <br>
-Risk: Generated financial analysis may be mistaken for investment advice or may overstate conclusions when source data is partial. <br>
-Mitigation: Treat outputs as financial analysis rather than buy or sell recommendations, require explicit data-source and limitation notes, and skip unsupported WACC, EVA, peer-ranking, or missing-field conclusions. <br>
+## Use Case:
 
+External finance-focused users and analysts use this skill when they have a stock code and need a structured ROE and DuPont financial quality analysis from DaxiAPI report data. It is not intended for intraday trading, short-term timing, technical-only analysis, valuation-only calls, or definitive buy/sell advice.
 
-## Reference(s): <br>
-- [ROE 深度分析框架](references/roe-framework.md) <br>
-- [行业分析规则](references/industry-rules.md) <br>
-- [报告模板](references/report-template.md) <br>
-- [CLI 命令与字段说明](references/cli-commands.md) <br>
-- [DaxiAPI](https://daxiapi.com) <br>
-- [ClawHub release page](https://clawhub.ai/ksky521/xiapi-financial-roe-analysis) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown report with tables and inline bash commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Quick mode targets concise answers; deep mode produces a modular financial analysis report with data-source and limitation notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: release evidence) <br>
+Risk: The skill runs an unpinned third-party npm CLI while handling an API token.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned and reviewed DaxiAPI CLI version, keep the token least-privilege and revocable, and prevent full token values from being printed or retained.
+
+Risk: Financial reports can be misleading if source data is incomplete, unauthenticated, or mixed across reporting periods.
+
+Mitigation: Require source data before analysis, label missing fields and failed PDF cross-checks, avoid fabricated peer comparisons or WACC values, and keep conclusions within the available evidence.
+
+## Reference(s):
+
+- [ROE 深度分析框架](references/roe-framework.md)
+- [行业分析规则](references/industry-rules.md)
+- [报告模板](references/report-template.md)
+- [CLI 命令与字段说明](references/cli-commands.md)
+- [DaxiAPI](https://daxiapi.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown financial analysis report with tables and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May request a stock code, token setup, or user-provided financial data before drawing conclusions; financial conclusions should stay within available data boundaries.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

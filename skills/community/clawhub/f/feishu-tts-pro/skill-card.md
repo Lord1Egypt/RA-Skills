@@ -1,46 +1,61 @@
-## Description: <br>
-飞书TTS Pro converts Chinese text to speech with Edge-TTS, transcodes it with FFmpeg, uploads it to Feishu, and sends it as an audio message. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+将文字转换为语音并以飞书语音气泡消息发送，使用 Edge-TTS 生成中文语音、FFmpeg 转码为 ogg/opus，并上传到飞书作为 audio 类型消息。
 
-## Publisher: <br>
-[minybear](https://clawhub.ai/user/minybear) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[minybear](https://clawhub.ai/user/minybear)
 
-## Use Case: <br>
-Developers and agent operators use this skill when an agent needs to reply by voice or send TTS narration through Feishu. It generates speech from supplied text, converts the audio to Feishu-compatible opus format, and sends it to a configured recipient. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires Feishu app credentials and can send generated voice messages. <br>
-Mitigation: Use least-privileged Feishu app permissions, protect FEISHU_APP_SECRET, and install only in environments where outbound Feishu messaging is approved. <br>
-Risk: A misconfigured default recipient can send audio messages to the wrong Feishu user. <br>
-Mitigation: Set FEISHU_DEFAULT_USER carefully, pass an explicit recipient when needed, and test with non-sensitive text before routine use. <br>
-Risk: Text supplied to the TTS workflow may be processed by external services and sent through Feishu. <br>
-Mitigation: Avoid sending secrets, regulated data, or sensitive personal information unless the organization permits this workflow. <br>
+## Use Case:
 
+Developers and agent operators use this skill when an agent should reply by converting Chinese text into a Feishu voice bubble message for a configured recipient.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/minybear/feishu-tts-pro) <br>
-- [Publisher profile](https://clawhub.ai/user/minybear) <br>
-- [Feishu tenant access token API](https://open.feishu.cn/open-apis/auth/v3/tenant_access_token/internal) <br>
-- [Feishu file upload API](https://open.feishu.cn/open-apis/im/v1/files) <br>
-- [Feishu message send API](https://open.feishu.cn/open-apis/im/v1/messages?receive_id_type=open_id) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, API calls, Audio files, Status text] <br>
-**Output Format:** [Command-line text output with generated audio uploaded through Feishu APIs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Feishu app credentials, a recipient open_id, Python with edge-tts, and FFmpeg.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: Input text is sent through Edge-TTS/Microsoft and Feishu as part of voice message delivery.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid secrets or regulated personal data in messages unless the deployment has approved those services and data flows.
+
+Risk: Feishu app credentials and recipient identifiers control who can send and receive generated audio.
+
+Mitigation: Use a least-privilege Feishu app, protect FEISHU_APP_ID and FEISHU_APP_SECRET, and prefer an explicit recipient for sensitive sends.
+
+Risk: Temporary audio files are created on the local machine during conversion.
+
+Mitigation: Avoid shared machines unless temporary-file handling is reviewed and hardened for the deployment environment.
+
+Risk: The runtime depends on the locally installed edge-tts package.
+
+Mitigation: Pin edge-tts in the execution environment and review dependency updates before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/minybear/skills/feishu-tts-pro)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, audio messages, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and environment configuration; runtime output is a Feishu audio message.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js 18+, Python 3.8+ with edge-tts, FFmpeg, and Feishu app credentials.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

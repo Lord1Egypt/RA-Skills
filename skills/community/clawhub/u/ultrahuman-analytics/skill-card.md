@@ -1,40 +1,54 @@
-## Description: <br>
-Advanced Ultrahuman analytics, trends, predictions, and reports for multi-day analysis, prediction, correlation, and export from Ultrahuman ring or CGM data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Advanced Ultrahuman analytics, trends, predictions, and reports for multi-day analysis, prediction, correlation, and export from Ultrahuman ring/CGM data.
 
-## Publisher: <br>
-[Duzafizzl](https://clawhub.ai/user/Duzafizzl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[duzafizzl](https://clawhub.ai/user/duzafizzl)
 
-## Use Case: <br>
-External users and developers use this skill to summarize, compare, and report multi-day Ultrahuman sleep, recovery, movement, and optional glucose metrics. It supports descriptive analytics and copy-ready reports while avoiding medical diagnosis or treatment advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill retrieves and summarizes sensitive health and wellness data, including sleep, recovery, movement, and possible glucose metrics. <br>
-Mitigation: Install only for trusted Ultrahuman MCP connections, confirm the email account and date range before use, and share outputs only with appropriate consent. <br>
-Risk: Users may over-rely on wellness patterns or readiness statements as medical advice. <br>
-Mitigation: Treat outputs as informational and descriptive only, and consult qualified medical professionals for diagnosis, treatment, or health decisions. <br>
+## Use Case:
 
+External users and agents use this skill to summarize and compare Ultrahuman sleep, recovery, activity, and glucose metrics across multiple days. It supports weekly reports, trend checks, readiness-style summaries, coach-ready views, and copy-paste-ready Markdown reports while keeping analysis descriptive and non-medical.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/Duzafizzl/ultrahuman-analytics) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Analysis, Guidance] <br>
-**Output Format:** [Markdown summaries, tables, and bullet lists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only, descriptive outputs based on returned Ultrahuman metrics; no medical advice.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill retrieves sensitive sleep, recovery, activity, and possible glucose data from Ultrahuman.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only where ULTRAHUMAN_EMAIL points to the intended account, and confirm the email and date range before reports in shared or delegated workspaces.
+
+Risk: Health analytics may be mistaken for medical advice.
+
+Mitigation: Keep responses descriptive, read-only, and non-medical, and avoid diagnosis or treatment recommendations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/duzafizzl/skills/ultrahuman-analytics)
+- [ClawHub publisher profile](https://clawhub.ai/user/duzafizzl)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown summaries, tables, bullets, and copy-paste-ready report text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only descriptive analytics based on returned Ultrahuman metrics; no medical diagnosis or treatment advice.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

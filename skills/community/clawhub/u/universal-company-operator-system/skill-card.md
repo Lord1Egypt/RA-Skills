@@ -1,47 +1,66 @@
-## Description: <br>
-A project-agnostic AI executive operator pack that routes business, product, finance, legal, growth, operations, customer success, data, design, and community requests to specialized role operators. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A complete AI executive team for running, analyzing, or building companies, products, startups, creator brands, nonprofits, and internal initiatives by routing business requests to specialized operator roles.
 
-## Publisher: <br>
-[gwapupward-hub](https://clawhub.ai/user/gwapupward-hub) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gwapupward-hub](https://clawhub.ai/user/gwapupward-hub)
 
-## Use Case: <br>
-External users and business teams use this skill to route broad company-building requests to role-specific operators and receive structured plans, analyses, drafts, decision memos, and next-action lists. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Business, legal, financial, compliance, or operational outputs may be mistaken for final professional advice. <br>
-Mitigation: Use outputs as drafts and decision support, and review them with qualified people before acting on legal, finance, or compliance topics. <br>
-Risk: Requests involving wallets, purchases, credentials, private customer data, or external authority could create security or business exposure. <br>
-Mitigation: Do not provide wallet keys, credentials, private customer data, or authority to spend, publish, message, sign, deploy, or delete. <br>
-Risk: Command and Night Shift modes can imply irreversible external actions such as sending, publishing, spending, signing, deploying, or deleting. <br>
-Mitigation: Keep those outputs draft-only and require explicit human approval before any irreversible action. <br>
+## Use Case:
 
+Employees, founders, operators, and business teams use this skill to route broad or function-specific company requests into strategy, product, marketing, sales, operations, finance, customer success, analytics, design, legal/compliance, community, or night-shift planning workflows. It produces decision-ready plans, drafts, analyses, briefs, task lists, and recommendations for human review and execution.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/gwapupward-hub/universal-company-operator-system) <br>
-- [README](README.md) <br>
-- [Command Console](COMMAND_CONSOLE.md) <br>
-- [Night Shift Workflow](NIGHT_SHIFT.md) <br>
-- [Morning Brief Output Contract](MORNING_BRIEF.md) <br>
-- [Night Shift Safety Rules](SAFETY_RULES.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Configuration] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include structured plans, analyses, drafts, scripts, task lists, checklists, specs, and Morning Brief sections; external actions remain draft-only or approval-gated.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.2 (source: server release evidence) <br>
+Risk: The skill may activate for broad business-adjacent requests and produce wider routing than the user intended.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use explicit /run commands or name the desired operator when a narrower response is needed.
+
+Risk: Finance, legal, compliance, contract, and policy outputs may be mistaken for professional advice.
+
+Mitigation: Treat these outputs as planning drafts or risk-spotting aids and review them with qualified professionals before acting.
+
+Risk: Drafts or recommendations could imply irreversible actions such as publishing, spending money, deploying changes, sending messages, signing contracts, deleting data, or exposing secrets.
+
+Mitigation: Keep generated artifacts in draft form, place unsafe or irreversible actions under Decisions Needed, and require explicit human approval and execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gwapupward-hub/skills/universal-company-operator-system)
+- [README](artifact/README.md)
+- [Command console](artifact/COMMAND_CONSOLE.md)
+- [Operating system layer](artifact/OPERATING_SYSTEM.md)
+- [Multi-agent orchestration system](artifact/orchestration.md)
+- [Night shift workflow](artifact/NIGHT_SHIFT.md)
+- [Morning brief output contract](artifact/MORNING_BRIEF.md)
+- [Night shift safety rules](artifact/SAFETY_RULES.md)
+- [Operator manifest](artifact/operator_manifest.json)
+- [Night shift manifest](artifact/night_shift_manifest.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown with structured plans, briefs, drafts, checklists, scripts, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Draft labels and Decisions Needed sections are used for actions requiring human approval.]
+
+## Skill Version(s):
+
+1.1.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

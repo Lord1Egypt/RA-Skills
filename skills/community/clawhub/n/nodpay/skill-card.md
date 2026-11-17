@@ -1,46 +1,59 @@
-## Description: <br>
-Propose on-chain payments from a shared wallet. Use when user asks to send crypto, make a payment, or create a shared wallet. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Propose on-chain payments from a shared wallet when a user asks to send crypto, make a payment, or create a shared wallet.
 
-## Publisher: <br>
-[xhyumiracle](https://clawhub.ai/user/xhyumiracle) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xhyumiracle](https://clawhub.ai/user/xhyumiracle)
 
-## Use Case: <br>
-External users and agent developers use NodPay to set up a shared crypto wallet, generate an agent signing key, and propose on-chain payments that require human approval before execution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill participates in crypto payment proposal workflows and can prepare proposals with incorrect chain, recipient, amount, or nonce values. <br>
-Mitigation: Require personal review of every approval link, chain, recipient, amount, and nonce before signing or approving a transaction. <br>
-Risk: The agent signing key is stored locally in ~/.nodpay/.env and could authorize proposals if exposed. <br>
-Mitigation: Protect ~/.nodpay/.env like a wallet credential, keep restrictive file permissions, and avoid sharing the key or wallet files. <br>
-Risk: The workflow depends on the third-party nodpay npm package, nodpay.ai service, and public RPC endpoints. <br>
-Mitigation: Verify the installed nodpay package and source before use, and confirm the official nodpay.ai domain when creating wallets or reviewing approvals. <br>
+## Use Case:
 
+External users and agents use this skill to set up shared crypto wallets and prepare on-chain payment proposals for human approval. It is suited to workflows where an agent drafts transaction details but a human must review and approve before funds move.
 
-## Reference(s): <br>
-- [NodPay homepage](https://nodpay.ai) <br>
-- [NodPay CLI source](https://github.com/xhyumiracle/nodpay-cli) <br>
-- [Safe multisig infrastructure](https://safe.global) <br>
-- [ClawHub skill page](https://clawhub.ai/xhyumiracle/nodpay) <br>
-- [Publisher profile](https://clawhub.ai/user/xhyumiracle) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, json] <br>
-**Output Format:** [Markdown with inline shell commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces payment proposal guidance and CLI commands; the CLI may return JSON containing approval URLs, nonce data, transaction lists, and gas estimates.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.33 (source: server release metadata) <br>
+Risk: The skill handles crypto payment proposals and persistent local signing authority, so incorrect transaction details can put funds at risk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify every recipient, chain, amount, nonce, and approval URL independently before asking the user to approve a transaction.
+
+Risk: The agent signing key is stored on disk under ~/.nodpay, making local file access controls important.
+
+Mitigation: Restrict access to ~/.nodpay, keep ~/.nodpay/.env at chmod 600, and avoid sharing or exposing the directory in broader agent workspaces.
+
+Risk: The documented workflow runs the NodPay CLI through unpinned npm execution.
+
+Mitigation: Prefer a pinned or preinstalled reviewed CLI version and limit its access to only the NodPay configuration and wallet files needed for the task.
+
+## Reference(s):
+
+- [NodPay ClawHub Skill Page](https://clawhub.ai/xhyumiracle/skills/nodpay)
+- [NodPay Homepage](https://nodpay.ai)
+- [Safe](https://safe.global)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, JSON]
+
+**Output Format:** [Markdown guidance with shell commands and JSON snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces wallet setup instructions, transaction proposal commands, approval links, nonce checks, and local wallet configuration guidance.]
+
+## Skill Version(s):
+
+0.2.33 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

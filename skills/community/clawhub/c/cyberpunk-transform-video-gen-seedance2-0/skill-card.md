@@ -1,45 +1,60 @@
-## Description: <br>
-Re-skins everyday clip concepts into neon-drenched, high-tech urban future videos using WeryAI Seedance 2.0. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Re-skin any everyday clip concept into neon-drenched, high-tech, augmented urban futures using WeryAI Seedance 2.0 only.
 
-## Publisher: <br>
-[zoucdr](https://clawhub.ai/user/zoucdr) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zoucdr](https://clawhub.ai/user/zoucdr)
 
-## Use Case: <br>
-External users and developers use this skill to transform text briefs or public HTTPS image URLs into cyberpunk-styled short videos through WeryAI Seedance 2.0. The skill expands prompts, confirms generation parameters, runs the bundled CLI, and returns playable video links or clear failure details. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a WeryAI API key and paid generation authority. <br>
-Mitigation: Install it only when the publisher is trusted, keep WERYAI_API_KEY in the runtime environment rather than files, and use a scoped or isolated account where possible. <br>
-Risk: Generation calls may consume credits, and re-running the wait command creates new paid tasks. <br>
-Mitigation: Review the confirmation table before each run and confirm duration, resolution, audio, prompt, and image URL before submitting. <br>
-Risk: Prompts and public image URLs are sent to WeryAI and may contain sensitive or proprietary content. <br>
-Mitigation: Do not include secrets, private URLs, personal data, or proprietary media unless sharing that content with WeryAI is authorized. <br>
-Risk: The bundled script requires a model parameter but does not enforce this skill's allowed model. <br>
-Mitigation: Set and confirm "model":"SEEDANCE_2_0" for every generation request. <br>
+## Use Case:
 
+External users and developers use this skill to turn text briefs or public HTTPS image inputs into short cyberpunk-style videos through WeryAI Seedance 2.0. It guides prompt expansion, parameter confirmation, CLI execution, and returning playable video links.
 
-## Reference(s): <br>
-- [WeryAI video CLI and JSON reference](resources/WERYAI_VIDEO_API.md) <br>
-- [ClawHub skill page](https://clawhub.ai/zoucdr/cyberpunk-transform-video-gen-seedance2-0) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline links, confirmation tables, and shell commands using JSON parameters] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires WERYAI_API_KEY, Node.js 18+, paid network access to WeryAI, public HTTPS image URLs for image-to-video, and SEEDANCE_2_0 as the confirmed model.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.3 (source: server release metadata) <br>
+Risk: The skill can make paid WeryAI network calls using WERYAI_API_KEY.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a limited or separate WeryAI account where possible and require confirmation before each submission.
+
+Risk: The helper script can submit broader video-generation requests than the Seedance-only workflow describes.
+
+Mitigation: Before execution, verify the final JSON uses model SEEDANCE_2_0, allowed duration, resolution, and aspect ratio values, no negative_prompt, and only the intended HTTPS image input.
+
+Risk: Runtime credentials are required for generation and status checks.
+
+Mitigation: Keep WERYAI_API_KEY out of committed files and run the skill in a short-lived or isolated environment for higher assurance.
+
+## Reference(s):
+
+- [WeryAI video CLI and JSON reference](resources/WERYAI_VIDEO_API.md)
+- [ClawHub skill page](https://clawhub.ai/zoucdr/skills/cyberpunk-transform-video-gen-seedance2-0)
+- [WeryAI video tasks API host](https://api.weryai.com)
+- [WeryAI models registry API host](https://api-growth-agent.weryai.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with confirmation tables, inline shell commands, and playable video links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses WERYAI_API_KEY, Node.js 18+, public HTTPS image inputs, and JSON parameters constrained to SEEDANCE_2_0.]
+
+## Skill Version(s):
+
+0.1.3 (source: server release metadata; artifact frontmatter declares 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

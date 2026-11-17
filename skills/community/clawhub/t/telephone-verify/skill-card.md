@@ -1,43 +1,56 @@
-## Description: <br>
-Verifies whether a Chinese mobile phone number, real name, and national ID number match telecom real-name authentication records, and can return carrier, province, and city information. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Verifies whether a Chinese mobile phone number, real name, and ID card number match through Juhe telecom real-name authentication and can return carrier, province, and city information.
 
-## Publisher: <br>
-[xwzgit](https://clawhub.ai/user/xwzgit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xwzgit](https://clawhub.ai/user/xwzgit)
 
-## Use Case: <br>
-Developers and agents use this skill to submit a consented Chinese phone number, real name, and ID card number to Juhe for telecom real-name verification. It is intended for lawful identity-check workflows that need a structured match result and optional carrier or location metadata. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends full name, national ID number, and phone number to a third-party Juhe API. <br>
-Mitigation: Use only with a lawful, consented purpose and avoid retaining shared terminal output or transcripts containing identity data. <br>
-Risk: The security scan reports weak privacy controls for highly sensitive identity data. <br>
-Mitigation: Mask or suppress sensitive inputs and outputs before using this skill in shared environments or saved logs. <br>
+## Use Case:
 
+External users and developers use this skill to check lawful, consented telecom identity verification for a Chinese phone number, real name, and ID card number. It is intended for workflows that need a concise match result plus optional carrier and location details.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xwzgit/telephone-verify) <br>
-- [Juhe API reference](references/api.md) <br>
-- [Juhe API endpoint](https://v.juhe.cn/telecom/query) <br>
-- [Juhe website](https://www.juhe.cn/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Shell commands, Code, Configuration, Text, JSON] <br>
-**Output Format:** [Plain text or JSON verification result] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and a JUHE_TELEPHONE_VERIFY_KEY API key; the metadata also references JUHE_TELEPHON_VERIFY_KEY.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill processes highly sensitive identity data and the Juhe API key may appear in request URLs or terminal logs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only lawful, consented verification workflows; prefer POST bodies, mask output and logs by default, and confirm before sending identity data to Juhe.
+
+Risk: The security evidence says third-party data sharing is under-disclosed.
+
+Mitigation: Review Juhe's data handling terms and disclose third-party processing before deploying the skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xwzgit/skills/telephone-verify)
+- [Juhe API reference](references/api.md)
+- [Juhe website](https://www.juhe.cn/)
+- [Juhe telecom query endpoint](https://v.juhe.cn/telecom/query)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance and command-line output, with optional JSON results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Juhe API key and user-provided mobile number, real name, and ID card number.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

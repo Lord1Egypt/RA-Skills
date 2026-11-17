@@ -1,43 +1,54 @@
-## Description: <br>
-运势晴雨表 presents weekly horoscope-style fortune analysis as a weather forecast, turning zodiac or birth-date inputs into a structured Chinese-language report with trend summaries, scores, and action suggestions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+运势晴雨表 presents weekly horoscope readings as weather-style forecasts, turning zodiac signs or birth dates into structured reports with career, finance, relationship, daily action, and luck-index guidance.
 
-## Publisher: <br>
-[zaj7373](https://clawhub.ai/user/zaj7373) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zaj7373](https://clawhub.ai/user/zaj7373)
 
-## Use Case: <br>
-Chinese-speaking users and horoscope enthusiasts use this skill to request entertainment-oriented weekly fortune reports from a zodiac sign or birth date. It is suited for casual planning prompts, not professional financial, medical, legal, weather, or scientific advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks for zodiac signs or birth-date details and may be used to ask about another person. <br>
-Mitigation: Avoid entering another person's birth date or birth time without consent. <br>
-Risk: Fortune output may be mistaken for serious financial, medical, legal, or life decision advice. <br>
-Mitigation: Treat results as entertainment and do not rely on them for serious decisions. <br>
-Risk: The skill can resemble real weather forecasting because it uses weather metaphors. <br>
-Mitigation: Use actual weather services for meteorological forecasts. <br>
+## Use Case:
 
+Chinese-speaking users and horoscope enthusiasts use this skill to generate entertainment-oriented weekly horoscope reports from a zodiac sign or birth date. The reports use weather metaphors and structured tables to summarize career, finance, relationship, daily action, and lucky-index guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zaj7373/fortune-weather-guide) <br>
-- [Packaged skill guide](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Chinese-language Markdown report with tables, scores, and concise recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Typical reports cover weekly overview, fortune temperature, career, wealth, relationship, daily reminders, and five score dimensions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Users may treat entertainment horoscope suggestions about career, relationships, or finance as professional advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present outputs as entertainment and reference material only, and avoid relying on them for financial, medical, legal, psychological, or other consequential decisions.
+
+Risk: Weather metaphors may be mistaken for real meteorological forecasts.
+
+Mitigation: Make clear that sunny, cloudy, rainy, stormy, and temperature labels describe horoscope tone rather than real weather conditions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zaj7373/skills/fortune-weather-guide)
+- [Publisher profile](https://clawhub.ai/user/zaj7373)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown report in Simplified Chinese with headings, tables, scores, and weather-style labels]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Entertainment and reference-oriented horoscope output; not professional financial, medical, legal, psychological, academic astrology, or meteorological advice.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,47 +1,61 @@
-## Description: <br>
-Short Drama - Douyin Feed tracks Douyin short-drama trends, filters popular works by likes, clusters genres, and generates local HTML reports with engagement data and creative insights. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tracks trending Douyin short drama content, clusters results by genre, and generates local HTML daily reports with engagement data and creative insights.
 
-## Publisher: <br>
-[redfox-data](https://clawhub.ai/user/redfox-data) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[redfox-data](https://clawhub.ai/user/redfox-data)
 
-## Use Case: <br>
-External creators, MCN operators, and content analysts use this skill to query Douyin short-drama data, identify trending genres and creators, and generate daily or targeted trend reports for content planning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles a RedFoxHub API key. <br>
-Mitigation: Use a revocable API key through REDFOX_API_KEY and avoid passing, printing, logging, or hardcoding the full key. <br>
-Risk: The generated HTML report contains externally sourced Douyin content and is opened automatically in the local browser. <br>
-Mitigation: Review generated reports before interacting with links or media, and keep browser protections enabled. <br>
-Risk: The skill writes local cache and report files. <br>
-Mitigation: Inspect and remove files under ~/.workbuddy/cache and ~/Downloads/QoderReports according to local data-retention needs. <br>
+## Use Case:
 
+External creators, MCN operators, and content analysts use this skill to monitor Douyin short drama trends, identify high-engagement genres and creators, and produce recurring local reports for topic research and operations planning.
 
-## Reference(s): <br>
-- [Core workflow](references/core_workflow.md) <br>
-- [Usage examples](references/examples.md) <br>
-- [RedFoxHub](https://redfox.hk/) <br>
-- [RedFoxHub API key settings](https://redfox.hk/settings/api-keys?souce=github) <br>
-- [RedFoxHub Douyin short-drama API endpoint](https://redfox.hk/story/api/parseWork/queryPlayletMsgs) <br>
-- [ClawHub skill page](https://clawhub.ai/redfox-data/playlet-douyin-feed) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, HTML files, Analysis, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown summary plus locally generated HTML report files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires REDFOX_API_KEY; writes cache files under ~/.workbuddy/cache and report files under ~/Downloads/QoderReports.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Untrusted remote API content is written into generated HTML reports without escaping.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if the RedFoxHub data source is trusted, review generated reports before sharing them, and avoid opening reports in highly privileged browser sessions until report generation is hardened.
+
+Risk: The skill requires a RedFoxHub API key and contacts redfox.hk.
+
+Mitigation: Use a revocable key with the minimum practical scope, keep it in REDFOX_API_KEY, and rotate it if it is exposed in logs, prompts, or output files.
+
+Risk: The skill creates local cache and report files and opens generated reports in the browser.
+
+Mitigation: Run it under a normal user account, inspect the configured output directory, and clear local cache or reports when they are no longer needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/redfox-data/skills/playlet-douyin-feed)
+- [Core workflow](artifact/references/core_workflow.md)
+- [Usage examples](artifact/references/examples.md)
+- [RedFoxHub](https://redfox.hk/)
+- [RedFoxHub API key settings](https://redfox.hk/settings/api-keys?souce=github)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown trend summary with shell commands and generated local HTML report files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires REDFOX_API_KEY, writes local cache and report files, and may open generated reports in the user's browser.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,180 @@
+{
+  "card_id": "WQ-EXP-014",
+  "source_type": "clinical_experience",
+  "source_file": "王琦国医大师辨体-辨病-辨证相结合学术思想与临床经验概要_姜敏.pdf",
+  "title": "京津冀豫国医名师专病专科薪火传承工程启动仪式",
+  "authors": [
+    "经验概要"
+  ],
+  "year": 2023,
+  "language": "zh",
+  "experience_type": "treatment_method",
+  "clinical_focus": {
+    "disease": "",
+    "syndrome": "",
+    "constitution": []
+  },
+  "diagnostic_approach": {},
+  "treatment_approach": {
+    "main_formula": "",
+    "related_formulas": [],
+    "principle": "清热利湿",
+    "herbs": [
+      "黄芪",
+      "白术",
+      "防风",
+      "柴胡",
+      "茯苓",
+      "甘草",
+      "泽泻",
+      "丹皮"
+    ]
+  },
+  "case_studies": [],
+  "clinical_insights": "",
+  "knowledge_points": [
+    {
+      "category": "insight",
+      "content": "近４０年来 ， 王琦国医大师在 《灵枢》有关体质 分类诸篇的基础上 ， 结合现代知识和临床实践 ， 升华出完整的中医体质学论点 ， 创立并构建了 中医体质学 ＾",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "diagnosis",
+      "content": "在中医体质学的研宄中 ， 王琦国医大师提出了 辨体一辨病一辨证相结合的多元化诊疗思想 ， 丰富和发展了方老的诊疗思想 ， 成为王琦教授 的重要学术思想",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "diagnosis",
+      "content": "《伤寒杂病论》 的 “ 辨证论治 ” 中 ， 始终贯穿着以体质 为本的治疗思想 ， 初步体现了辨体论治的临证思维 ５ 后世医家在不同时代 ， 根据其自身临床体会 ， 将 《内经》 及 《伤寒杂病论》的辨体思想逐步在临床中运用和深化",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "treatment",
+      "content": "治疗原则为清热利湿。",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "treatment",
+      "content": "常用药物包括黄芪、白术、防风、柴胡、茯苓、甘草、泽泻、丹皮。",
+      "importance": "high",
+      "evidence_level": "C"
+    }
+  ],
+  "related_constitutions": [],
+  "related_diseases": [
+    "高血压",
+    "糖尿病"
+  ],
+  "evidence_sentences": [
+    {
+      "sentence": "近４０年来 ， 王琦国医大师在 《灵枢》有关体质 分类诸篇的基础上 ， 结合现代知识和临床实践 ， 升华出完整的中医体质学论点 ， 创立并构建了 中医体质学 ＾",
+      "section": "main_text",
+      "claim_type": "statement",
+      "page_num": 1
+    },
+    {
+      "sentence": "在中医体质学的研宄中 ， 王琦国医大师提出了 辨体一辨病一辨证相结合的多元化诊疗思想 ， 丰富和发展了方老的诊疗思想 ， 成为王琦教授 的重要学术思想",
+      "section": "main_text",
+      "claim_type": "statement",
+      "page_num": 1
+    },
+    {
+      "sentence": "《伤寒杂病论》 的 “ 辨证论治 ” 中 ， 始终贯穿着以体质 为本的治疗思想 ， 初步体现了辨体论治的临证思维 ５ 后世医家在不同时代 ， 根据其自身临床体会 ， 将 《内经》 及 《伤寒杂病论》的辨体思想逐步在临床中运用和深化",
+      "section": "main_text",
+      "claim_type": "statement",
+      "page_num": 1
+    }
+  ],
+  "research_focus": {
+    "constitution_type": [],
+    "disease": [
+      "高血压",
+      "糖尿病"
+    ],
+    "topic": []
+  },
+  "page_info": {
+    "total_pages": 5,
+    "sections": {}
+  },
+  "created_at": "2026-04-22T15:38:13.658929",
+  "methods": {},
+  "_field_meta": {
+    "title": {
+      "confidence": 0.8,
+      "source": "migrated",
+      "level": "medium",
+      "reasoning": "Confidence estimated during migration from legacy cards"
+    },
+    "authors": {
+      "confidence": 0.8,
+      "source": "migrated",
+      "level": "medium",
+      "reasoning": "Confidence estimated during migration from legacy cards"
+    },
+    "year": {
+      "confidence": 0.85,
+      "source": "migrated",
+      "level": "high",
+      "reasoning": "Confidence estimated during migration from legacy cards"
+    },
+    "journal": {
+      "confidence": 0.0,
+      "source": "none",
+      "level": "none",
+      "reasoning": "Field not populated in original extraction"
+    },
+    "doi": {
+      "confidence": 0.0,
+      "source": "none",
+      "level": "none",
+      "reasoning": "Field not populated in original extraction"
+    },
+    "keywords": {
+      "confidence": 0.0,
+      "source": "none",
+      "level": "none",
+      "reasoning": "Field not populated in original extraction"
+    },
+    "abstract": {
+      "confidence": 0.0,
+      "source": "none",
+      "level": "none",
+      "reasoning": "Field not populated in original extraction"
+    },
+    "conclusions": {
+      "confidence": 0.0,
+      "source": "none",
+      "level": "none",
+      "reasoning": "Field not populated in original extraction"
+    }
+  },
+  "_review": {
+    "status": "needs_review",
+    "priority": 2,
+    "fields": [
+      "doi",
+      "title",
+      "journal",
+      "keywords",
+      "abstract",
+      "conclusions"
+    ],
+    "thresholds_used": {
+      "doi": 0.95,
+      "title": 0.85,
+      "journal": 0.8,
+      "keywords": 0.8,
+      "abstract": 0.7,
+      "conclusions": 0.7
+    },
+    "auto_reviewed_at": "2026-04-25T15:10:31.531431",
+    "manual_reviewed_at": null,
+    "reviewer_notes": "Confidence data backfilled by migration script",
+    "migrated_at": "2026-04-25T15:10:31.531440"
+  }
+}

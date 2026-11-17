@@ -2,7 +2,11 @@
 
 ## Intent
 
-`ia-meta-prompting` is a `meta`-class skill (patterns about prompts, agents, or skills themselves). Structured reasoning modifiers (/think, /verify, /adversarial, /edge, /confidence, /assumptions, etc.) to stress-test decisions, surface assumptions, or enumerate edge cases. Use when validating an important design, architecture decision, or ambiguous plan before committing.
+`ia-meta-prompting` is a `meta`-class skill (patterns about prompts, agents, or
+skills themselves). Structured decision modifiers (/think, /verify,
+/adversarial, /edge, /confidence, /assumptions, etc.) stress-test conclusions,
+evidence, assumptions, alternatives, and edge cases. Use when validating an
+important design, architecture decision, or ambiguous plan before committing.
 
 ## Scope
 
@@ -18,7 +22,7 @@ Out of scope:
 ## Trigger Context
 
 - Class: `meta`
-- Hook regex: `plugins/compound-engineering/hooks/skill-patterns.sh` -> `SKILL_PATTERNS[ia-meta-prompting]`
+- Hook regex: `plugins/whetstone/hooks/skill-patterns.sh` -> `SKILL_PATTERNS[ia-meta-prompting]`
 - Common requests (from fixture should_trigger):
   - "argue against this architectural decision before we commit"
   - "what could break if we deploy this change to production"
@@ -32,11 +36,11 @@ Out of scope:
 
 Authoritative sources:
 
-- `SKILL.md` -- runtime instructions and reference routing.
-- `references/*.md` -- bundled supplementary content (0 file(s)).
-- `distillery/tests/fixtures/triggers/ia-meta-prompting.jsonl` -- positive and negative trigger phrasings under regression test.
-- `plugins/compound-engineering/hooks/skill-patterns.sh` -- regex pattern that fires this skill.
-- `distillery/.eval-data/ia-meta-prompting/` -- harvested session examples (when present).
+- `SKILL.md`: runtime instructions and reference routing.
+- `references/*.md`: bundled supplementary content (0 file(s)).
+- `distillery/tests/fixtures/triggers/ia-meta-prompting.jsonl`: positive and negative trigger phrasings under regression test.
+- `plugins/whetstone/hooks/skill-patterns.sh`: regex pattern that fires this skill.
+- `distillery/.eval-data/ia-meta-prompting/`: harvested session examples (when present).
 
 Data that must not be stored in this skill or its references:
 
@@ -49,7 +53,7 @@ Data that must not be stored in this skill or its references:
 | Dimension | Status | Evidence |
 |---|---|---|
 | Trigger fixtures | complete | distillery/tests/fixtures/triggers/ia-meta-prompting.jsonl (>=5 should_trigger, >=5 should_not_trigger) |
-| Hook regex pattern | complete | plugins/compound-engineering/hooks/skill-patterns.sh (`SKILL_PATTERNS[ia-meta-prompting]`) |
+| Hook regex pattern | complete | plugins/whetstone/hooks/skill-patterns.sh (`SKILL_PATTERNS[ia-meta-prompting]`) |
 | Reference architecture | n/a | no references; SKILL.md is self-contained |
 | Real-usage signal | <!-- populated by harvest-sessions when sessions exist --> | distillery/.eval-data/ia-meta-prompting/ (created by harvest-sessions) |
 
@@ -86,4 +90,4 @@ Acceptance gates:
 - Update this `SPEC.md` when intent, scope, evidence model, evaluation gates, or maintenance expectations change.
 - Update the trigger fixture when adding new positive phrasings, removing stale ones, or expanding scope (the 5/5 floor is a hard validator gate).
 - Update the hook regex in `skill-patterns.sh` whenever fixture positives expose a missed phrasing; verify F1 = 1.0 with `eval-triggers` before committing.
-- Run the full release pipeline via `/release` -- never bump versions or update CHANGELOG.md from a per-skill edit.
+- Run the full release pipeline via `/release`; never bump versions or update CHANGELOG.md from a per-skill edit.

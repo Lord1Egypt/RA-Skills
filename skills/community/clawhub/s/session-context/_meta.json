@@ -1,6 +1,22 @@
 {
-  "ownerId": "kn7fhrwqcf9xm6t25veg4sgs19845wps",
+  "name": "Session Memory & Summarization",
   "slug": "session-context",
+  "description": "Automatically loads recent conversation memory into new sessions and generates AI summaries during compaction to maintain continuity across conversations. Preserves the last 10 raw messages verbatim for exact conversation resumption.",
+  "author": "AniBot (Thomas)",
   "version": "0.2.0",
-  "publishedAt": 1775254560030
+  "license": "MIT",
+  "tags": [
+    "memory",
+    "session",
+    "summarization",
+    "continuity",
+    "ai"
+  ],
+  "hooks": [
+    "session:start",
+    "session:compact:before"
+  ],
+  "repository": "https://github.com/animo66/openclaw-skills",
+  "homepage": "https://clawhub.ai/skills/session-context",
+  "minOpenClawVersion": "0.29.0"
 }

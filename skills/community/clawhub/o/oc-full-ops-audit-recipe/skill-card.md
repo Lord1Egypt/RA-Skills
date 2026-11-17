@@ -1,41 +1,51 @@
-## Description: <br>
-End-to-end OpenClaw audit and remediation recipe for gateway, channels, nodes, security, and memory sync. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+End-to-end OpenClaw audit and remediation recipe for gateway, channels, nodes, security, and memory sync.
 
-## Publisher: <br>
-[xyezir](https://clawhub.ai/user/xyezir) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[xyezir](https://clawhub.ai/user/xyezir)
 
-## Use Case: <br>
-Developers and operations engineers use this skill to run a repeatable OpenClaw operational audit, classify findings, apply approved fixes, verify deltas, and document outcomes. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Operational fixes on real systems may be disruptive if applied without review. <br>
-Mitigation: Require explicit approval before disruptive changes, record rollback notes, and verify deltas after each fix. <br>
-Risk: Audit notes or memory updates may expose secrets, host details, or sensitive security findings. <br>
-Mitigation: Avoid writing secrets, tokens, host details, or sensitive security findings into shared or daily memory. <br>
-Risk: Audit actions may affect systems outside the user's authority. <br>
-Mitigation: Limit checks and remediation to systems the operator controls. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/xyezir/oc-full-ops-audit-recipe) <br>
+## Use Case:
+
+Developers and operations engineers use this skill to run a repeatable OpenClaw operational audit, prioritize findings, verify fixes, and document outcomes.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The workflow may lead an agent to propose disruptive operational fixes.
+
+Mitigation: Keep explicit approval gates in place before applying changes, especially for gateway, security, node, or channel operations.
+
+Risk: Audit outcomes written to memory could expose sensitive operational details.
+
+Mitigation: Record only necessary summaries and avoid storing secrets, credentials, or sensitive infrastructure details.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with concise tables, action lists, verification notes, and operational guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include approval gates for disruptive changes, rollback notes, residual risk priorities, and memory update summaries.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+**Output Type(s):** [text, markdown, shell commands, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown with concise operational tables, action lists, verification notes, and command suggestions when appropriate]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include memory update summaries for daily and shared operational records.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

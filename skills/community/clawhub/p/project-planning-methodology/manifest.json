@@ -1,0 +1,9 @@
+{
+  "name": "project-planning-methodology",
+  "normalizedName": "project-planning-methodology",
+  "description": "项目计划制作方法论（WBS + CPM + RACI 三件套），用于回答「这个项目怎么排期」「任务怎么拆」「谁负责哪块」这类问题。覆盖工作分解结构（100% 规则 / 互斥 / 交付物导向 / 80 小时规则 / 编码）、关键路径法（正推逆推 / 浮动时间）、RACI 职责矩阵。拆解与排期按真实参照法挂到标准方法规则，不凭经验拍工期。当要求做项目计划、任务分解、排期、里程碑、责任人分配时使用。触发词：项目计划、任务分解、WBS、工作分解、关键路径、CPM、里程碑、甘特图、排期、RACI、责任人、project plan、work breakdown、critical path。本技能为通用方法论工具，非医疗器械 / 非医疗软件，无疗效或临床声明；详见包内免责声明。",
+  "author": "诺声(Logos)@SynomosAI",
+  "copyright": "SynomosAI",
+  "version": "1.0.0",
+  "license": "MIT"
+}

@@ -1,0 +1,23 @@
+# 保险理赔维权辅助分析
+
+name: insurance-claim-appeal
+version: 1.0.0
+description: |
+  保险理赔纠纷维权辅助分析工具。当客户的健康险（医疗险/重疾险）被拒赔时，逐条拆解拒赔理由、匹配法律依据、规划申诉路径，生成申诉函和投诉书。
+category: legal-finance
+triggers:
+  - 拒赔
+  - 理赔纠纷
+  - 保险拒赔
+  - 理赔申诉
+  - 被保险公司拒赔
+  - 理赔维权
+  - 重疾险拒赔
+  - 医疗险拒赔
+  - 怎么应对拒赔
+  - 保险理赔被拒
+author: 小包总
+license: MIT
+platforms:
+  - workbuddy
+  - openclaw

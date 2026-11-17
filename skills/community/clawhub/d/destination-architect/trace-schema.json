@@ -1,0 +1,179 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "destination-architect/trace-schema.json",
+  "title": "Destination Architect Run Trace",
+  "description": "过程可观测性契约：每次 destination-architect 运行产出一条 trace，供过程评测与校准回访使用。",
+  "type": "object",
+  "required": ["run_id", "timestamp", "steps_executed", "gates", "prediction_registered"],
+  "additionalProperties": false,
+  "properties": {
+    "run_id": {
+      "type": "string",
+      "description": "本次运行唯一标识"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "commission_type": {
+      "type": "string",
+      "enum": ["truth", "legitimacy", "mixed"],
+      "description": "Step 0 委托诊断结论：真相生产 / 合法性生产 / 混合"
+    },
+    "true_bottleneck": {
+      "type": "string",
+      "enum": ["analysis", "capital", "political", "capability"],
+      "description": "Step 0 真实瓶颈定位"
+    },
+    "steps_executed": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["step", "status"],
+        "additionalProperties": false,
+        "properties": {
+          "step": { "type": "integer", "minimum": 0, "maximum": 9 },
+          "name": { "type": "string" },
+          "status": { "type": "string", "enum": ["done", "skipped", "na"] },
+          "output_contract": { "type": "string", "description": "本步产出的契约名称" }
+        }
+      }
+    },
+    "gates": {
+      "type": "object",
+      "description": "G1–G8 硬门禁结果（由 scripts/check_gates.py 生成）",
+      "required": ["G1", "G2", "G3", "G4", "G5", "G6", "G7", "G8"],
+      "additionalProperties": false,
+      "properties": {
+        "G1": { "$ref": "#/definitions/gate" },
+        "G2": { "$ref": "#/definitions/gate" },
+        "G3": { "$ref": "#/definitions/gate" },
+        "G4": { "$ref": "#/definitions/gate" },
+        "G5": { "$ref": "#/definitions/gate" },
+        "G6": { "$ref": "#/definitions/gate" },
+        "G7": { "$ref": "#/definitions/gate" },
+        "G8": { "$ref": "#/definitions/gate" }
+      }
+    },
+    "parameter_slots": {
+      "type": "array",
+      "description": "策划案参数槽（Step 9）：无来源数值一律参数槽化并登记",
+      "items": {
+        "type": "object",
+        "required": ["name", "range", "source", "owner"],
+        "additionalProperties": false,
+        "properties": {
+          "name": { "type": "string" },
+          "range": { "type": "string" },
+          "source": { "type": "string", "description": "来源 / 补齐方式" },
+          "owner": { "type": "string" },
+          "blocked_decision": { "type": "string" }
+        }
+      }
+    },
+    "proposal": {
+      "type": "object",
+      "description": "策划案输出（Step 9）；四大落地要件齐备方为合格",
+      "additionalProperties": false,
+      "required": ["requisites"],
+      "properties": {
+        "requisites": {
+          "type": "object",
+          "description": "四大落地要件是否齐备",
+          "additionalProperties": false,
+          "required": ["implementation", "finance", "org_compliance", "space_offer"],
+          "properties": {
+            "implementation": { "type": "boolean" },
+            "finance": { "type": "boolean" },
+            "org_compliance": { "type": "boolean" },
+            "space_offer": { "type": "boolean" }
+          }
+        },
+        "compliance_closed": { "type": "boolean", "description": "合规是否闭环（未闭环不得开工）" }
+      }
+    },
+    "evidence_labels_used": {
+      "type": "object",
+      "description": "本次输出的证据标签计数",
+      "additionalProperties": false,
+      "properties": {
+        "measured": { "type": "integer", "minimum": 0 },
+        "cited": { "type": "integer", "minimum": 0 },
+        "assumed": { "type": "integer", "minimum": 0 },
+        "unknown": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "prediction_registered": {
+      "type": "array",
+      "description": "预测登记（必须在结论发布之前写入）",
+      "items": {
+        "type": "object",
+        "required": ["prediction", "confidence", "time_window", "threshold", "locked_at"],
+        "additionalProperties": false,
+        "properties": {
+          "prediction": { "type": "string" },
+          "confidence": { "type": "string", "enum": ["高", "中", "低"] },
+          "time_window": { "type": "string" },
+          "threshold": { "type": "string", "description": "事前锁定的判定阈值" },
+          "locked_at": { "type": "string", "description": "锁定时点" },
+          "verification": { "type": "string", "description": "验证方式（引用证伪实验）" }
+        }
+      }
+    },
+    "falsification_experiments": {
+      "type": "array",
+      "description": "最小成本证伪实验",
+      "items": {
+        "type": "object",
+        "required": ["assumption", "falsify_condition", "threshold", "method", "cost", "period", "decision_rule"],
+        "additionalProperties": false,
+        "properties": {
+          "assumption": { "type": "string" },
+          "falsify_condition": { "type": "string" },
+          "threshold": { "type": "string" },
+          "method": { "type": "string" },
+          "cost": { "type": "string" },
+          "period": { "type": "string" },
+          "decision_rule": { "type": "string" },
+          "unfalsifiable": { "type": "boolean", "default": false }
+        }
+      }
+    },
+    "verdict": {
+      "type": "string",
+      "enum": ["值得做", "谨慎做", "不建议做", "值得投", "谨慎投", "不建议投", "尚不值得分析"]
+    },
+    "calibration_status": {
+      "type": "string",
+      "enum": ["calibrated", "uncalibrated"],
+      "description": "历史判断是否经过回访校准"
+    },
+    "rationalization_alerts": {
+      "type": "array",
+      "description": "合理化警报记录（无新证据的结论重述请求）",
+      "items": {
+        "type": "object",
+        "required": ["triggered", "original_verdict", "new_evidence"],
+        "additionalProperties": false,
+        "properties": {
+          "triggered": { "type": "boolean" },
+          "original_verdict": { "type": "string" },
+          "new_evidence": { "type": "boolean" },
+          "resolution": { "type": "string" }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "gate": {
+      "type": "object",
+      "required": ["status"],
+      "additionalProperties": false,
+      "properties": {
+        "status": { "type": "string", "enum": ["pass", "fail"] },
+        "detail": { "type": "string" }
+      }
+    }
+  }
+}

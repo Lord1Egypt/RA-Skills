@@ -13,6 +13,7 @@ def normalize_path(p):
     return os.path.normpath(p)
 
 EXCLUDE_PATTERNS = [
+    ".standardization/git-sync/temp/*",
     ".sensitive_scan_*.json",
     ".decisions.json",
     "._*",

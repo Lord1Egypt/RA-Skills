@@ -1,6 +1,27 @@
 {
-  "ownerId": "kn73vp5rarc3b14rc7wjcw8f8580t5d1",
+  "owner": "clawic",
   "slug": "career",
-  "version": "1.0.2",
-  "publishedAt": 1771184108570
+  "displayName": "Career",
+  "latest": {
+    "version": "1.0.5",
+    "publishedAt": 1785068764887
+  },
+  "history": [
+    {
+      "version": "1.0.4",
+      "publishedAt": 1784843411013
+    },
+    {
+      "version": "1.0.3",
+      "publishedAt": 1784801009546
+    },
+    {
+      "version": "1.0.2",
+      "publishedAt": 1771184108570
+    },
+    {
+      "version": "1.0.0",
+      "publishedAt": 1770919300492
+    }
+  ]
 }

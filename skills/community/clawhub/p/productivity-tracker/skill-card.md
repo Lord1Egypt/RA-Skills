@@ -1,40 +1,56 @@
-## Description: <br>
-Productivity Tracker is a local task, Pomodoro, time-tracking, daily statistics, and habit-checking skill for managing personal productivity from the command line. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Productivity Tracker is a lightweight local task management and time tracking skill for task lists, pomodoro sessions, daily statistics, and habit check-ins.
 
-## Publisher: <br>
-[SxLiuYu](https://clawhub.ai/user/SxLiuYu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[sxliuyu](https://clawhub.ai/user/sxliuyu)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Knowledge workers, students, and freelancers use this skill to manage local tasks, track focus sessions, record habit check-ins, and review daily productivity statistics.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill stores task, habit, and statistics data locally under ~/.task-tracker.
+
+Mitigation: Install only when local storage of productivity data is acceptable, and review local data handling expectations before use.
+
+Risk: The delete command removes local task entries immediately without a confirmation prompt.
+
+Mitigation: Review task IDs before deletion and back up ~/.task-tracker when entries need to be retained.
+
+Risk: Pomodoro timing depends on the terminal process continuing to run.
+
+Mitigation: Keep the terminal session open during focus timers or use the feature only for lightweight local tracking.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Knowledge workers, students, and freelancers can use this skill to create and complete local tasks, run Pomodoro focus sessions, track habits, and review daily productivity statistics. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores task names, habit names, timestamps, and completion history locally under ~/.task-tracker/. <br>
-Mitigation: Avoid entering sensitive personal or work details unless the local machine and backups are trusted. <br>
-Risk: State-changing commands can complete tasks, delete tasks, or check habits. <br>
-Mitigation: Use explicit commands for actions that modify local task or habit data. <br>
+**Output Format:** [Markdown and terminal command guidance]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/SxLiuYu/productivity-tracker) <br>
+**Other Properties Related to Output:** [Local task, habit, and statistics data are stored under ~/.task-tracker.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Command-line text output and local JSON data files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores task, habit, and statistics data locally under ~/.task-tracker/.] <br>
+2.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-2.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

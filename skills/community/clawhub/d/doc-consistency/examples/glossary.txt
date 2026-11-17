@@ -1,0 +1,11 @@
+# 术语表 / Glossary
+# 每行一条：正名 = 变体1, 变体2, ...
+# 以 # 开头的行会被忽略。中英文逗号都认。
+# 用法：node scripts/check.mjs 稿件.docx --glossary examples/glossary.txt
+
+智能体 = AI Agent, AI agent, AI-Agent
+调度层 = 调度模块, 调度子系统
+仲裁器 = 仲裁模块, 冲裁器
+
+# 英文同理
+Agent Skill = agent-skill, AgentSkill

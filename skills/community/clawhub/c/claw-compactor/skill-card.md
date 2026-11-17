@@ -1,50 +1,63 @@
-## Description: <br>
-Claw Compactor is a token compression skill for OpenClaw agents that reduces workspace token usage with deterministic compression layers and optional Engram observational memory. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Claw Compactor helps agents reduce LLM context and workspace token usage with deterministic compression, benchmark reporting, and optional Engram memory compression.
 
-## Publisher: <br>
-[gandli-2025](https://clawhub.ai/user/gandli-2025) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gandli-2025](https://clawhub.ai/user/gandli-2025)
 
-## Use Case: <br>
-Developers and agent operators use this skill to benchmark, compress, and summarize agent workspace context, memory files, session transcripts, and prompt material before those tokens are sent to an LLM. It is especially relevant for long-running OpenClaw-style workflows that need lower token spend, tiered memory summaries, or reusable compressed context. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Full or automatic compression can rewrite workspace and memory files. <br>
-Mitigation: Run benchmark or dry-run modes first and keep backups before enabling full or auto compression. <br>
-Risk: The bundled proxy and dashboards can expose prompt traffic, tokens, worker state, or metrics if reachable from an untrusted network. <br>
-Mitigation: Keep the proxy local or behind strong authentication, rotate default tokens, and avoid exposing dashboard or metrics endpoints publicly. <br>
-Risk: Autonomous CLI-agent mode can run high-impact agent actions through configured workers. <br>
-Mitigation: Leave USE_CLI_AGENTS disabled unless workers are sandboxed and the operational boundary is explicitly reviewed. <br>
-Risk: Environment files, Redis state, memory files, prompt previews, and LLM endpoints may contain sensitive data. <br>
-Mitigation: Treat those paths as secrets-bearing data, restrict file permissions, and avoid collecting or sharing them in logs or benchmark artifacts. <br>
+## Use Case:
 
+Developers and agent operators use this skill to benchmark, compress, and audit workspace context, memory files, session transcripts, and prompt payloads before sending them to LLMs. It is suited for reducing repeated context cost while preserving operationally useful information.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gandli-2025/claw-compactor) <br>
-- [SKILL.md](SKILL.md) <br>
-- [Architecture reference](references/architecture.md) <br>
-- [Benchmarks reference](references/benchmarks.md) <br>
-- [Compression techniques](references/compression-techniques.md) <br>
-- [Testing reference](references/testing.md) <br>
-- [Proxy README](proxy/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, optional JSON reports, and compressed text or memory summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce or update workspace memory files, tiered summaries, dictionary codebooks, benchmark reports, and Engram observation or reflection files depending on the selected command.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Memory and proxy components can expose private chats.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use deterministic compression features unless Engram or the proxy is explicitly needed, and periodically inspect or delete memory under memory/engram.
+
+Risk: The included proxy can run powerful agent actions without strong safeguards.
+
+Mitigation: Set a strong PROXY_AUTH_TOKEN, bind the proxy to loopback or a protected network, and avoid USE_CLI_AGENTS unless it is sandboxed.
+
+Risk: External or plaintext model endpoints can leak sensitive context.
+
+Mitigation: Do not point OPENAI_BASE_URL at an untrusted or plaintext remote endpoint.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/gandli-2025/skills/claw-compactor)
+- [Architecture Reference](references/architecture.md)
+- [Compression Techniques](references/compression-techniques.md)
+- [Benchmark Reference](references/benchmarks.md)
+- [Documentation Index](docs/README.md)
+- [Proxy Documentation](proxy/README.md)
+- [Security Policy](SECURITY.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands, JSON reports, configuration snippets, and compressed text or markdown artifacts.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce lossy summaries for observation memory and reversible markers for supported compression stages.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

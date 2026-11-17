@@ -1,39 +1,54 @@
-## Description: <br>
-Provides access to ATTOM real-estate data through Pipeworx MCP, including property details, sales history, market values, tax assessments, rental estimates, sales trends, and nearby schools. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Access detailed real estate data including property specifications, sales history, market values, tax assessments, rental estimates, sales trends, and nearby schools through the Pipeworx ATTOM MCP endpoint.
 
-## Publisher: <br>
-[b-gutman](https://clawhub.ai/user/b-gutman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[b-gutman](https://clawhub.ai/user/b-gutman)
 
-## Use Case: <br>
-Developers and agents use this skill to configure a connection to Pipeworx's ATTOM MCP gateway and answer real-estate questions about properties, markets, taxes, rentals, and schools. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Property addresses, ZIP codes, coordinates, and related real-estate queries are sent to an external Pipeworx/ATTOM MCP gateway. <br>
-Mitigation: Submit only data you are permitted to share with Pipeworx/ATTOM, and avoid sensitive personal context unless you trust that provider's data handling practices. <br>
+## Use Case:
 
+Developers and real-estate analysts use this skill to connect an agent to ATTOM property lookup tools for property details, comparable searches, sales history, automated valuation, assessments, rental estimates, ZIP-code trends, and nearby school information.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/b-gutman/pipeworx-attom) <br>
-- [Pipeworx ATTOM MCP Gateway](https://gateway.pipeworx.io/attom/mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [configuration, guidance, text] <br>
-**Output Format:** [Markdown with JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses an external MCP service for property and location lookups.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence release.version) <br>
+Risk: Property addresses, ZIP codes, coordinates, and related real-estate queries are sent to the configured Pipeworx MCP endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when sharing those query details with the endpoint is acceptable, and avoid sending unnecessary sensitive information.
+
+Risk: Returned valuation, tax, school, sales, and rental information is third-party remote output.
+
+Mitigation: Verify important property data against authoritative sources before relying on it for decisions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/b-gutman/skills/pipeworx-attom)
+- [Pipeworx ATTOM MCP Endpoint](https://gateway.pipeworx.io/attom/mcp)
+
+## Skill Output:
+
+**Output Type(s):** [Configuration, Guidance, Text]
+
+**Output Format:** [Markdown with JSON configuration snippets and plain-text real-estate lookup results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns third-party remote property data; verify important valuation, tax, school, and sales information before relying on it.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

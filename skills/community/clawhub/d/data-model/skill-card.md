@@ -1,38 +1,48 @@
-## Description: <br>
-Deep data modeling workflow for grain, facts and dimensions, keys, slowly changing dimensions, normalization trade-offs, and analytics query patterns when designing warehouse or analytics models and reviewing star or snowflake schemas. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deep data modeling workflow—grain, facts and dimensions, keys, slowly changing dimensions, normalization trade-offs, and analytics query patterns. Use when designing warehouse/analytics models or reviewing star/snowflake schemas.
 
-## Publisher: <br>
-[clawkk](https://clawhub.ai/user/clawkk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[clawkk](https://clawhub.ai/user/clawkk)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers, data engineers, analytics engineers, and BI modelers use this skill to design or review warehouse, lakehouse, and analytics schemas by making grain, facts, dimensions, keys, slowly changing dimension policy, and performance trade-offs explicit.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Generated modeling recommendations may be incorrect or inappropriate for production schemas or compliance-sensitive datasets.
+
+Mitigation: Review recommendations against business definitions, warehouse constraints, and compliance requirements before implementation.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, analytics engineers, and data modelers use this skill to design or review warehouse, lakehouse, and BI-layer models with explicit grain, conformed dimensions, documented measures, SCD choices, key strategy, and performance considerations. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Guidance, Markdown, Configuration]
 
-## Known Risks and Mitigations: <br>
-Risk: Generated schema guidance may be incomplete or mismatched to business definitions, governance requirements, or production warehouse constraints. <br>
-Mitigation: Review proposed grains, keys, SCD policies, measures, and any derived schemas or SQL with data owners before applying them to production systems. <br>
+**Output Format:** [Markdown guidance and checklists]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/clawkk/data-model) <br>
+**Other Properties Related to Output:** [Advisory data modeling recommendations; no code, persistence, network use, or credential handling per security evidence.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown] <br>
-**Output Format:** [Markdown guidance, staged workflow notes, and checklist items] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution, shell commands, network access, or credential handling.] <br>
+1.0.0 (source: ClawHub release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

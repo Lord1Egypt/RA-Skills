@@ -1,45 +1,56 @@
-## Description: <br>
-Fetches the latest original e-commerce news from Ebrun by matching a user's channel or topic request and returning recent article details. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches the latest original e-commerce news from Ebrun by mapping channel requests to configured news feeds.
 
-## Publisher: <br>
-[ebrun-developer](https://clawhub.ai/user/ebrun-developer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ebrun-developer](https://clawhub.ai/user/ebrun-developer)
 
-## Use Case: <br>
-External users, developers, and agents use this skill to retrieve current Ebrun e-commerce articles for channel-specific news browsing, briefings, or automation workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill makes outbound HTTPS requests to Ebrun and occasional version-check requests to GitHub or Gitee. <br>
-Mitigation: Use it only in environments that permit those network destinations, or review and disable the update-check step for strict no-egress deployments. <br>
-Risk: The version-check flow writes a small temporary cache. <br>
-Mitigation: Review cache handling before use in environments with strict no-cache or retention requirements. <br>
+## Use Case:
 
+External users, developers, and agents use this skill to retrieve recent Ebrun e-commerce articles by main or sub-channel and format them for briefings, dashboards, or automation workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ebrun-developer/ebrun-original-news) <br>
-- [Publisher profile](https://clawhub.ai/user/ebrun-developer) <br>
-- [Ebrun website](https://www.ebrun.com/) <br>
-- [API reference](references/api-reference.md) <br>
-- [Channel list](references/channel-list.json) <br>
-- [Version metadata](references/version.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown news summaries or JSON article arrays with titles, authors, summaries, publish times, and HTTPS source links.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns up to 10 latest articles by default and may include a version-update notice when an update is available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and references/version.json) <br>
+Risk: The skill contacts Ebrun for news and may check Ebrun, GitHub, or Gitee for version data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm this outbound network access is acceptable before installation and treat update prompts as advisory.
+
+Risk: The security summary flags automatic update checks and unsafe shared temp-cache behavior.
+
+Mitigation: Review, disable, or fix the update checker and cache behavior before use in shared or sensitive environments.
+
+## Reference(s):
+
+- [API Reference](artifact/references/api-reference.md)
+- [Channel List](artifact/references/channel-list.json)
+- [Version Metadata](artifact/references/version.json)
+- [Ebrun](https://www.ebrun.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown news summaries and JSON-compatible article fields]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns up to 10 latest articles by default, including title, author, summary, publish time, and source URL.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and artifact/references/version.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

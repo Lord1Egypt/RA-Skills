@@ -1,45 +1,59 @@
-## Description: <br>
-Connects agents to Geocodio (geocod.io) for address geocoding and coordinate reverse-geocoding through the OOMOL oo CLI instead of direct API calls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use Geocodio for address geocoding and coordinate reverse geocoding through a connected OOMOL account.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and agents use this skill to geocode addresses or reverse geocode latitude and longitude through an OOMOL-connected Geocodio account, including single and batch lookups. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires an OOMOL-connected Geocodio account with server-side credentials. <br>
-Mitigation: Use it only when the account connection is expected; do not request or expose raw API keys, and run connection steps only after matching auth or connection errors. <br>
-Risk: Geocoding and reverse-geocoding requests can send address or coordinate data to Geocodio through the connector. <br>
-Mitigation: Review payloads for sensitive location data before execution and use the live connector schema to send only required fields. <br>
-Risk: Setup and billing recovery commands can affect the local environment or the connected OOMOL account. <br>
-Mitigation: Run setup or billing steps only when the documented failure condition occurs, and confirm with the user before any action that changes state. <br>
+## Use Case:
 
+External users can geocode addresses and reverse geocode coordinates, one at a time or in batches, through their connected Geocodio service.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/oomol/oo-geocodio) <br>
-- [OOMOL publisher profile](https://clawhub.ai/user/oomol) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [Geocodio homepage](https://www.geocod.io) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON payload guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Connector responses are JSON objects with data and meta.executionId fields.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and release evidence) <br>
+Risk: Setup executes downloaded code that was not verified.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and approve CLI installation separately, using a verified release.
+
+Risk: The publisher documents broader changes to installed agent skills.
+
+Mitigation: Consider enabling OO_SKILLS_SYNC_DISABLED before use.
+
+Risk: Addresses and coordinates are processed by OOMOL and Geocodio, and service charges may apply.
+
+Mitigation: Submit only data authorized for both services and check service charges.
+
+## Reference(s):
+
+- [Geocodio API documentation](https://www.geocod.io/docs/)
+- [Geocodio](https://www.geocod.io)
+- [oo CLI](https://github.com/oomol-lab/oo-cli)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Shell commands, Guidance]
+
+**Output Format:** [JSON API responses with shell command examples and usage guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Single and batch address geocoding or coordinate reverse geocoding]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,3 +1,4 @@
+<!-- Locale: China / Sanya Yazhou. Reference language: Chinese; respond in the language requested by the user. Historical reference data; verify current official sources before applying policy terms. -->
 # 崖州区 核心招商政策手册
 > 数据来源：崖州湾科技城管理局（代表崖州区政府行使园区管理职能）、海南自贸港官方网站 | 更新日期：2026年4月
 
@@ -154,3 +155,4 @@
 | 惠企平台 | https://qyfwq.yazhou-bay.com |
 | 管理局官网 | https://www.yazhou-bay.com |
 | 上班时间 | 上午 08:30-12:00 ｜ 下午 14:30-18:30 |
+

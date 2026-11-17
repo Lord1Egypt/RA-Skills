@@ -1,0 +1,4 @@
+interface:
+  display_name: "Galleon DeFi Yield"
+  short_description: "Compare vaults and manage yield maturities"
+  default_prompt: "Use $galleon-defi-yield to research the selected position and prepare a source-backed plan with explicit access, risk and settlement checks."

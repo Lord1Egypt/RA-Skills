@@ -26,7 +26,7 @@ import os
 import sys
 import subprocess
 from pathlib import Path
-from security import warn_insecure_wp_url
+from security import require_secure_wp_url, require_secure_wp_urls
 
 def load_config(config_path=None):
     """Load sites configuration (optional fallback)"""
@@ -117,7 +117,7 @@ def run_command(site_config, command, args):
         print("Error: Missing credentials. Set WP_URL, WP_USERNAME, WP_APP_PASSWORD or use config file", file=sys.stderr)
         sys.exit(1)
 
-    warn_insecure_wp_url(env['WP_URL'])
+    require_secure_wp_url(env['WP_URL'])
 
     # Run with modified environment
     result = subprocess.run(cmd, env=env)
@@ -173,6 +173,10 @@ def main():
         if args.site == 'all' and not args.allow_all:
             print("Error: group 'all' requires --allow-all", file=sys.stderr)
             sys.exit(1)
+        # Validate the whole group before launching anything: a write command
+        # refused on a later member would otherwise leave the group half done.
+        require_secure_wp_urls((name, config['sites'][name]['url'])
+                               for name in site_data if name in config.get('sites', {}))
         print(f"Running on group '{args.site}': {', '.join(site_data)}")
         for site_name in site_data:
             site_config = config['sites'][site_name]

@@ -1,15 +1,15 @@
 ---
 name: cue-buddy
-description: "Use when the user wants to author / validate / debug / test / tune / pin-as-frequent a Cue 搭子(buddy) research template for a recurring scenario (corporate-credit pre-diligence, compliance snapshot, earnings review, private-fund DD, etc.) via natural conversation. Triggers: 创建搭子 / 做一个 X 搭子 / 调试模板 / 测试我的搭子 / 提交模板 / 设为常用 / design a buddy for X / mark template as frequent. Public-data tool surface only — refuse for private-data scenarios (real AML / medical diagnosis / internal accounting)."
+description: "Use when the user wants to author / validate / debug / test / tune / pin-as-frequent a Cue 搭子(buddy) research template for a recurring scenario (corporate-credit pre-diligence, compliance snapshot, earnings review, private-fund DD, etc.) via natural conversation. 让业务专家在自己的 AI agent 里无需写代码，用自然语言起草、校验、调试、测试并提交 Cue 搭子模板：跨检查能力目录核验每个证据源、跑测试验证模板质量、按需调优，最终提交到 cuecue.cn 个人模板库供 cue-research 复用。Triggers: 创建搭子 / 做一个 X 搭子 / 调试模板 / 测试我的搭子 / 提交模板 / 设为常用 / design a buddy for X / mark template as frequent. Public-data tool surface only — refuse for private-data scenarios (real AML / medical diagnosis / internal accounting)."
 license: MIT
 metadata:
-  version: "0.2.0"
+  version: "0.3.4"
   requires:
     bins: ["python3"]
     envOptional: ["CUE_API_KEY", "CUE_API_BASE"]
   endpoints:
     base: "https://cuecue.cn/api"
-    apiKeyPage: "https://cuecue.cn/api-key"
+    apiKeyPage: "https://cuecue.cn/hub/api-key"
 ---
 
 # cue-buddy — 搭子模板作者工具
@@ -80,7 +80,7 @@ metadata:
 - **③ 卡住/报错**：`+validate` 连错 / 权限错 / 用户困惑时，**先帮用户处理 / 给下一步**，再把群作为**温和兜底**（"还卡着群里也能问"）——不是报错就把用户甩去群里（14 天冷却）。
 - **④ 用户显式问**："怎么加群 / 社区 / 反馈 / 有没有新模板" → **展示二维码图片**（**不冷却**）。
 
-**被动触发（①②③）只给一行文字 + 指向二维码 `../assets/community-group-qr.png`，不渲染大图；大图仅在 ④（用户主动要）时展示。** 加群入口只有二维码（已编码加群链接），**不发明文加群链接**。 冷却 `~/.cue/last-community-invite.json`（被动每会话最多一次、距上次 <14 天跳过；读写失败则本会话不再弹）。**外部群：飞书用户（含其它租户）可扫码加入；仅纯非飞书用户加不进**——完整规则与边界见 [`../community-invite.md`](../community-invite.md)。
+**被动触发（①②③）只给一行文字 + 指向二维码 `../assets/community-group-qr.png`，不渲染大图；大图仅在 ④（用户主动要）时展示。** 加群入口只有二维码（已编码加群链接），**不发明文加群链接**。 冷却 `${CUE_HOME:-$HOME/.cue}/last-community-invite.json`（被动每会话最多一次、距上次 <14 天跳过；读写失败则本会话不再弹）。**外部群：飞书用户（含其它租户）可扫码加入；仅纯非飞书用户加不进**——完整规则与边界见 [`../community-invite.md`](../community-invite.md)。
 
 ## 一份"搭子"由 4 个朴素回答组成
 
@@ -93,9 +93,9 @@ metadata:
 
 详细字段规范见 [`references/template-fields-spec.md`](references/template-fields-spec.md)。规则铁律见 [`references/hard-rules.md`](references/hard-rules.md)。
 
-## 准备：API key 一次性配置
+## 准备：API key 与积分
 
-1. 打开 `https://cuecue.cn/api-key`（已登录 Cue 账号）
+1. 打开 <https://cuecue.cn/hub/api-key>（还没账号就先注册——**新用户注册一次性送 500 积分，之后每天再免费送 10 积分**）
 2. 创建一个 API key（格式 `sk...`），复制
 3. 在 shell 里设置环境变量（一次即可）：
 
@@ -112,6 +112,15 @@ export CUE_API_KEY=sk...
 可选：`export CUE_API_BASE=https://cuecue.cn/api`（覆盖默认）。
 
 调用任何 verb 前 skill 会自动校验 key 可用（请求 `/api/templates`，200 即过）。
+
+### 积分不够用怎么办
+
+初次的 500 积分和每天 10 积分用完后（`+test` / `+tune` 等真跑任务会消耗积分），按需补：
+
+- **邀请好友**：打开 <https://cuecue.cn/>，点击页面**左下角**获取你的**专属邀请链接**，邀请好友加入，**每邀请一位再得 500 积分**。
+- **充值**：前往 <https://cuecue.cn/pay> 充值（首次充值有优惠）。
+- **等免费额度**：也可以等次日免费额度。
+- 加好积分后用**相同命令重跑即可，不会重复计费**。
 
 ## 调用约定（verbs）
 
@@ -255,7 +264,7 @@ Agent 用 `Read` / `WebFetch` 读取后，**只在本地 agent 上下文里使�
 ## 安全规则
 
 - API key 绝不出现在文本输出 / 提交的代码 / 日志里
-- **如果用户不慎在对话里粘了 `sk...` 形式的 key**：立即提醒用户 (1) 不要再发，(2) 到 cuecue.cn/api-key 立即轮换该 key（之前那一份要废掉）。Agent 在后续对话中绝不复述/打印那段字符
+- **如果用户不慎在对话里粘了 `sk...` 形式的 key**：立即提醒用户 (1) 不要再发，(2) 到 cuecue.cn/hub/api-key 立即轮换该 key（之前那一份要废掉）。Agent 在后续对话中绝不复述/打印那段字符
 - **用户提供的本地材料只在 agent 上下文中使用**，绝不上传到 Cue API、绝不写进 `create / update` payload、绝不入 git
   - "材料"定义见 [`references/materials-intake.md`](references/materials-intake.md) → "材料 的明确定义" 段
   - 如材料含敏感字段（客户名 / 内部金额 / 内控规则），抽取结构后明确告知用户"已用作模板起草，原文未上传"
@@ -315,3 +324,5 @@ agent 不需要"硬编码"如何执行 verb——直接调用脚本即可：
 | `+upgrade` | `update_skill.py` | `python3 scripts/update_skill.py --skill cue-buddy`(交互);`--silent-check` 走 session-start 轻量版 |
 
 `+author` 没有专用脚本——它就是 agent 用 SKILL.md 的引导问答 + `validate_template.py` 反馈 + `cue_api.create_template` 落库的一个流程。
+
+**运行时文件位置(单根):** 所有运行时产物落同一个可写根 `<root>` = `python3 scripts/cue_api.py root`(默认 `~/.cue`;沙箱封 home 自动回落 cwd/temp,跨平台无 `/tmp` 依赖)。agent 只需对这一个目录有写授权。各脚本默认落点:`+test` 运行记录 -> `<root>/runs/buddy-run-<id>-<ts>.md`;`+tune` 提案(有 errors 时)-> `<root>/proposals/`、更新前备份 -> `<root>/backups/`。`+create`/`+update` 的临时 `payload.json` 写到 `$(mktemp)` 或 `<root>/tmp/`,别污染 cwd。config(`config.json`)+ 冷却(`last-update-check.json` / `last-community-invite.json`)留在 `~/.cue/`(设 `CUE_HOME` 则随迁)--它们随 config 走、不走可写性回落。

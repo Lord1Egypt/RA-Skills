@@ -1,45 +1,61 @@
-## Description: <br>
-Guides an agent through blood-pressure profile collection, reading classification, warning prompts, and optional non-drug audio wellness recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language health management skill for people monitoring elevated blood pressure that collects profile and blood-pressure inputs, classifies readings, flags urgent values, and recommends a non-drug audio intervention.
 
-## Publisher: <br>
-[hcrunner](https://clawhub.ai/user/hcrunner) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hcrunner](https://clawhub.ai/user/hcrunner)
 
-## Use Case: <br>
-People using an agent for blood-pressure self-management can use this skill to collect a basic profile, record readings, classify them against AHA/ACC-style thresholds, and receive wellness-oriented follow-up guidance. It should be treated as adjunct health guidance, not diagnosis or replacement for clinician-directed care. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks the agent to collect and remember sensitive blood-pressure profile information. <br>
-Mitigation: Collect only necessary health details, obtain clear user consent before long-term storage, and make deletion or review of stored profile data available. <br>
-Risk: The audio recommendation and therapy claims could be mistaken for medical treatment. <br>
-Mitigation: Present the audio as a wellness aid only, continue clinician-prescribed care, and seek urgent medical help for very high readings or concerning symptoms. <br>
-Risk: Blood-pressure readings and classifications may be incomplete or user-entered incorrectly. <br>
-Mitigation: Ask users to verify measurements, repeat readings when appropriate, and consult qualified clinicians for diagnosis, treatment, or medication decisions. <br>
+## Use Case:
 
+External users with elevated blood-pressure concerns use this skill to record health profile factors, classify self-reported blood-pressure readings, receive warning language for concerning values, and access a referenced wellness audio link. It is an assistive wellness workflow and should not replace clinician advice, medication, urgent care, or validated blood-pressure monitoring.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/hcrunner/blood-pressure-therapy) <br>
-- [AHA/ACC 2017 Blood Pressure Reference](references/AHA_ACC_2017.md) <br>
-- [Audio Intervention Principle Reference](references/principle.md) <br>
-- [Therapy Audio Link](https://myxt.com/link/738cba02-d41a-453a-99db-9be5545c1cd7) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, json, files] <br>
-**Output Format:** [Conversational Markdown with optional JSON profile data and links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May ask one profile question at a time, evaluate user-supplied blood-pressure readings, and recommend urgent care for crisis-level readings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.1 (source: server evidence and skill frontmatter) <br>
+Risk: The skill collects and stores sensitive health profile and blood-pressure information in a local file and long-term agent memory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with explicit user consent, avoid entering unnecessary health details, and provide a clear process to review, update, or delete stored profile data.
+
+Risk: The skill makes strong wellness claims for an audio intervention related to blood-pressure reduction.
+
+Mitigation: Present the audio as unverified wellness content and clearly state that it is not a substitute for medication, clinician advice, urgent care, or validated blood-pressure monitoring.
+
+Risk: Users with very high or rapidly worsening blood-pressure readings could delay appropriate medical care.
+
+Mitigation: Preserve urgent-care warnings for hypertensive crisis ranges and direct users with severe readings or symptoms to seek immediate medical attention.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hcrunner/skills/blood-pressure-therapy)
+- [AHA/ACC 2017 blood pressure classification reference](references/AHA_ACC_2017.md)
+- [Audio intervention principle reference](references/principle.md)
+- [Profile intake fields](api/profile_inquired.md)
+- [Referenced hypertension audio link](https://myxt.com/link/738cba02-d41a-453a-99db-9be5545c1cd7)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, guidance]
+
+**Output Format:** [Conversational Markdown with optional pretty-printed JSON profile data and an external audio URL]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update hc_profile.md and request long-term memory storage of health profile details.]
+
+## Skill Version(s):
+
+3.0.1 (source: server release metadata and artifact frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

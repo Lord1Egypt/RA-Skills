@@ -1,41 +1,52 @@
-## Description: <br>
-Compose and send emails using an AI agent with a human approval step before delivery. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Composes and sends emails using a LangChain email agent with human approval before outgoing messages are sent.
 
-## Publisher: <br>
-[JawadSadiq01](https://clawhub.ai/user/JawadSadiq01) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jawadsadiq01](https://clawhub.ai/user/jawadsadiq01)
 
-## Use Case: <br>
-Developers can use this agent to add AI-assisted email composition and sending to a LangChain-based backend while preserving human approval, editing, or rejection before outbound delivery. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The submitted artifacts omit the email-sending tool, DTO, and prompt helper used by the agent. <br>
-Mitigation: Confirm the missing components with the publisher before installation and test the full send path in a controlled environment. <br>
-Risk: The skill composes and sends email, so unintended or incorrect outbound messages could reach recipients. <br>
-Mitigation: Verify that every outgoing email visibly pauses for approve, edit, or reject before delivery. <br>
-Risk: The required OpenAI and email-account credentials are not fully documented in the submitted evidence. <br>
-Mitigation: Identify the required credentials, scope them narrowly, and use a test mailbox before connecting production accounts. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/JawadSadiq01/langchain-email-agent) <br>
+## Use Case:
 
+Developers and teams can use this skill to add AI-assisted email composition and sending to an application while requiring a human approve, edit, or reject decision before delivery.
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, configuration, guidance] <br>
-**Output Format:** [String response from the agent, with TypeScript integration guidance in the artifact documentation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an OpenAI model configuration and depends on email-sending components that were not included in the submitted artifacts.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The agent can send email based on generated content and user-provided recipient details.
+
+Mitigation: Keep the human approve, edit, or reject step before delivery and review EmailTool validation for recipients, sender identity, message body, attachments, and approval decisions before installation.
+
+Risk: User-provided email instructions are placed into a privileged prompt while the agent has access to the email-sending tool.
+
+Mitigation: Use a fixed system prompt and place user instructions in a lower-privilege, clearly delimited message; treat generated email fields as untrusted.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jawadsadiq01/skills/langchain-email-agent)
+
+## Skill Output:
+
+**Output Type(s):** [text]
+
+**Output Format:** [String]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns the final agent message after composing or attempting the email workflow.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

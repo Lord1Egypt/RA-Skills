@@ -1,0 +1,8 @@
+interface:
+  display_name: "连载前情摘要"
+  short_description: "将中文连载上下文压缩为读者前情提要和作者续写记忆卡"
+  icon_small: "./icon-512.png"
+  icon_large: "./icon-512.png"
+  default_prompt: "使用 $novel-serial-recap-cn，根据我提供的上几章材料和下一章目标生成前情提要与续写记忆卡。"
+policy:
+  allow_implicit_invocation: true

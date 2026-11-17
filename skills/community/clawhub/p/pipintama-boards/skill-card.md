@@ -1,44 +1,59 @@
-## Description: <br>
-Create, fetch, share, update, export, or change visibility for hosted Pipintama Boards through the MCP server when a user needs a mind map, flowchart, kanban board, or architecture map. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create, fetch, share, or change visibility for hosted Pipintama Boards through the MCP server.
 
-## Publisher: <br>
-[davidk2yoyo](https://clawhub.ai/user/davidk2yoyo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[davidk2yoyo](https://clawhub.ai/user/davidk2yoyo)
 
-## Use Case: <br>
-Developers and agent users use this skill to create or manage hosted visual boards for planning, brainstorming, process design, task organization, and system architecture mapping. It is most useful when a shareable visual board or PNG export is a better response than prose alone. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Board content is sent to Pipintama's hosted service. <br>
-Mitigation: Avoid sending sensitive material unless this service is appropriate for the data, and prefer scoped or revocable API keys when available. <br>
-Risk: New boards default to shared visibility unless the user asks otherwise. <br>
-Mitigation: Ask for private visibility for business, personal, architecture, or other sensitive boards. <br>
-Risk: The skill can create shareable viewer and PNG export URLs. <br>
-Mitigation: Return only live Pipintama URLs from tool responses and avoid fabricating board or export links. <br>
+## Use Case:
 
+External users, developers, and teams use this skill to create, retrieve, share, update, and export hosted visual boards for planning, brainstorming, process design, and system design.
 
-## Reference(s): <br>
-- [Pipintama MCP endpoint](https://api.pipintama.com/mcp) <br>
-- [Pipintama MCP health check](https://api.pipintama.com/mcp-health) <br>
-- [ClawHub skill page](https://clawhub.ai/davidk2yoyo/pipintama-boards) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Hosted board links, PNG export links, Guidance] <br>
-**Output Format:** [Plain text or Markdown with live Pipintama viewer and export URLs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Default output is a hosted viewer URL followed by one short explanation sentence; PNG export URLs are included when useful for image-friendly channels.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Board source content is sent to the external Pipintama service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not use the skill for secrets, credentials, regulated data, customer data, proprietary plans, or private architecture unless the service's data handling expectations have been reviewed.
+
+Risk: New boards are shareable by default, which can expose sensitive content through hosted links.
+
+Mitigation: Use private visibility for sensitive work and confirm visibility before creating or updating boards that contain confidential information.
+
+Risk: The hosted MCP requires a Pipintama API key.
+
+Mitigation: Provide credentials only through supported client authentication mechanisms and avoid placing keys or other secrets in board titles, source text, or notes.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/davidk2yoyo/skills/pipintama-boards)
+- [Pipintama MCP Endpoint](https://api.pipintama.com/mcp)
+- [Pipintama MCP Health Check](https://api.pipintama.com/mcp-health)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, API calls, guidance]
+
+**Output Format:** [Markdown or plain text containing hosted board URLs, optional PNG export URLs, and a short explanation.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a valid Pipintama API key and defaults newly created boards to shared visibility unless the user requests public or private visibility.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

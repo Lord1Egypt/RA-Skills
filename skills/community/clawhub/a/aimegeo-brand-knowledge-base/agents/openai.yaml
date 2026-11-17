@@ -1,0 +1,4 @@
+interface:
+  display_name: "品牌 GEO 知识库整理"
+  short_description: "整理可增量更新的品牌事实源，让Agent用aimeGeo继续文章配图与分发"
+  default_prompt: "使用 $aimegeo-brand-knowledge-base 整理品牌资料为有正文、出处及项目范围的知识库，保留冲突与更新历史，并给出由当前 Agent 读取可用资料、用免费 aimeGeo 继续文章配图和账号分发的具体任务与地址。"

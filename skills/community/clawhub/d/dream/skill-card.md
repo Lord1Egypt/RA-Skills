@@ -1,43 +1,58 @@
-## Description: <br>
-Dream helps an OpenClaw agent maintain MEMORY.md by distilling daily memory notes, compressing active context, archiving older entries, and detecting memories that re-emerge after removal. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Dream actively maintains OpenClaw memory by distilling daily memory files into MEMORY.md, archiving stale entries, detecting re-emergence, and indexing selected content.
 
-## Publisher: <br>
-[teman2050](https://clawhub.ai/user/teman2050) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[teman2050](https://clawhub.ai/user/teman2050)
 
-## Use Case: <br>
-OpenClaw users and agent operators use Dream to keep active memory concise while preserving a searchable long-term archive. It is intended for personal memory distillation, scheduled review, active-memory cleanup, and Obsidian-style indexing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Dream can retain and rewrite sensitive personal memory data in MEMORY.md and the configured Dream vault. <br>
-Mitigation: Choose a safe DREAM_VAULT_PATH, back up MEMORY.md before enabling reviews, and avoid storing secrets or highly sensitive personal data. <br>
-Risk: The forget command clears active memory but does not remove entries from the permanent archive. <br>
-Mitigation: Treat dream forget as active-memory cleanup and manually review archive files when full deletion is required. <br>
-Risk: Scheduled reviews and broad natural-language triggers may update memory with limited confirmation. <br>
-Mitigation: Prefer explicit dream commands, review memory changes regularly, and enable scheduled reviews only when persistent local memory maintenance is intended. <br>
+## Use Case:
 
+Developers and OpenClaw users use Dream to keep long-running personal memory concise, searchable, and current while preserving older important context in an append-only ledger.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/teman2050/dream) <br>
-- [Dream skill homepage](https://github.com/teman2050/dream-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown memory updates, shell command invocations, configuration steps, and concise status or search text.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May update MEMORY.md and append ledger, metadata, and Obsidian index files under the configured Dream vault.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.1 (source: frontmatter and release metadata) <br>
+Risk: Dream preserves and reuses personal memory long term, including a permanent ledger that `dream forget` does not erase.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only where long-term memory retention is acceptable, and review retention expectations before installation in sensitive, shared, regulated, or multi-user workspaces.
+
+Risk: Dream can perform silent scheduled maintenance and broad memory indexing.
+
+Mitigation: Enable scheduled distillation only in workspaces where automatic memory rewriting and indexing are intended, and review the configured vault path before use.
+
+Risk: The security summary says helper-script paths can exceed the advertised file scope.
+
+Mitigation: Review and fix helper-script path scoping before deployment, and run the skill with a constrained OpenClaw workspace and Dream vault.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/teman2050/skills/dream)
+- [Project homepage](https://github.com/teman2050/dream-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command invocations and file update instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May update MEMORY.md, ledger files, metadata files, and Obsidian index files through the bundled shell helper.]
+
+## Skill Version(s):
+
+0.2.1 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

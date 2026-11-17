@@ -1,44 +1,53 @@
-## Description: <br>
-Helps agents draft a Freqtrade/Superior Trade trend-breakdown short strategy gated by EMA separation, ADX, and recent downside momentum, with sample Python strategy code and reference configuration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates a Freqtrade short strategy for Superior Trade that enters Donchian breakdowns only when EMA separation, ADX, and recent-return gates confirm a strong bear regime.
 
-## Publisher: <br>
-[superior-ai](https://clawhub.ai/user/superior-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[superior-ai](https://clawhub.ai/user/superior-ai)
 
-## Use Case: <br>
-Developers and trading-strategy authors use this skill to produce a regime-gated short strategy, including entry and exit logic, tunable parameters, Python strategy code, and reference configuration for BTC/USDC:USDC-style futures testing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The reported backtest is based on only 6 trades, so the 100% win rate may not generalize. <br>
-Mitigation: Independently backtest on longer and out-of-sample data before using the strategy for live trading. <br>
-Risk: Using the strategy with real funds can expose users to cryptocurrency futures losses. <br>
-Mitigation: Start with dry-run testing, explicit risk limits, and small isolated allocations before considering live deployment. <br>
-Risk: Low-liquidity assets can create unreliable Donchian lows from liquidation wicks. <br>
-Mitigation: Restrict testing and deployment to deeply liquid major pairs unless separate liquidity validation supports broader use. <br>
-Risk: Loosening the regime gate can change the intended behavior and increase exposure to sideways-market noise. <br>
-Mitigation: Preserve the triple-confirmation gate unless new validation data supports a parameter change. <br>
+## Use Case:
 
+External developers and trading-strategy authors use this skill to draft a regime-gated crypto futures short strategy and reference configuration for Superior Trade or Freqtrade-style workflows. The strategy should be reviewed, backtested, and paper-traded before any live use.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/superior-ai/donchian-strong-regime) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown containing prose, Python code, and JSON configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes trading assumptions, backtest summary, tunable parameter ranges, known failure modes, and deployment guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter reports 0.1.0) <br>
+Risk: The skill packages high-risk trading guidance and live futures-short configuration, which can lead to significant or total loss of funds.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use dry-run or paper trading first, limit API permissions and stake size, and isolate use in a sub-account.
+
+Risk: Strong backtest framing may overstate reliability because the reported results cover a small trade sample.
+
+Mitigation: Treat the backtest as limited evidence, run independent validation on longer and out-of-sample periods, and do not treat it as a ready-to-run profit system.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/superior-ai/skills/donchian-strong-regime)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Configuration, Guidance]
+
+**Output Format:** [Markdown with Python and JSON code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces trading strategy code and reference configuration; does not execute trades by itself.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata; artifact frontmatter lists 0.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

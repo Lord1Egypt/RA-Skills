@@ -1,0 +1,43 @@
+{
+  "auth": "Authorization: Bearer YOUR_FETCHER_KEY",
+  "gateway": "https://api.replynodes.com",
+  "operations": [
+    {
+      "name": "search",
+      "route": "/v1/youtube/search",
+      "summary": "Search public YouTube videos"
+    },
+    {
+      "name": "video",
+      "route": "/v1/youtube/video/{id}",
+      "summary": "Fetch public YouTube video metadata"
+    },
+    {
+      "name": "channel",
+      "route": "/v1/youtube/channel/{id}",
+      "summary": "Fetch public YouTube channel metadata"
+    },
+    {
+      "name": "comments",
+      "route": "/v1/youtube/comments/{id}",
+      "summary": "Fetch public top-level video comments"
+    },
+    {
+      "name": "playlist",
+      "route": "/v1/youtube/playlist/{id}",
+      "summary": "Fetch public playlist metadata and items"
+    },
+    {
+      "name": "related",
+      "route": "/v1/youtube/related/{id}",
+      "summary": "Fetch related public videos"
+    },
+    {
+      "credit_cost": 200,
+      "name": "transcript",
+      "route": "/v1/youtube/transcript/{id}",
+      "summary": "Fetch a public video transcript when available"
+    }
+  ],
+  "payment_mode": "prepaid_credit"
+}

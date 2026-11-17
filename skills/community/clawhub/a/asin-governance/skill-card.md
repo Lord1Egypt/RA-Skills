@@ -1,42 +1,69 @@
-## Description: <br>
-Asin Governance provides a constraint engine, safety oracle, drift detection, sandbox replay, handshake validation, and audit trails for autonomous agent ecosystems. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cybernetic governance substrate for the ASIN Federated Adaptive Cognition Stack, providing constraint checks, safety-oracle rules, drift detection, sandbox replay, audit logging, and ASH-0.2 session-handshake tooling for agent ecosystems.
 
-## Publisher: <br>
-[dbottrader](https://clawhub.ai/user/dbottrader) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dbottrader](https://clawhub.ai/user/dbottrader)
 
-## Use Case: <br>
-Developers and operators of autonomous agent stacks use this skill to run pre-action governance checks, validate ASH session handshakes, simulate higher-risk actions, and record audit trails before committing actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles credentials, tokens, network access, and local audit data. <br>
-Mitigation: Review the heartbeat and handshake components before installation, avoid real Moltbook credentials during evaluation, and keep the exchange server unexposed until token handling and log retention are reviewed. <br>
-Risk: Several advertised safety controls are weaker than described, so the skill should not be treated as a hard security boundary. <br>
-Mitigation: Use it as prototype governance support with independent review and human approval for high-impact actions. <br>
-Risk: The included fuzz report shows multiple mutated payloads passing safety checks. <br>
-Mitigation: Strengthen oracle validation and rerun adversarial tests before enabling autonomous posting or profile-changing workflows. <br>
+## Use Case:
 
+Developers and operators use this skill to gate autonomous agent actions through constraint profiles, safety rules, replay checks, and auditable session exchange controls before actions are allowed to proceed.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/dbottrader/asin-governance) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, JSON, Code] <br>
-**Output Format:** [Markdown guidance with JSON configuration, Python modules, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local governance checks, session manifests, replay results, and audit records; security-sensitive use requires review before deployment.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release evidence; artifact metadata reports 0.2.0) <br>
+Risk: The security summary says governance and safety promises are undercut by fail-open checks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and tighten fail-open paths before relying on the oracle, entropy budget, or replay gates; keep human approval in the loop for non-read-only actions.
+
+Risk: The security guidance warns that the heartbeat can use a Moltbook API key.
+
+Mitigation: Use a least-privilege test credential, avoid production credentials during evaluation, and verify credential storage and outbound calls before scheduled execution.
+
+Risk: The security summary identifies broad activation and a standalone session server.
+
+Mitigation: Run the server only on an intended bind address, restrict network exposure, and validate scopes, node profiles, rate limits, and logs before deployment.
+
+Risk: The packaged fuzz report shows all tested post-payload mutations passed safety checks.
+
+Mitigation: Treat the safety oracle as experimental and add blocking checks for oversized content, empty titles, injection strings, credentials in content, null bytes, and high-volume Unicode before using it for autonomous posting.
+
+Risk: The artifact writes persistent local audit logs, token secrets, and revocation data when executable components are run.
+
+Mitigation: Run in a dedicated workspace with expected file permissions and retention controls, and inspect generated logs and secrets after testing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dbottrader/skills/asin-governance)
+- [SKILL.md](artifact/SKILL.md)
+- [Safety rules](artifact/oracle/safety.json)
+- [Risk taxonomy](artifact/constraints/taxonomy.json)
+- [Fuzz report](artifact/sandbox/fuzz-report.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown, JSON, shell output, and Python command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write local audit logs, token secrets, revocation data, and fuzz reports when the executable artifact components are run.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence; packaged skill metadata says 0.2.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

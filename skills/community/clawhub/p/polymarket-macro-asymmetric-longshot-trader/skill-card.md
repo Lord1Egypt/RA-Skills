@@ -1,44 +1,59 @@
-## Description: <br>
-Systematically finds low-probability Polymarket longshot markets and scores them with cross-category macro signals before optionally placing paper or live trades through Simmer. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Systematically finds markets with huge asymmetric payoff -- markets priced at 2-10% where cross-category macro analysis suggests the REAL probability is 15-30%.
 
-## Publisher: <br>
-[diagnostikon](https://clawhub.ai/user/diagnostikon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[diagnostikon](https://clawhub.ai/user/diagnostikon)
 
-## Use Case: <br>
-External users and trading agents use this skill to scan prediction markets for asymmetric longshot opportunities, score macro support, and execute simulated trades by default. Users may opt into live Polymarket trading only when they explicitly run the skill in live mode. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Live mode can place real-money Polymarket trades. <br>
-Mitigation: Start in paper mode, review the tunable limits, and use live mode only when intentionally connecting a funded trading account. <br>
-Risk: The skill requires SIMMER_API_KEY, a sensitive trading credential. <br>
-Mitigation: Use a dedicated revocable API key with limited funds or permissions where possible. <br>
-Risk: The unpinned simmer-sdk dependency is part of the runtime trust boundary. <br>
-Mitigation: Review and trust the dependency before installation or live trading use. <br>
+## Use Case:
 
+External agents and operators use this skill to scan Polymarket prediction markets for low-probability macro longshots, score cross-category support signals, and place simulated or explicitly enabled live trades through Simmer.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/diagnostikon/polymarket-macro-asymmetric-longshot-trader) <br>
-- [simmer-sdk on PyPI](https://pypi.org/project/simmer-sdk/) <br>
-- [simmer-sdk on GitHub](https://github.com/SpartanLabsXyz/simmer-sdk) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, API Calls, Shell commands, Configuration] <br>
-**Output Format:** [Terminal logs, Simmer trade API calls, and configurable environment-based risk parameters] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Defaults to paper trading; live trading requires an explicit --live flag and SIMMER_API_KEY.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.3 (source: server release metadata) <br>
+Risk: Live mode can place real Polymarket trades and expose account funds to loss.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run in the default paper mode unless live trading is intentionally enabled, keep live account funds limited, and require explicit review before using --live.
+
+Risk: Security evidence says some advertised financial safeguards are not actually enforced in the code.
+
+Mitigation: Do not rely on documented volume, concurrent-position, or longshot-size safeguards until enforcement is verified; review carefully before installing or enabling live mode.
+
+Risk: The required Simmer API key grants trading authority.
+
+Mitigation: Use a least-privilege key where possible, protect it as a high-value credential, and rotate it if exposure is suspected.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/diagnostikon/skills/polymarket-macro-asymmetric-longshot-trader)
+- [simmer-sdk on PyPI](https://pypi.org/project/simmer-sdk/)
+- [simmer-sdk GitHub repository](https://github.com/SpartanLabsXyz/simmer-sdk)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and configuration details]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can perform Simmer API calls and place simulated trades by default; live Polymarket trading requires explicit live-mode execution.]
+
+## Skill Version(s):
+
+0.0.3 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

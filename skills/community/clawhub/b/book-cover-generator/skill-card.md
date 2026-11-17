@@ -1,42 +1,60 @@
-## Description: <br>
-AI book cover generator for indie authors and self-publishers — create stunning KDP book covers, novel cover art, ebook covers, and Kindle cover designs using AI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI book cover generator for indie authors and self-publishers that creates KDP book covers, novel cover art, ebook covers, and Kindle cover designs using the Neta AI image generation API.
 
-## Publisher: <br>
-[omactiengartelle](https://clawhub.ai/user/omactiengartelle) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[omactiengartelle](https://clawhub.ai/user/omactiengartelle)
 
-## Use Case: <br>
-External authors, self-publishers, and developers use this skill to generate genre-specific book cover image URLs from text prompts via the Neta/TalesOfAI image generation API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts and generated-image workflow data are sent to the external Neta/TalesOfAI API. <br>
-Mitigation: Use the skill only when that provider is acceptable for the intended content, and avoid submitting confidential manuscript material, private data, or secrets in prompts. <br>
-Risk: The skill requires a Neta API token for authenticated requests. <br>
-Mitigation: Use a dedicated low-privilege token where possible and pass it through environment-variable expansion instead of typing raw secrets into shell history. <br>
+## Use Case:
 
+External authors, self-publishers, and KDP creators use this skill to generate genre-specific book cover image URLs from text descriptions. The skill supports portrait, landscape, square, and tall dimensions and can optionally inherit style from a reference image UUID.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/omactiengartelle/book-cover-generator) <br>
-- [Neta API Token Setup](https://www.neta.art/open/) <br>
-- [TalesOfAI Image Generation API](https://api.talesofai.com/v3/make_image) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, API Calls] <br>
-**Output Format:** [Plain text URL] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns a direct generated-image URL after polling the external API; requires a Neta API token and accepts optional size and reference-image UUID inputs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: The skill handles an API token for an external image service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a disposable or least-privileged Neta API token and avoid passing long-lived secrets directly in shell commands.
+
+Risk: Prompts and optional reference identifiers are transmitted to the external image provider.
+
+Mitigation: Do not submit confidential manuscript material, unreleased cover concepts, or sensitive reference assets unless that transmission is acceptable.
+
+Risk: The server security summary flags the release as suspicious because provider and credential-handling risks are under-disclosed.
+
+Mitigation: Review the skill before installing and prefer a pinned or ClawHub-verified install path over an unpinned npx command.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/omactiengartelle/skills/book-cover-generator)
+- [Neta AI token signup](https://www.neta.art/open/)
+- [Neta image generation API endpoint](https://api.talesofai.com/v3/make_image)
+- [Neta image task status API endpoint](https://api.talesofai.com/v1/artifact/task/${taskUuid})
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text image URL with Markdown usage guidance and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Neta API token supplied with --token; sends prompts and optional reference UUIDs to an external image generation service.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

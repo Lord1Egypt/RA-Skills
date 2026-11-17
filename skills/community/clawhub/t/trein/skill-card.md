@@ -1,42 +1,60 @@
-## Description: <br>
-Query Dutch Railways (NS) for train departures, trip planning, disruptions, and station search via the trein CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query Dutch Railways (NS) for train departures, trip planning, disruptions, and station search via the trein CLI.
 
-## Publisher: <br>
-[Joehoel](https://clawhub.ai/user/Joehoel) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[joehoel](https://clawhub.ai/user/joehoel)
 
-## Use Case: <br>
-External users and developers use this skill to ask an agent for Dutch Railways CLI commands and setup guidance for real-time departures, trip planning, disruptions, station search, aliases, and structured JSON output. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill requires installing and running the third-party trein CLI. <br>
-Mitigation: Install only from the package or release locations named in the evidence, and review the CLI before using it in sensitive environments. <br>
-Risk: The skill requires an NS_API_KEY and can store it in a local configuration file. <br>
-Mitigation: Provide the key through a secret-aware environment variable when possible, and treat ~/.config/trein/trein.config.json as a secret-bearing file if used. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [NS API Portal](https://apiportal.ns.nl/) <br>
-- [trein macOS Apple Silicon binary](https://github.com/joelkuijper/trein/releases/latest/download/trein-darwin-arm64) <br>
-- [trein macOS Intel binary](https://github.com/joelkuijper/trein/releases/latest/download/trein-darwin-x64) <br>
-- [trein Linux x64 binary](https://github.com/joelkuijper/trein/releases/latest/download/trein-linux-x64) <br>
+## Use Case:
 
+External users, developers, and agents use this skill to query Dutch Railways (NS) departures, trip plans, disruptions, and station search through the trein CLI.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide use of the trein CLI --json flag for structured command output.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill depends on installing and running the third-party trein executable.
+
+Mitigation: Install only from trusted npm or release sources and review the package source or release provenance before use in sensitive environments.
+
+Risk: NS_API_KEY can be exposed through shell history, config files, screenshots, backups, or repositories.
+
+Mitigation: Set NS_API_KEY only for the shell or session that needs it, and keep any trein config file private and excluded from backups and source control.
+
+Risk: Train departure, disruption, and trip-planning results are time-sensitive operational data.
+
+Mitigation: Verify important travel decisions against current NS data close to departure time.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/joehoel/skills/trein)
+- [Publisher profile](https://clawhub.ai/user/joehoel)
+- [trein project homepage](https://github.com/joelkuijper/trein)
+- [trein GitHub releases](https://github.com/joelkuijper/trein/releases)
+- [NS API portal](https://apiportal.ns.nl/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, JSON, guidance]
+
+**Output Format:** [Markdown with inline shell commands and optional JSON CLI output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference the NS_API_KEY environment variable and trein CLI commands.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

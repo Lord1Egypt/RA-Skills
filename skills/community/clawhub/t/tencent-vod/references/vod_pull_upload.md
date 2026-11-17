@@ -53,48 +53,48 @@
 
 #### 基础拉取上传
 ```bash
-python scripts/vod_pull_upload.py \
+python3 scripts/vod_pull_upload.py \
     --url "https://example.com/video.mp4"
 ```
 
 #### 指定媒体名称
 ```bash
-python scripts/vod_pull_upload.py \
+python3 scripts/vod_pull_upload.py \
     --url "https://example.com/video.mp4" \
     --media-name "拉取的视频"
 ```
 
 #### 指定媒体类型（URL 无扩展名时）
 ```bash
-python scripts/vod_pull_upload.py \
+python3 scripts/vod_pull_upload.py \
     --url "https://example.com/video" \
     --media-type mp4
 ```
 
 #### 指定封面
 ```bash
-python scripts/vod_pull_upload.py \
+python3 scripts/vod_pull_upload.py \
     --url "https://example.com/video.mp4" \
     --cover-url "https://example.com/cover.jpg"
 ```
 
 #### 拉取后自动执行任务流
 ```bash
-python scripts/vod_pull_upload.py \
+python3 scripts/vod_pull_upload.py \
     --url "https://example.com/video.mp4" \
     --procedure "MyProcedure"
 ```
 
 #### 等待任务完成
 ```bash
-python scripts/vod_pull_upload.py \
+python3 scripts/vod_pull_upload.py \
     --url "https://example.com/video.mp4" \
 
 ```
 
 #### 等待任务完成（自定义超时）
 ```bash
-python scripts/vod_pull_upload.py \
+python3 scripts/vod_pull_upload.py \
     --url "https://example.com/video.mp4" \
  \
 
@@ -102,21 +102,21 @@ python scripts/vod_pull_upload.py \
 
 #### 设置任务优先级
 ```bash
-python scripts/vod_pull_upload.py \
+python3 scripts/vod_pull_upload.py \
     --url "https://example.com/video.mp4" \
     --tasks-priority 5
 ```
 
 #### 去重识别码（防止重复提交）
 ```bash
-python scripts/vod_pull_upload.py \
+python3 scripts/vod_pull_upload.py \
     --url "https://example.com/video.mp4" \
     --session-id "my-unique-id-001"
 ```
 
 #### JSON 格式输出（含等待结果）
 ```bash
-python scripts/vod_pull_upload.py \
+python3 scripts/vod_pull_upload.py \
     --url "https://example.com/video.mp4" \
  \
     --json
@@ -124,7 +124,7 @@ python scripts/vod_pull_upload.py \
 
 #### dry-run 预览参数
 ```bash
-python scripts/vod_pull_upload.py \
+python3 scripts/vod_pull_upload.py \
     --url "https://example.com/video.mp4" \
     --media-name "拉取视频" \
  \
@@ -133,7 +133,7 @@ python scripts/vod_pull_upload.py \
 
 #### 拉取 HLS 流
 ```bash
-python scripts/vod_pull_upload.py \
+python3 scripts/vod_pull_upload.py \
     --url "https://example.com/video.m3u8" \
     --media-name "HLS流"
 ```

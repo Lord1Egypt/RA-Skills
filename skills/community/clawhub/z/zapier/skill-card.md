@@ -1,45 +1,65 @@
-## Description: <br>
-Complete Zapier automation with Zaps, Tables, Interfaces, webhooks, REST Hooks API, and 6000+ app integrations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Complete Zapier automation with Zaps, Tables, Interfaces, webhooks, REST Hooks API, and 6000+ app integrations.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Employees, developers, and operations teams use this skill to design, configure, and operate Zapier automations across Zaps, Tables, Interfaces, webhooks, REST Hooks API calls, and connected app workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Broad Zapier automation can make live workflow changes, send outbound messages, publish interfaces, run AI actions, delete records or hooks, and send data to webhooks. <br>
-Mitigation: Require explicit user confirmation before any live change, outbound send, publication, deletion, AI action execution, or webhook data transfer. <br>
-Risk: Zapier workflow data, field mappings, trigger/action configuration, and mapped records can flow to Zapier and connected third-party apps. <br>
-Mitigation: Use least-privilege Zapier and Tables tokens, map only necessary fields, avoid raw payload logging, and keep personal data and secrets out of URLs, emails, Slack messages, and public interfaces. <br>
-Risk: API credentials are required for REST Hooks and Tables examples. <br>
-Mitigation: Store credentials only in environment variables or approved secret storage, rotate tokens when exposed, and avoid embedding keys in generated commands or persisted local notes. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ivangdavila/zapier) <br>
-- [Publisher Profile](https://clawhub.ai/user/ivangdavila) <br>
-- [Zapier Developer Platform](https://zapier.com/developer/platform) <br>
-- [Zapier REST API](https://api.zapier.com/v1/profile) <br>
-- [Zapier Tables API](https://tables.zapier.com/api/v1/) <br>
+## Use Case:
 
+Employees, external users, and developers use this skill to design, test, and operate Zapier workflows across apps, tables, interfaces, webhooks, and API-driven automations.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, API examples, workflow patterns, and configuration notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce Zapier workflow designs, cURL examples, field mappings, webhook payload examples, and local memory/configuration guidance.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can guide broad workflow automation, including enabling, deleting, sending messages, and calling arbitrary webhooks.
+
+Mitigation: Require explicit user confirmation before actions that enable automations, delete resources, send messages, or call arbitrary webhooks.
+
+Risk: Workflow payloads may be forwarded, logged, emailed, or placed in URLs.
+
+Mitigation: Map only necessary fields, avoid raw payload logs or emails, and keep personal or sensitive data out of URLs.
+
+Risk: Persistent account and workflow context may accumulate in local Zapier memory or workspace memory.
+
+Mitigation: Review and prune ~/zapier/memory.md and any workspace memory entries created for this skill.
+
+Risk: Zapier API and Tables tokens can grant access to account resources and connected workflow data.
+
+Mitigation: Keep API keys in environment variables or managed secret fields and avoid printing or storing them in logs.
+
+## Reference(s):
+
+- [ClawHub Zapier Skill](https://clawhub.ai/ivangdavila/skills/zapier)
+- [Skill Homepage](https://clawic.com/skills/zapier)
+- [Zapier Developer Platform](https://zapier.com/developer/platform)
+- [Zapier REST API](https://api.zapier.com/v1/*)
+- [Zapier Tables API](https://tables.zapier.com/api/v1/*)
+- [Zapier Catch Hook Endpoints](https://hooks.zapier.com/hooks/catch/*)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with inline shell commands, JSON examples, and Zap configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce Zapier API requests, webhook payload examples, Zap configuration steps, and local memory notes.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

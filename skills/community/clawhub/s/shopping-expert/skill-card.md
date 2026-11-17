@@ -1,45 +1,61 @@
-## Description: <br>
-Find and compare products online (Google Shopping) and locally (stores near you). Auto-selects best products based on price, ratings, availability, and preferences. Generates shopping list with buy links and store locations. Use when asked to shop for products, find best deals, compare prices, or locate items locally. Supports budget constraints (low/medium/high or "$X"), preference filtering (brand, features, color), and dual-mode search (online + local stores). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find and compare products online through Google Shopping and locally through nearby store search, ranking results by price, ratings, availability, reviews, shipping or distance, and stated preferences.
 
-## Publisher: <br>
-[udiedrichsen](https://clawhub.ai/user/udiedrichsen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[udiedrichsen](https://clawhub.ai/user/udiedrichsen)
 
-## Use Case: <br>
-External users and agents use this skill to search for products online, locate nearby stores, compare price, ratings, availability, shipping or distance, and produce a ranked shopping list. It supports budget, country, local-search location, preferences, and text or JSON output controls. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Shopping queries, preferences, country codes, and local-search locations may be sent to SerpAPI or Google Places. <br>
-Mitigation: Use only approved API keys and avoid local or hybrid searches when location disclosure is not acceptable. <br>
-Risk: Prices, availability, and local inventory may be stale or incomplete. <br>
-Mitigation: Verify final price, availability, shipping, and store stock with the seller before purchase. <br>
-Risk: The ranking algorithm may over-weight incomplete third-party result metadata such as ratings, reviews, shipping, or distance. <br>
-Mitigation: Treat rankings as decision support and compare important products or stores manually before acting. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Shopping Expert on ClawHub](https://clawhub.ai/udiedrichsen/shopping-expert) <br>
-- [Publisher profile: udiedrichsen](https://clawhub.ai/user/udiedrichsen) <br>
-- [Skill homepage](https://github.com/clawdbot/clawdbot) <br>
-- [SerpAPI search endpoint](https://serpapi.com/search) <br>
-- [Google Places API endpoint](https://places.googleapis.com/v1) <br>
+## Use Case:
 
+External users and agents use this skill to find product options, compare prices and ratings, generate ranked shopping lists, and locate nearby stores when a location is provided.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown shopping table by default, or structured JSON when requested] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs ranked products or stores with prices or distance, ratings, availability, source links, warnings, and search metadata.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Shopping searches are sent to SerpAPI for online results.
+
+Mitigation: Avoid entering sensitive or private product queries unless sharing them with SerpAPI is acceptable.
+
+Risk: Location text is sent to Google Places when local or hybrid search is used.
+
+Mitigation: Use city-level or approximate locations when precise location sharing is unnecessary.
+
+Risk: Local store results are nearby store suggestions and do not confirm product stock.
+
+Mitigation: Verify inventory and details with the store before relying on a local result.
+
+Risk: Buy and directions links are returned from external shopping and map sources.
+
+Mitigation: Review links before opening them and confirm price, seller, and destination details before purchase or travel.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/udiedrichsen/skills/shopping-expert)
+- [Publisher profile](https://clawhub.ai/user/udiedrichsen)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, guidance]
+
+**Output Format:** [Markdown shopping table by default, or structured JSON when requested]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes ranked products or stores, prices or distances, ratings, availability, source names, buy or directions links, warnings, and a timestamp.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,47 +1,61 @@
-## Description: <br>
-Use when a task adds, upgrades, removes, or reviews software dependencies and the agent should apply a Socket-based supply-chain guardrail before changing manifests or lockfiles. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when a task adds, upgrades, removes, or reviews software dependencies and the agent should apply a Socket-based supply-chain guardrail before changing manifests or lockfiles.
 
-## Publisher: <br>
-[tuthan](https://clawhub.ai/user/tuthan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tuthan](https://clawhub.ai/user/tuthan)
 
-## Use Case: <br>
-Developers and engineering agents use this skill to review proposed dependency additions, upgrades, removals, or transient install commands before manifest or lockfile changes are made. It guides the agent to prefer existing project capabilities, run Socket-based checks, and block or escalate risky dependency changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Socket credentials or GitHub integration keys could be exposed if pasted into prompts or committed in workflow configuration. <br>
-Mitigation: Use Socket login or environment variables for local CLI authentication, use GitHub secrets for CI keys, and avoid placing private tokens in prompts. <br>
-Risk: Dependency changes may be made without a reliable Socket result when tooling is unavailable or reports are incomplete. <br>
-Mitigation: Require human review before changing manifests or lockfiles when Socket tooling, category scores, or dependency reports are unavailable. <br>
-Risk: CI scanning can request pull request and issue write permissions when comments or GitHub integration behavior are enabled. <br>
-Mitigation: Review GitHub Actions permissions and enable write scopes only when CI comments or issue/PR updates are required. <br>
+## Use Case:
 
+Developers and engineers use this skill to review proposed dependency additions, upgrades, removals, and transient install commands before changing manifests or lockfiles. It guides agents through Socket-based review, policy checks, and safer alternatives or human review when risk signals are weak.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/tuthan/dependency-guard) <br>
-- [Publisher Profile](https://clawhub.ai/user/tuthan) <br>
-- [Canonical Policy](references/policy.md) <br>
-- [Decision Matrix](references/decision-matrix.md) <br>
-- [Example Review Format](references/examples.md) <br>
-- [GitHub Actions Example](examples/github/dependency-guard.yml) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown review summaries with inline shell commands and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Socket CLI or host-provided MCP dependency scoring for automated review; otherwise the skill directs the agent to request human review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server evidence and SKILL.md frontmatter) <br>
+Risk: Socket-based reviews may perform external dependency lookups.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when external package lookups are acceptable for the workspace, and prefer MCP depscore or a pinned, reviewed Socket CLI version.
+
+Risk: The CI example uses credentialed GitHub execution and installs the Socket CLI dynamically.
+
+Mitigation: Pin the CLI and GitHub Actions versions, reduce GitHub token permissions to the minimum needed, and review secrets handling before copying the workflow.
+
+Risk: The helper script can write reports to a user-provided output path.
+
+Mitigation: Avoid arbitrary or sensitive output paths and keep generated reports in a project-local review directory.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/tuthan/skills/dependency-guard)
+- [Canonical Policy](references/policy.md)
+- [Decision Matrix](references/decision-matrix.md)
+- [Example Review Format](references/examples.md)
+- [GitHub Actions Example](examples/github/dependency-guard.yml)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with shell commands and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May require Socket CLI authentication or MCP depscore availability before producing a dependency decision.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

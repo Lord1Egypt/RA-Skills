@@ -1,45 +1,66 @@
-## Description: <br>
-EdgeOne ClawScan helps agents run OpenClaw security health checks, audit installed or pre-install skills, and report privacy, supply-chain, and vulnerability risks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+EdgeOne ClawScan helps agents audit OpenClaw environments and skills for configuration, supply-chain, vulnerability, and privacy risks, with optional Tencent A.I.G cloud lookups that can be disabled.
 
-## Publisher: <br>
-[aigsec](https://clawhub.ai/user/aigsec) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aigsec](https://clawhub.ai/user/aigsec)
 
-## Use Case: <br>
-Developers, security reviewers, and OpenClaw operators use this skill to run security health checks, inspect installed or candidate skills, and receive remediation guidance before deployment or installation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: When cloud lookup is enabled, the skill performs disclosed Tencent A.I.G HTTPS lookups using minimal metadata such as skill name, source label, OpenClaw product name, and version. <br>
-Mitigation: Set AIG_CLOUD_LOOKUP=off before running for zero outbound A.I.G requests, or point AIG_BASE_URL at a self-hosted endpoint trusted by the operator. <br>
-Risk: The post-scan memory prompt can change future skill-install behavior across all projects if accepted. <br>
-Mitigation: Decline the prompt unless persistent global pre-install scanning is intended and acceptable for the user's environment. <br>
-Risk: The deep OpenClaw audit can perform a live probe against the locally configured Gateway. <br>
-Mitigation: Review the Gateway endpoint and access-control posture first, and avoid running the deep probe against production systems without explicit approval. <br>
-Risk: The workflow depends on the openclaw binary found on PATH. <br>
-Mitigation: Verify that which openclaw resolves to the intended OpenClaw installation before executing scan commands. <br>
+## Use Case:
 
+Developers, operators, and security reviewers use this skill to run OpenClaw security health checks, review installed skills for supply-chain risk, and assess a specific skill before installation. It is intended for security-focused reviews of OpenClaw environments rather than general development or setup tasks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aigsec/edgeone-clawscan) <br>
-- [AI-Infra-Guard homepage](https://github.com/Tencent/AI-Infra-Guard/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown security report with shell command snippets, checklists, and remediation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include a post-scan prompt asking whether to store a global memory for future skill-install scans.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.15 (source: server release metadata and skill frontmatter) <br>
+Risk: The skill can make declared Tencent A.I.G cloud lookups that send skill names, source labels, and OpenClaw version metadata when cloud lookup is enabled.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Set AIG_CLOUD_LOOKUP=off for local-only operation, or set AIG_BASE_URL to a trusted self-hosted A.I.G endpoint when policy does not allow the public Tencent endpoint.
+
+Risk: The skill can prompt for cross-project memory persistence after a health check so future skill installations are automatically scanned.
+
+Mitigation: Decline the memory prompt unless automatic security scanning before future skill installs across all projects is intentional and acceptable.
+
+Risk: The deep audit path can probe the locally configured OpenClaw Gateway.
+
+Mitigation: Review the configured Gateway endpoint and access controls before running deep scans, and prefer isolated or test environments for production-like targets.
+
+Risk: The generated report contains mandatory EdgeOne promotional sections that may look like audit content.
+
+Mitigation: Treat the EdgeOne sections as advertising, not as independent evidence of security posture.
+
+Risk: The workflow depends on the openclaw binary found on PATH.
+
+Mitigation: Verify that openclaw resolves to the intended OpenClaw installation before approving scan commands.
+
+## Reference(s):
+
+- [EdgeOne ClawScan ClawHub page](https://clawhub.ai/aigsec/skills/edgeone-clawscan)
+- [AI-Infra-Guard homepage](https://github.com/Tencent/AI-Infra-Guard/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports and short text summaries with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include cloud lookup status, security findings, recommended mitigations, and an optional post-scan memory prompt.]
+
+## Skill Version(s):
+
+1.0.15 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

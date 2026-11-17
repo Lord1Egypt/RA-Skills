@@ -1,44 +1,58 @@
-## Description: <br>
-Predict construction project costs using machine learning models trained on historical project data, including Linear Regression, K-Nearest Neighbors, Random Forest, and Gradient Boosting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Predict construction project costs using Machine Learning. Use Linear Regression, K-Nearest Neighbors, and Random Forest models on historical project data. Train, evaluate, and deploy cost prediction models.
 
-## Publisher: <br>
-[datadrivenconstruction](https://clawhub.ai/user/datadrivenconstruction) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[datadrivenconstruction](https://clawhub.ai/user/datadrivenconstruction)
 
-## Use Case: <br>
-External construction estimators, cost managers, and developers use this skill to prepare historical project data, train local machine learning models, compare model performance, and produce cost predictions with confidence ranges. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Construction cost predictions can be misleading when training data is sparse, outdated, low quality, or outside the new project's range. <br>
-Mitigation: Require sufficient historical examples, adjust costs consistently, report confidence ranges, compare against benchmarks, and warn when extrapolating beyond the training data. <br>
-Risk: Historical project datasets may contain confidential commercial or project information. <br>
-Mitigation: Limit filesystem access to intended datasets and output folders, and remove unnecessary confidential columns before model training or analysis. <br>
-Risk: Serialized model files can be unsafe or untrustworthy if loaded from unknown sources. <br>
-Mitigation: Only load saved model files from trusted sources and review local files before using them in a prediction workflow. <br>
+## Use Case:
 
+External developers, estimators, and construction analytics teams use this skill to prepare historical project data, train cost prediction models, compare model performance, and produce cost estimates with confidence ranges.
 
-## Reference(s): <br>
-- [Cost Prediction ClawHub release](https://clawhub.ai/datadrivenconstruction/cost-prediction) <br>
-- [Data-Driven Construction](https://datadrivenconstruction.io) <br>
-- [scikit-learn documentation](https://scikit-learn.org) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown with Python code snippets, metric tables, prediction ranges, and feature-importance summaries.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include local model training steps, evaluation metrics, and recommendations for selecting a prediction model.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: evidence.release.version and artifact/claw.json) <br>
+Risk: Loading pickle or joblib model files from untrusted sources can execute code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only models created in a trusted local workflow, and do not load .pkl or joblib files received from email, downloads, shared folders, or other untrusted channels.
+
+Risk: Historical construction datasets can contain sensitive commercial or project information.
+
+Mitigation: Anonymize, minimize, and access-control project cost datasets before using them with the skill.
+
+Risk: Cost predictions may be misleading when inputs fall outside the range or quality of the training data.
+
+Mitigation: Report confidence ranges, review feature influence, and warn when extrapolating beyond observed training data.
+
+## Reference(s):
+
+- [Data-Driven Construction](https://datadrivenconstruction.io)
+- [scikit-learn](https://scikit-learn.org)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown with Python code snippets, metrics tables, feature-importance rankings, and recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include estimated cost ranges, model evaluation metrics, and warnings when predictions extrapolate beyond the training data range.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata and artifact/claw.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,49 +1,64 @@
-## Description: <br>
-ForgeX CLI guides an agent through installing and using a command-line tool for Solana wallet management, token launches, batch trades, market-making workflows, and on-chain data queries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ForgeX CLI enables agents to guide Solana wallet management, token launches, transfers, batch trades, and on-chain market-making workflows through command-line examples.
 
-## Publisher: <br>
-[catlina-2b](https://clawhub.ai/user/catlina-2b) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[catlina-2b](https://clawhub.ai/user/catlina-2b)
 
-## Use Case: <br>
-Developers, operators, and agents use this skill to produce ForgeX CLI commands and workflow guidance for Solana wallet groups, token operations, transfers, trading, and market-making tasks. Users should treat the guidance as high-risk because it can involve private keys, real funds, and automated trading behavior. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide users through installing an external CLI and executing crypto wallet, private-key, fund-transfer, and automated trading workflows. <br>
-Mitigation: Verify the npm package and maintainer independently, review commands before execution, start with throwaway wallets and tiny test amounts, and use dry-run options before any live transaction. <br>
-Risk: Commands may expose sensitive values such as passwords or private keys if entered directly on the command line or stored insecurely. <br>
-Mitigation: Avoid passing secrets directly as command-line arguments where possible, use secure secret handling, and store wallet backups encrypted. <br>
-Risk: Volume or price-moving workflows can misrepresent market activity or violate platform, legal, or policy rules. <br>
-Mitigation: Use the skill only for lawful, compliant activity and do not use automated market-making features to create deceptive volume or manipulate prices. <br>
+## Use Case:
 
+External users and developers use this skill to ask an agent for ForgeX CLI setup, wallet operations, token launch, trading, transfer, and market-making command guidance. It is intended for high-risk crypto operations where dry runs and isolated test wallets should be used before live execution.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/catlina-2b/forgex-skill) <br>
-- [npm package: forgex-cli](https://www.npmjs.com/package/forgex-cli) <br>
-- [Solana](https://solana.com) <br>
-- [Sonic SVM](https://sonic.game) <br>
-- [Pump.fun](https://pump.fun) <br>
-- [Raydium](https://raydium.io) <br>
-- [Jito](https://jito.wtf) <br>
-- [OpenClaw](https://openclaw.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with CLI command examples and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include commands that install external packages, configure RPC endpoints, manage wallets, move funds, launch tokens, or run automated trading workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Live ForgeX commands can sign transactions and cause irreversible fund loss.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use isolated test wallets first, keep funds minimal, and run dry-run simulations before any live transaction.
+
+Risk: Examples pass wallet passwords and private keys through command-line arguments or CSV files.
+
+Mitigation: Avoid entering real private keys or passwords on the command line, do not create plaintext CSV wallet backups, and prefer encrypted exports for any wallet material.
+
+Risk: The installed npm package may differ from the documented behavior.
+
+Mitigation: Verify the npm package provenance and exact version before installation or execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/catlina-2b/skills/forgex-skill)
+- [ForgeX CLI npm package](https://www.npmjs.com/package/forgex-cli)
+- [Solana](https://solana.com)
+- [Sonic SVM](https://sonic.game)
+- [Pump.fun](https://pump.fun)
+- [Raydium](https://raydium.io)
+- [Jito](https://jito.wtf)
+- [OpenClaw](https://openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Command examples may include dry-run flags, wallet parameters, RPC endpoints, token addresses, passwords, and file paths supplied by the user.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

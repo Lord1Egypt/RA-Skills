@@ -1,15 +1,18 @@
 """Testes unitários para senado_client."""
-import pytest
-from unittest.mock import AsyncMock, Mock, patch, PropertyMock
+
 from datetime import date
+from unittest.mock import AsyncMock, Mock, PropertyMock, patch
+
+import pytest
 
 from senado_client import (
-    SenadoClient,
-    get_senado_client,
+    SenadoAdmClient,
     SenadoAPIError,
-    SenadoTimeoutError,
-    SenadoNotFoundError,
+    SenadoClient,
     SenadoConnectionError,
+    SenadoNotFoundError,
+    SenadoTimeoutError,
+    get_senado_client,
 )
 
 
@@ -51,13 +54,14 @@ class TestSenadoClient:
     async def test_get_singleton(self):
         """Testa padrão singleton."""
         import senado_client as mod
+
         mod._client = None
         client1 = get_senado_client()
         client2 = get_senado_client()
         assert client1 is client2
         mod._client = None
 
-    @patch('senado_client.httpx.AsyncClient')
+    @patch("senado_client.httpx.AsyncClient")
     async def test_lista_senadores_atuais_success(self, mock_httpx, mock_senado_response):
         """Testa listagem de senadores com sucesso."""
         mock_client = _make_mock_client(_make_response(mock_senado_response))
@@ -68,9 +72,9 @@ class TestSenadoClient:
 
         assert isinstance(result, list)
         assert len(result) == 1
-        assert result[0]['IdentificacaoParlamentar']['NomeParlamentar'] == "Renan Calheiros"
+        assert result[0]["IdentificacaoParlamentar"]["NomeParlamentar"] == "Renan Calheiros"
 
-    @patch('senado_client.httpx.AsyncClient')
+    @patch("senado_client.httpx.AsyncClient")
     async def test_buscar_senador_por_nome(self, mock_httpx, mock_senado_response):
         """Testa busca de senador por nome."""
         mock_client = _make_mock_client(_make_response(mock_senado_response))
@@ -80,9 +84,9 @@ class TestSenadoClient:
         result = await client.buscar_senador_por_nome("Renan")
 
         assert len(result) == 1
-        assert "renan" in result[0]['IdentificacaoParlamentar']['NomeParlamentar'].lower()
+        assert "renan" in result[0]["IdentificacaoParlamentar"]["NomeParlamentar"].lower()
 
-    @patch('senado_client.httpx.AsyncClient')
+    @patch("senado_client.httpx.AsyncClient")
     async def test_buscar_senador_nao_encontrado(self, mock_httpx, mock_senado_response):
         """Testa busca que não encontra nenhum senador."""
         mock_client = _make_mock_client(_make_response(mock_senado_response))
@@ -93,7 +97,7 @@ class TestSenadoClient:
 
         assert len(result) == 0
 
-    @patch('senado_client.httpx.AsyncClient')
+    @patch("senado_client.httpx.AsyncClient")
     async def test_pesquisar_materia_success(self, mock_httpx, mock_materia_response):
         """Testa pesquisa de matérias."""
         mock_client = _make_mock_client(_make_response(mock_materia_response))
@@ -103,17 +107,20 @@ class TestSenadoClient:
         result = await client.pesquisar_materia(sigla="PL", ano=2026)
 
         assert isinstance(result, list)
-        assert result[0]['SiglaSubtipoMateria'] == "PL"
+        assert result[0]["SiglaSubtipoMateria"] == "PL"
 
-    @patch('senado_client.httpx.AsyncClient')
+    @patch("senado_client.httpx.AsyncClient")
     async def test_get_with_timeout_and_retry(self, mock_httpx):
         """Testa retry após timeout."""
         import httpx
+
         success_resp = _make_response({"resultado": "ok"})
-        mock_client = _make_mock_client([
-            httpx.TimeoutException("Timeout"),
-            success_resp,
-        ])
+        mock_client = _make_mock_client(
+            [
+                httpx.TimeoutException("Timeout"),
+                success_resp,
+            ]
+        )
         mock_httpx.return_value = mock_client
 
         client = SenadoClient()
@@ -121,10 +128,11 @@ class TestSenadoClient:
         assert result == {"resultado": "ok"}
         assert mock_client.get.call_count == 2
 
-    @patch('senado_client.httpx.AsyncClient')
+    @patch("senado_client.httpx.AsyncClient")
     async def test_get_timeout_exhausts_retries(self, mock_httpx):
         """Testa que timeout esgota tentativas."""
         import httpx
+
         mock_client = AsyncMock()
         type(mock_client).is_closed = PropertyMock(return_value=False)
         mock_client.get.side_effect = httpx.TimeoutException("Timeout")
@@ -135,17 +143,16 @@ class TestSenadoClient:
             await client._get("/test", retries=2)
         assert mock_client.get.call_count == 2
 
-    @patch('senado_client.httpx.AsyncClient')
+    @patch("senado_client.httpx.AsyncClient")
     async def test_get_with_404_error(self, mock_httpx):
         """Testa tratamento de 404 (sem retry)."""
         import httpx
+
         mock_response = Mock()
         mock_response.status_code = 404
         mock_client = AsyncMock()
         type(mock_client).is_closed = PropertyMock(return_value=False)
-        mock_client.get.side_effect = httpx.HTTPStatusError(
-            "Not found", request=Mock(), response=mock_response
-        )
+        mock_client.get.side_effect = httpx.HTTPStatusError("Not found", request=Mock(), response=mock_response)
         mock_httpx.return_value = mock_client
 
         client = SenadoClient()
@@ -153,10 +160,11 @@ class TestSenadoClient:
             await client._get("/test")
         assert mock_client.get.call_count == 1
 
-    @patch('senado_client.httpx.AsyncClient')
+    @patch("senado_client.httpx.AsyncClient")
     async def test_get_with_connection_error_and_retry(self, mock_httpx):
         """Testa retry após erro de conexão."""
         import httpx
+
         mock_client = AsyncMock()
         type(mock_client).is_closed = PropertyMock(return_value=False)
         mock_client.get.side_effect = httpx.ConnectError("Connection failed")
@@ -167,16 +175,10 @@ class TestSenadoClient:
             await client._get("/test", retries=2)
         assert mock_client.get.call_count == 2
 
-    @patch('senado_client.httpx.AsyncClient')
+    @patch("senado_client.httpx.AsyncClient")
     async def test_get_list_finds_nested_list(self, mock_httpx):
         """Testa que _get_list navega JSON aninhado."""
-        nested_data = {
-            "ListaParlamentar": {
-                "Parlamentares": {
-                    "Parlamentar": [{"nome": "A"}, {"nome": "B"}]
-                }
-            }
-        }
+        nested_data = {"ListaParlamentar": {"Parlamentares": {"Parlamentar": [{"nome": "A"}, {"nome": "B"}]}}}
         mock_client = _make_mock_client(_make_response(nested_data))
         mock_httpx.return_value = mock_client
 
@@ -185,7 +187,7 @@ class TestSenadoClient:
 
         assert len(result) == 2
 
-    @patch('senado_client.httpx.AsyncClient')
+    @patch("senado_client.httpx.AsyncClient")
     async def test_get_list_empty_response(self, mock_httpx):
         """Testa _get_list com resposta vazia."""
         mock_client = _make_mock_client(_make_response({"Lista": {}}))
@@ -196,7 +198,7 @@ class TestSenadoClient:
 
         assert result == []
 
-    @patch('senado_client.httpx.AsyncClient')
+    @patch("senado_client.httpx.AsyncClient")
     async def test_get_agenda_plenario_dia(self, mock_httpx):
         """Testa busca de agenda do plenário."""
         mock_client = _make_mock_client(_make_response({"AgendaDia": {}}))
@@ -208,12 +210,16 @@ class TestSenadoClient:
         assert isinstance(result, dict)
         mock_client.get.assert_called_once()
 
-    @patch('senado_client.httpx.AsyncClient')
+    @patch("senado_client.httpx.AsyncClient")
     async def test_get_senador_votacoes(self, mock_httpx):
         """Testa novo endpoint: votações de senador."""
-        data = {"VotacaoParlamentar": {"Votacoes": {"Votacao": [
-            {"CodigoSessaoVotacao": "123", "DescricaoVotacao": "Aprovada"}
-        ]}}}
+        data = {
+            "VotacaoParlamentar": {
+                "Parlamentar": {
+                    "Votacoes": {"Votacao": [{"CodigoSessaoVotacao": "123", "DescricaoVotacao": "Aprovada"}]}
+                }
+            }
+        }
         mock_client = _make_mock_client(_make_response(data))
         mock_httpx.return_value = mock_client
 
@@ -223,12 +229,12 @@ class TestSenadoClient:
         assert isinstance(result, list)
         assert len(result) == 1
 
-    @patch('senado_client.httpx.AsyncClient')
+    @patch("senado_client.httpx.AsyncClient")
     async def test_get_senador_comissoes(self, mock_httpx):
         """Testa novo endpoint: comissões de senador."""
-        data = {"MembroComissaoParlamentar": {"Comissoes": {"Comissao": [
-            {"SiglaComissao": "CAE"}
-        ]}}}
+        data = {
+            "MembroComissaoParlamentar": {"Parlamentar": {"MembroComissoes": {"Comissao": [{"SiglaComissao": "CAE"}]}}}
+        }
         mock_client = _make_mock_client(_make_response(data))
         mock_httpx.return_value = mock_client
 
@@ -236,9 +242,76 @@ class TestSenadoClient:
         result = await client.get_senador_comissoes("5012")
 
         assert isinstance(result, list)
-        assert result[0]['SiglaComissao'] == "CAE"
+        assert result[0]["SiglaComissao"] == "CAE"
 
-    @patch('senado_client.httpx.AsyncClient')
+    @patch("senado_client.httpx.AsyncClient")
+    async def test_get_autorias_senador_usa_schema_oficial(self, mock_httpx):
+        """Extrai autorias do caminho endpoint-específico atual."""
+        data = {
+            "MateriasAutoriaParlamentar": {"Parlamentar": {"Autorias": {"Autoria": {"IdentificacaoProcesso": "123"}}}}
+        }
+        mock_client = _make_mock_client(_make_response(data))
+        mock_httpx.return_value = mock_client
+
+        client = SenadoClient()
+        result = await client.get_autorias_senador("6009")
+
+        assert result == [{"IdentificacaoProcesso": "123"}]
+
+    @patch("senado_client.httpx.AsyncClient")
+    async def test_get_discursos_senador_usa_schema_e_data_documentados(self, mock_httpx):
+        """Extrai pronunciamentos e envia dataInicio."""
+        data = {
+            "DiscursosParlamentar": {
+                "Parlamentar": {"Pronunciamentos": {"Pronunciamento": [{"CodigoPronunciamento": "1"}]}}
+            }
+        }
+        mock_client = _make_mock_client(_make_response(data))
+        mock_httpx.return_value = mock_client
+
+        client = SenadoClient()
+        result = await client.get_discursos_senador("6009", date(2026, 1, 1), date(2026, 1, 31))
+
+        assert result == [{"CodigoPronunciamento": "1"}]
+        params = mock_client.get.call_args.kwargs["params"]
+        assert params["dataInicio"] == "20260101"
+        assert "dataIni" not in params
+
+    @patch("senado_client.httpx.AsyncClient")
+    async def test_get_senador_mandatos_usa_schema_oficial(self, mock_httpx):
+        """Extrai mandatos abaixo de Parlamentar."""
+        data = {"MandatoParlamentar": {"Parlamentar": {"Mandatos": {"Mandato": {"CodigoMandato": "1"}}}}}
+        mock_client = _make_mock_client(_make_response(data))
+        mock_httpx.return_value = mock_client
+
+        client = SenadoClient()
+        result = await client.get_senador_mandatos("6009")
+
+        assert result == [{"CodigoMandato": "1"}]
+
+    @patch("senado_client.httpx.AsyncClient")
+    async def test_adm_aceita_envelope_data(self, mock_httpx):
+        """Normaliza a forma envelopada da API administrativa."""
+        payload = {"statusCode": 200, "msg": "ok", "data": [{"valorReembolsado": 10}]}
+        mock_client = _make_mock_client(_make_response(payload))
+        mock_httpx.return_value = mock_client
+
+        client = SenadoAdmClient()
+        result = await client.get_ceap(2026)
+
+        assert result == [{"valorReembolsado": 10}]
+
+    @patch("senado_client.httpx.AsyncClient")
+    async def test_adm_rejeita_formato_ambiguo(self, mock_httpx):
+        """Não transforma uma resposta administrativa inválida em total zero."""
+        mock_client = _make_mock_client(_make_response({"statusCode": 200, "msg": "ok"}))
+        mock_httpx.return_value = mock_client
+
+        client = SenadoAdmClient()
+        with pytest.raises(SenadoAPIError):
+            await client.get_ceap(2026)
+
+    @patch("senado_client.httpx.AsyncClient")
     async def test_get_materia_por_sigla(self, mock_httpx, mock_materia_response):
         """Testa busca de matéria por sigla completa."""
         mock_client = _make_mock_client(_make_response(mock_materia_response))
@@ -248,9 +321,9 @@ class TestSenadoClient:
         result = await client.get_materia_por_sigla("PL", "1234", 2026)
 
         assert result is not None
-        assert result['SiglaSubtipoMateria'] == "PL"
+        assert result["SiglaSubtipoMateria"] == "PL"
 
-    @patch('senado_client.httpx.AsyncClient')
+    @patch("senado_client.httpx.AsyncClient")
     async def test_get_materia_por_sigla_nao_encontrada(self, mock_httpx):
         """Testa busca de matéria inexistente."""
         empty_data = {"PesquisaBasicaMateria": {"Materias": {"Materia": []}}}
@@ -262,7 +335,7 @@ class TestSenadoClient:
 
         assert result is None
 
-    @patch('senado_client.httpx.AsyncClient')
+    @patch("senado_client.httpx.AsyncClient")
     async def test_pesquisar_materia_por_assunto(self, mock_httpx, mock_materia_response):
         """Testa novo endpoint: pesquisa por assunto."""
         mock_client = _make_mock_client(_make_response(mock_materia_response))
@@ -273,12 +346,14 @@ class TestSenadoClient:
 
         assert isinstance(result, list)
 
-    @patch('senado_client.httpx.AsyncClient')
+    @patch("senado_client.httpx.AsyncClient")
     async def test_get_senador_filiacoes(self, mock_httpx):
         """Testa endpoint: filiações de senador."""
-        data = {"FiliacaoParlamentar": {"Parlamentar": {"Filiacoes": {"Filiacao": [
-            {"Partido": "MDB", "DataFiliacao": "2015-03-01"}
-        ]}}}}
+        data = {
+            "FiliacaoParlamentar": {
+                "Parlamentar": {"Filiacoes": {"Filiacao": [{"Partido": "MDB", "DataFiliacao": "2015-03-01"}]}}
+            }
+        }
         mock_client = _make_mock_client(_make_response(data))
         mock_httpx.return_value = mock_client
 
@@ -287,14 +362,16 @@ class TestSenadoClient:
 
         assert isinstance(result, list)
         assert len(result) == 1
-        assert result[0]['Partido'] == "MDB"
+        assert result[0]["Partido"] == "MDB"
 
-    @patch('senado_client.httpx.AsyncClient')
+    @patch("senado_client.httpx.AsyncClient")
     async def test_get_senador_filiacoes_single_item(self, mock_httpx):
         """Testa filiações quando API retorna dict em vez de lista."""
-        data = {"FiliacaoParlamentar": {"Parlamentar": {"Filiacoes": {"Filiacao": 
-            {"Partido": "PT", "DataFiliacao": "2010-01-01"}
-        }}}}
+        data = {
+            "FiliacaoParlamentar": {
+                "Parlamentar": {"Filiacoes": {"Filiacao": {"Partido": "PT", "DataFiliacao": "2010-01-01"}}}
+            }
+        }
         mock_client = _make_mock_client(_make_response(data))
         mock_httpx.return_value = mock_client
 
@@ -304,12 +381,14 @@ class TestSenadoClient:
         assert isinstance(result, list)
         assert len(result) == 1
 
-    @patch('senado_client.httpx.AsyncClient')
+    @patch("senado_client.httpx.AsyncClient")
     async def test_get_senador_cargos(self, mock_httpx):
         """Testa endpoint: cargos de senador."""
-        data = {"CargoParlamentar": {"Parlamentar": {"Cargos": {"Cargo": [
-            {"DescricaoCargo": "Presidente", "DataInicio": "2023-02-01"}
-        ]}}}}
+        data = {
+            "CargoParlamentar": {
+                "Parlamentar": {"Cargos": {"Cargo": [{"DescricaoCargo": "Presidente", "DataInicio": "2023-02-01"}]}}
+            }
+        }
         mock_client = _make_mock_client(_make_response(data))
         mock_httpx.return_value = mock_client
 
@@ -318,9 +397,9 @@ class TestSenadoClient:
 
         assert isinstance(result, list)
         assert len(result) == 1
-        assert result[0]['DescricaoCargo'] == "Presidente"
+        assert result[0]["DescricaoCargo"] == "Presidente"
 
-    @patch('senado_client.httpx.AsyncClient')
+    @patch("senado_client.httpx.AsyncClient")
     async def test_get_materia_situacao_atual(self, mock_httpx):
         """Testa endpoint: situação atual de matéria."""
         data = {"SituacaoAtualMateria": {"IdentificacaoMateria": {"CodigoMateria": "123"}}}
@@ -333,12 +412,12 @@ class TestSenadoClient:
         assert isinstance(result, dict)
         assert "SituacaoAtualMateria" in result
 
-    @patch('senado_client.httpx.AsyncClient')
+    @patch("senado_client.httpx.AsyncClient")
     async def test_get_materia_emendas(self, mock_httpx):
         """Testa endpoint: emendas de matéria."""
-        data = {"EmendasMateria": {"Materia": {"Emendas": {"Emenda": [
-            {"CodigoEmenda": "1", "AutorEmenda": "Senador X"}
-        ]}}}}
+        data = {
+            "EmendasMateria": {"Materia": {"Emendas": {"Emenda": [{"CodigoEmenda": "1", "AutorEmenda": "Senador X"}]}}}
+        }
         mock_client = _make_mock_client(_make_response(data))
         mock_httpx.return_value = mock_client
 
@@ -348,12 +427,14 @@ class TestSenadoClient:
         assert isinstance(result, list)
         assert len(result) == 1
 
-    @patch('senado_client.httpx.AsyncClient')
+    @patch("senado_client.httpx.AsyncClient")
     async def test_get_materia_textos(self, mock_httpx):
         """Testa endpoint: textos de matéria."""
-        data = {"TextosMateria": {"Materia": {"Textos": {"Texto": [
-            {"UrlTexto": "http://example.com/texto.pdf", "TipoTexto": "Inicial"}
-        ]}}}}
+        data = {
+            "TextosMateria": {
+                "Materia": {"Textos": {"Texto": [{"UrlTexto": "http://example.com/texto.pdf", "TipoTexto": "Inicial"}]}}
+            }
+        }
         mock_client = _make_mock_client(_make_response(data))
         mock_httpx.return_value = mock_client
 
@@ -363,7 +444,7 @@ class TestSenadoClient:
         assert isinstance(result, list)
         assert len(result) == 1
 
-    @patch('senado_client.httpx.AsyncClient')
+    @patch("senado_client.httpx.AsyncClient")
     async def test_get_resultado_plenario_dia(self, mock_httpx):
         """Testa endpoint: resultado do plenário no dia."""
         data = {"ResultadoPlenario": {"Sessoes": {"Sessao": []}}}
@@ -376,13 +457,19 @@ class TestSenadoClient:
         assert isinstance(result, dict)
         mock_client.get.assert_called_once()
 
-    @patch('senado_client.httpx.AsyncClient')
+    @patch("senado_client.httpx.AsyncClient")
     async def test_get_votacoes_nominais_ano(self, mock_httpx):
         """Testa endpoint: votações nominais de um ano."""
-        data = {"VotacoesNominais": {"Votacoes": {"Votacao": [
-            {"CodigoSessao": "1", "Resultado": "Aprovado"},
-            {"CodigoSessao": "2", "Resultado": "Rejeitado"}
-        ]}}}
+        data = {
+            "VotacoesNominais": {
+                "Votacoes": {
+                    "Votacao": [
+                        {"CodigoSessao": "1", "Resultado": "Aprovado"},
+                        {"CodigoSessao": "2", "Resultado": "Rejeitado"},
+                    ]
+                }
+            }
+        }
         mock_client = _make_mock_client(_make_response(data))
         mock_httpx.return_value = mock_client
 
@@ -392,12 +479,14 @@ class TestSenadoClient:
         assert isinstance(result, list)
         assert len(result) == 2
 
-    @patch('senado_client.httpx.AsyncClient')
+    @patch("senado_client.httpx.AsyncClient")
     async def test_get_discursos_plenario(self, mock_httpx):
         """Testa endpoint: discursos em plenário."""
-        data = {"ListaDiscursosPlenario": {"Discursos": {"Discurso": [
-            {"CodigoPronunciamento": "111", "NomeParlamentar": "Senador A"}
-        ]}}}
+        data = {
+            "ListaDiscursosPlenario": {
+                "Discursos": {"Discurso": [{"CodigoPronunciamento": "111", "NomeParlamentar": "Senador A"}]}
+            }
+        }
         mock_client = _make_mock_client(_make_response(data))
         mock_httpx.return_value = mock_client
 
@@ -407,7 +496,7 @@ class TestSenadoClient:
         assert isinstance(result, list)
         assert len(result) == 1
 
-    @patch('senado_client.httpx.AsyncClient')
+    @patch("senado_client.httpx.AsyncClient")
     async def test_get_comissao_detalhe(self, mock_httpx):
         """Testa endpoint: detalhe de comissão."""
         data = {"DetalheComissao": {"Comissao": {"SiglaComissao": "CAE", "NomeComissao": "Assuntos Econômicos"}}}
@@ -420,13 +509,21 @@ class TestSenadoClient:
         assert isinstance(result, dict)
         assert "DetalheComissao" in result
 
-    @patch('senado_client.httpx.AsyncClient')
+    @patch("senado_client.httpx.AsyncClient")
     async def test_get_composicao_comissao(self, mock_httpx):
         """Testa endpoint: composição de comissão."""
-        data = {"ComposicaoComissao": {"Comissao": {"Membros": {"Membro": [
-            {"NomeParlamentar": "Senador A", "Cargo": "Titular"},
-            {"NomeParlamentar": "Senador B", "Cargo": "Suplente"}
-        ]}}}}
+        data = {
+            "ComposicaoComissao": {
+                "Comissao": {
+                    "Membros": {
+                        "Membro": [
+                            {"NomeParlamentar": "Senador A", "Cargo": "Titular"},
+                            {"NomeParlamentar": "Senador B", "Cargo": "Suplente"},
+                        ]
+                    }
+                }
+            }
+        }
         mock_client = _make_mock_client(_make_response(data))
         mock_httpx.return_value = mock_client
 
@@ -436,12 +533,10 @@ class TestSenadoClient:
         assert isinstance(result, list)
         assert len(result) == 2
 
-    @patch('senado_client.httpx.AsyncClient')
+    @patch("senado_client.httpx.AsyncClient")
     async def test_get_votacao_comissao(self, mock_httpx):
         """Testa endpoint: votações em comissão."""
-        data = {"VotacaoComissao": {"Votacoes": {"Votacao": [
-            {"CodigoVotacao": "1", "Resultado": "Aprovado"}
-        ]}}}
+        data = {"VotacaoComissao": {"Votacoes": {"Votacao": [{"CodigoVotacao": "1", "Resultado": "Aprovado"}]}}}
         mock_client = _make_mock_client(_make_response(data))
         mock_httpx.return_value = mock_client
 
@@ -451,7 +546,7 @@ class TestSenadoClient:
         assert isinstance(result, list)
         assert len(result) == 1
 
-    @patch('senado_client.httpx.AsyncClient')
+    @patch("senado_client.httpx.AsyncClient")
     async def test_get_mesa_senado(self, mock_httpx):
         """Testa endpoint: mesa diretora do Senado."""
         data = {"MesaSenado": {"Membros": {"Membro": [{"Cargo": "Presidente"}]}}}
@@ -464,13 +559,19 @@ class TestSenadoClient:
         assert isinstance(result, dict)
         assert "MesaSenado" in result
 
-    @patch('senado_client.httpx.AsyncClient')
+    @patch("senado_client.httpx.AsyncClient")
     async def test_get_blocos_parlamentares(self, mock_httpx):
         """Testa endpoint: blocos parlamentares."""
-        data = {"ListaBlocos": {"Blocos": {"Bloco": [
-            {"NomeBloco": "Bloco A", "SiglaBloco": "BA"},
-            {"NomeBloco": "Bloco B", "SiglaBloco": "BB"}
-        ]}}}
+        data = {
+            "ListaBlocos": {
+                "Blocos": {
+                    "Bloco": [
+                        {"NomeBloco": "Bloco A", "SiglaBloco": "BA"},
+                        {"NomeBloco": "Bloco B", "SiglaBloco": "BB"},
+                    ]
+                }
+            }
+        }
         mock_client = _make_mock_client(_make_response(data))
         mock_httpx.return_value = mock_client
 
@@ -480,7 +581,7 @@ class TestSenadoClient:
         assert isinstance(result, list)
         assert len(result) == 2
 
-    @patch('senado_client.httpx.AsyncClient')
+    @patch("senado_client.httpx.AsyncClient")
     async def test_get_processo(self, mock_httpx):
         """Testa endpoint: processo legislativo."""
         data = {"DetalheProcesso": {"Materia": {"Codigo": "123"}, "Autuacoes": {}}}
@@ -493,12 +594,10 @@ class TestSenadoClient:
         assert isinstance(result, dict)
         assert "DetalheProcesso" in result
 
-    @patch('senado_client.httpx.AsyncClient')
+    @patch("senado_client.httpx.AsyncClient")
     async def test_pesquisar_legislacao(self, mock_httpx):
         """Testa endpoint: pesquisa de legislação."""
-        data = {"ListaLegislacao": {"Legislacoes": {"Legislacao": [
-            {"Tipo": "LEI", "Numero": "14133", "Ano": "2021"}
-        ]}}}
+        data = {"ListaLegislacao": {"Legislacoes": {"Legislacao": [{"Tipo": "LEI", "Numero": "14133", "Ano": "2021"}]}}}
         mock_client = _make_mock_client(_make_response(data))
         mock_httpx.return_value = mock_client
 
@@ -508,13 +607,19 @@ class TestSenadoClient:
         assert isinstance(result, list)
         assert len(result) == 1
 
-    @patch('senado_client.httpx.AsyncClient')
+    @patch("senado_client.httpx.AsyncClient")
     async def test_get_autores_atuais(self, mock_httpx):
         """Testa endpoint: lista de autores atuais."""
-        data = {"ListaAutores": {"Autores": {"Autor": [
-            {"CodigoAutor": "1", "NomeAutor": "Senador A"},
-            {"CodigoAutor": "2", "NomeAutor": "Senador B"}
-        ]}}}
+        data = {
+            "ListaAutores": {
+                "Autores": {
+                    "Autor": [
+                        {"CodigoAutor": "1", "NomeAutor": "Senador A"},
+                        {"CodigoAutor": "2", "NomeAutor": "Senador B"},
+                    ]
+                }
+            }
+        }
         mock_client = _make_mock_client(_make_response(data))
         mock_httpx.return_value = mock_client
 

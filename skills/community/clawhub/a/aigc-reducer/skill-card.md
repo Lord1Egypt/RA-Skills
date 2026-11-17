@@ -1,42 +1,54 @@
-## Description: <br>
-aigc-reducer is an instruction-only writing pipeline that rewrites academic text to reduce visible AI-generated writing patterns through vocabulary cleanup, sentence rhythm changes, transition edits, hedging, and phrasing reconstruction. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language skill that rewrites academic text through vocabulary cleanup, sentence rhythm changes, transition reduction, academic hedging, and perplexity-oriented phrasing to make AI-generated writing appear more human.
 
-## Publisher: <br>
-[nudt-eddie](https://clawhub.ai/user/nudt-eddie) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nudt-eddie](https://clawhub.ai/user/nudt-eddie)
 
-## Use Case: <br>
-External users can use this skill to revise academic prose so it sounds less mechanically generated while preserving stated claims and data. It should not be used to misrepresent authorship or bypass academic-integrity requirements. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can be used to misrepresent authorship or evade academic-integrity checks. <br>
-Mitigation: Limit use to legitimate editing, transparency, and compliance with school, publisher, or workplace authorship policies. <br>
-Risk: The skill may encourage users to hide AI assistance in academic writing. <br>
-Mitigation: Require users to disclose AI assistance where policies require it and avoid use for submissions that prohibit AI-generated or AI-assisted text. <br>
+## Use Case:
 
+External users can use this skill to revise Chinese academic prose in staged passes that replace common AI-associated wording, vary syntax, reduce mechanical transitions, add qualified academic claims, and preserve the original argument and data.
 
-## Reference(s): <br>
-- [AI jargon reference list](references/jargon-list.md) <br>
-- [ClawHub skill page](https://clawhub.ai/nudt-eddie/aigc-reducer) <br>
-- [Publisher profile](https://clawhub.ai/user/nudt-eddie) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text writing guidance and rewritten prose] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Processes roughly 500 Chinese characters per pass according to the artifact guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill is designed to conceal AI-generated academic writing from detection systems, which may violate school, publisher, or workplace integrity rules.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review intended use against applicable academic integrity, publication, and workplace policies before installation or use.
+
+Risk: Rewriting academic prose can alter certainty, transitions, or terminology in ways that change meaning.
+
+Mitigation: Require human review of revised text to confirm that claims, evidence, citations, and data remain accurate.
+
+## Reference(s):
+
+- [AI jargon identification list](references/jargon-list.md)
+- [ClawHub skill page](https://clawhub.ai/nudt-eddie/skills/aigc-reducer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text rewriting guidance and revised prose]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Processes approximately 500 Chinese characters per pass and preserves the original argument and data according to the skill documentation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

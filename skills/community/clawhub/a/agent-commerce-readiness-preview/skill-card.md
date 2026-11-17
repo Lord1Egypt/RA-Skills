@@ -1,43 +1,58 @@
-## Description: <br>
-Free agent-commerce readiness checklist for x402/MCP/OpenAPI/payment-error/EVM safety launch reviews; routes full audits to the paid ClawMart Agent Commerce Readiness Pack. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Free agent-commerce readiness checklist for x402/MCP/OpenAPI/payment-error/EVM safety launch reviews; routes full audits to the paid ClawMart Agent Commerce Readiness Pack.
 
-## Publisher: <br>
-[sebastiancoombs](https://clawhub.ai/user/sebastiancoombs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sebastiancoombs](https://clawhub.ai/user/sebastiancoombs)
 
-## Use Case: <br>
-Developers, operators, and buyers use this skill to run a lightweight readiness check before an agent, MCP server, or paid API accepts autonomous buyer traffic. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat the preview as approval to transact or sign wallet operations. <br>
-Mitigation: Use it as a checklist only; pause on warn or fail findings and complete a deeper review before payments or signing. <br>
-Risk: Readiness review inputs may involve sensitive wallet or service credentials. <br>
-Mitigation: Provide only URLs or package files authorized for review, and do not share seed phrases, private keys, JWTs, API keys, or raw wallet credentials. <br>
-Risk: The paid upgrade path points to a separate commercial package and external services. <br>
-Mitigation: Review the paid package, its terms, and its security posture separately before purchase or installation. <br>
+## Use Case:
 
+Developers and operators use this skill to run a quick launch-readiness review before an agent, MCP server, or paid API accepts autonomous buyer traffic. The checklist covers discovery, payment envelopes, payment-error handling, EVM signing safety, and buyer trust signals.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/sebastiancoombs/agent-commerce-readiness-preview) <br>
-- [Agent Commerce Readiness Pack](https://www.shopclawmart.com/listings/agent-commerce-readiness-pack-2081aec2) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown] <br>
-**Output Format:** [Markdown checklist and readiness notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Checklist-only; no payments are submitted and no network calls are made by the preview itself.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The preview may direct failed or uncertain audits toward a specific paid package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask for concrete evidence and remediation steps before buying or installing the upgrade.
+
+Risk: Agent-commerce reviews can involve sensitive wallet, credential, or payment context.
+
+Mitigation: Use the preview as a checklist only; do not provide seed phrases, private keys, JWTs, API keys, raw wallet credentials, or payment submissions.
+
+Risk: A service may appear discoverable while still having unsafe payment, signing, or buyer-trust behavior.
+
+Mitigation: Require discovery, payment-envelope, error-handling, signing-safety, and buyer-trust checks before treating a launch as ready.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sebastiancoombs/skills/agent-commerce-readiness-preview)
+- [Agent Commerce Readiness Pack listing](https://www.shopclawmart.com/listings/agent-commerce-readiness-pack-2081aec2)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown checklist guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces pass, warn, or fail readiness observations; it does not execute code, collect secrets, submit payments, or persist changes.]
+
+## Skill Version(s):
+
+1.0.0 (source: target metadata and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

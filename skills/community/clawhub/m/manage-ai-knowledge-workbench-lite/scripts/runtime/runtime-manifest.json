@@ -1,0 +1,27 @@
+{
+  "files": {
+    "__init__.py": "43d734a60b03b1ccbdcbc2d74df5839edf4afffff507b198b2f3f9bbc187697b",
+    "builder.py": "0912cab554e558d968ffe7b0a1c2a31441aa987a8523593bd03a360e989d137f",
+    "config.py": "19c70472c9a53df2b7bb15ac43815f641e6b4060c095dc6482cf6a7fd5e36ab1",
+    "dashboard_assets.py": "36133e6bf1b000a884f343aae0305e6f63f97bb9d86520c7068c3f3b0ef21d2c",
+    "doctor.py": "e572e63d3caa8e33e33a138bf4baca5a0e9e55429069b4d1892c75a9b0d2ab2c",
+    "index.py": "4197b3f7d67f494c77a2fa75b8e98b7d8ad7faab8bf9c23c5965e710de41794c",
+    "lifecycle.py": "d63852a3e70b6dd7cc65d6bd3004bd56c1ffa0e3bee8af71d6cae973d4ab06ce",
+    "lite_cli.py": "1ad88f31c9f817f9d2dc2efce5f2559ae29f4c8b2ba470e76496f77480f3cb76",
+    "manifest.py": "74b3e9a7060872088291ceb464d4bd1d85ac1c67ab47ccec4cf462e5e5dade5d",
+    "markdown.py": "c0608cd20a586af4c2f5ab4c0951cc65c61e2dca1ace669aa22476d7c1808570",
+    "orchestrator.py": "14d91e84f051849a9184a25380b29f190e827e648676f1e2d5548b616af445ed",
+    "pipeline.py": "e998ddf4c440c7cb5e91cbe1ea94eaee1236f6341ccf1b1bf323d4366604d6c2",
+    "renderer.py": "1ac7d358c00b6ff11207b7469c3356f13df74f5b6edcfe1316e1424e31a1e7c9",
+    "result.py": "e62c2ec54ce98740ccb2ec08828bf344580405bf4646678799f813ee8a651633",
+    "scanner.py": "83192f3c7b79982a629fd717e6749a9bef0958af0b4a90c2724b97b4e63463bd",
+    "server.py": "3a693828e7e2f108b80d8e7c2c153df82f8934ecba299ab73eab5289020f9a71",
+    "updater.py": "3253e5ec9e145b5633f12aee6b60d16b83a3dae42f1ae0443c58645233bd880e",
+    "validator.py": "ebacc0fc84361849b7769a00a60ac9cf62497bae7209168ceb76903f501a7eca"
+  },
+  "package_version": "1.0.3",
+  "runtime_version": "1.0.2",
+  "schema_version": 1,
+  "source": "core/workbench",
+  "variant": "lite"
+}

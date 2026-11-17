@@ -1,42 +1,54 @@
-## Description: <br>
-OpenClaw skill that provides a WordPress REST API CLI for posts, pages, categories, tags, users, and custom requests using plain HTTP. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw skill that provides a WordPress REST API CLI for posts, pages, categories, tags, users, and custom requests using plain HTTP.
 
-## Publisher: <br>
-[codedao12](https://clawhub.ai/user/codedao12) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[codedao12](https://clawhub.ai/user/codedao12)
 
-## Use Case: <br>
-Developers and site operators use this skill to automate WordPress post, page, taxonomy, user-read, and custom REST API workflows through a Node.js CLI. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can create, update, publish, or delete WordPress site content when configured with powerful credentials. <br>
-Mitigation: Use a dedicated low-privilege WordPress account and require explicit approval before write, delete, publish, or raw request commands. <br>
-Risk: WordPress credentials or tokens could be exposed if logged, committed, or passed through unsafe workflows. <br>
-Mitigation: Store credentials in environment variables, avoid logging secrets, and use HTTPS for the configured WP_BASE_URL. <br>
-Risk: The @file input convention can send local file contents to the configured WordPress site. <br>
-Mitigation: Avoid passing sensitive local files with @file and review file paths before execution. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [WordPress REST API Guide](assets/wordpress-rest-api-guide.md) <br>
-- [WordPress REST API credentials example](env_example.md) <br>
+## Use Case:
 
+Developers and automation operators use this skill to manage WordPress posts, pages, taxonomy entries, and user reads through JSON-in/JSON-out REST API workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [JSON to stdout with CLI help text and stderr errors] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Non-zero exit codes on errors; credentials are supplied through environment variables.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: package.json and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Reusable WordPress credentials can be exposed if used with non-HTTPS site URLs.
+
+Mitigation: Use HTTPS-only WordPress base URLs and keep credentials out of logs, commits, and shared command history.
+
+Risk: Write, delete, and raw request commands can modify or remove live WordPress content.
+
+Mitigation: Run the skill with a dedicated low-privilege account, stage changes as drafts when possible, and require human review before production delete or raw request operations.
+
+## Reference(s):
+
+- [WordPress REST API Guide](artifact/assets/wordpress-rest-api-guide.md)
+- [ClawHub Skill Page](https://clawhub.ai/codedao12/skills/wordpress)
+- [Publisher Profile](https://clawhub.ai/user/codedao12)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON-oriented CLI output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The CLI writes JSON to stdout and returns a non-zero exit code on errors.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

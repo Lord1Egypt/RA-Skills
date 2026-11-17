@@ -1,42 +1,53 @@
-## Description: <br>
-Find the cheapest meaningful visible price for a product across major Chinese shopping platforms. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find the cheapest meaningful visible price for a product across major Chinese shopping platforms
 
-## Publisher: <br>
-[harrylabsj](https://clawhub.ai/user/harrylabsj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harrylabsj](https://clawhub.ai/user/harrylabsj)
 
-## Use Case: <br>
-External users use this skill to compare visible prices for products, and in one documented scenario flight tickets, across relevant Chinese shopping and travel platforms. It helps identify the lowest meaningful current price while flagging caveats about variants, coupons, seller trust, fees, and incomplete platform access. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Visible prices may be incomplete, stale, or dependent on coupons, membership, pre-sale terms, bundles, shipping, taxes, or platform access limits. <br>
-Mitigation: Treat the result as a current-price lead, compare like-for-like listings, and confirm final checkout price, fees, and terms on the platform before buying. <br>
-Risk: The documented flight-ticket scenario can involve unnecessary sharing of personal travel details. <br>
-Mitigation: Share only the route, date flexibility, and preferences needed for comparison, and avoid providing personal identity or payment details to the agent. <br>
-Risk: The lowest visible price may come from a less reliable seller or a listing that is not actually comparable. <br>
-Mitigation: Review seller reliability, product variant, bundle contents, and match confidence before treating the cheapest option as the best option. <br>
+## Use Case:
 
+External shoppers use this skill to compare visible prices for a named product across major Chinese e-commerce platforms and decide where to buy. It asks for clarification when product variants are ambiguous and gives cautious conclusions when platform access or listing comparability is weak.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/harrylabsj/cheap) <br>
+### Deployment Geography for Use:
 
+China
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Structured Markdown with price comparison sections, confidence notes, caveats, and final advice.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May ask one clarifying question when the product is ambiguous; switches to a cautious limited conclusion when price evidence is weak.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: release metadata; artifact frontmatter says 1.0.0) <br>
+Risk: Users may read a partial platform scan as a definitive full-market lowest-price guarantee.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: State which platforms were checked, identify visible-price limits, and use a limited conclusion when coverage or comparability is weak.
+
+Risk: The airfare example may activate the skill for travel-buying advice outside its main China e-commerce price-comparison scope.
+
+Mitigation: Clarify or remove the airfare example before release if the intended scope is product shopping only.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/harrylabsj/skills/cheap)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown sections with price comparison results, match confidence, caveats, and final advice]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include clarifying questions, visible-price evidence, comparable platform options, and limited conclusions when evidence is weak.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata; artifact frontmatter says 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

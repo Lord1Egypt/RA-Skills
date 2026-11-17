@@ -1,46 +1,59 @@
-## Description: <br>
-Task Memory helps an agent persistently register, check, update, complete, archive, and purge long-running tasks so commitments are not forgotten across sessions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Task Memory helps agents persistently register, check, update, complete, archive, and purge long-running tasks in todo.json so commitments are not lost between sessions.
 
-## Publisher: <br>
-[huyaohuahk](https://clawhub.ai/user/huyaohuahk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[huyaohuahk](https://clawhub.ai/user/huyaohuahk)
 
-## Use Case: <br>
-Developers and agent operators use this skill to keep long-running commitments in a JSON task store, check deadlines at session start or heartbeat time, and mark tasks done, removed, archived, or purged. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores durable task data that may include personal, business, or financial details. <br>
-Mitigation: Avoid sensitive details in task titles or notes and clear the bundled todo.json before installation. <br>
-Risk: The task manager script uses an unexpected hard-coded write path. <br>
-Mitigation: Change the task database path to a user-owned skill directory before enabling the skill. <br>
-Risk: Heartbeat checks and QQ/IM reminders can send task content outside the local workspace. <br>
-Mitigation: Enable reminder integrations only after deciding what data may be stored or sent. <br>
-Risk: The artifact includes active finance-related task records. <br>
-Mitigation: Remove bundled task records before deployment and start with an empty task database. <br>
+## Use Case:
 
+Developers and agent operators use Task Memory to make an agent record promised or delegated tasks, check overdue and upcoming items at session start or heartbeat time, and mark work done or removed.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/huyaohuahk/task-memory) <br>
-- [Task Memory Changelog](references/CHANGELOG.md) <br>
-- [Task Database Template](references/todo.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON task records] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update a local todo.json task database and archive completed tasks for 30 days.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata and changelog, released 2026-04-01) <br>
+Risk: The task manager reads and writes a hard-coded todo file outside the skill directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Fix or configure the storage path before running the skill so it only accesses the intended workspace todo file.
+
+Risk: Task titles, notes, and deadlines may contain sensitive information stored on disk.
+
+Mitigation: Review what task text is stored and avoid recording secrets or sensitive personal data in todo entries.
+
+Risk: External QQ/IM reminder forwarding is under-scoped.
+
+Mitigation: Do not enable external reminder forwarding without explicit destination controls and redaction for sensitive task text.
+
+## Reference(s):
+
+- [CHANGELOG](references/CHANGELOG.md)
+- [Todo JSON template](references/todo.json)
+- [ClawHub skill page](https://clawhub.ai/huyaohuahk/skills/task-memory)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON-backed task records]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores task titles, notes, deadlines, tags, status, and archive entries in a todo JSON file.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release evidence and changelog, released 2026-04-01)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,56 @@
-## Description: <br>
-Generate smooth, high-quality videos with Doubao Seedream 4.5, supporting text-to-video and image-to-video workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate high-quality images with Doubao Seedream 4.5, supporting text-to-image and image-to-image generation.
 
-## Publisher: <br>
-[dlazyai](https://clawhub.ai/user/dlazyai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dlazyai](https://clawhub.ai/user/dlazyai)
 
-## Use Case: <br>
-External users and developers use this skill to invoke the dLazy Seedream 4.5 video-generation CLI for prompt-based or image-guided media generation. It is suited for agents that need to prepare commands, configure authentication, and return generation results from the dLazy hosted API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a dLazy API key and can send prompts, parameters, and referenced local media to dLazy services. <br>
-Mitigation: Use the skill only when the user intends to call dLazy, protect API keys, and avoid submitting sensitive media or prompts unless that upload is acceptable. <br>
-Risk: The install command uses @dlazy/cli@latest, so the installed CLI behavior can change over time. <br>
-Mitigation: Review the dLazy CLI source or npm package before installation and consider pinning a vetted CLI version in controlled deployments. <br>
-Risk: Video generation can consume paid credits or return asynchronous task identifiers instead of completed outputs. <br>
-Mitigation: Use --dry-run when appropriate to check cost, and poll asynchronous tasks with dlazy status when --no-wait is used. <br>
+## Use Case:
 
+External users can generate images from text prompts or transform reference images with Seedream 4.5 through the dLazy CLI. The skill returns generated image URLs and can save image files locally.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dlazyai/dlazy-seedream-4-5) <br>
-- [dLazy CLI source](https://github.com/dlazyai/cli) <br>
-- [dLazy CLI npm package](https://www.npmjs.com/package/@dlazy/cli) <br>
-- [dLazy homepage](https://dlazy.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, JSON, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May return hosted media URLs or asynchronous task identifiers from dLazy services.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: frontmatter and server release metadata) <br>
+Risk: The security assessment was benign with medium confidence but incomplete; it could not connect the reported login flow to the image-generation purpose, and some references were unresolved.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the linked CLI package and verify its login and generation behavior before providing an API key.
+
+Risk: Prompts and any local reference images are sent to dLazy hosted services for generation.
+
+Mitigation: Avoid submitting sensitive prompts or images, and review dLazy's service terms before use.
+
+## Reference(s):
+
+- [dLazy CLI repository (listed in skill metadata)](https://github.com/dlazy-ai/cli)
+- [dLazy CLI on npm](https://www.npmjs.com/package/@dlazy/cli)
+- [dLazy homepage](https://dlazy.com)
+- [ClawHub skill release](https://clawhub.ai/dlazyai/skills/dlazy-seedream-4-5)
+
+## Skill Output:
+
+**Output Type(s):** [Images, JSON]
+
+**Output Format:** [JSON result metadata with generated image URLs; optional image files saved locally.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Image generation may complete asynchronously; generated files are hosted by dLazy unless saved locally.]
+
+## Skill Version(s):
+
+1.3.40 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,57 @@
-## Description: <br>
-Publishes local changes to a GitHub pull request, monitors review feedback and required checks, and helps address issues until the PR is ready. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Publish local changes to a GitHub pull request and keep working the PR until review feedback is addressed and required checks are green.
 
-## Publisher: <br>
-[patrick-erichsen-2](https://clawhub.ai/user/patrick-erichsen-2) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[patrick-erichsen-2](https://clawhub.ai/user/patrick-erichsen-2)
 
-## Use Case: <br>
-Developers and maintainers use this skill to prepare and publish local changes as a GitHub PR, then iterate on review comments and failing required checks while preserving user approval gates for high-impact actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Authorized runs can commit, push, open pull requests, and modify code while addressing review or CI feedback. <br>
-Mitigation: Confirm the target repository, branch, and PR before use; review pre-publish findings and approve publishing or fix actions explicitly. <br>
-Risk: Review or CI fixes can be incorrect, incomplete, or conflict with product intent. <br>
-Mitigation: Review proposed changes and local validation results before relying on the PR, and pause for user judgment on ambiguous or scope-expanding requests. <br>
-Risk: Some CI failures may require secrets, paid services, release credentials, or remote-only infrastructure. <br>
-Mitigation: Treat those cases as blockers and require explicit user direction before using elevated or remote workflows. <br>
+## Use Case:
 
+Developers use this skill to publish local changes as a GitHub pull request, run a pre-publish review gate, address approved review feedback and failing CI, and continue until actionable review threads and required checks are clear.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/patrick-erichsen-2/all-green) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown status updates, review findings, command plans, and code or configuration changes as needed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May commit, push, open pull requests, and modify code only within the user-approved PR workflow.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence release.version) <br>
+Risk: The skill can guide an agent through PR publication, commits, pushes, review-feedback fixes, and CI investigation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the intended files, branch, and PR target before publication, and give explicit permission only for the GitHub or local-code actions you want.
+
+Risk: Automated review and CI fixes can change local code in ways that need project-specific judgment.
+
+Mitigation: Review proposed changes, approve only selected findings, and run relevant local validation before pushing fixes.
+
+Risk: Some GitHub actions, such as posting comments or changing PR state, can affect collaboration workflow.
+
+Mitigation: Require explicit user authorization before posting GitHub comments, resolving threads, requesting reviewers, changing labels or titles, marking ready, closing, or merging.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/patrick-erichsen-2/skills/all-green)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with command summaries, review findings, code-change descriptions, and PR status updates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include PR URLs, head SHAs, local validation results, required-check status, and remaining blockers.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

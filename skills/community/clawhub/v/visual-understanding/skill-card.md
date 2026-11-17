@@ -1,42 +1,59 @@
-## Description: <br>
-Provides integration guidance for using the Zhipu GLM-4.6V multimodal vision model with local image Base64 uploads, public image URLs, the zai Python SDK, and a cURL fallback. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Integrates the Zhipu GLM-4.6V multimodal vision model for image understanding through the zai Python SDK or cURL, supporting local Base64 images and public image URLs.
 
-## Publisher: <br>
-[IsabellaZhangYM](https://clawhub.ai/user/IsabellaZhangYM) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[isabellazhangym](https://clawhub.ai/user/isabellazhangym)
 
-## Use Case: <br>
-Developers and engineers use this skill to connect agents or automation workflows to GLM-4.6V for image description, multi-image comparison, and visual information extraction. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends selected images and prompts to Zhipu/BigModel services. <br>
-Mitigation: Avoid submitting confidential, regulated, or personally identifying images unless approved and consistent with the provider's data handling terms. <br>
-Risk: API key exposure could allow unauthorized use of the Zhipu/BigModel account. <br>
-Mitigation: Keep ZHIPUAI_API_KEY in an environment variable and do not hard-code it in scripts, prompts, or shared files. <br>
-Risk: Installing the zai dependency changes the local Python environment. <br>
-Mitigation: Prefer an isolated Python environment before installing dependencies for this skill. <br>
+## Use Case:
 
+Developers and engineers use this skill to connect agent workflows to GLM-4.6V for image description, multi-image comparison, and visual information extraction.
 
-## Reference(s): <br>
-- [GLM-V project homepage](https://github.com/zai-org/GLM-V) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with Python and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes Python SDK and cURL access patterns and requires ZHIPUAI_API_KEY for API calls.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.5 (source: ClawHub release metadata) <br>
+Risk: Prompts, public image URLs, and Base64-encoded local images may be sent to Zhipu's external API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only approved images, remove sensitive or personal data before upload, and avoid confidential content unless the external API use is authorized.
+
+Risk: The skill depends on the external zai Python package.
+
+Mitigation: Install a pinned, reviewed zai version in a virtual environment or container.
+
+Risk: The ZHIPUAI_API_KEY credential is required for API access.
+
+Mitigation: Keep the API key in an environment variable and do not hard-code or commit it.
+
+## Reference(s):
+
+- [GLM-V homepage](https://github.com/zai-org/GLM-V)
+- [GLM-V repository](https://github.com/zai-org/GLM-V.git)
+- [Zhipu chat completions API endpoint](https://open.bigmodel.cn/api/paas/v4/chat/completions)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with Python and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires ZHIPUAI_API_KEY and may send selected prompts, public image URLs, or Base64-encoded images to Zhipu's external API.]
+
+## Skill Version(s):
+
+0.0.5 (source: ClawHub release metadata; artifact frontmatter declares 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

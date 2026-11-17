@@ -1,44 +1,55 @@
-## Description: <br>
-Vitest Testing provides Vitest testing framework patterns and best practices for writing tests, configuring vitest.config, mocking with vi.mock and vi.fn, using snapshots, and setting up coverage. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Vitest testing framework patterns and best practices for writing unit tests, integration tests, configuring vitest.config, mocking with vi.mock/vi.fn, using snapshots, and setting up test coverage.
 
-## Publisher: <br>
-[anderskev](https://clawhub.ai/user/anderskev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[anderskev](https://clawhub.ai/user/anderskev)
 
-## Use Case: <br>
-Developers and engineers use this skill to draft, review, and improve Vitest unit and integration tests, test configuration, mocks, snapshots, coverage setup, and async matcher usage. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated or suggested tests may change assertions, fixtures, or snapshots in unintended ways. <br>
-Mitigation: Review generated test files and snapshot changes before committing them. <br>
-Risk: Running project test commands can execute code from the target repository. <br>
-Mitigation: Run tests only in a trusted workspace and use the same command that CI uses from the package or workspace root. <br>
-Risk: Vitest resolves or rejects matchers without await can create false-positive tests. <br>
-Mitigation: Check that every resolves or rejects matcher is prefixed with await before accepting changes. <br>
+## Use Case:
 
+Developers and engineers use this skill to write and review Vitest tests, mocking, snapshots, configuration, coverage, and verification gates for JavaScript and TypeScript projects.
 
-## Reference(s): <br>
-- [Mocking Patterns](references/mocking.md) <br>
-- [Configuration](references/config.md) <br>
-- [Common Patterns](references/patterns.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with TypeScript code examples and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance; no direct API calls or tool integrations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release metadata) <br>
+Risk: Broad Vitest and JavaScript testing trigger words may make the skill appear during ordinary testing discussions where it is not the best fit.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Apply the guidance only when the task involves Vitest tests, Vitest configuration, Vitest mocking, snapshots, coverage, or related verification gates.
+
+Risk: Testing guidance can still be applied incorrectly, such as omitting await on Vitest resolves or rejects matchers and creating false-positive tests.
+
+Mitigation: Use the included verification gates to run the project test command and check that async Vitest matchers are awaited.
+
+## Reference(s):
+
+- [Configuration](references/config.md)
+- [Mocking Patterns](references/mocking.md)
+- [Common Patterns](references/patterns.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with TypeScript and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only guidance; no executable tool calls.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

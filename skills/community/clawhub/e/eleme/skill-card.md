@@ -1,42 +1,59 @@
-## Description: <br>
-Search and summarize public Ele.me merchants and products by category, including ratings, prices, delivery fees, and promotions without placing orders. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search and summarize public Ele.me merchants and products by category, including ratings, prices, delivery fees, and promotions without placing orders.
 
-## Publisher: <br>
-[mike47512](https://clawhub.ai/user/mike47512) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mike47512](https://clawhub.ai/user/mike47512)
 
-## Use Case: <br>
-External users and developers use this skill to summarize and compare public Ele.me merchant, product, delivery, pricing, and promotion information for lightweight analysis and reminders. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Ele.me prices, delivery fees, promotions, and estimated times can vary by time and location. <br>
-Mitigation: Include the collection time and only the needed location context when presenting summaries or comparisons. <br>
-Risk: Using the skill for ordering, scraping, reverse engineering, or bypassing platform protections could violate platform rules. <br>
-Mitigation: Limit use to public page summaries and comparisons, avoid bulk collection, and do not place orders or call private interfaces. <br>
-Risk: Delivery estimates may require location details. <br>
-Mitigation: Share only the minimum location information needed for the estimate. <br>
+## Use Case:
 
+External users and agents use this skill to summarize and compare public Ele.me merchant, product, and promotion pages for lightweight food-delivery market checks. It is intended for informational analysis and reminders, not ordering, API reverse engineering, or bypassing platform protections.
 
-## Reference(s): <br>
-- [Ele.me homepage](https://www.ele.me/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown summaries, comparison notes, and extraction guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should identify collection time and location context when summarizing price or delivery information.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: release evidence) <br>
+Risk: Public Ele.me prices, promotions, and delivery estimates can vary by time and region.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Include the collection time and relevant region or address context with summaries, and review outputs before relying on them.
+
+Risk: Location or address details may be needed to estimate delivery terms.
+
+Mitigation: Provide location details only when needed and avoid including more precise personal information than the task requires.
+
+Risk: Automated collection could exceed the skill's intended public-page analysis boundary.
+
+Mitigation: Use the skill for lightweight, on-demand analysis only; do not use it for ordering, API reverse engineering, platform protection bypass, or bulk scraping.
+
+## Reference(s):
+
+- [Ele.me homepage](https://www.ele.me/)
+- [ClawHub skill page](https://clawhub.ai/mike47512/skills/eleme)
+- [ClawHub publisher profile](https://clawhub.ai/user/mike47512)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or concise text summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should include collection time and region when reporting prices, delivery fees, or estimated delivery times.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

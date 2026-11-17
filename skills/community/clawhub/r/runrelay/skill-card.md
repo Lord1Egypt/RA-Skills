@@ -1,41 +1,54 @@
-## Description: <br>
-Runrelay helps agents search and book flights, hotels, and travel through the RunRelay API, including low-cost carrier coverage and MCP-compatible workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Runrelay helps agents search and book flights and hotels through the RunRelay API, including low-cost carrier coverage, travel planning tasks, and MCP-compatible integrations.
 
-## Publisher: <br>
-[runrelay](https://clawhub.ai/user/runrelay) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[runrelay](https://clawhub.ai/user/runrelay)
 
-## Use Case: <br>
-External developers, travel agents, and concierge-style agents use this skill to search flights and hotels, compare travel options, and initiate flight bookings through RunRelay services. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can send passenger details to external services and human operators during travel lookup or booking flows. <br>
-Mitigation: Require the agent to show exactly what passenger data will be sent and obtain explicit user confirmation before any external lookup using personal details or any booking action. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Runrelay ClawHub page](https://clawhub.ai/runrelay/runrelay) <br>
-- [RunRelay app](https://app.runrelay.io) <br>
-- [RunRelay API base URL](https://api.runrelay.io) <br>
-- [RunRelay hotel search endpoint](https://runrelay-hotels.fly.dev/api/search-hotels) <br>
-- [Prefy orchestration endpoint](https://prefy.com/api/v1/orchestrate) <br>
+## Use Case:
 
+External travel agents, concierge workflows, and developers use this skill to search flights and hotels, compare travel options, and prepare bookings through RunRelay-backed services. It is suited to travel planning workflows that need airline, hotel, and MCP tool coverage.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with API endpoint descriptions and curl examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include external API calls that require a RUNRELAY_API_KEY and explicit user confirmation before sending passenger details or booking travel.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can send passenger personal data to external travel services.
+
+Mitigation: Before transmitting personal data, require the agent to show passenger fields, itinerary, price, provider, and destination service, then obtain explicit user confirmation.
+
+Risk: The skill can initiate flight booking workflows without clear consent safeguards in the artifact.
+
+Mitigation: Require explicit user confirmation before any reservation or booking request is sent.
+
+## Reference(s):
+
+- [ClawHub Runrelay Skill](https://clawhub.ai/runrelay/skills/runrelay)
+- [RunRelay App](https://app.runrelay.io)
+- [RunRelay API](https://api.runrelay.io)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON API examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include API endpoint examples, environment variable setup, and user-confirmation guidance before booking actions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

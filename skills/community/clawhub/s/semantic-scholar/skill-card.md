@@ -1,46 +1,65 @@
-## Description: <br>
-Search, retrieve, and organize scholarly metadata with the Semantic Scholar APIs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search, retrieve, and organize scholarly metadata with the Semantic Scholar APIs.
 
-## Publisher: <br>
-[Grenzlinie](https://clawhub.ai/user/Grenzlinie) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[grenzlinie](https://clawhub.ai/user/grenzlinie)
 
-## Use Case: <br>
-Developers, researchers, and research assistants use this skill to choose the right Semantic Scholar API workflow, search papers and authors, fetch metadata in batches, get related-paper recommendations, and plan offline dataset pulls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Research queries, paper identifiers, and author identifiers may be sent to Semantic Scholar. <br>
-Mitigation: Avoid sending sensitive research topics or private identifiers unless appropriate for the user's environment. <br>
-Risk: Bundled scripts can write retrieved metadata to local JSONL or CSV files. <br>
-Mitigation: Choose output paths deliberately and delete exports containing sensitive research topics when no longer needed. <br>
-Risk: API key authentication is supported for repeated or larger jobs. <br>
-Mitigation: Keep SEMANTIC_SCHOLAR_API_KEY private and avoid committing environment files or command histories that expose it. <br>
+## Use Case:
 
+Developers and researchers use this skill to choose Semantic Scholar API workflows, search papers and authors, fetch records in batches, retrieve related-paper recommendations, and plan offline dataset pulls.
 
-## Reference(s): <br>
-- [Semantic Scholar API Overview](references/api-overview.md) <br>
-- [Graph API](references/graph-api.md) <br>
-- [Recommendations API](references/recommendations-api.md) <br>
-- [Datasets API](references/datasets-api.md) <br>
-- [Query Recipes](references/query-recipes.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Shell commands, Configuration, Files] <br>
-**Output Format:** [Markdown guidance with Python and shell command examples; bundled scripts can produce JSONL and CSV exports.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May call Semantic Scholar APIs and write local research exports; API key authentication uses SEMANTIC_SCHOLAR_API_KEY when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The bundled workflows may contact Semantic Scholar APIs and use an optional API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a scoped Semantic Scholar API key when provided and avoid exposing it in prompts, logs, or shared output files.
+
+Risk: The bundled scripts can write JSONL and CSV research outputs to local paths.
+
+Mitigation: Choose output paths deliberately, review generated files before sharing, and preserve raw results for provenance.
+
+Risk: The scripts rely on Python packages such as requests and optional pandas.
+
+Mitigation: Install dependencies in an isolated environment and prefer pinned package versions for repeatable use.
+
+## Reference(s):
+
+- [Semantic Scholar API Overview](references/api-overview.md)
+- [Graph API](references/graph-api.md)
+- [Recommendations API](references/recommendations-api.md)
+- [Datasets API](references/datasets-api.md)
+- [Query Recipes](references/query-recipes.md)
+- [Semantic Scholar bulk paper search endpoint](https://api.semanticscholar.org/graph/v1/paper/search/bulk)
+- [Semantic Scholar paper batch endpoint](https://api.semanticscholar.org/graph/v1/paper/batch)
+- [Semantic Scholar author batch endpoint](https://api.semanticscholar.org/graph/v1/author/batch)
+- [Semantic Scholar recommendations endpoint](https://api.semanticscholar.org/recommendations/v1/papers)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Code, API Calls, Files, Configuration]
+
+**Output Format:** [Markdown guidance with optional Python or shell commands that can produce JSONL and CSV files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May contact Semantic Scholar APIs and write local research output files when the bundled scripts are used.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-查询当前用户指定图片详情（含 file_url、file_path）
+查询当前用户指定图片详情（含 file_url）
 author: 灏天文库
 """
 

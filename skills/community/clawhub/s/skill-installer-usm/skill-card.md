@@ -1,44 +1,55 @@
-## Description: <br>
-Install, search, update, and manage skills from public registries like ClawHub and SkillHub using the clawhub CLI within an OpenClaw or USM workspace. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Install, search, update, and manage skills from public registries like ClawHub using the clawhub CLI within the OpenClaw workspace.
 
-## Publisher: <br>
-[hulk-yin](https://clawhub.ai/user/hulk-yin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hulk-yin](https://clawhub.ai/user/hulk-yin)
 
-## Use Case: <br>
-External users, developers, and agent operators use this skill to find, install, update, and manage reusable skills from registries, then prepare them for use across OpenClaw or USM-managed agent workspaces. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Apache 2.0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill manages installation and updates for other skills, which can change future agent behavior across workspaces. <br>
-Mitigation: Require explicit approval for each install, update, and CLI setup step, and review third-party skill contents before enabling them. <br>
-Risk: Bulk update commands can modify multiple installed skills at once. <br>
-Mitigation: Avoid `clawhub update --all` unless the expected changes have been reviewed; prefer updating a specific slug when possible. <br>
-Risk: Workspace and symlink provisioning can distribute an unreviewed skill across multiple agent environments. <br>
-Mitigation: Verify the target write locations, scope configuration, and symlink destinations before restarting agents or gateways. <br>
+## Use Case:
 
+Developers and operators use this skill to search, install, update, and inspect OpenClaw skills from public registries, then coordinate installed skills with the local USM hub and agent workspaces.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hulk-yin/skill-installer-usm) <br>
-- [ClawHub registry](https://clawhub.ai) <br>
-- [skill-manager project](https://github.com/ZiweiAxis/skill-manager) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline shell commands and installation, update, and workspace-configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the clawhub CLI to be available before install, search, or update commands can run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can install or update third-party skills and thereby change available agent capabilities.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the requested skill slug, registry, and target paths before installation or update, and require explicit approval for untrusted requests.
+
+Risk: Chat- or shell-triggered installation requests may be ambiguous or come from untrusted messages.
+
+Mitigation: Confirm the exact command intent with the user and prefer a pinned or verified clawhub CLI version before changing installed skills.
+
+## Reference(s):
+
+- [Skill Installer ClawHub Listing](https://clawhub.ai/hulk-yin/skills/skill-installer-usm)
+- [ClawHub Registry](https://clawhub.ai)
+- [Skill Manager Repository](https://github.com/ZiweiAxis/skill-manager)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May request user confirmation before installing CLI dependencies or enabling third-party skills.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

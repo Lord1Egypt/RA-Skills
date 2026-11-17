@@ -1,47 +1,58 @@
-## Description: <br>
-agent-daily-paper helps an agent subscribe to one or more research fields, retrieve recent arXiv papers, rank them by relevance, translate key metadata, generate Chinese paper digests, and deliver scheduled or on-demand Markdown summaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent Daily Paper helps users subscribe to recent arXiv papers across one or more research fields, rank them for relevance, and receive bilingual Markdown digests with titles, abstracts, arXiv links, status flags, and Chinese paper interpretations.
 
-## Publisher: <br>
-[Ricardo-Ping](https://clawhub.ai/user/Ricardo-Ping) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ricardo-ping](https://clawhub.ai/user/ricardo-ping)
 
-## Use Case: <br>
-Researchers, students, and technical teams use this skill to automate field-specific arXiv monitoring, receive bilingual paper cards, and archive daily Markdown digests with optional PDF-based Chinese analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The setup flow installs Python packages and local ML or translation models. <br>
-Mitigation: Run the bootstrap and doctor scripts in a dedicated environment and review dependency/model installation before use. <br>
-Risk: The digest flow queries arXiv, downloads PDFs, and writes local output, cache, and state files. <br>
-Mitigation: Use trusted configuration files, review output/cache directories, and keep generated archives and state files scoped to the skill workspace. <br>
-Risk: Optional OpenAI translation or profile generation can send paper titles, abstracts, field names, and translated summary text to an external API. <br>
-Mitigation: Use the default local Argos provider when external API sharing is not acceptable; configure OpenAI only with explicit user approval. <br>
-Risk: Scheduled delivery through cron, GitHub Actions, or Feishu can publish digests at recurring times. <br>
-Mitigation: Confirm timezone, recipient, delivery channel, and generated schedule before enabling automated delivery. <br>
+## Use Case:
 
+Researchers, students, and technical teams use this skill to configure field-based arXiv subscriptions and receive scheduled or on-demand bilingual Markdown digests. It supports local taxonomy-assisted field resolution, relevance filtering, NEW/UPDATED flags, Markdown archiving, and optional PDF-based Chinese interpretations.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/Ricardo-Ping/agent-daily-paper) <br>
-- [Publisher Profile](https://clawhub.ai/user/Ricardo-Ping) <br>
-- [arXiv Category Taxonomy](https://arxiv.org/category_taxonomy) <br>
-- [arXiv API](http://export.arxiv.org/api/query) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown digest text with configuration guidance and optional shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes daily digest files under output/daily and may update local cache/state files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Scheduled local or optional remote automation can run digest jobs and write generated Markdown or state changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the scheduled task or workflow before enabling it, confirm the subscription timezone and push time, and run manually until configuration is verified.
+
+Risk: The skill performs network queries to arXiv and can optionally send content to OpenAI when that translation or profile provider is enabled.
+
+Mitigation: Use the default offline Argos translation path for sensitive work, and avoid TRANSLATE_PROVIDER=auto or openai unless third-party processing is acceptable.
+
+Risk: Dependency and model setup can install packages or local models whose versions may change over time.
+
+Mitigation: Pin dependencies and model versions in controlled environments before operational use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ricardo-ping/skills/agent-daily-paper)
+- [arXiv category taxonomy](https://arxiv.org/category_taxonomy)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown digest output with setup commands and JSON configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write Markdown archives under output/daily and update local configuration or state files during setup and digest runs.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

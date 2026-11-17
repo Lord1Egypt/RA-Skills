@@ -1,7 +1,6 @@
 """地基评估：检查 .py 路径参数化、列名校验、validate 模式、依赖声明等。"""
 
 import re
-from ..config import MESSAGES
 
 
 def check_foundation(info):

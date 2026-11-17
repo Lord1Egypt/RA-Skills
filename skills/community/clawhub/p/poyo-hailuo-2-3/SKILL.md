@@ -1,10 +1,16 @@
----
+﻿---
 name: poyo-hailuo-2-3
 description: Hailuo 2.3 video generation on PoYo / poyo.ai via `https://api.poyo.ai/api/generate/submit`; use for `hailuo-2.3`, text-to-video, optional first-frame image guidance, duration control, resolution control, prompt optimization, polling, and webhooks.
-metadata: {"openclaw":{"homepage":"https://docs.poyo.ai/api-manual/video-series/hailuo-2-3","requires":{"bins":["curl"],"env":["POYO_API_KEY"]},"primaryEnv":"POYO_API_KEY"}}
+metadata: {"openclaw":{"homepage":"https://poyo.ai/models/hailuo-2-3","requires":{"bins":["curl"],"env":["POYO_API_KEY"]},"primaryEnv":"POYO_API_KEY"}}
 ---
 
 # PoYo Hailuo 2.3 Video Generation
+## PoYo Links
+
+- Model page: <https://poyo.ai/models/hailuo-2-3>
+- API docs: <https://docs.poyo.ai/api-manual/video-series/hailuo-2-3>
+- API key page: <https://poyo.ai/dashboard/api-key>
+
 
 Use this skill for Hailuo 2.3 video jobs on PoYo. It helps agents prepare prompt-only and optional first-frame guided payloads, submit async tasks, and explain polling or webhook follow-up.
 

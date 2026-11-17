@@ -1,40 +1,60 @@
-## Description: <br>
-Audit an OpenClaw agent's memory for staleness, redundancy, dark records, and contradictions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audits OpenClaw memory files for stale, dead, redundant, dark, and contradictory records and guides confirmed cleanup actions.
 
-## Publisher: <br>
-[rudi193-cmd](https://clawhub.ai/user/rudi193-cmd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rudi193-cmd](https://clawhub.ai/user/rudi193-cmd)
 
-## Use Case: <br>
-Developers and agent operators use this skill to inspect OpenClaw memory files, identify stale, redundant, dark, or contradictory records, and choose cleanup actions with confirmation before changes are made. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can inspect markdown files in the memory directory selected by the user. <br>
-Mitigation: Review the target directory and exact files before running the diagnostic. <br>
-Risk: Cleanup recommendations may involve archiving, merging, qmd re-indexing, or appending a memory summary. <br>
-Mitigation: Confirm each file move, merge, index update, or append-only memory write before making changes. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to diagnose memory quality issues and decide whether to archive, merge, re-index, or review memory files. It is useful when an agent appears to forget information or when memory folders need periodic maintenance.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/rudi193-cmd/willow-memory-health) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown report with optional JSON diagnostic output and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May inspect markdown files in a user-selected memory directory; cleanup actions should be confirmed before moving, merging, re-indexing, or appending summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill reads the memory directory selected by the user, which may contain sensitive agent memory content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only on memory folders you intend to audit, and review the reported file list before approving any follow-up action.
+
+Risk: Cleanup actions can move memory files, merge records, update qmd indexing, or append audit summaries.
+
+Mitigation: Require explicit user confirmation for each change and show the exact files or actions before proceeding.
+
+Risk: DARK record detection depends on qmd availability and index state.
+
+Mitigation: Treat DARK findings as retrieval-index health signals, update or re-index qmd when approved, and re-run diagnostics to confirm results.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/rudi193-cmd/skills/willow-memory-health)
+- [Publisher Profile](https://clawhub.ai/user/rudi193-cmd)
+- [Artifact Skill Definition](artifact/SKILL.md)
+- [Memory Health Script](artifact/scripts/memory_health.py)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and optional JSON diagnostic output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports memory-health buckets and flags; optional qmd-based DARK detection requires qmd.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

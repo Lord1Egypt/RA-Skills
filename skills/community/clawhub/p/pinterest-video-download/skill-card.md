@@ -1,40 +1,57 @@
-## Description: <br>
-Download the main video from a Pinterest pin and save it as a local MP4 for personal media workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Downloads the main video from a Pinterest pin or pin.it short link and saves it as a local MP4.
 
-## Publisher: <br>
-[hekaiii](https://clawhub.ai/user/hekaiii) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hekaiii](https://clawhub.ai/user/hekaiii)
 
-## Use Case: <br>
-External users and agents use this skill to save the primary video from a Pinterest pin as a local MP4 for personal media workflows such as wallpaper saving, repost preparation, or Live Photo conversion. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The downloader uses ffmpeg to fetch remote media and write a local MP4 file. <br>
-Mitigation: Use a trusted ffmpeg installation and keep outputs in the stated downloads folder. <br>
-Risk: The output file can be overwritten when the chosen path already exists. <br>
-Mitigation: Use a disposable or unique output filename and avoid paths that contain important files. <br>
+## Use Case:
 
+External users use this skill to retrieve the primary video from a Pinterest pin for personal media workflows such as wallpaper saving, repost preparation, or Live Photo conversion.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/hekaiii/pinterest-video-download) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with local file path and optional MP4 file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Saves an MP4 under ~/.openclaw/workspace/downloads/ using ffmpeg when a valid HLS playlist is found.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The helper can fetch media from an arbitrary URL supplied to the script.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Constrain use to Pinterest pin URLs, pin.it redirects, or expected pinimg HLS media URLs before running ffmpeg.
+
+Risk: The helper can overwrite any writable output path passed to it.
+
+Mitigation: Save only under the intended downloads directory and avoid replacing existing files unless the user explicitly chooses to replace them.
+
+Risk: The skill runs ffmpeg against network media and writes a local MP4.
+
+Mitigation: Review the resolved media URL and verify the saved file before forwarding or reusing it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hekaiii/skills/pinterest-video-download)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Files, Guidance]
+
+**Output Format:** [Markdown with local file paths and shell-command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces or points to a local MP4 saved under the intended downloads directory.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

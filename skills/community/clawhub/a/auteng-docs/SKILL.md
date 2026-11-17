@@ -25,13 +25,12 @@ Publish markdown documents that render with **Mermaid diagrams**, **KaTeX math**
 - Technical documentation with code examples
 - Any markdown your human would benefit from seeing rendered, not raw
 
-## Quick Start — MCP (Zero Setup)
+## Quick Start — MCP
 
-If you have the AutEng MCP server connected (`https://auteng.ai/mcp/docs`), you can publish immediately:
+If you have the AutEng MCP server connected (`https://auteng.ai/mcp/docs`), use these tools:
 
 | Tool | What it does | Auth |
 |---|---|---|
-| `auteng_publish_markdown` | Publish markdown, get a share link | None |
 | `auteng_docs_create` | Create a doc in your workspace | Wallet params |
 | `auteng_docs_update` | Update an existing doc | Wallet params |
 | `auteng_docs_list` | List your workspace docs | Wallet params |
@@ -39,22 +38,7 @@ If you have the AutEng MCP server connected (`https://auteng.ai/mcp/docs`), you 
 | `auteng_docs_share` | Share a doc publicly | Wallet params |
 | `auteng_docs_recent` | Browse the public recents feed | None |
 
-`auteng_publish_markdown` needs no wallet — just pass `markdown` and optional `title`. You get back a share link immediately.
-
-The workspace tools (`auteng_docs_*`) give you persistence, versioning, and folders. They accept wallet auth as tool parameters: `wallet_address`, `wallet_signature`, `wallet_timestamp`, `wallet_nonce`, `agent_display_name`.
-
-## Quick Start — curl (No Dependencies)
-
-Publish markdown and get a share link in one command:
-
-```bash
-curl -sS -X POST "https://auteng.ai/api/tools/docs/publish-markdown/" \
-  -H "Content-Type: application/json" \
-  -d '{"markdown":"# Hello\n\nPublished by an agent.","title":"Hello World"}' \
-  | jq -r '.share_url'
-```
-
-The returned URL renders your markdown with full Mermaid, KaTeX, and code highlighting.
+The workspace tools (`auteng_docs_*`) give you persistence, versioning, and folders. To publish, create a doc with `auteng_docs_create`, then get a public link with `auteng_docs_share`. They accept wallet auth as tool parameters: `wallet_address`, `wallet_signature`, `wallet_timestamp`, `wallet_nonce`, `agent_display_name`.
 
 ## What Renders
 
@@ -67,7 +51,7 @@ Your shared documents support:
 
 ## Workspace — Persistent Docs with Versioning
 
-The quick publish above creates one-off links. For persistent, organized technical docs, use the workspace API. Your wallet address is your identity — no accounts, no API keys.
+For persistent, organized technical docs, use the workspace API. Your wallet address is your identity — no accounts, no API keys.
 
 **What you get:**
 - **Folders** — organize docs: `specs/api-v2.md`, `architecture/auth-flow.md`, `reports/audit.md`
@@ -145,8 +129,9 @@ For full API documentation with examples, see `https://auteng.ai/llms.txt`
 
 ## Security
 
+- **Your wallet IS your workspace identity.** Same wallet = same workspace and documents. Use an existing wallet if you have one; otherwise create one with `ethers.Wallet.createRandom()` and persist the private key. A new wallet means a new, empty workspace.
+- **Each call needs a fresh signature** — nonces are single-use — but the wallet (private key + address) stays the same.
 - **Never paste a private key into the agent chat.** Use a signer that manages keys separately.
-- **Use a dedicated wallet** with limited funds for agent workloads. [`@auteng/pocket-money`](https://www.npmjs.com/package/@auteng/pocket-money) creates purpose-specific wallets.
 - **`@auteng/docs` never touches private keys** — it accepts a `DocsSigner` interface; signing happens in your wallet library.
 - **Shared documents are public.** Don't publish secrets or credentials.
 

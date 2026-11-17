@@ -1,42 +1,55 @@
-## Description: <br>
-Create, export, upload assets to, and manage Canva designs via the Canva Connect API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create, export, upload assets to, and manage Canva designs via the Canva Connect API.
 
-## Publisher: <br>
-[jiangwill2023](https://clawhub.ai/user/jiangwill2023) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiangwill2023](https://clawhub.ai/user/jiangwill2023)
 
-## Use Case: <br>
-Developers and Canva users use this skill to guide agents through Canva Connect API workflows for creating designs, exporting files, listing designs, uploading assets, and autofilling brand templates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires Canva OAuth credentials and stores access tokens locally. <br>
-Mitigation: Keep CANVA_CLIENT_SECRET and ~/.canva/tokens.json private, restrict token-file permissions, and grant only the scopes needed for the task. <br>
-Risk: The skill can upload local files and perform design-management actions through Canva. <br>
-Mitigation: Confirm exact local files before upload and review write, autofill, export, or batch actions before running them. <br>
+## Use Case:
 
+External users and developers use this skill to guide Canva Connect API workflows for creating social posts, posters, slide visuals, asset uploads, brand-template autofill, and design exports.
 
-## Reference(s): <br>
-- [Canva Developers](https://www.canva.com/developers/) <br>
-- [Canva Connect API](https://api.canva.com/rest/v1) <br>
-- [Canva Skill on ClawHub](https://clawhub.ai/jiangwill2023/canva-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, text] <br>
-**Output Format:** [Markdown with inline shell commands and API request examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Canva OAuth credentials and appropriate Canva API scopes before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Reusable OAuth tokens may be stored in ~/.canva/tokens.json.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated Canva integration with minimum required scopes, restrict access to the token file, and revoke tokens if they are exposed.
+
+Risk: The skill can upload assets and change Canva account content.
+
+Mitigation: Only upload or autofill content that is approved to be sent to Canva, and review generated API calls before execution.
+
+## Reference(s):
+
+- [Canva Developers](https://www.canva.com/developers/)
+- [Canva Connect API](https://api.canva.com/rest/v1)
+- [ClawHub Canva Skill](https://clawhub.ai/jiangwill2023/skills/canva-skill)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration instructions, API Calls]
+
+**Output Format:** [Markdown with inline bash code blocks and API examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Canva integration credentials, OAuth authentication, and appropriate Canva API scopes before use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

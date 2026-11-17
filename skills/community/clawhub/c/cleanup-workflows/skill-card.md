@@ -1,39 +1,58 @@
-## Description: <br>
-Audit and remove inactive, test, or deprecated HubSpot workflows, including workflows with no enrollments, workflows turned off for 90+ days, and test workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audit and remove inactive, test, or deprecated workflows from HubSpot. Identifies workflows that have never enrolled contacts, workflows turned off for 90+ days, and test workflows.
 
-## Publisher: <br>
-[tomgranot](https://clawhub.ai/user/tomgranot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tomgranot](https://clawhub.ai/user/tomgranot)
 
-## Use Case: <br>
-HubSpot administrators and operations teams use this skill to inventory workflows, flag inactive or test automations, and plan cleanup with owner notification and deletion safeguards. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: HubSpot API tokens may be exposed or over-scoped when inventorying workflows through the API. <br>
-Mitigation: Use a HubSpot token limited to the minimum workflow permissions and keep it out of chat, logs, and generated documentation. <br>
-Risk: Deleted HubSpot workflows cannot be restored, and removing the wrong workflow can disrupt business automation. <br>
-Mitigation: Manually review every deletion candidate, document or screenshot workflow logic, notify owners, turn workflows off before deletion, and approve each deletion explicitly. <br>
+## Use Case:
 
+HubSpot administrators and operations teams use this skill to audit workflow inventory, identify inactive or test automations, and plan cautious cleanup with owner notification and rollback documentation.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, configuration] <br>
-**Output Format:** [Markdown with a Python API example] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires human review before disabling or deleting workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: HubSpot workflows may be deleted permanently and cannot be restored.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Turn workflows off first, wait one week, document owners and deletion reasons, and capture screenshots or workflow logic before deleting.
+
+Risk: Overbroad HubSpot credentials could expose or change more automation data than needed.
+
+Mitigation: Use a HubSpot token scoped only to needed workflow read or manage permissions and run cleanup only with owner approval.
+
+Risk: Deleting a workflow without checking dependencies can disrupt downstream automations or property updates.
+
+Mitigation: Check workflow enrollment triggers, dependent property updates, and referenced documentation before deletion.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/tomgranot/skills/cleanup-workflows)
+- [HubSpot Workflows API Endpoint](https://api.hubapi.com/automation/v4/flows)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, code, shell commands, configuration]
+
+**Output Format:** [Markdown with inline Python code and step-by-step operational guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a scoped HubSpot API token and owner approval before deletion.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,58 @@
-## Description: <br>
-Generates structured presentation content and automates Google NotebookLM to create a polished slide deck exported as a PDF on the user's Desktop. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ZeeLin Auto-PPT helps an agent draft presentation source content, automate Google NotebookLM to create illustrated slides, and download the result as a PDF after the user has logged in to NotebookLM.
 
-## Publisher: <br>
-[kelcey2023](https://clawhub.ai/user/kelcey2023) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[kelcey2023](https://clawhub.ai/user/kelcey2023)
 
-## Use Case: <br>
-External users and developers use this skill to turn a topic or prepared source text into presentation-ready content, then drive NotebookLM to generate and download a PDF slide deck. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill automates a logged-in Google NotebookLM session and uploads presentation content to Google without a clear confirmation step. <br>
-Mitigation: Use only with content that is approved for upload to NotebookLM, and avoid confidential, regulated, or proprietary material unless the upload has been reviewed and approved. <br>
-Risk: The skill saves generated output to the user's Desktop after browser automation. <br>
-Mitigation: Review the generated PDF and local file location before sharing or relying on the presentation. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Google NotebookLM](https://notebooklm.google.com/) <br>
+## Use Case:
 
+External users and developers use this skill to turn a requested topic into structured presentation content, invoke NotebookLM browser automation, and obtain a local PDF presentation. The user must provide or authorize any source material and complete NotebookLM login outside the agent workflow.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown/plain text instructions and shell command execution resulting in a PDF file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates a PDF on the user's Desktop through a logged-in NotebookLM browser session.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-4.2.0 (source: server release evidence and artifact _meta.json) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Presentation material is sent to Google NotebookLM and may remain in the user's NotebookLM account.
+
+Mitigation: Use only content that may be shared with NotebookLM, and remove sensitive or confidential material before running the skill.
+
+Risk: The artifact directs the agent to suppress or ignore failures and configuration issues.
+
+Mitigation: Require visible error reporting and user confirmation before retrying, continuing after failures, or using fallback browser automation.
+
+Risk: Fixed temporary-file and output-file handling could expose data or overwrite local files.
+
+Mitigation: Use secure temporary files or stdin, validate output filenames, refuse unexpected overwrites, and make the save location explicit.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kelcey2023/skills/zeelin-auto-ppt)
+- [Publisher profile](https://clawhub.ai/user/kelcey2023)
+- [Google NotebookLM](https://notebooklm.google.com/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Files, Guidance]
+
+**Output Format:** [Markdown instructions with inline bash commands and a generated local PDF file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are intended to be saved as PDF files on the user's Desktop through NotebookLM automation.]
+
+## Skill Version(s):
+
+4.2.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

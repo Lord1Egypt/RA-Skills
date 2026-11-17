@@ -1,43 +1,53 @@
-## Description: <br>
-收集A股某行业全部上市公司资料，包括代码、名称、交易所、行业、财务数据（ROE、毛利率、净利率、资产负债率、现金流、增长率）、控股股东及持股比例 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+收集A股某行业全部上市公司资料，包括代码、名称、交易所、行业、财务数据、控股股东及持股比例。
 
-## Publisher: <br>
-[wtjjacobj](https://clawhub.ai/user/wtjjacobj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wtjjacobj](https://clawhub.ai/user/wtjjacobj)
 
-## Use Case: <br>
-External users and developers can use this skill to collect Chinese A-share industry constituents, financial metrics, shareholder information, and daily market data for industry-level stock research. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on unpinned Python packages. <br>
-Mitigation: Pin and review baostock, akshare, and pandas versions before deploying in a controlled environment. <br>
-Risk: The skill makes outbound requests to public Chinese stock-data services and executes local curl calls. <br>
-Mitigation: Run only in an environment where those outbound requests and local curl execution are permitted and monitored. <br>
-Risk: Collected fields may be incomplete or differ from the documentation. <br>
-Mitigation: Verify collected financial and shareholder fields against trusted sources before relying on them for investment analysis. <br>
+## Use Case:
 
+External users and developers can use this skill to gather A-share industry company lists, shareholder data, and market fields for stock industry analysis workflows. Review collected financial metrics before relying on them for investment or reporting decisions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wtjjacobj/stock-industry-collector) <br>
-- [Eastmoney market data endpoint used by the artifact](https://push2.eastmoney.com/api/qt/stock/get) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Python objects and tabular stock data suitable for DataFrame or spreadsheet workflows] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns a stock list and count; optional price collection adds current market data fields.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Security review reports that the implementation materially differs from the advertised stock-finance collection claims and may not return the advertised ROE, margin, debt, cash-flow, or growth fields.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review outputs before using them for financial decisions, run the skill in an isolated environment, and validate critical metrics against trusted financial data sources.
+
+Risk: The skill is expected to use outbound access to public stock-data APIs and third-party Python dependencies.
+
+Mitigation: Use pinned minimal dependencies and run only in environments where outbound public market-data access is approved.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wtjjacobj/skills/stock-industry-collector)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with Python snippets and structured stock-data records]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May require baostock, akshare, and pandas; output can include industry stock lists, shareholder fields, and daily market data.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

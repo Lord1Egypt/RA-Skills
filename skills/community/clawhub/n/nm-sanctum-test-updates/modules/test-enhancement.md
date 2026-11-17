@@ -64,8 +64,8 @@ behavior specifications.
 ```python
 def test_commit():
     repo = GitRepo()
-    repo.add('file.txt')
-    result = repo.commit('message')
+    repo.add("file.txt")
+    result = repo.commit("message")
     assert result is True
 ```
 
@@ -74,7 +74,8 @@ def test_commit():
 ```python
 @pytest.mark.bdd
 def test_commit_workflow_with_staged_file():
-    """
+    """A staged file is reported as staged.
+
     GIVEN a Git repository with a staged file
     WHEN the user commits with a message
     THEN the commit should be created successfully
@@ -82,14 +83,14 @@ def test_commit_workflow_with_staged_file():
     """
     # Given
     repo = GitRepo()
-    repo.add('file.txt')
+    repo.add("file.txt")
 
     # When
-    result = repo.commit('Add new feature')
+    result = repo.commit("Add new feature")
 
     # Then
     assert result is True
-    assert repo.get_last_commit_message() == 'Add new feature'
+    assert repo.get_last_commit_message() == "Add new feature"
 ```
 
 #### Transformation Steps
@@ -97,7 +98,7 @@ def test_commit_workflow_with_staged_file():
 1. **Add descriptive test name**: Describe behavior, not implementation
 2. **Add BDD docstring**: Include Given/When/Then clauses
 3. **Structure test with AAA**: Arrange-Act-Assert
-4. **Add specific assertions**: Test behavior, not just truthiness
+4. **Add specific assertions**: Assert specific behavior beyond truthiness
 
 ---
 
@@ -122,30 +123,39 @@ def test_parse_number():
 
 **Enhanced:**
 ```python
-@pytest.mark.parametrize("input_str,expected,description", [
-    ("123", 123, "valid positive integer"),
-    ("-456", -456, "valid negative integer"),
-    ("0", 0, "zero value"),
-    ("3.14", 3.14, "valid float"),
-    ("1e5", 100000, "scientific notation"),
-])
+@pytest.mark.parametrize(
+    "input_str,expected,description",
+    [
+        ("123", 123, "valid positive integer"),
+        ("-456", -456, "valid negative integer"),
+        ("0", 0, "zero value"),
+        ("3.14", 3.14, "valid float"),
+        ("1e5", 100000, "scientific notation"),
+    ],
+)
 def test_parse_number_valid_inputs(input_str, expected, description):
-    """
+    """Valid numeric strings parse to their value.
+
     GIVEN various valid number strings
     WHEN parsing the string
     THEN it should return the correct number
     """
     assert parse_number(input_str) == expected
 
-@pytest.mark.parametrize("invalid_input", [
-    "abc",
-    "",
-    "12.34.56",
-    "1,234",
-    None,
-])
+
+@pytest.mark.parametrize(
+    "invalid_input",
+    [
+        "abc",
+        "",
+        "12.34.56",
+        "1,234",
+        None,
+    ],
+)
 def test_parse_number_invalid_inputs(invalid_input):
-    """
+    """Invalid input is rejected rather than coerced.
+
     GIVEN invalid number inputs
     WHEN parsing the string
     THEN it should raise a ValueError
@@ -183,7 +193,8 @@ class TestGitRepository:
 
     @pytest.mark.bdd
     def test_init_creates_git_directory(self):
-        """
+        """A plain directory is not mistaken for a repository.
+
         GIVEN a directory path
         WHEN initializing a git repository
         THEN it should create a .git directory
@@ -192,7 +203,8 @@ class TestGitRepository:
 
     @pytest.mark.bdd
     def test_init_with_existing_repo_raises_error(self):
-        """
+        """An initialized repository is recognized.
+
         GIVEN an existing git repository
         WHEN initializing again
         THEN it should raise RepositoryError

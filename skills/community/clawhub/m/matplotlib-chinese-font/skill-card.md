@@ -1,38 +1,54 @@
-## Description: <br>
-Configure Chinese fonts for matplotlib plotting. Use when plotting charts with Chinese characters or getting garbled text. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Configure Chinese fonts for matplotlib plotting. Use when plotting charts with Chinese characters or getting garbled text.
 
-## Publisher: <br>
-[Tazio7](https://clawhub.ai/user/Tazio7) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tazio7](https://clawhub.ai/user/tazio7)
 
-## Use Case: <br>
-Developers and engineers use this skill to configure Matplotlib for Chinese chart titles, labels, legends, and text annotations, and to troubleshoot garbled Chinese characters or incorrect minus-sign rendering. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The cache-clearing step deletes local Matplotlib cache files. <br>
-Mitigation: Use font listing or font testing first when diagnosing display issues, and run cache clearing only when cache rebuild is intended. <br>
+## Use Case:
 
+Developers and data analysts use this skill to configure and troubleshoot Chinese text rendering in Matplotlib charts, including font selection, Unicode minus handling, saved image output, and local font-cache reset.
 
-## Reference(s): <br>
-- [Troubleshooting Guide](references/troubleshooting.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with Python and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May recommend helper scripts that inspect fonts, test font rendering, or clear the local Matplotlib font cache.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Cache-clearing guidance can delete the user's local Matplotlib cache/config directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the Matplotlib cache path and user intent before running cache-clearing commands or scripts/clear_cache.py, especially in environments where Matplotlib cache paths may be redirected.
+
+Risk: Font configuration may fail when the named Chinese font is not installed on the user's system.
+
+Mitigation: List available fonts first and choose an installed font name before applying rcParams or fontname settings.
+
+## Reference(s):
+
+- [Troubleshooting Guide](references/troubleshooting.md)
+- [ClawHub Skill Page](https://clawhub.ai/tazio7/skills/matplotlib-chinese-font)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with Python and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference bundled utility scripts for listing fonts, testing font rendering, and clearing the Matplotlib cache.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

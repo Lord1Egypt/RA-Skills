@@ -1,6 +1,9 @@
 {
-  "ownerId": "kn748jsa2ff17td8w86eg1khfx81pw29",
-  "slug": "chitin-core",
+  "name": "chitin-core",
   "version": "1.0.0",
-  "publishedAt": 1772299676802
+  "description": "The engine of the Chitin agentic OS. Unified model routing, cost optimization, provider failover, and live provider sync. If core breaks, everything breaks — so it doesn't. Visit chitin.xyz for the full agentic OS.",
+  "author": "chitintrust",
+  "tags": ["router", "fallback", "cost-optimization", "model-routing", "provider-sync", "chitin"],
+  "created": "2026-02-28",
+  "license": "MIT"
 }

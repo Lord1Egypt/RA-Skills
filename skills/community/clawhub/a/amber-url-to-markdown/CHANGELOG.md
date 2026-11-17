@@ -2,21 +2,6 @@
 
 All notable changes to this project will be documented in this file.
 
-## [4.0.3] - 2026-03-30
-
-### 🔧 Changed
-- 代码审查确认无问题，正式发布到 ClawHub
-- 确认 Hook 自动触发功能正常工作
-- 确认所有依赖和配置正确
-
-### ✅ Verified
-- handler.ts Hook 逻辑正确，支持纯 URL 和 URL+ 意图关键词触发
-- Python 脚本支持多网站抓取和三种降级策略
-- 目录结构和输出格式符合预期
-- _meta.json 配置完整，包含 hooks 配置
-
----
-
 ## [4.0.2] - 2026-03-27
 
 ### 🐛 Fixed

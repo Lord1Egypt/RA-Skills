@@ -1,0 +1,91 @@
+# metrics.yaml — sz-ink 九项指标定义与阈值组（单一事实源）
+# 阈值全部为【初版】，以批次5端到端校准结果为准；校准后更新本文件并跑 self-test。
+# 结构：metrics 定义算法 → registers 按语体给阈值组 → override 记录语体条件差异。
+
+version: "0.1.0"
+updated: "2026-10-28"
+
+metrics:
+  - id: rhythm_cv
+    name: 句长节奏
+    algo: sentence_length_cv          # 按句号/问号/叹号/分号分句
+    redline: true
+    over_opt_limit: 1.0               # CV过高=刻意打乱，判"演人"
+  - id: short_burst_ratio
+    name: 短气群占比
+    algo: burst_short_ratio           # 气群=逗号/破折号切分；≤6字
+    threshold: 0.15
+    over_opt_limit: 0.40
+  - id: cliche_density
+    name: 套话密度
+    algo: lexicon_hits_per_kilo       # L1词表命中/千字
+    redline: true
+    threshold: 2
+  - id: pattern_entropy
+    name: 句式混用率
+    algo: sentence_type_entropy       # 陈述/疑问/感叹/省略倒装 分布熵
+    threshold: 0.15
+    over_opt_limit: 0.60
+  - id: modal_temp
+    name: 语气温度
+    algo: modal_words_per_kilo        # 语气词+语气副词/千字
+    threshold: 1.5
+    over_opt_limit: 8
+  - id: hedge_density
+    name: 留白度
+    algo: hedges_per_kilo             # 模糊限制语/千字
+    threshold: 0.8
+    over_opt_limit: 12
+    conditional: true                 # 语体条件指标（见 registers）
+  - id: lex_rotation
+    name: 词汇轮换
+    algo: concept_alias_count         # 高频概念指称变化数
+    threshold: 2
+  - id: para_breath
+    name: 段落呼吸
+    algo: para_cv_plus_short          # 段字数CV + 短段(<40字)占比
+    threshold_cv: 0.4
+    threshold_short: 0.10
+  - id: struct_regularity
+    name: 结构规整度
+    algo: para_cv_centence_skeleton   # 段字数CV/中心句式占比/并列骨架数 三合一
+    threshold_pcv: 0.35
+    threshold_topic: 0.40
+    threshold_skeleton: 1
+
+registers:
+  colloquial_media:                   # 口语化新媒体体
+    label: 口语化新媒体体
+    status: threshold_pending         # 批次2校准后改 active
+    overrides: {hedge_density: 0.8}
+  official_doc:                       # 公文体（继承 sz-writer-enjoy）
+    label: 公文体
+    status: threshold_pending
+    overrides:
+      rhythm_cv: null                # 语体降权：公文句式规整是要求
+      short_burst_ratio: null        # 禁用
+      pattern_entropy: null          # 降权
+      modal_temp: null               # 禁用（语气对错走白名单机制）
+      hedge_density: null            # 禁用
+      para_breath: null              # 降权
+      pass_rule_override: "指标3主判+指标7/9辅判，其余只报告不判分"
+  explanatory:                        # 讲解体（85篇真人转写实测校准）
+    label: 讲解体
+    status: active                   # 唯一有真人基线，先转正
+    baseline: ".agent/harness/sz-ink-baseline/transcript_baseline.json"
+    overrides:
+      rhythm_cv: 0.45               # 真人P25=0.465
+      short_burst_ratio: 0.25       # 真人P25=0.273
+      cliche_density: 1             # 真人P75=0，从严
+      pattern_entropy: 0.12
+      modal_temp: 0.5               # 允许不强制：真人中位0但P75=3.26
+      hedge_density: null           # 禁用：真人中位0
+      struct_threshold_skeleton: 2  # 讲义总分结构常见，骨架检出放宽到≤2
+
+pass_rule:
+  redline_fail: "任一红线指标不过 → 触发干预"
+  total_pass: "≥6/9 达标即可放行（不追求全绿）"
+  over_opt: "任一指标超过 over_opt_limit → 判过度优化，不合格"
+  loops_max: 2
+  interventions_max_per_loop: 3
+  interventions_max_per_doc: 5

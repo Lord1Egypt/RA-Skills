@@ -31,7 +31,11 @@ Before any schedule query: **`read_file` `SKILL_CONTEXT.md`**, **`read_file` `RO
 
 1. Route check: **`ROUTING_AND_WHEN.md`** (schedule types: bulk/general, Ro-Ro, container).  
 2. If `hifleet_api_key` missing → **`FIRST_SETUP.md`**.  
-3. Execute **`SCHEDULE_API.md`** (port suggest → `POST /schedules` → contact fetch on user request via **`/unlock`**, `typeCode=product_vessel_liner_charter`; batch **全部** supported). Unlock table: **`references/charter_contact_unlock.md`**.
+3. Execute **`SCHEDULE_API.md`**:
+   - **§1** `GET {liner}/ports/suggest` → `params.portid` / `dischargingPortid`（**禁止** `portguide/getPort`）
+   - **§2** `POST /schedules`
+   - **§3** 联系方式：`POST /unlock`，`typeCode=product_vessel_liner_charter`；用户说 **全部/ all** → 对列表每条 **`id`** 循环 unlock（见 **`references/charter_contact_unlock.md`**）
+   - **§5** 实时目的港/ETA/船位 → 父 skill **`references/position_api.md`**
 
 ### 1. Output
 

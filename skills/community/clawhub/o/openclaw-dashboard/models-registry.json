@@ -1,66 +1,92 @@
 {
   "opus-4.6": {
     "id": "anthropic/claude-opus-4-6",
-    "label": "Claude Opus 4",
-    "costIO": [
-      15,
-      75
-    ]
+    "label": "Claude Opus 4.6",
+    "costIO": [15, 75],
+    "costCache": [1.5, 18.75]
   },
   "sonnet-4.6": {
     "id": "anthropic/claude-sonnet-4-6",
-    "label": "Claude Sonnet 4",
-    "costIO": [
-      3,
-      15
-    ]
+    "label": "Claude Sonnet 4.6",
+    "costIO": [3, 15],
+    "costCache": [0.3, 3.75]
   },
   "gemini-3-flash": {
     "id": "google/gemini-3-flash-preview",
     "label": "Gemini 3 Flash",
-    "costIO": [
-      0.5,
-      3
-    ]
+    "costIO": [0.075, 0.30],
+    "costCache": [0.019, 0.094]
   },
   "gemini-3.1-pro": {
     "id": "google/gemini-3.1-pro-preview",
     "label": "Gemini 3.1 Pro",
-    "costIO": [
-      2,
-      12
-    ]
+    "costIO": [1.25, 5.00],
+    "costCache": [0.3125, 1.5625]
+  },
+  "gemini-3-pro": {
+    "id": "google/gemini-3-pro-preview",
+    "label": "Gemini 3 Pro",
+    "costIO": [1.25, 5.00],
+    "costCache": [0.3125, 1.5625]
   },
   "gemini-3.1-flash-lite": {
     "id": "google/gemini-3.1-flash-lite-preview",
     "label": "Gemini 3.1 Flash-Lite",
-    "costIO": [
-      0.075,
-      0.3
-    ]
+    "costIO": [0.075, 0.30],
+    "costCache": [0.003, 0.0125]
   },
   "gpt-5.3-codex": {
     "id": "openai/gpt-5.3-codex",
     "label": "GPT-5.3 Codex",
-    "costIO": [
-      2.5,
-      10
-    ]
+    "costIO": [2.5, 10]
+  },
+  "gpt-5.2-codex": {
+    "id": "openai/gpt-5.2-codex",
+    "label": "GPT-5.2 Codex",
+    "costIO": [2.5, 10]
+  },
+  "gpt-5.2": {
+    "id": "openai/gpt-5.2",
+    "label": "GPT-5.2",
+    "costIO": [2.5, 10]
   },
   "gpt-5-mini": {
     "id": "openai/gpt-5-mini",
     "label": "GPT-5 Mini",
-    "costIO": [
-      0.25,
-      2
-    ]
+    "costIO": [0.25, 2],
+    "costCache": [0.1, 0.4]
   },
-  "qwen-35b-local": {
-    "id": "ollama-remote/qwen3.5:35b-a3b",
-    "label": "Qwen3.5 35B 🏠",
-    "costIO": [
-      0,
-      0
-    ]
+  "qwen-mac": {
+    "id": "local-macbook-pro/qwen3.5:35b-a3b",
+    "label": "Qwen3.5 35B (MacBook) 💻",
+    "costIO": [0, 0],
+    "costCache": [0, 0],
+    "provider": "local-macbook-pro",
+    "api": "ollama",
+    "contextWindow": 262144,
+    "maxTokens": 8192,
+    "reasoning": false
+  },
+  "qwen-spark-35b": {
+    "id": "local-dgx-spark-qwen-35b/Qwen3.5-35B-A3B-UD-Q4_K_XL.gguf",
+    "label": "Qwen3.5 35B (DGX Spark) ⚡",
+    "costIO": [0, 0],
+    "costCache": [0, 0],
+    "provider": "local-dgx-spark-qwen-35b",
+    "api": "openai-completions",
+    "contextWindow": 131072,
+    "maxTokens": 32768,
+    "reasoning": true
+  },
+  "qwen-spark-27b": {
+    "id": "local-dgx-spark-qwen-27b/Qwen3.5-27B-Claude-4.6-Opus-Reasoning-Distilled.Q5_K_M.gguf",
+    "label": "Qwen3.5 27B Claude (DGX Spark) 🧠",
+    "costIO": [0, 0],
+    "costCache": [0, 0],
+    "provider": "local-dgx-spark-qwen-27b",
+    "api": "openai-completions",
+    "contextWindow": 131072,
+    "maxTokens": 32768,
+    "reasoning": true
   }
 }

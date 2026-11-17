@@ -1,0 +1,30 @@
+{
+  "version": "1.0.0",
+  "description": "术语一致性检查词库：同概念异写变体组。检测的是「混用」（同一文档内两种写法并存），不是对错——两种写法本身都合法，混用才伤一致性。",
+  "note": "用法见 scripts/pp_style_norm.py --checks consistency；组内写法等价，建议全文统一为组内任一（通常选首次出现者或期刊惯用者）。",
+  "groups": [
+    {"canonical": "患者", "variants": ["患者", "病人"], "note": "医学文本最常见混用对"},
+    {"canonical": "影像", "variants": ["影像", "图像", "影像学表现"], "note": "影像学语境建议统一「影像」"},
+    {"canonical": "给药", "variants": ["给药", "用药", "服用了", "服用"], "note": "口服语境统一「服用」、注射语境统一「给药」"},
+    {"canonical": "副作用", "variants": ["副作用", "不良反应", "不良事件"], "note": "严格语境区分不良反应(AE)与副作用；混用建议统一「不良反应」"},
+    {"canonical": "对照组", "variants": ["对照组", "安慰剂组", "空白组"], "note": "设计不同则不混用；同设计统一称谓"},
+    {"canonical": "发病率", "variants": ["发病率", "发生率", "患病率"], "note": "流行病学严格区分 incidence/prevalence——混用视为术语错误而非风格"},
+    {"canonical": "禁忌证", "variants": ["禁忌证", "禁忌症", "适应证", "适应症"], "note": "规范用「证」（证据之证），混用极常见"},
+    {"canonical": "综合征", "variants": ["综合征", "症候群", "综合症"], "note": "规范「综合征」"},
+    {"canonical": "图", "variants": ["图1", "Figure 1", "Fig 1", "fig. 1"], "note": "图表编号引用格式全文统一"},
+    {"canonical": "算法", "variants": ["算法", "模型", "方法"], "note": "理工文本指代同一对象时统一称谓"},
+    {"canonical": "数据库", "variants": ["数据库", "资料库"], "note": "大陆规范「数据库」"},
+    {"canonical": "软件", "variants": ["软件", "软体"], "note": "大陆/台湾用词，勿混"},
+    {"canonical": "信息", "variants": ["信息", "资讯"], "note": "大陆/台湾用词，勿混"},
+    {"canonical": "人工智能", "variants": ["人工智能", "人工智慧"], "note": "大陆/台湾用词，勿混"},
+    {"canonical": "在线", "variants": ["在线", "线上"], "note": "大陆/台湾用词，勿混"},
+    {"canonical": "数据", "variants": ["数据", "资料"], "note": "大陆/台湾用词，勿混（「临床资料」为医学惯用例外，仅限该搭配）"},
+    {"canonical": "括号", "variants": ["（）", "()"], "note": "中文句子内括号全半角统一"},
+    {"canonical": "百分号", "variants": ["%", "％"], "note": "半/全角百分号统一（数字用法检查的姊妹项）"},
+    {"canonical": "包括", "variants": ["包括", "包含", "涵括"], "note": "高频混用虚词，统一其一"},
+    {"canonical": "基于", "variants": ["基于", "根据", "依据"], "note": "方法学句式统一"},
+    {"canonical": "about", "variants": ["approximately", "about", "~", "约"], "note": "英文学术惯用 approximately；~仅限表格"},
+    {"canonical": "because", "variants": ["because", "since", "due to the fact that"], "note": "因果连接词全文统一"},
+    {"canonical": "method", "variants": ["Methods", "Materials and Methods", "Methodology"], "note": "章节名照目标期刊模板统一"}
+  ]
+}

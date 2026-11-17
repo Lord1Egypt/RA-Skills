@@ -1,17 +1,17 @@
-# 浏览器存储
+# browser storage
 
-Frontend Craft skill for 浏览器存储.
+Choose and review browser persistence across cookies, localStorage, IndexedDB, and offline caches.
 
 ## Skill
 
 - ID: `fec-browser-storage`
 - Category: `implementation-capability`
-- Version: `2.5.0`
+- Version: `2.9.0`
 - Source: `skills/fec-browser-storage/SKILL.md`
 
 ## Description
 
-Use when choosing, implementing, or reviewing browser storage such as localStorage, sessionStorage, IndexedDB, cookies, client persistence, offline data, secure storage, or cleanup strategy; Chinese triggers include 浏览器存储, 客户端持久化.
+Use when choosing, implementing, or reviewing browser storage such as localStorage, sessionStorage, IndexedDB, cookies, client persistence, offline data, secure storage, or cleanup strategy; Chinese triggers include browser storage, client persistence.
 
 ## Usage
 

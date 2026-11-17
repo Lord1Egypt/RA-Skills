@@ -1,0 +1,28 @@
+# A/B Test Plan Designer - starting point
+# Copy this file, replace every empty value with your own data, keep the field names.
+test_name: ""
+hypothesis: ""
+platform: ""
+objective: ""
+variable_under_test: ""
+variables_held_constant:
+  - ""
+control_description: ""
+variant_description: ""
+baseline_conversion_rate: ""
+minimum_detectable_effect: ""
+confidence_level: 0.95
+power: 0.8
+traffic_split: "50/50"
+planned_run_days: ""
+primary_metric: ""
+guardrail_metrics:
+  - ""
+decision_rule: ""
+stop_rules:
+  - ""
+owner: ""
+result_log:
+  outcome: ""
+  conversions_per_arm: ""
+  notes: ""

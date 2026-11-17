@@ -1,0 +1,21 @@
+Federal Skilled Worker Program (FSW) — OFFICIAL eligibility & selection factors
+Source: https://www.canada.ca/en/immigration-refugees-citizenship/services/immigrate-canada/express-entry/who-can-apply/federal-skilled-workers.html (fetched 2026-08-21)
+
+## Minimum requirements (must meet ALL)
+- Work: 1,560 hours (12 months full-time at 30h/wk, or part-time equivalent like 15h/wk x 24mo). Max 30h/wk counted. Counts work in Canada or abroad, while studying (if paid+continuous), or self-employed.
+- Skill level: work must be in a NOC TEER 0/1/2/3 occupation (skilled).
+- Language: meet minimum CLB 7 in all 4 abilities (English or French) on approved tests.
+- Education: Canadian secondary or post-secondary credential, OR foreign credential + ECA report.
+- Proof of funds: needed unless you can legally work in Canada + have valid job offer.
+- Admissibility: must be admissible (security/criminal/medical).
+- Must plan to live outside Quebec.
+
+## Selection factors — score out of 100, need 67+
+- Language skills (max 28):
+  - First official language (max 24): CLB 9+ = 6 per ability (spk/list/rd/wr), CLB 8 = 5, CLB 7 = 4; Below CLB 7 = not eligible.
+  - Second official language (max 4): 4 pts if at least CLB 5 in all 4; 0 if CLB 4 or less in any.
+- Education (max 25): depends on Canadian credential or ECA-assessed foreign credential (chart / find how to read report).
+- Skilled work experience (max 15): 1 yr = 9, 2-3 yrs = 11, 4-5 yrs = 13, 6+ yrs = 15.
+- Age (max 12): 18-35 = 12; 36=11; 37=10; 38=9; 39=8; 40=7; 41=6; 42=5; 43=4; 44=3; 45=2; 46=1; 47+=0; under 18=0.
+- Arranged employment in Canada (max 10): valid job offer >=1yr, continuous paid full-time (min 30h/wk), non-seasonal, in TEER 0/1/2/3; 4 situations (LMIA-based or LMIA-exempt international agreement / significant benefit / federal-provincial, or new-LMIA for abroad applicant).
+- Adaptability (max 10, combine any): spouse language CLB4+ = 5; your past Canada study (2 academic yrs FT) = 5; spouse past Canada study = 5; your past Canada work (1yr FT TEER 0/1/2/3) = 10; spouse past Canada work = 5; arranged employment points earned = 5; relatives in Canada (parent/grandparent/child/grandchild/sibling/aunt/uncle/niece/nephew, 18+, citizen/PR) = 5.

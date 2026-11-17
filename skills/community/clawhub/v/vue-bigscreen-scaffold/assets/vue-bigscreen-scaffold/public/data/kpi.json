@@ -1,0 +1,38 @@
+[
+  {
+    "label": "年度营收",
+    "value": 4090,
+    "suffix": " 万元",
+    "separator": ",",
+    "decimal": ".",
+    "toFixedNum": 0,
+    "delta": "同比 +18.5%"
+  },
+  {
+    "label": "毛利率",
+    "value": 42.3,
+    "suffix": "%",
+    "separator": ",",
+    "decimal": ".",
+    "toFixedNum": 1,
+    "delta": "环比 +1.2pp"
+  },
+  {
+    "label": "活跃客户",
+    "value": 12600,
+    "suffix": " 户",
+    "separator": ",",
+    "decimal": ".",
+    "toFixedNum": 0,
+    "delta": "新增 +8.6%"
+  },
+  {
+    "label": "目标完成率",
+    "value": 86,
+    "suffix": "%",
+    "separator": ",",
+    "decimal": ".",
+    "toFixedNum": 0,
+    "delta": "距目标 14%"
+  }
+]

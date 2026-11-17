@@ -1,0 +1,9 @@
+{
+  "name": "ssot-content-management",
+  "normalizedName": "ssot-content-management",
+  "description": "单一事实源（SSOT）内容体系方法论，用于回答「内容老变、每次都要改很多地方」「怎么改一处全生效」「怎么少返工」这类问题。任何内容体系（知识库 / 官网 / 公众号 / 文档 / 投标 / 培训材料）都应遵循「事实库管事实 → 内容库管内容 → 发布层自动生成」三层架构，配合变更影响清单减少返工。事实库即真实参照法（Grounded Reference Method）在内容工程上的落地——所有对外表述挂回唯一事实条目，事实条目按注册方法论登记与版本化。当提到\"减少变更\"\"减少返工\"\"单一事实源\"\"SSOT\"\"改一处生效\"\"内容经常变\"\"每次都要改很多地方\"时使用。触发词：单一事实源、SSOT、改一处生效、减少返工、变更影响清单、内容体系架构、事实库、single source of truth。本技能为通用方法论工具，非医疗器械 / 非医疗软件，无疗效或临床声明；详见包内免责声明。",
+  "author": "诺源(Arche)@SynomosAI",
+  "copyright": "SynomosAI",
+  "version": "1.0.0",
+  "license": "MIT"
+}

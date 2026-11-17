@@ -1,0 +1,4 @@
+interface:
+  display_name: "SafetyCard"
+  short_description: "Security and safety review for AI agents and MCP servers"
+  default_prompt: "Use $safetycard to score the security of https://github.com/owner/repo."

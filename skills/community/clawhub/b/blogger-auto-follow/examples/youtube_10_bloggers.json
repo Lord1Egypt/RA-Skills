@@ -1,0 +1,72 @@
+[
+  {
+    "id": 1,
+    "name": "MKBHD",
+    "industry": "科技 · 数码 · 编程",
+    "category": "数码评测",
+    "fans": "1800万"
+  },
+  {
+    "id": 2,
+    "name": "Fireship",
+    "industry": "科技 · 数码 · 编程",
+    "category": "编程速通",
+    "fans": "320万"
+  },
+  {
+    "id": 3,
+    "name": "Veritasium",
+    "industry": "知识 · 人文 · 科普",
+    "category": "科学实验",
+    "fans": "1500万"
+  },
+  {
+    "id": 4,
+    "name": "3Blue1Brown",
+    "industry": "知识 · 人文 · 科普",
+    "category": "高等数学可视化",
+    "fans": "620万"
+  },
+  {
+    "id": 5,
+    "name": "Kurzgesagt",
+    "industry": "知识 · 人文 · 科普",
+    "category": "科学动画",
+    "fans": "2200万"
+  },
+  {
+    "id": 6,
+    "name": "CorridorCrew",
+    "industry": "影视 · 摄影 · 剪辑",
+    "category": "视效制作",
+    "fans": "650万"
+  },
+  {
+    "id": 7,
+    "name": "Ali Abdaal",
+    "industry": "职场 · 效率 · 成长",
+    "category": "生产力与效率",
+    "fans": "550万"
+  },
+  {
+    "id": 8,
+    "name": "ThePrimeTime",
+    "industry": "科技 · 数码 · 编程",
+    "category": "软件开发直播",
+    "fans": "85万"
+  },
+  {
+    "id": 9,
+    "name": "Lex Fridman",
+    "industry": "知识 · 人文 · 科普",
+    "category": "AI深度访谈",
+    "fans": "400万"
+  },
+  {
+    "id": 10,
+    "name": "Traversy Media",
+    "industry": "科技 · 数码 · 编程",
+    "category": "全栈教程",
+    "fans": "220万"
+  }
+]

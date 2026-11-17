@@ -1,41 +1,59 @@
-## Description: <br>
-Generates a Chinese, single-file HTML pre-trip guide for rental-car self-drive travel, including preparation checklists, regional rental cautions, safety reminders, and route suggestions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+租车自驾行前准备与合规路线规划助手，生成强视觉HTML卡片页面，覆盖行前清单、各国/地区租车注意事项、安全驾驶合规提醒及自驾路线推荐。
 
-## Publisher: <br>
-[lmercy](https://clawhub.ai/user/lmercy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lmercy](https://clawhub.ai/user/lmercy)
 
-## Use Case: <br>
-External travelers and travel planners use this skill to prepare rental-car self-drive trips in China or abroad. It gathers required trip inputs, asks for missing location or duration, and produces a visually structured HTML page with checklist, local caution areas, safety guidance, and mature-road route ideas. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Rental-car rules, insurance terms, emergency numbers, and road conditions may vary by location and change over time. <br>
-Mitigation: Use the generated page as planning guidance and verify official traffic rules, rental contracts, insurance terms, emergency contacts, and current road conditions before relying on it. <br>
-Risk: Travel planning can involve sensitive personal data such as passport, driver license, or credit card details. <br>
-Mitigation: Do not enter full passport numbers, driver license numbers, credit card numbers, or other unnecessary sensitive personal data when using the skill. <br>
+## Use Case:
 
+External travelers and travel-planning agents use this skill to prepare rental-car self-drive trip guidance for China domestic or outbound routes, including required inputs, compliance cautions, safety reminders, and mature route suggestions.
 
-## Reference(s): <br>
-- [HTML template reference](html-template.md) <br>
-- [ClawHub release page](https://clawhub.ai/lmercy/car-rental-self-drive-planner) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown guidance and generated single-file HTML with inline CSS] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires location and trip duration before generation; optional trip fields use documented defaults.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated HTML pages may include user-supplied trip details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Escape or sanitize user-supplied values before sharing or hosting generated pages.
+
+Risk: The skill primarily produces Chinese-language rental-car guidance.
+
+Mitigation: Confirm language expectations when using it for non-Chinese users.
+
+Risk: Rental rules, road access, parking, insurance, and route conditions can change by location and time.
+
+Mitigation: Keep the skill's local-law caveats visible and verify details against official traffic rules and the rental contract before travel.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lmercy/skills/car-rental-self-drive-planner)
+- [Publisher profile](https://clawhub.ai/user/lmercy)
+- [HTML template evidence](artifact/html-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Single-file HTML with inline CSS, typically delivered in Markdown as renderable code]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires location and trip duration; asks follow-up questions when either is missing.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

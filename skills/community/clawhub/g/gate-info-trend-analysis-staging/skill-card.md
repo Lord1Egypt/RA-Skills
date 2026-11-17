@@ -1,44 +1,55 @@
-## Description: <br>
-Performs read-only single-coin crypto trend and technical analysis using Gate Info market data, including K-line data, indicators, multi-timeframe signals, and market snapshots. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides read-only single-coin crypto trend and technical analysis using Gate market snapshots, K-line data, indicator history, and multi-timeframe technical signals.
 
-## Publisher: <br>
-[gaixianggeng](https://clawhub.ai/user/gaixianggeng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gaixianggeng](https://clawhub.ai/user/gaixianggeng)
 
-## Use Case: <br>
-External users and agents use this skill to produce a structured technical analysis report for one cryptocurrency from read-only Gate market data and standard technical indicators. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Technical analysis may be mistaken for investment advice or a price prediction. <br>
-Mitigation: Treat results as informational, avoid trade instructions or specific price predictions, and include limitations and risk warnings. <br>
-Risk: Missing, stale, or unavailable market-data tool results can weaken the analysis. <br>
-Mitigation: Disclose unavailable data, label timeframes and indicator settings, and downgrade confidence when inputs are incomplete. <br>
-Risk: The skill depends on Gate Info market-data MCP tools being available in the current agent environment. <br>
-Mitigation: Confirm the required Gate Info MCP server before use and return a clear unavailable-data response when tools fail. <br>
+## Use Case:
 
+External users and agent operators use this skill to produce focused technical-analysis reports for one crypto asset when the request is limited to trend, indicator, K-line, support, or resistance analysis.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gaixianggeng/gate-info-trend-analysis-staging) <br>
-- [Gate Info TrendAnalysis MCP Specification](references/mcp.md) <br>
-- [Scenarios and Prompt Examples](references/scenarios.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Analysis, Guidance] <br>
-**Output Format:** [Markdown 7-section technical analysis report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only output with timeframe labels, indicator settings, data availability notes, and informational risk warnings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The security scan reports that the skill delegates mandatory runtime authority to parent-directory rule files that are not part of the reviewed artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in environments where the parent runtime-rule files are trusted and controlled, and review changes to those files as behavior-changing updates.
+
+Risk: Technical analysis can be misleading when source market data, indicators, or timeframes are incomplete or unavailable.
+
+Mitigation: Label timeframe and indicator settings, disclose unavailable data, downgrade confidence when signals conflict or data is missing, and avoid trading or price-prediction advice.
+
+## Reference(s):
+
+- [MCP execution specification](references/mcp.md)
+- [Scenarios and prompt examples](references/scenarios.md)
+- [ClawHub skill page](https://clawhub.ai/gaixianggeng/skills/gate-info-trend-analysis-staging)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown technical analysis report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes current snapshot, trend assessment, indicator details, support and resistance levels, multi-timeframe signal summary, overall assessment, and risk warnings.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

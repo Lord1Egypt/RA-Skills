@@ -1,0 +1,109 @@
+{
+ "id": "example-orbit-podcast",
+ "name": "Example Orbit Podcast",
+ "status": "active",
+ "example": true,
+ "show": "Example Orbit Podcast",
+ "sources": [],
+ "platforms": [
+  "TIKTOK",
+  "INSTAGRAM",
+  "YOUTUBE"
+ ],
+ "clips_per_episode": 3,
+ "agreed_clips_per_month": 6,
+ "cadence": {
+  "days": [
+   "tue",
+   "thu",
+   "sat"
+  ],
+  "times": [
+   "11:30"
+  ],
+  "max_per_day": 1,
+  "min_gap_hours": 3,
+  "start_after_hours": 2
+ },
+ "timezone": "America/Chicago",
+ "brand": {
+  "accent": "#FFD60A",
+  "text": "#FFFFFF",
+  "hook_bg": "#FFD60A",
+  "hook_text": "#0B132B",
+  "uppercase": true,
+  "font": null,
+  "logo": "brand/logo.png",
+  "logo_position": "top-left",
+  "logo_scale": 0.16,
+  "end_card": {
+   "text": "Full episode: Example Orbit Podcast",
+   "seconds": 1.5,
+   "bg": "#0B132B",
+   "color": "#FFD60A"
+  }
+ },
+ "names": {
+  "Apollo": [
+   "Appolo"
+  ],
+  "Saturn": [],
+  "Moonwalk": [
+   "moon walk"
+  ]
+ },
+ "no_go": [
+  "budget cuts",
+  "politics"
+ ],
+ "approvers": [
+  {
+   "name": "Alex Example",
+   "contact": "alex@example.com"
+  }
+ ],
+ "approval": {
+  "rule": "hold"
+ },
+ "guest_release": "per_episode",
+ "youtube": {
+  "privacy": "public",
+  "madeForKids": false
+ },
+ "woopsocial": {
+  "projectId": "example-project-orbit",
+  "accounts": {
+   "TIKTOK": {
+    "socialAccountId": "example-acct-orbit-tiktok",
+    "handle": "@example.orbit",
+    "status": "CONNECTED",
+    "privacyOptions": [
+     "PUBLIC_TO_EVERYONE",
+     "MUTUAL_FOLLOW_FRIENDS",
+     "SELF_ONLY"
+    ],
+    "max_video_s": 600
+   },
+   "INSTAGRAM": {
+    "socialAccountId": "example-acct-orbit-instagram",
+    "handle": "@example.orbit",
+    "status": "CONNECTED"
+   },
+   "YOUTUBE": {
+    "socialAccountId": "example-acct-orbit-youtube",
+    "handle": "@example.orbit",
+    "status": "CONNECTED"
+   }
+  }
+ },
+ "agency": {
+  "name": "Example Clip Studio",
+  "reply_to": "clips@example.com"
+ },
+ "report": {
+  "recipients": [
+   "alex@example.com"
+  ]
+ },
+ "expect_episode_every_days": 14
+}

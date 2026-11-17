@@ -1,0 +1,79 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "omni-ecom://schemas/conflict-scan-2.0.json",
+  "title": "Omni E-commerce Cross-member Conflict Scan Result",
+  "description": "团长在四位分析专家 sealed handoff 齐备后自动扫描的产物。命中 hard_conflict 必须发起定向交叉质疑轮，不得直接进入并稿。",
+  "type": "object",
+  "additionalProperties": true,
+  "required": ["schema_version", "artifact_type", "contract_name", "contract_version", "created_by_team_version", "legacy_compatibility", "run_id", "client_scope", "team_version", "baseline_sha256", "scanned_handoffs", "causal_review", "conflicts", "status", "scanned_at"],
+  "properties": {
+    "schema_version": { "const": "2.0" },
+    "artifact_type": { "const": "conflict_scan_result" },
+    "contract_name": { "const": "omni-ecom.conflict-scan" },
+    "contract_version": { "const": "2.0" },
+    "created_by_team_version": { "type": "string", "minLength": 1 },
+    "legacy_compatibility": { "const": {"read_only_import": ["omni-ecom.conflict-scan@1.0"], "current_analysis_authority": false} },
+    "run_id": { "type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{2,80}$" },
+    "client_scope": { "type": "string", "minLength": 1 },
+    "team_version": { "type": "string", "minLength": 1 },
+    "baseline_sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "scanned_handoffs": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["agent_id", "file", "sha256"],
+        "properties": {
+          "agent_id": { "type": "string", "minLength": 1 },
+          "file": { "type": "string", "minLength": 1 },
+          "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" }
+        }
+      }
+    },
+    "causal_review": {
+      "type": "object",
+      "required": ["schema_version", "artifact_type", "contract_name", "contract_version", "created_by_team_version", "legacy_compatibility", "run_id", "client_scope", "team_version", "status", "reviews", "reviewed_at"],
+      "properties": {
+        "schema_version": {"const": "2.0"}, "artifact_type": {"const": "causal_evidence_review"},
+        "contract_name": {"const": "omni-ecom.causal-evidence-review"}, "contract_version": {"const": "2.0"},
+        "status": {"const": "causal_review_passed"}, "reviews": {"type": "array"}
+      }
+    },
+    "conflicts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["conflict_id", "type", "severity", "topic", "positions", "needs_challenge_round"],
+        "properties": {
+          "conflict_id": { "type": "string", "pattern": "^X-[A-Za-z0-9_-]+$" },
+          "type": {
+            "enum": ["numeric", "caliber", "direction", "attribution"],
+            "description": "numeric 数值冲突 / caliber 同名不同口径 / direction 结论方向相反 / attribution 归因互斥"
+          },
+          "severity": { "enum": ["hard", "soft"] },
+          "topic": { "type": "string", "minLength": 1 },
+          "positions": {
+            "type": "array",
+            "minItems": 2,
+            "items": {
+              "type": "object",
+              "required": ["agent_id", "position"],
+              "properties": {
+                "agent_id": { "type": "string", "minLength": 1 },
+                "position": { "type": "string", "minLength": 1 },
+                "value": {},
+                "evidence_ids": { "type": "array", "items": { "type": "string" } }
+              }
+            }
+          },
+          "needs_challenge_round": { "type": "boolean" },
+          "lead_recomputation_required": { "type": "boolean", "description": "是否属于决定主结论的核心归因冲突，必须团长亲自复算。" }
+        }
+      }
+    },
+    "status": {
+      "enum": ["conflict_scan_clean", "conflict_scan_soft_only", "conflict_scan_hard_blocked"]
+    },
+    "scanned_at": { "type": "string", "minLength": 1 }
+  }
+}

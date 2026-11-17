@@ -1,41 +1,54 @@
-## Description: <br>
-Use revert.wtf safely from agents, tools, browsers, or integrations through bounded HTTP APIs, MCP tools, and lightweight package subpaths without downloading the full catalog into client bundles. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use revert.wtf safely from agents, tools, browsers, or integrations through bounded HTTP APIs, MCP tools, and lightweight package subpaths without downloading the full catalog into client bundles.
 
-## Publisher: <br>
-[mrtdlgc](https://clawhub.ai/user/mrtdlgc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mrtdlgc](https://clawhub.ai/user/mrtdlgc)
 
-## Use Case: <br>
-Developers and agents use this skill to explain EVM, RPC, provider, wallet, account-abstraction, and x402 errors, resolve selectors, search the revert.wtf catalog, and integrate bounded revert.wtf APIs or package subpaths into products. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Server security evidence flags high-impact moderation and GitHub workflow authority, including a review helper that may bypass sandbox approvals. <br>
-Mitigation: Install only in trusted maintainer contexts, review exact commands before account, role, package, or PR changes, and prefer the autoreview helper's `--no-yolo` mode unless sandbox bypass is explicitly acceptable. <br>
-Risk: The artifact handles wallet, provider, RPC, and raw error inputs where users might paste private keys, seed phrases, access tokens, unreleased exploit details, or personal data. <br>
-Mitigation: Use bounded API or MCP calls and exclude private keys, seed phrases, access tokens, unreleased exploit details, and personal data from submitted inputs. <br>
+## Use Case:
 
+Developers and agent builders use this skill to explain EVM, RPC, provider, wallet, account abstraction, and x402 errors, resolve selectors, search revert.wtf catalog entries, and integrate revert.wtf through bounded APIs or lightweight packages.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/mrtdlgc/revertwtf-agent-api) <br>
-- [revert.wtf Explain API](https://revert.wtf/api/explain) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, API calls, Shell commands, Code, Configuration] <br>
-**Output Format:** [Markdown with inline JSON, bash, and TypeScript examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Promotes bounded API and MCP usage, paginated search summaries, and lightweight package subpaths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: Hosted API requests may include error text that contains secrets, unreleased exploit details, or personal data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Send only error text appropriate for revert.wtf processing, avoid secrets and personal data, or keep analysis local through package subpaths when needed.
+
+Risk: Broad catalog fetching or server-oriented package imports in browser clients can increase exposure and bundle size.
+
+Mitigation: Use bounded search and explain flows, lightweight browser helpers, or a server/API boundary for full parser and catalog-backed functionality.
+
+## Reference(s):
+
+- [revert.wtf Explain API](https://revert.wtf/api/explain)
+- [ClawHub Skill Page](https://clawhub.ai/mrtdlgc/skills/revertwtf-agent-api)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, code, configuration]
+
+**Output Format:** [Markdown guidance with inline bash and TypeScript examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance emphasizes bounded API and MCP use, precise package imports, and avoiding secrets or personal data in hosted requests.]
+
+## Skill Version(s):
+
+0.1.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

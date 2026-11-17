@@ -1,0 +1,33 @@
+# =============================================================================
+# 故意写错的网络定义 —— 用于演示 Agent 的"解析错误自动修复"能力。
+#
+# 这份配置里埋了两处典型错误：
+#   1. [[pipes]] 的 to 引用了不存在的节点 GHOST
+#   2. [[nodes]] 的 L1 缺少 min_pressure（load 节点的必需字段）
+#
+# 另外缺 [network] 段落。Agent 会依次拿到：
+#   parse_network -> ok=false -> errors[].location + suggestion
+# 然后按 suggestion 修正后重新调用，直到 ok=true。
+#
+# 注意：本文件**不会**被 AutoFix 硬编码处理 —— 它只是给 Agent 一个起点。
+# =============================================================================
+
+[[nodes]]
+id = "P1"
+type = "pump"
+pressure = 400000.0
+
+[[nodes]]
+id = "L1"
+type = "load"
+min_flow = 0.002
+
+[[pipes]]
+id = "E1"
+from = "P1"
+to = "GHOST"
+resistance = 1000000.0
+diameter = 0.02
+
+[[scenarios]]
+id = "normal"

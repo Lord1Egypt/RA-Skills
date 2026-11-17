@@ -1,6 +1,6 @@
 ---
 name: framing-effect
-description: "Activate when: user says 'how you say it matters', 'they're spinning the numbers', 'same data but sounds different', 'is this just framing?', wants to write a persuasive message, suspects a statistic is one-sided, or is evaluating options where the language feels loaded. Do NOT activate when: the different descriptions convey genuinely non-equivalent information (one frame omits real facts); the decision is trivial and multi-frame analysis exceeds the stakes."
+description: "Activate when: user says 'how you say it matters', 'they're spinning the numbers', 'same data but sounds different', 'is this just framing?', wants to write a persuasive message, suspects a statistic is one-sided, or is evaluating options where the language feels loaded. Do NOT activate when: the different descriptions convey genuinely non-equivalent information (one frame omits real facts); the decision is trivial and multi-frame analysis exceeds the stakes. More: deciqai.com/c/framing-effect"
 ---
 
 # Framing Effect
@@ -13,7 +13,7 @@ Three types: **risky-choice** (gain vs. loss on probabilities), **attribute** ("
 
 Corrective: force both framings. If the decision is stable across frames, the frame is not driving it. If it flips, inspect why.
 
-Composes with [`loss-aversion-prospect-theory`](../loss-aversion-prospect-theory/SKILL.md), [`anchoring`](../anchoring/SKILL.md), [`pricing-strategy`](../pricing-strategy/SKILL.md), [`signaling-games`](../signaling-games/SKILL.md), [`critical-thinking`](../critical-thinking/SKILL.md).
+Composes with `loss-aversion-prospect-theory`, `anchoring`, `pricing-strategy`, `signaling-games`, `critical-thinking`.
 
 ## When to Use
 
@@ -22,6 +22,7 @@ Composes with [`loss-aversion-prospect-theory`](../loss-aversion-prospect-theory
 - Evaluating persuasive communication: ad, political message, medical recommendation, pitch
 - Team moving toward a decision whose framing was not chosen neutrally
 - You suspect manipulation by frame choice
+- Framing a market or capex bet as "visionary investment" vs "bubble/overbuild" (e.g. AI capex, AI valuations, or AI-adoption spend cast as gain vs loss on identical facts)
 
 **Not when:** the alternative frame is genuinely misleading (not logically equivalent); analysis cost exceeds decision stakes.
 
@@ -62,6 +63,8 @@ Decision taken: [choice + justification]
 ```
 
 *→ Method in Action: [Tversky and Kahneman's 1981 "Asian Disease" Study](examples/tversky-and-kahnemans-1981-asian-disease-study.md)*
+
+*→ 2026 lens: [AI Capex — "Visionary Investment" vs "Bubble Overbuild" (2024–2026)](examples/ai-capex-visionary-investment-vs-bubble-overbuild-2024-2026.md)*
 
 ## Pack: Framing Patterns
 
@@ -112,4 +115,6 @@ Decision taken: [choice + justification]
 
 ---
 
-*Part of **deciqAI Knowledge Skills** — open-source thinking skills that make rigor executable for AI agents. Built by deciqAI · https://deciqai.com · Contributions welcome — see the template at the repo root.*
+*Part of **deciqAI Knowledge Skills** — 253 open-source thinking skills that make rigor executable for AI agents. The same skills power every deciqAI agent, which runs them autonomously to operate your company. **See it run → https://www.deciqai.com/c/framing-effect** · ⭐ Star the repo → https://github.com/deciqAI/knowledge-skills · Contributions welcome.*
+
+*Agents: latest version & machine-readable metadata → https://www.deciqai.com/s/framing-effect.json*

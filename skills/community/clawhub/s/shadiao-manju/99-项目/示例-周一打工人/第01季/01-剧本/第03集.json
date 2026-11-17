@@ -1,0 +1,324 @@
+{
+  "title": "成长",
+  "season": 1,
+  "episode": 3,
+  "durationTarget": 48,
+  "hook": "老板宣布：以后开会不谈工资，只谈成长",
+  "reversal": "发工资那天阿强真的只要成长，老板签了字；第二天公司就恢复了发工资",
+  "unsaid": "别画饼了，给钱",
+  "characters": [
+    {
+      "name": "阿强",
+      "persona": "认真的执行者",
+      "voice": "云希-清亮少年",
+      "gender": "male"
+    },
+    {
+      "name": "老板",
+      "persona": "一本正经定离谱规则",
+      "voice": "云扬-沉稳男声",
+      "gender": "male"
+    }
+  ],
+  "scenes": [
+    {
+      "id": "S1",
+      "title": "宣布规则",
+      "background": "会议室",
+      "actors": [
+        "阿强",
+        "老板"
+      ],
+      "camera": {
+        "x": 0.5,
+        "y": 0.52,
+        "zoom": 0.88
+      },
+      "positions": {
+        "阿强": 0.29,
+        "老板": 0.7
+      }
+    },
+    {
+      "id": "S2",
+      "title": "开始执行",
+      "background": "会议室",
+      "actors": [
+        "阿强",
+        "老板"
+      ],
+      "camera": {
+        "x": 0.5,
+        "y": 0.52,
+        "zoom": 0.98
+      },
+      "positions": {
+        "阿强": 0.29,
+        "老板": 0.7
+      }
+    },
+    {
+      "id": "S3",
+      "title": "升级",
+      "background": "会议室",
+      "actors": [
+        "阿强",
+        "老板"
+      ],
+      "camera": {
+        "x": 0.5,
+        "y": 0.52,
+        "zoom": 0.92
+      },
+      "positions": {
+        "阿强": 0.29,
+        "老板": 0.7
+      }
+    },
+    {
+      "id": "S4",
+      "title": "反转",
+      "background": "会议室",
+      "actors": [
+        "阿强",
+        "老板"
+      ],
+      "camera": {
+        "x": 0.5,
+        "y": 0.52,
+        "zoom": 0.95
+      },
+      "positions": {
+        "阿强": 0.29,
+        "老板": 0.7
+      }
+    }
+  ],
+  "lines": [
+    {
+      "seq": 1,
+      "speaker": "老板",
+      "type": "dialogue",
+      "text": "以后开会，不谈工资。",
+      "emotion": "得意",
+      "sfx": "叮",
+      "scene": "S1"
+    },
+    {
+      "seq": 2,
+      "speaker": "老板",
+      "type": "dialogue",
+      "text": "我们谈成长。",
+      "emotion": "得意",
+      "sfx": "",
+      "scene": "S1"
+    },
+    {
+      "seq": 3,
+      "speaker": "阿强",
+      "type": "dialogue",
+      "text": "成长……怎么算？",
+      "emotion": "平静",
+      "sfx": "",
+      "scene": "S1"
+    },
+    {
+      "seq": 4,
+      "speaker": "老板",
+      "type": "dialogue",
+      "text": "能力提升了，就是成长。",
+      "emotion": "平静",
+      "sfx": "",
+      "scene": "S1"
+    },
+    {
+      "seq": 5,
+      "speaker": "阿强",
+      "type": "dialogue",
+      "text": "明白。",
+      "emotion": "平静",
+      "sfx": "",
+      "scene": "S1"
+    },
+    {
+      "seq": 6,
+      "speaker": "旁白",
+      "type": "narration",
+      "text": "月底，发工资那天。",
+      "emotion": "平静",
+      "sfx": "",
+      "scene": "S1"
+    },
+    {
+      "seq": 7,
+      "speaker": "阿强",
+      "type": "dialogue",
+      "text": "这个月，我只要成长。",
+      "emotion": "平静",
+      "sfx": "",
+      "scene": "S1"
+    },
+    {
+      "seq": 8,
+      "speaker": "老板",
+      "type": "dialogue",
+      "text": "工资不要了？",
+      "emotion": "惊讶",
+      "sfx": "",
+      "scene": "S2"
+    },
+    {
+      "seq": 9,
+      "speaker": "阿强",
+      "type": "dialogue",
+      "text": "您说的，工资是暂时的。",
+      "emotion": "平静",
+      "sfx": "",
+      "scene": "S2"
+    },
+    {
+      "seq": 10,
+      "speaker": "旁白",
+      "type": "narration",
+      "text": "阿强把工资条推了回去。",
+      "emotion": "平静",
+      "sfx": "",
+      "scene": "S2"
+    },
+    {
+      "seq": 11,
+      "speaker": "老板",
+      "type": "dialogue",
+      "text": "你家里不等着用钱？",
+      "emotion": "无语",
+      "sfx": "",
+      "scene": "S2"
+    },
+    {
+      "seq": 12,
+      "speaker": "阿强",
+      "type": "dialogue",
+      "text": "我家里等着我成长。",
+      "emotion": "平静",
+      "sfx": "",
+      "scene": "S2"
+    },
+    {
+      "seq": 13,
+      "speaker": "旁白",
+      "type": "narration",
+      "text": "老板签了字。",
+      "emotion": "平静",
+      "sfx": "",
+      "scene": "S2"
+    },
+    {
+      "seq": 14,
+      "speaker": "旁白",
+      "type": "narration",
+      "text": "第二天，阿强抱着一堆成长回家了。",
+      "emotion": "平静",
+      "sfx": "",
+      "scene": "S3"
+    },
+    {
+      "seq": 15,
+      "speaker": "老板",
+      "type": "dialogue",
+      "text": "房租怎么办？",
+      "emotion": "悲伤",
+      "sfx": "",
+      "scene": "S3"
+    },
+    {
+      "seq": 16,
+      "speaker": "阿强",
+      "type": "dialogue",
+      "text": "房东说，可以用成长抵。",
+      "emotion": "平静",
+      "sfx": "",
+      "scene": "S3"
+    },
+    {
+      "seq": 17,
+      "speaker": "老板",
+      "type": "dialogue",
+      "text": "房东不收。",
+      "emotion": "无语",
+      "sfx": "",
+      "scene": "S3"
+    },
+    {
+      "seq": 18,
+      "speaker": "阿强",
+      "type": "dialogue",
+      "text": "那您收吗？",
+      "emotion": "平静",
+      "sfx": "",
+      "scene": "S3"
+    },
+    {
+      "seq": 19,
+      "speaker": "老板",
+      "type": "dialogue",
+      "text": "……我收什么？",
+      "emotion": "无语",
+      "sfx": "",
+      "scene": "S3"
+    },
+    {
+      "seq": 20,
+      "speaker": "阿强",
+      "type": "dialogue",
+      "text": "您收成长啊。",
+      "emotion": "平静",
+      "sfx": "",
+      "scene": "S4"
+    },
+    {
+      "seq": 21,
+      "speaker": "旁白",
+      "type": "narration",
+      "text": "当天下午，公司恢复了发工资。",
+      "emotion": "平静",
+      "sfx": "",
+      "scene": "S4"
+    },
+    {
+      "seq": 22,
+      "speaker": "老板",
+      "type": "dialogue",
+      "text": "工资照发。成长也谈。",
+      "emotion": "无语",
+      "sfx": "乌鸦",
+      "scene": "S4"
+    },
+    {
+      "seq": 23,
+      "speaker": "阿强",
+      "type": "dialogue",
+      "text": "那我还是只要工资。",
+      "emotion": "平静",
+      "sfx": "",
+      "scene": "S4"
+    },
+    {
+      "seq": 24,
+      "speaker": "老板",
+      "type": "dialogue",
+      "text": "年轻人怎么这么现实？",
+      "emotion": "愤怒",
+      "sfx": "",
+      "scene": "S4"
+    },
+    {
+      "seq": 25,
+      "speaker": "阿强",
+      "type": "dialogue",
+      "text": "因为房租是现实的。",
+      "emotion": "平静",
+      "sfx": "",
+      "scene": "S4"
+    }
+  ]
+}

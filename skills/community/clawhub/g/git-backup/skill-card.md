@@ -1,40 +1,57 @@
-## Description: <br>
-Backs up an agent workspace to a GitHub repository by guiding token discovery, repository setup, git commits, and pushes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Backs up an agent workspace to a GitHub repository through token discovery, repository setup, commits, pushes, and scheduled backup guidance.
 
-## Publisher: <br>
-[netanel-abergel](https://clawhub.ai/user/netanel-abergel) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[netanel-abergel](https://clawhub.ai/user/netanel-abergel)
 
-## Use Case: <br>
-Developers and operators use this skill to back up an agent workspace to a private GitHub repository after important memory, skill, or configuration changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Credential exposure while finding, storing, or embedding GitHub tokens. <br>
-Mitigation: Use a secure credential helper or secret manager, avoid PATs in chat, plaintext files, or remote URLs, and prefer a fine-grained least-privilege token. <br>
-Risk: Broad or silent workspace backups can upload sensitive files or configuration. <br>
-Mitigation: Narrow the backup scope, use a dedicated private repository, keep visible backup logs, disable silent scheduled pushes by default, and review staged files before pushing. <br>
+## Use Case:
 
+Developers and operators use this skill to configure and run Git-based backups of an agent workspace to GitHub, including first-time setup, recurring commits, and recovery steps when credentials or remotes fail.
 
-## Reference(s): <br>
-- [ClawHub Git Backup page](https://clawhub.ai/netanel-abergel/git-backup) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance, Text] <br>
-**Output Format:** [Markdown with inline bash and JSON code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes git, curl, token handling, .gitignore, and cron examples; review commands and files before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: Broad GitHub credentials may be requested, discovered, or stored in locations that expose repository access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use least-privilege GitHub tokens, do not provide PATs in chat, remove tokens from remote URLs, and store credentials only in approved secret storage.
+
+Risk: Silent scheduled backups can upload large parts of the workspace without review.
+
+Mitigation: Disable silent scheduled pushes unless explicitly approved, use a reviewed backup allowlist, and run a secret scan before uploading workspace files.
+
+Risk: The artifact includes a deprecation note indicating the backup workflow was merged into another maintenance skill.
+
+Mitigation: Confirm the intended install target and prefer the maintained replacement if this standalone release is obsolete.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/netanel-abergel/skills/git-backup)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash and JSON code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes Git and GitHub API command examples plus scheduled backup configuration guidance.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

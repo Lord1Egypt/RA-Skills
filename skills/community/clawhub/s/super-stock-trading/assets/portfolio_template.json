@@ -1,0 +1,54 @@
+{
+  "meta": {
+    "portfolio_name": "默认持仓组合",
+    "last_updated": "{{last_updated}}",
+    "owner": "{{owner}}",
+    "base_currency": "CNY",
+    "description": "持仓组合模板，记录当前持仓与组合绩效指标"
+  },
+  "holdings": [
+    {
+      "code": "600519",
+      "name": "贵州茅台",
+      "shares": 100,
+      "cost": 1680.50,
+      "current": 1725.00,
+      "value": 172500.00,
+      "sector": "食品饮料-白酒"
+    },
+    {
+      "code": "300750",
+      "name": "宁德时代",
+      "shares": 300,
+      "cost": 215.80,
+      "current": 208.50,
+      "value": 62550.00,
+      "sector": "电力设备-锂电池"
+    },
+    {
+      "code": "601318",
+      "name": "中国平安",
+      "shares": 2000,
+      "cost": 48.20,
+      "current": 50.80,
+      "value": 101600.00,
+      "sector": "非银金融-保险"
+    }
+  ],
+  "total_value": 336650.00,
+  "cash": 63350.00,
+  "metrics": {
+    "total_assets": 400000.00,
+    "position_ratio": 0.8416,
+    "cash_ratio": 0.1584,
+    "total_cost": 312930.00,
+    "total_pnl": 23720.00,
+    "total_pnl_pct": 0.0758,
+    "max_position_pct": 0.5127,
+    "max_industry_pct": 0.5127,
+    "concentration_top3": 1.0000,
+    "industry_hhi": 0.6028,
+    "sharpe_ratio": null,
+    "max_drawdown": null
+  }
+}

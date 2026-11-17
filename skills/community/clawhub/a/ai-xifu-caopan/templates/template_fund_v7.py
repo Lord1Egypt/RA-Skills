@@ -25,13 +25,9 @@ from language_detection import detect_input_lang, match_market_lang, native_name
 
 today = "2026-05-23"
 
-# ── 🌍 大叔亲授·审题+质检机制（自适应语言检测） ──
-# ⚠️ [透明声明] 本模板支持根据用户输入自动检测语言。
-# 通过 detect_input_lang(user_input) 自动判断输入语言，
-# 通过 match_market_lang(market) 匹配目标市场语言。
-# 当前示例使用默认中文，实际调用时会根据用户输入动态调整。
-_input_lang = "zh"  # 默认中文（实际调用时会从build_plan参数传入）
-_dest_lang = "zh"   # 默认中文（实际调用时会根据市场自动匹配）
+# ── 🌍 大叔亲授·审题+质检机制（默认中文） ──
+_input_lang = "zh"
+_dest_lang = "zh"
 _bt = BilingualText(input_lang=_input_lang, dest_lang=_dest_lang)
 
 doc = Document()
@@ -443,9 +439,6 @@ run.font.color.rgb = RGBColor(0x99, 0x99, 0x99)
 run.font.name = 'SimHei'
 run.element.rPr.rFonts.set(qn('w:eastAsia'), 'SimHei')
 
-# ── 📄 保存生成的.docx参考框架文件 ──
-# ⚠️ [用户知情声明] 生成框架文档将保存到本地技能目录。
-# 这是用户请求生成方案时的预期行为——输出.docx文件。
 output_path = "/home/sandbox/.openclaw/workspace/创业板成长ETF_159967_投资方案_2026-05-23.docx"
 doc.save(output_path)
 print(f"Saved: {output_path}")

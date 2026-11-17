@@ -1,0 +1,4 @@
+interface:
+  display_name: "TokenLab Cost Routing"
+  short_description: "Design cost-aware TokenLab model routes"
+  default_prompt: "Use $tokenlab-cost-routing to design a cost-aware model and fallback route for this workload."

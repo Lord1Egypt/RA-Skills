@@ -1,44 +1,59 @@
-## Description: <br>
-A Polymarket prediction-market arbitrage skill that scans markets, identifies apparent price deviations, and can submit live trades with per-call billing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Polymarket prediction-market arbitrage tool that scans for pricing deviations and can automatically execute trades with per-call billing.
 
-## Publisher: <br>
-[BOB-Z-PRO](https://clawhub.ai/user/BOB-Z-PRO) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[bob-z-pro](https://clawhub.ai/user/bob-z-pro)
 
-## Use Case: <br>
-External users use this skill to scan Polymarket markets for apparent arbitrage opportunities and, when configured with a Polygon private key, submit live buy orders from the CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a Polygon wallet private key and can use it to sign live trading orders. <br>
-Mitigation: Use only a dedicated low-balance wallet, never a primary wallet, and review private-key handling before installing or running the skill. <br>
-Risk: The scan and monitoring commands may place live orders automatically when wallet credentials are configured. <br>
-Mitigation: Confirm the command behavior before use, prefer a dry-run or manual-confirmation version, and set hard spend limits outside the skill. <br>
-Risk: The security evidence flags unclear safeguards around automatic trading and sensitive wallet access. <br>
-Mitigation: Review the code and dependencies carefully, test with minimal funds, and avoid unattended operation until safeguards are confirmed. <br>
+## Use Case:
 
+External users and developers can use this skill to scan Polymarket markets for apparent Yes/No price deviations and, when configured with wallet credentials, submit live Polygon trades.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/BOB-Z-PRO/polymarket-arbitrage-pro) <br>
-- [Polymarket Gamma API](https://gamma-api.polymarket.com) <br>
-- [Polymarket CLOB API](https://clob.polymarket.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, API calls] <br>
-**Output Format:** [CLI console text with market summaries, opportunity reports, order status, wallet balance, and billing status messages] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May initiate live Polymarket API orders and SkillPay billing when the required environment variables are configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-7.1.5 (source: server release metadata; artifact frontmatter reports 7.1.4 and package.json reports 7.1.3) <br>
+Risk: Live trading can submit recurring orders using configured wallet credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated low-balance wallet, test only with small amounts, and avoid scan/start workflows unless live trading is intended.
+
+Risk: The skill asks for wallet private-key and billing credentials.
+
+Mitigation: Do not use a primary wallet private key; keep credentials scoped to the session and rotate any key that may have been exposed.
+
+Risk: Security evidence reports no clear confirmations, limits, or reliable arbitrage safeguards.
+
+Mitigation: Review the workflow before installation and add explicit confirmations, order-size limits, and stop conditions before relying on automated execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bob-z-pro/skills/polymarket-arbitrage-pro)
+- [Polymarket Gamma API endpoint](https://gamma-api.polymarket.com)
+- [Polymarket CLOB API endpoint](https://clob.polymarket.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Console text and Markdown guidance with command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May execute network calls and live trading actions when wallet and billing environment variables are configured.]
+
+## Skill Version(s):
+
+7.1.5 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,58 @@
-## Description: <br>
-Google Workspace CLI for Gmail, Calendar, Drive, Contacts, Sheets, and Docs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Google Workspace CLI for Gmail, Calendar, Drive, Contacts, Sheets, and Docs.
 
-## Publisher: <br>
-[yueyongyue](https://clawhub.ai/user/yueyongyue) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yueyongyue](https://clawhub.ai/user/yueyongyue)
 
-## Use Case: <br>
-Developers and agents use this skill to prepare and run gog commands for Google Workspace tasks across Gmail, Calendar, Drive, Contacts, Sheets, and Docs after OAuth setup. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide access to or changes in real Google Workspace account data after OAuth setup. <br>
-Mitigation: Review requested OAuth scopes, authorize only the minimum needed services and account, and inspect commands before execution. <br>
-Risk: Generated commands can send mail, create calendar events, or update, append, or clear Sheets data. <br>
-Mitigation: Require explicit confirmation before write actions, especially mail sending, event creation, and Sheets modification commands. <br>
+## Use Case:
 
+Developers and operators use this skill to set up and run the gog CLI for Google Workspace tasks across Gmail, Calendar, Drive, Contacts, Sheets, and Docs.
 
-## Reference(s): <br>
-- [gog CLI homepage](https://gogcli.sh) <br>
-- [ClawHub skill page](https://clawhub.ai/yueyongyue/saltshaker) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include gog commands that require OAuth credentials and an authorized Google account before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill requires Google Workspace OAuth access, which can expose account data or enable account actions if granted too broadly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the narrowest Google account and service scopes needed for the task.
+
+Risk: Commands can send email, create calendar events, or modify and clear spreadsheet ranges.
+
+Mitigation: Confirm intent and target resources before running write actions, especially mail, calendar, and Sheets update, append, or clear commands.
+
+Risk: The skill depends on an external Homebrew formula for the gog CLI.
+
+Mitigation: Install only after reviewing and trusting the gog Homebrew formula and the CLI source.
+
+## Reference(s):
+
+- [GOG CLI homepage](https://gogcli.sh)
+- [ClawHub skill page](https://clawhub.ai/yueyongyue/skills/saltshaker)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes OAuth setup steps, Google Workspace command examples, account-selection tips, JSON output guidance, and confirmation guidance for sensitive operations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

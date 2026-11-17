@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.3.4] - 2026-08-03
+### Security
+- Added visible destination previews and confirmation before cross-session forwarding or persistent writes.
+- Kept automatic persistence disabled unless the user explicitly enables an allowlisted named route.
+- Added privacy and third-party consent boundaries.
+
 ## [2.3.2] - 2026-03-03
 ### Added
 - Simplified installation instructions (Ask OpenClaw / CLI) to SKILL.md and README.md.

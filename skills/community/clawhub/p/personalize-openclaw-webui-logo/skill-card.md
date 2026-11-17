@@ -1,41 +1,54 @@
-## Description: <br>
-Personalizes the OpenClaw WebUI favicon by applying bundled logo sets to the control UI assets and optionally installing a startup hook that restores the selected logo after OpenClaw upgrades. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Personalizes the OpenClaw WebUI favicon by applying bundled logo sets to control-ui assets and optionally installing a startup hook that restores the selected logo after upgrades.
 
-## Publisher: <br>
-[woohahahaaa](https://clawhub.ai/user/woohahahaaa) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[woohahahaaa](https://clawhub.ai/user/woohahahaaa)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to switch the OpenClaw control-panel browser-tab logo, restore the default logo, update bundled logo sets, or enable an optional guard hook that re-applies the chosen favicon after upgrades. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can overwrite OpenClaw favicon files in the detected control-ui dist directory. <br>
-Mitigation: Use it only when intentional favicon customization is desired, and review the target OpenClaw UI directory before applying a logo. <br>
-Risk: The optional auto-restore hook runs on OpenClaw startup and can re-apply the last selected favicon after upgrades. <br>
-Mitigation: Install the hook only if persistent logo restoration is wanted; otherwise leave it uninstalled and use the one-time apply workflow. <br>
+## Use Case:
 
+External OpenClaw users and developers use this skill to switch among bundled favicon sets, restore the default favicon, update the logo library, and optionally install an auto-restore hook for OpenClaw upgrades.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/woohahahaaa/skills/personalize-openclaw-webui-logo) <br>
-- [OpenClaw project homepage](https://github.com/openclaw/openclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and configuration steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write favicon assets to the detected OpenClaw control-ui dist directory and may install or remove an optional OpenClaw startup hook when the user chooses that workflow.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.4.2 (source: frontmatter and server release evidence) <br>
+Risk: The skill writes into the local OpenClaw UI package and its optional startup hook can repeatedly restore favicon files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if this local customization behavior is desired; review or remove ~/.openclaw/hooks/logo-guard to stop automatic restoration.
+
+Risk: OPENCLAW_UI_DIR can direct the scripts to a local path beyond the auto-detected OpenClaw control-ui directory.
+
+Mitigation: Set OPENCLAW_UI_DIR only to a verified OpenClaw control-ui directory, and avoid running the scripts as root.
+
+## Reference(s):
+
+- [OpenClaw GitHub repository](https://github.com/openclaw/openclaw)
+- [ClawHub skill page](https://clawhub.ai/woohahahaaa/skills/personalize-openclaw-webui-logo)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [When executed, the skill can write favicon files and managed hook files in local OpenClaw directories.]
+
+## Skill Version(s):
+
+2.4.2 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

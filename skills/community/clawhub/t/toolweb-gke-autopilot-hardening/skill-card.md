@@ -1,43 +1,57 @@
-## Description: <br>
-Generate and apply security hardening configurations for Google Kubernetes Engine AutoPilot clusters. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate and apply security hardening configurations for Google Kubernetes Engine AutoPilot clusters.
 
-## Publisher: <br>
-[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd)
 
-## Use Case: <br>
-DevOps engineers, security teams, and infrastructure automation platforms use this skill to request repeatable hardening configurations for GKE Autopilot clusters, including network policies, RBAC controls, pod security standards, audit logging, and encryption at rest. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Requests include session identifiers and may include user IDs or operational context. <br>
-Mitigation: Use pseudonymous session IDs and avoid sending real user IDs or sensitive operational data unless the provider is approved for the environment. <br>
-Risk: Generated Kubernetes manifests can affect cluster access, networking, logging, and encryption posture. <br>
-Mitigation: Review generated manifests and hardening recommendations before applying them to any GKE Autopilot cluster. <br>
+## Use Case:
 
+Developers, DevOps engineers, and security teams use this skill to request GKE Autopilot hardening guidance and generated Kubernetes configuration for network policies, RBAC controls, pod security standards, audit logging, and encryption at rest.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/krishnakumarmahadevan-cmd/toolweb-gke-autopilot-hardening) <br>
-- [GKE Hardening API Docs](https://api.mkkpro.com:8145/docs) <br>
-- [GKE Hardening API Route](https://api.mkkpro.com/hardening/gke-autopilot) <br>
-- [ToolWeb](https://toolweb.in) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, configuration, guidance, api calls] <br>
-**Output Format:** [JSON responses and Markdown-facing API guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated manifests and hardening recommendations should be reviewed before applying them to a GKE cluster.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and OpenAPI info.version) <br>
+Risk: Requests send selected hardening options and request metadata to a third-party API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use pseudonymous session IDs and omit userId and timestamp unless they are required for the workflow.
+
+Risk: Generated Kubernetes manifests may not match a specific cluster's policies, workload needs, or compliance baseline.
+
+Mitigation: Review and test generated manifests before applying them to a GKE Autopilot cluster.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/krishnakumarmahadevan-cmd/skills/toolweb-gke-autopilot-hardening)
+- [API Documentation](https://api.mkkpro.com:8145/docs)
+- [API Route](https://api.mkkpro.com/hardening/gke-autopilot)
+- [ToolWeb](https://toolweb.in)
+- [ToolWeb OpenClaw](https://toolweb.in/openclaw/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [JSON responses containing generated Kubernetes hardening manifests, descriptions, status, and warnings]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The API request includes hardening options, a session ID, and optional user ID and timestamp.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

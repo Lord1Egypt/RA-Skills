@@ -1,43 +1,55 @@
-## Description: <br>
-Run security audits on Linux servers, web applications, and cloud infrastructure, checking SSH hardening, firewall rules, open ports, SSL/TLS configuration, file permissions, and common vulnerabilities. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Runs security audits on Linux servers, web applications, and cloud infrastructure, checking hardening, exposure, SSL/TLS, file permissions, updates, and common vulnerabilities.
 
-## Publisher: <br>
-[tktk-ai](https://clawhub.ai/user/tktk-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tktk-ai](https://clawhub.ai/user/tktk-ai)
 
-## Use Case: <br>
-Developers, DevOps engineers, freelancers, and small teams use this skill to audit systems they own or are authorized to test and to receive prioritized security findings with remediation commands. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Copy-paste hardening commands can lock users out of SSH or disrupt running services. <br>
-Mitigation: Review each command manually, back up configuration files, confirm console or recovery access, and test SSH, firewall, and service changes in staging when possible. <br>
-Risk: Security audit reports may expose sensitive infrastructure details. <br>
-Mitigation: Store generated reports securely and share them only with people authorized to see the audited environment. <br>
+## Use Case:
 
+Developers, DevOps engineers, small teams, and freelancers use this skill to audit Linux servers, web applications, and cloud infrastructure before deployment or during routine hardening. It helps produce prioritized findings, remediation commands, and verification steps.
 
-## Reference(s): <br>
-- [Security Auditor README](README.md) <br>
-- [Server Hardening Checklist](references/hardening-checklist.md) <br>
-- [Common Security Fix Commands](references/common-fixes.md) <br>
-- [ClawHub skill page](https://clawhub.ai/tktk-ai/security-auditor-tk) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, markdown, shell commands, configuration guidance] <br>
-**Output Format:** [Markdown security audit report with prioritized findings, fix commands, and verification steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated commands are examples that require manual review before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata, SKILL.md frontmatter) <br>
+Risk: Remediation commands can change SSH, firewall, mount, service, or kernel settings and may cause lockout or service disruption.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat commands as proposals for experienced administrators; require backups, active fallback access, target-specific validation, and rollback steps before production execution.
+
+Risk: Audit findings and fixes can be incomplete or environment-specific.
+
+Mitigation: Confirm findings with system logs, package managers, cloud consoles, and approved security tools before accepting risk ratings or closing issues.
+
+## Reference(s):
+
+- [Server Hardening Checklist](references/hardening-checklist.md)
+- [Common Security Fix Commands](references/common-fixes.md)
+- [ClawHub skill page](https://clawhub.ai/tktk-ai/skills/security-auditor-tk)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown security audit report with inline bash and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes prioritized findings, remediation commands, risk levels, passed checks, and verification steps.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,62 @@
-## Description: <br>
-钓鱼热点推送聚合高德 POI、和风天气和社交文本情报，按位置、天气和鱼情推荐附近钓点并生成 HTML 报告。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+钓鱼热点智能推送，自动聚合钓鱼社区、搜索引擎、天气 API 和位置数据，帮助用户发现附近钓点、实时鱼情并生成可视化报告。
 
-## Publisher: <br>
-[bettermen](https://clawhub.ai/user/bettermen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bettermen](https://clawhub.ai/user/bettermen)
 
-## Use Case: <br>
-External users and agents use this skill to discover nearby fishing hotspots, combine current weather and location signals with fishing reports, and prepare a ranked HTML summary for trip follow-up. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can reuse AMap and QWeather credentials from fishing-trip-planner without a separate per-skill consent boundary. <br>
-Mitigation: Review or remove ~/.fishing-planner/config.json sharing and configure separate credentials when credential isolation is required. <br>
-Risk: The skill stores location-based fishing reports under the user's home directory. <br>
-Mitigation: Review generated ~/.fishing-hotspot reports and restrict or delete stored location history when it is no longer needed. <br>
+## Use Case:
 
+External users and agents use this skill to collect fishing hotspot signals for a target city, rank likely fishing locations using weather, distance and report freshness, and produce commands or reports for trip planning.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bettermen/fishing-hotspot-push) <br>
-- [Skill homepage](https://github.com/bettermen/fishing-hotspot-push) <br>
-- [API 密钥获取指南](references/api_guide.md) <br>
-- [高德地图 API](https://lbs.amap.com/) <br>
-- [和风天气 API](https://dev.qweather.com/) <br>
-- [fishing-trip-planner integration](https://github.com/bettermen/fishing-trip-planner) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown guidance with bash commands; the bundled script produces HTML reports and JSON history/configuration files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires AMap and QWeather API keys; may reuse fishing-trip-planner credentials and stores reports under the user's home directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Fishing-related city or location queries and extracted place names may be sent to Amap and QWeather.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when sharing those queries with the configured third-party API providers is acceptable.
+
+Risk: The skill can read API keys from an existing fishing-trip-planner configuration.
+
+Mitigation: Review local configuration files and API-key scopes before running setup or hotspot analysis.
+
+Risk: Generated HTML reports may include outside data that has not been safely escaped or path-restricted.
+
+Mitigation: Treat generated reports as untrusted local files and review report output paths before opening or sharing them.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/bettermen/skills/fishing-hotspot-push)
+- [Project Homepage](https://github.com/bettermen/fishing-hotspot-push)
+- [API Key Guide](references/api_guide.md)
+- [Amap Developer Platform](https://lbs.amap.com/)
+- [QWeather Developer Platform](https://dev.qweather.com/)
+- [fishing-trip-planner Integration](https://github.com/bettermen/fishing-trip-planner)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with shell commands, configuration notes, and generated local HTML report paths.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May call Amap and QWeather APIs, use agent-supplied search text, and archive generated HTML reports locally.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

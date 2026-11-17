@@ -1,38 +1,53 @@
-## Description: <br>
-Designs visual-first Canva presentation decks by analyzing user content, proposing structured design directions, and creating the chosen deck through the Canva connector when available. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Designs visual-first presentation decks in Canva by analyzing user content, proposing deck directions, and producing approved slide outlines and Canva creation guidance.
 
-## Publisher: <br>
-[golofu](https://clawhub.ai/user/golofu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[golofu](https://clawhub.ai/user/golofu)
 
-## Use Case: <br>
-External users and creators use this skill to turn raw topics, meeting materials, pitch content, or teaching material into a visual-first slide deck for Canva. It confirms audience, purpose, design direction, and outline before creating or guiding the presentation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can ask the Canva connector to create presentation files in the user's Canva workspace after approval. <br>
-Mitigation: Review the proposed outline and design direction before approving generation, and install only when comfortable granting the connector access to the Canva workspace. <br>
+## Use Case:
 
+Employees, external creators, and presentation authors use this skill to turn raw content into visual-first slide decks, pitch decks, or meeting presentations in Canva after reviewing and approving a proposed direction.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/golofu/canvapresentationbibleedition) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown design briefs, slide outlines, Canva generation prompts, and post-creation review guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create presentation files in the user's Canva workspace when the Canva connector is enabled and the user approves generation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release evidence) <br>
+Risk: The skill may ask the agent to create presentation designs in a connected Canva account after approval.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the Canva connector setup, account context, and design request before approving creation.
+
+Risk: Presentation content may be sent to Canva during direct creation.
+
+Mitigation: Avoid using confidential or policy-restricted content unless the Canva account and organization policy allow it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/golofu/skills/canvapresentationbibleedition)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown guidance with structured presentation outlines and Canva creation instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user approval before Canva creation; direct creation depends on Canva MCP connector availability.]
+
+## Skill Version(s):
+
+1.0.4 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

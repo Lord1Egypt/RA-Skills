@@ -38,7 +38,7 @@ Add to your `~/.openclaw/openclaw.json`:
     "providers": {
       "foxcode": {
         "baseUrl": "https://code.newcli.com/claude",
-        "apiKey": "sk-foxcode-your-token-here",
+        "apiKey": "REDACTED-SECRET",
         "api": "anthropic-messages"
       }
     }
@@ -69,7 +69,7 @@ Add to your `~/.openclaw/openclaw.json`:
     "providers": {
       "foxcode": {
         "baseUrl": "https://code.newcli.com/claude",
-        "apiKey": "sk-foxcode-your-token-here",
+        "apiKey": "REDACTED-SECRET",
         "api": "anthropic-messages",
         "models": [
           {
@@ -98,7 +98,7 @@ Add to your `~/.openclaw/openclaw.json`:
     "providers": {
       "foxcode": {
         "baseUrl": "https://code.newcli.com/claude",
-        "apiKey": "sk-foxcode-your-token-here",
+        "apiKey": "REDACTED-SECRET",
         "api": "anthropic-messages",
         "models": [
           {
@@ -134,7 +134,7 @@ Add to your `~/.openclaw/openclaw.json`:
     "providers": {
       "foxcode": {
         "baseUrl": "https://code.newcli.com/claude/super",
-        "apiKey": "sk-foxcode-your-token-here",
+        "apiKey": "REDACTED-SECRET",
         "api": "anthropic-messages",
         "models": [
           {
@@ -158,7 +158,7 @@ Add to your `~/.openclaw/openclaw.json`:
     "providers": {
       "foxcode": {
         "baseUrl": "https://code.newcli.com/claude/ultra",
-        "apiKey": "sk-foxcode-your-token-here",
+        "apiKey": "REDACTED-SECRET",
         "api": "anthropic-messages",
         "models": [
           {
@@ -182,7 +182,7 @@ Add to your `~/.openclaw/openclaw.json`:
     "providers": {
       "foxcode": {
         "baseUrl": "https://code.newcli.com/claude/aws",
-        "apiKey": "sk-foxcode-your-token-here",
+        "apiKey": "REDACTED-SECRET",
         "api": "anthropic-messages",
         "models": [
           {
@@ -206,7 +206,7 @@ Add to your `~/.openclaw/openclaw.json`:
     "providers": {
       "foxcode": {
         "baseUrl": "https://code.newcli.com/claude/droid",
-        "apiKey": "sk-foxcode-your-token-here",
+        "apiKey": "REDACTED-SECRET",
         "api": "anthropic-messages",
         "models": [
           {

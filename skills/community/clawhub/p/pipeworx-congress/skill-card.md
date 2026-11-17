@@ -1,39 +1,54 @@
-## Description: <br>
-Access US Congress data to search bills, retrieve bill details, get current members, and view recent congressional votes via GovTrack API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Access U.S. Congress data to search bills, retrieve bill details, get current members, and view recent congressional votes via the GovTrack API.
 
-## Publisher: <br>
-[b-gutman](https://clawhub.ai/user/b-gutman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[b-gutman](https://clawhub.ai/user/b-gutman)
 
-## Use Case: <br>
-Agents use this skill to answer questions about public US Congress data, including bill searches, bill details, current members, and recent votes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts or request content may be visible to the third-party Pipeworx MCP gateway. <br>
-Mitigation: Use the skill only for public Congress data lookups and avoid sending sensitive or confidential information. <br>
+## Use Case:
 
+Developers and agents use this skill to query U.S. Congress data through a Pipeworx-hosted MCP endpoint for bill search, bill details, current members, and recent votes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/b-gutman/pipeworx-congress) <br>
-- [Pipeworx Congress MCP gateway](https://gateway.pipeworx.io/congress/mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown or plain text responses with MCP server configuration when setup is needed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses public Congress data surfaced through a third-party Pipeworx MCP gateway.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Congress-related MCP queries are routed through the Pipeworx gateway.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if that routing is acceptable, and avoid including confidential context in requests.
+
+Risk: Returned legislative information may be incomplete, delayed, or unsuitable as the sole source for important decisions.
+
+Mitigation: Cross-check important bill, member, and vote information against an authoritative congressional source.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/b-gutman/skills/pipeworx-congress)
+- [Pipeworx Congress MCP Gateway](https://gateway.pipeworx.io/congress/mcp)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown with JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns Congress data such as bill summaries, bill details, member records, and recent vote information.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

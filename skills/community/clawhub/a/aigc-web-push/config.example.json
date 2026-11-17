@@ -1,0 +1,81 @@
+{
+  "_fileRole": "字段说明 + 示例。正式 config.json 只保留向导输出的业务键（去掉本文件中的 _fileRole / fieldsHelp / *Example*）。",
+  "fieldsHelp": {
+    "apiBase": "缺省 https://api.pcloud.ac.cn/openAccessService",
+    "openId": "当前操作用户扫码得到的微信 openId；禁止编造；禁止共用他人 config",
+    "skillKey": "向导签发、与 openId 绑定；推送必带。重新扫码会轮换，旧 key 立即失效",
+    "autoUpdate": "可选；false 关闭 push.js 推送前自动对齐 ClawHub（默认开启）",
+    "accounts": "可用公众号（本人 + 企业授权 + 管理员可见）；selected:true 为默认；推送可用 name 或 appId",
+    "instances": "可用云电脑（本人 + 企业授权 + 管理员可见）；selected:true 为默认；推送可用 name 或 instanceId",
+    "defaultTargetScope": "向导固定 all；CLI 可临时覆盖为 environment | account"
+  },
+  "version": 1,
+  "description": "内容生成与全网推送（公众号 + 云电脑）",
+  "apiBase": "https://api.pcloud.ac.cn/openAccessService",
+  "openId": "oXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+  "skillKey": "请用向导扫码后生成，勿手写",
+  "autoUpdate": true,
+  "defaultTargetScope": "all",
+  "accounts": [
+    {
+      "name": "我的订阅号",
+      "appId": "wxabcdef0123456789",
+      "selected": true
+    }
+  ],
+  "instances": [
+    {
+      "instanceId": "ins-xxxxxxxx",
+      "instanceName": "我的云电脑",
+      "selected": true
+    },
+    {
+      "instanceId": "ins-yyyyyyyy",
+      "instanceName": "备用云电脑",
+      "selected": false
+    }
+  ],
+  "sendToWechatExample": {
+    "action": "sendToWechat",
+    "openId": "oXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+    "skillKey": "<from-wizard>",
+    "appId": "wxabcdef0123456789",
+    "title": "文章标题",
+    "content": "<p>HTML</p>"
+  },
+  "sendToCloudExample": {
+    "action": "sendToCloud",
+    "openId": "oXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+    "skillKey": "<from-wizard>",
+    "serverInstanceIds": ["ins-xxxxxxxx"],
+    "categoryId": "article",
+    "title": "文章标题",
+    "content": "<html>…</html>",
+    "coverHtml": "<html>…封面…</html>",
+    "coverImageUrl": "https://…/cover.png",
+    "publishMode": "draft",
+    "targetScope": "all"
+  },
+  "prepareMediaUploadExample": {
+    "action": "prepareMediaUpload",
+    "openId": "oXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+    "skillKey": "<from-wizard>",
+    "ext": "mp4",
+    "folder": "aigc-web-push"
+  },
+  "listCloudPublishTargetsExample": {
+    "action": "listCloudPublishTargets",
+    "openId": "oXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+    "skillKey": "<from-wizard>",
+    "serverInstanceId": "ins-xxxxxxxx",
+    "categoryId": "video"
+  },
+  "resolveCloudPublishTargetExample": {
+    "action": "resolveCloudPublishTarget",
+    "openId": "oXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+    "skillKey": "<from-wizard>",
+    "categoryId": "video",
+    "query": "抖音主号",
+    "prefer": "account"
+  }
+}

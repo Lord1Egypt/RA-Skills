@@ -1,0 +1,118 @@
+{
+  "enterprise": "广东智言科技有限公司",
+  "generated_at": "2026-07-28T12:43:39.920200",
+  "filter_min_score": 40,
+  "total_matched": 3,
+  "results": [
+    {
+      "project_id": "p1",
+      "project_name": "市级政务大模型运维服务项目",
+      "total_score": 85.0,
+      "level": "high",
+      "scores": {
+        "industry": {
+          "max": 30,
+          "score": 30.0,
+          "detail": "完全匹配：企业主营含「C05」"
+        },
+        "certification": {
+          "max": 25,
+          "score": 25.0,
+          "detail": "满足 2/2 ✅ CMMI3, ISO9001"
+        },
+        "performance": {
+          "max": 20,
+          "score": 8.0,
+          "detail": "已有 2 个历史项目记录（需人工核实相似度）"
+        },
+        "location": {
+          "max": 15,
+          "score": 12.0,
+          "detail": "✅ 同省：广东省深圳市南山区 → 广东省深圳市"
+        },
+        "amount": {
+          "max": 10,
+          "score": 10.0,
+          "detail": "✅ 金额匹配：¥180万 ≈ 企业平均 ¥150万"
+        }
+      },
+      "risk_flags": [],
+      "ai_suggestion": "竞争优势明显，强烈建议投标。重点准备技术方案和业绩证明材料。"
+    },
+    {
+      "project_id": "p3",
+      "project_name": "南方某市AI大模型产业园集成",
+      "total_score": 72.0,
+      "level": "medium",
+      "scores": {
+        "industry": {
+          "max": 30,
+          "score": 30.0,
+          "detail": "完全匹配：企业主营含「C05」"
+        },
+        "certification": {
+          "max": 25,
+          "score": 25.0,
+          "detail": "满足 1/1 ✅ CMMI3"
+        },
+        "performance": {
+          "max": 20,
+          "score": 3.0,
+          "detail": "已有 2 个历史项目记录（需人工核实相似度）"
+        },
+        "location": {
+          "max": 15,
+          "score": 12.0,
+          "detail": "✅ 同省：广东省深圳市南山区 → 广东省深圳市"
+        },
+        "amount": {
+          "max": 10,
+          "score": 2.0,
+          "detail": "⚠️ 金额偏高：¥800万 > 企业平均 ¥150万"
+        }
+      },
+      "risk_flags": [
+        "项目金额远超企业历史平均（¥800万 vs ¥150万）"
+      ],
+      "ai_suggestion": "匹配度良好，建议参与。需补齐缺失资质或准备替代方案。"
+    },
+    {
+      "project_id": "p2",
+      "project_name": "区医院智能诊疗系统采购",
+      "total_score": 41.5,
+      "level": "normal",
+      "scores": {
+        "industry": {
+          "max": 30,
+          "score": 30.0,
+          "detail": "完全匹配：企业主营含「C05」"
+        },
+        "certification": {
+          "max": 25,
+          "score": 0.0,
+          "detail": "满足 0/2 ❌ 缺 医疗器械经营许可证, CMMI5"
+        },
+        "performance": {
+          "max": 20,
+          "score": 3.0,
+          "detail": "已有 2 个历史项目记录（需人工核实相似度）"
+        },
+        "location": {
+          "max": 15,
+          "score": 4.5,
+          "detail": "❌ 跨省：广东省深圳市南山区 → 上海市（需设项目组）"
+        },
+        "amount": {
+          "max": 10,
+          "score": 4.0,
+          "detail": "⚠️ 金额偏高：¥320万 > 企业平均 ¥150万"
+        }
+      },
+      "risk_flags": [
+        "资质缺失较多（缺2项）",
+        "跨远地区（广东省深圳市南山区 → 上海市）"
+      ],
+      "ai_suggestion": "有一定匹配度但需审慎评估。分析主要短板，考虑能否补强。"
+    }
+  ]
+}

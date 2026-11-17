@@ -1,0 +1,42 @@
+# 论衡流程真源 · 第二部分：节点 t1b_targeted_review（完整定义，逐字保留原文本）
+# 装配视图 = ../phase-order.yaml（生成物）；校验 = 生成器 --check（门 AA）
+# ── 节点 YAML 正文（装配时逐字拼入；本行以上为切片头）──
+- id: t1b_targeted_review   # 别名：文档层「Phase 4.3 定向回查」（v2.13.0 P0-1，ECS 实战反馈新增）
+  phase: "Phase 4.3 定向回查（T1b）"
+  phase_seq: 16
+  kind: conditional_agent
+  verdict_scale: four_tier
+  rerun_after_report: true   # 前提 = T5 修订说明与 T7 审计报告均已落盘；必须在报告写入后取数（不得用修订进行中的中间态）
+  agent: T1b
+  role: T1                   # T1b = T1 文献检索员的定向回查子任务（口径同 T1 卡 T1b 段）——不新增独立角色，九角色架构不变；工具面 = research 档
+  phase_window: [phase1_5_targeted_review, t1b_targeted_review]
+  write_authority: executor
+  verification_authority: 主控
+  on_worker_failure: {executor: 主控, disclosure: degraded_executor, retry_limit: 1}
+  input: drafts/current_draft.md + drafts/修订说明-v{N}.md + audits/审计报告-vN.md
+  output: literature/回查报告-v{N}.md
+  output_chars_max: 8000
+  dispatch: references/dispatch/T1b-定向回查.md   # 派发话术合同块载体（max_rounds 随块入锚点）；合同面由生成器从本字段现算
+  condition_undecidable: report_to_owner   # 修订说明/审计报告不可读或缺失 ⇒ 呈主人（不得静默按未触发跳过）
+  condition: t5_t7_report_unverified_references   # 命中定义：T5 修订说明或 T7 审计报告出现「待人工核验」标记（真源 = condition_definitions；无标记 = 不命中）
+  on_not_triggered: record_not_triggered_in_status   # 无未核验引用 → status 记 not_triggered（防「未触发」与「漏跑」不可分）
+  boundary: 仅核验引用存在性与元数据（标题/作者/年份/DOI/URL），不重写正文、不改论证；核验失败条目标注后呈主人处置
+  max_rounds: 2   # v2.13.0 P0-1：T1b 回查 ≤2 轮（每轮 = 一次定向检索 + 一份回查报告）
+  rounds_exhausted_outlet:   # 轮次耗尽仍有未核验引用 ⇒ 主控暂停 + 主人三选一（fail-closed 无默认；写法同 audit_revision M-6）
+    trigger: max_rounds_used AND has_unverified_references
+    unresolved_levels: [P0, P1]
+    owner_decision:
+      - id: accept_with_limitations
+        label: 接受现状 + Acknowledged Limitations
+        requires: deliverables.md 加局限性段 + status.md 记 accepted_under_owner_decision
+      - id: manual_verify
+        label: 主人自行核验
+        requires: 流水线挂起，主人线下核验后回填结论（status 记 pending_owner）
+      - id: remove_references
+        label: 删除未核验引用
+        requires: 主人授权 T5 移除对应引用条目 → 重走 current_draft_sync + t7_5_integrity
+    no_default_option: true
+    halt_pending_owner: true
+  after_each: [rerun_t7_5_integrity]   # 动作名（非节点 id，写法同 rerun_t7）：文献卡/数据卡被回查更新 ⇒ 重跑完整性门
+  note: "v2.13.0 P0-1（ECS 实战反馈）：T5 修订轮新增 [Lxx]/[Dxx]/[Cxx] 标「待人工核验」而 T1 已结束 ⇒ 本窗口 spawn T1b 定向回查（复用 01-文献检索 角色卡铁律与 research 档工具面）。输出逐条：原检索信息 / 回查原始来源 / 评级（成功|部分成功|失败）+ 提升后信任级别；卡片更新由主控 write。派发话术 = dispatch/T1b-定向回查.md。"
+  next: t7_5_integrity

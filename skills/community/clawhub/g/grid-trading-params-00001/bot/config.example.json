@@ -1,0 +1,6 @@
+{
+  "exchangeId": "binance",
+  "paper": true,
+  "paperMode": "demo",
+  "strategyParams": "symbol=BTC/USDT\ngridLevels=5\nrangePercent=5\namountPerOrder=0.001\nintervalMs=60000"
+}

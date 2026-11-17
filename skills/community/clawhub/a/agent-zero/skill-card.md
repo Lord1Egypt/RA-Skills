@@ -1,47 +1,66 @@
-## Description: <br>
-AgentZero helps an agent use a local real estate listing tracker to add or refresh property listings, scan opted-in Redfin alert emails, triage listings with Claude, and log outcomes for review. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AgentZero helps an agent operate a local real estate listing tracker by adding and refreshing property listings, listing search profiles, triaging matches with Claude, and running an opt-in Redfin email scan.
 
-## Publisher: <br>
-[yzhong52](https://clawhub.ai/user/yzhong52) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yzhong52](https://clawhub.ai/user/yzhong52)
 
-## Use Case: <br>
-External users and developers use this skill to operate AgentZero as a local property-search assistant: it adds listing URLs, scans opted-in Redfin emails, tracks listing status, and surfaces matched properties for human review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can use Gmail-assisted browsing and email metadata during the opted-in Redfin alert workflow. <br>
-Mitigation: Use only with explicit user consent, confirm the himalaya Gmail configuration, and verify that scanning stays scoped to Redfin alert emails. <br>
-Risk: The skill controls local services and may stop processes on ports 8000 or 5173 when starting its backend or frontend. <br>
-Mitigation: Review the start scripts before running them and avoid using the skill where unrelated services are bound to those ports. <br>
-Risk: The skill keeps persistent local listing data, processed email state, HTML snapshots, and service logs. <br>
-Mitigation: Run it in an appropriate local workspace, review retention expectations, and remove local artifacts when they are no longer needed. <br>
-Risk: The security summary flags under-disclosed live anti-bot browser fetching behavior for some real estate sites. <br>
-Mitigation: Treat Zillow and Realtor.ca behavior as live browser fetching, confirm it is acceptable for the deployment, and monitor use against site and organizational policies. <br>
+## Use Case:
 
+External users and developers running OpenClaw use AgentZero to maintain a local real estate listing tracker, ingest supported listing URLs and Redfin alert emails, and surface profile-matched homes for review.
 
-## Reference(s): <br>
-- [AgentZero ClawHub page](https://clawhub.ai/yzhong52/agent-zero) <br>
-- [Publisher profile](https://clawhub.ai/user/yzhong52) <br>
-- [OpenClaw](https://openclaw.ai) <br>
-- [Anthropic Console](https://console.anthropic.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, API calls, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, JSON API payloads, and local log entries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write local daily logs, processed email state, listing data, HTML snapshots, and service logs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.7 (source: ClawHub release evidence) <br>
+Risk: The skill uses browser automation and email access for the Daily Email Scan workflow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the scan only after explicit user consent, with reviewed himalaya and openclaw browser configuration, and keep it scoped to Redfin alert emails.
+
+Risk: Startup scripts and local services may affect the trusted local workspace.
+
+Mitigation: Inspect the backend and frontend startup scripts before use and run them only in a workspace where their local writes and process behavior are acceptable.
+
+Risk: Anthropic and Gmail credentials are required for full functionality.
+
+Mitigation: Protect or rotate credentials used with the skill and avoid exposing them in logs, shell history, or shared workspaces.
+
+Risk: Persistent browser automation can carry sandbox or browser-profile risk.
+
+Mitigation: Avoid the browser fallback unless the user accepts the browser profile risk, and prefer hardened host validation and sanitized logs before routine use.
+
+## Reference(s):
+
+- [AgentZero ClawHub listing](https://clawhub.ai/yzhong52/skills/agent-zero)
+- [yzhong52 ClawHub publisher profile](https://clawhub.ai/user/yzhong52)
+- [OpenClaw](https://openclaw.ai)
+- [Anthropic Console](https://console.anthropic.com)
+- [AgentZero backend local service](http://localhost:8000)
+- [AgentZero frontend local service](http://localhost:5173)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON API examples.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write local notes, processed-email state, a SQLite database, cached listing HTML snapshots, and local service logs as disclosed by ClawHub metadata.]
+
+## Skill Version(s):
+
+1.0.7 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

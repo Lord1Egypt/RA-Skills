@@ -1,44 +1,61 @@
-## Description: <br>
-Inspect ClickHouse databases, review schemas, and run SQL analytics queries via the ClickHouse HTTP API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Inspect ClickHouse databases, review schemas, and run SQL analytics queries via the ClickHouse HTTP API.
 
-## Publisher: <br>
-[hith3sh](https://clawhub.ai/user/hith3sh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hith3sh](https://clawhub.ai/user/hith3sh)
 
-## Use Case: <br>
-Developers, data analysts, and operators use this skill to inspect ClickHouse schemas, verify available databases and tables, and run read-only SQL analytics queries for business intelligence from an agent chat. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires access to a connected ClickHouse account and may depend on sensitive credentials managed outside chat. <br>
-Mitigation: Review the permissions granted to the agent environment and avoid providing secrets in chat unless the task requires them. <br>
-Risk: SQL analytics queries can produce large result sets or expensive scans. <br>
-Mitigation: Use schema discovery first, keep queries targeted with WHERE clauses and LIMIT, and request user confirmation for large or expensive queries. <br>
+## Use Case:
 
+Developers, data analysts, and analytics engineers use this skill to discover ClickHouse schemas, inspect tables, and run read-only SQL analytics queries from an agent workflow.
 
-## Reference(s): <br>
-- [ClickHouse Documentation](https://clickhouse.com/docs) <br>
-- [ClickHouse SQL Reference](https://clickhouse.com/docs/en/sql-reference/) <br>
-- [ClawLink OpenClaw Docs](https://docs.claw-link.dev/openclaw) <br>
-- [ClawLink Verification](https://claw-link.dev/verify) <br>
-- [ClawHub Skill Page](https://clawhub.ai/hith3sh/clickhouse-analytics) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and SQL examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides agents to use ClawLink ClickHouse tools for schema discovery, connection checks, and read-only query execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release metadata) <br>
+Risk: The skill uses ClawLink to store ClickHouse connection details and mediate queries and results.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review ClawLink credential handling and revocation processes before installation.
+
+Risk: Database queries can expose sensitive data or consume excessive ClickHouse resources if account permissions are broad.
+
+Mitigation: Use a dedicated ClickHouse account with server-enforced read-only permissions, minimal database and table access, and query or resource limits.
+
+Risk: Large result sets or expensive queries can affect performance.
+
+Mitigation: Explore schemas first, keep queries targeted with WHERE clauses and LIMIT, and require user confirmation for large result sets or expensive queries.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/hith3sh/skills/clickhouse-analytics)
+- [ClickHouse Documentation](https://clickhouse.com/docs)
+- [ClickHouse SQL Reference](https://clickhouse.com/docs/en/sql-reference/)
+- [ClawLink](https://claw-link.dev/?utm_source=clawhub&utm_medium=referral&utm_content=clickhouse-analytics)
+- [ClawLink Docs](https://docs.claw-link.dev/openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, shell commands, configuration, guidance, API calls]
+
+**Output Format:** [Markdown with inline bash and JSON command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs guide schema discovery, connection checks, and read-only query execution through ClawLink tools.]
+
+## Skill Version(s):
+
+1.0.5 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

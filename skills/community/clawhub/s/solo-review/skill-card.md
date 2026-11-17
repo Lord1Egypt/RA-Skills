@@ -1,40 +1,53 @@
-## Description: <br>
-Review runs a final code review and quality gate by testing, checking coverage and security, verifying spec acceptance criteria, and producing a ship-ready report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Final code review and quality gate that runs tests, checks coverage, audits security, verifies acceptance criteria, and generates a ship-ready report.
 
-## Publisher: <br>
-[fortunto2](https://clawhub.ai/user/fortunto2) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[fortunto2](https://clawhub.ai/user/fortunto2)
 
-## Use Case: <br>
-Developers and engineering teams use this skill before shipping or after deployment to run a structured quality gate across tests, build health, security, acceptance criteria, documentation, logs, and code quality. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may run local project commands and inspect deployment logs as part of the review workflow. <br>
-Mitigation: Run it only in trusted repositories and review command output before relying on the verdict. <br>
-Risk: The skill can edit review or planning documentation, create commits, and influence pipeline flow. <br>
-Mitigation: Review diffs and commit contents before accepting changes, especially in repositories with automated deployment pipelines. <br>
+## Use Case:
 
+Developers and engineering teams use this skill as a final quality gate before shipping or after deployment. It reviews test, build, lint, security, acceptance-criteria, documentation, commit, and visual/E2E evidence and produces a go/no-go report.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/fortunto2/solo-review) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown review report with command results, file references, verdict, recommendations, and optional pipeline signal] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May update review or planning documentation and create commits when the skill workflow calls for those actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: frontmatter and server release metadata) <br>
+Risk: The skill can edit and commit documentation, requirements, planning files, and future-agent guidance as part of its review workflow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit approval before write or git commit actions, and review generated diffs before accepting them.
+
+Risk: The skill may run dependency installs, test suites, audits, builds, and production log commands that can execute project code or access operational environments.
+
+Mitigation: Run dependency and production-log checks only in isolated environments with scoped credentials and least-privilege access.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fortunto2/skills/solo-review)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Shell commands, Code, Files, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown review report with command evidence, file references, and optional documentation or planning file updates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May run project checks and, when directed by its workflow, update review-related documentation, planning checkboxes, and commits.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

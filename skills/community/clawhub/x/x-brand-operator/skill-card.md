@@ -1,44 +1,60 @@
-## Description: <br>
-Automate X/Twitter brand account operations using OpenClaw native tools, xurl, browser fallback, and cron. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates X/Twitter brand account operations, including scheduled posting, keyword engagement, Substack draft generation, and weekly reporting using xurl with browser fallback.
 
-## Publisher: <br>
-[caoqi](https://clawhub.ai/user/caoqi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[caoqi](https://clawhub.ai/user/caoqi)
 
-## Use Case: <br>
-External brand operators and social media teams use this skill to configure scheduled X/Twitter posting, keyword engagement, weekly reporting, Telegram alerts, and Substack draft generation for a brand account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can make unattended public X/Twitter posts, replies, likes, and follows. <br>
-Mitigation: Require review before public posts or replies, use a dedicated xurl app and browser profile, and set strict per-run limits for likes, follows, and replies. <br>
-Risk: Browser fallback may operate the wrong account if the active browser profile is not scoped to the intended brand. <br>
-Mitigation: Verify the active account before enabling browser fallback and keep cron jobs visible, time-limited, and easy to disable. <br>
-Risk: Telegram summaries or drafts may be sent to an unintended recipient. <br>
-Mitigation: Confirm Telegram recipient IDs before enabling alerts or scheduled reports. <br>
+## Use Case:
 
+Brand operators, social media teams, and developers use this skill to configure agent-run X/Twitter posting, engagement, reporting, and content drafting workflows for a brand account.
 
-## Reference(s): <br>
-- [Content Strategy](references/content-strategy.md) <br>
-- [Cron Job Configuration](references/cron-config.md) <br>
-- [Engagement Playbook](references/engagement-playbook.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and cron configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose public social actions and recurring schedules that should be reviewed before activation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Recurring cron tasks can publish, reply, like, and follow from a public brand account without timely review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review each schedule before enabling it and prefer dry-run or manual approval for posts and engagement until the workflow is trusted.
+
+Risk: The browser fallback can act through a logged-in profile, which may target the wrong account if configuration is incorrect.
+
+Mitigation: Use a dedicated xurl app and browser profile for the intended brand account, and confirm the Telegram recipient before scheduling unattended tasks.
+
+Risk: Dynamic tweet, reply, and command arguments can be unsafe if passed through shell interpolation.
+
+Mitigation: Pass dynamic arguments safely and review generated drafts before execution.
+
+## Reference(s):
+
+- [X Brand Operator on ClawHub](https://clawhub.ai/caoqi/skills/x-brand-operator)
+- [Content Strategy](references/content-strategy.md)
+- [Cron Job Configuration](references/cron-config.md)
+- [Engagement Playbook](references/engagement-playbook.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce public X/Twitter posts, replies, cron schedules, Telegram summaries, weekly reports, and Substack article drafts.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

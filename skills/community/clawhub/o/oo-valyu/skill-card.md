@@ -1,45 +1,52 @@
-## Description: <br>
-Valyu lets agents search and read web, academic, financial, and proprietary data through an OOMOL-connected Valyu account. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Valyu (valyu.ai). Use this skill for ANY Valyu request — searching and reading data.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and external users use this skill to run Valyu searches through the oo CLI with an OOMOL-connected account. The skill retrieves live connector schemas before running actions so search payloads match the current Valyu contract. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires an OOMOL-connected Valyu account, so queries and credential-brokered activity may be visible to OOMOL or Valyu. <br>
-Mitigation: Install only if OOMOL is an acceptable credential broker for Valyu and avoid submitting sensitive queries unless that data sharing is acceptable. <br>
-Risk: Fallback setup commands install the oo CLI from remote installer URLs. <br>
-Mitigation: Review the oo CLI installer before running fallback install commands. <br>
-Risk: Valyu searches may consume connected-account credits. <br>
-Mitigation: Monitor Valyu and OOMOL billing state before retrying searches after billing errors. <br>
+## Use Case:
 
+Developers using Valyu through an OOMOL-connected account use this skill to search web, academic, financial, and proprietary data. It guides agents to inspect the live action schema before submitting a search request.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/oomol/oo-valyu) <br>
-- [Valyu homepage](https://valyu.ai) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [oo CLI install guide](https://cli.oomol.com/install-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON connector responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs Valyu connector actions through the oo CLI and returns response data with an execution id under meta.executionId.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata and skill frontmatter) <br>
+Risk: Fallback setup executes a remote installer whose behavior has not been verified. Searches also pass through the connected OOMOL account, and server-side credential protections remain unverified.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review setup behavior, install a reviewed and pinned oo CLI yourself, and require approval before running installers or changing agent skills. Review the connected account's permissions and billing.
+
+## Reference(s):
+
+- [Valyu](https://valyu.ai)
+- [Valyu API quickstart](https://docs.valyu.ai/quickstart)
+- [oo CLI](https://github.com/oomol-lab/oo-cli)
+- [oo CLI install guide](https://cli.oomol.com/install-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Guidance]
+
+**Output Format:** [Structured Valyu search results in JSON, with Markdown usage guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search results depend on Valyu's available data sources and the connected account.]
+
+## Skill Version(s):
+
+1.0.6 (source: skill metadata, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

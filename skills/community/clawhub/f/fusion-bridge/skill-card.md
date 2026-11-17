@@ -1,45 +1,56 @@
-## Description: <br>
-Fusion 360 Bridge helps agents inspect and control Autodesk Fusion 360 over HTTP through the Fusion Bridge add-in, including health checks, state inspection, logs, and raw Python execution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use the Fusion 360 Bridge to inspect or control Autodesk Fusion 360 over HTTP from OpenClaw.
 
-## Publisher: <br>
-[smicbee](https://clawhub.ai/user/smicbee) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[smicbee](https://clawhub.ai/user/smicbee)
 
-## Use Case: <br>
-Developers and CAD automation users use this skill to connect an agent to a trusted Fusion Bridge environment, inspect Fusion runtime state, review logs, and generate Python or HTTP requests for Fusion 360 modeling tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The bridge exposes raw Python execution through a network-reachable HTTP service. <br>
-Mitigation: Run it only in a trusted environment, prefer localhost-only binding or firewall restrictions, and do not expose TCP port 8765 to untrusted networks. <br>
-Risk: Agent-generated Python can modify open Fusion 360 projects or affect the host running Fusion. <br>
-Mitigation: Review raw Python before execution, checkpoint important designs, and use small helper-style snippets before larger scripts. <br>
-Risk: Long-running or UI-blocking Fusion code can stall bridge work until timeout. <br>
-Mitigation: Use concise snippets, reserve blocking UI popups for deliberate checkpoints, inspect logs, and keep execution time within the bridge timeout. <br>
+## Use Case:
 
+Developers and CAD automation users use this skill to inspect Fusion 360 state, check bridge health, review logs, and run helper-style or raw Python automation through the Fusion Bridge add-in.
 
-## Reference(s): <br>
-- [Fusion 360 Bridge ClawHub page](https://clawhub.ai/smicbee/fusion-bridge) <br>
-- [Fusion 360 Bridge source repository](https://github.com/smicbee/fusion-360-bridge) <br>
-- [Fusion Bridge API Reference](references/api.md) <br>
-- [Fusion Bridge Recipes](references/recipes.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration, API Calls] <br>
-**Output Format:** [Markdown with inline bash, JSON, and Python snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include raw Python snippets and HTTP request examples for a local Fusion Bridge instance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata and skill.json) <br>
+Risk: The bridge exposes raw Python execution that can modify Fusion documents and affect the host user environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only from trusted sources, review the add-in/plugin source at a pinned commit, and run the bridge in a tightly controlled environment.
+
+Risk: The bridge may be reachable over the network on TCP port 8765 without sufficient security boundaries.
+
+Mitigation: Prefer localhost-only binding, avoid exposing port 8765 to LAN or public networks, and use host firewall rules to restrict access.
+
+## Reference(s):
+
+- [Fusion 360 Bridge source repository](https://github.com/smicbee/fusion-360-bridge)
+- [Fusion Bridge API Reference](artifact/references/api.md)
+- [Fusion Bridge Recipes](artifact/references/recipes.md)
+- [ClawHub skill page](https://clawhub.ai/smicbee/skills/fusion-bridge)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, JSON request examples, and Python snippets.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce Fusion Bridge HTTP requests and Python snippets for execution in a trusted Fusion 360 environment.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

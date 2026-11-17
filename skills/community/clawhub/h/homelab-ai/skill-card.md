@@ -1,47 +1,62 @@
-## Description: <br>
-Home lab AI turns spare macOS, Linux, and Windows machines into a local AI cluster for LLM inference, image generation, speech-to-text, and embeddings with mDNS discovery, a dashboard, and local routing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Homelab Ai helps agents and users set up a local home lab AI cluster across macOS, Linux, and Windows machines for LLM inference, image generation, speech-to-text, and embeddings.
 
-## Publisher: <br>
-[twinsgeeks](https://clawhub.ai/user/twinsgeeks) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[twinsgeeks](https://clawhub.ai/user/twinsgeeks)
 
-## Use Case: <br>
-Developers, home-lab operators, and agent builders use this skill to set up and operate an Ollama Herd local AI router across trusted personal or lab machines. It provides installation commands, API examples, model guidance, dashboard usage, and guardrails for local inference workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Package installation commands can introduce supply-chain risk if packages are not reviewed before use. <br>
-Mitigation: Verify the PyPI and uv packages before installing or running them. <br>
-Risk: The local AI endpoint can expose prompts, documents, audio, or generated outputs if reachable from untrusted networks. <br>
-Mitigation: Run the router only on trusted machines and a trusted LAN; avoid exposing the endpoint to untrusted networks. <br>
-Risk: Fleet logs and routing data under ~/.fleet-manager may contain sensitive local usage details. <br>
-Mitigation: Review log contents before sharing prompts, audio, documents, or diagnostics from the cluster. <br>
+## Use Case:
 
+Developers, engineers, and home lab operators use this skill to configure spare local machines as a private AI router for chat, image generation, transcription, and embeddings. It provides setup commands, API examples, dashboard guidance, and operational guardrails for a local network deployment.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/twinsgeeks/homelab-ai) <br>
-- [Ollama Herd homepage](https://github.com/geeks-accelerator/ollama-herd) <br>
-- [Agent Setup Guide](https://github.com/geeks-accelerator/ollama-herd/blob/main/docs/guides/agent-setup-guide.md) <br>
-- [Image Generation Guide](https://github.com/geeks-accelerator/ollama-herd/blob/main/docs/guides/image-generation.md) <br>
-- [Configuration Reference](https://github.com/geeks-accelerator/ollama-herd/blob/main/docs/configuration-reference.md) <br>
-- [Troubleshooting](https://github.com/geeks-accelerator/ollama-herd/blob/main/docs/troubleshooting.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with bash, Python, curl, URL, and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes local endpoint examples, dashboard URL, model recommendations, and home-lab guardrails.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: target metadata and SKILL.md frontmatter) <br>
+Risk: The setup uses package installation commands and references optional tools without pinned versions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a virtual environment or non-admin account, verify package names and versions before installation, and install only from trusted package indexes.
+
+Risk: The skill describes running a local AI router on a home network.
+
+Mitigation: Expose endpoints only on trusted networks, review firewall and bind-address settings, and avoid sending sensitive files or audio until the services and network exposure are trusted.
+
+Risk: Large local model downloads can consume substantial disk space and bandwidth.
+
+Mitigation: Require explicit confirmation for model pulls and deletion, and check model size and available storage before downloading.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/twinsgeeks/skills/homelab-ai)
+- [Ollama Herd Repository](https://github.com/geeks-accelerator/ollama-herd)
+- [Agent Setup Guide](https://github.com/geeks-accelerator/ollama-herd/blob/main/docs/guides/agent-setup-guide.md)
+- [Image Generation Guide](https://github.com/geeks-accelerator/ollama-herd/blob/main/docs/guides/image-generation.md)
+- [Configuration Reference](https://github.com/geeks-accelerator/ollama-herd/blob/main/docs/configuration-reference.md)
+- [Troubleshooting](https://github.com/geeks-accelerator/ollama-herd/blob/main/docs/troubleshooting.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with bash, Python, and curl examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes local endpoint examples, dashboard paths, model recommendations, and home lab guardrails.]
+
+## Skill Version(s):
+
+1.0.2 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

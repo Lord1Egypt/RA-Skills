@@ -1,41 +1,54 @@
-## Description: <br>
-Trades a market when your estimated probability diverges from the live market price, with dry-run by default, context checks, reasoning tags, and optional live execution through AION. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Trades a market when your estimated probability diverges from the live market price, with dry-run by default, context checks, reasoning tags, and optional live execution through AION.
 
-## Publisher: <br>
-[ssj124](https://clawhub.ai/user/ssj124) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ssj124](https://clawhub.ai/user/ssj124)
 
-## Use Case: <br>
-External agents and developers use this skill as an execution wrapper for a market where they already have a probability estimate. It compares that estimate with live AION market context, holds on warnings or low edge, and defaults to dry-run unless live execution is explicitly enabled. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can connect an agent to AION trading credentials and financial-account actions. <br>
-Mitigation: Keep the skill in dry-run unless deliberately placing live trades, and require explicit confirmation before credential registration, spending approvals, live orders, bulk order cancellation, or redemption. <br>
-Risk: The scheduled run can repeatedly evaluate and act on a configured market if live mode and credentials are enabled. <br>
-Mitigation: Review or disable the scheduled run and apply scoped risk limits before enabling live automated execution. <br>
+## Use Case:
 
+Developers and trading operators use this skill when an agent already has a probability estimate for a specific prediction market and needs a disciplined wrapper for checking live market context, calculating edge, and optionally executing an AION trade.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ssj124/aionmarket-sdk-divergence-trader) <br>
-- [Polymarket CLOB endpoint](https://clob.polymarket.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text operator summaries with optional JSON API responses and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Defaults to dry-run; live trades require --live and AION credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: The skill can perform sensitive live-trading actions and may involve wallet approvals or credential custody.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep dry-run mode enabled by default, require explicit confirmation before live trading or wallet-affecting actions, and use only test funds or a tightly limited account.
+
+Risk: Trading SDK dependencies are not pinned to exact versions.
+
+Mitigation: Pin and review dependency versions before using the skill with real credentials or funds.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ssj124/skills/aionmarket-sdk-divergence-trader)
+- [Polymarket CLOB API endpoint](https://clob.polymarket.com)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Code, Configuration, Text]
+
+**Output Format:** [Markdown guidance with bash and Python examples; the script prints text summaries and JSON trade results.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires AION API credentials and market inputs; live execution occurs only when the --live flag is used.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

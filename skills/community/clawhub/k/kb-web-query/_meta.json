@@ -1,0 +1,21 @@
+{
+  "name": "kb_web_query",
+  "version": "0.1.0",
+  "description": "Answer Research KB dialogue questions with team-overview-guided web search, clear external citations, optional reference attachments, and QA persistence disabled.",
+  "entrypoints": [
+    {
+      "name": "prepare",
+      "command": "python3 scripts/run_task.py prepare --input <payload.json> --context-output <context.json>"
+    },
+    {
+      "name": "fetch",
+      "command": "python3 scripts/run_task.py fetch --input <payload.json> --context <context.json> --selection <page-selection.json> --evidence-output <evidence.json>"
+    },
+    {
+      "name": "apply",
+      "command": "python3 scripts/run_task.py apply --input <payload.json> --context <context.json> --evidence <evidence.json> --answer <answer.json>"
+    }
+  ],
+  "input": "Research KB backend query payload JSON with webSearch=true.",
+  "output": "apply writes resultFile JSON with answer, combined team/web sources, webSources, teamContextSources, errors, and no createdQaPath."
+}

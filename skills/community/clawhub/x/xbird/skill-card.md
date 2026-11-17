@@ -1,40 +1,56 @@
-## Description: <br>
-xbird lets agents read, search, and act on Twitter/X through a local MCP server with metered x402 calls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when the user asks to tweet, post threads, read tweets, search Twitter/X, check mentions, manage engagement, update profile assets, upload media, or interact with Twitter accounts.
 
-## Publisher: <br>
-[checkra1neth](https://clawhub.ai/user/checkra1neth) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[checkra1neth](https://clawhub.ai/user/checkra1neth)
 
-## Use Case: <br>
-Developers and agent users use xbird to connect Claude Code to a local Twitter/X MCP server for reading timelines and search results, then performing account actions such as posting, replying, following, profile updates, and media uploads. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill uses Twitter/X session credentials and can make live public account changes. <br>
-Mitigation: Use a dedicated low-risk account and require manual confirmation for posts, replies, retweets, follows, media uploads, and profile changes. <br>
-Risk: The skill can use a wallet private key for x402 payments through an unpinned third-party npx package. <br>
-Mitigation: Pin and inspect the npm package before use, avoid supplying the wallet private key unless necessary, and use a limited-funded wallet. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/checkra1neth/xbird) <br>
-- [Publisher profile](https://clawhub.ai/user/checkra1neth) <br>
+## Use Case:
 
+Developers and agent users use this skill to connect an agent to Twitter/X workflows, including reading timelines and tweets, searching, posting, engagement actions, profile updates, media uploads, and x402-metered calls.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and MCP tool guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May trigger live Twitter/X account actions and x402 payments through a local MCP server when configured.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The MCP process uses live Twitter/X session cookies and can perform account actions such as posting, following, profile updates, and media uploads.
+
+Mitigation: Use a dedicated account where practical, avoid shared plaintext secret storage, revoke exposed sessions promptly, and require manual confirmation before write or profile-changing actions.
+
+Risk: Paid x402 calls can require wallet signing through an optional private key.
+
+Mitigation: Use a dedicated low-value wallet, review charges before paid calls, and avoid storing the private key in shared configs.
+
+Risk: Installation runs mutable third-party npm package code through npx.
+
+Mitigation: Pin and review the npm package before use and install only after accepting the third-party code execution risk.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/checkra1neth/skills/xbird)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, API Calls]
+
+**Output Format:** [Markdown guidance with inline shell commands and MCP tool calls]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May initiate read, write, profile, media, and paid x402 Twitter/X MCP operations.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

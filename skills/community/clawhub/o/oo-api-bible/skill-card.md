@@ -1,40 +1,55 @@
-## Description: <br>
-Helps an agent search and read API.Bible content through the OOMOL api_bible connector and oo CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+API.Bible (scripture.api.bible). Use this skill for ANY API.Bible request — searching and reading data. Whenever a task involves API.Bible, use this skill instead of calling the API directly.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-External users and developers use this skill to let an agent retrieve Bible chapters, passages, verses, Bible metadata, and scripture search results through an OOMOL-connected API.Bible account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires an OOMOL-connected API.Bible account and may involve installing or authenticating the oo CLI. <br>
-Mitigation: Confirm trust in OOMOL and the oo CLI before setup, and run installer, login, or connection steps only after an action fails for that specific reason. <br>
+## Use Case:
 
+Developers and users with an OOMOL-connected API.Bible account can search scripture, retrieve passages and individual Bible content, and browse available translations and their books, chapters, and verses.
 
-## Reference(s): <br>
-- [API.Bible homepage](https://scripture.api.bible/) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [API.Bible ClawHub page](https://clawhub.ai/oomol/oo-api-bible) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON payload examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses oo CLI command output from API.Bible connector actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server evidence and frontmatter metadata) <br>
+Risk: Setup may run a downloaded oo CLI installer that has not been verified, without a clear approval step.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the setup instructions, use a verified CLI release, and obtain approval before running the installer. Check the CLI's automatic bundled-skill synchronization settings.
+
+Risk: API.Bible use through OOMOL may incur usage charges.
+
+Mitigation: Review applicable OOMOL usage and billing terms before making repeated or high-volume requests.
+
+## Reference(s):
+
+- [API.Bible](https://scripture.api.bible/)
+- [API.Bible Documentation](https://docs.api.bible/)
+- [oo CLI repository](https://github.com/oomol-lab/oo-cli)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Text, JSON]
+
+**Output Format:** [JSON API responses containing scripture data and execution metadata]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results depend on the selected Bible version and action; the skill reads scripture and listing data.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

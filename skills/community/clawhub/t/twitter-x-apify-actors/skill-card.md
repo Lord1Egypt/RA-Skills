@@ -1,46 +1,60 @@
-## Description: <br>
-Use this skill when the user needs Twitter/X audience collection through Apify actors (followers/following/both) with optional email enrichment, username extraction from links, normalized row output, or webhook-ready payload building. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill when the user needs Twitter/X audience collection through Apify actors, including followers or following collection, optional email enrichment, username extraction from links, normalized row output, or webhook-ready payload building.
 
-## Publisher: <br>
-[hundevmode](https://clawhub.ai/user/hundevmode) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[hundevmode](https://clawhub.ai/user/hundevmode)
 
-## Use Case: <br>
-Growth teams, founders, agencies, and operators use this skill to collect Twitter/X follower or following lists through Apify actors, optionally enrich usernames with emails, and produce normalized rows for outreach workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Apify credentials can be exposed if pasted into shared chats, checked into files, or retained in shell history. <br>
-Mitigation: Keep APIFY_TOKEN in a secret manager or environment variable and avoid printing or sharing token values. <br>
-Risk: Large actor runs and email enrichment can increase cost and may process contact data. <br>
-Mitigation: Use modest limits for initial runs and enable email enrichment only with a lawful and appropriate basis to process contact data. <br>
-Risk: Untrusted actor IDs could send data to actors outside the intended workflow. <br>
-Mitigation: Use trusted Apify actor IDs and review actor configuration before execution. <br>
+## Use Case:
 
+Growth teams, founders, agencies, and operators use this skill to collect Twitter/X followers or following through Apify actors, optionally enrich usernames with emails, and return normalized rows for outreach workflows, n8n, CSV, Google Sheets, or CRM staging.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hundevmode/twitter-x-apify-actors) <br>
-- [Actor Contracts](references/actor-contracts.md) <br>
-- [Troubleshooting](references/troubleshooting.md) <br>
-- [Apify followers/following actor](https://console.apify.com/actors/bIYXeMcKISYGnHhBG) <br>
-- [Apify email enrichment actor](https://console.apify.com/actors/mSaHt2tt3Z7Fcwf0o) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Code, Configuration, JSON, Guidance] <br>
-**Output Format:** [Markdown instructions with shell commands and JSON output from the runner script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires APIFY_TOKEN; run-pipeline returns targetUsername, collectType, includeEmails, totalCollected, emailsFound, and rows with username, name, email, sourceType, and collectedAt.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: ClawHub release metadata) <br>
+Risk: Unauthorized or non-compliant collection and enrichment of Twitter/X audience data can create privacy and policy risk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run the skill only when authorized to collect and enrich the target audience data, and keep email enrichment disabled unless there is a lawful and policy-compliant reason.
+
+Risk: Apify API tokens can be exposed or overused if passed directly on the command line or scoped too broadly.
+
+Mitigation: Prefer APIFY_TOKEN from a managed secret store and use a narrowly scoped, revocable Apify token.
+
+Risk: Unpinned dependencies or install sources can change behavior in production.
+
+Mitigation: Pin dependencies and install sources before production use.
+
+## Reference(s):
+
+- [Actor Contracts](references/actor-contracts.md)
+- [Troubleshooting](references/troubleshooting.md)
+- [Apify followers and following actor](https://console.apify.com/actors/bIYXeMcKISYGnHhBG)
+- [Apify email enrichment actor](https://console.apify.com/actors/mSaHt2tt3Z7Fcwf0o)
+
+## Skill Output:
+
+**Output Type(s):** [json, shell commands, configuration, guidance]
+
+**Output Format:** [JSON results with concise Markdown guidance and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Rows include targetUsername, username, sourceType, collectedAt, and optional name and email fields.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

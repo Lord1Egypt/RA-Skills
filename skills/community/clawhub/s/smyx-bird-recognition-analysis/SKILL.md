@@ -1,7 +1,7 @@
 ---
 name: "bird-recognition-analysis"
 description: "Identifies bird species in images/videos of target areas. Supports recognition of no less than 500 common bird species, supports customized model training, suitable for ecological observation, garden bird watching and other scenarios. | 鸟类识别工具，识别目标区域图片/视频中的鸟类种类，支持不低于500种常见鸟类识别，支持定制化模型训练，适用于生态观测、庭院观鸟等场景"
-version: "1.0.5"
+version: "1.0.24"
 license: "MIT-0"
 ---
 

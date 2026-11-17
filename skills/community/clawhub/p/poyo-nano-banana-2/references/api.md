@@ -82,7 +82,7 @@ curl -sS https://api.poyo.ai/api/generate/submit \
 {
   "code": 200,
   "data": {
-    "task_id": "task-unified-1757165031-uyujaw3d",
+    "task_id": "taREDACTED-SECRET",
     "status": "not_started",
     "created_time": "2025-11-12T10:30:00"
   }

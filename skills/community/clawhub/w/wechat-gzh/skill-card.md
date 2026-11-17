@@ -1,44 +1,56 @@
-## Description: <br>
-微信公众号管理 skill。支持获取 Access Token、永久素材管理、发布能力（发布草稿、查询发布状态、获取已发布列表、删除发布文章）。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manages WeChat Official Account workflows, including access token retrieval, permanent material management, draft publishing, publication status checks, published article listing, and deletion.
 
-## Publisher: <br>
-[enihsago](https://clawhub.ai/user/enihsago) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[enihsago](https://clawhub.ai/user/enihsago)
 
-## Use Case: <br>
-Developers and operators use this skill to manage a WeChat Official Account from an agent workflow, including access-token retrieval, permanent media management, draft publishing, publish-status checks, published-content listing, and article deletion. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles live WeChat Official Account credentials and can expose access tokens through command output. <br>
-Mitigation: Store credentials in a restricted local config file, avoid passing secrets on the command line, and avoid running token commands in logged sessions. <br>
-Risk: Publish and delete commands operate on a real WeChat Official Account with limited built-in safeguards. <br>
-Mitigation: Review intended account, media IDs, article IDs, and command arguments before execution; require operator approval for publish and delete workflows. <br>
+## Use Case:
 
+Developers and operators use this skill to manage WeChat Official Account content workflows from an agent, including token retrieval, material upload and retrieval, draft publishing, status checks, and published article deletion.
 
-## Reference(s): <br>
-- [WeChat Stable Access Token API](https://developers.weixin.qq.com/doc/subscription/api/base/api_getstableaccesstoken.html) <br>
-- [WeChat Permanent Material API](https://developers.weixin.qq.com/doc/subscription/api/material/permanent/api_getmaterial.html) <br>
-- [WeChat Publish API](https://developers.weixin.qq.com/doc/subscription/api/public/api_freepublish_batchget.html) <br>
-- [WeChat Official Account Error Codes](https://developers.weixin.qq.com/doc/oplatform/developers/errCode/errCode.html) <br>
-- [ClawHub Skill Page](https://clawhub.ai/enihsago/wechat-gzh) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, API calls, Guidance] <br>
-**Output Format:** [Markdown with Python and shell command examples plus JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read local configuration, call WeChat Official Account APIs, upload files, and perform live publish or delete actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: The skill handles WeChat AppID, AppSecret, and access tokens.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a restricted config file or secret store, avoid passing AppSecret on the command line, and avoid logging get-token output.
+
+Risk: The skill can publish and delete WeChat Official Account content.
+
+Mitigation: Require explicit confirmation before publishing or deleting WeChat content.
+
+## Reference(s):
+
+- [WeChat Stable Access Token API](https://developers.weixin.qq.com/doc/subscription/api/base/api_getstableaccesstoken.html)
+- [WeChat Permanent Material API](https://developers.weixin.qq.com/doc/subscription/api/material/permanent/api_getmaterial.html)
+- [WeChat Publishing API](https://developers.weixin.qq.com/doc/subscription/api/public/api_freepublish_batchget.html)
+- [WeChat API Error Codes](https://developers.weixin.qq.com/doc/oplatform/developers/errCode/errCode.html)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, API Calls, Files]
+
+**Output Format:** [Markdown guidance with Python snippets, shell commands, JSON API results, and saved media files for binary material retrieval.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires WeChat AppID and AppSecret configuration; operations call api.weixin.qq.com and may create, publish, retrieve, or delete official account content.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence, _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

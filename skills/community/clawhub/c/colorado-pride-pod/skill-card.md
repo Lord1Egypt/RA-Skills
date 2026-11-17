@@ -1,41 +1,50 @@
-## Description: <br>
-Colorado Pride POD helps print-on-demand sellers generate structured Colorado, mountain-life, and Sasquatch-themed design prompts for Midjourney, DALL-E 3, or Canva. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+The design framework for the high-converting Colorado and Sasquatch niches, ready for Midjourney or Canva and intended for print-on-demand sellers aiming at the Colorado pride market.
 
-## Publisher: <br>
-[stienski](https://clawhub.ai/user/stienski) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[stienski](https://clawhub.ai/user/stienski)
 
-## Use Case: <br>
-External print-on-demand sellers use this skill to create high-impact prompt drafts for Colorado pride, mountain-life, and Sasquatch or cryptid merchandise designs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated artwork may accidentally include copyrighted logos, trademarked elements, or marketplace-inappropriate designs. <br>
-Mitigation: Review all generated artwork before commercial use, avoid copyrighted logos or trademarked designs, and follow the terms of the image generator and marketplace. <br>
-Risk: Prompt output may not match marketplace quality, legal, or brand requirements without human review. <br>
-Mitigation: Treat generated prompts as drafts and inspect final images for accuracy, originality, and compliance before publishing products. <br>
+## Use Case:
 
+External creators and print-on-demand sellers use this skill to generate structured design prompts for Colorado-themed merchandise, Sasquatch or cryptid designs, and high-conversion product artwork.
 
-## Reference(s): <br>
-- [Colorado Pride POD on ClawHub](https://clawhub.ai/stienski/colorado-pride-pod) <br>
-- [Publisher profile: stienski](https://clawhub.ai/user/stienski) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown text containing structured image-generation prompts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prompts are intended for use in Midjourney, DALL-E 3, or Canva and should be reviewed before commercial use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Generated merchandise prompts may accidentally include copyrighted, trademarked, or marketplace-restricted content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review prompts and resulting designs for copyright, trademark, and marketplace policy compliance before commercial use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/stienski/skills/colorado-pride-pod)
+- [Publisher profile](https://clawhub.ai/user/stienski)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown prompt instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces structured image-generation prompts with theme, style, and guardrail guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

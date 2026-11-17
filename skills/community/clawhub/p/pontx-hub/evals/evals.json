@@ -1,0 +1,51 @@
+{
+  "skill_name": "pontx-hub",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "帮我找一个公开 API，把 100 美元换算成人民币。先告诉我最匹配的 API 和接口，不要真的发请求。",
+      "expected_output": "Searches Pontx Hub in Chinese, identifies the best matching currency API and Endpoint, inspects the stable resource, and stops at a preview without executing it.",
+      "files": [],
+      "expectations": [
+        "Uses pontx-hub search before selecting an API",
+        "Inspects the selected endpoint resource",
+        "Does not execute a provider request"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Which Pontx API schema contains a due date field for tasks? Show me the field constraints and the related endpoint.",
+      "expected_output": "Uses Schema-aware Pontx Hub search, inspects the matching Schema and related Endpoint, and explains the due-date field from catalog metadata.",
+      "files": [],
+      "expectations": [
+        "Narrows or interprets the search as a Schema/property search",
+        "Uses stable schema and endpoint resource IDs",
+        "Reports only constraints present in the catalog metadata"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Create a TypeScript example that adds a Dida365 task called Review Q3 plan tomorrow. Use the official Pontx package and go ahead and create it.",
+      "expected_output": "Finds and inspects the Dida365 create-task Endpoint, generates a preview first, presents the exact mutation for explicit confirmation, and does not call it until confirmation is received.",
+      "files": [],
+      "expectations": [
+        "Uses the published Pontx SDK package for integration code",
+        "Produces a mutation preview before any execution",
+        "Requests explicit confirmation before passing --yes",
+        "Does not expose credentials"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "I am integrating Stripe Identity and want the provider-specific workflow and caveats in my coding agent. Find the matching Pontx product Skill and show me how to install it. Do not make an API request.",
+      "expected_output": "Lists available Pontx Skills, identifies the Stripe Identity product Skill, explains that it adds provider-specific guidance while the Hub remains authoritative for current PontxSpec details, and installs it only after user approval.",
+      "files": [],
+      "expectations": [
+        "Uses pontx-hub skill list to discover the product Skill",
+        "Uses pontx-hub skill install stripe-identity as the installation command",
+        "Explains the universal Skill and product Skill responsibilities",
+        "Does not execute a provider request"
+      ]
+    }
+  ]
+}

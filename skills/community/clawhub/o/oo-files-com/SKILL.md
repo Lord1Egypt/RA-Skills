@@ -5,7 +5,7 @@ allowed-tools: [Bash(oo *)]
 metadata:
   title: "Files.com"
   author: "OOMOL"
-  version: "1.0.0"
+  version: "1.0.5"
   services: ["files_com"]
   icon: "https://static.oomol.com/logo/third-party/files_com.svg"
 ---
@@ -39,6 +39,7 @@ Each action is listed below with a one-line description; actions that change sta
 
 - `create_folder` — Create a folder at a Files.com path. [write]
 - `delete_file` — Delete a Files.com file or folder path. [destructive]
+- `download_file` — Download one Files.com file into connector transit storage.
 - `get_file` — Retrieve Files.com metadata for a single file or folder path.
 - `list_folder` — List files and folders under a Files.com folder path.
 - `update_metadata` — Update custom metadata for a Files.com file or folder path. [write]
@@ -72,11 +73,14 @@ These are **one-time** steps — do not repeat them on every call. Run a step on
 - **`scope_missing` / `credential_expired` / `app_not_ready` / `app_not_found`** — Files.com is not connected, or the connection expired or lacks a scope. Connect once (auth type: API key) at:
 
   ```text
-  https://console.oomol.com/app-connections?provider=files_com
+  https://console.oomol.com/connections/files_com
   ```
 
-- **HTTP 402 / `OOMOL_INSUFFICIENT_CREDIT`** — billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+- **`OOMOL_INSUFFICIENT_CREDIT`** — OOMOL billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+
+- **HTTP 402 without `OOMOL_INSUFFICIENT_CREDIT`** — the third-party account itself has no active plan or credit. Report the provider error message as is; do not ask the user to recharge OOMOL.
 
 ## Resources
 
 - Files.com homepage: https://www.files.com
+- API documentation: https://developers.files.com/rest/

@@ -1,0 +1,7 @@
+{
+  "_note": "真实科研场景示例：RNA-seq 差异表达（mRNA 疫苗加强针 vs 基线，外周 PBMC，padj<0.05 & |log2FC|≥1）。基因为抗病毒与干扰素通路真实成员，数值为模拟值。",
+  "_command": "python3 scripts/gen_figure.py -t volcano -d examples/realworld/realworld_omics_volcano.json -o fig2_de.pdf --cjk",
+  "log2fc": [4.7, 3.9, 3.2, 2.8, 2.1, 1.6, 1.3, -2.6, -1.9, -1.4, -1.2, 0.7, -0.5, 0.3, -0.8],
+  "pvalue": [2.1e-7, 8.3e-6, 4.5e-5, 1.2e-4, 6.7e-3, 0.014, 0.041, 3.3e-6, 0.0022, 0.0089, 0.047, 0.31, 0.58, 0.72, 0.44],
+  "names": ["IFIT1", "IFIT3", "MX1", "OAS1", "ISG15", "IFI44L", "RSAD2", "CXCL10", "IFNB1", "IL6", "TNF", "GAPDH", "ACTB", "B2M", "HPRT1"]
+}

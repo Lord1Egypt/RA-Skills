@@ -1,42 +1,60 @@
-## Description: <br>
-Extract plain text from PowerPoint (.pptx) presentations using MinerU. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extracts readable text from PowerPoint (.pptx) files with MinerU, producing Markdown or JSON outputs from local files or URLs.
 
-## Publisher: <br>
-[mzlzyca](https://clawhub.ai/user/mzlzyca) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mzlzyca](https://clawhub.ai/user/mzlzyca)
 
-## Use Case: <br>
-Developers, agents, and content teams use this skill to extract readable text from PowerPoint decks for search indexing, review, and preprocessing workflows. It supports quick Markdown extraction and token-based JSON extraction through MinerU. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: PowerPoint files may contain confidential or regulated information, and MinerU data handling is not established by the provided evidence. <br>
-Mitigation: Test with non-sensitive files first, review MinerU privacy and API terms, and avoid confidential presentations until upload, retention, and protection behavior is confirmed. <br>
-Risk: Token-based extraction uses MINERU_TOKEN and the mineru-open-api CLI. <br>
-Mitigation: Store the token only in the environment or the CLI's supported auth flow, avoid committing it, and review the installed package or source before use. <br>
+## Use Case:
 
+Developers and agents use this skill to convert PowerPoint slide decks into readable text for search indexing, content review, NLP preprocessing, or downstream analysis.
 
-## Reference(s): <br>
-- [MinerU homepage](https://mineru.net) <br>
-- [MinerU GitHub repository](https://github.com/opendatalab/MinerU) <br>
-- [MinerU token management](https://mineru.net/apiManage/token) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with bash commands; extracted content may be Markdown or JSON depending on the MinerU command used.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [flash-extract has documented 10 MB and 20 page limits; token-based extraction can produce JSON text fields per slide.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.4.0 (source: server release metadata) <br>
+Risk: Presentations may contain confidential data and the skill depends on MinerU document handling.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Send slide decks to MinerU only when its service terms, data handling, and token handling are acceptable for the intended use case.
+
+Risk: The documented install commands use mutable global package installation paths.
+
+Mitigation: Prefer pinned package versions, avoid elevated privileges during installation, and review the package source before deployment.
+
+Risk: The quick extraction path has documented size and page limits and returns Markdown rather than true plain text.
+
+Mitigation: Use JSON extraction when structured text fields are required and validate extracted content before downstream processing.
+
+## Reference(s):
+
+- [MinerU homepage](https://mineru.net)
+- [MinerU repository](https://github.com/opendatalab/MinerU)
+- [MinerU token management](https://mineru.net/apiManage/token)
+- [ClawHub skill page](https://clawhub.ai/mzlzyca/skills/pptx-to-text)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash commands; extracted presentation content is Markdown by default or JSON when requested.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [flash-extract can write to stdout or an output directory; full JSON extraction requires MINERU_TOKEN.]
+
+## Skill Version(s):
+
+0.4.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

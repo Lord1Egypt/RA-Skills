@@ -1,0 +1,5 @@
+{
+  "action": "snapshot",
+  "id": "demo-001",
+  "directory": "samples/docs"
+}

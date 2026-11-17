@@ -1,6 +1,7 @@
-# setup_spss.ps1 — SPSS Statistics 检测与配置（后台静默运行）
+﻿# setup_spss.ps1 — SPSS Statistics 检测与配置（后台静默运行）
 # 用法: powershell -ExecutionPolicy Bypass -File setup_spss.ps1 [-Version "26"]
 # 注意：SPSS 26+ 版主程序为 stats.exe，无 spsswin.exe
+# ⚠️ SETUP tool: DETECTION-ONLY. Detects installed software and prints manual configuration guidance. It does NOT write config.json or user environment variables.
 # Language: auto-detects system locale — Chinese on zh-* systems, English otherwise
 
 param(
@@ -23,6 +24,9 @@ function Write-Lang {
         Write-Host $CN -ForegroundColor $Color
     } else {
         Write-Host $EN -ForegroundColor $Color
+function Test-StatSoftReveal {
+    return ($env:STATSOFT_REVEAL -eq '1')
+}
     }
 }
 
@@ -40,7 +44,8 @@ $patterns = @(
     "{0}:\IBM\SPSS\Statistics\{1}"
 )
 
-$drives = Get-PSDrive -PSProvider FileSystem | Where-Object { $_.Used -gt 0 } | Select-Object -ExpandProperty Name
+# Fixed system drives only (C:, D:) — no full host inventory of mounted volumes
+$drives = @("C", "D")
 
 foreach ($d in $drives) {
     foreach ($v in $versions) {
@@ -63,7 +68,11 @@ foreach ($dir in $searchDirs) {
     if (Test-Path $statsExe -or Test-Path $spssExe) {
         $spssInstalled = $true
         $spssPath = if (Test-Path $statsExe) { $statsExe } elseif (Test-Path $spssExe) { $spssExe } else { "N/A" }
-        Write-Lang "检测到 SPSS Statistics ${Version}: $dir" "SPSS Statistics ${Version} detected: $dir" -Color Green
+        if (Test-StatSoftReveal) {
+            Write-Lang "检测到 SPSS Statistics ${Version}: $dir" "SPSS Statistics ${Version} detected: $dir" -Color Green
+        } else {
+            Write-Lang "检测到软件（路径/版本已隐藏；设置 STATSOFT_REVEAL=1 可显示）" "Software detected (paths/versions hidden; set STATSOFT_REVEAL=1 to reveal)."
+        }
         break
     }
 }
@@ -95,7 +104,11 @@ if (-not $spssInstalled) {
                         $statsExe = Join-Path $installDir "stats.exe"
                         $spssExe = Join-Path $installDir "spss.exe"
                         $spssPath = if (Test-Path $statsExe) { $statsExe } elseif (Test-Path $spssExe) { $spssExe } else { "N/A" }
-                        Write-Lang "从注册表找到 SPSS: $installDir" "Found SPSS from registry: $installDir" -Color Green
+                        if (Test-StatSoftReveal) {
+                            Write-Lang "从注册表找到 SPSS: $installDir" "Found SPSS from registry: $installDir" -Color Green
+                        } else {
+                            Write-Lang "检测到软件（路径/版本已隐藏；设置 STATSOFT_REVEAL=1 可显示）" "Software detected (paths/versions hidden; set STATSOFT_REVEAL=1 to reveal)."
+                        }
                         break
                     }
                 }
@@ -113,7 +126,11 @@ if (-not $spssInstalled) {
     Write-Lang "请确认以下信息:" "Please confirm the following:" -Color Yellow
     Write-Lang "  1. SPSS Statistics 是否已安装?" "  1. Is SPSS Statistics installed?"
     Write-Lang "  2. 安装路径是什么?" "  2. What is the installation path?"
-    Write-Lang "  3. 版本号是多少? (默认参考 26)" "  3. Version number? (default 26)"
+    if (Test-StatSoftReveal) {
+        Write-Lang "  3. 版本号是多少? (默认参考 26)" "  3. Version number? (default 26)"
+    } else {
+        Write-Lang "检测到软件（路径/版本已隐藏；设置 STATSOFT_REVEAL=1 可显示）" "Software detected (paths/versions hidden; set STATSOFT_REVEAL=1 to reveal)."
+    }
     Write-Lang "" ""
     Write-Lang "参考文档:" "Reference docs:" -Color Cyan
   Write-Lang "- Python: https:" "/www.ibm.com/docs/zh/spss-statistics/26.0.0?topic=facility-scripting-python-programming-language" -Color White
@@ -132,7 +149,11 @@ if (-not $spssInstalled) {
         $spssExe = Join-Path $manualPath "spss.exe"
         $spssPath = if (Test-Path $statsExe) { $statsExe } elseif (Test-Path $spssExe) { $spssExe } else { "N/A" }
         $spssInstalled = $true
-        Write-Lang "已确认 SPSS 路径: $manualPath" "SPSS path confirmed: $manualPath" -Color Green
+        if (Test-StatSoftReveal) {
+            Write-Lang "已确认 SPSS 路径: $manualPath" "SPSS path confirmed: $manualPath" -Color Green
+        } else {
+            Write-Lang "检测到软件（路径/版本已隐藏；设置 STATSOFT_REVEAL=1 可显示）" "Software detected (paths/versions hidden; set STATSOFT_REVEAL=1 to reveal)."
+        }
     }
 }
 
@@ -160,24 +181,47 @@ if ($spssInstalled) {
     foreach ($pyPath in $pythonPaths) {
         if (Test-Path $pyPath) {
             $pythonPath = $pyPath
-            Write-Lang "检测到 SPSS 内置 Python: $pythonPath" "SPSS embedded Python detected: $pythonPath" -Color Green
+            if (Test-StatSoftReveal) {
+                Write-Lang "检测到 SPSS 内置 Python: $pythonPath" "SPSS embedded Python detected: $pythonPath" -Color Green
+            } else {
+                Write-Lang "检测到软件（路径/版本已隐藏；设置 STATSOFT_REVEAL=1 可显示）" "Software detected (paths/versions hidden; set STATSOFT_REVEAL=1 to reveal)."
+            }
 
-            try {
-                $versionOutput = & $pyPath --version 2>&1
-                $pythonVersion = $versionOutput.ToString().Trim()
+            # Version verification launches the detected third-party binary.
+            # It runs ONLY when explicitly opted in (STATSOFT_VERIFY=1); default
+            # detection reports the path only and never executes the binary (SDI-4).
+            if ($env:STATSOFT_VERIFY -eq '1') {
+                try {
+                    $versionOutput = & "$pyPath" --version 2>&1
+                    $pythonVersion = $versionOutput.ToString().Trim()
 
-                if ($pythonVersion -match "3\.(\d+)") {
-                    $minorVersion = [int]$matches[1]
-                    if ($minorVersion -ge 8) {
-                        $useFString = $true
+                    if ($pythonVersion -match "3\.(\d+)") {
+                        $minorVersion = [int]$matches[1]
+                        if ($minorVersion -ge 8) {
+                            $useFString = $true
+                        }
+                    }
+
+                    if (Test-StatSoftReveal) {
+                        Write-Lang "  Python 版本: $pythonVersion" "  Python version: $pythonVersion" -Color Cyan
+                    } else {
+                        Write-Lang "检测到软件（路径/版本已隐藏；设置 STATSOFT_REVEAL=1 可显示）" "Software detected (paths/versions hidden; set STATSOFT_REVEAL=1 to reveal)."
+                    }
+                    $fstringLabel = if ($script:isZH) {
+                        if ($useFString) { "✅ 支持" } else { "❌ 不支持（请用 %s 或 .format()）" }
+                    } else {
+                        if ($useFString) { "✅ supported" } else { "❌ not supported (use %s or .format())" }
+                    }
+                    Write-Lang "  f-string 支持: $fstringLabel" "  f-string support: $fstringLabel" -Color Cyan
+                } catch {
+                    if (Test-StatSoftReveal) {
+                        Write-Lang "  无法获取 Python version" "  Unable to get Python version" -Color Yellow
+                    } else {
+                        Write-Lang "检测到软件（路径/版本已隐藏；设置 STATSOFT_REVEAL=1 可显示）" "Software detected (paths/versions hidden; set STATSOFT_REVEAL=1 to reveal)."
                     }
                 }
-
-                Write-Lang "  Python 版本: $pythonVersion" "  Python version: $pythonVersion" -Color Cyan
-                $fstringLabel = if ($useFString) { "✅ 支持 / supported" } else { "❌ 不支持 / not supported (use %s or .format())" }
-                Write-Lang "  f-string 支持: $fstringLabel" "  f-string support: $fstringLabel" -Color Cyan
-            } catch {
-                Write-Lang "  无法获取 Python version" "  Unable to get Python version" -Color Yellow
+            } else {
+                Write-Lang "  （默认仅检测路径；设置 STATSOFT_VERIFY=1 可查询版本与 f-string 支持）" "  (Detection-only by default; set STATSOFT_VERIFY=1 to query version/f-string support)" -Color Gray
             }
             break
         }
@@ -200,7 +244,11 @@ if ($spssInstalled) {
     $pythonPlugin = Join-Path $pluginDir "python"
 
     if (Test-Path $pythonPlugin) {
-        Write-Lang "Python 插件目录存在: $pythonPlugin" "Python plugin directory exists: $pythonPlugin" -Color Green
+        if (Test-StatSoftReveal) {
+            Write-Lang "Python 插件目录存在: $pythonPlugin" "Python plugin directory exists: $pythonPlugin" -Color Green
+        } else {
+            Write-Lang "检测到软件（路径/版本已隐藏；设置 STATSOFT_REVEAL=1 可显示）" "Software detected (paths/versions hidden; set STATSOFT_REVEAL=1 to reveal)."
+        }
     } else {
         Write-Lang "Python 插件可能未安装" "Python plugin may not be installed" -Color Yellow
         Write-Lang "  请通过 SPSS 安装包添加 'Integration Plug-in for Python'" "  Add 'Integration Plug-in for Python' via SPSS installer" -Color Yellow
@@ -215,66 +263,89 @@ if ($spssInstalled) {
     $statsComExists = Test-Path $statsComPath
 
     Write-Lang "" ""
-    Write-Lang "=== 配置结果 / Configuration Result ===" "=== Configuration Result ===" -Color Cyan
-    Write-Lang "SPSS 安装目录: $spssHome" "SPSS installation directory: $spssHome"
+    Write-Lang "=== 配置结果 ===" "=== Configuration Result ===" -Color Cyan
+    if (Test-StatSoftReveal) {
+        Write-Lang "SPSS 安装目录: $spssHome" "SPSS installation directory: $spssHome"
+    } else {
+        Write-Lang "检测到软件（路径/版本已隐藏；设置 STATSOFT_REVEAL=1 可显示）" "Software detected (paths/versions hidden; set STATSOFT_REVEAL=1 to reveal)."
+    }
 
     $comLabel = if ($statsComExists) { $statsComPath } else { "not found" }
-    Write-Lang "  控制台版 (stats.com): $comLabel" "  Console version (stats.com): $comLabel"
-    Write-Lang "  GUI 版 (stats.exe): $spssPath" "  GUI version (stats.exe): $spssPath"
-    Write-Lang "  内置 Python 路径: $pythonPath" "  Embedded Python path: $pythonPath"
-    Write-Lang "  Python 版本: $pythonVersion" "  Python version: $pythonVersion"
+    if (Test-StatSoftReveal) {
+        Write-Lang "  控制台版 (stats.com): $comLabel" "  Console version (stats.com): $comLabel"
+    } else {
+        Write-Lang "检测到软件（路径/版本已隐藏；设置 STATSOFT_REVEAL=1 可显示）" "Software detected (paths/versions hidden; set STATSOFT_REVEAL=1 to reveal)."
+    }
+    if (Test-StatSoftReveal) {
+        Write-Lang "  GUI 版 (stats.exe): $spssPath" "  GUI version (stats.exe): $spssPath"
+    } else {
+        Write-Lang "检测到软件（路径/版本已隐藏；设置 STATSOFT_REVEAL=1 可显示）" "Software detected (paths/versions hidden; set STATSOFT_REVEAL=1 to reveal)."
+    }
+    if (Test-StatSoftReveal) {
+        Write-Lang "  内置 Python 路径: $pythonPath" "  Embedded Python path: $pythonPath"
+    } else {
+        Write-Lang "检测到软件（路径/版本已隐藏；设置 STATSOFT_REVEAL=1 可显示）" "Software detected (paths/versions hidden; set STATSOFT_REVEAL=1 to reveal)."
+    }
+    if (Test-StatSoftReveal) {
+        Write-Lang "  Python 版本: $pythonVersion" "  Python version: $pythonVersion"
+    } else {
+        Write-Lang "检测到软件（路径/版本已隐藏；设置 STATSOFT_REVEAL=1 可显示）" "Software detected (paths/versions hidden; set STATSOFT_REVEAL=1 to reveal)."
+    }
 
     $fstringShort = if ($useFString) { "✅ supported" } else { "❌ not supported" }
     Write-Lang "  f-string: $fstringShort" "  f-string: $fstringShort"
 
     # ============================================================
-    # 8. Set environment variables
+    # 8. Persistence guidance (DETECTION-ONLY)
     # ============================================================
+    # This setup script is DETECTION-ONLY: it reports the detected paths
+    # and prints manual configuration guidance. It does NOT modify any
+    # persistent state (no env-var writes, no config.json writes).
     Write-Lang "" ""
-    Write-Lang "即将设置用户环境变量:" "About to set user environment variables:" -Color Yellow
-    Write-Host "  STATSOFT_SPSS_PATH=$spssHome"
-  Write-Lang "STATSOFT_SPSS_COM=$(if ($statsComExists) { $statsComPath } else { 'N" "A' })" -Color White
-    Write-Host "  STATSOFT_SPSS_PYTHON=$pythonPath"
-    Write-Host "  STATSOFT_SPSS_FSTRING=$useFString"
-
-    $confirm = "Y"
-    try {
-        $promptText = if ($script:isZH) { "确认设置环境变量? (y/N)" } else { "Confirm setting env vars? (y/N)" }
-        $confirm = Read-Host $promptText
-    } catch {
-        Write-Lang "非交互模式，自动应用" "Non-interactive mode, auto-applying" -Color Yellow
-    }
-
-    if ($confirm -eq 'y' -or $confirm -eq 'Y') {
-        [System.Environment]::SetEnvironmentVariable("STATSOFT_SPSS_PATH", $spssHome, "User")
-        [System.Environment]::SetEnvironmentVariable("STATSOFT_SPSS_COM", $(if ($statsComExists) { $statsComPath } else { "" }), "User")
-        [System.Environment]::SetEnvironmentVariable("STATSOFT_SPSS_PYTHON", $pythonPath, "User")
-        [System.Environment]::SetEnvironmentVariable("STATSOFT_SPSS_FSTRING", $useFString.ToString(), "User")
-        Write-Lang "环境变量已设置" "Environment variables set" -Color Green
-    } else {
-        Write-Lang "跳过环境变量设置" "Skipping env var setup" -Color Yellow
-    }
+    # This script is DETECTION-ONLY: it does NOT write env vars or config.json.
+    # Persistence is confined to config.json and requires explicit opt-in:
+    # re-run with STATSOFT_AUTO_WRITE=1 (non-interactive) or STATSOFT_CONFIRM=1
+    # (interactive y/N). The runner auto-detects the paths above by default.
+    Write-Lang "`n本脚本仅做检测，不写入任何配置（环境变量或 config.json）。" "`nDetection-only: no configuration is written (neither env vars nor config.json)." -Color Yellow
+    Write-Lang "如需持久化，请以 opt-in 方式写入 config.json：STATSOFT_AUTO_WRITE=1 或 STATSOFT_CONFIRM=1" "To persist, write config.json with explicit opt-in: STATSOFT_AUTO_WRITE=1 or STATSOFT_CONFIRM=1" -Color Gray
+    Write-Lang "（运行器默认按上述路径自动检测，无需手动设置环境变量）" "  (The runner auto-detects these paths by default — no manual env var needed)" -Color Gray
 
     # ============================================================
     # 9. Show usage examples
     # ============================================================
     Write-Lang "" ""
-    Write-Lang "=== 调用示例 / Usage Examples ===" "=== Usage Examples ===" -Color Cyan
+    Write-Lang "=== 调用示例 ===" "=== Usage Examples ===" -Color Cyan
 
     Write-Lang "1. 方案1 (首选, 万无一失):" "1. Method 1 (preferred, foolproof):"
     if ($statsComExists) {
-        Write-Host "   `"$statsComPath`" -production silent -nologo `"job.spj`""
+        if (Test-StatSoftReveal) {
+            Write-Host "   `"$statsComPath`" -production silent -nologo `"job.spj`""
+        } else {
+            Write-Lang "检测到软件（路径/版本已隐藏；设置 STATSOFT_REVEAL=1 可显示）" "Software detected (paths/versions hidden; set STATSOFT_REVEAL=1 to reveal)."
+        }
     } else {
         Write-Lang "   # stats.com 未找到，使用 stats.exe (可能有闪屏)" "   # stats.com not found, use stats.exe (may flash)"
-        Write-Host "   `"$spssPath`" -production silent -nologo `"job.spj`""
+        if (Test-StatSoftReveal) {
+            Write-Host "   `"$spssPath`" -production silent -nologo `"job.spj`""
+        } else {
+            Write-Lang "检测到软件（路径/版本已隐藏；设置 STATSOFT_REVEAL=1 可显示）" "Software detected (paths/versions hidden; set STATSOFT_REVEAL=1 to reveal)."
+        }
     }
     Write-Lang "" ""
 
     Write-Lang "2. 方案2 (Python 备用, 无闪屏):" "2. Method 2 (Python backup, no splash):"
-    Write-Host "   `"$pythonPath`" spss_helper.py run-internal `"syntax.sps`""
-  Write-Lang "$(if ($script:isZH) { '⚠️ 只能跑纯分析语法（不能含 OUTPUT SAVE" "EXPORT/HOST COMMAND）' } else { 'WARNING: Pure analysis syntax only (no OUTPUT SAVE/EXPORT/HOST COMMAND)' })" -Color White
+    if (Test-StatSoftReveal) {
+        Write-Host "   `"$pythonPath`" spss_helper.py run-internal `"syntax.sps`""
+    } else {
+        Write-Lang "检测到软件（路径/版本已隐藏；设置 STATSOFT_REVEAL=1 可显示）" "Software detected (paths/versions hidden; set STATSOFT_REVEAL=1 to reveal)."
+    }
+  Write-Lang "$(if ($script:isZH) { '⚠️ 只能跑纯分析语法（不能含 OUTPUT SAVE/EXPORT/HOST COMMAND）' } else { 'WARNING: Pure analysis syntax only (no OUTPUT SAVE/EXPORT/HOST COMMAND)' })" -Color White
     Write-Lang "" ""
 
     Write-Lang "3. 方案3 (最后备选, 可能有闪屏):" "3. Method 3 (last resort, may flash):"
-    Write-Host "   `"$spssPath`" -production `"job.spj`" silent -nologo"
+    if (Test-StatSoftReveal) {
+        Write-Host "   `"$spssPath`" -production `"job.spj`" silent -nologo"
+    } else {
+        Write-Lang "检测到软件（路径/版本已隐藏；设置 STATSOFT_REVEAL=1 可显示）" "Software detected (paths/versions hidden; set STATSOFT_REVEAL=1 to reveal)."
+    }
 }

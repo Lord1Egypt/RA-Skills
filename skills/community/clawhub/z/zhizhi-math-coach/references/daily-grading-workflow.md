@@ -1,12 +1,12 @@
 # Daily Grading Workflow
 
-Use this reference for worksheet photos, teacher-marked papers, wrong-question batches, and direct `question + student answer` grading.
+Use this reference for worksheet photos, teacher-marked papers, wrong-question batches, and direct `question + student answer` grading. For image intake, full-paper evidence, knowledge assessment and asynchronous execution, `photo-intake.md` is the primary workflow.
 
 ## One-Turn Modes
 
 Do not make the parent send a second message just to save an ordinary grading result.
 
-- Default: `fast_grade_light_record`.
+- Default recorder mode: `auto` (chooses light/full archive from evidence). Foreground feedback remains fast.
 - Use `fast_grade_only` only when the parent explicitly says `只批改`, `先不记录`, `不要落库`, or the workspace is not initialized.
 - Use `full_archive` when the parent explicitly asks for full recording/review, or when the evidence itself justifies it.
 
@@ -38,16 +38,11 @@ Only read fallback files such as `memory/long-term.md`, `memory/short-term.md`, 
 
 Keep `memory/active-context.md` under 2500 bytes. If it grows beyond that, summarize it before recording new evidence.
 
-## Isolated Subagent Path
+## Foreground And Background
 
-When OpenClaw supports an isolated subagent/session and the user provides a photo or small wrong-question batch:
+Save original photos and return the urgent correction first. A registered OpenClaw cron consumer or supported isolated session can complete the queued full archive later; see `photo-intake.md`. If no worker runs, process it in the current session and do not claim it is running in the background.
 
-1. Main session builds the grading context with `build_grading_context.py`.
-2. Main session sends only the image/direct questions, the compact grading context, and the diagnosis JSON requirements to the subagent.
-3. Subagent grades and returns a parent-facing summary plus one diagnosis JSON payload. It must not write files, read broad history, sync Git, or update memory itself.
-4. Main session validates and records the payload, then returns the concise summary to the parent.
-
-If the subagent is unavailable, do the same workflow in the main session with the compact context.
+A worker receives one leased job, the saved images and compact context. It can open matching history and call `photo_jobs.py finish` to write its local archive. Keep writes tied to that claimed job, and leave unrelated files and public publishing alone. For direct text, use the recorder in the main session.
 
 ## History Reads
 
@@ -62,7 +57,7 @@ Do not read `knowledge-points/*.md` during ordinary grading unless creating or u
 
 ## Recorder Payload
 
-Create a compact `diagnosis-update.json`.
+Create a compact `diagnosis-update.json`. For full-paper input, provide `items` for **every visible question** using the schema in `photo-intake.md`; correct items are required positive evidence. The recorder derives the mistake subset and counts. The fields below remain supported for legacy wrong-question-only input, which cannot describe complete paper coverage.
 
 Required top-level keys:
 
@@ -91,7 +86,7 @@ Validate first:
 ```bash
 python3 {baseDir}/scripts/validate_diagnosis_payload.py \
   --workspace . \
-  --mode fast_grade_light_record \
+  --mode auto \
   --input diagnosis-update.json
 ```
 
@@ -100,11 +95,11 @@ Record after validation:
 ```bash
 python3 {baseDir}/scripts/record_grading_diagnosis.py \
   --workspace . \
-  --mode fast_grade_light_record \
+  --mode auto \
   --input diagnosis-update.json
 ```
 
-For full archive, pass `--mode full_archive` to both scripts.
+The recorder validates internally, so the separate validator is optional. Use `--mode auto` normally; it reports the selected mode and reasons. Explicit `--mode full_archive` remains available. Recording the identical payload again returns the original result without appending duplicate evidence. `--dry-run` performs no writes, including logs.
 
 Both scripts append `.zhizhi-math-coach/run-log.jsonl`.
 

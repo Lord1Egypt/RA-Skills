@@ -1,42 +1,55 @@
-## Description: <br>
-Generates Chinese e-commerce product copy for Taobao, Pinduoduo, Xianyu, and JD, including titles, detail-page sections, and selling points. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+批量生成电商产品文案，支持淘宝、拼多多、闲鱼和京东，包含标题、详情和卖点。
 
-## Publisher: <br>
-[kaising050708](https://clawhub.ai/user/kaising050708) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kaising050708](https://clawhub.ai/user/kaising050708)
 
-## Use Case: <br>
-External sellers and marketing operators use this skill to draft platform-specific Chinese product listings, Xianyu seller narratives, detail-page copy, SEO keywords, and conversion-focused usage suggestions from product inputs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated product claims or promotional language may be inaccurate or conflict with marketplace policy. <br>
-Mitigation: Review copy for factual accuracy, prohibited terms, and platform compliance before publishing. <br>
-Risk: User prompts may include sensitive customer or business data that is not needed for copy generation. <br>
-Mitigation: Provide only the product details required for the listing and avoid entering sensitive customer data. <br>
-Risk: Ambiguous requests can produce copy for the wrong platform, tone, or language. <br>
-Mitigation: Specify the target platform, desired language, audience, quantity, and style when requesting output. <br>
+## Use Case:
 
+External sellers and marketplace operators use this skill to draft Chinese e-commerce product titles, Xianyu seller narratives, product-detail sections, selling points, and hashtags for Taobao, Pinduoduo, Xianyu, and JD.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kaising050708/xianyu-copywriter) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces platform-optimized titles, Xianyu seller copy, product detail sections, recommended hashtags, and usage suggestions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata and frontmatter) <br>
+Risk: Generated marketplace copy may include unverified product specifications, review counts, scarcity claims, shipping promises, return policies, warranties, or guarantees.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify all factual product details and seller-policy claims against the real product and policies before publishing.
+
+Risk: Marketing language may include prohibited or misleading superlatives for e-commerce listings.
+
+Mitigation: Review generated copy for prohibited terms and platform policy compliance before use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/kaising050708/skills/xianyu-copywriter)
+- [Skill Documentation](https://clawhub.ai/skills/ecommerce-copywriter)
+- [Support Repository Listed in Artifact](https://github.com/xiaokai-ai/ecommerce-copywriter)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with Chinese e-commerce copy sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include platform-specific titles, Xianyu listing copy, product-detail sections, selling points, hashtags, and usage suggestions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

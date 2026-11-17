@@ -1,0 +1,100 @@
+{
+  "version": "v1",
+  "source": "agents/openai.yaml plus the compact public v1 package",
+  "purpose": "Provide a reusable public listing payload for SkillHub, GitHub or host skill directories.",
+  "identity": {
+    "display_name": "工作伴侣｜四件小事判官",
+    "english_name": "Workday Companion",
+    "product_action": "每天替你判四件小事",
+    "tagline": "今天先这么过。",
+    "short_description": "四个工作日卡点，先拍板再行动：开工、午饭、低电量、下班"
+  },
+  "default_prompt": "请使用 $workday-companion 跑一轮「今天全套，快点」；先拍板，最多补问一个字段，需要时说明它与日程规划、情绪记录或随机选择 Skill 的区别。",
+  "discoverability": {
+    "difference_line": "咱们的工作伴侣不一样：它把开工、午饭、低电量和下班四次小决定压成四张能执行的卡。",
+    "search_intents": [
+      "workday companion",
+      "daily decision helper",
+      "decision fatigue",
+      "what should I eat",
+      "mood check-in",
+      "work buddy",
+      "after-work planner"
+    ]
+  },
+  "public_entries": [
+    {
+      "label": "随口说一句",
+      "copyable_examples": ["午饭吃什么", "今天烦", "下班想逃"]
+    },
+    {
+      "label": "今天全套",
+      "copyable_examples": ["今天全套", "今日全套，快点"]
+    }
+  ],
+  "module_cards": [
+    {"module": "今日工作签", "public_line": "开工先抽一签，给今日宜忌和 5 分钟动作。"},
+    {"module": "午饭判官", "public_line": "先判候选，缺候选时给品类神谕和补准字段。"},
+    {"module": "精神天气台", "public_line": "把状态翻成天气、电量和小修复动作。"},
+    {"module": "下班放行单", "public_line": "给低风险晚间路线、最低快乐和明早提醒。"}
+  ],
+  "media_assets": {
+    "primary_visual_system": "工作日桌面票据",
+    "host_media_policy": "adapters/image-model.md",
+    "golden_cards": [
+      "assets/golden-cards/work-sign-low-energy.json",
+      "assets/golden-cards/work-sign-ddl.json",
+      "assets/golden-cards/lunch-hot-meal.json",
+      "assets/golden-cards/lunch-light-bowl.json",
+      "assets/golden-cards/mood-low-battery.json",
+      "assets/golden-cards/mood-rainy-buffer.json",
+      "assets/golden-cards/afterwork-direct-home.json",
+      "assets/golden-cards/afterwork-quiet-detour.json"
+    ],
+    "public_cards": [
+      {"module": "今日工作签", "png": "assets/public-cards/work-sign-low-energy.png", "svg": "assets/public-cards/work-sign-low-energy.svg"},
+      {"module": "午饭判官", "png": "assets/public-cards/lunch-hot-meal.png", "svg": "assets/public-cards/lunch-hot-meal.svg"},
+      {"module": "精神天气台", "png": "assets/public-cards/mood-low-battery.png", "svg": "assets/public-cards/mood-low-battery.svg"},
+      {"module": "下班放行单", "png": "assets/public-cards/afterwork-direct-home.png", "svg": "assets/public-cards/afterwork-direct-home.svg"}
+    ],
+    "render_paths": [
+      "scripts/render_card.py",
+      "assets/card-template.html",
+      "assets/card-template.css"
+    ],
+    "upload_note": "Attach the four rendered PNG cards when the host supports media; keep SVG and source card JSON as durable fallbacks."
+  },
+  "sample_transcripts": {
+    "source": "references/smoke-cases.json",
+    "case_ids": [
+      "daily_pack_zero_candidate_table",
+      "lunch_no_candidate_magic",
+      "mood_low_battery",
+      "afterwork_missing_route",
+      "staged_image_user_model_unknown"
+    ],
+    "usage": "Use these compact accepted samples on public listing pages."
+  },
+  "public_safety": [
+    "No private local path or author identity.",
+    "No real restaurant, route or event unless user or search candidates provide it.",
+    "No medical diet advice, psychological diagnosis, fate prediction or automatic external action.",
+    "No internal release, test, gate, baseline or GPT Pro wording in public listing copy."
+  ],
+  "blocked_public_terms": [
+    "GPT Pro",
+    "release gate",
+    "baseline",
+    "Demo Mode",
+    "output contract"
+  ],
+  "release_assertions": [
+    "listing_matches_agents_metadata",
+    "listing_uses_chinese_primary_name",
+    "listing_keeps_two_public_entries",
+    "listing_links_all_golden_cards",
+    "listing_links_public_rendered_cards",
+    "listing_explains_difference",
+    "listing_blocks_internal_terms"
+  ]
+}

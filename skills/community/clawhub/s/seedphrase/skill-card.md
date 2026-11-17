@@ -1,41 +1,54 @@
-## Description: <br>
-Seedphrase reference tool for blockchain contexts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Seedphrase reference tool. Use when working with seedphrase in blockchain contexts.
 
-## Publisher: <br>
-[bytesagain3](https://clawhub.ai/user/bytesagain3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain3](https://clawhub.ai/user/bytesagain3)
 
-## Use Case: <br>
-External users and developers use this skill for static seedphrase-related reference material, including overviews, glossary content, checklists, and generic risk or regulatory prompts in blockchain workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may mistake generic static reference text for authoritative wallet recovery guidance. <br>
-Mitigation: Use the skill only as a lightweight reference and verify real wallet recovery or backup decisions against authoritative wallet documentation or professional security guidance. <br>
-Risk: Users may expose real seed phrases while seeking help. <br>
-Mitigation: Do not paste real seed phrases into this skill, a terminal, a chat, or any third-party tool. <br>
+## Use Case:
 
+External developers and blockchain practitioners use this skill for quick seedphrase-related reference material, checklists, glossary entries, and risk-oriented guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bytesagain3/seedphrase) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown text printed by shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Static reference output; no credential environment variables, MCP tools, or API calls were detected.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Users may enter or paste real wallet seed phrases into a skill that is not scoped for sensitive secret handling.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only non-sensitive examples and never provide real seed phrases or private recovery material to the skill.
+
+Risk: The artifact provides generic finance-style reference text under a seedphrase label, which may mislead users working in an irreversible wallet-recovery domain.
+
+Mitigation: Review the content before use and verify seed phrase handling steps against authoritative wallet or key-management guidance.
+
+## Reference(s):
+
+- [Seedphrase ClawHub listing](https://clawhub.ai/bytesagain3/skills/seedphrase)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown-formatted CLI reference text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Command-selected sections include overview, formulas, regulations, risks, instruments, strategies, glossary, checklist, help, and version output.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

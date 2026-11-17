@@ -1,0 +1,88 @@
+{
+  "name": "巡检汇总",
+  "description": "定期巡检多个系统/服务状态，汇总异常，生成巡检报告。适用于服务器巡检、网站可用性检查、数据质量巡查。",
+  "category": "monitoring",
+  "version": "1.0",
+  "tags": ["巡检", "监控", "定期"],
+  "three_elements": {
+    "time_estimate": "5-15 分钟（取决于巡检项数量）",
+    "api_key_required": "不需要",
+    "output_files": ["inspection_report.md", "inspection_state.json"]
+  },
+  "dependencies": [],
+  "pipeline": {
+    "pipeline_name": "巡检汇总",
+    "version": "1.0",
+    "description": "定期系统巡检与异常汇总",
+    "agents": [
+      {
+        "id": "discovery",
+        "name": "巡检项发现Agent",
+        "role": "读取巡检配置，获取需要检查的系统/服务列表",
+        "type": "task",
+        "inputs": ["inspection_config"],
+        "outputs": ["checklist"],
+        "depends_on": [],
+        "retry": 2,
+        "timeout": 30,
+        "fallback": "default",
+        "default_value": {"checklist": []}
+      },
+      {
+        "id": "checker",
+        "name": "状态检查Agent",
+        "role": "按巡检清单逐项检查：服务可用性、响应时间、资源占用、错误率",
+        "type": "task",
+        "inputs": ["checklist"],
+        "outputs": ["check_results"],
+        "depends_on": ["discovery"],
+        "retry": 3,
+        "timeout": 120,
+        "fallback": "skip"
+      },
+      {
+        "id": "analyzer",
+        "name": "异常分析Agent",
+        "role": "对检查结果进行异常分级（紧急/警告/正常），识别趋势和根因",
+        "type": "task",
+        "inputs": ["check_results"],
+        "outputs": ["anomalies", "grade"],
+        "depends_on": ["checker"],
+        "retry": 2,
+        "timeout": 90,
+        "fallback": "default",
+        "default_value": {"anomalies": [], "grade": "unknown"}
+      },
+      {
+        "id": "approver",
+        "name": "运维审核",
+        "role": "运维人员审核异常项，确认是否需立即处理",
+        "type": "approval",
+        "inputs": ["anomalies"],
+        "outputs": ["confirmed_anomalies"],
+        "depends_on": ["analyzer"],
+        "retry": 0,
+        "timeout": 0,
+        "fallback": "abort",
+        "timeout_seconds": 300,
+        "timeout_action": "reject"
+      },
+      {
+        "id": "reporter",
+        "name": "巡检报告Agent",
+        "role": "生成巡检报告：概览、异常清单、趋势对比、处理建议",
+        "type": "task",
+        "inputs": ["check_results", "confirmed_anomalies", "grade"],
+        "outputs": ["inspection_report"],
+        "depends_on": ["approver"],
+        "retry": 1,
+        "timeout": 120,
+        "fallback": "abort"
+      }
+    ],
+    "state_store": {
+      "type": "json",
+      "path": "./inspection_state.json"
+    }
+  }
+}

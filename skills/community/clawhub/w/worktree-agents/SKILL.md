@@ -109,7 +109,7 @@ GH_TOKEN=$(cat ~/.openclaw/openclaw.json | jq -r '.skills.entries["gh-issues"].a
 Codex 已安装在 WSL，使用自建代理：
 
 ```bash
-export OPENAI_API_KEY="sk-5Ds6eFbTEE1zu5fQ14F4FfB5892b419dB1BfC7292147B9Ef"
+export OPENAI_API_KEY="REDACTED-SECRET"
 export OPENAI_BASE_URL="http://152.53.52.170:3003/v1"
 CODEX_BIN="$HOME/.npm-global/bin/codex"
 ```

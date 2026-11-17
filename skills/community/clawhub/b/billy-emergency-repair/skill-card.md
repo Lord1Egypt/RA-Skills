@@ -1,40 +1,52 @@
-## Description: <br>
-Guides an authorized operator through emergency Billy authentication repair by backing up configuration, clearing stale tokens, restarting the gateway, and reporting results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Performs Neill-authorized emergency repair on Billy system authentication by clearing stale tokens, backing up configuration, restarting the gateway, and verifying recovery.
 
-## Publisher: <br>
-[Highlander89](https://clawhub.ai/user/Highlander89) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[highlander89](https://clawhub.ai/user/highlander89)
 
-## Use Case: <br>
-Neill or the authorized Billy administrator uses this skill during authentication or gateway emergencies to run the documented repair flow, preserve configuration backups, and collect logs for review. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can delete authentication tokens and restart the Billy gateway on a remote system. <br>
-Mitigation: Run it only after explicit authorization from Neill or the authorized Billy administrator, and confirm current backups and rollback access before making changes. <br>
-Risk: The repair flow depends on local scripts and persistent SSH access that were not included for review in the artifact. <br>
-Mitigation: Inspect the referenced scripts locally, verify the SSH key is restricted and revocable, and confirm Tailscale connectivity before execution. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Highlander89/billy-emergency-repair) <br>
-- [Skill source documentation](artifact/SKILL.md) <br>
+## Use Case:
 
+Neill or explicitly authorized Billy/SAPCONET maintainers use this skill during authentication or gateway emergencies to run a controlled repair workflow, verify recovery, and collect logs for follow-up.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Guidance, Markdown] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes authorization checks, troubleshooting steps, expected log locations, and manual verification guidance.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill asks an agent to run unbundled local scripts that use SSH keys to change authentication state on a remote Billy system.
+
+Mitigation: Install and run only in the Billy/SAPCONET environment after independent review of the repair and SSH key setup scripts.
+
+Risk: Unauthorized or stale requests could trigger disruptive emergency repair actions.
+
+Mitigation: Require explicit, current Neill authorization before execution and reject use by anyone else.
+
+## Reference(s):
+
+- [ClawHub skill release page](https://clawhub.ai/highlander89/skills/billy-emergency-repair)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Guidance, Markdown, Configuration]
+
+**Output Format:** [Markdown with inline bash code blocks and troubleshooting guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces repair instructions and expected log artifacts for a Neill-authorized Billy authentication recovery workflow.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

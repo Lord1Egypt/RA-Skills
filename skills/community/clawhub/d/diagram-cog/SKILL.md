@@ -1,6 +1,6 @@
 ---
-name: diagram-cog
-description: "AI diagram generation powered by CellCog. Flowcharts, system architecture, mind maps, org charts, ER diagrams, sequence diagrams, Gantt charts, network diagrams. Describe your system in plain English, get interactive diagrams or print-ready PDFs."
+name: diagram-flowchart-cellcog
+description: "AI diagram and flowchart generation powered by CellCog. Flowcharts, system architecture, mind maps, org charts, ER diagrams, sequence diagrams, Gantt charts, network diagrams. Describe your system in plain English, get interactive diagrams or print-ready PDFs."
 metadata:
   openclaw:
     emoji: "🔀"
@@ -12,7 +12,7 @@ author: CellCog
 homepage: https://cellcog.ai
 dependencies: [cellcog]
 ---
-# Diagram Cog - Describe It in Words, Get It as a Diagram
+# Diagram & Flowchart - Describe It in Words, Get It as a Diagram
 
 Describe your system, process, or idea in plain English — CellCog produces professional, interactive diagrams you can share with a URL.
 
@@ -240,16 +240,16 @@ CellCog defaults to interactive HTML — the whole point is diagrams you can exp
 
 ---
 
-## Chat Mode for Diagrams
+## Choosing Mode & Tier
 
-| Scenario | Recommended Mode |
-|----------|------------------|
-| Individual diagrams — flowcharts, org charts, ER diagrams, mind maps | `"agent"` |
-| Complex multi-diagram documentation, full system design docs with multiple views | `"agent team"` |
+| Scenario | Recommended |
+|----------|-------------|
+| Single diagrams and flowcharts | `chat_mode="agent"` (defaults to the `"core"` tier) |
+| Multi-diagram system documentation | `chat_mode="agent", chat_tier="max"` |
 
-**Use `"agent"` for most diagrams.** Individual flowcharts, architecture diagrams, and org charts execute well in agent mode.
+**The core tier is the default and handles most diagram work well**, balanced speed and depth. **Upgrade to `chat_tier="max"`** when quality disappoints or the work is genuinely complex: just re-run the same prompt with `chat_tier="max"`.
 
-**Use `"agent team"` for comprehensive documentation** — when you need multiple interconnected diagrams that form a complete system design document.
+Agent Team (`chat_mode="team"`) is reserved for deep research — don't use it for diagram work.
 
 ---
 
@@ -310,6 +310,7 @@ CellCog defaults to interactive HTML — the whole point is diagrams you can exp
 
 ## If CellCog is not installed
 
-Run `/cellcog-setup` (or `/cellcog:cellcog-setup` depending on your tool) to install and authenticate.
-**OpenClaw users:** Run `clawhub install cellcog` instead.
+**Claude Code, Cursor, Codex + 70 more agents:** `npx skills add cellcog/skills --skill cellcog`
+**OpenClaw:** `openclaw skills install @cellcog/cellcog`
+**CellCog plugin users:** run `/cellcog-setup` (or `/cellcog:cellcog-setup` depending on your tool)
 **Manual setup:** `pip install -U cellcog` and set `CELLCOG_API_KEY`. See the **cellcog** skill for SDK reference.

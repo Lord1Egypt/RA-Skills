@@ -1,40 +1,48 @@
-## Description: <br>
-Subagent Prompt produces a comprehensive handoff prompt that lets a fresh agent session orchestrate sub-agent execution of planned work with per-task verification. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Produces a self-contained handoff prompt for running planned work in a fresh sub-agent-enabled session with explicit task decomposition and verification.
 
-## Publisher: <br>
-[anderskev](https://clawhub.ai/user/anderskev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[anderskev](https://clawhub.ai/user/anderskev)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and agent operators use this skill to turn planned or discussed work into a paste-ready orchestrator prompt for a fresh session that dispatches sub-agents and requires concrete verification for each task.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: A generated handoff prompt can send a follow-on session into incorrect paths, tasks, or verification commands.
+
+Mitigation: Review the exact paths, task list, verification commands, and final integration check before using the prompt in a sub-agent-enabled session.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and technical users use this skill to turn a discussed work plan into a self-contained prompt for a new session that dispatches one sub-agent per task and requires concrete verification before completion. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, shell commands, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: A generated handoff prompt can direct multiple sub-agents to act on source files, so vague source material or weak verification steps could lead to incorrect execution. <br>
-Mitigation: Review the source artifacts, task decomposition, per-task checks, and final integration command before running the prompt in a new session. <br>
-Risk: The skill assumes the target session supports sub-agents and can access the absolute paths named in the prompt. <br>
-Mitigation: Use it only in a compatible agent environment and confirm the referenced paths and required permissions before dispatching work. <br>
+**Output Format:** [Markdown fenced prompt]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/anderskev/skills/subagent-prompt) <br>
+**Other Properties Related to Output:** [Includes absolute paths, task list, verification contract, final integration check, and failure-handling policy.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown fenced prompt with task lists, paths, verification commands, and failure-handling policy] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The generated prompt is intended for a fresh agent session that supports sub-agents and can access the named absolute paths.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence.json release.version) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

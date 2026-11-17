@@ -1,0 +1,7 @@
+{
+  "package": "mistune",
+  "version": "3.4.0",
+  "source": "https://github.com/lepture/mistune",
+  "license": "BSD-3-Clause",
+  "wheelSHA256": "d03cec4c8620f21517a996d82d14f3b59c30d79bda2cc6c56bd32b839f18ce6b"
+}

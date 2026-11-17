@@ -1,41 +1,54 @@
-## Description: <br>
-Searches and synthesizes biomedical literature through PubMed, including clinical studies, drug information, treatment guidelines, and evidence quality assessment. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches and synthesizes biomedical literature through PubMed for clinical studies, drug information, treatment guidelines, and biomedical research.
 
-## Publisher: <br>
-[anightmare2](https://clawhub.ai/user/anightmare2) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[anightmare2](https://clawhub.ai/user/anightmare2)
 
-## Use Case: <br>
-Developers, researchers, and medical knowledge workers use this skill to form PubMed searches, retrieve biomedical literature, and assess the strength of cited evidence. It supports literature lookup workflows but does not replace clinical judgment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: PubMed search queries may include private patient details or sensitive identifiers. <br>
-Mitigation: Avoid entering patient identifiers or private health information in search terms. <br>
-Risk: Biomedical literature summaries can be incomplete or misleading if treated as clinical advice. <br>
-Mitigation: Verify medical conclusions against source publications and qualified clinical guidance. <br>
+## Use Case:
 
+Clinicians, researchers, and agents supporting biomedical workflows use this skill to search PubMed, retrieve relevant papers, and frame findings by common evidence-quality categories.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/anightmare2/medical-lit) <br>
-- [NCBI PubMed E-utilities endpoint](https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with PubMed query examples and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include PubMed search terms, literature summaries, and evidence quality guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata, clawhub.yaml, package.json) <br>
+Risk: The documented PubMed curl command can become unsafe if an untrusted query is inserted directly into a shell command string.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a structured HTTP client or curl with --get and --data-urlencode for the search term, and avoid placing user-provided queries directly inside shell command strings.
+
+Risk: Biomedical search summaries can be mistaken for clinical advice or overstate the quality of retrieved evidence.
+
+Mitigation: Treat outputs as literature-retrieval assistance, verify cited studies and evidence categories, and route clinical decisions through qualified medical review.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/anightmare2/skills/medical-lit)
+- [NCBI PubMed E-utilities API](https://eutils.ncbi.nlm.nih.gov/entrez/eutils/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with PubMed search queries and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search results and summaries should be reviewed for medical accuracy and source quality before use.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence, clawhub.yaml, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

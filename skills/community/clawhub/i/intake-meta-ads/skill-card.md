@@ -1,46 +1,62 @@
-## Description: <br>
-Intake Breathing META ads analyst for Meta/Facebook/Instagram ad performance, Marketing API data pulls, campaign diagnostics, creative analysis, budget reallocation, pixel/tracking audits, and offer-level performance forensics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes Intake Breathing Meta, Facebook, and Instagram ad performance, exports Marketing API insights, and guides campaign diagnostics, creative analysis, budget reallocation, tracking audits, and offer forensics.
 
-## Publisher: <br>
-[maxwaggoner](https://clawhub.ai/user/maxwaggoner) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[maxwaggoner](https://clawhub.ai/user/maxwaggoner)
 
-## Use Case: <br>
-External media buyers and marketing operators use this skill to pull Intake Breathing Meta ads data, diagnose CPA and ROAS issues, evaluate creative and campaign efficiency, and prepare prioritized optimization recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Unauthorized account access or overbroad credential use could expose Meta ads data. <br>
-Mitigation: Use the skill only with authorization for the Intake Breathing ad account and provide a fresh short-lived token limited to ads_read. <br>
-Risk: Access tokens may be exposed if pasted into retained transcripts or shared logs. <br>
-Mitigation: Use secure secret input when available and avoid storing tokens in prompts, files, or command history. <br>
-Risk: CSV or JSON exports can contain sensitive campaign performance data. <br>
-Mitigation: Store exports only in approved locations and delete or protect them after analysis. <br>
+## Use Case:
 
+External marketing operators and account analysts use this skill to pull Intake Breathing Meta Ads insights and turn campaign, ad, demographic, tracking, and offer data into concise performance findings and action recommendations.
 
-## Reference(s): <br>
-- [Intake Breathing META Account Context](references/intake-account-context.md) <br>
-- [Intake Breathing Diagnostic Playbooks](references/intake-diagnostics.md) <br>
-- [Campaign Insights API Reference](references/campaign-insights-api.md) <br>
-- [Meta Marketing API Insights](https://developers.facebook.com/docs/marketing-api/insights) <br>
-- [Meta Ad Account Insights Reference](https://developers.facebook.com/docs/marketing-api/reference/ad-account/insights) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown analysis with shell commands and CSV or JSON export files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a Meta ads_read access token to query the Marketing API and can save campaign, ad, trend, ROAS, and demographic exports.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence, frontmatter, and artifact metadata) <br>
+Risk: The workflow asks for a live Meta access token, and tokens may be exposed if pasted into normal chat or shell history.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a short-lived ads_read token, prefer a secret-entry mechanism when available, avoid logging token values, and revoke tokens after use.
+
+Risk: Exported CSV or JSON reports can contain sensitive ad account performance data.
+
+Mitigation: Store exports only in an approved secure location and remove local copies when the analysis is complete.
+
+Risk: Budget and ROAS recommendations may be misleading while purchase value tracking is broken or incomplete.
+
+Mitigation: Confirm purchase value and website_purchase_roas data before ROAS-based decisions, and treat CPA-only recommendations as provisional.
+
+## Reference(s):
+
+- [Intake META Ads Analyst on ClawHub](https://clawhub.ai/maxwaggoner/skills/intake-meta-ads)
+- [Intake Breathing META Account Context](references/intake-account-context.md)
+- [Intake Breathing Diagnostic Playbooks](references/intake-diagnostics.md)
+- [Campaign Insights API Reference](references/campaign-insights-api.md)
+- [Meta Marketing API Insights](https://developers.facebook.com/docs/marketing-api/insights)
+- [Meta Ad Account Insights Reference](https://developers.facebook.com/docs/marketing-api/reference/ad-account/insights)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance, Files]
+
+**Output Format:** [Markdown analysis with tables, inline shell commands, and optional CSV or JSON export files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a short-lived Meta ads_read access token and writes local campaign insight exports when API pulls are requested.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

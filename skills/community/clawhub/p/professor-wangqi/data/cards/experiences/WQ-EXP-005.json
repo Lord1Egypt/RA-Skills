@@ -1,0 +1,212 @@
+{
+  "card_id": "WQ-EXP-005",
+  "source_type": "clinical_experience",
+  "source_file": "国医大师王琦辨湿热体质论治疾病的临床思路_董思颖.pdf",
+  "title": "国医大师王琦辨湿热体质论治疾病的临床思路",
+  "authors": [
+    "董思颖"
+  ],
+  "year": 2022,
+  "language": "zh",
+  "experience_type": "treatment_method",
+  "clinical_focus": {
+    "disease": "",
+    "syndrome": "",
+    "constitution": []
+  },
+  "diagnostic_approach": {
+    "key_points": "辨病-辨证的特色诊疗模式，开创了中医“以人为本”临床诊疗思路的先导，为中医学的现代发展提供了新经验。"
+  },
+  "treatment_approach": {
+    "main_formula": "龙胆泻肝汤",
+    "related_formulas": [
+      "龙胆泻肝汤"
+    ],
+    "principle": "清热利湿、活血化瘀",
+    "herbs": [
+      "防风",
+      "当归",
+      "茯苓",
+      "甘草",
+      "泽泻",
+      "丹皮"
+    ]
+  },
+  "case_studies": [],
+  "clinical_insights": "体质学说，并将自己的特色诊疗经验发展成为辨体-辨病-辨证的特色诊疗模式，开创了中医“以人为本”临床诊疗思路的先导，为中医学的现代发展提供了新经验。文章从形成原因、体质特点以及与疾病的相关性3个方面对湿热体质进行了介绍，同时从辨体-辨病-辨证、治疗原则、调体方药、主病主方论4个方面对王琦教授调治湿热体质的相关经验进行了归纳总结，以期为湿热体质的调体与相关疾病治疗提供借鉴。 体论治关注了不同体质在感受邪气后不同阶段变化时的重要作用，还兼顾了个体特点对诊疗的影响，在以病、证为主体的中医临床诊疗基础上提出了“因人制宜”“以人为本”的思想。 体质有着密切的关系，了解该体质的特征，探索其调治方法在现代临床中具有重要意义。",
+  "knowledge_points": [
+    {
+      "category": "insight",
+      "content": "summarized to provide reference for constitution adjustment and treating related diseases of damp-heat constitution",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "insight",
+      "content": "Key words: Experience of famous experts of TCM; Damp-heat constitution; Treating by constitutions differentiation; WANG Qi; Clinical thinking Funding: National Key R&D Program Project of Ministry of Science and Technology (No",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "treatment",
+      "content": "com 体质是在先天遗传和后天获得的基础上，表现出的形态结构、生理机能和心理状态等方面综合的、相对稳定的特质 [1]",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "diagnosis",
+      "content": "辨证要点：辨病-辨证的特色诊疗模式，开创了中医“以人为本”临床诊疗思路的先导，为中医学的现代发展提供了新经验。",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "treatment",
+      "content": "治疗原则为清热利湿、活血化瘀。",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "treatment",
+      "content": "核心方药为龙胆泻肝汤。",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "treatment",
+      "content": "常用药物包括防风、当归、茯苓、甘草、泽泻、丹皮。",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "diagnosis",
+      "content": "体质学说，并将自己的特色诊疗经验发展成为辨体-辨病-辨证的特色诊疗模式，开创了中医“以人为本”临床诊疗思路的先导，为中医学的现代发展提供了新经验",
+      "importance": "high",
+      "evidence_level": "C"
+    }
+  ],
+  "related_constitutions": [
+    "平和质",
+    "湿热质"
+  ],
+  "related_diseases": [
+    "肥胖"
+  ],
+  "evidence_sentences": [
+    {
+      "sentence": "summarized to provide reference for constitution adjustment and treating related diseases of damp-heat constitution",
+      "section": "main_text",
+      "claim_type": "statement",
+      "page_num": 1
+    },
+    {
+      "sentence": "Key words: Experience of famous experts of TCM; Damp-heat constitution; Treating by constitutions differentiation; WANG Qi; Clinical thinking Funding: National Key R&D Program Project of Ministry of Science and Technology (No",
+      "section": "main_text",
+      "claim_type": "statement",
+      "page_num": 1
+    },
+    {
+      "sentence": "com 体质是在先天遗传和后天获得的基础上，表现出的形态结构、生理机能和心理状态等方面综合的、相对稳定的特质 [1]",
+      "section": "main_text",
+      "claim_type": "statement",
+      "page_num": 1
+    }
+  ],
+  "research_focus": {
+    "constitution_type": [
+      "平和质",
+      "湿热质"
+    ],
+    "disease": [
+      "肥胖"
+    ],
+    "topic": []
+  },
+  "page_info": {
+    "total_pages": 3,
+    "sections": {
+      "methods": {
+        "start": 1,
+        "end": 1
+      }
+    }
+  },
+  "created_at": "2026-04-22T15:38:13.262118",
+  "methods": {
+    "sample_size": 21948,
+    "study_design": "横断面研究"
+  },
+  "_field_meta": {
+    "title": {
+      "confidence": 0.8,
+      "source": "migrated",
+      "level": "medium",
+      "reasoning": "Confidence estimated during migration from legacy cards"
+    },
+    "authors": {
+      "confidence": 0.8,
+      "source": "migrated",
+      "level": "medium",
+      "reasoning": "Confidence estimated during migration from legacy cards"
+    },
+    "year": {
+      "confidence": 0.85,
+      "source": "migrated",
+      "level": "high",
+      "reasoning": "Confidence estimated during migration from legacy cards"
+    },
+    "journal": {
+      "confidence": 0.0,
+      "source": "none",
+      "level": "none",
+      "reasoning": "Field not populated in original extraction"
+    },
+    "doi": {
+      "confidence": 0.0,
+      "source": "none",
+      "level": "none",
+      "reasoning": "Field not populated in original extraction"
+    },
+    "keywords": {
+      "confidence": 0.0,
+      "source": "none",
+      "level": "none",
+      "reasoning": "Field not populated in original extraction"
+    },
+    "abstract": {
+      "confidence": 0.0,
+      "source": "none",
+      "level": "none",
+      "reasoning": "Field not populated in original extraction"
+    },
+    "conclusions": {
+      "confidence": 0.0,
+      "source": "none",
+      "level": "none",
+      "reasoning": "Field not populated in original extraction"
+    }
+  },
+  "_review": {
+    "status": "needs_review",
+    "priority": 2,
+    "fields": [
+      "doi",
+      "title",
+      "journal",
+      "keywords",
+      "abstract",
+      "conclusions"
+    ],
+    "thresholds_used": {
+      "doi": 0.95,
+      "title": 0.85,
+      "journal": 0.8,
+      "keywords": 0.8,
+      "abstract": 0.7,
+      "conclusions": 0.7
+    },
+    "auto_reviewed_at": "2026-04-25T15:10:31.489683",
+    "manual_reviewed_at": null,
+    "reviewer_notes": "Confidence data backfilled by migration script",
+    "migrated_at": "2026-04-25T15:10:31.489691"
+  }
+}

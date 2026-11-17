@@ -1,41 +1,55 @@
-## Description: <br>
-Provides guidance on using PyOmniTS for time series analysis, including documentation links, key concepts, code patterns, pitfalls, and replication workflows for models, datasets, and loss functions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides guidance for using PyOmniTS for time series analysis, including documentation links, naming conventions, code patterns, pitfalls, and replication workflows.
 
-## Publisher: <br>
-[Ladbaby](https://clawhub.ai/user/Ladbaby) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ladbaby](https://clawhub.ai/user/ladbaby)
 
-## Use Case: <br>
-Developers, researchers, and agents use this skill to understand PyOmniTS concepts, find official documentation, and adapt publicly available time series models, datasets, or loss functions into a PyOmniTS installation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Replication steps may modify a local PyOmniTS installation or copy code from third-party repositories. <br>
-Mitigation: Confirm the PyOmniTS path, use version control or backups, review the third-party repository and license, and inspect planned file copies or rewrites before running imported code. <br>
+## Use Case:
 
+Researchers, developers, and agents use this skill to navigate PyOmniTS documentation and adapt time series models, datasets, or loss functions into a PyOmniTS installation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Ladbaby/pyomnits) <br>
-- [PyOmniTS GitHub repository](https://github.com/Ladbaby/PyOmniTS) <br>
-- [PyOmniTS beginner's guide](https://github.com/Ladbaby/PyOmniTS-docs/blob/main/docs/tutorial/1_get_started.md) <br>
-- [PyOmniTS API documentation](https://github.com/Ladbaby/PyOmniTS-docs/blob/main/docs/forecasting/1_API.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown guidance with inline code paths and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose local file copies or rewrites when adapting external research code into PyOmniTS.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may lead agents to clone external research repositories and copy or rewrite code into a local PyOmniTS installation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a trusted repository, pin a reviewed commit, inspect copied files and dependencies, work in a branch or disposable environment, back up the installation, and confirm every file write before applying changes.
+
+Risk: Adapted models, datasets, or loss functions may not match PyOmniTS interfaces or the intended contribution from the source repository.
+
+Mitigation: Review adaptor code against the PyOmniTS API documentation and validate behavior with local tests or experiments before relying on results.
+
+## Reference(s):
+
+- [PyOmniTS GitHub Repository](https://github.com/Ladbaby/PyOmniTS)
+- [PyOmniTS Beginner's Guide](https://github.com/Ladbaby/PyOmniTS-docs/blob/main/docs/tutorial/1_get_started.md)
+- [PyOmniTS API Reference](https://github.com/Ladbaby/PyOmniTS-docs/blob/main/docs/forecasting/1_API.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with links, numbered steps, and inline code paths or shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance may involve local file changes in a PyOmniTS installation and should be reviewed before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

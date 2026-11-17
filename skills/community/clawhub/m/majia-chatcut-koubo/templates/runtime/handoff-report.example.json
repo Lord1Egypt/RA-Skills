@@ -1,0 +1,19 @@
+{
+  "$schema": "https://github.com/maojiebc/majia-chatcut-koubo/schemas/runtime/handoff-report.schema.json",
+  "schemaVersion": "majia.koubo.handoff.v1",
+  "runId": "run-demo-stable",
+  "timelineRevision": "rev-current",
+  "deliveryState": "sample_ready",
+  "completed": ["project", "source-inventory", "transcript", "sample"],
+  "notPerformed": ["restructure", "music", "motion-graphics", "broll", "generated-media", "export", "publish"],
+  "verification": {"structure": "pass", "visual": "pass", "audioMeasurement": "unverified", "humanListening": "unverified", "sampleApproval": "pending", "finalReviewApproval": "pending", "privacy": "not_applicable"},
+  "evidence": [
+    {"ref": "logical:structure-sample", "kind": "structure-readback", "hash": "sha256:1111111111111111111111111111111111111111111111111111111111111111", "revision": "rev-current", "provenance": "simulation", "capturedAt": "2026-08-10T00:12:00Z"},
+    {"ref": "logical:frame-sample", "kind": "composed-frame", "hash": "sha256:2222222222222222222222222222222222222222222222222222222222222222", "revision": "rev-current", "provenance": "simulation", "capturedAt": "2026-08-10T00:12:00Z"}
+  ],
+  "evidenceRefs": ["logical:structure-sample", "logical:frame-sample"],
+  "openRisks": ["样片仍需用户播放确认"],
+  "nextActions": ["播放代表样片并选择是否继续整片"],
+  "editorHandoff": {"projectRef": "logical:project-current", "timelineRef": "logical:timeline-current"},
+  "generatedAt": "2026-08-10T00:12:00Z"
+}

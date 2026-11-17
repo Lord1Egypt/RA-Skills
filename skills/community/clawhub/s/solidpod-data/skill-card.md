@@ -1,44 +1,57 @@
-## Description: <br>
-Interact with SOLID Pods - read data, write RDF data, create containers, manage access control, and provision new SOLID Pods. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Interact with SOLID Pods -- read data, write RDF data, create containers, manage access control, and provision new SOLID Pods.
 
-## Publisher: <br>
-[pettifordo](https://clawhub.ai/user/pettifordo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pettifordo](https://clawhub.ai/user/pettifordo)
 
-## Use Case: <br>
-Developers and external users use this skill to operate on Solid Pods from an agent, including reading pod resources, writing RDF data, creating containers, managing access rules, and provisioning Community Solid Server pods. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read, write, delete, and change access controls on Solid Pod resources. <br>
-Mitigation: Use least-privilege Solid client credentials and verify target URLs and WebIDs before write, delete, or ACL commands. <br>
-Risk: Dependency versions may change behavior or security posture in high-assurance environments. <br>
-Mitigation: Consider pinning dependencies and reviewing installed packages before deployment. <br>
+## Use Case:
 
+Developers and external users use this skill to operate on SOLID Pods from an agent workflow, including authenticated reads, RDF writes, container and area management, access-control changes, and pod provisioning guidance.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/pettifordo/solidpod-data) <br>
-- [Solid Project](https://solidproject.org/) <br>
-- [Inrupt Solid Client](https://github.com/inrupt/solid-client-js) <br>
-- [Inrupt Solid Client Authn Node](https://github.com/inrupt/solid-client-authn-js) <br>
-- [Inrupt Common RDF Vocabularies](https://github.com/inrupt/solid-common-vocab-rdf) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and terminal-oriented text with command examples and operation results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js and Solid environment variables for identity provider, client credentials, pod URL, and optional OIDC issuer.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.6 (source: package.json and server release metadata) <br>
+Risk: Authenticated credentials can be used against arbitrary SOLID Pod, IDP, or resource URLs supplied through environment variables or command arguments.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted Pod and IDP URLs, verify each target URL before reads or writes, and avoid running the skill with credentials for Pods containing sensitive data unless the release has been reviewed.
+
+Risk: Write, delete, acl grant, and acl revoke operations can replace data, remove resources, or change sharing permissions.
+
+Mitigation: Require explicit confirmation for destructive or permission-changing actions and show the exact URL, WebID, modes, and data changes before execution.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/pettifordo/skills/solidpod-data)
+- [SOLID Project](https://solidproject.org/)
+- [Inrupt solid-client](https://github.com/inrupt/solid-client-js)
+- [Inrupt solid-client-authn-node](https://github.com/inrupt/solid-client-authn-js)
+- [Inrupt common RDF vocabularies](https://github.com/inrupt/solid-common-vocab-rdf)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and terminal text with command examples and setup guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May display SOLID Pod resource contents, RDF properties, URLs, access-control entries, and generated registration instructions.]
+
+## Skill Version(s):
+
+1.2.6 (source: package.json and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

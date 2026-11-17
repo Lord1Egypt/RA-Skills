@@ -1,0 +1,29 @@
+## Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+.venv/
+venv/
+env/
+
+## Output files
+output/
+*.md
+!README.md
+!SKILL.md
+!references/*.md
+
+## Sensitive
+cookies.txt
+*.cookies
+.env
+
+## OS
+.DS_Store
+Thumbs.db
+
+## Temp
+tmp/
+*.tmp

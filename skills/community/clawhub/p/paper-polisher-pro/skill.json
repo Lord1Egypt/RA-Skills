@@ -1,7 +1,8 @@
 {
   "name": "paper-polisher-pro",
-  "version": "1.1.0",
-  "description": "Academic AI detector fingerprinting Chinese LLMs. 9-layer engine, F1=98.3% on 2026 models.",
-  "author": "docsor1212",
-  "changelog": "v1.1.0: 9-layer detection engine, 1002 patterns, 501 synonyms, 10x 2026 flagship models benchmarked (F1 98.3%)"
+  "version": "7.7.0",
+  "description": "AI writing detector (author self-check) + academic polishing guidance + terminology protection, 100% local. 12-layer recalibrated rule engine (L1-L12, discourse layer included) + token-spectrum layer + length-routed fusion + optional supervised Qwen3-0.6B ONNX layer (AUROC 0.9998 fingerprint-bound held-out) + LLM fingerprint attribution (GLM/DeepSeek/Qwen/Kimi/MiniMax/GPT/Claude/Gemini) + journal precheck + AIGC compliance label check + paragraph attribution + sentence-level rewrite suggestions (guidance, never auto-rewrite). Eval-driven: base-engine numbers reproduce via the bundled held-out evaluation; supervised-layer figures are author-side held-out measurements.",
+  "author": "DoctorQ Lab",
+  "changelog": "v7.7.0: output contract schemas — schemas/*.schema.json (draft-2020-12 subset) for the four core outputs, a zero-dependency minimal validator (scripts/pp_schema.py) self-checking real engine outputs against all four (first run caught a real drift: mixed_document is an object), pp_api.schema_selfcheck for integrators; integrity manifest generator single-sourced (generated reads skill.json, --check byte-compare, gated); pp_api parity completed (trend_data/schema_selfcheck). No engine scoring changes. 零新增依赖。",
+  "license": "MIT-0"
 }

@@ -1,0 +1,2065 @@
+{
+  "schemaVersion": 1,
+  "kind": "cinema-suite",
+  "suiteId": "rascalagnt001.cinema-suite",
+  "publisher": {
+    "id": "rascalagnt001"
+  },
+  "version": "1.1.0",
+  "hostApiVersion": "1",
+  "runtimeTargets": [
+    "openclaw",
+    "cinema-agent"
+  ],
+  "source": {
+    "endpoint": "/api/merchant/chupiaoChanne/list",
+    "environment": "prod",
+    "fetchedAt": "2026-10-16T07:26:41.888Z",
+    "redacted": true,
+    "selection": "merchant-enabled"
+  },
+  "modes": [
+    {
+      "packageId": "bagbot.wxamp-mode-5",
+      "openclawPackage": "clawhub:@rascalagnt001/wxamp-mode-5",
+      "mode": "wxamp_mode_5",
+      "businessMode": "",
+      "pluginStatus": "plugin_required",
+      "capabilities": [
+        "capture",
+        "replay",
+        "coupon",
+        "failure"
+      ]
+    },
+    {
+      "packageId": "bagbot.wxamp-mode-4-a",
+      "openclawPackage": "clawhub:@rascalagnt001/wxamp-mode-4-a",
+      "mode": "wxamp_mode_4",
+      "businessMode": "mode_a",
+      "pluginStatus": "supported",
+      "capabilities": [
+        "capture",
+        "replay",
+        "coupon",
+        "failure"
+      ]
+    },
+    {
+      "packageId": "bagbot.wxamp-mode-1",
+      "openclawPackage": "clawhub:@rascalagnt001/wxamp-mode-1",
+      "mode": "wxamp_mode_1",
+      "businessMode": "",
+      "pluginStatus": "supported",
+      "capabilities": [
+        "capture",
+        "replay",
+        "coupon",
+        "failure",
+        "pageWorld"
+      ]
+    },
+    {
+      "packageId": "bagbot.wxamp-mode-7",
+      "openclawPackage": "clawhub:@rascalagnt001/wxamp-mode-7",
+      "mode": "wxamp_mode_7",
+      "businessMode": "",
+      "pluginStatus": "supported",
+      "capabilities": [
+        "capture",
+        "replay",
+        "coupon",
+        "failure",
+        "pageWorld"
+      ]
+    },
+    {
+      "packageId": "bagbot.wxamp-mode-6",
+      "openclawPackage": "clawhub:@rascalagnt001/wxamp-mode-6",
+      "mode": "wxamp_mode_6",
+      "businessMode": "",
+      "pluginStatus": "supported",
+      "capabilities": [
+        "capture",
+        "replay",
+        "coupon",
+        "failure",
+        "pageWorld"
+      ]
+    },
+    {
+      "packageId": "bagbot.wxamp-mode-8",
+      "openclawPackage": "clawhub:@rascalagnt001/wxamp-mode-8",
+      "mode": "wxamp_mode_8",
+      "businessMode": "",
+      "pluginStatus": "supported",
+      "capabilities": [
+        "capture",
+        "replay",
+        "coupon",
+        "failure",
+        "pageWorld"
+      ]
+    },
+    {
+      "packageId": "bagbot.wxamp-mode-9",
+      "openclawPackage": "clawhub:@rascalagnt001/wxamp-mode-9",
+      "mode": "wxamp_mode_9",
+      "businessMode": "",
+      "pluginStatus": "supported",
+      "capabilities": [
+        "capture",
+        "replay",
+        "coupon",
+        "failure",
+        "pageWorld"
+      ]
+    },
+    {
+      "packageId": "bagbot.wxamp-mode-10",
+      "openclawPackage": "clawhub:@rascalagnt001/wxamp-mode-10",
+      "mode": "wxamp_mode_10",
+      "businessMode": "",
+      "pluginStatus": "supported",
+      "capabilities": [
+        "capture",
+        "replay",
+        "coupon",
+        "failure",
+        "pageWorld"
+      ]
+    },
+    {
+      "packageId": "bagbot.wxamp-mode-11",
+      "openclawPackage": "clawhub:@rascalagnt001/wxamp-mode-11",
+      "mode": "wxamp_mode_11",
+      "businessMode": "",
+      "pluginStatus": "supported",
+      "capabilities": [
+        "capture",
+        "replay",
+        "coupon",
+        "failure"
+      ]
+    },
+    {
+      "packageId": "bagbot.wxamp-mode-4-b",
+      "openclawPackage": "clawhub:@rascalagnt001/wxamp-mode-4-b",
+      "mode": "wxamp_mode_4",
+      "businessMode": "mode_b",
+      "pluginStatus": "supported",
+      "capabilities": [
+        "capture",
+        "replay",
+        "coupon",
+        "failure"
+      ]
+    }
+  ],
+  "skills": [
+    {
+      "skillId": "cinema_c_wanda_835de6664ebf31d1",
+      "skillKey": "cinema_c_wanda",
+      "skillName": "万达",
+      "chupiaoChannel": "c_wanda",
+      "mode": "wxamp_mode_5",
+      "businessMode": "",
+      "appId": "",
+      "weixinMpLink": "",
+      "pluginPackageId": "bagbot.wxamp-mode-5",
+      "openclawPackage": "clawhub:@rascalagnt001/wxamp-mode-5",
+      "pluginStatus": "plugin_required",
+      "requiredIdentity": [
+        "yuanxianCode",
+        "appId"
+      ],
+      "capabilities": [
+        "capture",
+        "replay",
+        "coupon",
+        "failure"
+      ],
+      "tags": [
+        "cinema",
+        "ticketing",
+        "wxamp_mode_5",
+        "mini-program"
+      ]
+    },
+    {
+      "skillId": "cinema_c_happyblue_8bb62ac98f1a02f8",
+      "skillKey": "cinema_c_happyblue",
+      "skillName": "幸福蓝海",
+      "chupiaoChannel": "c_happyblue",
+      "mode": "wxamp_mode_4",
+      "businessMode": "mode_a",
+      "appId": "wx0b62754258494878",
+      "weixinMpLink": "pages/home/home",
+      "pluginPackageId": "bagbot.wxamp-mode-4-a",
+      "openclawPackage": "clawhub:@rascalagnt001/wxamp-mode-4-a",
+      "pluginStatus": "supported",
+      "requiredIdentity": [
+        "yuanxianCode",
+        "weixinMpLink"
+      ],
+      "capabilities": [
+        "capture",
+        "replay",
+        "coupon",
+        "failure",
+        "pageWorld"
+      ],
+      "tags": [
+        "cinema",
+        "ticketing",
+        "wxamp_mode_4",
+        "mode_a",
+        "h5"
+      ]
+    },
+    {
+      "skillId": "cinema_c_star_7d175d2b8094f6a0",
+      "skillKey": "cinema_c_star",
+      "skillName": "星轶影城",
+      "chupiaoChannel": "c_star",
+      "mode": "wxamp_mode_1",
+      "businessMode": "",
+      "appId": "wx6e30c4fee25d8aac",
+      "weixinMpLink": "pages/schedule/index",
+      "pluginPackageId": "bagbot.wxamp-mode-1",
+      "openclawPackage": "clawhub:@rascalagnt001/wxamp-mode-1",
+      "pluginStatus": "supported",
+      "requiredIdentity": [
+        "yuanxianCode",
+        "weixinMpLink"
+      ],
+      "capabilities": [
+        "capture",
+        "replay",
+        "coupon",
+        "failure",
+        "pageWorld"
+      ],
+      "tags": [
+        "cinema",
+        "ticketing",
+        "wxamp_mode_1",
+        "h5"
+      ]
+    },
+    {
+      "skillId": "cinema_c_emperorua_680085e79ae86488",
+      "skillKey": "cinema_c_emperorua",
+      "skillName": "英皇影城",
+      "chupiaoChannel": "c_emperorua",
+      "mode": "wxamp_mode_1",
+      "businessMode": "",
+      "appId": "wx67502911bad8ac75",
+      "weixinMpLink": "pages/schedule/index",
+      "pluginPackageId": "bagbot.wxamp-mode-1",
+      "openclawPackage": "clawhub:@rascalagnt001/wxamp-mode-1",
+      "pluginStatus": "supported",
+      "requiredIdentity": [
+        "yuanxianCode",
+        "weixinMpLink"
+      ],
+      "capabilities": [
+        "capture",
+        "replay",
+        "coupon",
+        "failure",
+        "pageWorld"
+      ],
+      "tags": [
+        "cinema",
+        "ticketing",
+        "wxamp_mode_1",
+        "h5"
+      ]
+    },
+    {
+      "skillId": "cinema_c_mixc_8f93cf30ff8bf289",
+      "skillKey": "cinema_c_mixc",
+      "skillName": "万象影城",
+      "chupiaoChannel": "c_mixc",
+      "mode": "wxamp_mode_1",
+      "businessMode": "",
+      "appId": "wxf70b4091479317e0",
+      "weixinMpLink": "pages/schedule/index",
+      "pluginPackageId": "bagbot.wxamp-mode-1",
+      "openclawPackage": "clawhub:@rascalagnt001/wxamp-mode-1",
+      "pluginStatus": "supported",
+      "requiredIdentity": [
+        "yuanxianCode",
+        "weixinMpLink"
+      ],
+      "capabilities": [
+        "capture",
+        "replay",
+        "coupon",
+        "failure",
+        "pageWorld"
+      ],
+      "tags": [
+        "cinema",
+        "ticketing",
+        "wxamp_mode_1",
+        "h5"
+      ]
+    },
+    {
+      "skillId": "cinema_c_gbc_17b10366549767fa",
+      "skillKey": "cinema_c_gbc",
+      "skillName": "金熊影城",
+      "chupiaoChannel": "c_gbc",
+      "mode": "wxamp_mode_1",
+      "businessMode": "",
+      "appId": "wxc369c5c3163fa0af",
+      "weixinMpLink": "pages/schedule/index",
+      "pluginPackageId": "bagbot.wxamp-mode-1",
+      "openclawPackage": "clawhub:@rascalagnt001/wxamp-mode-1",
+      "pluginStatus": "supported",
+      "requiredIdentity": [
+        "yuanxianCode",
+        "weixinMpLink"
+      ],
+      "capabilities": [
+        "capture",
+        "replay",
+        "coupon",
+        "failure",
+        "pageWorld"
+      ],
+      "tags": [
+        "cinema",
+        "ticketing",
+        "wxamp_mode_1",
+        "h5"
+      ]
+    },
+    {
+      "skillId": "cinema_c_ximu_37170026197c1f5f",
+      "skillKey": "cinema_c_ximu",
+      "skillName": "戏幕影城",
+      "chupiaoChannel": "c_ximu",
+      "mode": "wxamp_mode_1",
+      "businessMode": "",
+      "appId": "wx3440996c0690811e",
+      "weixinMpLink": "pages/schedule/index",
+      "pluginPackageId": "bagbot.wxamp-mode-1",
+      "openclawPackage": "clawhub:@rascalagnt001/wxamp-mode-1",
+      "pluginStatus": "supported",
+      "requiredIdentity": [
+        "yuanxianCode",
+        "weixinMpLink"
+      ],
+      "capabilities": [
+        "capture",
+        "replay",
+        "coupon",
+        "failure",
+        "pageWorld"
+      ],
+      "tags": [
+        "cinema",
+        "ticketing",
+        "wxamp_mode_1",
+        "h5"
+      ]
+    },
+    {
+      "skillId": "cinema_c_zhuying_398b824be0002822",
+      "skillKey": "cinema_c_zhuying",
+      "skillName": "珠影+",
+      "chupiaoChannel": "c_zhuying",
+      "mode": "wxamp_mode_1",
+      "businessMode": "",
+      "appId": "wxc88c875db2134dd0",
+      "weixinMpLink": "pages/schedule/index",
+      "pluginPackageId": "bagbot.wxamp-mode-1",
+      "openclawPackage": "clawhub:@rascalagnt001/wxamp-mode-1",
+      "pluginStatus": "supported",
+      "requiredIdentity": [
+        "yuanxianCode",
+        "weixinMpLink"
+      ],
+      "capabilities": [
+        "capture",
+        "replay",
+        "coupon",
+        "failure",
+        "pageWorld"
+      ],
+      "tags": [
+        "cinema",
+        "ticketing",
+        "wxamp_mode_1",
+        "h5"
+      ]
+    },
+    {
+      "skillId": "cinema_c_sanke_3776d22e51d6732e",
+      "skillKey": "cinema_c_sanke",
+      "skillName": "三克影城",
+      "chupiaoChannel": "c_sanke",
+      "mode": "wxamp_mode_1",
+      "businessMode": "",
+      "appId": "wx035bfbd45d416416",
+      "weixinMpLink": "pages/schedule/index",
+      "pluginPackageId": "bagbot.wxamp-mode-1",
+      "openclawPackage": "clawhub:@rascalagnt001/wxamp-mode-1",
+      "pluginStatus": "supported",
+      "requiredIdentity": [
+        "yuanxianCode",
+        "weixinMpLink"
+      ],
+      "capabilities": [
+        "capture",
+        "replay",
+        "coupon",
+        "failure",
+        "pageWorld"
+      ],
+      "tags": [
+        "cinema",
+        "ticketing",
+        "wxamp_mode_1",
+        "h5"
+      ]
+    },
+    {
+      "skillId": "cinema_c_zgdygf_95a97d59f4d0ae57",
+      "skillKey": "cinema_c_zgdygf",
+      "skillName": "中影国际影城",
+      "chupiaoChannel": "c_zgdygf",
+      "mode": "wxamp_mode_1",
+      "businessMode": "",
+      "appId": "wxe1675b6f92d3b921",
+      "weixinMpLink": "pages/schedule/index",
+      "pluginPackageId": "bagbot.wxamp-mode-1",
+      "openclawPackage": "clawhub:@rascalagnt001/wxamp-mode-1",
+      "pluginStatus": "supported",
+      "requiredIdentity": [
+        "yuanxianCode",
+        "weixinMpLink"
+      ],
+      "capabilities": [
+        "capture",
+        "replay",
+        "coupon",
+        "failure",
+        "pageWorld"
+      ],
+      "tags": [
+        "cinema",
+        "ticketing",
+        "wxamp_mode_1",
+        "h5"
+      ]
+    },
+    {
+      "skillId": "cinema_c_wanmeishiji_e4866ef2c747fd11",
+      "skillKey": "cinema_c_wanmeishiji",
+      "skillName": "完美世界影城",
+      "chupiaoChannel": "c_wanmeishiji",
+      "mode": "wxamp_mode_1",
+      "businessMode": "",
+      "appId": "wx0ec12e2d53b601f9",
+      "weixinMpLink": "pages/schedule/index",
+      "pluginPackageId": "bagbot.wxamp-mode-1",
+      "openclawPackage": "clawhub:@rascalagnt001/wxamp-mode-1",
+      "pluginStatus": "supported",
+      "requiredIdentity": [
+        "yuanxianCode",
+        "weixinMpLink"
+      ],
+      "capabilities": [
+        "capture",
+        "replay",
+        "coupon",
+        "failure",
+        "pageWorld"
+      ],
+      "tags": [
+        "cinema",
+        "ticketing",
+        "wxamp_mode_1",
+        "h5"
+      ]
+    },
+    {
+      "skillId": "cinema_c_pacifica_f2ee969ea429c347",
+      "skillKey": "cinema_c_pacifica",
+      "skillName": "太平洋影城",
+      "chupiaoChannel": "c_pacifica",
+      "mode": "wxamp_mode_1",
+      "businessMode": "",
+      "appId": "wx610dff72ea83a011",
+      "weixinMpLink": "pages/schedule/index",
+      "pluginPackageId": "bagbot.wxamp-mode-1",
+      "openclawPackage": "clawhub:@rascalagnt001/wxamp-mode-1",
+      "pluginStatus": "supported",
+      "requiredIdentity": [
+        "yuanxianCode",
+        "weixinMpLink"
+      ],
+      "capabilities": [
+        "capture",
+        "replay",
+        "coupon",
+        "failure",
+        "pageWorld"
+      ],
+      "tags": [
+        "cinema",
+        "ticketing",
+        "wxamp_mode_1",
+        "h5"
+      ]
+    },
+    {
+      "skillId": "cinema_c_zheying_7777c2e4ca5243e1",
+      "skillKey": "cinema_c_zheying",
+      "skillName": "浙影时代影城",
+      "chupiaoChannel": "c_zheying",
+      "mode": "wxamp_mode_1",
+      "businessMode": "",
+      "appId": "wx7c0d270bc64139b4",
+      "weixinMpLink": "pages/schedule/index",
+      "pluginPackageId": "bagbot.wxamp-mode-1",
+      "openclawPackage": "clawhub:@rascalagnt001/wxamp-mode-1",
+      "pluginStatus": "supported",
+      "requiredIdentity": [
+        "yuanxianCode",
+        "weixinMpLink"
+      ],
+      "capabilities": [
+        "capture",
+        "replay",
+        "coupon",
+        "failure",
+        "pageWorld"
+      ],
+      "tags": [
+        "cinema",
+        "ticketing",
+        "wxamp_mode_1",
+        "h5"
+      ]
+    },
+    {
+      "skillId": "cinema_c_feiyang_0821f1ec0689a578",
+      "skillKey": "cinema_c_feiyang",
+      "skillName": "飞扬影城",
+      "chupiaoChannel": "c_feiyang",
+      "mode": "wxamp_mode_1",
+      "businessMode": "",
+      "appId": "wx84f1a7fdc5abf680",
+      "weixinMpLink": "pages/schedule/index",
+      "pluginPackageId": "bagbot.wxamp-mode-1",
+      "openclawPackage": "clawhub:@rascalagnt001/wxamp-mode-1",
+      "pluginStatus": "supported",
+      "requiredIdentity": [
+        "yuanxianCode",
+        "weixinMpLink"
+      ],
+      "capabilities": [
+        "capture",
+        "replay",
+        "coupon",
+        "failure",
+        "pageWorld"
+      ],
+      "tags": [
+        "cinema",
+        "ticketing",
+        "wxamp_mode_1",
+        "h5"
+      ]
+    },
+    {
+      "skillId": "cinema_c_yizhou_a51fab95b3eb94ec",
+      "skillKey": "cinema_c_yizhou",
+      "skillName": "壹洲影城",
+      "chupiaoChannel": "c_yizhou",
+      "mode": "wxamp_mode_1",
+      "businessMode": "",
+      "appId": "wxb7e3f8ef66cb28e0",
+      "weixinMpLink": "pages/schedule/index",
+      "pluginPackageId": "bagbot.wxamp-mode-1",
+      "openclawPackage": "clawhub:@rascalagnt001/wxamp-mode-1",
+      "pluginStatus": "supported",
+      "requiredIdentity": [
+        "yuanxianCode",
+        "weixinMpLink"
+      ],
+      "capabilities": [
+        "capture",
+        "replay",
+        "coupon",
+        "failure",
+        "pageWorld"
+      ],
+      "tags": [
+        "cinema",
+        "ticketing",
+        "wxamp_mode_1",
+        "h5"
+      ]
+    },
+    {
+      "skillId": "cinema_c_spring_5c63091d6a46225d",
+      "skillKey": "cinema_c_spring",
+      "skillName": "春天国际影城",
+      "chupiaoChannel": "c_spring",
+      "mode": "wxamp_mode_1",
+      "businessMode": "",
+      "appId": "wxe02c57dd679dcd9c",
+      "weixinMpLink": "pages/schedule/index",
+      "pluginPackageId": "bagbot.wxamp-mode-1",
+      "openclawPackage": "clawhub:@rascalagnt001/wxamp-mode-1",
+      "pluginStatus": "supported",
+      "requiredIdentity": [
+        "yuanxianCode",
+        "weixinMpLink"
+      ],
+      "capabilities": [
+        "capture",
+        "replay",
+        "coupon",
+        "failure",
+        "pageWorld"
+      ],
+      "tags": [
+        "cinema",
+        "ticketing",
+        "wxamp_mode_1",
+        "h5"
+      ]
+    },
+    {
+      "skillId": "cinema_c_weijia_68bb61e63ec4cdfc",
+      "skillKey": "cinema_c_weijia",
+      "skillName": "维佳影城",
+      "chupiaoChannel": "c_weijia",
+      "mode": "wxamp_mode_1",
+      "businessMode": "",
+      "appId": "wx6ed8eb1f0fdd59c8",
+      "weixinMpLink": "pages/schedule/index",
+      "pluginPackageId": "bagbot.wxamp-mode-1",
+      "openclawPackage": "clawhub:@rascalagnt001/wxamp-mode-1",
+      "pluginStatus": "supported",
+      "requiredIdentity": [
+        "yuanxianCode",
+        "weixinMpLink"
+      ],
+      "capabilities": [
+        "capture",
+        "replay",
+        "coupon",
+        "failure",
+        "pageWorld"
+      ],
+      "tags": [
+        "cinema",
+        "ticketing",
+        "wxamp_mode_1",
+        "h5"
+      ]
+    },
+    {
+      "skillId": "cinema_c_qianjin_c1cfa2d3af4eb902",
+      "skillKey": "cinema_c_qianjin",
+      "skillName": "千金影城",
+      "chupiaoChannel": "c_qianjin",
+      "mode": "wxamp_mode_1",
+      "businessMode": "",
+      "appId": "wx5291f9e54ff590f7",
+      "weixinMpLink": "pages/schedule/index",
+      "pluginPackageId": "bagbot.wxamp-mode-1",
+      "openclawPackage": "clawhub:@rascalagnt001/wxamp-mode-1",
+      "pluginStatus": "supported",
+      "requiredIdentity": [
+        "yuanxianCode",
+        "weixinMpLink"
+      ],
+      "capabilities": [
+        "capture",
+        "replay",
+        "coupon",
+        "failure",
+        "pageWorld"
+      ],
+      "tags": [
+        "cinema",
+        "ticketing",
+        "wxamp_mode_1",
+        "h5"
+      ]
+    },
+    {
+      "skillId": "cinema_c_shanwenhui_8128440140be40a6",
+      "skillKey": "cinema_c_shanwenhui",
+      "skillName": "山文星辉影城",
+      "chupiaoChannel": "c_shanwenhui",
+      "mode": "wxamp_mode_1",
+      "businessMode": "",
+      "appId": "wxe2d82f439b8ad3bd",
+      "weixinMpLink": "pages/schedule/index",
+      "pluginPackageId": "bagbot.wxamp-mode-1",
+      "openclawPackage": "clawhub:@rascalagnt001/wxamp-mode-1",
+      "pluginStatus": "supported",
+      "requiredIdentity": [
+        "yuanxianCode",
+        "weixinMpLink"
+      ],
+      "capabilities": [
+        "capture",
+        "replay",
+        "coupon",
+        "failure",
+        "pageWorld"
+      ],
+      "tags": [
+        "cinema",
+        "ticketing",
+        "wxamp_mode_1",
+        "h5"
+      ]
+    },
+    {
+      "skillId": "cinema_c_guangmei_517ebe18662367e8",
+      "skillKey": "cinema_c_guangmei",
+      "skillName": "金逸光美",
+      "chupiaoChannel": "c_guangmei",
+      "mode": "wxamp_mode_1",
+      "businessMode": "",
+      "appId": "wx245d9719d6dbe0f1",
+      "weixinMpLink": "pages/schedule/index",
+      "pluginPackageId": "bagbot.wxamp-mode-1",
+      "openclawPackage": "clawhub:@rascalagnt001/wxamp-mode-1",
+      "pluginStatus": "supported",
+      "requiredIdentity": [
+        "yuanxianCode",
+        "weixinMpLink"
+      ],
+      "capabilities": [
+        "capture",
+        "replay",
+        "coupon",
+        "failure",
+        "pageWorld"
+      ],
+      "tags": [
+        "cinema",
+        "ticketing",
+        "wxamp_mode_1",
+        "h5"
+      ]
+    },
+    {
+      "skillId": "cinema_c_jiaying_2e5e2d6b4f6e0925",
+      "skillKey": "cinema_c_jiaying",
+      "skillName": "嘉影银河影城",
+      "chupiaoChannel": "c_jiaying",
+      "mode": "wxamp_mode_1",
+      "businessMode": "",
+      "appId": "wx116fb94646e77e48",
+      "weixinMpLink": "pages/schedule/index",
+      "pluginPackageId": "bagbot.wxamp-mode-1",
+      "openclawPackage": "clawhub:@rascalagnt001/wxamp-mode-1",
+      "pluginStatus": "supported",
+      "requiredIdentity": [
+        "yuanxianCode",
+        "weixinMpLink"
+      ],
+      "capabilities": [
+        "capture",
+        "replay",
+        "coupon",
+        "failure",
+        "pageWorld"
+      ],
+      "tags": [
+        "cinema",
+        "ticketing",
+        "wxamp_mode_1",
+        "h5"
+      ]
+    },
+    {
+      "skillId": "cinema_c_huanyu_3a9e71915d2032be",
+      "skillKey": "cinema_c_huanyu",
+      "skillName": "星河寰宇影城",
+      "chupiaoChannel": "c_huanyu",
+      "mode": "wxamp_mode_1",
+      "businessMode": "",
+      "appId": "wxa490ac82a1e5f881",
+      "weixinMpLink": "pages/schedule/index",
+      "pluginPackageId": "bagbot.wxamp-mode-1",
+      "openclawPackage": "clawhub:@rascalagnt001/wxamp-mode-1",
+      "pluginStatus": "supported",
+      "requiredIdentity": [
+        "yuanxianCode",
+        "weixinMpLink"
+      ],
+      "capabilities": [
+        "capture",
+        "replay",
+        "coupon",
+        "failure",
+        "pageWorld"
+      ],
+      "tags": [
+        "cinema",
+        "ticketing",
+        "wxamp_mode_1",
+        "h5"
+      ]
+    },
+    {
+      "skillId": "cinema_c_xingkong_bc2236e486b50d2b",
+      "skillKey": "cinema_c_xingkong",
+      "skillName": "星空院线",
+      "chupiaoChannel": "c_xingkong",
+      "mode": "wxamp_mode_1",
+      "businessMode": "",
+      "appId": "wx5276c8e3dd450f98",
+      "weixinMpLink": "pages/schedule/index",
+      "pluginPackageId": "bagbot.wxamp-mode-1",
+      "openclawPackage": "clawhub:@rascalagnt001/wxamp-mode-1",
+      "pluginStatus": "supported",
+      "requiredIdentity": [
+        "yuanxianCode",
+        "weixinMpLink"
+      ],
+      "capabilities": [
+        "capture",
+        "replay",
+        "coupon",
+        "failure",
+        "pageWorld"
+      ],
+      "tags": [
+        "cinema",
+        "ticketing",
+        "wxamp_mode_1",
+        "h5"
+      ]
+    },
+    {
+      "skillId": "cinema_c_huanqiu_1067a407d778e901",
+      "skillKey": "cinema_c_huanqiu",
+      "skillName": "中影环球影城",
+      "chupiaoChannel": "c_huanqiu",
+      "mode": "wxamp_mode_1",
+      "businessMode": "",
+      "appId": "wxd8b45bf6c7dccad4",
+      "weixinMpLink": "pages/schedule/index",
+      "pluginPackageId": "bagbot.wxamp-mode-1",
+      "openclawPackage": "clawhub:@rascalagnt001/wxamp-mode-1",
+      "pluginStatus": "supported",
+      "requiredIdentity": [
+        "yuanxianCode",
+        "weixinMpLink"
+      ],
+      "capabilities": [
+        "capture",
+        "replay",
+        "coupon",
+        "failure",
+        "pageWorld"
+      ],
+      "tags": [
+        "cinema",
+        "ticketing",
+        "wxamp_mode_1",
+        "h5"
+      ]
+    },
+    {
+      "skillId": "cinema_c_chenjia_e64ba5638bf3c473",
+      "skillKey": "cinema_c_chenjia",
+      "skillName": "晟嘉国际影城",
+      "chupiaoChannel": "c_chenjia",
+      "mode": "wxamp_mode_1",
+      "businessMode": "",
+      "appId": "wxda7c23e257a1d67a",
+      "weixinMpLink": "pages/schedule/index",
+      "pluginPackageId": "bagbot.wxamp-mode-1",
+      "openclawPackage": "clawhub:@rascalagnt001/wxamp-mode-1",
+      "pluginStatus": "supported",
+      "requiredIdentity": [
+        "yuanxianCode",
+        "weixinMpLink"
+      ],
+      "capabilities": [
+        "capture",
+        "replay",
+        "coupon",
+        "failure",
+        "pageWorld"
+      ],
+      "tags": [
+        "cinema",
+        "ticketing",
+        "wxamp_mode_1",
+        "h5"
+      ]
+    },
+    {
+      "skillId": "cinema_c_guorui_8fe56f94702914af",
+      "skillKey": "cinema_c_guorui",
+      "skillName": "中影国瑞影城",
+      "chupiaoChannel": "c_guorui",
+      "mode": "wxamp_mode_1",
+      "businessMode": "",
+      "appId": "wx96ae07b089435961",
+      "weixinMpLink": "pages/schedule/index",
+      "pluginPackageId": "bagbot.wxamp-mode-1",
+      "openclawPackage": "clawhub:@rascalagnt001/wxamp-mode-1",
+      "pluginStatus": "supported",
+      "requiredIdentity": [
+        "yuanxianCode",
+        "weixinMpLink"
+      ],
+      "capabilities": [
+        "capture",
+        "replay",
+        "coupon",
+        "failure",
+        "pageWorld"
+      ],
+      "tags": [
+        "cinema",
+        "ticketing",
+        "wxamp_mode_1",
+        "h5"
+      ]
+    },
+    {
+      "skillId": "cinema_c_yijia_cde08b90e348cfba",
+      "skillKey": "cinema_c_yijia",
+      "skillName": "一嘉影投",
+      "chupiaoChannel": "c_yijia",
+      "mode": "wxamp_mode_1",
+      "businessMode": "",
+      "appId": "wxf3d6c6ed1045e383",
+      "weixinMpLink": "pages/schedule/index",
+      "pluginPackageId": "bagbot.wxamp-mode-1",
+      "openclawPackage": "clawhub:@rascalagnt001/wxamp-mode-1",
+      "pluginStatus": "supported",
+      "requiredIdentity": [
+        "yuanxianCode",
+        "weixinMpLink"
+      ],
+      "capabilities": [
+        "capture",
+        "replay",
+        "coupon",
+        "failure",
+        "pageWorld"
+      ],
+      "tags": [
+        "cinema",
+        "ticketing",
+        "wxamp_mode_1",
+        "h5"
+      ]
+    },
+    {
+      "skillId": "cinema_c_ume_cbf726caaac33982",
+      "skillKey": "cinema_c_ume",
+      "skillName": "UME影城",
+      "chupiaoChannel": "c_ume",
+      "mode": "wxamp_mode_1",
+      "businessMode": "",
+      "appId": "wx285d5df3fd5c19e6",
+      "weixinMpLink": "pages/schedule/index",
+      "pluginPackageId": "bagbot.wxamp-mode-1",
+      "openclawPackage": "clawhub:@rascalagnt001/wxamp-mode-1",
+      "pluginStatus": "supported",
+      "requiredIdentity": [
+        "yuanxianCode",
+        "weixinMpLink"
+      ],
+      "capabilities": [
+        "capture",
+        "replay",
+        "coupon",
+        "failure",
+        "pageWorld"
+      ],
+      "tags": [
+        "cinema",
+        "ticketing",
+        "wxamp_mode_1",
+        "h5"
+      ]
+    },
+    {
+      "skillId": "cinema_c_yinxing_054fe74fc0f4334b",
+      "skillKey": "cinema_c_yinxing",
+      "skillName": "银兴电影",
+      "chupiaoChannel": "c_yinxing",
+      "mode": "wxamp_mode_4",
+      "businessMode": "mode_a",
+      "appId": "wx7583c2a932b932c1",
+      "weixinMpLink": "pages/home/home",
+      "pluginPackageId": "bagbot.wxamp-mode-4-a",
+      "openclawPackage": "clawhub:@rascalagnt001/wxamp-mode-4-a",
+      "pluginStatus": "supported",
+      "requiredIdentity": [
+        "yuanxianCode",
+        "weixinMpLink"
+      ],
+      "capabilities": [
+        "capture",
+        "replay",
+        "coupon",
+        "failure",
+        "pageWorld"
+      ],
+      "tags": [
+        "cinema",
+        "ticketing",
+        "wxamp_mode_4",
+        "mode_a",
+        "h5"
+      ]
+    },
+    {
+      "skillId": "cinema_c_hnoscar_0548957b761185b6",
+      "skillKey": "cinema_c_hnoscar",
+      "skillName": "奥影",
+      "chupiaoChannel": "c_hnoscar",
+      "mode": "wxamp_mode_4",
+      "businessMode": "mode_a",
+      "appId": "wx09d3bba3fe063a04",
+      "weixinMpLink": "pages/home/home",
+      "pluginPackageId": "bagbot.wxamp-mode-4-a",
+      "openclawPackage": "clawhub:@rascalagnt001/wxamp-mode-4-a",
+      "pluginStatus": "supported",
+      "requiredIdentity": [
+        "yuanxianCode",
+        "weixinMpLink"
+      ],
+      "capabilities": [
+        "capture",
+        "replay",
+        "coupon",
+        "failure",
+        "pageWorld"
+      ],
+      "tags": [
+        "cinema",
+        "ticketing",
+        "wxamp_mode_4",
+        "mode_a",
+        "h5"
+      ]
+    },
+    {
+      "skillId": "cinema_c_evo_9377be9392b79eb0",
+      "skillKey": "cinema_c_evo",
+      "skillName": "EVO艺威影院",
+      "chupiaoChannel": "c_evo",
+      "mode": "wxamp_mode_4",
+      "businessMode": "mode_a",
+      "appId": "wx710adda08f708f22",
+      "weixinMpLink": "pages/home/home",
+      "pluginPackageId": "bagbot.wxamp-mode-4-a",
+      "openclawPackage": "clawhub:@rascalagnt001/wxamp-mode-4-a",
+      "pluginStatus": "supported",
+      "requiredIdentity": [
+        "yuanxianCode",
+        "weixinMpLink"
+      ],
+      "capabilities": [
+        "capture",
+        "replay",
+        "coupon",
+        "failure",
+        "pageWorld"
+      ],
+      "tags": [
+        "cinema",
+        "ticketing",
+        "wxamp_mode_4",
+        "mode_a",
+        "h5"
+      ]
+    },
+    {
+      "skillId": "cinema_c_yuemu_a03ea3944dc7172b",
+      "skillKey": "cinema_c_yuemu",
+      "skillName": "越幕影城",
+      "chupiaoChannel": "c_yuemu",
+      "mode": "wxamp_mode_4",
+      "businessMode": "mode_a",
+      "appId": "wx8eafe6ec48aa323f",
+      "weixinMpLink": "pages/home/home",
+      "pluginPackageId": "bagbot.wxamp-mode-4-a",
+      "openclawPackage": "clawhub:@rascalagnt001/wxamp-mode-4-a",
+      "pluginStatus": "supported",
+      "requiredIdentity": [
+        "yuanxianCode",
+        "weixinMpLink"
+      ],
+      "capabilities": [
+        "capture",
+        "replay",
+        "coupon",
+        "failure",
+        "pageWorld"
+      ],
+      "tags": [
+        "cinema",
+        "ticketing",
+        "wxamp_mode_4",
+        "mode_a",
+        "h5"
+      ]
+    },
+    {
+      "skillId": "cinema_c_zhongshiguoji_77ba94221f56489d",
+      "skillKey": "cinema_c_zhongshiguoji",
+      "skillName": "中视国际影城",
+      "chupiaoChannel": "c_zhongshiguoji",
+      "mode": "wxamp_mode_4",
+      "businessMode": "mode_a",
+      "appId": "wx0530684d396c40de",
+      "weixinMpLink": "pages/home/home",
+      "pluginPackageId": "bagbot.wxamp-mode-4-a",
+      "openclawPackage": "clawhub:@rascalagnt001/wxamp-mode-4-a",
+      "pluginStatus": "supported",
+      "requiredIdentity": [
+        "yuanxianCode",
+        "weixinMpLink"
+      ],
+      "capabilities": [
+        "capture",
+        "replay",
+        "coupon",
+        "failure",
+        "pageWorld"
+      ],
+      "tags": [
+        "cinema",
+        "ticketing",
+        "wxamp_mode_4",
+        "mode_a",
+        "h5"
+      ]
+    },
+    {
+      "skillId": "cinema_c_tangchao_6ac5e3499a5699fc",
+      "skillKey": "cinema_c_tangchao",
+      "skillName": "唐潮影城",
+      "chupiaoChannel": "c_tangchao",
+      "mode": "wxamp_mode_4",
+      "businessMode": "mode_a",
+      "appId": "wx20deb717a1301f5b",
+      "weixinMpLink": "pages/home/home",
+      "pluginPackageId": "bagbot.wxamp-mode-4-a",
+      "openclawPackage": "clawhub:@rascalagnt001/wxamp-mode-4-a",
+      "pluginStatus": "supported",
+      "requiredIdentity": [
+        "yuanxianCode",
+        "weixinMpLink"
+      ],
+      "capabilities": [
+        "capture",
+        "replay",
+        "coupon",
+        "failure",
+        "pageWorld"
+      ],
+      "tags": [
+        "cinema",
+        "ticketing",
+        "wxamp_mode_4",
+        "mode_a",
+        "h5"
+      ]
+    },
+    {
+      "skillId": "cinema_c_huaxia_94067bd44a1ef87a",
+      "skillKey": "cinema_c_huaxia",
+      "skillName": "新幕影城",
+      "chupiaoChannel": "c_huaxia",
+      "mode": "wxamp_mode_4",
+      "businessMode": "mode_a",
+      "appId": "wx1a9336bf55bc3867",
+      "weixinMpLink": "pages/home/home",
+      "pluginPackageId": "bagbot.wxamp-mode-4-a",
+      "openclawPackage": "clawhub:@rascalagnt001/wxamp-mode-4-a",
+      "pluginStatus": "supported",
+      "requiredIdentity": [
+        "yuanxianCode",
+        "weixinMpLink"
+      ],
+      "capabilities": [
+        "capture",
+        "replay",
+        "coupon",
+        "failure",
+        "pageWorld"
+      ],
+      "tags": [
+        "cinema",
+        "ticketing",
+        "wxamp_mode_4",
+        "mode_a",
+        "h5"
+      ]
+    },
+    {
+      "skillId": "cinema_c_chengying_063564cebf68fa38",
+      "skillKey": "cinema_c_chengying",
+      "skillName": "成影国际影城",
+      "chupiaoChannel": "c_chengying",
+      "mode": "wxamp_mode_4",
+      "businessMode": "mode_a",
+      "appId": "wx71ed945968d3296e",
+      "weixinMpLink": "pages/home/home",
+      "pluginPackageId": "bagbot.wxamp-mode-4-a",
+      "openclawPackage": "clawhub:@rascalagnt001/wxamp-mode-4-a",
+      "pluginStatus": "supported",
+      "requiredIdentity": [
+        "yuanxianCode",
+        "weixinMpLink"
+      ],
+      "capabilities": [
+        "capture",
+        "replay",
+        "coupon",
+        "failure",
+        "pageWorld"
+      ],
+      "tags": [
+        "cinema",
+        "ticketing",
+        "wxamp_mode_4",
+        "mode_a",
+        "h5"
+      ]
+    },
+    {
+      "skillId": "cinema_c_lianyue_9c0530fdcc65ac91",
+      "skillKey": "cinema_c_lianyue",
+      "skillName": "联娱国际影城",
+      "chupiaoChannel": "c_lianyue",
+      "mode": "wxamp_mode_4",
+      "businessMode": "mode_a",
+      "appId": "wxb982d791bce72be6",
+      "weixinMpLink": "pages/home/home",
+      "pluginPackageId": "bagbot.wxamp-mode-4-a",
+      "openclawPackage": "clawhub:@rascalagnt001/wxamp-mode-4-a",
+      "pluginStatus": "supported",
+      "requiredIdentity": [
+        "yuanxianCode",
+        "weixinMpLink"
+      ],
+      "capabilities": [
+        "capture",
+        "replay",
+        "coupon",
+        "failure",
+        "pageWorld"
+      ],
+      "tags": [
+        "cinema",
+        "ticketing",
+        "wxamp_mode_4",
+        "mode_a",
+        "h5"
+      ]
+    },
+    {
+      "skillId": "cinema_c_jscm_2aebdf7e3481b6f1",
+      "skillKey": "cinema_c_jscm",
+      "skillName": "吉视影城",
+      "chupiaoChannel": "c_jscm",
+      "mode": "wxamp_mode_4",
+      "businessMode": "mode_a",
+      "appId": "wxb03cdfaf04bd76ee",
+      "weixinMpLink": "pages/home/home",
+      "pluginPackageId": "bagbot.wxamp-mode-4-a",
+      "openclawPackage": "clawhub:@rascalagnt001/wxamp-mode-4-a",
+      "pluginStatus": "supported",
+      "requiredIdentity": [
+        "yuanxianCode",
+        "weixinMpLink"
+      ],
+      "capabilities": [
+        "capture",
+        "replay",
+        "coupon",
+        "failure",
+        "pageWorld"
+      ],
+      "tags": [
+        "cinema",
+        "ticketing",
+        "wxamp_mode_4",
+        "mode_a",
+        "h5"
+      ]
+    },
+    {
+      "skillId": "cinema_c_boardway_680ec65b5cb1e617",
+      "skillKey": "cinema_c_boardway",
+      "skillName": "百老汇",
+      "chupiaoChannel": "c_boardway",
+      "mode": "wxamp_mode_7",
+      "businessMode": "",
+      "appId": "wxb8046d0474f27810",
+      "weixinMpLink": "pages/movieList/movie",
+      "pluginPackageId": "bagbot.wxamp-mode-7",
+      "openclawPackage": "clawhub:@rascalagnt001/wxamp-mode-7",
+      "pluginStatus": "supported",
+      "requiredIdentity": [
+        "yuanxianCode",
+        "weixinMpLink"
+      ],
+      "capabilities": [
+        "capture",
+        "replay",
+        "coupon",
+        "failure",
+        "pageWorld"
+      ],
+      "tags": [
+        "cinema",
+        "ticketing",
+        "wxamp_mode_7",
+        "h5"
+      ]
+    },
+    {
+      "skillId": "cinema_c_sfc_33415b4f519c2475",
+      "skillKey": "cinema_c_sfc",
+      "skillName": "SFC影城",
+      "chupiaoChannel": "c_sfc",
+      "mode": "wxamp_mode_7",
+      "businessMode": "",
+      "appId": "wx848a3e1d071ffa66",
+      "weixinMpLink": "pages/movieList/movie",
+      "pluginPackageId": "bagbot.wxamp-mode-7",
+      "openclawPackage": "clawhub:@rascalagnt001/wxamp-mode-7",
+      "pluginStatus": "supported",
+      "requiredIdentity": [
+        "yuanxianCode",
+        "weixinMpLink"
+      ],
+      "capabilities": [
+        "capture",
+        "replay",
+        "coupon",
+        "failure",
+        "pageWorld"
+      ],
+      "tags": [
+        "cinema",
+        "ticketing",
+        "wxamp_mode_7",
+        "h5"
+      ]
+    },
+    {
+      "skillId": "cinema_c_ywgo_e6cc2fd977f218e7",
+      "skillKey": "cinema_c_ywgo",
+      "skillName": "悦惟GO",
+      "chupiaoChannel": "c_ywgo",
+      "mode": "wxamp_mode_1",
+      "businessMode": "",
+      "appId": "wx0d6159f55371d5cc",
+      "weixinMpLink": "pages/schedule/index",
+      "pluginPackageId": "bagbot.wxamp-mode-1",
+      "openclawPackage": "clawhub:@rascalagnt001/wxamp-mode-1",
+      "pluginStatus": "supported",
+      "requiredIdentity": [
+        "yuanxianCode",
+        "weixinMpLink"
+      ],
+      "capabilities": [
+        "capture",
+        "replay",
+        "coupon",
+        "failure",
+        "pageWorld"
+      ],
+      "tags": [
+        "cinema",
+        "ticketing",
+        "wxamp_mode_1",
+        "h5"
+      ]
+    },
+    {
+      "skillId": "cinema_c_bonafilm_18d294cfead90a6b",
+      "skillKey": "cinema_c_bonafilm",
+      "skillName": "博纳",
+      "chupiaoChannel": "c_bonafilm",
+      "mode": "wxamp_mode_6",
+      "businessMode": "",
+      "appId": "",
+      "weixinMpLink": "https://h5lark.yuekeyun.com/film/index.html?wapid=BONA_H5_PROD_S_MPS",
+      "pluginPackageId": "bagbot.wxamp-mode-6",
+      "openclawPackage": "clawhub:@rascalagnt001/wxamp-mode-6",
+      "pluginStatus": "supported",
+      "requiredIdentity": [
+        "yuanxianCode",
+        "weixinMpLink"
+      ],
+      "capabilities": [
+        "capture",
+        "replay",
+        "coupon",
+        "failure",
+        "pageWorld"
+      ],
+      "tags": [
+        "cinema",
+        "ticketing",
+        "wxamp_mode_6",
+        "h5"
+      ]
+    },
+    {
+      "skillId": "cinema_c_limei_48e6dcc06078b9c8",
+      "skillKey": "cinema_c_limei",
+      "skillName": "上海利美华胤",
+      "chupiaoChannel": "c_limei",
+      "mode": "wxamp_mode_7",
+      "businessMode": "",
+      "appId": "wxedf671a7f33db889",
+      "weixinMpLink": "",
+      "pluginPackageId": "bagbot.wxamp-mode-7",
+      "openclawPackage": "clawhub:@rascalagnt001/wxamp-mode-7",
+      "pluginStatus": "supported",
+      "requiredIdentity": [
+        "yuanxianCode",
+        "appId"
+      ],
+      "capabilities": [
+        "capture",
+        "replay",
+        "coupon",
+        "failure"
+      ],
+      "tags": [
+        "cinema",
+        "ticketing",
+        "wxamp_mode_7",
+        "mini-program"
+      ]
+    },
+    {
+      "skillId": "cinema_c_suning_7e9839247e83c563",
+      "skillKey": "cinema_c_suning",
+      "skillName": "苏宁院线",
+      "chupiaoChannel": "c_suning",
+      "mode": "wxamp_mode_4",
+      "businessMode": "mode_a",
+      "appId": "wx3038742f09f0cbee",
+      "weixinMpLink": "",
+      "pluginPackageId": "bagbot.wxamp-mode-4-a",
+      "openclawPackage": "clawhub:@rascalagnt001/wxamp-mode-4-a",
+      "pluginStatus": "supported",
+      "requiredIdentity": [
+        "yuanxianCode",
+        "appId"
+      ],
+      "capabilities": [
+        "capture",
+        "replay",
+        "coupon",
+        "failure"
+      ],
+      "tags": [
+        "cinema",
+        "ticketing",
+        "wxamp_mode_4",
+        "mode_a",
+        "mini-program"
+      ]
+    },
+    {
+      "skillId": "cinema_c_zytmgjyc_c23b09ac6cb48738",
+      "skillKey": "cinema_c_zytmgjyc",
+      "skillName": "中影铁马国际影城",
+      "chupiaoChannel": "c_zytmgjyc",
+      "mode": "wxamp_mode_8",
+      "businessMode": "",
+      "appId": "",
+      "weixinMpLink": "https://h5shtml.oristarcloud.com/page/index",
+      "pluginPackageId": "bagbot.wxamp-mode-8",
+      "openclawPackage": "clawhub:@rascalagnt001/wxamp-mode-8",
+      "pluginStatus": "supported",
+      "requiredIdentity": [
+        "yuanxianCode",
+        "weixinMpLink"
+      ],
+      "capabilities": [
+        "capture",
+        "replay",
+        "coupon",
+        "failure",
+        "pageWorld"
+      ],
+      "tags": [
+        "cinema",
+        "ticketing",
+        "wxamp_mode_8",
+        "h5"
+      ]
+    },
+    {
+      "skillId": "cinema_c_wjyxc_390c0d4b75a09b0b",
+      "skillKey": "cinema_c_wjyxc",
+      "skillName": "维璟印象城店",
+      "chupiaoChannel": "c_wjyxc",
+      "mode": "wxamp_mode_8",
+      "businessMode": "",
+      "appId": "",
+      "weixinMpLink": "https://h5dygyyxc.oristarcloud.com/page/index",
+      "pluginPackageId": "bagbot.wxamp-mode-8",
+      "openclawPackage": "clawhub:@rascalagnt001/wxamp-mode-8",
+      "pluginStatus": "supported",
+      "requiredIdentity": [
+        "yuanxianCode",
+        "weixinMpLink"
+      ],
+      "capabilities": [
+        "capture",
+        "replay",
+        "coupon",
+        "failure",
+        "pageWorld"
+      ],
+      "tags": [
+        "cinema",
+        "ticketing",
+        "wxamp_mode_8",
+        "h5"
+      ]
+    },
+    {
+      "skillId": "cinema_c_shlnxyc_6bafbeba71882387",
+      "skillKey": "cinema_c_shlnxyc",
+      "skillName": "上海莱纳星影城",
+      "chupiaoChannel": "c_shlnxyc",
+      "mode": "wxamp_mode_6",
+      "businessMode": "",
+      "appId": "",
+      "weixinMpLink": "https://h5lark.yuekeyun.com/film/index.html?wapid=SHLNX_H5_PROD_15100_MPS",
+      "pluginPackageId": "bagbot.wxamp-mode-6",
+      "openclawPackage": "clawhub:@rascalagnt001/wxamp-mode-6",
+      "pluginStatus": "supported",
+      "requiredIdentity": [
+        "yuanxianCode",
+        "weixinMpLink"
+      ],
+      "capabilities": [
+        "capture",
+        "replay",
+        "coupon",
+        "failure",
+        "pageWorld"
+      ],
+      "tags": [
+        "cinema",
+        "ticketing",
+        "wxamp_mode_6",
+        "h5"
+      ]
+    },
+    {
+      "skillId": "cinema_c_zjwdycaqhd_f1dbd05e0eb94d4c",
+      "skillKey": "cinema_c_zjwdycaqhd",
+      "skillName": "湛江万达影城",
+      "chupiaoChannel": "c_zjwdycaqhd",
+      "mode": "wxamp_mode_6",
+      "businessMode": "",
+      "appId": "",
+      "weixinMpLink": "https://h5lark.yuekeyun.com/film/index.html?wapid=ZJWDYC_H5_PROD_14868_MPS",
+      "pluginPackageId": "bagbot.wxamp-mode-6",
+      "openclawPackage": "clawhub:@rascalagnt001/wxamp-mode-6",
+      "pluginStatus": "supported",
+      "requiredIdentity": [
+        "yuanxianCode",
+        "weixinMpLink"
+      ],
+      "capabilities": [
+        "capture",
+        "replay",
+        "coupon",
+        "failure",
+        "pageWorld"
+      ],
+      "tags": [
+        "cinema",
+        "ticketing",
+        "wxamp_mode_6",
+        "h5"
+      ]
+    },
+    {
+      "skillId": "cinema_c_gtdyy_25b3796161e7a658",
+      "skillKey": "cinema_c_gtdyy",
+      "skillName": "国泰电影院",
+      "chupiaoChannel": "c_gtdyy",
+      "mode": "wxamp_mode_6",
+      "businessMode": "",
+      "appId": "",
+      "weixinMpLink": "https://h5lark.yuekeyun.com/film/index.html?wapid=GTDYY_H5_PROD_11347_MPS",
+      "pluginPackageId": "bagbot.wxamp-mode-6",
+      "openclawPackage": "clawhub:@rascalagnt001/wxamp-mode-6",
+      "pluginStatus": "supported",
+      "requiredIdentity": [
+        "yuanxianCode",
+        "weixinMpLink"
+      ],
+      "capabilities": [
+        "capture",
+        "replay",
+        "coupon",
+        "failure",
+        "pageWorld"
+      ],
+      "tags": [
+        "cinema",
+        "ticketing",
+        "wxamp_mode_6",
+        "h5"
+      ]
+    },
+    {
+      "skillId": "cinema_c_dyxyc_21c964a1a610f289",
+      "skillKey": "cinema_c_dyxyc",
+      "skillName": "朵云轩影城",
+      "chupiaoChannel": "c_dyxyc",
+      "mode": "wxamp_mode_6",
+      "businessMode": "",
+      "appId": "",
+      "weixinMpLink": "https://h5lark.yuekeyun.com/film/index.html?wapid=DYXYC_H5_PROD_12567_MPS",
+      "pluginPackageId": "bagbot.wxamp-mode-6",
+      "openclawPackage": "clawhub:@rascalagnt001/wxamp-mode-6",
+      "pluginStatus": "supported",
+      "requiredIdentity": [
+        "yuanxianCode",
+        "weixinMpLink"
+      ],
+      "capabilities": [
+        "capture",
+        "replay",
+        "coupon",
+        "failure",
+        "pageWorld"
+      ],
+      "tags": [
+        "cinema",
+        "ticketing",
+        "wxamp_mode_6",
+        "h5"
+      ]
+    },
+    {
+      "skillId": "cinema_c_wxha_d9085f572682227b",
+      "skillKey": "cinema_c_wxha",
+      "skillName": "无锡海岸",
+      "chupiaoChannel": "c_wxha",
+      "mode": "wxamp_mode_6",
+      "businessMode": "",
+      "appId": "",
+      "weixinMpLink": "https://h5lark.yuekeyun.com/film/index.html?wapid=WXHA_H5_PROD_12176_MPS",
+      "pluginPackageId": "bagbot.wxamp-mode-6",
+      "openclawPackage": "clawhub:@rascalagnt001/wxamp-mode-6",
+      "pluginStatus": "supported",
+      "requiredIdentity": [
+        "yuanxianCode",
+        "weixinMpLink"
+      ],
+      "capabilities": [
+        "capture",
+        "replay",
+        "coupon",
+        "failure",
+        "pageWorld"
+      ],
+      "tags": [
+        "cinema",
+        "ticketing",
+        "wxamp_mode_6",
+        "h5"
+      ]
+    },
+    {
+      "skillId": "cinema_c_wxdsj_a24972b4092488ad",
+      "skillKey": "cinema_c_wxdsj",
+      "skillName": "无锡大世界",
+      "chupiaoChannel": "c_wxdsj",
+      "mode": "wxamp_mode_9",
+      "businessMode": "",
+      "appId": "wx77217cb9cae9e54b",
+      "weixinMpLink": "pages/index/index",
+      "pluginPackageId": "bagbot.wxamp-mode-9",
+      "openclawPackage": "clawhub:@rascalagnt001/wxamp-mode-9",
+      "pluginStatus": "supported",
+      "requiredIdentity": [
+        "yuanxianCode",
+        "weixinMpLink"
+      ],
+      "capabilities": [
+        "capture",
+        "replay",
+        "coupon",
+        "failure",
+        "pageWorld"
+      ],
+      "tags": [
+        "cinema",
+        "ticketing",
+        "wxamp_mode_9",
+        "h5"
+      ]
+    },
+    {
+      "skillId": "cinema_c_xgyc_13d224b18c33441e",
+      "skillKey": "cinema_c_xgyc",
+      "skillName": "星光影城",
+      "chupiaoChannel": "c_xgyc",
+      "mode": "wxamp_mode_6",
+      "businessMode": "",
+      "appId": "",
+      "weixinMpLink": "https://h5lark.yuekeyun.com/location/index.html?wapid=XGDY_H5_PROD_S_MPS",
+      "pluginPackageId": "bagbot.wxamp-mode-6",
+      "openclawPackage": "clawhub:@rascalagnt001/wxamp-mode-6",
+      "pluginStatus": "supported",
+      "requiredIdentity": [
+        "yuanxianCode",
+        "weixinMpLink"
+      ],
+      "capabilities": [
+        "capture",
+        "replay",
+        "coupon",
+        "failure",
+        "pageWorld"
+      ],
+      "tags": [
+        "cinema",
+        "ticketing",
+        "wxamp_mode_6",
+        "h5"
+      ]
+    },
+    {
+      "skillId": "cinema_c_tsdyy_3cb515015cd3cfe4",
+      "skillKey": "cinema_c_tsdyy",
+      "skillName": "天山电影院",
+      "chupiaoChannel": "c_tsdyy",
+      "mode": "wxamp_mode_6",
+      "businessMode": "",
+      "appId": "",
+      "weixinMpLink": "https://h5lark.yuekeyun.com/film/index.html?wapid=TSDYY_H5_PROD_12576_MPS",
+      "pluginPackageId": "bagbot.wxamp-mode-6",
+      "openclawPackage": "clawhub:@rascalagnt001/wxamp-mode-6",
+      "pluginStatus": "supported",
+      "requiredIdentity": [
+        "yuanxianCode",
+        "weixinMpLink"
+      ],
+      "capabilities": [
+        "capture",
+        "replay",
+        "coupon",
+        "failure",
+        "pageWorld"
+      ],
+      "tags": [
+        "cinema",
+        "ticketing",
+        "wxamp_mode_6",
+        "h5"
+      ]
+    },
+    {
+      "skillId": "cinema_c_womei_f462f4e292b68120",
+      "skillKey": "cinema_c_womei",
+      "skillName": "沃美影城",
+      "chupiaoChannel": "c_womei",
+      "mode": "wxamp_mode_10",
+      "businessMode": "",
+      "appId": "wx4bb9342b9d97d53c",
+      "weixinMpLink": "pages/index/index",
+      "pluginPackageId": "bagbot.wxamp-mode-10",
+      "openclawPackage": "clawhub:@rascalagnt001/wxamp-mode-10",
+      "pluginStatus": "supported",
+      "requiredIdentity": [
+        "yuanxianCode",
+        "weixinMpLink"
+      ],
+      "capabilities": [
+        "capture",
+        "replay",
+        "coupon",
+        "failure",
+        "pageWorld"
+      ],
+      "tags": [
+        "cinema",
+        "ticketing",
+        "wxamp_mode_10",
+        "h5"
+      ]
+    },
+    {
+      "skillId": "cinema_c_shxhxyc_23e9e9f1be30fa35",
+      "skillKey": "cinema_c_shxhxyc",
+      "skillName": "上海新恒星影城",
+      "chupiaoChannel": "c_shxhxyc",
+      "mode": "wxamp_mode_10",
+      "businessMode": "",
+      "appId": "wxa757522fab3942b8",
+      "weixinMpLink": "pages/index/index",
+      "pluginPackageId": "bagbot.wxamp-mode-10",
+      "openclawPackage": "clawhub:@rascalagnt001/wxamp-mode-10",
+      "pluginStatus": "supported",
+      "requiredIdentity": [
+        "yuanxianCode",
+        "weixinMpLink"
+      ],
+      "capabilities": [
+        "capture",
+        "replay",
+        "coupon",
+        "failure",
+        "pageWorld"
+      ],
+      "tags": [
+        "cinema",
+        "ticketing",
+        "wxamp_mode_10",
+        "h5"
+      ]
+    },
+    {
+      "skillId": "cinema_c_yyh_544fab52508e26df",
+      "skillKey": "cinema_c_yyh",
+      "skillName": "悦影荟",
+      "chupiaoChannel": "c_yyh",
+      "mode": "wxamp_mode_11",
+      "businessMode": "",
+      "appId": "wx07b52f013ecf96b2",
+      "weixinMpLink": "",
+      "pluginPackageId": "bagbot.wxamp-mode-11",
+      "openclawPackage": "clawhub:@rascalagnt001/wxamp-mode-11",
+      "pluginStatus": "supported",
+      "requiredIdentity": [
+        "yuanxianCode",
+        "appId"
+      ],
+      "capabilities": [
+        "capture",
+        "replay",
+        "coupon",
+        "failure"
+      ],
+      "tags": [
+        "cinema",
+        "ticketing",
+        "wxamp_mode_11",
+        "mini-program"
+      ]
+    },
+    {
+      "skillId": "cinema_c_polyfilm_6afb51f7db37c982",
+      "skillKey": "cinema_c_polyfilm",
+      "skillName": "保利国际影城",
+      "chupiaoChannel": "c_polyfilm",
+      "mode": "wxamp_mode_7",
+      "businessMode": "",
+      "appId": "wxbc72c7a3b74f82f8",
+      "weixinMpLink": "pages/movieList/movie",
+      "pluginPackageId": "bagbot.wxamp-mode-7",
+      "openclawPackage": "clawhub:@rascalagnt001/wxamp-mode-7",
+      "pluginStatus": "supported",
+      "requiredIdentity": [
+        "yuanxianCode",
+        "weixinMpLink"
+      ],
+      "capabilities": [
+        "capture",
+        "replay",
+        "coupon",
+        "failure",
+        "pageWorld"
+      ],
+      "tags": [
+        "cinema",
+        "ticketing",
+        "wxamp_mode_7",
+        "h5"
+      ]
+    },
+    {
+      "skillId": "cinema_c_sddyy_1838a2d0b8fea7d0",
+      "skillKey": "cinema_c_sddyy",
+      "skillName": "首都电影院",
+      "chupiaoChannel": "c_sddyy",
+      "mode": "wxamp_mode_6",
+      "businessMode": "",
+      "appId": "",
+      "weixinMpLink": "https://h5lark.yuekeyun.com/location/index.html?wapid=SHOUDU_H5_PROD_S_MPS",
+      "pluginPackageId": "bagbot.wxamp-mode-6",
+      "openclawPackage": "clawhub:@rascalagnt001/wxamp-mode-6",
+      "pluginStatus": "supported",
+      "requiredIdentity": [
+        "yuanxianCode",
+        "weixinMpLink"
+      ],
+      "capabilities": [
+        "capture",
+        "replay",
+        "coupon",
+        "failure",
+        "pageWorld"
+      ],
+      "tags": [
+        "cinema",
+        "ticketing",
+        "wxamp_mode_6",
+        "h5"
+      ]
+    },
+    {
+      "skillId": "cinema_c_amghsmz_eee274c916f43077",
+      "skillKey": "cinema_c_amghsmz",
+      "skillName": "AMG海上明珠",
+      "chupiaoChannel": "c_amghsmz",
+      "mode": "wxamp_mode_6",
+      "businessMode": "",
+      "appId": "",
+      "weixinMpLink": "https://h5lark.yuekeyun.com/film/index.html?wapid=HSMZYC_H5_PROD_S_MPS",
+      "pluginPackageId": "bagbot.wxamp-mode-6",
+      "openclawPackage": "clawhub:@rascalagnt001/wxamp-mode-6",
+      "pluginStatus": "supported",
+      "requiredIdentity": [
+        "yuanxianCode",
+        "weixinMpLink"
+      ],
+      "capabilities": [
+        "capture",
+        "replay",
+        "coupon",
+        "failure",
+        "pageWorld"
+      ],
+      "tags": [
+        "cinema",
+        "ticketing",
+        "wxamp_mode_6",
+        "h5"
+      ]
+    },
+    {
+      "skillId": "cinema_c_gvb_5438f3aa5bcfbf0e",
+      "skillKey": "cinema_c_gvb",
+      "skillName": "大光明丽星",
+      "chupiaoChannel": "c_gvb",
+      "mode": "wxamp_mode_6",
+      "businessMode": "",
+      "appId": "",
+      "weixinMpLink": "https://h5lark.yuekeyun.com/location/index.html?wapid=LXDGM_H5_PROD_11364_MPS",
+      "pluginPackageId": "bagbot.wxamp-mode-6",
+      "openclawPackage": "clawhub:@rascalagnt001/wxamp-mode-6",
+      "pluginStatus": "supported",
+      "requiredIdentity": [
+        "yuanxianCode",
+        "weixinMpLink"
+      ],
+      "capabilities": [
+        "capture",
+        "replay",
+        "coupon",
+        "failure",
+        "pageWorld"
+      ],
+      "tags": [
+        "cinema",
+        "ticketing",
+        "wxamp_mode_6",
+        "h5"
+      ]
+    },
+    {
+      "skillId": "cinema_c_zcyy_9adc3cfa6117f6ce",
+      "skillKey": "cinema_c_zcyy",
+      "skillName": "至潮影城",
+      "chupiaoChannel": "c_zcyy",
+      "mode": "wxamp_mode_6",
+      "businessMode": "",
+      "appId": "",
+      "weixinMpLink": "https://h5lark.yuekeyun.com/location/index.html?wapid=ZCYC_H5_PROD_S_MPS",
+      "pluginPackageId": "bagbot.wxamp-mode-6",
+      "openclawPackage": "clawhub:@rascalagnt001/wxamp-mode-6",
+      "pluginStatus": "supported",
+      "requiredIdentity": [
+        "yuanxianCode",
+        "weixinMpLink"
+      ],
+      "capabilities": [
+        "capture",
+        "replay",
+        "coupon",
+        "failure",
+        "pageWorld"
+      ],
+      "tags": [
+        "cinema",
+        "ticketing",
+        "wxamp_mode_6",
+        "h5"
+      ]
+    },
+    {
+      "skillId": "cinema_c_xyxkyc_fc696ebb3a1544b1",
+      "skillKey": "cinema_c_xyxkyc",
+      "skillName": "鑫苑星空影城",
+      "chupiaoChannel": "c_xyxkyc",
+      "mode": "wxamp_mode_6",
+      "businessMode": "",
+      "appId": "",
+      "weixinMpLink": "https://h5lark.yuekeyun.com/film/index.html?wapid=XK_H5_PROD_S_MPS",
+      "pluginPackageId": "bagbot.wxamp-mode-6",
+      "openclawPackage": "clawhub:@rascalagnt001/wxamp-mode-6",
+      "pluginStatus": "supported",
+      "requiredIdentity": [
+        "yuanxianCode",
+        "weixinMpLink"
+      ],
+      "capabilities": [
+        "capture",
+        "replay",
+        "coupon",
+        "failure",
+        "pageWorld"
+      ],
+      "tags": [
+        "cinema",
+        "ticketing",
+        "wxamp_mode_6",
+        "h5"
+      ]
+    }
+  ],
+  "installation": {
+    "mode": "install-children",
+    "activateAfterInstall": false,
+    "allowPartialInstall": true,
+    "rollbackOnFailure": true
+  }
+}

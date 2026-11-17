@@ -1,0 +1,138 @@
+{
+  "_comment": "Verbatim GET /api/skill/data response bodies captured from the real javis-server read_skill_data handler (gateway-token auth, R27) on 2026-10-27, after a push + app confirm. Used by test/server-contract.test.js.",
+  "responses": {
+    "ledger_task": {
+      "path": "/api/skill/data?skill=todo-spend-tracker&type=ledger_task",
+      "body": {
+        "skill": "todo-spend-tracker",
+        "type": "ledger_task",
+        "items": [
+          {
+            "id": 1,
+            "skill": "todo-spend-tracker",
+            "dedup_key": "task:sess-A:947c978408fb",
+            "payload": {
+              "item": "Call the bank",
+              "quote": "I need to call the bank",
+              "source": "recording"
+            },
+            "status": "confirmed",
+            "start_at": "2026-10-20T00:00:00",
+            "end_at": null,
+            "is_utc": false,
+            "source_ref": "sess-A",
+            "google_event_id": null,
+            "ingest_state": null,
+            "ingest_error": null,
+            "updated_at": "2026-10-27T22:08:55.853436",
+            "session_id": "f96fb515-fcb9-5b0b-ad3f-787938ba3691"
+          },
+          {
+            "id": 2,
+            "skill": "todo-spend-tracker",
+            "dedup_key": "task:sess-A:31dea5d6f264",
+            "payload": {
+              "item": "Buy ink",
+              "quote": "buy ink",
+              "source": "recording"
+            },
+            "status": "confirmed",
+            "start_at": "2026-10-20T00:00:00",
+            "end_at": null,
+            "is_utc": false,
+            "source_ref": "sess-A",
+            "google_event_id": null,
+            "ingest_state": null,
+            "ingest_error": null,
+            "updated_at": "2026-10-27T22:08:55.853436",
+            "session_id": "75e7716c-501f-5f69-bedf-245a38574b74"
+          }
+        ]
+      }
+    },
+    "ledger_done": {
+      "path": "/api/skill/data?skill=todo-spend-tracker&type=ledger_done",
+      "body": {
+        "skill": "todo-spend-tracker",
+        "type": "ledger_done",
+        "items": [
+          {
+            "id": 7,
+            "skill": "todo-spend-tracker",
+            "dedup_key": "done:task:sess-A:31dea5d6f264:sess-B",
+            "payload": {
+              "task_key": "task:sess-A:31dea5d6f264",
+              "quote": "bought the ink",
+              "source": "recording"
+            },
+            "status": "confirmed",
+            "start_at": "2026-10-26T00:00:00",
+            "end_at": null,
+            "is_utc": false,
+            "source_ref": "sess-B",
+            "google_event_id": null,
+            "ingest_state": null,
+            "ingest_error": null,
+            "updated_at": "2026-10-27T22:09:15.705227",
+            "session_id": "8ddc2f96-b19d-5668-86cb-d25aae1f05e5"
+          }
+        ]
+      }
+    },
+    "ledger_expense_2026_10": {
+      "path": "/api/skill/data?skill=todo-spend-tracker&type=ledger_expense&from=2026-10-01T00%3A00%3A00&to=2026-11-01T00%3A00%3A00",
+      "body": {
+        "skill": "todo-spend-tracker",
+        "type": "ledger_expense",
+        "items": [
+          {
+            "id": 3,
+            "skill": "todo-spend-tracker",
+            "dedup_key": "exp:sess-A:e360bae4359e",
+            "payload": {
+              "item": "coffee",
+              "amount": 4.5,
+              "currency": "USD",
+              "category": "Food & drink",
+              "quote": "coffee was 4.50",
+              "source": "recording"
+            },
+            "status": "confirmed",
+            "start_at": "2026-10-20T00:00:00",
+            "end_at": null,
+            "is_utc": false,
+            "source_ref": "sess-A",
+            "google_event_id": null,
+            "ingest_state": null,
+            "ingest_error": null,
+            "updated_at": "2026-10-27T22:08:55.884591",
+            "session_id": "38d072c8-c52a-51c2-aa93-3c3fca09e69f"
+          },
+          {
+            "id": 4,
+            "skill": "todo-spend-tracker",
+            "dedup_key": "exp:sess-A:6ec725d1cd4e",
+            "payload": {
+              "item": "noodles",
+              "amount": 35,
+              "currency": "CNY",
+              "category": "Food & drink",
+              "quote": "35 yuan",
+              "source": "recording"
+            },
+            "status": "pending",
+            "start_at": "2026-10-20T00:00:00",
+            "end_at": null,
+            "is_utc": false,
+            "source_ref": "sess-A",
+            "google_event_id": null,
+            "ingest_state": null,
+            "ingest_error": null,
+            "updated_at": "2026-10-27T22:08:45.621981",
+            "session_id": "5a2f90da-c3d8-5ce6-b4ba-8056eb53c60a"
+          }
+        ]
+      }
+    }
+  }
+}

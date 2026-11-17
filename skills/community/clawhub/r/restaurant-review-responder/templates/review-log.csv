@@ -1,0 +1,4 @@
+# Restaurant Review Responder - starting point
+# Copy this file, replace every empty value with your own data, keep the field names.
+date,platform,rating,reviewer,theme,public_reply,private_note,status
+,,,,,,

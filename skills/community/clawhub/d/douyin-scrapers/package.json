@@ -1,0 +1,30 @@
+{
+  "name": "douyin-scrapers",
+  "version": "1.4.2",
+  "description": "爬取抖音爆款视频和互动数据，支持自然语言搜索请求（如'搜索一下AI视频'）、关键词搜索、热榜获取、视频信息提取等。另支持单条作品详情与评论需求挖掘。",
+  "keywords": [
+    "douyin",
+    "search",
+    "hot",
+    "keyword",
+    "content-analysis",
+    "competitor-analysis"
+  ],
+  "author": "um-why",
+  "license": "MIT",
+  "type": "commonjs",
+  "engines": {
+    "node": ">=16.14.0"
+  },
+  "scripts": {
+    "search": "node src/douyin/search-cli.js",
+    "post": "node src/douyin/post-cli.js",
+    "comment": "node src/douyin/comment-cli.js",
+    "detail": "node src/douyin/detail-cli.js",
+    "hot": "node src/douyin/hot-cli.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/um-why/douyin-search-openclaw.git"
+  }
+}

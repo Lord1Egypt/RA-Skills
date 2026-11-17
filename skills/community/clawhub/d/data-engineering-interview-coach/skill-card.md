@@ -1,39 +1,52 @@
-## Description: <br>
-An interactive data engineering interview coach that drills senior-level data engineering knowledge through a coaching-style mock interview - one question at a time, waits for the answer, then teaches through feedback. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+An interactive coaching skill that runs data engineering mock interviews one question at a time and gives targeted feedback across SQL, data modeling, pipelines, Spark, Airflow, Kafka, dbt, warehouses, lakehouses, observability, and optimization.
 
-## Publisher: <br>
-[cngvc](https://clawhub.ai/user/cngvc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[cngvc](https://clawhub.ai/user/cngvc)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill to practice senior-level data engineering interview topics through structured mock interview sessions, feedback, mini-lessons, and periodic session summaries.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The coaching flow is tailored to a specific persona named Joe, which may not fit every learner or team.
+
+Mitigation: Review and adapt the learner profile before deploying it for a broader audience.
+
+Risk: The skill may activate on short SQL or pipeline-practice prompts that were not intended as interview practice.
+
+Mitigation: Use it where mock interview, quiz, or drill behavior is desired, and review trigger routing for broad SQL or pipeline prompts.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use this skill to practice senior-level data engineering interviews through interactive coaching on SQL, data modeling, pipelines, Spark, Airflow, Kafka, dbt, warehouses, lakehouses, data quality, observability, and performance. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill steers relevant SQL and data engineering prompts into a mock interview format, which may not fit one-off debugging, implementation help, or explanation-only requests. <br>
-Mitigation: Use plain chat or a different skill when the goal is direct debugging, implementation assistance, or a standalone explanation rather than interview practice. <br>
-Risk: Interview coaching feedback can be incomplete or not aligned with a specific company's interview rubric. <br>
-Mitigation: Review guidance against authoritative data engineering documentation and the target role's interview expectations before relying on it for preparation. <br>
+**Output Format:** [Markdown conversation with structured coaching feedback and session summaries]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Produces one question at a time and waits for the learner's answer before giving feedback.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown conversational interview prompts, feedback, and session summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces one interview question at a time, waits for the learner's answer, then provides coaching feedback before continuing.] <br>
+1.0.0 (source: release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

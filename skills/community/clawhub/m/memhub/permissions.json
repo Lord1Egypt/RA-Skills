@@ -1,0 +1,44 @@
+{
+  "schema": "memhub.permission-boundary/v1",
+  "skill": "memhub",
+  "version": "0.4.8",
+  "purpose": "Read, write and Git-sync a user-designated MemHub memory repository.",
+  "filesystem": {
+    "read": ["${MEMHUB_REPO}/**", "${SKILL_DIR}/**"],
+    "write": ["${MEMHUB_REPO}/**"],
+    "credentialWrite": ["${MEMHUB_SECRETS_DIR}/**"],
+    "denied": ["${MEMHUB_REPO}/../**", "/**", "**/.env", "**/.git/config"],
+    "pathEscape": "rejected: absolute paths and `..` sequences are refused"
+  },
+  "shell": {
+    "commands": ["git"],
+    "interpreter": false,
+    "secretInArguments": "never; git authorization is passed through the child-process environment"
+  },
+  "network": {
+    "mode": "opt-in",
+    "default": "no automatic egress until `sync setup` or `onboard` is run explicitly",
+    "hosts": ["github.com", "api.github.com", "gitee.com"],
+    "optionalHosts": ["${MEMHUB_OAUTH_BROKER_URL}", "${MEMHUB_GITEE_OAUTH_BROKER_URL}"],
+    "thirdPartyBroker": "used only when the user names the host via --broker-url or a MEMHUB_*_OAUTH_BROKER_URL variable"
+  },
+  "mutations": {
+    "localWrite": {
+      "commands": ["remember", "forget --apply", "promote --apply", "init"],
+      "requires": "explicit user request"
+    },
+    "remoteWrite": {
+      "commands": ["sync", "sync setup", "onboard"],
+      "requires": "explicit user request"
+    },
+    "destructive": "none: `forget` soft-archives (status=archived); no file deletion and no history rewrite"
+  },
+  "credentials": {
+    "storage": "outside ${MEMHUB_REPO}, file mode 0600 in a 0700 directory",
+    "inRepository": "never",
+    "inChatOutput": "never",
+    "inProcessArguments": "never",
+    "oauthState": "generated per authorization attempt and verified on the callback",
+    "scopes": {"github": "repo (device flow)", "gitee": "user_info projects"}
+  }
+}

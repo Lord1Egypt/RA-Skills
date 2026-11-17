@@ -1,42 +1,53 @@
-## Description: <br>
-Generate polished, read-only business reports from CSV/XLSX into static XLSX, PDF, and PPTX deliverables using ReportStudio Community. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate polished, read-only business reports from CSV/XLSX into static deliverables (xlsx+pdf+pptx) using ReportStudio Community.
 
-## Publisher: <br>
-[xutianliang77-create](https://clawhub.ai/user/xutianliang77-create) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[xutianliang77-create](https://clawhub.ai/user/xutianliang77-create)
 
-## Use Case: <br>
-Employees, external users, and developers use this skill to turn local CSV/XLSX data and natural language reporting requests into monthly, weekly, or daily business report deliverables with data-supported trends and breakdowns. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill executes a local ReportStudio Python package on user-selected spreadsheet files. <br>
-Mitigation: Install and run it only in an environment where the local ReportStudio package is trusted. <br>
-Risk: Incorrect paths, output locations, or column names can produce failed or misleading report runs. <br>
-Mitigation: Use the provided wrapper or structured command arguments, quote paths and column names, and keep inputs and outputs in intended directories. <br>
-Risk: Generated reports can include warnings for insufficient history, truncation, or unrecognized fields. <br>
-Mitigation: Review the returned warnings before sharing XLSX, PDF, or PPTX outputs. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Acceptance Checklist](references/acceptance.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/xutianliang77-create/openclaw-reportstudio-community) <br>
+## Use Case:
 
+Employees and business analysts use this skill to convert local CSV or XLSX data into professional XLSX, PDF, and PPTX reports with data-supported trends, KPI summaries, and TopN breakdowns. Agents should use it when a user provides a spreadsheet path and asks for monthly, weekly, operational, or management reporting deliverables.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, files, guidance] <br>
-**Output Format:** [Markdown summary with ReportStudio JSON and generated XLSX, PDF, and PPTX files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only workflow; generated warnings and artifact paths are returned for acceptance checks.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated reports may contain business-sensitive summaries from the selected CSV or XLSX input files.
+
+Mitigation: Review generated XLSX, PDF, and PPTX outputs before sharing them outside the intended audience.
+
+Risk: The local ReportStudio module reads user-selected spreadsheet files and writes report artifacts, usually under ./artifacts.
+
+Mitigation: Run the skill only on intended input files and confirm the output directory before execution.
+
+## Reference(s):
+
+- [Acceptance checklist](references/acceptance.md)
+- [ClawHub skill page](https://clawhub.ai/xutianliang77-create/skills/openclaw-reportstudio-community)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, files]
+
+**Output Format:** [JSON summary with generated XLSX, PDF, and PPTX files plus a concise text summary]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated reports are read-only static deliverables, usually written under ./artifacts; warnings identify insufficient history, unrecognized fields, or truncated trend exports.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

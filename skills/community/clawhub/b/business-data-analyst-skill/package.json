@@ -1,7 +1,7 @@
 {
   "name": "business-data-analyst-skill",
-  "version": "1.3.0",
-  "description": "Business data analysis and operating diagnosis skill with documentation, internal intent routing, market research capability, and reusable analysis frameworks for strategy, competition, marketing, operations, and finance.",
+  "version": "1.7.0",
+  "description": "Business analysis skill with evidence-based reporting, market research, reusable models, and an end-to-end decision framework.",
   "main": "src/index.js",
   "exports": {
     ".": "./src/index.js",
@@ -18,6 +18,7 @@
   ],
   "scripts": {
     "lint": "node --check src/index.js && node --check src/router.js",
+    "test": "node --test",
     "smoke:test": "node -e \"const { routeSkillIntent } = require('./src'); console.log(routeSkillIntent('最近续费率下降，帮我定位原因并给动作建议'));\""
   },
   "engines": {
@@ -102,6 +103,16 @@
     "竞品分析",
     "market sizing",
     "市场规模",
+    "business reporting",
+    "商业报告",
+    "unit economics",
+    "单位经济",
+    "scenario analysis",
+    "情景分析",
+    "variance analysis",
+    "差异分析",
+    "wei liaozi",
+    "尉缭子",
     "skill"
   ]
 }

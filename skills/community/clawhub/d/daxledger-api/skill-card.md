@@ -1,41 +1,55 @@
-## Description: <br>
-Use the DAX Ledger API to authenticate, list portfolios, retrieve portfolio KPIs, list findings, retrieve position snapshots, and list/filter transactions with pagination. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use the DAX Ledger API to authenticate, list portfolios, retrieve portfolio KPIs, list findings, retrieve position snapshots, and list/filter transactions with pagination.
 
-## Publisher: <br>
-[pedromxavier14](https://clawhub.ai/user/pedromxavier14) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pedromxavier14](https://clawhub.ai/user/pedromxavier14)
 
-## Use Case: <br>
-External users, developers, and analysts use this skill to authenticate with DAX Ledger and select the right API endpoints for portfolio valuation, findings, transactions, compliance, and tax-oriented reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses DAX Ledger API credentials and can retrieve sensitive portfolio, transaction, tax, and compliance data. <br>
-Mitigation: Install only if you trust the DAX Ledger integration and publisher, store credentials securely, and use dedicated or least-privilege API keys when available. <br>
-Risk: Financial data returned by the API may appear in assistant sessions or logs. <br>
-Mitigation: Avoid exposing unnecessary portfolio details, review outputs before sharing, and follow your organization's handling rules for financial and compliance data. <br>
+## Use Case:
 
+Developers and agents use this skill to choose DAX Ledger API endpoints and request authenticated portfolio, transaction, tax, compliance, KPI, findings, and position data with appropriate pagination and filters.
 
-## Reference(s): <br>
-- [DAX Ledger API Reference](references/apis.md) <br>
-- [DAX Ledger API Base URL](https://app.daxledger.io) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, API calls, configuration] <br>
-**Output Format:** [Markdown guidance with HTTP endpoints, JSON examples, and environment variable names] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses DAX Ledger API credentials supplied through DAXLEDGER_API_KEY and DAXLEDGER_API_SECRET; paginated responses may require repeated requests.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can guide authenticated access to sensitive financial, tax, and compliance data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep API credentials in a trusted secret mechanism, avoid pasting secrets into chat, and request only the portfolio, transaction, tax, or compliance fields needed for the task.
+
+Risk: Over-broad API requests can expose more account data than a task requires.
+
+Mitigation: Use pagination, endpoint selection, and filters to limit responses to the minimum data needed.
+
+## Reference(s):
+
+- [DAX Ledger API Reference](references/apis.md)
+- [DAX Ledger API Base URL](https://app.daxledger.io)
+- [ClawHub Skill Page](https://clawhub.ai/pedromxavier14/skills/daxledger-api)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, API calls, configuration]
+
+**Output Format:** [Markdown with endpoint paths, query parameters, JSON examples, and credential configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires DAXLEDGER_API_KEY and DAXLEDGER_API_SECRET; may include pagination, filtering, and Base64 filter encoding guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

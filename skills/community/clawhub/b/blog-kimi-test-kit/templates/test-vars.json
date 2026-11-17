@@ -1,0 +1,108 @@
+{
+  "skill_name": "blog-kimi-test-kit",
+  "entry_file": "scripts/blog-kimi-test-kit.py",
+  "test_cases": [
+    {
+      "id": "TC-01",
+      "name": "health-check",
+      "command": "python3 scripts/blog-kimi-test-kit.py health-check",
+      "expected": "{\"status\":\"ok\",\"service\":\"blog-api\",\"version\":\"1.0.0\"}",
+      "method": "GET",
+      "category": "readonly",
+      "description": "检查 API 可达性"
+    },
+    {
+      "id": "TC-02",
+      "name": "list-articles",
+      "command": "python3 scripts/blog-kimi-test-kit.py list-articles --page 1 --size 10",
+      "expected": "包含文章列表数据",
+      "method": "GET",
+      "category": "readonly",
+      "description": "查询文章列表"
+    },
+    {
+      "id": "TC-03",
+      "name": "list-labels",
+      "command": "python3 scripts/blog-kimi-test-kit.py list-labels",
+      "expected": "包含标签列表数据",
+      "method": "GET",
+      "category": "readonly",
+      "description": "查询标签列表"
+    },
+    {
+      "id": "TC-04",
+      "name": "list-users",
+      "command": "python3 scripts/blog-kimi-test-kit.py list-users",
+      "expected": "包含用户列表数据",
+      "method": "GET",
+      "category": "readonly",
+      "description": "查询用户列表"
+    },
+    {
+      "id": "TC-05",
+      "name": "list-comments",
+      "command": "python3 scripts/blog-kimi-test-kit.py list-comments --aid 1",
+      "expected": "包含评论列表数据",
+      "method": "GET",
+      "category": "readonly",
+      "description": "查询文章评论列表"
+    },
+    {
+      "id": "TC-06",
+      "name": "list-messages",
+      "command": "python3 scripts/blog-kimi-test-kit.py list-messages",
+      "expected": "包含留言列表数据",
+      "method": "GET",
+      "category": "readonly",
+      "description": "查询留言列表"
+    },
+    {
+      "id": "TC-07",
+      "name": "list-moods",
+      "command": "python3 scripts/blog-kimi-test-kit.py list-moods",
+      "expected": "包含说说列表数据",
+      "method": "GET",
+      "category": "readonly",
+      "description": "查询说说列表"
+    },
+    {
+      "id": "TC-08",
+      "name": "list-uploads",
+      "command": "python3 scripts/blog-kimi-test-kit.py list-uploads",
+      "expected": "包含上传文件列表数据",
+      "method": "GET",
+      "category": "readonly",
+      "description": "查询上传文件列表"
+    },
+    {
+      "id": "TC-09",
+      "name": "top-articles",
+      "command": "python3 scripts/blog-kimi-test-kit.py top-articles --limit 5",
+      "expected": "包含热门文章排行数据",
+      "method": "GET",
+      "category": "readonly",
+      "description": "查询热门文章排行"
+    },
+    {
+      "id": "TC-10",
+      "name": "create-article",
+      "command": "python3 scripts/blog-kimi-test-kit.py create-article --title 'test-title' --content 'test-content'",
+      "expected": "创建成功，返回文章 ID",
+      "method": "POST",
+      "category": "mutable",
+      "description": "创建新文章",
+      "cleanup": "执行 delete-article 删除刚创建的测试文章（从返回 JSON 中提取 article_id）"
+    },
+    {
+      "id": "TC-11",
+      "name": "capability-list",
+      "command": "python3 scripts/blog-kimi-test-kit.py capability-list",
+      "expected": "列出所有能力项",
+      "method": "GET",
+      "category": "readonly",
+      "description": "列出本 skill 所有能力项"
+    }
+  ],
+  "env_vars_required": ["BLOG_KIMI_TEST_KIT_BASE_URL（API 地址）"],
+  "notes": "无认证模式，凭据和 base_url 从环境变量或 .project-info/ 下 JSON 配置文件获取"
+}

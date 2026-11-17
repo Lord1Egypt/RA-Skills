@@ -1,0 +1,27 @@
+{
+  "slug": "loop-builder",
+  "title": "Loop Builder",
+  "category": "engineering",
+  "summary": "Turn a loosely described task into a controllable Agent Loop with evidence gates, feedback signals, stopping rules, and explicit human decisions.",
+  "keywords": [
+    "agent loop",
+    "loop engineering",
+    "human in the loop",
+    "workflow design",
+    "stopping rules",
+    "verification"
+  ],
+  "user_needs": [
+    "decide whether a task should become an Agent Loop",
+    "turn a rough task into a reusable Codex prompt or Loop package",
+    "define feedback signals, iteration limits, and circuit breakers",
+    "preserve human approval for risky or irreversible actions",
+    "model a reusable Loop Agent or Skill before generating it"
+  ],
+  "source_dir": "skills/engineering/loop-builder",
+  "entry": "SKILL.md",
+  "public_language": "en",
+  "package_strategy": "on-demand",
+  "package_format": "skill",
+  "status": "ready"
+}

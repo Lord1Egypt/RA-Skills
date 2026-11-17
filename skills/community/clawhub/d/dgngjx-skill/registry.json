@@ -1,0 +1,139 @@
+{
+  "version": "4.1.0",
+  "total_tools": 49,
+  "packs": {
+    "core": {"name": "核心包", "description": "默认加载：数据换算/文本/教育/开发/实用/系统工具", "default": true},
+    "ent": {"name": "娱乐包", "description": "娱乐/生活模块（笑话/壁纸/BMI/番茄钟）", "default": false},
+    "media": {"name": "媒体包", "description": "图片/PDF/视频处理（需 Pillow/PyPDF2/FFmpeg）", "default": false},
+    "ai": {"name": "AI包", "description": "AI 办公（会议纪要 ASR 三级降级）", "default": false}
+  },
+  "modules": [
+    {
+      "id": "calc",
+      "name": "数据换算",
+      "pack": "core",
+      "tools": {
+        "calc.mortgage":   {"description": "房贷计算器", "deps": [], "safety": "safe"},
+        "calc.insurance":  {"description": "五险一金计算器（13城市查表累进）", "deps": [], "safety": "safe"},
+        "calc.date":       {"description": "日期计算器", "deps": [], "safety": "safe"},
+        "calc.unit":       {"description": "单位换算器（28种）", "deps": [], "safety": "safe"},
+        "calc.exchange":   {"description": "汇率查询（72h TTL时效治理）", "deps": [], "safety": "safe"}
+      }
+    },
+    {
+      "id": "text",
+      "name": "文本工具",
+      "pack": "core",
+      "tools": {
+        "text.stats":      {"description": "文本统计", "deps": [], "safety": "safe"},
+        "text.encode":     {"description": "编码转换（Base64/URL/Unicode/进制）", "deps": [], "safety": "safe"},
+        "text.hash":       {"description": "哈希校验（MD5/SHA1/SHA256）", "deps": [], "safety": "safe"},
+        "text.wordfreq":   {"description": "词频统计", "deps": ["jieba"], "safety": "safe"},
+        "text.diff":       {"description": "文本差异对比", "deps": [], "safety": "safe"}
+      }
+    },
+    {
+      "id": "edu",
+      "name": "教育工具",
+      "pack": "core",
+      "tools": {
+        "edu.knowledge":   {"description": "知识查询", "deps": [], "safety": "safe"}
+      }
+    },
+    {
+      "id": "life",
+      "name": "生活娱乐",
+      "pack": "ent",
+      "tools": {
+        "life.entertain":  {"description": "娱乐小工具", "deps": [], "safety": "safe"},
+        "life.wallpaper":  {"description": "壁纸中心", "deps": [], "safety": "safe"},
+        "life.bmi":        {"description": "BMI计算器", "deps": [], "safety": "safe"},
+        "life.pomodoro":   {"description": "番茄钟", "deps": [], "safety": "safe"}
+      }
+    },
+    {
+      "id": "dev",
+      "name": "开发工具",
+      "pack": "core",
+      "tools": {
+        "dev.json":        {"description": "JSON工具", "deps": [], "safety": "safe"},
+        "dev.http":        {"description": "HTTP接口测试", "deps": [], "safety": "safe"},
+        "dev.token":       {"description": "Token计算器", "deps": [], "safety": "safe"},
+        "dev.photoshop":   {"description": "在线Photoshop", "deps": ["Pillow"], "safety": "safe"},
+        "dev.mermaid":     {"description": "Mermaid时序图", "deps": [], "safety": "safe"}
+      }
+    },
+    {
+      "id": "img",
+      "name": "图片工具",
+      "pack": "media",
+      "tools": {
+        "img.compress":    {"description": "图片压缩", "deps": ["Pillow"], "safety": "safe"},
+        "img.convert":     {"description": "格式转换（JPEG/PNG/WebP/BMP）", "deps": ["Pillow"], "safety": "safe"},
+        "img.removebg":    {"description": "人像抠图", "deps": ["rembg"], "safety": "safe"},
+        "img.idphoto":     {"description": "证件照生成", "deps": ["Pillow"], "safety": "safe"},
+        "img.repair":      {"description": "图片修复", "deps": ["Pillow"], "safety": "safe"}
+      }
+    },
+    {
+      "id": "pdf",
+      "name": "PDF转换",
+      "pack": "media",
+      "tools": {
+        "pdf.merge":       {"description": "PDF合并", "deps": ["PyPDF2"], "safety": "safe"},
+        "pdf.split":       {"description": "PDF拆分", "deps": ["PyPDF2"], "safety": "safe"},
+        "pdf.encrypt":     {"description": "PDF加密/解密", "deps": ["PyPDF2"], "safety": "safe"}
+      }
+    },
+    {
+      "id": "video",
+      "name": "视频工具",
+      "pack": "media",
+      "tools": {
+        "video.convert":   {"description": "视频格式转换", "deps": ["ffmpeg"], "safety": "safe"},
+        "video.edit":      {"description": "视频编辑（6大功能）", "deps": ["ffmpeg"], "safety": "safe"},
+        "video.record":    {"description": "在线录屏", "deps": [], "safety": "safe"}
+      }
+    },
+    {
+      "id": "util",
+      "name": "实用小工具",
+      "pack": "core",
+      "tools": {
+        "util.qrcode":     {"description": "二维码生成", "deps": [], "safety": "safe"},
+        "util.password":   {"description": "密码生成", "deps": [], "safety": "safe"},
+        "util.regex":      {"description": "正则测试", "deps": [], "safety": "safe"},
+        "util.hashfile":   {"description": "文件哈希校验", "deps": [], "safety": "safe"},
+        "util.uuid":       {"description": "UUID生成器", "deps": [], "safety": "safe"},
+        "util.timestamp":  {"description": "时间戳转换", "deps": [], "safety": "safe"},
+        "util.ip":         {"description": "IP工具", "deps": [], "safety": "safe"},
+        "util.csv":        {"description": "CSV查看器", "deps": [], "safety": "safe"},
+        "util.pwdcheck":   {"description": "密码强度检测", "deps": [], "safety": "safe"},
+        "util.color":      {"description": "颜色值转换", "deps": [], "safety": "safe"},
+        "util.random":     {"description": "随机数生成器", "deps": [], "safety": "safe"}
+      }
+    },
+    {
+      "id": "sys",
+      "name": "系统工具",
+      "pack": "core",
+      "tools": {
+        "sys.monitor":     {"description": "系统资源监控", "deps": [], "safety": "safe"},
+        "sys.rename":      {"description": "批量文件重命名", "deps": [], "safety": "warn"},
+        "sys.md2html":     {"description": "Markdown转HTML", "deps": [], "safety": "safe"},
+        "sys.history":     {"description": "历史记录系统", "deps": [], "safety": "safe"},
+        "sys.config":      {"description": "配置持久化", "deps": [], "safety": "safe"},
+        "sys.report":      {"description": "周报/月报生成", "deps": [], "safety": "safe"}
+      }
+    },
+    {
+      "id": "ai",
+      "name": "AI办公",
+      "pack": "ai",
+      "tools": {
+        "ai.meeting":      {"description": "会议纪要生成器（ASR三级降级）", "deps": ["whisper"], "safety": "safe"}
+      }
+    }
+  ],
+  "tools": {}
+}

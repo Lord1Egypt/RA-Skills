@@ -1,0 +1,4 @@
+interface:
+  display_name: "eKYC Suite AI Guardian"
+  short_description: "KYC face liveness Skill for face liveness detection, KYC liveness detection Skill, replay detection Skill, and deepfake screening"
+  default_prompt: "Use eKYC Suite AI Guardian for KYC face liveness, KYC face liveness Skill searches, face liveness detection, KYC liveness detection, KYC liveness detection Skill searches, replay detection, replay detection Skill searches, or deepfake screening from a consented face photo or video."

@@ -1,0 +1,3 @@
+#!/bin/sh
+[ "$1" = "-h" ] && { printf 'h-only - does things\n\nUsage: h-only [cmd]\n'; exit 0; }
+exit 1

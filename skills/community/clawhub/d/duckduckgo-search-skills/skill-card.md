@@ -1,45 +1,60 @@
-## Description: <br>
-Search the web using DuckDuckGo with no API key, supporting instant-answer and HTML search modes as a privacy-focused search alternative. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search the web using DuckDuckGo with no API key, supporting instant-answer and HTML search modes as a privacy-focused search alternative.
 
-## Publisher: <br>
-[cscsxx606](https://clawhub.ai/user/cscsxx606) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cscsxx606](https://clawhub.ai/user/cscsxx606)
 
-## Use Case: <br>
-Developers and agent users use this skill to run lightweight DuckDuckGo searches from a command line or agent workflow and receive result titles, URLs, snippets, and optional summaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search terms are sent to DuckDuckGo and may expose sensitive queries. <br>
-Mitigation: Avoid searching for secrets, credentials, private internal URLs, personal data, or other confidential information. <br>
-Risk: Returned titles, snippets, URLs, and fetched page content are untrusted web content. <br>
-Mitigation: Review results before using them in downstream agent actions, citations, commands, or generated decisions. <br>
-Risk: DuckDuckGo HTML scraping can be rate limited or blocked, and parsed results may be incomplete. <br>
-Mitigation: Use modest request rates, retry later after 403 errors, and prefer a supported search API for production workflows that require reliability. <br>
+## Use Case:
 
+Developers and agents use this skill to run lightweight DuckDuckGo web searches, retrieve result titles, URLs, and snippets, and optionally return JSON or a short key-information summary without configuring an API key.
 
-## Reference(s): <br>
-- [DuckDuckGo](https://duckduckgo.com) <br>
-- [DuckDuckGo Instant Answer API](https://api.duckduckgo.com/) <br>
-- [DuckDuckGo HTML Search Endpoint](https://html.duckduckgo.com/html/) <br>
-- [ClawHub Skill Page](https://clawhub.ai/cscsxx606/duckduckgo-search-skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, shell commands, guidance] <br>
-**Output Format:** [Plain text search results or JSON with result objects and optional summary text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs include titles, URLs, snippets, source labels, and optional summary fields.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Search terms are sent to DuckDuckGo.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not use the skill for secrets, private internal identifiers, sensitive prompts, or other confidential queries.
+
+Risk: HTML search mode depends on DuckDuckGo public endpoints and may be rate limited or blocked.
+
+Mitigation: Use modest request rates, retry later after 403 responses, and prefer a supported search API for production reliability requirements.
+
+Risk: The --fetch-content option is documented as nonfunctional in this version.
+
+Mitigation: Do not rely on webpage content fetching when planning workflows; use the returned result titles, URLs, snippets, JSON, and summaries only.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cscsxx606/skills/duckduckgo-search-skills)
+- [DuckDuckGo](https://duckduckgo.com)
+- [DuckDuckGo Instant Answer API endpoint](https://api.duckduckgo.com/)
+- [DuckDuckGo HTML search endpoint](https://html.duckduckgo.com/html/)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, guidance]
+
+**Output Format:** [Plain text search result list or JSON object with results and optional summary.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Result count defaults to 5; HTML mode may be rate limited; --fetch-content is documented as nonfunctional in this version.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

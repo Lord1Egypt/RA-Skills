@@ -1,39 +1,57 @@
-## Description: <br>
-A GPU monitoring skill for AI compute sales teams that ingests customer GPU usage data, generates usage and efficiency reports, and identifies cost optimization, anomaly, and capacity planning signals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI compute sales teams use this skill to collect customer GPU usage data, generate usage and efficiency reports, and identify optimization opportunities, anomaly alerts, cost trends, capacity needs, and churn-risk signals.
 
-## Publisher: <br>
-[dashiming](https://clawhub.ai/user/dashiming) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dashiming](https://clawhub.ai/user/dashiming)
 
-## Use Case: <br>
-Sales and customer success teams use this skill to prepare weekly customer GPU usage reviews, surface efficiency and cost issues, and support renewal or upsell conversations with structured reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Imported customer GPU metrics may be written to the default metrics database even when a user chooses another database path. <br>
-Mitigation: Review or fix the import path behavior before using real customer data; until then, avoid confidential datasets, back up the default metrics file, and minimize or anonymize customer identifiers. <br>
+## Use Case:
 
+External sales, customer success, and AI infrastructure teams use this skill to turn customer GPU telemetry into weekly or monthly utilization, cost, alert, optimization, and capacity-planning reports. It supports review preparation, renewal discussions, upsell analysis, and proactive intervention for at-risk customers.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dashiming/pans-gpu-monitor) <br>
-- [Publisher profile](https://clawhub.ai/user/dashiming) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown reports and terminal text output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can generate weekly and monthly GPU usage summaries, anomaly alerts, optimization suggestions, and capacity planning guidance from CSV or JSON metrics.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Customer GPU telemetry is stored in a local metrics database and may contain sensitive operational or customer data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Restrict filesystem permissions for the local data directory, treat exported reports as sensitive, and review data handling before production use.
+
+Risk: The invocation example uses an unpinned npx package command.
+
+Mitigation: Use a pinned ClawHub CLI or package version for production workflows.
+
+Risk: Reports and alerts can be generated from sample data when no matching real telemetry exists.
+
+Mitigation: Remove the sample-data fallback or require an explicit demo mode before relying on generated reports for customer decisions.
+
+## Reference(s):
+
+- [Pans Gpu Monitor on ClawHub](https://clawhub.ai/dashiming/skills/pans-gpu-monitor)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Guidance, Analysis]
+
+**Output Format:** [Markdown reports and terminal text output with tabular metrics, alerts, and recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can import CSV or JSON telemetry and stores local metrics before generating weekly reports, monthly reports, or anomaly alerts.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

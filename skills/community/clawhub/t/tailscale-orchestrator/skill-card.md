@@ -1,43 +1,54 @@
-## Description: <br>
-Manage and monitor a Tailscale network from ClawBot by using the local Tailscale CLI to check status and list connected devices. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill helps an agent check local Tailscale status and list connected tailnet devices by using the host machine's Tailscale CLI.
 
-## Publisher: <br>
-[sahil1005](https://clawhub.ai/user/sahil1005) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[sahil1005](https://clawhub.ai/user/sahil1005)
 
-## Use Case: <br>
-Developers and operators use this skill to inspect Tailscale connection status and connected device details from an agent session without embedding Tailscale API keys in the skill. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can reveal Tailscale device names, Tailscale IP addresses, and online status in chat or logs. <br>
-Mitigation: Use it only in agent sessions and logging environments where exposing tailnet inventory details is acceptable. <br>
-Risk: Future releases could add commands that change network settings, expose services, share devices, or approve access. <br>
-Mitigation: Re-review security findings and behavior before installing or upgrading to a future version. <br>
-Risk: The skill depends on the host Tailscale CLI and the permissions of the user running ClawBot. <br>
-Mitigation: Install and configure the Tailscale CLI on a trusted host and run ClawBot with only the permissions needed for status inspection. <br>
+## Use Case:
 
+Developers and operators use this skill to inspect Tailscale connectivity, local node details, peer counts, and connected device status from an agent session. It is useful when the host already has Tailscale installed, authenticated, and available on PATH.
 
-## Reference(s): <br>
-- [Tailscale CLI Download](https://tailscale.com/download) <br>
-- [ClawHub Skill Page](https://clawhub.ai/sahil1005/tailscale-orchestrator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration guidance] <br>
-**Output Format:** [Plain text summaries and Markdown guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the Tailscale CLI to be installed, configured, and available on the host PATH.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Status output may expose tailnet hostnames, Tailscale IP addresses, and online presence.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in trusted agent environments and avoid sharing generated status output outside the intended operational context.
+
+Risk: The skill depends on the host's existing Tailscale CLI session and permissions.
+
+Mitigation: Confirm the CLI is installed, authenticated to the intended tailnet, and runnable by the ClawBot user before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sahil1005/skills/tailscale-orchestrator)
+- [Tailscale CLI installation](https://tailscale.com/download)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Plain text or Markdown-formatted status summaries derived from Tailscale CLI output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports connection state, local node details, peer count, device names, Tailscale IP addresses, and online status when available.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact SKILL.md says 0.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

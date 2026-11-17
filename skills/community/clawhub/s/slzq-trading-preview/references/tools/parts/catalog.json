@@ -1,0 +1,151 @@
+[
+  {
+    "type": "function",
+    "function": {
+      "name": "get_catalog_goods",
+      "description": "分页获取品种列表及其主力合约与实时行情。返回交易时段、是否有夜盘（nextDayFlag=1 表示有夜盘）、是否主力合约（isPrincipal=1）及当前行情数据。下单前可调用此接口核对合约代码与交易时间。",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "excode": {
+            "type": "string",
+            "description": "可选。交易所代码，如 'SHFE'、'DCE'。传 '__NIGHT__' 筛选所有有夜盘品种。"
+          },
+          "page": {
+            "type": "integer",
+            "description": "页码，默认 1。"
+          },
+          "pageSize": {
+            "type": "integer",
+            "description": "每页条数，默认 20，最大 100。"
+          },
+          "sortType": {
+            "type": "integer",
+            "enum": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "description": "可选。排序方式：1=涨幅，2=跌幅，3=成交量，4=增仓。"
+          },
+          "category": {
+            "type": "string",
+            "description": "可选。按商品分类过滤。"
+          },
+          "productId": {
+            "type": "string",
+            "description": "可选。品种代码，如 'au'、'cu'。与 excode 同传时返回该品种下所有合约。"
+          },
+          "onlyMainInCategory": {
+            "type": "boolean",
+            "description": "可选。与 category 联用，仅返回该分类的主力合约。"
+          },
+          "allContractsByExcode": {
+            "type": "boolean",
+            "description": "可选。与 excode 联用，返回该交易所全部有效合约（而非仅主力合约）。"
+          }
+        },
+        "required": []
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "get_catalog_goods_detail",
+      "description": "获取某商品品种的详细信息，包括完整交易时段、是否支持夜盘（nextDayFlag）及今晚是否排夜盘（calendarNightSessionTonight）。用于查看特定品种的交易时间。",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "excode": {
+            "type": "string",
+            "description": "交易所代码，如 'SHFE'、'DCE'、'CZCE'、'INE'、'CFFEX'。"
+          },
+          "code": {
+            "type": "string",
+            "description": "商品品种代码，如 'au'（黄金）、'cu'（铜）、'ag'（白银）。"
+          }
+        },
+        "required": [
+          "excode",
+          "code"
+        ]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "get_contract_detail",
+      "description": "获取特定期货合约的规格说明。返回是否主力合约（isPrincipal）、合约乘数（volumeMultiple，计算盈亏必须使用）、最小变动价位（priceTick，下单价格须符合此精度）、保证金率、到期日、交割信息及交易时段。对陌生合约下单前建议先调用此接口核对规格。",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "contractCode": {
+            "type": "string",
+            "description": "完整合约代码，如 'au2606'、'cu2506'。"
+          }
+        },
+        "required": [
+          "contractCode"
+        ]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "get_contract_f10",
+      "description": "获取期货合约的东财 F10 扩展信息，包括交割单位、交易单位、报价单位、最小变动价位、交割品级、交割地点、保证金比例等。若该合约不在东财数据库中，eastmoneyDetail 字段为 null。",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "contractCode": {
+            "type": "string",
+            "description": "完整合约代码，如 'au2606'、'cu2506'。"
+          }
+        },
+        "required": [
+          "contractCode"
+        ]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "get_hot_contracts",
+      "description": "获取近 30 分钟成交量排名前 10 的热门期货合约，包含合约乘数、最小变动价位、交易时段、到期日等信息。用于发现当前最活跃、流动性最好的可交易合约。",
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "get_exchanges",
+      "description": "获取所有可用期货交易所列表，按商品数量降序排列。返回交易所代码（SHFE、DCE、CZCE、INE、CFFEX、GFEX）及其商品数量。",
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "get_night_session_today",
+      "description": "查询交易日历层面今晚是否安排了夜盘交易。此结果与品种是否支持夜盘（nextDayFlag）相互独立：两个条件都满足时今晚才实际有夜盘（品种 nextDayFlag=1 且本接口返回 hasNightSessionTonight=true）。",
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      }
+    }
+  }
+]

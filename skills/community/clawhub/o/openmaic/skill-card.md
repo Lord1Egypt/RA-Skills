@@ -1,48 +1,57 @@
-## Description: <br>
-Guided SOP for setting up and using OpenMAIC from OpenClaw, including cloning, startup-mode selection, provider-key configuration, service startup, and classroom generation from requirements or PDFs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides users through setting up OpenMAIC, generating interactive classrooms, and extending its application and SDK.
 
-## Publisher: <br>
-[wyuc](https://clawhub.ai/user/wyuc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wyuc](https://clawhub.ai/user/wyuc)
 
-## Use Case: <br>
-Developers and educators use this skill to guide OpenMAIC setup, hosted or local startup, provider-key configuration, health checks, and classroom generation from requirements or PDFs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Hosted mode and classroom generation may send requirements, parsed PDF content, and an access code to the OpenMAIC hosted service. <br>
-Mitigation: Use hosted mode only when comfortable sending that content to open.maic.chat, keep access codes in local config rather than chat, and use local mode for sensitive materials. <br>
-Risk: Local setup can run clone, install, startup, and API request commands that affect the user's machine or contact external services. <br>
-Mitigation: Review the OpenMAIC repository before approving commands, confirm each state-changing step, and inspect server-side provider configuration before generation. <br>
-Risk: Provider keys and model configuration errors can cause generation failures or accidental use of an unintended provider. <br>
-Mitigation: Store provider keys in local OpenMAIC configuration files, include provider prefixes in model IDs, and correct server-side config rather than using request-time overrides. <br>
+## Use Case:
 
+Educators and creators use this skill to generate interactive classrooms from a brief and optional materials. Developers use it to deploy or customize OpenMAIC and its SDK.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wyuc/openmaic) <br>
-- [Clone Or Reuse Existing Repo](references/clone.md) <br>
-- [Generate Flow](references/generate-flow.md) <br>
-- [Hosted Mode](references/hosted-mode.md) <br>
-- [Provider Keys](references/provider-keys.md) <br>
-- [Startup Modes](references/startup-modes.md) <br>
-- [OpenMAIC hosted service](https://open.maic.chat) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, API calls, Markdown] <br>
-**Output Format:** [Markdown guidance with inline shell commands, configuration examples, API request details, and generated classroom links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user confirmation before state-changing local actions and before reading local PDFs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.3.1 (source: server release evidence) <br>
+Risk: Classroom requirements, uploaded materials, and the Live Demo access code are sent to the OpenMAIC service when using its hosted demo.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the hosted demo only when its handling of those inputs is appropriate; avoid uploading sensitive documents.
+
+Risk: Local setup can install dependencies, start Docker services, and use provider API keys.
+
+Mitigation: Review commands before approval and keep provider keys in local configuration or the web app rather than chat.
+
+## Reference(s):
+
+- [OpenMAIC on ClawHub](https://clawhub.ai/wyuc/skills/openmaic)
+- [OpenMAIC Live Demo](https://open.maic.chat)
+- [Classroom generation flow](references/generate-flow.md)
+- [Provider keys](references/provider-keys.md)
+- [Extending OpenMAIC](references/extend.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown guidance with commands and code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide classroom creation and return a classroom link.]
+
+## Skill Version(s):
+
+0.3.13 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

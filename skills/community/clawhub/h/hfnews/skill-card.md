@@ -1,40 +1,64 @@
-## Description: <br>
-Fetch and filter news from multiple sources with stopwords/blacklist support. Customized for Hubert's interests (IT, Cybersecurity) with political/sports noise filtered out. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetch and filter news from multiple sources with stopwords and blacklist support for IT, cybersecurity, and general news.
 
-## Publisher: <br>
-[huberteff](https://clawhub.ai/user/huberteff) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[huberteff](https://clawhub.ai/user/huberteff)
 
-## Use Case: <br>
-Developers and agent users can use this skill to retrieve concise IT, cybersecurity, and general news headline lists while filtering unwanted topics through a configured blacklist. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill makes web requests to public news sites, which can expose network activity and depends on third-party page or feed availability. <br>
-Mitigation: Install only when this network behavior is acceptable, and run it with normal user privileges. <br>
-Risk: The JavaScript scraper launches Chromium with browser sandboxing disabled. <br>
-Mitigation: Prefer the RSS Python path where practical, keep Chromium and Puppeteer updated, and avoid running the browser path with elevated privileges. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub hfnews Skill Page](https://clawhub.ai/huberteff/hfnews) <br>
-- [ClawHub Publisher Profile: huberteff](https://clawhub.ai/user/huberteff) <br>
+## Use Case:
 
+Agents can use this skill to retrieve grouped headline lists for general, IT, and cybersecurity news while filtering unwanted topics with a blacklist.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands] <br>
-**Output Format:** [Plain-text categorized headline lists with article URLs.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports all categories by default or a single requested category; applies blacklist filtering before returning headlines.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: package.json and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill makes outbound requests to multiple news sites and RSS feeds.
+
+Mitigation: Install only where outbound network access to the listed news sources is acceptable and restrict egress when handling sensitive environments.
+
+Risk: The browser-based fetcher launches Chromium with sandboxing disabled and uses Puppeteer dependencies flagged by the security summary.
+
+Mitigation: Prefer the RSS-based Python script, or require Chromium sandboxing, updated dependencies, and review before trusting the browser fetcher.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/huberteff/skills/hfnews)
+- [Tagesschau](https://www.tagesschau.de/)
+- [FAZ](https://www.faz.net/aktuell/)
+- [WiWo](https://www.wiwo.de/)
+- [Sueddeutsche](https://www.sueddeutsche.de/)
+- [Spiegel](https://www.spiegel.de/)
+- [Mittelbayerische](https://www.mittelbayerische.de/lokales/stadt-regensburg)
+- [Heise](https://www.heise.de/)
+- [Golem](https://www.golem.de/)
+- [Slashdot](https://slashdot.org/)
+- [The Hacker News](https://thehackernews.com/)
+- [BleepingComputer](https://www.bleepingcomputer.com/)
+- [Logbuch Netzpolitik](https://logbuch-netzpolitik.de/)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text grouped by news category with headline titles and URLs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports all categories by default or a single requested category.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

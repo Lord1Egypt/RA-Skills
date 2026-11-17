@@ -1,42 +1,57 @@
-## Description: <br>
-Generates concise Chinese retail sales pitches from a product name, including selling points, usage scenarios, and a gentle purchase prompt. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates short Chinese retail sales pitches from a product name, combining key selling points, a usage scenario, and a gentle purchase prompt.
 
-## Publisher: <br>
-[polo2013](https://clawhub.ai/user/polo2013) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[polo2013](https://clawhub.ai/user/polo2013)
 
-## Use Case: <br>
-Retail staff and sellers use this skill to turn a product name into a short, customer-facing Chinese sales pitch for in-store guidance or product promotion. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated pitches may include inaccurate or misleading customer-facing claims about price, freshness, safety, availability, or product benefits. <br>
-Mitigation: Review each pitch against current product facts and store policy before using it with customers. <br>
-Risk: Broad trigger phrasing may produce sales copy when the user did not intend to activate the skill. <br>
-Mitigation: Use clear activation wording and confirm the product name before relying on the generated pitch. <br>
+## Use Case:
 
+Retail staff, merchants, and agent users can use this skill to draft concise Chinese product pitches for in-store guidance or product promotion. The generated copy is intended to be reviewed against the actual product facts before use.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/polo2013/ym-retail-pitch-skill) <br>
-- [Skill documentation](artifact/SKILL.md) <br>
-- [Prompt instructions](artifact/prompt.txt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [Plain text Chinese retail sales pitch] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Direct 30-50 character pitch output with no explanation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may activate on broad product-introduction requests where the user wanted neutral information instead of sales copy.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm that promotional wording is desired when the request is ambiguous.
+
+Risk: The skill is designed for Chinese retail copy and does not document multilingual behavior.
+
+Mitigation: Use clear language instructions or review output manually when non-Chinese copy is required.
+
+Risk: Generated pitches may include generic claims that do not match a specific product.
+
+Mitigation: Review the copy against product facts and applicable advertising requirements before customer-facing use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/polo2013/skills/ym-retail-pitch-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text]
+
+**Output Format:** [Plain text Chinese sales pitch]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Direct response without explanation; usually 30-50 Chinese characters and structured around selling points, scenario, and a soft purchase prompt.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

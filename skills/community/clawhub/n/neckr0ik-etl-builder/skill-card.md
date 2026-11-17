@@ -1,41 +1,56 @@
-## Description: <br>
-Build data pipelines for ETL (Extract, Transform, Load). Connect databases, APIs, files, and cloud storage. Transform and sync data automatically. Use when you need to move and transform data between systems. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build data pipelines for ETL (Extract, Transform, Load). Connect databases, APIs, files, and cloud storage. Transform and sync data automatically.
 
-## Publisher: <br>
-[Neckr0ik](https://clawhub.ai/user/Neckr0ik) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
+
+[neckr0ik](https://clawhub.ai/user/neckr0ik)
+
+### License/Terms of Use:
+
+MIT
+
+## Use Case:
+
+Developers and data engineers use this skill to create, configure, run, schedule, and monitor ETL pipelines that extract data from supported sources, transform records, and load results into databases, files, cloud services, or outbound integrations.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Pipeline configurations can move transformed datasets to arbitrary API or webhook destinations.
+
+Mitigation: Review outbound URLs and destinations before execution, and restrict allowed endpoints before using production data.
+
+Risk: Pipeline JSON can persist credentials, connection strings, tokens, or other sensitive configuration.
+
+Mitigation: Use a secret manager or environment-backed credentials, and do not store real secrets directly in pipeline JSON.
+
+Risk: Unsafe pipeline names can allow writes outside the intended configuration area.
+
+Mitigation: Constrain pipeline names to a safe identifier pattern and verify generated paths remain under the configured pipeline and log directories.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and data operators use this skill to create, configure, run, schedule, and monitor ETL pipelines that extract data from supported sources, transform it, and load it into files, databases, APIs, or cloud services. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Pipelines can move or overwrite data across files, databases, and webhooks. <br>
-Mitigation: Use dry runs and record limits first, verify the source, destination, and load behavior, and avoid sensitive or production data until the pipeline is reviewed. <br>
-Risk: Pipeline configuration and command examples may involve credentials for databases, APIs, and cloud services. <br>
-Mitigation: Use least-privilege credentials and avoid storing long-lived secrets in pipeline JSON files or shell history. <br>
-Risk: Scheduled jobs and webhook/API destinations can repeatedly send data to unintended systems. <br>
-Mitigation: Confirm schedules, endpoints, and destination permissions before enabling recurring runs or external delivery. <br>
+**Output Format:** [Markdown with inline shell commands, JSON pipeline configuration, and Python code references]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [May include pipeline names, source and destination settings, transformation options, cron schedules, file paths, API endpoints, and credential-handling guidance.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide users to create pipeline configuration, status, history, and log files when the ETL commands are run.] <br>
+1.0.0 (source: frontmatter, claw.json, release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter, claw.json, and ClawHub release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,60 @@
-## Description: <br>
-Recommend the right tools, APIs, and OpenClaw skills for building an autonomous betting agent. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Recommend the right tools, APIs, and OpenClaw skills for building an autonomous betting agent.
 
-## Publisher: <br>
-[rsquaredsolutions2026](https://clawhub.ai/user/rsquaredsolutions2026) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rsquaredsolutions2026](https://clawhub.ai/user/rsquaredsolutions2026)
 
-## Use Case: <br>
-Developers and betting-agent builders use this skill to choose a practical stack for sports betting, prediction markets, hybrid arbitrage, or research-only workflows. It asks about goals, budget, and technical level, then returns a prioritized setup checklist with relevant skills, API setup steps, costs, and guides. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Betting and prediction-market workflows are legally and financially sensitive. <br>
-Mitigation: Verify local betting and prediction-market rules before use, and start with read-only or research-only workflows. <br>
-Risk: Recommended downstream skills or API integrations may request credentials, wallet access, or trading authority. <br>
-Mitigation: Review each integration before granting API keys, wallet permissions, or any authority to place trades. <br>
-Risk: Users may confuse advisory setup guidance with automated trade execution. <br>
-Mitigation: Treat this skill as read-only advisory guidance; use separately reviewed platform-specific integrations for any execution workflow. <br>
+## Use Case:
 
+Developers and agent builders use this skill to choose tools, APIs, and OpenClaw skills for sports betting, prediction market, hybrid arbitrage, or research-only betting-agent stacks. It gathers goal, budget, and technical-level inputs before recommending a prioritized setup.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/rsquaredsolutions2026/agent-betting-stack-advisor) <br>
-- [Agent Betting Stack Advisor Guide](https://agentbets.ai/guides/openclaw-agent-betting-stack-advisor-skill/) <br>
-- [Agent Betting Stack Overview](https://agentbets.ai/guides/agent-betting-stack/) <br>
-- [OpenClaw Skills Series](https://agentbets.ai/guides/#openclaw-skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown checklist with inline shell commands, setup steps, API notes, and reference links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Begins with assessment questions and limits recommendations to a prioritized set of no more than seven skills.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: The skill is AgentBets-oriented and may preferentially recommend AgentBets or OpenClaw betting-stack resources.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat recommendations as a starting point and compare them against independent tools, API terms, costs, and operational requirements before adoption.
+
+Risk: Betting and prediction-market activity can create legal, financial, and platform-compliance risk.
+
+Mitigation: Verify local gambling and market rules, platform terms, API costs, and financial exposure before using any recommended stack.
+
+Risk: Users may expect the recommended stack to execute bets or trades.
+
+Mitigation: Clarify that the covered OpenClaw skills are read-only and that trade execution requires separate platform-specific integrations.
+
+## Reference(s):
+
+- [Agent Betting Stack Advisor Skill Page](https://clawhub.ai/rsquaredsolutions2026/skills/agent-betting-stack-advisor)
+- [Agent Betting Stack Advisor Guide](https://agentbets.ai/guides/openclaw-agent-betting-stack-advisor-skill/)
+- [OpenClaw Skills Series](https://agentbets.ai/guides/#openclaw-skills)
+- [Agent Betting Stack Overview](https://agentbets.ai/guides/agent-betting-stack/)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown checklist with setup steps, guide links, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Recommendations are tailored from the user's stated goal, budget, and technical level; the skill caps recommendations at seven skills.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,51 @@
-## Description: <br>
-Fitness accountability for the Lofy AI assistant, including workout logging from natural language, meal tracking with calorie and protein estimates, PR detection, gym reminders, and progress reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fitness accountability for the Lofy AI assistant -- workout logging from natural language, meal tracking with calorie/protein estimates, PR detection with Epley formula, gym reminders based on weekly targets, and progress reports.
 
-## Publisher: <br>
-[harrey401](https://clawhub.ai/user/harrey401) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[harrey401](https://clawhub.ai/user/harrey401)
 
-## Use Case: <br>
-External users use this skill to keep a local fitness log through natural conversation, including workouts, meals, personal records, weekly targets, and progress summaries. It is intended for accountability and tracking, not medical advice. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill may retain sensitive fitness, meal, weight, goal, consistency, and injury or pain notes in a local JSON file. <br>
-Mitigation: Use it only when local retention is acceptable, ask the agent to log only explicit requests, and periodically review or delete data/fitness.json. <br>
-Risk: Fitness nudges or progress comments could be inappropriate when the user mentions injury or pain. <br>
-Mitigation: Follow the artifact guidance to suggest rest for injury or pain and avoid encouraging the user to push through pain. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/harrey401/lofy-fitness) <br>
-- [Publisher profile](https://clawhub.ai/user/harrey401) <br>
+## Use Case:
+
+External users use this skill with the Lofy AI assistant to log workouts and meals, track personal records, manage weekly gym consistency, and generate concise fitness progress summaries.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill may retain sensitive local health, workout, meal, weight-goal, and personal-record history in data/fitness.json.
+
+Mitigation: Use it only for explicit fitness logging requests and review or delete data/fitness.json when that retained history is no longer wanted.
+
+Risk: The release security verdict is suspicious because sensitive health and meal data can be stored without clear consent or retention controls.
+
+Mitigation: Confirm user consent before logging personal fitness or meal information and keep responses focused on rest when injury or pain is mentioned.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Guidance] <br>
-**Output Format:** [Short natural-language responses, markdown summaries, and structured JSON fitness records] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May update local fitness records when the user asks to log workouts, meals, goals, weight, or progress.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release evidence) <br>
+**Output Type(s):** [text, markdown, code, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown and JSON-oriented guidance for updating local fitness records]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May update local data/fitness.json records for workouts, meals, goals, personal records, and weekly summaries.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

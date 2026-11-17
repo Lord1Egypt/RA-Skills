@@ -1,47 +1,60 @@
-## Description: <br>
-X Alive helps AI agents operate an authentic X/Twitter presence through organic engagement, trend awareness, deduplication, and safety guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+X Alive helps AI agents maintain an authentic X/Twitter presence through organic engagement, trend awareness, deduplication, safety defaults, and human oversight.
 
-## Publisher: <br>
-[kitakitsune0x](https://clawhub.ai/user/kitakitsune0x) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[kitakitsune0x](https://clawhub.ai/user/kitakitsune0x)
 
-## Use Case: <br>
-External developers and agent operators use this skill to configure an AI agent's X/Twitter identity, engagement loop, posting behavior, mention handling, and safety escalation practices. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent to post and engage publicly on an X/Twitter account. <br>
-Mitigation: Use a dedicated low-privilege X app or token where possible, keep token files private, and require human approval for reputationally sensitive or irreversible actions. <br>
-Risk: Regular background loops can drift into forced posting, repetitive engagement, or account-like automation that feels inauthentic. <br>
-Mitigation: Run loops as check-and-maybe-engage workflows, apply the deduplication rule before posting, and choose silence when nothing relevant is worth saying. <br>
-Risk: Token, ticker, contract-address, scam, or financial mentions can create reputational and compliance risk. <br>
-Mitigation: Ignore or privately escalate crypto and financial mentions, and require explicit human approval before any public response. <br>
-Risk: Mentions and DMs can expose the agent to spam, impersonation, harassment, or attempts to extract private information. <br>
-Mitigation: Default to ignoring DMs and obvious spam, never share private or infrastructure details, and escalate impersonation, threats, money, or legal issues to a human operator. <br>
+## Use Case:
 
+External developers and agent operators use X Alive to configure an AI agent's X/Twitter identity, engagement loop, posting and reply practices, and safety boundaries for public account activity.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kitakitsune0x/x-alive) <br>
-- [X Developer Platform](https://developer.x.com) <br>
-- [xurl CLI](https://github.com/xdevplatform/xurl) <br>
-- [x-research skill](https://github.com/rohunvora/x-research-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline shell commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Agent behavior guidance for X/Twitter posting, replies, monitoring loops, and safety escalation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill enables recurring public posting, replies, quotes, and other account-affecting X/Twitter actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Define explicit operator policies for allowed actions and require human approval for public write actions until the agent is trusted.
+
+Risk: X API keys and bearer tokens can expose the account if stored loosely or shared with unreviewed tools.
+
+Mitigation: Store credentials in a secret manager or restrict environment-file permissions, and pin or audit the x-research dependency before giving it token access.
+
+Risk: Token, ticker, contract-address, money, legal, harassment, impersonation, or viral incidents can create public safety and reputational risk.
+
+Mitigation: Keep the skill's default silence posture for high-risk interactions and route these cases to the human operator before any public response.
+
+## Reference(s):
+
+- [X Developer Platform](https://developer.x.com)
+- [xurl CLI](https://github.com/xdevplatform/xurl)
+- [x-research skill](https://github.com/rohunvora/x-research-skill)
+- [X Alive on ClawHub](https://clawhub.ai/kitakitsune0x/skills/x-alive)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires X API credentials and operator-defined policies before public account actions.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

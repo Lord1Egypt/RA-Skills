@@ -1,38 +1,54 @@
-## Description: <br>
-Use this tiny demo skill to verify that a ClawHub skill can be published, installed, and invoked; it returns a short confirmation message and optionally echoes a user-provided phrase. <br>
+## Description:
 
-This skill is for demonstration purposes and not for production usage. <br>
+Use this tiny demo skill to verify that a ClawHub skill can be published, installed, and invoked; it returns a short confirmation message and optionally echoes a user-provided phrase.
 
-## Publisher: <br>
-[colifire](https://clawhub.ai/user/colifire) <br>
+This skill is for demonstration purposes and not for production usage.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[colifire](https://clawhub.ai/user/colifire)
 
-## Use Case: <br>
-Developers and release maintainers use this skill to smoke-test ClawHub publishing, installation, and invocation flows with a concise confirmation response. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can echo user-provided text and may be invoked implicitly for related test prompts. <br>
-Mitigation: Avoid giving it secrets or sensitive phrases to repeat, and review the echoed response before sharing it. <br>
+## Use Case:
 
+Developers and skill publishers use this skill to smoke test ClawHub publishing, installation, and invocation behavior by confirming the skill is active and optionally echoing a short phrase.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/colifire/clawhub-demo-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Guidance] <br>
-**Output Format:** [Plain text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns one concise sentence, does not call external services, and does not create files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: frontmatter and server release evidence) <br>
+Risk: Implicit invocation is enabled, so the skill may activate without an explicit skill mention in some agent contexts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the skill scope narrow, preserve the no-external-services and no-file-creation behavior, or disable implicit invocation in future versions if the behavior expands.
+
+Risk: The release is quarantined for low quality and requires moderation review before listing.
+
+Mitigation: Complete moderation review before public listing and confirm the skill remains limited to smoke-test confirmation behavior.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/colifire/skills/clawhub-demo-skill)
+- [Publisher profile](https://clawhub.ai/user/colifire)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Guidance]
+
+**Output Format:** [Plain text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns one concise confirmation sentence and may include one user-provided phrase.]
+
+## Skill Version(s):
+
+0.1.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

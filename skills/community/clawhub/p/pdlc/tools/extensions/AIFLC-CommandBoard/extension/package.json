@@ -1,0 +1,33 @@
+{
+  "name": "aiflc-commandboard",
+  "displayName": "AIFLC CommandBoard",
+  "description": "Interactive command palette — searchable shortcut board for all AI-* family triggers and actions.",
+  "version": "0.3.0",
+  "publisher": "aiflc",
+  "license": "Apache-2.0",
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": ["Other"],
+  "activationEvents": [
+    "onCommand:aiflc-commandboard.open"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "aiflc-commandboard.open",
+        "title": "AIFLC: Open Command Board",
+        "category": "AIFLC"
+      }
+    ]
+  },
+  "scripts": {
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.80.0",
+    "typescript": "^5.0.0"
+  }
+}

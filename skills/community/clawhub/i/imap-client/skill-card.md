@@ -1,49 +1,64 @@
-## Description: <br>
-Read, search, and download email over IMAP from the command line using the `myl` CLI client. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Read, search, and download email over IMAP from the command line using the `myl` CLI client.
 
-## Publisher: <br>
-[aggrrrh](https://clawhub.ai/user/aggrrrh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aggrrrh](https://clawhub.ai/user/aggrrrh)
 
-## Use Case: <br>
-External users, developers, and operators use this skill to let an agent inspect a configured mailbox, search messages, read selected email, and save raw messages or attachments through a read-only IMAP workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires mailbox credentials and can read sensitive email content. <br>
-Mitigation: Use an app-specific password, prefer OpenClaw SecretRef or per-run environment injection, and avoid storing credentials in plaintext files where possible. <br>
-Risk: The IMAP password may briefly be visible in process arguments while the wrapped `myl` command runs. <br>
-Mitigation: Avoid shared multi-user machines for this workflow and run the skill only in an environment where local process visibility is acceptable. <br>
-Risk: Email operations may expose more mailbox content than the user intended or mark messages read when requested. <br>
-Mitigation: Use small result sets by default, summarize long messages instead of dumping full bodies, and pass `--mark-seen` only when the user explicitly asks to mark messages read. <br>
+## Use Case:
 
+Developers, operators, and external users use this skill to let an agent check inboxes, search mailbox contents, read selected messages, and save attachments through a configured read-only IMAP CLI workflow.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/aggrrrh/imap-client) <br>
-- [Authentication & Connection](references/authentication.md) <br>
-- [Installation](references/installation.md) <br>
-- [Operations Reference](references/operations.md) <br>
-- [Recipes](references/recipes.md) <br>
-- [Troubleshooting](references/troubleshooting.md) <br>
-- [myl CLI](https://github.com/pschmitt/myl) <br>
-- [OpenClaw Skills Documentation](https://docs.openclaw.ai/tools/skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance, Files] <br>
-**Output Format:** [Markdown summaries with inline shell commands and file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May save email bodies, raw .eml messages, HTML, or attachments to local files when requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.3 (source: server release metadata) <br>
+Risk: The configured mailbox becomes accessible to the agent while the skill is enabled.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when that access is acceptable, use a narrowly scoped app password, and prefer short-lived environment injection or OpenClaw SecretRef for credentials.
+
+Risk: Mailbox credentials can be exposed through unsafe argument forwarding or process inspection while the IMAP client runs.
+
+Mitigation: Avoid shared or monitored machines and do not allow user-supplied connection or authentication flags until the wrapper validates or rejects them.
+
+Risk: The skill depends on the third-party `myl` package for mailbox access.
+
+Mitigation: Pin or review the `myl` dependency before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aggrrrh/skills/imap-client)
+- [Authentication and connection](references/authentication.md)
+- [Installation](references/installation.md)
+- [Operations](references/operations.md)
+- [Recipes](references/recipes.md)
+- [Troubleshooting](references/troubleshooting.md)
+- [myl IMAP CLI](https://github.com/pschmitt/myl)
+- [OpenClaw skills documentation](https://docs.openclaw.ai/tools/skills)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown summaries with inline shell commands, configuration snippets, and local file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local .eml, .html, or attachment files when the user asks to save message content.]
+
+## Skill Version(s):
+
+0.1.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

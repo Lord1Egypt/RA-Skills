@@ -1,0 +1,13 @@
+# Competitor Pricing Analysis - starting point
+# Copy this file, replace every empty value with your own data, keep the field names.
+vendor,plan_name,price_usd,billing_basis,price_per_unit,included_units,overage_usd_per_unit,months_committed,setup_fee_usd,support_level,captured_on,source_note
+vendor-a,plan-a,0,monthly per seat,0,0,0,0,0,email only,,
+vendor-a,plan-b,0,monthly per seat,0,0,0,12,0,email and chat,,
+vendor-b,plan-a,0,monthly per account,0,0,0,0,0,self-serve,,
+vendor-b,plan-b,0,annual per account,0,0,0,12,0,priority support,,
+vendor-c,plan-a,0,annual per account,0,0,0,24,0,named contact,,
+vendor-c,plan-b,0,custom contract,0,0,0,0,0,account team,,
+vendor-d,plan-a,0,monthly per seat,0,0,0,0,0,email only,,
+vendor-d,plan-b,0,monthly per seat,0,0,0,12,0,email and chat,,
+vendor-e,plan-a,0,monthly per account,0,0,0,0,0,self-serve,,
+vendor-e,plan-b,0,annual per account,0,0,0,12,0,priority support,,

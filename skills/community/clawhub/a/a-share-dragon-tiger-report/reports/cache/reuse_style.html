@@ -1,0 +1,49 @@
+<style>
+:root{--navy:#002B5C;--navy2:#0B3E77;--gold:#C5A572;--goldl:#E8DCC4;--ink:#1A1A1A;--ink2:#404850;--ink3:#6B7480;--line:#DCE1E7;--bg2:#F5F7FA;--bg3:#EDF1F6;--bad:#B03A2E;--badbg:#FBF1EF;--ok:#1F5C8B;--okbg:#EFF4F9;--warn:#8A6F3D;--warnbg:#FCFAF6}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei",system-ui,sans-serif;color:var(--ink);background:#fff;line-height:1.75;font-size:15px;-webkit-font-smoothing:antialiased}
+.page{max-width:1000px;margin:0 auto;padding:40px 34px 64px}
+.cover{border-top:6px solid var(--navy);padding:34px 0 28px;position:relative}
+.cover:after{content:"";position:absolute;left:0;bottom:0;width:100%;height:1px;background:var(--line)}
+.kicker{font-size:12px;letter-spacing:.22em;color:var(--gold);font-weight:700;margin-bottom:13px}
+h1{font-size:29px;line-height:1.32;color:var(--navy);font-weight:800}
+h1 .sub{display:block;font-size:15px;font-weight:500;color:var(--ink3);margin-top:9px;letter-spacing:.04em}
+.verdict{margin-top:20px;background:var(--badbg);border-left:5px solid var(--bad);padding:16px 20px;border-radius:0 3px 3px 0}
+.verdict .big{font-size:19px;font-weight:800;color:var(--bad);margin-bottom:6px}
+.verdict p{color:var(--ink2);margin:4px 0}
+h2{font-size:18.5px;color:var(--navy);font-weight:700;margin:42px 0 15px;padding-left:13px;border-left:4px solid var(--gold);line-height:1.4}
+h2 .n{font-size:12px;color:var(--gold);font-weight:700;letter-spacing:.16em;display:block;margin-bottom:3px}
+h3{font-size:15px;color:var(--navy2);font-weight:700;margin:24px 0 9px}
+p{margin:9px 0;color:var(--ink2)}
+ul,ol{margin:9px 0 9px 20px;color:var(--ink2)}li{margin:5px 0}li::marker{color:var(--gold);font-weight:700}
+strong{color:var(--ink);font-weight:700}
+em{font-style:normal;background:linear-gradient(transparent 62%,var(--goldl) 62%);padding:0 1px}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.5px}
+th{background:var(--navy);color:#fff;font-weight:600;text-align:left;padding:9px 11px;font-size:13px}
+td{border-bottom:1px solid var(--line);padding:9px 11px;vertical-align:top;color:var(--ink2)}
+tr:nth-child(even) td{background:#FAFBFC}
+td.hi{color:var(--ink);font-weight:600}
+td.k{color:var(--navy);font-weight:700;white-space:nowrap}
+.ok{color:var(--ok);font-weight:700;white-space:nowrap}
+.no{color:var(--bad);font-weight:700;white-space:nowrap}
+.half{color:var(--warn);font-weight:700;white-space:nowrap}
+.card{background:var(--bg2);border:1px solid var(--line);border-radius:3px;padding:16px 18px;margin:14px 0}
+.callout{border-left:4px solid var(--navy);background:var(--bg3);padding:14px 18px;margin:16px 0;border-radius:0 3px 3px 0}
+.callout.warn{border-left-color:var(--bad);background:var(--badbg)}
+.callout.gold{border-left-color:var(--gold);background:var(--warnbg)}
+.callout .t{font-weight:800;color:var(--navy);font-size:13.5px;margin-bottom:5px}
+.callout.warn .t{color:var(--bad)}
+.callout.gold .t{color:var(--warn)}
+.two{display:flex;gap:14px;flex-wrap:wrap;margin:14px 0}
+.two>div{flex:1 1 300px;border:1px solid var(--line);border-radius:3px;overflow:hidden}
+.two .hd{background:var(--navy);color:#fff;padding:9px 14px;font-weight:700;font-size:13.5px;display:flex;justify-content:space-between;align-items:baseline}
+.two .hd span{font-size:12px;font-weight:500;color:var(--goldl)}
+.two .bd{padding:12px 14px;font-size:13.5px;color:var(--ink2)}
+.two .bd b{color:var(--ink)}
+.bar{height:9px;background:var(--bg3);border-radius:2px;overflow:hidden;margin:3px 0 8px}
+.bar i{display:block;height:100%;background:var(--navy)}
+.foot{margin-top:50px;padding-top:20px;border-top:2px solid var(--navy);font-size:12.5px;color:var(--ink3);line-height:1.7}
+.foot strong{color:var(--navy)}
+@media print{@page{size:A4;margin:14mm 13mm}body{font-size:10.5pt;line-height:1.6}.page{max-width:none;padding:0}h2{margin-top:18pt;page-break-after:avoid}h3{page-break-after:avoid}table,.card,.callout,.two{page-break-inside:avoid}}
+@media (max-width:640px){.page{padding:22px 16px 44px}h1{font-size:22px}}
+</style>

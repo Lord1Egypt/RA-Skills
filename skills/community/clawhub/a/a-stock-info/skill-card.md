@@ -1,39 +1,59 @@
-## Description: <br>
-基于qgdata API的A股分钟级数据查询服务。提供实时股价、分钟K线、分时数据等专业数据。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Stock Info queries A-share minute-level market data through the qgdata API, with realtime quote and trade-detail commands currently represented as unfinished placeholders.
 
-## Publisher: <br>
-[Listolany](https://clawhub.ai/user/Listolany) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[listolany](https://clawhub.ai/user/listolany)
 
-## Use Case: <br>
-Developers and trading workflow builders use this skill to query A-share minute K-line data and related qgdata-backed stock information from an agent workflow. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The security summary reports that setup documentation includes a concrete QGDATA_TOKEN example, which is unsafe credential handling. <br>
-Mitigation: Use a separately issued token stored outside version control, ignore any bundled token value, and ask the publisher to replace the example with a placeholder and rotate any exposed credential. <br>
-Risk: The skill calls an external qgdata service using user-supplied stock symbols and query parameters. <br>
-Mitigation: Review commands before execution, provide only intended market symbols and fields, and keep API credentials scoped to the minimum required access. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [A Stock Info on ClawHub](https://clawhub.ai/Listolany/a-stock-info) <br>
+## Use Case:
 
+External developers and quantitative analysts use this skill to run qgdata-backed A-share minute K-line queries from an agent workflow. It is appropriate for data lookup and analysis support, not unsupervised trading decisions.
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON query output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3, qgdata, pandas, and a user-provided QGDATA_TOKEN.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The documentation includes a real-looking QGDATA_TOKEN and suggests storing credentials in a plaintext .env file.
+
+Mitigation: Use a user-owned QGDATA_TOKEN, rotate any copied example token, prefer environment injection, and lock down permissions for any local credential file.
+
+Risk: Realtime quote and trade-detail commands are advertised, but the security evidence says those capabilities appear unfinished.
+
+Mitigation: Validate the command output before relying on it and treat minute-level K-line queries as the primary working capability.
+
+Risk: The skill handles market data that could influence financial decisions.
+
+Mitigation: Use the output for data retrieval and analysis support only, with human review and independent verification before trading or investment action.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/listolany/skills/a-stock-info)
+- [Publisher profile](https://clawhub.ai/user/listolany)
+- [Artifact skill definition](artifact/SKILL.md)
+- [Artifact query script](artifact/scripts/astock_query.py)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, JSON, Configuration, Guidance]
+
+**Output Format:** [JSON responses from a Python command-line script, with setup and usage guidance in Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and QGDATA_TOKEN; qgdata and pandas must be installed for the script examples to run.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata and artifact SKILL.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

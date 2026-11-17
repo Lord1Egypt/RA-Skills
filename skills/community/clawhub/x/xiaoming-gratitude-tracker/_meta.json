@@ -1,6 +1,1 @@
-{
-  "ownerId": "kn7c3kgfvnhefjww9yw5h6n7zx83wgtx",
-  "slug": "xiaoming-gratitude-tracker",
-  "version": "1.0.0",
-  "publishedAt": 1776454200357
-}
+{"name":"gratitude-tracker","version":"1.0.0","author":"小鸣 🦞","tags":["gratitude","journal","mindfulness","wellness"],"requires":{"bins":["curl"]}}

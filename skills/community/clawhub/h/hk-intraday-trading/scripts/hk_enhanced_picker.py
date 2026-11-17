@@ -330,8 +330,7 @@ class HKEnhancedPicker:
                     message_text += f"  评分: {s['score']}/100 | 建议: {s['action']}\n\n"
             
             # 使用OpenClaw CLI发送到飞书
-            feishu_user_id = os.getenv("FEISHU_USER_ID", "ou_eb6695d143b4010149cbf8de7f0e39bd")
-            cmd = f"openclaw message send --channel feishu --target {feishu_user_id} --message {shlex.quote(message_text)}"
+            cmd = f"openclaw message send --channel feishu --target {YOUR_FEISHU_USER_ID} --message {shlex.quote(message_text)}"
             result = subprocess.run(cmd, shell=True, capture_output=True, text=True, timeout=30)
             
             if result.returncode == 0:

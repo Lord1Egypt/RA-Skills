@@ -3,7 +3,7 @@ name: parcel-coupon
 display_name: 快递优惠券-支持顺丰、中通、圆通、韵达、申通、菜鸟、同城配送，件件优惠
 description: 获取快递优惠券，支持顺丰、中通、圆通、韵达、申通、菜鸟等。返回领取链接和二维码图片，用户可点击链接或扫描二维码在微信中领取优惠。
 english_description: Call parcel/courier coupon API to fetch one-stop logistics service coupons, including smart shipping and smart price matching. Returns coupon links and QR code images for users to redeem via WeChat.
-version: 1.0.1
+version: 2.0.2
 author: moooai
 permissions: 网络访问权限（调用快递优惠券API）
 homepage: https://github.com/moooai/parcel-coupon
@@ -18,7 +18,7 @@ homepage: https://github.com/moooai/parcel-coupon
 ## Quick Start
 
 1. 调用API: `GET https://agskills.moontai.top/coupon/parcel`
-2. 解析返回的JSON数据，包含4个主要字段
+2. 解析返回的JSON数组（每项含4个主要字段，末项为「更多优惠券」入口）
 3. 展示优惠券标题、链接和二维码
 4. **重要**: coupon_url建议在微信中打开，或使用微信扫描二维码图片
 
@@ -36,22 +36,30 @@ homepage: https://github.com/moooai/parcel-coupon
 ### 响应数据结构
 
 ```json
-{
-  "title": "快递一站式服务，智能寄件，智能匹配价格；单单享优惠，件件有折扣",
-  "coupon_url": "https://open.cdyunzhanxinxi.com/link/100058569b79be0bd2561000406SEVGA",
-  "coupon_qrcode_img_url": "https://moontai-static.oss-cn-shenzhen.aliyuncs.com/coupon-parcel.png",
-  "guideline": "点击链接下单(建议用微信打开)，或使用微信扫描二维码下单（单单享优惠）"
-}
+[
+  {
+    "title": "快递一站式服务，智能寄件，智能匹配价格；单单享优惠，件件有折扣",
+    "coupon_url": "https://open.cdyunzhanxinxi.com/link/100058569b79be0bd2561000406SEVGA",
+    "coupon_qrcode_img_url": "https://moontai-static.oss-cn-shenzhen.aliyuncs.com/coupon-parcel.png",
+    "guideline": "点击链接下单(建议用微信打开)，或使用微信扫描二维码下单（单单享优惠）"
+  },
+  {
+    "title": "更多优惠券！（外卖、电影、快递、旅游、打车)",
+    "coupon_h5_qrcode_img_url": "https://moontai-static.oss-cn-shenzhen.aliyuncs.com/qrcode_for_gh.jpg",
+    "guideline": "可以使用微信扫码后领券。关注不迷路，天天领券！"
+  }
+]
 ```
 
 ### 响应字段说明
 
 | 字段路径 | 类型 | 说明 |
 |----------|------|------|
-| title | String | 优惠券标题名称 |
-| coupon_url | String | 优惠券链接URL，**建议在微信中打开** |
-| coupon_qrcode_img_url | String | 优惠券二维码图片URL，**建议使用微信扫码** |
-| guideline | String | 使用说明和领取指南 |
+| [].title | String | 优惠券标题名称 |
+| [].coupon_url | String | 优惠券链接URL，**建议在微信中打开** |
+| [].coupon_qrcode_img_url | String | 优惠券二维码图片URL，**建议使用微信扫码** |
+| [].coupon_h5_qrcode_img_url | String | 公众号二维码图片URL（仅「更多优惠券」入口项有，微信扫码领全品类券） |
+| [].guideline | String | 使用说明和领取指南 |
 
 ## 任务类型
 
@@ -107,14 +115,14 @@ homepage: https://github.com/moooai/parcel-coupon
 **处理流程:**
 1. 调用 GET https://agskills.moontai.top/coupon/parcel
 2. 解析返回的JSON数据
-3. 展示优惠券标题、链接和二维码
+3. 按顺序展示每项优惠券的标题、链接和二维码
 4. 提示用户在微信中打开链接或扫描二维码
 
 **输出格式:**
 ```
 【快递优惠券】
 
-标题: 快递一站式服务，智能寄件，智能匹配价格；单单享优惠，件件有折扣
+1. 快递一站式服务，智能寄件，智能匹配价格；单单享优惠，件件有折扣
 
 优惠券链接: https://open.cdyunzhanxinxi.com/link/100058569b79be0bd2561000406SEVGA
 （建议用微信打开）
@@ -123,6 +131,12 @@ homepage: https://github.com/moooai/parcel-coupon
 （使用微信扫描二维码下单，单单享优惠）
 
 使用说明: 点击链接下单(建议用微信打开)，或使用微信扫描二维码下单（单单享优惠）
+
+【更多优惠券】
+外卖、电影、快递、旅游、打车等全品类券
+
+二维码图片: https://moontai-static.oss-cn-shenzhen.aliyuncs.com/qrcode_for_gh.jpg
+（使用微信扫描二维码领券，关注不迷路，天天领券）
 ```
 
 ### 示例2: 用户询问寄件优惠

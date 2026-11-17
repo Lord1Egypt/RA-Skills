@@ -1,43 +1,62 @@
-## Description: <br>
-Analyze ChatGPT conversation exports to discover cognitive archetypes and optimize AI-human communication patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze ChatGPT conversation exports to discover cognitive archetypes, optimize AI-human communication patterns, and enable personalized agent interactions based on detected user profiles.
 
-## Publisher: <br>
-[sebastianffx](https://clawhub.ai/user/sebastianffx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[sebastianffx](https://clawhub.ai/user/sebastianffx)
 
-## Use Case: <br>
-Developers and agent users use this skill to analyze local ChatGPT exports, generate cognitive profile files, and adapt agent instructions to their observed communication patterns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: ChatGPT exports and generated cognitive profiles can contain sensitive personal or work information. <br>
-Mitigation: Run analysis locally, keep exports and profiles out of shared repositories, and redact or sample data where possible. <br>
-Risk: Profile text copied into agent instruction files can expose personal communication patterns or misleading recommendations. <br>
-Mitigation: Review generated profile content before adding it to SOUL.md, AGENTS.md, or other shared agent configuration. <br>
-Risk: The WildChat test script fetches an external dataset when intentionally executed. <br>
-Mitigation: Do not run test_wildchat.py unless external dataset access is intended; use a virtual environment and pin dependencies for reproducibility. <br>
+## Use Case:
 
+Developers and agent users use this skill to analyze exported ChatGPT conversations locally, generate a cognitive profile, and apply selected communication preferences to OpenClaw or other agent configuration files.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/sebastianffx/user-cognitive-profiles) <br>
-- [Methodology](references/methodology.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON profile files, Markdown prompt snippets, console summaries, and optional Markdown comparison reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are local files derived from user-provided conversation exports and should be treated as sensitive.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: The skill processes highly sensitive ChatGPT export data and may produce a derived communication profile.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the analysis locally, keep raw exports private, and review or redact the generated profile before sharing or persisting it.
+
+Risk: Persisting profile details in SOUL.md, AGENTS.md, or another agent file can expose sensitive preferences or conversation-derived traits.
+
+Mitigation: Copy only high-level, non-sensitive communication preferences into persistent agent configuration.
+
+Risk: Custom archetype YAML changes analysis behavior and should not be treated as trusted input by default.
+
+Mitigation: Inspect custom archetype files before use and avoid loading archetype YAML from untrusted sources.
+
+Risk: The WildChat test script can access a remote dataset when run.
+
+Mitigation: Do not run the WildChat test script unless remote dataset access is intentional.
+
+## Reference(s):
+
+- [Methodology](references/methodology.md)
+- [ClawHub Skill Page](https://clawhub.ai/sebastianffx/skills/user-cognitive-profiles)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, JSON, Markdown, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and generated JSON or prompt-snippet files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Runs locally on exported conversation JSON; optional custom archetype YAML and the WildChat test script require extra review before use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,48 +1,59 @@
-## Description: <br>
-Stock Entry Analyzer helps agents analyze stock or fund entry timing with BIAS, moving averages, MACD, RSI, KDJ, volume, fund-flow, and valuation signals, then produce a checklist and composite score. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Stock Entry Analyzer analyzes stock and fund entry timing with BIAS, moving averages, MACD, RSI, KDJ, volume, fund-flow, and valuation checks, then returns an informational scored checklist and report.
 
-## Publisher: <br>
-[liuli4](https://clawhub.ai/user/liuli4) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liuli4](https://clawhub.ai/user/liuli4)
 
-## Use Case: <br>
-Investors, analysts, and agent workflows use this skill to screen single or multiple equities or funds for potential entry conditions and generate concise markdown reports. Its outputs are informational analysis and should not be treated as personalized financial advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Some helper scripts can read a local Eastmoney API key from the OpenClaw vault. <br>
-Mitigation: Review credential access before installation and run only in environments where that credential use is expected. <br>
-Risk: Some scripts can pass the broader process environment to another local data script. <br>
-Mitigation: Run the skill with a minimal environment and avoid exposing unrelated secrets to scheduled or automated runs. <br>
-Risk: Scheduled monitoring could amplify incorrect thresholds, stale market data, or misleading entry signals. <br>
-Mitigation: Keep automated monitoring disabled until credential handling and threshold consistency have been reviewed, and require human review before acting on outputs. <br>
-Risk: The reports may be mistaken for personalized financial advice. <br>
-Mitigation: Present outputs as informational technical analysis and pair them with independent financial review. <br>
+## Use Case:
 
+External ClawHub users use this skill to screen watched stocks or funds and analyze a single symbol for entry timing based on technical indicators and valuation signals. Developers or operators may also run its bundled scripts for scheduled monitoring reports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/liuli4/stock-entry-analyzer) <br>
-- [Publisher profile](https://clawhub.ai/user/liuli4) <br>
-- [Indicator reference](references/indicators.md) <br>
-- [Liu Chenming method reference](references/liu-chenming-method.md) <br>
-- [Scoring rules](references/scoring-rules.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown reports with scores, checklists, tables, and optional shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Depends on current market data and configured data-source skills; conclusions can change as prices and indicators update.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-4.0.0 (source: server release metadata and README; artifact/_meta.json reports 3.1.0) <br>
+Risk: Bundled executable scripts can run local commands, call other finance-data skills, and pass the runtime environment to those tools.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review scripts before execution, keep only needed finance-data integrations, and avoid exposing broad environment variables or credentials to downstream tools.
+
+Risk: Some legacy scripts read an EastMoney credential vault.
+
+Mitigation: Remove or restrict legacy scripts that access finance credentials unless that behavior is required and approved for the deployment environment.
+
+Risk: Buy, sell, or entry outputs may be mistaken for personal financial advice.
+
+Mitigation: Treat the reports as informational technical-analysis summaries and verify investment decisions through independent financial review.
+
+## Reference(s):
+
+- [Indicators](references/indicators.md)
+- [Liu Chenming BIAS Method](references/liu-chenming-method.md)
+- [Scoring Rules](references/scoring-rules.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown reports with scoring tables and checklists; optional JSON or plain text from helper scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are informational stock-analysis summaries and should not be treated as personal financial advice.]
+
+## Skill Version(s):
+
+4.0.0 (source: server release evidence and README changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

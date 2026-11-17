@@ -1,42 +1,58 @@
-## Description: <br>
-Audits programmer resumes for timeline logic issues, weakly quantified project claims, privacy-sensitive contact details, and formatting improvements, then can generate a polished Word resume. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audits Chinese technical resumes for timeline and quantification issues, offers improvement guidance, optionally anonymizes contact details, and generates a formatted DOCX resume.
 
-## Publisher: <br>
-[putao2882-ui](https://clawhub.ai/user/putao2882-ui) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[putao2882-ui](https://clawhub.ai/user/putao2882-ui)
 
-## Use Case: <br>
-Job seekers, resume reviewers, and agents assisting candidates use this skill to check resume text for common logic flaws, missing quantification, and privacy exposure before producing a recruiter-ready resume document. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Resume text can contain personal contact details and employment history. <br>
-Mitigation: Use the anonymized mode before sharing generated resumes publicly or with untrusted recipients. <br>
-Risk: Unpinned Python dependencies can change behavior across installations. <br>
-Mitigation: Review or pin the Python dependencies before using the skill in production or shared environments. <br>
-Risk: Automated resume scoring and logic checks may miss context or flag valid chronology as a flaw. <br>
-Mitigation: Have the candidate or reviewer confirm the audit findings before editing or submitting the resume. <br>
+## Use Case:
 
+Job seekers and career-support agents use this skill to review Chinese technical resumes, identify logic or evidence gaps, protect contact information when needed, and produce a cleaner Word document for sharing.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/putao2882-ui/resume-auditor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, files, code, guidance] <br>
-**Output Format:** [Structured resume audit findings and generated DOCX resume file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May preserve or anonymize phone and email details depending on the selected privacy mode.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Resume content can contain sensitive personal data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use anonymized mode before sharing output externally and install only when comfortable providing resume text to the skill.
+
+Risk: The generated DOCX uses a fixed output filename and may overwrite an existing file.
+
+Mitigation: Run the skill in a dedicated working directory or rename existing AI_Beautified_Resume.docx files before generation.
+
+Risk: Dependencies are not pinned in the artifact requirements.
+
+Mitigation: Prefer a release with pinned dependencies or pin and review dependencies before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/putao2882-ui/skills/resume-auditor)
+- [Publisher profile](https://clawhub.ai/user/putao2882-ui)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Guidance, Files]
+
+**Output Format:** [Diagnostic text and a generated DOCX file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The generated resume file uses the fixed filename AI_Beautified_Resume.docx.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

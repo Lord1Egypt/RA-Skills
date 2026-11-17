@@ -1,41 +1,54 @@
-## Description: <br>
-用于系统分析上游材料公司在产业链中的位置、供需格局、价格弹性、利润贡献和可比标的差异。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+上游材料股研究框架，用于对不直接面向终端的上游材料公司进行产业链位置、供需格局、价格弹性、利润影响和同赛道竞争对比分析。
 
-## Publisher: <br>
-[seanweisean](https://clawhub.ai/user/seanweisean) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[seanweisean](https://clawhub.ai/user/seanweisean)
 
-## Use Case: <br>
-External investors, analysts, and researchers use this skill to structure upstream materials stock research, separate facts from estimates, model supply-demand and profit sensitivity, and compare companies in the same materials segment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Investment research outputs may include inaccurate market data, unverified expert-call claims, or unsupported analyst-report assumptions. <br>
-Mitigation: Verify all market data and assumptions against authoritative sources before relying on the analysis. <br>
-Risk: The workflow can involve sensitive or restricted investment information. <br>
-Mitigation: Do not provide non-public or restricted investment information unless authorized to use it. <br>
+## Use Case:
 
+External users and analysts use this Chinese-language skill to structure upstream materials stock research, including supply-chain mapping, scenario-based demand and profit modeling, customer validation, and peer comparison. Its examples should be treated as templates that require fresh source verification before investment use.
 
-## Reference(s): <br>
-- [量价测算模板](references/pricing-model.md) <br>
-- [案例：载体铜箔研究](references/case-carrier-copper-foil.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown research framework with tables, formulas, checklists, and scenario notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Document-only workflow; outputs should mark unverifiable data as pending verification.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill includes financial research examples and scenario calculations that may become stale or be mistaken for current investment advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the examples as templates only, verify all market data against current primary sources, and separate sourced facts from assumptions before making decisions.
+
+Risk: Some research inputs described by the framework may come from secondary sources such as expert calls or broker reports.
+
+Mitigation: Label source quality clearly and prefer first-party filings, official disclosures, and company investor materials where available.
+
+## Reference(s):
+
+- [量价测算模板](references/pricing-model.md)
+- [案例：载体铜箔研究](references/case-carrier-copper-foil.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown research outlines, tables, formulas, and checklist-style guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language financial research framework; does not execute code or access credentials.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

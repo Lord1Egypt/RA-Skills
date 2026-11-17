@@ -1,41 +1,51 @@
-## Description: <br>
-An overview of the core data API of ObsPy, a Python framework for processing seismological data. It is useful for parsing common seismological file formats, or manipulating custom data into standard objects for downstream use cases such as ObsPy's signal processing routines or SeisBench's modeling API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+An overview of the core data API of ObsPy, a Python framework for processing seismological data.
 
-## Publisher: <br>
-[wu-uk](https://clawhub.ai/user/wu-uk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wu-uk](https://clawhub.ai/user/wu-uk)
 
-## Use Case: <br>
-Developers and researchers use this skill as a compact reference for representing waveform data, event metadata, and station metadata with ObsPy objects before downstream seismology processing or modeling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Example ObsPy read operations may process local files or remote URLs. <br>
-Mitigation: Run snippets only against files and URLs the user intends to process, and review paths or URLs before execution. <br>
+## Use Case:
 
+Developers and engineers use this skill as a concise reference for representing waveform data, event metadata, and station metadata with ObsPy objects before downstream seismological processing or modeling.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wu-uk/earthquake-phase-association-obspy-data-api) <br>
-- [ObsPy example data server](https://examples.obspy.org) <br>
-- [QuakeML](https://quake.ethz.ch/quakeml/) <br>
-- [FDSN StationXML](https://www.fdsn.org/xml/station/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Guidance] <br>
-**Output Format:** [Markdown with Python examples and reference tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance; no tool execution is performed by the skill itself.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill may guide an agent through data-processing workflows that read local files or URLs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Only read local files and URLs that the user has intentionally provided or approved.
+
+## Reference(s):
+
+- [ObsPy example data server](https://examples.obspy.org)
+- [QuakeML](https://quake.ethz.ch/quakeml/)
+- [FDSN StationXML](https://www.fdsn.org/xml/station/)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code]
+
+**Output Format:** [Markdown with inline Python examples and API reference tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Plain informational guide; no tools, credentials, or external actions are requested by the skill itself.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

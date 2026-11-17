@@ -1,43 +1,58 @@
-## Description: <br>
-Control Browser's kernel for web automation, including navigation, element interaction, page scrolling, file and video downloading, and content extraction. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Control Browser's kernel for web automation. Supports web navigation, element interaction, page scrolling, file/video downloading, and content extraction.
 
-## Publisher: <br>
-[handongpu16](https://clawhub.ai/user/handongpu16) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[handongpu16](https://clawhub.ai/user/handongpu16)
 
-## Use Case: <br>
-Developers and automation agents use this skill to control a QQ Browser/X5 browser session for web navigation, form interaction, page inspection, scrolling, and file or video downloads. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill installs QQ Browser and x5use system packages from an external supply chain. <br>
-Mitigation: Install only in trusted environments after reviewing the package source and approving system-level package changes. <br>
-Risk: The skill starts a background local browser-control service and writes logs under /usr/local/qb_logs. <br>
-Mitigation: Run it in an isolated workspace, confirm the local service lifecycle, and review log retention or cleanup requirements. <br>
-Risk: Typed input is logged by input_text.py, which may expose sensitive values. <br>
-Mitigation: Avoid entering secrets or private data through the skill until raw input logging is removed or masked. <br>
+## Use Case:
 
+Developers and agents use this skill to automate browser navigation, inspect page state, interact with page elements, scroll, download files or videos, and extract current page content as Markdown.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/handongpu16/automation-browser) <br>
-- [QQ Browser and x5use package download source](https://dldir1v6.qq.com/invc/tt/QB/Public/ubuntu_qb) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Files] <br>
-**Output Format:** [Plain text and Markdown page state from Python and shell commands; downloaded files when download commands are used.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns action status, current page metadata, and indexed interactive elements for follow-up browser actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The installer can make high-impact system package and system Python changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the installer and QQ Browser/x5use distribution source before running it, and prefer an isolated environment with only the permissions required for browser automation.
+
+Risk: Typed browser input can be exposed in logs.
+
+Mitigation: Do not enter secrets through input_text.py unless logging is fixed or disabled, and review or clean generated logs after use.
+
+Risk: The X5 background service runs locally and writes logs under /usr/local/qb_logs.
+
+Mitigation: Know how to stop the service after each session and clean /usr/local/qb_logs when the session is complete.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/handongpu16/skills/automation-browser)
+- [QQ Browser and x5use distribution source](https://dldir1v6.qq.com/invc/tt/QB/Public/ubuntu_qb)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and plain text command output with page state, action results, and interactive element indexes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands may return current page metadata, extracted Markdown, and viewport interactive elements for follow-on automation.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

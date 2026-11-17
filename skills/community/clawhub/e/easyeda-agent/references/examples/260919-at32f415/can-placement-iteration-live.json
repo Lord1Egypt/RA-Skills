@@ -1,0 +1,370 @@
+{
+  "schemaVersion": 1,
+  "kind": "parameterized-local-placement-iteration",
+  "exam": "260919-at32f415-learning-board",
+  "module": "can",
+  "status": "live-verified",
+  "outcome": "rejected-as-positive-example",
+  "verificationScope": "验证 U5/R12/D1/CN1 的第一轮布局修改、保存重开、真实焊盘与负面发现；不包含 CAN 铜、R12 最终位置、D1 地回流或 DRC 通过",
+  "project": "ceshi",
+  "documentUuid": "2e719e9419653c72",
+  "units": "mil",
+  "coordinateSemantic": {
+    "writes": "R12/D1 使用 rendered-bbox-center；D1 先旋转再按中心定位",
+    "readback": "同时保存 footprint anchor、rendered bbox center、bbox 与 pad center"
+  },
+  "source": [
+    "考试说明.pdf p5,p8",
+    "原理图.pdf p1",
+    "source-connectivity.json",
+    "initial-placement.json",
+    "/tmp/260919-can-placement-after-reload.json",
+    "/tmp/260919-can-placement-layout-lint.json",
+    "/tmp/260919-can-placement-check.json",
+    "/tmp/260919-can-placement-drc.json"
+  ],
+  "electricalTopology": {
+    "orderedMainPaths": {
+      "CANH": [
+        "U5.7",
+        "R12.1",
+        "CN1.2"
+      ],
+      "CANL": [
+        "U5.6",
+        "R12.2",
+        "CN1.1"
+      ]
+    },
+    "termination": "R12=120Ω 跨接 CANH/CANL；不是串联电阻",
+    "protectionBranch": {
+      "CANH": "D1.1",
+      "CANL": "D1.2",
+      "GND": "D1.3",
+      "role": "靠端子的保护支路，不是主路径 waypoint"
+    },
+    "unconnectedPin": "U5.5 NC"
+  },
+  "parameters": {
+    "fixedDuringIteration": [
+      "U5",
+      "CN1"
+    ],
+    "movable": [
+      "R12",
+      "D1"
+    ],
+    "laterRouteRequirements": {
+      "layer": "TOP",
+      "widthMil": 8,
+      "viaCount": 0,
+      "equalLengthRequired": false,
+      "turns": "straight or 45-degree"
+    },
+    "minimumClearanceMil": 6,
+    "r12SearchStatus": "no-trustworthy-single-coordinate",
+    "r12PreliminarySearchDomain": {
+      "xMil": [
+        2550,
+        2660
+      ],
+      "yMil": [
+        1360,
+        1440
+      ],
+      "rotationDeg": 0,
+      "stepMil": 10,
+      "warning": "历史搜索域，仅用于解释已拒绝候选；本轮 Layout 不再枚举 CAN 路径或推荐坐标"
+    }
+  },
+  "before": {
+    "placements": {
+      "U5": {
+        "anchor": [
+          2350,
+          1350
+        ],
+        "rotationDeg": 0
+      },
+      "R12": {
+        "anchor": [
+          2700,
+          1530
+        ],
+        "rotationDeg": 0
+      },
+      "D1": {
+        "anchor": [
+          2550,
+          1515
+        ],
+        "rotationDeg": 0
+      },
+      "CN1": {
+        "anchor": [
+          2716.535,
+          1653.543
+        ],
+        "rotationDeg": 180
+      }
+    },
+    "d1ToCn1SignalDistanceMil": {
+      "CANH": 217.014,
+      "CANL": 294.967
+    },
+    "finding": "D1 外形靠近 CN1，但 H/L 保护支路长度明显不对称"
+  },
+  "execution": {
+    "reason": "先使 D1 的 H/L 与 CN1 对称，再测试 R12 候选；用临时空位避免 D1 旋转和移动的中间态碰撞。第一轮候选必须经保存重开和独立核查，不能因命令成功就升级为正例。",
+    "commands": [
+      "easyeda pcb modify --id b0ef559c73e8a955 --center --x 3000 --y 1400 --doc 2e719e9419653c72 --project ceshi",
+      "easyeda pcb modify --id fa3359bff14ab1f7 --center --x 2630 --y 1510 --doc 2e719e9419653c72 --project ceshi",
+      "easyeda pcb modify --id b0ef559c73e8a955 --patch '{\"rotation\":270}' --doc 2e719e9419653c72 --project ceshi",
+      "easyeda pcb modify --id b0ef559c73e8a955 --center --x 2791.5 --y 1525 --doc 2e719e9419653c72 --project ceshi",
+      "easyeda pcb save --doc 2e719e9419653c72 --project ceshi",
+      "easyeda doc reload 2e719e9419653c72 --project ceshi"
+    ],
+    "migrationRule": "primitiveId、绝对坐标和临时空位只属于本次现场。迁移时重新读取 bbox/pads、NC 和已有铜；历史 CAN 路径实验不能复制为新板答案。"
+  },
+  "afterReload": {
+    "placements": [
+      {
+        "ref": "U5",
+        "primitiveId": "6f2bfd9dd5162850",
+        "anchor": [
+          2350,
+          1350
+        ],
+        "bboxCenter": [
+          2343.69775,
+          1348.3235
+        ],
+        "bbox": [
+          2232.9735,
+          1204.3245,
+          2454.422,
+          1492.3225
+        ],
+        "rotationDeg": 0,
+        "layer": 1
+      },
+      {
+        "ref": "R12",
+        "primitiveId": "fa3359bff14ab1f7",
+        "anchor": [
+          2630,
+          1510
+        ],
+        "bboxCenter": [
+          2630,
+          1510
+        ],
+        "bbox": [
+          2572.469,
+          1480.992,
+          2687.531,
+          1539.008
+        ],
+        "rotationDeg": 0,
+        "layer": 1
+      },
+      {
+        "ref": "D1",
+        "primitiveId": "b0ef559c73e8a955",
+        "anchor": [
+          2791.5,
+          1528.151
+        ],
+        "bboxCenter": [
+          2791.5,
+          1525
+        ],
+        "bbox": [
+          2728.413,
+          1462.794,
+          2854.587,
+          1587.206
+        ],
+        "rotationDeg": 270,
+        "rotationReadbackDeg": -90.00000000000001,
+        "layer": 1
+      },
+      {
+        "ref": "CN1",
+        "primitiveId": "2fc14f7a2527370f",
+        "anchor": [
+          2716.535,
+          1653.543
+        ],
+        "bboxCenter": [
+          2716.535,
+          1783.464
+        ],
+        "bbox": [
+          2467.441,
+          1597.262,
+          2965.629,
+          1969.666
+        ],
+        "rotationDeg": 180,
+        "layer": 1
+      }
+    ],
+    "signalPads": {
+      "U5.7": [
+        2325,
+        1455.6
+      ],
+      "U5.6": [
+        2375,
+        1455.6
+      ],
+      "U5.5_NC": [
+        2425,
+        1455.6
+      ],
+      "R12.1": [
+        2600.3,
+        1510
+      ],
+      "R12.2": [
+        2659.7,
+        1510
+      ],
+      "D1.1": [
+        2754.1,
+        1488.8
+      ],
+      "D1.2": [
+        2828.9,
+        1488.8
+      ],
+      "CN1.2": [
+        2716.5,
+        1653.5
+      ],
+      "CN1.1": [
+        2866.5,
+        1653.5
+      ]
+    },
+    "d1ToCn1SignalDistanceMil": {
+      "CANH": 168.937,
+      "CANL": 168.937
+    },
+    "bboxGapMil": {
+      "U5-R12": 118.047,
+      "R12-D1": 40.882,
+      "D1-CN1": 10.056
+    },
+    "strictOutlineConflictMil": {
+      "CN1_bbox_maxY": 1969.666,
+      "nominalBoardMaxY": 1968.5,
+      "excess": 1.166,
+      "note": "layout-lint 报 0 off-board；该 bbox/板框语义冲突继续单列，不能用 lint 数字抹掉"
+    },
+    "layoutLint": {
+      "componentCount": 69,
+      "allTop": true,
+      "overlaps": 0,
+      "outsideOutline": 0,
+      "tightSpacingAt6Mil": 0,
+      "crossings": 57,
+      "ratsnestMil": 27224.77,
+      "canCrossings": [
+        {
+          "x": 2751.9,
+          "y": 1498.45
+        },
+        {
+          "x": 2634.81,
+          "y": 1505.24
+        }
+      ]
+    },
+    "routing": {
+      "CANH": {
+        "tracks": 0,
+        "arcs": 0,
+        "vias": 0
+      },
+      "CANL": {
+        "tracks": 0,
+        "arcs": 0,
+        "vias": 0
+      }
+    },
+    "officialDrc": {
+      "total": 216,
+      "counts": {
+        "Connection Error": 216
+      },
+      "canSignalConnectionErrors": 8,
+      "interpretation": "本轮没有创建 CAN 铜；U5/R12/D1/CN1 的 H/L 八个信号端点仍断开"
+    },
+    "pcbCheck": {
+      "trackCount": 15,
+      "viaCount": 0,
+      "errors": 0,
+      "warnings": 197,
+      "limitations": [
+        "连接器1.5.1的235个pads缺source shape；不能据此把后续有序铜路判为已验证"
+      ]
+    }
+  },
+  "negativeFindings": [
+    "D1/CN1 的 H/L 距离从 217/295mil 改成约169/169mil，可保留这一局部关系；这不证明整组 CAN 布局完成",
+    "R12=(2630,1510) 的纯 MST 飞线有两处 CANH/CANL 相交，不能作为正向布局样例",
+    "把 R12 y 对齐到 D1 信号 pad 的 1488.8mil 会把点交叉变成异网共线穿越：R12.2 落在 CANH 水平段、D1.1 落在 CANL 水平段",
+    "D1/CN1 bbox 仅剩10.056mil；通过6mil布局检查不等于这条缝可供8mil铜穿越",
+    "U5.6 右侧是 NC pad5；8mil线加6mil净距后的禁区为 x=2402.6..2447.4、y=1408.9..1502.3"
+  ],
+  "nextSearch": {
+    "requiredMethod": "历史待研究：若以后恢复 CAN 路径实验，每条主路径带 R12 必经节点，D1 作为支路，统一检查 pad/track/board/已有铜",
+    "rejectIf": [
+      "任一线未从 U5/R12/D1/CN1 焊盘端部出线或切过异网/NC pad",
+      "CANH/CANL 中心线相交，或8mil线之间实际净距小于6mil",
+      "不能分别证明 U5.7→R12.1→CN1.2 与 U5.6→R12.2→CN1.1",
+      "把 D1 当成主路径串联点，或把 R12 当成串联电阻",
+      "利用 D1/CN1 的10.056mil bbox缝穿线",
+      "出现直角/锐角、出板、碰撞或与既有铜间距不足"
+    ],
+    "status": "paused-this-layout-round"
+  },
+  "independentVerification": {
+    "status": "completed-with-findings",
+    "method": "一个 subagent 先离线提出候选；第二个 subagent 仅按原题与保存重开回读盲核；第三个 subagent 加入有序主路径和异网净距做路线感知复核",
+    "accepted": [
+      "四件均在TOP，R12.1=CANH、R12.2=CANL，D1/CN1的H左/L右关系和约169mil对称支路成立",
+      "69件仍为0 overlap、0 off-board、0 tight-spacing；CANH/CANL仍为0 track/0 arc/0 via"
+    ],
+    "rejected": [
+      "最初候选的‘预计不会先天交叉’被真实 layout-lint 的两处 CANH/CANL 相交否定",
+      "R12 y=1488.8 的对齐修法被异网共线穿越反例否定",
+      "R12 新坐标没有形成正例；本轮 Layout 不继续扩张 CAN 专用寻路或检查器"
+    ]
+  },
+  "evidence": {
+    "afterComponentsSha256": "41c2031a4e3770c311dd9d31191bc253faaba9ea2dd4ccaab9dcfa3006107677",
+    "afterLayoutLintSha256": "3522dadfbb8487b5ce6536b82f5af1274dacf2859311ec347a587a878e71a346",
+    "afterPcbCheckSha256": "2019c8c5367d1b3d94a6ac88400d2adb17f6ba15b86f189f0711bca32e3ed987",
+    "afterOfficialDrcSha256": "eff16296bf7c7f77500e92e9a4c1bd719e1e6f22dbd891e143b82dc27748c07f",
+    "canHTracksSha256": "17983c3e65c0d7073bac8dbebf80d99ef8999e44054debf96684bc8a24edb427",
+    "canLTracksSha256": "3c88c6a0ea7b6716f43efac7ca08620fa8585cb03e10d0ac1e457062588aace9",
+    "canHViasSha256": "cc72e1766e69653548a179e2136cf6ac9151a4d14c314c678e91c6e71488afec",
+    "canLViasSha256": "67d190e6f81fefbb091ce0830da87a6b1fd7d8a55e54f33a43e75617ab6e13dc"
+  },
+  "notClaimed": [
+    "历史迭代当时没有形成新的R12坐标；后续通用rigid候选接受当前位置与方向，但不证明实际铜路",
+    "尚未创建 CANH/CANL 铜，不能声称有序主路径、TOP、8mil、0via、类差分或连通完成",
+    "D1.3 的短地回路、双面GND和端子实际保护效果尚未验证",
+    "官方 DRC 仍有216个 Connection Error，其中 CANH/CANL 八个信号端点断开",
+    "整板布局、丝印、泪滴和最终DRC仍未完成"
+  ],
+  "laterLayoutDecision": {
+    "status": "layout-pose-accepted",
+    "candidate": "layout-candidates-can-current-board/candidate-01.json",
+    "reason": "通用rigid候选保持当前R12/D1位置方向，6mil几何间隙合法且H左/L右出口顺序一致；不再用MST相交、长度比或段数比拒绝Layout",
+    "routingStillPending": "U5→R12→CN1有序主路径、D1近端支路和实际铜净距仍须在布线阶段证明"
+  }
+}

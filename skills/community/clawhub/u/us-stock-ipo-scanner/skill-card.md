@@ -1,49 +1,59 @@
-## Description: <br>
-美股IPO机会扫描 helps agents monitor public IPO, new listing, fund, social, and market-news signals to identify early U.S. stock opportunity leads for further user review. <br>
+## Description:
 
-This skill is for research and development only. <br>
+帮助用户按分层信号源扫描美股 IPO、新股、直接上市和相关基金机会，并整理早期关注线索。
 
-## Publisher: <br>
-[aidalong](https://clawhub.ai/user/aidalong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aidalong](https://clawhub.ai/user/aidalong)
 
-## Use Case: <br>
-Investors, researchers, and market-monitoring agents use this skill to scan public IPO feeds, social feeds, and financial-news sources for early leads. The resulting signals are intended for further research, not automated investment or trading decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Public market, social, and news signals may be incomplete, stale, or unverified. <br>
-Mitigation: Treat outputs as leads for additional research and verify signals against authoritative market sources before acting. <br>
-Risk: IPO and thematic-stock signals could be mistaken for investment advice. <br>
-Mitigation: Keep recommendations framed as research prompts and do not use the skill to make automated investment or trading decisions. <br>
-Risk: Automated alerts can amplify noisy or speculative social-media activity. <br>
-Mitigation: Keep alerts user-configured, tune keyword thresholds, and review high-priority signals manually. <br>
+## Use Case:
 
+External users and agents use this skill to monitor public IPO, new-listing, stock-news, and market-sentiment sources for early research leads. Outputs should support further investigation, not replace independent market-data verification or financial advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aidalong/us-stock-ipo-scanner) <br>
-- [Detailed signal source list](artifact/references/sources.md) <br>
-- [Invezz IPO feed](https://invezz.com/news/stocks/ipos/feed/) <br>
-- [Nasdaq IPO calendar](https://www.nasdaq.com/market-activity/ipos) <br>
-- [CNBC IPO news RSS](https://www.cnbc.com/id/100003114/device/rss/rss.html) <br>
-- [Seeking Alpha IPO market news](https://seekingalpha.com/market-news/ipos.xml) <br>
-- [Benzinga market news feed](https://www.benzinga.com/feed) <br>
-- [RSS.app](https://rss.app) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown scanning report with source links, signal layers, keywords, and research recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses public market, news, and social feeds; alerts and keyword rules should remain user-configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Market-monitoring output may be mistaken for financial advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat output as research prompts and independently confirm market data before making investment decisions.
+
+Risk: Public news, RSS, and social sentiment sources can be noisy, delayed, incomplete, or promotional.
+
+Mitigation: Use the layered signals as leads and require deeper research before taking action.
+
+## Reference(s):
+
+- [美股IPO信号源详细列表](references/sources.md)
+- [ClawHub skill page](https://clawhub.ai/aidalong/skills/us-stock-ipo-scanner)
+- [Invezz IPO feed](https://invezz.com/news/stocks/ipos/feed/)
+- [Nasdaq IPO calendar](https://www.nasdaq.com/market-activity/ipos)
+- [CNBC IPO news RSS](https://www.cnbc.com/id/100003114/device/rss/rss.html)
+- [Seeking Alpha IPO market news](https://seekingalpha.com/market-news/ipos.xml)
+- [Benzinga market news feed](https://www.benzinga.com/feed)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown scanning report with discovered tickers or funds, source notes, signal checks, market-sentiment context, and follow-up research suggestions.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Research-oriented output; investment decisions require independent market-data confirmation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,25 @@
+{
+  "suite": "fde-delivery-loop",
+  "version": "1.0.0",
+  "author": "xukun",
+  "skill": "fde-poc-runner",
+  "stage": 6,
+  "purpose": "Run, document and evaluate POC against frozen versions and pre-agreed evidence.",
+  "risk_level": "high",
+  "scripts": [
+    "fde-poc-runner/scripts/summarize-evals.js"
+  ],
+  "writes": [
+    "User-specified evaluation results, operational reports and evidence indexing"
+  ],
+  "human_confirmation": [
+    "Connect to real systems",
+    "Real user UAT",
+    "Continue/Adjust/Stop",
+    "Delete or rerun failed samples"
+  ],
+  "high_risk_boundaries": [
+    "Success criteria may not be modified after the fact",
+    "Hard failures and unrun items must be retained"
+  ]
+}

@@ -1,6 +1,17 @@
 {
   "ownerId": "kn75k53tcdhqwka2fra5x817p9821zpb",
   "slug": "tts-synthesizer",
-  "version": "1.0.9",
-  "publishedAt": 1777474370848
+  "version": "1.0.8",
+  "publishedAt": 1775401576034,
+  "displayName": "TTS Synthesizer | TTS 合成器",
+  "previousSlug": "speech-synthesizer",
+  "changelog": [
+    {
+      "version": "1.0.8",
+      "changes": [
+        "Fix all internal path references and display names to match the renamed tts-synthesizer slug.",
+        "修复所有内部路径引用和展示名，统一为新命名的 tts-synthesizer。"
+      ]
+    }
+  ]
 }

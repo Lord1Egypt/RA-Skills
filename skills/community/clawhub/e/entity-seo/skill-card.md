@@ -1,41 +1,50 @@
-## Description: <br>
-Guides entity-based SEO by helping agents audit brand, product, and author identity signals, schema usage, and Knowledge Graph consistency. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents in optimizing content for entity recognition, Knowledge Graph visibility, and entity-based SEO.
 
-## Publisher: <br>
-[kostja94](https://clawhub.ai/user/kostja94) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kostja94](https://clawhub.ai/user/kostja94)
 
-## Use Case: <br>
-External SEO practitioners, marketers, content strategists, and developers use this skill to improve entity recognition for brands, products, authors, and organizations. It provides audits, schema recommendations, consistency checklists, and Knowledge Panel guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: SEO and marketing claims may not fit a user's site, brand, or search strategy. <br>
-Mitigation: Treat the skill's recommendations as guidance and validate them against the user's SEO strategy before implementation. <br>
-Risk: Incorrect structured data or entity claims could misrepresent a brand, author, or organization. <br>
-Mitigation: Review schema, sameAs links, and entity descriptions before publishing. <br>
+## Use Case:
 
+External users, content strategists, and SEO practitioners use this skill to audit entity identity signals, plan Organization and Person schema placement, and improve consistency across brand, product, and author touchpoints.
 
-## Reference(s): <br>
-- [Semrush: Entity-Based SEO Strategy](https://www.semrush.com/blog/entity-based-seo-strategy/) <br>
-- [Search Engine Land: Entity-First Content Optimization](https://searchengineland.com/guide/entity-first-content-optimization) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance, audits, checklists, and schema recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution, credentials, private data access, or persistent access is requested by the reviewed artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill may be invoked for broad entity or Knowledge Graph wording where the user's intent is only loosely related to SEO.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the desired SEO context before applying recommendations, and review generated guidance before using it in published content.
+
+## Reference(s):
+
+- [Semrush: Entity-Based SEO Strategy](https://www.semrush.com/blog/entity-based-seo-strategy/)
+- [Search Engine Land: Entity-First Content Optimization](https://searchengineland.com/guide/entity-first-content-optimization)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown guidance with audit notes, schema recommendations, and consistency checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution, data access, persistence, or privileged behavior; produces SEO reference guidance only.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

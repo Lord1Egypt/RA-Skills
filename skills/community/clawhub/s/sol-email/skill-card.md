@@ -1,45 +1,59 @@
-## Description: <br>
-Read and send emails using the SolEmail automation system when asked to check emails, send files via email, respond to an email, or set up email automation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Read and send emails using the SolEmail automation system.
 
-## Publisher: <br>
-[amrree](https://clawhub.ai/user/amrree) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[amrree](https://clawhub.ai/user/amrree)
 
-## Use Case: <br>
-External users and developers use this skill to let an agent read a local email store, summarize or inspect messages, send SMTP email, attach files, and configure scheduled email checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can expose personal mailbox content to an agent. <br>
-Mitigation: Install only for mailboxes the user intends the agent to access, and limit scheduled checks to read-only workflows unless sending is explicitly approved. <br>
-Risk: The skill can send messages and attachments through a configured SMTP account. <br>
-Mitigation: Use an app-specific password and review recipients, subject lines, message bodies, and attachment lists before outbound email is sent. <br>
-Risk: The file-search-and-zip workflow can package local files into outbound attachments. <br>
-Mitigation: Use narrow search directories and avoid broad folders such as home, Documents, Downloads, or locations that may contain secrets. <br>
+## Use Case:
 
+Developers and agent operators use SolEmail to let an agent check local Maildir email, read selected messages, send SMTP email, and package matching local files as email attachments.
 
-## Reference(s): <br>
-- [SolEmail guide](https://thesolai.github.io/guides/email-automation/) <br>
-- [SolEmail repository](https://github.com/TheSolAI/SolEmail) <br>
-- [SolEmail technical report](https://github.com/TheSolAI/SolEmail/blob/main/report.md) <br>
-- [himalaya email client](https://github.com/soywod/himalaya) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, code, guidance] <br>
-**Output Format:** [Markdown with inline shell commands, configuration examples, and script-driven text or JSON output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read mailbox content, send outbound messages, and package local files as email attachments when configured with local mail and SMTP credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can give an agent recurring access to private email.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated low-privilege email account or revocable app password, keep credential files locked down, and review the skill carefully before installation.
+
+Risk: The skill can send outbound email and attachments.
+
+Mitigation: Require explicit confirmation before sending any email or attachment, especially in automated or scheduled workflows.
+
+Risk: File search and attachment workflows can include local files selected by glob patterns.
+
+Mitigation: Restrict file searches to explicit safe directories and review the selected files before sending.
+
+## Reference(s):
+
+- [SolEmail ClawHub release](https://clawhub.ai/amrree/skills/sol-email)
+- [SolEmail automation guide](https://thesolai.github.io/guides/email-automation/)
+- [himalaya email client](https://github.com/soywod/himalaya)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, TOML configuration, Python scripts, and optional JSON email summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Email-reading commands may expose private message content; sending and attachment workflows depend on local SMTP credentials, himalaya configuration, and filesystem paths.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,50 +1,60 @@
-## Description: <br>
-Creates avatar videos using video templates or digital-human and voice selections. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates IDR digital-human videos from templates, text, avatars, voices, or audio.
 
-## Publisher: <br>
-[ihanxu2022](https://clawhub.ai/user/ihanxu2022) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ihanxu2022](https://clawhub.ai/user/ihanxu2022)
 
-## Use Case: <br>
-External users and developers use this skill to list available avatars, voices, and templates, then generate asynchronous avatar videos from text, uploaded audio, or templates through the IDR/neural-avatar service. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends video scripts, selected audio files, account asset metadata, and the service token to a remote provider. <br>
-Mitigation: Use only content appropriate for that provider, avoid confidential or regulated material, and treat IDR_USER_TOKEN as a secret. <br>
-Risk: The security summary states that API traffic uses plain HTTP while carrying user content and an API token. <br>
-Mitigation: Prefer a version that uses HTTPS before sensitive use, and run it only on trusted networks when HTTPS is unavailable. <br>
-Risk: The security summary states that generated text files are left behind locally. <br>
-Mitigation: Delete generated idr_text_*.txt files after runs or use a version that removes temporary text files automatically. <br>
+## Use Case:
 
+External users and developers use this skill to list available digital humans, voices, and templates, then submit avatar-video generation jobs and retrieve the resulting video URL.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ihanxu2022/skills/idr-avatar-video) <br>
-- [Publisher Profile](https://clawhub.ai/user/ihanxu2022) <br>
-- [Neural Avatar](https://www.neural-avatar.com) <br>
-- [IDR](https://idr.ai) <br>
-- [Authentication](references/authentication.md) <br>
-- [Avatars](references/avatars.md) <br>
-- [Voices](references/voices.md) <br>
-- [Templates](references/templates.md) <br>
-- [Video Generation](references/video-generation.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and CLI output text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses IDR_USER_TOKEN and network access to the neural-avatar service; video-generation commands return task status text and video URLs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: API tokens and user content may be sent over plaintext HTTP.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only non-sensitive scripts and audio unless the publisher provides an HTTPS endpoint and clear data-handling terms; rotate IDR_USER_TOKEN if it was used over the HTTP endpoint.
+
+Risk: TTS video generation may leave submitted text in local idr_text_*.txt files.
+
+Mitigation: Delete leftover idr_text_*.txt files after generation and avoid submitting sensitive text.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ihanxu2022/skills/idr-avatar-video)
+- [Authentication](references/authentication.md)
+- [Avatars](references/avatars.md)
+- [Voices](references/voices.md)
+- [Templates](references/templates.md)
+- [Video Generation](references/video-generation.md)
+- [Neural Avatar](https://www.neural-avatar.com)
+- [IDR](https://idr.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown and command-line output with resource listings, task status, and video URLs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Python 3, network access to www.neural-avatar.com, and an IDR_USER_TOKEN environment variable.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

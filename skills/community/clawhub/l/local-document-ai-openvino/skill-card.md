@@ -1,46 +1,65 @@
-## Description: <br>
-Private document AI for Intel hardware that parses PDFs, invoices, screenshots, and diagrams locally with MinerU 2.5 on OpenVINO GenAI, then turns them into structured data or executable notebook and code scaffolds. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Private local document AI for Intel hardware that parses PDFs, invoices, screenshots, and diagrams with MinerU 2.5 on OpenVINO GenAI and outputs structured JSON, Markdown, and user-defined invoice fields.
 
-## Publisher: <br>
-[zhuo-yoyowz](https://clawhub.ai/user/zhuo-yoyowz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhuo-yoyowz](https://clawhub.ai/user/zhuo-yoyowz)
 
-## Use Case: <br>
-Developers and engineers use this skill to process private local documents into structured extraction artifacts, reports, and draft implementation assets. It is suited for invoice and receipt extraction, document classification, table and key-value extraction, and screenshot or diagram conversion into code or notebook scaffolds. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill writes full parsed document artifacts to disk, which can expose sensitive document contents if output folders are shared or retained longer than needed. <br>
-Mitigation: Use private local output directories for confidential documents and delete generated artifacts after review. <br>
-Risk: Generated Jupyter notebooks or code scaffolds may include runnable remote-model code or unsafe assumptions. <br>
-Mitigation: Inspect generated code and notebook cells before execution, especially model download steps and any trust_remote_code=True usage. <br>
-Risk: The security verdict is suspicious because notebook output can create runnable remote-model code with insufficient warning. <br>
-Mitigation: Review dependencies and generated execution paths before production use, and pin or audit dependencies for managed deployments. <br>
+## Use Case:
 
+Developers and document-automation teams use this skill to parse local PDFs, invoices, receipts, screenshots, and diagrams into grounded artifacts, then derive structured records or draft code and notebook scaffolds while keeping document processing local.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhuo-yoyowz/skills/local-document-ai-openvino) <br>
-- [MinerU OpenVINO model bundle](https://www.modelscope.cn/models/snake7gun/MinerU2.5-Pro-2604-1.2B-int4-ov) <br>
-- [Mode guide](references/mode_guide.md) <br>
-- [Output contracts](references/output_contracts.md) <br>
-- [Structured parse schema](references/schema.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance plus local files such as JSON, Markdown, HTML reports, code scaffolds, and Jupyter notebooks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes parse and downstream artifacts to a local output folder with traceability files when downstream modes are used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.1 (source: server release evidence) <br>
+Risk: The persistent HTTP service is unauthenticated.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep it bound to 127.0.0.1, prefer --server-kind ipc or --no-server where possible, and shut it down after use.
+
+Risk: Local document paths and generated artifacts may expose sensitive content on shared machines.
+
+Mitigation: Install and run only on a trusted single-user machine, write outputs to private directories, and delete sensitive artifacts after review.
+
+Risk: Mutable dependency or model setup can change runtime behavior.
+
+Mitigation: Use a virtual environment and pin model and dependency versions before using the skill in repeatable workflows.
+
+Risk: Generated notebooks or code may include remote-code cells or unsafe assumptions.
+
+Mitigation: Review generated notebooks and code before execution, publishing, or connecting them to real systems, and remove trust_remote_code=True unless required.
+
+## Reference(s):
+
+- [Mode Guide](references/mode_guide.md)
+- [Output Contracts](references/output_contracts.md)
+- [Canonical Document Schema](references/schema.md)
+- [MinerU 2.5 Pro OpenVINO INT4 Model Bundle](https://www.modelscope.cn/models/snake7gun/MinerU2.5-Pro-2604-1.2B-int4-ov)
+- [ClawHub Skill Page](https://clawhub.ai/zhuo-yoyowz/skills/local-document-ai-openvino)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [JSON, Markdown, HTML reports, Jupyter notebooks, generated code files, and CLI guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes per-run artifact folders with parsed.json, parsed.md, result_report.html, task_output files, and traceability where downstream outputs are generated.]
+
+## Skill Version(s):
+
+0.4.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

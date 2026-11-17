@@ -1,47 +1,62 @@
-## Description: <br>
-Crypto Market Analysis fetches public Binance market data, calculates common technical indicators, and prepares structured cryptocurrency market analysis prompts and reports for an agent-connected LLM. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Crypto Market Analysis retrieves public Binance market data, calculates technical indicators such as MACD, KDJ, RSI, CCI, BOLL, WR, PSY, BRAR, and DMI, and prepares structured cryptocurrency market analysis prompts and reports for a user-connected LLM.
 
-## Publisher: <br>
-[LunaWolves07](https://clawhub.ai/user/LunaWolves07) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lunawolves07](https://clawhub.ai/user/lunawolves07)
 
-## Use Case: <br>
-External users and developers can use this skill to gather Binance price and kline data, compute technical indicators, and generate structured cryptocurrency market analysis reports. It is intended for informational market analysis and should not be treated as financial advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may automatically install an unpinned TA-Lib package into a hard-coded Anaconda Python environment. <br>
-Mitigation: Review before installing; preinstall a pinned TA-Lib dependency in an isolated environment and disable runtime package installation. <br>
-Risk: The skill can alter the local Python subprocess environment while running indicator calculations. <br>
-Mitigation: Run it in a disposable or isolated Python environment and review environment changes before using it in a managed workspace. <br>
-Risk: Cryptocurrency analysis output can be mistaken for trading advice. <br>
-Mitigation: Present generated reports as informational analysis only and require human review before any financial decision. <br>
+## Use Case:
 
+External users, developers, and market analysts can use this skill to gather Binance public market data, calculate common technical indicators, and generate structured cryptocurrency analysis for selected symbols and time intervals.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/LunaWolves07/crypto-market-analysis) <br>
-- [Publisher profile](https://clawhub.ai/user/LunaWolves07) <br>
-- [Binance API notes](references/binance_api_notes.md) <br>
-- [Technical indicators](references/technical_indicators.md) <br>
-- [Binance klines API](https://api.binance.com/api/v3/klines) <br>
-- [Binance 24hr ticker API](https://api.binance.com/api/v3/ticker/24hr) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON containing market data and an LLM prompt, with expected Markdown report output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses public Binance REST API responses and technical indicator calculations for the requested symbol and intervals.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Automatic installation of an unpinned Python package can change the runtime environment or pull unexpected dependency versions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only in an isolated Python environment where package installation is acceptable, or preinstall and pin TA-Lib through a controlled setup process.
+
+Risk: Generated market analysis may be incomplete, inaccurate, or mistaken for financial advice.
+
+Mitigation: Treat outputs as informational technical analysis, review conclusions before acting, and do not rely on the generated report as financial advice.
+
+Risk: Requested symbols and intervals are sent to Binance public APIs.
+
+Mitigation: Avoid using symbols or analysis patterns that should remain private, and account for Binance availability and rate limits.
+
+## Reference(s):
+
+- [Binance API Notes](references/binance_api_notes.md)
+- [Technical Indicators](references/technical_indicators.md)
+- [Binance Klines API](https://api.binance.com/api/v3/klines)
+- [Binance 24hr Ticker API](https://api.binance.com/api/v3/ticker/24hr)
+- [ClawHub Skill Page](https://clawhub.ai/lunawolves07/skills/crypto-market-analysis)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/lunawolves07)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown analysis report with JSON intermediate data and LLM prompt text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs depend on Binance public API availability, selected trading symbol and intervals, TA-Lib availability, and the user's connected LLM.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

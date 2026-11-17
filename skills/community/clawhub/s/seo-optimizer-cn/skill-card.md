@@ -1,39 +1,54 @@
-## Description: <br>
-SEO optimizer and compliance checker for Chinese social media that optimizes titles, keyword density, hashtags, and scans for advertising-law banned words (广告法违禁词). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+SEO optimizer and compliance checker for Chinese social media. Optimizes titles, keyword density, hashtags, and scans for advertising-law banned words (广告法违禁词).
 
-## Publisher: <br>
-[alexandrali1989-cell](https://clawhub.ai/user/alexandrali1989-cell) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[alexandrali1989-cell](https://clawhub.ai/user/alexandrali1989-cell)
 
-## Use Case: <br>
-External content marketers and writers use this skill to improve Chinese social media copy for search visibility and to flag potentially prohibited advertising claims before publication. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Advertising-law banned-word checks may be mistaken for legal clearance, especially for regulated categories such as medical, financial, or promotional claims. <br>
-Mitigation: Treat the report as drafting assistance and have a qualified human review final public copy before publication. <br>
+## Use Case:
 
+External content creators, marketers, and agents use this skill to improve Chinese social media SEO and check draft copy for listed advertising-law banned words before publication.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/alexandrali1989-cell/seo-optimizer-cn) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/alexandrali1989-cell) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Guidance] <br>
-**Output Format:** [Markdown report with keyword, title, banned-word, and hashtag sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include estimated keyword popularity, suggested replacements, and hashtag recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: SEO recommendations may not fit the user's target platform, language, or region.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the target platform, language, and region before applying the skill's recommendations.
+
+Risk: Advertising-law wording checks may not cover every context-specific or current compliance requirement.
+
+Mitigation: Use the scan as drafting support and require qualified human review for regulated, medical, or high-stakes claims.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/alexandrali1989-cell/skills/seo-optimizer-cn)
+- [Publisher profile](https://clawhub.ai/user/alexandrali1989-cell)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Analysis, Guidance]
+
+**Output Format:** [Markdown report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes recommended keywords, title optimization, banned-word scan results with suggested replacements, and recommended hashtags.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

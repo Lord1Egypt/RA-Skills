@@ -1,41 +1,54 @@
-## Description: <br>
-书搭子 is a privacy-focused local reading companion agent that helps users discuss books, maintain reading notes, and receive supportive text responses from local profile and library files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+书搭子 is a privacy-focused local reading companion that helps users discuss books, maintain reading notes, and receive emotion-aware reading support.
 
-## Publisher: <br>
-[ai-innopower](https://clawhub.ai/user/ai-innopower) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ai-innopower](https://clawhub.ai/user/ai-innopower)
 
-## Use Case: <br>
-Readers use this skill inside an agent workspace to keep a local reading profile, discuss pasted book text, track reading progress, and receive emotion-aware reading support. It is suited to users who want a self-contained reading companion with editable local markdown records. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores reading history, emotional support preferences, trigger phrases, and profile details as plaintext local markdown. <br>
-Mitigation: Keep the skill directory out of shared or synced folders when privacy matters, and use encrypted storage or manual deletion for sensitive records. <br>
-Risk: Optional TTS can expose sensitive notes to a third-party service or run a user-specified command through BOOK_COMPANION_TTS_CMD. <br>
-Mitigation: Leave TTS disabled for sensitive content, and only configure BOOK_COMPANION_TTS_CMD with a trusted command whose behavior has been reviewed. <br>
+## Use Case:
 
+Readers and developers use this agent to create a local reading profile, track books and reflections in Markdown, and receive personalized discussion or emotional support based on locally stored notes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ai-innopower/book-companion) <br>
-- [Knowledge base](artifact/references/knowledge_base.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration guidance] <br>
-**Output Format:** [Markdown conversational responses and local markdown records] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May update local files under data/ when the hosting agent follows the skill instructions; optional voice output depends on user-configured TTS.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.7 (source: ClawHub release metadata) <br>
+Risk: Plaintext local storage can expose reading history, emotional notes, private code words, dates, and user preferences.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the data directory as sensitive, avoid storing unnecessary secrets, and use local disk or folder encryption when confidentiality is required.
+
+Risk: Optional voice output can execute a user-provided TTS command even though the manifest reports external scripts and networking as disabled.
+
+Mitigation: Enable voice output only after reviewing the exact TTS command and understanding any local execution or network behavior of the selected TTS tool.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ai-innopower/skills/book-companion)
+- [书搭子知识库](artifact/references/knowledge_base.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and conversational text with optional shell command snippets and local Markdown file updates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores reading history, emotional notes, code words, and important dates as plaintext local Markdown files.]
+
+## Skill Version(s):
+
+2.0.7 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

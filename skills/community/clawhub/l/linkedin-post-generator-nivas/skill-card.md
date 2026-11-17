@@ -1,42 +1,58 @@
-## Description: <br>
-Generate high-quality LinkedIn posts locally from a short prompt, topic, or outline. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate LinkedIn-ready posts from a short prompt, topic, outline, or draft, with support for hooks, CTAs, tone, and length adjustments.
 
-## Publisher: <br>
-[ksrinivas2304](https://clawhub.ai/user/ksrinivas2304) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ksrinivas2304](https://clawhub.ai/user/ksrinivas2304)
 
-## Use Case: <br>
-Developers, professionals, and creators use this skill to draft, rewrite, and polish LinkedIn posts, headlines, captions, hooks, CTAs, and hashtags from a short prompt, topic, outline, or existing draft. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated LinkedIn posts may include inaccurate claims or overstate employment, education, credentials, or results. <br>
-Mitigation: Review every generated post before publishing and keep factual claims grounded in user-provided information. <br>
-Risk: Private company data or internal project details provided in the prompt may be reflected in the draft. <br>
-Mitigation: Avoid providing confidential data unless it is intended to appear in the post, and remove sensitive details during review. <br>
-Risk: The skill may activate for broad social-writing requests when the target platform is ambiguous. <br>
-Mitigation: Confirm the post is intended for LinkedIn when the platform is unclear. <br>
+## Use Case:
 
+Professionals, creators, and agents use this skill to draft or refine LinkedIn posts for announcements, career updates, technical lessons, and audience engagement. It helps shape concise posts with a strong hook, readable structure, optional CTA, and relevant hashtags.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/ksrinivas2304/linkedin-post-generator-nivas) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown prose with optional hook variants, concise post drafts, CTAs, and hashtags] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated posts are intended for manual review and copy-paste into LinkedIn; the skill does not post through the LinkedIn API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated posts may include unverified factual claims or professional details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and verify factual claims before manually posting to LinkedIn.
+
+Risk: Optional local helper scripts, if present in a release, may run on the user's machine.
+
+Mitigation: Inspect helper scripts before allowing an agent to execute them, and use model-only drafting if script review is not acceptable.
+
+Risk: Career, education, or credential claims can be misleading if invented or overstated.
+
+Mitigation: Do not fabricate employment history, degrees, certifications, or testimonials; ask the user to confirm uncertain details.
+
+## Reference(s):
+
+- [ClawHub Skill Listing](https://clawhub.ai/ksrinivas2304/skills/linkedin-post-generator-nivas)
+- [Publisher Profile](https://clawhub.ai/user/ksrinivas2304)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown-formatted LinkedIn post drafts, rewrites, hooks, CTAs, and concise guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Users manually review and copy the final post into LinkedIn; the skill does not call the LinkedIn API.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

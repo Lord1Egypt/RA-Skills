@@ -1,43 +1,61 @@
-## Description: <br>
-AnySearch MCP helps agents connect to AnySearch for general web search, vertical domain search, parallel batch queries, and URL content extraction. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Unified real-time search MCP server supporting general web search, vertical domain search, parallel batch search, and full-page URL content extraction.
 
-## Publisher: <br>
-[anysearch-ai](https://clawhub.ai/user/anysearch-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[anysearch-ai](https://clawhub.ai/user/anysearch-ai)
 
-## Use Case: <br>
-Developers and agent users use this skill to configure an MCP search service that can perform real-time web and vertical searches, run small batches of independent searches, and extract web page content as Markdown. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Apache 2.0
 
-## Known Risks and Mitigations: <br>
-Risk: Search queries, extracted URLs, and configured AnySearch API keys are sent to the AnySearch service. <br>
-Mitigation: Use environment variables for API keys, avoid sensitive searches, and install only when the user trusts the provider. <br>
-Risk: stdio and SSE setups may depend on proxy packages invoked through npx. <br>
-Mitigation: Review the selected proxy package before use and prefer native Streamable HTTP when the agent supports it. <br>
+## Use Case:
 
+External developers and agent users use this skill to connect agents to AnySearch for real-time web search, vertical domain search, batch search, and page content extraction. It supports anonymous access with lower rate limits and optional API-key configuration for higher limits.
 
-## Reference(s): <br>
-- [AnySearch MCP on ClawHub](https://clawhub.ai/anysearch-ai/anysearch-mcp) <br>
-- [AnySearch API Key Console](https://anysearch.com/console/api-keys) <br>
-- [mcp-remote proxy](https://github.com/geelen/mcp-remote) <br>
-- [supergateway proxy](https://github.com/supercorp-ai/supergateway) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with JSON configuration examples and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes MCP tool selection guidance and setup snippets for Streamable HTTP, stdio, and SSE clients.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: AnySearch may receive search queries, extracted URLs, and any email provided for account creation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use anonymous access when appropriate, confirm before creating an account, and avoid submitting sensitive queries, URLs, or personal data unless that data sharing is acceptable.
+
+Risk: API keys can be exposed through shell history, logs, or committed configuration files.
+
+Mitigation: Store API keys in environment variables or local ignored files, keep them out of command history and logs, and rotate keys if exposure is suspected.
+
+Risk: Unpinned npx proxy commands may execute newer proxy package versions than the user reviewed.
+
+Mitigation: Prefer native Streamable HTTP mode where supported, or pin and review proxy package versions before use.
+
+## Reference(s):
+
+- [AnySearch MCP ClawHub page](https://clawhub.ai/anysearch-ai/skills/anysearch-mcp)
+- [AnySearch publisher profile](https://clawhub.ai/user/anysearch-ai)
+- [AnySearch API keys console](https://anysearch.com/console/api-keys)
+- [mcp-remote proxy](https://github.com/geelen/mcp-remote)
+- [supergateway proxy](https://github.com/supercorp-ai/supergateway)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with JSON configuration examples and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include API key setup guidance, MCP transport configuration, search results, extracted page content, and user-facing error handling guidance.]
+
+## Skill Version(s):
+
+2.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

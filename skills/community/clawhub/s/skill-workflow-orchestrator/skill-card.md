@@ -1,40 +1,53 @@
-## Description: <br>
-Multi-skill workflow orchestrator that chains skills into automated pipelines from a single phrase, with support for sequential execution, conditional branching, and error handling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Multi-skill workflow orchestrator that chains skills into automated pipelines from natural-language requests, with conditional branching and error handling.
 
-## Publisher: <br>
-[openlark](https://clawhub.ai/user/openlark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[openlark](https://clawhub.ai/user/openlark)
 
-## Use Case: <br>
-Developers and agent builders use this skill to plan and coordinate multi-step workflows that chain specialized skills, apply conditional branches, and handle step failures. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Automated workflow chaining can trigger powerful local review commands or tests in sequence. <br>
-Mitigation: Install only when automated local review is intended, and use normal approval controls or the documented no-yolo option when sandbox bypass is not acceptable. <br>
-Risk: Multi-step workflows can propagate incorrect intermediate outputs into later actions. <br>
-Mitigation: Review generated workflow plans and require confirmation before sensitive actions such as sending messages, emails, or notifications. <br>
+## Use Case:
 
+Developers and agent operators use this skill to coordinate multi-step workflows that parse user intent, invoke sub-skills in sequence, branch conditionally, and handle failures.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/openlark/skill-workflow-orchestrator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown with JSON and pseudocode examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May describe workflow steps, retry settings, fallback behavior, and final output formats such as JSON, Markdown, or text.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Coordinated workflows may trigger externally visible or state-changing downstream actions such as sending messages, publishing content, saving data, or reminders.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm each externally visible or state-changing step with the user and verify which downstream skill will perform it before execution.
+
+Risk: Workflow quality and safety depend on the behavior and current validity of downstream skills selected for each step.
+
+Mitigation: Check downstream skill identity, permissions, and current version before allowing a workflow to proceed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/openlark/skills/skill-workflow-orchestrator)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, configuration, code]
+
+**Output Format:** [Markdown with JSON workflow examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include structured step lists, conditional branches, retry settings, and fallback handling.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

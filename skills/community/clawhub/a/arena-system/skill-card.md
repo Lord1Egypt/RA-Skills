@@ -1,42 +1,57 @@
-## Description: <br>
-Adversarial self-improvement for AI agents. Reduces hallucinations through Agent vs Anti-Agent debate loops. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Adversarial self-improvement for AI agents. Reduces hallucinations through Agent vs Anti-Agent debate loops.
 
-## Publisher: <br>
-[Zedit42](https://clawhub.ai/user/Zedit42) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[zedit42](https://clawhub.ai/user/zedit42)
 
-## Use Case: <br>
-Developers and agent operators use this skill to set up an adversarial self-critique loop where an agent alternates between builder and critic personas for code review, risk assessment, trading strategy review, or other tasks that benefit from structured challenge. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Rerunning setup can overwrite arena state and prompt files. <br>
-Mitigation: Review setup.sh first and run it against a fresh or backed-up arena directory. <br>
-Risk: Adding the heartbeat snippet can create recurring self-critique iterations in the agent workflow. <br>
-Mitigation: Add the snippet only when recurring critique is intended, confirm the install path, and keep max_iterations bounded. <br>
-Risk: The same model may retain shared blind spots across both personas or prolong analysis. <br>
-Mitigation: Use human review for consequential outputs and stop the loop when additional critique is no longer improving the result. <br>
+## Use Case:
 
+Developers and agent users use this skill to set up an Agent and Anti-Agent debate loop for self-critique, code review, risk assessment, and validation-heavy work.
 
-## Reference(s): <br>
-- [Arena System on ClawHub](https://clawhub.ai/Zedit42/arena-system) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Markdown, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and generated local configuration files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates local state, prompt, heartbeat snippet, and output directories for an alternating Agent and Anti-Agent workflow.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata and package.json) <br>
+Risk: The setup script creates local state, prompt, heartbeat snippet, and output files in the selected directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install into a dedicated directory and review the generated prompt files before adding the heartbeat snippet to an agent workflow.
+
+Risk: An active debate loop can consume extra agent time and tokens if iteration limits are too high.
+
+Mitigation: Set max_iterations to a small value before first use and stop the loop when further critique is no longer useful.
+
+Risk: The Agent and Anti-Agent personas use the same underlying model, so shared model blind spots can remain.
+
+Mitigation: Treat the loop as self-critique, not an independent review, and require human validation for deployment, financial, or safety-relevant decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zedit42/skills/arena-system)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and generated prompt/configuration files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates local state, prompt, heartbeat snippet, and output directories for an alternating debate loop.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

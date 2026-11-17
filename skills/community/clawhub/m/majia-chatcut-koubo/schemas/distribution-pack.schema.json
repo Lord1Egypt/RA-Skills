@@ -1,0 +1,214 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/maojiebc/majia-chatcut-koubo/schemas/distribution-pack.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "$schema",
+    "schemaVersion",
+    "packId",
+    "projectId",
+    "runId",
+    "master",
+    "platformProfiles",
+    "deliverables",
+    "releaseReportRef",
+    "publishAction"
+  ],
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "schemaVersion": {
+      "const": "1.0.0"
+    },
+    "packId": {
+      "$ref": "creator-os-common.schema.json#/$defs/identifier"
+    },
+    "projectId": {
+      "$ref": "creator-os-common.schema.json#/$defs/identifier"
+    },
+    "runId": {
+      "$ref": "creator-os-common.schema.json#/$defs/identifier"
+    },
+    "master": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "artifactId",
+        "artifactHash",
+        "timelineRevision",
+        "contentTruthHash"
+      ],
+      "properties": {
+        "artifactId": {
+          "$ref": "creator-os-common.schema.json#/$defs/identifier"
+        },
+        "artifactHash": {
+          "$ref": "creator-os-common.schema.json#/$defs/sha256"
+        },
+        "timelineRevision": {
+          "$ref": "creator-os-common.schema.json#/$defs/revision"
+        },
+        "contentTruthHash": {
+          "$ref": "creator-os-common.schema.json#/$defs/sha256"
+        }
+      }
+    },
+    "platformProfiles": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "profileId",
+          "platformId",
+          "sourceType",
+          "sourceRef",
+          "observedAt",
+          "expiresAt",
+          "confidence",
+          "rules"
+        ],
+        "properties": {
+          "profileId": {
+            "$ref": "creator-os-common.schema.json#/$defs/identifier"
+          },
+          "platformId": {
+            "enum": [
+              "douyin",
+              "xiaohongshu",
+              "wechat_channels",
+              "bilibili"
+            ]
+          },
+          "sourceType": {
+            "enum": [
+              "official-documentation",
+              "repository-observation",
+              "manual-review"
+            ]
+          },
+          "sourceRef": {
+            "type": "string",
+            "minLength": 1
+          },
+          "observedAt": {
+            "type": "string",
+            "format": "date"
+          },
+          "expiresAt": {
+            "type": "string",
+            "format": "date"
+          },
+          "confidence": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          },
+          "rules": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "ruleId",
+                "intendedLevel",
+                "value"
+              ],
+              "properties": {
+                "ruleId": {
+                  "$ref": "creator-os-common.schema.json#/$defs/identifier"
+                },
+                "intendedLevel": {
+                  "enum": [
+                    "hard",
+                    "advisory"
+                  ]
+                },
+                "value": {
+                  "type": [
+                    "string",
+                    "number",
+                    "boolean"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "deliverables": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "deliverableId",
+          "platformId",
+          "kind",
+          "path",
+          "sha256",
+          "parentArtifactHash",
+          "masterTimelineRevision",
+          "contentTruthHash",
+          "adaptation"
+        ],
+        "properties": {
+          "deliverableId": {
+            "$ref": "creator-os-common.schema.json#/$defs/identifier"
+          },
+          "platformId": {
+            "enum": [
+              "douyin",
+              "xiaohongshu",
+              "wechat_channels",
+              "bilibili"
+            ]
+          },
+          "kind": {
+            "enum": [
+              "video",
+              "cover",
+              "captions",
+              "title",
+              "description",
+              "chapters"
+            ]
+          },
+          "path": {
+            "$ref": "creator-os-common.schema.json#/$defs/relativePath"
+          },
+          "sha256": {
+            "$ref": "creator-os-common.schema.json#/$defs/sha256"
+          },
+          "parentArtifactHash": {
+            "$ref": "creator-os-common.schema.json#/$defs/sha256"
+          },
+          "masterTimelineRevision": {
+            "$ref": "creator-os-common.schema.json#/$defs/revision"
+          },
+          "contentTruthHash": {
+            "$ref": "creator-os-common.schema.json#/$defs/sha256"
+          },
+          "adaptation": {
+            "enum": [
+              "none",
+              "safe-crop",
+              "repackage"
+            ]
+          }
+        }
+      }
+    },
+    "releaseReportRef": {
+      "$ref": "creator-os-common.schema.json#/$defs/relativePath"
+    },
+    "publishAction": {
+      "const": "none"
+    }
+  }
+}

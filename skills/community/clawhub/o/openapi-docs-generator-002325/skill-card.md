@@ -1,41 +1,61 @@
-## Description: <br>
-Helps API developers, backend teams, developer-experience teams, and maintainers generate, improve, and validate OpenAPI or Swagger documentation for REST APIs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps API developers, backend teams, developer-experience teams, and maintainers generate, improve, and validate OpenAPI or Swagger documentation for REST APIs.
 
-## Publisher: <br>
-[kyro-ma](https://clawhub.ai/user/kyro-ma) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kyro-ma](https://clawhub.ai/user/kyro-ma)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to turn REST API context into practical OpenAPI or Swagger documentation workflows, checklists, code-oriented guidance, and validation steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate on broad API or developer-experience prompts that are not specifically about REST API documentation. <br>
-Mitigation: Invoke a more specific skill manually when the request is outside OpenAPI or Swagger documentation work. <br>
+## Use Case:
 
+Developers and engineers use this skill to create actionable OpenAPI or Swagger documentation workflows, artifacts, checklists, validation guidance, and implementation support for REST APIs.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/kyro-ma/skills/openapi-docs-generator-002325) <br>
-- [Requirement Plan](references/requirement-plan.md) <br>
-- [D-054: Add comprehensive API documentation with OpenAPI spec](https://github.com/Nanle-code/stellar-dev-dashboard/issues/457) <br>
-- [[DevOps] Interactive Swagger/OpenAPI V3 API Documentation](https://github.com/BETAIL-BOYS/TradeFlow-API/issues/172) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline code, commands, checklists, and implementation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include assumptions, validation notes, and follow-up risks for OpenAPI or Swagger documentation tasks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server-resolved release metadata) <br>
+Risk: The skill may activate for broad API or developer-experience wording.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer explicit invocation for OpenAPI or Swagger documentation tasks.
+
+Risk: Generated documentation guidance can be incomplete or mismatched to the actual API implementation.
+
+Mitigation: Validate generated OpenAPI or Swagger artifacts against the service behavior, schema validators, and project success criteria before release.
+
+## Reference(s):
+
+- [Requirement Plan](references/requirement-plan.md)
+- [OpenAPI RESTful API Design](https://blog.csdn.net/2501_94476825/article/details/159013081?ops_request_misc=elastic_search_misc&request_id=969889e93ba64e30aa8e1a47ffbdd098&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~all~sobaiduend~default-4-159013081-null-null.142^v102^pc_search_result_base9&utm_term=OpenAPI%20%E6%96%87%E6%A1%A3)
+- [Swagger/OpenAPI Documentation Generation](https://blog.csdn.net/gitblog_01093/article/details/151205413?ops_request_misc=elastic_search_misc&request_id=969889e93ba64e30aa8e1a47ffbdd098&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~all~baidu_landing_v2~default-5-151205413-null-null.142^v102^pc_search_result_base9&utm_term=OpenAPI%20%E6%96%87%E6%A1%A3)
+- [API Documentation with Utoipa](https://blog.csdn.net/m0_52796585/article/details/162109784?ops_request_misc=elastic_search_misc&request_id=25579504ed5c4a9f96f8286dc90e6f8e&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~all~ElasticSearch~search_v2-5-162109784-null-null.142^v102^pc_search_result_base6&utm_term=OpenAPI%20documentation)
+- [Add Comprehensive API Documentation with OpenAPI Spec](https://github.com/Nanle-code/stellar-dev-dashboard/issues/457)
+- [Interactive Swagger/OpenAPI V3 API Documentation](https://github.com/BETAIL-BOYS/TradeFlow-API/issues/172)
+- [OpenAPI Interface Specification](https://segmentfault.com/a/1190000043968971)
+- [Swagger Bearer Token Answer](https://segmentfault.com/q/1010000017381307/a-1020000017382712)
+- [Swagger Base URL Answer](https://segmentfault.com/q/1010000042921070/a-1020000042921072)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with optional code, shell command, configuration, or checklist sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

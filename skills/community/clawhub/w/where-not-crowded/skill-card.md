@@ -1,44 +1,56 @@
-## Description: <br>
-去哪不挤 helps users decide whether a default holiday travel choice is worth it and recommends less crowded, higher-value alternatives with a direct decision report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+去哪不挤 helps users decide where to travel during Chinese holidays by comparing crowded default destinations with less crowded, higher-value alternatives.
 
-## Publisher: <br>
-[keyikoi](https://clawhub.ai/user/keyikoi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[keyikoi](https://clawhub.ai/user/keyikoi)
 
-## Use Case: <br>
-External users invoke this skill before Chinese holiday travel to compare a likely default destination against better alternatives by crowd risk, cost, travel window, and overall value. It produces an actionable decision report rather than a detailed itinerary or booking workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill writes Markdown and HTML reports into the working directory, including a fixed latest-report HTML filename. <br>
-Mitigation: Run it in a workspace where generated travel report files are expected, and rename or archive prior latest-report output before rerunning if it must be preserved. <br>
-Risk: The skill uses bundled frames rather than live pricing, live crowd data, or external APIs. <br>
-Mitigation: Treat crowd and cost estimates as decision guidance and verify current prices, availability, entry rules, and booking details before travel. <br>
+## Use Case:
 
+External users invoke this skill before holiday travel to get a direct decision report that challenges a default popular route and recommends a main alternative plus near and far backups with crowd, cost, timing, and budget context.
 
-## Reference(s): <br>
-- [Report Template](references/report_template.md) <br>
-- [Example Report](references/example_report.md) <br>
-- [Widget Data Spec](references/widget_data_spec.md) <br>
-- [Destination Frames](assets/destination_frames.json) <br>
-- [ClawHub Skill Page](https://clawhub.ai/keyikoi/where-not-crowded) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Guidance] <br>
-**Output Format:** [Markdown report plus local Markdown and HTML report files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Also writes a fixed latest HTML alias; uses bundled destination frames and does not use live pricing, live crowd data, credentials, or external APIs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated reports may replace previous latest Markdown or HTML outputs in the selected output directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill in a dedicated output directory or move earlier reports before generating a new latest report.
+
+Risk: Travel recommendations and price ranges may be incomplete or stale for a specific holiday, route, or budget.
+
+Mitigation: Treat the report as decision support and verify current transport, lodging, visa, and booking details before acting.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/keyikoi/skills/where-not-crowded)
+- [Report template](artifact/references/report_template.md)
+- [Example report](artifact/references/example_report.md)
+- [Widget data spec](artifact/references/widget_data_spec.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Code, Guidance]
+
+**Output Format:** [Markdown report plus local Markdown and HTML files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The generation script can also emit a JSON report payload when requested.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

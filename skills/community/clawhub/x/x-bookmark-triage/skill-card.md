@@ -1,48 +1,63 @@
-## Description: <br>
-Automatically triages X/Twitter bookmarks into structured knowledge cards and posts them to a Discord channel, using Claude Haiku to score relevance, assign tier, freshness, topic tags, and optionally remove captured bookmarks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically triages X/Twitter bookmarks into structured Discord knowledge cards using Claude Haiku scoring, with scheduled polling, backlog sweeping, manual URL handling, and optional unbookmarking after capture.
 
-## Publisher: <br>
-[jeremyknows](https://clawhub.ai/user/jeremyknows) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[jeremyknows](https://clawhub.ai/user/jeremyknows)
 
-## Use Case: <br>
-Developers and knowledge workers use this skill to turn X/Twitter bookmarks and manually dropped URLs into structured Discord knowledge cards, drain bookmark backlogs, and maintain a searchable intake stream. It supports standalone operation or optional OpenClaw scheduling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses persistent X, Discord, and Anthropic credentials. <br>
-Mitigation: Store tokens in a real secret manager or protected environment, avoid printing secrets, and review any cron, launchd, or systemd setup before enabling unattended runs. <br>
-Risk: Bookmark content and URLs are sent to third-party services for fetching, model triage, and Discord posting. <br>
-Mitigation: Install only for accounts and channels where this data flow is acceptable, and test with non-sensitive bookmarks first. <br>
-Risk: Automated polling and backlog sweeps can remove X/Twitter bookmarks after capture. <br>
-Mitigation: Run with dry-run behavior first, prefer read-only OAuth scopes or no-unbookmark mode unless deletion is intentional, and confirm output quality before scheduled operation. <br>
+## Use Case:
 
+Developers and knowledge workers use this skill to turn saved X/Twitter bookmarks and manually dropped URLs into searchable Discord knowledge cards with relevance tiers, freshness labels, topics, tags, and proposed next actions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jeremyknows/x-bookmark-triage) <br>
-- [OAuth setup guide](references/oauth-setup.md) <br>
-- [Cron setup guide](references/cron-setup.md) <br>
-- [Adapting guide](references/adapting.md) <br>
-- [X Developer Platform](https://developer.x.com) <br>
-- [Discord Developer Portal](https://discord.com/developers/applications) <br>
-- [Anthropic Console](https://console.anthropic.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown Discord knowledge cards with setup guidance and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Cards include tier, freshness, topic, tags, rationale, proposed action, and source link; local state tracks seen URLs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: The skill can automatically remove X bookmarks after processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use read-only X OAuth scopes or run backlog sweeps with --no-unbookmark until deletion is explicitly intended and guarded by confirmed Discord delivery.
+
+Risk: OAuth, Discord, and Anthropic credentials are required for normal operation.
+
+Mitigation: Store tokens in protected environment or secrets files, restrict file permissions, and rotate any credential exposed during setup or execution.
+
+Risk: The .env-loading wrapper sources workspace configuration before running the poller.
+
+Mitigation: Run the wrapper only from a trusted workspace and review local environment files before enabling scheduled execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jeremyknows/skills/x-bookmark-triage)
+- [OAuth setup guide](artifact/references/oauth-setup.md)
+- [Cron setup guide](artifact/references/cron-setup.md)
+- [Adapting guide](artifact/references/adapting.md)
+- [X Developer Platform](https://developer.x.com)
+- [Discord developer applications](https://discord.com/developers/applications)
+- [Anthropic Console](https://console.anthropic.com)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown knowledge cards, setup guidance, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Posts structured cards to Discord and writes local token and seen-URL state files during operation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

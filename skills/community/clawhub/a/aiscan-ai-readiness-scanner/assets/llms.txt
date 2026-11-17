@@ -1,21 +1,43 @@
 # AIScan.site
 
-> Platform-aware agent-readiness scanner. Audit how prepared any website is for AI agents.
+> AI readiness scanner and grader for the agentic web. Tests whether AI agents, LLMs, and crawlers can discover, read, and act on your site.
 
-AIScan.site checks robots.txt, sitemaps, Markdown content negotiation, llms.txt, MCP server cards, OAuth discovery, Agent Skills, Web Bot Auth, and agentic commerce signals (UCP, x402). It detects the underlying platform (WordPress, Shopify, Lovable, Replit, Bolt, v0, Framer, Wix, Webflow) and applies the right rubric so content sites are not unfairly penalized for missing API surfaces.
+## When to use AIScan
+Use AIScan when you need to know whether AI agents and LLM crawlers can discover, read, and act on a website — before or after changing robots.txt, sitemaps, llms.txt, structured data, APIs, or MCP endpoints. Give it any public URL; it returns a 0-100 score, an A-F grade, evidence for every check, and ordered fix steps. Scan first, apply fixes, then re-scan to confirm. Rate limit: 5 scans/minute per IP without an API key.
 
-## Pages
-- [Scanner](/): Run an agent-readiness scan on any URL.
-- [How it works](/how-it-works): Methodology and scoring rubric.
+## Core
+- [Home](https://aiscan.site/): Run a free AI readiness scan
+- [How it works](https://aiscan.site/how-it-works): What AIScan checks and why it matters
+- [Pricing](https://aiscan.site/pricing): Guest, Free, Pro ($12/mo or $99/yr) and the capped Founder lifetime deal, with exact scan, watched-site and MCP/API allowances
+- [Docs](https://aiscan.site/docs): Full documentation
+- [About](https://aiscan.site/about): Who builds AIScan, how the rubric is versioned, and what it does not measure
+- [Developers](https://aiscan.site/developers): API endpoints, auth, rate limits, error format, deprecation policy
+- [Contact](https://aiscan.site/contact): Reach the team
+- [Changelog](https://aiscan.site/changelog): Recent updates
 
-## For AI agents
-- [Programmatic scan API](/api/public/scan): POST `{url}` or GET `?url=` — returns full ScanResult JSON. Rate limit 5/min/IP.
-- [MCP server](/api/mcp): Streamable HTTP MCP endpoint exposing `scan_website`, `get_fixes`, `get_grade`.
-- [Agent Skill manifest](/aiscan-skill.json): Claude Agent Skills JSON describing trigger phrases and usage.
-- [Claude Code instructions](/CLAUDE.md): Plain-English skill doc for Claude Code and similar agent IDEs.
-- [MCP server card](/.well-known/mcp/server-card.json): MCP discovery metadata.
+## Tools & APIs
+- [AIScan on ClaWHub](https://clawhub.ai/asif2bd/skills/aiscan-ai-readiness-scanner): Agent skill marketplace listing — install directly into Claude, Cursor, or any skill-aware runtime
+- [CLI](https://aiscan.site/docs/cli): npx aiscan-cli <url> - zero-install terminal scanner (also published as @aiscan/cli; npm i -g aiscan-cli for the short "aiscan" command) with JSON/Markdown output, CI gates and agent fix prompts
+- [CLI script](https://aiscan.site/cli.mjs): fallback for environments without npm, curl -fsSL https://aiscan.site/cli.mjs | node - example.com
+- [MCP Endpoint](https://aiscan.site/api/mcp): Machine-readable scan and blog publish endpoint
+- [Stable REST API v1](https://aiscan.site/api/public/v1/scan): GET/POST ?url=... - returns the full scan JSON; RFC 9457 problem+json on error
+- [OpenAPI 3.1](https://aiscan.site/openapi.json): Machine-readable description of every public endpoint
+- [API catalog](https://aiscan.site/.well-known/api-catalog): RFC 9727 linkset of all developer surfaces
+- [MCP registry manifest](https://aiscan.site/server.json): server.json for MCP registries
+- [REST API (v0)](https://aiscan.site/api/public/scan): Original public REST API for scan results
+- [Agent Skill](https://aiscan.site/aiscan-skill.json): Skill file for AI agents
+- [CLAUDE.md](https://aiscan.site/CLAUDE.md): Instructions for Claude Code
 
-## Example
-```
-curl https://aiscan.site/api/public/scan?url=https://example.com
-```
+## Blog
+- [Blog index](https://aiscan.site/blog): All articles on AI readiness
+- [Guides hub](https://aiscan.site/guides): How-to guides grouped by scanner check and platform
+- [Improved with AIScan](https://aiscan.site/improved): Real before/after score improvements from public scans
+- [Telegram bot](https://aiscan.site/docs/telegram): Scan sites from Telegram
+- [Search, Agent, Training: What Cloudflare's Three AI Crawler Categories Actually Control](https://aiscan.site/blog/cloudflare-search-agent-training-crawler-categories): Published 2026-08-25. ([markdown](https://aiscan.site/blog/cloudflare-search-agent-training-crawler-categories.md))
+- [Cloudflare's AI Bot Block Is About to Catch Googlebot: What Changes on 15 September 2026](https://aiscan.site/blog/cloudflare-ai-bot-block-googlebot-2026): Published 2026-08-25. ([markdown](https://aiscan.site/blog/cloudflare-ai-bot-block-googlebot-2026.md))
+- [8 Best AI Readiness Checkers in 2026: Free Tools to Test If AI Agents Can Read Your Site](https://aiscan.site/blog/best-ai-readiness-checkers-2026): Published 2026-06-28. ([markdown](https://aiscan.site/blog/best-ai-readiness-checkers-2026.md))
+- [10 Best AI Agent-Ready Tools in 2026: Get Your Website Cited and Used by ChatGPT, Claude & Perplexity](https://aiscan.site/blog/best-ai-agent-ready-tools-2026): Published 2026-06-28. ([markdown](https://aiscan.site/blog/best-ai-agent-ready-tools-2026.md))
+
+## Optional Extras
+- [llms-full.txt](https://aiscan.site/llms-full.txt): Extended version with full post excerpts
+- [RSS feed](https://aiscan.site/feed.xml): RSS 2.0 feed of published blog posts

@@ -1,43 +1,56 @@
-## Description: <br>
-Log daily expenses to Notion from natural language input, parsing item, amount, category, payment method, and transaction date into a configured database. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Log daily expenses to Notion using natural language input, auto-parsing item, amount, category, and payment method into a configured database.
 
-## Publisher: <br>
-[huang-zi-zheng](https://clawhub.ai/user/huang-zi-zheng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[huang-zi-zheng](https://clawhub.ai/user/huang-zi-zheng)
 
-## Use Case: <br>
-Individuals and operators use this skill to capture everyday expenses through chat-style entries and write structured records into their own Notion expense database. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Expense records and descriptions may contain sensitive personal or financial information stored in Notion. <br>
-Mitigation: Use a dedicated Notion integration shared only with the intended expense database and avoid entering unnecessary sensitive details. <br>
-Risk: A leaked Notion token or overly broad database sharing could expose or alter expense data. <br>
-Mitigation: Keep the token private, scope database access narrowly, and rotate the token if it is exposed. <br>
+## Use Case:
 
+Users with a Notion expense database use this skill to capture daily spending from short natural-language messages and store normalized expense records for tracking, filtering, and summary review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/huang-zi-zheng/notion-expense-tracker) <br>
-- [Publisher profile](https://clawhub.ai/user/huang-zi-zheng) <br>
-- [Notion integration setup](https://www.notion.so/my-integrations) <br>
-- [Expense tracker Notion template](https://huangzizheng.notion.site/33c25bdf2d8880728ec1e2856ff9aa65?v=33c25bdf2d88816c80d8000c605efe3b&source=copy_link) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, api calls, configuration] <br>
-**Output Format:** [Text status messages and structured Notion database entries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires NOTION_API_KEY and EXPENSE_DATABASE_ID environment variables and a Notion database with matching properties.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Expense details are stored in Notion and may contain sensitive personal financial information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated Notion integration token shared only with the intended expense database and review database permissions before use.
+
+Risk: Misconfigured Notion credentials or database permissions can prevent expense logging or write to the wrong workspace.
+
+Mitigation: Set NOTION_API_KEY and EXPENSE_DATABASE_ID deliberately, confirm the database is shared with the integration, and verify the required database properties before logging expenses.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/huang-zi-zheng/skills/notion-expense-tracker)
+- [Publisher profile](https://clawhub.ai/user/huang-zi-zheng)
+- [Notion integration setup](https://www.notion.so/my-integrations)
+- [Expense tracker Notion template](https://huangzizheng.notion.site/33c25bdf2d8880728ec1e2856ff9aa65?v=33c25bdf2d88816c80d8000c605efe3b&source=copy_link)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with Python code behavior and shell environment variable setup]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes parsed expense records to a user-configured Notion database when supplied with valid Notion credentials.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

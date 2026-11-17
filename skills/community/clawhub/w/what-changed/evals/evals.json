@@ -1,0 +1,33 @@
+{
+  "skill_name": "what-changed",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Compare purchasing-policy-v1.pdf and v2.pdf. The approval threshold changed from €20k to €10k; wording elsewhere was reorganized.",
+      "expected_output": "The threshold change is elevated as material while editorial reorganization is de-emphasized, with downstream impact candidates.",
+      "assertions": [
+        "Semantic/material changes are separated from editorial changes",
+        "The threshold change includes why it matters",
+        "Potential downstream impacts are identified without pretending unknown dependencies are certain"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Compare yesterday.csv and today.csv and tell me what actually changed, not just a row diff.",
+      "expected_output": "A semantic data-change summary covering additions/removals/material field changes and data-quality anomalies.",
+      "assertions": [
+        "Added, removed, and modified records are distinguished",
+        "Material field changes are summarized by business significance where possible"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "The new contract is 40 pages longer because formatting changed, but two obligations were removed. Summarize changes.",
+      "expected_output": "The removed obligations dominate the material-change report rather than page/line volume.",
+      "assertions": [
+        "Text volume is not used as a proxy for significance",
+        "Removed obligations are surfaced as material"
+      ]
+    }
+  ]
+}

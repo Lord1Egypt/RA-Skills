@@ -1,47 +1,67 @@
-## Description: <br>
-虾游 WanderClaw is a dormant OpenClaw knowledge-exploration agent that activates on explicit keywords, searches and fetches web sources, writes postcard-style knowledge digests, and can schedule recurring explorations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+WanderClaw is a dormant OpenClaw knowledge-exploration agent that activates on explicit keywords, searches the web around user interests, and returns concise postcard-style discoveries.
 
-## Publisher: <br>
-[zzstart2](https://clawhub.ai/user/zzstart2) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zzstart2](https://clawhub.ai/user/zzstart2)
 
-## Use Case: <br>
-External OpenClaw users use this skill to receive recurring, personalized knowledge discoveries as concise postcards, review prior discoveries, request deeper explorations, and manage favorites or blocked topics through chat. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can install autonomous daily and weekly OpenClaw jobs that search the web, use model or search resources, and post results back to chat. <br>
-Mitigation: Install only when recurring autonomous exploration is desired, then review the created cron jobs and remove or disable any schedules that do not match the user's intended cadence. <br>
-Risk: The skill writes local interest and history data in a wanderclaw directory. <br>
-Mitigation: Review the wanderclaw directory before relying on the skill, and delete or edit stored interest, history, or postcard files when the user wants to reset personalization. <br>
-Risk: The skill can silently retry pending scheduled tasks and write a future prompt into shared agent memory. <br>
-Mitigation: Inspect the pending-cron queue and any memory/YYYY-MM-DD.md nudge; remove those entries if the skill should act only when explicitly invoked. <br>
+## Use Case:
 
+External OpenClaw users use this skill to set up a personalized knowledge explorer that performs scheduled and user-triggered web exploration, summarizes findings, and manages postcard history, favorites, feedback, and blocked topics through chat.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/zzstart2/wanderclaw) <br>
-- [README](README.md) <br>
-- [Explorer Workflow](references/EXPLORER.md) <br>
-- [Soul Persona](references/SOUL.md) <br>
-- [Postcard Format](references/postcard-format.md) <br>
-- [Source List](references/sources.yaml) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and chat text with occasional shell command execution guidance and JSON-backed local state.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local wanderclaw state files and schedule OpenClaw cron jobs when activated.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.4 (source: server release metadata and CHANGELOG.md, released 2026-04-20) <br>
+Risk: The skill installs daily and weekly scheduled web exploration tasks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the scheduled jobs and pending-cron queue after setup, and only enable recurring execution when the user expects persistent background activity.
+
+Risk: The skill stores an interest profile, postcard archive, feedback, favorites, and blocked topics in the workspace.
+
+Mitigation: Keep the state directory scoped to the skill, review stored interests before sharing a workspace, and avoid recording sensitive interests unless that storage is acceptable.
+
+Risk: The setup flow can write a one-time onboarding prompt into agent memory.
+
+Mitigation: Review memory changes during installation and remove the onboarding prompt once it has served its purpose.
+
+Risk: Generated postcards depend on web search and fetch results.
+
+Mitigation: Treat postcards as discovery aids and verify important claims against the linked original sources before relying on them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zzstart2/skills/wanderclaw)
+- [README](artifact/README.md)
+- [Skill definition](artifact/SKILL.md)
+- [Changelog](artifact/CHANGELOG.md)
+- [Explorer workflow](artifact/references/EXPLORER.md)
+- [Postcard format](artifact/references/postcard-format.md)
+- [Source map](artifact/references/sources.yaml)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown chat messages with source links, plus JSON workspace state and configuration updates.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May schedule recurring web explorations and write postcard, index, interest-profile, and exploration-log files in the workspace.]
+
+## Skill Version(s):
+
+3.2.4 (source: server release metadata and CHANGELOG, released 2026-04-20)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

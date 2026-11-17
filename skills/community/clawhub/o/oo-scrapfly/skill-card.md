@@ -1,44 +1,55 @@
-## Description: <br>
-Scrapfly support for searching and reading data through the OOMOL-connected Scrapfly connector instead of calling the API directly. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scrapfly (scrapfly.io). Use this skill for ANY Scrapfly request — searching and reading data. Whenever a task involves Scrapfly, use this skill instead of calling the API directly.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Agents and developers use this skill to operate Scrapfly through an OOMOL-connected account, including scraping a single public URL and retrieving monitoring metrics for the connected API key. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a connected Scrapfly account and sensitive credentials managed through OOMOL. <br>
-Mitigation: Use it only with an intended OOMOL Scrapfly connection and keep credential handling within the connected account flow. <br>
-Risk: First-time setup may involve approving an external oo CLI installer and account connection. <br>
-Mitigation: Review the installer and account connection steps before approving them, and run setup only after a command fails for the matching reason. <br>
-Risk: Scraping actions can target public URLs that the user may not be authorized to access through Scrapfly. <br>
-Mitigation: Run scraping actions only for URLs the user is authorized to access and process. <br>
+## Use Case:
 
+Developers use this skill to access Scrapfly through an OOMOL-connected account, retrieve monitoring metrics, and scrape public URLs.
 
-## Reference(s): <br>
-- [ClawHub Scrapfly skill](https://clawhub.ai/oomol/oo-scrapfly) <br>
-- [OOMOL oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [Scrapfly homepage](https://scrapfly.io/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON connector responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses live connector schema inspection before action payload construction.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server evidence and skill metadata) <br>
+Risk: The security review says the setup uses unverified remote installers whose wider effects are not established.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and install the oo CLI separately before enabling the skill; consider disabling automatic skill synchronization with OO_SKILLS_SYNC_DISABLED=1 as described in the CLI reference.
+
+Risk: The connected Scrapfly workflow involves OOMOL handling connected credentials and requests.
+
+Mitigation: Use the integration only if you accept that credential and request handling, and review the public URL and action data before sending a request.
+
+## Reference(s):
+
+- [Scrapfly](https://scrapfly.io/)
+- [Scrapfly Scrape API documentation](https://scrapfly.io/docs/scrape-api/getting-started)
+- [oo CLI command reference](https://github.com/oomol-lab/oo-cli/blob/main/docs/commands.md)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Shell commands, Configuration guidance]
+
+**Output Format:** [JSON connector responses and shell command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Connector responses include data and execution metadata.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

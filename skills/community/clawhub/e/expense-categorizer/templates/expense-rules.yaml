@@ -1,0 +1,29 @@
+# Expense Categorizer - starting point
+# Copy this file, replace every empty value with your own data, keep the field names.
+company: ""
+period: ""
+source: bank feed export
+chart_of_accounts:
+  - code: ""
+    name: ""
+    category_type: expense
+    keywords:
+      - ""
+category_rules:
+  - pattern: ""
+    category_code: ""
+    priority: 1
+    exclude:
+      - ""
+never_categorize:
+  - personal spending
+  - transfers between own accounts
+dedupe_rules:
+  key_columns:
+    - date
+    - vendor
+    - amount
+  ignore_vendor_suffixes:
+    - ""
+review_queue_reason: ""
+owner: ""

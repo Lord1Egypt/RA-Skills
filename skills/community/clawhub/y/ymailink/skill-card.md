@@ -1,47 +1,64 @@
-## Description: <br>
-ymailink helps agents guide users through installing, configuring, and using a terminal email client for IMAP/SMTP, Outlook, Gmail, Exchange, attachments, message composition, and AI-assisted email summaries or reply suggestions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Terminal email client guidance for managing, configuring, automating, and troubleshooting email workflows from the command line with ymailink.
 
-## Publisher: <br>
-[2969192546](https://clawhub.ai/user/2969192546) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[2969192546](https://clawhub.ai/user/2969192546)
 
-## Use Case: <br>
-Developers, operators, and other terminal users use this skill when they need agent guidance for reading, sending, searching, organizing, and automating email from the command line. It also supports setup and troubleshooting for email credentials, OAuth flows, backend-specific configuration, RFC 822 message composition, attachments, and optional AI-assisted summaries or replies. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide commands that access or change email accounts, including sending, moving, deleting, purging, and flagging messages. <br>
-Mitigation: Review commands before execution, use the intended account and folder, and confirm destructive mailbox operations before running them. <br>
-Risk: The skill requires sensitive email credentials or OAuth configuration for normal use. <br>
-Mitigation: Prefer OAuth, system keyring, or password-manager commands over raw passwords, and restrict permissions on configuration and token files. <br>
-Risk: AI features may send selected email content to an external AI service. <br>
-Mitigation: Avoid using AI commands on confidential mail unless the user explicitly accepts that external processing. <br>
-Risk: The security evidence recommends verifying the upstream package source before installation. <br>
-Mitigation: Install only from a trusted source and confirm the package origin before granting access to email accounts. <br>
+## Use Case:
 
+Developers, operators, and automation agents use this skill to install and operate ymailink for reading, sending, organizing, composing, and troubleshooting email from terminal workflows. It also covers account configuration, OAuth and credential handling, attachments, templates, and AI-assisted summaries or reply suggestions.
 
-## Reference(s): <br>
-- [ymailink Configuration Reference](references/configuration.md) <br>
-- [Message Composition Reference](references/message-composition.md) <br>
-- [ymailink upstream homepage](https://github.com/lizhisec/ymailink) <br>
-- [ClawHub skill page](https://clawhub.ai/2969192546/ymailink) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline shell commands, TOML examples, and procedural guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include command examples, configuration snippets, troubleshooting steps, and cautions for credentials, mailbox changes, and AI email processing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release evidence) <br>
+Risk: The release evidence flags mutable remote install guidance and a suspicious security verdict.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only a trusted version or commit, preferably in a virtual environment, and avoid the Gitee mirror unless it is verified against the intended upstream.
+
+Risk: ymailink configuration files, OAuth token caches, and AI API keys can contain sensitive credentials.
+
+Mitigation: Treat ~/.config/ymailink files as sensitive and prefer keyring or pass over plaintext passwords.
+
+Risk: Email commands can send messages or delete and purge mailbox content.
+
+Mitigation: Review target account, folder, message IDs, and command intent before running send, delete, expunge, or purge operations.
+
+Risk: AI summary and reply commands send email content to an AI endpoint.
+
+Mitigation: Do not use AI features on confidential or regulated email unless the endpoint and its data handling are approved.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/2969192546/skills/ymailink)
+- [Project homepage](https://github.com/lizhisec/ymailink)
+- [Configuration reference](artifact/references/configuration.md)
+- [Message composition reference](artifact/references/message-composition.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with command examples, TOML configuration snippets, and RFC 822 message examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include JSON-output command guidance when ymailink is used with --output json.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

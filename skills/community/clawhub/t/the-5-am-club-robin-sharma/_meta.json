@@ -1,6 +1,14 @@
 {
-  "ownerId": "kn7b1bjk878xpagxd2x6yandwn889wb8",
-  "slug": "the-5-am-club-robin-sharma",
+  "name": "the-5-am-club-robin-sharma",
+  "title": "The 5 AM Club",
+  "author": "Robin Sharma",
   "version": "1.0.0",
-  "publishedAt": 1780923536669
+  "license": "MIT",
+  "tags": ["morning-routine", "productivity", "self-improvement", "discipline", "5-am-club"],
+  "description": "Robin Sharma's The 5 AM Club — an executable toolkit for owning your morning, mastering the Victory Hour, and elevating your life through the 20/20/20 Formula.",
+  "homepage": "https://github.com/jaysonmeng/book-skills/tree/main/skills/the-5-am-club",
+  "clawhub": {
+    "slug": "the-5-am-club-robin-sharma",
+    "owner": "jaysonmeng"
+  }
 }

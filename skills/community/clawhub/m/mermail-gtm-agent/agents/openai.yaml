@@ -1,0 +1,11 @@
+interface:
+  display_name: "Mermail GTM Agent"
+  short_description: "Run outbound outreach and classify sales replies"
+  default_prompt: "Use $mermail-gtm-agent when the job is outbound GTM email, reply classification, unsubscribe handling, or warm-ack drafting without auto-sending."
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "mermail"
+      description: "Mermail workspace and mailbox MCP server"
+      transport: "streamable_http"
+      url: "https://console.mermail.app/mcp"

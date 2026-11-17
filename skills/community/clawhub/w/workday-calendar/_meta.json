@@ -1,6 +1,34 @@
 {
-  "ownerId": "kn75zfd51df61ajdyqtgvrs1hx84s4q6",
-  "slug": "workday-calendar",
   "version": "2.2.0",
-  "publishedAt": 1782383200854
+  "description": "智能周历系统。支持法定假日、补班日、轮休系统（跳过/不跳过法定假双模式）、特殊休息（公休/临修）、个人日程管理。",
+  "author": "wUwproject",
+  "name": "workday-calendar",
+  "tags": [
+    "calendar",
+    "workday",
+    "holiday",
+    "schedule",
+    "rotation",
+    "gongxiu",
+    "linxiu",
+    "excel-export"
+  ],
+  "data_dir": "skills/.standardization/workday-calendar/data/",
+  "triggers": [
+    "法定假日",
+    "周历",
+    "工作日",
+    "调休",
+    "补班",
+    "节假日",
+    "假日区间",
+    "年度工日",
+    "日程",
+    "安排",
+    "空闲时间",
+    "轮休",
+    "公休",
+    "临修",
+    "排班"
+  ]
 }

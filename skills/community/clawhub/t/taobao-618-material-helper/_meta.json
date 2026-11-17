@@ -1,6 +1,10 @@
 {
-  "ownerId": "kn7dcnh86hvrqegsma9c1etg6s87cgtn",
   "slug": "taobao-618-material-helper",
+  "name": "618素材文本提报助手",
+  "description": "淘宝618活动公域素材文本提报助手，自动为活动商品填写宝贝名称和推荐理由",
   "version": "0.1.0",
-  "publishedAt": 1779713577399
+  "tags": ["taobao", "618", "电商", "ecommerce", "素材报名"],
+  "os": ["win32"],
+  "author": "wuqi296441342",
+  "license": "MIT"
 }

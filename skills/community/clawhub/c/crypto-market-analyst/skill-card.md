@@ -1,46 +1,59 @@
-## Description: <br>
-Analyze Bitcoin, Ethereum, and major altcoins using real-time price, on-chain signals, and macro context from the Finskills API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze Bitcoin, Ethereum, and major altcoins using real-time price, on-chain signals, and macro context from the Finskills API.
 
-## Publisher: <br>
-[finskills](https://clawhub.ai/user/finskills) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[finskills](https://clawhub.ai/user/finskills)
 
-## Use Case: <br>
-External users and agents use this skill to analyze current cryptocurrency market conditions, compare Bitcoin, Ethereum, and major altcoins, and produce structured market regime and positioning guidance from Finskills API data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a Finskills API key and sends crypto market requests to the Finskills service. <br>
-Mitigation: Provide the key only if the deployment is approved to use Finskills, store it as a secret environment variable, and avoid including unrelated sensitive information in prompts. <br>
-Risk: The skill can produce positioning guidance for highly volatile crypto assets. <br>
-Mitigation: Treat outputs as research support, verify market data independently, and do not use the report as financial advice. <br>
-Risk: Crypto market data may be delayed or incomplete for fast-moving market conditions. <br>
-Mitigation: Check timestamps, corroborate with current market sources, and rerun analysis before acting on time-sensitive conclusions. <br>
+## Use Case:
 
+External users and market analysts use this skill to generate structured crypto market reports covering dominance, volatility, cycle position, altcoin performance, sentiment proxies, and positioning signals.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/finskills/crypto-market-analyst) <br>
-- [Finskills Publisher Profile](https://clawhub.ai/user/finskills) <br>
-- [Project Homepage](https://github.com/finskills/crypto-market-analyst) <br>
-- [Finskills API](https://finskills.net) <br>
-- [Finskills API Registration](https://finskills.net/register) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, API calls, analysis, guidance] <br>
-**Output Format:** [Markdown report with market tables, computed metrics, and concise positioning guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires FINSKILLS_API_KEY for Finskills API access; outputs are research support, not financial advice.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill produces crypto research and positioning signals that could be mistaken for personalized financial advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as market research only and require human review before making financial decisions.
+
+Risk: The workflow requires a Finskills API key and sends market-data requests to Finskills endpoints.
+
+Mitigation: Install only when the user is comfortable providing the API key and permitting those external market-data requests.
+
+Risk: The documented workflow appears to rely on price, market, history, and macro proxy data rather than true on-chain metrics.
+
+Mitigation: Avoid presenting the analysis as complete on-chain due diligence unless additional verified on-chain data sources are added.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/finskills/skills/crypto-market-analyst)
+- [Finskills API](https://finskills.net)
+- [Skill homepage](https://github.com/finskills/crypto-market-analyst)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, API calls, guidance]
+
+**Output Format:** [Structured Markdown market report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires FINSKILLS_API_KEY and uses Finskills market-data endpoints for crypto analysis.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

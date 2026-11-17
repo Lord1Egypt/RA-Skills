@@ -1,45 +1,53 @@
-## Description: <br>
-Agent skill that faithfully reproduces Hummingbot CLI commands (connect, balance, create, start, stop, status, history) via Hummingbot API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent skill that reproduces Hummingbot CLI commands through the Hummingbot API for core V2 trading workflows.
 
-## Publisher: <br>
-[fengtality](https://clawhub.ai/user/fengtality) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[fengtality](https://clawhub.ai/user/fengtality)
 
-## Use Case: <br>
-External developers and trading operators use this skill to manage Hummingbot API workflows, including connecting exchanges, checking balances, creating and starting V2 bots, monitoring status and history, and stopping bots. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can affect live Hummingbot trading workflows and exchange-connected accounts. <br>
-Mitigation: Use paper trading first and require explicit human approval before starting bots, stopping bots, placing orders, canceling orders, or using leveraged strategies. <br>
-Risk: Weak Hummingbot API credentials or default credentials can expose trading controls. <br>
-Mitigation: Set strong Hummingbot API credentials before use and avoid relying on default admin credentials. <br>
-Risk: Exchange secrets may be exposed if passed directly on the command line. <br>
-Mitigation: Prefer protected environment or configuration files for secrets and avoid command-line arguments for exchange API keys when possible. <br>
-Risk: Exchange API keys with withdrawal permissions increase impact if credentials are misused. <br>
-Mitigation: Disable withdrawal permissions on exchange API keys used with this skill. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [PMM Mister Controller](artifact/references/pmm_mister.md) <br>
-- [PMM V1 Controller](artifact/references/pmm_v1.md) <br>
-- [ClawHub Hummingbot skill page](https://clawhub.ai/fengtality/hummingbot) <br>
+## Use Case:
 
+Developers and trading operators use this skill to connect an agent to Hummingbot API workflows for exchange credentials, balances, bot configuration, V2 bot lifecycle management, status, history, and direct trade operations.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and plain text command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May invoke Hummingbot API workflows that affect exchange credentials, bot lifecycle, orders, positions, and trading history.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can connect to real exchange accounts and includes direct order placement workflows that could affect funds.
+
+Mitigation: Use paper trading or testnet first, disable withdrawals on exchange API keys, and remove or avoid scripts/trade.py when direct orders are not intended.
+
+Risk: Weak credential or API configuration could expose a Hummingbot API connection to unintended use.
+
+Mitigation: Set an explicit trusted local or HTTPS Hummingbot API URL, avoid passing secrets on the command line, and replace any default admin/admin credentials before use.
+
+## Reference(s):
+
+- [PMM Mister Controller](references/pmm_mister.md)
+- [PMM V1 Controller](references/pmm_v1.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and plain text tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include trading account operations, bot lifecycle actions, balances, history, market data, and order-related guidance.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

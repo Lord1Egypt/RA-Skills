@@ -1,41 +1,54 @@
-## Description: <br>
-AI-powered code review assistant that analyzes pull requests, identifies potential bugs, security issues, code quality problems, and provides actionable improvement suggestions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-powered code review assistant that analyzes pull requests, identifies potential bugs, security issues, code quality problems, and provides actionable improvement suggestions.
 
-## Publisher: <br>
-[huajianjiu000](https://clawhub.ai/user/huajianjiu000) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[huajianjiu000](https://clawhub.ai/user/huajianjiu000)
 
-## Use Case: <br>
-Developers and engineers use this skill to review pull requests, audit code changes, identify security and quality issues, and produce structured feedback with severity levels and recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Code review can expose code, diffs, secrets, private keys, production credentials, or unrelated sensitive files to the agent context. <br>
-Mitigation: Share only the files needed for review, redact secrets and credentials before review, and avoid including unrelated sensitive project data. <br>
-Risk: Review feedback may be incomplete or incorrect because the skill provides checklist-based guidance rather than executing tests or scanners. <br>
-Mitigation: Treat findings as review assistance, verify important claims against the codebase, and run the project's normal tests and security checks before merging. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to review pull requests and code changes for security, quality, performance, test coverage, and best-practice issues before production.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/huajianjiu000/code-review-assistant-2) <br>
-- [Publisher profile](https://clawhub.ai/user/huajianjiu000) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown review summary with severity-grouped findings and recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces human-reviewable code review feedback; no executable code or install steps are included in the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata and target metadata; artifact frontmatter lists 1.0.0) <br>
+Risk: Code submitted for review may include secrets, credentials, or proprietary content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Only provide code and secrets that are intended for the reviewing agent to inspect.
+
+Risk: Review guidance can miss issues or produce incorrect recommendations.
+
+Mitigation: Use the output as review assistance and have a qualified developer validate findings before making changes.
+
+## Reference(s):
+
+- [Code Review Assistant ClawHub listing](https://clawhub.ai/huajianjiu000/skills/code-review-assistant-2)
+- [huajianjiu000 ClawHub publisher profile](https://clawhub.ai/user/huajianjiu000)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Code, Guidance]
+
+**Output Format:** [Markdown review summary with severity-grouped findings and recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include issue locations, severity labels, positive observations, and suggested fixes.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

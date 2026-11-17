@@ -1,0 +1,13 @@
+interface:
+  display_name: "Caption track preflight"
+  short_description: "Check frozen caption tracks"
+policy:
+  products: ["CHAT", "CODEX"]
+  allow_implicit_invocation: true
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "powmcp-caption-file-check"
+      description: "Caption File Check (PowMCP)"
+      transport: "streamable_http"
+      url: "https://powmcp.com/caption-file-check/mcp"

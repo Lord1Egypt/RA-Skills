@@ -1,38 +1,56 @@
-## Description: <br>
-A comprehensive framework for testing and validating automation projects to ensure stability, security, and scalability. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A comprehensive framework for testing and validating automation projects to ensure stability, security, and scalability.
 
-## Publisher: <br>
-[vetmomen](https://clawhub.ai/user/vetmomen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[vetmomen](https://clawhub.ai/user/vetmomen)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and automation engineers use this skill to apply a six-layer testing protocol for automation projects, covering unit, integration, end-to-end, recovery, regression, and observability checks.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Running repository tests can execute project code, which may be unsafe or have side effects in untrusted projects.
+
+Mitigation: Require user approval before executing tests, run them in a constrained environment, and avoid live service credentials unless explicitly approved.
+
+Risk: The skill may lead an agent to create or modify a run_tests.py file without enough user control.
+
+Mitigation: Ask before creating new test files and keep any generated tests scoped to the requested project behavior.
+
+Risk: Integration testing with real credentials can expose secrets or affect live external services.
+
+Mitigation: Prefer mocked or sandbox credentials and confirm with the user before using real service credentials.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and automation engineers use this skill to plan, run, and evaluate testing for automation projects across unit, integration, end-to-end, idempotency, regression, and logging checks. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [guidance, markdown, shell commands, code]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can cause agents to apply broad QA/testing guidance, run tests, create helper files, or enforce timezone behavior. <br>
-Mitigation: Install it only where that behavior is intended, review actions before execution, and override fixed timezone guidance with the project's configured timezone for production-sensitive or multi-region projects. <br>
+**Output Format:** [Markdown guidance with inline shell commands and testing criteria]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [Automation Testing Protocol on ClawHub](https://clawhub.ai/vetmomen/automation-testing-protocol) <br>
+**Other Properties Related to Output:** [May guide agents to discover or create project test files and to run repository test suites.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, code] <br>
-**Output Format:** [Markdown guidance with inline shell commands and testing criteria] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May direct agents to run tests or create a run_tests.py helper when a project lacks tests.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact metadata reports 1.1.0) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

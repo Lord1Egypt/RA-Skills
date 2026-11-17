@@ -1,46 +1,56 @@
-## Description: <br>
-Helps developers use extension fields in the xbridge3 framework, including country-specific transaction extensions, EntityColumnSchema mappings, ExtensionUtils access patterns, index-field allocation, and schema configuration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps developers use xbridge3 extension fields by explaining indexed and JSON-only extension data, schema annotations, DAO and service handling, and reference Java examples.
 
-## Publisher: <br>
-[dongwangwangyangyan](https://clawhub.ai/user/dongwangwangyangyan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dongwangwangyangyan](https://clawhub.ai/user/dongwangwangyangyan)
 
-## Use Case: <br>
-Developers and engineers use this skill to design, implement, read, write, and troubleshoot xbridge3 transaction extension fields, especially country-specific extensions and indexed JSON-backed fields. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Java examples may be reused in financial transaction systems without adequate production review. <br>
-Mitigation: Review examples before implementation, add validation and tests around extension-field save/load behavior, and adapt the code to local data-handling requirements. <br>
-Risk: Reference code includes production caveats such as full transaction payload logging and audit-history handling concerns. <br>
-Mitigation: Remove full transaction payload logging and restore or redesign audit-history handling before using similar patterns in a real system. <br>
+## Use Case:
 
+Developers and engineers use this skill when adding country-specific transaction extension fields in xbridge3, configuring @EntityColumnSchema mappings, and reading or persisting extension data in DAO and service layers.
 
-## Reference(s): <br>
-- [Transaction Extension Fields Usage Guide](references/xbridge-ext-use.md) <br>
-- [ExtensionUtils.java](references/ExtensionUtils.java) <br>
-- [VNCommonExtension.java](references/VNCommonExtension.java) <br>
-- [VNTransactionExtension.java](references/VNTransactionExtension.java) <br>
-- [VNTransactionProcessor.java](references/VNTransactionProcessor.java) <br>
-- [TransactionDAO.java](references/TransactionDAO.java) <br>
-- [TransactionConverter.java](references/TransactionConverter.java) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Configuration] <br>
-**Output Format:** [Markdown with Java code examples and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only output; examples should be reviewed before use in production systems.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Reference DAO and processor examples may be copied into financial transaction systems with unsafe access-control, logging, or audit-trail patterns.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated code before use; require tenant-scoped queries and updates, avoid logging full transaction objects, and decide whether audit-history saves must be mandatory for the compliance model.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dongwangwangyangyan/skills/xbridge-ext-helper)
+- [xbridge extension field usage guide](references/xbridge-ext-use.md)
+- [ExtensionUtils.java](references/ExtensionUtils.java)
+- [VNCommonExtension.java](references/VNCommonExtension.java)
+- [VNTransactionExtension.java](references/VNTransactionExtension.java)
+- [VNTransactionProcessor.java](references/VNTransactionProcessor.java)
+- [TransactionDAO.java](references/TransactionDAO.java)
+- [TransactionConverter.java](references/TransactionConverter.java)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Markdown, Configuration instructions]
+
+**Output Format:** [Markdown with Java code examples and implementation steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include DAO, service, converter, schema annotation, and extension utility examples for xbridge3 transaction extension fields.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

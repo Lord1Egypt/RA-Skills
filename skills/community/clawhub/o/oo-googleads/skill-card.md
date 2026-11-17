@@ -1,44 +1,54 @@
-## Description: <br>
-Operates Google Ads through the OOMOL googleads connector for reading, creating, updating, and deleting advertising account data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use a connected Google Ads account to retrieve account data, manage campaigns and ad groups, and work with Customer Match lists.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-External users and developers use this skill to manage Google Ads accounts through OOMOL, including customer discovery, campaign and ad group mutations, GAQL search, and Customer Match list workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can change Google Ads campaigns, ad groups, and customer lists. <br>
-Mitigation: Review the exact target, payload, and expected account impact before approving write or destructive actions. <br>
-Risk: The skill requires OAuth access and sensitive connector credentials managed through OOMOL. <br>
-Mitigation: Install only when OOMOL is trusted for the connected Google Ads account and verify the connection scope before use. <br>
+## Use Case:
 
+Advertisers and account operators use the skill to inspect Google Ads accounts and manage campaigns, ad groups, and Customer Match lists through their connected OOMOL account.
 
-## Reference(s): <br>
-- [ClawHub Google Ads skill page](https://clawhub.ai/oomol/oo-googleads) <br>
-- [OOMOL publisher profile](https://clawhub.ai/user/oomol) <br>
-- [Google Ads homepage](https://ads.google.com) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [OOMOL Google Ads connection](https://console.oomol.com/app-connections?provider=googleads) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Connector responses may include JSON data and an execution id under meta.executionId.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and skill frontmatter) <br>
+Risk: Automatic setup may execute unverified downloaded code or install additional agent skills.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and install a verified CLI release yourself, and check its effects on other agent skills before enabling this skill.
+
+Risk: Actions can change Google Ads campaigns or upload customer-list data through the connected account.
+
+Mitigation: Review each proposed change or upload and confirm its exact target and effect before execution.
+
+## Reference(s):
+
+- [Google Ads](https://ads.google.com)
+- [Google Ads API documentation](https://developers.google.com/google-ads/api/docs/start)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, JSON, Guidance]
+
+**Output Format:** [Shell commands for Google Ads actions and JSON action results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read and write actions use the connected account; confirm proposed changes and Customer Match uploads before execution.]
+
+## Skill Version(s):
+
+1.0.6 (source: frontmatter, server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

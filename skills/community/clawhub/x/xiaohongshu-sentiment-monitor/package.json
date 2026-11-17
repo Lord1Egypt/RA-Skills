@@ -1,0 +1,37 @@
+{
+  "name": "xiaohongshu-sentiment-monitor",
+  "version": "1.1.4",
+  "description": "输入关键词、小红书账号主页链接，自动拉取垂类笔记、账号笔记并解析下载链接，支持一键批量下载到本地。",
+  "keywords": [
+    "小红书",
+    "爆款笔记",
+    "数据分析",
+    "市场调研",
+    "数据挖掘",
+    "趋势监控",
+    "竞品分析",
+    "KOL营销",
+    "流量增长",
+    "用户画像"
+  ],
+  "homepage": "https://github.com/um-why/xiaohongshu-openclaw-skill#readme",
+  "bugs": {
+    "url": "https://github.com/um-why/xiaohongshu-openclaw-skill/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/um-why/xiaohongshu-openclaw-skill.git"
+  },
+  "license": "MIT",
+  "author": "um-why",
+  "engines": {
+    "node": ">=16"
+  },
+  "main": "src/xiaohongshu/search-cli.js",
+  "scripts": {
+    "search": "node src/xiaohongshu/search-cli.js",
+    "detail": "node src/xiaohongshu/detail-cli.js",
+    "post": "node src/xiaohongshu/post-cli.js",
+    "comment": "node src/xiaohongshu/comment-cli.js"
+  }
+}

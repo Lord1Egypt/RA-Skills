@@ -1,40 +1,57 @@
-## Description: <br>
-Installs 425 bioinformatics skills covering sequence analysis, RNA-seq, single-cell, variant calling, metagenomics, structural biology, and 56 more categories. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Installs 425 bioinformatics skills covering sequence analysis, RNA-seq, single-cell, variant calling, metagenomics, structural biology, and 56 more categories.
 
-## Publisher: <br>
-[djemec](https://clawhub.ai/user/djemec) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[djemec](https://clawhub.ai/user/djemec)
 
-## Use Case: <br>
-Developers and bioinformatics practitioners use BioSkills to add specialized OpenClaw skills for genomics, transcriptomics, single-cell analysis, variant analysis, metagenomics, structural biology, and related workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Installing all BioSkills changes the agent's future skill-trigger surface. <br>
-Mitigation: Use a dry run or category-limited install first, and update or uninstall bio-* skills when the expanded surface is no longer wanted. <br>
-Risk: The installer clones an external BioSkills release and writes skills into the local OpenClaw skills directory. <br>
-Mitigation: Review the bundled installer before execution and rely on its pinned release tag and expected commit verification during installation. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [BioSkills ClawHub Release](https://clawhub.ai/djemec/bioskills) <br>
-- [BioSkills source repository listed in artifact](https://github.com/GPTomics/bioSkills) <br>
+## Use Case:
 
+External users, developers, and bioinformatics practitioners use this meta-skill to add broad OpenClaw bioinformatics capability or install selected categories for sequence analysis, RNA-seq, single-cell analysis, variant calling, metagenomics, structural biology, and related workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands and installation options] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Installs all BioSkills by default, with category-limited, update, and uninstall modes available through the bundled shell script.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-3.0.0 (source: ClawHub release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The installer gives one command broad, persistent authority to add hundreds of OpenClaw skills and run a secondary script from the cloned repository.
+
+Mitigation: Install only after trusting the GPTomics bioSkills repository at the pinned commit, and review the cloned install-openclaw.sh before running it.
+
+Risk: Installing the full collection may add more bioinformatics capabilities than a user needs.
+
+Mitigation: Use --categories to install only the specific bioinformatics areas needed for the task.
+
+Risk: The --uninstall option removes all bio-* skill directories from the OpenClaw skills directory.
+
+Mitigation: Review the target skills directory before uninstalling and preserve any local bio-* skills that should not be removed.
+
+## Reference(s):
+
+- [ClawHub BioSkills listing](https://clawhub.ai/djemec/skills/bioskills)
+- [bioSkills GitHub repository](https://github.com/GPTomics/bioSkills)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Installs, updates, or removes persistent OpenClaw bioinformatics skill directories after user execution.]
+
+## Skill Version(s):
+
+3.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

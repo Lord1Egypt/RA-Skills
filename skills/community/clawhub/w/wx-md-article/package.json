@@ -1,29 +1,24 @@
 {
-  "name": "wechat-article",
-  "version": "1.0.0",
-  "description": "微信公众号文章生成器 - Markdown转微信HTML并上传草稿箱",
+  "name": "wx-md-article",
+  "version": "1.0.1",
+  "description": "Convert Markdown to WeChat Official Account HTML with optional confirmed draft upload.",
   "main": "wechat-article.sh",
-  "author": "超哥",
-  "license": "MIT",
+  "author": "yangchao228",
+  "license": "MIT-0",
   "keywords": [
     "wechat",
     "weixin",
-    "公众号",
     "markdown",
-    "文章生成"
+    "article"
   ],
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "https://github.com/yangchao228/wx-md-article.git"
   },
   "bin": {
-    "wechat-article": "./wechat-article.sh"
+    "wx-md-article": "./wechat-article.sh"
   },
   "scripts": {
     "test": "./wechat-article.sh --help"
-  },
-  "dependencies": {
-    "curl": "*",
-    "jq": "*"
   }
 }

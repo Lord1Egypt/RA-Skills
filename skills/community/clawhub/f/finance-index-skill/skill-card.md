@@ -1,49 +1,63 @@
-## Description: <br>
-用投资大师的脑子、呼兰的嘴，帮你搞懂指数和市场。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+用投资大师的脑子、呼兰的嘴，帮你搞懂指数和市场。
 
-## Publisher: <br>
-[pzc66momo](https://clawhub.ai/user/pzc66momo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pzc66momo](https://clawhub.ai/user/pzc66momo)
 
-## Use Case: <br>
-External users use this skill to interpret Chinese financial news, market themes, and index directions. It maps events or questions to concise analysis, one to three watchlist indices, and compliance disclaimers without personalized holdings analysis, fund recommendations, forecasts, or buy/sell advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Financial analysis could be mistaken for personalized investment advice. <br>
-Mitigation: The skill limits responses to market logic and index themes, avoids personal holdings analysis, fund recommendations, forecasts, and buy/sell instructions, and includes an investment-risk disclaimer. <br>
-Risk: Static reference data can become stale or omit real-time prices. <br>
-Mitigation: The skill states that it does not provide real-time quotes or same-day movements and directs users to market-data tools for current prices. <br>
-Risk: The release includes a publishing helper script that can run Git and ClawHub publication commands when executed. <br>
-Mitigation: Review commands before execution and use dry-run or skip flags unless intentionally publishing a release. <br>
-Risk: Security telemetry was clean but advised review before installation. <br>
-Mitigation: Review the skill text before deployment, especially any requests for credentials, external uploads, local file access, or automatic setup commands. <br>
+## Use Case:
 
+External finance readers use this skill to understand financial news, market themes, and index directions at a high level. It summarizes market logic and suggests indices to watch while avoiding personal holdings analysis, fund product recommendations, forecasts, and buy/sell advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/pzc66momo/finance-index-skill) <br>
-- [README.md](README.md) <br>
-- [投资大师思维框架](references/master_frameworks.md) <br>
-- [指数目录](references/index_catalog.json) <br>
-- [可信指数数据源](references/trusted_sources_index.json) <br>
-- [可信财经媒体源](references/trusted_sources_media.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Concise Chinese Markdown or plain text with index watchlist items and an investment-risk disclaimer] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Does not provide real-time quotes, personal holdings analysis, fund recommendations, forecasts, or buy/sell/hold instructions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: frontmatter and release evidence) <br>
+Risk: The skill may steer users toward Tencent Licaitong/Txfund destinations without clear upfront disclosure.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review user-facing copy and index-link behavior for disclosure before deployment, especially where links or miniapp destinations are surfaced.
+
+Risk: Financial explanations and index suggestions could be mistaken for personalized investment advice.
+
+Mitigation: Keep the compliance disclaimer, avoid personal holdings analysis, and block fund product recommendations, return forecasts, and buy/sell/hold instructions.
+
+Risk: The publishing script can invoke git push and the ClawHub CLI from the local environment.
+
+Mitigation: Do not run scripts/publish-all.sh unless operating in a controlled publishing environment with trusted credentials and a pinned CLI version.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/pzc66momo/skills/finance-index-skill)
+- [README](README.md)
+- [Skill definition](SKILL.md)
+- [Investment master frameworks](references/master_frameworks.md)
+- [Index catalog](references/index_catalog.json)
+- [Trusted index sources](references/trusted_sources_index.json)
+- [Trusted media sources](references/trusted_sources_media.json)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Concise Chinese Markdown or plain text with market reasoning, index names and codes, optional Tencent Licaitong/Txfund links, and a compliance disclaimer.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill does not provide real-time market prices, personal investment advice, fund product recommendations, return forecasts, or buy/sell/hold instructions.]
+
+## Skill Version(s):
+
+2.0.0 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

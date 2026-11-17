@@ -1,45 +1,68 @@
-## Description: <br>
-Format Markdown or rough notes into WeChat Official Account compatible inline-style HTML, preview 33 themes, upload images, generate optional covers, and push articles to WeChat draft box. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Formats Markdown or rough notes into WeChat Official Account compatible inline-style HTML with theme previews, image handling, optional cover generation, and draft publishing workflows.
 
-## Publisher: <br>
-[lingmafuture](https://clawhub.ai/user/lingmafuture) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lingmafuture](https://clawhub.ai/user/lingmafuture)
 
-## Use Case: <br>
-Developers, editors, and publishing teams use this skill to prepare Markdown or rough notes for WeChat Official Account publishing, preview themed HTML, handle images, generate optional covers, and create WeChat draft-box entries when explicitly confirmed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow requires WeChat publishing credentials and may also use AI API credentials. <br>
-Mitigation: Keep config files private, never expose app secrets or API keys in agent output, and install only when those credentials may be used by the workflow. <br>
-Risk: Draft publishing, permanent media upload, and comment auto-reply can write to external WeChat services. <br>
-Mitigation: Require explicit user confirmation for external writes, run comment auto-reply with --dry-run first, and confirm each batch before sending. <br>
-Risk: File and content mutation paths can alter article files, generated covers, logs, state files, and output directories. <br>
-Mitigation: Review generated article, cover, and comment output before publishing, and use narrow image search paths instead of broad home or vault roots. <br>
-Risk: Imported WeChat images may be mislabeled and rejected by WeChat upload APIs. <br>
-Mitigation: Detect image type from bytes, convert WebP or unsupported images to JPEG with Pillow, and verify one theme uploads successfully before bulk publishing. <br>
+## Use Case:
 
+External creators and developers use this skill to convert articles into WeChat-ready HTML, compare themes, prepare images and covers, and optionally publish drafts or manage comment replies after explicit confirmation.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/lingmafuture/xiaohu-wechat-format) <br>
-- [Publisher profile](https://clawhub.ai/user/lingmafuture) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, configuration instructions, and generated HTML/image publishing outputs from the bundled scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can write local preview files, formatted article files, image assets, cover prompts, logs, and WeChat draft or comment updates when the user confirms external actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill uses WeChat credentials and may call external WeChat and AI APIs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep config.json, tokens, and API keys private; use preview or dry-run modes before granting external access.
+
+Risk: Draft publishing, permanent media upload, and comment auto-reply can create live external writes.
+
+Mitigation: Require explicit user confirmation before running publishing or reply workflows, and review the target article, cover, and reply scope first.
+
+Risk: Automated comment replies can process reader comments through external AI services and post public responses.
+
+Mitigation: Use comment_reply.py only after reviewing the scope; prefer dry-run first and avoid high-risk advice in generated replies.
+
+Risk: Imported Markdown, HTML, and external image URLs may be untrusted or incompatible with WeChat upload requirements.
+
+Mitigation: Avoid untrusted sources, preview generated output locally, and use Pillow-backed image normalization for WebP or unsupported image formats before upload.
+
+Risk: Republishing imported WeChat articles can create rights or attribution issues.
+
+Mitigation: Treat imported articles as drafts or previews unless the user confirms they have rights to publish.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lingmafuture/skills/xiaohu-wechat-format)
+- [Publisher profile](https://clawhub.ai/user/lingmafuture)
+- [WeChat API access token endpoint](https://api.weixin.qq.com/cgi-bin/token)
+- [OpenRouter API base](https://openrouter.ai/api/v1)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, HTML, Files, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands plus generated HTML previews, gallery pages, cover image files, and optional WeChat draft uploads.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [External writes and automated replies require explicit user confirmation; draft publishing requires WeChat credentials and IP whitelist configuration.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and SKILL.md metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

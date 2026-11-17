@@ -1,45 +1,56 @@
-## Description: <br>
-EAI Awesome Work produces a weekly Chinese Markdown digest of embodied AI and robotics papers from arXiv cs.RO, with translated abstracts, technical highlights, themed sections, trend insights, and optional industry news. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+EAI Awesome Work helps generate a weekly Chinese Markdown digest of embodied AI and robotics papers from arXiv cs.RO, with themed sections, translated abstracts, contribution summaries, trend insights, and optional industry news.
 
-## Publisher: <br>
-[jessy-huang](https://clawhub.ai/user/jessy-huang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jessy-huang](https://clawhub.ai/user/jessy-huang)
 
-## Use Case: <br>
-Writers, researchers, and developers use this skill to turn recent embodied AI and robotics papers into a structured Chinese-language weekly publication with summaries, translations, highlights, and editorial analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger phrases such as "awesome work" may activate the workflow when the user intended a more general request. <br>
-Mitigation: Invoke the skill with explicit EAI Awesome Work or embodied AI weekly digest wording, and review any generated digest before publication. <br>
-Risk: The digest relies on live public paper pages and optional news searches, so generated summaries, links, and claims may be incomplete or outdated. <br>
-Mitigation: Verify paper titles, authors, links, code availability, and news claims against the cited sources before relying on or publishing the Markdown. <br>
-Risk: The workflow is designed for Chinese-language publishing and may not match another audience or language by default. <br>
-Mitigation: Specify the intended language, audience, and editorial tone before generation, then edit the Markdown output for that publication context. <br>
+## Use Case:
 
+External users, developers, and technical editors use this skill to produce a structured Chinese newsletter that summarizes recent embodied AI and robotics papers, organizes them by theme, and adds editorial trend commentary.
 
-## Reference(s): <br>
-- [EAI Awesome Work writing template](artifact/references/template.md) <br>
-- [arXiv cs.RO new submissions](https://arxiv.org/list/cs.RO/new) <br>
-- [arXiv cs.RO June 2026 archive](https://arxiv.org/list/cs.RO/2026-06) <br>
-- [Humanoid Press](https://humanoid.press) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, text, guidance] <br>
-**Output Format:** [Markdown file with themed sections, translated abstracts, tables, links, and editorial commentary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Default filename pattern: Awesome_EmbodiedAI_工作速递_YYYYMMDD.md] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Broad trigger phrases may activate the skill when the user only mentions a related newsletter or paper roundup casually.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Invoke the skill with explicit requests for an EAI Awesome Work or embodied AI weekly roundup, and adjust triggers before deployment if accidental activation is a concern.
+
+Risk: The fixed footer can list sources that were not actually used in a generated issue.
+
+Mitigation: Review the footer before publishing and keep only the sources that were actually consulted for that issue.
+
+## Reference(s):
+
+- [EAI Awesome Work writing template](references/template.md)
+- [arXiv cs.RO new submissions](https://arxiv.org/list/cs.RO/new)
+- [arXiv cs.RO June 2026 archive](https://arxiv.org/list/cs.RO/2026-06)
+- [ClawHub skill page](https://clawhub.ai/jessy-huang/skills/eai-awesome-work)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a dated newsletter file named Awesome_EmbodiedAI_工作速递_YYYYMMDD.md.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

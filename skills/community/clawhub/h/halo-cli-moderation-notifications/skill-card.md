@@ -1,41 +1,53 @@
-## Description: <br>
-Use when moderating Halo comments or replies, creating official replies, listing unread notifications, deleting notifications, or marking notifications as read. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill guides agents through Halo CLI comment moderation, reply creation, unread notification management, and notification deletion or read-state updates.
 
-## Publisher: <br>
-[ruibaby](https://clawhub.ai/user/ruibaby) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ruibaby](https://clawhub.ai/user/ruibaby)
 
-## Use Case: <br>
-Developers and site operators use this skill to guide Halo CLI moderation workflows for comments, replies, official responses, and notification cleanup. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Moderation commands can make irreversible or externally visible changes, including deletes, approvals, hidden replies, public replies, and mark-all notification actions. <br>
-Mitigation: Before mutation, confirm the active Halo profile, site, exact resource ID, and reversibility, then require explicit approval for the action. <br>
-Risk: Agent-generated moderation guidance may omit needed visibility context for public or hidden replies. <br>
-Mitigation: Review the exact reply content and visibility setting before executing create-reply or approval commands. <br>
+## Use Case:
 
+External Halo site operators and agents use this skill to moderate comments and replies, create official replies, and manage unread notifications with the Halo CLI.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/ruibaby/halo-cli-moderation-notifications) <br>
-- [Publisher profile](https://clawhub.ai/user/ruibaby) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Halo CLI commands for moderation and notification operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata) <br>
+Risk: Destructive delete commands can remove Halo comments, replies, or notifications when run with --force.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the selected profile and exact resource ID before deletion; prefer review, get, or mark-as-read commands unless deletion is explicitly requested.
+
+Risk: Moderation actions can affect the wrong Halo environment if the default profile is unintended.
+
+Mitigation: Use --profile <name> when moderating a non-default environment and confirm the selected profile when a resource is not found.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ruibaby/skills/halo-cli-moderation-notifications)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with bash command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Halo CLI commands that mutate comments, replies, or notifications when executed by the agent.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence; artifact frontmatter version 1.0.0 differs)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,58 @@
-## Description: <br>
-Memory Palace for AI — persistent structured memory, identity, and task management across every conversation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Memory Palace for AI — persistent structured memory, identity, and task management across every conversation.
 
-## Publisher: <br>
-[codesstar](https://clawhub.ai/user/codesstar) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[codesstar](https://clawhub.ai/user/codesstar)
 
-## Use Case: <br>
-Developers and other AI assistant users use this skill to bootstrap and maintain a local memory palace for identity, goals, active tasks, decisions, and learned context across conversations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may automatically clone unpinned remote content during bootstrap. <br>
-Mitigation: Install only after reviewing the referenced project repository and confirming the bootstrap source is acceptable for the environment. <br>
-Risk: The skill silently stores personal memory and work context in local files. <br>
-Mitigation: Avoid storing sensitive information unless users have a process to inspect, edit, and delete the memory files. <br>
+## Use Case:
 
+External users and developers use this skill to give an AI assistant a persistent local memory structure for identity, goals, tasks, decisions, and daily planning across conversations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/codesstar/loci-brain) <br>
-- [Project homepage](https://github.com/codesstar/loci) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and local markdown file updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates and updates local memory files under a user-selected Loci brain path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill can create a persistent local memory profile containing personal facts, tasks, goals, and decisions across conversations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only when persistent memory is intended; confirm the storage location and establish how to inspect, edit, and delete saved memory files.
+
+Risk: The bootstrap flow auto-downloads mutable external instructions before initializing the local memory system.
+
+Mitigation: Review the downloaded repository contents before relying on the memory system or allowing it to make ongoing updates.
+
+Risk: The skill is designed to save some factual information silently in the background.
+
+Mitigation: Define what may be saved before use and ask for confirmation before saving subjective values, strategy, or sensitive personal information.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/codesstar/skills/loci-brain)
+- [Project homepage](https://github.com/codesstar/loci)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and structured file-update guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create, read, and update local memory files when the user intentionally enables the memory system.]
+
+## Skill Version(s):
+
+0.2.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,61 @@
-## Description: <br>
-Provision and control Orgo cloud computers using the orgo_client Python SDK. Use when launching remote desktops, automating browsers, running bash/python remotely, interacting with UI, managing files, or controlling streaming. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provision and control Orgo cloud computers using the orgo_client Python SDK for remote desktops, browser automation, remote Bash or Python execution, UI interaction, file management, and streaming.
 
-## Publisher: <br>
-[cohenyehonatan](https://clawhub.ai/user/cohenyehonatan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[cohenyehonatan](https://clawhub.ai/user/cohenyehonatan)
 
-## Use Case: <br>
-Developers and automation agents use this skill to provision Orgo cloud desktops, run remote bash or Python, automate browser and UI workflows, capture screenshots, manage files, stream desktops, and stop or clean up remote computers. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill uses an Orgo API key and can retrieve sensitive remote-desktop credentials or signed download URLs. <br>
-Mitigation: Use a limited, rotatable ORGO_API_KEY and avoid printing, logging, or sharing API keys, VNC passwords, screenshots, signed URLs, and real login credentials. <br>
-Risk: Remote commands, file transfers, streaming, and desktop automation can expose or modify data in the cloud computer. <br>
-Mitigation: Confirm uploads, downloads, streaming, remote command execution, and credential entry before allowing an agent to perform them. <br>
-Risk: Delete operations for workspaces, computers, and files are destructive. <br>
-Mitigation: Require explicit user confirmation for deletes and prefer stopping computers when the session may continue later. <br>
-Risk: UI automation can act on stale or misread screen state. <br>
-Mitigation: Use a screenshot-driven loop, wait for UI state changes, and verify state after clicks, typing, scrolling, and navigation. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ORGO_ACTION_PATTERNS.md](references/ORGO_ACTION_PATTERNS.md) <br>
-- [ClawHub skill page](https://clawhub.ai/cohenyehonatan/orgo-desktop-control) <br>
+## Use Case:
 
+Developers and automation agents use this skill to provision Orgo cloud desktops, automate browser and UI workflows, run remote Bash or Python, transfer files, capture screenshots, and manage computer lifecycle or streaming tasks.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with Python and shell code snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires internet access and ORGO_API_KEY.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can let an agent operate Orgo cloud desktops, execute remote Bash or Python, and interact with remote UI state.
+
+Mitigation: Install only when remote desktop control is intended, use a scoped ORGO_API_KEY when available, and review high-impact actions before execution.
+
+Risk: The skill supports local file upload and remote file export, which can expose sensitive files if broad paths or secrets are selected.
+
+Mitigation: Approve uploads explicitly, avoid secrets and broad directories, and review exported files and signed download URLs before sharing.
+
+Risk: The skill can access VNC credentials and control streaming for remote computers.
+
+Mitigation: Handle VNC passwords as secrets, share them only with intended operators, and stop streaming when it is no longer needed.
+
+Risk: Computers and workspaces can continue running or be deleted irreversibly through lifecycle operations.
+
+Mitigation: Stop or delete remote computers when finished, and require explicit approval before destructive delete operations.
+
+## Reference(s):
+
+- [ORGO_ACTION_PATTERNS.md](references/ORGO_ACTION_PATTERNS.md)
+- [ClawHub skill page](https://clawhub.ai/cohenyehonatan/skills/orgo-desktop-control)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python and shell code snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include API-client usage examples, lifecycle guidance, file-transfer steps, and remote execution patterns.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

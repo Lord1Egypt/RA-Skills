@@ -1,49 +1,65 @@
-## Description: <br>
-ClawGuard security assistant for OpenClaw that reads scan reports, explains findings, analyzes fix impact, and guides configuration remediation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ClawGuard Security Assistant helps OpenClaw users read scan reports, explain findings, analyze fix impact, and guide configuration remediation.
 
-## Publisher: <br>
-[r0llcre](https://clawhub.ai/user/r0llcre) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[r0llcre](https://clawhub.ai/user/r0llcre)
 
-## Use Case: <br>
-Developers and engineers use this skill to understand ClawGuard scan reports for OpenClaw, prioritize security findings, and receive guided remediation steps. It is intended for report analysis, impact review, and configuration-fix guidance rather than performing scans itself. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Guided remediation can change OpenClaw configuration and may affect existing integrations. <br>
-Mitigation: Show the proposed diff, require explicit confirmation, create a backup, validate syntax, and advise restart or reload after changes. <br>
-Risk: Incomplete or large scan reports can lead to missed context or overlong analysis. <br>
-Mitigation: Summarize reports first, use the report parser for large exports, and flag best-effort or unchecked findings as evidence limitations. <br>
-Risk: L2 local scan results are sent to ClawGuard for server-side analysis. <br>
-Mitigation: Use L1 browser scans when the user wants local-only analysis and disclose the L2 data handling tradeoff before recommending it. <br>
+## Use Case:
 
+Developers and OpenClaw operators use this skill to understand ClawGuard scan reports, prioritize findings, assess remediation impact, and prepare reviewed configuration changes.
 
-## Reference(s): <br>
-- [ClawGuard homepage](https://clawguardsecurity.ai) <br>
-- [ClawGuard skill repository](https://github.com/R0llcre/clawguard-skill) <br>
-- [Report parsing](references/report-parsing.md) <br>
-- [Finding explanations](references/finding-explain.md) <br>
-- [Finding catalog](references/finding-catalog.md) <br>
-- [Impact analysis](references/impact-analysis.md) <br>
-- [Fix procedures](references/fix-procedures.md) <br>
-- [Scan guide](references/scan-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with tables, diff blocks, and inline shell commands when needed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Responds in the user's language; remediation guidance requires user confirmation and backups before configuration changes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.7 (source: server release metadata) <br>
+Risk: Remediation guidance can lead an agent to edit configuration files or run commands from insufficiently verified report data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation, review the proposed path and diff, create a backup, and validate the report source before applying changes.
+
+Risk: Local L2 scan workflows may send local security metadata to clawguardsecurity.ai.
+
+Mitigation: Use L2 scans only when the user trusts the service, has inspected the generated command, and accepts the metadata sharing.
+
+Risk: Fixes can break existing OpenClaw integrations, hooks, channels, or skill permissions.
+
+Mitigation: Perform impact analysis first and review affected skills, hooks, allowlists, backups, and restart steps before changing configuration.
+
+## Reference(s):
+
+- [ClawGuard homepage](https://clawguardsecurity.ai)
+- [ClawGuard skill repository](https://github.com/R0llcre/clawguard-skill)
+- [OpenClaw](https://github.com/openclaw/openclaw)
+- [Report parsing](references/report-parsing.md)
+- [Finding explanations](references/finding-explain.md)
+- [Finding catalog](references/finding-catalog.md)
+- [Impact analysis](references/impact-analysis.md)
+- [Fix procedures](references/fix-procedures.md)
+- [Scan guide](references/scan-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with tables, diff blocks, command snippets, and concise next steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responds in the user's language and uses severity prefixes for findings.]
+
+## Skill Version(s):
+
+1.0.7 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

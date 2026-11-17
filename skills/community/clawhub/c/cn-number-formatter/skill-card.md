@@ -1,40 +1,53 @@
-## Description: <br>
-Formats numeric values with thousands separators, percentages, or scientific notation using a small Python command-line helper. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Formats numeric input as thousands-separated, percentage, or scientific notation using a small local Python helper.
 
-## Publisher: <br>
-[freedompixels](https://clawhub.ai/user/freedompixels) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[freedompixels](https://clawhub.ai/user/freedompixels)
 
-## Use Case: <br>
-Developers and agents use this skill to format numbers in shell-based workflows, documentation, scripts, or generated reports. It is useful when a task needs consistent display of large numbers, percentages, or scientific notation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Security evidence notes powerful maintainer workflow actions in the bundle guidance. <br>
-Mitigation: Install only when those workflows are expected, and review commands before confirming moderation, role, deploy, or GitHub publishing actions. <br>
-Risk: Security evidence notes local review helpers may share generated diffs with configured fallback reviewer tools. <br>
-Mitigation: Review local reviewer configuration before use and avoid sending sensitive diffs to tools that are not approved for the workspace. <br>
+## Use Case:
 
+Developers and agents use this skill when they need quick local number formatting for CLI workflows, data presentation, or text generation. It supports thousands separators, percentages, and scientific notation through a Python standard-library script.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/freedompixels/cn-number-formatter) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Plain text or Markdown with bash command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a single formatted numeric string for each command invocation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: The README-style instructions are primarily in Chinese, which can make review harder for users who do not read Chinese.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the short instructions with a trusted translation before installation or use.
+
+Risk: The instructions include a small promotional AISoBrand link unrelated to the number-formatting behavior.
+
+Mitigation: Treat the promotional link as optional external content and avoid opening it unless it is relevant to the user.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/freedompixels/skills/cn-number-formatter)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and formatted numeric text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Runs locally with the Python standard library; no network activity is indicated by the server security evidence.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

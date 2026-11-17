@@ -1,44 +1,58 @@
-## Description: <br>
-Create, view, edit, delete, search, move, or export Apple Notes via the memo CLI on macOS. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create, view, edit, delete, search, move, or export Apple Notes via the memo CLI on macOS.
 
-## Publisher: <br>
-[patrick-erichsen-2](https://clawhub.ai/user/patrick-erichsen-2) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[patrick-erichsen-2](https://clawhub.ai/user/patrick-erichsen-2)
 
-## Use Case: <br>
-Developers and macOS users use this skill to manage Apple Notes from an agent-assisted terminal workflow through the memo CLI. It supports creating, viewing, editing, deleting, searching, moving, and exporting notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read, edit, export, move, and delete Apple Notes through the memo CLI. <br>
-Mitigation: Install and use it only when agent access to Apple Notes is intended, and review note-changing or note-exporting commands before execution. <br>
-Risk: macOS Automation permissions may grant access to Notes.app. <br>
-Mitigation: Review macOS Automation prompts carefully and grant access only for the expected terminal or agent environment. <br>
-Risk: Notes containing images or attachments cannot be edited by the underlying workflow. <br>
-Mitigation: Use the skill for supported text-note workflows and handle attachment-heavy notes directly in Notes.app. <br>
+## Use Case:
 
+Developers and macOS users use this skill to manage Apple Notes from an agent-guided terminal workflow, including note creation, search, editing, moving, deletion, and export.
 
-## Reference(s): <br>
-- [memo GitHub repository](https://github.com/antoniorodr/memo) <br>
-- [ClawHub skill page](https://clawhub.ai/patrick-erichsen-2/my-apple-notes-skill) <br>
-- [Homebrew formula: antoniorodr/memo/memo](https://github.com/antoniorodr/memo) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Agent output may direct the memo CLI to read, edit, export, move, or delete Apple Notes on macOS.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The workflow can delete notes or export note contents that may include private information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the selected note before delete operations and export notes only to secure destinations.
+
+Risk: The workflow requires trusting the memo CLI and granting Automation access to Notes.app.
+
+Mitigation: Install the memo CLI only from a trusted source and grant macOS Automation access only after reviewing the requested permission.
+
+Risk: Notes containing images or attachments cannot be edited through this workflow.
+
+Mitigation: Use Notes.app directly for notes with images or attachments, or verify note contents before attempting edits.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/patrick-erichsen-2/skills/my-apple-notes-skill)
+- [memo CLI homepage](https://github.com/antoniorodr/memo)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands target macOS with Notes.app and the memo CLI available.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

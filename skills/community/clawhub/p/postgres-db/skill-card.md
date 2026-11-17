@@ -1,42 +1,57 @@
-## Description: <br>
-PostgreSQL Database helps agents run SQL queries, export database schemas, and manage PostgreSQL backup and restore workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+PostgreSQL Database helps agents run SQL queries, inspect schemas, manage backups and restores, and review database performance signals.
 
-## Publisher: <br>
-[limoxt](https://clawhub.ai/user/limoxt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[limoxt](https://clawhub.ai/user/limoxt)
 
-## Use Case: <br>
-Developers and database operators use this skill to inspect PostgreSQL databases, run SQL, export schema details, and prepare or restore backups through agent-guided commands. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can execute arbitrary SQL, including write, schema, DELETE, and DROP operations. <br>
-Mitigation: Use a least-privilege PostgreSQL user, review every generated SQL statement, and require manual confirmation before write or destructive queries are executed. <br>
-Risk: Restore operations can remove existing database objects because the restore helper uses cleanup behavior. <br>
-Mitigation: Test restores in a separate database first and require manual confirmation before restore operations against shared or production databases. <br>
-Risk: Database credentials may be supplied through PostgreSQL environment variables. <br>
-Mitigation: Provide only scoped credentials and avoid production or superuser credentials unless explicitly required and approved. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [PostgreSQL common command reference](references/postgres_commands.md) <br>
-- [ClawHub release page](https://clawhub.ai/limoxt/postgres-db) <br>
+## Use Case:
 
+Developers and database operators use this skill to execute PostgreSQL queries, export schema details, and manage database backups or restores from an agent workflow.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with SQL snippets, shell commands, and script outputs in table, JSON, CSV, or Markdown form.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce schema export files or database backup files when the bundled scripts are executed.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can use PostgreSQL credentials to run high-impact database operations.
+
+Mitigation: Use least-privileged database accounts and avoid production databases unless the operation is explicitly intended.
+
+Risk: Mutating SQL and restore commands can change or remove database objects and data.
+
+Mitigation: Review every non-read-only query and restore command before execution, and verify backups before destructive operations.
+
+Risk: Backups, schema exports, and query results may contain sensitive information.
+
+Mitigation: Store generated files in approved locations, restrict access, and handle exported data according to the database's sensitivity.
+
+## Reference(s):
+
+- [PostgreSQL command reference](references/postgres_commands.md)
+- [ClawHub skill page](https://clawhub.ai/limoxt/skills/postgres-db)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown, JSON, CSV, shell command output, and generated files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce database query results, schema exports, backup files, restore status, and configuration guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

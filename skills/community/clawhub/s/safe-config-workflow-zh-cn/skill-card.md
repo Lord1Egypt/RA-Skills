@@ -1,46 +1,54 @@
-## Description: <br>
-Provides a Chinese-language workflow for safely modifying OpenClaw configuration, including confirmation, validation, backup comparison, troubleshooting, and status checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a Chinese-language workflow for safely modifying OpenClaw configuration with confirmation, validation, repair, backup comparison, and gateway status checks.
 
-## Publisher: <br>
-[nicoxia](https://clawhub.ai/user/nicoxia) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[nicoxia](https://clawhub.ai/user/nicoxia)
 
-## Use Case: <br>
-Developers and AI assistants who manage OpenClaw installations use this skill to plan, confirm, validate, repair, and verify configuration changes while keeping users informed about important impacts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Incorrect or unreviewed configuration edits could disrupt OpenClaw Gateway, authentication, channels, or sessions. <br>
-Mitigation: Confirm the requested change and impact, consult OpenClaw documentation and schema guidance, run validation and repair commands, compare the backup diff, and verify Gateway status. <br>
-Risk: Tokens, authentication values, private endpoints, or session details could be exposed in MEMORY.md or user-facing status summaries. <br>
-Mitigation: Review proposed edits and summaries before approval, and redact secrets or private operational details before recording or sharing them. <br>
-Risk: Automatic doctor repairs may hide meaningful configuration changes from the user. <br>
-Mitigation: Filter diagnostic output for relevant repair details, inspect the backup diff, and explain field-level changes before considering the workflow complete. <br>
+## Use Case:
 
+Developers and operators use this skill to plan, confirm, apply, repair, and verify OpenClaw configuration changes. It is especially focused on gateway, channel, model, session, and authentication settings in ~/.openclaw/openclaw.json.
 
-## Reference(s): <br>
-- [OpenClaw configuration documentation](https://docs.openclaw.ai/zh-CN/gateway/configuration) <br>
-- [OpenClaw doctor documentation](https://docs.openclaw.ai/zh-CN/cli/doctor) <br>
-- [OpenClaw Gateway manual](https://docs.openclaw.ai/zh-CN/gateway/index.md) <br>
-- [OpenClaw Gateway troubleshooting](https://docs.openclaw.ai/zh-CN/gateway/troubleshooting) <br>
-- [OpenClaw FAQ](https://docs.openclaw.ai/zh-CN/help/faq.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration-change summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-language responses with confirmation prompts, filtered diagnostic summaries, backup diff explanations, and gateway status reports.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The workflow asks the agent to record repair lessons into persistent memory, which may capture tokens, authentication settings, endpoints, host-specific values, or raw diffs if used without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation before any MEMORY.md update, redact sensitive and host-specific values, and save only scoped configuration lessons that have been reviewed for accuracy.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/nicoxia/skills/safe-config-workflow-zh-cn)
+- [OpenClaw Configuration Documentation](https://docs.openclaw.ai/zh-CN/gateway/configuration)
+- [OpenClaw Doctor Documentation](https://docs.openclaw.ai/zh-CN/cli/doctor)
+- [OpenClaw Gateway Manual](https://docs.openclaw.ai/zh-CN/gateway/index.md)
+- [OpenClaw Gateway Troubleshooting](https://docs.openclaw.ai/zh-CN/gateway/troubleshooting)
+- [OpenClaw FAQ](https://docs.openclaw.ai/zh-CN/help/faq.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline shell commands and structured status summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include confirmation prompts, filtered diagnostic summaries, backup diff explanations, and gateway verification results.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

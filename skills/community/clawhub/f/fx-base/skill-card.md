@@ -1,42 +1,55 @@
-## Description: <br>
-Fx Base provides shared feima-lab API helper functions for dependent skills, including FX_AI_API_KEY validation, authenticated POST requests, and common JSON error handling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+feima-lab backend helper skill that provides FX_AI_API_KEY authentication checks, authenticated POST request wrapping, and common JSON error handling for dependent domain skills.
 
-## Publisher: <br>
-[fangshan101-coder](https://clawhub.ai/user/fangshan101-coder) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fangshan101-coder](https://clawhub.ai/user/fangshan101-coder)
 
-## Use Case: <br>
-Developers use this helper as a shared dependency for domain skills that need to call Feima's authenticated backend API and return consistent JSON error responses. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Dependent skills can send request data to Feima's API service using the configured FX_AI_API_KEY. <br>
-Mitigation: Install only if you trust Feima's API service and send only data appropriate for that service. <br>
-Risk: FX_AI_API_KEY is a sensitive credential used for authenticated requests. <br>
-Mitigation: Keep the key private and revoke or rotate it when the integration is no longer needed. <br>
+## Use Case:
 
+Developers and agent builders use this as a shared dependency for ClawHub skills that call feima-lab backend APIs with an FX_AI_API_KEY. It is not intended for direct end-user interaction.
 
-## Reference(s): <br>
-- [ClawHub Fx Base skill page](https://clawhub.ai/fangshan101-coder/fx-base) <br>
-- [Feima platform](https://platform.feima.ai/) <br>
-- [Feima API service endpoint](https://api-ai-brain.fenxianglife.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Code, API Calls, Configuration, Guidance] <br>
-**Output Format:** [JavaScript module functions and JSON error output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires FX_AI_API_KEY; dependent skills may send request data to Feima's API service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.2 (source: frontmatter and server release evidence) <br>
+Risk: Dependent skills can send user-provided data and FX_AI_API_KEY-backed requests to the feima-lab API endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when the feima-lab service is trusted, and avoid sending sensitive data unless that service is approved for the use case.
+
+Risk: Short unversioned install commands can make it harder to verify the exact installed release.
+
+Mitigation: Prefer a pinned or otherwise verified installation source before deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/fangshan101-coder/skills/fx-base)
+- [feima-lab Open Platform](https://platform.feima.ai/)
+- [feima-lab API Endpoint](https://api-ai-brain.fenxianglife.com)
+
+## Skill Output:
+
+**Output Type(s):** [code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JavaScript import examples, shell commands, and JSON error output examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires FX_AI_API_KEY for authenticated API calls.]
+
+## Skill Version(s):
+
+1.1.2 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

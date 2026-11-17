@@ -1,41 +1,54 @@
-## Description: <br>
-Pre-install security scanner for ClawHub skills that analyzes SKILL.md files for prompt injection, data exfiltration patterns, malicious shell commands, typosquatting, and quality red flags before installation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pre-install security scanner for ClawHub skills that reviews SKILL.md content for prompt injection, data exfiltration patterns, malicious commands, typosquatting, and quality red flags.
 
-## Publisher: <br>
-[PHY041](https://clawhub.ai/user/PHY041) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[phy041](https://clawhub.ai/user/phy041)
 
-## Use Case: <br>
-Developers, security reviewers, and team administrators use this skill to review ClawHub skill files before installation or deployment. It produces a heuristic security and quality assessment to guide install, skip, or further-review decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat heuristic scanner results as a guarantee that a skill is safe. <br>
-Mitigation: Use the report as review guidance, provide only the skill content intended for inspection, and combine the result with ClawHub's built-in scanning and human review for higher-risk installs. <br>
-Risk: The scanner may miss obfuscated instructions or malicious URL destinations. <br>
-Mitigation: Review encoded or unclear content manually, verify linked URLs separately, and escalate suspicious findings before installing or deploying the inspected skill. <br>
+## Use Case:
 
+External users, developers, and security reviewers use this skill to audit ClawHub and OpenClaw skill files before installation or team deployment. It produces a structured security score, issue table, verdict, and recommendation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/PHY041/phy-skill-scanner) <br>
-- [Canlah AI homepage](https://canlah.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown security audit report with scoring table, verdict, issues, and recommendation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports full, quick-scan, and batch report variants.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Scanner output is advisory and may miss obfuscated payloads or malicious linked URLs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it as one layer of review alongside ClawHub's built-in scanning and manual inspection before installation.
+
+Risk: A clean result could be over-relied on when evaluating unfamiliar skills.
+
+Mitigation: Treat scores as guidance, prefer explicit /skill-scanner invocations, and verify findings before team or enterprise deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/phy041/skills/phy-skill-scanner)
+- [Canlah AI Homepage](https://canlah.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown report with a score table, verdict, findings, and recommendation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes quick-scan and batch-scan report variants when requested.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

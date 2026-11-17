@@ -1,41 +1,60 @@
-## Description: <br>
-Course Builder Agent turns lesson text into narrated course videos by generating Chinese slide content, TTS voiceover, subtitles, and MP4 video composition, with optional digital-human narration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Course Builder Agent turns text or existing course content into slide-based course videos with narration, subtitles, optional digital-human handling, and FFmpeg video assembly.
 
-## Publisher: <br>
-[freeman88-tch](https://clawhub.ai/user/freeman88-tch) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[freeman88-tch](https://clawhub.ai/user/freeman88-tch)
 
-## Use Case: <br>
-Educators, trainers, and content creators use this agent to convert lesson scripts or existing course outlines into narrated video courseware. Developers can also use it as a local media pipeline that creates slides, audio, subtitles, and final MP4 output. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Lesson text or photos may be sent to TTS or digital-human providers when those options are used. <br>
-Mitigation: Avoid confidential course material and personal photos unless the provider privacy and retention terms are acceptable. <br>
-Risk: The skill runs local media tools and writes generated video artifacts. <br>
-Mitigation: Run it in a controlled workspace, review requested inputs and outputs, and confirm ffmpeg, ffprobe, edge-tts, and Python package installation are acceptable before use. <br>
+## Use Case:
 
+External education content creators and developers use this skill to convert Markdown, text, or existing course content into Chinese slide videos with synthesized narration and subtitles. The optional digital-human flow is intended for environments where the required third-party tooling and consent controls are available.
 
-## Reference(s): <br>
-- [Course Builder Agent on ClawHub](https://clawhub.ai/freeman88-tch/course-builder-agent) <br>
-- [Publisher profile](https://clawhub.ai/user/freeman88-tch) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and generated media files such as MP4 video, slide images, audio, and subtitles] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May run local ffmpeg/ffprobe and edge-tts commands, install Python packages, write generated video files, and use optional digital-human services when configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, SKILL.md frontmatter, and claw.json) <br>
+Risk: The install command can alter the host Python environment and uses unpinned dependencies.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and test the skill in an isolated virtual environment or container, and review or pin dependencies before use.
+
+Risk: The skill advertises digital-human and photo handling without clear privacy terms or consent controls in the evidence.
+
+Mitigation: Avoid personal photos or sensitive media unless the publisher provides clear third-party privacy terms, consent controls, and data-handling expectations.
+
+Risk: Some advertised digital-human or subtitle embedding behavior may not work as described.
+
+Mitigation: Run a representative test workflow before relying on generated videos, and manually review final media for completeness and correctness.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/freeman88-tch/skills/course-builder-agent)
+- [Skill definition](artifact/SKILL.md)
+- [Skill manifest](artifact/claw.json)
+- [Build script](artifact/scripts/build.py)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Shell commands, Configuration, Guidance]
+
+**Output Format:** [MP4 video, PNG slide images, MP3 audio, SRT subtitles, and Markdown or shell guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires local ffmpeg, edge-tts, Pillow, and optional VideoCraft Pro or digital-human tooling; generated media depends on local environment and user-provided inputs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

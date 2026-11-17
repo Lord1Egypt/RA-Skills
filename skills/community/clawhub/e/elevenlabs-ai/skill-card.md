@@ -1,46 +1,58 @@
-## Description: <br>
-OpenClaw skill for ElevenLabs APIs: text-to-speech, speech-to-speech, realtime speech-to-text, voices/models, and dialogue workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Access ElevenLabs APIs for text-to-speech, speech-to-speech, realtime speech-to-text, voice and model management, and dialogue workflows with direct HTTP calls.
 
-## Publisher: <br>
-[codedao12](https://clawhub.ai/user/codedao12) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[codedao12](https://clawhub.ai/user/codedao12)
 
-## Use Case: <br>
-Developers and engineers use this skill to plan direct HTTPS integrations with ElevenLabs audio APIs for text-to-speech, speech-to-speech, realtime transcription, voice/model lookup, and dialogue workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: ElevenLabs API keys or tokens may be exposed if used directly in client contexts or written to logs. <br>
-Mitigation: Use scoped API keys or single-use tokens for browser/client calls, redact secrets from logs, and avoid storing credentials in generated examples. <br>
-Risk: Submitted audio, generated audio, and transcripts can contain sensitive personal data. <br>
-Mitigation: Treat audio and transcript data as sensitive, restrict downstream destinations, and use zero-retention options when they are available for the account and endpoint. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Authentication](references/elevenlabs-authentication.md) <br>
-- [Safety and Privacy](references/elevenlabs-safety-and-privacy.md) <br>
-- [Speech-to-Speech](references/elevenlabs-speech-to-speech.md) <br>
-- [Speech-to-Text Realtime](references/elevenlabs-speech-to-text-realtime.md) <br>
-- [Text-to-Dialogue](references/elevenlabs-text-to-dialogue.md) <br>
-- [Text-to-Speech](references/elevenlabs-text-to-speech.md) <br>
-- [Voices and Models](references/elevenlabs-voices-models.md) <br>
-- [ClawHub release page](https://clawhub.ai/codedao12/elevenlabs-ai) <br>
+## Use Case:
 
+Developers and engineers use this skill to plan direct ElevenLabs HTTP API workflows for text-to-speech, speech-to-speech, realtime transcription, dialogue generation, and voice/model lookup.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with endpoint checklists and operational guardrails] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable code; guidance is documentation-only.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: ElevenLabs API keys or single-use tokens could be exposed if placed in client code or logs.
+
+Mitigation: Keep API keys server-side where possible, use scoped or single-use tokens for client contexts, and redact secrets from logs and monitoring.
+
+Risk: Audio or text sent to ElevenLabs endpoints may contain sensitive content.
+
+Mitigation: Send only approved content, avoid logging sensitive audio or text, and use available zero-retention options where eligible.
+
+## Reference(s):
+
+- [Authentication](references/elevenlabs-authentication.md)
+- [Text-to-Speech (TTS)](references/elevenlabs-text-to-speech.md)
+- [Speech-to-Speech (Voice Changer)](references/elevenlabs-speech-to-speech.md)
+- [Speech-to-Text (Realtime)](references/elevenlabs-speech-to-text-realtime.md)
+- [Text-to-Dialogue](references/elevenlabs-text-to-dialogue.md)
+- [Voices and Models](references/elevenlabs-voices-models.md)
+- [Safety and Privacy](references/elevenlabs-safety-and-privacy.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with endpoint checklists and optional code or shell snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable files are produced by the skill itself.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

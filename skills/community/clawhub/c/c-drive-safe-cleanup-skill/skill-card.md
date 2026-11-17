@@ -1,42 +1,58 @@
-## Description: <br>
-Helps an agent perform controlled Windows C-drive cleanup by scanning only approved temporary, cache, log, and WPS cache directories, asking for user confirmation before deletion, and producing a Markdown cleanup log. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a Chinese-language Windows C drive cleanup workflow that scans approved cache and temporary-file locations, asks for user confirmation before deletion, and produces a Markdown cleanup log.
 
-## Publisher: <br>
-[wanyvo](https://clawhub.ai/user/wanyvo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wanyvo](https://clawhub.ai/user/wanyvo)
 
-## Use Case: <br>
-Windows users and support agents use this skill when a user explicitly wants to free C-drive space through whitelist-only cleanup with per-directory explanations, confirmations, dry-run support, and auditable Markdown logging. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Cleanup actions can remove unexpected temporary or cache data if the user approves an unexpected path. <br>
-Mitigation: Run DryRun first, review each directory prompt, and approve deletion only when the path is expected. <br>
-Risk: The referenced PowerShell cleanup script was not included in the submitted artifact evidence. <br>
-Mitigation: Inspect the script from the release source before running it, especially before using ExecutionPolicy Bypass. <br>
+## Use Case:
 
+Windows users and support agents use this skill when a user explicitly wants to free space on the C drive while keeping cleanup limited to approved temporary, cache, log, and application-cache directories. It is intended to guide per-directory explanations, confirmations, cleanup actions, and audit logging rather than broad disk scanning.
 
-## Reference(s): <br>
-- [Safety boundaries](references/safety.md) <br>
-- [ClawHub release page](https://clawhub.ai/wanyvo/c-drive-safe-cleanup-skill) <br>
-- [Publisher profile](https://clawhub.ai/user/wanyvo) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Markdown] <br>
-**Output Format:** [Markdown with inline PowerShell commands and cleanup-log structure] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports DryRun guidance, per-directory confirmation prompts, and a Markdown cleanup log path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The release documents a cleanup script, but the script file is absent from the provided artifact evidence.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use DryRun only until the PowerShell script is included in the release package and reviewed before execution.
+
+Risk: The documented cleanup behavior can delete files from cache, backup, WPS, or AppData paths after confirmation.
+
+Mitigation: Approve deletion only after inspecting the exact resolved path and contents, and keep cleanup limited to exact approved directories.
+
+Risk: The documented command uses PowerShell ExecutionPolicy Bypass.
+
+Mitigation: Remove the bypass where possible or pin execution to a trusted, reviewed package path.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/wanyvo/skills/c-drive-safe-cleanup-skill)
+- [Safety Boundary Reference](artifact/references/safety.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with PowerShell command examples and cleanup-log output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Designed for Windows C drive cleanup workflows with explicit user confirmations and Markdown logging.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

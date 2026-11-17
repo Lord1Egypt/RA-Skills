@@ -1,41 +1,55 @@
-## Description: <br>
-Security best practices for Mapbox access tokens, including scope management, URL restrictions, rotation strategies, and protecting sensitive data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill gives security guidance for Mapbox access tokens, including scope management, URL restrictions, rotation strategies, secure storage, monitoring, and incident response.
 
-## Publisher: <br>
-[mapbox](https://clawhub.ai/user/mapbox) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mapbox](https://clawhub.ai/user/mapbox)
 
-## Use Case: <br>
-Developers and security reviewers use this skill to choose appropriate Mapbox token types, scopes, URL restrictions, storage practices, rotation steps, and incident response actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may apply token rotation, revocation, scope, or URL restriction changes to live Mapbox environments incorrectly. <br>
-Mitigation: Verify scopes and URL restrictions before applying changes, stage rotations with a monitoring window, and make dashboard or API changes deliberately. <br>
-Risk: Real secret tokens could be pasted into chat during troubleshooting. <br>
-Mitigation: Avoid sharing real secret tokens unless explicitly necessary and approved; prefer redacted examples. <br>
+## Use Case:
 
+Developers, engineers, and security reviewers use this skill when creating, auditing, rotating, or responding to incidents involving Mapbox access tokens.
 
-## Reference(s): <br>
-- [Token Rotation & Monitoring](references/rotation-monitoring.md) <br>
-- [Incident Response & Common Mistakes](references/incident-response.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown guidance with code, shell, and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only; no executable automation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata) <br>
+Risk: Suggested token revocation or rotation steps can disrupt production services if applied before dependencies are updated.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review changes before applying them, create replacement tokens first, verify rollout, monitor for 24-48 hours, then revoke old tokens.
+
+Risk: Incorrect token type, scopes, or URL restrictions can expose secret access or allow unauthorized token use.
+
+Mitigation: Use public tokens only for client or mobile contexts, keep secret tokens server-side, grant least-privilege scopes, and restrict public tokens to expected domains.
+
+## Reference(s):
+
+- [Incident Response & Common Mistakes](references/incident-response.md)
+- [Token Rotation & Monitoring](references/rotation-monitoring.md)
+- [ClawHub Skill Page](https://clawhub.ai/mapbox/skills/mapbox-token-security)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with inline code, shell, and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only guidance; it does not access, collect, or modify credentials.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

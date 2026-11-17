@@ -1,45 +1,57 @@
-## Description: <br>
-Google's multimodal model with strong long-context and vision understanding, suitable for document parsing, image/video understanding, and structured output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides access to dLazy's hosted Gemini 3.1 multimodal model for long-context prompting, document parsing, image and video understanding, and structured output.
 
-## Publisher: <br>
-[dlazyai](https://clawhub.ai/user/dlazyai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dlazyai](https://clawhub.ai/user/dlazyai)
 
-## Use Case: <br>
-Developers and agents use this skill to call the dLazy CLI for Gemini 3.1 multimodal generation, including text prompts, image or video inputs, document parsing, and structured output workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security scan verdict is suspicious and reports guidance involving helper scripts with full unsandboxed authority. <br>
-Mitigation: Review bundled helper scripts before use, disable autoreview full-access mode with `--no-yolo` or `AUTOREVIEW_YOLO=0`, and only grant tool access intentionally. <br>
-Risk: The skill requires sensitive credentials for dLazy API access. <br>
-Mitigation: Use scoped API keys, store them through the documented dLazy CLI configuration or environment variable flow, and rotate or revoke keys from the dLazy dashboard when needed. <br>
-Risk: Prompts and referenced image or video files may be sent to dLazy API and media storage endpoints. <br>
-Mitigation: Avoid sending confidential or regulated content unless the user's organization has approved dLazy's service terms and data handling for that use case. <br>
+## Use Case:
 
+External users and developers use this skill to call dLazy's hosted Gemini 3.1 service for multimodal analysis, long-context reasoning, and structured generation from prompts, images, or videos.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dlazyai/dlazy-gemini-3-1) <br>
-- [dLazy homepage](https://dlazy.com) <br>
-- [dLazy CLI source](https://github.com/dlazyai/cli) <br>
-- [dLazy CLI npm package](https://www.npmjs.com/package/@dlazy/cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, shell commands, guidance] <br>
-**Output Format:** [JSON responses from the dLazy CLI, with optional Markdown guidance and shell commands for setup or troubleshooting] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a dLazy API key and may return asynchronous task identifiers when invoked with no-wait mode.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.2 (source: server release evidence) <br>
+Risk: The skill sends prompts and referenced media to dLazy's hosted service for processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Only pass prompts and media files that are appropriate to share with the hosted service.
+
+Risk: The skill depends on installing or invoking the third-party @dlazy/cli npm package.
+
+Mitigation: Verify trust in the dlazyai publisher and @dlazy/cli@1.2.0 package before use; prefer npx or an isolated environment when avoiding a persistent global CLI.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dlazyai/skills/dlazy-gemini-3-1)
+- [dLazy publisher profile](https://clawhub.ai/user/dlazyai)
+- [dLazy CLI source](https://github.com/dlazyai/cli)
+- [dLazy CLI npm package](https://www.npmjs.com/package/@dlazy/cli)
+- [dLazy website](https://dlazy.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, code, guidance]
+
+**Output Format:** [JSON response envelope containing generated model outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Async mode can return a generation task identifier for later polling.]
+
+## Skill Version(s):
+
+1.3.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

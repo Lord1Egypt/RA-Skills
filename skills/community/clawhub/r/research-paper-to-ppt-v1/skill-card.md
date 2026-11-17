@@ -1,49 +1,63 @@
-## Description: <br>
-将指定医学研究论文自动生成 PPTX 汇报文件的技能：先精确定位单篇文献，再读取全文和原文图表，最后按基础研究型汇报大纲生成中文组会风格 PPTX；若无法定位文献或获取全文，则返回检索失败而不编造内容。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+将指定医学研究论文自动生成 PPTX 汇报文件的技能，会在唯一定位论文并获取全文与原文图表后，按基础研究型汇报大纲生成中文组会风格演示文稿。
 
-## Publisher: <br>
-[jukiss1](https://clawhub.ai/user/jukiss1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jukiss1](https://clawhub.ai/user/jukiss1)
 
-## Use Case: <br>
-Researchers, clinicians, students, and medical-literature reviewers use this skill to convert a uniquely identified medical research paper into a Chinese PPTX presentation with paper metadata, background, methods, results, original figures, limitations, and take-home messages. It is intended for literature presentation workflows where generated medical claims and figure usage are reviewed before sharing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Embedded or exposed InfoX-Med credentials could compromise paid or personal access tokens. <br>
-Mitigation: Remove embedded credentials, supply tokens only through a controlled environment, and avoid personal or paid credentials until debug-token handling is fixed. <br>
-Risk: Debug artifacts may reveal user tokens or sensitive request data. <br>
-Mitigation: Disable or redact debug outputs before use and review the workspace for generated token-bearing files after each run. <br>
-Risk: Hardcoded medical content can mislead readers or contaminate a presentation for a different paper. <br>
-Mitigation: Eliminate hardcoded paper-specific content and manually verify every generated claim, figure source, and citation against the selected paper before presenting. <br>
+## Use Case:
 
+External users and medical researchers use this skill to turn a uniquely identified medical research paper into a Chinese PPTX journal-club or group-meeting presentation. The skill is intended for workflows that can retrieve the full paper and use original paper figures rather than invented images.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jukiss1/research-paper-to-ppt-v1) <br>
-- [Publisher profile](https://clawhub.ai/user/jukiss1) <br>
-- [Integration Notes](references/integration-notes.md) <br>
-- [Slide Schema](references/slide-schema.md) <br>
-- [Figure Caption Policy](references/figure-caption-policy.md) <br>
-- [Visual Rendering Spec](references/visual-rendering-spec.md) <br>
-- [Output Filename Policy](references/output-filename-policy.md) <br>
-- [Release Audit](references/release-audit.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Chinese presentation content, intermediate JSON, shell commands, and generated PPTX files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses original paper figures when available; fails closed instead of fabricating unavailable papers, claims, or images.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Packaged scripts may handle InfoX-Med API credentials unsafely.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove and rotate embedded tokens, require secrets to be supplied explicitly at runtime, and avoid writing credentials to logs or debug artifacts before installation.
+
+Risk: Generated presentations may include unrelated or hardcoded medical claims.
+
+Mitigation: Remove hardcoded paper-specific claims from renderer and fallback logic, and require generated slide claims to trace to the retrieved full text, figures, or captions.
+
+Risk: Full-paper retrieval and image handling may fetch from unsafe or unintended locations.
+
+Mitigation: Use HTTPS, allowlist the InfoX-Med API host and trusted original-paper asset hosts, and apply download size and time limits.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jukiss1/skills/research-paper-to-ppt-v1)
+- [Integration Notes](artifact/references/integration-notes.md)
+- [Basic Research Outline](artifact/references/outline-basic-research.md)
+- [Slide Schema](artifact/references/slide-schema.md)
+- [Figure Caption Policy](artifact/references/figure-caption-policy.md)
+- [Visual Rendering Spec](artifact/references/visual-rendering-spec.md)
+- [Output Filename Policy](artifact/references/output-filename-policy.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, JSON, files]
+
+**Output Format:** [Markdown guidance with shell commands, intermediate JSON, and generated PPTX files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses the target paper title for default PPTX filenames and returns a fixed Chinese failure message when the paper cannot be uniquely resolved or full-text evidence is insufficient.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

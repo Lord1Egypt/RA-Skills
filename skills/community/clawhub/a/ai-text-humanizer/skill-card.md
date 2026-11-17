@@ -1,43 +1,51 @@
-## Description: <br>
-Removes common signs of AI-generated writing from supplied text so it reads more naturally while preserving meaning and tone. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Removes signs of AI-generated writing from text so drafts sound more natural and human-written.
 
-## Publisher: <br>
-[sonnenberglauramarie-afk](https://clawhub.ai/user/sonnenberglauramarie-afk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[sonnenberglauramarie-afk](https://clawhub.ai/user/sonnenberglauramarie-afk)
 
-## Use Case: <br>
-External users and editors use this skill to revise drafts, reviews, and other prose that sounds formulaic or machine-written. It identifies patterns such as vague attribution, promotional phrasing, repeated em dash constructions, rule-of-three lists, and generic conclusions, then rewrites the text in a more natural voice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can be used to make AI-generated text appear human-written in contexts where disclosure or authorship rules matter. <br>
-Mitigation: Use it as a style-editing aid, not to misrepresent authorship or bypass disclosure requirements. <br>
-Risk: Rewrites may introduce unsupported opinions, first-person claims, feelings, or specifics that were not present in the source text. <br>
-Mitigation: Review the rewritten text against the original and remove invented claims before accepting or publishing it. <br>
-Risk: The release evidence shows inconsistent package identity metadata between the public release and the artifact frontmatter. <br>
-Mitigation: Confirm the installed package identity, slug, and version before relying on this card for audit or deployment records. <br>
+## Use Case:
 
+Writers, editors, and agents use this skill to revise user-provided or local document text by removing common AI-writing patterns while preserving the intended meaning and tone.
 
-## Reference(s): <br>
-- [Wikipedia: Signs of AI writing](https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing) <br>
-- [Wikipedia: WikiProject AI Cleanup](https://en.wikipedia.org/wiki/Wikipedia:WikiProject_AI_Cleanup) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown containing rewritten text and an optional brief summary of changes.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose or apply document edits when the hosting agent is given file-editing permissions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter lists 2.1.1) <br>
+Risk: The skill may change tone, attribution, or factual precision while rewriting text.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review proposed edits before saving or publishing, especially for factual, legal, policy, or brand-sensitive content.
+
+## Reference(s):
+
+- [Wikipedia: Signs of AI writing](https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing)
+- [Wikipedia: WikiProject AI Cleanup](https://en.wikipedia.org/wiki/Wikipedia:WikiProject_AI_Cleanup)
+- [ClawHub skill page](https://clawhub.ai/sonnenberglauramarie-afk/skills/ai-text-humanizer)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Rewritten text with an optional brief summary of changes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Review proposed edits before saving or publishing, especially where tone, attribution, or factual precision matters.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

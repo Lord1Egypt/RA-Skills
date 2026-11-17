@@ -1,0 +1,15 @@
+{
+  "slug": "naotou-le-nao",
+  "name": "naotou-le-nao",
+  "version": "2.0.0",
+  "installedAt": 1791697300967,
+  "source": "skillhub",
+  "namespace": "user_5b079009",
+  "canonicalName": "@user_5b079009/naotou-le-nao",
+  "iconSource": "https://cloudcache.tencent-cloud.com/qcloud/ui/static/other_external_resource/a00e31c7-8d6a-4e65-84fc-16a177f95674.png",
+  "labels": {
+    "requires_api_key": "false"
+  },
+  "iconLocalPath": "C:\\Users\\14433\\.workbuddy\\skills\\naotou-le-nao__skillhub\\_icon.png",
+  "iconDownloadedFrom": "https://cloudcache.tencent-cloud.com/qcloud/ui/static/other_external_resource/a00e31c7-8d6a-4e65-84fc-16a177f95674.png"
+}

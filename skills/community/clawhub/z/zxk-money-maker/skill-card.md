@@ -1,42 +1,53 @@
-## Description: <br>
-快结荐兼职赚钱平台 forwards job-search or income-related prompts to the 快结荐 backend API and returns real-time job or gig listings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches real-time 快结荐 part-time job, gig work, and earning-opportunity listings from the 快结荐 platform for user job-search or money-making requests.
 
-## Publisher: <br>
-[heqq-github](https://clawhub.ai/user/heqq-github) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[heqq-github](https://clawhub.ai/user/heqq-github)
 
-## Use Case: <br>
-External users can use this skill to ask for part-time jobs, gig work, day-labor roles, recruiting opportunities, or income opportunities. The agent sends the user's prompt to the 快结荐 service and formats the returned listings, compensation, schedules, locations, and application links for the user. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Job-search or income-related prompts are sent to an external 快结荐 backend service. <br>
-Mitigation: Avoid sending contact details, ID numbers, exact addresses, salary history, or other sensitive personal information unless the user trusts that service. <br>
-Risk: Returned listings, compensation, locations, schedules, and application links come from the external service. <br>
-Mitigation: Present returned opportunities clearly and encourage users to verify job details before applying or sharing personal information. <br>
+## Use Case:
 
+External users use this skill to request part-time jobs, gig work, temporary work, daily-pay work, recruiting opportunities, or other earning opportunities and receive listings returned by the 快结荐 platform.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/heqq-github/zxk-money-maker) <br>
-- [Publisher profile](https://clawhub.ai/user/heqq-github) <br>
-- [快结荐 skill API endpoint](https://test-gig-c-api.1haozc.com/api/wx/kjj/v1/customer/skill/call) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, JSON, Markdown, Guidance] <br>
-**Output Format:** [Markdown summary of JSON job-listing results or JSON-formatted error details] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include compensation, schedule, location, and plain-text mini-program application links returned by the external service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: release evidence) <br>
+Risk: The skill broadly triggers on work or money requests and sends the full user message to an external 快结荐 test API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if users are comfortable sending those requests to the external service, and avoid entering resumes, phone numbers, precise addresses, identity details, or private employment information.
+
+Risk: Returned job or earning-opportunity listings may affect employment decisions or financial expectations.
+
+Mitigation: Review listings before acting on them and verify pay, location, requirements, and sign-up links through trusted channels.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/heqq-github/skills/zxk-money-maker)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, API Calls, Guidance]
+
+**Output Format:** [Markdown or plain text summarizing JSON job-listing results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns job-listing details such as roles, pay, time, address, sign-up links, or an error object when the API call fails.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

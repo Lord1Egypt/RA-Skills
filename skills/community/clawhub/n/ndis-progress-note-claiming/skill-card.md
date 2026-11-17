@@ -1,45 +1,61 @@
-## Description: <br>
-Write audit-safe NDIS progress notes with goal referencing, generate compliant shift note templates, identify correct support catalogue line item codes, and troubleshoot NDIS claiming errors for Australian registered and unregistered providers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Write audit-safe NDIS progress notes with goal referencing, generate compliant shift note templates, identify correct support catalogue line item codes, and troubleshoot NDIS claiming errors for Australian registered and unregistered providers.
 
-## Publisher: <br>
-[arbazex](https://clawhub.ai/user/arbazex) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[arbazex](https://clawhub.ai/user/arbazex)
 
-## Use Case: <br>
-External Australian NDIS providers use this skill to draft or improve progress notes, select support catalogue line item codes, and troubleshoot claiming issues. It supports documentation and claiming workflows but does not replace legal, clinical, billing, payroll, or compliance review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Australia <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: NDIS line item codes, prices, and claiming rules may change or may not fit a participant's current plan. <br>
-Mitigation: Verify all codes, rates, and eligibility against the current official NDIS Support Catalogue, service agreement, and participant plan before claiming. <br>
-Risk: Users may treat generated notes or claiming language as legal, clinical, payroll, billing, or compliance advice. <br>
-Mitigation: Use outputs as drafting support only and escalate complex compliance, clinical, legal, or dispute matters to the NDIS Commission, qualified practitioners, or appropriate advisers. <br>
-Risk: Broad trigger phrases could activate the skill for unrelated writing or documentation requests. <br>
-Mitigation: Confirm the request is about NDIS progress notes, claiming, line item selection, or claiming troubleshooting before applying the skill. <br>
+## Use Case:
 
+External Australian NDIS providers use this skill to draft compliant progress notes, select or verify support catalogue line item codes, and troubleshoot common claiming errors. It supports documentation and claiming workflows, not clinical, legal, tax, registration, eligibility, or plan decision advice.
 
-## Reference(s): <br>
-- [NDIS Pricing Arrangements and Price Limits](https://www.ndis.gov.au/providers/pricing-arrangements) <br>
-- [NDIS Support Catalogue](https://www.ndis.gov.au/providers/pricing-arrangements) <br>
-- [NDIS Quality and Safeguards Commission](https://www.ndiscommission.gov.au) <br>
-- [NDIS Claims and Payments Troubleshooting](https://www.ndis.gov.au/providers/working-provider/getting-paid/claims-and-payments-troubleshooting) <br>
+### Deployment Geography for Use:
 
+Australia
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown with structured note templates, checklists, and verification prompts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include draft progress notes, line item guidance, claiming troubleshooting steps, and disclaimers to verify current NDIS rules.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Users may enter sensitive participant names, NDIS numbers, addresses, or incident details while drafting notes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Collect only the details needed for the document and avoid repeating identifying information beyond the drafted note.
+
+Risk: NDIS support catalogue codes, prices, and claiming rules may change after the skill content was authored.
+
+Mitigation: Verify codes, prices, and claiming requirements against the current official NDIS catalogue before submitting claims.
+
+Risk: Users may treat documentation and claiming guidance as clinical, legal, regulatory, accounting, tax, eligibility, or plan decision advice.
+
+Mitigation: Keep outputs within documentation and claiming support boundaries and refer complex matters to the NDIS Commission, NDIA, qualified practitioners, lawyers, or registered compliance advisers as appropriate.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/arbazex/skills/ndis-progress-note-claiming)
+- [NDIS Pricing Arrangements and Price Limits](https://www.ndis.gov.au/providers/pricing-arrangements)
+- [NDIS Support Catalogue](https://www.ndis.gov.au/providers/pricing-arrangements)
+- [NDIS Quality and Safeguards Commission](https://www.ndiscommission.gov.au)
+- [NDIS Claims and Payments Troubleshooting](https://www.ndis.gov.au/providers/working-provider/getting-paid/claims-and-payments-troubleshooting)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with structured templates, checklists, and concise guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No external API calls, executable tools, environment variables, or network access are required by the skill.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

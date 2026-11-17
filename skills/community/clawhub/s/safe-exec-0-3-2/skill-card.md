@@ -1,42 +1,60 @@
-## Description: <br>
-Safe Exec provides command execution oversight for OpenClaw agents by detecting dangerous shell-command patterns, assigning risk levels, requesting user approval for risky operations, and writing audit logs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+SafeExec wraps OpenClaw agent shell command execution with danger-pattern detection, risk assessment, approval prompts, pending-request management, and audit logging.
 
-## Publisher: <br>
-[Lucky-2968](https://clawhub.ai/user/Lucky-2968) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[lucky-2968](https://clawhub.ai/user/lucky-2968)
 
-## Use Case: <br>
-Developers and agent operators use this skill to add a local approval workflow around shell commands that may delete data, modify system state, or otherwise require human oversight. It is intended for OpenClaw agent sessions where command risk assessment, pending-request management, and audit logging are useful safeguards. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Approval controls can be bypassed or weakened through context-based risk downgrades, non-interactive approval skipping, auto-confirm environment variables, or the global disable behavior. <br>
-Mitigation: Do not rely on the skill as a strong safety boundary until those bypass paths are removed or restricted; install only where the prompts, environment variables, and approval flow are controlled. <br>
-Risk: Bundled monitoring and publishing documents or tools are outside the core safety-wrapper behavior. <br>
-Mitigation: Review and scope those files separately before deployment, and deploy only the components required for the intended command-approval workflow. <br>
+## Use Case:
 
+Developers and OpenClaw users use SafeExec to route agent shell commands through a local safety wrapper that can flag destructive operations, request approval, and log decisions before commands run.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Lucky-2968/safe-exec-0-3-2) <br>
-- [Safe Exec documentation listed in artifact](https://github.com/OTTTTTO/safe-exec/blob/master/README.md) <br>
-- [Issue tracker listed in artifact](https://github.com/OTTTTTO/safe-exec/issues) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and local configuration instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local pending-request files, audit-log entries, and command approval or rejection instructions during use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact documentation identifies Safe Exec 0.3.2) <br>
+Risk: High-impact shell commands may execute without a separate human approval event.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing and do not rely on the skill as a security boundary until approval and parsing issues are fixed.
+
+Risk: Use on systems with important data, shared accounts, production credentials, passwordless sudo, or broad filesystem access increases potential impact.
+
+Mitigation: Limit use to low-impact environments or restrict permissions and filesystem access before enabling the wrapper.
+
+Risk: The artifact supports disabling or bypassing protection through configuration or direct command execution.
+
+Mitigation: Deploy with clear operating rules, review audit logs, and verify that agents consistently invoke SafeExec for shell commands.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/lucky-2968/skills/safe-exec-0-3-2)
+- [SafeExec README](https://github.com/OTTTTTO/safe-exec/blob/master/README.md)
+- [SafeExec Usage Guide](docs/USAGE.md)
+- [SafeExec v0.3.2 Release Notes](RELEASE_v0.3.2.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and shell command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write local pending-request and audit-log files when used as documented.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact release notes describe SafeExec v0.3.2)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

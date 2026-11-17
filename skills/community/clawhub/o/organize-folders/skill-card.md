@@ -1,44 +1,61 @@
-## Description: <br>
-Scans, analyzes, plans, and documents folder organization systems for existing folders and new-file intake, including classification rules, directory naming, execution logs, and Markdown reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Folder Organizer helps agents scan folders, design organization rules, classify files with IRK, PARA, and time-based models, generate plans and reports, and execute confirmed file operations with logging.
 
-## Publisher: <br>
-[bojahng](https://clawhub.ai/user/bojahng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bojahng](https://clawhub.ai/user/bojahng)
 
-## Use Case: <br>
-Developers and external users use this skill to inventory messy folders, design durable organization rules, generate folder cleanup plans, and produce reviewable reports before approving any file moves. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Folder scans can expose file names, paths, sizes, and timestamps from user-selected directories. <br>
-Mitigation: Run the skill only on explicit target folders, start with a small folder, and choose a report directory before generating inventories or plans. <br>
-Risk: Incorrect or over-broad move plans could reorganize files in ways the user does not intend. <br>
-Mitigation: Review the dry-run and validation output first; approve actual execution only when planned moves and high-risk items are clear. <br>
+## Use Case:
 
+Individuals, teams, and developers use this skill to organize downloads, personal archives, workspaces, disks, and mixed file collections. It supports read-only inventory, classification, rule design, plan generation, user-reviewed execution, rollback planning, and folder documentation.
 
-## Reference(s): <br>
-- [Folder Workflow](references/workflow.md) <br>
-- [Folder Rules](references/folder-rules.md) <br>
-- [Output Templates](references/output-templates.md) <br>
-- [Taxonomy Patterns](references/taxonomy-patterns.md) <br>
-- [Tooling Design](references/tooling-design.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports, JSON inventories and plans, CSV move plans, JSONL logs, and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports and logs are written to a dedicated organize_report directory by default; actual file changes require explicit user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The execution path can move, rename, copy, archive, or back up local files when apply mode is used.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only on explicit user-selected folders, inspect the dry-run output and validated plan first, keep backups, and avoid apply mode until the user confirms each material change.
+
+Risk: A user-supplied log path may be removed before a new execution log is written.
+
+Mitigation: Write logs to a dedicated report directory and do not pass an existing important file as the log target.
+
+Risk: The package interface and main documentation are Chinese-only, which can hide operational assumptions from reviewers who do not read Chinese.
+
+Mitigation: Require a reviewer or operator who can read the package language, or translate the workflow, safety guidance, and generated plans before installation or execution.
+
+## Reference(s):
+
+- [Folder Rules](references/folder-rules.md)
+- [Output Templates](references/output-templates.md)
+- [Taxonomy Patterns](references/taxonomy-patterns.md)
+- [Tooling Design](references/tooling-design.md)
+- [Workflow](references/workflow.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports, JSON plans, CSV move lists, JSONL logs, shell commands, and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports are expected to stay in a dedicated organize_report directory by default; execution should remain dry-run until the user explicitly confirms apply mode.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

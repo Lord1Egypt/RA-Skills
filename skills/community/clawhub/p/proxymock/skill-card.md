@@ -1,44 +1,59 @@
-## Description: <br>
-Record, inspect, mock, replay, and generate API traffic using the proxymock CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Record, inspect, mock, replay, and generate API traffic using the proxymock CLI for HTTP, gRPC, database, load, regression, and CI testing workflows.
 
-## Publisher: <br>
-[mleray24](https://clawhub.ai/user/mleray24) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[mleray24](https://clawhub.ai/user/mleray24)
 
-## Use Case: <br>
-Developers and engineers use this skill to capture, inspect, mock, replay, and generate HTTP, gRPC, and database traffic with proxymock for local testing, regression testing, load testing, and CI workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Recorded API or database traffic can include secrets, regulated data, or other sensitive content. <br>
-Mitigation: Use local or staging traffic when possible, avoid recording production secrets or regulated data, and review and redact RRPair files before sharing or uploading them. <br>
-Risk: Proxy environment variables can unintentionally route later application traffic through proxymock. <br>
-Mitigation: Unset proxy environment variables after use and prefer child-process mode when practical. <br>
-Risk: Replay, load, and cloud workflows can target the wrong service or upload captured traffic. <br>
-Mitigation: Confirm replay targets, virtual-user counts, duration, and cloud destinations before running those workflows. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [proxymock Skill Page](https://clawhub.ai/mleray24/proxymock) <br>
-- [proxymock CLI Reference](references/cli-reference.md) <br>
-- [Language-Specific Proxy Configuration](references/language-reference.md) <br>
-- [Speedscale proxymock Language Reference](https://docs.speedscale.com/proxymock/getting-started/language-reference/) <br>
+## Use Case:
 
+Developers and engineers use this skill to guide agents through proxymock traffic capture, RRPair inspection and editing, mock generation, replay and load testing, and CI validation.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Markdown, Code] <br>
-**Output Format:** [Markdown with inline shell commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the proxymock binary; replay workflows may create local RRPair files and logs.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Recorded RRPair files, logs, and snapshots can contain sensitive API or database traffic.
+
+Mitigation: Use authorized traffic only, prefer non-production or sanitized data, and treat recordings as sensitive before sharing or uploading them.
+
+Risk: Cloud push commands can upload captured snapshots outside the local environment.
+
+Mitigation: Confirm the destination, authorization, and data handling approval before using cloud push.
+
+Risk: TLS bypass examples can weaken security if copied into real workflows.
+
+Mitigation: Use TLS bypass only for isolated local testing and restore normal certificate validation for production-like traffic.
+
+## Reference(s):
+
+- [proxymock CLI Reference](references/cli-reference.md)
+- [Language-Specific Proxy Configuration](references/language-reference.md)
+- [Speedscale proxymock Language Reference](https://docs.speedscale.com/proxymock/getting-started/language-reference/)
+- [ClawHub skill page](https://clawhub.ai/mleray24/skills/proxymock)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with shell command examples and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the proxymock binary; may guide agents to create or inspect RRPair markdown or JSON files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

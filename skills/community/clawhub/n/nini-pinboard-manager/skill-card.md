@@ -1,49 +1,68 @@
-## Description: <br>
-Interactive Pinboard bookmark management with tag auditing, dead link detection, and content timeliness checking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pinboard Manager helps an agent audit and reorganize Pinboard tags, check bookmarks for dead links, and identify stale technical bookmarks.
 
-## Publisher: <br>
-[niracler](https://clawhub.ai/user/niracler) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[niracler](https://clawhub.ai/user/niracler)
 
-## Use Case: <br>
-External Pinboard users use this skill to audit and reorganize tags, detect broken links, and review older technical bookmarks for timeliness. The skill helps agents propose and apply bookmark cleanup actions through Pinboard API calls after user confirmation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a Pinboard API token with read and modify access. <br>
-Mitigation: Install only when comfortable granting that access, treat the token like a password, and rotate it if exposure is suspected. <br>
-Risk: Confirmed actions can update or delete Pinboard bookmarks. <br>
-Mitigation: Review every proposed update or deletion before confirming and consider exporting a Pinboard backup before bulk cleanup. <br>
-Risk: Bookmark data may be cached temporarily in /tmp/pinboard_all.json. <br>
-Mitigation: Delete /tmp/pinboard_all.json after use when bookmarks are sensitive. <br>
-Risk: Jina-based timeliness checks may send bookmarked URLs to an external reader service. <br>
-Mitigation: Avoid Jina-based timeliness checks for private or internal URLs. <br>
+## Use Case:
 
+External users and developers use this skill to manage Pinboard bookmark collections by auditing tag consistency, finding broken links, and reviewing stale technical content before making account changes.
 
-## Reference(s): <br>
-- [Pinboard](https://pinboard.in/) <br>
-- [Tag Audit Mode](references/tag-audit.md) <br>
-- [Dead Link Detection Mode](references/dead-link.md) <br>
-- [Timeliness Check Mode](references/timeliness.md) <br>
-- [User Configuration](references/user-config.md) <br>
-- [Tag Convention Example](references/tag-convention.example.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline bash code blocks and structured action summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or reuse a temporary Pinboard bookmark cache at /tmp/pinboard_all.json during a session.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.3.0 (source: server release evidence) <br>
+Risk: The skill requires Pinboard API authority that can read, modify, and delete bookmarks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when that account authority is acceptable, review proposed changes before execution, and confirm destructive actions explicitly.
+
+Risk: Dead-link and timeliness workflows may process private, internal, or signed bookmark URLs.
+
+Mitigation: Review the URL set before running these modes and exclude private, internal, or signed URLs.
+
+Risk: Bulk cleanup can delete useful bookmarks or change account data incorrectly.
+
+Mitigation: Export a backup before bulk deletion or retagging and apply changes in reviewed batches.
+
+Risk: Cached bookmark exports can contain sensitive bookmark data.
+
+Mitigation: Treat cached Pinboard data as sensitive and store it in a private per-user location.
+
+## Reference(s):
+
+- [Pinboard](https://pinboard.in/)
+- [Pinboard API](https://api.pinboard.in/v1)
+- [Jina Reader](https://r.jina.ai/)
+- [Tag Audit Mode](references/tag-audit.md)
+- [Dead Link Detection Mode](references/dead-link.md)
+- [Timeliness Check Mode](references/timeliness.md)
+- [User Configuration](references/user-config.md)
+- [Tag Convention Example](references/tag-convention.example.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and structured summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create a user tag convention file and cache fetched Pinboard bookmark data during a session.]
+
+## Skill Version(s):
+
+0.3.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

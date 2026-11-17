@@ -1,40 +1,53 @@
-## Description: <br>
-Xiaozhi Skill Creator helps users create, test, and improve custom ClawHub skills using a four-layer structure for role, rules, memory, and output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+写一个新 SKILL 时用的编写工具：四层结构（角色/规则/记忆/输出）、安全与隐私边界、五步落地流程、常见问题诊断。
 
-## Publisher: <br>
-[qizhitang](https://clawhub.ai/user/qizhitang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qizhitang](https://clawhub.ai/user/qizhitang)
 
-## Use Case: <br>
-Students, educators, and ClawHub users use this skill to design custom learning-oriented skills, draft structured prompts, define memory boundaries, feed study materials, and iterate behavior after real use. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may encourage users to include learning profiles, uploaded study materials, long-term memory, reminders, or cross-skill sharing in new skills. <br>
-Mitigation: Use explicit consent, minimize retained and shared fields, avoid highly sensitive unrelated data, and give users clear options to view, correct, delete, pause, or stop sharing memory. <br>
+## Use Case:
 
+SKILL authors and high-school students with basic programming or prompt-writing experience use it to design or revise educational SKILLs, define scope and privacy rules, and diagnose inconsistent behavior.
 
-## Reference(s): <br>
-- [Seven Scenario Skill Prompt Template Library](references/skill-templates-library.md) <br>
-- [ClawHub skill page](https://clawhub.ai/qizhitang/xiaozhi-skill-creator) <br>
-- [Publisher profile](https://clawhub.ai/user/qizhitang) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Configuration instructions] <br>
-**Output Format:** [Markdown guidance with prompt templates and structured checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only skill; no executable behavior.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and release evidence) <br>
+Risk: A referenced security baseline was unavailable, leaving the security review with partial coverage.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before using generated guidance, consult the applicable security baseline and review the target skill's privacy, consent, and escalation rules.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/qizhitang/skills/xiaozhi-skill-creator)
+- [Skill templates library](references/skill-templates-library.md)
+- [Shared vocabulary and thresholds](shared/vocab.md)
+- [Platform conventions and privacy controls](shared/platform-conventions.md)
+- [Handover protocol schema](shared/handover-protocol.schema.json)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Chinese-language Markdown templates and writing guidance, with structured schema field references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reusable templates require adaptation to the target skill and platform.]
+
+## Skill Version(s):
+
+2.12.7 (source: frontmatter; server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,54 @@
-## Description: <br>
-Prometheus Fire helps a user distill their own thinking into six cognitive personas for self-reflection, decision support, and problem solving. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+你最了解自己的数字分身。把自己蒸馏成六个思维面相，与更强的自己对话，获得辅助思考、扩展认知、解决问题的力量。
 
-## Publisher: <br>
-[gechengling](https://clawhub.ai/user/gechengling) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gechengling](https://clawhub.ai/user/gechengling)
 
-## Use Case: <br>
-External users invoke this skill as a guided conversational self-reflection system to build and use six personal thinking personas. It is intended for decision exploration, problem framing, monthly reflection, and cognitive perspective-taking rather than professional advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may ask personal self-reflection questions and keep sensitive thought material in the chat context. <br>
-Mitigation: Use explicit /prometheus invocations and avoid highly sensitive medical, legal, financial, credential, or confidential workplace information unless comfortable retaining it in the conversation. <br>
-Risk: Persona responses can influence decisions without being professional advice. <br>
-Mitigation: Treat outputs as prompts for reflection and make final decisions independently or with qualified professional review when stakes are high. <br>
+## Use Case:
 
+External users can use the skill to structure self-reflection and explore a decision through six complementary thinking perspectives. It provides conversational prompts and draft guidance for the user to review.
 
-## Reference(s): <br>
-- [Prometheus Fire on ClawHub](https://clawhub.ai/gechengling/prometheus-fire) <br>
-- [King Persona Example](references/king-persona.md) <br>
-- [Dialogue Examples](references/dialogue-examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Conversational Markdown with prompts, reflective questions, persona responses, and summarized guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Purely conversational output; evidence.security reports no code, tool access, network access, or file operations. Users should avoid entering highly sensitive medical, legal, financial, credential, or confidential workplace information unless comfortable keeping it in chat context.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.1.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Installation guidance may leave the package version unpinned.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before installing, pin the intended version and verify the publisher against the ClawHub release page.
+
+Risk: Personal reflections may contain sensitive information and are processed under the AI platform's retention practices.
+
+Mitigation: Share only details needed for the current question, remove credentials and identifying details, and use anonymized summaries for sensitive topics.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gechengling/skills/prometheus-fire)
+- [Publisher profile](https://clawhub.ai/user/gechengling)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Text, Markdown]
+
+**Output Format:** [Conversational text or Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Draft reflections, questions, and suggestions for user review; the skill does not itself save records or make decisions.]
+
+## Skill Version(s):
+
+3.1.5 (source: frontmatter, server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

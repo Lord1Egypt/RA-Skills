@@ -1,44 +1,54 @@
-## Description: <br>
-小红书数据分析 helps marketers and content operators analyze public Xiaohongshu and cross-platform content data to identify topics, creator collaboration opportunities, competitor strategies, and optimization plans. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A social-media content data analysis skill for Xiaohongshu-centered strategy, creator collaboration, competitor monitoring, market insight, cross-platform comparison, and operational optimization.
 
-## Publisher: <br>
-[qqyougitcom](https://clawhub.ai/user/qqyougitcom) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qqyougitcom](https://clawhub.ai/user/qqyougitcom)
 
-## Use Case: <br>
-External marketers, brand operators, and content teams use this skill to request Chinese-language analysis of Xiaohongshu content, creator, competitor, and market data. It can also support cross-platform comparisons across Douyin, Bilibili, Weibo, and WeChat Channels when public data and provider API coverage are available. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses XHS_API_KEY and may send entered keywords, brand names, competitor names, and analysis requests to the provider API. <br>
-Mitigation: Install only when the provider is trusted, use a scoped or revocable key when available, and avoid submitting sensitive or confidential business information. <br>
-Risk: API responses may cover only recent or sampled public data and may include data gaps. <br>
-Mitigation: Surface coverage notes and data gaps in the final analysis, and validate important commercial decisions with additional sources. <br>
-Risk: Platform recommendation logic, benchmarks, and content timing guidance can change over time. <br>
-Mitigation: Treat algorithm and benchmark guidance as time-sensitive estimates and refresh baselines regularly. <br>
+## Use Case:
 
+External users, marketers, operators, and developers use this skill to ask an agent for Chinese-language analysis of public Xiaohongshu and cross-platform content performance, creator fit, competitor strategy, market demand, titles, tags, publishing time, and 30-day optimization plans.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/qqyougitcom/mimo-xhs-data-api) <br>
-- [聚合接口完整参考](references/aggregate-api.md) <br>
-- [xhs-data-api 详细参考](references/details.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, API calls, Guidance] <br>
-**Output Format:** [Chinese Markdown analysis with API-derived summaries and recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an XHS_API_KEY from the skill provider and should report API coverage notes or data gaps when returned.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.0 (source: server release and SKILL.md frontmatter) <br>
+Risk: The skill relies on the provider's external XHS_API_KEY service for social-media analytics.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only approved API keys, avoid submitting confidential plans, secrets, or personal data without approval, and review provider terms before deployment.
+
+Risk: Platform algorithm formulas, benchmark numbers, and public-data coverage may be incomplete or change over time.
+
+Mitigation: Treat formulas and benchmarks as advisory, include API coverage notes and data gaps in outputs, and validate recommendations against current campaign data before acting.
+
+## Reference(s):
+
+- [聚合接口完整参考](references/aggregate-api.md)
+- [xhs-data-api 详细参考](references/details.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, analysis, guidance]
+
+**Output Format:** [Chinese Markdown analysis with structured recommendations, metric comparisons, API-backed findings, caveats, and action plans.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the provider's XHS_API_KEY service; outputs should cite coverage notes and data gaps when API responses provide them.]
+
+## Skill Version(s):
+
+1.4.0 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

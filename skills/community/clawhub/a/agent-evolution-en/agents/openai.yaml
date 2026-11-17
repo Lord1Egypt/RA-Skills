@@ -1,0 +1,4 @@
+interface:
+  display_name: "Metacognition × Scientific Creativity: Research Agent Evolution Plan"
+  short_description: "Capture research outcomes and refine agent practices over time"
+  default_prompt: "Use $agent-evolution-en to complete this research task, capture reusable outcomes as they emerge, and do a short closing review."

@@ -1,44 +1,54 @@
-## Description: <br>
-AI-powered bioinformatics analysis platform that detects sequencing data, generates R/RStudio analysis scripts, organizes outputs, and produces Chinese analysis reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-powered bioinformatics analysis platform with intelligent auto-organization and comprehensive Chinese report generation.
 
-## Publisher: <br>
-[lingzhangmeng](https://clawhub.ai/user/lingzhangmeng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lingzhangmeng](https://clawhub.ai/user/lingzhangmeng)
 
-## Use Case: <br>
-External users and developers use this skill to plan and run local R/RStudio bioinformatics workflows for sequencing data, including scRNA-seq and bulk sequencing analysis. It helps organize project folders, generate R scripts, save plots and tables, and create Chinese-language reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated R scripts or analysis steps may be incorrect or unsuitable for a specific dataset. <br>
-Mitigation: Review generated R scripts, package choices, parameters, and output paths before execution. <br>
-Risk: Bioinformatics reports, logs, CSV files, and RDS objects may contain sensitive biomedical data. <br>
-Mitigation: Use a dedicated project folder, restrict access to generated outputs, and treat reports and intermediate files as sensitive. <br>
-Risk: Local workflow execution can write many files into structured subfolders. <br>
-Mitigation: Confirm the intended working directory and output locations before running the workflow. <br>
+## Use Case:
 
+External researchers and bioinformatics practitioners use this skill to detect sequencing data, generate R/RStudio analysis scripts, organize outputs, and produce Chinese analysis reports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lingzhangmeng/rstudio-runner) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/lingzhangmeng) <br>
-- [Artifact homepage](https://clawhub.ai/skills/k97f5d8d367me4186h0d5j1jb583st34) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, files] <br>
-**Output Format:** [Markdown guidance with R/RStudio scripts, shell commands, file organization plans, and report descriptions.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local project outputs such as R scripts, plots, CSV/TXT tables, RDS objects, logs, and HTML/PDF reports.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-4.0.1 (source: server release metadata and skill.json) <br>
+Risk: The skill may create many folders, generated R scripts, result files, and reports.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it in a dedicated project directory and confirm the intended analysis strategy and output location before running generated code.
+
+Risk: Generated analysis scripts can affect local files and produce misleading outputs if inputs or assumptions are wrong.
+
+Mitigation: Review generated R scripts, parameters, and report interpretations before execution or publication use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lingzhangmeng/skills/rstudio-runner)
+- [Artifact homepage](https://clawhub.ai/skills/k97f5d8d367me4186h0d5j1jb583st34)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with R code, shell commands, file organization plans, and report text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create analysis folders, R scripts, result files, R objects, logs, and Chinese HTML/PDF reports when used by an agent.]
+
+## Skill Version(s):
+
+4.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

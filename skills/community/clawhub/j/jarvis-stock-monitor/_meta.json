@@ -1,6 +1,32 @@
 {
-  "ownerId": "kn7bz9fk8rgje20brcnb3gamjn8257ch",
-  "slug": "jarvis-stock-monitor",
+  "name": "jarvis-stock-monitor",
   "version": "1.0.0",
-  "publishedAt": 1774103845668
+  "description": "全功能智能股票监控预警系统 Pro 版。支持成本百分比、均线金叉死叉、RSI 超买超卖、成交量异动、跳空缺口、动态止盈等 7 大预警规则。基础功能免费，高级功能 SkillPay 付费。",
+  "author": "Jarvis-OC",
+  "license": "MIT-0",
+  "tags": ["stock", "monitor", "alert", "股票", "监控", "预警", "A 股", "ETF"],
+  "pricing": {
+    "model": "skillpay",
+    "free_tier": true,
+    "paid_tier": [
+      {
+        "name": "单次查询",
+        "price": 0.01,
+        "currency": "CNY",
+        "unit": "次"
+      },
+      {
+        "name": "包月订阅",
+        "price": 99,
+        "currency": "CNY",
+        "unit": "月"
+      }
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Jarvis-OC/stock-monitor-pro"
+  },
+  "homepage": "https://clawhub.ai/skills/stock-monitor-pro",
+  "bugs": "https://github.com/Jarvis-OC/stock-monitor-pro/issues"
 }

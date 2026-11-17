@@ -1,40 +1,52 @@
-## Description: <br>
-China local-life flagship assistant. Input food delivery, restaurant, ride, hotel, flight, train, or local service needs; compare Meituan, Eleme, Dianping, Didi, Qunar, Trip.com, and related options by price, time, distance, ratings, coupons, and risk. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+China local-life flagship assistant for comparing food delivery, restaurant, ride, hotel, flight, train, and local service options across Meituan, Eleme, Dianping, Didi, Qunar, Trip.com, and related platforms by price, time, distance, ratings, coupons, and risk.
 
-## Publisher: <br>
-[harrylabsj](https://clawhub.ai/user/harrylabsj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[harrylabsj](https://clawhub.ai/user/harrylabsj)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users use this skill to compare China local-life services and choose practical options for food delivery, restaurants, rides, travel, and nearby services. It helps surface tradeoffs, coupon caveats, merchant risk cues, and manual next actions without logging in, booking, ordering, or paying.
+
+### Deployment Geography for Use:
+
+China
+
+## Known Risks and Mitigations:
+
+Risk: Final prices, coupon terms, delivery times, availability, and merchant behavior may differ from the comparison output.
+
+Mitigation: Manually review platform prices, availability, coupon terms, and merchant risk before acting.
+
+Risk: The skill is used near account, booking, order, or payment flows for local services or travel.
+
+Mitigation: Do not provide credentials, identity checks, addresses, payment details, or authorization codes, and keep all bookings, orders, confirmations, and payments manual.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users use this skill to compare China local-life options for food delivery, restaurants, rides, hotels, flights, trains, and nearby services. It helps weigh price, time, distance, ratings, coupons, merchant risk cues, and the user's next manual action. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-China <br>
+**Output Type(s):** [Guidance, Analysis, Markdown]
 
-## Known Risks and Mitigations: <br>
-Risk: The assistant may compare options involving accounts, identity checks, addresses, bookings, orders, or payments. <br>
-Mitigation: Use it only as a comparison and checklist assistant; keep account login, identity checks, address entry, final choices, bookings, orders, and payments under the user's direct control. <br>
-Risk: Prices, delivery times, availability, coupons, and merchant behavior can change outside the assistant's output. <br>
-Mitigation: Verify final price, timing, availability, coupon conditions, and merchant details in the relevant platform before taking action. <br>
+**Output Format:** [Markdown text with comparison guidance and manual next actions]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/harrylabsj/china-local-life-assistant) <br>
+**Other Properties Related to Output:** [Does not perform login, booking, order submission, or payment actions.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text recommendations with comparison notes and manual next steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Does not perform login, booking, order submission, or payment.] <br>
+1.1.0 (source: evidence.release.version and artifact/skill.json)
 
-## Skill Version(s): <br>
-1.1.0 (source: release evidence and skill.json) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,24 @@
+{
+  "emoji": "⚖️",
+  "primaryEnv": "SIMMER_API_KEY",
+  "requires": {
+    "pip": [
+      "simmer-sdk"
+    ],
+    "env": []
+  },
+  "envVars": [
+    {
+      "name": "SIMMER_API_KEY",
+      "required": false,
+      "description": "Simmer SDK key. Only needed for --simmer-market, to turn a Simmer market id into a Polymarket condition id. The check itself needs no key."
+    },
+    {
+      "name": "PREDGE_API_BASE",
+      "required": false,
+      "description": "Override the Predge API base URL (default https://api.predge.io)."
+    }
+  ],
+  "cron": null,
+  "autostart": false
+}

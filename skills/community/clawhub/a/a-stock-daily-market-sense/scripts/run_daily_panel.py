@@ -50,6 +50,12 @@ def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         description="Run market_panel.py safely and write UTF-8 evidence/context files."
     )
+    parser.add_argument(
+        "--cleanup",
+        default=None,
+        metavar="YYYYMMDD",
+        help="Delete intermediate artifacts (evidence/kline/stderr/context/module_context) for the date, keep report md/html, then exit.",
+    )
     parser.add_argument("--asof", default=None, help="Analysis date, YYYYMMDD or YYYY-MM-DD. Defaults to today.")
     parser.add_argument("--offset", type=int, default=0, help="Trading-day offset from asof.")
     parser.add_argument("--allow-future", action="store_true", help="Allow positive offset for post-hoc checks.")
@@ -57,6 +63,7 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--index", default="000300.SH", help="Benchmark index ts_code.")
     parser.add_argument("--sample-limit", type=int, default=40, help="Generic candidate sample limit.")
     parser.add_argument("--market-trend-days", type=int, default=90, help="Market-trend window.")
+    parser.add_argument("--index-kline-days", type=int, default=market_panel.DEFAULT_INDEX_KLINE_DAYS, help="Index candlestick window for HTML output.")
     parser.add_argument("--sleep", type=float, default=0.12, help="Sleep seconds between uncached API calls.")
     parser.add_argument("--fetch-workers", type=int, default=6, help="Max worker threads for cache/API fetching.")
     parser.add_argument("--no-cache", action="store_true", help="Disable cache in market_panel.py.")
@@ -64,13 +71,13 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--with-limit", action="store_true", help="Fetch official limit_list_d stats.")
     parser.add_argument("--reports-dir", default=str(DEFAULT_REPORTS_DIR), help="Directory for generated files.")
     parser.add_argument("--evidence-out", default=None, help="Full evidence JSON output path.")
-    parser.add_argument("--context-out", default=None, help="Compact report_context JSON output path.")
+    parser.add_argument("--context-out", default=None, help="Legacy compact report_context JSON path; written only when set.")
     parser.add_argument("--module-context-dir", default=None, help="Directory for module-level subagent JSON files.")
     parser.add_argument("--no-module-context", action="store_true", help="Skip module-level subagent JSON files.")
     parser.add_argument("--stderr-out", default=None, help="Stderr log output path.")
     parser.add_argument("--money-context-limit", type=int, default=80, help="Money-effect rows in context.")
     parser.add_argument("--decline-context-limit", type=int, default=20, help="Volume-decline rows in context.")
-    parser.add_argument("--low-context-limit", type=int, default=20, help="Low-position rows in context.")
+    parser.add_argument("--feature-context-limit", type=int, default=20, help="Module 5 feature-group rows per subgroup in context.")
     parser.add_argument("--amount-context-limit", type=int, default=20, help="Top-amount rows in context.")
     return parser
 
@@ -86,6 +93,8 @@ def build_panel_argv(args: argparse.Namespace, extra_args: List[str]) -> List[st
         str(args.sample_limit),
         "--market-trend-days",
         str(args.market_trend_days),
+        "--index-kline-days",
+        str(args.index_kline_days),
         "--sleep",
         str(args.sleep),
         "--fetch-workers",
@@ -133,11 +142,70 @@ def write_module_contexts(evidence: dict, module_dir: Path) -> None:
         )
 
 
+def cleanup_intermediates(reports_dir: Path, date: str) -> Dict[str, Any]:
+    """Deterministically remove intermediate artifacts for one date.
+
+    Final deliverables (report_YYYYMMDD.md / .html) are never touched.
+    """
+    date = market_panel.normalize_date(date)
+    removed: List[str] = []
+    missing: List[str] = []
+    candidates = [
+        reports_dir / f"evidence_{date}_utf8.json",
+        reports_dir / f"evidence_{date}_utf8.stderr.log",
+        reports_dir / f"kline_{date}.json",
+        reports_dir / f"report_context_{date}.json",
+        reports_dir / f"lifecycle_{date}.json",
+        # Backward-compatible cleanup for artifacts produced before the
+        # strategy-pick / factor-lab lifecycle was removed.  Current runs no
+        # longer create these files, but upgrades should not strand old
+        # intermediates in reports/.
+        reports_dir / f"strategy_picks_{date}.json",
+        reports_dir / f"calibration_{date}.json",
+        reports_dir / f"profile_refresh_{date}.json",
+        reports_dir / f"weekly_factor_pack_{date}.json",
+    ]
+    for path in candidates:
+        if path.exists():
+            path.unlink()
+            removed.append(str(path))
+        else:
+            missing.append(str(path))
+    # 因子挖掘决策包 + 明细（研究线临时产物，按组名 × 该日期成对清理）
+    for extra in sorted(reports_dir.glob(f"factor_mining_*_{date}*.json")):
+        extra.unlink()
+        removed.append(str(extra))
+    module_dir = reports_dir / f"module_context_{date}"
+    if module_dir.is_dir():
+        for child in sorted(module_dir.glob("*.json")):
+            child.unlink()
+            removed.append(str(child))
+        module_dir.rmdir()
+        removed.append(str(module_dir))
+    else:
+        missing.append(str(module_dir))
+    return {
+        "date": date,
+        "removed": removed,
+        "not_found": missing,
+        "kept": [
+            str(reports_dir / f"report_{date}.md"),
+            str(reports_dir / f"report_{date}.html"),
+        ],
+    }
+
+
 def main(argv: Optional[List[str]] = None) -> int:
     parser = build_parser()
     args, extra_args = parser.parse_known_args(argv)
 
     reports_dir = Path(args.reports_dir)
+
+    if args.cleanup:
+        result = cleanup_intermediates(reports_dir, args.cleanup)
+        print(json.dumps(result, ensure_ascii=False, indent=2))
+        return 0
+
     reports_dir.mkdir(parents=True, exist_ok=True)
 
     preliminary_evidence = Path(args.evidence_out) if args.evidence_out else reports_dir / f"{default_stem(args.asof)}.json"
@@ -155,20 +223,32 @@ def main(argv: Optional[List[str]] = None) -> int:
 
     resolved_date = evidence.get("metadata", {}).get("resolved_trade_date") or market_panel.normalize_date(args.asof)
     evidence_path = Path(args.evidence_out) if args.evidence_out else reports_dir / f"evidence_{resolved_date}_utf8.json"
-    context_path = Path(args.context_out) if args.context_out else reports_dir / f"report_context_{resolved_date}.json"
     if args.stderr_out is None:
         stderr_path = sibling_stderr_path(evidence_path)
         stderr_path.write_text(stderr_buffer.getvalue(), encoding="utf-8")
 
-    evidence_path.write_text(json.dumps(evidence, ensure_ascii=False, indent=2), encoding="utf-8")
-    report_context = market_panel.build_report_context(
-        evidence,
-        money_limit=args.money_context_limit,
-        decline_limit=args.decline_context_limit,
-        low_limit=args.low_context_limit,
-        amount_limit=args.amount_context_limit,
-    )
-    context_path.write_text(json.dumps(report_context, ensure_ascii=False, indent=2), encoding="utf-8")
+    # stock_kline_records is display-layer data for the HTML renderer only
+    # (historically ~half the evidence size); it ships as a sibling file so
+    # the evidence pack the model reads stays lean.
+    kline_payload = evidence.pop("stock_kline_records", None)
+    kline_path = reports_dir / f"kline_{resolved_date}.json"
+    if kline_payload is not None:
+        kline_path.write_text(json.dumps(kline_payload, ensure_ascii=False), encoding="utf-8")
+
+    evidence_path.write_text(json.dumps(evidence, ensure_ascii=False), encoding="utf-8")
+
+    context_path = None
+    if args.context_out:
+        # Legacy compact context, emitted only on explicit request.
+        report_context = market_panel.build_report_context(
+            evidence,
+            money_limit=args.money_context_limit,
+            decline_limit=args.decline_context_limit,
+            feature_limit=args.feature_context_limit,
+            amount_limit=args.amount_context_limit,
+        )
+        context_path = Path(args.context_out)
+        context_path.write_text(json.dumps(report_context, ensure_ascii=False, indent=2), encoding="utf-8")
 
     module_context_dir = None
     if not args.no_module_context:
@@ -178,7 +258,8 @@ def main(argv: Optional[List[str]] = None) -> int:
     print(json.dumps({
         "resolved_trade_date": resolved_date,
         "evidence": str(evidence_path),
-        "report_context": str(context_path),
+        "stock_klines": str(kline_path) if kline_payload is not None else None,
+        "report_context": str(context_path) if context_path else None,
         "module_context_dir": str(module_context_dir) if module_context_dir else None,
         "stderr": str(stderr_path),
     }, ensure_ascii=False, indent=2))

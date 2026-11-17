@@ -1,0 +1,1001 @@
+# ============================================================================
+# Tech Fingerprints v1.0 — 项目技术指纹库（大脑加强，不抓取只匹配）
+# ============================================================================
+# 来源：参考 specfy/stack-analyser (700+ 技术, CC-BY-SA) 精选 + 中文项目实践
+# 用途：
+#   1. 项目画像 Phase ①：扫描项目文件结构，识别技术栈
+#   2. 不依赖运行时，纯文件名/路径/内容静态匹配
+#   3. 配合 project-types.yaml 决定推荐技能
+#
+# 与 project-types.yaml 的分工：
+#   - project-types.yaml：项目"类型"→ 推荐技能映射（高层抽象）
+#   - tech-fingerprints.yaml：项目"使用了什么"→ 具体技术识别（底层证据）
+#
+# 匹配规则：
+#   - files:    路径或文件名 glob 匹配（如 "package.json" / "src/**/*.tsx"）
+#   - contents: 文件内容正则匹配（如 contains "react" in package.json）
+#   - confidence: high（≥2 命中）/ medium（1 命中）/ low（仅特征文件）
+# ============================================================================
+
+# ──────────────────────────────────────────────
+# 前端框架（Frontend Frameworks）
+# ──────────────────────────────────────────────
+frontend:
+  - id: react
+    name: "React"
+    category: frontend
+    fingerprints:
+      - files: ["package.json"]
+        contents: '"react"\\s*:'
+        confidence: high
+      - files: ["src/**/*.jsx", "src/**/*.tsx"]
+        confidence: medium
+    version_probe:
+      file: package.json
+      jsonpath: "$.dependencies.react"
+    tags: [spa, hooks, jsx]
+
+  - id: vue
+    name: "Vue"
+    category: frontend
+    fingerprints:
+      - files: ["package.json"]
+        contents: '"vue"\\s*:'
+        confidence: high
+      - files: ["src/**/*.vue"]
+        confidence: high
+    version_probe:
+      file: package.json
+      jsonpath: "$.dependencies.vue"
+    tags: [spa, sfc, composition]
+
+  - id: angular
+    name: "Angular"
+    category: frontend
+    fingerprints:
+      - files: ["package.json"]
+        contents: '"@angular/core"\\s*:'
+        confidence: high
+      - files: ["angular.json"]
+        confidence: high
+    tags: [spa, typescript, di]
+
+  - id: svelte
+    name: "Svelte / SvelteKit"
+    category: frontend
+    fingerprints:
+      - files: ["package.json"]
+        contents: '"svelte"\\s*:'
+        confidence: high
+      - files: ["svelte.config.js"]
+        confidence: high
+    tags: [spa, compiler]
+
+  - id: solid
+    name: "SolidJS"
+    category: frontend
+    fingerprints:
+      - files: ["package.json"]
+        contents: '"solid-js"\\s*:'
+        confidence: high
+    tags: [spa, reactive]
+
+  - id: astro
+    name: "Astro"
+    category: frontend
+    fingerprints:
+      - files: ["astro.config.mjs", "astro.config.ts"]
+        confidence: high
+    tags: [ssg, islands]
+
+  - id: nextjs
+    name: "Next.js"
+    category: frontend
+    fingerprints:
+      - files: ["package.json"]
+        contents: '"next"\\s*:'
+        confidence: high
+      - files: ["next.config.js", "next.config.mjs"]
+        confidence: high
+    tags: [ssr, ssg, isr, react]
+
+  - id: nuxt
+    name: "Nuxt"
+    category: frontend
+    fingerprints:
+      - files: ["package.json"]
+        contents: '"nuxt"\\s*:'
+        confidence: high
+      - files: ["nuxt.config.ts"]
+        confidence: high
+    tags: [ssr, vue]
+
+  - id: remix
+    name: "Remix"
+    category: frontend
+    fingerprints:
+      - files: ["package.json"]
+        contents: '"@remix-run/(react|node)"\\s*:'
+        confidence: high
+    tags: [ssr, react]
+
+# ──────────────────────────────────────────────
+# 后端框架（Backend Frameworks）
+# ──────────────────────────────────────────────
+backend:
+  - id: express
+    name: "Express"
+    category: backend
+    fingerprints:
+      - files: ["package.json"]
+        contents: '"express"\\s*:'
+        confidence: high
+    tags: [node, minimal]
+
+  - id: fastify
+    name: "Fastify"
+    category: backend
+    fingerprints:
+      - files: ["package.json"]
+        contents: '"fastify"\\s*:'
+        confidence: high
+    tags: [node, performance]
+
+  - id: nestjs
+    name: "NestJS"
+    category: backend
+    fingerprints:
+      - files: ["package.json"]
+        contents: '"@nestjs/core"\\s*:'
+        confidence: high
+    tags: [node, typescript, di, enterprise]
+
+  - id: koa
+    name: "Koa"
+    category: backend
+    fingerprints:
+      - files: ["package.json"]
+        contents: '"koa"\\s*:'
+        confidence: high
+    tags: [node, async]
+
+  - id: django
+    name: "Django"
+    category: backend
+    fingerprints:
+      - files: ["manage.py", "**/settings.py", "**/wsgi.py"]
+        confidence: high
+      - files: ["requirements.txt", "pyproject.toml"]
+        contents: 'django(>=|==|<|>|~)'
+        confidence: high
+    tags: [python, batteries-included, orm]
+
+  - id: flask
+    name: "Flask"
+    category: backend
+    fingerprints:
+      - files: ["requirements.txt", "pyproject.toml"]
+        contents: 'flask(>=|==|<|>|~)'
+        confidence: high
+    tags: [python, minimal]
+
+  - id: fastapi
+    name: "FastAPI"
+    category: backend
+    fingerprints:
+      - files: ["requirements.txt", "pyproject.toml"]
+        contents: 'fastapi(>=|==|<|>|~)'
+        confidence: high
+    tags: [python, async, openapi]
+
+  - id: sanic
+    name: "Sanic"
+    category: backend
+    fingerprints:
+      - files: ["requirements.txt", "pyproject.toml"]
+        contents: 'sanic(>=|==|<|>|~)'
+        confidence: high
+    tags: [python, async]
+
+  - id: spring-boot
+    name: "Spring Boot"
+    category: backend
+    fingerprints:
+      - files: ["pom.xml"]
+        contents: 'spring-boot-starter'
+        confidence: high
+      - files: ["build.gradle", "build.gradle.kts"]
+        contents: 'org.springframework.boot'
+        confidence: high
+    tags: [java, kotlin, enterprise]
+
+  - id: rails
+    name: "Ruby on Rails"
+    category: backend
+    fingerprints:
+      - files: ["Gemfile"]
+        contents: "'rails'"
+        confidence: high
+      - files: ["config/routes.rb"]
+        confidence: high
+    tags: [ruby, batteries-included]
+
+  - id: laravel
+    name: "Laravel"
+    category: backend
+    fingerprints:
+      - files: ["composer.json"]
+        contents: '"laravel/framework"'
+        confidence: high
+      - files: ["artisan"]
+        confidence: high
+    tags: [php, mvc]
+
+  - id: gin
+    name: "Gin"
+    category: backend
+    fingerprints:
+      - files: ["go.mod"]
+        contents: 'github.com/gin-gonic/gin'
+        confidence: high
+    tags: [go, performance]
+
+  - id: actix
+    name: "Actix"
+    category: backend
+    fingerprints:
+      - files: ["Cargo.toml"]
+        contents: 'actix-web'
+        confidence: high
+    tags: [rust, performance]
+
+  - id: axum
+    name: "Axum"
+    category: backend
+    fingerprints:
+      - files: ["Cargo.toml"]
+        contents: 'axum'
+        confidence: high
+    tags: [rust, tokio]
+
+# ──────────────────────────────────────────────
+# 移动端（Mobile）
+# ──────────────────────────────────────────────
+mobile:
+  - id: react-native
+    name: "React Native"
+    category: mobile
+    fingerprints:
+      - files: ["package.json"]
+        contents: '"react-native"\\s*:'
+        confidence: high
+      - files: ["app.json"]
+        contents: '"expo"\\s*:'
+        confidence: high
+    tags: [cross-platform, js]
+
+  - id: flutter
+    name: "Flutter"
+    category: mobile
+    fingerprints:
+      - files: ["pubspec.yaml"]
+        contents: 'flutter:'
+        confidence: high
+    tags: [cross-platform, dart]
+
+  - id: android-native
+    name: "Android Native"
+    category: mobile
+    fingerprints:
+      - files: ["app/build.gradle", "app/build.gradle.kts"]
+        contents: 'com.android.application'
+        confidence: high
+      - files: ["AndroidManifest.xml"]
+        confidence: high
+    tags: [kotlin, java]
+
+  - id: ios-native
+    name: "iOS Native"
+    category: mobile
+    fingerprints:
+      - files: ["*.xcodeproj", "*.xcworkspace", "Podfile"]
+        confidence: high
+    tags: [swift, objc]
+
+# ──────────────────────────────────────────────
+# 桌面端（Desktop）
+# ──────────────────────────────────────────────
+desktop:
+  - id: electron
+    name: "Electron"
+    category: desktop
+    fingerprints:
+      - files: ["package.json"]
+        contents: '"electron"\\s*:'
+        confidence: high
+    tags: [cross-platform, chromium]
+
+  - id: tauri
+    name: "Tauri"
+    category: desktop
+    fingerprints:
+      - files: ["src-tauri/tauri.conf.json", "src-tauri/Cargo.toml"]
+        confidence: high
+    tags: [cross-platform, rust]
+
+  - id: qt
+    name: "Qt"
+    category: desktop
+    fingerprints:
+      - files: ["*.pro", "CMakeLists.txt"]
+        contents: 'Qt[0-9]'
+        confidence: medium
+    tags: [cpp, cross-platform]
+
+# ──────────────────────────────────────────────
+# 数据库（Databases）
+# ──────────────────────────────────────────────
+database:
+  - id: postgresql
+    name: "PostgreSQL"
+    category: database
+    fingerprints:
+      - files: ["docker-compose.yml", "docker-compose.yaml"]
+        contents: '(postgres|postgresql):'
+        confidence: medium
+      - files: ["**/prisma/schema.prisma"]
+        contents: 'provider\\s*=\\s*"postgresql"'
+        confidence: high
+    tags: [sql, relational]
+
+  - id: mysql
+    name: "MySQL"
+    category: database
+    fingerprints:
+      - files: ["docker-compose.yml"]
+        contents: 'mysql:'
+        confidence: medium
+    tags: [sql, relational]
+
+  - id: sqlite
+    name: "SQLite"
+    category: database
+    fingerprints:
+      - files: ["**/*.sqlite", "**/*.db"]
+        confidence: low
+      - files: ["**/prisma/schema.prisma"]
+        contents: 'provider\\s*=\\s*"sqlite"'
+        confidence: high
+    tags: [sql, embedded]
+
+  - id: mongodb
+    name: "MongoDB"
+    category: database
+    fingerprints:
+      - files: ["docker-compose.yml"]
+        contents: 'mongo:'
+        confidence: medium
+      - files: ["package.json"]
+        contents: '"mongoose"\\s*:'
+        confidence: medium
+    tags: [nosql, document]
+
+  - id: redis
+    name: "Redis"
+    category: database
+    fingerprints:
+      - files: ["docker-compose.yml"]
+        contents: 'redis:'
+        confidence: medium
+      - files: ["package.json"]
+        contents: '"ioredis"\\s*:' 
+        confidence: medium
+    tags: [nosql, cache, kv]
+
+  - id: supabase
+    name: "Supabase (SaaS)"
+    category: database
+    fingerprints:
+      - files: ["supabase/config.toml"]
+        confidence: high
+    tags: [postgres, saas, baas]
+
+  - id: prisma
+    name: "Prisma ORM"
+    category: database
+    fingerprints:
+      - files: ["**/prisma/schema.prisma"]
+        confidence: high
+    tags: [orm, typescript]
+
+  - id: sqlalchemy
+    name: "SQLAlchemy"
+    category: database
+    fingerprints:
+      - files: ["requirements.txt", "pyproject.toml"]
+        contents: 'sqlalchemy(>=|==|<|>|~)'
+        confidence: high
+    tags: [orm, python]
+
+# ──────────────────────────────────────────────
+# DevOps & 基础设施（DevOps & Infrastructure）
+# ──────────────────────────────────────────────
+devops:
+  - id: docker
+    name: "Docker"
+    category: devops
+    fingerprints:
+      - files: ["Dockerfile", "Dockerfile.*", "**/Dockerfile"]
+        confidence: high
+      - files: ["docker-compose.yml", "docker-compose.yaml"]
+        confidence: high
+    tags: [container]
+
+  - id: kubernetes
+    name: "Kubernetes"
+    category: devops
+    fingerprints:
+      - files: ["**/k8s/**/*.yaml", "**/kustomization.yaml"]
+        confidence: high
+      - files: ["Chart.yaml"]
+        contents: 'apiVersion:\\s*v2'
+        confidence: high
+    tags: [orchestration, helm]
+
+  - id: terraform
+    name: "Terraform"
+    category: devops
+    fingerprints:
+      - files: ["**/*.tf", "**/*.tfvars"]
+        confidence: high
+    tags: [iac]
+
+  - id: ansible
+    name: "Ansible"
+    category: devops
+    fingerprints:
+      - files: ["**/*.yml", "**/*.yaml"]
+        contents: '- hosts:\\s*'
+        confidence: low
+      - files: ["ansible.cfg", "**/inventory.ini"]
+        confidence: high
+    tags: [iac, config-mgmt]
+
+  - id: github-actions
+    name: "GitHub Actions"
+    category: ci
+    fingerprints:
+      - files: [".github/workflows/*.yml", ".github/workflows/*.yaml"]
+        confidence: high
+    version_probe: { count_files: ".github/workflows/" }
+
+  - id: gitlab-ci
+    name: "GitLab CI"
+    category: ci
+    fingerprints:
+      - files: [".gitlab-ci.yml"]
+        confidence: high
+
+  - id: circleci
+    name: "CircleCI"
+    category: ci
+    fingerprints:
+      - files: [".circleci/config.yml"]
+        confidence: high
+
+  - id: jenkins
+    name: "Jenkins"
+    category: ci
+    fingerprints:
+      - files: ["Jenkinsfile", "jenkins/**/*.groovy"]
+        confidence: high
+
+  - id: vercel
+    name: "Vercel"
+    category: paas
+    fingerprints:
+      - files: ["vercel.json"]
+        confidence: high
+    tags: [deployment, saas]
+
+  - id: netlify
+    name: "Netlify"
+    category: paas
+    fingerprints:
+      - files: ["netlify.toml"]
+        confidence: high
+    tags: [deployment, saas]
+
+  - id: cloudflare-workers
+    name: "Cloudflare Workers"
+    category: paas
+    fingerprints:
+      - files: ["wrangler.toml", "wrangler.jsonc"]
+        confidence: high
+    tags: [edge, serverless]
+
+# ──────────────────────────────────────────────
+# AI/ML（人工智能与机器学习）
+# ──────────────────────────────────────────────
+ai_ml:
+  - id: pytorch
+    name: "PyTorch"
+    category: ai_ml
+    fingerprints:
+      - files: ["requirements.txt", "pyproject.toml"]
+        contents: 'torch(>=|==|<|>|~)'
+        confidence: high
+    tags: [deep-learning]
+
+  - id: tensorflow
+    name: "TensorFlow"
+    category: ai_ml
+    fingerprints:
+      - files: ["requirements.txt", "pyproject.toml"]
+        contents: 'tensorflow(>=|==|<|>|~)'
+        confidence: high
+    tags: [deep-learning]
+
+  - id: transformers
+    name: "Hugging Face Transformers"
+    category: ai_ml
+    fingerprints:
+      - files: ["requirements.txt", "pyproject.toml"]
+        contents: 'transformers(>=|==|<|>|~)'
+        confidence: high
+    tags: [llm, nlp]
+
+  - id: langchain
+    name: "LangChain"
+    category: ai_ml
+    fingerprints:
+      - files: ["requirements.txt", "pyproject.toml"]
+        contents: 'langchain(>=|==|<|>|~)'
+        confidence: high
+    tags: [llm, orchestration]
+
+  - id: llama-index
+    name: "LlamaIndex"
+    category: ai_ml
+    fingerprints:
+      - files: ["requirements.txt", "pyproject.toml"]
+        contents: 'llama[-_]?index(>=|==|<|>|~)'
+        confidence: high
+    tags: [llm, rag]
+
+  - id: openai-sdk
+    name: "OpenAI SDK"
+    category: ai_ml
+    fingerprints:
+      - files: ["package.json"]
+        contents: '"openai"\\s*:'
+        confidence: high
+      - files: ["requirements.txt"]
+        contents: '^openai(>=|==|<|>|~)'
+        confidence: high
+    tags: [llm, api]
+
+# ──────────────────────────────────────────────
+# 编程语言（Languages）
+# ──────────────────────────────────────────────
+languages:
+  - id: typescript
+    name: "TypeScript"
+    category: language
+    fingerprints:
+      - files: ["tsconfig.json"]
+        confidence: high
+      - files: ["package.json"]
+        contents: '"typescript"\\s*:\\s*"\\^?[0-9]'
+        confidence: high
+
+  - id: python
+    name: "Python"
+    category: language
+    fingerprints:
+      - files: ["pyproject.toml", "setup.py", "requirements.txt", "Pipfile", "**/__init__.py"]
+        confidence: high
+      - files: ["**/*.py"]
+        confidence: medium
+
+  - id: go
+    name: "Go"
+    category: language
+    fingerprints:
+      - files: ["go.mod", "go.sum"]
+        confidence: high
+
+  - id: rust
+    name: "Rust"
+    category: language
+    fingerprints:
+      - files: ["Cargo.toml", "Cargo.lock"]
+        confidence: high
+
+  - id: java
+    name: "Java"
+    category: language
+    fingerprints:
+      - files: ["pom.xml"]
+        confidence: high
+      - files: ["build.gradle", "build.gradle.kts"]
+        confidence: high
+
+  - id: kotlin
+    name: "Kotlin"
+    category: language
+    fingerprints:
+      - files: ["*.kt"]
+        confidence: low
+      - files: ["build.gradle.kts"]
+        contents: 'kotlin\\("jvm"\\)'
+        confidence: high
+
+  - id: swift
+    name: "Swift"
+    category: language
+    fingerprints:
+      - files: ["Package.swift"]
+        confidence: high
+
+  - id: ruby
+    name: "Ruby"
+    category: language
+    fingerprints:
+      - files: ["Gemfile", "Gemfile.lock", "*.rb", "*.gemspec"]
+        confidence: high
+
+  - id: php
+    name: "PHP"
+    category: language
+    fingerprints:
+      - files: ["composer.json"]
+        confidence: high
+
+  - id: csharp
+    name: "C# / .NET"
+    category: language
+    fingerprints:
+      - files: ["*.csproj", "*.sln"]
+        confidence: high
+
+  - id: cpp
+    name: "C/C++"
+    category: language
+    fingerprints:
+      - files: ["CMakeLists.txt", "Makefile"]
+        contents: 'g\\+\\+|gcc|clang'
+        confidence: low
+      - files: ["*.cpp", "*.cc", "*.hpp", "*.h"]
+        confidence: low
+
+# ──────────────────────────────────────────────
+# 工具与构建系统（Tools & Build Systems）
+# ──────────────────────────────────────────────
+tooling:
+  - id: monorepo-nx
+    name: "Nx Monorepo"
+    category: tooling
+    fingerprints:
+      - files: ["nx.json"]
+        confidence: high
+    tags: [monorepo, typescript]
+
+  - id: monorepo-turbo
+    name: "Turborepo"
+    category: tooling
+    fingerprints:
+      - files: ["turbo.json"]
+        confidence: high
+    tags: [monorepo]
+
+  - id: monorepo-pnpm
+    name: "pnpm Workspace"
+    category: tooling
+    fingerprints:
+      - files: ["pnpm-workspace.yaml"]
+        confidence: high
+    tags: [monorepo]
+
+  - id: lerna
+    name: "Lerna"
+    category: tooling
+    fingerprints:
+      - files: ["lerna.json"]
+        confidence: high
+    tags: [monorepo]
+
+  - id: vite
+    name: "Vite"
+    category: tooling
+    fingerprints:
+      - files: ["vite.config.ts", "vite.config.js", "vite.config.mjs"]
+        confidence: high
+    tags: [bundler]
+
+  - id: webpack
+    name: "Webpack"
+    category: tooling
+    fingerprints:
+      - files: ["webpack.config.js", "webpack.config.ts"]
+        confidence: high
+    tags: [bundler]
+
+  - id: esbuild
+    name: "esbuild"
+    category: tooling
+    fingerprints:
+      - files: ["esbuild.config.js"]
+        confidence: high
+    tags: [bundler]
+
+  - id: rollup
+    name: "Rollup"
+    category: tooling
+    fingerprints:
+      - files: ["rollup.config.js", "rollup.config.mjs"]
+        confidence: high
+    tags: [bundler]
+
+  - id: turbo-rs
+    name: "Turbopack"
+    category: tooling
+    fingerprints:
+      - files: ["next.config.js", "next.config.mjs"]
+        contents: 'turbo:\\s*true'
+        confidence: medium
+
+  - id: eslint
+    name: "ESLint"
+    category: tooling
+    fingerprints:
+      - files: [".eslintrc*", "eslint.config.*"]
+        confidence: high
+    tags: [linter, js]
+
+  - id: prettier
+    name: "Prettier"
+    category: tooling
+    fingerprints:
+      - files: [".prettierrc*", "prettier.config.*"]
+        confidence: high
+    tags: [formatter, js]
+
+  - id: ruff
+    name: "Ruff"
+    category: tooling
+    fingerprints:
+      - files: ["pyproject.toml", "ruff.toml"]
+        contents: '\\[tool\\.ruff\\]'
+        confidence: high
+    tags: [linter, python]
+
+  - id: black
+    name: "Black"
+    category: tooling
+    fingerprints:
+      - files: ["pyproject.toml"]
+        contents: '\\[tool\\.black\\]'
+        confidence: high
+    tags: [formatter, python]
+
+  - id: pytest
+    name: "pytest"
+    category: tooling
+    fingerprints:
+      - files: ["pytest.ini", "conftest.py", "pyproject.toml"]
+        contents: '\\[tool\\.pytest\\]'
+        confidence: high
+    tags: [test, python]
+
+  - id: jest
+    name: "Jest"
+    category: tooling
+    fingerprints:
+      - files: ["jest.config.*"]
+        confidence: high
+    tags: [test, js]
+
+  - id: vitest
+    name: "Vitest"
+    category: tooling
+    fingerprints:
+      - files: ["vitest.config.*"]
+        confidence: high
+    tags: [test, js]
+
+  - id: playwright
+    name: "Playwright"
+    category: tooling
+    fingerprints:
+      - files: ["playwright.config.*"]
+        confidence: high
+    tags: [e2e, browser]
+
+  - id: cypress
+    name: "Cypress"
+    category: tooling
+    fingerprints:
+      - files: ["cypress.config.*"]
+        confidence: high
+    tags: [e2e, browser]
+
+# ──────────────────────────────────────────────
+# 特殊信号（Skill/MCP 项目专属）
+# ──────────────────────────────────────────────
+agent_ecosystem:
+  - id: claude-skill
+    name: "Claude Skill Project"
+    category: agent
+    fingerprints:
+      - files: ["SKILL.md"]
+        contents: '^---\\s*\\n[\\s\\S]*?name:\\s*[a-z][a-z0-9-]*'
+        confidence: high
+    tags: [skill, claude, mcp-candidate]
+
+  - id: mcp-server
+    name: "MCP Server Project"
+    category: agent
+    fingerprints:
+      - files: ["pyproject.toml", "package.json"]
+        contents: 'mcp[\\s\\S]{0,30}(sdk|server|cli)'
+        confidence: high
+      - files: ["src/**/*.py"]
+        contents: 'from mcp|import mcp'
+        confidence: medium
+    tags: [mcp, agent-tool]
+
+  - id: codex-plugin
+    name: "Codex Plugin"
+    category: agent
+    fingerprints:
+      - files: [".codex-plugin/plugin.json"]
+        confidence: high
+
+  - id: zcode-plugin
+    name: "ZCode Plugin"
+    category: agent
+    fingerprints:
+      - files: [".zcode/plugin.json"]
+        confidence: high
+
+# ──────────────────────────────────────────────
+# 文档与内容（Docs & Content）
+# ──────────────────────────────────────────────
+docs:
+  - id: mkdocs
+    name: "MkDocs"
+    category: docs
+    fingerprints:
+      - files: ["mkdocs.yml"]
+        confidence: high
+    tags: [static-site, python]
+
+  - id: docusaurus
+    name: "Docusaurus"
+    category: docs
+    fingerprints:
+      - files: ["docusaurus.config.js", "docusaurus.config.ts"]
+        confidence: high
+    tags: [static-site, react]
+
+  - id: vitepress
+    name: "VitePress"
+    category: docs
+    fingerprints:
+      - files: [".vitepress/config.ts", ".vitepress/config.js", ".vitepress/config.mjs"]
+        confidence: high
+    tags: [static-site, vue]
+
+  - id: docsify
+    name: "Docsify"
+    category: docs
+    fingerprints:
+      - files: ["docs/index.html"]
+        contents: 'docsify'
+        confidence: medium
+
+  - id: jekyll
+    name: "Jekyll"
+    category: docs
+    fingerprints:
+      - files: ["_config.yml"]
+        contents: 'theme:\\s*jekyll'
+        confidence: medium
+      - files: ["**/_posts/**/*.md"]
+        confidence: low
+
+  - id: hugo
+    name: "Hugo"
+    category: docs
+    fingerprints:
+      - files: ["config.toml", "hugo.toml", "config.yaml"]
+        contents: 'baseURL|theme\\s*='
+        confidence: low
+      - files: ["content/**/*.md", "layouts/**/*.html"]
+        confidence: low
+
+# ──────────────────────────────────────────────
+# 匹配优先级规则
+# ──────────────────────────────────────────────
+matching_rules:
+
+  # 高置信度先采信
+  priority_order: [high, medium, low]
+
+  # 冲突解决：具体框架优先于通用语言
+  # 例：命中 nextjs + react + typescript，输出 [Next.js, React, TypeScript]
+  specificity:
+    framework_over_language: true    # 命中 next.js 不再单列 react
+    explicit_over_implicit: true      # 配置文件命中 > 依赖文件命中
+
+  # 项目类型推断（产出多类型可叠加）
+  project_type_inference:
+
+    - when_any: [nextjs, nuxt, remix, astro, svelte]
+      then_type: "Web 全栈"
+      confidence: 0.9
+
+    - when_any: [react, vue, angular, solid]
+      then_type: "Web 前端"
+      confidence: 0.8
+
+    - when_any: [django, flask, fastapi, spring-boot, rails, laravel]
+      then_type: "后端服务"
+      confidence: 0.9
+
+    - when_any: [react-native, flutter, android-native, ios-native]
+      then_type: "移动应用"
+      confidence: 0.9
+
+    - when_any: [electron, tauri, qt]
+      then_type: "桌面应用"
+      confidence: 0.9
+
+    - when_any: [claude-skill, mcp-server, codex-plugin, zcode-plugin]
+      then_type: "AI Agent 工具开发"
+      confidence: 0.95
+
+    - when_any: [pytorch, tensorflow, transformers, langchain, llama-index]
+      then_type: "AI/ML 项目"
+      confidence: 0.9
+
+    - when_any: [monorepo-nx, monorepo-turbo, monorepo-pnpm, lerna]
+      then_type: "Monorepo"
+      confidence: 0.85
+
+    - when_any: [mkdocs, docusaurus, vitepress, docsify]
+      then_type: "文档站点"
+      confidence: 0.85
+
+# ──────────────────────────────────────────────
+# 输出格式
+# ──────────────────────────────────────────────
+output_schema:
+
+  detected_technologies:
+    - id: "<tech_id>"
+      name: "<显示名>"
+      category: "<frontend/backend/database/devops/...>"
+      version: "<从 version_probe 探测；未探测为 null>"
+      confidence: "high|medium|low"
+      evidence: ["<命中的文件路径或正则>"]
+      tags: ["<关联标签>"]
+
+  inferred_project_types:
+    - type: "<类型名>"
+      confidence: 0.0-1.0
+      based_on: ["<命中的 tech_id 列表>"]
+
+  meta:
+    total_technologies_detected: <int>
+    high_confidence_count: <int>
+    last_scan_at: "<ISO8601>"
+
+# ============================================================================
+# 维护说明
+# ============================================================================
+# - 新增技术：按现有格式追加到对应 category；version_probe 可选
+# - 修改指纹：在 CHANGELOG.md 记录"指纹变更"，并更新 tests/test_fingerprints.py
+# - 业界轮子参考：specfy/stack-analyser (https://github.com/specfy/stack-analyser)
+#   其覆盖 700+ 技术，本文件为精选 80+，按需扩展

@@ -1,48 +1,64 @@
-## Description: <br>
-Use this skill when assisting with FortressQuant's peerberry-sdk for PeerBerry investor automation, P2P lending education, and alternative-investment onboarding. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill when assisting with FortressQuant's peerberry-sdk for PeerBerry investor automation, P2P lending education, and alternative-investment onboarding.
 
-## Publisher: <br>
-[FortressQuant](https://clawhub.ai/user/FortressQuant) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[fortressquant](https://clawhub.ai/user/fortressquant)
 
-## Use Case: <br>
-Developers and external users use this skill to build and debug Python workflows for PeerBerry account access, portfolio and loan analysis, guarded purchase automation, exports, and SDK troubleshooting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Guidance can lead to real-money PeerBerry purchase actions. <br>
-Mitigation: Start with read-only calls, keep DRY_RUN enabled for first runs, set hard order caps, check available funds, and require clear manual confirmation before any live purchase. <br>
-Risk: Credentials, TOTP seeds, access tokens, exports, or logs may expose sensitive account or financial data. <br>
-Mitigation: Keep secrets and exports private, avoid logging sensitive values, use secure token storage, and redact account data before sharing outputs. <br>
-Risk: PeerBerry API behavior can change and break automation or produce misleading operational assumptions. <br>
-Mitigation: Validate scripts with read-only checks before live use, catch specific SDK exceptions, and review generated purchase or export logic before execution. <br>
+## Use Case:
 
+Developers and engineers use this skill to generate guidance, Python snippets, shell commands, and configuration patterns for PeerBerry account access, portfolio monitoring, loan filtering, guarded purchase automation, exports, and SDK debugging. It is intended for technical and operational assistance, not financial advice or suitability recommendations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/FortressQuant/peerberry-sdk) <br>
-- [PeerBerry website](https://peerberry.com/) <br>
-- [API quick reference](references/api-quickref.md) <br>
-- [P2P lending primer](references/p2p-primer.md) <br>
-- [Task recipes](references/task-recipes.md) <br>
-- [Docs index](https://github.com/FortressQuant/peerberry-sdk/tree/main/docs) <br>
-- [Client API reference](https://github.com/FortressQuant/peerberry-sdk/blob/main/docs/api/client.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with Python and shell code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include read-only analysis, guarded automation snippets, SDK method guidance, and troubleshooting steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: The skill may help generate automation that can place live PeerBerry investment purchases.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep read-only workflows first, require DRY_RUN for initial runs, set MAX_ORDERS and ticket-size caps, validate available funds, and require explicit approval before disabling dry-run mode.
+
+Risk: The SDK can handle PeerBerry credentials, TOTP seeds, bearer tokens, and exported financial records.
+
+Mitigation: Use isolated environments, avoid printing or committing secrets, use secure token storage, redact logs, and treat exported XLSX files as sensitive financial data.
+
+Risk: The skill relies on an unofficial SDK and PeerBerry API behavior may change without notice.
+
+Mitigation: Pin and review the package version, handle typed SDK exceptions, test with read-only calls after upgrades, and re-check method contracts against the included API reference.
+
+## Reference(s):
+
+- [API Quick Reference](references/api-quickref.md)
+- [P2P Lending Primer](references/p2p-primer.md)
+- [Task Recipes](references/task-recipes.md)
+- [Peerberry SDK Documentation Index](docs/index.md)
+- [Client API Reference](docs/api/client.md)
+- [Authentication Guide](docs/guides/authentication.md)
+- [Error Handling Guide](docs/guides/error-handling.md)
+- [ClawHub Skill Page](https://clawhub.ai/fortressquant/skills/peerberry-sdk)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with Python and shell code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include guarded real-money automation examples, read-only analysis snippets, troubleshooting steps, and references to SDK methods.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata; pyproject.toml reports SDK package version 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

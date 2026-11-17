@@ -1,39 +1,55 @@
-## Description: <br>
-Navigate virtual worlds, create avatars, manage digital assets, and understand Web3 social platforms. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Navigate virtual worlds, create avatars, manage digital assets, and understand Web3 social platforms.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users and agents use this skill to advise on metaverse platform selection, avatar setup, digital assets, events, creation tools, hardware needs, and basic safety practices. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Metaverse platform, wallet, fee, and policy information can become outdated or financially sensitive. <br>
-Mitigation: Verify current platform status, official links, fees, and policies before connecting a wallet or spending money. <br>
-Risk: Users may treat virtual land, NFTs, or other digital assets as investments despite uncertain resale value and scam risk. <br>
-Mitigation: Keep guidance educational, avoid investment recommendations, and emphasize liquidity, seed phrase, and scam risks. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/metaverse) <br>
+## Use Case:
+
+External users and agents use this skill to provide practical guidance on metaverse platform selection, avatar setup, wallet considerations, digital assets, event attendance, creation tools, hardware, and safety.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Metaverse platform availability, pricing, fees, and wallet safety can change quickly.
+
+Mitigation: Verify current platform status, official requirements, pricing, gas fees, and wallet-safety guidance before relying on recommendations.
+
+Risk: Digital assets, NFTs, virtual land, and crypto wallets can involve financial loss, illiquidity, scams, and unrecoverable seed phrase compromise.
+
+Mitigation: Avoid investment framing, explain transaction and custody risks plainly, verify official links, and never request or expose seed phrases.
+
+Risk: Virtual spaces can create privacy, harassment, age-appropriateness, and personal-boundary concerns.
+
+Mitigation: Help users configure privacy, mute, block, and report controls before use, and recommend supervision and age-appropriate platforms for children.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown guidance and checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable commands or generated files; verify current platform status, official links, fees, and policies before acting on guidance.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+**Output Type(s):** [Guidance, Text]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable behavior; recommendations should be checked against current platform status, pricing, fees, and wallet-safety information.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

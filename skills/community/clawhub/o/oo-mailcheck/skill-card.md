@@ -1,46 +1,56 @@
-## Description: <br>
-Mailcheck (usercheck.com). Use this skill for ANY Mailcheck request - searching and reading data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Mailcheck (usercheck.com). Use this skill for ANY Mailcheck request — searching and reading data. Whenever a task involves Mailcheck, use this skill instead of calling the API directly.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-External users and developers use this skill to operate Mailcheck through an OOMOL-connected account, including account status checks, domain validation, and single-email deliverability verification. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires an OOMOL-connected Mailcheck account and can fail when authentication, connection scope, app readiness, or billing state is invalid. <br>
-Mitigation: Run setup or reconnection steps only after the corresponding command failure, and resolve billing or connection errors before retrying. <br>
-Risk: Connector payloads may become invalid if the live Mailcheck action contract changes. <br>
-Mitigation: Fetch the live action schema with `oo connector schema` before constructing each payload. <br>
-Risk: Future Mailcheck actions tagged as write or destructive could change or remove remote data. <br>
-Mitigation: Confirm the exact payload and effect with the user before write actions, and require explicit approval before destructive actions. <br>
+## Use Case:
 
+Users and agents working with Mailcheck use this skill to inspect account status and validate domains or individual email addresses through a connected OOMOL account.
 
-## Reference(s): <br>
-- [Mailcheck homepage](https://www.usercheck.com) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [oo CLI install guide](https://cli.oomol.com/install-guide.md) <br>
-- [Mailcheck ClawHub page](https://clawhub.ai/oomol/oo-mailcheck) <br>
-- [OOMOL publisher profile](https://clawhub.ai/user/oomol) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON payload examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses live connector schemas before execution and returns connector results as JSON when actions run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release evidence) <br>
+Risk: Setup instructions can execute downloaded code without a clear approval step.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review setup first, install a pinned and verified CLI separately, and require approval before running installers or making additional agent-skill changes.
+
+Risk: Email addresses and domains submitted for verification are sent through OOMOL to UserCheck, and verification may consume service credit.
+
+Mitigation: Submit only addresses and domains appropriate to share, and check service credit requirements before running verification.
+
+## Reference(s):
+
+- [oo CLI repository](https://github.com/oomol-lab/oo-cli)
+- [Mailcheck homepage](https://www.usercheck.com)
+- [UserCheck API documentation](https://www.usercheck.com/docs/api/authentication)
+- [oo CLI installation guide](https://cli.oomol.com/install-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Analysis]
+
+**Output Format:** [Structured responses from account status, domain validation, and email verification actions, with concise explanatory text as needed.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responses may include account and plan information, domain risk and MX signals, or email deliverability and risk signals.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,61 @@
-## Description: <br>
-Company profiles and recent SEC filings from EDGAR via Edgrapi.com. Resolve a US-listed ticker to its CIK, industry, fiscal-year end, and exchange, and list its recent 10-K / 10-Q / 8-K filings with document links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Company profiles and recent SEC filings from EDGAR via Edgrapi.com. Resolve a US-listed ticker to its CIK, industry, fiscal-year end, and exchange, and list its recent 10-K / 10-Q / 8-K filings with document links.
 
-## Publisher: <br>
-[paperandbeyond23-gif](https://clawhub.ai/user/paperandbeyond23-gif) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[paperandbeyond23-gif](https://clawhub.ai/user/paperandbeyond23-gif)
 
-## Use Case: <br>
-Developers, analysts, and agents use this skill to look up US-listed company profile details and recent SEC 10-K, 10-Q, and 8-K filings when a user explicitly requests filer metadata or disclosure history for a specific company. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Ticker lookups send the queried ticker to Edgrapi using the user's EDGRAPI_KEY and consume Edgrapi credits. <br>
-Mitigation: Use only an Edgrapi key intended for this integration and activate the skill only for explicit company lookup or filing requests. <br>
-Risk: Filing lookups depend on Edgrapi and SEC EDGAR availability. <br>
-Mitigation: Check returned error fields such as edgar_unavailable, network, out_of_credits, or auth errors before relying on the result. <br>
+## Use Case:
 
+Developers and analysts use this skill when they need an agent to look up US-listed company profile details and recent SEC filing history for a specific ticker.
 
-## Reference(s): <br>
-- [Server-resolved GitHub provenance](https://github.com/paperandbeyond23-gif/edgrapi-skills/tree/main/skills/edgrapi-filings) <br>
-- [Edgrapi homepage](https://edgrapi.com) <br>
-- [Edgrapi app](https://edgrapi.com/app) <br>
-- [Edgrapi pricing](https://edgrapi.com/pricing) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, API Calls, Guidance] <br>
-**Output Format:** [Structured lookup results with company metadata, filing dates, form types, and document links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires EDGRAPI_KEY; each request consumes one Edgrapi credit; get_filings supports ticker, limit, and form filters.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: Ticker lookups are sent to Edgrapi for SEC filing retrieval.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for intended company filing lookups and avoid including sensitive non-public context with requests.
+
+Risk: EDGRAPI_KEY is used for authentication.
+
+Mitigation: Keep the key in the environment variable and do not reveal it in prompts, outputs, or logs.
+
+Risk: Each Edgrapi API call consumes one credit.
+
+Mitigation: Activate the skill only for genuine lookup requests and use bounded filing limits.
+
+## Reference(s):
+
+- [Server-resolved GitHub import](https://github.com/paperandbeyond23-gif/edgrapi-skills/tree/main/skills/edgrapi-filings)
+- [Edgrapi](https://edgrapi.com)
+- [Edgrapi app](https://edgrapi.com/app)
+- [Edgrapi pricing](https://edgrapi.com/pricing)
+- [ClawHub skill page](https://clawhub.ai/paperandbeyond23-gif/skills/edgrapi-filings)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown guidance with JSON-like lookup results from company and filings tools]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires EDGRAPI_KEY; each Edgrapi request consumes one credit.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata; artifact frontmatter reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

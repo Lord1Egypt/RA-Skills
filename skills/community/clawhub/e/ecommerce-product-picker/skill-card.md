@@ -1,43 +1,57 @@
-## Description: <br>
-A Chinese-language ecommerce research skill for identifying cross-border product opportunities using public marketplace trends, social-platform signals, sales estimates, profit calculations, and product links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents research cross-border ecommerce product opportunities by combining live trend, marketplace, social-interest, sales-estimate, link, and profit-analysis signals.
 
-## Publisher: <br>
-[FeeeeelixWong](https://clawhub.ai/user/FeeeeelixWong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[feeeeelixwong](https://clawhub.ai/user/feeeeelixwong)
 
-## Use Case: <br>
-External ecommerce operators and product researchers use this skill to find product ideas, compare marketplace and social trend signals, estimate sales and margins, and produce Chinese-language Top 3 recommendations with links and risk notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Marketplace, trend, and social engagement data may be incomplete, stale, or platform-specific. <br>
-Mitigation: Treat generated recommendations as research leads and verify demand signals directly on the relevant platforms before acting. <br>
-Risk: Sales, BSR, fee, and profit estimates are approximate and may not reflect actual operating costs or market conditions. <br>
-Mitigation: Validate assumptions with current pricing, logistics, platform fees, and independent sales research before making business decisions. <br>
-Risk: Generated product links may be examples or may change after retrieval. <br>
-Mitigation: Open and inspect links manually before relying on them; the skill does not place orders, process payments, or make account changes. <br>
+## Use Case:
 
+External sellers, ecommerce operators, and product researchers use this skill to ask an agent for top cross-border product ideas in a chosen category, with trend signals, example purchase links, sales ranges, and estimated margin. It is intended as a research aid, not as a source of guaranteed demand, revenue, or profit outcomes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/FeeeeelixWong/ecommerce-product-picker) <br>
-- [Publisher profile](https://clawhub.ai/user/FeeeeelixWong) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Chinese Markdown recommendation report with ranked products, estimates, links, and risk notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires browser and web search access; estimates and links should be independently verified before business decisions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Sales, demand, and profit figures are estimates based on public trend and marketplace signals and may be inaccurate or stale.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat recommendations as research inputs and validate demand, costs, platform fees, and margins before sourcing inventory or making commercial decisions.
+
+Risk: The skill may initiate live web searches when ecommerce category or product-selection language is used.
+
+Mitigation: Use it in environments where browser and web-search access is appropriate, and review returned links and source quality before relying on the results.
+
+Risk: The skill responds in Chinese by default, which may reduce clarity for non-Chinese users.
+
+Mitigation: Ask the agent to respond in the preferred language when needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/feeeeelixwong/skills/ecommerce-product-picker)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown product-research report with ranked recommendations, estimates, links, and risk notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language response by default; relies on live browser and web search tools when available.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

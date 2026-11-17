@@ -1,40 +1,61 @@
-## Description: <br>
-Generates FridayParts Instagram content for mechanic and heavy-equipment audiences, including meme concepts, event updates, and KOL Reel copy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+生成 FridayParts Instagram 情绪驱动内容，包括机械圈 Meme、展会动态和 KOL Reel 文案。
 
-## Publisher: <br>
-[zhuxirui677](https://clawhub.ai/user/zhuxirui677) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhuxirui677](https://clawhub.ai/user/zhuxirui677)
 
-## Use Case: <br>
-Social media and marketing creators use this skill to draft English Instagram memes, trade-show captions, and KOL Reel text for FridayParts audiences. It focuses on mechanic-specific pain points such as OEM pricing, wrong part models, hydraulic issues, and equipment failures during tight job windows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhuxirui677/skills/fp-instagram-emotion) <br>
-- [Import guide](docs/如何导入GetClawHub.md) <br>
-- [Instagram meme examples](examples/example_instagram_meme.md) <br>
-- [Output quality checklist](reference/输出质量checklist.md) <br>
+Social media and marketing teams use this skill to draft FridayParts-branded Instagram meme concepts, event captions, and KOL Reel copy for mechanics, excavator operators, and farmers.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with structured content sections for image text, captions, and hashtags] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [English Instagram copy; configured for up to 800 tokens with higher creative temperature for meme generation. Review campaign fit, localization, brand tone, and hashtag count before publishing; narrow broad triggers when using this skill alongside other writing skills.] <br>
+Global
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: Broad routing triggers may cause general Instagram, meme, or Reel requests to produce FridayParts-branded content.
+
+Mitigation: Enable the skill only where FridayParts Instagram content is desired, and review trigger behavior when multiple skills are installed.
+
+Risk: Generated public social content may miss brand tone, meme quality, or hashtag-count requirements.
+
+Mitigation: Review image text, captions, and hashtags against the bundled output quality checklist before publishing.
+
+Risk: The configured model and creative temperature may affect account cost and output variability.
+
+Mitigation: Confirm the model is acceptable for the account and review outputs before campaign use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhuxirui677/skills/fp-instagram-emotion)
+- [README](artifact/README.md)
+- [GetClawHub import guide](artifact/docs/如何导入GetClawHub.md)
+- [Instagram meme examples](artifact/examples/example_instagram_meme.md)
+- [Output quality checklist](artifact/reference/输出质量checklist.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown-style social copy with meme text suggestions, Instagram captions, and hashtags]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are intended to be English Instagram copy; meme outputs specify image text, a caption, and 8 hashtags, while KOL Reel outputs require exactly 8 hashtags.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

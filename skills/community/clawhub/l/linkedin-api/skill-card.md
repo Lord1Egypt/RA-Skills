@@ -1,53 +1,63 @@
-## Description: <br>
-LinkedIn API integration with managed OAuth for sharing posts, managing profiles and organizations, uploading media, accessing ad and job library data, and using LinkedIn advertising features when the required scopes are granted. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connects an agent to LinkedIn through Maton to retrieve profile and organization information, share posts, and manage advertising with user approval.
 
-## Publisher: <br>
-[byungkyu](https://clawhub.ai/user/byungkyu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[byungkyu](https://clawhub.ai/user/byungkyu)
 
-## Use Case: <br>
-Developers and operators use this skill to make LinkedIn API requests through Maton-managed OAuth for profile lookup, organization data, post publishing, media upload, public ad/job library search, and advertising account or campaign workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses Maton-managed OAuth and a Maton API key to access LinkedIn on the user's behalf. <br>
-Mitigation: Install only when the user trusts Maton, keep MATON_API_KEY protected, and review the OAuth scopes granted to the LinkedIn connection. <br>
-Risk: Requests may post public content, delete resources, or change ad accounts and campaigns when the connected account has write or advertising scopes. <br>
-Mitigation: Require explicit user confirmation for every create, update, delete, ad account, campaign, budget, or targeting change, including the exact operation and request body or key parameters. <br>
-Risk: Multiple LinkedIn connections can route a request to the wrong account if no connection is specified. <br>
-Mitigation: Use the Maton-Connection header when more than one LinkedIn connection is available. <br>
-Risk: Advertising operations can have financial or compliance impact, especially budget and targeting changes. <br>
-Mitigation: Confirm budget amounts, targeting criteria, granted advertising scopes, and compliance with LinkedIn advertising policies before execution. <br>
+## Use Case:
 
+Agents assisting LinkedIn account holders can retrieve profile, organization, and advertising information, and prepare approved posts, media uploads, or campaign changes. Scheduled actions can be configured through Maton after the user confirms the account and intended automation.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/byungkyu/linkedin-api) <br>
-- [LinkedIn API Overview](https://learn.microsoft.com/en-us/linkedin/) <br>
-- [Share on LinkedIn Guide](https://learn.microsoft.com/en-us/linkedin/consumer/integrations/self-serve/share-on-linkedin) <br>
-- [LinkedIn Profile API](https://learn.microsoft.com/en-us/linkedin/shared/integrations/people/profile-api) <br>
-- [LinkedIn Authentication Guide](https://learn.microsoft.com/en-us/linkedin/shared/authentication/authentication) <br>
-- [LinkedIn Marketing API](https://learn.microsoft.com/en-us/linkedin/marketing/) <br>
-- [LinkedIn Ad Accounts](https://learn.microsoft.com/en-us/linkedin/marketing/integrations/ads/account-structure/create-and-manage-accounts) <br>
-- [LinkedIn Campaign Management](https://learn.microsoft.com/en-us/linkedin/marketing/integrations/ads/account-structure/create-and-manage-campaigns) <br>
-- [LinkedIn Ad Library API](https://www.linkedin.com/ad-library/api/) <br>
-- [Maton Settings](https://maton.ai/settings) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, code, configuration] <br>
-**Output Format:** [Markdown with Python, JavaScript, bash, HTTP, and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires MATON_API_KEY, network access, LinkedIn-Version headers, and appropriate LinkedIn OAuth scopes for the requested operation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.9 (source: server release metadata) <br>
+Risk: A new connection or excessive OAuth scopes could expose the wrong account or more LinkedIn data than needed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the intended account and scopes before connecting; use least privilege and revoke unused connections.
+
+Risk: Posts, media uploads, campaign changes, or ad budgets could have public or financial consequences.
+
+Mitigation: Show the exact account, content, media file, targeting, budget, and destination URL; obtain explicit approval before each write.
+
+Risk: Persistent triggers could repeat actions after the initial request.
+
+Mitigation: Confirm the function, schedule or event, and destination before enabling automation; review or disable it when no longer needed.
+
+## Reference(s):
+
+- [LinkedIn skill release](https://clawhub.ai/byungkyu/skills/linkedin-api)
+- [Maton homepage](https://maton.ai)
+- [Maton documentation](https://docs.maton.ai)
+- [Maton CLI manual](https://cli.maton.ai/manual)
+- [LinkedIn API overview](https://learn.microsoft.com/en-us/linkedin/)
+- [LinkedIn Marketing API](https://learn.microsoft.com/en-us/linkedin/marketing/)
+- [Time trigger reference](artifact/references/time/triggers.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Code, Configuration guidance]
+
+**Output Format:** [Markdown with command, code, and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [LinkedIn API responses depend on the authorized account and granted OAuth scopes.]
+
+## Skill Version(s):
+
+1.2.7 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,48 +1,67 @@
-## Description: <br>
-Converts natural-language phone tasks into structured TeddyMobile Vox custom-bot outbound calls with guided missing-field collection, safety checks, voice selection, and trial or formal account modes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts natural-language phone tasks into TeddyMobile Vox custom bot outbound calls with guided missing-field collection, voice selection, safety checks, and trial or formal-account execution.
 
-## Publisher: <br>
-[ziliangzhu](https://clawhub.ai/user/ziliangzhu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ziliangzhu](https://clawhub.ai/user/ziliangzhu)
 
-## Use Case: <br>
-Developers and operators use this skill to configure and run a Vox phone-agent flow that gathers call intent, validates required details, selects a voice, and starts a trial or formal outbound call. It is intended for guided customer notification, appointment, follow-up, and similar business phone workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global, subject to local outbound calling, AI disclosure, privacy, and consent requirements. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can place real outbound phone calls. <br>
-Mitigation: Require explicit user confirmation before calls, enforce quotas and abuse controls, and use trial or formal account permissions only where authorized. <br>
-Risk: AI identity, call-recipient consent, and local phone-call rules may be under-scoped. <br>
-Mitigation: Confirm disclosure, consent, and recording/transcript practices with legal and business owners before use in each jurisdiction. <br>
-Risk: Prompt, usage telemetry, call results, or transcripts may be sent, retrieved, or forwarded. <br>
-Mitigation: Use hosted mode with your own authentication, minimize or disable analytics where possible, mask phone numbers, and define transcript retention and access controls. <br>
-Risk: Formal Vox credentials enable production outbound-call access. <br>
-Mitigation: Keep VOX_SECRET on a backend service, avoid publishing real credentials, and restrict access by authentication, IP allowlists, and audit logs. <br>
+## Use Case:
 
+External users and developers use this skill to turn a natural-language outbound calling goal into a structured Vox custom phone-agent request. It is suited for guided trial calls, formal Vox account integrations, and hosted deployments that keep Vox credentials outside the public skill package.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ziliangzhu/vox-custom-phone-agent) <br>
-- [GET_STARTED.md](artifact/GET_STARTED.md) <br>
-- [FIRST_SETUP.md](artifact/FIRST_SETUP.md) <br>
-- [REGISTRATION_GUIDE.md](artifact/REGISTRATION_GUIDE.md) <br>
-- [Vox enterprise trial application](https://vox-ai.teddymobile.cn/trial/apply) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, API Calls, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown/user-facing text with JSON-compatible status objects, configuration snippets, and optional shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May initiate real Vox outbound calls when required fields, safety checks, and trial or formal account configuration are complete.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: server release evidence) <br>
+Risk: The skill can place real outbound phone calls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation before any call is started and enforce per-user call quotas.
+
+Risk: Hosted API use can expose call initiation capability if left unauthenticated.
+
+Mitigation: Require authentication for hosted endpoints and keep Vox credentials only on a controlled backend.
+
+Risk: Call data, transcripts, analytics, or callbacks may expose sensitive information.
+
+Mitigation: Minimize analytics, mask phone numbers, avoid returning full transcripts by default, and restrict callback destinations.
+
+Risk: Callees may not understand that the caller is an AI voice assistant.
+
+Mitigation: Disclose AI identity at call start and answer truthfully if the callee asks whether the caller is AI.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ziliangzhu/skills/vox-custom-phone-agent)
+- [SKILL.md](artifact/SKILL.md)
+- [Get Started](artifact/GET_STARTED.md)
+- [First Setup](artifact/FIRST_SETUP.md)
+- [Registration Guide](artifact/REGISTRATION_GUIDE.md)
+- [WorkBuddy Result Display Notes](artifact/WORKBUDDY.md)
+- [Vox trial registration](https://vox-ai.teddymobile.cn/trial/apply)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, api calls, configuration, guidance]
+
+**Output Format:** [Markdown or JSON-like structured results with follow-up questions, masked phone numbers, Vox request status, requestId, task summaries, and registration guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May initiate outbound Vox API calls when required fields are complete and safety checks pass; trial mode uses the credential-free Vox trial endpoint, while formal mode requires Vox credentials.]
+
+## Skill Version(s):
+
+1.0.6 (source: ClawHub server release evidence; artifact manifests report 0.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

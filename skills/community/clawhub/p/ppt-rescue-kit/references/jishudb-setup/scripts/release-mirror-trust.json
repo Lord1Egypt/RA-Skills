@@ -1,0 +1,20 @@
+{
+  "catalogURL": "https://cnb.cool/x-aijishu/jishudb-desktop-releases/-/releases/latest/download/jishudb-release-catalog.json",
+  "authority": {
+    "algorithm": "Ed25519",
+    "keyId": "ed25519-sha256:af017f3b70c948a0c324d82a62fbbcff99d93b4cc4109e54c2491be46c567f65",
+    "publicKey": "MCowBQYDK2VwAyEAt8EyMLqltatn1Uh/Pl1TWonw+GM1X1aumiwjxwb5qJg="
+  },
+  "minimumSequence": 1,
+  "minimumVersion": "0.9.9",
+  "bootstrapRedirectAllowlist": [
+    {
+      "origin": "https://cnb.cool",
+      "pathPrefix": "/x-aijishu/jishudb-desktop-releases/-/releases/download/"
+    },
+    {
+      "origin": "https://asset.cnb.cool",
+      "pathPrefix": "/assets/t/"
+    }
+  ]
+}

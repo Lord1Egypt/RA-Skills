@@ -1,46 +1,53 @@
-## Description: <br>
-Provides real-time momentum, whale sentiment, and regime confluence crypto trading signals from APEX Runner's live autonomous trading system. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Paid x402 endpoint: $0.007 USDC per call on Base. Returns momentum + whale sentiment + regime confluence.
 
-## Publisher: <br>
-[kynto2001-ctrl](https://clawhub.ai/user/kynto2001-ctrl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kynto2001-ctrl](https://clawhub.ai/user/kynto2001-ctrl)
 
-## Use Case: <br>
-Agents and developers use this skill to request a paid, one-call crypto trading-signal bundle for multi-factor trading analysis. It combines momentum, whale sentiment, and regime confluence signals from APEX Runner. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Automatic x402 requests can spend USDC from the configured wallet. <br>
-Mitigation: Use a dedicated low-balance Base wallet funded only with the USDC you are willing to spend. <br>
-Risk: The skill requires access to an EVM private key for payment authorization. <br>
-Mitigation: Avoid reusing a primary wallet private key and provide only an isolated wallet key through the required environment variable. <br>
-Risk: Trading signals may be incorrect, delayed, or unsuitable for a user's trading strategy. <br>
-Mitigation: Treat responses as decision support and review them before making trading decisions. <br>
+## Use Case:
 
+External agents use this paid endpoint to retrieve combined momentum, whale sentiment, and market regime signals in one request before making multi-factor crypto trading decisions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kynto2001-ctrl/skills/trading-intelligence-bundle) <br>
-- [Trading Intelligence Bundle endpoint](https://apexrunner.ai/signals/trading-intelligence-bundle) <br>
-- [Market Pulse Bundle](https://apexrunner.ai/signals/market-pulse-bundle) <br>
-- [Risk Assessment Bundle](https://apexrunner.ai/signals/risk-assessment-bundle) <br>
-- [APEX Composite](https://apexrunner.ai/signals/apex-composite) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, code, configuration, guidance] <br>
-**Output Format:** [JSON response from an x402-authenticated GET request, with Markdown instructions and a Python example] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires EVM_PRIVATE_KEY for x402 payment authorization; each call can trigger an automatic paid request in USDC on Base mainnet.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The scanner marks the release suspicious because the per-call payment ceiling is above the advertised discounted price; repeated calls may cost more in total than that advertised price.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the payment terms, including the per-call ceiling, before installing, and monitor repeated calls and cumulative charges.
+
+## Reference(s):
+
+- [Trading Intelligence Bundle endpoint](https://apexrunner.ai/signals/trading-intelligence-bundle)
+- [ClawHub release](https://clawhub.ai/kynto2001-ctrl/skills/trading-intelligence-bundle)
+- [Market Pulse Bundle](https://apexrunner.ai/signals/market-pulse-bundle)
+- [Risk Assessment Bundle](https://apexrunner.ai/signals/risk-assessment-bundle)
+- [APEX Composite](https://apexrunner.ai/signals/apex-composite)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON]
+
+**Output Format:** [Structured JSON market signals, including momentum status, whale sentiment, regime confluence, and a timestamp.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returned by a paid x402 request; the agent needs an EVM wallet private key and USDC on Base.]
+
+## Skill Version(s):
+
+1.0.2 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

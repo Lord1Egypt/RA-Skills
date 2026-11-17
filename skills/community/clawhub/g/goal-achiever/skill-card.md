@@ -1,51 +1,73 @@
-## Description: <br>
-Guides an agent through a goal-driven content publishing workflow that reads task and prompt files, decomposes work, develops or reuses automation scripts, writes results, and scores progress toward a target platform goal. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Goal Achiever guides an agent through configurable content-publishing goals by reading task and prompt files, decomposing work into JSON tasks, executing or developing supporting scripts, recording results, scoring outcomes, and generating retrospective inputs for later batches.
 
-## Publisher: <br>
-[LDZ2010326](https://clawhub.ai/user/LDZ2010326) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ldz2010326](https://clawhub.ai/user/ldz2010326)
 
-## Use Case: <br>
-External users and developers use this skill to run a repeatable agent workflow for planning, executing, logging, and reviewing platform-specific content publishing goals. It is intended for controlled workspaces where the user has permission to operate the target platform account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create and run scripts, use logged-in browser sessions, and modify external-platform content. <br>
-Mitigation: Use only in a controlled workspace after confirming the operator has permission for the target platform and account. <br>
-Risk: The skill can post, edit, schedule jobs, and change prompt registries without enough user control. <br>
-Mitigation: Require clear user approval before any post, edit, scheduled job, or prompt-registry change. <br>
-Risk: Workflow logs or generated files could expose sensitive account or prompt data. <br>
-Mitigation: Exclude secrets, cookies, tokens, private prompts, and account data from logs and generated artifacts. <br>
+## Use Case:
 
+Developers and agents use this skill to run iterative publishing workflows for a selected target platform, including task planning, script-backed execution, logging, scoring, and retrospective planning. It is intended for automated content workflow orchestration and should be used only where account, platform, and posting controls are approved.
 
-## Reference(s): <br>
-- [Goal Achiever release page](https://clawhub.ai/LDZ2010326/goal-achiever) <br>
-- [Core goal configuration](references/core_goal.json) <br>
-- [Cron design reference](references/cron-design-reference.md) <br>
-- [External publishing design reference](references/external-publishing-design-reference.md) <br>
-- [Logging reference](references/logging.md) <br>
-- [Technical decision reference](references/technical-decision-reference.md) <br>
-- [Goal prompt](references/prompts/goal_prompt.md) <br>
-- [Retrospective prompt](references/prompts/retro_prompt.md) <br>
-- [Prompt registry](references/prompts/prompt_registry.md) <br>
-- [Prompt authoring guide](references/prompts/prompt_authoring_guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown, JSON task files, scripts, shell commands, and configuration updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create run logs, task records, retrospective records, prompt files, script registry entries, scheduled-job configuration, and platform publishing outputs when permitted.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Automated publishing could post or modify content through logged-in platform sessions without enough human control.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require per-post approval, approved account and platform allowlists, and clear posting scopes before enabling publishing actions.
+
+Risk: Generated or registry-selected scripts could perform unsafe actions during execution.
+
+Mitigation: Run scripts in a sandbox, review script diffs before execution, and block access to credentials or accounts that are not required for the approved task.
+
+Risk: Scheduled background jobs could continue running after the original task context has changed.
+
+Mitigation: Do not allow LaunchAgent or cron registration unless explicitly requested, reviewed, and paired with an owner, schedule, and removal path.
+
+Risk: Prompt and registry self-updates could change future agent behavior in ways the user has not reviewed.
+
+Mitigation: Require human review and versioned change tracking before prompt, registry, or workflow updates become active.
+
+Risk: External publishing guidance references internal APIs and anti-automation-sensitive flows that may violate platform expectations.
+
+Mitigation: Use only approved platform interfaces and prohibit internal-API use, anti-automation bypass, or session manipulation unless explicitly authorized by the platform and account owner.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ldz2010326/skills/goal-achiever)
+- [Prompt Registry](references/prompts/prompt_registry.md)
+- [Goal Prompt](references/prompts/goal_prompt.md)
+- [Retro Prompt](references/prompts/retro_prompt.md)
+- [Prompt Authoring Guide](references/prompts/prompt_authoring_guide.md)
+- [Technical Decision Reference](references/technical-decision-reference.md)
+- [External Publishing Design Reference](references/external-publishing-design-reference.md)
+- [Cron Design Reference](references/cron-design-reference.md)
+- [Logging Guide](references/logging.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown, JSON task files, prompt text, configuration snippets, and script or shell-command proposals]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update workflow files, prompts, run logs, script registry entries, and generated scripts during agent execution.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,50 +1,28 @@
 ---
 name: qa-requirement-review
-version: 1.5.0
 description: >-
-  从完整性、清晰性、一致性、可测试性、可实现性五个维度系统化评审需求文档质量。当用户要求"评审这份需求"、"看看这个PRD写得怎么样"、或者测试用例设计前需要先评估需求质量时，应当使用此技能。如果需求本身有问题（模糊/矛盾/不可测试），后续的测试设计都是徒劳。不要只在用户明确说"需求评审"时才用——任何涉及需求文档的测试任务都应先过一遍需求评审。
-
-when_to_use: 用户说"需求评审"、"评审需求"、"需求质量"、"PRD评审"、"需求检查"、"需求写得好不好"、"评审这份需求"、需要评审需求文档、需求提交测试前预审时
+  从完整性、清晰性、一致性、可测试性、可实现性五个维度系统化评审需求文档质量。当用户要求"评审这份需求"、"看看这个PRD写得怎么样"、或者测试用例设计前需要先评估需求质量时，应当使用此技能。如果需求本身有问题（模糊/矛盾/不可测试），后续的测试设计都是徒劳。不要只在用户明确说"需求评审"时才用——任何涉及需求文档的测试任务都应先过一遍需求评审。 触发场景：需求评审、评审需求、需求质量、PRD评审、需求检查、需求写得好不好、评审这份需求、需求提交测试前预审时。 Use when the user asks about: reviewing a PRD or requirement document for completeness, clarity, consistency, testability, and feasibility before test design starts.
+license: MIT
 allowed-tools: Read Grep Glob WebFetch
-related_skills:
-  upstream:
-    - qa-input-validation        # 输入：输入验证结果
-    - qa-critical-thinking       # 输入：批判性思维
-    - qa-question-framework      # 输入：提问框架
-  downstream:
-    - qa-req-deconstruction      # 输出：评审结果用于需求解构
-    - qa-test-strategy-design    # 输出：评审结果影响测试策略
-input_format:
-  required:
-    - name: 需求描述
-      type: string
-      description: 功能需求的详细描述文本
-  optional:
-    - name: 业务背景
-      type: string
-      description: 业务目标和用户角色
-    - name: 历史缺陷
-      type: array
-      description: 同类功能的历史缺陷记录
-output_format:
-  structure:
-    - review_report: 需求评审报告
-    - completeness_score: 完整性评分
-    - clarity_score: 清晰性评分
-    - consistency_issues: 一致性问题清单
-    - testability_assessment: 可测试性评估
-error_recovery_guidance:
-  on_failure: "识别到需求不完整时返回缺失清单，要求用户补充信息"
-  retry_behavior: "用户补充信息后重新执行需求评审"
+metadata:
+  display-name: "Requirement Review"
+  version: "1.8.0"
+  when-to-use: "用户说\"需求评审\"、\"评审需求\"、\"需求质量\"、\"PRD评审\"、\"需求检查\"、\"需求写得好不好\"、\"评审这份需求\"、需要评审需求文档、需求提交测试前预审时"
+  related-skills: "{\"upstream\":[\"qa-input-validation\",\"qa-critical-thinking\",\"qa-question-framework\"],\"downstream\":[\"qa-req-deconstruction\",\"qa-test-strategy-design\"]}"
+  references: "[\"references/report-template.md\",\"references/review-standards.md\"]"
+  input-format: "{\"required\":[{\"name\":\"需求描述\",\"type\":\"string\",\"description\":\"功能需求的详细描述文本\"}],\"optional\":[{\"name\":\"业务背景\",\"type\":\"string\",\"description\":\"业务目标和用户角色\"},{\"name\":\"历史缺陷\",\"type\":\"array\",\"description\":\"同类功能的历史缺陷记录\"}]}"
+  output-format: "{\"traceability\":[\"每份需求评审报告带唯一ID（REV-REQ-XXXX）\",\"关联需求ID：REQ-{需求模块缩写}-{序号}\"],\"structure\":[\"覆盖率：标注口径（基于现有需求/输入文档），禁止\\\"全覆盖/100%\\\"绝对化表述；缺失模块标注\\\"未覆盖+原因\\\"\",{\"review_report\":\"需求评审报告\"},{\"completeness_score\":\"完整性评分\"},{\"clarity_score\":\"清晰性评分\"},{\"consistency_issues\":\"一致性问题清单\"},{\"testability_assessment\":\"可测试性评估\"}]}"
+  error-recovery-guidance: "{\"on_failure\":\"识别到需求不完整时返回缺失清单，要求用户补充信息\",\"retry_behavior\":\"用户补充信息后重新执行需求评审\"}"
+  categories: "[\"Development\",\"Requirements\"]"
+  depth-requirement: "{\"reference_value\":\"根据需求复杂度调整评审深度：简单×1/中等×2/复杂×3\",\"minimum\":\"至少评审完整性、清晰性、一致性、可测试性、可实现性5个维度\"}"
 ---
+> ⚠️ 本技能单独使用效果有限，建议配合完整技能集（12 步工作流）使用。安装：npx skills add Kokxi/qa-test-skills
 
 # 需求评审专项
 
 ## 核心原则
 
-你是一位需求评审专家，擅长系统化评审需求文档质量。
-**核心原则**：需求评审不是挑刺，而是确保需求可理解、可测试、可实现。
-本技能从完整性、清晰性、一致性、可测试性、可实现性五维评审需求。
+需求评审不是挑刺，而是确保需求可理解、可测试、可实现。
 
 ## 五维评审速查
 
@@ -78,6 +56,20 @@ error_recovery_guidance:
 ## 改进建议
 ```
 
+## 加载时机
+
+**需要时才读，不要一上来全读**：
+
+| 什么时候读 | 读哪个 |
+|-----------|--------|
+| 拿评审报告模板填 | [`references/report-template.md`](references/report-template.md)（报告结构与填写要求） |
+| 判断某个需求问题算不算缺陷 | [`references/review-standards.md`](references/review-standards.md)（五维评审标准） |
+
+> 五维评分口径在本文；模板与逐条标准在 references，按需加载。
+
+
+---
+
 ## 输出示例
 
 **评审一个PRD：用户登录功能需求**
@@ -87,6 +79,16 @@ error_recovery_guidance:
 → 可测试性检查："响应要快"不可量化❌，应改为"登录响应<2秒"
 → 可实现性检查：技术方案可行✅
 → 评审报告：P0问题（缺少非功能需求）+ P1问题（模糊表述）
+
+**五维评审判定示范（pass/fail 对照）**：
+
+| 维度 | PASS 示例 | FAIL 示例 | 判定要点 |
+|------|----------|----------|---------|
+| 完整性 | "支持用户名+密码登录、验证码、密码找回，含异常场景" | "用户能登录系统"（无边界/异常/非功能） | 主流程+分支+异常+非功能是否齐 |
+| 清晰性 | "密码错误3次锁定15分钟" | "密码错误多次后锁定"（多次=？锁定多久=？） | 数量/时间/条件是否有具体值 |
+| 一致性 | 全文用"验证码"表述，前后一致 | 前文"短信验证码"后文"图形验证码" | 术语/规则/数据定义前后是否矛盾 |
+| 可测试性 | "登录响应时间<2秒（P95）" | "响应要快" | 指标是否可量化、可观测 |
+| 可实现性 | "基于现有统一认证服务实现" | "接入自研AI人脸识别（当前无此能力）" | 技术方案在当前栈是否可行 |
 
 ## 检查清单
 

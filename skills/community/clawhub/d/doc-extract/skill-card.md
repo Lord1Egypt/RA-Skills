@@ -1,45 +1,60 @@
-## Description: <br>
-Extract text and content from Word documents (.doc and .docx) to Markdown using MinerU. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Doc Extract helps agents extract text and content from Word .doc and .docx files into Markdown using MinerU.
 
-## Publisher: <br>
-[mzlzyca](https://clawhub.ai/user/mzlzyca) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mzlzyca](https://clawhub.ai/user/mzlzyca)
 
-## Use Case: <br>
-Developers, assistants, and automation workflows use this skill to extract Word document content from local files or URLs into Markdown for downstream reading and processing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected documents or URLs may be handled by the third-party MinerU service. <br>
-Mitigation: Avoid confidential documents or private URLs unless third-party processing is acceptable for the use case. <br>
-Risk: MINERU_TOKEN is a credential used for full extraction flows. <br>
-Mitigation: Store the token in an environment variable or approved secret store and avoid exposing it in logs, prompts, or shared files. <br>
-Risk: The skill depends on the mineru-open-api package or Go installation path. <br>
-Mitigation: Verify the package source and installation channel before installing or running the CLI. <br>
+## Use Case:
 
+Developers, assistants, and automation workflows use this skill to read Word documents from local files or URLs and convert their contents to Markdown for downstream processing.
 
-## Reference(s): <br>
-- [MinerU homepage](https://mineru.net) <br>
-- [MinerU token management](https://mineru.net/apiManage/token) <br>
-- [OpenDataLab MinerU](https://github.com/opendatalab/MinerU) <br>
-- [Doc Extract on ClawHub](https://clawhub.ai/mzlzyca/doc-extract) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown and command-line guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Document content is written to stdout by default or saved to an output directory; progress and status messages are written to stderr.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.4.0 (source: server release metadata) <br>
+Risk: Documents or URLs may be processed by an external MinerU service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid confidential, regulated, credential-containing, or internal-only documents and URLs unless MinerU/OpenDataLab data handling and retention terms have been reviewed and approved.
+
+Risk: Installing the external mineru-open-api CLI may introduce supply-chain or environment risk.
+
+Mitigation: Use a pinned, reviewed CLI version and install it in an isolated environment when possible.
+
+Risk: Full extraction for .doc files and some .docx workflows require a MinerU token.
+
+Mitigation: Store MINERU_TOKEN as a secret, avoid embedding it in prompts or files, and rotate it if exposure is suspected.
+
+## Reference(s):
+
+- [MinerU homepage](https://mineru.net)
+- [OpenDataLab MinerU](https://github.com/opendatalab/MinerU)
+- [MinerU token management](https://mineru.net/apiManage/token)
+- [MinerU Ecosystem CLI source](https://github.com/opendatalab/MinerU-Ecosystem)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Text, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown with inline shell commands and extracted document text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Document content is written to stdout by default; progress and status messages are written to stderr.]
+
+## Skill Version(s):
+
+0.4.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

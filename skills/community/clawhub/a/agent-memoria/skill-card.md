@@ -1,44 +1,56 @@
-## Description: <br>
-Gives an OpenClaw agent persistent memory across sessions through a local markdown file that stores user context, projects, decisions, preferences, lessons, and blockers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MEMORIA gives OpenClaw agents a persistent local Markdown memory layer that tracks user context, projects, decisions, lessons, preferences, and blockers across sessions.
 
-## Publisher: <br>
-[contrario](https://clawhub.ai/user/contrario) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[contrario](https://clawhub.ai/user/contrario)
 
-## Use Case: <br>
-External developers and OpenClaw users use MEMORIA to let an agent load, maintain, and summarize long-lived local context about the user and their work across sessions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives an agent long-lived ability to save and resurface personal and work details with limited confirmation controls. <br>
-Mitigation: Review the local memory file and backups regularly, prefer explicit memory requests, and remove entries that should not persist. <br>
-Risk: Persistent memory can capture secrets, sensitive infrastructure details, private URLs, or other data that should not be stored. <br>
-Mitigation: Do not store credentials, tokens, IP addresses, private URLs, access codes, or sensitive infrastructure details in memory. <br>
-Risk: Local memory files or backups may be accidentally committed or synchronized to cloud storage. <br>
-Mitigation: Keep memory files in a restricted local directory, use owner-only file permissions, and add memory paths to git and cloud-sync ignore lists. <br>
+## Use Case:
 
+Developers and OpenClaw users use MEMORIA to give an agent continuity across sessions by loading and updating a local memory file with durable personal, project, and workflow context.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/contrario/agent-memoria) <br>
-- [README](artifact/README.md) <br>
-- [Examples](artifact/EXAMPLES.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and structured memory templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill guides the agent to read, create, back up, and patch a local markdown memory file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata and skill frontmatter) <br>
+Risk: The skill persistently stores and resurfaces broad personal, project, and infrastructure context in local memory files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when long-lived local memory is acceptable, keep memory files private, and periodically inspect memory.md, memory.md.bak, and archive copies.
+
+Risk: Sensitive details such as secrets, credentials, private URLs, IP addresses, regulated data, or sensitive business information could be added to memory.
+
+Mitigation: Do not store those categories of information, and review memory summaries before sharing terminal output, recordings, or copied responses.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/contrario/skills/agent-memoria)
+- [Publisher profile](https://clawhub.ai/user/contrario)
+- [README](artifact/README.md)
+- [Examples](artifact/EXAMPLES.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and local Markdown memory files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Persists user-provided context in local memory.md files and creates backup/archive copies when updating memory.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

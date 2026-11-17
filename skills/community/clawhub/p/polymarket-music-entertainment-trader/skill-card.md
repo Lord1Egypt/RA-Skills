@@ -1,47 +1,63 @@
-## Description: <br>
-Trades Polymarket prediction markets for music streaming milestones, chart performance, awards, tour revenue, and industry deals using entertainment-market signals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Trades Polymarket prediction markets on music streaming milestones, album chart performance, Grammy nominations, concert tour revenues, and music industry deals using entertainment-market signals and configurable risk controls.
 
-## Publisher: <br>
-[diagnostikon](https://clawhub.ai/user/diagnostikon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[diagnostikon](https://clawhub.ai/user/diagnostikon)
 
-## Use Case: <br>
-External users and developers use this skill to discover music and entertainment Polymarket markets, generate buy/sell decisions, and execute paper trades by default or live trades only when explicitly enabled. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Real-money trading can execute when live mode is explicitly enabled, and server security evidence says the real-money safety limits need review before use. <br>
-Mitigation: Start in paper mode, review all tunables yourself, use a limited-balance or scoped key where available, and enable live trading only when prepared for real USDC trades. <br>
-Risk: The skill requires a sensitive SIMMER_API_KEY credential. <br>
-Mitigation: Keep the credential private, avoid placing live-capable keys in automated environments, and scope or rotate the key according to the trading venue's controls. <br>
-Risk: The configured defaults in the artifact and documentation do not fully align for some trading limits. <br>
-Mitigation: Set SIMMER_MIN_DAYS, SIMMER_MIN_VOLUME, position limits, and trade thresholds explicitly before scheduling or live execution. <br>
+## Use Case:
 
+External users and developers use this skill to discover music and entertainment prediction markets, evaluate YES/NO trade signals, and place paper or explicitly enabled live Polymarket trades through Simmer. It is suited for entertainment-market experimentation where users can review and tune position sizing, volume, spread, and threshold settings before live use.
 
-## Reference(s): <br>
-- [Spotify Charts](https://charts.spotify.com/charts/overview/global) <br>
-- [Billboard Charts](https://www.billboard.com/charts/) <br>
-- [Chartmetric](https://chartmetric.com/) <br>
-- [RIAA Gold & Platinum Database](https://www.riaa.com/gold-platinum/) <br>
-- [simmer-sdk on PyPI](https://pypi.org/project/simmer-sdk/) <br>
-- [simmer-sdk on GitHub](https://github.com/SpartanLabsXyz/simmer-sdk) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline commands and runtime text output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SIMMER_API_KEY; defaults to paper trading and uses live trading only when explicitly invoked.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.3 (source: server release metadata) <br>
+Risk: Live trading controls may be inaccurate or only partly enforced.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use paper mode first, then verify volume, per-trade size, open-position, loss, spread, and threshold limits before enabling live trading.
+
+Risk: A live-capable trading API key is passed to an unpinned dependency.
+
+Mitigation: Pin and review simmer-sdk before live use, and use a narrowly scoped revocable key with no withdrawal authority.
+
+Risk: Automated trades can create real USDC exposure when --live is explicitly used.
+
+Mitigation: Keep the default paper mode for testing and set server-side trade and loss limits before supplying live credentials.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/diagnostikon/skills/polymarket-music-entertainment-trader)
+- [Spotify Charts](https://charts.spotify.com/charts/overview/global)
+- [Billboard Charts](https://www.billboard.com/charts/)
+- [Chartmetric](https://chartmetric.com/)
+- [RIAA Gold and Platinum Database](https://www.riaa.com/gold-platinum/)
+- [simmer-sdk on PyPI](https://pypi.org/project/simmer-sdk/)
+- [simmer-sdk source repository](https://github.com/SpartanLabsXyz/simmer-sdk)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and runtime log text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May emit paper or live trade logs; live trading requires an explicit --live flag and SIMMER_API_KEY.]
+
+## Skill Version(s):
+
+0.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

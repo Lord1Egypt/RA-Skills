@@ -1,48 +1,62 @@
-## Description: <br>
-PullThatUpJamie gives agents access to the Jamie podcast intelligence API for semantic podcast search, timestamped research sessions, people and organization discovery, on-demand RSS ingestion, and shareable clip generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+PullThatUpJamie helps agents search a semantically indexed podcast corpus, build timestamped research sessions, discover podcast appearances, ingest feeds, and generate shareable audio/video clips.
 
-## Publisher: <br>
-[unclejim21](https://clawhub.ai/user/unclejim21) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[unclejim21](https://clawhub.ai/user/unclejim21)
 
-## Use Case: <br>
-Developers and external agents use this skill to search a hosted podcast corpus, retrieve timestamped clips, build research sessions, generate shareable audio or video clips, and ingest new podcasts through the Jamie API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Paid Jamie endpoints can use optional NWC or L402 credentials that spend Lightning credits. <br>
-Mitigation: Use the free tier first, provide payment credentials only when spending is intended, and keep wallet balances limited. <br>
-Risk: Smart Search sends query text to the external Jamie service for triage. <br>
-Mitigation: Avoid sensitive or confidential queries when using Smart Search. <br>
-Risk: Clip generation and podcast ingestion can create public or shareable outputs or submit new content for processing. <br>
-Mitigation: Confirm operator intent before creating public clips, sharing session links, or ingesting new podcasts. <br>
+## Use Case:
 
+Developers and agents use this skill to retrieve podcast evidence, assemble research sessions with timestamped audio deeplinks, generate clips, and ingest new podcast feeds when the desired source is not yet indexed.
 
-## Reference(s): <br>
-- [PullThatUpJamie ClawHub Skill Page](https://clawhub.ai/unclejim21/pullthatupjamie) <br>
-- [PullThatUpJamie Homepage](https://pullthatupjamie.ai) <br>
-- [Jamie API Service](https://www.pullthatupjamie.ai) <br>
-- [RRA - Retrieve, Research, Analyze](references/podcast-rra.md) <br>
-- [Create Module - Audio Clip Generation](references/create.md) <br>
-- [L402 Protocol Documentation](https://docs.lightning.engineering/the-lightning-network/l402) <br>
-- [lnget L402 Client](https://github.com/lightninglabs/lnget) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with API request examples, JSON response handling, and Jamie session or clip URLs.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include HTTP requests to the external Jamie API; free-tier use does not require credentials, while paid requests use optional L402 credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.6.0 (source: frontmatter, CHANGELOG, server release metadata) <br>
+Risk: Paid access uses L402 and optional NWC values that function as sensitive bearer credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Store credentials securely, avoid logging or sharing them, and use a low-balance wallet with strict limits.
+
+Risk: The optional wallet workflow documents unpinned local package execution through npx.
+
+Mitigation: Prefer the free tier or a normal wallet first; only run local payment tooling after independently verifying and pinning the package.
+
+Risk: Research sessions and share links may expose curated podcast research material.
+
+Mitigation: Do not upload sensitive or private research material into sessions or public share links.
+
+## Reference(s):
+
+- [PullThatUpJamie homepage](https://pullthatupjamie.ai)
+- [ClawHub skill page](https://clawhub.ai/unclejim21/skills/pullthatupjamie)
+- [RRA - Retrieve, Research, Analyze](references/podcast-rra.md)
+- [Create Module - Audio Clip Generation](references/create.md)
+- [L402 protocol](https://docs.lightning.engineering/the-lightning-network/l402)
+- [lnget](https://github.com/lightninglabs/lnget)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with HTTP examples, JSON API responses, timestamped deeplinks, research session URLs, and clip URLs.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May require optional L402 bearer credentials for paid API calls; free tier and corpus browsing are documented.]
+
+## Skill Version(s):
+
+1.6.0 (source: frontmatter, changelog, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

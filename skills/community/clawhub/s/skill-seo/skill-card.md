@@ -1,39 +1,51 @@
-## Description: <br>
-Optimizes ClawHub skill descriptions and metadata for vector search, explore ranking, and agent discovery. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Optimize your ClawHub skill for maximum discoverability by analyzing and rewriting SKILL.md descriptions for vector search ranking, keyword coverage, competitor positioning, and update cadence.
 
-## Publisher: <br>
-[alexyuui](https://clawhub.ai/user/alexyuui) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[alexyuui](https://clawhub.ai/user/alexyuui)
 
-## Use Case: <br>
-Developers and skill authors use this skill to audit SKILL.md frontmatter, improve description wording, compare search positioning, and plan release updates for better ClawHub discovery. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated descriptions or metadata may be inaccurate, over-optimized, or misaligned with the actual skill behavior. <br>
-Mitigation: Review proposed SKILL.md changes for accuracy, relevance, and policy fit before publishing. <br>
-Risk: Following publishing guidance can change public ClawHub release state. <br>
-Mitigation: Manually confirm the generated description, tags, and version details before running any clawhub publish step. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/alexyuui/skill-seo) <br>
+## Use Case:
+
+Developers and skill publishers use this skill to audit and improve ClawHub skill metadata so agents and users can discover the skill through search, explore rankings, and natural-language capability requests.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Generated description changes could overstate or blur the skill's actual capabilities.
+
+Mitigation: Review generated descriptions before publishing and keep trigger phrases tied to real skill behavior.
+
+Risk: Search optimization guidance could encourage generic keyword stuffing.
+
+Mitigation: Use the skill's own anti-pattern guidance and remove unrelated or generic phrases before release.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with YAML snippets and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Review proposed metadata and publishing steps before applying them.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown with YAML and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces review guidance and proposed SKILL.md description changes for human review before publishing.]
+
+## Skill Version(s):
+
+0.1.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

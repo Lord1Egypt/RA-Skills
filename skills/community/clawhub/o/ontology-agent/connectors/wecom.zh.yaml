@@ -1,0 +1,25 @@
+# connectors/wecom.yaml — 企业微信连接预留（stub）
+# 本体论智能体 (Ontology Agent) · 天津市微数人工智能科技有限责任公司
+# 状态：stub（暂未实现）。为 Phase 6 企业客户出现时填充真实现。
+
+meta:
+  connector: wecom
+  status: stub
+  trigger: "出现企业客户、需接入真实人员与 IM 时填充实现"
+
+integration:
+  type: app_webhook           # 企业微信自建应用
+  corp_id_env: WECOM_CORP_ID
+  agent_id_env: WECOM_AGENT_ID
+  secret_env: WECOM_SECRET
+  message_types: [text, markdown, template_card]
+
+bindings:
+  - role: employee
+    scope: "department/{dept}/shared"
+  - event: task_assigned
+  - event: approval_request
+
+note: >
+  企业微信的用户体系与企业通讯录对接，员工身份映射为 employee role；
+  与 dingtalk.yaml 同契约、不同实现细节。

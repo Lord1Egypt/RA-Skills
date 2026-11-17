@@ -1,44 +1,55 @@
-## Description: <br>
-Transform natural language questions into SPARQL queries for DBpedia and generate result outputs as JSON, Markdown, or HTML. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transforms natural language questions into SPARQL queries for DBpedia, executes read-only queries, and formats results as JSON, Markdown tables, or HTML reports.
 
-## Publisher: <br>
-[kidehen](https://clawhub.ai/user/kidehen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[kidehen](https://clawhub.ai/user/kidehen)
 
-## Use Case: <br>
-Developers, researchers, and analysts use this skill to turn plain-English questions about DBpedia entities into SPARQL queries, execute them against DBpedia, and format results for inspection or sharing. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Questions and generated SPARQL queries may be sent to the public DBpedia endpoint. <br>
-Mitigation: Use the skill for public research and avoid confidential, sensitive, or proprietary information in prompts. <br>
-Risk: Requested HTML report generation can create local files. <br>
-Mitigation: Review the intended output path and generated HTML contents before sharing or publishing reports. <br>
-Risk: DBpedia data may be incomplete, stale, or different from current real-world facts. <br>
-Mitigation: Treat results as structured DBpedia data and verify important facts against authoritative sources when accuracy matters. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kidehen/query-dbpedia) <br>
-- [DBpedia SPARQL endpoint](https://dbpedia.org/sparql) <br>
-- [DBpedia homepage](https://dbpedia.org) <br>
-- [DBpedia documentation](https://www.dbpedia.org/resources/documentation/) <br>
+## Use Case:
 
+Developers, researchers, and knowledge graph users use this skill to ask plain-English questions against DBpedia and receive structured query results. It supports entity lookups, research tables, and generated HTML reports with DBpedia attribution.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands] <br>
-**Output Format:** [JSON results, Markdown tables, SPARQL code, shell commands, or generated HTML files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May execute HTTP GET requests against the DBpedia SPARQL endpoint and may save local HTML reports when requested.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and README) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: User prompts and query terms may be sent to the public DBpedia endpoint.
+
+Mitigation: Do not include secrets, private names, internal project terms, or sensitive personal data in DBpedia questions or generated queries.
+
+Risk: Generated HTML reports may contain unsanitized or misleading content from query results.
+
+Mitigation: Review or sanitize generated HTML before opening, publishing, or sharing reports.
+
+## Reference(s):
+
+- [DBpedia SPARQL Endpoint](https://dbpedia.org/sparql)
+- [DBpedia](https://dbpedia.org)
+- [DBpedia Documentation](https://www.dbpedia.org/resources/documentation/)
+- [Sample DBpedia Query Patterns](artifact/examples/sample-queries.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with SPARQL and shell command code blocks, plus optional JSON results, Markdown tables, or HTML files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include DBpedia endpoint requests and generated HTML reports for local review.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,54 @@
-## Description: <br>
-Registers the UC Browser skill for organizing public product pages, feature descriptions, download entry points, and help information. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Organizes public UC Browser homepage, download, feature, help, privacy, and announcement information for agent users.
 
-## Publisher: <br>
-[codenova58](https://clawhub.ai/user/codenova58) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[codenova58](https://clawhub.ai/user/codenova58)
 
-## Use Case: <br>
-External users and agent operators use this skill to summarize public UC Browser website information, including download entry points, feature descriptions, platform support, permissions, privacy notices, help pages, FAQs, and announcements. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Summaries may include unofficial or misleading download links if source pages are stale or navigated incorrectly. <br>
-Mitigation: Verify download links against official UC Browser pages before sharing or using them. <br>
-Risk: Requests could include private account, device, or session data that is outside the skill's public-information scope. <br>
-Mitigation: Use only public UC Browser pages and avoid providing private account, device, session, or non-public package information. <br>
+## Use Case:
 
+External users and developers use this skill to summarize public UC Browser product pages, download entry points, platform support, feature descriptions, permissions, privacy information, FAQs, and announcements.
 
-## Reference(s): <br>
-- [UC Browser homepage](https://www.ucweb.com/) <br>
-- [ClawHub skill page](https://clawhub.ai/codenova58/uc) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown summaries and link lists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Focused on public UC Browser information; does not produce code, device-control actions, bypass steps, or private data exports.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Download links or product information may be outdated or misleading if copied from unofficial or stale pages.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify download links and product claims against the official UC Browser site before using or sharing them.
+
+Risk: The skill is intended for public information only and could be misused if asked for private packages, device control, bypassing, cracking, or private data export.
+
+Mitigation: Keep use limited to public UC Browser pages and decline requests for non-public content, bypass activity, private data extraction, or device/system control.
+
+## Reference(s):
+
+- [UC Browser Homepage](https://www.ucweb.com/)
+- [ClawHub skill page](https://clawhub.ai/codenova58/skills/uc)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or structured text summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Focused on public UC Browser information; no private data extraction, device control, permission bypass, non-public packages, cracking, or risk-control evasion.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

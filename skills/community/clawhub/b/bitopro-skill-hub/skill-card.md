@@ -1,47 +1,65 @@
-## Description: <br>
-BitoPro Market Intel provides public crypto market indicators, BitoPro-listed coin data, listing specs, and relevant news filtered to BitoPro spot coins. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides BitoPro-scoped crypto market intelligence, listing-catalog lookup, and relevant news aggregation using public market and news sources.
 
-## Publisher: <br>
-[bitopro](https://clawhub.ai/user/bitopro) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[bitopro](https://clawhub.ai/user/bitopro)
 
-## Use Case: <br>
-External users and agents use this skill to answer BitoPro-focused crypto market-intelligence questions, including sentiment, global market indicators, BitoPro-listed coin rankings, public BTC/ETH holdings, listing catalog details, and filtered crypto news. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: English news snippets may be sent to Google Translate and cached. <br>
-Mitigation: Use the translation feature only for public news content and avoid submitting confidential or account-specific information. <br>
-Risk: Users may confuse market intelligence with trading authority. <br>
-Mitigation: Do not provide exchange trading credentials to this skill; use it only for public market and news data, not account actions or order placement. <br>
-Risk: Public market-data endpoints can rate limit shared-IP usage. <br>
-Mitigation: Configure the optional CoinGecko Demo API key when shared-IP rate limits would affect reliability. <br>
+## Use Case:
 
+External users and developers use this skill to inspect market sentiment, BitoPro-listed coin rankings, public BTC/ETH treasury data, live BitoPro pair specifications, and BitoPro-relevant crypto news. It is informational only and does not place trades or access accounts.
 
-## Reference(s): <br>
-- [BitoPro Skill Hub](https://clawhub.ai/bitopro/bitopro-skill-hub) <br>
-- [Coin Mapping Reference](references/coin-mapping.md) <br>
-- [Endpoint Reference](references/endpoints.md) <br>
-- [News Categories Reference](references/news-categories.md) <br>
-- [CoinGecko Demo API Key Dashboard](https://www.coingecko.com/en/developers/dashboard) <br>
-- [BitoPro Public API](https://api.bitopro.com/v3) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown summaries, tables, and concise natural-language guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Strictly scoped to BitoPro-listed spot coins; may include translated public news snippets and public market-data citations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata); artifact frontmatter reports 1.4.0 <br>
+Risk: Market data, listings, mappings, and news can be stale, incomplete, rate limited, or unavailable.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use live BitoPro pair lookup for current listings, degrade gracefully on API failures, show only sources actually queried, and ask users to verify investment decisions independently.
+
+Risk: English RSS article titles and descriptions may be sent to Google Translate and machine translation can be inaccurate.
+
+Mitigation: Translate only displayed English news items, disclose machine translation, and retain original-source links for verification.
+
+Risk: Users may mistake informational market or news summaries for trading advice.
+
+Mitigation: Keep responses factual, include investment-risk disclaimers for market data and news, and avoid buy, sell, or prediction language.
+
+Risk: Users may try to use the skill for order placement, account access, or pre-trade workflows.
+
+Mitigation: Keep this skill scoped to public information and direct trading or account actions to a separate trading-capable skill.
+
+## Reference(s):
+
+- [Endpoint reference](references/endpoints.md)
+- [BitoPro coin mapping](references/coin-mapping.md)
+- [News category keywords](references/news-categories.md)
+- [CoinGecko Demo API dashboard](https://www.coingecko.com/en/developers/dashboard)
+- [BitoPro skill page](https://clawhub.ai/bitopro/skills/bitopro-skill-hub)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown tables and concise explanatory text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responses should cite only sources actually queried and include investment-risk disclaimers for market data or news.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata; artifact frontmatter reports 1.4.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

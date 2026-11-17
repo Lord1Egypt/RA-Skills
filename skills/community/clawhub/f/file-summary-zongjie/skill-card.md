@@ -1,39 +1,52 @@
-## Description: <br>
-A bilingual OpenClaw skill that reads local txt, docx, pdf, xlsx, and xls files and returns extracted text for summary or analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This OpenClaw skill extracts text from local txt, docx, pdf, xlsx, and xls files and generates summaries or analysis in Chinese or English.
 
-## Publisher: <br>
-[LeonThePro2012](https://clawhub.ai/user/LeonThePro2012) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[leonthepro2012](https://clawhub.ai/user/leonthepro2012)
 
-## Use Case: <br>
-OpenClaw users use this skill to extract text from local documents and ask the LLM to summarize or analyze the contents in Chinese or English. It is intended for local document review workflows where users can choose non-sensitive files and verify the generated summary or analysis. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Local document contents may be sent into the OpenClaw LLM flow during summary or analysis. <br>
-Mitigation: Use only files permitted by the user's data-handling policy, and avoid confidential, regulated, or highly private documents unless that policy allows this content flow. <br>
-Risk: The Python helper can automatically install document-reading packages when dependencies are missing. <br>
-Mitigation: Run the skill in a virtual environment or preinstall and review the required packages before use. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/LeonThePro2012/file-summary-zongjie) <br>
+## Use Case:
 
+External OpenClaw users use this skill to summarize or analyze local documents after explicitly providing a file path. It is intended for document review workflows involving supported text, Word, PDF, and Excel formats.
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [Plain text content, summary text, analysis text, or bilingual error messages] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports txt, docx, pdf, xlsx, and xls inputs; extracted document content may be sent into the OpenClaw LLM flow.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill reads local document contents and sends extracted content to OpenClaw LLM for summarization or analysis.
+
+Mitigation: Use only with files approved for that processing path; avoid sensitive or confidential documents unless the environment and data handling are approved.
+
+Risk: The skill may automatically install unpinned Python packages at runtime when document parsing dependencies are missing.
+
+Mitigation: Run in a sandbox or preinstall reviewed, pinned dependencies so the auto-install path does not run.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/leonthepro2012/skills/file-summary-zongjie)
+
+## Skill Output:
+
+**Output Type(s):** [text, guidance]
+
+**Output Format:** [Plain text or Markdown prose]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reads a user-provided local file path and returns extracted document text, a concise summary, or analysis.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

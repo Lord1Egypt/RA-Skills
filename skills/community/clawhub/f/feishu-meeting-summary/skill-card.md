@@ -1,40 +1,53 @@
-## Description: <br>
-飞书会议总结技能 - 读取飞书会议纪要，生成结构化总结，沉淀知识，支持搜索 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+飞书会议总结技能 - 读取飞书会议纪要，生成结构化总结，沉淀知识，支持搜索
 
-## Publisher: <br>
-[YannBoy](https://clawhub.ai/user/YannBoy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yannboy](https://clawhub.ai/user/yannboy)
 
-## Use Case: <br>
-Employees and teams use this skill to turn Feishu meeting records into structured meeting summaries, follow-up items, and reusable knowledge notes. It is intended for workflows where meeting content can be read from Feishu and saved back into a configured Feishu workspace. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Meeting transcripts, summaries, and source links may contain sensitive information and are stored in the configured Feishu workspace. <br>
-Mitigation: Use a restricted meetings folder, verify folder permissions, and avoid highly confidential meetings unless retention and access controls are appropriate. <br>
-Risk: The skill depends on a Feishu plugin and Feishu workspace access to read and write meeting content. <br>
-Mitigation: Install and use the Feishu plugin only when trusted, and confirm the configured workspace locations before saving generated summaries. <br>
+## Use Case:
 
+Employees and teams using Feishu use this skill to turn meeting records into detailed structured summaries, preserve source links, and save meeting knowledge into a configured Feishu knowledge base.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/YannBoy/feishu-meeting-summary) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Configuration] <br>
-**Output Format:** [Markdown meeting summaries, Feishu document links, and concise text responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses Feishu meeting records and configured workspace folders; stores generated summaries and retained source links in Feishu.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata) <br>
+Risk: Meeting transcripts and generated summaries may be saved into a configured Feishu knowledge base with broader access than intended.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a least-privilege Feishu folder, review access permissions, and avoid sensitive personal, legal, financial, or confidential business material unless storage and retention are approved.
+
+Risk: AI-generated summaries may omit details if treated as the primary meeting record.
+
+Mitigation: Base summaries on the detailed transcript, use AI summaries only as supplemental context, and verify that original meeting links remain in the saved document.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yannboy/skills/feishu-meeting-summary)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration]
+
+**Output Format:** [Markdown meeting summaries, knowledge notes, and Feishu document links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses the detailed meeting transcript as the primary source and AI summaries only as supplemental context.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,57 @@
-## Description: <br>
-Helps users draft data backup strategies, backup plans, disaster recovery workflows, and restore procedures. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Backup Strategy helps agents draft data backup strategies, backup plans, and recovery procedures for disaster recovery planning.
 
-## Publisher: <br>
-[yongjie666888](https://clawhub.ai/user/yongjie666888) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yongjie666888](https://clawhub.ai/user/yongjie666888)
 
-## Use Case: <br>
-Operations teams, administrators, and developers use this skill to plan backup scope, cadence, retention, storage tiers, recovery objectives, restore procedures, validation, and monitoring. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sample backup and restore commands could affect production data or remove backup directories if copied without review. <br>
-Mitigation: Treat shell snippets as examples, replace placeholders, verify source and destination paths, and test cleanup and restore commands in a non-production environment before use. <br>
-Risk: Credential placeholders in example database and cloud commands could lead to hardcoded or over-privileged secrets. <br>
-Mitigation: Use least-privilege database and cloud credentials and avoid embedding real secrets directly in scripts. <br>
+## Use Case:
 
+Developers, operators, and reliability teams use this skill to outline backup schedules, storage tiers, restore objectives, validation checks, monitoring thresholds, and recovery procedures.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yongjie666888/backup-strategy) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with tables, checklists, and bash command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes placeholders for environment-specific systems, credentials, storage paths, retention windows, RTO, and RPO values.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Sample backup scripts include placeholder credentials and operational shell commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Replace placeholders with a secrets manager or protected database option file, and review every command before use.
+
+Risk: File sync and cleanup examples can delete or overwrite data if copied directly into production.
+
+Mitigation: Quote and validate paths, run rsync and cloud sync in dry-run mode first, and test restores outside production.
+
+Risk: Cloud backups may expose sensitive data if storage ownership, access controls, or encryption are misconfigured.
+
+Mitigation: Encrypt backups, verify bucket ownership and permissions, and confirm restore access before relying on the backup plan.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/yongjie666888/skills/backup-strategy)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown with tables and inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only planning guidance with sample backup and restore commands that require review before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

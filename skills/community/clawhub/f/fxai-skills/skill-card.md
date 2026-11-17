@@ -1,44 +1,61 @@
-## Description: <br>
-FXAI helps an agent create V5 tokens on BSC with optional USDT or BNB pools, upload token metadata, and prepare USDT or BNB buy and sell actions through BNB Chain MCP. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+FXAI helps an agent create V5 tokens with optional USDT or BNB pools and prepare USDT/BNB buy and sell transactions through BNB Chain MCP using a configured private key.
 
-## Publisher: <br>
-[NathanThoreaurl](https://clawhub.ai/user/NathanThoreaurl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nathanthoreaurl](https://clawhub.ai/user/nathanthoreaurl)
 
-## Use Case: <br>
-External developers and token operators use this skill to guide token creation and trading workflows on BNB Smart Chain. It is intended for users who can configure BNB Chain MCP and manage a wallet key for transaction signing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can help approve token spending and execute irreversible BSC transactions from a wallet configured in BNB Chain MCP. <br>
-Mitigation: Use a dedicated low-balance wallet, avoid using a main wallet PRIVATE_KEY, verify the contract address and MCP package, and require explicit human confirmation before every approval, token creation, buy, or sell. <br>
-Risk: The metadata upload helper reads a local image and publishes that file plus token metadata to the Flap upload API. <br>
-Mitigation: Run the helper only with files and metadata intended for publication, and review image paths, descriptions, and links before upload. <br>
+## Use Case:
 
+Developers and crypto operators use FXAI to configure BNB Chain MCP, create V5 tokens with BNB or USDT pool settings, and prepare token buy or sell contract interactions. The skill is intended for workflows where the user understands wallet custody, token approvals, and irreversible on-chain transactions.
 
-## Reference(s): <br>
-- [FXAI contract ABI](references/contract-abi.md) <br>
-- [BNB Chain MCP skills documentation](https://docs.bnbchain.org/showcase/mcp/skills/) <br>
-- [Flap token launcher guide](https://docs.flap.sh/flap/developers/token-launcher-developers/launch-token-through-portal) <br>
-- [Flap deployed contract addresses](https://docs.flap.sh/flap/developers/token-launcher-developers/deployed-contract-addresses) <br>
-- [ClawHub skill page](https://clawhub.ai/NathanThoreaurl/fxai-skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline commands, contract parameters, and configuration values] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include contract addresses, ABI references, MCP write_contract parameters, and token metadata upload commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata) <br>
+Risk: The skill can guide irreversible BNB Chain token creation and trading transactions using a configured PRIVATE_KEY.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated low-value wallet, verify contract addresses, token addresses, amounts, and allowances before signing, and review every transaction in the wallet or MCP flow.
+
+Risk: The release uses unpinned install commands for MCP and skill tooling.
+
+Mitigation: Prefer pinned and reviewed versions of the MCP server, skill package, and npm dependencies, and avoid global installation unless required.
+
+Risk: The metadata upload helper sends a local image and token metadata to the Flap upload API.
+
+Mitigation: Upload only public, non-sensitive images and metadata, and confirm the destination service is acceptable before using the helper script.
+
+## Reference(s):
+
+- [FXAI ClawHub Skill Page](https://clawhub.ai/nathanthoreaurl/skills/fxai-skills)
+- [FXAI Contract ABI](references/contract-abi.md)
+- [BNB Chain MCP Skills](https://docs.bnbchain.org/showcase/mcp/skills/)
+- [Flap Token Launcher Guide](https://docs.flap.sh/flap/developers/token-launcher-developers/launch-token-through-portal)
+- [Flap Deployed Contract Addresses](https://docs.flap.sh/flap/developers/token-launcher-developers/deployed-contract-addresses)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, API Calls]
+
+**Output Format:** [Markdown instructions with shell commands and JSON-like contract call parameters]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes contract addresses, ABI references, token approval steps, transaction call arguments, and local helper-script commands.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata; artifact frontmatter and package metadata report 1.0.3)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

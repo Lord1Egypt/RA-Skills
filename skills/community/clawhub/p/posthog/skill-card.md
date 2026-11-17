@@ -1,43 +1,58 @@
-## Description: <br>
-Interact with PostHog analytics through its REST API to capture events, evaluate feature flags, run HogQL queries, and manage analytics resources. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Interact with PostHog analytics via its REST API to capture events, evaluate feature flags, query data with HogQL, and manage persons, insights, dashboards, experiments, surveys, cohorts, annotations, and session recordings.
 
-## Publisher: <br>
-[simonfunk](https://clawhub.ai/user/simonfunk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[simonfunk](https://clawhub.ai/user/simonfunk)
 
-## Use Case: <br>
-Developers and analytics operators use this skill to work with PostHog projects from an agent, including event capture, feature flag evaluation, HogQL queries, and CRUD-style management of analytics resources. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can give an agent broad access to PostHog analytics data and production-affecting changes. <br>
-Mitigation: Use least-privilege API keys, avoid admin or write scopes unless required, and manually confirm create, update, delete, and broad HogQL query operations. <br>
-Risk: PostHog API keys and project credentials could be exposed through chat transcripts, logs, or command output. <br>
-Mitigation: Keep secrets in environment variables, avoid pasting credentials into prompts, and review command output before sharing it. <br>
-Risk: Person-level analytics data and session recordings may contain sensitive user information. <br>
-Mitigation: Limit access to users with a business need, minimize returned fields and query ranges, and handle exported results as sensitive data. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [PostHog API Endpoint Reference](references/api-endpoints.md) <br>
-- [PostHog User API Keys](https://us.posthog.com/settings/user-api-keys) <br>
-- [PostHog Project Variables](https://us.posthog.com/settings/project#variables) <br>
+## Use Case:
 
+Developers and analytics engineers use this skill to operate PostHog projects from an agent, including event capture, feature flag checks, HogQL queries, and management of common analytics resources.
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, guidance, text] <br>
-**Output Format:** [Markdown with inline shell commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires PostHog API credentials and project identifiers supplied through environment variables.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill uses PostHog API keys that can read, write, expose, or change production analytics data.
+
+Mitigation: Use narrowly scoped PostHog API keys and review planned read, update, delete, and HogQL operations before execution.
+
+Risk: Configurable host variables can direct requests away from the intended PostHog environment.
+
+Mitigation: Verify POSTHOG_HOST and POSTHOG_INGEST_HOST point only to official HTTPS PostHog domains or a trusted self-hosted instance.
+
+Risk: Broad HogQL queries can expose more analytics data than intended.
+
+Mitigation: Prefer time-bounded, limited HogQL queries and review query text before running it against sensitive projects.
+
+## Reference(s):
+
+- [PostHog API Endpoint Reference](references/api-endpoints.md)
+- [PostHog OpenAPI Schema](https://app.posthog.com/api/schema/)
+- [ClawHub Skill Page](https://clawhub.ai/simonfunk/skills/posthog)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash commands, JSON examples, and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce PostHog API requests through the bundled shell helper when credentials and project settings are provided.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

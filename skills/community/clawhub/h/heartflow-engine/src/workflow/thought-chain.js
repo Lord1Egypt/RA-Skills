@@ -43,20 +43,28 @@ const REASONING_DEPTH = {
   COMPREHENSIVE: 4 // 综合：多路径探索，任务特化
 };
 
+// [v5.17.16 M2] 双过程理论(Kahneman 2011): System1(快速直觉) vs System2(慢速反思)
+const DUAL_PROCESS = {
+  SYSTEM1: 'system1',  // 直觉/自动/快速 — 计算/分类/翻译
+  SYSTEM2: 'system2',  // 反思/受控/慢速 — 解释/判断/批判
+};
+
 // 任务类型对应的策略
 const TASK_STRATEGIES = {
   // 计算类：直接执行，不需要假设
   calculation: {
     skipHypotheses: true,
-    skipInvert: false,    // 但要检查计算错误
-    depth: 2
+    skipInvert: false,
+    depth: 2,
+    process: 'system1',  // [v5.17.16 M2]
   },
   // 解释类：需要假设+验证
   explanation: {
     skipHypotheses: false,
     skipInvert: false,
     minHypotheses: 2,
-    depth: 3
+    depth: 3,
+    process: 'system2',  // [v5.17.16 M2]
   },
   // 判断类：必须反向思考
   judgment: {
@@ -114,39 +122,73 @@ class ThoughtChain {
   }
 
   /**
-   * 解析问题类型，选择对应策略
+   * 解析问题类型，选择对应策略 — v5.4.6 增加置信度 + LLM 兜底
+   * @returns {{ type: string, confidence: number, matchedPatterns: string[] }}
    */
-  _classifyTask(input) {
+  async _classifyTask(input) {
     const q = input.toLowerCase();
+    let bestType = 'general';
+    let bestConfidence = 0.3; // 默认低置信度
+    const matchedPatterns = [];
 
-    if (/\d+[+\-*/=]|\d+\s*(=|大于|小于|等于|总和|平均|概率)/.test(q)) {
-      return 'calculation';
+    // 计算：每个匹配的模式增加置信度
+    const patterns = [
+      { regex: /\d+[+\-*/=]|\d+\s*(=|大于|小于|等于|总和|平均|概率)/, type: 'calculation', weight: 0.9 },
+      { regex: /为什么|原因|原理|怎么来的|解释/, type: 'explanation', weight: 0.85 },
+      { regex: /对不对|是否|应该|正确吗|合理吗|好不好/, type: 'judgment', weight: 0.85 },
+      { regex: /创造|设计|想象|提出|新的/, type: 'creative', weight: 0.8 },
+      { regex: /是什么|定义|概念|什么是|指什么|查|找/, type: 'retrieval', weight: 0.8 },
+    ];
+
+    // [v5.9.13] 叙事分析检测：长文本 + 第三人称叙事特征 → narrative_analysis
+    const firstPersonSignals = /我[很非常觉得认为想]|我[不没]|帮我|给我|我想|我该/;
+    const narrativeIndicators = /他[们]?[被把将让]|她[被把将让]|受害者|凶手|嫌疑人|案发|事发|当时|之后|后来|此前|被告|原告|当事人/;
+    if (q.length > 30 && narrativeIndicators.test(q) && !firstPersonSignals.test(q)) {
+      return { type: 'narrative_analysis', confidence: 0.8, matchedPatterns: ['narrative_detection'] };
     }
-    if (/为什么|原因|原理|怎么来的|解释/.test(q)) {
-      return 'explanation';
+
+    for (const p of patterns) {
+      if (p.regex.test(q)) {
+        matchedPatterns.push(p.type);
+        if (p.weight > bestConfidence) {
+          bestConfidence = p.weight;
+          bestType = p.type;
+        }
+      }
     }
-    if (/对不对|是否|应该|正确吗|合理吗|好不好/.test(q)) {
-      return 'judgment';
-    }
-    if (/创造|设计|想象|提出|新的/.test(q)) {
-      return 'creative';
-    }
-    if (/是什么|定义|概念|什么是|指什么|查|找/.test(q)) {
-      return 'retrieval';
-    }
+
     // 辩论分析：长文本（>150字）+ 因果断言 + 情绪推论 / 立场声明
     if (q.length > 150 && (
       /(?:因为|所以|导致|因此|然而|但是|可是){3,}/.test(q) ||
       /(?:我觉得|我认为|说白了|关键|问题在于|本质|归根)/.test(q)
     )) {
-      return 'debate';
+      bestType = 'debate';
+      bestConfidence = 0.75;
+      matchedPatterns.push('debate');
     }
-    return 'general';
+
+    // LLM 兜底：置信度 < 0.7 且已注册 LLM fallback
+    if (bestConfidence < 0.7 && this.hf._llmFallback) {
+      try {
+        const llmResult = await this.hf._llmFallback(input, matchedPatterns);
+        if (llmResult && llmResult.type) {
+          bestType = llmResult.type;
+          bestConfidence = llmResult.confidence || 0.7;
+          matchedPatterns.push('llm-fallback');
+        }
+      } catch (e) {
+        // LLM 失败，保持规则分类结果
+      }
+    }
+
+    return { type: bestType, confidence: bestConfidence, matchedPatterns };
   }
 
   /**
    * 构建思维链 v2.0
    */
+  // [REFACTOR] TODO: _buildChain() — 超长函数(645行)，建议拆分：按 stage 阶段（PARSE/EXECUTE/SUMMARIZE等）拆分为独立处理器
+
   _buildChain() {
     this.stages = [];
     const taskType = this.taskStrategy?.type || 'general';
@@ -167,8 +209,8 @@ class ThoughtChain {
         // 1.3 确定问题目标
         const goal = this._extractGoal(input);
 
-        // 1.4 识别问题类型
-        const type = this._classifyTask(input);
+        // 1.4 识别问题类型（含置信度 + LLM 兜底）
+        const { type: type, confidence: typeConfidence } = await this._classifyTask(input);
 
         // 1.5 选择对应策略
         const strategy = TASK_STRATEGIES[type] || TASK_STRATEGIES.general;
@@ -190,6 +232,17 @@ class ThoughtChain {
           // 共情检测失败时静默降级
           empathyResult = null;
         }
+
+        // [P2-T2-WF] 知识检索：在 PARSE 阶段预取相关知识，减少下游重复检索
+        let knowledgeHits = [];
+        try {
+          const kb = hf.knowledgeBase || hf.knowledgeGraph;
+          if (kb && typeof kb.query === 'function') {
+            knowledgeHits = kb.query(input, 3) || [];
+          } else if (hf.hybrid && typeof hf.hybrid.search === 'function') {
+            knowledgeHits = hf.hybrid.search(input, { limit: 3 }) || [];
+          }
+        } catch(e) { /* 知识检索降级 */ }
 
         // 1.8 【AgentPsychology v2.0.0】调用 AI 心理学新增维度
         let agentPsychologyResult = null;
@@ -223,6 +276,8 @@ class ThoughtChain {
           goal,
           type,
           strategy,
+          // [P2-T2-WF] 预取知识命中结果，供下游阶段复用
+          knowledgeHits,
           // 串联结果：心理分析 + 共情检测
           psychology: psychResult ? {
             intent: psychResult.intent,
@@ -241,6 +296,22 @@ class ThoughtChain {
           } : null,
           // 【AgentPsychology v2.0.0】AI 心理学新增维度
           agentPsychology: agentPsychologyResult,
+          // [v5.17.19 S1] 预测误差驱动感知 — cognitiveLoadV2精度权重
+          perception: (() => {
+            try {
+              const cl = hf.cognitiveLoad || hf.cognitiveLoadV2;
+              if (cl && cl.estimate) {
+                const est = cl.estimate(input);
+                return {
+                  load: est?.cl ?? null,
+                  entropy: est?.entropy ?? null,
+                  precisionWeight: est?.loadLevel ? (est.loadLevel === 'high' ? 0.3 : est.loadLevel === 'moderate' ? 0.6 : 0.9) : 0.7,
+                  salienceThreshold: est?.loadLevel === 'high' ? 0.65 : est?.loadLevel === 'moderate' ? 0.55 : 0.5,
+                };
+              }
+            } catch(e) {} // 防御性: 模块加载/调用失败不阻断主流程
+            return { precisionWeight: 0.7, salienceThreshold: 0.5 };
+          })(),
           timestamp: Date.now()
         };
       }
@@ -364,6 +435,10 @@ class ThoughtChain {
         const hypothesesStage = ctx.stages.find(s => s.name === 'HYPOTHESES');
         const invertStage = ctx.stages.find(s => s.name === 'INVERT');
         const hypotheses = hypothesesStage?.result?.hypotheses || [];
+        const parse = ctx.stages[0]?.result;
+
+        // [P2-T2-WF] 复用 PARSE 阶段预取的知识命中，降低重复检索成本
+        const priorKnowledgeHits = Array.isArray(parse?.knowledgeHits) ? parse.knowledgeHits : [];
 
         // 4.1 对每个假设找证据
         const evidenceForHypotheses = hypotheses.map(h => {
@@ -399,6 +474,8 @@ class ThoughtChain {
           strongHypothesis: strongHypothesis || null,
           hasWeakSupport,
           mustAdmitUncertainty: !strongHypothesis && hasWeakSupport,
+          // [P2-T2-WF] 暴露知识命中摘要，供 SYNTHESIS/RESPOND 做 richer 综合
+          knowledgeHits: priorKnowledgeHits,
           timestamp: Date.now()
         };
       }
@@ -460,6 +537,35 @@ class ThoughtChain {
           }
         }
 
+        // [v5.17.19 S3] 主动推理EFE — 用ActiveInference评估探索/利用平衡
+        let activeInferenceResult = null;
+        try {
+          const AI = require('../decision/active-inference.js');
+          const aiEngine = new AI.ActiveInference();
+          const candidates = (hypotheses || []).map(h => ({
+            label: (h.description || h || '').substring(0, 40),
+            pragmaticScore: h.score || 0.5,
+            uncertainty: 1 - (h.confidence || 0.5),
+            novelty: h.isNovel ? 0.8 : 0.3,
+          }));
+          if (candidates.length > 0) {
+            activeInferenceResult = aiEngine.decide(candidates, {
+              timePressure: parse?.type === 'calculation' ? 0.8 : 0.3,
+            });
+          }
+        } catch(e) {
+          console.warn('[thought-chain] ActiveInference EFE skipped:', e.message);
+          activeInferenceResult = null;
+        }
+
+        // [P2-T2-WF] 主动推理接入主路径：优先采用 EFE 最优策略作为综合结论
+        let activeInferenceConclusion = null;
+        let activeInferenceConfidence = null;
+        if (activeInferenceResult?.selected) {
+          activeInferenceConclusion = activeInferenceResult.selected.label || activeInferenceResult.selected.description;
+          activeInferenceConfidence = activeInferenceResult.selected.score || 0.5;
+        }
+
         // 5.1 确定最终判断
         let conclusion;
         let confidence;
@@ -470,6 +576,11 @@ class ThoughtChain {
           conclusion = invertStage.result.counterEvidence[0]?.description || '原假设被推翻';
           confidence = 0.3;
           reasoningChain.push('原假设被反例推翻');
+        } else if (activeInferenceConclusion && activeInferenceConfidence > 0.6) {
+          // [P2-T2-WF] 主动推理主导：当 EFE 给出高置信度最优策略时优先采用
+          conclusion = activeInferenceConclusion;
+          confidence = activeInferenceConfidence;
+          reasoningChain.push('主动推理EFE策略选择');
         } else if (strongHypothesis) {
           // 有强证据支持
           conclusion = strongHypothesis.hypothesis.description;
@@ -495,6 +606,43 @@ class ThoughtChain {
         reasoningChain.push(`任务类型: ${parse?.type}`);
         reasoningChain.push(`深度: ${this.depth}`);
 
+        // [P2-T2-WF] 人格化润色：根据任务类型和用户认知档案调整语气/粒度
+        let personalityPolish = null;
+        try {
+          const adaptiveLearning = hf.adaptiveLearning || (require('../cortex/adaptive-learning.js') && new (require('../cortex/adaptive-learning.js').AdaptiveLearningEngine)({ memory: hf.memory }));
+          if (adaptiveLearning) {
+            const profile = adaptiveLearning.getProfile ? await adaptiveLearning.getProfile('anonymous') : (adaptiveLearning.profiles?.get('anonymous') || {});
+            const nudge = adaptiveLearning.nextNudge ? adaptiveLearning.nextNudge('anonymous') : null;
+            personalityPolish = {
+              userProfile: {
+                blindspots: Object.keys(profile?.blindspots || {}).slice(0, 5),
+                clarificationsAccepted: profile?.clarificationsAccepted || 0,
+                clarificationsOffered: profile?.clarificationsOffered || 0,
+              },
+              nudge,
+              tone: parse?.type === 'emotional' ? 'supportive' : 'analytical',
+              verbosity: confidence < 0.5 ? 'detailed' : 'concise',
+            };
+          }
+        } catch(e) {
+          personalityPolish = null;
+        }
+
+        // [P2-T2-WF] 知识检索接入主路径：用预取知识增强综合结论
+        const knowledgeSummary = (() => {
+          try {
+            const hits = evidence?.knowledgeHits || parse?.knowledgeHits || [];
+            if (!Array.isArray(hits) || hits.length === 0) return null;
+            return hits.slice(0, 3).map(h => ({
+              content: (typeof h === 'string' ? h : (h.content || h.concept || h.text || '')).slice(0, 80),
+              source: typeof h === 'string' ? 'knowledge' : (h.source || 'knowledge'),
+              relevance: typeof h === 'object' ? (h.relevance || h.score || 0.5) : 0.5,
+            }));
+          } catch(e) {
+            return null;
+          }
+        })();
+
         return {
           conclusion,
           confidence,
@@ -504,6 +652,14 @@ class ThoughtChain {
           decisionSubsystem: decisionResult ? { conclusion: decisionResult.conclusion, confidence: decisionResult.confidence } : null,
           // 【AgentPhilosophy v2.0.0】AI 哲学新增维度结果
           agentPhilosophy: agentPhilosophyResult,
+          // [v5.17.19 S3] 主动推理EFE决策结果
+          activeInference: activeInferenceResult,
+          // [P2-T2-WF] 主动推理接入主路径
+          activeInferenceSelected: activeInferenceResult?.selected || null,
+          // [P2-T2-WF] 人格化润色
+          personalityPolish,
+          // [P2-T2-WF] 知识检索接入主路径
+          knowledgeSummary,
           timestamp: Date.now()
         };
       }
@@ -639,7 +795,23 @@ class ThoughtChain {
           // 【AgentPsychology v2.0.0】AI 心理学新增维度
           agentPsychology: parse?.agentPsychology || null,
           // 【AgentPhilosophy v2.0.0】AI 哲学新增维度
-          agentPhilosophy: synthesis?.agentPhilosophy || null
+          agentPhilosophy: synthesis?.agentPhilosophy || null,
+          // [v5.17.19 S4] 偏差自审计 — language-honesty扫描回应草稿
+          biasCheck: (() => {
+            try {
+              const { checkCertainty } = require('../shield/language-honesty.js');
+              const draftText = conclusion || synthesis?.conclusion || '';
+              if (draftText && checkCertainty) {
+                const check = checkCertainty(draftText);
+                return {
+                  overconfidence: check?.level === 'over',
+                  certaintyLevel: check?.level || 'normal',
+                  triggeredRestraint: check?.level === 'over',
+                };
+              }
+            } catch(e) {} // 防御性: 模块加载/调用失败不阻断主流程
+            return null;
+          })(),
         };
 
         // 如果没有结论且置信度低，明确说不知道
@@ -822,8 +994,24 @@ class ThoughtChain {
    * 找证据
    */
   _findEvidence(hypothesis, input) {
-    // 简化实现
-    return [];
+    // [v5.17.19 S2] 替换桩 — 接入knowledge-graph真实检索
+    const evidence = [];
+    try {
+      const hf = this.hf;
+      if (hf && hf.knowledgeGraph && hf.knowledgeGraph.query) {
+        const kgResults = hf.knowledgeGraph.query(hypothesis.description || hypothesis, 3);
+        for (const r of (kgResults || [])) {
+          evidence.push({ source: 'knowledge_graph', content: r.concept || r, relevance: r.score || 0.5 });
+        }
+      }
+      if (hf && hf.memoryIndex && hf.memoryIndex.search) {
+        const memResults = hf.memoryIndex.search(hypothesis.description || hypothesis, 2);
+        for (const r of (memResults || [])) {
+          evidence.push({ source: 'memory_index', content: r.text || r, relevance: r.score || 0.4 });
+        }
+      }
+    } catch(e) { /* 检索降级 */ }
+    return evidence;
   }
 
   /**
@@ -871,8 +1059,9 @@ class ThoughtChain {
       _fastExit: false
     };
 
-    // 解析任务类型
-    this.taskStrategy = { type: this._classifyTask(input) };
+    // 解析任务类型（含置信度 + LLM 兜底）
+    const classification = await this._classifyTask(input);
+    this.taskStrategy = { type: classification.type, confidence: classification.confidence };
 
     // 根据策略调整深度
     const strategyDepth = TASK_STRATEGIES[this.taskStrategy.type]?.depth;
@@ -1023,6 +1212,42 @@ function createThoughtChain(hf, depth = REASONING_DEPTH.BASIC) {
   chain.setDepth(depth);
   return chain;
 }
+
+// [v5.17.23] 修复: 四层认知增强提取方法 — 供主路径和fallback共用
+ThoughtChain.prototype.runLayerEnrichment = function(input, hypotheses, conclusion, hf) {
+  const enrichment = {};
+  try {
+    const cl = (hf && hf.cognitiveLoad) || (hf && hf.cognitiveLoadV2);
+    if (cl && cl.estimate) {
+      const est = cl.estimate(input);
+      enrichment.perception = {
+        load: est.cl ?? null,
+        precisionWeight: est.loadLevel ? (est.loadLevel === 'high' ? 0.3 : est.loadLevel === 'moderate' ? 0.6 : 0.9) : 0.7,
+        salienceThreshold: est.loadLevel === 'high' ? 0.65 : est.loadLevel === 'moderate' ? 0.55 : 0.5,
+      };
+    }
+  } catch(e) {} // 防御性: 模块加载/调用失败不阻断主流程
+  try {
+    const AI = require('../decision/active-inference.js');
+    const aiEngine = new AI.ActiveInference();
+    const candidates = (hypotheses || []).map(h => ({
+      label: (h.description || h || '').substring(0, 40),
+      pragmaticScore: h.score || 0.5,
+      uncertainty: 1 - (h.confidence || 0.5),
+      novelty: h.isNovel ? 0.8 : 0.3,
+    }));
+    if (candidates.length > 0) enrichment.activeInference = aiEngine.decide(candidates, { timePressure: 0.3 });
+  } catch(e) {} // 防御性: 模块加载/调用失败不阻断主流程
+  try {
+    const draft = conclusion || '';
+    if (draft.length > 10) {
+      const { checkCertainty } = require('../shield/language-honesty.js');
+      const check = checkCertainty(draft);
+      enrichment.biasCheck = { overconfidence: check.level === 'over', certaintyLevel: check.level || 'normal' };
+    }
+  } catch(e) {} // 防御性: 模块加载/调用失败不阻断主流程
+  return enrichment;
+};
 
 module.exports = {
   ThoughtChain,

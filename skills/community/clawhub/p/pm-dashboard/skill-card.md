@@ -1,40 +1,53 @@
-## Description: <br>
-Provides a real-time dashboard to visualize AI agent project progress, decision trees, and test results, with commands to manage and configure the dashboard. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a real-time dashboard for visualizing AI agent project progress, decision trees, and test results, with commands to install, start, stop, configure, export, and import dashboard state.
 
-## Publisher: <br>
-[sakilmostak](https://clawhub.ai/user/sakilmostak) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sakilmostak](https://clawhub.ai/user/sakilmostak)
 
-## Use Case: <br>
-Developers and agent operators use this skill to install, start, stop, configure, export, and import a local PM Dashboard for tracking AI agent project status, implementation progress, decision trees, and test results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks users to install and run the external npm CLI @reghoul/pm-dashboard. <br>
-Mitigation: Verify the npm package and publisher before installation, and install it only in environments where running that CLI is acceptable. <br>
-Risk: The dashboard starts a local server and persists configuration, database, and log files under ~/.openclaw/pm-dashboard/. <br>
-Mitigation: Start the dashboard only when a local server is intended, and remove ~/.openclaw/pm-dashboard/ when the saved configuration, database, or logs are no longer wanted. <br>
+## Use Case:
 
+Developers and project teams use this skill to set up and manage a dashboard for monitoring AI agent project state, including implementation progress, decision paths, and test results.
 
-## Reference(s): <br>
-- [ClawHub PM Dashboard skill page](https://clawhub.ai/sakilmostak/pm-dashboard) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands install and operate an external npm CLI and preserve local state under ~/.openclaw/pm-dashboard/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill asks users to globally install and run an unpinned third-party npm package whose implementation is not included for review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only from a trusted npm publisher, prefer a pinned reviewed package version, inspect package source and lifecycle scripts, and run it in an isolated project or container when it may access sensitive project or agent state.
+
+Risk: Dashboard configuration, database, and logs are stored under the user's home directory and may contain project or agent state.
+
+Mitigation: Avoid placing secrets in dashboard state, protect the local state directory, and review exported files before sharing them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sakilmostak/skills/pm-dashboard)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance covers dashboard lifecycle commands and local state locations.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

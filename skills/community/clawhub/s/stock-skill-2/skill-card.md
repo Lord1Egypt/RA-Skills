@@ -1,46 +1,62 @@
-## Description: <br>
-A Stock helps agents query and summarize China A-share market data, including individual stocks, real-time quotes, market summaries, sector boards, Dragon-Tiger rankings, and order-book activity. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Stock helps agents retrieve, format, and briefly interpret A-share market data including stock quotes, intraday prices, market summaries, sector boards, Dragon Tiger List activity, and abnormal order-book movements through the Aipmedia stock API.
 
-## Publisher: <br>
-[wwzzsl](https://clawhub.ai/user/wwzzsl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wwzzsl](https://clawhub.ai/user/wwzzsl)
 
-## Use Case: <br>
-External users and developers use this skill to retrieve A-share market data through the declared stock-data API and receive Markdown tables with short financial interpretations. It is intended for stock-data lookup and analysis workflows, not as a source of investment advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends stock-query parameters and an API key to api.aipmedia.cn. <br>
-Mitigation: Install only if the user trusts that provider, keep ASTOCK_API_KEY in a local .env file or environment variable, and do not paste the key into chat. <br>
-Risk: Broad prompts that mention A-share markets or stock codes may trigger third-party API calls. <br>
-Mitigation: Review whether the request requires live stock data before invoking the skill, especially in sensitive workspaces. <br>
-Risk: Returned market data may be unavailable, delayed, or incomplete depending on the upstream provider. <br>
-Mitigation: Report API failures or missing fields directly and avoid substituting unsourced historical or estimated values. <br>
+## Use Case:
 
+External users and developers use this skill to answer Chinese A-share market questions by calling the configured stock-data API, formatting returned JSON into tables, and adding short data interpretations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wwzzsl/stock-skill-2) <br>
-- [Publisher profile](https://clawhub.ai/user/wwzzsl) <br>
-- [Skill homepage](https://github.com/wwzzsl/skills.git) <br>
-- [AIPMedia API provider](https://aipmedia.cn/) <br>
-- [A-share API field reference](references/api_fields.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown tables and concise explanatory text, with shell command examples for API queries and configuration.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires ASTOCK_API_KEY in a .env file or environment variable before API calls are made.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata) <br>
+Risk: The API key could be exposed to an unintended host if request destinations are not constrained.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Enforce an allowlist of /api/stock endpoints and verify the final origin is api.aipmedia.cn before attaching ASTOCK_API_KEY.
+
+Risk: Unpinned npx tsx execution can introduce dependency or runner drift at install or runtime.
+
+Mitigation: Replace unpinned npx tsx with a locked local dependency or a compiled runner before deployment.
+
+Risk: The security verdict is suspicious and requires review before installation.
+
+Mitigation: Review and scan the skill before deployment, using evidence.security guidance as the acceptance checklist.
+
+## Reference(s):
+
+- [A Stock ClawHub Skill Page](https://clawhub.ai/wwzzsl/skills/stock-skill-2)
+- [Publisher Profile](https://clawhub.ai/user/wwzzsl)
+- [Project Homepage](https://github.com/wwzzsl/skills.git)
+- [API Fields Reference](references/api_fields.md)
+- [Aipmedia API Portal](https://aipmedia.cn/)
+- [Aipmedia Stock API](https://api.aipmedia.cn)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown tables and concise prose based on JSON API responses.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires ASTOCK_API_KEY and uses the Aipmedia stock API for market data.]
+
+## Skill Version(s):
+
+0.1.1 (source: ClawHub release metadata); source skill frontmatter reports 1.0.0
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

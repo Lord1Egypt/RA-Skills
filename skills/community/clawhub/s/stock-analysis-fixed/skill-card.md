@@ -1,40 +1,53 @@
-## Description: <br>
-Use when analyzing stocks or cryptocurrencies with public market data, comparing tickers, and producing structured notes for a portfolio or watchlist. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when analyzing stocks or cryptocurrencies with public market data, comparing tickers, and producing structured notes for a portfolio or watchlist.
 
-## Publisher: <br>
-[xuxuclassmate](https://clawhub.ai/user/xuxuclassmate) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xuxuclassmate](https://clawhub.ai/user/xuxuclassmate)
 
-## Use Case: <br>
-External users and developers use this skill to structure stock and cryptocurrency research, compare tickers, and prepare portfolio or watchlist notes from public market data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Market data or interpretations may be stale, incomplete, or misleading if not sourced carefully. <br>
-Mitigation: Use public market sources, cite data sources when numbers matter, and separate facts from interpretation. <br>
-Risk: Users may mistake research notes for investment advice or trading instructions. <br>
-Mitigation: Treat outputs as educational analysis, avoid order-execution guidance, and do not provide brokerage credentials or private account statements. <br>
+## Use Case:
 
+External users and developers use this skill to structure public-market research on stocks or cryptocurrencies, compare tickers, and produce repeatable watchlist or portfolio notes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xuxuclassmate/stock-analysis-fixed) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or structured text research notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Educational market analysis only; no order execution, broker integration, automated alerts, credential access, or persistence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release evidence) <br>
+Risk: Market data, financial metrics, or news used during analysis may be stale or inaccurate.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify important market numbers from cited public sources before relying on them.
+
+Risk: Research notes could be mistaken for investment advice or trading automation.
+
+Mitigation: Frame conclusions as research, separate facts from interpretation, and do not present the skill as order execution, account management, or automated alerting.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/xuxuclassmate/skills/stock-analysis-fixed)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown research notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No account access, trading execution, or real-time alerting is provided by the skill.]
+
+## Skill Version(s):
+
+1.0.1 (source: SKILL.md frontmatter and ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

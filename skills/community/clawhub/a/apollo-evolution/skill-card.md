@@ -1,40 +1,53 @@
-## Description: <br>
-像生命进化一样复制、变异、选择--让Skill在迭代中自我优化。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Apollo Evolution helps agents optimize skills through an evolution-inspired cycle of copying, mutating, testing, and selecting skill variants.
 
-## Publisher: <br>
-[nic-yuan](https://clawhub.ai/user/nic-yuan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nic-yuan](https://clawhub.ai/user/nic-yuan)
 
-## Use Case: <br>
-Developers and skill authors use this skill to iteratively improve agent skills by copying a baseline skill, creating variants, testing versions, and selecting a preferred result. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The bundled local script can copy and mutate skills with weak path controls. <br>
-Mitigation: Use plain skill slugs rather than paths and inspect any files created under .memory/evolution before using or publishing them. <br>
-Risk: The script reports simulated test scores and selected best versions that are not real quality evidence. <br>
-Mitigation: Treat reported scores as placeholders and perform manual review, testing, and security scanning before adopting a selected variant. <br>
+## Use Case:
 
+Developers and agent builders use this skill to organize iterative skill improvement through copy, mutation, testing, and selection workflows. It is suited for experimenting with prompt, parameter, and structure changes while preserving generation state for review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nic-yuan/apollo-evolution) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Files] <br>
-**Output Format:** [Markdown guidance with bash command examples and local file outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates or modifies skill variant directories under .memory/evolution when the bundled script is executed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The evolution script has unsafe input handling that can write outside intended paths or execute commands through crafted selection input.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the script only in a disposable or version-controlled workspace, pass only trusted skill names and selection values, and review filesystem changes before deploying evolved skills.
+
+Risk: The script reports mock fitness scores until real validation and input checks are added.
+
+Mitigation: Treat generated scores as placeholders and require independent validation before selecting or publishing an evolved skill variant.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/nic-yuan/skills/apollo-evolution)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [When the included shell script is run, it can create copied skill variants and evolution state files under a local .memory/evolution directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: artifact/SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,55 @@
-## Description: <br>
-Provides SEO guidance for optimizing content for featured snippets, Position Zero, and AI Overview citation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents provide SEO guidance for optimizing content toward Featured Snippets, Position Zero, snippet extraction, People Also Ask opportunities, and related schema handoffs.
 
-## Publisher: <br>
-[kostja94](https://clawhub.ai/user/kostja94) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kostja94](https://clawhub.ai/user/kostja94)
 
-## Use Case: <br>
-SEO practitioners, content strategists, and marketers use this skill to identify snippet-worthy queries and structure pages with answer-first copy, semantic HTML, and relevant schema. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: SEO statistics, search feature behavior, and third-party claims may become outdated or vary by region. <br>
-Mitigation: Verify time-sensitive SEO claims against current search results and trusted SEO tooling before using the guidance for production decisions. <br>
+## Use Case:
 
+SEO practitioners, content strategists, marketers, and agents use this skill to structure pages for paragraph, list, and table snippets while also considering AI Overview citation behavior. It supports query targeting, answer-first content structure, semantic HTML recommendations, and schema handoffs.
 
-## Reference(s): <br>
-- [Featured Snippets: What They Are & How to Earn Them](https://www.semrush.com/blog/featured-snippets/) <br>
-- [How the Bing Q&A / Featured Snippet Algorithm Works](https://www.searchenginejournal.com/how-bing-q-and-a-featured-snippet-algorithm-works/362716/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, configuration] <br>
-**Output Format:** [Markdown guidance with tables and structured recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include target queries, recommended snippet format, content structure, and schema suggestions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and skill frontmatter) <br>
+Risk: SEO statistics and search result behavior may change over time.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify current SERP behavior, CTR expectations, and AI Overview impact before relying on the guidance for business decisions.
+
+Risk: The skill may activate during broad featured-snippet or SEO conversations where a narrower SEO skill could be more appropriate.
+
+Mitigation: Confirm the user wants Featured Snippet or Position Zero optimization before applying snippet-specific recommendations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kostja94/skills/featured-snippet)
+- [How the Bing Q&A / Featured Snippet Algorithm Works](https://www.searchenginejournal.com/how-bing-q-and-a-featured-snippet-algorithm-works/362716/)
+- [Featured Snippets: What They Are & How to Earn Them](https://www.semrush.com/blog/featured-snippets/)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Configuration]
+
+**Output Format:** [Markdown guidance with HTML and schema recommendations when applicable]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces target queries, recommended snippet format, content structure guidance, and schema suggestions.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

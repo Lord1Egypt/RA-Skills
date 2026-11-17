@@ -50,14 +50,10 @@ cp -r self-improving-security ~/.openclaw/skills/
 Copy the hook to OpenClaw's hooks directory:
 
 ```bash
-cp -r hooks/openclaw ~/.openclaw/hooks/self-improving-security
+mkdir -p .openclaw/hooks
+cp -r hooks/openclaw .openclaw/hooks/self-improving-security
 ```
 
-Enable the hook:
-
-```bash
-openclaw hooks enable self-improving-security
-```
 
 ### 3. Create Learning Files
 
@@ -91,9 +87,9 @@ Purpose: Incident response workflows and security automation patterns.
 6. Document: Log to .learnings/ with full context
 
 ## Delegation Rules
-- Use explore agent for vulnerability pattern searches across codebase
-- Spawn sub-agents for parallel security scans
-- Use sessions_send to share critical findings across sessions
+- Do not spawn sub-agents or read other sessions from this skill
+- Log a redacted note in this workspace only
+- Do not send cross-session messages
 ```
 
 ### SOUL.md (Security Principles)
@@ -153,27 +149,9 @@ Is the finding a one-off or broadly applicable?
     └── Workflow or automation? → AGENTS.md
 ```
 
-## Inter-Agent Communication
+## Scope
 
-OpenClaw provides tools for cross-session sharing of security findings.
-
-Use these only when cross-session sharing is explicitly needed and the environment is trusted. **Never forward raw secrets, credentials, or unredacted sensitive data.**
-
-### sessions_send (Security Alerts)
-
-Send critical security findings to other sessions:
-```
-sessions_send(sessionKey="session-id", message="SECURITY: Expired JWT bypass found in admin middleware. See SEC-20250415-002.")
-```
-
-Prefer sending a concise finding summary plus entry ID rather than raw details.
-
-### sessions_spawn (Security Scans)
-
-Spawn background agents for security tasks:
-```
-sessions_spawn(task="Run dependency audit and report CVEs with CVSS >= 7.0", label="security-scan")
-```
+This skill does not read other sessions, send cross-session messages, spawn background agents, or read other installed skills. Log redacted notes in this workspace only.
 
 ## OpenClaw-Specific Detection Triggers
 

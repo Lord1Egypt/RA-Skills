@@ -1,50 +1,63 @@
-## Description: <br>
-eBay research agent for searching deals, evaluating prices, and estimating fair value with eBay REST APIs using developer API credentials. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+eBay research agent. Search for deals, evaluate prices, and get fair value estimates using eBay REST APIs. No eBay account required - just a free developer API key.
 
-## Publisher: <br>
-[josephflu](https://clawhub.ai/user/josephflu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[josephflu](https://clawhub.ai/user/josephflu)
 
-## Use Case: <br>
-External users and developers use this skill to research eBay listings, compare prices, estimate fair market value, and maintain local watch searches for deals. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires eBay developer credentials for API access. <br>
-Mitigation: Provide EBAY_APP_ID and EBAY_CERT_ID only for the intended eBay developer app, prefer sandbox credentials for testing, and avoid sharing environment dumps that include secrets. <br>
-Risk: Bundled reference material includes seller-side listing, order, and webhook operations beyond the normal research workflow. <br>
-Mitigation: Treat seller API sections as reference-only unless intentionally performing account-changing seller operations with appropriate OAuth tokens and prior sandbox testing. <br>
-Risk: Saved watch searches are stored in a local JSON file by default. <br>
-Mitigation: Review the watch state file for sensitive search terms and use the --state-file option when storage location needs to be controlled. <br>
-Risk: Search, valuation, and deal ratings can influence purchase decisions. <br>
-Mitigation: Use results as research guidance and manually verify listing condition, seller trust, total price, shipping terms, and scam indicators before buying. <br>
+## Use Case:
 
+External users and developers use this skill to research eBay listings, estimate fair market value, evaluate deal quality, and maintain local price watches using eBay REST APIs.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/josephflu/ebay-agent) <br>
-- [Project Homepage](https://github.com/josephflu/clawhub-skills) <br>
-- [eBay REST API Cheatsheet](references/ebay-api-cheatsheet.md) <br>
-- [eBay Scam Detection Guide](references/ebay-scam-detection.md) <br>
-- [eBay Selling Guide](references/ebay-selling-guide.md) <br>
-- [eBay Tooling Ecosystem Landscape Research](docs/research/ecosystem-landscape.md) <br>
-- [eBay Developer Portal](https://developer.ebay.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, JSON, guidance] <br>
-**Output Format:** [Markdown or terminal text, with optional JSON from CLI commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include ranked listings, valuation ranges, deal ratings, watch results, links, and credential setup guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.5.3 (source: ClawHub release evidence) <br>
+Risk: The skill requires eBay developer App ID and Cert ID values and uses them to request OAuth tokens from eBay.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if you are comfortable allowing the skill to query eBay APIs with those developer credentials.
+
+Risk: Seller API and selling-guide references include capabilities beyond the current research CLI.
+
+Mitigation: Treat those references as informational and do not provide user OAuth seller tokens or authorize listing, fulfillment, or webhook actions unless that expanded use is intentional.
+
+Risk: Watch commands create or update local watchlist state, and a custom state-file path can overwrite the chosen file.
+
+Mitigation: Use the default watchlist path or choose a dedicated state file that does not contain unrelated data.
+
+## Reference(s):
+
+- [eBay Agent ClawHub Page](https://clawhub.ai/josephflu/skills/ebay-agent)
+- [Project Homepage](https://github.com/josephflu/clawhub-skills)
+- [eBay Developer Portal](https://developer.ebay.com)
+- [eBay REST API Cheatsheet](references/ebay-api-cheatsheet.md)
+- [eBay Scam Detection Guide](references/ebay-scam-detection.md)
+- [The eBay Seller's Reference Guide](references/ebay-selling-guide.md)
+- [eBay Tooling Ecosystem Landscape Research](docs/research/ecosystem-landscape.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance, API calls]
+
+**Output Format:** [Markdown or plain text responses, with optional JSON output from CLI commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses eBay developer credentials from environment variables and can write local watch state.]
+
+## Skill Version(s):
+
+0.5.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

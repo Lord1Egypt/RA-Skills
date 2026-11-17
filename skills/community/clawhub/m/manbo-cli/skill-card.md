@@ -1,41 +1,55 @@
-## Description: <br>
-漫播广播剧热搜榜命令行工具。当用户想查看漫播热搜时，使用此 skill。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides users to view Kilamanbo audio drama hot-search rankings with the manbo-cli command-line tool.
 
-## Publisher: <br>
-[liaofuyan](https://clawhub.ai/user/liaofuyan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liaofuyan](https://clawhub.ai/user/liaofuyan)
 
-## Use Case: <br>
-External users and developers use this skill to install and run the Manbo CLI for viewing the Manbo radio-drama hot-search list in a terminal. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The trigger wording may activate during broad conversations about Manbo, radio dramas, or trending topics. <br>
-Mitigation: Invoke the skill only for explicit Manbo hot-search requests and review its triggers before deployment. <br>
-Risk: The workflow installs and runs a third-party CLI package. <br>
-Mitigation: Review the package source and installation policy before global installation in managed environments. <br>
+## Use Case:
 
+External users and agents use this skill when a request mentions Manbo, audio dramas, manbo, or hot-search rankings and the user wants the current Manbo hot-search list.
 
-## Reference(s): <br>
-- [Manbo website](https://kilamanbo.com) <br>
-- [ClawHub skill page](https://clawhub.ai/liaofuyan/manbo-cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server evidence release.version) <br>
+Risk: The skill asks users to globally install an unpinned external npm CLI that is not included in the reviewed artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the manbo-cli npm package, publisher, source, and version before installation; prefer pinned or local installation when available.
+
+Risk: Running a globally installed CLI with broad privileges can increase local execution risk.
+
+Mitigation: Avoid administrator privileges and require clear user confirmation before installation or execution.
+
+## Reference(s):
+
+- [Kilamanbo](https://kilamanbo.com)
+- [ClawHub skill page](https://clawhub.ai/liaofuyan/skills/manbo-cli)
+- [ClawHub publisher profile](https://clawhub.ai/user/liaofuyan)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.2 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

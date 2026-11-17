@@ -1,42 +1,56 @@
-## Description: <br>
-Smart Nutrition Customizer calculates BMR and macronutrient needs from height, weight, age, gender, and activity level, then generates a full-day meal plan with recipes, calorie counts, and nutrition labels. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Smart Nutrition Customizer. Input height, weight, age, gender, and activity level to calculate BMR and macronutrient needs, then generate a full-day meal plan with recipes, calorie counts, and nutrition labels.
 
-## Publisher: <br>
-[openlark](https://clawhub.ai/user/openlark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[openlark](https://clawhub.ai/user/openlark)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users use this skill to estimate BMR, TDEE, and macronutrient targets from basic body and activity data, then receive a full-day meal plan with recipes, ingredient amounts, calorie counts, and nutrition labels.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Users may treat calorie, macronutrient, or meal-plan estimates as medical nutrition therapy.
+
+Mitigation: Frame outputs as general guidance and direct users with clinical needs, pregnancy, minors, eating-disorder support, diabetes, kidney disease, or other medical conditions to a qualified professional.
+
+Risk: The skill asks for basic body and goal information that some users may consider sensitive.
+
+Mitigation: Ask only for missing information needed for the estimate and avoid retaining it unless the host agent has an explicit privacy basis.
+
+Risk: Allergy handling may be limited to simple avoidance.
+
+Mitigation: Ask about allergies and dietary restrictions before planning meals, avoid identified ingredients, and advise users with serious allergies to verify labels and consult qualified support.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users use this skill for general nutrition planning, calorie calculation, weight-loss meals, muscle-gain meals, healthy recipes, and calorie counting. The skill estimates BMR, TDEE, target calories, and macronutrients, then drafts daily meal plans with practical recipes and nutrition summaries. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks users to share body metrics and dietary restrictions for meal planning. <br>
-Mitigation: Share only information needed for the plan and avoid providing unrelated sensitive health details. <br>
-Risk: Nutrition plans and calorie targets may be unsuitable for medical conditions, eating disorders, pregnancy, severe allergies, or clinical diet needs. <br>
-Mitigation: Treat outputs as general nutrition guidance and consult a qualified professional for medical or clinical dietary needs. <br>
-Risk: Calorie, macronutrient, ingredient, or allergy handling errors could make a plan inaccurate or unsafe for a specific user. <br>
-Mitigation: Review targets, ingredients, portions, and restrictions before relying on the plan. <br>
+**Output Format:** [Markdown with tables, recipe sections, calorie estimates, and nutrition summaries]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/openlark/smart-nutrition) <br>
+**Other Properties Related to Output:** [Uses user-provided body data, activity level, health goal, dietary preferences, allergies, and optional calorie targets to produce general nutrition guidance.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown with nutrition tables, recipes, ingredient amounts, cooking steps, and daily summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include BMR, TDEE, target calories, macronutrient estimates, meal-by-meal nutrition labels, alternate daily menus, weekly plans, shopping lists, and calorie adjustments.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

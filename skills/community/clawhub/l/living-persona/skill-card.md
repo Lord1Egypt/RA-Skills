@@ -1,43 +1,60 @@
-## Description: <br>
-Provides OpenClaw agents with dynamic, context-reactive personalities that adapt writing style and tone based on conversation signals and trait propagation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides OpenClaw agents with dynamic, context-reactive personalities that adapt writing style and tone based on conversation signals and trait propagation.
 
-## Publisher: <br>
-[toxzak-svg](https://clawhub.ai/user/toxzak-svg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[toxzak-svg](https://clawhub.ai/user/toxzak-svg)
 
-## Use Case: <br>
-Developers and OpenClaw agent builders use this skill to add a hook-driven personality system that responds to message tone and topic, persists trait state, and stages voice guidance for subsequent agent responses. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The hook saves the latest raw user message and channel or sender identifiers into workspace memory. <br>
-Mitigation: Review or modify persona-inbound.md handling before use in private, regulated, or multi-user workspaces, and reset or delete memory files when changing sessions or users. <br>
-Risk: The hook can change the agent's writing style on every message by staging structural voice directives. <br>
-Mitigation: Enable it only where dynamic persona behavior is desired, review persona-inject.md output, and use the reset script when starting a new session. <br>
+## Use Case:
 
+Developers and agent builders use this OpenClaw hook to add dynamic personality behavior to agents, including signal-based trait activation, trait persistence, and prompt-facing voice directives.
 
-## Reference(s): <br>
-- [Living Persona ClawHub Page](https://clawhub.ai/toxzak-svg/living-persona) <br>
-- [OpenClaw Hooks Documentation](https://docs.openclaw.ai/automation/hooks) <br>
-- [Living Persona Setup Guide](references/setup.md) <br>
-- [Personality Presets](references/presets.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown memory files, JSON trait state, and concise text directives] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes persona-inbound.md, persona-inject.md, persona-state.json, and a trigger sentinel in workspace memory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The hook can persistently change how every agent response is written.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the generated voice directives before deployment and use ambient mode or remove structural prompt injection where stable agent behavior is required.
+
+Risk: The hook stores raw conversation text in workspace memory.
+
+Mitigation: Do not use it in sensitive, shared, or regulated workspaces unless raw message logging is disabled or clearly scoped and memory files are regularly cleared.
+
+Risk: The bundled persona includes hard-coded relationship framing and anchors.
+
+Mitigation: Remove or customize those anchors before installing the hook for users or teams other than the original publisher's intended context.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/toxzak-svg/skills/living-persona)
+- [OpenClaw Hooks Documentation](https://docs.openclaw.ai/automation/hooks)
+- [Setup Guide](artifact/references/setup.md)
+- [Personality Presets](artifact/references/presets.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown prompt files, JSON state, and setup command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes persona-inject.md, persona-inbound.md, persona-state.json, and persona-trigger.txt under workspace memory.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,57 @@
-## Description: <br>
-Behavior Persona analyzes local OpenClaw conversation history to generate user behavior profiles and personalized response guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Builds personalized user behavior profiles by analyzing OpenClaw conversation history, then generates profile data and response guidance for an agent.
 
-## Publisher: <br>
-[chefroger](https://clawhub.ai/user/chefroger) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chefroger](https://clawhub.ai/user/chefroger)
 
-## Use Case: <br>
-OpenClaw users can use this skill to profile their own local conversation patterns, communication style, work preferences, and recurring needs. It is intended for users who explicitly want conversation-derived data reused to personalize future agent behavior. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill profiles local OpenClaw conversation history and stores conversation-derived data, which can include sensitive information. <br>
-Mitigation: Run the scripts manually first, inspect generated files under the skill data directory, and delete stored data if the collected content is not acceptable. <br>
-Risk: The skill can persistently change future agent behavior by injecting a generated profile block into SOUL.md. <br>
-Mitigation: Back up SOUL.md before use, keep the daily cron job disabled until reviewed, and manually remove the profile block to revert behavior. <br>
-Risk: Memory writes can further persist profile-derived guidance if explicitly enabled. <br>
-Mitigation: Keep WRITE_MEMORY disabled unless persistent MEMORY.md updates are intentionally desired and reviewed. <br>
+## Use Case:
 
+OpenClaw users and agent developers use this skill to analyze recent local conversation history, generate a personal behavior profile, and tailor future agent responses. It is most useful when the user intentionally wants local personalization and is willing to review stored profile data and SOUL.md updates.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/chefroger/behavior-persona) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, Python scripts, JSON profile files, and generated prompt text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local data files such as collected_data.json, analysis reports, user-profile.json, and optional SOUL.md profile blocks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release evidence) <br>
+Risk: The skill reads recent OpenClaw session history and local memory files, then stores truncated conversation content in its data folder.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run collection manually first, inspect the generated data, and delete the data folder if the stored content is not acceptable.
+
+Risk: The daily profile update script can persistently inject a user profile block into SOUL.md.
+
+Mitigation: Back up SOUL.md before use, avoid enabling the cron job unless automatic updates are intended, and review or remove the injected profile block after each run.
+
+Risk: MEMORY.md writing is disabled by default but can be enabled in code.
+
+Mitigation: Keep MEMORY writing disabled unless each memory update will be reviewed before it is retained.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/chefroger/skills/behavior-persona)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON files, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown instructions and Python-generated local JSON, Markdown reports, and prompt text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores local profile data and can update SOUL.md when run manually or via user-configured cron.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

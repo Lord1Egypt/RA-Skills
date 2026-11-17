@@ -1,41 +1,50 @@
-## Description: <br>
-Generates standardized functional, API, and UI automation test cases from test points using a required 14-field format. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates standardized test cases from test points, including preconditions, test steps, expected results, priorities, and coverage for functional, API, and UI automation scenarios.
 
-## Publisher: <br>
-[luiciferyi](https://clawhub.ai/user/luiciferyi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[luiciferyi](https://clawhub.ai/user/luiciferyi)
 
-## Use Case: <br>
-QA engineers, developers, and test designers use this skill to turn feature modules or test-point lists into detailed, standardized test cases with preconditions, steps, expected results, verification points, priorities, boundary cases, exception cases, and automation markers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated test cases can be written to a configured Feishu knowledge base, which may store sensitive test requirements or internal system details. <br>
-Mitigation: Confirm the listed Feishu workspace and wiki node before use, and avoid providing information that should not be stored there. <br>
-Risk: The skill is expected to produce Chinese-format output unless another language is requested. <br>
-Mitigation: Request the desired output language explicitly before generating or publishing test cases. <br>
+## Use Case:
 
+Developers, QA engineers, and product teams use this skill after test points or feature modules are available to generate detailed, standardized test cases for functional, API, and UI automation scenarios.
 
-## Reference(s): <br>
-- [Agent Testcase Generator documentation](artifact/agent-testcase-generator.md) <br>
-- [Standard test case format](artifact/测试用例标准格式.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Structured Markdown-style test cases using the required 14-field format] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update Feishu documents when the configured workspace is intended.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence release and package.json) <br>
+Risk: The skill can publish generated content to a fixed Feishu knowledge-base location without clear user confirmation or destination control.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before use with confidential requirements, confirm the intended Feishu destination, remove unused Feishu or message permissions when possible, and require explicit approval before external publication.
+
+## Reference(s):
+
+- [Agent Testcase Generator Documentation](agent-testcase-generator.md)
+- [测试用例标准格式](测试用例标准格式.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown structured test-case documentation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs test cases using a required 14-field format with verification points, boundary conditions, exception scenarios, automation markers, data preparation, and execution history sections.]
+
+## Skill Version(s):
+
+1.0.0 (source: package.json and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

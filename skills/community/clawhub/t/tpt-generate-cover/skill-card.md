@@ -1,42 +1,57 @@
-## Description: <br>
-Generate a TPT cover using the AI Studio DinoCover tool and save it locally with the book title as filename. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate a TPT cover using the AI Studio DinoCover tool and save it locally with the book title as filename.
 
-## Publisher: <br>
-[kakazhang50](https://clawhub.ai/user/kakazhang50) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[kakazhang50](https://clawhub.ai/user/kakazhang50)
 
-## Use Case: <br>
-Creators or operators preparing Teachers Pay Teachers assets use this skill to automate cover generation from local TXT story files and PNG reference covers in Google AI Studio's DinoCover tool. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Selected TXT story content and PNG reference covers are uploaded to Google AI Studio. <br>
-Mitigation: Use a dedicated Google profile or account when possible and keep only intended non-sensitive files in the input folders. <br>
-Risk: The output filename is derived from the TXT title. <br>
-Mitigation: Use simple filename-safe title text before running the workflow. <br>
-Risk: Authentication, MFA, captcha, or repeated tool failures can interrupt the workflow. <br>
-Mitigation: Stop and hand off to a human instead of attempting login, verification, or account-setting changes. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kakazhang50/tpt-generate-cover) <br>
-- [Google AI Studio DinoCover tool](https://aistudio.google.com/apps/drive/1dsPpIhA2HzaacwO16jxddnerC-B64MuC?showPreview=true&showAssistant=true&fullscreenApplet=true) <br>
+## Use Case:
 
+External creators or operators preparing Teachers Pay Teachers materials use this skill to drive the AI Studio DinoCover tool with local TXT and PNG inputs and save a generated cover image locally.
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Guidance] <br>
-**Output Format:** [PNG image file saved locally, with procedural browser automation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local TXT and PNG inputs; saves the generated cover as <TITLE>.png.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter: 0.1.0) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The title from the TXT input is used as the output filename and could contain unsafe path characters, reserved Windows names, or a name that overwrites an existing file.
+
+Mitigation: Sanitize titles into safe basenames, reject path separators and reserved Windows names, and check for existing output files before saving.
+
+Risk: The workflow depends on a persisted Google login in the geminibuild browser profile.
+
+Mitigation: Use only a pre-existing trusted browser profile, do not handle login or account changes, and stop for login, MFA, verification, or captcha prompts.
+
+Risk: The browser workflow uploads local reference PNGs to the AI Studio tool.
+
+Mitigation: Run only with trusted local reference images and confirm that uploaded files are appropriate for the target Google account and DinoCover session.
+
+## Reference(s):
+
+- [AI Studio DinoCover Tool](https://aistudio.google.com/apps/drive/1dsPpIhA2HzaacwO16jxddnerC-B64MuC?showPreview=true&showAssistant=true&fullscreenApplet=true)
+- [ClawHub Skill Page](https://clawhub.ai/kakazhang50/skills/tpt-generate-cover)
+
+## Skill Output:
+
+**Output Type(s):** [Files]
+
+**Output Format:** [PNG image file saved to a local output folder]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Filename is derived from the first line of the latest TXT input; the generated image is downloaded from the browser tool.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

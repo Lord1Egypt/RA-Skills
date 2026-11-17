@@ -1,6 +1,7 @@
 {
-  "ownerId": "kn7719xtz37kprbvgjknegrt21886q74",
-  "slug": "claude-clarity",
-  "version": "1.8.12",
-  "publishedAt": 1782663110868
+  "name": "claude-clarity",
+  "aliases": ["心虫", "草履虫", "小虫子", "clarity", "heartbug"],
+  "version": "1.1.5",
+  "description": "心虫/Clarity — AI 认知内核：存在感知、三层记忆、PAD情绪分析、真善美评估、目标树、思考门。曾用名草履虫（Paramecium）、小虫子等。",
+  "tags": ["cognitive-engine", "memory-system", "self-verification", "reasoning", "consciousness", "ontology", "psychology", "emotion", "dream-engine", "counterfactual", "q-learning", "topic-isolation", "thought-chain", "identity-preservation", "entropy", "philosophy", "decision-verification", "lesson-learning", "code-generation", "agent-orchestration", "process-management"]
 }

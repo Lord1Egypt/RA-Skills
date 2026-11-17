@@ -1,39 +1,58 @@
-## Description: <br>
-Drive Owl Browser as an agent. Read pages as compact, handle-addressable OwlMark and click/type by handle, not by screenshot or pixel coordinates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Drive Owl Browser as an agent. Read pages as compact, handle-addressable OwlMark and click/type by handle, not by screenshot or pixel coordinates.
 
-## Publisher: <br>
-[ibnbd](https://clawhub.ai/user/ibnbd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ibnbd](https://clawhub.ai/user/ibnbd)
 
-## Use Case: <br>
-Developers and external agents use this skill to control Owl Browser through its HTTP or MCP tooling, observe pages as OwlMark, and click or type using handles during web navigation tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A non-local or untrusted Owl Browser endpoint may receive browser actions, observations, page data, and bearer-token authenticated requests. <br>
-Mitigation: Use localhost or HTTPS endpoints you control, protect OWL_API_TOKEN, and avoid entering sensitive credentials or private page data unless you trust the server. <br>
+## Use Case:
 
+Developers and agents use Owl Browser to navigate and inspect webpages through compact OwlMark text and stable action handles. It supports browser workflows that need observe-act loops, form entry, navigation, and visual screenshots only when text rendering is insufficient.
 
-## Reference(s): <br>
-- [Owl Browser homepage](https://www.owlbrowser.net) <br>
-- [ClawHub skill page](https://clawhub.ai/ibnbd/owl-browser) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with bash command examples and JSON request bodies] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires OWL_API_ENDPOINT, OWL_API_TOKEN, and curl; observations return OwlMark text and handle tokens.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: Browser-control workflows can expose visited URLs, user actions, and observed page content to the configured Owl Browser service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only a trusted localhost or internal HTTPS Owl Browser endpoint, and avoid sensitive pages unless that processing is acceptable.
+
+Risk: The bearer token grants access to the Owl Browser API.
+
+Mitigation: Protect OWL_API_TOKEN like a password and avoid exposing it in logs, shared shells, or untrusted environments.
+
+Risk: Agent-driven click and type actions can affect live webpages.
+
+Mitigation: Observe before acting, use exact handle tokens from the current page, and re-observe after each action before continuing.
+
+## Reference(s):
+
+- [Owl Browser homepage](https://www.owlbrowser.net)
+- [ClawHub Owl Browser skill page](https://clawhub.ai/ibnbd/skills/owl-browser)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON request examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires OWL_API_ENDPOINT, OWL_API_TOKEN, and curl; browser actions are performed through a trusted Owl Browser API endpoint.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata; artifact frontmatter reports 1.2.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

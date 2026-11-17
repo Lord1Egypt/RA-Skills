@@ -1,45 +1,63 @@
-## Description: <br>
-A command-line assistant skill for reverse engineering Android APK files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A command-line agent skill for reverse engineering Android APK files with Apktool.
 
-## Publisher: <br>
-[killgfat](https://clawhub.ai/user/killgfat) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[killgfat](https://clawhub.ai/user/killgfat)
 
-## Use Case: <br>
-Developers and security engineers use this skill to inspect, decode, rebuild, troubleshoot, and document Android APK packages with Apktool, Java, and optional JADX support. Use should be limited to APKs the user owns or is authorized to assess. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: APK reverse engineering, rebuilding, signing, and integrity-check workflows can be misused on software the user is not authorized to assess. <br>
-Mitigation: Use the skill only on APKs the user owns or has explicit permission to analyze, and respect copyright, licensing, and software-protection rules. <br>
-Risk: Manual installation examples download releases and change privileged system paths. <br>
-Mitigation: Prefer trusted package managers such as apt or Homebrew; when manual installation is needed, review each sudo or PATH-changing command and verify downloaded releases where possible. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Apktool homepage](https://apktool.org) <br>
-- [Apktool documentation](https://apktool.org/docs) <br>
-- [Apktool GitHub repository](https://github.com/iBotPeaches/Apktool) <br>
-- [Apktool install guide](references/install.md) <br>
-- [Apktool usage guide](references/usage.md) <br>
-- [Apktool troubleshooting guide](references/troubleshooting.md) <br>
-- [JADX release used by manual install metadata](https://github.com/skylot/jadx/releases/download/v1.5.0/jadx-1.5.0.zip) <br>
+## Use Case:
 
+Developers and security engineers use this skill to get Apktool and JADX installation guidance, APK decode and rebuild commands, troubleshooting steps, and legal-use reminders for authorized Android application analysis.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Markdown] <br>
-**Output Format:** [Markdown with inline shell commands and command explanations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include APK analysis, rebuild, signing, installation, and troubleshooting steps for authorized APK workflows.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.0.2 (source: server release metadata and artifact documentation) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Manual install steps download executable archives and binaries before placing them on system-wide paths.
+
+Mitigation: Prefer package-manager installation where available; when manual installation is required, verify checksums or signatures before making files executable.
+
+Risk: Install guidance writes under /opt and /usr/local/bin, which may require elevated privileges and can affect the host system.
+
+Mitigation: Review commands before execution and prefer user-local installation paths or isolated environments.
+
+Risk: APK reverse engineering can create legal or policy exposure if used on apps without authorization.
+
+Mitigation: Use the skill only for APKs the user owns or is authorized to analyze, and do not distribute modified commercial applications.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/killgfat/skills/apktool)
+- [Apktool homepage](https://apktool.org)
+- [Apktool documentation](https://apktool.org/docs)
+- [Apktool GitHub project](https://github.com/iBotPeaches/Apktool)
+- [JADX release archive referenced by install metadata](https://github.com/skylot/jadx/releases/download/v1.5.0/jadx-1.5.0.zip)
+- [Install guide](references/install.md)
+- [Usage guide](references/usage.md)
+- [Troubleshooting guide](references/troubleshooting.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Markdown]
+
+**Output Format:** [Markdown with inline shell commands and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are guidance for local command-line APK analysis workflows; the skill depends on apktool, java, and jadx being available.]
+
+## Skill Version(s):
+
+0.0.2 (source: server release metadata and artifact documentation)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

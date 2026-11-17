@@ -1,45 +1,63 @@
-## Description: <br>
-MiniMax speech synthesizes text to audio, manages asynchronous TTS tasks, and supports voice cloning, voice design, voice lookup, and voice deletion through the MiniMax API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MiniMax Speech helps agents use MiniMax APIs for synchronous and asynchronous text-to-speech, voice cloning, voice design, voice lookup, and voice deletion.
 
-## Publisher: <br>
-[silingyuan0](https://clawhub.ai/user/silingyuan0) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[silingyuan0](https://clawhub.ai/user/silingyuan0)
 
-## Use Case: <br>
-Developers and agents use this skill to generate speech audio files from text, submit and query asynchronous TTS jobs, and manage MiniMax voices for cloning, design, lookup, and deletion. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Text and selected audio are sent to MiniMax APIs for synthesis, cloning, or voice design. <br>
-Mitigation: Use a dedicated MiniMax API key where possible and send only text and audio that are approved for processing by MiniMax. <br>
-Risk: Voice cloning can process uploaded reference audio and create reusable voice IDs. <br>
-Mitigation: Upload only voices that the user has permission to clone and check MiniMax review requirements before using cloned or designed voices. <br>
-Risk: The delete command removes a MiniMax voice by voice ID and the skill does not add a separate confirmation step. <br>
-Mitigation: Double-check the target voice ID before running deletion commands. <br>
+## Use Case:
 
+Developers and agents use this skill to automate MiniMax speech synthesis workflows, including producing local audio files and managing custom voices through the MiniMax API.
 
-## Reference(s): <br>
-- [MiniMax speech API reference](artifact/references/api.md) <br>
-- [ClawHub skill page](https://clawhub.ai/silingyuan0/minimax-speech-generate) <br>
-- [MiniMax China API endpoint](https://api.minimaxi.com/v1) <br>
-- [MiniMax international API endpoint](https://api.minimax.io/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Code, Shell commands, Configuration, Files, API Calls] <br>
-**Output Format:** [Markdown guidance, Python functions, CLI commands, JSON API responses, and local audio files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces mp3, wav, or pcm audio files; may return MiniMax task IDs, voice IDs, base64 audio, or JSON status data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and release evidence) <br>
+Risk: Text prompts and reference voice samples are sent to MiniMax APIs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid submitting private or sensitive content unless the user has approved that disclosure and the MiniMax account terms allow it.
+
+Risk: Voice cloning can create or manage custom voice identities.
+
+Mitigation: Clone voices only from samples collected with proper consent and keep generated voice identifiers controlled.
+
+Risk: The skill can delete remote voice records by voice_id.
+
+Mitigation: Confirm the intended voice_id before deletion and avoid automating deletion without a review step.
+
+Risk: Generated audio is written to a caller-provided local path.
+
+Mitigation: Use explicit output paths in controlled directories to avoid overwriting unintended files.
+
+## Reference(s):
+
+- [MiniMax Speech API reference](references/api.md)
+- [ClawHub skill page](https://clawhub.ai/silingyuan0/skills/minimax-speech-generate)
+- [ClawHub publisher profile](https://clawhub.ai/user/silingyuan0)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Files]
+
+**Output Format:** [Markdown guidance with Python function calls, shell commands, JSON configuration examples, and generated audio files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce mp3, wav, or pcm audio files and MiniMax task or voice identifiers.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

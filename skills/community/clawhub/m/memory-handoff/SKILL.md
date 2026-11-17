@@ -1,11 +1,15 @@
 ---
 name: memory-handoff
+version: 0.1.1
+license: MIT
 description: Use at the end of any session that discovered durable knowledge (architecture decisions, root causes, setup gotchas, workflow changes, security findings, reusable patterns), or when the user says "hand off", "write a handoff", or "save this for the memory system".
 ---
 
 # memory-handoff
 
 Coding sessions die with their transcripts. A memory handoff is a short structured note that a memory owner (a long-lived agent, a teammate, or future you) can review and file into durable memory. This skill pairs with [brigade](https://github.com/escoffier-labs/brigade), which lints and ingests handoffs, but works standalone.
+
+In a Brigade-wired repo the handoff is the closing gate of the [Brigade process model](../../../docs/brigade-process-model.md). This skill owns the handoff itself: format, quality bar, routing sections, and lint.
 
 ## When a handoff is warranted
 

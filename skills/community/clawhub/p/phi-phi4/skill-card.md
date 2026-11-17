@@ -1,44 +1,61 @@
-## Description: <br>
-Guides agents through installing and using Microsoft Phi-family models with the ollama-herd local fleet router on low-RAM, cross-platform devices. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Phi Phi4 helps agents guide setup and use of Microsoft Phi models through an Ollama Herd local fleet on macOS, Linux, and Windows devices.
 
-## Publisher: <br>
-[twinsgeeks](https://clawhub.ai/user/twinsgeeks) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[twinsgeeks](https://clawhub.ai/user/twinsgeeks)
 
-## Use Case: <br>
-Developers and engineers use this skill to set up ollama-herd, route Phi models across local devices, and call local chat, monitoring, image, speech, and embedding APIs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The local router exposes broader model, image, speech, embedding, and monitoring APIs than a single Phi shortcut. <br>
-Mitigation: Install only when the broader ollama-herd router is intended, review the package source, and keep the service bound to trusted interfaces. <br>
-Risk: Prompts, uploaded files or audio, and fleet logs may contain sensitive data. <br>
-Mitigation: Use an isolated Python environment where practical and treat ~/.fleet-manager logs and submitted content as sensitive. <br>
+## Use Case:
 
+Developers and engineers use this skill to plan and run Phi-family local model workflows with Ollama Herd, including router startup, fleet node setup, OpenAI-compatible API calls, and fleet monitoring.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/twinsgeeks/phi-phi4) <br>
-- [ollama-herd PyPI Project](https://pypi.org/project/ollama-herd/) <br>
-- [ollama-herd Repository](https://github.com/geeks-accelerator/ollama-herd) <br>
-- [Agent Setup Guide](https://github.com/geeks-accelerator/ollama-herd/blob/main/docs/guides/agent-setup-guide.md) <br>
-- [API Reference](https://github.com/geeks-accelerator/ollama-herd/blob/main/docs/api-reference.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Code, Configuration guidance] <br>
-**Output Format:** [Markdown with inline bash, Python, curl, and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes local setup and API usage examples; model downloads require explicit user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: evidence release and SKILL.md frontmatter) <br>
+Risk: Installing an unpinned external package may run code that has not been reviewed for the deployment environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install ollama-herd only from a trusted publisher source, preferably in a virtual environment and with a pinned reviewed version.
+
+Risk: The local router exposes localhost APIs and uses fleet state and log files under ~/.fleet-manager.
+
+Mitigation: Run the fleet only in trusted local environments, avoid sensitive prompts or audio unless the fleet setup is approved, and monitor the documented state and log paths.
+
+Risk: Model downloads and deletion operations can consume storage or remove local assets.
+
+Mitigation: Require explicit user confirmation for model pulls and deletions, consistent with the skill guardrails.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/twinsgeeks/skills/phi-phi4)
+- [Ollama Herd Project](https://github.com/geeks-accelerator/ollama-herd)
+- [Ollama Herd Agent Setup Guide](https://github.com/geeks-accelerator/ollama-herd/blob/main/docs/guides/agent-setup-guide.md)
+- [Ollama Herd API Reference](https://github.com/geeks-accelerator/ollama-herd/blob/main/docs/api-reference.md)
+- [ollama-herd on PyPI](https://pypi.org/project/ollama-herd/)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, code, configuration]
+
+**Output Format:** [Markdown with bash, Python, curl, and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Provides local service endpoints, model names, hardware guidance, and guardrails for user-confirmed model operations.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

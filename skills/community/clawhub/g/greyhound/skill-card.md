@@ -1,40 +1,58 @@
-## Description: <br>
-Analyzes greyhound races, fetches data, and predicts winners/placings for upcoming races based on form, odds, and simple models. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes greyhound races, fetches data, and predicts winners/placings for upcoming races based on form, odds, and simple models.
 
-## Publisher: <br>
-[iglemanyte-ctrl](https://clawhub.ai/user/iglemanyte-ctrl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[iglemanyte-ctrl](https://clawhub.ai/user/iglemanyte-ctrl)
 
-## Use Case: <br>
-External users and developers use this skill to gather public greyhound racing data, assess form and odds, and produce concise predicted winners and placings for upcoming races. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Race predictions can be uncertain and may be misused as betting or financial advice. <br>
-Mitigation: Present predictions as probabilistic analysis, include concise reasoning, and avoid representing outputs as guaranteed outcomes. <br>
-Risk: The skill browses public racing websites and may optionally run local Python calculations. <br>
-Mitigation: Install only when this access pattern is acceptable and review any generated or executed code before use. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [GBGB Today's Trials and Meetings](https://www.gbgb.org.uk/racing/todays-trials-meetings/) <br>
-- [GBGB Results API](https://api.gbgb.org.uk/api/results?page=1&date={today}&track={track}) <br>
+## Use Case:
 
+External users use this skill to fetch public greyhound racing data, compare runners using form, odds, trap position, and simple scoring, and produce winner and placing predictions with concise rationale.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown with concise race predictions, reasoning, and optional Python snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Predictions are uncertain and should not be treated as betting or financial advice.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Race predictions may be incorrect or misconstrued as reliable gambling advice.
+
+Mitigation: Present predictions as informational analysis, avoid claims of certainty, and make clear that users should not rely on them as gambling advice.
+
+Risk: Public racing websites or APIs may be unavailable, stale, or incomplete.
+
+Mitigation: Report missing or uncertain data clearly, cite the race details used, and ask the user for a track or date when needed.
+
+Risk: Optional local Python execution may run modeling code based on fetched data.
+
+Mitigation: Review code and dependencies before execution and keep analysis limited to the public race data needed for scoring.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/iglemanyte-ctrl/skills/greyhound)
+- [GBGB today's trials and meetings](https://www.gbgb.org.uk/racing/todays-trials-meetings/)
+- [GBGB results API](https://api.gbgb.org.uk/api/results?page=1&date={today}&track={track})
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Guidance]
+
+**Output Format:** [Markdown or plain text race analysis with optional Python modeling snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces winner and placing predictions with concise reasoning; may include uncertainty notes or fetch-failure messages.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

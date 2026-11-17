@@ -217,6 +217,16 @@ Do NOT downgrade this gate.
 If no URL available (dev-only environment): log `INFO: no URL for Lighthouse — run manually before deploy`
 If Lighthouse MCP not installed: log `INFO: Lighthouse MCP not available — run lighthouse [url] --output json manually`
 
+### Step 5.5 — Motion / Animation Performance (frontend only)
+
+Apply only when the diff touches motion. Strong signals: `@keyframes`, `motion.`, `animate={`, `useSpring`, `will-change`, `transition:` / `transition-`. Weak signals: bare `transition` / `animation` / `transform` — these also match non-motion code and prose (state-machine "transition", `AnimationController`, static layout transforms), so treat them as a trigger only when they co-occur with a strong signal (mirrors `review`'s Motion Craft Checks). These are frame-budget regressions — a dropped frame is a 16.7ms miss at 60fps. Findings are **WARN** by default (jank degrades feel, rarely blocks a merge); escalate to **BLOCK** only when motion runs on a hot, always-on path (scroll handler, drag loop, list with many animated rows). Rank within the Cost Impact Hierarchy under *compute* (main-thread work) — note this is client-side compute: the cost is UX/conversion degradation and engineering-hour ROI, not a cloud-billing multiplier like Tier 3's infra examples. For remediation values and the full rationale, point to `skills/design/MOTION-CRAFT.md §9`.
+
+- **Non-GPU property animation** — animating `width`/`height`/`margin`/`padding`/`top`/`left` (or `transition: all`) triggers layout + paint every frame. Finding: `MOTION_LAYOUT_THRASH — [file:line] — animating [prop] forces layout/paint per frame — use transform/opacity`
+- **Framer Motion shorthands under load** — `x`/`y`/`scale` props run on the main thread via rAF and drop frames while the page is busy. Finding: `MOTION_NOT_HW_ACCEL — [file:line] — FM x/y/scale shorthand — use full transform string for GPU compositing`
+- **CSS-variable-driven child transforms** — updating a variable on a parent to drive children recalculates styles for every child (recalc storm). Finding: `MOTION_RECALC_STORM — [file:line] — parent CSS var drives child transform — set transform on the element directly`
+- **`will-change` misuse** — missing on imminent, frequently-triggered motion, or left on permanently (permanent layer promotion wastes GPU memory). Finding: `MOTION_WILL_CHANGE — [file:line] — [missing on hot path | left on permanently]`
+- **Keyframes on rapidly-triggered / interruptible motion** — restart-from-zero causes visible jank under rapid retriggering; CSS transitions or springs retarget smoothly. Finding: `MOTION_NON_INTERRUPTIBLE — [file:line] — keyframes on rapidly-triggered element`
+
 ### Step 6 — Framework-Specific Checks
 
 **React:**
@@ -446,7 +456,7 @@ Known failure modes for this skill. Check these before declaring done.
 **Scope guardrail:** perf investigates and reports only — it does not fix code. All fixes are delegated to `fix` (L2) after the report is reviewed.
 
 ---
-> **Rune Skill Mesh** — 64 skills, 204 connections + 40 signals, 14 extension packs
+> **Rune Skill Mesh** — 66 skills, 248 connections + 45 signals, 14 extension packs
 > [Landing Page](https://rune-kit.github.io/rune) · [Source](https://github.com/rune-kit/rune) (MIT)
-> **Rune Pro** ($49 lifetime) — product, sales, data-science, support packs → [rune-kit/rune-pro](https://github.com/rune-kit/rune-pro)
+> **Rune Pro** ($49 lifetime) — 9 domain packs + context intelligence → [rune-kit/rune-pro](https://github.com/rune-kit/rune-pro)
 > **Rune Business** ($149 lifetime) — finance, legal, HR, enterprise-search packs → [rune-kit/rune-business](https://github.com/rune-kit/rune-business)

@@ -1,0 +1,323 @@
+{
+  "version": "1.1.0",
+  "updated": "2026-11-16",
+  "cards": [
+    {
+      "name": "复古印刷信息图",
+      "file": "library/cards/风格卡_复古印刷信息图.md",
+      "reference": "assets/原图_ClaudeCode周年派对信息图.jpg",
+      "vibe": "奶油底+高饱和色块卡片，黑描边扁平插画，高密度多要点",
+      "ratio": "3:4 竖版",
+      "use_cases": [
+        "小红书图文",
+        "知识点合集",
+        "活动复盘",
+        "课程笔记"
+      ],
+      "engine": "html",
+      "verified": true,
+      "verified_with": "免费AI证书攻略选题实测，复现度~90%"
+    },
+    {
+      "name": "手绘白板涂鸦风",
+      "file": "library/cards/风格卡_手绘白板涂鸦风.md",
+      "reference": "assets/原图_手绘白板涂鸦风CLI复兴.jpg",
+      "vibe": "白板手绘线稿+荧光黄唯一强调色，松弛笔记感，讲概念",
+      "ratio": "4:3 横版",
+      "use_cases": [
+        "概念科普",
+        "前后对比",
+        "公式化表达",
+        "流程推演"
+      ],
+      "engine": "imagegen",
+      "verified": true,
+      "verified_with": "RAG科普选题实测，复现度~95%，文字零错"
+    },
+    {
+      "name": "终端风封面",
+      "file": "library/cards/风格卡_终端风封面.md",
+      "reference": "assets/原图_WAYTOAGI终端风封面.jpg",
+      "vibe": "复古终端窗口+像素彩虹字母，极客retro-tech",
+      "ratio": "16:9 横版",
+      "use_cases": [
+        "文章封面",
+        "单观点海报",
+        "技术主题"
+      ],
+      "engine": "imagegen",
+      "verified": true,
+      "verified_with": "「POETRY/诗遇」实测，复现度~95%，噪点清单生效"
+    },
+    {
+      "name": "像素RPG游戏地图",
+      "file": "library/cards/风格卡_像素RPG游戏地图.md",
+      "reference": "assets/原图_像素RPG游戏地图.jpg",
+      "vibe": "16-bit像素冒险地图，知识点=游戏窗口，路径=闯关",
+      "ratio": "4:3 横版",
+      "use_cases": [
+        "路径对比",
+        "学习路线",
+        "方法论证",
+        "流程闯关"
+      ],
+      "engine": "imagegen",
+      "verified": true,
+      "verified_with": "「先发出去再说」选题实测，复现度~95%，文字基本零错"
+    },
+    {
+      "name": "技术原理分步动画",
+      "file": "library/cards/风格卡_技术原理分步动画.md",
+      "reference": "assets/原图_技术原理分步动画_一次请求的旅程.png",
+      "vibe": "灰白流程图+蓝紫强调，token小药丸沿节点流动，步骤条同步讲解",
+      "ratio": "16:9 / 1:1",
+      "use_cases": [
+        "技术原理讲解",
+        "系统流程",
+        "机制对比",
+        "公众号/小红书动图"
+      ],
+      "engine": "html-anim",
+      "verified": true,
+      "verified_with": "RAG提问旅程demo实测，动画同步正常，双帧截图验证"
+    },
+    {
+      "name": "新粗野主义",
+      "file": "library/cards/风格卡_新粗野主义.md",
+      "reference": "examples/新粗野主义_Neo_Brutalism_风格海报_3_4_竖_2026-10-24T15-31-06.jpg",
+      "vibe": "粗黑描边+硬阴影+撞色大字，反AI味宣言海报",
+      "ratio": "3:4 竖 / 1:1",
+      "use_cases": [
+        "观点输出",
+        "避坑警告",
+        "高冲击单页"
+      ],
+      "engine": "imagegen",
+      "verified": true,
+      "verified_with": "「每天15分钟」首样~95%"
+    },
+    {
+      "name": "便当盒BentoGrid",
+      "file": "library/cards/风格卡_便当盒BentoGrid.md",
+      "reference": "examples/便当盒BentoGrid_demo_Bonnie的Skill工坊.png",
+      "vibe": "圆角模块拼网格，Apple式清爽现代",
+      "ratio": "1:1 / 4:3",
+      "use_cases": [
+        "作品集",
+        "技能清单",
+        "资源汇总"
+      ],
+      "engine": "html",
+      "verified": true,
+      "verified_with": "Skill工坊demo实测，布局清爽"
+    },
+    {
+      "name": "杂志编辑风",
+      "file": "library/cards/风格卡_杂志编辑风.md",
+      "reference": "examples/杂志编辑风_demo_会赚时间的妈妈书评.png",
+      "vibe": "衬线大标题+细网格+大留白，高端杂志质感",
+      "ratio": "3:4 竖 / 16:9 横",
+      "use_cases": [
+        "深度长文",
+        "书评",
+        "个人IP调性"
+      ],
+      "engine": "html",
+      "verified": true,
+      "verified_with": "书评demo实测，可直接发公众号"
+    },
+    {
+      "name": "极简大字报",
+      "file": "library/cards/风格卡_极简大字报.md",
+      "reference": "examples/极简大字报_Bold_Minimal_风格海报_1_1_方形_2026-10-24T15-31-04.jpg",
+      "vibe": "超大金句+巨量留白+单一强调色，字即图形",
+      "ratio": "1:1 / 4:5",
+      "use_cases": [
+        "金句卡片",
+        "封面",
+        "单观点"
+      ],
+      "engine": "imagegen",
+      "verified": true,
+      "verified_with": "「完成大于完美」首样~98%"
+    },
+    {
+      "name": "拍立得拼贴",
+      "file": "library/cards/风格卡_拍立得拼贴.md",
+      "reference": "examples/拍立得拼贴_Scrapbook_风格海报_3_4_竖版_奶油_2026-10-24T15-30-59.jpg",
+      "vibe": "照片+胶带+便签+手写批注，温暖手工感",
+      "ratio": "3:4 竖",
+      "use_cases": [
+        "个人故事",
+        "书评",
+        "复盘感悟"
+      ],
+      "engine": "imagegen",
+      "verified": true,
+      "verified_with": "「种一棵树」首样~95%"
+    },
+    {
+      "name": "暗色霓虹",
+      "file": "library/cards/风格卡_暗色霓虹.md",
+      "reference": "examples/暗色霓虹科技海报_16_9_横版_深空蓝黑背景__0A0E1_2026-10-24T15-31-00.jpg",
+      "vibe": "深空底+霓虹光晕+细网格，高质感科技海报",
+      "ratio": "16:9 横 / 1:1",
+      "use_cases": [
+        "硬核技术科普",
+        "AI概念",
+        "开发者内容"
+      ],
+      "engine": "imagegen",
+      "verified": true,
+      "verified_with": "「RAG外挂资料库」首样~95%（注释重复坑已回写）"
+    },
+    {
+      "name": "轻国风新中式",
+      "file": "library/cards/风格卡_轻国风新中式.md",
+      "reference": "examples/轻国风新中式_demo_会赚时间的妈妈书评.png",
+      "vibe": "宣纸米白底+淡墨晕染+篆刻印章+大留白，清雅克制有书卷气",
+      "ratio": "3:4 竖 / 1:1",
+      "use_cases": [
+        "文化科普",
+        "读书书评",
+        "节日节气",
+        "个人IP调性"
+      ],
+      "engine": "html",
+      "verified": true,
+      "verified_with": "书评demo实测，宣纸+印章+淡墨复现，文字零错"
+    },
+    {
+      "name": "液态玻璃质感",
+      "file": "library/cards/风格卡_液态玻璃质感.md",
+      "reference": "examples/一张液态玻璃质感的知识卡片海报_竖版_3_4_深空蓝紫渐变背_2026-10-26T11-26-37.jpg",
+      "vibe": "半透明磨砂玻璃+流动高光+渐变折射，软质3D通透高级感",
+      "ratio": "3:4 竖（实测最佳）/ 1:1 / 16:9 横",
+      "use_cases": [
+        "数码3C",
+        "科技概念",
+        "AI主题封面",
+        "高端知识卡"
+      ],
+      "engine": "imagegen",
+      "verified": true,
+      "verified_with": "「每天15分钟」首样~95%，文字零错（含3个小字模块）"
+    },
+    {
+      "name": "自然意境肌理风",
+      "file": "library/cards/风格卡_自然意境肌理风.md",
+      "reference": "examples/一张自然意境肌理风的知识卡片海报_竖版_3_4_低饱和莫兰迪_2026-10-26T11-35-41.jpg",
+      "vibe": "莫兰迪灰调+纸纹底+朦胧植物光影+大留白，专做一句语录/金句的走心文案卡",
+      "ratio": "3:4 竖（实测最佳）/ 1:1",
+      "use_cases": [
+        "语录文案",
+        "金句卡片",
+        "书摘",
+        "生活感悟"
+      ],
+      "engine": "imagegen",
+      "verified": true,
+      "verified_with": "「每天15分钟」首样~95%，标题零错；坑：正文>16字/行会错字（已回写）"
+    },
+    {
+      "name": "ASCII字符艺术风",
+      "file": "library/cards/风格卡_ASCII字符艺术风.md",
+      "reference": "examples/ASCII字符艺术风_demo_人人都能AI编程.html",
+      "vibe": "字符符号拼图形+单色终端绿，复古数字美学极客感，文字零错",
+      "ratio": "1:1 / 4:3 / 3:4",
+      "use_cases": [
+        "AI/编程概念",
+        "技术论坛",
+        "极客知识卡",
+        "金句卡"
+      ],
+      "engine": "html",
+      "verified": true,
+      "verified_with": "「人人都能AI编程」demo实测，字符图形+拼字标题，文字100%准确"
+    },
+    {
+      "name": "电影叙事排版风",
+      "file": "library/cards/风格卡_电影叙事排版风.md",
+      "reference": "examples/电影叙事排版风_demo_敢不敢裸辞.jpg",
+      "vibe": "摄影大图铺底+颗粒胶片+复古衬线大字，电影定格讲故事，极简克制",
+      "ratio": "16:9 横 / 3:4 竖",
+      "use_cases": [
+        "书评宣传",
+        "纪录片",
+        "文旅",
+        "高端品牌/IP封面"
+      ],
+      "engine": "imagegen",
+      "verified": true,
+      "verified_with": "「敢不敢裸辞」实测，文字零错，电影感调色/颗粒/暗角到位，复现度~95%"
+    },
+    {
+      "name": "复古未来主义Y2K",
+      "file": "library/cards/风格卡_复古未来主义Y2K.md",
+      "reference": "examples/复古未来主义Y2K_demo_我用AI做了X.html",
+      "vibe": "千禧年数字美学：铬金属渐变+霓虹描边+网格背景+蝴蝶像素，又甜又酷的乐观未来感",
+      "ratio": "3:4 竖 / 1:1",
+      "use_cases": [
+        "潮牌",
+        "音乐节",
+        "科技产品",
+        "个人IP",
+        "青年文化"
+      ],
+      "engine": "html",
+      "verified": true,
+      "verified_with": "「我用AI做了X」HTML demo 实测，铬金属渐变/全息彩虹/荧光标签复现，文字零错"
+    },
+    {
+      "name": "酸性多巴胺风",
+      "file": "library/cards/风格卡_酸性多巴胺风.md",
+      "reference": "",
+      "vibe": "高饱和荧光撞色+液态金属+故障艺术，迷幻超现实的视觉兴奋剂，第一眼抓眼球",
+      "ratio": "3:4 竖 / 1:1",
+      "use_cases": [
+        "潮牌",
+        "音乐节",
+        "青年活动",
+        "派对海报",
+        "叛逆观点输出"
+      ],
+      "engine": "imagegen",
+      "verified": false,
+      "verified_with": "草稿，待人工确认后出图验证"
+    },
+    {
+      "name": "液体变形字体排印风",
+      "file": "library/cards/风格卡_液体变形字体排印风.md",
+      "reference": "examples/液体变形字体排印风_demo_先发出去.html",
+      "vibe": "超大号标题拉伸膨胀流动变形，字体即主视觉，液态渐变+镜面高光+柔光浅底",
+      "ratio": "3:4 竖 / 1:1",
+      "use_cases": [
+        "金句卡片",
+        "观点海报",
+        "活动主视觉",
+        "个人IP",
+        "知识卡封面"
+      ],
+      "engine": "html",
+      "verified": true,
+      "verified_with": "「先发出去」HTML demo 实测，液态渐变/镜面高光/膨胀变形复现，文字零错"
+    },
+    {
+      "name": "中世纪洛可可复兴风",
+      "file": "library/cards/风格卡_中世纪洛可可复兴风.md",
+      "reference": "",
+      "vibe": "洛可可卷草边框+复古纹章+蕾丝压纹肌理+大地暖色，复古华丽极繁，庄重高级",
+      "ratio": "3:4 竖 / 1:1",
+      "use_cases": [
+        "文化科普",
+        "书评",
+        "高端品牌/IP封面",
+        "节日节气",
+        "艺术海报"
+      ],
+      "engine": "imagegen",
+      "verified": false,
+      "verified_with": "草稿，待人工确认后出图验证"
+    }
+  ]
+}

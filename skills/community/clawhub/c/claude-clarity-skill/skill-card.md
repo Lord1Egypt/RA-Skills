@@ -1,47 +1,62 @@
-## Description: <br>
-Clarity is a Node.js MCP-native cognitive engine that adds structured reasoning, persistent memory, self-verification, PAD emotion analysis, and truth-kindness-beauty evaluation to agent workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Clarity is a Node.js MCP cognitive engine that provides existence awareness, three-layer persistent memory, PAD emotion analysis, and truth-goodness-beauty evaluation.
 
-## Publisher: <br>
-[yun520-1](https://clawhub.ai/user/yun520-1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yun520-1](https://clawhub.ai/user/yun520-1)
 
-## Use Case: <br>
-Developers and agent users use Clarity as an MCP-native cognitive layer for structured reasoning, persistent memory, self-checking, and decision-quality evaluation in AI workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security evidence reports under-disclosed local runtime authority, persistence, broad memory retention, external model fallback, and possible self-modifying workflows. <br>
-Mitigation: Install only in a contained environment until startup, shutdown, stored data, external LLM calls, and any self-updating or commit/push behavior are reviewed and explicitly approved. <br>
-Risk: The skill may retain user or session data through persistent memory features. <br>
-Mitigation: Review storage paths and retention behavior before use, avoid sensitive inputs until retention is understood, and clear or isolate local state between projects. <br>
-Risk: Shell commands, generated code, and configuration guidance can affect the local environment. <br>
-Mitigation: Review proposed commands and code before execution, run with least privilege, and prefer disposable workspaces for evaluation. <br>
+## Use Case:
 
+Developers and agent operators use Clarity to add an MCP-based cognitive support layer for structured reasoning, memory continuity, self-verification, emotional analysis, and decision checks.
 
-## Reference(s): <br>
-- [Clarity Skill Page](https://clawhub.ai/yun520-1/claude-clarity-skill) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [README.md](artifact/README.md) <br>
-- [System Requirements](artifact/SYSTEM_REQUIREMENTS.md) <br>
-- [Security Policy](artifact/SECURITY.md) <br>
-- [Security Audit Report](artifact/docs/security-audit-report-2026-06-13.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown and text responses with code, shell command, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read and persist local state when installed as an MCP-backed cognitive engine.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.5 (source: server release metadata, SKILL.md frontmatter, package.json) <br>
+Risk: Persistent agent integration and broad memory behavior may be under-disclosed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat installation as review-required, inspect local state and memory behavior, and avoid sensitive environments until the persistence model is accepted.
+
+Risk: External LLM forwarding may occur when related environment variables are configured.
+
+Mitigation: Require explicit opt-in for external calls and audit environment variables before enabling the skill.
+
+Risk: Installer or MCP setup can change local agent configuration and enable host code execution paths.
+
+Mitigation: Do not run install.sh or enable MCP integration until commands and configuration changes are reviewed; test first in an isolated environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yun520-1/skills/claude-clarity-skill)
+- [SKILL.md](artifact/SKILL.md)
+- [README.md](artifact/README.md)
+- [SECURITY.md](artifact/SECURITY.md)
+- [SYSTEM_REQUIREMENTS.md](artifact/SYSTEM_REQUIREMENTS.md)
+- [Security audit report](artifact/docs/security-audit-report-2026-06-13.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and text responses with inline code and shell command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May persist local memory/state and register MCP tooling when installed; review security guidance before enabling.]
+
+## Skill Version(s):
+
+1.1.5 (source: evidence.release.version, SKILL.md frontmatter, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

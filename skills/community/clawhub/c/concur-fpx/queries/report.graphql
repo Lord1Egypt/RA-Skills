@@ -1,0 +1,37 @@
+# $userId: from whoami.graphql — reportEntriesDetails rejects "" (400), unlike employee()
+query Report($userId: String!, $reportId: String!) {
+  employee(userId: $userId, contextRole: TRAVELER) {
+    expenseReport(reportId: $reportId) {
+      reportDetails {
+        name
+        reportNumber
+        approvalStatus
+        paymentStatus
+        startDate
+        endDate
+        submitDate
+        currencyCode
+        reportTotal { value currencyCode }
+        claimedAmount { value currencyCode }
+        approvedAmount { value currencyCode }
+      }
+    }
+  }
+  reportEntriesDetails(userId: $userId, reportId: $reportId, contextRole: TRAVELER) {
+    entries {
+      expenseId
+      summary {
+        transactionDate
+        vendor { name description }
+        expenseType { code name }
+        paymentType { name }
+        transactionAmount { value currencyCode }
+        postedAmount { value currencyCode }
+        approvedAmount { value currencyCode }
+        location { name city countryCode }
+        isPersonalExpense
+        meta { hasReceiptImage hasExceptions hasItemizations hasAttendees }
+      }
+    }
+  }
+}

@@ -1,48 +1,65 @@
-## Description: <br>
-Localizes Chinese UI and system copy for digital tax, invoice, filing, and compliance products into market-appropriate language for Vietnam, Malaysia, Singapore, Poland, Italy, and Germany. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Localizes Chinese in-product copy for tax, invoicing, filing, and compliance systems into market-appropriate UI text for Vietnam, Malaysia, Singapore, Poland, Italy, and Germany.
 
-## Publisher: <br>
-[munich949](https://clawhub.ai/user/munich949) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[munich949](https://clawhub.ai/user/munich949)
 
-## Use Case: <br>
-Developers and product teams use this skill to translate Chinese program UI strings for tax and e-invoicing systems while preserving placeholders, keys, markup, ordering, and product-ready wording. It is intended for routine UI localization and for higher-risk tax terminology that may need authoritative or local review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Vietnam, Malaysia, Singapore, Poland, Italy, and Germany <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Country-to-language defaults may not match multilingual deployments or local compliance expectations. <br>
-Mitigation: Specify the exact target locale or language for each deployment, especially for Singapore, Malaysia, and other multilingual markets. <br>
-Risk: Tax, invoice, filing, and compliance terms can carry legal or business meaning that a translation may not fully resolve. <br>
-Mitigation: Have important tax wording reviewed by local subject-matter experts before production use, and verify high-risk terms against authoritative local sources when needed. <br>
+## Use Case:
 
+Developers and localization reviewers use this skill to translate Chinese UI labels, buttons, messages, and tax or invoice terms into deployment-ready product copy for six target markets while preserving keys, placeholders, markup, and structural formatting.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/munich949/tax-digital-localization) <br>
-- [UI patterns](references/ui-patterns.md) <br>
-- [Tax terms](references/tax-terms.md) <br>
-- [Vietnam locale](references/locales/vietnam.md) <br>
-- [Malaysia locale](references/locales/malaysia.md) <br>
-- [Singapore locale](references/locales/singapore.md) <br>
-- [Poland locale](references/locales/poland.md) <br>
-- [Italy locale](references/locales/italy.md) <br>
-- [Germany locale](references/locales/germany.md) <br>
+### Deployment Geography for Use:
 
+Global, with localization guidance for Vietnam, Malaysia, Singapore, Poland, Italy, and Germany.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Guidance] <br>
-**Output Format:** [Plain text translation, with an optional note line when ambiguity or semantic risk is present.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Preserves code keys, placeholders, ICU structures, markup, field names, enum values, error codes, ordering, and line breaks when present.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Tax, invoice, and compliance terminology can have jurisdiction-specific meanings that may not be fully determined from UI copy alone.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review high-risk localized terms against product context and local requirements before release.
+
+Risk: Ambiguous or missing country and language targets can produce unsuitable localization, especially for multilingual markets.
+
+Mitigation: Confirm the intended target country and language before using the output in a product.
+
+Risk: Translated strings may become too long or awkward when placeholders or UI constraints limit word order.
+
+Mitigation: Check generated strings in the target interface while preserving placeholders, keys, and markup exactly.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/munich949/skills/tax-digital-localization)
+- [UI Patterns](references/ui-patterns.md)
+- [Tax Terms](references/tax-terms.md)
+- [Vietnam Locale](references/locales/vietnam.md)
+- [Malaysia Locale](references/locales/malaysia.md)
+- [Singapore Locale](references/locales/singapore.md)
+- [Poland Locale](references/locales/poland.md)
+- [Italy Locale](references/locales/italy.md)
+- [Germany Locale](references/locales/germany.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Plain text or Markdown preserving the user's input structure; final translation only, with an optional note for ambiguity or semantic risk.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Preserves code keys, placeholders, ICU placeholders, markup, numeric/date/currency tokens, line breaks, and list or key-value structure.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

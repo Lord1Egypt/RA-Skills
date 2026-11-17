@@ -1,44 +1,58 @@
-## Description: <br>
-AI content platform CLI for creating workspaces, managing SEO keywords, generating article suggestions, writing articles, and publishing to WordPress, Webflow, Wix, GoHighLevel, or webhooks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI content platform CLI - create workspaces, manage SEO keywords, generate article suggestions, write articles, and publish to WordPress, Webflow, Wix, GoHighLevel, or webhooks.
 
-## Publisher: <br>
-[vincenzor](https://clawhub.ai/user/vincenzor) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vincenzor](https://clawhub.ai/user/vincenzor)
 
-## Use Case: <br>
-External developers and content teams use this skill to let an agent operate the Balzac CLI for workspace setup, SEO keyword management, article generation, export, and publishing workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses BALZAC_API_KEY and can let an agent act through a Balzac account. <br>
-Mitigation: Store BALZAC_API_KEY in a secure environment variable or secret manager, and avoid placing keys directly in shell commands. <br>
-Risk: Balzac actions can spend credits for suggestion generation, article writing, rewrites, and image regeneration. <br>
-Mitigation: Require explicit confirmation before commands that spend credits, including suggestion acceptance, direct article writing, rewrites, and cover image regeneration. <br>
-Risk: Workspace deletion, settings changes, article rewrites, and publishing integrations can affect live content or account state. <br>
-Mitigation: Require human review before deleting resources, changing settings, rewriting articles, or publishing to WordPress, Webflow, Wix, GoHighLevel, or webhooks. <br>
+## Use Case:
 
+Developers, content teams, and site operators use this skill to operate the Balzac CLI for workspace setup, SEO keyword management, article generation, Markdown export, and publishing through supported CMS or webhook integrations.
 
-## Reference(s): <br>
-- [Balzac Developer Documentation](https://developer.hirebalzac.ai) <br>
-- [Balzac API Keys](https://app.hirebalzac.ai/api_keys) <br>
-- [ClawHub Skill Page](https://clawhub.ai/vincenzor/balzac) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with shell command examples and command tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include JSON-oriented CLI guidance through balzac --json.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.9 (source: server release metadata) <br>
+Risk: The skill requires a Balzac API key, which could expose account access if pasted into logs, prompts, or shell history.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide BALZAC_API_KEY through an environment variable or secret manager, and avoid passing the key as a command argument.
+
+Risk: Generated articles, integration IDs, or webhook targets could publish incorrect content or affect connected sites.
+
+Mitigation: Review generated articles and confirm integration IDs before publishing or triggering webhooks.
+
+Risk: The workflow depends on the external balzac-cli package and the user's Balzac account.
+
+Mitigation: Install only from trusted sources, preferably with a pinned or locally reviewed package version.
+
+## Reference(s):
+
+- [Balzac Developer Documentation](https://developer.hirebalzac.ai)
+- [Balzac API Keys](https://app.hirebalzac.ai/api_keys)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and CLI workflow guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include JSON-oriented CLI usage patterns when advising scriptable Balzac commands.]
+
+## Skill Version(s):
+
+1.0.9 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

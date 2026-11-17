@@ -1,41 +1,55 @@
-## Description: <br>
-Generate cinematic D&D character portraits and tabletop RPG hero art from a text description. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate cinematic D&D character portraits and tabletop RPG hero art from a text description using the Neta AI image generation API.
 
-## Publisher: <br>
-[omactiengartelle](https://clawhub.ai/user/omactiengartelle) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[omactiengartelle](https://clawhub.ai/user/omactiengartelle)
 
-## Use Case: <br>
-External users, players, dungeon masters, and tabletop RPG creators use this skill to generate character portrait prompts through the Neta image generation service and receive an image URL for campaign or virtual tabletop use. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, optional reference IDs, and the API token are sent to an external image-generation service. <br>
-Mitigation: Use only trusted Neta/TalesOfAI tokens, avoid submitting confidential campaign or personal data, and prefer limited tokens. <br>
-Risk: Passing the API token with --token may leave local command-line traces. <br>
-Mitigation: Run the command in a controlled environment and avoid sharing shell history or process listings that may expose the token. <br>
+## Use Case:
 
+External users and agents use this skill to generate Dungeons & Dragons and tabletop RPG character art from text prompts, with optional size selection and reference-image style inheritance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/omactiengartelle/dnd-character-generator) <br>
-- [Neta API token portal](https://www.neta.art/open/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text] <br>
-**Output Format:** [Plain text image URL] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Neta API token and sends prompts, optional reference image UUIDs, and generation settings to the disclosed external image-generation service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata and package.json) <br>
+Risk: A command-line parsing bug can accidentally send the user's API token as image prompt text.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Place the character description before --token, avoid token-only invocations until parsing is fixed, and use only a token acceptable for use with the Neta/Tales of AI service.
+
+Risk: Unpinned npx installation can install a moving package version.
+
+Mitigation: Prefer a pinned package version or a ClawHub-managed install path for repeatable installs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/omactiengartelle/skills/dnd-character-generator)
+- [Publisher profile](https://clawhub.ai/user/omactiengartelle)
+- [Neta API token page](https://www.neta.art/open/)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text image URL with optional Markdown command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Neta API token; supports portrait, landscape, square, and tall image size options.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

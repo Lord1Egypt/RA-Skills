@@ -1,40 +1,66 @@
-## Description: <br>
-Converts Markdown or text chapter files into MP3 audiobook audio using the Xiaomi MiMo TTS API, with batch processing, long-text segmentation, voice and style options, and resume support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts Markdown and text chapter files into MP3 audiobook audio using the Xiaomi MiMo TTS API, with batch processing, long-text segmentation, voice selection, and style controls.
 
-## Publisher: <br>
-[zhouchang1988](https://clawhub.ai/user/zhouchang1988) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[zhouchang1988](https://clawhub.ai/user/zhouchang1988)
 
-## Use Case: <br>
-External users and developers use this skill to turn trusted chapter directories into MP3 audiobook files through the Xiaomi MiMo TTS API, choosing voices, styles, chapter ranges, and output folders. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Chapter text and the API key may be sent to the configured TTS API endpoint, including a custom endpoint if one is supplied. <br>
-Mitigation: Use only trusted chapter content, treat the API key as sensitive, and avoid custom base URLs unless the endpoint is controlled and trusted. <br>
-Risk: The shell wrapper constructs and evaluates a command from option values, so untrusted paths or option values can affect command execution. <br>
-Mitigation: Prefer invoking the Python synthesis script directly and pass only trusted paths and option values when using the wrapper. <br>
+## Use Case:
 
+Developers and creators use this skill to convert directories of novel chapters into MP3 audiobook files through Xiaomi MiMo TTS. It supports chapter ranges, output directories, voice and style selection, request delay configuration, and resume behavior for existing audio files.
 
-## Reference(s): <br>
-- [Xiaomi MiMo Token Plan](https://mimo.mi.com/token-plan) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Files] <br>
-**Output Format:** [Markdown guidance with shell commands; execution produces MP3 audio files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses chapter directory, output directory, API key, voice, style, model, endpoint, delay, and chapter range options.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: The skill sends chapter text to a remote TTS provider.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with text that is appropriate to share with the configured Xiaomi MiMo endpoint.
+
+Risk: API credentials may be exposed through command arguments or logs.
+
+Mitigation: Prefer the MIMO_API_KEY environment variable and avoid pasting keys into shared shell history or transcripts.
+
+Risk: Custom API base URLs can redirect text and credentials to an untrusted endpoint.
+
+Mitigation: Use custom --base-url values only for endpoints that have been explicitly reviewed and trusted.
+
+Risk: The wrapper script can execute injected shell commands when run with untrusted arguments.
+
+Mitigation: Review and fix the command construction before running scripts/run.sh with untrusted input.
+
+Risk: Dependencies are not pinned to exact versions.
+
+Mitigation: Pin and review dependency versions before deployment in controlled or production environments.
+
+## Reference(s):
+
+- [Xiaomi MiMo Token Plan](https://mimo.mi.com/token-plan)
+- [ClawHub skill page](https://clawhub.ai/zhouchang1988/skills/xiaomi-tts-chapters)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Files, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and generated MP3 audio files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses a Xiaomi MiMo API key and sends chapter text to a remote TTS provider; API usage may incur costs.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

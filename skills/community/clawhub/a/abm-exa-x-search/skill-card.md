@@ -1,42 +1,54 @@
-## Description: <br>
-Search Twitter/X for tweets, discussions, and sentiment on topics, people, or brands using Exa's tweet category search. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search Twitter/X for tweets, discussions, and sentiment on topics, people, or brands using Exa's tweet category search.
 
-## Publisher: <br>
-[mariokarras](https://clawhub.ai/user/mariokarras) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mariokarras](https://clawhub.ai/user/mariokarras)
 
-## Use Case: <br>
-Employees, external users, and developers use this skill to find relevant Twitter/X conversations about a topic, person, brand, or competitor and synthesize sentiment, themes, notable voices, and actionable insights. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search topics may be sent to Exa for Twitter/X research. <br>
-Mitigation: Use the skill only for topics appropriate to share with Exa, and avoid confidential or sensitive queries. <br>
-Risk: The workflow depends on the local `tools/clis/exa.js` helper. <br>
-Mitigation: Confirm the helper is present and trusted before running the suggested commands. <br>
-Risk: Optional product marketing context files may contain sensitive launch or customer information. <br>
-Mitigation: Review and redact sensitive details before allowing the skill to use those files. <br>
+## Use Case:
 
+Developers and agents use this skill to search Twitter/X with Exa's tweet category, then summarize relevant tweets, sentiment patterns, notable voices, themes, trends, and actionable insights for a brand, person, product, or topic.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/mariokarras/abm-exa-x-search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with tweet summaries, sentiment labels, synthesis sections, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include individual tweet summaries, overall sentiment, key themes, notable voices, conversation trend, and actionable insights.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: Command templates can turn an untrusted search topic into local shell execution if followed literally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pass search topics as safe process arguments and avoid interpolating untrusted topics into shell strings.
+
+Risk: The skill may read a local product-marketing context file and use that context in the search workflow.
+
+Mitigation: Review local marketing context before use and avoid including sensitive or irrelevant information in files the skill reads.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mariokarras/skills/abm-exa-x-search)
+- [ClawHub publisher profile](https://clawhub.ai/user/mariokarras)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with tweet summaries, sentiment synthesis, actionable insights, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Exa CLI search and contents commands, dry-run commands, sentiment labels, key themes, notable voices, and conversation trend assessments.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

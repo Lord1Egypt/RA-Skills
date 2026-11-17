@@ -1,39 +1,56 @@
-## Description: <br>
-Manage tasks, projects, and workspaces in Exponential via the `exponential` CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage tasks, projects, and workspaces in Exponential via the `exponential` CLI.
 
-## Publisher: <br>
-[positonic](https://clawhub.ai/user/positonic) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[positonic](https://clawhub.ai/user/positonic)
 
-## Use Case: <br>
-Developers and Exponential users use this skill to create, list, review, and update actions, projects, workspaces, and kanban board state from an agent workflow. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The Exponential CLI uses a JWT token for authentication, and exposed tokens can allow access to Exponential data. <br>
-Mitigation: Verify the npm CLI package before use, avoid sharing JWTs in terminals or transcripts, and rotate the token if it is exposed. <br>
-Risk: Broad task-management requests may create or update the wrong Exponential action in shared workspaces. <br>
-Mitigation: Review create and update commands, task IDs, project IDs, and status changes before execution. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Exponential service URL](https://www.exponential.im) <br>
+## Use Case:
 
+External users and developers use this skill to have an agent prepare and run Exponential CLI commands for creating, listing, triaging, and updating tasks, projects, workspaces, and kanban boards.
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [TTY output is pretty-printed; scripted or forced JSON output is available through the Exponential CLI.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Installing a mutable global CLI package can expose the user to unexpected package changes or untrusted code.
+
+Mitigation: Install only if the `exponential-cli` npm package and Exponential service are trusted, and prefer a pinned or otherwise verified CLI version.
+
+Risk: JWT authentication tokens can be exposed through pasted shell commands or shared agent logs.
+
+Mitigation: Avoid placing real JWTs in shared prompts, shell history, or logs; rotate any token that may already have been exposed.
+
+Risk: Create and update commands can make unintended remote changes to Exponential workspace tasks.
+
+Mitigation: Confirm the target workspace, project, action ID, and requested change before allowing the agent to create or update tasks.
+
+## Reference(s):
+
+- [Exponential](https://www.exponential.im)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, JSON]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON output examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Interactive CLI output may be pretty-printed; piped or scripted output may be JSON.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

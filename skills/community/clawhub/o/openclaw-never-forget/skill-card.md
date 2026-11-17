@@ -1,42 +1,54 @@
-## Description: <br>
-Openclaw Never Forget guides Openclaw to maintain bilingual persistent memory through daily episodic logs, periodic context snapshots, long-term knowledge extraction, and explicit recall workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Openclaw Never Forget is a bilingual memory-management skill that directs an agent to keep episodic daily logs, periodic context snapshots, long-term semantic notes, and explicit recall summaries.
 
-## Publisher: <br>
-[chenyh1226](https://clawhub.ai/user/chenyh1226) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chenyh1226](https://clawhub.ai/user/chenyh1226)
 
-## Use Case: <br>
-Developers and Openclaw users use this skill to preserve project context, user preferences, decisions, task history, and recallable summaries across sessions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill continuously saves user and project context into persistent local memory files. <br>
-Mitigation: Use it only when long-term local memory is desired, and regularly inspect, redact, or delete saved markdown files. <br>
-Risk: Saved memory files may contain sensitive project context or personal preferences. <br>
-Mitigation: Keep the memory folder out of public repositories and avoid sharing secrets while the skill is active. <br>
-Risk: Recall output can be misleading if the requested history is not present in memory files. <br>
-Mitigation: Follow the skill directive to state clearly when no record exists instead of fabricating history. <br>
+## Use Case:
 
+External users and developers use this skill to give an OpenClaw agent persistent working memory across active sessions, including daily task logs, compressed context checkpoints, distilled project knowledge, and recall summaries grounded in stored memory files.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chenyh1226/openclaw-never-forget) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Files, Guidance] <br>
-**Output Format:** [Markdown memory logs and synthesized natural-language summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill instructs the agent to append local memory files and summarize retrieved memory rather than paste raw logs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: The skill directs ongoing local memory retention and silent automatic capture of user and project context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when persistent local memory is intended, review memory files regularly, avoid sharing secrets while active, and prefer releases with confirmation, deletion, redaction, and opt-out controls.
+
+Risk: Stored memory may contain outdated or incorrect facts that could affect later recall.
+
+Mitigation: Use the skill's no-fabrication rule during recall and correct or remove inaccurate memory entries when identified.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chenyh1226/skills/openclaw-never-forget)
+- [Publisher profile](https://clawhub.ai/user/chenyh1226)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Files, Guidance]
+
+**Output Format:** [Markdown memory logs and synthesized natural-language summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Bilingual English/Chinese output that adapts to the user's primary language.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

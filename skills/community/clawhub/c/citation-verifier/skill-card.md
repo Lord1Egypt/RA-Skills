@@ -1,38 +1,53 @@
-## Description: <br>
-Verify, normalize, and enrich a single citation or paper identifier. Use when the user pastes a DOI, URL, arXiv ID, PubMed ID, citation string, or paper title and wants it checked. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Verify, normalize, and enrich a single citation or paper identifier. Use when the user pastes a DOI, URL, arXiv ID, PubMed ID, citation string, or paper title and wants it checked.
 
-## Publisher: <br>
-[papersareflowing](https://clawhub.ai/user/papersareflowing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[papersareflowing](https://clawhub.ai/user/papersareflowing)
 
-## Use Case: <br>
-Researchers, students, and other users can verify and normalize a known paper reference without starting a broader literature search. The skill is suited for checking one DOI, URL, arXiv ID, PubMed ID, citation string, or paper title and returning a structured bibliographic result. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may include unrelated sensitive draft text or private notes when asking for citation checks. <br>
-Mitigation: Provide only the citation, identifier, paper title, or URL that needs verification. <br>
+## Use Case:
 
+External users and developers use this skill to verify and normalize a known academic citation or paper identifier, then receive a concise structured record and next-step guidance when verification is ambiguous or fails.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/papersareflowing/citation-verifier) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Structured Markdown citation card] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes normalized bibliographic fields, identifiers, verification status, and suggested next steps for ambiguous or failed matches.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: release evidence) <br>
+Risk: The skill can be misapplied to broad literature searches or paper recommendations, which are outside its intended scope.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for a specific known citation, DOI, URL, arXiv ID, PubMed ID, citation string, or paper title.
+
+Risk: Ambiguous or failed citation matches may be mistaken for verified paper records.
+
+Mitigation: Preserve the verification status in the output and ask for a more complete title or a different identifier when the match is unclear.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/papersareflowing/skills/citation-verifier)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Structured Markdown card]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes title, authors, year, venue, DOI, additional identifiers, and verification status when available.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

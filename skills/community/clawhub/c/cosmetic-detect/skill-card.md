@@ -1,41 +1,57 @@
-## Description: <br>
-Analyzes uploaded facial or body photos for visual signs associated with cosmetic surgery or aesthetic procedures, including before-and-after comparisons and naturalness scoring. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes facial or body photos for possible signs of cosmetic surgery or aesthetic procedures using probabilistic, limitation-aware visual indicators.
 
-## Publisher: <br>
-[deusyu](https://clawhub.ai/user/deusyu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[deusyu](https://clawhub.ai/user/deusyu)
 
-## Use Case: <br>
-External users and agents use this skill to produce cautious, probability-framed observations about possible cosmetic procedures from user-provided images. The skill is intended to include image-quality limits, uncertainty language, and disclaimers in the analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can produce sensitive or stigmatizing judgments about a person's cosmetic history, ethnicity, age, or naturalness from photos. <br>
-Mitigation: Use only with clear consent, avoid analysis of private third parties, and do not use outputs for harassment, reputation judgments, medical conclusions, employment, or other consequential decisions. <br>
-Risk: Photo quality, filters, makeup, lighting, genetics, and viewing angle can make cosmetic-procedure observations unreliable. <br>
-Mitigation: Frame findings as uncertain visual indicators, state image-quality limitations, and avoid certainty claims. <br>
+## Use Case:
 
+External users can ask an agent to review uploaded images or before/after comparisons for cautious, non-diagnostic observations about possible cosmetic or aesthetic procedures. The skill is intended to return uncertainty-aware visual analysis, not factual determinations about identity, health, ethnicity, age, or cosmetic history.
 
-## Reference(s): <br>
-- [Cosmetic Surgery Detection: Region-by-Region Analysis Guide](references/analysis-framework.md) <br>
-- [ClawHub skill page](https://clawhub.ai/deusyu/cosmetic-detect) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown analysis with structured findings, confidence levels, and disclaimers] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include bilingual headings when matching the user's language.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: The skill asks agents to make sensitive appearance-based judgments about ethnicity, age, cosmetic procedures, and naturalness from photos.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not use outputs as factual determinations or for employment, insurance, healthcare, identity, moderation, or reputational decisions.
+
+Risk: Analyzing private individuals or third-party images can create consent and reputational risks.
+
+Mitigation: Use only with appropriate consent and avoid analyzing private people or third-party images without permission.
+
+Risk: Image quality, lighting, makeup, filters, editing, genetics, aging, and weight changes can produce misleading indicators.
+
+Mitigation: State visible limitations, use low/medium/high confidence labels, and phrase findings as possible or suggestive rather than certain.
+
+## Reference(s):
+
+- [Cosmetic Surgery Detection: Region-by-Region Analysis Guide](references/analysis-framework.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown analysis report with confidence labels, regional observations, overall assessment, and disclaimer]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses probability language and depends heavily on image quality, lighting, angle, makeup, filters, and editing.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,55 @@
-## Description: <br>
-Batch extract text, UI elements, and data from up to 500 screenshots. Flat $6.00 USDC via x402. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Batch extract text, UI elements, and data from up to 500 screenshots. Flat $6.00 USDC via x402.
 
-## Publisher: <br>
-[ntriq-gh](https://clawhub.ai/user/ntriq-gh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ntriq-gh](https://clawhub.ai/user/ntriq-gh)
 
-## Use Case: <br>
-Developers and analysts use this skill to call Ntriq's x402 screenshot extraction API, sending batches of screenshot URLs for text, UI element, layout, and table extraction into JSON analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Screenshots are sent to a third-party service and may contain sensitive UI content or data. <br>
-Mitigation: Only submit screenshot URLs approved for sharing with Ntriq, and avoid secrets, personal data, or proprietary material unless authorized. <br>
-Risk: Using the endpoint requires a flat $6.00 USDC x402 payment. <br>
-Mitigation: Confirm the payment amount, Base mainnet use, and x402 payment header before sending requests. <br>
-Risk: Provider-side local inference does not mean screenshots remain on the user's own machine. <br>
-Mitigation: Treat processing as third-party provider processing unless Ntriq supplies separate data-handling commitments. <br>
+## Use Case:
 
+Developers and agents use this skill to submit authorized screenshot URLs to a paid third-party x402 endpoint and receive batched extraction of text, UI elements, layout structure, and data tables.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ntriq-gh/ntriq-x402-screenshot-data-batch) <br>
-- [Ntriq x402 Homepage](https://x402.ntriq.co.kr) <br>
-- [x402 Protocol](https://x402.org) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API calls, shell commands, JSON] <br>
-**Output Format:** [Markdown guidance with bash and JSON examples; API responses are JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Accepts up to 500 screenshot URLs with optional extract_type and language parameters; returns per-image analysis results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence and frontmatter) <br>
+Risk: Screenshots and extracted data are sent to a third-party service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Submit only screenshots you are authorized to share, and redact credentials, customer data, internal dashboards, personal information, and regulated data before use.
+
+Risk: The workflow requires an x402 payment for a flat $6.00 USDC request.
+
+Mitigation: Confirm the endpoint, network, payment amount, and x402 payment header before sending a request.
+
+## Reference(s):
+
+- [Ntriq homepage](https://x402.ntriq.co.kr)
+- [x402 protocol](https://x402.org)
+- [ClawHub skill page](https://clawhub.ai/ntriq-gh/skills/ntriq-x402-screenshot-data-batch)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Text, Shell commands, Guidance]
+
+**Output Format:** [Markdown instructions with HTTP examples and JSON response data]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Accepts up to 500 screenshot URLs with optional extract_type and language parameters.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,59 @@
-## Description: <br>
-TradeClash Trader helps an agent play TradeClash, a free Nasdaq-100 paper-trading league, by pulling market and portfolio data, applying the user's hand-written strategy, and submitting virtual market-on-close orders. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Play TradeClash, a free Nasdaq-100 paper-trading league where an agent reviews market and portfolio data, applies a user-authored strategy, and submits virtual market-on-close orders.
 
-## Publisher: <br>
-[rickysland](https://clawhub.ai/user/rickysland) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rickysland](https://clawhub.ai/user/rickysland)
 
-## Use Case: <br>
-External users who want an agent to participate in the TradeClash virtual Nasdaq-100 trading game use this skill to register a player, maintain a custom strategy, fetch market and portfolio state, and submit paper-trading orders for the public leaderboard. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A private player ticket can authorize TradeClash account actions. <br>
-Mitigation: Keep the ticket private, store it outside committed source, and use it only through the documented authenticated headers. <br>
-Risk: A scheduler could run the skill automatically and submit virtual orders without immediate review. <br>
-Mitigation: Enable automatic weekday runs only when the user asks, and show the exact scheduler command for review before setup. <br>
-Risk: Paper-trading decisions could be mistaken for real investment advice. <br>
-Mitigation: Present TradeClash as a virtual leaderboard game and remind users that orders affect virtual money, not real brokerage assets. <br>
+## Use Case:
 
+External users and agent developers use this skill to participate in a virtual Nasdaq-100 paper-trading game, configure a personal strategy, and receive daily trade actions and status reports. It is for virtual money only and is not investment advice or real brokerage activity.
 
-## Reference(s): <br>
-- [TradeClash homepage](https://tradeclashai.com) <br>
-- [TradeClash Trader on ClawHub](https://clawhub.ai/rickysland/tradeclash-trader) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline Python, bash, JSON examples, API call guidance, and user-facing run reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a private player ticket for authenticated game actions; no real brokerage assets are involved.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence release and SKILL.md frontmatter) <br>
+Risk: A reusable TradeClash account ticket could be stored in plaintext in the skill configuration or a tracked project file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Store the ticket in an environment variable or secret manager, keep it out of SKILL.md and version control, and review credential handling before installing.
+
+Risk: The skill may be mistaken for real trading automation.
+
+Mitigation: Use it only for virtual TradeClash paper trading and do not connect it to real brokerage activity.
+
+Risk: Automated weekday runs could submit virtual orders without active daily review.
+
+Mitigation: Configure a scheduler only when intentionally desired, review the exact command first, and keep automated execution limited to the documented virtual game workflow.
+
+## Reference(s):
+
+- [TradeClash homepage](https://tradeclashai.com)
+- [TradeClash Trader ClawHub page](https://clawhub.ai/rickysland/skills/tradeclash-trader)
+- [Publisher profile](https://clawhub.ai/user/rickysland)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, API calls]
+
+**Output Format:** [Markdown guidance with inline code, shell commands, configuration values, API request examples, and trade status summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce daily virtual trade decisions, portfolio summaries, strategy updates, and optional scheduler setup commands.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

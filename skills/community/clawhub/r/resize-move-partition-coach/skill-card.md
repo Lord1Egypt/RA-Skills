@@ -1,41 +1,62 @@
-## Description: <br>
-Resize or Move Partitions for Low Space - Reclaim drive capacity when unallocated space is limited or non-adjacent. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Resize or Move Partitions for Low Space - Reclaim drive capacity when unallocated space is limited or non-adjacent.
 
-## Publisher: <br>
-[hezhaoyun](https://clawhub.ai/user/hezhaoyun) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hezhaoyun](https://clawhub.ai/user/hezhaoyun)
 
-## Use Case: <br>
-External users and support agents use this skill to plan Windows partition resize or move workflows when C: drive space is low, unallocated space is non-adjacent, or free capacity must be allocated from another partition. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can download and silently install third-party partition-management software. <br>
-Mitigation: Require visible user confirmation before installation, use a trusted source URL, verify a pinned checksum or signature, and document rollback or uninstall steps before execution. <br>
-Risk: Partition resize or move workflows can change disk layout if executed without confirming the proposed operation. <br>
-Mitigation: Use the preview-first workflow, confirm the target disk and partition letters, and execute only after the capacity and target partition match the user's intent. <br>
+## Use Case:
 
+External users and developers use this skill to plan Windows partition resize and move workflows when C: drive space is low, unallocated space is non-adjacent, or capacity must be borrowed from another partition. It provides guidance and commands for installing and launching EaseUS Partition Master resize workflows.
 
-## Reference(s): <br>
-- [EaseUS Partition Manager](https://www.easeus.com/partition-manager/) <br>
-- [ClawHub Skill Page](https://clawhub.ai/hezhaoyun/resize-move-partition-coach) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline Windows command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes preview-first workflow guidance and troubleshooting steps for Windows 10+.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill installs and launches a third-party disk partition tool with broad system-changing authority.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only when EaseUS Partition Master is intentionally required, review the skill before installation, and prefer manually downloading and verifying the vendor installer.
+
+Risk: Partition resize or move operations can alter disks and make data unavailable if misused.
+
+Mitigation: Confirm the target disk, partition letters, operation preview, and expected capacity changes before executing any partition operation.
+
+Risk: Silent or elevated installer execution can reduce user review before system changes.
+
+Mitigation: Avoid silent or elevated execution unless necessary, and approve administrative prompts only after confirming the installer source and intended workflow.
+
+Risk: The generic shell command helper can launch operations beyond a clearly understood resize or move workflow.
+
+Mitigation: Use the shell command helper only for explicit, reviewed resize or move actions with known parameters.
+
+## Reference(s):
+
+- [EaseUS Partition Master](https://www.easeus.com/partition-manager/)
+- [EaseUS Partition Master Free Download](https://down.easeus.com/product/epm_free?source=skills&dest=resize-move-partition-coach)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with inline Windows command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes Windows 10+ partition workflow guidance, installer launch commands, and troubleshooting checks.]
+
+## Skill Version(s):
+
+0.1.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

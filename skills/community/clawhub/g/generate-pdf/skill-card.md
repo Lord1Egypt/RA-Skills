@@ -1,42 +1,55 @@
-## Description: <br>
-Generate a PDF document from HTML content or a public URL, with support for custom page sizes, fonts, margins, viewport dimensions, dynamic parameter substitution, and multiple output formats. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate a PDF document from HTML content or a public URL with support for custom page sizes, fonts, margins, viewport dimensions, dynamic parameter substitution, and multiple output formats.
 
-## Publisher: <br>
-[rishabhdugar](https://clawhub.ai/user/rishabhdugar) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rishabhdugar](https://clawhub.ai/user/rishabhdugar)
 
-## Use Case: <br>
-Developers and operators use this skill to generate PDFs from HTML templates or public URLs for invoices, reports, certificates, contracts, receipts, and webpage snapshots. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected HTML, CSS, dynamic values, or public webpage URLs are sent to pdfapihub.com for PDF rendering. <br>
-Mitigation: Avoid secrets, internal-only URLs, regulated data, or confidential documents unless your organization has approved pdfapihub.com and its retention policy. <br>
-Risk: The skill requires a PDF API Hub API key. <br>
-Mitigation: Store the API key in an approved secret manager or environment variable and avoid exposing it in prompts, shared logs, examples, or generated documents. <br>
+## Use Case:
 
+Developers and teams use this skill to convert HTML templates or public web pages into PDFs for invoices, reports, certificates, receipts, and archival snapshots.
 
-## Reference(s): <br>
-- [Generate PDF from HTML on ClawHub](https://clawhub.ai/rishabhdugar/generate-pdf) <br>
-- [PDF API Hub Documentation](https://pdfapihub.com/docs) <br>
-- [PDF API Hub](https://pdfapihub.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [PDF files, URLs, Base64 data, Shell commands, Guidance] <br>
-**Output Format:** [API request guidance and JSON responses containing a PDF URL, base64 PDF data, or raw PDF output.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a CLIENT-API-KEY header and either html_content or a public url, with optional CSS, dynamic parameters, page size, margins, viewport, font, wait time, and filename settings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: HTML, CSS, dynamic parameters, public URLs, and generated PDFs may be processed by or stored with pdfapihub.com.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only data approved for that provider and avoid secrets, internal-only URLs, regulated personal data, contracts, invoices, or customer records unless the provider is approved for that data.
+
+Risk: Generated PDFs may expose sensitive rendered content through returned URLs or downloadable files.
+
+Mitigation: Treat generated PDF links and files as externally hosted outputs and apply appropriate access, sharing, and retention controls.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/rishabhdugar/skills/generate-pdf)
+- [PDF API Hub documentation](https://pdfapihub.com/docs)
+- [PDF API Hub](https://pdfapihub.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, files]
+
+**Output Format:** [JSON API request guidance and PDF output as a URL, base64 string, or binary file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a pdfapihub.com API key; output retention and page limits are provider dependent.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,59 @@
-## Description: <br>
-Detects cross-asset divergence in Polymarket crypto 5-minute interval markets and trades follower-coin convergence toward BTC direction. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Detects cross-asset divergence in Polymarket crypto 5-minute interval markets where normally correlated assets like BTC and ETH show contradictory candle directions in overlapping time windows and the less liquid coin may converge toward BTC.
 
-## Publisher: <br>
-[diagnostikon](https://clawhub.ai/user/diagnostikon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[diagnostikon](https://clawhub.ai/user/diagnostikon)
 
-## Use Case: <br>
-External users and trading automation developers use this skill to monitor Polymarket crypto interval markets for BTC-versus-follower-coin candle divergence and place simulated or explicitly enabled live convergence trades. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Live mode can place real Polymarket trades and create financial loss. <br>
-Mitigation: Start in paper mode, enable --live only intentionally, and keep position limits at amounts the user is prepared to risk. <br>
-Risk: SIMMER_API_KEY grants trading authority and is a high-value credential. <br>
-Mitigation: Store the key only in a protected runtime environment, avoid logging it, and rotate it if exposure is suspected. <br>
-Risk: The skill depends on simmer-sdk for market access and trade execution. <br>
-Mitigation: Review and install the dependency from trusted package sources before running trading automation. <br>
+## Use Case:
 
+External developers and trading agents use this skill to monitor Polymarket crypto interval markets for BTC-led divergence signals and prepare simulated or explicitly live convergence trades with configurable limits.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/diagnostikon/polymarket-candle-cross-asset-divergence-trader) <br>
-- [simmer-sdk on PyPI](https://pypi.org/project/simmer-sdk/) <br>
-- [simmer-sdk GitHub Repository](https://github.com/SpartanLabsXyz/simmer-sdk) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, API calls] <br>
-**Output Format:** [Console logs with Simmer market queries and simulated or live trade API calls] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Defaults to paper trading; live Polymarket trades require SIMMER_API_KEY and the --live flag.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.3 (source: server release evidence) <br>
+Risk: Running with --live can place real USDC trades.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the default paper mode until the strategy, account limits, and live-trading intent have been reviewed.
+
+Risk: Some documented risk controls are not actually enforced, including the missing volume filter and per-run position-limit concern identified by security evidence.
+
+Mitigation: Verify exposure limits and market-quality constraints outside the skill before enabling live trading.
+
+Risk: The unpinned simmer-sdk dependency receives access to SIMMER_API_KEY.
+
+Mitigation: Use a restricted and revocable API key, and pin or audit the dependency before installation for live use.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/diagnostikon/skills/polymarket-candle-cross-asset-divergence-trader)
+- [simmer-sdk on PyPI](https://pypi.org/project/simmer-sdk/)
+- [simmer-sdk source repository](https://github.com/SpartanLabsXyz/simmer-sdk)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance and terminal output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May execute paper trades by default and live Polymarket trades only when explicitly run with --live.]
+
+## Skill Version(s):
+
+0.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

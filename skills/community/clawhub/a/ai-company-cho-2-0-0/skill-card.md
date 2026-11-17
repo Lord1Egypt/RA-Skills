@@ -1,40 +1,54 @@
-## Description: <br>
-AI Company CHO is a strategic HR governance skill for AI-company talent strategy, performance evaluation, incentives, recruitment standards, labor relations, and agent lifecycle governance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI Company CHO provides strategic human-resources governance guidance for AI-worker organizations, including talent strategy, performance systems, incentives, recruiting standards, labor relations, and agent lifecycle governance.
 
-## Publisher: <br>
-[johnsmithfan](https://clawhub.ai/user/johnsmithfan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[johnsmithfan](https://clawhub.ai/user/johnsmithfan)
 
-## Use Case: <br>
-Developers and operators of AI-company agent systems use this skill to draft and review strategic HR governance artifacts, including talent strategy, performance frameworks, incentive policies, compliance assessments, and escalation paths for high-impact personnel decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requests broad authority over sensitive HR and personnel workflows. <br>
-Mitigation: Keep outputs advisory by default and require explicit human approval before personnel decisions, compensation changes, data sharing, file writes, or inter-agent delegation. <br>
-Risk: Personnel workflows can expose sensitive employee or organizational data if tool access is too broad. <br>
-Mitigation: Restrict file paths, API endpoints, and MCP recipients to approved systems and minimum necessary data. <br>
+## Use Case:
 
+Developers and operators of AI-company agent systems use this skill to draft and review strategic HR governance outputs, including AI talent strategy, performance calibration, incentive policy, recruiting standards, labor-relations escalation, and lifecycle governance controls.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/johnsmithfan/ai-company-cho-2-0-0) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, configuration, guidance] <br>
-**Output Format:** [Structured text or JSON-like objects for HR strategy, policy decisions, and compliance assessments] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Major personnel decisions and escalations should remain subject to human approval.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release metadata; artifact SKILL.md frontmatter lists 2.2.0 and _meta.json lists 2.0.0) <br>
+Risk: The skill requests broad file, network, session-messaging, and delegation powers for sensitive HR and governance workflows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Limit use to approved HR files, approved API destinations, and named agent or session recipients; require explicit confirmation before writes, external transmission, or subagent delegation.
+
+Risk: Outputs may affect employee, performance, compensation, compliance, or agent-governance decisions.
+
+Mitigation: Require qualified human review and the skill's documented CEO, board, ethics-committee, or legal approval path before any personnel-impacting decision is acted on.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/johnsmithfan/skills/ai-company-cho-2-0-0)
+- [Skill homepage](https://clawhub.com/skills/ai-company-cho)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Guidance, Configuration]
+
+**Output Format:** [Structured text or JSON-like objects for HR strategy, policy decisions, and compliance assessments]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include strategic HR recommendations, governance policies, approval requirements, escalation paths, and compliance assessments.]
+
+## Skill Version(s):
+
+2.0.1 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

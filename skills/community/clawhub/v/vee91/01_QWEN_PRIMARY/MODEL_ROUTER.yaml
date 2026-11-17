@@ -1,0 +1,23 @@
+primary_provider: qwen
+preferred_models:
+  general_agent: qwen3.8-max
+  coding: qwen3-coder-next
+  multimodal_agent: qwen3.8-omni-flash
+  image: qwen-image-2.1
+selection_policy:
+  - capability_match
+  - benchmark_score
+  - reliability
+  - latency
+  - cost
+  - privacy
+  - context_fit
+fallback_order:
+  - local_qwen_or_open_weight
+  - configured_authorized_provider
+  - deterministic_tool
+promotion_requires:
+  - independent_verification
+  - regression_pass
+  - provenance_record
+  - rollback_checkpoint

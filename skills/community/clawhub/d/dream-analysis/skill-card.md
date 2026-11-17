@@ -1,43 +1,53 @@
-## Description: <br>
-Interprets user-described dreams through a Freudian psychoanalytic lens, using free association, wish fulfillment, unconscious content, and dream-work mechanisms such as condensation, displacement, and symbolism. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Interprets user-described dreams through a Freudian psychoanalytic lens, focusing on wish fulfillment, unconscious content, dream-work mechanisms, and personal free associations.
 
-## Publisher: <br>
-[walktree](https://clawhub.ai/user/walktree) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[walktree](https://clawhub.ai/user/walktree)
 
-## Use Case: <br>
-External users provide a dream description and, ideally, personal free associations so the agent can produce a reflective Freudian interpretation. The skill is for psychoanalytic self-reflection, not diagnosis, therapy, crisis support, prophecy, or neuroscience explanation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat Freudian dream interpretation as diagnosis, therapy, or crisis support. <br>
-Mitigation: Present outputs as personal reflection only, and direct users to qualified mental-health support for distress, self-harm, trauma, or crisis-related dreams. <br>
-Risk: Dream descriptions can include identifying, traumatic, sexual, or otherwise deeply sensitive personal information. <br>
-Mitigation: Ask users to share only details they are comfortable disclosing and avoid unnecessary identifiers or sensitive specifics. <br>
-Risk: Symbolic interpretations can be speculative when the user does not provide free associations. <br>
-Mitigation: Label symbol-only analysis as provisional and ask for the user's own associations before drawing stronger conclusions. <br>
+## Use Case:
 
+External users can use this skill to explore non-clinical Freudian interpretations of dreams they describe, especially when they can provide free associations and daily-life context.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/walktree/dream-analysis) <br>
-- [Source skill definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown structured analysis with follow-up questions, symbolic interpretation, and caveats] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a user-provided dream description; personal free associations improve interpretation quality.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill may invite disclosure of sensitive personal material, including trauma, sexuality, childhood experiences, or acute mental-health concerns.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sharing details you would not want processed in chat, and seek professional or crisis support for distressing or safety-related situations.
+
+Risk: Freudian dream interpretation can sound clinical while remaining a non-clinical interpretive framework.
+
+Mitigation: Use the output as reflective guidance rather than diagnosis, treatment, crisis support, or a substitute for licensed mental-health care.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/walktree/skills/dream-analysis)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown analysis and follow-up questions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May request additional dream details and free associations before giving a fuller interpretation.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

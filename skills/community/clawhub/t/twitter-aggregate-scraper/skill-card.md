@@ -1,46 +1,57 @@
-## Description: <br>
-Twitter/X data assistant for retrieving tweet details, user profiles, search results, comments, repost information, and trends through the MaxHub API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Twitter/X 数据查询助手，支持查询推文详情、用户资料、搜索结果、评论和趋势数据。
 
-## Publisher: <br>
-[new-ironman](https://clawhub.ai/user/new-ironman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[new-ironman](https://clawhub.ai/user/new-ironman)
 
-## Use Case: <br>
-Social media, marketing, media, and communications teams use this skill to collect and analyze Twitter/X public-interest signals such as brand mentions, tweet discussions, trending topics, and account activity. It supports browse, analysis, and comparison workflows backed by read-only MaxHub API calls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a sensitive MaxHub API key. <br>
-Mitigation: Configure MAXHUB_API_KEY through the agent or environment secret mechanism, do not paste key values into chat output, and rotate the key if exposed. <br>
-Risk: Server security evidence rated the release suspicious because unrelated Douyin/Xiaohongshu fallback instructions make the runtime scope unclear. <br>
-Mitigation: Review the skill before installation and keep execution limited to the documented Twitter/X endpoints unless the unrelated fallback material is removed or clearly isolated. <br>
-Risk: The skill collects Twitter/X social data through a third-party API. <br>
-Mitigation: Use results for permitted analysis only, respect privacy and data-use requirements, and treat third-party API data as reference material rather than authoritative ground truth. <br>
+## Use Case:
 
+External users, analysts, media teams, marketing teams, and developers use this skill to collect and summarize Twitter/X public conversation signals, including tweet details, comments, user profiles, search timelines, and trending topics.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/new-ironman/twitter-aggregate-scraper) <br>
-- [MaxHub website](https://www.aconfig.cn) <br>
-- [Tweet Data API](references/api-tweet.md) <br>
-- [Search & Trending API](references/api-search-trending.md) <br>
-- [Parameter Mappings](references/param-mappings.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown responses with tables, summaries, links, and inline shell commands for API access when needed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Matches the user's language, humanizes numbers, avoids exposing API key values, and depends on MAXHUB_API_KEY for authenticated MaxHub requests.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.6.1 (source: server evidence and skill frontmatter) <br>
+Risk: The skill sends Twitter/X search terms, handles, tweet IDs, and the MaxHub API key to a third-party API service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only if that data sharing is acceptable, avoid sensitive queries, keep API keys out of outputs, and prefer a pinned skill version.
+
+Risk: Shell-based API calls may fail or query unintended endpoints if paths or parameters are guessed.
+
+Mitigation: Construct requests only from documented Twitter endpoint paths and encode user-supplied parameters before making HTTP requests.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/new-ironman/skills/twitter-aggregate-scraper)
+- [MaxHub API website](https://www.aconfig.cn)
+- [Tweet Data API](artifact/references/api-tweet.md)
+- [Search & Trending API](artifact/references/api-search-trending.md)
+- [Parameter Mappings](artifact/references/param-mappings.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, API Calls, Guidance]
+
+**Output Format:** [Markdown summaries with tables, links, and inline shell commands for API access and configuration]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs follow the user's language, hide API key values, and summarize returned API data without writing to Twitter/X.]
+
+## Skill Version(s):
+
+3.6.1 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

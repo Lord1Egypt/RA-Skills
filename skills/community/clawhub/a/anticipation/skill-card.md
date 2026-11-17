@@ -1,39 +1,51 @@
-## Description: <br>
-Helps an assistant recognize patterns in user history and act proactively on likely needs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Recognizes patterns from user history and session context so an agent can offer proactive, context-aware help.
 
-## Publisher: <br>
-[Mcben90](https://clawhub.ai/user/Mcben90) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[mcben90](https://clawhub.ai/user/mcben90)
 
-## Use Case: <br>
-External users and developers use this skill to make an assistant more proactive by checking session context, recurring issues, and user response patterns before offering targeted next actions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill encourages proactive use of surrounding context, including open files, running commands, browser tabs, and past summaries. <br>
-Mitigation: Enable it only with clear limits on what the assistant may observe and remember, and avoid sharing sensitive context unless needed for the task. <br>
-Risk: Remembering behavioral patterns without explicit limits can create privacy or consent concerns. <br>
-Mitigation: Review retained patterns periodically and prefer explicit user confirmation before storing or reusing sensitive observations. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Mcben90/anticipation) <br>
+## Use Case:
+
+External users and developers use this skill to guide an agent toward proactive assistance based on repeated conversation patterns, open work context, running commands, and other session signals.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill encourages broad inspection of private session context, including browser state, open files, command or process information, and conversation history.
+
+Mitigation: Constrain the agent to ask for consent before reading sensitive session context and keep access limited to what is needed for the immediate task.
+
+Risk: The skill describes learning from user responses, which could create unwanted persistent memory if implemented without limits.
+
+Mitigation: Keep any learned patterns session-scoped unless the user explicitly approves persistent memory.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Text, Markdown] <br>
-**Output Format:** [Markdown guidance with concise proactive suggestions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference session context such as open files, running commands, browser tabs, and prior summaries when the host agent makes that context available.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+**Output Type(s):** [guidance, text]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown and natural-language agent responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces proactive suggestions and response-style guidance; it does not define a structured API output.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

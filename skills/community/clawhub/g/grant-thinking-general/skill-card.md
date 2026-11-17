@@ -1,47 +1,62 @@
-## Description: <br>
-Use when evaluating grant ideas, diagnosing proposal logic, framing fundable projects, strengthening reviewer-aware arguments, or preparing to write any section of a research proposal. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when evaluating grant ideas, diagnosing proposal logic, framing fundable projects, strengthening reviewer-aware arguments, or preparing to write any section of a research proposal.
 
-## Publisher: <br>
-[agents365-ai](https://clawhub.ai/user/agents365-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[agents365-ai](https://clawhub.ai/user/agents365-ai)
 
-## Use Case: <br>
-Researchers, proposal teams, and agents use this skill to evaluate grant ideas, diagnose proposal logic, frame fundable projects, assess innovation and feasibility, and surface likely reviewer concerns before or during proposal drafting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Grant strategy guidance may be incomplete or misleading if treated as definitive funding advice. <br>
-Mitigation: Have the principal investigator, relevant domain experts, and institutional proposal support review strategic recommendations before submission. <br>
-Risk: The skill may not account for funder-specific solicitation rules, eligibility limits, budget constraints, or current review criteria. <br>
-Mitigation: Compare outputs against the active funding opportunity, institutional policies, and any funder instructions before using them in a proposal workflow. <br>
-Risk: The skill can help reason about proposal structure but does not validate scientific claims, preliminary data, citations, or compliance requirements. <br>
-Mitigation: Verify scientific claims and compliance-sensitive content against primary sources and responsible reviewers. <br>
+## Use Case:
 
+External researchers, proposal authors, and grant-support agents use this skill to evaluate whether research ideas are fundable, diagnose proposal logic, sharpen innovation claims, assess feasibility, and surface reviewer-facing rejection risks before or during proposal drafting.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/agents365-ai/grant-thinking-general) <br>
-- [Publisher profile](https://clawhub.ai/user/agents365-ai) <br>
-- [README](artifact/README.md) <br>
-- [Grant Thinking General Checklist](artifact/checks.md) <br>
-- [Examples for Grant Thinking General](artifact/examples.md) <br>
-- [Agent Skills format](https://agentskills.io) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance and structured analysis] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Substantial responses should include the strongest current funding logic and the main current rejection risk.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: Implicit invocation may cause reviewer-aware proposal evaluation to appear in nearby grant-writing conversations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm that grant proposal analysis is intended before relying on the skill's diagnostic framing.
+
+Risk: Rendered README content may load remote donation images in clients that fetch external media.
+
+Mitigation: Review rendered documentation in environments where external image loading is restricted or privacy-sensitive.
+
+Risk: The skill provides strategic grant reasoning that could overfit to incomplete user-provided proposal details.
+
+Mitigation: Ask users to provide funding context, project scope, preliminary basis, and constraints before treating the guidance as proposal-ready.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/agents365-ai/skills/grant-thinking-general)
+- [Agent Skills Format](https://agentskills.io)
+- [README.md](artifact/README.md)
+- [checks.md](artifact/checks.md)
+- [examples.md](artifact/examples.md)
+- [OpenAI Agent Configuration](artifact/agents/openai.yaml)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or structured prose]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reviewer-aware proposal diagnosis and strategic grant guidance; no executable output.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

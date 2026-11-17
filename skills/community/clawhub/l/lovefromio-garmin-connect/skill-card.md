@@ -1,43 +1,67 @@
-## Description: <br>
-Garmin Connect integration for Clawdbot: sync fitness data (steps, HR, calories, workouts, sleep) every 5 minutes using OAuth. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Garmin Connect integration for Clawdbot: sync fitness data (steps, HR, calories, workouts, sleep) every 5 minutes using OAuth.
 
-## Publisher: <br>
-[lovefromio](https://clawhub.ai/user/lovefromio) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lovefromio](https://clawhub.ai/user/lovefromio)
 
-## Use Case: <br>
-External users and developers use this skill to authenticate with Garmin Connect, sync fitness and health metrics into a local Clawdbot cache, and format those metrics for scripts or agent workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks users to pass Garmin account credentials to an authentication script, and server security guidance warns against command-line password handling and disabling 2FA. <br>
-Mitigation: Use a safer OAuth flow or edit the scripts before use; do not pass your Garmin password on the command line or disable 2FA. <br>
-Risk: Garmin OAuth sessions and detailed health data are stored locally in files such as ~/.garth/session.json and cache JSON files. <br>
-Mitigation: Protect local session and cache files, restrict file permissions, and install only if local storage of Garmin health and session data is acceptable. <br>
-Risk: Some scripts include hard-coded personal paths, a personal email, and /tmp export or dashboard behavior. <br>
-Mitigation: Remove personal values and avoid /tmp export or dashboard scripts unless local plaintext health-data exposure is acceptable. <br>
+## Use Case:
 
+Developers and Clawdbot users use this skill to authenticate with Garmin Connect, sync activity, sleep, heart-rate, calorie, workout, and related health data, and format cached results for agent workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lovefromio/lovefromio-garmin-connect) <br>
-- [Garmin OAuth sign-in](https://sso.garmin.com/sso/signin) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, Python usage examples, and JSON fitness data output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local Garmin session and cache files; formatted summaries may include detailed health and workout data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata; artifact _meta.json reports 1.0.1) <br>
+Risk: Garmin credentials and reusable OAuth session tokens can be exposed if passwords are passed on the command line or session files have broad permissions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a safer browser or CLI authentication flow, avoid command-line password arguments, and restrict permissions on ~/.garth/session.json.
+
+Risk: Sensitive health records can be persisted locally in cache files and exported into /tmp by the 30-day sync and dashboard scripts.
+
+Mitigation: Store cache and export files in a private directory, restrict file permissions, delete exports when no longer needed, and avoid dashboard/export scripts unless required.
+
+Risk: Recurring cron jobs can continue collecting and writing health data after initial setup.
+
+Mitigation: Review cron entries before enabling them, run the sync under a least-privileged user, and remove scheduled jobs when ongoing sync is no longer needed.
+
+Risk: The optional dashboard uses remote browser scripts while displaying health data.
+
+Mitigation: Avoid opening generated dashboards with sensitive data unless needed, and prefer trusted or local assets for dashboard rendering.
+
+Risk: Unpinned dependencies can change behavior or security posture over time.
+
+Mitigation: Pin and review dependency versions before production use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lovefromio/skills/lovefromio-garmin-connect)
+- [Clawdbot](https://clawd.bot)
+- [Garmin sign-in](https://sso.garmin.com/sso/signin)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, Python usage examples, JSON cache data, and formatted text summaries.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can create local OAuth session files, recurring cron jobs, JSON health-data caches, and optional HTML dashboard exports.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

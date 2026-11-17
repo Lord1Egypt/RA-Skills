@@ -1,41 +1,50 @@
-## Description: <br>
-Manages a stock watchlist stored in a DingTalk multidimensional table when the user asks about an observation list or stock watchlist. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill helps an agent manage a stock watchlist stored in a specified DingTalk multidimensional table.
 
-## Publisher: <br>
-[canonxu](https://clawhub.ai/user/canonxu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[canonxu](https://clawhub.ai/user/canonxu)
 
-## Use Case: <br>
-Users managing a stock watchlist use this skill to add, remove, and query ticker symbols in a specified DingTalk table. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can add or delete rows in the specified DingTalk stock watchlist. <br>
-Mitigation: Use least-privileged DingTalk access and require confirmation before deletions when accidental removal would matter. <br>
-Risk: The skill depends on a fixed DingTalk table, sheet, and stock-code field mapping. <br>
-Mitigation: Verify the table ID, sheet ID, and `标的` field before using the skill in a live watchlist. <br>
+## Use Case:
 
+External users and developers use this skill to add, delete, and query stock tickers in a DingTalk stock watchlist when the request explicitly concerns a watchlist.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/canonxu/my-stock-watchlist-skill) <br>
-- [DingTalk Stock Watchlist Table](https://alidocs.dingtalk.com/i/nodes/1OQX0akWmxpyBpnaCQQQoYkY8GlDd3mE) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Text, Guidance] <br>
-**Output Format:** [Plain text or Markdown responses backed by DingTalk table API actions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses the dingtalk-ai-table dependency to add, delete, read, and summarize watchlist records.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence; artifact skill.json lists 1.0.0) <br>
+Risk: The skill can add or delete rows in the configured DingTalk watchlist table.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the Base ID, Sheet ID, stock-code field name, and requested ticker before executing add or delete operations.
+
+## Reference(s):
+
+- [DingTalk watchlist table](https://alidocs.dingtalk.com/i/nodes/1OQX0akWmxpyBpnaCQQQoYkY8GlDd3mE)
+- [ClawHub skill page](https://clawhub.ai/canonxu/skills/my-stock-watchlist-skill)
+
+## Skill Output:
+
+**Output Type(s):** [Text, API Calls, JSON, Guidance]
+
+**Output Format:** [Natural-language responses with DingTalk table API requests and JSON record data when needed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can add, list, and delete rows in the configured DingTalk table through the dependent dingtalk-ai-table skill.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

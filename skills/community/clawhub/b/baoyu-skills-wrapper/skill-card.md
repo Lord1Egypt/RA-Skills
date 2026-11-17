@@ -1,45 +1,54 @@
-## Description: <br>
-Baoyu Skills Wrapper provides guidance for using Baoyu's content generation, AI backend, publishing, and utility skills. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Baoyu Skills Wrapper provides a wrapper for Baoyu's shared productivity skill set, including content generation, AI backend, and daily utility tools.
 
-## Publisher: <br>
-[dongjie-oss](https://clawhub.ai/user/dongjie-oss) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dongjie-oss](https://clawhub.ai/user/dongjie-oss)
 
-## Use Case: <br>
-Developers and content creators use this wrapper to discover and run Baoyu skills for visual content generation, social publishing, AI-backed generation, translation, markdown conversion, and content formatting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Some workflows use authenticated browser sessions to publish to real social platforms or interact with logged-in web services. <br>
-Mitigation: Use test or draft flows where possible, review content before posting, and run only against accounts you are authorized to use. <br>
-Risk: URL and social-content capture workflows may read pages visible in the current browser session, including private or unauthorized pages. <br>
-Mitigation: Restrict capture to intended and authorized pages, and avoid processing pages that contain confidential data. <br>
-Risk: AI generation workflows require API keys and provider credentials. <br>
-Mitigation: Keep credentials out of repositories, scope keys to the minimum required permissions, and rotate keys if they are exposed. <br>
-Risk: The release is a wrapper around external Baoyu skill behavior, so execution may depend on scripts and browser automation outside this artifact. <br>
-Mitigation: Review the underlying scripts before running them and install only from sources you trust. <br>
+## Use Case:
 
+Developers and content operators use this skill to discover and run Baoyu's content creation, AI generation, social publishing, translation, transcript, and Markdown utility workflows from an agent environment.
 
-## Reference(s): <br>
-- [Baoyu Skills Wrapper on ClawHub](https://clawhub.ai/dongjie-oss/baoyu-skills-wrapper) <br>
-- [baoyu-skills support repository referenced by the wrapper](https://github.com/JimLiu/baoyu-skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with inline shell commands and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference external APIs, browser sessions, local files, and authenticated social accounts depending on the selected underlying skill.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata) <br>
+Risk: The wrapper directs users to run separate Baoyu skill code that is not bundled for review in this artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the exact external code or revision before running it, and install only when the source is trusted.
+
+Risk: Some workflows can use API keys, browser sessions, or live social publishing accounts.
+
+Mitigation: Use restricted API keys and dedicated social accounts, protect ~/.baoyu-skills/.env with owner-only permissions, and manually confirm posting or account-modifying actions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dongjie-oss/skills/baoyu-skills-wrapper)
+- [Original baoyu-skills repository](https://github.com/JimLiu/baoyu-skills)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide use of external Baoyu skill code, browser sessions, API keys, and social publishing accounts.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

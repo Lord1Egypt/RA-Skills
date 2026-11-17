@@ -1,40 +1,55 @@
-## Description: <br>
-Guide for using AceDataCloud APIs. Use when authenticating, making API calls, managing credentials, understanding billing, or integrating AceDataCloud services into applications. Covers setup, authentication, request patterns, error handling, and SDK integration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Set up an AceDataCloud API key, make a first request, and troubleshoot authentication, access, billing, and asynchronous tasks.
 
-## Publisher: <br>
-[Germey](https://clawhub.ai/user/Germey) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Apache-2.0 <br>
+## Publisher:
 
+[acedatacloud](https://clawhub.ai/user/acedatacloud)
 
-## Use Case: <br>
-Developers and engineers use this skill to integrate AceDataCloud APIs into applications, including account setup, bearer-token authentication, synchronous and asynchronous request patterns, error handling, billing awareness, and OpenAI-compatible SDK usage. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: AceDataCloud API tokens can be exposed if pasted into chats, committed to source files, or written to logs. <br>
-Mitigation: Store tokens in environment variables or a secret manager, use placeholders in examples, and redact tokens from logs and shared output. <br>
+## Use Case:
 
+Developers and other AceDataCloud users use this guide to configure a service API key, try a first request, and troubleshoot common errors and asynchronous tasks.
 
-## Reference(s): <br>
-- [AceDataCloud Platform](https://platform.acedata.cloud) <br>
-- [AceDataCloud API Base URL](https://api.acedata.cloud) <br>
-- [ClawHub Skill Page](https://clawhub.ai/Germey/acedatacloud-acedatacloud-api) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline bash, JSON, Python, and JavaScript examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only skill; no executable code or hidden behavior was found in the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: An exposed service API key could allow unauthorized requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the key out of prompts and repositories, protect its configuration file, and restrict allowed APIs where possible.
+
+Risk: Sample requests and duplicate submissions may incur charges.
+
+Mitigation: Check pricing before testing and query an existing task rather than resubmitting a pending request.
+
+## Reference(s):
+
+- [ClawHub api-guide listing](https://clawhub.ai/acedatacloud/skills/api-guide)
+- [AceDataCloud applications console](https://platform.acedata.cloud/console/applications)
+- [OpenClaw environment variable guide](https://docs.openclaw.ai/help/faq/env-vars#how-does-openclaw-load-environment-variables)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown with shell and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an AceDataCloud account and service API key; sample requests may be billable.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

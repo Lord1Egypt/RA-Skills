@@ -1,50 +1,63 @@
-## Description: <br>
-Triages Discord activity and Kubernetes incidents into ranked situation reports with fixture-first demos, live Discord and Apify intake, Contextual-grounded runbooks, Redis-backed memory, Friendli-powered drafting, and approval-gated outbound actions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Triages Discord activity and Kubernetes incidents into ranked situation reports with fixture-first demos, live Discord and Apify intake, Contextual-grounded runbooks, Redis-backed memory, Friendli-powered drafting, and approval-gated outbound actions.
 
-## Publisher: <br>
-[mohnishb-ai](https://clawhub.ai/user/mohnishb-ai) <br>
+This skill is for demonstration purposes and not for production usage.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mohnishb-ai](https://clawhub.ai/user/mohnishb-ai)
 
-## Use Case: <br>
-Developers, SREs, and operations teams use this skill to summarize noisy Discord activity, triage Kubernetes incidents, and turn operational signals into prioritized reports and safe follow-up drafts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Live Kubernetes access and the incident drill script can affect real infrastructure. <br>
-Mitigation: Use fixture mode or a disposable demo cluster by default, and do not run 02-incidents.sh against real infrastructure. <br>
-Risk: Live cluster scans may expose or act on sensitive operational state. <br>
-Mitigation: Provide least-privilege read-only Kubernetes credentials for live scans. <br>
-Risk: Discord ingestion can capture personal or private channel content. <br>
-Mitigation: Use bot-visible channels only, avoid private Discord channels unless users approved ingestion, and prefer fixture data for demos. <br>
-Risk: Outbound messages could be sent without an appropriate approval workflow. <br>
-Mitigation: Keep outbound posting blocked until a real approval flow is configured. <br>
+## Use Case:
 
+Developers, SREs, and operations teams use this skill to summarize noisy Discord activity, triage Kubernetes incidents, and produce concise reports with prioritized follow-up actions.
 
-## Reference(s): <br>
-- [Situation Monitor README](artifact/README.md) <br>
-- [Situation Monitor Skill Definition](artifact/SKILL.md) <br>
-- [OpenClaw Admin Install Guide](artifact/docs/openclaw_admin_install.md) <br>
-- [KubeWatch Runbooks](artifact/docs/context/) <br>
-- [GCP Status Incidents API](https://status.cloud.google.com/incidents.json) <br>
-- [GitHub Status Unresolved Incidents API](https://www.githubstatus.com/api/v2/incidents/unresolved.json) <br>
-- [Kubernetes Critical Bug Issues API](https://api.github.com/repos/kubernetes/kubernetes/issues) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown reports and plain text drafts, with optional shell commands and configuration guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports can be printed or saved to a local Markdown path; outbound posting stays blocked until approval is configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release metadata) <br>
+Risk: Bundled Kubernetes disruption and deletion tooling can affect live clusters.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install in a test or tightly controlled environment, remove or isolate 02-incidents.sh, and restrict Kubernetes credentials to read-only monitoring permissions.
+
+Risk: Live intake and state storage can retain operational or chat data.
+
+Mitigation: Use approved fixture files and set explicit retention and permission controls for Redis and local state.
+
+Risk: The Apify actor uses a Node dependency tree that may change over time.
+
+Mitigation: Update or review Node dependencies before running the actor.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/mohnishb-ai/skills/situation-monitor)
+- [Situation Monitor README](README.md)
+- [Situation Monitor OpenClaw Admin Install](docs/openclaw_admin_install.md)
+- [KubeWatch Runbooks](docs/context/)
+- [Google Cloud Status Incidents API](https://status.cloud.google.com/incidents.json)
+- [GitHub Status Incidents API](https://www.githubstatus.com/api/v2/incidents/unresolved.json)
+- [Kubernetes GitHub Issues API](https://api.github.com/repos/kubernetes/kubernetes/issues)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports, shell command examples, and operational guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports can include executive summaries, urgent threads, direct asks, decisions, deadlines, source citations, incident priorities, remediation steps, and draft replies.]
+
+## Skill Version(s):
+
+0.1.2 (source: ClawHub release evidence; pyproject.toml and package.json list 0.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

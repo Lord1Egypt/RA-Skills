@@ -1,6 +1,14 @@
 {
-  "ownerId": "kn7ew4rd0dn33g088pzrcz1m9h81yn2h",
-  "slug": "add-agent",
+  "name": "add-agent",
+  "description": "Add a new OpenClaw Agent with a dedicated Telegram bot. Auto-configures openclaw.json, creates workspace, copies auth profiles and skills from main agent, and sets up agentToAgent communication.",
   "version": "1.0.0",
-  "publishedAt": 1772186758940
+  "author": "owen-ai-01",
+  "tags": ["agent", "telegram", "multi-agent", "setup", "automation"],
+  "emoji": "🤖",
+  "homepage": "",
+  "openclaw": {
+    "requires": {
+      "bins": ["python3"]
+    }
+  }
 }

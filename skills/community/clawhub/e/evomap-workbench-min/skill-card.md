@@ -1,42 +1,55 @@
-## Description: <br>
-EvoMap WorkBench v1.0.11 Mini provides AI decision, knowledge graph, predictive maintenance, adaptive learning, and decision-trace utilities for EvoMap workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+EvoMap WorkBench v1.0.11 Mini helps agents work with EvoMap AI decision evolution, knowledge graph search, predictive maintenance, adaptive learning, and decision tracing.
 
-## Publisher: <br>
-[yesimagine-oss](https://clawhub.ai/user/yesimagine-oss) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yesimagine-oss](https://clawhub.ai/user/yesimagine-oss)
 
-## Use Case: <br>
-Developers and operators use this skill to evaluate EvoMap task context, build and search knowledge graphs, generate predictive maintenance recommendations, and record decision outcomes for automation workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The server security summary reports under-disclosed local Feishu credential discovery and external message-sending paths, including a hardcoded fallback recipient. <br>
-Mitigation: Install only in a sandbox or after source review; remove automatic credential discovery and hardcoded recipients, require explicit notification configuration, and document Feishu, Telegram, DingTalk, and EvoMap data flows before normal use. <br>
-Risk: The release requires OAuth-token style credentials and may interact with external services when notification or API modules are used. <br>
-Mitigation: Use least-privilege credentials, keep secrets out of shared workspaces, and run with explicit outbound-network and notification settings. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to experiment with EvoMap decision workflows, asset validation, network-aware retries, task recovery, and optional Feishu or notification status updates.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yesimagine-oss/evomap-workbench-min) <br>
-- [Publisher profile](https://clawhub.ai/user/yesimagine-oss) <br>
-- [EvoMap A2A validation endpoint](https://evomap.ai/a2a/validate) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python code examples, shell commands, and JSON or configuration details.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include external notification and API workflow guidance when explicitly configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.11 (source: server release metadata and skill frontmatter) <br>
+Risk: The skill may reuse local OpenClaw Feishu credential or configuration files and send data externally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review credential sources, recipients, transmitted fields, and outbound notification or validation traffic before installation; prefer isolated or non-production credentials.
+
+Risk: Install and uninstall flows can read or modify local OpenClaw configuration.
+
+Mitigation: Back up OpenClaw configuration and test install or uninstall behavior in a disposable environment before using it in a shared workspace.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yesimagine-oss/skills/evomap-workbench-min)
+- [ClawHub publisher profile](https://clawhub.ai/user/yesimagine-oss)
+- [EvoMap A2A validation endpoint](https://evomap.ai/a2a/validate)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with Python code examples, shell commands, and JSON or configuration output.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include local file paths, operational status, and generated JSON reports.]
+
+## Skill Version(s):
+
+1.0.11 (source: server evidence release metadata and artifact frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -10,33 +10,41 @@ import uuid
 import zipfile
 from pathlib import Path
 from typing import Any
-from urllib.request import urlopen
+from urllib.parse import urlparse
 
-import fitz
+import pymupdf
 from fastapi import FastAPI, File, Form, HTTPException, Query, Request, UploadFile
 from fastapi.responses import FileResponse, HTMLResponse, JSONResponse, RedirectResponse, Response
 from fastapi.templating import Jinja2Templates
+from starlette.concurrency import run_in_threadpool
 from starlette.middleware.base import BaseHTTPMiddleware
 
+from . import __version__
+from .ai import ensure_backend_ready, strip_model_reply
 from .classify import classify_document
 from .config import CONFIG_PATH, load_config, save_config
 from .db import db, init_db
 from .exporter import export_all_csv_long, export_all_csv_wide, export_all_json, export_doc_csv_long, export_doc_csv_wide, export_doc_json
-from .extract import extract_document, pretty_json
+from .extract import extract_document_with_meta, pretty_json
+from .ollama_local import list_models_with_vision, ollama_host
 from .review import compute_needs_review, compute_overall_confidence, missing_required_fields
 from .store import (
     create_document_record,
     delete_document,
+    extract_and_store_1099b_lots,
     generate_display_name,
     get_document,
     get_document_by_hash,
     ingest_file,
+    is_retryable,
     list_documents,
     mark_error,
     mark_needs_review,
     mark_processed,
     page_count_for_pdf,
+    reset_document_for_retry,
     set_display_name_if_empty,
+    validate_input_file,
     store_1099da_transactions,
     store_extracted_fields,
     store_raw_extraction,
@@ -48,15 +56,27 @@ init_db()
 
 templates = Jinja2Templates(directory=str(Path(__file__).parent.parent / "templates"))
 
-app = FastAPI(title="TaxClaw", version="0.1.0-beta")
+app = FastAPI(title="TaxClaw", version=__version__)
 
 
 # ---------------------------------------------------------------------------
 # Security middleware (headers + loopback host/origin enforcement)
 # ---------------------------------------------------------------------------
 
-ALLOWED_HOSTS = {"127.0.0.1:8421", "localhost:8421"}
-ALLOWED_ORIGINS = {"http://127.0.0.1:8421", "http://localhost:8421"}
+# Every page is served by this app and uses only same-origin scripts, styles,
+# images and fetches; nothing is loaded from a CDN. Inline <script>/<style>
+# blocks in the templates need 'unsafe-inline'.
+CONTENT_SECURITY_POLICY = (
+    "default-src 'self'; "
+    "script-src 'self' 'unsafe-inline'; "
+    "style-src 'self' 'unsafe-inline'; "
+    "img-src 'self' data: blob:; "
+    "connect-src 'self'; "
+    "object-src 'none'; "
+    "base-uri 'self'; "
+    "form-action 'self'; "
+    "frame-ancestors 'self'"
+)
 
 
 class SecurityHeadersMiddleware(BaseHTTPMiddleware):
@@ -65,19 +85,29 @@ class SecurityHeadersMiddleware(BaseHTTPMiddleware):
         response.headers["X-Content-Type-Options"] = "nosniff"
         response.headers["Referrer-Policy"] = "strict-origin-when-cross-origin"
         response.headers["X-Frame-Options"] = "SAMEORIGIN"
+        # HTML only: keep browsers' built-in PDF/image viewers working for /doc/{id}/file.
+        if response.headers.get("content-type", "").startswith("text/html"):
+            response.headers["Content-Security-Policy"] = CONTENT_SECURITY_POLICY
         return response
 
 
 class LoopbackHostOriginMiddleware(BaseHTTPMiddleware):
-    async def dispatch(self, request: Request, call_next):
-        if request.method in {"POST", "DELETE"}:
-            host = (request.headers.get("host") or "").lower()
-            if host not in ALLOWED_HOSTS:
-                return Response("Forbidden", status_code=403)
+    """Reject any request (GET included) whose Host or Origin is not loopback.
 
-            origin = request.headers.get("origin")
-            if origin is not None and origin not in ALLOWED_ORIGINS:
-                return Response("Forbidden", status_code=403)
+    Checking GET as well as POST/DELETE closes DNS-rebinding reads: a page on
+    attacker.example that rebinds its hostname to 127.0.0.1 still sends
+    ``Host: attacker.example``, so it cannot read document pages, previews,
+    downloads or exports.
+    """
+
+    async def dispatch(self, request: Request, call_next):
+        hostname = _host_header_hostname(request)
+        if not _is_loopback_host(hostname):
+            return Response("Forbidden", status_code=403)
+
+        origin = request.headers.get("origin")
+        if origin is not None and not _is_loopback_host(urlparse(origin).hostname):
+            return Response("Forbidden", status_code=403)
 
         return await call_next(request)
 
@@ -97,7 +127,14 @@ def _is_loopback_host(hostname: str | None) -> bool:
     if not hostname:
         return False
     h = hostname.lower()
-    return h in {"127.0.0.1", "localhost"} or h.endswith(".localhost")
+    return h in {"127.0.0.1", "localhost", "::1"} or h.endswith(".localhost")
+
+
+def _host_header_hostname(request: Request) -> str | None:
+    host = (request.headers.get("host") or "").lower().rsplit("@", 1)[-1]
+    if host.startswith("["):  # IPv6 literal, e.g. "[::1]:8421"
+        return host[1:].split("]", 1)[0]
+    return host.split(":", 1)[0]
 
 
 def _get_or_create_csrf_token(request: Request) -> str:
@@ -114,14 +151,13 @@ def _assert_same_origin(request: Request) -> None:
     localhost, this (plus CSRF tokens) reduces risk of drive-by POSTs.
     """
 
-    host = request.url.hostname
+    host = _host_header_hostname(request)
     if not _is_loopback_host(host):
         raise ValueError("TaxClaw only allows loopback (localhost) requests")
 
     origin = request.headers.get("origin")
     if origin:
-        # Allow only localhost/127.0.0.1 origins (any port)
-        if not (origin.startswith("http://127.0.0.1") or origin.startswith("http://localhost")):
+        if not _is_loopback_host(urlparse(origin).hostname):
             raise ValueError("invalid Origin")
 
 
@@ -135,7 +171,7 @@ def _render(request: Request, name: str, context: dict[str, Any]) -> Response:
     tok = _get_or_create_csrf_token(request)
     ctx = dict(context)
     ctx.setdefault("csrf_token", tok)
-    resp = templates.TemplateResponse(name, ctx)
+    resp = templates.TemplateResponse(request, name, ctx)
     # Double-submit cookie (HTTP-only so JS can't read it, but the form token can).
     if request.cookies.get(CSRF_COOKIE) != tok:
         resp.set_cookie(CSRF_COOKIE, tok, httponly=True, samesite="lax")
@@ -143,27 +179,18 @@ def _render(request: Request, name: str, context: dict[str, Any]) -> Response:
 
 
 def _ollama_model_info() -> list[dict]:
-    """Return installed Ollama models with vision capability flag.
+    """Return installed Ollama models with a vision capability flag (vision models first).
 
-    Vision models have 'clip' in their families list (e.g. llava, moondream).
-    Text-only models silently ignore images and will return all-null extractions.
+    Vision is read from Ollama's /api/show ``capabilities`` (contains "vision");
+    a model-family allowlist is only a fallback for old Ollama builds. Text-only
+    models cannot read document images, so extraction with them fails.
     """
-    try:
-        with urlopen("http://localhost:11434/api/tags", timeout=1.5) as r:
-            data = json.loads(r.read().decode("utf-8"))
-        models = data.get("models") or []
-        out: list[dict] = []
-        for m in models:
-            name = m.get("name")
-            if not isinstance(name, str) or not name:
-                continue
-            families = m.get("details", {}).get("families") or []
-            # 'clip' = llava/moondream style; 'glmocr' = GLM-OCR; expand as new models arrive
-            vision = any(f in families for f in ("clip", "glmocr", "qwen2vl", "internvl"))
-            out.append({"name": name, "vision": vision})
-        return sorted(out, key=lambda x: (not x["vision"], x["name"]))  # vision models first
-    except Exception:
-        return []
+    return list_models_with_vision(timeout=1.5)
+
+
+def _with_tag(name: str) -> str:
+    """Ollama treats "glm-ocr" and "glm-ocr:latest" as the same model."""
+    return name if ":" in name else f"{name}:latest"
 
 
 # ---------------------------------------------------------------------------
@@ -262,10 +289,10 @@ def _ollama_tags() -> list[str]:
 
 
 def _cloud_models() -> list[str]:
-    # Keep this small; can expand later.
+    # Confirmed current Anthropic model IDs (balance, strongest); see src/model_catalog.yaml.
     return [
-        "claude-haiku-4-5",
-        "claude-sonnet-4-5",
+        "claude-haiku-5-5",
+        "claude-sonnet-5-5",
     ]
 
 
@@ -304,7 +331,7 @@ def dashboard(request: Request):
     stats = _get_stats()
 
     cfg_now = load_config()
-    if cfg_now.model_backend == "local":
+    if not cfg_now.is_cloud:
         status_label = "🟢 FULLY LOCAL"
         status_pill_class = "ok"
     else:
@@ -409,41 +436,69 @@ def upload_form(request: Request):
     cfg_now = load_config()
     return _render(request, "upload.html", {
         "request": request,
-        "model_backend": cfg_now.model_backend,
-        "cloud_model": cfg_now.cloud_model,
+        "model_backend": "cloud" if cfg_now.is_cloud else "local",
+        "cloud_model": cfg_now.selected_model_label(),
         "local_model": cfg_now.local_model,
     })
+
+
+_ENV_NAME_RE = re.compile(r"^[A-Z][A-Z0-9_]{0,63}$")
+
+
+def _settings_context(request: Request, cfg_now: Any, *, error: str | None = None) -> dict[str, Any]:
+    from .config import OPENAI_COMPAT_PRESETS
+    from .models import build_report
+
+    local_models_info = _ollama_model_info()
+    vision_models = {m["name"] for m in local_models_info if m["vision"]}
+    selected_is_vision = _with_tag(cfg_now.local_model) in {_with_tag(n) for n in vision_models}
+    report = build_report(cfg_now, live=True, ollama_models=local_models_info)
+    tier1, tier2, tier3 = report["tiers"]
+    from .doctor import build_report as doctor_report
+
+    doctor = doctor_report(cfg_now)  # the same three paths as `taxclaw doctor`
+
+    # Model suggestions for the OpenAI-compatible picker: live vision lists per preset.
+    compat_models: dict[str, list[str]] = {}
+    compat_recommended: dict[str, dict[str, Any]] = {}
+    for p in tier2["providers"]:
+        preset = p.get("openai_compat_provider")
+        if preset:
+            compat_models[preset] = list(p.get("vision_models") or [])
+            if p.get("recommended"):
+                compat_recommended[preset] = p["recommended"]
+
+    return {
+        "request": request,
+        "cfg": cfg_now,
+        "backend": cfg_now.backend,
+        "local_models": [m["name"] for m in local_models_info],
+        "local_models_info": local_models_info,
+        "vision_models": vision_models,
+        "selected_is_vision": selected_is_vision,
+        "cloud_models": _cloud_models(),
+        "cloud_model": cfg_now.cloud_model,
+        "selected_model_label": cfg_now.selected_model_label(),
+        "status_level": "full_local" if not cfg_now.is_cloud else "partial_local",
+        "needs_privacy_ack": bool(cfg_now.is_cloud and not cfg_now.privacy_acknowledged),
+        "config_path": str(CONFIG_PATH),
+        "ollama_host": ollama_host(),
+        "doctor": doctor,
+        "tier1": tier1,
+        "tier2": tier2,
+        "tier3": tier3,
+        "catalog": report["catalog"],
+        "compat_presets": OPENAI_COMPAT_PRESETS,
+        "compat_models": compat_models,
+        "compat_recommended": compat_recommended,
+        "error": error,
+    }
 
 
 @app.get("/settings", response_class=HTMLResponse)
 def settings(request: Request):
     cfg_now = load_config()
-    local_models_info = _ollama_model_info()
-    local_models = [m["name"] for m in local_models_info]
-    vision_models = {m["name"] for m in local_models_info if m["vision"]}
-    selected_is_vision = cfg_now.local_model in vision_models
-
-    status_level = "full_local" if cfg_now.model_backend == "local" else "partial_local"
-    needs_privacy_ack = bool(cfg_now.model_backend == "cloud" and not cfg_now.privacy_acknowledged)
-
-    return _render(
-        request,
-        "settings.html",
-        {
-            "request": request,
-            "cfg": cfg_now,
-            "local_models": local_models,
-            "local_models_info": local_models_info,
-            "vision_models": vision_models,
-            "selected_is_vision": selected_is_vision,
-            "cloud_models": _cloud_models(),
-            "cloud_model": cfg_now.cloud_model,
-            "status_level": status_level,
-            "needs_privacy_ack": needs_privacy_ack,
-            "config_path": str(CONFIG_PATH),
-            "error": None,
-        },
-    )
+    return _render(request, "settings.html", _settings_context(request, cfg_now))
 
 
 @app.post("/settings", response_class=HTMLResponse)
@@ -453,8 +508,14 @@ async def settings_save(
     model_backend: str = Form(...),
     local_model: str = Form(default=""),
     cloud_model: str = Form(default=""),
+    openai_compat_provider: str = Form(default=""),
+    openai_compat_model: str = Form(default=""),
+    openai_compat_base_url: str = Form(default=""),
+    openai_compat_api_key_env: str = Form(default=""),
     privacy_acknowledged: str | None = Form(default=None),
 ):
+    from .config import OPENAI_COMPAT_PRESETS, clear_cloud_consent, is_cloud_backend, normalize_backend, record_cloud_consent
+
     cfg_now = load_config()
 
     try:
@@ -463,34 +524,43 @@ async def settings_save(
     except Exception:
         return Response("Forbidden", status_code=403)
 
-    cfg_now.model_backend = "cloud" if model_backend == "cloud" else "local"
+    cfg_now.model_backend = normalize_backend(model_backend)
     if local_model:
-        cfg_now.local_model = local_model
+        cfg_now.local_model = local_model.strip()
     if cloud_model:
-        cfg_now.cloud_model = cloud_model
-    cfg_now.privacy_acknowledged = bool(privacy_acknowledged) if cfg_now.model_backend == "cloud" else False
+        cfg_now.cloud_model = cloud_model.strip()
+    if openai_compat_provider in OPENAI_COMPAT_PRESETS:
+        cfg_now.openai_compat_provider = openai_compat_provider
+    if openai_compat_model:
+        cfg_now.openai_compat_model = openai_compat_model.strip()
+    cfg_now.openai_compat_base_url = openai_compat_base_url.strip()
+    cfg_now.openai_compat_api_key_env = openai_compat_api_key_env.strip()
+    cloud = is_cloud_backend(cfg_now.model_backend)
+    if cloud and privacy_acknowledged:
+        # Consent is recorded with a time and the provider; saving again for the same provider keeps the original time.
+        record_cloud_consent(cfg_now, keep_existing=True)
+    else:
+        cfg_now.privacy_acknowledged = False
+        if not cloud:
+            clear_cloud_consent(cfg_now)
+        else:
+            cfg_now.privacy_acknowledged_at = ""
+            cfg_now.cloud_provider = ""
 
-    if cfg_now.model_backend == "cloud" and not cfg_now.privacy_acknowledged:
-        _lmi = _ollama_model_info()
-        _vm = {m["name"] for m in _lmi if m["vision"]}
-        return _render(
-            request,
-            "settings.html",
-            {
-                "request": request,
-                "cfg": cfg_now,
-                "local_models": [m["name"] for m in _lmi],
-                "local_models_info": _lmi,
-                "vision_models": _vm,
-                "selected_is_vision": cfg_now.local_model in _vm,
-                "cloud_models": _cloud_models(),
-                "cloud_model": cfg_now.cloud_model,
-                "status_level": "partial_local",
-                "needs_privacy_ack": True,
-                "config_path": str(CONFIG_PATH),
-                "error": "Cloud mode requires privacy confirmation.",
-            },
-        )
+    error = None
+    if cfg_now.openai_compat_api_key_env and not _ENV_NAME_RE.match(cfg_now.openai_compat_api_key_env):
+        error = "API key env var must be an environment variable NAME such as OPENAI_API_KEY (never the key itself)."
+        cfg_now.openai_compat_api_key_env = ""
+    elif cfg_now.openai_compat_base_url and not re.match(
+        r"^(https://|http://(127\.0\.0\.1|localhost)(:\d+)?/)", cfg_now.openai_compat_base_url
+    ):
+        error = "Custom base URL must start with https:// (or http://localhost/...)."
+        cfg_now.openai_compat_base_url = ""
+    elif cloud and not cfg_now.privacy_acknowledged:
+        error = "Cloud backends require the privacy confirmation."
+
+    if error:
+        return _render(request, "settings.html", _settings_context(request, cfg_now, error=error))
 
     save_config(cfg=cfg_now)
     global cfg
@@ -513,14 +583,31 @@ async def upload(
     except Exception:
         return Response("Forbidden", status_code=403)
 
-    if cfg.model_backend == "cloud" and not cfg.privacy_acknowledged:
+    if cfg.is_cloud and not cfg.privacy_acknowledged:
         return RedirectResponse(url="/settings", status_code=303)
+
+    # Fail fast with a clear message (Ollama not running, text-only model, ...)
+    # before anything is written to disk.
+    try:
+        ensure_backend_ready(cfg)
+    except Exception as e:  # noqa: BLE001
+        return _render(
+            request,
+            "upload.html",
+            {
+                "request": request,
+                "model_backend": "cloud" if cfg.is_cloud else "local",
+                "cloud_model": cfg.selected_model_label(),
+                "local_model": cfg.local_model,
+                "error": str(e),
+            },
+        )
 
     incoming = cfg.data_path / "incoming"
     incoming.mkdir(parents=True, exist_ok=True)
 
-    MAX_UPLOAD_MB = 50
-    MAX_UPLOAD_BYTES = MAX_UPLOAD_MB * 1024 * 1024
+    max_upload_bytes = int(cfg.max_upload_bytes)
+    max_upload_mb = max_upload_bytes / (1024 * 1024)
 
     raw_name = file.filename or "upload"
 
@@ -534,6 +621,9 @@ async def upload(
         ".png": "image/png",
         ".jpg": "image/jpeg",
         ".jpeg": "image/jpeg",
+        ".tif": "image/tiff",
+        ".tiff": "image/tiff",
+        ".webp": "image/webp",
     }
 
     claimed_ext = Path(safe_name).suffix.lower()
@@ -543,17 +633,17 @@ async def upload(
             "upload.html",
             {
                 "request": request,
-                "model_backend": cfg.model_backend,
-                "cloud_model": cfg.cloud_model,
+                "model_backend": "cloud" if cfg.is_cloud else "local",
+                "cloud_model": cfg.selected_model_label(),
                 "local_model": cfg.local_model,
                 "error": f"Unsupported file extension: {claimed_ext or '(none)'}",
             },
         )
 
     try:
-        data = await file.read(MAX_UPLOAD_BYTES + 1)
-        if len(data) > MAX_UPLOAD_BYTES:
-            raise HTTPException(status_code=413, detail=f"File too large. Max {MAX_UPLOAD_MB}MB.")
+        data = await file.read(max_upload_bytes + 1)
+        if len(data) > max_upload_bytes:
+            raise HTTPException(status_code=413, detail=f"File too large. Max {max_upload_mb:.0f}MB.")
 
         def _detect_mime(buf: bytes) -> str:
             if buf.startswith(b"%PDF"):
@@ -562,6 +652,10 @@ async def upload(
                 return "image/png"
             if buf.startswith(b"\xff\xd8\xff"):
                 return "image/jpeg"
+            if buf.startswith(b"II*\x00") or buf.startswith(b"MM\x00*"):
+                return "image/tiff"
+            if len(buf) >= 12 and buf[0:4] == b"RIFF" and buf[8:12] == b"WEBP":
+                return "image/webp"
             return "application/octet-stream"
 
         detected = _detect_mime(data[:2048])
@@ -572,8 +666,8 @@ async def upload(
                 "upload.html",
                 {
                     "request": request,
-                    "model_backend": cfg.model_backend,
-                    "cloud_model": cfg.cloud_model,
+                    "model_backend": "cloud" if cfg.is_cloud else "local",
+                    "cloud_model": cfg.selected_model_label(),
                     "local_model": cfg.local_model,
                     "error": f"Unsupported file type: {detected}",
                 },
@@ -585,14 +679,15 @@ async def upload(
         # Internal UUID-based path for disk writes
         tmp_path = incoming / f"{uuid.uuid4().hex}{claimed_ext}"
         tmp_path.write_bytes(data)
+        del data
     except HTTPException as e:
         return _render(
             request,
             "upload.html",
             {
                 "request": request,
-                "model_backend": cfg.model_backend,
-                "cloud_model": cfg.cloud_model,
+                "model_backend": "cloud" if cfg.is_cloud else "local",
+                "cloud_model": cfg.selected_model_label(),
                 "local_model": cfg.local_model,
                 "error": e.detail,
             },
@@ -603,31 +698,40 @@ async def upload(
             "upload.html",
             {
                 "request": request,
-                "model_backend": cfg.model_backend,
-                "cloud_model": cfg.cloud_model,
+                "model_backend": "cloud" if cfg.is_cloud else "local",
+                "cloud_model": cfg.selected_model_label(),
                 "local_model": cfg.local_model,
                 "error": f"Upload failed: {str(e)}",
             },
         )
 
-    try:
-        dest_path, file_hash, original_filename, mime_type = ingest_file(str(tmp_path), cfg, original_name=safe_name)
-    except Exception as e:
-        try:
-            tmp_path.unlink(missing_ok=True)
-        except Exception:
-            pass
+    # Classification and extraction take minutes: run them in the threadpool so the rest of the
+    # web UI keeps answering while a document is processed.
+    return await run_in_threadpool(_ingest_upload, request, tmp_path, safe_name, filer, year)
+
+
+def _ingest_upload(request: Request, tmp_path: Path, safe_name: str, filer: str | None, year: int | None) -> Response:
+    """Validate, store and extract one uploaded file (sync; called from the threadpool)."""
+
+    def _error(msg: str) -> Response:
         return _render(
             request,
             "upload.html",
             {
                 "request": request,
-                "model_backend": cfg.model_backend,
-                "cloud_model": cfg.cloud_model,
+                "model_backend": "cloud" if cfg.is_cloud else "local",
+                "cloud_model": cfg.selected_model_label(),
                 "local_model": cfg.local_model,
-                "error": f"Unsupported or unsafe upload: {str(e)}",
+                "error": msg,
             },
         )
+
+    try:
+        # Same checks as the CLI/MCP: readable, not password-protected, within max_pages.
+        validate_input_file(str(tmp_path), cfg, original_name=safe_name)
+        dest_path, file_hash, original_filename, mime_type = ingest_file(str(tmp_path), cfg, original_name=safe_name)
+    except Exception as e:
+        return _error(f"Unsupported or unsafe upload: {str(e)}")
     finally:
         try:
             tmp_path.unlink(missing_ok=True)
@@ -635,7 +739,7 @@ async def upload(
             pass
 
     existing = get_document_by_hash(file_hash)
-    if existing:
+    if existing and not is_retryable(existing):
         return RedirectResponse(url=f"/doc/{existing['id']}", status_code=303)
 
     page_count = page_count_for_pdf(dest_path) if dest_path.lower().endswith(".pdf") else 1
@@ -648,34 +752,56 @@ async def upload(
         doc_type = cls.get("doc_type") or "unknown"
         classification_confidence = float(cls.get("confidence") or 0.0)
     except Exception as e:
-        classify_note = f"classification failed: {str(e)}"
+        classify_note = f"classification failed: {strip_model_reply(str(e))}"
 
-    doc_id = create_document_record(
-        cfg=cfg,
-        file_path=dest_path,
-        file_hash=file_hash,
-        original_filename=original_filename,
-        mime_type=mime_type,
-        filer=filer,
-        tax_year=year,
-        doc_type=doc_type,
-        page_count=page_count,
-        classification_confidence=classification_confidence,
-    )
+    if existing:
+        # An earlier upload of this file never finished (server stopped mid-extraction, or it failed):
+        # re-run it on the same document instead of showing the dead record.
+        doc_id = existing["id"]
+        reset_document_for_retry(
+            cfg=cfg,
+            doc_id=doc_id,
+            file_path=dest_path,
+            doc_type=doc_type,
+            page_count=page_count,
+            classification_confidence=classification_confidence,
+            filer=filer,
+            tax_year=year,
+        )
+    else:
+        doc_id = create_document_record(
+            cfg=cfg,
+            file_path=dest_path,
+            file_hash=file_hash,
+            original_filename=original_filename,
+            mime_type=mime_type,
+            filer=filer,
+            tax_year=year,
+            doc_type=doc_type,
+            page_count=page_count,
+            classification_confidence=classification_confidence,
+        )
 
     if classify_note:
         update_document_metadata(doc_id=doc_id, filer=None, tax_year=None, doc_type=None, notes=classify_note)
 
     try:
-        extracted = extract_document(dest_path, doc_type, cfg)
+        result = extract_document_with_meta(dest_path, doc_type, cfg)
+        extracted = result.data
         section_id = store_raw_extraction(doc_id=doc_id, form_type=doc_type, data=extracted, confidence=classification_confidence)
-        store_extracted_fields(doc_id=doc_id, section_id=section_id, data=extracted)
+        store_extracted_fields(doc_id=doc_id, section_id=section_id, data=extracted, confidences=result.field_confidence)
         if doc_type == "1099-DA" and isinstance(extracted, dict):
             store_1099da_transactions(doc_id=doc_id, extraction=extracted)
+        _lot_count, lot_note = extract_and_store_1099b_lots(doc_id=doc_id, file_path=dest_path, doc_type=doc_type, cfg=cfg)
 
         missing = missing_required_fields(doc_type, extracted)
         overall = compute_overall_confidence(doc_type=doc_type, extraction=extracted, classification_confidence=classification_confidence)
         nr = compute_needs_review(classification_confidence=classification_confidence, overall_confidence=overall, missing_required=missing)
+        nr = nr or bool(result.review_fields) or bool(lot_note)
+        review_notes = [n for n in (
+            f"low-confidence fields: {', '.join(result.review_fields)}" if result.review_fields else None,
+            lot_note,
+        ) if n]
 
         # store some common identity fields if present
         if isinstance(extracted, dict):
@@ -741,10 +867,16 @@ async def upload(
 
             set_display_name_if_empty(doc_id=doc_id, display_name=display_name)
 
-        mark_processed(doc_id=doc_id, overall_confidence=overall, needs_review=nr)
+        mark_processed(
+            doc_id=doc_id,
+            overall_confidence=overall,
+            needs_review=nr,
+            notes="; ".join(review_notes) or None,
+        )
     except Exception as e:
-        # Hard failure (including JSON parse errors) → mark error, don't crash.
-        mark_error(doc_id=doc_id, error=str(e))
+        # Hard failure (including JSON parse errors) → mark error, don't crash. The stored note
+        # never carries the model's reply text (it can echo the page).
+        mark_error(doc_id=doc_id, error=strip_model_reply(str(e)))
 
     return RedirectResponse(url=f"/doc/{doc_id}", status_code=303)
 
@@ -777,6 +909,13 @@ def doc_detail(request: Request, doc_id: str):
             ).fetchall()
             txns = [{k: r[k] for k in r.keys()} for r in rows2]
 
+        lots: list[dict[str, Any]] = []
+        if doc.get("doc_type") in ("1099-B", "consolidated-1099"):
+            rows3 = con.execute(
+                "SELECT * FROM transactions_1099b WHERE document_id=? ORDER BY lot_index ASC", (doc_id,)
+            ).fetchall()
+            lots = [{k: r[k] for k in r.keys()} for r in rows3]
+
     return _render(
         request,
         "detail.html",
@@ -787,6 +926,7 @@ def doc_detail(request: Request, doc_id: str):
             "extraction": extraction,
             "extraction_pretty": pretty_json(extraction) if extraction is not None else None,
             "transactions": txns,
+            "lots": lots,
         },
     )
 
@@ -825,7 +965,7 @@ def doc_delete(request: Request, doc_id: str, csrf_token: str = Form(...)):
     except Exception:
         return Response("Forbidden", status_code=403)
 
-    delete_document(doc_id)
+    delete_document(doc_id, cfg)
     return RedirectResponse(url="/documents", status_code=303)
 
 
@@ -912,12 +1052,12 @@ def doc_preview_page_png(doc_id: str, page: int = 0):
 
     path = doc["file_path"]
     if path.lower().endswith(".pdf"):
-        pdf = fitz.open(path)
+        pdf = pymupdf.open(path)
         try:
             page_count = pdf.page_count
             if page < 0 or page >= page_count:
                 return Response("Page out of range", status_code=404)
-            pix = pdf[page].get_pixmap(matrix=fitz.Matrix(2, 2))
+            pix = pdf[page].get_pixmap(matrix=pymupdf.Matrix(2, 2))
             return Response(pix.tobytes("png"), media_type="image/png")
         finally:
             pdf.close()
@@ -974,6 +1114,55 @@ def doc_export_json(request: Request, doc_id: str, csrf: str = Query("")):
         media_type="application/json",
         headers={"Content-Disposition": f"attachment; filename=taxclaw-{doc_id}.json"},
     )
+
+
+def _accountant_export_response(request: Request, csrf: str, kind: str, doc_id: str | None) -> Response:
+    """Form 8949 CSV / TXF download (same loopback + CSRF checks as the other exports)."""
+
+    from .accountant_exports import NOTICE_TEXT, build_8949, export_txf
+
+    try:
+        _assert_same_origin(request)
+        _require_csrf(request, csrf)
+    except Exception:
+        return Response("Forbidden", status_code=403)
+    if doc_id is not None and not get_document(doc_id):
+        return Response("Not found", status_code=404)
+
+    ids = None if doc_id is None else [doc_id]
+    stem = f"taxclaw-{doc_id}" if doc_id else "taxclaw-all"
+    headers = {"X-TaxClaw-Notice": NOTICE_TEXT}
+    if kind == "8949":
+        res = build_8949(ids)
+        headers["X-TaxClaw-Processed-By"] = res.processed_by_line
+        headers["Content-Disposition"] = f"attachment; filename={stem}-form8949.csv"
+        headers["X-TaxClaw-Rows-Needing-Review"] = str(res.needs_review)
+        return Response(res.content, media_type="text/csv", headers=headers)
+    txf = export_txf(ids)
+    headers["X-TaxClaw-Processed-By"] = txf.processed_by_line
+    headers["Content-Disposition"] = f"attachment; filename={stem}.txf"
+    headers["X-TaxClaw-Warnings"] = str(len(txf.warnings))
+    return Response(txf.content.encode("ascii"), media_type="text/plain; charset=us-ascii", headers=headers)
+
+
+@app.get("/doc/{doc_id}/export.8949.csv")
+def doc_export_8949(request: Request, doc_id: str, csrf: str = Query("")):
+    return _accountant_export_response(request, csrf, "8949", doc_id)
+
+
+@app.get("/doc/{doc_id}/export.txf")
+def doc_export_txf(request: Request, doc_id: str, csrf: str = Query("")):
+    return _accountant_export_response(request, csrf, "txf", doc_id)
+
+
+@app.get("/export.8949.csv")
+def export_all_8949(request: Request, csrf: str = Query("")):
+    return _accountant_export_response(request, csrf, "8949", None)
+
+
+@app.get("/export.txf")
+def export_all_txf(request: Request, csrf: str = Query("")):
+    return _accountant_export_response(request, csrf, "txf", None)
 
 
 @app.get("/export.wide.csv")

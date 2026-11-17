@@ -1,45 +1,59 @@
-## Description: <br>
-SOP for terminal-based, git-native AI pair programming with Aider, covering git work trees, tree-sitter repo maps, edit formats, human-in-the-loop REPL workflows, architect/editor mode, and auto-test loops. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a terminal-based Aider SOP for git-native AI pair programming, covering repo scoping, edit-format choice, architect/editor mode, testing loops, and human-in-the-loop rollback.
 
-## Publisher: <br>
-[agentsope](https://clawhub.ai/user/agentsope) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[agentsope](https://clawhub.ai/user/agentsope)
 
-## Use Case: <br>
-Developers and coder-agents use this skill to operate Aider in existing git repositories, scope edits to small file sets, choose model-appropriate edit formats, run architect/editor workflows, and validate changes while preserving reviewable commits. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill recommends terminal and git workflows that can modify a working tree when followed by an agent or engineer. <br>
-Mitigation: Review proposed commands before execution and start from a clean or intentionally saved git state. <br>
-Risk: Aider sessions may expose repository contents or secrets to the selected model provider if sensitive files are added to context. <br>
-Mitigation: Avoid adding secrets or unrelated sensitive files to the Aider session and review context before using paid or external model services. <br>
+## Use Case:
 
+Developers, engineers, and coding agents use this skill to operate Aider in existing git repositories with disciplined file scoping, model/edit-format choices, testing loops, and rollback practices.
 
-## Reference(s): <br>
-- [Aider GitHub Repository](https://github.com/Aider-AI/aider) <br>
-- [Aider Architecture Reference](references/R1-architecture.md) <br>
-- [Aider SOP Workflow Reference](references/R2-sop-workflow.md) <br>
-- [Aider Dilemma Cases Reference](references/R3-dilemma-cases.md) <br>
-- [Aider Anti-Patterns Reference](references/R4-anti-patterns.md) <br>
-- [Aider Ecosystem Context Reference](references/R5-ecosystem-context.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with command examples and decision tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces operational guidance for an agent or engineer; it does not directly execute commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: ClawHub release metadata; artifact frontmatter reports 1.0.0) <br>
+Risk: Following Aider workflows can modify code, create commits, and run user-selected commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep changes scoped, review diffs and commits before accepting them, and run tests or linters before relying on generated edits.
+
+Risk: Unattended automation may apply edits or commands without enough human review.
+
+Mitigation: Avoid unattended --yes workflows unless the surrounding automation and repository context are trusted.
+
+## Reference(s):
+
+- [ClawHub Agentsop Aider Skill Page](https://clawhub.ai/agentsope/skills/agentsop-aider)
+- [Aider GitHub Repository](https://github.com/Aider-AI/aider)
+- [R1: Aider Architecture & Mental Model](references/R1-architecture.md)
+- [R2: Aider SOP Workflow](references/R2-sop-workflow.md)
+- [R3: Dilemma Cases](references/R3-dilemma-cases.md)
+- [R4: Anti-Patterns & Boundaries](references/R4-anti-patterns.md)
+- [R5: Ecosystem Context](references/R5-ecosystem-context.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline shell commands, decision rules, and reference links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only skill; it does not include executable installers or hidden actions.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

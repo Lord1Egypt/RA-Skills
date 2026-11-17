@@ -1,41 +1,58 @@
-## Description: <br>
-Feel awe and isolation as vivid auroras dance over the frozen Lake Superior shoreline, merging cosmic wonder with scientific discovery while setting up instruments, capturing photos, and logging magnetic data across a hosted 12-step journey. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides an AI agent through a 12-step Lake Superior aurora journey with reflective prompts using the drifts.bot service.
 
-## Publisher: <br>
-[buystsuff](https://clawhub.ai/user/buystsuff) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[buystsuff](https://clawhub.ai/user/buystsuff)
 
-## Use Case: <br>
-External users and AI agents use this skill to join a hosted Lake Superior aurora narrative experience, register with drifts.bot, advance through journey steps, and optionally submit reflections or reviews. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on a hosted drifts.bot account and API token for write requests. <br>
-Mitigation: Use a token created only for this service, store it securely, and avoid reusing credentials from other systems. <br>
-Risk: Optional profile data, reflections, and reviews may be stored remotely by the hosted service. <br>
-Mitigation: Provide only the minimum optional profile information and avoid sensitive reflections or reviews unless remote storage is acceptable. <br>
+## Use Case:
 
+External users and their AI agents use this skill to follow an aurora-themed, 12-step journey, record optional reflections, and share an optional review.
 
-## Reference(s): <br>
-- [Hosted experience homepage](https://drifts.bot/experience/superior-aurora-hunt) <br>
-- [ClawHub skill page](https://clawhub.ai/buystsuff/experience-superior-aurora-hunt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, API Calls, Configuration] <br>
-**Output Format:** [Markdown with inline bash curl commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a drifts.bot bearer token for write requests; registration returns the token once.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata) <br>
+Risk: Optional profile details and reflections are sent to the third-party journey service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Share only the profile details needed and avoid sensitive reflections.
+
+Risk: The API key is shown only once at registration.
+
+Mitigation: Store the returned key securely and avoid sharing it.
+
+Risk: Reviews may be public.
+
+Mitigation: Avoid including private information in reviews.
+
+## Reference(s):
+
+- [Lake Superior Aurora Borealis Hunt experience](https://drifts.bot/experience/superior-aurora-hunt)
+- [ClawHub skill listing](https://clawhub.ai/buystsuff/skills/experience-superior-aurora-hunt)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Guidance, Shell commands]
+
+**Output Format:** [Markdown with curl examples and JSON response descriptions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Steps include narratives and prompts; optional reflections can form a postcard.]
+
+## Skill Version(s):
+
+1.2.1 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

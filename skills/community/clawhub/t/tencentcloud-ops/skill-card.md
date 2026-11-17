@@ -1,47 +1,66 @@
-## Description: <br>
-TencentCloud OPS helps agents manage Tencent Cloud CVM instances and COS object storage, including resource creation, deletion, status checks, credential validation, and configuration guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+TencentCloud OPS helps agents create, manage, monitor, and secure Tencent Cloud CVM servers and COS buckets.
 
-## Publisher: <br>
-[ugpoor](https://clawhub.ai/user/ugpoor) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ugpoor](https://clawhub.ai/user/ugpoor)
 
-## Use Case: <br>
-Developers and cloud operators use this skill to configure Tencent Cloud credentials, manage CVM compute resources, manage COS buckets and files, estimate operating cost, and generate operational commands or Python examples for Tencent Cloud workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can perform live Tencent Cloud operations, including creating, stopping, deleting, and configuring CVM and COS resources. <br>
-Mitigation: Use a dedicated Tencent Cloud sub-user, restrict permissions to required regions and resources, and manually review every stop, delete, or release operation before execution. <br>
-Risk: The documented setup uses Tencent Cloud API credentials and environment variables. <br>
-Mitigation: Keep secrets out of Git, avoid main-account keys, rotate credentials regularly, and store credentials only in local environment configuration. <br>
-Risk: The security evidence reports broad cloud-control permissions and destructive actions without built-in safeguards. <br>
-Mitigation: Apply least-privilege CAM policies, avoid finance and billing permissions, set budget alerts, and monitor created resources for idle spend. <br>
+## Use Case:
 
+Developers and cloud operators use this skill to generate guidance, Python examples, shell commands, and configuration steps for Tencent Cloud CVM and COS operations, including provisioning, deletion, file transfer, cost controls, and security setup.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ugpoor/tencentcloud-ops) <br>
-- [Tencent Cloud API documentation](https://cloud.tencent.com/document/api) <br>
-- [Tencent Cloud CVM API](https://cloud.tencent.com/document/api/213) <br>
-- [Tencent Cloud COS API](https://cloud.tencent.com/document/api/436) <br>
-- [Tencent Cloud CAM user management](https://cloud.tencent.com/document/product/598) <br>
-- [Tencent Cloud API 3.0 Explorer](https://console.cloud.tencent.com/api/explorer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline bash and Python code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include Tencent Cloud CLI commands, Python SDK examples, environment variable guidance, cost estimates, and review notes for destructive operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release evidence) <br>
+Risk: Broad Tencent Cloud permissions could allow unintended resource creation, deletion, network changes, or storage access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated non-production Tencent Cloud sub-user and replace wildcard policies with narrow actions and resource scopes before use.
+
+Risk: Destructive CVM and COS operations may remove cloud resources if targets are not independently checked.
+
+Mitigation: Separately verify every target resource before running deletion, shutdown, or bucket removal operations.
+
+Risk: Credential exposure could occur if .env contents or Tencent Cloud keys are printed, shared, or committed.
+
+Mitigation: Keep .env files out of source control, avoid printing credential values, and rotate keys regularly.
+
+Risk: Unpinned dependencies may change behavior across installs.
+
+Mitigation: Install dependencies in a virtual environment with pinned versions.
+
+## Reference(s):
+
+- [TencentCloud OPS ClawHub page](https://clawhub.ai/ugpoor/skills/tencentcloud-ops)
+- [Tencent Cloud API documentation](https://cloud.tencent.com/document/api)
+- [Tencent Cloud CVM API](https://cloud.tencent.com/document/api/213)
+- [Tencent Cloud COS API](https://cloud.tencent.com/document/api/436)
+- [Tencent Cloud CAM user management](https://cloud.tencent.com/document/product/598)
+- [Tencent Cloud API 3.0 Explorer](https://console.cloud.tencent.com/api/explorer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with Python and bash examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose Tencent Cloud API operations that require credentialed execution outside the agent response.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

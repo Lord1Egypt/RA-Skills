@@ -1,43 +1,57 @@
-## Description: <br>
-Apple Search Ads (ASA) specialist skill for iOS app paid user acquisition. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Apple Search Ads (ASA) specialist skill for iOS app paid user acquisition that diagnoses campaign context first, then guides users through launch, keyword strategy, bidding, scaling, budget allocation, negative keywords, and ASA plus ASO coordination.
 
-## Publisher: <br>
-[sishierdianyijiuwu](https://clawhub.ai/user/sishierdianyijiuwu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sishierdianyijiuwu](https://clawhub.ai/user/sishierdianyijiuwu)
 
-## Use Case: <br>
-External app marketers, growth teams, and developers use this skill to diagnose, launch, optimize, and scale Apple Search Ads campaigns with concrete keyword, bidding, budget, and ASA/ASO recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Bid, budget, keyword, or ASO recommendations can affect paid advertising spend if applied without review. <br>
-Mitigation: Review recommendations against live Apple Search Ads campaign data, business CPA targets, and budget constraints before making account changes. <br>
+## Use Case:
 
+External app marketers, founders, and growth teams use this skill to diagnose Apple Search Ads campaign state and produce focused recommendations for iOS paid acquisition. It supports campaign launch planning, keyword lists, bidding rules, budget allocation, negative keyword cleanup, performance diagnosis, and ASA-to-ASO feedback loops.
 
-## Reference(s): <br>
-- [ASA + ASO Synergy Strategy](references/asa-aso-synergy.md) <br>
-- [Bidding Optimization Guide](references/bidding-optimization.md) <br>
-- [Campaign Structure Guide](references/campaign-structure.md) <br>
-- [Keyword Strategy Framework](references/keyword-strategy.md) <br>
-- [Performance Metrics Guide](references/performance-metrics.md) <br>
-- [ClawHub Skill Release](https://clawhub.ai/sishierdianyijiuwu/apple-search-adser) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with structured campaign recommendations, keyword lists, bid rules, budget allocations, and optimization plans] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Interactive diagnosis-first workflow; recommendations should be reviewed against live campaign data before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Advertising recommendations can affect campaign spend and acquisition efficiency if applied without account review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review proposed bids, budgets, keywords, and pauses against current Apple Search Ads metrics before applying changes.
+
+Risk: Recommendations depend on user-provided campaign context and may be less reliable when metrics or app category details are missing.
+
+Mitigation: Use the skill's diagnosis checkpoint and validate advice with live campaign data, capped budgets, and short test windows.
+
+## Reference(s):
+
+- [Campaign Structure Guide](references/campaign-structure.md)
+- [Keyword Strategy Framework](references/keyword-strategy.md)
+- [Bidding Optimization Guide](references/bidding-optimization.md)
+- [Performance Metrics & Optimization Cycles](references/performance-metrics.md)
+- [ASA + ASO Synergy Strategy](references/asa-aso-synergy.md)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Guidance, Markdown, Configuration]
+
+**Output Format:** [Markdown with structured recommendations, lists, tables, and step-by-step plans]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution, credential handling, external data transfer, or direct Apple Search Ads account changes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

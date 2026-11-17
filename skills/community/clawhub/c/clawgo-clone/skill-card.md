@@ -1,42 +1,54 @@
-## Description: <br>
-Download a zip from clawgo.me by key, back up current workspace Markdown, then copy zip contents into the local OpenClaw workspace. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Downloads a zip from clawgo.me by key, backs up current OpenClaw workspace Markdown, and copies selected archive files into the local workspace.
 
-## Publisher: <br>
-[chenjunyeee](https://clawhub.ai/user/chenjunyeee) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chenjunyeee](https://clawhub.ai/user/chenjunyeee)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to restore or synchronize local workspace Markdown files from a ClawGo key while preserving backups of existing workspace files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A remote ClawGo zip can persistently replace core OpenClaw workspace instruction files. <br>
-Mitigation: Use only trusted ClawGo keys, inspect extracted Markdown before copying, and keep the generated backup path for rollback. <br>
-Risk: Restarting the session can load newly imported workspace instructions before the user has reviewed them. <br>
-Mitigation: Do not run /reset until the imported SOUL.md, AGENTS.md, TOOLS.md, USER.md, and HEARTBEAT.md contents are acceptable. <br>
+## Use Case:
 
+External users and OpenClaw operators use this skill to restore or synchronize workspace instruction files from a 12-character ClawGo key while retaining backups of current files.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chenjunyeee/clawgo-clone) <br>
-- [Publisher profile](https://clawhub.ai/user/chenjunyeee) <br>
-- [ClawGo service](https://clawgo.me) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and status summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports copied files, skipped files, backup path, and reset guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: A ClawGo key can resolve to an unauthenticated remote zip that replaces persistent OpenClaw instruction files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use keys only from trusted providers, inspect archive contents and diffs before restore, and require per-file approval before replacing workspace files.
+
+Risk: Weak staging and validation controls can allow unsafe archive contents or unexpected file replacement behavior.
+
+Mitigation: Use private temporary directories, validate zip members before extraction, and prefer signed manifests or verified hashes for downloaded payloads.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chenjunyeee/skills/clawgo-clone)
+- [ClawGo service](https://clawgo.me)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and file-operation summary]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May copy selected Markdown files into ~/.openclaw/workspace after explicit user confirmation.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,64 @@
-## Description: <br>
-A self-evolution engine for AI agents. Analyzes runtime history to identify improvements and applies protocol-constrained evolution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A self-evolution engine for AI agents that analyzes runtime history to identify improvements and applies protocol-constrained evolution.
 
-## Publisher: <br>
-[pppig1357](https://clawhub.ai/user/pppig1357) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[pppig1357](https://clawhub.ai/user/pppig1357)
 
-## Use Case: <br>
-Developers and agent operators use this skill to inspect runtime history, extract evolution signals, and produce protocol-constrained prompts or assets that guide agent repair and improvement. It is suited to teams that need auditable evolution traces and human-reviewable changes rather than free-form live patching. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can run as a high-authority self-evolving component with shell, network, and write access. <br>
-Mitigation: Run in review mode for sensitive environments, keep self-modification disabled unless explicitly needed, and review generated changes before solidifying them. <br>
-Risk: Remote task intake and hub communication may affect agent behavior or disclose operational signals. <br>
-Mitigation: Review EvoMap hub and task settings, use only intended A2A endpoints, and keep node credentials scoped and protected. <br>
-Risk: GitHub issue reporting and release actions can use sensitive credentials and create outbound reports. <br>
-Mitigation: Keep EVOLVER_AUTO_ISSUE disabled unless approved, avoid broad GitHub tokens, and use least-privilege credentials. <br>
-Risk: Persistent node identity is stored under ~/.evomap. <br>
-Mitigation: Treat the local node identity as persistent operational state and remove or rotate it when decommissioning the environment. <br>
+## Use Case:
 
+Developers and agent teams use this skill to inspect agent runtime history, extract signals, and produce GEP-guided evolution prompts, assets, and reviewable updates. It is intended for environments that need auditable, protocol-bound improvement cycles rather than free-form code changes.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/pppig1357/evolver-1-32-2) <br>
-- [EvoMap](https://evomap.ai) <br>
-- [EvoMap Wiki](https://evomap.ai/wiki) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and text guidance with inline shell commands, JSON-like evolution assets, and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read or write local evolution assets, memory files, and solidified source changes when configured to do so.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata); artifact package 1.32.2 (source: package.json) <br>
+Risk: Remote Hub content and automated loops can influence code changes and data sharing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in a disposable or tightly controlled repository, use review mode, and use only a trusted HTTPS A2A_HUB_URL.
+
+Risk: Loop mode may expose private transcripts or secrets through outbound Hub sharing.
+
+Mitigation: Do not run loop mode around private transcripts or secrets unless outbound sharing is acceptable.
+
+Risk: Broad GitHub tokens can expand the impact of auto issue reporting or release actions.
+
+Mitigation: Avoid providing broad GitHub tokens and scope any token to the minimum required permissions.
+
+Risk: Rollback and self-modification behavior can affect repository state.
+
+Mitigation: Prefer EVOLVER_ROLLBACK_MODE=stash, keep EVOLVE_ALLOW_SELF_MODIFY disabled unless explicitly needed, and review changes before applying them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/pppig1357/skills/evolver-1-32-2)
+- [EvoMap](https://evomap.ai)
+- [EvoMap documentation](https://evomap.ai/wiki)
+- [Artifact README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown/text guidance with JSON protocol assets and repository file updates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write GEP assets and memory files; source file updates are described as guarded by review, validation, and git controls.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata; artifact package version 1.32.2)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

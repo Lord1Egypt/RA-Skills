@@ -1,43 +1,54 @@
-## Description: <br>
-Fetch web pages, strip to clean readable text, summarize into agent-ready markdown. Research assistant foundation. No browser required. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetch web pages, strip to clean readable text, summarize into agent-ready markdown.
 
-## Publisher: <br>
-[TheShadowRose](https://clawhub.ai/user/TheShadowRose) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[theshadowrose](https://clawhub.ai/user/theshadowrose)
 
-## Use Case: <br>
-Developers, researchers, and agents use this skill to fetch web pages, extract readable text, convert pages to markdown, and save clipped content for research workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can fetch arbitrary URLs and save fetched page content locally. <br>
-Mitigation: Review URLs before use, avoid sensitive intranet, localhost, authenticated, or private targets, and configure the cache directory intentionally. <br>
-Risk: Fetched web content may be untrusted, misleading, or unsuitable for direct use in agent context. <br>
-Mitigation: Treat clipped content as untrusted input and verify important claims against primary sources before acting on them. <br>
-Risk: Local archives may retain sensitive, copyrighted, or unexpected page content. <br>
-Mitigation: Store clips only in approved locations, restrict file access, and delete cached content that is no longer needed. <br>
+## Use Case:
 
+Developers and agents use this skill to fetch web pages, extract readable text, convert content to markdown, optionally summarize pages, and save clipped pages for research workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/TheShadowRose/web-clip) <br>
-- [README](README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, files, metadata, guidance] <br>
-**Output Format:** [JavaScript objects and markdown files containing extracted page text, markdown, metadata, and optional summaries.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Local caching and archive output are supported when configured by the user.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill can make outbound web requests to arbitrary URLs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted URLs and prefer a patched version that validates DNS targets and blocks private or internal network destinations robustly.
+
+Risk: The skill can write markdown files locally.
+
+Mitigation: Avoid attacker-supplied filenames and prefer a patched version that confines saved files to the configured cache directory.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/theshadowrose/skills/web-clip)
+- [Publisher profile](https://clawhub.ai/user/theshadowrose)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Text, markdown, JavaScript objects, and saved markdown files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes page title, clean text, markdown, optional summary, metadata, and local cache/archive paths.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

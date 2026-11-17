@@ -1,38 +1,53 @@
-## Description: <br>
-Maps AWS environments against CIS, SOC 2, HIPAA, or PCI-DSS controls with prioritized remediation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Map AWS environment against CIS, SOC 2, HIPAA, or PCI-DSS controls with prioritized remediation.
 
-## Publisher: <br>
-[anmolnagpal](https://clawhub.ai/user/anmolnagpal) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[anmolnagpal](https://clawhub.ai/user/anmolnagpal)
 
-## Use Case: <br>
-Cloud security, compliance, and platform teams use this skill to analyze exported AWS Config and Security Hub data, map findings to common compliance frameworks, and prepare prioritized remediation guidance. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: AWS exports or pasted findings may include secrets or unrelated sensitive account details. <br>
-Mitigation: Remove secrets and unnecessary sensitive fields before sharing data with the agent, and use least-privilege read-only AWS access when creating exports. <br>
-Risk: Generated remediation commands may change AWS account configuration if run without review. <br>
-Mitigation: Review generated remediation commands and runbooks before applying them in an AWS account. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+Developers, cloud security teams, and compliance practitioners use this skill to analyze exported AWS Config and Security Hub data against CIS, SOC 2, HIPAA, or PCI-DSS controls and prepare prioritized remediation guidance.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with tables and inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces compliance scores, control status tables, gap priority matrices, remediation runbooks, evidence narratives, and AWS Config rule suggestions.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The documented minimum IAM policy is broader than the shown export workflow requires and could expose sensitive AWS security posture data.
+
+Mitigation: Review the IAM policy before use, prefer a short-lived read-only role with only the exact AWS Config and Security Hub actions needed for exports, and avoid unused IAM policy-listing permissions unless separately required.
+
+Risk: User-provided exports or pasted cloud data may include credentials or other sensitive account details.
+
+Mitigation: Confirm that submitted data contains no credentials, access keys, or secret keys before analysis.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/anmolnagpal/skills/compliance-analyzer)
+- [Publisher profile](https://clawhub.ai/user/anmolnagpal)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with tables, narratives, and inline shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include compliance scores, control status tables, gap priority matrices, remediation runbooks, evidence narratives, and AWS Config rule suggestions based on user-provided exports.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

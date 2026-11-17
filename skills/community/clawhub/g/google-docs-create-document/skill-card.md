@@ -1,41 +1,49 @@
-## Description: <br>
-Atomic node skill to create a Google Doc using the gog CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Atomic node skill to create a Google Doc using the gog CLI.
 
-## Publisher: <br>
-[zvirb](https://clawhub.ai/user/zvirb) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zvirb](https://clawhub.ai/user/zvirb)
 
-## Use Case: <br>
-Agents use this skill when a user needs a new Google Docs document created through the local gog CLI. It is suited to workflows that can confirm the document title and intended Google account before creation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill creates Google Docs through the local gog CLI using its configured Google account. <br>
-Mitigation: Use it only where the gog CLI and configured Google account are trusted, and confirm the intended account before execution. <br>
-Risk: Automated workflows could create a document with an unintended title. <br>
-Mitigation: Confirm the requested document title before running the creation command. <br>
+## Use Case:
 
+Agents and developers use this skill when they need to create a new Google Doc through the gog CLI and receive the created document details as JSON.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zvirb/google-docs-create-document) <br>
-- [Publisher profile](https://clawhub.ai/user/zvirb) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, json] <br>
-**Output Format:** [Markdown guidance with an example shell command; the invoked CLI returns JSON document details.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the gog binary and its configured Google account.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: The command template can turn a document title into unsafe shell input if followed literally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pass the document title as a literal gog argument, avoid untrusted or unusual titles, and review the skill before installing or using it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zvirb/skills/google-docs-create-document)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, guidance]
+
+**Output Format:** [Markdown guidance with an inline shell command; the invoked command returns JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the gog CLI binary and access to create Google Docs.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

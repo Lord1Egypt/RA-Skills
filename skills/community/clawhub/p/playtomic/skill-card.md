@@ -1,43 +1,59 @@
-## Description: <br>
-This skill helps agents guide users through searching, booking, listing, and canceling Playtomic padel court reservations with the padel-tui CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill helps agents guide users through searching, booking, listing, canceling, installing, and authenticating for Playtomic padel court workflows with the `padel-tui` CLI.
 
-## Publisher: <br>
-[philipp-eisen](https://clawhub.ai/user/philipp-eisen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[philipp-eisen](https://clawhub.ai/user/philipp-eisen)
 
-## Use Case: <br>
-External users and agents use this skill to complete Playtomic padel court booking workflows from a terminal. The skill supports setup checks, interactive authentication, availability search, booking, active match listing, and requested cancellation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Installation commands and downloaded binaries can affect the user's environment. <br>
-Mitigation: Confirm installation intent, prefer trusted or verified padel-tui releases, and verify the binary with `padel-tui --version` before use. <br>
-Risk: Interactive login creates or retains local Playtomic session access. <br>
-Mitigation: Use a trusted terminal, never pass credentials inline, and log out or remove the local session file when account access should no longer persist. <br>
-Risk: Booking and cancellation commands can create reservations, charges, or account changes. <br>
-Mitigation: Require explicit user intent and review tenant, court, start time, duration, player count, and match ID before running impactful commands. <br>
+## Use Case:
 
+External users and developers use this skill when they want an agent to operate the `padel-tui` terminal workflow for Playtomic court search, booking, active match listing, cancellation, setup, and interactive login guidance.
 
-## Reference(s): <br>
-- [Installation Reference](references/INSTALLATION.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/philipp-eisen/playtomic) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires interactive authentication and explicit user confirmation for installation, booking, and cancellation actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Installing a third-party CLI from an unverified source can introduce supply-chain risk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the `padel-tui` source before installation and prefer a pinned release with checksum or signature verification.
+
+Risk: Booking or cancellation commands can change a user's real Playtomic reservations.
+
+Mitigation: Run booking and cancellation commands only after explicit user intent and review the court, time, and match details before approval.
+
+Risk: Playtomic credentials or session material may be exposed if handled by the agent.
+
+Mitigation: Use interactive login only, do not ask for credentials, and do not pass credentials inline.
+
+## Reference(s):
+
+- [Installation Reference](references/INSTALLATION.md)
+- [ClawHub Skill Page](https://clawhub.ai/philipp-eisen/skills/playtomic)
+- [Publisher Profile](https://clawhub.ai/user/philipp-eisen)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline shell commands and booking workflow guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires interactive user confirmation before installation, booking, cancellation, or login-sensitive actions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

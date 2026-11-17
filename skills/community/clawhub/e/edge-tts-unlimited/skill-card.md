@@ -1,39 +1,53 @@
-## Description: <br>
-Edge Tts Unlimited generates long-form audio, podcasts, voice notes, and spoken briefs with Microsoft Edge neural voices through Python edge-tts without API keys, credits, or character limits. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Free, unlimited text-to-speech using Microsoft Edge neural voices via Python edge-tts for long-form audio, podcasts, voice notes, spoken briefs, and headless or server-side TTS without API keys, credits, or character limits.
 
-## Publisher: <br>
-[dannyshmueli](https://clawhub.ai/user/dannyshmueli) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dannyshmueli](https://clawhub.ai/user/dannyshmueli)
 
-## Use Case: <br>
-Developers, content teams, and agents use this skill to turn text or script files into MP3 spoken content for briefs, voice notes, podcasts, and long-form audio in headless or server-side environments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Runtime Python package installation may fetch edge-tts through uv or pip when the dependency is not already installed. <br>
-Mitigation: Review dependency policy before use, allow or pin the edge-tts package in controlled environments, and run the script where package installation is permitted. <br>
-Risk: Input text may be sent to an external text-to-speech service during audio generation. <br>
-Mitigation: Do not submit secrets, private documents, regulated data, or proprietary text unless policy allows that content to leave the machine. <br>
+## Use Case:
 
+Developers, content creators, and operators use this skill to generate long-form MP3 speech from text or files with selectable Microsoft Edge neural voices and simple presets. It is useful when cost and length matter more than voice cloning, real-time streaming, or premium voice acting.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown instructions with bash commands; runtime output is an MP3 audio file path.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports direct text, file input, voice selection, speaking-rate adjustment, voice presets, and voice listing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release metadata) <br>
+Risk: The script can automatically run an unpinned external Python package and may install it into the active environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installing, run it in an isolated environment, and prefer a reviewed, pinned edge-tts version.
+
+Risk: Text submitted for synthesis may be sent to the Edge TTS service.
+
+Mitigation: Use the skill only for text that is appropriate to send to that service, and avoid sensitive or confidential input unless that use is approved.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dannyshmueli/skills/edge-tts-unlimited)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Files]
+
+**Output Format:** [Shell command output and MP3 audio files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can list available voices and writes generated audio to the requested output path.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release metadata, released 2026-03-14)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

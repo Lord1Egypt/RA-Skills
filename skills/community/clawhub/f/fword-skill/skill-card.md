@@ -1,44 +1,63 @@
-## Description: <br>
-AI-powered bidirectional Word-to-LaTeX converter that supports multiple AI providers and can convert LaTeX back to Word while preserving original styles. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-powered bidirectional Word-to-LaTeX converter supporting multiple AI providers, with Word-to-LaTeX refinement and LaTeX-to-Word conversion that can preserve original document styles.
 
-## Publisher: <br>
-[jinzhengxu](https://clawhub.ai/user/jinzhengxu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jinzhengxu](https://clawhub.ai/user/jinzhengxu)
 
-## Use Case: <br>
-Developers, researchers, and document authors use this skill to convert Word documents to LaTeX for editing or publication workflows, then convert LaTeX back to Word when a styled .docx output is needed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Document content may be sent to the selected AI provider during refinement. <br>
-Mitigation: Use trusted AI endpoints and scoped API keys, or run with --raw for documents that should remain local. <br>
-Risk: The setup script may install dependencies through system package managers or sudo. <br>
-Mitigation: Review setup.sh before running it and install dependencies manually if the environment requires tighter control. <br>
-Risk: The .fword workspace stores a copy of the original Word document for style-preserving back-conversion. <br>
-Mitigation: Delete the .fword workspace when style recovery is no longer needed. <br>
+## Use Case:
 
+Developers and document authors use this skill to convert Word documents to LaTeX, refine converted LaTeX with a selected AI provider, edit documents through LaTeX, and convert LaTeX back to Word while reusing the original document as a style reference.
 
-## Reference(s): <br>
-- [Fword Usage Reference](references/usage.md) <br>
-- [Pandoc installation documentation](https://pandoc.org/installing.html) <br>
-- [Fword Skill on ClawHub](https://clawhub.ai/jinzhengxu/fword-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and generated .tex or .docx files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create a .fword workspace, extracted media, LaTeX files, Word documents, and optional raw intermediate LaTeX.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: Document contents can be sent to external AI services during refinement.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use --raw for confidential documents or select only trusted AI providers and endpoints.
+
+Risk: API keys may be exposed if passed directly on the command line.
+
+Mitigation: Prefer provider environment variables and avoid passing real API keys through command arguments.
+
+Risk: The .fword workspace retains a local copy of the original document.
+
+Mitigation: Delete the .fword workspace when the retained original document is no longer needed.
+
+Risk: The setup script may install packages with system privileges and uses unpinned Python dependencies.
+
+Mitigation: Review setup.sh before execution, especially on systems where sudo package installation or unpinned pip installs are not acceptable.
+
+## Reference(s):
+
+- [Fword Usage Reference](references/usage.md)
+- [ClawHub Skill Page](https://clawhub.ai/jinzhengxu/skills/fword-skill)
+- [Pandoc Installation Documentation](https://pandoc.org/installing.html)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, configuration details, and generated LaTeX or Word document files when executed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create a local .fword workspace containing a retained copy of the original Word document and conversion metadata.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

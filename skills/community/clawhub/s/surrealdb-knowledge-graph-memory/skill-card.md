@@ -1,52 +1,67 @@
-## Description: <br>
-A knowledge graph memory system for agents that stores semantic facts, episodes, working memory, and automatically injects relevant context with per-agent isolation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A comprehensive knowledge graph memory system with semantic search, episodic memory, working memory, automatic context injection, and per-agent isolation.
 
-## Publisher: <br>
-[maverick-software](https://clawhub.ai/user/maverick-software) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[maverick-software](https://clawhub.ai/user/maverick-software)
 
-## Use Case: <br>
-Developers and agent operators use this skill to add long-lived memory, semantic search, episodic recall, working-memory state, and scheduled knowledge extraction to agent workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read workspace memory files and send their contents to OpenAI for extraction and embeddings. <br>
-Mitigation: Audit MEMORY.md and memory/*.md for secrets before enabling extraction or auto-injection, and use a scoped OpenAI key. <br>
-Risk: The skill stores long-lived facts that can later affect agent behavior through memory injection. <br>
-Mitigation: Review graph contents before enabling auto-injection, start with conservative limits, and prune stale or sensitive facts. <br>
-Risk: Install, repair, service-start, and source-patching paths can make local environment changes. <br>
-Mitigation: Install SurrealDB manually, use a dedicated Python virtual environment, keep SurrealDB bound to 127.0.0.1, and review any OpenClaw integration changes before applying them. <br>
-Risk: Default SurrealDB credentials are suitable only for local development. <br>
-Mitigation: Change root/root credentials with SURREAL_USER and SURREAL_PASS before any shared, production, or network-accessible deployment. <br>
-Risk: Background extraction can run on a schedule and process memory files without manual invocation. <br>
-Mitigation: Verify cron and auto-injection settings before enabling them, and disable scheduled jobs until one manual run has been reviewed. <br>
+## Use Case:
 
+Developers and agent operators use this skill to add persistent SurrealDB-backed semantic, episodic, and working memory to OpenClaw agents. It supports knowledge search, fact storage, task history recall, context injection, and per-agent memory isolation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/maverick-software/surrealdb-knowledge-graph-memory) <br>
-- [Clawdis homepage](https://clawhub.com/skills/surrealdb-knowledge-graph-memory) <br>
-- [SECURITY.md](SECURITY.md) <br>
-- [SKILL.md](SKILL.md) <br>
-- [Conflict Patterns](references/conflict-patterns.md) <br>
-- [SurQL Examples](references/surql-examples.md) <br>
-- [Enhanced Loop Hook Agent Isolation](references/enhanced-loop-hook-agent-isolation.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, JSON configuration examples, and code references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce MCP tool calls, SurrealDB schema/setup steps, cron setup guidance, and memory-injection configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.3.0 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: Persistent memory and prompt injection can influence future agent behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review knowledge graph contents before enabling auto-injection, keep the feature explicitly opt-in, and start with conservative injection limits.
+
+Risk: Memory extraction can send workspace memory content to OpenAI.
+
+Mitigation: Audit MEMORY.md and memory/*.md for secrets or sensitive data, use a limited OpenAI key, and disable scheduled extraction until reviewed.
+
+Risk: Local setup can involve mutable installers and maintenance controls.
+
+Mitigation: Prefer manual SurrealDB installation, avoid UI or gateway auto-repair and install buttons, bind services to localhost, and change default root/root credentials.
+
+Risk: Broad export or maintenance operations can expose or alter persisted memory.
+
+Mitigation: Treat this as an elevated local integration, review security notes before installation, and enable cron jobs or maintenance operations only after manual validation.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/maverick-software/skills/surrealdb-knowledge-graph-memory)
+- [ClawHub Metadata Homepage](https://clawhub.com/skills/surrealdb-knowledge-graph-memory)
+- [Security Notes](SECURITY.md)
+- [Conflict Patterns](references/conflict-patterns.md)
+- [Enhanced Loop Hook Agent Isolation](references/enhanced-loop-hook-agent-isolation.md)
+- [SurQL Examples](references/surql-examples.md)
+- [SurrealDB Install Documentation](https://surrealdb.com/install)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands, JSON configuration snippets, and agent guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces setup guidance and tool usage instructions for a local SurrealDB-backed memory integration.]
+
+## Skill Version(s):
+
+2.3.0 (source: server release evidence and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

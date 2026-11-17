@@ -1,38 +1,59 @@
-## Description: <br>
-Assists workers with illegal-dismissal response workflows, including termination legality checks, N/N+1/2N compensation calculations, forced-resignation steps, arbitration request planning, evidence checklists, and document generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides Chinese-speaking workers through illegal dismissal assessment, N/N+1/2N compensation calculations, forced-resignation steps, arbitration request planning, evidence collection, and document generation.
 
-## Publisher: <br>
-[wangyue71](https://clawhub.ai/user/wangyue71) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangyue71](https://clawhub.ai/user/wangyue71)
 
-## Use Case: <br>
-Workers in China and their assisting advisors use this skill to assess potential unlawful dismissal scenarios, estimate statutory compensation, gather evidence, and prepare negotiation or labor-arbitration materials. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-China <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Labor-law rules, local wage-cap data, and generated claim amounts may be outdated or incorrect for a user's city and facts. <br>
-Mitigation: Verify current local rules and average-wage caps, check all inputs and generated amounts, and review decisions with a lawyer or the 12348 public legal service hotline before relying on the output. <br>
+## Use Case:
 
+Employees, external users, and their advisors use this skill to structure PRC labor-dismissal fact intake, compare compensation paths, collect evidence, and prepare arbitration-oriented materials.
 
-## Reference(s): <br>
-- [Illegal dismissal response reference guide](references/dismissal_guide.md) <br>
+### Deployment Geography for Use:
 
+People's Republic of China
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands] <br>
-**Output Format:** [Markdown guidance, generated document text, and calculator output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May generate compensation tables, arbitration application text, evidence checklists, and forced-resignation notice text from user-provided case facts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence.release and SKILL.md frontmatter) <br>
+Risk: Legal guidance and salary-reference values may be incomplete or stale for the user's locality.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify current PRC labor rules and local salary-reference data with a qualified lawyer, 12348 public legal service, or an official labor authority before acting.
+
+Risk: Users may provide sensitive employment, pay, and dispute details.
+
+Mitigation: Provide only necessary details, keep case inputs and generated reports local where possible, and review materials before sharing them.
+
+Risk: The calculator writes a Markdown report to the selected output directory.
+
+Mitigation: Choose the output directory deliberately and inspect generated files before using or distributing them.
+
+## Reference(s):
+
+- [Illegal Dismissal Guide release page](https://clawhub.ai/wangyue71/skills/illegal-dismissal-guide)
+- [Dismissal guide reference](references/dismissal_guide.md)
+- [Compensation calculator](scripts/calculate_compensation.py)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown guidance, checklists, calculation summaries, and locally generated Markdown reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The calculator can write a compensation report to a user-selected local output directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

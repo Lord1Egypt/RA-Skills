@@ -1,41 +1,58 @@
-## Description: <br>
-Manufacturing execution system tracker. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manufacturing execution system tracker
 
-## Publisher: <br>
-[xueyetianya](https://clawhub.ai/user/xueyetianya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xueyetianya](https://clawhub.ai/user/xueyetianya)
 
-## Use Case: <br>
-Developers and operations teams use this skill to run a local command-line tracker for MES status, entries, search, statistics, configuration, and exports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: MES entries and export files may contain sensitive operational data stored on the local machine. <br>
-Mitigation: Use an appropriate MES_DIR, protect local storage and exports, and avoid storing secrets or regulated production data unless local storage is acceptable. <br>
-Risk: The remove command deletes the selected entry immediately and there is no built-in undo. <br>
-Mitigation: Verify the entry number before removal and keep a backup or export when records need to be recoverable. <br>
+## Use Case:
 
+Developers and operations teams can use this skill to manage a simple local manufacturing execution tracker through shell commands for status, entries, search, export, statistics, and configuration.
 
-## Reference(s): <br>
-- [Mes on ClawHub](https://clawhub.ai/xueyetianya/mes) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, files] <br>
-**Output Format:** [Plain text stdout with local JSONL storage and optional JSON or CSV export files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses exit code 0 on success and 1 on error; stores data under MES_DIR or ~/.mes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill can permanently remove stored records by line number.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review intended delete behavior before use, keep backups of ~/.mes/data.jsonl, and avoid delegating remove commands without human confirmation.
+
+Risk: The security evidence flags unsafe shell/data handling for untrusted config or entry text.
+
+Mitigation: Use only trusted input until shell quoting, JSON/CSV encoding, and deletion safeguards are fixed.
+
+Risk: The skill is presented as an MES tool but only implements a local entry tracker.
+
+Mitigation: Treat it as local note tracking, not as a full manufacturing execution system integration.
+
+## Reference(s):
+
+- [BytesAgain homepage](https://bytesagain.com)
+- [ClawHub skill page](https://clawhub.ai/xueyetianya/skills/mes)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown and shell command guidance for local CLI usage]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The underlying script stores JSONL records under ~/.mes by default and can export local data as JSONL or CSV.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

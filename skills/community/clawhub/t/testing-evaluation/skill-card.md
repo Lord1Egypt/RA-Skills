@@ -1,40 +1,54 @@
-## Description: <br>
-Design eval test cases, run regression tests, and generate quality reports for AI Agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Design eval test cases, run regression tests, and generate quality reports for AI Agents.
 
-## Publisher: <br>
-[bettermen](https://clawhub.ai/user/bettermen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bettermen](https://clawhub.ai/user/bettermen)
 
-## Use Case: <br>
-Developers, QA engineers, and agent builders use this skill to design evaluation suites, run manual or scripted regression checks, and summarize agent quality in reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated test cases or reports may be written locally or, when connectors are available, proposed for repository or project-tracker publication. <br>
-Mitigation: Specify the intended output location before use and explicitly approve any Git commits, pull request links, or issue creation. <br>
-Risk: Evaluation results can be misleading if scoring criteria, expected outputs, or pass thresholds are incomplete. <br>
-Mitigation: Review generated criteria and reports against the target agent requirements before using them for release decisions. <br>
+## Use Case:
 
+Developers and QA engineers use this skill to design evaluation cases, run manual or automated regression checks, and produce quality reports for AI agents.
 
-## Reference(s): <br>
-- [Testing Case Template](references/eval-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown reports and test cases, with optional JSON test-suite examples and Python script skeletons] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce local Markdown evaluation reports, regression comparisons, issue summaries, and evaluation script templates.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Evaluation reports, reproduction steps, commits, or tracker issues may expose sensitive prompts, outputs, credentials, personal data, or raw transcripts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Choose commit and issue destinations explicitly, and redact secrets, credentials, private prompts, personal data, and raw transcripts before publishing artifacts.
+
+Risk: Generated evaluation artifacts or recommendations may be incorrect or misleading if accepted without review.
+
+Mitigation: Review and scan test cases, scripts, reports, and recommendations before deployment or use in release decisions.
+
+## Reference(s):
+
+- [Testing Evaluation ClawHub Page](https://clawhub.ai/bettermen/skills/testing-evaluation)
+- [测试用例模板](references/eval-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown with optional JSON and Python code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce local Markdown evaluation reports, test-case definitions, or connector-bound Git and issue-tracker updates when available.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

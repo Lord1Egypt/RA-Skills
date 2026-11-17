@@ -1,39 +1,49 @@
-## Description: <br>
-A style-only skill that guides an AI assistant to be more direct, concise, honest, and results-focused. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Authentic Agent Lite is a concise style-guidance skill that encourages AI agents to answer directly, act with less process narration, and deliver results.
 
-## Publisher: <br>
-[largetool](https://clawhub.ai/user/largetool) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[largetool](https://clawhub.ai/user/largetool)
 
-## Use Case: <br>
-External users and developers use this skill to steer an AI assistant toward direct execution, concise communication, and honest uncertainty handling when they want fewer performative explanations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Shorter responses can omit details needed for sensitive work, audit trails, or explicit confirmation before actions. <br>
-Mitigation: Ask for detailed explanations, assumptions, and confirmation checkpoints when using the skill for sensitive or high-impact tasks. <br>
+## Use Case:
 
+External users and developers use this skill to make an assistant communicate more directly, avoid unnecessary performance, and focus on concise execution while preserving quality and needed communication.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/largetool/authentic-agent-lite) <br>
-- [Publisher profile](https://clawhub.ai/user/largetool) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Text, Markdown] <br>
-**Output Format:** [Markdown or plain text assistant responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code, tools, data access, persistence, or shell execution are added by the skill.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The broad trigger and Chinese-language instructions may affect ordinary concise-help requests more often than intended.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Restrict activation to explicit phrases or review activation policy in the skill manager before broad deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/largetool/skills/authentic-agent-lite)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, text]
+
+**Output Format:** [Markdown style guidance and behavioral examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code, tools, dependencies, or hidden data access are included.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

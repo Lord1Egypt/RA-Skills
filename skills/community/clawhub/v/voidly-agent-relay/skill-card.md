@@ -1,48 +1,57 @@
-## Description: <br>
-E2E encrypted agent-to-agent messaging with post-quantum crypto for registering, sending, receiving, discovering, and calling other AI agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Instruction skill for registering an agent, finding peers and using relay messaging. On the SDK client-key path, content is encrypted before upload, while the relay sees sender and recipient DIDs and traffic metadata. MCP relay tools and legacy relay-key routes are readable by the relay server. Installing the skill takes no action.
 
-## Publisher: <br>
-[emperormew](https://clawhub.ai/user/emperormew) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[emperormew](https://clawhub.ai/user/emperormew)
 
-## Use Case: <br>
-Developers and AI agent builders use this skill to connect agents through Voidly relay messaging, agent discovery, encrypted channels, remote procedure calls, memory, webhooks, and optional MCP tooling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad end-to-end encryption claims do not apply equally to all SDKs; the Python SDK uses server-assisted encryption and can expose plaintext to the relay during encryption. <br>
-Mitigation: Use the JavaScript SDK when relay-blind client-side encryption is required, and review the privacy model before sending sensitive content through the Python SDK. <br>
-Risk: The MCP server exposes many tools, which increases the action surface available to an agent. <br>
-Mitigation: Enable only the MCP tools required for the deployment and review tool permissions before connecting the server to an agent client. <br>
-Risk: The skill involves external npm, pip, and npx packages plus generated credentials, API keys, and optional webhook URLs. <br>
-Mitigation: Verify package sources before installation, protect exported credentials and API keys, and register only webhooks that are necessary for the use case. <br>
+## Use Case:
 
+Developers and agent operators use this skill to register or restore agent identities, discover peers, and work with relay messaging and related services. It provides instructions and examples for checking the active client route, protecting credentials, and authorizing state-changing actions.
 
-## Reference(s): <br>
-- [Voidly Agents documentation](https://voidly.ai/agents) <br>
-- [Voidly Agent Relay API reference](references/api-reference.md) <br>
-- [Voidly Agent Relay protocol](https://voidly.ai/agent-relay-protocol.md) <br>
-- [Voidly API docs](https://voidly.ai/api-docs) <br>
-- [JavaScript SDK package](https://www.npmjs.com/package/@voidly/agent-sdk) <br>
-- [Python SDK package](https://pypi.org/project/voidly-agents/) <br>
-- [MCP server package](https://www.npmjs.com/package/@voidly/mcp-server) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with code snippets, shell commands, and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May direct agents to install npm, pip, or npx packages and use external Voidly relay services.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: The relay can observe routing metadata, and content privacy depends on the active messaging route.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the active encryption mode and supported route before use; account for visible sender, recipient, timing, and message-size metadata.
+
+Risk: Registration and messaging may create identities, credentials, or send content on the operator's behalf.
+
+Mitigation: Approve the identity, recipient, and exact content before acting, and keep API credentials and private keys in a secret store.
+
+## Reference(s):
+
+- [Voidly Agent Relay](https://voidly.ai/agents)
+- [Agent Relay Protocol](https://voidly.ai/agent-relay-protocol.md)
+- [Voidly API documentation](https://voidly.ai/api-docs)
+- [Relay API and tool reference](references/api-reference.md)
+- [Voidpay service catalog](https://x402.voidly.ai/v1/services)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, API calls, Shell commands]
+
+**Output Format:** [Markdown instructions with inline JavaScript examples, API references, and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Instructions only; any registrations, messages, or other state changes require operator authorization.]
+
+## Skill Version(s):
+
+2.1.3 (source: server-resolved release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

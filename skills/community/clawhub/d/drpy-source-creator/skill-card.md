@@ -1,47 +1,62 @@
-## Description: <br>
-Helps developers create, modify, and debug JavaScript-based drpy sources for TVBox, Haikuo, ZYPlayer, and similar players. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents create, modify, validate, and debug drpy JavaScript source rules for TVBox, Haikuo Vision, ZYPlayer, and similar media players.
 
-## Publisher: <br>
-[yuluoxci](https://clawhub.ai/user/yuluoxci) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yuluoxci](https://clawhub.ai/user/yuluoxci)
 
-## Use Case: <br>
-Developers and advanced media-tool users use this skill to create, validate, minify, and troubleshoot drpy source definitions for video, audio-book, comic, and novel sources. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local helper scripts may be unsafe on untrusted or oddly named files. <br>
-Mitigation: Review helper scripts before execution and run the minifier only on trusted, well-named files until the shell invocation is fixed. <br>
-Risk: Examples and debugging workflows can expose cookies, headers, URLs, or other sensitive request data. <br>
-Mitigation: Avoid putting personal browser cookies into shared configs and redact headers, cookies, and URLs before sharing logs. <br>
-Risk: Example sources and parser URLs may depend on third-party sites or services. <br>
-Mitigation: Verify each third-party parser URL and target site before using an example source. <br>
+## Use Case:
 
+Developers and advanced media-player users use this skill to build and troubleshoot drpy source configurations, including selectors, template inheritance, parsing behavior, local proxy settings, and source validation for video, audiobook, comic, and novel content.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/yuluoxci/drpy-source-creator) <br>
-- [Attributes Reference](references/attributes.md) <br>
-- [Template Inheritance Reference](references/templates.md) <br>
-- [Parsing Reference](references/parsing.md) <br>
-- [Troubleshooting Reference](references/troubleshooting.md) <br>
-- [Formatting Reference](references/formatting.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with JavaScript, Python, and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include generated drpy rule examples, validation steps, minification commands, and debugging notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and target metadata) <br>
+Risk: Helper scripts may be risky when used with untrusted filenames or inputs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review helper scripts before execution and avoid running minify_drpy.js with untrusted filenames.
+
+Risk: Examples and debugging workflows can expose playback URLs, cookies, headers, or request details.
+
+Mitigation: Do not hardcode personal cookies or share logs that contain sensitive playback URLs, headers, cookies, or request details.
+
+Risk: Site analysis and parser-service workflows can contact public websites or transmit playback URLs and headers to parser services.
+
+Mitigation: Restrict analyze_site.py to public sites you intend to contact, and use parser services only when you are comfortable sending playback URLs and related headers to them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yuluoxci/skills/drpy-source-creator)
+- [Attributes reference](references/attributes.md)
+- [Template inheritance reference](references/templates.md)
+- [Parsing reference](references/parsing.md)
+- [Troubleshooting reference](references/troubleshooting.md)
+- [Formatting reference](references/formatting.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JavaScript snippets, configuration examples, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce drpy rule examples, validation steps, minification commands, and site-analysis guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

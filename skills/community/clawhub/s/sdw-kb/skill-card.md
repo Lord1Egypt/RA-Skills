@@ -1,40 +1,54 @@
-## Description: <br>
-Sdw Kb turns folders of code, documents, papers, images, and other content into a persistent knowledge graph with clustered communities, interactive HTML, GraphRAG-ready JSON, and an audit report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Sdw Kb turns folders of code, docs, papers, images, and other content into a knowledge graph with clustered communities, interactive HTML, GraphRAG-ready JSON, and an audit report.
 
-## Publisher: <br>
-[yangxiaoqiang1992](https://clawhub.ai/user/yangxiaoqiang1992) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yangxiaoqiang1992](https://clawhub.ai/user/yangxiaoqiang1992)
 
-## Use Case: <br>
-Developers, researchers, and knowledge workers use this skill to index local folders into a navigable knowledge graph, inspect cross-document relationships, and generate reports and export files for graph-based analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can persistently index local folders, which may capture sensitive repository or document content. <br>
-Mitigation: Review the target path before running, use explicit /sdw-kb commands, and avoid indexing sensitive repositories unless the user has intentionally chosen them. <br>
-Risk: Remote URL ingestion, Neo4j push, MCP server, watch mode, and hook installation can fetch content, transmit graph data, expose graph access to agents, or continue processing files over time. <br>
-Mitigation: Enable add <url>, --neo4j-push, --mcp, --watch, and hook install only after reviewing their scope, destination, and persistence. <br>
+## Use Case:
 
+Developers, researchers, and knowledge workers use this skill to turn local corpora into persistent knowledge bases, visualize concept relationships, query the graph, and export graph data for downstream tools.
 
-## Reference(s): <br>
-- [uv installation documentation](https://docs.astral.sh/uv/getting-started/installation/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with PowerShell commands plus generated HTML, JSON, GraphML, SVG, Cypher, and audit-report files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are written under a local knowledge-base directory and may include graph.html, graph.json, GRAPH_REPORT.md, cost.json, optional Neo4j Cypher, GraphML, SVG, Obsidian, MCP, and watch-mode artifacts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can scan and persist local folders, which may include secrets or sensitive corpora.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only on intended directories, avoid confidential inputs, and review generated knowledge base files before sharing.
+
+Risk: The skill installs and runs an unpinned Python package and can use optional external or long-lived integrations.
+
+Mitigation: Review the package and commands before execution, constrain URLs and external services, and require explicit approval before Neo4j, MCP, watch, or URL-ingestion modes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yangxiaoqiang1992/skills/sdw-kb)
+- [uv installation documentation](https://docs.astral.sh/uv/getting-started/installation/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands; generated artifacts can include HTML, JSON, Markdown, SVG, GraphML, Cypher, and Obsidian-compatible files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates self-contained knowledge base directories with graph outputs and audit reports.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

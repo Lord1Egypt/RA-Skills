@@ -1,40 +1,52 @@
-## Description: <br>
-Build and test HTTP requests with CLI interface: headers, auth, body, cookies, with history and templates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build and test HTTP requests with CLI interface: headers, auth, body, cookies, with history and templates.
 
-## Publisher: <br>
-[Derick001](https://clawhub.ai/user/Derick001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
+
+[derick001](https://clawhub.ai/user/derick001)
+
+### License/Terms of Use:
+
+MIT
+
+## Use Case:
+
+Developers and engineers use this skill to build, send, save, and replay HTTP requests from a terminal while testing or debugging REST API endpoints.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Templates and local history can store API tokens, Authorization or Cookie headers, passwords, and sensitive request bodies in plaintext.
+
+Mitigation: Avoid saving secrets in templates or history, prefer short-lived tokens, rotate any secret already used with this tool, and treat ~/.http-request-builder/ as sensitive.
+
+Risk: Untrusted template names are used directly in file paths.
+
+Mitigation: Use trusted template names and review saved templates before executing them.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers can use this skill to build, send, save, and replay HTTP requests from a terminal while testing REST APIs or debugging request behavior. It supports command-line and interactive workflows with headers, Basic or Bearer authentication, request bodies, cookies, templates, and request history. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, JSON, shell commands, configuration]
 
-## Known Risks and Mitigations: <br>
-Risk: Saved templates and request history can contain bearer tokens, cookies, headers, request bodies, or other sensitive data in plaintext local files. <br>
-Mitigation: Avoid production credentials and private payloads; inspect saved JSON files before sharing or committing them, and clear ~/.http-request-builder/history.json after sensitive requests. <br>
-Risk: The security evidence marks the release suspicious because secret-bearing request data may be stored without strong warnings or redaction. <br>
-Mitigation: Review before installing and treat ~/.http-request-builder/templates/ and ~/.http-request-builder/history.json as secret-bearing storage. <br>
+**Output Format:** [Terminal text with JSON request templates and history files]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Derick001/http-request-builder) <br>
+**Other Properties Related to Output:** [Stores templates and request history under ~/.http-request-builder/.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Terminal text output and JSON files for saved templates and request history] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Sends HTTP requests, prints response status, headers, and body, and stores reusable request templates and recent request history under ~/.http-request-builder/.] <br>
+1.0.0 (source: frontmatter and server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata and frontmatter) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

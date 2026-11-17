@@ -1,41 +1,54 @@
-## Description: <br>
-Sentry error tracking - list, triage, and resolve issues; manage releases and source maps via CLI and REST API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Sentry error tracking - list, triage, and resolve issues; manage releases and source maps via CLI and REST API.
 
-## Publisher: <br>
-[charlie-morrison](https://clawhub.ai/user/charlie-morrison) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[charlie-morrison](https://clawhub.ai/user/charlie-morrison)
 
-## Use Case: <br>
-Developers and operations teams use this skill to inspect unresolved Sentry issues, fetch event details and stack traces, triage severity, and manage releases, deploys, and source maps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can use a Sentry token to change monitoring state, including resolving, ignoring, assigning, or bulk-updating issues and creating releases or deploys. <br>
-Mitigation: Use the narrowest Sentry token scopes possible and require explicit approval before state-changing Sentry actions. <br>
-Risk: Sentry events, stack traces, and source maps may contain sensitive application or user data. <br>
-Mitigation: Keep tokens out of chats, logs, and shell history, and review fetched events or uploaded artifacts for sensitive data before sharing or storing outputs. <br>
+## Use Case:
 
+Developers and engineers use this skill to inspect Sentry issues, fetch event details and stack traces, classify incident severity, and manage issue or release state through sentry-cli and the Sentry REST API.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/charlie-morrison/sentry-error-triage) <br>
-- [Sentry REST API base](https://sentry.io/api/0) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and REST API examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires sentry-cli plus Sentry organization, project, and auth token configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can change live Sentry issue, release, deploy, and source-map state.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit human approval before resolve, ignore, assign, release/deploy, source-map upload, or bulk-update actions.
+
+Risk: The skill requires access to Sentry data through sentry-cli and REST API credentials.
+
+Mitigation: Use a least-privileged Sentry token and install the CLI only from a verified package source.
+
+## Reference(s):
+
+- [Sentry REST API](https://sentry.io/api/0)
+- [ClawHub Skill Page](https://clawhub.ai/charlie-morrison/skills/sentry-error-triage)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and REST API examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose Sentry CLI commands, curl requests, issue classifications, and remediation guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

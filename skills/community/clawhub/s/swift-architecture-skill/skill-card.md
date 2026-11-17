@@ -1,46 +1,58 @@
-## Description: <br>
-Agent skill for Swift architecture design and implementation guidance, with architecture-specific playbooks and review checklists for SwiftUI/UIKit projects. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent Skill for Swift architecture design and implementation patterns, with architecture-specific playbooks and review checklists for MVVM, MVI, TCA, Clean Architecture, VIPER, and Reactive patterns in SwiftUI/UIKit projects.
 
-## Publisher: <br>
-[efremidze](https://clawhub.ai/user/efremidze) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[efremidze](https://clawhub.ai/user/efremidze)
 
-## Use Case: <br>
-Developers and engineers use this skill to select, adapt, and review Swift architecture patterns for SwiftUI/UIKit features, refactors, debugging, and pull requests. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill may analyze project code or pull request context supplied by the user. <br>
-Mitigation: Provide only project code and review context that is appropriate for the agent to inspect. <br>
-Risk: Architecture recommendations or Swift snippets may not fully match a codebase's existing conventions. <br>
-Mitigation: Review recommendations before applying them, check the stated fit result and assumptions, and adapt the architecture checklist to the local codebase. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/efremidze/swift-architecture-skill) <br>
-- [Architecture Selection Guide](references/selection-guide.md) <br>
-- [MVVM Playbook](references/mvvm.md) <br>
-- [MVI Playbook](references/mvi.md) <br>
-- [TCA Playbook](references/tca.md) <br>
-- [Clean Architecture Playbook](references/clean-architecture.md) <br>
-- [VIPER Playbook](references/viper.md) <br>
-- [Reactive Architecture Playbook](references/reactive.md) <br>
+## Use Case:
 
+Developers and engineers use this skill to select and apply Swift architecture patterns when designing features, refactoring modules, reviewing pull requests, or debugging maintainability issues in SwiftUI/UIKit projects.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code] <br>
-**Output Format:** [Markdown prose with Swift code snippets, architecture fit results, migration guidance, and checklist items.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Scoped to the requested feature or review; may include explicit assumptions, mismatch risks, migration steps, and line-level fixes when code context is provided.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.3.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can influence how an agent structures Swift code, which may introduce architecture choices that do not fit the project, dependencies, or team conventions.
+
+Mitigation: Review generated architecture changes against the existing codebase, dependency choices, and team conventions before applying them.
+
+Risk: Architecture mismatch handling may still proceed when a user insists on a mismatched pattern, increasing implementation and maintenance risk.
+
+Mitigation: Use the fit check and closest-fit alternative guidance before implementation, and document the mismatch risks when proceeding.
+
+## Reference(s):
+
+- [Architecture Selection Guide](references/selection-guide.md)
+- [MVVM Playbook (Swift + SwiftUI/UIKit)](references/mvvm.md)
+- [MVI Playbook (Swift + SwiftUI/UIKit)](references/mvi.md)
+- [TCA Playbook (Swift + SwiftUI/UIKit)](references/tca.md)
+- [Clean Architecture Playbook (Swift + SwiftUI/UIKit)](references/clean-architecture.md)
+- [VIPER Playbook (Swift + SwiftUI/UIKit)](references/viper.md)
+- [Reactive Architecture Playbook (Swift + Combine/RxSwift)](references/reactive.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Guidance]
+
+**Output Format:** [Markdown with Swift code examples, architecture checklists, and scoped implementation plans]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include architecture fit results, mismatch rationale, migration steps, async and error-handling guidance, and PR checklist items tailored to the user's SwiftUI/UIKit context.]
+
+## Skill Version(s):
+
+0.3.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

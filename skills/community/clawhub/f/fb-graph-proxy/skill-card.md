@@ -1,43 +1,54 @@
-## Description: <br>
-Explains how to call Facebook Graph API endpoints through baiz.ai's proxy using a BAIZ_API_TOKEN. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+尤里改 Facebook Graph API 代理服务使用指南
 
-## Publisher: <br>
-[evte](https://clawhub.ai/user/evte) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[evte](https://clawhub.ai/user/evte)
 
-## Use Case: <br>
-Developers and operators use this skill to configure agents or workflows that route Facebook Graph API requests through baiz.ai with a baiz.ai bearer token. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill routes Facebook Graph API activity through baiz.ai and may expose broad Facebook asset access through the proxy token. <br>
-Mitigation: Use only Baiz and Facebook accounts you control, verify token scope before use, and prefer least-privilege test accounts. <br>
-Risk: Write, delete, budget, campaign, account, or bulk operations can affect live Facebook advertising resources. <br>
-Mitigation: Require explicit human approval before any state-changing or spend-related operation. <br>
-Risk: Uploads or request bodies may contain sensitive campaign or asset data handled by a third-party service. <br>
-Mitigation: Avoid sensitive uploads unless baiz.ai's data handling is trusted and approved for the intended use. <br>
+## Use Case:
 
+Developers and advertisers use this skill to route Facebook Graph API requests through baiz.ai's proxy by replacing the Graph API host and authenticating with a baiz.ai bearer token.
 
-## Reference(s): <br>
-- [baiz.ai homepage](https://baiz.ai) <br>
-- [ClawHub skill page](https://clawhub.ai/evte/fb-graph-proxy) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, configuration, API calls] <br>
-**Output Format:** [Markdown with HTTP request examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a sensitive BAIZ_API_TOKEN and uses baiz.ai as a third-party proxy for Facebook Graph API requests.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill routes broad Facebook Graph API access through a third-party proxy that injects stored Facebook tokens.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only accounts and baiz.ai tokens with the minimum needed permissions, and confirm how baiz.ai stores Facebook authorizations and logs requests before use.
+
+Risk: Supported write, delete, and upload operations could affect production Facebook assets or business data.
+
+Mitigation: Test with non-production or low-risk accounts first, and avoid destructive or production operations until tenant isolation, token revocation, upload handling, and data-retention controls are clear.
+
+## Reference(s):
+
+- [baiz.ai](https://baiz.ai)
+- [ClawHub skill page](https://clawhub.ai/evte/skills/fb-graph-proxy)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Configuration instructions, API Calls]
+
+**Output Format:** [Markdown with HTTP request examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires BAIZ_API_TOKEN as a sensitive credential.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

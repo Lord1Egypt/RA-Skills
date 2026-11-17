@@ -1,40 +1,55 @@
-## Description: <br>
-西之月登录 uses a QR-code login flow to obtain, validate, and save Westmoon access and refresh tokens for reuse by related automation skills. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Starts a Westmoon QR-code login flow, displays the QR code, polls for confirmation, and saves access and refresh tokens plus user information for reuse by related Westmoon skills.
 
-## Publisher: <br>
-[jader](https://clawhub.ai/user/jader) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jader](https://clawhub.ai/user/jader)
 
-## Use Case: <br>
-Developers and agents use this skill when a Westmoon workflow needs a valid user login state. It shows a QR code, polls for scan confirmation, validates the session, and stores reusable tokens locally. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores reusable Westmoon account tokens locally for other Westmoon skills to read. <br>
-Mitigation: Keep QR output and session logs private, do not sync or share ~/.westmoon-user-login, and use the logout command to remove saved tokens when reuse is no longer needed. <br>
+## Use Case:
 
+Developers and agents use this skill to authenticate a Westmoon account by QR code before calling Westmoon APIs that require a valid bearer token. It is useful when a token is missing, expired, or needs to be refreshed for downstream Westmoon automation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jader/westmoon-qrcode-login) <br>
-- [西之月扫码登录 API 速查](references/api_reference.md) <br>
-- [西之月扫码登录集成指南](references/integration_guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Files, Configuration] <br>
-**Output Format:** [Markdown or terminal text with QR-code file paths, data URI output, status JSON, and saved local token files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates QR images, pending-login state, and reusable token JSON under ~/.westmoon-user-login.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence) <br>
+Risk: The skill persists reusable Westmoon access and refresh tokens for broad reuse by other skills.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if the publisher and Westmoon API endpoint are trusted, treat ~/.westmoon-user-login/tokens.json as a sensitive credential file, and prevent untrusted skills from reading it.
+
+Risk: The QR-code flow can automatically open remote-supplied image files with weak PNG validation.
+
+Mitigation: Prefer manual review before implicit login flows, avoid automatic OS-handler opening by default, and validate PNG data strictly before displaying or opening it.
+
+## Reference(s):
+
+- [西之月扫码登录 API 速查](artifact/references/api_reference.md)
+- [西之月扫码登录集成指南](artifact/references/integration_guide.md)
+- [ClawHub skill page](https://clawhub.ai/jader/skills/westmoon-qrcode-login)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Files, API Calls, Guidance]
+
+**Output Format:** [Markdown or terminal text with QR image file markers, data URIs, JSON token files, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates QR image files and token or pending-login JSON under ~/.westmoon-user-login/.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata; artifact _meta.json reports 0.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

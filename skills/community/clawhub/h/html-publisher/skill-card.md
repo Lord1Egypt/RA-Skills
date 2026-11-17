@@ -1,40 +1,54 @@
-## Description: <br>
-Publishes selected HTML content as an online web page and returns an accessible public URL. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Publishes HTML content as an online webpage and returns an accessible public URL.
 
-## Publisher: <br>
-[huyi9531](https://clawhub.ai/user/huyi9531) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[huyi9531](https://clawhub.ai/user/huyi9531)
 
-## Use Case: <br>
-Developers, agents, and content creators use this skill to publish static HTML through the gnomic CLI and retrieve a public URL for sharing, review, or lightweight web delivery. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Published HTML and referenced resources become publicly accessible. <br>
-Mitigation: Review HTML before publishing and remove secrets, private content, internal links, tokens, and sensitive embedded resources. <br>
-Risk: The workflow may require installing and running gnomic-cli globally from npm. <br>
-Mitigation: Verify that gnomic-cli is trusted and install it only in an approved environment. <br>
+## Use Case:
 
+Developers and agents use this skill to publish static HTML content, generated pages, or local HTML files and return a shareable public URL.
 
-## Reference(s): <br>
-- [gnomic-cli source repository](https://github.com/huyi9531/gnomic_cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline bash and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The workflow returns or extracts a public URL from gnomic CLI JSON or text output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill recommends installing an unpinned third-party CLI globally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the gnomic-cli package first, prefer a pinned trusted version, and avoid elevated privileges during installation.
+
+Risk: Published HTML is exposed through a public URL.
+
+Mitigation: Publish only HTML that is safe to make public and does not contain private data or sensitive embedded resources.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/huyi9531/skills/html-publisher)
+- [gnomic-cli repository](https://github.com/huyi9531/gnomic_cli)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON response examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns a public URL for static HTML when publishing succeeds.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

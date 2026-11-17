@@ -1,44 +1,64 @@
-## Description: <br>
-Generate a personalised nutrition report from genetic data in 23andMe, AncestryDNA, or VCF formats, analysing nutrition-related genes while processing data locally. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate a personalised nutrition report from genetic data in 23andMe, AncestryDNA, or VCF format, using a local 24-gene, 28-SNP panel across 12 nutrient domains.
 
-## Publisher: <br>
-[drdaviddelorenzo](https://clawhub.ai/user/drdaviddelorenzo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[drdaviddelorenzo](https://clawhub.ai/user/drdaviddelorenzo)
 
-## Use Case: <br>
-External users and health-oriented developers use this skill to turn consumer genetic files into educational nutrigenomics reports with nutrient risk scores, genotype summaries, visualisations, and dietary guidance. It is not medical advice and should be reviewed with qualified healthcare providers for clinical decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Generated reports contain sensitive derived genotype results and nutrition-related interpretations. <br>
-Mitigation: Run the skill in a private workspace, avoid shared or synced folders, review outputs before sharing, and delete the generated nutrigenomics_output directory after saving needed results. <br>
-Risk: Nutrigenomics risk scores and recommendations are educational indicators rather than clinical diagnoses. <br>
-Mitigation: Use the report as informational guidance and consult qualified healthcare providers before making medical or supplementation decisions. <br>
+## Use Case:
 
+External users and developers use this skill to generate local nutrigenomics reports from consumer genetic files, including nutrient risk summaries, genotype calls, visualizations, and reproducibility files. The output supports education and clinician-informed discussion, not diagnosis or medical advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/drdaviddelorenzo/nutrigenomics) <br>
-- [Publisher profile](https://clawhub.ai/user/drdaviddelorenzo) <br>
-- [PubMed MEDLINE](https://pubmed.ncbi.nlm.nih.gov/) <br>
-- [GWAS Catalog](https://www.ebi.ac.uk/gwas/) <br>
-- [ClinVar](https://www.ncbi.nlm.nih.gov/clinvar/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown report plus local image files and reproducibility text files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Processes local genetic data and writes generated reports, figures, checksums, and provenance files to a timestamped output directory that persists until manually deleted.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.3.2 (source: server release metadata, CHANGELOG, SKILL.md, openclaw.json) <br>
+Risk: Sensitive genetic data and genotype-derived reports can persist in local output directories.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill only on genetic files intended for local analysis, avoid shared or synced folders, and delete output directories after use.
+
+Risk: Reports contain health-related inferences that may be misunderstood as diagnosis or medical advice.
+
+Mitigation: Use the report for education and clinician-informed discussion, and review dietary or supplement changes with a qualified healthcare professional.
+
+Risk: Local Python dependencies execute in the user's environment.
+
+Mitigation: Prefer an isolated Python environment with reviewed dependencies before processing genetic files.
+
+## Reference(s):
+
+- [Server-resolved source import](https://github.com/drdaviddelorenzo/nutrigenomics/tree/main/skills/nutrigenomics)
+- [ClawHub skill page](https://clawhub.ai/drdaviddelorenzo/skills/nutrigenomics)
+- [README_OPENCLAW.md](artifact/README_OPENCLAW.md)
+- [ATTRIBUTION.md](artifact/ATTRIBUTION.md)
+- [SNP panel](artifact/data/snp_panel.json)
+- [PubMed MEDLINE](https://pubmed.ncbi.nlm.nih.gov/)
+- [GWAS Catalog](https://www.ebi.ac.uk/gwas/)
+- [ClinVar](https://www.ncbi.nlm.nih.gov/clinvar/)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Files, Guidance, Configuration]
+
+**Output Format:** [Markdown report, PNG visualizations, JSON/text reproducibility files, and structured status fields]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are written locally under a timestamped output directory and can include per-SNP genotype calls, nutrient risk scores, figures, checksums, and provenance metadata.]
+
+## Skill Version(s):
+
+0.3.13 (source: evidence release, openclaw.json, CHANGELOG; SKILL.md frontmatter says 0.3.12)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,47 +1,66 @@
-## Description: <br>
-Create conversational Pulses that replace static forms, surveys, intake emails, feedback requests, interviews, lead qualification, onboarding questionnaires, and customer research with AI-led conversations that return structured data, transcripts, and aggregate insights. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Unformal API helps agents create AI-powered conversational Pulses that collect information through shareable links and return structured responses, transcripts, exports, analytics, and aggregate insights.
 
-## Publisher: <br>
-[jonasboury](https://clawhub.ai/user/jonasboury) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jonasboury](https://clawhub.ai/user/jonasboury)
 
-## Use Case: <br>
-Developers, operators, and customer-facing teams use this skill to create and manage Unformal Pulses for surveys, research interviews, lead qualification, intake, onboarding, feedback, and respondent analytics through the Unformal API or CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires an Unformal API key and may handle sensitive respondent, applicant, employee, customer, transcript, quote, or research data. <br>
-Mitigation: Use a dedicated, revocable API key, keep it out of prompts and shared logs, collect data only with appropriate consent, and limit exports or forwarding to trusted destinations. <br>
-Risk: The skill instructs agents to install or update global tooling and refresh the skill from a remote URL. <br>
-Mitigation: Manually approve npm installs and curl-based updates, review downloaded content before use, and avoid automatic self-updates in managed environments. <br>
-Risk: The skill can create, publish, update, delete, export, and webhook Unformal Pulse data. <br>
-Mitigation: Require explicit approval for POST, PATCH, DELETE, export, and webhook actions, and verify Pulse recipients, webhook URLs, and exported files before execution. <br>
+## Use Case:
 
+External teams, developers, and operators use this skill to create Unformal Pulses for surveys, feedback requests, user interviews, lead qualification, intake, onboarding, and other respondent data collection workflows.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/jonasboury/unformal-api) <br>
-- [Publisher profile](https://clawhub.ai/user/jonasboury) <br>
-- [Unformal website](https://unformal.ai) <br>
-- [Unformal API Reference](https://unformal.ai/docs/api) <br>
-- [Unformal Integration Guide](https://unformal.ai/integrate) <br>
-- [Unformal llms.txt](https://unformal.ai/llms.txt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance, API calls] <br>
-**Output Format:** [Markdown guidance with inline shell commands, curl examples, JSON request and response examples, and configuration instructions.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce Unformal share links, API payloads, CLI commands, exports, transcripts, structured respondent data, aggregate insights, analytics summaries, and webhook configuration guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.0 (source: server release metadata and skill frontmatter) <br>
+Risk: Pulse configuration, respondent answers, transcripts, exports, and webhook payloads may be sent to Unformal.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with respondent consent and an approved service and retention model; avoid regulated or highly sensitive data unless your organization has approved that use.
+
+Risk: The skill recommends replacing its reviewed instructions from a remote URL.
+
+Mitigation: Keep a pinned, reviewed skill version and review changes before replacing local skill files.
+
+Risk: The skill recommends unpinned latest, npx, or global npm CLI installs.
+
+Mitigation: Prefer a pinned and reviewed @unformal/cli version over latest, npx, or global installs.
+
+Risk: Exports, transcripts, and webhook integrations can expose respondent data outside the chat session.
+
+Mitigation: Limit collected fields, protect webhook endpoints, and handle exported files as sensitive data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jonasboury/skills/unformal-api)
+- [Publisher profile](https://clawhub.ai/user/jonasboury)
+- [Unformal website](https://unformal.ai)
+- [Unformal API reference](https://unformal.ai/docs/api)
+- [Unformal integration guide](https://unformal.ai/integrate)
+- [Unformal llms.txt](https://unformal.ai/llms.txt)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, API calls, JSON]
+
+**Output Format:** [Markdown with bash and JSON code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include shareable Pulse links, API request bodies, response examples, CLI commands, export instructions, webhook guidance, and analytics or aggregate insight retrieval steps.]
+
+## Skill Version(s):
+
+1.4.0 (source: evidence release version and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

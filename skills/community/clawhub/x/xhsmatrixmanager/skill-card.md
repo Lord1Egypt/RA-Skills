@@ -1,45 +1,55 @@
-## Description: <br>
-小红书矩阵系统 API 调用工具，集成红薯矩阵平台（hongshujuzhen.com）。支持：搜索小红书笔记、获取笔记详情、发布图文笔记、查询账号列表、查询 API 使用统计、批量管理小红书账号。触发词：小红书、xhs、笔记搜索、发布小红书、API 调用、红薯矩阵。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Xiaohongshu Matrix Manager helps agents use the Hongshu Matrix API to search Xiaohongshu notes, retrieve note details, publish image-text notes, list accounts, check API usage, and manage accounts.
 
-## Publisher: <br>
-[admin6016](https://clawhub.ai/user/admin6016) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[admin6016](https://clawhub.ai/user/admin6016)
 
-## Use Case: <br>
-External developers and operators use this skill to connect an agent to the Hongshu Matrix API for Xiaohongshu note search, note detail retrieval, account lookup, usage reporting, and image note publishing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill documents credentialed HTTP API calls for account access and public publishing. <br>
-Mitigation: Use HTTPS where available, avoid placing API keys in URLs, and keep credentials revocable and scoped to the minimum privileges needed. <br>
-Risk: The publish endpoint can create or schedule public Xiaohongshu content. <br>
-Mitigation: Require explicit user approval after showing the exact account, title, content, images, topics, and schedule before any publish request. <br>
-Risk: The API provider is a third-party RedAPI service. <br>
-Mitigation: Install and use the skill only when the operator trusts the RedAPI provider and has confirmed the service terms and data handling expectations. <br>
+## Use Case:
 
+Developers and operators use this skill to configure and run authenticated Hongshu Matrix API requests for Xiaohongshu account management, content search, usage reporting, and publishing workflows.
 
-## Reference(s): <br>
-- [小红书矩阵系统 API 文档](references/api.md) <br>
-- [红薯矩阵平台](https://hongshujuzhen.com) <br>
-- [RedAPI base endpoint](http://redapi.cn) <br>
-- [ClawHub skill page](https://clawhub.ai/admin6016/xhsmatrixmanager) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Shell commands, API Calls, Configuration] <br>
-**Output Format:** [Markdown guidance with Python requests snippets and JSON response examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a user-provided RedAPI API key and account-specific publish inputs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: API keys or unpublished account content could be exposed if placed in URLs or sent over plaintext HTTP.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use scoped API keys in request headers, do not put keys in URLs, and avoid authenticated or publishing operations unless HTTPS is available.
+
+Risk: Publishing requests can affect public Xiaohongshu accounts and content.
+
+Mitigation: Require manual confirmation of the exact account, title, content, image URLs, topics, and schedule before any publish request.
+
+## Reference(s):
+
+- [API Reference](references/api.md)
+- [Hongshu Matrix Platform](https://hongshujuzhen.com)
+- [ClawHub Skill Page](https://clawhub.ai/admin6016/skills/xhsmatrixmanager)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with Python request examples and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce authenticated HTTP API requests that use user-provided API keys.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

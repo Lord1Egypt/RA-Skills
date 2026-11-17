@@ -1,40 +1,53 @@
-## Description: <br>
-Provides end-to-end analysis and strategy for e-commerce new product development using category data, competition, market gaps, validation, and launch planning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides end-to-end analysis and strategy for e-commerce new product development using category data, competition, market gaps, validation, and launch planning.
 
-## Publisher: <br>
-[no7dw](https://clawhub.ai/user/no7dw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[no7dw](https://clawhub.ai/user/no7dw)
 
-## Use Case: <br>
-E-commerce operators, product managers, and launch teams use this skill to evaluate category exports, identify market gaps, define new SKUs, validate prototypes, and plan launch and advertising strategy. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: E-commerce exports, prototype notes, supplier details, or business planning inputs may contain customer PII, credentials, contracts, or confidential business data. <br>
-Mitigation: Review and redact sensitive data before use; share only the minimum dataset needed for analysis. <br>
-Risk: Market, launch, and advertising recommendations may be incomplete or inaccurate if source data is stale, biased, or too narrow. <br>
-Mitigation: Treat recommendations as decision support and validate them with current market data, supplier checks, and human business approval before spending money or starting production. <br>
+## Use Case:
 
+Developers, product managers, and e-commerce teams use this skill to analyze product category exports, find underserved market segments, define new SKU opportunities, and plan validation, advertising, and launch steps.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/no7dw/ecomm-new-products) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Structured Markdown analysis and recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May depend on user-provided category exports and prototype specifications; no executable outputs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Category export files may contain confidential supplier, customer, or account data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and redact sensitive fields before sharing files with an agent or external validation tools.
+
+Risk: Market, margin, and launch recommendations can be incomplete or misleading if source exports are outdated or too narrow.
+
+Mitigation: Validate recommendations against current marketplace data, supplier quotes, and business constraints before product or advertising decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/no7dw/skills/ecomm-new-products)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Structured Markdown report with market analysis, product recommendations, validation notes, keyword strategy, and launch planning sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses supplied category exports and optional sample specifications; users should review shared data for confidential supplier, customer, or account information.]
+
+## Skill Version(s):
+
+0.1.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

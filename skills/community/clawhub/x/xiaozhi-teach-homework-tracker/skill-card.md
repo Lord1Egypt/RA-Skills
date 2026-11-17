@@ -1,41 +1,53 @@
-## Description: <br>
-Helps independent teachers track homework completion, route mistakes back into student analysis, and prepare lesson pre-diagnosis from assignment status. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+帮独立教师记录课上练习和学员带来的学校作业、整理错因与完成状态，并据此准备下一节课的关注重点。
 
-## Publisher: <br>
-[qizhitang](https://clawhub.ai/user/qizhitang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qizhitang](https://clawhub.ai/user/qizhitang)
 
-## Use Case: <br>
-External independent teachers use this skill to manage homework from assignment through submission, grading status, error review, and next-lesson diagnosis. It supports student and class completion views, persistent weakness tagging, and handoff summaries for related teaching skills. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad activation around homework status could cause unintended access to or updates of student-related records. <br>
-Mitigation: Install it only where homework tracking and student diagnostics are intended, and require explicit homework or student context before reading or updating linked records. <br>
-Risk: Use with real student records can expose sensitive education information if the skill is given more detail than it needs. <br>
-Mitigation: Limit inputs and stored outputs to pseudonyms, completion status, submission timing, error categories, and diagnosis summaries; keep answers, real names, and family details out of the workflow. <br>
+## Use Case:
 
+独立教师用它跟踪课上练习和学员带来的学校作业、考试错题，归纳可跟进的错因，并整理下一节课的教学关注点。它保留判分和面向学员或家长的沟通给老师处理。
 
-## Reference(s): <br>
-- [Homework Status Template](references/homework-status-template.md) <br>
-- [Homework Tracking Template](references/homework-tracking-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with structured text templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses pseudonymous student references and focuses on homework status, error categories, completion trends, and lesson-planning handoffs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: ClawScan reports two moderate scope mismatches, and Skillspector coverage is partial because three local references could not be resolved.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the reported scope mismatches and check the unresolved references before installing; the benign verdict has medium confidence and the evidence is incomplete.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/qizhitang/skills/xiaozhi-teach-homework-tracker)
+- [错误原因词表与弱项阈值](artifact/shared/vocab.md)
+- [完成度追踪视图模板](artifact/references/completion-tracking-views.md)
+- [错题回流清单模板](artifact/references/error-reflow-checklist-template.md)
+- [危机例外处置](artifact/shared/crisis-exception.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Configuration]
+
+**Output Format:** [Text summaries and Markdown reports, with structured workspace fields represented in JSON]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses aliases and records completion status, error dimensions, knowledge points, and follow-up actions; does not store assignment text or answers.]
+
+## Skill Version(s):
+
+2.12.7 (source: frontmatter, server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

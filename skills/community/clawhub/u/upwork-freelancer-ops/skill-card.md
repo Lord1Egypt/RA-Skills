@@ -1,43 +1,48 @@
-## Description: <br>
-Income and pipeline management for Upwork freelancers, including proposal drafting, job scanning, client follow-up sequences, contract tracking, invoice reminders, and earnings forecasting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Income and pipeline management for Upwork freelancers. Proposal drafting, job scanning, client follow-up sequences, contract tracking, invoice reminders, and earnings forecasting. Built for freelancers who want to grow their Upwork income without spending all day on the platform.
 
-## Publisher: <br>
-[joshbuildswithdoit](https://clawhub.ai/user/joshbuildswithdoit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[joshbuildswithdoit](https://clawhub.ai/user/joshbuildswithdoit)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External freelancers use this skill to manage Upwork pipeline, proposals, client follow-up, active contracts, invoices, earnings forecasts, and rate positioning.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Using the skill may require sharing Upwork profile details, client names, rates, earnings, and contract information with an agent.
+
+Mitigation: Provide only the information needed for the current task and review drafted proposals or client messages before sending them.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External freelancers use this skill to manage Upwork business operations, including finding suitable jobs, drafting proposals, tracking client work, forecasting income, and preparing follow-up communications. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Guidance, Configuration]
 
-## Known Risks and Mitigations: <br>
-Risk: Proposal, profile, or client-message drafts may contain inaccurate claims or commitments. <br>
-Mitigation: Review and edit all externally sent content before use, especially rates, timelines, qualifications, and deliverables. <br>
-Risk: The skill may process sensitive freelance business information such as client names, income targets, contract details, and profile URLs. <br>
-Mitigation: Share only the details needed for the task and avoid adding confidential client data unless the agent environment is trusted. <br>
-Risk: Job-fit scoring, earnings forecasts, and rate suggestions are planning aids and may be wrong or incomplete. <br>
-Mitigation: Treat recommendations as decision support and verify them against current Upwork terms, market context, and contract records. <br>
+**Output Format:** [Markdown guidance, checklists, summaries, forecasts, and message drafts]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/joshbuildswithdoit/upwork-freelancer-ops) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/joshbuildswithdoit) <br>
+**Other Properties Related to Output:** [No code execution or persistent storage is defined by the artifact.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include proposal drafts, job-fit scores, checklists, status updates, income summaries, forecasts, reminders, and client follow-up templates.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,47 +1,59 @@
-## Description: <br>
-Detects repeated queries as implicit negative feedback and non-repetition as positive feedback, enabling continuous learning by writing reflections and patterns to MEMORY.md and SOUL.md. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Detects repeated queries as implicit negative feedback and non-repetition as positive feedback, enabling continuous learning by writing reflections and patterns to MEMORY.md and SOUL.md.
 
-## Publisher: <br>
-[KAVentures](https://clawhub.ai/user/KAVentures) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kaventures](https://clawhub.ai/user/kaventures)
 
-## Use Case: <br>
-Developers and OpenClaw users use Reflexlearn to capture implicit feedback from repeated or non-repeated prompts and convert it into memory entries, pending behavior updates, and learned response patterns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores raw prompts and derived interaction history, which may include secrets, personal data, or sensitive work. <br>
-Mitigation: Avoid enabling it for sensitive prompts unless appropriate; regularly inspect and prune ~/.openclaw/reflex_history.json and MEMORY.md. <br>
-Risk: The skill can modify long-term agent behavior through MEMORY.md, pending SOUL.md updates, and heartbeat reinforcement. <br>
-Mitigation: Use cautious mode, review pending updates before applying them, and inspect SOUL.md after heartbeat runs. <br>
-Risk: Optional Ollama reflection sends prompt text to a local service. <br>
-Mitigation: Use --use-ollama only when the local Ollama service and model are trusted. <br>
-Risk: Model dependencies and weights are downloaded during installation. <br>
-Mitigation: Run install.sh only after reviewing its declared PyPI and Hugging Face network operations; use --offline at runtime once weights are cached. <br>
+## Use Case:
 
+Developers and OpenClaw users use Reflexlearn to let an agent record implicit feedback from repeated or unrepeated user queries and turn that feedback into local memory, pending guidance, and response-pattern updates.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/KAVentures/reflex-learn) <br>
-- [OpenClaw](https://openclaw.ai) <br>
-- [sentence-transformers/all-MiniLM-L6-v2 model](https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2) <br>
-- [Ollama](https://ollama.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown entries and plain-text command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes interaction history, reflections, pending updates, and learned patterns under ~/.openclaw/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: User-derived prompt content can be logged locally and used to influence future agent behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when that persistence is acceptable, keep MODE set to cautious, and regularly inspect and prune MEMORY.md, SOUL.md, reflex_history.json, and reflexlearn-pending.md.
+
+Risk: The security summary reports that persistent behavior files may be updated without the review gate the skill claims to use.
+
+Mitigation: Disable or avoid heartbeat reinforcement until SOUL.md writes are staged for review, and manually review pending updates before applying them.
+
+Risk: The install path depends on package and model downloads before offline use.
+
+Mitigation: Use an isolated environment, prefer pinned dependencies, and review the install script's listed PyPI and Hugging Face operations before confirming installation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kaventures/skills/reflex-learn)
+- [Publisher profile](https://clawhub.ai/user/kaventures)
+- [OpenClaw](https://openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown entries, JSON history, and command-line status messages]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes local OpenClaw memory, pending-review, history, and pattern files under ~/.openclaw/.]
+
+## Skill Version(s):
+
+1.0.2 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

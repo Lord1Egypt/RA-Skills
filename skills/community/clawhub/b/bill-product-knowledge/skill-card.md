@@ -1,45 +1,59 @@
-## Description: <br>
-Answers Chinese bill-finance product questions by retrieving from the bundled bill_knowledge Markdown knowledge base and citing source files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Answers questions about bill products, discounting, financing, signing, quotas, quotes, contracts, invoices, and related platform operations from the bundled bill_knowledge Markdown knowledge base.
 
-## Publisher: <br>
-[krillingone](https://clawhub.ai/user/krillingone) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[krillingone](https://clawhub.ai/user/krillingone)
 
-## Use Case: <br>
-External business users and support agents use this skill to answer questions about bill products, discounting, financing, signing, quotas, quotes, contracts, invoices, letters of credit, disclosure, channels, coupons, and related platform workflows from local knowledge-base documents. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-China <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Financial and banking workflow guidance may be mistaken for authoritative transaction approval. <br>
-Mitigation: Use answers as informational support only, and independently confirm transaction, account, disclosure, rate, and contract details through verified official banking or platform channels before acting. <br>
-Risk: Users may expose passwords, SMS codes, ID images, bank account details, tax credentials, or facial-verification material while asking for help. <br>
-Mitigation: Do not paste sensitive credentials or identity materials into chat; complete authentication, tax authorization, identity checks, and banking actions only through verified official channels. <br>
-Risk: Product steps, pricing, timelines, and platform screens may become stale or may not cover the user's exact case. <br>
-Mitigation: Cite the local source files used for each answer and direct users to the official platform or relevant bank contact for current terms and case-specific confirmation. <br>
+## Use Case:
 
+External business users and support agents use this skill to answer Chinese bill-product questions and summarize platform operation steps from local Markdown documentation. It is intended for knowledge-base retrieval, not investment advice, legal advice, compliance conclusions, or financial decision-making.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/krillingone/bill-product-knowledge) <br>
-- [富票融平台](https://p.fbank.com/home/ticket) <br>
-- [票交所信披平台](http://disclosure.shcpe.com.cn/) <br>
-- [Skill instructions](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+China
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Chinese Markdown answers with cited source filenames and an official platform link when applicable.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only retrieval over local Markdown files; no code execution or API calls.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.12 (source: server release metadata) <br>
+Risk: The skill can repeat financial login, KYC, tax, SMS verification, biometric, invoice, contract, and payment instructions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Configure the agent to remind users not to paste passwords, SMS codes, tax credentials, ID scans, contracts, invoices, or bank details into chat; users should enter sensitive data only on independently verified official HTTPS sites or official apps.
+
+Risk: Some source guidance includes plaintext HTTP disclosure-platform links and a mandatory promotional footer.
+
+Mitigation: Review the footer for deployment suitability and replace plaintext HTTP disclosure-platform links with verified HTTPS destinations before relying on the guidance.
+
+Risk: Financial product answers may be mistaken for investment, legal, or compliance advice.
+
+Mitigation: Keep responses limited to the local knowledge base, cite source filenames, and avoid investment recommendations, legal conclusions, or compliance commitments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/krillingone/skills/bill-product-knowledge)
+- [重庆富民银行富票融平台](https://p.fbank.com/home/ticket)
+- [富票融平台登录入口](https://p.fbank.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Concise Markdown answers with cited source filenames]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responses should be grounded in matched bill_knowledge Markdown files and should state when the local knowledge base does not cover the question.]
+
+## Skill Version(s):
+
+1.0.12 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

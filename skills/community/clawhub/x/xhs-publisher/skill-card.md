@@ -1,42 +1,59 @@
-## Description: <br>
-Publish notes (posts) to Xiaohongshu (小红书) via the Creator Platform using browser automation (CDP). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Publish notes (posts) to Xiaohongshu via the Creator Platform using browser automation with CDP.
 
-## Publisher: <br>
-[Waao666](https://clawhub.ai/user/Waao666) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[waao666](https://clawhub.ai/user/waao666)
 
-## Use Case: <br>
-Creators and operators use this skill to guide an agent through publishing Xiaohongshu notes with images, Chinese text, hashtags, and publication checks in a logged-in browser session. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can operate a logged-in Xiaohongshu account and may publish public content without a clear final confirmation step. <br>
-Mitigation: Before publishing, require the agent to show the exact title, body, media, target account, and visibility, then ask for explicit user approval. <br>
-Risk: Generated or uploaded images with broken Chinese text rendering may cause publication failure or content takedown. <br>
-Mitigation: Verify cover images before upload and use a full CJK font such as DroidSansFallbackFull.ttf when rendering Chinese text. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/Waao666/xhs-publisher) <br>
-- [Xiaohongshu Creator Platform](https://creator.xiaohongshu.com) <br>
-- [Xiaohongshu Publish Page](https://creator.xiaohongshu.com/publish/publish) <br>
-- [Xiaohongshu User Profile URL Pattern](https://www.xiaohongshu.com/user/profile/{userId}) <br>
+## Use Case:
 
+External creators and agents use this skill to prepare and publish Xiaohongshu notes with images through an already logged-in Creator Platform browser session.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Shell commands] <br>
-**Output Format:** [Markdown with browser automation steps and JavaScript CDP snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a logged-in Xiaohongshu browser session and user review before publishing.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can publish to a real Xiaohongshu account from an already logged-in browser session.
+
+Mitigation: Require an explicit manual confirmation immediately before any publish click.
+
+Risk: The skill includes broad account-management and profile-fetching behavior.
+
+Mitigation: Use only the publishing workflow unless broader account actions are clearly authorized.
+
+Risk: Generated cover images with missing CJK fonts can render Chinese text incorrectly and contribute to publishing failures.
+
+Mitigation: Verify generated images before upload and use a CJK-capable font such as DroidSansFallbackFull.ttf.
+
+## Reference(s):
+
+- [Xiaohongshu Creator Platform](https://creator.xiaohongshu.com)
+- [Xiaohongshu Creator Publish Page](https://creator.xiaohongshu.com/publish/publish)
+- [Xiaohongshu User Profile Page](https://www.xiaohongshu.com/user/profile/{userId})
+- [ClawHub Skill Page](https://clawhub.ai/waao666/skills/xhs-publisher)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Code, Configuration]
+
+**Output Format:** [Markdown with inline code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes browser automation steps that can affect a real Xiaohongshu account.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,59 @@
-## Description: <br>
-Create OpenClaw agents and onboard Feishu routing with explicit multi-step confirmations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create OpenClaw agents and onboard Feishu routing with explicit multi-step confirmations.
 
-## Publisher: <br>
-[AbsoLinS](https://clawhub.ai/user/AbsoLinS) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[absolins](https://clawhub.ai/user/absolins)
 
-## Use Case: <br>
-Developers and operators use this skill to create OpenClaw agents, bind them to precise Feishu routes, validate local routing configuration, and prepare rollback steps after confirmed changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow can read and update local OpenClaw and Feishu routing configuration. <br>
-Mitigation: Run it only on machines where the user is authorized to manage OpenClaw and Feishu routing. <br>
-Risk: Incorrect agentId, accountId, peer.kind, or peer.id values can route Feishu messages to the wrong agent. <br>
-Mitigation: Review the final binding object before approving writes and run the included Feishu binding validation checks after changes. <br>
-Risk: Raw openclaw.json output may expose sensitive account configuration. <br>
-Mitigation: Avoid sharing raw configuration output and summarize only the fields needed for review. <br>
+## Use Case:
 
+Developers and operators use this skill to create OpenClaw agents, bind them to specific Feishu conversations, validate the resulting routing configuration, and prepare rollback steps.
 
-## Reference(s): <br>
-- [OpenClaw Agent + Feishu Routing Commands](references/commands.md) <br>
-- [OpenClaw Agent Feishu Onboarding Chinese Runbook](references/usage-zh.md) <br>
-- [Feishu Binding Validator](scripts/validate_feishu_bindings.py) <br>
-- [ClawHub Skill Page](https://clawhub.ai/AbsoLinS/openclaw-agent-feishu-onboarding) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires explicit confirmations before proposing writes to local OpenClaw and Feishu routing state.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Incorrect Feishu account or peer fields can route conversations to the wrong agent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the final agent details, peer.id, accountId, and binding snapshot before approving any write.
+
+Risk: The workflow reads and may modify local OpenClaw configuration.
+
+Mitigation: Run it only where local OpenClaw config access is permitted, capture the current bindings before changes, and validate after every write.
+
+Risk: Broad account-level bindings or missing peer fields can cause messages to fall back to the main route.
+
+Mitigation: Prefer peer-specific bindings, keep precise rules before fallback rules, and run the included Feishu binding validator.
+
+## Reference(s):
+
+- [Command examples and rollback snippets](artifact/references/commands.md)
+- [Chinese runbook and confirmation checklist](artifact/references/usage-zh.md)
+- [Feishu binding validation script](artifact/scripts/validate_feishu_bindings.py)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes step-by-step confirmation prompts and validation or rollback guidance for local OpenClaw configuration changes.]
+
+## Skill Version(s):
+
+1.0.1 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

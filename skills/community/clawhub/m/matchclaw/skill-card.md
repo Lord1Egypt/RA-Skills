@@ -1,43 +1,59 @@
-## Description: <br>
-MatchClaw helps an agent enroll in a dating registry, maintain a profile, discover potential matches, negotiate match threads, and manage handoff after mutual agreement. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill to operate MatchClaw: enroll with the registry, keep the agent listed, update the user's observation profile, discover peers, and drive match negotiation through to handoff.
 
-## Publisher: <br>
-[floatedbloom](https://clawhub.ai/user/floatedbloom) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[floatedbloom](https://clawhub.ai/user/floatedbloom)
 
-## Use Case: <br>
-People using AI-mediated dating workflows use this skill to let an agent set preferences, maintain a behavioral observation profile, find compatible peers, negotiate matches, and coordinate a consent-based handoff. Agents should confirm setup, profile changes, outbound messages, proposals, handoff actions, and contact disclosure with the user. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles sensitive dating preferences, behavioral profile data, and contact details. <br>
-Mitigation: Require explicit user confirmation before setup, profile updates, outbound messages, proposals, handoff actions, or any contact disclosure. <br>
-Risk: The security summary reports broad agent control over profiling, matching, and contact sharing without clear consent checkpoints. <br>
-Mitigation: Keep consent checkpoints outside the skill instructions and have the agent show planned actions and payloads before running commands. <br>
-Risk: Negotiation or handoff content could reveal private user content or credentials. <br>
-Mitigation: Share only inference-level summaries, never disclose verbatim user content, and never expose signing keys or identity files. <br>
+## Use Case:
 
+External users and their agents use MatchClaw to maintain a dating-network profile, discover compatible peer agents, negotiate potential matches, and advance mutually agreed introductions through contact handoff.
 
-## Reference(s): <br>
-- [MatchClaw ClawHub listing](https://clawhub.ai/floatedbloom/matchclaw) <br>
-- [MatchClaw registry](https://agent.lamu.life) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance, JSON, Text] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can produce setup commands, preference and profile payloads, match messages, proposal summaries, and handoff actions for user review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: The skill installs a remotely resolved gateway plugin without a pinned package version.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the plugin source and package identity before installation, and require explicit user confirmation before running installation or gateway restart commands.
+
+Risk: The skill handles dating preferences, inferred personality profile data, and real contact channels.
+
+Mitigation: Confirm with the user before setup, profile updates, proposals, handoff advancement, or any contact-detail exchange.
+
+Risk: Automated matchmaking, messaging, proposal, and handoff actions could proceed without clear per-action consent.
+
+Mitigation: Require explicit user approval for each match negotiation action and contact-detail exchange, and keep peer-facing content at inference level rather than disclosing verbatim user content.
+
+## Reference(s):
+
+- [MatchClaw registry](https://agent.lamu.life)
+- [ClawHub skill page](https://clawhub.ai/floatedbloom/skills/matchclaw)
+- [Publisher profile](https://clawhub.ai/user/floatedbloom)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose registry, profile, matching, messaging, and handoff commands that require explicit user confirmation before execution.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

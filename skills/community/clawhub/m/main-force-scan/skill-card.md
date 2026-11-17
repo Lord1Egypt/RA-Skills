@@ -1,43 +1,59 @@
-## Description: <br>
-Scans Chinese A-share main-board stocks for volume-price patterns that may indicate accumulation, then produces a ranked candidate report for review. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+主力建仓前兆扫描 - 通过量价数据识别主力悄悄吸筹的潜力股。
 
-## Publisher: <br>
-[2459762052-spec](https://clawhub.ai/user/2459762052-spec) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[2459762052-spec](https://clawhub.ai/user/2459762052-spec)
 
-## Use Case: <br>
-Market-research users or agent operators use this skill to run post-market or intraday scans of Shanghai and Shenzhen main-board stocks and review a Top 20 markdown report of candidates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The scan contacts Eastmoney public endpoints and depends on their availability and data quality. <br>
-Mitigation: Run only where that network access is acceptable and verify unusual results against another market-data source. <br>
-Risk: The bundled script uses fixed local OpenClaw output paths and may need to be run as Python despite the shell-style usage example. <br>
-Mitigation: Review and adjust the output paths for the target environment, then execute it with Python or an environment that honors the shebang. <br>
-Risk: Candidate rankings can be inaccurate and are not financial advice. <br>
-Mitigation: Treat the report as informational research only and require independent review before making trading decisions. <br>
+## Use Case:
 
+External users and agents use this skill to screen China A-share candidates for low-volatility consolidation, moderate volume expansion, price-position, anomaly, and trend signals. The generated candidates are informational screening output and are not investment advice.
 
-## Reference(s): <br>
-- [主力建仓前兆 - 详细参考](references/methodology.md) <br>
-- [Eastmoney Finance](https://finance.eastmoney.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, text, shell commands, guidance] <br>
-**Output Format:** [Markdown report with terminal status text and shell command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes a dated local scan report from public Eastmoney market data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The scan produces stock-screening signals that may be wrong or misleading in some market conditions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the report as informational screening output only and review candidates with independent market context before acting.
+
+Risk: The script uses Eastmoney public market-data APIs and depends on network access and third-party data availability.
+
+Mitigation: Install only when those API calls are acceptable, and verify data freshness and source availability before relying on results.
+
+Risk: The evidence notes hard-coded local paths and a bash-vs-Python command mismatch that may prevent the script from working on another machine.
+
+Mitigation: Adjust local paths and invoke the script with the appropriate Python execution method before deployment.
+
+## Reference(s):
+
+- [Methodology](references/methodology.md)
+- [ClawHub skill page](https://clawhub.ai/2459762052-spec/skills/main-force-scan)
+- [Eastmoney finance data source](https://finance.eastmoney.com/)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, shell commands, guidance]
+
+**Output Format:** [Markdown report with tabular stock-screening candidates and concise command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes a dated local Markdown report with ranked Top20 candidates when the bundled script runs successfully.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

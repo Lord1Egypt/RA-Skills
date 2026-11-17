@@ -1,42 +1,49 @@
-## Description: <br>
-Access and manage ClickUp tasks, spaces, folders, and create new tasks through a Pipeworx ClickUp MCP gateway using a user-provided ClickUp API key. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Access and manage ClickUp tasks, spaces, folders, and create new tasks using the ClickUp REST API v2 with a user-provided API key.
 
-## Publisher: <br>
-[b-gutman](https://clawhub.ai/user/b-gutman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[b-gutman](https://clawhub.ai/user/b-gutman)
 
-## Use Case: <br>
-Developers and workspace operators use this skill to let an agent list ClickUp workspace structure, inspect tasks, and create ClickUp tasks from agent workflows. It is useful when ClickUp actions should be available through an MCP server with a user-managed API key. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: ClickUp API-key-backed workspace data is routed through a third-party gateway. <br>
-Mitigation: Install only if you trust the Pipeworx gateway, use the least-privileged revocable ClickUp credential available, and rotate or revoke the key if access is no longer needed. <br>
-Risk: The skill can create ClickUp tasks in a real workspace. <br>
-Mitigation: Review task-creation requests before approval and test in a low-impact list or workspace before using it for production task creation. <br>
+## Use Case:
 
+Developers and agents use this skill to connect to a Pipeworx-hosted ClickUp MCP endpoint for listing and creating ClickUp workspace items.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/b-gutman/pipeworx-clickup) <br>
-- [Publisher profile](https://clawhub.ai/user/b-gutman) <br>
-- [ClickUp REST API v2](https://clickup.com/api) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, configuration, API calls, guidance] <br>
-**Output Format:** [Markdown and MCP configuration JSON] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a user-provided ClickUp API key and routes ClickUp requests through the Pipeworx gateway.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: ClickUp workspace data and user-provided credentials may pass through an unexplained third-party MCP gateway.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the Pipeworx gateway operator and privacy posture before installation, use a dedicated least-privilege ClickUp API token, avoid highly sensitive workspaces, and revoke the token if the gateway behaves unexpectedly.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/b-gutman/skills/pipeworx-clickup)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, API calls, configuration]
+
+**Output Format:** [Markdown guidance with JSON configuration and tool-call results from the ClickUp MCP server]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a user-provided ClickUp API key through the configured MCP gateway.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

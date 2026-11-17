@@ -1,43 +1,55 @@
-## Description: <br>
-Get current weather and forecasts (no API key required). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Get current weather and forecasts (no API key required).
 
-## Publisher: <br>
-[mars82311111](https://clawhub.ai/user/mars82311111) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mars82311111](https://clawhub.ai/user/mars82311111)
 
-## Use Case: <br>
-External users and developers use this skill to ask an agent for current weather, compact weather summaries, multi-day forecasts, and programmatic weather data from public no-key services. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Weather lookup locations or coordinates are sent to public third-party weather services. <br>
-Mitigation: Avoid sending sensitive locations; use coarse locations or airport codes when precision is unnecessary. <br>
-Risk: Examples without an explicit scheme may not make the transport expectation clear. <br>
-Mitigation: Prefer explicit HTTPS URLs for wttr.in and Open-Meteo requests. <br>
+## Use Case:
 
+External users and developers use this skill to ask an agent for current weather, compact weather summaries, multi-day forecasts, and JSON weather data without configuring an API key.
 
-## Reference(s): <br>
-- [Mars Weather Pro on ClawHub](https://clawhub.ai/mars82311111/mars-weather-pro) <br>
-- [wttr.in help](https://wttr.in/:help) <br>
-- [Open-Meteo forecast API](https://api.open-meteo.com/v1/forecast?latitude=51.5&longitude=-0.12&current_weather=true) <br>
-- [Open-Meteo documentation](https://open-meteo.com/en/docs) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, API calls, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks and service URLs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl for command examples; can return plain text, PNG output, or JSON depending on the selected weather service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: Weather lookups may send requested city names, airport codes, or coordinates to wttr.in or Open-Meteo.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only locations or coordinates that are appropriate to share with external weather services.
+
+Risk: The PNG example writes to a fixed /tmp/weather.png path.
+
+Mitigation: Save downloaded images to a caller-controlled path to avoid accidental overwrite or path confusion.
+
+## Reference(s):
+
+- [wttr.in help](https://wttr.in/:help)
+- [Open-Meteo documentation](https://open-meteo.com/en/docs)
+- [Open-Meteo forecast API example](https://api.open-meteo.com/v1/forecast?latitude=51.5&longitude=-0.12&current_weather=true)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash commands and optional JSON API output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl for the documented command examples; no API key is required.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

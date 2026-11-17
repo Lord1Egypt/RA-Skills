@@ -1,41 +1,58 @@
-## Description: <br>
-短视频脚本生成器 helps draft short-video scripts with a 3-second hook, compact body copy, CTA guidance, visual notes, storyboard structure, platform adaptation, tags, posting-time suggestions, and comment-operation ideas for formats such as talking-head, product seeding, reviews, educational clips, and Vlogs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates short-video scripts with hooks, pacing, CTAs, shot notes, subtitles, platform adaptation, and publishing suggestions for Douyin, Kuaishou, TikTok, Xiaohongshu, and WeChat Channels.
 
-## Publisher: <br>
-[qqyougitcom](https://clawhub.ai/user/qqyougitcom) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qqyougitcom](https://clawhub.ai/user/qqyougitcom)
 
-## Use Case: <br>
-External creators, marketers, and content teams use this skill to turn a short-video brief into platform-aware scripts for Douyin, Kuaishou, TikTok, Xiaohongshu, or WeChat Channels. It is intended for 15-120 second scripts and supports hooks, pacing, visual and audio annotations, CTAs, tags, posting suggestions, and operations notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Platform timing, algorithm, and growth advice may be inaccurate for a specific account, audience, geography, or future platform policy. <br>
-Mitigation: Treat the recommendations as drafting and strategy guidance, then validate them against current platform analytics before publishing. <br>
-Risk: Generated product, medical, or financial scripts could drift into overclaims if the user prompt asks for unsupported promises. <br>
-Mitigation: Keep the artifact's content boundary: avoid false advertising, medical promises, and financial-return promises, and review final scripts before publication. <br>
+## Use Case:
 
+Content creators, marketers, and social media teams use this skill to draft 15-120 second scripts for spoken, product, review, educational, story, trend, and vlog videos with platform-specific structure and engagement prompts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/qqyougitcom/mimo-short-video-script) <br>
-- [短视频脚本生成器 - 详细参考](artifact/references/details.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-style script template with sectioned copy, visual notes, subtitle notes, rhythm notes, tags, posting-time suggestions, BGM guidance, pinned-comment copy, and alternate hooks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese output by default; TikTok output is English; Xiaohongshu output may be Chinese-English bilingual.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: frontmatter and server release evidence) <br>
+Risk: Platform strategy, posting-time, and engagement guidance may become stale or vary by audience, region, and account history.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated platform recommendations against current channel analytics before publishing.
+
+Risk: Generated product or promotional scripts could overstate claims if the user prompt asks for unsupported benefits.
+
+Mitigation: Check scripts for false advertising, medical promises, and financial return promises before use.
+
+Risk: BGM suggestions may raise copyright or commercial-use concerns, especially for TikTok or brand campaigns.
+
+Mitigation: Use platform-approved or properly licensed music for the intended commercial context.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/qqyougitcom/skills/mimo-short-video-script)
+- [短视频脚本生成器 - 详细参考](artifact/references/details.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown-style short-video script with annotated sections, hooks, CTAs, hashtags, posting-time suggestions, BGM guidance, and comment prompts.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese by default; TikTok output is English and Xiaohongshu may be bilingual.]
+
+## Skill Version(s):
+
+1.3.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

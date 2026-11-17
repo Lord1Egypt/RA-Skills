@@ -1,43 +1,56 @@
-## Description: <br>
-Database Helper 99a323 provides lightweight guidance for Sun-Panel-Helper and database setup topics based on cited video learning resources. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Chinese-language, video-derived guidance for Sun-Panel-Helper and related database setup topics, with Bilibili learning references.
 
-## Publisher: <br>
-[534422530](https://clawhub.ai/user/534422530) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[534422530](https://clawhub.ai/user/534422530)
 
-## Use Case: <br>
-Developers and operators can use this skill for quick, informational guidance on Sun-Panel-Helper concepts and database-related learning examples. It is best suited for prompting step-by-step explanation and references, not for executing system changes directly. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The broad "Sun" trigger could activate this skill in unrelated conversations. <br>
-Mitigation: Disable or narrow the trigger where the agent runtime supports trigger configuration. <br>
-Risk: The skill is informational and may produce database or Docker guidance that is incomplete for a specific environment. <br>
-Mitigation: Review generated guidance and commands against local documentation before applying changes. <br>
+## Use Case:
 
+External users and developers use this skill to get concise Chinese-language guidance and learning references for Sun-Panel-Helper, database-helper topics, and MIMIC/Postgres database setup examples.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/534422530/database-helper-99a323) <br>
-- [Cadence Orcad Capture CIS Link Database video](https://www.bilibili.com/video/BV1dS4y1h7Kb) <br>
-- [MIMIC III Postgres database installation video](https://www.bilibili.com/video/BV1zY41197RG) <br>
-- [Oracle Database 23ai AI vector search video](https://www.bilibili.com/video/BV1W1421k7Gx) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands] <br>
-**Output Format:** [Markdown with short lists and optional command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Non-executable guidance; users should verify any commands before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Generic trigger phrases such as "Sun" or "MIMIC" could activate the skill unintentionally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when this subject matter is desired and review trigger phrases before deployment.
+
+Risk: Video-derived instructions can be incomplete or become outdated.
+
+Mitigation: Verify procedural guidance against current product documentation before applying it to real systems.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/534422530/skills/database-helper-99a323)
+- [Cadence Orcad Capture CIS Link Database video](https://www.bilibili.com/video/BV1dS4y1h7Kb)
+- [MIMIC III Postgres database installation video](https://www.bilibili.com/video/BV1zY41197RG)
+- [Oracle Database 23ai AI vector search video](https://www.bilibili.com/video/BV1W1421k7Gx)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language guidance; no code execution, credential use, persistence, or data exfiltration is evidenced.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

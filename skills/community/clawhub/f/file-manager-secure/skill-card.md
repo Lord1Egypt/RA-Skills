@@ -1,43 +1,58 @@
-## Description: <br>
-Perform safe file operations with path validation, dry-run previews, recoverable trash deletes, batch confirmations, and audit logging to prevent data loss. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Safe file operations with validation, dry-run previews, recoverable trash deletion, batch confirmation, and operation logging.
 
-## Publisher: <br>
-[houssameddinemaatallah](https://clawhub.ai/user/houssameddinemaatallah) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[houssameddinemaatallah](https://clawhub.ai/user/houssameddinemaatallah)
 
-## Use Case: <br>
-Developers and agents use this skill to manage files inside a configured workspace, including listing, searching, copying, moving, deleting to trash, and restoring files. It is intended for workflows that need previews, audit logs, and recoverable operations before changing files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Restore and delete-confirm paths can move or write files without rechecking the workspace boundary. <br>
-Mitigation: Keep OPENCLAW_WORKSPACE narrow, review generated operation JSON before delete-confirm, and restore only from trash metadata that was created by a trusted run. <br>
-Risk: The skill can change or remove local files when execution commands are confirmed. <br>
-Mitigation: Run dry-run planning first, inspect file lists and destinations, and use backups or trash recovery before applying bulk operations. <br>
+## Use Case:
 
+Developers and agent operators use this skill to plan and perform file listing, search, copy, move, delete, and restore workflows with safer defaults than direct shell file commands.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/houssameddinemaatallah/file-manager-secure) <br>
-- [Publisher profile](https://clawhub.ai/user/houssameddinemaatallah) <br>
-- [Skill instructions](artifact/SKILL.md) <br>
-- [File manager script](artifact/scripts/file_manager.py) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, JSON, Files] <br>
-**Output Format:** [Markdown instructions and JSON command results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Operations are scoped to OPENCLAW_WORKSPACE and may create trash, backup, and audit-log files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Promised file safety controls may be bypassed, allowing moves or restores outside the intended workspace.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installation and restrict use to non-critical workspaces until restore destinations and delete-confirm execution paths are revalidated against the workspace boundary.
+
+Risk: Execution may not be bound to the dry-run plan that the user reviewed.
+
+Mitigation: Require execution commands to consume a trusted current plan or recompute validation immediately before performing file operations.
+
+Risk: Bulk or large operations may exceed the documented safety expectations.
+
+Mitigation: Enforce operation-count and total-size limits before execution and require explicit confirmation for bulk actions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/houssameddinemaatallah/skills/file-manager-secure)
+- [Publisher profile](https://clawhub.ai/user/houssameddinemaatallah)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with command examples, plus JSON output from helper script operations.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Operation plans are intended for user review before execution; script commands may create logs, trash metadata, backups, or moved/copied files inside the configured workspace.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

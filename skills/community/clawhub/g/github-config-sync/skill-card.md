@@ -1,42 +1,55 @@
-## Description: <br>
-一键同步Hermes配置和数据到GitHub，支持多设备间无缝切换。每次修改后只需一句命令就能同步所有内容。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+一键同步Hermes配置和数据到GitHub，支持多设备间无缝切换。
 
-## Publisher: <br>
-[zhangwenhao66](https://clawhub.ai/user/zhangwenhao66) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhangwenhao66](https://clawhub.ai/user/zhangwenhao66)
 
-## Use Case: <br>
-Hermes users use this skill to synchronize configuration, memories, skills, and other local Hermes data between machines through a GitHub-backed workflow. It is intended for people moving settings between Mac and Windows or maintaining a backup of Hermes files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The sync workflow can copy credentials, authentication files, sessions, or other secrets into a Git repository. <br>
-Mitigation: Do not sync .env, auth.json, sessions, or other sensitive files; remove those copy commands or add the paths to .gitignore before running the workflow. <br>
-Risk: The documentation and helper script point users toward a specific repository URL, which could lead to pushing private Hermes data to a repository the user does not control. <br>
-Mitigation: Use only a repository you own, preferably private, and verify git remote -v before any push. <br>
-Risk: Pulled Hermes skills and configuration may execute or influence agent behavior after restoration. <br>
-Mitigation: Review restored skills and configuration as code from the remote repository, scan them before use, and back up local Hermes files before pulling. <br>
+## Use Case:
 
+Hermes users and developers use this skill to back up and move Hermes configuration, memories, skills, and optional session or authentication files between Mac, Windows, and GitHub.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhangwenhao66/github-config-sync) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks and an optional shell script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes push and pull workflows for copying Hermes files to and from a GitHub-backed sync directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The sync flow can upload Hermes secrets, sessions, memories, and skills to GitHub with too little user control.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only a private repository you own, remove .env, auth.json, sessions, and other secrets from the sync flow, and inspect git status and diffs before every push.
+
+Risk: Pulling memories or skills from an untrusted repository can restore unsafe or unwanted local agent content.
+
+Mitigation: Pull only from trusted repositories and review the exact changes before copying repository content into the Hermes directory.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhangwenhao66/skills/github-config-sync)
+- [Publisher profile](https://clawhub.ai/user/zhangwenhao66)
+- [Configured GitHub sync repository](https://github.com/zhangwenhao66/hermes-config.git)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Provides Git-based push and pull guidance for Hermes backup and restore workflows.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,47 +1,61 @@
-## Description: <br>
-Helps an agent guide Kuaishou login, validate account cookies, and prepare commands for uploading videos or image-note posts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+快手视频/图文自动上传 skill。当用户需要登录快手、校验账号或上传内容时使用。基于 social-auto-upload 项目，OPclaw 自动准备运行环境，无需用户手动安装。
 
-## Publisher: <br>
-[kukuoai](https://clawhub.ai/user/kukuoai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kukuoai](https://clawhub.ai/user/kukuoai)
 
-## Use Case: <br>
-External creators, operators, and developers use this skill to prepare Kuaishou publishing workflows, check login state, and upload video or image-note content from local media files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: First use can download and run unpinned third-party automation code, including from proxy or mirror domains. <br>
-Mitigation: Review and pin a verified source before installation, and run the automation in a controlled local environment. <br>
-Risk: Stored login state can publish content to a Kuaishou account. <br>
-Mitigation: Confirm the target account, media files, title, text, tags, and schedule before running upload commands. <br>
-Risk: Interactive login requires a real user session and can expose account state if run in the wrong environment. <br>
-Mitigation: Have the user run login locally, use separate account names for isolation, and refresh login only when cookie checks fail. <br>
+## Use Case:
 
+External creators and operators use this skill to log in to Kuaishou, validate account cookies, and publish selected video or photo-note content through the social-auto-upload CLI.
 
-## Reference(s): <br>
-- [ClawHub skill release](https://clawhub.ai/kukuoai/deepsop-kuaishou-ai) <br>
-- [Publisher profile](https://clawhub.ai/user/kukuoai) <br>
-- [social-auto-upload project](https://github.com/dreammis/social-auto-upload) <br>
-- [CLI contract](references/cli-contract.md) <br>
-- [Runtime requirements](references/runtime-requirements.md) <br>
-- [Troubleshooting](references/troubleshooting.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and code templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include login commands that the user must run interactively in a local terminal.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can fetch and run mutable third-party uploader code before publishing media.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the upstream project before use and prefer a pinned, reviewed commit instead of an unpinned clone.
+
+Risk: Mirror-sourced downloads and browser automation dependencies can expand supply-chain exposure.
+
+Mitigation: Avoid unofficial mirrors where possible and use an isolated environment for setup and uploads.
+
+Risk: The skill stores local Kuaishou session files and can publish selected media to the account.
+
+Mitigation: Use an isolated account or media directory and require explicit confirmation before upload commands are run.
+
+## Reference(s):
+
+- [Runtime Requirements](references/runtime-requirements.md)
+- [CLI Contract](references/cli-contract.md)
+- [Troubleshooting](references/troubleshooting.md)
+- [social-auto-upload](https://github.com/dreammis/social-auto-upload)
+- [ClawHub Skill Page](https://clawhub.ai/kukuoai/skills/deepsop-kuaishou-ai)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance, Code]
+
+**Output Format:** [Markdown with inline shell commands and example code]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce login, cookie-check, video-upload, and photo-note upload commands for user-selected Kuaishou accounts and media files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

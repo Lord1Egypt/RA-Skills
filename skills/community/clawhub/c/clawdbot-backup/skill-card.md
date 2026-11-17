@@ -1,40 +1,63 @@
-## Description: <br>
-Backup and restore ClawdBot configuration, skills, commands, and settings. Sync across devices, version control with git, automate backups, and migrate to new machines. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Backup and restore ClawdBot configuration, skills, commands, and settings. Sync across devices, version control with git, automate backups, and migrate to new machines.
 
-## Publisher: <br>
-[Sebastian-Buitrag0](https://clawhub.ai/user/Sebastian-Buitrag0) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[sebastian-buitrag0](https://clawhub.ai/user/sebastian-buitrag0)
 
-## Use Case: <br>
-Developers and ClawdBot users use this skill to create, verify, restore, sync, and automate backups of local ClawdBot configuration, skills, commands, settings, and MCP configuration. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Backup archives, git repositories, and cloud sync targets may contain private ClawdBot configuration. <br>
-Mitigation: Keep archives and remotes private, review ~/.claude contents before syncing or pushing, and exclude credentials or machine-specific files where appropriate. <br>
-Risk: Restore commands and rsync --delete workflows can overwrite or remove local configuration. <br>
-Mitigation: Make a current backup first, preview archive contents or sync paths before applying changes, and confirm the target directory before restoring. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/Sebastian-Buitrag0/clawdbot-backup) <br>
-- [Publisher profile](https://clawhub.ai/user/Sebastian-Buitrag0) <br>
+## Use Case:
 
+Developers and ClawdBot users use this skill to generate backup, restore, sync, migration, and automation guidance for local ClawdBot configuration and skill files.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with bash code blocks and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires git, tar, and rsync for the documented backup, restore, sync, and version-control workflows.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Backups and sync targets may contain sensitive agent configuration, settings, MCP configuration, or credentials.
+
+Mitigation: Review the contents of ~/.claude before backing up or syncing, narrow the backup scope, and prefer private encrypted storage.
+
+Risk: Git and cloud sync workflows can accidentally upload private configuration or secrets.
+
+Mitigation: Avoid git add . and unattended git push until exclusions are reviewed and the remote storage policy is confirmed.
+
+Risk: Restore and rsync workflows can overwrite or delete local configuration.
+
+Mitigation: Validate archives before restoring and run rsync with dry-run before using --delete.
+
+Risk: Scheduled backups can repeatedly copy sensitive or unwanted files if the scope is too broad.
+
+Mitigation: Do not schedule recurring jobs until backup paths, exclusions, and retention behavior have been reviewed.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/sebastian-buitrag0/skills/clawdbot-backup)
+- [ClawdBot Docs](https://docs.clawdbot.com)
+- [ClawdBot Skills Guide](https://docs.clawdbot.com/skills)
+- [ClawdBot MCP Setup](https://docs.clawdbot.com/mcp)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash snippets and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires git, tar, and rsync for the documented backup and sync workflows.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

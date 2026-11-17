@@ -1,41 +1,54 @@
-## Description: <br>
-Automatically scans local chat logs, chunks new entries, and appends them into Space2-OS hippocampus memory for agent personality evolution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically crawls new local chat logs, chunks conversation text, and appends structured memory entries to Space2-OS hippocampus storage for agent memory evolution.
 
-## Publisher: <br>
-[SpaceSQ](https://clawhub.ai/user/SpaceSQ) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[spacesq](https://clawhub.ai/user/spacesq)
 
-## Use Case: <br>
-Developers and agent operators use this skill to automate ingestion of local chat logs into a Space2-OS memory buffer. It is intended for environments where persistent agent memory is desired and the watched log directory is intentionally curated. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is designed to read local chat logs and copy them into persistent agent memory. <br>
-Mitigation: Use a dedicated watched log folder and inspect hippocampus_logs.json before and after runs. <br>
-Risk: Sensitive chats, secrets, or proprietary material in the watched folder may be persisted into agent memory. <br>
-Mitigation: Keep sensitive material out of openclaw_logs and review the target directory before enabling scheduled or heartbeat execution. <br>
+## Use Case:
 
+Developers and agent operators use this skill to automate ingestion of local chat logs into a Space2-OS memory buffer. It is intended for environments where recurring local memory capture is deliberate and controlled.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/SpaceSQ/s2-memory-hook) <br>
-- [Space2.world homepage](https://space2.world) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, configuration, files] <br>
-**Output Format:** [Local JSON files and console text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Appends chunked memory entries to s2_consciousness_data/hippocampus_logs.json and maintains s2_hook_cursor.json for delta tracking.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and artifact manifest) <br>
+Risk: Recurring chat-log ingestion can persist sensitive conversation content into S2 memory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with intentional approval, redact secrets before storage, and define retention and deletion controls for hippocampus_logs.json.
+
+Risk: Weak log-directory scoping can ingest unintended files from shared or writable-by-others locations.
+
+Mitigation: Restrict the log directory, avoid shared writable folders, add an explicit extension allowlist, and check symlinks before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/spacesq/skills/s2-memory-hook)
+- [Space2.world](https://space2.world)
+
+## Skill Output:
+
+**Output Type(s):** [text, configuration, JSON files]
+
+**Output Format:** [Console status text plus JSON memory and cursor files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Appends timestamped memory records to hippocampus_logs.json and updates s2_hook_cursor.json for delta-sync tracking.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact manifest)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

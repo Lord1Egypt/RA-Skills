@@ -1,44 +1,64 @@
-## Description: <br>
-Captures business administration issues, policy gaps, KPI misalignment, decision delays, handoff failures, and stakeholder misalignment to improve operational decision quality. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Records business operations issues and learnings in local Markdown logs, with optional reminders to support process and governance improvements.
 
-## Publisher: <br>
-[jose-compu](https://clawhub.ai/user/jose-compu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jose-compu](https://clawhub.ai/user/jose-compu)
 
-## Use Case: <br>
-Developers, operators, and business administrators use this skill to capture operational learnings, business issues, and process-improvement requests in structured markdown logs. It supports governance, KPI alignment, handoff review, policy consistency, and reminder-only escalation planning without authorizing business decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Optional broad hooks may inject reminders in mixed-use workspaces more often than intended. <br>
-Mitigation: Enable hooks deliberately and prefer a narrow matcher or dispatcher instead of a blank matcher in shared or mixed-use workspaces. <br>
-Risk: Learning logs can contain sensitive business context. <br>
-Mitigation: Keep .learnings out of shared repositories when entries may include sensitive operational, financial, vendor, or governance details. <br>
-Risk: Users may mistake reminder-only recommendations for business approval or authorization. <br>
-Mitigation: Require explicit human approval for spending, vendor commitments, payroll, legal actions, policy sign-offs, and other high-impact decisions. <br>
+## Use Case:
 
+Business operations teams and their agents record policy gaps, KPI discrepancies, delayed decisions, and handoff failures, then propose improvements for human review.
 
-## Reference(s): <br>
-- [OpenClaw Business Integration](references/openclaw-integration.md) <br>
-- [Business Hook Setup Guide](references/hooks-setup.md) <br>
-- [Business Entry Examples](references/examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and structured log-entry templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates or appends local .learnings markdown files and can inject reminder text through optional hooks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Persistent business notes may contain sensitive information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep .learnings/ out of shared repositories unless its contents have been sanitized and approved for sharing.
+
+Risk: Optional reminders may run in projects where they are not wanted.
+
+Mitigation: Enable hooks only in the intended project and keep them workspace-scoped.
+
+Risk: Recommendations about budgets, vendors, policies, or staffing could be mistaken for authorization.
+
+Mitigation: Treat entries as documentation only and require explicit human approval before high-impact decisions.
+
+Risk: Generated skills or promoted guidance could carry unreviewed recommendations.
+
+Mitigation: Review proposed changes and generated skills with a human owner before adoption or publication.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/jose-compu/skills/self-improving-business)
+- [Examples](artifact/references/examples.md)
+- [Hook setup](artifact/references/hooks-setup.md)
+- [OpenClaw integration](artifact/references/openclaw-integration.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Guidance, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown entries in local files and plain-text reminders]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Project-local learning logs; optional workspace-scoped reminder hooks]
+
+## Skill Version(s):
+
+1.0.2 (source: ClawHub release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

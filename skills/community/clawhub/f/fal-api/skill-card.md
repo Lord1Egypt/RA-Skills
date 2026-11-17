@@ -1,41 +1,56 @@
-## Description: <br>
-Fal.ai API generates images, videos, and audio through the fal.ai API, including FLUX, SDXL, Whisper, and other supported models. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fal.ai API generates images, videos, and audio transcriptions through fal.ai models such as FLUX, SDXL, MiniMax, WAN, and Whisper.
 
-## Publisher: <br>
-[ricanwarfare](https://clawhub.ai/user/ricanwarfare) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ricanwarfare](https://clawhub.ai/user/ricanwarfare)
 
-## Use Case: <br>
-Developers and agent users use this skill to submit prompts, media URLs, and generation parameters to fal.ai models for image and video generation or audio transcription through agent workflows, a CLI, or a Python module. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, image URLs, audio URLs, and generation parameters are sent to fal.ai. <br>
-Mitigation: Avoid secrets and regulated personal data in prompts or URLs, and use the skill only when sending that data to fal.ai is acceptable. <br>
-Risk: API calls can consume paid fal.ai credits. <br>
-Mitigation: Use a dedicated or limited FAL_KEY where possible and monitor fal.ai usage or billing. <br>
+## Use Case:
 
+Developers and agents use this skill to submit fal.ai media-generation or transcription jobs, poll for completion, and return generated media URLs or transcript results.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ricanwarfare/fal-api) <br>
-- [fal.ai API key dashboard](https://fal.ai/dashboard/keys) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, code, configuration, guidance] <br>
-**Output Format:** [Markdown guidance, CLI output, Python return values, and URLs from fal.ai API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires FAL_KEY; fal.ai API calls may consume paid credits.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata; artifact frontmatter reports 1.0.1) <br>
+Risk: Prompts, media URLs, audio content, and the fal.ai API key are sent to fal.ai for processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for data that may be processed by fal.ai, avoid private recordings, secrets, regulated data, and signed internal URLs, and prefer a scoped or revocable API key.
+
+Risk: The skill requires network access and a valid paid or quota-backed fal.ai account to complete media jobs.
+
+Mitigation: Confirm account credits, rate limits, and network policy before using the skill in automated workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ricanwarfare/skills/fal-api)
+- [Publisher profile](https://clawhub.ai/user/ricanwarfare)
+- [fal.ai API keys](https://fal.ai/dashboard/keys)
+- [fal.ai dashboard](https://fal.ai/dashboard)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Code]
+
+**Output Format:** [Text output with generated media URLs, transcription results, errors, and command-line or Python usage snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a FAL_KEY credential and network access to fal.ai.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

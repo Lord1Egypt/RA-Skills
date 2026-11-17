@@ -1,37 +1,49 @@
-## Description: <br>
-This skill is deprecated and should not be used. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill is deprecated and should not be used.
 
-## Publisher: <br>
-[eric642](https://clawhub.ai/user/eric642) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[eric642](https://clawhub.ai/user/eric642)
 
-## Use Case: <br>
-External users and developers can recognize that this is a deprecated placeholder skill and avoid using it for active work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is explicitly deprecated and intentionally non-functional, so it is not useful for completing active tasks. <br>
-Mitigation: Install it only when a placeholder deprecated skill is needed; otherwise choose an active skill. <br>
+## Use Case:
 
+External users and developers may encounter this release as a deprecated placeholder and should use it only to recognize that the skill is no longer recommended.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Guidance] <br>
-**Output Format:** [Plain text or Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Deprecated placeholder; intentionally non-functional.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Users may install this deprecated placeholder expecting useful workflow behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid installing it unless a placeholder deprecation notice is specifically needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/eric642/skills/deprecatedcc)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Text]
+
+**Output Format:** [Plain text deprecation notice]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable behavior or requested access is described in the release evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

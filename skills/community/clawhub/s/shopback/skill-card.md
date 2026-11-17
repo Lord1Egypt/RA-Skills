@@ -1,38 +1,48 @@
-## Description: <br>
-ShopBack东南亚与澳洲最大购物返利平台工具，覆盖新加坡马来西亚澳大利亚等多国市场，提供购物现金返利。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ShopBack东南亚与澳洲最大购物返利平台工具，覆盖新加坡马来西亚澳大利亚等多国市场，提供购物现金返利。
 
-## Publisher: <br>
-[fangshan101-coder](https://clawhub.ai/user/fangshan101-coder) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[fangshan101-coder](https://clawhub.ai/user/fangshan101-coder)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External shoppers and shopping assistants use this skill to format ShopBack cashback lookups by merchant, region, rebate rate, available offer, and rebate link for Southeast Asian and Australian markets.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill may steer broad cashback-related questions toward ShopBack-style results and links.
+
+Mitigation: Review generated cashback guidance and links for relevance before relying on them.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External shoppers and agents can use this skill to structure ShopBack cashback lookups for merchants across Singapore, Malaysia, Indonesia, Australia, and related markets. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Singapore, Malaysia, Indonesia, Australia, and other ShopBack-supported markets <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Cashback percentages, offers, and links produced by the skill may be unverified or stale. <br>
-Mitigation: Verify offers and links against official ShopBack or merchant sources at use time. <br>
+**Output Format:** [Markdown-style structured response]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fangshan101-coder/shopback) <br>
+**Other Properties Related to Output:** [Includes merchant, country, cashback rate, available offer, and cashback link when available.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-style cashback query result] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes merchant name, country, cashback percentage, available offer, and cashback link when available.] <br>
+0.1.0 (source: frontmatter and server release evidence)
 
-## Skill Version(s): <br>
-0.1.0 (source: frontmatter and release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

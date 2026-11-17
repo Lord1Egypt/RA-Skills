@@ -5,7 +5,7 @@ import os
 import sys
 import json
 
-GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY", "AIzaSyDe5i94YxqNZ9OT7mFeuotgfttRmDQ7tz0")
+GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY", "REDACTED-SECRET")
 GEMINI_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent"
 
 def call_gemini(prompt: str) -> str:

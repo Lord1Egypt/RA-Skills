@@ -1,42 +1,58 @@
-## Description: <br>
-A clinical research paper-writing assistant that expands author-provided notes into IMRaD-style Chinese or English manuscript draft sections. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Assists clinical research authors by turning supplied section details and notes into Chinese or English IMRaD-style manuscript draft paragraphs with reporting-guideline reminders.
 
-## Publisher: <br>
-[unisound-llm](https://clawhub.ai/user/unisound-llm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[unisound-llm](https://clawhub.ai/user/unisound-llm)
 
-## Use Case: <br>
-Clinical researchers and manuscript authors use this skill to turn supplied section notes into draft abstract, introduction, methods, results, discussion, or related manuscript text. It also provides writing self-check reminders for reporting-guideline awareness without certifying compliance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: User-supplied manuscript notes are sent to the disclosed external Hivoice model API. <br>
-Mitigation: Install only when that data flow is approved, use a dedicated revocable API key, and avoid patient identifiers or confidential clinical details unless permitted by organizational policy. <br>
-Risk: Generated manuscript text may contain unsupported scientific claims if users provide incomplete or incorrect notes. <br>
-Mitigation: Require authors to review, edit, and verify all draft text, statistics, conclusions, and reporting-guideline reminders before submission or publication. <br>
+## Use Case:
 
+Clinical research authors and medical writing teams use this skill to draft manuscript sections from factual notes they provide. It is intended for language organization and writing self-check reminders, not for creating undisclosed data or unverified conclusions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/unisound-llm/unisound-paper-writing-assist) <br>
-- [Publisher profile](https://clawhub.ai/user/unisound-llm) <br>
-- [Hivoice model API endpoint](https://maas-api.hivoice.cn/v1/chat/completions) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [JSON containing metadata and Markdown draft text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an input JSON object with section and notes, plus an app key for the external model API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Clinical research notes may contain patient identifiers, protected health information, unpublished research data, or institution-confidential details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only data authorized for the external model service and prefer de-identified notes.
+
+Risk: API keys passed directly on the command line can be exposed through shell history or process listings.
+
+Mitigation: Avoid putting a real API key directly on the command line when possible.
+
+Risk: Generated draft text could be mistaken for verified scientific conclusions.
+
+Mitigation: Require author review and modification before use, and do not submit model output as an unverified conclusion.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/unisound-llm/skills/unisound-paper-writing-assist)
+- [Hivoice MAAS chat completions endpoint](https://maas-api.hivoice.cn/v1/chat/completions)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, shell commands, guidance]
+
+**Output Format:** [JSON containing metadata and Markdown draft text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Output includes the requested manuscript section, language, note count, draft text, and writing self-check reminders.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

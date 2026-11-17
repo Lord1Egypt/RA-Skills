@@ -1,40 +1,55 @@
-## Description: <br>
-Search skills.sh registry from CLI. Find and discover agent skills from the skills.sh ecosystem. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search skills.sh registry from CLI. Find and discover agent skills from the skills.sh ecosystem.
 
-## Publisher: <br>
-[TheSethRose](https://clawhub.ai/user/TheSethRose) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[thesethrose](https://clawhub.ai/user/thesethrose)
 
-## Use Case: <br>
-Developers and agent users use this skill to search the skills.sh registry, list popular skills, and inspect suggested install commands from a terminal. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Displayed install commands may point to third-party skills that have their own source, scope, and security properties. <br>
-Mitigation: Review the target skill, its source, and its requested scope before adding it to an agent environment. <br>
+## Use Case:
 
+Developers and agents use this skill to search the skills.sh registry from a terminal, inspect popular skills, and generate install commands for selected registry results.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/TheSethRose/skills-search) <br>
-- [skills.sh](https://skills.sh) <br>
-- [skills.sh skills API](https://skills.sh/api/skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Terminal text with optional install command suggestions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js and network access to the skills.sh API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Search results and generated install commands can lead users to third-party skill sources.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the discovered skill source and confirm the repository or publisher is trusted before installing.
+
+Risk: Terminal-generated install commands can introduce supply-chain risk if copied without review.
+
+Mitigation: Prefer pinned package versions where possible and do not run install commands unless the repository name looks valid and trusted.
+
+## Reference(s):
+
+- [ClawHub Skills.sh Search release page](https://clawhub.ai/thesethrose/skills/skills-search)
+- [skills.sh](https://skills.sh)
+- [skills.sh API endpoint](https://skills.sh/api/skills)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Guidance]
+
+**Output Format:** [Terminal text with optional inline install commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search results are sorted by install count and may include generated skills CLI install commands when requested.]
+
+## Skill Version(s):
+
+1.0.4 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

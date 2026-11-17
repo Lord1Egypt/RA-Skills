@@ -1,39 +1,54 @@
-## Description: <br>
-Generates AI images and image edits through SkillBoss API Hub using 50+ models for text-to-image, image-to-image, inpainting, upscaling, and text rendering. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI Image Generation helps agents generate and edit images with 50+ models through SkillBoss API Hub, including text-to-image, image-to-image, inpainting, LoRA workflows, upscaling, and text rendering.
 
-## Publisher: <br>
-[quincygunter](https://clawhub.ai/user/quincygunter) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[quincygunter](https://clawhub.ai/user/quincygunter)
 
-## Use Case: <br>
-External users and developers use this skill to generate AI art, product mockups, concept art, social media graphics, marketing visuals, and illustrations through a hosted image-generation API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, image URLs, and related generation inputs are sent to SkillBoss API Hub. <br>
-Mitigation: Use a limited, rotatable API key, monitor usage and billing, and avoid submitting secrets, personal data, regulated data, or confidential creative material unless the provider is trusted for that content. <br>
+## Use Case:
 
+Developers, designers, marketers, and content teams use this skill to have an agent call SkillBoss API Hub for image generation, image editing, upscaling, and model discovery workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/quincygunter/quincy-ai-image-generation) <br>
-- [SkillBoss API Hub](https://api.heybossai.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, API Calls] <br>
-**Output Format:** [Markdown with Python code examples and API response fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SKILLBOSS_API_KEY; API responses return image URLs such as result.image_url or images[].url.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Image prompts, generation settings, and provided image URLs are sent to SkillBoss API Hub.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only approved prompts and assets; avoid secrets, private images, regulated data, or confidential business material unless your organization permits that provider and data flow.
+
+Risk: The skill requires a SkillBoss API key for API access.
+
+Mitigation: Provide SKILLBOSS_API_KEY through an approved secret or environment-variable mechanism and avoid hard-coding it in prompts, files, or shared logs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/quincygunter/skills/quincy-ai-image-generation)
+- [SkillBoss API Hub](https://api.heybossai.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, API calls, Configuration guidance]
+
+**Output Format:** [Markdown with Python code blocks and returned image URLs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SKILLBOSS_API_KEY; prompts, generation settings, and provided image URLs are sent to SkillBoss API Hub.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

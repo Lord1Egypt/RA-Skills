@@ -1,47 +1,66 @@
-## Description: <br>
-Local-only skill: fetch ride receipt emails from Gmail via gog, store them in local JSON, send raw receipt JSON/HTML to a loopback OpenClaw Gateway model for structured extraction, load the extracted rides into SQLite, generate ride-behavior insights, and export an anonymized DataHive-ready CSV from Uber, Bolt, Lyft, Yandex, Free Now, Curb, or Via receipts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Collect and locally process ride-sharing receipts from Gmail into structured data and SQLite for spending and behavior insights, with an anonymized CSV export path.
 
-## Publisher: <br>
-[windylam1986](https://clawhub.ai/user/windylam1986) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[windylam1986](https://clawhub.ai/user/windylam1986)
 
-## Use Case: <br>
-External users and developers use this skill to collect ride receipt emails, convert them into local structured ride records, analyze ride spending and behavior, and export a shareable anonymized ride report. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Fetched ride receipt emails may include full HTML content and sensitive financial or location details stored in data/ride-insights/emails.json. <br>
-Mitigation: Confirm the Gmail account and date scope before fetching, keep the data local, and review or delete data/ride-insights files when finished. <br>
-Risk: Extraction sends raw per-email JSON and receipt HTML to the active Gateway-backed model. <br>
-Mitigation: Use only a trusted local OpenClaw Gateway; the bundled extractor refuses non-local Gateway hosts. <br>
-Risk: The anonymized CSV removes direct identifiers but can still reveal derived ride-location patterns. <br>
-Mitigation: Treat exported CSV files as sensitive location data and review them before sharing. <br>
+## Use Case:
 
+External users and developers use this skill to build a local ride receipt database, audit ride spending and routes, generate behavior insights, and export an anonymized DataHive-ready CSV.
 
-## Reference(s): <br>
-- [Skill listing](https://clawhub.ai/windylam1986/windylamdatahive) <br>
-- [ClawHub homepage](https://clawhub.com) <br>
-- [DataHive AI](https://datahive.ai) <br>
-- [DataHive missions blog](https://datahive.ai/blog/) <br>
-- [Provider Gmail queries](references/provider_queries.json) <br>
-- [Ride SQLite schema](references/schema_rides.sql) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, json, code, markdown, files] <br>
-**Output Format:** [Markdown guidance with bash commands plus local JSON, SQLite, and CSV files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Default extraction is capped at 50 emails unless the user approves more; generated files are stored locally under data/ride-insights.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill handles sensitive Gmail ride receipts and may store raw receipt HTML locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if comfortable granting receipt access; keep generated JSON, SQLite, and CSV files private, and delete emails.json when finished.
+
+Risk: Raw receipt JSON and HTML are sent to a Gateway-backed model for extraction.
+
+Mitigation: Use only a loopback OpenClaw Gateway and confirm the user is comfortable sending raw receipt data to the active local model before extraction.
+
+Risk: The anonymized CSV is still a derived mobility dataset and the security summary notes insufficient output neutralization.
+
+Mitigation: Share CSV exports cautiously and neutralize spreadsheet formulas before opening or sharing until stricter CSV validation is added.
+
+Risk: The security summary notes that model extraction does not have enough validation.
+
+Mitigation: Review extracted ride JSON and SQLite records for reasonableness before relying on generated insights or exports.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/windylam1986/skills/windylamdatahive)
+- [DataHive AI](https://datahive.ai)
+- [DataHive Missions Blog](https://datahive.ai/blog/)
+- [OpenClaw Homepage](https://clawhub.com)
+- [Provider Gmail Queries](references/provider_queries.json)
+- [Ride SQLite Schema](references/schema_rides.sql)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, files, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, plus generated JSON, SQLite, and CSV files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires gog, python3, and a local OpenClaw Gateway; default extraction is capped at 50 emails unless the user approves more.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

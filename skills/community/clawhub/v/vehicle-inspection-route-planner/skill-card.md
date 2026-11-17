@@ -1,43 +1,56 @@
-## Description: <br>
-规划上班沿途车辆年检最优路线。输入家庭地址、公司地址和检测站列表，调用高德地图API计算实时路况下的驾车路线，输出带时间轴的Top5出行方案（含逐段导航明细）。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Plans commute route options that detour through vehicle inspection stations by using AMap driving routes, live traffic estimates, and candidate station data to produce Top N itinerary plans with timelines and turn-by-turn details.
 
-## Publisher: <br>
-[shengbinxu](https://clawhub.ai/user/shengbinxu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shengbinxu](https://clawhub.ai/user/shengbinxu)
 
-## Use Case: <br>
-Drivers and agents use this skill to compare vehicle inspection stops along a commute, using a home address, work address, departure time, inspection duration, and candidate station list. It produces ranked route plans with driving durations, distance, arrival times, and turn-by-turn details. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a user-provided AMap API key and route inputs that may reveal sensitive location patterns. <br>
-Mitigation: Provide the API key only at runtime, do not hard-code or persist credentials, and avoid retaining reports that expose private home or workplace addresses. <br>
-Risk: Route duration and arrival estimates depend on real-time traffic and geocoding quality at query time. <br>
-Mitigation: Re-run planning near the intended travel time, review station locations before driving, and verify inspection appointments, required materials, and traffic constraints independently. <br>
+## Use Case:
 
+Drivers and personal-assistant agents use this skill to compare vehicle inspection stops along a home-to-work route and generate a concise ranked travel plan. It is most relevant when the user has a fixed origin, destination, departure time, expected inspection duration, and candidate station list.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/shengbinxu/skills/vehicle-inspection-route-planner) <br>
-- [高德开放平台 Web 服务 Key](https://console.amap.com/dev/key/app) <br>
-- [交通安全综合服务管理平台](https://122.gov.cn/) <br>
-- [交管12123 APP](https://122.gov.cn/#/app) <br>
+### Deployment Geography for Use:
 
+China
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown route report with a ranked overview table, per-route timeline, and navigation details] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a user-provided AMap Web Service API key, origin and destination addresses, departure time, inspection duration, city, station CSV, and requested Top N count.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: release evidence) <br>
+Risk: Home and workplace addresses, route destinations, and the AMap API key are sent to AMap for route calculation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review data-sharing expectations before using real addresses, use a restricted and rotatable API key, and avoid command-line key entry when possible.
+
+Risk: The README claims the tool does not upload user data, which conflicts with the security evidence for AMap API calls.
+
+Mitigation: Treat the no-upload claim as inaccurate and disclose the external AMap requests before installation or use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/shengbinxu/skills/vehicle-inspection-route-planner)
+- [AMap Open Platform Web Service key setup](https://console.amap.com/dev/key/app)
+- [Traffic Safety Integrated Service Management Platform](https://122.gov.cn/)
+- [Traffic Management 12123 app](https://122.gov.cn/#/app)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown report with ranked tables, itinerary timelines, and route instruction code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a user-supplied AMap Web Service API key, origin and destination addresses, departure time, inspection duration, city, station CSV, and Top N count.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence; artifact frontmatter says 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

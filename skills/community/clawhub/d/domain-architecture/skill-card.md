@@ -1,39 +1,54 @@
-## Description: <br>
-Guides domain structure decisions for multiple products or brands, including subfolders, subdomains, independent domains, brand architecture, and hub-spoke domain setups. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides domain structure decisions for multiple products or brands by comparing subfolders, subdomains, and independent domains.
 
-## Publisher: <br>
-[kostja94](https://clawhub.ai/user/kostja94) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kostja94](https://clawhub.ai/user/kostja94)
 
-## Use Case: <br>
-Developers, marketers, founders, and product teams use this skill to choose domain architecture for multiple products or brands and to map products across subfolders, subdomains, or independent domains. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may read local project context files that contain product portfolio or growth strategy details. <br>
-Mitigation: Review `.claude/project-context.md` and `.cursor/project-context.md` before use and remove sensitive details that should not inform the recommendation. <br>
-Risk: Domain architecture advice can affect SEO, brand positioning, and migration planning if applied without business review. <br>
-Mitigation: Review the recommendation with product, marketing, and technical stakeholders before changing domain structure. <br>
+## Use Case:
 
+External users, marketers, founders, and web teams use this skill to choose a domain architecture for multiple products or brands. It helps map products to subfolders, subdomains, or independent domains while considering brand architecture and SEO authority tradeoffs.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces recommendation rationale, brand architecture fit, domain mapping, hub-spoke guidance, and related next steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release evidence) <br>
+Risk: Domain architecture advice can affect SEO, brand positioning, and migration planning if applied without local business context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review recommendations against product strategy, analytics, stakeholder requirements, and any migration plan before changing public domains.
+
+Risk: The skill may use existing project context files to tailor advice.
+
+Mitigation: Confirm that project context files are current and appropriate to use before relying on tailored recommendations.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/kostja94/skills/domain-architecture)
+- [Publisher Profile](https://clawhub.ai/user/kostja94)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Advisory recommendations may include rationale, brand architecture fit, domain mapping, hub-spoke guidance, and related next steps.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

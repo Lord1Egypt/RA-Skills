@@ -1,39 +1,49 @@
-## Description: <br>
-Creates English song lyrics and a Suno-style music style prompt from a user's theme, mood, or genre. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Lyric Writer helps an assistant create English song lyrics and style prompts for Suno-style music generation from a user's theme, mood, or genre.
 
-## Publisher: <br>
-[279458179](https://clawhub.ai/user/279458179) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[279458179](https://clawhub.ai/user/279458179)
 
-## Use Case: <br>
-External users and creators use this skill to turn a theme, emotion, or style direction into English lyrics and a concise style description for Suno AI music generation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated lyrics may be unsuitable, unoriginal, or require rights review before publication. <br>
-Mitigation: Review and edit generated lyrics for suitability, originality, and intended use before publishing. <br>
-Risk: The skill may activate for broad lyric-writing prompts and defaults to English lyrics. <br>
-Mitigation: State the desired language, genre, mood, and usage context when invoking the skill. <br>
+## Use Case:
 
+External users and creators use this skill to have an assistant draft English lyrics and matching music style guidance for Suno-style song generation.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown sections for lyrics and styles] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [English lyrics with separate lyrics and styles sections; lines use real line breaks and blank lines between sections.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill may activate for ordinary lyric-writing prompts and steer the assistant toward English Suno-style output.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it when English Suno-style lyrics and styles are desired, and confirm language and formatting expectations when a broader lyric-writing response is needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/279458179/skills/lyric-writer)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown-style text with separate lyrics and styles sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces English lyrics with song sections, line breaks, rhyme guidance, and style details such as genre, mood, tempo, BPM, and key.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

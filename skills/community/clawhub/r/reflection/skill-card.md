@@ -1,41 +1,57 @@
-## Description: <br>
-Learns when to stop and review. Self-critiques before showing you, fewer revision rounds. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents pause for self-review, learn from corrections, detect recurring patterns, and surface prior lessons before delivery.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Developers and agent users use this skill to add pre-delivery review, post-correction reflection, pattern detection, and proactive lesson surfacing to an agent workflow. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
-
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ivangdavila/reflection) <br>
-- [Skill Homepage](https://clawic.com/skills/reflection) <br>
-- [Setup Guide](setup.md) <br>
-- [Memory Template](memory-template.md) <br>
-- [Evaluation Dimensions](dimensions.md) <br>
-- [Reflection Prompts](prompts.md) <br>
+### License/Terms of Use:
 
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with local memory templates and occasional shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates and updates local reflection notes under ~/reflection/ when activated; users should avoid storing secrets or confidential details there.] <br>
+## Use Case:
 
-## Skill Version(s): <br>
-1.1.0 (source: frontmatter and server-resolved release metadata) <br>
+External users and developers use Self Reflection to add pre-delivery review, post-correction logging, recurring pattern detection, and proactive lesson surfacing to agent workflows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can persist corrections, patterns, and user-specific lessons in local reflection files without explicit retention or redaction rules.
+
+Mitigation: Review ~/reflection/ periodically, avoid storing secrets or sensitive project details, and add local rules for consent, redaction, retention, and deletion before broad use.
+
+Risk: Incorrectly logged lessons or detected patterns could bias future agent responses.
+
+Mitigation: Review proposed reflections and prevention rules before treating them as reusable guidance, especially after user corrections or high-impact work.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/reflection)
+- [Skill homepage](https://clawic.com/skills/reflection)
+- [Setup guide](artifact/setup.md)
+- [Memory template](artifact/memory-template.md)
+- [Evaluation dimensions](artifact/dimensions.md)
+- [Reflection prompts](artifact/prompts.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and local file templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates and updates persistent local reflection files under ~/reflection/ when followed.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

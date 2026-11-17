@@ -1,43 +1,57 @@
-## Description: <br>
-Dingtalk Contact helps agents query DingTalk address book data, including users, departments, employee details, department membership, organizational paths, and employee counts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Dingtalk Contact helps agents query DingTalk address book users, departments, member lists, department paths, and employee counts through DingTalk contact APIs.
 
-## Publisher: <br>
-[breath57](https://clawhub.ai/user/breath57) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[breath57](https://clawhub.ai/user/breath57)
 
-## Use Case: <br>
-Employees, administrators, and support operators use this skill to find DingTalk users and departments, retrieve contact details, inspect department membership, and summarize organization directory information when they are authorized to access it. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores DingTalk app credentials and cached tokens in a local configuration file. <br>
-Mitigation: Use a least-privilege DingTalk app, restrict file access, prefer secure secret storage where available, and rotate credentials if the local config or tokens may have been exposed. <br>
-Risk: The skill can access broad employee directory data, including user details, department membership, and organization counts. <br>
-Mitigation: Install it only for authorized DingTalk administrators or trusted operators, restrict who can invoke it, and avoid bulk member queries unless they are approved. <br>
-Risk: The skill runs shell-based workflows that call external DingTalk APIs. <br>
-Mitigation: Review commands before execution and confirm that each query matches the operator's approved directory-access purpose. <br>
+## Use Case:
 
+Developers and operations staff use this skill to let an agent look up DingTalk employees and departments, retrieve contact details, enumerate department membership, and summarize directory structure for authorized business workflows.
 
-## Reference(s): <br>
-- [Dingtalk Contact API Reference](references/api.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/breath57/dingtalk-contact) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash commands and DingTalk API response summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce or summarize DingTalk directory API results; credentials and tokens should be masked in user-facing output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: Persistent local storage of DingTalk app secrets and access tokens can expose credentials on shared or weakly protected machines.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a least-privilege DingTalk app, restrict access to the config file or replace plaintext storage, avoid shared machines, and rotate credentials if exposure is suspected.
+
+Risk: Generated shell scripts may incorporate untrusted names, IDs, or query terms while operating on sensitive directory data.
+
+Mitigation: Quote and validate inputs, review generated scripts before execution, and avoid pasting untrusted values into shell commands.
+
+Risk: User and department queries can reveal employee contact details, job information, and organization structure.
+
+Mitigation: Request only data needed for the business task, redact unnecessary employee records from output, and avoid logging full API responses.
+
+## Reference(s):
+
+- [dingtalk-contact API Reference](references/api.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance, API calls]
+
+**Output Format:** [Markdown guidance with bash command snippets and JSON API response examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include DingTalk directory records; credentials and tokens should be redacted from user-facing output.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

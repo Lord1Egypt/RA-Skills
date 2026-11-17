@@ -1,45 +1,60 @@
-## Description: <br>
-Converts supplied presentation materials into a structured deck narrative with slide-level titles, evidence needs, transitions, risk framing, and closing actions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Turns supplied materials into a reviewable presentation or deck narrative structure with per-slide titles, evidence needs, transition logic, risk pages, and final actions.
 
-## Publisher: <br>
-[52YuanChangXing](https://clawhub.ai/user/52YuanChangXing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[52yuanchangxing](https://clawhub.ai/user/52yuanchangxing)
 
-## Use Case: <br>
-Employees, external collaborators, and presentation authors use this skill to turn goals, audience context, conclusions, and evidence materials into a reviewable PPT or deck storyline. It is suited for reporting, fundraising, and project retrospective workflows where the user needs slide titles, evidence gaps, transitions, risks, and next actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Inputs may contain sensitive business, project, or personal information. <br>
-Mitigation: Use only necessary local materials, redact sensitive content where possible, and avoid feeding confidential data unless it is required for the deck task. <br>
-Risk: Generated deck structure may preserve unverified claims or expose missing evidence as if it were ready for presentation. <br>
-Mitigation: Review the draft, resolve listed confirmation items, and verify source evidence before using the deck narrative externally. <br>
-Risk: The optional Python helper reads selected input material and can write a local Markdown or JSON file. <br>
-Mitigation: Run the helper only in a trusted workspace, inspect output paths before writing, and use dry-run or stdout when review-only behavior is preferred. <br>
+## Use Case:
 
+Employees, external teams, and presentation authors use this skill to convert supplied audience, conclusion, and evidence materials into a structured Markdown deck plan for review before design or execution.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/52YuanChangXing/deck-narrative-planner) <br>
-- [README.md](README.md) <br>
-- [resources/spec.json](resources/spec.json) <br>
-- [resources/template.md](resources/template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Structured Markdown deck outline or JSON report; optional local output file when the helper script is used.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local inputs only; the Python helper requires python3 and can write Markdown or JSON to a user-selected output path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill may produce incomplete or misleading deck guidance if the supplied materials omit audience, conclusion, or evidence.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require human review of the draft, preserve open questions as confirmation items, and avoid treating generated slide titles as verified facts.
+
+Risk: Sensitive presentation materials may be included in local inputs.
+
+Mitigation: Use the skill only on intended presentation files and redact personal or confidential information before processing broad document sets.
+
+Risk: Unused audit helper routines in the script could be misunderstood as part of the normal deck workflow.
+
+Mitigation: Treat the normal workflow as local deck-outline generation; separately review audit routines before repurposing them.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/52yuanchangxing/skills/deck-narrative-planner)
+- [README](artifact/README.md)
+- [Structured Specification](artifact/resources/spec.json)
+- [Output Template](artifact/resources/template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown deck outline, with optional JSON report from the local helper script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses local input content and a fixed section structure; no network access or third-party Python dependencies are required.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

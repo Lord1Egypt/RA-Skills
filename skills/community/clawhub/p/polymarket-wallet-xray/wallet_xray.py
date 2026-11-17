@@ -8,9 +8,8 @@ and edge detection. Inspired by @thejayden's "Autopsy of a Polymarket Whale".
 Queries Polymarket's public data API (data-api.polymarket.com) — no authentication needed.
 Analyzes ANY Polymarket wallet, not just Simmer users.
 
-Usage:
+Usage (replace placeholder addresses with complete public wallet addresses):
     python wallet_xray.py 0x1234...abcd
-    python wallet_xray.py 0x1234...abcd "Bitcoin"
     python wallet_xray.py 0x1111... 0x2222... --compare
     python wallet_xray.py 0x1234...abcd --json
     python wallet_xray.py 0x1234...abcd --limit 100
@@ -19,19 +18,20 @@ Usage:
 import os
 import sys
 import json
+import math
 import argparse
 import statistics
 from datetime import datetime
 from urllib.request import urlopen, Request
 from urllib.error import HTTPError, URLError
 from typing import Dict, List, Optional, Any
-from urllib.parse import quote
+from urllib.parse import urlencode
 
 # Force line-buffered stdout so output is visible in non-TTY environments
 sys.stdout.reconfigure(line_buffering=True)
 
 # Polymarket public APIs
-DATA_API_BASE = "https://data-api.polymarket.com"
+DATA_API_BASE = "https://data-api.polymarket.com/v2"
 
 def api_request(url: str, headers: Optional[Dict] = None, timeout: int = 30) -> dict:
     """Make HTTP request to public API."""
@@ -42,29 +42,76 @@ def api_request(url: str, headers: Optional[Dict] = None, timeout: int = 30) -> 
     try:
         with urlopen(req, timeout=timeout) as resp:
             return json.loads(resp.read().decode())
-    except HTTPError as e:
-        error_body = e.read().decode() if e.fp else ""
-        print(f"❌ API Error {e.code}: {error_body}", file=sys.stderr)
-        return {}
-    except URLError as e:
-        print(f"❌ Connection error: {e.reason}", file=sys.stderr)
-        return {}
+    except HTTPError as exc:
+        raise RuntimeError(f"API Error {exc.code}: {exc.reason}") from exc
+    except (URLError, OSError) as exc:
+        raise RuntimeError(f"Connection error: {exc}") from exc
+    except (ValueError, UnicodeError) as exc:
+        raise RuntimeError("Malformed Polymarket activity API response") from exc
+
+MARKET_ACTIVITY_TYPES = {"TRADE", "SPLIT", "MERGE", "REDEEM", "CONVERSION"}
+
 
 def get_wallet_trades(wallet: str, limit: Optional[int] = None) -> List[Dict]:
-    """Fetch trades for a wallet from Polymarket data API (public, no auth)."""
+    """Fetch v2 activity with cursors; failed reads raise RuntimeError."""
     max_trades = limit or 1000
-    url = f"{DATA_API_BASE}/activity?user={quote(wallet.lower(), safe='')}&limit={max_trades}"
-
-    result = api_request(url)
-
-    raw = result if isinstance(result, list) else []
+    raw = []
+    cursor = None
+    seen_cursors = set()
+    field_names = {
+        "proxy_wallet": "proxyWallet", "usdc_size": "usdcSize",
+        "transaction_hash": "transactionHash", "condition_id": "conditionId",
+        "outcome_index": "outcomeIndex", "token_id": "asset",
+        "event_slug": "eventSlug", "profile_image": "profileImage",
+        "profile_image_optimized": "profileImageOptimized",
+    }
+    while len(raw) < max_trades:
+        params = {"user": wallet.lower(), "limit": min(1000, max_trades - len(raw))}
+        if cursor is not None:
+            params["cursor"] = cursor
+        result = api_request(f"{DATA_API_BASE}/activity?{urlencode(params)}")
+        if (not isinstance(result, dict) or not isinstance(result.get("data"), list)
+                or not isinstance(result.get("pagination"), dict)
+                or "next_cursor" not in result["pagination"]):
+            raise RuntimeError("Malformed Polymarket activity API envelope")
+        cursor = result["pagination"]["next_cursor"]
+        if cursor is not None and (not isinstance(cursor, str) or not cursor):
+            raise RuntimeError("Malformed Polymarket activity API cursor")
+        if not result["data"] and cursor is not None:
+            raise RuntimeError("No progress from Polymarket activity API cursor")
+        for row in result["data"][:max_trades - len(raw)]:
+            if not isinstance(row, dict) or not all(key in row for key in (
+                    "timestamp", "condition_id", "type", "size", "usdc_size",
+                    "transaction_hash", "price", "side", "outcome")):
+                raise RuntimeError("Malformed Polymarket activity API row")
+            try:
+                if (not all(type(row[key]) in (int, float) and math.isfinite(row[key])
+                            for key in ("timestamp", "size", "usdc_size", "price"))
+                        or not all(isinstance(row[key], str) for key in (
+                            "condition_id", "type", "side", "transaction_hash", "outcome"))
+                        or not row["type"]
+                        or (row["type"] == "TRADE" and row["side"] not in ("BUY", "SELL"))
+                        # REWARD/YIELD/rebate rows are not tied to a market and carry "".
+                        or (row["type"] in MARKET_ACTIVITY_TYPES and not row["condition_id"])):
+                    raise ValueError("invalid activity values")
+            except (ValueError, OverflowError) as exc:
+                raise RuntimeError("Malformed Polymarket activity API row") from exc
+            raw.append({field_names.get(key, key): value for key, value in row.items()})
+        if cursor is None:
+            break
+        if cursor in seen_cursors:
+            raise RuntimeError("Repeated cursor from Polymarket activity API")
+        seen_cursors.add(cursor)
 
     # Normalize activity fields to the format the rest of the script expects
     trades = []
     for r in raw:
         activity_type = r.get("type", "TRADE")  # TRADE, REDEEM, MERGE
         ts = r.get("timestamp", 0)
-        created_at = datetime.utcfromtimestamp(ts).isoformat() + "Z" if ts else ""
+        try:
+            created_at = datetime.utcfromtimestamp(ts).isoformat() + "Z"
+        except (ValueError, OverflowError, OSError) as exc:
+            raise RuntimeError("Malformed Polymarket activity API timestamp") from exc
         outcome = r.get("outcome", "").lower()  # "yes", "no", "up", "down", etc.
         side_raw = r.get("side", "").upper()  # "BUY" or "SELL"
 
@@ -537,13 +584,13 @@ def generate_recommendation(data: Dict[str, Any]) -> str:
 
     # Generate text
     if score >= 90:
-        rec = f"Excellent trader. {'; '.join(factors[:3])} Safe to copytrade with 25-50% of capital."
+        rec = f"Excellent trader. {'; '.join(factors[:3])} Strong historical metrics; research only, not a signal to copy or size positions."
     elif score >= 75:
-        rec = f"Good trader. {'; '.join(factors[:3])} Safe to copytrade with 10-25% of capital."
+        rec = f"Good trader. {'; '.join(factors[:3])} Positive historical metrics; research only, not a signal to copy or size positions."
     elif score >= 60:
-        rec = f"Decent trader. {'; '.join(factors[:3])} Cautious copytrading with 5-10% of capital."
+        rec = f"Decent trader. {'; '.join(factors[:3])} Mixed historical metrics; research only, not a signal to copy or size positions."
     else:
-        rec = f"Risky trader. {'; '.join(factors[:2])} Avoid copytrading or limit to <5% of capital."
+        rec = f"Risky trader. {'; '.join(factors[:2])} Weak historical metrics; research only, not a signal to copy or size positions."
 
     return rec
 
@@ -555,7 +602,7 @@ def analyze_wallet(wallet: str, limit: Optional[int] = None) -> Dict[str, Any]:
         print(f"   Expected 42-char hex address (0x...)", file=sys.stderr)
         return {}
 
-    # Fetch trades from Polymarket CLOB API
+    # Fetch trades from Polymarket Data API v2
     trades = get_wallet_trades(wallet, limit)
 
     if not trades:
@@ -654,7 +701,7 @@ def format_output(data: Dict[str, Any]) -> str:
 def main():
     parser = argparse.ArgumentParser(
         description="Polymarket Wallet Xray - Forensic trading analysis",
-        epilog="Example: python wallet_xray.py 0x1234...abcd"
+        epilog="Example: python wallet_xray.py 0x1234...abcd (replace placeholder with a full wallet address)"
     )
     parser.add_argument("wallet", nargs="?", help="Wallet address (0x...)")
     parser.add_argument("market", nargs="?", help="Second wallet address for --compare")
@@ -670,34 +717,38 @@ def main():
     print(f"🔍 Polymarket Wallet Xray", file=sys.stderr)
     print(f"Inspired by @thejayden's trading analysis framework\n", file=sys.stderr)
 
-    # Analyze wallet(s)
-    if args.compare and args.market:
-        # Compare two wallets
-        wallet1 = args.wallet
-        wallet2 = args.market
-        data1 = analyze_wallet(wallet1, limit=args.limit)
-        data2 = analyze_wallet(wallet2, limit=args.limit)
+    try:
+        # Analyze wallet(s)
+        if args.compare and args.market:
+            # Compare two wallets
+            wallet1 = args.wallet
+            wallet2 = args.market
+            data1 = analyze_wallet(wallet1, limit=args.limit)
+            data2 = analyze_wallet(wallet2, limit=args.limit)
 
-        if args.json:
-            print(json.dumps({"wallet1": data1, "wallet2": data2}, indent=2))
+            if args.json:
+                print(json.dumps({"wallet1": data1, "wallet2": data2}, indent=2))
+            else:
+                if data1:
+                    print(format_output(data1))
+                if data2:
+                    print(format_output(data2))
+                if data1 and data2:
+                    print("\n🔄 COMPARISON")
+                    print(f"  Wallet 1 Time Profitable:  {data1.get('profitability', {}).get('time_profitable_pct', 0):.1f}%")
+                    print(f"  Wallet 2 Time Profitable:  {data2.get('profitability', {}).get('time_profitable_pct', 0):.1f}%")
         else:
-            if data1:
-                print(format_output(data1))
-            if data2:
-                print(format_output(data2))
-            if data1 and data2:
-                print("\n🔄 COMPARISON")
-                print(f"  Wallet 1 Time Profitable:  {data1.get('profitability', {}).get('time_profitable_pct', 0):.1f}%")
-                print(f"  Wallet 2 Time Profitable:  {data2.get('profitability', {}).get('time_profitable_pct', 0):.1f}%")
-    else:
-        # Analyze single wallet
-        data = analyze_wallet(args.wallet, args.limit)
+            # Analyze single wallet
+            data = analyze_wallet(args.wallet, args.limit)
 
-        if args.json:
-            print(json.dumps(data, indent=2))
-        else:
-            if data:
-                print(format_output(data))
+            if args.json:
+                print(json.dumps(data, indent=2))
+            else:
+                if data:
+                    print(format_output(data))
+    except RuntimeError as exc:
+        print(f"❌ {exc}", file=sys.stderr)
+        sys.exit(1)
 
 if __name__ == "__main__":
     main()

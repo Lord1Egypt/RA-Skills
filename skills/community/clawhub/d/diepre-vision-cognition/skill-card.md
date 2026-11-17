@@ -1,48 +1,58 @@
-## Description: <br>
-DiePre Vision Cognition provides a documentation-led framework for combining packaging and die-cutting machine vision inspection with SOUL-style reasoning, confidence scoring, local logging, and human review. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+DiePre Vision Cognition combines packaging and die-cut machine-vision inspection with SOUL-style reasoning to separate known features from uncertain regions, log inspections, and route low-confidence defects for human review.
 
-## Publisher: <br>
-[kingofzhao](https://clawhub.ai/user/kingofzhao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kingofzhao](https://clawhub.ai/user/kingofzhao)
 
-## Use Case: <br>
-Manufacturing developers and quality engineers use this skill as a workflow template for die-cutting and packaging inspection: analyze dieline images, separate confident defects from uncertain regions, route low-confidence cases to human review, and record inspection outcomes for later feedback. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release is documentation-only and should not be treated as a reviewed runnable vision engine. <br>
-Mitigation: Review any separate code, model files, and operational dependencies before using it with production images or automated quality decisions. <br>
-Risk: Inspection logs may contain image paths, feature vectors, confidence scores, defect decisions, or manufacturing identifiers. <br>
-Mitigation: Keep vision_log in a controlled workspace, define retention and deletion rules, and avoid logging raw images or sensitive manufacturing identifiers unless they are required. <br>
-Risk: Low-confidence or uncertain visual detections can produce incorrect quality-control decisions. <br>
-Mitigation: Preserve the documented human-review threshold and require human review for low-confidence cases before acting on inspection results. <br>
+## Use Case:
 
+Developers and manufacturing quality teams use this skill to analyze die-cut packaging images, track inspection confidence, and escalate uncertain defect decisions for human review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kingofzhao/diepre-vision-cognition) <br>
-- [Publisher profile](https://clawhub.ai/user/kingofzhao) <br>
-- [Project homepage](https://github.com/KingOfZhao/AGI_PROJECT) <br>
-- [Generating CAD Code with Vision-Language Models](https://arxiv.org/abs/2410.05340) <br>
-- [From 2D CAD to 3D Parametric via VLM](https://arxiv.org/abs/2412.11892) <br>
-- [Efficient Vision-Language-Action Models](https://arxiv.org/abs/2510.17111) <br>
-- [Vlaser: Synergistic Embodied Reasoning](https://arxiv.org/abs/2510.11027) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, configuration] <br>
-**Output Format:** [Markdown guidance with Python usage examples, JSONL logging conventions, and verification checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill describes confidence scores, defect lists, human-review flags, collision logs, and local vision_log entries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: Persistent QA logs and feedback data may contain sensitive production image paths, feature vectors, defect decisions, or human annotation notes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only in workspaces where persistent inspection logs are acceptable, and define retention, access-control, and deletion practices before deployment.
+
+Risk: Low-confidence visual decisions can affect quality-control outcomes if they are treated as final decisions.
+
+Mitigation: Route low-confidence findings to human review and use feedback loops to update labels or rules before relying on repeated automated decisions.
+
+## Reference(s):
+
+- [Project homepage](https://github.com/KingOfZhao/AGI_PROJECT)
+- [Generating CAD Code with Vision-Language Models](https://arxiv.org/abs/2410.05340)
+- [From 2D CAD to 3D Parametric via VLM](https://arxiv.org/abs/2412.11892)
+- [Efficient Vision-Language-Action Models](https://arxiv.org/abs/2510.17111)
+- [Vlaser: Synergistic Embodied Reasoning](https://arxiv.org/abs/2510.11027)
+- [ClawHub skill page](https://clawhub.ai/kingofzhao/skills/diepre-vision-cognition)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with Python and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May describe confidence scores, defect lists, collision logs, QA logs, and human-review flags.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter, release evidence, README changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

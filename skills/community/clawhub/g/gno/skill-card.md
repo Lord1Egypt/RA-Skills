@@ -1,46 +1,57 @@
-## Description: <br>
-Search local documents, files, notes, and knowledge bases. Index directories, search with BM25/vector/hybrid, get AI answers with citations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search local documents and knowledge bases, retrieve cited answers, and manage notes and related workflows.
 
-## Publisher: <br>
-[gmickel](https://clawhub.ai/user/gmickel) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gmickel](https://clawhub.ai/user/gmickel)
 
-## Use Case: <br>
-Developers, engineers, and knowledge workers use this skill to let an agent initialize and maintain local Gno indexes, search local document collections, retrieve cited context, and configure MCP access when persistent document search is needed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill grants broad authority to run gno commands that can index private files or folders. <br>
-Mitigation: Use narrow collection paths and exclude secrets, private directories, and unrelated workspaces from indexing. <br>
-Risk: The skill can expose a local web UI or install persistent AI integrations. <br>
-Mitigation: Avoid broad network interfaces, review MCP installation scope, and enable write tools only when persistent AI-driven file modification is specifically required. <br>
-Risk: Publishing workflows can export local content for upload. <br>
-Mitigation: Review every publish export before uploading or sharing it. <br>
+## Use Case:
 
+Developers and other knowledge workers use GNO to index and search local documents, notes, and agent-session archives, retrieve answers with citations, and manage selected notes or memory records.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/gmickel/gno) <br>
-- [GNO MCP documentation](https://www.gno.sh/docs/MCP) <br>
-- [CLI reference](cli-reference.md) <br>
-- [MCP reference](mcp-reference.md) <br>
-- [Usage examples](examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands, command references, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May cause an agent to invoke local gno commands, index local files, start a local web UI, install MCP integration, or export publishing artifacts when the user requests those actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server-resolved release metadata) <br>
+Risk: Session archives can contain sensitive conversations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep archives separate and local unless sharing is explicitly approved.
+
+Risk: Writes, hooks, and schedules can change local files or automate actions.
+
+Mitigation: Enable these capabilities only when wanted, and choose folders carefully.
+
+Risk: Batch exports may overwrite earlier output files.
+
+Mitigation: Use unique filenames and overwrite protection.
+
+## Reference(s):
+
+- [GNO on ClawHub](https://clawhub.ai/gmickel/skills/gno)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Plain-text or Markdown answers with local citations; optional JSON, CSV, or file-list results and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Answers may include citations to local document URIs and line ranges.]
+
+## Skill Version(s):
+
+1.2.12 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

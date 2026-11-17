@@ -1,41 +1,49 @@
-## Description: <br>
-Comprehensive Go backend code review with optional parallel review areas. Use when reviewing changed Go files; detects BubbleTea, Wish SSH, and Prometheus and loads the matching review skills. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Comprehensive Go backend code review with optional parallel review areas. Use when reviewing changed Go files; detects BubbleTea, Wish SSH, and Prometheus and loads the matching review skills.
 
-## Publisher: <br>
-[anderskev](https://clawhub.ai/user/anderskev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[anderskev](https://clawhub.ai/user/anderskev)
 
-## Use Case: <br>
-Developers and engineers use this skill to review changed Go backend code and related test changes. It guides an agent to inspect diffs, load applicable Go review skills, verify findings, and report categorized issues with file-line references. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads local repository files and suggests normal Go verification commands that may be expensive or sensitive in large repositories. <br>
-Mitigation: Review the proposed commands before running them and scope execution to the appropriate repository and environment. <br>
-Risk: Code-review findings can be misleading if based only on diff context or incomplete reference checks. <br>
-Mitigation: Use the skill's verification gates: re-read relevant code, search references for unused-code claims, and check callers or framework wiring before reporting blocking issues. <br>
+## Use Case:
 
+Developers and engineers use this skill to perform structured reviews of changed Go backend files, detect relevant Go technologies, load matching review guidance, and produce a consolidated review with findings and a verdict.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/anderskev/review-go) <br>
-- [Publisher profile](https://clawhub.ai/user/anderskev) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown review report with issue severities, file-line references, verification notes, and verdict.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include suggested Go verification commands such as go build, go vet, golangci-lint run, and go test -race.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server-resolved release metadata) <br>
+Risk: The workflow depends on separately available companion review skills, so incomplete or untrusted companion skills could affect review quality.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and trust the companion skills before relying on the full Go review workflow.
+
+## Reference(s):
+
+- [Review Go on ClawHub](https://clawhub.ai/anderskev/skills/review-go)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, shell commands, guidance]
+
+**Output Format:** [Markdown review with severity sections, file-line findings, good patterns, and verdict]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can coordinate sequential or parallel review areas when supported by the agent.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence, created 2026-06-01)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

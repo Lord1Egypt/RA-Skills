@@ -1,41 +1,52 @@
-## Description: <br>
-Call 100+ LLM providers through LiteLLM's unified API for model comparison, task-based routing, cost optimization, and fallback access. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Call 100+ LLM providers through LiteLLM's unified API.
 
-## Publisher: <br>
-[ishaan-jaff](https://clawhub.ai/user/ishaan-jaff) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ishaan-jaff](https://clawhub.ai/user/ishaan-jaff)
 
-## Use Case: <br>
-Developers and engineers use this skill to call and compare LLMs across providers, route prompts to task-appropriate or lower-cost models, and use LiteLLM proxy settings when available. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Prompts, system messages, and related metadata may be sent to a selected LLM provider or LiteLLM proxy. <br>
-Mitigation: Use only approved providers or proxies for sensitive work and avoid sending secrets, regulated data, or confidential code unless the destination is authorized. <br>
-Risk: API keys and proxy credentials are required for provider access and could be exposed if mishandled. <br>
-Mitigation: Store keys in environment variables or approved secret managers, rotate them when needed, and avoid committing credentials to skill artifacts or prompts. <br>
-Risk: Unpinned LiteLLM installations can change behavior as dependencies update. <br>
-Mitigation: Pin the LiteLLM dependency in managed environments and monitor usage costs and provider routing. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [LiteLLM provider documentation](https://docs.litellm.ai/docs/providers) <br>
+## Use Case:
 
+Developers and engineers use this skill to call, compare, and route prompts across LLM providers through LiteLLM's unified API, including direct provider calls or a configured LiteLLM proxy.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown guidance with Python and shell command examples; helper script output is plain text or JSON] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May send prompts, system messages, and related metadata to the selected LLM provider or LiteLLM proxy.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Prompt contents and system messages may be sent to the configured LiteLLM proxy or upstream model provider.
+
+Mitigation: Use approved providers or proxies, avoid secrets or regulated data unless authorized, and review provider data-handling requirements before use.
+
+Risk: The skill relies on provider or proxy API keys for external LLM calls.
+
+Mitigation: Keep API keys in controlled environment variables or a secrets manager, and avoid embedding credentials in prompts, scripts, or shared logs.
+
+## Reference(s):
+
+- [LiteLLM provider documentation](https://docs.litellm.ai/docs/providers)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python and shell command examples; helper script output is plain text or JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The helper script accepts prompt, model, system message, JSON output, temperature, and max-token options.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

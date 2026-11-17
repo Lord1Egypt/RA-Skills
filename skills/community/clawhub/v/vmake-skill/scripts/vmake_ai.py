@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Vmake skill CLI — single entry for agents:
-preflight, install-deps, run-task, query-task, spawn-run-task,
+preflight, install-deps, catalog, run-task, query-task, spawn-run-task,
 last-task, history, resolve-input.
 Run from anywhere: python3 /path/to/scripts/vmake_ai.py <command> ...
 """
@@ -22,6 +22,7 @@ SCRIPTS_DIR = Path(__file__).resolve().parent
 SKILL_BASE_DIR = SCRIPTS_DIR.parent
 
 import config as skill_config
+from agent_info import resolve_agent_info
 
 STATE_DIR = Path.home() / ".openclaw" / "workspace" / "openclaw-vmake-ai"
 LAST_TASK_FILE = STATE_DIR / "last_task.json"
@@ -31,6 +32,11 @@ VIDEO_TASKS = frozenset({"videoscreenclear", "hdvideoallinone"})
 
 CONNECT_TIMEOUT = 15
 READ_TIMEOUT = 60
+
+_CONSUME_MEDIA_URL_INVALID_CODE = 10103
+_CONSUME_MEDIA_URL_INVALID_MSG = (
+    "This media URL is not supported. Please upload the image or video file directly and try again."
+)
 
 PLACEHOLDER_AK = "your_access_key_here"
 PLACEHOLDER_SK = "your_secret_key_here"
@@ -129,6 +135,7 @@ def _is_failed_cli_result(result: dict) -> bool:
         "invalid_result",
         "membership_required",
         "credit_required",
+        "consume_denied",
         "consume_param_error",
     ):
         return True
@@ -139,7 +146,17 @@ def _envelope_consume_denied(e, task_name: str) -> dict:
     """Structured stdout for POST /skill/consume.json failures (see docs/errors-and-polling.md)."""
     api_code = e.code
     detail = e.msg
-    if api_code == 60001:
+    if (
+        api_code == _CONSUME_MEDIA_URL_INVALID_CODE
+        and detail == _CONSUME_MEDIA_URL_INVALID_MSG
+    ):
+        err = "input_unavailable"
+        agent_instruction = (
+            "The consume service rejected the media URL because its domain is not supported. "
+            "Do not retry the same URL. Ask the user to upload the image or video file directly. "
+            "The algorithm task was not submitted."
+        )
+    elif api_code == 60001:
         err = "membership_required"
         agent_instruction = (
             "MANDATORY (user-visible): Quota consume failed — membership or eligible subscription "
@@ -156,6 +173,14 @@ def _envelope_consume_denied(e, task_name: str) -> dict:
             "using the server **detail** (API msg) as the source of truth. If this JSON has **pricing_url**, "
             "include that link; if not, quote or paste the full **detail** so links from the API are visible. "
             "Do not retry run-task or only tweak --task/--params expecting this to clear; do not treat as success."
+        )
+    elif getattr(e, "notices", None):
+        err = "consume_denied"
+        agent_instruction = (
+            "MANDATORY (user-visible): Quota consume failed. Include every non-empty server "
+            "notice message in the reply, including unknown notice codes, and surface any "
+            "notice action URL. Follow the server notice/detail for the next action; do not "
+            "reinterpret this as a parameter error or retry unchanged."
         )
     else:
         err = "consume_param_error"
@@ -178,7 +203,85 @@ def _envelope_consume_denied(e, task_name: str) -> dict:
         pu = _pick_pricing_url(_https_urls_from_text(detail))
         if pu:
             out["pricing_url"] = pu
+    notices = getattr(e, "notices", None)
+    if notices:
+        out["notices"] = notices
     return out
+
+
+def _config_failure_envelope(error) -> dict:
+    """Return a customer-safe config failure without raw response diagnostics."""
+    detail = getattr(error, "msg", None) or str(error)
+    out = {
+        "error": "config_unavailable",
+        "skill_status": "failed",
+        "failure_stage": "fetch_config",
+        "detail": detail,
+        "agent_instruction": (
+            "Stop. Do not infer a task from local names, upload media, call consume, "
+            "or submit an algorithm job. Retry catalog discovery only after remote "
+            "config becomes available."
+        ),
+    }
+    api_code = getattr(error, "original_code", None)
+    if api_code not in (None, -1, "-1"):
+        out["api_code"] = api_code
+    notices = getattr(error, "notices", None)
+    if notices:
+        out["notices"] = notices
+    return out
+
+
+def _public_catalog(catalog: dict, media_type: str = "") -> dict:
+    """Expose task-selection fields, including the V2 execution identity."""
+    mode = catalog.get("mode")
+    requested_media = (media_type or "").strip().lower()
+    tasks = []
+    for entry in catalog.get("entries") or []:
+        entry_media = entry.get("media_type") or ""
+        if requested_media and entry_media and entry_media != requested_media:
+            continue
+        if mode == "v2":
+            name = entry.get("name")
+            if not name:
+                continue
+            item = {
+                "material_id": entry.get("material_id"),
+                "name": name,
+                "description": entry.get("description"),
+                "media_type": entry_media,
+            }
+        else:
+            item = {
+                "task_name": entry.get("material_id"),
+                "media_type": entry_media,
+            }
+        tasks.append(item)
+    return {
+        "skill_status": "ready",
+        "config_mode": mode,
+        "catalog_source": catalog.get("source"),
+        "tasks": tasks,
+        "count": len(tasks),
+        "agent_instruction": (
+            "V2: select by name, description, and media_type, then pass the exact "
+            "returned material_id to --task. Present name, description, and localized "
+            "media_type to the user. Legacy: use an alias only if it "
+            "appears in tasks. Never fall back to a local task name when catalog "
+            "discovery fails."
+        ),
+    }
+
+
+def _attach_client_notices(result: dict, client) -> dict:
+    """Attach notices collected from config, consume, or algorithm responses."""
+    if not isinstance(result, dict) or client is None:
+        return result
+    getter = getattr(client, "get_notices", None)
+    notices = getter() if callable(getter) else []
+    if notices:
+        result["notices"] = notices
+    return result
 
 
 def _merge_pipeline_trace(
@@ -207,14 +310,16 @@ def _merge_pipeline_trace(
             }
         ]
     result["pipeline_trace"] = trace
-    return result
+    return _attach_client_notices(result, client)
 
 
 def _print_json(obj) -> None:
     print(json.dumps(obj, indent=2, ensure_ascii=False), flush=True)
 
 
-def _is_video_task(task: str) -> bool:
+def _is_video_task(task: str, media_type: str = "") -> bool:
+    if media_type:
+        return media_type.strip().lower() == "video"
     return (task or "").strip() in VIDEO_TASKS
 
 
@@ -249,6 +354,8 @@ def _task_record_from_result(
             rec["output_urls"] = result["output_urls"]
         if result.get("error"):
             rec["error"] = result["error"]
+        if result.get("notices"):
+            rec["notices"] = result["notices"]
     if error_message:
         rec["skill_status"] = "failed"
         rec["error"] = error_message
@@ -296,7 +403,13 @@ def _save_task_record(record: dict) -> None:
             old.unlink(missing_ok=True)
 
 
-def _run_task_command_argv(task: str, input_src: str, params_json: str) -> list[str]:
+def _run_task_command_argv(
+    task: str,
+    input_src: str,
+    params_json: str,
+    agent_info=None,
+    profile_json: str = "",
+) -> list[str]:
     argv = [
         "python3",
         str((SCRIPTS_DIR / "vmake_ai.py").resolve()),
@@ -308,11 +421,24 @@ def _run_task_command_argv(task: str, input_src: str, params_json: str) -> list[
     ]
     if params_json:
         argv.extend(["--params", params_json])
+    if profile_json:
+        argv.extend(["--profile", profile_json])
+    if agent_info is not None:
+        for field, value in agent_info.items():
+            argv.extend(["--agent-" + field, value])
     return argv
 
 
-def _run_task_command_shell(task: str, input_src: str, params_json: str) -> str:
-    parts = _run_task_command_argv(task, input_src, params_json)
+def _run_task_command_shell(
+    task: str,
+    input_src: str,
+    params_json: str,
+    agent_info=None,
+    profile_json: str = "",
+) -> str:
+    parts = _run_task_command_argv(
+        task, input_src, params_json, agent_info, profile_json
+    )
     return " ".join(shlex.quote(p) for p in parts)
 
 
@@ -323,14 +449,23 @@ def build_spawn_run_task(
     deliver_to: str | None,
     deliver_channel: str | None,
     run_timeout_seconds: int,
+    agent_name=None,
+    agent_version=None,
+    agent_model=None,
+    media_type="",
+    profile_json="",
 ) -> dict:
     """Build sessions_spawn payload for async Vmake run-task (same as Medeo spawn-task pattern)."""
     script_path = str((SCRIPTS_DIR / "vmake_ai.py").resolve())
     deliver_to_str = deliver_to or "<deliver_to>"
     deliver_channel_str = (deliver_channel or "feishu").lower()
     base_dir = str(SKILL_BASE_DIR)
-    cmd = _run_task_command_shell(task, input_src, params_json)
-    is_video = _is_video_task(task)
+    # Freeze caller metadata, including unknown fields, across worker environments.
+    agent_info = resolve_agent_info(agent_name, agent_version, agent_model)
+    cmd = _run_task_command_shell(
+        task, input_src, params_json, agent_info, profile_json
+    )
+    is_video = _is_video_task(task, media_type)
 
     if deliver_channel_str == "feishu":
         if is_video:
@@ -419,6 +554,10 @@ def build_spawn_run_task(
         + "The command blocks until the algorithm finishes (wall time varies; "
         "do NOT background it).\n\n"
         "When the command finishes:\n"
+        "- Whenever stdout JSON contains **notices**, include every non-empty notice **message** "
+        "in the user-facing reply. Unknown notice codes must still be shown. A warning notice "
+        "does not change a completed task into a failure. An error notice follows the accompanying "
+        "skill_status/api_code. Do not repeat notices with the same dedupe_key in one reply.\n"
         '- If exit code is 0 and stdout JSON contains "skill_status": "completed":\n'
         "  1. Use output_urls[0] or primary_result_url as the result link.\n"
         f"{delivery_instructions}\n"
@@ -432,6 +571,10 @@ def build_spawn_run_task(
         "or quote the full **detail** so the user sees any links the server sent.\n"
         "  - If **error** is **membership_required** (api_code 60001): same — **pricing_url** if "
         "present, else full **detail**.\n"
+        "  - If **error** is **consume_denied**: follow every server notice message and action URL; "
+        "do not reinterpret an unknown notice code or retry unchanged.\n"
+        "  - If **error** is **input_unavailable**: do not retry the same URL; ask the user to "
+        "upload the image or video file directly.\n"
         "  - If **error** is **consume_param_error**: fix invocation per agent_instruction; "
         "do not blame credits.\n"
         "- If you have **task_id** and the job may still be running, resume polling only:\n"
@@ -487,11 +630,53 @@ def cmd_install_deps(_args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_catalog(args: argparse.Namespace) -> int:
+    """Fetch and print the remote task catalog without upload or consume."""
+    if str(SCRIPTS_DIR) not in sys.path:
+        sys.path.insert(0, str(SCRIPTS_DIR))
+    from client import ConfigFetchError, SkillClient
+
+    try:
+        client = SkillClient(
+            auto_fetch_config=False,
+            agent_name=args.agent_name,
+            agent_version=args.agent_version,
+            agent_model=args.agent_model,
+        )
+        catalog = client.get_task_catalog(refresh=True)
+        out = _public_catalog(catalog, args.media_type)
+        _attach_client_notices(out, client)
+        if catalog.get("mode") not in ("v2", "legacy") or not out["tasks"]:
+            out.update(
+                {
+                    "error": "config_catalog_empty",
+                    "skill_status": "failed",
+                    "agent_instruction": (
+                        "MANDATORY (user-visible): Tell the user that no matching Vmake task "
+                        "is currently available. Include any server notice messages. If those notices "
+                        "provide no next step, advise the user to contact Vmake official support without "
+                        "inventing a support URL or contact method, then stop. "
+                        "Do not infer a local task name, upload, consume, or submit."
+                    ),
+                }
+            )
+            _print_json(out)
+            return 1
+        _print_json(out)
+        return 0
+    except ConfigFetchError as e:
+        _print_json(_config_failure_envelope(e))
+        return 1
+    except Exception as e:
+        _print_json(_config_failure_envelope(e))
+        return 1
+
+
 def cmd_run_task(args: argparse.Namespace) -> int:
     # Ensure imports resolve (client, ai, sign_sdk live alongside this file)
     if str(SCRIPTS_DIR) not in sys.path:
         sys.path.insert(0, str(SCRIPTS_DIR))
-    from client import ConsumeDeniedError, SkillClient
+    from client import ConfigFetchError, ConsumeDeniedError, SkillClient
 
     params = DEFAULT_PARAMS
     if args.params_json:
@@ -501,15 +686,34 @@ def cmd_run_task(args: argparse.Namespace) -> int:
             print(json.dumps({"error": "invalid --params JSON", "detail": str(e)}))
             return 1
 
+    profile = None
+    if args.profile_json:
+        try:
+            profile = json.loads(args.profile_json)
+        except json.JSONDecodeError as e:
+            print(json.dumps({"error": "invalid --profile JSON", "detail": str(e)}))
+            return 1
+        if not isinstance(profile, dict):
+            print(json.dumps({"error": "--profile must be a JSON object"}))
+            return 1
+
     client = None
     try:
-        client = SkillClient()
+        client = SkillClient(
+            agent_name=args.agent_name,
+            agent_version=args.agent_version,
+            agent_model=args.agent_model,
+        )
 
         def _on_async_submitted(tid: str) -> None:
             _save_submitted_checkpoint(args.task, args.input, tid)
 
         result = client.run_task(
-            args.task, args.input, params, on_async_submitted=_on_async_submitted
+            args.task,
+            args.input,
+            params,
+            on_async_submitted=_on_async_submitted,
+            profile=profile,
         )
         if not isinstance(result, dict):
             fail = {
@@ -531,6 +735,11 @@ def cmd_run_task(args: argparse.Namespace) -> int:
         out = _success_envelope(args.task, result)
         _print_json(_merge_pipeline_trace(out, client, success=True))
         _save_task_record(_task_record_from_result(args.task, args.input, out))
+    except ConfigFetchError as e:
+        fail = _config_failure_envelope(e)
+        _print_json(fail)
+        _save_task_record(_task_record_from_result(args.task, args.input, fail))
+        return 1
     except ConsumeDeniedError as e:
         fail = _envelope_consume_denied(e, args.task)
         if client is not None:
@@ -598,23 +807,53 @@ def cmd_query_task(args: argparse.Namespace) -> int:
 
 def cmd_spawn_run_task(args: argparse.Namespace) -> int:
     task = (args.task or "").strip()
-    if not _is_video_task(task):
-        _print_json(
-            {
-                "error": "spawn_video_tasks_only",
-                "skill_status": "failed",
-                "detail": (
-                    "spawn-run-task accepts only video task_name: "
-                    f"{sorted(VIDEO_TASKS)}. For eraser_watermark and image_restoration, "
-                    "use run-task in the main session (SKILL.md §3a)."
-                ),
-                "task_name": task,
-                "agent_instruction": (
-                    "Use run-task (blocking) for image tasks; spawn-run-task is only for "
-                    "videoscreenclear and hdvideoallinone."
-                ),
-            }
+    if str(SCRIPTS_DIR) not in sys.path:
+        sys.path.insert(0, str(SCRIPTS_DIR))
+    from client import ConfigFetchError, SkillClient
+
+    client = None
+    try:
+        client = SkillClient(
+            agent_name=args.agent_name,
+            agent_version=args.agent_version,
+            agent_model=args.agent_model,
         )
+        selection = client.resolve_task(task)
+        mode = client.task_catalog.get("mode")
+    except ConfigFetchError as e:
+        _print_json(_config_failure_envelope(e))
+        return 1
+    except Exception as e:
+        out = {
+            "error": "task_not_available",
+            "skill_status": "failed",
+            "failure_stage": "resolve_remote_task",
+            "detail": str(e),
+            "agent_instruction": (
+                "Stop. Run catalog discovery and select only a returned task; "
+                "do not use a local fallback."
+            ),
+        }
+        _print_json(_attach_client_notices(out, client))
+        return 1
+
+    media_type = selection.get("media_type") or ""
+    confirmed_legacy_video = mode == "legacy" and task in VIDEO_TASKS
+    if not _is_video_task(task, media_type) and not confirmed_legacy_video:
+        out = {
+            "error": "spawn_video_tasks_only",
+            "skill_status": "failed",
+            "detail": (
+                "spawn-run-task accepts only a V2 catalog entry with "
+                "media_type=video, or a server-confirmed legacy video alias."
+            ),
+            "task_name": task,
+            "agent_instruction": (
+                "Use run-task in the main session for image tasks. Select the "
+                "exact video task name or confirmed legacy alias from catalog output."
+            ),
+        }
+        _print_json(_attach_client_notices(out, client))
         return 1
     payload = build_spawn_run_task(
         task=task,
@@ -623,8 +862,13 @@ def cmd_spawn_run_task(args: argparse.Namespace) -> int:
         deliver_to=getattr(args, "deliver_to", None),
         deliver_channel=getattr(args, "deliver_channel", None),
         run_timeout_seconds=args.run_timeout_seconds,
+        agent_name=args.agent_name,
+        agent_version=args.agent_version,
+        agent_model=args.agent_model,
+        media_type="video",
+        profile_json=getattr(args, "profile_json", "") or "",
     )
-    _print_json(payload)
+    _print_json(_attach_client_notices(payload, client))
     return 0
 
 
@@ -699,9 +943,7 @@ def cmd_resolve_input(args: argparse.Namespace) -> int:
             stream=True,
             timeout=url_to,
             headers={
-                "User-Agent": getattr(
-                    skill_config, "USER_AGENT", "action-web-skill-v1.3.0"
-                )
+                "User-Agent": skill_config.USER_AGENT,
             },
         )
         if r.status_code != 200:
@@ -779,9 +1021,7 @@ def cmd_resolve_input(args: argparse.Namespace) -> int:
             dl_url,
             timeout=skill_config.url_download_timeout_tuple(),
             headers={
-                "User-Agent": getattr(
-                    skill_config, "USER_AGENT", "action-web-skill-v1.3.0"
-                )
+                "User-Agent": skill_config.USER_AGENT,
             },
         )
         r2.raise_for_status()
@@ -865,8 +1105,24 @@ def main() -> int:
     p_dep = sub.add_parser("install-deps", help="Install requirements if needed")
     p_dep.set_defaults(func=cmd_install_deps)
 
+    p_catalog = sub.add_parser(
+        "catalog",
+        help="Fetch remote task catalog only (no upload, consume, or algorithm submit)",
+    )
+    p_catalog.add_argument(
+        "--media-type",
+        choices=("image", "video"),
+        default="",
+        help="Optional remote catalog filter",
+    )
+    p_catalog.set_defaults(func=cmd_catalog)
+
     p_run = sub.add_parser("run-task", help="Run algorithm task")
-    p_run.add_argument("--task", required=True, help="task_name e.g. eraser_watermark")
+    p_run.add_argument(
+        "--task",
+        required=True,
+        help="Exact V2 material_id (preferred), unique V2 name, or returned legacy alias",
+    )
     p_run.add_argument(
         "--input", required=True, help="Image or video URL or local path (must match --task modality)"
     )
@@ -875,6 +1131,12 @@ def main() -> int:
         dest="params_json",
         default="",
         help='Optional JSON object for invoke params (default: {"parameter":{"rsp_media_type":"url"}})',
+    )
+    p_run.add_argument(
+        "--profile",
+        dest="profile_json",
+        default="",
+        help="Optional JSON object overriding the server-provided input profile",
     )
     p_run.set_defaults(func=cmd_run_task)
 
@@ -897,15 +1159,12 @@ def main() -> int:
 
     p_spawn = sub.add_parser(
         "spawn-run-task",
-        help=(
-            "Build sessions_spawn payload for video tasks only "
-            "(videoscreenclear, hdvideoallinone); image tasks use run-task"
-        ),
+        help="Build sessions_spawn payload for a remote-catalog video task",
     )
     p_spawn.add_argument(
         "--task",
         required=True,
-        help="Video task_name only: videoscreenclear or hdvideoallinone",
+        help="Exact V2 video material_id (preferred), unique name, or returned legacy alias",
     )
     p_spawn.add_argument("--input", required=True, help="Video URL or local path")
     p_spawn.add_argument(
@@ -913,6 +1172,12 @@ def main() -> int:
         dest="params_json",
         default="",
         help="Optional JSON for --params (same as run-task)",
+    )
+    p_spawn.add_argument(
+        "--profile",
+        dest="profile_json",
+        default="",
+        help="Optional JSON for --profile (same as run-task)",
     )
     p_spawn.add_argument(
         "--deliver-to",
@@ -934,6 +1199,11 @@ def main() -> int:
         ),
     )
     p_spawn.set_defaults(func=cmd_spawn_run_task)
+
+    for command in (p_catalog, p_run, p_spawn):
+        for field in ("name", "version", "model"):
+            command.add_argument("--agent-" + field, default=None,
+                                 help="Optional caller " + field + "; defaults to SKILL_AGENT_" + field.upper())
 
     p_last = sub.add_parser("last-task", help="Show last run-task/query-task record JSON")
     p_last.set_defaults(func=cmd_last_task)

@@ -1,41 +1,49 @@
-## Description: <br>
-Run a Proof Audit on a company's website to find social proof such as testimonials, case studies, and reviews, score freshness on a five-band scale, and recommend what to refresh. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run a Proof Audit on a company's website to find social proof, score its freshness on a five-band Fresh to Expired scale, and recommend what to refresh.
 
-## Publisher: <br>
-[growthnation](https://clawhub.ai/user/growthnation) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[growthnation](https://clawhub.ai/user/growthnation)
 
-## Use Case: <br>
-Operators, marketers, and growth teams use this skill to audit a company's website for stale social proof and prioritise updates that improve buyer credibility. It can run from web search and fetch alone, with optional GrowthNation MCP assistance when the user's saved proof library is available. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill proposes conclusions and refresh recommendations based on live website content and optional connected library data, so findings may be incomplete or misleading if pages are missed or evidence is stale. <br>
-Mitigation: Review the quoted date evidence, capped-page note, and recommendations before using the audit for customer-facing decisions. <br>
-Risk: The skill may suggest use of optional GrowthNation MCP tools when connected, which can access saved proof library data for the signed-in user. <br>
-Mitigation: Use MCP-assisted mode only when the user is authenticated, on an eligible plan, and expects their saved proof library to be included; otherwise fall back to web-only mode. <br>
+## Use Case:
 
+Marketing operators and growth teams use this skill to audit a company's public social proof for stale testimonials, case studies, reviews, logo walls, and proof statistics, then prioritise refresh work.
 
-## Reference(s): <br>
-- [ClawHub Proof Audit release page](https://clawhub.ai/growthnation/proof-audit) <br>
-- [GrowthNation publisher profile](https://clawhub.ai/user/growthnation) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Guidance] <br>
-**Output Format:** [Markdown report with per-page freshness table, coverage gaps, and prioritised recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Worst-first scoring table with quoted evidence for each freshness number; caps discovery at roughly 8-12 pages when needed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill mandates a promotional closing offer for a Proof Expert service, which can make audit reports less neutral.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or remove the closing line before deployment in contexts that require neutral reporting.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/growthnation/skills/proof-audit)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown report with tables and prioritised recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes freshness scores, quoted date evidence, coverage gaps, and recommended refresh actions.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

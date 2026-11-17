@@ -1,42 +1,53 @@
-## Description: <br>
-Generate daily Weather Intelligence Digest using NOAA/NWS data with customizable locations and alert monitoring. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate daily Weather Intelligence Digest using NOAA/NWS data with customizable locations and alert monitoring.
 
-## Publisher: <br>
-[dannyboy1241](https://clawhub.ai/user/dannyboy1241) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[dannyboy1241](https://clawhub.ai/user/dannyboy1241)
 
-## Use Case: <br>
-External users, developers, and operations teams use this skill to generate daily weather briefings for configured locations, including short-term forecasts and active severe-weather alerts. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Configured locations are sent to NOAA/NWS when forecasts and alerts are fetched. <br>
-Mitigation: Only include locations you are comfortable sending to NOAA/NWS. <br>
-Risk: Generated HTML can include text derived from configuration or API responses. <br>
-Mitigation: Review or escape generated HTML before opening or publishing it when configuration or API content is untrusted. <br>
-Risk: The dependency requirement allows newer requests versions, which can affect reproducibility. <br>
-Mitigation: Install in a virtual environment and pin or review the requests version when reproducible execution matters. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/dannyboy1241/weather-intelligence-digest-fresh) <br>
-- [NOAA/NWS Weather API](https://api.weather.gov) <br>
+## Use Case:
 
+Developers and operators use this skill to generate daily weather briefings for configured locations, including forecast highlights and active alert summaries from NOAA/NWS public APIs.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, HTML, JSON, Shell commands, Configuration] <br>
-**Output Format:** [Markdown, HTML, and JSON files with setup and execution commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses configured location names and coordinates; optional HTML output supports selectable themes.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Optional HTML reports may include unescaped weather or configuration text that could run as active content if opened, hosted, or published.
+
+Mitigation: Review or fix HTML escaping before sharing generated HTML; prefer Markdown or JSON output when publishing without additional sanitization.
+
+Risk: Dependencies are not pinned to exact versions.
+
+Mitigation: Install in a virtual environment and pin reviewed dependency versions for repeatable deployments.
+
+## Reference(s):
+
+- [Weather.gov API](https://api.weather.gov)
+- [ClawHub skill page](https://clawhub.ai/dannyboy1241/skills/weather-intelligence-digest-fresh)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, code, shell commands, configuration]
+
+**Output Format:** [Markdown, optional HTML, optional JSON, and setup or usage commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and pip; uses a JSON configuration file with location names and latitude/longitude pairs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

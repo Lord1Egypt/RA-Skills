@@ -1,11 +1,11 @@
 # ILIB\_ExtendLibrarySearchResult interface
 
-外部库搜索结果
+External library search result
 
 ## Signature
 
 ```typescript
-interface ILIB_ExtendLibrarySearchResult<T> 
+interface ILIB_ExtendLibrarySearchResult<T>
 ```
 
 ## Properties
@@ -14,116 +14,92 @@ interface ILIB_ExtendLibrarySearchResult<T>
 
 Property
 
-
 </th><th>
 
 Modifiers
-
 
 </th><th>
 
 Type
 
-
 </th><th>
 
 Description
-
 
 </th></tr></thead>
 <tbody><tr><td>
 
 [count](./ILIB_ExtendLibrarySearchResult.md)
 
-
 </td><td>
-
 
 </td><td>
 
 number
 
-
 </td><td>
 
-总条目数
-
+Total item count
 
 </td></tr>
 <tr><td>
 
 [lists](./ILIB_ExtendLibrarySearchResult.md)
 
-
 </td><td>
-
 
 </td><td>
 
 Array&lt;T&gt;
 
-
 </td><td>
 
-结果列表
-
+Result list
 
 </td></tr>
 <tr><td>
 
 [page](./ILIB_ExtendLibrarySearchResult.md)
 
-
 </td><td>
-
 
 </td><td>
 
 number
 
-
 </td><td>
 
-当前页数
-
+Current page count
 
 </td></tr>
 <tr><td>
 
 [pageSize](./ILIB_ExtendLibrarySearchResult.md)
 
-
 </td><td>
-
 
 </td><td>
 
 number
 
-
 </td><td>
 
-单页条目数
-
+Number of entries per page
 
 </td></tr>
 <tr><td>
 
 [totalPage](./ILIB_ExtendLibrarySearchResult.md)
 
-
 </td><td>
-
 
 </td><td>
 
 number
 
-
 </td><td>
 
-总页数
-
+Total page count
 
 </td></tr>
 </tbody></table>
@@ -136,7 +112,7 @@ number
 
 # ILIB\_ExtendLibrarySearchResult.count property
 
-总条目数
+Total item count
 
 ## Signature
 
@@ -148,7 +124,7 @@ count: number;
 
 # ILIB\_ExtendLibrarySearchResult.lists property
 
-结果列表
+Result list
 
 ## Signature
 
@@ -160,7 +136,7 @@ lists: Array<T>;
 
 # ILIB\_ExtendLibrarySearchResult.page property
 
-当前页数
+Current page count
 
 ## Signature
 
@@ -172,7 +148,7 @@ page: number;
 
 # ILIB\_ExtendLibrarySearchResult.pageSize property
 
-单页条目数
+Number of entries per page
 
 ## Signature
 
@@ -184,7 +160,7 @@ pageSize: number;
 
 # ILIB\_ExtendLibrarySearchResult.totalPage property
 
-总页数
+Total page count
 
 ## Signature
 

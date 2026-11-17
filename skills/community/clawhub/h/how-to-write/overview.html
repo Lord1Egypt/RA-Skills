@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>怎样写作 · how-to-write — 技能总览</title>
+<style>
+  :root{
+    --bg:#f7f4ee; --ink:#221e18; --muted:#6e675c; --hair:#d9d2c4; --hair2:#e6e0d4;
+    --accent:#96422e; --accent-ink:#7c3625; --block:#efe9dd;
+    --serif:Georgia,"Times New Roman","Songti SC",SimSun,serif;
+    --mono:Consolas,"Courier New",monospace;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--ink);font-family:var(--serif);font-size:16px;line-height:1.65}
+  .wrap{display:grid;grid-template-columns:200px minmax(0,1fr);gap:56px;max-width:1160px;margin:0 auto;padding:64px 40px 96px}
+  nav{position:sticky;top:48px;align-self:start;font-size:13px}
+  nav .t{font-size:12px;letter-spacing:.14em;color:var(--muted);margin-bottom:14px}
+  nav a{display:block;color:var(--muted);text-decoration:none;padding:5px 0;border-left:1px solid var(--hair);padding-left:12px}
+  nav a:hover{color:var(--accent-ink);border-left-color:var(--accent)}
+  main{min-width:0}
+  .kicker{font-size:12px;letter-spacing:.22em;color:var(--accent-ink);margin-bottom:18px}
+  h1{font-size:42px;font-weight:600;letter-spacing:-.01em;line-height:1.15}
+  h1 .en{display:block;font-size:17px;color:var(--muted);font-weight:400;letter-spacing:.06em;margin-top:10px;font-style:italic}
+  .lede{margin-top:26px;font-size:17.5px;max-width:66ch}
+  .lede em{font-style:normal;color:var(--accent-ink)}
+  .stats{margin-top:34px;padding:16px 0;border-top:1px solid var(--hair);border-bottom:1px solid var(--hair);display:flex;flex-wrap:wrap;gap:0}
+  .stats div{padding:2px 26px 2px 0;margin-right:26px;border-right:1px solid var(--hair2)}
+  .stats div:last-child{border-right:0}
+  .stats b{display:block;font-size:21px;font-weight:600}
+  .stats span{font-size:12.5px;color:var(--muted)}
+  h2{font-size:25px;font-weight:600;margin:72px 0 8px;padding-top:10px}
+  h2 + .sub{color:var(--muted);font-size:14.5px;margin-bottom:22px}
+  table{width:100%;border-collapse:collapse;font-size:14.5px;margin:18px 0 8px}
+  th{font-size:12.5px;letter-spacing:.1em;color:var(--muted);text-align:left;font-weight:400;padding:8px 14px 8px 0;border-bottom:1px solid var(--ink)}
+  td{padding:10px 14px 10px 0;border-bottom:1px solid var(--hair);vertical-align:top}
+  td:first-child{white-space:nowrap;color:var(--accent-ink)}
+  .flow{list-style:none;counter-reset:step;margin:22px 0 8px;max-width:74ch}
+  .flow li{counter-increment:step;position:relative;padding:0 0 22px 46px}
+  .flow li::before{content:counter(step);position:absolute;left:0;top:0;width:28px;height:28px;border:1px solid var(--accent);border-radius:50%;color:var(--accent-ink);font-size:13px;display:flex;align-items:center;justify-content:center;background:var(--bg)}
+  .flow li::after{content:"";position:absolute;left:14px;top:30px;bottom:2px;width:1px;background:var(--hair)}
+  .flow li:last-child::after{display:none}
+  .flow b{display:block;font-size:15.5px}
+  .flow span{color:var(--muted);font-size:14px}
+  .duo{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-top:18px}
+  .duo ul{list-style:none}
+  .duo li{padding:9px 0;border-bottom:1px solid var(--hair2);font-size:14.5px}
+  .duo li:last-child{border-bottom:0}
+  .duo .n{color:var(--muted);margin-right:8px;font-variant-numeric:tabular-nums}
+  pre{background:var(--block);border:1px solid var(--hair);padding:20px 24px;font-family:var(--mono);font-size:13px;line-height:1.75;overflow-x:auto;margin:18px 0}
+  pre b{color:var(--accent-ink);font-weight:600}
+  .cases{margin-top:16px}
+  .cases dt{font-weight:600;font-size:15px;margin-top:20px}
+  .cases dt i{font-style:normal;color:var(--accent-ink);font-size:13px;margin-left:10px;font-weight:400}
+  .cases dd{color:var(--muted);font-size:14.5px;max-width:72ch;margin-top:4px}
+  .colophon{margin-top:88px;padding-top:18px;border-top:1px solid var(--hair);font-size:12.5px;color:var(--muted);line-height:2}
+  .colophon a{color:var(--accent-ink)}
+  @media (max-width:900px){.wrap{grid-template-columns:1fr;padding:40px 22px 72px}nav{position:static;display:none}.duo{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav>
+    <div class="t">目 录</div>
+    <a href="#s1">这个技能是什么</a>
+    <a href="#s2">全书骨架 · 十二讲</a>
+    <a href="#s3">方法论总工作流</a>
+    <a href="#s4">六类文体写法</a>
+    <a href="#s5">十大反面模式</a>
+    <a href="#s6">经典案例一览</a>
+    <a href="#s7">目录结构与用法</a>
+  </nav>
+  <main>
+    <div class="kicker">AGENT SKILL OVERVIEW · 机关工作实务丛书之三 · 三部曲收官</div>
+    <h1>怎样写作<span class="en">how-to-write — 源自《怎样写作》（任仲然 著）</span></h1>
+    <p class="lede">不是书的摘要，而是一套<em>可执行的写作方法论工具箱</em>：从"写作其实并不难"到"修改文稿经验谈"，十二讲提炼为命名框架、判断规则、操作步骤与反面警示——给 AI 装上"写作方法论"，也给你自己一部按讲次、按文体、按主题可检索的案头手册。</p>
+    <div class="stats">
+      <div><b>213</b><span>页扫描版 PDF</span></div>
+      <div><b>12</b><span>讲 · 逐章拆解</span></div>
+      <div><b>117,453</b><span>字 OCR 全文</span></div>
+      <div><b>16</b><span>个技能文件</span></div>
+      <div><b>0</b><span>段抄录原文</span></div>
+    </div>
+
+    <h2 id="s1">这个技能是什么</h2>
+    <p class="sub">双用途设计 · 提炼原则：提取结构，不抄原文</p>
+    <p><b>给 AI 用</b>——起草公文、领导讲话稿、调研报告、述职报告、汇报发言、随笔杂文、自媒体文章，或修改润色任何文稿时，按书中方法论行事：先立意再动笔、材料真实经提炼、结构先于语言、一半精力用于改。</p>
+    <p><b>给自己用</b>——SKILL.md 是总纲，十二个章节文件按需加载；glossary 查术语、patterns 查做法、cheatsheet 查判断规则。</p>
+    <p>生成流水线：扫描版 PDF（无文字层）→ AutoClaw OCR 逐页识别 213 页 → 结构分析定位十二讲 → 逐章提炼 → 安全扫描 → 开源发布。框架命名保留作者原话，如"以意役法""喜鹊筑巢式构思""热写稿冷改稿"。</p>
+
+    <h2 id="s2">全书骨架 · 十二讲</h2>
+    <p class="sub">从"写作其实并不难"到"修改经验谈"，一条完整闭环</p>
+    <table>
+      <tr><th>讲次</th><th>主题</th><th>核心方法（保留作者原话命名）</th></tr>
+      <tr><td>第一讲</td><td>写作其实并不难</td><td>三克服三增强 · 摹仿四入手 · 专题笔记 · 清晨写作</td></tr>
+      <tr><td>第二讲</td><td>思维 逻辑 规律</td><td>五种思维方式 · 关系网 · 化学递进 · 兼并重组</td></tr>
+      <tr><td>第三讲</td><td>立意 构思 提纲</td><td>以意役法 · 小切口大思路 · 三点成一线 · 喜鹊筑巢</td></tr>
+      <tr><td>第四讲</td><td>材料 结构 语言</td><td>材料三工序 · 拉拉扯扯法 · 过眼过脑过手 · 四梁八柱</td></tr>
+      <tr><td>第五讲</td><td>叙述 议论 说明</td><td>春秋笔法 · 立论五法 · 多因多果</td></tr>
+      <tr><td>第六讲</td><td>规范性公文的写法</td><td>公文三要点 · 决议/意见/通知/报告/纪要分体写法</td></tr>
+      <tr><td>第七讲</td><td>领导讲话稿的写法</td><td>三个吃透 · 三性落地 · 五度立稿 · 挖深井不编大筐</td></tr>
+      <tr><td>第八讲</td><td>调研报告的写法</td><td>真·实·深·高 · 边调研边起草 · 五类写法</td></tr>
+      <tr><td>第九讲</td><td>述职报告的写法</td><td>三属性定调 · 以实取胜 · 以数取胜 · 以事和绩取胜</td></tr>
+      <tr><td>第十讲</td><td>汇报稿和发言稿的写法</td><td>汇报的先决性 · 三个结合得紧密 · 对照检查五点</td></tr>
+      <tr><td>第十一讲</td><td>随笔、杂文及自媒体写作</td><td>六字真言 · 三有五可 · 以小喻人 · 短快真实新 · 淘金句</td></tr>
+      <tr><td>第十二讲</td><td>修改文稿文章经验谈</td><td>四层修改顺序 · 求精求准 · 何其芳12项 · 花脸稿</td></tr>
+    </table>
+
+    <h2 id="s3">方法论总工作流</h2>
+    <p class="sub">六个环节，任一环节的详细打法都在对应章节文件里</p>
+    <ol class="flow">
+      <li><b>夯基础</b><span>观察·阅读·摹仿：画道道、专题笔记、摹仿四入手，走通从摹仿到创造（ch01）</span></li>
+      <li><b>磨思维</b><span>五种思维方式按环节配置；立逻辑主线织关系网（ch02）</span></li>
+      <li><b>立意提纲</b><span>以意役法、小切口大思路、喜鹊筑巢、粗纲细纲、提纲早出手（ch03）</span></li>
+      <li><b>备料搭结构</b><span>材料三工序、拉拉扯扯法；纵向递进横向板块；结构先于语言（ch04–05）</span></li>
+      <li><b>按文体写</b><span>公文、讲话稿、调研报告、述职报告、汇报发言、随笔杂文自媒体，各有打法（ch06–11）</span></li>
+      <li><b>修改成稿</b><span>热写稿冷改稿；四层顺序；求精求准；何其芳12项过筛（ch12）</span></li>
+    </ol>
+
+    <h2 id="s4">六类文体写法</h2>
+    <p class="sub">写什么文体 · 一句话要诀 · 核心方法</p>
+    <table>
+      <tr><th>文体</th><th>一句话要诀</th><th>核心方法</th></tr>
+      <tr><td>规范性公文</td><td>权威来自内容权威</td><td>三要点底线；决议/意见/通知/报告/纪要分体写法；防"多长低"</td></tr>
+      <tr><td>领导讲话稿</td><td>表达力说到底是思想表达力</td><td>三个吃透；三性落地；五度立稿；宜短不宜长</td></tr>
+      <tr><td>调研报告</td><td>不是写出来的，是调研出来的</td><td>真实深高；边调研边起草三件事；五类分写</td></tr>
+      <tr><td>述职报告</td><td>以实取胜、以数取胜、以事和绩取胜</td><td>三属性定调；大实不小实；事项化写政绩</td></tr>
+      <tr><td>汇报稿·发言稿</td><td>汇报稿是决策的初始文本</td><td>三段聚焦；三个结合得紧密；对照检查五点</td></tr>
+      <tr><td>随笔·杂文·自媒体</td><td>真情实感的非虚拟写作</td><td>六字真言；三有五可；以小喻人；短快真实新</td></tr>
+    </table>
+
+    <h2 id="s5">十大反面模式</h2>
+    <p class="sub">作者反复警示的错误做法——每条都在章节文件里附了"为什么错"</p>
+    <div class="duo">
+      <ul>
+        <li><span class="n">01</span>贪"全"——什么都说到什么都没说透</li>
+        <li><span class="n">02</span>闭门造车——不调研就动笔</li>
+        <li><span class="n">03</span>材料观点两张皮——堆材料没观点</li>
+        <li><span class="n">04</span>编造事实、数据注水</li>
+        <li><span class="n">05</span>逻辑混乱、块条失衡——爷爷孙子并列</li>
+      </ul>
+      <ul>
+        <li><span class="n">06</span>硬性三大块——情况原因建议的套路化</li>
+        <li><span class="n">07</span>移花接木——大段照抄上级精神</li>
+        <li><span class="n">08</span>"结构升级"——不管需求拉开大框架</li>
+        <li><span class="n">09</span>校对员式修改——只抠字没到要害</li>
+        <li><span class="n">10</span>题不对文、翻译腔一逗到底</li>
+      </ul>
+    </div>
+
+    <h2 id="s6">经典案例一览</h2>
+    <p class="sub">全部在章节文件中压缩重述为"背景→做法→结果→可复用的点"</p>
+    <dl class="cases">
+      <dt>小严的成长<i>ch01</i></dt>
+      <dd>抄录笔记改成几十个专题文件夹，每种文种精选两三篇样本"读帖读画"，摹仿→制造→创造三步进阶——机关写材料的顶梁子是这样养成的。</dd>
+      <dt>《问题是个好东西》<i>ch03</i></dt>
+      <dd>会上听到"问题就是时代的口号"瞬间成意，会议期间写出短文；再拍视频短片专放基层问题，最终提炼出"发现问题→研究问题→解决问题"工作法——好立意能从一篇文章长成一套方法。</dd>
+      <dt>《临别赠言》<i>ch07</i></dt>
+      <dd>给 700 多名赴珠三角打工青年送行的讲话：三句话主线、通篇拉家常、没有大道理——对普通受众用群众熟悉的语言，深奥道理和生僻术语等于白讲。</dd>
+      <dt>朱德江西调研报告<i>ch08</i></dt>
+      <dd>开头极简"看了一些山头"，九条全部以建议为标题、有一条写一条，条条有铺垫承接——为中央调整农村政策提供依据。</dd>
+      <dt>老石年度述职报告<i>ch09</i></dt>
+      <dd>开头十二个字直接入题，七部分每项都有数据：700 家企业转产、救灾贷款 3.5 亿元、电视电话会只讲十来分钟——工作量化、成效量化、职务行为量化。</dd>
+      <dt>《小麦的两种状态》<i>ch11</i></dt>
+      <dd>灌浆时张扬、成熟时谦和，句句写麦句句喻人，末句"小麦与人息息相通"扣题——杂文以小喻人的范本。</dd>
+    </dl>
+
+    <h2 id="s7">目录结构与用法</h2>
+    <p class="sub">仓库即技能目录，双击 SKILL.md 从总纲进入</p>
+<pre>
+how-to-write/
+├── <b>SKILL.md</b>        # 核心框架 + 讲次索引 + 主题索引（入口）
+├── <b>chapters/</b>       # 十二讲逐章拆解（ch01–ch12，按需加载）
+├── <b>glossary.md</b>     # 术语表
+├── <b>patterns.md</b>     # 方法与模式全集
+├── <b>cheatsheet.md</b>   # 决策速查表（最实用的一层）
+├── overview.html    # 本页
+└── README.md
+</pre>
+    <p>对 Agent 说"用怎样写作起草一份调研报告"加载总纲；问"述职报告忌讳什么"自动定位章节；问 ch12 加载修改经验谈。机关工作实务三部曲：<a href="https://github.com/yxdwind/how-to-run-meetings" style="color:var(--accent-ink)">how-to-run-meetings（怎样开会）</a> · <a href="https://github.com/yxdwind/how-to-research" style="color:var(--accent-ink)">how-to-research（怎样调研）</a> · how-to-write（本仓库）。</p>
+
+    <div class="colophon">
+      源书：《怎样写作》，任仲然著，党建读物出版社（"机关工作实务丛书"第三本）· 本书版权归原作者及出版社所有，本仓库仅含方法论提炼与转述<br>
+      生成：OpenClaw book-to-skill 流水线 · 213 页 OCR（AutoClaw OCR）· 2026-09-16 · 仓库：<a href="https://github.com/yxdwind/how-to-write">github.com/yxdwind/how-to-write</a>
+    </div>
+  </main>
+</div>
+</body>
+</html>

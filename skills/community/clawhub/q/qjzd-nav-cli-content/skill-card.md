@@ -1,42 +1,54 @@
-## Description: <br>
-Use when managing QJZD Nav links, categories, and tags from the terminal, including list, create, update, and delete operations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when managing QJZD Nav links, categories, and tags from the terminal, including list, create, update, delete operations.
 
-## Publisher: <br>
-[nqdy666](https://clawhub.ai/user/nqdy666) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nqdy666](https://clawhub.ai/user/nqdy666)
 
-## Use Case: <br>
-Developers and operators use this skill to manage QJZD Nav content from the terminal. It guides agents through listing, creating, updating, deleting, filtering, paginating, and reordering links, categories, and tags with the qjzd-nav CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Delete, update, and reorder commands can alter or remove live QJZD Nav content. <br>
-Mitigation: List affected links, categories, or tags first, confirm IDs, and review command arguments before running mutating operations. <br>
-Risk: The skill depends on a local qjzd-nav CLI installation and an account context with permission to manage QJZD Nav content. <br>
-Mitigation: Install and trust qjzd-nav before use, and check qjzd-nav auth current or load the QJZD Nav CLI Auth skill when authentication is uncertain. <br>
+## Use Case:
 
+Developers and operators use this skill to have an agent manage QJZD Nav content from the terminal. It supports listing, creating, updating, deleting, filtering, paginating, and reordering links, categories, and tags through qjzd-nav commands.
 
-## Reference(s): <br>
-- [QJZD Nav CLI Content on ClawHub](https://clawhub.ai/nqdy666/qjzd-nav-cli-content) <br>
-- [QJZD Nav CLI](../qjzd-nav-cli) <br>
-- [QJZD Nav CLI Auth](../qjzd-nav-cli-auth) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance, Markdown] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes qjzd-nav command examples for link, category, and tag operations; JSON output is available from the CLI when commands use --json.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.2 (source: ClawHub release metadata; artifact frontmatter reports 1.0.0) <br>
+Risk: Delete and category reorganization commands can remove or move QJZD Nav content in ways that may be irreversible without recovery planning.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: List objects first, confirm IDs, document recovery expectations, and use backups or a non-production environment before bulk changes.
+
+Risk: Running the skill without an authenticated qjzd-nav session can fail or target the wrong account context.
+
+Mitigation: Check qjzd-nav auth current before content operations, or load the companion authentication skill when auth may not be ready.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nqdy666/skills/qjzd-nav-cli-content)
+- [Publisher profile](https://clawhub.ai/user/nqdy666)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include JSON-oriented qjzd-nav command options for automation.]
+
+## Skill Version(s):
+
+1.3.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

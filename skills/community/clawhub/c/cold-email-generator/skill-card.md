@@ -1,41 +1,56 @@
-## Description: <br>
-Generates personalized, concise cold emails pitching Gracie AI Receptionist by scraping business websites for relevant details. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates personalized, concise cold emails pitching Gracie AI Receptionist by scraping business websites for relevant details.
 
-## Publisher: <br>
-[JayJJimenez](https://clawhub.ai/user/JayJJimenez) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jayjjimenez](https://clawhub.ai/user/jayjjimenez)
 
-## Use Case: <br>
-Sales and outreach users use this skill to draft short, personalized cold emails for local businesses by combining a business name, website context, and the Gracie AI Receptionist pitch. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill scrapes business websites and can process lead lists, which may include sites or leads the user is not authorized to process. <br>
-Mitigation: Use it only with websites and lead lists the user is authorized to process, and review the lead list before running batch mode. <br>
-Risk: Generated emails may contain inaccurate claims or content influenced by a target website. <br>
-Mitigation: Inspect every generated email before sending and correct any unsupported or misleading statements. <br>
-Risk: The workflow depends on local Scrapling and Ollama components. <br>
-Mitigation: Confirm the local scraper and Ollama setup are trusted before use. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/JayJJimenez/cold-email-generator) <br>
+## Use Case:
 
+Sales operators and agent users can use this skill to research public business websites and draft short, personalized cold outreach emails for Gracie AI Receptionist campaigns.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Files] <br>
-**Output Format:** [Plain text email drafts with command-line usage examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Email drafts are intended to be under 150 words and can be printed to the terminal or saved as text files.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The website-scraping workflow can be used with internal or unsafe URLs.
+
+Mitigation: Use only trusted public business URLs or scrubbed lead lists, and do not point the skill at internal hosts or private network addresses.
+
+Risk: Generated outreach emails may contain inaccurate or unsuitable claims.
+
+Mitigation: Manually review generated emails before sending them.
+
+Risk: Saving output writes business or contact details and generated outreach text to local disk.
+
+Mitigation: Use --save only in an appropriate local workspace and protect or delete saved outreach files according to the campaign's data-handling needs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jayjjimenez/skills/cold-email-generator)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, files]
+
+**Output Format:** [Plain text email output with optional saved .txt files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated emails are intended to be manually reviewed before sending.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

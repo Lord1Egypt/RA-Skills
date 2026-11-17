@@ -30,6 +30,18 @@
       "should_trigger": true
     },
     {
+      "query": "把这个带本地图片的 markdown 推送到钉钉文档，图片要能正常显示",
+      "should_trigger": true
+    },
+    {
+      "query": "帮我在钉钉文档正文里插入几张本地截图",
+      "should_trigger": true
+    },
+    {
+      "query": "钉钉文档里的图片都显示“暂无权限访问”，帮我修一下",
+      "should_trigger": true
+    },
+    {
       "query": "帮我把这个文件推送到语雀",
       "should_trigger": false
     },

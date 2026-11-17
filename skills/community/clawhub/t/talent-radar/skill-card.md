@@ -1,48 +1,67 @@
-## Description: <br>
-Talent Radar analyzes Chinese-language resumes against specific job descriptions to produce match reports, gap diagnostics, and improvement suggestions for hiring or job-search workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Talent Radar analyzes Chinese resumes against a specific job description to produce candidate-job fit reports, gap diagnoses, optimization advice, and ranked recommendations.
 
-## Publisher: <br>
-[taotao52](https://clawhub.ai/user/taotao52) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[taotao52](https://clawhub.ai/user/taotao52)
 
-## Use Case: <br>
-External HR users, recruiters, and job seekers use the skill to compare a provided Chinese-language resume with a specific target job description, generate match or gap reports, and produce improvement suggestions. It should be used as human-reviewed decision support, not as the sole basis for hiring decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Hiring-match outputs may be mistaken for automated screening decisions despite accuracy and fairness limitations. <br>
-Mitigation: Use outputs only as human-reviewed assistance; confirm decisions through interviews and other evaluation methods, and avoid protected or proxy attributes. <br>
-Risk: Artifact guidance contains inconsistent fairness and weighting details, including older references that discuss cultural fit or school-related signals. <br>
-Mitigation: Prefer the current SKILL.md and bundled matcher behavior: culture is interview reference only and final scoring excludes school prestige, age, and gender. <br>
-Risk: PDF extraction guidance includes commands for installing and running local Python libraries against user files. <br>
-Mitigation: Run extraction only on intentionally provided files after reviewing the exact command and file path. <br>
+## Use Case:
 
+Recruiters and job seekers use this skill to compare a Chinese-language resume with a specified role or job description, understand match strengths and gaps, and generate advisory hiring or job-search reports.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/taotao52/talent-radar) <br>
-- [Project README](references/README.md) <br>
-- [Matching Algorithm](references/matching_algorithm.md) <br>
-- [ClawHub Audit Checklist](references/clawhub_audit_checklist.md) <br>
-- [PDF Extraction Guide](references/pdf_extraction_guide.md) <br>
-- [Windows PDF Extraction Guide](references/windows_pdf_extraction.md) <br>
-- [Skill Matrix](references/skill_matrix.md) <br>
+### Deployment Geography for Use:
 
+Global, with primary applicability to Chinese-language recruiting contexts.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown reports with optional JSON structures and shell or Python command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Designed for Chinese-language resumes and job descriptions; analysis requires both a resume and a target job or JD.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata) <br>
+Risk: The skill processes sensitive resume and job-description data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Obtain candidate consent, minimize input data, keep processing local where possible, and delete resume and job-description data after analysis.
+
+Risk: Generated match scores or recommendations could be over-relied on in hiring decisions.
+
+Mitigation: Treat reports as advisory, require human review, and combine results with interviews and other appropriate evaluation methods.
+
+Risk: Some bundled reference material contains outdated fairness guidance about school prestige or stability scoring.
+
+Mitigation: Use the current release behavior that excludes school name from education scoring and keeps culture fit out of the total score; fix or ignore outdated references before operational use.
+
+Risk: Optional PDF extraction guidance may require installing third-party packages.
+
+Mitigation: Use an isolated, pinned Python environment and review PDF extraction dependencies before processing candidate files.
+
+## Reference(s):
+
+- [Talent Radar ClawHub Skill Page](https://clawhub.ai/taotao52/skills/talent-radar)
+- [README](artifact/references/README.md)
+- [Matching Algorithm](artifact/references/matching_algorithm.md)
+- [Skill Matrix](artifact/references/skill_matrix.md)
+- [PDF Extraction Guide](artifact/references/pdf_extraction_guide.md)
+- [Windows PDF Extraction Guide](artifact/references/windows_pdf_extraction.md)
+- [PCB Industry Analysis](artifact/references/pcb_industry_analysis.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown reports with scoring summaries, dimension-level analysis, gap diagnosis, and recommendations.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are advisory and should be reviewed by a human before hiring or job-search decisions.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

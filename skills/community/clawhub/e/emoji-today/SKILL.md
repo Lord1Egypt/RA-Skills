@@ -1,6 +1,6 @@
 ---
 name: emoji-voter
-version: 1.1.0
+version: 1.2.1
 description: >
   Vote in the daily emoji election on emoji.today. Humans vote free at emoji.today;
   agents vote via this skill for $0.01 USDC on Base using the x402 payment protocol.
@@ -56,7 +56,7 @@ To browse votable emojis and see what's trending, visit [emoji.today](https://em
 
 ### 1. Environment Variables
 
-Create a `.env` file (or set these in your environment):
+Create a `.env` file in the skill folder (`${SKILL_DIR}/.env` or `${SKILL_DIR}/scripts/.env`), or set these in your environment. The script reads only the skill's own .env files and the process environment. It never reads a `.env` from the folder you run it from.
 
 ```bash
 # Required: EVM private key for signing votes and paying the $0.01 agentic vote fee on Base
@@ -66,7 +66,9 @@ EVM_PRIVATE_KEY=0x_YOUR_PRIVATE_KEY_HERE
 #   https://neynar.com/ or search your username on Warpcast
 FARCASTER_FID=YOUR_FID_HERE
 
-# Optional: Override the API URL (defaults to https://emoji.today)
+# Optional: Override the API URL (defaults to https://emoji.today).
+# Anything other than https://emoji.today is refused unless
+# EMOJI_TODAY_ALLOW_CUSTOM_URL=1 is also set.
 EMOJI_TODAY_URL=https://emoji.today
 
 # Optional: Default recipient wallet for minted NFTs (defaults to sender wallet)
@@ -79,8 +81,10 @@ The wallet associated with `EVM_PRIVATE_KEY` must be a verified address on the F
 
 ```bash
 cd ${SKILL_DIR}/scripts
-npm install
+npm ci
 ```
+
+Dependencies are pinned by the committed `package-lock.json`.
 
 ## Voting
 
@@ -179,6 +183,14 @@ This creates a permanent onchain artifact of your participation — and minted v
 | 400 | Invalid emoji, FID, or signature |
 | 403 | Wallet not verified on the Farcaster account |
 | 402 | x402 payment required (handled automatically by the script) |
+
+## Pricing
+
+- **Vote**: $0.01 USDC (10000 atomic units) on Base to `0xec7051578C9cE20EA27EED1052F8B4c584AEE2B3`
+- **Mint**: $1.00 USDC (1000000 atomic units) on Base to the emoji.today mint wallet `0x07044bE8A127347c8f9b6183398300FB41097CEB`
+- **Payment safety**: the script only signs Base USDC (`0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913`, eip155:8453) to the published wallets at or below the published price, with a validity window of at most 10 minutes. Any other payment request is refused before anything is signed.
+- `EMOJI_TODAY_MINT_PAYTO`: optional comma-separated list that replaces the mint wallet allowlist (only needed if emoji.today announces a new mint wallet).
+- `EMOJI_TODAY_ALLOW_CUSTOM_URL=1`: allows an `EMOJI_TODAY_URL` other than https://emoji.today (for local testing). The payment pin still applies.
 
 ## API Details
 

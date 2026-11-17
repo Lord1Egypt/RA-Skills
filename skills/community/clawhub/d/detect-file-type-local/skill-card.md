@@ -1,43 +1,60 @@
-## Description: <br>
-Local, offline AI-powered file type detection with no network use or API keys. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Local, offline AI-powered file type detection with no network calls or API keys.
 
-## Publisher: <br>
-[pgeraghty](https://clawhub.ai/user/pgeraghty) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[pgeraghty](https://clawhub.ai/user/pgeraghty)
 
-## Use Case: <br>
-Developers, security engineers, and operators use this skill to identify local files by content, verify extension and MIME-type consistency, and triage suspicious or unknown files without sending file bytes off the machine. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Recursive scans may read more local files than intended if pointed at a broad directory. <br>
-Mitigation: Run recursive scans only on directories the user explicitly intends to inspect. <br>
-Risk: The default stdin spool mode can consume disk space for untrusted or very large streams. <br>
-Mitigation: Use the documented head mode or apply upstream size limits before invoking the skill on untrusted streams. <br>
+## Use Case:
 
+Developers, security engineers, and automation agents use this skill to classify files by content, verify MIME types, and triage extension mismatches while keeping file bytes local.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/pgeraghty/detect-file-type-local) <br>
-- [Google Magika](https://github.com/google/magika) <br>
-- [MITRE ATT&CK: Masquerading](https://attack.mitre.org/techniques/T1036/) <br>
-- [Proofpoint: multistage polyglot threat analysis](https://www.proofpoint.com/us/blog/threat-insight/call-it-what-you-want-threat-actor-delivers-highly-targeted-multistage-polyglot) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, guidance] <br>
-**Output Format:** [JSON objects or arrays, human-readable text, bare MIME type strings, and CLI command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Local read-only classification results include path, detected label, MIME type, confidence score, group, description, and text indicator.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: SKILL.md frontmatter, pyproject.toml, server release metadata) <br>
+Risk: The skill reads files or directories that the user explicitly asks it to classify.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only against intended paths and avoid broad recursive scans over sensitive directories unless that access is acceptable.
+
+Risk: The default stdin mode can spool very large or endless input streams to a temporary file.
+
+Mitigation: Use --stdin-mode head with a size cap or enforce external stream limits in automated workflows.
+
+Risk: Content-based detection can produce low-confidence or incomplete results for very small files, empty files, or head-only stdin scans.
+
+Mitigation: Check the confidence score and use additional validation before making high-impact security or ingestion decisions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/pgeraghty/skills/detect-file-type-local)
+- [Google Magika](https://github.com/google/magika)
+- [MITRE ATT&CK: Masquerading](https://attack.mitre.org/techniques/T1036/)
+- [Proofpoint: Multistage Polyglot Delivery](https://www.proofpoint.com/us/blog/threat-insight/call-it-what-you-want-threat-actor-delivers-highly-targeted-multistage-polyglot)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, guidance]
+
+**Output Format:** [JSON object or array, human-readable text, or bare MIME type text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes path, detected label, MIME type, confidence score, group, description, and text/binary indicator when using JSON output.]
+
+## Skill Version(s):
+
+0.2.0 (source: frontmatter, pyproject.toml, release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

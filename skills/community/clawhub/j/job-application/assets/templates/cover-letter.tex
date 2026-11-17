@@ -1,0 +1,55 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=2.25cm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage[hidelinks]{hyperref}
+\usepackage{ragged2e}
+\renewcommand{\familydefault}{\sfdefault}
+\pagestyle{empty}
+\definecolor{mainblue}{HTML}{0E5484}
+\definecolor{textgray}{HTML}{333333}
+\color{textgray}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.72em}
+
+\begin{document}
+\begin{minipage}{\textwidth}
+{\fontsize{25}{27}\selectfont\bfseries\color{mainblue} __NAME__}\par
+\vspace{0.08cm}
+{\large\color{black!68} __TITLE__}\par
+\vspace{0.65cm}
+__LOCATION__\\
+\href{mailto:__EMAIL__}{\color{mainblue}__EMAIL__}\\
+__PHONE__
+
+\vspace{0.75cm}
+\textcolor{black!28}{\rule{\textwidth}{0.6pt}}
+
+\vspace{0.25cm}
+\hfill __DATE__
+
+\vspace{0.25cm}
+__COMPANY__\\
+__RECIPIENT__\\
+__COMPANY_ADDRESS__
+
+\vspace{0.65cm}
+{\large\bfseries\color{mainblue} __SUBJECT__}
+
+\vspace{0.30cm}
+__SALUTATION__
+
+\begin{justify}
+__BODY__
+\end{justify}
+
+\vspace{0.30cm}
+__CLOSING__
+
+__SIGNATURE__
+__SIGNATORY__
+\end{minipage}
+\end{document}

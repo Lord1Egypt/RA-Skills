@@ -1,0 +1,3 @@
+interface:
+  display_name: "Quality Review"
+  short_description: "Evidence-first structured review with source-tiered claims. For code, notes, agent output, and research. Inspired by gstack methodology and gbrain source-tiering."

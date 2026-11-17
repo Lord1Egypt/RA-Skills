@@ -1,41 +1,52 @@
-## Description: <br>
-Summarizes daily gold price movements and provides cautious investment commentary when users ask about gold prices, gold market analysis, investment suggestions, or price trends. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Chinese-language daily gold price summaries with international and domestic prices, key price changes, market drivers, and general risk-based investment commentary.
 
-## Publisher: <br>
-[Ray1012](https://clawhub.ai/user/Ray1012) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[ray1012](https://clawhub.ai/user/ray1012)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users can ask an agent for a structured Chinese-language daily gold report covering XAU/USD, domestic RMB-per-gram prices, recent trends, market factors, and general risk-profile commentary.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Gold prices and market news can change quickly or be reported differently across sources.
+
+Mitigation: Verify cited market data, source names, and timestamps before relying on the report.
+
+Risk: Risk-profile allocation suggestions may be mistaken for personalized financial advice.
+
+Mitigation: Keep the guidance general, preserve the investment-risk disclaimer, and consult a qualified financial professional for personal decisions.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users and analysts use this skill to gather current international and domestic gold prices, summarize recent price changes, identify market drivers, and produce risk-tiered investment commentary. Its output is informational and should not be treated as personalized financial advice. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Gold price data or cited market sources may be stale, incomplete, or inconsistent. <br>
-Mitigation: Verify live prices, timestamps, and source links independently before relying on the report. <br>
-Risk: Investment commentary may be mistaken for personalized financial advice. <br>
-Mitigation: Keep the output informational, preserve the investment-risk disclaimer, and do not rely on the skill alone for financial decisions. <br>
+**Output Format:** [Structured Markdown report in Chinese]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Ray1012/gold-price-summary-ray1012) <br>
-- [Publisher profile](https://clawhub.ai/user/Ray1012) <br>
+**Other Properties Related to Output:** [Includes data-source and timestamp expectations plus an investment-risk disclaimer.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown report with structured price summary, market factors, source notes, disclaimers, and risk-tiered commentary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses live search results as source material and asks the agent to label data sources and timestamps.] <br>
+1.0.0 (source: frontmatter and server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

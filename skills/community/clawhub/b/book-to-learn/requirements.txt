@@ -1,0 +1,22 @@
+# book-to-learn 运行依赖
+# 安装：pip install -r requirements.txt
+# 体检：python setup_verify.py --selftest
+
+# —— 渲染核心（必需）——
+weasyprint>=60          # HTML → PDF
+pillow>=9.0             # 图片处理 / 裁白 / 校验
+
+# —— PDF → PNG 光栅化（长图类卡片必需，二选一即可）——
+pymupdf>=1.23           # 首选：纯 wheel，无需系统库
+# pdf2image>=1.16       # 备选：需要系统 poppler（pdftoppm）
+
+# —— 自适应排版：拆卡引擎（tile-*）的内容高度测量必需；其余场景缺失可走 PIL 近似 ——
+numpy>=1.21
+
+# —— 书籍多格式提取（网站模式不需要）——
+beautifulsoup4>=4.11
+python-docx>=0.8
+pypdf>=3.0
+pdfminer.six>=20221105
+ebooklib>=0.18
+striprtf>=0.0.26

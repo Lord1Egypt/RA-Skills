@@ -1,49 +1,66 @@
-## Description: <br>
-Total Recall gives OpenClaw agents autonomous cross-session memory by observing conversation transcripts, compressing durable facts into Markdown memory files, consolidating them, and recovering missed context across resets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Total Recall gives OpenClaw agents autonomous cross-session memory by observing transcripts, compressing conversations into prioritized notes, consolidating them, and recovering missed sessions.
 
-## Publisher: <br>
-[gavdalf](https://clawhub.ai/user/gavdalf) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[gavdalf](https://clawhub.ai/user/gavdalf)
 
-## Use Case: <br>
-Developers and external OpenClaw users use this skill to preserve useful agent memory across sessions, compaction, and manual resets. It is suited for users who want file-based observations, scheduled consolidation, and optional background capture without running a vector database. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Conversation transcripts and durable facts may be read, stored on disk, and sent to the configured LLM provider. <br>
-Mitigation: Use the skill only where autonomous memory is intended, prefer a local or trusted LLM endpoint for private work, and review memory files regularly. <br>
-Risk: Background watcher, cron, and compaction hooks can run without an explicit manual command each time. <br>
-Mitigation: Enable automation gradually, keep Dream Cycle in READ_ONLY_MODE=true during initial review, and defer watcher or cron setup until the behavior is understood. <br>
-Risk: Workspace-level git rollback behavior and .env loading can affect unrelated files or expose secrets in shared or untrusted workspaces. <br>
-Mitigation: Run only in trusted workspaces, inspect generated changes before accepting rollbacks, and keep environment files scoped to the intended project. <br>
+## Use Case:
 
+Developers and agent operators use Total Recall to add persistent, human-readable memory to OpenClaw workspaces without a database or vector store. It is suited for agents that need cross-session context, compaction resilience, and periodic memory consolidation.
 
-## Reference(s): <br>
-- [ClawHub Total Recall release page](https://clawhub.ai/gavdalf/total-recall) <br>
-- [Total Recall README](README.md) <br>
-- [Architecture](docs/architecture.md) <br>
-- [Dream Cycle README](dream-cycle/README.md) <br>
-- [Observation format schema](schemas/observation-format.md) <br>
-- [Your AI Has an Attention Problem](https://gavlahh.substack.com/p/your-ai-has-an-attention-problem) <br>
-- [I Published an AI Memory Fix. Then I Found the Hole.](https://gavlahh.substack.com/p/i-published-an-ai-memory-fix-then) <br>
-- [Do Agents Dream?](https://gavlahh.substack.com/p/do-agents-dream) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown memory files, shell commands, JSON configuration, and setup guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates persistent local memory, logs, archive files, and optional dream-cycle metrics in the configured workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.5.1 (source: server release evidence and changelog, released 2026-02-28) <br>
+Risk: The skill persistently monitors private OpenClaw transcripts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Enable it only in workspaces where background transcript monitoring is acceptable, and review watcher and cron persistence before installation.
+
+Risk: Transcript summaries may be sent to the configured LLM endpoint.
+
+Mitigation: Use a trusted HTTPS endpoint or a trusted local provider, and confirm the selected model and API key settings before enabling observer or Dream Cycle runs.
+
+Risk: Unsafe shell and file operations were reported by the security evidence.
+
+Mitigation: Review the setup, watcher, dotenv parsing, Dream Cycle path handling, and rollback behavior before use in sensitive workspaces.
+
+## Reference(s):
+
+- [Total Recall ClawHub Skill](https://clawhub.ai/gavdalf/skills/total-recall)
+- [README](artifact/README.md)
+- [Skill Documentation](artifact/SKILL.md)
+- [Architecture](artifact/docs/architecture.md)
+- [Edge Cases and Hardening](artifact/docs/edge-cases.md)
+- [Observation Format](artifact/schemas/observation-format.md)
+- [Dream Cycle Guide](artifact/dream-cycle/README.md)
+- [Your AI Has an Attention Problem](https://gavlahh.substack.com/p/your-ai-has-an-attention-problem)
+- [I Published an AI Memory Fix. Then I Found the Hole.](https://gavlahh.substack.com/p/i-published-an-ai-memory-fix-then)
+- [Do Agents Dream?](https://gavlahh.substack.com/p/do-agents-dream)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, JSON configuration, and generated memory files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local observations, archives, logs, cron configuration, and setup instructions; some behavior depends on configured environment variables and platform support.]
+
+## Skill Version(s):
+
+1.5.1 (source: server release metadata, target metadata, and CHANGELOG; changelog date 2026-02-28)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

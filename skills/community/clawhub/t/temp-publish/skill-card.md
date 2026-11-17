@@ -1,46 +1,59 @@
-## Description: <br>
-Skill Cortex helps an agent find, install, use, learn from, and release short-term skills when existing installed skills cannot complete a task. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Skill Cortex helps an agent acquire, use, learn from, and clean up short-term Skills when existing installed Skills cannot complete a task.
 
-## Publisher: <br>
-[ankwu001](https://clawhub.ai/user/ankwu001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[ankwu001](https://clawhub.ai/user/ankwu001)
 
-## Use Case: <br>
-Developers and agent users use this skill to manage temporary OpenClaw capabilities on demand while keeping long-term installed skills separate. It is intended for workflows where an agent needs to search ClawHub, evaluate candidate skills, request approval, execute the selected skill, and clean up afterward. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can search for, install, execute, uninstall, and remember third-party skills under broad agent judgment. <br>
-Mitigation: Install it only when you intentionally want an agent to manage other skills, and review each proposed skill, publisher, source, and side-effect summary before approval. <br>
-Risk: GitHub-sourced candidate skills and credential-using skills may carry higher supply-chain or data-exposure risk. <br>
-Mitigation: Prefer server-resolved ClawHub candidates when possible, inspect GitHub-sourced candidates carefully, and do not approve credential use unless the requested access is necessary for the task. <br>
-Risk: Reflex mode can reduce opportunities to review repeated actions. <br>
-Mitigation: Use reflex mode only for stable read-only workflows, keep installation notifications visible, and downgrade to the standard confirmation path after any version change or failure. <br>
+## Use Case:
 
+Developers and OpenClaw agent users can use this skill to let an agent search for, install, execute, learn from, and remove short-term Skills for tasks outside its current capabilities.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ankwu001/temp-publish) <br>
-- [ClawHub](https://clawhub.ai) <br>
-- [OpenClaw](https://github.com/openclaw) <br>
-- [README](artifact/README.md) <br>
-- [Design Document](artifact/DESIGN.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Markdown] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose skill candidates, side-effect summaries, execution plans, recovery steps, and updates to local cortex memory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.1 (source: ClawHub release metadata) <br>
+Risk: The skill is designed to install and run other skills on demand, including third-party sources.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit approval, source verification, and full package inspection before every install and execution.
+
+Risk: The security summary flags the reflex path as allowing high-impact read-only execution with weak opt-out wording.
+
+Mitigation: Keep reflex behavior disabled or edit it to require explicit confirmation, unchanged versions, verified sources, and clear cancellation before execution.
+
+Risk: Delegating work to newly installed skills can expose the user to the installed skill's own behavior and risks.
+
+Mitigation: Review each installed skill's security scan, side effects, requested credentials, and execution plan before use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ankwu001/skills/temp-publish)
+- [ClawHub](https://clawhub.ai)
+- [OpenClaw](https://github.com/openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and structured JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May update a local cortex.json memory file and propose skill installation or cleanup actions.]
+
+## Skill Version(s):
+
+0.0.1 (source: server release metadata; artifact frontmatter lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

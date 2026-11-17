@@ -1,0 +1,13 @@
+{
+  "name": "training-partner-mgmt",
+  "displayName": "合作机构管理",
+  "version": "1.0.0",
+  "description": "合作机构管理：机构信息登记（高校/协会/园区/酒店等）、合作协议管理、结算记录、合作评价、机构联系人维护。",
+  "author": "golngod",
+  "license": "MIT",
+  "pricing": {
+    "model": "free"
+  },
+  "tags": ["training", "partner", "vendor", "contract", "education"],
+  "minOpenClawVersion": "1.2.0"
+}

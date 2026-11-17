@@ -1,48 +1,60 @@
-## Description: <br>
-Community trust scores for AI agent payment endpoints - checks endpoint reputation before payment and queues anonymous failure reports locally (network reporting is opt-in). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Community trust scores for AI agent payment endpoints - checks endpoint reputation before payment and queues anonymous failure reports locally, with network reporting opt-in.
 
-## Publisher: <br>
-[mattpolly](https://clawhub.ai/user/mattpolly) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mattpolly](https://clawhub.ai/user/mattpolly)
 
-## Use Case: <br>
-External users and developers use Fraud Filter to assess AI agent payment endpoints before payment, warn or block low-trust endpoints, and queue anonymous local failure reports after poor transaction outcomes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can monitor and sometimes block payment-like tool calls. <br>
-Mitigation: Review the on_block and on_caution settings before use, and require explicit user confirmation before temporarily overriding a block. <br>
-Risk: The security scan reports broad local and remote controls that need review before installation. <br>
-Mitigation: Install only if those controls are acceptable for the environment; keep the dashboard stopped when it is not needed. <br>
-Risk: Network participation can submit queued failure reports to the reporting service. <br>
-Mitigation: Review queued reports before enabling participate_in_network or triggering a flush. <br>
-Risk: Custom trust or report URLs could change the source of payment-risk decisions or report submission. <br>
-Mitigation: Avoid custom trust/report URLs unless they are explicitly trusted, and disable sync_hotlist for offline environments. <br>
+## Use Case:
 
+Developers and agent operators use Fraud Filter to assess payment endpoint reputation before spending and to queue anonymous local failure reports after poor transaction outcomes.
 
-## Reference(s): <br>
-- [Fraud Filter ClawHub Release](https://clawhub.ai/mattpolly/fraud-filter) <br>
-- [Fraud Filter Homepage](https://fraud-filter.com) <br>
-- [Technical Architecture](TECHNICAL.md) <br>
-- [Signal Format & Score Calculation](references/signal-format.md) <br>
-- [README](README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, JSON, Shell commands, Configuration, Files] <br>
-**Output Format:** [Markdown guidance with shell commands, JSON command output, and local JSON/JSONL data files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May warn, allow, or block payment-like tool calls based on configured trust policy; reporting stays local unless network participation and flushing are explicitly enabled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.4.0 (source: SKILL.md frontmatter, openclaw.plugin.json, ClawHub release evidence) <br>
+Risk: The local dashboard and configuration controls can affect payment blocking, reporting, and trust database behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the dashboard only in a trusted local environment and review configuration changes before relying on enforcement decisions.
+
+Risk: Custom trust_db_url values are flagged by security guidance because of an unresolved injection risk.
+
+Mitigation: Use the default trust database URL and avoid custom URLs until the issue is fixed and reviewed.
+
+Risk: Queued reports may be submitted to the network if participation is enabled and a flush is triggered.
+
+Mitigation: Inspect queued reports before enabling network participation or flushing reports.
+
+## Reference(s):
+
+- [Fraud Filter homepage](https://fraud-filter.com)
+- [Fraud Filter ClawHub release](https://clawhub.ai/mattpolly/skills/fraud-filter)
+- [Technical architecture](TECHNICAL.md)
+- [Signal format and score calculation](references/signal-format.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON trust assessments]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May queue local JSONL failure reports; network report submission is opt-in.]
+
+## Skill Version(s):
+
+0.4.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

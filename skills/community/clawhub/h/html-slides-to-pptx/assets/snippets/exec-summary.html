@@ -1,0 +1,43 @@
+<!-- ══════════════════════════════════════════════════════════════
+  片段:执行摘要(统领结论深色面板 + 3 支柱裸排 + 来源行)—— 原型 31
+  参数:
+    {{VERDICT}}          核心判断(2 行内;写"所以呢",不写"本页介绍…")
+    {{KPI}} {{KPI_UNIT}} 面板右侧总括数字 + 单位(只放 1 个;多数字改用原型 17)
+    {{KPI_LABEL}}        数字含义(含情景口径,如"投资回收期(基准情景)")
+    {{P1_KICKER}}..{{P3_KICKER}}   支柱序号+标签(如"01 现状")
+    {{P1_TITLE}}..       支柱标题(≤12 字)
+    {{P1_BODY}}..        支柱正文(2-3 行,带一个数字)
+    {{SOURCE}}           来源/口径注(时间范围+样本+测算方式;本组硬要求)
+  坐标定死:面板 y300 h200;支柱 grid 3 列 gap40,y560 h320;来源行 y990
+  纪律: 支柱**裸排+顶部细条**,不是等宽卡片(反模式 2);
+        只有"结论/主张"那列用主色细条,其余 --border-medium(高亮 ≤1 处);
+        深色面板在页**顶**且承载信息 → 合法结构色面,不是"页底结论条"
+  ══════════════════════════════════════════════════════════════ -->
+<div data-object="true" data-object-type="shape" style="position:absolute;left:100px;top:300px;width:1720px;height:200px;background:var(--brand-dark);border-radius:8px;"></div>
+<div data-object="true" data-object-type="textbox" style="position:absolute;left:150px;top:336px;width:1120px;">
+  <div style="font-size:28px;font-weight:700;line-height:1.45;color:var(--on-navy-text);">{{VERDICT}}</div>
+</div>
+<div data-object="true" data-object-type="textbox" style="position:absolute;left:1340px;top:340px;width:430px;">
+  <div class="num" style="font-size:64px;font-weight:800;color:var(--white);line-height:1;">{{KPI}}<span style="font-size:26px;font-weight:600;">{{KPI_UNIT}}</span></div>
+  <div style="font-size:20px;line-height:1.4;color:var(--on-navy-sub);margin-top:10px;">{{KPI_LABEL}}</div>
+</div>
+<div data-layout="grid" data-layout-cols="3" data-layout-gap="40" style="position:absolute;left:100px;top:560px;width:1720px;">
+  <div data-object="true" data-layout-h="320" style="border-top:3px solid var(--border-medium);padding-top:28px;">
+    <div style="font-size:20px;font-weight:700;letter-spacing:2px;color:var(--text-tertiary);">{{P1_KICKER}}</div>
+    <div style="font-size:30px;font-weight:700;line-height:1.3;color:var(--charcoal);margin-top:16px;">{{P1_TITLE}}</div>
+    <div style="font-size:24px;line-height:1.55;color:var(--text-secondary);margin-top:18px;">{{P1_BODY}}</div>
+  </div>
+  <div data-object="true" data-layout-h="320" style="border-top:3px solid var(--brand-primary);padding-top:28px;">
+    <div style="font-size:20px;font-weight:700;letter-spacing:2px;color:var(--brand-primary);">{{P2_KICKER}}</div>
+    <div style="font-size:30px;font-weight:700;line-height:1.3;color:var(--charcoal);margin-top:16px;">{{P2_TITLE}}</div>
+    <div style="font-size:24px;line-height:1.55;color:var(--text-secondary);margin-top:18px;">{{P2_BODY}}</div>
+  </div>
+  <div data-object="true" data-layout-h="320" style="border-top:3px solid var(--border-medium);padding-top:28px;">
+    <div style="font-size:20px;font-weight:700;letter-spacing:2px;color:var(--text-tertiary);">{{P3_KICKER}}</div>
+    <div style="font-size:30px;font-weight:700;line-height:1.3;color:var(--charcoal);margin-top:16px;">{{P3_TITLE}}</div>
+    <div style="font-size:24px;line-height:1.55;color:var(--text-secondary);margin-top:18px;">{{P3_BODY}}</div>
+  </div>
+</div>
+<div data-object="true" data-object-type="textbox" style="position:absolute;left:100px;top:990px;width:1720px;">
+  <div style="font-size:16px;line-height:1.5;color:var(--text-tertiary);">{{SOURCE}}</div>
+</div>

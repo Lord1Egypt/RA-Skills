@@ -1,41 +1,58 @@
-## Description: <br>
-Use when the task involves reading, creating, or editing `.docx` documents, especially when formatting or layout fidelity matters; prefer `python-docx` plus the bundled `scripts/render_docx.py` for visual checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when the task involves reading, creating, or editing `.docx` documents, especially when formatting or layout fidelity matters; prefer `python-docx` plus the bundled `scripts/render_docx.py` for visual checks.
 
-## Publisher: <br>
-[flywhale-666](https://clawhub.ai/user/flywhale-666) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Apache 2.0 <br>
+## Publisher:
 
+[flywhale-666](https://clawhub.ai/user/flywhale-666)
 
-## Use Case: <br>
-Developers, document automation users, and agents use this skill to read, create, edit, and visually review DOCX documents where formatting, tables, pagination, or layout fidelity matter. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Apache 2.0
 
-## Known Risks and Mitigations: <br>
-Risk: Package-manager or system-tool commands may install dependencies in the user's environment. <br>
-Mitigation: Review installation commands before running them and approve them only when the source is trusted. <br>
-Risk: Cleanup steps could remove files outside the intended workspace if applied too broadly. <br>
-Mitigation: Keep cleanup limited to temporary or skill-owned paths such as `tmp/docs/` and generated document outputs. <br>
-Risk: If rendering tools are unavailable, DOCX layout issues may be missed during text-only review. <br>
-Mitigation: Use the visual render workflow when possible; if unavailable, disclose the layout risk and ask for local rendered review. <br>
+## Use Case:
 
+Developers and document-focused agents use this skill to read, create, edit, and visually validate DOCX documents where formatting, tables, diagrams, pagination, and delivery quality matter.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Code, Files] <br>
-**Output Format:** [Markdown guidance with shell commands and edited DOCX files when applicable] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May render DOCX pages to PNG for visual review and return updated documents plus a concise change summary.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: The helper can replace page images in the selected output directory during DOCX rendering.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated temporary output directory and avoid pointing the renderer at a directory containing files that need to be preserved.
+
+Risk: The skill may suggest installing system packages or Python dependencies for document rendering.
+
+Mitigation: Install only in a trusted or isolated environment and approve any sudo or system package command yourself.
+
+Risk: When visual rendering dependencies are unavailable, layout review may be incomplete.
+
+Mitigation: Ask for local rendered-page review or clearly call out layout risk before delivery.
+
+## Reference(s):
+
+- [Word Docs skill page](https://clawhub.ai/flywhale-666/skills/doc)
+- [Publisher profile](https://clawhub.ai/user/flywhale-666)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and generated or edited DOCX files when used by an agent]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce local intermediate render outputs for visual review.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

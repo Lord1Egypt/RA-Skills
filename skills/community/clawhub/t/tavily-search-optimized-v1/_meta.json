@@ -1,6 +1,8 @@
 {
-  "ownerId": "kn71bmpaxztz381rsxj3mmsnqx82wys2",
-  "slug": "tavily-search-optimized-v1",
-  "version": "1.0.3",
-  "publishedAt": 1776230105288
+  "ownerId": "kn78hhhbxwjs4nrcyn8my5fcw981wmys",
+  "slug": "openclaw-tavily-search",
+  "version": "1.0.0",
+  "publishedAt": 1772121679343,
+  "updatedAt": 1772121679344,
+  "changelog": "优化版本：添加缓存系统、增强错误处理、改进文档、新增配置选项"
 }

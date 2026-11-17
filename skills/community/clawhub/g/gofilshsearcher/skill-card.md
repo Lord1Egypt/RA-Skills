@@ -1,42 +1,59 @@
-## Description: <br>
-闲鱼商品自动搜索技能，支持严格筛选（个人闲置/单一价格/排除商家），输出 TOP10 价格升序列表 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+闲鱼商品自动搜索技能，支持严格筛选（个人闲置/单一价格/排除商家），输出 TOP10 价格升序列表。
 
-## Publisher: <br>
-[xxxzhuo](https://clawhub.ai/user/xxxzhuo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xxxzhuo](https://clawhub.ai/user/xxxzhuo)
 
-## Use Case: <br>
-External users and developers use this skill to search Xianyu/Goofish listings, filter for personal idle goods with single prices, sort candidate products by price, and return ranked results with links and price statistics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill records detailed shopping searches and result links to persistent memory without clearly documented user consent, retention, or cleanup controls. <br>
-Mitigation: Use it only when the user is comfortable saving that search history, avoid sensitive purchase searches, and provide a way to disable, review, or clear stored records before deployment. <br>
-Risk: Browser-based marketplace results can include stale listings, misleading prices, or third-party seller content outside the skill publisher's control. <br>
-Mitigation: Treat returned listings as candidates for manual review, verify seller details and item condition before purchase, and avoid sharing account credentials during browsing. <br>
+## Use Case:
 
+External users and agents use this skill to search Xianyu/Goofish listings, filter for personal second-hand items, remove merchant or ambiguous-price listings, and return ranked product results with price statistics.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xxxzhuo/gofilshsearcher) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/xxxzhuo) <br>
-- [Goofish website](https://www.goofish.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown search result tables and per-item chat messages] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes ranked item titles, prices, regions, want counts, listing links, price statistics, and applied-filter notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill automatically records search history, including marketplace searches, price interests, and listing links, to local memory without clear opt-in, retention, or deletion controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Disable or remove automatic history writing before deployment, or add explicit opt-in, retention, and deletion controls.
+
+Risk: Broad activation phrases may trigger marketplace searches from casual Xianyu-related questions.
+
+Mitigation: Confirm user intent before launching browser searches when the request is ambiguous.
+
+Risk: The skill depends on browser automation against a marketplace website whose page structure and access controls may change.
+
+Mitigation: Handle selector failures and network timeouts by surfacing partial or failed results clearly and requiring user review before purchase decisions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/xxxzhuo/skills/gofilshsearcher)
+- [Publisher Profile](https://clawhub.ai/user/xxxzhuo)
+- [Goofish Marketplace](https://www.goofish.com)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown tables and short status messages with listing links, price statistics, troubleshooting guidance, and optional configuration examples.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search results are normally capped at TOP10, sorted by ascending price, and may be split into one listing per message for enterprise chat workflows.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

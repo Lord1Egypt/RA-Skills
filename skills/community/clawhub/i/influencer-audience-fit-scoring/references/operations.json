@@ -1,0 +1,516 @@
+{
+  "audience_youtube_geography": {
+    "method": "GET",
+    "path": "/api/v1/audience/youtube/geography",
+    "summary": "地理位置(geography)",
+    "tags": [
+      "受众画像(audience)"
+    ],
+    "required_query": [
+      "channel_id"
+    ],
+    "required_path": [],
+    "required_body": [],
+    "default_headers": {}
+  },
+  "audience_youtube_language": {
+    "method": "GET",
+    "path": "/api/v1/audience/youtube/language",
+    "summary": "语言(language)",
+    "tags": [
+      "受众画像(audience)"
+    ],
+    "required_query": [
+      "channel_id"
+    ],
+    "required_path": [],
+    "required_body": [],
+    "default_headers": {}
+  },
+  "audience_youtube_age": {
+    "method": "GET",
+    "path": "/api/v1/audience/youtube/age",
+    "summary": "年龄(age)",
+    "tags": [
+      "受众画像(audience)"
+    ],
+    "required_query": [
+      "channel_id"
+    ],
+    "required_path": [],
+    "required_body": [],
+    "default_headers": {}
+  },
+  "audience_youtube_gender": {
+    "method": "GET",
+    "path": "/api/v1/audience/youtube/gender",
+    "summary": "性别(gender)",
+    "tags": [
+      "受众画像(audience)"
+    ],
+    "required_query": [
+      "channel_id"
+    ],
+    "required_path": [],
+    "required_body": [],
+    "default_headers": {}
+  },
+  "audience_youtube_gender_overall": {
+    "method": "GET",
+    "path": "/api/v1/audience/youtube/gender_overall",
+    "summary": "整体性别(gender overall)",
+    "tags": [
+      "受众画像(audience)"
+    ],
+    "required_query": [
+      "channel_id"
+    ],
+    "required_path": [],
+    "required_body": [],
+    "default_headers": {}
+  },
+  "audience_youtube_interest": {
+    "method": "GET",
+    "path": "/api/v1/audience/youtube/interest",
+    "summary": "兴趣(interest)",
+    "tags": [
+      "受众画像(audience)"
+    ],
+    "required_query": [
+      "channel_id"
+    ],
+    "required_path": [],
+    "required_body": [],
+    "default_headers": {
+      "X-Language": "en"
+    }
+  },
+  "audience_youtube_interactive_behavior": {
+    "method": "GET",
+    "path": "/api/v1/audience/youtube/interactive_behavior",
+    "summary": "互动行为(interactive behavior)",
+    "tags": [
+      "受众画像(audience)"
+    ],
+    "required_query": [
+      "channel_id"
+    ],
+    "required_path": [],
+    "required_body": [],
+    "default_headers": {
+      "X-Language": "en"
+    }
+  },
+  "audience_youtube_brand_opportunities": {
+    "method": "GET",
+    "path": "/api/v1/audience/youtube/brand_opportunities",
+    "summary": "营销路径(brand opportunities)",
+    "tags": [
+      "受众画像(audience)"
+    ],
+    "required_query": [
+      "channel_id"
+    ],
+    "required_path": [],
+    "required_body": [],
+    "default_headers": {
+      "X-Language": "en"
+    }
+  },
+  "audience_youtube_content_style": {
+    "method": "GET",
+    "path": "/api/v1/audience/youtube/content_style",
+    "summary": "社交人格(content style)",
+    "tags": [
+      "受众画像(audience)"
+    ],
+    "required_query": [
+      "channel_id"
+    ],
+    "required_path": [],
+    "required_body": [],
+    "default_headers": {
+      "X-Language": "en"
+    }
+  },
+  "audience_youtube_follower_authenticity": {
+    "method": "GET",
+    "path": "/api/v1/audience/youtube/follower_authenticity",
+    "summary": "粉丝真实性(follower authenticity)",
+    "tags": [
+      "受众画像(audience)"
+    ],
+    "required_query": [
+      "channel_id"
+    ],
+    "required_path": [],
+    "required_body": [],
+    "default_headers": {}
+  },
+  "audience_youtube_rating_tier": {
+    "method": "GET",
+    "path": "/api/v1/audience/youtube/rating_tier",
+    "summary": "评级等级(rating tier)",
+    "tags": [
+      "受众画像(audience)"
+    ],
+    "required_query": [
+      "channel_id"
+    ],
+    "required_path": [],
+    "required_body": [],
+    "default_headers": {}
+  },
+  "audience_tiktok_geography": {
+    "method": "GET",
+    "path": "/api/v1/audience/tiktok/geography",
+    "summary": "地理位置(geography)",
+    "tags": [
+      "受众画像(audience)"
+    ],
+    "required_query": [
+      "unique_id"
+    ],
+    "required_path": [],
+    "required_body": [],
+    "default_headers": {}
+  },
+  "audience_tiktok_language": {
+    "method": "GET",
+    "path": "/api/v1/audience/tiktok/language",
+    "summary": "语言(language)",
+    "tags": [
+      "受众画像(audience)"
+    ],
+    "required_query": [
+      "unique_id"
+    ],
+    "required_path": [],
+    "required_body": [],
+    "default_headers": {}
+  },
+  "audience_tiktok_age": {
+    "method": "GET",
+    "path": "/api/v1/audience/tiktok/age",
+    "summary": "年龄(age)",
+    "tags": [
+      "受众画像(audience)"
+    ],
+    "required_query": [
+      "unique_id"
+    ],
+    "required_path": [],
+    "required_body": [],
+    "default_headers": {}
+  },
+  "audience_tiktok_gender": {
+    "method": "GET",
+    "path": "/api/v1/audience/tiktok/gender",
+    "summary": "性别(gender)",
+    "tags": [
+      "受众画像(audience)"
+    ],
+    "required_query": [
+      "unique_id"
+    ],
+    "required_path": [],
+    "required_body": [],
+    "default_headers": {}
+  },
+  "audience_tiktok_gender_overall": {
+    "method": "GET",
+    "path": "/api/v1/audience/tiktok/gender_overall",
+    "summary": "整体性别(gender overall)",
+    "tags": [
+      "受众画像(audience)"
+    ],
+    "required_query": [
+      "unique_id"
+    ],
+    "required_path": [],
+    "required_body": [],
+    "default_headers": {}
+  },
+  "audience_tiktok_interest": {
+    "method": "GET",
+    "path": "/api/v1/audience/tiktok/interest",
+    "summary": "兴趣(interest)",
+    "tags": [
+      "受众画像(audience)"
+    ],
+    "required_query": [
+      "unique_id"
+    ],
+    "required_path": [],
+    "required_body": [],
+    "default_headers": {
+      "X-Language": "en"
+    }
+  },
+  "audience_tiktok_interactive_behavior": {
+    "method": "GET",
+    "path": "/api/v1/audience/tiktok/interactive_behavior",
+    "summary": "互动行为(interactive behavior)",
+    "tags": [
+      "受众画像(audience)"
+    ],
+    "required_query": [
+      "unique_id"
+    ],
+    "required_path": [],
+    "required_body": [],
+    "default_headers": {
+      "X-Language": "en"
+    }
+  },
+  "audience_tiktok_brand_opportunities": {
+    "method": "GET",
+    "path": "/api/v1/audience/tiktok/brand_opportunities",
+    "summary": "营销路径(brand opportunities)",
+    "tags": [
+      "受众画像(audience)"
+    ],
+    "required_query": [
+      "unique_id"
+    ],
+    "required_path": [],
+    "required_body": [],
+    "default_headers": {
+      "X-Language": "en"
+    }
+  },
+  "audience_tiktok_device": {
+    "method": "GET",
+    "path": "/api/v1/audience/tiktok/device",
+    "summary": "设备占比(device)",
+    "tags": [
+      "受众画像(audience)"
+    ],
+    "required_query": [
+      "unique_id"
+    ],
+    "required_path": [],
+    "required_body": [],
+    "default_headers": {}
+  },
+  "audience_tiktok_content_style": {
+    "method": "GET",
+    "path": "/api/v1/audience/tiktok/content_style",
+    "summary": "社交人格(content style)",
+    "tags": [
+      "受众画像(audience)"
+    ],
+    "required_query": [
+      "unique_id"
+    ],
+    "required_path": [],
+    "required_body": [],
+    "default_headers": {
+      "X-Language": "en"
+    }
+  },
+  "audience_tiktok_follower_authenticity": {
+    "method": "GET",
+    "path": "/api/v1/audience/tiktok/follower_authenticity",
+    "summary": "粉丝真实性(follower authenticity)",
+    "tags": [
+      "受众画像(audience)"
+    ],
+    "required_query": [
+      "unique_id"
+    ],
+    "required_path": [],
+    "required_body": [],
+    "default_headers": {}
+  },
+  "audience_tiktok_rating_tier": {
+    "method": "GET",
+    "path": "/api/v1/audience/tiktok/rating_tier",
+    "summary": "评级等级(rating tier)",
+    "tags": [
+      "受众画像(audience)"
+    ],
+    "required_query": [
+      "unique_id"
+    ],
+    "required_path": [],
+    "required_body": [],
+    "default_headers": {}
+  },
+  "audience_instagram_geography": {
+    "method": "GET",
+    "path": "/api/v1/audience/instagram/geography",
+    "summary": "地理位置(geography)",
+    "tags": [
+      "受众画像(audience)"
+    ],
+    "required_query": [
+      "username"
+    ],
+    "required_path": [],
+    "required_body": [],
+    "default_headers": {}
+  },
+  "audience_instagram_language": {
+    "method": "GET",
+    "path": "/api/v1/audience/instagram/language",
+    "summary": "语言(language)",
+    "tags": [
+      "受众画像(audience)"
+    ],
+    "required_query": [
+      "username"
+    ],
+    "required_path": [],
+    "required_body": [],
+    "default_headers": {}
+  },
+  "audience_instagram_age": {
+    "method": "GET",
+    "path": "/api/v1/audience/instagram/age",
+    "summary": "年龄(age)",
+    "tags": [
+      "受众画像(audience)"
+    ],
+    "required_query": [
+      "username"
+    ],
+    "required_path": [],
+    "required_body": [],
+    "default_headers": {}
+  },
+  "audience_instagram_gender": {
+    "method": "GET",
+    "path": "/api/v1/audience/instagram/gender",
+    "summary": "性别(gender)",
+    "tags": [
+      "受众画像(audience)"
+    ],
+    "required_query": [
+      "username"
+    ],
+    "required_path": [],
+    "required_body": [],
+    "default_headers": {}
+  },
+  "audience_instagram_gender_overall": {
+    "method": "GET",
+    "path": "/api/v1/audience/instagram/gender_overall",
+    "summary": "整体性别(gender overall)",
+    "tags": [
+      "受众画像(audience)"
+    ],
+    "required_query": [
+      "username"
+    ],
+    "required_path": [],
+    "required_body": [],
+    "default_headers": {}
+  },
+  "audience_instagram_interest": {
+    "method": "GET",
+    "path": "/api/v1/audience/instagram/interest",
+    "summary": "兴趣(interest)",
+    "tags": [
+      "受众画像(audience)"
+    ],
+    "required_query": [
+      "username"
+    ],
+    "required_path": [],
+    "required_body": [],
+    "default_headers": {
+      "X-Language": "en"
+    }
+  },
+  "audience_instagram_interactive_behavior": {
+    "method": "GET",
+    "path": "/api/v1/audience/instagram/interactive_behavior",
+    "summary": "互动行为(interactive behavior)",
+    "tags": [
+      "受众画像(audience)"
+    ],
+    "required_query": [
+      "username"
+    ],
+    "required_path": [],
+    "required_body": [],
+    "default_headers": {
+      "X-Language": "en"
+    }
+  },
+  "audience_instagram_brand_opportunities": {
+    "method": "GET",
+    "path": "/api/v1/audience/instagram/brand_opportunities",
+    "summary": "营销路径(brand opportunities)",
+    "tags": [
+      "受众画像(audience)"
+    ],
+    "required_query": [
+      "username"
+    ],
+    "required_path": [],
+    "required_body": [],
+    "default_headers": {
+      "X-Language": "en"
+    }
+  },
+  "audience_instagram_device": {
+    "method": "GET",
+    "path": "/api/v1/audience/instagram/device",
+    "summary": "设备占比(device)",
+    "tags": [
+      "受众画像(audience)"
+    ],
+    "required_query": [
+      "username"
+    ],
+    "required_path": [],
+    "required_body": [],
+    "default_headers": {}
+  },
+  "audience_instagram_content_style": {
+    "method": "GET",
+    "path": "/api/v1/audience/instagram/content_style",
+    "summary": "社交人格(content style)",
+    "tags": [
+      "受众画像(audience)"
+    ],
+    "required_query": [
+      "username"
+    ],
+    "required_path": [],
+    "required_body": [],
+    "default_headers": {
+      "X-Language": "en"
+    }
+  },
+  "audience_instagram_follower_authenticity": {
+    "method": "GET",
+    "path": "/api/v1/audience/instagram/follower_authenticity",
+    "summary": "粉丝真实性(follower authenticity)",
+    "tags": [
+      "受众画像(audience)"
+    ],
+    "required_query": [
+      "username"
+    ],
+    "required_path": [],
+    "required_body": [],
+    "default_headers": {}
+  },
+  "audience_instagram_rating_tier": {
+    "method": "GET",
+    "path": "/api/v1/audience/instagram/rating_tier",
+    "summary": "评级等级(rating tier)",
+    "tags": [
+      "受众画像(audience)"
+    ],
+    "required_query": [
+      "username"
+    ],
+    "required_path": [],
+    "required_body": [],
+    "default_headers": {}
+  }
+}

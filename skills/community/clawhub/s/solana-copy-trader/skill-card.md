@@ -1,45 +1,60 @@
-## Description: <br>
-Solana whale copy trading bot for tracking wallets, simulating paper trades, and optionally executing live Solana swaps through Jupiter and Pump.fun routes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Solana whale copy trading bot that tracks wallets, simulates or executes copy trades through Jupiter and Pump.fun routing, scans arbitrage opportunities, monitors token launches, and sends Telegram alerts.
 
-## Publisher: <br>
-[YouthAIAgent](https://clawhub.ai/user/YouthAIAgent) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-ISC <br>
+## Publisher:
 
+[youthaiagent](https://clawhub.ai/user/youthaiagent)
 
-## Use Case: <br>
-Developers and traders use this skill to configure and run Solana wallet monitoring, paper copy-trading simulations, arbitrage scans, token safety checks, and optional live execution from a dedicated wallet. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+ISC
 
-## Known Risks and Mitigations: <br>
-Risk: Live mode can automatically sign real Solana swaps using a raw private key. <br>
-Mitigation: Keep the skill in paper or watch mode unless the code has been audited, use only a dedicated low-balance wallet, and add explicit confirmations and transaction validation before live execution. <br>
-Risk: Telegram alerts may disclose wallet activity or trading intent. <br>
-Mitigation: Use a private bot and chat, avoid sending sensitive wallet or strategy details in alerts, and review alert content before enabling notifications. <br>
-Risk: Unpinned or unaudited dependencies can change trading behavior or introduce supply-chain risk. <br>
-Mitigation: Pin dependencies, review lockfiles and package sources, and scan dependencies before running the bot with any funded wallet. <br>
+## Use Case:
 
+External developers and crypto trading operators use this skill to set up a Solana copy-trading workflow that can watch a target wallet, run paper-trading simulations, scan arbitrage opportunities, and optionally execute live swaps after operator review.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/YouthAIAgent/solana-copy-trader) <br>
-- [API Setup](references/api-setup.md) <br>
-- [Trading Concepts](references/trading-concepts.md) <br>
-- [Helius Developer Portal](https://dev.helius.xyz) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include wallet-monitoring, copy-trading, paper-trading, arbitrage scanning, and safety-check instructions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence.release.version and artifact/scripts/package.json) <br>
+Risk: The live-trading path handles private keys and transaction signing, which can put funds at risk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use watch-only or paper mode by default; if live mode is enabled, use only a dedicated low-balance burner wallet.
+
+Risk: Automated crypto trading can execute losing or unintended trades when routing, price impact, liquidity, or token safety checks are wrong or incomplete.
+
+Mitigation: Keep strict per-trade and open-position limits, validate transactions before signing, and add tested live exit controls before using real funds.
+
+Risk: External API, RPC, and alerting dependencies can fail, rate-limit, or return stale data.
+
+Mitigation: Monitor failures, test behavior in paper mode, and require operator review before relying on alerts or live execution.
+
+## Reference(s):
+
+- [API setup](references/api-setup.md)
+- [Trading concepts](references/trading-concepts.md)
+- [ClawHub skill page](https://clawhub.ai/youthaiagent/skills/solana-copy-trader)
+- [Publisher profile](https://clawhub.ai/user/youthaiagent)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, JavaScript source artifacts, environment-variable configuration, console logs, Telegram alert text, and JSON-like analysis reports.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Normal operation depends on external Solana, Helius, Jupiter, Pump.fun, CoinGecko, and Telegram services configured by the operator.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata and scripts/package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

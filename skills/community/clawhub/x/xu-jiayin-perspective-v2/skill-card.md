@@ -1,43 +1,53 @@
-## Description: <br>
-Provides a Xu Jiayin and Evergrande-style cautionary business analysis lens for studying high leverage expansion, diversification, speed culture, capital operations, crisis response, and related risk signals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Chinese-language business-case persona for analyzing Xu Jiayin and Evergrande's high-leverage expansion, diversification, crisis management, and risk lessons as a cautionary example.
 
-## Publisher: <br>
-[xiejianjun000](https://clawhub.ai/user/xiejianjun000) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiejianjun000](https://clawhub.ai/user/xiejianjun000)
 
-## Use Case: <br>
-External users and business analysts use this skill to examine aggressive expansion, leverage, diversification, and crisis-management patterns as a cautionary case study. It is intended for strategic analysis and risk reflection, not financial, legal, debt, or corporate decision-making advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may over-rely on the persona for real financial, legal, debt, or corporate decisions. <br>
-Mitigation: Use the output only as a cautionary analysis lens and require qualified human review before making business, legal, or financial decisions. <br>
-Risk: Broad trigger phrases around leverage, scale, or diversification may activate the persona during ordinary business discussions. <br>
-Mitigation: Narrow activation phrases or require explicit requests such as 'use Xu Jiayin perspective' before applying the persona. <br>
-Risk: The artifact presents a high-risk business pattern that could be misunderstood as recommended behavior. <br>
-Mitigation: Preserve the skill's warnings that it is a negative case study and should not be used to justify high leverage or aggressive expansion. <br>
+## Use Case:
 
+External users and business analysts use this skill to generate cautionary strategic analysis of high leverage, rapid expansion, diversification, and crisis-response patterns through a Xu Jiayin/Evergrande case-study perspective.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/xiejianjun000/xu-jiayin-perspective-v2) <br>
-- [Publisher Profile](https://clawhub.ai/user/xiejianjun000) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, analysis, guidance] <br>
-**Output Format:** [Markdown prose with risk warnings and structured business-analysis framing] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only persona output; no shell commands, code execution, persistence, credential access, or data movement.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence) <br>
+Risk: The persona may present aggressive high-leverage or rapid-expansion reasoning in first person.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the cautionary framing and risk warnings in responses, and treat outputs as historical risk analysis rather than operational advice.
+
+Risk: Generic business terms such as high leverage or diversification may trigger the skill unexpectedly.
+
+Mitigation: Use explicit activation phrasing and review responses for fit before relying on the analysis.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/xiejianjun000/skills/xu-jiayin-perspective-v2)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown-formatted Chinese text with persona framing and risk warnings]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code, persistence, credential use, or data access is indicated by evidence.security.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,53 @@
-## Description: <br>
-A hands-on learning companion and project tool for OpenClaw and agentic AI development. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Learning-Forge is a hands-on learning companion and project tool for OpenClaw and agentic AI development.
 
-## Publisher: <br>
-[angeldevagent-coder](https://clawhub.ai/user/angeldevagent-coder) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[angeldevagent-coder](https://clawhub.ai/user/angeldevagent-coder)
 
-## Use Case: <br>
-Developers, learners, and agent builders use this skill to learn OpenClaw and agentic AI concepts, scaffold projects, debug code, generate practice material, and maintain lightweight project notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad activation triggers may cause the skill to influence more learning, project, or debugging requests than expected. <br>
-Mitigation: Review when the skill activates and keep it disabled for sessions where its teaching or project-companion behavior is not desired. <br>
-Risk: Local persistence can save notes, snippets, glossary terms, journal entries, and progress that may include sensitive project or personal information. <br>
-Mitigation: Review the documented storage paths before use, avoid confidential inputs, and disable or clear tracking when persistence is not wanted. <br>
+## Use Case:
 
+Developers and learners use this skill to learn OpenClaw and agentic AI concepts, scaffold small projects, review code, debug issues, and build reusable skill-related materials.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/angeldevagent-coder/learning-forge) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/angeldevagent-coder) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with code, configuration, and shell snippets when useful] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May save optional notes, snippets, glossary terms, journal entries, and progress to local OpenClaw workspace memory files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill may persist learning memory, snippets, glossary entries, and project journal data locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid saving secrets, credentials, proprietary code, or unreviewed prompt text in learning memory files.
+
+Risk: The skill describes workflows that can modify installed skill instructions.
+
+Mitigation: Review any proposed SKILL.md changes before allowing the agent to write them.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/angeldevagent-coder/skills/learning-forge)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline code blocks and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce snippets, templates, project notes, learning exercises, and proposed skill edits.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

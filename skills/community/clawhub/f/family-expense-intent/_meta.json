@@ -1,6 +1,17 @@
 {
-  "ownerId": "kn76a9pvwt1j665a9bp643ksk9829k65",
   "slug": "family-expense-intent",
   "version": "4.0.0",
-  "publishedAt": 1772605802707
+  "name": "家庭消费意图识别 V4",
+  "description": "智能家庭财务管理：消费、收入、储蓄目标、订阅、洞察、趋势分析、比价",
+  "author": "OpenClaw",
+  "homepage": "https://github.com/openclaw/skills",
+  "tags": ["消费", "理财", "家庭", "预算", "意图识别", "收入", "储蓄", "比价"],
+  "metadata": {
+    "clawdbot": {
+      "emoji": "💰",
+      "requires": {
+        "bins": ["python3"]
+      }
+    }
+  }
 }

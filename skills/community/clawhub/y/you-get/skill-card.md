@@ -1,43 +1,65 @@
-## Description: <br>
-You Get helps agents guide users through downloading videos, audio, and images from supported websites with the you-get CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A web media download assistant that helps agents use you-get to inspect and download videos, audio, images, subtitles, and metadata from supported websites.
 
-## Publisher: <br>
-[cn-big-cabbage](https://clawhub.ai/user/cn-big-cabbage) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cn-big-cabbage](https://clawhub.ai/user/cn-big-cabbage)
 
-## Use Case: <br>
-External users and developers use this skill to install you-get, inspect available media formats, choose download options, and troubleshoot media downloads from supported websites. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security evidence flags broad command authority for downloads, package management, cookies, proxies, sudo, and firewall-related workflows. <br>
-Mitigation: Review every command, URL, install source, and output path before execution; reject unexpected sudo, firewall-disabling, or system-changing actions. <br>
-Risk: Cookie files and proxy settings can expose account access or route traffic through untrusted infrastructure. <br>
-Mitigation: Do not paste raw cookies into chat, do not grant automatic browser cookie database access, and avoid untrusted proxies. <br>
+## Use Case:
 
+External users and developers use this skill to guide an agent through installing you-get, checking available media formats, selecting download options, and troubleshooting common download failures.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/cn-big-cabbage/you-get) <br>
-- [you-get GitHub Repository](https://github.com/soimort/you-get) <br>
-- [you-get Website](https://you-get.org/) <br>
-- [you-get Wiki](https://github.com/soimort/you-get/wiki) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose media download, package installation, proxy, cookie, and file-output commands for user review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Browser cookie files can act like account credentials when used for authenticated media downloads.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Only provide exported cookies or browser cookie databases when the user understands the account-access implications, and prefer scoped, temporary cookie files.
+
+Risk: Unpinned or mutable install commands can install code that differs from the reviewed release.
+
+Mitigation: Use an isolated Python environment and prefer stable package releases over mutable develop-branch installs.
+
+Risk: Download commands can write media files to unexpected paths or overwrite existing files.
+
+Mitigation: Confirm the destination directory, filename, and overwrite behavior before running download commands.
+
+Risk: Troubleshooting guidance that disables a system firewall can reduce host protection.
+
+Mitigation: Do not run firewall-disable troubleshooting steps; use narrower network diagnostics or rule-specific changes instead.
+
+## Reference(s):
+
+- [you-get GitHub repository](https://github.com/soimort/you-get)
+- [you-get project website](https://you-get.org/)
+- [you-get documentation wiki](https://github.com/soimort/you-get/wiki)
+- [FFmpeg downloads](https://ffmpeg.org/download.html)
+- [ClawHub skill page](https://clawhub.ai/cn-big-cabbage/skills/you-get)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, markdown]
+
+**Output Format:** [Markdown guidance with inline shell commands and command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose local installation, media inspection, download, playback, proxy, cookie, batch download, and troubleshooting commands.]
+
+## Skill Version(s):
+
+0.1.2 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

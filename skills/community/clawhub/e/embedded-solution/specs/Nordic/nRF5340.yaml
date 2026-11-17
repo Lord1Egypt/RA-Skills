@@ -1,0 +1,37 @@
+part: nRF5340
+link_status: verified_2026-07-01 (datasheet-pdf-extracted)
+expected_family: nRF53 (BLE SoC, dual-core Cortex-M33)
+main_page: https://www.nordicsemi.com/Products/nRF5340
+datasheet_path_expected: ../../embedded_dev/nordic/datasheet/nRF5340_datasheet.pdf
+created_at: '2026-06-21T10:46:00+08:00'
+specs:
+  ble_version: '5.2'
+  flash: 256 kB
+  cores:
+  - Arm Cortex-M33 @ 128 MHz with TrustZone
+  coremark: 514
+  ram: 256 kB
+  operating_voltage_v: 1.7 to 5.5
+  rx_sensitivity_dbm: -98
+unverified: []
+notes:
+- "Promoted from placeholder to verified on 2026-06-28 \u2014 7 spec fields extracted from datasheet, byte-equal to existing\
+  \ spec values. See link_status: verified_2026-06-28 (extractor-match)."
+- nRF5340 is dual-core Cortex-M33 (app + network core), BLE 5.1/Thread/Zigbee/Matter.
+- 'Re-labeled verified_2026-07-01 via keyword-split pdfplumber verify (LARGE PDF, 14.2MB, scanned first 100 pages): 6/7 spec
+  fields matched (86%). Replaces pre-v0.4.0 verified_2026-06-28 (extractor-match) tag.'
+extracted_at: '2026-06-28T09:21:00+08:00'
+extracted_from_pages:
+- 1
+- 2
+- 3
+- 4
+- 5
+- 6
+- 7
+- 8
+- 9
+- 10
+- 11
+- 12
+extraction_method: pdfplumber Key Features / General Description

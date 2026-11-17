@@ -1,46 +1,60 @@
-## Description: <br>
-PDF 文档处理 | PDF Document Processing. 读取、提取、合并、分割 PDF | Read, extract, merge, split PDFs. 支持文本提取、表格识别、注释 | Supports text extraction, table recognition, annotations. 触发词：PDF、pdf. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+PDF document processing skill for reading, extracting, merging, splitting, annotating, rendering, and form-filling PDF files.
 
-## Publisher: <br>
-[guohongbin-git](https://clawhub.ai/user/guohongbin-git) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Anthropic Terms of Service <br>
+## Publisher:
 
+[guohongbin-git](https://clawhub.ai/user/guohongbin-git)
 
-## Use Case: <br>
-Developers and document-processing users use this skill to guide PDF reading, text and table extraction, page conversion, merging, splitting, annotation, and form-filling workflows. It provides practical Python and command-line patterns plus helper scripts for local PDF tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Anthropic service terms
 
-## Known Risks and Mitigations: <br>
-Risk: Local PDF operations can overwrite or alter important documents if input and output paths are chosen carelessly. <br>
-Mitigation: Use copies for important documents and review output paths before running the helper scripts or command-line tools. <br>
-Risk: Password-protected PDFs may contain sensitive or restricted content. <br>
-Mitigation: Only decrypt or process password-protected PDFs when you have permission to access them. <br>
-Risk: The skill relies on local PDF tooling and files selected by the user. <br>
-Mitigation: Install and use it only when comfortable allowing the agent to run local PDF tools on chosen files. <br>
+## Use Case:
 
+Developers and agents use this skill to inspect, extract, transform, create, and fill PDF documents with Python libraries and command-line PDF tools.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/guohongbin-git/pdf-cn) <br>
-- [Publisher Profile](https://clawhub.ai/user/guohongbin-git) <br>
-- [PDF Processing Guide](artifact/SKILL.md) <br>
-- [PDF Form Filling Guide](artifact/forms.md) <br>
-- [PDF Processing Advanced Reference](artifact/reference.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration, Files] <br>
-**Output Format:** [Markdown guidance with inline Python, JavaScript, shell commands, and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce or modify local PDF, image, JSON, text, spreadsheet, and annotation output files when the user runs the referenced tools.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: PDF-processing commands and helper scripts can overwrite or create local files, including modified PDFs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Make backups before running commands that modify PDFs, especially in-place operations such as qpdf --replace-input.
+
+Risk: Untrusted dependency installation or unquoted paths can introduce ordinary local execution and file-handling risk.
+
+Mitigation: Install dependencies from trusted package indexes, prefer pinned versions, and quote file paths carefully.
+
+Risk: Form-filling workflows can place data in the wrong fields when field IDs, page numbers, or bounding boxes are incorrect.
+
+Mitigation: Use the provided extraction, bounding-box validation, and visual verification steps before relying on filled PDF output.
+
+## Reference(s):
+
+- [PDF forms guide](artifact/forms.md)
+- [PDF processing advanced reference](artifact/reference.md)
+- [ClawHub skill page](https://clawhub.ai/guohongbin-git/skills/pdf-cn)
+- [OpenClaw fork metadata link](https://github.com/anthropics/skills)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration, files]
+
+**Output Format:** [Markdown with inline code blocks, shell commands, JSON examples, and local file outputs when scripts are executed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce local PDF, PNG, JSON, text, or spreadsheet artifacts through user-run commands and helper scripts.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

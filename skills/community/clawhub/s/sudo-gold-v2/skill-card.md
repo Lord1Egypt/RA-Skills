@@ -1,46 +1,59 @@
-## Description: <br>
-Sudo Gold helps agents retrieve Tavily-backed gold market information and produce concise reports covering price, technical indicators, fundamentals, and risk caveats. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Sudo Gold helps agents retrieve gold market information and prepare price, technical, fundamental, and risk analysis reports.
 
-## Publisher: <br>
-[FMouseBoy](https://clawhub.ai/user/FMouseBoy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fmouseboy](https://clawhub.ai/user/fmouseboy)
 
-## Use Case: <br>
-External users and agents use this skill to gather current gold-market search results and summarize price action, technical signals, fundamentals, and investment-risk reminders. It is intended as market-analysis support, not personalized financial advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Gold-related search terms are sent to Tavily under the user's API key. <br>
-Mitigation: Use a monitored Tavily key and avoid entering private holdings, account details, or other sensitive financial information. <br>
-Risk: The skill produces market-analysis summaries that could be mistaken for personalized financial advice. <br>
-Mitigation: Treat outputs as informational support only and apply independent financial review before making investment decisions. <br>
-Risk: The skill includes a JD Finance promotional link unrelated to the core gold-analysis workflow. <br>
-Mitigation: Treat the link as optional advertising and review it separately before following it. <br>
+## Use Case:
 
+External users and agents use this skill to gather current gold price, news, technical-indicator, and macro/fundamental signals and turn them into a concise market analysis report.
 
-## Reference(s): <br>
-- [Sudo Gold ClawHub page](https://clawhub.ai/FMouseBoy/sudo-gold-v2) <br>
-- [Publisher profile](https://clawhub.ai/user/FMouseBoy) <br>
-- [Gold technical indicators reference](references/technical-indicators.md) <br>
-- [Tavily Search API endpoint](https://api.tavily.com/search) <br>
-- [JD Finance promotional link](https://eco.jr.jd.com/common-growth-page/index.html?channel=clawhub) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown-style analysis report with sourced search summaries and risk reminders] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js and TAVILY_API_KEY; sends gold-related search terms to Tavily.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Gold-market queries and the Tavily API key may be sent to an external search provider.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Disclose Tavily use before installation, require a user-controlled TAVILY_API_KEY, avoid sensitive queries, and rotate or revoke the key if exposure is suspected.
+
+Risk: Generated gold analysis may be incomplete, stale, or mistaken and could be confused with investment advice.
+
+Mitigation: Present outputs as informational analysis only, keep the risk disclaimer, review source results, and require users to make independent financial decisions.
+
+Risk: The artifact includes an unrelated JD Finance promotional link that does not support the core analysis workflow.
+
+Mitigation: Remove the promotional link or clearly treat it as advertising during release review.
+
+## Reference(s):
+
+- [Technical Indicators Reference](references/technical-indicators.md)
+- [Sudo Gold ClawHub Release](https://clawhub.ai/fmouseboy/skills/sudo-gold-v2)
+- [Tavily Search API Endpoint](https://api.tavily.com/search)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown-style analysis report with source listings and plain-text shell output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js and TAVILY_API_KEY; live search results depend on Tavily responses.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and user changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

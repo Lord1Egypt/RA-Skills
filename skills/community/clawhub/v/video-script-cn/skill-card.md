@@ -1,44 +1,58 @@
-## Description: <br>
-Chinese short-video script writing assistant for Douyin, Xiaohongshu, Bilibili, and Kuaishou that generates scripts, hooks, topic ideas, optimization advice, and long-content cuts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Chinese short-video scripts, hooks, topic ideas, optimization feedback, and platform-adapted drafts for Douyin, Xiaohongshu, Bilibili, and Kuaishou.
 
-## Publisher: <br>
-[caingao](https://clawhub.ai/user/caingao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[caingao](https://clawhub.ai/user/caingao)
 
-## Use Case: <br>
-External content creators and marketing teams use this skill to draft Chinese short-video scripts, hooks, shooting notes, BGM suggestions, and platform-specific adaptations for Douyin, Xiaohongshu, Bilibili, and Kuaishou. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate on broad script, recommendation, tutorial, or content-writing requests. <br>
-Mitigation: Use explicit video-script, target-platform, topic, and duration context when invoking it. <br>
-Risk: Generated scripts and platform advice may be unsuitable for a specific brand, audience, or publishing policy. <br>
-Mitigation: Review and edit scripts, hooks, CTAs, and platform recommendations before publication. <br>
+## Use Case:
 
+External creators and content teams use this skill to draft Chinese short-video scripts, opening hooks, topic ideas, script rewrites, and long-form content slices for major Chinese video platforms.
 
-## Reference(s): <br>
-- [Video Script Writer on ClawHub](https://clawhub.ai/caingao/video-script-cn) <br>
-- [README](README.md) <br>
-- [Script Templates](script-templates.md) <br>
-- [Platform Rules](platform-rules.md) <br>
-- [Test Cases](test-cases.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown scripts with structured sections, timing notes, subtitles, shooting tips, CTA, and BGM suggestions.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are primarily Chinese and may vary by requested platform, duration, and video type.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and OpenClaw metadata) <br>
+Risk: The skill strongly defaults to Chinese short-video outputs and may not fit multilingual or non-video writing requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it when Chinese short-video scripting is intended, and choose a narrower writing skill for multilingual, long-form, or non-video content.
+
+Risk: Broad script-writing trigger terms may activate the skill for some general writing requests.
+
+Mitigation: Confirm the user wants short-video script assistance for the supported platforms before applying platform-specific templates.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/caingao/skills/video-script-cn)
+- [README](artifact/README.md)
+- [Skill Definition](artifact/SKILL.md)
+- [Script Templates](artifact/script-templates.md)
+- [Platform Rules](artifact/platform-rules.md)
+- [Test Cases](artifact/test-cases.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown prose with structured script sections, timing notes, subtitles, BGM suggestions, and shooting tips.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-first output tailored by platform, duration, and video type.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and OpenClaw metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

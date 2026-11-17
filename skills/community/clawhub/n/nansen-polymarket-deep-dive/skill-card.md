@@ -1,39 +1,54 @@
-## Description: <br>
-Deep dive on a Polymarket market: OHLCV, orderbook, top holders, positions, trades, and PnL leaderboard for a specific prediction market. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deep dive on a Polymarket market — OHLCV, orderbook, top holders, positions, trades, and PnL leaderboard. Use when analysing a specific prediction market.
 
-## Publisher: <br>
-[nansen-devops](https://clawhub.ai/user/nansen-devops) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nansen-devops](https://clawhub.ai/user/nansen-devops)
 
-## Use Case: <br>
-Developers, analysts, and agents use this skill to investigate a specific Polymarket prediction market by retrieving market history, orderbook depth, holder positions, trades, and PnL data through the Nansen CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Use of the Nansen CLI requires trusting the installed nansen-cli package and protecting a Nansen API key. <br>
-Mitigation: Use a dedicated or least-privileged NANSEN_API_KEY, avoid exposing it in logs, and keep usage focused on the documented nansen research pm commands. <br>
+## Use Case:
 
+Analysts use this skill to examine a specific Polymarket market through its price and volume history, order book, holders, positions, trades, and profit-and-loss leaderboard.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nansen-devops/nansen-polymarket-deep-dive) <br>
-- [Publisher profile](https://clawhub.ai/user/nansen-devops) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Analysis, API Calls, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands and tabular CLI output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires NANSEN_API_KEY and the nansen CLI; commands are scoped to nansen research pm market analysis.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: Research calls can trigger x402 payments from the configured wallet, and each call in a loop may incur a payment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only an explicitly authorized wallet with an appropriate payment policy and spending limits; account for costs before running calls or loops.
+
+Risk: A selected API key or browser session may be invalid or unable to renew, blocking authenticated research.
+
+Mitigation: Check `nansen auth status` before research and stop after an authentication or renewal failure; do not switch to anonymous access to retry.
+
+## Reference(s):
+
+- [Nansen Polymarket Deep Dive on ClawHub](https://clawhub.ai/nansen-devops/skills/nansen-polymarket-deep-dive)
+- [Nansen CLI browser login platform scope](https://github.com/nansen-ai/nansen-cli/blob/main/docs/browser-login.md#preview-platform-scope)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Shell commands, Guidance]
+
+**Output Format:** [Markdown with shell command examples and market data summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Market research uses a numeric market ID and requires a selected API key or saved browser session.]
+
+## Skill Version(s):
+
+0.1.3 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

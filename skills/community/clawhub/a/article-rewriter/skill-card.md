@@ -1,41 +1,58 @@
-## Description: <br>
-Rewrite and restructure articles, newsletters, threads, scripts, landing pages, and rough notes into clearer, more engaging, more persuasive writing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Rewrite and restructure articles, newsletters, threads, scripts, landing pages, and rough notes into clearer, more engaging, more persuasive writing using the APAG framework.
 
-## Publisher: <br>
-[liujuntao123](https://clawhub.ai/user/liujuntao123) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liujuntao123](https://clawhub.ai/user/liujuntao123)
 
-## Use Case: <br>
-Writers, editors, marketers, and content teams use this skill to turn drafts, notes, newsletters, posts, scripts, and landing-page copy into clearer and more persuasive pieces while preserving the source facts and intent. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A rewrite can accidentally introduce factual errors, overstated claims, or invented evidence. <br>
-Mitigation: Review the final text against the source material and remove any unsupported facts, testimonials, research, metrics, or outcomes before publication. <br>
-Risk: Persuasive framing can shift the tone beyond what is appropriate for the intended audience. <br>
-Mitigation: Check tone, claims, and calls to action against the audience and publishing context before using the rewrite externally. <br>
+## Use Case:
 
+Employees, external users, and content teams use this skill to rewrite drafts, notes, articles, newsletters, scripts, threads, and landing pages into clearer and more persuasive pieces while preserving the author's core facts and intent.
 
-## Reference(s): <br>
-- [APAG Playbook](references/apag-playbook.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/liujuntao123/article-rewriter) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown text with headline or hook options, rewritten content, and optional rewrite notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Defaults to three headline or hook options plus the rewritten piece unless the user asks for a different structure.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may make rewritten content sound more persuasive than the source evidence supports.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep claims proportional to the supplied material and avoid fabricating facts, testimonials, research, metrics, or outcomes.
+
+Risk: The rewrite may alter the author's intended viewpoint or over-restructure a light polish request.
+
+Mitigation: Preserve the author's thesis and non-negotiable facts, and apply the APAG framework lightly when the user asks only for polishing.
+
+Risk: The inspected artifacts are text-only, but rewritten output can still introduce misleading content if reviewed casually.
+
+Mitigation: Review rewritten content for factual accuracy, source fidelity, and appropriate tone before publication.
+
+## Reference(s):
+
+- [APAG Playbook](references/apag-playbook.md)
+- [ClawHub skill page](https://clawhub.ai/liujuntao123/skills/article-rewriter)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with headline or hook options, rewritten content, and optional rewrite notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Defaults to three headline or hook options plus the rewritten piece unless the user requests a different format.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,189 +1,189 @@
 # Wine — Spain
 
-## Regiones Principales
+## Main Regions
 
 ### La Rioja
 
-**El clásico.** Tinto tempranillo envejecido en roble.
+**The classic.** Red tempranillo aged in oak.
 
-| Tipo | Envejecimiento | Perfil |
+| Type | Aging | Profile |
 |------|----------------|--------|
-| Joven | Sin barrica | Afrutado, fresco |
-| Crianza | 2 años (1 en barrica) | Equilibrado |
-| Reserva | 3 años (1 en barrica) | Complejo |
-| Gran Reserva | 5 años (2 en barrica) | Premium |
+| Joven | No barrel | Fruity, fresh |
+| Crianza | 2 years (1 in barrel) | Balanced |
+| Reserva | 3 years (1 in barrel) | Complex |
+| Gran Reserva | 5 years (2 in barrel) | Premium |
 
-**Bodegas visitables:**
+**Wineries you can visit:**
 
-| Bodega | Pueblo | Nota |
+| Winery | Town | Note |
 |--------|--------|------|
-| Marqués de Riscal | Elciego | Edificio Gehry, hotel lujo |
-| Ysios | Laguardia | Arquitectura Calatrava |
-| López de Heredia | Haro | Histórica, tradicional |
-| Muga | Haro | Familiar, calidad |
-| CVNE | Haro | Antigua, impresionante |
-| Vivanco | Briones | Museo del vino |
+| Marqués de Riscal | Elciego | Gehry building, luxury hotel |
+| Ysios | Laguardia | Calatrava architecture |
+| López de Heredia | Haro | Historic, traditional |
+| Muga | Haro | Family-run, quality |
+| CVNE | Haro | Old, impressive |
+| Vivanco | Briones | Wine museum |
 
-**Pueblos:** Haro (capital), Laguardia (amurallado), Elciego, Briones.
+**Towns:** Haro (capital), Laguardia (walled), Elciego, Briones.
 
 ### Ribera del Duero
 
-**Tintos potentes.** Tempranillo (aquí llamado Tinto Fino).
+**Powerful reds.** Tempranillo (here called Tinto Fino).
 
-| Bodega | Nota |
+| Winery | Note |
 |--------|------|
-| Vega Sicilia | Mítica, difícil visitar |
-| Protos | Edificio Rogers, accesible |
-| Arzuaga | Con hotel |
-| Emilio Moro | Familiar |
-| Pesquera | Clásica |
+| Vega Sicilia | Legendary, hard to visit |
+| Protos | Rogers building, accessible |
+| Arzuaga | With a hotel |
+| Emilio Moro | Family-run |
+| Pesquera | Classic |
 
-**Zona:** Más austera que Rioja. Pueblos pequeños. Mejor en coche.
+**Area:** More austere than Rioja. Small villages. Best by car.
 
 ### Priorat
 
-**Tintos intensos.** Garnacha y cariñena en suelo pizarra.
+**Intense reds.** Grenache and carignan on slate soil.
 
-| Bodega | Nota |
+| Winery | Note |
 |--------|------|
-| Scala Dei | Histórica |
-| Clos Mogador | Referencia |
-| Celler de l'Encastell | Paisajes |
+| Scala Dei | Historic |
+| Clos Mogador | Benchmark |
+| Celler de l'Encastell | Landscapes |
 
-**Zona:** Montañosa, espectacular. Cerca de Tarragona. Vinos caros.
+**Area:** Mountainous, spectacular. Near Tarragona. Expensive wines.
 
 ### Rías Baixas
 
-**Blancos albariño.** Con marisco perfecto.
+**Albariño whites.** Perfect with seafood.
 
-| Bodega | Nota |
+| Winery | Note |
 |--------|------|
-| Pazo de Señoráns | Clásica |
-| Martín Códax | Accesible, tours |
-| Mar de Frades | Botella azul icónica |
+| Pazo de Señoráns | Classic |
+| Martín Códax | Accessible, tours |
+| Mar de Frades | Iconic blue bottle |
 
-**Zona:** Galicia. Combinar con marisco en O Grove, Cambados.
+**Area:** Galicia. Pair with seafood in O Grove, Cambados.
 
 ### Jerez
 
-**Vinos fortificados.** Fino, manzanilla, oloroso, PX.
+**Fortified wines.** Fino, manzanilla, oloroso, PX.
 
-| Bodega | Nota |
+| Winery | Note |
 |--------|------|
-| González Byass (Tío Pepe) | Más famosa, ratones |
-| Lustau | Calidad, completa |
-| Sandeman | Tours buenos |
-| Barbadillo | Manzanilla en Sanlúcar |
+| González Byass (Tío Pepe) | Most famous, mice |
+| Lustau | Quality, complete |
+| Sandeman | Good tours |
+| Barbadillo | Manzanilla in Sanlúcar |
 
-**Tipos:**
-- **Fino:** Seco, aperitivo, frío
-- **Manzanilla:** Fino de Sanlúcar, salino
-- **Amontillado:** Oxidado, medio
-- **Oloroso:** Más oxidado, con comida
-- **PX:** Dulce, postre
+**Types:**
+- **Fino:** Dry, aperitif, cold
+- **Manzanilla:** Fino from Sanlúcar, saline
+- **Amontillado:** Oxidized, medium
+- **Oloroso:** More oxidized, with food
+- **PX:** Sweet, dessert
 
 ### Penedès (Cava)
 
-**Espumoso método tradicional.**
+**Traditional-method sparkling.**
 
-| Bodega | Nota |
+| Winery | Note |
 |--------|------|
-| Codorníu | Edificio modernista |
-| Freixenet | Trenecito por cavas |
+| Codorníu | Modernista building |
+| Freixenet | Little train through the cellars |
 | Gramona | Premium |
-| Recaredo | Ecológico |
+| Recaredo | Organic |
 
-**Zona:** Sant Sadurní d'Anoia, 45min de Barcelona.
+**Area:** Sant Sadurní d'Anoia, 45min from Barcelona.
 
 ### Rueda
 
-**Blancos verdejo.** Frescos, buena relación calidad-precio.
+**Verdejo whites.** Fresh, good value.
 
 ### Toro
 
-**Tintos potentes.** Tinta de Toro (tempranillo local).
+**Powerful reds.** Tinta de Toro (local tempranillo).
 
 ### Somontano
 
-**Variedad.** Cerca de Pirineos. Blancos y tintos.
+**Variety.** Near the Pyrenees. Whites and reds.
 
 ### Jumilla/Yecla
 
-**Monastrell.** Tintos económicos y potentes. Murcia.
+**Monastrell.** Cheap, powerful reds. Murcia.
 
-## Ruta del Vino Recomendada (5 días)
+## Recommended Wine Route (5 days)
 
-| Día | Zona | Bodegas | Dónde dormir |
+| Day | Area | Wineries | Where to sleep |
 |-----|------|---------|--------------|
 | 1 | Rioja Alavesa | Ysios, Marqués de Riscal | Laguardia |
 | 2 | Rioja Alta | Muga, López de Heredia | Haro |
 | 3 | Ribera del Duero | Protos, Arzuaga | Aranda de Duero |
-| 4 | Rueda | Bodega local | Valladolid |
-| 5 | Toro | Bodega local | Zamora o vuelta |
+| 4 | Rueda | Local winery | Valladolid |
+| 5 | Toro | Local winery | Zamora or return |
 
-## Visitas (Tips)
+## Visits (Tips)
 
-### Reservar
-**Siempre reservar.** Muchas bodegas no aceptan sin cita.
-- Web de la bodega
+### Booking
+**Always book.** Many wineries don't accept walk-ins.
+- Winery website
 - Email
-- Teléfono (español)
+- Phone (Spanish)
 
-### Horarios
-Típico: 10:00, 12:00, 16:00, 18:00.
-Domingos muchas cerradas o solo mañana.
+### Hours
+Typical: 10:00, 12:00, 16:00, 18:00.
+Sundays many closed or mornings only.
 
-### Qué incluye
-- Tour instalaciones: 30-60 min
-- Cata 2-3 vinos: incluida normalmente
-- Maridaje/comida: extra €€€
+### What's Included
+- Facility tour: 30-60 min
+- Tasting of 2-3 wines: usually included
+- Pairing/meal: extra €€€
 
-### Precios
-| Tipo | Precio |
+### Prices
+| Type | Price |
 |------|--------|
-| Tour básico + cata | €10-20 |
-| Tour premium | €25-50 |
-| Cata privada | €50-100 |
-| Comida maridaje | €60-150 |
+| Basic tour + tasting | €10-20 |
+| Premium tour | €25-50 |
+| Private tasting | €50-100 |
+| Pairing meal | €60-150 |
 
-### Conductor
-Si vas en coche, turnad o:
-- Escupir (se puede)
-- Conductor solo huele
-- Tour organizado
+### Driver
+If you go by car, take turns or:
+- Spit (it's allowed)
+- Driver just smells
+- Organized tour
 
-## Comprar Vino
+## Buying Wine
 
-### En Bodega
-**Ventaja:** Vinos exclusivos, buen precio.
-**Envío:** Muchas envían a casa.
+### At the Winery
+**Advantage:** Exclusive wines, good price.
+**Shipping:** Many ship to your home.
 
-### En Supermercado
-**Buenos:** Mercadona (sorprendentemente), El Corte Inglés (variedad).
-**Buscar:** Crianza Rioja €5-8 es calidad decente.
+### At the Supermarket
+**Good:** Mercadona (surprisingly), El Corte Inglés (variety).
+**Look for:** A Rioja Crianza €5-8 is decent quality.
 
-### Especializado
-| Tienda | Dónde |
+### Specialist
+| Shop | Where |
 |--------|-------|
 | Lavinia | Madrid, Barcelona |
 | Vila Viniteca | Barcelona |
 
-## Maridajes Básicos
+## Basic Pairings
 
-| Vino | Con qué |
+| Wine | With what |
 |------|---------|
-| Albariño | Mariscos, pescado |
-| Verdejo | Tapas, queso fresco |
-| Fino/Manzanilla | Jamón, aceitunas, almendras |
-| Rioja joven | Tapas, embutidos |
-| Rioja crianza | Carnes rojas, cordero |
-| Ribera del Duero | Lechazo, chuletón |
-| Cava | Aperitivo, marisco |
-| PX | Postres, queso azul |
+| Albariño | Shellfish, fish |
+| Verdejo | Tapas, fresh cheese |
+| Fino/Manzanilla | Ham, olives, almonds |
+| Young Rioja | Tapas, cured meats |
+| Rioja Crianza | Red meats, lamb |
+| Ribera del Duero | Roast lamb, rib steak |
+| Cava | Aperitif, seafood |
+| PX | Desserts, blue cheese |
 
-## Vocabulario
+## Vocabulary
 
-| Español | Significado |
+| Spanish | Meaning |
 |---------|-------------|
 | Bodega | Winery |
 | Vendimia | Harvest |
@@ -198,11 +198,11 @@ Si vas en coche, turnad o:
 | Seco | Dry |
 | Dulce | Sweet |
 
-## Mejor Época
+## Best Season
 
-| Época | Experiencia |
+| Season | Experience |
 |-------|-------------|
-| Septiembre-octubre | Vendimia (algunas bodegas dejan participar) |
-| Primavera | Viñas verdes, buen tiempo |
-| Invierno | Menos turistas, algunas cerradas |
-| Verano | Calor en Ribera/Rioja, mejor norte |
+| September-October | Harvest (some wineries let you take part) |
+| Spring | Green vines, good weather |
+| Winter | Fewer tourists, some closed |
+| Summer | Hot in Ribera/Rioja, north is better |

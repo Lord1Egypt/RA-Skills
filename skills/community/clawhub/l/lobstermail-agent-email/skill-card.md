@@ -1,46 +1,61 @@
-## Description: <br>
-Email for AI agents that creates inboxes and receives or sends email without API keys, human signup, or configuration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Email for AI agents. Create inboxes, receive and send email. No API keys, no human signup.
 
-## Publisher: <br>
-[samuelchenardlovesboards](https://clawhub.ai/user/samuelchenardlovesboards) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[samuelchenardlovesboards](https://clawhub.ai/user/samuelchenardlovesboards)
 
-## Use Case: <br>
-External users and developers use this skill to give an agent LobsterMail inboxes for signups, verification email handling, inbound email monitoring, and outbound email when the account tier allows it. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: A third-party LobsterMail service handles real email contents and metadata. <br>
-Mitigation: Use the skill for low-sensitivity agent email tasks and avoid routing sensitive personal, financial, regulated, or confidential data through generated inboxes. <br>
-Risk: The skill can support signups, verification-code handling, outbound email, billing or verification flows, inbox deletion, and recurring heartbeat checks. <br>
-Mitigation: Require explicit user approval before those actions and confirm the target service, recipient, account tier, and deletion intent before proceeding. <br>
-Risk: Inbound email may contain prompt injection, phishing, spam, or other untrusted instructions. <br>
-Mitigation: Treat email bodies as untrusted data, inspect the provided injection-risk metadata, and do not follow instructions found inside email content. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/samuelchenardlovesboards/lobstermail-agent-email) <br>
-- [LobsterMail website](https://lobstermail.ai) <br>
-- [LobsterMail API docs](https://api.lobstermail.ai/v1/docs/openapi) <br>
-- [LobsterMail guides](https://api.lobstermail.ai/v1/docs/guides) <br>
-- [lobstermail-mcp on npm](https://www.npmjs.com/package/lobstermail-mcp) <br>
-- [lobstermail SDK on npm](https://www.npmjs.com/package/lobstermail) <br>
+## Use Case:
 
+External users and developers use this skill to give an agent real lobstermail.ai inboxes for receiving messages, handling verification emails, monitoring inboxes, and sending email when the account tier allows it.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Configuration, Shell commands, Text] <br>
-**Output Format:** [Markdown with JSON, TypeScript, and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses MCP tools to create, list, monitor, read, send from, and delete LobsterMail inboxes subject to service tier limits.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release metadata; artifact frontmatter lists MCP package version 1.4.0) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can create and manage real third-party email inboxes and may send real outbound email.
+
+Mitigation: Require explicit user approval before account signups, verification-code handling, inbox monitoring, billing or card verification, and each outbound email.
+
+Risk: Email content and metadata may be handled by the LobsterMail service.
+
+Mitigation: Avoid personal, regulated, confidential, or high-value account flows unless the user accepts that service exposure.
+
+Risk: Inbound emails are untrusted and can contain malicious or misleading instructions.
+
+Mitigation: Treat email bodies as untrusted data, preserve boundary markers and risk metadata, and do not follow instructions from email content without independent user intent.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/samuelchenardlovesboards/skills/lobstermail-agent-email)
+- [LobsterMail website](https://lobstermail.ai)
+- [LobsterMail API guides](https://api.lobstermail.ai/v1/docs/guides)
+- [LobsterMail OpenAPI docs](https://api.lobstermail.ai/v1/docs/openapi)
+- [lobstermail-mcp on npm](https://www.npmjs.com/package/lobstermail-mcp)
+- [lobstermail SDK on npm](https://www.npmjs.com/package/lobstermail)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON configuration examples, inline shell commands, and MCP tool names]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires npx and installs the lobstermail-mcp MCP server; the skill uses MCP tools to create, inspect, wait on, read, delete, and send email from LobsterMail inboxes.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

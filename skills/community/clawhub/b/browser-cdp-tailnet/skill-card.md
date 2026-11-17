@@ -1,40 +1,53 @@
-## Description: <br>
-Uses a shared Chromium browser exposed over a tailnet Chrome DevTools Protocol endpoint for remote browser sessions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connects an agent to a detached shared Chromium browser exposed through a tailnet Chrome DevTools Protocol endpoint.
 
-## Publisher: <br>
-[lotfinity](https://clawhub.ai/user/lotfinity) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lotfinity](https://clawhub.ai/user/lotfinity)
 
-## Use Case: <br>
-Developers and agents use this skill when they need a shared remote Chromium session over a tailnet instead of a local browser. It provides connection guidance and checks for using the remote CDP target. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Agents receive broad control of a shared remote browser, which can expose pages, sessions, or browser state to others who can access the tailnet endpoint. <br>
-Mitigation: Connect only to trusted tailnet endpoints and use a dedicated non-sensitive browser profile for agent activity. <br>
-Risk: Actions performed through the shared browser can submit forms, change account data, or use authenticated sessions. <br>
-Mitigation: Require explicit user approval before submitting forms, changing account data, or using authenticated sessions. <br>
+## Use Case:
 
+Developers and agents use this skill when they need to connect to a shared remote Chromium browser over a tailnet CDP endpoint instead of launching a local browser.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/lotfinity/browser-cdp-tailnet) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown instructions with inline endpoint and command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes CDP HTTP and WebSocket endpoint guidance plus a probe requirement before claiming the browser works.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: A shared persistent Chromium session can expose sensitive browser state across users or tasks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only for intentional shared-browser workflows; avoid confidential browsing and personal or business accounts unless access is isolated and session data is cleared after use.
+
+Risk: Agents receive broad control over a remote browser reachable through the tailnet CDP endpoint.
+
+Mitigation: Limit use to trusted agents and users with approved tailnet access, and run a small probe before relying on the browser for a task.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/lotfinity/skills/browser-cdp-tailnet)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, configuration, code, shell commands]
+
+**Output Format:** [Markdown guidance with endpoint values and connection examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces browser connection guidance for an existing shared Chromium CDP endpoint; it does not create a new browser session.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

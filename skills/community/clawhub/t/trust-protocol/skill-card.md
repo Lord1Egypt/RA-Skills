@@ -1,45 +1,62 @@
-## Description: <br>
-Manage agent trust graphs with Bayesian scoring, domain-specific scores, revocation, forgetting curves, challenge-response verification, and a local dashboard. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage agent trust scores with Bayesian updates, domain-specific trust, revocation, forgetting curves, challenge-response verification, and a local dashboard.
 
-## Publisher: <br>
-[FELMONON](https://clawhub.ai/user/FELMONON) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[felmonon](https://clawhub.ai/user/felmonon)
 
-## Use Case: <br>
-Developers and agent operators use this skill to maintain local trust records for AI agents, update scores after interactions, verify identity through challenge-response flows, and inspect trust graphs before relying on another agent. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Unsafe shell command construction in the Moltbook integration can treat crafted usernames, domains, or post IDs as local shell commands. <br>
-Mitigation: Avoid untrusted Moltbook values until the helper uses subprocess argument lists and validates inputs. <br>
-Risk: The skillsign dependency is referenced without a pinned version. <br>
-Mitigation: Review and pin a trusted skillsign revision before using ATP in a sensitive workflow. <br>
-Risk: ATP stores trust history, interaction notes, challenge files, and Moltbook links persistently under ~/.atp. <br>
-Mitigation: Avoid recording secrets or sensitive personal data in notes, and protect or clean ~/.atp according to the environment's retention needs. <br>
-Risk: The dashboard serves local trust and interaction data on localhost:8420 when started. <br>
-Mitigation: Run the dashboard only on trusted machines and stop it when review is complete. <br>
+## Use Case:
 
+Developers and agent operators use this skill to maintain local trust graphs for agent identities, capabilities, interactions, and domain-specific reputation. It helps inspect trust status, record interactions, revoke or restore trust, and view trust data in a dashboard.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/FELMONON/trust-protocol) <br>
-- [skillsign identity integration](https://github.com/FELMONON/skillsign) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown instructions with CLI command examples and JSON or graph exports from local commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands may write local trust records, interactions, challenge files, and dashboard data under ~/.atp when run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release metadata; package.json reports 2.0.0) <br>
+Risk: Confirmed command-injection flaws in shell=True command construction can allow unsafe command execution.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not install or run until the publisher removes shell=True command construction or uses argument lists with validated inputs.
+
+Risk: The skillsign dependency is unpinned and can change behavior over time.
+
+Mitigation: Pin, vendor, or otherwise verify the skillsign dependency before use.
+
+Risk: The skill stores local trust and identity metadata under ~/.atp.
+
+Mitigation: Treat ~/.atp as sensitive agent trust data; restrict access and avoid sharing it.
+
+Risk: Moltbook identifiers may be accepted into trust mappings without adequate validation.
+
+Mitigation: Validate Moltbook identifiers before linking, scoring, or scanning users and posts.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/felmonon/skills/trust-protocol)
+- [skillsign integration](https://github.com/FELMONON/skillsign)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with CLI command examples and JSON trust graph data]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or read local ~/.atp trust, interaction, challenge, and Moltbook bridge files; dashboard commands expose local trust data through localhost JSON endpoints.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

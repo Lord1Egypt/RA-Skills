@@ -1,0 +1,8 @@
+{
+  "nodes": [
+    {"id": "n1", "level": 1, "title": "示例刊第一期", "start": 0, "end": 40},
+    {"id": "n2", "level": 2, "title": "卷首语", "start": 40, "end": 120},
+    {"id": "n3", "level": 2, "title": "观察", "start": 120, "end": 260}
+  ],
+  "count": 3
+}

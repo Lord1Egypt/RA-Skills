@@ -1,0 +1,9 @@
+{
+  "name": "agent-learn-external-skill",
+  "normalizedName": "agent-learn-external-skill",
+  "description": "向外部优秀技能包学习并补强自有能力的标准流程（Track A：只读吸收）。用于回答「怎么跟市场上同类技能学写法」「别人的包比我好在哪」「怎么补强自己的技能」这类问题。遵循真实参照法——以可核验的外部原文为唯一参照，逐项比对结构 / 触发词 / 元数据 / 交付物，产出差距清单与补强项；只读吸收、不安装、不冒名、不搬运原文。当用户说\"去市场学 XX 类\"\"吸收同类 skill 写法\"\"对标一下别人的包\"时调用。触发词：学习外部技能、吸收 skill 写法、对标同类包、技能补强、差距清单、skill benchmark、learn from external skill、只读吸收、能力补强。本技能为通用方法论工具，非医疗器械 / 非医疗软件，无疗效或临床声明；详见包内免责声明。",
+  "author": "诺学(Didaskalos)@SynomosAI",
+  "copyright": "SynomosAI",
+  "version": "1.0.0",
+  "license": "MIT"
+}

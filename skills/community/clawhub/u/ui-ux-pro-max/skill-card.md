@@ -1,39 +1,54 @@
-## Description: <br>
-UI/UX Pro Max provides UI/UX design intelligence and implementation guidance for polished interfaces, including layouts, UX flows, design-system tokens, component specs, accessibility guidance, and frontend code recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+UI/UX Pro Max provides design intelligence and implementation guidance for polished interfaces, including UI layouts, UX flows, design-system tokens, component specs, accessibility notes, and frontend code recommendations.
 
-## Publisher: <br>
-[xobi667](https://clawhub.ai/user/xobi667) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[xobi667](https://clawhub.ai/user/xobi667)
 
-## Use Case: <br>
-Developers, designers, and frontend agents use this skill to plan, critique, refine, and implement user interfaces across web and app stacks. It supports design concepts, UX flows, design-system guidance, accessibility checks, and concrete frontend implementation plans. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Optional generator behavior can write design-system Markdown files, and upstream examples include package-manager commands. <br>
-Mitigation: Review planned file writes and only run package-manager commands when they are explicitly needed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xobi667/ui-ux-pro-max) <br>
-- [Upstream README evidence](references/upstream-README.md) <br>
-- [Upstream skill content evidence](references/upstream-skill-content.md) <br>
+## Use Case:
 
+Developers, designers, and product teams use this skill to plan and refine interface structure, visual direction, design systems, accessibility states, and frontend implementation details for web and app experiences.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with optional code blocks and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May optionally produce local design-system Markdown files when the bundled generator is intentionally run.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Bundled scripts and documented workflows can write design-system files when persistence options are used.
+
+Mitigation: Run the skill in a scoped workspace and review the output directory, project name, and page name before allowing writes.
+
+Risk: The bundled documentation includes broad installation paths, including unpinned global CLI installation and all-assistant initialization.
+
+Mitigation: Prefer scoped or offline installation and use global CLI or all-assistant setup only after trusting the selected release.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xobi667/skills/ui-ux-pro-max)
+- [Bundled upstream README](artifact/references/upstream-README.md)
+- [Bundled upstream skill content](artifact/references/upstream-skill-content.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown prose with optional code blocks, shell commands, and generated design-system files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include UI concepts, UX flows, design tokens, component rules, accessibility notes, implementation plans, and optional persisted design-system files.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

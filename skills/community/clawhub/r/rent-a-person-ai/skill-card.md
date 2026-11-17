@@ -1,42 +1,62 @@
-## Description: <br>
-Hire verified humans for deliveries, errands, meetings, photography, pet care, and other real-world tasks that AI cannot perform. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connects an OpenClaw agent to RentAPerson so it can receive webhooks and use the RentAPerson API to coordinate human help for real-world tasks.
 
-## Publisher: <br>
-[saireetikap](https://clawhub.ai/user/saireetikap) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[saireetikap](https://clawhub.ai/user/saireetikap)
 
-## Use Case: <br>
-Agents and their operators use this skill to register with RentAPerson, create or manage bounties, process message and application webhooks, and communicate with humans for real-world tasks. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Bundled configuration and webhook flows can expose RentAPerson API keys or hook tokens in files or agent-visible messages. <br>
-Mitigation: Do not use bundled credential files; rotate any exposed API key or hook token, store secrets outside transcripts, and disable bridge or transform API-key injection when persistent environment secrets are available. <br>
-Risk: Webhook-like messages may be processed across weakened trust boundaries. <br>
-Mitigation: Require verified webhook authentication before processing events and reject messages that cannot be tied to the configured RentAPerson webhook path and bearer token. <br>
-Risk: The skill can trigger real-world work outcomes such as accepting applicants, scheduling work, completing bounties, or posting reviews. <br>
-Mitigation: Require human approval before accepting applicants, completing bounties, posting reviews, scheduling real-world work, or taking other consequential actions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/saireetikap/rent-a-person-ai) <br>
-- [RentAPerson skill and API documentation](https://rentaperson.ai/skill.md) <br>
+## Use Case:
 
+Developers and agent operators use this skill to connect an OpenClaw agent to RentAPerson for deliveries, errands, meetings, photography, pet care, and other tasks that require human action. With credentials configured, the agent can process messages and applications, send API replies, create calendar events, and update bounty status.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, API calls, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, curl examples, and JSON request bodies] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide authenticated API calls and webhook handling for real-world services.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.35 (source: release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The artifact contains powerful RentAPerson/OpenClaw credentials.
+
+Mitigation: Rotate exposed credentials, remove committed credential files, and store secrets in environment or protected configuration before use.
+
+Risk: API-key injection into webhook messages can expose secrets in prompts or transcripts.
+
+Mitigation: Disable prompt/transcript key injection when environment credentials are available and restrict access to any dedicated webhook session.
+
+Risk: The skill instructs agents to trust and act on external webhook text.
+
+Mitigation: Require verified webhook authentication and validate events before agent execution; avoid unsafe external content on public hooks.
+
+Risk: The skill can trigger real-world actions such as hiring, scheduling, and changing task status.
+
+Mitigation: Require explicit confirmation before hiring, scheduling, accepting applications, completing bounties, or making other material status changes.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/saireetikap/skills/rent-a-person-ai)
+- [RentAPerson Skill Documentation](https://rentaperson.ai/skill.md)
+- [OpenClaw Mapped Hooks Documentation](https://docs.openclaw.ai/automation/webhook#post-hooksname-mapped)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON bodies, shell commands, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May direct credentialed agents to make RentAPerson API requests and webhook-driven workflow decisions.]
+
+## Skill Version(s):
+
+1.0.35 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,38 +1,55 @@
-## Description: <br>
-Spaced repetition study tool with deck management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Spaced repetition study tool with deck management. Use when you need flashcard.
 
-## Publisher: <br>
-[bytesagain3](https://clawhub.ai/user/bytesagain3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain3](https://clawhub.ai/user/bytesagain3)
 
-## Use Case: <br>
-Learners, educators, and productivity-focused users use this skill to create, review, quiz, export, and track flashcards with spaced repetition. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [Flashcard on ClawHub](https://clawhub.ai/bytesagain3/flashcard) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+External users and developers use this skill to create, review, quiz, export, and plan flashcard-based study workflows with spaced repetition guidance.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown and plain text with optional shell command examples and export snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May save study notes and command history locally under the configured flashcard data directory.] <br>
+Global
 
-## Skill Version(s): <br>
-2.0.0 (source: server release evidence and frontmatter) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: The release advertises deck-managed flashcards, but the shipped scripts include broader study-helper commands and behavior.
+
+Mitigation: Review the available commands against the intended workflow before installing or exposing the skill to users.
+
+Risk: One script stores local notes and history in a flashcard data directory.
+
+Mitigation: Use an explicit local data directory and avoid entering sensitive study notes unless local retention is acceptable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bytesagain3/skills/flashcard)
+- [Publisher profile](https://clawhub.ai/user/bytesagain3)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline shell command examples and study templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include generated flashcards, review plans, quizzes, export formats, statistics reports, and local shell command output.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter and server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

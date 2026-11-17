@@ -1,42 +1,54 @@
-## Description: <br>
-Diagnose Kubernetes cluster issues when users ask about Pod crashes, deployment failures, service inaccessibility, node health, storage binding, events, or full-cluster checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Diagnoses Kubernetes cluster issues such as Pod crashes, deployment failures, service access problems, node health, storage failures, warning events, and related resource misconfigurations.
 
-## Publisher: <br>
-[magicczc](https://clawhub.ai/user/magicczc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[magicczc](https://clawhub.ai/user/magicczc)
 
-## Use Case: <br>
-Developers, SREs, and platform engineers use this skill to inspect Kubernetes resource health through natural-language requests and receive structured diagnostic reports with severity levels and suggested fixes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires read access to the target Kubernetes cluster and the security scan flags overly broad cluster access and admin kubeconfig use as a concern. <br>
-Mitigation: Use a least-privilege, user-provided kubeconfig, avoid production cluster-admin credentials, and confirm the current Kubernetes context before running diagnostics. <br>
-Risk: Troubleshooting guidance may include commands such as delete, rollback, debug, port-forward, or test-pod actions that can change cluster state or expose services. <br>
-Mitigation: Treat any suggested destructive, mutating, or network-exposing command as a proposal that requires explicit human review and approval before execution. <br>
+## Use Case:
 
+Developers and platform engineers use this skill to inspect Kubernetes clusters from natural-language requests and receive diagnostic findings with suggested remediation steps.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/magicczc/k8sskill) <br>
-- [Analyzer detailed description](artifact/references/analyzers.md) <br>
-- [Troubleshooting manual](artifact/references/troubleshooting.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown diagnostic report with tables, severity labels, and suggested Kubernetes troubleshooting commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires access to a Kubernetes cluster through kubeconfig and is intended to run with read-only permissions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and changelog) <br>
+Risk: The skill can over-collect sensitive Kubernetes Secret data during Secret analysis.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated read-only kubeconfig scoped to the namespaces being inspected, and avoid Secret analysis until namespace scoping and Secret caching are fixed.
+
+Risk: Unsafe kubeconfig handling can expose broad cluster credentials.
+
+Mitigation: Do not use cluster-admin credentials or store kubeconfig files inside the skill directory.
+
+## Reference(s):
+
+- [Analyzer Detailed Description](references/analyzers.md)
+- [Troubleshooting Manual](references/troubleshooting.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown diagnostic report; JSON output is available through the Python API.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can scope analysis by namespace and label selector; requires Kubernetes API access through kubeconfig.]
+
+## Skill Version(s):
+
+1.0.1 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

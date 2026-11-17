@@ -1,43 +1,59 @@
-## Description: <br>
-Locus provides payment tools for agents to send crypto payments, check wallet balances, list tokens, approve token spending, and process payment-related emails. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Locus payment tools for AI agents. Use when asked to send payments, check wallet balances, list tokens, approve token spending, or process payment-related actions from emails.
 
-## Publisher: <br>
-[cdermott7](https://clawhub.ai/user/cdermott7) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[cdermott7](https://clawhub.ai/user/cdermott7)
 
-## Use Case: <br>
-External users and developers use Locus to connect an agent to a wallet-backed payment service for balance checks, token management, payment approvals, and payment execution after explicit user confirmation. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill stores wallet-authorized credentials for a payment service. <br>
-Mitigation: Use a least-privilege Locus API key with spending limits and know how to revoke the key or remove the mcporter Locus configuration. <br>
-Risk: The skill gives the agent broad dynamic access to payment tools. <br>
-Mitigation: Discover available tools before use, confirm every payment or token approval manually, and avoid unlimited allowances. <br>
-Risk: Incorrect recipients, spender addresses, payment amounts, or token approvals can cause financial loss. <br>
-Mitigation: Verify recipient and spender addresses, token, amount, and memo with the user before executing any wallet action. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Locus ClawHub listing](https://clawhub.ai/cdermott7/locus) <br>
-- [Locus website](https://paywithlocus.com) <br>
-- [Locus app](https://app.paywithlocus.com) <br>
+## Use Case:
 
+External users and developers use Locus to connect an agent to wallet-backed payment tools for balance checks, token listing, token approvals, and sending payments after user confirmation.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and agent guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes payment summaries and confirmation prompts before wallet actions.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.3.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Wallet-linked API keys and authorization headers may be exposed during setup through terminal logs, screenshots, command history, or process telemetry.
+
+Mitigation: Use narrowly scoped Locus API keys with low limits and recipient controls, avoid recorded or shared terminals during setup, and rotate the key if exposure is possible.
+
+Risk: Payment and token approval tools can transfer assets or grant spending authority if invoked with incorrect recipients, amounts, tokens, or allowances.
+
+Mitigation: Review every payment or token approval manually, confirm recipient, token, amount, and memo before execution, and apply extra review to large payments.
+
+Risk: Setup may install an unpinned global mcporter package before configuring the Locus MCP connection.
+
+Mitigation: Install a reviewed and pinned mcporter version separately when package provenance or reproducibility is required.
+
+## Reference(s):
+
+- [ClawHub Locus skill page](https://clawhub.ai/cdermott7/skills/locus)
+- [Locus website](https://paywithlocus.com)
+- [Locus API key portal](https://app.paywithlocus.com)
+- [Locus MCP endpoint](https://mcp.paywithlocus.com/mcp)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Tool availability is dynamic and depends on the user's Locus permission group.]
+
+## Skill Version(s):
+
+1.3.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

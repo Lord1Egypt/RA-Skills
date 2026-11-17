@@ -1,42 +1,59 @@
-## Description: <br>
-Hermes Agent Feishu Bot local deployment guide for WebSocket mode, including Kimi API setup, Feishu permissions, environment variables, group chat policy, and troubleshooting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides developers through local deployment of a Hermes Agent Feishu/Lark bot in WebSocket mode, including Kimi API setup, Feishu permissions, environment variables, and group chat policy.
 
-## Publisher: <br>
-[cindypapa](https://clawhub.ai/user/cindypapa) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cindypapa](https://clawhub.ai/user/cindypapa)
 
-## Use Case: <br>
-Developers and operators use this skill to configure and run a Hermes Agent Feishu Bot locally without a public domain. It helps set up Feishu app credentials, Kimi API access, WebSocket mode, group chat behavior, and basic verification commands. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The setup guidance uses a remote shell installer and local credential storage for API keys and Feishu secrets. <br>
-Mitigation: Review the installer before running it, prefer pinned releases or checksums, and store credentials only in a private git-ignored file or secret manager. <br>
-Risk: The guide configures group chat behavior and can allow broad responses to group mentions. <br>
-Mitigation: Use the documented allowlist or disabled group policy when broad group responses are not intended, and verify Feishu permissions before deployment. <br>
+## Use Case:
 
+Developers and engineers use this skill to configure and troubleshoot a locally deployed Hermes Agent bot for Feishu/Lark using WebSocket mode without requiring a public domain.
 
-## Reference(s): <br>
-- [Hermes official documentation](https://hermes-agent.nousresearch.com) <br>
-- [Feishu Open Platform](https://open.feishu.cn) <br>
-- [ClawHub skill page](https://clawhub.ai/cindypapa/hermes-feishu-guide) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline bash and environment-variable code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces deployment guidance for local Feishu WebSocket setup and credential configuration; it does not run commands itself.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata and frontmatter) <br>
+Risk: The guide uses a remote installer command that executes downloaded shell content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the installer before running it and prefer a pinned release or checksum-verified script.
+
+Risk: The guide configures live API and Feishu application secrets in ~/.hermes/.env.
+
+Mitigation: Protect the environment file with restrictive permissions and rotate secrets if they are exposed.
+
+Risk: Open group chat policy and all-user gateway access can make the bot available more broadly than intended.
+
+Mitigation: Use allowlists or disabled group chat mode unless broad workspace access is explicitly intended.
+
+## Reference(s):
+
+- [Hermes official documentation](https://hermes-agent.nousresearch.com)
+- [Feishu Open Platform](https://open.feishu.cn)
+- [Hermes installer script](https://raw.githubusercontent.com/NousResearch/hermes-agent/main/scripts/install.sh)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with bash and environment-variable code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes deployment steps, configuration values, verification commands, comparison tables, and troubleshooting guidance.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,57 @@
-## Description: <br>
-Define agent identity, personality, voice, and boundaries to create assistants that feel authentic rather than generic. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Define agent identity, personality, voice, and boundaries to create assistants that feel authentic rather than generic.
 
-## Publisher: <br>
-[mugiwarasolos2](https://clawhub.ai/user/mugiwarasolos2) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mugiwarasolos2](https://clawhub.ai/user/mugiwarasolos2)
 
-## Use Case: <br>
-External users and developers can use this skill as a framework for defining an agent's persona, voice, boundaries, adaptation behavior, and reusable identity templates. Do not use it for decentralized identity verification or Billions Network verification because the evidence says the listing name does not match the artifact content. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The public listing name suggests DID or Billions Network identity verification, but the artifact content is an agent persona and behavior framework. <br>
-Mitigation: Do not rely on the skill for identity verification; use it only for persona, voice, boundary, adaptation, and template guidance unless the publisher provides matching verification functionality. <br>
-Risk: Persona and adaptation guidance can encourage persistent user preference modeling without clear permission boundaries. <br>
-Mitigation: Keep memory, workspace-action, and autonomy permissions explicit, and apply the artifact's own ask-first boundaries before external communication, spending, deletion, or irreversible actions. <br>
+## Use Case:
 
+Developers and agent designers use this skill to define an assistant's identity, voice, role boundaries, adaptation style, and reusable identity templates.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/mugiwarasolos2/help-pair) <br>
-- [Skill definition](artifact/SKILL.md) <br>
-- [Agent Voice & Personality](artifact/voice.md) <br>
-- [Agent Role Boundaries](artifact/boundaries.md) <br>
-- [Agent Learning & Adaptation](artifact/adaptation.md) <br>
-- [Agent Identity Templates](artifact/templates.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown guidance and reusable identity templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only content; no tools, APIs, credentials, or shell commands are declared in the release evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill includes guidance for adapting to user preferences over time, which can create privacy or stale-preference concerns when paired with persistent memory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or reset stored preferences when needed, and keep adaptation rules transparent and scoped to the current user context.
+
+Risk: Agent boundary guidance may influence assistants to act autonomously within an approved scope.
+
+Mitigation: Keep explicit confirmation requirements for spending, external communications, deletion, and other high-impact actions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mugiwarasolos2/skills/help-pair)
+- [Agent Voice & Personality](artifact/voice.md)
+- [Agent Role Boundaries](artifact/boundaries.md)
+- [Agent Learning & Adaptation](artifact/adaptation.md)
+- [Agent Identity Templates](artifact/templates.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, configuration]
+
+**Output Format:** [Markdown guidance and templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Markdown-only skill with no detected credentials, MCP tools, or API calls.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and artifact/_meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

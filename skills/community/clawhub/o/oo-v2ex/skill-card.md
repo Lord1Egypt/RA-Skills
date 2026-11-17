@@ -1,45 +1,59 @@
-## Description: <br>
-Use this skill to operate V2EX through the OOMOL v2ex connector and oo CLI for reading, creating, updating, and deleting V2EX data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+V2EX (v2ex.com). Use this skill for ANY V2EX request — reading, creating, updating, and deleting data. Whenever a task involves V2EX, use this skill instead of calling the API directly.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-External users and developers use this skill to let an agent operate V2EX through their OOMOL-connected account, including reading public and authenticated content and performing explicitly confirmed account actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives an agent broad authenticated control over a V2EX account. <br>
-Mitigation: Install only when the user trusts OOMOL and wants account operation through the oo CLI; require explicit confirmation before every non-read action. <br>
-Risk: State-changing actions can affect topics, tokens, sticky status, or notifications. <br>
-Mitigation: Confirm the exact target, payload, and effect before running boost_topic, create_token, set_topic_sticky, delete_notification, or any other non-read action. <br>
-Risk: Remote installer commands are present for first-time oo CLI setup. <br>
-Mitigation: Prefer reviewed official installation instructions and do not let an agent run a remote installer directly without user approval. <br>
+## Use Case:
 
+External V2EX users can use the skill to read topics, nodes, replies, notifications, and account details, and to perform supported account changes through their connected V2EX account.
 
-## Reference(s): <br>
-- [ClawHub V2EX skill](https://clawhub.ai/oomol/oo-v2ex) <br>
-- [V2EX homepage](https://www.v2ex.com) <br>
-- [OOMOL oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [oo CLI install guide](https://cli.oomol.com/install-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API Calls, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON command payloads; connector responses are JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an installed oo CLI, OOMOL sign-in, connected V2EX credentials, and explicit confirmation before non-read actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: evidence.release.version and artifact metadata.version) <br>
+Risk: Setup may make persistent changes to skills in other agent applications without clearly explaining their scope.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the CLI release before installation and decide whether startup synchronization is acceptable; set OO_SKILLS_SYNC_DISABLED=1 to disable it.
+
+Risk: The remote installer and hosted service behavior have not been independently audited.
+
+Mitigation: Review and install a verified CLI release separately before use.
+
+Risk: Actions operate through the connected V2EX account, and some actions change or delete account data.
+
+Mitigation: Inspect the live action schema, confirm the exact payload and effect for writes, and explicitly approve the target of destructive actions.
+
+## Reference(s):
+
+- [V2EX API documentation](https://v2ex.com/help/api)
+- [oo CLI](https://github.com/oomol-lab/oo-cli)
+- [V2EX](https://www.v2ex.com)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Text, Shell commands]
+
+**Output Format:** [JSON connector responses and text summaries, with oo CLI commands for actions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Action payloads follow the live connector schema; write actions require confirmation and destructive actions require explicit approval.]
+
+## Skill Version(s):
+
+1.0.6 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

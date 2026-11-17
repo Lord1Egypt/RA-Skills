@@ -1,41 +1,54 @@
-## Description: <br>
-Run web, multi-source, or last-30-days research through AIsa for search, synthesis, competitor scans, trend discovery, and structured retrieval. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Openclaw Search helps agents run web, multi-source, and last-30-days research through AIsa for search, synthesis, competitor scans, trend discovery, and structured retrieval.
 
-## Publisher: <br>
-[baofeng-tech](https://clawhub.ai/user/baofeng-tech) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[baofeng-tech](https://clawhub.ai/user/baofeng-tech)
 
-## Use Case: <br>
-Developers and agents use this skill to run AIsa-backed web, academic, smart, full-text, and multi-source search workflows, then turn results into research briefs, comparisons, or structured evidence summaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search terms, target URLs, and related research context are sent to the AIsa API. <br>
-Mitigation: Use only when that sharing is acceptable; avoid secrets, confidential internal documents, and proprietary topics unless approved. <br>
-Risk: The skill requires a sensitive AISA_API_KEY credential. <br>
-Mitigation: Store the key in the environment, limit access to trusted users, and avoid exposing it in prompts, logs, or committed files. <br>
+## Use Case:
 
+Developers, researchers, and agent operators use this skill to gather recent web and academic evidence, compare tools or companies, and turn multi-source retrieval into concise research briefs.
 
-## Reference(s): <br>
-- [Openclaw Search on ClawHub](https://clawhub.ai/baofeng-tech/openclaw-search) <br>
-- [AIsa API endpoint](https://api.aisa.one/apis/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, JSON, guidance] <br>
-**Output Format:** [Markdown guidance with CLI commands and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires AISA_API_KEY and Python 3; search queries and URLs are sent to AIsa.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: Search terms, URLs, and selected result data are sent to AIsa/Tavily-backed external APIs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid confidential internal names, private URLs, or sensitive investigations unless the organization approves that external data flow.
+
+Risk: External providers may time out or return partial results, which can make research findings incomplete.
+
+Mitigation: Report provider timeouts or missing sources clearly and do not claim sources that were not actually queried.
+
+## Reference(s):
+
+- [Openclaw Search ClawHub Page](https://clawhub.ai/baofeng-tech/skills/openclaw-search)
+- [AIsa API Endpoint](https://api.aisa.one/apis/v1)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and AISA_API_KEY; external provider failures should be reported as partial results.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

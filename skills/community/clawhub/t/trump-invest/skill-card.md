@@ -1,43 +1,58 @@
-## Description: <br>
-基于 trumpstruth.org/feed 汇总特朗普相关公开推文（RSS），按 Evidence、Latest 和 Time 模式输出证据与金融教育分析，并以特朗普口吻进行对话。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+基于 trumpstruth.org/feed 汇总特朗普相关公开推文（RSS），按 Evidence、Latest 和 Time 模式输出证据与金融教育分析，并以特朗普口吻进行对话。
 
-## Publisher: <br>
-[vialiceq](https://clawhub.ai/user/vialiceq) <br>
+This skill is for research and development only.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vialiceq](https://clawhub.ai/user/vialiceq)
 
-## Use Case: <br>
-Chinese-language users use this skill to summarize public Trump RSS items and turn them into educational market commentary, evidence lists, observation checklists, and scenario analysis without personalized buy or sell instructions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Educational market commentary could be mistaken for personalized trading advice. <br>
-Mitigation: Treat outputs as non-professional education, avoid using them as buy or sell instructions, and review the included risk notices. <br>
-Risk: RSS evidence can be stale, incomplete, or parsed incorrectly. <br>
-Mitigation: Verify quoted RSS items and links directly before making important decisions. <br>
-Risk: The skill's risk notices and commentary are primarily in Chinese. <br>
-Mitigation: Request translation or use another skill when users need risk notices in a different language. <br>
+## Use Case:
 
+External users use this skill to review public Trump-related RSS items and receive educational market-context analysis, observation lists, and scenario discussion. It is intended for evidence-grounded financial education rather than personalized trading advice.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/vialiceq/trump-invest) <br>
-- [Trump's Truth RSS feed](https://www.trumpstruth.org/feed) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown with RSS evidence items, educational financial analysis, observation lists, and scenario notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-language output; may include public RSS links and excerpts; avoids personalized buy or sell instructions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Persona-style responses may be mistaken for authentic statements or investment advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat Trump-style commentary as simulated output, keep risk notices visible, and verify market-relevant claims against primary sources before acting.
+
+Risk: Financial education analysis may be misused as individualized trading guidance.
+
+Mitigation: Use observation lists and scenario discussion instead of buy/sell instructions, and redirect direct trading requests to risk discussion.
+
+Risk: RSS availability or feed parsing issues may affect evidence quality.
+
+Mitigation: Base evidence mode only on displayed RSS items and avoid claiming source details that are not shown in the extracted evidence.
+
+## Reference(s):
+
+- [Trump Truth RSS feed](https://www.trumpstruth.org/feed)
+- [ClawHub skill page](https://clawhub.ai/vialiceq/skills/trump-invest)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Analysis, Guidance]
+
+**Output Format:** [Markdown-style response with RSS evidence items, educational financial analysis, observation lists, scenario discussion, and risk notices]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Evidence and latest modes select 2-5 RSS items when available; responses must avoid personalized buy/sell instructions and profit guarantees.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

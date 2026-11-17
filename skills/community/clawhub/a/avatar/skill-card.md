@@ -1,46 +1,64 @@
-## Description: <br>
-Interactive AI avatar with Simli video rendering and ElevenLabs TTS. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Interactive AI avatar with Simli video rendering and ElevenLabs TTS.
 
-## Publisher: <br>
-[Johannes-Berggren](https://clawhub.ai/user/Johannes-Berggren) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[johannes-berggren](https://clawhub.ai/user/johannes-berggren)
 
-## Use Case: <br>
-Employees and operators use this skill to interact with an OpenClaw assistant through a browser-based avatar that speaks short conversational summaries, shows detailed markdown responses, and can forward configured Slack or email messages. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can act as a high-trust local OpenClaw operator rather than only a visual or text-to-speech frontend. <br>
-Mitigation: Deploy it only for trusted operator workflows and review the configured OpenClaw access before use. <br>
-Risk: Slack, email, Stream Deck, kiosk mode, and broad business-tool prompts may expose or send sensitive information. <br>
-Mitigation: Disable integrations that are not needed, use restricted API keys and Slack scopes, and avoid sensitive conversations unless external sharing is acceptable. <br>
-Risk: External Simli and ElevenLabs services are required for avatar rendering and text-to-speech. <br>
-Mitigation: Use service-specific restricted keys and confirm that the expected audio and avatar data sharing is acceptable for the deployment. <br>
+## Use Case:
 
+Developers and operators use Avatar to run a local interactive AI avatar frontend that speaks concise responses, renders lip-synced video, and shows detailed Markdown output for OpenClaw-style agent responses.
 
-## Reference(s): <br>
-- [ClawHub Avatar Skill Page](https://clawhub.ai/Johannes-Berggren/avatar) <br>
-- [Avatar README](artifact/README.md) <br>
-- [Avatar Skill Definition](artifact/SKILL.md) <br>
-- [Simli](https://simli.com) <br>
-- [ElevenLabs](https://elevenlabs.io) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, API calls] <br>
-**Output Format:** [Plain spoken text plus markdown detail, with browser avatar rendering and optional configured Slack or email forwarding.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SIMLI_API_KEY and ELEVENLABS_API_KEY; optional Slack, OpenClaw, email, Stream Deck, and kiosk behavior depends on local configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: package.json, release evidence) <br>
+Risk: The skill exposes powerful agent, messaging, and provider-key capabilities with weak access controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only on a trusted local machine, bind the server to localhost, and add authentication before exposing any port.
+
+Risk: Slack, email, and Stream Deck actions can send or forward generated content when enabled.
+
+Mitigation: Keep those integrations disabled until confirmations and recipient limits are configured.
+
+Risk: Provider API keys may be exposed during testing or misconfiguration.
+
+Mitigation: Store required keys in environment-backed configuration, rotate any exposed Simli key, and review provider-key handling before deployment.
+
+Risk: Unpinned or outdated dependencies can increase deployment risk.
+
+Mitigation: Update and pin dependencies before production use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/johannes-berggren/skills/avatar)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/johannes-berggren)
+- [Simli](https://simli.com)
+- [ElevenLabs](https://elevenlabs.io)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Structured text with <spoken> and <detail> sections; detail may contain Markdown.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Spoken text is intended for TTS, while detail text is intended for the avatar detail panel.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.release.version and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,6 +1,6 @@
 ---
-name: pet-travel-guide
-display_name: 宠物出行助手
+name: 宠物出行助手
+display_name: "宠物出行助手"
 description: 宠物出行助手，覆盖国内10+航司宠物托运/客舱政策、铁路携带规定和证件办理指南，带毛孩子出行查政策、办证件一站搞定，零配置即装即用。
 tags: [宠物出行, 宠物托运, 宠物上飞机, 宠物坐火车, 宠物证件]
 tools:

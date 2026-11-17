@@ -1,6 +1,9 @@
 {
-  "ownerId": "kn76nc9v916ew10ew6nxjqpyc985k0e1",
+  "name": "Hana Image Gen MacOS",
   "slug": "hana-image-gen-macos",
   "version": "1.0.0",
-  "publishedAt": 1777194188694
+  "description": "MacOS Gemini image gen skill for OpenClaw agents. Auto gen & send to Telegram.",
+  "tags": ["image", "ai", "gemini", "macos", "openrouter"],
+  "author": "@eardori",
+  "license": "MIT"
 }

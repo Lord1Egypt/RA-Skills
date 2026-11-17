@@ -1,41 +1,58 @@
-## Description: <br>
-Container Desktop provides shell commands for project initialization, checks, builds, tests, deployment guidance, configuration, status, templates, documentation, cleanup, help, and version output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Container Desktop provides command-line guidance and shell scripts for generic project initialization, checks, builds, tests, deployment guidance, templates, documentation, and cleanup.
 
-## Publisher: <br>
-[bytesagain3](https://clawhub.ai/user/bytesagain3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain3](https://clawhub.ai/user/bytesagain3)
 
-## Use Case: <br>
-Developers and engineers can use this skill for lightweight command-line project workflow prompts such as initialization, local checks, build and test placeholders, deployment guidance, documentation generation, and cleanup. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release presents itself as Podman or container tooling while the artifact mainly provides stub commands that print messages. <br>
-Mitigation: Review the skill before installation and do not rely on its check, build, test, or clean output as evidence of real validation. <br>
-Risk: Command names and arguments may be written to a local history log. <br>
-Mitigation: Avoid passing secrets, credentials, tokens, or sensitive filesystem paths as command arguments. <br>
+## Use Case:
 
+Developers and engineers can use this skill for shell-command-oriented help with project workflow tasks such as initialization, quality checks, builds, tests, deployment guidance, templates, documentation, and cleanup. Security evidence flags a mismatch between the Podman Desktop presentation and the generic workflow implementation, so users should verify behavior before relying on it for container or Kubernetes work.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/bytesagain3/container-desktop) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and shell-oriented text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Command output may be written to stdout and command names or arguments may be logged locally by the bundled shell script.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release evidence) <br>
+Risk: The package may mislead users because it presents itself as Podman Desktop while mostly implementing a generic workflow helper.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the artifact files before installation and do not rely on it as a container or Kubernetes workflow unless the behavior has been verified.
+
+Risk: Command arguments may be written to a local history log.
+
+Mitigation: Avoid passing tokens, secret paths, deployment details, or other sensitive data as command arguments.
+
+Risk: The included Podman Desktop script contains placeholder functionality.
+
+Mitigation: Treat Podman-specific commands as unfinished unless tested and confirmed in the target environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bytesagain3/skills/container-desktop)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands plus stdout and file-oriented script outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands may write local history and configuration files under the configured container-desktop data directory.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

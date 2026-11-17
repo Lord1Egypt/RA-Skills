@@ -1,41 +1,55 @@
-## Description: <br>
-Fetches and filters academic conference deadline data from CCFDDL for CCF conference, CFP, ranking, and venue-selection questions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetch and filter academic conference deadlines from CCFDDL for CCF conference, CFP, venue selection, and deadline queries.
 
-## Publisher: <br>
-[fengwm64](https://clawhub.ai/user/fengwm64) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fengwm64](https://clawhub.ai/user/fengwm64)
 
-## Use Case: <br>
-Students, researchers, and academic authors use this skill to find upcoming CCFDDL conference deadlines, filter by venue, category, and ranking, and receive sortable Markdown summaries from public CCFDDL data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate on broad academic deadline or submission wording. <br>
-Mitigation: Use clear conference-specific prompts or specify the desired venue, category, or CCF rank. <br>
-Risk: Conference results can be incomplete if CCFDDL data is unavailable, stale, or filtered too narrowly. <br>
-Mitigation: Use current CCFDDL data, report when data cannot be fetched, and avoid fabricating missing conference details. <br>
+## Use Case:
 
+Students, researchers, and academic authors use this skill to find upcoming CCFDDL conference deadlines by venue name, research category, and CCF rank, then review the results as a concise sorted table.
 
-## Reference(s): <br>
-- [CCFDDL](https://ccfddl.com) <br>
-- [CCFDDL Conference Deadline RSS Feed](https://ccfddl.com/conference/deadlines_zh.xml) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Guidance] <br>
-**Output Format:** [Markdown table with concise summary text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses CCFDDL-sourced public deadline data and preserves UTC-12/AoE time labels when present.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Conference deadline data may be incomplete, stale, or unavailable from the public CCFDDL source.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify important submission deadlines against the official conference page before relying on them.
+
+Risk: Broad academic deadline wording can activate the skill for queries where CCFDDL is not the intended source.
+
+Mitigation: Confirm that the user wants CCFDDL-based conference deadline information before presenting results as authoritative.
+
+## Reference(s):
+
+- [CCFDDL](https://ccfddl.com)
+- [CCFDDL conference deadlines RSS feed](https://ccfddl.com/conference/deadlines_zh.xml)
+- [ClawHub skill page](https://clawhub.ai/fengwm64/skills/ccfddl-conference-watch)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown table with a concise summary]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results are filtered to upcoming deadlines, sorted by earliest deadline, and preserve source timezone labels.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

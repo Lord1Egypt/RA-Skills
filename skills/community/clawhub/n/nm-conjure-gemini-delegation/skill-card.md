@@ -1,42 +1,52 @@
-## Description: <br>
-Delegates tasks to Gemini CLI implementing delegation-core for Google's models. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Delegates to the Gemini CLI
 
-## Publisher: <br>
-[athola](https://clawhub.ai/user/athola) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[athola](https://clawhub.ai/user/athola)
 
-## Use Case: <br>
-Developers and agents use this skill to route large-context analysis, summarization, batch processing, and pattern extraction tasks to Gemini CLI when delegation-core selects Gemini or Google's models are appropriate. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad delegation triggers can activate the skill more often than intended and send selected files to Gemini. <br>
-Mitigation: Use explicit Gemini delegation requests, review included @path or recursive glob inputs before execution, and avoid broad terms such as cli or google for unrelated tasks. <br>
-Risk: Large recursive context patterns can include more source files or sensitive content than needed. <br>
-Mitigation: Prefer narrow file paths and selective globs, and review the selected files before sending them through Gemini CLI. <br>
+## Use Case:
 
+Developers use this skill after delegation-core selects Gemini, or when a task benefits from Gemini's large context window. It supports batch processing, summarization, and pattern extraction through the Gemini CLI.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-conjure-gemini-delegation) <br>
-- [Claude Night Market conjure plugin](https://github.com/athola/claude-night-market/tree/master/plugins/conjure) <br>
-- [Gemini-specific configuration](artifact/modules/gemini-specifics.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and Gemini CLI examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Gemini CLI command construction, authentication guidance, model selection, JSON-output options, and saved delegation output paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.9.13 (source: server release evidence) <br>
+Risk: The security scan reports that local files may be sent to Gemini without a privacy warning, and that a specific external model is selected.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before delegation, review the included file scope and chosen model, and confirm that sending those contents to Gemini is appropriate. The scan was partial because a referenced local path could not be resolved.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/athola/skills/nm-conjure-gemini-delegation)
+- [Conjure plugin homepage](https://github.com/athola/claude-night-market/tree/master/plugins/conjure)
+- [Gemini API deprecations](https://ai.google.dev/gemini-api/docs/deprecations)
+- [Gemini API pricing](https://ai.google.dev/gemini-api/docs/pricing)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, JSON, Guidance]
+
+**Output Format:** [Delegation prompts and responses; saved Markdown files, with optional JSON output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Delegated output is saved under a timestamped delegations/gemini/ path; prompts can include selected local files and specify a model.]
+
+## Skill Version(s):
+
+1.10.3 (source: skill frontmatter and server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

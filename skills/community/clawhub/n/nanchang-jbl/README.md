@@ -10,19 +10,7 @@
 
 > 安装南昌嘉宝莉 skill
 
-### 方式二：命令行安装
-
-```bash
-# Linux/macOS
-curl -sSL https://raw.githubusercontent.com/Liubuq-sys/nanchang-jbl-skill/main/install.sh | bash
-```
-
-```powershell
-# Windows
-powershell -c "irm https://raw.githubusercontent.com/Liubuq-sys/nanchang-jbl-skill/main/install.ps1 | iex"
-```
-
-### 方式三：ClawHub 安装
+### 方式二：ClawHub 安装
 
 ```bash
 npx clawhub install nanchang-jbl
@@ -65,7 +53,5 @@ nanchang-jbl/
 │   └── stores.md               # 渠道商门店目录
 ├── version.json
 ├── CHANGELOG.md
-├── install.sh
-├── install.ps1
 └── .gitignore
 ```

@@ -1,47 +1,62 @@
-## Description: <br>
-AcidDoc helps an OpenClaw agent autonomously generate, refine, and submit original acid techno tracks with hyperpop and glitch influences to claw.fm. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AcidDoc helps an OpenClaw agent autonomously generate acid techno tracks, configure music-generation providers, and submit finished work to claw.fm.
 
-## Publisher: <br>
-[alienpingu](https://clawhub.ai/user/alienpingu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[alienpingu](https://clawhub.ai/user/alienpingu)
 
-## Use Case: <br>
-External users and agent operators use this skill to run an autonomous music-production agent that creates acid techno tracks, publishes them to claw.fm, and monitors listener engagement and USDC earnings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can publish generated tracks on a recurring schedule with weak approval controls. <br>
-Mitigation: Disable auto-submit or require manual approval before publishing, and monitor posted tracks and API usage. <br>
-Risk: Wallet-linked earnings and account tokens may expose funds or platform access if broadly scoped. <br>
-Mitigation: Use limited-scope API keys and account tokens, keep wallet withdrawal disabled, and isolate earnings to a low-risk wallet. <br>
-Risk: Installing the wrong skill or an uninspected remote skill URL could run behavior the operator did not intend. <br>
-Mitigation: Verify the exact skill identifier and publisher before installation, and inspect any remote skill URL before use. <br>
+## Use Case:
 
+Developers and creators use this skill to run an autonomous music-production agent that creates acid techno tracks, manages style and provider configuration, and publishes tracks to claw.fm with earnings monitoring.
 
-## Reference(s): <br>
-- [ClawHub AcidDoc listing](https://clawhub.ai/alienpingu/doctor-acid) <br>
-- [claw.fm](https://claw.fm) <br>
-- [OpenClaw Docs](https://docs.openclaw.ai) <br>
-- [Riffusion](https://www.riffusion.com) <br>
-- [Suno AI](https://suno.ai) <br>
-- [Udio](https://www.udio.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, API calls, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, JSON configuration examples, prompts, and API request examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May configure recurring track generation, public submission, wallet-linked earnings monitoring, and music generation providers.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release evidence and artifact config.json) <br>
+Risk: The skill can automatically submit generated tracks to claw.fm on a repeated schedule.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Disable auto-submit until generated tracks and metadata have been reviewed, then enable it only for a dedicated agent workspace.
+
+Risk: The skill uses third-party music-generation APIs and may require API credentials.
+
+Mitigation: Use provider-specific scoped keys, pin dependencies and skill content, and grant network access only to required music and claw.fm endpoints.
+
+Risk: The skill references wallet-linked USDC earnings and payout workflows.
+
+Mitigation: Use a low-risk dedicated wallet, avoid automatic withdrawals, and review wallet connection settings before production use.
+
+## Reference(s):
+
+- [ClawHub AcidDoc skill page](https://clawhub.ai/alienpingu/skills/doctor-acid)
+- [claw.fm](https://claw.fm)
+- [OpenClaw documentation](https://docs.openclaw.ai)
+- [Riffusion](https://www.riffusion.com)
+- [Suno AI](https://suno.ai)
+- [Udio](https://www.udio.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON configuration examples and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce music-generation prompts, claw.fm submission instructions, provider configuration, and wallet or earnings monitoring commands.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact config.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,52 +1,70 @@
-## Description: <br>
-HasData lets agents fetch real-time web data through the hasdata CLI, including search, news, shopping, maps, real estate, jobs, reviews, and arbitrary URL scraping. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+HasData helps agents fetch current web data through the hasdata CLI for search, news, shopping, local business, real estate, jobs, page scraping, screenshots, and structured extraction.
 
-## Publisher: <br>
-[hasdata](https://clawhub.ai/user/hasdata) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hasdata](https://clawhub.ai/user/hasdata)
 
-## Use Case: <br>
-Developers and agent users use this skill to ground responses with current web data, gather structured data from public services, and scrape user-specified URLs through the HasData CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill enables broad web scraping and enrichment workflows that can expose privacy, authorization, or targeting concerns. <br>
-Mitigation: Use it only for authorized data collection, avoid private-person profiling or unsolicited targeting, and prefer SERP-based public snippets before escalating to direct page scraping. <br>
-Risk: The skill depends on an external CLI installer and a sensitive HasData API key stored in the user environment. <br>
-Mitigation: Review the installer before execution, configure only a user-provided API key, and protect ~/.hasdata/config.yaml as a credential-bearing file. <br>
-Risk: Passing session cookies or custom headers to scraping commands can access account-scoped data. <br>
-Mitigation: Only pass cookies or authenticated headers when explicitly authorized by the account owner and required for the task. <br>
+## Use Case:
 
+External users, developers, and agents use this skill to gather current web, marketplace, local-business, real-estate, job, and page-scraping data through HasData CLI commands. It is suited for grounding answers, checking current facts, enriching public data, summarizing pages, and producing structured JSON or markdown from web sources.
 
-## Reference(s): <br>
-- [HasData skill page](https://clawhub.ai/hasdata/hasdata-api) <br>
-- [HasData CLI](https://github.com/HasData/hasdata-cli) <br>
-- [HasData website](https://hasdata.com) <br>
-- [Data enrichment reference](artifact/references/enrichment.md) <br>
-- [Search reference](artifact/references/search.md) <br>
-- [Web scraping reference](artifact/references/web-scraping.md) <br>
-- [Real estate reference](artifact/references/real-estate.md) <br>
-- [E-commerce reference](artifact/references/ecommerce.md) <br>
-- [Local business reference](artifact/references/local-business.md) <br>
-- [Jobs reference](artifact/references/jobs.md) <br>
-- [All commands reference](artifact/references/all-commands.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON-processing examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the hasdata CLI and a user-provided HasData API key; CLI responses are typically JSON.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Installing a third-party CLI through a curl-to-shell command can create supply-chain exposure.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Inspect and verify the installer and CLI source before installation; prefer a reviewed package or pinned release when available.
+
+Risk: Queries, requested URLs, scraped pages, and enrichment targets are processed by a third-party scraping service.
+
+Mitigation: Use the skill only for data the user is authorized to send to HasData and avoid sensitive, confidential, or regulated inputs unless an approved data-handling basis exists.
+
+Risk: Session cookies passed through scraping headers can act like account credentials.
+
+Mitigation: Do not provide cookies or authenticated headers unless the user explicitly authorizes that use and understands the account-access implications.
+
+Risk: Public-data enrichment can produce uncertain or single-source identity, contact, role, or location claims.
+
+Mitigation: Label guesses and single-source results as unverified and cross-check important data before using it for outreach, employment, housing, or other consequential decisions.
+
+## Reference(s):
+
+- [HasData ClawHub skill page](https://clawhub.ai/hasdata/skills/hasdata-api)
+- [HasData publisher profile](https://clawhub.ai/user/hasdata)
+- [Search references](references/search.md)
+- [Web scraping reference](references/web-scraping.md)
+- [Data enrichment](references/enrichment.md)
+- [E-commerce reference](references/ecommerce.md)
+- [Local-business / maps reference](references/local-business.md)
+- [Real-estate reference](references/real-estate.md)
+- [Jobs reference](references/jobs.md)
+- [All commands](references/all-commands.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands; HasData CLI calls return JSON and can produce markdown, text, HTML, screenshots, and structured extraction results.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the hasdata binary and a configured HasData API key; CLI responses are commonly piped through jq for extraction.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,59 @@
-## Description: <br>
-Recognizes and extracts mathematical formulas from images and PDFs into LaTeX format using the ZhiPu GLM-OCR API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Recognizes and extracts mathematical formulas from images and PDFs into LaTeX format using the ZhiPu GLM-OCR API.
 
-## Publisher: <br>
-[jaredforreal](https://clawhub.ai/user/jaredforreal) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jaredforreal](https://clawhub.ai/user/jaredforreal)
 
-## Use Case: <br>
-Developers, researchers, and document-processing users use this skill to send selected formula images, PDFs, or URLs to ZhiPu GLM-OCR and receive extracted text and mathematical formulas in Markdown or LaTeX. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends selected local files or remote URLs to ZhiPu's remote OCR service. <br>
-Mitigation: Use it only for documents that are approved for processing by that service, and avoid submitting confidential or regulated content unless policy allows it. <br>
-Risk: Saved JSON output and files created with --include-raw may contain extracted document text, formulas, metadata, or raw upstream response data. <br>
-Mitigation: Store outputs in approved locations, share them only with intended recipients, and enable --include-raw only when needed for debugging. <br>
-Risk: A ZHIPU_API_KEY is required to call the service. <br>
-Mitigation: Provide the key through the configured environment, rotate it according to local credential policy, and do not paste it into prompts, logs, or saved result files. <br>
+## Use Case:
 
+Developers, researchers, educators, and document-processing teams use this skill to extract formulas and surrounding text from formula images, scanned documents, PDFs, scientific papers, textbooks, and exams into Markdown or LaTeX.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jaredforreal/glmocr-formula) <br>
-- [GLM-OCR Formula homepage](https://github.com/zai-org/GLM-OCR/tree/main/skills/glmocr-formula) <br>
-- [ZhiPu Layout Parsing API documentation](https://docs.bigmodel.cn/api-reference/%E6%A8%A1%E5%9E%8B-api/%E6%96%87%E6%A1%A3%E8%A7%A3%E6%9E%90) <br>
-- [ZhiPu API key management](https://bigmodel.cn/usercenter/proj-mgmt/apikeys) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance and JSON CLI output containing extracted text, layout details, errors, source metadata, and optional raw API response data.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires ZHIPU_API_KEY; GLM_OCR_TIMEOUT can adjust request timeout; saved output and optional raw responses may contain sensitive document text or metadata.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release evidence) <br>
+Risk: Selected local images, PDFs, or remote document URLs are sent to ZhiPu's GLM-OCR service using the configured API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only documents approved for that provider and account setup, and avoid confidential documents unless the data handling path is approved.
+
+Risk: A shared ZHIPU_API_KEY may be reused across ZhiPu skills when configured globally.
+
+Mitigation: Use skill-level API-key configuration when the key should be scoped to this skill.
+
+Risk: Raw upstream OCR responses may include additional document content when debugging output is enabled.
+
+Mitigation: Leave raw response inclusion disabled unless debugging requires it, and review saved result files before sharing them.
+
+## Reference(s):
+
+- [GLM-OCR Formula skill homepage](https://github.com/zai-org/GLM-OCR/tree/main/skills/glmocr-formula)
+- [ZhiPu Layout Parsing API documentation](https://docs.bigmodel.cn/api-reference/%E6%A8%A1%E5%9E%8B-api/%E6%96%87%E6%A1%A3%E8%A7%A3%E6%9E%90)
+- [ClawHub skill release page](https://clawhub.ai/jaredforreal/skills/glmocr-formula)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [JSON responses containing OCR status, extracted Markdown or LaTeX text, optional layout details, source metadata, and error details.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can save JSON output to a file, pretty-print responses, and include raw upstream responses only when explicitly requested for debugging.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

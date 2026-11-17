@@ -1,0 +1,33 @@
+[project]
+name = "qshare"
+version = "0.4.3"
+description = "Share local files via CNB uploads by default, or an optional TryCloudflare tunnel."
+readme = "README.md"
+authors = [
+    { name = "steinvenic", email = "761701732@qq.com" }
+]
+urls = { Homepage = "https://github.com/steinvenic/qshare", Documentation = "https://github.com/steinvenic/qshare/blob/main/README.md", Skill = "https://github.com/steinvenic/qshare/blob/main/SKILL.md" }
+requires-python = ">=3.6"
+dependencies = [
+    "qrcode==7.3.1; python_version < '3.7'",
+    "qrcode>=7.4.2,<8; python_version >= '3.7' and python_version < '3.9'",
+    "qrcode>=8,<9; python_version >= '3.9'",
+]
+
+[project.scripts]
+qshare = "qshare.cli:main"
+
+[build-system]
+requires = [
+    "setuptools>=59.6.0,<60; python_version < '3.12'",
+    "setuptools>=68; python_version >= '3.12'",
+    "wheel>=0.37.1,<0.38; python_version < '3.12'",
+    "wheel; python_version >= '3.12'",
+]
+build-backend = "setuptools.build_meta"
+
+[dependency-groups]
+dev = [
+    "pytest>=6.2.5,<7; python_full_version < '3.7'",
+    "pytest>=7,<10; python_full_version >= '3.7'",
+]

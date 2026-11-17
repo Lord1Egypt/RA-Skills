@@ -1,45 +1,61 @@
-## Description: <br>
-Syncs Feishu documents into a local cache so OpenClaw agents can read local copies first and reduce repeated Feishu API calls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Sync Feishu docs into local cache for OpenClaw-first reading, reducing API calls and token cost.
 
-## Publisher: <br>
-[gooderno1](https://clawhub.ai/user/gooderno1) <br>
+This skill is for research and development only.
 
-### License/Terms of Use: <br>
-CC-BY-NC-SA-4.0 <br>
+## Publisher:
 
+[gooderno1](https://clawhub.ai/user/gooderno1)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to configure low-frequency Feishu folder synchronization into local Markdown and file caches. It is intended for local-first document retrieval, status checks, and controlled sync task setup. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+CC-BY-NC-SA-4.0
 
-## Known Risks and Mitigations: <br>
-Risk: The WSL helper can send Feishu folder tokens to an auto-selected non-local backend. <br>
-Mitigation: Verify the printed base URL before creating tasks or bootstrapping daily sync, and use only explicit trusted localhost or host addresses. <br>
-Risk: Enabled sync tasks can affect Feishu content if upload-capable modes are selected. <br>
-Mitigation: Keep download_only unless upload_only or bidirectional sync is deliberately requested, and review or delete scheduled sync tasks when they are no longer needed. <br>
-Risk: The skill depends on a trusted LarkSync service and completed Feishu authorization. <br>
-Mitigation: Install only if the LarkSync service is trusted, confirm OAuth status with check before task changes, and require user action for first-time Feishu authorization. <br>
+## Use Case:
 
+OpenClaw users, developers, and teams with Feishu document repositories use this skill to create a low-frequency local cache so day-to-day retrieval can prefer local Markdown and files over repeated Feishu API calls.
 
-## Reference(s): <br>
-- [LarkSync homepage](https://github.com/gooderno1/LarkSync) <br>
-- [ClawHub skill page](https://clawhub.ai/gooderno1/larksync-feishu-local-cache) <br>
-- [OpenClaw agent guide](OPENCLAW_AGENT_GUIDE.md) <br>
-- [Skill README](README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, JSON] <br>
-**Output Format:** [Markdown guidance with shell commands and helper JSON output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Helper scripts return JSON for agent orchestration and audit trails.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.6 (source: server release metadata) <br>
+Risk: The WSL helper can automatically select a discovered non-loopback endpoint before sending sensitive sync details such as cloud folder tokens.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an explicit trusted --base-url when possible and avoid sending cloud folder tokens to automatically discovered non-loopback HTTP endpoints.
+
+Risk: The helper can create or run sync tasks against a local LarkSync backend.
+
+Mitigation: Install only when the local LarkSync backend is trusted, run check before task changes, and keep the default download_only mode unless uploads are intentionally required.
+
+Risk: Bidirectional and upload-only modes can propagate local changes back to Feishu.
+
+Mitigation: Use download_only by default and test bidirectional behavior in a non-production folder before enabling it for important documents.
+
+## Reference(s):
+
+- [LarkSync homepage](https://github.com/gooderno1/LarkSync)
+- [ClawHub skill page](https://clawhub.ai/gooderno1/skills/larksync-feishu-local-cache)
+- [Publisher profile](https://clawhub.ai/user/gooderno1)
+- [OPENCLAW_AGENT_GUIDE.md](OPENCLAW_AGENT_GUIDE.md)
+- [README.md](README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON helper output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Helper commands can check service health, configure low-frequency download schedules, create or reuse sync tasks, run tasks, and emit JSON results for auditability.]
+
+## Skill Version(s):
+
+0.1.6 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

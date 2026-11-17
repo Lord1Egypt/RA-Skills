@@ -1,36 +1,52 @@
-## Description: <br>
-Translates Excel files (.xlsx) from English to Chinese while preserving all formatting, images, and charts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Translates Excel files (.xlsx) from English to Chinese while preserving formatting, images, and charts.
 
-## Publisher: <br>
-[ilove323](https://clawhub.ai/user/ilove323) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ilove323](https://clawhub.ai/user/ilove323)
 
-## Use Case: <br>
-Employees, external users, and developers use this skill to translate English text in Excel workbooks into Chinese while keeping the workbook structure and visual formatting intact. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Workbook text may be sent from every sheet to the configured OpenAI-compatible API. <br>
-Mitigation: Use only approved providers, accounts, and OPENAI_BASE_URL values for the workbook data, and avoid confidential workbooks unless that data flow is authorized. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+External users and agents use this skill to translate English text in provided Excel workbooks into Chinese while preserving workbook layout and returning a translated .xlsx file.
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Guidance] <br>
-**Output Format:** [Translated .xlsx workbook with concise delivery guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes Chinese translations below original English text in the same cell and saves a translated workbook.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Workbook text cells are sent to the configured OpenAI-compatible API endpoint.
+
+Mitigation: Use only with spreadsheets whose data is approved for that external service; avoid confidential, regulated, financial, or personal spreadsheets unless policy permits it.
+
+Risk: The script reads API credentials from local secret files or environment variables and honors OPENAI_BASE_URL.
+
+Mitigation: Verify OPENAI_BASE_URL and credential source before running, and scope credentials to the intended translation service.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ilove323/skills/excel-translator)
+
+## Skill Output:
+
+**Output Type(s):** [files, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and a generated .xlsx workbook]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Processes .xlsx workbooks and writes Chinese translations below the original text in each translated cell when successful.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

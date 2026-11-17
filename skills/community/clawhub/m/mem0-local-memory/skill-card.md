@@ -1,44 +1,64 @@
-## Description: <br>
-mem0 Local Memory helps agents set up a local OpenClaw long-term memory plugin backed by mem0 and ChromaDB, with DeepSeek for fact extraction and DashScope for embeddings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Local long-term memory setup guidance for OpenClaw using mem0, ChromaDB, DeepSeek for LLM-based fact extraction, and DashScope for embeddings.
 
-## Publisher: <br>
-[dream-star-end](https://clawhub.ai/user/dream-star-end) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dream-star-end](https://clawhub.ai/user/dream-star-end)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to install, configure, and verify shared long-term semantic memory across agents. It provides setup guidance, shell commands, configuration examples, and optional import steps for existing OpenClaw workspace memories. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent cross-agent memory can capture and reuse sensitive workspace content across OpenClaw agents. <br>
-Mitigation: Install only when shared long-term memory is intended, review MEMORY.md and TOOLS.md before import, consider disabling autoCapture until tested, and confirm how to stop the service and delete stored memories. <br>
-Risk: Changing MEM0_URL away from localhost can send memory operations to a remote server. <br>
-Mitigation: Keep MEM0_URL on localhost unless the remote endpoint is explicitly trusted. <br>
-Risk: The setup depends on external DeepSeek and DashScope services for fact extraction and embeddings. <br>
-Mitigation: Use dedicated API keys and review which text snippets may be sent to those providers before enabling the workflow. <br>
+## Use Case:
 
+Developers and OpenClaw operators use this skill to install and configure a local mem0 memory server, connect it to OpenClaw, and optionally import existing workspace memory files into a shared semantic memory pool.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dream-star-end/mem0-local-memory) <br>
-- [DeepSeek Platform](https://platform.deepseek.com/) <br>
-- [DashScope](https://dashscope.aliyuncs.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash, JSON, and service configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include local service verification commands and optional memory import guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata) <br>
+Risk: The setup asks users to run external repository code that is not pinned to a reviewed commit.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin the repository to a reviewed commit before installation and review the setup scripts before execution.
+
+Risk: The memory pool is shared across agents and can persist sensitive or operational details across sessions.
+
+Mitigation: Use the shared memory pool only when that data boundary is acceptable, and review or redact workspace files before import.
+
+Risk: Memory snippets are sent to third-party DeepSeek and DashScope APIs for extraction and embedding.
+
+Mitigation: Avoid importing secrets or sensitive content, and store API keys using secure user-level secret handling.
+
+Risk: Persistent service configuration can expand exposure if the endpoint or service scope is misconfigured.
+
+Mitigation: Keep the endpoint bound to loopback, avoid system-wide auto-start where possible, and prefer user-level service configuration.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dream-star-end/skills/mem0-local-memory)
+- [Project repository referenced by the skill](https://github.com/dream-star-end/openclaw-plugin-mem0-local)
+- [DeepSeek API platform](https://platform.deepseek.com/)
+- [DashScope API platform](https://dashscope.aliyuncs.com/)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with bash, JSON, and INI configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes setup, verification, troubleshooting, and import guidance for a local memory service.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

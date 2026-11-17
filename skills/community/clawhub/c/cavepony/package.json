@@ -1,0 +1,40 @@
+{
+  "name": "cavepony",
+  "version": "0.3.0",
+  "description": "Pony-themed token compression for AI agents with bidirectional token mapping — why use many token when pony do trick",
+  "main": "cavepony-compress/compress.js",
+  "bin": {
+    "cavepony": "./cavepony-compress/bin/cavepony"
+  },
+  "files": [
+    "cavepony-compress/compress.js",
+    "cavepony-compress/pony-dict.json",
+    "cavepony-compress/bin/cavepony",
+    "skills/CAVEPONY.md"
+  ],
+  "scripts": {
+    "test": "node cavepony-compress/test-compress.js",
+    "demo": "node cavepony-compress/bin/cavepony demo --mode=pony",
+    "compress": "node cavepony-compress/bin/cavepony"
+  },
+  "keywords": [
+    "token-compression",
+    "ai-agents",
+    "claude-code",
+    "productivity",
+    "pony",
+    "ml",
+    "llm",
+    "caveman"
+  ],
+  "author": "Baud & sun",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cavepony/cavepony.git"
+  },
+  "bugs": {
+    "url": "https://github.com/cavepony/cavepony/issues"
+  },
+  "homepage": "https://github.com/cavepony/cavepony#readme"
+}

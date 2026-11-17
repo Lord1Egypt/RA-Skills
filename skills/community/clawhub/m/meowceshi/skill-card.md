@@ -1,45 +1,61 @@
-## Description: <br>
-Captures learnings, errors, corrections, and feature requests in local Markdown logs so agents can review and promote recurring knowledge. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Captures learnings, errors, corrections, and feature requests in workspace markdown files so agents can reuse and promote recurring knowledge.
 
-## Publisher: <br>
-[j-meow-666](https://clawhub.ai/user/j-meow-666) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[j-meow-666](https://clawhub.ai/user/j-meow-666)
 
-## Use Case: <br>
-Developers and coding-agent users use this skill to record command failures, user corrections, missing feature requests, and reusable lessons in `.learnings/` Markdown files. It also provides optional hook-based reminders and guidance for promoting broadly useful learnings into agent context files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local learning logs may persist sensitive context or shape future agent behavior. <br>
-Mitigation: Keep routine notes in `.learnings/`, redact secrets and raw command output, and review entries before reuse or sharing. <br>
-Risk: Promoting learnings into agent instruction or memory files can make temporary observations affect future sessions. <br>
-Mitigation: Require user approval before promoting entries into `AGENTS.md`, `SOUL.md`, `TOOLS.md`, `CLAUDE.md`, or other persistent instruction files. <br>
-Risk: The optional Bash error-detection hook inspects command output to identify failures. <br>
-Mitigation: Enable the error-detection hook only in trusted environments and only when command output inspection is acceptable. <br>
+## Use Case:
 
+Developers and agent users use this skill to capture command failures, user corrections, knowledge gaps, and feature requests into .learnings markdown logs. It also guides review and promotion of high-value learnings into project or agent instruction files after human review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/j-meow-666/meowceshi) <br>
-- [Hook Setup Guide](references/hooks-setup.md) <br>
-- [OpenClaw Integration](references/openclaw-integration.md) <br>
-- [Examples](references/examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local learning-log entries and optional hook setup guidance; users should redact sensitive details before logging.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: Session-derived guidance can persist into future agent instructions and influence later behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require human review before promoting entries into CLAUDE.md, AGENTS.md, SOUL.md, TOOLS.md, or Copilot instructions.
+
+Risk: Hooks can automatically add reminders or inspect command output in broad contexts.
+
+Mitigation: Keep hooks disabled by default or narrowly matched, and avoid global user-level hook configuration unless the workspace is trusted.
+
+Risk: Learning logs may capture sensitive conversation details, secrets, transcripts, or command output.
+
+Mitigation: Record short sanitized summaries, redact sensitive values, and avoid storing raw transcripts or full command output.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/j-meow-666/skills/meowceshi)
+- [OpenClaw Integration](references/openclaw-integration.md)
+- [Hook Setup Guide](references/hooks-setup.md)
+- [Entry Examples](references/examples.md)
+- [Agent Skills specification](https://agentskills.io/specification)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and file templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can create or append .learnings markdown files and optionally suggest promotion into agent instruction files.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

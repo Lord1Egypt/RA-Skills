@@ -1,47 +1,63 @@
-## Description: <br>
-MTProto 2.0 protocol implementation guidance for Telegram backend developers implementing encryption, handshake, message serialization, TL language support, or Telegram-compatible servers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MTProto 2.0 protocol implementation guidance for Telegram backend development, covering encryption, handshake flow, message serialization, TL language, and security considerations.
 
-## Publisher: <br>
-[zhihang9978](https://clawhub.ai/user/zhihang9978) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhihang9978](https://clawhub.ai/user/zhihang9978)
 
-## Use Case: <br>
-Developers and engineers use this skill as a non-authoritative learning aid when studying MTProto 2.0 handshakes, encryption, message formatting, TL serialization, and Telegram-compatible backend behavior. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Unsafe or contradictory cryptography guidance could mislead production MTProto implementations. <br>
-Mitigation: Use the skill only as a non-authoritative learning aid; cross-check every protocol detail against Telegram official documentation and audited implementations. <br>
-Risk: Implementation mistakes around Auth Key ID derivation, random generation, padding, message-key verification, AES-IGE assumptions, or bounds checks could compromise security. <br>
-Mitigation: Require expert cryptography review, official test vectors, and rigorous buffer, offset, and bounds testing before handling real keys or production traffic. <br>
+## Use Case:
 
+Developers and engineers use this skill to review MTProto 2.0 implementation guidance for Telegram-compatible backends, including handshake, encryption, TL serialization, and message formatting.
 
-## Reference(s): <br>
-- [Handshake Details](references/handshake.md) <br>
-- [Encryption Algorithm](references/encryption.md) <br>
-- [Message Format](references/message-format.md) <br>
-- [TL Language](references/tl-language.md) <br>
-- [Security Notice](references/security-notice.md) <br>
-- [MTProto Official](https://core.telegram.org/mtproto) <br>
-- [TL Schema](https://core.telegram.org/schema) <br>
-- [Telegram API](https://core.telegram.org/api) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Guidance] <br>
-**Output Format:** [Markdown guidance with inline Go and TL code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only; no tools or commands are executed by the skill.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release metadata) <br>
+Risk: Security-critical examples may contain contradictory or incorrect protocol and cryptography guidance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Check the official Telegram specification, known-good libraries, and independent cryptographic review before using the guidance for production implementation.
+
+Risk: Example code may be copied into production without validating randomness, buffer sizing, Auth Key ID handling, or error handling.
+
+Mitigation: Apply the security notice checklist before deployment, including crypto/rand usage, 8-byte Auth Key ID validation, official vectors, buffer-size checks, and expert review.
+
+## Reference(s):
+
+- [Handshake Details](references/handshake.md)
+- [Encryption Algorithm](references/encryption.md)
+- [Message Format](references/message-format.md)
+- [TL Language](references/tl-language.md)
+- [Security Notice](references/security-notice.md)
+- [Telegram MTProto Documentation](https://core.telegram.org/mtproto)
+- [Telegram API Documentation](https://core.telegram.org/api)
+- [Telegram TL Schema](https://core.telegram.org/schema)
+- [Telegram TL Language Specification](https://core.telegram.org/mtproto/TL)
+- [Go crypto/rand Package](https://golang.org/pkg/crypto/rand/)
+- [Go Constant-Time Comparison](https://pkg.go.dev/crypto/subtle#ConstantTimeCompare)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands]
+
+**Output Format:** [Markdown with Go, TL, and shell code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only guidance; examples require independent security review before production use.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

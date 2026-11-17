@@ -1,43 +1,50 @@
-## Description: <br>
-Offline fallback for TutorClaw. When the TutorClaw MCP server is unreachable, follow these PRIMM-Lite teaching instructions for Chapters 1-5 of the beginner programming course. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Offline fallback for TutorClaw. When the TutorClaw MCP server is unreachable, follow these PRIMM-Lite teaching instructions for Chapters 1-5 of the beginner programming course.
 
-## Publisher: <br>
-[tiktokmanagerhere889-coder](https://clawhub.ai/user/tiktokmanagerhere889-coder) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tiktokmanagerhere889-coder](https://clawhub.ai/user/tiktokmanagerhere889-coder)
 
-## Use Case: <br>
-External learners and tutoring agents use this skill as an offline fallback for beginner programming lessons when the TutorClaw MCP server is unavailable. It guides Chapters 1-5 with a PRIMM-Lite flow that asks learners to predict code behavior before seeing or discussing the result. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Learners may mistake offline fallback mode for the full TutorClaw service. <br>
-Mitigation: Tell learners at the start of each conversation that offline mode is active and capabilities are limited. <br>
-Risk: The skill could be asked for advanced content outside its stated coverage. <br>
-Mitigation: Keep responses within Chapters 1-5 and direct Chapter 6+ requests to the full TutorClaw service. <br>
-Risk: Static tutoring guidance can produce incorrect or misleading explanations if used without review. <br>
-Mitigation: Review tutoring responses before relying on them for learner assessment; the security evidence reports no executable code, data access, persistence, or hidden privileges. <br>
+## Use Case:
 
+External learners and tutors use this skill as an offline fallback for beginner programming lessons when the TutorClaw MCP server is unavailable. It guides Chapters 1-5 with a PRIMM-Lite teaching flow and clear offline-mode limitations.
 
-## Reference(s): <br>
-- [Artifact Skill Definition](artifact/SKILL.md) <br>
-- [ClawHub Release Page](https://clawhub.ai/tiktokmanagerhere889-coder/tutorclaw-shim) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown conversational tutoring responses with short code snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Does not execute code, track learner progress, personalize exercises, or cover Chapter 6+ content.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: The skill is a limited offline tutoring fallback and cannot track progress, run code, personalize exercises, or cover Chapter 6 and later material.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Tell learners at the start that offline mode is active, disclose limited capabilities, and direct advanced content requests to the full TutorClaw service.
+
+## Reference(s):
+
+- [TutorClaw Shim ClawHub Release](https://clawhub.ai/tiktokmanagerhere889-coder/skills/tutorclaw-shim)
+- [tiktokmanagerhere889-coder Publisher Profile](https://clawhub.ai/user/tiktokmanagerhere889-coder)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown guidance with inline code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Short tutoring responses that disclose offline mode, avoid progress tracking or code execution, and stay within Chapters 1-5.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

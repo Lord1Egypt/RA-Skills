@@ -1,38 +1,53 @@
-## Description: <br>
-Helps verify whether skill signing events are recorded in an independently auditable transparency log, exposing gaps between registry claims and independently verifiable signing history. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps verify that skill signing events are recorded in an independently auditable transparency log, catching trust failures where a registry operator can silently rewrite history without detection.
 
-## Publisher: <br>
-[andyxinweiminicloud](https://clawhub.ai/user/andyxinweiminicloud) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[andyxinweiminicloud](https://clawhub.ai/user/andyxinweiminicloud)
 
-## Use Case: <br>
-Developers, security reviewers, and registry operators use this skill to audit whether skill signing records are backed by accessible, append-only transparency logs and to identify coverage gaps or cross-registry inconsistencies. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Registry URL or skill-record inputs may be queried during an audit. <br>
-Mitigation: Only provide registry URLs, skill identifiers, or records that are intended to be audited. <br>
-Risk: Audit conclusions depend on the availability and quality of the underlying transparency-log data. <br>
-Mitigation: Treat the report as evidence-gathering guidance and verify important findings against the relevant registry or log operator before acting. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+Developers, registry operators, and security reviewers use this skill to assess whether skill signing events are covered by independently auditable transparency logs and to identify gaps in append-only verifiability, signing-event coverage, and cross-registry consistency.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown audit report with ratings, findings, risk assessment, and recommended actions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference required local binaries curl and python3 when checking accessible registry or log data.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Registry or transparency-log inputs may be incomplete, unavailable, or inconsistent, which can lead to inconclusive audit findings.
+
+Mitigation: Treat the report as an evidence review, preserve source URLs or records, and request registry-side clarification before relying on a disputed signing history.
+
+Risk: The skill may suggest curl or python3 checks against user-provided registry endpoints.
+
+Mitigation: Run proposed commands only against trusted endpoints and review them before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/andyxinweiminicloud/skills/transparency-log-auditor)
+- [Publisher profile](https://clawhub.ai/user/andyxinweiminicloud)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown audit report with findings, verdicts, risk assessment, and recommended actions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose curl or python3 commands for user-provided registry and transparency-log checks.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,58 @@
-## Description: <br>
-Generate images & videos with AIsa. Gemini 3 Pro Image (image) + Qwen Wan 2.6 (video) via one API key. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate images and videos with AIsa using Gemini 3 Pro Image for image generation and Qwen Wan 2.6 for video generation via one API key.
 
-## Publisher: <br>
-[bowen-dotcom](https://clawhub.ai/user/bowen-dotcom) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[bowen-dotcom](https://clawhub.ai/user/bowen-dotcom)
 
-## Use Case: <br>
-Developers, content creators, and businesses use this skill to generate image and video assets through the AIsa API, including Gemini image generation and asynchronous Wan 2.6 video tasks. Agents can create tasks, poll task status, and save generated media files locally. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
-
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bowen-dotcom/aisa-media-gen-en-skill) <br>
-- [OpenClaw](https://openclaw.ai) <br>
-- [AIsa API Reference](https://aisa.mintlify.app/api-reference/introduction) <br>
-- [AIsa Gemini GenerateContent documentation](https://aisa.mintlify.app/api-reference/chat/chat-api/google-gemini-chat.md) <br>
-- [AIsa video generation documentation](https://aisa.mintlify.app/api-reference/aliyun/video/video-generation.md) <br>
-- [AIsa task polling documentation](https://aisa.mintlify.app/api-reference/aliyun/video/task.md) <br>
+### License/Terms of Use:
 
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API Calls, JSON, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with bash examples, JSON API responses, and saved image or MP4 files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires AISA_API_KEY; video generation uses asynchronous task creation and polling, and downloaded media should be treated as untrusted until validated.] <br>
+## Use Case:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Developers, content creators, and agent builders use this skill to generate images, create asynchronous video tasks, poll video task status, and save generated media through the AIsa API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill sends prompts, reference image URLs, task IDs, and the AIsa API key to the external AIsa service.
+
+Mitigation: Use AISA_API_KEY rather than passing keys on the command line, avoid sensitive prompts or private image URLs, and confirm that use of AIsa is approved for the target workload.
+
+Risk: The optional video download path fetches a video URL returned by the external service and writes it to disk.
+
+Mitigation: Use --download only for trusted tasks, choose output paths deliberately, and review downloaded media before reuse or distribution.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/bowen-dotcom/skills/aisa-media-gen-en-skill)
+- [OpenClaw](https://openclaw.ai)
+- [AIsa API Reference](https://aisa.mintlify.app/api-reference/introduction)
+- [AIsa LLMs Documentation Index](https://aisa.mintlify.app/llms.txt)
+- [Gemini GenerateContent Documentation](https://aisa.mintlify.app/api-reference/chat/chat-api/google-gemini-chat.md)
+- [AIsa Video Generation Documentation](https://aisa.mintlify.app/api-reference/aliyun/video/video-generation.md)
+- [AIsa Video Task Documentation](https://aisa.mintlify.app/api-reference/aliyun/video/task.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with shell commands, Python client invocations, JSON API responses, and generated media files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can write image files and optionally download generated video files to local paths.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

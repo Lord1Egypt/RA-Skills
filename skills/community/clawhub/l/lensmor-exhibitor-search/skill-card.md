@@ -1,43 +1,56 @@
-## Description: <br>
-Find ICP-matching exhibitors, prospects, and partners at any trade show using the Lensmor API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Finds ICP-matching exhibitors, prospects, partners, and competitors at trade shows using the Lensmor API.
 
-## Publisher: <br>
-[weilun88313](https://clawhub.ai/user/weilun88313) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[weilun88313](https://clawhub.ai/user/weilun88313)
 
-## Use Case: <br>
-B2B sales and marketing teams use this skill to find trade-show exhibitors, prospects, partners, or competitors that match a company URL or target-audience profile before an event. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: User-provided company URLs, event identifiers, and target-audience descriptions are sent to Lensmor as part of the exhibitor search workflow. <br>
-Mitigation: Avoid entering confidential strategy, private customer lists, credentials, or internal documents, and use only inputs appropriate to share with Lensmor. <br>
-Risk: The skill depends on a Lensmor API key for external exhibitor data access. <br>
-Mitigation: Store LENSMOR_API_KEY securely, never disclose it in responses, and verify that the key is configured before making API calls. <br>
+## Use Case:
 
+B2B sales and marketing teams use this skill to discover exhibitors that match an ideal customer profile before a trade show. It supports prospect discovery, partner sourcing, and competitive mapping from a company URL or target-audience description.
 
-## Reference(s): <br>
-- [Lensmor API documentation](https://api.lensmor.com/) <br>
-- [Lensmor platform](https://platform.lensmor.com) <br>
-- [ClawHub release page](https://clawhub.ai/weilun88313/lensmor-exhibitor-search) <br>
-- [Example: SaaS vendor prospecting at Dreamforce 2026](examples/saas-vendor-at-dreamforce.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with structured exhibitor tables, ICP match notes, error messages, and concise follow-up suggestions.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires LENSMOR_API_KEY; returns paginated exhibitor search results grounded in Lensmor API response fields.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill sends company URLs, target-audience descriptions, event IDs, and prospecting context to Lensmor.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for data that may be shared with Lensmor, and review Lensmor's data-handling terms before using confidential prospecting workflows.
+
+Risk: A Lensmor API key is required for use.
+
+Mitigation: Store LENSMOR_API_KEY in the environment or a secrets manager, and do not include the key in prompts, outputs, or shared documents.
+
+## Reference(s):
+
+- [Lensmor API documentation](https://api.lensmor.com/)
+- [Lensmor platform](https://platform.lensmor.com)
+- [ClawHub skill listing](https://clawhub.ai/weilun88313/skills/lensmor-exhibitor-search)
+- [Example walkthrough](examples/saas-vendor-at-dreamforce.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, API Calls, Shell Commands, Guidance]
+
+**Output Format:** [Markdown tables with result summaries, ICP match notes, and contextual follow-up suggestions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires LENSMOR_API_KEY and either company_url or target_audience; optional event_id, page, and pageSize control scoping and pagination.]
+
+## Skill Version(s):
+
+1.2.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

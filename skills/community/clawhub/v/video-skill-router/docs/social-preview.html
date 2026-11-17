@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    width: 1280px; height: 640px;
+    background: linear-gradient(135deg, #0d1117 0%, #161b27 55%, #1a2233 100%);
+    font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    color: #ffffff;
+    display: flex; flex-direction: column; justify-content: center; align-items: flex-start;
+    padding: 0 96px;
+    position: relative; overflow: hidden;
+  }
+  .grid {
+    position: absolute; inset: 0;
+    background-image: linear-gradient(rgba(48,58,80,0.25) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(48,58,80,0.25) 1px, transparent 1px);
+    background-size: 64px 64px;
+    mask-image: radial-gradient(ellipse at 30% 40%, black 30%, transparent 75%);
+    -webkit-mask-image: radial-gradient(ellipse at 30% 40%, black 30%, transparent 75%);
+  }
+  .badge {
+    display: inline-flex; align-items: center; gap: 10px;
+    border: 1px solid #2dd4bf; color: #2dd4bf;
+    font-size: 22px; font-weight: 600; letter-spacing: 2px;
+    padding: 8px 20px; border-radius: 999px;
+    margin-bottom: 36px; text-transform: uppercase;
+  }
+  h1 {
+    font-size: 76px; font-weight: 800; letter-spacing: -1px;
+    line-height: 1.1; margin-bottom: 24px;
+    font-family: "Cascadia Code", "JetBrains Mono", Consolas, "Courier New", monospace;
+  }
+  h1 .accent { color: #2dd4bf; }
+  .tagline {
+    font-size: 32px; color: #c9d4e3; font-weight: 400;
+    margin-bottom: 44px; letter-spacing: 0.5px;
+  }
+  .engines {
+    font-size: 22px; color: #8b949e; letter-spacing: 1px;
+    font-family: "Cascadia Code", "JetBrains Mono", Consolas, "Courier New", monospace;
+  }
+  .engines b { color: #a78bfa; font-weight: 600; }
+  .flow {
+    position: absolute; right: 96px; top: 50%; transform: translateY(-50%);
+    display: flex; flex-direction: column; gap: 18px; align-items: flex-end;
+  }
+  .flow span {
+    font-size: 20px; color: #6e7a8f; letter-spacing: 1px;
+    border-right: 3px solid #2dd4bf; padding-right: 14px;
+  }
+  .flow span.on { color: #e6edf3; border-right-color: #a78bfa; }
+</style>
+</head>
+<body>
+  <div class="grid"></div>
+  <div class="flow">
+    <span class="on">DETECT</span>
+    <span class="on">MATCH</span>
+    <span class="on">DISCOVER</span>
+    <span class="on">INSTALL</span>
+    <span class="on">ORCHESTRATE</span>
+  </div>
+  <div class="badge">▶ WorkBuddy Skill</div>
+  <h1>video-skill-<span class="accent">router</span></h1>
+  <div class="tagline">The AI Video &amp; Animation Skill Router</div>
+  <div class="engines">discover · install · orchestrate &nbsp;<b>Manim / Remotion / Lottie / FFmpeg</b></div>
+</body>
+</html>

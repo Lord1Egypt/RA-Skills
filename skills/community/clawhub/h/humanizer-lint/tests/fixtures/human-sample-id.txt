@@ -1,0 +1,13 @@
+Pagi itu server mati.
+
+Rina sedang menyeduh kopi ketika tiga pesan masuk hampir bersamaan: kasir tidak bisa mencetak struk, gudang melihat stok minus, dan pemilik toko meminta laporan yang seharusnya sudah terkirim sejak subuh. Ia menaruh cangkirnya, membuka log, lalu menemukan satu tanggal kedaluwarsa yang luput diperbarui saat migrasi malam sebelumnya.
+
+Masalahnya kecil. Dampaknya tidak.
+
+Ia mengganti nilai tersebut dan menjalankan ulang antrean. Kasir kembali bekerja dalam dua menit, tetapi Rina belum menutup laptop karena stok minus masih perlu dilacak sampai sumbernya. Ternyata satu pemindai lama mengirim transaksi dua kali setiap kali koneksinya terputus sesaat.
+
+Tidak ada rapat darurat.
+
+Tim gudang mematikan pemindai itu, mencatat enam transaksi ganda, lalu memperbaiki jumlah barang berdasarkan nota fisik yang masih tersimpan di meja dekat rak paling belakang gudang. Menjelang makan siang, laporan terkirim dengan catatan singkat tentang koreksi yang dilakukan dan alasan angkanya berubah.
+
+Besoknya mereka menambah pemeriksaan sederhana sebelum antrean diproses. Murah, agak membosankan, dan cukup untuk mencegah kejadian yang sama.

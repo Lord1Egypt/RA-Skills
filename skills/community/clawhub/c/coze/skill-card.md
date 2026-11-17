@@ -1,43 +1,55 @@
-## Description: <br>
-Coze is an AI bot development assistant for building Coze bots, plugins, workflows, knowledge bases, and publishing integrations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Coze is an AI bot development assistant for building bots, developing plugins, orchestrating workflows, and configuring knowledge bases.
 
-## Publisher: <br>
-[zhangifonly](https://clawhub.ai/user/zhangifonly) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhangifonly](https://clawhub.ai/user/zhangifonly)
 
-## Use Case: <br>
-Developers and bot builders use this skill for guidance on creating Coze bots, connecting plugins and APIs, configuring knowledge bases, orchestrating workflows, and selecting publishing channels. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Example API authentication patterns may be adapted with real Coze tokens. <br>
-Mitigation: Store real tokens in environment variables or a secrets manager and avoid pasting secrets into prompts, examples, logs, or shared skill content. <br>
-Risk: Bot workflows, knowledge bases, HTTP nodes, and custom plugins may process sensitive or regulated data. <br>
-Mitigation: Review Coze data residency, retention, approved data classes, knowledge-base uploads, and external endpoints before connecting production data. <br>
-Risk: Publishing channels and API integrations can expose bot behavior beyond the development environment. <br>
-Mitigation: Test boundary cases and permissions before release, and review each publishing channel before enabling production access. <br>
+## Use Case:
 
+Developers and bot builders use this skill for guidance on creating Coze bots, configuring plugins and knowledge bases, designing workflows, publishing bots, and adapting Coze API examples.
 
-## Reference(s): <br>
-- [ClawHub Coze skill page](https://clawhub.ai/zhangifonly/coze) <br>
-- [Coze chat API endpoint used in the skill example](https://api.coze.cn/v3/chat) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, configuration] <br>
-**Output Format:** [Markdown guidance with code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Python API examples and Coze platform configuration guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The API example includes a placeholder bearer token pattern that could be copied into real code with hardcoded credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use real Coze tokens only from a secret store or environment variable, and avoid logging tokens.
+
+Risk: Coze bot integrations can send user content or uploaded knowledge-base data to external services.
+
+Mitigation: Avoid sending sensitive user data unless consent, privacy basis, and the appropriate Coze environment are confirmed.
+
+## Reference(s):
+
+- [ClawHub Coze skill page](https://clawhub.ai/zhangifonly/skills/coze)
+- [ClawHub publisher profile](https://clawhub.ai/user/zhangifonly)
+- [Coze chat API endpoint referenced by the skill](https://api.coze.cn/v3/chat)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown guidance with code snippets and configuration recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

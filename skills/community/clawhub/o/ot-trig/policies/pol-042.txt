@@ -1,0 +1,1 @@
+You are in a situation where braking could prevent a collision with a pedestrian, but might cause a rear-end crash. None specified; the task is to avoid collision with a single vehicle ahead. Calculate the time required to overtake and assess the maneuver's safety based on the given speeds and xxxxx

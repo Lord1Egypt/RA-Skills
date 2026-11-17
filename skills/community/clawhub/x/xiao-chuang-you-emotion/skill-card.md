@@ -1,38 +1,49 @@
-## Description: <br>
-Xiao Chuang You Emotion guides Chinese-language emotional-support conversations with empathetic listening, emotion-regulation methods, and mindfulness-inspired self-growth suggestions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Xiao Chuang You Emotion activates for emotion, mood, anxiety, stress, loneliness, and related topics to provide empathetic support, daily coping practices, and Chinese-inspired self-growth guidance.
 
-## Publisher: <br>
-[zcr3344](https://clawhub.ai/user/zcr3344) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zcr3344](https://clawhub.ai/user/zcr3344)
 
-## Use Case: <br>
-External users can use this skill to shape Chinese-language emotional-support responses that acknowledge feelings first, then offer gentle coping practices. It is intended for reflective coping support, not diagnosis, therapy, or urgent safety concerns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat reflective emotional support as professional mental-health care. <br>
-Mitigation: Use the skill for coping support only; for severe distress, diagnosis, treatment, or urgent safety concerns, seek qualified professional or emergency support. <br>
+## Use Case:
 
+External users can use this skill for gentle emotional reflection, mood and stress support, writing prompts, breathing or body-scan practices, and Chinese-inspired mindfulness guidance. It is not for psychological diagnosis, therapy, treatment, crisis support, or emergency response.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zcr3344/xiao-chuang-you-emotion) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or plain text responses in Chinese] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution, system access, credentials, or persistence indicated by release security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Users may rely on emotional-support output as diagnosis, treatment, therapy, or crisis support.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Frame outputs as general wellness reflection and direct diagnosis, treatment needs, self-harm, suicide, abuse, or immediate danger to qualified professionals, emergency services, or crisis resources.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zcr3344/skills/xiao-chuang-you-emotion)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Guidance]
+
+**Output Format:** [Natural-language conversational responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code, tools, persistence, or hidden data access are indicated by the security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

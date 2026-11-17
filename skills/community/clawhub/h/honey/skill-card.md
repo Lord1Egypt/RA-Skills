@@ -1,37 +1,54 @@
-## Description: <br>
-Honey（PayPal旗下）浏览器优惠券自动应用工具，自动在结算时测试所有可用优惠码，并提供Honey Gold返利积分。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Honey（PayPal旗下）浏览器优惠券自动应用工具，自动在结算时测试所有可用优惠码，并提供Honey Gold返利积分。
 
-## Publisher: <br>
-[fangshan101-coder](https://clawhub.ai/user/fangshan101-coder) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fangshan101-coder](https://clawhub.ai/user/fangshan101-coder)
 
-## Use Case: <br>
-购物用户在结算前使用该技能查询 Honey 风格的优惠码、返利积分和价格追踪提示，以辅助比较可用折扣。 <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Honey/PayPal coupon, cashback, or merchant coverage claims may be inaccurate or outdated. <br>
-Mitigation: Confirm offers through official Honey/PayPal sources and review checkout changes before completing purchases. <br>
+## Use Case:
 
+External shoppers use this skill to ask an agent for coupon, cashback, and price-tracking style guidance for Honey-related checkout savings.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown-style coupon query summary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes merchant name, available coupon count, best coupon savings, and Honey Gold multiplier when known.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill is an informational coupon prompt and is not evidenced as an official PayPal Honey integration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Users should verify coupon, cashback, and merchant claims before relying on them at checkout.
+
+Risk: Broad Honey-related trigger terms may activate the skill in unrelated shopping or coupon conversations.
+
+Mitigation: Review activation context before using the skill's output for purchase decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fangshan101-coder/skills/honey)
+- [Publisher profile](https://clawhub.ai/user/fangshan101-coder)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Structured Markdown-style coupon summary]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include merchant name, available coupon count, best coupon savings, and Honey Gold multiplier when supplied by the agent's context.]
+
+## Skill Version(s):
+
+0.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

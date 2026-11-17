@@ -1,37 +1,53 @@
-## Description: <br>
-Proving identity: sessions, tokens, MFA, recovery. Use when implementing login, token refresh, or auth bugs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Proving identity: sessions, tokens, MFA, recovery. Use when implementing login, token refresh, or auth bugs.
 
-## Publisher: <br>
-[codenova58](https://clawhub.ai/user/codenova58) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[codenova58](https://clawhub.ai/user/codenova58)
 
-## Use Case: <br>
-Developers and engineers use this skill to structure authentication work around sessions, tokens, MFA, account recovery, validation, and operational follow-through. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Authentication guidance may affect production login, MFA, recovery, or token behavior if applied without review. <br>
-Mitigation: Review recommendations against the target system and validate changes before applying them to production authentication flows. <br>
+## Use Case:
 
+Developers and engineers use this skill to structure authentication planning, implementation, validation, and rollout work for sessions, tokens, MFA, recovery, and related auth bugs.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown] <br>
-**Output Format:** [Markdown guidance with staged workflow steps and checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only output; no code execution or credential handling.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Authentication guidance may be applied to sensitive login, session, MFA, or recovery flows without enough local context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm goals, constraints, threat model, rollback path, and verification steps before applying recommendations to production systems.
+
+Risk: The skill can introduce a structured workflow when a user only wants a narrow answer.
+
+Mitigation: Offer the staged workflow first, then switch to freeform help when the user declines or asks for a lighter pass.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/codenova58/skills/authentication)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Text]
+
+**Output Format:** [Markdown or plain text guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include staged plans, checklists, trade-off notes, verification steps, and operational follow-through.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

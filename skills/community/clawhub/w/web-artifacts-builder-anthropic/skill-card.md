@@ -1,41 +1,53 @@
-## Description: <br>
-Suite of tools for creating elaborate, multi-component claude.ai HTML artifacts using modern frontend web technologies (React, Tailwind CSS, shadcn/ui). Use for complex artifacts requiring state management, routing, or shadcn/ui components - not for simple single-file HTML/JSX artifacts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Builds complex Claude.ai HTML artifacts with React, TypeScript, Tailwind CSS, Vite, Parcel, and shadcn/ui.
 
-## Publisher: <br>
-[pupuking723](https://clawhub.ai/user/pupuking723) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Apache 2.0 <br>
+## Publisher:
 
+[pupuking723](https://clawhub.ai/user/pupuking723)
 
-## Use Case: <br>
-Developers and engineers use this skill to scaffold and bundle complex Claude HTML artifacts with React, TypeScript, Vite, Tailwind CSS, shadcn/ui, and Parcel. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Apache 2.0
 
-## Known Risks and Mitigations: <br>
-Risk: The included scripts install npm packages, may install pnpm globally, and modify frontend project files. <br>
-Mitigation: Run the scripts only in a fresh or intended project directory and review package and configuration changes before committing. <br>
-Risk: The initialization script depends on shadcn-components.tar.gz, which security evidence says is missing from the artifact. <br>
-Mitigation: Confirm the component archive is present or update the script before relying on the initializer. <br>
+## Use Case:
 
+Developers and agents use this skill to initialize a modern React artifact project, build a multi-component frontend, and bundle it into a single HTML file for Claude.ai artifact sharing.
 
-## Reference(s): <br>
-- [shadcn/ui components](https://ui.shadcn.com/docs/components) <br>
-- [ClawHub release page](https://clawhub.ai/pupuking723/web-artifacts-builder-anthropic) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline bash commands and generated frontend project files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a React project scaffold and a bundled single-file HTML artifact when its scripts are executed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill runs local shell scripts that create project files and install JavaScript dependencies.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it in a disposable workspace or container, avoid elevated privileges, inspect scripts before execution, and pin dependencies or use a lockfile for repeatable builds.
+
+Risk: Initialization may fail if the referenced shadcn-components.tar.gz archive is not present.
+
+Mitigation: Confirm the package includes the archive before running initialization, or supply the missing archive through an approved source.
+
+## Reference(s):
+
+- [shadcn/ui Components](https://ui.shadcn.com/docs/components)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, code, configuration]
+
+**Output Format:** [Markdown guidance with bash commands plus generated project files and a single-file HTML artifact.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js 18 or newer, pnpm, and an available shadcn-components.tar.gz archive for initialization.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

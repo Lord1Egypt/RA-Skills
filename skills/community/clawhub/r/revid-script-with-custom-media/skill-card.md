@@ -1,44 +1,61 @@
-## Description: <br>
-Render a video from a script using only the media assets the caller provides, with no stock visuals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Render a video from a script using only the media assets the caller provides, with no stock visuals, for branded content where every frame must be on-brand.
 
-## Publisher: <br>
-[api00](https://clawhub.ai/user/api00) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[api00](https://clawhub.ai/user/api00)
 
-## Use Case: <br>
-External creators, marketers, and developers use this skill to render branded videos from script text and public media URLs while keeping visual selection limited to provided assets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Scripts, render details, and public media URLs are sent to Revid for processing. <br>
-Mitigation: Use only content approved for Revid processing and avoid confidential scripts, private URLs, and long-lived signed links unless Revid data handling has been reviewed. <br>
-Risk: The Revid API key is required to render videos. <br>
-Mitigation: Store REVID_API_KEY as a secret, keep it scoped where possible, and avoid placing it in prompts, payload files, logs, or committed examples. <br>
-Risk: The final video may include unintended stock media if both media restriction flags are not set. <br>
-Mitigation: Set both media.useOnlyProvided and options.useOnlyProvidedMedia to true, and review completed renders before publication. <br>
+## Use Case:
 
+Developers and content operators use this skill to create Revid script-to-video renders when they already have public brand media assets and need to prevent stock visuals from being mixed in.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/api00/revid-script-with-custom-media) <br>
-- [Revid public render API](https://www.revid.ai/api/public/v3/render) <br>
-- [Revid public status API](https://www.revid.ai/api/public/v3/status?pid=$PID) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, API calls, JSON configuration, Shell commands] <br>
-**Output Format:** [Markdown instructions with HTTP, JSON, and bash examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires REVID_API_KEY and caller-provided public media URLs; configures Revid media flags to use only provided assets.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Scripts, media URLs, and authenticated render requests are sent to Revid.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when that external processing is acceptable for the content being rendered.
+
+Risk: Public media URLs can expose private or sensitive assets.
+
+Mitigation: Provide intentionally public links only, or use signed URLs only when their exposure and expiration behavior are acceptable.
+
+Risk: The Revid API key could authorize unwanted render activity if leaked.
+
+Mitigation: Keep REVID_API_KEY scoped, protected, and out of committed files or shared logs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/api00/skills/revid-script-with-custom-media)
+- [Publisher profile](https://clawhub.ai/user/api00)
+- [Revid render API endpoint](https://www.revid.ai/api/public/v3/render)
+- [Example branded script payload](examples/branded-script.json)
+- [Example render runner](examples/run.sh)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration instructions, API Calls]
+
+**Output Format:** [Markdown guidance with JSON payload examples and bash commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces Revid render requests that require REVID_API_KEY and user-provided public media URLs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

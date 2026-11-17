@@ -1,41 +1,57 @@
-## Description: <br>
-Generates personalized LinkedIn outreach messages for AI compute sales, including connection notes, InMail messages, and follow-ups with character-limit handling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates personalized Chinese LinkedIn outreach drafts for AI compute sales, including connection notes, InMail, and follow-up messages with type-specific length limits.
 
-## Publisher: <br>
-[dashiming](https://clawhub.ai/user/dashiming) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dashiming](https://clawhub.ai/user/dashiming)
 
-## Use Case: <br>
-Sales and go-to-market users can draft LinkedIn connection notes, InMail messages, and follow-up messages for AI compute and GPU cloud outreach. The skill is intended as a local drafting aid whose messages should be reviewed before sending. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated outreach could be inaccurate, unsuitable for the recipient, or inconsistent with sender policy. <br>
-Mitigation: Review and edit each generated message before sending it. <br>
-Risk: Profile and purpose inputs may include sensitive personal or business details. <br>
-Mitigation: Use the minimum recipient and business context needed to draft the message. <br>
-Risk: Broad LinkedIn and outreach trigger terms may invoke the skill during general discussions. <br>
-Mitigation: Invoke the skill deliberately and confirm the desired message type and purpose before using generated output. <br>
+## Use Case:
 
+Sales and outreach users use this skill to draft LinkedIn connection notes, InMail, and follow-up messages for AI compute and GPU cloud conversations. It supports local drafting only; users should review the final message before sending.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Plain text CLI output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Connection notes, InMail messages, and follow-ups are truncated to their configured character limits.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: Generated outreach drafts can be inaccurate, misleading, or unsuitable for the recipient or campaign.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and edit generated messages before use, including the recipient details, claims, tone, and final call to action.
+
+Risk: Profile prompts may include personal or sensitive details that are not needed for drafting.
+
+Mitigation: Enter only the minimum target profile details needed to personalize the message.
+
+Risk: Outreach may be subject to LinkedIn platform rules and applicable marketing requirements.
+
+Mitigation: Confirm the final message complies with LinkedIn and applicable marketing rules before sending.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dashiming/skills/pans-linkedin-outreach)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text outreach drafts with CLI output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports connection-note, inmail, and follow-up message types; generated drafts should be reviewed before use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

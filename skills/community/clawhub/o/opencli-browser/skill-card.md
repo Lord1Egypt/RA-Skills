@@ -1,40 +1,58 @@
-## Description: <br>
-Use when an agent needs to drive a real Chrome window via opencli to inspect pages, fill forms, click through logged-in flows, extract ad-hoc data, and interpret structured browser command envelopes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps an agent drive a real Chrome window via opencli to inspect pages, fill forms, click through logged-in flows, extract ad-hoc data, and handle selector-first targeting, compound fields, stale references, network capture, and structured CLI envelopes.
 
-## Publisher: <br>
-[liberalchang](https://clawhub.ai/user/liberalchang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liberalchang](https://clawhub.ai/user/liberalchang)
 
-## Use Case: <br>
-Developers and agent operators use this skill to guide browser automation against a live Chrome session, including page inspection, form entry, navigation, extraction, network-response review, and validation after critical writes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill enables broad agent control of a real Chrome window, including logged-in browser sessions and sensitive account flows. <br>
-Mitigation: Use a dedicated browser profile or test account, supervise sensitive sessions, and require explicit confirmation before form submissions, purchases, account changes, posts, or saving extracted data. <br>
-Risk: Captured API responses and network data can persist after browser automation work. <br>
-Mitigation: Clear the opencli network cache after sensitive work and avoid capturing or retaining data that is not needed for the task. <br>
+## Use Case:
 
+Developers and agent operators use this skill to control a live Chrome browser through opencli for page inspection, form interaction, logged-in workflows, and ad-hoc data extraction. It is not intended for building reusable opencli adapters.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/liberalchang/opencli-browser) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, JSON] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON envelope examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Encourages inspect-first browser actions, structured command envelopes, and verification after writes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and user changelog) <br>
+Risk: The skill enables an agent to drive a real browser session, including logged-in workflows and potentially sensitive form fields.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use explicit approval for sensitive steps and avoid passwords, MFA codes, payment data, and high-impact account changes unless each action is reviewed.
+
+Risk: Browser automation can make real changes to pages, forms, or accounts if an agent acts on the wrong target.
+
+Mitigation: Inspect before acting, prefer fresh refs from the current page state, and verify critical writes with read-back commands.
+
+Risk: Captured network responses may contain sensitive data and can remain available in the opencli network cache.
+
+Mitigation: Close the browser session when finished and clear the opencli network cache after sensitive work.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/liberalchang/skills/opencli-browser)
+- [Publisher profile](https://clawhub.ai/user/liberalchang)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with inline bash command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance emphasizes structured command envelopes, selector or ref targeting, and verification after browser writes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

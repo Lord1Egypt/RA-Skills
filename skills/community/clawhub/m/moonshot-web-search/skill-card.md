@@ -1,43 +1,56 @@
-## Description: <br>
-Search the live web through Moonshot's builtin $web_search tool and return a concise answer. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search the live web through Moonshot's builtin $web_search tool and return a concise answer.
 
-## Publisher: <br>
-[fusae](https://clawhub.ai/user/fusae) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fusae](https://clawhub.ai/user/fusae)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to route live web search, current-information lookup, and online verification through Moonshot when direct browser-style source extraction is not required. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search queries are sent to Moonshot with the configured API key. <br>
-Mitigation: Avoid putting secrets or private data in search queries and install only when Moonshot is the intended search provider. <br>
-Risk: Search-result grounding may be incomplete, especially when citations or strict factual sourcing matter. <br>
-Mitigation: Validate important answers against another source or use a browser/search workflow that can provide exact links and page-level attribution. <br>
-Risk: Persistent routing rules may cause live web searches to use this third-party service by default. <br>
-Mitigation: Review any OpenClaw TOOLS.md routing rule before adding it and make sure the routing behavior matches user and workspace expectations. <br>
+## Use Case:
 
+Developers and agent users use this skill to route live web search, current-information lookup, and online verification through Moonshot when page-level citation extraction is not required.
 
-## Reference(s): <br>
-- [Moonshot Web Search ClawHub Listing](https://clawhub.ai/fusae/moonshot-web-search) <br>
-- [Moonshot Search Skill Homepage](https://github.com/fusae/moonshot-search-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text answer from the Moonshot search script, optionally summarized by the agent in the user's requested style.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires MOONSHOT_API_KEY and sends search queries to Moonshot; use a browser or search workflow instead when exact citations, links, or page-level attribution are required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release evidence) <br>
+Risk: Search prompts are sent to Moonshot using the configured API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not submit sensitive private queries unless Moonshot's data handling is acceptable for the use case.
+
+Risk: The skill returns a concise web-backed answer but may not provide exact citations or page-level source attribution.
+
+Mitigation: Use a browser or search workflow when exact links, citations, or source inspection are required.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fusae/skills/moonshot-web-search)
+- [Publisher profile](https://clawhub.ai/user/fusae)
+- [Project homepage](https://github.com/fusae/moonshot-search-skill)
+- [Moonshot chat completions endpoint](https://api.moonshot.cn/v1/chat/completions)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Guidance]
+
+**Output Format:** [Plain text answer returned from a shell command]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires MOONSHOT_API_KEY and sends search prompts to Moonshot; use a browser/search workflow when exact citations or page-level attribution are required.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

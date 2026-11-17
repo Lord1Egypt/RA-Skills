@@ -1,47 +1,65 @@
-## Description: <br>
-TCED Cloud Drive helps agents manage Tencent Cloud Enterprise Drive files, spaces, and account authentication through MCP tools. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+TCED Cloud Drive integrates Tencent Cloud Enterprise Drive with MCP tools so agents can authenticate with OAuth2 and manage files, accounts, and personal or team storage spaces.
 
-## Publisher: <br>
-[cuijiawei123](https://clawhub.ai/user/cuijiawei123) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cuijiawei123](https://clawhub.ai/user/cuijiawei123)
 
-## Use Case: <br>
-Employees, developers, and enterprise users use this skill to browse, search, upload, download, and manage files across Tencent Cloud Enterprise Drive personal and team spaces after OAuth authorization. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Installing and using the skill grants OAuth-based access to enterprise cloud files. <br>
-Mitigation: Install only when TCED access is intended, authorize only needed spaces, and confirm upload or download paths before file transfer. <br>
-Risk: OAuth tokens and endpoint configuration are stored in ~/.tced-mcp/auth.json. <br>
-Mitigation: Protect the local auth file, keep permissions restricted, and avoid exposing the file contents. <br>
-Risk: Changing TCED endpoints can send OAuth tokens and API requests to unintended services. <br>
-Mitigation: Use only the official Tencent endpoints pan.tencent.com and api.tencentsmh.cn as directed by the security guidance. <br>
-Risk: Using an unpinned MCP package version can introduce unexpected package changes. <br>
-Mitigation: Keep the MCP package pinned to the reviewed version and review changelogs before upgrading. <br>
+## Use Case:
 
+Developers and enterprise users use this skill to connect an agent to Tencent Cloud Enterprise Drive, complete OAuth2 authorization, and perform cloud drive file, account, and space management tasks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cuijiawei123/tced-skill) <br>
-- [TCED MCP Server API Reference](references/api_reference.md) <br>
-- [Tencent Cloud Enterprise Drive authorization endpoint](https://pan.tencent.com) <br>
-- [Tencent SMH API endpoint](https://api.tencentsmh.cn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, markdown] <br>
-**Output Format:** [Markdown with inline JSON and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May direct the agent to call MCP tools for OAuth login, account and space selection, file listing, search, upload, and download.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: The MCP server can access Tencent Cloud Enterprise Drive content after OAuth authorization.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and authorize it only for accounts and spaces where agent-based cloud drive access is intended.
+
+Risk: OAuth access and refresh tokens are stored in ~/.tced-mcp/auth.json.
+
+Mitigation: Protect the credentials file with owner-only permissions and avoid sharing or committing it.
+
+Risk: Misconfigured TCED_PAN_DOMAIN or TCED_BASE_PATH values could send token-bearing requests to untrusted endpoints.
+
+Mitigation: Keep both environment variables pinned to the official Tencent endpoints documented by the skill.
+
+Risk: Using an unpinned npm package version can increase supply-chain exposure.
+
+Mitigation: Pin tced-mcp to the documented version and verify package source or changelog before upgrading.
+
+## Reference(s):
+
+- [TCED MCP Server API Reference](references/api_reference.md)
+- [Tencent Cloud Enterprise Drive authorization page](https://pan.tencent.com)
+- [Tencent Cloud Enterprise Drive API endpoint](https://api.tencentsmh.cn)
+- [ClawHub skill page](https://clawhub.ai/cuijiawei123/skills/tced-skill)
+- [Publisher profile](https://clawhub.ai/user/cuijiawei123)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Text]
+
+**Output Format:** [Markdown guidance with inline JSON configuration and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide MCP tool calls that upload, download, list, search, or inspect cloud drive files after OAuth authorization.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

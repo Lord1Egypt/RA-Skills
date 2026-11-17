@@ -1,40 +1,58 @@
-## Description: <br>
-OpenClaw AI Doctor helps diagnose and troubleshoot OpenClaw agent failures, including startup errors, stalled tasks, tool or plugin failures, memory issues, session leakage, and skill loading problems. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw AI intelligent-agent troubleshooting skill for startup errors, stalled tasks, tool failures, GPU memory issues, memory loss, logic failures, and session problems using a standardized intake, check, diagnosis, treatment, and follow-up workflow.
 
-## Publisher: <br>
-[speakmen](https://clawhub.ai/user/speakmen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[speakmen](https://clawhub.ai/user/speakmen)
 
-## Use Case: <br>
-Developers and operators troubleshooting OpenClaw agents use this skill as a diagnostic checklist for collecting symptoms, checking system state, mapping likely root causes, and applying manual repair commands. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Manual repair commands may restart services, kill sessions, change permissions, delete lock or index files, or interrupt active work. <br>
-Mitigation: Review paths and command scope first, run only the section matching the observed issue, and preserve needed work before running disruptive commands. <br>
-Risk: Troubleshooting output may expose API keys, tokens, logs, configuration, policy, or memory contents. <br>
-Mitigation: Redact sensitive credentials and private workspace contents before sharing command output or diagnostic artifacts. <br>
+## Use Case:
 
+Developers and operators use this skill to triage and repair OpenClaw AI agent failures, including startup errors, deadlocks, tool registration issues, GPU memory pressure, context problems, permission failures, and gateway crashes.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/speakmen/openclaw-ai-doctor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with diagnostic tables and bash command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include manual repair commands that should be reviewed before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: The skill provides powerful repair commands without enough safety checks or warnings.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review each command before execution, verify target paths, back up affected files, and avoid automatic package installs, deletes, chmod changes, or API-key exports.
+
+Risk: Credential-handling guidance includes exporting a replacement OpenClaw API key.
+
+Mitigation: Use least-privilege credentials, avoid storing secrets in shell history, and rotate exposed keys.
+
+Risk: Permission repair examples can broaden access to workspace memory and project files.
+
+Mitigation: Prefer owner-only permissions where possible and confirm file ownership before changing permissions recursively.
+
+## Reference(s):
+
+- [Openclaw Ai Doctor on ClawHub](https://clawhub.ai/speakmen/skills/openclaw-ai-doctor)
+- [speakmen publisher profile](https://clawhub.ai/user/speakmen)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with diagnostic steps, tables, and inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands should be reviewed before execution because several repair steps can install packages, delete lock files, change permissions, or export credentials.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

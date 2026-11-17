@@ -1,39 +1,57 @@
-## Description: <br>
-Miaoji Model Shot Pro helps ecommerce sellers plan model-led product photography campaigns with shot plans, seasonal calendars, multi-scene combinations, and competitor visual strategy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Miaoji Model Shot Pro helps Amazon sellers plan model and product photo shoots with complete shooting plans, seasonal calendars, multi-scene packages, and competitor visual-differentiation strategies.
 
-## Publisher: <br>
-[wangm-a3](https://clawhub.ai/user/wangm-a3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangm-a3](https://clawhub.ai/user/wangm-a3)
 
-## Use Case: <br>
-External sellers and ecommerce teams use this skill to turn product, audience, platform, season, and budget inputs into model photography plans and visual differentiation guidance for Amazon and social channels. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Casting recommendations may include problematic race-specific or demographic language for advertising and marketplace contexts. <br>
-Mitigation: Review recommendations for advertising, marketplace, and anti-discrimination compliance; prefer neutral criteria such as product fit, brand style, use case, appropriate age range, and inclusive representation. <br>
+## Use Case:
 
+External Amazon sellers and e-commerce marketers use this skill to turn product details, audience, season, budget, and optional competitor ASINs into a structured visual shooting campaign for product listings and social channels.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wangm-a3/miaoji-model-shot-pro) <br>
-- [Usage guide](README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Text, JSON] <br>
-**Output Format:** [Markdown-style planning guidance with optional JSON, CSV, or plain-text exports from the helper script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces planning recommendations for scenes, model types, props, lighting, angles, seasonal timing, and competitor visual differentiation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release evidence) <br>
+Risk: The workflow and helper output are primarily Chinese-language, which may be difficult for non-Chinese users to review accurately.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use translation support or Chinese-language review before relying on generated shoot plans.
+
+Risk: Generated shooting plans and competitor visual analysis may be inaccurate or incomplete for a specific product, marketplace, budget, or season.
+
+Mitigation: Review plans against actual product requirements, marketplace listing rules, budget constraints, and campaign timelines before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wangm-a3/skills/miaoji-model-shot-pro)
+- [Publisher profile](https://clawhub.ai/user/wangm-a3)
+- [Usage guide](artifact/README.md)
+- [Miaoji Studio homepage](https://xiaping.coze.site)
+- [Configured repository link](https://xiaping.coze.site/skills/miaoji-model-shot-pro)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown and structured text with optional JSON, CSV, and prompt exports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language planning guidance for model/product photography workflows]
+
+## Skill Version(s):
+
+1.0.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

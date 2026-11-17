@@ -1,0 +1,25 @@
+{
+  "suite": "fde-delivery-loop",
+  "version": "1.0.0",
+  "author": "xukun",
+  "skill": "fde-engagement-charter",
+  "stage": 2,
+  "purpose": "Freeze POC objectives, scope, evidence, input from both parties, and stopping conditions.",
+  "risk_level": "medium",
+  "scripts": [
+    "fde-engagement-charter/scripts/validate-charter.js"
+  ],
+  "writes": [
+    "Only output or verify POC contract documents"
+  ],
+  "human_confirmation": [
+    "success criteria",
+    "Customer Commitment",
+    "scope change",
+    "Continue/Adjust/Stop decisions"
+  ],
+  "high_risk_boundaries": [
+    "Does not make a commitment on behalf of the customer",
+    "Do not write POC approval as production approval"
+  ]
+}

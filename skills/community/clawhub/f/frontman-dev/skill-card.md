@@ -1,42 +1,55 @@
-## Description: <br>
-AI-powered visual frontend editing in your browser. Click any element in your running app, describe changes in plain English, and get real source file edits with instant hot reload. Works with Next.js, Astro, and Vite. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Frontman helps users edit frontend UI visually in the browser by selecting rendered elements, describing changes in plain English, and applying source file edits with hot reload for Next.js, Astro, and Vite projects.
 
-## Publisher: <br>
-[bluehotdog](https://clawhub.ai/user/bluehotdog) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bluehotdog](https://clawhub.ai/user/bluehotdog)
 
-## Use Case: <br>
-Developers, designers, and product managers use this skill to set up and operate Frontman for browser-based edits to running Next.js, Astro, or Vite frontend apps. It supports click-to-target UI changes, source-file edits, and hot reload during development. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can install Frontman packages and change project source files. <br>
-Mitigation: Use it only in a version-controlled development project and review package, configuration, and source diffs before keeping changes. <br>
-Risk: The workflow may involve OpenAI, Anthropic, or OpenRouter API keys. <br>
-Mitigation: Store keys in environment variables or a secret manager, and avoid placing them in chat, source files, screenshots, or logs. <br>
+## Use Case:
 
+Developers, designers, and product teams use this skill to set up and operate browser-based visual editing for frontend applications. It supports UI changes such as spacing, colors, layout, copy, and design-system fixes in running Next.js, Astro, and Vite projects.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/bluehotdog/frontman-dev) <br>
-- [Frontman GitHub repository](https://github.com/frontman-ai/frontman) <br>
-- [Frontman documentation](https://frontman.sh/docs/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, code] <br>
-**Output Format:** [Markdown guidance with inline shell commands and configuration steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide installation of framework plugins and use browser tooling to apply source-file edits in a local development app.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server-resolved release evidence) <br>
+Risk: The setup commands install packages and modify a development project.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill only in a development project under version control, review dependency and source diffs after setup, and prefer pinned package versions when available.
+
+Risk: The visual editing workflow can write changes to source files.
+
+Mitigation: Review generated source changes before keeping or committing them, and avoid running the installer in CI or environments containing production secrets.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bluehotdog/skills/frontman-dev)
+- [Frontman documentation](https://frontman.sh/docs/)
+- [Frontman GitHub repository](https://github.com/frontman-ai/frontman)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and framework-specific configuration steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide source-file edits through a dev-only visual editing workflow; users should review generated changes in version control.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

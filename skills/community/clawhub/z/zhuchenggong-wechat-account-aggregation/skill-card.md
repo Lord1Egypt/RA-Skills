@@ -1,43 +1,53 @@
-## Description: <br>
-Aggregates WeChat public-account content from names or links, summarizes account positioning and key viewpoints, records keyword preferences, and prepares scheduled content digests. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+根据公众号名称或链接，归纳公众号定位和核心观点，帮用户选择关键词偏好并定时推送聚合内容。
 
-## Publisher: <br>
-[zhuchenggong19851114-design](https://clawhub.ai/user/zhuchenggong19851114-design) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhuchenggong19851114-design](https://clawhub.ai/user/zhuchenggong19851114-design)
 
-## Use Case: <br>
-External users and content operators use this skill to understand what a WeChat public account covers, choose keyword preferences, receive daily aggregated summaries, and optionally save approved summaries to a Feishu content library. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Public-account names or links may be searched through Baidu. <br>
-Mitigation: Avoid submitting sensitive or private account links, and review what will be searched before using the skill. <br>
-Risk: Keyword preferences may be remembered and used for daily push behavior. <br>
-Mitigation: Confirm the selected preferences and schedule, and update or clear remembered preferences when they are no longer appropriate. <br>
-Risk: Approved summaries may be exported to a Feishu table. <br>
-Mitigation: Use limited Feishu permissions and confirm the destination table before saving records. <br>
+## Use Case:
 
+Users who follow WeChat public accounts use this skill to summarize an account's positioning, core viewpoints, and follow value, then receive scheduled topic-based content digests. It can remember selected keyword preferences and save approved summaries to a Feishu aggregation library.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhuchenggong19851114-design/zhuchenggong-wechat-account-aggregation) <br>
-- [Artifact README](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Configuration] <br>
-**Output Format:** [Markdown summaries with table-style account fields and confirmation prompts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include remembered keyword preferences, daily 10:00 push behavior, and optional Feishu record creation after user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill may remember selected content keywords and use them for scheduled daily pushes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only when users are comfortable storing those preferences, and let users update or avoid saved preferences when needed.
+
+Risk: The skill can save aggregation results to Feishu, which may preserve user-selected content records.
+
+Mitigation: Create Feishu records only after explicit user confirmation, matching the documented workflow and security guidance.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhuchenggong19851114-design/skills/zhuchenggong-wechat-account-aggregation)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Concise Chinese prose or Markdown summarizing account positioning, core viewpoints, and follow value.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use remembered keyword preferences for scheduled pushes; Feishu records are created only after user confirmation.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.release.version, released 2026-03-26)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

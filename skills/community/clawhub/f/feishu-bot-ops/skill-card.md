@@ -1,46 +1,62 @@
-## Description: <br>
-Feishu/Lark bot operations guidance for the Hermes Agent lifecycle, covering deployment, debugging, @mention behavior, bot-to-bot messaging, dropped messages, session mix-ups, WebSocket stability, authentication issues, and interactive card callbacks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Feishu/Lark bot operations runbook for diagnosing and fixing deployment, messaging, @mention, bot-to-bot communication, session context, WebSocket, authentication, and interactive-card callback issues.
 
-## Publisher: <br>
-[femi-ronvue](https://clawhub.ai/user/femi-ronvue) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[femi-ronvue](https://clawhub.ai/user/femi-ronvue)
 
-## Use Case: <br>
-Developers and operators who administer Hermes Feishu/Lark bots use this skill to diagnose outages, tune gateway configuration, verify Feishu API behavior, repair @mention handling, and recover bot connectivity. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Recovery commands can disrupt a live Hermes Feishu bot by killing gateway processes, clearing locks, or changing runtime configuration. <br>
-Mitigation: Review the recovery script before execution, back up .env and config.yaml, prefer targeted allowlist or configuration fixes, and use a maintenance window for disruptive restarts. <br>
-Risk: Broad access-control settings such as GATEWAY_ALLOW_ALL_USERS=true or permissive bot-to-bot options can weaken who may interact with the bot. <br>
-Mitigation: Use the broad settings only for diagnosis when necessary, return to targeted allowlists or mention-only behavior, and confirm effective access after restart. <br>
-Risk: Feishu app secrets and tenant tokens used during API diagnostics can be exposed through shell history, logs, or copied command output. <br>
-Mitigation: Protect .env files, redact tokens before sharing logs, avoid persisting secrets in command history, and rotate credentials if exposure is suspected. <br>
+## Use Case:
 
+Developers and operators use this skill to troubleshoot and recover Hermes Agent integrations with Feishu/Lark bots. It provides diagnostic workflows, configuration guidance, API checks, patch guidance, and recovery commands for common bot operations incidents.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/femi-ronvue/feishu-bot-ops) <br>
-- [AT_MAP code patch reference](references/at-mention-code-fix.md) <br>
-- [Feishu tenant access token endpoint](https://open.feishu.cn/open-apis/auth/v3/tenant_access_token/internal) <br>
-- [Lark tenant access token endpoint](https://open.larksuite.com/open-apis/auth/v3/tenant_access_token/internal) <br>
-- [Feishu message API endpoint](https://open.feishu.cn/open-apis/im/v1/messages/<message_id>) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline bash, YAML, Python, and API examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes diagnostic sequences, recovery commands, configuration values, and verification checklists.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact frontmatter reports 1.1.0) <br>
+Risk: The skill includes commands and guidance that can change .env/config settings, stop processes, remove lock files, and alter persistent bot visibility behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require human approval before applying configuration changes or process-control commands, and back up configuration before persistent changes.
+
+Risk: Broad access settings such as GATEWAY_ALLOW_ALL_USERS can bypass normal user filtering during diagnostics.
+
+Mitigation: Use broad access only in tightly controlled temporary diagnostics, then restore the intended allowlist or group policy.
+
+Risk: The recovery script installs lark-oapi and restarts gateway processes, which can affect runtime availability and dependency state.
+
+Mitigation: Pin lark-oapi where possible, verify target gateway PIDs before stopping them, and confirm Feishu connection after restart.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/femi-ronvue/skills/feishu-bot-ops)
+- [AT_MAP code patch reference](references/at-mention-code-fix.md)
+- [Feishu tenant access token API](https://open.feishu.cn/open-apis/auth/v3/tenant_access_token/internal)
+- [Lark tenant access token API](https://open.larksuite.com/open-apis/auth/v3/tenant_access_token/internal)
+- [Feishu messages API](https://open.feishu.cn/open-apis/im/v1/messages/<message_id>)
+- [Feishu chat members API](https://open.feishu.cn/open-apis/im/v1/chats/<chat_id>/members)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration, code]
+
+**Output Format:** [Markdown with inline bash commands, configuration snippets, API request examples, and patch guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are operational recommendations for human review before execution.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter says 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

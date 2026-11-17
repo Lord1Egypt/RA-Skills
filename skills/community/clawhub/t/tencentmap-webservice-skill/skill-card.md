@@ -1,50 +1,64 @@
-## Description: <br>
-Guides agents and developers through Tencent Maps WebService API use for geocoding, place search, routing, distance matrix, weather, IP location, coordinate conversion, and administrative region queries over HTTP JSON APIs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tencent Map JavaScript GL development guidance for agents that help developers build, review, and debug map initialization, overlays, layers, events, visualization, search, routing, geocoding, administrative districts, IP location, geometry, 3D model display, and performance optimization code.
 
-## Publisher: <br>
-[tencent-adm](https://clawhub.ai/user/tencent-adm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tencent-adm](https://clawhub.ai/user/tencent-adm)
 
-## Use Case: <br>
-Developers and agents use this skill when building or troubleshooting integrations with Tencent Maps WebService APIs. It helps choose the correct endpoint, assemble request parameters, interpret JSON responses and status codes, and apply API key, quota, coordinate, and privacy handling guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Tencent Maps API keys or other secrets may be exposed if pasted into chat or committed in examples. <br>
-Mitigation: Use environment variables such as TMAP_WEBSERVICE_KEY or a secret manager, redact keys from shared output, and avoid storing credentials in generated code. <br>
-Risk: Location queries can include precise addresses, IP addresses, names, phone numbers, or other personal data. <br>
-Mitigation: Only send data that is authorized and necessary for the task, minimize precision where possible, and avoid processing third-party personal data without a valid need. <br>
-Risk: API guidance can produce incorrect coordinates, routes, or weather results if parameters, coordinate order, or Tencent Maps status codes are misread. <br>
-Mitigation: Review generated requests before execution, confirm coordinates use latitude,longitude order and GCJ-02 expectations, and handle nonzero status codes before relying on results. <br>
+## Use Case:
 
+Developers and engineers use this skill to get Tencent Map JSAPI GL guidance, code examples, API usage details, and best practices for web map and geospatial visualization features. It is intended for normal agent-assisted development workflows where the user can provide or obtain a Tencent Maps API key.
 
-## Reference(s): <br>
-- [Address Service API](references/api-geocoder.md) <br>
-- [Search Service API](references/api-search.md) <br>
-- [Route Service API](references/api-direction.md) <br>
-- [Location and Weather Service API](references/api-location-weather.md) <br>
-- [Tools Service API](references/api-tools.md) <br>
-- [Tencent Maps WebService API Overview](https://lbs.qq.com/service/webService/webServiceGuide/webServiceOverview) <br>
-- [Tencent Maps API Key Management](https://lbs.qq.com/dev/console/key/manage) <br>
-- [Tencent Maps WebService Status Codes](https://lbs.qq.com/service/webService/webServiceGuide/status) <br>
-- [Tencent Maps Quota Guide](https://lbs.qq.com/dev/console/quotaImprove) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Shell commands, Configuration instructions, API Calls] <br>
-**Output Format:** [Markdown with HTTP examples, JSON snippets, and code or shell commands when useful] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Tencent Maps endpoint paths, request parameters, response interpretation, error handling steps, and API key setup guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: The temporary-key workflow asks the user for a phone number and SMS code and may expose tokens or API keys in command output, logs, or local files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer a restricted user-provided TMAP_JSAPI_KEY, avoid running the workflow on shared machines, and rotate or revoke any key that may have been exposed.
+
+Risk: The workflow can store Tencent Maps key material in ~/.tencentmap/tempkey.json as local plaintext configuration.
+
+Mitigation: Review local file permissions, remove stale temporary-key files when no longer needed, and avoid committing or sharing the configuration file.
+
+Risk: The skill is a large development reference and may guide code generation that calls Tencent Maps APIs incorrectly if examples are not checked against the included docs.
+
+Mitigation: Review generated code against the bundled API reference and demos before deployment, especially API parameters, enabled libraries, browser requirements, and key handling.
+
+## Reference(s):
+
+- [ClawHub skill release page](https://clawhub.ai/tencent-adm/skills/tencentmap-webservice-skill)
+- [Tencent Map JSAPI GL overview](https://lbs.qq.com/webApi/javascriptGL/glGuide/glOverview)
+- [Skill entry and reference index](artifact/SKILL.md)
+- [Repository README](artifact/README.md)
+- [Temporary key workflow guide](artifact/tencentmap-jsapi-gl-skill/tempkey-guide.md)
+- [Tencent Maps API reference](artifact/tencentmap-jsapi-gl-skill/references/api_reference.md)
+- [JSAPI GL reference docs](artifact/tencentmap-jsapi-gl-skill/references/jsapigl/docs/)
+- [Visualization reference docs](artifact/tencentmap-jsapi-gl-skill/references/visualization/docs/)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown with code blocks and command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference TMAP_JSAPI_KEY and local Tencent Maps documentation or demos when producing examples.]
+
+## Skill Version(s):
+
+1.0.4 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

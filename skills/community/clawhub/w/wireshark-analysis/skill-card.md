@@ -1,41 +1,52 @@
-## Description: <br>
-Network traffic analysis with Wireshark and tshark for packet capture, filters, stream inspection, C2 beacon detection, connectivity troubleshooting, and forensic PCAP analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Network traffic analysis with Wireshark and tshark. Capture packets, write display and BPF filters, follow TCP/UDP/TLS streams, detect C2 beacons, troubleshoot connectivity, and perform forensic PCAP analysis.
 
-## Publisher: <br>
-[solomonneas](https://clawhub.ai/user/solomonneas) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[solomonneas](https://clawhub.ai/user/solomonneas)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Security analysts, network engineers, developers, and incident responders use this skill for authorized packet capture, PCAP review, protocol filtering, traffic troubleshooting, and forensic investigation workflows.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Live packet capture can collect credentials, private traffic, or other sensitive data.
+
+Mitigation: Capture only authorized interfaces, use capture filters to minimize collection, and protect PCAP files according to applicable privacy and security policies.
+
+Risk: Network traffic analysis may lead to incorrect conclusions if filters, protocol behavior, or encrypted traffic limitations are misunderstood.
+
+Mitigation: Review findings with qualified security or network personnel and account for documented limitations such as encrypted content visibility, packet loss, and protocol decoding constraints.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Security analysts, network engineers, and developers use this skill to inspect live captures or PCAP files, troubleshoot network behavior, and document findings from protocol, stream, and traffic-pattern analysis. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Unauthorized packet capture or inspection can violate policy, privacy obligations, or law. <br>
-Mitigation: Use the skill only for traffic you are authorized to inspect and follow the applicable privacy and data-handling policies. <br>
-Risk: PCAPs and exported HTTP objects can contain credentials, confidential data, or malicious files. <br>
-Mitigation: Protect packet captures as sensitive data and treat exported objects as untrusted until they are scanned and handled safely. <br>
-Risk: Overbroad live capture can collect more sensitive traffic than needed. <br>
-Mitigation: Use capture filters, stop captures promptly, and limit collection to the investigation scope. <br>
+**Output Format:** [Markdown guidance with inline filters, commands, and procedural steps]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Produces guidance for Wireshark and tshark analysis; it does not execute captures or inspect traffic by itself.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Analysis] <br>
-**Output Format:** [Markdown with Wireshark workflows, packet filters, procedural steps, and analysis notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include capture filters, display filters, troubleshooting checks, and incident evidence documentation guidance.] <br>
+1.0.1 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

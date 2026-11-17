@@ -1,40 +1,53 @@
-## Description: <br>
-Book Wedding helps agents search for wedding services, check availability, and create bookings through Lokuli MCP. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Book Wedding helps agents search wedding services, check availability, and create bookings through Lokuli's MCP service.
 
-## Publisher: <br>
-[edwardrodriguez703-design](https://clawhub.ai/user/edwardrodriguez703-design) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[edwardrodriguez703-design](https://clawhub.ai/user/edwardrodriguez703-design)
 
-## Use Case: <br>
-External users can use this skill to find wedding-service providers, check service availability, and create bookings after confirming the provider, service, schedule, cost, terms, and contact details. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can send customer contact details to an external wedding-service platform. <br>
-Mitigation: Require explicit user confirmation of the exact name, email, phone number, provider, service, date, and time before sending booking details to Lokuli. <br>
-Risk: The skill can create real bookings without clear confirmation safeguards in the artifact. <br>
-Mitigation: Require the agent to confirm cost or deposit, cancellation terms, provider identity, service identity, and selected time slot before calling the booking tool. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Book Wedding ClawHub listing](https://clawhub.ai/edwardrodriguez703-design/book-wedding) <br>
-- [Lokuli MCP endpoint](https://lokuli.com/mcp/sse) <br>
+## Use Case:
 
+External users can use this skill to find wedding service providers, check availability, and request bookings through Lokuli after confirming booking details and personal contact information.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, API calls, JSON] <br>
-**Output Format:** [Markdown with JSON-RPC examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses Lokuli MCP tools for search, availability checks, and booking creation.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can create external wedding-service bookings using personal contact details without clear final confirmation guidance.
+
+Mitigation: Before creating a booking, require explicit user confirmation of the provider, service, time, known price or fees, known cancellation terms, and every personal detail that will be sent.
+
+Risk: The agent depends on Lokuli's external MCP service for wedding search and booking.
+
+Mitigation: Install and use the skill only when external service calls to Lokuli are acceptable for the user's workflow and data-sharing expectations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/edwardrodriguez703-design/skills/book-wedding)
+- [Lokuli MCP endpoint](https://lokuli.com/mcp/sse)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, API Calls, Text]
+
+**Output Format:** [Markdown guidance with JSON-RPC request examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May involve external search, availability checks, and booking requests through Lokuli's MCP service.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

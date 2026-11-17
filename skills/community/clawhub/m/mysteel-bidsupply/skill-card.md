@@ -1,41 +1,53 @@
-## Description: <br>
-Supports steel supply and demand spot-market queries and bidding data retrieval for users looking for buyers, suppliers, bidding information, or project opportunities. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Supports steel supply-demand spot information queries and bidding data retrieval for finding buyers, suppliers, tender information, and project opportunities.
 
-## Publisher: <br>
-[wyb92](https://clawhub.ai/user/wyb92) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wyb92](https://clawhub.ai/user/wyb92)
 
-## Use Case: <br>
-External users and agents use this skill to classify Chinese steel-market requests, configure a Mysteel API key, and query either bidding/project opportunities or steel supply and demand listings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Mysteel API keys are saved as plaintext local files. <br>
-Mitigation: Use a dedicated or low-privilege Mysteel API key, keep references/api_key.md out of shared or synced workspaces, delete it when no longer needed, and rotate the key if the workspace may have been exposed. <br>
-Risk: Steel procurement, supply, demand, and bidding searches are sent to Mysteel services. <br>
-Mitigation: Install and use the skill only when those searches are appropriate to share with Mysteel. <br>
+## Use Case:
 
+External steel-market users and agents use this skill to classify bidding or supply-demand intent, extract query parameters, and retrieve Mysteel steel-market information for buying, selling, tender discovery, and project-opportunity workflows.
 
-## Reference(s): <br>
-- [Intent Guide](references/intent-guide.md) <br>
-- [Mysteel_BidSupply on ClawHub](https://clawhub.ai/wyb92/mysteel-bidsupply) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown with inline shell commands and concise query guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill stores a Mysteel API key in a local references/api_key.md file and calls Mysteel HTTP APIs to retrieve results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill stores a Mysteel API key in a plaintext project file and documents passing the key on the command line.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid using the documented --save_api_key command with a real key unless shell history and workspace access are protected; keep references/api_key.md out of source control and shared archives, restrict file permissions, and rotate the key if exposure is possible.
+
+Risk: Steel-market queries are sent to Mysteel APIs.
+
+Mitigation: Use the skill only when sharing the query content with Mysteel is acceptable, and avoid submitting sensitive or unnecessary business information.
+
+## Reference(s):
+
+- [Intent Recognition and Parameter Extraction Guide](references/intent-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown text with shell command examples and summarized lookup results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Mysteel API key; bidding lookups are limited to the most recent three calendar years.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

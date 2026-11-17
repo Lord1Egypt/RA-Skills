@@ -1,41 +1,56 @@
-## Description: <br>
-Shopping assistant that helps agents search Luogang products, retrieve product details, and present purchase links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents search Luogang products, retrieve product details, and return purchase links when users show shopping intent.
 
-## Publisher: <br>
-[fireium](https://clawhub.ai/user/fireium) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fireium](https://clawhub.ai/user/fireium)
 
-## Use Case: <br>
-External shoppers and shopping-support agents use this skill to search Luogang commerce listings, compare basic product details, and hand off users to H5 or mini-program purchase pages. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Shopping queries may include unrelated personal information if users provide it while searching. <br>
-Mitigation: Avoid sending unnecessary personal information to the product lookup service. <br>
-Risk: Purchase links open external H5 or mini-program pages outside the chat flow. <br>
-Mitigation: Review the destination page before buying and do not treat the skill as having order or payment authority. <br>
+## Use Case:
 
+External users and shopping assistants use this skill to search Luogang ecommerce listings, review product details such as price and availability, and provide links for purchase handoff.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fireium/luogang-shopping-assistant) <br>
-- [Luogang MCP service endpoint](https://yuju-mcp.wxhoutai.com/mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline JSON and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Product result summaries should stay concise and include detail or purchase links when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Shopping searches and product-detail requests are sent to the external Luogang MCP service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when that external service use is acceptable, and confirm the user wants Luogang results before using the skill for generic shopping requests.
+
+Risk: Product availability, prices, and links may depend on live service responses.
+
+Mitigation: Present returned product information as current service output and guide users to verify final purchase details at the linked checkout or product page.
+
+## Reference(s):
+
+- [Luogang MCP service endpoint](https://yuju-mcp.wxhoutai.com/mcp)
+- [Luogang H5 product detail example](https://eshop.wxhoutai.com/h5/pages/goods/detail?goods_id=xxx)
+- [ClawHub skill page](https://clawhub.ai/fireium/skills/luogang-shopping-assistant)
+- [ClawHub publisher profile](https://clawhub.ai/user/fireium)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell command examples and product-result text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Product search output is intended to summarize up to 10 candidates and include purchase or detail links when available.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

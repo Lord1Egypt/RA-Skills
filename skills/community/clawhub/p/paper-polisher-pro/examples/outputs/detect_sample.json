@@ -1,0 +1,1635 @@
+{
+  "file": "immune_system_article.txt",
+  "overall_ai_score": 45.8,
+  "overall_risk": "medium",
+  "total_paragraphs": 68,
+  "avg_ttr": 0.573,
+  "avg_sentence_len": 41.8,
+  "avg_sentence_len_variance": 221.4,
+  "paragraph_scores": [
+    {
+      "index": 0,
+      "text": "免疫系统是生物体体内一系列的生物学结构和过程所组成的疾病防御系统。免疫系统可以检测小到病毒大到寄生虫等各类病原体和有害物质，并且在正常情况下能够将这些物质与生物体自身的健康细胞和组织区分开来。",
+      "lang": "zh",
+      "ai_score": 19.7,
+      "matched_patterns": [],
+      "ttr": 0.72,
+      "avg_sentence_len": 47.0,
+      "sentence_len_variance": 225.0,
+      "paragraph_len": 96,
+      "bigram_diversity": 0.913,
+      "trigram_diversity": 0.967,
+      "ppl_burstiness": 0.5,
+      "perplexity_score": 6.0,
+      "burstiness_score": 8.72340425531915,
+      "content_only_score": 19.7
+    },
+    {
+      "index": 1,
+      "text": "病原体可以快速地进化和调整，来躲避免疫系统的侦测和攻击。为了能够在与病原体的对抗中获胜，生物体进化出了多种识别和消灭病原体的机制。就连简单的单细胞生物，如细菌，也发展出了可以对抗噬菌体感染的酶系统。一些真核生物，例如植物和昆虫，从它们古老的祖先那里继承了简单的免疫系统。这些免疫机制包括抗微生物多肽（防御素）、吞噬作用和补体系统。包括人类在内的有颌类脊椎动物则发展出更为复杂多样的防御机制。",
+      "lang": "zh",
+      "ai_score": 23.4,
+      "matched_patterns": [],
+      "ttr": 0.589,
+      "avg_sentence_len": 31.5,
+      "sentence_len_variance": 11.2,
+      "paragraph_len": 195,
+      "bigram_diversity": 0.8547,
+      "trigram_diversity": 0.9607,
+      "ppl_burstiness": 0.7906,
+      "perplexity_score": 6.5,
+      "burstiness_score": 11.87514913896108,
+      "content_only_score": 23.4
+    },
+    {
+      "index": 2,
+      "text": "典型的脊椎动物免疫系统由多种蛋白质、细胞、组织和器官所组成，它们之间相互作用，共同构成了一張精细的动态网络。除了“固有免疫”（又称“先天免疫”）外，脊椎动物的免疫系统具有复杂的免疫应答，可以通过不断地适应来更有效地识别特定的病原体，这种适应过程被定义为“适应性免疫”或“获得性免疫”。针对特定的病原体的初次入侵，免疫系统中的T細胞能够产生具免疫记忆的记忆T细胞；当该种病原体再次入侵时，这种记忆就可以...",
+      "lang": "zh",
+      "ai_score": 23.9,
+      "matched_patterns": [
+        {
+          "pattern": "再次",
+          "category": "weak_signals",
+          "weight": 1
+        },
+        {
+          "pattern": "先.*再.*",
+          "category": "weak_signals",
+          "weight": 1
+        }
+      ],
+      "ttr": 0.488,
+      "avg_sentence_len": 47.2,
+      "sentence_len_variance": 386.1,
+      "paragraph_len": 289,
+      "bigram_diversity": 0.7171,
+      "trigram_diversity": 0.836,
+      "ppl_burstiness": 0.821,
+      "perplexity_score": 11.0,
+      "burstiness_score": 0.6739714099256877,
+      "content_only_score": 23.9
+    },
+    {
+      "index": 3,
+      "text": "免疫系统的紊乱会导致多种疾病的产生。免疫系统的活力降低就会发生免疫缺陷，进而导致经常性和致命的感染。免疫缺陷可以是遗传性疾病，如重症聯合免疫缺陷；也可以由药物治疗或病菌感染引发，如艾滋病就是由于艾滋病毒感染而引发的适应性免疫缺陷综合症。另一方面，免疫系统異常会将正常的组织作为入侵者而进行攻击，从而引起自体免疫疾病。常见的自体免疫疾病包括慢性甲状腺炎、类风湿性关节炎、第一型糖尿病和全身性紅斑性狼瘡。",
+      "lang": "zh",
+      "ai_score": 26.8,
+      "matched_patterns": [
+        {
+          "pattern": "另一方面",
+          "category": "transition_words",
+          "weight": 2
+        }
+      ],
+      "ttr": 0.551,
+      "avg_sentence_len": 32.3,
+      "sentence_len_variance": 99.9,
+      "paragraph_len": 200,
+      "bigram_diversity": 0.8172,
+      "trigram_diversity": 0.9081,
+      "ppl_burstiness": 0.6788,
+      "perplexity_score": 9.5,
+      "burstiness_score": 3.61114628521696,
+      "content_only_score": 26.8
+    },
+    {
+      "index": 4,
+      "text": "人们对于免疫系统的认知来自于免疫学的发展。免疫学是一门研究免疫系统的结构与功能的学科。它发源自医学和对疾病免疫的原因的早期研究。目前已知的最早提及“免疫”这一现象是在公元前430年爆发的雅典大瘟疫期间；古希臘歷史學家修昔底德发现在上一次瘟疫中得病的人在瘟疫再次爆发时不会再染病。但这一现象的原因却一直不为人所知。直到18世纪，皮埃爾·莫佩爾蒂用蝎毒做实验发现某些狗和小鼠对毒素产生了免疫。随后，路易斯...",
+      "lang": "zh",
+      "ai_score": 15.2,
+      "matched_patterns": [
+        {
+          "pattern": "因此",
+          "category": "weak_signals",
+          "weight": 1
+        },
+        {
+          "pattern": "再次",
+          "category": "weak_signals",
+          "weight": 1
+        }
+      ],
+      "ttr": 0.542,
+      "avg_sentence_len": 31.3,
+      "sentence_len_variance": 117.5,
+      "paragraph_len": 355,
+      "bigram_diversity": 0.8682,
+      "trigram_diversity": 0.9645,
+      "ppl_burstiness": 0.6981,
+      "perplexity_score": 6.5,
+      "burstiness_score": 2.073647479655336,
+      "content_only_score": 15.2
+    },
+    {
+      "index": 5,
+      "text": "通过研究体液免疫和细胞免疫，免疫学在19世纪末得到了长足的发展。其中，保罗·埃尔利希和伊利亚·梅契尼可夫作出了重要贡献：前者建立了侧链学说来解释抗原-抗体反应的特异性，为了解体液免疫奠定了基础；后者则是细胞免疫的奠基者。两人也因为他们在免疫学上的成就而分享了1908年的诺贝尔医学或生理学奖。",
+      "lang": "zh",
+      "ai_score": 27.5,
+      "matched_patterns": [
+        {
+          "pattern": "奠定了基础",
+          "category": "filler_phrases",
+          "weight": 3
+        }
+      ],
+      "ttr": 0.698,
+      "avg_sentence_len": 35.5,
+      "sentence_len_variance": 346.2,
+      "paragraph_len": 146,
+      "bigram_diversity": 0.9219,
+      "trigram_diversity": 0.9606,
+      "ppl_burstiness": 0.3341,
+      "perplexity_score": 7.5,
+      "burstiness_score": 0.0,
+      "content_only_score": 27.5
+    },
+    {
+      "index": 6,
+      "text": "免疫系统由免疫器官（脾脏、骨髓、胸腺、淋巴结、扁桃体等）、免疫细胞（淋巴细胞，吞噬细胞，白血球，自然殺手細胞等）以及免疫分子（淋巴因子、免疫球蛋白、溶菌酶等）组成。",
+      "lang": "zh",
+      "ai_score": 21.0,
+      "matched_patterns": [],
+      "ttr": 0.662,
+      "avg_sentence_len": 81.0,
+      "sentence_len_variance": 0.0,
+      "paragraph_len": 82,
+      "bigram_diversity": 0.875,
+      "trigram_diversity": 1.0,
+      "ppl_burstiness": 0.5,
+      "perplexity_score": 6.0,
+      "burstiness_score": 10,
+      "content_only_score": 21.0
+    },
+    {
+      "index": 7,
+      "text": "製造免疫細胞的器官是指能够实现免疫功能的器官和组织，是免疫细胞发生、定居和发挥效应的场所。按功能的不同可以分为中枢免疫器官和外周免疫器官。",
+      "lang": "zh",
+      "ai_score": 18.1,
+      "matched_patterns": [],
+      "ttr": 0.615,
+      "avg_sentence_len": 33.5,
+      "sentence_len_variance": 110.2,
+      "paragraph_len": 69,
+      "bigram_diversity": 0.8125,
+      "trigram_diversity": 0.9206,
+      "ppl_burstiness": 0.5,
+      "perplexity_score": 9.0,
+      "burstiness_score": 9.109216362968024,
+      "content_only_score": 18.1
+    },
+    {
+      "index": 8,
+      "text": "骨髓是造血组织，也是免疫细胞的产生的场所。造血干细胞是骨髓中的原始细胞，能够分化成各种成熟的血细胞。免疫细胞中的淋巴细胞（T细胞与B细胞）的发育前期是在骨髓内完成，另外B细胞分化为浆细胞后，也回到骨髓，并在这里大量产生抗体。同时骨髓也生产其他重要的免疫细胞，包括粒细胞，自然杀伤细胞、未成熟胸腺细胞等。",
+      "lang": "zh",
+      "ai_score": 24.8,
+      "matched_patterns": [
+        {
+          "pattern": "同时",
+          "category": "transition_words",
+          "weight": 2
+        }
+      ],
+      "ttr": 0.522,
+      "avg_sentence_len": 36.8,
+      "sentence_len_variance": 236.7,
+      "paragraph_len": 151,
+      "bigram_diversity": 0.797,
+      "trigram_diversity": 0.9621,
+      "ppl_burstiness": 0.4816,
+      "perplexity_score": 7.5,
+      "burstiness_score": 0.6385556054621178,
+      "content_only_score": 24.8
+    },
+    {
+      "index": 9,
+      "text": "胸腺的主要功能是生产成熟T细胞。不成熟的淋巴T细胞在骨髓中产生，随后迁移到胸腺，受到胸腺激素的誘導，成為成熟但還沒有免疫功能的T细胞，再把它們送到脾臟、淋巴系统和其他器官，讓它們在那裡受胸腺激素的影響進一步成熟，隨時準備抵抗各種對人體有害的敵人。胸腺激素還能提高淋巴细胞的防禦能力，誘導淋巴B细胞成熟。",
+      "lang": "zh",
+      "ai_score": 17.5,
+      "matched_patterns": [],
+      "ttr": 0.574,
+      "avg_sentence_len": 49.3,
+      "sentence_len_variance": 1629.6,
+      "paragraph_len": 151,
+      "bigram_diversity": 0.8074,
+      "trigram_diversity": 0.9254,
+      "ppl_burstiness": 0.0706,
+      "perplexity_score": 12.5,
+      "burstiness_score": 0.0,
+      "content_only_score": 17.5
+    },
+    {
+      "index": 10,
+      "text": "外周免疫器官和组织是免疫细胞定居的场所，也是免疫细胞发挥免疫应答效应的场所。包括脾、淋巴结和黏膜相关淋巴组织。",
+      "lang": "zh",
+      "ai_score": 14.1,
+      "matched_patterns": [],
+      "ttr": 0.647,
+      "avg_sentence_len": 26.5,
+      "sentence_len_variance": 110.2,
+      "paragraph_len": 55,
+      "bigram_diversity": 0.8,
+      "trigram_diversity": 0.9184,
+      "ppl_burstiness": 0.5,
+      "perplexity_score": 10.5,
+      "burstiness_score": 3.5908961569595776,
+      "content_only_score": 14.1
+    },
+    {
+      "index": 11,
+      "text": "淋巴结是淋巴T细胞和淋巴B细胞定居的场所，T细胞占淋巴结内淋巴细胞总数的75%，B细胞约占25%。人体分布着大约500-600个淋巴结，广泛的分布在非黏膜部位的淋巴通道，是主要的外周免疫器官。在身体浅表区域，淋巴主要分布在颈部、腋窝、腹股沟等处。在身体内部内脏区域，主要分布在器官门，沿血管分布。当抗原入侵机体通过淋巴液流入淋巴结时，抗原会被淋巴结表面的DC细胞（树突状细胞）捕获，并提呈给TH细胞（...",
+      "lang": "zh",
+      "ai_score": 14.0,
+      "matched_patterns": [],
+      "ttr": 0.49,
+      "avg_sentence_len": 47.7,
+      "sentence_len_variance": 633.9,
+      "paragraph_len": 292,
+      "bigram_diversity": 0.7563,
+      "trigram_diversity": 0.9072,
+      "ppl_burstiness": 0.9552,
+      "perplexity_score": 8.5,
+      "burstiness_score": 0.0,
+      "content_only_score": 14.0
+    },
+    {
+      "index": 12,
+      "text": "脾在胚胎时期具有造血功能，脾窦中存有大量血液以供机体调节血量。淋巴细胞成熟后在脾中定居。其中淋巴B细胞在淋巴细胞中占60%，淋巴T细胞占40%。与淋巴结一样，脾也是人体免疫应答发生的场所。同时体内约90%血液需要流经脾脏，脾脏可以清除血液中的病原体以及衰老的血细胞。",
+      "lang": "zh",
+      "ai_score": 24.8,
+      "matched_patterns": [
+        {
+          "pattern": "同时",
+          "category": "transition_words",
+          "weight": 2
+        }
+      ],
+      "ttr": 0.593,
+      "avg_sentence_len": 25.6,
+      "sentence_len_variance": 76.2,
+      "paragraph_len": 133,
+      "bigram_diversity": 0.875,
+      "trigram_diversity": 0.9459,
+      "ppl_burstiness": 0.3388,
+      "perplexity_score": 11.0,
+      "burstiness_score": 2.1802647366265027,
+      "content_only_score": 24.8
+    },
+    {
+      "index": 13,
+      "text": "黏膜相关淋巴组织（Mucosa-associated lymphoid tissue，简称MALT)，位于消化道、呼吸道、泌尿生殖道等人体各种黏膜组织中，由黏膜表皮细胞下方的淋巴小结以及表皮细胞之间的微皱褶细胞（M细胞）组成。黏膜层淋巴组织充满淋巴细胞，如：T细胞和B细胞，还有浆细胞和巨噬细胞，每个黏膜层淋巴组织都正好位于抗原需要通过的黏膜上皮处。比如说肠道上的MALT，当微皱褶细胞（M细胞）同时...",
+      "lang": "zh",
+      "ai_score": 26.9,
+      "matched_patterns": [
+        {
+          "pattern": "同时",
+          "category": "transition_words",
+          "weight": 2
+        }
+      ],
+      "ttr": 0.515,
+      "avg_sentence_len": 76.0,
+      "sentence_len_variance": 654.0,
+      "paragraph_len": 231,
+      "bigram_diversity": 0.7222,
+      "trigram_diversity": 0.8634,
+      "ppl_burstiness": 0.7895,
+      "perplexity_score": 11.0,
+      "burstiness_score": 2.2701516565555684,
+      "content_only_score": 26.9
+    },
+    {
+      "index": 14,
+      "text": "免疫细胞是指参与免疫应答过程或与之有关的细胞。包括淋巴细胞、抗原提呈细胞、粒细胞等细胞。",
+      "lang": "zh",
+      "ai_score": 32.1,
+      "matched_patterns": [],
+      "ttr": 0.675,
+      "avg_sentence_len": 21.0,
+      "sentence_len_variance": 1.0,
+      "paragraph_len": 44,
+      "bigram_diversity": 0.8462,
+      "trigram_diversity": 1.0,
+      "ppl_burstiness": 0.5,
+      "perplexity_score": 5.3,
+      "burstiness_score": 26.82539682539683,
+      "content_only_score": 32.1
+    },
+    {
+      "index": 15,
+      "text": "免疫分子是免疫细胞分泌的产物，包括抗体（免疫球蛋白）、补体、细胞因子、人体白细胞抗原（HLA）等。",
+      "lang": "zh",
+      "ai_score": 14.4,
+      "matched_patterns": [],
+      "ttr": 0.622,
+      "avg_sentence_len": 48.0,
+      "sentence_len_variance": 0.0,
+      "paragraph_len": 49,
+      "bigram_diversity": 0.8889,
+      "trigram_diversity": 1.0,
+      "ppl_burstiness": 0.5,
+      "perplexity_score": 4.4,
+      "burstiness_score": 10,
+      "content_only_score": 14.4
+    },
+    {
+      "index": 16,
+      "text": "免疫系统通过特异性不断增加的分层防御来保护生物体免受感染。简单说来，就是第一层物理屏障（如表皮）可以防止病原体，如细菌和病毒进入生物体内。如果病原体通过了这层障碍，那么紧接着先天性免疫系统就会产生迅速但非特异性的免疫反应。先天性免疫系统存在于所有的动植物中。如果病原体再次成功地逃过先天性免疫反应，脊椎动物体内还有第三层保护，即适应性免疫系统（又被称为后天免疫系统），可以通过先天性免疫反应而被激活。...",
+      "lang": "zh",
+      "ai_score": 22.0,
+      "matched_patterns": [
+        {
+          "pattern": "再次",
+          "category": "weak_signals",
+          "weight": 1
+        },
+        {
+          "pattern": "先.*再.*",
+          "category": "weak_signals",
+          "weight": 1
+        }
+      ],
+      "ttr": 0.447,
+      "avg_sentence_len": 38.5,
+      "sentence_len_variance": 200.8,
+      "paragraph_len": 316,
+      "bigram_diversity": 0.7207,
+      "trigram_diversity": 0.8374,
+      "ppl_burstiness": 0.9417,
+      "perplexity_score": 11.0,
+      "burstiness_score": 1.6387575755144514,
+      "content_only_score": 22.0
+    },
+    {
+      "index": 17,
+      "text": "先天性和适应性免疫都依赖于免疫系统对自体和异体分子的区分能力。在免疫学中，自体分子是指生物体自身的组成物质，可以被免疫系统与外源物质区分开。相反地，异体分子是指被免疫系统识别为外源物质的分子。抗原就是一类异体分子，可以特异性地结合免疫受体，从而引发免疫反应。",
+      "lang": "zh",
+      "ai_score": 30.3,
+      "matched_patterns": [],
+      "ttr": 0.508,
+      "avg_sentence_len": 31.2,
+      "sentence_len_variance": 21.7,
+      "paragraph_len": 129,
+      "bigram_diversity": 0.7563,
+      "trigram_diversity": 0.8814,
+      "ppl_burstiness": 0.2812,
+      "perplexity_score": 12.0,
+      "burstiness_score": 8.347227000294328,
+      "content_only_score": 30.3
+    },
+    {
+      "index": 18,
+      "text": "许多屏障可以保护生物体免受感染。这些屏障可分为机械、化学和生物学屏障。许多植物具有的蜡质叶面，昆虫所特有的外骨骼，蛋外层所包裹的膜和壳，以及脊椎动物的皮肤都属于机械屏障；这些机械屏障包裹住生物体，可以阻挡环境中的病原体入侵。但生物体不可能将自身完全隔离于生活环境之外，部分器官（如肺、肠和尿道）需要与外界环境进行频繁的物质交换，因此这些器官有其他的机械防御机制。例如，咳嗽和打喷嚏可以排出呼吸道中的病...",
+      "lang": "zh",
+      "ai_score": 14.8,
+      "matched_patterns": [
+        {
+          "pattern": "因此",
+          "category": "weak_signals",
+          "weight": 1
+        }
+      ],
+      "ttr": 0.532,
+      "avg_sentence_len": 30.2,
+      "sentence_len_variance": 306.9,
+      "paragraph_len": 250,
+      "bigram_diversity": 0.8304,
+      "trigram_diversity": 0.9563,
+      "ppl_burstiness": 0.6364,
+      "perplexity_score": 6.5,
+      "burstiness_score": 0.0,
+      "content_only_score": 14.8
+    },
+    {
+      "index": 19,
+      "text": "化学屏障也可以保护生物体免受感染。皮肤和呼吸道能够分泌抗微生物肽，如β-防御素。而唾液、眼泪和奶水中含有的一些酶，如溶菌酶和磷脂酶A2，也具有抗菌作用。在生殖系统中，初潮之后的阴道酸性分泌物，以及精液中含有的防御素和锌，都可杀死病原体。另一个化学屏障的例子存在于胃中:胃酸和蛋白酶是抵抗病原体强有力的化学屏障。",
+      "lang": "zh",
+      "ai_score": 25.9,
+      "matched_patterns": [],
+      "ttr": 0.623,
+      "avg_sentence_len": 30.0,
+      "sentence_len_variance": 88.4,
+      "paragraph_len": 155,
+      "bigram_diversity": 0.8905,
+      "trigram_diversity": 0.9412,
+      "ppl_burstiness": 0.4269,
+      "perplexity_score": 8.0,
+      "burstiness_score": 2.9194150541103165,
+      "content_only_score": 25.9
+    },
+    {
+      "index": 20,
+      "text": "在泌尿生殖系统和消化道中，片利共生的肠道菌发挥着生物学屏障的作用；这些肠道菌在一定条件下可以通过改变周围环境条件，如pH或可利用的铁元素，来与食物中的病原体细菌竞争。这种竞争一定程度上抑制这些病原体的生长，降低了病原体引起疾病的可能性。由于抗生素能够非特异性地抑制细菌的生长，却不影响真菌；因此，口服抗生素可能导致真菌增生，而引发一些疾病，如阴道念珠菌症（由酵母感染所引起）。对于儿童的肠胃感染和细菌...",
+      "lang": "zh",
+      "ai_score": 46.4,
+      "matched_patterns": [
+        {
+          "pattern": "因此",
+          "category": "weak_signals",
+          "weight": 1
+        },
+        {
+          "pattern": "发挥着",
+          "category": "structural_markers",
+          "weight": 3
+        },
+        {
+          "pattern": "发挥着.{0,8}作用",
+          "category": "translationese",
+          "weight": 3
+        }
+      ],
+      "ttr": 0.554,
+      "avg_sentence_len": 44.3,
+      "sentence_len_variance": 352.9,
+      "paragraph_len": 272,
+      "bigram_diversity": 0.8669,
+      "trigram_diversity": 0.9717,
+      "ppl_burstiness": 0.5801,
+      "perplexity_score": 7.5,
+      "burstiness_score": 0.5189016667811785,
+      "content_only_score": 46.4
+    },
+    {
+      "index": 21,
+      "text": "成功突破表层屏障进入到生物体内部的微生物或毒素会遭遇到先天性免疫系统的识别和攻击。先天性反应通常是当入侵者为模式识别受体识别后被触发。模式识别受体是先天性免疫系统的关键分子，它们可以识别许多不同病原体中的保守组分，也可以识别发出警告信号的受损伤或受压细胞。先天性免疫对病原体的攻击是非特异性的，也就是说该系统是以一种通用的方式来对抗病原体。先天性免疫系统能够快速地对广泛的病原体入侵做出反应，但不能够...",
+      "lang": "zh",
+      "ai_score": 17.8,
+      "matched_patterns": [],
+      "ttr": 0.504,
+      "avg_sentence_len": 38.3,
+      "sentence_len_variance": 163.2,
+      "paragraph_len": 236,
+      "bigram_diversity": 0.76,
+      "trigram_diversity": 0.8661,
+      "ppl_burstiness": 0.5736,
+      "perplexity_score": 10.5,
+      "burstiness_score": 2.3289944970563714,
+      "content_only_score": 17.8
+    },
+    {
+      "index": 22,
+      "text": "免疫系统对抗感染的第一步反应就是炎症反应。炎症的特点是红肿，这是因为炎症部位的血液流入量增加而引起。炎症是引发自类二十烷酸（eicosanoid）和细胞因子，这两类分子由受损或被感染的细胞所释放。类二十烷酸包括可以导致发烧和血管舒张（与炎症相关）的前列腺素和可以吸引特定白血球（如粒细胞）的白三烯。一般的细胞因子则包括负责白血球之间联系的白介素、促进细胞化学趋向性的趋化因子以及具有抗病毒作用（如关闭...",
+      "lang": "zh",
+      "ai_score": 20.8,
+      "matched_patterns": [
+        {
+          "pattern": "此外",
+          "category": "transition_words",
+          "weight": 2
+        }
+      ],
+      "ttr": 0.535,
+      "avg_sentence_len": 40.1,
+      "sentence_len_variance": 251.0,
+      "paragraph_len": 288,
+      "bigram_diversity": 0.821,
+      "trigram_diversity": 0.9414,
+      "ppl_burstiness": 0.6873,
+      "perplexity_score": 8.0,
+      "burstiness_score": 1.098264579673387,
+      "content_only_score": 20.8
+    },
+    {
+      "index": 23,
+      "text": "补体系统是对入侵的外源细胞表面进行攻击的一种生化级联反应。这一系统包含了超过20种不同的蛋白质；这些蛋白质被称为“补体”，因为它们可以补充协助抗体来消灭病原体。补体是先天性免疫反应中主要的体液免疫组分。除了哺乳动物，许多物种，包括植物、鱼类，甚至一些无脊椎动物都具有补体系统。",
+      "lang": "zh",
+      "ai_score": 17.9,
+      "matched_patterns": [],
+      "ttr": 0.694,
+      "avg_sentence_len": 26.6,
+      "sentence_len_variance": 45.4,
+      "paragraph_len": 138,
+      "bigram_diversity": 0.9106,
+      "trigram_diversity": 0.9754,
+      "ppl_burstiness": 0.1833,
+      "perplexity_score": 9.0,
+      "burstiness_score": 3.93387051791789,
+      "content_only_score": 17.9
+    },
+    {
+      "index": 24,
+      "text": "人体内，补体系统的激活是通过补体与识别了病原体的抗体结合或与病原体微生物表面的多糖结合来完成。补体结合信号可以引发快速的免疫攻击反应。这种快速的反应是来源于对补体分子一系列的蛋白酶解所引起的结果。补体分子本身就是蛋白酶。在与微生物结合（初始信号）后，补体分子激活了自己的蛋白酶活性。被激活的补体分子通过酶解其它补体分子来激活它们，这一过程不断循环，被激活的补体分子快速增加。这就形成了一个催化级联反应...",
+      "lang": "zh",
+      "ai_score": 15.3,
+      "matched_patterns": [],
+      "ttr": 0.446,
+      "avg_sentence_len": 33.2,
+      "sentence_len_variance": 194.6,
+      "paragraph_len": 308,
+      "bigram_diversity": 0.7517,
+      "trigram_diversity": 0.9018,
+      "ppl_burstiness": 0.3763,
+      "perplexity_score": 12.0,
+      "burstiness_score": 0.5964395217003338,
+      "content_only_score": 15.3
+    },
+    {
+      "index": 25,
+      "text": "白血球（白细胞）以类似于独立单细胞组织的方式来工作，构成了先天性免疫系统的第二只手。先天性免疫白血球包括了吞噬细胞（巨噬细胞、中性粒细胞和树突状细胞）、肥大细胞、嗜酸性粒细胞、嗜碱性粒细胞以及自然杀伤细胞。这些细胞以接触攻击较大的病原体或吞噬并杀死较小的微生物的方式，来识别并消灭入侵物。自然杀伤细胞还是激活适应性免疫系统的重要介导物。",
+      "lang": "zh",
+      "ai_score": 21.1,
+      "matched_patterns": [],
+      "ttr": 0.571,
+      "avg_sentence_len": 41.0,
+      "sentence_len_variance": 171.5,
+      "paragraph_len": 168,
+      "bigram_diversity": 0.7516,
+      "trigram_diversity": 0.8553,
+      "ppl_burstiness": 0.0668,
+      "perplexity_score": 13.5,
+      "burstiness_score": 2.611804461605466,
+      "content_only_score": 21.1
+    },
+    {
+      "index": 26,
+      "text": "吞噬作用是吞噬细胞通过包裹、吞噬病原体或颗粒的过程，也是细胞型先天性免疫的重要特征。吞噬细胞通常會在身體各處巡邏來搜尋病原體，但其也可以被細胞因子召喚到特定位置。病原體被吞噬細胞所吞噬後，被包裹在一種被稱為吞噬體的胞內囊體內；隨後吞噬體與溶酶体融合形成吞噬溶酶体。在吞噬溶酶体中，病原體被其中的消化性酶所殺死，或者被呼吸爆发所釋放的自由基所殺死。吞噬作用的机制来源于细胞对于营养物质的摄取，但被吞噬细...",
+      "lang": "zh",
+      "ai_score": 21.2,
+      "matched_patterns": [],
+      "ttr": 0.5,
+      "avg_sentence_len": 35.1,
+      "sentence_len_variance": 58.4,
+      "paragraph_len": 253,
+      "bigram_diversity": 0.8017,
+      "trigram_diversity": 0.8983,
+      "ppl_burstiness": 0.9706,
+      "perplexity_score": 9.5,
+      "burstiness_score": 6.728923492981698,
+      "content_only_score": 21.2
+    },
+    {
+      "index": 27,
+      "text": "巨噬细胞和噬中性顆粒白血球可以在体内寻找并攻击入侵的病原体。噬中性顆粒白血球通常存在于血液中，是数量最多的吞噬细胞，能够佔到血液中白血球总数的50-60%。在炎症发生的急性阶段，特别是细菌引起的感染，噬中性顆粒白血球可以快速移动到炎症发生处（又被称为趨化性），也是第一个到达患处的免疫细胞。巨噬细胞是多功能细胞，位于组织内，可生产非常多种类的化合物，包括各种酶、补体蛋白、调控因子（如干扰素1）。巨噬...",
+      "lang": "zh",
+      "ai_score": 29.2,
+      "matched_patterns": [
+        {
+          "pattern": "特别是",
+          "category": "filler_phrases",
+          "weight": 3
+        }
+      ],
+      "ttr": 0.535,
+      "avg_sentence_len": 42.2,
+      "sentence_len_variance": 203.8,
+      "paragraph_len": 259,
+      "bigram_diversity": 0.8018,
+      "trigram_diversity": 0.885,
+      "ppl_burstiness": 0.2385,
+      "perplexity_score": 12.0,
+      "burstiness_score": 2.234192540381831,
+      "content_only_score": 29.2
+    },
+    {
+      "index": 28,
+      "text": "树突状细胞是一種吞噬细胞，主要位于与外界环境接触的组织内，包括皮肤、鼻腔、肺、胃以及小肠。这种免疫细胞的名字来源于它们与神经树突之间的相似性，都具有大量的突起状结构，但树突状细胞与神经系统并没有直接联系。由于可以将抗原呈递给T细胞（适应性免疫系统中的关键细胞之一），因此树突状细胞可以作为身体组织和免疫系统之间的联络橋梁。",
+      "lang": "zh",
+      "ai_score": 32.0,
+      "matched_patterns": [
+        {
+          "pattern": "因此",
+          "category": "weak_signals",
+          "weight": 1
+        }
+      ],
+      "ttr": 0.626,
+      "avg_sentence_len": 52.7,
+      "sentence_len_variance": 38.2,
+      "paragraph_len": 161,
+      "bigram_diversity": 0.8356,
+      "trigram_diversity": 0.931,
+      "ppl_burstiness": 0.7143,
+      "perplexity_score": 8.5,
+      "burstiness_score": 10.154415614366233,
+      "content_only_score": 32.0
+    },
+    {
+      "index": 29,
+      "text": "肥大细胞位于结缔组织和粘膜内，调控發炎反应。它们通常与过敏或全身性過敏性反應相关。嗜酸性和嗜碱性顆粒白血球类似于噬中性顆粒白血球；它们分泌化学物质来参与抵御寄生虫，也在过敏反应中发挥作用。自然杀手细胞并不直接攻击入侵者，却能够攻击并杀死肿瘤细胞和被病毒侵入的细胞。",
+      "lang": "zh",
+      "ai_score": 27.7,
+      "matched_patterns": [
+        {
+          "pattern": "在.*中(扮演|发挥|起到)",
+          "category": "sentence_structure",
+          "weight": 2
+        }
+      ],
+      "ttr": 0.718,
+      "avg_sentence_len": 25.4,
+      "sentence_len_variance": 44.2,
+      "paragraph_len": 132,
+      "bigram_diversity": 0.9024,
+      "trigram_diversity": 0.9672,
+      "ppl_burstiness": 0.3963,
+      "perplexity_score": 8.0,
+      "burstiness_score": 4.702611767371759,
+      "content_only_score": 27.7
+    },
+    {
+      "index": 30,
+      "text": "适应性免疫系统是从早期脊椎动物开始演化而来，可以提供更强的免疫应答和免疫记忆，使得每个病原体都可以通过特征性的抗原表位而被免疫系统“记住”。适应性免疫应答具有高度的抗原特异性，能够经一个被称为抗原呈递的过程来识别“非自身”抗原。抗原的特异性使得应答的产生更有针对性。而这种针对性的应答是由体内的免疫记忆细胞来实现的。如果一个病原体入侵机体超过一次，这些特异性的记忆细胞能够迅速地消灭这一病原体。",
+      "lang": "zh",
+      "ai_score": 24.5,
+      "matched_patterns": [
+        {
+          "pattern": "使得.{2,30}",
+          "category": "translationese",
+          "weight": 3
+        }
+      ],
+      "ttr": 0.505,
+      "avg_sentence_len": 38.4,
+      "sentence_len_variance": 316.2,
+      "paragraph_len": 197,
+      "bigram_diversity": 0.7705,
+      "trigram_diversity": 0.8956,
+      "ppl_burstiness": 0.4652,
+      "perplexity_score": 9.5,
+      "burstiness_score": 0.0,
+      "content_only_score": 24.5
+    },
+    {
+      "index": 31,
+      "text": "适应性免疫系统中的细胞被称为淋巴细胞，属于特殊类型的白细胞。B细胞和T细胞是主要的淋巴细胞，由骨髓中的造血干细胞分化而来。B细胞主要参与体液免疫，而T细胞则参与细胞免疫。B细胞和T细胞都携带能够识别特定靶标的受体分子。T细胞负责识别“非自身”靶标，如病原体，但需要抗原（病原体上的一些小片段）经处理并由一种被称为主要组织相容性复合体（MHC）的“自身”受体呈递之后才能实现。T细胞主要有两类：细胞毒性...",
+      "lang": "zh",
+      "ai_score": 12.2,
+      "matched_patterns": [],
+      "ttr": 0.445,
+      "avg_sentence_len": 35.0,
+      "sentence_len_variance": 281.1,
+      "paragraph_len": 324,
+      "bigram_diversity": 0.7311,
+      "trigram_diversity": 0.8897,
+      "ppl_burstiness": 0.9243,
+      "perplexity_score": 9.5,
+      "burstiness_score": 0.0,
+      "content_only_score": 12.2
+    },
+    {
+      "index": 32,
+      "text": "B细胞抗原特异性受体则是位于B细胞表面的抗体，负责识别整个病原体，而不需要经过抗原呈递。每一种B细胞的细胞系都表达各不相同的抗体，因此，B细胞抗原受体的集合代表了人体能够产生的所有抗体。",
+      "lang": "zh",
+      "ai_score": 42.2,
+      "matched_patterns": [
+        {
+          "pattern": "因此",
+          "category": "weak_signals",
+          "weight": 1
+        }
+      ],
+      "ttr": 0.639,
+      "avg_sentence_len": 45.5,
+      "sentence_len_variance": 6.2,
+      "paragraph_len": 93,
+      "bigram_diversity": 0.8659,
+      "trigram_diversity": 0.963,
+      "ppl_burstiness": 0.5,
+      "perplexity_score": 7.5,
+      "burstiness_score": 26.35167777348316,
+      "content_only_score": 42.2
+    },
+    {
+      "index": 33,
+      "text": "细胞毒性T细胞是T细胞中的一个亚群，能够杀死被病毒（或其他病原体）感染的细胞或者受损和失去功能的细胞。与B细胞类似，不同类T细胞能够识别不同的抗原。当其细胞表面的T细胞受体特异性地结合抗原，并与其他细胞表面的I型MHC分子共同形成复合物时，杀伤型T细胞就会被激活。对MHC-抗原复合物的识别是由T细胞表面的辅助受体（CD8）来协助完成。而后，激活的T细胞会在整个身体内巡游来寻找是否有细胞表面带有这一...",
+      "lang": "zh",
+      "ai_score": 46.0,
+      "matched_patterns": [
+        {
+          "pattern": "因此",
+          "category": "weak_signals",
+          "weight": 1
+        },
+        {
+          "pattern": "至关重要",
+          "category": "filler_phrases",
+          "weight": 3
+        },
+        {
+          "pattern": "同时",
+          "category": "transition_words",
+          "weight": 2
+        },
+        {
+          "pattern": "对.*而言",
+          "category": "sentence_structure",
+          "weight": 2
+        }
+      ],
+      "ttr": 0.431,
+      "avg_sentence_len": 40.2,
+      "sentence_len_variance": 151.0,
+      "paragraph_len": 412,
+      "bigram_diversity": 0.7666,
+      "trigram_diversity": 0.9364,
+      "ppl_burstiness": 0.6804,
+      "perplexity_score": 8.0,
+      "burstiness_score": 2.886464812216664,
+      "content_only_score": 46.0
+    },
+    {
+      "index": 34,
+      "text": "辅助型T细胞参与调控先天性与适应性免疫反应，根据病原体的情况，帮助机体确定免疫反应类型。这类T细胞不具有细胞毒性，无法直接清除受感染细胞或病原体，但它们可以引导其他免疫细胞来完成清除任务。",
+      "lang": "zh",
+      "ai_score": 38.2,
+      "matched_patterns": [],
+      "ttr": 0.686,
+      "avg_sentence_len": 46.0,
+      "sentence_len_variance": 9.0,
+      "paragraph_len": 94,
+      "bigram_diversity": 0.8706,
+      "trigram_diversity": 0.9643,
+      "ppl_burstiness": 0.5,
+      "perplexity_score": 7.5,
+      "burstiness_score": 25.65217391304348,
+      "content_only_score": 38.2
+    },
+    {
+      "index": 35,
+      "text": "辅助型T细胞表达T细胞受体来识别结合在II型MHC分子上的抗原。同时，辅助型T细胞上的CD4分子作为辅助受体也参与结合MHC-抗原复合物，并招募T细胞内的其他分子来激活T细胞。与杀伤型T细胞相比，辅助型T细胞与MHC-抗原复合物的结合力较弱，这就意味着辅助型T细胞表面要有大量的受体（约200-300个）都结合上了MHC-抗原复合物才能够激活辅助型T细胞，而杀伤型T细胞只需要一个受体与MHC-抗原复...",
+      "lang": "zh",
+      "ai_score": 23.8,
+      "matched_patterns": [
+        {
+          "pattern": "同时",
+          "category": "transition_words",
+          "weight": 2
+        }
+      ],
+      "ttr": 0.378,
+      "avg_sentence_len": 54.7,
+      "sentence_len_variance": 893.1,
+      "paragraph_len": 390,
+      "bigram_diversity": 0.6463,
+      "trigram_diversity": 0.8032,
+      "ppl_burstiness": 0.8664,
+      "perplexity_score": 11.0,
+      "burstiness_score": 0.0,
+      "content_only_score": 23.8
+    },
+    {
+      "index": 36,
+      "text": "γδ T细胞具有与一般T细胞不同的T细胞受体，同时带有自然杀伤细胞、杀伤型T细胞和辅助型T细胞的多种特性。γδ T细胞产生免疫反应的条件还不十分清楚。如同其他非典型的T细胞亚型，γδ T细胞的界定跨越了先天性和适应性免疫。一方面，由于可以通过T细胞受体的基因重排产生多样性的抗体并具有免疫记忆，γδ T细胞被认为是适应性免疫系统中的组分。另一方面，由于其表面的限制性T细胞受体或自然杀伤细胞受体可以作...",
+      "lang": "zh",
+      "ai_score": 44.3,
+      "matched_patterns": [
+        {
+          "pattern": "因此",
+          "category": "weak_signals",
+          "weight": 1
+        },
+        {
+          "pattern": "同时",
+          "category": "transition_words",
+          "weight": 2
+        },
+        {
+          "pattern": "另一方面",
+          "category": "transition_words",
+          "weight": 2
+        },
+        {
+          "pattern": "被认为是",
+          "category": "medical_templates",
+          "weight": 4
+        }
+      ],
+      "ttr": 0.457,
+      "avg_sentence_len": 51.8,
+      "sentence_len_variance": 364.8,
+      "paragraph_len": 317,
+      "bigram_diversity": 0.7588,
+      "trigram_diversity": 0.8906,
+      "ppl_burstiness": 0.4706,
+      "perplexity_score": 10.5,
+      "burstiness_score": 1.6255836995747819,
+      "content_only_score": 44.3
+    },
+    {
+      "index": 37,
+      "text": "B细胞通过其表面的抗体分子特异性结合外源抗原，从而识别病原体。所形成的抗原-抗体复合物被B细胞吞噬，这一抗原在细胞内被分解为肽段。随后B细胞将这些抗原性肽段通过其细胞表面的II型MHC分子呈递出来。这种MHC与抗原的组合吸引来合适的辅助型T细胞，而T细胞接着释放淋巴因子并激活B细胞。激活的B细胞开始分裂，所产生的子代细胞（浆细胞）分泌出数百万个能够识别该抗原的抗体拷贝。这些抗体在血浆和淋巴液内循环...",
+      "lang": "zh",
+      "ai_score": 15.5,
+      "matched_patterns": [],
+      "ttr": 0.455,
+      "avg_sentence_len": 42.9,
+      "sentence_len_variance": 136.4,
+      "paragraph_len": 307,
+      "bigram_diversity": 0.779,
+      "trigram_diversity": 0.9511,
+      "ppl_burstiness": 0.8001,
+      "perplexity_score": 6.5,
+      "burstiness_score": 6.721892281340258,
+      "content_only_score": 15.5
+    },
+    {
+      "index": 38,
+      "text": "虽然适应性免疫系统中的经典分子（如抗体和T细胞受体）仅存在于有颌类脊椎动物，一种不同于经典分子的淋巴细胞衍生分子被发现存在于初等无颌类脊椎动物中（如七鰓鰻和盲鳗）。这些动物可生成大量被称为“可变淋巴受体”的分子，这些分子产生于少量（一到两个）基因，功能被认为接近有颌类脊椎动物中的抗原受体，以类似抗体的高度特异的结合方式来识别病原性抗原。",
+      "lang": "zh",
+      "ai_score": 53.5,
+      "matched_patterns": [
+        {
+          "pattern": "被(证明|发现|证实)",
+          "category": "translationese",
+          "weight": 3
+        }
+      ],
+      "ttr": 0.571,
+      "avg_sentence_len": 83.5,
+      "sentence_len_variance": 6.2,
+      "paragraph_len": 169,
+      "bigram_diversity": 0.8039,
+      "trigram_diversity": 0.9145,
+      "ppl_burstiness": 0.5,
+      "perplexity_score": 10.5,
+      "burstiness_score": 28.011992080161484,
+      "content_only_score": 53.5
+    },
+    {
+      "index": 39,
+      "text": "当B细胞和T细胞被激活后，就会开始复制分裂以产生子代细胞，这些子代细胞中的一部分会成为长寿的记忆细胞，例如记忆B细胞、记忆T细胞、骨髓浆细胞（BMPC；区别于血循浆细胞 CPC，circulating plasma cells）。在动物的一生中，这些记忆细胞能够记住免疫系统所遇到的每一个特定的病原体，一旦再次接触到此病原体就会触发强烈的免疫反应。这便是“适应性”，因为机体的免疫系统能够以此对入侵病...",
+      "lang": "zh",
+      "ai_score": 19.2,
+      "matched_patterns": [
+        {
+          "pattern": "再次",
+          "category": "weak_signals",
+          "weight": 1
+        }
+      ],
+      "ttr": 0.511,
+      "avg_sentence_len": 48.0,
+      "sentence_len_variance": 331.6,
+      "paragraph_len": 245,
+      "bigram_diversity": 0.7884,
+      "trigram_diversity": 0.9149,
+      "ppl_burstiness": 0.4196,
+      "perplexity_score": 9.5,
+      "burstiness_score": 1.412546906606642,
+      "content_only_score": 19.2
+    },
+    {
+      "index": 40,
+      "text": "新生婴儿由于没有接触过病原体，因此特别容易发生感染。而母亲可以为婴儿提供多种被动免疫保护。在怀孕期间，一种被称为IgG的抗体从母亲体内直接通过胎盘进入胎儿体内，使得婴儿即使在出生时体内也具有高的抗体水平，并且与母体的抗原识别特异性保持一致。母乳或牛初乳也含有抗体，可以进入婴儿肠道来保护其免受细菌感染，直到新生儿能够自己产生抗体。无论是胎儿期还是婴儿发育早期，其体内的免疫都是被动免疫，因为其机体并没...",
+      "lang": "zh",
+      "ai_score": 30.4,
+      "matched_patterns": [
+        {
+          "pattern": "因此",
+          "category": "weak_signals",
+          "weight": 1
+        },
+        {
+          "pattern": "使得.{2,30}",
+          "category": "translationese",
+          "weight": 3
+        }
+      ],
+      "ttr": 0.489,
+      "avg_sentence_len": 40.4,
+      "sentence_len_variance": 335.4,
+      "paragraph_len": 290,
+      "bigram_diversity": 0.839,
+      "trigram_diversity": 0.9624,
+      "ppl_burstiness": 0.6371,
+      "perplexity_score": 6.5,
+      "burstiness_score": 0.0,
+      "content_only_score": 30.4
+    },
+    {
+      "index": 41,
+      "text": "长期主动记忆是通过感染而激活B细胞和T细胞来获得的。主动免疫也能够通过疫苗接种来产生。疫苗接种的原理是将来自病原体的抗原注入机体来刺激免疫系统，在不引起疾病的情况下引发免疫记忆。这一技术的成功在于它充分利用了免疫系统所具有的天然特异性和可诱导性。由于感染性疾病依然是导致死亡的主要原因之一，疫苗接种可以说是人类对免疫系统最有效的改造。",
+      "lang": "zh",
+      "ai_score": 23.4,
+      "matched_patterns": [
+        {
+          "pattern": "可以说",
+          "category": "vague_expressions",
+          "weight": 2
+        }
+      ],
+      "ttr": 0.595,
+      "avg_sentence_len": 32.4,
+      "sentence_len_variance": 119.0,
+      "paragraph_len": 167,
+      "bigram_diversity": 0.8662,
+      "trigram_diversity": 0.9487,
+      "ppl_burstiness": 0.5437,
+      "perplexity_score": 9.5,
+      "burstiness_score": 2.266227089731041,
+      "content_only_score": 23.4
+    },
+    {
+      "index": 42,
+      "text": "多数病毒疫苗是基于毒性弱化病毒开发的，而许多细菌疫苗则是来源于微生物中的非细胞组分，包括无害的毒素组分。由于来自于非细胞性疫苗中的许多抗原无法有效地诱导适应性反应，多数细菌疫苗中还添加了免疫佐剂（能够激活先天性免疫系统中的抗原呈递细胞），从而最大化免疫原性。",
+      "lang": "zh",
+      "ai_score": 29.4,
+      "matched_patterns": [],
+      "ttr": 0.562,
+      "avg_sentence_len": 63.5,
+      "sentence_len_variance": 156.2,
+      "paragraph_len": 129,
+      "bigram_diversity": 0.85,
+      "trigram_diversity": 0.9664,
+      "ppl_burstiness": 0.5,
+      "perplexity_score": 7.5,
+      "burstiness_score": 16.878740325486202,
+      "content_only_score": 29.4
+    },
+    {
+      "index": 43,
+      "text": "免疫系统是一个极为高效的体系，具有特异性、诱导性和适应性。但免疫系统在某些情况下也会出现功能紊乱，主要分为三类：免疫功能低下、自体免疫和超敏反应（包括过敏）。",
+      "lang": "zh",
+      "ai_score": 17.8,
+      "matched_patterns": [],
+      "ttr": 0.729,
+      "avg_sentence_len": 38.5,
+      "sentence_len_variance": 110.2,
+      "paragraph_len": 79,
+      "bigram_diversity": 0.913,
+      "trigram_diversity": 0.9706,
+      "ppl_burstiness": 0.5,
+      "perplexity_score": 6.0,
+      "burstiness_score": 11.82230514699815,
+      "content_only_score": 17.8
+    },
+    {
+      "index": 44,
+      "text": "当免疫系统中的一个或多个组分失去活性就会造成免疫功能低下或免疫缺陷。一般而言生物體的免疫運作到足以產下子代的時間結束後就逐漸衰敗，免疫系統在有生殖力的期間會達到高峰，繁殖週期結束後就會下降，人体的免疫力是在50岁之后开始下降，出现免疫衰老，會引發癌症等一系列疾病，中年以後易得癌症，這就是原因之一。剔除年龄因素，在发达国家，肥胖、嗜酒和滥用药品都是导致免疫功能低下的因素。而在发展中国家，营养不良则是...",
+      "lang": "zh",
+      "ai_score": 20.2,
+      "matched_patterns": [
+        {
+          "pattern": "此外",
+          "category": "transition_words",
+          "weight": 2
+        }
+      ],
+      "ttr": 0.546,
+      "avg_sentence_len": 52.9,
+      "sentence_len_variance": 752.7,
+      "paragraph_len": 377,
+      "bigram_diversity": 0.8471,
+      "trigram_diversity": 0.9417,
+      "ppl_burstiness": 0.8899,
+      "perplexity_score": 8.5,
+      "burstiness_score": 0.0,
+      "content_only_score": 20.2
+    },
+    {
+      "index": 45,
+      "text": "免疫功能低下在很多情况下具有可遗传性或“获得性”。例如，慢性肉芽腫病的患者体内的吞噬细胞攻击病原体的能力降低，属于原发性免疫缺陷，可被遗传。而像艾滋病和一些癌症可以导致获得性免疫缺陷。",
+      "lang": "zh",
+      "ai_score": 21.6,
+      "matched_patterns": [],
+      "ttr": 0.702,
+      "avg_sentence_len": 29.7,
+      "sentence_len_variance": 104.2,
+      "paragraph_len": 92,
+      "bigram_diversity": 0.9036,
+      "trigram_diversity": 0.9512,
+      "ppl_burstiness": 0.0698,
+      "perplexity_score": 9.5,
+      "burstiness_score": 2.126033586437795,
+      "content_only_score": 21.6
+    },
+    {
+      "index": 46,
+      "text": "与免疫功能低下对应的另一个极端是过度免疫反应，其同样会损害人体健康，造成自体免疫紊乱疾病。当免疫系统无法正确区分自体和异体抗原时，就会攻击自身部分机体。通常情况下，能够识别自身抗原的淋巴细胞在人体发育早期就会消失。位于胸腺和骨髓中的特异化细胞将自体抗原呈递给新生淋巴细胞，并将能够识别自体抗原的细胞消灭，从而阻止自体免疫。",
+      "lang": "zh",
+      "ai_score": 18.5,
+      "matched_patterns": [],
+      "ttr": 0.629,
+      "avg_sentence_len": 39.2,
+      "sentence_len_variance": 95.7,
+      "paragraph_len": 161,
+      "bigram_diversity": 0.82,
+      "trigram_diversity": 0.9262,
+      "ppl_burstiness": 0.7673,
+      "perplexity_score": 8.5,
+      "burstiness_score": 5.008858325960981,
+      "content_only_score": 18.5
+    },
+    {
+      "index": 47,
+      "text": "超敏反应是损害自身机体的免疫反应。按照超敏的反应机制和时程，可以分为四类（I-IV）。I型超敏反应是一种即时的、急性的反应，通常与过敏相关，症状多样，从轻微的不适到死亡都可能出现。I型超敏反应由免疫球蛋白IgE所介导，当与抗体相连时，能够触发肥大细胞和嗜碱性粒细胞的脱颗粒作用。当抗体结合到患者自身细胞的抗原上时，就会引起II型超敏反应，摧毁这些细胞。因此，这类反应又被称为抗体依赖（或细胞毒性）超敏...",
+      "lang": "zh",
+      "ai_score": 30.7,
+      "matched_patterns": [
+        {
+          "pattern": "因此",
+          "category": "weak_signals",
+          "weight": 1
+        },
+        {
+          "pattern": "分为.*?型",
+          "category": "structural_markers",
+          "weight": 3
+        }
+      ],
+      "ttr": 0.579,
+      "avg_sentence_len": 35.0,
+      "sentence_len_variance": 128.0,
+      "paragraph_len": 216,
+      "bigram_diversity": 0.8249,
+      "trigram_diversity": 0.9261,
+      "ppl_burstiness": 0.7327,
+      "perplexity_score": 8.5,
+      "burstiness_score": 3.8350237148658506,
+      "content_only_score": 30.7
+    },
+    {
+      "index": 48,
+      "text": "免疫复合物（包括抗原聚集体、补体蛋白、IgG以及IgM抗体）如果没有被及时清除，可能诱发III型超敏反应。IV型超敏反应又被称为细胞依赖型或延迟型超敏反应，通常发展2至3天后才产生症状。IV型超敏反应多出现于自体免疫和感染性疾病中，也出现于接触性皮炎。这类反应由T细胞、单核细胞及巨噬细胞所介导。",
+      "lang": "zh",
+      "ai_score": 20.6,
+      "matched_patterns": [],
+      "ttr": 0.683,
+      "avg_sentence_len": 36.0,
+      "sentence_len_variance": 126.5,
+      "paragraph_len": 148,
+      "bigram_diversity": 0.8403,
+      "trigram_diversity": 0.9153,
+      "ppl_burstiness": 0.2414,
+      "perplexity_score": 12.0,
+      "burstiness_score": 3.5848767337766714,
+      "content_only_score": 20.6
+    },
+    {
+      "index": 49,
+      "text": "多组分的适应性免疫系统很可能是从第一个脊椎动物开始出现的，因为无脊椎动物不能够产生淋巴细胞，也没有基于抗体的体液免疫反应。但许多物种都发展出了免疫机制，这些机制可能是脊椎动物免疫系统的前身。免疫系统甚至在构造上极为简单的生命形式中就已经出现。细菌就可以利用一种被称为“限制性修饰系统”的独特的防御机制来保护自身免受病毒的侵害（针对细菌的病毒被称为“噬菌体”）。原核生物也具有适应性免疫，主要是利用CR...",
+      "lang": "zh",
+      "ai_score": 26.2,
+      "matched_patterns": [
+        {
+          "pattern": "使得.{2,30}",
+          "category": "translationese",
+          "weight": 3
+        }
+      ],
+      "ttr": 0.539,
+      "avg_sentence_len": 50.0,
+      "sentence_len_variance": 330.8,
+      "paragraph_len": 255,
+      "bigram_diversity": 0.8341,
+      "trigram_diversity": 0.9342,
+      "ppl_burstiness": 0.4605,
+      "perplexity_score": 9.5,
+      "burstiness_score": 1.72483677159062,
+      "content_only_score": 26.2
+    },
+    {
+      "index": 50,
+      "text": "除了相对复杂的免疫系统外，生物体还进化出了多种多样的免疫机制。模式识别受体是几乎所有生物体都具有的能够识别病原体相关分子的一类蛋白质。抗菌肽（如防御素）是构成先天性免疫的重要组分，存在于所有动植物中，也是无脊椎生物中主要的免疫形式。多数无脊椎动物也具有补体系统和吞噬类细胞。核酶和RNA干扰通路广泛存在于真核生物中，被认为参与了针对病毒的免疫反应。",
+      "lang": "zh",
+      "ai_score": 16.1,
+      "matched_patterns": [],
+      "ttr": 0.625,
+      "avg_sentence_len": 33.8,
+      "sentence_len_variance": 82.6,
+      "paragraph_len": 174,
+      "bigram_diversity": 0.8679,
+      "trigram_diversity": 0.9557,
+      "ppl_burstiness": 0.533,
+      "perplexity_score": 7.5,
+      "burstiness_score": 3.622216441419284,
+      "content_only_score": 16.1
+    },
+    {
+      "index": 51,
+      "text": "不同于动物，植物体内缺少吞噬类细胞。因此，植物类免疫反应主要采用全身性的化学信号。单个植物细胞对病原体相关分子，如病原相关分子模式产生免疫反应。当植物的一部分被病原体侵染，植物体就会进行局部的超敏反应，使得侵染处的细胞迅速凋亡，以阻止病区向植物体的其他部分扩散。系统获得性抗性是另一类植物特有的防御反应，可以使整株植物抵抗某一类特定传染物。RNA沉默机制可以破坏病毒的复制，因此在这种全身性反应中尤为...",
+      "lang": "zh",
+      "ai_score": 29.8,
+      "matched_patterns": [
+        {
+          "pattern": "因此",
+          "category": "weak_signals",
+          "weight": 1
+        },
+        {
+          "pattern": "使得.{2,30}",
+          "category": "translationese",
+          "weight": 3
+        }
+      ],
+      "ttr": 0.581,
+      "avg_sentence_len": 32.8,
+      "sentence_len_variance": 172.8,
+      "paragraph_len": 203,
+      "bigram_diversity": 0.8378,
+      "trigram_diversity": 0.9565,
+      "ppl_burstiness": 0.6768,
+      "perplexity_score": 6.5,
+      "burstiness_score": 0.9845479389487878,
+      "content_only_score": 29.8
+    },
+    {
+      "index": 52,
+      "text": "免疫系统另一个重要功能是发现和消灭肿瘤。肿瘤细胞会表达一些未在正常细胞中发现的抗原。对于免疫系统而言，这些肿瘤抗原是入侵者，它们的存在导致免疫细胞对肿瘤细胞进行攻击。肿瘤抗原来自于多个方面。有部分抗原是由致癌病毒所生成，如能够导致子宫颈癌的人類乳突病毒。有很多情况下，肿瘤抗原是生物体内自身蛋白，只是因为在正常细胞中的表达水平很低，而在肿瘤细胞中表达过高。例如，酪氨酸酶的高量表达会将特定的皮肤细胞（...",
+      "lang": "zh",
+      "ai_score": 46.1,
+      "matched_patterns": [
+        {
+          "pattern": "因此",
+          "category": "weak_signals",
+          "weight": 1
+        },
+        {
+          "pattern": "对.*而言",
+          "category": "sentence_structure",
+          "weight": 2
+        },
+        {
+          "pattern": "在.*中(扮演|发挥|起到)",
+          "category": "sentence_structure",
+          "weight": 2
+        },
+        {
+          "pattern": "在.*方面",
+          "category": "medical_templates",
+          "weight": 4
+        }
+      ],
+      "ttr": 0.489,
+      "avg_sentence_len": 34.5,
+      "sentence_len_variance": 282.8,
+      "paragraph_len": 284,
+      "bigram_diversity": 0.7947,
+      "trigram_diversity": 0.9122,
+      "ppl_burstiness": 0.4667,
+      "perplexity_score": 10.5,
+      "burstiness_score": 0.0,
+      "content_only_score": 46.1
+    },
+    {
+      "index": 53,
+      "text": "免疫系统针对肿瘤的应答主要是利用杀伤型T细胞来摧毁异常细胞，有时候也需要辅助型T细胞的参与。类似于病毒抗原，肿瘤抗原的呈递也是通过I型MHC分子来进行，使得杀伤型T细胞能够将肿瘤细胞作为异常细胞进行识别。自然杀伤细胞也能够通过类似途径杀死肿瘤细胞，特别是当肿瘤细胞表面的I型MHC分子少于正常细胞的情况（这也是肿瘤细胞的普遍现象）。有时生成针对肿瘤细胞的抗体，也让补体系统也可以参与到消灭肿瘤的进程中...",
+      "lang": "zh",
+      "ai_score": 39.2,
+      "matched_patterns": [
+        {
+          "pattern": "特别是",
+          "category": "filler_phrases",
+          "weight": 3
+        },
+        {
+          "pattern": "使得.{2,30}",
+          "category": "translationese",
+          "weight": 3
+        }
+      ],
+      "ttr": 0.497,
+      "avg_sentence_len": 49.2,
+      "sentence_len_variance": 118.2,
+      "paragraph_len": 201,
+      "bigram_diversity": 0.736,
+      "trigram_diversity": 0.8757,
+      "ppl_burstiness": 0.604,
+      "perplexity_score": 9.5,
+      "burstiness_score": 4.580494983763615,
+      "content_only_score": 39.2
+    },
+    {
+      "index": 54,
+      "text": "一些肿瘤能够躲过免疫系统的监测，从而发展成为癌症。肿瘤细胞表面的I型MHC分子通常少于正常细胞，因此可以避免被杀伤型T细胞所发现。一些肿瘤细胞可以释放出一些因子来抑制免疫应答，如分泌能够降低巨噬细胞和淋巴细胞活性的细胞因子，转化生长因子-β。此外，针对肿瘤抗原的应答可能出现免疫耐受，使得免疫系统无法继续攻击肿瘤细胞。",
+      "lang": "zh",
+      "ai_score": 51.8,
+      "matched_patterns": [
+        {
+          "pattern": "因此",
+          "category": "weak_signals",
+          "weight": 1
+        },
+        {
+          "pattern": "此外",
+          "category": "transition_words",
+          "weight": 2
+        },
+        {
+          "pattern": "使得.{2,30}",
+          "category": "translationese",
+          "weight": 3
+        }
+      ],
+      "ttr": 0.585,
+      "avg_sentence_len": 38.8,
+      "sentence_len_variance": 121.2,
+      "paragraph_len": 159,
+      "bigram_diversity": 0.8085,
+      "trigram_diversity": 0.9357,
+      "ppl_burstiness": 0.0764,
+      "perplexity_score": 12.5,
+      "burstiness_score": 3.325212806382315,
+      "content_only_score": 51.8
+    },
+    {
+      "index": 55,
+      "text": "矛盾的是，免疫系统中的巨噬细胞能够促进肿瘤生长。当肿瘤细胞释放出细胞因子并吸引巨噬细胞到肿瘤附近，巨噬细胞会合成细胞因子和生长因子，反过来促进肿瘤的生长。而且，肿瘤中的缺氧条件和巨噬细胞产生的细胞因子，会共同诱导肿瘤细胞来降低能够抑制转移的蛋白质的合成，从而促进癌细胞的扩散。",
+      "lang": "zh",
+      "ai_score": 35.6,
+      "matched_patterns": [
+        {
+          "pattern": "从而(导致|使|促进|降低|提高|增加|减少)",
+          "category": "translationese",
+          "weight": 3
+        }
+      ],
+      "ttr": 0.496,
+      "avg_sentence_len": 45.0,
+      "sentence_len_variance": 252.7,
+      "paragraph_len": 138,
+      "bigram_diversity": 0.7344,
+      "trigram_diversity": 0.8898,
+      "ppl_burstiness": 0.5676,
+      "perplexity_score": 10.5,
+      "burstiness_score": 1.9348708870455846,
+      "content_only_score": 35.6
+    },
+    {
+      "index": 56,
+      "text": "人体内的激素可以作为免疫调节剂，调控免疫系统的活力。例如，雌激素属于免疫激活剂，可以激活适应性免疫和先天性免疫一些自免疫疾病，如红斑性狼疮更容易发生于女性，常常出现于青春期女性（往往具有较高雌激素水平）。相反的是，雄激素则被认为具有免疫抑制作用。其他一些激素也可以调节免疫系统，特别是催乳素、生长激素和维生素D。有理论猜测人体激素水平随年龄增大而降低是导致老年人免疫力低的影响因素之一。不仅激素可以调...",
+      "lang": "zh",
+      "ai_score": 31.4,
+      "matched_patterns": [
+        {
+          "pattern": "特别是",
+          "category": "filler_phrases",
+          "weight": 3
+        },
+        {
+          "pattern": "作为.*的.*之一",
+          "category": "sentence_structure",
+          "weight": 2
+        }
+      ],
+      "ttr": 0.495,
+      "avg_sentence_len": 37.8,
+      "sentence_len_variance": 317.1,
+      "paragraph_len": 233,
+      "bigram_diversity": 0.7793,
+      "trigram_diversity": 0.9104,
+      "ppl_burstiness": 0.9228,
+      "perplexity_score": 9.5,
+      "burstiness_score": 0.0,
+      "content_only_score": 31.4
+    },
+    {
+      "index": 57,
+      "text": "免疫系统与睡眠和休息之间也有紧密联系。睡眠剥夺会损害免疫功能。联系免疫系统与睡眠的是复杂的反馈网络，包括了一些细胞因子。例如，针对感染而产生的白介素1和肿瘤坏死因子-α，能够参与调控非快速动眼睡眠。因此，由感染引起的免疫反应可以导致睡眠周期的改变，包括非快速动眼期中的慢波睡眠。",
+      "lang": "zh",
+      "ai_score": 18.6,
+      "matched_patterns": [
+        {
+          "pattern": "因此",
+          "category": "weak_signals",
+          "weight": 1
+        }
+      ],
+      "ttr": 0.651,
+      "avg_sentence_len": 26.8,
+      "sentence_len_variance": 120.6,
+      "paragraph_len": 139,
+      "bigram_diversity": 0.84,
+      "trigram_diversity": 0.9355,
+      "ppl_burstiness": 0.6584,
+      "perplexity_score": 9.5,
+      "burstiness_score": 0.8046245293777043,
+      "content_only_score": 18.6
+    },
+    {
+      "index": 58,
+      "text": "如同其他体内系统，免疫系统的功能依赖于正常的营养供应。长期以来，人们已经形成共识，严重的营养不良会导致免疫缺陷。同样，营养过剩所引起的疾病，如糖尿病和肥胖症，能够破坏免疫功能。而中度营养不良以及缺乏特定微量元素和营养，也会减弱免疫应答。胎儿期营养缺乏甚至会导致终身免疫系统缺陷。",
+      "lang": "zh",
+      "ai_score": 20.2,
+      "matched_patterns": [],
+      "ttr": 0.638,
+      "avg_sentence_len": 26.8,
+      "sentence_len_variance": 14.2,
+      "paragraph_len": 139,
+      "bigram_diversity": 0.8413,
+      "trigram_diversity": 0.952,
+      "ppl_burstiness": 0.7289,
+      "perplexity_score": 6.5,
+      "burstiness_score": 8.687844226654214,
+      "content_only_score": 20.2
+    },
+    {
+      "index": 59,
+      "text": "食物可以影响免疫系统。新鲜的水果、蔬菜和富含特定脂肪酸的食物可以帮助保持健康的免疫系统。在传统医学中，一些草药被认为可以激活免疫系统，如紫錐花、甘草、人参、黄芪、鼠尾草、大蒜、接骨木和牛膝草等，甚至蜂蜜；但还需要进一步的研究来了解它们的作用机制。",
+      "lang": "zh",
+      "ai_score": 19.5,
+      "matched_patterns": [],
+      "ttr": 0.78,
+      "avg_sentence_len": 29.8,
+      "sentence_len_variance": 308.2,
+      "paragraph_len": 123,
+      "bigram_diversity": 0.9074,
+      "trigram_diversity": 0.9439,
+      "ppl_burstiness": 0.2315,
+      "perplexity_score": 9.5,
+      "burstiness_score": 0.0,
+      "content_only_score": 19.5
+    },
+    {
+      "index": 60,
+      "text": "药用真菌，如香菇、灵芝、云芝、姬松茸和灰树花，可能具有上调免疫系统功能，得到了一些体内、体外及有限的临床研究结果的支持。而这些真菌中具有调控免疫功能的活性物质可能是一大类多糖，特别是β-葡聚醣和α-葡聚醣（如从香菇中提取的活性己糖相關化合物）。β-葡聚醣激活免疫系统的机制还不十分清楚。一种可能的机制是通过与在多种免疫细胞中表达的补体受体3（CD18）相互作用来影响免疫系统。其他免疫受体，如Toll...",
+      "lang": "zh",
+      "ai_score": 34.4,
+      "matched_patterns": [
+        {
+          "pattern": "特别是",
+          "category": "filler_phrases",
+          "weight": 3
+        },
+        {
+          "pattern": "被(证明|发现|证实)",
+          "category": "translationese",
+          "weight": 3
+        }
+      ],
+      "ttr": 0.588,
+      "avg_sentence_len": 51.6,
+      "sentence_len_variance": 340.2,
+      "paragraph_len": 263,
+      "bigram_diversity": 0.8535,
+      "trigram_diversity": 0.9543,
+      "ppl_burstiness": 0.5864,
+      "perplexity_score": 7.5,
+      "burstiness_score": 1.8509645818886522,
+      "content_only_score": 34.4
+    },
+    {
+      "index": 61,
+      "text": "通过对免疫系统进行人工干预，一方面可以激活免疫防御来对抗容易躲过免疫系统的病原体，另一方面可以抑制由于自体免疫、过敏或器官移植所导致的不利的免疫反应。免疫抑制药可以用于控制自免疫紊乱或过度组装损伤引起的炎症反应，也用于抑制器官移植后的排斥反应。",
+      "lang": "zh",
+      "ai_score": 42.3,
+      "matched_patterns": [
+        {
+          "pattern": "另一方面",
+          "category": "transition_words",
+          "weight": 2
+        },
+        {
+          "pattern": "一方面.{5,40}另一方面.{5,40}",
+          "category": "sentence_structure",
+          "weight": 2
+        }
+      ],
+      "ttr": 0.586,
+      "avg_sentence_len": 60.0,
+      "sentence_len_variance": 196.0,
+      "paragraph_len": 122,
+      "bigram_diversity": 0.8174,
+      "trigram_diversity": 0.9386,
+      "ppl_burstiness": 0.5,
+      "perplexity_score": 9.5,
+      "burstiness_score": 14.444444444444446,
+      "content_only_score": 42.3
+    },
+    {
+      "index": 62,
+      "text": "消炎药常用于控制炎症作用。以糖皮质激素为代表的该类药物，疗效明显；然而由于它们会引起多种副作用（如中心肥胖、中暑、骨质疏松），治疗时的用量需要严格控制。低剂量的消炎药常常与细胞毒性或免疫抑制类药物（如氨甲蝶呤或硫唑嘌呤）联用。细胞毒性药物通过杀死快速分裂的细胞，如被激活的T细胞，从而抑制免疫反应的发生。但这种无区分的杀伤作用同样会破坏其他持续分裂的细胞，而损害相关器官组织，引起毒副作用。免疫抑制药...",
+      "lang": "zh",
+      "ai_score": 24.6,
+      "matched_patterns": [
+        {
+          "pattern": "然而",
+          "category": "transition_words",
+          "weight": 2
+        }
+      ],
+      "ttr": 0.585,
+      "avg_sentence_len": 32.6,
+      "sentence_len_variance": 124.0,
+      "paragraph_len": 235,
+      "bigram_diversity": 0.8389,
+      "trigram_diversity": 0.9381,
+      "ppl_burstiness": 0.9514,
+      "perplexity_score": 8.5,
+      "burstiness_score": 4.418387284871139,
+      "content_only_score": 24.6
+    },
+    {
+      "index": 63,
+      "text": "具有更大化学结构的药物（大于500Da）会引起中和免疫反应，特别是反复或大剂量使用。这种现象限制了多肽和蛋白质类药物（通常分子量大于6000Da）的药效。不断发展的计算方法可用于预测多肽和蛋白质的免疫原性，这对于设计治疗性的抗体尤其有用，包括分析病毒颗粒表面的突变可能具有的毒性，以及验证基于多肽的药物治疗方案。早期的技术主要依赖于初步的分析，即在抗原表位中，亲水性氨基酸多于疏水性氨基酸。目前，更为...",
+      "lang": "zh",
+      "ai_score": 26.2,
+      "matched_patterns": [
+        {
+          "pattern": "特别是",
+          "category": "filler_phrases",
+          "weight": 3
+        },
+        {
+          "pattern": "此外",
+          "category": "transition_words",
+          "weight": 2
+        }
+      ],
+      "ttr": 0.546,
+      "avg_sentence_len": 54.0,
+      "sentence_len_variance": 616.3,
+      "paragraph_len": 330,
+      "bigram_diversity": 0.8425,
+      "trigram_diversity": 0.9416,
+      "ppl_burstiness": 0.4667,
+      "perplexity_score": 9.5,
+      "burstiness_score": 0.0,
+      "content_only_score": 26.2
+    },
+    {
+      "index": 64,
+      "text": "任何病原体要成功存活，必须能够逃避宿主免疫系统的攻击。因此，病原体进化出了多种方法使得它们能侵染宿主而又不被免疫系统探测到和杀死。细菌经常能够分泌一些消化性酶（如II型分泌系统）来降解并通过宿主细胞膜。也有一些细菌利用III型分泌系统将其针状结构插入宿主细胞膜，直接将自己的蛋白质(effectors)输入到宿主体内。而这些蛋白质可被用于关闭或激活宿主细胞的免疫系统。",
+      "lang": "zh",
+      "ai_score": 40.3,
+      "matched_patterns": [
+        {
+          "pattern": "因此",
+          "category": "weak_signals",
+          "weight": 1
+        },
+        {
+          "pattern": "使得.{2,30}",
+          "category": "translationese",
+          "weight": 3
+        }
+      ],
+      "ttr": 0.633,
+      "avg_sentence_len": 35.8,
+      "sentence_len_variance": 137.4,
+      "paragraph_len": 184,
+      "bigram_diversity": 0.8153,
+      "trigram_diversity": 0.9103,
+      "ppl_burstiness": 0.6847,
+      "perplexity_score": 9.5,
+      "burstiness_score": 2.451522564427886,
+      "content_only_score": 40.3
+    },
+    {
+      "index": 65,
+      "text": "病原体逃避宿主先天性免疫系统的机制非常多样。一种常见的策略是躲藏在宿主细胞内部（又被称为胞内致病）。在胞内致病机制中，病原体主要躲在宿主细胞内度过其生命周期，从而避免直接接触免疫细胞、抗体和补体。例如，病毒、沙门氏菌（可引起食物中毒）以及真核类的寄生虫，包括疟原虫（疟疾）和利什曼原虫（利什曼病）。有一些病菌，如结核分枝杆菌，被包裹在一个保护性的胶囊内，可以防止被宿主内的补体所裂解。很多病原菌会分泌...",
+      "lang": "zh",
+      "ai_score": 10.0,
+      "matched_patterns": [],
+      "ttr": 0.502,
+      "avg_sentence_len": 33.4,
+      "sentence_len_variance": 109.2,
+      "paragraph_len": 344,
+      "bigram_diversity": 0.8355,
+      "trigram_diversity": 0.9515,
+      "ppl_burstiness": 0.638,
+      "perplexity_score": 6.5,
+      "burstiness_score": 3.464808819772818,
+      "content_only_score": 10.0
+    },
+    {
+      "index": 66,
+      "text": "病原体逃避适应性免疫系统的机制更为复杂。最简单的策略是快速改变自身非必要的抗体识别表位（位于病原体表面的氨基酸、糖类），同时隐藏必要的表位。这一机制被称为抗原变异。一个典型的例子是HIV，病毒可进行快速突变，使得位于病毒包膜（包裹HIV病毒）的蛋白质处于不断地改变之中。这种高频率的抗原变异导致疫苗难以奏效。寄生虫布氏罗得西亚锥虫也采用了类似的策略，持续地变换表面蛋白质，频率快于抗体反应，使得抗体攻...",
+      "lang": "zh",
+      "ai_score": 30.7,
+      "matched_patterns": [
+        {
+          "pattern": "同时",
+          "category": "transition_words",
+          "weight": 2
+        },
+        {
+          "pattern": "使得.{2,30}",
+          "category": "translationese",
+          "weight": 3
+        }
+      ],
+      "ttr": 0.517,
+      "avg_sentence_len": 32.0,
+      "sentence_len_variance": 211.8,
+      "paragraph_len": 297,
+      "bigram_diversity": 0.8158,
+      "trigram_diversity": 0.9434,
+      "ppl_burstiness": 0.5281,
+      "perplexity_score": 9.0,
+      "burstiness_score": 0.0,
+      "content_only_score": 30.7
+    },
+    {
+      "index": 67,
+      "text": "一些细菌可以分泌外源性超抗原，如金黄色葡萄球菌肠毒素、链球菌致热外毒素、M蛋白等，可激活大量的T细胞（2%～20%某些亚型T细胞克隆）活化，诱导免疫抑制，即T细胞因过度激活而消耗，导致T细胞功能或数量失调。",
+      "lang": "zh",
+      "ai_score": 19.5,
+      "matched_patterns": [],
+      "ttr": 0.744,
+      "avg_sentence_len": 102.0,
+      "sentence_len_variance": 0.0,
+      "paragraph_len": 103,
+      "bigram_diversity": 0.9259,
+      "trigram_diversity": 1.0,
+      "ppl_burstiness": 0.5,
+      "perplexity_score": 4.5,
+      "burstiness_score": 10,
+      "content_only_score": 19.5
+    }
+  ],
+  "top_patterns": [
+    {
+      "pattern": "因此",
+      "count": 14
+    },
+    {
+      "pattern": "使得.{2,30}",
+      "count": 8
+    },
+    {
+      "pattern": "同时",
+      "count": 7
+    },
+    {
+      "pattern": "特别是",
+      "count": 5
+    },
+    {
+      "pattern": "再次",
+      "count": 4
+    },
+    {
+      "pattern": "此外",
+      "count": 4
+    },
+    {
+      "pattern": "另一方面",
+      "count": 3
+    },
+    {
+      "pattern": "先.*再.*",
+      "count": 2
+    },
+    {
+      "pattern": "在.*中(扮演|发挥|起到)",
+      "count": 2
+    },
+    {
+      "pattern": "对.*而言",
+      "count": 2
+    }
+  ],
+  "language": "zh",
+  "details": "AI痕迹评分: 45.8/100  🟡 中等风险\n共 68 段，命中 65 条AI模式\n⚠️ 高风险段落: 第 39, 55 段\n\n段落明细:\n  P01 [███░░░░░░░░░░░░░░░░░]  19.7  (TTR=0.72 句长方差=225.0)\n  P02 [████░░░░░░░░░░░░░░░░]  23.4  (TTR=0.59 句长方差=11.2)\n  P03 [████░░░░░░░░░░░░░░░░]  23.9  (TTR=0.49 句长方差=386.1)\n  P04 [█████░░░░░░░░░░░░░░░]  26.8  (TTR=0.55 句长方差=99.9)\n  P05 [███░░░░░░░░░░░░░░░░░]  15.2  (TTR=0.54 句长方差=117.5)\n  P06 [█████░░░░░░░░░░░░░░░]  27.5  (TTR=0.70 句长方差=346.2)\n  P07 [████░░░░░░░░░░░░░░░░]  21.0  (TTR=0.66 句长方差=0.0)\n  P08 [███░░░░░░░░░░░░░░░░░]  18.1  (TTR=0.61 句长方差=110.2)\n  P09 [████░░░░░░░░░░░░░░░░]  24.8  (TTR=0.52 句长方差=236.7)\n  P10 [███░░░░░░░░░░░░░░░░░]  17.5  (TTR=0.57 句长方差=1629.6)\n  P11 [██░░░░░░░░░░░░░░░░░░]  14.1  (TTR=0.65 句长方差=110.2)\n  P12 [██░░░░░░░░░░░░░░░░░░]  14.0  (TTR=0.49 句长方差=633.9)\n  P13 [████░░░░░░░░░░░░░░░░]  24.8  (TTR=0.59 句长方差=76.2)\n  P14 [█████░░░░░░░░░░░░░░░]  26.9  (TTR=0.52 句长方差=654.0)\n  P15 [██████░░░░░░░░░░░░░░]  32.1  (TTR=0.68 句长方差=1.0)\n  P16 [██░░░░░░░░░░░░░░░░░░]  14.4  (TTR=0.62 句长方差=0.0)\n  P17 [████░░░░░░░░░░░░░░░░]  22.0  (TTR=0.45 句长方差=200.8)\n  P18 [██████░░░░░░░░░░░░░░]  30.3  (TTR=0.51 句长方差=21.7)\n  P19 [██░░░░░░░░░░░░░░░░░░]  14.8  (TTR=0.53 句长方差=306.9)\n  P20 [█████░░░░░░░░░░░░░░░]  25.9  (TTR=0.62 句长方差=88.4)\n  P21 [█████████░░░░░░░░░░░]  46.4  (TTR=0.55 句长方差=352.9)\n  P22 [███░░░░░░░░░░░░░░░░░]  17.8  (TTR=0.50 句长方差=163.2)\n  P23 [████░░░░░░░░░░░░░░░░]  20.8  (TTR=0.54 句长方差=251.0)\n  P24 [███░░░░░░░░░░░░░░░░░]  17.9  (TTR=0.69 句长方差=45.4)\n  P25 [███░░░░░░░░░░░░░░░░░]  15.3  (TTR=0.45 句长方差=194.6)\n  P26 [████░░░░░░░░░░░░░░░░]  21.1  (TTR=0.57 句长方差=171.5)\n  P27 [████░░░░░░░░░░░░░░░░]  21.2  (TTR=0.50 句长方差=58.4)\n  P28 [█████░░░░░░░░░░░░░░░]  29.2  (TTR=0.54 句长方差=203.8)\n  P29 [██████░░░░░░░░░░░░░░]  32.0  (TTR=0.63 句长方差=38.2)\n  P30 [█████░░░░░░░░░░░░░░░]  27.7  (TTR=0.72 句长方差=44.2)\n  P31 [████░░░░░░░░░░░░░░░░]  24.5  (TTR=0.51 句长方差=316.2)\n  P32 [██░░░░░░░░░░░░░░░░░░]  12.2  (TTR=0.45 句长方差=281.1)\n  P33 [████████░░░░░░░░░░░░]  42.2  (TTR=0.64 句长方差=6.2)\n  P34 [█████████░░░░░░░░░░░]  46.0  (TTR=0.43 句长方差=151.0)\n  P35 [███████░░░░░░░░░░░░░]  38.2  (TTR=0.69 句长方差=9.0)\n  P36 [████░░░░░░░░░░░░░░░░]  23.8  (TTR=0.38 句长方差=893.1)\n  P37 [████████░░░░░░░░░░░░]  44.3  (TTR=0.46 句长方差=364.8)\n  P38 [███░░░░░░░░░░░░░░░░░]  15.5  (TTR=0.46 句长方差=136.4)\n  P39 [██████████░░░░░░░░░░]  53.5  (TTR=0.57 句长方差=6.2)\n  P40 [███░░░░░░░░░░░░░░░░░]  19.2  (TTR=0.51 句长方差=331.6)\n  P41 [██████░░░░░░░░░░░░░░]  30.4  (TTR=0.49 句长方差=335.4)\n  P42 [████░░░░░░░░░░░░░░░░]  23.4  (TTR=0.59 句长方差=119.0)\n  P43 [█████░░░░░░░░░░░░░░░]  29.4  (TTR=0.56 句长方差=156.2)\n  P44 [███░░░░░░░░░░░░░░░░░]  17.8  (TTR=0.73 句长方差=110.2)\n  P45 [████░░░░░░░░░░░░░░░░]  20.2  (TTR=0.55 句长方差=752.7)\n  P46 [████░░░░░░░░░░░░░░░░]  21.6  (TTR=0.70 句长方差=104.2)\n  P47 [███░░░░░░░░░░░░░░░░░]  18.5  (TTR=0.63 句长方差=95.7)\n  P48 [██████░░░░░░░░░░░░░░]  30.7  (TTR=0.58 句长方差=128.0)\n  P49 [████░░░░░░░░░░░░░░░░]  20.6  (TTR=0.68 句长方差=126.5)\n  P50 [█████░░░░░░░░░░░░░░░]  26.2  (TTR=0.54 句长方差=330.8)\n  P51 [███░░░░░░░░░░░░░░░░░]  16.1  (TTR=0.62 句长方差=82.6)\n  P52 [█████░░░░░░░░░░░░░░░]  29.8  (TTR=0.58 句长方差=172.8)\n  P53 [█████████░░░░░░░░░░░]  46.1  (TTR=0.49 句长方差=282.8)\n  P54 [███████░░░░░░░░░░░░░]  39.2  (TTR=0.50 句长方差=118.2)\n  P55 [██████████░░░░░░░░░░]  51.8  (TTR=0.58 句长方差=121.2)\n  P56 [███████░░░░░░░░░░░░░]  35.6  (TTR=0.50 句长方差=252.7)\n  P57 [██████░░░░░░░░░░░░░░]  31.4  (TTR=0.49 句长方差=317.1)\n  P58 [███░░░░░░░░░░░░░░░░░]  18.6  (TTR=0.65 句长方差=120.6)\n  P59 [████░░░░░░░░░░░░░░░░]  20.2  (TTR=0.64 句长方差=14.2)\n  P60 [███░░░░░░░░░░░░░░░░░]  19.5  (TTR=0.78 句长方差=308.2)\n  P61 [██████░░░░░░░░░░░░░░]  34.4  (TTR=0.59 句长方差=340.2)\n  P62 [████████░░░░░░░░░░░░]  42.3  (TTR=0.59 句长方差=196.0)\n  P63 [████░░░░░░░░░░░░░░░░]  24.6  (TTR=0.58 句长方差=124.0)\n  P64 [█████░░░░░░░░░░░░░░░]  26.2  (TTR=0.55 句长方差=616.3)\n  P65 [████████░░░░░░░░░░░░]  40.3  (TTR=0.63 句长方差=137.4)\n  P66 [██░░░░░░░░░░░░░░░░░░]  10.0  (TTR=0.50 句长方差=109.2)\n  P67 [██████░░░░░░░░░░░░░░]  30.7  (TTR=0.52 句长方差=211.8)\n  P68 [███░░░░░░░░░░░░░░░░░]  19.5  (TTR=0.74 句长方差=0.0)\n监督层(本地Qwen3 int8): p(人类)=0.556 p(AI)=0.002 p(AI辅助)=0.442 融合分=45.8 编辑程度估计=1.00\n学术诚信提示：本工具供作者自查与改进写作质量（句式、术语、文风），不用于规避机构的 AIGC 检测，不支持将 AI 生成内容伪装为人类写作；请遵循所在机构的 AI 使用与披露政策（标识合规可用 aigc_label_check.py 自查）。\nℹ️ 篇章结构特征: 排比三连（单组命中，仅提示不加分）\n比喻叙事AI腔: L2语气词 （仅提示不计分：留出集实测计分会抬人类误报，写作侧用 style_norm 第 7 查）——此类表述为 LLM 中文输出高频特征，建议替换为直陈表述\nℹ️ 语域提示（文学叙事）：检测到对话引号、时间推进、心理描写、人物称谓等叙事特征，本篇属于文学叙事语域，超出学术校准域——实测文学名篇在本引擎可达 high 档，该结果请勿当作 AI 生成证据使用（见能力边界矩阵）。",
+  "model_hints": [
+    {
+      "family": "qwen-2.5",
+      "hits": 19.0,
+      "confidence": 0.37
+    },
+    {
+      "family": "gpt-4o",
+      "hits": 16.0,
+      "confidence": 0.31
+    },
+    {
+      "family": "gemini-2.5-flash",
+      "hits": 16.0,
+      "confidence": 0.31
+    }
+  ],
+  "supervised": {
+    "layer": "qwen3-0.6b-lora-onnx-int8",
+    "p_human": 0.55622,
+    "p_ai": 0.00227,
+    "p_ai_assisted": 0.44151,
+    "p_ai_any": 0.44378,
+    "n_tokens": 1024,
+    "edit_extent": 1.0
+  },
+  "degraded_mode": false,
+  "degraded_notice": "",
+  "discourse_hits": [
+    {
+      "group": "排比三连",
+      "count": 1,
+      "samples": [
+        "一方面可以激活免疫防御来对抗容易躲过免疫系统的病原体，另一方面"
+      ]
+    }
+  ],
+  "discourse_bonus": 0.0,
+  "integrity_notice": "学术诚信提示：本工具供作者自查与改进写作质量（句式、术语、文风），不用于规避机构的 AIGC 检测，不支持将 AI 生成内容伪装为人类写作；请遵循所在机构的 AI 使用与披露政策（标识合规可用 aigc_label_check.py 自查）。",
+  "mixed_signal": false,
+  "mixed_notice": "",
+  "risk_bands": {
+    "medium": 34.4,
+    "high": 53.8,
+    "calibration": "supervised_v2",
+    "note": "监督档阈值（0.9 权重融合分布校准）"
+  },
+  "register_hint": "语域提示（文学叙事）：检测到对话引号、时间推进、心理描写、人物称谓等叙事特征，本篇属于文学叙事语域，超出学术校准域——实测文学名篇在本引擎可达 high 档，该结果请勿当作 AI 生成证据使用（见能力边界矩阵）。",
+  "encoding_warning": "",
+  "jargon_hits": [
+    {
+      "tier": "L2语气词",
+      "count": 1,
+      "distinct": 1,
+      "samples": [
+        "至关重要"
+      ]
+    }
+  ],
+  "jargon_bonus": 0.0
+}

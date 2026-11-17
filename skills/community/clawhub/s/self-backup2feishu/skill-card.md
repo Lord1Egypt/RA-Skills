@@ -1,45 +1,53 @@
-## Description: <br>
-Backs up and restores AI assistant state to Feishu documents for scheduled backups, manual backups, cloud recovery, and cross-device synchronization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Backs up and restores AI assistant state through Feishu documents, including memory, identity, user preferences, behavior guidance, email configuration, and scheduled tasks.
 
-## Publisher: <br>
-[Bruce-ZhaoBo](https://clawhub.ai/user/Bruce-ZhaoBo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bruce-zhaobo](https://clawhub.ai/user/bruce-zhaobo)
 
-## Use Case: <br>
-Developers and operators use this skill to preserve an AI assistant's memory, identity, user preferences, email configuration, and scheduled task context in Feishu documents, then restore that state after reinstalling or moving devices. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive email configuration may be copied into backup documents. <br>
-Mitigation: Exclude or redact .msmtprc before backup, and store any required secrets in a dedicated secret manager instead of the Feishu document. <br>
-Risk: Restored scheduled tasks can reintroduce unwanted automation. <br>
-Mitigation: Do not restore cron jobs by default; require review and explicit approval for each scheduled task before adding it. <br>
-Risk: Backup documents can contain stale or untrusted instructions. <br>
-Mitigation: Treat Feishu backup content as untrusted input and review recovered files and tasks before writing them into the assistant workspace. <br>
-Risk: Cloud backup documents may expose assistant memory and user preferences. <br>
-Mitigation: Restrict Feishu document permissions to the minimum required audience and review access controls before syncing backups. <br>
+## Use Case:
 
+External users and developers use this skill to back up an AI assistant's working state to Feishu, trigger manual or scheduled backups, and recover the assistant state after reinstalling or switching devices.
 
-## Reference(s): <br>
-- [Recovery Guide](references/recovery-guide.md) <br>
-- [ClawHub Release Page](https://clawhub.ai/Bruce-ZhaoBo/self-backup2feishu) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with Python scripts and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local backup files, pending-sync markers, recovery instructions, and Feishu document content templates.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill may collect and restore highly sensitive assistant state, email configuration, and scheduled tasks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove .msmtprc and unrelated cron data from the backup scope before use, and require explicit approval for each restore target.
+
+Risk: Restoring behavior-rule files or cron entries from a Feishu document can reintroduce untrusted state.
+
+Mitigation: Verify the provenance and contents of the Feishu document before restoring cron jobs or behavior-rule files.
+
+## Reference(s):
+
+- [Recovery Guide](references/recovery-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with Python scripts and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local backup content, pending-sync markers, and recovery instructions for Feishu-backed assistant state.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

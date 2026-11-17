@@ -1,0 +1,47 @@
+{
+  "name": "kuai-shou-ai-feed",
+  "version": "1.1.0",
+  "description": "快手公开数据采集与竞品分析技能：关键词搜索快手视频、获取博主作品列表、拉取视频评论，输出结构化 JSON，用于爆款选题、竞品监控、KOL 筛选、评论舆情与趋势洞察。Kuaishou public data fetcher: video search, creator posts, comment scraping, competitor analysis.",
+  "keywords": [
+    "快手",
+    "快手数据",
+    "快手数据采集",
+    "快手运营",
+    "快手营销",
+    "kuaishou",
+    "kuaishou-api",
+    "短视频",
+    "爆款视频",
+    "市场调研",
+    "数据挖掘",
+    "数据采集",
+    "趋势监控",
+    "竞品分析",
+    "竞品监控",
+    "KOL营销",
+    "KOL筛选",
+    "评论分析",
+    "舆情分析",
+    "流量增长",
+    "video-search",
+    "comment-analysis",
+    "competitor-analysis",
+    "social-media-analytics"
+  ],
+  "homepage": "https://github.com/um-why/kuaishou-skill",
+  "bugs": {
+    "url": "https://github.com/um-why/kuaishou-skill/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/um-why/kuaishou-skill.git"
+  },
+  "license": "MIT",
+  "author": "um-why",
+  "main": "scripts/kuaishou/search-cli.js",
+  "scripts": {
+    "search": "node scripts/kuaishou/search-cli.js",
+    "post": "node scripts/kuaishou/post-cli.js",
+    "comment": "node scripts/kuaishou/comment-cli.js"
+  }
+}

@@ -1,41 +1,51 @@
-## Description: <br>
-Backs up OpenClaw configuration changes and automatically rolls back if the gateway is not restarted within five minutes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Config Rollback helps OpenClaw users back up configuration changes, enforce a five-minute restart window, and roll back automatically if Gateway does not return to a running state.
 
-## Publisher: <br>
-[echoflying](https://clawhub.ai/user/echoflying) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[echoflying](https://clawhub.ai/user/echoflying)
 
-## Use Case: <br>
-Developers and operators use this skill to manage OpenClaw configuration changes with pre-change backups, pending verification notes, and automatic rollback if the gateway does not restart successfully. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The installed cron task runs every minute and may persist after the user no longer needs rollback monitoring. <br>
-Mitigation: Review the crontab entry during installation and remove the rollback-guardian entry when rollback monitoring is no longer required. <br>
-Risk: Automatic rollback can overwrite ~/.openclaw/openclaw.json from a backup and restart the OpenClaw gateway after the timeout. <br>
-Mitigation: Use the preparation script before intentional configuration changes, verify the backup path, and restart the gateway within the five-minute window when the change should be kept. <br>
+## Use Case:
 
+Developers and OpenClaw operators use this skill before editing ~/.openclaw/openclaw.json to create a backup, track pending validation items, and recover automatically if Gateway fails to restart within the timeout window.
 
-## Reference(s): <br>
-- [ClawHub skill page: Config Rollback](https://clawhub.ai/echoflying/openclaw-config-rollback) <br>
-- [Publisher profile: echoflying](https://clawhub.ai/user/echoflying) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance, Markdown] <br>
-**Output Format:** [Markdown with inline bash commands and configuration file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces backup, rollback, cron setup, status, and verification guidance for OpenClaw configuration changes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: evidence release metadata, _meta.json, package.json, and SKILL.md) <br>
+Risk: A recurring user-level cron watchdog can overwrite ~/.openclaw/openclaw.json and restart OpenClaw Gateway.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when that rollback behavior is intended, run it without elevated privileges, review the scripts first, inspect crontab entries after installation, and remove the rollback-guardian cron entry when it is no longer needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/echoflying/skills/openclaw-config-rollback)
+- [README.md](artifact/README.md)
+- [SKILL.md](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and shell-script behavior descriptions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces user-facing rollback instructions and configuration-change workflow guidance for OpenClaw.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata, package.json, _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

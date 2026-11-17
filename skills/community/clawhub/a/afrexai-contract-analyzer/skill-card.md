@@ -1,42 +1,57 @@
-## Description: <br>
-Analyzes contracts and agreements for risks, unusual terms, and missing clauses. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes contracts and agreements for risks, unusual terms, and missing clauses.
 
-## Publisher: <br>
-[1kalin](https://clawhub.ai/user/1kalin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[1kalin](https://clawhub.ai/user/1kalin)
 
-## Use Case: <br>
-External users and business stakeholders use this skill to perform preliminary contract review, identify risky or unusual terms, find missing clauses, and prepare negotiation points before attorney review. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Users may treat preliminary contract analysis as legal advice. <br>
-Mitigation: Keep the skill's legal-advice disclaimer in the output and consult an attorney for binding decisions. <br>
-Risk: Contracts may include sensitive business or personal information. <br>
-Mitigation: Only submit documents that are appropriate to share with the selected AI environment. <br>
-Risk: Optional related tools and paid external links may have separate trust and privacy considerations. <br>
-Mitigation: Review those resources separately before relying on them. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [AfrexAI Contract Analyzer on ClawHub](https://clawhub.ai/1kalin/afrexai-contract-analyzer) <br>
-- [AfrexAI Industry Context Packs](https://afrexai-cto.github.io/context-packs/) <br>
+## Use Case:
 
+Business users, founders, operators, and developers use this skill for first-pass review of contracts and agreements to identify likely risks, unusual terms, missing clauses, and negotiation points before attorney review.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown contract analysis with a summary, risk flags table, missing clauses, plain-English explanation, and negotiation points.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes risk severity labels, clause or section references when available, suggested alternative language, and a reminder that the analysis is not legal advice.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Users may treat first-pass AI contract analysis as legal advice.
+
+Mitigation: Keep the explicit disclaimer that the output is AI analysis, not legal advice, and require attorney review for binding decisions.
+
+Risk: The optional third-party paid link may be mistaken as required for contract analysis.
+
+Mitigation: Treat the link as optional external context only; do not rely on or purchase external resources unless they are separately vetted.
+
+Risk: Contracts can contain confidential or sensitive business, legal, or personal information.
+
+Mitigation: Review data-handling expectations before sharing contract text with any agent workflow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/1kalin/skills/afrexai-contract-analyzer)
+- [AfrexAI context packs](https://afrexai-cto.github.io/context-packs/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with sectioned narrative and tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes risk level labels, clause references, missing clauses, plain-English explanation, negotiation points, and a legal-advice disclaimer.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

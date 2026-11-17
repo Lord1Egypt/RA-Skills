@@ -1,6 +1,10 @@
 {
-  "ownerId": "kn7deqcbsgr8gbeqhw022b9t8s81ny8d",
   "slug": "epragma-redmine-issue",
-  "version": "0.0.1",
-  "publishedAt": 1772073647994
+  "version": "1.0.0",
+  "publishedAt": 1772024049008, 
+  "author": {
+    "name": "Epragma",
+    "url": "https://epragma.com"
+  },
+  "description": "Read Redmine issues through REST API."
 }

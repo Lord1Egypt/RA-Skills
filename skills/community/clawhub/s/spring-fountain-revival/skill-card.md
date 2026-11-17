@@ -1,42 +1,54 @@
-## Description: <br>
-泉水复活 is a QClaw memory backup and restore skill that creates local backups, timestamped snapshots, cloud-sync copies, and integrity checks for AI-user interaction memory files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+泉水复活 helps QClaw users back up, snapshot, sync, verify, and restore AI memory files.
 
-## Publisher: <br>
-[xzxy1](https://clawhub.ai/user/xzxy1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xzxy1](https://clawhub.ai/user/xzxy1)
 
-## Use Case: <br>
-Developers and QClaw users use this skill to preserve and recover workspace memory files, including long-term memory, user profile, identity, diary, and daily memory files. It is intended for deliberate backup, snapshot, cloud-sync, restore, and integrity-check workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill backs up sensitive QClaw memory, diary, identity, user-profile, and workspace-rule files into persistent local and cloud-synced storage. <br>
-Mitigation: Use it only for intentional memory backup workflows, configure the cloud path before use, and avoid backing up secrets unless the storage is controlled and trusted. <br>
-Risk: Restore operations can overwrite workspace files, and the scanner notes an unsafe restore path until ZIP path validation and stronger overwrite protections are added. <br>
-Mitigation: Restore only snapshots you personally created and review the selected snapshot before allowing restore actions. <br>
+## Use Case:
 
+QClaw users and agents use this skill to preserve AI and user memory files through local backups, timestamped snapshots, cloud sync, integrity checks, and restore workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xzxy1/spring-fountain-revival) <br>
-- [README](artifact/README.md) <br>
-- [Skill definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and file-based backup artifacts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local backup directories, timestamped ZIP snapshots, cloud-synced copies, integrity-check messages, and restore actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Sensitive QClaw memory, diary, user, identity, and agent-rule files may be copied into a cloud-synced folder.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when that cloud sync behavior is acceptable, and use a trusted private cloud location rather than a shared or untrusted folder.
+
+Risk: Crafted restore snapshots can overwrite files outside the intended workspace.
+
+Mitigation: Do not restore snapshots from untrusted or shared cloud locations unless restore handling validates ZIP paths, authenticates snapshots, previews changes, and confirms before overwriting files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xzxy1/skills/spring-fountain-revival)
+- [ClawHub publisher profile](https://clawhub.ai/user/xzxy1)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide agents to run backup, snapshot, sync, restore, list, and integrity-check commands against QClaw memory files.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence release version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

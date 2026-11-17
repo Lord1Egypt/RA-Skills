@@ -1,42 +1,59 @@
-## Description: <br>
-Provides an MCP-based 12306 ticket search service that lets an agent query train ticket availability, station codes, transfer options, route stops, and Shanghai-time dates through the XiaoBenYang API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+基于 Model Context Protocol (MCP) 的12306购票搜索服务器。提供了简单的API接口，允许大模型利用接口搜索12306购票信息。
 
-## Publisher: <br>
-[alinklab](https://clawhub.ai/user/alinklab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alinklab](https://clawhub.ai/user/alinklab)
 
-## Use Case: <br>
-Developers and external users can use this skill to let an agent search China Railway 12306 ticket availability and station information through a third-party API. It supports date resolution, station-code lookup, direct ticket search, transfer ticket search, and train route stop lookup when the required API key is configured. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The required third-party API key is stored in a local .env file. <br>
-Mitigation: Treat the key like a password, avoid shared or synced folders, and delete or rotate the key when it is no longer needed. <br>
-Risk: Ticket search results depend on a third-party API service and may fail or become stale if the service is unavailable or returns errors. <br>
-Mitigation: Review the returned status and message before acting on results, and verify important ticket information against official booking channels before purchase. <br>
+## Use Case:
 
+External users and travel-planning agents use this skill to look up China Railway 12306 station codes, remaining ticket availability, transfer options, and train-route stops through a Xiaobenyang MCP API.
 
-## Reference(s): <br>
-- [XiaoBenYang API key site](https://xiaobenyang.com) <br>
-- [XiaoBenYang MCP API endpoint](https://mcp.xiaobenyang.com) <br>
-- [ClawHub skill page](https://clawhub.ai/alinklab/12306-ticket-purchase-search) <br>
+### Deployment Geography for Use:
 
+Global; results are specific to China Railway 12306 train travel.
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Text, JSON, Configuration guidance] <br>
-**Output Format:** [Markdown summaries of API responses, with raw JSON available from tool results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an XBY_APIKEY value, which the skill can save to a local .env file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: The Xiaobenyang API key is stored in a local plaintext .env file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated secret store or a tightly permissioned config file, and avoid sharing the workspace or generated .env file.
+
+Risk: Stale Gaokao and school-search references do not match the train-ticket search purpose.
+
+Mitigation: Review and correct mismatched references before relying on the skill in a production workflow.
+
+Risk: Dependencies are declared with minimum versions rather than pinned versions.
+
+Mitigation: Pin and review dependencies before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/alinklab/skills/12306-ticket-purchase-search)
+- [Xiaobenyang API key portal](https://xiaobenyang.com)
+- [Xiaobenyang MCP API endpoint](https://mcp.xiaobenyang.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, configuration, guidance]
+
+**Output Format:** [Plain text summaries or JSON returned from tool calls]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an XBY_APIKEY before API-backed ticket or station queries can run.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter says 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

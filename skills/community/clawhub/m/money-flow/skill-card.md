@@ -1,42 +1,54 @@
-## Description: <br>
-资金流分析 — 追踪主力资金、超级资金、大单净流入/流出，结合价格行为判断机构意图。当用户说「资金流」「主力资金」「大单净流入」「超级资金」「机构建仓」时激活。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Chinese-language stock money-flow analysis skill that tracks major, super, and large-order net inflows and outflows, then compares them with price action to infer institutional intent.
 
-## Publisher: <br>
-[danpian1](https://clawhub.ai/user/danpian1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[danpian1](https://clawhub.ai/user/danpian1)
 
-## Use Case: <br>
-External users and market-analysis agents use this skill to explain stock money-flow signals such as DDX, DDI, major-fund inflow, and price-volume relationships. It supports educational analysis of institutional fund-flow patterns and does not execute trades or fetch market data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Market-analysis guidance may be incomplete, stale, or misleading if based on unverified money-flow data. <br>
-Mitigation: Verify market data independently and treat outputs as educational analysis rather than investment advice. <br>
-Risk: A user could overextend the skill into brokerage or account actions that the release does not declare. <br>
-Mitigation: Do not provide brokerage credentials, account access, secrets, or trading authority unless a future version explicitly scopes that behavior. <br>
+## Use Case:
 
+External users and market-analysis agents use this skill to interpret Chinese stock money-flow concepts such as DDX, DDI, major-fund movement, large-order net flow, and price-volume confirmation.
 
-## Reference(s): <br>
-- [Money Flow Indicators](references/money-flow-indicators.md) <br>
-- [ClawHub skill page](https://clawhub.ai/danpian1/money-flow) <br>
-- [Publisher profile](https://clawhub.ai/user/danpian1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown analysis and explanatory guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution, credential use, data access, or trading authority is declared.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill provides stock-analysis heuristics that may influence trading decisions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify market data independently and do not treat generated buy, sell, or institutional-intent signals as professional financial advice.
+
+Risk: Money-flow indicators can be delayed or misleading, including false inflow patterns and T+1 data latency described by the artifact.
+
+Mitigation: Cross-check signals against current price action, volume, sector rotation, and other market evidence before acting.
+
+## Reference(s):
+
+- [Money-flow indicators reference](references/money-flow-indicators.md)
+- [ClawHub skill page](https://clawhub.ai/danpian1/skills/money-flow)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or conversational text with structured analysis steps and indicator interpretations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language stock-analysis heuristics; no code execution, credentials, persistence, or external tool use.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,27 @@
+{
+  "name": "chelaile-bus",
+  "version": "1.1.0",
+  "description": "北京/全国 480 城市公交实时到站查询",
+  "author": "maxclaw",
+  "createdAt": "2026-09-22",
+  "depends": {
+    "mcp_server": "chelaile-mcp-server",
+    "transport": "stdio",
+    "config_command": "mcporter config add chelaile --command \"npx\" --arg \"-y\" --arg \"chelaile-mcp-server\" --transport stdio",
+    "kimiclaw_note": "scripts/query-bus.py 走 MCP stdio 直连，无 mcporter 依赖"
+  },
+  "files": [
+    "SKILL.md",
+    "scripts/query-bus.sh",
+    "scripts/query-bus.py"
+  ],
+  "tested": {
+    "city": "北京",
+    "line": "311",
+    "stops_verified": [
+      "北京科技大学北门",
+      "展春园西路北口",
+      "来广营西桥东"
+    ]
+  }
+}

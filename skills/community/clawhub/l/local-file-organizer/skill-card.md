@@ -1,43 +1,60 @@
-## Description: <br>
-本地文件整理虾 helps an agent preview, classify, move, rename, and find duplicate files in local folders. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+本地文件整理虾 organizes local files by category, detects duplicates, and guides consistent renaming and archiving workflows.
 
-## Publisher: <br>
-[tujinsama](https://clawhub.ai/user/tujinsama) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tujinsama](https://clawhub.ai/user/tujinsama)
 
-## Use Case: <br>
-External users and developers use this skill to organize local folders such as Downloads, Desktop, photo collections, and project archives by file type, naming convention, or duplicate status. It is intended for agent-assisted local file management with preview-first workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can move files and write local reports, which may expose sensitive filenames or paths if reports are shared. <br>
-Mitigation: Use the skill on a specific folder, review dry-run output before execution, and avoid sharing generated report files when paths or filenames are sensitive. <br>
-Risk: File organization actions can disrupt important local folders if applied too broadly. <br>
-Mitigation: Keep backups for important files, preview the planned changes first, and prefer recoverable trash-based cleanup over permanent deletion. <br>
+## Use Case:
 
+Developers and end users can use this skill to preview and run local directory organization for downloads, desktops, project archives, photos, and documents. Use dry-run mode first and work on test or backed-up folders because the skill can move files.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tujinsama/local-file-organizer) <br>
-- [classification-rules.md](references/classification-rules.md) <br>
-- [duplicate-detection.md](references/duplicate-detection.md) <br>
-- [naming-conventions.md](references/naming-conventions.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, text, JSON] <br>
-**Output Format:** [Markdown guidance with shell commands and optional JSON report files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The organizer can run in dry-run mode, can use custom JSON classification rules, and can write local organize-report JSON files after execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: File-moving behavior can reorganize local files unexpectedly or outside the intended target.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run with --dry-run first, use a separate target directory, and manually review the planned moves before execution.
+
+Risk: Running the skill on broad locations can affect many unrelated files.
+
+Mitigation: Start with test folders or backed-up data and avoid broad paths such as a home directory or full project tree.
+
+Risk: Custom rules can place files into unintended folders if category names are unsafe or unreviewed.
+
+Mitigation: Use --rules only with trusted JSON files and simple folder names.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/tujinsama/skills/local-file-organizer)
+- [Classification Rules](references/classification-rules.md)
+- [Duplicate Detection](references/duplicate-detection.md)
+- [Naming Conventions](references/naming-conventions.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, JSON configuration examples, and text summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can produce a JSON organization report when the bundled script is run outside dry-run mode.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

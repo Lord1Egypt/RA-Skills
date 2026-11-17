@@ -1,44 +1,58 @@
-## Description: <br>
-Searches German supermarket flyers for product deals via Marktguru and ranks results by best price per litre (EUR/L). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches German supermarket flyers for product deals from Aldi, Lidl, REWE, EDEKA, Kaufland, and similar retailers via Marktguru, ranking results by price per litre.
 
-## Publisher: <br>
-[benmillerat](https://clawhub.ai/user/benmillerat) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[benmillerat](https://clawhub.ai/user/benmillerat)
 
-## Use Case: <br>
-External users and agents use this skill to search current German supermarket flyers by product, postal code, and store, then rank deals by price per litre for summaries or scheduled notifications. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Germany <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Product searches and German postal codes are sent to Marktguru to retrieve supermarket flyer results. <br>
-Mitigation: Use only searches and postal codes that are acceptable to share with Marktguru, and review third-party data handling requirements before deployment. <br>
-Risk: Marktguru keys and user preferences are cached locally under ~/.supermarket-deals. <br>
-Mitigation: Remove ~/.supermarket-deals when the skill is no longer used and apply normal local file permission controls for shared systems. <br>
-Risk: The skill requires local npm setup and build steps. <br>
-Mitigation: Run npm setup as a non-administrator user and follow the security guidance to avoid elevated installation privileges. <br>
+## Use Case:
 
+External users and agents use this skill to search German supermarket flyer offers by product query and postal code, filter by preferred stores, and summarize the best-value current deals.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/benmillerat/supermarket-deals) <br>
-- [Marktguru](https://www.marktguru.de) <br>
-- [Marktguru offer search endpoint](https://api.marktguru.de/api/v1/offers/search) <br>
+### Deployment Geography for Use:
 
+Germany
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text tables or structured JSON from a CLI] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Results include product descriptions, stores, size, price, EUR/L ranking, validity dates, and direct Marktguru offer URLs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: ClawHub release metadata) <br>
+Risk: The skill sends each product query and German postal code to Marktguru.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sensitive searches and use only postal codes you are comfortable sharing with Marktguru.
+
+Risk: The skill extracts and caches Marktguru API/client keys from Marktguru's homepage under ~/.supermarket-deals.
+
+Mitigation: Review the authentication approach before deployment and prefer an approved or documented API path where available.
+
+Risk: Stored default ZIP code, store preferences, and cached keys may remain on the local machine.
+
+Mitigation: Review and remove ~/.supermarket-deals/config.json and ~/.supermarket-deals/keys.json when they are no longer needed.
+
+## Reference(s):
+
+- [Marktguru](https://www.marktguru.de)
+- [Marktguru offer search endpoint](https://api.marktguru.de/api/v1/offers/search)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with CLI commands; deal results are returned as a text table or JSON when requested.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results include product details, store, size, price, EUR/L ranking, validity dates, source query, and Marktguru offer URL when available.]
+
+## Skill Version(s):
+
+1.1.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

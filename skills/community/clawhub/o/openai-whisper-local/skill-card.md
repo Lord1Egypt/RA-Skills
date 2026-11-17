@@ -1,43 +1,54 @@
-## Description: <br>
-Local speech-to-text with the Whisper CLI (no API key). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Local speech-to-text with the Whisper CLI (no API key).
 
-## Publisher: <br>
-[wingchiu](https://clawhub.ai/user/wingchiu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wingchiu](https://clawhub.ai/user/wingchiu)
 
-## Use Case: <br>
-Developers and agents use this skill to run local Whisper CLI transcription or translation for user-provided audio without an API key. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill relies on Homebrew to install the openai-whisper CLI. <br>
-Mitigation: Install only in environments where Homebrew and the openai-whisper formula are trusted and appropriate. <br>
-Risk: Whisper models are downloaded and cached locally on first use. <br>
-Mitigation: Confirm local storage policy and available disk space before first transcription, especially on shared or managed machines. <br>
-Risk: Audio recordings and transcript outputs may contain sensitive information. <br>
-Mitigation: Choose input files and output directories deliberately and handle generated transcript files according to the user's data policy. <br>
+## Use Case:
 
+Developers and local users use this skill to transcribe or translate audio files with the Whisper CLI without an API key.
 
-## Reference(s): <br>
-- [OpenAI Whisper](https://openai.com/research/whisper) <br>
-- [OpenAI Whisper Local on ClawHub](https://clawhub.ai/wingchiu/openai-whisper-local) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and CLI output file guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Transcription output is produced locally by the Whisper CLI, commonly as txt or srt files, with models cached under ~/.cache/whisper on first use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: Installing the skill requires adding the Homebrew openai-whisper CLI and allowing Whisper to download and cache model files locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in environments where that CLI dependency and local model cache are acceptable.
+
+Risk: Whisper processes the audio file paths supplied in generated commands.
+
+Mitigation: Review file paths and audio contents before running transcription or translation commands.
+
+## Reference(s):
+
+- [OpenAI Whisper Research Page](https://openai.com/research/whisper)
+- [ClawHub Skill Page](https://clawhub.ai/wingchiu/skills/openai-whisper-local)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

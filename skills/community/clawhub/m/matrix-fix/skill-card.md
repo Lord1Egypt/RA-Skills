@@ -1,41 +1,60 @@
-## Description: <br>
-Helps troubleshoot Matrix Channel failures including missing encryption modules, expired tokens, homeserver resolution errors, channel reconfiguration, room exit operations, and status checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fixes common Matrix Channel issues, including missing encryption modules, expired tokens, DNS failures, re-login, room exit operations, and status checks.
 
-## Publisher: <br>
-[Boms](https://clawhub.ai/user/Boms) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[boms](https://clawhub.ai/user/boms)
 
-## Use Case: <br>
-Developers and operators use this skill when repairing an OpenClaw Matrix integration that cannot connect, authenticate, encrypt messages, or maintain its configured rooms. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Reset commands can remove Matrix account state or configuration and may cause downtime. <br>
-Mitigation: Back up Matrix configuration and account state before running reset commands, and schedule the work for an acceptable maintenance window. <br>
-Risk: Room-leaving commands can remove the bot from unintended Matrix rooms. <br>
-Mitigation: Confirm the homeserver, bot account, access token context, and each room ID before issuing leave-room requests. <br>
-Risk: Password examples can lead users to place credentials in shell history. <br>
-Mitigation: Use secret-safe input methods or temporary protected files instead of typing production passwords directly into shell commands. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Boms/matrix-fix) <br>
+## Use Case:
 
+Developers and operators use this skill to diagnose and repair OpenClaw Matrix channel failures, including missing encryption support, invalid tokens, DNS resolution problems, configuration reset, room leave operations, and channel status checks.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline bash and JSON code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes diagnostic commands, reset steps, Matrix API curl examples, and configuration snippets.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Repair steps can alter or remove Matrix account state.
+
+Mitigation: Back up or rename state directories before resets, and confirm the affected OpenClaw account before making changes.
+
+Risk: Package installation and rebuild commands can modify a system-wide OpenClaw installation.
+
+Mitigation: Pin and verify package versions, test in a controlled environment when possible, and use appropriate administrative permissions.
+
+Risk: Matrix passwords and access tokens can be exposed through shell commands, logs, or command history.
+
+Mitigation: Avoid putting secrets directly in command lines; prefer secure prompts, protected environment variables, and token cleanup after use.
+
+Risk: Room leave and reset operations can affect unintended Matrix rooms or bot memberships.
+
+Mitigation: List and confirm rooms, homeservers, and bot accounts before running leave or reset operations.
+
+## Reference(s):
+
+- [Matrix Channel Fix on ClawHub](https://clawhub.ai/boms/skills/matrix-fix)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline shell commands and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include commands that modify OpenClaw Matrix account state, package installation, and Matrix room membership.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

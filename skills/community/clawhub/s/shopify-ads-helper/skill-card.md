@@ -1,40 +1,53 @@
-## Description: <br>
-Optimize Shopify-specific paid growth workflows for Meta (Facebook/Instagram), Google Ads, TikTok Ads, and YouTube Ads with Shopify event integrity, ROAS diagnostics, scale planning, and funnel optimization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Optimize Shopify-specific paid growth workflows for Meta (Facebook/Instagram), Google Ads, TikTok Ads, and YouTube Ads with Shopify event integrity, ROAS diagnostics, scale planning, and funnel optimization.
 
-## Publisher: <br>
-[danyangliu-sandwichlab](https://clawhub.ai/user/danyangliu-sandwichlab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[danyangliu-sandwichlab](https://clawhub.ai/user/danyangliu-sandwichlab)
 
-## Use Case: <br>
-Shopify store operators, ecommerce marketers, and growth teams use this skill to diagnose paid advertising performance, validate conversion tracking, interpret ROAS volatility, plan staged budget changes, and improve checkout funnels across Shopify-connected ad channels. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill may recommend budget, tracking, or checkout changes that affect live Shopify and ad-platform performance. <br>
-Mitigation: Review recommendations manually before applying them in Shopify or ad platforms, especially when attribution is uncertain. <br>
-Risk: User prompts may include store URLs, tracking details, checkout metrics, and ad-performance snapshots. <br>
-Mitigation: Provide only the store and advertising details needed for the specific diagnostic question. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/danyangliu-sandwichlab/shopify-ads-helper) <br>
-- [Publisher profile](https://clawhub.ai/user/danyangliu-sandwichlab) <br>
+## Use Case:
 
+External commerce operators, marketers, and developers use this skill to troubleshoot Shopify advertising performance, validate tracking readiness, diagnose ROAS changes, and plan incremental scaling across Meta, Google Ads, TikTok Ads, and YouTube Ads.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, configuration] <br>
-**Output Format:** [Markdown with structured diagnostic summaries, checklists, recommendations, and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Advisory output only; suggested budget, tracking, and checkout changes should be reviewed before implementation.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may trigger on broad ecommerce or advertising terms beyond Shopify-specific ad troubleshooting.
+
+Mitigation: Use it for Shopify ads, tracking, ROAS, budget, and checkout-funnel questions where Shopify-specific guidance is intended.
+
+Risk: Advertising recommendations can be misleading when attribution uncertainty, data lag, or uneven product margins affect reported ROAS.
+
+Mitigation: Review Shopify event integrity, blended and platform attribution views, lookback windows, and product-level economics before increasing budgets.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/danyangliu-sandwichlab/skills/shopify-ads-helper)
+- [Publisher profile](https://clawhub.ai/user/danyangliu-sandwichlab)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration]
+
+**Output Format:** [Markdown advisory sections with checklists, diagnostics, and budget-gate guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces Shopify tracking health summaries, channel and structure diagnosis, ROAS interpretation, scale planning, and checkout optimization recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

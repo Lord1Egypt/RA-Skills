@@ -1,10 +1,9 @@
 ---
 name: code-quality-analysis
 description: Shared code quality analysis patterns for review skills
-parent_skill: pensive:shared
+parent_skill: pensive:code-refinement
 category: review-infrastructure
 tags: [code-quality, deduplication, redundancy, analysis, DRY]
-reusable_by: [pensive:code-refinement, pensive:unified-review, sanctum:pr-review, pensive:bug-review]
 estimated_tokens: 450
 ---
 
@@ -17,9 +16,9 @@ Shared patterns for code quality and deduplication analysis across review contex
 ### Duplication Detection
 
 ```bash
-# Python: Find similar function signatures
-grep -rn "^def \|^    def " --include="*.py" . | \
-  sed 's/(.*//' | sort -t: -k2 | uniq -f1 -d
+# Python: one name, different bodies, several files (conserve census)
+python3 plugins/conserve/scripts/detect_duplicates.py . --format json | \
+  python3 -c "import json,sys; print(json.dumps(json.load(sys.stdin)['competing_implementations'], indent=1))"
 
 # TypeScript/JavaScript: Similar declarations
 grep -rn "function \|const .* = (" --include="*.ts" --include="*.js" . | \
@@ -30,6 +29,9 @@ find . -name "*.py" -not -path "*/.venv/*" | while read f; do
   awk 'NR%5==1{hash=""; start=NR} {hash=hash $0} NR%5==0{print hash, FILENAME, start}' "$f"
 done | sort | uniq -d -w 100 | head -10
 ```
+
+If `plugins/conserve/scripts/detect_duplicates.py` is absent (a marketplace
+install, not a checkout), skip the duplicate scan and say so.
 
 ### Redundancy Patterns
 
@@ -93,7 +95,7 @@ effort: SMALL|MEDIUM|LARGE
 
 ## Full Analysis: Invoke pensive:code-refinement
 
-For comprehensive code quality analysis, invoke the full `pensive:code-refinement` skill:
+For thorough code quality analysis, invoke the full `pensive:code-refinement` skill:
 
 ```
 Skill(pensive:code-refinement)
@@ -116,5 +118,5 @@ This provides six analysis dimensions:
 - **Algorithm efficiency**: `pensive:code-refinement/modules/algorithm-efficiency` - Time/space complexity analysis
 - **Clean code**: `pensive:code-refinement/modules/clean-code-checks` - SOLID, naming, complexity
 - **Architectural fit**: `pensive:code-refinement/modules/architectural-fit` - Coupling, cohesion, paradigm alignment
-- **Makefile-specific**: `pensive:makefile-review/modules/deduplication-patterns` - Pattern rules, functions
+- **Makefile-specific**: `pensive:unified-review/modules/makefile-deduplication-patterns` - Pattern rules, functions
 - **Safety-critical patterns**: `pensive:safety-critical-patterns` - NASA Power of 10 adapted guidelines

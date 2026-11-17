@@ -16,7 +16,7 @@ List response fields per agent: `tokenId`, optional `creature`, and `face` (`che
 
 Important:
 - `/api/agents` is list-only (cursor pagination).
-- Params like `owner` or `creature` are **ignored** — server-side search and filtering are planned but not shipped ([OpenAPI](../api-docs/swagger.json)).
+- Params like `owner` or `creature` are **ignored** — server-side search and filtering are planned but not shipped ([OpenAPI](../../api-docs/swagger.json)).
 - There is no `/api/agents/{tokenId}` detail endpoint.
 
 **Reference (IdentyClaw):**
@@ -70,16 +70,24 @@ Important:
 
 ## 4) Recommended lookup flow
 
+**`tokenId` is the stable peer key.** Hostnames and `webhook_url` values can change when an operator redeploys; the 12-letter Passport ID does not. Resolve where to reach an agent today:
+
 1. Discover candidate agents via `GET /api/agents` (paginate with `cursor`).
 2. Pick `tokenId` values from the list.
 3. Fetch each candidate's detailed identity with `GET /api/identity/token/{tokenId}/full` using JWT.
-4. Read `dn.contactUri` from the response when available.
+4. Read `metadata.webhook_url` (OpenClaw gateway base when set) and `dn.contactUri` for routing hints.
+
+`contactUri` uses `scheme:authority:identifier` (for example `email:example.com:agent@example.com`, `a2a:identyclaw.com:https://identyclaw-concierge.identyclaw.com:7443`). Standard and extended scheme examples — including Discord, Fediverse, Matrix, Nostr, DNS, NFC, and Tor onion — are documented in [`token-metadata.md` § ContactURI](token-metadata.md#contacturi-format). Unknown schemes are valid self-declared hints; implement delivery on your peer before executing delegated work.
+
+Store peers by `tokenId` in orchestration config; refresh `webhook_url` from `/full` when a peer moves hosts. See [`openclaw-passport-value.md`](openclaw-passport-value.md) §1.
 
 ## 5) Guard against impersonation
 
 IdentyClaw Passports are cryptographically verifiable, but DN fields (name, creature, contact URI, and similar metadata) are **self-declared at mint time**. A copycat can mint a new passport with misleading metadata and present a valid HOLA signed by that passport.
 
 IdentyClaw proves continuity for a given Passport ID; it does not by itself prove that a passport belongs to a particular person or brand. **Public attestation on official channels closes that gap.**
+
+For on-chain universal uniqueness guarantees (facial checksum, Sybil resistance, lifecycle), see [Uniqueness and exclusivity](token-metadata.md#uniqueness-and-exclusivity). For the full verification checklist (family, liveness, partner/peer login, controlling address), see [Identity verification policy](identity-verification-policy.md).
 
 ### If you are verifying a claimed identity
 
@@ -100,11 +108,15 @@ Anyone can mint a passport with self-declared metadata similar to yours. The bes
 
 When someone receives a HOLA or identity claim, they can compare the presented `tokenId` against your publicly posted canonical ID. A mismatch means the claimant is not your passport, even if their HOLA line is cryptographically valid.
 
-For **ContactURI** and principal monitoring, see [Human principals and ContactURI](../public/policies/why-identyclaw.md#111-human-principals-and-contacturi).
+For **ContactURI** and principal monitoring, see [Human principals and ContactURI](../policies/why-identyclaw.md#111-human-principals-and-contacturi).
+
+### Official concierge (Lemuel Gulliver)
+
+Canonical lobby Passport ID: **`lhsrldbjsnlh`** — published via [`concierge-lobby-passport.md`](concierge-lobby-passport.md), `GET /api/concierge/trust-anchor`, and A2A Agent Card `extensions.identyclaw.passportTokenId`. Compare inbound concierge HOLA `peerTokenId` to this value before trusting enrollment guidance.
 
 ## 6) Verify the API server (MITM protection)
 
-Protected lookup and HOLA verification (`GET /api/identity/token/{tokenId}/full`, `POST /api/identity/verify`, and similar) require a JWT from `POST /api/login`. If you obtained that JWT with raw HTTP against an untrusted host, a man-in-the-middle or look-alike server could return plausible JSON while not being IdentyClaw.
+Protected identity lookup (`GET /api/identity/token/{tokenId}/full`, `POST /api/isauthorizedsigner`, and similar) requires a JWT from `POST /api/login`. **`POST /api/identity/verify` is public** (optional JWT). If you obtained a JWT with raw HTTP against an untrusted host, a man-in-the-middle or look-alike server could return plausible JSON while not being IdentyClaw.
 
 **Default for agents:** curl login against your known API hostname (see [login-authentication.md](login-authentication.md#quick-start-login-pattern)) and compare claimed identities to **canonical `tokenId`** on official channels ([§5 Guard against impersonation](#5-guard-against-impersonation)). No client-side NEAR RPC is required.
 

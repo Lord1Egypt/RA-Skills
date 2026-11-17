@@ -1,39 +1,53 @@
-## Description: <br>
-Multi-dimensional novel evaluation based on provided content, assessing across plot, characters, writing quality, worldbuilding, pacing, originality, emotional resonance, dialogue quality, structure, and reader appeal, producing a total score. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Multi-dimensional novel evaluation based on provided content, assessing plot, characters, writing quality, worldbuilding, pacing, originality, emotional resonance, dialogue quality, structure, and reader appeal to produce a weighted score and review feedback.
 
-## Publisher: <br>
-[openlark](https://clawhub.ai/user/openlark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[openlark](https://clawhub.ai/user/openlark)
 
-## Use Case: <br>
-External reviewers, writers, editors, and creative teams use this skill to evaluate novel excerpts, chapters, or full submissions with a weighted rubric and actionable feedback. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Unpublished manuscripts, confidential drafts, or sensitive author information may be shared during evaluation. <br>
-Mitigation: Use excerpts or sanitized text when possible, and avoid entering sensitive drafts or personal information unless the user is comfortable with that content being processed in the AI session. <br>
+## Use Case:
 
+External readers, authors, editors, and creative-writing reviewers use this skill to evaluate novel chapters, excerpts, or full submissions against a consistent ten-dimension rubric. It produces a weighted total score, strengths and weaknesses, target-reader fit, and practical improvement suggestions.
 
-## Reference(s): <br>
-- [Ten Dimensions Detailed Scoring Guide](references/dimensions.md) <br>
-- [ClawHub skill page](https://clawhub.ai/openlark/novel-reviewer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, markdown, guidance] <br>
-**Output Format:** [Markdown novel evaluation report with dimension scores, total score, tier, strengths, weaknesses, comparisons, target reader fit, and improvement suggestions.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Scores 10 weighted dimensions from 1 to 10 and computes a total score out of 10.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata) <br>
+Risk: Manuscript text supplied for review may be sensitive or unpublished.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Only provide novel content that is appropriate to share with the active agent or model environment.
+
+Risk: Rubric scores and improvement suggestions are qualitative judgments and may not match every genre, market, or editorial standard.
+
+Mitigation: Use the report as creative feedback and review important publication or editorial decisions with human judgment.
+
+## Reference(s):
+
+- [Ten Dimensions Detailed Scoring Guide](references/dimensions.md)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Guidance]
+
+**Output Format:** [Markdown evaluation report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Weighted ten-dimension scoring with a total score out of 10, tier label, qualitative comments, and improvement suggestions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

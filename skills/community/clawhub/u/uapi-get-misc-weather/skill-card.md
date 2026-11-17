@@ -1,42 +1,61 @@
-## Description: <br>
-使用 UAPI 的“查询天气”单接口 skill，处理 查询天气、天气预报、城市天气、adcode天气、实时天气、天气查询 等请求。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+使用 UAPI 的 GET /misc/weather 接口查询实时天气、城市天气、行政区天气和可选预报数据。
 
-## Publisher: <br>
-[shuakami](https://clawhub.ai/user/shuakami) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shuakami](https://clawhub.ai/user/shuakami)
 
-## Use Case: <br>
-Agents and developers use this skill to decide when and how to call UAPI's GET /misc/weather endpoint for real-time weather, forecasts, and city or adcode-based lookups. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Weather lookups call an external UAPI service, and generic requests without a city or adcode may rely on IP-based location. <br>
-Mitigation: Prefer explicit city or adcode inputs, and provide a UAPI Key only when the user trusts the service and needs authenticated or higher-quota access. <br>
+## Use Case:
 
+Developers and external users use this skill to decide when and how to call UAPI's GET /misc/weather endpoint for weather lookup by city, adcode, or IP-derived location.
 
-## Reference(s): <br>
-- [Quick Start](references/quick-start.md) <br>
-- [查询天气](references/operations/get-misc-weather.md) <br>
-- [Misc 分类接口](references/resources/Misc.md) <br>
-- [UAPI Service](https://uapis.cn) <br>
-- [UAPI API Base URL](https://uapis.cn/api/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, API calls, Guidance] <br>
-**Output Format:** [Markdown guidance with endpoint, query parameter, authentication, and response-code details.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include UAPI request parameters such as city, adcode, forecast flags, language, and optional UAPI Key guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Weather lookups contact the external UAPI service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Tell users that requests are sent to uapis.cn before using the endpoint.
+
+Risk: If city and adcode are omitted, the service may infer location from the client IP.
+
+Mitigation: Prefer an explicit city or adcode when the user wants control over location disclosure.
+
+Risk: Adding a UAPI Key links requests to a service account.
+
+Mitigation: Use a UAPI Key only when the user accepts that service-account use, such as after anonymous quota is exhausted.
+
+## Reference(s):
+
+- [Quick Start](artifact/references/quick-start.md)
+- [GET /misc/weather Operation Reference](artifact/references/operations/get-misc-weather.md)
+- [Misc Resource Reference](artifact/references/resources/Misc.md)
+- [UAPI Service](https://uapis.cn)
+- [UAPI API Base URL](https://uapis.cn/api/v1)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, API call guidance, configuration]
+
+**Output Format:** [Markdown guidance with endpoint, parameter, authentication, and response-code details]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include city, adcode, lang, extended, forecast, hourly, minutely, and indices query parameters.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

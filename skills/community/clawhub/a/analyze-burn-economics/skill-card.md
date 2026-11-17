@@ -1,39 +1,58 @@
-## Description: <br>
-Comprehensive analysis of Uniswap Firepit burn economics: historical burn P&L, accumulation trends, fee source breakdown, competitive dynamics, and profitability projections. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes Uniswap Firepit burn economics by producing governance-grade reports on historical burn P&L, fee accumulation trends, fee source breakdowns, competitive dynamics, and profitability projections.
 
-## Publisher: <br>
-[wpank](https://clawhub.ai/user/wpank) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[wpank](https://clawhub.ai/user/wpank)
 
-## Use Case: <br>
-External governance participants, UNI holders, and protocol researchers use this skill to analyze Uniswap Firepit burn profitability, fee accumulation trends, competitive dynamics, and forward-looking burn scenarios. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Report quality depends on the trustedness and availability of the Uniswap MCP provider and the protocol-fee-seeker analysis subagent. <br>
-Mitigation: Use a trusted MCP provider and trusted analysis subagent, and verify important governance conclusions against source data before acting on them. <br>
-Risk: Historical P&L and projections may be approximate because they depend on available burn history, UNI price history, fee attribution heuristics, and current market conditions. <br>
-Mitigation: Treat projections as analytical estimates, note data gaps in the report, and refresh the analysis before making time-sensitive governance or treasury decisions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wpank/analyze-burn-economics) <br>
+## Use Case:
 
+UNI holders, governance participants, and protocol researchers use this skill to analyze historical Firepit burn profitability, protocol fee accumulation, fee composition, and future burn scenarios. It is intended for analytical reporting only and does not execute burns or provide real-time monitoring.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, API calls, guidance] <br>
-**Output Format:** [Markdown analysis report with tabular burn economics, trend summaries, and projections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only analysis; projections depend on available Uniswap MCP data, UNI price history, and current market conditions.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Installation examples use mutable npx/latest commands that may resolve different code in the future.
+
+Mitigation: Install only from a trusted artifact and prefer an immutable, pinned ClawHub release or exact Git commit.
+
+Risk: Historical P&L and fee source analysis may be approximate when price history, burn depth, accumulation data, or token pricing is sparse.
+
+Mitigation: Review reported data availability and treat projections as scenario analysis rather than execution guidance.
+
+Risk: The skill's analysis could be mistaken for an instruction to execute a burn or make governance decisions automatically.
+
+Mitigation: Use the output as research support only; review conclusions before governance use and do not use this skill for transaction execution.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/wpank/skills/analyze-burn-economics)
+- [SKILL.md](artifact/SKILL.md)
+- [README.md](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown analytical report with tables, summary metrics, and projections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only analytical output based on Uniswap burn history, fee accumulation, Firepit state, TokenJar balances, and UNI price data.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,54 @@
-## Description: <br>
-Generate images using SiliconFlow API (FLUX.1, Stable Diffusion, etc.) <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate images using SiliconFlow API (FLUX.1, Stable Diffusion, etc.).
 
-## Publisher: <br>
-[lilei0311](https://clawhub.ai/user/lilei0311) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[lilei0311](https://clawhub.ai/user/lilei0311)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to generate images from text prompts through SiliconFlow models and optionally save generated files locally. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Image prompts and API credentials are used with the SiliconFlow service, which may incur charges and expose prompt content to that provider. <br>
-Mitigation: Use a dedicated, revocable SiliconFlow API key and avoid submitting prompts that contain sensitive information. <br>
-Risk: Generated images can be saved to local paths selected at run time. <br>
-Mitigation: Choose output paths intentionally and review generated files before sharing or reusing them. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to generate images from text prompts through the SiliconFlow API, optionally selecting supported FLUX.1 or Stable Diffusion models and saving generated images locally.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/lilei0311/siliconflow-image-gen) <br>
-- [SiliconFlow API endpoint](https://api.siliconflow.cn/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON responses with image URLs and optional local image file paths, plus Markdown usage guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a SiliconFlow API key and may write generated image files to a user-selected output path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence.release.version and skill.json) <br>
+Risk: A paid or high-privilege SiliconFlow API key could be exposed locally through the skill's broad command execution and curl-based credential handling.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a limited SiliconFlow API key with spending controls, review the skill before installation, and consider replacing the curl subprocess with an in-process HTTPS client or narrower runtime permission.
+
+Risk: Private prompt content may be sent to SiliconFlow during image generation.
+
+Mitigation: Avoid prompts containing private, regulated, or confidential data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lilei0311/skills/siliconflow-image-gen)
+- [SiliconFlow API endpoint](https://api.siliconflow.cn/v1)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, configuration, files]
+
+**Output Format:** [JSON status output with an image URL and optional downloaded image file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SILICONFLOW_API_KEY or an OpenClaw config entry; prompts and selected model parameters are sent to SiliconFlow.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.release.version and artifact/skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

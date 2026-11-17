@@ -1,0 +1,39 @@
+# Preset: individual contributor in tech (engineering, design, product, data)
+#
+# A preset is a MENU, not a default. Offer these lines to the user during Quick
+# Start, let them pick and reword, and write only what they chose. Never write a
+# preset value into jd_criteria.md without the user selecting it.
+
+preset_id: tech-ic
+label: "Tech — individual contributor"
+
+suggested_org_traits:
+  - "research lab with a shipping product"
+  - "developer-tools company"
+  - "agency or consultancy"
+  - "enterprise SaaS"
+  - "growth-stage startup (Series A–C)"
+  - "public company, large org"
+  - "under 50 people"
+  - "remote-first"
+  - "founder still technical"
+  - "private-equity owned"
+
+suggested_red_line_starters:
+  - "on-call rotation"
+  - "revenue or quota ownership"
+  - "primarily maintaining a legacy system"
+  - "no design or engineering partner on the team"
+  - "role reports into sales"
+
+vibe_prompt: >
+  Name 1-3 teams, products, or organizations whose work you admire — they can be
+  small, local, or obscure. For each, one line on WHY. The reason matters more
+  than the name: it is what lets the skill judge an org it has never heard of.
+
+axis_weights:
+  role_fit: 25
+  domain_fit: 20
+  org_fit: 15
+  vibe_fit: 25
+  comp_fit: 15

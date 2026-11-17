@@ -1,45 +1,64 @@
-## Description: <br>
-Send and read blockchain-native emails using NEAR Email service for NEAR smart contract notifications and AI agent workflows with NEAR account identities. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Send and read blockchain-native emails with the NEAR Email service for NEAR smart contract notifications and AI agents operating with a NEAR account identity.
 
-## Publisher: <br>
-[zavodil](https://clawhub.ai/user/zavodil) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[zavodil](https://clawhub.ai/user/zavodil)
 
-## Use Case: <br>
-Developers and agent builders use this skill to add NEAR Email sending, reading, deletion, and count flows to smart contracts, wallet applications, and server-side AI agents. It is especially suited to mainnet NEAR account notifications and OutLayer-based email integrations. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Payment keys, NEAR private keys, and email payloads may be exposed if copied into source code, client-side logs, or public plaintext flows. <br>
-Mitigation: Keep credentials in secure secret storage, avoid client-side logging of keys or payloads, and use encrypted email for private content. <br>
-Risk: Plaintext smart-contract notifications store email content publicly on the NEAR blockchain. <br>
-Mitigation: Use plaintext sending only for non-sensitive automated notifications and choose encrypted email flows for private messages. <br>
-Risk: Send, attachment, and delete operations can affect external recipients or user mailbox state. <br>
-Mitigation: Require explicit user confirmation before sending attachments or deleting emails. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/zavodil/near-email-skill) <br>
-- [NEAR Email API Reference](api-reference.md) <br>
-- [NEAR Email Code Examples](examples.md) <br>
-- [OutLayer Dashboard](https://outlayer.fastnear.com/dashboard) <br>
-- [OutLayer API Base](https://api.outlayer.fastnear.com) <br>
+## Use Case:
 
+Developers building NEAR applications and agent workflows use this skill to generate integration guidance and code for sending, reading, counting, and deleting NEAR Email messages through OutLayer payment-key or NEAR transaction flows.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with Rust, JavaScript/TypeScript, Python, JSON, and shell snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include HTTPS API calls, NEAR transaction examples, and mainnet-only integration notes.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and changelog) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Plaintext email content is public on the NEAR blockchain.
+
+Mitigation: Use plaintext sending only for non-private automated notifications, and use the encrypted email flow for private content.
+
+Risk: The skill documents delete_email behavior without clear confirmation guidance.
+
+Mitigation: Require explicit human confirmation before generating or executing any mailbox deletion action.
+
+Risk: Payment keys and NEAR signing authority can expose account value or email capabilities to generated code.
+
+Mitigation: Keep payment keys and private keys in approved secret storage, scope operational access where possible, and require user approval before signing NEAR transactions.
+
+Risk: The examples include mutable global install and dependency patterns.
+
+Mitigation: Prefer pinned local installs and pinned dependency versions before using generated commands in production workflows.
+
+## Reference(s):
+
+- [NEAR Email integration guide](artifact/SKILL.md)
+- [NEAR Email API reference](artifact/api-reference.md)
+- [NEAR Email code examples](artifact/examples.md)
+- [ClawHub skill page](https://clawhub.ai/zavodil/skills/near-email-skill)
+- [OutLayer dashboard](https://outlayer.fastnear.com/dashboard)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with code blocks, API request examples, and integration notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Rust smart contract snippets, JavaScript/TypeScript and Python agent examples, NEAR transaction parsing guidance, and payment-key setup guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

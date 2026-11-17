@@ -23,8 +23,8 @@ Since ZeroClaw already reads OpenClaw-style markdown, Soul files work **out of t
 Add `--platform zeroclaw` flag to existing commands:
 
 ```bash
-npx clawsouls install clawsouls/surgical-coder --platform zeroclaw
-npx clawsouls use clawsouls/surgical-coder --platform zeroclaw
+npx clawsouls@0.16.1 install clawsouls/surgical-coder --platform zeroclaw
+npx clawsouls@0.16.1 use clawsouls/surgical-coder --platform zeroclaw
 ```
 
 **Differences from OpenClaw:**
@@ -72,6 +72,6 @@ CLI detects which platform is running:
 ## Testing
 
 1. Install ZeroClaw locally (`cargo install`)
-2. Run `npx clawsouls install clawsouls/surgical-coder`
+2. Run `npx clawsouls@0.16.1 install clawsouls/surgical-coder`
 3. Verify files placed in `~/.zeroclaw/workspace/`
 4. Run `zeroclaw agent -m "who are you?"` → should respond as Surgical Coder

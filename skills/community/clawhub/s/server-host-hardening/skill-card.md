@@ -1,39 +1,52 @@
-## Description: <br>
-Harden an OpenClaw Linux server with SSH key-only auth, UFW firewall, fail2ban brute-force protection, and credential permissions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Harden an OpenClaw Linux server with SSH key-only authentication, UFW firewall rules, fail2ban brute-force protection, and credential permissions.
 
-## Publisher: <br>
-[ppiankov](https://clawhub.ai/user/ppiankov) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ppiankov](https://clawhub.ai/user/ppiankov)
 
-## Use Case: <br>
-Developers and operators use this skill to harden OpenClaw Linux servers during setup, security audits, or incident follow-up by applying SSH, firewall, fail2ban, credential permission, and gateway service checks. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: SSH and firewall changes could lock an operator out of a remote server if key-based SSH or required ports are not already confirmed. <br>
-Mitigation: Confirm key-based SSH in a separate session, allow all required firewall ports before enabling UFW, and keep console or out-of-band access available. <br>
-Risk: The OpenClaw gateway service is configured as a persistent root service that restarts automatically. <br>
-Mitigation: Install it only when persistent root operation is intended, and harden the service with least-privilege settings before production use. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ppiankov/server-host-hardening) <br>
+## Use Case:
 
+Developers and operators use this skill when setting up a new OpenClaw Linux server, auditing server security, or recovering after a security incident.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with bash code blocks and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands modify SSH, firewall, fail2ban, file permissions, and a systemd service.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Disabling password authentication and enabling UFW can lock out administrators if key-based SSH access or required ports are not confirmed first.
+
+Mitigation: Run the commands only from a confirmed key-based SSH session and verify all required network ports are allowed before enabling UFW.
+
+Risk: The skill creates a persistent OpenClaw gateway service running as root without clear hardening or scope.
+
+Mitigation: Install the service only when intentionally required, verify the executable path and ownership, and run it under a dedicated least-privileged account with systemd hardening.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ppiankov/skills/server-host-hardening)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes host-level commands that should be reviewed before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

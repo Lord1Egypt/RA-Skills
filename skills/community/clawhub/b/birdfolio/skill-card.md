@@ -1,46 +1,59 @@
-## Description: <br>
-Bird identification, life list tracking, and trading card generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Bird identification, life list tracking, and trading card generation.
 
-## Publisher: <br>
-[tonbistudio](https://clawhub.ai/user/tonbistudio) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[tonbistudio](https://clawhub.ai/user/tonbistudio)
 
-## Use Case: <br>
-External users use Birdfolio to identify birds from photos, track personal sightings and checklist progress, and generate shareable bird trading cards. The skill also supports setup, regional rarity lookup, species facts, and life-list summaries. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Birdfolio stores bird photos locally and sends Telegram-linked sightings to a hosted API. <br>
-Mitigation: Use only with non-sensitive photos and review the configured API endpoint, local workspace contents, and Telegram identifier before setup or logging sightings. <br>
-Risk: Generated cards may be uploaded to Cloudflare R2 and become public. <br>
-Mitigation: Confirm upload intent before running the upload step, and avoid sharing cards that include private locations, people, or sensitive image content. <br>
-Risk: The skill guidance allows broad local temp or media folder searching when a submitted photo path is unavailable. <br>
-Mitigation: Prefer explicit attachment paths and limit any fallback file search to the expected media directory and current user request. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Birdfolio on ClawHub](https://clawhub.ai/tonbistudio/birdfolio) <br>
-- [tonbistudio publisher profile](https://clawhub.ai/user/tonbistudio) <br>
-- [Data schema](references/data-schema.md) <br>
-- [Search query templates](references/you-search-queries.md) <br>
-- [Birdfolio hosted API](https://api-production-d0e2.up.railway.app) <br>
-- [Birdfolio PWA](https://birdfolio.tonbistudio.com/app/[telegram_id]) <br>
+## Use Case:
 
+External users use Birdfolio to identify birds from photos, initialize a regional checklist, log sightings, review life-list statistics, and generate visual trading cards from their own photos.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown responses with JSON-producing script commands and generated HTML/PNG card files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local Birdfolio configuration, checklist, sighting, bird photo, HTML card, and PNG card files; may call a hosted API and upload card images to Cloudflare R2.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can store a user's Telegram ID, home region, bird photos, sightings, and generated cards.
+
+Mitigation: Require clear user confirmation before setup or logging, keep data in a dedicated workspace, and document deletion and retention controls.
+
+Risk: Generated card images may be uploaded to public cloud storage.
+
+Mitigation: Confirm before upload, avoid sensitive photos, verify bucket public-access settings, and provide a removal path for uploaded cards.
+
+Risk: Scripts call external services and accept workspace paths or image sources.
+
+Mitigation: Review the API URL before use, restrict workspace and image paths to expected locations, and prefer user-supplied local photos over fetched image URLs.
+
+## Reference(s):
+
+- [Birdfolio Skill Page](https://clawhub.ai/tonbistudio/skills/birdfolio)
+- [tonbistudio Publisher Profile](https://clawhub.ai/user/tonbistudio)
+- [Birdfolio Data Schemas](references/data-schema.md)
+- [Birdfolio You.com Search Query Templates](references/you-search-queries.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with JSON script outputs, shell command examples, and generated HTML/PNG card files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses user-submitted photos and regional bird data to log sightings and generate cards.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

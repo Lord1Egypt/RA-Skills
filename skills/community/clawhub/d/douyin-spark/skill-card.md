@@ -1,42 +1,60 @@
-## Description: <br>
-Helps an agent renew Douyin chat spark streaks by reading a saved contact list and guiding message sends through a logged-in Douyin web session. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+douyin-spark helps an agent manage Douyin spark contacts and send configured private messages through a logged-in Douyin web session to maintain spark streaks.
 
-## Publisher: <br>
-[bazg3452-del](https://clawhub.ai/user/bazg3452-del) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bazg3452-del](https://clawhub.ai/user/bazg3452-del)
 
-## Use Case: <br>
-Douyin users can use this skill with an agent to manage spark contacts, prepare renewal messages, and keep chat streaks active. It is intended for personal Douyin chat automation where the user is already logged in and has reviewed the recipient list. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives an agent broad authority to send Douyin private messages to multiple saved contacts. <br>
-Mitigation: Require a preview of recipients and message text before every send, and proceed only after explicit user approval. <br>
-Risk: Running the skill unattended could send messages from an active logged-in Douyin session without timely user review. <br>
-Mitigation: Avoid unattended cron or HEARTBEAT runs and keep the browser session under direct user supervision. <br>
-Risk: The package does not provide reliable account-risk safeguards for rate limits or platform enforcement. <br>
-Mitigation: Use low-volume, user-reviewed sends and do not rely on the package's claims that automation is safe from limits or bans. <br>
+## Use Case:
 
+Douyin users and OpenClaw agents use this skill to keep track of spark contacts, prepare renewal messages, and send those messages to selected contacts from an authenticated Douyin web session.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bazg3452-del/douyin-spark) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and terminal text with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a local Markdown contact list and requires a logged-in Douyin web session for message-sending workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: The skill can give an agent broad private-messaging authority through a logged-in Douyin session.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require an explicit preview of recipients and exact message text before any message is sent.
+
+Risk: Unattended scheduled runs could send messages to contacts without timely user review.
+
+Mitigation: Avoid cron or HEARTBEAT-style unattended runs unless the workflow includes a fresh confirmation step.
+
+Risk: The contact list and message text may contain personal or sensitive relationship data.
+
+Mitigation: Keep the contact list limited to intended recipients and review the markdown contact file before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bazg3452-del/skills/douyin-spark)
+- [README](artifact/README.md)
+- [Skill instructions](artifact/SKILL.md)
+- [Contact list template](artifact/contacts.example.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline CLI commands and browser-action instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include recipient names, message text, contact status, and per-contact send results based on a markdown contact list.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, package.json, README changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

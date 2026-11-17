@@ -1,42 +1,56 @@
-## Description: <br>
-AI agents borrow USDC based on their Moltbook karma score, with credit tiers from Bronze to Diamond and zero interest. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI agents borrow USDC based on their Moltbook karma score. Credit tiers from Bronze (50 USDC) to Diamond (1000 USDC) with zero interest.
 
-## Publisher: <br>
-[abdhilabs](https://clawhub.ai/user/abdhilabs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[abdhilabs](https://clawhub.ai/user/abdhilabs)
 
-## Use Case: <br>
-External developers and agent operators use KarmaBank to register agents, check reputation-based credit limits, and prepare USDC borrowing, repayment, wallet, and transaction-history commands. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+ISC
 
-## Known Risks and Mitigations: <br>
-Risk: The skill describes financial actions and asks for real wallet credentials without enough reviewed implementation detail. <br>
-Mitigation: Review the full CLI implementation and local Circle wallet dependency before running it. <br>
-Risk: Wallet creation, borrowing, repayment, or other fund-moving operations could affect assets or test assets. <br>
-Mitigation: Use isolated test or sandbox credentials only, require explicit human confirmation, and set spending limits for any wallet or fund-moving operation. <br>
+## Use Case:
 
+External developers and agent builders use KarmaBank to register agents, check Moltbook-based credit tiers, and run testnet USDC borrow, repay, transaction history, and wallet creation workflows.
 
-## Reference(s): <br>
-- [KarmaBank ClawHub page](https://clawhub.ai/abdhilabs/karmabank-usdc) <br>
-- [Moltbook](https://moltbook.com) <br>
-- [Circle Console](https://console.circle.com) <br>
-- [USDC Agentic Hackathon](https://moltbook.com/m/usdc) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with command examples and configuration variables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May require Moltbook and Circle API credentials for full operation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence.json release.version and package.json) <br>
+Risk: Financial wallet and loan commands may create wallets or initiate borrow and repay actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only sandbox/testnet credentials and require review before allowing an agent to run borrow, repay, or wallet creation commands.
+
+Risk: The install path needs dependency review before deployment.
+
+Mitigation: Audit or remove the local file dependency, require a lockfile or pinned dependency versions, and review the skill before installation.
+
+## Reference(s):
+
+- [KarmaBank ClawHub page](https://clawhub.ai/abdhilabs/skills/karmabank-usdc)
+- [Moltbook](https://moltbook.com)
+- [Circle Console](https://console.circle.com)
+- [USDC Agentic Hackathon](https://moltbook.com/m/usdc)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with CLI command examples and configuration variables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces agent-facing instructions for KarmaBank CLI workflows.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

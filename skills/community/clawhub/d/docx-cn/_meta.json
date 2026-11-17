@@ -1,6 +1,17 @@
 {
-  "ownerId": "kn71y3mdbcx5dyhwxv1t7sm82x81a168",
-  "slug": "docx-cn",
-  "version": "1.0.1",
-  "publishedAt": 1771571495018
+  "metadata": {
+    "openclaw": {
+      "name": "docx-cn",
+      "title": "DOCX 文档处理器",
+      "description": "处理 Microsoft Word 文档（.docx），支持文本提取、格式转换和内容分析",
+      "version": "1.0.0",
+      "category": "文档处理",
+      "tags": ["docx", "word", "文档", "office", "文本提取"],
+      "author": "guohongbin-git",
+      "license": "MIT",
+      "homepage": "https://clawhub.com/skills/docx-cn"
+    }
+  },
+  "dependencies": [],
+  "environment": {}
 }

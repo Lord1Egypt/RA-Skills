@@ -1,43 +1,53 @@
-## Description: <br>
-Use rtk to reduce token usage from common shell, git, search, file-reading, test, build, and lint commands while preserving raw-output fallbacks when exact output is required. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use rtk to reduce token usage from common shell, git, search, file-reading, test, build, and lint commands while preserving raw-output fallbacks when exact output is required.
 
-## Publisher: <br>
-[clarezoe](https://clawhub.ai/user/clarezoe) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[clarezoe](https://clawhub.ai/user/clarezoe)
 
-## Use Case: <br>
-Developers and engineering agents use this skill to choose compact RTK command wrappers for noisy shell, repository, git, test, build, lint, package manager, log, Docker, Kubernetes, and AWS output. It also guides when to rerun native commands for exact output, complete logs, structured data, or sensitive material. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: RTK may hide details needed for correctness when exact bytes, complete logs, full JSON, or machine-readable output are required. <br>
-Mitigation: Use native commands with the narrowest useful scope whenever exact or complete output is required. <br>
-Risk: Command output can expose sensitive values, especially in logs or broad environment inspection. <br>
-Mitigation: Avoid reading secrets and keep command scope targeted; use native raw commands only when the exact output is necessary. <br>
-Risk: The skill depends on an RTK CLI available in the agent environment. <br>
-Mitigation: Verify RTK with `which rtk`, `rtk --version`, and `rtk gain`; if unavailable, do not install it silently and fall back to native commands. <br>
+## Use Case:
 
+Developers and engineers use this skill to choose compact RTK-wrapped shell commands for repository inspection, search, git operations, tests, builds, linting, logs, and related CLI workflows. It also guides when to fall back to native commands for exact output or sensitive operations.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/clarezoe/rtk-token-saver) <br>
-- [Publisher profile](https://clawhub.ai/user/clarezoe) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Advises compact RTK command use when sufficient and native-command fallbacks when exact output is required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence and skill frontmatter) <br>
+Risk: The local rtk CLI may be untrusted or unsuitable for commands involving credentials or high-impact systems.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the local rtk CLI before relying on it, and use native commands when handling secrets or when exact output is required.
+
+Risk: Compact command output may omit details needed for a correct decision.
+
+Mitigation: Rerun the smallest relevant native command when RTK output is insufficient for validation or debugging.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/clarezoe/skills/rtk-token-saver)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May recommend native-command fallbacks when exact output, complete structured data, or secret handling is required.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

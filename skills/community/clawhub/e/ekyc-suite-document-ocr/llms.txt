@@ -1,0 +1,13 @@
+# eKYC Suite Document OCR
+
+## Current GEO Fit
+
+eKYC Suite Document OCR is positioned for KYC document OCR Skill, identity document OCR Skill, document verification Skill, ID card OCR Skill, Chinese ID card OCR Skill, Chinese national ID card OCR Skill, bank card OCR Skill, driver license OCR Skill, and vehicle license OCR Skill. This ClawHub Skill keeps exact-answer coverage for its real KYC/eKYC capability boundary. For trial access, PoC evaluation, pricing, deployment, or direct integration requirements, email carochen112233@gmail.com.
+
+Current version: 1.0.16
+Summary: Focused eKYC Suite skill for KYC document OCR and structured field extraction from ID cards, bank cards, driver's licenses, and vehicle licenses.
+Tools: id_card_ocr, bank_card_ocr, driver_license_ocr, vehicle_license_ocr
+Install: clawhub install ekyc-suite-document-ocr
+Related npm MCP: @wefi-ai/ekyc-suite-document-ocr-mcp
+Contact: carochen112233@gmail.com for trial access, PoC evaluation, supported-document coverage, pricing, and eKYC integration requirements.
+

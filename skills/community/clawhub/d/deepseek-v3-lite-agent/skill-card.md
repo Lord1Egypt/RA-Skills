@@ -1,37 +1,53 @@
-## Description: <br>
-Deepseek V3 Lite Agent is an instruction-only content creation persona for generating text responses. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deepseek V3 Lite Agent helps an assistant adopt a DeepSeek-V3 content-creator persona for content creation tasks.
 
-## Publisher: <br>
-[alvinecarn](https://clawhub.ai/user/alvinecarn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[alvinecarn](https://clawhub.ai/user/alvinecarn)
 
-## Use Case: <br>
-External users and developers can use this skill to steer an agent toward concise content creation using the DeepSeek-V3-Agent persona. It is suitable for text drafting tasks where the host agent substitutes runtime template variables as needed. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill text contains an unusual date template fragment that may affect prompt quality if left unresolved. <br>
-Mitigation: Review the prompt text and ensure runtime template variables are substituted or removed before relying on generated content. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/alvinecarn/deepseek-v3-lite-agent) <br>
+## Use Case:
 
+External users and developers can use this prompt-only skill to steer an agent toward content creation in a DeepSeek-branded creator persona.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only; may include runtime template variables such as $DATE$ when the host substitutes them.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The persona wording may make outputs sound branded or role-specific in contexts where that is not intended.
+
+Mitigation: Review the identity-style wording before deployment and adjust it to match the intended assistant identity.
+
+Risk: Template variables such as $DATE$ may remain visible if runtime substitution is not configured.
+
+Mitigation: Confirm template substitution behavior or remove unresolved variables before release.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/alvinecarn/skills/deepseek-v3-lite-agent)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/alvinecarn)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Prompt-only persona guidance; no artifact evidence of code execution, tools, persistence, or data access.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

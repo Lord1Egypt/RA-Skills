@@ -1,0 +1,4 @@
+interface:
+  display_name: "Renfe"
+  short_description: "Search and book Renfe trains in Spain"
+  default_prompt: "Use $renfe to find the cheapest train from Madrid to Barcelona next Friday."

@@ -1,45 +1,59 @@
-## Description: <br>
-Searches Mango TV video resources and opens the selected playback page in the system browser. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches MGTV video resources and opens selected playback pages in the system browser.
 
-## Publisher: <br>
-[kllb520](https://clawhub.ai/user/kllb520) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kllb520](https://clawhub.ai/user/kllb520)
 
-## Use Case: <br>
-External users and developers use this skill to search Mango TV programs, open search results, or open known Mango TV playback links from an agent or command line. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can open user-supplied URLs in the system browser when --direct-url is used. <br>
-Mitigation: Use --direct-url only with trusted HTTPS Mango TV links, and confirm broad or unexpected links with the user before opening them. <br>
-Risk: The skill launches the system browser automatically during normal use. <br>
-Mitigation: Run it only in environments where browser launches are expected; review the printed URL before manual opening in headless or restricted environments. <br>
+## Use Case:
 
+External users and agent operators use this skill to search for MGTV programs, open known MGTV video links, and receive a playable URL when a browser cannot be launched.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/kllb520/mgtv) <br>
-- [Publisher Profile](https://clawhub.ai/user/kllb520) <br>
-- [MGTV Suggest Search API](https://mobileso.bz.mgtv.com/pc/suggest/v1) <br>
-- [README](README.md) <br>
-- [Usage Guide](USAGE.md) <br>
-- [Quickstart](QUICKSTART.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Plain text console output with URLs and browser launch status] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May open the system browser; in headless or failure cases it prints a link for manual opening.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: frontmatter, package.json, release evidence) <br>
+Risk: The direct URL path can open user-supplied links beyond the intended MGTV playback flow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use direct URLs only when the user explicitly provides a trusted MGTV link, and validate the destination before launching it.
+
+Risk: Browser launching moves the user from the agent session into an external website.
+
+Mitigation: Run the skill only for explicit MGTV search or playback requests, and rely on the printed URL fallback in headless or restricted environments.
+
+Risk: Some documentation mentions installing Playwright even though the current release does not require it for normal use.
+
+Mitigation: Do not install Playwright for standard MGTV search and playback unless a separate trusted workflow requires browser automation.
+
+## Reference(s):
+
+- [MGTV ClawHub skill page](https://clawhub.ai/kllb520/skills/mgtv)
+- [kllb520 ClawHub publisher profile](https://clawhub.ai/user/kllb520)
+- [MGTV search API endpoint](https://mobileso.bz.mgtv.com/pc/suggest/v1)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Guidance]
+
+**Output Format:** [Plain text with URLs and command-line status messages]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May open a system browser or print a playback URL when browser launch is unavailable.]
+
+## Skill Version(s):
+
+1.0.2 (source: SKILL.md frontmatter, package.json, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

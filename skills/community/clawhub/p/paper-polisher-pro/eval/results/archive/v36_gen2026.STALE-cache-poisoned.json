@@ -1,0 +1,74 @@
+{
+  "n": 769,
+  "n_base": 443,
+  "auroc": 0.6542,
+  "tpr@fpr1%": 0.0224,
+  "thr@fpr1%": 83.6,
+  "tpr@fpr5%": 0.0769,
+  "thr@fpr5%": 76.9,
+  "thresholds": {
+    "medium": 63.7,
+    "high": 74.9
+  },
+  "human_fpr@med": 0.1985,
+  "human_fpr@high": 0.0687,
+  "human_med_fpr@med": 0.6667,
+  "per_model": {
+    "deepseek-v4": {
+      "n": 40,
+      "mean": 55.2,
+      "tpr@thr5%": 0.075
+    },
+    "deepseek-v4.1": {
+      "n": 28,
+      "mean": 55.3,
+      "tpr@thr5%": 0.0
+    },
+    "glm-5.3": {
+      "n": 36,
+      "mean": 55.1,
+      "tpr@thr5%": 0.1111
+    },
+    "kimi-k2.7": {
+      "n": 34,
+      "mean": 60.4,
+      "tpr@thr5%": 0.1176
+    },
+    "kimi-k3": {
+      "n": 40,
+      "mean": 56.3,
+      "tpr@thr5%": 0.125
+    },
+    "kimi-k3-p4": {
+      "n": 35,
+      "mean": 54.7,
+      "tpr@thr5%": 0.0857
+    },
+    "minimax-m3": {
+      "n": 37,
+      "mean": 54.7,
+      "tpr@thr5%": 0.0541
+    },
+    "qwen3.7-max-p4": {
+      "n": 27,
+      "mean": 53.6,
+      "tpr@thr5%": 0.1111
+    },
+    "qwen3.8": {
+      "n": 35,
+      "mean": 54.6,
+      "tpr@thr5%": 0.0
+    }
+  },
+  "auroc_paraphrase": 0.8459,
+  "decay_paraphrase": -0.293,
+  "auroc_mixed": 0.4285,
+  "decay_mixed": 0.345,
+  "auroc_by_len": {
+    "short<300": 0.7352,
+    "mid300-800": 0.6804,
+    "long>800": 0.4286
+  },
+  "engine": "current",
+  "tag": "v36_gen2026"
+}

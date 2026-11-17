@@ -1,46 +1,61 @@
-## Description: <br>
-Plan an epic 7-day vacation with multi-city routes, intercity transportation, hotel transitions, daily itineraries, and booking-oriented travel searches powered by Fliggy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Plan an epic 7-day vacation with multi-city routes, intercity transportation, hotel transitions, and balanced daily itineraries, with support for travel booking and planning through FlyAI/Fliggy CLI results.
 
-## Publisher: <br>
-[xiejinsong](https://clawhub.ai/user/xiejinsong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiejinsong](https://clawhub.ai/user/xiejinsong)
 
-## Use Case: <br>
-Travel-planning users and agents use this skill to collect trip parameters, run flyai CLI searches for week-long itineraries, and present bookable flights, hotels, attractions, and related travel options in Markdown. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may ask an agent to install a global flyai CLI package before producing travel results. <br>
-Mitigation: Review and approve any global npm install first, or install a trusted pinned version manually before using the skill. <br>
-Risk: The skill can retain raw travel requests in a hidden local execution log when filesystem writes are available. <br>
-Mitigation: Disable, inspect, or delete .flyai-execution-log.json if local retention of travel requests is not desired. <br>
-Risk: Travel results depend on provider-specific flyai booking data and may be incomplete or unavailable when the CLI fails. <br>
-Mitigation: Use the skill only when provider-specific results are acceptable, and follow the documented fallback or retry steps when real-time data is unavailable. <br>
+## Use Case:
 
+External users and agent operators use this skill to plan week-long trips from real-time FlyAI/Fliggy travel results, including flights, hotels, points of interest, transport transitions, fallback handling, and booking-link-oriented itinerary output.
 
-## Reference(s): <br>
-- [Week Trip skill page](https://clawhub.ai/xiejinsong/week-trip) <br>
-- [Output templates](references/templates.md) <br>
-- [Scenario playbooks](references/playbooks.md) <br>
-- [Fallback guidance](references/fallbacks.md) <br>
-- [Execution log runbook](references/runbook.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with tables, booking links, concise recommendations, and inline shell commands when setup or retries are needed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses flyai CLI output as the required data source and should include booking links for returned travel results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill requires installation or use of a mutable global npm CLI for travel data retrieval.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned and reviewed FlyAI CLI version, and require explicit approval before installing or updating global packages.
+
+Risk: The skill can persist raw travel queries and command execution details in local logs.
+
+Mitigation: Disable or redact logs when queries may contain personal travel details, and get user approval before retaining execution logs.
+
+Risk: Travel recommendations and booking links depend on third-party FlyAI/Fliggy results and may affect purchases.
+
+Mitigation: Review prices, availability, routes, and booking destinations before acting on recommendations or completing purchases.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xiejinsong/skills/week-trip)
+- [templates.md](artifact/references/templates.md)
+- [playbooks.md](artifact/references/playbooks.md)
+- [fallbacks.md](artifact/references/fallbacks.md)
+- [runbook.md](artifact/references/runbook.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with booking links, comparison tables, concise travel guidance, and inline shell commands when retry or setup steps are needed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should use real-time CLI data, include booking links for returned travel results, and follow the user's language.]
+
+## Skill Version(s):
+
+3.2.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,59 @@
-## Description: <br>
-Mx Stocks Screener lets agents run natural-language screeners across A-shares, Hong Kong and U.S. stocks, ETFs, funds, convertible bonds, and sectors, returning a data description and CSV export. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Natural language screener for investment assets across global markets, including A-shares, ETFs, bonds, HK and US stocks, and funds, using Eastmoney Miaoxiang data to return CSV results and a data description.
 
-## Publisher: <br>
-[akiry09](https://clawhub.ai/user/akiry09) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[akiry09](https://clawhub.ai/user/akiry09)
 
-## Use Case: <br>
-External users and developers use this skill to screen financial assets with natural-language criteria for cross-market monitoring, portfolio construction, and strategy backtesting. It uses the Eastmoney Miaoxiang service and requires an EM_API_KEY. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends natural-language financial screening requests to an external market-data service using EM_API_KEY. <br>
-Mitigation: Install only if the Eastmoney/Miaoxiang service is trusted, keep EM_API_KEY out of prompts, logs, and repositories, and rotate the key if exposure is suspected. <br>
-Risk: Generated CSV and description files may contain market data that is outdated, incomplete, or unsuitable for direct investment decisions. <br>
-Mitigation: Review generated files before sharing or acting on them, and validate important results against an authoritative financial data source. <br>
+## Use Case:
 
+External users, developers, and financial analysts use this skill to screen stocks, funds, ETFs, bonds, and sectors with natural language queries across supported markets. It helps produce local CSV exports and short descriptions for market monitoring, portfolio research, and strategy analysis.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/akiry09/mx-mx-stocks-screener) <br>
-- [Eastmoney Miaoxiang service](https://ai.eastmoney.com/mxClaw) <br>
-- [Eastmoney screening API endpoint](https://ai-saas.eastmoney.com/proxy/b/mcp/tool/selectSecurity) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, CSV files, Shell commands, Configuration] <br>
-**Output Format:** [CSV file, plain-text description file, and command-line status text with output paths and row count] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires EM_API_KEY; optional MX_STOCKS_SCREENER_OUTPUT_DIR controls where generated files are written.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Queries, select type, and EM_API_KEY are sent to the EastMoney service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm trust in the EastMoney service before installing, scope the API key appropriately, and rotate or revoke it if exposure is suspected.
+
+Risk: Generated CSV files contain remote market data that is not formula-sanitized.
+
+Mitigation: Open exported CSV files carefully, especially in spreadsheet software, and inspect or sanitize data before sharing or automated processing.
+
+Risk: Screening results may be mistaken for investment advice.
+
+Mitigation: Treat outputs as market-screening data for research and validate decisions with qualified financial review.
+
+## Reference(s):
+
+- [Mx Stocks Screener on ClawHub](https://clawhub.ai/akiry09/skills/mx-mx-stocks-screener)
+- [Eastmoney Miaoxiang API registration](https://ai.eastmoney.com/mxClaw)
+- [Eastmoney selectSecurity API endpoint](https://ai-saas.eastmoney.com/proxy/b/mcp/tool/selectSecurity)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with shell and Python examples; runtime output writes UTF-8 CSV and text description files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires EM_API_KEY; optional MX_STOCKS_SCREENER_OUTPUT_DIR controls where CSV and description files are written.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

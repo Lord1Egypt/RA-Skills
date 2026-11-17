@@ -1,40 +1,54 @@
-## Description: <br>
-Translate text between multiple languages, detect text language, and list supported language codes and names through the Pipeworx translation gateway. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Translate text between multiple languages, detect text language, and list supported language codes and names.
 
-## Publisher: <br>
-[b-gutman](https://clawhub.ai/user/b-gutman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[b-gutman](https://clawhub.ai/user/b-gutman)
 
-## Use Case: <br>
-Developers and agent users use this skill to add machine translation, language detection, and supported-language lookup to an MCP-capable client or workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Text submitted for translation is sent to an external Pipeworx/LibreTranslate endpoint. <br>
-Mitigation: Do not submit secrets, credentials, regulated data, or private business content unless the provider's data-handling practices have been reviewed and accepted. <br>
+## Use Case:
 
+Developers and other agent users use this skill to translate text, detect source language, and retrieve supported language codes during multilingual workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/b-gutman/pipeworx-translate) <br>
-- [Pipeworx translation MCP endpoint](https://gateway.pipeworx.io/translate/mcp) <br>
-- [Artifact skill documentation](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, configuration, shell commands, guidance] <br>
-**Output Format:** [Text or Markdown with JSON and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Translation and detection results are returned by the external Pipeworx/LibreTranslate endpoint.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Text submitted for translation or language detection is sent to a third-party remote service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid submitting secrets, credentials, regulated data, or confidential content unless the service and its data-handling practices are approved for that use.
+
+Risk: Machine translation or language detection can be inaccurate or incomplete.
+
+Mitigation: Review important translations before relying on them in customer-facing, legal, medical, or safety-sensitive contexts.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/b-gutman/skills/pipeworx-translate)
+- [Pipeworx Translate MCP endpoint](https://gateway.pipeworx.io/translate/mcp)
+
+## Skill Output:
+
+**Output Type(s):** [text, configuration, shell commands, guidance]
+
+**Output Format:** [Plain text, Markdown instructions, JSON configuration, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Translation and language detection results depend on the remote translation service.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

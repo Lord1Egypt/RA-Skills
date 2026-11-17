@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "WechatCoverGeneratorInput",
+  "type": "object",
+  "required": [
+    "title"
+  ],
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "公众号文章标题"
+    },
+    "article": {
+      "type": "string",
+      "description": "文章正文，可选"
+    },
+    "summary": {
+      "type": "string",
+      "description": "文章摘要，可选"
+    },
+    "account_positioning": {
+      "type": "string",
+      "description": "公众号定位，可选"
+    },
+    "target_reader": {
+      "type": "string",
+      "description": "目标读者，可选"
+    },
+    "style_preference": {
+      "type": "string",
+      "description": "风格偏好，可选"
+    },
+    "execution_mode": {
+      "type": "string",
+      "enum": [
+        "auto",
+        "preview_image",
+        "production_cover",
+        "background_then_layout",
+        "direct_image_preview",
+        "prompt_package",
+        "engineering_rendering"
+      ],
+      "default": "auto"
+    },
+    "capabilities": {
+      "type": "object",
+      "properties": {
+        "image_generation": {
+          "type": "boolean"
+        },
+        "image_editing": {
+          "type": "boolean"
+        },
+        "file_writing": {
+          "type": "boolean"
+        },
+        "typography_overlay": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": true
+    },
+    "text_mode": {
+      "type": "string",
+      "enum": [
+        "background_only",
+        "title_only",
+        "full_text_preview"
+      ],
+      "default": "background_only"
+    },
+    "commercial_quality": {
+      "type": "boolean",
+      "default": false
+    }
+  }
+}

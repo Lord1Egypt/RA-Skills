@@ -1,44 +1,57 @@
-## Description: <br>
-Import ChatGPT conversation history into OpenClaw's memory search. Use when migrating from ChatGPT, giving OpenClaw access to old conversations, or building a searchable archive of past chats. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Import ChatGPT conversation history into OpenClaw's memory search.
 
-## Publisher: <br>
-[samdickson22](https://clawhub.ai/user/samdickson22) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[samdickson22](https://clawhub.ai/user/samdickson22)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to convert exported ChatGPT conversations into Markdown, embed them into an OpenClaw-compatible SQLite memory database, and configure OpenClaw to search that archive. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill handles private ChatGPT conversation data and sends conversation text to OpenAI for embeddings. <br>
-Mitigation: Review and remove secrets, personal data, regulated content, or confidential business material before embedding. <br>
-Risk: Embedding requires an OpenAI API key and may incur API cost. <br>
-Mitigation: Use a limited API key where possible, estimate cost before running large imports, and protect key material outside the generated database. <br>
-Risk: Exported conversation files and the generated SQLite database may contain sensitive historical chat content. <br>
-Mitigation: Protect, back up, or delete exported files and generated databases according to the user's privacy and retention requirements. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [How to Export Your ChatGPT Data](references/export-guide.md) <br>
-- [ChatGPT export portal](https://chat.openai.com) <br>
-- [OpenAI embeddings API endpoint](https://api.openai.com/v1/embeddings) <br>
-- [ClawHub release page](https://clawhub.ai/samdickson22/chatgpt-import) <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to convert exported ChatGPT conversations into local markdown and an OpenClaw-compatible SQLite memory database for searchable archival and retrieval.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Markdown, Configuration, Files] <br>
-**Output Format:** [Markdown guidance with bash and YAML examples; generated Markdown files and an SQLite database] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a ChatGPT conversations.json export and an OpenAI API key; sends conversation text to the OpenAI embeddings API and refuses to overwrite an existing output database.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.2 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: ChatGPT exports can contain secrets, personal data, business data, or regulated information.
+
+Mitigation: Review or filter conversations before conversion and embedding; avoid importing content that should not be retained or shared.
+
+Risk: Conversation chunks are sent to OpenAI for embeddings.
+
+Mitigation: Use the skill only when that data flow is acceptable for the user or organization, and use a scoped OpenAI API key where possible.
+
+Risk: Converted markdown files and the SQLite memory database store chat contents locally.
+
+Mitigation: Store generated files in controlled locations and manage access, retention, and backups according to the sensitivity of the conversations.
+
+## Reference(s):
+
+- [ChatGPT export guide](references/export-guide.md)
+- [ClawHub skill page](https://clawhub.ai/samdickson22/skills/chatgpt-import)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with bash and YAML snippets; supporting scripts create markdown files and a SQLite database.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a ChatGPT conversations.json export and an OpenAI API key for embedding.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

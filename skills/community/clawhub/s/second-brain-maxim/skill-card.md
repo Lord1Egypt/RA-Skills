@@ -1,42 +1,55 @@
-## Description: <br>
-Generates concise Chinese reflections, aphorisms, quote-card lines, article endings, daily thoughts, and short 感悟 from a user's second-brain notes, GBrain, llm-wiki anchors, and long-term questions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate concise, personally grounded Chinese reflections and aphorisms by recalling GBrain, llm-wiki cognitive anchors, notes, and long-term questions before writing.
 
-## Publisher: <br>
-[harrylabsj](https://clawhub.ai/user/harrylabsj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harrylabsj](https://clawhub.ai/user/harrylabsj)
 
-## Use Case: <br>
-Knowledge workers, writers, and developers use this skill to turn local second-brain context into personally grounded Chinese reflections, aphorisms, quote-card copy, article endings, or daily thoughts. It is best suited to drafting compact prose from recalled notes, anchors, and long-term questions rather than creating generic motivational text. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may read personal notes, wiki pages, or GBrain search results when the user asks it to ground writing in second-brain context. <br>
-Mitigation: Use it only when that context is intended, keep recall focused on relevant anchors, and review generated text before sharing. <br>
-Risk: Broad activation wording could make the skill relevant to many personal-knowledge writing requests. <br>
-Mitigation: Confirm the desired output shape or context when ambiguous, and disclose lower confidence when recall is thin or unavailable. <br>
+## Use Case:
 
+External users and developers use this skill to turn local second-brain material into Chinese reflections, maxims, quote-card lines, article endings, daily thoughts, or short 感悟. It is intended for writing tasks that benefit from grounded recall of personal notes, anchors, and long-term questions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/harrylabsj/second-brain-maxim) <br>
-- [Second Brain Aphorism skill instructions](artifact/SKILL.md) <br>
-- [Second Brain Aphorism style guide](artifact/references/style-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with Chinese prose labels such as 感悟, 箴言, numbered variants, and concise recall receipts.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use local GBrain or llm-wiki recall when available; does not write back to the user's second brain unless explicitly requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata and skill frontmatter) <br>
+Risk: Implicit invocation can read selected local second-brain notes, which may include private material.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer explicit invocation when personal notes should be used, and review recalled context before sharing generated reflections.
+
+Risk: Recall topics may include untrusted or shell-like text that is passed into gbrain or cm recall commands.
+
+Mitigation: Avoid untrusted recall topics, and run recall with shell-disabled argument arrays or equivalent command handling.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/harrylabsj/skills/second-brain-maxim)
+- [Second-brain aphorism style guide](artifact/references/style-guide.md)
+- [Publisher profile](https://clawhub.ai/user/harrylabsj)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown containing Chinese prose, aphorism lines, optional numbered variants, and a concise recall receipt.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Defaults to Chinese unless the user asks for another language; normal output includes one 感悟 paragraph, one 箴言 line, and a brief 第二大脑回路 receipt.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence, SKILL.md metadata, clawhub.json, skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

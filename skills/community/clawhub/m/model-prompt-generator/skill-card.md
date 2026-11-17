@@ -1,38 +1,52 @@
-## Description: <br>
-Generate English model prompts for AI image generation tools based on user-provided Chinese clothing descriptions, covering model appearance, outfit coordination, scene lighting, and photography style. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate English model prompts for AI image generation tools based on user-provided Chinese clothing descriptions, covering model appearance, outfit coordination, scene lighting, and photography style.
 
-## Publisher: <br>
-[openlark](https://clawhub.ai/user/openlark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[openlark](https://clawhub.ai/user/openlark)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and creators use this skill to turn Chinese clothing descriptions and optional styling preferences into concise English prompts for AI fashion image generation.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Users may expect explanations or Chinese-language output, but the skill is constrained to return only a short English prompt.
+
+Mitigation: Set expectations before use and route explanation or translation requests to a different skill.
+
+Risk: Fashion prompt generation can unintentionally reinforce stereotypes in model appearance, styling, or scene choices.
+
+Mitigation: Keep user-specified preferences primary and review generated prompts for diverse, modern, and authentic representation before image generation.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Fashion, e-commerce, and creative users can use this skill to turn Chinese clothing descriptions and optional styling preferences into concise English prompts for AI image generation tools. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The generated prompt may fill in model appearance details such as age, ethnicity, body type, pose, or scene when the user did not specify them. <br>
-Mitigation: Review the generated prompt before use and adjust any inferred appearance or scene details that are unsuitable for the intended image. <br>
+**Output Format:** [Single English prompt under 700 characters]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/openlark/model-prompt-generator) <br>
+**Other Properties Related to Output:** [Outputs only the prompt, with no titles, Chinese explanations, or additional notes.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [Single English prompt] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [One fluent fashion photography prompt, no extra text, within 700 characters.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

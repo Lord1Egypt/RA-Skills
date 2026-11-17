@@ -1,46 +1,68 @@
-## Description: <br>
-A Chinese Feishu content-management assistant that helps creators generate hot-list-backed topic ideas, track publishing metrics in Feishu Bitable, manage content calendars, and produce monthly review reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language OpenClaw skill for self-media creators that connects Feishu Bitable with hot-list topic generation, publishing-data tracking, monthly review reports, and content-calendar management.
 
-## Publisher: <br>
-[a799549967-lang](https://clawhub.ai/user/a799549967-lang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[a799549967-lang](https://clawhub.ai/user/a799549967-lang)
 
-## Use Case: <br>
-External content creators and social-media operators use this skill to connect a Feishu Bitable workspace, generate Chinese topic ideas from trending lists, update publishing metrics by conversation, find stale drafts, and summarize monthly performance patterns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks users to provide sensitive Feishu App ID and App Secret values in chat. <br>
-Mitigation: Use a dedicated low-privilege Feishu app and test table, prefer a secure configuration path when available, and rotate any secret already shared in chat. <br>
-Risk: The release has a Notion-versus-Feishu identity mismatch that may confuse users about the service being connected. <br>
-Mitigation: Install and use it only when the intended target is Feishu, and verify the connected table before allowing record creation or updates. <br>
-Risk: Generated topics or metric updates can be written to incorrect Feishu records, especially when fuzzy title matching is involved. <br>
-Mitigation: Confirm target records before writes and review generated topics, metrics, and monthly summaries before relying on them. <br>
+## Use Case:
 
+External self-media creators and content operators use this skill to plan Chinese-platform content, store publishing workflow data in Feishu Bitable, and generate performance reviews and overdue-draft reminders.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/a799549967-lang/notion-content-hub-cn) <br>
-- [Publisher profile](https://clawhub.ai/user/a799549967-lang) <br>
-- [Feishu Open Platform](https://open.feishu.cn) <br>
-- [完整使用指南_闭环流程+飞书配置.md](artifact/完整使用指南_闭环流程+飞书配置.md) <br>
-- [操作说明.md](artifact/操作说明.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, API calls, Configuration guidance, Shell commands] <br>
-**Output Format:** [Chinese conversational text and Markdown reports with inline configuration examples and API-backed Feishu updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write records and fields to a user-provided Feishu Bitable after configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.0 (source: server release metadata) <br>
+Risk: Feishu App Secret exposure could allow unintended access if pasted into an insecure chat or retained in logs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a secure secret setting when available, avoid sharing the secret in ordinary chat, and rotate any secret that may already have been exposed.
+
+Risk: Read/write Feishu Bitable access can modify the user's content database.
+
+Mitigation: Use a dedicated Feishu app with least-privilege access limited to the intended Bitable and review permissions before installation.
+
+Risk: Hot-list-derived topic suggestions and review reports may be stale, incomplete, or misleading.
+
+Mitigation: Review generated records, topic recommendations, and monthly analysis before publishing content or making business decisions.
+
+Risk: Third-party hot-list APIs may be unavailable or unstable.
+
+Mitigation: Fall back to other available hot-list sources or the user's historical Feishu data and disclose when a hot-list source could not be used.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/a799549967-lang/skills/notion-content-hub-cn)
+- [Publisher profile](https://clawhub.ai/user/a799549967-lang)
+- [Feishu Open Platform](https://open.feishu.cn)
+- [Zhihu hot-list endpoint](https://tenapi.cn/v2/zhihuhot)
+- [Weibo hot-search endpoint](https://v2.xxapi.cn/api/weibohot)
+- [Baidu hot-search endpoint](https://tenapi.cn/v2/baiduhot)
+- [Toutiao hot-list endpoint](https://tenapi.cn/v2/toutiaohotnew)
+- [Douyin hot-list endpoint](https://tenapi.cn/v2/douyinhot)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, API Calls, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Chinese Markdown guidance, topic plans, review reports, setup instructions, and Feishu Bitable record updates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Feishu App ID, App Secret, and Bitable URL; may call third-party hot-list APIs and Feishu Bitable APIs.]
+
+## Skill Version(s):
+
+1.4.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

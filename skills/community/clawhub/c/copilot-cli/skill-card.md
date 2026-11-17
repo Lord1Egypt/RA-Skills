@@ -1,45 +1,58 @@
-## Description: <br>
-通过 GitHub Copilot CLI 分析代码、探索项目结构、生成文档和自动化开发任务，提高开发效率。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides developers through using GitHub Copilot CLI to analyze code, explore project structure, generate documentation, review code, and automate development tasks.
 
-## Publisher: <br>
-[biuyx](https://clawhub.ai/user/biuyx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[biuyx](https://clawhub.ai/user/biuyx)
 
-## Use Case: <br>
-Developers and engineers use this skill to install and operate GitHub Copilot CLI for code analysis, project exploration, documentation generation, code review, and automated development tasks. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Code and repository context may be processed by GitHub Copilot services. <br>
-Mitigation: Confirm that organization policy allows Copilot CLI use for the target repositories before sending prompts or code context. <br>
-Risk: The GitHub token file can expose access if stored with weak local permissions. <br>
-Mitigation: Protect ~/.copilot/github_token.txt with appropriate file permissions and rotate the token if exposure is suspected. <br>
-Risk: The optional --yolo mode can execute or apply changes with reduced review. <br>
-Mitigation: Use --yolo only in version-controlled or disposable workspaces where changes can be inspected and reverted. <br>
-Risk: Installing an unexpected Copilot CLI package source could introduce supply-chain risk. <br>
-Mitigation: Verify the Homebrew package source before installation. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/biuyx/copilot-cli) <br>
-- [GitHub Copilot documentation](https://docs.github.com/en/copilot) <br>
-- [GitHub Copilot CLI command reference](https://docs.github.com/en/copilot/reference/cli-command-reference) <br>
+## Use Case:
 
+Developers and engineers use this skill for practical GitHub Copilot CLI setup and prompt patterns when analyzing repositories, finding code, generating documentation, reviewing files, and automating development tasks.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline shell commands and prompt examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes setup steps, token file guidance, usage prompts, and troubleshooting notes.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The guide recommends storing a GitHub token in a plaintext file.
+
+Mitigation: Use a fine-grained Copilot-only token and prefer an OS credential manager; if a file must be used, restrict file permissions.
+
+Risk: The guide includes reduced-review execution with copilot --yolo.
+
+Mitigation: Use --yolo only in disposable or well-backed-up workspaces after reviewing the proposed scope.
+
+Risk: Repository contents may be sent to GitHub Copilot services during analysis.
+
+Mitigation: Avoid using Copilot analysis on sensitive repositories unless organizational policy allows sending that context to GitHub Copilot services.
+
+## Reference(s):
+
+- [GitHub Copilot documentation](https://docs.github.com/en/copilot)
+- [GitHub Copilot CLI command reference](https://docs.github.com/en/copilot/reference/cli-command-reference)
+- [ClawHub skill page](https://clawhub.ai/biuyx/skills/copilot-cli)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

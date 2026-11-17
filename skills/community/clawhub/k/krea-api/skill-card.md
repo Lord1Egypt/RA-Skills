@@ -1,40 +1,54 @@
-## Description: <br>
-Generate images via Krea.ai API (Flux, Imagen, Ideogram, Seedream, etc.). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate images via Krea.ai API (Flux, Imagen, Ideogram, Seedream, etc.).
 
-## Publisher: <br>
-[FossilizedCarlos](https://clawhub.ai/user/FossilizedCarlos) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[fossilizedcarlos](https://clawhub.ai/user/fossilizedcarlos)
 
-## Use Case: <br>
-Developers and agents use this skill to generate images through Krea.ai models, inspect recent jobs, and open account usage information while using a local credential file. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Krea API credentials can be exposed if secrets are passed on the command line or printed from the credential file. <br>
-Mitigation: Use the documented credential file at ~/.openclaw/credentials/krea.json with chmod 600, prefer a dedicated or revocable Krea API key, and avoid displaying the file contents. <br>
-Risk: Image generation requests may consume Krea account credits. <br>
-Mitigation: Monitor Krea usage through the account dashboard and review prompts and generation parameters before running jobs. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Krea API Keys and Billing](https://docs.krea.ai/developers/api-keys-and-billing) <br>
-- [Krea Usage Statistics](https://www.krea.ai/settings/usage-statistics) <br>
+## Use Case:
 
+Developers and external users use this skill to generate images through Krea.ai models from an agent workflow, command line, or Python script.
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with Python and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May return image URLs, job status summaries, model lists, and credential setup instructions.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.2.4 (source: server release and SKILL.md frontmatter) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Krea.ai API credentials can be exposed through command-line arguments, shell history, logs, or insecure credential-file handling.
+
+Mitigation: Prefer the credential file at ~/.openclaw/credentials/krea.json with chmod 600 permissions, avoid passing --secret in shared shells, and rotate the Krea key if it may have been exposed.
+
+Risk: Prompts and generation parameters are sent to Krea.ai for image generation.
+
+Mitigation: Avoid sending confidential or regulated information in prompts unless the deployment has approved Krea.ai for that data.
+
+## Reference(s):
+
+- [Krea.ai API keys and billing documentation](https://docs.krea.ai/developers/api-keys-and-billing)
+- [Krea.ai usage statistics dashboard](https://www.krea.ai/settings/usage-statistics)
+- [Krea.ai API service](https://api.krea.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with command examples, Python API guidance, and generated image URL output.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill performs authenticated Krea.ai API calls and can list models, submit image-generation jobs, poll job status, and return generated image URLs.]
+
+## Skill Version(s):
+
+0.2.4 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

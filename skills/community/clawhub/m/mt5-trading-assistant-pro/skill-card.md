@@ -1,42 +1,59 @@
-## Description: <br>
-Professional-grade MetaTrader 5 trading automation with 35+ indicators, AI-powered strategy generation, smart risk management, and autonomous market scanning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Professional-grade MetaTrader 5 trading automation with 35+ indicators, AI-powered strategy generation, smart risk management, and autonomous market scanning.
 
-## Publisher: <br>
-[canvascn00-crypto](https://clawhub.ai/user/canvascn00-crypto) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[canvascn00-crypto](https://clawhub.ai/user/canvascn00-crypto)
 
-## Use Case: <br>
-External users and trading automation developers use this skill to connect an agent to a local MetaTrader 5 terminal, analyze markets with technical indicators, generate strategy rules, review portfolio risk, and prepare trade actions that require user confirmation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requests sensitive MT5 account access and can guide trading actions, while storage and safeguard details remain unclear in the security evidence. <br>
-Mitigation: Use a demo or read-only account first, verify local credential and log storage, and require manual confirmation before any order or strategy activation. <br>
-Risk: Generated strategies, scans, and indicator analysis can be wrong or unsuitable for live funds. <br>
-Mitigation: Review each strategy manually, backtest before use, keep risk limits enabled, and avoid executing trades without independent validation. <br>
+## Use Case:
 
+External users and developers use this skill to connect a local MetaTrader 5 terminal, generate trading strategies, analyze indicators, scan markets, manage risk, and prepare trade actions for confirmation.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/canvascn00-crypto/mt5-trading-assistant-pro) <br>
-- [Publisher profile](https://clawhub.ai/user/canvascn00-crypto) <br>
-- [Indicator quick reference](artifact/INDICATORS.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline commands and structured trading summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs can include MT5 connection guidance, indicator analysis, generated strategy rules, risk summaries, market scans, trade previews, and journal-style reports.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-4.0.1 (source: frontmatter, version.json, server release evidence) <br>
+Risk: The skill asks for trading-capable MT5 credentials and stores them locally without defined protection details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only a demo or low-risk account until credential storage location, protection, and deletion behavior are confirmed.
+
+Risk: Broad natural-language controls can execute or modify trades if prompts are misunderstood or overbroad.
+
+Mitigation: Require explicit user confirmation for every trade, modification, and close action, and verify protective stop levels and risk limits before execution.
+
+Risk: Market scans and generated strategies may be incorrect or unsuitable for a live account.
+
+Mitigation: Treat analysis as decision support, validate strategy rules independently, and test with conservative risk settings before live trading.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/canvascn00-crypto/skills/mt5-trading-assistant-pro)
+- [Skill definition](artifact/SKILL.md)
+- [Indicator quick reference](artifact/INDICATORS.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown-style conversational guidance with command examples, trading analysis, strategy rules, risk summaries, and trade action previews.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Trade actions are described as requiring user confirmation; MT5 connection guidance uses locally supplied account details.]
+
+## Skill Version(s):
+
+4.0.1 (source: frontmatter, version.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

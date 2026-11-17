@@ -1,39 +1,49 @@
-## Description: <br>
-OpenClaw plugin development assistant that produces runnable plugin skeletons, install commands, and debugging steps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Xiaolongxia Assistant is an OpenClaw plugin development assistant that outputs runnable plugin scaffolds, installation commands, and debugging steps.
 
-## Publisher: <br>
-[boleyn](https://clawhub.ai/user/boleyn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[boleyn](https://clawhub.ai/user/boleyn)
 
-## Use Case: <br>
-Developers and engineers use this skill to decide whether an OpenClaw extension should be a Skill or Plugin, then generate a minimal plugin scaffold with install, debug, publish, rollback, and troubleshooting guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated install, publish, or rollback commands may affect local projects, registry accounts, credentials, or published releases. <br>
-Mitigation: Confirm the target project, registry or account, credentials, and expected side effects before execution; prefer dry runs or backups where available. <br>
-Risk: Generated plugin scaffolds or troubleshooting guidance may be incomplete or unsuitable for a specific OpenClaw project. <br>
-Mitigation: Review generated files and commands before deployment, then test locally before publishing. <br>
+## Use Case:
 
+Developers use this skill to decide whether an OpenClaw customization should be a Skill or Plugin, generate a minimal runnable plugin skeleton, and obtain install, debug, publish, and rollback commands.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with code blocks and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes plugin skeleton file contents, install/debug/publish/rollback commands, and risk troubleshooting notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Generated plugin code or shell commands can modify a local OpenClaw setup if run without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated install, publish, rollback, and code outputs before execution; test changes locally before release.
+
+## Reference(s):
+
+- [Xiaolongxia Assistant on ClawHub](https://clawhub.ai/boleyn/skills/xiaolongxia-assistant)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with file outlines, code blocks, shell commands, and troubleshooting guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated commands are intended to be copied and reviewed before execution.]
+
+## Skill Version(s):
+
+1.0.1 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

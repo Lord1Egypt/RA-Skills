@@ -1,39 +1,52 @@
-## Description: <br>
-Register sovereign domains (.badass, .forever, .fuck, .rebel, .pump, .hello, .howdy, .robo, .dnet, .f, bear emoji) on Ethereum mainnet via Impervious Domains contracts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Register sovereign domains (.badass, .forever, .fuck, .rebel, .pump, .hello, .howdy, .robo, .dnet, .f, bear emoji) on Ethereum mainnet via Impervious Domains contracts.
 
-## Publisher: <br>
-[techno-hippies](https://clawhub.ai/user/techno-hippies) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[techno-hippies](https://clawhub.ai/user/techno-hippies)
 
-## Use Case: <br>
-External users and developers use this skill to register selected sovereign domain labels and TLDs as ERC-721 NFTs through Impervious Domains contracts on Ethereum mainnet. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill points outside the package for details needed to make irreversible Ethereum transactions. <br>
-Mitigation: Inspect the full referenced specification and independently verify Impervious Domains contract addresses and calldata before use. <br>
-Risk: Domain registration involves wallet transactions on Ethereum mainnet. <br>
-Mitigation: Use a dedicated low-balance wallet, require manual confirmation for each transaction, and do not provide private keys directly to the agent. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/techno-hippies/buy-handshake-domain) <br>
+## Use Case:
 
+External users and developers use this skill to choose a label and supported TLD, then prepare a commit/reveal registration flow that mints an Ethereum mainnet domain as an ERC-721 NFT.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with transaction steps and configuration notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires ETHEREUM_RPC_URL; wallet transactions should require manual user confirmation.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill prepares Ethereum mainnet transactions while exact contract addresses, ABIs, transaction values, chain ID, and confirmation rules are not bundled in the package.
+
+Mitigation: Confirm all transaction details against integrity-pinned sources and show them clearly before any wallet signs a transaction.
+
+Risk: The registration flow can spend real assets and mint irreversible on-chain records.
+
+Mitigation: Require user confirmation for the selected label, TLD, recipient wallet, transaction value, and contract target before broadcast.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/techno-hippies/skills/buy-handshake-domain)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with command and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires ETHEREUM_RPC_URL and user review of transaction details before signing.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,49 +1,63 @@
-## Description: <br>
-SHOPLINE store-building assistant that guides an agent through SHOPLINE registration, storefront setup, theme selection, payment and shipping configuration, and migration from Shopify, WooCommerce, or Shoplazza. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+SHOPLINE store-building assistant that helps users register and configure a SHOPLINE independent store, including registration forms, basic store settings, theme setup, and migration guidance from Shopify, WooCommerce, or Shoplazza.
 
-## Publisher: <br>
-[zhangsicong-debug](https://clawhub.ai/user/zhangsicong-debug) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhangsicong-debug](https://clawhub.ai/user/zhangsicong-debug)
 
-## Use Case: <br>
-External merchants and operators use this skill to have an agent assist with opening and configuring a SHOPLINE store, including onboarding forms, homepage setup, first-product setup, payment and shipping configuration, and data migration from supported commerce platforms. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can operate a live SHOPLINE admin session and make storefront, checkout, shipping, and migration changes. <br>
-Mitigation: Run it only in an isolated browser session and require user approval of exact values before publishing or saving live changes. <br>
-Risk: The security summary says the skill contradicts its browser-isolation promise. <br>
-Mitigation: Stop execution if the agent attempts to attach to a personal browser profile or access unrelated tabs, cookies, or sessions. <br>
-Risk: Migration and payment-related flows may involve platform secrets or credentials. <br>
-Mitigation: Do not paste payment or platform secrets into chat; enter secrets directly in the relevant admin UI and revoke temporary migration credentials after use. <br>
+## Use Case:
 
+External merchants and ecommerce operators use this skill to set up a SHOPLINE store, configure storefront basics, add initial products, prepare payments and shipping, and receive migration guidance from supported commerce platforms.
 
-## Reference(s): <br>
-- [Shopline Builder npm package](https://www.npmjs.com/package/shopline-builder) <br>
-- [Shopline Builder ClawHub listing](https://clawhub.ai/zhangsicong-debug/shopline-builder) <br>
-- [Official links summary](references/links.md) <br>
-- [Path A - new store setup flow](references/flow-newbie.md) <br>
-- [Path B - migration flow](references/flow-migrate.md) <br>
-- [Common FAQ](references/faq-common.md) <br>
-- [SHOPLINE FAQ - English](references/faq-en.md) <br>
-- [SHOPLINE FAQ - Chinese](references/faq-zh.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown instructions with browser automation steps, inline code blocks, shell commands, and user-facing messages] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May direct browser actions that modify live SHOPLINE store settings and may prompt users to handle sensitive credentials outside chat.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.2.1 (source: frontmatter, package.json, server release) <br>
+Risk: Sensitive store credentials, API tokens, or payment keys could be exposed if entered into chat or untrusted pages.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Enter credentials only in verified first-party or trusted app pages, avoid pasting secrets into chat, and revoke temporary keys after use.
+
+Risk: Live store changes could affect products, prices, images, payment, shipping, app installation, or migration state.
+
+Mitigation: Require explicit user approval before applying each material store change and review changes before publication or migration.
+
+Risk: Using a personal browser profile could expose unrelated tabs, cookies, or account sessions.
+
+Mitigation: Use an isolated browser session for execution and avoid granting access to a personal browser profile.
+
+## Reference(s):
+
+- [Shopline Builder package homepage](https://www.npmjs.com/package/shopline-builder)
+- [SHOPLINE Help Center FAQ - English](references/faq-en.md)
+- [SHOPLINE Help Center FAQ - Chinese](references/faq-zh.md)
+- [Common FAQ](references/faq-common.md)
+- [New store setup flow](references/flow-newbie.md)
+- [Migration flow](references/flow-migrate.md)
+- [Official links summary](references/links.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with structured instructions and inline code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include browser automation steps, user confirmation prompts, setup checklists, and configuration guidance.]
+
+## Skill Version(s):
+
+2.2.1 (source: frontmatter, package.json, server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

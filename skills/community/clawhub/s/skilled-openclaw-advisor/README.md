@@ -1,6 +1,6 @@
 # skilled-openclaw-advisor
 
-> Local FTS5 docs index for instant OpenClaw answers. No external API calls. Sub-10ms queries.
+> Local FTS5 docs index for instant OpenClaw answers. Zero API calls. Sub-10ms queries.
 
 [![ClawHub](https://img.shields.io/badge/clawhub-skilled--openclaw--advisor-blue)](https://clawhub.com/seanford/skilled-openclaw-advisor)
 
@@ -32,7 +32,7 @@ for rationale.
 
 ## Usage
 
-Use this skill for any OpenClaw question — configuration, CLI, channels, providers, sessions, and troubleshooting.
+The skill is `always: true` — it activates automatically for any OpenClaw question.
 You can also query it directly:
 
 ```bash

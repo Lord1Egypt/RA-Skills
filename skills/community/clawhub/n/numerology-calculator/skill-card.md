@@ -1,45 +1,61 @@
-## Description: <br>
-Calculate comprehensive numerology reports using Pythagorean or Chaldean systems, with support for English, Tamil, Telugu, Kannada, and Hindi. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Calculate comprehensive numerology reports using Pythagorean or Chaldean systems, with support for English, Tamil, Telugu, Kannada, and Hindi.
 
-## Publisher: <br>
-[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd)
 
-## Use Case: <br>
-External users and developers use this skill to request numerology readings, life path and destiny numbers, name analysis, birth date numerology, and lucky number calculations through the ToolWeb API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends names and birth dates to ToolWeb for numerology processing. <br>
-Mitigation: Use the skill only when the user is comfortable transmitting that data to ToolWeb, and avoid submitting personal data for anyone who has not agreed to that external transmission. <br>
-Risk: The skill requires a ToolWeb API key and successful calls may consume free or paid quota. <br>
-Mitigation: Configure TOOLWEB_API_KEY deliberately, monitor usage, and avoid unnecessary retries or calls without user intent. <br>
-Risk: The skill depends on an external API and cannot produce the claimed proprietary numerology analysis when the API is unavailable. <br>
-Mitigation: Surface API errors to the user and do not substitute unsupported numerology assessments from general model knowledge. <br>
+## Use Case:
 
+External users use this skill through an OpenClaw agent to request name and birth-date numerology readings, lucky number calculations, and Pythagorean or Chaldean interpretations in supported languages.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/krishnakumarmahadevan-cmd/numerology-calculator) <br>
-- [ToolWeb API portal](https://portal.toolweb.in) <br>
-- [Numerology API endpoint](https://portal.toolweb.in/apis/lifestyle/numerology) <br>
-- [ToolWeb platform](https://toolweb.in) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown report with curl command examples and API response guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires TOOLWEB_API_KEY and curl; sends names and birth dates to ToolWeb for numerology processing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The skill sends full name, birth date, language choice, session identifier, userId, and timestamp to portal.toolweb.in.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Tell users before the first request what data will be sent and avoid processing another person's personal details unless that person has agreed.
+
+Risk: API calls may consume paid quota through the configured ToolWeb API key.
+
+Mitigation: Confirm the user intends to make a billable request before calling the API for the first time in a session.
+
+Risk: Interpolating user input into shell curl commands can be unsafe.
+
+Mitigation: Use safe JSON serialization for request bodies and avoid constructing shell commands by directly embedding untrusted user text.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/krishnakumarmahadevan-cmd/skills/numerology-calculator)
+- [ToolWeb API portal](https://portal.toolweb.in)
+- [ToolWeb platform](https://toolweb.in)
+- [ToolWeb OpenClaw skills](https://toolweb.in/openclaw/)
+- [ToolWeb MCP server](https://hub.toolweb.in)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown numerology report with inline shell command and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires TOOLWEB_API_KEY and curl; sends user-provided numerology inputs to portal.toolweb.in.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata; artifact frontmatter says 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

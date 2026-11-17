@@ -1,42 +1,58 @@
-## Description: <br>
-Performs offline mathematical quality audits of OpenClaw skills and Python code using information theory, graph theory, complexity, and statistical analyses. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Performs mathematical quality audits of Python code and OpenClaw skills using information theory, graph theory, complexity metrics, statistical analysis, and pattern detection.
 
-## Publisher: <br>
-[znsyhandao](https://clawhub.ai/user/znsyhandao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[znsyhandao](https://clawhub.ai/user/znsyhandao)
 
-## Use Case: <br>
-Developers and skill maintainers use this skill to assess mathematical depth, structural complexity, code quality, and audit recommendations for OpenClaw skills or Python code before release. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can write an optional report file when an output path is provided, which may overwrite an existing file. <br>
-Mitigation: Run it only on intended target directories and choose a new or disposable path when using the output option. <br>
+## Use Case:
 
+Developers and reviewers use this skill to inspect Python code or skill packages for mathematical complexity, structure, entropy, and maintainability signals. It produces scores, metrics, and recommendations that can support quality review before release.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/znsyhandao/mathematical-audit-skills) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [README.md](artifact/README.md) <br>
-- [CHANGELOG.md](artifact/CHANGELOG.md) <br>
-- [RELEASE_NOTES.md](artifact/RELEASE_NOTES.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, files, guidance] <br>
-**Output Format:** [Console text or JSON report, with optional file output when requested] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports include scores, quality levels, metric summaries, and recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.6.1 (source: server release metadata, SKILL.md, CHANGELOG.md, RELEASE_NOTES.md) <br>
+Risk: The CLI can overwrite a user-specified report path, despite documentation that describes the skill as read-only.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer stdout output, avoid `--output` on existing or sensitive paths, and run the skill in a disposable or backed-up workspace.
+
+Risk: The security verdict is suspicious because the documented read-only posture does not fully match the CLI behavior.
+
+Mitigation: Review the package before installation and treat generated reports as untrusted analysis output until validated.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/znsyhandao/skills/mathematical-audit-skills)
+- [Publisher profile](https://clawhub.ai/user/znsyhandao)
+- [README](artifact/README.md)
+- [Skill documentation](artifact/SKILL.md)
+- [Release notes](artifact/RELEASE_NOTES.md)
+- [Changelog](artifact/CHANGELOG.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Console text or JSON report with quality scores, metric summaries, and recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can print to stdout or write a report when an output path is supplied.]
+
+## Skill Version(s):
+
+3.6.1 (source: server release metadata, changelog, SKILL.md, skill.py)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

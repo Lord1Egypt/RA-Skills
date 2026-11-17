@@ -1,0 +1,1284 @@
+{
+  "schemaVersion": 1,
+  "kind": "exam-bom-expanded",
+  "exam": "260919-at32f415-learning-board",
+  "status": "offline-verified",
+  "source": {
+    "file": "物料清单.xlsx",
+    "sheet": "BOM",
+    "headerRow": 2,
+    "dataRows": "3:29"
+  },
+  "counts": {
+    "bomRows": 27,
+    "instances": 69,
+    "uniqueReferences": 69
+  },
+  "rows": [
+    {
+      "bomRow": 3,
+      "item": 1,
+      "device": "蜂鸣器",
+      "references": [
+        "BUZZER1"
+      ],
+      "quantity": 1,
+      "footprint": "BUZ-SMD_L5.0-W5.5-P4.60",
+      "value": "MLT-5020",
+      "supplierPart": "C94598"
+    },
+    {
+      "bomRow": 4,
+      "item": 2,
+      "device": "贴片电容",
+      "references": [
+        "C1",
+        "C2",
+        "C4",
+        "C6",
+        "C7",
+        "C8",
+        "C9",
+        "C10",
+        "C11",
+        "C13",
+        "C14",
+        "C15",
+        "C16",
+        "C17",
+        "C19",
+        "C22"
+      ],
+      "quantity": 16,
+      "footprint": "C0603",
+      "value": "100nF",
+      "supplierPart": "C14663"
+    },
+    {
+      "bomRow": 5,
+      "item": 3,
+      "device": "贴片电容",
+      "references": [
+        "C3",
+        "C5",
+        "C12",
+        "C18"
+      ],
+      "quantity": 4,
+      "footprint": "C0805",
+      "value": "10uF",
+      "supplierPart": "C15850"
+    },
+    {
+      "bomRow": 6,
+      "item": 4,
+      "device": "贴片电容",
+      "references": [
+        "C20",
+        "C21"
+      ],
+      "quantity": 2,
+      "footprint": "C0603",
+      "value": "18pF",
+      "supplierPart": "C1647"
+    },
+    {
+      "bomRow": 7,
+      "item": 5,
+      "device": "MicroSD卡(TF卡)",
+      "references": [
+        "CARD1"
+      ],
+      "quantity": 1,
+      "footprint": "TF-SMD_TF-115",
+      "value": "TF-115",
+      "supplierPart": "C266620"
+    },
+    {
+      "bomRow": 8,
+      "item": 6,
+      "device": "插拔式接线端子",
+      "references": [
+        "CN1"
+      ],
+      "quantity": 1,
+      "footprint": "CONN-TH_3P-P3.81_KF2EDGR-3.81-3P",
+      "value": "KF2EDGR-3.81-3P",
+      "supplierPart": "C441183"
+    },
+    {
+      "bomRow": 9,
+      "item": 7,
+      "device": "ESD防护二极管",
+      "references": [
+        "D1"
+      ],
+      "quantity": 1,
+      "footprint": "SOT-23-3",
+      "value": "PESD1CAN",
+      "supplierPart": "C53238080"
+    },
+    {
+      "bomRow": 10,
+      "item": 8,
+      "device": "开关二极管",
+      "references": [
+        "D2"
+      ],
+      "quantity": 1,
+      "footprint": "SOD-323",
+      "value": "1N4148WS",
+      "supplierPart": "C7420319"
+    },
+    {
+      "bomRow": 11,
+      "item": 9,
+      "device": "排针",
+      "references": [
+        "H1"
+      ],
+      "quantity": 1,
+      "footprint": "HDR-TH_4P-P2.54-V-M",
+      "value": "PZ254V-11-04P",
+      "supplierPart": "C2691448"
+    },
+    {
+      "bomRow": 12,
+      "item": 10,
+      "device": "RGB LED(内置IC)",
+      "references": [
+        "LED1"
+      ],
+      "quantity": 1,
+      "footprint": "LED-SMD_4P-L5.0-W5.0-BL_TC5050RGB",
+      "value": "WS2812B-B/W",
+      "supplierPart": "C114586"
+    },
+    {
+      "bomRow": 13,
+      "item": 11,
+      "device": "三极管",
+      "references": [
+        "Q1",
+        "Q2"
+      ],
+      "quantity": 2,
+      "footprint": "SOT-23-3",
+      "value": "S8050",
+      "supplierPart": "C20069125"
+    },
+    {
+      "bomRow": 14,
+      "item": 12,
+      "device": "贴片电阻",
+      "references": [
+        "R1",
+        "R2"
+      ],
+      "quantity": 2,
+      "footprint": "R0603",
+      "value": "5.1kΩ",
+      "supplierPart": "C23186"
+    },
+    {
+      "bomRow": 15,
+      "item": 13,
+      "device": "贴片电阻",
+      "references": [
+        "R3",
+        "R6",
+        "R15"
+      ],
+      "quantity": 3,
+      "footprint": "R0603",
+      "value": "22Ω",
+      "supplierPart": "C23345"
+    },
+    {
+      "bomRow": 16,
+      "item": 14,
+      "device": "贴片电阻",
+      "references": [
+        "R4",
+        "R16"
+      ],
+      "quantity": 2,
+      "footprint": "R0603",
+      "value": "330Ω",
+      "supplierPart": "C23138"
+    },
+    {
+      "bomRow": 17,
+      "item": 15,
+      "device": "贴片电阻",
+      "references": [
+        "R5",
+        "R7",
+        "R8",
+        "R9",
+        "R10",
+        "R13",
+        "R14",
+        "R17",
+        "R18",
+        "R19",
+        "R20",
+        "R21",
+        "R22",
+        "R23"
+      ],
+      "quantity": 14,
+      "footprint": "R0603",
+      "value": "10kΩ",
+      "supplierPart": "C25804"
+    },
+    {
+      "bomRow": 18,
+      "item": 16,
+      "device": "光敏电阻",
+      "references": [
+        "R11"
+      ],
+      "quantity": 1,
+      "footprint": "RES-SMD_L3.6-W2.4",
+      "value": "GT36516",
+      "supplierPart": "C2904880"
+    },
+    {
+      "bomRow": 19,
+      "item": 17,
+      "device": "贴片电阻",
+      "references": [
+        "R12"
+      ],
+      "quantity": 1,
+      "footprint": "R0603",
+      "value": "120Ω",
+      "supplierPart": "C22787"
+    },
+    {
+      "bomRow": 20,
+      "item": 18,
+      "device": "螺丝孔",
+      "references": [
+        "SCREW1",
+        "SCREW2",
+        "SCREW3",
+        "SCREW4"
+      ],
+      "quantity": 4,
+      "footprint": "M3",
+      "value": "M3",
+      "supplierPart": "常用库"
+    },
+    {
+      "bomRow": 21,
+      "item": 19,
+      "device": "轻触按键",
+      "references": [
+        "SW1",
+        "SW2",
+        "SW3"
+      ],
+      "quantity": 3,
+      "footprint": "SW-SMD_SH-6X6X4.5H-TP",
+      "value": "SH-6X6X5H-TP",
+      "supplierPart": "C42416254"
+    },
+    {
+      "bomRow": 22,
+      "item": 20,
+      "device": "缓冲器",
+      "references": [
+        "U1"
+      ],
+      "quantity": 1,
+      "footprint": "SC-70-5",
+      "value": "SN74LVC1G125DCKR(UMW)",
+      "supplierPart": "C7394030"
+    },
+    {
+      "bomRow": 23,
+      "item": 21,
+      "device": "线性稳压器（LDO）",
+      "references": [
+        "U2"
+      ],
+      "quantity": 1,
+      "footprint": "SOT-223-4",
+      "value": "AMS1117-3.3",
+      "supplierPart": "C347222"
+    },
+    {
+      "bomRow": 24,
+      "item": 22,
+      "device": "LCD显示屏",
+      "references": [
+        "U3"
+      ],
+      "quantity": 1,
+      "footprint": "OLED-SMD_ST7735S",
+      "value": "N096-1608TBBIG11-H13",
+      "supplierPart": "C2890616"
+    },
+    {
+      "bomRow": 25,
+      "item": 23,
+      "device": "USB转换芯片",
+      "references": [
+        "U4"
+      ],
+      "quantity": 1,
+      "footprint": "SOP-8",
+      "value": "CH340N",
+      "supplierPart": "C2977777"
+    },
+    {
+      "bomRow": 26,
+      "item": 24,
+      "device": "CAN收发器",
+      "references": [
+        "U5"
+      ],
+      "quantity": 1,
+      "footprint": "SOP-8",
+      "value": "SIT65HVD230DR",
+      "supplierPart": "C496619"
+    },
+    {
+      "bomRow": 27,
+      "item": 25,
+      "device": "单片机",
+      "references": [
+        "U6"
+      ],
+      "quantity": 1,
+      "footprint": "QFN-32",
+      "value": "AT32F415KBU7-4",
+      "supplierPart": "C528424"
+    },
+    {
+      "bomRow": 28,
+      "item": 26,
+      "device": "USB连接器",
+      "references": [
+        "USB1"
+      ],
+      "quantity": 1,
+      "footprint": "USB-C-SMD_TYPE-C-16PIN-2MD-073",
+      "value": "TYPE-C 16PIN 2MD(073)",
+      "supplierPart": "C2765186"
+    },
+    {
+      "bomRow": 29,
+      "item": 27,
+      "device": "无源晶振",
+      "references": [
+        "X1"
+      ],
+      "quantity": 1,
+      "footprint": "CRYSTAL-SMD_4P-L3.2-W2.5-BL",
+      "value": "8MHz",
+      "supplierPart": "C2682775"
+    }
+  ],
+  "instances": [
+    {
+      "reference": "BUZZER1",
+      "device": "蜂鸣器",
+      "footprint": "BUZ-SMD_L5.0-W5.5-P4.60",
+      "value": "MLT-5020",
+      "supplierPart": "C94598",
+      "source": {
+        "file": "物料清单.xlsx",
+        "sheet": "BOM",
+        "row": 3
+      },
+      "functionalZone": "buzzer"
+    },
+    {
+      "reference": "C1",
+      "device": "贴片电容",
+      "footprint": "C0603",
+      "value": "100nF",
+      "supplierPart": "C14663",
+      "source": {
+        "file": "物料清单.xlsx",
+        "sheet": "BOM",
+        "row": 4
+      },
+      "functionalZone": "rgb-led"
+    },
+    {
+      "reference": "C2",
+      "device": "贴片电容",
+      "footprint": "C0603",
+      "value": "100nF",
+      "supplierPart": "C14663",
+      "source": {
+        "file": "物料清单.xlsx",
+        "sheet": "BOM",
+        "row": 4
+      },
+      "functionalZone": "rgb-led"
+    },
+    {
+      "reference": "C3",
+      "device": "贴片电容",
+      "footprint": "C0805",
+      "value": "10uF",
+      "supplierPart": "C15850",
+      "source": {
+        "file": "物料清单.xlsx",
+        "sheet": "BOM",
+        "row": 5
+      },
+      "functionalZone": "ldo"
+    },
+    {
+      "reference": "C4",
+      "device": "贴片电容",
+      "footprint": "C0603",
+      "value": "100nF",
+      "supplierPart": "C14663",
+      "source": {
+        "file": "物料清单.xlsx",
+        "sheet": "BOM",
+        "row": 4
+      },
+      "functionalZone": "ldo"
+    },
+    {
+      "reference": "C5",
+      "device": "贴片电容",
+      "footprint": "C0805",
+      "value": "10uF",
+      "supplierPart": "C15850",
+      "source": {
+        "file": "物料清单.xlsx",
+        "sheet": "BOM",
+        "row": 5
+      },
+      "functionalZone": "ldo"
+    },
+    {
+      "reference": "C6",
+      "device": "贴片电容",
+      "footprint": "C0603",
+      "value": "100nF",
+      "supplierPart": "C14663",
+      "source": {
+        "file": "物料清单.xlsx",
+        "sheet": "BOM",
+        "row": 4
+      },
+      "functionalZone": "ldo"
+    },
+    {
+      "reference": "C7",
+      "device": "贴片电容",
+      "footprint": "C0603",
+      "value": "100nF",
+      "supplierPart": "C14663",
+      "source": {
+        "file": "物料清单.xlsx",
+        "sheet": "BOM",
+        "row": 4
+      },
+      "functionalZone": "lcd"
+    },
+    {
+      "reference": "C8",
+      "device": "贴片电容",
+      "footprint": "C0603",
+      "value": "100nF",
+      "supplierPart": "C14663",
+      "source": {
+        "file": "物料清单.xlsx",
+        "sheet": "BOM",
+        "row": 4
+      },
+      "functionalZone": "buttons"
+    },
+    {
+      "reference": "C9",
+      "device": "贴片电容",
+      "footprint": "C0603",
+      "value": "100nF",
+      "supplierPart": "C14663",
+      "source": {
+        "file": "物料清单.xlsx",
+        "sheet": "BOM",
+        "row": 4
+      },
+      "functionalZone": "usb-uart"
+    },
+    {
+      "reference": "C10",
+      "device": "贴片电容",
+      "footprint": "C0603",
+      "value": "100nF",
+      "supplierPart": "C14663",
+      "source": {
+        "file": "物料清单.xlsx",
+        "sheet": "BOM",
+        "row": 4
+      },
+      "functionalZone": "usb-uart"
+    },
+    {
+      "reference": "C11",
+      "device": "贴片电容",
+      "footprint": "C0603",
+      "value": "100nF",
+      "supplierPart": "C14663",
+      "source": {
+        "file": "物料清单.xlsx",
+        "sheet": "BOM",
+        "row": 4
+      },
+      "functionalZone": "photoresistor"
+    },
+    {
+      "reference": "C12",
+      "device": "贴片电容",
+      "footprint": "C0805",
+      "value": "10uF",
+      "supplierPart": "C15850",
+      "source": {
+        "file": "物料清单.xlsx",
+        "sheet": "BOM",
+        "row": 5
+      },
+      "functionalZone": "can"
+    },
+    {
+      "reference": "C13",
+      "device": "贴片电容",
+      "footprint": "C0603",
+      "value": "100nF",
+      "supplierPart": "C14663",
+      "source": {
+        "file": "物料清单.xlsx",
+        "sheet": "BOM",
+        "row": 4
+      },
+      "functionalZone": "can"
+    },
+    {
+      "reference": "C14",
+      "device": "贴片电容",
+      "footprint": "C0603",
+      "value": "100nF",
+      "supplierPart": "C14663",
+      "source": {
+        "file": "物料清单.xlsx",
+        "sheet": "BOM",
+        "row": 4
+      },
+      "functionalZone": "mcu"
+    },
+    {
+      "reference": "C15",
+      "device": "贴片电容",
+      "footprint": "C0603",
+      "value": "100nF",
+      "supplierPart": "C14663",
+      "source": {
+        "file": "物料清单.xlsx",
+        "sheet": "BOM",
+        "row": 4
+      },
+      "functionalZone": "mcu"
+    },
+    {
+      "reference": "C16",
+      "device": "贴片电容",
+      "footprint": "C0603",
+      "value": "100nF",
+      "supplierPart": "C14663",
+      "source": {
+        "file": "物料清单.xlsx",
+        "sheet": "BOM",
+        "row": 4
+      },
+      "functionalZone": "mcu"
+    },
+    {
+      "reference": "C17",
+      "device": "贴片电容",
+      "footprint": "C0603",
+      "value": "100nF",
+      "supplierPart": "C14663",
+      "source": {
+        "file": "物料清单.xlsx",
+        "sheet": "BOM",
+        "row": 4
+      },
+      "functionalZone": "buzzer"
+    },
+    {
+      "reference": "C18",
+      "device": "贴片电容",
+      "footprint": "C0805",
+      "value": "10uF",
+      "supplierPart": "C15850",
+      "source": {
+        "file": "物料清单.xlsx",
+        "sheet": "BOM",
+        "row": 5
+      },
+      "functionalZone": "micro-sd"
+    },
+    {
+      "reference": "C19",
+      "device": "贴片电容",
+      "footprint": "C0603",
+      "value": "100nF",
+      "supplierPart": "C14663",
+      "source": {
+        "file": "物料清单.xlsx",
+        "sheet": "BOM",
+        "row": 4
+      },
+      "functionalZone": "micro-sd"
+    },
+    {
+      "reference": "C20",
+      "device": "贴片电容",
+      "footprint": "C0603",
+      "value": "18pF",
+      "supplierPart": "C1647",
+      "source": {
+        "file": "物料清单.xlsx",
+        "sheet": "BOM",
+        "row": 6
+      },
+      "functionalZone": "crystal"
+    },
+    {
+      "reference": "C21",
+      "device": "贴片电容",
+      "footprint": "C0603",
+      "value": "18pF",
+      "supplierPart": "C1647",
+      "source": {
+        "file": "物料清单.xlsx",
+        "sheet": "BOM",
+        "row": 6
+      },
+      "functionalZone": "crystal"
+    },
+    {
+      "reference": "C22",
+      "device": "贴片电容",
+      "footprint": "C0603",
+      "value": "100nF",
+      "supplierPart": "C14663",
+      "source": {
+        "file": "物料清单.xlsx",
+        "sheet": "BOM",
+        "row": 4
+      },
+      "functionalZone": "swd"
+    },
+    {
+      "reference": "CARD1",
+      "device": "MicroSD卡(TF卡)",
+      "footprint": "TF-SMD_TF-115",
+      "value": "TF-115",
+      "supplierPart": "C266620",
+      "source": {
+        "file": "物料清单.xlsx",
+        "sheet": "BOM",
+        "row": 7
+      },
+      "functionalZone": "micro-sd"
+    },
+    {
+      "reference": "CN1",
+      "device": "插拔式接线端子",
+      "footprint": "CONN-TH_3P-P3.81_KF2EDGR-3.81-3P",
+      "value": "KF2EDGR-3.81-3P",
+      "supplierPart": "C441183",
+      "source": {
+        "file": "物料清单.xlsx",
+        "sheet": "BOM",
+        "row": 8
+      },
+      "functionalZone": "can"
+    },
+    {
+      "reference": "D1",
+      "device": "ESD防护二极管",
+      "footprint": "SOT-23-3",
+      "value": "PESD1CAN",
+      "supplierPart": "C53238080",
+      "source": {
+        "file": "物料清单.xlsx",
+        "sheet": "BOM",
+        "row": 9
+      },
+      "functionalZone": "can"
+    },
+    {
+      "reference": "D2",
+      "device": "开关二极管",
+      "footprint": "SOD-323",
+      "value": "1N4148WS",
+      "supplierPart": "C7420319",
+      "source": {
+        "file": "物料清单.xlsx",
+        "sheet": "BOM",
+        "row": 10
+      },
+      "functionalZone": "buzzer"
+    },
+    {
+      "reference": "H1",
+      "device": "排针",
+      "footprint": "HDR-TH_4P-P2.54-V-M",
+      "value": "PZ254V-11-04P",
+      "supplierPart": "C2691448",
+      "source": {
+        "file": "物料清单.xlsx",
+        "sheet": "BOM",
+        "row": 11
+      },
+      "functionalZone": "swd"
+    },
+    {
+      "reference": "LED1",
+      "device": "RGB LED(内置IC)",
+      "footprint": "LED-SMD_4P-L5.0-W5.0-BL_TC5050RGB",
+      "value": "WS2812B-B/W",
+      "supplierPart": "C114586",
+      "source": {
+        "file": "物料清单.xlsx",
+        "sheet": "BOM",
+        "row": 12
+      },
+      "functionalZone": "rgb-led"
+    },
+    {
+      "reference": "Q1",
+      "device": "三极管",
+      "footprint": "SOT-23-3",
+      "value": "S8050",
+      "supplierPart": "C20069125",
+      "source": {
+        "file": "物料清单.xlsx",
+        "sheet": "BOM",
+        "row": 13
+      },
+      "functionalZone": "lcd"
+    },
+    {
+      "reference": "Q2",
+      "device": "三极管",
+      "footprint": "SOT-23-3",
+      "value": "S8050",
+      "supplierPart": "C20069125",
+      "source": {
+        "file": "物料清单.xlsx",
+        "sheet": "BOM",
+        "row": 13
+      },
+      "functionalZone": "buzzer"
+    },
+    {
+      "reference": "R1",
+      "device": "贴片电阻",
+      "footprint": "R0603",
+      "value": "5.1kΩ",
+      "supplierPart": "C23186",
+      "source": {
+        "file": "物料清单.xlsx",
+        "sheet": "BOM",
+        "row": 14
+      },
+      "functionalZone": "type-c"
+    },
+    {
+      "reference": "R2",
+      "device": "贴片电阻",
+      "footprint": "R0603",
+      "value": "5.1kΩ",
+      "supplierPart": "C23186",
+      "source": {
+        "file": "物料清单.xlsx",
+        "sheet": "BOM",
+        "row": 14
+      },
+      "functionalZone": "type-c"
+    },
+    {
+      "reference": "R3",
+      "device": "贴片电阻",
+      "footprint": "R0603",
+      "value": "22Ω",
+      "supplierPart": "C23345",
+      "source": {
+        "file": "物料清单.xlsx",
+        "sheet": "BOM",
+        "row": 15
+      },
+      "functionalZone": "rgb-led"
+    },
+    {
+      "reference": "R4",
+      "device": "贴片电阻",
+      "footprint": "R0603",
+      "value": "330Ω",
+      "supplierPart": "C23138",
+      "source": {
+        "file": "物料清单.xlsx",
+        "sheet": "BOM",
+        "row": 16
+      },
+      "functionalZone": "lcd"
+    },
+    {
+      "reference": "R5",
+      "device": "贴片电阻",
+      "footprint": "R0603",
+      "value": "10kΩ",
+      "supplierPart": "C25804",
+      "source": {
+        "file": "物料清单.xlsx",
+        "sheet": "BOM",
+        "row": 17
+      },
+      "functionalZone": "lcd"
+    },
+    {
+      "reference": "R6",
+      "device": "贴片电阻",
+      "footprint": "R0603",
+      "value": "22Ω",
+      "supplierPart": "C23345",
+      "source": {
+        "file": "物料清单.xlsx",
+        "sheet": "BOM",
+        "row": 15
+      },
+      "functionalZone": "lcd"
+    },
+    {
+      "reference": "R7",
+      "device": "贴片电阻",
+      "footprint": "R0603",
+      "value": "10kΩ",
+      "supplierPart": "C25804",
+      "source": {
+        "file": "物料清单.xlsx",
+        "sheet": "BOM",
+        "row": 17
+      },
+      "functionalZone": "buttons"
+    },
+    {
+      "reference": "R8",
+      "device": "贴片电阻",
+      "footprint": "R0603",
+      "value": "10kΩ",
+      "supplierPart": "C25804",
+      "source": {
+        "file": "物料清单.xlsx",
+        "sheet": "BOM",
+        "row": 17
+      },
+      "functionalZone": "buttons"
+    },
+    {
+      "reference": "R9",
+      "device": "贴片电阻",
+      "footprint": "R0603",
+      "value": "10kΩ",
+      "supplierPart": "C25804",
+      "source": {
+        "file": "物料清单.xlsx",
+        "sheet": "BOM",
+        "row": 17
+      },
+      "functionalZone": "buttons"
+    },
+    {
+      "reference": "R10",
+      "device": "贴片电阻",
+      "footprint": "R0603",
+      "value": "10kΩ",
+      "supplierPart": "C25804",
+      "source": {
+        "file": "物料清单.xlsx",
+        "sheet": "BOM",
+        "row": 17
+      },
+      "functionalZone": "photoresistor"
+    },
+    {
+      "reference": "R11",
+      "device": "光敏电阻",
+      "footprint": "RES-SMD_L3.6-W2.4",
+      "value": "GT36516",
+      "supplierPart": "C2904880",
+      "source": {
+        "file": "物料清单.xlsx",
+        "sheet": "BOM",
+        "row": 18
+      },
+      "functionalZone": "photoresistor"
+    },
+    {
+      "reference": "R12",
+      "device": "贴片电阻",
+      "footprint": "R0603",
+      "value": "120Ω",
+      "supplierPart": "C22787",
+      "source": {
+        "file": "物料清单.xlsx",
+        "sheet": "BOM",
+        "row": 19
+      },
+      "functionalZone": "can"
+    },
+    {
+      "reference": "R13",
+      "device": "贴片电阻",
+      "footprint": "R0603",
+      "value": "10kΩ",
+      "supplierPart": "C25804",
+      "source": {
+        "file": "物料清单.xlsx",
+        "sheet": "BOM",
+        "row": 17
+      },
+      "functionalZone": "boot"
+    },
+    {
+      "reference": "R14",
+      "device": "贴片电阻",
+      "footprint": "R0603",
+      "value": "10kΩ",
+      "supplierPart": "C25804",
+      "source": {
+        "file": "物料清单.xlsx",
+        "sheet": "BOM",
+        "row": 17
+      },
+      "functionalZone": "boot"
+    },
+    {
+      "reference": "R15",
+      "device": "贴片电阻",
+      "footprint": "R0603",
+      "value": "22Ω",
+      "supplierPart": "C23345",
+      "source": {
+        "file": "物料清单.xlsx",
+        "sheet": "BOM",
+        "row": 15
+      },
+      "functionalZone": "buzzer"
+    },
+    {
+      "reference": "R16",
+      "device": "贴片电阻",
+      "footprint": "R0603",
+      "value": "330Ω",
+      "supplierPart": "C23138",
+      "source": {
+        "file": "物料清单.xlsx",
+        "sheet": "BOM",
+        "row": 16
+      },
+      "functionalZone": "buzzer"
+    },
+    {
+      "reference": "R17",
+      "device": "贴片电阻",
+      "footprint": "R0603",
+      "value": "10kΩ",
+      "supplierPart": "C25804",
+      "source": {
+        "file": "物料清单.xlsx",
+        "sheet": "BOM",
+        "row": 17
+      },
+      "functionalZone": "buzzer"
+    },
+    {
+      "reference": "R18",
+      "device": "贴片电阻",
+      "footprint": "R0603",
+      "value": "10kΩ",
+      "supplierPart": "C25804",
+      "source": {
+        "file": "物料清单.xlsx",
+        "sheet": "BOM",
+        "row": 17
+      },
+      "functionalZone": "micro-sd"
+    },
+    {
+      "reference": "R19",
+      "device": "贴片电阻",
+      "footprint": "R0603",
+      "value": "10kΩ",
+      "supplierPart": "C25804",
+      "source": {
+        "file": "物料清单.xlsx",
+        "sheet": "BOM",
+        "row": 17
+      },
+      "functionalZone": "micro-sd"
+    },
+    {
+      "reference": "R20",
+      "device": "贴片电阻",
+      "footprint": "R0603",
+      "value": "10kΩ",
+      "supplierPart": "C25804",
+      "source": {
+        "file": "物料清单.xlsx",
+        "sheet": "BOM",
+        "row": 17
+      },
+      "functionalZone": "micro-sd"
+    },
+    {
+      "reference": "R21",
+      "device": "贴片电阻",
+      "footprint": "R0603",
+      "value": "10kΩ",
+      "supplierPart": "C25804",
+      "source": {
+        "file": "物料清单.xlsx",
+        "sheet": "BOM",
+        "row": 17
+      },
+      "functionalZone": "micro-sd"
+    },
+    {
+      "reference": "R22",
+      "device": "贴片电阻",
+      "footprint": "R0603",
+      "value": "10kΩ",
+      "supplierPart": "C25804",
+      "source": {
+        "file": "物料清单.xlsx",
+        "sheet": "BOM",
+        "row": 17
+      },
+      "functionalZone": "micro-sd"
+    },
+    {
+      "reference": "R23",
+      "device": "贴片电阻",
+      "footprint": "R0603",
+      "value": "10kΩ",
+      "supplierPart": "C25804",
+      "source": {
+        "file": "物料清单.xlsx",
+        "sheet": "BOM",
+        "row": 17
+      },
+      "functionalZone": "micro-sd"
+    },
+    {
+      "reference": "SCREW1",
+      "device": "螺丝孔",
+      "footprint": "M3",
+      "value": "M3",
+      "supplierPart": "常用库",
+      "source": {
+        "file": "物料清单.xlsx",
+        "sheet": "BOM",
+        "row": 20
+      },
+      "functionalZone": "mounting"
+    },
+    {
+      "reference": "SCREW2",
+      "device": "螺丝孔",
+      "footprint": "M3",
+      "value": "M3",
+      "supplierPart": "常用库",
+      "source": {
+        "file": "物料清单.xlsx",
+        "sheet": "BOM",
+        "row": 20
+      },
+      "functionalZone": "mounting"
+    },
+    {
+      "reference": "SCREW3",
+      "device": "螺丝孔",
+      "footprint": "M3",
+      "value": "M3",
+      "supplierPart": "常用库",
+      "source": {
+        "file": "物料清单.xlsx",
+        "sheet": "BOM",
+        "row": 20
+      },
+      "functionalZone": "mounting"
+    },
+    {
+      "reference": "SCREW4",
+      "device": "螺丝孔",
+      "footprint": "M3",
+      "value": "M3",
+      "supplierPart": "常用库",
+      "source": {
+        "file": "物料清单.xlsx",
+        "sheet": "BOM",
+        "row": 20
+      },
+      "functionalZone": "mounting"
+    },
+    {
+      "reference": "SW1",
+      "device": "轻触按键",
+      "footprint": "SW-SMD_SH-6X6X4.5H-TP",
+      "value": "SH-6X6X5H-TP",
+      "supplierPart": "C42416254",
+      "source": {
+        "file": "物料清单.xlsx",
+        "sheet": "BOM",
+        "row": 21
+      },
+      "functionalZone": "buttons"
+    },
+    {
+      "reference": "SW2",
+      "device": "轻触按键",
+      "footprint": "SW-SMD_SH-6X6X4.5H-TP",
+      "value": "SH-6X6X5H-TP",
+      "supplierPart": "C42416254",
+      "source": {
+        "file": "物料清单.xlsx",
+        "sheet": "BOM",
+        "row": 21
+      },
+      "functionalZone": "buttons"
+    },
+    {
+      "reference": "SW3",
+      "device": "轻触按键",
+      "footprint": "SW-SMD_SH-6X6X4.5H-TP",
+      "value": "SH-6X6X5H-TP",
+      "supplierPart": "C42416254",
+      "source": {
+        "file": "物料清单.xlsx",
+        "sheet": "BOM",
+        "row": 21
+      },
+      "functionalZone": "buttons"
+    },
+    {
+      "reference": "U1",
+      "device": "缓冲器",
+      "footprint": "SC-70-5",
+      "value": "SN74LVC1G125DCKR(UMW)",
+      "supplierPart": "C7394030",
+      "source": {
+        "file": "物料清单.xlsx",
+        "sheet": "BOM",
+        "row": 22
+      },
+      "functionalZone": "rgb-led"
+    },
+    {
+      "reference": "U2",
+      "device": "线性稳压器（LDO）",
+      "footprint": "SOT-223-4",
+      "value": "AMS1117-3.3",
+      "supplierPart": "C347222",
+      "source": {
+        "file": "物料清单.xlsx",
+        "sheet": "BOM",
+        "row": 23
+      },
+      "functionalZone": "ldo"
+    },
+    {
+      "reference": "U3",
+      "device": "LCD显示屏",
+      "footprint": "OLED-SMD_ST7735S",
+      "value": "N096-1608TBBIG11-H13",
+      "supplierPart": "C2890616",
+      "source": {
+        "file": "物料清单.xlsx",
+        "sheet": "BOM",
+        "row": 24
+      },
+      "functionalZone": "lcd"
+    },
+    {
+      "reference": "U4",
+      "device": "USB转换芯片",
+      "footprint": "SOP-8",
+      "value": "CH340N",
+      "supplierPart": "C2977777",
+      "source": {
+        "file": "物料清单.xlsx",
+        "sheet": "BOM",
+        "row": 25
+      },
+      "functionalZone": "usb-uart"
+    },
+    {
+      "reference": "U5",
+      "device": "CAN收发器",
+      "footprint": "SOP-8",
+      "value": "SIT65HVD230DR",
+      "supplierPart": "C496619",
+      "source": {
+        "file": "物料清单.xlsx",
+        "sheet": "BOM",
+        "row": 26
+      },
+      "functionalZone": "can"
+    },
+    {
+      "reference": "U6",
+      "device": "单片机",
+      "footprint": "QFN-32",
+      "value": "AT32F415KBU7-4",
+      "supplierPart": "C528424",
+      "source": {
+        "file": "物料清单.xlsx",
+        "sheet": "BOM",
+        "row": 27
+      },
+      "functionalZone": "mcu"
+    },
+    {
+      "reference": "USB1",
+      "device": "USB连接器",
+      "footprint": "USB-C-SMD_TYPE-C-16PIN-2MD-073",
+      "value": "TYPE-C 16PIN 2MD(073)",
+      "supplierPart": "C2765186",
+      "source": {
+        "file": "物料清单.xlsx",
+        "sheet": "BOM",
+        "row": 28
+      },
+      "functionalZone": "type-c"
+    },
+    {
+      "reference": "X1",
+      "device": "无源晶振",
+      "footprint": "CRYSTAL-SMD_4P-L3.2-W2.5-BL",
+      "value": "8MHz",
+      "supplierPart": "C2682775",
+      "source": {
+        "file": "物料清单.xlsx",
+        "sheet": "BOM",
+        "row": 29
+      },
+      "functionalZone": "crystal"
+    }
+  ]
+}

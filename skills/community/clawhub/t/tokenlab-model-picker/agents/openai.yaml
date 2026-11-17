@@ -1,0 +1,4 @@
+interface:
+  display_name: "TokenLab Model Picker"
+  short_description: "Pick models from TokenLab catalog data"
+  default_prompt: "Use $tokenlab-model-picker to choose TokenLab models for this workload from the live catalog."

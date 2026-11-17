@@ -1,40 +1,56 @@
-## Description: <br>
-Extracts and clips web articles, Xiaohongshu, WeChat, and Twitter/X content to Flomo or local Markdown with optional tags and summaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extracts and summarizes web articles, Xiaohongshu, WeChat, and Twitter/X content, then saves clips to Flomo by webhook or local Markdown files.
 
-## Publisher: <br>
-[Ma-tiezhu](https://clawhub.ai/user/Ma-tiezhu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[ma-tiezhu](https://clawhub.ai/user/ma-tiezhu)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and agent users use this skill to extract content from shared URLs, optionally summarize or tag the result, and save the clip to Flomo or a local Markdown note.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill may send clipped content to a published default Flomo webhook.
+
+Mitigation: Configure a user-controlled FLOMO_WEBHOOK before using Flomo output, and prefer local Markdown for sensitive or private content.
+
+Risk: The Windows Flomo path uses a shell-based curl command with proxy bypass.
+
+Mitigation: Do not use the Windows Flomo path until the shell-based curl command and proxy bypass are removed or reviewed.
+
+Risk: Clipping private or authenticated pages can expose sensitive page content.
+
+Mitigation: Avoid clipping private or authenticated pages unless the data flow has been reviewed and the destination is approved.
+
+## Reference(s):
 
 
-## Use Case: <br>
-People who collect web content use this skill to extract article, Xiaohongshu, WeChat, and Twitter/X content, optionally summarize it, and save it to Flomo or local Markdown. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, shell commands, configuration]
 
-## Known Risks and Mitigations: <br>
-Risk: Clipped page text and source URLs may be sent to a built-in Flomo webhook by default. <br>
-Mitigation: Set a user-owned FLOMO_WEBHOOK before using Flomo output, or use local Markdown output for sensitive or private content. <br>
-Risk: The Flomo posting path can invoke a shell-based curl command. <br>
-Mitigation: Review or remove the shell-based curl path before deployment in environments that restrict shell execution. <br>
+**Output Format:** [Markdown notes, JSON command results, and inline bash command examples]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Ma-tiezhu/content-clipper) <br>
+**Other Properties Related to Output:** [Supports URL, target, output path, summary, and tag options; Flomo posting requires webhook configuration.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown clips, JSON command results, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can write local Markdown files or post clipped content to a configured Flomo webhook.] <br>
+1.0.0 (source: server release metadata and package.json)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and package.json) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

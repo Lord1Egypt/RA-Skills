@@ -1,48 +1,59 @@
-## Description: <br>
-Generates WeChat official-account cover images and article illustrations from article titles and content, selecting reusable visual styles and producing multiple image options. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+为微信公众号文章生成封面图和正文配图，根据文章标题与内容自动匹配画风，并支持一稿多方案和可复用风格预设。
 
-## Publisher: <br>
-[aiworkskills](https://clawhub.ai/user/aiworkskills) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aiworkskills](https://clawhub.ai/user/aiworkskills)
 
-## Use Case: <br>
-External editors, media teams, and brand designers use this skill to plan and generate WeChat article cover images and inline illustrations with reusable cover and article-image style presets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Image prompts and possible article excerpts are sent to the configured image endpoint. <br>
-Mitigation: Use a trusted image provider and review prompts before generation when articles contain sensitive business or customer information. <br>
-Risk: The image API key is read from aws.env and sent as a bearer token to the configured endpoint. <br>
-Mitigation: Use a dedicated low-privilege IMAGE_MODEL_API_KEY and keep unrelated secrets out of aws.env. <br>
-Risk: A malicious or misconfigured image endpoint could return unsafe image download URLs. <br>
-Mitigation: Keep the script's public HTTP/HTTPS-only download checks in place and verify image_model.base_url before use. <br>
+## Use Case:
 
+External content editors, self-media operators, brand designers, and agents use this skill to plan and generate WeChat article cover images and inline illustrations from article content. It is intended for long-form article image workflows that need reusable visual styles, prompt files, generated image files, and insertion guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aiworkskills/aws-wechat-article-images) <br>
-- [Publisher profile](https://clawhub.ai/user/aiworkskills) <br>
-- [AI Work Skills homepage](https://aiworkskills.cn) <br>
-- [Cover style presets](references/cover-styles/README.md) <br>
-- [Image style auto-selection](references/image-styles/auto-selection.md) <br>
-- [Prompt construction guide](references/image-styles/prompt-construction.md) <br>
-- [Image specifications](references/specs.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, prompt files, image files, and configuration notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and IMAGE_MODEL_API_KEY; may create or update article image prompts, generated images, and img_analysis.md.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.23 (source: server release evidence) <br>
+Risk: Article prompts and the image-model API key may be sent to a configurable external image endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a restricted, dedicated API key and configure only trusted HTTPS endpoints for image generation.
+
+Risk: The skill can read article drafts, prompt files, configuration, and product image directories in the article workspace.
+
+Mitigation: Install and run it only in a dedicated article workspace, and review prior-draft and product-image directories before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aiworkskills/skills/aws-wechat-article-images)
+- [cover-method.md](references/cover-method.md)
+- [image-method.md](references/image-method.md)
+- [specs.md](references/specs.md)
+- [cover-styles README](references/cover-styles/README.md)
+- [image-styles README](references/image-styles/README.md)
+- [prompt-construction.md](references/image-styles/prompt-construction.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline shell commands, prompt files, and generated image file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update image prompts, generated image files, optional image analysis notes, and article image references.]
+
+## Skill Version(s):
+
+1.0.24 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

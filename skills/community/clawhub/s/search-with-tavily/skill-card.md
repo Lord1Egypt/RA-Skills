@@ -1,46 +1,61 @@
-## Description: <br>
-Web search using Tavily API - a powerful search engine for AI agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tavily Search provides Tavily API powered web search for current information, direct Q&A answers, and RAG-oriented context retrieval.
 
-## Publisher: <br>
-[chasehl](https://clawhub.ai/user/chasehl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chasehl](https://clawhub.ai/user/chasehl)
 
-## Use Case: <br>
-Developers, analysts, and external users use this skill to search the web through Tavily for current information, direct Q&A answers, and retrieval context for RAG workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search queries are sent to an external Tavily service and may reveal sensitive topics if users include secrets, credentials, regulated personal data, or confidential internal information. <br>
-Mitigation: Use a dedicated, revocable Tavily API key and avoid searching for sensitive or confidential material. <br>
-Risk: The fast search helper can write query-derived cached results to local storage for a short period. <br>
-Mitigation: Disable caching with the no-cache option or clear the local cache when searches may contain sensitive information. <br>
-Risk: Web search results and generated answers can be incomplete, stale, or misleading. <br>
-Mitigation: Review returned source URLs and verify important claims before operational use. <br>
+## Use Case:
 
+Developers and agents use this skill to retrieve up-to-date web results, direct answers, and search context for retrieval-augmented generation workflows.
 
-## Reference(s): <br>
-- [Tavily API Reference](references/TAVILY_API.md) <br>
-- [Tavily Documentation](https://docs.tavily.com) <br>
-- [Tavily API Reference Documentation](https://docs.tavily.com/documentation/api-reference) <br>
-- [Tavily Python SDK](https://github.com/tavily-ai/tavily-python) <br>
-- [Tavily JavaScript SDK](https://github.com/tavily-ai/tavily-js) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, API Calls, Shell commands, Guidance] <br>
-**Output Format:** [JSON search results, plain-text answers, retrieval context, and Markdown usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires TAVILY_API_KEY and sends search queries to Tavily; the fast search script may cache search results locally for five minutes unless disabled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: Search queries and returned content are sent to Tavily, which creates ordinary privacy considerations for sensitive prompts or confidential data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not submit secrets, private customer data, or confidential internal text in searches.
+
+Risk: The fast helper can cache search results locally under ~/.cache/tavily_search.
+
+Mitigation: Use --no-cache for sensitive searches and delete ~/.cache/tavily_search when cached sensitive results should not remain on disk.
+
+Risk: The skill depends on the tavily-python package and external Tavily API behavior.
+
+Mitigation: Install tavily-python in a virtual environment and pin a reviewed version.
+
+## Reference(s):
+
+- [Tavily API Reference](references/TAVILY_API.md)
+- [Tavily Documentation](https://docs.tavily.com)
+- [Tavily API Reference Documentation](https://docs.tavily.com/documentation/api-reference)
+- [Tavily Python SDK](https://github.com/tavily-ai/tavily-python)
+- [Tavily JavaScript SDK](https://github.com/tavily-ai/tavily-js)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python and shell snippets; CLI helpers return JSON or plain text search results.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires TAVILY_API_KEY; the fast helper may cache results in ~/.cache/tavily_search unless --no-cache is used.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

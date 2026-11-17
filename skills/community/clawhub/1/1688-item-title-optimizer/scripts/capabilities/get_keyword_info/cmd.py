@@ -23,14 +23,17 @@ def main():
                         help='包含类目热搜词（默认True）')
     parser.add_argument('--custom_keywords', type=str, default=None,
                         help='自定义关键词，分号分隔，如"保温杯;不锈钢;便携"')
+    parser.add_argument('--NEWTON_SHOP_LOGIN_ID', default=None, help='可选，目标店铺的 loginId，用于多店铺场景')
     args = parser.parse_args()
 
     try:
+        login_id = getattr(args, 'NEWTON_SHOP_LOGIN_ID', None)
         result = get_keyword_info(
             item_id=args.item_id,
             include_expo_words=args.include_expo_words,
             include_hot_words=args.include_hot_words,
             custom_keywords=args.custom_keywords,
+            login_id=login_id,
         )
         print_output(True, "✅ 关键词信息获取成功", result)
     except Exception as e:

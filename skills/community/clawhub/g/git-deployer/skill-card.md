@@ -1,42 +1,52 @@
-## Description: <br>
-Pushes static site content to GitHub Pages or other git-backed hosts by cloning or initializing a target repository, copying local files, committing changes, and force-pushing the selected branch. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Push static site content to GitHub Pages repositories. Clone, copy files, commit with timestamp, force-push. Use when updating GitHub Pages sites, deploying static sites, or syncing local content to a git-based host.
 
-## Publisher: <br>
-[kryzl19](https://clawhub.ai/user/kryzl19) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[kryzl19](https://clawhub.ai/user/kryzl19)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and site maintainers use this skill to deploy local static site output to GitHub Pages or another git-backed hosting repository.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Forced pushes can overwrite the target branch, including shared branches.
+
+Mitigation: Use a dedicated deployment repository or branch, least-privileged credentials, and confirm the target remote and branch before execution.
+
+Risk: Checkout and copy behavior in a reused temporary clone can expose credentials or run unexpected local Git hooks.
+
+Mitigation: Use a fresh private checkout, avoid credential-bearing HTTPS URLs, do not point the skill at untrusted site directories, and review logs before sharing them.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use this skill to deploy or sync local static site output to GitHub Pages repositories or other git-backed hosting branches. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Shell commands, Configuration instructions, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Force-pushing can overwrite the target Git branch and replace existing remote history. <br>
-Mitigation: Verify the site directory, remote URL, branch, and Git identity before running; avoid shared or protected branches unless history replacement is intended and backed up. <br>
-Risk: The deployment can reuse a temporary clone path, which may contain unexpected local state. <br>
-Mitigation: Inspect or remove the temporary clone before deployment, and prefer a disposable or validated clone path for sensitive repositories. <br>
-Risk: The script uses configured Git credentials to push to the supplied remote. <br>
-Mitigation: Use a scoped deploy key or token limited to the intended repository. <br>
+**Output Format:** [Markdown with inline bash commands and deployment status text]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [Git Deployer ClawHub Page](https://clawhub.ai/kryzl19/git-deployer) <br>
+**Other Properties Related to Output:** [Reports success or failure, commit hash, target remote, branch, and push status.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands and deployment status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports success or failure, commit hash, remote URL, branch, and temporary clone path when the deployment script runs.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,55 @@
-## Description: <br>
-Upload videos and Shorts to YouTube with titles, descriptions, tags, thumbnails, and captions through Boring's MCP connector. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Upload videos and Shorts to YouTube. Use when the user says 'upload to YouTube', 'publish YouTube video', 'post a YouTube Short', 'upload video with thumbnail', or wants to upload videos with titles, descriptions, tags, thumbnails, and captions to their YouTube channel.
 
-## Publisher: <br>
-[snoopyrain](https://clawhub.ai/user/snoopyrain) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[snoopyrain](https://clawhub.ai/user/snoopyrain)
 
-## Use Case: <br>
-External users use this skill to have an agent prepare and publish videos or Shorts to a connected YouTube channel with metadata, thumbnails, and captions. It is intended for workflows where the user trusts the Boring MCP connector with publishing access. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The MCP connector URL contains an embedded credential that grants publishing access to the connected YouTube channel and other connected social accounts. <br>
-Mitigation: Treat the connector URL like a password, store it only in trusted agent configuration, and revoke or regenerate it if exposed. <br>
-Risk: The security summary notes that the skill can publish publicly through a third-party credential without a required final confirmation step. <br>
-Mitigation: Require the agent to show the exact channel, media file, title, description, thumbnail or captions, and visibility for user approval before publishing. <br>
+## Use Case:
 
+External creators and channel operators use this skill to publish YouTube videos or Shorts through a Boring MCP Connector with titles, descriptions, tags, thumbnails, and captions.
 
-## Reference(s): <br>
-- [Boring MCP connector documentation](https://boring-doc.aiagent-me.com/getting-started/mcp.html) <br>
-- [ClawHub skill listing](https://clawhub.ai/snoopyrain/youtube-video-publisher) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Configuration instructions, Guidance, Markdown] <br>
-**Output Format:** [Markdown guidance with MCP tool-call parameters] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Boring MCP connector URL with embedded authentication; uploaded videos use the visibility behavior documented by the skill.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The MCP Connector URL contains an embedded credential with publishing access to connected social accounts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the connector URL like a password, revoke or regenerate it if exposed, and connect only accounts intended for agent-mediated publishing.
+
+Risk: Publishing actions can create public uploads or use the wrong channel, metadata, staged media URL, or visibility.
+
+Mitigation: Confirm the YouTube account, video file, title, description, tags, thumbnail, captions, staged media URLs, and visibility before asking an agent to publish.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/snoopyrain/skills/youtube-video-publisher)
+- [Boring MCP connector documentation](https://boring-doc.aiagent-me.com/getting-started/mcp.html)
+- [Boring documentation](https://boring-doc.aiagent-me.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Guidance, Configuration, API calls]
+
+**Output Format:** [Markdown guidance with tool-call examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Boring MCP Connector URL with embedded auth token and a connected YouTube account.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

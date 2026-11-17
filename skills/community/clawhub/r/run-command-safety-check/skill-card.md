@@ -1,43 +1,60 @@
-## Description: <br>
-Reviews shell command text, scripts, or folders before execution to identify risky patterns such as pipe-to-shell, destructive deletes, dangerous redirection, obfuscated execution, and secret-like snippets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reviews shell commands, scripts, or directories before execution to identify dangerous patterns such as pipe-to-shell, destructive deletion, risky redirection, and obfuscated execution.
 
-## Publisher: <br>
-[52YuanChangXing](https://clawhub.ai/user/52YuanChangXing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[52yuanchangxing](https://clawhub.ai/user/52yuanchangxing)
 
-## Use Case: <br>
-Developers, operators, and security reviewers use this skill to audit shell commands, scripts, or narrow folders before execution. It produces a structured review with dangerous patterns, medium-risk patterns, background notes, safer alternatives, manual confirmation items, and a final recommendation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Reports may include local paths or matched command snippets from user-provided inputs. <br>
-Mitigation: Review generated reports before sharing and redact sensitive paths, secrets, or private command context. <br>
-Risk: The skill's findings are advisory and may miss context-specific hazards in destructive commands or production changes. <br>
-Mitigation: Keep human approval for destructive commands, permission changes, redirects, package install scripts, and production operations. <br>
-Risk: Broad folder scans can expose more local material than intended in the review output. <br>
-Mitigation: Use the skill on specific command text, scripts, or narrowly scoped folders. <br>
+## Use Case:
 
+Developers, security reviewers, and release engineers use this skill to review proposed shell commands or scripts before execution and produce audit-friendly findings, safer alternatives, manual review points, and final recommendations.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/52YuanChangXing/run-command-safety-check) <br>
-- [Publisher Profile](https://clawhub.ai/user/52YuanChangXing) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, files] <br>
-**Output Format:** [Markdown or JSON safety review report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write a local report file when an output path is provided; otherwise returns the report to stdout.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The security review verdict is suspicious because the implementation is narrower than advertised and has file-boundary and output-handling risks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat results as lightweight advisory review, scan trusted directories, and review findings before using them as a command-safety gate.
+
+Risk: The output path can affect important files if users point --output at sensitive locations.
+
+Mitigation: Prefer dry-run or stdout use, and avoid writing to important paths unless overwrite behavior is explicitly controlled.
+
+Risk: Directory scans may include untrusted filesystem content such as symlinks.
+
+Mitigation: Use the skill on trusted directories and inspect inputs before scanning broad or shared paths.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/52yuanchangxing/skills/run-command-safety-check)
+- [README](artifact/README.md)
+- [Specification](artifact/resources/spec.json)
+- [Smoke test](artifact/tests/smoke-test.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance]
+
+**Output Format:** [Markdown or JSON review report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Local input only; supports dry-run/stdout use and does not require third-party Python packages.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

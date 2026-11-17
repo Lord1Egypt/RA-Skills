@@ -1,50 +1,64 @@
-## Description: <br>
-View, add, and execute Aavegotchi Baazaar listings on Base mainnet (8453), buying with GHST directly or USDC via swapAndBuy* with dry-run-first safety controls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+View, add, and execute Aavegotchi Baazaar listings on Base mainnet (8453), buying with GHST directly or with USDC through swapAndBuy while defaulting to dry-run simulation.
 
-## Publisher: <br>
-[cinnabarhorse](https://clawhub.ai/user/cinnabarhorse) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[cinnabarhorse](https://clawhub.ai/user/cinnabarhorse)
 
-## Use Case: <br>
-External developers and agent users use this skill to inspect, add, simulate, and, after explicit confirmation, execute Aavegotchi Baazaar marketplace listings on Base mainnet. It supports GHST purchases, USDC swap-and-buy flows, listing setup, approvals, and deterministic transaction-argument checks. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can prepare and broadcast real marketplace transactions that spend assets or create listings. <br>
-Mitigation: Keep DRY_RUN enabled until the transaction summary has been reviewed, and require DRY_RUN=0 plus BROADCAST_CONFIRM=CONFIRM_SEND before any cast send broadcast. <br>
-Risk: A private key is required for broadcasts and could expose funds if copied into chat or logs. <br>
-Mitigation: Read PRIVATE_KEY only from the environment, never print it, and use a dedicated low-balance wallet. <br>
-Risk: Wrong-chain, wrong-wallet, stale-listing, or approval mistakes can cause failed or unintended transactions. <br>
-Mitigation: Verify Base chain ID 8453, confirm the private key matches FROM_ADDRESS, refetch listings immediately before simulation or broadcast, and revoke unused token or NFT approvals. <br>
-Risk: Untrusted listing values or user-provided strings could lead to unsafe shell command construction. <br>
-Mitigation: Use only allowlisted command templates, validate addresses and integer arguments before substitution, quote data values, and reject free-form shell execution. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/cinnabarhorse/aavegotchi-baazaar) <br>
-- [Addresses / Constants](artifact/references/addresses.md) <br>
-- [Category Maps](artifact/references/categories.md) <br>
-- [Common Recipes](artifact/references/recipes.md) <br>
-- [Subgraph Queries](artifact/references/subgraph.md) <br>
-- [USDC swapAmount Math](artifact/references/usdc-swap-math.md) <br>
-- [Goldsky Aavegotchi Core Base subgraph](https://api.goldsky.com/api/public/project_cmh3flagm0001r4p25foufjtt/subgraphs/aavegotchi-core-base/prod/gn) <br>
-- [CoinGecko GHST/USD price endpoint](https://api.coingecko.com/api/v3/simple/price?ids=aavegotchi&vs_currencies=usd) <br>
+## Use Case:
 
+External users and developers use this skill to inspect Aavegotchi Baazaar listings, prepare marketplace transactions, simulate purchases or listings, and broadcast only after explicit confirmation.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with bash, GraphQL, and Python command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Dry-run transaction simulation is the default; real broadcasts require environment-gated confirmation and user review of transaction details.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.4 (source: evidence.release.version) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Marketplace and approval commands can affect crypto assets if broadcast with an unintended signer, chain, contract, spender, or amount.
+
+Mitigation: Use a wallet limited to funds you are willing to risk, keep DRY_RUN enabled by default, and manually verify chain, signer, token or NFT contract, spender, amount, and confirmation gates before any approval or broadcast.
+
+Risk: setApprovalForAll grants collection-wide operator authority until revoked.
+
+Mitigation: Run collection-wide approvals only after manual review of the NFT contract and operator address, and revoke approval when it is no longer needed.
+
+Risk: Listings can be cancelled, sold, or price-updated between lookup and transaction execution.
+
+Mitigation: Refetch listing data immediately before simulation or broadcast, then re-simulate if any transaction argument changes.
+
+## Reference(s):
+
+- [Aavegotchi Baazaar ClawHub page](https://clawhub.ai/cinnabarhorse/skills/aavegotchi-baazaar)
+- [Addresses / Constants](references/addresses.md)
+- [Category Maps](references/categories.md)
+- [Common Recipes](references/recipes.md)
+- [Subgraph Queries](references/subgraph.md)
+- [USDC swapAmount Math](references/usdc-swap-math.md)
+- [Base mainnet RPC](https://mainnet.base.org)
+- [Aavegotchi Core Base Goldsky subgraph](https://api.goldsky.com/api/public/project_cmh3flagm0001r4p25foufjtt/subgraphs/aavegotchi-core-base/prod/gn)
+- [CoinGecko GHST/USD simple price API](https://api.coingecko.com/api/v3/simple/price?ids=aavegotchi&vs_currencies=usd)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with bash, GraphQL, and Python command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Dry-run transaction simulation is the default; real broadcasts require explicit environment and confirmation gates.]
+
+## Skill Version(s):
+
+0.1.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

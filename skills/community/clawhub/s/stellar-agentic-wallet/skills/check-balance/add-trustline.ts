@@ -6,7 +6,7 @@
  * to receive Classic USDC payments, swap on the DEX, or cash out, you do.
  *
  * Usage:
- *   npx tsx skills/check-balance/add-trustline.ts [base flags]
+ *   ./node_modules/.bin/tsx skills/check-balance/add-trustline.ts [base flags]
  *
  * Base flags: --secret-file, --network, --horizon-url  (see cli-config.ts)
  */
@@ -43,7 +43,7 @@ function resolveInputs(): RunInputs {
  * Add a USDC Classic trustline. Exported so callers (e.g. onboard)
  * can invoke this in-process instead of spawning a child tsx call.
  * The CLI entry point at the bottom of this file wraps the same
- * function for direct `npx tsx add-trustline.ts` invocations.
+ * function for direct `./node_modules/.bin/tsx add-trustline.ts` invocations.
  */
 export async function runAddTrustline(inputs: RunInputs): Promise<void> {
   const { base, secret } = inputs;

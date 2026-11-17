@@ -1,43 +1,56 @@
-## Description: <br>
-Helps agents design, audit, debug, and document computational drug-discovery, molecular-modeling, structural-bioinformatics, and computational-chemistry workflows with emphasis on physical and mathematical rigor. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+SciProjDesigner helps agents stress-test, design, audit, debug, and document computational drug discovery, molecular modeling, and structural bioinformatics workflows.
 
-## Publisher: <br>
-[chenbq18](https://clawhub.ai/user/chenbq18) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chenbq18](https://clawhub.ai/user/chenbq18)
 
-## Use Case: <br>
-Researchers, computational scientists, and developers use this skill to stress-test CADD and molecular-modeling methods, build tiered solution plans, review scientific code, and draft methodology sections. It is most useful when a request involves docking, binding pockets, MD simulation, structural biology, or related Python scientific-computing workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Scientific recommendations may read like expert review but are not validated research conclusions. <br>
-Mitigation: Independently verify methods, citations, benchmarks, and safety-critical scientific decisions before relying on them. <br>
-Risk: Broad activation can affect drug-discovery, molecular-modeling, structural-biology, and related debugging requests. <br>
-Mitigation: Scope requests explicitly and review generated plans or code before applying them to computational or experimental workflows. <br>
+## Use Case:
 
+Developers, researchers, and scientific reviewers use this skill to evaluate CADD, computational chemistry, molecular modeling, and AI-driven drug discovery methods, including code review for NumPy, MDAnalysis, RDKit, and OpenMM workflows. It produces structured audits, tiered solution plans, methodology guidance, and corrected code snippets when the task is within the molecular modeling domain.
 
-## Reference(s): <br>
-- [Skill release page](https://clawhub.ai/chenbq18/research-project-designer) <br>
-- [Execution Protocols by Category](references/protocols.md) <br>
-- [Solution Templates - Hierarchical Decision Matrix](references/solution-templates.md) <br>
-- [Bulletproof Code Patterns for Computational Biology](references/code-patterns.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Guidance] <br>
-**Output Format:** [Markdown with structured audits, solution matrices, next steps, equations, and code blocks when relevant] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Responses are expected to separate scientific constraints, uncertainty, and actionable next-step options.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill is domain-specific and may be a poor fit for generic coding tasks outside computational biology or molecular modeling.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it primarily for CADD, computational chemistry, structural bioinformatics, molecular modeling, and related scientific code review tasks.
+
+Risk: The skill intentionally uses a critical review posture that may overemphasize methodological weaknesses when the user needs neutral implementation help.
+
+Mitigation: Scope requests explicitly when only code repair, formatting, or a narrow implementation answer is needed.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/chenbq18/skills/research-project-designer)
+- [Execution Protocols by Category](references/protocols.md)
+- [Solution Templates - Hierarchical Decision Matrix](references/solution-templates.md)
+- [Bulletproof Code Patterns for Computational Biology](references/code-patterns.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with structured headings, lists, equations, and code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responses are expected to use a critical scientific review tone and end with two to three actionable next-step options for non-trivial tasks.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

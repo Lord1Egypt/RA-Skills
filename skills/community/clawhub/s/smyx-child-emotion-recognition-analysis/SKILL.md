@@ -1,7 +1,7 @@
 ---
 name: "child-emotion-recognition-analysis"
 description: "Identifies negative emotions such as crying, anger, fear, and distress through surveillance footage. It actively issues soothing reminders and notifies parents, making it suitable for homes, kindergartens, and daycare centers. | 儿童情绪识别分析技能，通过监控画面识别儿童哭闹、愤怒、恐惧、委屈等负面情绪，主动发出安抚提醒并通知家长，适用于家庭、幼儿园、托管场所等场景"
-version: "1.0.6"
+version: "1.0.24"
 license: "MIT-0"
 ---
 

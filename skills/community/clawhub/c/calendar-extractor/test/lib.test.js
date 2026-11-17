@@ -11,6 +11,7 @@ const {
   normalizeEvent,
   dedupKey,
   toNaiveLocal,
+  zonelessLocalToUtcIso,
   buildSkillDataItems,
   pruneSeen,
 } = require('../scripts/lib');
@@ -141,15 +142,71 @@ test('toNaiveLocal renders the instant as naive wall-clock in tz (no Z)', () => 
   assert.equal(toNaiveLocal('not-a-date', 'America/Los_Angeles'), null);
 });
 
-test('buildSkillDataItems emits naive-local start/end and instant-based dedup_key', () => {
+// ---- zonelessLocalToUtcIso (absolute-instant conversion) -----------------
+// Per 2026-07-24-calendar-absolute-instant-timezone-design.md §B: a ZONELESS
+// wall-clock is interpreted in `tz` (NOT the process/container TZ) and returned
+// as the corresponding UTC instant with Z; a zoned input keeps its instant.
+test('zonelessLocalToUtcIso interprets a zoneless wall-clock in tz, independent of process.env.TZ', () => {
+  const savedTz = process.env.TZ;
+  // Pin the process TZ to the buggy container zone. The OLD `new Date(zoneless)`
+  // path would read "7pm" as 7pm PDT here; the helper must ignore process TZ and
+  // read it as 7pm Asia/Shanghai (UTC+8) -> 11:00Z.
+  process.env.TZ = 'America/Los_Angeles';
+  try {
+    assert.equal(zonelessLocalToUtcIso('2026-07-24T19:00:00', 'Asia/Shanghai'), '2026-07-24T11:00:00Z');
+    assert.equal(zonelessLocalToUtcIso('2026-07-24T20:00:00', 'Asia/Shanghai'), '2026-07-24T12:00:00Z');
+    // A space-separated wall-clock is accepted too.
+    assert.equal(zonelessLocalToUtcIso('2026-01-15 09:00:00', 'America/Los_Angeles'), '2026-01-15T17:00:00Z'); // PST -8
+    assert.equal(zonelessLocalToUtcIso('2026-07-15T09:00:00', 'America/Los_Angeles'), '2026-07-15T16:00:00Z'); // PDT -7
+  } finally {
+    if (savedTz === undefined) delete process.env.TZ; else process.env.TZ = savedTz;
+  }
+});
+
+test('zonelessLocalToUtcIso keeps the instant of an already-zoned input (Z or offset)', () => {
+  // Z input -> same instant, normalized to second-precision Z.
+  assert.equal(zonelessLocalToUtcIso('2026-06-06T04:00:00Z', 'America/Los_Angeles'), '2026-06-06T04:00:00Z');
+  assert.equal(zonelessLocalToUtcIso('2026-06-06T04:00:00.000Z', 'America/New_York'), '2026-06-06T04:00:00Z');
+  // A ±HH:MM offset is a real instant regardless of tz: 19:00+08:00 == 11:00Z.
+  assert.equal(zonelessLocalToUtcIso('2026-07-24T19:00:00+08:00', 'America/Los_Angeles'), '2026-07-24T11:00:00Z');
+  // Falsy / unparseable -> null (matches toNaiveLocal's contract).
+  assert.equal(zonelessLocalToUtcIso(null, 'Asia/Shanghai'), null);
+  assert.equal(zonelessLocalToUtcIso('not-a-date', 'Asia/Shanghai'), null);
+});
+
+// The canonical bicycle repro (spec "Canonical acceptance test case"): a user in
+// Asia/Shanghai types "July 24 7-8pm". The extractor must emit the correct
+// absolute instant 11:00Z/12:00Z REGARDLESS of the container TZ — proving the
+// container-tz bug is gone. ev.startAt/endAt are the LLM's zoneless wall-clock.
+test('buildSkillDataItems emits the correct UTC instant for a zoneless event, independent of container TZ', () => {
+  const savedTz = process.env.TZ;
+  process.env.TZ = 'America/Los_Angeles'; // pin the buggy container zone
+  try {
+    const ev = {
+      title: 'bring son to ride bicycle',
+      startAt: '2026-07-24T19:00:00', endAt: '2026-07-24T20:00:00', // zoneless, LLM local wall-clock
+      location: null, attendees: [], notes: null, sourceRef: 'sid-1', sourceKind: 'keyboard', leadTime: 10,
+    };
+    const [item] = buildSkillDataItems([ev], 'Asia/Shanghai');
+    assert.equal(item.start_at, '2026-07-24T11:00:00Z'); // 7pm Shanghai == 11:00Z, not 7pm PDT
+    assert.equal(item.end_at, '2026-07-24T12:00:00Z');
+    assert.match(item.start_at, /Z$/);
+  } finally {
+    if (savedTz === undefined) delete process.env.TZ; else process.env.TZ = savedTz;
+  }
+});
+
+test('buildSkillDataItems emits absolute-instant (Z) start/end and instant-based dedup_key', () => {
   const ev = normalizeEvent({
     title: 'Meeting', start_at: '2026-06-06T04:00:00Z', end_at: '2026-06-06T04:30:00Z',
     source_ref: '521', source_kind: 'keyboard',
   });
   const [item] = buildSkillDataItems([ev], 'America/Los_Angeles');
-  assert.equal(item.start_at, '2026-06-05T21:00:00');  // 9:00 PM local, not 04:00Z
-  assert.equal(item.end_at, '2026-06-05T21:30:00');
-  assert.doesNotMatch(item.start_at, /Z$/);
+  // Absolute-instant semantics: a zoned input keeps its instant, serialized as
+  // UTC ISO with Z (the server marks is_utc and iOS renders it device-local).
+  assert.equal(item.start_at, '2026-06-06T04:00:00Z');
+  assert.equal(item.end_at, '2026-06-06T04:30:00Z');
+  assert.match(item.start_at, /Z$/);
   assert.equal(item.dedup_key, dedupKey(ev));          // dedup identity unchanged
   assert.equal(item.source_ref, '521');
   assert.equal(item.status, 'pending');                // Flow 3: written pending, confirm-to-solid

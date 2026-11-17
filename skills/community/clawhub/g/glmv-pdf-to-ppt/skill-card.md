@@ -1,43 +1,58 @@
-## Description: <br>
-Convert a PDF research paper, report, or other document into a multi-slide HTML presentation with a structured outline JSON and summary markdown. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert a PDF, such as a research paper, report, or other document, into a polished multi-slide HTML presentation with a structured outline JSON and summary markdown.
 
-## Publisher: <br>
-[zai-org](https://clawhub.ai/user/zai-org) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zai-org](https://clawhub.ai/user/zai-org)
 
-## Use Case: <br>
-Developers, researchers, and document authors use this skill to turn local or trusted PDF documents into structured HTML slide decks with generated outlines, cropped visuals, and summary markdown. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Remote PDF download is under-scoped and may fetch untrusted content. <br>
-Mitigation: Prefer local PDFs or trusted HTTPS URLs; add URL confirmation, host blocking, size and type limits, and download timeouts before broad use. <br>
-Risk: The crop helper can write outside the intended crops folder. <br>
-Mitigation: Fix crop filename sanitization and review generated crop paths before using the skill in shared or sensitive workspaces. <br>
-Risk: Sensitive documents may be rendered into local page images and reviewed during slide generation. <br>
-Mitigation: Avoid sensitive PDFs unless local rendered copies and agent viewing are acceptable under the user's data-handling policy. <br>
+## Use Case:
 
+External users, developers, and researchers use this skill when they need an agent to convert a local or URL-hosted PDF into a slide deck with extracted visuals, a slide outline, and a written summary.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/zai-org/glmv-pdf-to-ppt) <br>
-- [GLM-V PDF-to-PPT homepage](https://github.com/zai-org/GLM-V/tree/main/skills/glmv-pdf-to-ppt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [HTML slide files, JSON outline, Markdown summary, cropped image files, and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates an output folder under ppt/<pdf_stem>_<timestamp>/ with slide HTML, outline.json, crops, and summary.md.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill can download user-provided PDF URLs and process full document contents.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer local PDFs, restrict network and workspace access, and avoid using untrusted URLs unless the execution environment is isolated.
+
+Risk: Output file handling and slide HTML generation need review before processing untrusted documents.
+
+Mitigation: Constrain generated filenames and output paths, escape user-controlled HTML content, and review generated slides before sharing.
+
+Risk: The skill writes presentation files and cropped images into the workspace.
+
+Mitigation: Run it in a restricted workspace with pinned dependencies and inspect the generated files before moving them into trusted projects.
+
+## Reference(s):
+
+- [GLM-V PDF-to-PPT homepage](https://github.com/zai-org/GLM-V/tree/main/skills/glmv-pdf-to-ppt)
+- [ClawHub skill page](https://clawhub.ai/zai-org/skills/glmv-pdf-to-ppt)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with shell commands plus generated JSON, HTML, PNG, and Markdown files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates a timestamped ppt/<pdf_stem>_<timestamp>/ directory containing outline.json, cropped images, slide HTML files, index.html, and summary.md.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

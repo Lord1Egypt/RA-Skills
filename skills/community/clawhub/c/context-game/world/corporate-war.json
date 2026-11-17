@@ -1,0 +1,90 @@
+{
+  "meta": {
+    "name": "中洲并购战",
+    "tone_family": "corporate-war",
+    "tone_variant": "并购博弈",
+    "version": 1
+  },
+  "continents": [
+    {
+      "id": "continent_central",
+      "name": "中洲",
+      "summary": "资本与监管交汇的金融都会，要约收购、对赌、反垄断在此短兵相接，一栋楼里能同时坐着敌我与裁判。"
+    }
+  ],
+  "nations": [
+    {
+      "id": "nation_bedrock",
+      "name": "磐石集团",
+      "continent": "continent_central",
+      "summary": "发起敌意要约收购的产业巨头，要在30日期限内吞下郑氏实业，不惜在申报口径上踩线。",
+      "tension_seeds": [
+        "对郑氏实业发起敌意要约收购，30日期限内须完成，作战室压价手法激进",
+        "申报材料在反垄断口径上'恰好'规避一条，怕被反垄断委翻出"
+      ]
+    },
+    {
+      "id": "nation_lianrui",
+      "name": "联锐盟",
+      "continent": "continent_central",
+      "summary": "由友商结成的反收购白骑士联盟，牵头反收购财团任郑氏白衣骑士，自身资金链却紧。",
+      "tension_seeds": [
+        "牵头反收购财团任郑氏白衣骑士，与磐石的收购线正面相撞",
+        "自身资金链紧，与郑氏签的一致行动人协议藏'超期自动退出'条款"
+      ]
+    },
+    {
+      "id": "nation_dinghui",
+      "name": "鼎晖资本",
+      "continent": "continent_central",
+      "summary": "本轮并购的投行枢纽，双面下注：既任郑氏防御顾问，又与磐石暗通，准备股价破位时倒戈。",
+      "tension_seeds": [
+        "双面下注：同时任郑氏防御顾问又与磐石暗通，准备股价破位倒戈收割",
+        "给联锐的过桥贷款埋对赌，郑氏失守鼎晖先受偿"
+      ]
+    },
+    {
+      "id": "nation_hengyu",
+      "name": "衡宇律所",
+      "continent": "continent_central",
+      "summary": "郑氏御用律所，表面辩护却在向反垄断委递对郑氏不利的备忘，托管档案成多方争夺焦点。",
+      "tension_seeds": [
+        "御用律所却向反垄断委递对郑氏不利备忘，表面辩护实自保",
+        "保管郑氏未公开股权代持托管协议，成多方争夺焦点"
+      ]
+    },
+    {
+      "id": "nation_zhengshi",
+      "name": "郑氏实业",
+      "continent": "continent_central",
+      "summary": "被敌意要约的家族企业，部分股权由关联方代持，触发阈值将失过半表决权，家族内斗反成收购命门。",
+      "tension_seeds": [
+        "部分股权由关联方代持，触发5%举牌或30%要约阈值将失过半表决权",
+        "家族内斗：长老埋代持结构欲架空二代，反成收购命门"
+      ]
+    }
+  ],
+  "neutral_port": {
+    "id": "port_antitrust",
+    "name": "反垄断委",
+    "continent": "continent_central",
+    "summary": "经营者集中审查的中立裁判，握有30+90日审查周期与强制要约认定权，各方都来申报也都被它卡着。"
+  },
+  "faction_matrix": {
+    "nation_bedrock|nation_dinghui": { "relation": 30, "note": "鼎晖曾为磐石做过融资，本轮表面站队郑氏，暗里仍与古岩勾兑" },
+    "nation_bedrock|nation_hengyu": { "relation": -35, "note": "衡宇代表郑氏防御，与磐石收购线立场相对，鲍辰规避的那条正卡在衡宇手里" },
+    "nation_bedrock|nation_lianrui": { "relation": -65, "note": "联锐盟作为郑氏白骑士牵头反收购财团，与磐石的收购线正面相撞" },
+    "nation_bedrock|nation_zhengshi": { "relation": -80, "note": "磐石对郑氏发起敌意要约收购，郑氏启动毒丸与一致行动人防御，双方进入收购战" },
+    "nation_bedrock|port_antitrust": { "relation": -20, "note": "磐石主动申报但申报口径'恰好'规避一条，反垄断委已起疑" },
+    "nation_dinghui|nation_hengyu": { "relation": 25, "note": "投行与律所协作做尽调与申报，流程上互相借力" },
+    "nation_dinghui|nation_lianrui": { "relation": 60, "note": "鼎晖与联锐是反收购财团的资金—投行搭档，但过桥贷款条款埋了对赌，郑氏若失守鼎晖先受偿——搭档里有债主暗桩" },
+    "nation_dinghui|nation_zhengshi": { "relation": 70, "note": "鼎晖表面担任郑氏防御顾问，实则暗中与磐石古岩勾兑，准备股价破位时倒戈收割——顾问席位是伪装" },
+    "nation_dinghui|port_antitrust": { "relation": 10, "note": "鼎晖在反垄断口径上两头讨好，岳桐的沉默是关键" },
+    "nation_hengyu|nation_lianrui": { "relation": 55, "note": "衡宇是联锐盟御用律所，但为保牌照已向反垄断委递对郑氏不利备忘——同盟里有自保的暗手" },
+    "nation_hengyu|nation_zhengshi": { "relation": -45, "note": "衡宇对郑氏防御方案有保留，钟屿的'自保备忘'已伤及委托方" },
+    "nation_hengyu|port_antitrust": { "relation": 40, "note": "衡宇与反垄断委长期博弈申报口径，温律的托管协议是焦点" },
+    "nation_lianrui|nation_zhengshi": { "relation": 68, "note": "联锐牵头反收购财团与郑氏签一致行动人，但协议藏'超期自动退出'条款，联锐资金链一紧先撤——同盟承重墙有裂缝" },
+    "nation_lianrui|port_antitrust": { "relation": 5, "note": "联锐主动配合审查表姿态，实则怕审查拖垮资金节奏" },
+    "nation_zhengshi|port_antitrust": { "relation": 35, "note": "郑氏申报防御但被查代持，反垄断委的阈值认定直接决定郑烨会否失表决权" }
+  }
+}

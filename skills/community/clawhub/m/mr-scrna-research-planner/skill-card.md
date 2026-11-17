@@ -1,46 +1,63 @@
-## Description: <br>
-Generates complete Mendelian Randomization and single-cell transcriptomics research designs with workload options, a recommended plan, workflow steps, figures, validation, and publication upgrades. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates structured Mendelian Randomization plus single-cell RNA-seq research designs from a user-provided biomedical research direction.
 
-## Publisher: <br>
-[AIPOCH-AI](https://clawhub.ai/user/AIPOCH-AI) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aipoch-ai](https://clawhub.ai/user/aipoch-ai)
 
-## Use Case: <br>
-Biomedical researchers and computational biology teams use this skill to plan MR plus scRNA-seq studies from a disease, mechanism theme, exposure, or candidate gene direction. It produces study patterns, workload choices, method steps, figure plans, validation strategy, and publication upgrade guidance for computational research design. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated biomedical or causal claims may be mistaken for validated evidence or clinical advice. <br>
-Mitigation: Use outputs only as computational study planning guidance; verify methods and data sources independently and do not use them for clinical decisions, dosing, trial protocols, or regulatory advice. <br>
-Risk: MR and scRNA-seq plans can overstate causality if correlation-level single-cell findings are blended with causal inference. <br>
-Mitigation: Review outputs for explicit separation of correlation-level and causal-level evidence, and require experimental or clinical validation before applying causal interpretations. <br>
+## Use Case:
 
+External biomedical researchers and bioinformatics practitioners use this skill to design computational MR plus scRNA-seq studies with workload options, a recommended primary plan, validation strategy, figure plan, and publication upgrade path.
 
-## Reference(s): <br>
-- [Analysis Module Library](references/analysis-modules.md) <br>
-- [Figure and Deliverable Plan](references/figure-deliverable-plan.md) <br>
-- [Method Library](references/method-library.md) <br>
-- [Study Patterns - Detailed Logic](references/study-patterns.md) <br>
-- [Validation and Evidence Hierarchy](references/validation-evidence-hierarchy.md) <br>
-- [Workflow Step Template](references/workflow-step-template.md) <br>
-- [Workload Configurations](references/workload-configurations.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Structured Markdown with tables and sectioned research-plan guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes four workload configurations, one recommended primary plan, workflow steps, validation hierarchy, a minimal executable version, and a publication upgrade path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: ClawHub release metadata) <br>
+Risk: Users may mistake biomedical research plans for clinical, medical, regulatory, or prescriptive advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use outputs only for computational research planning and independently verify all biological claims, datasets, tool choices, and causal interpretations.
+
+Risk: MR and scRNA-seq findings can be overinterpreted when associative single-cell evidence is presented as causal evidence.
+
+Mitigation: Keep correlation-level and causal-level evidence separate, and require experimental or clinical validation before applying causal interpretations.
+
+Risk: Study designs may depend on unsuitable public datasets, weak instruments, or missing validation cohorts.
+
+Mitigation: Check dataset fit, instrument strength, ancestry compatibility, and validation availability before executing a proposed plan.
+
+## Reference(s):
+
+- [Analysis Module Library](references/analysis-modules.md)
+- [Figure and Deliverable Plan](references/figure-deliverable-plan.md)
+- [Method Library](references/method-library.md)
+- [Study Patterns](references/study-patterns.md)
+- [Validation and Evidence Hierarchy](references/validation-evidence-hierarchy.md)
+- [Workflow Step Template](references/workflow-step-template.md)
+- [Workload Configurations](references/workload-configurations.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Structured Markdown research plan with tables and sectioned workflow]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes four workload configurations, one recommended primary plan, validation strategy, figure plan, minimal executable version, and publication upgrade path.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

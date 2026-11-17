@@ -1,41 +1,55 @@
-## Description: <br>
-Generate and deliver a Hacker News daily report with Top-N article summaries and multi-view comment synthesis in a user-selected language, with optional file persistence and index updates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate and deliver a Hacker News daily report (Top-N) with article summaries and multi-view comment synthesis, in user-selected language, with optional file persistence and index update.
 
-## Publisher: <br>
-[liu7yong](https://clawhub.ai/user/liu7yong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liu7yong](https://clawhub.ai/user/liu7yong)
 
-## Use Case: <br>
-External users and developers use this skill to have an agent fetch current Hacker News stories, gather article snippets and comments, and produce a concise daily Markdown brief. It can also persist the report and maintain an index when configured to do so. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill fetches live Hacker News content and linked article pages, so generated briefs may reflect unavailable, incomplete, or changing source material. <br>
-Mitigation: Review the generated brief before relying on it, and keep the source/comment separation and short-source markers required by the skill enabled. <br>
-Risk: When persistence or scheduling is enabled, the agent can write report files locally and create recurring runs. <br>
-Mitigation: Review outputDir, persist, and reminderTime before enabling scheduled operation, and use the built-in retry and idempotency checks to avoid duplicate reports. <br>
+## Use Case:
 
+External users and developers use this skill to generate a daily Hacker News brief with source summaries, comment viewpoint synthesis, optional saved Markdown output, and index updates.
 
-## Reference(s): <br>
-- [Hacker News Firebase API](https://hacker-news.firebaseio.com/v0) <br>
-- [HN Daily Brief on ClawHub](https://clawhub.ai/liu7yong/hn-daily-brief) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Text, Files, JSON, Shell commands, Configuration] <br>
-**Output Format:** [Markdown report delivered in chat, optional Markdown files and index updates, and intermediate JSON materials for report generation.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Configurable language, Top-N count, strict or lite style, output directory, persistence, and optional scheduled reminder time.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.8.2 (source: server release evidence and release notes) <br>
+Risk: The skill fetches live Hacker News stories and follows third-party article URLs from the user's environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it in a sandboxed or network-restricted environment and add URL validation or an allowlist before unattended use.
+
+Risk: Scheduled retry jobs may run automatically and repeatedly if reminders are enabled.
+
+Mitigation: Disable scheduling unless needed and review scheduled jobs for isolation, idempotency, and expected timing.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/liu7yong/skills/hn-daily-brief)
+- [Hacker News Firebase API](https://hacker-news.firebaseio.com/v0)
+- [Hacker News Item Pages](https://news.ycombinator.com/item?id={sid})
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown report body with optional saved Markdown files and JSON materials]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports language, Top-N count, strict or lite style, output directory, persistence, and optional scheduled reminder settings.]
+
+## Skill Version(s):
+
+0.8.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

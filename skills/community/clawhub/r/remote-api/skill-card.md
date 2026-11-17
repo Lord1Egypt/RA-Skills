@@ -1,41 +1,59 @@
-## Description: <br>
-Expose a local API service to the public internet via aitun tunnel for external testing and integration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Expose a local API service to the public internet via aitun tunnel for external testing and integration.
 
-## Publisher: <br>
-[ctz168](https://clawhub.ai/user/ctz168) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ctz168](https://clawhub.ai/user/ctz168)
 
-## Use Case: <br>
-Developers and engineers use this skill to expose a locally running REST, GraphQL, gRPC, or HTTP API through an aitun public tunnel for external testing, review, and integration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A public tunnel can expose local APIs, secrets, admin routes, debug routes, private data, or unauthenticated write endpoints to the internet. <br>
-Mitigation: Use the tunnel only for services intended to be internet-reachable; review exposed routes and add authentication and rate limiting before sharing the public URL. <br>
-Risk: Tunnel sessions can leave a local service reachable longer than intended during testing. <br>
-Mitigation: Stop the aitun process when testing is complete and avoid exposing private services such as databases or SSH unless that exposure is intentional and protected. <br>
+## Use Case:
 
+Developers and engineers use this skill to expose a local REST, GraphQL, gRPC, WebSocket, or HTTP API through a public tunnel for external testing, QA, and integration work.
 
-## Reference(s): <br>
-- [AiTun homepage](https://aitun.cc) <br>
-- [ClawHub skill page](https://clawhub.ai/ctz168/skills/remote-api) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes local service startup examples, tunnel commands, endpoint sharing text, test commands, and cleanup guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: frontmatter and server release evidence) <br>
+Risk: The skill can expose local services to the public internet.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Expose only APIs intended for external testing, avoid secret-bearing debug endpoints or admin panels, and stop the tunnel when testing is complete.
+
+Risk: The skill includes curl-to-bash and PowerShell installer commands.
+
+Mitigation: Prefer pinned package-manager installation in an isolated environment and review installer contents before use.
+
+Risk: Tunneled services may be reachable by unintended clients.
+
+Mitigation: Use application-level authentication, rate limiting, and CORS controls appropriate for the test audience.
+
+## Reference(s):
+
+- [AiTun homepage](https://aitun.cc)
+- [ClawHub skill page](https://clawhub.ai/ctz168/skills/remote-api)
+- [ClawHub metadata link](https://clawhub.ai/ctz168/remote-api)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with inline shell commands and endpoint examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides the agent through installing aitun, starting a local service, creating a tunnel, sharing a public URL, testing endpoints, and cleaning up.]
+
+## Skill Version(s):
+
+1.0.6 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

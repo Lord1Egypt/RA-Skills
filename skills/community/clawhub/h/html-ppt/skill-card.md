@@ -1,46 +1,61 @@
-## Description: <br>
-HTML PPT Studio helps agents author professional static HTML presentations using bundled themes, layouts, full-deck templates, animations, and keyboard-ready runtime assets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+HTML PPT Studio helps agents author professional static HTML presentations using bundled themes, layouts, full-deck templates, animations, and rendering utilities.
 
-## Publisher: <br>
-[lewislulu](https://clawhub.ai/user/lewislulu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lewislulu](https://clawhub.ai/user/lewislulu)
 
-## Use Case: <br>
-Developers, designers, and agents use this skill to turn outlines, notes, or presentation requests into static HTML slide decks, pitch decks, reports, technical talks, keynote-style presentations, and Xiaohongshu-style visual posts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Confidential decks may load third-party CDN resources such as fonts, Chart.js, or highlight.js. <br>
-Mitigation: Bundle external libraries and fonts locally for confidential or restricted presentations. <br>
-Risk: Bundled demo slides may contain placeholder commands, API-key examples, or sensitive-tool examples that are not intended for production reuse. <br>
-Mitigation: Review demo content before copying it into real projects, and confirm credential handling, command scope, and backup expectations. <br>
+## Use Case:
 
+Developers, content creators, and presentation authors use this skill to turn outlines or source material into polished HTML slide decks, reports, pitch decks, technical talks, and social-card style slide sets.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lewislulu/html-ppt) <br>
-- [README](artifact/README.md) <br>
-- [Authoring guide](artifact/references/authoring-guide.md) <br>
-- [Themes catalog](artifact/references/themes.md) <br>
-- [Layouts catalog](artifact/references/layouts.md) <br>
-- [Animations catalog](artifact/references/animations.md) <br>
-- [Full-deck templates catalog](artifact/references/full-decks.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with HTML, CSS, JavaScript, and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces static HTML slide-deck files and optional PNG exports through the bundled render script.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Optional rendering and template execution can expose users to unsafe behavior when decks or templates come from untrusted sources.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review decks before rendering, avoid untrusted decks, and run rendering inside an isolated container for sensitive workflows.
+
+Risk: Some presentation templates may load remote JavaScript or other CDN-hosted assets.
+
+Mitigation: Vendor or integrity-pin remote assets before using chart, code, or template features in sensitive environments.
+
+Risk: Installing an unpinned skill source can make later installs differ from the reviewed release.
+
+Mitigation: Pin the skill source to a reviewed commit or release before deployment.
+
+## Reference(s):
+
+- [Authoring Guide](references/authoring-guide.md)
+- [Themes Catalog](references/themes.md)
+- [Layouts Catalog](references/layouts.md)
+- [Animations Catalog](references/animations.md)
+- [Full-Deck Templates Catalog](references/full-decks.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Files, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with HTML, CSS, JavaScript, and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces static presentation assets and optional PNG exports through bundled templates and scripts.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

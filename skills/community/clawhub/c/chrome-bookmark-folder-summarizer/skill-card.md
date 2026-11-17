@@ -1,40 +1,57 @@
-## Description: <br>
-Reads Chrome bookmarks and extracts URLs by a user-provided folder name, then generates batch webpage summaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reads Chrome bookmarks and extracts URLs by a user-provided folder name, then generates batch webpage summaries.
 
-## Publisher: <br>
-[blacker521](https://clawhub.ai/user/blacker521) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[blacker521](https://clawhub.ai/user/blacker521)
 
-## Use Case: <br>
-Developers, researchers, and knowledge workers use this skill to extract URLs from a named Chrome bookmark folder and produce structured summaries of the saved pages. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads bookmark titles and URLs from the selected Chrome bookmark folder, which may expose private, work, internal, or sensitive links. <br>
-Mitigation: Use exact folder matching where possible, narrow scope with non-recursive or pick-first options when appropriate, and review extracted URLs before summarizing large or sensitive folders. <br>
-Risk: Summarizing bookmarked pages may require visiting external URLs and processing page content outside the local bookmark file. <br>
-Mitigation: Confirm the target folder and review the URL list before fetching or summarizing pages, especially for internal or access-controlled sites. <br>
+## Use Case:
 
+External users and developers use this skill to extract URLs from a named Chrome bookmark folder and summarize the bookmarked webpages in batch. It is useful when a user wants a structured overview, comparison, and reading order for saved links.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/blacker521/chrome-bookmark-folder-summarizer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with JSON extraction results and structured page summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Preserves original bookmark order and includes a cross-page comparison when summaries are generated.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill reads local Chrome bookmark data for a named folder, which may reveal private saved links.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for folders intended for summarization and review the extracted URL list before fetching pages.
+
+Risk: Bookmarked URLs may include private intranet or authenticated pages.
+
+Mitigation: Avoid running the skill on folders containing private or authenticated links unless that access is intended.
+
+Risk: Fetched webpage content can be stale, misleading, or adversarial.
+
+Mitigation: Treat page content as untrusted and review summaries before acting on them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/blacker521/skills/chrome-bookmark-folder-summarizer)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, JSON, Markdown, Guidance]
+
+**Output Format:** [Markdown summary with JSON URL extraction output and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Preserves original bookmark order and includes a cross-page comparison.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

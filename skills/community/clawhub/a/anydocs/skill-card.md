@@ -1,44 +1,63 @@
-## Description: <br>
-Generic Documentation Indexing & Search. Index any documentation site (SPA/static) and search it instantly. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generic Documentation Indexing and Search indexes documentation sites, including SPAs and static docs, and lets agents search them from CLI or Python workflows.
 
-## Publisher: <br>
-[Pektech](https://clawhub.ai/user/Pektech) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[pektech](https://clawhub.ai/user/pektech)
 
-## Use Case: <br>
-Developers and agents use this skill to configure documentation profiles, index documentation sites, and retrieve ranked search results or fetched page text from the terminal or Python API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can crawl websites and cache retrieved documentation text locally. <br>
-Mitigation: Use approved documentation sources, avoid confidential or authenticated content unless authorized, and clear ~/.anydocs/cache when cached content should be removed. <br>
-Risk: Optional browser rendering can use a gateway token. <br>
-Mitigation: Use browser gateway tokens only with trusted local or HTTPS gateways and avoid committing tokens to repositories. <br>
-Risk: System-wide installation can alter the Python environment. <br>
-Mitigation: Prefer installation in a virtual environment unless system-wide installation has been reviewed and approved. <br>
+## Use Case:
 
+Developers and agents use anydocs to configure documentation profiles, index pages from sitemaps or crawls, and search cached documentation from terminal or Python workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Pektech/anydocs) <br>
-- [README](artifact/README.md) <br>
-- [Quick Start Examples](artifact/examples/QUICKSTART.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [CLI text and Markdown guidance with URLs, snippets, relevance scores, tags, and JSON-backed profile configuration.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can cache fetched pages and search indexes locally; browser rendering is optional for JavaScript-heavy documentation sites.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata and artifact/manifest.json) <br>
+Risk: Network behavior can retrieve and index untrusted or sensitive documentation URLs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted documentation URLs, and avoid indexing sensitive internal docs unless local cache retention is acceptable.
+
+Risk: Optional browser rendering and gateway-token behavior need review before installation.
+
+Mitigation: Use a trusted local gateway only, avoid non-loopback gateways, and do not pass tokens inline on shared systems.
+
+Risk: Cached pages and indexes may retain copied documentation content locally.
+
+Mitigation: Use the cache controls to clear retained content and review cache location and TTL before indexing private documentation.
+
+Risk: Pinned dependencies may age after release.
+
+Mitigation: Install in a virtual environment and update dependencies before use.
+
+## Reference(s):
+
+- [ClawHub anydocs release page](https://clawhub.ai/pektech/skills/anydocs)
+- [anydocs README](artifact/README.md)
+- [anydocs Quick Start Examples](artifact/examples/QUICKSTART.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown or terminal text with URLs, snippets, JSON configuration, and shell commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search results include rank, title, URL, relevance score, tags, and snippet when available.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence and artifact manifest)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

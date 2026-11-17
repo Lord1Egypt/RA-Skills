@@ -1,46 +1,59 @@
-## Description: <br>
-Runs a Python-based operations inspection that checks local host resources and detected middleware, then reports Kubernetes, log, and business indicators with documented hybrid or simulated sections. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+An operations inspection skill that checks host resources, middleware, Kubernetes status, logs, and business indicators, then summarizes health scores and findings.
 
-## Publisher: <br>
-[43622283](https://clawhub.ai/user/43622283) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[43622283](https://clawhub.ai/user/43622283)
 
-## Use Case: <br>
-Operations engineers and DevOps teams can use this skill to run local health checks across system resources, detected middleware, container, log, and business-metric layers. It is best suited for preliminary inspection reports and should not be treated as authoritative production monitoring without replacing simulated sections with real data collection. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Some default report sections can contain simulated operational findings. <br>
-Mitigation: Label simulated or hybrid sections clearly and replace them with real data collection before using the output for production decisions. <br>
-Risk: Exported inspection reports may contain sensitive environment or service details. <br>
-Mitigation: Review report contents, file permissions, retention, and sharing paths before enabling --export or scheduled runs. <br>
-Risk: Several checks require elevated host, service, or network visibility. <br>
-Mitigation: Run with the least privileges needed for the selected layers and document which checks are skipped when dependencies or permissions are missing. <br>
+## Use Case:
 
+Developers and operations engineers use this skill to run automated health checks across infrastructure, middleware, container, log, and business-signal layers. It can print a console report or export a JSON inspection report for follow-up analysis.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/43622283/li-patrol-2026) <br>
-- [README.md](artifact/README.md) <br>
-- [README_INSPECTION.md](artifact/README_INSPECTION.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [skill.json](artifact/skill.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, shell commands, guidance] <br>
-**Output Format:** [Console text with optional JSON report file export] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [When --export is used, the script writes an inspection_report_*.json file in the current working directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill.json) <br>
+Risk: The advertised layer selector may not limit what the script checks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the checks before use and do not rely on --layers for containment until the scope-control behavior is fixed.
+
+Risk: Inspection reports may contain sensitive operational details.
+
+Mitigation: Store exported reports in a restricted location and review them before sharing.
+
+Risk: Some checks may require elevated host visibility and can run broader host or service inspections than expected.
+
+Mitigation: Run from an unprivileged account by default and avoid sudo or scheduled execution unless the exact checks and report location have been reviewed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/43622283/skills/li-patrol-2026)
+- [README.md](artifact/README.md)
+- [README_INSPECTION.md](artifact/README_INSPECTION.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, files, shell commands, guidance]
+
+**Output Format:** [Console text report with optional JSON report file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports include host, operating system, layer results, health scores, risk counts, and remediation suggestions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

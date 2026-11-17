@@ -1,0 +1,55 @@
+# GOAL: {{TASK_TITLE}} (Parallel Aggregate)
+
+## 1. Objective and authorization
+
+- The Orchestrator is the sole writer of this file and aggregates every Worker item and integration state.
+- The user has confirmed parallel execution; each Worker references only `goals/<worker>.md` when creating its active Goal.
+- The Orchestrator normally has no active Goal.
+- Execution authorization: `not_authorized`; wait for explicit lane launch.
+- Document language: `{{DOCUMENT_LANGUAGE}}`.
+
+## 2. Workers and Reviewers
+
+{{WORKER_TABLE}}
+
+Default Worker model is `gpt-5.6-sol/high`; the default inherited Reviewer uses the same configuration. For every lane, record review mode, settings, enforcement method/status, acceptance receipt, and actual settings when observable.
+
+By default, fork each lane Worker from one planning boundary, let it read its task/code, then create its full-history inherited Reviewer before implementation. Record `self_review`, fixed, fresh, or blind-review overrides in `coordination/lanes.md`.
+
+## 3. Launch-configuration confirmation
+
+- `launch_config_status`: `not_proposed / proposed / confirmed`
+- Provenance priority: current user request -> task package -> same-family history -> project default -> skill default.
+- User confirmation receipt and time: To fill.
+- Per-lane sessions, worktrees, dependencies, and models: `coordination/lanes.md`.
+- External actions: real provider, server, migration, Release, and push are false unless explicitly confirmed for this batch.
+
+Before confirmation, do not create or reuse lane sessions, active Goals, or worktrees, and do not start implementation. After confirmation, each lane remains blocked until its Worker and Reviewer contexts have `enforced` model receipts.
+
+## 4. Aggregate work-item state
+
+| Work item | Part | Owner | State | Worker GOAL | Execution | Review receipt |
+| --- | --- | --- | --- | --- | --- | --- |
+{{PARALLEL_POINT_ROWS}}
+
+## 5. Parts and integration gates
+
+| Part | Lane approved | Integrated | Post-integration validation | State |
+| --- | --- | --- | --- | --- |
+{{INTEGRATION_ROWS}}
+
+## 6. Completion conditions
+
+- [ ] Every Worker GOAL item is `approved`.
+- [ ] Every lane has an exact commit, clean worktree, and review receipt.
+- [ ] Integration follows dependency order and revalidates conflict-affected behavior.
+- [ ] Integration validation and cleanup records are complete.
+- [ ] Local task worktrees/branches follow the confirmed cleanup policy.
+- [ ] Root GOAL, Worker GOALs, execution, review, and coordination state agree.
+
+## 7. Aggregate receipt
+
+- Orchestrator task: To fill.
+- Target branch and baseline: To fill.
+- Final integration commit: To fill.
+- Final state: `pending`.

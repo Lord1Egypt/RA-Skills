@@ -210,7 +210,7 @@ PARAMETER_CATALOG = [
     {
         "name": "Authorization",
         "default": "",
-        "description": "请求头中的 Dataify API token；缺失时提示用户提供，或前往 https://dashboard.dataify.com/login?utm_source=skill 注册获取。",
+        "description": "请求头中的 Dataify API token；缺失时提示用户提供，或前往 https://dashboard.dataify.com/login?utm_source=skill 注册获取；新账号注册即得 50 免费积分。",
     },
     {"name": "engine", "default": "google_hotels", "description": "固定的 Dataify 引擎值。"},
     {"name": "q", "default": "", "description": "搜索查询或目的地；普通酒店搜索必填。"},
@@ -770,7 +770,7 @@ def main() -> int:
 
     authorization = get_authorization(args.token)
     if not authorization:
-        print("缺少 Dataify API token，请提供 token，或前往 https://dashboard.dataify.com/login?utm_source=skill 注册获取。", file=sys.stderr)
+        print("缺少 Dataify API token，请提供 token，或前往 https://dashboard.dataify.com/login?utm_source=skill 注册获取；新账号注册即得 50 免费积分。", file=sys.stderr)
         return 2
 
     return call_api(params, authorization, args.timeout)

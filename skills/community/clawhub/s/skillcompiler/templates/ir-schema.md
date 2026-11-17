@@ -58,44 +58,70 @@
         {
           "content": "string",
           "source": "from source prompt | inferred",
-          "target_file": "string"
+          "target_file": "string",
+          "evidence": "primary | secondary | inferred",
+          "confidence": 0.0
         }
       ],
       "templates": [
         {
           "name": "string",
           "structure": "string",
-          "target_file": "string"
+          "target_file": "string",
+          "evidence": "primary | secondary | inferred",
+          "confidence": 0.0
         }
       ],
       "domain_knowledge": [
         {
           "content": "string",
           "domain": "string",
-          "target_file": "string"
+          "target_file": "string",
+          "evidence": "primary | secondary | inferred",
+          "confidence": 0.0
         }
       ],
       "examples": [
         {
           "type": "minimal | normal | complex",
           "content": "string",
-          "target_file": "string"
+          "target_file": "string",
+          "evidence": "primary | secondary | inferred",
+          "confidence": 0.0
         }
       ],
       "standards": [
         {
           "type": "scoring | quality | acceptance",
           "content": "string",
-          "target_file": "string"
+          "target_file": "string",
+          "evidence": "primary | secondary | inferred",
+          "confidence": 0.0
         }
       ],
       "best_practices": [
         {
           "content": "string",
-          "target_file": "string"
+          "target_file": "string",
+          "evidence": "primary | secondary | inferred",
+          "confidence": 0.0
         }
       ]
     },
+    "conflicts": [
+      {
+        "topic": "string",
+        "versions": [
+          {
+            "content": "string",
+            "source": "string",
+            "evidence": "primary | secondary | inferred"
+          }
+        ],
+        "resolution": "unresolved | prefer_higher_evidence | prefer_newer | flag_for_user",
+        "note": "string"
+      }
+    ],
     "role_matrix": {
       "existing": [
         {

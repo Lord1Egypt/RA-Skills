@@ -1,11 +1,11 @@
 # ISYS\_HeaderMenus interface
 
-顶部菜单项
+Header menu item
 
 ## Signature
 
 ```typescript
-interface ISYS_HeaderMenus 
+interface ISYS_HeaderMenus
 ```
 
 ## Properties
@@ -14,211 +14,227 @@ interface ISYS_HeaderMenus
 
 Property
 
-
 </th><th>
 
 Modifiers
-
 
 </th><th>
 
 Type
 
-
 </th><th>
 
 Description
-
 
 </th></tr></thead>
 <tbody><tr><td>
 
 [blank?](./ISYS_HeaderMenus.md)
 
-
 </td><td>
-
 
 </td><td>
 
 Array&lt;[ISYS\_HeaderMenuTopMenuItem](./ISYS_HeaderMenuTopMenuItem.md)<!-- -->&gt;
 
-
 </td><td>
 
-_(Optional)_ 空白页
-
+_(Optional)_ Blank page
 
 </td></tr>
 <tr><td>
 
 [footprint?](./ISYS_HeaderMenus.md)
 
-
 </td><td>
-
 
 </td><td>
 
 Array&lt;[ISYS\_HeaderMenuTopMenuItem](./ISYS_HeaderMenuTopMenuItem.md)<!-- -->&gt;
 
-
 </td><td>
 
-_(Optional)_ 封装
-
+_(Optional)_ Footprint
 
 </td></tr>
 <tr><td>
 
 [home?](./ISYS_HeaderMenus.md)
 
-
 </td><td>
-
 
 </td><td>
 
 Array&lt;[ISYS\_HeaderMenuTopMenuItem](./ISYS_HeaderMenuTopMenuItem.md)<!-- -->&gt;
 
-
 </td><td>
 
-_(Optional)_ 主页
-
+_(Optional)_ Home
 
 </td></tr>
 <tr><td>
 
 [panel?](./ISYS_HeaderMenus.md)
 
-
 </td><td>
-
 
 </td><td>
 
 Array&lt;[ISYS\_HeaderMenuTopMenuItem](./ISYS_HeaderMenuTopMenuItem.md)<!-- -->&gt;
 
+</td><td>
+
+_(Optional)_ Panel
+
+</td></tr>
+<tr><td>
+
+[panelLibrary?](./ISYS_HeaderMenus.md)
 
 </td><td>
 
-_(Optional)_ 面板
+</td><td>
 
+Array&lt;[ISYS\_HeaderMenuTopMenuItem](./ISYS_HeaderMenuTopMenuItem.md)<!-- -->&gt;
+
+</td><td>
+
+_(Optional)_ Panel library
 
 </td></tr>
 <tr><td>
 
 [panelView?](./ISYS_HeaderMenus.md)
 
-
 </td><td>
-
 
 </td><td>
 
 Array&lt;[ISYS\_HeaderMenuTopMenuItem](./ISYS_HeaderMenuTopMenuItem.md)<!-- -->&gt;
 
-
 </td><td>
 
-_(Optional)_ 面板预览
-
+_(Optional)_ Panel preview
 
 </td></tr>
 <tr><td>
 
 [pcb?](./ISYS_HeaderMenus.md)
 
-
 </td><td>
-
 
 </td><td>
 
 Array&lt;[ISYS\_HeaderMenuTopMenuItem](./ISYS_HeaderMenuTopMenuItem.md)<!-- -->&gt;
 
-
 </td><td>
 
 _(Optional)_ PCB
-
 
 </td></tr>
 <tr><td>
 
 [pcbView?](./ISYS_HeaderMenus.md)
 
-
 </td><td>
-
 
 </td><td>
 
 Array&lt;[ISYS\_HeaderMenuTopMenuItem](./ISYS_HeaderMenuTopMenuItem.md)<!-- -->&gt;
 
-
 </td><td>
 
-_(Optional)_ PCB 预览（包括 2D、3D 预览）
-
+_(Optional)_ PCB preview (including 2D and 3D preview)
 
 </td></tr>
 <tr><td>
 
 [sch?](./ISYS_HeaderMenus.md)
 
-
 </td><td>
-
 
 </td><td>
 
 Array&lt;[ISYS\_HeaderMenuTopMenuItem](./ISYS_HeaderMenuTopMenuItem.md)<!-- -->&gt;
 
-
 </td><td>
 
 _(Optional)_ 原理图
-
 
 </td></tr>
 <tr><td>
 
 [schematic?](./ISYS_HeaderMenus.md)
 
-
 </td><td>
-
 
 </td><td>
 
 Array&lt;[ISYS\_HeaderMenuTopMenuItem](./ISYS_HeaderMenuTopMenuItem.md)<!-- -->&gt;
 
+</td><td>
+
+_(Optional)_ Schematic
+
+</td></tr>
+<tr><td>
+
+[simulationSchematicNgspice?](./ISYS_HeaderMenus.md)
 
 </td><td>
 
-_(Optional)_ 原理图
+</td><td>
 
+Array&lt;[ISYS\_HeaderMenuTopMenuItem](./ISYS_HeaderMenuTopMenuItem.md)<!-- -->&gt;
+
+</td><td>
+
+_(Optional)_ Simulation schematic: Ngspice
+
+</td></tr>
+<tr><td>
+
+[simulationSchematicNGspice?](./ISYS_HeaderMenus.md)
+
+</td><td>
+
+</td><td>
+
+Array&lt;[ISYS\_HeaderMenuTopMenuItem](./ISYS_HeaderMenuTopMenuItem.md)<!-- -->&gt;
+
+</td><td>
+
+_(Optional)_ 仿真原理图：Ngspice
+
+</td></tr>
+<tr><td>
+
+[simulationSchematicSimulIDE?](./ISYS_HeaderMenus.md)
+
+</td><td>
+
+</td><td>
+
+Array&lt;[ISYS\_HeaderMenuTopMenuItem](./ISYS_HeaderMenuTopMenuItem.md)<!-- -->&gt;
+
+</td><td>
+
+_(Optional)_ Simulation schematic: SimulIDE
 
 </td></tr>
 <tr><td>
 
 [symbol?](./ISYS_HeaderMenus.md)
 
-
 </td><td>
-
 
 </td><td>
 
 Array&lt;[ISYS\_HeaderMenuTopMenuItem](./ISYS_HeaderMenuTopMenuItem.md)<!-- -->&gt;
 
-
 </td><td>
 
-_(Optional)_ 符号（包括 CBB 符号）
-
+_(Optional)_ Symbol (including CBB symbols)
 
 </td></tr>
 </tbody></table>
@@ -231,7 +247,7 @@ _(Optional)_ 符号（包括 CBB 符号）
 
 # ISYS\_HeaderMenus.blank property
 
-空白页
+Blank page
 
 ## Signature
 
@@ -243,7 +259,7 @@ blank?: Array<ISYS_HeaderMenuTopMenuItem>;
 
 # ISYS\_HeaderMenus.footprint property
 
-封装
+Footprint
 
 ## Signature
 
@@ -255,7 +271,7 @@ footprint?: Array<ISYS_HeaderMenuTopMenuItem>;
 
 # ISYS\_HeaderMenus.home property
 
-主页
+Home
 
 ## Signature
 
@@ -267,7 +283,7 @@ home?: Array<ISYS_HeaderMenuTopMenuItem>;
 
 # ISYS\_HeaderMenus.panel property
 
-面板
+Panel
 
 ## Signature
 
@@ -275,11 +291,23 @@ home?: Array<ISYS_HeaderMenuTopMenuItem>;
 panel?: Array<ISYS_HeaderMenuTopMenuItem>;
 ```
 
+### panellibrary
+
+# ISYS\_HeaderMenus.panelLibrary property
+
+Panel library
+
+## Signature
+
+```typescript
+panelLibrary?: Array<ISYS_HeaderMenuTopMenuItem>;
+```
+
 ### panelview
 
 # ISYS\_HeaderMenus.panelView property
 
-面板预览
+Panel preview
 
 ## Signature
 
@@ -303,7 +331,7 @@ pcb?: Array<ISYS_HeaderMenuTopMenuItem>;
 
 # ISYS\_HeaderMenus.pcbView property
 
-PCB 预览（包括 2D、3D 预览）
+PCB preview (including 2D and 3D preview)
 
 ## Signature
 
@@ -317,7 +345,7 @@ pcbView?: Array<ISYS_HeaderMenuTopMenuItem>;
 
 > Warning: This API is now obsolete.
 >
-> 请使用 `schematic` 替代 `sch`
+> 请使用 `schematic` 替代
 
 原理图
 
@@ -331,7 +359,7 @@ sch?: Array<ISYS_HeaderMenuTopMenuItem>;
 
 # ISYS\_HeaderMenus.schematic property
 
-原理图
+Schematic
 
 ## Signature
 
@@ -339,11 +367,39 @@ sch?: Array<ISYS_HeaderMenuTopMenuItem>;
 schematic?: Array<ISYS_HeaderMenuTopMenuItem>;
 ```
 
+### simulationschematicngspice
+
+# ISYS\_HeaderMenus.simulationSchematicNGspice property
+
+> Warning: This API is now obsolete.
+>
+> 请使用 `simulationSchematicNgspice` 替代
+
+仿真原理图：Ngspice
+
+## Signature
+
+```typescript
+simulationSchematicNGspice?: Array<ISYS_HeaderMenuTopMenuItem>;
+```
+
+### simulationschematicsimulide
+
+# ISYS\_HeaderMenus.simulationSchematicSimulIDE property
+
+Simulation schematic: SimulIDE
+
+## Signature
+
+```typescript
+simulationSchematicSimulIDE?: Array<ISYS_HeaderMenuTopMenuItem>;
+```
+
 ### symbol
 
 # ISYS\_HeaderMenus.symbol property
 
-符号（包括 CBB 符号）
+Symbol (including CBB symbols)
 
 ## Signature
 

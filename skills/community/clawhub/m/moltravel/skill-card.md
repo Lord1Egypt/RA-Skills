@@ -1,45 +1,61 @@
-## Description: <br>
-MolTravel helps agents research trips using the MolTravel MCP server for flight search, price comparison, visa checks, destination information, travel advisories, airport and airline lookup, and activities. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill when the user asks about travel planning, trip research, flight searches, visa requirements, airport/airline lookups, destination info, travel safety, or activities at a destination.
 
-## Publisher: <br>
-[simonenavifare](https://clawhub.ai/user/simonenavifare) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[simonenavifare](https://clawhub.ai/user/simonenavifare)
 
-## Use Case: <br>
-External users and agents use this skill to plan trips, compare flights, check visa requirements, review destination facts and travel advisories, and find activities through MolTravel-connected tools. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Travel prompts and lookup parameters are sent to MolTravel's remote MCP service. <br>
-Mitigation: Avoid sending passport numbers, payment details, account credentials, or unusually sensitive itinerary information unless the provider's privacy practices have been verified. <br>
-Risk: Travel, visa, price, availability, and advisory results can become stale or vary by source. <br>
-Mitigation: Treat outputs as planning guidance and verify critical booking, entry, safety, and pricing details with authoritative providers before acting. <br>
-Risk: The skill provides comparison and booking links but is not intended to complete purchases. <br>
-Mitigation: Use the skill for research and comparison only; complete bookings directly with the selected provider after reviewing terms and final prices. <br>
+## Use Case:
 
+External users and developers use this skill to plan trips, research destinations, search flights, compare prices, check visa requirements, review travel advisories, and find activities through the MolTravel MCP server.
 
-## Reference(s): <br>
-- [Moltravel ClawHub release](https://clawhub.ai/simonenavifare/moltravel) <br>
-- [MolTravel homepage](https://molttravel.com) <br>
-- [MolTravel MCP endpoint](https://mcp.molttravel.com/mcp) <br>
-- [Navifare publisher site](https://navifare.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, API Calls, Configuration, Guidance] <br>
-**Output Format:** [Markdown with tables, summaries, links, and structured tool-call guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include flight comparison tables, visa summaries, country facts, travel advisory summaries, activity options, booking links, and MCP configuration snippets.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter, plugin.json, server release metadata) <br>
+Risk: Travel-related details may be sent to the MolTravel MCP service and downstream travel providers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Share only the details needed for the trip-planning task and avoid unnecessary sensitive personal information.
+
+Risk: Prices, visa rules, and travel advisories can change or be incomplete.
+
+Mitigation: Verify prices, visa requirements, and safety advisories with official sources before booking or traveling.
+
+Risk: Flight and activity results may include booking links, but the skill is not a booking authority.
+
+Mitigation: Use returned links for comparison and review only; complete any booking directly with the relevant provider after independent verification.
+
+## Reference(s):
+
+- [MolTravel Skill Page](https://clawhub.ai/simonenavifare/skills/moltravel)
+- [MolTravel](https://molttravel.com)
+- [MolTravel MCP Server](https://mcp.molttravel.com/mcp)
+- [Navifare](https://navifare.com)
+- [Publisher Profile](https://clawhub.ai/user/simonenavifare)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown travel summaries, comparison tables, and concise recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include flight, price, visa, country, advisory, activity, airport, airline, and booking-link information; does not complete bookings.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter, plugin metadata, and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

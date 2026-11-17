@@ -31,7 +31,7 @@
   "campaignId": "agent-native-launch",
   "channelId": "skillhub",
   "referrer": "https://example-directory/listing",
-  "landingPath": "/agent/onboard",
+  "landingPath": "/agents/onboarding",
   "acquisitionMedium": "agent-directory",
   "activity": [
     "Self-registered in LobsterMatch."

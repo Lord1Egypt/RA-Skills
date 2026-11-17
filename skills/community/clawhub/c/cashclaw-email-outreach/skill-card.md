@@ -1,42 +1,54 @@
-## Description: <br>
-Creates professional cold email sequences, follow-up templates, and outreach campaigns with personalization tokens, A/B subject lines, and optimized send timing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates professional cold email sequences, follow-up templates, and outreach campaigns with personalization tokens, A/B subject lines, and optimized send timing.
 
-## Publisher: <br>
-[andreataide86](https://clawhub.ai/user/andreataide86) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[andreataide86](https://clawhub.ai/user/andreataide86)
 
-## Use Case: <br>
-External users and staff use this skill to create cold-email outreach campaigns, including multi-step sequences, follow-up templates, subject-line variants, personalization tokens, campaign metadata, and review summaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send real emails and preserve case records if used in staff workflows. <br>
-Mitigation: Install only for trusted ClawHub staff workflows, confirm there is an existing CHR case, and review the exact recipient, subject, and body before approving any send. <br>
-Risk: Cold outreach can create compliance or deliverability problems if sender identity, opt-out handling, jurisdictional rules, or personalization are wrong. <br>
-Mitigation: Apply the skill's compliance checklist for CAN-SPAM, GDPR, CASL, no deception, no purchased lists, and conservative sending limits before use. <br>
+## Use Case:
 
+External users and outreach practitioners use this skill to draft cold-email campaign deliverables, including ICP analysis, multi-step sequences, subject variants, personalization guidance, and compliance review notes.
 
-## Reference(s): <br>
-- [Cashclaw Email Outreach on ClawHub](https://clawhub.ai/andreataide86/cashclaw-email-outreach) <br>
-- [andreataide86 publisher profile](https://clawhub.ai/user/andreataide86) <br>
-- [cashclaw npm package](https://www.npmjs.com/package/cashclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown deliverables with campaign metadata JSON and optional shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include tier-specific sequence length, A/B subject-line variants, personalization tokens, send cadence, and compliance checklist items.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill references installation of an unpinned external npm CLI package that was not part of the reviewed artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the cashclaw npm package before installation, pin a reviewed version, and run it in a least-privileged environment.
+
+Risk: Cold-email campaign output can create legal or reputational risk if sender identity, opt-out handling, prospect consent, or claims are incorrect.
+
+Mitigation: Review each campaign against the skill's CAN-SPAM, GDPR, CASL, no-deception, no-purchased-lists, and sending-limit checks before use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/andreataide86/skills/cashclaw-email-outreach)
+- [CashClaw npm Package](https://www.npmjs.com/package/cashclaw)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance]
+
+**Output Format:** [Markdown deliverables with JSON campaign metadata and optional shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces email sequences, subject-line variants, personalization tokens, compliance checklist items, and campaign metadata.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

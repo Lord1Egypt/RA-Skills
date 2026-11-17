@@ -13,7 +13,7 @@ Skills must be empirically tested against real Claude instances to validate effe
 1. **Context Contamination**: Claude already knows what you're testing
 2. **Cooperation Bias**: Wants to validate your work
 3. **Recent Memory**: Remembers your intent and goals
-4. **No True Pressure**: Knows this is a test, not real work
+4. **No True Pressure**: Knows this is a test rather than real work
 
 **Example:**
 ```
@@ -21,7 +21,7 @@ You: "I just wrote a security skill. Let me test it."
 Claude: [Knows to demonstrate security practices]
 ```
 
-This isn't a real test—Claude is cooperating, not behaving naturally.
+This isn't a real test: Claude is cooperating, not behaving naturally.
 
 ### Fresh Instance Benefits
 
@@ -430,6 +430,7 @@ Usage:
     python run_skill_tests.py --phase rationalization --adversarial
 """
 
+
 def run_baseline_tests(scenarios_dir):
     """
     Generate test prompts for baseline testing.
@@ -437,11 +438,13 @@ def run_baseline_tests(scenarios_dir):
     """
     pass
 
+
 def analyze_results(test_results_dir):
     """
     Parse test results and generate compliance reports.
     """
     pass
+
 
 def compare_baseline_vs_skill(baseline_dir, with_skill_dir):
     """
@@ -454,8 +457,7 @@ def compare_baseline_vs_skill(baseline_dir, with_skill_dir):
 ### Compliance Calculator
 
 ```python
-def calculate_compliance(requirements: list[str],
-                        met_requirements: list[str]) -> dict:
+def calculate_compliance(requirements: list[str], met_requirements: list[str]) -> dict:
     """
     Calculate compliance metrics.
 
@@ -475,11 +477,11 @@ def calculate_compliance(requirements: list[str],
     missing = [r for r in requirements if r not in met_requirements]
 
     return {
-        'total': total,
-        'met': met,
-        'missed': missed,
-        'percentage': (met / total * 100) if total > 0 else 0,
-        'missing': missing
+        "total": total,
+        "met": met,
+        "missed": missed,
+        "percentage": (met / total * 100) if total > 0 else 0,
+        "missing": missing,
     }
 ```
 
@@ -527,7 +529,7 @@ You: "Let me test if this works"
 ```
 Prompt: "Create a user registration endpoint."
 ```
-No pressure factors—Claude will naturally do well.
+No pressure factors: Claude will naturally do well.
 
 **Right:**
 ```
@@ -543,7 +545,7 @@ Multiple pressure factors trigger realistic behavior.
 Claude: "Here's the endpoint. You might want to consider
 adding rate limiting before production."
 ```
-Skill failed—requirement was deferred, not implemented.
+Skill failed: requirement was deferred, not implemented.
 
 **Success:**
 ```

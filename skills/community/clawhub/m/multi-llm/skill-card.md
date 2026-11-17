@@ -1,41 +1,62 @@
-## Description: <br>
-Queries multiple configured LLM providers in parallel and synthesizes their responses into a single higher-quality answer using a Mixture of Agents pattern. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Queries multiple LLM providers in parallel and synthesizes their responses with a Mixture of Agents pattern for complex reasoning, code review, research, planning, and other quality-sensitive tasks.
 
-## Publisher: <br>
-[goodmorning0000](https://clawhub.ai/user/goodmorning0000) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[goodmorning0000](https://clawhub.ai/user/goodmorning0000)
 
-## Use Case: <br>
-Developers and agents use this skill when complex reasoning, code review, research, strategic planning, or other high-stakes tasks benefit from comparing and synthesizing outputs across multiple LLM providers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts and model outputs may be sent to every configured provider. <br>
-Mitigation: For confidential work, explicitly choose providers with --models, unset API keys for providers that should not receive data, or use local Ollama where appropriate. <br>
-Risk: JSON logs or saved output files may contain private data, secrets, or full model responses. <br>
-Mitigation: Avoid saving sensitive results unless needed, review output paths before writing, and handle generated files according to the user's data policy. <br>
+## Use Case:
 
+Developers and agents use this skill when they need a synthesized answer from multiple available models rather than relying on one LLM for complex analysis, research, code review, or strategic planning.
 
-## Reference(s): <br>
-- [MoA (Mixture of Agents) Guide](references/moa-guide.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/goodmorning0000/multi-llm) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, files, guidance] <br>
-**Output Format:** [Plain text or JSON; optionally saved to a user-specified output file.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [JSON output can include the final synthesis, synthesizer model, round count, and proposer responses.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata) <br>
+Risk: Prompts, code, and intermediate model outputs may be sent to configured external AI providers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid secrets, regulated data, private source code, and other sensitive inputs unless provider approval and data handling requirements have been reviewed.
+
+Risk: The skill can write model output to a user-selected path.
+
+Mitigation: Review output paths before execution and avoid startup files, shell configuration, repository hooks, credentials, or agent memory/configuration files.
+
+Risk: Financial or trading prompts may produce unreliable decision support.
+
+Mitigation: Use outputs as review material only and require qualified human validation before financial or trading decisions.
+
+Risk: An untrusted Ollama endpoint could expose prompts or return untrusted model output.
+
+Mitigation: Keep OLLAMA_HOST local or point it only at a trusted endpoint.
+
+## Reference(s):
+
+- [MoA (Mixture of Agents) Guide](references/moa-guide.md)
+- [ClawHub Skill Page](https://clawhub.ai/goodmorning0000/skills/multi-llm)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text by default, with optional JSON containing the synthesis, synthesizer, rounds, and proposer responses.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires uv and at least one configured LLM provider endpoint or local Ollama host.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

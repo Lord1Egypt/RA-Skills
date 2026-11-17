@@ -1,47 +1,55 @@
-## Description: <br>
-Creates self-learning, continuously evolving domain-expert agent skills and supports their learning, review, and upgrade workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates domain-expert agent skills with self-learning, review, trend-scanning, planning, and continuous evolution workflows.
 
-## Publisher: <br>
-[wuyao721](https://clawhub.ai/user/wuyao721) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wuyao721](https://clawhub.ai/user/wuyao721)
 
-## Use Case: <br>
-Developers and agent builders use this skill to design new self-evolving agent skills, plan learning work, scan for agent-design trends, and review or upgrade existing skills. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide creation, modification, scheduling, and upgrade of other agent skills. <br>
-Mitigation: Use narrow workspace permissions, review generated skill changes before enabling them, and keep upgrade workflows under explicit user approval. <br>
-Risk: Loose natural-language triggers could start creation or upgrade workflows when the user intended only discussion. <br>
-Mitigation: Restrict activation to explicit commands for high-impact workflows such as creating, reviewing, upgrading, or scheduling agents. <br>
-Risk: Permission templates include a full-access option that could grant broad filesystem and shell access. <br>
-Mitigation: Prefer the basic scoped permission template and manually review any generated .claude/settings.local.json or scheduler configuration before use. <br>
-Risk: Stateful memory, reports, and logs may contain private user data or operational details. <br>
-Mitigation: Exclude private memory and output logs from shared packages, and inspect generated files before publishing or distribution. <br>
+## Use Case:
 
+Developers and agent builders use this skill to design, create, review, and upgrade self-evolving domain-expert skills. It also guides learning plans, trend scans, permissions templates, reports, and logs for skill ecosystems.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/wuyao721/evo-skill-creator) <br>
-- [Self-Evolving Agent Model](references/evo-agent-model.md) <br>
-- [Model Capability Rules](references/model-capability.md) <br>
-- [Local Settings Permission Template](references/settings.local.json.template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with checklists, file edits, configuration snippets, reports, and logs.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose or create skill files, memory files, reports, logs, and permission templates when the host agent has workspace access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can create and evolve other skills, including permission templates and child-agent upgrade plans that may grant broad access if used without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep permissions minimal, inspect every generated settings.local.json file, and review proposed child-agent changes before deployment.
+
+Risk: The artifact discusses unattended scheduled agent runs and full-access permission templates, which can increase operational and data-access risk.
+
+Mitigation: Avoid full-access templates, permission-skip modes, and unattended cron or launchd jobs until commands, paths, and schedules are explicitly reviewed.
+
+## Reference(s):
+
+- [Self-Evolving Agent Model](references/evo-agent-model.md)
+- [Model Capability Levels and Permission Rules](references/model-capability.md)
+- [settings.local.json Permission Template](references/settings.local.json.template.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown instructions, generated skill files, configuration snippets, reports, and execution-log entries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose file-system changes, permission settings, scheduled tasks, and child-agent upgrade plans that require human review before use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

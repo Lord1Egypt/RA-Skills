@@ -1,42 +1,70 @@
 # Auth Traps
 
+## Choosing an OAuth Flow
+
+| Caller | Flow |
+|--------|------|
+| Server-side web app | Authorization code |
+| SPA or mobile app | Authorization code + PKCE (no client secret can live in the client) |
+| Script/daemon, no user present | Client credentials |
+| TV/CLI without a browser | Device code |
+| Anything else / unsure | Authorization code + PKCE — it is never wrong, only sometimes unnecessary |
+
+Implicit flow is legacy: it puts tokens in the URL fragment (leaks via history/referrer). If a provider still offers it, don't take it.
+
 ## Bearer Token
 
-- `Authorization: Bearer:token` (con dos puntos) = INCORRECTO, es `Bearer token` (espacio)
-- Token con newline al final (copy-paste) = 401 misterioso
-- Bearer en query param `?token=x` funciona en algunos APIs pero se loguea en access logs
-- Token hardcodeado en código se commitea a git — siempre env var
+- `Authorization: Bearer:token` (with a colon) = WRONG, it's `Bearer token` (space)
+- Token with a trailing newline (copy-paste) = mysterious 401; `echo -n` or trim first
+- Bearer in query param `?token=x` works in some APIs but gets logged in access logs
+- Token hardcoded in code gets committed to git; always an env var (naming: `credentials.md`)
+- Basic auth is `base64(user:pass)` — the colon is part of the encoded string; encoding user and pass separately produces a valid-looking header that always 401s
 
 ## OAuth
 
-- `state` parameter ignorado = vulnerable a CSRF — siempre validar
-- Token refresh sin mutex = race condition, múltiples refreshes simultáneos
-- Access token expirado + refresh token expirado = usuario debe re-login (no solo refresh)
-- `offline_access` scope olvidado = no hay refresh token
+- `state` parameter ignored = vulnerable to CSRF; generate per-request, validate on callback
+- Token refresh without a mutex = race condition: N parallel requests each refresh, and providers that rotate refresh tokens invalidate all but the last winner — the others are logged out
+- Refresh proactively when the token is within ~60s of `exp`, not reactively on 401: the 401-then-refresh-then-retry path doubles latency on every expiry and races under load
+- Expired access token + expired refresh token = user must re-login (not just refresh)
+- `offline_access` scope forgotten = no refresh token issued; you discover it an hour later
 
 ## JWT
 
-- Verificar solo firma sin validar `exp` = tokens eternos aceptados
-- `exp` en segundos, no milliseconds — `Date.now()` / 1000
-- `aud` claim ignorado = token para otro servicio aceptado
-- Algorithm confusion: token dice `alg: none` y servidor acepta sin firma
+- Verifying only the signature without validating `exp` = eternal tokens accepted
+- `exp` is Unix seconds, not milliseconds: compare against `Date.now() / 1000`
+- `aud` claim ignored = a token minted for another service is accepted by yours
+- Algorithm confusion: token declares `alg: none` and a permissive library accepts it unsigned — pin the expected algorithm server-side, never read it from the token
+- Decoding a JWT is not verifying it: `jwt.decode()` without the key check accepts anything
+
+## Request Signing (SigV4-style and HMAC schemes)
+
+- The signature covers method + path + query + selected headers + body hash: anything that mutates the request after signing — a proxy adding a header, an SDK re-encoding the body, a redirect changing the path — invalidates it. Sign last; send untouched.
+- Use the provider's signer library. Hand-rolled canonicalization fails on the edges: empty query values, repeated params, unicode in paths, header-case folding — each produces a valid-looking request that 403s.
+- `SignatureDoesNotMatch` with correct credentials usually IS one of those mutations, or clock skew: signed requests reject beyond the provider's window (S3: `RequestTimeTooSkewed`, → `debug.md` Works Locally, Fails in CI/Prod). Fix the clock, not the code.
+- Distinct from webhook HMAC: there the provider signs and you verify (→ `webhooks.md` Verification); the constant-time-comparison law is the same.
+
+## Acting on Behalf of Users (multi-tenant OAuth)
+
+- Store refresh tokens encrypted at rest, keyed by user AND provider account — one user legitimately connects two accounts of the same service.
+- The refresh mutex (OAuth section above) is per stored token, not global — serializing all tenants through one lock turns token refresh into your bottleneck.
+- Treat revocation as a state, not an error: user uninstalls or revokes → refresh fails permanently (`invalid_grant`) → mark the connection broken and prompt re-auth. Retrying is a 401 forever and can trip the provider's abuse detection.
+- Request minimal scopes now; each scope added later forces every existing user through re-consent — plan the scope list like a schema migration.
 
 ## API Keys
 
-- API key en URL se cachea por proxies/CDNs — expuesto en logs
-- Ratelimit por API key + key compartida entre clientes = límite compartido
-- Key rotation sin período de gracia = downtime
-- API key sin expiración + leak = acceso permanente
+- API key in URL gets cached by proxies/CDNs, exposed in logs
+- Rate limit per API key + key shared across clients = one noisy client starves the rest
+- Key rotation without a grace period = downtime (procedure: `credentials.md`)
+- API key without expiration + leak = permanent access until someone notices
 
 ## Session
 
-- Session ID predecible = session hijacking
-- Session no invalidada en logout = reutilizable
-- Session timeout muy largo + shared computer = riesgo
-- Cookies sin `Secure` flag enviadas en HTTP = interceptables
+- Predictable session ID = session hijacking
+- Session not invalidated server-side on logout = stolen cookie stays valid
+- Cookies without `Secure` + `HttpOnly` = interceptable over HTTP, readable by injected JS
 
 ## Headers
 
-- `X-API-Key` vs `Api-Key` vs `apikey` — cada API diferente, case-sensitive
-- Auth header no propagado a redirects por defecto — 302 pierde auth
-- Preflight CORS no incluye auth headers — CORS error confuso si backend espera auth en OPTIONS
+- `X-API-Key` vs `Api-Key` vs `apikey`: differs per API — check the service section, don't guess
+- Auth header is not propagated on cross-origin redirects by most clients; a 302 to another host silently loses auth → follow the redirect target directly
+- CORS preflight (OPTIONS) carries no auth headers; a backend requiring auth on OPTIONS produces a misleading "CORS error" whose real cause is a 401

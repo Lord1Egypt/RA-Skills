@@ -1,43 +1,55 @@
-## Description: <br>
-Domain registrar and DNS manager using the Name.com CORE API for domain search, registration, DNS records, ACME DNS-01 challenges, and dynamic DNS updates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Domain registrar and DNS manager using the Name.com CORE API. Use when the user asks to search for, buy, or register domains, manage DNS records (A, AAAA, CNAME, MX, TXT), solve ACME DNS-01 challenges for TLS certificates, or update dynamic DNS for residential/home-lab setups.
 
-## Publisher: <br>
-[patramsey](https://clawhub.ai/user/patramsey) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[patramsey](https://clawhub.ai/user/patramsey)
 
-## Use Case: <br>
-Developers and technical operators use this skill to let an agent search, buy, inspect, and manage Name.com domains and DNS records, including ACME DNS-01 and dynamic DNS workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Production Name.com credentials can allow real account, DNS, and purchase changes. <br>
-Mitigation: Start with sandbox credentials, IP-whitelist tokens where possible, use account credit or payment limits, and require explicit confirmation before purchases, DNS deletions, DDNS updates, or nameserver changes. <br>
-Risk: Installing and running the npm MCP server gives the package access to Name.com API credentials. <br>
-Mitigation: Review the npm package before connecting production credentials and run the server in an isolated environment when possible. <br>
+## Use Case:
 
+Developers and operators use this skill to manage Name.com domains and DNS records through an MCP-enabled agent. It supports domain availability checks, domain registration, nameserver updates, DNS record management, ACME DNS-01 challenge setup, and dynamic DNS updates.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/patramsey/namecom-registrar) <br>
-- [Publisher Profile](https://clawhub.ai/user/patramsey) <br>
-- [namecom-clawbot Repository](https://github.com/patramsey/namecom-clawbot) <br>
-- [namecom-clawbot npm Package](https://www.npmjs.com/package/namecom-clawbot) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, API Calls, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown or plain text responses with MCP tool results, shell commands, and JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May return domain availability, pricing, DNS record state, propagation status, confirmation tokens, and operational guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.14 (source: server release evidence) <br>
+Risk: The skill installs an unpinned npm server that receives powerful Name.com registrar credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and pin the exact namecom-clawbot version before installing, run it in an isolated environment, and start with sandbox credentials.
+
+Risk: Production Name.com credentials can expose DNS, domain-transfer, and purchase risk.
+
+Mitigation: Use Name.com IP whitelisting, avoid exposing production registrar credentials unless the risk is accepted, and prefer account credit or payment controls for purchases.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/patramsey/skills/namecom-registrar)
+- [namecom-clawbot homepage](https://github.com/patramsey/namecom-clawbot)
+- [namecom-clawbot npm package](https://www.npmjs.com/package/namecom-clawbot)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with inline shell commands and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires node and npm plus Name.com username and API token environment variables.]
+
+## Skill Version(s):
+
+0.0.14 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

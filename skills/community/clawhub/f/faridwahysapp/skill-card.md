@@ -1,53 +1,63 @@
-## Description: <br>
-WhatsApp Business API integration with managed OAuth for sending messages, managing templates, handling media, and managing conversations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+WhatsApp Business API integration with managed OAuth for sending messages, managing templates, and handling conversations.
 
-## Publisher: <br>
-[Faridmalik1](https://clawhub.ai/user/Faridmalik1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[faridmalik1](https://clawhub.ai/user/faridmalik1)
 
-## Use Case: <br>
-Developers and business-operations teams use this skill to interact with WhatsApp Business through Maton-managed OAuth, including sending customer messages, managing message templates, and working with media, phone numbers, and business profiles. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires credentialed WhatsApp Business access through Maton. <br>
-Mitigation: Use it only when the publisher and Maton are trusted with the account, store MATON_API_KEY securely, and scope connections to the intended WhatsApp Business account. <br>
-Risk: Examples include high-impact operations such as sending messages and deleting connections, media, or templates. <br>
-Mitigation: Require explicit confirmation before executing send or delete actions, and replace all sample IDs and phone numbers with account-specific values. <br>
-Risk: Server evidence identifies the publisher as Faridmalik1, while artifact metadata and license content reference Maton. <br>
-Mitigation: Verify publisher authorization and the intended license before installation or publication. <br>
+## Use Case:
 
+Developers and operators use this skill to let agents interact with WhatsApp Business through Maton-managed OAuth, including sending customer messages, managing templates, handling media, and managing business profile resources.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Faridmalik1/faridwahysapp) <br>
-- [Publisher profile](https://clawhub.ai/user/Faridmalik1) <br>
-- [WhatsApp Business API Overview](https://developers.facebook.com/docs/whatsapp/cloud-api/overview) <br>
-- [Send Messages](https://developers.facebook.com/docs/whatsapp/cloud-api/guides/send-messages) <br>
-- [Message Templates](https://developers.facebook.com/docs/whatsapp/cloud-api/guides/send-message-templates) <br>
-- [Media](https://developers.facebook.com/docs/whatsapp/cloud-api/reference/media) <br>
-- [Phone Numbers](https://developers.facebook.com/docs/whatsapp/cloud-api/reference/phone-numbers) <br>
-- [Business Profiles](https://developers.facebook.com/docs/whatsapp/cloud-api/reference/business-profiles) <br>
-- [Webhooks](https://developers.facebook.com/docs/whatsapp/cloud-api/webhooks) <br>
-- [Error Codes](https://developers.facebook.com/docs/whatsapp/cloud-api/support/error-codes) <br>
-- [Maton](https://maton.ai) <br>
-- [Maton settings](https://maton.ai/settings) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline Python, JavaScript, bash, HTTP, and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires network access, MATON_API_KEY, and an authorized WhatsApp Business OAuth connection.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter version 1.0) <br>
+Risk: The skill can send messages and update or delete WhatsApp Business resources through a live account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit confirmation of recipients, phone-number IDs, template names, media IDs, and connection IDs before sending, updating, or deleting anything.
+
+Risk: The skill relies on a Maton API key and OAuth connection authorization URLs.
+
+Mitigation: Use a narrowly scoped Maton key where possible, never expose the full API key, and treat connection authorization URLs as secrets.
+
+Risk: The security evidence reports unsafe examples for handling API keys and OAuth URLs.
+
+Mitigation: Review the skill before installation for real WhatsApp Business accounts and adjust examples to avoid printing, logging, or sharing secrets.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/faridmalik1/skills/faridwahysapp)
+- [Maton](https://maton.ai)
+- [WhatsApp Business API Overview](https://developers.facebook.com/docs/whatsapp/cloud-api/overview)
+- [WhatsApp Cloud API Send Messages](https://developers.facebook.com/docs/whatsapp/cloud-api/guides/send-messages)
+- [WhatsApp Message Templates](https://developers.facebook.com/docs/whatsapp/cloud-api/guides/send-message-templates)
+- [WhatsApp Media Reference](https://developers.facebook.com/docs/whatsapp/cloud-api/reference/media)
+- [WhatsApp Error Codes](https://developers.facebook.com/docs/whatsapp/cloud-api/support/error-codes)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown with inline Python, JavaScript, HTTP, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires network access and MATON_API_KEY for live API calls]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

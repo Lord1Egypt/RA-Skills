@@ -1,41 +1,53 @@
-## Description: <br>
-Generates vertical title posters with gpt-image-2 using ten predefined visual styles and tuned prompt templates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+使用gpt-image-2生成海报，支持10种设计风格。每种风格精调了prompt，直接出图。
 
-## Publisher: <br>
-[afeicn](https://clawhub.ai/user/afeicn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[afeicn](https://clawhub.ai/user/afeicn)
 
-## Use Case: <br>
-External creators and agents use this skill to turn a user-provided title into a 3:4 poster image prompt and generated poster across predefined editorial, handwritten, cyberpunk, product-launch, and other styles. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Poster titles and generated prompts may be sent to an image-generation service. <br>
-Mitigation: Avoid entering private or sensitive text and review prompts before image generation. <br>
-Risk: Generated poster images may be unsuitable or inaccurate for publication. <br>
-Mitigation: Review generated images before publishing or using them in downstream materials. <br>
+## Use Case:
 
+Creators, marketers, and content developers use this skill to turn a supplied title into a vertical 3:4 poster prompt across ten predefined visual styles, then generate a JPEG poster for review.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/afeicn/poster-style-generator) <br>
-- [Publisher Profile](https://clawhub.ai/user/afeicn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance, API Calls] <br>
-**Output Format:** [Generated image prompt and returned poster image] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses user-provided poster titles and predefined style templates; the source skill specifies jpeg output at 1536x2048 with medium quality.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The workflow fixes defaults for model, JPEG format, medium quality, and 1536x2048 output, which may not match every publishing channel or quality requirement.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm output format, quality, and dimensions with the user before generation when channel requirements differ from the documented defaults.
+
+Risk: The skill is written as a Chinese-language poster workflow and may be less suitable for multilingual prompt generation without adaptation.
+
+Mitigation: Review or localize the selected style prompt before generation when the requested poster title or audience is not Chinese-language.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/afeicn/skills/poster-style-generator)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, configuration, API calls]
+
+**Output Format:** [Image-generation prompt guidance and a generated JPEG image]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses openai/gpt-image-2 with JPEG medium quality and 1536x2048 portrait output by default.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

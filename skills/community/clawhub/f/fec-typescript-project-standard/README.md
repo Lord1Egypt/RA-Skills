@@ -1,4 +1,4 @@
-# TypeScript 项目规范
+# TypeScript project specifications
 
 Universal TypeScript project standards for tsconfig, strictness, module resolution, declarations, package exports, public API types, DTOs, generics, and type narrowing.
 
@@ -6,12 +6,12 @@ Universal TypeScript project standards for tsconfig, strictness, module resoluti
 
 - ID: `fec-typescript-project-standard`
 - Category: `project-standard`
-- Version: `2.7.0`
+- Version: `2.9.0`
 - Source: `skills/fec-typescript-project-standard/SKILL.md`
 
 ## Description
 
-Use when creating, configuring, reviewing, or debugging TypeScript project standards across frontend apps, libraries, SDKs, CLIs, monorepo packages, tsconfig, strictness, module/moduleResolution, path aliases, project references, declaration files, package exports, public API types, DTOs, advanced generics, discriminated unions, type guards, type narrowing, or type-level regressions. Prefer framework project skills for React/Vue/Next/Nuxt component architecture; Chinese triggers include TypeScript 项目规范, TS 项目规范, TypeScript 类型安全, 类型建模, 泛型, 判别联合, 类型收窄, tsconfig, 声明文件.
+Use when creating, configuring, reviewing, or debugging TypeScript project standards across frontend apps, libraries, SDKs, CLIs, monorepo packages, tsconfig, strictness, module/moduleResolution, path aliases, project references, declaration files, package exports, public API types, DTOs, advanced generics, discriminated unions, type guards, type narrowing, or type-level regressions. Prefer framework project skills for React/Vue/Next/Nuxt component architecture; Chinese triggers include TypeScript project specification, TS project specification, TypeScript type safety, type modeling, generics, discriminative unions, type narrowing, tsconfig, declaration files.
 
 ## Usage
 

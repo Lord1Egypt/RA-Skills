@@ -1,42 +1,55 @@
-## Description: <br>
-Retrieves Chinese finance news, A-share market updates, macroeconomic developments, market hotspots, finance articles, and listed-company announcements through the public Shenlan News API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+深蓝财经新闻 helps agents retrieve real-time Chinese financial dispatches, headlines, trending content, article search results, and listed-company announcements through the public Shenlan News API.
 
-## Publisher: <br>
-[qxsclass](https://clawhub.ai/user/qxsclass) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qxsclass](https://clawhub.ai/user/qxsclass)
 
-## Use Case: <br>
-External users and agents use this skill to look up current Chinese financial news, market sentiment, trending finance articles, and listed-company announcements. It is useful for time-sensitive finance questions and topic search across Shenlan News content. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Finance-news searches and query terms are sent to shenlannews.com. <br>
-Mitigation: Use the skill only where outbound requests to the declared Shenlan News domain are acceptable, and restrict network egress in stricter environments. <br>
-Risk: The skill may use Bash to run the provided Python API helper. <br>
-Mitigation: Review helper commands before execution and keep use limited to the disclosed read-only API calls. <br>
+## Use Case:
 
+External users, analysts, and developers use this skill to answer Chinese finance-news questions, monitor A-share and macroeconomic updates, search finance articles, and retrieve listed-company announcements.
 
-## Reference(s): <br>
-- [Shenlan News](https://www.shenlannews.com) <br>
-- [API Reference](references/api-reference.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/qxsclass/shenlannews) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, API calls, shell commands, guidance] <br>
-**Output Format:** [Markdown summaries with optional JSON results from API helper commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses public Shenlan News endpoints and may include article links, dispatch timestamps, AI summaries, sentiment fields, and announcement references.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: The skill returns third-party market and news content that may be incomplete, delayed, or inappropriate to treat as financial advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present retrieved content as informational, cite Shenlan News source links and timestamps where available, and avoid making investment recommendations from the content alone.
+
+Risk: The skill makes outbound HTTPS requests to shenlannews.com and depends on that service's availability and public API limits.
+
+Mitigation: Install only when outbound access to shenlannews.com is acceptable, handle request failures gracefully, and respect the documented public API limits.
+
+## Reference(s):
+
+- [深蓝财经新闻 API 参考文档](references/api-reference.md)
+- [深蓝财经 homepage](https://www.shenlannews.com)
+- [ClawHub skill page](https://clawhub.ai/qxsclass/skills/shenlannews)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown or text responses grounded in JSON returned by Shenlan News API calls]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include timestamps, article or dispatch links, AI summaries, sentiment fields, announcement search results, and JSON-derived citations from shenlannews.com.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

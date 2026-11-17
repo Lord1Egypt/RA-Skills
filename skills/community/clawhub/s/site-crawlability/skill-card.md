@@ -1,43 +1,51 @@
-## Description: <br>
-Site Crawlability guides technical SEO audits and recommendations for crawlability, orphan pages, site architecture, pagination, crawl budget, and AI crawler visibility. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides technical SEO crawlability improvements for redirects, broken links, orphan pages, pagination, crawl budget, and AI crawler visibility.
 
-## Publisher: <br>
-[kostja94](https://clawhub.ai/user/kostja94) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kostja94](https://clawhub.ai/user/kostja94)
 
-## Use Case: <br>
-Developers, technical SEO practitioners, and site maintainers use this skill to assess and improve how search and AI crawlers discover, traverse, and index site content. It helps produce redirect, broken-link, site-structure, pagination, crawl-budget, and AI crawler recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Crawlability recommendations can materially affect search visibility if applied incorrectly, especially changes to redirects, robots directives, noindex behavior, canonical tags, pagination, or sitemap membership. <br>
-Mitigation: Review proposed changes before deployment, test them in staging where possible, and validate crawl/indexing effects with search-console or crawler tooling after release. <br>
-Risk: Security guidance flags powerful disclosed operations in the release evidence. <br>
-Mitigation: Install only when those operations are intended, and require deliberate confirmation before production deployment, migration, proof publishing, moderation, or broad autoreview actions. <br>
+## Use Case:
 
+Developers, site owners, and SEO practitioners use this skill to assess and improve website crawlability, including redirect hygiene, broken links, site structure, pagination, crawl budget, and AI crawler access.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kostja94/site-crawlability) <br>
-- [Publisher profile](https://clawhub.ai/user/kostja94) <br>
-- [Google Search Central: Infinite scroll search-friendly recommendations](https://developers.google.com/search/blog/2014/02/infinite-scroll-search-friendly) <br>
-- [Vercel: The rise of the AI crawler](https://vercel.com/blog/the-rise-of-the-ai-crawler) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with audit findings, implementation recommendations, tables, and code or configuration snippets when useful.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May recommend changes to robots directives, redirects, internal links, pagination, sitemaps, canonical tags, rendering strategy, and crawlable URL structure.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.1 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Crawlability recommendations involving redirects, canonical URLs, pagination, or noindex behavior can affect search visibility if applied incorrectly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review proposed changes, validate them in staging, and monitor search console signals before applying them to production.
+
+## Reference(s):
+
+- [Google Search Central: Infinite Scroll Search-Friendly Recommendations](https://developers.google.com/search/blog/2014/02/infinite-scroll-search-friendly)
+- [Vercel: The Rise of the AI Crawler](https://vercel.com/blog/the-rise-of-the-ai-crawler)
+- [ClawHub Skill Page: site-crawlability](https://clawhub.ai/kostja94/skills/site-crawlability)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Configuration]
+
+**Output Format:** [Markdown guidance with audit findings, tables, and implementation recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No bundled code; output is advisory and should be reviewed before production website changes.]
+
+## Skill Version(s):
+
+1.2.1 (source: release metadata and SKILL.md metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

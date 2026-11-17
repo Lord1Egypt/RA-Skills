@@ -1,40 +1,58 @@
-## Description: <br>
-Autonomous PR merge agent that scans repositories for approved, CI-passing, mergeable pull requests and can merge them automatically with dry-run, squash, and merge options. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Autonomous PR merge agent that scans GitHub repositories for approved, CI-passing, mergeable pull requests and can merge them automatically.
 
-## Publisher: <br>
-[lanxevo3](https://clawhub.ai/user/lanxevo3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lanxevo3](https://clawhub.ai/user/lanxevo3)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to inspect GitHub repositories for pull requests that appear ready to merge, preview actions in dry-run mode, and optionally automate PR merges in scheduled or agent-driven workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security review reports that the documented minimum approval safeguard is not actually enforced, which can make live or scheduled merges riskier than expected. <br>
-Mitigation: Use dry-run mode unless approval thresholds are fixed or independently enforced, and rely on branch protection for required reviews and status checks. <br>
-Risk: Unattended live cron or agent runs can merge repository changes automatically. <br>
-Mitigation: Avoid unattended live merges until safeguards are validated, and use a dedicated least-privilege GitHub token limited to the intended repositories. <br>
+## Use Case:
 
+Developers and DevOps teams use this skill to identify pull requests that appear ready to merge, preview them in dry-run mode, and optionally run scheduled or manual GitHub CLI merges.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lanxevo3/pr-auto-merger) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text CLI output with Markdown command and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Dry-run mode is the default; live merges require --no-dry-run, GitHub CLI authentication, and repository merge permissions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Live mode can merge pull requests automatically with the permissions of the authenticated GitHub CLI token.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Default to dry-run review, verify the script before live use, and run with tightly scoped GitHub credentials.
+
+Risk: Approval-count behavior should not be treated as a complete policy control.
+
+Mitigation: Enforce required approvals, status checks, and merge restrictions with GitHub branch protection rules.
+
+Risk: The artifact's GitHub Actions example includes a package-install step for gh that security guidance flags as unsuitable.
+
+Mitigation: Use a trusted GitHub CLI installation path and validate the runtime environment before scheduled live merges.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lanxevo3/skills/pr-auto-merger)
+- [Publisher profile](https://clawhub.ai/user/lanxevo3)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and command-line status output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May execute GitHub CLI merge operations when configured outside dry-run mode.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,48 +1,59 @@
-## Description: <br>
-Trade Polymarket BTC 5-minute and 15-minute fast markets using CEX price momentum signals via Simmer API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Trade Polymarket BTC 5-minute and 15-minute fast markets using CEX price momentum signals via Simmer API.
 
-## Publisher: <br>
-[simmer](https://clawhub.ai/user/simmer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[simmer](https://clawhub.ai/user/simmer)
 
-## Use Case: <br>
-External developers and trading agents use this skill to discover Polymarket crypto fast markets, evaluate short-term CEX momentum signals, and run dry-run or live order flows through Simmer. It is intended for users who understand automated prediction-market trading, wallet custody, and position-size controls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can place real-money Polymarket trades when run live. <br>
-Mitigation: Start in dry-run mode, use live mode only after reviewing budget, position size, order behavior, and stop conditions. <br>
-Risk: Live trading may require sensitive wallet credentials. <br>
-Mitigation: Use a managed wallet or a tightly funded dedicated wallet, and do not paste a main-wallet private key into chat or plaintext configuration. <br>
-Risk: Fast markets may resolve before scheduled stop-loss or take-profit monitoring can act. <br>
-Mitigation: Treat conservative position sizing and daily budgets as primary controls for 5-minute and 15-minute markets. <br>
-Risk: Automated loop or cron execution can repeatedly trade before an operator reviews outcomes. <br>
-Mitigation: Avoid unattended live loops until budget limits, max position size, and expected skip conditions have been tested in dry-run mode. <br>
+## Use Case:
 
+External developers and trading operators use this skill to configure an agent that discovers Polymarket fast crypto markets, evaluates short-window CEX momentum signals, and proposes or executes trades through Simmer. It is intended for users who understand automated trading risk and can review strategy parameters before live execution.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/simmer/polymarket-fast-loop) <br>
-- [Skill documentation](artifact/SKILL.md) <br>
-- [Risk disclaimer](artifact/DISCLAIMER.md) <br>
-- [Simmer dashboard](https://simmer.markets/dashboard) <br>
-- [Simmer V2 migration guide](https://docs.simmer.markets/v2-migration) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, configuration examples, and Python execution output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Dry-run is the default; live trading requires explicit command flags and credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.7.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Live mode can place real Polymarket orders and the security review flags stale GTC cleanup behavior that may cancel orders not definitively tied to this skill.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or disable stale GTC cleanup before live use, and run in dry-run or an isolated account with small limits until behavior is verified.
+
+Risk: The release depends on an unpinned simmer-sdk range for trading execution.
+
+Mitigation: Pin the exact reviewed simmer-sdk version before deployment and re-review behavior before upgrading.
+
+Risk: Fast markets may resolve before scheduled stop-loss or take-profit monitors can act.
+
+Mitigation: Use conservative position sizing, daily budgets, and dry-run observation rather than relying on automated stop-losses for 5-minute or 15-minute markets.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/simmer/skills/polymarket-fast-loop)
+- [Simmer dashboard](https://simmer.markets/dashboard?ref=sdk-skill&utm_campaign=sdk-skill)
+- [Simmer Polymarket V2 migration guide](https://docs.simmer.markets/v2-migration)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, configuration values, and trading run summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Dry-run is the default; live trading requires explicit --live use and Simmer credentials.]
+
+## Skill Version(s):
+
+1.7.4 (source: server evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,57 @@
-## Description: <br>
-Connects AI agents to the MemClawz shared memory bus with read-before-act and write-after-complete workflows over a simple HTTP API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connects AI agents to the MemClawz shared memory bus so they can search prior context before work and write task outcomes back through a simple HTTP API.
 
-## Publisher: <br>
-[yoniassia](https://clawhub.ai/user/yoniassia) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yoniassia](https://clawhub.ai/user/yoniassia)
 
-## Use Case: <br>
-Developers and agent operators use this skill to give agents shared memory across sessions and systems. Agents can search prior facts, decisions, procedures, and outcomes before work, then write useful results back after significant tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Shared memory can persist sensitive information such as secrets, personal data, private prompts, customer data, security findings, or proprietary project details. <br>
-Mitigation: Require explicit approval before storing sensitive entries, define retention expectations, and keep memory contents limited to information appropriate for shared agent context. <br>
-Risk: A broad HTTP memory service can be exposed to unintended agents or network peers if deployed without authentication, HTTPS, and access controls. <br>
-Mitigation: Keep the service on localhost or a trusted private network unless HTTPS, authentication, and access controls are configured. <br>
+## Use Case:
 
+Developers and agent operators use this skill to connect agents to a MemClawz memory service, search shared memory before starting tasks, and record completed work for recall across sessions.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/yoniassia/memclawz-connect) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with bash, JSON, and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses MEMCLAWZ_URL, MEMCLAWZ_AGENT_ID, and optional MEMCLAWZ_API_KEY environment variables.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: The skill documents shared-memory use through unauthenticated or plaintext HTTP service patterns.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only for MemClawz services you control, and require authentication, HTTPS or private networking, and project isolation for private work.
+
+Risk: Agents may write sensitive task details into shared memory that persists across sessions.
+
+Mitigation: Redact secrets and private project data, and require explicit approval before writing sensitive summaries.
+
+Risk: Broad automatic memory reads and writes can expose agents to stale, irrelevant, or untrusted context.
+
+Mitigation: Review retrieved memories before relying on them and limit write-backs to concise, factual task summaries.
+
+## Reference(s):
+
+- [MemClawz Connect on ClawHub](https://clawhub.ai/yoniassia/skills/memclawz-connect)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes environment variables, curl requests, memory type labels, and AGENTS.md integration text.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

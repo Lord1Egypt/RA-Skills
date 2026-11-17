@@ -1,46 +1,59 @@
-## Description: <br>
-Web extraction for LLMs and agents that scrapes, crawls, maps, searches, extracts, summarizes, diffs, monitors, and researches URLs into clean Markdown, text, or JSON, including pages that block bots or render with JavaScript. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Web extraction for LLMs and agents. Scrape, crawl, map, search, extract, summarize, diff, monitor, and research any URL into clean Markdown, text, or JSON, including pages that block bots or render with JavaScript.
 
-## Publisher: <br>
-[0xmassi](https://clawhub.ai/user/0xmassi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[0xmassi](https://clawhub.ai/user/0xmassi)
 
-## Use Case: <br>
-Developers, researchers, and agents use webclaw to retrieve, crawl, search, extract, summarize, diff, monitor, and structure web content for downstream LLM workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Target URLs, search queries, extraction prompts, page content, and monitor results may be sent to Webclaw's cloud service. <br>
-Mitigation: Use only data approved for third-party processing; avoid secrets, internal or private URLs, customer data, and other sensitive content. <br>
-Risk: Persistent watch and webhook features can create ongoing external data flows. <br>
-Mitigation: Review webhook destinations and delete monitors when they are no longer needed. <br>
-Risk: Endpoint discovery can enumerate API surfaces on sites where the user may not have authorization. <br>
-Mitigation: Run endpoint discovery only on sites and scopes where enumeration is authorized. <br>
-Risk: The skill relies on a Webclaw API key for cloud calls. <br>
-Mitigation: Store WEBCLAW_API_KEY in an approved secret mechanism, avoid committing it, and rotate it if exposed. <br>
+## Use Case:
 
+Developers and external agent users use webclaw to retrieve, crawl, search, monitor, summarize, and structure web content for agent workflows when basic web fetching is unreliable or insufficient.
 
-## Reference(s): <br>
-- [Webclaw homepage](https://webclaw.io) <br>
-- [ClawHub skill page](https://clawhub.ai/0xmassi/webclaw-extraction) <br>
-- [Webclaw API base](https://api.webclaw.io/v1/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown, plain text, JSON API responses, and CLI command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires WEBCLAW_API_KEY for cloud API calls; the bundled wrapper can perform local extraction for simple public pages.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Cloud API calls and cloud fallback can transmit target URLs, page contents, research prompts, and monitor or webhook details to WebClaw.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only for data you are comfortable sending to the remote service, and avoid confidential, regulated, or private-network targets.
+
+Risk: Backend-discovery and bot-protection examples could be misused against third-party systems.
+
+Mitigation: Run endpoint discovery, bypass-oriented extraction, research, and monitoring only on systems where you have explicit authorization.
+
+Risk: The MCP install path is unpinned in the release metadata.
+
+Mitigation: Prefer a pinned install source or reviewed package version before deploying the MCP component.
+
+## Reference(s):
+
+- [WebClaw homepage](https://webclaw.io)
+- [WebClaw API base](https://api.webclaw.io/v1/)
+- [ClawHub skill page](https://clawhub.ai/0xmassi/skills/webclaw-extraction)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration]
+
+**Output Format:** [Markdown, plain text, JSON, and command guidance for web extraction workflows]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May require WEBCLAW_API_KEY for cloud API calls; direct API and cloud fallback send requested URLs and extraction prompts to WebClaw.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

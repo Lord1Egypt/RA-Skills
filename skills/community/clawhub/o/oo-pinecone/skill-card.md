@@ -1,43 +1,55 @@
-## Description: <br>
-Pinecone (pinecone.io). Use this skill for ANY Pinecone request — reading, creating, updating, and deleting data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill to read, create, update, and delete Pinecone data through an OOMOL-connected account.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and agents use this skill to operate Pinecone indexes and vectors through an OOMOL-connected account, including read, write, and destructive index or vector workflows. It is intended for Pinecone tasks where the agent should inspect the live connector schema before constructing a command payload. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can operate a user's Pinecone account through OOMOL and requires sensitive connected-account credentials. <br>
-Mitigation: Install it only when Pinecone account access through OOMOL is intended, and ensure the user trusts the oo CLI and OOMOL connection model before setup. <br>
-Risk: Write and destructive actions can create, update, delete, or overwrite Pinecone indexes and vectors. <br>
-Mitigation: Review write and delete payloads carefully and obtain explicit approval before running delete_index, delete_vectors, update_vector, or upsert_vectors. <br>
+## Use Case:
 
+Developers and data teams use the skill to inspect, search, create, update, and delete Pinecone indexes and vectors through their OOMOL-connected account.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/oomol/oo-pinecone) <br>
-- [Pinecone Homepage](https://www.pinecone.io/) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [oo CLI Install Guide](https://cli.oomol.com/install-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON payload guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Connector responses are JSON objects containing data and meta.executionId.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata and skill frontmatter) <br>
+Risk: The first-time setup fallback pipes a remote installer into a shell, and the security assessment notes that this path lacks clear user approval.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and install the oo CLI separately before allowing the skill to run, and check its automatic skill-installation settings.
+
+Risk: Requests and API credentials pass through OOMOL as the disclosed intermediary.
+
+Mitigation: Use a narrowly scoped Pinecone connection and retain the skill's confirmation requirements for write and delete actions.
+
+## Reference(s):
+
+- [Pinecone API documentation](https://docs.pinecone.io/reference/api/introduction)
+- [Pinecone](https://www.pinecone.io/)
+- [oo CLI project](https://github.com/oomol-lab/oo-cli)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Shell commands, Guidance]
+
+**Output Format:** [Markdown instructions with inline shell commands and JSON request payloads]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Write and destructive actions require user confirmation; read actions can run directly.]
+
+## Skill Version(s):
+
+1.0.7 (source: frontmatter, server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

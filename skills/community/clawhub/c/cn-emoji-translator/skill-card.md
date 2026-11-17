@@ -1,39 +1,52 @@
-## Description: <br>
-Converts supported Chinese and English text keywords into emoji and can convert supported emoji back into Chinese text descriptions using a local Python command-line tool. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Supports local bidirectional conversion between Chinese or English text keywords and emoji.
 
-## Publisher: <br>
-[freedompixels](https://clawhub.ai/user/freedompixels) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[freedompixels](https://clawhub.ai/user/freedompixels)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and agents use this skill to translate Chinese or English text into emoji and convert emoji into Chinese text descriptions for local text-processing workflows.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Keyword-based emoji translation can miss context or produce incomplete wording for user-facing copy.
+
+Mitigation: Review translated output before using it in customer-facing, legal, accessibility, or brand-sensitive content.
+
+Risk: Chinese-language documentation and command-line messages may be harder for non-Chinese users to operate or troubleshoot.
+
+Mitigation: Use this skill only when a Chinese-language emoji translator fits the team and workflow, or provide localized operator guidance.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and end users can use this local utility to make short Chinese or English text more expressive with emoji, or to decode supported emoji into readable Chinese labels. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, JSON, shell commands, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Input text may appear in terminal history, command logs, or captured console output. <br>
-Mitigation: Avoid pasting sensitive text into the translator unless that exposure is acceptable. <br>
+**Output Format:** [Plain text or JSON from a local command-line script, with Markdown usage guidance]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/freedompixels/cn-emoji-translator) <br>
-- [Publisher profile](https://clawhub.ai/user/freedompixels) <br>
+**Other Properties Related to Output:** [Runs locally without external dependencies or network access according to the provided security evidence.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, guidance] <br>
-**Output Format:** [Plain text or JSON from a local Python CLI, with Markdown usage guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Processes provided text locally; no network access, persistence, credential use, or destructive behavior was found in the security evidence.] <br>
+1.2.6 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.2.6 (source: release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

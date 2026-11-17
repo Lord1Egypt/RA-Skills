@@ -1,39 +1,50 @@
-## Description: <br>
-A complete quantitative market research toolkit for serious traders and investors, covering backtesting, breadth analysis, bubble detection, follow-through day signals, options strategy, portfolio risk, macro regime detection, scenario analysis, and market theme tracking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A quantitative market research skill pack for traders and investors that covers backtesting, breadth analysis, bubble detection, follow-through day signals, options strategy, portfolio risk, macro regime detection, scenario analysis, and market theme tracking.
 
-## Publisher: <br>
-[clawdiri-ai](https://clawhub.ai/user/clawdiri-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[clawdiri-ai](https://clawhub.ai/user/clawdiri-ai)
 
-## Use Case: <br>
-Active investors, quant-curious traders, finance professionals, and AI power users use this pack to install and navigate a suite of market research skills for data-driven trading and investment analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The pack indexes finance research skills that may handle private portfolio data or rely on market data and Python execution when installed separately. <br>
-Mitigation: Review each referenced Einstein Research skill before installing the full suite, especially before providing private portfolio data or enabling market-data fetching or code execution. <br>
+## Use Case:
 
+External active investors, quant-curious traders, finance professionals, and AI power users use this pack to add structured market research capabilities to an agent. The pack points users to 11 related skills for backtesting, breadth and bubble analysis, edge generation, follow-through day detection, options strategy, portfolio risk, macro regime detection, scenario analysis, and theme tracking.
 
-## Reference(s): <br>
-- [Einstein Research Suite on ClawHub](https://clawhub.ai/clawdiri-ai/pack-einstein-research) <br>
-- [RunByDaVinci publisher profile](https://clawhub.ai/user/clawdiri-ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands] <br>
-**Output Format:** [Markdown with installation commands and structured skill descriptions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only pack that points agents to related finance research skills.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The pack instructs users to install 11 external skills whose exact contents are not pinned or bundled in this artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review each referenced skill separately before installation and prefer pinned versions or verified publisher and source information.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/clawdiri-ai/skills/pack-einstein-research)
+- [Artifact README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with installation shell commands and structured capability guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The pack output depends on the separately installed referenced skills; this artifact primarily provides installation commands and capability descriptions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

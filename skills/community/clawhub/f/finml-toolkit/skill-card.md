@@ -1,40 +1,56 @@
-## Description: <br>
-A local Bash utility for logging, searching, summarizing, and exporting financial machine learning operation notes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Finml Toolkit logs, searches, summarizes, and exports timestamped records for financial machine learning workflow activity.
 
-## Publisher: <br>
-[bytesagain1](https://clawhub.ai/user/bytesagain1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[bytesagain1](https://clawhub.ai/user/bytesagain1)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill to record financial ML operations, inspect recent activity, search previous entries, and export local audit logs for review.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: User-entered financial workflow details may be retained in plaintext local logs and export files.
+
+Mitigation: Avoid entering credentials, account identifiers, private strategy details, or regulated data, and review stored logs and exports before sharing or retaining them.
+
+Risk: The package description and implementation are inconsistent, including documented data-directory behavior that may not be honored by the script.
+
+Mitigation: Confirm the installed script behavior before relying on it, especially the data directory, retention expectations, and deletion process.
+
+Risk: Local audit logs may persist without explicit retention or deletion controls.
+
+Mitigation: Apply local file retention practices, restrict access to the data directory, and delete logs and exports when they are no longer needed.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use this skill to record financial ML workflow notes, review recent activity, search prior entries, and export local logs for audit or reporting. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, shell commands, configuration, files]
 
-## Known Risks and Mitigations: <br>
-Risk: User-entered financial ML notes may be stored and exported in plaintext on the local machine. <br>
-Mitigation: Avoid entering API keys, credentials, account data, proprietary strategies, or sensitive portfolio details unless local storage and deletion are managed deliberately. <br>
-Risk: The public summary describes a curated resource list, while the artifact behaves as a local logging utility. <br>
-Mitigation: Review the installed commands as a logging and export tool before relying on it for financial ML resource discovery. <br>
+**Output Format:** [Plain text command output with local log and export files]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub Finml Toolkit](https://clawhub.ai/bytesagain1/finml-toolkit) <br>
+**Other Properties Related to Output:** [Writes command logs, history logs, and json, csv, or txt exports under the local finml-toolkit data directory.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration] <br>
-**Output Format:** [Plain text command output with optional JSON, CSV, or TXT exports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes timestamped entries and export files under the configured local data directory.] <br>
+1.0.0 (source: frontmatter and server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,6 @@
+interface:
+  display_name: "Dataify Task Status"
+  short_description: "Check the status of a Dataify scraper task"
+  default_prompt: "Use $dataify-task-status to check the status of this Dataify task ID."
+policy:
+  allow_implicit_invocation: true

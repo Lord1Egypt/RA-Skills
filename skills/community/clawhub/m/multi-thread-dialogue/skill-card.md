@@ -1,41 +1,58 @@
-## Description: <br>
-Multi-thread dialogue architecture that helps an agent route longer or independent work to background sub-agents while tracking status, interruptions, reviews, and monitoring. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Coordinates foreground responses with background sub-agents for longer tasks, including task routing, interruption handling, status markers, optional two-stage review, and task monitoring.
 
-## Publisher: <br>
-[philonis](https://clawhub.ai/user/philonis) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[philonis](https://clawhub.ai/user/philonis)
 
-## Use Case: <br>
-Developers and agent operators use this skill to coordinate multi-step work across foreground and background agent tasks, including task routing, status handling, interruption, and optional two-phase review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad natural-language commands such as stop or interrupt can accidentally affect an active background task. <br>
-Mitigation: Use explicit task-number commands when stopping, interrupting, or checking work during multi-task sessions. <br>
-Risk: Task orchestration state can expose task metadata if shared too broadly. <br>
-Mitigation: Keep task state scoped to the active workspace and review status summaries before sharing them outside the task context. <br>
+## Use Case:
 
+Developers and agent operators use this skill to route longer or independent work to background sub-agents while keeping the main agent responsive. It provides bilingual guidance for status handling, task interruption, monitoring, and optional two-stage review.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/philonis/multi-thread-dialogue) <br>
-- [Project homepage listed in artifact metadata](https://github.com/openclaw/multi-thread-dialogue) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes task state markers such as DONE, DONE_WITH_CONCERNS, NEEDS_CONTEXT, and BLOCKED.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release evidence) <br>
+Risk: Installing the skill globally or from an untrusted source can broaden supply-chain exposure.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install from a trusted, versioned source and prefer project-local installation unless global behavior is required.
+
+Risk: Adding the documented AGENTS.md rules persistently changes how the agent dispatches longer tasks.
+
+Mitigation: Review the AGENTS.md changes before deployment and keep the dispatch rules scoped to the intended workspace.
+
+Risk: The documented memory/multi-thread-tasks.json file stores task metadata and may be cleared after the timeout window.
+
+Mitigation: Avoid storing sensitive task details in task metadata and do not rely on the local task-state file as durable storage.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/philonis/skills/multi-thread-dialogue)
+- [ClawHub publisher profile](https://clawhub.ai/user/philonis)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill primarily guides AGENTS.md behavior and local task-state setup; it does not include executable hooks.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,54 @@
-## Description: <br>
-Outlook Calendar helps agents manage Microsoft Outlook calendars and events through MorphixAI-mediated access to Microsoft Graph. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Microsoft Outlook calendar integration for managing calendars and events, including creating, updating, deleting, and listing events by date range through a MorphixAI proxy to Microsoft Graph API.
 
-## Publisher: <br>
-[paul-leo](https://clawhub.ai/user/paul-leo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[paul-leo](https://clawhub.ai/user/paul-leo)
 
-## Use Case: <br>
-Agents and users use this skill to inspect calendars, list and retrieve events, create meetings, update event details, delete events, and review schedules across date ranges. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can read and modify Outlook Calendar data through a linked MorphixAI and Microsoft account. <br>
-Mitigation: Install only when MorphixAI and the required OpenClaw MorphixAI plugin are trusted; confirm the linked account and review event details before approving create, update, or delete actions. <br>
-Risk: The skill requires a MORPHIXAI_API_KEY credential. <br>
-Mitigation: Store the key securely, avoid sharing it in prompts or logs, and rotate it if exposure is suspected. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/paul-leo/outlook-calendar-2) <br>
-- [MorphixAI API keys](https://morphix.app/api-keys) <br>
-- [MorphixAI connections](https://morphix.app/connections) <br>
+## Use Case:
 
+Employees, external users, and developers can use this skill to let an agent inspect Outlook calendars, review schedules, and create, update, or delete calendar events after the required MorphixAI and Microsoft account setup is complete.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, API calls] <br>
-**Output Format:** [Markdown instructions with YAML-like tool-call examples and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires MORPHIXAI_API_KEY and a linked MorphixAI/Microsoft Outlook Calendar account.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill relies on an unpinned third-party plugin that receives MorphixAI API-key authority and connected Outlook calendar permissions.
+
+Mitigation: Review the openclaw-morphixai plugin source, publisher, and version before installing, and prefer a pinned or verified release.
+
+Risk: The connected integration can read calendar details and create, update, delete, or invite attendees to events.
+
+Mitigation: Use a narrowly scoped, revocable MorphixAI API key and confirm the Microsoft account permissions before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/paul-leo/skills/outlook-calendar-2)
+- [MorphixAI API keys](https://morphix.app/api-keys)
+- [MorphixAI connections](https://morphix.app/connections)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, API Calls]
+
+**Output Format:** [Markdown with inline tool-call examples and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires MORPHIXAI_API_KEY and a linked Outlook Calendar account.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

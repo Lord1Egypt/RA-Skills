@@ -1,46 +1,62 @@
-## Description: <br>
-MindForge helps agents provide coaching-style self-improvement prompts that combine neuroscience, psychology, habit design, and reflective protocols for turning knowledge into action. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MindForge provides a self-help framework that combines neuroscience, psychology, philosophy, and habit prompts to help users translate knowledge into action.
 
-## Publisher: <br>
-[chase-zhouchang](https://clawhub.ai/user/chase-zhouchang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chase-zhouchang](https://clawhub.ai/user/chase-zhouchang)
 
-## Use Case: <br>
-External users and agents use this skill for structured self-improvement guidance around procrastination, perfectionism, motivation, burnout, habit formation, and reflective life-planning exercises. It is best suited for coaching-style prompts and should not be treated as clinical, medical, or mental-health care. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill includes prescriptive addiction, withdrawal, burnout, and mental-health-adjacent coaching. <br>
-Mitigation: Use it as non-clinical self-improvement guidance only; seek qualified help for substance withdrawal, severe distress, suicidality, trauma, or worsening symptoms. <br>
-Risk: Reflective prompts may be emotionally intense or unsuitable for some users. <br>
-Mitigation: Pause or stop use when prompts increase distress, and prefer professional support for high-risk personal situations. <br>
+## Use Case:
 
+External users can use this skill for informal self-reflection, habit formation, motivation planning, and turning personal-development ideas into small action steps. It is especially framed around procrastination, perfectionism, low energy, burnout, addiction-related behavior, and behavior change.
 
-## Reference(s): <br>
-- [MindForge on ClawHub](https://clawhub.ai/chase-zhouchang/mindforge) <br>
-- [brain-as-llm-core.md](artifact/brain-as-llm-core.md) <br>
-- [neuroscience-addiction.md](artifact/neuroscience-addiction.md) <br>
-- [three-in-one.md](artifact/three-in-one.md) <br>
-- [action-framework.md](artifact/action-framework.md) <br>
-- [dan-koe-protocol-questions.md](artifact/dan-koe-protocol-questions.md) <br>
-- [dan-koe-game-framework.md](artifact/dan-koe-game-framework.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown coaching guidance, reflective questions, protocols, and action steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only skill; no data, tool, or system access requested by the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Users may treat broad addiction, withdrawal, ADHD, burnout, or physical-health advice as medical or mental-health guidance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present the skill as informal self-help only and direct users to qualified professional support for withdrawal, diagnosis, medication, crisis symptoms, or safety concerns.
+
+Risk: The artifact includes behavior-change protocols without adequate safety limits for significant distress or substance-use contexts.
+
+Mitigation: Review carefully before installing or using the skill in these contexts, and add explicit boundaries before public or organizational deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/chase-zhouchang/skills/mindforge)
+- [Brain as Generative Model](artifact/brain-as-llm-core.md)
+- [Neuroscience of Addiction](artifact/neuroscience-addiction.md)
+- [Wang Yangming: Knowing and Doing Are One](artifact/wang-yangming.md)
+- [Adlerian Psychology: Purpose Theory](artifact/adler.md)
+- [The Action Motivation Framework](artifact/action-framework.md)
+- [Core Insight: Knowledge Is a Prompt, Action Is a Parameter Update](artifact/parameter-vs-prompt.md)
+- [Dan Koe's 7 Core Insights](artifact/dan-koe-7-insights.md)
+- [The One-Day Life Reset Protocol](artifact/dan-koe-protocol-questions.md)
+- [The Life Game Framework](artifact/dan-koe-game-framework.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Text]
+
+**Output Format:** [Markdown and plain-text coaching prompts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Informal self-help content; not a substitute for medical or mental-health guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

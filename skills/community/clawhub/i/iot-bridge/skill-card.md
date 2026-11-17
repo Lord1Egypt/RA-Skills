@@ -1,42 +1,59 @@
-## Description: <br>
-Bridge IoT devices to the cloud via aitun tunnel. Expose local MQTT brokers, device dashboards, or HTTP APIs so remote devices and services can connect, report data, and receive commands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Bridge IoT devices to the cloud via aitun tunnel. Expose local MQTT brokers, device dashboards, or HTTP APIs so remote devices and services can connect, report data, and receive commands.
 
-## Publisher: <br>
-[ctz168](https://clawhub.ai/user/ctz168) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ctz168](https://clawhub.ai/user/ctz168)
 
-## Use Case: <br>
-Developers and operators use this skill to expose local IoT services, dashboards, MQTT brokers, or HTTP APIs through an aitun tunnel for remote device access, testing, and data reporting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can expose local IoT services such as Home Assistant, Node-RED, Grafana, MQTT, or device-control APIs to the internet. <br>
-Mitigation: Require strong authentication on exposed services, review who can reach the tunnel URL, and avoid exposing device-control APIs unless the access model is understood. <br>
-Risk: The artifact includes one-line remote installer commands for Linux, macOS, and Windows. <br>
-Mitigation: Prefer the pip or uv install path, or independently verify remote installer scripts before executing them. <br>
+## Use Case:
 
+Developers and IoT engineers use this skill to expose local MQTT brokers, device dashboards, HTTP APIs, and other IoT services through an aitun tunnel for remote access, testing, and cloud integration.
 
-## Reference(s): <br>
-- [AiTun homepage](https://aitun.cc) <br>
-- [ClawHub skill page](https://clawhub.ai/ctz168/skills/iot-bridge) <br>
-- [ClawHub listing from OpenClaw metadata](https://clawhub.ai/ctz168/iot-bridge) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline shell and PowerShell code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes install commands, tunnel commands, endpoint-sharing guidance, cleanup commands, and CLI flag notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: frontmatter and server release metadata) <br>
+Risk: The skill instructs users to expose local IoT dashboards, MQTT brokers, and device APIs to the internet.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when authentication, TLS, access controls, and network segmentation are already in place.
+
+Risk: The artifact includes one-line remote script installers for Linux, macOS, and Windows.
+
+Mitigation: Prefer a pinned and verified aitun package installed in an isolated environment before running tunnel commands.
+
+Risk: The server security verdict is suspicious because the tunneling workflow lacks sufficient safeguards for exposed IoT services.
+
+Mitigation: Review the skill carefully before installation and avoid exposing sensitive services unless the operational risk has been accepted.
+
+## Reference(s):
+
+- [AiTun homepage](https://aitun.cc)
+- [ClawHub skill page](https://clawhub.ai/ctz168/skills/iot-bridge)
+- [ClawHub package link from metadata](https://clawhub.ai/ctz168/iot-bridge)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline shell commands and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes install commands, tunnel setup commands, endpoint-sharing guidance, CLI flags, and cleanup steps.]
+
+## Skill Version(s):
+
+1.0.6 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

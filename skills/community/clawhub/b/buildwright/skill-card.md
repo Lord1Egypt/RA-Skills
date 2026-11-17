@@ -1,41 +1,54 @@
-## Description: <br>
-Lightweight engineering workflow for agent-led development. Provides plan, work, verify, ship, and analyse commands with TDD, documentation discipline, security review, code review, and quality gates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Apply agent-led software development workflows for planning, implementation, TDD, verification, security review, code review, shipping, repository analysis, and cleanup.
 
-## Publisher: <br>
-[raunakkathuria](https://clawhub.ai/user/raunakkathuria) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[raunakkathuria](https://clawhub.ai/user/raunakkathuria)
 
-## Use Case: <br>
-Developers and engineering teams use Buildwright to guide agent-led feature work, verification, code review, security review, documentation updates, and shipping workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The shipping workflow can commit, push, and open a pull request. <br>
-Mitigation: Use it only with repository credentials and branch protections appropriate for the project, and review staged changes before shipping. <br>
-Risk: Agent-generated code, documentation, or review guidance can be incorrect or misaligned with repository practices. <br>
-Mitigation: Review the generated .buildwright steering files, run the verify workflow, and inspect generated changes before relying on them. <br>
+## Use Case:
 
+Developers use Buildwright to plan, implement, test, review, document, and ship software changes, or to analyze and clean up an existing repository.
 
-## Reference(s): <br>
-- [Project homepage](https://github.com/raunakkathuria/buildwright) <br>
-- [ClawHub skill page](https://clawhub.ai/raunakkathuria/skills/buildwright) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline commands, file paths, and implementation changes when the selected workflow calls for them] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update project documentation, steering files, code changes, commits, and pull requests when the selected workflow calls for them.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.17 (source: server release evidence and artifact frontmatter) <br>
+Risk: Generated repository guidance or documentation may be inaccurate.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated .buildwright files and documentation before relying on them.
+
+Risk: The ship command can commit, push, and open a pull request.
+
+Mitigation: Invoke /bw-ship only when outbound git actions are intended; review the changes before shipping.
+
+## Reference(s):
+
+- [Buildwright project homepage](https://github.com/raunakkathuria/buildwright)
+- [Buildwright on ClawHub](https://clawhub.ai/raunakkathuria/skills/buildwright)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Text and Markdown, with repository files and code changes when requested]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce plans, review findings, documentation, and pull requests depending on the selected command.]
+
+## Skill Version(s):
+
+0.0.22 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

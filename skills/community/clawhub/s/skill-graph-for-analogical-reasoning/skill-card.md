@@ -1,43 +1,56 @@
-## Description: <br>
-Builds a graph over SKILL.md skills, chooses one primary skill, and retrieves complementary support instead of naively attaching top similar skills. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Skill Graph for Analogical Reasoning builds a graph over local SKILL.md folders to choose one primary skill and retrieve complementary support instead of naive top-similar matches.
 
-## Publisher: <br>
-[h4444433333](https://clawhub.ai/user/h4444433333) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[h4444433333](https://clawhub.ai/user/h4444433333)
 
-## Use Case: <br>
-Developers and engineers use this skill to build and query a local graph of SKILL.md folders so an agent can choose a primary skill and complementary support for a task. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The build command scans local skill directories selected by the user and writes graph files to a user-selected output path. <br>
-Mitigation: Run it only against intended skill directories and choose an output location that is safe to create or overwrite. <br>
-Risk: Query results may reveal whether required environment variables or binaries for scanned skills appear to be missing. <br>
-Mitigation: Review graph and query outputs before sharing them outside the workspace. <br>
+## Use Case:
 
+Developers and agent-workflow maintainers use this skill to build and query a graph of local SKILL.md folders, select a primary skill for a task, and inspect complementary or fallback skills before adding context.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/h4444433333/skill-graph-for-analogical-reasoning) <br>
-- [Skill bundle README](artifact/README.md) <br>
-- [Reference](artifact/reference.md) <br>
-- [Python package README](artifact/python-package/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, JSON files, HTML files, guidance] <br>
-**Output Format:** [Markdown guidance with bash commands, plus JSON graph output and standalone HTML visualization from the CLI.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Build writes graph.json to the selected output directory; query reads an existing graph; look writes an HTML visualization to the selected output path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release evidence) <br>
+Risk: The launcher can fall back to running a local grap-skill executable discovered from PATH.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the bundled helper or a trusted installed module in a controlled environment, and avoid untrusted PATH entries until the launcher uses only a trusted absolute entrypoint.
+
+Risk: Generated graph.json files can contain local paths and excerpts from indexed skill files.
+
+Mitigation: Run the build command only on skill directories intended for indexing, and review graph artifacts before sharing them outside the workspace.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/h4444433333/skills/skill-graph-for-analogical-reasoning)
+- [README](README.md)
+- [Reference](reference.md)
+- [Python package README](python-package/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Code, Files]
+
+**Output Format:** [Markdown guidance with shell commands; CLI commands can produce JSON graph data and HTML visualization files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3. The build command scans selected skill directories and can write graph.json; the look command can write an HTML visualization.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

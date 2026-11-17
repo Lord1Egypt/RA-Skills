@@ -1,42 +1,59 @@
-## Description: <br>
-Helps agents search, summarize, and lightly analyze public Toutiao articles, videos, and topic pages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents summarize and lightly analyze public Toutiao articles, videos, topic pages, searches, and channels.
 
-## Publisher: <br>
-[CodeKungfu](https://clawhub.ai/user/CodeKungfu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[codekungfu](https://clawhub.ai/user/codekungfu)
 
-## Use Case: <br>
-External users and developers use this skill to direct an agent through public Toutiao content discovery, keyword-based summaries, channel distribution analysis, and public video metadata summaries. It is intended for user-directed, low-volume public-page analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill could be misused for bulk collection, private account data access, interface reverse engineering, video downloading, or watermark removal. <br>
-Mitigation: Use it only for user-directed, low-volume analysis of public pages, and do not use it for restricted data access, bulk scraping, reverse engineering, downloads, or watermark removal. <br>
-Risk: Summaries of public Toutiao content may omit context or reflect stale public-page data. <br>
-Mitigation: Include source links and collection time when available, and have users verify important claims against the original public pages. <br>
+## Use Case:
 
+External users and agents use this skill to create concise summaries and lightweight statistics from public Toutiao content by keyword, channel, or video page. It is intended for public-page analysis and reminders, not bulk scraping, interface reverse engineering, video downloading, or watermark removal.
 
-## Reference(s): <br>
-- [Toutiao homepage](https://www.toutiao.com/) <br>
-- [Toutiao search](https://www.toutiao.com/search) <br>
-- [ClawHub skill page](https://clawhub.ai/CodeKungfu/toutiao-hot-trend) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, analysis] <br>
-**Output Format:** [Markdown summaries and structured text lists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Results should identify source links and collection time when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: Automation could violate Toutiao platform rules if expanded into bulk scraping or interface reverse engineering.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Limit use to public pages, avoid bulk collection and interface reverse engineering, and follow Toutiao platform rules.
+
+Risk: Dynamic rendering or anti-automation behavior can make extracted public metadata incomplete or stale.
+
+Mitigation: Prefer human-opened pages when needed, keep request frequency low, and include collection timestamps in results.
+
+Risk: Video workflows could drift beyond the intended boundary into downloading media or removing watermarks.
+
+Mitigation: Use the skill only for public video metadata and summary extraction; do not download videos or remove watermarks.
+
+## Reference(s):
+
+- [Toutiao homepage](https://www.toutiao.com/)
+- [Toutiao search](https://www.toutiao.com/search)
+- [ClawHub skill page](https://clawhub.ai/codekungfu/skills/toutiao-hot-trend)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown summaries and structured lists with public source links and collection timestamps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include titles, authors, sources, publish times, public interaction counts, channel names, summaries, tags, links, and collection timestamps.]
+
+## Skill Version(s):
+
+0.1.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

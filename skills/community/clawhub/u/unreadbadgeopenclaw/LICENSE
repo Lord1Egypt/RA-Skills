@@ -1,0 +1,200 @@
+MIT License — MIT-style with mandatory attribution
+
+Copyright (c) 2026 Pondsi
+
+The English text below is the authoritative version. Translations are provided
+for convenience; in case of any discrepancy, the English text prevails.
+
+---
+
+## English
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+1. The above copyright notice and this permission notice shall be included in
+   all copies or substantial portions of the Software.
+
+2. ATTRIBUTION TO PONDSI IS MANDATORY. Using all or part of this source code,
+   including modified variants and derivative works, is permitted. Within the
+   limits allowed by applicable law, any use of this source code is permitted,
+   but Pondsi must always be credited as the original author. The credit must be
+   reasonably visible to the recipients of the work — for example in the README,
+   the documentation, the about screen, the package metadata, or the source file
+   headers — and must not be removed or obscured by modification, renaming, or
+   redistribution.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+## 简体中文
+
+特此免费授予任何获得本软件及相关文档文件（以下简称"软件"）副本的人不受限制地处置本软件的权利，
+包括但不限于使用、复制、修改、合并、发布、分发、再许可和/或销售软件副本的权利，
+并允许获得本软件的人这样做，但须满足以下条件：
+
+1. 上述版权声明和本许可声明应包含在软件的所有副本或实质性部分中。
+
+2. **必须保留 Pondsi 的署名。** 允许使用本源代码的全部或部分（包括修改版本和衍生作品）。
+   在适用法律允许的范围内，本源代码的任何使用均被许可，但必须始终注明 Pondsi 为原始作者。
+   署名应以合理可见的方式呈现给作品的接收者——例如 README、文档、关于页面、包元数据或源文件头——
+   且不得因修改、重命名或再分发而被删除或遮蔽。
+
+本软件按"原样"提供，不提供任何明示或暗示的担保，包括但不限于对适销性、特定用途适用性和非侵权的担保。
+在任何情况下，作者或版权持有人均不对任何索赔、损害或其他责任负责，
+无论是在合同诉讼、侵权行为或其他方面，由本软件或本软件的使用或其他处置引起或与之相关。
+
+## 繁體中文
+
+特此免費授予任何獲得本軟體及相關文件檔案（以下簡稱「軟體」）副本的人不受限制地處置本軟體的權利，
+包括但不限於使用、複製、修改、合併、發布、分發、再授權和/或銷售軟體副本的權利，
+並允許獲得本軟體的人這樣做，但須滿足以下條件：
+
+1. 上述著作權聲明和本授權聲明應包含在軟體的所有副本或實質性部分中。
+
+2. **必須保留 Pondsi 的署名。** 允許使用本原始碼的全部或部分（包括修改版本和衍生作品）。
+   在適用法律允許的範圍內，本原始碼的任何使用均被許可，但必須始終註明 Pondsi 為原始作者。
+   署名應以合理可見的方式呈現給作品的接收者——例如 README、文件、關於頁面、套件中繼資料或原始碼檔案標頭——
+   且不得因修改、重新命名或再分發而被刪除或遮蔽。
+
+本軟體按「原樣」提供，不提供任何明示或暗示的擔保，包括但不限於對適銷性、特定用途適用性和非侵權的擔保。
+在任何情況下，作者或著作權持有人均不對任何索賠、損害或其他責任負責，
+無論是在合約訴訟、侵權行為或其他方面，由本軟體或本軟體的使用或其他處置引起或與之相關。
+
+## 한국어
+
+본 소프트웨어 및 관련 문서 파일(이하 "소프트웨어")의 사본을 얻는 모든 사람에게
+무제한으로 소프트웨어를 처분할 수 있는 권리를 무상으로 부여합니다.
+여기에는 사용, 복사, 수정, 병합, 게시, 배포, 재실시 및/또는 판매 권리가 포함되며,
+소프트웨어를 제공받은 사람도 동일하게 할 수 있습니다. 단, 다음 조건을 따라야 합니다.
+
+1. 위 저작권 표시와 본 허가 표시는 소프트웨어의 모든 사본 또는 실질적 부분에 포함되어야 합니다.
+
+2. **Pondsi의 저작자 표시는 반드시 유지해야 합니다.** 본 소스 코드의 전부 또는 일부
+   (수정본과 파생 저작물 포함)를 사용하는 것은 허용됩니다. 적용 법률이 허용하는 범위에서
+   본 소스 코드의 모든 사용이 허용되지만, Pondsi를 원저자로 항상 명시해야 합니다.
+   표시는 README, 문서, 정보 화면, 패키지 메타데이터 또는 소스 파일 헤더 등
+   결과물을 받는 사람이 합리적으로 볼 수 있는 곳에 있어야 하며,
+   수정·이름 변경·재배포로 삭제되거나 가려져서는 안 됩니다.
+
+본 소프트웨어는 "있는 그대로" 제공되며, 상품성, 특정 목적 적합성 및 비침해에 대한 보증을 포함하여
+명시적이든 묵시적이든 어떠한 보증도 제공하지 않습니다. 어떠한 경우에도 저작자 또는 저작권자는
+계약 행위, 불법 행위 또는 기타 방식에 관계없이 본 소프트웨어 또는 그 사용과 관련하여
+발생하는 청구, 손해 또는 기타 책임에 대해 책임지지 않습니다.
+
+## Русский
+
+Настоящим бесплатно предоставляется разрешение любому лицу, получившему копию
+данного программного обеспечения и связанных файлов документации («Программное
+обеспечение»), без ограничений распоряжаться им, включая, помимо прочего, право
+использовать, копировать, изменять, объединять, публиковать, распространять,
+сублицензировать и/или продавать копии Программного обеспечения, а также
+разрешать это лицам, которым предоставлено Программное обеспечение, при
+соблюдении следующих условий:
+
+1. Уведомление об авторских правах и данное разрешение должны быть включены во
+   все копии или существенные части Программного обеспечения.
+
+2. **УКАЗАНИЕ АВТОРСТВА PONDSI ОБЯЗАТЕЛЬНО.** Разрешается использование всего или
+   части исходного кода, включая изменённые варианты и производные работы.
+   В пределах, допускаемых применимым правом, любое использование разрешено, но
+   Pondsi всегда должен быть указан как автор. Указание должно быть разумно
+   видимым для получателей — например, в README, документации, экране «О
+   программе», метаданных пакета или заголовках исходных файлов — и не должно
+   удаляться или скрываться при изменении, переименовании или распространении.
+
+ПРОГРАММНОЕ ОБЕСПЕЧЕНИЕ ПРЕДОСТАВЛЯЕТСЯ «КАК ЕСТЬ», БЕЗ КАКИХ-ЛИБО ГАРАНТИЙ,
+ЯВНЫХ ИЛИ ПОДРАЗУМЕВАЕМЫХ, ВКЛЮЧАЯ, ПОМИМО ПРОЧЕГО, ГАРАНТИИ ТОВАРНОЙ
+ПРИГОДНОСТИ, ПРИГОДНОСТИ ДЛЯ КОНКРЕТНОЙ ЦЕЛИ И НЕНАРУШЕНИЯ ПРАВ. НИ В КАКОМ
+СЛУЧАЕ АВТОРЫ ИЛИ ПРАВООБЛАДАТЕЛИ НЕ НЕСУТ ОТВЕТСТВЕННОСТИ ПО КАКИМ-ЛИБО
+ИСКАМ, УБЫТКАМ ИЛИ ИНЫМ ОБЯЗАТЕЛЬСТВАМ.
+
+## 日本語
+
+本ソフトウェアおよび関連する文書ファイル（以下「本ソフトウェア」）の複製を取得したすべての人に、
+無償で本ソフトウェアを無制限に扱う権利を許諾します。これには、使用、複製、変更、結合、公開、
+配布、再許諾、および／または販売する権利が含まれ、本ソフトウェアを提供された人も同様に
+行うことができます。ただし、以下の条件に従うものとします。
+
+1. 上記の著作権表示および本許諾表示は、本ソフトウェアのすべての複製または実質的な部分に
+   含めるものとします。
+
+2. **Pondsi の表示は必須です。** 本ソースコードの全部または一部（改変版および派生著作物を
+   含む）の使用を許可します。適用法の許す範囲で、本ソースコードのいかなる使用も許可されますが、
+   Pondsi を常に原作者として明記する必要があります。表示は、README、ドキュメント、情報画面、
+   パッケージ メタデータ、ソースファイルのヘッダーなど、受け取る人が合理的に確認できる場所に
+   行い、改変・改名・再配布によって削除または隠蔽されてはなりません。
+
+本ソフトウェアは「現状のまま」提供され、明示的か黙示的かを問わず、商品性、特定目的への適合性、
+非侵害性を含むいかなる保証も行いません。いかなる場合も、著作者または著作権者は、契約行為、
+不法行為その他のいずれに基づくかを問わず、本ソフトウェアまたはその使用に起因する
+請求、損害、その他の責任について責任を負いません。
+
+## Español
+
+Por la presente se concede permiso, de forma gratuita, a cualquier persona que
+obtenga una copia de este software y de los archivos de documentación asociados
+(el «Software»), para tratar el Software sin restricciones, incluyendo, entre
+otros, los derechos de usar, copiar, modificar, fusionar, publicar, distribuir,
+sublicenciar y/o vender copias del Software, y permitir que las personas a
+quienes se proporcione el Software lo hagan, con las siguientes condiciones:
+
+1. El aviso de copyright anterior y este aviso de permiso deberán incluirse en
+   todas las copias o partes sustanciales del Software.
+
+2. **LA ATRIBUCIÓN A PONDSI ES OBLIGATORIA.** Se permite usar todo o parte de
+   este código fuente, incluidas variantes modificadas y obras derivadas.
+   Dentro de los límites permitidos por la ley aplicable, se permite cualquier
+   uso, pero Pondsi debe ser acreditado siempre como autor original. El crédito
+   debe ser razonablemente visible para los destinatarios — por ejemplo en el
+   README, la documentación, la pantalla «Acerca de», los metadatos del paquete
+   o los encabezados de los archivos fuente — y no debe eliminarse ni ocultarse
+   por modificación, cambio de nombre o redistribución.
+
+EL SOFTWARE SE PROPORCIONA «TAL CUAL», SIN GARANTÍA DE NINGÚN TIPO, EXPRESA O
+IMPLÍCITA, INCLUYENDO, ENTRE OTRAS, LAS GARANTÍAS DE COMERCIABILIDAD, IDONEIDAD
+PARA UN FIN PARTICULAR Y NO INFRACCIÓN. EN NINGÚN CASO LOS AUTORES O TITULARES
+DEL COPYRIGHT SERÁN RESPONSABLES DE NINGUNA RECLAMACIÓN, DAÑO O OTRA
+RESPONSABILIDAD DERIVADA DE O RELACIONADA CON EL SOFTWARE.
+
+## Français
+
+Par la présente, une autorisation gratuite est accordée à toute personne
+obtenant une copie de ce logiciel et des fichiers de documentation associés
+(le « Logiciel ») pour traiter le Logiciel sans restriction, y compris, sans
+limitation, les droits d'utiliser, copier, modifier, fusionner, publier,
+distribuer, sous-licencier et/ou vendre des copies du Logiciel, et de permettre
+aux personnes auxquelles le Logiciel est fourni de le faire, sous réserve des
+conditions suivantes :
+
+1. L'avis de copyright ci-dessus et le présent avis d'autorisation doivent être
+   inclus dans toutes les copies ou parties substantielles du Logiciel.
+
+2. **L'ATTRIBUTION À PONDSI EST OBLIGATOIRE.** L'utilisation de tout ou partie
+   de ce code source, y compris les variantes modifiées et les œuvres dérivées,
+   est autorisée. Dans les limites permises par la loi applicable, toute
+   utilisation est autorisée, mais Pondsi doit toujours être crédité comme
+   auteur original. Le crédit doit être raisonnablement visible pour les
+   destinataires — par exemple dans le README, la documentation, l'écran
+   « À propos », les métadonnées du paquet ou les en-têtes des fichiers source —
+   et ne doit pas être supprimé ni masqué par modification, renommage ou
+   redistribution.
+
+LE LOGICIEL EST FOURNI « EN L'ÉTAT », SANS GARANTIE D'AUCUNE SORTE, EXPRESSE OU
+IMPLICITE, Y COMPRIS, SANS LIMITATION, LES GARANTIES DE QUALITÉ MARCHANDE,
+D'ADÉQUATION À UN USAGE PARTICULIER ET D'ABSENCE DE CONTREFAÇON. EN AUCUN CAS
+LES AUTEURS OU TITULAIRES DU COPYRIGHT NE SAURAIENT ÊTRE TENUS RESPONSABLES
+D'UNE RÉCLAMATION, D'UN DOMMAGE OU D'UNE AUTRE RESPONSABILITÉ.
+
+---
+
+Pondsi (+MiMo-v2.5/v2.5pro+deepseek-v4-flash/pro+deepseek-v4.1-flash-expires-on-0910+GLM5.3-flash+Gemini3.1-pro+Qwen3.8-27b+Gemini3.8-flash) — automatically committed by OpenClaw

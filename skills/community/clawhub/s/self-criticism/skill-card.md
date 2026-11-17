@@ -1,44 +1,64 @@
-## Description: <br>
-Insert breakpoint self-critique before branching work, after user friction, and at risky handoffs so agents catch errors early. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Insert breakpoint self-critique before branching work, after user friction, and at risky handoffs so agents catch errors early.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Developers, agent builders, and external users use this skill to add lightweight self-critique at inflection points before plans branch, commitments become expensive, or user friction reveals process drift. It helps agents choose critique depth, keep local trigger memory, and update small workspace steering files when the user approves. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent self-critique memory can capture sensitive personal or project details if used too broadly. <br>
-Mitigation: Keep saved notes limited to process lessons, critique triggers, and depth preferences; avoid storing private details unrelated to critique timing or quality control. <br>
-Risk: Workspace integration may modify main memory, ~/self-criticism/, AGENTS.md, or SOUL.md. <br>
-Mitigation: Review proposed writes before execution and require explicit session approval before changing workspace steering files. <br>
-Risk: Overuse can slow work or turn critique into noisy ritual. <br>
-Mitigation: Use the lightest critique depth that can catch the likely failure, and trigger it mainly before branching, commitment, surprising evidence, user friction, or risky handoffs. <br>
+## Use Case:
 
+Developers and agent users use this skill to insert lightweight self-critique at workflow breakpoints before a weak assumption spreads into plans, edits, handoffs, or final recommendations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/self-criticism) <br>
-- [Publisher profile](https://clawhub.ai/user/ivangdavila) <br>
-- [Skill homepage](https://clawic.com/skills/self-criticism) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces breakpoint questions, critique depth guidance, local memory templates, and optional workspace integration snippets.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server evidence) <br>
+Risk: Local critique memory could accumulate details that are not needed for future breakpoint decisions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep only reusable trigger lessons, critique depth preferences, and breakpoint prompts; avoid storing private user details or long postmortems.
+
+Risk: Optional SOUL or AGENTS integration can change workspace steering behavior.
+
+Mitigation: Review the proposed snippets and approve workspace edits only when this critique workflow should be added to that workspace.
+
+Risk: Overusing deep critique can interrupt routine work and reduce momentum.
+
+Mitigation: Use the lightest critique level that can catch the likely error, and reserve deep critique for high-stakes, novel, or failure-prone work.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/self-criticism)
+- [Skill homepage](https://clawic.com/skills/self-criticism)
+- [Setup guide](setup.md)
+- [Memory template](memory-template.md)
+- [Trigger families](triggers.md)
+- [Critique depth levels](levels.md)
+- [Memory routing](routing.md)
+- [Boundaries and anti-noise rules](boundaries.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with optional shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update local self-critique memory files under ~/self-criticism/ when the user approves setup.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

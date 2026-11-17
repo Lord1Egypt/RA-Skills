@@ -1,0 +1,305 @@
+{
+  "summary": "Risk score: 93/100. 9 validated finding(s), 0 false positive(s). By severity: critical=1, high=2, medium=3, low=3. By type: sqli=1, idor=1, xss=1, misconfig=1, info_leak=1, open_redirect=1, path_traversal=1, ssti=1, command_injection=1. Note: L4 (destructive) actions were blocked in safe_mode; latent risk may be higher.",
+  "risk_score": 93,
+  "assets": {
+    "domains": ["staging.example.test", "api.staging.example.test"],
+    "ips": ["10.0.0.12", "10.0.0.13"],
+    "endpoints": [
+      {"url": "https://staging.example.test/search", "methods": ["GET"]},
+      {"url": "https://staging.example.test/login", "methods": ["GET", "POST"]},
+      {"url": "https://staging.example.test/profile", "methods": ["GET", "POST"]},
+      {"url": "https://api.staging.example.test/users", "methods": ["GET", "POST"]},
+      {"url": "https://api.staging.example.test/users/{id}", "methods": ["GET"]},
+      {"url": "https://api.staging.example.test/render", "methods": ["POST"]},
+      {"url": "https://api.staging.example.test/ping", "methods": ["GET"]}
+    ]
+  },
+  "findings": [
+    {
+      "id": "finding-001",
+      "type": "xss",
+      "tier": "high",
+      "severity": "high",
+      "target": "https://staging.example.test/search?q=PTSKILLTEST<xss>9a3f",
+      "status": "validated",
+      "confidence": 0.9,
+      "evidence": {
+        "request": "GET /search?q=PTSKILLTEST<xss>9a3f HTTP/1.1\r\nHost: staging.example.test\r\nCookie: session=PTSKILLTEST-session-abc\r\n\r\n",
+        "response": "HTTP/1.1 200 OK\r\nContent-Type: text/html\r\n\r\n<p>results for PTSKILLTEST<xss>9a3f</p>",
+        "timestamp": "2026-06-20T14:08:12Z",
+        "tool": "httpRequest"
+      },
+      "reproducible": true,
+      "safe_poc": true,
+      "remediation": "Output-encode user input in HTML context using a context-aware encoding library; deploy a Content-Security-Policy.",
+      "reproduction_steps": [
+        "Send GET /search?q=PTSKILLTEST<xss>9a3f with the test session cookie.",
+        "Observe the marker reflected unescaped in the response body."
+      ]
+    },
+    {
+      "id": "finding-002",
+      "type": "sqli",
+      "tier": "high",
+      "severity": "critical",
+      "target": "https://api.staging.example.test/users?id=1",
+      "status": "validated",
+      "confidence": 0.95,
+      "evidence": {
+        "request": "GET /api/users?id=1 AND 1=2 HTTP/1.1\r\nHost: api.staging.example.test\r\nCookie: session=PTSKILLTEST-session-abc\r\n\r\n",
+        "response": "HTTP/1.1 200 OK\r\nContent-Type: application/json\r\n\r\n{\"data\":[]}",
+        "timestamp": "2026-06-20T14:08:40Z",
+        "tool": "httpRequest"
+      },
+      "reproducible": true,
+      "safe_poc": true,
+      "remediation": "Use parameterized queries / prepared statements for all database access; never concatenate user input into SQL.",
+      "reproduction_steps": [
+        "Send GET /api/users?id=1 AND 1=1 -> response contains data.",
+        "Send GET /api/users?id=1 AND 1=2 -> response is empty. Differential confirms injection."
+      ]
+    },
+    {
+      "id": "finding-003",
+      "type": "idor",
+      "tier": "high",
+      "severity": "high",
+      "target": "https://api.staging.example.test/users/2",
+      "status": "validated",
+      "confidence": 0.85,
+      "evidence": {
+        "request": "GET /api/users/2 HTTP/1.1\r\nHost: api.staging.example.test\r\nCookie: session=PTSKILLTEST-session-abc\r\n\r\n",
+        "response": "HTTP/1.1 200 OK\r\nContent-Type: application/json\r\n\r\n{\"id\":2,\"email\":\"other-user@example.test\"}",
+        "timestamp": "2026-06-20T14:08:55Z",
+        "tool": "httpRequest"
+      },
+      "reproducible": true,
+      "safe_poc": true,
+      "remediation": "Enforce per-user authorization checks server-side; verify the requesting user owns or is authorized for the requested object id.",
+      "reproduction_steps": [
+        "As ptskill-test-user, request GET /api/users/2.",
+        "Observe 200 with another user's email field, indicating missing object-level authorization."
+      ]
+    },
+    {
+      "id": "finding-004",
+      "type": "misconfig",
+      "tier": "low",
+      "severity": "low",
+      "target": "https://staging.example.test",
+      "status": "validated",
+      "confidence": 0.8,
+      "evidence": {
+        "request": "GET / HTTP/1.1\r\nHost: staging.example.test\r\n\r\n",
+        "response": "HTTP/1.1 200 OK\r\nServer: nginx/1.25\r\nX-Powered-By: Express\r\n(missing: Strict-Transport-Security, Content-Security-Policy, X-Frame-Options)",
+        "timestamp": "2026-06-20T14:09:10Z",
+        "tool": "httpRequest"
+      },
+      "reproducible": true,
+      "safe_poc": true,
+      "remediation": "Set HSTS, CSP, X-Frame-Options/X-Content-Type-Options; remove X-Powered-By header.",
+      "reproduction_steps": [
+        "Send GET / and inspect response headers.",
+        "Confirm absence of HSTS, CSP, X-Frame-Options and presence of X-Powered-By."
+      ]
+    },
+    {
+      "id": "finding-005",
+      "type": "info_leak",
+      "tier": "low",
+      "severity": "low",
+      "target": "https://staging.example.test/static/js/main.js.map",
+      "status": "validated",
+      "confidence": 0.85,
+      "evidence": {
+        "request": "GET /static/js/main.js.map HTTP/1.1\r\nHost: staging.example.test\r\n\r\n",
+        "response": "HTTP/1.1 200 OK\r\nContent-Type: application/json\r\nContent-Length: 18432\r\n\r\n{\"version\":3,\"sources\":[\"src/app.js\",\"src/auth.js\"],\"names\":[...]}",
+        "timestamp": "2026-06-20T14:09:25Z",
+        "tool": "httpRequest"
+      },
+      "reproducible": true,
+      "safe_poc": true,
+      "remediation": "Disable source map serving in production; restrict access to .map files or remove them from deployed assets.",
+      "reproduction_steps": [
+        "Send GET /static/js/main.js.map.",
+        "Observe 200 with a source map JSON body exposing client-side source structure."
+      ]
+    },
+    {
+      "id": "finding-006",
+      "type": "open_redirect",
+      "tier": "low",
+      "severity": "low",
+      "target": "https://staging.example.test/login?returnUrl=https://oob.authorized.test/PTSKILLTEST",
+      "status": "validated",
+      "confidence": 0.9,
+      "evidence": {
+        "request": "GET /login?returnUrl=https://oob.authorized.test/PTSKILLTEST HTTP/1.1\r\nHost: staging.example.test\r\n\r\n",
+        "response": "HTTP/1.1 302 Found\r\nLocation: https://oob.authorized.test/PTSKILLTEST",
+        "timestamp": "2026-06-20T14:09:40Z",
+        "tool": "httpRequest"
+      },
+      "reproducible": true,
+      "safe_poc": true,
+      "remediation": "Validate redirect targets against an allowlist of trusted hosts; reject absolute URLs in redirect parameters.",
+      "reproduction_steps": [
+        "Send GET /login?returnUrl=https://oob.authorized.test/PTSKILLTEST.",
+        "Observe 302 with Location pointing to the attacker-controlled sink (redirect not followed during detection)."
+      ]
+    },
+    {
+      "id": "finding-007",
+      "type": "path_traversal",
+      "tier": "medium",
+      "severity": "medium",
+      "target": "https://api.staging.example.test/users?file=../../../../etc/passwd",
+      "status": "validated",
+      "confidence": 0.88,
+      "evidence": {
+        "request": "GET /api/users?file=../../../../etc/passwd HTTP/1.1\r\nHost: api.staging.example.test\r\nCookie: session=PTSKILLTEST-session-abc\r\n\r\n",
+        "response": "HTTP/1.1 200 OK\r\nContent-Type: text/plain\r\n\r\nroot:x:0:0:root:/root:/bin/bash\ndaemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin",
+        "timestamp": "2026-06-20T14:10:05Z",
+        "tool": "httpRequest"
+      },
+      "reproducible": true,
+      "safe_poc": true,
+      "remediation": "Canonicalize and validate file paths against an allowlist base directory; reject traversal sequences (..) in user input.",
+      "reproduction_steps": [
+        "Send GET /api/users?file=../../../../etc/passwd.",
+        "Observe response body containing /etc/passwd entries (root:x:0:0:), confirming path traversal."
+      ]
+    },
+    {
+      "id": "finding-008",
+      "type": "ssti",
+      "tier": "medium",
+      "severity": "medium",
+      "target": "https://api.staging.example.test/render",
+      "status": "validated",
+      "confidence": 0.85,
+      "evidence": {
+        "request": "POST /render HTTP/1.1\r\nHost: api.staging.example.test\r\nContent-Type: application/json\r\n\r\n{\"template\":\"PTSKILLTEST{{7*7}}\"}",
+        "response": "HTTP/1.1 200 OK\r\nContent-Type: text/plain\r\n\r\nPTSKILLTEST49",
+        "timestamp": "2026-06-20T14:10:20Z",
+        "tool": "httpRequest"
+      },
+      "reproducible": true,
+      "safe_poc": true,
+      "remediation": "Use a logic-less template engine or sandboxed renderer; never pass user input directly into a template expression context.",
+      "reproduction_steps": [
+        "POST {\"template\":\"PTSKILLTEST{{7*7}}\"} to /render.",
+        "Observe response 'PTSKILLTEST49' — arithmetic was evaluated, confirming SSTI (no data exfil performed)."
+      ]
+    },
+    {
+      "id": "finding-009",
+      "type": "command_injection",
+      "tier": "medium",
+      "severity": "medium",
+      "target": "https://api.staging.example.test/ping?host=127.0.0.1;sleep%203%20%23",
+      "status": "validated",
+      "confidence": 0.8,
+      "evidence": {
+        "request": "GET /ping?host=127.0.0.1;sleep%203%20%23 HTTP/1.1\r\nHost: api.staging.example.test\r\n\r\n",
+        "response": "HTTP/1.1 200 OK\r\nContent-Type: text/plain\r\n\r\nPING 127.0.0.1 (response delayed 3.0s vs baseline 0.2s)",
+        "timestamp": "2026-06-20T14:10:40Z",
+        "tool": "httpRequest"
+      },
+      "reproducible": true,
+      "safe_poc": true,
+      "remediation": "Avoid passing user input to shell commands; use language-native exec APIs with argument arrays and strict input validation.",
+      "reproduction_steps": [
+        "Baseline: GET /ping?host=127.0.0.1 returns in ~0.2s.",
+        "Probe: GET /ping?host=127.0.0.1;sleep 3 # returns in ~3.0s. Time delta >= 2.5s confirms command injection (time-based, no output exfil)."
+      ]
+    }
+  ],
+  "attack_paths": [
+    {
+      "id": "path-001",
+      "name": "Auth bypass → protected access",
+      "nodes": [
+        {"id": "finding-001", "type": "finding", "ref": "finding-001"},
+        {"id": "finding-003", "type": "finding", "ref": "finding-003"},
+        {"id": "asset:https://api.staging.example.test/users/2", "type": "asset", "ref": "https://api.staging.example.test/users/2"}
+      ],
+      "edges": [
+        {"from": "finding-001", "to": "finding-003", "relation": "enables", "confirmed": true},
+        {"from": "finding-003", "to": "asset:https://api.staging.example.test/users/2", "relation": "exposes", "confirmed": true}
+      ],
+      "impact": "Compromise of /login enables unauthorized access to protected user resources.",
+      "confidence": 0.85
+    },
+    {
+      "id": "path-002",
+      "name": "Data exposure via sqli",
+      "nodes": [
+        {"id": "finding-002", "type": "finding", "ref": "finding-002"},
+        {"id": "asset:https://api.staging.example.test/users?id=1", "type": "asset", "ref": "https://api.staging.example.test/users?id=1"}
+      ],
+      "edges": [
+        {"from": "finding-002", "to": "asset:https://api.staging.example.test/users?id=1", "relation": "exposes", "confirmed": true}
+      ],
+      "impact": "Finding finding-002 exposes sensitive data via SQL injection.",
+      "confidence": 0.95
+    },
+    {
+      "id": "path-003",
+      "name": "Path traversal → command injection co-location",
+      "nodes": [
+        {"id": "finding-007", "type": "finding", "ref": "finding-007"},
+        {"id": "finding-009", "type": "finding", "ref": "finding-009"}
+      ],
+      "edges": [
+        {"from": "finding-007", "to": "finding-009", "relation": "co_located_weakness", "confirmed": true}
+      ],
+      "impact": "Server exposes file read and command execution surfaces on the same host; combined risk of full compromise if escalated.",
+      "confidence": 0.7
+    }
+  ],
+  "recommendations": [
+    "[xss] Output-encode user input in HTML context using a context-aware encoding library; deploy a Content-Security-Policy.",
+    "[sqli] Use parameterized queries / prepared statements for all database access; never concatenate user input into SQL.",
+    "[idor] Enforce per-user authorization checks server-side; verify the requesting user owns or is authorized for the requested object id.",
+    "[misconfig] Set HSTS, CSP, X-Frame-Options/X-Content-Type-Options; remove X-Powered-By header.",
+    "[info_leak] Disable source map serving in production; restrict access to .map files or remove them from deployed assets.",
+    "[open_redirect] Validate redirect targets against an allowlist of trusted hosts; reject absolute URLs in redirect parameters.",
+    "[path_traversal] Canonicalize and validate file paths against an allowlist base directory; reject traversal sequences (..) in user input.",
+    "[ssti] Use a logic-less template engine or sandboxed renderer; never pass user input directly into a template expression context.",
+    "[command_injection] Avoid passing user input to shell commands; use language-native exec APIs with argument arrays and strict input validation."
+  ],
+  "sarif": {
+    "version": "2.1.0",
+    "runs": [
+      {
+        "tool": {"driver": {"name": "gkn-phantom", "version": "1.0.0"}},
+        "results": [
+          {"ruleId": "xss-finding-001", "level": "error", "message": {"text": "XSS at https://staging.example.test/search?q=PTSKILLTEST<xss>9a3f: reflected marker"}, "locations": [{"physicalLocation": {"artifactLocation": {"uri": "https://staging.example.test/search"}}}]},
+          {"ruleId": "sqli-finding-002", "level": "error", "message": {"text": "SQLI at https://api.staging.example.test/users?id=1: boolean differential confirmed"}, "locations": [{"physicalLocation": {"artifactLocation": {"uri": "https://api.staging.example.test/users?id=1"}}}]},
+          {"ruleId": "idor-finding-003", "level": "error", "message": {"text": "IDOR at https://api.staging.example.test/users/2: cross-user data access"}, "locations": [{"physicalLocation": {"artifactLocation": {"uri": "https://api.staging.example.test/users/2"}}}]},
+          {"ruleId": "misconfig-finding-004", "level": "note", "message": {"text": "MISCONFIG at https://staging.example.test: missing security headers"}, "locations": [{"physicalLocation": {"artifactLocation": {"uri": "https://staging.example.test"}}}]},
+          {"ruleId": "info_leak-finding-005", "level": "note", "message": {"text": "INFO_LEAK at https://staging.example.test/static/js/main.js.map: source map exposed"}, "locations": [{"physicalLocation": {"artifactLocation": {"uri": "https://staging.example.test/static/js/main.js.map"}}}]},
+          {"ruleId": "open_redirect-finding-006", "level": "note", "message": {"text": "OPEN_REDIRECT at https://staging.example.test/login: redirect to external sink"}, "locations": [{"physicalLocation": {"artifactLocation": {"uri": "https://staging.example.test/login"}}}]},
+          {"ruleId": "path_traversal-finding-007", "level": "warning", "message": {"text": "PATH_TRAVERSAL at https://api.staging.example.test/users: /etc/passwd readable"}, "locations": [{"physicalLocation": {"artifactLocation": {"uri": "https://api.staging.example.test/users"}}}]},
+          {"ruleId": "ssti-finding-008", "level": "warning", "message": {"text": "SSTI at https://api.staging.example.test/render: arithmetic evaluated"}, "locations": [{"physicalLocation": {"artifactLocation": {"uri": "https://api.staging.example.test/render"}}}]},
+          {"ruleId": "command_injection-finding-009", "level": "warning", "message": {"text": "COMMAND_INJECTION at https://api.staging.example.test/ping: time-based (3s delta)"}, "locations": [{"physicalLocation": {"artifactLocation": {"uri": "https://api.staging.example.test/ping"}}}]}
+        ]
+      }
+    ]
+  },
+  "execution_log": [
+    {"ts": "2026-06-20T14:00:00Z", "state": "INIT", "msg": "input validated; config loaded"},
+    {"ts": "2026-06-20T14:00:03Z", "state": "SCOPE_CHECK", "msg": "2 targets in scope"},
+    {"ts": "2026-06-20T14:03:00Z", "state": "RECONNAISSANCE", "msg": "7 endpoints discovered"},
+    {"ts": "2026-06-20T14:03:30Z", "state": "AUTH_SETUP", "msg": "session verified"},
+    {"ts": "2026-06-20T14:03:35Z", "state": "ACTIVE_TESTING", "msg": "vuln_detector plan: candidate probes across low/medium/high/critical tiers"},
+    {"ts": "2026-06-20T14:04:10Z", "state": "ACTIVE_TESTING", "tier": "low", "msg": "info_leak + open_redirect + misconfig candidates detected"},
+    {"ts": "2026-06-20T14:06:00Z", "state": "ACTIVE_TESTING", "tier": "medium", "msg": "path_traversal + ssti + command_injection candidates detected"},
+    {"ts": "2026-06-20T14:07:30Z", "state": "ACTIVE_TESTING", "tier": "high", "msg": "xss(stored) + sqli + idor candidates detected; ssrf L4 blocked (safe_mode)"},
+    {"ts": "2026-06-20T14:08:00Z", "state": "ACTIVE_TESTING", "tier": "critical", "msg": "rce/auth_bypass/priv_esc blocked (safe_mode); data_exposure check pending validation"},
+    {"ts": "2026-06-20T14:10:00Z", "state": "VALIDATION", "msg": "9/9 candidates validated; 0 FP"},
+    {"ts": "2026-06-20T14:10:30Z", "state": "VALIDATION", "msg": "data_exposure scan: finding-002 response PII below threshold (no critical upgrade)"},
+    {"ts": "2026-06-20T14:11:00Z", "state": "ATTACK_PATH_ANALYSIS", "msg": "3 paths built"},
+    {"ts": "2026-06-20T14:12:33Z", "state": "REPORT_GENERATION", "msg": "report assembled; risk=93 (critical 25 + high 30 + medium 24 + low 9 + blocked_l4 5)"}
+  ]
+}

@@ -1,39 +1,53 @@
-## Description: <br>
-Track and log progress on long-term goals with daily updates, milestone marking, MRR tracking, and weekly summaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Track long-term goals with milestones, daily logging, MRR updates, weekly summaries, and accountability rhythms.
 
-## Publisher: <br>
-[Alti-Systems](https://clawhub.ai/user/Alti-Systems) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[alti-systems](https://clawhub.ai/user/alti-systems)
 
-## Use Case: <br>
-Individuals, operators, and agents use this skill to maintain accountability for long-term training and business goals by logging daily activity, updating revenue progress, marking milestones, and reviewing weekly status. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill invokes local tools at /root/clawd/tracker and /root/clawd/goal-tracker/generate-dashboard. <br>
-Mitigation: Before installing or running the skill, verify those paths resolve to the trusted local tracker tools expected for this release. <br>
-Risk: Goal logs, dashboard output, and revenue updates may contain private training habits, business wins, or MRR figures. <br>
-Mitigation: Keep generated dashboard and data files private, and avoid sharing logs or screenshots unless they have been reviewed for sensitive content. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Alti-Systems/goal-tracker) <br>
+## Use Case:
 
+Individuals and teams use this skill to track long-term fitness and revenue goals by logging daily activity, MRR changes, wins, milestones, and weekly progress.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance, files] <br>
-**Output Format:** [Markdown guidance with inline shell commands and generated local dashboard files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local tracker commands and may update local goal data, daily logs, MRR records, milestone state, weekly summaries, and an HTML dashboard.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill records personal goal progress, business wins, and MRR in local goal-tracker files.
+
+Mitigation: Confirm that local storage under the configured goal-tracker path is acceptable for the user's privacy and business-data handling needs before using the logging commands.
+
+Risk: The skill invokes absolute local paths under /root/clawd for tracker commands and dashboard generation.
+
+Mitigation: Confirm that /root/clawd/tracker and /root/clawd/goal-tracker/ are the intended local tracker installation paths before executing commands.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/alti-systems/skills/goal-tracker)
+- [Publisher Profile](https://clawhub.ai/user/alti-systems)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and goal-tracking guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May direct the agent to create or update local goal-tracker data files and generate an HTML dashboard.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

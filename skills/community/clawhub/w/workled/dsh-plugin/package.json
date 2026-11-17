@@ -1,0 +1,17 @@
+{
+  "name": "workled",
+  "version": "1.0.0",
+  "description": "workled status LED plugin for DeepSeek Harness (dsh). Listens to Cordis native agent/events and drives the workled MCP device directly over HTTP.",
+  "type": "module",
+  "main": "./src/index.js",
+  "exports": {
+    ".": "./src/index.js"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./patch.yml"
+    }
+  },
+  "keywords": ["dsh", "dsh-plugin", "workled", "mcp", "cordis"],
+  "license": "MIT"
+}

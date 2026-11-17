@@ -1,40 +1,54 @@
-## Description: <br>
-Generates a simple React component source file from a shell command. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates React component templates, with documented support for function components, class components, custom hooks, higher-order components, and TypeScript.
 
-## Publisher: <br>
-[Sunshine-del-ux](https://clawhub.ai/user/Sunshine-del-ux) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[sunshine-del-ux](https://clawhub.ai/user/sunshine-del-ux)
 
-## Use Case: <br>
-Developers use this skill to scaffold a small React component file quickly in a project directory. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Running the generator in a project directory may overwrite an existing same-named .jsx file. <br>
-Mitigation: Check for an existing file before running the command and choose a unique component name. <br>
-Risk: The documentation advertises TypeScript, class component, hook, and higher-order component support beyond the implemented simple .jsx generator. <br>
-Mitigation: Use the skill only for the implemented simple React .jsx output unless the implementation is updated. <br>
+## Use Case:
 
+Developers use this skill to scaffold simple React component code quickly from command examples or shell execution. Review generated output before relying on documented options such as TypeScript or multiple component types.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/Sunshine-del-ux/react-component-generator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [code, files, shell commands] <br>
-**Output Format:** [React .jsx source file with terminal status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes a named .jsx file in the current directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact metadata) <br>
+Risk: The shell script can overwrite files based on an unvalidated component name.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Restrict component names to valid React identifiers, write only inside a chosen output directory, and refuse accidental overwrites.
+
+Risk: The documentation overstates support for TypeScript and multiple component types compared with the current script behavior.
+
+Mitigation: Review generated output and update the documentation or implementation before relying on unsupported options.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sunshine-del-ux/skills/react-component-generator)
+- [Publisher profile](https://clawhub.ai/user/sunshine-del-ux)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Files, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with bash examples and generated JSX files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated filenames are based on the supplied component name.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact/_meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

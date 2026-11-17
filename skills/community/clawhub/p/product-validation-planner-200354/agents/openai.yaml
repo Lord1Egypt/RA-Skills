@@ -1,0 +1,7 @@
+interface:
+  display_name: "Product Validation Planner"
+  short_description: "Helps with Founders and builders need a repeatable way to tur..."
+  default_prompt: "Use $product-validation-planner to help me Founders and builders need a repeatable way to turn rough product ideas into validated plans, prototypes, and user-facin."
+
+policy:
+  allow_implicit_invocation: true

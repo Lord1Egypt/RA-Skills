@@ -1,50 +1,69 @@
-## Description: <br>
-Give your AI agent genuine continuity, identity, and resilience across every session and deployment with a four-tier persistent memory stack. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Give your AI agent genuine continuity, identity, and resilience across every session and deployment with a four-tier persistent memory stack.
 
-## Publisher: <br>
-[shivaclaw](https://clawhub.ai/user/shivaclaw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shivaclaw](https://clawhub.ai/user/shivaclaw)
 
-## Use Case: <br>
-Developers and agent operators use Project Trident to add durable memory, signal routing, semantic organization, and recovery workflows to OpenClaw agents. It is intended for agents that need continuity across sessions, crashes, migrations, and deployments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can store and organize long-lived conversation and workspace data, including sensitive personal or business context. <br>
-Mitigation: Define what may be remembered before enabling it, exclude secrets and sensitive data, and regularly inspect, edit, delete, or purge stored memory. <br>
-Risk: Optional cron routing, semantic indexing, cloud models, Git backup, or VPS snapshots can process or move memory outside the immediate agent session. <br>
-Mitigation: Use local models or private encrypted backups for sensitive work, disable optional networked components when not needed, and confirm how to stop scheduled jobs. <br>
-Risk: Automated memory migration and routing can persist incorrect or unwanted context if enabled without review. <br>
-Mitigation: Preview migrations with dry-run behavior where available, review generated memory files and routing prompts, and keep backups before applying changes. <br>
+## Use Case:
 
+Developers and agent operators use Project Trident to add durable, hierarchical memory, signal routing, migration support, and backup guidance to OpenClaw agents. It is intended for agents that need continuity across sessions, deployments, crashes, and updates.
 
-## Reference(s): <br>
-- [Project Trident skill page](https://clawhub.ai/shivaclaw/project-trident-skill) <br>
-- [Project Trident repository](https://github.com/ShivaClaw/project-trident) <br>
-- [Project Trident issue tracker](https://github.com/ShivaClaw/project-trident/issues) <br>
-- [Project homepage](https://github.com/ShivaClaw/shiva-memory) <br>
-- [Trident Lite](references/trident-lite.md) <br>
-- [Deployment Guide](references/deployment-guide.md) <br>
-- [Platform Guide](references/platform-guide.md) <br>
-- [Cost Calculator](references/cost-calculator.md) <br>
-- [Cost Tuning](references/cost-tuning.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, file paths, and configuration steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce migration, cron, backup, and integrity-check instructions for persistent agent memory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: frontmatter and server release evidence) <br>
+Risk: The skill can retain broad long-term memory about conversations, identity, preferences, projects, and decisions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when persistent agent memory is intended, keep initial setup local-only, and review what memory categories are stored before enabling automated routing.
+
+Risk: Optional cloud or vector indexing can expose sensitive memory if used without controls.
+
+Mitigation: Avoid optional cloud or vector indexing until an allowlist, secret redaction process, and access controls are in place.
+
+Risk: Automated backups can commit sensitive memory without review.
+
+Mitigation: Replace unattended git add -A backups with reviewed commits or encrypted backups to a private repository.
+
+Risk: Setup guidance may include unpinned binary downloads or curl-to-shell style commands.
+
+Mitigation: Verify installers, binaries, and hashes independently before executing installation commands.
+
+## Reference(s):
+
+- [Trident Lite: Memory Without Docker](references/trident-lite.md)
+- [Trident Deployment Guide](references/deployment-guide.md)
+- [Platform Guide: Windows, Mac, and Linux](references/platform-guide.md)
+- [Trident Cost Calculator](references/cost-calculator.md)
+- [Cost Tuning for Trident Memory](references/cost-tuning.md)
+- [Project Trident repository](https://github.com/ShivaClaw/project-trident)
+- [Project Trident issue tracker](https://github.com/ShivaClaw/project-trident/issues)
+- [Shiva memory homepage](https://github.com/ShivaClaw/shiva-memory)
+- [ClawHub skill page](https://clawhub.ai/shivaclaw/skills/project-trident-skill)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with bash and PowerShell command blocks plus included shell scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or migrate local memory files, cron prompts, audit logs, and backups when users run the included scripts.]
+
+## Skill Version(s):
+
+2.0.1 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

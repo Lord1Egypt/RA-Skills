@@ -1,47 +1,53 @@
-## Description: <br>
-Coordinates multiple HTTP API robots through adapter generation, task planning, state feedback, and parallel or sequential execution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Multi Robot Skill enables AI agents to coordinate multiple robots through perception feedback, dynamic adapters, and parallel scheduling for robotic arms, quadrupeds, and other HTTP API robots.
 
-## Publisher: <br>
-[alan1112223331](https://clawhub.ai/user/alan1112223331) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alan1112223331](https://clawhub.ai/user/alan1112223331)
 
-## Use Case: <br>
-Developers and robotics operators use this skill to let an AI agent generate robot adapters from API documentation, register robots, and coordinate multi-robot task plans. It is intended for robots controlled through HTTP APIs, including manipulator and quadruped examples. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: AI-planned robot actions may cause unsafe physical motion or manipulation when used with live hardware. <br>
-Mitigation: Use simulation or dry-run by default, require human approval before every motion or manipulation command, and verify emergency-stop and workspace safety procedures before live use. <br>
-Risk: Unrestricted robot endpoints or actions could allow the agent to control unintended robots or perform unintended operations. <br>
-Mitigation: Restrict the allowed robot endpoints and actions, and require authenticated robot APIs in the deployment environment. <br>
-Risk: Unpinned or unaudited dependencies can introduce supply-chain or runtime risk. <br>
-Mitigation: Pin and audit dependencies before installation in a robotics environment. <br>
+## Use Case:
 
+Developers and robot operators use this skill to let AI agents integrate HTTP API robots, generate adapters, register robots, plan parallel or sequential tasks, execute coordinated workflows, and summarize results.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/alan1112223331/multi-robot-skill) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [README.md](artifact/README.md) <br>
-- [USAGE_GUIDE.md](artifact/USAGE_GUIDE.md) <br>
-- [OPENCLAW_INTEGRATION.md](artifact/OPENCLAW_INTEGRATION.md) <br>
-- [ADAPTER_FIXES.md](artifact/ADAPTER_FIXES.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python code, shell command snippets, and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce robot adapter code, structured task plans, API usage guidance, and execution-result summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: ClawHub release metadata and artifact _meta.json) <br>
+Risk: The skill can send live HTTP commands to physical robots without sufficient safety, authorization, endpoint, or failure-handling guardrails.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in a controlled test network or simulator unless endpoint allowlists, authenticated robot APIs, human confirmation for hazardous actions, per-robot locking, failure-stop behavior for dependent tasks, and timeout or retry enforcement are added.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/alan1112223331/skills/multi-robot-skill)
+- [README](artifact/README.md)
+- [Usage Guide](artifact/USAGE_GUIDE.md)
+- [OpenClaw Integration Guide](artifact/OPENCLAW_INTEGRATION.md)
+- [Adapter API Fixes](artifact/ADAPTER_FIXES.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with Python code and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include generated RobotAdapter code, robot registration configuration, task plans, and execution-result summaries.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata and artifact/_meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

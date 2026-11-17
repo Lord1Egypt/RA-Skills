@@ -1,41 +1,59 @@
-## Description: <br>
-Helps developers set up a Mac as an offline-capable AI workstation with Ollama, OpenCode, and curated local language models for coding and reasoning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps Mac users set up a local AI workstation with Ollama, OpenCode, selected local language models, usage commands, troubleshooting guidance, and optional model update scheduling.
 
-## Publisher: <br>
-[jaysclawd-cloud](https://clawhub.ai/user/jaysclawd-cloud) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jaysclawd-cloud](https://clawhub.ai/user/jaysclawd-cloud)
 
-## Use Case: <br>
-Developers and engineers use this skill to install and operate a local AI coding stack on macOS, including model setup, command examples, troubleshooting, and update guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Installation and model update steps depend on downloading software or models from external sources. <br>
-Mitigation: Use official downloads or package-manager installs, review installers and update scripts before running them, and disable scheduled updates if unattended network downloads are not acceptable. <br>
-Risk: The stack is offline-capable after setup but not internet-free during initial installation or model updates. <br>
-Mitigation: Plan for network access during setup and updates, then verify local operation before using it for privacy-sensitive work. <br>
+## Use Case:
 
+Developers and technical users use this skill to install and operate local coding and reasoning models on macOS while reducing cloud API dependence. It is most useful for privacy-sensitive, cost-sensitive, or offline local AI workflows.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/jaysclawd-cloud/local-ai-stack) <br>
-- [Ollama download](https://ollama.com/download) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Provides command-oriented setup, usage, troubleshooting, and update instructions; it does not produce executable files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill asks users to pipe a remote installer into a shell.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer the official Ollama download or a verified package path, and review installer contents before execution.
+
+Risk: The skill suggests recurring model update persistence through cron.
+
+Mitigation: Add scheduled updates only after reviewing the local update script, confirming safe file permissions, and documenting how to disable the job.
+
+Risk: The skill describes the setup as fully offline even though installation, model pulls, and updates require network access.
+
+Mitigation: Treat setup and updates as internet-connected steps, then verify offline behavior only after required models and tools are already installed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jaysclawd-cloud/skills/local-ai-stack)
+- [Ollama download](https://ollama.com/download)
+- [Ollama install script](https://ollama.com/install.sh)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes local model selection, installation steps, command examples, troubleshooting steps, file locations, and optional update scheduling guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

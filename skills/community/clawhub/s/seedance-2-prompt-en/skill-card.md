@@ -1,40 +1,49 @@
-## Description: <br>
-Provides prompt engineering guidance for Seedance2 video generation, including multimodal asset references, cinematic camera language, audio-video sync, and scene-by-scene prompt patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Seedance2 Video Generation Prompt Engineering for multimodal references, cinematic camera language, audio-video sync, and scene-by-scene prompt patterns for ByteDance's Seedance2 model.
 
-## Publisher: <br>
-[zhongkedy-del](https://clawhub.ai/user/zhongkedy-del) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhongkedy-del](https://clawhub.ai/user/zhongkedy-del)
 
-## Use Case: <br>
-External creators, brand video producers, social media content designers, and developers use this skill to write structured Seedance2 video-generation prompts with multimodal references, camera language, audio direction, and scene patterns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Uploaded media or generated prompts may involve rights, likeness, or sensitive-content concerns. <br>
-Mitigation: Review images, video, and audio for rights, permissions, likeness authorization, and sensitive content before use. <br>
-Risk: Ambiguous asset references can cause generated video to use the wrong character, style, motion, audio, or timing. <br>
-Mitigation: State each uploaded asset's role explicitly and confirm upload order before generation. <br>
+## Use Case:
 
+External creators, brand video producers, social media designers, and developers use this skill to write structured Seedance2 prompts for text-to-video, image-to-video, video editing, video extension, and multimodal audio-video generation workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhongkedy-del/seedance-2-prompt-en) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Text, Markdown] <br>
-**Output Format:** [Markdown guidance with prompt patterns and examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only; no code execution, credentials, persistence, or broad local access requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: Prompts may reference uploaded media containing likenesses, copyrighted material, brand assets, or private audio/video.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review input assets and generated media before use, and confirm authorization for likenesses, copyrighted content, brand identities, and private materials.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/zhongkedy-del/skills/seedance-2-prompt-en)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown guidance with prompt templates and examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces prompt-writing guidance only; it does not execute code or access external systems.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

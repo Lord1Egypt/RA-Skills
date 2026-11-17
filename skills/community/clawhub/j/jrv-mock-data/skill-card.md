@@ -1,41 +1,56 @@
-## Description: <br>
-Generates realistic fake data for testing and development, including users, names, emails, addresses, phone numbers, UUIDs, dates, lorem ipsum, companies, URLs, IPs, and custom records in JSON, CSV, SQL, or line-delimited formats. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate realistic fake/mock data for testing and development, including names, emails, addresses, phone numbers, UUIDs, dates, lorem ipsum, companies, and output as JSON, CSV, or SQL INSERT statements.
 
-## Publisher: <br>
-[Johnnywang2001](https://clawhub.ai/user/Johnnywang2001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[johnnywang2001](https://clawhub.ai/user/johnnywang2001)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers, QA engineers, and test automation authors use this skill to generate local mock datasets for API testing, UI prototyping, fixture creation, SQL seeding, and load-test preparation.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Generated SQL uses caller-supplied table names and selected field names.
+
+Mitigation: Use trusted table and field names, inspect generated SQL, and run it only in development or test databases.
+
+Risk: The --output option writes to the path provided by the caller and may overwrite an existing file.
+
+Mitigation: Choose a non-sensitive destination path and check whether the target file already exists before writing.
+
+Risk: The description mentions credit card support, but the provided artifact does not implement a credit card generator.
+
+Mitigation: Verify required data types before relying on the generated fixtures, especially for payment or compliance test cases.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, QA engineers, and agent operators use this skill to generate local mock records for tests, UI prototypes, fixtures, SQL seed data, and load-test inputs without calling an external service. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, code, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The script can overwrite a user-specified output file path. <br>
-Mitigation: Run without elevated privileges and choose the --output path deliberately, preferably in a test workspace. <br>
-Risk: Generated records are realistic-looking mock data and may be mistaken for real personal or business data. <br>
-Mitigation: Label generated datasets as synthetic and avoid using them where real customer records are required. <br>
+**Output Format:** [Markdown guidance with shell command examples; generated data can be JSON, CSV, SQL INSERT statements, or line-separated text.]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [Jrv Mock Data on ClawHub](https://clawhub.ai/Johnnywang2001/jrv-mock-data) <br>
-- [Johnnywang2001 publisher profile](https://clawhub.ai/user/Johnnywang2001) <br>
+**Other Properties Related to Output:** [Supports count, output format, field selection, SQL table name, random seed, lorem word count, and optional file output.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands; generated data may be JSON, CSV, SQL INSERT statements, line-delimited text, or files written by the script.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports count, data type, output format, SQL table name, custom fields, random seed, lorem word count, and output file path.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

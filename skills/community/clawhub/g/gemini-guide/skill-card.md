@@ -1,42 +1,50 @@
-## Description: <br>
-Guides developers through Google Gemini API usage, including model selection, SDK setup, multimodal inputs, function calling, JSON mode, context caching, and pricing comparisons. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Google Gemini API 开发助手，精通 Gemini Pro/Flash、多模态、函数调用、上下文缓存。
 
-## Publisher: <br>
-[zhangifonly](https://clawhub.ai/user/zhangifonly) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhangifonly](https://clawhub.ai/user/zhangifonly)
 
-## Use Case: <br>
-Developers use this skill as a Chinese-language reference for getting started with Google Gemini APIs and choosing API features for common AI application workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Example API-key usage could lead users to paste secrets into code or commit them. <br>
-Mitigation: Keep Gemini API keys in environment variables or a secret manager and avoid committing keys. <br>
-Risk: File upload and context caching examples could process confidential, personal, or regulated data unintentionally. <br>
-Mitigation: Upload or cache only files intentionally approved for processing by Google Gemini. <br>
+## Use Case:
 
+Developers and engineers use this skill as a concise Chinese-language guide for working with Google Gemini APIs, including model selection, SDK setup, multimodal inputs, function calling, JSON responses, and context caching.
 
-## Reference(s): <br>
-- [Google AI Studio API key page](https://aistudio.google.com/apikey) <br>
-- [ClawHub skill page](https://clawhub.ai/zhangifonly/gemini-guide) <br>
-- [Publisher profile](https://clawhub.ai/user/zhangifonly) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline shell and Python code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-language API reference content with example commands and code snippets.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Examples may lead users to upload or cache confidential, personal, proprietary, or regulated files with Gemini services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a virtual environment, pin production dependencies, and avoid uploading or caching sensitive files unless approved and provider retention terms are understood.
+
+## Reference(s):
+
+- [Google AI Studio API key](https://aistudio.google.com/apikey)
+- [ClawHub skill page](https://clawhub.ai/zhangifonly/skills/gemini-guide)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown with inline shell and Python code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes API usage examples and provider-comparison guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

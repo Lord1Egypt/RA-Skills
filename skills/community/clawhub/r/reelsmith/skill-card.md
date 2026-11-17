@@ -1,43 +1,58 @@
-## Description: <br>
-Reelsmith creates short-form vertical video packages, preview reels, narrated reels, and optional AI-video workflows from ideas, articles, updates, or source material. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create short-form vertical video packages, preview reels, narrated reels, and AI-video workflows from ideas, articles, updates, or source material.
 
-## Publisher: <br>
-[normandmickey](https://clawhub.ai/user/normandmickey) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[normandmickey](https://clawhub.ai/user/normandmickey)
 
-## Use Case: <br>
-Creators, social media operators, and developers use Reelsmith to turn topics into approval-ready Facebook Reels packages, rough vertical previews, narrated previews, or optional AI-generated video assets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Optional helpers can create local media files and may overwrite selected output paths. <br>
-Mitigation: Choose fresh output filenames and review paths before running preview, narration, muxing, or video-generation helpers. <br>
-Risk: OpenAI TTS and LTX video helpers may send text or prompts to external AI services. <br>
-Mitigation: Use non-sensitive text and prompts, and keep OPENAI_API_KEY and LTX_API_KEY scoped to the intended use. <br>
-Risk: The skill relies on local ffmpeg and Python media helpers for preview and muxing workflows. <br>
-Mitigation: Run the helpers only in a trusted local environment after reviewing the commands and installed dependencies. <br>
+## Use Case:
 
+External creators, social media teams, and developers use Reelsmith to turn topics or source material into short-form reel packages with hooks, scripts, scene plans, captions, and optional preview, narration, or AI-video generation steps.
 
-## Reference(s): <br>
-- [Reelsmith on ClawHub](https://clawhub.ai/normandmickey/reelsmith) <br>
-- [LTX text-to-video API endpoint](https://api.ltx.video/v1/text-to-video) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with optional bash commands and JSON scene specifications] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local MP4 or MP3 media files when helper scripts are run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: server release evidence) <br>
+Risk: Local preview helpers execute ffmpeg and may overwrite caller-selected output files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review commands before execution, choose output paths deliberately, and avoid reusing filenames for files that must be preserved.
+
+Risk: Optional narration and AI-video helpers send prompt or narration text to third-party services.
+
+Mitigation: Do not submit confidential or sensitive source material unless the receiving service is acceptable for the use case.
+
+Risk: Repeated preview generation can leave temporary Reelsmith directories on disk.
+
+Mitigation: Periodically clean old Reelsmith temporary directories after generating many previews.
+
+## Reference(s):
+
+- [Reelsmith ClawHub Skill Page](https://clawhub.ai/normandmickey/skills/reelsmith)
+- [LTX Text-to-Video API](https://api.ltx.video/v1/text-to-video)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration, Files, Guidance]
+
+**Output Format:** [Markdown with optional inline bash commands and generated MP4 or MP3 files from helper scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Optional helper scripts use OPENAI_API_KEY, LTX_API_KEY, local ffmpeg execution, and caller-selected output paths.]
+
+## Skill Version(s):
+
+0.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,57 @@
-## Description: <br>
-Scans npm packages or projects for JavaScript malware, Windows filename right-to-left override tricks, suspicious Unicode PUA characters, Base64-encoded payloads, malicious dependencies, and risky package scripts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scans npm packages or projects for JavaScript malware, Windows right-to-left override filename attacks, suspicious private-use characters, Base64-encoded payloads, and known malicious package indicators.
 
-## Publisher: <br>
-[goog](https://clawhub.ai/user/goog) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[goog](https://clawhub.ai/user/goog)
 
-## Use Case: <br>
-Developers and security engineers use this skill to scan npm projects, package.json files, and package directories for indicators of JavaScript supply-chain malware before running or publishing code. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The scanner reads local files and may print file paths, file names, and decoded snippets in its report. <br>
-Mitigation: Run it only on npm projects or package directories you intend to inspect, and avoid scanning paths that contain unrelated sensitive files. <br>
-Risk: The optional rlo-detect setup command installs an unpinned dependency. <br>
-Mitigation: Verify the dependency before installing it and prefer an isolated environment for setup and scanning. <br>
-Risk: Heuristic malware indicators can produce false positives or miss new variants. <br>
-Mitigation: Treat findings as triage signals and review flagged files manually before deleting packages or changing dependencies. <br>
+## Use Case:
 
+Developers and security engineers use this skill to scan npm packages, project files, and package manifests for suspicious JavaScript patterns, supply-chain indicators, private-use character obfuscation, Base64 payloads, and RLO filename attacks.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/goog/defender2) <br>
-- [Publisher profile](https://clawhub.ai/user/goog) <br>
-- [Artifact skill definition](artifact/SKILL.md) <br>
-- [Scanner script](artifact/scripts/pua.py) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Console text report with scan findings, threat status, and recommended follow-up actions.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The scanner supports path, recursive, and verbose options; it exits with status 1 when suspicious files are found and 0 when no suspicious files are found.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and user changelog) <br>
+Risk: The scanner reads local source files and may print paths or snippets from suspicious content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only on directories you intend to inspect and handle scan output as potentially sensitive.
+
+Risk: RLO filename detection relies on installing the external rlo-detect Python package without a pinned version in the skill documentation.
+
+Mitigation: Install rlo-detect only when needed, preferably in an isolated environment after reviewing or pinning the package.
+
+Risk: Heuristic malware indicators can produce false positives or miss new variants.
+
+Mitigation: Treat findings as triage signals and manually review flagged files before removing dependencies or declaring a project clean.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/goog/skills/defender2)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Guidance]
+
+**Output Format:** [Plain text scanner findings with command-line usage guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include scanned file paths and short snippets from suspicious local content.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

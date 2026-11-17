@@ -1,43 +1,57 @@
-## Description: <br>
-全网热点自动抓取+文案生成。抓取微博/知乎/抖音热搜，生成适配多平台的小红书/抖音/公众号文案，自动存档沉淀。用于用户说蹭热点、写热点、追热点、写文案。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Hotspot Writer helps agents fetch public trending topics from major Chinese social platforms, draft platform-specific social content, and archive trends and generated drafts locally.
 
-## Publisher: <br>
-[liujw0214](https://clawhub.ai/user/liujw0214) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liujw0214](https://clawhub.ai/user/liujw0214)
 
-## Use Case: <br>
-External users and content creators use this skill to monitor public trends across Chinese platforms, draft platform-specific social copy, and archive trend research and generated drafts for review before publishing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may collect or summarize fast-changing public trend information from external platforms. <br>
-Mitigation: Use explicit prompts, set time limits for monitoring, and verify generated facts before publishing. <br>
-Risk: Generated promotional or social copy may contain wording that is inaccurate, unsuitable, or misaligned with the publisher's intended voice. <br>
-Mitigation: Review and edit all generated drafts before posting them to public channels. <br>
-Risk: The skill may archive trend snapshots and generated drafts locally under hotspot-archive. <br>
-Mitigation: Review saved archive contents and remove drafts or source material that should not be retained. <br>
+## Use Case:
 
+External users and content operators use this skill to monitor public trending topics, select trends aligned with their content focus, and draft social posts, short-video scripts, public-account articles, and microblog updates for human review before publishing.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/liujw0214/hotspot-writer) <br>
-- [Publisher profile](https://clawhub.ai/user/liujw0214) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown text with examples, generated copy, archive paths, and YAML configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May save trend snapshots and generated drafts under hotspot-archive for later review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: release evidence) <br>
+Risk: The skill may contact public trend platforms to fetch current topics.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Specify the platforms, topics, and monitoring scope needed for the task, especially for one-off writing requests.
+
+Risk: Trend snapshots and generated drafts may be saved into a local hotspot archive.
+
+Mitigation: Set the desired archive location and retention expectations, or ask the agent to skip archiving when persistence is not needed.
+
+Risk: Generated trend-based copy can be inaccurate, stale, or unsuitable for publication without review.
+
+Mitigation: Review fetched trends and all generated drafts before publishing, consistent with the skill workflow's approval step.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/liujw0214/skills/hotspot-writer)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown text with example shell-style prompts and YAML configuration.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May save fetched trends and generated drafts to a local hotspot archive when archiving is enabled.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

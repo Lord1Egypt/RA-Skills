@@ -1,0 +1,88 @@
+{
+  "version": "1.3",
+  "lastUpdated": "2026-03-23",
+  "rules": {
+    "tasks": {
+      "汉字抄写": {
+        "points": 1,
+        "unit": "课",
+        "dailyLimit": 2,
+        "description": "每日抄写 1-2 节课"
+      },
+      "汉字默写": {
+        "points": 1,
+        "unit": "个",
+        "noRepeat": true,
+        "description": "每个成功的记 1 分，不重复积分"
+      },
+      "口算题卡": {
+        "points": 1,
+        "unit": "篇",
+        "bonus": {
+          "全对": 1
+        },
+        "description": "每一篇 1 分，全对额外 +1 分"
+      },
+      "英语描红": {
+        "points": 1,
+        "unit": "次",
+        "description": "1 分"
+      },
+      "ABC Reading": {
+        "points": 3,
+        "unit": "日",
+        "requireCount": 2,
+        "autoCompleteMultiplier": 2,
+        "description": "每日就读两篇，阶梯计价。两篇 3 分，自主完成积分翻倍"
+      },
+      "复述学习内容": {
+        "points": 1,
+        "bonus": {
+          "超过 10 分钟": 2
+        },
+        "description": "表述清晰简洁。10 分钟以内 1 分，大于 10 分钟 2 分"
+      },
+      "跳绳": {
+        "maxPoints": 3,
+        "items": [
+          { "condition": "完成 350 个", "points": 1 },
+          { "condition": "1 分钟内达到 110 个", "points": 1 },
+          { "condition": "1 分钟内达到 117 个", "points": 1 }
+        ],
+        "description": "三项可叠加，最多 3 分"
+      },
+      "自主洗澡": {
+        "points": 1,
+        "description": "1 分"
+      },
+      "自己换居家服": {
+        "points": 1,
+        "description": "1 分"
+      },
+      "整理书包": {
+        "points": 1,
+        "description": "1 分"
+      },
+      "睡前主动洗漱": {
+        "points": 1,
+        "condition": "10 点之前",
+        "description": "1 分"
+      },
+      "学校表扬": {
+        "points": 20,
+        "maxPoints": 50,
+        "description": "20-50 分，视情况"
+      }
+    },
+    "limits": {
+      "monthlySpendingLimit": 400,
+      "monthlyEarningLimit": null,
+      "resetDay": 1,
+      "exchangeRate": "1 分=1 元"
+    },
+    "schedule": {
+      "dailyReport": "07:00",
+      "weeklyReport": "周五 20:00"
+    }
+  }
+}

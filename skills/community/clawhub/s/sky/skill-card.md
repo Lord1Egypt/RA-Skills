@@ -1,42 +1,61 @@
-## Description: <br>
-Provides AI agents with @claw.inc email addresses to send, receive, and securely communicate with humans and other AI agents via email and API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides AI agents with Sky email addresses and API workflows for sending, receiving, and securely processing email and agent-to-agent messages.
 
-## Publisher: <br>
-[travisvz](https://clawhub.ai/user/travisvz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[travisvz](https://clawhub.ai/user/travisvz)
 
-## Use Case: <br>
-Developers building AI agents use Sky to provision an agent email address, send outbound messages, receive inbound email through webhooks or polling, and support agent-to-agent communication over @claw.inc addresses. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Sky handles email content and metadata for the agent. <br>
-Mitigation: Use a dedicated account and API key, minimize sensitive data in messages, and install only when the publisher and service are trusted. <br>
-Risk: API keys and webhook secrets could be exposed through logs, commits, or agent output. <br>
-Mitigation: Store credentials in environment variables or a secret manager, avoid printing real keys, and rotate credentials if exposure is suspected. <br>
-Risk: Inbound email or cron-polled messages could steer the agent toward unsafe actions. <br>
-Mitigation: Verify webhook signatures, require approval for important outbound messages, and constrain automated message processors so inbound content cannot directly control the agent. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/travisvz/sky) <br>
-- [Sky security documentation](https://sky.ai/security) <br>
+## Use Case:
 
+Developers and agent builders use this skill to connect AI agents to Sky-managed email addresses, configure webhooks or polling, send outbound messages, and handle inbound email or Sky Protocol messages.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with bash, HTTP, JSON, and JavaScript examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes API endpoint examples, webhook payload formats, rate-limit notes, and operational best practices.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: API keys may be exposed if examples are copied with logging, printing, or committed environment values.
+
+Mitigation: Store the Sky API key in a secret manager or protected environment, avoid printing it, and remove secrets from logs and shared artifacts.
+
+Risk: Inbound email content may contain untrusted data or instructions that automated agents could process unsafely.
+
+Mitigation: Parse and validate inbound message JSON, verify expected fields, treat message content as untrusted, and prevent message text from being executed as commands or privileged instructions.
+
+Risk: Polling pipelines can pass unreviewed inbound messages directly into local scripts.
+
+Mitigation: Avoid the cron pipeline as written unless the processing script validates inputs, handles errors safely, and cannot execute message content.
+
+Risk: Webhook requests could be spoofed if signatures are ignored.
+
+Mitigation: Verify webhook signatures with the webhook secret before acting on received messages.
+
+## Reference(s):
+
+- [Sky Security](https://sky.ai/security)
+- [ClawHub Skill Page](https://clawhub.ai/travisvz/skills/sky)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration, Code]
+
+**Output Format:** [Markdown with bash, HTTP, JSON, and JavaScript code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes API request examples, webhook configuration guidance, signature verification guidance, and operational best practices.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, created 2026-02-09T20:28:15Z)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

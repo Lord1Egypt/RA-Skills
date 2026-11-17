@@ -1,47 +1,59 @@
-## Description: <br>
-Query, troubleshoot, and explain Translink SEQ GTFS static and realtime data using local translink_* commands or plugin slash commands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query, troubleshoot, and explain Translink SEQ GTFS static + realtime data using local translink_* commands or plugin slash commands.
 
-## Publisher: <br>
-[alanburchill](https://clawhub.ai/user/alanburchill) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[alanburchill](https://clawhub.ai/user/alanburchill)
 
-## Use Case: <br>
-Developers and operators use this skill to query Translink SEQ schedule and realtime GTFS data, inspect joins across routes, trips, stops, and stop_times, review alerts, and troubleshoot schema drift through local CLI or plugin command surfaces. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill relies on local translink_* commands found in PATH. <br>
-Mitigation: Before installation or use, confirm the exact source of the Translink CLI scripts and ensure the PATH-resolved commands are trusted. <br>
-Risk: The skill can refresh and maintain a local transit cache. <br>
-Mitigation: Use refresh or scheduled refresh behavior only when the user expects local cache updates, and review cache freshness when answering time-sensitive transit questions. <br>
-Risk: Realtime output and schema snapshots may change as upstream Translink data changes. <br>
-Mitigation: Read the generated schema docs first for authoritative current columns and use the CLI's structured invalid-field suggestions to recover from schema drift. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Translink CLI scripts repository](https://github.com/alanburchill/traslink-cli-scripts) <br>
-- [Translink website](https://www.translink.com.au/) <br>
-- [Translink CLI Commands](references/commands.md) <br>
-- [Translink CLI usage](references/usage.md) <br>
-- [GTFS Relationships](references/relationships.md) <br>
-- [Translink Schema](references/schema-generated.md) <br>
-- [Column Meanings and Data Format](references/column-meanings.md) <br>
+## Use Case:
 
+Developers and transit-data analysts use this skill to query Translink SEQ static and realtime GTFS data, inspect schedules and stops, reason over route, trip, and stop joins, check alerts and vehicle data, and recover from schema or field-name errors.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance, Analysis, Configuration] <br>
-**Output Format:** [Markdown with inline shell commands and references to table, JSON, or CSV CLI output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May direct the agent to run local translink_* commands, refresh a local cache, inspect schema output, or use plugin slash commands.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill delegates runtime behavior to separately installed translink_* commands.
+
+Mitigation: Verify the external Translink CLI source before installation and prefer a known commit or release.
+
+Risk: A different executable with a matching translink_* name in PATH could change command behavior.
+
+Mitigation: Confirm the command path and installed version before using the skill for transit-data analysis.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/alanburchill/skills/translink-cli)
+- [Translink CLI scripts](https://github.com/alanburchill/traslink-cli-scripts)
+- [Translink](https://www.translink.com.au/)
+- [Command and parameter contract](references/commands.md)
+- [Usage examples](references/usage.md)
+- [GTFS relationships](references/relationships.md)
+- [Auto-generated schema](references/schema-generated.md)
+- [Column meanings](references/column-meanings.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and optional table, JSON, or CSV command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Depends on separately installed translink_* commands; command output may be paginated and schema-driven.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

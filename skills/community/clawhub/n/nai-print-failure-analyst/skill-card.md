@@ -1,41 +1,56 @@
-## Description: <br>
-Diagnose 3D print failures by symptoms or images, recommend slicer setting fixes, log issues, view history, and generate failure reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Diagnoses 3D print failures from symptoms or images, recommends slicer setting fixes, logs failures, analyzes recurring patterns, and generates failure reports.
 
-## Publisher: <br>
-[newageinvestments25-byte](https://clawhub.ai/user/newageinvestments25-byte) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[newageinvestments25-byte](https://clawhub.ai/user/newageinvestments25-byte)
 
-## Use Case: <br>
-Developers, makers, and 3D printer operators use this skill to diagnose failed prints, compare likely causes, apply slicer-setting fixes, and maintain a local history of recurring failures. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The local failure history can contain user-provided printer details, materials, descriptions, slicer settings, fixes, and notes. <br>
-Mitigation: Avoid putting unrelated private details in failure descriptions or notes. <br>
-Risk: Markdown reports can be saved to a user-specified output path. <br>
-Mitigation: Review the report output path before saving a report. <br>
+## Use Case:
 
+External makers, print-farm operators, and 3D printing support staff use this skill to diagnose common print failures, choose slicer adjustments, keep a local failure history, and summarize recurring issues.
 
-## Reference(s): <br>
-- [3D Print Failure Types](references/failure-types.md) <br>
-- [Slicer Setting Fixes by Failure Type](references/slicer-fixes.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Guidance, Shell commands, Markdown, JSON, Files] <br>
-**Output Format:** [Markdown guidance with optional JSON and markdown reports from helper scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write a local JSON failure log and markdown report when the user asks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Logged failures may include sensitive project, customer, printer, material, or troubleshooting details in free-form fields.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid entering sensitive details unless local retention is acceptable, and review or delete artifact/assets/failure-log.json when the history is no longer needed.
+
+Risk: Diagnosis and slicer settings are advisory and may not match a specific printer, filament, environment, or safety requirement.
+
+Mitigation: Treat recommendations as starting points, change settings incrementally, and verify results on test prints before using them on important jobs.
+
+## Reference(s):
+
+- [3D Print Failure Types](references/failure-types.md)
+- [Slicer Setting Fixes by Failure Type](references/slicer-fixes.md)
+- [ClawHub Skill Release](https://clawhub.ai/newageinvestments25-byte/skills/nai-print-failure-analyst)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/newageinvestments25-byte)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown or plain text with optional JSON from diagnostic commands and Markdown report files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or read a local failure history file at artifact/assets/failure-log.json when the user logs or reviews failures.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

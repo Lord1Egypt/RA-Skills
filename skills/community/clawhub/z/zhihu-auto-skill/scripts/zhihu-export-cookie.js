@@ -8,6 +8,8 @@
  *   node scripts/zhihu-export-cookie.js --path cookies.json  # 从文件导入
  *
  * G9
+ *
+ * @module zhihu-export-cookie
  */
 
 import { readFileSync } from 'fs';
@@ -15,9 +17,14 @@ import { resolve, dirname } from 'path';
 import { fileURLToPath } from 'url';
 import { chromium } from 'playwright';
 import { encryptAndSaveCookies } from './zhihu-core.js';
+import { exportLog } from './zhihu-logger.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
+/**
+ * 交互式登录导出 Cookie
+ * @returns {Promise<void>}
+ */
 async function interactiveLogin() {
   console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
   console.log('  知乎 Cookie 导出工具');
@@ -41,12 +48,12 @@ async function interactiveLogin() {
 
   try {
     await page.goto('https://www.zhihu.com/signin', { waitUntil: 'networkidle', timeout: 60000 });
-    console.log('✅ 登录页面已打开，请扫码或账号登录...');
+    exportLog.info('✅ 登录页面已打开，请扫码或账号登录...');
     console.log('⏳ 等待登录完成（超时 5 分钟）...');
 
     // 等待导航到首页（登录成功后自动跳转）
     await page.waitForURL('https://www.zhihu.com/', { timeout: 5 * 60 * 1000 });
-    
+
     // 额外等待页面加载
     await page.waitForTimeout(3000);
 
@@ -55,18 +62,23 @@ async function interactiveLogin() {
     if (isLoggedIn) {
       const cookies = await context.cookies();
       encryptAndSaveCookies(cookies);
-      console.log(`✅ 导出成功！共 ${cookies.length} 条 Cookie`);
+      exportLog.info('✅ 导出成功！', { count: cookies.length });
       console.log(`   保存位置: ~/.hermes/credentials/zhihu-cookies.enc`);
     } else {
-      console.log('⚠️ 未能确认登录状态，请检查是否成功登录');
+      exportLog.warn('⚠️ 未能确认登录状态，请检查是否成功登录');
     }
   } catch (err) {
-    console.error('❌ Cookie 导出失败:', err.message);
+    exportLog.error('❌ Cookie 导出失败', err);
   } finally {
     await browser.close();
   }
 }
 
+/**
+ * 从文件导入 Cookie
+ * @param {string} filePath - JSON 文件路径
+ * @returns {Promise<void>}
+ */
 async function importFromFile(filePath) {
   try {
     const resolvedPath = resolve(process.cwd(), filePath);
@@ -78,13 +90,17 @@ async function importFromFile(filePath) {
     }
 
     encryptAndSaveCookies(cookies);
-    console.log(`✅ 从文件导入成功！共 ${cookies.length} 条 Cookie`);
+    exportLog.info('✅ 从文件导入成功！', { count: cookies.length });
   } catch (err) {
-    console.error('❌ 导入失败:', err.message);
-    console.error('   文件格式应为 Playwright cookies() 输出的 JSON 数组');
+    exportLog.error('❌ 导入失败', err);
+    exportLog.info('   文件格式应为 Playwright cookies() 输出的 JSON 数组');
   }
 }
 
+/**
+ * CLI 主入口
+ * @returns {void}
+ */
 function main() {
   const args = process.argv.slice(2);
   const pathIndex = args.indexOf('--path');

@@ -1,42 +1,56 @@
-## Description: <br>
-Nano Banana Pro helps agents generate and edit PNG images with Nano Banana 2 (Gemini 3.1 Flash Image), including image-to-image workflows at 1K, 2K, and 4K. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use Nano Banana 2 (Gemini 3.1 Flash Image), the newest image model focused on faster iteration, lower cost, and strong quality. Published 2026-02-26 as the latest Flash-image generation family update. Supports image generation/edit, image-to-image, and 1K/2K/4K.
 
-## Publisher: <br>
-[wegoagain-dev](https://clawhub.ai/user/wegoagain-dev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[wegoagain-dev](https://clawhub.ai/user/wegoagain-dev)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and creative agents use this skill to generate or edit images through Google's Gemini image service, including draft-to-final workflows at 1K, 2K, or 4K resolution.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: API keys may be exposed if passed directly in chat or command arguments.
+
+Mitigation: Prefer setting GEMINI_API_KEY through a protected environment or secret manager.
+
+Risk: Prompts and input images are sent to Google's Gemini service during generation or editing.
+
+Mitigation: Avoid sensitive prompts or private images unless the user is comfortable sending them to that service.
+
+Risk: Dependencies and script execution may affect the local environment.
+
+Mitigation: Consider pinning dependencies or running the script in a restricted environment before installing or executing it.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and creative practitioners use this skill to have an agent generate new images or edit existing images through Google's Gemini image API while controlling resolution and output filename. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts and input images are sent to Google's Gemini service. <br>
-Mitigation: Use the skill only when the user is comfortable sending that content to Gemini and avoid sensitive inputs unless approved. <br>
-Risk: API keys may be exposed if passed directly on the command line. <br>
-Mitigation: Prefer the GEMINI_API_KEY environment variable instead of the --api-key argument. <br>
-Risk: The script creates parent directories and writes the generated PNG to the requested path. <br>
-Mitigation: Choose output filenames carefully and verify the target path before execution. <br>
+**Output Format:** [Markdown guidance with inline shell commands and generated image file paths]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wegoagain-dev/nano-banana-pro-fork) <br>
+**Other Properties Related to Output:** [Can save PNG image files in the user's current working directory when invoked with a Gemini API key.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and generated PNG file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The helper script saves PNG images to the selected local output path and prints the resolved file path.] <br>
+1.0.5 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.5 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,52 @@
+{
+  "skill": "dow-theory-framework",
+  "version": "0.1.0",
+  "source_book": "期货市场技术分析 — 约翰·墨菲",
+  "darwin_compatible": true,
+  "test_cases": [
+    {
+      "id": "should-trigger-01",
+      "type": "should_trigger",
+      "prompt": "现在大盘到底算不算牛市？趋势还在不在？",
+      "expected_behavior": "激活 dow-theory-framework，引导按趋势分层+阶段+验证判断",
+      "notes": "典型趋势判定"
+    },
+    {
+      "id": "should-trigger-02",
+      "type": "should_trigger",
+      "prompt": "主要趋势、次要趋势、短暂趋势这三者怎么区分？",
+      "expected_behavior": "激活 dow-theory-framework，解释潮汐/浪涛/波纹三层",
+      "notes": "趋势三分"
+    },
+    {
+      "id": "should-trigger-03",
+      "type": "should_trigger",
+      "prompt": "股票指数创了新高，但债券指数没跟上，按道氏理论的相互验证原则这能确认主要趋势反转吗？",
+      "expected_behavior": "激活 dow-theory-framework，讲相互验证：需多市场同向确认，单市场不足",
+      "notes": "相互验证"
+    },
+    {
+      "id": "should-not-trigger-01",
+      "type": "should_not_trigger",
+      "prompt": "帮我画一下这条上升趋势线，然后看有没有被跌破",
+      "expected_behavior": "不应激活本 skill（具体画线），应激活 trend-tools",
+      "notes": "跨 skill 混淆：应触发 trend-tools"
+    },
+    {
+      "id": "should-not-trigger-02",
+      "type": "should_not_trigger",
+      "prompt": "这个双重顶是不是已经成型了，能空吗？",
+      "expected_behavior": "不应激活本 skill（形态识别），应激活 reversal-patterns",
+      "notes": "诱饵：形态"
+    },
+    {
+      "id": "edge-01",
+      "type": "edge_case",
+      "prompt": "工业指数持续新高，但运输指数迟迟不确认，按道氏理论主要趋势还有效吗？",
+      "expected_behavior": "激活本 skill 并提示'量价背离是预警但非确证'，结合确凿反转原则判断，不轻易判终结",
+      "notes": "边界：背离 vs 确凿反转"
+    }
+  ],
+  "minimum_pass_rate": 0.8,
+  "notes": "should-not-trigger-01 指向 trend-tools；should-not-trigger-02 指向 reversal-patterns。"
+}

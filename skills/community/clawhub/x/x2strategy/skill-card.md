@@ -1,48 +1,66 @@
-## Description: <br>
-X2Strategy helps agents convert quantitative finance research inputs into structured strategy specifications, generated Backtrader code, backtest outputs, and diagnosis reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+X2strategy helps agents transform quantitative finance research inputs into structured strategy specifications, executable Backtrader code, backtests, and diagnosis reports.
 
-## Publisher: <br>
-[patrick-lew](https://clawhub.ai/user/patrick-lew) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[patrick-lew](https://clawhub.ai/user/patrick-lew)
 
-## Use Case: <br>
-Developers, quant researchers, and trading-system builders use this skill to extract strategy logic from finance papers or drafts, generate executable Backtrader implementations, validate them, run backtests, and compare results against paper-reported metrics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can store credentials and documents and send document excerpts to configured external LLM providers. <br>
-Mitigation: Use a managed secret mechanism when possible and avoid confidential or unpublished documents unless sending excerpts to the configured provider is acceptable. <br>
-Risk: The skill can generate and run trading or backtest code. <br>
-Mitigation: Review generated strategy code before execution and run it in an isolated workspace or container. <br>
-Risk: Bundled test tooling may load credentials and perform live API or network tests. <br>
-Mitigation: Do not run the full-test script unless live tests are intentional and the loaded credentials have been reviewed. <br>
+## Use Case:
 
+Developers and quantitative researchers use X2strategy to turn finance papers, drafts, reports, notes, or search results into structured trading strategy specs and executable Backtrader implementations. It supports parsing, LLM extraction, validation, backtesting, and diagnosis against paper metrics.
 
-## Reference(s): <br>
-- [X2Strategy ClawHub listing](https://clawhub.ai/patrick-lew/x2strategy) <br>
-- [paper2spec reference](references/paper2spec.md) <br>
-- [spec2code reference](references/spec2code.md) <br>
-- [skill internals reference](references/skill-internals.md) <br>
-- [Backtrader patterns](references/backtrader_patterns.md) <br>
-- [Data sources](references/data_sources.md) <br>
-- [Architecture](docs/ARCHITECTURE.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with generated Python code, JSON specifications, shell commands, and backtest summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local analysis artifacts such as content.json, spec.json, spec.md, strategy.py, metadata.json, and diagnosis reports.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata) <br>
+Risk: The skill may make external LLM calls and market-data network requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use restricted API keys with spending limits and install only in environments where those network calls are acceptable.
+
+Risk: The skill stores API keys in project files during setup.
+
+Mitigation: Use a throwaway workspace when possible and avoid storing long-lived secrets in the project .env.
+
+Risk: The skill can run generated trading strategy code directly.
+
+Mitigation: Review generated code before execution and avoid running real tests or untrusted backtests outside a restricted environment.
+
+Risk: Security evidence flags probing of an unrelated secret path in tests.
+
+Mitigation: Review the test suite before running tests and do not execute real or network-enabled tests during routine installation.
+
+## Reference(s):
+
+- [X2strategy ClawHub skill page](https://clawhub.ai/patrick-lew/skills/x2strategy)
+- [Architecture](docs/ARCHITECTURE.md)
+- [Paper2Spec](references/paper2spec.md)
+- [Spec2Code](references/spec2code.md)
+- [Skill Internals](references/skill-internals.md)
+- [Data Sources](references/data_sources.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with generated Python code, JSON strategy specifications, shell commands, and diagnostic reports.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May rely on external LLM and market-data services, and may propose or run generated trading code after user review.]
+
+## Skill Version(s):
+
+0.1.1 (source: ClawHub release evidence; artifact metadata reports 0.6.0 and pyproject.toml reports 0.4.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

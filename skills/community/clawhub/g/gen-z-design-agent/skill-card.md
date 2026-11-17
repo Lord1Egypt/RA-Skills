@@ -1,39 +1,49 @@
-## Description: <br>
-A design agent that helps create minimalist, surrealist, high-contrast Gen-Z visual concepts and production-ready Tailwind/HTML or design specifications. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A design agent for high-leverage, minimalist, and surrealist Gen-Z aesthetics that can produce production-ready Tailwind/HTML or detailed design specifications.
 
-## Publisher: <br>
-[cameron-jovan](https://clawhub.ai/user/cameron-jovan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cameron-jovan](https://clawhub.ai/user/cameron-jovan)
 
-## Use Case: <br>
-Designers, developers, and marketing teams use this skill to turn landing page, social asset, and product packaging requests into Gen-Z-focused visual direction, Tailwind/HTML, or design specifications. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated HTML, Tailwind, links, or media assets may be unsuitable to publish without review. <br>
-Mitigation: Review and test generated design assets before publication, following the server security guidance. <br>
+## Use Case:
 
+Designers, developers, and creative teams use this skill to turn requests for landing pages, social assets, or product packaging into Gen-Z-oriented Tailwind/HTML or design specifications.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cameron-jovan/gen-z-design-agent) <br>
-- [Publisher profile](https://clawhub.ai/user/cameron-jovan) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Guidance] <br>
-**Output Format:** [Markdown with Tailwind/HTML snippets or concise design specifications] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Review generated HTML, Tailwind, links, and media assets before publishing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: Generated frontend code or design specifications may not be production-ready for a specific brand, accessibility requirement, or deployment context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated Tailwind/HTML and design specifications before production use, as recommended by the security guidance.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cameron-jovan/skills/gen-z-design-agent)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown prose with Tailwind/HTML code or design specifications]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

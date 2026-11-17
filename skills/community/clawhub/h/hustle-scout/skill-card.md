@@ -1,42 +1,52 @@
-## Description: <br>
-Hustle Scout scans AI tools, agent systems, and automation niches for monetizable side hustle opportunities with quick validation potential. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scans AI and automation niches for quick-validate side hustle opportunities by auditing gaps, competition, and revenue potential within 30 days.
 
-## Publisher: <br>
-[asimons81](https://clawhub.ai/user/asimons81) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[asimons81](https://clawhub.ai/user/asimons81)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External founders, operators, and builders use this skill to scan a niche for monetizable gaps, rank quick side-hustle experiments, and plan minimum viable tests that can produce validation signal within a week.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Business recommendations may be incomplete, misleading, or unsuitable for a specific market.
+
+Mitigation: Treat outputs as brainstorming and validate assumptions with independent market research before spending money or launching.
+
+Risk: Niche or business inputs may include confidential strategy, customer, or product information.
+
+Mitigation: Avoid sharing confidential business data unless the agent environment is trusted for that information.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Founders, operators, and builders use this skill to assess AI, agent-system, automation, website, publishing, or digital-product niches and identify side hustle experiments that can be tested quickly. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Analysis, Guidance, Markdown]
 
-## Known Risks and Mitigations: <br>
-Risk: Using browsing or external tools with the skill could expose private customer data, credentials, or non-public competitor information. <br>
-Mitigation: Keep research to public information and do not provide credentials, private customer data, or non-public competitor information. <br>
-Risk: Opportunity rankings and fit scores are ideation outputs and may be incomplete or misleading if treated as validated market evidence. <br>
-Mitigation: Use the generated shortlist as a starting point, then review the assumptions and run the minimum viable test before investing further. <br>
+**Output Format:** [Markdown with ranked opportunity summaries, fit scores, rationale, minimum viable tests, and estimated validation time.]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [Hustle Scout ClawHub page](https://clawhub.ai/asimons81/hustle-scout) <br>
-- [Publisher profile](https://clawhub.ai/user/asimons81) <br>
-- [Artifact skill definition](artifact/SKILL.md) <br>
+**Other Properties Related to Output:** [Outputs are brainstorming-oriented and should be reviewed before business decisions.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown ranked shortlist with opportunity names, one-line descriptions, fit scores, rationale, minimum viable tests, and estimated validation time.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Focused on ideas that can be tested within 48 hours and produce a first validation signal within one week.] <br>
+0.1.0 (source: release evidence)
 
-## Skill Version(s): <br>
-0.1.0 (source: server-resolved release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

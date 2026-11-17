@@ -1,0 +1,171 @@
+{
+  "schema": "easyeda-agent/crystal-guard-plan-attempt/v1",
+  "status": "offline-verified",
+  "candidateStatus": "candidate-rejected",
+  "sourceRequirement": "crystal-guard-requirement.json",
+  "input": "layout-plan-crystal-guard.json",
+  "sourceSnapshot": "/tmp/260919-crystal-guard-20260922-dev5/before.json",
+  "snapshotSemanticSha256": "65caea63a4c28da3262fcd30b9b17d72d3745f3b9807ea90d71cf07b846c24ec",
+  "snapshotRawSha256": "5e3b85c12726c2abaa6efcd92e1bd7f10c74a71fcfbe64e0cb4bbf5a9d380960",
+  "inputSha256": "66f3bc6e76cc2fc22b4742e49bdb22ca5de442d2db67c081ddb5213b0cc4aa7a",
+  "units": "mil",
+  "command": "easyeda pcb layout-plan --from .agents/skills/easyeda-agent/references/examples/260919-at32f415/layout-plan-crystal-guard.json --board /tmp/260919-crystal-guard-20260922-dev5/before.json --module crystal-guard --candidates 3 --out /tmp/260919-crystal-guard-20260922-dev5/offline-candidates",
+  "exitCode": 1,
+  "candidateCount": 0,
+  "attempts": [
+    {
+      "variant": "crystal-local-gap(40.00)-rotate(0)",
+      "reasons": [
+        "X1 is closer than 6.00mil to obstacle C10"
+      ],
+      "measurements": {
+        "moduleBounds": {
+          "minX": 1513.838,
+          "minY": 692.355,
+          "maxX": 1957.462,
+          "maxY": 839.529
+        },
+        "moduleWidthMil": 443.624,
+        "moduleHeightMil": 147.174,
+        "minInternalGapMil": 15,
+        "closestInternalGap": {
+          "from": "C20",
+          "to": "X1",
+          "distanceMil": 15
+        },
+        "minExternalComponentGapMil": 3.798,
+        "closestExternalComponentGap": {
+          "from": "X1",
+          "to": "C10",
+          "distanceMil": 3.798
+        },
+        "edgeDistances": [
+          {
+            "ref": "C20",
+            "nearestEdge": "bottom",
+            "distanceMil": 770.9845,
+            "source": "polygon"
+          },
+          {
+            "ref": "C21",
+            "nearestEdge": "bottom",
+            "distanceMil": 703.9785,
+            "source": "polygon"
+          },
+          {
+            "ref": "X1",
+            "nearestEdge": "bottom",
+            "distanceMil": 692.355,
+            "source": "polygon"
+          }
+        ]
+      }
+    },
+    {
+      "variant": "crystal-local-gap(50.00)-rotate(0)",
+      "reasons": [
+        "C21 is closer than 6.00mil to obstacle C10",
+        "C21 is closer than 6.00mil to obstacle U4",
+        "X1 is closer than 6.00mil to obstacle C10"
+      ],
+      "measurements": {
+        "moduleBounds": {
+          "minX": 1513.838,
+          "minY": 682.355,
+          "maxX": 1957.462,
+          "maxY": 829.529
+        },
+        "moduleWidthMil": 443.624,
+        "moduleHeightMil": 147.174,
+        "minInternalGapMil": 15,
+        "closestInternalGap": {
+          "from": "C20",
+          "to": "X1",
+          "distanceMil": 15
+        },
+        "minExternalComponentGapMil": -6.202,
+        "closestExternalComponentGap": {
+          "from": "X1",
+          "to": "C10",
+          "distanceMil": -6.202
+        },
+        "edgeDistances": [
+          {
+            "ref": "C20",
+            "nearestEdge": "bottom",
+            "distanceMil": 760.9845,
+            "source": "polygon"
+          },
+          {
+            "ref": "C21",
+            "nearestEdge": "bottom",
+            "distanceMil": 693.9785,
+            "source": "polygon"
+          },
+          {
+            "ref": "X1",
+            "nearestEdge": "bottom",
+            "distanceMil": 682.355,
+            "source": "polygon"
+          }
+        ]
+      }
+    },
+    {
+      "variant": "crystal-local-gap(60.00)-rotate(0)",
+      "reasons": [
+        "C21 is closer than 6.00mil to obstacle C10",
+        "C21 is closer than 6.00mil to obstacle U4",
+        "X1 is closer than 6.00mil to obstacle C10"
+      ],
+      "measurements": {
+        "moduleBounds": {
+          "minX": 1513.838,
+          "minY": 672.355,
+          "maxX": 1957.462,
+          "maxY": 819.529
+        },
+        "moduleWidthMil": 443.624,
+        "moduleHeightMil": 147.174,
+        "minInternalGapMil": 15,
+        "closestInternalGap": {
+          "from": "C20",
+          "to": "X1",
+          "distanceMil": 15
+        },
+        "minExternalComponentGapMil": -16.202,
+        "closestExternalComponentGap": {
+          "from": "X1",
+          "to": "C10",
+          "distanceMil": -16.202
+        },
+        "edgeDistances": [
+          {
+            "ref": "C20",
+            "nearestEdge": "bottom",
+            "distanceMil": 750.9845,
+            "source": "polygon"
+          },
+          {
+            "ref": "C21",
+            "nearestEdge": "bottom",
+            "distanceMil": 683.9785,
+            "source": "polygon"
+          },
+          {
+            "ref": "X1",
+            "nearestEdge": "bottom",
+            "distanceMil": 672.355,
+            "source": "polygon"
+          }
+        ]
+      }
+    }
+  ],
+  "limitations": [
+    "Only component geometry reached; all variants were rejected before copper bundle generation.",
+    "No apply file, signal path proof, GND connectivity proof, pour verification or live acceptance exists for this input.",
+    "Current crystal-guard aligns OSC pad-pair midpoints in x and searches gap/rigid rotation only. It does not currently search module x offsets or displace neighboring modules."
+  ],
+  "nextAction": "Keep these failed parameters as a regression case. Add or use declared parametric lateral/neighbor-module clearance capabilities, then regenerate from a fresh board snapshot. Do not lower 6mil clearance or move only C10 without its U4 ownership and existing USB copper constraints."
+}

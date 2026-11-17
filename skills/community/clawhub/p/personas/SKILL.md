@@ -1,25 +1,12 @@
 ---
 name: personas
-version: 2.2.6
-description: Transform into 20 specialized AI personalities on demand. Switch mid-conversation and load only the active persona.
-metadata: {"openclaw":{"requires":{"bins":["python3"],"note":"No API keys needed."}}}
-triggers:
-  - /persona <name>
-  - /persona list
-  - /persona exit
-  - /personas
-  - use persona
-  - switch to
-  - activate
-  - exit persona
-categories:
-  - core
-  - creative
-  - learning
-  - lifestyle
-  - professional
-  - curator
-personas: 20
+version: 2.3.0
+description: Transform into 20 specialized AI personalities on demand. Switch mid-conversation and load only the active persona. Triggers on "persona list", "use persona", "switch to", "activate", "exit persona".
+metadata:
+  openclaw:
+    requires:
+      bins: ["python3"]
+    note: "No API keys needed."
 ---
 
 # Personas 🎭
@@ -35,12 +22,12 @@ Use one of 20 built-in personas for specialized help (coding, writing, fitness, 
 
 **List personas**
 - "List all personas"
-- "/persona list"
+- "/personas list"
 - "/personas"
 
 **Exit persona mode**
 - "Exit persona mode"
-- "/persona exit"
+- "/personas exit"
 
 ## CLI Handler (`scripts/persona.py`)
 
@@ -90,6 +77,8 @@ CyberGuard, DataViz, Career Coach, Legal Guide, Startup Sam, Dr. Med
 
 ## Notes
 
+- In OpenClaw 2.0 the slash command is `/personas` (derived from the `name` field). `/persona` does not exist.
+- Triggering works through the phrases in the `description` field, where they are now listed. OpenClaw 2.0 has no `triggers:`, `categories:`, or `personas:` frontmatter fields — they are ignored, and no separate trigger list registers commands.
 - Only the active persona is loaded when used.
 - Medical/legal personas are educational only, not professional advice.
 - Personas are bundled in `data/*.md` and can be edited manually by maintainers.

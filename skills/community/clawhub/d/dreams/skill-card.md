@@ -1,40 +1,53 @@
-## Description: <br>
-Build a personal dream journal for recording, analyzing patterns, and exploring your subconscious. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build a personal dream journal for recording, analyzing patterns, and exploring your subconscious.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users use this skill to capture dream entries, organize symbols and themes, and review recurring patterns in a local dream journal. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Dream entries may contain sensitive personal details, emotions, relationships, or life triggers stored on the local filesystem. <br>
-Mitigation: Use a protected local location for ~/dreams/, avoid syncing sensitive entries to cloud storage, and delete entries you do not want retained. <br>
-Risk: Dream-symbol and pattern summaries can be subjective or misleading if treated as factual analysis. <br>
-Mitigation: Review generated interpretations as personal reflection prompts and avoid using them as clinical, legal, or medical advice. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Dreams on ClawHub](https://clawhub.ai/ivangdavila/dreams) <br>
-- [Publisher profile: ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+## Use Case:
 
+External users use this skill to capture dreams, maintain a local dream journal, track recurring symbols and themes, and review patterns over time.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown journal entries, pattern summaries, and concise guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates and updates local dream-journal notes under ~/dreams/.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Dream journal entries can contain private emotional details and life events.
+
+Mitigation: Use the skill on a trusted device and store ~/dreams/ in a protected or encrypted location when privacy matters.
+
+Risk: Dream journal files may be exposed through synced or shared folders.
+
+Mitigation: Avoid placing ~/dreams/ in shared or automatically synced folders unless that sharing is intentional.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/dreams)
+- [Publisher profile](https://clawhub.ai/user/ivangdavila)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Guidance]
+
+**Output Format:** [Markdown journal entries, pattern notes, and guidance text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates and updates local dream-journal content under ~/dreams/.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

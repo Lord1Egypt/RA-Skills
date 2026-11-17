@@ -1,0 +1,10 @@
+{
+  "_说明": "本 skill 自带的出图接口配置（优先级：命令行 ＞ 环境变量 ＞ 本文件）。出图渠道 --channel newapi|ark|auto：newapi 走 OpenAI 兼容中转，ark 走火山方舟 Seedream。key 也可只放在 shell 配置（如 ~/.zshrc）里，脚本会回落读取。",
+  "newapi_image_base_url": "",
+  "newapi_image_key": "",
+  "newapi_image_model": "gpt-image-2-c",
+  "newapi_image_quality": "high",
+  "ark_image_base_url": "https://ark.cn-beijing.volces.com/api/v3",
+  "ark_image_key": "",
+  "ark_image_model": "doubao-seedream-5-0-pro-260628"
+}

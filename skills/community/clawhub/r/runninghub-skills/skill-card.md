@@ -1,50 +1,68 @@
-## Description: <br>
-Generate images, videos, audio, and 3D models through 170+ RunningHub API endpoints, and run RunningHub AI Applications by webappId. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates images, videos, audio, and 3D models through 170+ RunningHub API endpoints, and runs RunningHub AI Applications/custom ComfyUI workflows by webappId.
 
-## Publisher: <br>
-[HM-RunningHub](https://clawhub.ai/user/HM-RunningHub) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hm-runninghub](https://clawhub.ai/user/hm-runninghub)
 
-## Use Case: <br>
-External users, creators, and developers use this skill to generate or transform multimedia assets with RunningHub models, run custom RunningHub AI Applications, and deliver generated media back through the agent. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts and media files are sent to RunningHub for remote processing. <br>
-Mitigation: Use the skill only with content that is appropriate to send to RunningHub, and avoid sensitive or non-consensual media. <br>
-Risk: The skill uses a paid RunningHub API key and can consume account balance. <br>
-Mitigation: Use a dedicated revocable API key, check account status before use, and review reported cost after generation. <br>
-Risk: Voice cloning can enable impersonation if used without consent. <br>
-Mitigation: Run voice cloning only with explicit authorization from the voice owner and avoid requests involving deceptive or non-consensual use. <br>
-Risk: API keys may be saved in local OpenClaw configuration. <br>
-Mitigation: Store a scoped key where possible, rotate it if exposed, and revoke it when the skill no longer needs access. <br>
+## Use Case:
 
+External users, developers, and creative teams use this skill to generate or transform images, videos, audio, and 3D assets through RunningHub endpoints, and to run custom RunningHub AI Application workflows from an agent.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/HM-RunningHub/runninghub-skills) <br>
-- [RunningHub Homepage](https://www.runninghub.cn) <br>
-- [AI Application](references/ai-application.md) <br>
-- [API Key Setup](references/api-key-setup.md) <br>
-- [Image Model Selection](references/image-models.md) <br>
-- [Output & Delivery](references/output-delivery.md) <br>
-- [Video Model Selection](references/video-models.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance, Files] <br>
-**Output Format:** [Markdown guidance with inline shell commands, JSON status output, and generated media files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated media is written to local output paths and should be delivered through the agent's message tool; API calls may report paid usage cost.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: release evidence) <br>
+Risk: The skill handles paid RunningHub API keys and may receive keys through chat or local configuration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a protected secret store or tightly scoped environment variable, do not paste API keys into chat, rotate any key previously shared, and monitor billing.
+
+Risk: Generated-media workflows can upload user media to an external RunningHub service for processing.
+
+Mitigation: Avoid uploading sensitive media unless the user consents to external processing.
+
+Risk: Voice cloning can create misuse risk when the source voice owner has not consented.
+
+Mitigation: Use voice cloning only with clear permission from the voice owner.
+
+Risk: The release security verdict is suspicious and recommends review before installation.
+
+Mitigation: Review and scan the skill before deployment.
+
+## Reference(s):
+
+- [RunningHub Skill Page](https://clawhub.ai/hm-runninghub/skills/runninghub-skills)
+- [RunningHub Homepage](https://www.runninghub.cn)
+- [RunningHub OpenAPI v2](https://www.runninghub.cn/openapi/v2)
+- [AI Application](references/ai-application.md)
+- [API Key Setup](references/api-key-setup.md)
+- [Image Model Selection](references/image-models.md)
+- [Output and Delivery](references/output-delivery.md)
+- [Video Model Selection](references/video-models.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with shell commands, JSON/text status, and generated media files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce image, video, audio, 3D, or text outputs through paid RunningHub API calls.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

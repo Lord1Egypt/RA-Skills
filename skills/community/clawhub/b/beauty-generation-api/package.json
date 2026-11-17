@@ -1,6 +1,6 @@
 {
   "name": "beauty-generation-api",
-  "version": "1.2.50",
+  "version": "1.2.52",
   "description": "AI portrait generation service for creating professional headshots, character designs, and diverse representation. Supports 140+ nationalities, 8 styles, 24 moods, 22 hair styles, 22 skin tones. Fast generation (3-5 seconds) with built-in content safety filters. Perfect for creative projects, fashion visualization, and professional photography.",
   "main": "SKILL.md",
   "author": "DiversityFaces.org",

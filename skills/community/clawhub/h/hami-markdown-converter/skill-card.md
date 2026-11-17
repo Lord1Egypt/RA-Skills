@@ -1,41 +1,52 @@
-## Description: <br>
-Convert documents and files to Markdown using markitdown. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts PDFs, Office files, web and data files, media files, ZIP archives, YouTube URLs, and EPubs to Markdown with markitdown for LLM processing or text analysis.
 
-## Publisher: <br>
-[niceNASA](https://clawhub.ai/user/niceNASA) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[nicenasa](https://clawhub.ai/user/nicenasa)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and analysts use this skill to convert common document, data, web, archive, media, and URL inputs into Markdown that can be inspected, processed by LLMs, or used for text analysis.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill runs the currently resolved `markitdown` package rather than a pinned, reviewed package version.
+
+Mitigation: Use a pinned and reviewed markitdown version, especially for sensitive or regulated documents.
+
+Risk: Azure, URL-based conversion, and third-party plugin paths can send content to external services or execute additional plugin code.
+
+Mitigation: Run conversions in an isolated environment, avoid third-party plugins by default, and use Azure or URL-based conversion only when external processing is intended.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, engineers, and analysts use this skill to convert documents, spreadsheets, web/data files, media, archives, and selected URLs into Markdown for LLM processing or text analysis. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Markdown, Shell commands, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill runs an external converter through `uvx markitdown`, so conversion behavior depends on that package source and runtime dependency resolution. <br>
-Mitigation: Install and run it only where the package source and execution environment are trusted. <br>
-Risk: Optional Azure Document Intelligence, remote URL conversion, and third-party plugins can expose sensitive documents or depend on services and plugins outside the artifact. <br>
-Mitigation: Use cloud processing, remote URLs, and `--use-plugins` only when the relevant service, source URL, and installed plugins are intentionally trusted. <br>
+**Output Format:** [Markdown with inline bash code blocks]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/niceNASA/hami-markdown-converter) <br>
-- [Publisher profile](https://clawhub.ai/user/niceNASA) <br>
+**Other Properties Related to Output:** [Produces Markdown conversion guidance and command examples; converted document content may be written to stdout or output files by markitdown.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline bash command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Converted output may preserve headings, tables, lists, links, and extracted metadata where supported by markitdown.] <br>
+1.0.0 (source: server release evidence and artifact metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and artifact metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

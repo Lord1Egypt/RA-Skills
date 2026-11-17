@@ -1,41 +1,61 @@
-## Description: <br>
-Fetches recent AI, product, and technology YouTube channel updates, summarizes available transcripts in Chinese, and sends the digest as Feishu cards. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+YouTube Daily Digest fetches recent videos from selected AI, product, and technology YouTube channels, summarizes available transcripts in Chinese through OpenClaw Gateway, and posts a Feishu card digest.
 
-## Publisher: <br>
-[jadeyang7458-byte](https://clawhub.ai/user/jadeyang7458-byte) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jadeyang7458-byte](https://clawhub.ai/user/jadeyang7458-byte)
 
-## Use Case: <br>
-External users and developers use this skill to monitor selected AI, product, and technology YouTube channels, produce Chinese summaries of new videos, and deliver them to Feishu on demand or by cron. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security review reports packaged real-looking credentials and reliance on local OpenClaw secrets. <br>
-Mitigation: Remove or replace scripts/config.json before installation and confirm the skill uses only the user's own OpenClaw and Feishu configuration. <br>
-Risk: Cron usage can repeatedly fetch YouTube data, send transcript excerpts to a model gateway, and deliver summaries to Feishu without further prompts. <br>
-Mitigation: Treat scheduled execution as opt-in unattended processing, review the configured channels and recipient, and run with user-approved OpenClaw and Feishu credentials. <br>
+## Use Case:
 
+External users or teams who follow AI, product, and technology podcasts use this skill to receive a Chinese-language Feishu digest of newly published YouTube videos. It is intended for scheduled or manual runs in an OpenClaw environment with Feishu messaging configured.
 
-## Reference(s): <br>
-- [Complete Setup Guide and Troubleshooting Notes](references/setup.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/jadeyang7458-byte/youtube-daily-digest) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown-style Feishu card content with setup and cron shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces Chinese digest text from YouTube transcript content and local OpenClaw Gateway responses.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The release evidence reports apparent plaintext Feishu and OpenClaw credentials in the package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove and rotate exposed credentials before installing, publishing, or running the skill.
+
+Risk: Transcript text is sent through the configured OpenClaw Gateway/Claude service and the resulting digest is posted to Feishu.
+
+Mitigation: Confirm the configured model gateway and Feishu workspace are approved for the transcript content being processed.
+
+Risk: The security guidance notes weak local-secret scoping and recipient configuration concerns.
+
+Mitigation: Use a virtual environment with pinned dependencies and provide the Feishu recipient explicitly at runtime.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jadeyang7458-byte/skills/youtube-daily-digest)
+- [Publisher Profile](https://clawhub.ai/user/jadeyang7458-byte)
+- [Setup Guide](references/setup.md)
+- [Google Takeout](https://takeout.google.com)
+- [YouTube Atom Feed Pattern](https://www.youtube.com/feeds/videos.xml?channel_id=UC频道ID)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Feishu interactive card content with Chinese text summaries and Markdown-style links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Summaries are generated from available YouTube transcript text and posted to a configured Feishu recipient.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

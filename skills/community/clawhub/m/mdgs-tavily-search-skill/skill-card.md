@@ -1,43 +1,54 @@
-## Description: <br>
-Uses the Tavily API to search the web, extract page content, crawl sites, map site structure, and run research tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Uses the Tavily API to perform web search, page extraction, crawling, site mapping, and research, with the agent selecting the mode that fits the task.
 
-## Publisher: <br>
-[343195246](https://clawhub.ai/user/343195246) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[343195246](https://clawhub.ai/user/343195246)
 
-## Use Case: <br>
-Developers and agents use this skill when they need web search, page extraction, site crawling, site mapping, or multi-source research through Tavily. It helps choose the appropriate Tavily mode and provides command-line and JavaScript examples for invoking it. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search terms, URLs, crawl instructions, and research prompts are sent to Tavily and may reach external websites. <br>
-Mitigation: Use only queries and URLs approved for third-party sharing, and avoid secrets, internal URLs, personal data, or regulated content unless that sharing is acceptable. <br>
-Risk: Crawl and research modes can broaden outbound requests and collect more source material than intended. <br>
-Mitigation: Set explicit depth, page, result, and source limits before use, and review returned content before relying on it. <br>
-Risk: The skill requires a Tavily API key. <br>
-Mitigation: Provide the key through the TAVILY_API_KEY environment variable and do not hardcode it in prompts, scripts, or shared files. <br>
+## Use Case:
 
+Developers and external agents use this skill to call Tavily for web search, page extraction, site crawling, site mapping, and research workflows that need current web information or retrieved page content.
 
-## Reference(s): <br>
-- [Tavily](https://tavily.com) <br>
-- [Tavily Documentation](https://docs.tavily.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, code, configuration, text, JSON] <br>
-**Output Format:** [Markdown guidance with shell commands, JavaScript examples, and text or JSON-shaped Tavily responses.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires TAVILY_API_KEY and supports mode-specific limits such as search depth, max results, max pages, and max sources.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and package.json) <br>
+Risk: Queries, URLs, and retrieved page content are sent to Tavily as a third-party service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sending confidential queries, private URLs, authenticated pages, or sensitive business data unless approved for that use.
+
+Risk: Crawl and map modes can retrieve multiple pages from a target site.
+
+Mitigation: Use crawl and map only on targets you are authorized to access, and keep scope limits appropriate for the task.
+
+## Reference(s):
+
+- [Tavily](https://tavily.com)
+- [Tavily Documentation](https://docs.tavily.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JavaScript and shell command examples; script output is plain text derived from Tavily API responses.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires TAVILY_API_KEY and the @tavily/core package; external calls go to Tavily.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata, changelog, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

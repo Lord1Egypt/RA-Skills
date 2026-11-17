@@ -1,42 +1,59 @@
-## Description: <br>
-Use `aigroup-fmp-mcp` for listed-equity data from Financial Modeling Prep, including quotes, company profiles, statements, ratios, sector context, and calendar requests. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use `aigroup-fmp-mcp` for listed-equity data from Financial Modeling Prep, including quotes, company profiles, statements, ratios, sector context, and calendar requests.
 
-## Publisher: <br>
-[jackdark425](https://clawhub.ai/user/jackdark425) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jackdark425](https://clawhub.ai/user/jackdark425)
 
-## Use Case: <br>
-Developers, analysts, and agents use this skill to route listed-equity research requests to Financial Modeling Prep data, including ticker lookup, quotes, profiles, financial statements, ratios, market context, technical indicators, and calendar information. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on the referenced aigroup-fmp-mcp MCP server and may require API keys or permissions. <br>
-Mitigation: Verify the MCP server source is trusted and review any requested credentials or permissions before use. <br>
-Risk: Market data can be time-sensitive or stale if dates are omitted. <br>
-Mitigation: State quote, chart, calendar, and financial statement dates clearly in generated responses. <br>
+## Use Case:
 
+External users and developers use this skill to route public-company market-data requests through the Financial Modeling Prep MCP server for quotes, profiles, statements, ratios, market breadth, estimates, technical indicators, and calendar context.
 
-## Reference(s): <br>
-- [FMP MCP Capabilities](references/capabilities.md) <br>
-- [aigroup-fmp-mcp homepage](https://github.com/jackdark425/aigroup-fmp-mcp) <br>
-- [ClawHub skill page](https://clawhub.ai/jackdark425/aigroup-fmp-mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, API Calls, Text, Markdown] <br>
-**Output Format:** [Markdown or plain text responses using MCP-retrieved market data] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May invoke the aigroup-fmp-mcp MCP server; responses should state dates clearly for quotes, charts, and calendars.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.4 (source: server release evidence) <br>
+Risk: Market-data outputs may be mistaken for investment advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat responses as financial information, not investment advice, and verify material decisions against authoritative sources.
+
+Risk: Quotes, calendars, charts, and filings can be stale or date-sensitive.
+
+Mitigation: Confirm and state quote, chart, statement, and calendar dates in user-facing answers.
+
+Risk: The external Financial Modeling Prep MCP server may require its own account or API key outside this skill.
+
+Mitigation: Configure and manage external server credentials according to the provider's terms before using the skill.
+
+## Reference(s):
+
+- [FMP MCP Capabilities](artifact/references/capabilities.md)
+- [ClawHub Skill Page](https://clawhub.ai/jackdark425/skills/aigroup-fmp-mcp)
+- [Project Homepage](https://github.com/jackdark425/aigroup-fmp-mcp)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, API calls, guidance]
+
+**Output Format:** [Markdown or plain text responses grounded in MCP tool results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should state relevant quote, chart, statement, and calendar dates clearly.]
+
+## Skill Version(s):
+
+0.1.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

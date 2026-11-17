@@ -1,37 +1,53 @@
-## Description: <br>
-Qa Release Risk Governance helps evaluate software release risk, design phased rollout strategies, and prepare rollback and production monitoring plans before a release. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Assesses release readiness and change risk, then recommends canary rollout, rollback, and production monitoring plans.
 
-## Publisher: <br>
-[kokxi](https://clawhub.ai/user/kokxi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kokxi](https://clawhub.ai/user/kokxi)
 
-## Use Case: <br>
-Developers, QA leads, and release managers use this skill when deciding whether a version can ship, planning phased rollout by users, region, traffic, or time, and preparing rollback and monitoring checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kokxi/skills/qa-release-risk-governance) <br>
+Release managers, QA teams, and developers use this skill to evaluate change and business risks, recommend release decisions, and plan staged rollout, rollback, and monitoring before production deployment.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown report with structured release decision, risk summary, blocking issues, rollback plan, and monitoring recommendations.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only guidance; no hidden execution, persistence, or data export behavior reported by security evidence.] <br>
+Global
 
-## Skill Version(s): <br>
-1.5.0 (source: server release metadata and SKILL.md frontmatter) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: The optional command to install the broader skill set is unpinned.
+
+Mitigation: Review the source and use a pinned, trusted version before running the install command.
+
+Risk: Release or rollback recommendations could be mistaken for authorization to act in production.
+
+Mitigation: Require normal production approvals and confirm rollout scope, monitoring thresholds, and rollback readiness before execution.
+
+## Reference(s):
+
+- [Canary rollout and rollback strategy](references/canary-rollout.md)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Guidance]
+
+**Output Format:** [Markdown release-risk assessment and canary rollout plan]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Each assessment carries a REL-XXXX identifier and includes a release recommendation, risk summary, blockers, rollback plan, and monitoring recommendations.]
+
+## Skill Version(s):
+
+1.8.0 (source: ClawHub release and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

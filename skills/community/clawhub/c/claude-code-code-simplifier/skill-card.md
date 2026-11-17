@@ -1,39 +1,48 @@
-## Description: <br>
-Use when changed code should be reviewed for reuse, code quality, and efficiency, then cleaned up before finalizing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when changed code should be reviewed for reuse, code quality, and efficiency, then cleaned up before finalizing.
 
-## Publisher: <br>
-[wimi321](https://clawhub.ai/user/wimi321) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[wimi321](https://clawhub.ai/user/wimi321)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers use this skill after code changes to review recent diffs or modified files for reuse opportunities, code quality issues, and efficiency problems, then apply focused cleanup changes before finalizing work.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Automated cleanup edits could change behavior or introduce incorrect code.
+
+Mitigation: Review generated edits and run the relevant tests before accepting the final changes.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers use this skill after changing code to review a targeted diff or file list for reuse opportunities, quality issues, and efficiency problems, then apply concrete cleanup changes before finalizing. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [guidance, code]
 
-## Known Risks and Mitigations: <br>
-Risk: Cleanup edits can unintentionally change behavior in changed code. <br>
-Mitigation: Review the resulting diff and run the relevant tests before committing. <br>
-Risk: Broad or vague inputs can cause the agent to inspect unrelated local changes. <br>
-Mitigation: Provide a specific diff or file list and keep the review focused on the intended change. <br>
+**Output Format:** [Markdown summary with proposed or applied code cleanup changes]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Focused on changed code and avoids broad style-only rewrites.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Markdown, Guidance] <br>
-**Output Format:** [Markdown summary with proposed or applied code changes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May edit changed files and summarize cleanup decisions; review changes before committing.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

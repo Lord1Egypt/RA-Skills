@@ -1,42 +1,53 @@
-## Description: <br>
-Windsurf AI IDE guide for Cascade Agent, AI Flow, rules configuration, keyboard shortcuts, and best practices. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Windsurf AI IDE assistant for Cascade Agent, AI Flow, rules configuration, shortcuts, and practical IDE workflows.
 
-## Publisher: <br>
-[zhangifonly](https://clawhub.ai/user/zhangifonly) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhangifonly](https://clawhub.ai/user/zhangifonly)
 
-## Use Case: <br>
-Developers and engineers use this skill as practical guidance for working with Windsurf's Cascade Agent, AI Flow completion, inline edits, chat panel, rules files, and shortcuts. It supports scaffolding, refactoring, rapid prototyping, and exploring unfamiliar technology stacks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Windsurf Cascade can modify files and run terminal commands when used in Write mode. <br>
-Mitigation: Prefer Chat mode or scoped @file/@folder context for sensitive work, and review diffs plus dependency, terminal, and git changes before accepting them. <br>
-Risk: Global Windsurf rules can affect AI behavior across future projects. <br>
-Mitigation: Keep global rules minimal, review them periodically, and place project-specific requirements in local .windsurfrules files. <br>
-Risk: Sensitive files or secrets could be exposed through broad project context. <br>
-Mitigation: Exclude secrets from the workspace context, keep sensitive files in .gitignore where appropriate, and avoid giving the agent unnecessary project-wide access. <br>
+## Use Case:
 
+Developers use this skill for guidance on using the Windsurf AI IDE, including Cascade Agent workflows, AI Flow completion, inline edits, chat, rules files, shortcuts, and best practices.
 
-## Reference(s): <br>
-- [ClawHub Windsurf skill page](https://clawhub.ai/zhangifonly/windsurf) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, configuration] <br>
-**Output Format:** [Markdown guidance with tables and inline code snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes Windsurf rules examples, keyboard shortcuts, feature comparisons, and best-practice checklists.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Windsurf workflows described by the skill can modify code, run commands, and index project context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use scoped context, review diffs and commits before accepting changes, and prefer Chat mode for sensitive repositories.
+
+Risk: Sensitive files or secrets could be exposed through broad IDE context.
+
+Mitigation: Keep secrets out of project context, ignore sensitive files, and review context selection before using automated agent workflows.
+
+## Reference(s):
+
+- [Windsurf Skill Page](https://clawhub.ai/zhangifonly/skills/windsurf)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown guidance with tables and inline code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language developer guidance; no code, installers, hooks, or hidden runtime behavior are shipped.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

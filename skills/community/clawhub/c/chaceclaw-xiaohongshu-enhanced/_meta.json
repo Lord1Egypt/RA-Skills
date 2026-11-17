@@ -1,6 +1,58 @@
 {
-  "ownerId": "kn7exkvs9fr4ybh3yx6986mfw985c17g",
-  "slug": "chaceclaw-xiaohongshu-enhanced",
-  "version": "1.0.1",
-  "publishedAt": 1776936773134
+  "name": "xiaohongshu-mcp-skills",
+  "version": "1.0.0",
+  "emoji": "📕",
+  "description": "小红书（XHS）自动化助手 MCP Skill Pack。提供登录、发布图文/视频、搜索笔记、浏览详情、点赞收藏评论、查看博主主页、内容策划等完整操作能力。",
+  "author": "xmznini",
+  "maintainer": "Chaceclaw",
+  "created": "2026-04-20",
+  "updated": "2026-04-23",
+  "license": "MIT",
+  "category": "social-media",
+  "tags": ["小红书", "XHS", "RED", "xiaohongshu", "社交媒体", "内容运营", "种草"],
+  "triggers": [
+    "小红书",
+    "红书",
+    "XHS",
+    "RED",
+    "发笔记",
+    "搜笔记",
+    "小红书运营",
+    "种草",
+    "博主"
+  ],
+  "platform": "clawhub",
+  "requires_mcp": "xiaohongshu-mcp",
+  "mcp_tools": [
+    "check_login_status",
+    "search_feeds",
+    "get_note_detail",
+    "get_user_profile",
+    "post_note",
+    "post_video",
+    "like_note",
+    "collect_note",
+    "comment_note"
+  ],
+  "rate_limits": {
+    "search": {"max_per_hour": 30, "cooldown_seconds": 120},
+    "like": {"max_per_hour": 60, "cooldown_seconds": 60},
+    "collect": {"max_per_hour": 60, "cooldown_seconds": 60},
+    "comment": {"max_per_day": 30, "cooldown_seconds": 300},
+    "post": {"max_per_day": 3, "cooldown_seconds": 3600}
+  },
+  "files": [
+    "SKILL.md",
+    "xhs-login/SKILL.md",
+    "xhs-post/SKILL.md",
+    "xhs-search/SKILL.md",
+    "xhs-explore/SKILL.md",
+    "xhs-interact/SKILL.md",
+    "xhs-profile/SKILL.md",
+    "xhs-content-plan/SKILL.md",
+    "setup-xhs-mcp/SKILL.md",
+    "xhs-rate-limits.md",
+    "xhs-compliance.md",
+    "_meta.json"
+  ]
 }

@@ -1,0 +1,114 @@
+<!-- exemplar
+kind: poster
+register: light
+recipe: SWISS-POSTER
+techniques: R2,R4,巨字,3+9交替,幽灵序号
+palette: EA526F,E76B74,D7AF70,937D64,585B56
+validated: 四闸 PASS(0P0/0P1/0P2)+渲染评审 v1-v7
+regen: python3 scripts/make_exemplars.py(勿手改本文件)
+-->
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1"><title>野莓甜室</title>
+<!-- recipe-source: SWISS-POSTER(0.14) 声明色板: 585B56,937D64,D66970,E3D5C1,E76B74,EA526F,EE959C,F3E7D4,FAF4EC 间距档: 120/80/48 -->
+<style>:root{
+  --night:#585B56;--pale:#F3E7D4;--mist:#E3D5C1;--sage:#EE959C;
+  --surface:#E76B74;--ink:#585B56;--ink2:#937D64;--accent:#EA526F;
+  --card:#FAF4EC;--line:#D66970;
+  --serif:'Noto Serif SC','Source Han Serif SC','Songti SC',Georgia,serif;
+  --sans:-apple-system,'PingFang SC','Microsoft YaHei','Segoe UI',sans-serif;
+  --display:var(--sans);
+  --mono:ui-monospace,'SF Mono',Consolas,monospace;
+}
+:lang(zh){text-autospace:normal;line-break:strict}
+h1,h2{text-wrap:balance}
+p{text-wrap:pretty}
+:lang(zh) :is(h1,h2,h3){font-feature-settings:"palt" 1}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--pale);color:var(--ink);font:400 16px/1.75 var(--sans)}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+.wrap{max-width:1200px;margin:0 auto;padding:0 48px}
+.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:24px}
+:focus-visible{outline:3px solid var(--sage);outline-offset:3px}
+.kicker{display:flex;align-items:center;gap:10px;font:700 12px/1.6 var(--sans);
+         letter-spacing:.28em;color:var(--accent-ink,var(--accent));margin-bottom:14px}
+.kicker::before{content:"";width:24px;height:1px;background:var(--accent)}
+.hairline{border:0;border-top:1px solid var(--line)}
+.mono{font:400 12px/1.6 var(--mono);letter-spacing:.05em;opacity:.62}
+.btn{display:inline-block;background:var(--ink);color:var(--pale);font:700 15px/1 var(--sans);
+      padding:16px 32px;border-radius:10px}
+.btn.ghost{background:transparent;color:var(--ink);border:1.5px solid var(--ink)}
+.ghost-num{font:900 clamp(96px,12vw,160px)/1 var(--serif);color:transparent;
+            -webkit-text-stroke:1px var(--line);pointer-events:none}
+.cross{position:absolute;width:11px;height:11px;pointer-events:none}
+.cross::before{content:"";position:absolute;left:5px;top:0;width:1px;height:11px;background:var(--ink2);opacity:.5}
+.cross::after{content:"";position:absolute;top:5px;left:0;width:11px;height:1px;background:var(--ink2);opacity:.5}
+.side-label{position:absolute;writing-mode:vertical-rl;font:600 11px/1.8 var(--mono);
+             letter-spacing:.3em;color:var(--ink2);opacity:.55;pointer-events:none}
+.bg-motif{position:absolute;pointer-events:none;opacity:.07}
+.dark .bg-motif{opacity:.12}
+section{padding:96px 0}
+section .sub{padding:64px 0 0}
+table{width:100%;border-collapse:collapse;font-size:14.5px}
+th{background:var(--surface);text-align:left;padding:12px 18px;font-weight:700}
+td{padding:12px 18px;border-top:1px solid var(--line)}
+.num{text-align:right;font-variant-numeric:tabular-nums;font-weight:600}
+.lift{transition:transform .22s ease,box-shadow .22s ease}
+.lift:hover{transform:translateY(-5px);box-shadow:0 18px 44px rgba(17,22,30,.12)}
+@media (prefers-reduced-motion:reduce){.lift,.lift:hover{transform:none;box-shadow:none;transition:none}}
+figcaption{font:400 12px/1.6 var(--mono);letter-spacing:.05em;color:var(--ink2);margin-top:10px}
+@supports (initial-letter:3){.dropcap>p:first-of-type::first-letter{initial-letter:3 2;
+  font:700 1em var(--serif);color:var(--accent-ink,var(--accent));margin-right:10px}}
+@media (max-width:900px){.grid>*{grid-column:1/-1!important}section{padding:64px 0}.wrap{padding:0 24px}}
+
+body{letter-spacing:0.01em}
+.rule{border-top:1px solid var(--ink)}
+.masthead{display:flex;justify-content:space-between;align-items:baseline;padding:20px 0}
+.giant{font:700 clamp(64px,14vw,200px)/1.04 var(--serif);letter-spacing:0.01em;
+       -webkit-text-stroke:.6px currentColor}
+.poster{padding:72px 0 96px;position:relative}
+.poster .cta{position:absolute;right:48px;bottom:64px}
+.sec3x9{display:grid;grid-template-columns:3fr 9fr;gap:32px;padding:64px 0}
+.sec9x3{display:grid;grid-template-columns:9fr 3fr;gap:32px;padding:64px 0}
+.sec3x9 .no,.sec9x3 .no{font:900 15px var(--sans);color:var(--accent)}
+.sec3x9 h2,.sec9x3 h2{font:800 clamp(24px,2.8vw,34px)/1.25 var(--serif);margin:10px 0 12px}
+.bigquote{padding:96px 0;border-top:1px solid var(--ink);border-bottom:1px solid var(--ink)}
+.bigquote p{font:700 clamp(28px,4.4vw,52px)/1.35 var(--serif);max-width:22ch}
+@media (max-width:900px){.sec3x9,.sec9x3{grid-template-columns:1fr}.poster .cta{position:static;margin-top:24px}}
+</style></head><body>
+<div style='display:flex;height:5px' aria-hidden='true'><span style='flex:1;background:#585B56'></span><span style='flex:1;background:#937D64'></span><span style='flex:1;background:#EA526F'></span><span style='flex:1;background:#EE959C'></span><span style='flex:1;background:#F3E7D4'></span></div>
+<div class="wrap"><header class="masthead">
+  <strong style="font:700 18px var(--serif)">野莓甜室</strong>
+  <span class="mono">SEC.00 — WILDBERRY — 2026</span></header>
+<hr class="rule"></div>
+<div class="wrap poster" style="position:relative">
+  <span class="cross" style="right:0;top:36px"></span>
+  <span class="cross" style="left:0;bottom:0"></span>
+  <span class="side-label" style="right:-34px;top:20%">MANIFESTO — WILDBERRY</span>
+  <p class="kicker">MANIFESTO(替换)</p>
+  <h1 class="giant">一句话主张，<br>顶天立地。</h1>
+  <p class="giant-cap" style="max-width:92%;margin-top:10px;font-size:15px;color:var(--ink2)">副题:两行内,给可验证的承诺。巨字占宽按内容自然生长。(替换)</p>
+  <a class="btn cta" href="#cta">主行动(替换)</a></div>
+<hr class="rule">
+<div class="wrap"><section class="sec3x9">
+  <div><span class="no">01</span><span class="ghost-num" style="display:block">01</span></div>
+  <div><h2>第一节标题(替换)</h2><p style="color:var(--ink2);max-width:60ch">正文:说清这一节给用户什么,给可验证细节。版式纪律:每节一个幽灵序号,3+9 与 9+3 交替。(替换)</p>
+  <p style="color:var(--ink2);max-width:60ch;margin-top:12px">补充段:密度要够,单节至少两段正文,否则瑞士风的留白会变空旷。(替换)</p></div>
+</section><hr class="hairline">
+<section class="sec9x3">
+  <div><h2>第二节标题(替换)</h2><p style="color:var(--ink2);max-width:60ch">正文:方向翻转,形成 zigzag 节奏。(替换)</p>
+  <p style="color:var(--ink2);max-width:60ch;margin-top:12px">补充段:如配数据,数字列 tabular-nums 右对齐。(替换)</p></div>
+  <div><span class="no">02</span><span class="ghost-num" style="display:block">02</span></div>
+</section><hr class="hairline">
+<section class="bigquote"><p>「一句大引文,占满画面的呼吸。(替换)」</p>
+  <footer style="margin-top:16px" class="mono">—— 署名 · 年份</footer></section>
+<section class="sec3x9" id="cta">
+  <div><span class="no">03</span></div>
+  <div><h2>收尾行动(替换)</h2>
+    <p style="color:var(--ink2);max-width:48ch;margin-bottom:20px">先具体,再干脆。(替换)</p>
+    <a class="btn" href="#">主行动(替换)</a></div>
+</section></div>
+<footer><div class="wrap" style="padding-bottom:40px"><hr class="rule">
+  <div style="display:flex;justify-content:space-between;padding-top:18px;font-size:12.5px;color:var(--ink2)">
+  <span>© 2026 野莓甜室</span><span>aesthete-agent 配方 SWISS-POSTER</span></div></footer>
+</body></html>

@@ -1,45 +1,65 @@
-## Description: <br>
-An all-in-one YouTube content management tool that generates topics, scripts, titles, SEO descriptions, tags, thumbnail suggestions, publishing records, and analytics support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+YouTube Content Manager Pro helps YouTube creators generate video topics, scripts, title options, SEO descriptions, tags, thumbnail suggestions, publishing records, and analytics.
 
-## Publisher: <br>
-[baolige2023](https://clawhub.ai/user/baolige2023) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[baolige2023](https://clawhub.ai/user/baolige2023)
 
-## Use Case: <br>
-YouTube creators and content teams use this skill to plan content, generate production-ready video assets, and track publishing performance. It is intended for creator workflow support rather than autonomous publishing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Billing behavior and payment terms are not disclosed clearly enough for automatic trust. <br>
-Mitigation: Confirm the real SkillPay pricing and whether payment is prepaid, per-use, or lifetime before enabling the skill. <br>
-Risk: Content plans and business metrics may be sent to external services. <br>
-Mitigation: Avoid entering confidential plans or metrics until the publisher documents what is sent to SiliconFlow and SkillPay. <br>
-Risk: Embedded service keys and debug-oriented server configuration reduce operational trust. <br>
-Mitigation: Require the publisher to move service keys out of source code and fix the server configuration before broad use. <br>
+## Use Case:
 
+External YouTube creators and channel operators use this skill to draft topics, scripts, titles, SEO metadata, thumbnail guidance, and publishing-performance analysis for videos.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/baolige2023/youtube-content-manager-intl) <br>
-- [ClawHub Publisher Profile](https://clawhub.ai/user/baolige2023) <br>
-- [SkillPay Billing Endpoint Used by Artifact](https://skillpay.me/api/v1/billing) <br>
-- [SiliconFlow Chat Completions Endpoint Used by Artifact](https://api.siliconflow.cn/v1/chat/completions) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Guidance] <br>
-**Output Format:** [Generated YouTube topics, scripts, title options, SEO descriptions, tags, thumbnail guidance, analytics summaries, and exportable text content] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores publishing records locally and depends on external billing and AI-generation services.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: User content may be sent to an undisclosed AI provider.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Disclose the provider and data handling path before use, and avoid confidential channel plans or unpublished scripts until that disclosure is corrected.
+
+Risk: Embedded API keys and a hard-coded Flask secret may expose accounts or sessions.
+
+Mitigation: Remove and rotate embedded keys, store secrets outside the artifact, and configure a deployment-specific Flask secret.
+
+Risk: The web app configuration is unsafe for network exposure.
+
+Mitigation: Disable debug mode and broad host binding, replace unsafe HTML rendering, and complete review before exposing the app to a network.
+
+Risk: Billing behavior and consent screens are unclear.
+
+Mitigation: Correct billing amounts and payment consent screens before charging users.
+
+Risk: Stored publishing records may lack record-level user isolation.
+
+Mitigation: Add per-user record isolation before multi-user or networked deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/baolige2023/skills/youtube-content-manager-intl)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Guidance]
+
+**Output Format:** [Web UI content and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes generated topics, scripts, title options, SEO descriptions, tags, thumbnail guidance, saved publishing records, and analytics summaries.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

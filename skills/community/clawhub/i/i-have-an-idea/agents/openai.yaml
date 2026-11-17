@@ -1,0 +1,7 @@
+interface:
+  display_name: "I Have an Idea"
+  short_description: "把重要想法发展成可追溯、AI 友好的 Markdown"
+  default_prompt: "Use $i-have-an-idea to capture my idea, develop it with me, and preserve the result without starting implementation."
+
+policy:
+  allow_implicit_invocation: true

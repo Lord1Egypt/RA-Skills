@@ -1,42 +1,59 @@
-## Description: <br>
-Helps an agent diagnose feedback-loop dynamics by mapping reinforcing and balancing loops, delays, stocks, flows, leverage points, expected system response, and falsifiers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes feedback loops, delays, stocks, and flows to explain system behavior and identify structural intervention points.
 
-## Publisher: <br>
-[deciqai](https://clawhub.ai/user/deciqai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[deciqai](https://clawhub.ai/user/deciqai)
 
-## Use Case: <br>
-Employees, external users, and developers use this skill to analyze complex organizational, market, or supply-chain behavior where interventions may trigger reinforcing loops, balancing loops, delays, oscillation, or backfire. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Feedback-loop diagnoses may be incorrect or overconfident when used as forecasts for business, organizational, or supply-chain outcomes. <br>
-Mitigation: Treat outputs as analytical guidance, validate assumptions with domain evidence, and review recommendations before acting on them. <br>
+## Use Case:
 
+Business leaders, analysts, and operators use this skill to understand recurring patterns such as overshoot, oscillation, growth flywheels, and supply-chain bullwhip. It structures a case into reinforcing and balancing loops, delays, likely behavior, and possible interventions with backfire risks.
 
-## Reference(s): <br>
-- [Sources - feedback-loops](references/sources.md) <br>
-- [Forrester's Beer Distribution Game and Sterman's 1989 Measurement](examples/forresters-beer-distribution-game-stermans-1989-measurement.md) <br>
-- [Sterman 1989, Modeling Managerial Behavior](https://doi.org/10.1287/mnsc.35.3.321) <br>
-- [Lee, Padmanabhan, and Whang 1997, The Bullwhip Effect](https://doi.org/10.1287/mnsc.43.4.546) <br>
-- [Meadows 1999, Leverage Points](https://donellameadows.org/archives/leverage-points-places-to-intervene-in-a-system/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown feedback-loop diagnosis] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces structured analytical guidance; no executable behavior or sensitive access is described in the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: An incomplete loop map or incorrect assumptions could lead to misleading forecasts or interventions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Validate the mapped loops and assumptions against observations before acting on recommendations.
+
+Risk: Real-use examples saved into shared copies could expose confidential case details.
+
+Mitigation: Remove confidential details before saving or sharing real-use observations.
+
+## Reference(s):
+
+- [Primary sources and further reading](artifact/references/sources.md)
+- [Sterman (1989), Modeling Managerial Behavior](https://doi.org/10.1287/mnsc.35.3.321)
+- [Lee, Padmanabhan, and Whang (1997), The Bullwhip Effect](https://doi.org/10.1287/mnsc.43.4.546)
+- [Meadows (1999), Leverage Points](https://donellameadows.org/archives/leverage-points-places-to-intervene-in-a-system/)
+- [International Energy Agency, Electricity 2024](https://www.iea.org/reports/electricity-2024)
+- [Beer Distribution Game example](artifact/examples/forresters-beer-distribution-game-stermans-1989-measurement.md)
+- [AI capital expenditure example](artifact/examples/ai-capex-boom-reinforcing-and-balancing-loops-2024-2026.md)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Guidance, Markdown]
+
+**Output Format:** [Structured Markdown feedback-loop diagnosis with causal chains, delay estimates, behavior forecasts, and intervention guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Case-specific qualitative analysis; conclusions depend on the evidence and assumptions supplied.]
+
+## Skill Version(s):
+
+1.0.6 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

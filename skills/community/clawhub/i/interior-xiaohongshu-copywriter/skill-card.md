@@ -1,41 +1,54 @@
-## Description: <br>
-Generates Xiaohongshu post topics, titles, body copy, and localized tags for interior designers building a local personal brand. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+为本地室内设计师定制小红书内容，生成选题、标题、正文与本地化标签，帮助塑造设计师个人IP并支持获客内容发布。
 
-## Publisher: <br>
-[137984917-cyber](https://clawhub.ai/user/137984917-cyber) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[137984917-cyber](https://clawhub.ai/user/137984917-cyber)
 
-## Use Case: <br>
-Interior designers and content creators use this skill to draft localized Xiaohongshu posts for design topics, case analysis, renovation advice, and client acquisition content. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated promotional copy may be inaccurate, overly broad, or unsuitable for a designer's actual portfolio and local market claims. <br>
-Mitigation: Review and edit the draft for factual accuracy, client confidentiality, brand fit, and platform compliance before publishing. <br>
-Risk: The artifact emits prompts for downstream AI generation, so final quality depends on the receiving model and user inputs. <br>
-Mitigation: Provide concrete theme, location, style, and project context, then inspect the generated text before use. <br>
+## Use Case:
 
+Interior designers and marketing-focused agents use this skill to draft Xiaohongshu post ideas, titles, body copy, and local hashtags for interior design services. It is oriented toward Chinese-language social content and local customer acquisition workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/137984917-cyber/interior-xiaohongshu-copywriter) <br>
-- [Publisher profile](https://clawhub.ai/user/137984917-cyber) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown-style draft with title options, body copy, and hashtag list] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a prompt or copy draft intended for human review before posting.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact skill.json) <br>
+Risk: The skill may activate for broad content-planning requests where Xiaohongshu interior design copy is not intended.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it when the task explicitly concerns interior design marketing, Xiaohongshu content, local designer positioning, titles, body copy, or hashtags.
+
+Risk: Generated marketing copy may need local business, factual, and brand review before publication.
+
+Mitigation: Review titles, claims, location references, service descriptions, and hashtags before posting.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/137984917-cyber/skills/interior-xiaohongshu-copywriter)
+- [ClawHub publisher profile](https://clawhub.ai/user/137984917-cyber)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown-style Chinese copy with title options, body copy, and hashtags]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The bundled script prints a prompt for an AI writer; generated post copy is intended for Xiaohongshu and asks for roughly 300-500 Chinese characters.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.release.version and artifact/skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

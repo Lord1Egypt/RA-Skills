@@ -1,42 +1,66 @@
-## Description: <br>
-Shared deterministic guard primitives for the Consensus.Tools skill family: hard-block taxonomy, weighted vote aggregation, reputation updates, idempotency keys, strict schema enforcement, and indexed board artifact access. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Shared deterministic guard primitives for the Consensus.Tools skill family: hard-block taxonomy, weighted vote aggregation, reputation updates, idempotency keys, strict schema enforcement, and indexed board artifact access.
 
-## Publisher: <br>
-[kaicianflone](https://clawhub.ai/user/kaicianflone) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[kaicianflone](https://clawhub.ai/user/kaicianflone)
 
-## Use Case: <br>
-Developers and engineers use this skill as shared policy infrastructure for Consensus guard workflows that need deterministic vote aggregation, reputation updates, idempotency keys, strict schema checks, and board artifact access. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Local board or state writes can influence later consensus decisions when write helpers are called. <br>
-Mitigation: Set CONSENSUS_STATE_ROOT to a dedicated non-privileged directory and allow only trusted workflows to call writeArtifact or writeDecision. <br>
-Risk: Transitive package behavior may affect a shared policy library used by multiple guards. <br>
-Mitigation: Install from a trusted package source, use the lockfile or exact dependency pins, and audit transitive dependencies before production use. <br>
+## Use Case:
 
+Developers and engineers use this skill to keep consensus guard workflows consistent, replayable, and auditable through shared deterministic policy, reputation, idempotency, validation, and board-artifact primitives.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kaicianflone/consensus-guard-core) <br>
-- [README](README.md) <br>
-- [Security Assurance](SECURITY-ASSURANCE.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [code, configuration, guidance] <br>
-**Output Format:** [JavaScript module exports and structured JSON objects, with Markdown documentation for usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write board or state artifacts under the configured consensus state path when callers use write helpers.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.13 (source: package.json, release evidence) <br>
+Risk: Core approval logic and policy thresholds may be relied on as security infrastructure.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Validate vote objects and policy thresholds before calling aggregateVotes, and review behavior in an isolated environment before promotion.
+
+Risk: Board write helpers can create or update local consensus state artifacts.
+
+Mitigation: Use a dedicated non-privileged consensus state directory, run as a non-root user, and do not pass user-controlled state paths directly to write helpers.
+
+Risk: Runtime dependencies form part of the trust boundary for consensus decisions.
+
+Mitigation: Pin dependencies with the lockfile and audit direct and transitive packages before deployment.
+
+Risk: The server security verdict is suspicious because the package has approval logic and local-write boundaries.
+
+Mitigation: Treat installation as a security-infrastructure review, not as a simple helper-library install.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/kaicianflone/skills/consensus-guard-core)
+- [Source Repository](https://github.com/kaicianflone/consensus-guard-core)
+- [Consensus Tools Upstream](https://github.com/kaicianflone/consensus-tools)
+- [README](README.md)
+- [Security Assurance Note](SECURITY-ASSURANCE.md)
+- [AI Self-Improvement Note](AI-SELF-IMPROVEMENT.md)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Code, Files, Guidance]
+
+**Output Format:** [JavaScript module exports and structured JSON objects]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Deterministic local behavior; board write helpers can create local state artifacts under the configured consensus state path.]
+
+## Skill Version(s):
+
+1.1.13 (source: package.json and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

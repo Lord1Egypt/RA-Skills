@@ -1,49 +1,62 @@
-## Description: <br>
-HubSpot CRM API integration with managed OAuth for managing contacts, companies, deals, and associations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through HubSpot CRM searches, record management, and approved automations using a Maton connection.
 
-## Publisher: <br>
-[byungkyu](https://clawhub.ai/user/byungkyu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[byungkyu](https://clawhub.ai/user/byungkyu)
 
-## Use Case: <br>
-Developers and operators use this skill to read, create, update, search, and archive HubSpot CRM records through Maton-managed OAuth. It is suited for CRM maintenance, data synchronization, and workflow automation involving contacts, companies, deals, associations, and object properties. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create, update, archive, and delete HubSpot CRM records through a connected account. <br>
-Mitigation: Confirm the target object, connection, and intended effect before every write or delete operation. <br>
-Risk: A leaked MATON_API_KEY could allow unauthorized access through the Maton account. <br>
-Mitigation: Store MATON_API_KEY as a secret, avoid printing it in logs or chat, and rotate it if exposure is suspected. <br>
-Risk: Requests are mediated by Maton before reaching HubSpot. <br>
-Mitigation: Install only when Maton is an acceptable intermediary and use scoped Maton or HubSpot connections where possible. <br>
+## Use Case:
 
+CRM users and developers use this skill to find and manage HubSpot contacts, companies, deals, associations, and properties, and to configure user-approved CRM automations.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/byungkyu/skills/hubspot-api) <br>
-- [HubSpot API Overview](https://developers.hubspot.com/docs/api/overview) <br>
-- [HubSpot Contacts API](https://developers.hubspot.com/docs/api-reference/crm-contacts-v3/basic/get-crm-v3-objects-contacts.md) <br>
-- [HubSpot Companies API](https://developers.hubspot.com/docs/api-reference/crm-companies-v3/basic/get-crm-v3-objects-companies.md) <br>
-- [HubSpot Deals API](https://developers.hubspot.com/docs/api-reference/crm-deals-v3/basic/get-crm-v3-objects-0-3.md) <br>
-- [HubSpot Associations API](https://developers.hubspot.com/docs/api-reference/crm-associations-v4/basic/get-crm-v4-objects-objectType-objectId-associations-toObjectType.md) <br>
-- [HubSpot CRM Search](https://developers.hubspot.com/docs/api/crm/search) <br>
-- [API Gateway Skill](https://clawhub.ai/byungkyu/api-gateway) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, code, API calls, configuration] <br>
-**Output Format:** [Markdown with inline shell, Python, JavaScript, and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires network access and MATON_API_KEY for live HubSpot operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.7 (source: server release evidence) <br>
+Risk: The connected account may grant access beyond the CRM endpoints documented by the skill.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Grant only the OAuth scopes needed for the task and ask before accessing other endpoints.
+
+Risk: Writes, deletions, and bulk operations can change or remove live CRM records.
+
+Mitigation: Prefer read-only calls and confirm the target and effect before each write, deletion, or bulk operation.
+
+Risk: Triggers and destinations can keep forwarding future CRM events until removed.
+
+Mitigation: Require separate explicit approval for event forwarding and review the destination and ongoing scope.
+
+## Reference(s):
+
+- [HubSpot skill release](https://clawhub.ai/byungkyu/skills/hubspot-api)
+- [Maton homepage](https://maton.ai)
+- [Maton documentation](https://docs.maton.ai)
+- [Maton CLI manual](https://cli.maton.ai/manual)
+- [HubSpot API overview](https://developers.hubspot.com/docs/api/overview)
+- [HubSpot trigger reference](references/hubspot/triggers.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Code, Configuration guidance]
+
+**Output Format:** [Markdown with inline commands and API examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [CRM operations and automations require an authorized HubSpot connection.]
+
+## Skill Version(s):
+
+1.2.9 (source: ClawHub release metadata; skill frontmatter says 1.2)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

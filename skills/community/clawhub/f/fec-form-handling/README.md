@@ -1,17 +1,17 @@
-# 表单处理
+# form processing
 
-Frontend Craft skill for 表单处理.
+Implement typed forms, validation, dynamic fields, controlled inputs, and uploads.
 
 ## Skill
 
 - ID: `fec-form-handling`
 - Category: `implementation-capability`
-- Version: `2.6.0`
+- Version: `2.9.0`
 - Source: `skills/fec-form-handling/SKILL.md`
 
 ## Description
 
-Use when building or reviewing substantial forms with React Hook Form, Zod schemas, typed validation, dynamic fields, controlled third-party inputs, file upload, multi-step flows, dependent validation, or form performance. Do not use for trivial 1-3 field forms without validation; Chinese triggers include 表单, 表单校验, 动态字段.
+Use when building or reviewing substantial forms with React Hook Form, Zod schemas, typed validation, dynamic fields, controlled third-party inputs, file upload, multi-step flows, dependent validation, or form performance. Do not use for trivial 1-3 field forms without validation; Chinese triggers include form, form validation, dynamic fields.
 
 ## Usage
 

@@ -1,41 +1,56 @@
-## Description: <br>
-DroidRun Portal HTTP/WebSocket/MCP client for controlling Android devices with tap, swipe, screenshot, text input, UI state retrieval, app launch and stop, and related Portal operations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+DroidRun Portal HTTP/WebSocket/MCP client for controlling Android devices via HTTP, WebSocket, or MCP server, including tap, swipe, screenshot, text input, and UI state retrieval.
 
-## Publisher: <br>
-[hanxi](https://clawhub.ai/user/hanxi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[hanxi](https://clawhub.ai/user/hanxi)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and agents use this skill to connect to Android devices running DroidRun Portal, inspect device state, capture screenshots, and perform UI actions through HTTP, WebSocket, or MCP tools.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can give an agent broad Android device control, including screenshots and state-changing actions.
+
+Mitigation: Use only with authorized devices, prefer a test device, restrict Portal token access and network reachability, and require human confirmation for screenshots and state-changing actions.
+
+Risk: The WebSocket interface can install APKs when exposed through Portal operations.
+
+Mitigation: Disable or block APK installation unless explicitly needed and approved for the target device.
+
+Risk: The MCP setup can install and run the droidrun-agent package through uvx.
+
+Mitigation: Pin or verify the droidrun-agent package before using the uvx MCP configuration.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and agent operators use this skill to connect an AI agent or Python client to an Android device running DroidRun Portal, inspect device state, capture screenshots, and perform controlled device actions through HTTP, WebSocket, or MCP tools. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill enables an agent to control an Android device and view screen or UI state through DroidRun Portal. <br>
-Mitigation: Use only with trusted devices and trusted Portal endpoints, keep PORTAL_TOKEN private, and avoid exposing the Portal service publicly. <br>
-Risk: Sensitive operations such as APK installation, text entry, port changes, or screenshots can disclose private information or change device state. <br>
-Mitigation: Require explicit human confirmation before sensitive actions and review device context before executing commands. <br>
+**Output Format:** [Markdown with Python, bash, and JSON examples]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [Droidrun Agent on ClawHub](https://clawhub.ai/hanxi/droidrun-agent) <br>
-- [Publisher profile](https://clawhub.ai/user/hanxi) <br>
+**Other Properties Related to Output:** [May produce MCP configuration snippets and Android Portal client usage guidance.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with Python, shell, and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May describe Portal API calls, MCP server setup, environment variables, and Android device-control workflows.] <br>
+0.1.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

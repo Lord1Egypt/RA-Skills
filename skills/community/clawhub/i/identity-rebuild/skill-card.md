@@ -1,42 +1,59 @@
-## Description: <br>
-Rebuild your sense of self when your career defined who you were and now it's gone. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides people through rebuilding a sense of self after job loss, retirement, or career collapse using structured journaling, identity inventory, experiments, and narrative reframing.
 
-## Publisher: <br>
-[howtousehumans](https://clawhub.ai/user/howtousehumans) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[howtousehumans](https://clawhub.ai/user/howtousehumans)
 
-## Use Case: <br>
-People experiencing identity crisis after job loss, retirement, or career collapse use this skill to work through guided journaling, identity inventory, and 30-day identity experiments. Agents can use it to structure reflective conversations, save progress notes, schedule reminders, and route users toward professional or crisis support when needed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks users to disclose sensitive reflections about job loss, identity, depression indicators, and daily check-ins. <br>
-Mitigation: Use it only in environments where the user is comfortable storing those reflections, and minimize or delete saved notes when they are no longer needed. <br>
-Risk: Users may describe severe depression or thoughts of self-harm while using the skill. <br>
-Mitigation: Treat the skill as self-help guidance rather than therapy, and direct users to professional support or the 988 Suicide & Crisis Lifeline when crisis indicators appear. <br>
+## Use Case:
 
+External users who are experiencing identity crisis after job loss, retirement, or career collapse use this skill for guided reflection, identity mapping, 30-day experiments, and rewriting a personal narrative beyond a job title.
 
-## Reference(s): <br>
-- [Identity Rebuild on ClawHub](https://clawhub.ai/howtousehumans/identity-rebuild) <br>
-- [Park 2010 meaning-making review](https://doi.org/10.1037/a0017428) <br>
-- [988 Suicide & Crisis Lifeline](https://988lifeline.org/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown conversation guidance with structured prompts and YAML agent state] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce saved identity notes and calendar reminders when the agent has the disclosed filesystem and calendar tools.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can save sensitive identity and mental-health-related reflections.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm where saved state is stored, who can access it, and how to delete it before use.
+
+Risk: Daily and weekly reminders may surface sensitive reflections at unwanted times.
+
+Mitigation: Confirm whether reminders can be disabled or adjusted before enabling the skill.
+
+Risk: The release evidence flags the installer as unpinned.
+
+Mitigation: Prefer a pinned or verified installer version instead of running an unpinned npx command.
+
+## Reference(s):
+
+- [Identity Rebuild on ClawHub](https://clawhub.ai/howtousehumans/skills/identity-rebuild)
+- [Park 2010 meaning-making DOI](https://doi.org/10.1037/a0017428)
+- [988 Suicide & Crisis Lifeline](https://988lifeline.org/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown-style guided prompts, saved state fields, and reminder trigger configuration]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May ask an agent to save sensitive reflection state and schedule daily or weekly check-ins.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

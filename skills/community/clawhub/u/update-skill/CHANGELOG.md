@@ -2,10 +2,101 @@
 
 All notable changes to this skill will be documented in this file.
 
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/2.0.0/),
 and this skill adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## [0.10.0] - 2026-11-05
+
+### Added
+
+- Three usage lanes replace the single pond agent: summaries (settled conclusions), corrections (the user overriding how the tool or the skill was used), and a usage audit of sessions where the skill was loaded.
+- Report section 6, Operational learnings: `L` rows kept apart from the edit table, with an attestation of lanes, window, sessions read and query timings. GATE 1 accepts `L` IDs, and the no-op short-circuit requires section 6 to be empty.
+- pond interim notes: query shapes, filters and timings for a word-indexed remote store, pasted into every usage brief because subagents cannot read MCP resources. Remove once tenequm/pond#369 lands.
+- A usage row that conflicts with a recipe in the user's CLAUDE.md or AGENTS.md is kept and marked as a conflict.
+
+### Changed
+
+- The usage angle no longer asks for semantic queries: pond is word-indexed, so lanes query with the literal words expected in the text.
+- pond docs link points to https://pond.locker/.
+
+## [0.9.0] - 2026-11-05
+
+### Changed
+
+- Every run uses a separate worktree on `chore/update-<name>`; the yes/no question and the in-place path are gone, and how to create the worktree is left to the environment.
+- Phase 6: `just check` regenerates `README.md` in this repo - stage it with the skill changes.
+
+## [0.8.6] - 2026-11-05
+
+### Changed
+
+- Phase 1 pre-flight asks for a per-skill license file only when the repo requires one; ClawHub licenses every skill MIT-0.
+
+### Removed
+
+- Per-skill `LICENSE.txt`: ClawHub licenses every published skill MIT-0.
+
+## [0.8.5] - 2026-10-13
+
+### Fixed
+- Subagents ran toolchain probes (`swift build --help`) in the main checkout and left a `.build/` behind. Every toolchain command now runs in a named scratch directory outside all checkouts.
+- Phase 6 gains a checkout-hygiene hard blocker: both checkouts are compared against a Phase 1 `git status` snapshot, and leftovers are shown and removed before GATE 2.
+
+### Security
+- New rule: no backticks in shell arguments. A backtick in a double-quoted `rg` pattern ran as command substitution and printed the environment into a transcript.
+
+## [0.8.4] - 2026-09-09
+
+### Removed
+- Removed `disable-model-invocation`, so the skill can be invoked by the model as well as by `/name`.
+
+## [0.8.3] - 2026-09-09
+
+### Changed
+- Description condensed to fit the repo's 250-character limit.
+
+## [0.8.2] - 2026-08-21
+
+### Changed
+
+- Declared ClawHub browse categories (`agents, automation`) and topics in `metadata`, so the release pipeline publishes them instead of leaving the skill in the `other` category.
+
+### Removed
+
+- `skill-card.md`. The ClawHub CLI strips a root `skill-card.md` from every publish and the registry generates its own card, so the authored file never reached ClawHub.
+
+## [0.8.1] - 2026-07-22
+
+### Added
+
+- skill-card.md release record following NVIDIA's skill-card format
+- metadata.openclaw block (emoji, homepage) for ClawHub display
+
+## [0.8.0] - 2026-07-10
+
+### Added
+- Worktree lifecycle hardening from real runs: keep the worktree until the PR merges (follow-up rounds reuse it), remove the worktree before deleting its branch, `git worktree prune` for stale entries, and regenerate (never hand-merge) generated-file conflicts like README.md on rebase.
+- Phase 3 line-budget planning: report the projected SKILL.md size when additive rows land and plan a references/ split when it would exceed the repo's cap.
+- Phase 5 failure-attribution step: when the validation gate fails in a way unrelated to the edits, stash and re-run on a clean tree before debugging.
+- Phase 3 public-vs-private scope call on usage-derived findings: private-infra learnings go to user memory/CLAUDE.md, never the public skill.
+- Phase 2 research inputs: ground-truth CLI-wrapping skills against the live installed CLI, and accept user-supplied seed findings as explicit leads.
+- Operating rule for duplicate/scheduled triggers firing mid-run: hold at the emitted gate, never redo research.
+- Phase 4 authoring caution: never let a `!` at line start or after whitespace directly touch a backticked command in SKILL.md bodies (Claude Code executes it at load, even in code fences).
+- Phase 1 pre-flight now verifies LICENSE.txt presence; Done phase reminds to propagate published updates to installed copies; Phase 7 batches multi-skill updates into one push when CI republishes per push.
+- `metadata.upstream` now tracks `keep-a-changelog@2.0.0` - the spec the skill embeds a template of, whose releases invalidate content (proven this run).
+
+### Changed
+- Keep a Changelog citations and the bootstrap header template moved from 1.1.0 to 2.0.0 (six change types and dates unchanged; adds the `**Breaking:**` marker convention and version-pinned format links).
+- Phase 2 notes subagents run in the background by default (Claude Code v2.1.198+): collect all completions before Phase 3.
+- Phase 7 feature-branch flow now follows through merge: watch the default-branch publish CI after the PR merges (some repos have no PR CI at all), then clean up branch and worktree.
+
+### Fixed
+- Bootstrap upstream proposal no longer promotes incidentally-mentioned tools: candidates must be things whose releases would invalidate the skill's content.
+- Phase 6 leak scan explicitly covers untracked new files, which `git diff` misses.
+
+Verified against: keep-a-changelog@2.0.0
 
 ## [0.7.0] - 2026-06-16
 

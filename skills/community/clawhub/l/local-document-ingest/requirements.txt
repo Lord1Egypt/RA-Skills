@@ -1,0 +1,2 @@
+# local_document_ingest deterministic helpers use pypdf for PDF text previews.
+pypdf>=4.3,<6

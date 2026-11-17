@@ -1,45 +1,60 @@
-## Description: <br>
-AI-native company intelligence engine with an 8-step information pipeline, cross-file inference patterns, neural chain design, and classification-based model routing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-native company intelligence engine with 8-step metabolic pipeline, cross-file inference, neural chain design, and information classification routing.
 
-## Publisher: <br>
-[ygq19901001](https://clawhub.ai/user/ygq19901001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ygq19901001](https://clawhub.ai/user/ygq19901001)
 
-## Use Case: <br>
-Operators, founders, and agent builders use this skill to turn company reports, external signals, customer feedback, and system events into structured intelligence, prioritized actions, and cross-domain insights. It is intended for organizations that need repeatable information triage, classification-aware routing, and decision support across departments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Internal company intelligence may be routed to external model providers when cloud processing is enabled. <br>
-Mitigation: Configure local-only processing or approval gates for sensitive classifications, and confirm provider retention settings before use. <br>
-Risk: Scheduled cleanup can remove raw or parsed records that may be needed for audit, legal review, incidents, or business continuity. <br>
-Mitigation: Define retention exceptions and archive requirements before enabling deletion policies. <br>
+## Use Case:
 
+Developers and business operations teams use this skill to turn company signals, departmental reports, and external inputs into classified intelligence, cross-file inferences, prioritized actions, and routing guidance.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ygq19901001/skills/biobrain-intelligence-brain) <br>
-- [Server-Resolved GitHub Repository](https://github.com/Ygq19901001/biobrain-intelligence-brain) <br>
-- [Server-Resolved Import Commit](https://github.com/Ygq19901001/biobrain-intelligence-brain/tree/c1c32c69762becb290e425fb6adde04ea01fb5a6) <br>
-- [8-Step Metabolic Pipeline Operations Playbook](references/pipeline-playbook.md) <br>
-- [Cross-File Inference Patterns](references/inference-patterns.md) <br>
-- [Neural Chain Design](references/neural-chain-design.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown guidance, structured signal files, prioritized action items, and cross-file inference summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses classification labels and confidence markers to guide routing, review, and retention decisions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release metadata) <br>
+Risk: The skill asks agents to handle company-sensitive information and route it across local, shared, cloud, and model-processing paths.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require classification-aware routing before any cloud copy, shared-folder write, model call, or log entry.
+
+Risk: Broad logging and automatic mirroring can expose sensitive message content if deployed without review.
+
+Mitigation: Avoid logging full message bodies by default and review mirroring rules before installing in a real business environment.
+
+Risk: Scheduled deletion could remove records needed for legal, audit, incident, or recovery purposes.
+
+Mitigation: Make raw-data deletion opt-in and define retention exceptions before enabling cleanup automation.
+
+## Reference(s):
+
+- [8-Step Metabolic Pipeline Operations Playbook](artifact/references/pipeline-playbook.md)
+- [Cross-File Inference Patterns](artifact/references/inference-patterns.md)
+- [Neural Chain Design](artifact/references/neural-chain-design.md)
+- [Server-Resolved GitHub Provenance](https://github.com/Ygq19901001/biobrain-intelligence-brain)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown guidance with structured examples and operational checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes classification-aware routing, SLA guidance, cross-file inference patterns, and operational review checkpoints.]
+
+## Skill Version(s):
+
+0.1.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

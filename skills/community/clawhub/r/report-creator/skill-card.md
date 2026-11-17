@@ -1,51 +1,62 @@
-## Description: <br>
-Generates self-contained HTML reports, business summaries, research documents, and KPI dashboards from raw notes, URLs, or .report.md outlines, with planning, theming, review, and export-image routes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates polished single-file HTML reports, business summaries, data dashboards, and research documents from notes, data, URLs, or approved report plans.
 
-## Publisher: <br>
-[kaisersong](https://clawhub.ai/user/kaisersong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kaisersong](https://clawhub.ai/user/kaisersong)
 
-## Use Case: <br>
-Developers, analysts, and business users use this skill to turn notes, source documents, URLs, or approved report IR into polished single-file HTML reports. It also supports report planning, theme previews, one-pass review, validation gates, and image export workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated reports may execute JavaScript from public CDNs when assets are not bundled. <br>
-Mitigation: Use the bundled or offline output path for confidential reports and inspect generated HTML before sharing. <br>
-Risk: Generated reports include edit, save, and export controls that may be easy to miss during review. <br>
-Mitigation: Review the final HTML shell controls and run the provided quality gates before publishing or distributing a report. <br>
-Risk: The README describes a Telegram sharing workflow for IM-friendly report images. <br>
-Mitigation: Do not rely on Telegram delivery unless a separate trusted integration sends the report with explicit approval. <br>
+## Use Case:
 
+Employees, external collaborators, and developers use this skill to turn source material into readable HTML reports with structured summaries, KPI blocks, charts, tables, timelines, themes, review passes, and optional image export.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kaisersong/report-creator) <br>
-- [README](README.md) <br>
-- [When To Use](examples/when-to-use.md) <br>
-- [Do Not Use](examples/do-not-use.md) <br>
-- [IR Contract](references/ir-contract.md) <br>
-- [Generate Flow](references/generate-flow.md) <br>
-- [Review Checklist](references/review-checklist.md) <br>
-- [HTML Shell Template](references/html-shell-template.md) <br>
-- [Rendering Rules](references/rendering-rules.md) <br>
-- [Theme Routing](references/theme-routing.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance, .report.md intermediate representations, self-contained HTML files, and shell commands for validation or export] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated reports may include inline JavaScript, public CDN assets when not bundled, export controls, and machine-readable report metadata.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.23.1 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Generated reports load mutable third-party browser code by default, which can expose report contents if that code is compromised.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: For sensitive reports, require bundled or offline assets, pin and verify CDN scripts, and avoid opening generated reports where third-party network loads are unacceptable.
+
+Risk: Report outputs may contain confidential data and can be combined with messaging tools that send content externally.
+
+Mitigation: Decide confidentiality requirements before installation and only combine this skill with Telegram or other messaging tools when external sharing is intended.
+
+Risk: Generated report facts, numbers, and interpretations may be incomplete when source data is missing or ambiguous.
+
+Mitigation: Review generated reports before use and require missing values to remain explicit placeholders rather than fabricated facts or metrics.
+
+## Reference(s):
+
+- [Report Creator ClawHub page](https://clawhub.ai/kaisersong/skills/report-creator)
+- [Reference index](references/INDEX.md)
+- [IR contract](references/ir-contract.md)
+- [Generate flow](references/generate-flow.md)
+- [Review checklist](references/review-checklist.md)
+- [Theme routing](references/theme-routing.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance plus generated .report.md IR, self-contained HTML files, and optional exported images]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated reports can include machine-readable summaries, section annotations, component data, themes, export controls, and validation metadata.]
+
+## Skill Version(s):
+
+1.23.1 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

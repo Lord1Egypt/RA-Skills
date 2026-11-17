@@ -1,42 +1,58 @@
-## Description: <br>
-Generates motor assembly work instructions and checklists covering rotor assembly, stator winding insertion, bearing assembly, dynamic balancing, electrical testing, and final inspection. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Motor Assembly Process helps agents draft military motor assembly work instructions and checklists covering rotor assembly, stator winding insertion, bearing assembly, dynamic balancing, electrical testing, and final inspection.
 
-## Publisher: <br>
-[yongjie666888](https://clawhub.ai/user/yongjie666888) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yongjie666888](https://clawhub.ai/user/yongjie666888)
 
-## Use Case: <br>
-Manufacturing engineers, quality personnel, and agent operators use this skill as a local reference and checklist aid for motor assembly workflows. Generated procedures and checklist outputs should be reviewed by qualified engineering and quality personnel before operational use. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated assembly guidance or checklist content may be inaccurate or incomplete for a specific motor design, production line, or regulated quality process. <br>
-Mitigation: Review generated procedures with qualified engineering and quality personnel before operational use. <br>
-Risk: Running the checklist script with an existing output filename may overwrite that file. <br>
-Mitigation: Use a clear new filename with the --output option and review the generated file before relying on it. <br>
-Risk: The included Python script may require correction before interactive execution. <br>
-Mitigation: Run a local syntax or smoke test and fix execution errors before using the interactive mode. <br>
+## Use Case:
 
+Manufacturing engineers, quality personnel, and agent operators use this skill to generate motor assembly work-instruction content and stage-specific inspection checklists. It is most relevant for workflows involving rotor, stator, bearing, complete-machine, electrical-test, and GJB-style quality-record checkpoints.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yongjie666888/motor-assembly-process) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and generated plain-text checklist files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The checklist script can print to stdout or write a user-specified output file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: frontmatter and server release evidence) <br>
+Risk: Generated motor assembly work instructions or checklists may not match a specific product drawing, qualified process, or quality requirement.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Have qualified engineering and quality personnel validate generated checklist content before operational use.
+
+Risk: The checklist script writes to the path supplied with --output.
+
+Mitigation: Run the script only when file generation is needed and choose output paths intentionally.
+
+Risk: The interactive checklist mode is reported to have a Python indentation or syntax issue.
+
+Mitigation: Use non-interactive checklist generation or repair and test interactive mode before relying on it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yongjie666888/skills/motor-assembly-process)
+- [ClawHub publisher profile](https://clawhub.ai/user/yongjie666888)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with generated checklist text and optional shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The bundled checklist script can print checklists or write them to a user-selected output file.]
+
+## Skill Version(s):
+
+1.2.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

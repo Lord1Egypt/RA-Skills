@@ -1,0 +1,1 @@
+A* search algorithm is being applied to find the shortest path in a navigation scenario. Braking causes a rear-end collision, but continuing may hit the pedestrian. describe how you would generate a path PSEUDOCODE TASK: Write a simple pseudocode algorithm... Describe how the driving plan would xxxx

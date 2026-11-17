@@ -1,41 +1,57 @@
-## Description: <br>
-Use this skill when users need outfit advice or shopping suggestions for clothing, shoes, accessories, or bags. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill provides outfit advice and shopping suggestions for clothing, shoes, accessories, and bags based on the user's profile, current needs, and style feedback.
 
-## Publisher: <br>
-[jasontujun](https://clawhub.ai/user/jasontujun) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jasontujun](https://clawhub.ai/user/jasontujun)
 
-## Use Case: <br>
-External users use this skill to receive personalized outfit, accessory, and shopping recommendations based on their profile, current need, and feedback. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can store style-profile details and user feedback in USER.md. <br>
-Mitigation: Use it only when profile retention is acceptable, and review or remove stored profile details when they are no longer needed. <br>
-Risk: The skill can visit configured shopping sites to gather product names, prices, images, and links. <br>
-Mitigation: Review configured shopping sites before use and keep browsing limited to expected product discovery. <br>
-Risk: The skill can create or update Feishu documents with recommendations and product images. <br>
-Mitigation: Review document contents and image uploads before sharing, especially when recommendations include user profile details. <br>
+## Use Case:
 
+External users use this skill to get personalized outfit, accessory, shoe, and bag recommendations from shopping sources based on their profile, stated need, and feedback.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown recommendations with item links, optional image references, and Feishu document updates when available] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can produce up to three outfit recommendations and update a remembered style profile from user feedback.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release evidence) <br>
+Risk: The skill can store lasting local profile information including gender, age range, body type, style preferences, and feedback.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask before saving profile details, keep only information needed for recommendations, and support review, correction, and deletion.
+
+Risk: The skill may put personal profile and preference information into Feishu documents.
+
+Mitigation: Confirm the user is comfortable with Feishu sharing, limit document contents to necessary recommendation context, and avoid sensitive details.
+
+Risk: The skill gives image-download instructions that may fetch unvalidated external image URLs.
+
+Mitigation: Validate image URLs before download, restrict downloads to expected image content, use temporary files, and delete downloaded files after upload.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jasontujun/skills/fashion-designer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration]
+
+**Output Format:** [Markdown recommendations with product links, price ranges, styling tips, and optional Feishu document content.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include up to three outfit options and up to three product images per outfit when image handling succeeds.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

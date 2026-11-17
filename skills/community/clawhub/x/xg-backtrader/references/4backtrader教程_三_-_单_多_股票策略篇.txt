@@ -1,0 +1,240 @@
+backtrader是基于Python的量化框架平台，内置了talib指标库、analyzer分析库等功能，具有回测速度快、易用性高以及扩展性好等特点。相较于网上已有教程，本教程从数据至分析进行了全面的介绍，着重阐述了数据清洗以及框架调整等部分，点出了backtrader的某些不足并提供了解决方法。
+
+GitHub地址：https://github.com/ZoeQuant/backtrader_tutorial/blob/main/tutorial.ipynb
+
+
+叁玖：backtrader教程（二）- 框架篇
+13 赞同 · 2 评论 文章
+3. 策略回测
+3.1. 单只股票
+接下来就开始单只股票的回测示范。本策略逻辑收盘价>20日均线就买入，否则卖出。 由于指标简单，可以在init里直接，计算节省时间。否则需要在next里每次进行计算
+
+self.params.your_param等价于self.params.maperiod
+self.datas是list格式，因为仅单只股票，所有长度为1。self.datas[0]代表的是这只股票的数据
+在backtrader的order属性里，也是不包含股票的name。一种方法是修改order的class，本文从简，将name作为参数传入。
+在买入卖出时，可以根据以下常用方法
+
+self.order_target_percent(secu_data, target_pct, name=secu)
+self.order_target_value(secu_data, target_val, name=secu)
+self.buy(secu_data, order_amount, name=secu)
+self.sell(secu_data, order_amount, name=secu)
+注意：本策略是以日为单位运行，以第二日开盘价作为交割价。backtrader的运行机制是以购买的资金/今日收盘价，得到购买数量后第二日开盘买入。所以买卖时为避免第二日开盘价与今日收盘价的差价，不能以全仓买入。 且在最后一天不做任何下单买卖。
+
+注意：股票剔除是当下bar做出的决定，但是在后一根bar，也就是end_date进行的买卖。所以一定要放入后一根bar的开盘数据作为交割价，不然有未来函数。在策略购买卖中，需要规范在股票剔除日（end_date）必须卖出。
+
+class single_strategy(bt.Strategy):
+    # 全局设定交易策略的参数
+    params = (
+        ('maperiod', 20),
+    )
+
+    def __init__(self):
+        # 初始化交易指令
+        self.order = None
+
+        # 添加移动均线指标，内置了talib模块
+        self.sma = bt.ind.SMA(self.datas[0], period=self.params.maperiod)
+
+    # 可以不要，但如果你数据未对齐，需要在这里检验
+    def prenext(self):
+        pass
+    
+    def downcast(amount, lot):
+        return abs(amount//lot*lot)
+    
+    
+    def next(self):
+        if self.order:  # 检查是否有指令等待执行,如果有就不执行这根bar
+            return
+        
+        # 回测最后一天不进行买卖
+        if self.datas[0].datetime.date(0) == end_date:
+            return 
+        
+        # 拿这根bar时期的所有资产价值（如果按日K数据放入，即代表今日的资产价值）
+        self.log("%.2f元" % self.broker.getvalue()) 
+        if not self.position:  # 没有持仓
+            
+            # 执行买入条件判断：收盘价格上涨突破20日均线；
+            # 不要在股票剔除日前一天进行买入
+            if self.datas[0].close > self.sma and data.datetime.date(1) < end_date:
+                # 永远不要满仓买入某只股票
+                order_value = self.broker.getvalue()*0.98
+                order_amount = downcast(order_value/self.datas[0].close[0], 100)
+                self.order = self.buy(self.datas[0], size=order_amount, name=self.datas[0]._name)
+                self.log(f"买{self.datas[0]._name}, price:{self.datas[0].close[0]:.2f}, amout: {order_amount}")
+                # self.order = self.order_target_percent(self.datas[0], 0.98, name=self.datas[0]._name)
+                # self.log(f"买{self.datas[0]._name}, price:{self.datas[0].close[0]:.2f}, pct: 0.98")
+        else:
+            
+            # 执行卖出条件判断：收盘价格跌破20日均线，或者股票剔除
+            if self.datas[0].close > self.sma or data.datetime.date(1) >= end_date:
+                # 执行卖出
+                self.order = self.order_target_percent(self.datas[0], 0, name=self.datas[0]._name)
+                self.log(f"卖{self.datas[0]._name}, price:{self.datas[0].close[0]:.2f}, pct: 0")
+
+    def log(self, txt, dt=None):
+        ''' 输出日志'''
+        dt = dt or self.datas[0].datetime.date(0) # 拿现在的日期
+        print('%s, %s' % (dt.isoformat(), txt))
+
+    def notify_order(self, order):
+        if order.status in [order.Submitted, order.Accepted]:
+            # Buy/Sell order submitted/accepted to/by broker - Nothing to do
+            return
+
+        # Check if an order has been completed
+        # Attention: broker could reject order if not enough cash
+        if order.status in [order.Completed, order.Canceled, order.Margin]:
+            if order.isbuy():
+                self.log(f"""买入{order.info['name']}, 成交量{order.executed.size}，成交价{order.executed.price:.2f}""")
+            elif order.issell():
+                self.log(f"""卖出{order.info['name']}, 成交量{order.executed.size}，成交价{order.executed.price:.2f}""")
+            self.bar_executed = len(self)
+
+        # Write down: no pending order
+        self.order = None
+
+
+cerebro = bt.Cerebro()
+cerebro.addstrategy(single_strategy)
+secu_lst = {'600000': {'start': '2020-01-01', 'end': '2020-07-18'}}
+df = GetKdatas(secu_lst).merge_period()['600000']
+data = PandasData_Extend(dataname=df, fromdate=df.index[0], todate=df.index[-1])
+cerebro.adddata(data, name='600000')
+end_date = df.index[-1] # 股票剔除日
+
+# 设置初始资本为1 million
+startcash = 10**6
+cerebro.broker.setcash(startcash)
+print(f"初始资金{cerebro.broker.getvalue()}")
+# 设置交易手续费
+cerebro.broker.addcommissioninfo(CommInfoPro())
+# 运行回测系统
+cerebro.run()
+# 获取回测结束后的总资金
+portvalue = cerebro.broker.getvalue()
+# 打印结果
+print(f'结束资金: {round(portvalue, 2)}')
+
+3.2. 多只股票
+策略逻辑和上面的相同。 计算均线的时候用了dict循环计算每只股票的指标。
+
+self.getdatanames()按顺序返回所有股票的名称list
+self.getdatabyname(secu_name):返回该股票的data
+class multi_strategy(bt.Strategy):
+    # 全局设定交易策略的参数
+    params = (
+        ('maperiod', 20),
+    )
+
+    def __init__(self):
+        # 初始化交易指令
+        self.order = None
+        self.buy_lst = []
+
+        # 添加移动均线指标，内置了talib模块
+        # 循环计算每只股票的指标
+        self.sma = {x: bt.ind.SMA(self.getdatabyname(x), period=self.p.maperiod) for x in self.getdatanames()}
+
+    def prenext(self):
+        pass
+    
+        
+    def downcast(self, amount, lot):
+        return abs(amount//lot*lot)
+    
+    
+    def next(self):
+        if self.order:  # 检查是否有指令等待执行,
+            return
+
+        # 回测最后一天不进行买卖
+        if self.datas[0].datetime.date(0) == end_date:
+            return 
+        
+        # 检查是否持仓
+        self.log(f'{self.broker.getvalue():.2f}, {[(x, self.getpositionbyname(x).size) for x in self.buy_lst]}')
+        if len(self.buy_lst) < 2:  # 没有持仓
+            for secu in set(self.getdatanames()) - set(self.buy_lst):
+                data = self.getdatabyname(secu)
+                # 执行买入条件判断：收盘价格上涨突破20日均线
+                # 不要在股票剔除日前一天进行买入
+                if data.close > self.sma[secu] and \
+                    data.datetime.date(1) < pd.Timestamp(secu_lst[secu]['end']):
+                    # 执行买入
+                    order_value = self.broker.getvalue()*0.48
+                    order_amount = self.downcast(order_value/data.close[0], 100)
+                    self.order = self.buy(data, size=order_amount, name=secu)
+                    self.log(f"买{secu}, price:{data.close[0]:.2f}, amout: {order_amount}")
+                    self.buy_lst.append(secu)
+        elif self.position:
+            now_lst = []
+            for secu in self.buy_lst:
+                data = self.getdatabyname(secu)
+                # 执行卖出条件判断：收盘价格跌破20日均线，或者股票剔除
+                if (data.close < self.sma[secu]) or \
+                    (data.datetime.date(1) >= pd.Timestamp(secu_lst[secu]['end'])):
+                    # 执行卖出
+                    self.order = self.order_target_percent(data, 0, name=secu)
+                    # 也可以用 self.sell(data, size = self.getposition(data).size)
+                    # or self.sell(data, size = self.getpositionbyname(secu).size)
+                    self.log(f"卖{secu}, price:{data.close[0]:.2f}, pct: 0")
+                    continue
+                now_lst.append(secu)
+            self.buy_lst = now_lst.copy()
+
+    def log(self, txt, dt=None):
+        ''' 输出日志'''
+        dt = dt or self.datas[0].datetime.date(0)
+        print('%s, %s' % (dt.isoformat(), txt))
+
+    def notify_order(self, order):
+        if order.status in [order.Submitted, order.Accepted]:
+            # Buy/Sell order submitted/accepted to/by broker - Nothing to do
+            return
+
+        # Check if an order has been completed
+        # Attention: broker could reject order if not enough cash
+        if order.status in [order.Completed, order.Canceled, order.Margin]:
+            if order.isbuy():
+                self.log(f"""买入{order.info['name']}, 成交量{order.executed.size}，成交价{order.executed.price:.2f}""")
+            elif order.issell():
+                self.log(f"""卖出{order.info['name']}, 成交量{order.executed.size}，成交价{order.executed.price:.2f}""")
+            self.bar_executed = len(self)
+
+        # Write down: no pending order
+        self.order = None
+
+        
+secu_lst = {'600000': {'start': '2020-01-01', 'end': '2021-07-20'},
+            '000001': {'start': '2020-02-01', 'end': '2021-08-18'}}
+# 拿对齐的数据
+kdata = GetKdatas(secu_lst).merge_period()
+kdata = dict(sorted(kdata.items()))
+
+# 开始回测
+cerebro = bt.Cerebro()
+cerebro.addstrategy(multi_strategy)
+
+for secu in kdata.keys():
+    df = kdata[secu]
+    data = PandasData_Extend(dataname=df, fromdate=df.index[0], todate=df.index[-1])
+    cerebro.adddata(data, name=secu)
+end_date = df.index[-1]
+
+# 设置初始资本为1 million
+startcash = 10**6
+cerebro.broker.setcash(startcash)
+print(f"初始资金{cerebro.broker.getvalue()}")
+# 设置交易手续费
+cerebro.broker.addcommissioninfo(CommInfoPro())
+
+# 加入指标
+cerebro.addanalyzer(bt.analyzers.PyFolio, _name='_pyfolio')
+# 运行回测系统
+thestrats = cerebro.run()
+# 获取回测结束后的总资金
+portvalue = cerebro.broker.getvalue()
+# 打印结果
+print(f'结束资金: {round(portvalue, 2)}')

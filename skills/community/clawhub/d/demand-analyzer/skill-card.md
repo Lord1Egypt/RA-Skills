@@ -1,41 +1,54 @@
-## Description: <br>
-A 7-part demand analysis framework that prompts an agent to clarify intent, constraints, ambiguity, information gaps, options, and an execution plan before acting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A seven-part demand analysis framework that prompts an agent to clarify user intent, constraints, missing information, options, and execution plans before acting.
 
-## Publisher: <br>
-[zcz-user](https://clawhub.ai/user/zcz-user) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zcz-user](https://clawhub.ai/user/zcz-user)
 
-## Use Case: <br>
-Agents use this skill to slow down before responding to user tasks, questions, links, or vague requests and produce a structured clarification-first analysis. It is intended for request triage, option framing, and planning before execution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can slow routine interactions by making the agent pause, analyze, and ask for confirmation before acting. <br>
-Mitigation: Use it for tasks where deliberate request analysis and confirmation are desired, and disable or bypass it for fast routine responses. <br>
-Risk: The skill emphasizes Chinese-language structure and may produce tone or language mismatches for some audiences. <br>
-Mitigation: Review generated analysis for audience fit and adjust language or tone before using it in user-facing contexts. <br>
+## Use Case:
 
+Agents and their users use this skill to slow down task intake, identify ambiguity, surface missing information, and present concise options before execution. It is most useful for complex, vague, or underspecified requests.
 
-## Reference(s): <br>
-- [7 部分需求拆解框架](artifact/references/framework.md) <br>
-- [ClawHub skill page](https://clawhub.ai/zcz-user/demand-analyzer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Text] <br>
-**Output Format:** [Markdown with structured headings, lists, and option tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-language framework structure; may ask clarifying questions before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: Broad activation can make the agent pause for structured analysis even when the user expects a concise answer.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Narrow activation to complex or ambiguous tasks, or let users explicitly request the framework.
+
+Risk: Chinese-only templates may not match every user's preferred language.
+
+Mitigation: Mirror the user's language when presenting the framework and adapt labels where needed.
+
+## Reference(s):
+
+- [7 部分需求拆解框架](references/framework.md)
+- [ClawHub Skill Page](https://clawhub.ai/zcz-user/skills/demand-analyzer)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown structured analysis template]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a seven-part requirement analysis with clarification questions, selectable options, and an execution plan.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

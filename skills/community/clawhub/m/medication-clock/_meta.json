@@ -1,6 +1,27 @@
 {
-  "ownerId": "kn70kx5g1s74zmcz0kmvb4zcwh85prsb",
-  "slug": "medication-clock",
+  "name": "medication-clock",
   "version": "1.0.0",
-  "publishedAt": 1777528898202
+  "scene": "优甲乐服药提醒与记录",
+  "category": "健康医疗",
+  "subtitle": "智能服药提醒系统 - 关注昨天状态，多渠道提醒，完整统计报表",
+  "target_user": "需要规律服药的用户，特别是甲状腺疾病患者",
+  "core_need": "建立规律的服药习惯，提高服药依从性",
+  "trigger_words": [
+    "服药提醒",
+    "优甲乐",
+    "甲状腺",
+    "记录服药",
+    "服药统计"
+  ],
+  "output_format": "服药记录、统计报表、CSV导出",
+  "priority": "P2",
+  "tools": [
+    "read_file",
+    "write_to_file",
+    "execute_command"
+  ],
+  "dependencies": [],
+  "real_objects": "服药记录文件、统计数据、CSV报告",
+  "deliverables": "服药提醒、记录确认、统计报表",
+  "need_external_search": "否"
 }

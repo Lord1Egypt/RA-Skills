@@ -1,0 +1,11 @@
+#!/bin/bash
+# Poll the mesh inbox until a message arrives; print it and exit.
+# Loops indefinitely by default (INT sec between polls) so a supervisor
+# only re-invokes on a real message, not on idle timeouts.
+INT=${1:-30}
+MESH="$(dirname "$0")/mesh"
+while true; do
+  OUT=$("$MESH" peek 2>/dev/null | grep -v '^inbox empty')
+  if [ -n "$OUT" ]; then echo "MESSAGE ARRIVED"; "$MESH" peek; exit 0; fi
+  sleep "$INT"
+done

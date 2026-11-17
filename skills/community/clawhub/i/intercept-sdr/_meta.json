@@ -1,6 +1,10 @@
 {
-  "ownerId": "kn7ddx02e09z2ycdepgam9m2n5801483",
-  "slug": "intercept-sdr",
+  "name": "intercept-sdr",
   "version": "1.0.0",
-  "publishedAt": 1779938768184
+  "description": "Control and query the iNTERCEPT SDR signal intelligence platform via its REST API. SDR device management, signal decoders (ADS-B, ACARS, POCSAG, rtl_433, weather satellites, APRS, AIS, SSTV, VDL2, DSC, Morse, sub-GHz, TSCM sweeps, drone detection, WiFi/BT, GPS, Meshtastic, space weather), health checks, recording management, satellite passes, audio streaming, frequency scanning, and remote agent control.",
+  "author": "TheBrandon",
+  "license": "MIT-0",
+  "tags": ["sdr", "signal-intelligence", "rtl-sdr", "hackrf", "ads-b", "acars", "pocsag", "radio", "sigint"],
+  "homepage": "",
+  "repository": ""
 }

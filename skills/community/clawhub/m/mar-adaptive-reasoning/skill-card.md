@@ -1,38 +1,53 @@
-## Description: <br>
-Automatically assess task complexity and adjust reasoning level. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically assesses task complexity and adjusts reasoning level before answering complex questions.
 
-## Publisher: <br>
-[marjoriebroad](https://clawhub.ai/user/marjoriebroad) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[marjoriebroad](https://clawhub.ai/user/marjoriebroad)
 
-## Use Case: <br>
-Developers and agent users use this skill to have an assistant assess prompt complexity before answering and choose fast, standard, or deeper reasoning behavior. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Automatic reasoning activation can conflict with users who prefer explicit consent, stable response formatting, or tighter token control. <br>
-Mitigation: Review the activation and indicator rules before use, and edit or disable them when explicit consent, predictable formatting, or token limits are required. <br>
+## Use Case:
 
+Developers and agent users use this skill as a preprocessing guide to classify prompt complexity and decide when deeper reasoning should be enabled.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/marjoriebroad/mar-adaptive-reasoning) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, text] <br>
-**Output Format:** [Markdown guidance with optional response indicators] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code, downloads, credential access, or data access; may change response depth and append visual indicators.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Automatic reasoning-mode changes can increase latency or token use when speed matters.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Follow the documented quick-answer, time-sensitive, and auto-downgrade conditions, and use the explicit off control when needed.
+
+Risk: The visual indicator convention may alter response presentation for high-complexity prompts.
+
+Mitigation: Review the icon convention before deployment and disable or adapt it where plain responses are required.
+
+## Reference(s):
+
+- [Adaptive Reasoning on ClawHub](https://clawhub.ai/marjoriebroad/skills/mar-adaptive-reasoning)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, text, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with inline commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May append a reasoning-mode indicator to high-complexity responses.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

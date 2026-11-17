@@ -1,43 +1,57 @@
-## Description: <br>
-Feynman Perspective V2 gives an agent a Feynman-style lens for simplifying complex ideas, testing understanding through teaching, using analogies, and answering with concise, candid guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Chinese-language Feynman-style explanation framing with core mental models, decision heuristics, analogies, and concise first-person responses for learning, teaching, innovation, and scientific thinking.
 
-## Publisher: <br>
-[xiejianjun000](https://clawhub.ai/user/xiejianjun000) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiejianjun000](https://clawhub.ai/user/xiejianjun000)
 
-## Use Case: <br>
-External users and agent builders use this skill to analyze learning, teaching, innovation, scientific thinking, and complex concepts through a Feynman-inspired perspective. It is most useful when the desired response should simplify a topic, expose gaps in understanding, or explain through analogy. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad Chinese trigger phrases such as "简化" may activate the persona during ordinary conversations. <br>
-Mitigation: Disable, narrow, or explicitly scope the skill when its Feynman-style voice is not desired. <br>
-Risk: A Feynman-inspired persona can produce confident simplifications that may omit nuance or overstate what Richard Feynman would have said. <br>
-Mitigation: Treat responses as explanatory guidance, not as an authoritative reconstruction of Feynman's views, and review important outputs for accuracy. <br>
+## Use Case:
 
+External users and developers use this skill to reframe questions or complex concepts through a Feynman-inspired perspective focused on simple explanations, teaching checks, analogies, and explicit uncertainty.
 
-## Reference(s): <br>
-- [Feynman Perspective V2 ClawHub page](https://clawhub.ai/xiejianjun000/feynman-perspective-v2) <br>
-- [Classic Works Knowledge Matrix](CLASSIC_WORKS.md) <br>
-- [Connections Knowledge Matrix](CONNECTIONS.md) <br>
-- [Verification Tests](VERIFICATION_TESTS.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text responses in a concise Feynman-inspired voice] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Persona-style explanatory output; no code execution, credentials, network access, or persistence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Broad trigger words such as "简化" may activate the Feynman-style framing when the user only intended a normal simplification request.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm whether the user wants the Feynman perspective when trigger intent is ambiguous.
+
+Risk: The skill is based on public information and cannot predict Richard Feynman's real response to new questions.
+
+Mitigation: Present outputs as Feynman-inspired explanations rather than authoritative representations of Feynman's personal views.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xiejianjun000/skills/feynman-perspective-v2)
+- [Skill definition](artifact/SKILL-simple.md)
+- [Classic works knowledge matrix](artifact/CLASSIC_WORKS.md)
+- [Mental model connections](artifact/CONNECTIONS.md)
+- [Verification tests](artifact/VERIFICATION_TESTS.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain text conversational responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language, Feynman-inspired explanatory style with concise analogies and uncertainty statements]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

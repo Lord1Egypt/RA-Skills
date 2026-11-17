@@ -1,40 +1,54 @@
-## Description: <br>
-Create clear, practical contract clauses to define deliverables, payment, usage rights, approvals, exclusivity, and cancellation for creator ecommerce deals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create clear, practical contract clauses to define deliverables, payment, usage rights, approvals, exclusivity, and cancellation for creator ecommerce deals.
 
-## Publisher: <br>
-[Leooooooow](https://clawhub.ai/user/Leooooooow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leooooooow](https://clawhub.ai/user/leooooooow)
 
-## Use Case: <br>
-Brands, sellers, agencies, and operators use this skill to draft, compare, and refine creator ecommerce contract clauses before legal or operations review. It is suited for TikTok Shop, UGC, affiliate, live selling, whitelisting, campaign package, and ambassador scenarios. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated clauses may be mistaken for legal advice or final enforceable contract language. <br>
-Mitigation: Use the output as drafting support and have a qualified reviewer check binding agreements, jurisdiction-specific terms, exclusivity, payment disputes, and regulated legal questions. <br>
-Risk: Undefined deal details such as metrics, payment triggers, usage duration, approval limits, or exclusivity can create ambiguous clauses. <br>
-Mitigation: Provide concrete campaign details and use the final review checklist to identify missing assumptions before relying on the clauses. <br>
+## Use Case:
 
+Brands, sellers, agencies, and creator operations teams use this skill to draft, compare, and refine clause options for creator ecommerce collaborations before legal or operational review.
 
-## Reference(s): <br>
-- [Output Template](references/output-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown with a scenario summary, grouped clause sections, risk notes, and a review checklist] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Drafting support only; generated contract language requires qualified review before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Users may treat drafted clauses as final legal advice or binding agreement terms.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill as a drafting and negotiation aid only, and have a qualified reviewer check clauses before signing or sending a binding agreement.
+
+Risk: Jurisdiction-specific legal advice, regulated legal interpretation, litigation, or legal risk opinions are outside the documented scope.
+
+Mitigation: Limit use to practical clause drafting and route jurisdiction-specific or regulated legal questions to qualified legal counsel.
+
+## Reference(s):
+
+- [Output Template](references/output-template.md)
+- [ClawHub Skill Page](https://clawhub.ai/leooooooow/skills/creator-contract-clause-builder)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with scenario summary, grouped clause options, risk notes, and review checklist]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes recommended clause wording, optional stronger or softer variations, and legal-review reminders.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

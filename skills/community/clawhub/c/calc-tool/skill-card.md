@@ -1,39 +1,53 @@
-## Description: <br>
-Perform mathematical calculations from the command line. Arithmetic, trig, and unit conversion. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Perform mathematical calculations from the command line. Arithmetic, trig, and unit conversion.
 
-## Publisher: <br>
-[dinghaibin](https://clawhub.ai/user/dinghaibin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dinghaibin](https://clawhub.ai/user/dinghaibin)
 
-## Use Case: <br>
-Developers and command-line users use this skill to ask an agent for calculator commands and examples for arithmetic, trigonometric functions, grouping, and simple unit-conversion workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Crafted calculator expressions may execute arbitrary Python code. <br>
-Mitigation: Use only trusted expressions until the evaluator replaces eval() with a constrained math parser or AST allowlist, and review the skill before installation. <br>
+## Use Case:
 
+Developers and command-line users use this skill to run quick calculator-style arithmetic and trigonometric expression evaluation from a terminal.
 
-## Reference(s): <br>
-- [Calc Tool on ClawHub](https://clawhub.ai/dinghaibin/calc-tool) <br>
-- [Publisher profile](https://clawhub.ai/user/dinghaibin) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include command-line expressions and formatted numeric output examples.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: User-supplied calculator input is evaluated as unrestricted Python code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not use this version in automated workflows or with expressions from other people; revise it to use a strict math expression parser that rejects imports and attribute access.
+
+Risk: The release claims unit conversion support, but the security guidance says this feature should be implemented or removed before use.
+
+Mitigation: Add tested unit conversion behavior or remove the claim from the skill documentation before relying on the release.
+
+## Reference(s):
+
+- [Calc Tool ClawHub release](https://clawhub.ai/dinghaibin/skills/calc-tool)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text CLI results and Markdown guidance with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The bundled CLI script defaults to 6 decimal places for floating-point results.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

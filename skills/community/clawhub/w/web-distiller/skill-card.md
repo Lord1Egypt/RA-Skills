@@ -1,42 +1,60 @@
-## Description: <br>
-Fetch agent-ready cleaned Markdown from the Distiller API instead of relying on raw webpage fetches. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetch agent-ready cleaned Markdown from the Distiller API instead of relying on raw webpage fetches.
 
-## Publisher: <br>
-[edwardyen724-g](https://clawhub.ai/user/edwardyen724-g) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[edwardyen724-g](https://clawhub.ai/user/edwardyen724-g)
 
-## Use Case: <br>
-Developers and operators use this skill to turn selected webpage URLs into cleaned, agent-ready content through Distiller. It is most useful when raw webpage fetches are too noisy or when an agent workflow needs Markdown, text, or JSON output from public pages. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends selected webpage URLs to an external Distiller service, which may expose sensitive or private browsing targets to that provider. <br>
-Mitigation: Use the skill only with URLs that are appropriate for Distiller to process, and avoid submitting private or sensitive URLs unless the operator accepts that provider's processing. <br>
-Risk: The skill relies on a Distiller API key and an operator-provided API base URL. <br>
-Mitigation: Use a dedicated API key where possible, keep it out of shared logs and prompts, and confirm DISTILLER_API_BASE points to the intended HTTPS endpoint. <br>
+## Use Case:
 
+Developers and operators use this skill to add a hosted webpage-to-Markdown step to agent workflows, including setup guidance when a Distiller API key is not yet configured.
 
-## Reference(s): <br>
-- [ClawHub Web Distiller Skill](https://clawhub.ai/edwardyen724-g/web-distiller) <br>
-- [Distiller Service](https://webdistiller.dev) <br>
-- [Distiller Dashboard](https://webdistiller.dev/dashboard) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Text, JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, environment configuration, and optional Markdown, text, or JSON webpage output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires DISTILLER_API_BASE and usually DISTILLER_API_KEY; defaults to POST /markdown and reserves POST /distill for paid Starter access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: Chosen webpage URLs are sent to Distiller's hosted service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid private intranet pages, authenticated pages, regulated data, or sensitive customer content unless the organization has approved that data flow.
+
+Risk: CLI installation and API-key handling introduce normal third-party package and credential exposure risk.
+
+Mitigation: Install the CLI in a virtual environment, pin a reviewed package version when possible, and use a revocable Distiller API key with limited exposure.
+
+Risk: Endpoint availability and access level can change workflow behavior, especially for paid POST /distill access and unavailable POST /extract flows.
+
+Mitigation: Default to POST /markdown, fall back to POST /markdown if POST /distill is denied, and avoid new workflows around POST /extract until it is re-enabled.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/edwardyen724-g/skills/web-distiller)
+- [Distiller service](https://webdistiller.dev)
+- [Distiller sign-in](https://webdistiller.dev/signin)
+- [Distiller dashboard](https://webdistiller.dev/dashboard)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, environment configuration, and Distiller CLI/API output in markdown, text, or JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses DISTILLER_API_BASE and DISTILLER_API_KEY; defaults to POST /markdown, reserves POST /distill for paid Starter access, and avoids POST /extract while unavailable.]
+
+## Skill Version(s):
+
+0.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

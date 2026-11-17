@@ -1,46 +1,59 @@
-## Description: <br>
-Operational playbook for selling virtual services on Xianyu, covering keyword research, listing creation, pricing, listing diagnosis, account health, competitor analysis, and compliance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Operational playbook for selling virtual services on Xianyu, covering keyword research, listing creation, pricing, description copy, main-image briefs, listing diagnosis, account health, competitor teardown, and compliance.
 
-## Publisher: <br>
-[qWaitCrypto](https://clawhub.ai/user/qWaitCrypto) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qwaitcrypto](https://clawhub.ai/user/qwaitcrypto)
 
-## Use Case: <br>
-External sellers and marketplace operators use this skill to create, optimize, and diagnose Xianyu service listings, including title variants, pricing packages, copy frameworks, traffic/account checklists, and competitor teardowns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may recommend moving buyer relationships to private channels after purchase. <br>
-Mitigation: Review generated listing and chat guidance for platform compliance, keep required communications inside Xianyu, and avoid publishing contact information in listings or images. <br>
-Risk: The skill includes guidance about starting a new account after an account ban. <br>
-Mitigation: Prefer violation remediation, customer service appeal, and compliance review; do not use the skill to evade platform enforcement. <br>
-Risk: Optional saved context could contain sensitive account, buyer, or business information. <br>
-Mitigation: Keep any .claude/xianyu-context.md file minimal and avoid credentials, personal data, buyer details, or confidential business metrics. <br>
+## Use Case:
 
+External sellers and operators use this skill to plan, launch, optimize, and diagnose virtual-service listings on Xianyu. It produces copy-ready listing titles, pricing packages, detail-page structures, main-image briefs, funnel diagnoses, competitor analyses, scripts, and compliance checks.
 
-## Reference(s): <br>
-- [Xianyu Service Ops README](artifact/README.md) <br>
-- [Xianyu Search Ranking and Recommendation Traffic Mechanics](artifact/references/xianyu-seo.md) <br>
-- [Xianyu Service Category Price Benchmarks](artifact/references/price-benchmarks.md) <br>
-- [Xianyu Service Category Compliance Rules](artifact/references/compliance-rules.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/qWaitCrypto/xianyu-service-ops) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown with copy-ready listing titles, pricing structures, diagnostic reports, action checklists, and scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include confidence labels for platform claims and compliance risk flags] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter metadata.version is 2.0.0) <br>
+Risk: Optional account context persistence could capture sensitive business, customer, payment, or account details if users add them to .claude/xianyu-context.md.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep .claude/xianyu-context.md limited to non-sensitive operational context such as service category, account stage, listing count, and current goal.
+
+Risk: Marketplace-growth tactics such as account seasoning or moving buyers to WeChat may conflict with current Xianyu rules or account-risk policies.
+
+Mitigation: Verify tactics against Xianyu's current rules before acting, keep pre-purchase communication inside Xianyu, and avoid publishing off-platform contact details in listings or images.
+
+Risk: Generated listing claims, pricing advice, or competitor positioning could be inaccurate or misleading if based on stale market assumptions.
+
+Mitigation: Run a current Xianyu market scan, avoid absolute guarantees, use only verifiable performance claims, and review all copy before publishing.
+
+## Reference(s):
+
+- [Xianyu Search Ranking and Recommendation Traffic Mechanics](references/xianyu-seo.md)
+- [Xianyu Service Category Price Benchmarks](references/price-benchmarks.md)
+- [Xianyu Service Category Compliance Rules](references/compliance-rules.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with copy-ready titles, listing copy, pricing structures, checklists, and diagnostic recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference optional user-provided account context from .claude/xianyu-context.md when present.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

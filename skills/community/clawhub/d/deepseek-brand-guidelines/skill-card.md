@@ -1,38 +1,53 @@
-## Description: <br>
-Applies DeepSeek's official brand colors and typography to artifacts that need DeepSeek-aligned visual styling, formatting, or company design standards. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Applies DeepSeek's official brand colors and typography to artifacts that benefit from DeepSeek's look and feel.
 
-## Publisher: <br>
-[start-ten](https://clawhub.ai/user/start-ten) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[start-ten](https://clawhub.ai/user/start-ten)
 
-## Use Case: <br>
-Developers, designers, and content creators use this skill to apply DeepSeek-style colors, typography, logo handling, and accessibility-aware visual formatting to generated artifacts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Brand guidance may be applied inaccurately or to artifacts that require official DeepSeek approval. <br>
-Mitigation: Review generated artifacts for brand accuracy, accessibility, and any required rights or approval before publishing. <br>
+## Use Case:
 
+Designers, developers, and content creators use this skill to apply DeepSeek-themed color, typography, logo, accessibility, and visual styling guidance to documents, slides, UI mockups, code blocks, and other artifacts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/start-ten/deepseek-brand-guidelines) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, configuration] <br>
-**Output Format:** [Markdown guidance with inline color values, font stacks, and styling recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance-only; no executable code, credential handling, network behavior, or hidden high-impact actions were identified in security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Branding guidance may be mistaken for verified official legal brand approval.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the skill as design guidance and confirm brand or legal approval against authoritative DeepSeek materials before publishing external-facing artifacts.
+
+Risk: Logo or wordmark guidance could be applied in ways that alter, recreate, or distort official brand assets.
+
+Mitigation: Use official logo assets where required and review final artifacts for clear space, distortion, and modification issues before release.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/start-ten/skills/deepseek-brand-guidelines)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Configuration]
+
+**Output Format:** [Markdown guidance with brand color values, typography rules, logo guidance, accessibility notes, and artifact styling recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static documentation; no executable behavior or access requests.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

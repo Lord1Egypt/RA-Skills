@@ -1,45 +1,51 @@
-## Description: <br>
-OpenClaw每日资讯汇总收集、分类并分析OpenClaw开源AI智能体相关的每日动态，生成含来源、风险等级和建议的结构化Markdown报告。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw每日资讯汇总 collects, categorizes, risk-rates, and formats OpenClaw-related public news into Chinese Markdown reports.
 
-## Publisher: <br>
-[fashionzzZ](https://clawhub.ai/user/fashionzzZ) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fashionzzz](https://clawhub.ai/user/fashionzzz)
 
-## Use Case: <br>
-Developers, security reviewers, analysts, and business stakeholders use this skill to monitor OpenClaw ecosystem news, assess safety or policy risks, and produce daily or focused Markdown briefs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated news summaries and risk assessments can include stale or inaccurate time-sensitive information. <br>
-Mitigation: Verify important claims against current primary sources before using the report for operational, investment, or compliance decisions. <br>
-Risk: Automated classification and priority labels may misclassify ambiguous OpenClaw-related items. <br>
-Mitigation: Review high-impact classifications manually, especially security, policy, and business-risk sections. <br>
-Risk: External search or fetched content can include unreliable sources. <br>
-Mitigation: Prefer official announcements, authoritative security advisories, and reputable media sources when compiling the final brief. <br>
+## Use Case:
 
+External users, developers, and teams tracking the OpenClaw ecosystem use this skill to search recent public-web items, classify them by security, industry, technology, policy, and related AI trends, and produce concise Chinese Markdown briefings for monitoring and decision support.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/fashionzzZ/openclaw-daily-news) <br>
-- [OpenClaw资讯报告模板](references/news_template.md) <br>
-- [OpenClaw每日资讯汇总技能使用示例](references/usage_examples.md) <br>
-- [Configuration Template](assets/config_template.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown report content, structured guidance, Python helper code, shell command examples, and JSON configuration templates.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports are intended to be returned in the conversation rather than written as .md files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Web-sourced text is rendered into Markdown without escaping, so generated reports may contain misleading claims, unsafe links, or content that should not be trusted as instructions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify important claims and links independently, and sanitize generated Markdown before feeding it into another agent or automation workflow.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/fashionzzz/skills/openclaw-daily-news)
+- [OpenClaw news report template](references/news_template.md)
+- [OpenClaw daily news usage examples](references/usage_examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Analysis, Guidance, Code, Shell commands, Configuration]
+
+**Output Format:** [Chinese Markdown report text with categorized news summaries, risk levels, source links, and recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports are intended for direct conversation output and should be treated as untrusted public-web summaries.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata and artifact configuration)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,43 @@
+{
+  "version": "1.0.3",
+  "schemaVersion": 1,
+  "license": "MIT",
+  "releaseTag": "v1.0.3",
+  "node": ">=22.20.0",
+  "presets": [
+    "P61",
+    "P48",
+    "P40",
+    "P39",
+    "P60",
+    "P65",
+    "P67",
+    "P68",
+    "P73",
+    "P74",
+    "P75",
+    "P76",
+    "P77",
+    "P78",
+    "P79",
+    "P80"
+  ],
+  "styleUIDs": {
+    "MMK0V1": "P61",
+    "MMR0C2": "P48",
+    "MMT0H3": "P40",
+    "MMB0Q4": "P39",
+    "MMW0F5": "P60",
+    "MMD0N6": "P65",
+    "MMP0A7": "P67",
+    "MMH0S8": "P68",
+    "MMC0Y9": "P73",
+    "MMV0EA": "P74",
+    "MMF0KB": "P75",
+    "MMQ0DC": "P76",
+    "MMN0WD": "P77",
+    "MMA0RE": "P78",
+    "MMS0BF": "P79",
+    "MME0TG": "P80"
+  }
+}

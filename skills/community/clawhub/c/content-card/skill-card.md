@@ -1,46 +1,69 @@
-## Description: <br>
-Content Card turns text, URLs, or files into shareable PNG visual cards in long-form, infographic, or multi-card formats. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Content Card helps an agent turn text, URLs, or files into shareable PNG visual cards in long-form, infographic, or multi-card layouts.
 
-## Publisher: <br>
-[lovensky1992-wk](https://clawhub.ai/user/lovensky1992-wk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lovensky1992-wk](https://clawhub.ai/user/lovensky1992-wk)
 
-## Use Case: <br>
-External users and content creators use this skill to convert articles, notes, analyses, and structured information into PNG cards for reading, infographics, or social-media sharing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Some mode instructions reference an unrelated local ljg-card path outside the reviewed package. <br>
-Mitigation: Review and correct stale path references before use; prefer the included ~/.openclaw/skills/content-card/scripts/capture.js path from the reviewed package. <br>
-Risk: The skill can process sensitive source documents and writes intermediate files and PNG outputs. <br>
-Mitigation: Avoid highly sensitive inputs unless temporary files are cleaned afterward and the expected Downloads output location is acceptable. <br>
+## Use Case:
 
+External users and content creators use this skill to convert articles, notes, analysis, or structured information into polished PNG cards for reading, infographics, or social sharing.
 
-## Reference(s): <br>
-- [README](README.md) <br>
-- [Long Card Mode](references/mode-long.md) <br>
-- [Infographic Mode](references/mode-infograph.md) <br>
-- [Poster Mode](references/mode-poster.md) <br>
-- [Preferences Schema](references/config/preferences-schema.md) <br>
-- [Taste Guidelines](references/taste.md) <br>
-- [OpenClaw](https://github.com/openclaw/openclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, files] <br>
-**Output Format:** [Markdown guidance with HTML/CSS templates and generated PNG files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces PNG card assets, intermediate HTML, structured content files, and file paths for generated outputs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Supplied web, file, or pasted content may be rendered through executable HTML and Chromium paths.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with trusted content, review generated HTML before capture, and sanitize or strip active content before browser rendering.
+
+Risk: Browser rendering with networking enabled can fetch external resources during card generation.
+
+Mitigation: Run capture in a restricted environment, block outbound network access where possible, and avoid sensitive projects until network controls are documented.
+
+Risk: Local HTML and PNG generation can expose sensitive source material if credentials or private content are included.
+
+Mitigation: Remove API keys, tokens, passwords, and private data from inputs and generated structured-content files before rendering.
+
+Risk: Runtime behavior depends on Node, Playwright, Chromium, and template files.
+
+Mitigation: Install from the checked-in lockfile, verify dependency versions, and scan templates and scripts before deployment.
+
+## Reference(s):
+
+- [ClawHub Content Card Release](https://clawhub.ai/lovensky1992-wk/skills/content-card)
+- [OpenClaw Project](https://github.com/openclaw/openclaw)
+- [README](README.md)
+- [Skill Definition](SKILL.md)
+- [Long Reading Card Mode](references/mode-long.md)
+- [Infographic Mode](references/mode-infograph.md)
+- [Poster Card Mode](references/mode-poster.md)
+- [Preferences Schema](references/config/preferences-schema.md)
+- [Taste Guidelines](references/taste.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [PNG image files with generated HTML and Markdown intermediates when needed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Default canvas width is 1080 pixels; long-form and infographic modes may use full-page screenshots.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release evidence; package.json reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

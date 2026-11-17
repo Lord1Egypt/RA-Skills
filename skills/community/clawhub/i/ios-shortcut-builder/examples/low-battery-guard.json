@@ -1,0 +1,28 @@
+{
+  "name": "LowBatteryGuard",
+  "color": "Green",
+  "steps": [
+    {
+      "do": "if",
+      "subject": "{battery}",
+      "op": "less_than",
+      "value": "20",
+      "then": [
+        {
+          "do": "notify",
+          "WFNotificationActionTitle": "电量告急",
+          "WFNotificationActionBody": "只剩 {battery}%，已开省电模式"
+        },
+        { "do": "lowpower", "operation": "on" },
+        { "do": "brightness.set", "WFBrightness": 0.3 }
+      ],
+      "else": [
+        {
+          "do": "notify",
+          "WFNotificationActionTitle": "电量还够",
+          "WFNotificationActionBody": "现在 {battery}%"
+        }
+      ]
+    }
+  ]
+}

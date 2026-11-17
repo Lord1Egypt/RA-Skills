@@ -1,46 +1,56 @@
-## Description: <br>
-Ekyc Suite helps agents run eKYC identity workflows by invoking Tencent Cloud APIs for face comparison, liveness checks, document OCR, and media labeling on user-provided images or videos. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+eKYC Suite enables AI agents to run consent-based identity checks on user-provided images and videos, including face comparison, liveness checks, document OCR, and media risk review.
 
-## Publisher: <br>
-[carochen112233-commits](https://clawhub.ai/user/carochen112233-commits) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[carochen112233-commits](https://clawhub.ai/user/carochen112233-commits)
 
-## Use Case: <br>
-External users and developers use this skill to support KYC onboarding, identity verification, fraud review, and document OCR workflows that require analysis of uploaded images or videos. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends biometric images, identity documents, bank-card images, videos, and OCR results to Tencent Cloud APIs. <br>
-Mitigation: Install only if the publisher and Tencent Cloud are trusted for this data, process only media the user is authorized to submit, and mask full identifiers or card numbers unless strictly needed. <br>
-Risk: Production Tencent Cloud credentials can incur charges and may expand the impact of misconfiguration or misuse. <br>
-Mitigation: Use test or tightly scoped credentials first and avoid production credentials until billing, access control, and compliance requirements are approved. <br>
-Risk: API verification outputs may be unsuitable as the sole basis for high-stakes identity decisions. <br>
-Mitigation: Use results as decision support and require appropriate business logic and human review for legal, financial, or similarly significant outcomes. <br>
+## Use Case:
 
+AI agent builders, fintech onboarding teams, and KYC workflow developers use the skill to add consent-based identity verification and document or media checks to human-reviewed onboarding workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/carochen112233-commits/ekyc-suite) <br>
-- [Tencent Cloud Face Verification Console](https://console.cloud.tencent.com/faceid/access) <br>
-- [KYC API endpoint](https://kyc1.qcloud.com) <br>
-- [Tencent Cloud mini program KYC endpoint](https://miniprogram-kyc.tencentcloudapi.com) <br>
-- [Media labeling API endpoint](https://kyc2.qcloud.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and structured API result summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Tencent Cloud credentials through KYC_APPID, KYC_SECRET, LABEL_APPID, and LABEL_SECRET; processes user-provided image and video files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: User-provided identity images or videos may contain sensitive personal data and are sent to the configured external service; returned OCR and verification results can also contain sensitive fields.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm user authorization, review the configured HTTPS destination and retention policy, restrict access to results, and use human review for consequential decisions.
+
+Risk: The security evidence reports a benign verdict with medium confidence, identity-verification network activity, a missing declared tool scope, and a Skillspector exit error that limits scan reliability.
+
+Mitigation: Review the destination and declared permissions before use, and treat verification outputs as advisory signals subject to operator controls and human review.
+
+## Reference(s):
+
+- [eKYC Suite ClawHub page](https://clawhub.ai/carochen112233-commits/skills/ekyc-suite)
+- [Related eKYC Suite npm package](https://www.npmjs.com/package/@wefi-ai/ekyc-suite-mcp)
+- [Related repository listed in skill metadata](https://github.com/wefi-ai/ekyc-suite-mcp)
+- [Tencent Cloud FaceID Verification Skill reference](https://skillhub.cn/skills/tencent-adm/tencentcloud-faceid-verification)
+
+## Skill Output:
+
+**Output Type(s):** [Structured data, Analysis]
+
+**Output Format:** [Structured JSON results containing face comparison, liveness, document OCR, or media risk signals]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Advisory signals for human review; results may contain sensitive identity information.]
+
+## Skill Version(s):
+
+1.1.30 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

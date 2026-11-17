@@ -8,13 +8,62 @@ import csv
 import re
 from pathlib import Path
 
-from path_safety import validate_input_file
+from path_safety import (
+    MAX_HEADER_LINES,
+    MAX_LINE_BYTES,
+    MAX_VARIANTS,
+    validate_input_file,
+)
+
+
+# Genotype calls are read from a user-supplied file and later rendered into a
+# Markdown report, so they are untrusted text until proven otherwise. Only
+# nucleotide calls are accepted: A/C/G/T plus D and I, which 23andMe uses for
+# deletions and insertions. A run is allowed because a VCF call joins REF/ALT
+# alleles and an indel can be several bases. Anything else is discarded rather
+# than scored -- a "genotype" that is not a genotype cannot be biologically
+# meaningful, and must never reach the report.
+_VALID_GENOTYPE = re.compile(r"^[ACGTDI]{1,32}$")
+
+
+def clean_genotype(value: str):
+    """Return an uppercased genotype call, or None if it is not a valid call."""
+    if not isinstance(value, str):
+        return None
+    cleaned = value.strip().upper().replace("-", "")
+    if not cleaned or not _VALID_GENOTYPE.match(cleaned):
+        return None
+    return cleaned
+
+
+def _bounded(lines, genotypes):
+    """
+    Yield lines, stopping cleanly once the variant cap is reached and skipping
+    absurdly long lines.
+
+    Streaming bounds how much of the FILE is held at once; it does not bound the
+    genotype table, which grows with the number of variants. A crafted file with
+    tens of millions of rows would still exhaust memory, so parsing stops at
+    MAX_VARIANTS and over-long lines are discarded rather than buffered.
+    """
+    for line in lines:
+        if len(genotypes) >= MAX_VARIANTS:
+            break
+        if len(line) > MAX_LINE_BYTES:
+            continue
+        yield line
 
 
 def detect_format(filepath: str) -> str:
     """Auto-detect genetic file format from header."""
     with open(filepath, encoding="utf-8", errors="replace") as f:
-        for line in f:
+        # Only the header region is informative. Reading the whole file to sniff
+        # a format lets a crafted file of pure comment lines stall detection.
+        for _n, line in enumerate(f):
+            if _n >= MAX_HEADER_LINES:
+                break
+            if len(line) > MAX_LINE_BYTES:
+                continue
             if line.startswith("##fileformat=VCF"):
                 return "vcf"
             if "rsid" in line.lower() and "chromosome" in line.lower() and "genotype" in line.lower():
@@ -36,7 +85,7 @@ def parse_23andme(filepath: str) -> dict:
     """Parse 23andMe raw data file. Returns {rsid: genotype}."""
     genotypes = {}
     with open(filepath, encoding="utf-8", errors="replace") as f:
-        for line in f:
+        for line in _bounded(f, genotypes):
             line = line.strip()
             if not line or line.startswith("#"):
                 continue
@@ -45,32 +94,32 @@ def parse_23andme(filepath: str) -> dict:
                 continue
             rsid, chrom, pos, genotype = parts[0], parts[1], parts[2], parts[3]
             if rsid.startswith("rs"):
-                genotypes[rsid] = genotype.replace("-", "")
+                call = clean_genotype(genotype)
+                if call:
+                    genotypes[rsid] = call
     return genotypes
 
 
 def parse_ancestry(filepath: str) -> dict:
-    """Parse AncestryDNA raw data file. Returns {rsid: genotype}."""
+    """
+    Parse an AncestryDNA raw data file. Returns {rsid: genotype}.
+
+    The file is streamed. csv.DictReader accepts any iterable of strings, so
+    comment lines are filtered by a generator rather than by building a list of
+    every line first — a consumer genetic file is large, and materialising it
+    made memory use scale with input size (ClawHub audit T09, memory exhaustion).
+    """
     genotypes = {}
     with open(filepath, encoding="utf-8", errors="replace") as f:
-        reader = csv.DictReader(f, delimiter="\t")
-        # Handle comment lines
-        raw = f.read() if not hasattr(reader, 'fieldnames') else ""
-    
-    # Re-read skipping comments
-    lines = []
-    with open(filepath, encoding="utf-8", errors="replace") as f:
-        for line in f:
-            if not line.startswith("#"):
-                lines.append(line)
-    
-    reader = csv.DictReader(lines, delimiter="\t")
-    for row in reader:
-        rsid = row.get("rsid", "").strip()
-        allele1 = row.get("allele1", "").strip()
-        allele2 = row.get("allele2", "").strip()
-        if rsid.startswith("rs"):
-            genotypes[rsid] = allele1 + allele2
+        rows = (line for line in _bounded(f, genotypes) if not line.startswith("#"))
+        for row in csv.DictReader(rows, delimiter="\t"):
+            rsid = row.get("rsid", "").strip()
+            allele1 = row.get("allele1", "").strip()
+            allele2 = row.get("allele2", "").strip()
+            if rsid.startswith("rs"):
+                call = clean_genotype(allele1 + allele2)
+                if call:
+                    genotypes[rsid] = call
     return genotypes
 
 
@@ -80,7 +129,7 @@ def parse_vcf(filepath: str) -> dict:
     chrom_col, pos_col, id_col, ref_col, alt_col, gt_col = 0, 1, 2, 3, 4, 9
 
     with open(filepath, encoding="utf-8", errors="replace") as f:
-        for line in f:
+        for line in _bounded(f, genotypes):
             line = line.strip()
             if line.startswith("##"):
                 continue
@@ -103,7 +152,9 @@ def parse_vcf(filepath: str) -> dict:
             indices = re.split(r"[|/]", sample)
             try:
                 called = "".join(alleles[int(i)] for i in indices if i != ".")
-                genotypes[rsid] = called
+                call = clean_genotype(called)
+                if call:
+                    genotypes[rsid] = call
             except (IndexError, ValueError):
                 pass
     return genotypes

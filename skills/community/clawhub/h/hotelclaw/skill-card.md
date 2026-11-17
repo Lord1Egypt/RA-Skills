@@ -1,41 +1,55 @@
-## Description: <br>
-Helps agents search Tuniu hotels, retrieve hotel details, and create hotel booking orders through the Tuniu MCP service. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tuniu Hotel Booking Skill helps agents search Tuniu hotels, review hotel details and room quotes, and create booking orders through the Tuniu hotel MCP service.
 
-## Publisher: <br>
-[leonardoooooo](https://clawhub.ai/user/leonardoooooo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leonardoooooo](https://clawhub.ai/user/leonardoooooo)
 
-## Use Case: <br>
-Travel users and booking agents use this skill to search for hotels by city and dates, inspect room and rate details, and submit confirmed hotel booking orders. The skill requires a Tuniu API key and uses curl to call the Tuniu MCP endpoint. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create hotel booking orders and send contact or guest personal information to the Tuniu MCP service. <br>
-Mitigation: Before any create-order call, show the final hotel, room, dates, price-relevant details, contact, and guest summary, then require explicit user confirmation. <br>
-Risk: The skill requires a Tuniu API key and uses curl to call an external MCP endpoint. <br>
-Mitigation: Install only when the Tuniu MCP service is trusted, keep TUNIU_API_KEY out of replies and logs, and review the curl request before execution. <br>
+## Use Case:
 
+External travel users and agent operators use this skill to search hotels by city and date, inspect hotel details and room rates, and create hotel booking orders after user confirmation.
 
-## Reference(s): <br>
-- [Tuniu Open Platform MCP](https://open.tuniu.com/mcp) <br>
-- [ClawHub skill page](https://clawhub.ai/leonardoooooo/hotelclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown or plain text summaries with curl commands and parsed JSON-RPC response guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl and TUNIU_API_KEY; booking calls may send contact and guest personal information to the Tuniu MCP service, so agents should show a final order summary and get explicit confirmation before creating an order.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: target metadata, evidence release, artifact frontmatter) <br>
+Risk: The skill can create real hotel booking orders using user-provided guest and contact details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require clear final confirmation of the hotel, room, dates, price, guest names, and phone number before submitting an order.
+
+Risk: API keys and personal booking details are sent through curl requests, and a custom MCP URL could route sensitive data to an unintended endpoint.
+
+Mitigation: Keep TUNIU_MCP_URL unset or pinned to https://openapi.tuniu.cn/mcp/hotel, use a narrowly scoped rotatable Tuniu API key, and avoid logging or displaying API keys and personal information.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/leonardoooooo/skills/hotelclaw)
+- [Tuniu Open Platform MCP](https://open.tuniu.com/mcp)
+- [Tuniu hotel MCP endpoint](https://openapi.tuniu.cn/mcp/hotel)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown responses with inline curl commands and JSON response-handling guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl and TUNIU_API_KEY; booking flows handle hotel search results, room details, order identifiers, payment links, and user-provided booking details.]
+
+## Skill Version(s):
+
+1.0.4 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

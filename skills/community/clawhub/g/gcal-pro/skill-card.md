@@ -1,44 +1,58 @@
-## Description: <br>
-Google Calendar integration for viewing, creating, and managing calendar events. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Google Calendar integration for Clawdbot that lets users view, create, edit, delete, and search calendar events, check availability, and generate morning briefs through natural language.
 
-## Publisher: <br>
-[bilalmohamed187-cpu](https://clawhub.ai/user/bilalmohamed187-cpu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Proprietary <br>
+## Publisher:
 
+[bilalmohamed187-cpu](https://clawhub.ai/user/bilalmohamed187-cpu)
 
-## Use Case: <br>
-External users and agents use this skill to read Google Calendar schedules, find availability, create or modify events with Pro access, and generate morning briefs after local OAuth setup. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Proprietary
 
-## Known Risks and Mitigations: <br>
-Risk: Pro write and delete commands can change Google Calendar data without an enforced confirmation barrier. <br>
-Mitigation: Before any create, update, quick-add, or delete action, require the agent to show the exact event title, time, calendar, and action, and proceed only after explicit user confirmation. <br>
-Risk: The skill requires Google Calendar OAuth access and stores local OAuth credentials and tokens. <br>
-Mitigation: Grant access only if comfortable with the requested calendar scopes, and keep ~/.config/gcal-pro/client_secret.json and token.json private. <br>
-Risk: The setup flow may show an unverified Google OAuth app warning. <br>
-Mitigation: Continue through that warning only when the user created and recognizes the OAuth project. <br>
+## Use Case:
 
+External Clawdbot users use this skill to manage Google Calendar from conversation, including checking schedules and free time, adding or changing events for Pro users, and receiving daily briefings.
 
-## Reference(s): <br>
-- [Google Cloud Project Setup Guide](docs/GOOGLE_CLOUD_SETUP.md) <br>
-- [Google Calendar API Quick Reference](references/api-quickref.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/bilalmohamed187-cpu/gcal-pro) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown-formatted calendar summaries, confirmations, setup guidance, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read or change Google Calendar data through local Python scripts depending on OAuth scopes and tier.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Write operations can create, change, or delete Google Calendar events even when confirmation is not actually enforced.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user approval before running create, quick-add, update, or delete actions, and test first with a non-critical calendar.
+
+Risk: OAuth credential and token files grant access to the user's calendar data.
+
+Mitigation: Keep credential files out of chats, logs, and shared folders; revoke and re-authenticate credentials if they may have been exposed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bilalmohamed187-cpu/skills/gcal-pro)
+- [Google Cloud Project Setup Guide](docs/GOOGLE_CLOUD_SETUP.md)
+- [Google Calendar API Quick Reference](references/api-quickref.md)
+- [Clawdbot](https://clawd.bot)
+- [Google Cloud Console](https://console.cloud.google.com)
+- [Google Calendar API](https://www.googleapis.com/calendar/v3)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown text with inline shell commands and calendar operation results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Google OAuth credentials; Pro tier enables create, update, delete, and morning brief actions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

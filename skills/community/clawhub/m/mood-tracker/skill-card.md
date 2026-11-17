@@ -1,40 +1,59 @@
-## Description: <br>
-Mood Tracker helps users log moods, review history and statistics, identify patterns and triggers, keep journal entries, and view simple mood insights. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Mood Tracker helps agents guide local mood logging, mood history review, basic statistics, pattern summaries, journal entries, and lightweight wellbeing insights.
 
-## Publisher: <br>
-[xueyetianya](https://clawhub.ai/user/xueyetianya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xueyetianya](https://clawhub.ai/user/xueyetianya)
 
-## Use Case: <br>
-External users can use this skill as a personal command-line mood tracker for daily mood logs, notes, journal entries, trend checks, and lightweight reflection. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive mood logs and journal entries may be stored locally without sufficient disclosure or privacy controls. <br>
-Mitigation: Confirm where files are written, restrict file permissions, avoid private entries on shared or synced machines, and delete local mood or journal files when no longer needed. <br>
+## Use Case:
 
+Individuals and agents use this skill to record daily mood scores and notes, review recent mood history, summarize patterns, and create local journal entries. The skill is intended for personal wellbeing tracking rather than clinical diagnosis or treatment.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xueyetianya/mood-tracker) <br>
-- [Publisher profile](https://clawhub.ai/user/xueyetianya) <br>
-- [Tips for Mood Tracker](tips.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and text output summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores mood history as local JSON and journal entries as local Markdown under the user's mood directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The bundled script stores emotional wellbeing and journal data locally in plaintext.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only on trusted local systems, avoid entering highly sensitive details, and protect or delete the local mood data directory according to the user's privacy needs.
+
+Risk: Server security evidence reports verified command-injection risks from crafted mood, note, history, or trigger inputs.
+
+Mitigation: Review and fix shell-to-Python input handling before installing or executing the script; do not pass untrusted input to the bundled commands.
+
+Risk: Mood summaries and insights are wellbeing aids and may be mistaken for professional advice.
+
+Mitigation: Present outputs as personal tracking summaries only and direct users to qualified support for mental health concerns.
+
+## Reference(s):
+
+- [Mood Tracker on ClawHub](https://clawhub.ai/xueyetianya/skills/mood-tracker)
+- [Publisher profile](https://clawhub.ai/user/xueyetianya)
+- [Tips for Mood Tracker](artifact/tips.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown and plain text with shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can produce local mood-tracking guidance and commands that read or write plaintext wellbeing and journal data.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

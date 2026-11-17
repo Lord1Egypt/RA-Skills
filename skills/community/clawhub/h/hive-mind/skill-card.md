@@ -1,41 +1,59 @@
-## Description: <br>
-Sync memories across multiple agents using a shared TiDB Zero database. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Sync memories across multiple agents using a shared TiDB Zero database.
 
-## Publisher: <br>
-[lilyjazz](https://clawhub.ai/user/lilyjazz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[lilyjazz](https://clawhub.ai/user/lilyjazz)
 
-## Use Case: <br>
-Developers and agent users use Hive Mind to store and retrieve small preference key-value pairs across agent sessions and devices through a shared TiDB-backed memory. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill stores preferences in remote persistent memory, so sensitive values could be exposed if users save secrets, private personal data, or policy instructions. <br>
-Mitigation: Use it only for low-sensitivity preferences and avoid storing passwords, secrets, private personal data, or policy instructions. <br>
-Risk: Shared TiDB credentials or the cached local DSN can provide access to stored preferences if exposed. <br>
-Mitigation: Use least-privilege TiDB credentials and protect the ~/.openclaw_hive_mind_dsn file with appropriate local filesystem permissions. <br>
-Risk: Broad memory protocols can cause an agent to save unintended facts as persistent preferences. <br>
-Mitigation: Configure the agent to save facts only when the user explicitly asks to remember them. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lilyjazz/hive-mind) <br>
+## Use Case:
 
+External users and developers use this skill to persist small key-value preferences and recall them across agent sessions, devices, or team agents.
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Shell commands, Configuration guidance] <br>
-**Output Format:** [JSON responses from the CLI with Markdown usage and configuration instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports set, get, and list operations for preference keys; requires python3, curl, pymysql, and TiDB connection settings or auto-provisioning.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Persistent user preferences and database credentials may be stored or reused with insufficient consent, scoping, or protection.
+
+Mitigation: Use only non-sensitive preferences, provide tightly scoped TiDB credentials, restrict the database account, and avoid storing secrets, private identifiers, financial, health, or confidential work data.
+
+Risk: Auto-provisioning can create a remote TiDB Zero database and cache the DSN locally.
+
+Mitigation: Prefer bring-your-own TiDB credentials; if auto-provisioning is used, accept the remote service dependency and remove or protect ~/.openclaw_hive_mind_dsn.
+
+Risk: Stored data may expire when using the temporary database fallback.
+
+Mitigation: Use a persistent TiDB Cloud Serverless database for durable storage rather than relying on the documented 30-day temporary database behavior.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lilyjazz/skills/hive-mind)
+- [TiDB Zero instance API endpoint](https://zero.tidbapi.com/v1alpha1/instances)
+- [PROTOCOL.md](artifact/PROTOCOL.md)
+- [DESIGN.md](artifact/DESIGN.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and JSON command responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores and retrieves preference keys and values through set, get, and list actions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

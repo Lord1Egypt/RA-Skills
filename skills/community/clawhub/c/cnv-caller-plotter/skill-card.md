@@ -1,47 +1,66 @@
-## Description: <br>
-Detect copy number variations from whole genome sequencing data and generate publication-quality genome-wide CNV plots. <br>
+## Description:
 
-This skill is for demonstration purposes and not for production usage. <br>
+Detect copy number variations from whole genome sequencing data and generate publication-quality genome-wide CNV plots.
 
-## Publisher: <br>
-[AIPOCH-AI](https://clawhub.ai/user/AIPOCH-AI) <br>
+This skill is for demonstration purposes and not for production usage.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aipoch-ai](https://clawhub.ai/user/aipoch-ai)
 
-## Use Case: <br>
-Developers and bioinformatics analysts can use this skill as a reviewable demonstration for CNV calling workflows, genome-wide CNV visualization, and BED-style CNV output planning. It should not be relied on for research, publication, medical, diagnostic, or patient-related decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill presents placeholder genomics behavior as if it were a working CNV analysis tool. <br>
-Mitigation: Treat outputs as demonstration material only and require validated CNV pipelines for research, publication, medical, diagnostic, or patient-related decisions. <br>
-Risk: The workflow may process sensitive genomic input and output files. <br>
-Mitigation: Handle BAM, VCF, BED, plots, and related outputs only in approved secure environments with appropriate data governance. <br>
-Risk: CNV calls and plots can be misleading if used without quality review, matched controls, or orthogonal validation. <br>
-Mitigation: Require expert review, quality checks, and independent validation before any scientific or clinical interpretation. <br>
+## Use Case:
 
+Developers and bioinformatics analysts use this skill to draft CNV calling and visualization workflows for whole genome sequencing data. Current outputs should be treated as demonstration data until the CNV algorithm and validation are completed.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/AIPOCH-AI/cnv-caller-plotter) <br>
-- [Database of Genomic Variants](http://dgv.tcag.ca) <br>
-- [gnomAD](https://gnomad.broadinstitute.org) <br>
-- [ClinVar](https://www.ncbi.nlm.nih.gov/clinvar) <br>
-- [DECIPHER](https://www.deciphergenomics.org) <br>
-- [COSMIC Cancer Gene Census](https://cancer.sanger.ac.uk) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Shell commands, Files] <br>
-**Output Format:** [Markdown with Python and bash code blocks; generated file examples include BED calls and plot paths.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference sensitive genomic input and output files that require approved secure handling.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The current implementation can present hard-coded CNV results as analysis output.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only demonstration data until the CNV algorithm, plotting behavior, and output validation are implemented and independently validated.
+
+Risk: Genomic inputs may include patient-related or otherwise sensitive data.
+
+Mitigation: Process only approved, de-identified data in controlled environments that meet applicable privacy and compliance requirements.
+
+Risk: Unvalidated CNV output could affect research, clinical, publication, or patient-related decisions.
+
+Mitigation: Require expert review and validated clinical or research pipelines before using any result for decision-making.
+
+Risk: Input validation, dependency specification, and privacy handling are not proven by the evidence.
+
+Mitigation: Review the skill, test it with non-sensitive fixtures, and define runtime dependencies and data-handling controls before installation or use.
+
+## Reference(s):
+
+- [Cnv Caller Plotter on ClawHub](https://clawhub.ai/aipoch-ai/skills/cnv-caller-plotter)
+- [Database of Genomic Variants](http://dgv.tcag.ca)
+- [gnomAD Structural Variants](https://gnomad.broadinstitute.org)
+- [ClinVar](https://www.ncbi.nlm.nih.gov/clinvar)
+- [DECIPHER](https://www.deciphergenomics.org)
+- [COSMIC](https://cancer.sanger.ac.uk)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, files]
+
+**Output Format:** [Markdown guidance with Python and shell examples; script output may include BED files and plot file paths.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Demonstration implementation returns fixed CNV examples and writes BED output when executed.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

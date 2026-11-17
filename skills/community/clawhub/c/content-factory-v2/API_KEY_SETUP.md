@@ -52,7 +52,7 @@
 ```env
 # GLM-Image API Configuration (Required)
 # Get your API key from: https://open.bigmodel.cn/
-GLM_API_KEY=sk-1234567890abcdef1234567890abcdef
+GLM_API_KEY=REDACTED-SECRET
 
 # WeChat Official Account Credentials (Optional - for auto-publishing)
 # Get these from: https://mp.weixin.qq.com/

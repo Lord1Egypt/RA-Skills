@@ -1,42 +1,53 @@
-## Description: <br>
-Abby Browser helps an agent control OpenClaw browser actions such as opening pages, taking screenshots, clicking elements, typing into forms, extracting page text, waiting, and scrolling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Abby Browser helps agents control an OpenClaw browser session to open pages, capture screenshots, click elements, type into fields, fill forms, extract page text, wait, and scroll.
 
-## Publisher: <br>
-[earnabitmore365](https://clawhub.ai/user/earnabitmore365) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[earnabitmore365](https://clawhub.ai/user/earnabitmore365)
 
-## Use Case: <br>
-Developers and external users can use this skill to let an agent perform supervised browser tasks through OpenClaw, including navigation, screenshots, element interaction, form entry, and page content extraction. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can click elements, type text, submit forms, and otherwise act in a real browser session. <br>
-Mitigation: Supervise use on logged-in or sensitive sites and require confirmation before high-impact browser actions. <br>
-Risk: The extraction helper can evaluate JavaScript built from CSS selector input. <br>
-Mitigation: Use trusted selectors only and review extraction requests before execution. <br>
-Risk: Screenshots and extracted page text may include sensitive page content. <br>
-Mitigation: Review what pages are open before capture or extraction and handle generated files and text as potentially sensitive. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Abby Browser ClawHub release](https://clawhub.ai/earnabitmore365/abby-browser) <br>
-- [OpenClaw Browser Docs](https://docs.openclaw.ai/cli/browser) <br>
+## Use Case:
 
+External users and developers can use this skill to ask an agent to perform routine browser actions in an OpenClaw-controlled Chrome or Chromium session without manually composing each browser CLI command.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, files, guidance] <br>
-**Output Format:** [Markdown or text responses with OpenClaw browser command examples, action results, extracted page text, and screenshot file references.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Browser actions operate in the user's active browser environment and may produce local screenshot files.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Browser automation can act inside an active session, including authenticated pages.
+
+Mitigation: Use only in browser sessions where the agent is permitted to open pages, click elements, type text, fill forms, and capture screenshots.
+
+Risk: The security evidence flags under-scoped automation that can run injected page JavaScript through extraction behavior.
+
+Mitigation: Avoid sensitive authenticated pages until selector handling in scripts/extract.py is fixed and raw evaluate use is clearly restricted or confirmed by the user.
+
+## Reference(s):
+
+- [OpenClaw Browser Docs](https://docs.openclaw.ai/cli/browser)
+- [Abby Browser on ClawHub](https://clawhub.ai/earnabitmore365/skills/abby-browser)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and Python helper code]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires OpenClaw browser tooling and a Chrome or Chromium browser session.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

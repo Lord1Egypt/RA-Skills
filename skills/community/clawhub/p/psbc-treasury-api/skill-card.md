@@ -1,43 +1,53 @@
-## Description: <br>
-（司库系统）API 全生命周期管理智能 Skill <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides API lifecycle guidance, request validation, sample calls, and mock responses for PSBC treasury system integrations.
 
-## Publisher: <br>
-[infochen-sub](https://clawhub.ai/user/infochen-sub) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[infochen-sub](https://clawhub.ai/user/infochen-sub)
 
-## Use Case: <br>
-Developers and API integrators use this skill to inspect PSBC treasury API definitions, validate request and response payloads, generate curl or Python examples, and mock banking workflow responses for test scenarios. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill covers high-impact banking and treasury operations, including payment, payroll, balance, transaction, and token-related API workflows. <br>
-Mitigation: Use it only in sandbox or approved test environments unless explicit approval gates, redaction, and environment separation are in place. <br>
-Risk: Production credentials, certificates, signatures, passwordless token URLs, account identifiers, payroll files, or live payment payloads could expose sensitive financial operations or data. <br>
-Mitigation: Do not provide production secrets or live financial payloads; use synthetic data and keep credentials outside prompts and artifacts. <br>
+## Use Case:
 
+Developers and treasury integration teams use this skill to inspect PSBC treasury API definitions, validate request or response payloads, generate curl and Python examples, and simulate common response scenarios.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/infochen-sub/psbc-treasury-api) <br>
-- [Skill README](artifact/README.md) <br>
-- [API definitions](artifact/apis.json) <br>
-- [Response code dictionary](artifact/response-codes.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON examples and curl or Python code snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference local JSON API definitions and example scripts; live API calls require user-supplied credentials and cryptographic integration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact SKILL.md lists 1.0.0) <br>
+Risk: The skill concerns sensitive banking integrations and includes financial request examples.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use synthetic or masked data in examples and do not run network calls against production without authorization and approval.
+
+Risk: Example client code requires cryptographic signing and encryption to be completed before real use.
+
+Mitigation: Pin and review cryptographic dependencies, use managed key storage for private keys and certificates, and validate the implementation before connecting to bank endpoints.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/infochen-sub/skills/psbc-treasury-api)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown, JSON snippets, and inline code or shell examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include generated request examples, validation findings, response-code explanations, and mock response data.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

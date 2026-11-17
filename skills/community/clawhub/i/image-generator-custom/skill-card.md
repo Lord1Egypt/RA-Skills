@@ -1,40 +1,59 @@
-## Description: <br>
-Calls a configured OpenAI-compatible image generation API to generate images and save the returned PNG files locally. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates images by calling a configured third-party image generation API that follows an OpenAI-compatible request and response format.
 
-## Publisher: <br>
-[zuoanCo](https://clawhub.ai/user/zuoanCo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zuoanco](https://clawhub.ai/user/zuoanco)
 
-## Use Case: <br>
-Developers and agents use this skill to generate images through a chosen third-party provider after configuring the image API URL, API key, and optional model ID. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends prompts to a user-configured third-party image API, so prompt content and API keys depend on the configured provider. <br>
-Mitigation: Use only approved providers, verify IMAGE_API_URL before running, use a scoped API key, and avoid confidential or regulated prompt content unless the provider is approved. <br>
-Risk: Generated or downloaded PNG files are written to the current working directory. <br>
-Mitigation: Run the skill from a directory where generated files are expected and review outputs before using or sharing them. <br>
+## Use Case:
 
+Developers and agent operators use this skill to configure credentials, submit image prompts to a chosen compatible provider, and save returned images as PNG files.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zuoanCo/image-generator-custom) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Configuration guidance] <br>
-**Output Format:** [PNG image files with terminal status output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires IMAGE_API_URL and IMAGE_API_KEY; IMAGE_MODEL_ID can be supplied by environment variable or command-line argument.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.2 (source: server release evidence) <br>
+Risk: Prompts and request metadata are sent to the configured third-party image API provider.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted providers and avoid prompts that contain secrets, personal data, or confidential business information.
+
+Risk: Provider responses may include image URLs that the script downloads and saves locally.
+
+Mitigation: Prefer providers that return base64 image data or verify that returned URLs cannot resolve to internal or otherwise untrusted destinations.
+
+Risk: Generated images are saved in the current working directory.
+
+Mitigation: Run the skill in an intended workspace and review generated files before sharing or reusing them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zuoanco/skills/image-generator-custom)
+- [Publisher profile](https://clawhub.ai/user/zuoanco)
+- [OpenAI-compatible image generation endpoint example](https://api.openai.com/v1/images/generations)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [PNG image files with terminal status text and Markdown usage guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses IMAGE_API_URL and IMAGE_API_KEY, optionally IMAGE_MODEL_ID, to call the configured provider; supports prompt, model, size, count, quality, and output-prefix parameters.]
+
+## Skill Version(s):
+
+0.0.2 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

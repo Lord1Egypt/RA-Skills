@@ -1,7 +1,7 @@
 ---
 name: "smyx-driver-head-pose-abnormality-analysis"
 description: "Using an in-cabin DMS camera, the system analyzes the driver's head pose in real time, computing head pitch (down/up) and yaw (left/right turn). | 通过车载DMS摄像头实时分析驾驶员头部姿态，计算头部俯仰角（低头/抬头）和偏航角（左/右转头）。当低头角度超过阈值（默认>30°）且持续时间超过2秒（可能为看手机、查看物品），或侧视角度超过阈值（默认>45°）持续时间超过2秒（可能为与乘客聊天、看窗外）时，输出分心驾驶预警，联动语音提醒，预防交通事故。"
-version: "1.0.4"
+version: "1.0.22"
 license: "MIT-0"
 ---
 

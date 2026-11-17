@@ -1,43 +1,55 @@
-## Description: <br>
-将提供的 YouTube 视频链接转录成完整中文稿，包含内容摘要和视频核心亮点，便于快速理解和复习。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+将提供的 YouTube 视频链接转录成完整中文稿，包含内容摘要和视频核心亮点，便于快速理解和复习。
 
-## Publisher: <br>
-[WebGuHui](https://clawhub.ai/user/WebGuHui) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[webguhui](https://clawhub.ai/user/webguhui)
 
-## Use Case: <br>
-Employees, external users, and developers use this skill to turn YouTube videos into Chinese transcripts, concise summaries, and key highlight notes for review or reuse. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Using browser:chrome can expose sensitive YouTube login session cookies to the download tool. <br>
-Mitigation: Prefer public videos without cookies; when cookies are required, use a narrowly exported cookies.txt file and avoid broad browser-session access. <br>
-Risk: Installing yt-dlp from an unverified source can introduce supply-chain risk. <br>
-Mitigation: Install yt-dlp only through a trusted or verified method before running the download script. <br>
+## Use Case:
 
+External users and developers use this skill to turn a YouTube video link into a structured Chinese transcript, short summary, and key highlights for review or note-taking.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/WebGuHui/youtube-to-chinese) <br>
-- [Publisher profile](https://clawhub.ai/user/WebGuHui) <br>
-- [yt-dlp release download](https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp) <br>
-- [Get cookies.txt LOCALLY Chrome extension](https://chrome.google.com/webstore/detail/get-cookiestxt-locally) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with Chinese transcript sections, summary bullets, highlight bullets, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a complete Chinese transcript, a 3-5 sentence content summary, and 5-8 core highlights.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The workflow may access YouTube using browser cookies or a cookies.txt file, exposing sensitive account data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid browser:chrome unless necessary, treat exported cookies as sensitive, and remove cookies files after use.
+
+Risk: The download helper may run a mutable yt-dlp binary from /tmp.
+
+Mitigation: Prefer an already installed, trusted yt-dlp binary or verify the downloaded binary before running the skill.
+
+## Reference(s):
+
+- [YouTube to Chinese ClawHub Skill Page](https://clawhub.ai/webguhui/skills/youtube-to-chinese)
+- [yt-dlp latest release download](https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp)
+- [Get cookies.txt LOCALLY Chrome extension](https://chrome.google.com/webstore/detail/get-cookiestxt-locally)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with Chinese transcript sections, summary, highlights, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a single structured Chinese-language response after audio download and transcription.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,6 +1,42 @@
 {
-  "ownerId": "kn7cznn4j3cb0853gxtf1nqvb182354c",
-  "slug": "solana-whale-tracker-pro",
-  "version": "1.0.0",
-  "publishedAt": 1775124692210
+  "name": "solana-monitor",
+  "displayName": "Solana Monitor - 数据监控工具",
+  "version": "0.1.0",
+  "description": "实时监控 Solana 价格、大额转账、流动性变化，支持 Telegram/邮件警报",
+  "author": "VIC ai-company",
+  "license": "MIT",
+  "homepage": "https://github.com/vic-ai-company/solana-monitor",
+  "repository": "https://github.com/vic-ai-company/solana-monitor",
+  "keywords": [
+    "solana",
+    "monitoring",
+    "price-alert",
+    "defi",
+    "crypto",
+    "blockchain",
+    "openclaw"
+  ],
+  "category": "data",
+  "pricing": {
+    "free": 0,
+    "basic": 19,
+    "professional": 49,
+    "enterprise": 199
+  },
+  "features": [
+    "实时价格监控",
+    "价格警报系统",
+    "大额转账追踪",
+    "流动性监控",
+    "Telegram 通知",
+    "邮件通知",
+    "Web 仪表板"
+  ],
+  "requirements": [
+    "python3.8+",
+    "requests>=2.28.0",
+    "python-dotenv>=1.0.0"
+  ],
+  "createdAt": "2026-03-01T17:58:00+08:00",
+  "status": "development"
 }

@@ -1,45 +1,62 @@
-## Description: <br>
-Query, optimize, and administer ClickHouse OLAP databases with schema design, performance tuning, and data ingestion patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query, optimize, and administer ClickHouse OLAP databases with schema design, performance tuning, and data ingestion patterns.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Developers, data engineers, and analytics teams use this skill to work with ClickHouse databases for OLAP analytics, log analysis, time-series data, real-time dashboards, query optimization, ingestion patterns, schema design, and cluster administration. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can help produce powerful database operations such as INSERT, ALTER, DROP, KILL, OPTIMIZE, TTL changes, and migrations. <br>
-Mitigation: Review generated database commands before running them against production or otherwise important ClickHouse data. <br>
-Risk: The skill can save database context locally under ~/clickhouse/, including connection profiles, schemas, and query patterns. <br>
-Mitigation: Do not store database passwords or cloud secrets in ~/clickhouse/ or command URLs; use environment variables, ClickHouse client profiles, or a secret manager, and periodically inspect or delete retained local context. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub ClickHouse skill page](https://clawhub.ai/ivangdavila/clickhouse) <br>
-- [ClickHouse skill homepage](https://clawic.com/skills/clickhouse) <br>
-- [Setup guide](setup.md) <br>
-- [Query patterns](queries.md) <br>
-- [Performance tuning](performance.md) <br>
-- [Data ingestion](ingestion.md) <br>
-- [Memory template](memory-template.md) <br>
+## Use Case:
 
+Developers, data engineers, and analytics engineers use this skill to work with ClickHouse OLAP databases for log analysis, time-series analytics, real-time dashboards, schema design, ingestion planning, query optimization, and cluster administration.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with SQL and shell command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose ClickHouse client commands, SQL statements, schema definitions, ingestion commands, performance checks, and local memory updates for user review.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can persist ClickHouse connection profiles, schemas, query patterns, and workload notes under ~/clickhouse/.
+
+Mitigation: Confirm what should be saved before use, avoid storing sensitive database details unless necessary, and review local memory files before sharing or deployment.
+
+Risk: Database passwords may be stored in plain text if a user provides them for the local ClickHouse memory files.
+
+Mitigation: Use environment variables, clickhouse-client profiles, or a secret manager instead of saving real passwords in ~/clickhouse/.
+
+Risk: Generated SQL, ingestion commands, or administration commands can affect database performance, data retention, or running workloads.
+
+Mitigation: Review proposed queries and commands before execution, prefer least-privileged database accounts, test changes on non-production data when possible, and use HTTPS for remote ClickHouse HTTP access.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ivangdavila/skills/clickhouse)
+- [ClickHouse Skill Homepage](https://clawic.com/skills/clickhouse)
+- [Setup and Connection](artifact/setup.md)
+- [Memory Template](artifact/memory-template.md)
+- [Query Patterns](artifact/queries.md)
+- [Performance Tuning](artifact/performance.md)
+- [Data Ingestion](artifact/ingestion.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with SQL, shell command, and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose ClickHouse queries, schema definitions, ingestion commands, configuration steps, and local memory updates under ~/clickhouse/.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

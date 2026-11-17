@@ -1,6 +1,8 @@
 {
-  "ownerId": "kn7dq2b2mevhbt2q67gtwghyy181ky5t",
-  "slug": "adler-money-skill",
+  "name": "adler-money-skill",
   "version": "1.0.0",
-  "publishedAt": 1776442033380
+  "license": "MIT",
+  "description": "用阿德勒心理学实现财务自信与副业突破",
+  "tags": ["adler", "psychology", "money", "副业", "财富心理"],
+  "category": "productivity"
 }

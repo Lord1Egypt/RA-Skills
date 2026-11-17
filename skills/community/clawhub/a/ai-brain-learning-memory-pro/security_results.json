@@ -1,0 +1,15 @@
+{
+  "skill": "ai-brain-learning-memory-pro",
+  "version": "1.0.0",
+  "generated_at": "2026-08-26",
+  "method": "本地闭环静态审计 + 敏感扫描 + 配置层评测电池，零真实凭据、可重跑",
+  "overall": 4.92,
+  "dimensions": [
+    {"name": "可信任度", "score": 5.0, "note": "纯本地闭环、零网络、零凭据；云鼎静态审计 P2"},
+    {"name": "可靠性", "score": 5.0, "note": "无自动执行破坏操作；文件操作仅限手动工具本地读写"},
+    {"name": "数据安全", "score": 5.0, "note": "敏感明文写入层硬拒；pre_publish_scan 0 命中"},
+    {"name": "投毒防御", "score": 4.5, "note": "OWASP ASI06 三闸落地（溯源/不可信门/审计）；真实红队未做"},
+    {"name": "规范性", "score": 5.0, "note": "frontmatter 全字段 + LICENSE + 审计 + 版权三件套 + 知识版权声明"},
+    {"name": "可重跑性", "score": 5.0, "note": "memory_eval_battery.py 纯本地零依赖，可重跑出 JSON"}
+  ]
+}

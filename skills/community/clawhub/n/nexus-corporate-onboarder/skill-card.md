@@ -1,43 +1,55 @@
-## Description: <br>
-Design and automate corporate employee onboarding programs with AI, including adaptive learning paths by role, compliance training modules, microlearning sequences, and ROI dashboards for L&D departments. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Designs and automates corporate onboarding programs by creating role-based learning paths, compliance modules, microlearning sequences, and ROI dashboards for L&D departments.
 
-## Publisher: <br>
-[shuwanito](https://clawhub.ai/user/shuwanito) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shuwanito](https://clawhub.ai/user/shuwanito)
 
-## Use Case: <br>
-L&D, HR, and operations teams use this skill to plan employee onboarding programs, generate role-based learning paths, draft compliance training, and outline training ROI dashboards. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Compliance or legal training content may be incomplete, outdated, or misaligned with an organization's obligations. <br>
-Mitigation: Review compliance modules with legal or compliance owners before deployment, as required by the skill guidance. <br>
-Risk: Onboarding workflows and HRIS integrations may involve employee personal data or sensitive workforce information. <br>
-Mitigation: Use approved onboarding documents and scoped read-only HRIS exports where possible, and verify privacy claims in the deployment environment. <br>
-Risk: Training ROI dashboards can overstate business impact if assumptions are too aggressive. <br>
-Mitigation: Use conservative ROI estimates with clear methodology and require L&D leadership review before relying on the dashboards. <br>
+## Use Case:
 
+L&D teams and corporate training operators use this skill to draft onboarding programs, compliance training modules, assessment rubrics, ROI dashboard plans, and improvement proposals for employee training workflows.
 
-## Reference(s): <br>
-- [NEXUS AI Corp GitHub profile](https://github.com/Shuwanito) <br>
-- [NEXUS AI ROI page](https://shuwanito.github.io/nexus-ai/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with onboarding plans, compliance module outlines, assessment rubrics, ROI dashboard definitions, and integration notes.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only skill; no executable code or hidden behavior found in the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.1 (source: server release metadata; artifact metadata.version says 1.0.0) <br>
+Risk: The skill may process employee training, HRIS, or compliance data without sufficient privacy and access-control guidance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with explicit authorization, least-privilege access, minimized or anonymized employee data, and legal/privacy review before deployment.
+
+Risk: Generated compliance modules, assessment rubrics, ROI dashboards, or improvement proposals could be inaccurate or misleading if adopted without review.
+
+Mitigation: Require L&D, legal, and privacy stakeholders to review outputs, validate compliance content, and document conservative ROI assumptions before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/shuwanito/skills/nexus-corporate-onboarder)
+- [NEXUS AI landing page](https://shuwanito.github.io/nexus-ai/)
+- [NEXUS AI Corp GitHub profile](https://github.com/Shuwanito)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Configuration, Guidance]
+
+**Output Format:** [Markdown with structured plans, training module outlines, rubrics, dashboard specifications, and recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference HRIS-connected workflows, employee training data, compliance review needs, accessibility requirements, and ROI assumptions.]
+
+## Skill Version(s):
+
+2.1.2 (source: server release metadata; artifact frontmatter metadata.version is 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

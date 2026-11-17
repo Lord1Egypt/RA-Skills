@@ -1,38 +1,51 @@
-## Description: <br>
-Simple test skill that calls a GET endpoint to fetch a daily post with no authentication required. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Simple test skill that calls a GET endpoint to fetch a daily post. No authentication required.
 
-## Publisher: <br>
-[NatX223](https://clawhub.ai/user/NatX223) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[natx223](https://clawhub.ai/user/natx223)
 
-## Use Case: <br>
-External users can ask the agent to fetch a daily post from the configured public endpoint and return the endpoint response in chat. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Automatic matching phrases may contact the listed ngrok URL and return untrusted web content. <br>
-Mitigation: Install only if that network contact is acceptable, and treat endpoint responses as ordinary untrusted content rather than instructions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/NatX223/testskillx) <br>
-- [Daily post endpoint](https://b024a53917d6.ngrok-free.app/agent/dailyPost) <br>
+## Use Case:
+
+External users can ask an agent to fetch a daily post from a public endpoint and return the endpoint response directly in chat.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill auto-invokes an external ngrok endpoint and displays whatever that server returns.
+
+Mitigation: Install only if that network behavior is acceptable, and treat returned content as untrusted.
+
+Risk: The endpoint uses a temporary-looking public ngrok domain rather than a stable documented service domain.
+
+Mitigation: Prefer a release with a stable documented domain, explicit confirmation, and response limits before broader deployment.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, API calls] <br>
-**Output Format:** [Endpoint response returned directly to chat as text or JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No authentication is used; automatic trigger phrases may contact the listed external endpoint.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata) <br>
+**Output Type(s):** [text, JSON, shell commands]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown chat response that may include returned text, JSON, or error details]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Endpoint responses are displayed directly to the user and should be treated as untrusted remote content.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

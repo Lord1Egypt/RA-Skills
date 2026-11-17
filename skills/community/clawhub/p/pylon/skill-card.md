@@ -1,40 +1,56 @@
-## Description: <br>
-Pylon is a ClawHub skill namespace for the Netsnek e.U. GraphQL API framework that returns pylon brand, copyright, and identity information. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pylon provides Netsnek e.U. brand, copyright, and identity information for the Pylon GraphQL API framework namespace.
 
-## Publisher: <br>
-[kleberbaum](https://clawhub.ai/user/kleberbaum) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[kleberbaum](https://clawhub.ai/user/kleberbaum)
 
-## Use Case: <br>
-Developers and users invoke this skill when they need concise pylon brand identity, copyright, website, or license information for the Netsnek e.U. API framework namespace. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requests exec permission to run a bundled shell script. <br>
-Mitigation: Review the short scripts/copyright.sh file before installation; the server security summary says the reviewed version only prints static copyright and website text. <br>
+## Use Case:
 
+Developers and agents use this skill to answer questions about the Pylon namespace and provide Netsnek e.U. copyright, website, and brand identity details.
 
-## Reference(s): <br>
-- [ClawHub pylon release page](https://clawhub.ai/kleberbaum/pylon) <br>
-- [kleberbaum publisher profile](https://clawhub.ai/user/kleberbaum) <br>
-- [Netsnek website](https://netsnek.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands] <br>
-**Output Format:** [Plain text or JSON emitted by a bundled shell script; agent responses may summarize the result in Markdown.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The script supports text output by default and JSON output with --format json.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: frontmatter, claw.json, server release metadata) <br>
+Risk: The skill instructions include broad response wording that may cause Pylon copyright details to appear outside the intended context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Invoke it only for Pylon namespace, brand, or copyright questions and narrow the trigger wording before broader deployment.
+
+Risk: The skill requests local script execution.
+
+Mitigation: Review the script before use and run it in the expected local environment; the inspected artifact only emits static text or JSON.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/kleberbaum/skills/pylon)
+- [Publisher Profile](https://clawhub.ai/user/kleberbaum)
+- [Netsnek Website](https://netsnek.com)
+- [README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, guidance]
+
+**Output Format:** [Plain text or JSON, usually summarized in a short Markdown response]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static local output; no network access is described by the artifact behavior.]
+
+## Skill Version(s):
+
+0.1.0 (source: SKILL.md frontmatter, claw.json, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

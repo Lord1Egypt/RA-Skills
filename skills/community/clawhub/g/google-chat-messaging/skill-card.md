@@ -1,46 +1,61 @@
-## Description: <br>
-Work with Google Chat spaces, members, messages, attachments, and threaded conversations via the Google Chat API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Work with Google Chat spaces, members, messages, attachments, and threaded conversations via the Google Chat API.
 
-## Publisher: <br>
-[hith3sh](https://clawhub.ai/user/hith3sh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hith3sh](https://clawhub.ai/user/hith3sh)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to inspect and manage Google Chat spaces, members, messages, attachments, reactions, threads, and related collaboration workflows through a connected Google account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: ClawLink holds the Google OAuth connection and can access Google Chat data available to the connected account. <br>
-Mitigation: Connect only an account whose Google Chat spaces should be exposed to this tool. <br>
-Risk: Write or destructive actions can send messages, delete messages or spaces, change memberships, or otherwise alter Google Chat state. <br>
-Mitigation: Review previews and confirm the intended target and effect before any send, deletion, membership change, or space management action. <br>
-Risk: The skill can only act within the connected account's Google Chat permissions, so requests may fail when access is insufficient or a space requires bot authentication. <br>
-Mitigation: Verify the connected account, space identifiers, and live tool catalog before acting on ambiguous or privileged requests. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to connect Google Chat through ClawLink, inspect spaces, members, messages, reactions, attachments, and threads, and perform confirmed write actions such as sending messages or managing spaces.
 
-## Reference(s): <br>
-- [Google Chat API Reference](https://developers.google.com/workspace/chat/api/reference/rest) <br>
-- [Google Chat API Overview](https://developers.google.com/workspace/chat/api/guides/overview) <br>
-- [ClawLink OpenClaw Docs](https://docs.claw-link.dev/openclaw) <br>
-- [Google Chat Skill Page](https://clawhub.ai/hith3sh/google-chat-messaging) <br>
-- [Publisher Profile](https://clawhub.ai/user/hith3sh) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, API calls, Markdown] <br>
-**Output Format:** [Markdown with inline shell commands and JSON tool parameters] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include Google Chat tool names, ClawLink setup commands, preview guidance, and structured JSON parameters for tool calls.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: server release evidence) <br>
+Risk: Connecting Google Chat through ClawLink gives the integration access to Chat data available to the connected Google account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Connect only accounts whose Chat access is appropriate for this integration, and verify the Google Chat connection before use.
+
+Risk: Write-capable tools can send or modify messages, spaces, memberships, reactions, sections, or custom emoji.
+
+Mitigation: Preview write or destructive actions and execute them only after explicit user confirmation.
+
+Risk: Using an unpinned plugin release can make the installed behavior harder to review over time.
+
+Mitigation: Prefer a pinned or verified ClawLink plugin release when available.
+
+## Reference(s):
+
+- [Google Chat API Reference](https://developers.google.com/workspace/chat/api/reference/rest)
+- [Google Chat API Overview](https://developers.google.com/workspace/chat/api/guides/overview)
+- [ClawLink](https://claw-link.dev/?utm_source=clawhub&utm_medium=referral&utm_content=google-chat-messaging)
+- [ClawLink Docs](https://docs.claw-link.dev/openclaw)
+- [ClawLink Verification](https://claw-link.dev/verify)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON tool parameters]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a connected ClawLink Google Chat integration; write and destructive actions require explicit user confirmation; Google Chat messages are limited to 32000 bytes.]
+
+## Skill Version(s):
+
+1.0.6 (source: server evidence release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

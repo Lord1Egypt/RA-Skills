@@ -1,43 +1,58 @@
-## Description: <br>
-Evaluates system architecture health across six governance dimensions and produces scores, risk priorities, governance tasks, and reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language architecture governance skill that evaluates system health across six dimensions, identifies technical debt and risk, and produces governance tasks and reports.
 
-## Publisher: <br>
-[jerry-guo-mys](https://clawhub.ai/user/jerry-guo-mys) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jerry-guo-mys](https://clawhub.ai/user/jerry-guo-mys)
 
-## Use Case: <br>
-Developers, architects, and engineering governance teams use this skill to assess architecture health, compare systems, identify technical debt and risks, and plan governance work. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The optional Python helper can write a report to a path chosen by the user. <br>
-Mitigation: Choose the output path deliberately and avoid overwriting important files. <br>
-Risk: Metric collection examples reference internal service, CI, tracing, and incident systems. <br>
-Mitigation: Adapt those examples only for systems where you have authorization and least-privilege credentials. <br>
-Risk: Architecture scores and governance priorities depend on the quality of supplied metrics and manual assessments. <br>
-Mitigation: Review the generated findings with system owners before using them for planning or governance decisions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Architecture Governance Evaluation Framework](references/evaluation-framework.md) <br>
-- [Architecture Governance Playbook](references/governance-playbook.md) <br>
-- [Metrics Definition and Collection Plan](references/metrics.md) <br>
+## Use Case:
 
+Developers, architects, and governance teams use this skill to assess architecture health, compare systems, prioritize technical debt, and prepare governance reports or work plans.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown reports, task lists, checklists, and optional shell command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The optional helper can write a Markdown report to a user-selected output path.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Plaintext HTTP credential examples may be copied into real integrations.
+
+Mitigation: Replace HTTP examples with HTTPS endpoints and environment-managed tokens before using integration examples.
+
+Risk: The bundled health-check script uses simulated metrics and is not ready as an authoritative CI or governance signal.
+
+Mitigation: Fix and integrate the script with real metric sources before relying on it for CI gates or governance reporting.
+
+Risk: The report output option can overwrite the file at the specified path.
+
+Mitigation: Choose output paths deliberately and avoid pointing the script at important existing files.
+
+## Reference(s):
+
+- [Architecture Governance Evaluation Framework](references/evaluation-framework.md)
+- [Metrics Definition and Collection Plan](references/metrics.md)
+- [Architecture Governance Playbook](references/governance-playbook.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown reports, task lists, assessment checklists, and concise command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The bundled script can optionally write a Markdown report to a user-specified output path.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

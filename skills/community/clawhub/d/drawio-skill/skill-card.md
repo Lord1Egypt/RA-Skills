@@ -1,44 +1,57 @@
-## Description: <br>
-Create and edit draw.io diagrams through the configured drawio MCP server, including flowcharts, architecture diagrams, ML model diagrams, Chinese labels, animated connectors, and svg export. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create and edit draw.io diagrams through the configured drawio MCP server, including flowcharts, architecture diagrams, ML model diagrams, Chinese labels, animated connectors, and SVG export.
 
-## Publisher: <br>
-[yyq2024](https://clawhub.ai/user/yyq2024) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yyq2024](https://clawhub.ai/user/yyq2024)
 
-## Use Case: <br>
-Developers and engineers use this skill to create, edit, and export draw.io diagrams through a configured drawio MCP server, including architecture diagrams, flowcharts, ML model diagrams, and Chinese-labeled diagrams. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Diagram contents may include sensitive architecture, deployment, or business details handled through the configured drawio MCP server. <br>
-Mitigation: Use only a trusted and approved drawio MCP server, and avoid sending sensitive details unless that server is approved for the data. <br>
-Risk: Installing the MCP server with an unpinned package version can introduce unreviewed server behavior over time. <br>
-Mitigation: Pin the drawio MCP server package version and review or scan updates before deployment. <br>
-Risk: The skill cannot create, inspect, edit, or export diagrams when the drawio MCP connection is unavailable or misconfigured. <br>
-Mitigation: Configure or reconnect the drawio MCP server before use, then restart Codex or reload the IDE window if tools do not appear. <br>
+## Use Case:
 
+Developers and engineers use this skill to create, inspect, edit, and export draw.io diagrams for process flows, architecture and deployment views, ML model diagrams, Chinese-labeled diagrams, and animated connector workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yyq2024/drawio-skill) <br>
-- [README](README.md) <br>
-- [Skill instructions](SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Files, Guidance] <br>
-**Output Format:** [Markdown responses with draw.io XML, MCP tool actions, shell commands when needed, and exported .drawio or .svg files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Depends on a configured drawio MCP server and live draw.io session state] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The recommended setup uses an unpinned third-party MCP server package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the MCP server package before installing it and prefer a pinned, reviewed version instead of @latest.
+
+Risk: The skill may auto-activate for broad diagram requests and can create or modify exported diagram files in the workspace.
+
+Mitigation: Run it with only the filesystem and network access needed for diagram work, and review generated or modified diagram files before relying on them.
+
+Risk: Diagram work depends on an externally configured drawio MCP server and the live session state.
+
+Mitigation: Confirm the MCP connection is configured and read the current diagram before editing so existing user changes are preserved.
+
+## Reference(s):
+
+- [Draw.io Skill on ClawHub](https://clawhub.ai/yyq2024/skills/drawio-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, files, guidance]
+
+**Output Format:** [Markdown responses with draw.io XML guidance, shell setup commands, and exported .drawio or .svg files when the MCP server is available.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Depends on a configured drawio MCP server and the live draw.io session state.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

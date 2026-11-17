@@ -1,38 +1,54 @@
-## Description: <br>
-Generates a personalised Japanese language practice session based on JLPT level. Covers vocabulary, grammar, kanji, reading, and speaking prompts. Fresh content every session. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates a personalised Japanese language practice session based on JLPT level, covering vocabulary, grammar, kanji, reading, and speaking prompts with fresh content every session.
 
-## Publisher: <br>
-[tetsuakira-vk](https://clawhub.ai/user/tetsuakira-vk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tetsuakira-vk](https://clawhub.ai/user/tetsuakira-vk)
 
-## Use Case: <br>
-External Japanese learners and JLPT candidates use this skill to generate structured daily practice sessions tailored from N5 through N1. It covers vocabulary, grammar, kanji for N4 and above, reading, speaking prompts, quizzes, and cultural notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may ask for or optionally remember the learner's JLPT level. <br>
-Mitigation: Keep memory entries limited to learning preferences and avoid storing sensitive personal information. <br>
+## Use Case:
 
+External Japanese learners use this skill to generate structured daily JLPT-style practice sessions from N5 through N1. It supports vocabulary review, grammar practice, kanji study, reading, speaking prompts, quizzes, and concise cultural notes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tetsuakira-vk/japanese-daily-drill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown practice session with Japanese text, English translations, examples, prompts, quiz questions, and answers] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable code, credentials, network access, or external services are required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The README installation command uses an unpinned npx installer command.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned, trusted ClawHub installer version and avoid elevated privileges during installation.
+
+Risk: Generated Japanese study material may contain language mistakes or level mismatches.
+
+Mitigation: Review drills against trusted JLPT or instructor-approved materials before relying on them for exam preparation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tetsuakira-vk/skills/japanese-daily-drill)
+- [Publisher profile](https://clawhub.ai/user/tetsuakira-vk)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown practice session with Japanese text, English translations, quiz answers, and study prompts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Tailors output to the user's JLPT level and avoids repeating vocabulary, kanji, or grammar patterns within the same conversation.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

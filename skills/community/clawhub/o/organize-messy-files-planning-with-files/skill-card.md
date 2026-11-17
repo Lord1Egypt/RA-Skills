@@ -1,42 +1,58 @@
-## Description: <br>
-Helps agents plan complex work by creating and maintaining local task_plan.md, findings.md, and progress.md files in the active project. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Implements Manus-style file-based planning for complex tasks. Creates task_plan.md, findings.md, and progress.md. Use when starting complex multi-step tasks, research projects, or any task requiring >5 tool calls.
 
-## Publisher: <br>
-[lnj22](https://clawhub.ai/user/lnj22) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lnj22](https://clawhub.ai/user/lnj22)
 
-## Use Case: <br>
-Developers and agents use this skill to preserve task plans, findings, decisions, progress, and errors across multi-step work. It is most useful for research, implementation, and troubleshooting tasks that need persistent working notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Planning files can contain task details, research notes, errors, file paths, and other sensitive project context. <br>
-Mitigation: Review task_plan.md, findings.md, and progress.md before committing, publishing, or sharing them. <br>
-Risk: The skill creates and updates local markdown planning files in the current project directory. <br>
-Mitigation: Run it only in the intended workspace and inspect generated planning files before relying on them. <br>
+## Use Case:
 
+Developers and agent operators use this skill to keep long, multi-step work organized through persistent planning, findings, and progress files in the project directory.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lnj22/organize-messy-files-planning-with-files) <br>
-- [Reference: Manus Context Engineering Principles](artifact/reference.md) <br>
-- [Examples: Planning with Files in Action](artifact/examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown planning files with concise shell command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates and checks local planning files in the active project directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata; artifact frontmatter reports 2.1.2) <br>
+Risk: Project-controlled task_plan.md content can be placed into agent context before file edits or shell commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review existing planning files before use, especially in untrusted repositories, and remove or disable the automatic planning-file hook if that behavior is not desired.
+
+Risk: Stale or incorrect planning files can steer later agent decisions during long tasks.
+
+Mitigation: Keep planning files current, mark phase status explicitly, and review the plan before major decisions.
+
+## Reference(s):
+
+- [Planning With Files skill page](https://clawhub.ai/lnj22/skills/organize-messy-files-planning-with-files)
+- [Reference: Manus Context Engineering Principles](reference.md)
+- [Examples: Planning with Files in Action](examples.md)
+- [Task plan template](templates/task_plan.md)
+- [Findings template](templates/findings.md)
+- [Progress template](templates/progress.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Files, Shell commands, Guidance]
+
+**Output Format:** [Markdown planning files with optional shell command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces and updates task_plan.md, findings.md, and progress.md in the active project directory.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

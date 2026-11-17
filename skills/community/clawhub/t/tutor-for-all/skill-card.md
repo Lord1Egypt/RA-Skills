@@ -1,38 +1,53 @@
-## Description: <br>
-Tutor-for-all helps an agent act as a personal study tutor by planning curricula and schedules, tracking progress, answering questions, and recommending learning resources. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps an agent act as a private learning tutor that creates personalized study plans, tracks progress, answers questions, and recommends learning resources.
 
-## Publisher: <br>
-[futureidiot](https://clawhub.ai/user/futureidiot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[futureidiot](https://clawhub.ai/user/futureidiot)
 
-## Use Case: <br>
-Learners use this skill to turn a learning goal into a structured plan, keep local Markdown records of progress, and get focused tutoring support during study sessions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The local Markdown study files can contain personal learning goals, schedules, progress notes, and questions. <br>
-Mitigation: Review those files periodically and avoid storing sensitive information that should not be readable by other local tools or agents with filesystem access. <br>
+## Use Case:
 
+Learners and learning-support agents use this skill to structure a topic into a curriculum, schedule study sessions, record check-ins, answer questions, and adapt the plan as progress changes.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/futureidiot/tutor-for-all) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Configuration] <br>
-**Output Format:** [Markdown study files and conversational tutoring guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Maintains local Markdown files for the learning profile, curriculum, schedule, progress log, and session notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence; artifact notes v1.0) <br>
+Risk: Learning profiles, schedules, progress records, and Q&A notes persist as local Markdown files and may contain personal learning details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid entering sensitive personal details, review the local data files periodically, and delete them when resetting or removing the skill.
+
+Risk: Learning-resource recommendations may be stale when the agent relies only on model knowledge.
+
+Mitigation: Enable web search only when current resource recommendations are needed and review recommended resources before relying on them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/futureidiot/skills/tutor-for-all)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Conversational text and Markdown files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Maintains local Markdown files for the learner profile, curriculum, schedule, progress log, and session notes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

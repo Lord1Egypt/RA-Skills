@@ -1,38 +1,50 @@
-## Description: <br>
-Use when asked what to build next, what features a repo is missing, where the opportunities are, or to suggest a direction or roadmap grounded in the code. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when asked what to build next, what features a repo is missing, where the opportunities are, or to suggest a direction or roadmap grounded in the code.
 
-## Publisher: <br>
-[escoffier-labs](https://clawhub.ai/user/escoffier-labs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[escoffier-labs](https://clawhub.ai/user/escoffier-labs)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to identify grounded product or repository opportunities, prioritize feature directions, and produce a leverage-sorted specials board from existing repo signals. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad activation wording may route ordinary planning prompts into this skill. <br>
-Mitigation: Use explicit wording when invoking or avoiding this workflow, and review suggested repo-wide opportunity analysis before authorizing follow-up edits. <br>
+## Use Case:
 
+Developers and project maintainers use this read-only skill to identify and prioritize evidence-grounded feature opportunities and roadmap directions in a repository.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/escoffier-labs/skillet-special) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown analysis board with evidence-backed opportunity cards] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only recommendations; proposals are leverage-sorted and include repo evidence, smallest version, effort, confidence, and open questions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: A default whole-repository review may cover more code than intended.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Request a specific subsystem or a branch-only review to limit scope.
+
+## Reference(s):
+
+- [Special on ClawHub](https://clawhub.ai/escoffier-labs/skills/skillet-special)
+- [Publisher profile: escoffier-labs](https://clawhub.ai/user/escoffier-labs)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Guidance]
+
+**Output Format:** [Markdown specials board with evidence-linked, prioritized recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only recommendations grounded in repository evidence; does not implement proposals.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

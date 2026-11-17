@@ -1,45 +1,55 @@
-## Description: <br>
-Google Photos (google.com). Use this skill for ANY Google Photos request: reading, creating, updating, and deleting data through the OOMOL Google Photos connector. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill to read and manage Google Photos albums and media through an OOMOL-connected account.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-External users and developers use this skill to let an agent operate Google Photos through an OOMOL-connected account, including album, media item, upload, download, picker session, and metadata workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can perform sensitive Google Photos write actions such as uploads, album updates, description changes, and picker session creation. <br>
-Mitigation: Confirm the exact payload and expected effect with the user before running any action tagged as write. <br>
-Risk: The skill includes a destructive action for deleting picker sessions. <br>
-Mitigation: Require explicit user approval for the target session before running destructive actions. <br>
-Risk: The skill can download media items from Google Photos through connector file transit. <br>
-Mitigation: Treat downloaded media as sensitive user data and verify that the requested item and destination are intended. <br>
+## Use Case:
 
+External users can use this skill to find and manage Google Photos albums and media, including items selected through Google Photos Picker. It can also upload media, update albums or descriptions, and manage picker sessions through the connected account.
 
-## Reference(s): <br>
-- [ClawHub Google Photos skill](https://clawhub.ai/oomol/oo-googlephotos) <br>
-- [OOMOL publisher profile](https://clawhub.ai/user/oomol) <br>
-- [Google Photos homepage](https://www.google.com/photos/about/) <br>
-- [OOMOL oo CLI](https://github.com/oomol-lab/oo-cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Agent actions call the OOMOL Google Photos connector and may return JSON data with execution metadata.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release metadata) <br>
+Risk: Setup uses an unverified remote installer and may install additional agent skills automatically.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the installer and oo CLI behavior before installation; check whether synchronization controls can disable automatic skill installs.
+
+Risk: The connected account can expose Google Photos data and allow changes.
+
+Mitigation: Review OOMOL's account permissions and confirm each proposed write or destructive action.
+
+## Reference(s):
+
+- [Google Photos](https://www.google.com/photos/about/)
+- [Google Photos API overview](https://developers.google.com/photos/overview/about)
+- [oo CLI](https://github.com/oomol-lab/oo-cli)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with oo CLI command examples and JSON payloads]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include results returned by Google Photos actions.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter; release metadata agrees)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

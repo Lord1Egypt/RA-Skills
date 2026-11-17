@@ -26,6 +26,7 @@ from learning_workspace_config import (  # noqa: E402
     load_config,
     pages_base_url,
 )
+from git_scope import commit_scope  # noqa: E402
 
 
 def run(args: list[str], cwd: Path) -> subprocess.CompletedProcess[str]:
@@ -104,11 +105,6 @@ def head_sha(workspace: Path) -> str:
     if result.returncode != 0:
         fail("cannot determine HEAD commit")
     return result.stdout.strip()
-
-
-def staged_changes(workspace: Path) -> bool:
-    result = git(["diff", "--cached", "--quiet"], workspace)
-    return result.returncode != 0
 
 
 def rel_paths(paths: list[Path], workspace: Path) -> list[str]:
@@ -270,21 +266,10 @@ def main() -> int:
     )
     if not add_paths:
         fail("nothing public-safe to add; site/ was not generated")
-    add_result = git(["add", *add_paths], workspace)
-    if add_result.returncode != 0:
-        fail(add_result.stderr.strip() or add_result.stdout.strip() or "git add failed")
-
-    committed = False
-    if staged_changes(workspace):
-        commit_result = git(["commit", "-m", args.message], workspace)
-        if commit_result.returncode != 0:
-            fail(commit_result.stderr.strip() or commit_result.stdout.strip() or "git commit failed")
-        committed = True
-        print(commit_result.stdout.strip())
-    else:
+    committed = commit_scope(workspace, add_paths, args.message)
+    if not committed:
         print("ok: no public site changes to commit")
 
-    sha = head_sha(workspace)
     if args.no_push:
         print("ok: --no-push set; skipping push and deployment wait")
         return 0
@@ -300,6 +285,7 @@ def main() -> int:
             fail(push_result.stderr.strip() or push_result.stdout.strip() or "git push failed")
     print(push_result.stdout.strip() or push_result.stderr.strip())
 
+    sha = head_sha(workspace)
     if committed:
         wait_for_action(owner, repo, args.workflow, branch, sha, args.timeout, args.interval)
     else:

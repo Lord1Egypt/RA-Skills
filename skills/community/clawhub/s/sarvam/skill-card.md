@@ -1,43 +1,54 @@
-## Description: <br>
-Use Sarvam AI for Indian language Text-to-Speech (TTS), Speech-to-Text (STT), Translation, and Chat. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use Sarvam AI for Indian language Text-to-Speech (TTS), Speech-to-Text (STT), Translation, and Chat.
 
-## Publisher: <br>
-[iammhk](https://clawhub.ai/user/iammhk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[iammhk](https://clawhub.ai/user/iammhk)
 
-## Use Case: <br>
-Developers and agents use this skill to call Sarvam AI for Indian-language speech generation, transcription, translation, and chat workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Selected text, prompts, and audio files are sent to Sarvam AI for processing. <br>
-Mitigation: Use the skill only with data that is allowed under Sarvam's terms and your organization's data-handling requirements. <br>
-Risk: The skill requires a Sarvam API key. <br>
-Mitigation: Provide SARVAM_API_KEY through a controlled environment variable and avoid committing or sharing the key. <br>
-Risk: Dependency provenance may matter when using the bundled local Python environment. <br>
-Mitigation: Recreate the local Python environment from trusted package sources before deployment when dependency provenance is required. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Sarvam AI API](https://api.sarvam.ai) <br>
-- [ClawHub skill page](https://clawhub.ai/iammhk/sarvam) <br>
-- [Publisher profile](https://clawhub.ai/user/iammhk) <br>
+## Use Case:
 
+Developers and agents use this skill to invoke Sarvam AI for Indian-language speech generation, audio transcription or translation, text translation, and chat from a local CLI.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown guidance with shell commands, JSON API responses, plain text chat responses, and generated audio files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SARVAM_API_KEY; text, prompts, and selected audio files are sent to Sarvam AI for processing.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Selected text, recordings, and chat prompts are sent to Sarvam AI.
+
+Mitigation: Use the skill only with content approved for Sarvam AI processing, and avoid confidential or regulated audio or text unless that service use is approved.
+
+Risk: The skill depends on SARVAM_API_KEY for API access.
+
+Mitigation: Keep SARVAM_API_KEY scoped and protected, and rotate it if exposure is suspected.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/iammhk/skills/sarvam)
+- [ClawHub publisher profile](https://clawhub.ai/user/iammhk)
+- [Sarvam AI API endpoint](https://api.sarvam.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [CLI output as plain text or JSON, with optional generated WAV audio files for text-to-speech.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SARVAM_API_KEY and sends selected text, audio, and chat prompts to Sarvam AI.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,54 @@
-## Description: <br>
-提供爆品打造的可落地指南与SOP。在开展爆品打造相关工作时调用。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+提供爆品打造的可落地指南与SOP。在开展爆品打造相关工作时调用。
 
-## Publisher: <br>
-[CodeKungfu](https://clawhub.ai/user/CodeKungfu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[codekungfu](https://clawhub.ai/user/codekungfu)
 
-## Use Case: <br>
-Business operators, product teams, and growth teams use this skill to structure blockbuster-product planning with goals, metrics, SOP steps, pilot rollout, review, and knowledge-base updates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Business guidance may be applied to dashboards, reports, or knowledge bases that contain customer or personal data. <br>
-Mitigation: Review outputs before operational use, follow applicable local laws and platform rules, and apply personal-information protection and data-minimization practices. <br>
-Risk: Product-growth recommendations may rely on incomplete goals, metric definitions, or rollout assumptions. <br>
-Mitigation: Define primary and guardrail metrics, run a small-traffic pilot, review results, and update the SOP and knowledge base before standardizing the process. <br>
+## Use Case:
 
+Business, product, and operations teams use this skill to plan and run blockbuster-product workflows, including goals, SOPs, pilots, KPI review, and reusable launch materials.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Configuration instructions] <br>
-**Output Format:** [Markdown guidance with SOP steps, checklists, metrics, and risk notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code, automation, credential handling, or tool access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence) <br>
+Risk: Product launch guidance can involve personal or regulated business data in dashboards and knowledge bases.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Minimize personal and regulated data, define metric access controls, and follow applicable local regulations and platform rules.
+
+Risk: SOP, KPI, or pilot recommendations may be applied without validating business assumptions.
+
+Mitigation: Review proposed scope, metrics, and rollout decisions with accountable owners before operational use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/codekungfu/skills/blockbuster-product)
+- [ClawHub publisher profile](https://clawhub.ai/user/codekungfu)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Configuration instructions]
+
+**Output Format:** [Markdown guidance with SOP steps, checklist items, KPI definitions, and review structure]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution, network access, credential handling, or persistence behavior is indicated by the security evidence.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

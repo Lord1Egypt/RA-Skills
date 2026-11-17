@@ -1,40 +1,52 @@
-## Description: <br>
-Book piano-lessons services through Lokuli MCP for users who need to find and book piano-lessons services. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Book piano-lesson services through Lokuli MCP by searching providers, checking availability, and creating bookings.
 
-## Publisher: <br>
-[edwardrodriguez703-design](https://clawhub.ai/user/edwardrodriguez703-design) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[edwardrodriguez703-design](https://clawhub.ai/user/edwardrodriguez703-design)
 
-## Use Case: <br>
-External users can use this skill to search for piano lesson providers, check availability, and create a booking through Lokuli's MCP server. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can send personal contact information when creating a booking. <br>
-Mitigation: Confirm the customer's name, email, and phone number before allowing booking creation. <br>
-Risk: A booking may involve provider, time, price, or cancellation terms the user has not reviewed. <br>
-Mitigation: Review the provider, time, price, and cancellation terms when shown before completing the booking. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/edwardrodriguez703-design/book-piano-lessons) <br>
-- [Lokuli MCP endpoint](https://lokuli.com/mcp/sse) <br>
+## Use Case:
 
+External users use the skill to find piano-lesson services through Lokuli, check appointment availability, and create a booking with customer contact details.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, API calls] <br>
-**Output Format:** [Markdown with JSON-RPC examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses Lokuli MCP tools for search, availability checks, and booking creation.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can send customer contact details to an external booking service.
+
+Mitigation: Confirm the customer name, email, phone number, provider, and service before sending create_booking.
+
+Risk: The skill can create a booking without a clear final confirmation.
+
+Mitigation: Require explicit user confirmation of the provider, service, time, price or fees if available, and cancellation terms before creating a booking.
+
+## Reference(s):
+
+- [Lokuli MCP Endpoint](https://lokuli.com/mcp/sse)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, API Calls, JSON]
+
+**Output Format:** [Markdown instructions with JSON-RPC request examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user-provided location and booking contact details.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

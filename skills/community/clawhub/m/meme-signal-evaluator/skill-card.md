@@ -1,41 +1,53 @@
-## Description: <br>
-Evaluates meme tokens with a six-dimensional scoring model and supports configurable strategy matching, watchlist tracking, and paper-trading simulation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+6-dimensional scoring engine for meme tokens with automated paper trading simulation.
 
-## Publisher: <br>
-[ls569333469](https://clawhub.ai/user/ls569333469) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ls569333469](https://clawhub.ai/user/ls569333469)
 
-## Use Case: <br>
-External developers and trading-system builders use this skill to ask an agent to score meme tokens, compare signals, configure paper-trading strategies, and track simulated outcomes. Its outputs are speculative informational signals, not financial advice or real-money trade execution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Meme-token buy and sell signals can be mistaken for financial advice or used for real-money trading. <br>
-Mitigation: Treat outputs as speculative informational analysis and keep the workflow limited to paper trading unless separate human review and explicit real-money trading controls are added. <br>
-Risk: Token scores may be misleading when market data is stale, incomplete, or manipulated. <br>
-Mitigation: Review the underlying signal inputs, audit-risk flags, liquidity, tax, and holder data before acting on any recommendation. <br>
+## Use Case:
 
+External users and developers use this skill to evaluate meme tokens across configurable market, social, trend, inflow, whale, and hype signals, then simulate strategy matching and paper trades.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ls569333469/meme-signal-evaluator) <br>
-- [Publisher profile](https://clawhub.ai/user/ls569333469) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown or structured text with scoring logic, strategy settings, simulated trade records, and implementation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include token scores, buy/sell signal rationale, watchlist states, paper-trade entry and exit details, and performance metrics.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata; artifact frontmatter lists 1.0) <br>
+Risk: Meme-token scoring signals can be speculative, inaccurate, incomplete, or mistaken for financial advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as informational only and independently verify market data, token risk, and trading decisions before any real transaction.
+
+Risk: Scheduler or paper-trading workflows could be mistaken for an autonomous real-trading pipeline.
+
+Mitigation: Keep scheduling, paper-trading, and any transition to real execution under explicit user control.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ls569333469/skills/meme-signal-evaluator)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Configuration, Guidance]
+
+**Output Format:** [Markdown with scoring logic, strategy configuration guidance, and paper-trading workflow descriptions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces informational scoring and simulated trading guidance; not financial advice.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

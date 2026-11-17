@@ -1,0 +1,46 @@
+{
+  "name": "psyseal-scan",
+  "version": "0.3.3",
+  "description": "Offline, read-only scan of your AI agent: cost of heartbeats and scheduled tasks, plaintext secrets, planted or bloated memory. CLI and MCP server. No dependencies, no network.",
+  "mcpName": "io.github.psyseal/psyseal-scan",
+  "type": "module",
+  "license": "MIT-0",
+  "author": "Psyseal <hola@psyseal.com>",
+  "homepage": "https://psyseal.com",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/psyseal/psyseal-scan.git"
+  },
+  "bugs": {
+    "url": "https://github.com/psyseal/psyseal-scan/issues"
+  },
+  "bin": {
+    "psyseal-scan": "scripts/psyseal-scan.mjs"
+  },
+  "files": [
+    "scripts/",
+    "src/",
+    "SKILL.md",
+    "README.md",
+    "LICENSE-MIT0"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "keywords": [
+    "ai-agent",
+    "openclaw",
+    "hermes-agent",
+    "nanobot",
+    "picoclaw",
+    "zeroclaw",
+    "nanoclaw",
+    "mcp",
+    "mcp-server",
+    "agent-skills",
+    "secrets",
+    "prompt-injection",
+    "token-cost",
+    "security"
+  ]
+}

@@ -1,40 +1,48 @@
-## Description: <br>
-AI Task Companion helps users describe a task, identify the task type, recommend suitable AI tool combinations, and guide or assist execution across work, study, creative, and everyday scenarios. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI Task Companion helps users describe a task, identify the task type, choose suitable AI tool combinations, and receive step-by-step guidance for execution across work, study, creation, and daily-life scenarios.
 
-## Publisher: <br>
-[zhanqirong](https://clawhub.ai/user/zhanqirong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[zhanqirong](https://clawhub.ai/user/zhanqirong)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users use this skill to translate a plain-language task request into an AI tool recommendation, compare alternative tool combinations, and get concrete prompts or execution steps.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Recommended external tools may send task content outside the current agent environment or create account, privacy, cost, or website-policy effects.
+
+Mitigation: Before execution, confirm which tool will be used, what content will be sent, and whether browser automation, scraping, account access, or paid services are involved.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users and employees use this skill to choose AI tools for common tasks, compare recommended options, receive concrete usage steps, and proceed with execution after confirming the chosen approach. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [guidance, markdown, shell commands, code]
 
-## Known Risks and Mitigations: <br>
-Risk: A recommended option may share information with external tools or affect websites, accounts, generated files, or public content. <br>
-Mitigation: Confirm the selected tool, information to be shared, and expected external effects before execution. <br>
-Risk: Tool recommendations or usage steps may be incomplete or mismatched to the user's actual constraints. <br>
-Mitigation: Review the proposed plan against task requirements, privacy needs, budget, format, and quality expectations before relying on it. <br>
+**Output Format:** [Markdown guidance with structured recommendations, prompts, and optional execution steps]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhanqirong/ai-task-companion) <br>
+**Other Properties Related to Output:** [The skill may recommend or coordinate external tools selected for the user's task.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown response with task classification, recommended tool options, usage steps, expected result, and a confirmation prompt.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include suggested external tools and prompts; execution should wait for explicit user confirmation.] <br>
+1.0.0 (source: server-resolved release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact changelog) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

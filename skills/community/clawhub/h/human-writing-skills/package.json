@@ -1,0 +1,37 @@
+{
+  "name": "dsh-advanced-human-writing",
+  "version": "0.3.2",
+  "description": "Natural AI-assisted writing for DeepSeek Harness, with multilingual editing, chunked long-form collaboration, and continuity review.",
+  "type": "module",
+  "main": "plugins/deepseek-harness/index.js",
+  "exports": {
+    ".": "./plugins/deepseek-harness/index.js",
+    "./package.json": "./package.json"
+  },
+  "license": "MIT",
+  "icon": "assets/icon.webp",
+  "repository": {"type": "git", "url": "git+https://github.com/whh110112/human-writing-skills.git"},
+  "homepage": "https://github.com/whh110112/human-writing-skills/tree/main/plugins/deepseek-harness",
+  "bugs": {"url": "https://github.com/whh110112/human-writing-skills/issues"},
+  "keywords": ["dsh-plugin", "deepseek-harness", "writing", "fiction", "academic-writing", "reports", "humanizer", "mcp"],
+  "engines": {"node": "^22.19.0 || >=24.0.0"},
+  "files": [
+    "plugins/deepseek-harness/index.js", "plugins/deepseek-harness/adapter.js",
+    "plugins/deepseek-harness/cordis.patch.yml", "plugins/deepseek-harness/README.md",
+    "plugins/deepseek-harness/README.zh-CN.md", "plugins/deepseek-harness/examples/*.json",
+    "plugins/deepseek-harness/DEMO.md", "plugins/deepseek-harness/RELEASE.md",
+    "humanwriting/*.py", "skills/*.md", "assets/logo.png", "assets/icon.webp", "LICENSE", "SKILL.md", "README.md", "README.zh-CN.md"
+  ],
+  "scripts": {"test": "node --test plugins/deepseek-harness/tests/*.test.js"},
+  "dsh": {"bundle": {"patch": "./plugins/deepseek-harness/cordis.patch.yml"}},
+  "peerDependencies": {
+    "@deepseek-ai/dsh-mcp-client": ">=0.2.0-rc.2 <0.4.0 || >=0.2.0 <0.4.0",
+    "@deepseek-ai/dsh-system-prompt": ">=0.2.0-rc.2 <0.4.0 || >=0.2.0 <0.4.0"
+  },
+  "devDependencies": {
+    "@deepseek-ai/cordis": "4.0.5",
+    "@deepseek-ai/dsh-tools": "0.2.1-rc.2",
+    "@deepseek-ai/dsh-mcp-client": "0.2.1-rc.2",
+    "@deepseek-ai/dsh-system-prompt": "0.2.1-rc.2"
+  }
+}

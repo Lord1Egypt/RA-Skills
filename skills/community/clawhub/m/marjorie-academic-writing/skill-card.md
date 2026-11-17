@@ -1,40 +1,48 @@
-## Description: <br>
-Provides expert academic writing support for scholarly papers, literature reviews, research methods, and thesis writing, adhering to strict academic standards. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides expert academic writing support for scholarly papers, literature reviews, research methods, and thesis writing, adhering to strict academic standards.
 
-## Publisher: <br>
-[marjoriebroad](https://clawhub.ai/user/marjoriebroad) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[marjoriebroad](https://clawhub.ai/user/marjoriebroad)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Students, researchers, and academic writers use this skill to draft and refine scholarly papers, literature reviews, research-methods sections, theses, and citation-heavy academic content.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Academic citations and source quality may still require verification before the output is used.
+
+Mitigation: Verify that cited sources are real, academic, relevant, and correctly formatted before relying on the writing.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users, employees, and developers can use this skill to draft and refine scholarly papers, literature reviews, research-methods content, theses, and citation-focused academic Markdown. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Academic-writing output can include incorrect, weak, or unverifiable citations even when the skill requests real academic sources. <br>
-Mitigation: Manually verify citation existence, source quality, citation order, and reference formatting before using the output in scholarly work. <br>
+**Output Format:** [Markdown, with core responses wrapped in <ama-doc> tags when producing academic content]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [Academic Writing skill page](https://clawhub.ai/marjoriebroad/marjorie-academic-writing) <br>
-- [Publisher profile](https://clawhub.ai/user/marjoriebroad) <br>
-- [Denoising Diffusion Probabilistic Models citation example](https://arxiv.org/abs/2006.11239) <br>
+**Other Properties Related to Output:** [May include numbered citations, reference lists, Markdown tables, and Mermaid diagrams when appropriate.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown content wrapped in <ama-doc> tags, with numbered academic citations and a references section when sources are used] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Markdown tables and Mermaid diagrams when they improve academic presentation.] <br>
+1.0.0 (source: frontmatter and server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

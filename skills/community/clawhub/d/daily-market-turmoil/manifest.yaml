@@ -1,0 +1,15 @@
+name: daily-market-turmoil
+version: 1.2.0
+displayName: 每日动荡 - 全球股市资讯日报
+description: 每日收集全球股市资讯（A股/港股/美股/欧股/亚太），国内国外各至少5条，生成「每日动荡+日期」Markdown报告，重点突出影响当日市场变动的关键消息，并包含「昨日总结+今日预期」两个核心分析板块。
+author: q1a2z3
+categories:
+  - finance
+  - research
+  - news
+triggers:
+  - 每日动荡
+  - 每日股市资讯
+  - 全球行情速览
+  - 市场变动分析
+license: MIT

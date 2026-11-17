@@ -1,49 +1,63 @@
-## Description: <br>
-Android native application development and UI design guide. Covers Material Design 3, Kotlin/Compose development, project configuration, accessibility, and build troubleshooting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Android native application development and UI design guide covering Material Design 3, Kotlin and Compose development, project configuration, accessibility, and build troubleshooting.
 
-## Publisher: <br>
-[roger0808](https://clawhub.ai/user/roger0808) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[roger0808](https://clawhub.ai/user/roger0808)
 
-## Use Case: <br>
-Developers and engineers use this skill as a reference for building or reviewing Android native apps, including Kotlin/Compose structure, Material Design 3 UI, accessibility, performance, testing, and build troubleshooting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Gradle and adb commands may change or execute actions against a real Android project or connected device. <br>
-Mitigation: Review commands before running them and test changes on a branch or backup project. <br>
-Risk: Generated examples or logs could expose signing keys, API keys, or other secrets if copied into a real project without review. <br>
-Mitigation: Keep secrets out of generated examples and logs, and verify signing and API key handling before use. <br>
+## Use Case:
 
+Developers and engineers use this skill to guide Android native app setup, Kotlin and Jetpack Compose implementation, Material Design 3 UI decisions, accessibility, privacy, testing, and build troubleshooting.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/roger0808/android-native-dev-bak) <br>
-- [Accessibility Guidelines](references/accessibility.md) <br>
-- [Adaptive Screens Guidelines](references/adaptive-screens.md) <br>
-- [Design Style Guide](references/design-style-guide.md) <br>
-- [Functional Requirements](references/functional-requirements.md) <br>
-- [Motion System Guidelines](references/motion-system.md) <br>
-- [Performance & Stability Guidelines](references/performance-stability.md) <br>
-- [Privacy & Security Guidelines](references/privacy-security.md) <br>
-- [Testing](references/testing.md) <br>
-- [Visual Design Guidelines](references/visual-design.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Kotlin, Gradle, XML, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance; no executable installer or hidden data-handling behavior found in security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: A sample log line includes a userId, which could encourage logging sensitive or linkable identifiers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid copying identifier-bearing logging examples; follow the privacy and security reference and keep sensitive data out of logs.
+
+Risk: Gradle and device install command examples may affect a local Android project or connected device if run unreviewed.
+
+Mitigation: Review dependency versions, build variants, and install targets before allowing an agent to run generated commands.
+
+## Reference(s):
+
+- [Accessibility Guidelines](references/accessibility.md)
+- [Adaptive Screens Guidelines](references/adaptive-screens.md)
+- [Design Style Guide](references/design-style-guide.md)
+- [Functional Requirements](references/functional-requirements.md)
+- [Motion System Guidelines](references/motion-system.md)
+- [Performance & Stability Guidelines](references/performance-stability.md)
+- [Privacy & Security Guidelines](references/privacy-security.md)
+- [Testing](references/testing.md)
+- [Visual Design Guidelines](references/visual-design.md)
+- [Material Design 3 Guidelines](https://material.io)
+- [Android Developer Documentation](https://developer.android.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline code and shell command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only guidance; command examples should be reviewed before execution in a project.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

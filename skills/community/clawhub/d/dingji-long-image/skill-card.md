@@ -1,41 +1,54 @@
-## Description: <br>
-DingJi course long-image generator based on six-step teaching design that generates higher-math knowledge cards. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Chinese higher-math course long images from chapter content using a six-step instructional design workflow.
 
-## Publisher: <br>
-[daigxok](https://clawhub.ai/user/daigxok) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[daigxok](https://clawhub.ai/user/daigxok)
 
-## Use Case: <br>
-Educators, tutors, and external learners use this skill to turn higher-math chapters or selected knowledge points into structured long-image study cards. It supports chapter summaries that combine learning goals, concepts, formulas, examples, common errors, mnemonics, and follow-up thinking prompts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated course images may contain private student information, confidential course material, or sensitive branding if those details are included in the prompt or source content. <br>
-Mitigation: Avoid including sensitive or confidential material unless local saving and platform upload for a shareable link are acceptable. <br>
-Risk: Generated PNGs are saved locally and uploaded to obtain download links. <br>
-Mitigation: Install and use the skill only when that storage and sharing behavior fits the intended course-material workflow. <br>
+## Use Case:
 
+Educators and course creators use this skill to turn higher-math chapters or selected knowledge points into structured long-image study cards covering goals, definitions, formulas, examples, common mistakes, and mnemonics.
 
-## Reference(s): <br>
-- [Chapter Templates Reference](references/chapter-templates.md) <br>
-- [ClawHub skill page](https://clawhub.ai/daigxok/dingji-long-image) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Text, Guidance] <br>
-**Output Format:** [PNG long-image file with a shareable download link and brief text or Markdown status] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Images are described as 1440px-wide PNGs with adaptive height; generated images are saved locally and uploaded for sharing when the platform upload flow is available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated images may include private student data, proprietary course content, or sensitive names if those details are included in prompts and then uploaded for sharing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not include sensitive or proprietary details unless local storage and external upload are acceptable for the intended use.
+
+Risk: Generated higher-math content and rendered formulas may be incorrect or unsuitable for instruction without review.
+
+Mitigation: Review mathematical accuracy, LaTeX rendering, and chapter coverage before publishing or using the image with learners.
+
+## Reference(s):
+
+- [Chapter Templates Reference](references/chapter-templates.md)
+- [ClawHub Skill Page](https://clawhub.ai/daigxok/skills/dingji-long-image)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Text, Links, Guidance]
+
+**Output Format:** [PNG image file with a text download link and concise status summary]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are saved locally and may be uploaded to obtain a download link.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

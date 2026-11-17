@@ -18,6 +18,7 @@ from datetime import date, datetime
 from pathlib import Path
 
 from core.common import WORKSPACE_ROOT, load_json, save_json, resolve_path
+from core.safe_fs import check_directory, iter_files, read_text, safe_exists
 
 DEFAULT_MEMORY_ROOT = WORKSPACE_ROOT / "memory"
 DEFAULT_COLD_ROOT = DEFAULT_MEMORY_ROOT / "cold"
@@ -31,11 +32,11 @@ def resolve_roots(arg: str | None) -> tuple[Path, Path]:
     behavior, which needs the parent memory/ directory.
     """
     if not arg:
-        return DEFAULT_MEMORY_ROOT, DEFAULT_COLD_ROOT
-    root = resolve_path(arg)
-    if root.name == "cold" or (root / "tags.json").exists():
+        return check_directory(DEFAULT_MEMORY_ROOT, allow_missing=True), check_directory(DEFAULT_COLD_ROOT, allow_missing=True)
+    root = check_directory(resolve_path(arg), allow_missing=True)
+    if root.name == "cold" or safe_exists(root / "tags.json"):
         return root.parent, root
-    return root, root / "cold"
+    return root, check_directory(root / "cold", allow_missing=True)
 
 
 def load_state(path: Path) -> dict:
@@ -79,7 +80,7 @@ def parse_iso_to_date(value: str | None) -> date | None:
 
 
 def scan_notes(memory_root: Path, last_archive_date: date | None) -> list[Path]:
-    all_notes = sorted(memory_root.glob("????-??-??*.md"))
+    all_notes = iter_files(memory_root, "????-??-??*.md", recursive=False)
     if last_archive_date is None:
         return all_notes
 
@@ -102,11 +103,12 @@ def compute_cold_stats(cold_root: Path) -> tuple[dict, int]:
     due = 0
     today = date.today().isoformat()
 
-    if not tags_path.exists():
+    if not safe_exists(tags_path):
         return counts, due
 
+    content = read_text(tags_path)
     try:
-        data = json.loads(tags_path.read_text(encoding="utf-8"))
+        data = json.loads(content)
         # Support both the current {"notes": [...]} format and the legacy bare-array format.
         if isinstance(data, dict):
             notes = data.get("notes", []) if isinstance(data.get("notes"), list) else []
@@ -114,7 +116,7 @@ def compute_cold_stats(cold_root: Path) -> tuple[dict, int]:
             notes = data
         else:
             notes = []
-    except Exception:
+    except json.JSONDecodeError:
         return counts, due
 
     if not isinstance(notes, list):

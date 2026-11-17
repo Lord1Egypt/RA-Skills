@@ -1,41 +1,58 @@
-## Description: <br>
-Installs and manages an OpenClaw Weixin connection through admin chat commands, including QR refresh, status checks, and cancellation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Installs and manages an OpenClaw Weixin connection through admin chat commands, including QR refresh, status checks, and pairing cancellation.
 
-## Publisher: <br>
-[donotwannatry](https://clawhub.ai/user/donotwannatry) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[donotwannatry](https://clawhub.ai/user/donotwannatry)
 
-## Use Case: <br>
-OpenClaw administrators use this skill in private admin chats to install and enable the Tencent WeChat plugin, generate or refresh login QR codes, check pairing state, and cancel an active pairing task. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: QR code exposure could allow the wrong party to link a WeChat account. <br>
-Mitigation: Use only in a private administrator chat and do not expose QR outputs in groups. <br>
-Risk: The workflow installs and enables a WeChat plugin and can briefly interrupt the OpenClaw gateway after connection. <br>
-Mitigation: Install only if you administer the OpenClaw instance, trust the Tencent WeChat plugin, and can tolerate a short gateway interruption. <br>
+## Use Case:
 
+OpenClaw administrators use this skill in private admin chats to install or enable the Weixin channel plugin, start pairing, refresh or inspect QR login state, and cancel pairing tasks.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/donotwannatry/weixin-plugin-installer) <br>
-- [Installation Guide](artifact/INSTALL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown responses with JSON status handling and optional MEDIA file references.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce QR PNG, text, and JSON artifacts under the skill .out directory and may schedule a delayed OpenClaw gateway restart after confirmed login.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.3 (source: server release metadata) <br>
+Risk: The workflow performs high-impact local actions, including OpenClaw plugin state changes and a gateway restart after successful pairing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run it only on a controlled admin host where gateway interruptions and plugin changes are expected.
+
+Risk: The workflow writes QR and login artifacts that may expose pairing state on shared systems.
+
+Mitigation: Use it only where file permissions and host access are controlled, and avoid shared systems until artifact handling is hardened.
+
+Risk: The scanner guidance calls out implementation concerns around file permissions, PID validation, and restart scheduling.
+
+Mitigation: Review those areas before deployment and validate the Weixin plugin version before use.
+
+## Reference(s):
+
+- [Weixin Plugin Installer on ClawHub](https://clawhub.ai/donotwannatry/skills/weixin-plugin-installer)
+- [INSTALL.md](artifact/INSTALL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration]
+
+**Output Format:** [JSON script results interpreted as concise chat responses, with optional MEDIA path output or Markdown QR fallback.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires bash, python3, openclaw, and an OpenClaw host where the administrator can install plugins and manage gateway restarts.]
+
+## Skill Version(s):
+
+0.1.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

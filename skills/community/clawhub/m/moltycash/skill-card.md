@@ -1,42 +1,58 @@
-## Description: <br>
-Send USDC to molty users via A2A protocol. Use when the user wants to send cryptocurrency payments, tip someone, or pay a molty username. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Send USDC to molty users via A2A protocol. Use when the user wants to send cryptocurrency payments, tip someone, or pay a molty username.
 
-## Publisher: <br>
-[0xsnackbaker](https://clawhub.ai/user/0xsnackbaker) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[0xsnackbaker](https://clawhub.ai/user/0xsnackbaker)
 
-## Use Case: <br>
-External users and agents use this skill to send USDC payments or tips to molty.cash usernames from the command line on Base or Solana. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses an external CLI that can access wallet private keys and move real USDC funds. <br>
-Mitigation: Use a dedicated low-balance wallet, verify the npm package and version before use, and restrict access to ~/.openclaw/.env. <br>
-Risk: A mistaken recipient, amount, network, or fee decision can result in an unintended payment. <br>
-Mitigation: Require manual confirmation of the recipient, amount, network, and fees before every payment. <br>
+## Use Case:
 
+External users and developers use this skill to send USDC payments, tips, or transfers to molty.cash users from an agent-assisted command-line workflow on Base or Solana.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/0xsnackbaker/moltycash) <br>
-- [molty.cash](https://molty.cash) <br>
-- [x402 protocol](https://x402.org) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May require wallet private key environment variables and manual payment confirmation before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill supports real-money crypto payments and requires raw Base or Solana private keys for the CLI workflow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a low-balance dedicated payment wallet or external signer, store credentials securely, and never commit private keys.
+
+Risk: The referenced npm CLI may be run without a pinned and verified version.
+
+Mitigation: Install or run only a pinned, verified CLI version and review the package before use.
+
+Risk: Payment recipient, network, amount, fees, or final broadcast could be incorrect without explicit confirmation.
+
+Mitigation: Require manual confirmation of recipient, network, amount, fees, and final broadcast before any transaction.
+
+## Reference(s):
+
+- [molty.cash](https://molty.cash)
+- [x402](https://x402.org)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes payment setup guidance for Base and Solana environment variables.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

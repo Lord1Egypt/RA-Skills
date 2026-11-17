@@ -1,43 +1,54 @@
-## Description: <br>
-Run comprehensive SEO audits on websites and generate scored, prioritized Markdown reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run comprehensive SEO audits on any website and generate actionable reports.
 
-## Publisher: <br>
-[Johnnywang2001](https://clawhub.ai/user/Johnnywang2001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[johnnywang2001](https://clawhub.ai/user/johnnywang2001)
 
-## Use Case: <br>
-Developers, marketers, and site operators use this skill to crawl authorized websites, check technical, on-page, content, and link SEO signals, and produce prioritized fixes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The audit makes live web requests to the target site and discovered internal pages. <br>
-Mitigation: Use it only on domains the user owns or is authorized to assess, and keep crawl depth and maximum pages modest. <br>
-Risk: Targets can include localhost or private-network URLs if a user supplies them. <br>
-Mitigation: Avoid localhost and private-network targets unless that access is intentional and authorized. <br>
-Risk: A user-specified report path can overwrite an existing file. <br>
-Mitigation: Choose a new report filename or confirm overwrite intent before using the output path. <br>
+## Use Case:
 
+Developers, marketers, and site operators use this skill to audit website technical SEO, on-page optimization, content quality, and link health, then produce prioritized recommendations.
 
-## Reference(s): <br>
-- [SEO Audit Report on ClawHub](https://clawhub.ai/Johnnywang2001/seo-audit-report) <br>
-- [Complete SEO Audit Checklist](references/seo-checklist.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown report with scores, issue lists, and recommendations; optional command-line status text during crawling.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports can be printed to standard output or written to a user-specified Markdown file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can make unrestricted live HTTP requests from the agent environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only on websites you own or are authorized to test, and avoid private or internal URLs.
+
+Risk: The report output option can overwrite files at the selected path.
+
+Mitigation: Choose report output paths carefully and review them before execution.
+
+## Reference(s):
+
+- [Complete SEO Audit Checklist](references/seo-checklist.md)
+- [ClawHub Skill Page](https://clawhub.ai/johnnywang2001/skills/seo-audit-report)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown SEO audit report with scores, issue lists, and recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write a Markdown report file when an output path is provided.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,47 +1,68 @@
-## Description: <br>
-JobClaw automates job search workflows by searching LinkedIn and Indeed, scoring postings against a user's profile, and maintaining a local CSV tracker. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+JobClaw automates job searches across LinkedIn and Indeed, scores postings against a user's profile, and maintains a local CSV tracker.
 
-## Publisher: <br>
-[weixijia](https://clawhub.ai/user/weixijia) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[weixijia](https://clawhub.ai/user/weixijia)
 
-## Use Case: <br>
-External users and agents use JobClaw to configure job-search preferences, run scheduled or on-demand searches, score job postings, track results, and send optional notifications. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Scheduled workflows can modify local job records through automatic archive behavior. <br>
-Mitigation: Review archive behavior before enabling scheduling, run archive commands in dry-run mode first, and enable committed archiving only after confirming it matches user expectations. <br>
-Risk: Notification configuration can contain Telegram or OpenClaw credentials. <br>
-Mitigation: Keep config.json private, leave notifications disabled unless needed, and avoid storing tokens in shared or synced workspaces. <br>
-Risk: Dependency setup may attempt system-wide pip changes. <br>
-Mitigation: Install dependencies inside a virtual environment rather than allowing system-wide package changes. <br>
-Risk: The security evidence flags the scheduled runner as unsafe until dry-run behavior and archive URL validation are corrected. <br>
-Mitigation: Avoid enabling scheduled runs until those workflow risks have been reviewed and resolved. <br>
+## Use Case:
 
+External users and developers use JobClaw to configure automated job searches, rank ML/AI job postings against a personal profile, track results in CSV, and receive optional daily summaries.
 
-## Reference(s): <br>
-- [ClawHub JobClaw Release Page](https://clawhub.ai/weixijia/job-claw) <br>
-- [Commands Reference](references/commands.md) <br>
-- [Keyword Reference](references/keywords.md) <br>
-- [Screening Guide](references/screening_guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, JSON configuration snippets, and CSV-oriented job-tracker records.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write local config, CSV tracker, logs, archive CSV, and optional notification messages when its commands are executed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.20260329-142ceea (source: server release evidence) <br>
+Risk: Scheduled local automation searches job sites, writes CSV and log files, and archives records.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review configuration, JOBCLAW_DIR, scheduler settings, and dry-run output before enabling recurring runs or committed archiving.
+
+Risk: Remote job data and arbitrary URLs can influence local processing.
+
+Mitigation: Fix the URL-validation issue identified in the security guidance and review job URLs before enabling URL checks or manual job intake.
+
+Risk: Notification paths may expose tokens or job-search summaries through Telegram or OpenClaw.
+
+Mitigation: Store Telegram tokens in a secret store or locked-down config file, and keep notifications disabled unless needed.
+
+Risk: Dependency setup can install unpinned packages and may use --break-system-packages.
+
+Mitigation: Use a virtual environment, pin dependencies, and avoid --break-system-packages before routine use.
+
+Risk: The daily runner uses heredoc-based command invocation flagged by the security guidance.
+
+Mitigation: Fix the heredoc injection issue before enabling scheduled execution.
+
+## Reference(s):
+
+- [JobClaw Commands Reference](references/commands.md)
+- [JobClaw Keyword Reference](references/keywords.md)
+- [JobClaw Screening Guide](references/screening_guide.md)
+- [ClawHub JobClaw Release Page](https://clawhub.ai/weixijia/skills/job-claw)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Files, Guidance]
+
+**Output Format:** [Markdown responses with inline shell and Python commands, JSON configuration, CSV job records, and notification text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses local files under JOBCLAW_DIR or ~/Documents/JobClaw; can perform network searches and optional outbound notifications.]
+
+## Skill Version(s):
+
+1.0.20260329-142ceea (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

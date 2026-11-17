@@ -1,43 +1,55 @@
-## Description: <br>
-Edge.Trade provides on-chain trading data and order management for token research, pair inspection, wallet analysis, orders, and price alerts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when user asks about crypto tokens, trading, portfolios, or price alerts.
 
-## Publisher: <br>
-[lexomis](https://clawhub.ai/user/lexomis) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lexomis](https://clawhub.ai/user/lexomis)
 
-## Use Case: <br>
-External users and developers use this skill to connect an agent to Edge.Trade for crypto token discovery, pair metrics, wallet and portfolio analysis, price alerts, and order management. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can place orders, cancel orders, manage wallet-related flows, and subscribe to alerts through a real crypto trading integration. <br>
-Mitigation: Use a limited API key where possible and require manual confirmation before every order, cancellation, strategy, wallet-management action, or alert subscription. <br>
-Risk: The skill requires sensitive Edge.Trade API credentials. <br>
-Mitigation: Store the API key only in a secret configuration path and avoid exposing it in prompts, logs, or generated examples. <br>
-Risk: The security verdict is suspicious because consent boundaries for trading and wallet actions are not clear. <br>
-Mitigation: Install only for intentional Edge.Trade crypto workflows and avoid invoking it for general investing education or casual token questions. <br>
+## Use Case:
 
+External users and developers use this skill to access on-chain trading data, inspect tokens and pairs, analyze wallets, manage orders, and configure price alerts through the Edge MCP server.
 
-## Reference(s): <br>
-- [Edge.Trade ClawHub page](https://clawhub.ai/lexomis/edge) <br>
-- [Edge.Trade agent documentation](https://edge-trade.gitbook.io/agents) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with tool, configuration, and workflow guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce trading workflow guidance and MCP tool invocation instructions that require sensitive API credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-v4478.0.0 (source: server release evidence) <br>
+Risk: The skill can grant an externally downloaded MCP server access to an Edge API key with order or wallet authority.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after trusting the Edge npm package and publisher, restrict the API key to minimum required permissions and limits, and use safer secret-passing controls where available.
+
+Risk: Trading and wallet operations may affect real funds.
+
+Mitigation: Require explicit user confirmation for every order or wallet action and review market, token, pair, and wallet data before execution.
+
+## Reference(s):
+
+- [Edge Agent Docs](https://edge-trade.gitbook.io/agents)
+- [Edge.Trade ClawHub Skill Page](https://clawhub.ai/lexomis/skills/edge)
+- [lexomis ClawHub Publisher Profile](https://clawhub.ai/user/lexomis)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with tool, command, and configuration details]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose market analysis, wallet analysis, alert configuration, and order-management actions that require user review before execution.]
+
+## Skill Version(s):
+
+v4478.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

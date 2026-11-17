@@ -1,40 +1,52 @@
-## Description: <br>
-Analyze test coverage gaps by comparing test files against source modules to identify untested code paths and critical functions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze test coverage gaps by comparing test files against source modules to identify untested code paths and critical functions.
 
-## Publisher: <br>
-[jk625x](https://clawhub.ai/user/jk625x) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[jk625x](https://clawhub.ai/user/jk625x)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill to compare source modules with tests, identify untested public paths, and prioritize coverage gaps by risk.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill requests shell capability even though the inspected instructions describe a coverage-reporting workflow that mainly requires reading project files.
+
+Mitigation: Install only if shell access is acceptable, or ask the publisher to remove shell permission and keep the skill to read-only filesystem access.
+
+Risk: Coverage-gap findings may be incomplete when a project uses test naming conventions or exported APIs outside the documented patterns.
+
+Mitigation: Review the generated report against the repository's actual test runner, coverage configuration, and module conventions before acting on the suggested gaps.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use this skill to compare source modules with test files, identify untested exports and orphaned tests, and prioritize coverage gaps by risk. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill relies on reading local source and test files and may use shell-based inspection. <br>
-Mitigation: Review the proposed inspection commands and restrict execution to repositories where source and test files may be read. <br>
-Risk: Coverage gap reports can miss behavior that is tested indirectly or recommend tests for intentionally untested internals. <br>
-Mitigation: Validate the report against project testing policy and prioritize public APIs, data mutation paths, and error handling before acting on recommendations. <br>
+**Output Format:** [Markdown coverage gap report]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jk625x/ljkhlk) <br>
+**Other Properties Related to Output:** [Sorted by risk level with source files, untested exports, and suggested test outlines.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, guidance] <br>
-**Output Format:** [Markdown coverage gap report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Sorted by risk level with source files, untested exports, and suggested test outlines.] <br>
+1.0.4 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

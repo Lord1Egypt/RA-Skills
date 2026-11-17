@@ -1,44 +1,59 @@
-## Description: <br>
-Scan ClawHub skills for security vulnerabilities BEFORE installing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scan ClawHub skills for security vulnerabilities before installing, including prompt injections, malware payloads, hardcoded secrets, and other threats.
 
-## Publisher: <br>
-[kenswj](https://clawhub.ai/user/kenswj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kenswj](https://clawhub.ai/user/kenswj)
 
-## Use Case: <br>
-Developers and agent operators use this skill to stage ClawHub skill installs, scan the staged content with mcp-scan, and install only when no security issues are detected. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The shell wrapper can modify the OpenClaw skills directory and replace existing skills when forced. <br>
-Mitigation: Use known-good ClawHub slugs, avoid --force unless replacement is intended, and review the staged skill before installation. <br>
-Risk: The --skip-scan option bypasses the security gate the skill is intended to provide. <br>
-Mitigation: Do not use --skip-scan for normal installs; allow mcp-scan to run before moving staged content into the skills directory. <br>
-Risk: The workflow depends on external CLI tooling and latest scanner resolution. <br>
-Mitigation: Prefer pinned or verified installations for uv and mcp-scan before using the wrapper in sensitive environments. <br>
+## Use Case:
 
+Developers and agent operators use this skill to stage, scan, and install ClawHub skills with a pre-install security gate. It is intended for users who want security feedback before adding third-party skills to an agent workspace.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/kenswj/skill-guard-1-0-2) <br>
-- [mcp-scan](https://github.com/invariantlabs-ai/mcp-scan) <br>
-- [uv Installer](https://astral.sh/uv/install.sh) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Terminal output and Markdown with shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Exit codes distinguish clean installs, dependency or network errors, and quarantined threat findings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact _meta.json lists 1.0.2) <br>
+Risk: The security evidence reports path-safety weaknesses in the installer.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only simple trusted skill slugs and review the staged path before installation.
+
+Risk: The security evidence reports supply-chain weaknesses.
+
+Mitigation: Prefer a version that pins scanner dependencies and avoids curl-piped shell setup instructions.
+
+Risk: Scan-bypass or overwrite flags can reduce the protection provided by the skill.
+
+Mitigation: Avoid --skip-scan and --force unless their effects have been reviewed and accepted.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/kenswj/skills/skill-guard-1-0-2)
+- [kenswj ClawHub Profile](https://clawhub.ai/user/kenswj)
+- [mcp-scan](https://github.com/invariantlabs-ai/mcp-scan)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and command output conventions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes CLI usage, exit codes, dependency notes, and threat-handling guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact _meta.json reports 1.0.2)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

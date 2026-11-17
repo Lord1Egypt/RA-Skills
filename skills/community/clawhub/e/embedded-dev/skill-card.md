@@ -1,48 +1,63 @@
-## Description: <br>
-Embedded Dev helps agents answer embedded systems questions spanning MCU hardware, peripheral drivers, RTOS usage, firmware architecture, communication protocols, debugging, and deployment. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Embedded Dev helps agents answer embedded systems development questions across MCU selection, peripheral drivers, embedded C, RTOS, communication protocols, firmware architecture, OTA updates, and hardware/software debugging.
 
-## Publisher: <br>
-[zzz-pinking](https://clawhub.ai/user/zzz-pinking) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zzz-pinking](https://clawhub.ai/user/zzz-pinking)
 
-## Use Case: <br>
-Developers and engineers use this skill to get embedded systems guidance, code examples, debugging steps, and configuration advice for MCU, firmware, RTOS, peripheral, communication, and low-power design work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Incorrect flashing, OpenOCD, GDB, OTA, or hardware commands can damage, erase, or brick a real device. <br>
-Mitigation: Review target device names, memory maps, wiring, voltage levels, and recovery options before running commands on hardware. <br>
-Risk: Firmware and driver examples may need adaptation for a specific MCU, board revision, SDK, or peripheral configuration. <br>
-Mitigation: Validate examples against vendor documentation and bench-test on development hardware before using them in production firmware. <br>
-Risk: Bootloader and OTA guidance can make devices unbootable if flash offsets, signatures, CRC checks, or rollback behavior are wrong. <br>
-Mitigation: Keep a hardware recovery path, verify flash layout and image validation logic, and test rollback before field deployment. <br>
+## Use Case:
 
+Developers and embedded engineers use this skill to get technical guidance, code examples, shell commands, and troubleshooting steps for microcontroller firmware, RTOS, peripheral interfaces, communication protocols, and debugging workflows.
 
-## Reference(s): <br>
-- [Communication Protocols](references/communication-protocols.md) <br>
-- [Debugging](references/debugging.md) <br>
-- [Embedded C](references/embedded-c.md) <br>
-- [Firmware Development](references/firmware-dev.md) <br>
-- [MCU Architectures](references/mcu-architectures.md) <br>
-- [Peripheral Drivers](references/peripherals.md) <br>
-- [RTOS](references/rtos.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with embedded C and shell code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes hardware wiring considerations, firmware troubleshooting steps, and review-needed commands for target devices.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Production-looking firmware examples may include unsafe buffer handling or protocol parsing patterns.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and harden generated code with explicit bounds checks, length validation, and target-specific tests before reuse.
+
+Risk: OTA and bootloader guidance may be incomplete for secure firmware update workflows.
+
+Mitigation: Require signed firmware authentication, rollback protection, and device-specific bootloader review before deployment.
+
+Risk: Hardware debugging shell commands can affect connected devices or local captures.
+
+Mitigation: Review commands for the exact board, programmer, and interface, and run them only in an isolated development environment.
+
+## Reference(s):
+
+- [MCU Architectures](references/mcu-architectures.md)
+- [Peripheral Drivers](references/peripherals.md)
+- [Embedded C](references/embedded-c.md)
+- [RTOS](references/rtos.md)
+- [Communication Protocols](references/communication-protocols.md)
+- [Debugging](references/debugging.md)
+- [Firmware Development](references/firmware-dev.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with embedded C and shell code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include example firmware snippets, debugging commands, wiring notes, and troubleshooting checklists.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

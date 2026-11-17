@@ -8,7 +8,7 @@ This skill collection systematically integrates **172 core TCM clinical skills**
 |-------|-------------|
 | [access-digital-resources-for-new-format-medical-textbooks](access-digital-resources-for-new-format-medical-textbooks/SKILL.md) | 本技能指导用户如何通过扫描教材封底的红标和绿标二维码，激活并访问人民卫生出版社第十轮全国高等学校五年制本科临床医学专业规划教材（如《中医学》第10版）配套的电子教材与数字资源。当用户持有配备红标/绿标的新形态纸质教材，并希望使用其数字... |
 | [acupoint-classification-and-indications](acupoint-classification-and-indications/SKILL.md) | 根据腧穴的三大分类（十四经穴、经外奇穴、阿是穴）及其近治、远治和双向调节等主治作用规律，指导临床针灸选穴。当需要为疾病选择合适针灸穴位时，依据“经脉所过，主治所及”原则，结合病变部位、经络归属及脏腑关系进行决策。 |
-| [acupuncture-high-risk-point-safety-protocol](acupuncture-high-risk-point-safety-protocol/SKILL.md) | 当针刺涉及颈部、胸部、腹部近脏器区域或孕妇时，执行本技能以确保对风池(GB20)、肩井(GB21)、期门(LR14)、天突(CV22)、长强(GV1)、章门(LR13)等高风险穴位的安全操作。本技能提供每个穴位的限定进针方向、最大深度... |
+| [acupuncture-high-riREDACTED-SECRET](acupuncture-high-riREDACTED-SECRET/SKILL.md) | 当针刺涉及颈部、胸部、腹部近脏器区域或孕妇时，执行本技能以确保对风池(GB20)、肩井(GB21)、期门(LR14)、天突(CV22)、长强(GV1)、章门(LR13)等高风险穴位的安全操作。本技能提供每个穴位的限定进针方向、最大深度... |
 | [acupuncture-point-selection-principles](acupuncture-point-selection-principles/SKILL.md) | 根据病变部位、证型和特殊症状，综合运用近部、远部、辨证与对症四类选穴原则制定个体化针灸处方。当需要为已完成八纲辨证与经络辨证的患者设计针灸治疗方案时使用本技能。 |
 | [acupuncture-special-point-contraindications-and-techniques](acupuncture-special-point-contraindications-and-techniques/SKILL.md) | 本技能用于在针灸操作中识别并安全处理孕妇、眼部、耳部、井穴及神经密集区域等特殊穴位的禁忌与操作规范。当治疗涉及合谷（LI4）、三阴交（SP6）、少泽（SI1）、睛明（BL1）、听宫（SI19）等高风险穴位，或患者处于妊娠、张口困难、局... |
 | [allergic-rhinitis-differentiation](allergic-rhinitis-differentiation/SKILL.md) | 本技能用于对具有典型鼻鼽症状（鼻痒、喷嚏、流清涕、鼻塞）的患者，依据其全身兼症与舌脉表现进行中医辨证分型，并推荐相应治法与方药。当用户描述符合鼻鼽主症且提供脏腑相关全身证候信息时触发。 |

@@ -1,40 +1,52 @@
-## Description: <br>
-Guides users through MIT 24 Steps phase 5 activities for defining a minimum viable business product, preparing customer solution demonstrations, collecting feedback, and planning a core startup team. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MIT有序创业24步法第五阶段（步骤19-21）。当用户需要定义最小可行商业产品MVBP、准备客户演示方案、组建创业核心团队时使用。
 
-## Publisher: <br>
-[earthwalking](https://clawhub.ai/user/earthwalking) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[earthwalking](https://clawhub.ai/user/earthwalking)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Entrepreneurs, startup teams, and business-planning advisors use this skill to plan MIT 24 Steps phase 5 work: defining an MVBP, preparing customer demonstrations, collecting feedback, and designing a core founding team.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Equity allocation or team-structure suggestions could be mistaken for legal advice.
+
+Mitigation: Treat the output as planning input and have qualified legal or business advisors review founder agreements, equity terms, and governance decisions before use.
+
+Risk: Business-planning recommendations may be incomplete for a specific market, customer segment, or product maturity.
+
+Mitigation: Validate MVBP scope, demo feedback, and team plans with real customers and current business constraints before making operating decisions.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Startup founders, product leads, and teams use this skill to plan MVBP scope, prepare customer demos and feedback forms, and outline core-team roles, hiring plans, and equity considerations. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Users may place confidential customer details, equity terms, contracts, or fundraising information into the agent context while using the planning workflow. <br>
-Mitigation: Redact sensitive business, customer, legal, and fundraising details before sharing context with the agent. <br>
-Risk: The skill provides general startup-planning guidance that may not fit a specific legal, financial, or commercial situation. <br>
-Mitigation: Treat outputs as planning drafts and review team structure, equity, contracts, and fundraising decisions with appropriate advisors. <br>
+**Output Format:** [Markdown report with structured planning sections and checklists]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/earthwalking/mit24-team-building) <br>
+**Other Properties Related to Output:** [Produces Chinese-language entrepreneurship planning guidance; does not run code or request sensitive access.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, text] <br>
-**Output Format:** [Markdown report with structured planning sections, checklists, and tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a team and product validation report covering MVBP specifications, customer demo materials, feedback collection, team roles, hiring plans, and equity suggestions.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

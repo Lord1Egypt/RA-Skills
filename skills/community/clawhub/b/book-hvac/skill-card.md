@@ -1,42 +1,49 @@
-## Description: <br>
-Book hvac services through Lokuli MCP. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Book HVAC helps an agent search for HVAC services, check availability, and create bookings through Lokuli's MCP server.
 
-## Publisher: <br>
-[edwardrodriguez703-design](https://clawhub.ai/user/edwardrodriguez703-design) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[edwardrodriguez703-design](https://clawhub.ai/user/edwardrodriguez703-design)
 
-## Use Case: <br>
-External users and agents use this skill to search for HVAC providers, check service availability, and create a booking through Lokuli when the user intends to schedule HVAC service. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: A booking action may create a real HVAC appointment with a third-party service. <br>
-Mitigation: Before creating a booking, confirm the provider, service, appointment time, and contact details with the user. <br>
-Risk: The workflow requires sharing customer contact details with Lokuli for booking. <br>
-Mitigation: Proceed only when the user is comfortable using Lokuli for HVAC search and booking. <br>
-Risk: The skill is scoped to HVAC search and scheduling rather than general HVAC advice. <br>
-Mitigation: Use it only when the user intends to search for or schedule HVAC service. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Book HVAC ClawHub listing](https://clawhub.ai/edwardrodriguez703-design/book-hvac) <br>
-- [Lokuli MCP endpoint](https://lokuli.com/mcp/sse) <br>
+## Use Case:
 
+External users can use this skill to find HVAC providers, check service availability, and prepare or create bookings through Lokuli. Agents should confirm the provider, service, time slot, and customer contact details before submitting a booking.
 
-## Skill Output: <br>
-**Output Type(s):** [API calls, guidance] <br>
-**Output Format:** [Text and JSON-RPC tool-call parameters] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include HVAC search parameters, availability checks, and booking details such as provider, service, time slot, customer name, email, and phone.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can send personal contact details to an external service and create real bookings.
+
+Mitigation: Confirm the provider, service, time slot, and customer contact details with the user before creating a booking.
+
+## Reference(s):
+
+- [Book HVAC ClawHub listing](https://clawhub.ai/edwardrodriguez703-design/skills/book-hvac)
+- [Lokuli MCP endpoint](https://lokuli.com/mcp/sse)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, API calls, configuration]
+
+**Output Format:** [Markdown guidance with JSON-RPC request examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include HVAC search criteria, availability checks, booking details, and user confirmation prompts.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

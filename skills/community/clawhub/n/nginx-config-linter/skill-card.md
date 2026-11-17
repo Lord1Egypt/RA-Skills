@@ -1,42 +1,52 @@
-## Description: <br>
-Lint, validate, and audit nginx configuration files for syntax errors, security issues, and performance problems. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Lint, validate, and audit nginx configuration files for syntax errors, security issues, and performance problems.
 
-## Publisher: <br>
-[charlie-morrison](https://clawhub.ai/user/charlie-morrison) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[charlie-morrison](https://clawhub.ai/user/charlie-morrison)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill to lint nginx configuration files, run security and performance audits, and generate diagnostic reports for local review or CI workflows.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Recursive scans can read nginx configuration files outside the intended review scope.
+
+Mitigation: Run recursive mode only on directories selected for audit and exclude unrelated private configuration paths.
+
+Risk: Linter reports can contain false positives or miss configuration issues because they are local diagnostic output.
+
+Mitigation: Review findings before applying changes or enforcing CI gates, and confirm production readiness with nginx's native validation where appropriate.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and operators use this skill to run local lint, security, performance, or full audits against nginx configuration files before deployment or in CI. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The linter reads nginx configuration files or directories selected by the user, which may contain sensitive paths or operational details. <br>
-Mitigation: Run it only on intended config paths and avoid broad recursive scans unless those files are appropriate for local inspection. <br>
-Risk: `--strict` can fail CI when warnings are found. <br>
-Mitigation: Use strict mode only when warning-level findings should block the pipeline. <br>
+**Output Format:** [Text, JSON, or Markdown diagnostic reports with issue severity and exit-code behavior.]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub Release Page](https://clawhub.ai/charlie-morrison/nginx-config-linter) <br>
-- [Skill Documentation](artifact/SKILL.md) <br>
-- [Status Summary](artifact/STATUS.md) <br>
+**Other Properties Related to Output:** [Supports lint, security, performance, and full audit modes; recursive scans are optional.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text, JSON, or Markdown lint reports with findings, severity, line numbers, and suggested fixes.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports severity filtering, recursive directory scans, and strict exit behavior for CI.] <br>
+1.0.1 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

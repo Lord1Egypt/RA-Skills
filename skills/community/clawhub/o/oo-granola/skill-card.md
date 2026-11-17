@@ -1,43 +1,55 @@
-## Description: <br>
-Granola (granola.ai). Use this skill for ANY Granola request - searching and reading data. Whenever a task involves Granola, use this skill instead of calling the API directly. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search and read Granola meetings, notes, folders, and transcripts through an OOMOL-connected account.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and agents use this skill to search and read Granola meeting notes, folders, and optional transcripts through an OOMOL-connected account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read meeting notes and optional transcripts from the connected Granola account. <br>
-Mitigation: Use it for explicit note, folder, or transcript retrieval requests and review returned meeting content before sharing it further. <br>
-Risk: Authentication, connection, or billing setup steps may be needed before the connector can run. <br>
-Mitigation: Follow the setup fallback only after a command fails for the matching reason, and review the oo CLI installation and OOMOL connection steps before first use. <br>
+## Use Case:
 
+People who use Granola can find meetings, notes, folders, summaries, and transcripts through their connected account.
 
-## Reference(s): <br>
-- [Granola homepage](https://www.granola.ai) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [oo CLI install guide](https://cli.oomol.com/install-guide.md) <br>
-- [ClawHub skill page](https://clawhub.ai/oomol/skills/oo-granola) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces read-only Granola get and list action calls; note retrieval can include transcripts when requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and skill metadata) <br>
+Risk: A read-only request can trigger installation of an unverified CLI without a separate approval step.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and explicitly approve CLI setup before allowing installation; use a reviewed fixed release and consider disabling automatic skill synchronization.
+
+Risk: Using the connected account gives OOMOL access to Granola meeting content.
+
+Mitigation: Connect only the intended Granola account and consider what meeting content that account makes accessible.
+
+## Reference(s):
+
+- [Granola API documentation](https://docs.granola.ai/introduction)
+- [oo CLI](https://github.com/oomol-lab/oo-cli)
+- [Granola](https://www.granola.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON]
+
+**Output Format:** [Structured Granola records returned as JSON, with readable text summaries or transcripts.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Available data depends on the connected Granola account, plan, and action.]
+
+## Skill Version(s):
+
+1.0.4 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

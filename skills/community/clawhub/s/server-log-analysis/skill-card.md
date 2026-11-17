@@ -1,41 +1,58 @@
-## Description: <br>
-Connects to remote servers over SSH, reads config.yaml for service and log locations, downloads targeted log segments to a local temp directory, and analyzes them to diagnose server issues. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connects to remote servers over SSH, reads config.yaml for service and log locations, downloads targeted log segments into a local temp directory, and analyzes them to diagnose service issues.
 
-## Publisher: <br>
-[hgvgfgvh](https://clawhub.ai/user/hgvgfgvh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hgvgfgvh](https://clawhub.ai/user/hgvgfgvh)
 
-## Use Case: <br>
-Developers and operations engineers use this skill to investigate remote service failures by selecting configured services, fetching minimal relevant log segments, and producing a concise diagnosis with evidence and next-step checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release security summary flags templated root SSH/password access. <br>
-Mitigation: Replace sample credentials with a least-privileged read-only SSH account and prefer SSH keys or environment-backed secrets before use. <br>
-Risk: The release security summary notes that downloaded logs are preserved locally. <br>
-Mitigation: Confirm the host, service, log paths, and time window before collection, and delete downloaded log copies when they are no longer needed. <br>
+## Use Case:
 
+Developers and site reliability engineers use this skill to diagnose remote service failures by matching an incident to configured services, collecting the smallest useful log segments, and producing an evidence-based diagnosis with follow-up checks.
 
-## Reference(s): <br>
-- [reference.md](reference.md) <br>
-- [ClawHub skill page](https://clawhub.ai/hgvgfgvh/server-log-analysis) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Shell commands, Guidance, Files] <br>
-**Output Format:** [Markdown diagnostic report with evidence, confidence, and recommended next steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local log segment files under temp/server-log-analysis according to the skill configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill requires SSH-based access to remote servers for log diagnosis.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use least-privilege log-reading accounts, key-based or environment-provided credentials, and confirm target hosts before connecting.
+
+Risk: Downloaded logs may contain sensitive operational or user data and may be preserved locally.
+
+Mitigation: Download only minimal relevant segments, avoid unrelated sensitive files, and protect or clean temp/server-log-analysis according to local policy.
+
+Risk: The sample configuration includes root and password placeholders that could encourage unsafe credential storage.
+
+Mitigation: Replace sample values with a non-root log-reading account and external secret management; do not store real secrets in config.yaml.
+
+## Reference(s):
+
+- [Reference Guide](artifact/reference.md)
+- [ClawHub Skill Page](https://clawhub.ai/hgvgfgvh/skills/server-log-analysis)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown diagnostic summary with evidence, confidence, and next steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include references to downloaded local log snippets; downloads are kept under temp/server-log-analysis unless configured otherwise.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

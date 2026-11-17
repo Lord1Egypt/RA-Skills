@@ -1,116 +1,87 @@
 # 🎯 bid-collection
 
-<<<<<<< HEAD
 **招投标商机采集 Skill for Claude Code**
 
-7×24自动监控全网招投标公开信息，基于公司业务赛道智能筛选高价值商机线索，实现招投标项目早发现、早跟进、早布局。
+7×24 监控全网公开招投标信息，基于公司业务赛道智能筛选高价值商机线索，实现招投标项目早发现、早跟进、早布局。
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![GitHub](https://img.shields.io/badge/GitHub-Cryptocxf%2Fbid--collection-blue)](https://github.com/Cryptocxf/bid-collection)
+
+---
 
 ## 安装
 
-```bash
-# 通过 npm 安装
-npm install -g bid-collection
+将 `bid-collection` 文件夹放入 `Desktop/skills/` 目录，然后在 Claude Code 中输入：
+
+```
+/bid-collection
 ```
 
-然后在 Claude Code 中使用 `/bid-collection` 命令。
+技能自动加载（无参数时仅显示命令帮助菜单，不自动采集）。
 
 ## 使用方式
 
-| 命令 | 功能 |
-|------|------|
-| `/bid-collection scan <关键词>` | 实时扫描招投标商机 |
-| `/bid-collection monitor` | 启动定时监控 |
-| `/bid-collection report` | 生成汇总报告 |
-| `/bid-collection list-sources` | 查看监控渠道 |
-| `/bid-collection add-source <url>` | 添加监控源 |
+| 命令 | 功能 | 副作用 |
+|------|------|--------|
+| `/bid-collection`（无参数） | 显示帮助菜单 | 无出站请求、无本地写入 |
+| `/bid-collection scan <关键词>` | 实时扫描招投标商机 | 出站请求 + 写入 `leads-output/bid/` |
+| `/bid-collection monitor` | 启动定时监控（需确认） | 创建 cron 任务 + 周期出站请求 + 通知 + 日志 |
+| `/bid-collection monitor --stop` | 停止监控并清理 cron | 清理宿主调度任务 |
+| `/bid-collection report` | 生成汇总报告 | 纯本地，无出站请求 |
+| `/bid-collection list-sources` | 查看监控渠道 | 无出站请求 |
+| `/bid-collection add-source <url>` | 添加监控源（需确认） | 会向该 URL 发起出站请求（SSRF 风险） |
+| `/bid-collection remove-source <url>` | 移除监控源 | 无出站请求 |
 
 ## 采集范围
 
-- 政府公共资源交易平台（中国政府采购网、各省交易中心）
-- 国企采购平台（中国移动、中国联通、中国电信等）
-- 行业招投标网站（AI/大模型、数字化、IT服务等）
-- 第三方招投标信息聚合平台
-- 自定义监控关键词与行业场景
+- **政府平台**：中国政府采购网、各省/市公共资源交易中心、中国招标投标公共服务平台
+- **国企采购**：中国移动、中国联通、中国电信、国家电网、中石油、中铁等
+- **行业网站**：AI/大模型、数字化转型、IT服务、算力、智慧应用等
+- **第三方聚合**：千里马、采招网、招标雷达、比地招标、剑鱼标讯等
+- **自定义关键词**：监控关键词与行业场景可配置
 
 ## 核心价值
 
 - 🌐 **全域覆盖**：政府平台、国企采购、行业网站一站聚合
-- ⏰ **实时同步**：招标预告→正式招标→变更→中标，全周期跟踪
-- 🧠 **智能匹配**：基于业务赛道自动筛选高适配商机
+- ⏰ **实时同步**：招标预告 → 正式招标 → 变更 → 中标，全周期跟踪
+- 🧠 **智能匹配**：基于 10 大业务赛道自动筛选高适配商机
 - 📊 **标准展示**：项目名称、采购方、预算、时间、需求、联系方式一键掌握
-=======
-**Tender & Procurement Lead Collection Skill for Claude Code**
 
-24/7 automated monitoring of public tender and procurement notices across government platforms, SOE procurement systems, industry-specific sites, and third-party aggregators. Intelligently filters high-value leads matching your business tracks for **early discovery, early follow-up, and early positioning**.
+## CLI 参数
 
-[![npm version](https://img.shields.io/npm/v/bid-collection.svg)](https://www.npmjs.com/package/bid-collection)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![GitHub](https://img.shields.io/badge/GitHub-Cryptocxf%2Fbid--collection-blue)](https://github.com/Cryptocxf/bid-collection)
+| 参数 | 默认 | 说明 |
+|------|------|------|
+| `--days=N` | 3 | 搜索时间窗口（天） |
+| `--budget-min=N` | 不限 | 最低预算（人民币元） |
+| `--budget-max=N` | 不限 | 最高预算（人民币元） |
+| `--track=core` | 全部 | 仅核心赛道 |
+| `--priority=urgent` | 全部 | 仅紧急商机 |
+| `--output=detail` | 简版 | 含内容摘要 |
+| `--interval=N` | 120 | monitor 扫描间隔（分钟） |
+| `--max-runs=N` | 48 | monitor 最大运行轮数 |
+| `--persist` | 关 | monitor cron 跨会话持久化 |
+| `--stop` | — | 停止 monitor 并清理 cron |
 
-## Installation
+---
 
-```bash
-# Install via npm
-npm install -g bid-collection
-```
+## 🔒 安全说明
 
-Then use `/bid-collection` in Claude Code.
+- **仅采集公开信息**：所有目标均为公开招投标公告页面，不读取非公开/需登录内容，不绕过访问控制
+- **不读取用户敏感配置**：本技能不读取环境变量、API Key、`.env`、密钥文件或任何系统敏感配置
+- **出站请求显式化**：`scan` / `monitor` / `add-source` 均会向外部平台发起出站 HTTP 请求；执行前会在控制台输出将要请求的域名范围，用户可中断
+- **本地写入受控**：结果默认写入技能同级 `leads-output/bid/` 目录，不静默写入 Desktop 或其他位置
+- **monitor 需显式确认**：`monitor` 会创建宿主 cron 任务（修改宿主调度）、周期性发起出站请求、发送系统通知、写入本地日志；执行前必须告知用户并获得确认；使用完毕请执行 `monitor --stop` 清理
+- **add-source 的 SSRF 风险**：`add-source <url>` 会使技能向该 URL 发起出站请求；仅添加可信公开平台，添加内网/本地/元数据地址会被拒绝
+- **合规使用**：遵守目标网站 `robots.txt` 与使用条款
 
-## Usage
+详见 `SKILL.md` 顶部的完整《隐私、合规与安全边界》声明。
 
-| Command | Function |
-|---------|----------|
-| `/bid-collection scan <keywords>` | Real-time scan for tender/procurement leads |
-| `/bid-collection monitor` | Start scheduled background monitoring |
-| `/bid-collection report` | Generate summary report |
-| `/bid-collection list-sources` | View monitored channels |
-| `/bid-collection add-source <url>` | Add custom monitoring source |
+---
 
-## Collection Scope
+## 链接
 
-- **Government Platforms**: China Government Procurement (ccgp.gov.cn), provincial/city trading centers, China Tendering Public Service Platform
-- **SOE Procurement**: China Mobile, China Unicom, China Telecom, State Grid, CNPC, China Railway, and more
-- **Industry-specific Sites**: AI/LLM, digital transformation, IT services, computing power, smart applications
-- **Third-party Aggregators**: Qianlima, Bidcenter, Jianyu360, and others
-- **Custom Keywords**: Fully configurable monitoring keywords and industry scenarios
-
-## Core Value
-
-- 🌐 **Full Coverage**: Government, SOE, industry platforms in one place
-- ⏰ **Real-time Sync**: Pre-tender → Open tender → Amendment → Award, full lifecycle tracking
-- 🧠 **Smart Matching**: Auto-match to 10 business tracks with priority scoring
-- 📊 **Standardized Display**: Project name, buyer, budget, deadline, requirements, contacts at a glance
-
-## Features
-
-### 10 Business Tracks
-AI Technical Services, Large Language Models, System Development, Computing Power & Model Services, Digital Transformation, Information Security, Cloud Services, Smart Applications, AI Vision/Content, and dedicated SuYan (Suzhou Research) procurement coverage.
-
-### Priority Scoring Algorithm
-```
-Score = Track Weight × Budget Factor × Timeliness Factor × Buyer Factor
-```
-
-### Auto-filtering
-Irrelevant categories (office supplies, construction, property management, vehicles, etc.) are automatically excluded.
-
-## CLI Flags
-
-| Flag | Description |
-|------|-------------|
-| `--days=N` | Search window (default: 3 days) |
-| `--budget-min=N` | Minimum budget in CNY |
-| `--budget-max=N` | Maximum budget in CNY |
-| `--track=core` | Core tracks only |
-| `--priority=urgent` | Urgent priority only |
-| `--output=detail` | Detailed output with summaries |
-
-## Links
-
-- **GitHub**: [https://github.com/Cryptocxf/bid-collection](https://github.com/Cryptocxf/bid-collection)
-- **npm**: [https://www.npmjs.com/package/bid-collection](https://www.npmjs.com/package/bid-collection)
-- **Issues**: [https://github.com/Cryptocxf/bid-collection/issues](https://github.com/Cryptocxf/bid-collection/issues)
->>>>>>> 5210fda (Initial release: bid-collection v1.0.0 — Tender & Procurement Lead Collection Skill for Claude Code)
+- **GitHub**: https://github.com/Cryptocxf/bid-collection
+- **Issues**: https://github.com/Cryptocxf/bid-collection/issues
 
 ## License
 

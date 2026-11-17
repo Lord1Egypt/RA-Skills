@@ -1,41 +1,54 @@
-## Description: <br>
-Decide how to split skill content between SKILL.md and reference files for context efficiency and reliable triggering. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Decide how to split skill content between SKILL.md and reference files for context efficiency and reliable triggering.
 
-## Publisher: <br>
-[samber](https://clawhub.ai/user/samber) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[samber](https://clawhub.ai/user/samber)
 
-## Use Case: <br>
-Developers and skill authors use this skill to decide whether, when, and how to split agent skill content between SKILL.md, references, and scripts while preserving reliable triggering and context efficiency. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may propose edits to skill structure or guidance that are incorrect for a specific repository. <br>
-Mitigation: Review proposed file edits before applying them, and scan the skill before deployment. <br>
-Risk: Architecture evaluation transcripts may contain private code, prompts, or project details. <br>
-Mitigation: Avoid storing or sharing generated eval transcripts when they include private information. <br>
+## Use Case:
 
+Skill authors and agent developers use this skill to decide when content should stay in SKILL.md, move into references, or become deterministic scripts. It helps distinguish triggering problems from progressive disclosure problems and recommends structure based on observable load conditions and evaluation evidence.
 
-## Reference(s): <br>
-- [Source repository](https://github.com/samber/cc-skills) <br>
-- [ClawHub release page](https://clawhub.ai/samber/skill-progressive-disclosure-design) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with optional code, shell command, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May recommend concrete SKILL.md pointer text, reference-file structure, eval instrumentation, and review of proposed file edits before applying them.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and frontmatter) <br>
+Risk: Broad trigger wording may activate the skill for adjacent skill-structure questions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the trigger description and narrow it before deployment if over-invocation would be costly.
+
+Risk: The skill may propose edits to skill files and subagent-based evaluation workflows when refactoring is requested.
+
+Mitigation: Review proposed file changes and evaluation results before applying them or publishing an updated skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/samber/skills/skill-progressive-disclosure-design)
+- [Project homepage](https://github.com/samber/cc-skills)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with suggested file structure, pointer sentences, and optional command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include proposed edits to skill files and eval-oriented architecture checks when requested.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

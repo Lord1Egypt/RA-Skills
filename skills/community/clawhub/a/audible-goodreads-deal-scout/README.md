@@ -70,10 +70,12 @@ clawhub login
 clawhub publish . \
   --slug audible-goodreads-deal-scout \
   --name "Audible Goodreads Deal Scout" \
-  --version 0.1.14 \
-  --changelog "Harden OpenClaw CLI discovery, add installed-version diagnostics, and surface disabled cron jobs." \
+  --version 0.1.19 \
+  --changelog "Use supported low thinking for scheduled Codex runs and align cron diagnostics." \
   --tags latest
 ```
+
+The runtime requires Python 3.11 or newer and `sh`. `curl` is optional but recommended as a fallback when Audible rejects the built-in HTTP client.
 
 ## 5-minute setup
 
@@ -95,6 +97,8 @@ By default, the skill writes its config, state, and artifacts under `.audible-go
 That storage lives in the workspace, not inside `skills/audible-goodreads-deal-scout/`, because `openclaw skills install` and `openclaw skills update --force` can replace the installed skill folder.
 
 Only point `goodreadsCsvPath`, `notesFile`, `configPath`, and `stateFile` at files or directories you actually want this skill to read or write.
+
+Relative paths inside the JSON config are resolved from the directory containing that config file. CLI path arguments remain relative to the shell's current directory.
 
 5. Then evaluate the current deal:
 
@@ -378,7 +382,8 @@ This part should be explicit.
 - The Python prep layer reads your Goodreads CSV locally.
 - The Python prep layer also reads your notes file locally.
 - The skill will read whatever file paths you configure, so keep those paths limited to the files you intend it to use.
-- The model step may use fit-context data unless you set `privacyMode` to `minimal`.
+- The model step starts with a bounded, candidate-specific fit-evidence file selected from your ratings and reviews. The complete fit context remains available only as fallback evidence.
+- Rating-only entries establish that you liked or disliked a title, but the runtime prompt uses reviews or preference notes before claiming why.
 - In `privacyMode: "minimal"`, the skill still uses local shelf logic, but it does **not** pass your personal CSV or notes content into the model fit step.
 - Delivery targets are whatever you configure in your own OpenClaw runtime.
 
@@ -418,6 +423,41 @@ Recommended default:
 - `positive_only`
 
 That gives the best signal-to-noise ratio for most users.
+
+## Daily automation
+
+Register the marketplace-aware daily schedule explicitly:
+
+```bash
+sh ./scripts/audible-goodreads-deal-scout.sh setup \
+  --non-interactive \
+  --config-path .audible-goodreads-deal-scout/config.json \
+  --daily-automation \
+  --daily-cron "15 1 * * *" \
+  --register-cron
+```
+
+The job uses the marketplace's IANA timezone, such as `America/Los_Angeles` for Audible US, so daylight-saving changes do not shift the intended local run time. Setup reconciles an existing related job instead of creating duplicates.
+
+Scheduled runs first execute a deterministic condition trigger. Duplicate runs and deterministic suppressions under `positive_only` return `fire: false`, so OpenClaw does not start a model or create run history. Runs that need Goodreads lookup or personalized writing use lightweight bootstrap context with low model thinking, then follow the generated runtime prompt. Low thinking is explicit because current Codex models can reject `off`; rerun setup with cron registration to reconcile older jobs.
+
+Condition triggers are unattended code execution. Enable `cron.triggers.enabled` only on a trusted OpenClaw host whose cron-authoring agents and local skill files you control. Scheduled shell commands also need a non-interactive exec approval policy.
+
+```bash
+openclaw config set cron.triggers.enabled true --strict-json
+```
+
+Disable an existing related job and clear its trigger and delivery route with:
+
+```bash
+sh ./scripts/audible-goodreads-deal-scout.sh setup \
+  --non-interactive \
+  --config-path .audible-goodreads-deal-scout/config.json \
+  --no-daily-automation \
+  --register-cron
+```
+
+Use `--no-delivery` during setup to clear a configured channel and target without changing unrelated settings.
 
 ## Telegram, WhatsApp, and other channels
 
@@ -576,15 +616,15 @@ Useful checks:
 ```bash
 sh ./scripts/audible-goodreads-deal-scout.sh doctor --config-path .audible-goodreads-deal-scout/config.json
 sh ./scripts/audible-goodreads-deal-scout.sh show-csv-headers "/absolute/path/to/goodreads_library_export.csv"
-sh ./scripts/audible-goodreads-deal-scout.sh publish-audit --version 0.1.14 --tags latest
+sh ./scripts/audible-goodreads-deal-scout.sh publish-audit --version 0.1.19 --tags latest
 ```
 
-`doctor` checks the configured config, CSV, notes, auth file, cache directory, delivery settings, cron settings, Audible fetch backend, local OpenClaw binary, bundled shell wrapper, and installed skill version. Add `--check-cron` when you want it to query live OpenClaw cron jobs; disabled related jobs are reported separately from missing jobs.
+`doctor` checks the configured config, CSV, notes, auth file, cache directory, delivery settings, cron settings, Audible fetch backend, local OpenClaw binary, bundled shell wrapper, and installed skill version. Add `--check-cron` to query live OpenClaw jobs and verify schedule, IANA timezone, route, condition trigger, lightweight context, and low thinking. Diagnostics report `expectedThinking` and `thinkingMatchesConfig`; the retained `thinkingDisabled` field still reports whether thinking is literally `off`, not whether the job is correct. Disabled related jobs are reported separately from missing jobs.
 
 Add `--check-audible-fetch` when you want a live daily-deal fetch probe from the current host. This is opt-in because it makes a network request to Audible.
 
 If your OpenClaw install strips executable bits from bundled scripts, run the wrapper through `sh` exactly as shown above and in `SKILL.md`.
-- Scheduled runs cannot stop for interactive exec approval. If your OpenClaw host keeps `exec` in `allowlist` mode, allowlist the launcher your host expects for `sh .../scripts/audible-goodreads-deal-scout.sh` before enabling daily automation, for example `/bin/sh` when that is the shell your host uses.
+- Scheduled runs cannot stop for interactive exec approval. Before enabling daily automation, verify that OpenClaw exec policy allows the exact unattended cron command on your trusted host and that `cron.triggers.enabled` is intentionally enabled.
 - Before enabling `dailyAutomation` or `--register-cron`, confirm the configured delivery channel and target are the ones you actually want the skill to use through your local OpenClaw runtime.
 
 ## Advanced CLI usage
@@ -610,7 +650,7 @@ Useful helper commands:
 sh ./scripts/audible-goodreads-deal-scout.sh doctor --config-path .audible-goodreads-deal-scout/config.json
 sh ./scripts/audible-goodreads-deal-scout.sh show-csv-headers "/absolute/path/to/goodreads_library_export.csv"
 sh ./scripts/audible-goodreads-deal-scout.sh measure-context --goodreads-csv "/absolute/path/to/goodreads_library_export.csv" --output /tmp/fit-context.json
-sh ./scripts/audible-goodreads-deal-scout.sh publish-audit --version 0.1.14
+sh ./scripts/audible-goodreads-deal-scout.sh publish-audit --version 0.1.19
 ```
 
 Finalize and deliver in one step:
@@ -628,6 +668,8 @@ sh ./scripts/audible-goodreads-deal-scout.sh run-and-deliver \
 - `TRUST.md`: security, data-access, and no-purchase behavior summary
 - `agents/openai.yaml`: interface metadata and default prompt for OpenClaw agent surfaces
 - `scripts/audible-goodreads-deal-scout.sh`: bundled shell wrapper for local CLI and OpenClaw installs that may not preserve executable bits
+- `audible_goodreads_deal_scout/fit_evidence.py`: deterministic candidate-specific Goodreads evidence selection
+- `audible_goodreads_deal_scout/html_extract.py`: shared structured-data and metadata extraction for external pages
 - `audible_goodreads_deal_scout/core.py`: prep/orchestration logic
 - `audible_goodreads_deal_scout/audible_fetch.py`: guarded Audible HTTP fetching, browser-like headers, and curl fallback
 - `audible_goodreads_deal_scout/audible_auth.py`: optional headless Audible auth and API price lookup helpers
@@ -649,10 +691,10 @@ sh ./scripts/audible-goodreads-deal-scout.sh run-and-deliver \
 Before publishing, run:
 
 ```bash
-sh ./scripts/audible-goodreads-deal-scout.sh publish-audit --version 0.1.14 --tags latest
+sh ./scripts/audible-goodreads-deal-scout.sh publish-audit --version 0.1.19 --tags latest
 ```
 
-For public auditability, create a matching Git tag and GitHub release for each ClawHub version, for example `v0.1.14`.
+For public auditability, create a matching Git tag and GitHub release for each ClawHub version, for example `v0.1.19`. `publish-audit` fails when its requested version, the package version, and the changelog section do not agree.
 
 ## Why this is worth publishing
 

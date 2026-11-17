@@ -1,44 +1,62 @@
-## Description: <br>
-Generates Agent Skill packages from position-agent prompts by extracting role capabilities, internalizing user-provided knowledge, creating skill directories, and syncing the prompt skill list. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Agent Skill packages from position-agent prompts by extracting job capabilities, internalizing supporting knowledge, creating compliant skill directories, and syncing the prompt's skill mapping.
 
-## Publisher: <br>
-[charleschor](https://clawhub.ai/user/charleschor) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[charleschor](https://clawhub.ai/user/charleschor)
 
-## Use Case: <br>
-Developers and prompt engineers use this skill after generating a position-agent prompt to turn each role capability into a separate, mountable Agent Skill package with internalized knowledge, source mapping, and prompt updates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated skills can contain incomplete or unverified role knowledge when the provided IMA or local source material is narrow or missing. <br>
-Mitigation: Review the generated knowledge documents, source maps, and knowledge-gaps files before mounting or relying on the generated skills. <br>
-Risk: The skill may create or update multiple files while generating skill packages and syncing the original position-agent prompt. <br>
-Mitigation: Use a narrow output directory and inspect generated file changes before deploying the resulting skills. <br>
+## Use Case:
 
+Developers and agent builders use this skill to convert position-agent prompt capabilities into installable Agent Skill directories with internalized knowledge, source maps, and updated prompt mappings.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/charleschor/chudaxia-ai-coach-position-skills-generator) <br>
-- [Skill extraction framework](artifact/references/skill-extraction-framework.md) <br>
-- [Skill package checklist](artifact/references/skill-package-checklist.md) <br>
-- [Position skill template](artifact/assets/templates/position-skill-template.md) <br>
-- [Agent Skills specification](artifact/assets/specs/agents-skills-specification.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown files and directory structures for generated Agent Skill packages, plus mapping tables and updated prompt content.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update skill-package files under a user-selected output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill reads user-provided position-agent prompts and knowledge directories or IMA sources during generation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the supplied sources are appropriate for agent processing before use, and limit inputs to the materials needed for the target position skills.
+
+Risk: Confidential business material may be summarized and internalized into generated skill files.
+
+Mitigation: Review generated knowledge documents and source maps for sensitive content before distributing or mounting the resulting skill packages.
+
+Risk: Generated prompt updates or skill packages may contain incomplete or misleading guidance if source evidence is missing.
+
+Mitigation: Use the generated knowledge-gap markers and quality checklist to identify missing evidence, then review and scan the skill packages before deployment.
+
+## Reference(s):
+
+- [Skill Extraction Framework](references/skill-extraction-framework.md)
+- [Skill Package Checklist](references/skill-package-checklist.md)
+- [Position Skill Template](assets/templates/position-skill-template.md)
+- [Agent Skills Specification](assets/specs/agents-skills-specification.md)
+- [Agent Skills Documentation Index](https://agentskills.io/llms.txt)
+- [ClawHub Skill Page](https://clawhub.ai/charleschor/skills/chudaxia-ai-coach-position-skills-generator)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Markdown, Code, Configuration, Guidance]
+
+**Output Format:** [Markdown instructions, generated Agent Skill directories, knowledge documents, source maps, and prompt mapping tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated skills are expected to include SKILL.md files, assets/knowledge/knowledge.md, references/source-map.md, and knowledge-gap documentation when evidence is insufficient.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

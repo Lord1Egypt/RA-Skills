@@ -1,46 +1,56 @@
-## Description: <br>
-Based on a complete tarot knowledge base and systematic interpretation guide, provides accurate readings for various classic spreads along with comprehensive advice, helping seekers engage in self-exploration, gain inspiration, and receive directional guidance through tarot cards. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides tarot readings across classic spreads using a 78-card knowledge base, upright and reversed interpretations, and reflective advice for love, career, and self-exploration topics.
 
-## Publisher: <br>
-[openlark](https://clawhub.ai/user/openlark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[openlark](https://clawhub.ai/user/openlark)
 
-## Use Case: <br>
-External users use this skill to request tarot readings for self-exploration, relationship reflection, career planning, and directional inspiration. The agent selects an appropriate spread, draws cards, interprets upright and reversed meanings, and closes with practical guidance and a disclaimer. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat tarot readings as medical, legal, financial, or mental-health advice. <br>
-Mitigation: Present readings as entertainment or self-reflection, include the skill's ethical disclaimer, and direct serious medical, legal, financial, or psychological concerns to qualified professionals. <br>
-Risk: Users may share sensitive personal details while asking for relationship, career, or self-exploration readings. <br>
-Mitigation: Avoid requesting unnecessary sensitive information and remind users to share only details they are comfortable disclosing. <br>
-Risk: Random card draws and interpretations may be mistaken for absolute predictions. <br>
-Mitigation: Frame results as perspectives and possibilities, not fate, and keep final choices and actions with the user. <br>
+## Use Case:
 
+External users can use this skill for entertainment-oriented tarot readings and reflective guidance about relationships, career direction, and self-exploration. It helps an agent choose a spread, draw cards, interpret positions, and provide bounded recommendations with an ethical disclaimer.
 
-## Reference(s): <br>
-- [Tarot Card Reader on ClawHub](https://clawhub.ai/openlark/tarot-card-reader) <br>
-- [Tarot Spread Reference Guide](artifact/references/spreads.md) <br>
-- [Tarot Interpretation Advanced Guide](artifact/references/interpretation_guide.md) <br>
-- [Tarot Major Arcana Complete Knowledge Base](artifact/references/tarot_major_arcana.md) <br>
-- [Tarot Minor Arcana Complete Knowledge Base](artifact/references/tarot_minor_arcana.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown prose with card names, spread positions, upright or reversed status, interpretations, recommendations, and a disclaimer.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only output; no external communication, credentials, persistence, or system access requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Users may treat tarot output as a substitute for professional advice or major decisions about health, law, finances, employment, or relationships.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Frame readings as entertainment or reflective guidance, include the ethical disclaimer, and direct users to qualified professionals for high-stakes issues.
+
+Risk: A reading may sound overly predictive or decisive even though the artifact instructs the agent to provide perspective rather than absolute fate predictions.
+
+Mitigation: Maintain neutral wording, avoid making decisions for the user, and present recommendations as optional reflective next steps.
+
+## Reference(s):
+
+- [Tarot Spread Reference Guide](references/spreads.md)
+- [Tarot Interpretation Advanced Guide](references/interpretation_guide.md)
+- [Tarot Major Arcana Complete Knowledge Base](references/tarot_major_arcana.md)
+- [Tarot Minor Arcana Complete Knowledge Base](references/tarot_minor_arcana.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown-style tarot reading with card positions, interpretations, recommendations, and an ethical disclaimer]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include ASCII layout diagrams for multi-card spreads and randomized upright/reversed card draws.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,12 +1,18 @@
 ---
 name: hekouwang-claude-md-doctor-skill
+slug: hekouwang-claude-md-doctor-skill
+displayName: CLAUDE.md / AGENTS.md 体检器
+summary: AGENTS.md / CLAUDE.md linter & skill lint companion — Agent runtime config audit (not a project wiki). Dual-file dedup + .agents/skills/ routing.
+license: MIT
+homepage: https://github.com/huiyonghkw/hekouwang-claude-md-doctor-skill
+version: 1.3.4
 description: >
-  会勇禾口王的AI笔记 · CLAUDE.md 体检器。检查一个项目的 CLAUDE.md（及子目录本地
-  CLAUDE.md）是否符合"把它当运行时配置、不是项目说明书"的最佳实践，给出评分卡 +
-  按优先级的修复建议，并可代为修复。触发：用户说「检查我的 CLAUDE.md / CLAUDE.md
-  体检 / 我的 CLAUDE.md 规范吗 / claude-md-doctor / hekouwang-claude-md-doctor-skill /
-  audit CLAUDE.md / lint CLAUDE.md / 看看我的 claude 配置合不合规」。
-  任何"评估/审查/优化某个项目 CLAUDE.md 质量"的请求都应触发。
+  会勇禾口王的AI笔记 · Agent 运行时配置体检器。检查项目的 AGENTS.md（跨 Agent 推荐）
+  或 CLAUDE.md（及子目录本地配置）是否符合"把它当运行时配置、不是项目说明书"的最佳实践，
+  给出评分卡 + 按优先级的修复建议，并可代为修复。触发：用户说「检查我的 CLAUDE.md /
+  AGENTS.md / 运行时配置体检 / claude-md-doctor / agents.md 规范吗 / audit CLAUDE.md /
+  lint AGENTS.md / 看看我的 agent 配置合不合规」。
+  任何"评估/审查/优化某个项目 AGENTS.md 或 CLAUDE.md 质量"的请求都应触发。
 allowed-tools:
   - Bash
   - Read
@@ -17,16 +23,17 @@ allowed-tools:
   - AskUserQuestion
 ---
 
-# hekouwang-claude-md-doctor-skill · CLAUDE.md 体检器
+# hekouwang-claude-md-doctor-skill · Agent 运行时配置体检器
 
 > **会勇禾口王的AI笔记** 出品 · `@huiyonghkw`
 > GitHub: <https://github.com/huiyonghkw/hekouwang-claude-md-doctor-skill>
 > _不聊 AI 会不会取代你，只聊先用 AI 的人怎么取代你。_
 
-把"CLAUDE.md 最佳实践"做成一个能跑在任何项目上的检查器：机检定量 + 模型定性，
+把"Agent 运行时配置最佳实践"做成一个能跑在任何项目上的检查器：机检定量 + 模型定性，
 产出评分卡和可落地的修复建议。核心判据一句话——
 
-> **CLAUDE.md 是每次会话都被重新加载、要付上下文费的"运行时配置"，不是给人读的项目说明书。**
+> **AGENTS.md / CLAUDE.md 是每次会话都被重新加载、要付上下文费的"运行时配置"，不是给人读的项目说明书。**
+> 2026 年起 Cursor / Codex / OpenClaw 等多读 **AGENTS.md**；Claude Code 仍读 **CLAUDE.md**。
 > 一切检查项都从这句推导：值不值得每次会话都为这段内容付一次费？
 
 ### 减法优先（元判据 · 凌驾全部检查项之上）
@@ -75,6 +82,33 @@ Claude Code 之父 Boris Cherny 公开说自己的配置"surprisingly vanilla"�
 
 ---
 
+## 与内置 `/doctor` 命令的分工（名字像，别混用）
+
+Claude Code 内置了一个 `/doctor` 命令，名字也带 "doctor"，但**体检对象和本 skill 完全不同**——
+一个查整套工具的运行环境，一个只查一份文档写得好不好。别把两者当同一个东西。
+
+| 维度 | 内置 `/doctor` 命令 | 本 skill（claude-md-doctor） |
+|------|--------------------|------------------------------|
+| **体检对象** | 整个 **Claude Code 运行环境 / 安装** | 单个项目的 **CLAUDE.md 文件本身** |
+| **关注点** | 安装健康、未用扩展(skill/MCP/plugin)、常驻上下文膨胀、慢 Hook、版本、权限模式、预批命令、本地记忆去重 | CLAUDE.md 是否「当运行时配置写而非项目说明书」、篇幅、该不该懒加载、评分卡 + 分级修复 |
+| **改哪里** | `~/.claude/` 配置层（settings.json、skillOverrides、`.claude.json`） | 项目里的 `CLAUDE.md` / 子目录本地 CLAUDE.md 内容 |
+| **作用范围** | 全局 · 跨所有项目的工具链 | 就这一个项目的文档 |
+| **产物** | 环境体检报告 + 两道确认后改配置 | 评分卡（10 项）+ Top 3 修复建议，可代改 |
+
+**唯一交集**：`/doctor` 的 **Check 2 / Check 3** 会碰 CLAUDE.md——去重本地 vs 入库 CLAUDE.md、
+把该懒加载的内容迁到 skill/子目录。但它是从**「上下文成本」**这一个角度看，只管「有没有重复、该不该常驻」，
+**不评文档质量**；本 skill 才从**「写法规范」**全面打分（可操作性、禁止清单、高危护栏、30 秒三问……）。
+
+### 用法建议
+
+- **想知道「我这套 Claude Code 装得干净、跑得健康吗」** → 跑内置 `/doctor`。
+- **想知道「我这个项目的 CLAUDE.md 写得规范吗」** → 触发本 skill。
+- **两者串起来用（推荐）**：先 `/doctor` 体检环境，若它在 Check 3 提示「CLAUDE.md 太大 / 该懒加载」，
+  接着用本 skill 深度评一份 + 出 Top 3 + 代重构——`/doctor` 负责发现「这份文档偏大」，本 skill 负责回答「具体哪几条该删、怎么下沉」。
+- **别指望 `/doctor` 替你把 CLAUDE.md 写规范**：它只做去重和迁移，不判「这条规则是不是空话」「禁止清单缺不缺」——那是本 skill 的活。
+
+---
+
 ## 工作流（每次体检按这个顺序）
 
 1. **确认目标目录**：用户没指明就用当前工作目录；说了某项目就用那个绝对路径。
@@ -85,9 +119,9 @@ Claude Code 之父 Boris Cherny 公开说自己的配置"surprisingly vanilla"�
    - 需要结构化结果时加 `--json`（便于你解析后二次判断）。
    - 退出码：有 FAIL → 1，否则 0。
 3. **定性复核**（机检之上，必须做）：机检是启发式，几项需要你**真正读正文**再下结论：
-   - 实际打开根 `CLAUDE.md` 通读一遍；
+   - 实际打开根 `AGENTS.md` 或 `CLAUDE.md` 通读一遍（机检已自动选优先级更高的那份）；
    - 用下面《评分标准》逐条核对，**重点修正机检可能误判的项**（见"机检的盲区"）；
-   - 抽查 1–2 个子目录本地 CLAUDE.md 是否写了真红线（不是空模板）。
+   - 抽查 1–2 个子目录本地 AGENTS.md / CLAUDE.md 是否写了真红线（不是空模板）。
 4. **出报告**：先给一句话总评 + 分数档位，再用"✓/▲/✗ + 一句话 + 修复建议"逐条列，
    最后给 **Top 3 最该先改的**（按"花最小力气补最大漏洞"排序）。中文输出。
 5. **提出代修复**：问用户要不要直接改（瘦身下沉 docs/、补禁止清单、补工作风格块、
@@ -97,17 +131,19 @@ Claude Code 之父 Boris Cherny 公开说自己的配置"surprisingly vanilla"�
 
 ---
 
-## 评分标准（10 项 · 也是机检的判分依据）
+## 评分标准（12 项 · 也是机检的判分依据）
 
 | # | 检查项 | 合格长什么样 | 不合格信号 |
 |---|--------|------------|-----------|
 | 0 | **无硬编码密钥（安全红线）** | 正文不出现 key/token/私钥/口令明文 | 出现 `sk-`/`AKIA`/私钥块/`password="..."` → **直接 FAIL** |
+| 0b | **AGENTS + CLAUDE 不双份加载** | 只留一份真源；另一份是一行指针 | 根目录两份都「厚」、内容重复 → **WARN**（双倍上下文费） |
 | 1 | **篇幅 ≤ 200 行** | 路由器不是图书馆，常驻越短越好 | >200 行；大段历史/营销/教程正文 |
 | 2 | **禁止清单（Do NOT）** | 有"不要引入 X（因为 Y）"清单 | 只列要用的、不列禁用的 |
 | 3 | **规则可操作** | 5 秒内能判定代码合不合规 | "写干净代码/优雅/高质量"这类空话 |
 | 4 | **路由器不是图书馆** | 大块下沉 docs/，正文留指针（认 docs/ 文本指针与原生 `@import`） | 架构图/长表/历史塞在常驻正文 |
 | 4b | **指针无死链** | docs/ 与 `@import` 都指向真实存在的文件 | 指针指向不存在的文件（按图索骥扑空，比没指针更糟） |
-| 5 | **高危模块本地 CLAUDE.md** | 碰钱/认证/迁移目录各有护栏 | 敏感模块只靠根文件一句话 |
+| 4c | **细则路由到 Skill** | 工作流细则在 `.agents/skills/`，正文留指针 | 有 skills 目录但正文很长且不提路由 |
+| 5 | **高危模块本地配置** | 碰钱/认证/迁移目录各有 AGENTS.md 或 CLAUDE.md | 敏感模块只靠根文件一句话 |
 | 6 | **Hook 强制层** | 最不能漏的规则挂成 Hook | 关键规则只"写着"靠模型记 |
 | 7 | **MEMORY.md 回路** | 任务前读、任务后写的跨会话记忆 | 每次会话从零重新认识项目 |
 | 8 | **工作风格块**（限 3–5 行） | 写了"你是谁/你讨厌什么/协作节奏"，且每行都指向一个"不写就会犯的具体错" | 没有人格；或写成性格小作文 |
@@ -116,7 +152,7 @@ Claude Code 之父 Boris Cherny 公开说自己的配置"surprisingly vanilla"�
 
 **分档**：A 优秀 ≥85 · B 良好 ≥70 · C 及格 ≥50 · D 建议重写 <50。
 （机检：PASS=1 / WARN=0.5 / FAIL=0，INFO 不计分。**按重要度加权**——安全红线 #0 与
-减法核心项 #1/#3/#4/#10 权重 1.5，标准项 #2/#4b/#5/#9 为 1.0，加内容项 #6/#7/#8 为 0.6。
+减法核心项 #1/#3/#4/#10 权重 1.5，标准项 #0b/#2/#4b/#4c/#5/#9 为 1.0，加内容项 #6/#7/#8 为 0.6。
 #0 命中按 FAIL 计且资损级，定性总评里应一票顶到「先改这条」。）
 
 ---

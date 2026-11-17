@@ -1,8 +1,8 @@
 ---
 name: clawsqlite-knowledge
 description: Knowledge base skill that uses the published clawsqlite CLI for ingest, search, show, and maintenance workflows.
-version: 1.0.7
-metadata: {"openclaw":{"homepage":"https://github.com/ernestyu/clawsqlite","tags":["knowledge","sqlite","search","cli"],"requires":{"bins":["python"],"env":[]},"install":[{"id":"clawsqlite_knowledge_bootstrap","kind":"bash","label":"Install clawsqlite Python package from PyPI","script":"set -e && cd {baseDir} && bash bootstrap_deps.sh"}]}}
+version: 1.0.12
+metadata: {"openclaw":{"homepage":"https://github.com/ernestyu/clawsqlite","tags":["knowledge","sqlite","search","cli"],"requires":{"bins":["python"],"env":[]},"dependencies":{"python":["clawsqlite==1.0.12"]},"install":[{"id":"clawsqlite_knowledge_bootstrap","kind":"bash","label":"Install clawsqlite Python package from PyPI","script":"set -e && cd {baseDir} && bash bootstrap_deps.sh"}]}}
 ---
 
 # ClawSQLite Knowledge Skill
@@ -26,7 +26,7 @@ It does not:
 
 It does:
 
-- install `clawsqlite` from PyPI through `bootstrap_deps.sh`
+- install the pinned `clawsqlite==1.0.12` PyPI package through `bootstrap_deps.sh`
 - guide agents to use the official `clawsqlite knowledge ...` CLI
 - document common workflows for knowledge-base operations
 
@@ -34,12 +34,16 @@ It does:
 
 This skill directory is only the instruction shell. Do not store the user's
 knowledge DB or private config here. Run `clawsqlite knowledge ...` from a
-knowledge instance home instead, for example:
+knowledge instance home instead. In OpenClaw, use the persistent workspace data
+directory:
 
 ```bash
-mkdir -p ~/.local/share/clawsqlite-knowledge/default
-cd ~/.local/share/clawsqlite-knowledge/default
+mkdir -p ~/.openclaw/workspace/data/clawsqlite-knowledge/default
+cd ~/.openclaw/workspace/data/clawsqlite-knowledge/default
 ```
+
+On a normal non-OpenClaw Linux install, the default falls back to
+`${XDG_DATA_HOME:-~/.local/share}/clawsqlite-knowledge/default`.
 
 The local private config must be:
 
@@ -53,7 +57,7 @@ configuration, and do not guess DB paths.
 
 ## Bootstrap
 
-Install or upgrade the published package:
+Check or install the required published package:
 
 ```bash
 sh bootstrap_deps.sh
@@ -68,7 +72,7 @@ no config exists yet:
 
 ```bash
 bin/clawsqlite knowledge maintenance init-config --instance default
-cd ~/.local/share/clawsqlite-knowledge/default
+cd ~/.openclaw/workspace/data/clawsqlite-knowledge/default
 ```
 
 ## Validate

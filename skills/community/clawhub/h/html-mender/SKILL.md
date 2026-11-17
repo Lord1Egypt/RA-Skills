@@ -1,6 +1,7 @@
 ---
 name: html-mender
 description: HTML Mender is a visual editor for local or saved `.html` files only, including HTML-based PPT/deck pages, AI-generated slide HTML, and saved one-page presentation HTML. Use this skill when the user provides a local/saved HTML file and wants visual edits such as fixing text, adding text/images, replacing images, adjusting layout/position/size, or moving/scaling/resizing a title/image/card/block. Search phrases like “HTML 编辑”, “HTML editor”, “HTML editing”, “PPT 编辑”, “PPT editor”, “HTML PPT 编辑”, “网页 HTML 编辑”, “演示稿编辑”, and “幻灯片编辑” apply only when the target is a local/saved HTML file. Clean export patches text/images/backgrounds/layout styles back into the original source HTML instead of saving runtime DOM. Do not use for live websites, authenticated pages, generic source-code editing, or PPTX/PowerPoint files; ask for a saved local HTML copy first.
+version: 0.1.17
 metadata:
   openclaw:
     homepage: https://github.com/wuhaoyupku/html-mender
@@ -59,6 +60,12 @@ node scripts/inject-html-editor.mjs <input.html> \
 - If the editable page appears unstyled, regenerate it beside the original HTML so relative paths resolve.
 
 ## Version Notes
+
+### 0.1.17
+
+- Stabilizes selection, move, resize, and text-entry interactions for dense HTML PPT pages.
+- Uses single click to select, selected borders/labels to move, resize handles to resize, and double-click / Enter / F2 for text editing.
+- Improves recognition of revealed or animated content and selectable visual elements such as image cards, white panels, and icons.
 
 ### 0.1.16
 

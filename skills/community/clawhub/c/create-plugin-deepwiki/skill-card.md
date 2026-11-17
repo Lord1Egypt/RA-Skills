@@ -1,42 +1,49 @@
-## Description: <br>
-Create minimal, convention-matching plugins or extensions for an existing codebase while keeping the work aligned with the host project's structure and style. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create minimal, convention-matching plugins or extensions for an existing codebase.
 
-## Publisher: <br>
-[hyharry](https://clawhub.ai/user/hyharry) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hyharry](https://clawhub.ai/user/hyharry)
 
-## Use Case: <br>
-Developers and engineers use this skill to create small plugins, extensions, modules, integrations, or add-ons that match an existing repository's conventions. It emphasizes repository review, minimal implementation, documentation, and honest verification scope. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may read target repositories and documentation and can optionally use DeepWiki for public-repository research. <br>
-Mitigation: Avoid sending private repository details to external tools unless that workflow is explicitly approved. <br>
-Risk: Generated plugin code may be conventionally plausible but still need project-specific review before use. <br>
-Mitigation: Review the implementation, run feasible syntax or import checks, and document any runtime validation that was not completed. <br>
+## Use Case:
 
+Developers and engineers use this skill to add small plugins, extensions, custom modules, integrations, or add-ons to existing repositories while matching the host project's conventions. It guides the agent to inspect the repository and documentation first, plan a minimal implementation, add proportionate documentation, and state verification limits honestly.
 
-## Reference(s): <br>
-- [CAX plugin example: recrystallization grain growth](references/cax-recrystallization-example.md) <br>
-- [CAX repository](https://github.com/maxencefaldor/cax) <br>
-- [ClawHub skill page](https://clawhub.ai/hyharry/create-plugin-deepwiki) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with code, shell commands, configuration, and concise implementation notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include repository-specific files, usage documentation, and verification notes depending on the user's requested plugin.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Generated plugin code or repository changes could be applied to a private, sensitive, or convention-heavy project without enough review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated code and proposed changes before applying them, limit repository access to what the task requires, and verify that the implementation follows the target project's documented extension patterns.
+
+## Reference(s):
+
+- [CAX plugin example: recrystallization grain growth](references/cax-recrystallization-example.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with code blocks, file edits, and concise verification notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include generated plugin files, minimal usage documentation, implementation plans, and review notes tailored to the target repository.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

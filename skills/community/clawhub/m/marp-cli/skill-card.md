@@ -1,45 +1,55 @@
-## Description: <br>
-Convert Markdown to presentations via CLI, including HTML, PDF, PowerPoint (PPTX), PNG, and JPEG outputs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert Markdown to presentations via CLI. Output HTML, PDF, PowerPoint (PPTX), and images (PNG/JPEG).
 
-## Publisher: <br>
-[killgfat](https://clawhub.ai/user/killgfat) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[killgfat](https://clawhub.ai/user/killgfat)
 
-## Use Case: <br>
-Developers, educators, and technical writers use this skill to generate Marp CLI commands and workflow guidance for converting Markdown slide decks into presentation, document, and image formats. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill suggests running the `marp` command from the user's PATH. <br>
-Mitigation: Install and use this skill only when the local `marp` binary is trusted. <br>
-Risk: Server mode can expose slide directories over HTTP if bound to a shared or untrusted network interface. <br>
-Mitigation: Use server mode only for directories intended to be shared and avoid `HOST=0.0.0.0` on shared or untrusted networks. <br>
-Risk: Local file access and raw HTML can increase exposure when processing untrusted slide decks. <br>
-Mitigation: Enable local file access or raw HTML only for trusted slide decks. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Marp CLI homepage](https://github.com/marp-team/marp-cli) <br>
-- [ClawHub skill page](https://clawhub.ai/killgfat/marp-cli) <br>
-- [QUICKSTART.md](QUICKSTART.md) <br>
-- [EXAMPLES.md](EXAMPLES.md) <br>
-- [README.md](README.md) <br>
+## Use Case:
 
+Developers, educators, and documentation authors use this skill to convert Markdown slide decks into HTML, PDF, PPTX, PNG, JPEG, and presenter-note outputs with Marp CLI. It also supports preview, watch, server, and batch conversion workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Assumes a trusted `marp` binary is available on PATH; browser-backed conversions may require Chrome, Edge, or Firefox.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Server mode can expose slide content if intentionally bound beyond localhost.
+
+Mitigation: Prefer localhost-only server use; avoid HOST=0.0.0.0 unless the service is intentionally exposed with firewall and authentication controls.
+
+Risk: Local file access can expose files when processing untrusted Markdown or assets.
+
+Mitigation: Do not enable --allow-local-files or persistent allowLocalFiles settings for untrusted inputs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/killgfat/skills/marp-cli)
+- [Marp CLI documentation](https://github.com/marp-team/marp-cli)
+- [Marp website](https://marp.app/)
+- [Marp Core](https://github.com/marp-team/marp-core)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the marp command; browser-backed conversions require Chrome, Edge, or Firefox.]
+
+## Skill Version(s):
+
+0.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

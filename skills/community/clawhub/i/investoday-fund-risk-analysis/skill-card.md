@@ -1,42 +1,57 @@
-## Description: <br>
-Analyzes public fund risk using Investoday financial data, focusing on drawdown, volatility, downside risk, VaR, Beta, Sharpe ratio, and risk-return fit. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes public fund risk using Investoday finance data, focusing on drawdown, volatility, downside risk, VaR, beta, Sharpe ratio, and risk-return fit.
 
-## Publisher: <br>
-[kenneth-bro](https://clawhub.ai/user/kenneth-bro) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kenneth-bro](https://clawhub.ai/user/kenneth-bro)
 
-## Use Case: <br>
-Finance-focused agents use this skill to turn a fund name or six-digit fund code into a structured fund risk report. The report covers fund risk profile, drawdown, volatility, downside risk, risk-adjusted return, market sensitivity, fund manager context, and follow-up risk signals. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on investoday-finance-data for actual data access, so incorrect, stale, or unavailable upstream fund data can affect the report. <br>
-Mitigation: Review and approve the investoday-finance-data dependency separately, and surface data gaps as insufficient evidence rather than definitive conclusions. <br>
-Risk: Fund risk analysis can be mistaken for investment advice or trading guidance. <br>
-Mitigation: Keep outputs informational, avoid subscription, redemption, timing, and position-sizing recommendations, and preserve the skill's requirement to explain each risk conclusion with numeric evidence. <br>
-Risk: Ambiguous fund names can resolve to the wrong product. <br>
-Mitigation: Use entity recognition for names and request a fuller name or six-digit fund code when identification is not stable and unique. <br>
+## Use Case:
 
+External users and financial-analysis agents use this skill to identify a public fund by name or six-digit code, retrieve Investoday market-data metrics, and produce a structured fund risk report. The report is analytical reference only and does not provide subscription, redemption, allocation, or market-timing advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kenneth-bro/investoday-fund-risk-analysis) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown fund risk analysis report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the investoday-finance-data skill for market data access; reports are informational and do not provide trading, subscription, redemption, timing, or position-sizing advice.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: frontmatter and server release metadata) <br>
+Risk: Fund names, fund codes, and the original user query may be sent to the Investoday finance-data integration for public market-data lookup.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm users are comfortable sharing those query details with the integration before installing or enabling the skill.
+
+Risk: Users may over-rely on the generated fund-risk analysis as investment advice.
+
+Mitigation: Present outputs as analytical reference only and preserve the skill's restrictions against subscription, redemption, allocation, or market-timing recommendations.
+
+Risk: Risk conclusions can be misleading when market-data fields are missing, time windows are unclear, or different fund types are compared directly.
+
+Mitigation: Require explicit time horizons and numeric evidence where available; state data insufficiency when metrics are unavailable and compare risk metrics within similar fund types or strategies.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kenneth-bro/skills/investoday-fund-risk-analysis)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown fund risk analysis report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires clear time windows and numeric evidence for risk conclusions when data is available; states that data is insufficient when a dimension cannot be judged.]
+
+## Skill Version(s):
+
+1.3.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

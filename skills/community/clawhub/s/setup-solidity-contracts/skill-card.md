@@ -1,43 +1,55 @@
-## Description: <br>
-Guides agents through setting up Hardhat or Foundry Solidity projects with OpenZeppelin Contracts dependencies, remappings, and import conventions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Set up a Solidity smart contract project with OpenZeppelin Contracts for Hardhat or Foundry projects, including dependencies, Foundry remappings, and Solidity import conventions.
 
-## Publisher: <br>
-[samledger67-dotcom](https://clawhub.ai/user/samledger67-dotcom) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[samledger67-dotcom](https://clawhub.ai/user/samledger67-dotcom)
 
-## Use Case: <br>
-Developers and smart-contract engineers use this skill to initialize or update Solidity projects with OpenZeppelin Contracts for Hardhat or Foundry, including dependency installation, Foundry remappings, compiler settings, and import conventions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The Foundry setup path uses a curl-to-shell installer command. <br>
-Mitigation: Review the installer command before running it, use the official Foundry URL from the skill evidence, and run setup only in the intended project environment. <br>
-Risk: Dependency installation and remapping changes can modify the wrong Solidity project or pull an unintended OpenZeppelin version. <br>
-Mitigation: Confirm the target project directory, detect Hardhat or Foundry configuration before changing files, and pin OpenZeppelin packages to a release tag where the workflow supports it. <br>
+## Use Case:
 
+Developers and engineers use this skill to bootstrap Solidity smart contract projects with OpenZeppelin Contracts, choose Hardhat or Foundry setup steps, and configure dependency imports and remappings.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/samledger67-dotcom/setup-solidity-contracts) <br>
-- [Publisher profile](https://clawhub.ai/user/samledger67-dotcom) <br>
-- [OpenZeppelin Contracts releases](https://github.com/OpenZeppelin/openzeppelin-contracts/releases) <br>
-- [Foundry installer](https://foundry.paradigm.xyz) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, Solidity import examples, and Foundry remapping snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should be reviewed before running commands, especially installer commands and project configuration changes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill recommends installing Foundry with a mutable remote script piped directly into Bash.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Inspect the installer before execution or use a pinned, verified Foundry release instead of executing curl output directly.
+
+Risk: Solidity dependency and compiler setup guidance can affect deployed contract behavior if versions or EVM settings are mismatched.
+
+Mitigation: Pin OpenZeppelin dependencies to release tags and confirm the Solidity compiler and EVM version match the intended deployment chain.
+
+## Reference(s):
+
+- [OpenZeppelin Contracts releases](https://github.com/OpenZeppelin/openzeppelin-contracts/releases)
+- [Foundry installer](https://foundry.paradigm.xyz)
+- [ClawHub skill page](https://clawhub.ai/samledger67-dotcom/skills/setup-solidity-contracts)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash and configuration blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Provides setup guidance and commands; users should review commands before execution.]
+
+## Skill Version(s):
+
+1.0.1 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

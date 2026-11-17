@@ -1,44 +1,58 @@
-## Description: <br>
-Use a lightweight spec + steering workflow for long, interruptible, multi-phase tasks that need checkpointed progress, recoverable state, and multi-session continuity. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use a lightweight spec + steering workflow for long, interruptible, multi-phase tasks that need checkpointed progress, recoverable state, and multi-session continuity.
 
-## Publisher: <br>
-[whisper1952717](https://clawhub.ai/user/whisper1952717) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[whisper1952717](https://clawhub.ai/user/whisper1952717)
 
-## Use Case: <br>
-Developers and agents use this skill to manage long-running, interruptible work through file-based specs, steering notes, checkpoints, and resumable handoffs across sessions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill keeps persistent task state and handoff notes in workspace files. <br>
-Mitigation: Install it only when persistent planning state is desired, and review specs/active, specs/archive, and steering files for retained task context. <br>
+## Use Case:
 
+Developers and agent operators use this skill to create, resume, checkpoint, validate, and archive long-running work through file-based specs and steering files. It is suited to multi-phase tasks that need durable handoffs across sessions.
 
-## Reference(s): <br>
-- [Skill Page](https://clawhub.ai/whisper1952717/spec-steering-workflow) <br>
-- [ClawHub Homepage](https://clawhub.ai/skills?sort=downloads) <br>
-- [Workflow Rules](references/workflow-rules.md) <br>
-- [Checkpoint Rules](references/checkpoint-rules.md) <br>
-- [Recovery Rules](references/recovery-rules.md) <br>
-- [Integration Rules](references/integration-rules.md) <br>
-- [Template Contracts](references/template-contracts.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown and JSON workspace files with optional shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates or updates specs/active, specs/archive, and steering files when used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The bundled local script can operate outside its intended workspace folders if given a crafted spec name.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Validate spec IDs, enforce path containment before file operations, and avoid using spec names supplied by untrusted content.
+
+Risk: Implicit invocation may create or resume workflow state when that state change was not intended.
+
+Mitigation: Prefer disabling implicit invocation or requiring confirmation before creating or resuming workflow state.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/whisper1952717/skills/spec-steering-workflow)
+- [ClawHub Homepage](https://clawhub.ai/skills?sort=downloads)
+- [Workflow Rules](references/workflow-rules.md)
+- [Checkpoint Rules](references/checkpoint-rules.md)
+- [Recovery Rules](references/recovery-rules.md)
+- [Template Contracts](references/template-contracts.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with shell commands and file templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates or updates workspace spec, steering, handoff, task, and metadata files when the bundled CLI is used.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

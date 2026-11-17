@@ -1,39 +1,53 @@
-## Description: <br>
-会议纪要自动整理工具 | 将原始会议记录智能整理为结构化会议纪要（议题、决议、待办、责任人和截止日期） <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+会议纪要自动整理工具将原始会议记录整理为包含议题、决议、待办、责任人和截止日期的结构化会议纪要。
 
-## Publisher: <br>
-[yongjie666888](https://clawhub.ai/user/yongjie666888) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yongjie666888](https://clawhub.ai/user/yongjie666888)
 
-## Use Case: <br>
-Employees and external teams use this skill to turn raw meeting notes, transcripts, chat records, or handwritten-note descriptions into structured meeting minutes with discussion topics, decisions, action owners, deadlines, and follow-up issues. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Meeting notes may contain confidential, customer-related, or personnel information pasted into an agent or model environment. <br>
-Mitigation: Use the skill only in environments approved for that data and avoid pasting information that should not be processed there. <br>
-Risk: Generated minutes may misstate decisions, owners, or deadlines when raw notes are ambiguous or incomplete. <br>
-Mitigation: Have a meeting participant review decisions, owners, dates, and follow-up items before relying on or sharing the minutes. <br>
+## Use Case:
 
+Employees and external users who prepare Chinese meeting records use this skill to turn raw notes, transcripts, or bullet points into structured minutes with decisions, action items, owners, deadlines, and unresolved issues.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown] <br>
-**Output Format:** [Markdown meeting minutes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Structured sections for meeting information, discussion topics, decisions, action items, owners, deadlines, and unresolved issues.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and artifact/_meta.json) <br>
+Risk: Meeting notes may include confidential or sensitive business information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Invoke the skill intentionally only with meeting content appropriate for processing and sharing.
+
+Risk: Generated decisions, owners, and deadlines may be incomplete or inaccurate.
+
+Mitigation: Review the structured minutes before distribution, especially action owners, deadlines, and decision wording.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yongjie666888/skills/meeting-minutes-organizer)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Text, Code, Guidance]
+
+**Output Format:** [Markdown meeting minutes with headings, bullets, bold decisions, action items, owners, and deadlines]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language output; users should review generated decisions, owners, and deadlines before sharing.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

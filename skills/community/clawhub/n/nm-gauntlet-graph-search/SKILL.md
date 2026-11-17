@@ -2,7 +2,7 @@
 name: graph-search
 description: |
   Searches the code knowledge graph by function, class, or type using FTS5 full-text search
-version: 1.9.8
+version: 1.10.3
 triggers:
   - locating code entities by name or qualified path
 metadata: {"openclaw": {"homepage": "https://github.com/athola/claude-night-market/tree/master/plugins/gauntlet", "emoji": "\ud83e\udd9e"}}
@@ -10,12 +10,17 @@ source: claude-night-market
 source_plugin: gauntlet
 ---
 
-> **Night Market Skill** — ported from [claude-night-market/gauntlet](https://github.com/athola/claude-night-market/tree/master/plugins/gauntlet). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
+> **Night Market Skill**: ported from [claude-night-market/gauntlet](https://github.com/athola/claude-night-market/tree/master/plugins/gauntlet). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
 
 # Search Code Knowledge Graph
 
 Search `.gauntlet/graph.db` for code entities by name.
+
+## When NOT To Use
+
+- The graph is missing or stale (use `gauntlet:graph-build`)
+- Scoring the impact of a change (use `pensive:blast-radius`)
 
 ## Steps
 
@@ -52,3 +57,20 @@ The search engine detects query patterns:
 
 The graph must be built first. If `.gauntlet/graph.db`
 does not exist, suggest running the `graph-build` skill.
+
+## Exit Criteria
+
+- [ ] If `.gauntlet/graph.db` does not exist, the skill surfaces
+  the missing-prerequisite error and suggests `gauntlet:graph-build`
+  rather than failing silently
+- [ ] Results display qualified name, file path, line numbers, and
+  relevance score for each match (up to `--limit` results)
+- [ ] Query intelligence applies correct boost: PascalCase boosts
+  Class/Type results, snake_case boosts Function results, dotted
+  path boosts qualified name matches
+- [ ] User is offered to read the top result's source file after
+  results are shown
+- [ ] A `count: 0` result is reported as "not in the graph" only after
+  `graph_query.py --action status` shows `node_count` above zero. An
+  unbuilt graph, or one built without tree-sitter, answers every
+  query with zero, and that zero says nothing about the codebase

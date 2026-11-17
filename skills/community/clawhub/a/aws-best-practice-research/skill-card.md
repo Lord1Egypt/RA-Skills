@@ -1,44 +1,60 @@
-## Description: <br>
-Researches, compiles, or assesses best practices for AWS services by using official AWS documentation, with optional live AWS resource assessment when credentials and resource details are provided. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Researches, compiles, and optionally assesses AWS service best practices against official AWS documentation.
 
-## Publisher: <br>
-[panlm](https://clawhub.ai/user/panlm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[panlm](https://clawhub.ai/user/panlm)
 
-## Use Case: <br>
-Developers, cloud engineers, and reviewers use this skill to build AWS best-practice checklists across high availability, disaster recovery, failover planning, security, and operational categories. When given appropriate AWS access details, it can also guide live resource assessment and produce findings against the checklist. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Live assessment can involve AWS credentials and account configuration details. <br>
-Mitigation: Use a scoped, temporary, read-only IAM role or AWS profile for the target account, region, and service, and review assessment steps before running them. <br>
-Risk: Generated reports may include infrastructure and security configuration details. <br>
-Mitigation: Store generated checklists and assessment reports in private locations and review them before sharing or committing them. <br>
+## Use Case:
 
+Developers and cloud engineers use this skill to compile AWS HA, disaster recovery, security, and operational best-practice checklists from official AWS documentation. When read-only AWS access details are provided, it can compare live AWS resources against the generated checklist and produce an assessment report.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/panlm/aws-best-practice-research) <br>
-- [aws-knowledge-mcp-server](https://github.com/awslabs/mcp/tree/main/src/aws-knowledge-mcp-server) <br>
-- [Assessment Workflow](references/assessment-workflow.md) <br>
-- [Output Template](references/output-template.md) <br>
-- [Search Queries](references/search-queries.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown reports and checklists, with optional AWS CLI command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Checklist-only mode writes a best-practice checklist; live-assessment mode writes a self-contained assessment report.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: Live assessment can collect AWS infrastructure metadata, including topology, tags, events, subnet details, and security settings.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use least-privilege read-only credentials and limit assessments to accounts and resources whose inventory may enter agent context or logs.
+
+Risk: Sourcing a user-provided credential file can expose credentials or run unexpected shell content.
+
+Mitigation: Prefer preconfigured AWS profiles or environment variables, and inspect any credential file before use.
+
+Risk: Generated best-practice checklists or assessments can be incomplete if documentation search misses important AWS sources.
+
+Mitigation: Review source annotations and validate findings against official AWS documentation before using results for production decisions.
+
+## Reference(s):
+
+- [AWS Knowledge MCP Server](https://github.com/awslabs/mcp/tree/main/src/aws-knowledge-mcp-server)
+- [Assessment Workflow](references/assessment-workflow.md)
+- [Output Template](references/output-template.md)
+- [Search Query Templates](references/search-queries.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown checklist or assessment report with tables, source annotations, and remediation guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce a local Markdown file; live assessment uses read-only AWS CLI commands when credentials, region, and resource identifiers are provided.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

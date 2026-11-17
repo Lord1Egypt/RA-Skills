@@ -1,45 +1,63 @@
-## Description: <br>
-Prismer enables agents to fetch, compress, and parse web content, perform OCR, communicate through real-time messaging, and use shared memory and evolution workflows through the Prismer CLI and SDKs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Prismer enables agents to fetch and compress web context, parse documents with OCR, exchange messages, manage tasks and memory, share files, and use evolution workflows through CLI and SDK interfaces.
 
-## Publisher: <br>
-[ooxxxxoo](https://clawhub.ai/user/ooxxxxoo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ooxxxxoo](https://clawhub.ai/user/ooxxxxoo)
 
-## Use Case: <br>
-Developers and agent operators use Prismer to give coding or assistant agents cloud-backed context loading, document parsing, messaging, tasks, memory, file sharing, and shared evolution feedback via the Prismer CLI and SDKs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill grants agents broad cloud upload, memory, messaging, and skill-install capabilities. <br>
-Mitigation: Use a dedicated low-privilege Prismer account or key, and require explicit approval before uploading files, parsing confidential documents, sending or deleting messages, or recording task and error details. <br>
-Risk: The workflow can install packages and synchronize skills from external services. <br>
-Mitigation: Install only if Prismer Cloud and the referenced packages are trusted, and review any skill before installing or syncing it. <br>
-Risk: API keys or other secrets could be exposed if passed directly through commands or shared logs. <br>
-Mitigation: Avoid passing secrets directly on the command line and keep credentials in a scoped, revocable secret store. <br>
+## Use Case:
 
+Developers and agent operators use Prismer to add cloud-backed knowledge retrieval, document parsing, agent messaging, persistent memory, task coordination, file sharing, and shared evolution learning to agent workflows.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ooxxxxoo/global-agent-node-with-real-time-context-streaming-mission-form-autonomous-network-status-awaiting-peers) <br>
-- [ClawHub Publisher Profile](https://clawhub.ai/user/ooxxxxoo) <br>
-- [Prismer Cloud](https://prismer.cloud) <br>
-- [Prismer Cloud Docs](https://prismer.cloud/docs) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with CLI commands, SDK code examples, and operational guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include package installation commands, Prismer Cloud API usage, account registration, API keys, file uploads, memory writes, messaging actions, and skill installation or synchronization steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.7.4 (source: server release metadata and user changelog, released 2026-04-01) <br>
+Risk: The skill directs agents toward unpinned package and plugin execution.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only from trusted Prismer package and plugin sources, prefer pinned versions or a reviewed lockfile, and review installation commands before execution.
+
+Risk: The skill supports persistent memory, file sharing, and cloud-backed data handling.
+
+Mitigation: Avoid uploading sensitive files unless intentional, treat memory entries as retained cloud data, and delete files or memories that should not persist.
+
+Risk: The skill uses API keys, webhook secrets, JWTs, and identity credentials.
+
+Mitigation: Protect secrets, avoid placing credentials in shared transcripts or committed files, and rotate or refresh tokens when access is uncertain.
+
+Risk: The skill can install or sync catalog skills locally.
+
+Mitigation: Inspect catalog skill contents before installing or syncing them into an agent workspace.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ooxxxxoo/skills/global-agent-node-with-real-time-context-streaming-mission-form-autonomous-network-status-awaiting-peers)
+- [Prismer Cloud Documentation](https://prismer.cloud/docs)
+- [Prismer Cloud](https://prismer.cloud)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with CLI commands, SDK code examples, and configuration instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Agent-facing guidance may include external service calls, persistent memory operations, file uploads, and package or plugin installation steps.]
+
+## Skill Version(s):
+
+1.7.4 (source: server release evidence and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -7,7 +7,7 @@
 # Exits 0 to allow the tool call; exits 1 to block it.
 set -euo pipefail
 
-SENTINEL_API_URL="${SENTINEL_API_URL:-https://sentinel.ircnet.us}"
+SENTINEL_API_URL="${SENTINEL_API_URL:-https://api.sentinelaifirewall.com}"
 SENTINEL_KEY="${SENTINEL_KEY:-}"
 SENTINEL_TIER="${SENTINEL_TIER:-standard}"
 

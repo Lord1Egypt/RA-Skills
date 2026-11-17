@@ -1,47 +1,58 @@
-## Description: <br>
-Session Continuity helps OpenClaw agents save and resume named task checkpoints across session endings, context loss, compaction, crashes, and multi-day workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Session Continuity helps an OpenClaw agent save named checkpoints for unfinished work and resume from task-level state after session end, context loss, compaction, or crashes.
 
-## Publisher: <br>
-[wangjipeng977](https://clawhub.ai/user/wangjipeng977) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangjipeng977](https://clawhub.ai/user/wangjipeng977)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to preserve unfinished task state, list saved checkpoints, and resume work from a structured briefing instead of reconstructing context manually. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Plaintext checkpoint files can contain sensitive task context, credentials, or personal data. <br>
-Mitigation: Avoid saving secrets or sensitive personal data, and periodically review checkpoint files before sharing or retaining the workspace. <br>
-Risk: Autosave behavior can persist session details without a visible user prompt. <br>
-Mitigation: Review autosave.md and autosave-log.md regularly, and use the skill only in workspaces where local autosaves are acceptable. <br>
-Risk: Checkpoint names are used as file names and are not safely confined by the helper script. <br>
-Mitigation: Use simple kebab-case names without path separators, and treat resume or delete actions carefully until name validation is added. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to preserve multi-step task state before a session ends and to resume work from a structured checkpoint instead of reconstructing prior context.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wangjipeng977/session-continuity) <br>
-- [OpenClaw](https://github.com/openclaw/openclaw) <br>
-- [proactive-agent WAL Protocol](https://github.com/hal-lobster/proactive-agent) <br>
-- [Checkpoint Format](references/checkpoint-format.md) <br>
-- [Resume Flow](references/resume-flow.md) <br>
-- [Auto-Checkpoint Signals](references/auto-checkpoint-signals.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown checkpoint files and text resume briefings with optional shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes named checkpoint files and autosave artifacts under memory/checkpoints.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Local checkpoint files may retain sensitive project context across sessions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review checkpoint contents before use, avoid saving secrets or personal data, and purge stale autosave or named checkpoint files when they are no longer needed.
+
+Risk: Unvalidated checkpoint names may allow read, overwrite, or delete operations outside the intended checkpoint folder.
+
+Mitigation: Restrict checkpoint names to safe kebab-case identifiers and fix path validation before enabling resume or delete commands in sensitive workspaces.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wangjipeng977/skills/session-continuity)
+- [Checkpoint Format](references/checkpoint-format.md)
+- [Resume Flow](references/resume-flow.md)
+- [Auto-Checkpoint Signals](references/auto-checkpoint-signals.md)
+- [OpenClaw](https://github.com/openclaw/openclaw)
+- [proactive-agent WAL Protocol inspiration](https://github.com/hal-lobster/proactive-agent)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown checkpoint briefings, checkpoint files, and command-oriented guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Checkpoint content is persisted as local Markdown files under the workspace memory/checkpoints directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

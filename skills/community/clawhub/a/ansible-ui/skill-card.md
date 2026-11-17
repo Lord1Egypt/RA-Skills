@@ -1,41 +1,59 @@
-## Description: <br>
-Modern UI and API support for Ansible, Terraform/OpenTofu/Terragrunt, PowerShell, and other DevOps workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a CLI-style helper for Ansible UI and related DevOps workflows, with commands that mainly print workflow and status messages and write local command history.
 
-## Publisher: <br>
-[bytesagain3](https://clawhub.ai/user/bytesagain3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain3](https://clawhub.ai/user/bytesagain3)
 
-## Use Case: <br>
-Developers and DevOps engineers use this skill to get agent guidance and shell-oriented commands for Ansible UI and related infrastructure automation workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Command arguments may be recorded in a local history file by the bundled shell wrapper. <br>
-Mitigation: Do not pass tokens, passwords, or sensitive infrastructure identifiers as command arguments. <br>
-Risk: The artifact contains lightweight placeholder command behavior rather than a complete Ansible UI implementation. <br>
-Mitigation: Review generated guidance and test commands in a non-production environment before relying on them. <br>
+## Use Case:
 
+Developers and DevOps engineers can use this skill for command guidance around ansible-ui workflows such as help, status, checks, builds, tests, deployment guidance, and configuration discovery. It is most appropriate as lightweight workflow assistance rather than as a real Semaphore, Ansible, Terraform, or deployment automation controller.
 
-## Reference(s): <br>
-- [Ansible Ui on ClawHub](https://clawhub.ai/bytesagain3/ansible-ui) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration guidance] <br>
-**Output Format:** [Markdown text with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May refer to local command-line wrappers and configuration paths described by the skill.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Documentation may overstate real DevOps automation capabilities.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review guidance before relying on it for Semaphore, Ansible, Terraform, or deployment operations, and confirm whether commands are placeholders.
+
+Risk: The Bash helper writes local command history under the configured ansible-ui data directory.
+
+Mitigation: Set ANSIBLE_UI_DIR to a controlled local path and avoid passing sensitive values as command arguments.
+
+Risk: Security review classified the release as suspicious because behavior and documentation do not fully align.
+
+Mitigation: Review the skill carefully before installing it in environments that perform real automation.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/bytesagain3/skills/ansible-ui)
+- [Publisher Profile](https://clawhub.ai/user/bytesagain3)
+- [BytesAgain Homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown and plain text with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include command examples and local configuration path guidance.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

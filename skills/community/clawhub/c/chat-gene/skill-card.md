@@ -1,44 +1,55 @@
-## Description: <br>
-生成模拟微信群聊记录的 Excel (.xlsx) 文件，包含 group_info、active_members 和 message_stream 三个 sheet，用于训练数据、FAQ/知识库测试、多角色对话演示和群聊样本生成。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates simulated WeChat group chat Excel (.xlsx) files with group_info, active_members, and message_stream sheets compatible with the Pai platform format.
 
-## Publisher: <br>
-[mellooc](https://clawhub.ai/user/mellooc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mellooc](https://clawhub.ai/user/mellooc)
 
-## Use Case: <br>
-Developers and agents use this skill to define synthetic group-chat participants, generate multi-role message streams, and write ClawHub/Pai-compatible group chat Excel workbooks. It is most useful for creating test or training datasets without relying on real chat logs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local Node.js scripts and the xlsx npm dependency must run on the user's machine. <br>
-Mitigation: Install and run the dependency only in an environment where local script execution is acceptable. <br>
-Risk: Generated chat logs could be mistaken for real conversations or used to impersonate real people. <br>
-Mitigation: Treat outputs as synthetic data and avoid using real identities without permission. <br>
-Risk: Default or careless output paths could overwrite important files. <br>
-Mitigation: Use explicit input and output paths and review them before running the writer script. <br>
+## Use Case:
 
+Developers, data teams, and test teams use this skill to create synthetic group-chat datasets for AI assistant training, FAQ or knowledge-base testing, multi-role conversation demos, and arbitrary topic samples.
 
-## Reference(s): <br>
-- [Group Schema Reference](references/group-schema.md) <br>
-- [XLSX Format Specification](references/xlsx-format.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/mellooc/chat-gene) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Files] <br>
-**Output Format:** [Markdown guidance with JSON inputs, JavaScript helpers, shell commands, and generated .xlsx files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces synthetic group_info, active_members, and message_stream workbook data; requires local Node.js and the xlsx npm dependency.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The XLSX dependency is loaded from a shared temporary path, which could execute untrusted code if that path is contaminated.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a project-local, pinned xlsx dependency with a lockfile before running the script.
+
+Risk: Generated files can overwrite existing files when default or reused output paths are selected.
+
+Mitigation: Choose explicit, non-existing output paths for generated files.
+
+## Reference(s):
+
+- [Group Schema Reference](artifact/references/group-schema.md)
+- [XLSX Format Specification](artifact/references/xlsx-format.md)
+- [ClawHub Skill Page](https://clawhub.ai/mellooc/skills/chat-gene)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Code, Shell commands, Configuration, Files]
+
+**Output Format:** [Markdown guidance with JSON message arrays and generated .json/.xlsx files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated workbook contains group_info, active_members, and message_stream sheets with fixed field and time-format requirements.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,59 @@
-## Description: <br>
-DEPRECATED shim skill for /codex_auth. Use codex-profiler instead; codex-auth is no longer the maintained path. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Codex Auth is a deprecated OpenClaw/Codex OAuth helper that starts an OpenAI login flow and applies callback tokens to local auth profile files.
 
-## Publisher: <br>
-[DeadlySilent](https://clawhub.ai/user/DeadlySilent) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[deadlysilent](https://clawhub.ai/user/deadlysilent)
 
-## Use Case: <br>
-Developers and operators use this deprecated helper to start and finish OpenAI Codex OAuth profile authentication for OpenClaw, including profile selection, callback handling, and local auth profile updates. The evidence recommends the maintained codex-profiler path for ongoing /codex_auth and /codex_usage operations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The deprecated standalone flow may be less appropriate than the maintained codex-profiler path for ongoing Codex auth and usage operations. <br>
-Mitigation: Prefer codex-profiler unless the deprecated codex-auth behavior is specifically required. <br>
-Risk: Queued apply mode writes OAuth tokens to predictable /tmp paths and restarts the local gateway in the background. <br>
-Mitigation: Avoid shared machines, avoid --queue-apply unless the restart and temporary token exposure are acceptable, and review status and backup paths after use. <br>
-Risk: Callback URLs and OAuth tokens are sensitive and can expose account access if pasted into the wrong place or echoed in full. <br>
-Mitigation: Paste callback URLs only into the intended finish command and never display full callback query parameters, access tokens, or refresh tokens. <br>
+## Use Case:
 
+Developers and operators maintaining legacy OpenClaw Codex profile authentication use this skill to run the deprecated /codex_auth flow, generate an OAuth login URL, and apply returned callback credentials to local auth profiles.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/DeadlySilent/codex-auth) <br>
-- [SECURITY.md](artifact/SECURITY.md) <br>
-- [RISK.md](artifact/RISK.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [JSON responses with command guidance and local configuration updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [OAuth callback URLs and token values are sensitive and should not be echoed in full.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: server release metadata) <br>
+Risk: The skill handles long-lived OAuth access and refresh tokens and stores pending OAuth state under /tmp.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if comfortable with local token writes; avoid queue mode until token staging is moved out of /tmp, permissions are forced to 0600, queued payloads are deleted after use, and callback URLs are not passed through shell command arguments.
+
+Risk: Queued apply mode can restart the local gateway in the background.
+
+Mitigation: Use queued apply only during planned maintenance windows and review the emitted revert command and backups before relying on the updated profile.
+
+Risk: The standalone codex-auth path is deprecated and no longer maintained as the primary workflow.
+
+Mitigation: Prefer the maintained codex-profiler path for ongoing /codex_auth and /codex_usage operations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/deadlysilent/skills/codex-auth)
+- [Artifact security notes](artifact/SECURITY.md)
+- [Artifact risk policy](artifact/RISK.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, JSON]
+
+**Output Format:** [Markdown guidance with shell commands and JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Profile-targeted OAuth start, finish, queued apply, and status flows for local OpenClaw auth profiles.]
+
+## Skill Version(s):
+
+1.0.6 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

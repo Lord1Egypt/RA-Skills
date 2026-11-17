@@ -1,40 +1,61 @@
-## Description: <br>
-根据主题、篇名、关键词等检索学术文献，返回真实的期刊信息、影响因子和下载链接，找不到就是找不到，绝不编造 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+根据主题、篇名、关键词等检索学术文献，返回真实的期刊信息、影响因子和下载链接，找不到就是找不到，绝不编造
 
-## Publisher: <br>
-[wangjinhongmy-pixel](https://clawhub.ai/user/wangjinhongmy-pixel) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangjinhongmy-pixel](https://clawhub.ai/user/wangjinhongmy-pixel)
 
-## Use Case: <br>
-External users and researchers use this skill to search for academic papers by topic, title, keyword, author, database, and filters, then receive verifiable publication details, impact-factor context when available, summaries, and access links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Academic search results may contain incorrect citations, DOI links, download links, or impact-factor claims if upstream web sources are stale or ambiguous. <br>
-Mitigation: Verify important references against official publisher pages, DOI records, PubMed, Crossref, or institutional library systems before relying on them academically. <br>
-Risk: Users may expose private institutional credentials or paywalled database access details while requesting downloads. <br>
-Mitigation: Do not paste paywalled database credentials, session cookies, or private institutional login details into the agent. <br>
+## Use Case:
 
+External ClawHub users use this skill to ask an agent to search academic literature by topic, title, keyword, author, database, publication date, or impact-factor constraints. The skill is intended to return verifiable paper metadata, summaries, citation or journal metrics when available, and official access or download links.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wangjinhongmy-pixel/paper-finder) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown search results with citations, summaries, and access links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include not-found explanations, suggested query refinements, and warnings to verify citations, DOI links, and impact-factor claims.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata) <br>
+Risk: Research queries may be sent to external academic websites during browser-based searching.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid confidential, unpublished, personally sensitive, or proprietary research terms unless the user intends them to be searched online.
+
+Risk: Search results, impact factors, and citation counts can be incomplete, outdated, or unavailable across academic databases.
+
+Mitigation: Use the returned source links to verify paper metadata and metrics before relying on them for academic, publication, or purchasing decisions.
+
+Risk: The skill may provide access links for paywalled papers, but it cannot grant subscription access.
+
+Mitigation: Use institutional access, publisher pages, or legitimate open-access copies when full text is not publicly available.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wangjinhongmy-pixel/skills/paper-finder)
+- [ClawHub publisher profile](https://clawhub.ai/user/wangjinhongmy-pixel)
+- [arXiv example record](https://arxiv.org/abs/1706.03762)
+- [PubMed](https://pubmed.ncbi.nlm.nih.gov/)
+- [Semantic Scholar](https://www.semanticscholar.org/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown search results with bibliographic metadata, short summaries, metrics when available, and verified access links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include not-found explanations and suggestions to broaden or refine search criteria.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

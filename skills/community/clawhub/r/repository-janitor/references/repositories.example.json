@@ -1,0 +1,16 @@
+{
+  "schema": 1,
+  "budget_seconds": 480,
+  "command_timeout_seconds": 15,
+  "state_dir": "/absolute/private/repository-janitor",
+  "lock": "/absolute/private/repository-janitor/run.lock",
+  "repositories": [
+    {
+      "id": "example-project",
+      "path": "/absolute/path/to/approved-repository",
+      "github": "OWNER/REPOSITORY",
+      "remote": "origin",
+      "base": "origin/main"
+    }
+  ]
+}

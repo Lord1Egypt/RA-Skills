@@ -1,41 +1,58 @@
-## Description: <br>
-Generate images on Jimeng using an OpenClaw-managed browser, including prompt entry, ratio selection, result inspection, and local downloads. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate images on Jimeng (即梦 / jimeng.jianying.com) through an OpenClaw-managed browser with prompt entry, ratio selection, result inspection, and local downloads.
 
-## Publisher: <br>
-[haohao-ui](https://clawhub.ai/user/haohao-ui) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[haohao-ui](https://clawhub.ai/user/haohao-ui)
 
-## Use Case: <br>
-External users and developers use this skill to guide an agent through Jimeng image generation tasks, including setting prompts, choosing requested image options, handling visible service gates, and downloading completed outputs locally. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a Jimeng browser profile and may encounter login, payment, membership, or credit prompts. <br>
-Mitigation: Use a dedicated browser profile when possible and require the user to review login, payment, membership, or credit prompts before continuing. <br>
-Risk: Generated outputs are saved to local files. <br>
-Mitigation: Confirm the downloaded file exists and report the exact local path so the user can inspect the result. <br>
+## Use Case:
 
+Developers and agents use this skill to operate Jimeng image generation through an OpenClaw-managed browser, including prompt entry, ratio and option selection, generation monitoring, and local downloads.
 
-## Reference(s): <br>
-- [Jimeng image generation entry page](https://jimeng.jianying.com/ai-tool/home/?workspace=0&type=image) <br>
-- [ClawHub skill page](https://clawhub.ai/haohao-ui/jimeng-image) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with optional shell commands and local file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce downloaded image file paths after browser-based generation completes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Browser operation can encounter login gates, approval prompts, payment prompts, or exhausted credits.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Stop and report the visible Jimeng state instead of retrying or switching services.
+
+Risk: Generated images are saved to local storage.
+
+Mitigation: Use a dedicated browser profile where possible, report saved paths clearly, and clean up files when directed.
+
+Risk: Jimeng UI references can become stale during generation or navigation.
+
+Mitigation: Take fresh browser snapshots before important interactions and use the current live labels.
+
+## Reference(s):
+
+- [ClawHub Jimeng Image skill page](https://clawhub.ai/haohao-ui/skills/jimeng-image)
+- [Jimeng image generation entry page](https://jimeng.jianying.com/ai-tool/home/?workspace=0&type=image)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, files]
+
+**Output Format:** [Markdown guidance with inline shell commands and local file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May download generated image files locally and report absolute paths.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

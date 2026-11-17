@@ -1,41 +1,52 @@
-## Description: <br>
-Queries the weather forecast for a specified city and returns weather conditions and temperature range in Chinese. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Queries the weather forecast for a specified city and returns weather conditions and a temperature range.
 
-## Publisher: <br>
-[yuancaihua](https://clawhub.ai/user/yuancaihua) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[yuancaihua](https://clawhub.ai/user/yuancaihua)
 
-## Use Case: <br>
-External users and agents can use this skill to answer simple weather questions by extracting a city and date, querying a weather provider, and returning a concise formatted forecast. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Weather queries are sent to a third-party weather service. <br>
-Mitigation: Inform users what provider receives requests and what location/date data is shared. <br>
-Risk: An embedded weather API key is exposed in the artifact. <br>
-Mitigation: Remove and rotate the key, then load credentials from a secure configuration path. <br>
-Risk: Weather API failures or slow responses may affect agent reliability. <br>
-Mitigation: Add request timeouts, input handling, and clear fallback behavior for provider errors. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yuancaihua/weather-query-ych) <br>
+## Use Case:
 
+External users and agents use this skill to answer weather questions by parsing a requested city and date, calling a weather API, and returning a concise forecast summary.
 
-## Skill Output: <br>
-**Output Type(s):** [text] <br>
-**Output Format:** [Plain text weather response] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns city, date, weather status, and temperature range; error responses ask for a valid city or report temporary weather-service unavailability.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata and SKILL.md frontmatter) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: An embedded Weather.com API key may be exposed or misused.
+
+Mitigation: Replace the embedded key with a user-controlled secret or platform-managed credential before use.
+
+Risk: Weather queries are sent to an external Weather.com service.
+
+Mitigation: Document the provider and data flow, and send only city and date data appropriate for that provider.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yuancaihua/skills/weather-query-ych)
+
+## Skill Output:
+
+**Output Type(s):** [text]
+
+**Output Format:** [Plain text weather summary]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes city, date, weather status, and temperature range when available.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

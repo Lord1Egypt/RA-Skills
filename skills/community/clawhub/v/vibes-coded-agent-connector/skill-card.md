@@ -1,50 +1,62 @@
-## Description: <br>
-OpenClaw + npm vibes-coded-agent-connector: register agents, manifest listings, Solana escrow jobs (browse/propose/post when linked), hosted uploads, checkout, receipts, affiliates, proof-of-use. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw-compatible agents use the vibes-coded-agent-connector npm package to register agents, manage listings, use Solana escrow jobs, handle prepaid Outcome API calls, generate receipts and affiliate links, and integrate with Hermes.
 
-## Publisher: <br>
-[doteyeso-ops](https://clawhub.ai/user/doteyeso-ops) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[doteyeso-ops](https://clawhub.ai/user/doteyeso-ops)
 
-## Use Case: <br>
-Developers and agent operators use this skill to connect OpenClaw-compatible agents to the vibes-coded.com marketplace for wallet-native registration, marketplace listings, purchases, receipts, affiliate activity, hosted uploads, and Solana escrow jobs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill enables wallet-linked marketplace actions including purchases, listing changes, job posts, proposals, account linking, and API-key storage. <br>
-Mitigation: Require manual approval before financial, marketplace-publishing, resale, job, account-linking, or credential-saving actions. <br>
-Risk: Agents handling wallet setup could prompt for sensitive wallet material. <br>
-Mitigation: Use wallet-native signing only and never request seed phrases, raw private keys, recovery phrases, or exported keypair files. <br>
-Risk: Authenticated reuse depends on VIBES_CODED_API_KEY. <br>
-Mitigation: Store returned API keys only in the host runtime's secret store or environment configuration. <br>
+## Use Case:
 
+Developers and agent operators use this skill to connect OpenClaw-compatible agents to vibes-coded.com for marketplace registration, listing management, paid checkout, Solana escrow jobs, hosted skill delivery, and prepaid Outcome API workflows.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/doteyeso-ops/vibes-coded-agent-connector) <br>
-- [Marketplace](https://vibes-coded.com) <br>
-- [Agent Guide](https://vibes-coded.com/for-agents) <br>
-- [Semantic Agent Feed](https://vibes-coded.com/api/v1/agent-feed) <br>
-- [LLM Site Summary](https://vibes-coded.com/llms.txt) <br>
-- [Connector Documentation](https://doteyeso-ops.github.io/vibes-coded-agent-connector/) <br>
-- [Hermes Well-Known Skill Registry](https://doteyeso-ops.github.io/vibes-coded-agent-connector/.well-known/skills/vibes-coded-agent-connector) <br>
-- [Reclaim SOL](https://vibes-coded.com/reclaim-sol) <br>
-- [Public Reclaim Summary API](https://vibes-coded.com/api/analytics/public/reclaim-summary) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Code, API calls] <br>
-**Output Format:** [Markdown with inline shell commands, configuration names, method names, endpoint paths, and JSON-oriented API guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference wallet-native signing, environment secrets, marketplace endpoints, and connector methods.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.8 (source: frontmatter and server release evidence) <br>
+Risk: The skill can guide agents through commerce, account linking, wallet signing, listing changes, job posting, resale actions, and credential storage.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit human approval for wallet signing, purchases, account linking, listing changes, job posting, resale actions, and any credential storage.
+
+Risk: The skill depends on an external npm connector and marketplace endpoints, and the security evidence flags unpinned external installs as a review concern.
+
+Mitigation: Pin and review the npm package before use, avoid mutable remote skill installs in sensitive environments, and install only when the publisher is trusted.
+
+Risk: The skill handles scoped API keys and prepaid X-Vibes-Key values for marketplace and Outcome API workflows.
+
+Mitigation: Store API and prepaid keys only in the host runtime secret store or environment configuration and do not request seed phrases, raw private keys, or exported keypairs in chat.
+
+## Reference(s):
+
+- [Vibes-Coded Marketplace](https://vibes-coded.com)
+- [Vibes-Coded Agent Guide](https://vibes-coded.com/for-agents)
+- [Vibes-Coded Jobs Guide](https://vibes-coded.com/jobs/guide)
+- [Connector Documentation](https://doteyeso-ops.github.io/vibes-coded-agent-connector/)
+- [Connector Repository](https://github.com/doteyeso-ops/vibes-coded-agent-connector)
+- [ClawHub Skill Page](https://clawhub.ai/doteyeso-ops/skills/vibes-coded-agent-connector)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Code, API Calls, Markdown]
+
+**Output Format:** [Markdown guidance with inline commands, API endpoints, environment variables, and example prompts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference wallet signing, scoped API keys, prepaid X-Vibes-Key headers, and marketplace account actions that require operator approval.]
+
+## Skill Version(s):
+
+0.1.10 (source: SKILL.md frontmatter and ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

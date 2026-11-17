@@ -1,42 +1,62 @@
-## Description: <br>
-Connects agents to a paid, read-only zhiyuanx.com API for querying Chinese college application school and major-group data by score, province, and subject selections. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents guide Gaokao students, families, counselors, and education product teams through paid, read-only admissions data queries by score, province, subject selection, universities, and major groups.
 
-## Publisher: <br>
-[jackgl-hk](https://clawhub.ai/user/jackgl-hk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jackgl-hk](https://clawhub.ai/user/jackgl-hk)
 
-## Use Case: <br>
-Students, parents, admissions consultants, and education-product developers use this skill to find candidate schools and major groups, compare admissions-related fields, and connect read-only gaokao application data into apps, agents, or workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The API requires an API Key and Secret, which could expose paid access if copied into prompts, public files, or untrusted systems. <br>
-Mitigation: Store credentials only in encrypted credential fields or a secret manager, avoid writing them into prompts or public artifacts, and rotate or revoke them if exposure is suspected. <br>
+## Use Case:
 
+External users, education advisors, and developers use this skill to connect an agent or workflow to a paid Gaokao admissions data API for preliminary school and major-group lookup, comparison, and report generation. It is intended for read-only reference queries and not for database writes or administrative actions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jackgl-hk/gaokao2026) <br>
-- [zhiyuanx.com API subscription and documentation](https://zhiyuanx.com/api.html) <br>
-- [zhiyuanx.com main site](https://zhiyuanx.com/) <br>
-- [Official iOS app](https://apps.apple.com/cn/app/id6743759582/) <br>
-- [Official iOS app](https://apps.apple.com/cn/app/id6747729955) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown and plain text guidance with API configuration details] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include read-only API setup steps, credential handling guidance, and structured field descriptions for school and major-group query results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: API Key and Secret exposure could allow unauthorized use of the paid API subscription.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Store credentials only in secure secret storage, avoid placing them in prompts, public configuration, client-side code, or logs, and rotate or revoke them if exposed.
+
+Risk: Users may misunderstand the API as free or unrestricted.
+
+Mitigation: Confirm trust in zhiyuanx.com and review the paid subscription terms, price, duration, and access limits before installation or use.
+
+Risk: Admissions query results may be incomplete or vary by province, school, or major group.
+
+Mitigation: Use results as reference material for preliminary comparison and verify important admissions decisions against official sources.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jackgl-hk/skills/gaokao2026)
+- [Publisher Profile](https://clawhub.ai/user/jackgl-hk)
+- [Subscription and API Documentation](https://zhiyuanx.com/api.html)
+- [Zhiyuanx Main Site](https://zhiyuanx.com/)
+- [Official App Store App](https://apps.apple.com/cn/app/id6743759582/)
+- [Official App Store App](https://apps.apple.com/cn/app/id6747729955)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown guidance with API subscription, credential handling, and read-only query integration notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference paid API credentials and subscription status; actual query fields vary by province, school, and major-group data availability.]
+
+## Skill Version(s):
+
+1.0.1 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

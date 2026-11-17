@@ -1,47 +1,55 @@
-## Description: <br>
-Dlazy Storyboard helps an agent use the dLazy hosted storyboard workflow to turn scripts, characters, shot prompts, reference frames, voice, music, sound effects, and subtitles into a multi-shot animated short. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+storyboard to video, character animation, animated short, AI anime, multi-shot video — script, characters and shot prompts, ref-sheets and first/last frames, i2v shot videos, voice/TTS plus music/SFX/subtitles, then Remotion assembles and renders. Use for a multi-shot animated short with consistent characters.
 
-## Publisher: <br>
-[dlazyai](https://clawhub.ai/user/dlazyai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dlazyai](https://clawhub.ai/user/dlazyai)
 
-## Use Case: <br>
-External users, creators, and developers use this skill to start or continue project-scoped dLazy storyboard sessions from an agent, including attaching local reference files when needed. It is intended for multi-shot animated shorts where character consistency and staged video assembly matter. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts and attached files are sent to dLazy as a third-party hosted service. <br>
-Mitigation: Install and use the skill only when that data handling is acceptable for the task; avoid sending sensitive prompts or files unless approved. <br>
-Risk: The skill requires a dLazy API key that may be stored in local CLI configuration. <br>
-Mitigation: Use the documented dLazy login or auth setup, protect the local config, and rotate or revoke the key from the dLazy dashboard if needed. <br>
-Risk: A global CLI install persists a third-party command on the system. <br>
-Mitigation: Use the pinned npx command when a non-persistent CLI invocation is preferred. <br>
+## Use Case:
 
+Creators use this skill to develop multi-shot animated shorts with consistent characters, from story and shot prompts through generated scene media and an assembled video.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/dlazyai/dlazy-storyboard) <br>
-- [Publisher profile](https://clawhub.ai/user/dlazyai) <br>
-- [dLazy CLI source](https://github.com/dlazyai/cli) <br>
-- [dLazy CLI npm package](https://www.npmjs.com/package/@dlazy/cli) <br>
-- [dLazy homepage](https://dlazy.com) <br>
-- [dLazy API key dashboard](https://dlazy.com/dashboard/organization/api-key) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and streamed CLI responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a pinned dLazy CLI invocation; prompts and attached files may be sent to the dLazy hosted service and project context can continue across turns.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.2 (source: server release metadata and skill frontmatter) <br>
+Risk: The security review found no confirmed harmful behavior, but coverage is partial and notes project-listing and login actions that may not fit every user's needs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the CLI installation and account-access details and confirm those actions fit your workflow before installing.
+
+Risk: Reference files attached to a prompt are uploaded to dLazy media storage.
+
+Mitigation: Only attach files you are comfortable sharing with the hosted service.
+
+## Reference(s):
+
+- [dLazy website](https://dlazy.com)
+- [CLI package on npm](https://www.npmjs.com/package/@dlazy/cli)
+- [CLI project page listed in skill metadata](https://github.com/dlazy-ai/cli)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Guidance, Shell commands, Video]
+
+**Output Format:** [Markdown guidance and CLI commands, with hosted-agent text and generated media responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Project-scoped, multi-turn workflow. Skill release 1.3.41; install instructions pin @dlazy/cli to 1.2.3.]
+
+## Skill Version(s):
+
+1.3.41 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

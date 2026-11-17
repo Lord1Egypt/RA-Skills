@@ -1,0 +1,213 @@
+'''
+18获取期权信息
+，专注于大QMT量化交易框架的深度训练与智能支持。我能够提供精准的代码提示、输出优化以及策略修改服务，帮助你高效开发和迭代量化交易策略。我的创造者是小果量化，，欢迎联系微信：xg_quant。，只做学习使用，不做投资参考，注意风险
+'''
+获取期权信息
+ContextInfo.get_option_detail_data - 获取指定期权品种的详细信息
+原型
+
+内置python
+
+ContextInfo.get_option_detail_data(optioncode)
+释义
+
+获取指定期权品种的详细信息
+
+参数
+
+字段名	数据类型	解释
+optioncode	string	期权代码,如'10001506.SHO',当填写空字符串时候默认为当前主图的期权品种
+返回值dict,字段如下：
+
+字段	类型	说明
+ExchangeID	str	期权市场代码
+InstrumentID	str	期权代码
+ProductID	str	期权标的的产品ID
+OpenDate	int	发行日期
+ExpireDate	int	到期日
+PreClose	float	前收价格
+SettlementPrice	float	前结算价格
+UpStopPrice	float	当日涨停价
+DownStopPrice	float	当日跌停价
+LongMarginRatio	float	多头保证金率
+ShortMarginRatio	float	空头保证金率
+PriceTick	float	最小变价单位
+VolumeMultiple	int	合约乘数
+MaxMarketOrderVolume	int	涨跌停价最大下单量
+MinMarketOrderVolume	int	涨跌停价最小下单量
+MaxLimitOrderVolume	int	限价单最大下单量
+MinLimitOrderVolume	int	限价单最小下单量
+OptUnit	int	期权合约单位
+MarginUnit	float	期权单位保证金
+OptUndlCode	str	期权标的证券代码
+OptUndlMarket	str	期权标的证券市场
+OptExercisePrice	float	期权行权价
+NeeqExeType	str	全国股转转让类型
+OptUndlRiskFreeRate	float	期权标的无风险利率
+OptUndlHistoryRate	float	期权标的历史波动率
+EndDelivDate	int	期权行权终止日
+optType	str	期权类型
+示例
+
+示例返回值
+
+#encoding:gbk
+def init(ContextInfo):
+  pass
+
+def after_init(ContextInfo):
+  print(ContextInfo.get_option_detail_data('10002235.SHO'))
+ContextInfo.get_option_list - 获取指定期权列表
+原型
+
+内置python
+
+ContextInfo.get_option_list(undl_code,dedate,opttype,isavailable)
+释义
+
+获取指定期权列表。如获取历史期权，需先下载过期合约列表
+
+参数
+
+字段名	数据类型	解释
+undl_code	string	期权标的代码,如'510300.SH'
+dedate	string	期权到期月或当前交易日期，"YYYYMM"格式为期权到期月，"YYYYMMDD"格式为获取当前日期交易的期权
+opttype	string	期权类型，默认值为空，"CALL"，"PUT"，为空时认购认沽都取
+isavailable	bool	是否可交易，当dedate的格式为"YYYYMMDD"格式为获取当前日期交易的期权时，isavailable为True时返回当前可用，为False时返回当前和历史可用
+返回值
+
+list，期权合约列表
+
+示例
+
+示例data1返回值data2返回值data3返回值
+
+# coding:gbk
+def init(C):
+	pass
+	
+def handlebar(C):
+	# 获取到期月份为202101的上交所510300ETF认购合约
+	data1=C.get_option_list('510300.SH','202101',"CALL")
+
+	# 获取20210104当天上交所510300ETF可交易的认购合约
+	data2=C.get_option_list('510300.SH','20210104',"CALL",True)
+
+	# 获取20210104当天上交所510300ETF已经上市的认购合约(包括退市)
+	data3=C.get_option_list('510300.SH','20210104',"CALL",False)
+ContextInfo.get_option_undl_data - 获取指定期权标的对应的期权品种列表
+原型
+
+内置python
+
+ContextInfo.get_option_undl_data(undl_code_ref)
+释义
+
+获取指定期权标的对应的期权品种列表
+
+参数
+
+字段名	数据类型	解释
+undl_code_ref	string	期权标的代码,如'510300.SH'，传空字符串时获取全部标的数据
+返回值
+
+指定期权标的代码时返回对应该标的的期权合约列表list
+
+期权标的代码为空字符串时返回全部标的对应的品种列表的字典dict
+
+示例
+
+示例返回值
+
+# coding:gbk
+def init(C):
+	pass
+	
+def handlebar(C):
+
+	print(C.get_option_undl_data('510300.SH')[:30])
+ContextInfo.bsm_price - 基于BS模型计算欧式期权理论价格
+原型
+
+内置python
+
+ContextInfo.bsm_price(optionType,objectPrices,strikePrice,riskFree,sigma,days,dividend)
+释义
+
+基于Black-Scholes-Merton模型，输入期权标的价格、期权行权价、无风险利率、期权标的年化波动率、剩余天数、标的分红率、计算期权的理论价格
+
+参数
+
+字段	类型	说明
+optionType	str	期权类型，认购：'C'，认沽：'P'
+objectPrices	float	期权标的价格，可以是价格列表或者单个价格
+strikePrice	float	期权行权价
+riskFree	float	无风险收益率
+sigma	float	标的波动率
+days	int	剩余天数
+dividend	float	分红率
+返回
+
+提示
+
+objectPrices为float时，返回float
+objectPrices为list时，返回list
+计算结果最小值0.0001，结果保留4位小数,输入非法参数返回nan
+示例返回值
+
+#encoding:gbk
+import numpy as np
+
+
+def init(ContextInfo):
+  pass
+
+def after_init(ContextInfo):
+  object_prices=list(np.arange(3,4,0.01));
+  #计算剩余15天的行权价3.5的认购期权,在无风险利率3%,分红率为0,标的年化波动率为23%时标的价格从3元到4元变动过程中期权理论价格序列
+  prices=ContextInfo.bsm_price('C',object_prices,3.5,0.03,0.23,15,0)
+  print(prices)
+  #计算剩余15天的行权价3.5的认购期权,在无风险利率3%,分红率为0,标的年化波动率为23%时标的价格为3.51元的平值期权的理论价格
+  price=ContextInfo.bsm_price('C',3.51,3.5,0.03,0.23,15,0)
+  print(price)
+
+ContextInfo.bsm_iv - 基于BS模型计算欧式期权隐含波动率
+原型
+
+内置python
+
+ContextInfo.bsm_iv(optionType,objectPrices,strikePrice,optionPrice,riskFree,days,dividend)
+
+释义 基于Black-Scholes-Merton模型,输入期权标的价格、期权行权价、期权现价、无风险利率、剩余天数、标的分红率,计算期权的隐含波动率
+
+参数
+
+字段	类型	说明
+optionType	str	期权类型，认购：'C'，认沽：'P'
+objectPrices	float	期权标的价格，可以是价格列表或者单个价格
+strikePrice	float	期权行权价
+riskFree	float	无风险收益率
+sigma	float	标的波动率
+days	int	剩余天数
+dividend	float	分红率
+返回
+
+double
+
+示例返回值
+
+#encoding:gbk
+import numpy as np
+
+def init(ContextInfo):
+    pass
+
+def after_init(ContextInfo):
+    # 计算剩余15天的行权价3.5的认购期权,在无风险利率3%,分红率为0时,标的现价3.51元,期权价格0.0725元时的隐含波动率
+    iv=ContextInfo.bsm_iv('C',3.51,3.5,0.0725,0.03,15)
+    print(iv)
+'''
+运行结果
+    0.2299
+
+'''

@@ -1,54 +1,67 @@
-## Description: <br>
-Gate TradFi (traditional finance) skill for querying and, after explicit confirmation, trading traditional finance assets such as forex or commodities on Gate; it must not be used for fund transfer. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Gate TradFi skill for querying and trading traditional finance assets such as forex and commodities on Gate, excluding fund transfers.
 
-## Publisher: <br>
-[gate-exchange](https://clawhub.ai/user/gate-exchange) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gate-exchange](https://clawhub.ai/user/gate-exchange)
 
-## Use Case: <br>
-External users and developers use this skill to inspect Gate TradFi orders, positions, market data, assets, and MT5 account information, and to prepare confirmed TradFi trading actions. The skill routes each request to the relevant Gate MCP workflow and formats query or execution results for the current conversation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release includes write-capable TradFi actions even though the README describes the skill as read-only. <br>
-Mitigation: Treat the README's read-only claim as inaccurate for this version and install only when trading actions after confirmation are intended. <br>
-Risk: Write permissions can submit or change real trades through Gate TradFi MCP tools. <br>
-Mitigation: Use the least-privileged Gate authorization possible, avoid Tradfi:Write for read-only use, and require explicit review of symbol, side, size, price, order, or position parameters before confirmation. <br>
-Risk: Account, balance, order, position, and MT5 data may be exposed in agent responses. <br>
-Mitigation: Display sensitive account data only in the current response and do not store or log credentials, balances, or account details. <br>
+## Use Case:
 
+External users and trading agents use this skill to query Gate TradFi orders, positions, market data, assets, and MT5 account information, and to prepare or execute supported trading actions when write permissions are intentionally configured.
 
-## Reference(s): <br>
-- [Gate TradFi MCP Execution Layer](references/mcp.md) <br>
-- [Gate TradFi Place Order](references/place-order.md) <br>
-- [Gate TradFi Amend Order](references/amend-order.md) <br>
-- [Gate TradFi Cancel Order](references/cancel-order.md) <br>
-- [Gate TradFi Modify Position](references/modify-position.md) <br>
-- [Gate TradFi Close Position](references/close-position.md) <br>
-- [Query TradFi Orders](references/query-orders.md) <br>
-- [Query TradFi Positions](references/query-positions.md) <br>
-- [Query TradFi Market Data](references/query-market.md) <br>
-- [Query TradFi User Assets and MT5 Account](references/query-assets.md) <br>
-- [Gate MCP](https://github.com/gateio/gate-mcp) <br>
-- [Gate Skills Runtime Rules](https://github.com/gate/gate-skills/blob/master/skills/gate-runtime-rules.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/gate-exchange/gate-exchange-tradfi) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, API calls, guidance] <br>
-**Output Format:** [Markdown tables and concise text summaries with MCP tool-call guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Query responses may include account, balance, position, order, market, or MT5 data in the current response; trading flows must include confirmation parameters and post-action results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: ClawHub release metadata); artifact frontmatter version 2026.3.23-1 <br>
+Risk: The README describes a read-only query helper, while the actual skill includes order placement, amendment, cancellation, position modification, and position closing workflows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the release as write-enabled, review confirmation prompts carefully, and install it only with credentials whose trading permissions are intentionally granted.
+
+Risk: Using write-capable credentials for account or market queries increases exposure if the skill is invoked incorrectly.
+
+Mitigation: Use a separate read-only API key when only query workflows are needed.
+
+Risk: Trading actions can alter account positions or orders.
+
+Mitigation: Require explicit user confirmation before every write action and verify the post-action parameter and result summary.
+
+## Reference(s):
+
+- [Gate TradFi MCP Specification](references/mcp.md)
+- [Query TradFi Orders](references/query-orders.md)
+- [Query TradFi Positions](references/query-positions.md)
+- [Query TradFi Market Data](references/query-market.md)
+- [Query TradFi User Assets and MT5 Account](references/query-assets.md)
+- [Gate TradFi Place Order](references/place-order.md)
+- [Gate TradFi Amend Order](references/amend-order.md)
+- [Gate TradFi Cancel Order](references/cancel-order.md)
+- [Gate TradFi Modify Position](references/modify-position.md)
+- [Gate TradFi Close Position](references/close-position.md)
+- [Gate MCP](https://github.com/gateio/gate-mcp)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, API calls]
+
+**Output Format:** [Markdown responses with tables, confirmation prompts, and parameter summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Trading flows require explicit user confirmation before write actions and a post-action summary of parameters and results.]
+
+## Skill Version(s):
+
+1.0.2 (source: ClawHub release evidence; artifact frontmatter version 2026.3.23-1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

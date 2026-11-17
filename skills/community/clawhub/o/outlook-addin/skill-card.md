@@ -1,44 +1,56 @@
-## Description: <br>
-Outlook sidebar add-in that brings the full power of your OpenClaw agent into Microsoft Outlook. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Outlook sidebar add-in that brings the full power of your OpenClaw agent into Microsoft Outlook.
 
-## Publisher: <br>
-[nachtsheim](https://clawhub.ai/user/nachtsheim) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nachtsheim](https://clawhub.ai/user/nachtsheim)
 
-## Use Case: <br>
-Developers and Outlook users use this skill to connect Microsoft Outlook with a local OpenClaw Gateway, chat with an agent about selected email, access agent tools, and draft replies from the Outlook sidebar. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected Outlook email content may be sent to the local OpenClaw agent and any model providers configured behind that agent. <br>
-Mitigation: Install only when the referenced project and configured providers are trusted, and review sensitive emails before using the sidebar. <br>
-Risk: The Outlook add-in connects to a local Gateway and can expose agent tools from the email workflow. <br>
-Mitigation: Keep the Gateway allowed origin limited to the exact localhost add-in URL and keep high-impact tools behind confirmation. <br>
-Risk: Sideloading an Outlook manifest changes the Outlook client surface available to the add-in. <br>
-Mitigation: Inspect the Outlook manifest before sideloading and keep the add-in development server bound to the expected local URL. <br>
+## Use Case:
 
+Outlook and OpenClaw users use this skill to set up an Outlook sidebar that lets them chat with their agent about selected emails, use available tools and skills, and draft replies from Outlook Desktop Classic or Outlook Web.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nachtsheim/outlook-addin) <br>
-- [OpenClaw Outlook Add-in repository](https://github.com/nachtsheim/openclaw-outlook-addin) <br>
-- [OpenClaw Outlook Add-in README](https://github.com/nachtsheim/openclaw-outlook-addin#readme) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: server release metadata) <br>
+Risk: Installing and running remote add-in code may introduce dependency or supply-chain risk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the referenced repository and dependency lockfile before installing, and prefer a pinned commit with pinned npm commands.
+
+Risk: Selected Outlook email content may become available to the connected agent and enabled tools or automations.
+
+Mitigation: Use the add-in only with a trusted local OpenClaw Gateway and review enabled tools before connecting sensitive mail.
+
+## Reference(s):
+
+- [OpenClaw Outlook Add-in Repository](https://github.com/nachtsheim/openclaw-outlook-addin)
+- [OpenClaw Outlook Add-in README](https://github.com/nachtsheim/openclaw-outlook-addin#readme)
+- [ClawHub Skill Page](https://clawhub.ai/nachtsheim/skills/outlook-addin)
+- [Publisher Profile](https://clawhub.ai/user/nachtsheim)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides setup of an Outlook Office.js add-in that connects to a trusted local OpenClaw Gateway.]
+
+## Skill Version(s):
+
+0.2.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,49 @@
-## Description: <br>
-Initialize and manage Alibaba Cloud SDK clients in Python, including singleton client reuse, thread safety, endpoint configuration, VPC endpoints, async mode, and file upload API setup. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Initialize and manage Alibaba Cloud SDK clients in Python, covering singleton use, thread safety, endpoint and region configuration, VPC endpoints, async mode, and file upload APIs.
 
-## Publisher: <br>
-[yndu13](https://clawhub.ai/user/yndu13) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yndu13](https://clawhub.ai/user/yndu13)
 
-## Use Case: <br>
-Developers and engineers use this skill when creating or updating Python integrations with Alibaba Cloud SDK clients, especially when they need safe client reuse, endpoint configuration, VPC endpoint setup, file upload API configuration, or async SDK call guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Examples may use package names or versions that differ from production requirements. <br>
-Mitigation: Verify Alibaba Cloud package names and pin dependency versions before using the guidance in production. <br>
-Risk: Alibaba Cloud access keys could be over-privileged or long-lived if copied directly into a production setup. <br>
-Mitigation: Use least-privileged or temporary Alibaba Cloud credentials and avoid broad long-lived access keys. <br>
+## Use Case:
 
+Developers and engineers use this skill when creating or reviewing Python code that initializes Alibaba Cloud SDK clients, configures endpoints, reuses clients safely, or uses async and file upload SDK APIs.
 
-## Reference(s): <br>
-- [ClawHub skill release](https://clawhub.ai/yndu13/alibabacloud-sdk-client-initialization-for-python) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown with Python code blocks and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance; no files or commands are executed by the skill itself.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.1-beta (source: server release evidence and skill frontmatter) <br>
+Risk: SDK dependency drift or credential exposure can occur if package installs and Alibaba Cloud environment variables are applied broadly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install SDK packages in a virtual environment, pin reviewed versions or hashes when reproducibility is required, and set Alibaba Cloud credentials only in intended project environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yndu13/skills/alibabacloud-sdk-client-initialization-for-python)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with Python and shell code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance is intended for human review before applying code or credential configuration changes.]
+
+## Skill Version(s):
+
+0.0.1-beta (source: server release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

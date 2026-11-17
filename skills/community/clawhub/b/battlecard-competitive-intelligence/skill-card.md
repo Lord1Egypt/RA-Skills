@@ -1,43 +1,56 @@
-## Description: <br>
-Battlecard: Competitive Intelligence helps sales teams generate competitive battle cards, objection handlers, competitor comparisons, pre-call briefings, and sales-practice simulations through Northr AI's Battlecard service. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build competitor battle cards and run scored sales-practice calls against an AI buyer.
 
-## Publisher: <br>
-[ivo-gos](https://clawhub.ai/user/ivo-gos) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ivo-gos](https://clawhub.ai/user/ivo-gos)
 
-## Use Case: <br>
-Sales teams and sales-enablement agents use this skill to prepare for competitive deals, practice pitches against simulated buyers, compare competitors, and turn call notes into competitive intelligence. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Users may send company names, competitor names, deal context, simulation messages, or pasted call notes to Northr AI's Battlecard service. <br>
-Mitigation: Redact confidential customer data, regulated personal data, pricing details, and internal strategy unless the organization has approved that sharing and reviewed the provider's privacy and retention terms. <br>
-Risk: Generated competitive intelligence, objection handling, and coaching may be incomplete or inaccurate for a specific deal. <br>
-Mitigation: Review outputs against current account knowledge and approved messaging before using them with prospects or customers. <br>
+## Use Case:
 
+B2B sales teams use the skill to prepare for competitive conversations with battle cards, competitor comparisons, objection responses, and pre-call briefs. They can also rehearse sales calls against an AI buyer and review scored feedback.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivo-gos/battlecard-competitive-intelligence) <br>
-- [Battlecard connection documentation](https://battlecard.northr.ai/connect) <br>
-- [Battlecard service](https://battlecard.northr.ai) <br>
-- [Battlecard MCP endpoint](https://battlecard.northr.ai/mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and text responses, with shell commands and JSON API responses from helper scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include scored simulation debriefs, objection handling guidance, competitor comparisons, and pre-call briefing content.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.5.0 (source: server evidence and skill frontmatter) <br>
+Risk: A simulation may continue sending replies after a plain-language request to stop.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: End a simulation with the standalone /end command and confirm it has stopped before continuing.
+
+Risk: Practice notes or voice messages may be uploaded to or stored by the service.
+
+Mitigation: Use fictional or redacted practice material until you understand the service’s storage and sharing terms.
+
+## Reference(s):
+
+- [Battlecard skill release](https://clawhub.ai/ivo-gos/skills/battlecard-competitive-intelligence)
+- [Battlecard homepage](https://battlecard.northr.ai)
+- [Battlecard MCP service](https://battlecard.northr.ai/mcp)
+- [Battlecard preview](https://battlecard.northr.ai/mcp/preview)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Text and Markdown sales-preparation materials and practice-call feedback]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include competitor comparisons, objection handlers, briefings, and scored simulation feedback.]
+
+## Skill Version(s):
+
+1.8.0 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

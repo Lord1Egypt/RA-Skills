@@ -1,11 +1,11 @@
 # EPCB\_PrimitivePadType enum
 
-焊盘类型
+Pad type
 
 ## Signature
 
 ```typescript
-declare enum EPCB_PrimitivePadType 
+enum EPCB_PrimitivePadType
 ```
 
 ## Enumeration Members
@@ -14,64 +14,46 @@ declare enum EPCB_PrimitivePadType
 
 Member
 
-
 </th><th>
 
 Value
 
-
 </th><th>
 
 Description
-
 
 </th></tr></thead>
 <tbody><tr><td>
 
 MARK\_POINT
 
-
 </td><td>
 
 `2`
 
-
 </td><td>
-
-标识点
-
 
 </td></tr>
 <tr><td>
 
 NORMAL
 
-
 </td><td>
 
 `0`
 
-
 </td><td>
-
-焊盘
-
 
 </td></tr>
 <tr><td>
 
 TEST
 
-
 </td><td>
 
 `1`
 
-
 </td><td>
-
-测试点
-
 
 </td></tr>
 </tbody></table>

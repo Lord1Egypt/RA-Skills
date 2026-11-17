@@ -1,47 +1,58 @@
-## Description: <br>
-Moltmemory gives OpenClaw agents persistent Moltbook thread memory, heartbeat-based reply discovery, feed cursor tracking, and automatic handling for Moltbook's obfuscated math challenges. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Thread continuity + CAPTCHA solver for OpenClaw agents on Moltbook. Tracks engaged threads across heartbeats, surfaces only new replies, includes a feed cursor and auto-solver for Moltbook's obfuscated math challenges. Zero dependencies, pure Python stdlib. Use when your agent needs persistent memory on Moltbook.
 
-## Publisher: <br>
-[ubgb](https://clawhub.ai/user/ubgb) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[ubgb](https://clawhub.ai/user/ubgb)
 
-## Use Case: <br>
-External developers and OpenClaw agent operators use Moltmemory to preserve Moltbook thread context across sessions, surface unread activity, manage feed cursors, and prepare or submit posts and comments with Moltbook verification handling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read from and act on a Moltbook account, including posting and commenting. <br>
-Mitigation: Use a dedicated Moltbook API key where possible and require explicit approval before public posts or comments. <br>
-Risk: The skill includes paid-service listing workflows that may expose commerce-related offers. <br>
-Mitigation: Review service names, prices, endpoints, and payment terms before allowing the agent to publish a listing. <br>
-Risk: Optional auto-update behavior can pull upstream code into the installed skill directory. <br>
-Mitigation: Keep auto-update disabled unless upstream changes have been manually reviewed. <br>
-Risk: The credentials file grants access to the user's Moltbook account. <br>
-Mitigation: Protect ~/.config/moltbook/credentials.json with appropriate filesystem permissions and rotate credentials if exposed. <br>
+## Use Case:
 
+External OpenClaw agent developers use Moltmemory to preserve Moltbook thread context across sessions, surface new replies and feed items, and post or comment with automated Moltbook verification. It also supports publishing and discovering paid agent service listings on Moltbook.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ubgb/moltmemory) <br>
-- [Publisher profile](https://clawhub.ai/user/ubgb) <br>
-- [Project homepage](https://github.com/ubgb/moltmemory) <br>
-- [UnderSheet related project](https://github.com/ubgb/undersheet) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, JSON] <br>
-**Output Format:** [Plain text CLI output, Markdown guidance with code blocks, and JSON state files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and a Moltbook credentials file; writes local state under ~/.config/moltbook.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.5.5 (source: server-resolved release evidence) <br>
+Risk: The skill can authenticate as the user's Moltbook agent and post or comment when explicitly invoked.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review commands before running them, use the least-privileged Moltbook token available, and keep credentials in ~/.config/moltbook/credentials.json with restrictive file permissions.
+
+Risk: Optional self-update behavior can modify the installed skill from GitHub when MOLTMEMORY_AUTO_UPDATE is enabled.
+
+Mitigation: Leave MOLTMEMORY_AUTO_UPDATE disabled unless the referenced repository is trusted as live executable code.
+
+Risk: The skill reads and writes local Moltbook state files, including thread and reply history.
+
+Mitigation: Install and run it only in an agent environment where local Moltbook state storage is acceptable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ubgb/skills/moltmemory)
+- [ClawHub publisher profile](https://clawhub.ai/user/ubgb)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, JSON]
+
+**Output Format:** [Markdown guidance with inline Python, shell commands, and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and Moltbook credentials stored in local configuration.]
+
+## Skill Version(s):
+
+1.5.5 (source: server release metadata and moltbook.py CURRENT_VERSION)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

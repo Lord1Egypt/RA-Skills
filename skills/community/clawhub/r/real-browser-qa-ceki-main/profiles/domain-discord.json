@@ -1,0 +1,80 @@
+{
+  "id": "domain-discord",
+  "label": "Discord — Community Chat Browser",
+  "emoji": "🎮",
+  "domain": "discord.com",
+  "description": "Discord web app (React/Electron derived). Server list (left), channel list (mid), chat area (right). Login gate. Heavy JS SPA, lots of aria-labels and role attributes. Clobbered class names (minified CSS). 2FA (TOTP/SMS) very common — expect it. From ceki-comms session analysis: 103 mentions across marketing/comms agents. Second most automated platform after LinkedIn.",
+  "source_patterns": [
+    "Server list click: 200-600ms hover → click → 1-3s channel panel load",
+    "Channel switch: click channel → 500-1500ms message history render",
+    "Message history scroll: upward infinite scroll for past messages, 300-800px per pull",
+    "Message composer: click contenteditable div → 200-500ms focus → type → Enter to send",
+    "Slash commands: type '/' → 300-800ms command menu → select → fill params",
+    "Reactions: hover message → click emoji button → pick from picker (1-2s)",
+    "Thread navigation: click thread → 1-2s thread panel slide-in → scroll → reply",
+    "Voice channel UI: click voice channel → 2-4s connecting state → voice panel",
+    "Login flow: email/phone → 800-1500ms → password → 600-1000ms → 2FA code input"
+  ],
+  "active_hours": {
+    "description": "Community-driven — peaks afternoon, evening, late night",
+    "peak": [14, 16, 18, 20, 22, 1],
+    "off_peak_min": 3
+  },
+  "typing": {
+    "wpm": { "min": 80, "max": 130 },
+    "profile": "conversational",
+    "think_prob": 0.012,
+    "think_ms": [200, 1200],
+    "backspace_freq": 0.04,
+    "message_composition_wpm": { "min": 65, "max": 110 },
+    "long_message_wpm": { "min": 55, "max": 85 }
+  },
+  "scroll": {
+    "passes": 4,
+    "description": "Fast chat history scroll, infinite scroll upward for history. Source: Discord web app patterns",
+    "speed_px_per_ms": { "min": 40, "max": 80 },
+    "pause_between_passes_ms": { "min": 300, "max": 1500 },
+    "depth_per_pass": { "min": 0.3, "max": 0.6 },
+    "infinite_scroll_detection": "div[class*='scroller'] scrollTop decrease",
+    "scroll_direction": "upward",
+    "scroll_method": "smooth but fast — gamer speed"
+  },
+  "navigation": {
+    "post_navigate_pause_ms": { "min": 1000, "max": 3000 },
+    "pre_click_pause_ms": { "min": 150, "max": 500 },
+    "inter_action_pause_ms": { "min": 200, "max": 800 },
+    "post_modal_pause_ms": { "min": 800, "max": 2000 },
+    "spa_transition_ms": { "min": 1000, "max": 3000 }
+  },
+  "mouse": {
+    "speed": 1.2,
+    "curvature": 0.12,
+    "jitter": 0.3,
+    "description": "Moderate-fast, gamer speed"
+  },
+  "platform_specific": {
+    "selectors_css": {
+      "sidebar": "nav[class*='guild'], div[class*='sidebar']",
+      "chat_area": "div[class*='chat'], div[class*='chatContent']",
+      "message": "div[class*='message'], div[role='article']",
+      "composer": "div[role='textbox'], div[class*='channelTextArea'] div[contenteditable='true']",
+      "channel": "div[class*='channel'], div[class*='name']",
+      "guild_nav": "nav[class*='guild'], div[class*='tree']",
+      "members_wrap": "div[class*='membersWrap'], div[class*='members']",
+      "login_email": "input[name='email']",
+      "login_password": "input[name='password']",
+      "login_button": "button[class*='button'], button:has-text('Log In')"
+    },
+    "text_fallback_strategy": "Discord uses clobbered CSS class names (minified). When class selectors fail, use text-content matching: [...document.querySelectorAll('button')].find(e => e.textContent.includes('Log In'))?.click() — this is more reliable than class-based selectors.",
+    "requires_login": true,
+    "login": {
+      "pre_login_pause_ms": 2000,
+      "field_pause_ms": { "min": 400, "max": 1000 },
+      "post_login_wait_ms": { "min": 5000, "max": 8000 },
+      "two_factor_prompt_ms": { "min": 3000, "max": 6000 },
+      "two_factor_field_pause_ms": { "min": 200, "max": 500 },
+      "two_factor_note": "2FA is VERY common on Discord (TOTP via authenticator app, SMS fallback). Expect 6-digit code prompt after password. If no 2FA prompt after 8s — account likely has no 2FA, proceed."
+    },
+    "sequence_hint": "navigate discord.com → login (email/phone → password → 2FA if prompted) → select server from guild list → select text channel → scroll up for history → read messages → type reply or use slash commands → react to messages → switch channels → optionally join voice"
+  }
+}

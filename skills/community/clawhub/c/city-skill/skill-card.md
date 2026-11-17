@@ -1,42 +1,60 @@
-## Description: <br>
-City.Skills is a multilingual one-stop travel assistant for first-time visitors to China. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+City.Skills is a one-stop travel assistant for first-time visitors to China with multilingual support.
 
-## Publisher: <br>
-[wangm-a3](https://clawhub.ai/user/wangm-a3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangm-a3](https://clawhub.ai/user/wangm-a3)
 
-## Use Case: <br>
-External travelers and hosts use this skill to generate city-specific China travel guidance, including entry reminders, local culture, food, attractions, transport, lodging, short itineraries, and emergency contacts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Visa, entry, emergency, and safety guidance may be outdated or incomplete for a specific traveler or date. <br>
-Mitigation: Treat the output as advisory and confirm current rules with official immigration, consular, and local sources before acting. <br>
-Risk: Broad travel-related triggers may activate the skill when the user did not intend to request China travel guidance. <br>
-Mitigation: Use explicit invocation where supported, and disable broad auto-triggers when precise routing is required. <br>
+## Use Case:
 
+External travelers and hosts use this skill to generate multilingual China city guides covering entry procedures, local culture, food, attractions, transport, lodging, short itineraries, compliance reminders, and emergency contacts.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/wangm-a3/city-skill) <br>
-- [OpenClaw](https://openclaw.ai) <br>
-- [Skill homepage](https://xiaping.coze.site) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown travel guide with multilingual city sections and tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces advisory travel information and compliance reminders; users should verify current official policy before acting.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata) <br>
+Risk: The skill forces blanket safety reassurance for every city, which may understate destination-specific risks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require current official travel advisories and allow balanced warnings before using outputs for real travel planning.
+
+Risk: Immigration and visa guidance can become outdated or vary by traveler nationality and itinerary.
+
+Mitigation: Verify entry requirements against official immigration and consular sources before travel decisions.
+
+Risk: Generated city guides may include inaccurate prices, hours, transport options, or local compliance details.
+
+Mitigation: Treat outputs as planning drafts and confirm time-sensitive details with official attraction, transit, hotel, and government sources.
+
+## Reference(s):
+
+- [City Skill ClawHub listing](https://clawhub.ai/wangm-a3/skills/city-skill)
+- [Publisher profile](https://clawhub.ai/user/wangm-a3)
+- [National Immigration Administration](https://www.nia.gov.cn)
+- [OpenClaw](https://openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown travel guide with multilingual text and tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The guide is organized into city overview, immigration, customs, culture, etiquette, food, attractions, transport, lodging, itinerary, compliance, and emergency-contact sections.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,47 +1,54 @@
-## Description: <br>
-Generate captions for short-form videos using the ReelWords Caption API, including caption-job creation, status polling, and rendered-video download. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate stylized captions for short-form videos using the ReelWords Caption API, including caption-job creation, status polling, and rendered-video download guidance.
 
-## Publisher: <br>
-[Kmasterrr](https://clawhub.ai/user/Kmasterrr) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[kmasterrr](https://clawhub.ai/user/kmasterrr)
 
-## Use Case: <br>
-External developers, creators, and agent operators use this skill to submit short-form videos to ReelWords for stylized caption rendering, monitor the caption job, and retrieve the captioned video. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Video URLs and submitted media are sent to ReelWords for processing. <br>
-Mitigation: Use the skill only with videos or URLs that are appropriate to share with ReelWords. <br>
-Risk: The ReelWords API key could be exposed if pasted into public chats, committed to source control, or passed through visible command history. <br>
-Mitigation: Store REELWORDS_API_KEY in a private environment or runtime configuration and rotate it if exposure is suspected. <br>
-Risk: The helper writes the rendered video to the output path provided by the caller. <br>
-Mitigation: Choose output paths intentionally and avoid overwriting important files. <br>
-Risk: API usage may consume ReelWords credits or hit usage limits. <br>
-Mitigation: Review ReelWords API usage and handle HTTP 402 usage-limit responses before retrying. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ReelWords Caption API reference](references/api.md) <br>
-- [ReelWords website](https://reelwords.ai) <br>
-- [ReelWords Caption API base URL](https://api.reelwords.ai) <br>
-- [ClawHub skill page](https://clawhub.ai/Kmasterrr/video-captions-reelwords) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/Kmasterrr) <br>
+## Use Case:
 
+External creators, marketers, and developers use this skill to generate captioned short-form videos through ReelWords, tune caption styling, poll job status, and retrieve rendered outputs.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, code, JSON, files] <br>
-**Output Format:** [Markdown guidance with shell commands, REST examples, JSON payloads, and an optional downloaded video file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and REELWORDS_API_KEY; the helper can print final job JSON and write the rendered video to a caller-provided output path.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The fallback video download path may expose the ReelWords API key during redirects.
+
+Mitigation: Prefer result.downloadUrl downloads, avoid the video-endpoint fallback until redirects are handled without forwarding x-api-key, and rotate the key if exposure is suspected.
+
+Risk: Captioning sends source video content to ReelWords for processing.
+
+Mitigation: Use only videos that are acceptable to share with ReelWords, and avoid sensitive or private videos unless that transfer is approved.
+
+## Reference(s):
+
+- [ReelWords Caption API minimal reference](references/api.md)
+- [ReelWords service](https://reelwords.ai)
+- [ClawHub skill page](https://clawhub.ai/kmasterrr/skills/video-captions-reelwords)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline JSON, bash, curl, and Python command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce ReelWords caption job JSON and downloaded video files when the helper script is run with valid credentials.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

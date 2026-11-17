@@ -1,41 +1,57 @@
-## Description: <br>
-Helps ClawHub users inspect, score, optimize, rank, and discover skills. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ClawHub 技能的体检 + 评分 + 自动优化 + 排行榜查询 + 智能推荐基础设施。OhMySkill 系列首款产品。
 
-## Publisher: <br>
-[hunterdeng500](https://clawhub.ai/user/hunterdeng500) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hunterdeng500](https://clawhub.ai/user/hunterdeng500)
 
-## Use Case: <br>
-Developers and ClawHub users use this skill to review SKILL.md quality, generate optimization guidance, query skill rankings, and receive recommendations for relevant skills. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad ranking or recommendation prompts may activate the skill when the request is not specifically about the OhMy or ClawHub skill ecosystem. <br>
-Mitigation: Review the skill's responses for relevance before acting on ranking, recommendation, or optimization guidance. <br>
-Risk: Generated SKILL.md optimization suggestions could introduce inaccurate or unwanted changes if applied without review. <br>
-Mitigation: Inspect proposed edits and scan the resulting skill before deployment. <br>
+## Use Case:
 
+Developers and ClawHub users use this skill to inspect and score SKILL.md files, generate optimization suggestions, query ClawHub skill rankings, and get skill recommendations based on a need or installed skill stack.
 
-## Reference(s): <br>
-- [Ohmy Skill on ClawHub](https://clawhub.ai/hunterdeng500/ohmy-skill) <br>
-- [Publisher profile: hunterdeng500](https://clawhub.ai/user/hunterdeng500) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, text, configuration] <br>
-**Output Format:** [Markdown and text guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include skill scores, issue diagnoses, optimized SKILL.md suggestions, rankings, recommendations, and before/after comparisons.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: frontmatter, changelog, and server release evidence) <br>
+Risk: Broad activation phrases may cause the skill to be invoked when the user intended a narrower skill-quality request.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Invoke it with explicit "ohmy skill" wording and review trigger phrases before installing in shared environments.
+
+Risk: Generated optimization suggestions can introduce incorrect or misleading guidance into a SKILL.md file.
+
+Mitigation: Review generated changes, scan the revised skill, and test expected invocation paths before deployment.
+
+Risk: The artifact is written primarily in Chinese, which may make review harder for teams that do not read Chinese.
+
+Mitigation: Have a reviewer who can read the source language confirm behavior, triggers, and generated recommendations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hunterdeng500/skills/ohmy-skill)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Configuration]
+
+**Output Format:** [Markdown with scored findings, recommendations, rankings, and revised SKILL.md content when optimization is requested]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include before/after comparisons for token use, invocation success, or skill quality improvements.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and changelog, released 2026-04-22)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

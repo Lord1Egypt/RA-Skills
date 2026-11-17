@@ -1,37 +1,54 @@
-## Description: <br>
-Share a Google Docs document with edit access and email collaborators the link. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Share a Google Docs document with edit access and email collaborators the link.
 
-## Publisher: <br>
-[googleworkspace-bot](https://clawhub.ai/user/googleworkspace-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[googleworkspace-bot](https://clawhub.ai/user/googleworkspace-bot)
 
-## Use Case: <br>
-Employees and workspace operators use this recipe to share an existing Google Docs document with a collaborator and send a notification email containing the document link. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The recipe grants Google Doc editor access and emails the document link to a collaborator. <br>
-Mitigation: Confirm the Google account, document ID, recipient email, and need for editor access before execution; use viewer or commenter access when editing is not required. <br>
+## Use Case:
 
+Employees and workspace operators use this recipe to locate a Google Docs document, share it with a collaborator, and email the document link.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the gws binary and the gws-drive, gws-docs, and gws-gmail skills.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.12 (source: server release evidence) <br>
+Risk: The recipe can grant writer access to the wrong Google Docs file or recipient if placeholders are not checked.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the document ID, recipient email address, and required permission level before executing the sharing command.
+
+Risk: Editor access may be broader than necessary for some review workflows.
+
+Mitigation: Use viewer or commenter access unless the collaborator explicitly needs edit permission.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/googleworkspace-bot/skills/recipe-share-doc-and-notify)
+- [Publisher Profile](https://clawhub.ai/user/googleworkspace-bot)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses Google Workspace CLI commands and requires gws plus gws-drive, gws-docs, and gws-gmail.]
+
+## Skill Version(s):
+
+1.0.12 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

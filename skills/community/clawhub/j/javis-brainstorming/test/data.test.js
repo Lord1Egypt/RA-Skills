@@ -61,3 +61,52 @@ test('resolveUserId falls back to the default when no arg/env is given', () => {
     if (saved === undefined) delete process.env.OPENCLAW_USER_ID; else process.env.OPENCLAW_USER_ID = saved;
   }
 });
+
+// A state file written by an OLDER bundle — `seen` present, `sessionWindows`
+// absent (design 2026-09-11 §B added the map) — must load through the real
+// readJson/writeJson round-trip, and the first `fetch` must ADD the map without
+// disturbing `seen` or `lastRunAt`. The file is removed afterwards.
+test('an older bundle state file gains sessionWindows on the first fetch, leaving seen/lastRunAt untouched', async () => {
+  const fs = require('fs');
+  const { safeUserPath, readJson, writeJson } = require('../scripts/data');
+  const { doFetch } = require('../scripts/brainstorming');
+
+  const userId = `legacy-state-${process.pid}`;
+  const file = safeUserPath(userId);
+  const seen = { 'an-old-card|deadbeef': '2026-09-01T00:00:00.000Z' };
+  const legacy = { userId, seen, lastRunAt: '2026-09-01T00:00:00.000Z' };
+  writeJson(file, legacy);
+  const nowIso = new Date().toISOString();
+
+  try {
+    assert.ok(!('sessionWindows' in readJson(file)), 'the legacy file has no map to start with');
+    await doFetch(
+      { token: 't', sessionFilter: null, kbdFilter: null, hours: 24, limit: 50, tz: 'America/Los_Angeles' },
+      {
+        httpGet: async () => ({
+          sessions: [
+            { session_id: 'aud-1', source: 'audio', started_at: '2026-06-09T19:05:00.000Z', ended_at: '2026-06-09T19:30:00.000Z' },
+          ],
+        }),
+        now: () => nowIso,
+        emit: () => {},
+        load: () => readJson(file),
+        save: (s) => writeJson(file, s),
+      }
+    );
+
+    const after = readJson(file);
+    assert.deepEqual(after.sessionWindows, {
+      'aud-1': {
+        started_at: '2026-06-09T19:05:00.000Z',
+        ended_at: '2026-06-09T19:30:00.000Z',
+        seen_at: nowIso,
+      },
+    });
+    assert.deepEqual(after.seen, seen, '`seen` is carried through untouched');
+    assert.equal(after.lastRunAt, legacy.lastRunAt, '`lastRunAt` stays push-owned');
+    assert.equal(after.userId, userId);
+  } finally {
+    fs.rmSync(file, { force: true });
+  }
+});

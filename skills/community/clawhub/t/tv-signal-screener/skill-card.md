@@ -1,46 +1,61 @@
-## Description: <br>
-Screen markets across 6 asset classes using TradingView data with API pre-filters, pandas computed signals, and YAML-driven strategies. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Screens markets across six asset classes using TradingView data, API pre-filters, pandas computed signals, and YAML-driven strategies.
 
-## Publisher: <br>
-[NomadRex](https://clawhub.ai/user/NomadRex) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nomadrex](https://clawhub.ai/user/nomadrex)
 
-## Use Case: <br>
-Developers, analysts, and agent operators use this skill to run TradingView-backed market screens across stocks, crypto, forex, bonds, futures, and coins, then review results as Markdown tables. It supports one-time filters and reusable YAML signal definitions for technical screening workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill installs Python packages into a local virtual environment. <br>
-Mitigation: Install only in trusted workspaces and consider pinning dependencies before use in sensitive or reproducible environments. <br>
-Risk: The skill contacts TradingView-related market data services and screening results may be incomplete, delayed, or unsuitable for financial decisions. <br>
-Mitigation: Use outputs as screening signals only, verify important findings independently, and avoid treating them as trading or investment advice. <br>
-Risk: Custom signal YAML can change filter behavior and computed expressions. <br>
-Mitigation: Use trusted signal files and review YAML definitions before execution. <br>
+## Use Case:
 
+External users and developers use this skill to run one-time TradingView market screens or YAML-defined signal scans for stocks, crypto, forex, bonds, futures, and coins.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/NomadRex/tv-signal-screener) <br>
-- [TradingView Screener API Guide](references/tvscreener-api-guide.md) <br>
-- [Computed Signals Guide](references/computed-signals-guide.md) <br>
-- [Strategy Templates](references/strategy-templates.md) <br>
-- [Field Presets](references/field-presets.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown tables, CLI text output, and YAML signal configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Results depend on TradingView market data availability and the selected filters, columns, timeframe, and signal YAML.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: frontmatter and server release evidence) <br>
+Risk: Dependencies are resolved from PyPI at install time.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install in an isolated environment and review or pin dependency versions before production use.
+
+Risk: Screening output can be incomplete or misleading if YAML strategies contain invalid fields or computed expressions.
+
+Mitigation: Review YAML strategies before use and check stderr warnings for fields or expressions that failed to filter as expected.
+
+Risk: Market screening output is informational and may not reflect a complete investment decision process.
+
+Mitigation: Validate results against independent data and apply human review before taking trading or investment action.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/nomadrex/skills/tv-signal-screener)
+- [TradingView Screener API Guide](artifact/references/tvscreener-api-guide.md)
+- [Computed Signals Guide](artifact/references/computed-signals-guide.md)
+- [Strategy Templates](artifact/references/strategy-templates.md)
+- [Field Presets](artifact/references/field-presets.md)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown tables with command-line arguments and YAML strategy configuration]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Runs through local Python scripts that fetch TradingView market data and print screening or signal results.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

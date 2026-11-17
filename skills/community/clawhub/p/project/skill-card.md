@@ -1,40 +1,52 @@
-## Description: <br>
-Project helps agents structure, track, adjust, and report on projects through conversational project-management guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Project helps users turn goals into project scopes, phases, tasks, milestones, timelines, dependency maps, blocker tracking, scope decisions, and status reports through conversation.
 
-## Publisher: <br>
-[Duclawbot](https://clawhub.ai/user/Duclawbot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[duclawbot](https://clawhub.ai/user/duclawbot)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Employees, external collaborators, freelancers, team leads, product managers, and agency owners use this skill to plan, track, report on, and close projects without maintaining a separate project management system.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill may retain sensitive project details such as clients, budgets, timelines, blockers, and team performance in agent memory.
+
+Mitigation: Install only when that memory behavior is acceptable, avoid sharing unnecessary sensitive details, and review retained project context as part of normal workspace governance.
+
+Risk: Generated status reports or escalations may include incorrect, incomplete, or overly broad project information.
+
+Mitigation: Review status reports and escalations before sending them outside the chat, and provide explicit wording for important updates.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Freelancers, team leads, product managers, agency owners, and other project owners use this skill to turn ambiguous goals into scoped plans, track progress and blockers, manage scope changes, and produce project status reports. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Guidance, Configuration]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may retain sensitive project details such as client information, budgets, staffing, timelines, or performance data in agent memory. <br>
-Mitigation: Avoid entering confidential details unless retention is acceptable for the project, and limit shared inputs to information the agent is allowed to remember. <br>
-Risk: Generated project plans, escalations, and status reports may be incomplete or unsuitable for external audiences if the underlying project updates are incomplete. <br>
-Mitigation: Review generated reports and plans before sending or acting on them, especially for client, leadership, budget, staffing, or deadline decisions. <br>
+**Output Format:** [Markdown and structured conversational text]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub Skill Listing](https://clawhub.ai/Duclawbot/project) <br>
+**Other Properties Related to Output:** [May produce project plans, task lists, timelines, risk notes, blocker summaries, scope-change options, status reports, and retrospective prompts.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text project-management guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use retained agent memory for project state; evidence indicates no code, install actions, credentials, or external data transfer behavior.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

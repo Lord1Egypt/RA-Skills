@@ -1,42 +1,56 @@
-## Description: <br>
-A CISSP exam preparation quiz API that delivers randomized questions, tracks session progress, and evaluates answers in real-time. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A CISSP exam preparation quiz API that delivers randomized questions, tracks session progress, and evaluates answers in real-time.
 
-## Publisher: <br>
-[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd)
 
-## Use Case: <br>
-Cybersecurity professionals, training organizations, and developers use this skill to start CISSP quiz sessions, submit answers, and review score and domain performance data through the CISSPly API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill calls a remote ToolWeb.in service. <br>
-Mitigation: Install only if you trust the ToolWeb.in service, use pseudonymous session IDs, and avoid sending personal information. <br>
-Risk: The agent-facing API includes an admin question-reload endpoint that may change the live question bank. <br>
-Mitigation: Do not allow an agent to call /api/admin/reload unless you intentionally have admin authority and understand the operational impact. <br>
+## Use Case:
 
+External users, cybersecurity professionals, training organizations, and developers use this skill to start CISSP practice quizzes, submit answers, and receive scoring and domain-level performance feedback through the CISSPly API.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/krishnakumarmahadevan-cmd/toolweb-cissply) <br>
-- [CISSPly API Route](https://api.toolweb.in/tools/cissply) <br>
-- [CISSPly API Docs](https://api.toolweb.in:8175/docs) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with JSON examples and cURL commands; API responses are JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The remote API returns quiz sessions, submitted-answer evaluations, category performance, service health, and admin reload status.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and OpenAPI info.version) <br>
+Risk: The security review flags an administrative database reload action without clear API-level safeguards.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not grant or use administrative credentials unless the reload endpoint is confirmed to be strongly protected and intended for the user.
+
+Risk: Quiz session identifiers, answers, and timing data are sent to the hosted service.
+
+Mitigation: Use non-identifying sessionId values and avoid including personal identity or sensitive information in quiz requests.
+
+## Reference(s):
+
+- [CISSPly ClawHub listing](https://clawhub.ai/krishnakumarmahadevan-cmd/skills/toolweb-cissply)
+- [CISSPly API route](https://api.toolweb.in/tools/cissply)
+- [CISSPly API docs](https://api.toolweb.in:8175/docs)
+- [ToolWeb](https://toolweb.in)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Guidance]
+
+**Output Format:** [JSON API responses with quiz questions, answer evaluations, scores, and category performance metrics]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Remote API responses depend on sessionId, quiz length, submitted answers, and timeTaken values.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and OpenAPI info.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

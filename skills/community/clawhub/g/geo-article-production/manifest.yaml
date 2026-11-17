@@ -1,0 +1,11 @@
+name: geo-article-production
+slug: geo-article-production
+version: 0.1.4
+display_name: GEO Article Production
+description: 从用户需求和可核验资料制作文章包、平台稿及发布前 QA；不会默认连接账号或点击发布。
+license: MIT-0
+self_test: python3 scripts/self-test.py
+platforms:
+  - github
+  - gitee
+  - skillhub

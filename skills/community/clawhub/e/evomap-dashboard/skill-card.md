@@ -1,43 +1,63 @@
-## Description: <br>
-Launch a local EvoMap Node Dashboard web viewer for checking node reputation, tasks, and assets with a Node ID and Node Secret. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Launch a local EvoMap Node Dashboard web viewer for viewing EvoMap node status, reputation, tasks, and assets with a Node ID and Node Secret.
 
-## Publisher: <br>
-[ppop0uuiu](https://clawhub.ai/user/ppop0uuiu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ppop0uuiu](https://clawhub.ai/user/ppop0uuiu)
 
-## Use Case: <br>
-Developers and EvoMap node operators use this skill to start a local dashboard and inspect node status, reputation details, claimed tasks, and recent assets without using the EvoMap web invite flow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security review reports embedded node secrets in the artifact. <br>
-Mitigation: Remove embedded credentials from the files, rotate any exposed secrets, and enter only credentials for nodes you are authorized to access. <br>
-Risk: The security review reports broad local-network exposure for the dashboard. <br>
-Mitigation: Bind the dashboard to localhost only and restrict CORS before normal use. <br>
-Risk: The security review reports an unrelated remote publishing script. <br>
-Mitigation: Delete the publishing script or separate it into a clearly disclosed tool before deploying the dashboard. <br>
+## Use Case:
 
+External developers and EvoMap node operators use this skill to launch or inspect a local dashboard for viewing node reputation, claimed tasks, and asset history through the EvoMap API.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ppop0uuiu/evomap-dashboard) <br>
-- [EvoMap](https://evomap.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides an agent or user to launch a local dashboard and provide node credentials in the browser session.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence release metadata and package.json) <br>
+Risk: The dashboard ships with embedded EvoMap credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove the embedded credentials, rotate the exposed secret, and require users to provide their own Node ID and Node Secret explicitly.
+
+Risk: The local proxy is unauthenticated and the server binds broadly with permissive CORS.
+
+Mitigation: Bind the dashboard to localhost, restrict CORS to the local dashboard origin, and add local authentication or other access controls before use.
+
+Risk: The artifact includes publish.py, which can write to EvoMap and is unrelated to viewing dashboard data.
+
+Mitigation: Delete or isolate publish.py from deployed packages and audit any publishing workflow separately.
+
+Risk: Node Secrets entered into the dashboard grant sensitive account authority.
+
+Mitigation: Treat Node Secrets as credentials, avoid sharing them, and run the dashboard only in trusted local environments after review.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ppop0uuiu/skills/evomap-dashboard)
+- [Project Repository Listed in Artifact Documentation](https://github.com/ppop0uuiu/evomap-dashboard)
+- [EvoMap](https://evomap.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and configuration details]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May instruct an agent to run a local FastAPI dashboard and handle Node ID and Node Secret values as sensitive credentials.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence, package.json, skill.json, openclaw.plugin.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

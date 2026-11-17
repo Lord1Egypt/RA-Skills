@@ -1,6 +1,6 @@
 {
-  "ownerId": "kn7a5ysj3nyh7z8qfw75vyrzm582x7hw",
-  "slug": "polymarket-sniper-bot-standalone",
-  "version": "1.0.1",
-  "publishedAt": 1774533611353
+  "name": "polymarket-sniper-bot-(standalone)",
+  "description": "An autonomous trading agent designed for **Polymarket** (Polygon network). It scans 15-minute crypto markets for momentum signals and executes trades automatically.",
+  "version": "1.0.0",
+  "generated_from": "memory/2026-03-24.md"
 }

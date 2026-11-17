@@ -1,0 +1,18 @@
+{
+  "ownerHandle": "zuoyunlai",
+  "ownerId": "kn71j6xbmpwfvx4c6y1ez8cd718081mg",
+  "slug": "lz-skill-vetter-20260819",
+  "version": "2.1.3",
+  "publishedAt": 1769863429632,
+  "license": "MIT",
+  "tags": ["security", "audit", "scanner", "automation", "ci", "fork"],
+  "forked_from": {
+    "slug": "skill-vetter",
+    "ownerHandle": "spclaudehome",
+    "version": "1.0.0",
+    "license": "MIT",
+    "note": "Forked from spclaudehome's v1.0.0 under MIT license. Massive upgrade with 38-rule pattern library, 3-tier exemption, severity-cap engine adaptation, and JSON+CI integration."
+  },
+  "blueprint_reference": "skill-auditor-plus (caleb-niu007) — design inspiration, no dependency",
+  "tested_against": "102 OpenClaw skills (主人仓库批量试跑 2026-08-19)"
+}

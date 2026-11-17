@@ -1,37 +1,48 @@
-## Description: <br>
-Comprehensive SQL cheatsheet with SELECT, JOINs, INSERT/UPDATE/DELETE, aggregation, window functions, subqueries, and best practices for quick reference on SQL queries, database operations, and common query patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Comprehensive SQL cheatsheet with SELECT, JOINs, INSERT/UPDATE/DELETE, aggregation, window functions, subqueries, and best practices.
 
-## Publisher: <br>
-[terrycarter1985](https://clawhub.ai/user/terrycarter1985) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[terrycarter1985](https://clawhub.ai/user/terrycarter1985)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers, analysts, and database practitioners use this skill as a quick SQL reference for query patterns, data modification, schema operations, and performance tips.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill includes SQL examples for UPDATE without WHERE, DELETE, TRUNCATE, DROP, and ALTER operations that could damage real databases if copied without review.
+
+Mitigation: Use the examples as syntax references only; verify targets, use backups or transactions where appropriate, and test outside production before running modification or schema statements.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, analysts, and database users use this skill as a quick SQL reference for writing queries, modifying data, schema operations, and performance-oriented query patterns. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Code, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Some example SQL statements can modify, remove, or drop data if copied into a real database without review. <br>
-Mitigation: Preview affected rows, add appropriate WHERE clauses, use transactions or backups where possible, and avoid DELETE, TRUNCATE, DROP, or all-row UPDATE statements unless explicitly intended. <br>
+**Output Format:** [Markdown with SQL code blocks]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Static SQL reference content; no code execution or credential handling.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown with SQL code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Static reference content; users should review SQL examples before applying them to live databases.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

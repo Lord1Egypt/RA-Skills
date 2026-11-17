@@ -1,45 +1,56 @@
-## Description: <br>
-Call GET /api/v1/google/scholar/profiles for Google SERP Scholar Profiles through Just Serp API with mauthors. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Call GET /api/v1/google/scholar/profiles for Google SERP Scholar Profiles through Just Serp API with mauthors.
 
-## Publisher: <br>
-[justserpapi](https://clawhub.ai/user/justserpapi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[justserpapi](https://clawhub.ai/user/justserpapi)
 
-## Use Case: <br>
-Developers and agents use this skill to query Just Serp API for Google Scholar profile search results, affiliations, citation counts, and pagination tokens. It supports researcher discovery and academic directory building workflows that need the required mauthors query parameter. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a Just Serp API key and sends it to the Just Serp API provider. <br>
-Mitigation: Keep JUST_SERP_API_KEY in the environment, pass it through the documented command flag, and do not paste the key into chat messages, screenshots, or logs. <br>
-Risk: Scholar profile search queries are sent to Just Serp API. <br>
-Mitigation: Install and use the skill only when the workflow is intended to use Just Serp API and the query terms are appropriate to share with that provider. <br>
-Risk: Backend error payloads may be surfaced when a request fails. <br>
-Mitigation: Review backend payloads before sharing transcripts or logs outside the trusted workflow. <br>
+## Use Case:
 
+Developers and agents use this skill to search Google Scholar profiles through Just Serp API, using the required mauthors query to retrieve researcher profile results, affiliations, citation counts, and pagination tokens.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/justserpapi/justserpapi-google-scholar-profiles) <br>
-- [Just Serp API project site](https://justserpapi.com/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justserpapi_google_scholar_profiles&utm_content=project_link) <br>
-- [Just Serp API docs](https://docs.justserpapi.com/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justserpapi_google_scholar_profiles&utm_content=project_link) <br>
-- [Generated operation reference](artifact/generated/operations.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, JSON, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses the ScholarProfiles operation for GET /api/v1/google/scholar/profiles and requires JUST_SERP_API_KEY plus a mauthors query value.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Google Scholar profile searches and query parameters are sent to Just Serp API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and use the skill only when sending those searches to Just Serp API with your own API key is acceptable for the intended workflow.
+
+Risk: The documented command passes the API key as a process argument, which can expose it on shared machines, CI systems, or monitored environments.
+
+Mitigation: Prefer a revised helper that reads JUST_SERP_API_KEY directly from the environment, and avoid exposing API keys in chat messages, screenshots, logs, or process listings.
+
+## Reference(s):
+
+- [Just Serp API](https://justserpapi.com/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justserpapi_google_scholar_profiles&utm_content=project_link)
+- [Just Serp API Docs](https://docs.justserpapi.com/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justserpapi_google_scholar_profiles&utm_content=project_link)
+- [ClawHub Skill Page](https://clawhub.ai/justserpapi/skills/justserpapi-google-scholar-profiles)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/justserpapi)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js and JUST_SERP_API_KEY; uses mauthors as the required query parameter.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

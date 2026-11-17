@@ -1,45 +1,62 @@
-## Description: <br>
-思源笔记读写技能，提供与思源笔记（SiYuan Note）进行交互的能力，包括读取和写入笔记内容。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill lets an agent read, search, create, append, clip, and sync content with a user-controlled SiYuan Note instance.
 
-## Publisher: <br>
-[jueduilunhui](https://clawhub.ai/user/jueduilunhui) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jueduilunhui](https://clawhub.ai/user/jueduilunhui)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to connect an agent to SiYuan Note, search notebooks and documents, create or append Markdown notes, sync conversations, and clip articles through a configured SiYuan API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Hardcoded-token debug or test scripts may expose credentials or encourage reuse of unsafe secrets. <br>
-Mitigation: Remove those scripts before installation, rotate any exposed token that may be real, and configure credentials through SIYUAN_API_TOKEN. <br>
-Risk: Write-capable sync and document-creation flows can modify a live SiYuan notebook. <br>
-Mitigation: Review commands before execution, verify the target notebook and document, and test against a non-sensitive notebook first. <br>
-Risk: Conversation sync can persist sensitive chat content into the note system. <br>
-Mitigation: Review or redact conversations before syncing and avoid auto-sync for sensitive work. <br>
+## Use Case:
 
+Developers and external users use this skill to let an agent connect to SiYuan Note, search notebooks, create or append Markdown documents, clip articles, and save conversation records.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/jueduilunhui/jueduilunhui-siyuan-note) <br>
-- [SiYuan Chrome extension reference](https://github.com/siyuan-note/siyuan-chrome) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact changelog](artifact/CHANGELOG.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python code examples, shell commands, configuration snippets, and text status messages from SiYuan API operations.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a running SiYuan Note instance, python3, requests, SIYUAN_API_TOKEN, and optionally SIYUAN_API_URL.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata) <br>
+Risk: The release security summary reports live-looking credentials and token-based access to SiYuan.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Rotate any exposed token if it was ever valid, store credentials in SIYUAN_API_TOKEN or a credential store, and avoid committing config-file tokens.
+
+Risk: The skill can persist full conversations, clipped articles, and generated Markdown into a SiYuan workspace.
+
+Mitigation: Require explicit user approval before writing, redact sensitive content before sync, and target only notebooks the user controls.
+
+Risk: HTTP API access can expose note content or authorization tokens if used beyond a trusted local endpoint.
+
+Mitigation: Restrict the SiYuan API to localhost or use HTTPS on trusted networks.
+
+Risk: Included test and debug scripts can create or modify notes during execution.
+
+Mitigation: Review script targets and configuration before running tests, and use a disposable notebook for validation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jueduilunhui/skills/jueduilunhui-siyuan-note)
+- [SiYuan Chrome extension reference](https://github.com/siyuan-note/siyuan-chrome)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown, Python code snippets, shell commands, configuration examples, and SiYuan API results.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3, requests, a running SiYuan API endpoint, and SIYUAN_API_TOKEN or equivalent local configuration.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata, _meta.json, CHANGELOG)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

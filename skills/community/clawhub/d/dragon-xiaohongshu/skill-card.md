@@ -1,44 +1,58 @@
-## Description: <br>
-自动发布内容到小红书平台，支持图文发布、登录状态检查和登录二维码获取。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates publishing content to Xiaohongshu, including image/text posts, login-status checks, and QR-code login support.
 
-## Publisher: <br>
-[dragon015](https://clawhub.ai/user/dragon015) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[dragon015](https://clawhub.ai/user/dragon015)
 
-## Use Case: <br>
-Developers and content operators use this skill to prepare and publish image-and-text posts to Xiaohongshu through a local MCP service after confirming account login state. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The external Xiaohongshu MCP executable controls the actual posting flow and receives access to the user's Xiaohongshu session. <br>
-Mitigation: Install and run the executable only from a trusted source, test first with a non-production account, and keep the service local. <br>
-Risk: Publishing commands can post unintended content or image paths to Xiaohongshu. <br>
-Mitigation: Review every title, content body, tag list, and image path before running publish commands or bundled example scripts. <br>
-Risk: The skill requires an authenticated Xiaohongshu account session. <br>
-Mitigation: Confirm login status before publishing and avoid sharing the local environment or session files with untrusted users. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/dragon015/dragon-xiaohongshu) <br>
-- [Configuration guide](references/config.md) <br>
-- [mcporter documentation](http://mcporter.dev) <br>
-- [Xiaohongshu MCP project](https://github.com/xpzouying/xiaohongshu-mcp) <br>
+## Use Case:
 
+External users and developers use this skill to prepare and run Xiaohongshu publishing workflows for image/text posts, batch posting, scheduled publishing, and login checks through a local MCP server.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown instructions with JavaScript and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local publishing commands and configuration guidance; publishing itself is performed by the external Xiaohongshu MCP executable.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill depends on an external MCP server executable and npm tooling whose provenance is not verified by the evidence.
+
+Mitigation: Install only from trusted sources, verify executable and package provenance before use, and run under a non-admin account.
+
+Risk: Publishing flows can post content publicly without strong safeguards, including bundled examples with hardcoded post content.
+
+Mitigation: Confirm the target Xiaohongshu account, title, content, images, and tags before publishing; do not run bundled publish_*.js examples unless that public post is intended.
+
+Risk: Private text or images can be exposed through the publishing workflow.
+
+Mitigation: Avoid sensitive or private images and text, and use login-status checks before posting.
+
+## Reference(s):
+
+- [Configuration Guide](references/config.md)
+- [Xiaohongshu MCP Project](https://github.com/xpzouying/xiaohongshu-mcp)
+- [mcporter Documentation](http://mcporter.dev)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with bash, PowerShell, JSON, and JavaScript snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands may initiate live Xiaohongshu publishing when executed against a logged-in local MCP server.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

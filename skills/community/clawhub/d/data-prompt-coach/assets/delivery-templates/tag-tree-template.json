@@ -1,0 +1,42 @@
+{
+  "version": "1.0",
+  "tag_system_name": "{标签体系名称}",
+  "created_at": "{日期}",
+  "description": "{体系用途说明}",
+  "level_1_tags": [
+    {
+      "id": "L1-1",
+      "name": "{一级标签名}",
+      "description": "{标签定义}",
+      "boundary": "{与其他标签的边界说明}",
+      "examples": ["{样例1}", "{样例2}"],
+      "level_2_tags": [
+        {
+          "id": "L2-1",
+          "name": "{二级标签名}",
+          "description": "{标签定义}",
+          "boundary": "{边界说明}",
+          "examples": ["{样例1}"],
+          "parent": "L1-1"
+        }
+      ]
+    }
+  ],
+  "overlap_rules": [
+    {
+      "tags": ["L1-1", "L1-2"],
+      "rule": "{重叠时的处理规则}",
+      "priority": "high"
+    }
+  ],
+  "multi_label_strategy": "multi_with_primary",
+  "confidence_threshold": 0.7,
+  "uncertain_handling": "mark_for_review",
+  "batch_strategy": {
+    "enabled": true,
+    "batch_size": 100,
+    "alignment_method": "前 10 条人工标注作为基准",
+    "checkpoint_every": 5,
+    "drift_detection": "每 5 批检查标签分布"
+  }
+}

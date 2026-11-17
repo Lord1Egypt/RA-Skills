@@ -1,42 +1,60 @@
-## Description: <br>
-Generate or edit images via Gemini 3 Pro Image (Nano Banana Pro). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate or edit images via Gemini 3 Pro Image (Nano Banana Pro).
 
-## Publisher: <br>
-[jeayoo](https://clawhub.ai/user/jeayoo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jeayoo](https://clawhub.ai/user/jeayoo)
 
-## Use Case: <br>
-Developers and creative operators use this skill to generate new images, edit a single input image, or compose up to 14 input images through Gemini 3 Pro Image from an OpenClaw workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts and selected input images are sent to Google's Gemini API. <br>
-Mitigation: Use only prompts and images whose external API processing is acceptable for the user's data handling requirements. <br>
-Risk: The script creates the requested output file path. <br>
-Mitigation: Choose output filenames deliberately and review the saved path before relying on or sharing the generated image. <br>
+## Use Case:
 
+Developers and external users can use this skill to have an agent generate new images, edit a single input image, or compose up to 14 input images through Gemini 3 Pro Image using the bundled command-line helper.
 
-## Reference(s): <br>
-- [Google AI for Developers](https://ai.google.dev/) <br>
-- [Google AI Studio API key setup](https://aistudio.google.com/app/apikey) <br>
-- [ClawHub release page](https://clawhub.ai/jeayoo/openclaw-pro-nano-banana-pro-1-0-2) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, files] <br>
-**Output Format:** [Text status output with a saved PNG image file path and MEDIA attachment line] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires uv, Python 3.10 or newer, and GEMINI_API_KEY; supports 1K, 2K, and 4K output resolutions plus selected aspect ratios.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: Prompts and selected input images are sent to Gemini during generation or editing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with content that is appropriate to share with Gemini and avoid sensitive prompts or input images.
+
+Risk: User-chosen filenames and output paths can overwrite or mix generated files with other local files.
+
+Mitigation: Use a dedicated output folder and timestamped filenames for generated images.
+
+Risk: The helper runs runtime dependencies through uv.
+
+Mitigation: Review or pin dependencies before use in stricter environments.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jeayoo/skills/openclaw-pro-nano-banana-pro-1-0-2)
+- [Publisher Profile](https://clawhub.ai/user/jeayoo)
+- [Google AI Developer Documentation](https://ai.google.dev/)
+- [Google AI Studio API Key](https://aistudio.google.com/app/apikey)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Files]
+
+**Output Format:** [Markdown guidance with bash command examples; generated PNG files and MEDIA path lines from the helper script.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires uv and GEMINI_API_KEY; supports 1K, 2K, and 4K output resolutions, optional aspect ratios, and image editing or composition with up to 14 input images.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>原型样张 · 编辑文字页</title>
+<link rel="stylesheet" href="../assets/theme.css">
+</head>
+<body>
+<div class="slide-container" style="background:var(--off-white);">
+
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:1720px;top:92px;width:100px;text-align:right;z-index:10;">
+    <div class="num" style="font-size:16px;font-weight:600;color:var(--text-tertiary);letter-spacing:2px;">05 / 12</div>
+  </div>
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:100px;top:120px;width:1720px;z-index:10;">
+    <div style="font-size:60px;font-weight:700;line-height:1.2;color:var(--charcoal);">
+      企业知识管理的瓶颈不在工具,<br>在知识的"失效速度"
+    </div>
+  </div>
+
+  <!-- 原型 7:编辑式双栏文字(无卡片)
+       2026-08-06 第四轮 P5:双栏原本只占 y340-550,下方空 330px 靠细线凑底边。
+       编辑式原型不能改成卡片矩阵(那是原型 7 的身份),故用"数据带"补足下半页:
+       三个关键数字 + 深色底 = 结构色面,同时把双栏行距放到 1.9 撑开。 -->
+  <div style="position:absolute;left:100px;top:340px;width:1720px;display:flex;gap:80px;">
+    <div data-object="true" data-object-type="textbox" style="flex:1;">
+      <div style="font-size:26px;line-height:1.9;color:var(--text-primary);">
+        <span style="font-weight:700;color:var(--charcoal);">知识在贬值,而不是在积累。</span>调研的 200 家企业里,文档平均"半衰期"只有 11 个月——一年前的流程文档,今天还能直接用的不到四成。
+        <br><br>
+        问题不在存储。每家企业的文档量都在增长,真正掉队的,是让文档保持新鲜的能力。
+      </div>
+    </div>
+    <div data-object="true" data-object-type="textbox" style="flex:1;">
+      <div style="font-size:26px;line-height:1.9;color:var(--text-primary);">
+        <span style="font-weight:700;color:var(--charcoal);">失效发生在三个环节。</span>写入时缺语境、流转时缺owner、检索时缺时效标注。三个环节叠加,知识库就变成"档案馆":什么都有,什么都不敢信。
+        <br><br>
+        解方因此不是换一个更好的工具,而是给知识加上"保质期管理"——这是下一页的主题。
+      </div>
+    </div>
+  </div>
+
+  <!-- 数据带:三个关键数字压深色底(结构色面;数字承载信息,非装饰) -->
+  <div data-object="true" data-object-type="shape" style="position:absolute;left:100px;top:660px;width:1720px;height:200px;background:var(--deep-navy);z-index:1;"></div>
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:160px;top:700px;width:480px;z-index:10;">
+    <div class="num" style="font-size:76px;font-weight:800;color:var(--accent-orange);line-height:1.1;">11 个月</div>
+    <div style="font-size:24px;line-height:1.45;color:var(--on-navy-sub);margin-top:14px;">文档平均半衰期(200 家企业中位数)</div>
+  </div>
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:740px;top:700px;width:440px;z-index:10;">
+    <div class="num" style="font-size:76px;font-weight:800;color:var(--on-navy-text);line-height:1.1;">38%</div>
+    <div style="font-size:24px;line-height:1.45;color:var(--on-navy-sub);margin-top:14px;">一年前文档今天仍可直接使用的比例</div>
+  </div>
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:1280px;top:700px;width:480px;z-index:10;">
+    <div class="num" style="font-size:76px;font-weight:800;color:var(--on-navy-text);line-height:1.1;">3 个环节</div>
+    <div style="font-size:24px;line-height:1.45;color:var(--on-navy-sub);margin-top:14px;">失效发生处:写入 / 流转 / 检索</div>
+  </div>
+
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:100px;top:900px;width:1720px;z-index:10;">
+    <div style="font-size:16px;line-height:1.5;color:var(--text-tertiary);">依据:200 家企业调研(2026-06);"半衰期"= 文档内容半数失效的时间</div>
+  </div>
+
+</div>
+
+<template data-slide-notes>
+【核心逻辑】先建立"知识失效"这个反直觉判断,为后面的方案页铺路。
+【串场】不用念数据,问一句"你们去年的文档今天还敢直接用吗"即可。
+</template>
+</body>
+</html>

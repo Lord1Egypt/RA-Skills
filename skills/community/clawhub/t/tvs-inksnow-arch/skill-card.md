@@ -1,41 +1,48 @@
-## Description: <br>
-Tvs Inksnow Arch guides developers through a Chinese-language architecture refactor workflow that produces an approval-gated RFC and then creates Cursor rules for the approved architecture boundaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tvs Inksnow Arch helps agents turn architecture refactor goals into an approved RFC and then generate Cursor rules that encode the approved architecture boundaries.
 
-## Publisher: <br>
-[inksnowhailong](https://clawhub.ai/user/inksnowhailong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[inksnowhailong](https://clawhub.ai/user/inksnowhailong)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineering teams use this skill when they need an agent to structure architecture refactor decisions, capture them in docs/architecture-refactor-rfc.md, and generate persistent .cursor/rules/*.mdc rules after approval.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Generated alwaysApply Cursor rules can steer later agent edits beyond the immediate architecture planning session.
+
+Mitigation: Review the generated RFC before approval and inspect generated .cursor/rules/*.mdc files before relying on them for later coding work.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineering teams use this skill when they need to turn architecture refactor ideas into a concrete RFC and persist the approved decisions as Cursor rule files for future AI-assisted coding. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Markdown, Configuration, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create persistent Cursor rule files that influence later AI edits in the repository. <br>
-Mitigation: Review the generated RFC and planned .cursor/rules files carefully before approving the rule-generation stage. <br>
-Risk: Architecture guidance may be incomplete if the optional deep interview skill is unavailable and the simplified protocol is used. <br>
-Mitigation: Use the approval gate to review the RFC for missing constraints, topology decisions, and rollout risks before allowing rule files to be generated. <br>
+**Output Format:** [Markdown documents and Cursor .mdc rule files]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/inksnowhailong/tvs-inksnow-arch) <br>
-- [Publisher profile](https://clawhub.ai/user/inksnowhailong) <br>
+**Other Properties Related to Output:** [Requires user approval of the RFC before generating persistent Cursor rules.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown RFC content and Cursor .mdc rule-file guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The workflow gates rule-file generation on explicit user approval of the generated RFC.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

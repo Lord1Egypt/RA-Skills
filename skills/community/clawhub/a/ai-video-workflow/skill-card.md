@@ -1,50 +1,62 @@
-## Description: <br>
-Guides agents through a structured AI-video production workflow covering idea or script analysis, style design, storyboarding, image generation, image-to-video generation, editing, and sound design. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Chinese-language workflow guidance for agents creating AI videos through script analysis, style design, storyboarding, image and video generation planning, editing, and sound design.
 
-## Publisher: <br>
-[892153301](https://clawhub.ai/user/892153301) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[892153301](https://clawhub.ai/user/892153301)
 
-## Use Case: <br>
-External creators and agent users use this skill to plan and execute AI-video projects from an initial idea or script through visual design, prompt creation, clip generation, editing, and audio checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow may create local project folders or progress checklists as part of starting an AI-video project. <br>
-Mitigation: Confirm the target folder and checklist location before allowing the agent to create or modify local files. <br>
-Risk: The workflow can involve uploading user images or project assets to third-party AI generation tools. <br>
-Mitigation: Do not upload private or confidential images unless the user accepts the third-party platform's content handling terms. <br>
+## Use Case:
 
+External users and creators use this skill to guide an agent through a structured AI video production workflow, from an initial idea or script to storyboard planning, visual references, generated clips, editing, and audio polish.
 
-## Reference(s): <br>
-- [AI视频完整制作工作流 release page](https://clawhub.ai/892153301/ai-video-workflow) <br>
-- [SKILL.md](SKILL.md) <br>
-- [思维导图.md](思维导图.md) <br>
-- [一致性指南](references/一致性指南.md) <br>
-- [人物设计指南](references/人物设计指南.md) <br>
-- [剪辑指南](references/剪辑指南.md) <br>
-- [场景设计指南](references/场景设计指南.md) <br>
-- [声音设计指南](references/声音设计指南.md) <br>
-- [导演思维公式](references/导演思维公式.md) <br>
-- [提示词设计指南](references/提示词设计指南.md) <br>
-- [风格设计指南](references/风格设计指南.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Guidance, Configuration instructions] <br>
-**Output Format:** [Markdown guidance with prompt templates, production checklists, storyboard structures, and workflow steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide creation of local project folders and progress checklists when the user asks to start an AI-video project.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The workflow may create or organize project files in a user workspace.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the intended project directory before allowing an agent to create folders, checklists, or production files.
+
+Risk: The workflow may involve uploading or generating visual assets with external image or video tools.
+
+Mitigation: Confirm asset-sharing permissions and tool choices before sending user-provided or generated media outside the local workspace.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/892153301/skills/ai-video-workflow)
+- [AI视频制作工作流 - 详细思维导图](artifact/思维导图.md)
+- [一致性完全指南](artifact/references/一致性指南.md)
+- [人物设计完全指南](artifact/references/人物设计指南.md)
+- [剪辑完全指南](artifact/references/剪辑指南.md)
+- [场景设计完全指南](artifact/references/场景设计指南.md)
+- [声音设计完全指南](artifact/references/声音设计指南.md)
+- [导演思维公式](artifact/references/导演思维公式.md)
+- [提示词设计完全指南](artifact/references/提示词设计指南.md)
+- [风格设计完全指南](artifact/references/风格设计指南.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration]
+
+**Output Format:** [Markdown guidance with checklists, tables, prompt templates, and production workflow notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include project structures, progress checklists, storyboard plans, visual style documents, prompt templates, reference image plans, editing checks, and sound design notes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

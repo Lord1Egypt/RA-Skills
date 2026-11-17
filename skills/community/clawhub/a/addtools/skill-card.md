@@ -1,41 +1,55 @@
-## Description: <br>
-Search engine for AI agents to discover free and paid tools, APIs, and MCP servers <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search engine for AI agents to discover free and paid tools, APIs, and MCP servers
 
-## Publisher: <br>
-[simmmel](https://clawhub.ai/user/simmmel) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[simmmel](https://clawhub.ai/user/simmmel)
 
-## Use Case: <br>
-Agents and developers use this skill to search add.tools for tool, API, and MCP server options, including free and x402-paid endpoints. They can also submit feedback about selected tools to improve future search quality. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search queries and optional feedback are sent to add.tools. <br>
-Mitigation: Use the skill only when sending those queries and feedback to add.tools is acceptable. <br>
-Risk: Recommended tools, MCP servers, pricing, or permissions may not be appropriate for the user's environment. <br>
-Mitigation: Review recommended tools, payment terms, permissions, and reliability before connecting them or making payments. <br>
+## Use Case:
 
+Developers and agent builders use this skill to find tools, APIs, and MCP servers that match an agent's task, including free and x402-enabled paid endpoints. Agents can query add.tools for ranked tool results and optionally submit feedback about selected tools.
 
-## Reference(s): <br>
-- [add.tools website](https://add.tools) <br>
-- [ClawHub listing](https://clawhub.ai/simmmel/addtools) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, JSON] <br>
-**Output Format:** [Markdown guidance with curl examples and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May involve external add.tools search and feedback requests.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Search queries sent to add.tools may disclose task intent or sensitive tool-selection context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not include confidential prompts, customer data, secrets, or proprietary details in search queries.
+
+Risk: Feedback submission is optional data sharing with an external service.
+
+Mitigation: Submit feedback only when sharing the query, chosen tool, and success outcome is acceptable.
+
+## Reference(s):
+
+- [add.tools website](https://add.tools)
+- [add.tools GitHub organization](https://github.com/add-tools)
+- [ClawHub skill page](https://clawhub.ai/simmmel/skills/addtools)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, API calls]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes example curl commands for JSON search requests and optional feedback submission.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,57 @@
-## Description: <br>
-Use the bwp command to create technical content for codewithriver, including articles, courses, theory notes, writing personas, version management, and link sharing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates technical writing project files for codewithriver through the bwp command, including articles, courses, theory notes, personas, version management, and share links.
 
-## Publisher: <br>
-[riverfor](https://clawhub.ai/user/riverfor) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[riverfor](https://clawhub.ai/user/riverfor)
 
-## Use Case: <br>
-Writers, developers, and technical educators use this skill to scaffold and manage Markdown articles, course outlines, theory notes, and writing personas in a local content workspace. It also provides helper commands for listing content, committing changes, checking status, and generating local share links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The generated sharing server can expose local content or directory listings more broadly than intended. <br>
-Mitigation: Bind the server to localhost or a trusted interface, change the default .env password, and avoid public exposure until path handling and directory listing behavior are reviewed. <br>
-Risk: The Git helper can commit more local data than the user expects. <br>
-Mitigation: Add .env to .gitignore and review git status and git diff before running bwp commit. <br>
-Risk: The skill runs a shell script that creates files and configuration in a local publishing workspace. <br>
-Mitigation: Review scripts/bwp.sh before installation and set BWP_PROJECT_ROOT to an intended workspace before creating content. <br>
+## Use Case:
 
+Developers and technical writers use this skill to initialize a local content workspace and create Markdown templates for articles, course outlines, theory notes, and writing personas. It also provides commands for listing content, committing changes, checking status, and generating local share links.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/riverfor/build-with-public-writer) <br>
-- [Outline template](templates/outline.template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown files, shell command output, generated Python server code, and local configuration files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates and updates files under a local content workspace controlled by BWP_PROJECT_ROOT or the default project path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The generated sharing server can expose local files over the network with weak default credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in a trusted local project, change the generated credentials immediately, avoid exposing the server outside localhost, and do not serve sensitive directories until path containment is fixed.
+
+Risk: Basic Auth over plain HTTP does not protect credentials on untrusted networks.
+
+Mitigation: Use local-only access or add HTTPS and stronger access controls before sharing beyond localhost.
+
+Risk: Project initialization writes configuration and server code into the target project, and the commit command stages all changes.
+
+Mitigation: Review generated files and git diff before running the server or committing content.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/riverfor/skills/build-with-public-writer)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown files, shell command output, and generated local configuration/code files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates files under BWP_PROJECT_ROOT or /home/node/cwr by default; link sharing depends on the generated local server.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

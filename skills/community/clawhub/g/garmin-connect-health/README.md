@@ -34,7 +34,7 @@ A comprehensive Garmin Connect skill for [OpenClaw](https://github.com/openclaw/
 
 ```bash
 # Install dependency
-pip install garminconnect
+pip install "garminconnect>=0.3.11"
 
 # Set credentials
 export GARMIN_EMAIL="you@example.com"
@@ -51,11 +51,13 @@ python3 garmin_health.py --show
 
 ### Manual
 1. Copy `garmin_health.py` and `SKILL.md` to your OpenClaw skills directory
-2. Install the Python dependency: `pip install garminconnect`
+2. Install the Python dependency: `pip install "garminconnect>=0.3.11"`
 3. Configure credentials (see Setup section)
 
 ### First Run & MFA
 Your first login may trigger MFA. You'll be prompted to enter the verification code sent to your Garmin account email. After successful login, an OAuth token is cached for future use.
+
+Versions `0.3.x` use native authentication and do not reuse legacy Garth token files. If you are upgrading from `garminconnect 0.2.x`, expect one new interactive login and MFA challenge.
 
 ## Data Storage
 

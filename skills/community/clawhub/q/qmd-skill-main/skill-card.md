@@ -1,42 +1,58 @@
-## Description: <br>
-Local hybrid search for markdown notes and docs. Use when searching notes, finding related content, or retrieving documents from indexed collections. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Local hybrid search for markdown notes and docs. Use when searching notes, finding related content, or retrieving documents from indexed collections.
 
-## Publisher: <br>
-[pmaeter](https://clawhub.ai/user/pmaeter) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[pmaeter](https://clawhub.ai/user/pmaeter)
 
-## Use Case: <br>
-Developers and agent users use this skill to search, retrieve, and refresh indexed local Markdown notes, documents, and knowledge-base collections. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can index and return private notes when broad local folders are added as qmd collections. <br>
-Mitigation: Index only Markdown folders intended for agent search and exclude notes that contain secrets or sensitive personal information. <br>
-Risk: Installation depends on an external qmd package from GitHub. <br>
-Mitigation: Install only after trusting the external package source and reviewing the command before execution. <br>
-Risk: Scheduled indexing can keep exposing newly added local Markdown files over time. <br>
-Mitigation: Enable scheduled qmd update or embed jobs only for collections that should remain searchable. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/pmaeter/qmd-skill-main) <br>
-- [qmd Homepage](https://github.com/tobi/qmd) <br>
+## Use Case:
 
+Developers and agent users use this skill to search, retrieve, and maintain indexed local Markdown notes, documentation, and knowledge-base collections with qmd.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce qmd command suggestions and retrieval guidance for local Markdown collections.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The install step uses a global Bun install from a third-party upstream repository.
+
+Mitigation: Install only after reviewing and trusting the qmd upstream repository and the implications of a globally installed command-line tool.
+
+Risk: The skill indexes local Markdown folders selected by the user.
+
+Mitigation: Add only Markdown folders intended for search and retrieval, especially when collections may contain sensitive notes or documents.
+
+Risk: Optional cron or scheduler setup can keep local indexes and embeddings updated over time.
+
+Mitigation: Enable scheduled updates only as a deliberate maintenance choice and review the configured commands and paths.
+
+## Reference(s):
+
+- [Qmd upstream repository](https://github.com/tobi/qmd)
+- [ClawHub skill page](https://clawhub.ai/pmaeter/skills/qmd-skill-main)
+- [Publisher profile](https://clawhub.ai/user/pmaeter)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, text, json]
+
+**Output Format:** [Markdown guidance with inline shell commands and optional qmd JSON output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the qmd binary; supports local Markdown collection search, retrieval, indexing, embedding, and maintenance workflows.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

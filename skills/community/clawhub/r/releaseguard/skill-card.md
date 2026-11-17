@@ -1,46 +1,54 @@
-## Description: <br>
-Scan, harden, sign, and verify release artifacts with ReleaseGuard, an artifact policy engine for dist/ and release/ outputs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scan, harden, sign, and verify release artifacts with ReleaseGuard — the artifact policy engine for dist/ and release/ outputs.
 
-## Publisher: <br>
-[asiridalugoda](https://clawhub.ai/user/asiridalugoda) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[asiridalugoda](https://clawhub.ai/user/asiridalugoda)
 
-## Use Case: <br>
-Developers and release engineers use this skill to inspect, harden, package, sign, attest, and verify build outputs before publication. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The optional curl-to-shell installer executes remote code. <br>
-Mitigation: Prefer Homebrew or a pinned, verified release binary; review the installer source before running it in sensitive environments. <br>
-Risk: Fix, harden, and obfuscate commands can mutate release artifacts. <br>
-Mitigation: Run dry-run modes first, provide explicit artifact paths, and keep recoverable copies of release outputs. <br>
-Risk: Signing, keyless signing, and cloud obfuscation may use private keys, OIDC tokens, or cloud tokens. <br>
-Mitigation: Supply credentials only for commands that require them, keep local keys in controlled storage, and use CI secret handling for tokens. <br>
-Risk: CVE enrichment, VEX generation, keyless signing, and higher obfuscation levels can contact external services. <br>
-Mitigation: Use offline or local modes when external calls are not acceptable, and enable networked flags only after confirming policy approval. <br>
+## Use Case:
 
+Developers and release engineers use this skill to run ReleaseGuard on build outputs for release scanning, hardening, SBOM generation, signing, attestation, packaging, and verification.
 
-## Reference(s): <br>
-- [ReleaseGuard ClawHub listing](https://clawhub.ai/asiridalugoda/releaseguard) <br>
-- [ReleaseGuard GitHub repository](https://github.com/Helixar-AI/ReleaseGuard) <br>
-- [ReleaseGuard install script source](https://github.com/Helixar-AI/ReleaseGuard/blob/main/scripts/install.sh) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference local artifact paths, optional output files, and release signing or cloud-service credentials only when the selected command requires them.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.5 (source: server release metadata) <br>
+Risk: Alternate installation paths can run or install unverified remote code with broad local privileges.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted Homebrew installation or a pinned release with verified checksums or signatures; avoid curl | sh and unverified direct binary installation.
+
+Risk: Signing, cloud obfuscation, and local-key workflows handle sensitive credentials or artifact integrity material.
+
+Mitigation: Run these workflows only on intended artifact paths and provide OIDC tokens, private keys, or RELEASEGUARD_CLOUD_TOKEN only when the selected command requires them.
+
+## Reference(s):
+
+- [ReleaseGuard Repository](https://github.com/Helixar-AI/ReleaseGuard)
+- [ClawHub Releaseguard Skill](https://clawhub.ai/asiridalugoda/skills/releaseguard)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples, configuration snippets, and references to optional CLI outputs such as JSON, SARIF, HTML, CycloneDX, SPDX, and VEX files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the releaseguard binary. Some workflows require OIDC tokens, private signing keys, or RELEASEGUARD_CLOUD_TOKEN when explicitly selected.]
+
+## Skill Version(s):
+
+0.1.5 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,59 @@
-## Description: <br>
-Zulip channel plugin for OpenClaw with topic threading, metadata DB, bot commands, and event queue processing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Zulip channel plugin for OpenClaw with topic threading, metadata DB, bot commands, and event queue processing.
 
-## Publisher: <br>
-[kagura-agent](https://clawhub.ai/user/kagura-agent) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[kagura-agent](https://clawhub.ai/user/kagura-agent)
 
-## Use Case: <br>
-Developers and operators use this plugin to connect OpenClaw agents to a Zulip organization, route messages through streams, topics, and DMs, and manage topic metadata through bot commands. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/kagura-agent/openclaw-zulip) <br>
-- [Zulip REST API documentation](https://zulip.com/api/rest) <br>
-- [Zulip](https://zulip.com) <br>
+Developers and OpenClaw operators use this skill to connect an OpenClaw agent to a Zulip organization, route stream/topic and DM messages, and manage per-topic metadata through bot commands.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Configuration, Shell commands, Guidance] <br>
-**Output Format:** [TypeScript plugin files, JSON configuration, and Markdown setup guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Zulip bot credentials; use a dedicated bot account, restrict stream access, keep the API key out of source control, and rotate exposed keys.] <br>
+Global
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata and package.json) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: The documented sender controls appear unenforced while the plugin can forward chat messages and mutate stored metadata.
+
+Mitigation: Review before installing and use only where everyone who can message the Zulip bot is allowed to invoke the agent and manage topic metadata.
+
+Risk: Zulip API credentials could be exposed or misused if committed, sent to an untrusted realm, or scoped too broadly.
+
+Mitigation: Require an HTTPS Zulip realm, avoid committing the API key, restrict the bot's stream access, and rotate credentials if exposed.
+
+Risk: Dependency contents may not match an approved supply-chain source.
+
+Mitigation: Update or regenerate the dependency lockfile from an approved registry before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kagura-agent/skills/openclaw-zulip)
+- [Zulip REST API](https://zulip.com/api/rest)
+- [Zulip](https://zulip.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Zulip messages, metadata command responses, and OpenClaw channel configuration]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May send messages through Zulip and update topic metadata when the configured bot receives supported events or commands.]
+
+## Skill Version(s):
+
+0.1.0 (source: release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

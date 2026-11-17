@@ -1,40 +1,57 @@
-## Description: <br>
-Query Microsoft 365 data, including emails, meetings, documents, Teams messages, and people, using the WorkIQ CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query Microsoft 365 data (emails, meetings, documents, Teams messages, people) using WorkIQ CLI
 
-## Publisher: <br>
-[likudo95](https://clawhub.ai/user/likudo95) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[likudo95](https://clawhub.ai/user/likudo95)
 
-## Use Case: <br>
-Employees and agents use this skill to answer questions about Microsoft 365 content available to the signed-in account, including email, calendar, documents, Teams messages, people/org information, and meeting notes. It is intended for permission-scoped retrieval and summarization, not for granting additional access. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Queries can expose Microsoft 365 content that the signed-in account is authorized to access, including sensitive legal, HR, medical, financial, or confidential project data. <br>
-Mitigation: Use narrow prompts, avoid broad searches over sensitive data unless intended, and review returned content before reuse. <br>
-Risk: The skill depends on the WorkIQ CLI or npm package and the selected Entra tenant. <br>
-Mitigation: Verify the WorkIQ CLI/package and intended tenant before use, and complete EULA or sign-in steps deliberately. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Microsoft WorkIQ overview](https://learn.microsoft.com/en-us/microsoft-365-copilot/extensibility/workiq-overview) <br>
-- [ClawHub WorkIQ skill page](https://clawhub.ai/likudo95/workiq) <br>
+## Use Case:
 
+Employees and agents use this skill to ask natural-language questions about Microsoft 365 emails, meetings, documents, Teams messages, and people or organization data available to the signed-in user.
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, guidance, text] <br>
-**Output Format:** [Markdown with inline shell commands and natural-language CLI responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs standalone WorkIQ CLI queries; do not pipe or combine WorkIQ output with other shell commands.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can query sensitive Microsoft 365 data available to the signed-in account.
+
+Mitigation: Install and run it only in accounts and tenants where that access is acceptable, and review returned content before using or sharing it.
+
+Risk: The skill includes shell-style command templates for natural-language questions.
+
+Mitigation: Pass the question as a separate process argument and avoid constructing shell command strings from user text.
+
+Risk: Fallback execution through npx may run an unpinned package at runtime.
+
+Mitigation: Prefer a preinstalled, reviewed, version-pinned WorkIQ binary and avoid npx -y runtime execution.
+
+## Reference(s):
+
+- [Microsoft WorkIQ overview](https://learn.microsoft.com/en-us/microsoft-365-copilot/extensibility/workiq-overview)
+- [ClawHub WorkIQ release](https://clawhub.ai/likudo95/skills/workiq)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Queries are stateless per call and should be run standalone.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

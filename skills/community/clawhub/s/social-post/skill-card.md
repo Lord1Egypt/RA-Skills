@@ -1,47 +1,60 @@
-## Description: <br>
-Post and reply to X/Twitter and Farcaster with text and images, including multi-account posting, draft previews, character validation, threads, replies, image uploads, and optional text variation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Post and reply to X/Twitter and Farcaster with text and images, including multi-account support, draft preview, character validation, threads, replies, image uploads, and documented platform costs.
 
-## Publisher: <br>
-[Callmedas69](https://clawhub.ai/user/Callmedas69) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[callmedas69](https://clawhub.ai/user/callmedas69)
 
-## Use Case: <br>
-External users and developers use this skill to draft, preview, publish, and reply to posts across X/Twitter and Farcaster from command-line workflows. It is suited for social posting workflows that need platform selection, multi-account support, image handling, thread splitting, link shortening, dry runs, and cost visibility. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can publish public posts and replies to X/Twitter and Farcaster. <br>
-Mitigation: Use dry-run previews and confirmation prompts first, and run it only with dedicated low-risk social accounts. <br>
-Risk: Farcaster posting can spend funds from a custody wallet. <br>
-Mitigation: Keep only a small Farcaster wallet balance and check the balance before enabling automated posting. <br>
-Risk: The --vary option is designed to avoid duplicate-content detection. <br>
-Mitigation: Do not use --vary for platform-evasion or spam workflows; reserve it only for legitimate copy variation that complies with platform rules. <br>
-Risk: Link shortening and image upload paths may share URLs or media with third-party services. <br>
-Mitigation: Do not shorten private URLs or upload sensitive images through these workflows. <br>
+## Use Case:
 
+External creators, developers, and social operators use this skill to preview, validate, and publish posts or replies across X/Twitter and Farcaster, including images, threads, link shortening, and platform-specific limits.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Callmedas69/social-post) <br>
-- [X Developer Portal](https://developer.twitter.com/en/portal/dashboard) <br>
-- [X API pricing](https://developer.twitter.com/#pricing) <br>
-- [OpenClaw](https://openclaw.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown documentation with inline shell commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can produce dry-run previews, public social posts, replies, thread splits, shortened links, and image-upload workflows when the scripts are executed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.0 (source: frontmatter, CHANGELOG, release evidence) <br>
+Risk: The skill can publish public posts or replies and spend Farcaster wallet funds.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use dry-run previews first, require explicit approval for real posting, keep only minimal funds in the Farcaster wallet, and use dedicated low-privilege social accounts.
+
+Risk: Secrets and credentials are handled through local files and mutable external code paths.
+
+Mitigation: Review scripts before installation, restrict credential file permissions, avoid sensitive images or token-bearing URLs, and revise the package to parse secrets safely and pin external executable dependencies before broad use.
+
+Risk: Anti-spam bypass positioning can create platform policy or reputational risk.
+
+Mitigation: Use variation features only for legitimate account-specific wording, review platform policies, and remove bypass-oriented positioning before wider deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/callmedas69/skills/social-post)
+- [X Developer Portal](https://developer.twitter.com/en/portal/dashboard)
+- [X API pricing](https://developer.twitter.com/#pricing)
+- [OpenClaw](https://openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with shell command examples and plain-text posting output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can trigger public social posts, replies, image uploads, and Farcaster wallet spending when run outside dry-run mode.]
+
+## Skill Version(s):
+
+1.4.0 (source: frontmatter, changelog, release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

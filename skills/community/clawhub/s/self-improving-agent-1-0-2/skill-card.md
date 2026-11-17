@@ -1,45 +1,63 @@
-## Description: <br>
-Captures learnings, errors, corrections, and feature requests so coding agents can record, review, and promote reusable project knowledge. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Captures learnings, errors, and corrections to enable continuous improvement.
 
-## Publisher: <br>
-[TXMERLXN](https://clawhub.ai/user/TXMERLXN) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[txmerlxn](https://clawhub.ai/user/txmerlxn)
 
-## Use Case: <br>
-Developers and agent operators use this skill to maintain project-local learning logs for failed commands, user corrections, missing capabilities, API or tool failures, outdated assumptions, and recurring better practices. It also guides review and promotion of broadly useful learnings into project memory or reusable skills. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Conversation-derived learnings may persist secrets, personal data, raw transcripts, tokens, or full command outputs. <br>
-Mitigation: Redact sensitive data before recording or sharing learnings, and keep logs project-local by default. <br>
-Risk: Promoted learnings can introduce incorrect or misleading durable instructions into CLAUDE.md, AGENTS.md, SOUL.md, TOOLS.md, or Copilot instructions. <br>
-Mitigation: Review proposed changes to future instruction files before they are used by agents. <br>
-Risk: Optional hooks can run reminder or error-detection scripts repeatedly and may broaden the skill's effect beyond the intended project. <br>
-Mitigation: Avoid global hooks unless the scripts and configuration have been audited; prefer explicit project-scoped setup. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/TXMERLXN/self-improving-agent-1-0-2) <br>
-- [Hook setup guide](references/hooks-setup.md) <br>
-- [Clawdbot integration guide](references/clawdbot-integration.md) <br>
-- [Entry examples](references/examples.md) <br>
-- [Agent Skills specification](https://agentskills.io/specification) <br>
+## Use Case:
 
+Developers and agent operators use this skill to capture command failures, user corrections, feature requests, and knowledge gaps in structured learning logs, then promote durable lessons into project or agent memory when appropriate.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with fenced Markdown, JSON, and bash snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update .learnings files and optional project memory or hook configuration when the user approves those changes.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Durable learning notes may capture sensitive conversation details or raw command output.
+
+Mitigation: Keep .learnings/ local by default, redact secrets and raw command output, and review entries before sharing or committing them.
+
+Risk: Promoting learnings into persistent instruction files can alter future agent behavior.
+
+Mitigation: Require explicit approval before modifying CLAUDE.md, AGENTS.md, SOUL.md, TOOLS.md, or Copilot instructions.
+
+Risk: Cross-session history or message sharing can expose context beyond the current task.
+
+Mitigation: Do not use cross-session history or message sending without consent and redaction.
+
+Risk: Global every-prompt hooks can add persistent reminders and inspect command output paths.
+
+Mitigation: Avoid global hooks unless scripts and paths have been reviewed; prefer opt-in project-level setup.
+
+## Reference(s):
+
+- [Hook Setup Guide](references/hooks-setup.md)
+- [Clawdbot Integration Guide](references/clawdbot-integration.md)
+- [Entry Examples](references/examples.md)
+- [Agent Skills specification](https://agentskills.io/specification)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update local .learnings/ files and, with explicit approval, project or agent instruction files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,37 +1,53 @@
-## Description: <br>
-Convert between Unix epoch timestamps in seconds or milliseconds and human-readable date strings in any IANA timezone. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert between Unix epoch timestamps in seconds or milliseconds and human-readable date strings in any IANA timezone.
 
-## Publisher: <br>
-[terrycarter1985](https://clawhub.ai/user/terrycarter1985) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[terrycarter1985](https://clawhub.ai/user/terrycarter1985)
 
-## Use Case: <br>
-Developers, engineers, and other users use this skill to convert timestamps to readable dates, convert date strings back to epoch values, and handle timezone-specific interpretations explicitly. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/terrycarter1985/epoch-time-converter) <br>
+Developers, analysts, and other external users use this skill to convert Unix timestamps to readable datetimes, or date/time strings back to epoch values, while preserving explicit timezone context.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text and Markdown with inline shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs a local Python 3.9+ standard-library script; confirm whether numeric timestamps are seconds or milliseconds and which timezone should be used.] <br>
+Global
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: A short timezone phrase or ambiguous timestamp request may cause the skill to run when the user meant a different conversion or timezone.
+
+Mitigation: Confirm the conversion direction, timestamp unit, and IANA timezone before relying on the result.
+
+Risk: Timezone-naive date strings are interpreted using the supplied timezone, and missing timezone context can lead to an incorrect epoch value.
+
+Mitigation: Require a timezone for date-to-epoch conversion and disclose UTC when it is used as the default for epoch-to-date conversion.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/terrycarter1985/skills/epoch-time-converter)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and one-line CLI output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns either a converted datetime with timezone context or an epoch value in seconds or milliseconds.]
+
+## Skill Version(s):
+
+0.1.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

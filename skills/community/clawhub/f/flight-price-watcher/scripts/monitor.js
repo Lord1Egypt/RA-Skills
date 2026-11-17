@@ -1,17 +1,12 @@
 #!/usr/bin/env node
 
 /**
- * Flight Price Watcher v2.2.2 - 价格监控主逻辑
+ * Flight Price Watcher v2.1 - 价格监控主逻辑
  * 
- * v2.2.2 新增：
- * 1. 输入验证（防止命令注入）
- * 2. 环境变量配置
- * 3. 完整安全文档
- * 
- * v2.2.0 新增：
- * 1. 创建成功确认消息
- * 2. 首次检查确认消息
- * 3. 每日汇总报告
+ * 新增：
+ * 1. 完整航班信息（起飞/到达/机场）
+ * 2. 展示所有监控航班（即使未触发阈值）
+ * 3. 多航班降价聚合提醒
  */
 
 import { readFileSync, writeFileSync, existsSync } from 'fs';
@@ -19,30 +14,6 @@ import { exec } from 'child_process';
 import { promisify } from 'util';
 
 const execAsync = promisify(exec);
-
-/**
- * 清理和验证用户输入（防止命令注入）
- * 只允许字母、数字、中文、连字符、空格
- */
-function sanitizeInput(input, maxLength = 50) {
-  if (typeof input !== 'string') return '';
-  const sanitized = input.replace(/[^\u4e00-\u9fa5a-zA-Z0-9\-.\s]/g, '');
-  return sanitized.substring(0, maxLength);
-}
-
-/**
- * 验证日期格式（YYYY-MM-DD）
- */
-function isValidDate(dateStr) {
-  return /^\d{4}-\d{2}-\d{2}$/.test(dateStr);
-}
-
-/**
- * 验证城市名（只允许字母、数字、中文）
- */
-function isValidCity(city) {
-  return /^[\u4e00-\u9fa5a-zA-Z]+$/.test(city);
-}
 
 // 配置
 const CONFIG = {
@@ -84,22 +55,12 @@ async function checkFlyAIInstalled() {
 }
 
 /**
- * 调用 FlyAI CLI 获取最新价格（带输入验证）
+ * 调用 FlyAI CLI 获取最新价格
  */
 async function fetchPrice(from, to, date, flightType = 'all') {
   try {
-    // 清理和验证用户输入（防止命令注入）
-    const safeFrom = sanitizeInput(from, 20);
-    const safeTo = sanitizeInput(to, 20);
-    const safeDate = isValidDate(date) ? date : '2026-01-01';
-    
-    if (!isValidCity(safeFrom) || !isValidCity(safeTo)) {
-      throw new Error('Invalid city name');
-    }
-    
     const typeFlag = flightType === 'direct' ? '--journey-type 1' : '';
-    // 使用清理后的安全输入构建命令
-    const cmd = `flyai search-flight --origin "${safeFrom}" --destination "${safeTo}" --dep-date ${safeDate} ${typeFlag}`;
+    const cmd = `flyai search-flight --origin "${from}" --destination "${to}" --dep-date ${date} ${typeFlag}`;
     
     const { stdout } = await execAsync(cmd);
     const result = JSON.parse(stdout);
@@ -379,48 +340,6 @@ async function main() {
   }
   
   saveTasks(data);
-  console.log('=== 检查完成 ===');
-}
-
-/**
- * 主函数（带每日汇总）
- */
-async function mainWithSummary() {
-  console.log('=== Flight Price Watcher v2.2.2 ===');
-  console.log(`检查时间：${new Date().toISOString()}`);
-  
-  const data = loadTasks();
-  const activeTasks = data.tasks.filter(t => t.status === 'active');
-  
-  if (activeTasks.length === 0) {
-    console.log('没有活跃的监控任务');
-    return;
-  }
-  
-  console.log(`共有 ${activeTasks.length} 个活跃任务`);
-  
-  for (const task of activeTasks) {
-    if (isTaskExpired(task)) {
-      console.log(`任务 #${task.taskId} 已到期，自动暂停`);
-      task.status = 'expired';
-      continue;
-    }
-    await checkTask(task);
-  }
-  
-  saveTasks(data);
-  
-  // 发送每日汇总（每天只发送一次）
-  const now = new Date();
-  const lastSummary = data.lastDailySummary ? new Date(data.lastDailySummary) : new Date(0);
-  const hoursSinceSummary = (now - lastSummary) / (1000 * 60 * 60);
-  
-  if (hoursSinceSummary >= 24) {
-    await sendDailySummary(data);
-    data.lastDailySummary = now.toISOString();
-    saveTasks(data);
-  }
-  
   console.log('=== 检查完成 ===');
 }
 

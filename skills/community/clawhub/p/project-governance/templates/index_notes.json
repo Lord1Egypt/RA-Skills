@@ -1,0 +1,13 @@
+{
+  "AGENTS.md": "Project protocol: rules, permissions, AI behavior",
+  "ARCHITECTURE.md": "System architecture and data interfaces",
+  "PROJECT.md": "One-page project card",
+  "index.md": "Authoritative directory map (this file)",
+  "index_notes.json": "Short descriptions for index entries",
+  "LESSONS.md": "AI error and correction log",
+  "session_handoff.md": "End-of-session handoff",
+  "CHANGELOG.md": "Decision and version history",
+  "VERSIONS.md": "Stable version index with human judgments",
+  "blacklist.json": "Failed parameters (permanent bans)",
+  "whitelist.json": "Verified parameters (preferred baselines)"
+}

@@ -1,45 +1,59 @@
-## Description: <br>
-Academic Discussion Assistant transcribes small advisor-student academic discussion recordings, separates speakers, summarizes advisor feedback and student follow-ups, and can produce a spoken summary. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transforms small academic discussion recordings, such as advisor-student meetings and graduate group reports, into transcripts, structured notes emphasizing teacher feedback, action items, and a brief spoken summary.
 
-## Publisher: <br>
-[XinHao-96](https://clawhub.ai/user/XinHao-96) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xinhao-96](https://clawhub.ai/user/xinhao-96)
 
-## Use Case: <br>
-Students, researchers, and academic staff use this skill to turn small research group meetings, advisor-student paper discussions, and technical revision discussions into structured notes that emphasize advisor feedback, student responses, action items, and a short spoken summary. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Private academic discussion audio, transcripts, and summaries are sent to external SenseAudio services. <br>
-Mitigation: Use only with explicit user approval for remote ASR/TTS processing and avoid submitting recordings that contain confidential or regulated information unless the deployment has appropriate agreements and controls. <br>
-Risk: Full intermediate ASR JSON, raw transcripts, diarized transcripts, LLM input text, and summary audio are saved locally by default. <br>
-Mitigation: Store outputs in a controlled location, limit access, and delete transcript and audio artifacts when they are no longer needed. <br>
-Risk: The script installs missing Python dependencies at runtime. <br>
-Mitigation: Review and pin dependencies in the execution environment before deployment instead of relying on runtime installation. <br>
+## Use Case:
 
+External users and academic teams use this skill to process short research group meetings or advisor-student discussion recordings, identify likely teacher and student contributions, and produce transcript files, structured meeting notes, and an audio summary. It is intended for two to three person academic discussions where teacher feedback, student responses, required revisions, and next actions are the main outputs.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/XinHao-96/academic-discussion-assistant) <br>
-- [Publisher Profile](https://clawhub.ai/user/XinHao-96) <br>
-- [Academic Discussion Summary Prompt](references/summary_prompt.md) <br>
-- [SenseAudio API Endpoint](https://api.senseaudio.cn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, audio] <br>
-**Output Format:** [Markdown guidance with generated transcript text, structured summary text, local output file paths, JSON metadata, and optional audio media reference.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and SENSEAUDIO_API_KEY; writes ASR JSON, raw transcript, diarized transcript, LLM input text, and summary audio under an outputs directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Sensitive recordings and generated summaries are uploaded to SenseAudio and raw transcripts are stored locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only non-confidential material or approved recordings, and review local output retention before deployment.
+
+Risk: The configurable SenseAudio API base can send recordings to an unexpected endpoint if misconfigured.
+
+Mitigation: Set SENSEAUDIO_API_BASE only to a trusted official endpoint, or leave the default endpoint in place.
+
+Risk: Runtime package installation can change the execution environment during use.
+
+Mitigation: Prefer an environment where required dependencies are preinstalled and reviewed before running the skill.
+
+## Reference(s):
+
+- [Academic Discussion Summary Prompt](references/summary_prompt.md)
+- [ClawHub skill page](https://clawhub.ai/xinhao-96/skills/academic-discussion-assistant)
+- [SenseAudio API endpoint](https://api.senseaudio.cn)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, files, guidance]
+
+**Output Format:** [Markdown response with transcript file paths, structured notes, a MEDIA attachment line, JSON transcript artifacts, text transcripts, and an audio summary file.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SENSEAUDIO_API_KEY. The skill writes raw ASR JSON, plain transcript text, diarized transcript text, LLM input text, and a short TTS audio summary under an outputs directory.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

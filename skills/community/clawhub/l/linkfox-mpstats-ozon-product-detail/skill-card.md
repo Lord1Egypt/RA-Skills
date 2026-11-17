@@ -1,39 +1,63 @@
-## Description: <br>
-Batch-fetches full MPSTATS product cards for up to 100 Ozon Russia SKUs, including price, discounts, Ozon Card price, ratings, reviews, stock, sales, revenue, revenue potential, lost sales, first listing date, and images. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches a full MPSTATS product card for one Ozon Russia SKU, including price, discount, rating, reviews, stock, sales, revenue, listing date, delivery scheme, and image fields.
 
-## Publisher: <br>
-[linkfox-ai](https://clawhub.ai/user/linkfox-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[linkfox-ai](https://clawhub.ai/user/linkfox-ai)
 
-## Use Case: <br>
-Marketplace operators, product-sourcing teams, and commerce analysts use this skill to retrieve per-SKU Ozon product details and period metrics from MPSTATS for price, stock, rating, sales, revenue, and fulfillment checks. It is best suited when the user already has Ozon SKU IDs and needs compact product-card data or batch comparison. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a LinkFox API key and sends Ozon SKU lists, date windows, and possible feedback text to LinkFox-operated endpoints. <br>
-Mitigation: Use a scoped, revocable LINKFOXAGENT_API_KEY, avoid submitting sensitive business notes as feedback, and install only when LinkFox is trusted for these data flows. <br>
+## Use Case:
 
+External users and developers use this skill to retrieve and summarize marketplace metrics for a single known Ozon SKU, including competitor product checks, stock-out impact review, fulfillment comparison, and period-over-period sales comparison.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/linkfox-ai/linkfox-mpstats-ozon-product-detail) <br>
-- [MPSTATS Ozon Product Detail API Reference](references/api.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown or JSON-oriented summaries of API results, with optional shell commands for direct script usage.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Results may include partial-success batch details, Ozon SKU product-card fields, and API error information.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The release evidence reports sensitive onboarding, credential, billing, storage, and automatic feedback behaviors.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after reviewing those behaviors and confirming that LinkFox handling product queries and related account or billing workflows is acceptable.
+
+Risk: Endpoint and credential settings can affect where requests and API keys are sent.
+
+Mitigation: Verify endpoint environment variables are not overridden, avoid sharing SMS codes unless registration or login is intended, and avoid storing API keys in shell startup files.
+
+Risk: Billing flows can create payment orders and display payment QR codes or links.
+
+Mitigation: Review the selected package, payment method, amount, and order details before scanning or opening any payment QR code or URL.
+
+Risk: Local linkfox output folders may contain full API responses and payment artifacts.
+
+Mitigation: Treat local linkfox data folders as sensitive and avoid sharing them without review.
+
+## Reference(s):
+
+- [MPSTATS Ozon Product Detail API Reference](references/api.md)
+- [Authentication and Billing Onboarding](references/onboarding.md)
+- [ClawHub Skill Page](https://clawhub.ai/linkfox-ai/skills/linkfox-mpstats-ozon-product-detail)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown-facing summaries with JSON API responses and optional shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes full API responses to local linkfox session data, uses a 24-hour local cache for repeated parameters, and summarizes large responses unless inline output is requested.]
+
+## Skill Version(s):
+
+1.0.7 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

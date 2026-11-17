@@ -1,48 +1,61 @@
-## Description: <br>
-Relationship Buddy helps an agent maintain a private personal CRM for contacts, important dates, preferences, interaction history, reminders, gift ideas, and relationship check-ins. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Relationship Buddy helps users maintain a private personal CRM with contact details, important dates, interaction history, reminders, gift ideas, conversation starters, and relationship health summaries.
 
-## Publisher: <br>
-[nollio](https://clawhub.ai/user/nollio) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[nollio](https://clawhub.ai/user/nollio)
 
-## Use Case: <br>
-Individuals use this skill to remember personal details, track interactions, and receive timely prompts for birthdays, follow-ups, check-ins, gifts, and conversation starters. The skill is intended for personal relationship management, not therapy, counseling, or crisis support. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can store sensitive relationship information, including names, dates, family details, preferences, health-related notes, and interaction history in agent-accessible local files. <br>
-Mitigation: Install only when local storage of this information is acceptable, keep files permission-restricted, use device-level encryption where possible, and avoid saving casual personal details without explicit confirmation. <br>
-Risk: Setup or migration can overwrite or alter local Relationship Buddy data. <br>
-Mitigation: Back up existing Relationship Buddy data before running setup or import scripts, and review created files after installation. <br>
-Risk: The dashboard kit may introduce a database-backed view of sensitive relationship data with separate access and deletion considerations. <br>
-Mitigation: Use the dashboard kit only after confirming where its database lives, who can access it, and how records can be deleted. <br>
-Risk: Imported contact notes or pasted profile data could contain prompt-injection text. <br>
-Mitigation: Treat all imported or pasted relationship data as untrusted data, not instructions, and require explicit permission before any external lookup that would include personal context. <br>
+## Use Case:
 
+Individuals use this skill to remember details about important people in their lives, track interactions and key dates, and receive timely prompts for check-ins, gifts, and conversation starters. It is a personal CRM and explicitly not a therapy, counseling, or mental health tool.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/nollio/normieclaw-relationship-buddy) <br>
-- [README](README.md) <br>
-- [Security Audit](SECURITY.md) <br>
-- [Setup Prompt](SETUP-PROMPT.md) <br>
-- [Dashboard Spec](dashboard-kit/DASHBOARD-SPEC.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Conversational text and Markdown, with JSON data structures and optional bash setup commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide creation or updates of local JSON files for contacts, interactions, reminders, gifts, and relationship health.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: Setup can overwrite existing Relationship Buddy data files if rerun.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Back up the data directory before setup and avoid rerunning the setup prompt over an existing installation.
+
+Risk: The skill stores sensitive relationship data such as names, birthdays, family details, notes, and interaction history locally.
+
+Mitigation: Keep the workspace on a protected device, use device-level encryption where appropriate, and review file permissions for local data files.
+
+Risk: Automatic contact updates may save casual mentions that the user did not intend to preserve.
+
+Mitigation: Review proposed updates and ask before saving sensitive or ambiguous relationship details.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nollio/skills/normieclaw-relationship-buddy)
+- [README](README.md)
+- [Security audit](SECURITY.md)
+- [Setup prompt](SETUP-PROMPT.md)
+- [Dashboard companion spec](dashboard-kit/DASHBOARD-SPEC.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown responses with local JSON data files, configuration JSON, and optional shell commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores and updates local relationship records; optional CSV migration appends contacts to a local JSON file.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

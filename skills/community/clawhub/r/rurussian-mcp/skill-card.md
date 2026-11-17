@@ -1,46 +1,61 @@
-## Description: <br>
-RuRussian MCP connects OpenClaw or MCP-compatible agents to RuRussian tutoring tools for Russian vocabulary, grammar analysis, reading practice, translation, learner memory, and subscription activation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+RuRussian MCP turns an OpenClaw bot into a Russian tutor with vocabulary analysis, sentence breakdowns, reading practice, learner memory, and paid activation support.
 
-## Publisher: <br>
-[shuyuew1991](https://clawhub.ai/user/shuyuew1991) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shuyuew1991](https://clawhub.ai/user/shuyuew1991)
 
-## Use Case: <br>
-Developers and operators use this skill to connect agents to RuRussian tutoring workflows for vocabulary lookup, sentence analysis, reading practice, translation, learner progress tracking, and account activation. It is intended for Russian-learning assistants that can call MCP tools and manage user-approved subscription flows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a RuRussian API key and can send learner text or email to the RuRussian backend. <br>
-Mitigation: Use a dedicated API key, avoid exposing raw credentials in chat output, and confirm that users understand what learner data is being sent. <br>
-Risk: The skill can create hosted checkout sessions for subscription activation. <br>
-Mitigation: Do not grant unattended payment authority; require explicit user approval and confirm the plan and account before checkout. <br>
-Risk: The skill can keep local learner history in a JSON memory file. <br>
-Mitigation: Delete, relocate, or protect the memory file when learner history should not persist on the host. <br>
+## Use Case:
 
+Developers and operators use this MCP server to connect OpenClaw or compatible agents to Russian tutoring workflows, including vocabulary support, grammar explanations, reading practice, translation, learner progress tracking, and subscription activation.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/shuyuew1991/rurussian-mcp) <br>
-- [RuRussian MCP Homepage](https://github.com/shuyueW1991/rurussian-mcp) <br>
-- [OpenClaw Integration Guide](docs/INTEGRATION.md) <br>
-- [Tool Examples](examples/tool_examples.json) <br>
-- [OpenClaw Configuration Example](examples/openclaw_config.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, configuration, JSON, shell commands, text] <br>
-**Output Format:** [Markdown guidance with JSON examples, shell commands, and structured MCP tool responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Tool outputs may include tutoring content, learner profile state, checkout session information, and API-key status previews.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata and pyproject.toml; SKILL.md frontmatter says 1.0.7) <br>
+Risk: The skill can start paid hosted-checkout flows for subscription activation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit human approval before every purchase step, use hosted checkout only, and do not collect payment card details in chat.
+
+Risk: API keys, learner emails, submitted text, and progress data may be transmitted to the service or stored locally.
+
+Mitigation: Keep API keys out of shared or committed configuration, treat learner data as sensitive, and choose a local memory path with appropriate access controls.
+
+Risk: Configurable API and purchase endpoints can send requests to alternate services.
+
+Mitigation: Use the default official HTTPS RuRussian endpoint unless the operator has verified and fully trusts the alternate endpoint.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/shuyuew1991/skills/rurussian-mcp)
+- [Project Homepage](https://github.com/shuyueW1991/rurussian-mcp)
+- [OpenClaw Integration Guide](docs/INTEGRATION.md)
+- [Tool Examples](examples/tool_examples.json)
+- [OpenClaw Configuration Example](examples/openclaw_config.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Structured JSON tool responses plus Markdown setup guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Learning tools require an API key or confirmed hosted checkout; learner memory is stored in a local JSON file unless configured otherwise.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata and pyproject.toml)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

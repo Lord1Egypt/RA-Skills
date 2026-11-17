@@ -1,44 +1,59 @@
-## Description: <br>
-Auto Contents lets an agent operate a local MakeContents service to fetch RSS/RSSHub news, select items, generate social content, distribute posts, and archive results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Auto Contents helps agents operate a local MakeContents workflow for fetching AI news, selecting items, generating social content, distributing updates, and archiving results.
 
-## Publisher: <br>
-[zhuchenggong19851114-design](https://clawhub.ai/user/zhuchenggong19851114-design) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhuchenggong19851114-design](https://clawhub.ai/user/zhuchenggong19851114-design)
 
-## Use Case: <br>
-Content operators and agents use this skill to automate AI-news intake, selection, push notifications, social post creation, private publication, and archive notifications through the user's configured MakeContents integrations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can autonomously distribute agent-generated news and content through configured WeChat, Feishu, and optional Xiaohongshu accounts. <br>
-Mitigation: Confirm the exact destinations before use, keep Xiaohongshu publishing disabled unless intentionally needed, and review generated content before public release. <br>
-Risk: Connected credentials and cookies can enable publishing, archive, and notification actions. <br>
-Mitigation: Use least-privilege credentials, store them only in the MakeContents configuration, and rotate or revoke credentials that are no longer needed. <br>
-Risk: The agent-rules memory can accumulate stale or sensitive preference patterns. <br>
-Mitigation: Periodically review or clear references/agent-rules.md so learned selection behavior remains appropriate. <br>
+## Use Case:
 
+Developers and content operators use this skill to automate a local MakeContents pipeline that fetches RSS/RSSHub AI news, selects useful items, prepares WeChat and Feishu updates, generates Xiaohongshu-style content, and records results for human review.
 
-## Reference(s): <br>
-- [MakeContents API Reference](references/api.md) <br>
-- [Agent Selection Rules Memory](references/agent-rules.md) <br>
-- [ClawHub Release Page](https://clawhub.ai/zhuchenggong19851114-design/auto-contents) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with JSON API payloads and curl command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce generated news summaries, social post copy, rendered content references, archive notifications, and local API calls.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: The skill can operate configured MakeContents, WeChat, Feishu, and optional Xiaohongshu workflows, which may distribute generated content through connected accounts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review account and API-key configuration before use, keep Xiaohongshu publishing disabled unless needed, and retain human review before changing private posts to public.
+
+Risk: The skill may retain learned content-selection preferences in references/agent-rules.md, creating long-term behavioral preference memory.
+
+Mitigation: Periodically inspect, edit, or clear the learned preference file when preference retention is not desired.
+
+Risk: Automated news summaries and social content can be inaccurate, low quality, or unsuitable for broad distribution.
+
+Mitigation: Review generated summaries and content before broad distribution and use the notification and archival workflow to support human oversight.
+
+## Reference(s):
+
+- [MakeContents API Reference](artifact/references/api.md)
+- [Agent Selection Rules Memory](artifact/references/agent-rules.md)
+- [ClawHub Skill Page](https://clawhub.ai/zhuchenggong19851114-design/skills/auto-contents)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, API calls, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON request bodies and curl-oriented API workflow steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill produces generated news titles, summaries, social post content, rendered content metadata, notifications, and optional learned selection rules.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

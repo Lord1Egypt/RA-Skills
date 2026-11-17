@@ -1,45 +1,62 @@
-## Description: <br>
-Threadline helps developers add persistent, scoped memory to AI agents by injecting relevant user context before model calls and updating stored context after responses. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Threadline helps AI agent developers add persistent user memory and scoped context injection across OpenAI, Anthropic, Vercel AI SDK, LangChain, and REST integrations.
 
-## Publisher: <br>
-[vidursharma202-del](https://clawhub.ai/user/vidursharma202-del) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vidursharma202-del](https://clawhub.ai/user/vidursharma202-del)
 
-## Use Case: <br>
-Developers building AI agents, chatbots, and assistants use this skill to integrate Threadline memory with OpenAI, Anthropic, Vercel AI SDK, LangChain, or REST API workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, responses, and inferred context may be sent to and stored by a third-party persistent memory service. <br>
-Mitigation: Disclose this data flow to users, obtain opt-in consent before using it with real users, and verify retention, export, and deletion controls. <br>
-Risk: The skill can store broad user context, including sensitive inferred scopes such as emotional state or relationship information. <br>
-Mitigation: Avoid secrets and regulated data, limit enabled scopes to the minimum needed for the agent, and review whether sensitive scopes are appropriate. <br>
-Risk: Injected memory becomes part of the enriched system prompt and could expose private user context if logged or displayed. <br>
-Mitigation: Do not log or expose enriched system prompts, and review prompt-safety controls before production use. <br>
+## Use Case:
 
+Developers and engineers use this skill when building AI agents, chatbots, or assistants that need persistent per-user context across sessions. It provides guidance and examples for calling Threadline before and after model interactions while controlling memory scopes.
 
-## Reference(s): <br>
-- [Threadline homepage](https://threadline.to) <br>
-- [Threadline documentation](https://threadline.to/docs) <br>
-- [Threadline API reference](https://api.threadline.to/docs) <br>
-- [threadline-sdk npm package](https://www.npmjs.com/package/threadline-sdk) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Configuration] <br>
-**Output Format:** [Markdown with TypeScript and REST API examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires THREADLINE_API_KEY and a stable userId; produces integration guidance rather than standalone files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: Conversation content may be stored in a third-party persistent memory service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only after explicit user opt-in, redact secrets and regulated data before update(), and avoid sending full raw conversations when narrower fields are sufficient.
+
+Risk: Retrieved memory may be treated as high-priority model context.
+
+Mitigation: Keep retrieved memory outside the system prompt where possible, or clearly mark it as untrusted context before the model uses it.
+
+Risk: Production integrations depend on an external SDK and API key.
+
+Mitigation: Pin and review the SDK version, protect THREADLINE_API_KEY, and review examples before deployment.
+
+## Reference(s):
+
+- [Threadline homepage](https://threadline.to)
+- [Threadline documentation](https://threadline.to/docs)
+- [Threadline API reference](https://api.threadline.to/docs)
+- [threadline-sdk on npm](https://www.npmjs.com/package/threadline-sdk)
+- [ClawHub skill page](https://clawhub.ai/vidursharma202-del/skills/threadline)
+- [ClawHub publisher profile](https://clawhub.ai/user/vidursharma202-del)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with TypeScript and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires THREADLINE_API_KEY for the described integrations.]
+
+## Skill Version(s):
+
+1.0.3 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

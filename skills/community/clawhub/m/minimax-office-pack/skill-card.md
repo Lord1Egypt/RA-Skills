@@ -1,39 +1,53 @@
-## Description: <br>
-Guides agents to create deliverable Word, Excel, PDF, and PowerPoint documents using MiniMax Office workflows for formatting, formulas, layout, and presentation generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MiniMax Office Pack guides an agent in creating professional Word, Excel, PDF, and PowerPoint documents for delivery-ready office workflows.
 
-## Publisher: <br>
-[smseow001](https://clawhub.ai/user/smseow001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[smseow001](https://clawhub.ai/user/smseow001)
 
-## Use Case: <br>
-Developers and business users can use this skill to prompt an agent to produce professional Office deliverables, including Word documents, Excel workbooks, PDF reports, and PowerPoint presentations. It is intended for document-generation workflows where clean formatting and directly usable output files matter. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Advertised implementation details and popularity or source claims are not verified by stored provenance. <br>
-Mitigation: Treat upstream-source and implementation claims as unverified unless the publisher provides trusted provenance, code, dependencies, or reproducible examples. <br>
-Risk: Generated Office documents may contain formatting, formula, macro, or layout errors that affect business use. <br>
-Mitigation: Review generated documents before delivery, especially files containing formulas, macros, forms, financial tables, or customer-facing layouts. <br>
+## Use Case:
 
+Employees, external users, and developers can use this skill to prompt an agent to produce formatted office documents, spreadsheets, PDFs, and slide decks for business reporting and presentation workflows.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, files, code, shell commands] <br>
-**Output Format:** [Markdown guidance with generated Office document artifacts such as DOCX, XLSX or XLSM, PDF, and PPTX when implemented by the agent.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only skill; no executable code, credential access, or persistence was identified in the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: The inspected artifact contains Markdown instructions only, so claims about MiniMax, OpenXML, Playwright, and ReportLab functionality are feature claims rather than verified bundled functionality.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the target agent environment has the required document-generation tooling before relying on those capabilities.
+
+Risk: Generated office documents may still contain formatting or content issues even when the skill asks for delivery-ready output.
+
+Mitigation: Review generated Word, Excel, PDF, and PowerPoint files before submitting, printing, or distributing them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/smseow001/skills/minimax-office-pack)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Markdown, Guidance]
+
+**Output Format:** [Office document files and Markdown guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce .docx, .xlsx, .xlsm, .pdf, and .pptx outputs when the agent environment supports the required document tooling.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

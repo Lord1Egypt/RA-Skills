@@ -1,40 +1,58 @@
-## Description: <br>
-Provides low-carb lifestyle medicine guidance for diet planning, meal review, health-management questions, side-effect handling, fasting, restaurant choices, and seasonal low-carb produce. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Chinese-language lifestyle medicine guidance for low-carbohydrate diets, metabolic health goals, meal scoring, fasting, and safety prompts.
 
-## Publisher: <br>
-[interccy-stack](https://clawhub.ai/user/interccy-stack) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[interccy-stack](https://clawhub.ai/user/interccy-stack)
 
-## Use Case: <br>
-External users can use this skill for Chinese-language low-carb lifestyle guidance, including meal planning, meal scoring, low-carb food lists, fasting guidance, and practical safety reminders. It supports health-management conversations but should not be used as a substitute for clinical diagnosis or clinician-directed medication care. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat low-carb lifestyle, diabetes, fasting, or contraindication guidance as clinical diagnosis or medication advice. <br>
-Mitigation: Present responses as lifestyle education, preserve the skill's no-diagnosis boundary, and direct users with diabetes medication use, acute symptoms, pregnancy, kidney disease, liver disease, heart failure, or other contraindications to clinician guidance. <br>
-Risk: Users may share sensitive health details while asking for personalized diet or health-management advice. <br>
-Mitigation: Ask only for health details needed for the specific question and avoid requesting unnecessary medical, medication, or personal information. <br>
+## Use Case:
 
+External users can use this skill for general low-carbohydrate lifestyle guidance, meal scoring, food lists, fasting considerations, and prompts to seek clinical care when health status or symptoms require professional review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/interccy-stack/low-carbon-medicine) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Analysis] <br>
-**Output Format:** [Chinese-language Markdown with tables, scores, safety notes, and actionable recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable code, persistence, credential use, or hidden data handling was found in the release evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may ask users for sensitive health details, medication context, meal photos, or location details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat responses as general lifestyle information and avoid sharing unnecessary identifiers, sensitive medical records, or more location detail than needed.
+
+Risk: The skill gives condition-specific diet and fasting guidance that could be unsafe for diabetes, pregnancy, kidney, liver, heart disease, eating-disorder history, acute symptoms, or medication-related decisions.
+
+Mitigation: Consult a licensed clinician before using the guidance for those conditions or for changes involving diabetes treatment, pregnancy, organ disease, acute symptoms, fasting, or medications.
+
+Risk: Users may overread lifestyle guidance as diagnosis or individualized medical treatment.
+
+Mitigation: Use the output for education and decision support only, and seek professional medical evaluation for diagnosis, treatment, severe disease, or acute symptoms.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/interccy-stack/skills/low-carbon-medicine)
+- [Publisher profile](https://clawhub.ai/user/interccy-stack)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown-style conversational guidance with tables, food lists, meal scoring summaries, and safety reminders.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May request health context, medication details, meal descriptions, photos, or location details depending on the user request.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and user changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

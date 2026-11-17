@@ -1,36 +1,52 @@
-## Description: <br>
-Deploy and manage Wiki.js documentation sites avoiding common configuration traps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deploy and manage Wiki.js documentation sites avoiding common configuration traps.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Developers and operators use this skill for practical Wiki.js deployment and administration guidance, including setup, editor selection, permissions, storage, search, and troubleshooting. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Applying general Wiki.js operational advice without deployment-specific review could affect configuration, database behavior, storage, backups, or permissions. <br>
-Mitigation: Review proposed changes against the target Wiki.js deployment before implementation, especially Site URL, reverse proxy, database, storage, backup, and permission settings. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+Developers and administrators use this skill as a concise operational checklist for configuring, maintaining, and troubleshooting Wiki.js documentation sites.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Configuration guidance, Operational guidance] <br>
-**Output Format:** [Markdown guidance and checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No scripts, hidden actions, or sensitive access are included in the reviewed artifacts.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Wiki.js operational recommendations may not match every deployment's database, HTTPS, storage, and permission requirements.
+
+Mitigation: Verify the checklist against the target Wiki.js deployment requirements before applying configuration decisions.
+
+Risk: Incorrect Site URL, editor choice, permission rules, or storage assumptions can cause broken links, access issues, or maintenance problems.
+
+Mitigation: Review Site URL, editor mode, default groups, deny rules, and backup or object-storage choices before inviting users or importing content.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/wiki-js)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown checklist and concise operational guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No commands, scripts, credential access, or system changes are requested by the skill.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

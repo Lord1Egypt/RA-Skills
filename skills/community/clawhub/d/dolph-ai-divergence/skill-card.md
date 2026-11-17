@@ -1,41 +1,54 @@
-## Description: <br>
-Finds markets where Simmer's AI consensus diverges from market prices, checks fees and safeguards, and can trade the mispriced side using Kelly sizing on qualifying zero-fee markets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find markets where Simmer's AI consensus diverges from the real market price, then trade on the mispriced side using Kelly sizing.
 
-## Publisher: <br>
-[richducat](https://clawhub.ai/user/richducat) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[richducat](https://clawhub.ai/user/richducat)
 
-## Use Case: <br>
-External users and agents use this skill to scan Simmer and prediction-market divergence, review candidate opportunities, and optionally execute constrained trades when live mode is explicitly enabled. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Live mode can spend real money without per-trade confirmation. <br>
-Mitigation: Start in dry-run mode, review --live use carefully, and set small max bet and daily budget limits before enabling live execution. <br>
-Risk: The skill requires a Simmer API key for market data and trading actions. <br>
-Mitigation: Use a revocable API key and rotate or revoke it if the skill is no longer needed. <br>
+## Use Case:
 
+Agents use this skill to scan prediction markets for divergence between Simmer AI consensus and external market prices, report candidate opportunities, and optionally execute bounded trades when live mode is enabled.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/richducat/dolph-ai-divergence) <br>
-- [Simmer API endpoint](https://api.simmer.markets) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, shell commands, configuration] <br>
-**Output Format:** [Plain text scanner output, JSON reports, and CLI configuration updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Dry-run scanning is the default; live trading requires the --live flag or a simulated venue.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can execute live trades using a Simmer trading API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the skill in dry-run until the API key scope, venue, per-trade limit, daily budget, and live-mode settings have been reviewed.
+
+Risk: Financial losses may occur if divergence signals, market prices, fees, or safeguards are inaccurate or stale.
+
+Mitigation: Use conservative trade limits, review candidate trades before enabling live mode, and monitor fee filtering, position checks, and daily spend controls.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/richducat/skills/dolph-ai-divergence)
+- [Simmer API](https://api.simmer.markets)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration, API calls]
+
+**Output Format:** [Console text or JSON reports with optional trade execution through the Simmer SDK]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SIMMER_API_KEY; defaults to dry-run unless live mode or a simulated venue is selected.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

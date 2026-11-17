@@ -1,39 +1,49 @@
-## Description: <br>
-Builds the gauntlet knowledge base from AST extraction and AI enrichment. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Builds the gauntlet knowledge base from AST extraction and AI enrichment.
 
-## Publisher: <br>
-[athola](https://clawhub.ai/user/athola) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[athola](https://clawhub.ai/user/athola)
 
-## Use Case: <br>
-Developers and coding agents use this skill to initialize or refresh a local `.gauntlet/knowledge.json` knowledge base for a codebase. It supports codebase challenge preparation by combining AST extraction, AI-enriched explanations, cross-references, preserved annotations, and coverage reporting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The generated knowledge file can summarize private or sensitive codebase details. <br>
-Mitigation: Run the skill only on intended repositories and review `.gauntlet/knowledge.json` before committing or sharing it. <br>
+## Use Case:
 
+Developers use this skill to build or refresh a codebase knowledge base, enriching extracted entries and linking related information across modules. It saves the result as `.gauntlet/knowledge.json` and reports category counts and coverage gaps.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/athola/skills/nm-gauntlet-extract) <br>
-- [Gauntlet plugin homepage](https://github.com/athola/claude-night-market/tree/master/plugins/gauntlet) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, files] <br>
-**Output Format:** [Markdown guidance with bash commands and a JSON knowledge file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes `.gauntlet/knowledge.json` in the target repository and reports category coverage, gaps, and difficulty distribution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.9.13 (source: ClawHub release evidence; skill frontmatter reports 1.9.8) <br>
+Risk: Some references to a local knowledge file did not match bundled files, so review of its expected behavior is incomplete.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Check whether the referenced local files are expected in the target project, then review the generated knowledge base before relying on it.
+
+## Reference(s):
+
+- [Gauntlet plugin homepage (skill metadata)](https://github.com/athola/claude-night-market/tree/master/plugins/gauntlet)
+
+## Skill Output:
+
+**Output Type(s):** [Files, JSON, Markdown]
+
+**Output Format:** [JSON knowledge base and a text summary report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes `.gauntlet/knowledge.json`; the report includes category counts, coverage gaps, and difficulty distribution.]
+
+## Skill Version(s):
+
+1.10.3 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

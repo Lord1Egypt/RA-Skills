@@ -1,41 +1,51 @@
-## Description: <br>
-Analyzes uploaded files to detect suspicious characteristics and potential security threats. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes uploaded files to detect suspicious characteristics and potential security threats.
 
-## Publisher: <br>
-[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd)
 
-## Use Case: <br>
-Security teams and developers use this skill to upload files to a remote scanning API and receive threat indicators, confidence scores, and handling recommendations before accepting or quarantining files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Files are uploaded to api.mkkpro.com for analysis. <br>
-Mitigation: Do not upload secrets, personal data, proprietary documents, or regulated material unless third-party handling has been approved. <br>
+## Use Case:
 
+Developers, security teams, and organizations use this skill to submit files to a hosted scanning API and receive threat indicators, confidence scores, and handling recommendations for file intake workflows.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/krishnakumarmahadevan-cmd/suspicious-file-scanner) <br>
-- [API Docs](https://api.mkkpro.com:8013/docs) <br>
-- [API Route](https://api.mkkpro.com/security/suspicious-file-scanner) <br>
-- [ToolWeb](https://toolweb.in) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON examples and curl commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces guidance for calling a multipart file scanning endpoint and interpreting JSON threat analysis results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: Files submitted for scanning are uploaded to the mkkpro.com hosted API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Submit only files approved for external processing, and avoid confidential, regulated, customer, credential-bearing, or legally restricted files unless retention and privacy terms have been reviewed.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/krishnakumarmahadevan-cmd/skills/suspicious-file-scanner)
+- [Suspicious File Scanner API Route](https://api.mkkpro.com/security/suspicious-file-scanner)
+- [Suspicious File Scanner API Docs](https://api.mkkpro.com:8013/docs)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, guidance]
+
+**Output Format:** [JSON analysis with threat indicators, confidence scores, and recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uploads user-selected files to a hosted API for analysis.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

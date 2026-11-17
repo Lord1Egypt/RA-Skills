@@ -1,45 +1,60 @@
-## Description: <br>
-Video Dubbing helps agents convert foreign-language videos into Chinese dubbed videos using Whisper transcription, API-based translation, VoxCPM TTS, subtitle generation, and optional background music. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Video Dubbing helps agents guide users through converting foreign-language videos into Chinese-dubbed videos with subtitles, VoxCPM text-to-speech, Whisper transcription, translation, and optional background music.
 
-## Publisher: <br>
-[newaiguy](https://clawhub.ai/user/newaiguy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[newaiguy](https://clawhub.ai/user/newaiguy)
 
-## Use Case: <br>
-Developers and content localization teams use this skill to produce Chinese-dubbed versions of foreign-language videos, including translated speech, generated subtitles, and final media files. It is also useful when an agent needs repeatable shell-command guidance for configuring VoxCPM, translation APIs, and media processing tools. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Transcript text and at least one extracted video frame may be sent to configured model APIs. <br>
-Mitigation: Use trusted endpoints, scoped API keys, and review the input media for sensitive content before running the dubbing workflow. <br>
-Risk: The bundled Bilibili upload script can use local session credentials to publish videos under the configured account. <br>
-Mitigation: Remove or ignore scripts/upload_bilibili.py unless Bilibili publishing is intended, and do not place credentials at the hard-coded path unless that behavior is acceptable. <br>
-Risk: Voice cloning depends on user-provided reference audio. <br>
-Mitigation: Use only reference voices that the operator has permission to use. <br>
+## Use Case:
 
+Developers and content localization teams use this skill to prepare Chinese-dubbed versions of foreign-language videos, including transcription, translation, TTS generation, subtitle generation, video merging, and optional background music.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/newaiguy/voxcpm-chinese-dubbing) <br>
-- [VoxCPM](https://github.com/modelscope/VoxCPM) <br>
-- [OpenAI Whisper](https://github.com/openai/whisper) <br>
-- [Hunyuan-MT-7B](https://huggingface.co/tencent/Hunyuan-MT-7B) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, files] <br>
-**Output Format:** [Markdown guidance with bash commands, JSON configuration, and generated MP4, WAV, and SRT files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are written under the configured workspace and may depend on local ffmpeg, Whisper, VoxCPM, and configured model API endpoints.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: ClawHub release evidence) <br>
+Risk: Remote translation and vision APIs may receive media-derived content during dubbing workflows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use separate, narrowly scoped API keys and only configure trusted translation and vision API endpoints.
+
+Risk: The artifact bundles account-based Bilibili publishing behavior that may be unnecessary for ordinary dubbing use.
+
+Mitigation: Review or remove scripts/upload_bilibili.py unless Bilibili publishing is explicitly required.
+
+Risk: Configurable API URLs and unpinned external dependencies or model revisions can increase supply-chain and credential-forwarding risk.
+
+Mitigation: Avoid overriding API URLs to untrusted hosts, pin dependencies and model revisions, and run the skill in an isolated workspace with limited file and network access.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/newaiguy/skills/voxcpm-chinese-dubbing)
+- [VoxCPM](https://github.com/modelscope/VoxCPM)
+- [OpenAI Whisper](https://github.com/openai/whisper)
+- [Hunyuan-MT-7B](https://huggingface.co/tencent/Hunyuan-MT-7B)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, JSON configuration examples, and generated media file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce dubbed MP4 video, WAV audio, SRT subtitles, and optional BGM-mixed video files when the referenced scripts are run.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release evidence; artifact frontmatter and manifest remain 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

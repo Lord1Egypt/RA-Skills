@@ -1,42 +1,59 @@
-## Description: <br>
-Queries real-time gold prices, the USD index, WTI crude oil prices, and the gold/oil ratio, then returns market data and investment signals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Queries real-time gold prices, the USD index, WTI crude oil prices, the gold/oil ratio, and related investment signals.
 
-## Publisher: <br>
-[forest-qiao](https://clawhub.ai/user/forest-qiao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[forest-qiao](https://clawhub.ai/user/forest-qiao)
 
-## Use Case: <br>
-External users and agents use this skill to retrieve current precious metals, currency-index, and crude-oil market data and summarize the results. It is also used to compute a gold/oil ratio and present the skill's built-in informational investment signal. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill makes outbound read-only requests to market-data services and depends on third-party Python packages. <br>
-Mitigation: Install only in environments where outbound market-data requests and the listed Python dependencies are acceptable. <br>
-Risk: Market prices and investment signals may be stale, unavailable, or unsuitable for financial decisions. <br>
-Mitigation: Treat outputs as informational, surface fetch errors to the user, and verify important financial decisions independently. <br>
+## Use Case:
 
+External users and agents use this skill to fetch current precious-metals, USD index, WTI crude oil, and gold/oil ratio data, then summarize prices and investment signals for market-monitoring conversations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/forest-qiao/gold-monitor) <br>
-- [Sina Finance real-time quotes](https://finance.sina.com.cn) <br>
-- [Sina Finance quote endpoint](https://hq.sinajs.cn/list={code}) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown summary based on JSON returned by the helper script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The helper script returns JSON objects or arrays with prices, changes, units, update times, and error fields when data cannot be fetched.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.2.0 (source: server release metadata) <br>
+Risk: The skill installs Python packages and contacts Sina Finance and AkShare-backed market data sources.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review dependencies before installation in sensitive environments and allow outbound access only to the disclosed market-data sources.
+
+Risk: The gold/oil ratio output includes investment advice that may be incomplete, stale, or unsuitable for a user's financial situation.
+
+Mitigation: Present the advice as informational market context, include update times, and avoid treating it as personalized financial advice.
+
+Risk: Market-data requests can fail or return incomplete data.
+
+Mitigation: Check for an error field before summarizing results and tell the user when an asset's data could not be fetched.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/forest-qiao/skills/gold-monitor)
+- [Sina Finance](https://finance.sina.com.cn)
+- [Sina Finance quote endpoint pattern](https://hq.sinajs.cn/list={code})
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, guidance]
+
+**Output Format:** [JSON from a CLI script, usually summarized by the agent as concise Markdown or text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only market-data lookups; outputs include price, change, unit, update time, and an error field when a data fetch fails.]
+
+## Skill Version(s):
+
+2.2.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

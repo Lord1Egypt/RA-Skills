@@ -1,0 +1,106 @@
+{
+ "version": 1,
+ "updated": "2026-10-15",
+ "registers": {
+  "medical_teaching": {
+   "theme": "light",
+   "voice": "daylight-clinical",
+   "accent_max_area": 0.08,
+   "style_tags": [
+    "light",
+    "mid",
+    "warm",
+    "cool",
+    "pastel"
+   ],
+   "notes": "晨间查房语域:暖纸/白底、三级墨阶、留白、幽灵数字"
+  },
+  "pediatric_cover": {
+   "theme": "light",
+   "voice": "soft-vivid",
+   "style_tags": [
+    "warm",
+    "vivid",
+    "mid",
+    "pastel"
+   ],
+   "notes": "与既有系列色协调优先(The brief wins)"
+  }
+ },
+ "default_register": "medical_teaching",
+ "theme_bias": {
+  "dark_penalty": 3,
+  "reason": "本用户默认语域为浅底 daylight;深色需 brief 明示"
+ },
+ "banned_hex_families": {
+  "tailwind_defaults": [
+   "3B82F6",
+   "6366F1",
+   "8B5CF6",
+   "A855F7",
+   "EC4899",
+   "4F46E5",
+   "0EA5E9",
+   "22D3EE"
+  ]
+ },
+ "accepted_signatures": [
+  "ghost_numbers",
+  "brand_stripe",
+  "serif_display",
+  "honey_window_metaphor"
+ ],
+ "loved_palette_ids": [
+  "Neutral Harmony Bliss",
+  "Olive Garden Feast",
+  "Bees&Honey(IEI系列定案)",
+  "GLM黄蓝(glm-deck定案)",
+  "12",
+  "15",
+  "011",
+  "007",
+  "003",
+  "002",
+  "004",
+  "001",
+  "fav-013",
+  "fav-014",
+  "fav-018",
+  "fav-1",
+  "fav-10",
+  "fav-1017",
+  "fav-11",
+  "fav-12",
+  "fav-13",
+  "fav-14",
+  "fav-15",
+  "fav-2",
+  "fav-3",
+  "fav-4",
+  "fav-5",
+  "fav-6",
+  "fav-7",
+  "fav-8",
+  "fav-9",
+  "fav-palette",
+  "Deep Pine",
+  "Wildberry Atelier"
+ ],
+ "necropsies_log": [
+  {
+   "date": "2026-10-15",
+   "artifact": "川崎病深色版",
+   "verdict": "reject",
+   "modes": [
+    "语域错配",
+    "暗底虚空",
+    "单声部层级",
+    "剂量失控"
+   ]
+  }
+ ],
+ "release_cadence": {
+  "rule": "开发完成后等定时窗口发布;发布前必过冷却检查;同日不多版本连发",
+  "window": "12:00"
+ }
+}

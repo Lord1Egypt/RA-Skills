@@ -1,0 +1,299 @@
+# Market conventions — United States (us)
+#
+# Built 2026-08-09 from docs/superpowers/research/2026-08-09/
+# markets.json + review-us_uk.md. The research key was us_uk; this table is the
+# US half of it, and the at-will/notice-period entry was split in two so each
+# market carries only its own sourced half. Every `published` URL in that research
+# was fetched and every "Verbatim:" string grepped on 2026-08-09.
+#
+# NEXT REVIEW — from review-us_uk.md's "Important and missing", verbatim. Do not
+# write these into conventions from this comment; a person must check the source
+# first.
+#   2. **Colorado's pay-history ban** (verbatim above, from a page the entry already fetched). Cheap to add, sits naturally beside #5, and closes `unverified` item 5 for one state.
+#
+#   3. **The two suppressed thresholds** — `at least half of their work time` (#2) and `four or more employees` (#5). Both are verified and both are currently unusable as written. If the no-digit rule genuinely forbids them in `text_*`, the text must at least tell the reader the exact place to read the number, rather than gesturing at "the figure is set in the rule".
+#
+#   **Could not source:** a public E-Verify participating-employer lookup (`e-verify.gov` returned HTTP 403 to both WebFetch and curl, 2026-08-09). I make no claim that one exists, and #3 should not be edited to reference one.
+#
+#   CORRECTION the reviewer made to the research's own unverified list, recorded
+#   here because it is not an entry: the note saying no official source was
+#   verified for a US salary-history ban is wrong — the Colorado page this table
+#   already cites contains one verbatim. That note is therefore dropped rather than
+#   carried across, and the fact itself is item two above, still waiting for a
+#   person to check it before it becomes an entry.
+
+
+market: us
+
+conventions:
+  - id: "us-authorisation-and-sponsorship-are-separate-screens"
+    text_en: |-
+      A US employer may ask whether you have the legal right to work in the United States, and
+      separately whether you will need sponsorship for an employment visa — the Department of Justice
+      confirms both questions are permitted. They are different questions, and where a form asks
+      both, answer each on its own terms rather than collapsing them. The posting usually does
+      not say whether the employer sponsors, so establish that before you invest further. One limit
+      worth knowing: an employer may restrict hiring to US citizens only where a law, regulation,
+      executive order or government contract requires it, and the Immigrant and Employee Rights
+      Section takes complaints about citizenship-status discrimination where that is not the case.
+    text_zh: |-
+      美国雇主可以问「你是否有在美国合法工作的权利」，也可以另外再问「你是否需要签证担保」——美国
+      司法部确认这两问都被允许。它们是不同的问题；申请表若两问都列，请分别如实回答，不要合并处理。
+      招聘启事通常不会写明这家雇主是否提供担保，所以在继续投入之前先弄清楚。另有一条界限值得知道：
+      只有在法律、法规、行政命令或政府合同要求时，雇主才可以把招聘限定为美国公民；不属于这些情形的
+      「仅限美国公民」，司法部 Immigrant and Employee Rights Section 受
+      理有关公民身份歧视的投诉。
+    applies_when: "Applying to a US employer through its own application form or job portal."
+    added: "2026-08-09"
+    review_by: "2027-08-09"
+    protected_trait_note: "The fact IS a citizenship-status discrimination rule. The complaint route the entry points at is unusable unless the reader knows the basis on which the restriction is unlawful, so naming the trait is what makes the entry actionable rather than what makes it discriminatory."
+    source:
+      kind: "published"
+      publisher: "U.S. Department of Justice, Civil Rights Division"
+      title: "IER's Frequently Asked Questions (FAQs)"
+      url: "https://www.justice.gov/crt/iers-frequently-asked-questions-faqs"
+      retrieved: "2026-08-09"
+      quote: "Generally, an employer may ask job applicants if they have the legal right to work in the United States and if they will need sponsorship for an employment visa."
+      note: "The source says an employer MAY ask. It does not say what US application forms actually do, so the entry no longer claims it."
+      also:
+        - publisher: "U.S. Department of Justice, Civil Rights Division"
+          title: "IER's Frequently Asked Questions (FAQs)"
+          url: "https://www.justice.gov/crt/iers-frequently-asked-questions-faqs"
+          retrieved: "2026-08-09"
+          quote: "An employer may restrict hiring to U.S. citizens only when a law, regulation, executive order, or government contract requires the employer to do so."
+    why: |-
+      The posting usually does not state the employer's sponsorship policy, and a rejection does
+      not tell you which filter caught you.
+  - id: "us-employer-class-decides-h1b-cap-exposure"
+    text_en: |-
+      Some US employers sit in a statutory class exempt from the H-1B numerical cap: institutions
+      of higher education, nonprofit entities related to or affiliated with them, nonprofit research
+      organisations, and governmental research organisations. Postings rarely mention it, yet it
+      changes what the employer can do and when, because the electronic registration requirement
+      bites only on cap-subject petitions. The regulation also reaches past direct employment:
+      someone employed elsewhere can still be cap-exempt if they spend at least the share of work
+      time the rule specifies performing job duties at a qualifying institution and those duties
+      directly further its higher-education, nonprofit-research or government-research mission
+      — and work performed 'at' the institution may include telework, remote and other off-site
+      work. Look the threshold up in the cited regulation before relying on it. What predicts the
+      possibilities is the kind of organisation and the duties, not whether the advert says sponsorship
+      is available.
+    text_zh: |-
+      有一类美国雇主在法规上不受 H-1B 名额上限限制：高等教育机构、与其存在关联或附属关系的非
+      营利实体、非营利研究机构，以及政府研究机构。招聘启事很少提这一点，但它直接决定雇主能做什么、
+      什么时候能做，因为电子登记（抽签）只对受名额限制的申请生效。法规还越过了「直接雇用」这一层：
+      即使受雇于其他单位，只要本人把不低于法规所定份额的工作时间用于在合格机构从事职务，且这些职务
+      直接服务于该机构的高等教育、非营利研究或政府研究使命，也可算作免名额；并且法规明确「在」该机
+      构完成的工作可以包括远程与异地工作。具体门槛请按所引法规原文查证后再据以行动。所以真正能预测
+      可行性的，是雇主属于哪类组织、职务内容为何，而不是启事上有没有写「提供签证担保」。
+    applies_when: "Considering US employers where an H-1B petition might eventually be needed, especially universities, hospitals, research institutes and their affiliated nonprofits."
+    added: "2026-08-09"
+    review_by: "2027-09-05"
+    source:
+      kind: "published"
+      publisher: "eCFR (Office of the Federal Register), title eight of the Code of Federal Regulations"
+      title: "8 CFR 214.2(h)(8)(iii)(F) — Cap exemptions under sections 214(g)(5)(A) and (B) of the Act"
+      url: "https://www.ecfr.gov/current/title-8/section-214.2"
+      retrieved: "2026-09-05"
+      quote: "An alien is not subject to the numerical limitations identified in section 214(g)(1)(A) of the Act if the alien qualifies for an exemption under section 214(g)(5) of the Act"
+      note: "The subparagraph lettering moved in the recent modernisation rulemaking and the citation is pinned to a dated snapshot, so re-verify the letters before relying on them. The exempt share of work time is in the cited paragraph and deliberately not copied here; read it there."
+      also:
+        - publisher: "eCFR (Office of the Federal Register)"
+          title: "8 CFR 214.2(h)(8)(iii)(F)(4), the duties-and-time test — this is the paragraph to read the threshold in"
+          url: "https://www.ecfr.gov/current/title-8/section-214.2"
+          retrieved: "2026-09-05"
+          quote: "…will spend at least half of their work time performing job duties at a qualifying institution, organization, or entity and those job duties directly further an activity that supports or advances one of the fundamental purposes, missions, objectives, or functions…"
+        - publisher: "eCFR (Office of the Federal Register)"
+          title: "8 CFR 214.2(h)(8)(iii)(F), on off-site work"
+          url: "https://www.ecfr.gov/current/title-8/section-214.2"
+          retrieved: "2026-09-05"
+          quote: "Work performed 'at' the qualifying institution may include work performed in the United States through telework, remote work, or other off-site work."
+        - publisher: "eCFR (Office of the Federal Register), bulk XML endpoint used to verify the text"
+          title: "Title eight bulk XML snapshot dated 2026-08-01"
+          url: "https://www.ecfr.gov/api/versioner/v1/full/2026-09-01/title-8.xml?part=214&section=214.2"
+          retrieved: "2026-08-09"
+          quote: "An alien is not subject to the numerical limitations identified in section 214(g)(1)(A) of the Act"
+    why: |-
+      Cap exemption turns on the character of the employing organisation and on the duties performed,
+      neither of which the advert describes. Candidates screen adverts for 'sponsorship available'
+      and skip whole categories of employer for whom the annual cap is not the binding constraint.
+  - id: "us-stem-opt-is-an-employer-side-requirement"
+    text_en: |-
+      The STEM extension of Optional Practical Training imposes conditions on the employer, not
+      only on the student. The regulation requires that the employer be enrolled in E-Verify and
+      remain a participant in good standing, that it hold a tax identification number, and that
+      it sign the Training Plan for STEM OPT Students (Form I-983) and accept the reporting duties
+      that come with it. A willing employer that is not enrolled in E-Verify cannot host this arrangement
+      no matter how much it wants to. Adverts rarely disclose E-Verify enrolment, so raise it with
+      the recruiter early rather than discovering it at the offer stage.
+    text_zh: |-
+      OPT 的 STEM 延期把条件加在雇主身上，而不只是学生身上。法规要求雇主已注册 E-Verify 并
+      持续保持良好参与状态、拥有税务识别号，并签署《STEM OPT 学生培训计划》（Form I-983）
+      以及承担随之而来的报告义务。一个再愿意配合的雇主，只要没有注册 E-Verify，就无法支持
+      这一安排。招聘启事很少披露是否注册了 E-Verify，所以要在流程早期就向招聘方问清楚，而
+      不是等到发 offer 时才发现。
+    applies_when: "Any US role where an OPT STEM extension is or may become part of the plan, particularly at small employers and startups."
+    added: "2026-08-09"
+    review_by: "2027-02-09"
+    source:
+      kind: "published"
+      publisher: "eCFR (Office of the Federal Register), title eight of the Code of Federal Regulations"
+      title: "8 CFR 214.2(f)(10)(ii)(C)(5) Employer qualification"
+      url: "https://www.ecfr.gov/current/title-8/section-214.2"
+      retrieved: "2026-09-05"
+      quote: "The student's employer is enrolled in E-Verify… and the employer remains a participant in good standing with E-Verify, as determined by USCIS. An employer must also have an employer identification number (EIN) used for tax purposes."
+      note: "No public participating-employer lookup is asserted here. The obvious candidate page refused every fetch on the retrieval date, so nobody has confirmed that one exists; do not add a reference to one without a successful fetch."
+      also:
+        - publisher: "eCFR (Office of the Federal Register)"
+          title: "8 CFR 214.2(f)(10)(ii)(C)(6) Employer reporting"
+          url: "https://www.ecfr.gov/current/title-8/section-214.2"
+          retrieved: "2026-09-05"
+          quote: "…unless the employer agrees, by signing the Training Plan for STEM OPT Students, Form I-983 or successor form, to report…"
+        - publisher: "eCFR (Office of the Federal Register), bulk XML endpoint used to verify the text"
+          title: "Title eight bulk XML snapshot dated 2026-08-01"
+          url: "https://www.ecfr.gov/api/versioner/v1/full/2026-08-01/title-8.xml?part=214&section=214.2"
+          retrieved: "2026-08-09"
+          quote: "The student's employer is enrolled in E-Verify"
+    why: |-
+      Candidates research their own eligibility and assume employer cooperation is just goodwill.
+      The blocking condition is an administrative enrolment the employer either has or does not
+      have, and it is never stated in a posting.
+  - id: "us-at-will-is-the-default"
+    text_en: |-
+      US employment is at-will in the ordinary case — California's labour standards agency states
+      the doctrine plainly: either party may end the relationship at any time and, unless they
+      agreed otherwise, neither owes the other notice. At-will is state law rather than a federal
+      statute, so it is the default rather than a universal rule, and the customary short resignation
+      notice is a norm, not an entitlement.
+    text_zh: |-
+      美国的雇佣在通常情况下是「随意雇佣」（at-will）——加州劳工标准执行部门的官方表述是：
+      任何一方都可以随时结束雇佣关系，除非双方另有约定，互不负提前通知义务。at-will 属于各
+      州法而非联邦成文法，因此它是默认规则、不是放之全国皆准的铁律；惯例上的短期离职通知是习惯，不
+      是法定权利。
+    applies_when: "Any US application, and any moment you state your availability or read an offer letter."
+    added: "2026-08-09"
+    review_by: "2027-02-09"
+    source:
+      kind: "published"
+      publisher: "State of California, Department of Industrial Relations, Division of Labor Standards Enforcement"
+      title: "Termination of Employment (Rev. 1/2011)"
+      url: "https://www.dir.ca.gov/dlse/TerminationOfEmployment.pdf"
+      retrieved: "2026-08-09"
+      quote: "Within the State of California, employment may be terminated at the will of either party. Both the employer and the employee are free to end the employment relationship at any time, with no penalty being assessed to either. Unless the parties have previously agreed to the contrary, there is no notice required to be given by either party."
+      note: "At-will is state law rather than a federal statute, and this is one state's official statement of the doctrine. That is exactly why the entry calls it a default rather than a universal rule, and why the unsourced employer-behaviour claims the research carried are not here."
+    why: |-
+      The default is so ordinary inside its own market that nobody writes it down. A candidate
+      carrying another market's notice-period assumptions into a US process states an availability
+      the default here does not ask of them, and reads standard at-will wording in an offer letter
+      as a warning.
+  - id: "us-pay-range-in-a-posting-is-jurisdictional-not-cultural"
+    text_en: |-
+      Whether a US posting shows a pay range is mostly a question of which state's law reaches
+      the role, not of how open the employer is. Colorado requires employers to disclose compensation
+      in all job postings and notices, internal and public, and that disclosure must include information
+      about benefits and how and when to apply. New York requires a job description and a compensation
+      range for advertised job, promotion and transfer opportunities at employers above a size
+      threshold set in the statute, requires employers to state clearly if a position is commission-based,
+      and forbids retaliation against people who ask about it. So read a published range as a legally
+      required disclosure of a band, not as an offer or a sign of generosity; read its absence
+      as a fact about jurisdiction rather than about the employer. Where the law does apply, a
+      missing range is a compliance failure and both states run complaint channels.
+    text_zh: |-
+      美国的招聘启事上有没有薪酬区间，主要取决于该职位受哪个州的法律管辖，而不是雇主开不开放。科罗
+      拉多州要求雇主在所有对内和对外的职位发布与通知中披露薪酬，且披露内容必须包括福利信息以及如何
+      、何时申请。纽约州要求达到法定规模门槛的雇主在其对外发布的相关职位、晋升和调岗机会中列出职位
+      描述与薪酬区间，明确标注是否为提成制，并禁止对询问此事的人进行报复。因此，看到区间时把它当作
+      法律要求披露的一个「带宽」，而不是报价或雇主慷慨的信号；看不到区间时，把它理解为管辖权的事实
+      ，而不是雇主的态度。在法律确实适用的地方，缺少区间属于违规，这两个州都设有投诉渠道。
+    applies_when: "Reading US postings, comparing employers, or preparing to discuss compensation in a US process."
+    added: "2026-08-09"
+    review_by: "2027-06-05"
+    source:
+      kind: "published"
+      publisher: "Colorado Department of Labor and Employment"
+      title: "Equal Pay for Equal Work Act"
+      url: "https://cdle.colorado.gov/dlss/labor-laws-by-topic/equal-pay-for-equal-work-act"
+      retrieved: "2026-09-05"
+      quote: "Part 2, referred to by the Division as 'Pay Transparency,' requires transparency in pay and job opportunities. Specifically, it requires employers to disclose compensation in all job postings and notices, both internal and public. This disclosure must include information about benefits and how and when to apply."
+      note: "The address cited is the redirect destination of the one in the research, so the row does not rot. Only the two states whose own official pages were fetched are named; the employee-count threshold sits in the New York quote, which is where to read it."
+      also:
+        - publisher: "New York State Department of Labor"
+          title: "Pay Transparency"
+          url: "https://dol.ny.gov/pay-transparency"
+          retrieved: "2026-09-05"
+          quote: "Labor Law Section 194-B requires New York State businesses with four or more employees to provide job descriptions and list compensation ranges for designated job opportunities, promotions, and transfers… Employers must also clearly state if a position is commission-based. Finally, this new law prohibits employers from retaliating against employees or applicants who request this information."
+        - publisher: "New York State Department of Labor"
+          title: "Pay Transparency, on the complaint route"
+          url: "https://dol.ny.gov/pay-transparency"
+          retrieved: "2026-09-05"
+          quote: "Any current, prospective, or potential employee or applicant who claims to have experienced a violation of this law can file a complaint with New York State Department of Labor."
+    why: |-
+      Candidates infer employer character from whether a range is shown, and treat the top of a
+      posted range as a target. Both inferences are wrong: the range exists because a statute compels
+      it in that jurisdiction, and it describes a band the employer believes accurate at posting
+      time.
+  - id: "us-you-choose-your-form-i9-documents"
+    text_en: |-
+      Once you are hired in the US you complete Form I-9, and the choice of documents is yours.
+      The government has designated combinations from which workers choose: either a document that
+      establishes both identity and permission to work, or a combination drawn from the identity
+      list and the permission-to-work list. Employers of any size are barred from unfair documentary
+      practices — on the basis of citizenship, immigration status or national origin, requesting
+      more or different documents than are required, rejecting documents that reasonably appear
+      genuine, or specifying certain documents over others. None of this appears in a posting,
+      and where a recruiter or onboarding team narrows you to one named document on such a basis,
+      that is what the Immigrant and Employee Rights Section takes complaints about.
+    text_zh: |-
+      在美国被录用后要填写 Form I-9，而选哪些证件是你的权利。官方规定了可选的证件组合：既
+      可以出示一份同时证明身份和工作许可的证件，也可以从「身份」清单和「工作许可」清单中各取其一组
+      合使用。任何规模的雇主都不得实施「不当证件要求」——即基于公民身份、移民身份或原属国，索取超
+      出规定数量或种类的证件、拒收看起来合理真实的证件，或指定必须使用某些特定证件。这些内容不会出
+      现在招聘启事里；招聘人员或入职团队若基于上述事由把你限定在某一份指定证件上，正是司法部 Immigrant
+      and Employee Rights Section 受理投诉的情形。
+    applies_when: "US onboarding, after an offer is accepted and before or around the first day."
+    added: "2026-08-09"
+    review_by: "2027-08-09"
+    protected_trait_note: "The prohibition is conditional in the source — it bites on the basis of citizenship, immigration status or national origin — and a reader who drops that basis has no complaint to make. The trait names the ground of the rule, not an attribute of the reader."
+    source:
+      kind: "published"
+      publisher: "U.S. Department of Justice, Civil Rights Division"
+      title: "IER's Frequently Asked Questions (FAQs)"
+      url: "https://www.justice.gov/crt/iers-frequently-asked-questions-faqs"
+      retrieved: "2026-08-09"
+      quote: "Employers can't specify which documents they will accept from a worker and should not prevent an individual from working because of a document's future expiration date."
+      note: "The research closed this quote mid-clause with a bracketed word nobody wrote. The full sentence is above; the quotation marks are the only warranty a reader with no source text beside them gets."
+      also:
+        - publisher: "U.S. Department of Justice, Civil Rights Division"
+          title: "IER's Frequently Asked Questions (FAQs)"
+          url: "https://www.justice.gov/crt/iers-frequently-asked-questions-faqs"
+          retrieved: "2026-08-09"
+          quote: "The Department of Homeland Security has designated several combinations of acceptable documents from which workers can choose to prove their identity and permission to work… A worker is allowed to produce either List A documentation (establishing both identity and permission to work), or a combination of documentation from List B (establishing identity) and List C (establishing permission to work)."
+        - publisher: "U.S. Department of Justice, Civil Rights Division"
+          title: "IER's Frequently Asked Questions (FAQs)"
+          url: "https://www.justice.gov/crt/iers-frequently-asked-questions-faqs"
+          retrieved: "2026-08-09"
+          quote: "Employers of any size cannot engage in unfair documentary practices related to verifying employees' employment eligibility during the I-9 and E-Verify processes. Specifically, employers are not allowed to, on the basis of citizenship, immigration status, or national origin, request more or different documents than are required to verify employment eligibility and identity, reject reasonably genuine-looking documents, or specify certain documents over others."
+    why: |-
+      Onboarding paperwork feels like an administrative formality with no room to push back, and
+      no posting or offer letter explains that the choice belongs to the worker. Candidates comply
+      with a narrowed document demand and never learn it was improper.
+
+# The lint reports WARN_UNVERIFIED_OVERLAP on both notes below. Both were read against
+# their entries side by side before this file was committed. The pay-range entry names
+# only the two states whose own official pages were fetched, which is exactly what the
+# first note asks for; and the at-will entry claims a state-law default rather than a
+# federal rule and names no second state, which is what the last note asks for. The
+# shared words are each note restating the entry it limits, not drift.
+unverified:
+  - note: "Compensation-transparency states beyond Colorado and New York. Several other states have enacted posting-disclosure laws. I verified official state pages for Colorado (CDLE) and New York (NYSDOL) only, and named only those two. Do NOT extend the list without fetching each state's own official page — the set changes as legislatures act, and a stale list of states is exactly the kind of error the reader cannot check."
+    disclaims: [us-pay-range-in-a-posting-is-jurisdictional-not-cultural]
+      # Read side by side on 2026-08-10: the shared words sit in the half of the note
+      # recording what WAS sourced, and the claim it disclaims is absent from the text.
+      # Self-revoking — if the overlap changes, the lint asks for the review again.
+    overlap_reviewed: [colorado, compensation, disclosure, posting, states]
+  - note: "One narrowing on an entry that IS sourced, so the limit is visible. The at-will entry cites the California Division of Labor Standards Enforcement's statement of the doctrine. At-will is state law, not a federal statute; I could not retrieve dol.gov or a second state's page (both returned HTTP 403). The doctrine is the near-universal US default, but this entry is sourced to one state's official statement of it, and the entry's source_detail says so. Montana is the commonly cited exception; I did not verify that and have not claimed it."
+    disclaims: [us-at-will-is-the-default]
+      # Read side by side on 2026-08-10: the shared words sit in the half of the note
+      # recording what WAS sourced, and the claim it disclaims is absent from the text.
+      # Self-revoking — if the overlap changes, the lint asks for the review again.
+    overlap_reviewed: [california, default, doctrine, federal, standards, statute, universal]

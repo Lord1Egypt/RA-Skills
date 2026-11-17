@@ -1,41 +1,58 @@
-## Description: <br>
-iFinD (同花顺) financial data query skill for stocks, funds, macroeconomic and industry data, financial news, and announcements. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+iFinD Finance Data queries iFinD stock, fund, macroeconomic, industry, news, and announcement data through Python or Node.js MCP clients.
 
-## Publisher: <br>
-[kooui](https://clawhub.ai/user/kooui) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kooui](https://clawhub.ai/user/kooui)
 
-## Use Case: <br>
-Agents and finance data users use this skill to query iFinD MCP services for stock, fund, macroeconomic, industry, news, and announcement data. It helps compose calls, configure the iFinD auth token, and interpret JSON responses from the helper clients. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The helper clients disable HTTPS certificate validation while sending an iFinD auth token to a remote API. <br>
-Mitigation: Review before installing and use a real token only after the helper clients are edited or wrapped to validate TLS certificates. <br>
-Risk: Broad finance-related triggers may cause this provider to be used for ordinary finance queries. <br>
-Mitigation: Limit use to explicit iFinD or 同花顺 finance-data requests and review returned data before relying on it. <br>
+## Use Case:
 
+External users and developers use this skill to retrieve iFinD financial market, fund, macroeconomic, industry, news, and announcement data from natural-language-style query parameters. It is suited for agents that need to search first, then call stock, fund, EDB, or news tools and return structured results.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kooui/ifind-finance-data) <br>
-- [iFinD homepage](https://www.51ifind.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance, JSON] <br>
-**Output Format:** [Markdown guidance with inline code examples and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a user-provided iFinD auth token; helper clients call remote iFinD MCP endpoints.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence; artifact frontmatter says 1.0.0) <br>
+Risk: The skill stores an iFinD authentication token locally in mcp_config.json.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep mcp_config.json out of version control, restrict file access, and rotate the token if exposure is possible.
+
+Risk: The bundled clients disable TLS certificate verification while sending the token and finance queries over the network.
+
+Mitigation: Enable TLS verification before use on untrusted networks, or restrict use to environments where this transport risk is acceptable.
+
+Risk: Finance queries and requested entities are sent to iFinD services.
+
+Mitigation: Use the skill only when sharing those query details with iFinD is acceptable for the user and organization.
+
+## Reference(s):
+
+- [iFinD homepage](https://www.51ifind.com)
+- [ClawHub skill page](https://clawhub.ai/kooui/skills/ifind-finance-data)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with Python or JavaScript examples and JSON-like API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an iFinD MCP auth token in mcp_config.json; query arguments vary by stock, fund, EDB, and news service.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

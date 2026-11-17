@@ -1,43 +1,66 @@
-## Description: <br>
-WebDriver automation CLI for AI-driven browser control. Provides session management, tab control, element interaction, screenshots, batch execution, and an interactive REPL. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+WebDriver automation CLI for AI-driven browser control. Provides session management, tab control, element interaction, screenshots, batch execution, and an interactive REPL.
 
-## Publisher: <br>
-[yorelog](https://clawhub.ai/user/yorelog) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yorelog](https://clawhub.ai/user/yorelog)
 
-## Use Case: <br>
-Developers and AI agents use BrowseCTL to automate browser sessions from the terminal, including navigation, element interaction, screenshots, tab management, batch execution, and REPL-driven workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: BrowseCTL can give an agent real browser-control authority, including access to logged-in browser state when copied into automation sessions. <br>
-Mitigation: Use a dedicated automation browser profile and prefer --no-copy-data unless logged-in sessions are intentionally required. <br>
-Risk: Browser state, sessions, screenshots, REPL history, and WebDriver processes may persist on disk or remain active after use. <br>
-Mitigation: Periodically clear sessions, profiles, screenshots, REPL history, and WebDriver processes. <br>
-Risk: Batch files and REPL input can execute browser actions that interact with sensitive sites or data. <br>
-Mitigation: Review batch files before running them and avoid entering secrets in the REPL. <br>
+## Use Case:
 
+Developers and engineers use BrowseCTL to drive Chrome or Edge through WebDriver from an agent or terminal workflow, including session setup, navigation, DOM interaction, screenshots, tab management, batch execution, and an interactive REPL.
 
-## Reference(s): <br>
-- [ClawHub BrowseCTL release](https://clawhub.ai/yorelog/browserctl) <br>
-- [Publisher profile](https://clawhub.ai/user/yorelog) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands, command examples, JSON examples, and browser automation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce browser-control commands that operate on local sessions and files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata, SKILL.md frontmatter, package.json) <br>
+Risk: Installation and release-pipeline trust affect the downloaded browser automation binary.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when the publisher and release pipeline are trusted, and test in an isolated environment before using real accounts.
+
+Risk: Browser sessions can copy cookies, extensions, localStorage, bookmarks, and other profile data into an automation profile.
+
+Mitigation: Prefer an isolated browser profile or test account, and pass --no-copy-data for non-interactive session creation unless copying profile data is intentional.
+
+Risk: Screenshots, REPL history, persisted sessions, copied cookies, and automation profiles can contain sensitive local data.
+
+Mitigation: Treat generated files and profiles as sensitive, store them only as needed, and clean them up after use.
+
+Risk: Batch files can automate browser actions across pages and tabs.
+
+Mitigation: Review batch files before execution and avoid running untrusted batches against authenticated sessions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/yorelog/skills/browserctl)
+- [npm Package: @yorelog/browsectl](https://www.npmjs.com/package/@yorelog/browsectl)
+- [BrowseCTL README](artifact/README.md)
+- [Session and Driver Lifecycle](artifact/skills/session.md)
+- [Batch Execution](artifact/skills/batch.md)
+- [Interactive REPL](artifact/skills/repl.md)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration instructions, Guidance, Files]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local screenshots, persisted session files, REPL history, and browser automation profile data.]
+
+## Skill Version(s):
+
+0.1.1 (source: release evidence, SKILL.md frontmatter, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

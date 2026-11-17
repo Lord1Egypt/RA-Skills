@@ -1,0 +1,122 @@
+part: GD32W515
+link_status: verified_2026-07-01 (datasheet-pdf-mirror-extracted)
+expected_family: "GigaDevice GD32W515 \u2014 Cortex-M33 + Wi-Fi 4 SoC"
+main_page: https://www.gigadevice.com/product/mcu/wireless-mcus/gd32w515-series
+datasheet_path_expected: ../../datasheets/gd32w515.pdf
+created_at: '2026-06-30T10:06:00+08:00'
+specs:
+  family: GD32W515 (GigaDevice wireless MCU series)
+  cores:
+  - Arm Cortex-M33 @ up to 180 MHz with TrustZone
+  memory:
+    flash_kb_options:
+    - 0
+    - 1024
+    - 2048
+    sram_kb_options:
+    - 384
+    - 448
+    external_flash_max: 32 MB
+  power:
+    voltage_v_min: 1.6
+    voltage_v_max: 3.6
+    io_5v_tolerant: true
+  wireless:
+    wifi_4_802_11:
+      bands: 2.4 GHz single-band
+      modes:
+      - b
+      - g
+      - n
+      single_stream: true
+      tx_power_max_dbm: 21
+      rx_sensitivity_dbm: -97.6
+      link_budget_dbm: 118.6
+      acr_db: up to 48 (interference rejection)
+      throughput_max_mbps: 50 (iperf)
+      throughput_lab_max_mbps: 80
+    rf:
+      integrated: true
+      external_components_low: yes (BOM savings)
+  peripherals:
+    adc_12bit: 1 unit (5-9 channels per variant)
+    usb_fs_otg: true
+    sdio: true
+    ethernet: false
+    spi: 2
+    qspi: 1
+    i2s: 2
+    usart_uart: 3+0
+    lpuart: 0
+    i2c: 2
+    gptm_32bit: 2
+    gptm_16bit: 3-4 (variant)
+    advanced_tm_16bit: 1
+    lptm_32bit: 1
+    systick_24bit: 1
+    wdg: 2
+    rtc: 1
+    can_2_0b: 1
+    comp: 1
+    lin: 1
+    sent: 0
+  operating_temp_c_min: -40
+  operating_temp_c_max: 85
+  security:
+    trustzone: true
+  part_variants:
+  - part: GD32W515PIQ6
+    package: QFN56
+    flash_kb: 2048
+    sram_kb: 448
+    io_max: 43
+  - part: GD32W515P0Q6
+    package: QFN56
+    flash_kb: 0 (external flash only)
+    sram_kb: 448
+    io_max: 43
+  - part: GD32W515TIQ6
+    package: QFN36
+    flash_kb: 2048
+    sram_kb: 448
+    io_max: 25
+  - part: GD32W515TGQ6
+    package: QFN36
+    flash_kb: 1024
+    sram_kb: 384
+    io_max: 25
+  documentation:
+  - Datasheet
+  - User Manual
+  - Application Note
+  - Firmware Library
+  use_cases:
+  - Cost-sensitive Wi-Fi 4 IoT (smart home, lighting, switches)
+  - Industrial Wi-Fi sensor (32 MB external flash for offline cache)
+  - Asset tracker (large external flash support)
+  - Domestic-China substitution for NXP / TI Wi-Fi 4 designs
+unverified:
+- exact Bluetooth support (raw indicates 0; need confirmation)
+- exact security module details
+- exact wattage per Wi-Fi rate
+- exact shutdown current
+notes:
+- "New yaml entry on 2026-06-30 \u2014 extracted from gigadevice.com product page via Firecrawl (64,242 bytes raw)."
+- 'Family differentiator vs GD32F303/F450 (existing yaml set): W515 is wireless MCU (integrated Wi-Fi 4 + Cortex-M33 + TrustZone);
+  F3/F4 is bare-metal Cortex-M4 (no wireless).'
+- 'Family differentiator vs TI CC2640R2F: TI is BLE-only; GD32W515 is Wi-Fi 4 only (no BLE in current variant). Different
+  wireless tiers entirely.'
+- 'Cross-reference: most directly comparable to NXP RW612 (single-band Wi-Fi 6 + BLE) or NXP IW612 (Wi-Fi 6 + BLE + 802.15.4
+  companion IC). GD32W515 has no BLE in this variant.'
+- 'Use case: replace TI CC3135 + host MCU combinations in cost-sensitive Wi-Fi IoT (1-chip vs 2-chip BOM savings).'
+- 'Verified 2026-07-01 via firecrawl-html-extract against gd32w515_lcsc.html: 23/64 spec fields matched (36%). Source: https://www.lcsc.com/search?q=GD32W515
+  (vendor product page scraped as HTML; no separate PDF available).'
+- 'Verified 2026-07-01 via Tavily-found mirror PDF + firecrawl scrape: 54/64 spec fields matched (84%). Source: https://www.novitronic.com/Datenbl%C3%A4tter/Aktive%20Komponenten/GD32W515.pdf.
+  Note: raw PDF file is truncated (curl EOF on slow connection), but firecrawl /scrape successfully extracts the full PDF
+  text as markdown. Local file kept at datasheets/gd32w515.pdf for reference.'
+extracted_at: '2026-06-30T10:06:00+08:00'
+extraction_method: firecrawl-extract (keyed) of gigadevice.com product page
+extraction_source: references/semiconductor-vendor/GigaDevice/firecrawl-snapshots/GD32W515-family_clean.md
+extraction_source_raw: references/semiconductor-vendor/GigaDevice/firecrawl-snapshots/GD32W515-family_raw.md
+extraction_credits_used: 1
+datasheet_source_url: https://www.novitronic.com/Datenbl%C3%A4tter/Aktive%20Komponenten/GD32W515.pdf

@@ -1,0 +1,17 @@
+name: aimegeo-site-audit
+slug: aimegeo-site-audit
+display_name: "公开网页与页面内容核查"
+description: "读取用户指定的公开网页或其 HTML 快照，整理可核验的页面问题、建议改动和复查方式；辅助脚本只提取本地 HTML。"
+version: 1.0.2
+icon: icon-512.png
+license: MIT-0
+repository: "https://github.com/xxjrq/aimegeo-site-audit"
+tags:
+  - "website-review"
+  - "html-snapshot"
+  - "content-quality"
+trigger_words:
+  - "检查这个公开网页"
+  - "核对官网内容问题"
+  - "分析 HTML 页面"
+self_test: python3 -B scripts/self_test.py

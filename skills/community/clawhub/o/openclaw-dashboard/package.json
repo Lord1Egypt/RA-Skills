@@ -1,0 +1,40 @@
+{
+  "name": "openclaw-dashboard",
+  "version": "2.0.2",
+  "private": true,
+  "files": [
+    "_meta.json",
+    "CHANGELOG.md",
+    "LICENSE",
+    "README.md",
+    "SECURITY.md",
+    "SKILL.md",
+    "backend/",
+    "env.example",
+    "env.example.txt",
+    "favicon.svg",
+    "frontend/",
+    "icon-180.png",
+    "icon.svg",
+    "marked.min.js",
+    "models-registry.json",
+    "purify.min.js",
+    "refs/spark-dashboard-today-schema.json",
+    "screenshots/mobile-v2-dark.png",
+    "screenshots/overview-v2-light.png",
+    "screenshots/usage-v2-dark.png",
+    "scripts/test-dashboard.js",
+    "start.sh",
+    "start.sh.example"
+  ],
+  "scripts": {
+    "test": "node scripts/test-dashboard.js"
+  },
+  "engines": {
+    "node": ">=20.6"
+  },
+  "dependencies": {
+    "redis": "^5.12.1",
+    "ws": "^8.21.1"
+  }
+}

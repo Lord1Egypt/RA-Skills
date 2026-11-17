@@ -1,0 +1,94 @@
+# aigate setup
+
+Accurate to the aigate `README.md` / `docker-compose.yml` / `.env.example` at time of writing. Re-check those files if this drifts. `.env` and `docker-compose.override.yml` are the operator's local files and are gitignored.
+
+## Bring-up
+
+```bash
+git clone https://github.com/psyb0t/aigate
+cd aigate
+make bootstrap   # creates .env from .env.example (any target does this)
+# edit .env — see "Required env" below, then flip service flags to 1
+# .env is gitignored. docker-compose.yml is tracked, so put compose changes in
+# docker-compose.override.yml, which is gitignored and merges last
+make limits      # checks enabled services fit this machine, writes CPU caps to .env.limits
+make run-bg      # start detached
+# or: make run   # start in foreground with logs
+```
+
+`make restart-audiolla` recreates only enabled Audiolla CPU/CUDA variants from their locally available pinned images. It does not rebuild or pull images and leaves other services running.
+
+`make run` / `make run-bg` regenerate `litellm/config.yaml` from fragments (only enabled providers + filtered fallback chains) and pre-flight-validate any file-path env vars (e.g. `MAILBOX_CONFIG`, `CLOUDFLARED_CONFIG`) actually exist before starting containers.
+
+Other Makefile targets: `make down`, `make restart`, `make logs`, `make build-config` (regenerate litellm config only), `make test` (stack must already be running).
+
+## Ports
+
+Single exposed port: **`4000`** (nginx), hardcoded — not env-configurable. Everything else (Postgres, Redis, LiteLLM, and most optional services) binds to no host port at all; they're reached only through nginx's path-based routing on `:4000`. Do not add host port mappings for internal services unless you specifically need direct access.
+
+- Gateway (OpenAI-compatible): `http://localhost:4000`
+- LiteLLM admin UI: `http://localhost:4000/ui/`
+- LibreChat (if `LIBRECHAT=1`): `http://localhost:4000/librechat/`
+- SearXNG (if `SEARXNG=1`): `http://localhost:4000/searxng/`
+- Async queue (proxq): `http://localhost:4000/q/`
+- Direct-routed services (not via LiteLLM): `/predictalot/`, `/predictalot-cuda/`, `/decidealot/`, `/decidealot-cuda/`, `/audiolla/`, `/audiolla-cuda/`, `/flickies/`, `/flickies-cuda/`, `/mailbox/`, `/telethon/`, `/piston/`, `/storage/` (hybrids3), `/claudebox/`, `/pibox-zai/`, `/pibox/`, `/stealthy-auto-browse/`
+
+## Required env / keys
+
+Core, always needed regardless of which optional services you enable:
+
+| Variable | Purpose |
+| --- | --- |
+| `AIGATE_TOKEN` | Master bearer token. Every per-service token below defaults to this value when left unset — one token authenticates against LiteLLM, claudebox, pibox-zai, predictalot, decidealot, mcp_tools, stealthy-auto-browse, hybrids3, telethon, audiolla, flickies, talkies, talkies-cuda. Override a specific `*_AUTH_TOKEN` / `*_API_TOKEN` var to scope that service separately. |
+| `LITELLM_MASTER_KEY` | Optional override; defaults to `AIGATE_TOKEN` when unset. |
+| `POSTGRES_DB` / `POSTGRES_USER` / `POSTGRES_PASSWORD` / `DATABASE_URL` | LiteLLM's key/usage/budget store. |
+| `REDIS_PASSWORD` | Password of the `proxq` Redis ACL user (job queue in DB 1). The `default` user is disabled. No whitespace. |
+| `LITELLM_REDIS_PASSWORD` | Password of the `litellm` Redis ACL user for hardware locks, response caching and two coordination channels. Falls back to `REDIS_PASSWORD`. |
+| `LITELLM_UI_BASIC_AUTH` | `user:pass` for nginx basic auth in front of `/ui/`. Leave empty to disable (LiteLLM's own login still applies). |
+| `LITELLM_USERNAME` / `LITELLM_PASSWORD` | LiteLLM's own admin UI login. |
+
+All requests carry `Authorization: Bearer $AIGATE_TOKEN` (or the relevant per-service override):
+
+```bash
+curl http://localhost:4000/chat/completions \
+  -H "Authorization: Bearer $AIGATE_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{"model": "local-ollama-cpu-llama3.2-3b", "messages": [{"role": "user", "content": "hello"}]}'
+```
+
+Per-service keys/tokens only matter once you flip that service's flag to `1`. Every variable is documented inline in `.env.example` — read the comment above each block before enabling. Notable ones:
+
+- Cloud providers: `GROQ=1`, `CEREBRAS=1`, `OPENROUTER=1`, `HUGGINGFACE=1`, `MISTRAL=1`, `COHERE=1`, `ANTHROPIC=1`, `OPENAI=1` each need their own API key var alongside the flag (e.g. `OPENAI_API_KEY`).
+- `CLAUDEBOX=1` needs Claude OAuth token or Anthropic API key; token defaults to `AIGATE_TOKEN` via `CLAUDEBOX_API_TOKEN`.
+- `PIBOX_ZAI=1` needs a z.ai key; token defaults via `PIBOX_ZAI_API_TOKEN`.
+- `PIBOX=1` needs no outside account; it runs pi on this stack's own models. Set `PIBOX_MODELS` to enabled models that can call tools, and keep agent models (`claudebox-*`, `pibox-*`) out of that list to avoid recursion.
+- `DECIDEALOT=1` starts CPU typed decisions. `DECIDEALOT_CUDA=1` starts its GPU sibling. Laya, Von, and CLM are on by default. `make run-bg` also enables the CUDA Qwen encoder profile. CLM calls `http://litellm:4000/v1/embeddings` on the internal network with model `local-llamacpp-cuda-qwen3-8b`. Set `DECIDEALOT_CLM_ENABLED=false` to run without that GPU dependency. Set `DECIDEALOT_TYPESAFE_API_KEY` in the gitignored `.env` to enable hosted Jev. The `list_models` tool returns TypeSafe's current selectors, and `system_one_batch` accepts independent requests.
+- `MAILBOX=1` needs `MAILBOX_CONFIG` pointing at an existing host YAML file (copy `mailbox/config.example.yaml`, fill IMAP/SMTP creds, put a token under `auth.tokens:`) and `MAILBOX_AUTH_TOKEN` mirroring that token.
+- `TELETHON=1` needs `TELETHON_API_ID`, `TELETHON_API_HASH`, `TELETHON_SESSION` (generate the string session once via the telethon-plus `login` command — see `docs/services/telethon.md` upstream).
+- `CLOUDFLARED=1` / `TAILSCALE=1` are the two supported ways to expose the gateway beyond localhost without opening host ports — prefer these over publishing `4000` directly.
+- CUDA variants of any service (`*_CUDA=1`) require `nvidia-container-toolkit` on the host.
+
+## MCP OAuth and proxy trust
+
+Bearer-key clients need no OAuth setup. When OAuth is required, read [MCP OAuth setup](../../../../docs/mcp-oauth.md), set `PROXY_BASE_URL` to the actual browser-facing HTTPS origin, and register the exact callback shown by LiteLLM. Private HTTPS hosts work if the browser can reach them. Never use an internal Docker hostname as the browser callback.
+
+Headscale deployments set `TS_SERVE_FQDN` to their node's full MagicDNS name. Named Cloudflare tunnels target `nginx-edge:4000`. Keep untrusted containers off `aigate-ingress` and `aigate-proxy`. Their small private CIDRs can be changed in `.env` if they overlap host routes. See the linked upgrade instructions before recreating a running stack.
+
+## Model routing
+
+LiteLLM regenerates its config on every `make run`/`make run-bg`, including only enabled providers. Fallback chains (`litellm/config/fallbacks.json`) are priority-ordered and filtered to what's actually enabled:
+
+1. Free cloud (Groq, Cerebras, OpenRouter, HuggingFace, Mistral, Cohere) — rate-limited/capped, not unlimited.
+2. Subscription (claudebox, pibox-zai) — no per-token billing, but the allowance is metered.
+3. Pay-per-token (Anthropic, OpenAI) — real money per token.
+4. Local (Ollama, talkies, sd.cpp, vLLM, llama.cpp) — no external limits, bounded only by local hardware.
+
+Model names encode the route, e.g. `groq-gpt-oss-120b`, `local-ollama-cpu-llama3.2-3b`, `local-sdcpp-cuda-sd-turbo`. On a rate-limit or failure, LiteLLM automatically retries the next model in that model's fallback chain; the response's `model` field reports who actually served it. Async/long-running calls can go through `/q/` (proxq) instead of the sync path — submit, get a job ID back immediately, poll `/q/__jobs/{id}`.
+
+LiteLLM's resource manager serializes local jobs per hardware class and asks competing services to unload. Aigate's Decidealot launcher shares that Redis lock for Laya and Von, including direct REST, MCP, and batch items. Before CUDA inference it unloads Aigate's local llama.cpp encoder. CLM takes no outer lock because its nested LiteLLM embeddings call owns admission. Remote embeddings remain the remote service's responsibility. This launcher does not evict every other resident GPU service. Direct audiolla, flickies, and predictalot HTTP requests still bypass LiteLLM admission. `POST /v1/unload/{cuda,cpu}` requests manual cleanup across that hardware class. See [resource management](../../../../docs/resource-management.md).
+
+## Data / persistence
+
+All persistent state lives under `.data/` (bind mounts), overridable via `DATA_DIR` or per-service `DATA_DIR_*`. Contents are gitignored; the directory tree itself is tracked via `.gitkeep`.
+
+Audiolla v2.0.0 deletes staged uploads and outputs in `${DATA_DIR_AUDIOLLA}/files` after 24 hours by modification time, including files retained before upgrading. Download results before expiry. `AUDIOLLA_FILES_TTL` changes this duration; `0` disables cleanup. Model caches are excluded. Active processing and downloads can postpone cleanup across CPU and CUDA. See [Audiolla storage and upgrade settings](../../../../docs/services/audiolla.md).

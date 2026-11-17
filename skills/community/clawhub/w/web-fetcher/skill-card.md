@@ -1,42 +1,59 @@
-## Description: <br>
-Web Fetcher routes URLs to article, Feishu document, or video handlers to save fetched content locally as Markdown and media files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Smart web content fetcher - articles and videos from WeChat, Feishu, Bilibili, Zhihu, Toutiao, YouTube, etc. Triggers: '抓取文章', '下载网页', '保存文章', 'fetch URL', '下载视频', '抓取飞书文档', '抓取微信文章', '把这个链接内容保存下来', '下载B站视频', 'download video', 'scrape article'.
 
-## Publisher: <br>
-[alexxxiong](https://clawhub.ai/user/alexxxiong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alexxxiong](https://clawhub.ai/user/alexxxiong)
 
-## Use Case: <br>
-Developers and agents use this skill to fetch webpages, platform articles, Feishu documents, and videos into local Markdown, image, MP4, or MP3 files for later reading, archiving, or analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill fetches arbitrary webpages, images, and videos and writes downloaded content to disk. <br>
-Mitigation: Use a dedicated output directory and fetch only URLs you trust or are authorized to access. <br>
-Risk: Cookie-based modes such as browser cookies, Feishu authenticated fetching, and anti-bot browser fetching can access account-scoped content. <br>
-Mitigation: Enable those modes only deliberately for accounts and content you are authorized to use. <br>
+## Use Case:
 
+Developers and agents use this skill to fetch web articles, Feishu documents, and supported video-platform content into local Markdown, media, image, audio, or video files.
 
-## Reference(s): <br>
-- [Platform Strategies](references/platforms.md) <br>
-- [Adding a New Platform](references/extending.md) <br>
-- [ClawHub Release Page](https://clawhub.ai/alexxxiong/web-fetcher) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, files, shell commands] <br>
-**Output Format:** [Markdown files with localized images, plus MP4 video or MP3 audio files and terminal status text.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are written to a user-selected local directory; optional modes can skip images, choose video quality, extract audio, or use browser cookies.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill can fetch arbitrary URLs and download content from the network.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted URLs, run in an isolated environment where practical, and constrain network access and output directories.
+
+Risk: The --cookies-browser option can reuse logged-in browser sessions.
+
+Mitigation: Avoid --cookies-browser unless the user understands the session exposure; prefer a dedicated browser profile for fetching.
+
+Risk: Downloaded articles, images, audio, and video files may contain untrusted or unexpected content.
+
+Mitigation: Review outputs before use and scan downloaded files according to the deployment environment's security process.
+
+## Reference(s):
+
+- [Web Fetcher ClawHub Release](https://clawhub.ai/alexxxiong/skills/web-fetcher)
+- [Platform Strategies](artifact/references/platforms.md)
+- [Adding a New Platform](artifact/references/extending.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown, local files, and command-line guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Articles are saved as Markdown with localized images; videos are saved as MP4, or MP3 when audio-only mode is used.]
+
+## Skill Version(s):
+
+0.1.1 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

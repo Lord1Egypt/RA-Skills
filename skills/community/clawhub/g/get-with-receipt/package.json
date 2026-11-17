@@ -1,0 +1,15 @@
+{
+  "name": "@receiptprotocol/get-with-receipt",
+  "version": "1.0.7",
+  "private": true,
+  "description": "Name an outcome—from web search to data lookup. Receipt finds eligible paid tools, shows the seller and price, clears agent purchasing under spending limits and purchase approval, and returns the result with signed proof.",
+  "license": "MIT-0",
+  "clawhub": {
+    "publisher": "@receiptprotocol",
+    "category": "Finance",
+    "categories": [
+      "finance"
+    ],
+    "slug": "get-with-receipt"
+  }
+}

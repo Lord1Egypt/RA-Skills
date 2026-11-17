@@ -1,45 +1,63 @@
-## Description: <br>
-AI-powered fertility tracking with personalized temperature pattern detection and multi-signal fusion for ovulation prediction. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-powered fertility tracking with personalized temperature pattern detection and multi-signal fusion for ovulation prediction.
 
-## Publisher: <br>
-[mayi12345](https://clawhub.ai/user/mayi12345) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mayi12345](https://clawhub.ai/user/mayi12345)
 
-## Use Case: <br>
-External users and OpenClaw agents use this skill to track ovulation signals, record cycle observations, and generate fertility-window guidance from temperature, HRV, LH tests, cervical mucus, and symptom data. Treat outputs as reproductive-health tracking assistance, not medical advice or contraception guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles sensitive reproductive-health, symptom, and cycle-history data while making local-only privacy claims that may not hold when Oura, email, Telegram, or other integrations are enabled. <br>
-Mitigation: Review configured integrations before use, store tokens and local data with restricted permissions, and assume external services can receive sensitive metadata when enabled. <br>
-Risk: Partner alerts can disclose sensitive fertility or reproductive-health information to another person. <br>
-Mitigation: Verify recipients, obtain explicit consent, and disable or redact partner notifications unless the user intentionally wants those disclosures. <br>
-Risk: Ovulation predictions may be inaccurate or overtrusted for medical, conception, or contraception decisions. <br>
-Mitigation: Treat predictions as tracking assistance only and verify important decisions with clinical guidance or validated fertility methods. <br>
+## Use Case:
 
+External users and developers use this skill to track cycle data, combine Oura temperature and HRV data with manually recorded LH, mucus, and symptom signals, and generate ovulation timing guidance.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/mayi12345/ovulation-tracking) <br>
-- [Oura personal access tokens](https://cloud.ouraring.com/personal-access-tokens) <br>
-- [Oura daily readiness API](https://api.ouraring.com/v2/usercollection/daily_readiness) <br>
-- [OpenClaw fertility tracker documentation](https://docs.openclaw.ai/skills/fertility-tracker) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance, shell commands, configuration] <br>
-**Output Format:** [Plain text or Markdown guidance with CLI output and JavaScript return objects] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include cycle-day status, ovulation prediction confidence, signal summaries, local JSON state files, and optional partner alert content.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter, changelog, and v2 package report 2.0.0) <br>
+Risk: The skill handles highly sensitive fertility, symptom, LH, cycle-history, Oura, and partner-contact data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Store configuration, tokens, current-cycle files, and user-profile files outside shared or backed-up folders and restrict filesystem access to the user running the agent.
+
+Risk: Automatic partner or email alerts may disclose reproductive-health information to another person.
+
+Mitigation: Enable email or partner alerts only after every recipient has explicitly consented and review message destinations before use.
+
+Risk: Ovulation predictions can be mistaken for clinical or contraception guidance.
+
+Mitigation: Treat generated predictions as informational tracking support and consult qualified medical guidance for clinical, fertility-treatment, or contraception decisions.
+
+Risk: Install commands are not pinned to immutable package versions.
+
+Mitigation: Review the package source and lock dependency versions before installing or deploying the skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mayi12345/skills/ovulation-tracking)
+- [Oura personal access tokens](https://cloud.ouraring.com/personal-access-tokens)
+- [Oura Daily Readiness API](https://api.ouraring.com/v2/usercollection/daily_readiness)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JavaScript examples, shell commands, and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces ovulation predictions, confidence values, cycle-day status, pattern summaries, and alert guidance from locally stored cycle data.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact metadata and changelog declare 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

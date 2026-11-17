@@ -1,42 +1,62 @@
-## Description: <br>
-Automated clinical safety netting for NHS GPs. Follows up with patients after appointments, checks for red flag symptoms, escalates to GP when needed. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automated clinical safety netting for NHS GPs. Follows up with patients after appointments, checks for red flag symptoms, escalates to GP when needed.
 
-## Publisher: <br>
-[ekin-kahraman](https://clawhub.ai/user/ekin-kahraman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ekin-kahraman](https://clawhub.ai/user/ekin-kahraman)
 
-## Use Case: <br>
-NHS GP teams use this skill to follow up with patients after appointments, check for deterioration or red flag symptoms, and escalate concerning, unclear, or missing responses for GP review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-United Kingdom <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles sensitive patient communications and records in a clinical follow-up workflow. <br>
-Mitigation: Use only in a governed clinical environment with explicit patient consent or another approved legal basis, verified recipient identity, approved communication channels, and defined retention, deletion, audit, encryption, and de-identification rules. <br>
-Risk: Automated assessment could affect escalation, resolution, or patient follow-up status. <br>
-Mitigation: Require human clinical review for patient messages and status changes, and escalate red flags, unclear responses, and non-responses to the GP. <br>
-Risk: The skill requires credentials for communication and patient-data storage services. <br>
-Mitigation: Use least-privilege credentials, protect API keys and service-role keys, and restrict database access to the minimum required clinical workflow. <br>
+## Use Case:
 
+NHS GP teams and clinical operations staff can use this agent to follow up with patients after appointments, check responses for configured red flag symptoms, and escalate concerning or unclear outcomes to a GP. It supports, but does not replace, clinical judgement.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ekin-kahraman/ekin-safety-netting) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance, configuration] <br>
-**Output Format:** [Plain-English patient and GP messages with structured status updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires governed access to patient contact, safety-net, communication, and audit data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: The skill handles identifiable patient medical data and patient responses.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an approved encrypted clinical datastore with documented retention and deletion rules before real clinical deployment.
+
+Risk: The skill requires broad backend credentials, including a Supabase service-role key.
+
+Mitigation: Replace broad credentials with narrowly scoped credentials and restrict access to only the records and operations required for follow-up.
+
+Risk: Patients may be contacted through multiple channels, which can expose clinical information or reach unverified recipients.
+
+Mitigation: Verify patient consent and contact channels, and minimize message content to the least clinical detail needed.
+
+Risk: Learning data from patient interactions could preserve sensitive clinical details or reinforce incorrect matching behavior.
+
+Mitigation: Apply governance to learning data, de-identify where possible, and require clinical review before changing red flag matching behavior.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ekin-kahraman/skills/ekin-safety-netting)
+- [ClawHub publisher profile](https://clawhub.ai/user/ekin-kahraman)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Guidance, Configuration, Records]
+
+**Output Format:** [Markdown or plain text messages with structured status and audit details]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May generate patient follow-up messages, GP escalation notices, resolution status, matched red flags, and audit trail entries.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

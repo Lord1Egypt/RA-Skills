@@ -1,42 +1,59 @@
-## Description: <br>
-Trend Scope generates public-opinion trend reports from Feedax data, including sentiment, geography, keyword, media, and time-series analyses. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Trend Scope helps an agent generate public-opinion trend reports from Feedax data, including sentiment, geography, keywords, media sources, and time trends.
 
-## Publisher: <br>
-[longgggggg](https://clawhub.ai/user/longgggggg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[longgggggg](https://clawhub.ai/user/longgggggg)
 
-## Use Case: <br>
-External users and analysts use this skill to turn Chinese public-opinion search requirements into Feedax report queries, summaries, and saved reports for brand monitoring, market analysis, competitor tracking, incident analysis, and trend review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Report queries, filters, aggregation parameters, and an API key are sent to the Feedax report service, and the security summary flags use of an unencrypted raw-IP service endpoint. <br>
-Mitigation: Install only if the Feedax service is trusted, use a dedicated low-privilege API key, and avoid personal, confidential, or sensitive search terms. <br>
-Risk: Generated reports can include article-level details and saved files that may expose sensitive search context if shared broadly. <br>
-Mitigation: Review saved reports before sharing and use JSON-only output or disable hot articles when article-level details are not needed. <br>
+## Use Case:
 
+External users and agents use this skill to monitor brands, markets, competitors, and public events, then generate summarized public-opinion analysis reports from requested search terms and filters.
 
-## Reference(s): <br>
-- [Trend Scope on ClawHub](https://clawhub.ai/longgggggg/trend-scope) <br>
-- [Publisher profile](https://clawhub.ai/user/longgggggg) <br>
-- [Feedax](https://www.feedax.cn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, html, shell commands, configuration, guidance] <br>
-**Output Format:** [Conversation summary plus saved JSON, Markdown, and HTML report files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and FEEDAX_REPORT_API_KEY; reports default to the user's Desktop public-opinion report directory unless another output directory is supplied.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: API keys, search terms, and filters may be sent to the Feedax report service over unencrypted HTTP.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if the Feedax service is trusted, avoid sensitive queries, and ask the publisher to switch API traffic to HTTPS.
+
+Risk: Generated HTML reports may be unsafe to open or share without review.
+
+Mitigation: Prefer json-only output when possible, review generated reports before opening or sharing them, and ask the publisher to escape HTML output and validate links.
+
+Risk: The HTML report depends on externally loaded chart JavaScript.
+
+Mitigation: Use JSON or Markdown output for sensitive workflows, or require bundled or integrity-protected chart assets before relying on HTML reports.
+
+## Reference(s):
+
+- [Trend Scope on ClawHub](https://clawhub.ai/longgggggg/skills/trend-scope)
+- [Feedax service](https://www.feedax.cn)
+- [Area code reference data](artifact/assets/area_codes.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, html, shell commands, configuration]
+
+**Output Format:** [Conversational summary plus saved JSON, Markdown, and HTML report files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and FEEDAX_REPORT_API_KEY; json-only mode can limit output to JSON.]
+
+## Skill Version(s):
+
+1.0.2 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

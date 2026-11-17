@@ -1,41 +1,54 @@
-## Description: <br>
-Fetch latest AI-related YouTube videos from curated channels using YouTube Data API v3 and filter by keywords. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetch latest AI-related YouTube videos from curated channels using YouTube Data API v3 and filter by keywords.
 
-## Publisher: <br>
-[mjohannp](https://clawhub.ai/user/mjohannp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[mjohannp](https://clawhub.ai/user/mjohannp)
 
-## Use Case: <br>
-Developers, researchers, and OpenClaw users use this skill to fetch recent AI-related YouTube videos from configured channels and filter them by keywords, age, and result count. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a YouTube Data API key and can expose the key if stored directly in config.json or a synced shell profile. <br>
-Mitigation: Use a restricted YouTube Data API v3 key stored in ~/.openclaw/secrets/youtube_api_key.txt with tight file permissions, or provide it via YOUTUBE_API_KEY for the current shell session. <br>
-Risk: The skill makes requests to Google and YouTube APIs and depends on external service availability, quotas, and configured channel data. <br>
-Mitigation: Review the configured channels, keywords, and maxAgeDays before use, and monitor YouTube Data API quota usage when running the fetcher regularly. <br>
+## Use Case:
 
+Developers, agents, and OpenClaw users use this skill to fetch recent AI-related YouTube videos from configured channels and return a concise, keyword-filtered list of links.
 
-## Reference(s): <br>
-- [YouTube Data API v3](https://console.cloud.google.com/apis/api/youtube.googleapis.com) <br>
-- [ClawHub skill page](https://clawhub.ai/mjohannp/youtube-ai-videos) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown] <br>
-**Output Format:** [Markdown-style numbered list of YouTube video links with publication age, highlighted keyword matches, and channel names.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a user-provided YouTube Data API v3 key and uses configured channels, keywords, maximum video count, and maximum video age.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The bundled channel-ID helper can fetch user-supplied non-YouTube URLs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted YouTube handles or channel IDs, and validate HTTPS YouTube hostnames while rejecting local and private addresses before using that helper.
+
+Risk: A YouTube API key stored in config.json is visible in plain text.
+
+Mitigation: Store the key in YOUTUBE_API_KEY or the documented secrets file, and restrict it to YouTube Data API v3.
+
+## Reference(s):
+
+- [YouTube Data API v3](https://console.cloud.google.com/apis/api/youtube.googleapis.com)
+- [OpenClaw Docs](https://docs.openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown list of filtered YouTube video links with timestamps, channel names, and matched-keyword emphasis.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a YouTube Data API v3 key; defaults to up to 15 videos from the last 3 days.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata and README badge)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

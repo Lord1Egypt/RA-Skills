@@ -1,40 +1,49 @@
-## Description: <br>
-Use before making a private repository public, before the first push of a new public repo, or when the user asks "is this safe to publish", "check for leaks", or wants a pre-publication scan. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use before making a private repository public, before the first push of a new public repo, or when the user asks "is this safe to publish", "check for leaks", or wants a pre-publication scan. Also use after discovering identifying content already leaked into a public repo's history.
 
-## Publisher: <br>
-[escoffier-labs](https://clawhub.ai/user/escoffier-labs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[escoffier-labs](https://clawhub.ai/user/escoffier-labs)
 
-## Use Case: <br>
-Developers and maintainers use this skill before publishing a repository to check tracked files, Git history, repository hygiene, and public remote state for secrets or identifying content. It returns a ship-or-fix-first verdict with evidence and concrete remediation steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Remediation guidance can include destructive Git operations such as history rewriting, force-pushing, deleting branches or tags, or recreating a repository. <br>
-Mitigation: Review proposed commands before running them, keep an external backup of the repository, and verify cleanup from a fresh clone. <br>
-Risk: A clean working tree scan can miss secrets or identifying content that remain in Git history or public remote refs. <br>
-Mitigation: Run both working-tree and history checks, inspect remote backup branches and tags, and rotate any credential that was ever committed. <br>
+## Use Case:
 
+Developers use this skill to assess whether a repository is ready to publish by checking its working tree, commit history, repository hygiene, and remote state. It produces a ship-or-fix-first assessment with evidence and remediation guidance.
 
-## Reference(s): <br>
-- [content-guard](https://github.com/solomonneas/content-guard) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown report with a checklist table, verdict, evidence, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include destructive Git remediation commands for reviewer approval before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The cleanup guidance proposes disruptive history rewrites, remote updates, and repository deletion, while removal from all copies cannot be guaranteed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the reporting workflow first; require approval before remote changes or deletion; protect backups containing leaked data; rotate exposed credentials promptly; and do not treat a fresh clone as proof that forks, caches, or other copies are clean.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/escoffier-labs/skills/publish-readiness)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with a pass/fail checklist and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Evidence-based ship-or-fix-first verdict with remediation steps]
+
+## Skill Version(s):
+
+1.0.1 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

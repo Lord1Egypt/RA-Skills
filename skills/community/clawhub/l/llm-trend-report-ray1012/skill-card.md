@@ -1,43 +1,54 @@
-## Description: <br>
-跟踪并分析大语言模型（LLM）领域最新发展趋势，输出结构化趋势报告。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+跟踪并分析大语言模型（LLM）领域最新发展趋势，输出结构化趋势报告。
 
-## Publisher: <br>
-[Ray1012](https://clawhub.ai/user/Ray1012) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ray1012](https://clawhub.ai/user/ray1012)
 
-## Use Case: <br>
-External users and developers use this skill to generate structured LLM trend reports covering technical breakthroughs, leading model providers, market dynamics, regulation, safety, forecasts, and notable projects or papers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated LLM trend claims or forecasts may be outdated, incomplete, or misleading because the skill asks the agent to search current public sources. <br>
-Mitigation: Verify important claims against current, authoritative sources before relying on the report for business, legal, or technical decisions. <br>
-Risk: The package references an optional papers list that is not included in the artifact. <br>
-Mitigation: Treat missing reference content as unavailable and avoid claiming coverage of that list unless it is supplied separately. <br>
-Risk: The skill may activate for broad AI-frontier or technology-prediction prompts and defaults to Chinese output. <br>
-Mitigation: Set the desired scope, language, date range, and source expectations explicitly when requesting a report. <br>
+## Use Case:
 
+External users, analysts, and developers use this skill to generate Chinese-language LLM trend reports covering technical breakthroughs, major model providers, market dynamics, regulation, safety, forecasts, and notable projects or papers.
 
-## Reference(s): <br>
-- [2026年 LLM 全景图](references/llm-landscape-2026.md) <br>
-- [ClawHub skill page](https://clawhub.ai/Ray1012/llm-trend-report-ray1012) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown structured trend report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Defaults to Chinese report content and may include sourced trend analysis, forecasts, tables, and reference lists.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill can activate for broad AI-frontier or model-dynamics requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it when Chinese-language LLM trend analysis is intended, and review the generated report for scope and relevance.
+
+Risk: The skill text references references/papers-trends.md, but that file is not included in the package evidence.
+
+Mitigation: Treat that reference as unavailable unless the publisher adds it in a later release.
+
+## Reference(s):
+
+- [2026年 LLM 全景图](references/llm-landscape-2026.md)
+- [ClawHub skill page](https://clawhub.ai/ray1012/skills/llm-trend-report-ray1012)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Structured Markdown report in Chinese]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses current web research and packaged reference material to organize trends into repeatable report sections.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

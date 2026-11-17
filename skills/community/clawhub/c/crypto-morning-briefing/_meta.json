@@ -1,6 +1,1 @@
-{
-  "ownerId": "kn72jmd20ws94jr0p8b3p24wyn82abgj",
-  "slug": "crypto-morning-briefing",
-  "version": "1.0.0",
-  "publishedAt": 1781440416157
-}
+{"id":"crypto-morning-briefing","name":"加密货币市场晨报","version":"1.0.0","author":"openclaw","description":"结构化加密货币市场晨报生成工具，基于公开网页检索获取最新市场信息","emoji":"📈","category":"finance"}

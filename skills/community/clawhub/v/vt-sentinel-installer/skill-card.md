@@ -1,41 +1,54 @@
-## Description: <br>
-Install or upgrade VT Sentinel security plugin for OpenClaw when users ask to set up, enable, update, or upgrade VirusTotal scanning, malware protection, or file security scanning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Installs or upgrades the VT Sentinel OpenClaw security plugin for VirusTotal malware and file security scanning.
 
-## Publisher: <br>
-[king-tero](https://clawhub.ai/user/king-tero) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[king-tero](https://clawhub.ai/user/king-tero)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to install or upgrade the VT Sentinel security plugin through approved OpenClaw CLI commands, then restart and verify the gateway so the plugin becomes active. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Installing or updating the plugin changes the user's OpenClaw extension state and restarts the user-scope gateway. <br>
-Mitigation: Review the OpenClaw commands before approving and verify the plugin state with `openclaw plugins list` after the operation. <br>
-Risk: The installed plugin performs VirusTotal/VTAI security scanning and may have privacy implications for files submitted or inspected. <br>
-Mitigation: Inspect the external plugin package first if privacy behavior, automatic scanning, blocking, VirusTotal/VTAI use, or audit logging requires additional assurance. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to install or update VT Sentinel, restart the gateway, and verify that VirusTotal-backed file scanning and blocking hooks are active.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/king-tero/vt-sentinel-installer) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/king-tero) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the openclaw CLI and user approval before making install, update, uninstall, or gateway restart changes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.10.0 (source: server release metadata) <br>
+Risk: The skill installs or upgrades a persistent security plugin and restarts the OpenClaw gateway.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the install or update before running commands, inspect the package with openclaw plugins inspect when provenance matters, and verify the plugin after restart.
+
+Risk: The activated plugin can scan new or downloaded files and block risky execution patterns.
+
+Mitigation: Review VT Sentinel behavior and configuration before enabling it, especially on systems where file scanning or blocking could interrupt normal workflows.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/king-tero/skills/vt-sentinel-installer)
+- [king-tero Publisher Profile](https://clawhub.ai/user/king-tero)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the openclaw CLI; proposes install, update, restart, and verification commands for user approval.]
+
+## Skill Version(s):
+
+1.10.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

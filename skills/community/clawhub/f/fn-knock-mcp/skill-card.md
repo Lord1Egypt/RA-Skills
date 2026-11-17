@@ -1,40 +1,57 @@
-## Description: <br>
-Manages a fn-knock gateway through its admin API for reverse proxy, DDNS, SSL/ACME, tunnels, scanner, whitelist, and related administration tasks; requires fn-knock on localhost:7998. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage fn-knock gateway via its admin API, including reverse proxy, DDNS, SSL/ACME, tunnels, scanner, whitelist, and related gateway administration tasks.
 
-## Publisher: <br>
-[kci-lnk](https://clawhub.ai/user/kci-lnk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kci-lnk](https://clawhub.ai/user/kci-lnk)
 
-## Use Case: <br>
-Developers and operators use this MCP server to let an AI assistant inspect and administer a self-hosted fn-knock gateway, including routing, certificates, DDNS, tunnels, scanner settings, sessions, logs, and maintenance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives an AI broad control over gateway, firewall, tunnel, DDNS, scanner, session, reset, delete, import, and gateway-setting operations. <br>
-Mitigation: Install only when that level of administration is intended, and require explicit user approval before destructive or network-affecting changes. <br>
-Risk: The fn-knock HMAC secret protects administrative access and can expose gateway control if mishandled. <br>
-Mitigation: Keep the secret in an environment variable or chmod 600 credentials file, do not place it in MCP configuration, and review or pin the external package source before use. <br>
+## Use Case:
 
+Developers and operators use this MCP server to let an AI assistant inspect and administer a local fn-knock self-hosted gateway for NAS and home lab environments.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kci-lnk/fn-knock-mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance, API calls] <br>
-**Output Format:** [Markdown with JSON and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide or propose MCP tool calls against the configured fn-knock admin API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The MCP server exposes broad gateway administration capabilities, including route, tunnel, firewall, backup, session, and authentication-related changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require manual confirmation before applying administrative changes and restrict use to trusted operators and trusted fn-knock deployments.
+
+Risk: HMAC secret setup and automatic secret extraction can expose sensitive credentials if handled casually.
+
+Mitigation: Use a secret manager or tightly permissioned credential file, avoid placing secrets in shell history or MCP configuration, and disable automatic extraction unless explicitly approved.
+
+Risk: The security evidence rates the release as suspicious because the skill gives an AI-accessible MCP server broad admin power with weak safety framing.
+
+Mitigation: Install only from a pinned, audited package or reviewed local source, and scan the skill before deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/kci-lnk/skills/fn-knock-mcp)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Configuration, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline JSON and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include fn-knock gateway state, administrative action results, and setup guidance for local MCP configuration.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

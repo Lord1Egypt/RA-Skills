@@ -1,42 +1,52 @@
-## Description: <br>
-Manage OVHcloud services via API for OVH domains, DNS records, VPS, cloud instances, dedicated servers, email, SSL certificates, and service management tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage OVHcloud services via API for domains, DNS records, VPS, cloud instances, dedicated servers, email, SSL certificates, billing, and related service operations.
 
-## Publisher: <br>
-[pushp1997](https://clawhub.ai/user/pushp1997) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[pushp1997](https://clawhub.ai/user/pushp1997)
 
-## Use Case: <br>
-Developers and operators use this skill to administer OVHcloud resources through an agent-assisted CLI workflow, including account lookup, DNS changes, server lifecycle actions, cloud instance inspection, SSL certificate listing, and billing or order review. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can change or delete DNS records and refresh zones. <br>
-Mitigation: Require explicit human confirmation before DNS create, update, delete, or refresh operations, and review the target domain, record ID, record type, and target value before execution. <br>
-Risk: The skill can stop, start, or reboot VPS and dedicated server resources. <br>
-Mitigation: Use least-privilege OVH API credentials and require human approval before lifecycle actions that can disrupt running services. <br>
-Risk: The skill can read account, order, and billing information. <br>
-Mitigation: Treat CLI output as sensitive, avoid exposing billing results in shared logs, and scope credentials away from accounts or projects the agent does not need. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [OVH API token creation](https://ca.api.ovh.com/createToken/) <br>
-- [ClawHub skill page](https://clawhub.ai/pushp1997/ovh) <br>
+## Use Case:
 
+Developers and operators use this skill to inspect and manage OVHcloud account resources, including domains, DNS zones, VPS instances, cloud projects, dedicated servers, SSL certificates, bills, and orders.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON-capable CLI output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read account and billing data and may trigger OVHcloud resource changes through authenticated API calls.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can make immediate changes to live OVH account resources, including DNS records and server power actions, using broad OVH credentials.
+
+Mitigation: Use least-privileged OVH consumer keys, keep separate read-only and write credentials where possible, and manually confirm destructive or availability-impacting operations before execution.
+
+Risk: The setup guidance relies on installing the OVH Python SDK without a pinned version.
+
+Mitigation: Pin and review the OVH Python SDK dependency before using the bundled CLI in a managed environment.
+
+## Reference(s):
+
+- [OVH API token creation](https://ca.api.ovh.com/createToken/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell command examples and optional JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The bundled CLI supports a --json flag for machine-readable OVH API responses.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

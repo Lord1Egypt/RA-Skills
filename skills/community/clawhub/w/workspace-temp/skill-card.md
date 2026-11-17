@@ -1,43 +1,57 @@
-## Description: <br>
-Manage temporary files in workspace temp directory. All non-essential files must go to temp/, keeping workspace root clean. Auto-detects workspace from openclaw.json config. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage temporary files in workspace temp directory. All non-essential files must go to temp/, keeping workspace root clean. Auto-detects workspace from openclaw.json config.
 
-## Publisher: <br>
-[lichenyang-zk](https://clawhub.ai/user/lichenyang-zk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lichenyang-zk](https://clawhub.ai/user/lichenyang-zk)
 
-## Use Case: <br>
-Developers and agent users use this skill to keep downloaded, copied, generated, and intermediate files inside a per-session workspace temp directory instead of cluttering the workspace root. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Temporary copies may contain sensitive data such as passwords, API keys, or secrets. <br>
-Mitigation: Avoid processing secrets unless necessary, and clean the per-session temp directory after use. <br>
-Risk: The skill depends on reading OpenClaw workspace configuration and session information to choose the temp directory. <br>
-Mitigation: Install only when that local read access is acceptable and verify the configured workspace before use. <br>
-Risk: The promise not to modify pre-existing workspace files is guidance rather than technical enforcement. <br>
-Mitigation: Review file operations before execution and keep writes restricted to the resolved per-session temp directory. <br>
+## Use Case:
 
+Developers and agent operators use this skill to keep temporary, cached, downloaded, and externally copied files in a session-scoped workspace temp directory instead of the workspace root.
 
-## Reference(s): <br>
-- [Workspace Temp on ClawHub](https://clawhub.ai/lichenyang-zk/workspace-temp) <br>
-- [Publisher profile](https://clawhub.ai/user/lichenyang-zk) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, configuration, shell commands] <br>
-**Output Format:** [Markdown guidance with procedural steps and code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs focus on temp directory resolution, file handling rules, cleanup guidance, and permission-aware error handling.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.5 (source: server release metadata) <br>
+Risk: The skill reads OpenClaw workspace configuration and uses the session list to resolve a temp directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the required OpenClaw configuration access and session-list capability before enabling the skill.
+
+Risk: User-specified external files may be copied into a workspace temp folder and may contain sensitive data.
+
+Mitigation: Avoid routing secrets through the skill unless the temp directory can be reviewed and cleaned afterward.
+
+Risk: Temporary files can remain in the workspace temp directory after processing.
+
+Mitigation: Use the documented cleanup workflow for large, old, or session-residual temp files when cleanup is requested.
+
+## Reference(s):
+
+- [Workspace Temp on ClawHub](https://clawhub.ai/lichenyang-zk/skills/workspace-temp)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Configuration, Files]
+
+**Output Format:** [Markdown guidance with inline pseudocode and file-path conventions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides agents to copy or create temporary files under <workspace>/temp/<session_id>/ and to avoid falling back to the workspace root.]
+
+## Skill Version(s):
+
+1.1.5 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

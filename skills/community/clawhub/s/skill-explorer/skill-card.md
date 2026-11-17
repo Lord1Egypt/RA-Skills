@@ -1,40 +1,50 @@
-## Description: <br>
-Systematically discover, evaluate, compare, and assess OpenClaw skills to find a suitable and safe option for a specific task. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Systematically discover, evaluate, compare, and assess OpenClaw skills to find safe, high-quality options for a specific task.
 
-## Publisher: <br>
-[riverfor](https://clawhub.ai/user/riverfor) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[riverfor](https://clawhub.ai/user/riverfor)
 
-## Use Case: <br>
-Developers and agent operators use this skill to search for OpenClaw skills, compare candidates, inspect metadata, review safety signals, and produce recommendation reports before installation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The helper script can force-install arbitrary third-party skills during inspection. <br>
-Mitigation: Prefer metadata inspection and manual review first; run download or analyze actions only in a disposable or tightly scoped environment after user approval. <br>
+## Use Case:
 
+Developers and agent users use this skill to search for OpenClaw skills, compare candidates, inspect quality and safety signals, and prepare recommendations before installation.
 
-## Reference(s): <br>
-- [Skill Explorer on ClawHub](https://clawhub.ai/riverfor/skill-explorer) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [explore.sh](artifact/scripts/explore.sh) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown reports with comparison tables, recommendation summaries, safety notes, and inline shell commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include candidate metrics, trade-offs, installation guidance, and manual review findings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata and artifact _meta.json) <br>
+Risk: The helper workflow can force-install unreviewed third-party skills locally before they have been inspected.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review third-party skills in an isolated environment, avoid the helper script's download action on unknown skills on a main machine, and prefer static unpacking before installation.
+
+## Reference(s):
+
+- [Skill Explorer on ClawHub](https://clawhub.ai/riverfor/skills/skill-explorer)
+- [Publisher profile: riverfor](https://clawhub.ai/user/riverfor)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown reports with comparison tables, recommendations, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include security review notes, installation recommendations, and decision-support summaries.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

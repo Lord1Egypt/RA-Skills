@@ -1,42 +1,56 @@
-## Description: <br>
-Helps an agent compress long conversations by preserving important goals, decisions, preferences, and active tasks while summarizing useful context and discarding low-value exchanges. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps an agent compress long conversations by preserving important goals, preferences, decisions, and unfinished work while summarizing useful history and discarding low-value exchanges.
 
-## Publisher: <br>
-[c595390153-a11y](https://clawhub.ai/user/c595390153-a11y) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[c595390153-a11y](https://clawhub.ai/user/c595390153-a11y)
 
-## Use Case: <br>
-Developers and agent users use this skill to keep long-running conversations usable by compacting history into a short summary and maintaining structured memory for preferences, active tasks, decisions, and key context. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Conversation compression can persist user details, account or configuration information, and other sensitive personal context. <br>
-Mitigation: Review generated memory after compression and avoid storing passwords, API keys, session tokens, private account details, or sensitive personal data. <br>
-Risk: Optional automatic hook configuration can prompt memory updates during future compaction events without a separate manual request. <br>
-Mitigation: Enable the automatic hook only when the user accepts future memory-update prompts, and keep manual review in the compression workflow. <br>
+## Use Case:
 
+Developers and agent users use this skill to keep long Claude Code or OpenClaw conversations usable by compacting prior context into concise summaries and structured memory. It is most relevant when context is nearly full, when a user requests compression, or when optional PreCompact hooks are configured.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/c595390153-a11y/context-compression-claude-code-custom) <br>
-- [Memory Template](artifact/memory-template.md) <br>
-- [PreCompact Hook Setup](artifact/setup-hook.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown with structured memory entries and optional hook configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write or update a persistent memory file when compression is performed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The skill can guide an agent to store conversation details in long-term memory, including sensitive credentials or configuration information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit review before any memory write and exclude secrets, tokens, passwords, private keys, session cookies, and sensitive account details from memory.
+
+Risk: Optional hook configuration can make compression and post-compression memory prompts run automatically.
+
+Mitigation: Enable hooks only after reviewing the hook configuration and confirming that automatic memory updates remain subject to user approval and redaction.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/c595390153-a11y/skills/context-compression-claude-code-custom)
+- [Publisher Profile](https://clawhub.ai/user/c595390153-a11y)
+- [setup-hook.md](artifact/setup-hook.md)
+- [memory-template.md](artifact/memory-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Configuration, Shell commands]
+
+**Output Format:** [Markdown guidance with optional JSON, YAML, and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide updates to a structured memory file when the agent and user permit persistent memory writes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

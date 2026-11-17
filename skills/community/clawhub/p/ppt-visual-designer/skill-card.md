@@ -1,39 +1,53 @@
-## Description: <br>
-PPT Visual Designer helps agents turn business logic, organizational structures, system flows, or written presentation content into Block-style slide outlines, HTML presentations, or python-pptx code. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Turns complex business logic, organizational structures, and process narratives into Block-style visual presentation plans, HTML presentations, or Python-pptx generation code.
 
-## Publisher: <br>
-[michaelfanke211](https://clawhub.ai/user/michaelfanke211) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[michaelfanke211](https://clawhub.ai/user/michaelfanke211)
 
-## Use Case: <br>
-Presentation creators, consultants, and business teams use this skill to convert dense business concepts or process descriptions into modular Block-style PPT structures, HTML presentation code, or python-pptx code. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated HTML or python-pptx code may contain mistakes or unsafe assumptions if run without review. <br>
-Mitigation: Review generated code and presentation content before executing, presenting, or sharing it. <br>
-Risk: Sensitive business context may be included in prompts or generated presentation material. <br>
-Mitigation: Avoid submitting confidential material unless it is approved for use as presentation design input. <br>
+## Use Case:
 
+Presentation creators, consultants, and business teams use this skill to convert dense business, organizational, or process content into modular slide structures or generation-ready presentation code.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Guidance] <br>
-**Output Format:** [Markdown slide outline, HTML presentation code, or Python-pptx code] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include visual design specifications for colors, typography, rounded containers, flywheels, and before/after layouts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The trigger can be broader than ideal for ambiguous block or slide-related requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the user wants Block-style presentation design before applying the skill to ambiguous requests.
+
+Risk: The skill instructions are written in Chinese, which may make review harder for non-Chinese-speaking operators.
+
+Mitigation: Use bilingual review or translation for governance review when reviewers cannot directly evaluate the source instructions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/michaelfanke211/skills/ppt-visual-designer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown-style slide outlines, complete HTML presentation code, or Python-pptx code.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs follow a Block-style visual system with rounded containers, tone-on-tone color rules, compact keywords, flywheel patterns, and before-after comparison layouts.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

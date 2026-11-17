@@ -1,42 +1,52 @@
-## Description: <br>
-Analyzes internal support ticket spreadsheets, counts received, resolved, and late-response tickets, categorizes tickets by business-module keywords, and generates daily summary reports with charts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ticket Stats analyzes internal support ticket spreadsheets, counts received, resolved, and late-response tickets, classifies issues by business module, and generates daily summary reports with visual charts.
 
-## Publisher: <br>
-[FlankCat](https://clawhub.ai/user/FlankCat) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[flankcat](https://clawhub.ai/user/flankcat)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Support operations teams and internal business analysts use this skill to analyze Excel or CSV ticket exports, classify issues by module, and produce daily ticket metrics, overdue-response details, and charts.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Internal ticket files and generated reports can expose ticket IDs, issue descriptions, response timing, and support trends.
+
+Mitigation: Run the skill only on ticket data the user is authorized to analyze, and restrict sharing of generated text reports and PNG charts.
+
+Risk: Generated report and chart files may be written to an output directory that is not appropriate for sensitive operational data.
+
+Mitigation: Choose a secure output directory before running the analysis and apply the same retention and access controls used for the source ticket data.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Internal operations and support teams use this skill to summarize Excel or CSV ticket data, monitor daily ticket volume and response timeliness, and identify common business modules from keyword matches. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, code, shell commands, files, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Ticket spreadsheets and generated reports may contain internal support details. <br>
-Mitigation: Run the skill only on spreadsheets intended for summarization and store report and chart outputs in locations with appropriate internal access controls. <br>
-Risk: Installing Python dependencies from untrusted sources can introduce supply-chain risk. <br>
-Mitigation: Install pandas, openpyxl, and optional matplotlib only from trusted Python package sources. <br>
-Risk: Keyword-based ticket classification can miss or misclassify issues when ticket language differs from the configured keyword lists. <br>
-Mitigation: Review module labels and update keyword lists before using the summaries for operational decisions. <br>
+**Output Format:** [Markdown guidance with Python and shell examples; generated TXT reports and optional PNG chart files.]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [Ticket Stats on ClawHub](https://clawhub.ai/FlankCat/ticket-stats) <br>
+**Other Properties Related to Output:** [Processes local Excel or CSV ticket files with optional date and output directory arguments.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, files, guidance] <br>
-**Output Format:** [Plain text report plus optional PNG chart files; guidance may include Markdown and inline shell commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads user-provided Excel or CSV ticket spreadsheets and writes dated report and chart files to the selected output directory.] <br>
+1.0.0 (source: frontmatter and server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

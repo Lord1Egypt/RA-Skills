@@ -1,37 +1,48 @@
-## Description: <br>
-Avoid common Ansible mistakes - YAML syntax traps, variable precedence, idempotence failures, and handler gotchas. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Avoid common Ansible mistakes - YAML syntax traps, variable precedence, idempotence failures, and handler gotchas.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Developers and engineers use this skill as a concise Ansible reference for avoiding common playbook mistakes around YAML syntax, variables, idempotence, handlers, privilege escalation, conditionals, loops, facts, and dry runs. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Users may apply Ansible commands or playbook changes to real infrastructure without sufficient review, including changes involving privilege escalation or vault passwords. <br>
-Mitigation: Review generated or selected Ansible commands and playbook changes before execution, test against non-production inventory when possible, and handle vault or sudo passwords according to local credential-management policy. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/ansible) <br>
+## Use Case:
 
+Developers and engineers use this skill as a compact Ansible reference for avoiding common playbook mistakes in YAML syntax, variable handling, idempotence, handlers, privilege escalation, conditionals, loops, facts, and error handling.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown reference notes with inline Ansible commands and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the ansible binary on Linux or macOS when users apply the guidance.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may remind an agent about Ansible privilege-escalation options such as become or sudo.
+
+Mitigation: Review any generated playbook changes involving privilege escalation before running them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/ansible)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown reference guidance with inline Ansible examples and command flags]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Markdown-only skill; requires the ansible binary on Linux or macOS for applying the guidance in an agent workflow.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

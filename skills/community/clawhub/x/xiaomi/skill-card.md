@@ -1,41 +1,57 @@
-## Description: <br>
-Control Xiaomi Home devices on a local network with miiocli for status checks, power toggles, and MIOT property updates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Control Xiaomi Home devices over the local network with miiocli, including status checks, power toggles, and MIOT property changes for smart plugs, humidifiers, and rice cookers.
 
-## Publisher: <br>
-[yiqiezhenxi](https://clawhub.ai/user/yiqiezhenxi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[yiqiezhenxi](https://clawhub.ai/user/yiqiezhenxi)
 
-## Use Case: <br>
-Developers and home automation users use this skill to let an agent translate natural language requests into miiocli commands for Xiaomi Home devices on a local network, including status checks, power toggles, and MIOT property updates. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Xiaomi device tokens can grant local control of smart-home devices. <br>
-Mitigation: Treat tokens like passwords: do not share them in chats, commit them to repositories, or store them in broadly readable files. <br>
-Risk: Generated miiocli commands can change physical appliance state, including power, heating, cooking, and humidifier settings. <br>
-Mitigation: Require explicit user confirmation before state-changing commands and verify the target device and action before execution. <br>
-Risk: Token extraction and dependency installation steps may run local commands before device control is configured. <br>
-Mitigation: Review token-extraction and install commands before running them, and execute them only in a trusted local environment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Xiaomi Skill Page](https://clawhub.ai/yiqiezhenxi/xiaomi) <br>
+## Use Case:
 
+Developers and smart-home operators use this skill to translate requests into miiocli commands for locally controlling configured Xiaomi devices and checking device status.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and device configuration placeholders.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands require device IP addresses and Xiaomi tokens, and may change physical device state.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Xiaomi device tokens may be stored or shared in plaintext.
+
+Mitigation: Treat tokens like passwords and keep them in a secret manager, ignored private config file, or owner-only permissioned storage.
+
+Risk: Direct appliance control can affect plugs, heaters, cookers, or similar devices.
+
+Mitigation: Require explicit confirmation and verify the target device name before issuing power or appliance-changing commands.
+
+Risk: The install workflow depends on python-miio and a constrained click version.
+
+Mitigation: Review and pin dependency versions before running the install command in a production or shared environment.
+
+## Reference(s):
+
+- [Xiaomi skill page on ClawHub](https://clawhub.ai/yiqiezhenxi/skills/xiaomi)
+- [Publisher profile on ClawHub](https://clawhub.ai/user/yiqiezhenxi)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include miiocli commands that require device IP addresses and Xiaomi device tokens.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,61 @@
-## Description: <br>
-Autonomous meme token launcher on BNB Chain that senses trends, generates token concepts and logos, and can deploy tokens on-chain. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Autonomous meme token launcher on BNB Chain that senses trends, generates concepts, creates logos, and deploys tokens on-chain.
 
-## Publisher: <br>
-[pearl799](https://clawhub.ai/user/pearl799) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[pearl799](https://clawhub.ai/user/pearl799)
 
-## Use Case: <br>
-External developers and operators use this skill to run an OpenClaw-based agent that monitors market and news signals, generates meme-token assets, and launches BNB Chain tokens through DISTRICT9 or Flap modes. It is intended for users who explicitly want autonomous on-chain token deployment and understand wallet, gas, tax, and irreversible transaction risks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can use wallet keys to deploy tokens and spend BNB on irreversible mainnet transactions. <br>
-Mitigation: Run dry-run first, use a dedicated low-balance hot wallet, and enable live launches only after reviewing the configured chain, platform, and initial buy amount. <br>
-Risk: The DISTRICT9 treasury and tax model affects launched tokens and downstream trading economics. <br>
-Mitigation: Review and accept the documented DISTRICT9 and agent revenue split before deploying any token. <br>
-Risk: Proof-of-concept scripts may be unsafe for live use without additional operator controls. <br>
-Mitigation: Avoid running PoC scripts until embedded credentials are removed and live-transaction confirmation gates are added. <br>
+## Use Case:
 
+External developers and operators use DISTRICT9 to configure an OpenClaw agent that monitors crypto, news, and trend signals, generates meme-token concepts and assets, and launches tokens through District9 or Flap on BNB Chain.
 
-## Reference(s): <br>
-- [ClawHub DISTRICT9 skill page](https://clawhub.ai/pearl799/district9) <br>
-- [Publisher profile](https://clawhub.ai/user/pearl799) <br>
-- [DISTRICT9 homepage](https://www.district9.club) <br>
-- [OpenClaw](https://openclaw.ai) <br>
-- [Flap](https://flap.sh) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, YAML configuration examples, generated token metadata, and transaction status text.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires uv, a BNB Chain wallet key, and an LLM API key; live mode can upload metadata and submit signed blockchain transactions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: server release metadata) <br>
+Risk: Live operation can autonomously spend real BNB for token deployment, gas, metadata publication, and initial buys.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Start with dry-run or testnet mode, use a fresh low-balance wallet, cap launch settings, and run mainnet only after reviewing the exact configuration.
+
+Risk: Real-looking PoC credentials are included in the artifact.
+
+Mitigation: Ignore or rotate any shipped PoC credentials and provide fresh secrets through environment variables.
+
+Risk: On-chain transactions and published token metadata may be irreversible or difficult to retract.
+
+Mitigation: Review generated token names, symbols, logos, metadata, and destination contracts before live operation.
+
+## Reference(s):
+
+- [DISTRICT9](https://www.district9.club)
+- [DISTRICT9 Deploy Guide](https://www.district9.club/deploy)
+- [OpenClaw](https://openclaw.ai)
+- [Flap.sh](https://flap.sh)
+- [ClawHub DISTRICT9 Skill Page](https://clawhub.ai/pearl799/skills/district9)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance, Files]
+
+**Output Format:** [Markdown with inline shell commands and YAML configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [When live commands are run, the artifact can generate token metadata and logo files, publish metadata, submit blockchain transactions, and return explorer or project URLs.]
+
+## Skill Version(s):
+
+0.2.0 (source: ClawHub release metadata; artifact pyproject.toml reports 0.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

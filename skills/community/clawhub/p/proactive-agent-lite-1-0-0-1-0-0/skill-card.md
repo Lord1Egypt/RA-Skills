@@ -1,40 +1,52 @@
-## Description: <br>
-Transform AI agents from task-followers into proactive partners with memory architecture, reverse prompting, and self-healing patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transform AI agents from task-followers into proactive partners with memory architecture, reverse prompting, and self-healing patterns. Lightweight version focused on core proactive capabilities.
 
-## Publisher: <br>
-[jeayoo](https://clawhub.ai/user/jeayoo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[jeayoo](https://clawhub.ai/user/jeayoo)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and OpenClaw agent users use this skill to add proactive behavior patterns, continuity practices, reverse prompting, and self-healing guidance to compatible agents.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill encourages unsolicited suggestions, which may increase agent initiative beyond a user's preferred level.
+
+Mitigation: Review the agent platform's proactive behavior and memory settings, start with conservative defaults, and tune suggestion frequency to the deployment context.
+
+Risk: Continuity and memory-oriented behavior may preserve context longer than expected.
+
+Mitigation: Confirm memory retention settings and privacy boundaries before deploying the skill in workflows that may include sensitive information.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and agent operators use this skill to add proactive behavior patterns to OpenClaw agents, including memory-oriented continuity, reverse prompting, self-healing responses, and mission alignment. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill intentionally makes an agent more initiative-taking and memory-oriented, which may make suggestions too frequent or retain more context than expected. <br>
-Mitigation: Monitor proactive behavior after installation, tune initiative through configuration where available, and confirm OpenClaw memory and privacy settings before use. <br>
-Risk: Privacy and safe-default claims in the skill documentation are behavioral guidance rather than a technical guarantee. <br>
-Mitigation: Review agent outputs and deployment settings, and do not rely on the skill alone to enforce privacy boundaries. <br>
+**Output Format:** [Natural-language guidance, Markdown responses, code snippets, shell commands, and configuration recommendations.]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jeayoo/proactive-agent-lite-1-0-0-1-0-0) <br>
+**Other Properties Related to Output:** [Server security evidence reports a markdown-only skill with no install commands, code execution, external network behavior, or credential handling.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Configuration instructions] <br>
-**Output Format:** [Markdown instructional text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only skill with no scripts, credentials, installs, or hidden data access in the artifacts.] <br>
+1.0.0 (source: server release evidence and artifact _meta.json)
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release evidence and artifact metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

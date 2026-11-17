@@ -1,43 +1,57 @@
-## Description: <br>
-Evaluates stock dividend yield, payout safety, dividend growth, coverage, and income quality through the AISA API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+通过 AISA 评估股票的股息率、派息安全性、增长情况和收益质量。触发条件：当用户关心股息安全、收益型投资、股息增长或股息贵族筛选时使用。
 
-## Publisher: <br>
-[bibaofeng](https://clawhub.ai/user/bibaofeng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bibaofeng](https://clawhub.ai/user/bibaofeng)
 
-## Use Case: <br>
-External users and agents use this skill to request dividend-income analysis for stocks, including yield, payout safety, dividend growth, coverage, safety scoring, and multi-ticker comparisons. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Ticker prompts and dividend-analysis requests are sent to an external AISA-compatible API using AISA_API_KEY. <br>
-Mitigation: Install only if you trust the AISA service, keep AISA_API_KEY secret, and avoid sending sensitive portfolio details unless intended. <br>
-Risk: AISA_BASE_URL can redirect requests to a different endpoint if overridden. <br>
-Mitigation: Verify any AISA_BASE_URL override before running the skill and leave the default endpoint in place unless a trusted alternative is intended. <br>
-Risk: Dividend analysis may be mistaken for investment advice. <br>
-Mitigation: Treat the output as informational financial analysis and independently verify data before making investment decisions. <br>
+## Use Case:
 
+External users and agents use this skill to analyze dividend yield, payout safety, dividend growth, and income quality for one or more stock tickers. It is intended for informational dividend-investing analysis and is not investment advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bibaofeng/stock-dividend-zh) <br>
-- [AISA API endpoint](https://api.aisa.one/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, shell commands, guidance] <br>
-**Output Format:** [Markdown dividend analysis with tables and an optional JSON summary block] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Python 3 and AISA_API_KEY; can compare multiple ticker symbols and can append a structured JSON summary when requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact frontmatter) <br>
+Risk: An undocumented AISA_BASE_URL override can redirect the AISA API key and requests to another server.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run only in controlled environments where AISA_BASE_URL cannot be set by untrusted shell startup files, wrappers, CI variables, or other users; consider pinning the openai dependency.
+
+Risk: Ticker prompts and AISA_API_KEY-backed requests leave the machine for the AISA service.
+
+Mitigation: Use an approved AISA endpoint and avoid submitting sensitive non-public investment information.
+
+Risk: The output is financial analysis and may be mistaken for investment advice.
+
+Mitigation: Present results as informational only and require user review against current market data before any investment decision.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bibaofeng/skills/stock-dividend-zh)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown dividend analysis with optional JSON summary]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires AISA_API_KEY and python3; sends ticker prompts and API-key-backed requests to the configured AISA-compatible service.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

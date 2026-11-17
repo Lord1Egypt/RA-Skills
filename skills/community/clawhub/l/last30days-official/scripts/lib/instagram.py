@@ -112,6 +112,14 @@ def _log(msg: str):
     log.source_log("Instagram", msg)
 
 
+def _sc_headers(token: str) -> Dict[str, str]:
+    """Build ScrapeCreators request headers."""
+    return {
+        "x-api-key": token,
+        "Content-Type": "application/json",
+    }
+
+
 def _parse_date(item: Dict[str, Any]) -> Optional[str]:
     """Parse date from ScrapeCreators Instagram item to YYYY-MM-DD.
 
@@ -241,7 +249,7 @@ def _user_reels(
             from urllib.parse import urlencode
             params = urlencode({"handle": handle})
             url = f"{reels_url}?{params}"
-            headers = http.scrapecreators_headers(token)
+            headers = _sc_headers(token)
             headers["User-Agent"] = http.USER_AGENT
             data = http.get(url, headers=headers, timeout=30, retries=2)
         except Exception as e:
@@ -252,7 +260,7 @@ def _user_reels(
             resp = _requests.get(
                 reels_url,
                 params={"handle": handle},
-                headers=http.scrapecreators_headers(token),
+                headers=_sc_headers(token),
                 timeout=30,
             )
             resp.raise_for_status()
@@ -299,7 +307,7 @@ def search_instagram(
             from urllib.parse import urlencode
             params = urlencode({"query": core_topic})
             url = f"{SCRAPECREATORS_BASE}/v2/instagram/reels/search?{params}"
-            headers = http.scrapecreators_headers(token)
+            headers = _sc_headers(token)
             headers["User-Agent"] = http.USER_AGENT
             data = http.get(url, headers=headers, timeout=30, retries=2)
         except Exception as e:
@@ -310,7 +318,7 @@ def search_instagram(
             resp = _requests.get(
                 f"{SCRAPECREATORS_BASE}/v2/instagram/reels/search",
                 params={"query": core_topic},
-                headers=http.scrapecreators_headers(token),
+                headers=_sc_headers(token),
                 timeout=30,
             )
             resp.raise_for_status()
@@ -395,7 +403,7 @@ def fetch_captions(
             resp = _requests.get(
                 f"{SCRAPECREATORS_BASE}/v2/instagram/media/transcript",
                 params={"url": url},
-                headers=http.scrapecreators_headers(token),
+                headers=_sc_headers(token),
                 timeout=15,
             )
             if resp.status_code == 200:

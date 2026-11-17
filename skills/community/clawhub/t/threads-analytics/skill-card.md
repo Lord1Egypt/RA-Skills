@@ -1,42 +1,54 @@
-## Description: <br>
-Track Threads performance and analytics, including views, likes, replies, reposts, follower counts, and engagement data for a connected Threads account. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Track Threads performance and analytics, including views, likes, replies, reposts, quotes, and follower data for a connected Threads account.
 
-## Publisher: <br>
-[snoopyrain](https://clawhub.ai/user/snoopyrain) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[snoopyrain](https://clawhub.ai/user/snoopyrain)
 
-## Use Case: <br>
-External users, creators, and social media teams use this skill to query read-only Threads analytics through a Boring MCP connector and summarize account, post, and historical performance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The MCP connector URL contains an embedded authentication token that may allow access to connected Threads analytics if shared. <br>
-Mitigation: Keep the connector URL private, install only if you trust Boring with read-only analytics access, and revoke or regenerate the URL if it may have been exposed. <br>
-Risk: The skill relies on a third-party MCP service to retrieve account and performance metrics. <br>
-Mitigation: Connect only accounts whose read-only metrics can be shared with that service and review the returned analytics before acting on them. <br>
+## Use Case:
 
+External users and developers use this skill to query Boring MCP tools for read-only Threads account and post analytics, then present performance metrics and trends in clear summaries or tables.
 
-## Reference(s): <br>
-- [Threads Analytics on ClawHub](https://clawhub.ai/snoopyrain/threads-analytics) <br>
-- [Boring MCP Connector Documentation](https://boring-doc.aiagent-me.com/getting-started/mcp.html) <br>
-- [Boring Documentation](https://boring-doc.aiagent-me.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Analysis, Markdown, Guidance] <br>
-**Output Format:** [Markdown summaries and tables based on MCP tool responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a user-configured read-only MCP connector for Threads analytics.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: release metadata) <br>
+Risk: The Boring MCP URL contains an embedded bearer token and should be treated as a credential.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the MCP URL private, avoid pasting it into chats or support tickets, and revoke or regenerate it from Boring settings if it may have been exposed.
+
+Risk: Installing the skill grants Boring read-only access to Threads analytics and account metadata.
+
+Mitigation: Install only when that read-only access is acceptable for the target Threads account.
+
+## Reference(s):
+
+- [Threads Analytics on ClawHub](https://clawhub.ai/snoopyrain/skills/threads-analytics)
+- [Boring MCP setup documentation](https://boring-doc.aiagent-me.com/getting-started/mcp.html)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown summaries and tables with MCP tool call guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a private Boring MCP Connector URL with an embedded bearer token.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

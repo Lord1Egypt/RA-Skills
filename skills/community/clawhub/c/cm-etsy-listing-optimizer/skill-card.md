@@ -1,40 +1,53 @@
-## Description: <br>
-Audits and optimizes Etsy listings for SEO, conversion, and shop placement across titles, tags, descriptions, photos, attributes, pricing, and shipping. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audit and optimize Etsy listings for SEO, conversion, and shop placement, including titles, tags, descriptions, photos, attributes, pricing, and shipping for handmade, print-on-demand, and digital download sellers.
 
-## Publisher: <br>
-[charlie-morrison](https://clawhub.ai/user/charlie-morrison) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[charlie-morrison](https://clawhub.ai/user/charlie-morrison)
 
-## Use Case: <br>
-Etsy sellers, shop operators, and marketplace consultants use this skill to audit underperforming or new listings, rewrite titles, tags, and descriptions, and prioritize improvements for search visibility and conversion. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives commercial listing, pricing, shipping, advertising, and shop-policy recommendations that could affect seller revenue or marketplace compliance. <br>
-Mitigation: Review recommendations before applying them, especially pricing, shipping, advertising budgets, intellectual-property language, and shop-policy changes. <br>
-Risk: Server evidence notes capability tags that are broader than the supplied text-only artifact, including sensitive credentials, wallet, crypto, and purchase-related capabilities. <br>
-Mitigation: Do not provide Etsy passwords, cookies, API keys, wallet access, payment authority, or purchase authority to this skill; use it only for listing audit and drafting help. <br>
+## Use Case:
 
+External Etsy sellers use this skill to audit underperforming listings, rewrite SEO-facing listing content, and prioritize fixes that improve marketplace search visibility and conversion.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/charlie-morrison/cm-etsy-listing-optimizer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with listing scorecards, rewritten listing copy, prioritized recommendations, and risk warnings] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include title and tag rewrites, description templates, photo plans, pricing, shipping, ads, and off-Etsy traffic recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may provide business advice on pricing, ads, and shop operations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review recommendations against current shop data, margins, platform rules, and seller judgment before applying them.
+
+Risk: The skill is Etsy-specific and may activate for broader marketplace growth questions.
+
+Mitigation: Use it for Etsy listing and shop optimization; choose a marketplace-specific workflow for Amazon, Shopify, eBay, Mercari, wholesale, or off-platform print-on-demand stores.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/charlie-morrison/skills/cm-etsy-listing-optimizer)
+
+## Skill Output:
+
+**Output Type(s):** [analysis, markdown, guidance]
+
+**Output Format:** [Markdown with listing audit scorecards, rewritten listing copy, prioritized recommendations, and risk warnings]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Etsy title rewrites, 13-tag sets, descriptions, photo plans, pricing guidance, shipping recommendations, ads guidance, and off-Etsy traffic plans.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

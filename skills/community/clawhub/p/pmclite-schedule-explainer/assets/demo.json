@@ -1,0 +1,26 @@
+{
+  "notice": "示例数据 · 不是你的真实工单",
+  "work_order": "WO-0028",
+  "product": "控制板 V2",
+  "quantity": 50,
+  "line": "SMT产线A",
+  "lineSource": "工序 workCenter 指定",
+  "hoursModel": "batch",
+  "hours": 50,
+  "start": "2026-11-12",
+  "end": "2026-11-20",
+  "timeline": [
+    {
+      "date": "2026-11-12 前",
+      "text": "该线仍被 WO-0031 占用 · 整段顺延，不与其他单共线"
+    },
+    {
+      "date": "2026-11-12",
+      "text": "WO-0028 开工，落到 SMT产线A · 工序 workCenter 指定"
+    },
+    {
+      "date": "2026-11-20",
+      "text": "完工 · 50h 工时 + 非工作日不计入"
+    }
+  ]
+}

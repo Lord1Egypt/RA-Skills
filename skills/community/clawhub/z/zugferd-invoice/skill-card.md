@@ -1,44 +1,59 @@
-## Description: <br>
-Merges a ZUGFeRD 2.1 or Factur-X invoice PDF with a time report or related PDF into a PDF/A-3b e-invoice with embedded XML for German B2B and government workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Merges a ZUGFeRD 2.1/Factur-X invoice PDF and a supporting time report into a PDF/A-3b e-invoice with embedded XML for German B2B and government submission.
 
-## Publisher: <br>
-[quantx-heiko](https://clawhub.ai/user/quantx-heiko) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[quantx-heiko](https://clawhub.ai/user/quantx-heiko)
 
-## Use Case: <br>
-Developers and finance operations users can use this skill to prepare ZUGFeRD or Factur-X e-invoice PDFs that combine visible invoice and time-report pages while preserving embedded invoice XML. It is intended for German and EU electronic invoicing workflows that require PDF/A-3 and EN16931-oriented validation. <br>
-
-### Deployment Geography for Use: <br>
-Germany and European Union <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The security scan verdict is suspicious and recommends human review before installation. <br>
-Mitigation: Install only after reviewing the artifact and publisher, and run it in an environment appropriate for processing invoice PDFs. <br>
-Risk: The workflow executes local command-line tools against invoice documents and can create or overwrite output files. <br>
-Mitigation: Use explicit input and output paths, keep backups of source PDFs, and validate the generated PDF before relying on it for business or government submission. <br>
-Risk: The scan guidance warns about trusting the maintainer workflow before broad use. <br>
-Mitigation: Treat this as a third-party workflow, pin and review external tool downloads such as MustangProject, and require explicit approval before using it on sensitive invoices. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ZUGFeRD Standard](https://www.ferd-net.de/) <br>
-- [MustangProject](https://github.com/ZUGFeRD/mustangproject) <br>
-- [EN16931 Compliance](https://ec.europa.eu/digital-building-blocks/wikis/display/DIGITAL/EN16931+compliance) <br>
-- [ClawHub skill page](https://clawhub.ai/quantx-heiko/zugferd-invoice) <br>
+## Use Case:
 
+Developers and finance-operations users can use this skill to generate compliant German electronic invoice PDFs by combining an existing ZUGFeRD invoice with supporting time-report documentation. The primary workflow keeps both documents visible, while the fallback workflow embeds the supporting document as an attachment.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance, Files] <br>
-**Output Format:** [Markdown guidance with command-line examples and generated PDF files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires local Java, GhostScript, MustangProject, and user-provided PDF inputs; generated PDFs should be validated before submission.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Germany and European Union
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The package includes temporary XML invoice artifacts containing plaintext invoice data.
+
+Mitigation: Remove packaged temporary XML files before installation or redistribution, and avoid committing generated invoice artifacts.
+
+Risk: The workflow relies on a persistent MustangProject JAR download whose integrity is not verified by the skill.
+
+Mitigation: Download MustangProject from a trusted source and verify the JAR with a trusted checksum or signature before use.
+
+Risk: Processing sensitive or untrusted invoice PDFs may expose local files or leave temporary data behind.
+
+Mitigation: Run the workflow without elevated privileges in an isolated working directory and clean temporary files after each run.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/quantx-heiko/skills/zugferd-invoice)
+- [ZUGFeRD Standard](https://www.ferd-net.de/)
+- [MustangProject](https://github.com/ZUGFeRD/mustangproject)
+- [EN16931 Compliance](https://ec.europa.eu/digital-building-blocks/wikis/display/DIGITAL/EN16931+compliance)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Shell commands, Configuration, Guidance, Files]
+
+**Output Format:** [Markdown guidance with Python workflow commands that produce PDF files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs depend on local Java, GhostScript, MustangProject, and input PDF validation results.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

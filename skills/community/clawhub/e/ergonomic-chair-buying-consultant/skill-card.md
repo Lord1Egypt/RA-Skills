@@ -1,40 +1,53 @@
-## Description: <br>
-Guide ergonomic chair buyers through height, weight, posture, and usage questions to determine the seat size, lumbar support, and armrest specs they need, without sales bias. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guide ergonomic chair buyers through height, weight, posture, and usage questions to determine the exact seat size, lumbar support, and armrest specs they need - no sales bias.
 
-## Publisher: <br>
-[arbazex](https://clawhub.ai/user/arbazex) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[arbazex](https://clawhub.ai/user/arbazex)
 
-## Use Case: <br>
-External users use this skill to choose ergonomic chair specifications for their body size, work habits, posture concerns, desk setup, flooring, climate, and region. The skill produces a spec-first recommendation and a short list of matching product starting points without treating the guidance as medical advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The consultation can ask for body measurements and discomfort details. <br>
-Mitigation: Share only information the user is comfortable putting in chat, and avoid treating persistent pain or medical conditions as something the chair recommendation can diagnose or resolve. <br>
-Risk: Product suggestions and seller claims may be outdated or region-specific. <br>
-Mitigation: Verify model dimensions, warranty terms, availability, certifications, and seller claims before purchase. <br>
+## Use Case:
 
+External users use this skill to evaluate ergonomic chair requirements before purchase. The agent gathers body measurements, work habits, setup details, and regional context, then returns a structured chair specification and product starting points.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/arbazex/ergonomic-chair-buying-consultant) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, analysis, markdown] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Structured consultation output with non-negotiable, recommended, and optional chair specifications plus up to five product suggestions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The consultation may ask for personal body measurements, approximate weight, location, and discomfort details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Share only the ergonomic fit details needed for the recommendation and avoid unnecessary health detail.
+
+Risk: Chair suggestions may be mistaken for endorsements or medical advice.
+
+Mitigation: Treat product suggestions as research starting points and consult a qualified professional for persistent or significant pain.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/arbazex/skills/ergonomic-chair-buying-consultant)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Analysis, Markdown]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Structured consultation with prioritized chair specifications, risk flags, and up to five product suggestions.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

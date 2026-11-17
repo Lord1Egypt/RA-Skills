@@ -18,14 +18,14 @@ This is the fundamental principle that unites **TDD (Test-Driven Development)** 
 | **TDD** | Test drives design | RED-GREEN-REFACTOR | Git history shows test commits before implementation |
 | **BDD** | Behavior describes intent | Given-When-Then scenarios | Tests have Feature/Scenario docstrings |
 
-**Both are required.** TDD ensures tests come first; BDD ensures tests describe behavior, not implementation details.
+**Both are required.** TDD ensures tests come first; BDD ensures tests describe behavior.
 
 ### The Fourth Law: Understanding Before Code
 
 The fourth principle addresses **cargo cult programming** - the ritual inclusion of code that "looks right" but nobody can explain. Studies show up to 48% of AI-generated code contains vulnerabilities from unexamined adoption.
 
 **Understanding Verification Questions:**
-- Can I explain WHY this code exists, not just WHAT it does?
+- Can I explain WHY this code exists as well as WHAT it does?
 - What would break if I removed this line?
 - Why this approach over simpler alternatives?
 - When would this fail?
@@ -42,44 +42,101 @@ Classic TDD works because humans "feel their way through uncertainty":
 
 When AI pre-plans implementation before writing tests, the RED phase becomes theater. The Iron Law prevents this by requiring **documented evidence of failure before any intervention**.
 
-## Enforcement Levels
+## What the Failing Test Has to Protect
 
-### Level 1: Self-Enforcement (Default)
+The Iron Law asks for a failing test before the change. It does not
+ask for one test per changed line, and a suite grown that way is worse
+than a smaller one. Every test is a claim about what must stay true.
+A test pinning something nobody required reports failure when nothing
+broke, and the cost lands on whoever changes that code next, who has
+to decide whether the assertion meant anything.
 
-Claude recognizes Iron Law violations in its own thought process.
+Before writing the RED test, name the constraint it defends:
 
-**Red Flags That Trigger Self-Enforcement:**
+| The test protects | Looks like |
+|-------------------|-----------|
+| A business rule | An order below the minimum quantity is rejected |
+| An invariant | A result's two halves cannot disagree about the verdict |
+| A contract at a boundary | The hook exits 2 on a denied command, and 0 otherwise |
+| A recorded defect | The exact input that produced the reported failure |
 
-| Thought Pattern | Iron Law Violation | Required Action |
-|-----------------|-------------------|-----------------|
-| "Let me plan the implementation first" | Skipping RED phase | Write failing test FIRST |
-| "I know what tests we need" | Pre-conceived implementation | Document failure, THEN design tests |
-| "The test should check for X" | Implementation-driven test | Describe BEHAVIOR, not implementation |
-| "This will work because..." | Assumption without evidence | TEST IT, capture evidence |
-| "The design is straightforward" | Skipping uncertainty exploration | Write test, let design EMERGE |
-| "It's just documentation/config" | Documentation Exception fallacy | Markdown/YAML/shell have testable structure |
-| "It's just a module update" | Execution markdown exception | Apply content assertion levels (L1/L2/L3) per leyline:testing-quality-standards |
-| "The user wants this quickly" | Speed rationalization | Quality gates are non-negotiable |
-| "Files exist, so it works" | Existence ≠ functionality | Test BEHAVIOR, not just existence |
+If none of the four fits, the honest answer is that this change does
+not need a test first. Say which and say why. That answer is a
+finding about the change.
 
-**Self-Check Protocol:**
+### The test that enforces the wrong constraint
 
-```markdown
-## Iron Law Self-Check
+Two failure modes, and only the first one is loud:
 
-Before writing ANY code:
-1. [ ] Do I have documented evidence of a failure/need?
-2. [ ] Am I about to write a test that validates a pre-conceived implementation?
-3. [ ] Am I feeling uncertainty about the design? (Good - that's what tests are for)
-4. [ ] Have I let the test drive the implementation, or vice versa?
-5. [ ] Can I explain WHY this approach, not just WHAT it does?
+- **Pins an implementation detail.** It asserts the call order, the
+  private helper, the intermediate data shape. The behavior is
+  unchanged and the test is red, so the next author edits the test to
+  match the code. From then on the test asserts whatever the code
+  does, which is nothing.
+- **Freezes a decision that was never a requirement.** A default
+  value, a log string, a field order that happened to be convenient.
+  Nobody remembers whether it was chosen or defaulted into, so it
+  survives every review as though it were load-bearing.
 
-If I answered "no" to #1, #3, or #5, or "yes" to #2 or #4: STOP AND RESET.
-```
+The check that separates them: state the constraint in the language of
+the domain, without naming a function or a file. If that sentence
+cannot be written, the test is pinning a decision rather than a rule.
+
+### BDD earns its ceremony the same way
+
+Given-When-Then is worth its verbosity when the Then clause is a
+business outcome somebody outside the code would recognize. Written
+against an internal call sequence it is the same implementation-detail
+test with three more lines of scaffolding.
+
+## Five Ways to Check It Held
+
+These run from cheapest and least reliable to most mechanical. The
+later ones are machine contracts rather than advice, and the guidance
+to write intent and constraints instead of steps does not reach them:
+a pre-commit hook and a coverage gate cannot be reasoned with, which
+is the point of them. The strength budget that draws that line is in
+`Skill(abstract:skill-authoring)` module `persuasion-principles.md`.
+
+### Level 1: Reading Your Own Work (Default)
+
+Notice when the test was written to match code that already existed.
+The constraints below say what the RED phase protects and why:
+
+- The failing test comes before the implementation plan, because a
+  plan written first decides the design the test was meant to find.
+- Tests describe behavior, not the implementation, since a test that
+  pins an internal call sequence reports failure when nothing broke.
+- "This will work because..." is a claim, so run it and capture the
+  output as evidence.
+- Documentation, config, shell and execution markdown have testable
+  structure. Apply the content assertion levels (L1/L2/L3) from
+  `leyline:testing-quality-standards` rather than exempting them.
+- Time pressure does not waive the gate: a skipped test moves the
+  cost to whoever changes the code next.
+- A file existing is not evidence that it works. Test what it does.
+
+**Questions Worth Asking First:**
+
+These are diagnostic questions, and none of them blocks the work. A
+confident "no" to any of them is useful information about the change,
+and sometimes the honest answer is that this change does not need a
+test first. Say which and why.
+
+1. Is there documented evidence of the failure or the need?
+2. Would this test validate a pre-conceived implementation rather
+   than drive one?
+3. Is there real uncertainty about the design? Uncertainty is what
+   tests are for, and its absence often means the design is already
+   decided.
+4. Did the test drive the implementation, or the reverse?
+5. Can the choice of approach be explained as well as its behavior?
 
 ### Execution Markdown = Code
 
-> **Note:** L1/L2/L3 below refer to content assertion depth per `leyline:testing-quality-standards`, distinct from this document's Enforcement Levels 1-5.
+> **Note:** L1/L2/L3 below refer to content assertion depth per
+> `leyline:testing-quality-standards`, distinct from the five check levels in
+> this document.
 
 Markdown files under `skills/`, `agents/`, `modules/`, and `commands/` directories are execution markdown. Claude interprets them as behavioral instructions. They require content assertions following the L1/L2/L3 taxonomy defined in `leyline:testing-quality-standards/modules/content-assertion-levels.md`.
 
@@ -89,7 +146,7 @@ Markdown files under `skills/`, `agents/`, `modules/`, and `commands/` directori
 - **L2 assertions** (code example validity) are required when the file contains JSON, YAML, or code blocks that Claude will copy as templates
 - **L3 assertions** (behavioral contracts) are required when the file defines decision frameworks, version gates, or behavioral guidance that affects user outcomes
 
-The Documentation Exception case study demonstrated that 37 BDD tests were needed for a single skill's content. Content assertion levels provide the framework for knowing WHICH tests to write, not just that tests are needed.
+The Documentation Exception case study demonstrated that 37 BDD tests were needed for a single skill's content. Content assertion levels provide the framework for knowing WHICH tests to write.
 
 ## BDD Test Structure Requirement
 
@@ -291,7 +348,7 @@ plugin (or "all").
 
 ### Level 5: Coverage Gate Enforcement
 
-Require evidence of test quality, not just test existence.
+Require evidence of test quality as well as test existence.
 
 **Three-Pillar Coverage:**
 
@@ -505,13 +562,13 @@ Based on community best practices:
 
 ## Summary
 
-The Iron Law is not just a principle - it's a system of enforcement:
+The Iron Law is a system of enforcement, not only a principle:
 
 1. **Self-Enforcement**: Red flags table, self-check protocol
 2. **Adversarial Verification**: RED/GREEN/REFACTOR subagents
 3. **Git History Analysis**: Post-hoc verification of TDD compliance
 4. **Pre-Commit Hooks**: Prevent violations at commit time
-5. **Coverage Gates**: Ensure test quality, not just existence
+5. **Coverage Gates**: Ensure test quality beyond mere existence
 6. **Self-Improvement**: Learn from violations, strengthen rules
 
 **The goal**: Make it easier to follow the Iron Law than to violate it.

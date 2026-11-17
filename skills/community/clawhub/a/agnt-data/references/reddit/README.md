@@ -1,17 +1,17 @@
 # Reddit API Reference
 
 **App name:** `reddit`
-**Base URL:** `https://api.agntdata.dev/v1/data/reddit`
+**Base URL:** `https://api.superagnt.com/v1/data/reddit`
 **Endpoints:** 29
 
 Unified access to subreddit metadata, post threads, user activity, and search. Built for LLMs and automation — not one-off scraping.
 
 ## Authentication
 
-All requests require the agntdata API key:
+All requests require the superagnt API key:
 
 ```
-Authorization: Bearer $AGNTDATA_API_KEY
+Authorization: Bearer $SUPERAGNT_API_KEY
 ```
 
 ---
@@ -57,7 +57,7 @@ The following JSON defines all available tools with their parameters. Each tool 
 ```json
 [
   {
-    "name": "agntdata_reddit_Similar_Subreddits",
+    "name": "superagnt_reddit_Similar_Subreddits",
     "description": "Similar Subreddits",
     "method": "GET",
     "path": "/getSimilarSubreddits",
@@ -79,7 +79,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_reddit_Post_Duplicates",
+    "name": "superagnt_reddit_Post_Duplicates",
     "description": "Post Duplicates",
     "method": "GET",
     "path": "/getPostDuplicates",
@@ -101,7 +101,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_reddit_Subreddit_Moderators",
+    "name": "superagnt_reddit_Subreddit_Moderators",
     "description": "Subreddit Moderators",
     "method": "GET",
     "path": "/getSubredditModerators",
@@ -119,7 +119,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_reddit_Subreddit_Rules",
+    "name": "superagnt_reddit_Subreddit_Rules",
     "description": "Subreddit Rules",
     "method": "GET",
     "path": "/getSubredditRules",
@@ -137,7 +137,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_reddit_User_Overview",
+    "name": "superagnt_reddit_User_Overview",
     "description": "User Overview",
     "method": "GET",
     "path": "/getUserOverview",
@@ -168,7 +168,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_reddit_Search_Users",
+    "name": "superagnt_reddit_Search_Users",
     "description": "Search Users",
     "method": "GET",
     "path": "/getSearchUsers",
@@ -190,7 +190,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_reddit_Best_Popular_Posts",
+    "name": "superagnt_reddit_Best_Popular_Posts",
     "description": "Best Popular Posts",
     "method": "GET",
     "path": "/getBestPopularPosts",
@@ -205,7 +205,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_reddit_Controversial_Posts_By_Subreddit",
+    "name": "superagnt_reddit_Controversial_Posts_By_Subreddit",
     "description": "Controversial Posts By Subreddit",
     "method": "GET",
     "path": "/getControversialPostsBySubreddit",
@@ -232,7 +232,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_reddit_User_Post_Rank_In_Subreddit",
+    "name": "superagnt_reddit_User_Post_Rank_In_Subreddit",
     "description": "User Post Rank In Subreddit",
     "method": "GET",
     "path": "/getUserPostRankInSubreddit",
@@ -268,7 +268,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_reddit_Subreddit_Info",
+    "name": "superagnt_reddit_Subreddit_Info",
     "description": "Subreddit Info",
     "method": "GET",
     "path": "/getSubredditInfo",
@@ -286,7 +286,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_reddit_Comments_By_Subreddit",
+    "name": "superagnt_reddit_Comments_By_Subreddit",
     "description": "Comments By Subreddit",
     "method": "GET",
     "path": "/getCommentsBySubreddit",
@@ -308,7 +308,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_reddit_Post_Comments_With_Sort",
+    "name": "superagnt_reddit_Post_Comments_With_Sort",
     "description": "Post Comments With Sort",
     "method": "GET",
     "path": "/getPostCommentsWithSort",
@@ -335,7 +335,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_reddit_Profile",
+    "name": "superagnt_reddit_Profile",
     "description": "Profile",
     "method": "GET",
     "path": "/getProfile",
@@ -353,7 +353,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_reddit_Post_Comments",
+    "name": "superagnt_reddit_Post_Comments",
     "description": "Post Comments",
     "method": "GET",
     "path": "/getPostComments",
@@ -371,7 +371,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_reddit_User_Stats",
+    "name": "superagnt_reddit_User_Stats",
     "description": "User Stats",
     "method": "GET",
     "path": "/getUserStats",
@@ -389,7 +389,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_reddit_Search_Posts",
+    "name": "superagnt_reddit_Search_Posts",
     "description": "Search Posts",
     "method": "GET",
     "path": "/getSearchPosts",
@@ -406,7 +406,7 @@ The following JSON defines all available tools with their parameters. Each tool 
         },
         "sort": {
           "type": "string",
-          "description": "you can just select one item from below:\n`relevance`\n`hot`\n`top`\n`new`\n`comments`"
+          "description": "Sort order. Use 'top' to filter by time."
         },
         "subreddit": {
           "type": "string",
@@ -414,7 +414,7 @@ The following JSON defines all available tools with their parameters. Each tool 
         },
         "time": {
           "type": "string",
-          "description": "you can just select one item from below:\n`hour`\n`day`\n`week`\n`month`\n`year`\n`all`"
+          "description": "Time window. Only applies with sort 'top'; any other sort is refused with time set."
         }
       },
       "required": [
@@ -423,7 +423,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_reddit_Search_Subreddits",
+    "name": "superagnt_reddit_Search_Subreddits",
     "description": "Search Subreddits",
     "method": "GET",
     "path": "/getSearchSubreddits",
@@ -445,7 +445,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_reddit_New_Subreddits",
+    "name": "superagnt_reddit_New_Subreddits",
     "description": "New Subreddits",
     "method": "GET",
     "path": "/getNewSubreddits",
@@ -460,7 +460,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_reddit_Popular_Subreddits",
+    "name": "superagnt_reddit_Popular_Subreddits",
     "description": "Popular Subreddits",
     "method": "GET",
     "path": "/getPopularSubreddits",
@@ -475,7 +475,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_reddit_Post_Details",
+    "name": "superagnt_reddit_Post_Details",
     "description": "Post Details",
     "method": "GET",
     "path": "/getPostDetails",
@@ -493,7 +493,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_reddit_Posts_By_Subreddit",
+    "name": "superagnt_reddit_Posts_By_Subreddit",
     "description": "Posts By Subreddit",
     "method": "GET",
     "path": "/getPostsBySubreddit",
@@ -520,7 +520,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_reddit_Top_Comments_By_Username",
+    "name": "superagnt_reddit_Top_Comments_By_Username",
     "description": "Top Comments By Username",
     "method": "GET",
     "path": "/getTopCommentsByUsername",
@@ -547,7 +547,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_reddit_Popular_Posts",
+    "name": "superagnt_reddit_Popular_Posts",
     "description": "Popular Posts",
     "method": "GET",
     "path": "/getPopularPosts",
@@ -569,7 +569,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_reddit_Top_Posts_By_Subreddit",
+    "name": "superagnt_reddit_Top_Posts_By_Subreddit",
     "description": "Top Posts By Subreddit",
     "method": "GET",
     "path": "/getTopPostsBySubreddit",
@@ -596,7 +596,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_reddit_Comments_By_Username",
+    "name": "superagnt_reddit_Comments_By_Username",
     "description": "Comments By Username",
     "method": "GET",
     "path": "/getCommentsByUsername",
@@ -623,7 +623,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_reddit_Top_Posts_By_Username",
+    "name": "superagnt_reddit_Top_Posts_By_Username",
     "description": "Top Posts By Username",
     "method": "GET",
     "path": "/getTopPostsByUsername",
@@ -650,7 +650,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_reddit_Posts_By_Username",
+    "name": "superagnt_reddit_Posts_By_Username",
     "description": "Posts By Username",
     "method": "GET",
     "path": "/getPostsByUsername",
@@ -677,7 +677,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_reddit_Rising_Popular_Posts",
+    "name": "superagnt_reddit_Rising_Popular_Posts",
     "description": "Rising Popular Posts",
     "method": "GET",
     "path": "/getRisingPopularPosts",
@@ -692,7 +692,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_reddit_Top_Popular_Posts",
+    "name": "superagnt_reddit_Top_Popular_Posts",
     "description": "Top Popular Posts",
     "method": "GET",
     "path": "/getTopPopularPosts",
@@ -719,12 +719,12 @@ The following JSON defines all available tools with their parameters. Each tool 
 ## Example
 
 ```bash
-curl -X GET "https://api.agntdata.dev/v1/data/reddit/getSimilarSubreddits?param=value" \
-  -H "Authorization: Bearer $AGNTDATA_API_KEY"
+curl -X GET "https://api.superagnt.com/v1/data/reddit/getSimilarSubreddits?param=value" \
+  -H "Authorization: Bearer $SUPERAGNT_API_KEY"
 ```
 
 ## Links
 
-- [Documentation](https://agnt.mintlify.app)
-- [API Reference](https://agnt.mintlify.app/apis/social/reddit)
-- [Dashboard](https://app.agntdata.dev/dashboard)
+- [Documentation](https://superagnt.com/docs)
+- [API Reference](https://superagnt.com/docs/apis/social/reddit)
+- [superagnt app](https://app.superagnt.com/dashboard)

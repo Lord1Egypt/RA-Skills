@@ -1,43 +1,58 @@
-## Description: <br>
-Secretary Memory provides an OpenClaw memory system for partitioned recall, session summaries, preference extraction, conflict checks, archiving, and full-text search. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Secretary Memory helps OpenClaw agents operate a partitioned local memory system for session summaries, user preferences, project notes, full-text search, conflict detection, archival, restore, and generated skill suggestions.
 
-## Publisher: <br>
-[wgj24](https://clawhub.ai/user/wgj24) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wgj24](https://clawhub.ai/user/wgj24)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to maintain a long-term local memory workspace, search prior sessions, summarize conversations, manage user preferences and projects, and surface conflicts or follow-ups. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores and reuses conversation-derived data that may include sensitive information. <br>
-Mitigation: Configure the memory directory deliberately, avoid recording secrets or sensitive third-party data, and review stored memories before reuse. <br>
-Risk: External LLM summarization may expose memory content outside the local workspace if enabled. <br>
-Mitigation: Disable external summarization or route it only through approved providers and data-handling controls. <br>
-Risk: Daemon, cron, and generated-skill workflows can change memory or future skill behavior with weak approval boundaries. <br>
-Mitigation: Enable scheduled or generated-skill workflows only after manual review, and inspect generated skills and triggers before use. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to create, search, summarize, archive, and recall local assistant memory across sessions. It is intended for workflows that need persistent project context, user preference tracking, and memory maintenance commands.
 
-## Reference(s): <br>
-- [Secretary Memory ClawHub release](https://clawhub.ai/wgj24/secretary-memory) <br>
-- [OpenClaw secretary memory specification](references/SPEC.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, code references, and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read and write local memory files, SQLite FTS indexes, summaries, user profile data, and generated skills when invoked.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.1.0 (source: server release metadata) <br>
+Risk: The skill stores and reuses private conversation data in a persistent local memory system.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an isolated non-root memory directory, review recalled context before injecting it into prompts, and periodically inspect or delete stored profile, graph, index, and summary files.
+
+Risk: Automation paths include remote LLM summarization, daemon or watch modes, restore operations, and generated skills.
+
+Mitigation: Disable or avoid those paths unless the configuration and memory directory contents have been reviewed and trusted.
+
+Risk: Stored memories or generated skills can carry prompt-injection or stale-context risk into later sessions.
+
+Mitigation: Review and scan memory content and generated skill files before deployment or reuse.
+
+## Reference(s):
+
+- [Secretary Memory specification](references/SPEC.md)
+- [ClawHub skill page](https://clawhub.ai/wgj24/skills/secretary-memory)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and local memory artifacts.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May persist local profile, graph, index, summary, archive, restore-log, and generated-skill files.]
+
+## Skill Version(s):
+
+3.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

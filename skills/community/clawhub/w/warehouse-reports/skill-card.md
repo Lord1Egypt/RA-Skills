@@ -1,41 +1,51 @@
-## Description: <br>
-Generates warehouse analytics charts, product table images, CSV summaries, and report-ready visuals from a local SQLite warehouse database. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate warehouse analytics charts, table images, and report-ready visuals from SQLite/CSV data.
 
-## Publisher: <br>
-[ChinmayaGit](https://clawhub.ai/user/ChinmayaGit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[chinmayagit](https://clawhub.ai/user/chinmayagit)
 
-## Use Case: <br>
-Warehouse analysts, operators, and developers use this skill to generate chart images, a missing-products CSV, and KPI text summaries from a selected SQLite warehouse database for reports and presentations. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated report files may contain business-sensitive warehouse data. <br>
-Mitigation: Write outputs only to an approved local directory and handle PNG, CSV, and text files according to the relevant data policy. <br>
-Risk: Existing report files with the same names may be overwritten. <br>
-Mitigation: Use a dedicated output folder or review existing files before running the scripts. <br>
-Risk: The scripts read the database path supplied with --db. <br>
-Mitigation: Point --db only at the intended SQLite warehouse database. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ChinmayaGit/warehouse-reports) <br>
+## Use Case:
+
+Developers and analysts use this skill to generate warehouse reporting visuals and summary files from local SQLite or CSV-backed warehouse data for PDF or slide reporting.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Local Python scripts read the selected warehouse database and write files to the chosen output directory.
+
+Mitigation: Run the skill only against intended local databases and choose an output directory where generated report files are expected.
+
+Risk: Generated CSV files may carry spreadsheet risks when product data comes from untrusted sources.
+
+Mitigation: Sanitize generated CSV content before opening it in spreadsheet software.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, code, files, guidance] <br>
-**Output Format:** [Markdown instructions with bash command examples; generated report files include PNG, CSV, and text.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a local SQLite database path and output directory; generated files may overwrite existing names.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+**Output Type(s):** [Shell commands, Files, Guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown guidance with inline bash commands; generated report files include PNG images, CSV data, and text summaries.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reads a selected warehouse database and writes report assets to the chosen local output directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

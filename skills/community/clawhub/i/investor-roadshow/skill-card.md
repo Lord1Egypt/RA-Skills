@@ -1,46 +1,62 @@
-## Description: <br>
-Book flights for investor roadshows and IPO fundraising travel, with supporting workflows for related travel services through the flyai CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Book flights for investor roadshows and IPO fundraising travel, with support for hotels, train tickets, attraction tickets, itinerary planning, visa information, travel insurance, car rental, and related travel services powered by Fliggy.
 
-## Publisher: <br>
-[dingtom336-gif](https://clawhub.ai/user/dingtom336-gif) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dingtom336-gif](https://clawhub.ai/user/dingtom336-gif)
 
-## Use Case: <br>
-External users and agents use this skill to search investor-roadshow and fundraising travel options, format flight results, and provide booking links from live flyai CLI output. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may install an unpinned global flyai CLI package. <br>
-Mitigation: Preinstall a reviewed, pinned flyai CLI version before enabling the skill, and avoid allowing automatic global installs in restricted environments. <br>
-Risk: Investor-roadshow routes and itinerary details may be sent to an external travel provider. <br>
-Mitigation: Use only with provider-approved data, and avoid confidential itinerary details unless the travel provider is acceptable for that data. <br>
-Risk: Broad travel requests may trigger the skill outside the intended investor-roadshow workflow. <br>
-Mitigation: Confirm user intent and required route parameters before running searches or presenting booking options. <br>
+## Use Case:
 
+External business travelers and agent users use this skill to collect investor roadshow travel requirements, run live flyai searches, and format flight or related travel options with booking links.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dingtom336-gif/investor-roadshow) <br>
-- [Parameter collection and output templates](references/templates.md) <br>
-- [Scenario playbooks](references/playbooks.md) <br>
-- [Failure recovery](references/fallbacks.md) <br>
-- [Execution runbook](references/runbook.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, markdown, guidance] <br>
-**Output Format:** [Markdown with booking links and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires live flyai CLI results; booking results must include detailUrl links.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill asks agents to install and run an unpinned global third-party CLI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit approval before installation, pin the CLI version where possible, and run commands in a constrained environment.
+
+Risk: The third-party CLI may receive itinerary details from user requests.
+
+Mitigation: Share only the minimum travel details needed for the search and confirm user consent for sensitive travel information.
+
+Risk: Unsafe shell command templates can execute malformed or untrusted parameters.
+
+Mitigation: Validate dates, city names, and option values before execution, and avoid interpolating unsanitized user text into shell commands.
+
+## Reference(s):
+
+- [Parameter Collection & Output Templates](references/templates.md)
+- [Scenario Playbooks](references/playbooks.md)
+- [Failure Recovery](references/fallbacks.md)
+- [Execution Runbook](references/runbook.md)
+- [ClawHub Skill Page](https://clawhub.ai/dingtom336-gif/skills/investor-roadshow)
+- [Publisher Profile](https://clawhub.ai/user/dingtom336-gif)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown response with CLI-derived travel results, comparison tables, and booking links.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires live flyai CLI output; raw JSON should not be returned to the user.]
+
+## Skill Version(s):
+
+3.2.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

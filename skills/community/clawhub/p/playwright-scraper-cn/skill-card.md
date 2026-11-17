@@ -1,45 +1,56 @@
-## Description: <br>
-Playwright-based web scraping OpenClaw Skill with anti-bot protection. Successfully tested on complex sites like Discuss.com.hk. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Playwright-based web scraping OpenClaw Skill with anti-bot protection. Successfully tested on complex sites like Discuss.com.hk.
 
-## Publisher: <br>
-[onlyloveher](https://clawhub.ai/user/onlyloveher) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[onlyloveher](https://clawhub.ai/user/onlyloveher)
 
-## Use Case: <br>
-Developers and engineers use this skill to scrape JavaScript-rendered websites with Playwright, including sites that apply common anti-bot checks. It can return page text, metadata, selected links, screenshots, and optional saved HTML for authorized scraping workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The artifact includes Xianyu/Goofish login automation with a hardcoded phone number and SMS-code triggering behavior. <br>
-Mitigation: Remove or ignore the Xianyu scripts unless the account workflow is explicitly authorized, and delete the hardcoded phone number before use. <br>
-Risk: Scraping runs can save screenshots or HTML that may contain sensitive page content. <br>
-Mitigation: Store outputs only in approved locations, review them as potentially sensitive data, and delete them when they are no longer needed. <br>
-Risk: The skill is intended for web scraping and anti-bot scenarios that may violate site rules if used without permission. <br>
-Mitigation: Use the skill only on sites where the operator is authorized to scrape and where the workflow complies with applicable terms and laws. <br>
+## Use Case:
 
+Developers and scraping-focused agents use this skill to choose and run Playwright-based workflows for dynamic or anti-bot-protected websites, producing extracted page data, screenshots, or saved HTML when configured.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/onlyloveher/playwright-scraper-cn) <br>
-- [Publisher profile](https://clawhub.ai/user/onlyloveher) <br>
-- [Playwright documentation](https://playwright.dev/) <br>
-- [puppeteer-extra-plugin-stealth](https://github.com/berstend/puppeteer-extra/tree/master/packages/puppeteer-extra-plugin-stealth) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, shell commands, files, guidance] <br>
-**Output Format:** [JSON emitted to stdout, with optional screenshot and HTML files; documentation includes Markdown and shell command examples.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runtime behavior is controlled by command-line URL input and environment variables such as WAIT_TIME, HEADLESS, SCREENSHOT_PATH, SAVE_HTML, and USER_AGENT.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: frontmatter, package.json, CHANGELOG, server release) <br>
+Risk: Scraping pages without authorization or capturing sensitive screenshots, HTML, or cookies can expose private data or violate site rules.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only on sites you are authorized to access, restrict browser and network access where practical, and treat screenshots, saved HTML, and cookies as secrets.
+
+Risk: The security evidence reports undocumented login/SMS automation and unsafe browser settings that need review before use.
+
+Mitigation: Do not run login automation unless the account and phone number are yours, review scripts before execution, and prefer a restricted container or isolated environment for browser runs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/onlyloveher/skills/playwright-scraper-cn)
+- [Playwright Official Docs](https://playwright.dev/)
+- [puppeteer-extra-plugin-stealth](https://github.com/berstend/puppeteer-extra/tree/master/packages/puppeteer-extra-plugin-stealth)
+- [deep-scraper skill](https://clawhub.com/opsun/deep-scraper)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Code]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May direct browser scripts to save screenshots or HTML files when configured.]
+
+## Skill Version(s):
+
+1.2.0 (source: SKILL.md frontmatter, package.json, CHANGELOG, server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

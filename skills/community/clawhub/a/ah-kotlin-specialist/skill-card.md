@@ -1,39 +1,49 @@
-## Description: <br>
-Expert Kotlin developer specializing in coroutines, multiplatform development, and Android applications. Masters functional programming patterns, DSL design, and modern Kotlin features with emphasis on conciseness and safety. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Expert Kotlin developer specializing in coroutines, multiplatform development, and Android applications, with emphasis on functional programming patterns, DSL design, conciseness, and safety.
 
-## Publisher: <br>
-[mtsatryan](https://clawhub.ai/user/mtsatryan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mtsatryan](https://clawhub.ai/user/mtsatryan)
 
-## Use Case: <br>
-Developers and engineers use this skill to analyze Kotlin projects and implement idiomatic Kotlin solutions across coroutines, Kotlin Multiplatform, Android, Ktor, DSL design, testing, and performance work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Available scan evidence did not independently verify the artifact contents in the local workspace. <br>
-Mitigation: Review the single SKILL.md file and any generated setup or code changes before installing or using the skill. <br>
-Risk: Kotlin implementation guidance can produce project-specific code or configuration that is incorrect for a repository's platform targets, dependency versions, or quality gates. <br>
-Mitigation: Run the repository's Kotlin checks, including tests, Detekt, ktlint, Gradle sync, and platform-specific build targets before accepting changes. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to assess Kotlin project architecture, improve idiomatic Kotlin implementation, and review coroutine, multiplatform, Android, Ktor, Gradle, and testing practices. It can help produce implementation plans, code, build configuration, quality checks, and review guidance for Kotlin projects.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Code, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with code and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include project assessments, implementation recommendations, Kotlin source changes, Gradle configuration guidance, and quality verification steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Generated Kotlin code or guidance could introduce incorrect behavior, weak dependency choices, or unsafe build and publishing changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review proposed code and configuration changes before applying them, with particular attention to build files, dependencies, authentication flows, and publishing configuration.
+
+## Reference(s):
+
+- [Kotlin Specialist ClawHub Skill Page](https://clawhub.ai/mtsatryan/skills/ah-kotlin-specialist)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with Kotlin, Gradle, configuration, and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include project assessments, implementation guidance, code changes, test recommendations, and review notes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

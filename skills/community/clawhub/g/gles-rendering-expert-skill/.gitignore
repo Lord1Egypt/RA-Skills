@@ -1,0 +1,12 @@
+# Generated reports (may contain local paths/timestamps)
+reports/
+skill-audit-report.html
+
+# Tool-generated learnings
+.learnings/
+# Python build artifacts
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+tests/

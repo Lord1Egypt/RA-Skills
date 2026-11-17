@@ -1,0 +1,25 @@
+slug: smart-files
+name: smart-files
+owner: jlacroix82
+description: Secure file search, dedup, organize, and rename for workspace files. Content-aware search that reads file contents and can print snippets to stdout. Watch mode provides continuous monitoring with persistent journaling. Uses --quiet mode for content suppression and --force to override workspace boundary.
+version: 2.2.0
+type: skill
+author: OpenClaw
+license: MIT
+keywords:
+  - files
+  - analysis
+  - search
+  - code
+  - agent
+  - security
+  - privacy
+entry: SKILL.md
+dependencies: []
+permissions:
+  - name: filesystem.read
+    description: Recursively read file contents from workspace for search and dedup operations
+  - name: filesystem.write
+    description: Write file modification journal to memory/smart-files-journal.json
+capabilities:
+  - filesystem

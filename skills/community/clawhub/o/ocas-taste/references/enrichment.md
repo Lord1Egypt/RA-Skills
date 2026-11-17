@@ -61,6 +61,22 @@ For delivery orders, enrich the *restaurant or store*, not individual menu items
 - Instacart: enrich the store (e.g., "Whole Foods" → organic/premium grocery, neighborhood)
 - Good Eggs: enrich the producer/farm when identifiable, otherwise the category
 
+## Filtering out non-restaurant merchants
+
+Before enriching, check if the merchant name is a known payment processor, delivery platform, or other non-food entity:
+
+**Skip list** — do NOT enrich these (they are not restaurants/hotels):
+- Payment processors: "Blackbird" (user-confirmed: payment processor, NOT a restaurant), "Toast", "Square", "Stripe", "PayPal", "Venmo", "Zelle", "Cash App"
+- Delivery platforms: "DoorDash", "Uber Eats", "GrubHub", "Postmates", "Instacart", "Deliveroo", "Just Eat", "Seamless"
+- Ride-sharing: "Uber" (not a restaurant despite food delivery association)
+- Skip categories: `transport`, `parking`
+
+**Exception list** — these contain skip words but ARE real restaurants:
+- "Toast Eatery" — real restaurant in SF (contains "toast" but is a cafe)
+- "Blackbird" with styx category "bar" — real bar, not the payment processor (verify via Google Places match and category)
+
+**Known false positive (May 2026):** "Blckbrd" from styx was matched to "Blackbird" via Google Places. User confirmed Blackbird is a payment processor. The item was removed from items.jsonl and its signals from signals.jsonl, and the styx merchant's source was reset to `plaid_merchant_name`.
+
 ## Enrichment workflow
 
 1. Look up the item name + city on Google Maps
@@ -81,6 +97,14 @@ When an item is enriched, compare its attributes against other enriched items to
 - **cross_domain**: A restaurant and a travel destination linked by cuisine/culture (e.g., Japanese restaurant visits → Japan travel suggestion)
 
 Link strength is proportional to the number of shared attributes. Two restaurants sharing cuisine + neighborhood + price level get a stronger link than two sharing only cuisine.
+
+## Same-day signal dedup
+
+When the same restaurant appears via multiple sources (email + calendar + styx) on the same date, the enrichment pipeline creates duplicate signals. After enrichment, dedup by `(normalized_name, date)` keeping only one signal per group:
+
+Source priority (keep highest): `styx` > `styx_places` > `calendar` > `email` > `enrichment`
+
+Run: `python3 scripts/taste_signals_dedup.py`
 
 ## Re-enrichment
 

@@ -1,48 +1,60 @@
-## Description: <br>
-Diagnoses and helps fix Microsoft Excel XLSX workbook issues involving formulas, named ranges, Power Query refreshes, pivot tables, VBA/macro preservation, workbook corruption, and repeatable data cleanup. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Diagnose and fix Microsoft Excel XLSX workbook issues involving formulas, named ranges, Power Query refreshes, pivot tables, VBA/macro preservation, workbook corruption, and repeatable data cleanup while preserving workbook structure, formatting, and business logic.
 
-## Publisher: <br>
-[kyro-ma](https://clawhub.ai/user/kyro-ma) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kyro-ma](https://clawhub.ai/user/kyro-ma)
 
-## Use Case: <br>
-Analysts, finance and operations teams, spreadsheet-heavy small businesses, and developers use this skill to diagnose Excel workbook failures and plan non-destructive repairs for formulas, ranges, Power Query, pivots, macros, corruption, and recurring data cleanup. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive financial or business spreadsheets could be changed incorrectly if originals are edited directly. <br>
-Mitigation: Work on copies, review proposed changes, and validate repaired workbooks before replacing originals. <br>
-Risk: Broad trigger wording could cause the skill to be invoked for spreadsheet tasks where workbook repair guidance is not intended. <br>
-Mitigation: Narrow the trigger wording before deployment or invoke the skill explicitly for Excel workbook inspection and repair tasks. <br>
-Risk: Formula, pivot, macro, or query changes can alter workbook business logic. <br>
-Mitigation: Keep formulas and package structures intact where possible, preserve macros unless removal is requested, and verify sheets, ranges, tables, pivots, and recalculation requirements. <br>
+## Use Case:
 
+Analysts, finance and operations teams, spreadsheet-heavy small businesses, and developers use this skill to diagnose and repair Excel workbook issues while preserving formulas, macros, pivots, queries, formatting, and business logic.
 
-## Reference(s): <br>
-- [Requirement Plan](artifact/references/requirement-plan.md) <br>
-- [Excel SQL Query Discussion](https://segmentfault.com/q/1010000042660742/a-1020000042660744) <br>
-- [Power Query Multi-Table Connection Guide](https://segmentfault.com/a/1190000046365752) <br>
-- [Excel Reading with Qt C++ Discussion](https://segmentfault.com/q/1010000009431251/a-1020000009437423) <br>
-- [openpyxl Column Count Discussion](https://segmentfault.com/q/1010000023905216/a-1020000023905711) <br>
-- [openpyxl Strikethrough Reading Discussion](https://segmentfault.com/q/1010000020612541/a-1020000020616533) <br>
-- [openpyxl 3.0.3 Chinese Manual](https://segmentfault.com/a/1190000022195748) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown responses with optional code blocks, shell commands, and validation checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include workbook diagnoses, non-destructive repair plans, automation snippets, and validation checklists.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill may inspect sensitive spreadsheet contents when invoked for workbook repair.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use copies of important workbooks, limit shared data to what is needed for diagnosis, and avoid invoking it for generic Excel questions that do not require workbook inspection.
+
+Risk: Workbook repairs can alter macros, formulas, pivots, queries, or other business-critical logic.
+
+Mitigation: Confirm intent before modifying macros or production workbooks, preserve workbook package parts where possible, and validate formulas, named ranges, tables, pivots, macros, and expected recalculation after changes.
+
+Risk: Python workbook libraries may not safely rebuild every Excel feature, including some pivot caches, Power Query metadata, slicers, and unsupported OOXML structures.
+
+Mitigation: Inspect relevant OOXML package parts, make minimal repairs, and state when Microsoft Excel desktop or Power BI tooling is required for refresh or final verification.
+
+## Reference(s):
+
+- [Requirement Plan](artifact/references/requirement-plan.md)
+- [Power Query connection example](https://segmentfault.com/a/1190000046365752)
+- [Excel SQL query answer](https://segmentfault.com/q/1010000042660742/a-1020000042660744)
+- [openpyxl 3.0.3 Chinese manual](https://segmentfault.com/a/1190000022195748)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with optional code blocks, shell commands, configuration snippets, and validation checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include workbook diagnoses tied to sheets, ranges, formulas, package parts, repair plans, and validation steps.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

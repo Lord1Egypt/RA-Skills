@@ -1,0 +1,4 @@
+interface:
+  display_name: "eKYC Suite Face Compare"
+  short_description: "KYC face comparison Skill for selfie verification, selfie identity verification Skill, face matching skill, and KYC onboarding face match"
+  default_prompt: "Use eKYC Suite Face Compare for KYC face comparison, selfie verification, selfie identity verification, selfie identity verification Skill searches, face matching, face matching skill searches, or selfie-to-document review from two consented face images."

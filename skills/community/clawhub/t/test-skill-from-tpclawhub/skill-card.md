@@ -1,39 +1,50 @@
-## Description: <br>
-Provides placeholder testing guidance for verifying TPClawHub integration with ClawHub. <br>
+## Description:
 
-This skill is for demonstration purposes and not for production usage. <br>
+Provides a test skill for verifying TPClawHub integration with ClawHub, including basic automated testing, CI/CD, and quality assurance workflows.
 
-## Publisher: <br>
-[lky115](https://clawhub.ai/user/lky115) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lky115](https://clawhub.ai/user/lky115)
 
-## Use Case: <br>
-Developers evaluating TPClawHub integration use this placeholder skill to exercise installation and configuration flows before relying on a real implementation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The setup instructions request an API key without documenting the service, permissions, storage, or consumer. <br>
-Mitigation: Do not provide credentials until the publisher documents what the key is for, how it is protected, and what code or dependency uses it. <br>
-Risk: The artifact appears to be a placeholder test skill rather than a complete implementation. <br>
-Mitigation: Review the artifact and confirm real implementation details before relying on it for automated testing, CI/CD integration, or quality assurance. <br>
+## Use Case:
 
+Developers and maintainers use this skill to verify TPClawHub publishing and ClawHub integration behavior with a minimal quality assurance workflow.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable implementation files are included in the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The install example uses an unpinned npx command, which can resolve to changing package contents.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the ClawHub CLI source and publisher, prefer a pinned reviewed version, and avoid running the command with sensitive environment variables unless required.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lky115/skills/test-skill-from-tpclawhub)
+- [Publisher profile](https://clawhub.ai/user/lky115)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline shell commands and configuration notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Mentions API key and debug environment variables for configuration.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,58 @@
-## Description: <br>
-Expert guide for building web scrapers and crawlers with Crawlee for JavaScript, TypeScript, and Python. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Expert guide for building web scrapers and crawlers with Crawlee for JavaScript/TypeScript and Python.
 
-## Publisher: <br>
-[Yash-Kavaiya](https://clawhub.ai/user/Yash-Kavaiya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yash-kavaiya](https://clawhub.ai/user/yash-kavaiya)
 
-## Use Case: <br>
-Developers, data engineers, and agents use this skill to choose Crawlee crawler types and build JavaScript, TypeScript, or Python scrapers with routing, storage, proxy/session handling, rate limits, debugging, and deployment guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Anti-blocking, proxy, and session-management guidance can be misused against sites the user is not authorized to crawl. <br>
-Mitigation: Use the skill only for authorized sites, respect applicable site rules, and set request caps and rate limits before running generated crawlers. <br>
-Risk: Generated crawlers can store scraped datasets, screenshots, cookies, proxy credentials, and session state locally. <br>
-Mitigation: Protect local storage and credentials, keep secrets out of shared repositories, and purge stored datasets, cookies, and session state when they are no longer needed. <br>
+## Use Case:
 
+Developers and engineers use this skill to choose Crawlee crawler types and produce JS/TS or Python scraping guidance, code examples, shell commands, and configuration for storage, proxies, sessions, concurrency, and deployment.
 
-## Reference(s): <br>
-- [Crawlee ClawHub page](https://clawhub.ai/Yash-Kavaiya/crawlee) <br>
-- [Crawlee JavaScript documentation](https://crawlee.dev/js/docs) <br>
-- [Crawlee Python documentation](https://crawlee.dev/python/docs) <br>
-- [Crawlee GitHub repository](https://github.com/apify/crawlee) <br>
-- [Crawlee JavaScript API Quick Reference](references/js-api.md) <br>
-- [Crawlee Python API Quick Reference](references/python-api.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with fenced JavaScript, TypeScript, Python, shell, JSON, and Dockerfile examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces implementation guidance and example snippets; users should adapt generated scraper code to target-site rules before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Scraper examples can be adapted into unsafe crawler deployments or used against sites without authorization.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for authorized scraping, respect site rules and applicable law, apply strict URL allowlists and authentication to any web-facing crawler, and keep request caps in place.
+
+Risk: Package installation and proxy examples can expose credentials or operational details if copied into sensitive environments.
+
+Mitigation: Pin dependency versions, run installs in isolated environments without production secrets, avoid logging proxy credentials, and sanitize proxy-related logs.
+
+## Reference(s):
+
+- [Crawlee JavaScript API Quick Reference](references/js-api.md)
+- [Crawlee Python API Quick Reference](references/python-api.md)
+- [Crawlee JavaScript documentation](https://crawlee.dev/js/docs)
+- [Crawlee Python documentation](https://crawlee.dev/python/docs)
+- [Apify Crawlee GitHub repository](https://github.com/apify/crawlee)
+- [ClawHub Crawlee skill page](https://clawhub.ai/yash-kavaiya/skills/crawlee)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline code blocks and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,51 +1,81 @@
-## Description: <br>
-For client development with tokens on Solana, Light Token is 200x cheaper than SPL and has minimal changes. Skill includes guides for create mints, associated token accounts, transfer, approve, burn, wrap, and more. @lightprotocol/compressed-token (TypeScript) and light_token_client (Rust). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides developer guidance and code examples for using Solana Light Token client SDKs to create mints and token accounts, transfer tokens, approve and revoke delegates, burn, wrap, unwrap, freeze, thaw, close, and load accounts.
 
-## Publisher: <br>
-[tilo-14](https://clawhub.ai/user/tilo-14) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[tilo-14](https://clawhub.ai/user/tilo-14)
 
-## Use Case: <br>
-Developers and engineers use this skill as a Solana Light Token cookbook for creating mints and token accounts, minting, transferring, approving, revoking, burning, wrapping, unwrapping, freezing, thawing, closing, and loading token accounts with TypeScript and Rust SDKs. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Examples may sign and broadcast real Solana transactions, including transfer, mint, burn, freeze, close, wrap, and unwrap actions. <br>
-Mitigation: Prefer localnet or devnet, use a dedicated low-value test wallet, and require explicit confirmation before any mainnet action. <br>
-Risk: Devnet and mainnet examples may use RPC API keys and a local Solana keypair. <br>
-Mitigation: Keep RPC keys and wallet material out of logs and commits, and load production credentials from a secrets manager. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/tilo-14/solana-light-token-client) <br>
-- [Light Token documentation](https://www.zkcompression.com) <br>
-- [Light Token cookbook](https://zkcompression.com/light-token/cookbook/) <br>
-- [Create mint](references/create-mint.md) <br>
-- [Create associated token account](references/create-associated-token-account.md) <br>
-- [Transfer interface](references/transfer-interface.md) <br>
-- [Approve delegate](references/approve.md) <br>
-- [Wrap SPL to Light](references/wrap.md) <br>
-- [Unwrap Light to SPL](references/unwrap.md) <br>
-- [TypeScript examples](https://github.com/Lightprotocol/examples-light-token/tree/main/typescript-client) <br>
-- [Rust examples](https://github.com/Lightprotocol/examples-light-token/tree/main/rust-client) <br>
-- [@lightprotocol/compressed-token API docs](https://lightprotocol.github.io/light-protocol/compressed-token/index.html) <br>
-- [light-token-client Rust docs](https://docs.rs/light-token-client/latest/light_token_client/) <br>
+## Use Case:
 
+Developers and engineers use this skill to build Solana Light Token client workflows in TypeScript and Rust. It supports common token operations including mint creation, associated token accounts, transfers, approvals, burns, wrapping, unwrapping, freezing, thawing, closing, and account loading.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with TypeScript, Rust, and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires caller review before executing examples that can sign or broadcast Solana transactions.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.6 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Examples may sign Solana transactions that approve, burn, freeze, wrap, unwrap, transfer, or close token accounts.
+
+Mitigation: Use devnet or a dedicated test wallet first, avoid production keypairs and funded mainnet accounts, and review each operation before execution.
+
+Risk: Devnet and mainnet workflows require RPC endpoints, API keys, and wallet keypair configuration supplied by the user.
+
+Mitigation: Verify RPC endpoints and API keys, store secrets outside source code, and load production credentials from a secrets manager.
+
+Risk: Installing or running the skill from an unverified source could expose users to modified transaction examples.
+
+Mitigation: Install only from a trusted source and pin or verify the repository version before use.
+
+## Reference(s):
+
+- [ZK Compression documentation](https://www.zkcompression.com)
+- [Light Token cookbook](https://zkcompression.com/light-token/cookbook/)
+- [Create mint](references/create-mint.md)
+- [Create interface PDA](references/create-interface-pda.md)
+- [Create associated token account](references/create-associated-token-account.md)
+- [Create token account](references/create-token-account.md)
+- [Mint to](references/mint-to.md)
+- [Transfer interface](references/transfer-interface.md)
+- [Transfer checked](references/transfer-checked.md)
+- [Approve](references/approve.md)
+- [Revoke](references/revoke.md)
+- [Wrap](references/wrap.md)
+- [Unwrap](references/unwrap.md)
+- [Load associated token account](references/load-associated-token-account.md)
+- [Burn](references/burn.md)
+- [Burn checked](references/burn-checked.md)
+- [Freeze](references/freeze.md)
+- [Thaw](references/thaw.md)
+- [Close token account](references/close-token-account.md)
+- [Mint SPL, wrap, and transfer](references/spl-mint-wrap-transfer.md)
+- [TypeScript Light Token examples](https://github.com/Lightprotocol/examples-light-token/tree/main/typescript-client)
+- [Rust Light Token examples](https://github.com/Lightprotocol/examples-light-token/tree/main/rust-client)
+- [@lightprotocol/stateless.js API docs](https://lightprotocol.github.io/light-protocol/stateless.js/index.html)
+- [@lightprotocol/compressed-token API docs](https://lightprotocol.github.io/light-protocol/compressed-token/index.html)
+- [light-token-client crate documentation](https://docs.rs/light-token-client/latest/light_token_client/)
+- [Light Protocol audits](https://github.com/Lightprotocol/light-protocol/tree/main/audits)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with TypeScript, Rust, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Examples may reference RPC endpoints, API keys, and local Solana keypair configuration supplied by the user.]
+
+## Skill Version(s):
+
+1.0.6 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

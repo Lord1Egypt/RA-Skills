@@ -1,0 +1,66 @@
+#!/usr/bin/env bash
+# tldr-cmd: print a dense TL;DR for a CLI command.
+# Sources preferred in order: man page -> command-not-found hint -> <cmd> --help.
+# No network, no external deps beyond POSIX + sed/man(1).
+set -euo pipefail
+
+cmd="${1:-}"
+if [[ -z "$cmd" ]]; then
+  echo "usage: tldr-cmd <command>" >&2
+  exit 2
+fi
+
+about=""
+usage=""
+example=""
+
+# 1) man page source
+if command -v man >/dev/null 2>&1; then
+  raw="$(man "$cmd" 2>/dev/null || true)"
+  if [[ -n "$raw" ]]; then
+    about="$(printf '%s\n' "$raw" \
+      | sed -n '/^NAME/,/^[A-Z][A-Z]*$/p' \
+      | sed '/^NAME/d;/^[A-Z][A-Z]*$/d' \
+      | tr -s ' \t' ' ' | sed 's/^ *//;s/ *$//' \
+      | paste -sd ' ' - | cut -c1-120)"
+    usage="$(printf '%s\n' "$raw" \
+      | sed -n '/^SYNOPSIS/,/^[A-Z][A-Z]*$/p' \
+      | sed '/^SYNOPSIS/d;/^[A-Z][A-Z]*$/d' \
+      | tr -s ' \t' ' ' | sed 's/^ *//' | paste -sd ' ' - | cut -c1-120)"
+  fi
+fi
+
+# 2) fallback to --help
+if [[ -z "$about" && -z "$usage" ]] && command -v "$cmd" >/dev/null 2>&1; then
+  help="$("$cmd" --help 2>&1 || true)"
+  if [[ -n "$help" ]]; then
+    about="$(printf '%s\n' "$help" | head -1 | tr -s ' \t' ' ' | sed 's/^ *//;s/ *$//')"
+    usage="$cmd [options]"
+  fi
+fi
+
+# no source found
+if [[ -z "$about" && -z "$usage" ]]; then
+  about="no man page or --help available for '$cmd'"
+fi
+
+# flags: take the first 6 short-option lines describing a flag.
+# grep no-match under set -e/pipefail must not abort the whole script.
+flags="$(printf '%s\n' "${raw:-${help:-}}" \
+  | { grep -E '^[[:space:]]*-[a-zA-Z0-9],?[[:space:]]+-?[a-zA-Z0-9]' || true; } \
+  | head -6 \
+  | tr -s ' \t' ' ' \
+  | sed 's/^ *//' | cut -c1-90)"
+
+# worked example: first usage-looking line in the EXAMPLES section.
+# sed-null on absent section must not abort the script.
+example="$(printf '%s\n' "${raw:-}" \
+  | { sed -n '/^EXAMPLES/,/^[A-Z][A-Z]*$/p' || true; } \
+  | { grep -E '^[[:space:]]+'"$cmd"' ' || true; } \
+  | head -1 \
+  | tr -s ' \t' ' ' | sed 's/^ *//;s/ *$//')"
+
+printf 'tldr: %s\nabout: %s\nusage: %s\n' "$cmd" "${about:-unknown}" "${usage:-$cmd [options]}"
+printf 'flags:\n'
+[[ -n "$flags" ]] && printf '  %s\n' "$flags" || printf '  (none parsed)\n'
+printf 'example: %s\n' "${example:-$cmd <inputs>}"

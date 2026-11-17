@@ -1,41 +1,54 @@
-## Description: <br>
-Manage Cloudflare DNS records for SPF, DKIM, DMARC, domain verification, and related DNS changes through the Cloudflare API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Cloudflare DNS records for SPF, DKIM, DMARC, domain verification, and related email authentication setup.
 
-## Publisher: <br>
-[masasdani](https://clawhub.ai/user/masasdani) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[masasdani](https://clawhub.ai/user/masasdani)
 
-## Use Case: <br>
-Developers and operators use this skill to let an agent inspect and modify Cloudflare-hosted DNS records, especially when setting up email authentication and sending-domain verification. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can make real DNS changes on a Cloudflare-hosted domain, including SPF, DKIM, DMARC, MX, CNAME, import, batch, update, and delete operations. <br>
-Mitigation: Use a least-privilege Cloudflare token scoped to the intended zone and review the record name, type, old value, and new value before applying changes. <br>
-Risk: Incorrect DNS changes can break websites, email delivery, domain verification, or email authentication. <br>
-Mitigation: Confirm email-related CNAME records are not proxied, merge SPF directives into existing SPF records when needed, and verify DNS records after changes. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Cloudflare DNS API Reference](references/api.md) <br>
-- [Cloudflare API Documentation](https://developers.cloudflare.com/api/) <br>
-- [ClawHub Skill Page](https://clawhub.ai/masasdani/spf-dkim-setup) <br>
+## Use Case:
 
+Developers and operators use this skill to inspect and change Cloudflare-hosted DNS records, especially for SPF, DKIM, DMARC, and sending-domain setup.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Cloudflare DNS API requests and record values for user review before execution.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can directly create, update, overwrite, import, batch-change, or delete live Cloudflare DNS records.
+
+Mitigation: Use a least-privilege Cloudflare token scoped to the specific zone, back up existing records, and require review of exact record IDs, names, types, old values, new values, and impact before applying changes.
+
+Risk: Incorrect email authentication records can break domain verification or email delivery.
+
+Mitigation: Preview proposed SPF, DKIM, DMARC, MX, and CNAME records against provider requirements before writing them, and keep email-related CNAME records unproxied when required.
+
+## Reference(s):
+
+- [Cloudflare DNS API Reference](references/api.md)
+- [Cloudflare API documentation](https://developers.cloudflare.com/api/)
+- [Cloudflare API tokens](https://dash.cloudflare.com/profile/api-tokens)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with curl commands and JSON DNS record examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include live Cloudflare DNS API operations requiring a Cloudflare API token and zone ID.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

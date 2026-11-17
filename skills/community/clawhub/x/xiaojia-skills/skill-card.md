@@ -1,42 +1,53 @@
-## Description: <br>
-Call the JustAI openapi async chat endpoints and return structured JSON results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Calls JustAI OpenAPI async chat endpoints to submit agent tasks, poll results, and return structured JSON for marketing plans, Xiaohongshu notes, image generation, information collection, confirmation cards, and follow-up turns.
 
-## Publisher: <br>
-[tanchaowen84](https://clawhub.ai/user/tanchaowen84) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tanchaowen84](https://clawhub.ai/user/tanchaowen84)
 
-## Use Case: <br>
-Developers and content operators use this skill to call a deployed JustAI agent for marketing plans, Xiaohongshu notes, image generation, information collection, confirmation-card workflows, and follow-up chat turns. The skill lists available projects and skills, submits asynchronous chat requests, and polls structured JSON results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, project references, and chat context are sent to a configured remote JustAI OpenAPI service. <br>
-Mitigation: Use only a trusted JUSTAI_OPENAPI_BASE_URL, avoid regulated data or secrets in prompts, and review returned content before relying on it. <br>
-Risk: The configured API key can reveal account metadata when listing projects or skills. <br>
-Mitigation: Use a scoped, revocable API key where possible and rotate it if exposure is suspected. <br>
-Risk: Asynchronous chat tasks may fail or time out. <br>
-Mitigation: Surface failed-task messages directly, preserve conversation_id values for follow-up turns, and tune polling timeout for slower tasks. <br>
+## Use Case:
 
+Developers and agent operators use this skill to route supported content automation tasks through a configured JustAI service instead of handling those tasks locally. It is intended for listing available projects or skills, submitting asynchronous chat tasks, polling results, and continuing conversations with a preserved conversation ID.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/tanchaowen84/xiaojia-skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON responses and Markdown with shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires JUSTAI_OPENAPI_BASE_URL and JUSTAI_OPENAPI_API_KEY; supports optional timeout, project IDs, skill IDs, and conversation IDs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The skill sends API keys and user content to a configured JustAI network endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only a verified HTTPS JustAI endpoint, protect and rotate the API key, and avoid sending secrets or regulated data unless that remote service is approved for the data.
+
+Risk: The documented install command uses a mutable source path.
+
+Mitigation: Install from a pinned commit or signed release when deploying the skill in controlled environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tanchaowen84/skills/xiaojia-skills)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [JSON responses and Markdown guidance with shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include conversation IDs, branch names, structured result payloads, text fallbacks, and surfaced failure messages from the configured JustAI endpoint.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

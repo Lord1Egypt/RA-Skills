@@ -1,47 +1,61 @@
-## Description: <br>
-Helps agents query and analyze Zhiliaobiaoxun procurement, bidding, award, company, supplier, competitor, market, and price-trend data through documented API workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+查询并分析招标、中标、企业、市场与采购数据。
 
-## Publisher: <br>
-[liu-jiapeng](https://clawhub.ai/user/liu-jiapeng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liu-jiapeng](https://clawhub.ai/user/liu-jiapeng)
 
-## Use Case: <br>
-External users and procurement analysts use this skill to search bid notices, inspect award details, analyze companies and competitors, identify likely suppliers, and summarize procurement market trends from Zhiliaobiaoxun data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Procurement, supplier, competitor, company, and contact lookup queries are sent to a third-party Zhiliaobiaoxun service using the user's API key. <br>
-Mitigation: Use the skill only for queries appropriate to share with that service and avoid including unnecessary sensitive details. <br>
-Risk: Broad searches can expose or process more business information than needed for the task. <br>
-Mitigation: Specify exact entities, date ranges, regions, and product terms so requests stay narrowly scoped. <br>
-Risk: Company matching and market analysis may return related entities that need business review before action. <br>
-Mitigation: Review matched company lists and analysis outputs before relying on them for procurement or competitive decisions. <br>
+## Use Case:
 
+采购、投标与市场分析人员可用它查询招标和中标公告、企业与供应链信息，并整理采购趋势和品牌价格。它也可用于发现临期或拟建项目、比较竞争对手及潜在供应商。
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/liu-jiapeng/zlbx-bidding-skill) <br>
-- [Artifact: skill instructions](SKILL.md) <br>
-- [Artifact: bid search API reference](references/api-search.md) <br>
-- [Artifact: company analysis API reference](references/api-company.md) <br>
-- [Artifact: market analysis API reference](references/api-market.md) <br>
-- [Zhiliaobiaoxun API key setup](https://ai.zhiliaobiaoxun.com/?ch=s01) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, API request guidance, configuration] <br>
-**Output Format:** [Markdown or text with JSON API request examples and summarized bid-intelligence results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires ZLBX_API_KEY and sends user procurement, company, supplier, competitor, and contact lookup queries to the Zhiliaobiaoxun API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.2 (source: server evidence release.version) <br>
+Risk: Optional automatic signup uses a persistent device identifier, and the provider's retention and handling practices are unverified.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer a manually obtained API key; before approving automatic signup, clarify how the provider retains and handles the device identifier.
+
+Risk: Searches send company names, keywords, and filters to Zhiliaobiaoxun and may consume account credits; saved keys and generated login links could expose account access.
+
+Mitigation: Use only the query details needed, protect the API key and login links, and review account consumption when using paid data calls.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/liu-jiapeng/skills/zlbx-bidding-skill)
+- [Publisher profile](https://clawhub.ai/user/liu-jiapeng)
+- [知了标讯 skill documentation](https://ai.zhiliaobiaoxun.com/docs/skill)
+- [Search API reference](artifact/references/api-search.md)
+- [Company API reference](artifact/references/api-company.md)
+- [Market API reference](artifact/references/api-market.md)
+- [Registry API reference](artifact/references/api-registry.md)
+- [Account API reference](artifact/references/api-account.md)
+- [Automatic signup and key handling reference](artifact/references/auto-register.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Analysis, Text, Markdown]
+
+**Output Format:** [Chinese text with summaries, lists, and tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results depend on requested filters and account access; some data calls consume credits, and trial contact details may be masked.]
+
+## Skill Version(s):
+
+1.4.10 (source: artifact/SKILL.md frontmatter, server release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

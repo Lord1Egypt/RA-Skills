@@ -1,7 +1,7 @@
 ---
 name: session-to-post
 description: Converts a Claude Code session into a blog post, case study, or Reddit post
-version: 1.9.8
+version: 1.10.3
 triggers:
   - blog
   - marketing
@@ -11,12 +11,12 @@ triggers:
   - developer-experience
   - reddit
   - publishing dev blog content or community posts from real sessions
-metadata: {"openclaw": {"homepage": "https://github.com/athola/claude-night-market/tree/master/plugins/scribe", "emoji": "\ud83e\udd9e", "requires": {"config": ["night-market.scribe:shared", "night-market.scribe:slop-detector"]}}}
+metadata: {"openclaw": {"homepage": "https://github.com/athola/claude-night-market/tree/master/plugins/scribe", "emoji": "\ud83e\udd9e", "requires": {"config": ["night-market.scribe:slop-detector"]}}}
 source: claude-night-market
 source_plugin: scribe
 ---
 
-> **Night Market Skill** — ported from [claude-night-market/scribe](https://github.com/athola/claude-night-market/tree/master/plugins/scribe). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
+> **Night Market Skill**: ported from [claude-night-market/scribe](https://github.com/athola/claude-night-market/tree/master/plugins/scribe). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
 
 # Session to Post
@@ -26,7 +26,7 @@ blog post, case study, or social media thread that others can learn from.
 
 The skill extracts the real story from git history, file changes, and
 conversation context, then shapes it into a narrative that shows
-process, not just results.
+process as well as results.
 
 ## When To Use
 
@@ -134,7 +134,7 @@ Gather raw material from what actually happened:
 
 Every session post answers three questions:
 
-1. **What were we trying to do?**: the goal, not the task list
+1. **What were we trying to do?**: the goal behind the task list
 2. **What did we actually do?**: the real path, including pivots
 3. **What came out of it?**: concrete, measurable results
 

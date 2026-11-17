@@ -1,40 +1,53 @@
-## Description: <br>
-A geography and worldbuilding agent for evaluating terrain, climate, hydrology, resources, settlements, trade routes, and spatial systems for scientific coherence. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Academic Geographer is a Chinese-language geography analysis skill for building scientifically coherent worlds across terrain, climate, hydrology, resources, settlements, trade routes, and maps.
 
-## Publisher: <br>
-[lihangmissu](https://clawhub.ai/user/lihangmissu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lihangmissu](https://clawhub.ai/user/lihangmissu)
 
-## Use Case: <br>
-External users, writers, game designers, and worldbuilders use this skill to check whether invented or analyzed regions have coherent physical geography, climate systems, resources, settlements, and human geography. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Geographic analysis may be incomplete or unsuitable for real-world safety, infrastructure, legal, or environmental decisions. <br>
-Mitigation: Use the skill as an analytical helper and have qualified reviewers validate any real-world or high-impact decisions against authoritative sources. <br>
-Risk: The skill is written for Chinese-language geography guidance, which may be misunderstood by users who do not read Chinese. <br>
-Mitigation: Users should confirm they can understand the skill's responses before relying on its analysis. <br>
+## Use Case:
 
+External users, developers, and worldbuilders use this skill to review or design physically plausible geography, climate systems, resource placement, settlement logic, trade routes, and cartographic choices.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lihangmissu/academic-geographer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or structured text reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include geography consistency reports, climate system designs, corrective guidance, and spatial reasoning.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill provides geography and worldbuilding guidance that may be inaccurate or overconfident for specialized real-world planning decisions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review outputs with qualified domain expertise before using them for real-world geographic, environmental, policy, or safety decisions.
+
+Risk: The skill is written for Chinese-language use and may respond in Chinese unless directed otherwise.
+
+Mitigation: Specify the desired response language when deploying or invoking the skill for non-Chinese users.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lihangmissu/skills/academic-geographer)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Guidance]
+
+**Output Format:** [Markdown prose and structured reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language responses by default; may include geographic consistency reports and climate system design outlines.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

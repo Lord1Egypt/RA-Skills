@@ -1,47 +1,66 @@
-## Description: <br>
-Performs Jira Cloud daily work through REST API v3 and Jira Software Agile API calls, including issue search, creation, updates, comments, worklogs, boards, sprints, and transitions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Perform Jira Cloud daily tasks via REST API v3 and Jira Software Agile API, including issue search, creation, updates, comments, worklogs, boards, sprints, and transitions.
 
-## Publisher: <br>
-[TheCyberCore](https://clawhub.ai/user/TheCyberCore) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[thecybercore](https://clawhub.ai/user/thecybercore)
 
-## Use Case: <br>
-Developers and operations teams use this skill to turn Jira Cloud requests into concrete CLI HTTP calls, then parse and summarize the JSON results. It supports day-to-day Jira workflows such as triage, issue creation, comments, worklogs, assignments, transitions, boards, and sprints. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can perform real Jira Cloud actions that persist in Jira. <br>
-Mitigation: Install it only when real Jira automation is intended, use a least-privilege Jira account or token, and limit project access where possible. <br>
-Risk: Non-read-only operations can change issues, comments, worklogs, sprints, transitions, and issue entity properties. <br>
-Mitigation: Review write requests before execution and require clear user intent for destructive or state-changing actions. <br>
-Risk: Jira credentials could be exposed if tokens are echoed, logged, or embedded in commands. <br>
-Mitigation: Keep credentials in environment variables, avoid printing token values, and avoid storing tokens in repository files. <br>
+## Use Case:
 
+Developers and operators use this skill to have an agent perform Jira Cloud issue, comment, worklog, board, sprint, and transition tasks by building, executing, and summarizing real REST calls.
 
-## Reference(s): <br>
-- [Skill Source](artifact/SKILL.md) <br>
-- [CLI REST Quick Reference](artifact/refs/cli-rest-quickref.md) <br>
-- [Jira JSON Quick Reference](artifact/refs/jira-json-quickref.md) <br>
-- [JQL Cheat Sheet](artifact/refs/jql-cheatsheet.md) <br>
-- [App Embedding Quick Reference](artifact/refs/app-embedding-quickref.md) <br>
-- [openClaw Environment Example](artifact/refs/openclaw_env_example.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API calls, JSON, Markdown, Configuration guidance] <br>
-**Output Format:** [Markdown guidance with CLI command snippets, JSON payloads, and concise result summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Jira Cloud environment variables and a scoped Jira token or bearer credential.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata and manifest.json) <br>
+Risk: The skill uses live Jira credentials for real API calls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a least-privilege Jira token, keep secrets out of logs and repositories, and install only when live Jira API access is intended.
+
+Risk: A misconfigured base URL could send requests outside the approved Jira tenant.
+
+Mitigation: Set ATREST_JIRA_BASE_URL only to the approved HTTPS Atlassian tenant before running requests.
+
+Risk: Create, update, transition, and delete requests can change Jira data.
+
+Mitigation: Review mutating requests before execution and require explicit user intent for destructive actions.
+
+Risk: Temporary JSON payload files may persist or collide when reused.
+
+Mitigation: Prefer unique temporary file names and clean up payload files after requests complete.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/thecybercore/skills/jira-rest-v3)
+- [CLI REST Quick Reference](refs/cli-rest-quickref.md)
+- [Jira JSON Quick Reference](refs/jira-json-quickref.md)
+- [JQL Cheat Sheet](refs/jql-cheatsheet.md)
+- [App Embedding Quick Reference](refs/app-embedding-quickref.md)
+- [OpenClaw Environment Example](refs/openclaw_env_example.json)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline Bash, PowerShell, curl, and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces concrete Jira REST request guidance, command templates, environment variable requirements, JSON payload shapes, and response-summary conventions.]
+
+## Skill Version(s):
+
+1.1.0 (source: evidence.release.version and artifact manifest.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

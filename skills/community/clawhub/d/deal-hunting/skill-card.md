@@ -1,40 +1,48 @@
-## Description: <br>
-Helps agents gather coupons, rebates, sign-in rewards, flash-sale opportunities, and shopping comparison details for deal research. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides an aggregated view of coupons, rebates, check-in points, limited-time flash sales, and deal-hunting strategies across online shopping sources.
 
-## Publisher: <br>
-[mike47512](https://clawhub.ai/user/mike47512) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[mike47512](https://clawhub.ai/user/mike47512)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users can use this skill to compare online shopping deals by price range, discount depth, delivery timing, seller trust, after-sales protections, and recent community feedback before making a purchase.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Deal information can become stale or misleading because prices, coupons, inventory, seller reputation, and sale timing change frequently.
+
+Mitigation: Verify current price, coupon eligibility, seller trust, delivery terms, and return protections before purchasing.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Shoppers and shopping assistants use this skill to research discounts across coupons, rebates, rewards, and flash sales, then compare final price, discount details, logistics, seller trust, and after-sales signals before purchase. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [guidance, markdown]
 
-## Known Risks and Mitigations: <br>
-Risk: Deal information can be outdated, incomplete, or tied to changing coupon terms, seller reputation, return policies, or payment-page details. <br>
-Mitigation: Use the skill as shopping research only; verify prices, coupon terms, seller reputation, return policies, and payment pages before acting. <br>
-Risk: A deal-finding workflow could make purchases or use shopping account credentials if connected to purchasing automation. <br>
-Mitigation: Do not allow purchases or credential use without explicit user confirmation. <br>
+**Output Format:** [Markdown or concise text summaries with deal criteria and purchase considerations]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [Deal Hunting ClawHub page](https://clawhub.ai/mike47512/deal-hunting) <br>
+**Other Properties Related to Output:** [May rely on current web searches for prices, coupons, seller reputation, and promotion timing.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or structured shopping research guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include final prices, discount details, logistics, seller trust, return and price-protection details, review distribution, and deal-timing suggestions.] <br>
+0.1.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

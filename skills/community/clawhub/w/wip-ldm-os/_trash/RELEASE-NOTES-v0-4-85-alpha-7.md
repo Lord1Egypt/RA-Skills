@@ -1,0 +1,1 @@
+Clarifies the Remote Control tenant-boundary fix so the signup label remains only a display label. The hosted relay continues to route by immutable tenant ids, while duplicate labels such as common names are allowed and cannot claim another user's daemon namespace.

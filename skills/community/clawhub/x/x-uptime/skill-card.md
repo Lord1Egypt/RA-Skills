@@ -1,40 +1,49 @@
-## Description: <br>
-Enhanced `uptime` with structured YAML output showing uptime, users, and 1/5/15-minute load averages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enhanced uptime command guidance for x-cmd that helps agents request structured YAML output for system uptime, logged-in user count, and 1/5/15-minute load averages.
 
-## Publisher: <br>
-[edwinjhlee](https://clawhub.ai/user/edwinjhlee) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[edwinjhlee](https://clawhub.ai/user/edwinjhlee)
 
-## Use Case: <br>
-Developers and system operators use this skill through x-cmd to check local system uptime, logged-in user count, and 1/5/15-minute load averages in YAML or raw uptime output. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on a separate x-cmd installation that is not bundled in the artifact. <br>
-Mitigation: Install x-cmd only from a trusted source and verify it before running x uptime commands. <br>
-Risk: The command reports local system status such as uptime, load averages, and logged-in user count. <br>
-Mitigation: Use it only in environments where exposing basic operational status is acceptable. <br>
+## Use Case:
 
+Developers, operators, and agents use this skill to inspect local system uptime and load through x-cmd, choosing structured YAML for parsing or raw uptime output when needed.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/edwinjhlee/x-uptime) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and YAML-style output examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a separate trusted x-cmd installation and reports local uptime, user count, and load averages.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: The skill depends on a separately installed x-cmd dependency that is outside the submitted artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install x-cmd only from a trusted source and review that dependency before enabling the skill.
+
+## Reference(s):
+
+- [x-uptime ClawHub skill page](https://clawhub.ai/edwinjhlee/skills/x-uptime)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires x-cmd; supports YAML and raw uptime output modes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

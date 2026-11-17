@@ -21,6 +21,7 @@ from learning_workspace_config import (  # noqa: E402
     scope_has_sensitive_paths,
 )
 from run_log import Timer, append_run_log, new_run_id  # noqa: E402
+from git_scope import commit_scope, normalize_scope  # noqa: E402
 
 
 def run(args: list[str], cwd: Path) -> subprocess.CompletedProcess[str]:
@@ -70,41 +71,6 @@ def pull_rebase_autostash(workspace: Path, remote: str, branch: str) -> None:
     if pull.returncode != 0:
         fail(detail(pull) or f"git pull --rebase --autostash {remote} {branch} failed")
     print(pull.stdout.strip() or pull.stderr.strip() or f"ok: pulled {remote}/{branch}")
-
-
-def staged_changes(workspace: Path) -> bool:
-    result = git(["diff", "--cached", "--quiet"], workspace)
-    return result.returncode != 0
-
-
-def stage_scope(workspace: Path, scope: list[str]) -> None:
-    if not scope:
-        fail("git_sync.commit_scope is empty")
-    pathspecs = []
-    for item in scope:
-        if (workspace / item).exists():
-            pathspecs.append(item)
-            continue
-        tracked = git(["ls-files", "--", item], workspace)
-        if tracked.returncode == 0 and tracked.stdout.strip():
-            pathspecs.append(item)
-    if not pathspecs:
-        print("ok: no configured sync paths exist in this workspace")
-        return
-    result = git(["add", "-A", "--", *pathspecs], workspace)
-    if result.returncode != 0:
-        fail(detail(result) or "git add failed")
-
-
-def commit_if_needed(workspace: Path, message: str) -> bool:
-    if not staged_changes(workspace):
-        print("ok: no configured learning-data changes to commit")
-        return False
-    result = git(["commit", "-m", message], workspace)
-    if result.returncode != 0:
-        fail(detail(result) or "git commit failed")
-    print(result.stdout.strip())
-    return True
 
 
 def push_with_retry(workspace: Path, remote: str, branch: str) -> None:
@@ -183,7 +149,7 @@ def main() -> int:
         if not args.no_pull and (args.force or git_sync.get("auto_pull_before_task")):
             pull_rebase_autostash(workspace, remote, branch)
 
-        scope = [str(item) for item in git_sync.get("commit_scope", [])]
+        scope = normalize_scope([str(item) for item in git_sync.get("commit_scope", [])])
         if scope_has_sensitive_paths(scope) and not git_sync.get("sync_full_learning_data"):
             fail("commit_scope includes learning records, but git_sync.sync_full_learning_data is false")
         if scope_has_sensitive_paths(scope) and not git_sync.get("public_repository_accepted"):
@@ -195,8 +161,9 @@ def main() -> int:
             ok = True
             return 0
 
-        stage_scope(workspace, scope)
-        committed = commit_if_needed(workspace, args.message)
+        committed = commit_scope(workspace, scope, args.message)
+        if not committed:
+            print("ok: no configured learning-data changes to commit")
 
         if args.no_push:
             skipped = "no-push-arg"

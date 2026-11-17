@@ -1,44 +1,59 @@
-## Description: <br>
-Tailor a client resume for a matching new job, generate a PDF from the tailored LaTeX, and record the application in the HireEase portal. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tailor a client resume for a matching new job, generate a PDF from the tailored LaTeX, and record the application in the HireEase portal.
 
-## Publisher: <br>
-[ibrahimsaleem](https://clawhub.ai/user/ibrahimsaleem) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ibrahimsaleem](https://clawhub.ai/user/ibrahimsaleem)
 
-## Use Case: <br>
-Developers and operators use this skill to automate HireEase resume tailoring, PDF generation, and application recording for a selected client and job posting. It supports either user-provided job details or agent-assisted job selection when browsing is available. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send HireEase credentials to a user-provided base URL. <br>
-Mitigation: Use only a trusted HireEase base URL, ideally an official allowlisted domain, and prefer scoped or rotatable credentials. <br>
-Risk: The skill can create or use a public Google Drive resume link. <br>
-Mitigation: Review the Google account, Drive sharing settings, and public resume link before recording a real application. <br>
-Risk: The skill can submit or record a real job application in HireEase. <br>
-Mitigation: Confirm the selected job, tailored PDF, application fields, and submission intent before allowing the final application record. <br>
+## Use Case:
 
+Developers and operators use this skill to automate a HireEase workflow that selects a client and job, tailors a resume, generates a PDF, and records the job application when explicitly confirmed.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ibrahimsaleem/hireease-skill) <br>
-- [HireEase primary base URL](https://hireease.me) <br>
-- [HireEase alternate base URL](https://hireease-s33h.onrender.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, API calls, Files, Shell commands, Guidance] <br>
-**Output Format:** [Markdown summary with saved LaTeX and PDF file paths, application details, and warnings] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May save tailored LaTeX and generated PDF files under scripts/output/ and may record an application when the user confirms real submission.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter reports 1.0.1) <br>
+Risk: A user-supplied API base URL could receive reusable HireEase credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Restrict the API base URL to approved HireEase HTTPS origins before login and keep credentials in configured environment secrets.
+
+Risk: Generated resumes may expose personal information through a public Google Drive link.
+
+Mitigation: Review resume contents and Drive sharing settings before creating or submitting a public viewer link.
+
+Risk: The workflow can create a real HireEase application record.
+
+Mitigation: Require explicit confirmation before recording the application and stop after PDF generation when the user chooses not to submit for real.
+
+## Reference(s):
+
+- [HireEase Skill on ClawHub](https://clawhub.ai/ibrahimsaleem/skills/hireease-skill)
+- [HireEase production base URL](https://hireease.me)
+- [HireEase Render deployment base URL](https://hireease-s33h.onrender.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, shell commands, files, API calls]
+
+**Output Format:** [Markdown final summary with saved LaTeX and PDF file paths plus HireEase application details]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a tailored LaTeX resume, generated PDF, and optional HireEase application record when the user confirms real submission.]
+
+## Skill Version(s):
+
+1.0.1 (source: artifact/skill.md frontmatter; release metadata reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

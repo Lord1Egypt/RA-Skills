@@ -1,44 +1,63 @@
-## Description: <br>
-Generates structured treatment-process summaries from course-of-illness records by sending de-identified clinical text to an internal medical language model. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates a structured treatment-process summary from medical progress records by calling an internal medical large language model.
 
-## Publisher: <br>
-[unisound-llm](https://clawhub.ai/user/unisound-llm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[unisound-llm](https://clawhub.ai/user/unisound-llm)
 
-## Use Case: <br>
-Authorized clinical documentation users use this skill to turn de-identified inpatient course records into a structured treatment-process narrative for medical record filing, homepage completion, and case statistics. Generated text requires review by a licensed clinician before use. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill processes sensitive medical records and sends prepared text to a disclosed external medical LLM API. <br>
-Mitigation: Install only in an authorized medical-data environment, use de-identified records, and approve the hivoice.cn endpoint and appkey before use. <br>
-Risk: Generated clinical narratives may be incomplete or medically incorrect. <br>
-Mitigation: Require review and sign-off by a licensed clinician before filing or downstream use. <br>
-Risk: Debug or output flags can write prepared text or generated outputs to disk. <br>
-Mitigation: Use output paths and --save-prepared only in secured directories and avoid saving sensitive prepared text unless needed for controlled debugging. <br>
+## Use Case:
 
+Clinical documentation teams and developers use this skill to turn de-identified inpatient progress notes, ward rounds, and related records into a coherent treatment-process summary for medical record filing, homepage completion, and case statistics. Generated medical text should be reviewed by a licensed clinician before use.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/unisound-llm/unisound-treatment-process) <br>
-- [Unisound-LLM publisher profile](https://clawhub.ai/user/unisound-llm) <br>
-- [hivoice.cn medical LLM API endpoint](https://maas-api.hivoice.cn/v1/chat/completions) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [UTF-8 plain text printed to stdout, with optional text or JSON file output paths.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Accepts JSON, text, PDF, Word, Excel, and CSV inputs after preprocessing; optional debug mode can save prepared text.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: The skill processes sensitive medical records and can send record text plus an API key to a configured model endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in approved medical-record environments, use de-identified inputs, and keep --base pointed at a trusted HTTPS endpoint.
+
+Risk: Passing reusable credentials on the command line can expose them through process listings, shell history, or logs.
+
+Mitigation: Use short-lived or environment-approved credentials and avoid operational patterns that log command-line arguments.
+
+Risk: The --save-prepared option can retain plaintext intermediate medical text.
+
+Mitigation: Use --save-prepared only when plaintext retention is explicitly approved, and store outputs under the organization's medical-data handling controls.
+
+Risk: Generated treatment summaries may contain omissions or clinically incorrect phrasing.
+
+Mitigation: Require licensed clinician review before using generated text in medical records or downstream clinical workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/unisound-llm/skills/unisound-treatment-process)
+- [Publisher profile](https://clawhub.ai/user/unisound-llm)
+- [Hivoice medical LLM API endpoint](https://maas-api.hivoice.cn/v1/chat/completions)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, configuration, guidance]
+
+**Output Format:** [UTF-8 treatment-process text, optionally saved as plain text or JSON]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Accepts pdf, doc, docx, xls, xlsx, csv, txt, and json inputs; requires an app key for the medical model API; can optionally save preprocessed plaintext for debugging.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

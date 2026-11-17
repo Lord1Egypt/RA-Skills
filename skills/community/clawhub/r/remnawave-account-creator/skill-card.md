@@ -1,50 +1,60 @@
-## Description: <br>
-Automates Remnawave account creation, internal squad assignment, subscription retrieval, onboarding email delivery, account lookup, account updates, and local creation logging. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates Remnawave account creation, subscription retrieval, template-based onboarding email delivery, carbon-copy recipients, and internal squad assignment.
 
-## Publisher: <br>
-[uepuer](https://clawhub.ai/user/uepuer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[uepuer](https://clawhub.ai/user/uepuer)
 
-## Use Case: <br>
-Operations and administrative users use this skill to create and manage Remnawave user accounts, assign internal squads, retrieve subscription details, send onboarding email, and run follow-up search or verification workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Privileged Remnawave account operations can create, modify, delete, search, email, and store sensitive user account data. <br>
-Mitigation: Install only in a controlled admin environment, use least-privilege Remnawave and SMTP credentials, and require confirmation before create, delete, or group-change actions. <br>
-Risk: Subscription URLs, generated passwords, account identifiers, and recipient data can appear in terminal output, onboarding email, or local logs. <br>
-Mitigation: Redact subscription URLs and generated passwords from output and logs, restrict log access, and verify every recipient and CC before sending onboarding email. <br>
-Risk: TLS certificate verification may be disabled for Remnawave or SMTP configuration. <br>
-Mitigation: Enable certificate verification where possible and use trusted certificates in production environments. <br>
-Risk: Automatic delete-and-retry behavior can remove existing accounts unexpectedly. <br>
-Mitigation: Remove the automatic delete-and-retry path or require explicit human approval with confirmed account identity before deletion. <br>
+## Use Case:
 
+Operations and administrative teams use this skill to provision Remnawave users, assign internal squads, send onboarding emails, and record account-creation outcomes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/uepuer/remnawave-account-creator) <br>
-- [README](artifact/README.md) <br>
-- [Skill documentation](artifact/SKILL.md) <br>
-- [Workflow guide](artifact/WORKFLOW.md) <br>
-- [API reference](artifact/API-REFERENCE.md) <br>
-- [Account search SOP](artifact/SOP-搜索账号.md) <br>
-- [Squad update SOP](artifact/SOP-更新分组.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with command-line examples, JSON configuration snippets, and script output text.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce Remnawave account identifiers, subscription URLs, email delivery status, and local log entries that can contain sensitive account data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata and package.json) <br>
+Risk: Privileged Remnawave and SMTP credentials can be used insecurely.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in a controlled admin workspace, rotate any matching credentials, keep secrets outside the artifact, and require validated TLS before production use.
+
+Risk: The bundled scripts can create, modify, or delete user accounts without enough safeguards.
+
+Mitigation: Require human approval for destructive or force-recreate paths, restrict API token permissions, and avoid running delete or test scripts against production.
+
+Risk: Account identifiers, emails, subscription URLs, and operation outcomes may be written to local logs.
+
+Mitigation: Restrict access to the log directory, review retention needs, and avoid invoking the skill with untrusted account parameters.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/uepuer/skills/remnawave-account-creator)
+- [README](artifact/README.md)
+- [Remnawave API Reference](artifact/API-REFERENCE.md)
+- [Workflow](artifact/WORKFLOW.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and JSON configuration snippets; scripts emit console text, account details, email status, and local JSON or Markdown logs.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Remnawave API and SMTP configuration; may create, update, search, or delete Remnawave users when invoked with privileged credentials.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

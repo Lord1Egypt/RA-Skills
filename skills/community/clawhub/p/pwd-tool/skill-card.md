@@ -1,39 +1,48 @@
-## Description: <br>
-Print the full path of the current working directory. Use for identifying your location in the filesystem. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Print the full path of the current working directory. Use for identifying your location in the filesystem.
 
-## Publisher: <br>
-[dinghaibin](https://clawhub.ai/user/dinghaibin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[dinghaibin](https://clawhub.ai/user/dinghaibin)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and agents use this skill to identify the active working directory before navigating files or running path-sensitive commands.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The output can expose local path names when directory names are sensitive.
+
+Mitigation: Use the skill only in contexts where revealing the current working directory path is acceptable.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and agents use this skill to confirm the active filesystem location before running navigation-sensitive commands or scripts. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, shell commands, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The emitted working-directory path can expose local usernames, project names, or private folder names. <br>
-Mitigation: Review or redact the path before sharing it outside the trusted execution context. <br>
+**Output Format:** [Plain text or Markdown with inline shell commands]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dinghaibin/pwd-tool) <br>
-- [Publisher profile](https://clawhub.ai/user/dinghaibin) <br>
+**Other Properties Related to Output:** [Outputs the current working directory path; no network, credential, persistence, or destructive behavior was found in the security evidence.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text path with optional Markdown command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reveal local usernames, project names, or private folder names contained in the current working directory path.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

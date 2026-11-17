@@ -1,41 +1,59 @@
-## Description: <br>
-ButterSwap helps agents retrieve Butter Network cross-chain swap quotes, routes, and transaction payloads across supported blockchain networks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ButterSwap helps agents get cross-chain token swap quotes, route transaction data, and cross-chain routing information through the Butter Router API.
 
-## Publisher: <br>
-[IvanMacaron](https://clawhub.ai/user/IvanMacaron) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ivanmacaron](https://clawhub.ai/user/ivanmacaron)
 
-## Use Case: <br>
-External users, developers, and agents use ButterSwap to inspect supported chains and tokens, compare cross-chain swap routes, and assemble swap transaction payloads for user review before signing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Swap routes or transaction payloads may include incorrect token, chain, fee, slippage, approval, receiver, refund, contract target, calldata, or native value details. <br>
-Mitigation: Use the skill for quotes and transaction construction, then independently verify all wallet and transaction details before signing. <br>
-Risk: Swap intent and wallet-address details are sent to Butter Router. <br>
-Mitigation: Install and use only when this third-party API data sharing is acceptable. <br>
+## Use Case:
 
+External users, developers, and agents use this skill to inspect supported chains and tokens, compare cross-chain swap routes, and prepare transaction data for user review and wallet signing.
 
-## Reference(s): <br>
-- [ButterSwap ClawHub release](https://clawhub.ai/IvanMacaron/butter-swap-skill) <br>
-- [Butter API Docs](https://docs.butternetwork.io/butter-swap-integration/integration-guide) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with API request examples and JSON transaction data] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include route options, token metadata, chain IDs, fees, slippage settings, contract target, calldata, native value, and transaction chain ID.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Prepared transaction data could be signed without adequate review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as transaction preparation only and verify token contracts, chains, amounts, recipients, refund addresses, slippage, fees, bridge assumptions, calldata, value, and wallet details before signing.
+
+Risk: Wallet addresses and swap intent may be sent to the Butter Router API.
+
+Mitigation: Use the skill only when comfortable sharing those addresses and transaction parameters with the Butter Router service.
+
+Risk: Routes may be unavailable or unsuitable because of liquidity, fees, slippage, or chain/token selection.
+
+Mitigation: Compare returned routes and fees, handle no-route or insufficient-liquidity responses, and ask the user to choose among multiple route options before preparing swap transaction data.
+
+## Reference(s):
+
+- [Butter API Docs](https://docs.butternetwork.io/butter-swap-integration/integration-guide)
+- [Butter Router API Base URL](https://bs-router-v3.chainservice.io)
+- [ClawHub Skill Page](https://clawhub.ai/ivanmacaron/skills/butter-swap-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with API examples, route summaries, transaction fields, and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include API response fields, route options, fees, slippage values, token and chain identifiers, and transaction calldata for user review.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

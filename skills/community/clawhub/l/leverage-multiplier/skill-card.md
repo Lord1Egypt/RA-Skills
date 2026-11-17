@@ -1,41 +1,49 @@
-## Description: <br>
-Expands a single input into connected content, distribution, monetization, and long-term asset ideas for fast growth planning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transforms one input into multiple linked content, distribution, and monetization strategies to maximize growth and revenue quickly.
 
-## Publisher: <br>
-[theshimaw-svg](https://clawhub.ai/user/theshimaw-svg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[theshimaw-svg](https://clawhub.ai/user/theshimaw-svg)
 
-## Use Case: <br>
-External users and builders use this skill to turn an idea, content item, product, or skill into a short action plan spanning content angles, distribution channels, monetization paths, and a longer-term asset. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may steer broad idea or growth requests toward content, distribution, and monetization planning, which could expose sensitive proprietary plans if included in prompts. <br>
-Mitigation: Avoid sharing confidential strategy, product, customer, or revenue details unless they are appropriate to use for generating marketing and monetization suggestions. <br>
-Risk: Generated growth and monetization ideas can be incomplete, impractical, or unsuitable for a specific market or audience. <br>
-Mitigation: Review suggestions before use and validate claims, channel fit, compliance needs, and execution feasibility. <br>
+## Use Case:
 
+External users, creators, marketers, and builders use this skill to turn an idea, product, piece of content, or skill into connected content expansions, distribution channels, monetization paths, and a long-term asset plan.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/theshimaw-svg/leverage-multiplier) <br>
-- [Publisher profile](https://clawhub.ai/user/theshimaw-svg) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-style structured action plan] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces sections for core asset, best angle, content expansions, distribution, monetization, long-term asset, and execution order.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Broad activation wording may cause the skill to apply to general growth or monetization requests where the user only needs narrow advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Apply the full framework when the user wants expansion or leverage from an input; otherwise keep the response scoped to the user's narrower request.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/theshimaw-svg/skills/leverage-multiplier)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Structured Markdown sections with numbered and bulleted lists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces connected content expansions, distribution recommendations, monetization paths, a long-term asset concept, and execution order.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

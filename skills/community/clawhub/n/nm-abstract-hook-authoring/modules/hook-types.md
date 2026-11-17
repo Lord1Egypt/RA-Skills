@@ -137,7 +137,7 @@ match on these tool names in `PreToolUse` and
 - Recurring tasks auto-expire after 7 days
 - Tasks fire only while the REPL is idle (not mid-query)
 - Jitter: recurring tasks fire up to 10% of their period
-  late (max 15 min); one-shot tasks at :00/:30 fire up
+  late (max 15 min). One-shot tasks at :00/:30 fire up
   to 90s early. Prefer off-minute scheduling to spread
   API load.
 - Disable entirely with `CLAUDE_CODE_DISABLE_CRON=1`.
@@ -249,7 +249,7 @@ generated visible status line noise. Still visible via
 
 Hooks that relied on visible completion messages for
 debugging should use `--verbose` mode. No per-hook
-`silent` configuration was added; the default behavior
+`silent` configuration was added. The default behavior
 changed globally.
 
 ## Hook Conditional `if` Field (2.1.85+)
@@ -493,7 +493,7 @@ duplicate injection.
 
 ## See Complete Guide
 
-The comprehensive hook types guide includes:
+The complete hook types guide includes:
 - Detailed lifecycle diagrams
 - Complete code examples for each hook type
 - Advanced patterns and combinations
@@ -501,3 +501,73 @@ The comprehensive hook types guide includes:
 - Migration guides
 
 See `Skill(abstract:hook-authoring)` for the full hook development guide and examples.
+
+## Hook Event Types
+
+Quick reference for the events most plugins use. Every event also
+receives the common fields (`session_id`, `transcript_path`, `cwd`,
+`hook_event_name`, and `permission_mode` where it applies). The full
+roster of 33 events is `plugins/abstract/src/abstract/hook_events.py`,
+and each event's input is in code.claude.com/docs/en/hooks.
+
+| Event | Trigger Point | Parameters | Common Use Cases |
+|-------|--------------|------------|------------------|
+| **PreToolUse** | Before tool execution | `tool_name`, `tool_input`, `tool_use_id` | Validation, filtering, input transformation |
+| **PostToolUse** | After a tool succeeds | `tool_name`, `tool_input`, `tool_response` | Logging, metrics, `updatedToolOutput` to replace the result |
+| **PostToolUseFailure** | After a tool fails | `tool_name`, `tool_input`, `error` | Failure logging; the exit code is the first line of `error` |
+| **UserPromptSubmit** | User sends message | `prompt` | Context injection, content filtering |
+| **PermissionRequest** | Permission dialog shown | `tool_name`, `tool_input`, `permission_suggestions` | Auto-approve/deny with custom logic |
+| **Notification** | Claude Code sends notification | `message`, `title`, `notification_type` | Custom notification handling |
+| **Stop** | Main turn ends | `stop_hook_active`, `last_assistant_message`, `background_tasks`, `session_crons` | Final checks; read `background_tasks` before blocking |
+| **SubagentStop** | Subagent completes | `agent_id`, `agent_type`, `agent_transcript_path`, `last_assistant_message` | Result processing, aggregation |
+| **TeammateIdle** | Teammate agent becomes idle | `teammate_name`, `team_name` | Work assignment, load balancing |
+| **TaskCompleted** | Task marked complete | `task_id`, `task_subject`, `task_description` | Coordination, chaining, reporting |
+| **PreCompact** | Before context compact | `trigger`, `custom_instructions` | State preservation, checkpointing |
+| **SessionStart** | Session starts/resumes | `source`, `model`, `agent_type` | Initialization, context loading |
+| **SessionEnd** | Session terminates | `reason` | Cleanup, final logging |
+| **WorktreeCreate** | Agent worktree created | `name` | Custom VCS setup, symlink .venv, pre-populate caches |
+| **WorktreeRemove** | Agent worktree removed | `worktree_path` | Cleanup temp files, teardown worktree-scoped resources |
+
+### SessionStart Input Schema (Claude Code 2.1.2+)
+
+The SessionStart hook receives JSON input via stdin with these fields:
+
+```json
+{
+  "session_id": "abc123",
+  "source": "startup",
+  "agent_type": "my-agent"
+}
+```
+
+Fields: `source` is one of `"startup"`, `"resume"`, `"clear"`, or `"compact"`. `agent_type` is populated when the `--agent` flag is used.
+
+**`agent_type` field**: When Claude Code is launched with `--agent my-agent`, this field contains the agent name. Use it for agent-specific initialization:
+
+```python
+# Python example: Agent-aware SessionStart hook
+input_data = json.loads(sys.stdin.read())
+agent_type = input_data.get("agent_type", "")
+
+if agent_type in ["code-reviewer", "quick-query"]:
+    # Skip heavy context injection for lightweight agents
+    print(json.dumps({"hookSpecificOutput": {"additionalContext": "Minimal context"}}))
+else:
+    # Full initialization for implementation agents
+    print(json.dumps({"hookSpecificOutput": {"additionalContext": full_context}}))
+```
+
+```bash
+# Bash example: Agent-aware SessionStart hook
+HOOK_INPUT=$(cat)
+AGENT_TYPE=$(echo "$HOOK_INPUT" | jq -r '.agent_type // empty')
+
+case "$AGENT_TYPE" in
+    code-reviewer|quick-query)
+        echo '{"hookSpecificOutput": {"additionalContext": "Minimal context"}}'
+        ;;
+    *)
+        echo '{"hookSpecificOutput": {"additionalContext": "Full context"}}'
+        ;;
+esac
+```

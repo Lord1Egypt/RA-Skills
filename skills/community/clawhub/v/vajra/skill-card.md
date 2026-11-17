@@ -1,45 +1,60 @@
-## Description: <br>
-Analyze URLs, YouTube videos, tweets, or text for quality, bias, and reliability using the Vajra API (vajra.to). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze URLs, YouTube videos, tweets, or text for quality, bias, and reliability using the Vajra API.
 
-## Publisher: <br>
-[minhyeong112](https://clawhub.ai/user/minhyeong112) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[minhyeong112](https://clawhub.ai/user/minhyeong112)
 
-## Use Case: <br>
-Users, developers, and analysts use this skill to submit public URLs, videos, social posts, or text to Vajra for quality, bias, reliability, key-takeaway, warning, and report-link analysis. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Submitted URLs or text are sent to Vajra for analysis. <br>
-Mitigation: Submit only content approved for external processing, and avoid private, proprietary, or personally identifying material. <br>
-Risk: Analysis output may be cached server-side and exposed through a public permalink. <br>
-Mitigation: Treat generated reports as public, review output before sharing, and avoid using the skill for sensitive material. <br>
-Risk: The skill requires a Vajra API key. <br>
-Mitigation: Store the key only in the VAJRA_API_KEY environment variable and avoid pasting credentials into prompts or shared logs. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Vajra Skill Page](https://clawhub.ai/minhyeong112/vajra) <br>
-- [Vajra](https://www.vajra.to) <br>
-- [Vajra Dashboard](https://www.vajra.to/dashboard) <br>
-- [Vajra Analyze API](https://www.vajra.to/api/analyze) <br>
-- [Humanity Labs](https://humanitylabs.org) <br>
+## Use Case:
 
+External users and developers use this skill to send public URLs or non-sensitive text to Vajra for reliability, bias, quality, takeaway, warning, and verdict summaries.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown summaries with JSON fields and optional shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns quality score, bias level, verdict, key takeaways, warnings, and a public report permalink when available.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Submitted URLs or text are transmitted to Vajra and analysis reports receive public permalinks.
+
+Mitigation: Use the skill only for public URLs or non-sensitive text, and avoid private, proprietary, or personally identifiable content.
+
+Risk: The broad trigger language could cause content to be sent for analysis when a user only wanted local discussion.
+
+Mitigation: Confirm before sending user-provided content to Vajra, especially when the content is not already public.
+
+Risk: Interpolating user text directly into the documented curl JSON payload can break JSON structure or create command-line handling issues.
+
+Mitigation: Submit content through a JSON serializer or safely piped data instead of manually interpolating untrusted text into a shell command.
+
+## Reference(s):
+
+- [Vajra ClawHub release](https://clawhub.ai/minhyeong112/skills/vajra)
+- [Vajra service](https://www.vajra.to)
+- [Vajra dashboard](https://www.vajra.to/dashboard)
+- [Vajra analyze API endpoint](https://www.vajra.to/api/analyze)
+- [Humanity Labs](https://humanitylabs.org)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown summary with optional JSON API response fields and permalink]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires VAJRA_API_KEY; raw text input is limited to 50,000 characters according to the skill documentation.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

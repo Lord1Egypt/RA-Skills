@@ -1,6 +1,18 @@
 {
-  "ownerId": "kn7bcaearb90wwcjbr9gpv32s5831k39",
+  "ownerId": "s172yaxxd2drm0sc92554g9aq983hegj",
   "slug": "goal-task",
   "version": "1.0.2",
-  "publishedAt": 1779508530767
+  "publishedAt": "2026-05-23T00:00:00Z",
+  "requiredEnvVars": [],
+  "requiredConfigPaths": [],
+  "primaryCredential": null,
+  "persistence": null,
+  "credentialSetup": {
+    "type": "none",
+    "description": "No credentials required. Gateway token is read from ~/.openclaw/openclaw.json at runtime."
+  },
+  "requires": {
+    "anyBinaries": [],
+    "os": ["linux"]
+  }
 }

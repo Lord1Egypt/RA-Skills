@@ -1,45 +1,68 @@
-## Description: <br>
-Pre-trade risk API for crypto trading agents that returns exposure limits, allowed actions, and policy constraints for BTC/USD and ETH/USD from 30+ real-time signals across spot, perpetual futures, and DeFi borrowing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pre-trade risk API for crypto trading agents. Returns exposure limits, allowed actions, and policy constraints for BTC/USD and ETH/USD from 30+ real-time signals. Spot, perpetual futures (perps), and DeFi borrowing aware.
 
-## Publisher: <br>
-[likidodefi](https://clawhub.ai/user/likidodefi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[riskstate](https://clawhub.ai/user/riskstate)
 
-## Use Case: <br>
-External developers, trading-system operators, and capital desks use this skill to query RiskState before opening, sizing, or maintaining BTC/USD and ETH/USD exposure. Agents use the returned policy fields to enforce position limits, leverage caps, blocked actions, and DeFi health constraints before execution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends RiskState API keys, requested assets, and optional wallet addresses to RiskState's external service. <br>
-Mitigation: Use a scoped API key stored in environment variables or a secret manager, and provide a wallet address only when DeFi analysis is needed. <br>
-Risk: Risk output depends on live external market and DeFi data, which may be stale, degraded, unavailable, or rate-limited. <br>
-Mitigation: Follow the documented failure-mode behavior: treat stale or low-quality data as degraded, abstain when data quality is unreliable, and fail closed on timeouts or server errors. <br>
-Risk: The optional MCP server is a separate integration path from the skill files reviewed here. <br>
-Mitigation: Review and scan the optional MCP server independently before installing it. <br>
+## Use Case:
 
+External developers, trading-agent builders, systematic trading teams, and capital desks use this skill to query RiskState before opening, sizing, or monitoring BTC/USD and ETH/USD spot, perpetual futures, or DeFi borrowing positions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/likidodefi/riskstate) <br>
-- [RiskState homepage](https://riskstate.ai) <br>
-- [RiskState API documentation](https://riskstate.ai/docs/api) <br>
-- [RiskState API v1 reference](docs/api-v1.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, code, configuration, JSON] <br>
-**Output Format:** [Markdown guidance with curl examples, integration snippets, and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a RiskState bearer token; optional wallet address enables DeFi position analysis.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill can influence automated crypto-trading decisions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as third-party risk inputs, require human review or independent exposure limits for material trades, and do not execute solely from the policy response.
+
+Risk: Optional DeFi checks may send wallet addresses to a third-party API.
+
+Mitigation: Avoid operational wallet addresses unless DeFi-specific checks are necessary, and confirm the publisher's wallet-data logging and retention practices.
+
+Risk: The artifact documents an unpinned MCP server install path.
+
+Mitigation: Pin package or container versions and run the MCP server in a sandbox before connecting it to trading workflows.
+
+Risk: The API documentation discloses a known scoring divergence affecting whale and tactical-volume readings until a corrected scoring version is deployed.
+
+Mitigation: Use human review or independent limits for material trades until the corrected scoring version is released and verified.
+
+Risk: Stale, degraded, or low-confidence market data can reduce policy reliability.
+
+Mitigation: Follow the artifact's failure guidance: downgrade conviction, halve or avoid position sizing when data quality is degraded, and fail closed on timeouts or core data errors.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/riskstate/skills/riskstate)
+- [RiskState website](https://riskstate.ai)
+- [RiskState API documentation](https://riskstate.ai/docs/api)
+- [Local API reference](docs/api-v1.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, code, configuration]
+
+**Output Format:** [Markdown guidance with JSON and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses bearer-token authentication through RISKSTATE_API_KEY and returns risk-policy fields from a third-party API.]
+
+## Skill Version(s):
+
+1.4.1 (source: server release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

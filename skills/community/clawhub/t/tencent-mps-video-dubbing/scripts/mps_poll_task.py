@@ -65,7 +65,11 @@ def _get_credentials():
 def _create_client(region):
     cred = _get_credentials()
     http_profile = HttpProfile()
-    http_profile.endpoint = "mps.tencentcloudapi.com"
+    # 与 mps_video_dubbing.create_client 保持一致：接入点可通过 TENCENTCLOUD_MPS_ENDPOINT 覆盖。
+    # 若此处不跟随，会出现「提交到国际站、查询打到国内站」从而查不到任务的问题。
+    http_profile.endpoint = os.environ.get(
+        "TENCENTCLOUD_MPS_ENDPOINT", "mps.tencentcloudapi.com"
+    )
     http_profile.reqMethod = "POST"
     client_profile = ClientProfile()
     client_profile.httpProfile = http_profile

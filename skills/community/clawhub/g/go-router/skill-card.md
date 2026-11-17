@@ -1,37 +1,50 @@
-## Description: <br>
-Declarative URL-based routing for Flutter using the Router API. Use when implementing navigation between screens, deep links, authentication guards, parameterized routes, shell routes with nested navigation, and web routing in Flutter apps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Declarative URL-based routing guidance for Flutter apps using the Router API, covering navigation between screens, deep links, authentication guards, parameterized routes, shell routes with nested navigation, and web routing.
 
-## Publisher: <br>
-[tobiasbentin](https://clawhub.ai/user/tobiasbentin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[tobiasbentin](https://clawhub.ai/user/tobiasbentin)
 
-## Use Case: <br>
-Flutter developers use this skill for guidance and code examples when configuring GoRouter routes, navigation flows, deep links, authentication redirects, nested shell routes, typed routes, transitions, error handling, and routing tests. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated Flutter navigation, deep-link, or authentication-guard code may not match the application's access-control and routing requirements. <br>
-Mitigation: Review generated GoRouter code for app-specific correctness and cover critical navigation, redirect, and deep-link paths with tests before shipping. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Go Router Best Practices](artifact/BEST_PRACTICES.md) <br>
+## Use Case:
 
+Developers and engineers use this skill for guidance on implementing GoRouter navigation in Flutter apps, including deep links, guards, nested routes, web routing, testing, and common routing patterns.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown with Dart and shell code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Provides Flutter routing examples and best-practice guidance; no credentials, tools, or external services are required by the skill itself.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated or copied routing and authentication guard code may not match an application's access-control requirements.
+
+Mitigation: Review all routing, redirect, and guard logic against the target app's authorization model before applying it.
+
+## Reference(s):
+
+- [Go Router Best Practices](BEST_PRACTICES.md)
+- [ClawHub skill page](https://clawhub.ai/tobiasbentin/skills/go-router)
+- [Publisher profile](https://clawhub.ai/user/tobiasbentin)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with Dart and shell code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only output; no hidden execution, persistence, or sensitive data access was identified by the supplied security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

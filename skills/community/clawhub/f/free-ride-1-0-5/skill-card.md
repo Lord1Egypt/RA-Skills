@@ -1,44 +1,60 @@
-## Description: <br>
-Manages free AI models from OpenRouter for OpenClaw by ranking models, configuring fallbacks for rate-limit handling, and updating OpenClaw model settings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manages free AI models from OpenRouter for OpenClaw by ranking available free models, configuring fallbacks for rate-limit handling, and updating openclaw.json.
 
-## Publisher: <br>
-[andy27725](https://clawhub.ai/user/andy27725) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[andy27725](https://clawhub.ai/user/andy27725)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to configure OpenClaw to use free OpenRouter models, refresh ranked model lists, switch primary models, and maintain fallbacks when rate limits occur. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can change OpenClaw's persistent default model, fallback models, and model allowlist. <br>
-Mitigation: Install and run mutating commands only when those configuration changes are intended, and back up ~/.openclaw/openclaw.json before use. <br>
-Risk: The skill handles an OpenRouter API key and may read it from environment variables or OpenClaw configuration. <br>
-Mitigation: Avoid printing or sharing the API key, and keep it in environment or OpenClaw configuration only where intended. <br>
-Risk: The optional watcher can perform ongoing OpenRouter checks and automatic model rotation. <br>
-Mitigation: Run freeride-watcher --daemon only when continuous monitoring and automatic rotation are desired. <br>
+## Use Case:
 
+External users and developers use this skill to configure OpenClaw with OpenRouter free models, choose primary and fallback models, and refresh or inspect model availability. It is useful when reducing model costs or handling rate limits across free model tiers.
 
-## Reference(s): <br>
-- [ClawHub Free Ride release page](https://clawhub.ai/andy27725/free-ride-1-0-5) <br>
-- [OpenRouter keys](https://openrouter.ai/keys) <br>
-- [OpenRouter models API endpoint](https://openrouter.ai/api/v1/models) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May update OpenClaw model defaults, fallback models, and model allowlist entries in ~/.openclaw/openclaw.json.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact metadata also reports 1.0.5 and skill.json reports 1.0.1) <br>
+Risk: Persistent OpenClaw model configuration changes can alter the user's default model and fallback list.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Back up ~/.openclaw/openclaw.json before use and review the primary and fallback settings before restarting OpenClaw.
+
+Risk: The optional watcher can automatically rotate models during rate limits.
+
+Mitigation: Run the watcher only when automatic rotation is desired, and check watcher status before relying on automatic changes.
+
+Risk: Installer and dependency versions may drift over time.
+
+Mitigation: Prefer pinned installer and Python dependency versions where available.
+
+## Reference(s):
+
+- [ClawHub skill release page](https://clawhub.ai/andy27725/skills/free-ride-1-0-5)
+- [OpenClaw project](https://github.com/openclaw/openclaw)
+- [OpenRouter keys](https://openrouter.ai/keys)
+- [OpenRouter models API](https://openrouter.ai/api/v1/models)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and configuration paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose OpenClaw configuration changes and optional watcher commands; no structured artifact is guaranteed.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact metadata also reports 1.0.5 and skill.json reports 1.0.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

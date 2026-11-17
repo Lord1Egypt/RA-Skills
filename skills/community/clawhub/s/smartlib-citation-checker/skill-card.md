@@ -1,47 +1,54 @@
-## Description: <br>
-Smartlib Citation Checker Clawhub helps agents verify whether paper references or AI-generated citations are real, compare them with SmartLib records, and produce HTML citation-check reports with corrections, verification links, and citation analytics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Checks references in papers or AI-generated bibliographies against SmartLib records, identifies mismatches, and produces an HTML verification report with corrected citations and source links.
 
-## Publisher: <br>
-[j-levee](https://clawhub.ai/user/j-levee) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[j-levee](https://clawhub.ai/user/j-levee)
 
-## Use Case: <br>
-External researchers, authors, editors, and developers use this skill to check reference lists, paper drafts, BibTeX entries, and AI-generated citations for authenticity and formatting issues before relying on or submitting them. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Citation text and an email address may be sent to SmartLib/VIP Smart services. <br>
-Mitigation: Use the skill only with citation data and account identifiers that are approved for external processing, especially for unpublished or confidential drafts. <br>
-Risk: The skill uses a shared SmartLib quota and account flow. <br>
-Mitigation: Confirm which email and quota account are active before running citation checks or payment-related flows. <br>
-Risk: Corrected bibliography exports can still require human judgment. <br>
-Mitigation: Treat corrected references, fuzzy matches, and not-found results as review material and verify important citations before submission. <br>
+## Use Case:
 
+Researchers, students, and academic writers can check whether citations in a paper draft or AI-generated reference list match SmartLib records, review suggested corrections, and export a verification report.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/j-levee/skills/smartlib-citation-checker) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/j-levee) <br>
-- [SmartLib / VIP Smart homepage](https://www.vipslib.com) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Paper draft sample report](artifact/examples/citation_check_paper_draft_sample.html) <br>
-- [AI hallucination sample report](artifact/examples/citation_check_ai_hallucination_sample.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, HTML, markdown, configuration, guidance] <br>
-**Output Format:** [HTML reports with corrected citation text, verification links, tabbed citation formats, statistics, and concise agent guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses SmartLib Gateway environment configuration and may request a user email for quota management before citation checks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.6.1 (source: server release metadata; artifact frontmatter reports 3.6) <br>
+Risk: The security assessment marks the release suspicious and reports an exposed production gateway credential.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid relying on credentials bundled with the package; have the credential owner revoke or rotate the exposed credential, and review credential handling before use.
+
+Risk: The security assessment reports risky account and notification instructions, and says inspection was incomplete (4 of 6 components scanned, with one referenced sample only partly inspected).
+
+Mitigation: Review the account and notification steps and inspect the remaining content before enabling the skill; use extra caution in shared environments.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/j-levee/skills/smartlib-citation-checker)
+- [Publisher profile](https://clawhub.ai/user/j-levee)
+
+## Skill Output:
+
+**Output Type(s):** [HTML report, Text, Guidance]
+
+**Output Format:** [HTML verification report with result tables, corrected references, source links, and citation statistics; corrected references can also be downloaded as plain text.]
+
+**Output Parameters:** [1D (one paper draft or reference list)]
+
+**Other Properties Related to Output:** [Supports GB/T 7714, APA, MLA, Chicago, and BibTeX formats; reports citation matches and field-level differences.]
+
+## Skill Version(s):
+
+3.6.8 (source: release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,54 @@
-## Description: <br>
-LiberFi Auth helps agents register or log in to LiberFi, manage local session state, and verify assigned EVM and Solana wallet addresses. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Authenticate with LiberFi to register accounts, log in, manage session state, and verify wallet assignments.
 
-## Publisher: <br>
-[bombmod](https://clawhub.ai/user/bombmod) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bombmod](https://clawhub.ai/user/bombmod)
 
-## Use Case: <br>
-External users and developers use this skill to authenticate a CLI or agent with LiberFi through key-based or email OTP login, then check session status and wallet assignment before LiberFi operations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may direct an agent to install the global @liberfi.io/cli package. <br>
-Mitigation: Review and approve the package source and install command before allowing a global npm install. <br>
-Risk: Authentication can create persistent local session and key files containing sensitive material. <br>
-Mitigation: Protect ~/.liberfi/session.json and ~/.liberfi/keys/default.json, restrict access to the local user, and avoid logging or sharing their contents. <br>
-Risk: Local logout clears the session file but may not revoke server-side access. <br>
-Mitigation: Use this skill only when LiberFi authentication is intended, and follow LiberFi account or server-side revocation procedures when access must be terminated. <br>
+## Use Case:
 
+External users and developers use this skill to authenticate agents or human users with LiberFi, inspect authentication state, and manage local session credentials for LiberFi workflows.
 
-## Reference(s): <br>
-- [LiberFi homepage](https://liberfi.io) <br>
-- [ClawHub skill page](https://clawhub.ai/bombmod/liberfi-auth) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands should use --json; authentication may write local session and key files under ~/.liberfi.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill directs an agent to install a global npm CLI without asking and to hide package-installation failures.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit approval before any global install, pin and verify the @liberfi.io/cli package, and report installation failures accurately.
+
+Risk: Authentication creates persistent local key and session files containing key material, wallet addresses, and a JWT.
+
+Mitigation: Treat ~/.liberfi/session.json and ~/.liberfi/keys/*.json as sensitive credentials, keep restrictive file permissions, and never log, display, or transmit their contents.
+
+## Reference(s):
+
+- [LiberFi homepage](https://liberfi.io)
+- [ClawHub skill page](https://clawhub.ai/bombmod/skills/liberfi-auth)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance, JSON]
+
+**Output Format:** [Markdown guidance with shell commands and JSON CLI output examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the LiberFi CLI and creates local session and key files under ~/.liberfi.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

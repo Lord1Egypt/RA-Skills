@@ -1,43 +1,55 @@
-## Description: <br>
-UXLens audits websites for UX, UI, and accessibility issues using 600+ proven checkpoints. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+UXLens audits websites for UX, UI, and accessibility issues with 600+ checkpoints, detailed reports, full-site crawls, and redesign comparisons.
 
-## Publisher: <br>
-[misothecod](https://clawhub.ai/user/misothecod) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[misothecod](https://clawhub.ai/user/misothecod)
 
-## Use Case: <br>
-Developers, freelance builders, agencies, and AI agents use UXLens to audit public websites, landing pages, portfolios, and redesigns for usability, UI, performance, and accessibility issues before launch or handoff. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a sensitive UXLENS_API_KEY. <br>
-Mitigation: Use a revocable key, store it only in the environment, and rotate or revoke it if exposed. <br>
-Risk: Audited URLs, discovered pages, and related metadata are submitted to a third-party service. <br>
-Mitigation: Audit only sites you are authorized to submit, and avoid confidential internal, staging, authenticated, or client sites unless approved. <br>
+## Use Case:
 
+External developers, agencies, indie builders, and AI agents use UXLens to audit websites for UX, UI, accessibility, Core Web Vitals, and redesign regressions before launch or handoff.
 
-## Reference(s): <br>
-- [UXLens ClawHub Skill Page](https://clawhub.ai/misothecod/uxlens) <br>
-- [UXLens Homepage](https://uxlens.io) <br>
-- [UXLens Dashboard](https://uxlens.io/dashboard) <br>
-- [UXLens Skill Source](https://github.com/misothecod/uxlens-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Text, Shell commands, Configuration, API requests] <br>
-**Output Format:** [Markdown guidance with shell setup snippets and JSON API request and response examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Audit responses include an agent_summary, issue lists, scores, Core Web Vitals, accessibility findings, and metadata fields for follow-up fixes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server-resolved release metadata) <br>
+Risk: Submitted URLs and pages reached during full-site crawls are processed by the UXLens third-party service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid private, internal, staging, localhost, authenticated, or client-sensitive sites unless authorized and comfortable with that exposure.
+
+Risk: The skill requires a UXLENS_API_KEY credential.
+
+Mitigation: Protect the API key like any other service credential and avoid committing or sharing it.
+
+## Reference(s):
+
+- [UXLens homepage](https://uxlens.io)
+- [UXLens dashboard](https://uxlens.io/dashboard)
+- [ClawHub skill page](https://clawhub.ai/misothecod/skills/uxlens)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Guidance, Configuration]
+
+**Output Format:** [Structured JSON with an agent-readable text summary, scores, issue lists, and prioritized fixes.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires UXLENS_API_KEY and sends submitted URLs to the UXLens API for audit processing.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

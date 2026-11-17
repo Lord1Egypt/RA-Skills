@@ -1,40 +1,55 @@
-## Description: <br>
-Search the web using AI models with built-in search capability for live information, news, documentation, or research topics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search the web using AI models with built-in search capability. Use for live information, news, documentation, or research topics.
 
-## Publisher: <br>
-[cznorth](https://clawhub.ai/user/cznorth) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cznorth](https://clawhub.ai/user/cznorth)
 
-## Use Case: <br>
-Developers and agent users use this skill to run AI-assisted web searches for current information, documentation, news, and research questions from an agent workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill routes search queries to a third-party endpoint and has weak privacy and trust disclosure. <br>
-Mitigation: Verify the configured endpoint before use and avoid sending secrets, proprietary code, personal data, or regulated information through this skill. <br>
-Risk: The artifact advertises a shared public API key. <br>
-Mitigation: Use an operator-controlled, scoped API key instead of the shared key and rotate credentials according to local policy. <br>
+## Use Case:
 
+Developers and external users use this skill to run live web searches through DeepSeek search-enabled chat and reasoning models from an agent or command line.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cznorth/deepseek-ai-search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text or Markdown-style console output with search results, optional reasoning, and usage statistics] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and AI_SEARCH_API_KEY; accepts a JSON request with query, model, verbose, and stream options.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Search queries and the bearer credential are sent to the configured third-party API endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a limited API key, avoid sending secrets or private code in queries, and configure AI_SEARCH_BASE_URL only to a provider you trust.
+
+Risk: The release includes a shared public API key and has limited privacy and scoping disclosure.
+
+Mitigation: Prefer your own scoped credential and review the skill before installing or running it.
+
+## Reference(s):
+
+- [DeepSeek AI Search on ClawHub](https://clawhub.ai/cznorth/skills/deepseek-ai-search)
+- [cznorth Publisher Profile](https://clawhub.ai/user/cznorth)
+- [Default AI Search API endpoint](https://ai.ch66.top)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Plain text or Markdown-formatted search results, optionally including reasoning and usage statistics.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3, the requests library, and AI_SEARCH_API_KEY; AI_SEARCH_BASE_URL can redirect requests to a configured provider.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,61 @@
-## Description: <br>
-Orchestrator for GitHub Spec-Kit SDD workflow in OpenClaw. Use when starting a new project with spec-driven development, setting up spec-kit toolchain, or running through the full SDD pipeline. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Spec-kit Coding orchestrates the GitHub Spec-Kit spec-driven development workflow in OpenClaw for project setup, toolchain setup, and SDD pipeline execution.
 
-## Publisher: <br>
-[staok](https://clawhub.ai/user/staok) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[staok](https://clawhub.ai/user/staok)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to initialize and run an OpenClaw spec-driven development workflow around GitHub Spec-Kit, including project setup, specification, planning, task generation, implementation batching, and coding guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Setup installs unpinned external tools and skills from GitHub. <br>
-Mitigation: Run `setup.sh --check-only` first, review the external sources reported by setup, and install only in an environment where live third-party downloads are acceptable. <br>
-Risk: The workflow can delete `.claude` and `CLAUDE.md` during project initialization. <br>
-Mitigation: Run initialization only in a prepared project directory and preserve any needed `.claude` or `CLAUDE.md` content before executing cleanup steps. <br>
-Risk: Using `--force` can replace existing external skills. <br>
-Mitigation: Avoid `--force` unless replacement is intended and existing skill directories have been reviewed or backed up. <br>
+## Use Case:
 
+Developers and engineers use this skill to initialize OpenClaw projects around GitHub Spec-Kit, establish project documentation and coding standards, and move features through specification, planning, tasking, implementation, review, and testing phases.
 
-## Reference(s): <br>
-- [GitHub Spec-Kit](https://github.com/github/spec-kit) <br>
-- [Top-Level Coding Guidance](CodingGuidance/TopLevelCodingGuidance.md) <br>
-- [C++ Coding Style](CodingGuidance/CppCodingStyle.md) <br>
-- [Design Pattern Guidance](CodingGuidance/DesignPattern/DesignPattern.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, file paths, and generated project documentation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May direct agents to create or update project files such as README.md, DEVLOG.md, .specify artifacts, specs, tasks, and implementation changes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release evidence) <br>
+Risk: The setup workflow fetches executable tooling and third-party skills from GitHub into the OpenClaw workspace.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run `setup.sh --check-only` first, review the listed downloads, and proceed with installation only after accepting those remote dependencies.
+
+Risk: The project initialization workflow can remove existing `.claude` and `CLAUDE.md` agent configuration.
+
+Mitigation: Use a new or backed-up project directory before initialization, and avoid running the cleanup step in projects with important existing agent configuration.
+
+Risk: `--force` can reinstall tools and overwrite downloaded skill directories.
+
+Mitigation: Avoid `--force` unless repair or refresh is necessary, and review generated `SOURCE.md` and manifest entries after reinstalling.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/staok/skills/spec-kit-coding)
+- [GitHub Spec-Kit](https://github.com/github/spec-kit)
+- [C++ Coding Style Guidance](CodingGuidance/CppCodingStyle.md)
+- [Top-Level Coding Guidance](CodingGuidance/TopLevelCodingGuidance.md)
+- [Design Pattern Guidance](CodingGuidance/DesignPattern/DesignPattern.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, file templates, and task handoff prompts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update project files, documentation, specs, tasks, and agent handoff instructions when the workflow is followed.]
+
+## Skill Version(s):
+
+1.0.5 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

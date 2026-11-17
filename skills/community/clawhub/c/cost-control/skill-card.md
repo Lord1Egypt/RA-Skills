@@ -1,45 +1,60 @@
-## Description: <br>
-Prevent runaway API costs with 3-tier protection: caution, emergency, and hard cap. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Prevent runaway API costs with 3-tier protection: caution, emergency, and hard cap. Works for ANY expensive API GPT-4, Claude Opus, Gemini, cloud services.
 
-## Publisher: <br>
-[TheShadowRose](https://clawhub.ai/user/TheShadowRose) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[theshadowrose](https://clawhub.ai/user/theshadowrose)
 
-## Use Case: <br>
-Developers and engineers use this skill to add configurable spend controls around expensive APIs, including AI model APIs, cloud compute, and paid third-party services. It helps agents propose integration code, shell commands, and configuration steps for tiered budget thresholds, emergency blocking, and an optional external watchdog. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The external watchdog can terminate the process identified by state/app.pid when configured thresholds are exceeded. <br>
-Mitigation: Verify state/app.pid is created by the intended application, test the watchdog in staging, and document the rollback process before enabling the cron job. <br>
-Risk: Incorrect thresholds or pricing settings can either block valid API usage too early or fail to stop overspending quickly enough. <br>
-Mitigation: Set thresholds against the actual budget and provider pricing, then run a staged test with conservative limits before production use. <br>
-Risk: Emergency and kill-switch flags require manual cleanup, so a false alarm can keep API calls paused. <br>
-Mitigation: Define an operator runbook for investigating the cause, removing the cron entry if needed, and clearing emergency flags only after the issue is fixed. <br>
+## Use Case:
 
+Developers and operators use this skill to add tiered cost controls around expensive API or cloud-service calls. It helps monitor request costs, block calls after emergency thresholds, and optionally run an external watchdog that can stop the protected process.
 
-## Reference(s): <br>
-- [Cost Control ClawHub Release](https://clawhub.ai/TheShadowRose/cost-control) <br>
-- [Publisher Profile](https://clawhub.ai/user/TheShadowRose) <br>
-- [README](artifact/README.md) <br>
-- [Known Limitations](artifact/LIMITATIONS.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline Python and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces integration guidance for local file-based cost tracking, emergency flags, manual kill-switch use, and cron-based watchdog setup.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: The optional watchdog can terminate a local process when configured thresholds are exceeded.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only under a dedicated unprivileged account, avoid root cron, verify the PID file target, and require operator approval before recovery.
+
+Risk: State files and emergency flags control whether API calls continue or stop.
+
+Mitigation: Protect the state directory from other users and use inspected local files or a pinned, verified package.
+
+Risk: Cost totals depend on recorded calls and can drift from provider billing data.
+
+Mitigation: Use conservative thresholds and reconcile tracker totals against provider dashboards before relying on the limits in production.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/theshadowrose/skills/cost-control)
+- [Publisher profile](https://clawhub.ai/user/theshadowrose)
+- [README](artifact/README.md)
+- [Known limitations](artifact/LIMITATIONS.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with Python and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces integration guidance for local cost tracking, threshold configuration, emergency flags, and watchdog deployment.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

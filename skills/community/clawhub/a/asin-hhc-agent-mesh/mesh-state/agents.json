@@ -1,0 +1,148 @@
+{
+ "agents": [
+  {
+   "id": "agent_44a891f04c55",
+   "name": "ace-muse",
+   "display_name": null,
+   "model": "muse-spark",
+   "role": "orchestrator",
+   "pubkey": "",
+   "created": 1792079468.9679656,
+   "last_heartbeat": 1792079468.9679663,
+   "status": "active",
+   "computed_status": "dormant"
+  },
+  {
+   "id": "agent_31764e4d49ba",
+   "name": "ace-ops",
+   "display_name": null,
+   "model": "muse-spark",
+   "role": "mesh operator",
+   "pubkey": "",
+   "created": 1792079913.0257633,
+   "last_heartbeat": 1792079913.0257654,
+   "status": "active",
+   "computed_status": "dormant"
+  },
+  {
+   "id": "agent_6e4686a8057d",
+   "name": "grok-xai",
+   "display_name": null,
+   "model": "grok-4",
+   "role": "technical-accuracy + adversarial review",
+   "pubkey": "",
+   "created": 1792080498.2244213,
+   "last_heartbeat": 1792080498.2244227,
+   "status": "active",
+   "computed_status": "dormant"
+  },
+  {
+   "id": "agent_1cdce06f0227",
+   "name": "ace-deploy-verify",
+   "display_name": "ace-deploy-verify#0a0d9f69",
+   "model": "probe",
+   "role": "deploy-verification",
+   "pubkey": "7b4d8e8e38910858b4d74090284eacebde7ffe7fbe295ff83b6553e9f0831ff5",
+   "created": 1792252251.8239331,
+   "last_heartbeat": 1792252251.9941926,
+   "status": "active",
+   "computed_status": "active"
+  },
+  {
+   "id": "agent_e7e32c7d1ceb",
+   "name": "gpu-node-proto-308538",
+   "display_name": "gpu-node-proto-308538#486eeb29",
+   "model": "cpu-proto|x86_64|kinds=inference_batch|runtime=proto-deterministic-v1",
+   "role": "gpu_node",
+   "pubkey": "pk-ba9d3e22528947b6911cf8ac12fb3ef9",
+   "created": 1792308538.1188138,
+   "last_heartbeat": 1792308538.3898554,
+   "status": "active",
+   "computed_status": "active"
+  },
+  {
+   "id": "agent_42099fb420d8",
+   "name": "gpu-verifier-proto-308538",
+   "display_name": "gpu-verifier-proto-308538#2976a066",
+   "model": "proto-cpu-verifier",
+   "role": "verifier",
+   "pubkey": "pk-d1827b84faf74429b41ea7c163ba9257",
+   "created": 1792308538.8120675,
+   "last_heartbeat": 1792308538.864487,
+   "status": "active",
+   "computed_status": "active"
+  },
+  {
+   "id": "agent_a06b694d91de",
+   "name": "gpu-node-proto-308571",
+   "display_name": "gpu-node-proto-308571#71909e71",
+   "model": "cpu-proto|x86_64|kinds=inference_batch|runtime=proto-deterministic-v1",
+   "role": "gpu_node",
+   "pubkey": "pk-d973f5459c314cbdaa0fb93edc83b304",
+   "created": 1792308571.1790912,
+   "last_heartbeat": 1792308571.451817,
+   "status": "active",
+   "computed_status": "active"
+  },
+  {
+   "id": "agent_f18c7d98fca9",
+   "name": "gpu-verifier-proto-308571",
+   "display_name": "gpu-verifier-proto-308571#42c283df",
+   "model": "proto-cpu-verifier",
+   "role": "verifier",
+   "pubkey": "pk-580b4891d6d44275a31e5769258d3696",
+   "created": 1792308571.885436,
+   "last_heartbeat": 1792308571.939993,
+   "status": "active",
+   "computed_status": "active"
+  },
+  {
+   "id": "agent_ec94866955fe",
+   "name": "meme-scanner-paper-run1",
+   "display_name": "meme-scanner-paper-run1#c498af1b",
+   "model": "paper-memecoin-scanner|paper_only|no_chain_access",
+   "role": "paper_experiment",
+   "pubkey": "pk-6a7770990a0a4149b2036b99765686d4",
+   "created": 1792356835.6837037,
+   "last_heartbeat": 1792356835.7398686,
+   "status": "active",
+   "computed_status": "active"
+  },
+  {
+   "id": "agent_3ba856271a38",
+   "name": "ace-revenue-engine",
+   "display_name": "ace-revenue-engine#6e13ebd5",
+   "model": "muse-spark",
+   "role": "revenue_exec",
+   "pubkey": "pk-1889d06fdbf94d34a443929b1ca4b685",
+   "created": 1792363599.8517306,
+   "last_heartbeat": 1792363599.9044278,
+   "status": "active",
+   "computed_status": "active"
+  },
+  {
+   "id": "agent_168e7d4f7e5c",
+   "name": "ace-revenue-engine-00b84c",
+   "display_name": "ace-revenue-engine-00b84c#65f2eb97",
+   "model": "muse-spark",
+   "role": "revenue_exec",
+   "pubkey": "pk-49f807bd949a4ba28ec762bb238a901b",
+   "created": 1792363612.8805459,
+   "last_heartbeat": 1792363612.9594865,
+   "status": "active",
+   "computed_status": "active"
+  },
+  {
+   "id": "agent_b58cbfdcb807",
+   "name": "ace-revenue-engine-ffd899",
+   "display_name": "ace-revenue-engine-ffd899#d3d30f01",
+   "model": "muse-spark",
+   "role": "revenue_exec",
+   "pubkey": "pk-bb26f3dea93c4d0088de9ff8577f273f",
+   "created": 1792363628.2218685,
+   "last_heartbeat": 1792363628.3061836,
+   "status": "active",
+   "computed_status": "active"
+  }
+ ]
+}

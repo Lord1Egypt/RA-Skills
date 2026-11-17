@@ -1,0 +1,26 @@
+collection: PSP
+sort-by: 10
+shortname: psp
+extensions: app
+launch: am start --user 0 -n org.ppsspp.ppsspp/.PpssppActivity
+
+game: 侠盗猎车 - 罪恶都市传奇
+file: gta_vc.app
+launch: am start --user 0 -n org.ppsspp.ppsspp/.PpssppActivity --es "org.ppsspp.ppsspp.Shortcuts" "/storage/emulated/0/Android/data/org.ppsspp.ppsspp/files/侠盗猎车 - 罪恶都市传奇.iso"
+assets.box_front: Imgs/侠盗猎车 - 罪恶都市传奇.png
+description: GTA 系列 PSP 作品，罪恶都市前传剧情，开放世界与载具抢夺。
+game: 实况足球 2009
+file: pes2009.app
+launch: am start --user 0 -n org.ppsspp.ppsspp/.PpssppActivity --es "org.ppsspp.ppsspp.Shortcuts" "/storage/emulated/0/Android/data/org.ppsspp.ppsspp/files/实况足球 2009.cso"
+assets.box_front: Imgs/实况足球 2009.png
+description: KONAMI 足球模拟，PSP 便携版支持单机对战。
+game: 山脊赛车
+file: ridge_racer.app
+launch: am start --user 0 -n org.ppsspp.ppsspp/.PpssppActivity --es "org.ppsspp.ppsspp.Shortcuts" "/storage/emulated/0/Android/data/org.ppsspp.ppsspp/files/山脊赛车.cso"
+assets.box_front: Imgs/山脊赛车.png
+description: NAMCO 竞速游戏，漂移手感与电子配乐是招牌。
+game: 战神-奥林匹斯之链
+file: gow_chains.app
+launch: am start --user 0 -n org.ppsspp.ppsspp/.PpssppActivity --es "org.ppsspp.ppsspp.Shortcuts" "/storage/emulated/0/Android/data/org.ppsspp.ppsspp/files/战神-奥林匹斯之链.iso"
+assets.box_front: Imgs/战神-奥林匹斯之链.png
+description: 战神系列 PSP 前传，奎托斯的希腊神话冒险，画面接近主机水准。

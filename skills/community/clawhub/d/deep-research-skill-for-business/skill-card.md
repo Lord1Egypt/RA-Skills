@@ -1,46 +1,61 @@
-## Description: <br>
-Guides agents through a structured, checkpointed business deep-research workflow for industry analysis, market research, competitor analysis, and similar research reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deep Research Skill V3.1 guides an agent through a structured business research workflow with scoped questions, staged search and fetch steps, source grading, cross-validation, report generation, and final self-checks.
 
-## Publisher: <br>
-[leanerque260](https://clawhub.ai/user/leanerque260) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leanerque260](https://clawhub.ai/user/leanerque260)
 
-## Use Case: <br>
-External users, business analysts, and agent operators use this skill to produce evidence-backed deep research reports with explicit scope confirmation, source grading, cross-checks, and final self-review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow runs a local bash orchestrator and can write local session and report files. <br>
-Mitigation: Review orchestrator.sh before use and set DEEP_RESEARCH_REPORTS_DIR to an approved output directory when reports should be stored outside the skill directory. <br>
-Risk: Research topics and gathered content may pass through the agent's configured search, fetch, chat, and delivery tools. <br>
-Mitigation: Avoid confidential topics unless those tools are approved for the data and the user's environment. <br>
-Risk: Report quality depends on the agent following the required scope, reflection, source-grading, and self-check steps. <br>
-Mitigation: Require completion of the S0, S2, and S9 checkpoints before relying on a generated report. <br>
+## Use Case:
 
+Developers and business analysts use this skill to run evidence-based market, industry, competitive, and business decision research. It structures the work into checkpoints for scope confirmation, search planning, source grading, validation, synthesis, and final report delivery.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/leanerque260/deep-research-skill-for-business) <br>
-- [README](artifact/README.md) <br>
-- [Source grading rules](artifact/rules/source-grading.md) <br>
-- [Writing style rules](artifact/rules/writing-style.md) <br>
-- [Report template](artifact/templates/report-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports, checklist tables, source lists, and inline bash commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The orchestrator can write local session state and report files when used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill automatically runs a local Bash orchestrator and writes checkpoint and report files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installing, run it in a controlled workspace, and verify where checkpoint and report files will be written.
+
+Risk: The security scan reports a command-injection risk in the state-management fallback.
+
+Mitigation: Fix the argument-handling bug before using the skill where prompts or users can influence --complete or --next values.
+
+Risk: The skill performs web searches and full-text fetches as part of the research workflow.
+
+Mitigation: Use approved search and fetch tools, and review fetched sources before relying on conclusions in commercial decisions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/leanerque260/skills/deep-research-skill-for-business)
+- [README.md](artifact/README.md)
+- [Source Grading Rules](artifact/rules/source-grading.md)
+- [Writing Style Rules](artifact/rules/writing-style.md)
+- [Report Template](artifact/templates/report-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown research workflow output with inline shell commands and saved report files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires bash and jq or python3; writes local checkpoint and report files during normal use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

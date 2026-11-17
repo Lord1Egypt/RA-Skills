@@ -1,45 +1,52 @@
-## Description: <br>
-Aggregates real-time crypto market data and Twitter signals into actionable alerts for traders and researchers. <br>
+## Description:
 
-This skill is for research and development only. <br>
+Aggregates real-time crypto market data and Twitter signals into actionable alerts for traders and researchers.
 
-## Publisher: <br>
-[jackfeng0614-prog](https://clawhub.ai/user/jackfeng0614-prog) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[jackfeng0614-prog](https://clawhub.ai/user/jackfeng0614-prog)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External developers and researchers use this skill to aggregate crypto market movement and social sentiment signals into alert data for monitoring workflows.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The security summary says the skill presents random mock data as real crypto and Twitter alerts while reading credentials it does not actually use.
+
+Mitigation: Do not rely on alerts for trading decisions; require verified live data retrieval before operational use.
+
+Risk: The security guidance warns against providing real crypto, Twitter, or webhook credentials to this version.
+
+Mitigation: Use synthetic or non-sensitive credentials only until the publisher documents and implements verifiable API and webhook handling.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, traders, and researchers use this skill to generate crypto alert objects that combine market movement thresholds with social-sentiment-style signals. Because server security evidence says the implementation currently uses mock random data, it should be used only for experimentation or evaluation until real data-source behavior is documented. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [JSON, Code, Configuration instructions]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can present random mock market and Twitter signal data as actionable crypto alerts. <br>
-Mitigation: Label outputs as simulation-only and do not use them for trading or research decisions until real data-source calls are implemented and documented. <br>
-Risk: The skill requests crypto and Twitter API credentials even though the evidence says the current implementation does not use real external data-source calls. <br>
-Mitigation: Do not provide real API keys until the publisher documents live data behavior, credential handling, and the difference between mock and live modes. <br>
-Risk: Streaming starts a polling interval without a documented stop mechanism. <br>
-Mitigation: Use streaming only in controlled test environments until the publisher provides lifecycle controls for stopping pollers. <br>
-Risk: Optional webhook delivery may send alert data outside the local environment without documented data flow. <br>
-Mitigation: Leave webhook delivery disabled until the publisher documents outbound webhook behavior and data contents. <br>
+**Output Format:** [JSON alert objects and JavaScript callback output]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/jackfeng0614-prog/crypto-alert-aggregator) <br>
-- [Publisher profile](https://clawhub.ai/user/jackfeng0614-prog) <br>
+**Other Properties Related to Output:** [Alerts include asset, type, value, change, Twitter mentions, sentiment, confidence, timestamp, and message fields.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, text, configuration, guidance] <br>
-**Output Format:** [JSON alert objects and text callback messages] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Alerts include timestamp, asset, type, price or value, change, Twitter mentions, sentiment, confidence, and message fields.] <br>
+1.0.0 (source: server release metadata and package.json)
 
-## Skill Version(s): <br>
-1.0.0 (source: package.json, _meta.json, server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

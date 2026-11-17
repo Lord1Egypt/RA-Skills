@@ -1,40 +1,57 @@
-## Description: <br>
-Modifies the User-Agent string in TongDaXin's TcefWnd.dll browser component, with install discovery, dry-run preview, backup creation, and custom UA support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+通达信 TcefWnd.dll User-Agent 修改工具，用于查找通达信安装目录、检测版本信息，并修改内置浏览器组件的 UA 标识。
 
-## Publisher: <br>
-[libertyzero10](https://clawhub.ai/user/libertyzero10) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[libertyzero10](https://clawhub.ai/user/libertyzero10)
 
-## Use Case: <br>
-External users and developers use this skill to inspect TongDaXin installations and prepare commands that patch the embedded browser DLL's User-Agent string. It is intended for owned installations where the user understands the operational and authorization risks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill patches a trading application's browser DLL and can cause application instability or an unusable component if applied to the wrong file. <br>
-Mitigation: Use dry-run first, verify the exact DLL path, close TongDaXin before patching, and keep an independent backup in addition to the generated backup. <br>
-Risk: Changing the User-Agent can be used to impersonate a mobile browser or bypass website restrictions. <br>
-Mitigation: Use only on owned installations and do not use the patched browser to bypass access controls or website restrictions without authorization. <br>
+## Use Case:
 
+Developers and advanced users who administer TongDaXin installations use this skill to inspect installed TcefWnd.dll components, preview User-Agent changes, and prepare patch commands for authorized local modifications.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/libertyzero10/tdx-ua-patcher) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline PowerShell and Python command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance may lead to filesystem changes when the user executes the generated patching commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Changing a trading application's DLL can break the application or leave it in an unsupported state.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use dry-run first, confirm the exact TcefWnd.dll path, close TongDaXin before patching, and keep the generated backup available for restore.
+
+Risk: Using a modified User-Agent to bypass access checks may violate website rules or organizational policy.
+
+Mitigation: Use the skill only when authorized to modify the installation and when the target site's terms and applicable policies permit the access pattern.
+
+Risk: The script writes binary data to a DLL and accepts a custom path.
+
+Mitigation: Review the command before execution, restrict use to the intended TongDaXin browser component, and avoid running it with unnecessary elevated privileges.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/libertyzero10/skills/tdx-ua-patcher)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with PowerShell command examples and plain-text script output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands can preview or apply changes; applying the script may modify TcefWnd.dll and create a .backup file on the user's machine.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

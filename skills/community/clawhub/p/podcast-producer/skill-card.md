@@ -1,38 +1,58 @@
-## Description: <br>
-Turns a raw podcast transcript into show notes, social captions, episode titles, SEO tags, and chapter timestamps. Supports both AI-narrated and human-hosted podcast styles. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Turns a raw podcast transcript into show notes, social captions, episode titles, SEO tags, and chapter timestamps. Supports both AI-narrated and human-hosted podcast styles.
 
-## Publisher: <br>
-[tetsuakira-vk](https://clawhub.ai/user/tetsuakira-vk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[tetsuakira-vk](https://clawhub.ai/user/tetsuakira-vk)
 
-## Use Case: <br>
-External podcast creators use this skill to turn raw transcripts into a publish-ready package of episode titles, show notes, chapter markers, social captions, and SEO tags. It supports documentary-style AI narration and warmer human-hosted podcast copy. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Podcast transcripts may contain private names, unreleased content, or sensitive case details. <br>
-Mitigation: Review transcripts before sharing them with any LLM and remove confidential material that should not be processed. <br>
+## Use Case:
 
+Podcast creators and content teams use this skill to turn episode transcripts into publish-ready promotional and metadata assets, including titles, show notes, chapter markers, social captions, and SEO tags.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tetsuakira-vk/podcast-producer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with structured sections for titles, show notes, chapter timestamps, social captions, and SEO tags] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces five content outputs in one response and may ask for transcript input, podcast style, translation preference, or confirmation for very short transcripts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Transcript content may contain sensitive or private material.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Only provide transcript files and pasted text that the agent is allowed to read and process.
+
+Risk: Generated show notes, captions, timestamps, and SEO tags may be incomplete or need editorial correction.
+
+Mitigation: Review the generated package before publication, especially approximate chapter timings and platform-specific copy.
+
+Risk: Installing from an untrusted command source can introduce supply-chain risk.
+
+Mitigation: Use a trusted or pinned ClawHub installer command when the environment supports it.
+
+## Reference(s):
+
+- [Podcast Producer on ClawHub](https://clawhub.ai/tetsuakira-vk/skills/podcast-producer)
+- [Publisher Profile](https://clawhub.ai/user/tetsuakira-vk)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown response with section headers, lists, timestamps, captions, and comma-separated tags]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces five podcast publishing assets in one response and may ask for transcript, style mode, language, or short-transcript confirmation when needed.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,61 @@
-## Description: <br>
-Plan a complete 3-day, 2-night trip with morning activities, afternoon exploration, evening dining, and support for travel booking workflows powered by Fliggy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Plans complete 3-day, 2-night trips using flyai CLI results for flights, hotels, attractions, and booking links.
 
-## Publisher: <br>
-[xiejinsong](https://clawhub.ai/user/xiejinsong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiejinsong](https://clawhub.ai/user/xiejinsong)
 
-## Use Case: <br>
-External users and travel-planning agents use this skill to collect trip parameters, run flyai CLI searches for flights, hotels, attractions, and related services, and return a concise 3-day itinerary with booking links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can attempt to install the flyai CLI globally with npm. <br>
-Mitigation: Require explicit user approval before any global npm installation and prefer a preinstalled, reviewed CLI. <br>
-Risk: Trip requests and execution details may be appended to .flyai-execution-log.json. <br>
-Mitigation: Disable logging where possible or regularly delete the log because it may contain personal travel details. <br>
-Risk: Live travel queries are sent through the flyai provider. <br>
-Mitigation: Use the skill only when the user trusts the provider and is comfortable sharing the requested travel details. <br>
+## Use Case:
 
+Travelers and travel-support agents use this skill to plan concise 3-day, 2-night getaways with current travel options, booking links, and fallback guidance when live data is unavailable.
 
-## Reference(s): <br>
-- [Quick Getaway on ClawHub](https://clawhub.ai/xiejinsong/quick-getaway) <br>
-- [Templates](references/templates.md) <br>
-- [Playbooks](references/playbooks.md) <br>
-- [Fallbacks](references/fallbacks.md) <br>
-- [Runbook](references/runbook.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with comparison tables, booking links, and inline shell commands when retry or setup steps are needed.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires flyai CLI output for travel data and includes a powered-by-flyai brand tag when successful.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.0 (source: server release metadata) <br>
+Risk: Global installation of the third-party flyai CLI can affect the local agent environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the npm package and version before installation, and prefer running the skill in a contained environment.
+
+Risk: Raw travel queries may be written to local diagnostic logs.
+
+Mitigation: Disable or control logging where possible, and avoid entering sensitive personal travel details unless log handling is understood.
+
+Risk: Travel recommendations depend on live third-party CLI data and booking links.
+
+Mitigation: Verify generated CLI output and booking URLs before relying on prices, availability, or reservations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xiejinsong/skills/quick-getaway)
+- [Parameter and output templates](references/templates.md)
+- [Scenario playbooks](references/playbooks.md)
+- [Fallback and recovery guide](references/fallbacks.md)
+- [Execution log runbook](references/runbook.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with booking links, comparison tables, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires flyai CLI output for live travel data; every shown travel result must include a booking link.]
+
+## Skill Version(s):
+
+3.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

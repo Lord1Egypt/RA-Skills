@@ -1,40 +1,53 @@
-## Description: <br>
-Background Job Toasts guides implementation and troubleshooting of bottom-right background job status toasts, cron job name enrichment, and compaction progress feedback in the OpenClaw Control UI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Background Job Toasts guides agents through adding or improving OpenClaw Control UI notifications for background processes, including cron jobs, memory compaction, knowledge extraction, and custom jobs.
 
-## Publisher: <br>
-[maverick-software](https://clawhub.ai/user/maverick-software) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[maverick-software](https://clawhub.ai/user/maverick-software)
 
-## Use Case: <br>
-Developers working on OpenClaw use this skill to add, improve, or troubleshoot UI visibility for cron jobs, memory compaction, knowledge extraction, and other background processes. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Cron job names may be displayed in UI toast messages, which can expose sensitive labels if sensitive information is used in job names. <br>
-Mitigation: Use non-sensitive cron job names and review generated changes that broadcast or render cron payload names. <br>
-Risk: Background job status can appear stale or misleading if UI state mutations do not trigger a render. <br>
-Mitigation: Review generated UI changes for explicit render updates where the artifact notes state is not reactive. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Source Snapshot](references/source-snapshot.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/maverick-software/bg-job-toasts) <br>
+## Use Case:
 
+Developers and engineers use this skill to implement bottom-right background job toasts in the OpenClaw Control UI and to troubleshoot cron job naming, compaction progress, and toast rendering behavior.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, configuration] <br>
-**Output Format:** [Markdown with TypeScript and CSS snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Implementation guidance should be reviewed before applying generated UI state or broadcast changes.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Toast labels can expose sensitive details if cron job names or custom job names include secrets or private operational data.
+
+Mitigation: Use human-readable but non-sensitive job names, and review notification payloads before showing them in the UI.
+
+Risk: Compaction status UI may fail to update when mutable compact state is changed without requesting a render.
+
+Mitigation: Call the app render update path after mutating compact state, and test running, complete, and error phases.
+
+## Reference(s):
+
+- [Source Snapshot](references/source-snapshot.md)
+- [ClawHub Skill Page](https://clawhub.ai/maverick-software/skills/bg-job-toasts)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with TypeScript and CSS code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes implementation notes, fallback ordering, state update guidance, and known gotchas for OpenClaw UI background job toasts.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,10 @@
+{
+  "company-as-industry.json": {
+    "exit_code": 2,
+    "stderr": "证据校验失败: C3/S2: 企业自述只能支持该企业自身产品事实"
+  },
+  "unverified-statistic.json": {
+    "exit_code": 2,
+    "stderr": "证据校验失败: C4/S4: 未运行/失败/模拟材料不能用作已核实证据"
+  }
+}

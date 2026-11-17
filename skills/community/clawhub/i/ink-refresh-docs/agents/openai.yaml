@@ -1,0 +1,4 @@
+interface:
+  display_name: "Refresh source context"
+  short_description: "Refresh a saved context pack and review changes"
+  default_prompt: "Use $ink-refresh-docs to compare my saved context pack with current sources."

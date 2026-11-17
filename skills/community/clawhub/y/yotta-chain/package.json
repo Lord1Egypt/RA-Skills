@@ -1,0 +1,39 @@
+{
+  "name": "@yottameta/yotta-chain",
+  "version": "0.1.7",
+  "description": "Yuanlian — a zero-dependency supply-chain dependency validator for AI agents: detects dependency confusion (private package names resolved from public registries, mixed registries, suspicious registry URLs), lockfile consistency issues (missing entries, unsatisfied ranges, dangling references, missing integrity), missing lockfiles, unpinned versions, SNAPSHOT deps and typosquatting across npm (package.json + package-lock v1/v2/v3), Python (requirements.txt, pyproject.toml, poetry.lock, Pipfile/Pipfile.lock) and Maven (pom.xml); generates SBOM-lite (CycloneDX 1.5 subset). Pure Python 3.8+ standard library, fully local and offline, no online CVE lookups. Triggers when the user needs to check a project dependencies for supply-chain risks before build/release, verify a lockfile matches its manifest, detect dependency-confusion exposure, or generate an SBOM. Boundaries: local and offline; no CVE databases, no package-registry queries, no data leaves the machine; findings are review signals to be verified by humans; authorized / own-asset / educational use only.",
+  "license": "MIT",
+  "keywords": [
+    "agent-skills",
+    "yotta-chain"
+  ],
+  "files": [
+    "SKILL.md",
+    "LICENSE",
+    "README.md",
+    "README.zh-CN.md",
+    "install.sh",
+    "references",
+    "scripts",
+    "assets",
+    "bin",
+    "NOTICE",
+    "CHANGELOG.md",
+    "!scripts/test_*.py",
+    "!**/__pycache__",
+    "!**/*.pyc"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YottaMeta/yotta-chain.git"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "bin": {
+    "yotta-chain": "bin/install.js"
+  },
+  "scripts": {
+    "test": "python scripts/test_yotta_chain.py"
+  }
+}

@@ -1,46 +1,61 @@
-## Description: <br>
-公众号爆款封面AI设计工具。基于全网每日收录的10w+文章数据，获取同赛道爆款封面视觉元素，通过AI分析总结高转化视觉规律，生成贴合文章内容、符合平台流量审美的封面设计方案。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill helps WeChat Official Account creators analyze high-performing cover patterns from RedFox data and generate content-matched cover design proposals.
 
-## Publisher: <br>
-[yuanyi-github](https://clawhub.ai/user/yuanyi-github) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yuanyi-github](https://clawhub.ai/user/yuanyi-github)
 
-## Use Case: <br>
-WeChat Official Account creators, content operators, MCN teams, new media teams, and designers use this skill to analyze recent high-performing cover patterns by keyword, produce a visual HTML report, and generate three cover design proposals with image-generation prompts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends user-provided cover keywords and a REDFOX_API_KEY to RedFoxHub. <br>
-Mitigation: Use it only when sharing those keywords with redfox.hk is acceptable, keep REDFOX_API_KEY out of prompts, code, logs, and generated files, and rotate or revoke the key if exposure is suspected. <br>
-Risk: Debug output and generated JSON or HTML reports may contain private campaign planning terms, article links, and API response details. <br>
-Mitigation: Keep debug mode off except during troubleshooting and delete generated reports when they contain sensitive planning data. <br>
-Risk: Cover proposals depend on third-party trend data availability and may be sparse or unavailable for niche keywords. <br>
-Mitigation: Tell users when data is insufficient and broaden or change keywords instead of inventing trend evidence. <br>
+## Use Case:
 
+WeChat Official Account creators, content operators, MCN teams, designers, and media editors use this skill to query recent cover-trend data, summarize visual patterns, produce an HTML analysis report, and prepare three cover design proposals with image-generation prompts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yuanyi-github/explosive-cover-generator-gzh) <br>
-- [Publisher profile](https://clawhub.ai/user/yuanyi-github) <br>
-- [RedFoxHub API key settings](https://redfox.hk/settings/api-keys?source=clawhub) <br>
-- [WeChat trend data format](references/gzh_trend_data_format.md) <br>
-- [Cover analysis report template](references/report_template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance, JSON trend data, shell commands, generated HTML report files, image-generation prompts, and optional 2.35:1 cover images after user selection] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires REDFOX_API_KEY and uses recent WeChat cover data from the RedFoxHub API; generated HTML reports may contain private planning keywords and third-party article links.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: The skill depends on RedFox API data and API-returned image URLs that are not clearly validated before use.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when the RedFox data provider is trusted, keep network access restricted where practical, and validate remote URLs before opening or embedding them.
+
+Risk: The skill creates local HTML reports from user and API data without clear escaping controls.
+
+Mitigation: Open generated HTML cautiously and add HTML escaping or sanitization before deploying the workflow in a shared or higher-trust environment.
+
+Risk: The workflow requires a REDFOX_API_KEY credential.
+
+Mitigation: Store the key in the environment, avoid logging or hard-coding it, and ensure it can be reset or revoked.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yuanyi-github/skills/explosive-cover-generator-gzh)
+- [Publisher profile](https://clawhub.ai/user/yuanyi-github)
+- [RedFoxHub API keys](https://redfox.hk/settings/api-keys?source=clawhub)
+- [WeChat trend data format](references/gzh_trend_data_format.md)
+- [Report template](references/report_template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, JSON or Markdown API data, a local HTML report, and image-generation prompts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write a local HTML report and, after user selection, produce a 2.35:1 900x383 cover image.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence; artifact frontmatter reports 1.3.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

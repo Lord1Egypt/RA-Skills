@@ -4,20 +4,15 @@ Use this skill to turn a week of scattered podcast listening into one coherent d
 
 ## Goals
 
-1. Verify that `podwise` is installed and configured.
+1. Verify the Podwise MCP connection.
 2. Load `taste.md` to determine the user's PKM tool and output format preference.
-3. Fetch this week's episodes and highlights from the CLI.
+3. Fetch this week's episodes and highlights via the MCP tools.
 4. Synthesize the material into a structured weekly recap.
 5. Deliver the recap in the user's preferred format and offer to export it.
 
 ## Step 1: Check the Environment
 
-```bash
-podwise --help
-podwise config show
-```
-
-If `podwise` is not installed or the API key is missing, stop and follow [references/installation.md](references/installation.md) before continuing.
+Call `get_me`. If the Podwise tools are unavailable or return an authentication error, stop and follow [../references/installation.md](../references/installation.md) before continuing.
 
 ## Step 2: Load the Listener Taste
 
@@ -34,44 +29,30 @@ Confirm with the user if the window is ambiguous — for example if today is mid
 
 ## Step 4: Fetch This Week's Listening
 
-Fetch from two sources simultaneously:
+Fetch from two sources:
 
-```bash
-# Actual listening behaviour this week
-podwise history listened --json --limit 100
+- `list_my_episodes` with `type: "played"`, `pageSize: 50` — actual listening behaviour this week.
+- `list_my_episodes` with `type: "read"`, `pageSize: 50` — episodes the user viewed but may not have listened to fully.
 
-# Episodes the user read (viewed summaries/highlights but may not have listened fully)
-podwise history read --json --limit 100
-```
+Parse each entry for: podcast name, episode title, publication date, and episode seq.
 
-Parse each entry for: podcast name, episode title, publication date, and episode URL.
-
-Then apply a secondary filter: keep only episodes whose publication date falls within the recap window (last 7 days). This ensures every entry in the recap represents something the user actually encountered this week, not just something new that was published.
+`list_my_episodes` returns the user's most recent play/read activity, newest first. Keep the episodes the user actually played or read within the recap window, regardless of the episode's original publication date — an older episode listened to this week still belongs in the recap. If the window is longer than the tool's recent-activity range, page through with `page` until entries fall outside the window.
 
 **Fallback**: If the combined result after filtering is fewer than 5 episodes, supplement with:
 
-```bash
-podwise list episodes --json --date {window_start} --date {window_end}
-```
+- `list_followed_episodes` with `days: {window_days}`
 
-Mark any supplement episodes as "not yet listened — published this week". If the total remains below 5 even after supplement, degrade to `podwise list episodes --latest 7` and note at the top of the recap: *"Based on your subscriptions this week — your listening history was thin for this window."*
+Mark any supplement episodes as "not yet listened — published this week". If the total remains below 5 even after supplement, note at the top of the recap: *"Based on your subscriptions this week — your listening history was thin for this window."*
 
 ## Step 5: Fetch AI Outputs for Each Episode
 
-For each episode that made it through the Step 4 filter, fetch:
+For each episode that made it through the Step 4 filter, call `get_episode_summary` with the episode `seq` (includes summary, highlights, chapters, Q&A, keywords, and mind map).
 
-```bash
-podwise get summary {episode-url}
-podwise get highlights {episode-url}
-```
+If it fails for an episode because it has not been processed yet, include it in the recap with its podcast name, episode title, and a note: "not yet processed — [Open episode]({url})". This gives the user enough context to decide whether to process it manually.
 
-Fetch `get keywords` optionally — only when the recap covers 5 or more episodes and the themes section may benefit from keyword context. Do not make it a required call.
+**Silently record** every episode returned by `list_my_episodes` that did not make it into the Part 1 recap (activity outside the recap window, or entries that didn't make the cut). These go into an "Also in your history" section at the bottom of the recap — title, podcast name, and date only, no additional tool calls.
 
-If `get` fails for an episode because it has not been processed yet, include it in the recap with its podcast name, episode title, and a note: "not yet processed — [Open episode]({url})". This gives the user enough context to decide whether to process it manually.
-
-**Silently record** every episode in the Step 4 history results that did not make it into the Part 1 recap (i.e., episodes beyond the top entries or from older weeks). These go into a "Also in your history this week" section at the bottom of the recap — title, podcast name, and date only, no `get` calls.
-
-Do not run `podwise process` automatically during a recap.
+Do not call `process_episode` automatically during a recap.
 
 ## Step 6: Synthesize the Recap
 
@@ -169,9 +150,9 @@ Highlights:
 
 ---
 
-### Also in Your History This Week
+### Also in Your History
 
-*{N} additional episodes from your history that were outside the 7-day window or didn't make the recap cut:*
+*{N} additional episodes from your history that were outside this recap's window or didn't make the cut:*
 
 - **{Episode Title}** · {Podcast Name} · {date}
 - **{Episode Title}** · {Podcast Name} · {date}
@@ -195,11 +176,11 @@ If the user's taste profile specifies a PKM tool, remind them they can paste the
 - **Logseq**: as a new journal page
 - **Readwise**: via the Readwise import or daily highlights feature
 
-Podwise does not push directly to PKM tools from the CLI at this step — the file is the handoff. Tell the user this clearly if they ask why it does not auto-sync.
+Tell the user clearly that the recap file is the handoff.
 
 ## Common Failure Cases
 
-- If all episodes in the window are unprocessed, there is nothing to synthesize. Offer to run `podwise-catch-up` first to process the week's episodes before generating the recap.
+- If all episodes in the window are unprocessed, there is nothing to synthesize. Offer to run the `catch-up` workflow first to process the week's episodes before generating the recap.
 - If only one or two episodes are available, produce the recap as normal but skip the Themes section if there is insufficient material for cross-episode synthesis.
 - If `taste.md` is missing, default formatting is fine — just note it at the top.
 - If the user asks for a monthly recap instead, adjust the window to 30 days and update the output header accordingly.
@@ -208,7 +189,7 @@ Podwise does not push directly to PKM tools from the CLI at this step — the fi
 
 Produce exactly one recap document per run with three main sections: episodes, themes, and worth revisiting.
 
-A fourth section ("Also in your history this week") is added whenever there are recorded history entries that did not make the episode list.
+A fourth section ("Also in your history") is added whenever there are recorded history entries that did not make the episode list.
 
 The themes section may be omitted only when there is genuinely no cross-episode material.
 

@@ -1,41 +1,53 @@
-## Description: <br>
-A text adventure game engine inspired by The Hitchhiker's Guide to the Galaxy and the 1984 Infocom classic, for playing a humorous interactive story with an AI game master. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A text adventure game engine that lets an agent run a humorous Hitchhiker's Guide-inspired game, manage local state, and narrate player choices.
 
-## Publisher: <br>
-[hallwayskiing](https://clawhub.ai/user/hallwayskiing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[hallwayskiing](https://clawhub.ai/user/hallwayskiing)
 
-## Use Case: <br>
-Players and interactive-fiction users use this skill to play a persistent Hitchhiker's Guide-inspired text adventure. Agents use the skill's helper commands to track location, inventory, stats, flags, improbability, and history between turns. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Gameplay progress and history are stored locally by a Python helper, so sensitive information entered during play may be persisted in the skill's assets folder. <br>
-Mitigation: Avoid entering sensitive information during gameplay and review local save or guide files before sharing the skill workspace. <br>
-Risk: The reset command replaces the local save state. <br>
-Mitigation: Use reset only when intentionally starting over, and preserve a copy of the save file first when existing progress matters. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [README](README.md) <br>
-- [Mechanics and Logic](references/mechanics.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/hallwayskiing/hitchhikers-guide) <br>
+## Use Case:
 
+External users and game-playing agents use this skill to run a persistent text adventure session with narrated turns, inventory, stats, flags, randomness, and local save progress.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown narrative text with inline shell commands and local JSON save-state updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May update local game save and guide files under the skill's assets folder.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.2 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill keeps local game progress, action history, and generated guide entries in its own assets directory.
+
+Mitigation: Install only if local persistence of this game data is acceptable for the target environment.
+
+Risk: The reset command clears the current local save.
+
+Mitigation: Use reset only when intentionally starting over, and preserve the save file separately if the current session must be retained.
+
+## Reference(s):
+
+- [README](artifact/README.md)
+- [Mechanics and Logic](artifact/references/mechanics.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown prose with inline shell commands and JSON state output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Maintains local save state and generated guide entries under the skill assets directory.]
+
+## Skill Version(s):
+
+1.1.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,59 @@
-## Description: <br>
-Provides AMap-based geocoding, reverse geocoding, POI search, route planning, and distance measurement for location-related agent requests. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides AMap Open Platform geocoding, reverse geocoding, POI search, route planning, and distance measurement through a Python command-line helper.
 
-## Publisher: <br>
-[aaronjager92](https://clawhub.ai/user/aaronjager92) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aaronjager92](https://clawhub.ai/user/aaronjager92)
 
-## Use Case: <br>
-Developers and agents use this skill to answer map and location questions by calling AMap services for addresses, coordinates, nearby places, routes, and distances. It is intended for workflows where sending the requested location data to AMap is acceptable. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Map searches, addresses, and coordinates may be sent to AMap when the skill is used. <br>
-Mitigation: Avoid sending home, workplace, or other sensitive precise locations unless needed, and invoke the skill only for explicit map or location requests. <br>
-Risk: The skill depends on user-provided AMap credentials. <br>
-Mitigation: Store the API key and optional secret key in environment variables or a local configuration file that is not published with the skill. <br>
+## Use Case:
 
+Developers and agents use this skill to look up addresses, coordinates, nearby places, route options, and distances using AMap geospatial services.
 
-## Reference(s): <br>
-- [AMap developer key console](https://console.amap.com/dev/key/app) <br>
-- [Artifact reference README](artifact/references/README.md) <br>
-- [ClawHub skill page](https://clawhub.ai/aaronjager92/amap-geoservice) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text and Markdown with inline shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an AMap API key; some route and distance operations may also require a configured AMap secret key for request signing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Location queries, addresses, coordinates, POI keywords, and route endpoints are sent to AMap.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when sharing that location data with AMap is acceptable for the user and deployment context.
+
+Risk: The skill requires an AMap API key and may use a secret key for signed requests.
+
+Mitigation: Prefer environment variables or a secret manager, avoid committing config.txt, and rotate credentials if exposure is suspected.
+
+Risk: The Python helper depends on the requests package.
+
+Mitigation: Install dependencies in a virtual environment and pin versions for managed deployments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aaronjager92/skills/amap-geoservice)
+- [Artifact reference README](artifact/references/README.md)
+- [AMap API key console](https://console.amap.com/dev/key/app)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell command examples and plain-text command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an AMap API key and may require an AMap secret key for signed route and distance requests.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

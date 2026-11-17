@@ -1,37 +1,53 @@
-## Description: <br>
-人物关系与平台昵称管理器。当需要给某人发消息、但不知道对方在某平台的昵称时触发。自动查询记忆，如果没有记录则询问用户并记忆。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+人物关系与平台昵称管理器。当需要给某人发消息、但不知道对方在某平台的昵称时触发。自动查询记忆，如果没有记录则询问用户并记忆。
 
-## Publisher: <br>
-[calvin-dean](https://clawhub.ai/user/calvin-dean) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[calvin-dean](https://clawhub.ai/user/calvin-dean)
 
-## Use Case: <br>
-Agents and users use this skill to resolve a person's platform-specific nickname before sending a message. If no record exists, the agent asks the user for identifying details and platform handles, then stores the profile for future lookup. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can lead an assistant to save persistent personal contact profiles with more data than needed. <br>
-Mitigation: Ask for clear user intent, store only the minimum platform handle needed, avoid unnecessary legal names, gender, or relationship notes, and confirm the resolved recipient before sending messages. <br>
+## Use Case:
 
+External users and agent operators use this skill to look up a person's platform-specific nickname or contact handle before sending a message. When no profile exists, it asks the user for contact details and stores a reusable person profile.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Guidance] <br>
-**Output Format:** [Markdown instructions and natural-language responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce contact lookup guidance, clarification questions, and memory entries for later use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill stores persistent contact profiles that can include real names, gender, platform handles, relationships, occupations, interests, and notes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Store only information the user has permission to keep, minimize sensitive fields, and prefer aliases or platform handles unless real names or gender are necessary.
+
+Risk: Stored person profiles may be outdated, incomplete, or misattributed across platforms.
+
+Mitigation: Confirm the target identity before using a recalled handle for messaging and update or delete stale details when discovered.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/calvin-dean/skills/person-relation-manager)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Guidance, Configuration]
+
+**Output Format:** [Markdown or plain text with structured contact-profile fields]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include recalled platform handles, prompts for missing profile fields, and memory entries for future lookup.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,50 @@
-## Description: <br>
-Reference tool for devtools that provides quick plain-text guidance on Devops Journey concepts, patterns, troubleshooting, performance, security, migration, and cheatsheets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reference tool for devtools that provides quick plain-text guidance for Devops Journey concepts, commands, patterns, debugging, performance, security, migration, and cheatsheets.
 
-## Publisher: <br>
-[bytesagain-lab](https://clawhub.ai/user/bytesagain-lab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain-lab](https://clawhub.ai/user/bytesagain-lab)
 
-## Use Case: <br>
-Developers and operations engineers use this skill as a quick reference for DevOps Journey concepts, operational patterns, troubleshooting, performance, security, migration, and command cheatsheets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Version labels differ across the release evidence, SKILL.md, and script output, which can confuse users about the installed version. <br>
-Mitigation: Treat the ClawHub release version 2.0.4 as the release identifier and verify script help/version output before operational use. <br>
-Risk: The content is generic DevOps reference guidance and may not fit a specific production environment. <br>
-Mitigation: Review the guidance against local systems, controls, and runbooks before applying it to production workflows. <br>
+## Use Case:
 
+Developers, DevOps practitioners, and system operations engineers use this skill as a local reference helper for common DevOps Journey topics and operational practices.
 
-## Reference(s): <br>
-- [ClawHub Skill Listing](https://clawhub.ai/bytesagain-lab/devops-journey) <br>
-- [BytesAgain](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Plain text reference documentation with Markdown-style headings and lists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No external API calls, credentials, network access, or local data access are described.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.4 (source: server release metadata; artifact files also mention 2.0.3 and 2.0.2) <br>
+Risk: Some documentation is generic and one cheatsheet command is inaccurate.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the main command list or built-in help output as the source of truth for available commands.
+
+## Reference(s):
+
+- [Devops Journey on ClawHub](https://clawhub.ai/bytesagain-lab/skills/devops-journey)
+- [BytesAgain](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Plain text and Markdown-style reference sections emitted by local shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No API keys, credentials, external API calls, or network access are required.]
+
+## Skill Version(s):
+
+2.0.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

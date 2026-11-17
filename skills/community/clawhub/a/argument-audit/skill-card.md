@@ -1,40 +1,49 @@
-## Description: <br>
-Argument Audit evaluates argument structure, evidence quality, logical fallacies, and persuasiveness to help users strengthen or critique claims. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Argument Audit evaluates the logical structure, evidence quality, fallacies, and persuasiveness of arguments.
 
-## Publisher: <br>
-[harrylabsj](https://clawhub.ai/user/harrylabsj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harrylabsj](https://clawhub.ai/user/harrylabsj)
 
-## Use Case: <br>
-Students, writers, debate participants, and business users can use this skill to break down arguments, identify unsupported assumptions or fallacies, rate strength, and receive concrete improvement suggestions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may submit private chat logs or workplace messages for argument analysis. <br>
-Mitigation: Use short, relevant excerpts, redact names and sensitive details, and confirm permission before analyzing third-party messages. <br>
-Risk: Argument ratings and fallacy findings may be incomplete when the provided text lacks context or external evidence. <br>
-Mitigation: Review results as analytical guidance and supplement them with source checks, context, and human judgment before relying on conclusions. <br>
+## Use Case:
 
+Employees, external users, and developers use this skill to break down arguments in articles, debates, proposals, academic writing, and discussions, then assess evidence quality, fallacies, and ways to strengthen the reasoning.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/harrylabsj/argument-audit) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Structured Markdown analysis with scores, fallacy findings, evidence assessment, and recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Assessment is based on user-provided text and does not independently verify external evidence claims.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Private or workplace conversations may contain confidential, personal, or third-party information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only short, relevant excerpts; redact names and company details; and avoid sharing third-party or confidential chat logs without authorization.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/harrylabsj/skills/argument-audit)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Structured Markdown analysis with scores, fallacy notes, and recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include argument summaries, structure breakdowns, evidence ratings, fallacy detection, numeric strength scores, and improvement suggestions.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

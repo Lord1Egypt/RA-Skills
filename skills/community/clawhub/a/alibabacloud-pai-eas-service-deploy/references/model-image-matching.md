@@ -123,14 +123,14 @@ Images use `system.chipType` label to indicate supported chips:
 ### Query Image Chip Type
 
 ```bash
-aliyun aiworkspace get-image --image-id <image-id> --user-agent AlibabaCloud-Agent-Skills | \
+aliyun aiworkspace get-image --image-id <image-id> --user-agent AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-deploy | \
   jq -r '.Labels[] | select(.Key == "system.chipType") | .Value'
 ```
 
 ### Query Instance Type GPU Info
 
 ```bash
-aliyun eas describe-machine-spec --region <region> --user-agent AlibabaCloud-Agent-Skills | \
+aliyun eas describe-machine-spec --region <region> --user-agent AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-deploy | \
   jq -r '.InstanceMetas[] | select(.InstanceType == "<instance-type>") | {InstanceType, GPUAmount, GPU}'
 ```
 

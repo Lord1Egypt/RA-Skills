@@ -1,44 +1,55 @@
-## Description: <br>
-Automate web browsers, scrape pages, search the web, and run AI prompts on live websites via HARPA AI Grid REST API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automate web browsers, scrape pages, search the web, and run AI prompts on live websites via HARPA AI Grid REST API.
 
-## Publisher: <br>
-[alxsharuk](https://clawhub.ai/user/alxsharuk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[alxsharuk](https://clawhub.ai/user/alxsharuk)
 
-## Use Case: <br>
-Developers and agents use this skill to call HARPA AI Grid for browser-backed page scraping, web search, and AI prompt or command execution on live websites. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can act through logged-in browser sessions and send page results or AI context to external services. <br>
-Mitigation: Use a dedicated browser profile or node with minimal logged-in accounts, approve each target URL and action, and avoid confidential pages. <br>
-Risk: Broad node selection and asynchronous webhooks can expand where actions run and where results are delivered. <br>
-Mitigation: Select specific nodes, verify webhook destinations before use, and avoid wildcard nodes or long-lived webhooks for sensitive workflows. <br>
-Risk: Using page-context prompts can expose full page contents to the selected AI connection. <br>
-Mitigation: Use page-context variables only on intended pages and approve the AI connection for the data being processed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/alxsharuk/harpa-ai) <br>
-- [HARPA Grid web automation](https://harpa.ai/grid/web-automation) <br>
-- [HARPA Grid REST API reference](https://harpa.ai/grid/grid-rest-api-reference) <br>
-- [HARPA browser automation node setup](https://harpa.ai/grid/browser-automation-node-setup) <br>
+## Use Case:
 
+Developers and operators use this skill to call HARPA AI Grid for browser automation tasks such as scraping pages, running web searches, and applying AI prompts to live websites.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash and JSON request examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires HARPA_API_KEY and curl or wget; responses may include scraped page content, search results, or AI command output from HARPA browser nodes.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Authenticated browser page content or AI outputs may be sent to external HARPA Grid or AI services.
+
+Mitigation: Use the skill on public or low-sensitivity pages by default, avoid private or internal account pages unless explicitly approved, and prefer targeted selectors over full-page prompts.
+
+Risk: Webhook delivery can disclose scraped content or AI results to an external endpoint.
+
+Mitigation: Configure resultsWebhook only for endpoints you control and trust, and review what data will be sent before enabling asynchronous delivery.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/alxsharuk/skills/harpa-ai)
+- [HARPA Grid Web Automation](https://harpa.ai/grid/web-automation)
+- [HARPA Grid REST API Reference](https://harpa.ai/grid/grid-rest-api-reference)
+- [HARPA Browser Automation Node Setup](https://harpa.ai/grid/browser-automation-node-setup)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with bash and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires HARPA_API_KEY and may operate against browser sessions that are already authenticated to websites.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

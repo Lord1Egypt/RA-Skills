@@ -1,45 +1,60 @@
-## Description: <br>
-日程协办虾 helps agents coordinate Feishu meetings by checking availability, creating and managing calendar events, replying to invitations, and preparing meeting context from Feishu documents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Assists agents with Feishu calendar coordination, including availability checks, meeting creation, event updates or deletion, invitation responses, calendar lookup, and meeting-context preparation from Feishu documents.
 
-## Publisher: <br>
-[tujinsama](https://clawhub.ai/user/tujinsama) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tujinsama](https://clawhub.ai/user/tujinsama)
 
-## Use Case: <br>
-Employees and agents with Feishu access use this skill to schedule meetings, find shared availability, manage calendar events, respond to invitations, and prepare meeting background materials. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can perform sensitive calendar actions such as creating, changing, deleting, replying to, and inviting attendees to meetings. <br>
-Mitigation: Require explicit user confirmation before calendar writes, deletes, RSVP changes, attendee invitations, document searches, or sync subscriptions. <br>
-Risk: The fallback script caches a tenant access token in a shared temporary path. <br>
-Mitigation: Prefer the OAuth-based openclaw-lark plugin path; avoid the fallback script on shared machines unless the token cache is moved to a private permission-restricted location. <br>
-Risk: The fallback app-credential path has weaker user scoping and cannot provide the same personal-calendar behavior as the OAuth plugin path. <br>
-Mitigation: Limit app permissions, use the fallback only for app-calendar operations, and direct personal freebusy or invitation-response workflows through the OAuth plugin path. <br>
+## Use Case:
 
+Employees and agents use this skill to coordinate Feishu meetings, find shared availability, manage calendar events, and prepare concise background material before meetings.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tujinsama/schedule-sync-claw) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/tujinsama) <br>
-- [Feishu Calendar API Reference](references/feishu-calendar-api.md) <br>
-- [Feishu Open API](https://open.feishu.cn/open-apis) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with optional shell command invocations and structured calendar summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Feishu OAuth authorization or app credentials depending on the selected calendar access path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The fallback script stores Feishu access tokens insecurely.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer the OAuth-backed plugin path; if the script is used, replace the token cache with restricted, user-scoped secure storage before deployment.
+
+Risk: The skill can create, update, notify attendees about, subscribe to, or delete calendar data.
+
+Mitigation: Require explicit user confirmation before calendar-changing actions and restrict Feishu app scopes to the minimum needed.
+
+Risk: The fallback script uses an application token with limitations compared with user OAuth.
+
+Mitigation: Use the plugin tool path with user OAuth for personal calendars and free/busy operations; clearly disclose script-mode limitations when fallback is necessary.
+
+## Reference(s):
+
+- [Feishu Calendar API reference](references/feishu-calendar-api.md)
+- [Feishu Open API base endpoint](https://open.feishu.cn/open-apis)
+- [ClawHub skill page](https://clawhub.ai/tujinsama/skills/schedule-sync-claw)
+- [Publisher profile](https://clawhub.ai/user/tujinsama)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, API Calls, Configuration]
+
+**Output Format:** [Markdown with structured summaries and inline command or API guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose or perform calendar mutations only after user confirmation and appropriate Feishu authorization.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

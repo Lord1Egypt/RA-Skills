@@ -1,58 +1,68 @@
-## Description: <br>
-Provides Baidu Maps WebAPI guidance for building, reviewing, debugging, and directly calling map search, POI, routing, geocoding, traffic, administrative-region, weather, and pickup-point APIs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides guidance for using Baidu Maps WebAPI to search places, resolve addresses and coordinates, plan routes, query traffic-aware travel times, inspect administrative regions, and retrieve weather information.
 
-## Publisher: <br>
-[baidu-maps](https://clawhub.ai/user/baidu-maps) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[baidu-maps](https://clawhub.ai/user/baidu-maps)
 
-## Use Case: <br>
-Developers and agents use this skill to choose Baidu Maps WebAPI endpoints, compose requests, handle API keys, and follow recipes for route planning, POI lookup, address conversion, weather lookup, and traffic-aware travel questions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Baidu Maps API keys can be exposed if copied into source code, chat logs, or shell history. <br>
-Mitigation: Use BMAP_WEBAPI_AK from the environment or a server-side secret store, and avoid printing or committing the key. <br>
-Risk: Map, routing, geocoding, and weather calls may send precise locations, home addresses, or travel intent to Baidu Maps. <br>
-Mitigation: Send only the location data needed for the user-requested action, avoid unnecessary personal identifiers, and confirm before making external API calls with sensitive location data. <br>
-Risk: Direct API calls can consume the user's Baidu Maps quota, and some advanced routing features require elevated permissions. <br>
-Mitigation: Explain the endpoint and quota impact before live calls, use the standard endpoint for generated production code, and reserve the advanced experience endpoint for confirmed demonstrations. <br>
+## Use Case:
 
+Developers and agents use this skill to write, review, debug, or directly execute Baidu Maps WebAPI workflows for location search, geocoding, route planning, traffic-aware travel decisions, administrative-region lookup, and weather queries.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/baidu-maps/baidu-map-webapi) <br>
-- [Baidu Maps Open Platform](https://lbs.baidu.com) <br>
-- [Baidu Maps API key console](https://lbs.baidu.com/apiconsole/key) <br>
-- [Skill guide](artifact/SKILL.md) <br>
-- [Address or place name to POI recipe](artifact/recipes/address_to_poi.md) <br>
-- [Route to named place recipe](artifact/recipes/route_to_named_place.md) <br>
-- [Smart departure time recipe](artifact/recipes/smart_departure_time.md) <br>
-- [Traffic-aware route recipe](artifact/recipes/traffic_aware_route.md) <br>
-- [Weather query recipe](artifact/recipes/weather_query.md) <br>
-- [Baidu Maps geocoding API reference](artifact/references/geocoding.md) <br>
-- [Baidu Maps global reverse geocoding API reference](artifact/references/global_reverse_geocoding.md) <br>
-- [Baidu Maps place search API reference](artifact/references/administrative_region_search.md) <br>
-- [Baidu Maps place detail API reference](artifact/references/place_detail_search.md) <br>
-- [Baidu Maps driving route API reference](artifact/references/driving_route_planning.md) <br>
-- [Baidu Maps domestic weather API reference](artifact/references/domestic_weather_query.md) <br>
-- [Baidu Maps overseas weather API reference](artifact/references/overseas_weather_query.md) <br>
-- [Baidu Maps administrative division API reference](artifact/references/admin_division_query.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration, API calls] <br>
-**Output Format:** [Markdown guidance with inline curl commands, API request examples, and configuration notes.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Live API use requires curl and the BMAP_WEBAPI_AK environment variable.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.8 (source: evidence.release.version; artifact/SKILL.md frontmatter reports 1.0.5) <br>
+Risk: API calls can send addresses, coordinates, route details, vehicle identifiers, session identifiers, or free-form user requests to Baidu Maps.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for intended Baidu Maps WebAPI workflows, obtain appropriate user consent for sensitive location or vehicle data, and minimize data sent in each request.
+
+Risk: Concrete API-key examples or request URLs may expose credentials or sensitive query details if copied into code or logs.
+
+Mitigation: Replace examples with a restricted BMAP_WEBAPI_AK environment variable, avoid logging full request URLs, and rotate any credential that may have been exposed.
+
+Risk: Advanced or experience endpoints may consume quota and may not be suitable for production workflows.
+
+Mitigation: Prefer the standard Baidu Maps endpoint for production code and confirm with the user before direct calls that consume their access-key quota.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/baidu-maps/skills/baidu-map-webapi)
+- [Baidu Maps Open Platform](https://lbs.baidu.com)
+- [Baidu Maps API Key Console](https://lbs.baidu.com/apiconsole/key)
+- [百度地图全球逆地理编码 API](artifact/references/global_reverse_geocoding.md)
+- [百度地图地理编码 API](artifact/references/geocoding.md)
+- [百度地图地点检索及联想 API](artifact/references/administrative_region_search.md)
+- [百度地图驾车路线规划 API](artifact/references/driving_route_planning.md)
+- [百度地图步行路线规划 API](artifact/references/walking_route_planning.md)
+- [百度地图骑行路线规划 API](artifact/references/cycling_route_planning.md)
+- [百度地图公交路线规划 API](artifact/references/transit_route_planning.md)
+- [百度地图国内天气查询 API](artifact/references/domestic_weather_query.md)
+- [百度地图海外天气查询 API](artifact/references/overseas_weather_query.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with API parameters, curl examples, and integration notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl and a Baidu Maps WebAPI access key supplied through BMAP_WEBAPI_AK.]
+
+## Skill Version(s):
+
+1.0.8 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

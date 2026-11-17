@@ -1,46 +1,66 @@
-## Description: <br>
-Mechanical enforcement tools to help AI coding agents follow project standards with git hooks, secret detection, deployment verification, and import registries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent Guardrails provides mechanical enforcement tools that help AI coding agents avoid reimplementation, secret leaks, deployment gaps, and skill update gaps.
 
-## Publisher: <br>
-[jzOcb](https://clawhub.ai/user/jzOcb) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[jzocb](https://clawhub.ai/user/jzocb)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to install local guardrails that discourage reimplementation, hardcoded secrets, deployment gaps, and skill-update drift in AI-assisted coding workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Installers can change repository git hooks and guardrail files, which may affect local commit workflows. <br>
-Mitigation: Inspect the install scripts and generated .git/hooks files before enabling them, and back up existing hooks first. <br>
-Risk: The optional skill-update feedback loop adds a post-commit hook and semi-automatic commit helper for skills updates. <br>
-Mitigation: Enable that loop only in repositories where this automation is desired, and review generated tasks and commits before accepting them. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to add repository-level guardrails for AI coding agents, including Git hooks, secret checks, deployment verification, and import registry guidance.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/jzOcb/jz-agent-guardrails) <br>
-- [Project Homepage](https://github.com/anon/agent-guardrails#readme) <br>
-- [Claude Code Install Guide](CLAUDE_CODE_INSTALL.md) <br>
-- [Deployment Verification Guide](references/deployment-verification-guide.md) <br>
-- [Agent Rules Template](references/agents-md-template.md) <br>
-- [Skill Update Feedback](references/skill-update-feedback.md) <br>
-- [Enforcement Research](references/enforcement-research.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, code, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, configuration snippets, and local script references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local setup guidance and references to scripts that modify repository hooks and guardrail files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill installs persistent Git hooks and can affect repositories that already have hook workflows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review installation scripts and existing hooks before use, then customize generated hooks for the target repository.
+
+Risk: Secret scanning can expose matched secret values in shared logs.
+
+Mitigation: Run secret checks in controlled environments and redact or suppress matched values before sharing logs.
+
+Risk: Installer behavior is described by the security review as broken or overstated, including a missing pre-commit asset.
+
+Mitigation: Verify installed files and hook behavior manually before relying on the skill as enforcement.
+
+Risk: The skill update feedback loop adds persistent post-commit automation and semi-automatic skill commit behavior.
+
+Mitigation: Enable the feedback loop only in repositories where persistent automation and human-confirmed skill updates are acceptable.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/jzocb/skills/jz-agent-guardrails)
+- [Server-resolved homepage](https://github.com/anon/agent-guardrails#readme)
+- [Deployment verification guide](references/deployment-verification-guide.md)
+- [Enforcement research](references/enforcement-research.md)
+- [Skill update feedback loop](references/skill-update-feedback.md)
+- [AGENTS.md template](references/agents-md-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, scripts, and configuration templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces repository guardrail instructions and local setup commands for agent-assisted development workflows.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

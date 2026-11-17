@@ -1,37 +1,53 @@
-## Description: <br>
-Construction Estimator Pro helps agents prepare construction estimates, bid proposals, cost breakdowns, value engineering options, change orders, and budget tracking for residential, commercial, and infrastructure projects. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Complete construction estimating and cost management system for preparing project estimates, bid proposals, cost breakdowns, value engineering, change order management, and construction budget tracking across residential, commercial, and infrastructure projects.
 
-## Publisher: <br>
-[1kalin](https://clawhub.ai/user/1kalin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[1kalin](https://clawhub.ai/user/1kalin)
 
-## Use Case: <br>
-Construction estimators, project managers, and bidding teams use this skill to structure estimates, quantity takeoffs, subcontractor quote reviews, markups, change orders, value engineering proposals, and cost-control reports. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated construction estimates may be inaccurate if quantities, assumptions, local codes, wage rates, material prices, or bid conditions are stale or incomplete. <br>
-Mitigation: Verify generated estimates with current project documents, local requirements, supplier or subcontractor quotes, and qualified construction professionals before financial or contractual use. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/1kalin/afrexai-construction-estimator) <br>
+## Use Case:
 
+External users, construction professionals, and estimating teams use this skill to structure construction estimates, perform quantity takeoff checks, compare subcontractor quotes, generate bid and change-order artifacts, evaluate value engineering options, and track construction cost performance.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown with structured checklists, tables, calculations, and YAML templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated estimates and recommendations are advisory and should be verified against project documents, local codes, current pricing, wage rates, and qualified professional judgment.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may activate for generic terms such as estimate or bid outside a construction context.
+
+Mitigation: Use construction-specific prompts and verify that the agent is applying the workflow only to construction estimating tasks.
+
+Risk: Cost assumptions and benchmark ranges may be unsuitable for a specific project, location, date, or financial decision.
+
+Mitigation: Independently verify quantities, unit costs, escalation, location factors, and subcontractor quotes before relying on outputs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/1kalin/skills/afrexai-construction-estimator)
+- [AfrexAI Construction Context Pack](https://afrexai-cto.github.io/context-packs/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown guidance with tables, formulas, checklists, and YAML templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces construction estimating structures, cost breakdowns, bid summaries, change-order templates, value engineering analyses, and cost-control reports for agent responses.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

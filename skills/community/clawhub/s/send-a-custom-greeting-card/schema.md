@@ -10,7 +10,7 @@ x402 availability: not enabled for this product.
 
 Action slug: `create-proof`
 
-Price: `400` credits
+Price: `3` credits
 
 Upload the card to Click2Mail and create the print job without mailing. Used for final review before committing to send.
 
@@ -190,7 +190,7 @@ Generated JSON parameter schema:
 
 Action slug: `get-order-status`
 
-Price: `400` credits
+Price: `3` credits
 
 Check the status of a previously sent or proofed card order. Automatically includes USPS tracking information when available.
 
@@ -224,7 +224,7 @@ Generated JSON parameter schema:
 
 Action slug: `get-tracking`
 
-Price: `400` credits
+Price: `3` credits
 
 Get USPS tracking details for a previously sent card order.
 
@@ -269,7 +269,7 @@ Generated JSON parameter schema:
 
 Action slug: `list-orders`
 
-Price: `400` credits
+Price: `3` credits
 
 List past greeting card orders for the current budget, sorted by most recent first.
 
@@ -306,7 +306,7 @@ Generated JSON parameter schema:
 
 Action slug: `render-preview`
 
-Price: `400` credits
+Price: `3` credits
 
 Generate a preview of the greeting card without mailing. Returns the generated PDF and preview images with signed URLs for review before sending.
 

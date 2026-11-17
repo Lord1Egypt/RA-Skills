@@ -1,0 +1,64 @@
+{
+  "verified_at": "2026-10-10T11:28:26.367359+08:00",
+  "date": "2026-10-10",
+  "execution": "actual submit_time_entry.main, real Chinese choice resolution and common API precheck",
+  "inputs": {
+    "project_name": "<redacted verified project name>",
+    "fill_type": "工作",
+    "project_phase": "研发/交付",
+    "work_type": "开发",
+    "man_hour": 8,
+    "job_desc": "<matched authorized existing description; redacted>"
+  },
+  "cli_exit_code": 0,
+  "cli_result": {
+    "code": 200,
+    "submission_status": "skipped-existing",
+    "verified": true
+  },
+  "baseline_record_count": 1,
+  "final_record_count": 1,
+  "existing_records_exactly_unchanged": true,
+  "personal_settings_and_auth_files_unchanged": true,
+  "network_allowlist": [
+    [
+      "POST",
+      "/sn/project/timeFeeDropDownPageList"
+    ],
+    [
+      "POST",
+      "/sn/system/dict/data/typeList"
+    ],
+    [
+      "POST",
+      "/sn/timeEntry/findEveryDayList"
+    ]
+  ],
+  "actual_requests": [
+    [
+      "POST",
+      "/sn/timeEntry/findEveryDayList"
+    ],
+    [
+      "POST",
+      "/sn/project/timeFeeDropDownPageList"
+    ],
+    [
+      "POST",
+      "/sn/system/dict/data/typeList"
+    ],
+    [
+      "POST",
+      "/sn/timeEntry/findEveryDayList"
+    ],
+    [
+      "POST",
+      "/sn/timeEntry/findEveryDayList"
+    ]
+  ],
+  "denied_requests": 0,
+  "time_entry_write_requests": 0,
+  "request_redirects_disabled": true,
+  "actual_new_write_verified": false,
+  "mocks": "only transport allowlist interception and in-process CLI argv/output capture; no fake OA responses"
+}

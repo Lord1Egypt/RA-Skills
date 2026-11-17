@@ -1,42 +1,56 @@
-## Description: <br>
-A calm way for creators to understand and organize automated content claims across platforms, so nothing important gets missed. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps creators, managers, and labels understand automated copyright claims and organize supporting evidence, timelines, and procedural options without deciding what action to take.
 
-## Publisher: <br>
-[OtherPowers](https://clawhub.ai/user/OtherPowers) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[otherpowers](https://clawhub.ai/user/otherpowers)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Creators, managers, and labels use this skill to understand automated copyright claims, organize claim evidence, and review timelines and possible procedural paths while keeping filings and account actions under their control.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Claim documents may contain sensitive information.
+
+Mitigation: Review the AI host's privacy and memory settings before sharing claim documents.
+
+Risk: Platform deadlines and claim procedures may not match the user's current account status.
+
+Mitigation: Verify deadlines in the platform dashboard.
+
+Risk: The evaluation helper sends test content to Anthropic and may incur API charges.
+
+Mitigation: Review the evaluation helper's data handling and expected charges before running it.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Creators and rights-operations teams use this skill to understand automated content-claim workflows and organize existing claim documentation without receiving legal advice or outcome predictions. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Guidance, Text, Markdown, JSON]
 
-## Known Risks and Mitigations: <br>
-Risk: Users may mistake procedural organization for legal advice, fair-use assessment, or outcome prediction. <br>
-Mitigation: Require a first-turn acknowledgment, keep guidance non-advisory, avoid outcome predictions, and direct users to a qualified professional for legal decisions. <br>
-Risk: Claim notices may contain unnecessary personal data. <br>
-Mitigation: Ask users to avoid pasting unnecessary personal details and redact personal emails, phone numbers, and addresses from pasted notice text. <br>
-Risk: Requests to bypass or evade automated content-detection systems could misuse the skill. <br>
-Mitigation: Redirect or stop assistance for circumvention requests and keep explanations focused on neutral platform process. <br>
+**Output Format:** [Plain-language claim summaries and recaps, with structured JSON evidence organizers and timelines.]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/OtherPowers/content-id-guide) <br>
+**Other Properties Related to Output:** [Organizes user-provided facts and platform-documented information; does not file claims or make account decisions.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown with procedural checklists and structured claim summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user acknowledgment before claim-specific help and redacts personal emails, phone numbers, and addresses from pasted notice text.] <br>
+1.0.4 (source: server-resolved release evidence)
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

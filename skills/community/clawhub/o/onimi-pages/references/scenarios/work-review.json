@@ -1,0 +1,94 @@
+{
+  "schemaVersion": 1,
+  "sceneKey": "work-review",
+  "version": "1.0.0",
+  "kind": "page",
+  "audience": "work",
+  "license": "MIT-0",
+  "minimumCreatorVersion": "0.2.0",
+  "artifactProtocolVersion": 1,
+  "dataModes": [
+    "local",
+    "controlled-cloud"
+  ],
+  "locales": {
+    "zh-CN": {
+      "title": "工作复盘",
+      "goal": "把成果、证据、问题和下一步连起来，方便团队决策。",
+      "optionalInputs": [
+        {
+          "key": "period",
+          "question": "复盘的时间范围是什么？"
+        },
+        {
+          "key": "audience",
+          "question": "给谁看，他们需要做什么决定？"
+        },
+        {
+          "key": "evidence",
+          "question": "有哪些目标、实际结果和原始资料？"
+        },
+        {
+          "key": "lessons",
+          "question": "哪些进展或问题最值得解释？"
+        },
+        {
+          "key": "actions",
+          "question": "下一步行动、负责人和期限是否已有安排？"
+        }
+      ],
+      "sections": [
+        "结论与范围",
+        "目标与结果对照",
+        "证据和时间变化",
+        "经验与限制",
+        "下一步行动"
+      ],
+      "qualityChecks": [
+        "用证据时间线或目标对照表组织正文，不堆砌 KPI 卡片。",
+        "对已提供的数据做筛选与展开；筛选后总数和叙述同步变化。",
+        "未提供指标时保留定性复盘，不编造增长数据或承诺。"
+      ],
+      "missingInformationPolicy": "所有问题均可跳过；使用已有资料，显式列出影响结果的假设，未知事实保留待确认。"
+    },
+    "en": {
+      "title": "Work review",
+      "goal": "Connect outcomes, evidence, lessons and next steps for team decisions.",
+      "optionalInputs": [
+        {
+          "key": "period",
+          "question": "What period does this review cover?"
+        },
+        {
+          "key": "audience",
+          "question": "Who will read it and what decision do they need to make?"
+        },
+        {
+          "key": "evidence",
+          "question": "Which goals, actual results and source material are available?"
+        },
+        {
+          "key": "lessons",
+          "question": "Which changes or problems deserve an explanation?"
+        },
+        {
+          "key": "actions",
+          "question": "Are next actions, owners and dates already agreed?"
+        }
+      ],
+      "sections": [
+        "Outcome and scope",
+        "Goals versus results",
+        "Evidence and changes over time",
+        "Lessons and limitations",
+        "Next actions"
+      ],
+      "qualityChecks": [
+        "Use an evidence timeline or goal comparison table, rather than a wall of KPI cards.",
+        "Filters and detail expansion must update totals and interpretations together.",
+        "Use a qualitative review when metrics are missing; do not fabricate growth or commitments."
+      ],
+      "missingInformationPolicy": "All questions may be skipped. Use known material, state consequential assumptions, and leave unknown facts unresolved."
+    }
+  }
+}

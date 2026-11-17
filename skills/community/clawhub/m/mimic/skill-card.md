@@ -1,46 +1,60 @@
-## Description: <br>
-Turn your AI into anyone by collecting public data from Weibo, Bilibili, Douyin, and Wikipedia, analyzing speech patterns and personality, and generating a SOUL.md persona file for roleplay, personalized AI, character simulation, and creative writing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Mimic helps an agent collect public data about a named person or character, analyze speech and personality patterns, and generate reusable persona files for roleplay, creative writing, and character simulation.
 
-## Publisher: <br>
-[sophie-xin9](https://clawhub.ai/user/sophie-xin9) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sophie-xin9](https://clawhub.ai/user/sophie-xin9)
 
-## Use Case: <br>
-External users and developers use Mimic to generate data-driven AI personas for roleplay, creative writing, character simulation, and personalized assistant behavior. The skill is most useful when a user names a public figure, fictional character, historical figure, or mashup and wants a reusable persona file grounded in collected source material. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can collect and persist persona data about real people, including data derived from public social platforms and user-provided chat logs. <br>
-Mitigation: Use it only for appropriate roleplay, creative, or consented personalization scenarios; avoid profiling private people or processing chat logs unless everyone involved has clearly consented. <br>
-Risk: The skill depends on browser-control tooling and may handle a ManoBrowser endpoint and API key. <br>
-Mitigation: Review ManoBrowser separately, approve each collection step, and avoid exposing API keys in prompts, logs, or shell history. <br>
-Risk: Generated persona files may be mistaken for the views or behavior of the real person being simulated. <br>
-Mitigation: Keep clear disclosure in generated SOUL.md files that the output is an AI-generated simulation and does not represent the person's actual views. <br>
-Risk: Collected raw data and generated persona files may remain on disk after use. <br>
-Mitigation: Delete generated raw data and persona files when they are no longer needed. <br>
+## Use Case:
 
+External users, developers, and creative writers use Mimic to generate structured AI persona files from public web and social-platform data when they need a specific voice for roleplay, personalized assistants, character simulation, or creative writing.
 
-## Reference(s): <br>
-- [Mimic ClawHub release page](https://clawhub.ai/sophie-xin9/mimic) <br>
-- [Mimic repository link from artifact README](https://github.com/ClawCap/Mimic) <br>
-- [ManoBrowser dependency link from artifact README](https://github.com/ClawCap/ManoBrowser) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Files, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown persona files, JSON source-data files, and conversational guidance with optional shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces SOUL.md persona files and raw.json source-data files under a local mimic-data directory; quality depends on available public data and ManoBrowser access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter declares 3.1.0) <br>
+Risk: The skill can profile and imitate real people based on public social data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for appropriate persona simulation, avoid modeling private people without clear consent, and keep generated persona disclaimers that the simulation does not represent the real person's actual views.
+
+Risk: The workflow steers users toward a browser dependency and may involve API credentials.
+
+Mitigation: Use trusted, scoped tool integrations that hide secrets from the agent; do not paste raw API keys into prompts or reusable files.
+
+Risk: Generated SOUL.md and raw.json files can preserve reusable profile data.
+
+Mitigation: Review generated files before sharing, store them locally with appropriate access controls, and delete mimic-data artifacts when they are no longer needed.
+
+## Reference(s):
+
+- [ClawHub Mimic skill page](https://clawhub.ai/sophie-xin9/skills/mimic)
+- [Mimic README](artifact/README.md)
+- [Mimic skill definition](artifact/SKILL.md)
+- [ManoBrowser dependency](https://github.com/ClawCap/ManoBrowser)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown persona files, JSON source-data files, and setup or collection guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generates SOUL.md persona files and raw.json source-data files, typically stored locally under mimic-data.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

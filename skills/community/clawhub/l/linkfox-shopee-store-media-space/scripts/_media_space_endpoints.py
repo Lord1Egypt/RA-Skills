@@ -49,7 +49,8 @@ MEDIA_SPACE_ENDPOINTS: dict[str, MediaSpaceEndpoint] = {
         "path": "api/v2/media_space/upload_image",
         "method": "POST",
         "response_key": "uploadImage",
-        "notes": 'Upload image; pass body (image file/url per official spec)',
+        "required": ["shopId", "filePath"],
+        "notes": 'Upload a local image through /shopee/uploadMediaSpaceImage',
     },
 }
 

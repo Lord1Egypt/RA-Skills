@@ -1,97 +1,97 @@
-# 设计智能参考
+#DesignSmartReference
 
-本参考用于把模糊的 UI 请求转成可执行设计系统。先识别产品类别，再组合风格原型、色彩角色、字体情绪、动效节奏、图表任务和 UX 风险。
+This reference is used to turn obscure UI requests into an executable design system. Start by identifying the product category, then combine style archetypes, color roles, font moods, motion rhythms, graphic tasks, and UX risks.
 
-## 决策流程
+## Decision-making process
 
-1. 提取关键词：产品类型、用户、场景、主要任务、内容密度、品牌语气、技术栈。
-2. 写出设计读取：页面类型、受众、主任务、品牌约束和可信赖感来源。
-3. 匹配产品规则：从 `data/product-rules.json` 选择最接近的类别，记录推荐结构、风险和反模式。
-4. 选择风格原型：从 `data/style-archetypes.json` 选择 1 个主风格和最多 1 个辅助风格，避免风格拼贴。
-5. 设定设计拨盘：视觉张力、动效强度、信息密度、媒体真实性、内容说服力都用 1-10 表达，并随页面类型变化。
-6. 建立 token 方向：定义主色、强调色、背景、前景、边框、危险色和 focus ring 的语义角色。
-7. 选择字体情绪：不要只选“好看的字体”，要说明标题和正文各自承担的语气与可读性。
-8. 判断数据表达：趋势用折线/面积，比较用柱状，构成少量类别可用环图，流程用漏斗/步骤，明细必须保留表格替代。
-9. 输出反模式和质量门禁：每个设计建议必须附带“不要做什么”，并根据页面类型补充首屏、CTA、媒体真实性、section 变化和状态完整度检查。
+1. Extract keywords: product type, users, scenarios, main tasks, content density, brand tone, technology stack.
+2. Write out the design reads: page type, audience, primary mission, brand constraints, and sources of trustworthiness.
+3. Match product rules: Select the closest category from `data/product-rules.json` and record the recommended structure, risks and anti-patterns.
+4. Select style archetypes: Select 1 main style and up to 1 auxiliary style from `data/style-archetypes.json` to avoid style collage.
+5. Set the design dial: visual tension, motion intensity, information density, media authenticity, and content persuasiveness are all expressed on a scale of 1-10, and vary with the page type.
+6. Establish token direction: define the semantic roles of main color, accent color, background, foreground, border, dangerous color and focus ring.
+7. Choose font mood: Don’t just choose a “good-looking font”, explain the tone and readability of the title and body text respectively.
+8. Judgment of data expression: Use polylines/areas for trends, columns for comparisons, donut charts to form a small number of categories, funnels/steps for processes, and tables must be retained for details.
+9. Output anti-patterns and quality gates: Every design suggestion must be accompanied by a “what not to do” and supplemented with above-the-fold, CTAs, media authenticity, section changes, and state integrity checks based on page type.
 
-## 方向 Advisor
+## Direction Advisor
 
-当用户只说“好看一点”“给几个方向”“我也不知道什么风格”且没有权威设计稿时，不要连续追问泛泛口味问题。先给 3 个差异明显的方向，让用户能判断取舍。
+When the user only says "looks better", "give me some directions", "I don't know what style" and there is no authoritative design draft, don't continue to ask general questions about taste. First, give 3 directions with obvious differences so that users can judge the choice.
 
-每个方向必须包含：
+Each direction must contain:
 
-- 适用场景：为什么适合当前产品、受众和任务。
-- 视觉锚点：信息结构、真实媒体、数据形态、材质、字体性格、空间组织或交互节奏。
-- 关键 token：主色、强调色、背景、字体情绪、圆角/边框/阴影倾向。
-- 避免项：这个方向最容易滑向的模板化错误。
+- Applicable scenarios: Why it is suitable for the current product, audience and task.
+- Visual anchors: information structure, real media, data form, material, font character, spatial organization or interaction rhythm.
+- Key tokens: main color, accent color, background, font mood, rounded corners/border/shadow tendency.
+- What to avoid: This is the easiest templating error to slip into.
 
-三个方向应来自不同设计逻辑，例如：
+The three directions should come from different design logics, such as:
 
-- 信息架构型：高密度、理性、数据优先，适合 B2B、运营、金融、工程工具。
-- 编辑叙事型：版式、留白、强文字层级，适合品牌故事、内容产品、作品集。
-- 产品实证型：真实截图、对象、状态、流程证据优先，适合 SaaS、硬件、开发者工具。
-- 表现实验型：强动效、空间感、生成视觉，适合发布页、活动页、艺术/创意项目。
-- 温暖人本型：低攻击性色彩、可亲近插画或真实人物，适合教育、健康、生活方式。
+- Information architecture type: high-density, rational, data-first, suitable for B2B, operations, finance, and engineering tools.
+- Editorial narrative type: layout, white space, strong text hierarchy, suitable for brand stories, content products, and portfolios.
+- Product demonstration type: real screenshots, objects, status, and process evidence are given priority, suitable for SaaS, hardware, and developer tools.
+- Experimental expression: strong motion effect, sense of space, generative vision, suitable for release pages, event pages, and art/creative projects.
+- Warm and humanistic: low-offensive colors, approachable illustrations or real characters, suitable for education, health, and lifestyle.
 
-用户选择方向后，再把它落成设计系统和页面结构；不要把 3 个方向拼贴成一个混杂系统。
+After the user chooses the direction, then implement it into the design system and page structure; do not collage the 3 directions into a mixed system.
 
-## 真实资产优先
+## Real assets take priority
 
-品牌或产品相关 UI 的识别度来自真实资产，而不是颜色猜测。优先级：
+Brand or product related UI recognition comes from real assets, not color guesswork. Priority:
 
-1. Logo、产品图、真实 UI 截图、实体照片、品牌应用图。
-2. 项目内已有 icon、组件、数据状态、图表和截图。
-3. 为当前任务生成的专用资产。
-4. 明确标记的结构化 placeholder。
+1. Logo, product pictures, real UI screenshots, physical photos, and brand application pictures.
+2. The project already has icons, components, data status, charts and screenshots.
+3. Special assets generated for the current task.
+4. Clearly marked structured placeholder.
 
-不要用 CSS 轮廓、通用插画、假截图或远程占位图替代用户需要识别的主体。缺少关键资产时，先标记资产缺口并给替代路线；若 logo 或主体产品是首屏识别核心，应暂停确认或改为不依赖品牌识别的结构方案。
+Don’t use CSS outlines, generic illustrations, fake screenshots, or remote placeholder images to replace the subject that users need to identify. When there is a lack of key assets, first mark the asset gap and provide an alternative route; if the logo or main product is the core of first-screen recognition, confirmation should be suspended or changed to a structural plan that does not rely on brand recognition.
 
-## v0 校准
+## v0 calibration
 
-视觉风险高、方向不明确或页面影响面较大时，先交付一个可看的 v0，而不是一次性做完整页面。
+When the visual risk is high, the direction is unclear, or the page has a large impact, deliver a viewable v0 first instead of doing the entire page at once.
 
-v0 应包含：
+v0 should contain:
 
-- 核心布局、首屏层级、主要 token 和一个关键模块。
-- 明确 placeholder 和资产缺口。
-- 1-2 个可替换方向点，例如密度、色彩温度或媒体策略。
-- 不包含完整状态矩阵、所有内容细节或生产级动效。
+- Core layout, first screen hierarchy, main token and a key module.
+- Clarify placeholder and asset gaps.
+- 1-2 alternative direction points such as density, color temperature or media strategy.
+- Does not include the full state matrix, all content details, or production-grade animations.
 
-v0 通过后再补齐组件、状态、响应式和交互动效。
+After v0 is passed, components, states, responsiveness and interactive effects will be completed.
 
-## 设计 Critique
+## Design Critique
 
-当用户要求“评审 UI”“好不好看”“再高级一点”或交付前需要自检时，按 5 个维度输出具体问题，而不是只给主观形容：
+When users request to "review the UI", "whether it looks good or not", "more advanced" or a self-inspection is required before delivery, output specific questions in 5 dimensions instead of just giving subjective descriptions:
 
-- 方向一致性：视觉选择是否服务设计读取和产品任务。
-- 层级与扫描：首屏、标题、CTA、数据、状态是否有清楚主次。
-- 工艺质量：间距、对齐、色彩数量、文字换行、圆角/边框/阴影是否稳定。
-- 功能完整度：loading、empty、error、disabled、hover、focus、selected 是否覆盖。
-- 原创性与识别度：是否摆脱通用渐变、三卡片、假截图、无主体 hero。
+- Directional consistency: Whether the visual choice serves the design read and product mission.
+- Hierarchy and scanning: Whether the first screen, title, CTA, data, and status are clearly prioritized.
+- Workmanship quality: spacing, alignment, number of colors, text wrapping, rounded corners/borders/shadows are stable.
+- Function completeness: whether loading, empty, error, disabled, hover, focus, and selected are covered.
+- Originality and recognition: whether to get rid of universal gradients, three cards, fake screenshots, and bodyless heroes.
 
-输出应按严重程度给出可执行修复，不评价设计者本人。
+The output should give executable fixes by severity, without judging the designers themselves.
 
-## 何时运行生成器
+## When to run the generator
 
-使用以下命令生成设计系统建议：
+Generate design system recommendations using the following command:
 
 ```bash
 node skills/fec-ui-design/scripts/design-system.mjs "beauty spa booking" --project "Serenity Spa"
 ```
 
-输出 Markdown 适合贴入计划或 PR 描述；输出 JSON 适合测试或工具消费：
+Output Markdown is suitable for pasting into plans or PR descriptions; output JSON is suitable for testing or tool consumption:
 
 ```bash
 node skills/fec-ui-design/scripts/design-system.mjs "fintech analytics dashboard" --format json --stack next
 ```
 
-## 输出必须回答
+## Output must answer
 
-- 这个界面的主任务是什么？
-- 设计读取和五个设计拨盘分别是什么？
-- 推荐哪种页面结构或工作区结构？
-- 视觉锚点是什么，为什么贴合业务？
-- 主风格、字体、色彩、动效分别服务什么目标？
-- 图表和数据密度如何处理？
-- 哪些反模式必须避免？
-- 上线前最小 QA 清单是什么？
+- What is the main task of this interface?
+- What are the design reads and the five design dials?
+- What page structure or workspace structure is recommended?
+- What is a visual anchor and why does it fit the business?
+- What goals do the main style, font, color, and animation serve respectively?
+- How to deal with charts and data density?
+- What anti-patterns must be avoided?
+- What is the minimum QA checklist before going live?

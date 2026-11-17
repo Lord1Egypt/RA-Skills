@@ -1,47 +1,53 @@
-## Description: <br>
-OpenClaw communication protocol architecture optimization skill package that provides a high-performance, reliable framework for agent-to-agent communication. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw communication protocol architecture optimization skill package that provides a high-performance agent communication framework with large-message performance improvements, MessagePack size reduction, unified transport architecture, smart routing, error recovery, and monitoring.
 
-## Publisher: <br>
-[21B-A](https://clawhub.ai/user/21B-A) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[21b-a](https://clawhub.ai/user/21b-a)
 
-## Use Case: <br>
-Developers and engineers use this skill to add or evaluate an OpenClaw agent communication framework with unified transport and protocol layers, routing, retries, examples, and performance reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Messages may be persisted locally by the communication framework. <br>
-Mitigation: Use a dedicated restricted communication directory and avoid sending secrets through the skill. <br>
-Risk: Reliability and performance claims may not match the implementation. <br>
-Mitigation: Review the implementation and run the included tests and performance reports before relying on the claims in production. <br>
-Risk: MessagePack mode and optional transports may be unsuitable for real deployments without review. <br>
-Mitigation: Do not rely on MessagePack mode for real data until validated, and disable simulated or unneeded transports. <br>
-Risk: Unvalidated recipient names or package sources may create deployment risk. <br>
-Mitigation: Validate recipient names and verify the exact package source before deployment. <br>
+## Use Case:
 
+Developers and engineers use this skill to add or evaluate an OpenClaw agent-to-agent communication layer with unified send, request-response, and broadcast APIs. It is intended for communication architecture optimization work involving transport selection, protocol serialization, retry behavior, and performance monitoring.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/21B-A/arch-optimization) <br>
-- [OpenClaw homepage](https://openclaw.ai) <br>
-- [Protocol layer design](docs/protocol-layer-design.md) <br>
-- [Transport layer design](docs/transport-layer-design.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown documentation with JavaScript and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes implementation files, design documents, examples, tests, and performance report artifacts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Security scan verdict is suspicious because the skill overstates production-ready communication while persisting messages to weakly scoped filesystem paths and reporting simulated transports or protocols as successful.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review carefully before installing in any real agent workflow and use only in a disposable or test environment until recipient identifiers are validated, writable paths are sandboxed, MessagePack is disabled or replaced with a real implementation, and HTTP/WebSocket behavior is made fail-closed or clearly test-only.
+
+## Reference(s):
+
+- [OpenClaw homepage](https://openclaw.ai)
+- [Skill page](https://clawhub.ai/21b-a/skills/arch-optimization)
+- [Transport layer design](artifact/docs/transport-layer-design.md)
+- [Protocol layer design](artifact/docs/protocol-layer-design.md)
+- [Performance comparison results](artifact/reports/performance-comparison-results.json)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown documentation with JavaScript code examples and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes implementation files, design notes, examples, tests, and performance reports.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

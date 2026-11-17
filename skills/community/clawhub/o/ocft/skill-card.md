@@ -1,46 +1,59 @@
-## Description: <br>
-P2P file transfer between AI agents via message channels, with chunked transfer, IPFS fallback for large files, and trusted peer management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+P2P file transfer between AI agents via message channels. Supports chunked transfer, IPFS fallback for large files, and trusted peer management.
 
-## Publisher: <br>
-[stormixus](https://clawhub.ai/user/stormixus) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[stormixus](https://clawhub.ai/user/stormixus)
 
-## Use Case: <br>
-Developers and agent operators use this skill to transfer files between trusted AI agents over text-based channels such as chat systems. It supports chunked transfer, integrity checks, resumable transfers, peer trust management, and optional IPFS fallback for large files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Peer secrets and exported connection details can authorize trusted transfers if exposed. <br>
-Mitigation: Keep node and peer secrets private, verify peers before trusting them, and prefer short trust TTLs. <br>
-Risk: Auto-accept mode can receive files without manual review from configured trusted peers. <br>
-Mitigation: Use auto-accept only for peers you intend to trust, review trust entries regularly, and expire or remove peers that no longer need access. <br>
-Risk: IPFS fallback and public chat channels can expose files beyond the intended recipient. <br>
-Mitigation: Avoid IPFS and public channels for sensitive files unless that exposure model is intentional. <br>
-Risk: Downloads and large transfers can write unwanted files or exceed expected storage limits. <br>
-Mitigation: Choose a contained download directory and configure an appropriate maximum file size before use. <br>
+## Use Case:
 
+Developers and agent operators use this skill to transfer files between AI agents over text-based channels, configure trusted peer relationships, and use chunked transfer or IPFS fallback for larger files.
 
-## Reference(s): <br>
-- [OCFT ClawHub page](https://clawhub.ai/stormixus/ocft) <br>
-- [OCFT GitHub project](https://github.com/stormixus/ocft) <br>
-- [OCFT npm package](https://www.npmjs.com/package/ocft) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Code, Guidance] <br>
-**Output Format:** [Markdown with bash, TypeScript, and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes CLI setup, peer-management commands, transfer configuration, and programmatic usage examples.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.2 (source: server release metadata) <br>
+Risk: Reusable OCFT secrets and auto-accept behavior can allow a trusted peer to send files without human review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat OCFT secrets like passwords, avoid sharing them in public or logged channels, and keep auto-accept narrowly scoped or disabled unless the peer is fully trusted.
+
+Risk: Transferred files and an unpinned global npm install can affect the local host environment.
+
+Mitigation: Use a sandboxed download directory and prefer a pinned or locally reviewed package version before installing or running OCFT.
+
+Risk: IPFS fallback can expose sensitive files through third-party providers or gateways.
+
+Mitigation: Avoid IPFS for sensitive files unless you control the provider and gateway configuration.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/stormixus/skills/ocft)
+- [GitHub Repository](https://github.com/stormixus/ocft)
+- [npm Package](https://www.npmjs.com/package/ocft)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands, TypeScript examples, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides agents through OCFT CLI setup, peer trust management, file transfer flows, IPFS fallback configuration, and security precautions.]
+
+## Skill Version(s):
+
+1.1.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

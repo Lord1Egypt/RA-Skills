@@ -1,42 +1,54 @@
-## Description: <br>
-Defines a universal six-element spatial data model using natural language parameters for AI-driven smart space perception and control. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Defines a universal six-element spatial data model using natural language parameters for AI-driven smart-space awareness and control.
 
-## Publisher: <br>
-[SpaceSQ](https://clawhub.ai/user/SpaceSQ) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[spacesq](https://clawhub.ai/user/spacesq)
 
-## Use Case: <br>
-Developers and smart-space system designers use this skill to generate a baseline JSON model for representing lighting, air, sound, electromagnetic sensing, energy, and display state in AI-driven spaces. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Running the skill creates or replaces s2_primitive_data/primitive_6_elements_template.json in the current working directory. <br>
-Mitigation: Run it from a directory where that output path is expected, or review the directory before execution. <br>
-Risk: Real-world smart-space sensor or control values added later could influence agent decisions. <br>
-Mitigation: Review any populated sensor or control values before providing the generated template to agents. <br>
+## Use Case:
 
+Developers and smart-space engineers use this skill to generate a baseline JSON schema for representing a 2m x 2m spatial primitive across light, air and HVAC, sound, electromagnetic sensing, energy, and visual display elements.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/SpaceSQ/s2-spatial-primitive) <br>
-- [Publisher profile](https://clawhub.ai/user/SpaceSQ) <br>
-- [Space2.world](https://space2.world) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Files, Configuration, Guidance] <br>
-**Output Format:** [JSON file with console text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generates s2_primitive_data/primitive_6_elements_template.json in the current working directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and manifest.json) <br>
+Risk: Agents connected to smart-home systems could treat the generated model as permission to control devices or sensors.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user permissions and enforce sensor privacy limits before using the model with real device or sensor integrations.
+
+Risk: Running the skill can replace an existing local primitive_6_elements_template.json file.
+
+Mitigation: Review the target s2_primitive_data path and preserve existing model data before execution when overwrite behavior matters.
+
+## Reference(s):
+
+- [S2-Spatial-Primitive on ClawHub](https://clawhub.ai/spacesq/skills/s2-spatial-primitive)
+- [Space2.world](https://space2.world)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Configuration, Guidance]
+
+**Output Format:** [JSON file with console text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates s2_primitive_data/primitive_6_elements_template.json in the working directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact manifest)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

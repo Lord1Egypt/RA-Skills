@@ -5,7 +5,7 @@ allowed-tools: [Bash(oo *)]
 metadata:
   title: "Canva"
   author: "OOMOL"
-  version: "1.0.1"
+  version: "1.0.6"
   services: ["canva"]
   icon: "https://static.oomol.com/logo/third-party/canva.png"
 ---
@@ -46,7 +46,7 @@ Each action is listed below with a one-line description; actions that change sta
 - `get_design` — Get metadata for a Canva design, including owner, URLs, and thumbnail details.
 - `get_design_export_formats` — List the file formats currently available for exporting a Canva design.
 - `get_design_export_job` — Get the current status and result URLs for a Canva design export job created by create_design_export_job.
-- `get_url_asset_upload_job` — Get the current status and uploaded asset metadata for a Canva URL asset upload job. [write]
+- `get_url_asset_upload_job` — Get the current status and uploaded asset metadata for a Canva URL asset upload job.
 - `list_designs` — List metadata for the current Canva user's designs, with optional search, ownership, sorting, and pagination filters.
 - `list_folder_items` — List Canva folder contents, including folders, designs, and image assets, with pagination and filtering options.
 - `move_folder_item` — Move a Canva folder item to another Canva folder. [write]
@@ -80,11 +80,14 @@ These are **one-time** steps — do not repeat them on every call. Run a step on
 - **`scope_missing` / `credential_expired` / `app_not_ready` / `app_not_found`** — Canva is not connected, or the connection expired or lacks a scope. Connect once (auth type: OAuth2) at:
 
   ```text
-  https://console.oomol.com/app-connections?provider=canva
+  https://console.oomol.com/connections/canva
   ```
 
-- **HTTP 402 / `OOMOL_INSUFFICIENT_CREDIT`** — billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+- **`OOMOL_INSUFFICIENT_CREDIT`** — OOMOL billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+
+- **HTTP 402 without `OOMOL_INSUFFICIENT_CREDIT`** — the third-party account itself has no active plan or credit. Report the provider error message as is; do not ask the user to recharge OOMOL.
 
 ## Resources
 
 - Canva homepage: https://www.canva.com
+- API documentation: https://www.canva.dev/docs/apps/rest-apis/

@@ -1,44 +1,63 @@
-## Description: <br>
-Videogen is a video-account short-video production pipeline that plans scripts and storyboards, generates TTS narration and AI video clips, renders Remotion or presentation-style visuals, and assembles vertical videos with FFmpeg. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Videogen automates WeChat Channels short-video production by turning a topic or supported article URL into a script, storyboard, narration, AI-generated clips, Remotion visuals, FFmpeg edits, and publish-ready video assets.
 
-## Publisher: <br>
-[devioslang](https://clawhub.ai/user/devioslang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[devioslang](https://clawhub.ai/user/devioslang)
 
-## Use Case: <br>
-Content creators and developers use this skill to turn a topic, article URL, or video concept into a short-form vertical video workflow with script, storyboard, narration, rendered visuals, AI video clips, and final assembly commands. It is oriented toward WeChat Channels-style educational, narrative, and mixed explainer videos. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow can fetch arbitrary URLs and send user-provided narration or source content to external AI, TTS, and video providers. <br>
-Mitigation: Avoid private URLs and confidential material unless provider transmission is acceptable, and review prompts and extracted content before generation. <br>
-Risk: The artifact can install Python or npm packages and invoke FFmpeg, npm, pip, and rendering commands. <br>
-Mitigation: Run in a sandboxed workspace, review commands before execution, and regenerate package locks with HTTPS registries before installing dependencies. <br>
-Risk: The pipeline may read MiniMax credentials from environment variables or a home-directory .env file. <br>
-Mitigation: Use scoped credentials, keep secrets out of generated artifacts, and rotate keys if they may have been exposed during video generation. <br>
+## Use Case:
 
+Developers, creators, and video-production operators use this skill to generate short-form vertical videos from topics or supported source articles, including storyboards, narration, visual project files, AI video clips, and final mixed video outputs.
 
-## Reference(s): <br>
-- [ClawHub Videogen release page](https://clawhub.ai/devioslang/videogen) <br>
-- [Apple-style Remotion template guide](artifact/templates/apple/README.md) <br>
-- [Evaluation prompts](artifact/evals/evals.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, files] <br>
-**Output Format:** [Markdown guidance, JSON storyboard structures, Python and shell command examples, Remotion project files, and generated media file paths.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces intermediate storyboard, script, narration, clip, render, subtitle, and final video artifacts under a minimax-output-style workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.2.0 (source: server release metadata) <br>
+Risk: The security review reports that implementation flaws could expose API keys or sensitive fetched content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use isolated workspaces with limited filesystem and network access, and use throwaway or tightly scoped API keys.
+
+Risk: The security review reports that untrusted URLs or narration can increase exposure when content is fetched, summarized, or transformed.
+
+Mitigation: Avoid feeding untrusted URLs or narration into the pipeline; avoid --summarize with MiniMax keys until provider routing is fixed.
+
+Risk: The security review reports that generated code or commands may be executed from user-provided text.
+
+Mitigation: Review generated scripts, commands, and project files before execution, especially before installing dependencies or rendering assets.
+
+Risk: The security review advises against forceful operations on paths that may contain important files.
+
+Mitigation: Do not run --force on any path unless its contents are disposable or already backed up.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/devioslang/skills/videogen)
+- [Apple Remotion template README](templates/apple/README.md)
+- [Evaluation prompts](evals/evals.json)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Code, Shell commands, Configuration, Files]
+
+**Output Format:** [Markdown guidance, JSON storyboards, generated Remotion project files, shell commands, audio/video files, and final MP4 assets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce intermediate assets such as scripts, voiceover audio, slide imagery, AI-generated clips, concat lists, Remotion projects, and FFmpeg-rendered video outputs.]
+
+## Skill Version(s):
+
+2.2.0 (source: server release metadata and artifact/_meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

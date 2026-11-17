@@ -1,0 +1,14 @@
+# 论衡流程真源 · 第二部分：节点 phase3_5_insight（完整定义，逐字保留原文本）
+# 装配视图 = ../phase-order.yaml（生成物）；校验 = 生成器 --check（门 AA）
+# ── 节点 YAML 正文（装配时逐字拼入；本行以上为切片头）──
+- id: phase3_5_insight
+  phase: "Phase 3.5"
+  phase_seq: 10
+  kind: owner_checkpoint
+  blocking: true        # v2.12.49：「无补充」也是决策，必须留痕；静默不得当作无补充
+  owner_visible: true
+  decisions: [insight, direction_correction, no_insight]
+  decision_contract: "direction_correction = 方向纠偏；记录 correction_scope，回 T5 重定向后才可进 current_draft_sync；不得把它降格为普通补充洞察。"
+  timeout_fallback: pending_owner_halt
+  blocks: [current_draft_sync, t6_critique]   # v2.15.13 FB-12：局部阻塞 —— 阻塞下游同步/批判层；上游产物整理（归档/心跳核对）可并行
+  next: current_draft_sync

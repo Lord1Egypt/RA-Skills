@@ -1,43 +1,61 @@
-## Description: <br>
-朱批录 helps civil-service exam candidates record daily practice, classify wrong-answer screenshots, track weak modules, generate short study summaries, export Excel wrong-question books, and optionally sync selected records to Feishu. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+朱批录 tracks Chinese civil-service exam study activity by parsing score updates, wrong-question screenshots, check-ins, and review progress, then updating local records and generating concise summaries, exports, and optional Feishu sync.
 
-## Publisher: <br>
-[KaguraNanaga](https://clawhub.ai/user/KaguraNanaga) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kagurananaga](https://clawhub.ai/user/kagurananaga)
 
-## Use Case: <br>
-External learners and study agents use this skill to turn chat messages and exam screenshots into structured civil-service exam practice records, review reminders, concise feedback, and exportable study materials. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Study screenshots, notes, performance records, and inferred mood may be stored locally, sent to a configured multimodal model, included in exports, or uploaded to Feishu when sync is enabled. <br>
-Mitigation: Use a dedicated workspace or channel, avoid unrelated or sensitive images, keep Feishu sync disabled unless needed, and prefer exports without embedded screenshots for sensitive material. <br>
-Risk: The release makes local-only privacy claims, but optional model recognition, Excel export with images, and Feishu sync can move data outside local storage. <br>
-Mitigation: Review the configured model provider, Feishu credentials, export options, and destination documents before processing personal study materials. <br>
+## Use Case:
 
+External users preparing for Chinese civil-service exams use this skill to record daily practice results, classify wrong questions, track weak modules, review pending questions, export study records, and optionally sync selected wrong-question content to Feishu.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/KaguraNanaga/kaogong-study-tracker) <br>
-- [Tone guide](references/tone_guide.md) <br>
-- [Reply templates](references/reply_templates.md) <br>
-- [Workspace example](assets/workspace-example.yaml) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Short chat replies, JSON records, Excel exports, Markdown-style guidance, JavaScript/Python command outputs, and Feishu document updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Responses are intended to stay concise; exports may include embedded screenshots when enabled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: Exam screenshots and notes are stored locally and image inputs may be sent to the configured multimodal model provider.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the model provider configuration before use, avoid submitting sensitive screenshots, and use the manual text fallback when needed.
+
+Risk: Feishu sync can upload wrong-question data and screenshots outside the local device when the user enables and triggers it.
+
+Mitigation: Enable Feishu sync only with intended app credentials and document permissions; keep the local-only workflow when cloud sync is not acceptable.
+
+Risk: Spreadsheet exports may expose users to untrusted imported content until formula sanitization and temporary-file handling are hardened.
+
+Mitigation: Avoid exporting or opening spreadsheets from untrusted imported content until those export hardening issues are fixed.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/kagurananaga/skills/kaogong-study-tracker)
+- [OpenClaw](https://openclaw.ai)
+- [Reply Templates](references/reply_templates.md)
+- [Tone Guide](references/tone_guide.md)
+- [Workspace Example](assets/workspace-example.yaml)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, files, configuration, guidance]
+
+**Output Format:** [Conversation replies, local JSON study records, Excel workbook exports, and optional Feishu document updates.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May process user-provided screenshots through the configured multimodal model and may embed screenshots in exports or optional Feishu sync.]
+
+## Skill Version(s):
+
+1.0.3 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

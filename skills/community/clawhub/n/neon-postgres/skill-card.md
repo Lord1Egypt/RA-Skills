@@ -1,58 +1,58 @@
-## Description: <br>
-Guides developers through working with Neon Serverless Postgres, including setup, local development, connection choices, Neon features, authentication, APIs, CLI, and SDKs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides developers through Neon Lakebase Postgres connections, schema changes, branching, performance, and semantic, full-text, and hybrid search.
 
-## Publisher: <br>
-[andrelandgraf](https://clawhub.ai/user/andrelandgraf) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[andrelandgraf](https://clawhub.ai/user/andrelandgraf)
 
-## Use Case: <br>
-Developers and engineers use this skill to answer Neon Serverless Postgres questions and choose appropriate setup, connection, authentication, CLI, API, SDK, and operational workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Suggested CLI, MCP, SDK, Admin API, or auth workflows could create, modify, or delete Neon database resources. <br>
-Mitigation: Confirm actions against official Neon docs, use least-privilege credentials, and manually review commands before execution. <br>
-Risk: Neon features and APIs evolve, so stale guidance could lead to incorrect implementation choices. <br>
-Mitigation: Verify claims against current official Neon documentation before applying the guidance. <br>
+## Use Case:
 
+Developers and database engineers use this skill to work with existing Neon Lakebase Postgres projects, including connection setup, schema and branch workflows, performance diagnostics, egress optimization, and search.
 
-## Reference(s): <br>
-- [Neon Docs Index](https://neon.com/docs/llms.txt) <br>
-- [What Is Neon](https://neon.com/docs/ai/skills/neon-postgres/references/what-is-neon.md) <br>
-- [Getting Started](https://neon.com/docs/ai/skills/neon-postgres/references/getting-started.md) <br>
-- [Connection Methods](https://neon.com/docs/ai/skills/neon-postgres/references/connection-methods.md) <br>
-- [Neon Serverless Driver](https://neon.com/docs/ai/skills/neon-postgres/references/neon-serverless.md) <br>
-- [Neon JS SDK](https://neon.com/docs/ai/skills/neon-postgres/references/neon-js.md) <br>
-- [Developer Tools](https://neon.com/docs/ai/skills/neon-postgres/references/devtools.md) <br>
-- [Neon CLI](https://neon.com/docs/ai/skills/neon-postgres/references/neon-cli.md) <br>
-- [Neon REST API](https://neon.com/docs/ai/skills/neon-postgres/references/neon-rest-api.md) <br>
-- [Neon TypeScript SDK](https://neon.com/docs/ai/skills/neon-postgres/references/neon-typescript-sdk.md) <br>
-- [Neon Python SDK](https://neon.com/docs/ai/skills/neon-postgres/references/neon-python-sdk.md) <br>
-- [Neon Auth](https://neon.com/docs/ai/skills/neon-postgres/references/neon-auth.md) <br>
-- [Branching](https://neon.com/docs/ai/skills/neon-postgres/references/branching.md) <br>
-- [Autoscaling](https://neon.com/docs/introduction/autoscaling.md) <br>
-- [Scale to Zero](https://neon.com/docs/introduction/scale-to-zero.md) <br>
-- [Instant Restore](https://neon.com/docs/introduction/branch-restore.md) <br>
-- [Read Replicas](https://neon.com/docs/introduction/read-replicas.md) <br>
-- [Connection Pooling](https://neon.com/docs/connect/connection-pooling.md) <br>
-- [IP Allow Lists](https://neon.com/docs/introduction/ip-allow.md) <br>
-- [Logical Replication](https://neon.com/docs/guides/logical-replication-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline code and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-driven guidance that should be checked against current official Neon docs before acting.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The security assessment marked the skill suspicious due to reported undisclosed model-based processing and external data transfers; some referenced content was only partially analyzed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before installation, review the reported data flows and confirm that sending database content to external cache or AI services fits your privacy requirements; inspect the partially analyzed referenced content.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/andrelandgraf/skills/neon-postgres)
+- [Neon parent skill](https://neon.com/docs/ai/skills/neon/SKILL.md)
+- [Neon connection pooling](https://neon.com/docs/connect/connection-pooling.md)
+- [Neon branching workflows](artifact/references/branching.md)
+- [Postgres egress optimization](artifact/references/egress-optimization.md)
+- [Lakebase full-text search](artifact/references/full-text-search.md)
+- [Lakebase hybrid search](artifact/references/hybrid-search.md)
+- [Lakebase Search with Drizzle](artifact/references/lakebase-search-drizzle.md)
+- [Lakebase vector search](artifact/references/vector-search.md)
+- [Get started with Lakebase Search](https://neon.com/docs/ai/lakebase-search-get-started)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, SQL, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown with inline code and fenced examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Examples and recommendations are tailored to the database task and project context; no fixed output schema.]
+
+## Skill Version(s):
+
+1.0.9 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

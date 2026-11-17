@@ -1,43 +1,56 @@
-## Description: <br>
-Checks AI API provider balances for DeepSeek, Moonshot/Kimi, and Volcengine when users ask balance-related questions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Checks AI API account balances for DeepSeek, Moonshot/Kimi, and Volcengine when an agent is asked balance-related questions.
 
-## Publisher: <br>
-[kyya](https://clawhub.ai/user/kyya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[kyya](https://clawhub.ai/user/kyya)
 
-## Use Case: <br>
-Developers and external users use this skill to check and summarize configured AI provider account balances from an agent conversation. It supports DeepSeek, Moonshot/Kimi, and Volcengine accounts using locally configured API credentials. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses configured provider API keys to read billing balance information. <br>
-Mitigation: Configure only providers you use and prefer billing-read-only or least-privilege keys where available. <br>
-Risk: The optional Volcengine setup installs an unpinned Python SDK dependency. <br>
-Mitigation: Review the setup script and dependency before running it in managed or production environments. <br>
+## Use Case:
 
+Developers and operators use this skill to check configured AI API account balances for DeepSeek, Moonshot/Kimi, and Volcengine from an agent conversation.
 
-## Reference(s): <br>
-- [Balance Checker on ClawHub](https://clawhub.ai/kyya/balance-checker) <br>
-- [DeepSeek User Balance API](https://api-docs.deepseek.com/zh-cn/api/get-user-balance) <br>
-- [Moonshot User Balance API](https://platform.moonshot.cn/docs/api-reference#user-balance) <br>
-- [Volcengine Billing Balance Documentation](https://www.volcengine.com/docs/6269/1593138) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text balance summary with setup and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses configured local provider credentials; skips providers whose credentials are not configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can automatically use local API credentials and send authenticated balance requests to configured providers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Configure only the providers you intend to query, prefer least-privilege credentials where available, and expect returned balances to appear in the current chat.
+
+Risk: Installation guidance includes mutable, unpinned external code paths.
+
+Mitigation: Prefer the reviewed ClawHub install path and review the installed files before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kyya/skills/balance-checker)
+- [DeepSeek user balance API](https://api-docs.deepseek.com/zh-cn/api/get-user-balance)
+- [Moonshot user balance API](https://platform.moonshot.cn/docs/api-reference#user-balance)
+- [Volcengine balance documentation](https://www.volcengine.com/docs/6269/1593138)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration]
+
+**Output Format:** [Terminal text with provider balance lines and status messages]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May print account balances into the current chat and skips providers whose credentials are not configured.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

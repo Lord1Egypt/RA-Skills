@@ -1,0 +1,8 @@
+# pdf-master 核心依赖（覆盖 #1-#15、#20、#25 等脚本化能力）
+# 安装：pip install -r requirements.txt
+pymupdf>=1.24      # 解析/编辑/水印/压缩/密文删除（导入名 fitz）
+pdfplumber>=0.11   # 表格提取、删除验证扫描
+pikepdf>=10.0      # 加密/修复
+pypdf>=4.0         # 合并拆分兜底
+pandas>=2.0        # 表格数据装配
+openpyxl>=3.1      # Excel 输出

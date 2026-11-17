@@ -1,43 +1,55 @@
-## Description: <br>
-Track source-of-truth relationships between files and identify when derived content becomes stale. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Track source-of-truth relationships between files - know when derived content becomes stale.
 
-## Publisher: <br>
-[leegitw](https://clawhub.ai/user/leegitw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leegitw](https://clawhub.ai/user/leegitw)
 
-## Use Case: <br>
-Developers, technical writers, and maintainers use Golden Master to map source files to derived documentation, establish checksum metadata, and validate when derived content needs review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads repository files to compare source and derived documentation. <br>
-Mitigation: Use it in trusted workspaces and avoid applying it to files that should not be processed by the configured agent model. <br>
-Risk: Suggested relationships may reflect coincidental similarity, and checksum freshness does not prove semantic correctness. <br>
-Mitigation: Confirm source and derived relationships, then review source changes before relying on staleness reports or refreshing metadata. <br>
-Risk: Generated checksum metadata comments or shell command examples could be copied into files incorrectly. <br>
-Mitigation: Review generated comments and commands before use, and modify files only after explicit user approval. <br>
+## Use Case:
 
+Developers and technical writers use this skill to identify source and derived file relationships, establish checksum tracking metadata, and validate when derived documentation or code-adjacent files become stale.
 
-## Reference(s): <br>
-- [Golden Master homepage](https://github.com/live-neon/skills/tree/main/pbd/golden-master) <br>
-- [Golden Master on ClawHub](https://clawhub.ai/leegitw/golden-master) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with JSON examples, metadata comments, and optional shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces suggested relationships, staleness reports, and checksum metadata for user review; does not auto-modify files without explicit request.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata) <br>
+Risk: The agent may read repository documentation or source files while analyzing source and derived relationships.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in repositories where that file access is acceptable under the agent's trust boundary.
+
+Risk: Suggested relationships and stale reports can be incomplete or misleading because relationship discovery requires human confirmation and checksums do not prove semantic correctness.
+
+Mitigation: Review suggested relationships, checksum metadata, and stale reports before adding or refreshing Golden Master comments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/leegitw/skills/golden-master)
+- [Source homepage](https://github.com/live-neon/skills/tree/main/pbd/golden-master)
+- [JSON Schema Draft 2020-12](https://json-schema.org/draft/2020-12/schema)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with JSON result objects and metadata comment snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes checksum metadata and staleness reports; does not auto-modify files without explicit request.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata; artifact frontmatter says 1.0.3)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

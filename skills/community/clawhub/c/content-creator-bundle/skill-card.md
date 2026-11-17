@@ -1,45 +1,58 @@
-## Description: <br>
-Content Creator Bundle helps self-media creators adapt one article for multiple platforms, plan scheduled publishing, review performance signals, and draft audience interactions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Content Creator Bundle helps self-media creators adapt articles for multiple platforms, plan scheduled publishing, track content trends, and draft audience interactions.
 
-## Publisher: <br>
-[daimingvip-a11y](https://clawhub.ai/user/daimingvip-a11y) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[daimingvip-a11y](https://clawhub.ai/user/daimingvip-a11y)
 
-## Use Case: <br>
-External creators and content operators use this skill to turn a source article into platform-specific drafts, organize content calendars, monitor trends and engagement, and prepare replies for social-media communities. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can help schedule public posts and prepare interactions on platform accounts. <br>
-Mitigation: Require manual approval for every post, scheduled job, like, reply, and private message before it is sent. <br>
-Risk: Account credentials and platform permissions may be exposed or over-scoped during setup. <br>
-Mitigation: Use least-privilege or test platform accounts, keep secrets out of files and logs, and review account permissions before use. <br>
-Risk: External installation steps and dependencies may change the local environment. <br>
-Mitigation: Inspect the external repository and install.ps1 before running them, and install only if social-media account automation is intended. <br>
+## Use Case:
 
+External content creators and content operations teams use this skill to turn one source article into platform-specific drafts, organize publishing schedules, review trend signals, and prepare comment replies.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/daimingvip-a11y/content-creator-bundle) <br>
-- [Content Creator Documentation](https://docs.clawhub.com/content-creator) <br>
-- [Quick Start Guide](README.md) <br>
-- [One-to-Many Publishing Example](examples/one-to-many.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and text with command snippets and YAML configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce platform-specific drafts, publishing schedules, trend summaries, and reply drafts that should be reviewed before account actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and frontmatter) <br>
+Risk: The skill can prepare or trigger scheduled posts, bulk publishing, likes, replies, and private-message actions on live social-media accounts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use least-privilege platform credentials and require explicit confirmation or dry-run review before any account action is executed.
+
+Risk: Platform account settings and credentials may be handled through configuration files.
+
+Mitigation: Store secrets outside committed configuration files and review configuration before sharing or publishing it.
+
+Risk: Installation steps and dependency versions are not fully verified by the evidence.
+
+Mitigation: Verify installers, dependencies, and versions before running setup commands.
+
+## Reference(s):
+
+- [Content Creator Bundle on ClawHub](https://clawhub.ai/daimingvip-a11y/skills/content-creator-bundle)
+- [Content Creator Documentation](https://docs.clawhub.com/content-creator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance, shell commands]
+
+**Output Format:** [Markdown with inline commands and YAML configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include platform-specific drafts, publishing plans, trend summaries, comment reply drafts, and configuration snippets.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

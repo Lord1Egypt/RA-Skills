@@ -1,40 +1,57 @@
-## Description: <br>
-Generate and edit images with Gemini API using the OpenAI Python SDK. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate and edit images with Gemini API using the OpenAI Python SDK.
 
-## Publisher: <br>
-[YspCoder](https://clawhub.ai/user/YspCoder) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[yspcoder](https://clawhub.ai/user/yspcoder)
 
-## Use Case: <br>
-Developers and external users use this skill to generate new images or edit existing images through an OpenAI-compatible Gemini image endpoint. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Prompts and optional source images are sent to the configured image API endpoint. <br>
-Mitigation: Do not send confidential prompts, regulated data, or private images unless the endpoint's logging, retention, and data-handling policies are acceptable. <br>
-Risk: The skill depends on the configured GOOGLE_PROXY_BASE_URL endpoint and the OpenAI Python package source. <br>
-Mitigation: Install only from a trusted package source, verify the endpoint before use, and use a limited API key where possible. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/YspCoder/gemini-image-proxy) <br>
-- [Publisher profile](https://clawhub.ai/user/YspCoder) <br>
+## Use Case:
 
+Developers and agent users use this skill to generate new images or edit existing images through an OpenAI-compatible Gemini image endpoint from a Python CLI workflow.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and generated image files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires GOOGLE_PROXY_API_KEY and GOOGLE_PROXY_BASE_URL; saves returned images to a local output path.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Prompts and input images are sent to the configured external OpenAI-compatible endpoint.
+
+Mitigation: Use only a trusted HTTPS `GOOGLE_PROXY_BASE_URL`, and avoid confidential prompts or sensitive images unless the provider is approved for that data.
+
+Risk: Runtime behavior depends on the installed `openai` package version.
+
+Mitigation: Install in an isolated Python environment and pin `openai` when reproducibility matters.
+
+Risk: The skill requires API credentials in environment variables.
+
+Mitigation: Store `GOOGLE_PROXY_API_KEY` and `GOOGLE_PROXY_BASE_URL` in the runtime environment or secret manager, and do not hard-code them into prompts, logs, or source files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yspcoder/skills/gemini-image-proxy)
+- [ClawHub publisher profile](https://clawhub.ai/user/yspcoder)
+
+## Skill Output:
+
+**Output Type(s):** [code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown instructions with bash commands and a Python script that writes image files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires GOOGLE_PROXY_API_KEY, GOOGLE_PROXY_BASE_URL, and the openai Python package; generated or edited images are saved to the requested output path.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

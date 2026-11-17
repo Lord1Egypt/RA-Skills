@@ -1,46 +1,65 @@
-## Description: <br>
-Multi-agent war room for brainstorming, system design, architecture review, product specs, business strategy, or other complex problems. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+War Room helps agents run structured multi-agent sessions that use specialist roles, dependency-ordered waves, adversarial review, and consolidation to produce plans, specs, blueprints, and next-step deliverables.
 
-## Publisher: <br>
-[maxkle1nz](https://clawhub.ai/user/maxkle1nz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[maxkle1nz](https://clawhub.ai/user/maxkle1nz)
 
-## Use Case: <br>
-Developers, product builders, and strategy teams use War Room to run structured multi-agent planning sessions with specialist roles and adversarial review. The skill helps produce decision logs, specialist notes, consolidated blueprints, post-mortems, and concrete next-action plans. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow may schedule recurring follow-up checks that outlive the user's immediate session expectations. <br>
-Mitigation: Require explicit approval before scheduling follow-ups, show the user how to view or cancel scheduled jobs, and set clear stop conditions. <br>
-Risk: The workflow may proactively open generated files with the operating system viewer. <br>
-Mitigation: Ask for consent before opening files, restrict opened paths to the project war room workspace, and provide file paths as a non-opening alternative. <br>
-Risk: Briefs, DNA files, and agent outputs may contain sensitive planning or business information. <br>
-Mitigation: Use a dedicated workspace and avoid placing secrets, credentials, or sensitive personal data in war room files. <br>
+## Use Case:
 
+Developers, product leads, and other external users use War Room to structure complex planning sessions for software, hardware, content, business strategy, and architecture review. It is most useful when a team needs multiple specialist perspectives, explicit decision logs, adversarial challenge, and a consolidated blueprint before execution.
 
-## Reference(s): <br>
-- [War Room ClawHub release](https://clawhub.ai/maxkle1nz/war-room) <br>
-- [Agent Roles](references/agent-roles.md) <br>
-- [DNA Template](references/dna-template.md) <br>
-- [Wave Protocol](references/wave-protocol.md) <br>
-- [Initialization Script](scripts/init_war_room.sh) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown files, filesystem workspace structure, and shell command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates project-local war-rooms/<project>/ files and directories; generated session content depends on the selected specialist roles and user-provided brief.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: The skill is a high-autonomy multi-agent workflow that can move from planning into execution or build phases.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require operator confirmation before execution or build phases and review the consolidated blueprint before acting on it.
+
+Risk: The workflow may schedule follow-up checks through OpenClaw cron when agents are running asynchronously.
+
+Mitigation: Require confirmation before cron scheduling and monitor or cancel scheduled OpenClaw jobs after the session.
+
+Risk: The workflow writes a broad workspace structure for each war room session.
+
+Mitigation: Restrict project names to simple kebab-case and review the target workspace before initialization.
+
+Risk: The workflow may open generated local artifacts for review through the operating system's default file viewer.
+
+Mitigation: Require confirmation before opening local files and keep artifact paths scoped to the war room workspace.
+
+## Reference(s):
+
+- [War Room README](README.md)
+- [Agent Roles Reference](references/agent-roles.md)
+- [Agent DNA v3](references/dna-template.md)
+- [Wave Protocol Reference](references/wave-protocol.md)
+- [ClawHub Skill Page](https://clawhub.ai/maxkle1nz/skills/war-room)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown documents, shell commands, project files, and structured planning guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates a war-rooms/<project>/ workspace with briefs, decisions, agent outputs, artifacts, communication logs, blockers, status, summaries, and post-mortems.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

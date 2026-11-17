@@ -1,39 +1,51 @@
-## Description: <br>
-Helps agents design and review REST API endpoints using resource naming, HTTP methods, status codes, pagination, filtering, authentication, rate limiting, versioning, and response formats. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides REST API design guidance for resource naming, HTTP methods, status codes, pagination, filtering, authentication, rate limiting, versioning, and response formats.
 
-## Publisher: <br>
-[djc00p](https://clawhub.ai/user/djc00p) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[djc00p](https://clawhub.ai/user/djc00p)
 
-## Use Case: <br>
-Developers and API reviewers use this skill when designing new endpoints, reviewing API contracts, adding pagination, filtering, or authentication, and planning versioning for REST APIs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Authentication examples may be mistaken for places to paste real API keys or secrets. <br>
-Mitigation: Treat authentication snippets as examples only and use placeholder tokens unless a task explicitly requires real credentials. <br>
+## Use Case:
 
+Developers and engineers use this skill to design new REST endpoints, review API contracts, add pagination, filtering, authentication, and authorization patterns, and plan API versioning for public or partner-facing APIs.
 
-## Reference(s): <br>
-- [API Resource Design Patterns](references/resource-design.md) <br>
-- [Pagination, Filtering, and Authentication](references/pagination-filtering-auth.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code] <br>
-**Output Format:** [Markdown with REST endpoint examples, JSON response examples, and short TypeScript snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only output; authentication examples use placeholder tokens.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Generated destructive endpoint designs, such as DELETE operations, may omit project-specific authorization, audit, or safety requirements.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review destructive endpoint proposals against your authorization model, audit requirements, and operational safety controls before implementation.
+
+## Reference(s):
+
+- [API Resource Design Patterns](references/resource-design.md)
+- [Pagination, Filtering, and Authentication](references/pagination-filtering-auth.md)
+- [REST API Design ClawHub Page](https://clawhub.ai/djc00p/skills/rest-api-design)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown with API examples, code snippets, endpoint patterns, tables, and checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Markdown-only guidance; no executable behavior or required local tools.]
+
+## Skill Version(s):
+
+1.0.1 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

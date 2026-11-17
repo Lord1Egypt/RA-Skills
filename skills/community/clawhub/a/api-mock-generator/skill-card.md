@@ -1,41 +1,54 @@
-## Description: <br>
-Generates mock API servers and static fixtures from OpenAPI 3.x and Swagger 2.0 specs with schema-aware fake data, response delays, error simulation, and CORS. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate mock API servers and static JSON fixtures from OpenAPI 3.x and Swagger 2.0 specs for frontend development, testing, demos, or CI.
 
-## Publisher: <br>
-[charlie-morrison](https://clawhub.ai/user/charlie-morrison) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[charlie-morrison](https://clawhub.ai/user/charlie-morrison)
 
-## Use Case: <br>
-Developers and engineers use this skill to create live mock APIs, static JSON fixtures, route listings, and sample responses for frontend development, testing, demos, and CI workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: API specifications may contain real secrets or personal data that could be copied into generated fixtures or served mock responses. <br>
-Mitigation: Review API specifications for secrets and personal data before generating fixtures or serving responses. <br>
-Risk: A live mock server can expose generated endpoints if bound to a network interface beyond localhost. <br>
-Mitigation: Keep the default localhost binding unless network exposure is intentional and reviewed. <br>
-Risk: YAML support requires installing PyYAML, which adds dependency supply-chain exposure. <br>
-Mitigation: Install PyYAML only from a trusted package source when YAML input support is needed. <br>
+## Use Case:
 
+Developers and engineers use this skill to create local mock API servers, static JSON fixtures, route listings, and sample responses from OpenAPI or Swagger specifications for frontend development, testing, demos, or CI.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with shell commands and generated JSON or Python artifacts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce local server commands, static mock files, route manifests, and sample JSON responses from an API specification.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill reads local API specification files and can generate mock JSON files into a user-selected directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted API specs and choose an output directory that does not contain important existing files.
+
+Risk: The live mock server can be bound to a host and port selected by the user.
+
+Mitigation: Keep the default localhost binding unless intentional network access is required.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/charlie-morrison/skills/api-mock-generator)
+- [Publisher profile](https://clawhub.ai/user/charlie-morrison)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration, Files]
+
+**Output Format:** [Markdown guidance with bash commands and JSON file or server output descriptions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce local HTTP responses, route listings, sample JSON responses, static mock JSON files, and a manifest.json file.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

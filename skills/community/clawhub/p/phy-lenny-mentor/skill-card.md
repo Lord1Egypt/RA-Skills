@@ -1,42 +1,58 @@
-## Description: <br>
-Phy Lenny Mentor provides product-management advice by mapping user situations to frameworks and named insights from Lenny's Podcast guests. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Phy Lenny Mentor helps agents provide product-management guidance using Lenny's Podcast-inspired frameworks, guest perspectives, and concise next steps.
 
-## Publisher: <br>
-[PHY041](https://clawhub.ai/user/PHY041) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[phy041](https://clawhub.ai/user/phy041)
 
-## Use Case: <br>
-External users and product teams use this skill to get structured product strategy, prioritization, positioning, discovery, growth, and team guidance, with clarifying questions and concise next steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can provide incorrect or misattributed product quotes or frameworks if transcript evidence is absent or weak. <br>
-Mitigation: Use named sources only when supported, ask clarifying questions, and state uncertainty instead of inventing quotes or attributions. <br>
-Risk: Optional local transcript searches could expose unrelated private notes if run across a broad project directory. <br>
-Mitigation: Keep podcast transcripts or wisdom JSON in a dedicated folder without unrelated private company notes, and invoke the skill explicitly when tighter control is needed. <br>
+## Use Case:
 
+External product managers, founders, and product teams use this skill to get focused guidance on strategy, prioritization, positioning, discovery, growth, retention, and team structure. The skill can respond to direct Lenny-related prompts or proactively offer a relevant product framework when a conversation matches its triggers.
 
-## Reference(s): <br>
-- [Phy Lenny Mentor on ClawHub](https://clawhub.ai/PHY041/phy-lenny-mentor) <br>
-- [Publisher profile](https://clawhub.ai/user/PHY041) <br>
-- [Canlah AI](https://canlah.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, shell commands] <br>
-**Output Format:** [Markdown with structured sections and optional inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May cite named podcast guests and frameworks; should state uncertainty rather than fabricate quotes or attributions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The skill has broad proactive activation and may introduce Lenny-style product frameworks into general product conversations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat its suggestions as advisory and use them only when they match the user's current product decision or request.
+
+Risk: The skill may search local transcript or wisdom files when they are available in the project.
+
+Mitigation: Review local files before use and avoid exposing private transcript content unless the user has approved that context.
+
+Risk: The skill can provide incorrect quotes or misattribute product ideas if supporting transcript evidence is unavailable.
+
+Mitigation: Do not fabricate quotes; clearly state uncertainty and present unsupported guidance as synthesis rather than direct attribution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/phy041/skills/phy-lenny-mentor)
+- [Canlah AI homepage](https://canlah.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown or plain text, with optional shell command blocks when local transcript search is relevant.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responses may include clarifying questions, named frameworks, source attribution, and concrete next steps.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,54 @@
-## Description: <br>
-Summarize podcast episodes into concise, actionable insights from audio files, URLs, RSS feeds, and podcast platform links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Summarize podcast episodes into concise, actionable insights.
 
-## Publisher: <br>
-[hughtan93-dev](https://clawhub.ai/user/hughtan93-dev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hughtan93-dev](https://clawhub.ai/user/hughtan93-dev)
 
-## Use Case: <br>
-External users, developers, and employees use this skill to turn podcast episodes into readable summaries when they want key points, detailed overviews, action items, timestamps, or related links without listening to the full audio. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Podcast audio or links may contain private or sensitive content, especially when cloud transcription is used. <br>
-Mitigation: Prefer local Whisper for private recordings and avoid sending sensitive audio to external APIs unless the user has approved that handling. <br>
-Risk: User-supplied media URLs may point to untrusted or unexpected downloads. <br>
-Mitigation: Review URLs before downloading media and process downloaded files in a controlled environment. <br>
-Risk: An OPENAI_API_KEY may be exposed if configured or shared carelessly. <br>
-Mitigation: Store API keys in environment variables or a secrets manager and do not commit or paste keys into summaries or logs. <br>
-Risk: Installing suggested transcription and media packages can affect the local Python environment. <br>
-Mitigation: Use a virtual environment for yt-dlp, Whisper, and related Python packages. <br>
+## Use Case:
 
+External users and agents use this skill to turn podcast episodes from local audio, URLs, YouTube, RSS feeds, or podcast pages into concise structured summaries with key points, action items, timestamps, and relevant links.
 
-## Reference(s): <br>
-- [Podcast Summarize Technical Reference](references/technical.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown summary with structured sections and optional shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include episode metadata, key points, detailed summary, action items, timestamps, and related links when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: release evidence and _meta.json) <br>
+Risk: Full functionality depends on external transcription and download tools that may require installation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a virtual environment and install reviewed, pinned packages for tools such as yt-dlp and Whisper before use.
+
+Risk: Podcast audio can contain private or sensitive information if transcribed with an external API.
+
+Mitigation: Avoid sending sensitive recordings to external APIs unless explicitly intended; use a local transcription option when privacy is required.
+
+## Reference(s):
+
+- [Podcast Summarize Technical Reference](references/technical.md)
+- [ClawHub Skill Page](https://clawhub.ai/hughtan93-dev/skills/podcast-summarize)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with optional shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can include title metadata, key points, detailed summary paragraphs, action items, timestamps, related links, and follow-up questions.]
+
+## Skill Version(s):
+
+0.1.0 (source: release metadata and _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

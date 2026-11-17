@@ -1,46 +1,64 @@
-## Description: <br>
-Video Editing Agent (VEA) supports automated video processing, video indexing, highlight generation, narration, subtitles, background music selection, and AI-powered clip selection for long-form video. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Video Editing Agent (VEA) helps agents index videos, create highlight reels, generate narration and subtitles, select background music, and produce edited video outputs.
 
-## Publisher: <br>
-[shawnshenopeninterx](https://clawhub.ai/user/shawnshenopeninterx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[shawnshenopeninterx](https://clawhub.ai/user/shawnshenopeninterx)
 
-## Use Case: <br>
-Developers, creators, and video operations teams use this skill to run a local VEA service that indexes source videos, answers questions about indexed media, and generates edited outputs such as highlight reels, shorts, narration, subtitles, background music mixes, and Final Cut Pro XML. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The workflow requires credentials for Memories.ai, Google, ElevenLabs, and optionally Soundstripe, and those services may receive selected video frames, text, transcripts, or generated media data. <br>
-Mitigation: Use dedicated least-privilege API keys, confirm each processing job before sending media to external services, and rotate or revoke credentials after sensitive projects. <br>
-Risk: Installation uses an external GitHub repository and uv installer before the local VEA service is run. <br>
-Mitigation: Inspect and pin the external repository and installer before running them in an isolated environment. <br>
-Risk: Edited videos, indexes, clip plans, narrations, subtitles, and music files are stored locally after processing. <br>
-Mitigation: Delete local outputs and indexing directories after handling sensitive media, and restrict filesystem access to the VEA workspace. <br>
-Risk: Broad Google application-default credentials can expose more access than the workflow needs. <br>
-Mitigation: Prefer project-scoped service credentials or narrowly scoped keys instead of broad personal application-default credentials. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [VEA API Reference](references/api.md) <br>
-- [VEA Configuration](references/config.md) <br>
-- [VEA Open Source Repository](https://github.com/Memories-ai-labs/vea-open-source) <br>
-- [VEA Paper](https://arxiv.org/abs/2509.16811) <br>
+## Use Case:
 
+Developers, video creators, and agent operators use this skill to run a local VEA service, index source videos, and produce edited outputs such as highlight reels, shorts, narrated videos, subtitles, and background-music mixes.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, code, guidance] <br>
-**Output Format:** [Markdown guidance with API examples, JSON request bodies, and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated video workflows may produce local files such as MP4 outputs, clip plans, narration audio, subtitles, music files, and FCPXML project files through the VEA service.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.2 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The installation flow and helper scripts run local shell commands, install dependencies, and start a local server.
+
+Mitigation: Review the scripts before use and prefer a safer uv installation method in a controlled environment.
+
+Risk: Untrusted project names, prompts, ports, or VEA_DIR values may affect helper-script behavior.
+
+Mitigation: Use trusted values only, quote and validate inputs, and avoid running helper scripts against untrusted project directories.
+
+Risk: The VEA config file stores API keys for Memories.ai, Google/Gemini, ElevenLabs, and optionally Soundstripe.
+
+Mitigation: Keep ~/vea/config.json owner-readable only, avoid committing it, and rotate keys if exposure is suspected.
+
+Risk: Video frames, derived text, narration, subtitles, or audio requests may be sent to external services depending on enabled features.
+
+Mitigation: Confirm user consent and data-handling requirements before enabling Memories.ai, Google/Gemini, ElevenLabs, or Soundstripe-backed workflows.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/shawnshenopeninterx/skills/vea)
+- [VEA GitHub Repository](https://github.com/Memories-ai-labs/vea-open-source)
+- [VEA Paper](https://arxiv.org/abs/2509.16811)
+- [API Documentation](references/api.md)
+- [Config Schema](references/config.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, API calls, guidance]
+
+**Output Format:** [Markdown instructions with bash commands and JSON API examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include curl requests, local file paths, server settings, and video-processing options.]
+
+## Skill Version(s):
+
+1.1.2 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

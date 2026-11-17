@@ -1,42 +1,63 @@
-## Description: <br>
-Social Autopilot automates social media content generation, formatting, scheduling, video creation, and publishing across X, Instagram, YouTube, and Meta. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Social Autopilot generates and publishes platform-optimized social posts, X threads, Instagram Reels, YouTube Shorts, and Meta/Facebook posts from a user-provided content database.
 
-## Publisher: <br>
-[humsafarprabhu-cmyk](https://clawhub.ai/user/humsafarprabhu-cmyk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[humsafarprabhu-cmyk](https://clawhub.ai/user/humsafarprabhu-cmyk)
 
-## Use Case: <br>
-Developers and social media operators use this skill to generate and publish platform-specific posts, X threads, Instagram Reels, YouTube Shorts, and Meta posts from a configured content database. It is intended for accounts where the operator is prepared to grant the agent live posting credentials. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can autonomously publish public posts, comments, videos, and hosted media using broad account permissions. <br>
-Mitigation: Use test accounts first, grant only limited and revocable credentials, configure only intended platforms, and require human approval before scheduled or immediate publishing. <br>
-Risk: Configured content databases may contain sensitive, proprietary, or unsuitable material that could be posted publicly. <br>
-Mitigation: Review CSV inputs before use, avoid sensitive or proprietary content, and use dry-run or preview flows where available. <br>
+## Use Case:
 
+Creators, marketers, and developers use this skill to automate social content generation and publishing across configured X, Instagram, YouTube, and Meta accounts. It is best suited for users who can review content and manage platform API credentials before scheduled posting.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/humsafarprabhu-cmyk/social-autopilot) <br>
-- [Project Homepage](https://github.com/abhinawtech/social-autopilot) <br>
-- [Support](https://github.com/abhinawtech/social-autopilot/issues) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with commands, configuration snippets, and generated social media content] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or upload generated media and publish posts when configured with platform credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.0 (source: server release evidence) <br>
+Risk: The skill can publish to multiple public social accounts from short commands, including a generic all-platform posting flow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use test accounts first, avoid broad posting triggers until configured, and review generated content before publishing.
+
+Risk: The skill requires account tokens and OAuth credentials for X, Instagram, Meta, YouTube, and Cloudflare R2.
+
+Mitigation: Limit API scopes, keep secrets outside shared project files, store YouTube tokens with restrictive permissions, and rotate credentials after testing.
+
+Risk: Video rendering and posting workflows may run with access to production publishing credentials.
+
+Mitigation: Run rendering in an isolated environment without production credentials and connect posting credentials only for the final reviewed workflow.
+
+Risk: Unpinned installers or dependencies could change behavior after installation.
+
+Mitigation: Pin installer and dependency versions before production use.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/humsafarprabhu-cmyk/skills/social-autopilot)
+- [Project homepage listed in artifact metadata](https://github.com/abhinawtech/social-autopilot)
+- [Support link listed in artifact metadata](https://github.com/abhinawtech/social-autopilot/issues)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Files]
+
+**Output Format:** [Markdown guidance with command phrases, configuration values, generated post text, and generated media files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May initiate API calls to configured social platforms and Cloudflare R2 when posting workflows are run.]
+
+## Skill Version(s):
+
+1.4.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,62 @@
-## Description: <br>
-Captures agent learnings, errors, corrections, and feature requests as markdown notes so future sessions can improve workflows and promote stable guidance into project memory. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Captures learnings, errors, and corrections to enable continuous improvement for coding agents.
 
-## Publisher: <br>
-[WuXian-upup](https://clawhub.ai/user/WuXian-upup) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wuxian-upup](https://clawhub.ai/user/wuxian-upup)
 
-## Use Case: <br>
-Developers and agent operators use this skill to capture non-obvious failures, user corrections, knowledge gaps, and recurring patterns as structured learning notes for later review and promotion into agent memory. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent learning notes can retain sensitive prompts, commands, error output, tokens, personal data, or customer information. <br>
-Mitigation: Configure agents to log sanitized summaries only, and exclude secrets, raw transcripts, personal data, and customer information from learning files. <br>
-Risk: Cross-session transcript sharing can spread sensitive information beyond the original task context. <br>
-Mitigation: Disable cross-session transcript sharing unless it is explicitly needed and authorized for the workspace. <br>
-Risk: Promoting learning entries into future instruction or memory files can preserve incorrect, outdated, or unsafe guidance. <br>
-Mitigation: Require human approval before promoting any learning into persistent agent instructions or memory files. <br>
+## Use Case:
 
+Developers and agent operators use this skill to capture corrections, command failures, knowledge gaps, feature requests, and recurring workflow lessons in structured markdown files. They can review those logs later and promote broadly useful learnings into agent memory or reusable skills.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/WuXian-upup/self-improving-agent-zh) <br>
-- [OpenClaw Integration](artifact/references/openclaw-integration.md) <br>
-- [Hook Setup Guide](artifact/references/hooks-setup.md) <br>
-- [Agent Skills Specification](https://agentskills.io/specification) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces structured learning, error, and feature-request entry formats for agent-maintained markdown files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: Conversation-derived details may be saved into long-lived learning or memory files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep .learnings local and ignored by default, redact secrets and personal or customer data before logging, and review entries before sharing or committing them.
+
+Risk: Global hooks can inject self-improvement reminders across sessions and increase persistent prompting behavior.
+
+Mitigation: Enable hooks only when the reminder workflow is desired, prefer project-level configuration, and review hook scripts before enabling them.
+
+Risk: Promoting unreviewed learnings can introduce incorrect or sensitive guidance into CLAUDE.md, AGENTS.md, SOUL.md, TOOLS.md, or Copilot instructions.
+
+Mitigation: Require human review before promoting learnings into long-lived agent memory or instruction files.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/wuxian-upup/skills/self-improving-agent-zh)
+- [Hook Setup Guide](references/hooks-setup.md)
+- [OpenClaw Integration](references/openclaw-integration.md)
+- [Entry Examples](references/examples.md)
+- [Learning Template](assets/LEARNINGS.md)
+- [Skill Template](assets/SKILL-TEMPLATE.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, configuration snippets, and structured learning-entry templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide agents to create or update local .learnings files and promote reviewed entries into long-lived agent memory files.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence target metadata, release.version, package.json, and package-lock.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

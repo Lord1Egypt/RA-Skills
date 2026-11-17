@@ -1,43 +1,60 @@
-## Description: <br>
-Perforce / Helix Core (p4) power-user CLI for inspecting and managing changelists, shelves, workspaces, file annotations, syncs, and depot workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Perforce / Helix Core (p4) power-user CLI for inspecting and managing changelists, shelves, clients, annotations, syncs, and depots.
 
-## Publisher: <br>
-[m9rco](https://clawhub.ai/user/m9rco) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[m9rco](https://clawhub.ai/user/m9rco)
 
-## Use Case: <br>
-Developers and engineers use this skill to run common Perforce and Helix Core workflows through the p4u CLI, including changelist inspection, shelving, switching, annotation, syncing, cleanup, and untracked-file discovery. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Powerful Perforce operations can change or remove workspace, changelist, or shelved data. <br>
-Mitigation: Review the active user, client, and command before approval, especially delete, revert, sync, switch, or force operations. <br>
-Risk: The p4u binary and the Perforce environment are external prerequisites. <br>
-Mitigation: Install only if the p4u release source and the target Perforce environment are trusted. <br>
+## Use Case:
 
+Developers and engineers use this skill to operate Perforce / Helix Core workspaces through the p4u CLI, including changelist inspection, shelving workflows, annotation, sync, client cleanup, and untracked-file discovery.
 
-## Reference(s): <br>
-- [p4u ClawHub page](https://clawhub.ai/m9rco/p4u) <br>
-- [p4u source repository](https://github.com/m9rco/p4u-skill) <br>
-- [p4u releases](https://github.com/m9rco/p4u-skill/releases) <br>
-- [Perforce Helix Command-Line Client](https://www.perforce.com/downloads/helix-command-line-client-p4) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and optional JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands should use --non-interactive; destructive Perforce operations require explicit user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.0-nightly.e055304 (source: server release metadata) <br>
+Risk: Nightly remote binaries are mutable and would execute with access to local workspaces and Perforce sessions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer a pinned, signed, versioned p4u release or build from auditable source before installing.
+
+Risk: Installing CLI binaries into a system-wide PATH can expand the impact of a compromised or incorrect binary.
+
+Mitigation: Review the install path and avoid installing nightly binaries into system-wide PATH.
+
+Risk: Delete, revert, client deletion, and force operations can remove or alter Perforce workspace state.
+
+Mitigation: Keep explicit confirmation before destructive operations and show the exact command before execution.
+
+## Reference(s):
+
+- [p4u ClawHub skill page](https://clawhub.ai/m9rco/skills/p4u)
+- [p4u repository](https://github.com/m9rco/p4u-skill)
+- [p4u releases](https://github.com/m9rco/p4u-skill/releases)
+- [Helix Core command-line client downloads](https://www.perforce.com/downloads/helix-command-line-client-p4)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and optional JSON-producing CLI invocations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill directs agents to use --non-interactive for p4u commands, request confirmation for destructive operations, and use --json when output needs programmatic parsing.]
+
+## Skill Version(s):
+
+0.0.0-nightly.e055304 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,18 @@
+{
+  "name": "区域营收分布",
+  "unit": "万元",
+  "items": [
+    { "name": "广东省", "value": 520 },
+    { "name": "江苏省", "value": 480 },
+    { "name": "浙江省", "value": 430 },
+    { "name": "山东省", "value": 400 },
+    { "name": "河南省", "value": 380 },
+    { "name": "四川省", "value": 350 },
+    { "name": "福建省", "value": 330 },
+    { "name": "湖北省", "value": 310 },
+    { "name": "湖南省", "value": 290 },
+    { "name": "上海市", "value": 280 },
+    { "name": "北京市", "value": 200 },
+    { "name": "安徽省", "value": 120 }
+  ]
+}

@@ -1,37 +1,52 @@
-## Description: <br>
-培训课程大纲设计、效果评估、内部分享材料生成 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+培训课程大纲设计、效果评估、内部分享材料生成。
 
-## Publisher: <br>
-[1970168137](https://clawhub.ai/user/1970168137) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[1970168137](https://clawhub.ai/user/1970168137)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Employees and business teams use this Chinese-language skill to draft training course outlines, evaluate learning outcomes, and prepare internal sharing materials from supplied business context and requirements.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: User-supplied business context may include confidential internal documents or sensitive operational data.
+
+Mitigation: Review and minimize input data before use, and avoid sharing confidential information unless the deployment environment is approved for it.
+
+Risk: Generated training, business, compliance, legal, financial, or medical guidance may be incomplete or unsuitable for a specific organization or industry.
+
+Mitigation: Have relevant domain experts review outputs before relying on them for decisions, publication, or implementation.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Employees and business teams use this Chinese-language skill to design training course outlines, plan evaluation approaches, and draft internal sharing materials from provided business context, goals, constraints, and audience details. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+**Output Format:** [Markdown]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/1970168137/instructional-design-cn) <br>
+**Output Parameters:** [1D]
 
+**Other Properties Related to Output:** [Requires user-provided business context, data, requirements, and target audience details.]
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, markdown, guidance] <br>
-**Output Format:** [Markdown text with structured recommendations, deliverables, implementation guidance, and best practices] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only output should be reviewed by a qualified person before use for strategic, compliance, legal, financial, or operational decisions.] <br>
+## Skill Version(s):
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+1.0.0 (source: release evidence)
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

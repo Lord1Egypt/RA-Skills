@@ -1,0 +1,22 @@
+{
+  "mode": "source_freshness",
+  "sample": {
+    "asOf": "2026-10-27T00:00:00Z",
+    "maxAgeDays": 30,
+    "sources": [
+      {
+        "id": "a",
+        "url": "https://example.com/a",
+        "publishedAt": "2026-08-01T00:00:00Z"
+      }
+    ]
+  },
+  "expected": {
+    "staleCount": 1,
+    "truthVerified": false
+  },
+  "invalid": {
+    "asOf": "2026-10-27",
+    "sources": []
+  }
+}

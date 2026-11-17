@@ -1,43 +1,54 @@
-## Description: <br>
-帮助中文用户通过对话规划并创建 OpenClaw 智能体虚拟公司，包括公司目标、组织架构、岗位、员工和相关工作区文件。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps Chinese-speaking OpenClaw users create and manage a multi-agent virtual company by collecting company, department, role, and staffing choices, then generating the corresponding workspace files and configuration.
 
-## Publisher: <br>
-[hkagi](https://clawhub.ai/user/hkagi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hkagi](https://clawhub.ai/user/hkagi)
 
-## Use Case: <br>
-Chinese-speaking OpenClaw users use this skill to design a multi-agent company and generate the files and configuration needed for departments, roles, employees, and ongoing team administration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad OpenClaw administration behavior may change workspace files, assistant behavior, skill assignments, and local configuration. <br>
-Mitigation: Back up ~/.openclaw/openclaw.json and the workspace before use, then review generated AGENTS.md, TOOLS.md, HEARTBEAT.md, and configuration changes before restarting OpenClaw. <br>
-Risk: Optional account, communication, git, or skill-management actions could exceed a simple company setup workflow. <br>
-Mitigation: Enable email, calendar, social, git push, Telegram account changes, or skill distribution and deletion only when explicitly needed and after reviewing each requested change. <br>
+## Use Case:
 
+OpenClaw users and operators use this skill to design a virtual company, define departments and roles, recruit agents, and maintain the generated OpenClaw organization files and configuration.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hkagi/company-builder-cn) <br>
-- [Publisher profile](https://clawhub.ai/user/hkagi) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Conversational text and Markdown files with OpenClaw configuration changes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update OpenClaw workspace files, agent files, skill assignments, and local configuration after user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill creates and changes OpenClaw workspace files and configuration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the planned company structure, generated files, and configuration changes before enabling the generated agents.
+
+Risk: Generated employee instructions may allow broad personal-assistant monitoring and persistent actions beyond the company-builder purpose.
+
+Mitigation: Remove or constrain generated AGENTS.md heartbeat, personal-service monitoring, bootstrap, memory, and git push instructions before granting access to private accounts or repositories.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hkagi/skills/company-builder-cn)
+- [Publisher profile](https://clawhub.ai/user/hkagi)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with generated workspace files, configuration updates, and command-oriented instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update OpenClaw workspace directories, agent markdown files, skill assignments, and openclaw.json configuration after user confirmation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

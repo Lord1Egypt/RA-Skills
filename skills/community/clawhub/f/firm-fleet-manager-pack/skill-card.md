@@ -1,38 +1,52 @@
-## Description: <br>
-Multi-instance Gateway fleet management pack for status monitoring, dynamic add/remove operations, broadcast commands, configuration sync, and fleet inventory. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Multi-instance Gateway fleet management pack for status monitoring, dynamic add and remove operations, broadcast commands, configuration synchronization, and fleet inventory.
 
-## Publisher: <br>
-[romainsantoli-web](https://clawhub.ai/user/romainsantoli-web) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
+
+[romainsantoli-web](https://clawhub.ai/user/romainsantoli-web)
+
+### License/Terms of Use:
+
+MIT
+
+## Use Case:
+
+Developers and operators use this skill to monitor and coordinate multiple Gateway instances, including health checks, inventory listing, scaling, command broadcast, and configuration synchronization.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Fleet-wide add, remove, broadcast, and configuration synchronization actions could affect many Gateway instances at once if invoked with the wrong target or intent.
+
+Mitigation: Use this skill only where fleet-wide operations are intended, and require explicit targeting, confirmation, authorization checks, validation, and rollback procedures before applying changes.
+
+Risk: The security review flagged insufficient safety scoping and user-control guidance for broad fleet operations.
+
+Mitigation: Review the skill carefully before installing it in a real Gateway fleet and add local operating controls that constrain who can run fleet-wide actions.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and operators use this skill to monitor and manage multiple Gateway instances, including fleet health checks, inventory, scaling, command broadcast, and configuration synchronization. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Fleet-management actions can trigger broad operational changes without documented scoping, confirmations, or rollback safeguards. <br>
-Mitigation: Use only in authorized environments, confirm the exact actions executed by mcp-openclaw-extensions, require operator confirmation and dry runs where possible, keep audit logs, and prepare rollback plans before remove, broadcast, or sync operations. <br>
+**Output Format:** [Markdown with YAML and command examples]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/romainsantoli-web/firm-fleet-manager-pack) <br>
+**Other Properties Related to Output:** [Requires mcp-openclaw-extensions >= 3.0.0.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with tool names and YAML usage examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires mcp-openclaw-extensions >= 3.0.0.] <br>
+1.0.0 (source: frontmatter and ClawHub release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata and SKILL.md frontmatter) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

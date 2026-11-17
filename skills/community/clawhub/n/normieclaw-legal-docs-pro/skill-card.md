@@ -1,44 +1,63 @@
-## Description: <br>
-Legal Docs Pro generates and reviews legal documents for freelancers, solopreneurs, and small businesses, with plain-English explanations and local profile-based document autofill. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Legal Docs Pro helps agents draft, review, explain, and export legal document templates for freelancers, solopreneurs, and small businesses.
 
-## Publisher: <br>
-[nollio](https://clawhub.ai/user/nollio) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nollio](https://clawhub.ai/user/nollio)
 
-## Use Case: <br>
-Freelancers, solopreneurs, and small businesses use this skill to draft common legal documents, review contracts for risky clauses or missing protections, and explain legal language before deciding whether to seek attorney review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Helper scripts can be tricked into running local code or mishandling unusual filenames. <br>
-Mitigation: Review or patch setup.sh and contract-scan.sh before running them, and avoid scanning files with unusual or untrusted filenames. <br>
-Risk: Business identifiers, addresses, contact details, contracts, and generated documents may be stored in local plaintext files. <br>
-Mitigation: Store only data you are comfortable keeping locally, restrict filesystem permissions, and avoid use on shared machines without additional controls. <br>
-Risk: Legal templates and contract analysis may be incomplete or unsuitable for complex, high-value, or jurisdiction-specific matters. <br>
-Mitigation: Use outputs as informational drafts and consult a licensed attorney before signing or relying on important legal documents. <br>
+## Use Case:
 
+External users such as freelancers, solopreneurs, and small businesses use this skill to generate legal document drafts, review contracts for risky clauses or missing protections, and reuse stored business details. Its legal templates and analysis are informational and should be paired with attorney review for complex, high-value, or jurisdiction-specific matters.
 
-## Reference(s): <br>
-- [Legal Docs Pro on ClawHub](https://clawhub.ai/nollio/normieclaw-legal-docs-pro) <br>
-- [Nollio Publisher Profile](https://clawhub.ai/user/nollio) <br>
-- [NormieClaw](https://normieclaw.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with generated document text, review summaries, inline shell commands, and local configuration updates.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read and update local business profile settings and produce local document or review files when helper scripts are used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: The security verdict is suspicious and warns that scripts can expose sensitive local files or run unintended code from crafted input.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or patch the release before installation, run scripts only from the intended skill directory, and avoid scanning untrusted files or arbitrary paths.
+
+Risk: Business profiles, generated contracts, reviews, and dashboard records may contain sensitive business data, including EINs and contract terms.
+
+Mitigation: Avoid entering sensitive identifiers unless required, restrict local file permissions, and treat all generated legal records as sensitive local files.
+
+Risk: Contract text and generated legal content may enter the AI provider's conversation context.
+
+Mitigation: Review the AI provider's data handling terms before processing confidential agreements, and avoid AI-assisted review for highly sensitive matters unless approved.
+
+Risk: Generated legal templates and contract analysis may be incomplete, outdated, or unsuitable for a specific jurisdiction.
+
+Mitigation: Use the output for informational drafting and review, and consult a licensed attorney for complex, high-value, employment, real estate, or jurisdiction-specific matters.
+
+## Reference(s):
+
+- [ClawHub listing for Legal Docs Pro](https://clawhub.ai/nollio/skills/normieclaw-legal-docs-pro)
+- [NormieClaw](https://normieclaw.ai)
+- [Pandoc installation documentation](https://pandoc.org/installing.html)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown legal drafts, contract review summaries, plain-English explanations, shell command snippets, and local configuration updates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May read and update local profile settings, save generated documents and reviews, and export markdown or PDF files when optional tools are installed.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,60 @@
-## Description: <br>
-Ministry Weekly helps church staff turn a weekly Sunday briefing into a ready-to-review content package with bulletin copy, scripture context, platform-specific social posts, a weekly email, image prompts, sermon-series recap, and optional confirmation-gated Telegram delivery. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ministry Weekly helps church staff turn a Sunday briefing into a weekly content package with bulletin copy, scripture context, platform-specific social posts, email, image prompts, sermon-series recap, and optional confirmation-gated Telegram delivery.
 
-## Publisher: <br>
-[chris-openclaw](https://clawhub.ai/user/chris-openclaw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chris](https://clawhub.ai/user/chris)
 
-## Use Case: <br>
-Church staff and ministry communicators use this skill to produce weekly Sunday communications from a concise sermon and announcement brief. It supports recurring church profile context, sermon-series continuity, draft publishing copy, graphics prompts, and optional Telegram delivery after explicit user confirmation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill keeps church profile and weekly ministry context in a local ministry-data.json file. <br>
-Mitigation: Review the stored church profile and weekly brief data periodically, avoid congregant personal information, and remove local data that is no longer needed. <br>
-Risk: Generated bulletin, social, email, image-prompt, or Telegram content may contain incorrect scripture framing, unsuitable announcements, or congregation-specific details that should not be published. <br>
-Mitigation: Review all generated content before publishing or sending, with special attention to scripture interpretation, public announcements, and congregation privacy. <br>
-Risk: Telegram delivery can post externally through the user's configured integration. <br>
-Mitigation: Use the built-in confirmation gate: inspect the assembled Telegram message and approve posting only when the destination channel and content are correct. <br>
+## Use Case:
 
+External church staff and ministry communicators use this skill to produce weekly Sunday communications from a concise sermon brief. It supports bulletin drafts, social posts, email announcements, image-generation prompts, sermon-series continuity, and optional Telegram delivery after user confirmation.
 
-## Reference(s): <br>
-- [Ministry Weekly on ClawHub](https://clawhub.ai/chris-openclaw/ministry-weekly) <br>
-- [README](README.md) <br>
-- [Changelog](CHANGELOG.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown-style content package with structured sections, draft copy, prompts, and optional Telegram-formatted message text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read and update local ministry-data.json for church profile, sermon series, and confirmed weekly briefs; Telegram posting is optional and requires explicit user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: frontmatter, changelog, server release metadata) <br>
+Risk: The skill stores church profile, sermon series history, and weekly planning history in a local ministry-data.json file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only where local ministry planning data is acceptable, and keep congregant PII, giving records, attendance lists, and identifiable prayer requests out of the workflow.
+
+Risk: Optional Telegram delivery can publish the assembled package through the user's configured Telegram integration.
+
+Mitigation: Configure Telegram only when desired, review the package first, and require explicit confirmation before each post.
+
+Risk: Generated ministry copy, scripture context, and image prompts may need pastoral, theological, or brand review before publication.
+
+Mitigation: Review all drafts before use, keep scripture context factual and tradition-neutral, and publish social or email content manually unless the confirmed Telegram path is intentionally used.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/chris/skills/ministry-weekly)
+- [Publisher Profile](https://clawhub.ai/user/chris)
+- [README](artifact/README.md)
+- [Changelog](artifact/CHANGELOG.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Configuration, Guidance]
+
+**Output Format:** [Markdown-style structured content package with labeled sections and optional JSON-backed local state]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces drafts for user review; optional Telegram posting is confirmation-gated and uses the user's configured integration.]
+
+## Skill Version(s):
+
+1.1.1 (source: frontmatter, README, changelog, ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

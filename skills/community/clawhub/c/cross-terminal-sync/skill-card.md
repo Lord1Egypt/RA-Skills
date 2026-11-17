@@ -1,43 +1,58 @@
-## Description: <br>
-Cross Terminal Sync helps WorkBuddy users continue work across Mac and Windows by combining OneDrive file synchronization with optional OneDrive MCP search. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cross Terminal Sync helps WorkBuddy agents continue work across Mac and Windows terminals using OneDrive file synchronization with optional MCP-based cloud search.
 
-## Publisher: <br>
-[zenyang-x](https://clawhub.ai/user/zenyang-x) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zenyang-x](https://clawhub.ai/user/zenyang-x)
 
-## Use Case: <br>
-Developers and WorkBuddy users use this skill to initialize, check, and troubleshoot cross-device task handoff between Mac and Windows systems. It provides guidance, configuration snippets, and shell commands for syncing selected WorkBuddy state through OneDrive and optionally searching OneDrive through an MCP server. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks users to move or link sensitive WorkBuddy identity, memory, profile, and database files into OneDrive. <br>
-Mitigation: Review exactly which files will be synced before setup, keep local backups, and avoid syncing identity, profile, or database files unless that state is needed across devices. <br>
-Risk: Persistent symlinks, junctions, or scheduled copy jobs can overwrite or expose local agent state if configured incorrectly. <br>
-Mitigation: Validate link targets before running setup commands, preserve backups of existing files, and inspect sync status before reading or writing cross-device state. <br>
-Risk: The optional OneDrive MCP server receives OAuth read/write access to OneDrive. <br>
-Mitigation: Treat the MCP server as a separate third-party component, install it only when intentional, and review its permissions and credential storage before use. <br>
+## Use Case:
 
+Developers and WorkBuddy users use this skill to configure cross-terminal continuity between Mac and Windows, search prior work across terminals, and resume tasks through OneDrive local sync or an optional OneDrive MCP server.
 
-## Reference(s): <br>
-- [Cross Terminal Sync ClawHub page](https://clawhub.ai/zenyang-x/cross-terminal-sync) <br>
-- [onedrive-mcp-server repository](https://github.com/MrFixit96/onedrive-mcp-server.git) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline bash, PowerShell, CMD, JSON, and Python snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose filesystem links, OneDrive sync checks, MCP setup, and backup or fallback procedures for user review before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.2.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill syncs WorkBuddy memory, identity/profile files, skills, projects, and automation data through OneDrive, which may expose sensitive agent context to every device or cloud principal with access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated OneDrive sync folder with least-privilege access, avoid syncing agent control files unless all synced devices and cloud accounts are trusted, and document how to revoke OAuth access.
+
+Risk: The optional OneDrive MCP server uses broad file read/write access and can search, download, upload, and create sharing links for cloud files.
+
+Mitigation: Install only a pinned and reviewed MCP server version, restrict its scope where possible, and review requested OneDrive permissions before enabling it.
+
+Risk: Hourly fallback automation and cross-device file links can propagate stale or unintended WorkBuddy state between terminals.
+
+Mitigation: Verify sync status before reading cross-terminal files, preserve backups before creating links or junctions, and keep a documented disable path for scheduled synchronization.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/zenyang-x/skills/cross-terminal-sync)
+- [onedrive-mcp-server](https://github.com/MrFixit96/onedrive-mcp-server.git)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Code]
+
+**Output Format:** [Markdown with bash, PowerShell, CMD, JSON, and pseudocode blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes platform-specific OneDrive path checks, sync validation steps, fallback options, and conflict-prevention guidance.]
+
+## Skill Version(s):
+
+2.2.0 (source: frontmatter, ClawHub release metadata, _skillhub_meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

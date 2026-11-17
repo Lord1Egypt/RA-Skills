@@ -1,0 +1,264 @@
+{
+  "schema_version": 1,
+  "confidence": {
+    "direct_label": 0.95,
+    "pattern_match": 0.78,
+    "geometry_pattern": 0.86,
+    "inferred": 0.5
+  },
+  "view_rules": [
+    {
+      "type": "civil_defense_plan",
+      "patterns": [
+        "人防平面",
+        "人防地下室",
+        "人防设计",
+        "人防分区",
+        "CIVIL DEFENSE PLAN",
+        "AIR RAID"
+      ]
+    },
+    {
+      "type": "blast_door",
+      "patterns": [
+        "防护密闭门",
+        "密闭门",
+        "防爆波门",
+        "BL DOOR",
+        "BLAST DOOR"
+      ]
+    },
+    {
+      "type": "vent_plan",
+      "patterns": [
+        "人防通风",
+        "滤毒",
+        "通风口",
+        "进风口",
+        "排风口",
+        "FILTER",
+        "VENT"
+      ]
+    },
+    {
+      "type": "wall_section",
+      "patterns": [
+        "人防节点",
+        "人防墙",
+        "防护单元",
+        "人防大样",
+        "DETAIL",
+        "SHELL"
+      ]
+    },
+    {
+      "type": "electrical_plan",
+      "patterns": [
+        "人防电气",
+        "防爆波电缆井",
+        "战时照明",
+        "CIVIL DEFENSE ELECTRICAL"
+      ]
+    },
+    {
+      "type": "plumbing_plan",
+      "patterns": [
+        "人防给排水",
+        "洗消",
+        "战时给水",
+        "排水",
+        "WASH DOWN"
+      ]
+    }
+  ],
+  "system_rules": [
+    {
+      "system": "shell",
+      "patterns": [
+        "防护单元",
+        "人防墙",
+        "临空墙",
+        "防护外墙",
+        "SHELL",
+        "SHIELD"
+      ]
+    },
+    {
+      "system": "door",
+      "patterns": [
+        "防护密闭门",
+        "密闭门",
+        "防爆波门",
+        "DOOR",
+        "GATE"
+      ]
+    },
+    {
+      "system": "ventilation",
+      "patterns": [
+        "人防通风",
+        "滤毒",
+        "进风口",
+        "排风口",
+        "防爆波活门",
+        "VENT",
+        "FILTER"
+      ]
+    },
+    {
+      "system": "washdown",
+      "patterns": [
+        "洗消",
+        "淋浴",
+        "排水",
+        "WASH",
+        "SHOWER"
+      ]
+    },
+    {
+      "system": "electrical",
+      "patterns": [
+        "人防电气",
+        "防爆波电缆井",
+        "战时照明",
+        "EMERGENCY LIGHT",
+        "ELECTRICAL"
+      ]
+    }
+  ],
+  "component_rules": [
+    {
+      "category": "blast_door",
+      "system": "door",
+      "patterns": [
+        "防护密闭门",
+        "密闭门",
+        "防爆波门",
+        "BLAST DOOR",
+        "AIR TIGHT DOOR"
+      ]
+    },
+    {
+      "category": "shell_wall",
+      "system": "shell",
+      "patterns": [
+        "临空墙",
+        "防护外墙",
+        "人防墙",
+        "防护单元",
+        "SHELL WALL"
+      ]
+    },
+    {
+      "category": "vent_device",
+      "system": "ventilation",
+      "patterns": [
+        "进风口",
+        "排风口",
+        "滤毒",
+        "通风口",
+        "活门",
+        "VENT",
+        "FILTER"
+      ]
+    },
+    {
+      "category": "electrical_device",
+      "system": "electrical",
+      "patterns": [
+        "防爆波电缆井",
+        "战时照明",
+        "电源箱",
+        "电缆井",
+        "EMERGENCY",
+        "CABLE"
+      ]
+    },
+    {
+      "category": "washdown",
+      "system": "washdown",
+      "patterns": [
+        "洗消",
+        "淋浴",
+        "冲洗",
+        "WASH",
+        "SHOWER"
+      ]
+    },
+    {
+      "category": "post_tension",
+      "system": "shell",
+      "patterns": [
+        "封堵",
+        "后浇",
+        "钢结构封堵",
+        "PLUG",
+        "SEAL"
+      ]
+    }
+  ],
+  "reference_patterns": {
+    "door_code": "(?<![0-9A-Z])((?:FM|MN|HHFM|FHM|M)[\\s_-]*\\d{1,3}[A-Za-z]?)",
+    "elevation": "标高\\s*[-+]?\\d+(?:\\.\\d{1,3})?",
+    "resist_level": "(?<![0-9A-Z])((?:\\d+[.，]?\\d*)级人防|核[568]级|常[56]级|CIVIL DEFENSE LEVEL)",
+    "equip_code": "(?<![0-9A-Z])((?:VJ|PJ|FJ|CJ|XJ)[\\s_-]*\\d{1,3}[A-Za-z]?)"
+  },
+  "scale_pattern": "1\\s*[:：]\\s*\\d{1,5}",
+  "unit_patterns": {
+    "mm": [
+      "单位\\s*[:：]?\\s*mm",
+      "mm"
+    ],
+    "m": [
+      "单位\\s*[:：]?\\s*m"
+    ]
+  },
+  "layer_rules": [
+    {
+      "category": "blast_door",
+      "patterns": [
+        "防护密闭门",
+        "密闭门",
+        "防爆",
+        "DOOR"
+      ]
+    },
+    {
+      "category": "shell_wall",
+      "patterns": [
+        "人防墙",
+        "临空墙",
+        "防护单元",
+        "WALL",
+        "SHELL"
+      ]
+    },
+    {
+      "category": "vent_device",
+      "patterns": [
+        "通风",
+        "滤毒",
+        "进风",
+        "排风",
+        "VENT"
+      ]
+    },
+    {
+      "category": "electrical_device",
+      "patterns": [
+        "人防电气",
+        "电缆井",
+        "照明",
+        "ELECTRICAL"
+      ]
+    },
+    {
+      "category": "washdown",
+      "patterns": [
+        "洗消",
+        "冲洗",
+        "WASH"
+      ]
+    }
+  ]
+}

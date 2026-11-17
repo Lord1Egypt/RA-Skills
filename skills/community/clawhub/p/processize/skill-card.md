@@ -1,41 +1,55 @@
-## Description: <br>
-Turn a product idea into a manual-first process you can start delivering today. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Turn a product idea into a manual-first process you can start delivering today.
 
-## Publisher: <br>
-[carollili](https://clawhub.ai/user/carollili) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[carollili](https://clawhub.ai/user/carollili)
 
-## Use Case: <br>
-Founders, entrepreneurs, and product builders use Processize to turn an early product idea into a manual delivery process, identify initial customers, choose an initial price, and decide what to automate later. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Pricing and payment suggestions could be treated as automatic transaction instructions. <br>
-Mitigation: Treat them as advice; review and carry out any payments, purchases, or outreach manually. <br>
-Risk: Business-process examples may involve sensitive customer or prospect information. <br>
-Mitigation: Share only information needed for the workflow and avoid unnecessary sensitive customer data. <br>
+## Use Case:
 
+Entrepreneurs, founders, and product builders use this skill to turn an idea or manually delivered service into a repeatable hand-run workflow, identify initial customers, set a starting price, and decide what to automate later.
 
-## Reference(s): <br>
-- [Processize on ClawHub](https://clawhub.ai/carollili/processize) <br>
-- [The Minimalist Entrepreneur](https://minimalistentrepreneur.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown conversation with numbered lists and action items] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Business coaching output may include pricing and payment suggestions for the user to review and carry out manually.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The coaching workflow may ask for potential customer names, manual tools, pricing, and delivery steps.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use anonymized or non-sensitive examples where possible, and avoid sharing private customer data unless needed for the discussion.
+
+Risk: Business guidance may not fit a specific market, customer, or operating constraint.
+
+Mitigation: Treat the output as planning guidance and review it before making customer commitments or pricing decisions.
+
+## Reference(s):
+
+- [Processize on ClawHub](https://clawhub.ai/carollili/skills/processize)
+- [The Minimalist Entrepreneur](https://minimalistentrepreneur.com)
+- [Original skill source cited by artifact](https://github.com/slavingia/skills)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown guidance with structured lists and suggested customer/process artifacts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces business process guidance; no files, code, shell commands, API calls, or credential use are required.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

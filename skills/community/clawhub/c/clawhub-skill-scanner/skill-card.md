@@ -1,44 +1,52 @@
-## Description: <br>
-Security gatekeeper for skill installations that scans ClawHub, GitHub, and external skill sources for malicious patterns, credential access, data exfiltration, command injection, and other security risks before installation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ClawHub Skill Scanner audits skill directories before installation, checking for malicious patterns such as credential access, data exfiltration, command injection, persistence, and obfuscation.
 
-## Publisher: <br>
-[amir-ag](https://clawhub.ai/user/amir-ag) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[amir-ag](https://clawhub.ai/user/amir-ag)
 
-## Use Case: <br>
-Developers and engineers use this skill as a pre-install security check for external agent skills. It helps review local skill folders and automation workflows before installation by producing risk scores, findings, and install-blocking exit codes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT License
 
-## Known Risks and Mitigations: <br>
-Risk: A SAFE result can be mistaken for a guarantee that a skill is safe to install. <br>
-Mitigation: Treat scanner output as advisory and manually review findings before installing external or high-privilege skills. <br>
-Risk: Line-based regex checks can miss malicious behavior or produce incomplete findings. <br>
-Mitigation: Pair the scan with source review, especially for scripts that request broad filesystem, network, credential, or shell access. <br>
-Risk: Automated install gating can block or allow installs based only on heuristic score thresholds. <br>
-Mitigation: Use --install-if-safe as a guardrail, not as the only approval control for sensitive environments. <br>
+## Use Case:
 
+Developers and engineers use this skill to review ClawHub, GitHub, URL, or manually downloaded skill packages before installation. It produces risk-oriented findings and installation guidance for human review or CI checks.
 
-## Reference(s): <br>
-- [Threat Patterns Reference](references/threat-patterns.md) <br>
-- [ClawHub Skill Scanner Listing](https://clawhub.ai/amir-ag/clawhub-skill-scanner) <br>
-- [ClawHavoc campaign report](https://www.esecurityplanet.com/threats/hundreds-of-malicious-skills-found-in-openclaws-clawhub/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, guidance] <br>
-**Output Format:** [Plain-text audit report or JSON summary with risk score, risk level, recommendation, file counts, and findings] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can return a nonzero exit code with --install-if-safe when the scanned skill is not SAFE.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server-resolved release metadata) <br>
+Risk: The server security review says the scanner's automatic approval guidance is easy to bypass.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat results as advisory, keep manual review for external skill packages, and do not auto-install third-party skills solely because this scanner reports SAFE.
+
+## Reference(s):
+
+- [Threat Patterns Reference](references/threat-patterns.md)
+- [ClawHavoc campaign report](https://www.esecurityplanet.com/threats/hundreds-of-malicious-skills-found-in-openclaws-clawhub/)
+- [OpenClaw](https://openclaw.ai)
+- [ClawHub](https://clawhub.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Human-readable audit report or JSON, with optional shell exit status for automation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Risk levels are reported as SAFE, CAUTION, DANGER, or BLOCKED.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

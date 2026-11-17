@@ -1,40 +1,54 @@
-## Description: <br>
-Query Polymarket prediction market odds and events via CLI, including market search, current prices, event listings by category, and orderbook depth. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query Polymarket prediction market odds and events via CLI, including market search, current prices, events by category, market details, tags, and orderbook depth.
 
-## Publisher: <br>
-[ceeyang](https://clawhub.ai/user/ceeyang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ceeyang](https://clawhub.ai/user/ceeyang)
 
-## Use Case: <br>
-External users, developers, and agents use this skill to look up public Polymarket market-implied odds, active events, prices, and orderbook data for probability-oriented questions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Search queries are sent to Polymarket APIs and may include sensitive personal information if entered by the user. <br>
-Mitigation: Avoid submitting sensitive personal information in market searches or token lookups. <br>
-Risk: Prediction market odds are public market data and may be mistaken for financial, legal, medical, or political advice. <br>
-Mitigation: Treat returned odds as informational market-implied probabilities and review them before relying on them for decisions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Polymarket Gamma API](https://gamma-api.polymarket.com) <br>
-- [ClawHub skill page](https://clawhub.ai/ceeyang/polymarket-odds-1-0-0) <br>
+## Use Case:
 
+External users and developers use this skill to retrieve current Polymarket prediction-market odds, event listings, prices, tags, and orderbook data for questions about probabilities across sports, politics, crypto, business, technology, elections, and geopolitics.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [CLI text output and Markdown command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses public Polymarket endpoints and requires no API key.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and _meta.json) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Market search terms are sent to Polymarket public endpoints.
+
+Mitigation: Avoid using the skill for private, sensitive, or unrelated probability questions.
+
+Risk: Prediction-market odds can change quickly and may be unsuitable as the sole basis for decisions.
+
+Mitigation: Treat returned odds as current market data and verify important conclusions against current sources before acting.
+
+## Reference(s):
+
+- [Polymarket Gamma API](https://gamma-api.polymarket.com)
+- [Polymarket CLOB API](https://clob.polymarket.com)
+- [ClawHub skill page](https://clawhub.ai/ceeyang/skills/polymarket-odds-1-0-0)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown and terminal-oriented text with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces read-only lookup guidance and CLI output based on public Polymarket endpoints; no API key is required.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

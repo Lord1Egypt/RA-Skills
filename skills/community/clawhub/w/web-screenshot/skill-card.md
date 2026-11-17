@@ -1,40 +1,58 @@
-## Description: <br>
-Captures a requested public web page as a viewport or full-page screenshot and can export the page as a PDF using Playwright. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Captures public webpages as viewport or full-page screenshots and exports rendered pages to image or PDF files.
 
-## Publisher: <br>
-[jiaonvmo-maker](https://clawhub.ai/user/jiaonvmo-maker) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiaonvmo-maker](https://clawhub.ai/user/jiaonvmo-maker)
 
-## Use Case: <br>
-Developers, QA engineers, and content reviewers use this skill to capture public web pages for visual checks, reporting, archiving, and PDF export. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill opens whatever URL the user provides in a headless browser, which can expose the execution environment to untrusted pages or private network targets. <br>
-Mitigation: Avoid localhost, intranet, cloud metadata, authenticated, or sensitive private URLs unless that access is intentional. <br>
-Risk: Login-gated or anti-automation pages may render blank, incomplete, or misleading captures. <br>
-Mitigation: Review generated screenshots or PDFs before relying on them, and use an authenticated browser or site API when public rendering is insufficient. <br>
+## Use Case:
 
+Developers, QA engineers, and content reviewers use this skill to capture public webpage screenshots, create visual comparison artifacts, archive rendered pages, or export pages as PDF files.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jiaonvmo-maker/web-screenshot) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, files, guidance] <br>
-**Output Format:** [PNG or JPG screenshots, PDF files, and shell status output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports viewport screenshots, full-page screenshots, and A4 PDF export.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.3 (source: frontmatter and server release evidence) <br>
+Risk: The skill can open arbitrary URLs in a headless browser, which may expose internal or sensitive pages if misused.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it for public webpages, avoid internal or sensitive URLs, and restrict URL destinations in managed deployments.
+
+Risk: The skill can write screenshots or PDFs to user-selected file paths.
+
+Mitigation: Keep outputs under a dedicated temporary or artifact directory and review output paths before execution.
+
+Risk: The browser runtime is broad enough to warrant review before installation.
+
+Mitigation: Prefer a version that pins Playwright, uses browser sandboxing or external containment, and prevents overwrites outside its artifact directory.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jiaonvmo-maker/skills/web-screenshot)
+- [ClawHub publisher profile](https://clawhub.ai/user/jiaonvmo-maker)
+
+## Skill Output:
+
+**Output Type(s):** [files, shell commands, guidance]
+
+**Output Format:** [PNG, JPG, or PDF files with concise terminal status output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports viewport screenshots, full-page screenshots, and A4 PDF export for rendered public webpages.]
+
+## Skill Version(s):
+
+1.1.3 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

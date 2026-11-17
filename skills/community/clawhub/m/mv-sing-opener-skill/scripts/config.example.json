@@ -1,0 +1,16 @@
+{
+  "_说明": "复制为 config.json 后填写；本文件只是模板，不含任何密钥。",
+  "_说明_密钥": "图片接口 key，只放本地或环境变量，不要提交到仓库。",
+  "newapi_image_base_url": "https://your-image-api.example.com",
+  "newapi_image_key": "",
+  "newapi_image_model": "gpt-image-2-c",
+  "newapi_image_quality": "high",
+
+  "_说明_素材外链": "本地 dest_dir 与公网 url_base 必须指向同一处：上传到 dest_dir/<项目>/...，外链就是 url_base/<项目>/...。",
+  "asset_url_base": "https://your-static-host.example.com/public/mv",
+
+  "_说明_出片": "视频生成网关，需要兼容 Seedance 2.5 的 reference（参考图 + 参考音频）模式。",
+  "gateway_base": "http://127.0.0.1:4000",
+  "video_api_prefix": "/v1",
+  "model": "doubao-seedance-2-5-260628"
+}

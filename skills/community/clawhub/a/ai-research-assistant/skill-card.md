@@ -1,40 +1,53 @@
-## Description: <br>
-Helps agents summarize A-share research reports, public announcements, backtests, news, policy context, and fund-flow signals for investment research workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Uses a large language model to help process A-share research reports, announcements, backtesting inputs, news, policy items, and capital-flow information.
 
-## Publisher: <br>
-[haohanyang92](https://clawhub.ai/user/haohanyang92) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[haohanyang92](https://clawhub.ai/user/haohanyang92)
 
-## Use Case: <br>
-External analysts, researchers, and agents use this skill to condense A-share research reports, public announcements, historical data checks, and market news into concise research notes and candidate strategy analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat generated A-share summaries, forecasts, or strategy analysis as financial advice. <br>
-Mitigation: Use the output as research assistance only, and verify summaries, forecasts, and investment decisions against authoritative market sources. <br>
-Risk: Broad trigger examples may activate the skill for general stock or market questions. <br>
-Mitigation: Invoke it explicitly when A-share investment research assistance is intended. <br>
+## Use Case:
 
+External users can use this skill as an A-share investment research assistant to summarize reports, extract key announcement changes, reason about strategy backtests, and organize market news or policy signals.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/haohanyang92/ai-research-assistant) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain-text research summaries, bullet lists, and analysis guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Report summaries may be concise, including 300-character-style summaries when requested; outputs should be verified before financial use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Generated investment suggestions could be mistaken for professional financial advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use outputs only as research assistance and make investment decisions after independent review by a qualified person.
+
+Risk: Research summaries may rely on incomplete, stale, or user-provided market information.
+
+Mitigation: Verify facts, filings, prices, news, and market data against authoritative current sources before relying on the analysis.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/haohanyang92/skills/ai-research-assistant)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or concise text responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce summaries, extracted key points, research guidance, and investment-analysis assistance from user-provided or independently verified market information.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

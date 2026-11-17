@@ -1,40 +1,53 @@
-## Description: <br>
-Analyze and compare Japanese public company financial statements from EDINET using company names or stock codes with J-GAAP, IFRS, and US-GAAP data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze Japanese public company financial statements from EDINET by company name or stock code, compare periods and companies, and work across J-GAAP, IFRS, and US-GAAP data.
 
-## Publisher: <br>
-[ajtgjmdjp](https://clawhub.ai/user/ajtgjmdjp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ajtgjmdjp](https://clawhub.ai/user/ajtgjmdjp)
 
-## Use Case: <br>
-Developers, analysts, and finance teams use this skill to guide EDINET CLI workflows for finding Japanese public-company filings, extracting BS/PL/CF statements, comparing periods, and screening companies by financial metrics. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The workflow requires an EDINET-specific API key. <br>
-Mitigation: Use a dedicated EDINET key where possible and avoid running the tool in environments that expose unrelated credentials. <br>
-Risk: EDINET requests are rate-limited and large company screens can take time. <br>
-Mitigation: Keep screening batches within the documented maximum of 20 companies and account for the default 0.5 requests-per-second rate. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ajtgjmdjp/edinet-mcp) <br>
-- [EDINET API key registration](https://disclosure2dl.edinet-fsa.go.jp/) <br>
+## Use Case:
 
+Developers, analysts, and finance-focused agents use this skill to search Japanese public companies, retrieve EDINET financial statements, compare periods, and screen companies by financial metrics.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell command examples and CLI option guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires EDINET_API_KEY and the edinet-mcp CLI; CLI results may be JSON or CSV depending on command options.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.6.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill depends on an external, unpinned edinet-mcp package as the effective runtime component.
+
+Mitigation: Install a reviewed package version in an isolated environment before using it with production workflows.
+
+Risk: The skill requires an EDINET_API_KEY for data access.
+
+Mitigation: Provide only an API key intended for this use and manage it through normal secret-handling controls.
+
+## Reference(s):
+
+- [EDINET disclosure system](https://disclosure2dl.edinet-fsa.go.jp/)
+- [ClawHub skill page](https://clawhub.ai/ajtgjmdjp/skills/edinet-mcp)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and optional JSON or CSV command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the edinet-mcp command-line package and an EDINET_API_KEY; financial data retrieval is rate-limited by default.]
+
+## Skill Version(s):
+
+0.6.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

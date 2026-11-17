@@ -1,41 +1,58 @@
-## Description: <br>
-Turn your AI agent into a business automation architect that designs, documents, implements, and monitors automated workflows across sales, operations, finance, HR, and support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Turn your AI agent into a business automation architect. Design, document, implement, and monitor automated workflows across sales, ops, finance, HR, and support - no n8n or Zapier required.
 
-## Publisher: <br>
-[V31981](https://clawhub.ai/user/V31981) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[v31981](https://clawhub.ai/user/v31981)
 
-## Use Case: <br>
-Business operators, consultants, and automation builders use this skill to audit repetitive processes, prioritize automation candidates, design workflows, and produce implementation plans for agent-assisted business operations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide agents toward payment, account, publishing, and recurring-job automations. <br>
-Mitigation: Use it for planning by default and require explicit approval, sandbox testing, least-privilege credentials, logging or redaction choices, and a rollback or disable plan before executing those automations. <br>
-Risk: The security summary notes inconsistent package identity. <br>
-Mitigation: Verify the installed package identity, version, and trusted publisher handle before installation or operational use. <br>
+## Use Case:
 
+Business operators, founders, and developers use this skill to identify high-value manual processes, design automation workflows, implement them with agent tools, and monitor reliability and ROI.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/V31981/afrexai-business-automation-temp) <br>
-- [AfrexAI context packs](https://afrexai-cto.github.io/context-packs/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with YAML templates, shell command examples, workflow patterns, and implementation checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include process maps, workflow specifications, cron job templates, scripts, monitoring plans, and ROI calculations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence.release.version and target metadata) <br>
+Risk: Financial workflow templates may lead an agent to auto-approve invoices or schedule payments without enough safeguards.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit human approval for payments and other high-impact actions, and use dry-run mode before enabling live execution.
+
+Risk: Generated automations may call business systems or APIs with excessive privileges.
+
+Mitigation: Use least-privilege credentials for each workflow and keep credentials in secure stores rather than embedding them in generated scripts.
+
+Risk: Timeouts or missing responses in automated approval flows may be treated as approval.
+
+Mitigation: Treat timeouts as escalation or stop conditions, especially for payments, public messages, and customer-facing actions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/v31981/skills/afrexai-business-automation-temp)
+- [AfrexAI context packs](https://afrexai-cto.github.io/context-packs/)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with YAML templates, workflow patterns, shell script examples, and command prompts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes process maps, scoring matrices, workflow architectures, cron templates, monitoring dashboards, and ROI calculations.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.release.version and artifact/_meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

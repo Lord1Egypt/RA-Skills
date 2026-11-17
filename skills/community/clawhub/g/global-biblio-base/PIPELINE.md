@@ -1,6 +1,4 @@
-# SmartLib 全链路检索下载管线优化指南 / Pipeline Optimization Guide
-
-> 中文 / Chinese | English follows each section
+# SmartLib 全链路检索下载管线优化指南
 
 本文件记录 SmartLib 文献检索技能中"检索→详情→下载"全链路的架构设计、性能优化策略和实战基准数据。面向技能调用者（AI Agent）和开发者，提供最优执行路径参考。
 
@@ -8,21 +6,21 @@
 
 ---
 
-## 1. 管线架构 / Pipeline Architecture
+## 1. 管线架构
 
 ```
-用户请求 / User Request
+用户请求
     │
     ▼
 ┌─────────────────────────────────────────────────────┐
-│  PHASE 1: 并行检索 / Parallel Search                 │
+│  PHASE 1: 并行检索│
 │  ├─ CN: API 1 (中文期刊) ─── 独立 Token，并行发起   │
 │  └─ EN: API 4 (全球文献) ─── 独立 Token，并行发起   │
 │  预计耗时: 1-3s (5 并发检索)                         │
 └──────────────────┬──────────────────────────────────┘
                    ▼
 ┌─────────────────────────────────────────────────────┐
-│  PHASE 2: 批量获取详情 / Batch Fetch Details         │
+│  PHASE 2: 批量获取详情│
 │  ├─ CN: 无需此步（API 3 直接用 Identifier 下载）     │
 │  └─ EN: API 5 (文章详情) ─── 8 并发获取 DOI + 元数据 │
 │  预计耗时: 0.3-2s (50 篇以内)                        │
@@ -30,7 +28,7 @@
 └──────────────────┬──────────────────────────────────┘
                    ▼
 ┌─────────────────────────────────────────────────────┐
-│  PHASE 3: 并行下载 / Parallel Download               │
+│  PHASE 3: 并行下载│
 │  ├─ CN: API 3 (GetArticleFile) ─── 10 并发下载       │
 │  └─ EN: 多渠决策树 ─── 10 并发，每篇独立路由         │
 │       ├─ ArXiv (最快)                                │
@@ -40,26 +38,26 @@
 │  预计耗时: 5-15s (10 篇) / 20-40s (50 篇)            │
 └──────────────────┬──────────────────────────────────┘
                    ▼
-              📊 汇总报告 / Summary Report
+              📊 汇总报告
 ```
 
-**设计原则 / Design Principles:**
-- **分阶段并行 / Phased Parallelism**: 每阶段内部并行，阶段间串行（依赖数据传递）
-- **独立无锁 / Lock-Free**: 每篇论文的下载互不依赖，无共享状态
-- **失败隔离 / Failure Isolation**: 单篇失败不影响其他论文
-- **Gateway 代理 / Gateway Proxy**: 所有 API 调用通过 Gateway /consume → /search 代理，Token 由 Gateway 管理
+**设计原则**
+- **分阶段并行**: 每阶段内部并行，阶段间串行（依赖数据传递）
+- **独立无锁**: 每篇论文的下载互不依赖，无共享状态
+- **失败隔离**: 单篇失败不影响其他论文
+- **Gateway 代理**: 所有 API 调用通过 Gateway /consume → /search 代理，Token 由 Gateway 管理
 
 ---
 
-## 2. 核心优化技术 / Core Optimizations
+## 2. 核心优化技术
 
-### 2.1 Gateway 统一管理 Token / Gateway Token Management
+### 2.1 Gateway 统一管理 Token
 
-**问题 / Problem**: 每次 API 调用前走 OAuth 两步认证 (code→token)，耗时 ~0.8s。50 篇论文=50 次认证=40s 浪费。
+**问题**: 每次 API 调用前走 OAuth 两步认证 (code→token)，耗时 ~0.8s。50 篇论文=50 次认证=40s 浪费。
 
-**优化 / Optimization**: SmartLib OAuth Token 由 Gateway 全权管理，技能无需获取或缓存 Token。
+**优化**: SmartLib OAuth Token 由 Gateway 全权管理，技能无需获取或缓存 Token。
 
-**架构 / Architecture:**
+**架构**
 ```
 技能 (Skill) → Gateway (/consume → /search) → SmartLib API
                     ↑
@@ -71,11 +69,11 @@
 - 技能**无需持有** APPID/APPSECRET
 - Gateway 自动处理 Token 刷新与缓存（含跨实例分布式同步）
 
-### 2.2 提前终止 / Early Termination
+### 2.2 提前终止
 
-**问题 / Problem**: 传统策略是对所有渠道逐一尝试，但 closed-access 论文注定失败。
+**问题**: 传统策略是对所有渠道逐一尝试，但 closed-access 论文注定失败。
 
-**优化 / Optimization**: Unpaywall 探测后立即判断：
+**优化**: Unpaywall 探测后立即判断：
 
 | OA 状态 | 策略 | 原因 |
 |------|------|------|
@@ -85,13 +83,13 @@
 | `bronze` | 尝试一次后 curl 兜底 | ⚠️ 大概率被防盗链拦截 |
 | `closed` | **立即终止**，不浪费后续尝试 | 100% 付费墙内 |
 
-**效果 / Effect**: closed-access 论文从 ~8s (7个渠道轮询) 降至 ~1s (仅一次 Unpaywall 查询)。
+**效果**: closed-access 论文从 ~8s (7个渠道轮询) 降至 ~1s (仅一次 Unpaywall 查询)。
 
-### 2.3 智能渠道路由 / Publisher-Aware Routing
+### 2.3 智能渠道路由
 
-**问题 / Problem**: 不同出版商的 PDF 获取方式差异大，统一策略效率低。
+**问题**: 不同出版商的 PDF 获取方式差异大，统一策略效率低。
 
-**优化 / Optimization**: 根据出版商名称路由到最优渠道：
+**优化**: 根据出版商名称路由到最优渠道：
 
 ```python
 PUBLISHER_ROUTES = {
@@ -104,34 +102,34 @@ PUBLISHER_ROUTES = {
 }
 ```
 
-**效果 / Effect**: SpringerOpen/BMC 论文直接从 `link.springer.com/content/pdf/` 拿 PDF，跳过 Unpaywall，节省 1-2s/篇。
+**效果**: SpringerOpen/BMC 论文直接从 `link.springer.com/content/pdf/` 拿 PDF，跳过 Unpaywall，节省 1-2s/篇。
 
-### 2.4 HTTP 连接复用 / Connection Reuse
+### 2.4 HTTP 连接复用
 
-**问题 / Problem**: 每次 `urllib.request.urlopen()` 创建新 TCP 连接 + TLS 握手，开销 ~200ms。
+**问题**: 每次 `urllib.request.urlopen()` 创建新 TCP 连接 + TLS 握手，开销 ~200ms。
 
-**优化 / Optimization**: 
+**优化**: 
 - 使用 `build_opener()` + `Connection: keep-alive` header
 - 同 host 的连续请求复用底层 TCP 连接
 
-**效果 / Effect**: 50 篇同 host 下载可节省 ~5s。
+**效果**: 50 篇同 host 下载可节省 ~5s。
 
-### 2.5 curl 兜底 / Curl Fallback for Problematic URLs
+### 2.5 curl 兜底
 
-**问题 / Problem**: Python `urllib` 对某些服务器（OUP Bronze OA）返回 `IncompleteRead` 或截断 PDF。
+**问题**: Python `urllib` 对某些服务器（OUP Bronze OA）返回 `IncompleteRead` 或截断 PDF。
 
-**优化 / Optimization**: 下载失败时自动切换为 `curl` subprocess 重试。
+**优化**: 下载失败时自动切换为 `curl` subprocess 重试。
 
 ```python
 # curl 对 HTTP chunked encoding 和 unstable connections 处理更鲁棒
 result = subprocess.run(["curl", "-sL", "--max-time", "25", "-o", "-", url], ...)
 ```
 
-**效果 / Effect**: 将 Bronze OA 论文成功率从 ~20% 提升至 ~60%。
+**效果**: 将 Bronze OA 论文成功率从 ~20% 提升至 ~60%。
 
 ---
 
-## 3. 下载渠道路由决策树 / Channel Routing Decision Tree
+## 3. 下载渠道路由决策树
 
 ```
 论文有 Identifier + 来源 = API 1 (中文期刊)?
@@ -143,7 +141,7 @@ result = subprocess.run(["curl", "-sL", "--max-time", "25", "-o", "-", url], ...
        │   成功率: >99%  |  耗时: ~2s/篇
        │
        ├─ 获取 DOI (API 5) → Unpaywall 探测
-       │   ├─ is_oa = false / oa_status = "closed"
+       │   ├─ is_oa = false
        │   │   → ⛔ 立即终止，标记 "paywall_closed"
        │   │
        │   ├─ oa_status = "gold" → 全渠道并发尝试
@@ -169,38 +167,38 @@ result = subprocess.run(["curl", "-sL", "--max-time", "25", "-o", "-", url], ...
 
 ---
 
-## 4. 性能基准 / Performance Benchmarks
+## 4. 性能基准
 
-### 4.1 实测数据 / Real-world Test Results
+### 4.1 实测数据
 
-测试环境 / Test Environment: Windows 10, Python 3.14, 中国网络环境 (GFW)
+测试环境: Windows 10, Python 3.14, 中国网络环境 (GFW)
 
-#### 完整 5 领域多渠测试 (multi_channel_test.py) / 5-Field Multi-Channel Test
+#### 完整 5 领域多渠测试 (multi_channel_test.py)
 
-| 领域 / Field | 检索 / Searched | 下载成功 / Downloaded | 成功率 / Rate | 主要渠道 / Dominant Channel |
+| 领域| 检索| 下载成功| 成功率| 主要渠道|
 |------|:--:|:--:|:--:|------|
-| 化学催化 / Chemistry Catalysis | 10 | **10** | 100% | Unpaywall Gold OA (MDPI/Frontiers) |
-| AI/深度学习 / AI Deep Learning | 10 | **10** | 100% | ArXiv + Unpaywall Gold |
-| 生物技术 CRISPR / Biotech CRISPR | 10 | 2 | 20% | Unpaywall Gold OA |
-| 环境/气候 / Environment Climate | 10 | 3 | 30% | Unpaywall Gold + Green OA |
-| 制药/mRNA / Pharma mRNA | 10 | **0** | 0% | 全部付费墙 (Elsevier/Nature/Wiley) |
+| 化学催化**10** | 100% | Unpaywall Gold OA (MDPI/Frontiers) |
+| AI/深度学习**10** | 100% | ArXiv + Unpaywall Gold |
+| 生物技术 CRISPR
+| 环境/气候
+| 制药/mRNA**0** | 0% | 全部付费墙 (Elsevier/Nature/Wiley) |
 
-**总计 / Total: 25/50 (50%)**
+**总计**
 
-#### 优化管线 Demo 测试 / Optimized Pipeline Demo
+#### 优化管线 Demo 测试
 
-| 指标 / Metric | 值 / Value |
+| 指标| 值|
 |------|------|
-| 检索 / Search | 5 CN + 5 EN in 1.3s |
-| 详情 / Details | 5 EN in 0.3s (Token 缓存) |
-| CN 下载 / CN Download | 5 in 4.4s (0.88s/篇) |
-| EN 下载 / EN Download | 5 in 5.7s (1.14s/篇) |
-| **总计 / Total** | **10 in 11.7s (1.17s/篇)** |
-| 成功率 / Success Rate | 10/10 (100%) |
+| 检索
+| 详情| 5 EN in 0.3s (Token 缓存) |
+| CN 下载| 5 in 4.4s (0.88s/篇) |
+| EN 下载| 5 in 5.7s (1.14s/篇) |
+| **总计** | **10 in 11.7s (1.17s/篇)** |
+| 成功率
 
-### 4.2 速度对比 / Speed Comparison
+### 4.2 速度对比
 
-| 阶段 / Phase | 优化前 / Before | 优化后 / After | 提升 / Improvement |
+| 阶段| 优化前| 优化后| 提升|
 |------|:--:|:--:|:--:|
 | Token 获取 (50篇) | ~40s (每次重新认证) | ~2s (缓存复用) | **20x** |
 | EN 详情获取 (50篇) | ~40s (串行) | ~2s (8并发+Token复用) | **20x** |
@@ -208,11 +206,11 @@ result = subprocess.run(["curl", "-sL", "--max-time", "25", "-o", "-", url], ...
 | EN 下载 (10篇) | ~60s (全渠道串行轮询) | ~12s (路由+提前终止) | **5x** |
 | closed 论文判定 | ~8s (7渠道失败) | ~1s (立刻终止) | **8x** |
 
-### 4.3 渠道贡献分析 / Channel Contribution Analysis
+### 4.3 渠道贡献分析
 
 基于 50 篇 5 领域实测 + 10 篇优化管线测试 = 60 篇总样本:
 
-| 渠道 / Channel | 成功数 / Success | 占比 / Share | 平均耗时 / Avg Time |
+| 渠道| 成功数| 占比| 平均耗时|
 |------|:--:|:--:|:--:|
 | API 3 (中文期刊) | 5 | 14% | ~0.9s |
 | ArXiv | 5 | 14% | ~2s |
@@ -223,9 +221,9 @@ result = subprocess.run(["curl", "-sL", "--max-time", "25", "-o", "-", url], ...
 
 ---
 
-## 5. 使用指南 / Usage Guide
+## 5. 使用指南
 
-### 5.1 快速启动 / Quick Start
+### 5.1 快速启动
 
 ```bash
 # Demo 模式: 1 个 CN + 1 个 EN 检索，各 5 篇
@@ -234,7 +232,7 @@ python optimized_pipeline.py --preset demo --pagesize 5
 # 完整测试: 5 个领域 EN 检索，各 10 篇
 python optimized_pipeline.py --preset test --pagesize 10
 
-# 自定义检索 / Custom Search
+# 自定义检索
 python optimized_pipeline.py \
   --cn "深度学习::K=深度学习 AND TY=3" \
   --en "CRISPR::(K=CRISPR OR K=gene editing) AND TY=3" \
@@ -242,7 +240,7 @@ python optimized_pipeline.py \
   --out ./my_downloads
 ```
 
-### 5.2 编程调用 / Programmatic Usage
+### 5.2 编程调用
 
 ```python
 from optimized_pipeline import PipelineOrchestrator
@@ -260,7 +258,7 @@ print(f"Time: {result['timing']['total']}s")
 print(f"Channels: {result['stats']}")
 ```
 
-### 5.3 AI Agent 调用建议 / Agent Invocation Tips
+### 5.3 AI Agent 调用建议
 
 当 AI 助手调用本技能进行文献下载时，建议遵循以下执行路径：
 
@@ -269,13 +267,13 @@ print(f"Channels: {result['stats']}")
 3. **下载阶段**: CN 和 EN 并行下载；EN 内部 10 并发
 4. **失败处理**: closed-access 标记后直接跳过，bronze OA 用 curl 兜底
 
-**关键 / Critical**: 绝对不要逐篇串行下载 N 篇论文！必须并行。
+**关键**: 绝对不要逐篇串行下载 N 篇论文！必须并行。
 
 ---
 
-## 6. 排障指南 / Troubleshooting
+## 6. 排障指南
 
-| 现象 / Symptom | 原因 / Cause | 解决 / Solution |
+| 现象| 原因| 解决|
 |------|------|------|
 | 所有 EN 论文下载失败 | Token 未正确缓存 | 检查 `TokenManager._expires_at` 是否正确设置 |
 | Unpaywall 返回空 | 邮箱未提供或格式错误 | 确认 `email=` 参数正确 |
@@ -286,7 +284,7 @@ print(f"Channels: {result['stats']}")
 
 ---
 
-## 7. 依赖 / Dependencies
+## 7. 依赖
 
 - Python 3.8+
 - `urllib` (标准库)
@@ -296,7 +294,7 @@ print(f"Channels: {result['stats']}")
 
 ---
 
-## 8. 版本 / Version
+## 8. 版本
 
 | 版本 | 日期 | 变更 |
 |------|------|------|

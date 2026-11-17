@@ -1,44 +1,59 @@
-## Description: <br>
-All-in-one AI video production studio on a visual canvas for generating videos, images, voiceover, music, lip sync, vocal separation, voice changes, and combined exports through VPick. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+All-in-one AI video production studio on a visual canvas for generating videos, images, voiceovers, music, lip sync, vocal separation, voice changes, and combined video exports.
 
-## Publisher: <br>
-[snoopyrain](https://clawhub.ai/user/snoopyrain) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[snoopyrain](https://clawhub.ai/user/snoopyrain)
 
-## Use Case: <br>
-External users and creators use this skill to plan, generate, assemble, and export AI video projects through VPick's visual canvas. It helps agents coordinate video, image, audio, lip-sync, voice, and combining workflows while accounting for remote processing and credit usage. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts and uploaded media are processed by VPick and routed to third-party model providers. <br>
-Mitigation: Avoid uploading sensitive or rights-restricted media unless VPick and its providers may process and store it. <br>
-Risk: The MCP URL contains an embedded authentication token. <br>
-Mitigation: Treat the MCP URL as a password and avoid sharing it in chat, logs, or public configuration. <br>
-Risk: Generation jobs may spend VPick credits. <br>
-Mitigation: Confirm the model, duration, output count, and approximate credit cost before running generation jobs. <br>
+## Use Case:
 
+External creators and developers use this skill to guide an agent through end-to-end AI video production in VPick, including canvas setup, asset generation, audio production, lip sync, editing, and export. It is suited for users who want one workflow for short films, social clips, narrated videos, and multi-shot AI scenes.
 
-## Reference(s): <br>
-- [VPick MCP connection guide](https://vpick-doc.10xboost.org/guide/mcp-connection.html) <br>
-- [VPick app](https://vpick.10xboost.org) <br>
-- [ClawHub skill page](https://clawhub.ai/snoopyrain/vpick-video-creator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, API calls, Configuration] <br>
-**Output Format:** [Markdown guidance with MCP tool-call examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create remote video, image, audio, and project assets through VPick MCP tools.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: release metadata) <br>
+Risk: The MCP link is a credential and can grant access to the user's VPick account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the MCP link like a password and avoid sharing it in prompts, logs, screenshots, or public repositories.
+
+Risk: Large or repeated generation jobs may spend VPick credits.
+
+Mitigation: Confirm the user's intent, model choice, duration, and expected cost before running larger generations.
+
+Risk: Prompts and uploaded media are processed by VPick and routed to third-party model providers.
+
+Mitigation: Avoid submitting sensitive, private, or unlicensed media unless the user has confirmed it may be processed by those services.
+
+## Reference(s):
+
+- [VPick MCP connection guide](https://vpick-doc.10xboost.org/guide/mcp-connection.html)
+- [VPick app](https://vpick.10xboost.org)
+- [ClawHub skill page](https://clawhub.ai/snoopyrain/skills/vpick-video-creator)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, configuration, API calls]
+
+**Output Format:** [Markdown guidance with structured MCP tool parameters and workflow examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference cloud generation outputs, generated media URLs, model choices, and VPick credit usage.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata; artifact frontmatter reports 1.0.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

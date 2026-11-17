@@ -1,40 +1,52 @@
-## Description: <br>
-Use when live speech translation is needed with Alibaba Cloud Model Studio Qwen LiveTranslate models, including bilingual meetings, realtime interpretation, and speech-to-speech or speech-to-text translation flows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when live speech translation is needed with Alibaba Cloud Model Studio Qwen LiveTranslate models, including bilingual meetings, realtime interpretation, and speech-to-speech or speech-to-text translation flows.
 
-## Publisher: <br>
-[cinience](https://clawhub.ai/user/cinience) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cinience](https://clawhub.ai/user/cinience)
 
-## Use Case: <br>
-Developers and teams use this skill to prepare Qwen LiveTranslate request payloads for bilingual meetings, realtime interpretation, live subtitles, and translated call-center captions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Saved request payloads, transcripts, translations, or response summaries may contain sensitive meeting or call content. <br>
-Mitigation: Store generated artifacts only in appropriate locations, redact or delete them when no longer needed, and manage Alibaba Cloud credentials outside the skill with normal secret-management controls. <br>
+## Use Case:
 
+Developers and agents use this skill to prepare Alibaba Cloud Qwen LiveTranslate request payloads and guidance for bilingual meetings, live subtitles, realtime interpretation, and call-center translated captions.
 
-## Reference(s): <br>
-- [Sources](references/sources.md) <br>
-- [Alibaba Cloud Model Studio Qwen LiveTranslate documentation](https://help.aliyun.com/document_detail/2976526.html) <br>
-- [Alibaba Cloud Model Studio newly released models](https://help.aliyun.com/zh/model-studio/newly-released-models) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON request payload files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can save translation session payloads and response summaries under output/aliyun-qwen-livetranslate/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Translation request payloads and response summaries may be saved locally under output/aliyun-qwen-livetranslate/.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid confidential conversations unless a retention and cleanup process is in place for generated files.
+
+## Reference(s):
+
+- [Alibaba Cloud Qwen LiveTranslate documentation](https://help.aliyun.com/document_detail/2976526.html)
+- [Alibaba Cloud Model Studio newly released models](https://help.aliyun.com/zh/model-studio/newly-released-models)
+- [Artifact sources](references/sources.md)
+- [ClawHub skill page](https://clawhub.ai/cinience/skills/aliyun-qwen-livetranslate)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with shell commands and JSON request payloads]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The helper script writes local request payloads and expects translation session payloads and response summaries under output/aliyun-qwen-livetranslate/.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

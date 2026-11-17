@@ -1,41 +1,53 @@
-## Description: <br>
-Use when Codex, Hermes, OpenClaw, Claude Code, Cowork, or another AI agent needs to plan, review, implement, audit, or improve email work focused on fast delivery decisions, message QA, launch coordination, and concise status handoffs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Hermes Email Skill guides agents through email launch planning, message QA, incident triage, and approval-gated send readiness handoffs.
 
-## Publisher: <br>
-[polnikale](https://clawhub.ai/user/polnikale) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[polnikale](https://clawhub.ai/user/polnikale)
 
-## Use Case: <br>
-Developers, operators, and launch coordinators use this skill to prepare email preflight checks, launch-room summaries, incident timelines, transactional copy notes, and approve-or-hold recommendations. It keeps live send, resend, cancellation, suppression, DNS, and production automation actions behind explicit approval. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Email launch guidance can affect real users and production systems when applied to live sends, contact imports, suppression rules, DNS/authentication, or automation changes. <br>
-Mitigation: Install only where ClawHub staff/admin and production workflows are expected, review commands before approval, and require explicit approval before any live-system action. <br>
-Risk: Fast launch decisions can overlook blocking defects such as incorrect audience, broken personalization, deliverability issues, compliance issues, missing approval, or unclear calls to action. <br>
-Mitigation: Run the skill's compressed preflight across copy, links, rendering, segment logic, exclusions, sender identity, tracking, and approval status before recommending approve or hold. <br>
+## Use Case:
 
+Developers, operators, and launch-room participants use this skill to plan, audit, and improve email workflows with concise QA checks, launch status summaries, incident timelines, and approve-or-hold recommendations.
 
-## Reference(s): <br>
-- [Hermes Email Skill page](https://clawhub.ai/polnikale/hermesemailskill) <br>
-- [Hermes Email Skill Operating Checklist](references/operating-checklist.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with concise summaries, preflight tables, incident timelines, copy notes, and approve-or-hold recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires explicit user approval before live email sends, contact imports, suppression edits, DNS changes, production automation changes, provider migrations, or destructive cleanup.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.3 (source: server release metadata) <br>
+Risk: Email launch recommendations may affect high-impact operational actions such as sends, imports, DNS changes, suppression edits, or production automation changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit approval before live-system actions and keep analysis separate from execution.
+
+Risk: A rushed launch decision may miss audience, personalization, deliverability, compliance, approval, or CTA issues.
+
+Mitigation: Use the operating checklist to verify copy, links, rendering, segment logic, exclusions, sender identity, tracking, monitoring windows, and escalation owners.
+
+## Reference(s):
+
+- [Hermes Email Skill Operating Checklist](references/operating-checklist.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with concise tables, timelines, notes, and recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Keeps live sends, contact imports, DNS changes, suppression edits, and production automation changes behind explicit approval.]
+
+## Skill Version(s):
+
+0.1.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

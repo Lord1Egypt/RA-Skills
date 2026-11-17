@@ -1,42 +1,51 @@
-## Description: <br>
-SocialDataX Douyin Comments helps agents retrieve and analyze Douyin comments and replies for audience feedback, sentiment themes, pain points, FAQs, and discussion summaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+用于抖音评论分析、抖音评论回复、抖音评论洞察、用户反馈、口碑分析、痛点总结和内容讨论分析。覆盖 Douyin comments and comment replies，来自 SocialDataX 社媒数据助手。
 
-## Publisher: <br>
-[devinchen2014](https://clawhub.ai/user/devinchen2014) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[devinchen2014](https://clawhub.ai/user/devinchen2014)
 
-## Use Case: <br>
-External users, developers, and analysts use this skill to retrieve Douyin comment threads or replies with a SocialDataX API key, then summarize themes, sentiment signals, objections, pain points, FAQs, and discussion patterns. The artifact also documents Weibo and WeChat Channels comment retrieval, so users should review the broader platform coverage before use. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires SOCIALDATAX_API_KEY for SocialDataX data calls. <br>
-Mitigation: Install it only when comfortable granting the SocialDataX CLI access to that key, keep the key in environment variables, and review retrieved data before sharing it. <br>
-Risk: The Douyin-focused listing understates that the artifact also documents Weibo and WeChat Channels comment retrieval. <br>
-Mitigation: Review the broader platform coverage before use and constrain prompts, CLI commands, or MCP calls to the intended platform. <br>
-Risk: Unbounded pagination options such as --all can retrieve more comments than intended. <br>
-Mitigation: Use page limits or --max-items for controlled retrieval unless exhaustive collection is explicitly required. <br>
+## Use Case:
 
+Social media analysts and content teams use this skill to retrieve Douyin comments and replies, then summarize audience feedback, sentiment themes, objections, pain points, FAQs, and discussion topics.
 
-## Reference(s): <br>
-- [SocialDataX API access homepage](https://socialdatax.52choujiang.com/?from=clawhub) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API Calls, JSON, Markdown, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include paginated comment data, merged item counts, reply metadata, media URLs, and analysis summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.8 (source: server release evidence) <br>
+Risk: The skill invokes an unpinned package that can access the user's credentials; the security scan marked it suspicious and was partial.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the package, pin it to a vetted version, and control its update process before installation or execution.
+
+## Reference(s):
+
+- [SocialDataX API access](https://socialdatax.com/ai?from=clawhub)
+- [ClawHub skill release](https://clawhub.ai/devinchen2014/skills/socialdatax-douyin-comments)
+- [Publisher profile](https://clawhub.ai/user/devinchen2014)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Text, JSON]
+
+**Output Format:** [Text or Markdown summaries; retrieved comment data is returned as JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include page and item counts and pagination status for multi-page results.]
+
+## Skill Version(s):
+
+0.1.24 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

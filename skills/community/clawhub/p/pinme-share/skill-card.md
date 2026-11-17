@@ -1,43 +1,58 @@
-## Description: <br>
-Upload local files or directories to PinMe public IPFS and return a short shareable URL. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Uploads local files or directories to PinMe public IPFS and returns short shareable pinit.eth.limo URLs, with commands for AppKey setup, upload history, unpinning, wallet checks, and logout.
 
-## Publisher: <br>
-[songhonglei](https://clawhub.ai/user/songhonglei) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[songhonglei](https://clawhub.ai/user/songhonglei)
 
-## Use Case: <br>
-Developers and agent users use this skill to publish files, directories, or generated HTML to PinMe and get a public URL for sharing. It also supports setup, history, unpin, wallet, and logout workflows for PinMe accounts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can publicly publish local files to IPFS, where content may remain accessible after unpinning. <br>
-Mitigation: Use it only for files intended for public release and avoid private, credential, client, or unreleased material. <br>
-Risk: The helper may auto-install and invoke the PinMe npm CLI. <br>
-Mitigation: Preinstall and verify the PinMe CLI in controlled environments when possible. <br>
-Risk: A PinMe AppKey can be persisted locally for reuse. <br>
-Mitigation: Use PINME_APPKEY for temporary sessions when appropriate, inspect stored credentials, and run logout after testing. <br>
+## Use Case:
 
+Developers and AI-agent users use this skill to publish local files or static directories to public IPFS through PinMe, receive structured JSON containing a shareable URL, and manage related PinMe account actions such as history, wallet, unpinning, and AppKey configuration.
 
-## Reference(s): <br>
-- [ClawHub Pinme Share page](https://clawhub.ai/songhonglei/pinme-share) <br>
-- [PinMe service](https://pinme.eth.limo) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and final-line JSON output from the upload helper] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uploads may produce public PinMe/IPFS URLs; warnings and progress are sent to stderr while structured results are emitted as JSON on stdout.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata and artifact README changelog) <br>
+Risk: Files uploaded through PinMe are published to public IPFS and may remain accessible even after unpinning.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for files intended to be public; keep upload warnings enabled and require explicit confirmation before upload or unpin operations.
+
+Risk: The skill can automatically install the pinme npm CLI without a pinned package version.
+
+Mitigation: In managed environments, preinstall and audit a known pinme CLI version before enabling the skill.
+
+Risk: A PinMe AppKey may be configured through environment variables or persisted locally for reuse.
+
+Mitigation: Use a limited PinMe account/key, avoid placing the key directly on command lines, store it with restricted permissions, and clear or rotate it when no longer needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/songhonglei/skills/pinme-share)
+- [PinMe service](https://pinme.eth.limo)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, JSON, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with Python shell commands and final-line JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js, the pinme CLI, and a PinMe AppKey; uploads are limited to 200 MB per file and 1 GB per directory.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata and artifact SKILL.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

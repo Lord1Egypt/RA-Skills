@@ -1,44 +1,59 @@
-## Description: <br>
-Automates clicks on browser extension icons such as OpenClaw Browser Relay using system-level GUI automation for toolbar, extension icon, and system menu interactions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates clicks on browser extension icons, including OpenClaw Browser Relay, by using desktop GUI automation for toolbar, extension, and menu interactions.
 
-## Publisher: <br>
-[BinbinHihi](https://clawhub.ai/user/BinbinHihi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[binbinhihi](https://clawhub.ai/user/binbinhihi)
 
-## Use Case: <br>
-Developers and operators use this skill to let an agent run a Python GUI automation script that locates or clicks browser extension icons. It supports dry-run, screenshot, calibration, delay, browser, and coordinate options for desktop browser workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Desktop-level screen capture and mouse-click authority can interact with the wrong visible UI. <br>
-Mitigation: Use dry-run first, keep the intended browser window focused, and confirm coordinates or calibration before running a real click. <br>
-Risk: Screenshots can capture sensitive content from the visible desktop. <br>
-Mitigation: Close sensitive windows before screenshot use and delete generated screenshot files after review. <br>
-Risk: Automated clicks on login pages, wallet prompts, permission dialogs, or unknown coordinates can trigger unintended actions. <br>
-Mitigation: Avoid using the skill on sensitive prompts or unknown coordinates, and restrict use to expected browser extension UI. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to locate and click browser extension toolbar icons with coordinates, calibration, template matching, dry-run checks, and optional screenshots.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/BinbinHihi/openclaw-browser-extension-clicker) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance, Files] <br>
-**Output Format:** [Markdown guidance with bash command examples; the script emits terminal text and can optionally save PNG screenshots.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May move and click the desktop mouse and may save screenshot files when requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Desktop automation can click the wrong browser control or another foreground window.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use dry-run or calibration first, keep the intended browser focused, and verify coordinates before allowing an actual click.
+
+Risk: Optional screenshots can capture passwords, documents, or other sensitive on-screen content.
+
+Mitigation: Avoid visible sensitive material when screenshots are enabled and remove generated screenshots after calibration or review.
+
+Risk: The skill requires desktop automation and screen-recording permissions and installs Python GUI dependencies.
+
+Mitigation: Grant only the permissions needed for the run and prefer pinned dependency versions inside an isolated virtual environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/binbinhihi/skills/openclaw-browser-extension-clicker)
+- [README](artifact/README.md)
+- [Skill definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and CLI arguments]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose or run a Python desktop automation command that clicks the focused browser and can optionally save a screenshot.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

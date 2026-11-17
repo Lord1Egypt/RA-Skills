@@ -1,38 +1,53 @@
-## Description: <br>
-Enables agents to control GIMP through CLI-Anything for image-editing tasks such as creating projects, managing layers, applying filters, and exporting images. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enables agents to control GIMP through CLI-Anything for image creation, layer editing, canvas changes, filters, drawing, exports, and batch processing.
 
-## Publisher: <br>
-[Sly27](https://clawhub.ai/user/Sly27) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sly27](https://clawhub.ai/user/sly27)
 
-## Use Case: <br>
-Developers and other agent users can use this skill to run GIMP image-editing workflows from command-line prompts, including project creation, layer operations, filters, drawing, batch processing, and export. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Image-editing commands may modify or overwrite user files when input and output paths are ambiguous. <br>
-Mitigation: Give explicit input and output paths, prefer new filenames for exports, and require confirmation before overwriting or modifying original files. <br>
+## Use Case:
 
+Developers and agents use this skill to automate GIMP image-editing workflows from the command line, including project setup, layer operations, filters, drawing, export, and batch processing.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Sly27/cli-anything-gimp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The referenced CLI can emit JSON or human-readable command output depending on invocation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Editable local dependency installation can execute code from the local CLI-Anything agent-harness source.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in a dedicated virtual environment and verify the local agent-harness source before running the editable install.
+
+Risk: Image export commands can overwrite existing files when output paths collide.
+
+Mitigation: Choose output filenames carefully and review target paths before exporting generated or edited images.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sly27/skills/cli-anything-gimp)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, JSON, Text, Files]
+
+**Output Format:** [Markdown guidance with shell commands; CLI output may be human-readable text or JSON, and image exports are written as files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a local GIMP installation and the documented CLI-Anything GIMP environment.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

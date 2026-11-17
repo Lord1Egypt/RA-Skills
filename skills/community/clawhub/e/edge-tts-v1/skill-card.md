@@ -1,44 +1,59 @@
-## Description: <br>
-Text-to-speech conversion using node-edge-tts for generating audio from text with support for multiple voices, languages, speed adjustment, pitch control, and subtitle generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Text-to-speech conversion using node-edge-tts for generating audio from text with configurable voices, languages, speed, pitch, and subtitle generation.
 
-## Publisher: <br>
-[onlyloveher](https://clawhub.ai/user/onlyloveher) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[onlyloveher](https://clawhub.ai/user/onlyloveher)
 
-## Use Case: <br>
-Developers and agent operators use this skill to convert requested text, summaries, or messages into spoken audio with configurable voice, language, rate, pitch, volume, output format, and optional subtitles. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Converted text is sent to Microsoft Edge's online TTS service. <br>
-Mitigation: Avoid converting secrets or highly sensitive personal data. <br>
-Risk: Generated audio, subtitle, and configuration files may remain on local disk. <br>
-Mitigation: Clean generated files and stored preferences when retention is not desired. <br>
-Risk: Installation uses npm dependencies. <br>
-Mitigation: Review dependency installation in the target environment before deployment. <br>
+## Use Case:
 
+Developers and agents use this skill to convert requested text into spoken audio, choose Microsoft Edge neural voices, adjust prosody, and optionally produce subtitle timing data.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/onlyloveher/edge-tts-v1) <br>
-- [node-edge-tts Reference](references/node_edge_tts_guide.md) <br>
-- [Voice testing service](https://tts.travisvn.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline JavaScript and shell command examples; generated agent workflows may produce MP3 audio files and optional JSON subtitle files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The bundled scripts send text to Microsoft Edge's online TTS service, can save persistent preferences in a local JSON config file, and can write generated audio/subtitle files to a temp or user-specified path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: Converted text is sent to Microsoft Edge's online TTS service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid converting secrets, personal data, or proprietary text unless the user has permission and the service use is acceptable.
+
+Risk: Generated audio can remain in a temporary directory or user-selected output path.
+
+Mitigation: Clean temporary audio files after use or choose a trusted output location with appropriate access controls.
+
+Risk: The release relies on npm dependencies and was flagged for dependency-pattern review.
+
+Mitigation: Review, update, or pin dependencies before using the skill in shared or production environments.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/onlyloveher/skills/edge-tts-v1)
+- [node-edge-tts Reference](references/node_edge_tts_guide.md)
+- [Voice Testing](https://tts.travisvn.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, files]
+
+**Output Format:** [Markdown guidance with inline JavaScript and bash examples; generated artifacts are MP3 audio files and optional JSON subtitles.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires internet access to Microsoft Edge's online TTS service; generated audio may be retained locally until cleaned up.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

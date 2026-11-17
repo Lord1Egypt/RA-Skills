@@ -1,43 +1,57 @@
-## Description: <br>
-Kling O3 video generation on PoYo / poyo.ai via `https://api.poyo.ai/api/generate/submit`; use for `kling-o3/standard`, `kling-o3/pro`, text-to-video, image-to-video, reference-to-video, multi_shots, multi_prompt, sound, aspect ratio control, element references, polling, and webhooks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents prepare, submit, and follow up on Kling O3 video generation jobs through PoYo.
 
-## Publisher: <br>
-[coolhackboy](https://clawhub.ai/user/coolhackboy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[coolhackboy](https://clawhub.ai/user/coolhackboy)
 
-## Use Case: <br>
-Developers and agents use this skill to prepare and submit PoYo Kling O3 video generation jobs, including text-to-video, image-to-video, reference-to-video, and multi-shot workflows. It also guides polling, webhook follow-up, and safe handling of API keys and private media. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a PoYo API key and can submit requests to an external video generation service. <br>
-Mitigation: Keep `POYO_API_KEY` in a server-side environment or secret manager, avoid exposing it in client code, logs, screenshots, or chat output, and make live API calls only when explicitly requested. <br>
-Risk: Prompts, source images, reference images, generated videos, and callback URLs may be sensitive. <br>
-Mitigation: Submit sensitive media, prompts, or callback URLs only when the user trusts PoYo and the callback receiver. <br>
+## Use Case:
 
+Developers and agents use this skill to build PoYo Kling O3 text-to-video, image-to-video, reference-to-video, and multi-shot requests, then submit jobs and explain polling or webhook follow-up.
 
-## Reference(s): <br>
-- [PoYo Kling O3 API Reference](references/api.md) <br>
-- [PoYo Kling O3 Documentation](https://docs.poyo.ai/api-manual/video-series/kling-o3) <br>
-- [PoYo Kling O3 Model Page](https://poyo.ai/models/kling-o3) <br>
-- [ClawHub Skill Page](https://clawhub.ai/coolhackboy/skills/poyo-kling-o3) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with JSON payloads and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include model selection, request payloads, curl commands, task IDs, polling guidance, and webhook guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Prompts, source image URLs, reference image URLs, generated-video job data, and callback URLs are sent to PoYo.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when PoYo is acceptable for that data, avoid confidential media or prompts, and use callback URLs only for trusted HTTPS endpoints you control.
+
+Risk: POYO_API_KEY can authorize video-generation API requests if exposed.
+
+Mitigation: Keep POYO_API_KEY in server-side environment variables or a backend secret manager and avoid placing it in browser code, public repositories, logs, screenshots, or chat output.
+
+## Reference(s):
+
+- [PoYo Kling O3 API Reference](references/api.md)
+- [PoYo Kling O3 model page](https://poyo.ai/models/kling-o3-api)
+- [PoYo Kling O3 API docs](https://docs.poyo.ai/api-manual/video-series/kling-o3)
+- [ClawHub skill page](https://clawhub.ai/coolhackboy/skills/poyo-kling-o3)
+- [Publisher profile](https://clawhub.ai/user/coolhackboy)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with JSON payloads and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include model selection, request type, payload details, returned task_id, and polling or webhook next steps.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

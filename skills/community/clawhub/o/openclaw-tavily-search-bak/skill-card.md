@@ -1,42 +1,54 @@
-## Description: <br>
-Web search via Tavily API as an alternative to Brave web_search, returning relevant titles, URLs, snippets, and optional short answer summaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches the web through the Tavily API when an agent needs sources, links, snippets, or short answer summaries as an alternative to Brave web_search.
 
-## Publisher: <br>
-[make453](https://clawhub.ai/user/make453) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[make453](https://clawhub.ai/user/make453)
 
-## Use Case: <br>
-Developers and agent operators use this skill to add web search through Tavily when Brave web_search is unavailable or not preferred. It is suited for retrieving compact search results with URLs, snippets, and optional answer summaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search queries and related context are sent to Tavily using the user's API key. <br>
-Mitigation: Use a Tavily-specific API key with sensible limits and avoid sending secrets, sensitive personal data, or sensitive business information in queries. <br>
-Risk: The included artifact metadata lists a different slug and version than the server release evidence. <br>
-Mitigation: Use the server-resolved ClawHub release metadata as authoritative when confirming the installed package and version. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to let an agent run small, source-oriented Tavily web searches and return URLs, snippets, and optional summaries when built-in web search is unavailable or undesired.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/make453/openclaw-tavily-search-bak) <br>
-- [Tavily Search API endpoint](https://api.tavily.com/search) <br>
-- [Publisher profile](https://clawhub.ai/user/make453) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [JSON, Markdown list, or concise text snippets with source URLs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses TAVILY_API_KEY from the environment or ~/.openclaw/.env; max-results is clamped from 1 to 10; optional answer summaries are available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence.release.version) <br>
+Risk: Tavily receives the search queries submitted through this skill.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when that disclosure is acceptable, avoid sensitive queries, and review Tavily account and API usage policies separately.
+
+Risk: The skill reads TAVILY_API_KEY from the environment or ~/.openclaw/.env.
+
+Mitigation: Keep ~/.openclaw/.env limited to intended OpenClaw secrets and protect access to the Tavily API key.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/make453/skills/openclaw-tavily-search-bak)
+- [Tavily Search API endpoint](https://api.tavily.com/search)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON]
+
+**Output Format:** [JSON or compact Markdown search results with titles, URLs, snippets, and optional answer summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results are capped by the script and the skill recommends keeping max-results small, typically 3 to 5.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

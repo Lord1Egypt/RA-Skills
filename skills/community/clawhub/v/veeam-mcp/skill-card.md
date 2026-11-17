@@ -1,46 +1,64 @@
-## Description: <br>
-Query Veeam Backup & Replication and Veeam ONE via MCP server running in Docker. Provides intelligent backup monitoring, job analysis, capacity planning, and infrastructure health checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query Veeam Backup & Replication and Veeam ONE via MCP server running in Docker. Provides intelligent backup monitoring, job analysis, capacity planning, and infrastructure health checks.
 
-## Publisher: <br>
-[JGM2025](https://clawhub.ai/user/JGM2025) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[jgm2025](https://clawhub.ai/user/jgm2025)
 
-## Use Case: <br>
-Developers, backup administrators, and infrastructure operators use this skill to ask natural-language questions about Veeam Backup & Replication and Veeam ONE status, alerts, job history, repository capacity, and backup health. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on an external beta Veeam MCP server and Docker image for access to backup infrastructure. <br>
-Mitigation: Install only after verifying the MCP server package and Docker image came from a trusted Veeam source. <br>
-Risk: The skill uses long-lived administrator credentials for Veeam Backup & Replication or Veeam ONE. <br>
-Mitigation: Use a dedicated least-privilege account, protect the credential file with restrictive permissions, and rotate credentials regularly. <br>
-Risk: The scripts allow self-signed certificate acceptance for HTTPS connections. <br>
-Mitigation: Prefer trusted TLS certificates and review any self-signed certificate exception before use. <br>
-Risk: The interactive MCP script can expose broad server tool access if run before reviewing available tools and permissions. <br>
-Mitigation: Review the MCP server's available tools and configured permissions before using the interactive session. <br>
+## Use Case:
 
+Developers and infrastructure operators use this skill to query Veeam Backup & Replication and Veeam ONE from an agent workflow for backup monitoring, job analysis, alert review, capacity planning, and infrastructure health checks.
 
-## Reference(s): <br>
-- [ClawHub Veeam MCP Release](https://clawhub.ai/JGM2025/veeam-mcp) <br>
-- [Model Context Protocol](https://modelcontextprotocol.io/) <br>
-- [Veeam Intelligence Documentation](https://helpcenter.veeam.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Responses depend on the configured Docker MCP server, Veeam Intelligence availability, and the permissions of the local Veeam credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: The skill handles powerful Veeam backup-system credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated least-privilege Veeam account and restrict the local credentials file permissions before installation.
+
+Risk: Troubleshooting and command-line use can expose credential material if users print or share local configuration.
+
+Mitigation: Do not print, paste, log, or share the credentials file or command output containing secrets.
+
+Risk: The skill configures HTTPS connections with self-signed certificate acceptance.
+
+Mitigation: Require trusted certificates or certificate pinning for production use.
+
+Risk: The skill depends on a Veeam MCP Docker image obtained outside the skill artifact.
+
+Mitigation: Run only a Veeam MCP Docker image whose source and exact digest have been verified.
+
+## Reference(s):
+
+- [Model Context Protocol](https://modelcontextprotocol.io/)
+- [Veeam Intelligence Documentation](https://helpcenter.veeam.com/)
+- [OpenClaw Docs](https://docs.openclaw.ai)
+- [ClawHub Skill Page](https://clawhub.ai/jgm2025/skills/veeam-mcp)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May relay Veeam MCP query responses when the user provides configured access to Veeam services.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

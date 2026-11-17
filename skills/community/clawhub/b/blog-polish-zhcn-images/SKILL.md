@@ -1,8 +1,8 @@
 ---
 name: blog-polish-zhcn-images
-description: Polish a technical blog draft into an 1000–1200 word, 4-5 section zh-CN article, preserve technical terms/code, and generate consistent hero + per-section image prompts when the user asks to polish and translate a blog with images.
+description: Polish a technical blog draft into an 800–1000 word, 3–4 section zh-CN article, preserve technical terms/code, and generate consistent hero + per-section image prompts when the user asks to polish and translate a blog with images.
 author: Jeff Yang
-version: 1.0.6
+version: 1.0.5
 tags: [openclaw, clawhub, blog, polish, translate, zh-cn, markdown, images, prompts]
 metadata:
   openclaw:
@@ -117,7 +117,7 @@ This skill takes a technical blog draft and turns it into a publish-ready packag
 - **Structure**: reorganize into **3–4 sections total** (not more)
 - **Length**: final content **1000–1200 words**
 - **Translation**: **English → Simplified Chinese**, while preserving:
-  - technical terms like `skills`, `plugin`, `openclaw`, `clawhub`
+  - technical terms like `skills`, `plugin`, `OpenClaw`, `ClawHub`
   - code blocks and commands (no translation inside code fences)
   - inline code spans (backticks) as-is unless obviously wrong
 - **Images**: generate a **hero prompt** + **one prompt per section**, all in the same style/tone
@@ -154,7 +154,7 @@ If not provided via input:
 2. Create a timestamp prefix `ts` in **yymmddhhmm** format (Linux/macOS):
 
 ```
-date +"%y%m%d%H%M"
+date +"%y%m%d%H"
 ```
 
 1. Ensure output dir exists (shell is fine):
@@ -195,12 +195,12 @@ Translate the full draft into zh-CN with these hard rules:
 - Keep **code fences** unchanged (commands/code stay exactly the same)
 - Keep **inline code** (backticks) unchanged unless it contains an obvious typo
 - Keep common technical terms in English (examples):
-  - `skills`, `plugin`, `openclaw`, `clawhub`, `cli`, `markdown`, `yaml`
+  - `skills`, `plugin`, `OpenClaw`, `ClawHub`, `CLI`, `Markdown`, `YAML`
 - If a technical term has a standard Chinese translation but the English term is common in your audience, keep the English term and (optionally) add a short Chinese clarification once on first use
 
 ### Step 5 — Enforce Length (1000–1200 Words) Without Cutting Meaning
 
-Target final length 1000–1200 words (counting Chinese words approximately by rough equivalence).
+Target final length 800–1000 words (counting Chinese words approximately by rough equivalence).
 
 To fit without “reducing content”:
 

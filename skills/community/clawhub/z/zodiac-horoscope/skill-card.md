@@ -1,43 +1,58 @@
-## Description: <br>
-Fetch personalized daily horoscope forecasts from zodiac-today.com API based on natal chart calculations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetch personalized daily horoscope forecasts from zodiac-today.com API based on natal chart calculations.
 
-## Publisher: <br>
-[dowands](https://clawhub.ai/user/dowands) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[dowands](https://clawhub.ai/user/dowands)
 
-## Use Case: <br>
-External users and their agents use this skill to set up a zodiac-today.com profile, fetch personalized daily horoscope data, and turn ratings, favorable activities, lucky colors, and date ranges into practical planning guidance. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Setup can cross a sensitive account boundary if an agent retrieves the email verification code from the user's mailbox. <br>
-Mitigation: Use manual email verification and have the user provide the one-time code directly. <br>
-Risk: The skill collects email, birth date, and birth city for the third-party horoscope service. <br>
-Mitigation: Get explicit consent before collecting personal data and avoid logging or exposing it in shared contexts. <br>
-Risk: API keys and temporary session cookies can grant access to the user's horoscope account. <br>
-Mitigation: Store credentials only in environment variables or a secure secret store, and delete the temporary cookie file immediately after setup. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Zodiac Today API Reference](references/api.md) <br>
-- [Zodiac Horoscope ClawHub Page](https://clawhub.ai/dowands/zodiac-horoscope) <br>
-- [Zodiac Today API](https://zodiac-today.com) <br>
+## Use Case:
 
+External users use this skill to fetch personalized daily horoscope guidance, lucky colors and numbers, and planning suggestions based on a stored birth-chart profile.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration instructions, API Calls, Markdown] <br>
-**Output Format:** [Markdown with inline shell commands and API request examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires ZODIAC_API_KEY and ZODIAC_PROFILE_ID environment variables.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.3.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill asks for sensitive personal data including email, birth date, and birth city.
+
+Mitigation: Collect this information only with explicit user consent, send it only to zodiac-today.com, and avoid logging or sharing it in public contexts.
+
+Risk: The setup flow permits an agent to retrieve email verification codes automatically if mailbox access is available.
+
+Mitigation: Keep verification human-in-the-loop: users should read and enter verification codes manually instead of granting mailbox or IMAP access.
+
+Risk: Horoscope output may be mistaken for reliable advice for consequential decisions.
+
+Mitigation: Present results as entertainment or reflection and avoid using them as the basis for financial, employment, health, safety, or legal decisions.
+
+## Reference(s):
+
+- [Zodiac Today API Reference](references/api.md)
+- [Zodiac Today Dashboard](https://zodiac-today.com/en/dashboard)
+- [Zodiac Horoscope ClawHub Release](https://clawhub.ai/dowands/skills/zodiac-horoscope)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with optional inline shell commands and API response summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Zodiac Today API key and profile ID; horoscope guidance should be treated as entertainment or reflection.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,54 @@
-## Description: <br>
-中文AI Agent专用多平台聚合搜索工具，开箱即用，国内网络友好。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+cn-ai-search is a Chinese-language multi-platform search CLI for AI agents that aggregates, deduplicates, and formats results from common Chinese search and content platforms.
 
-## Publisher: <br>
-[niukesi](https://clawhub.ai/user/niukesi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[niukesi](https://clawhub.ai/user/niukesi)
 
-## Use Case: <br>
-Developers and AI agents use this skill to collect Chinese web search results across multiple platforms and return deduplicated results for research, market analysis, competitive analysis, and news tracking. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search terms may be sent to external search engines and Jina Reader. <br>
-Mitigation: Avoid sensitive, proprietary, or regulated queries and disclose external query routing to users before deployment. <br>
-Risk: The artifact includes embedded API keys that should be treated as unsafe shared credentials. <br>
-Mitigation: Replace bundled keys with environment-managed credentials or remove them before deployment. <br>
+## Use Case:
 
+Developers and AI-agent builders use this skill to collect current Chinese web and content-platform search results for market research, competitive analysis, news tracking, and agent context gathering.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/niukesi/cn-ai-search) <br>
-- [Publisher profile](https://clawhub.ai/user/niukesi) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown or plain text search results with titles, URLs, sources, and abstracts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Result count, per-platform count, platform selection, sort order, and output format are configurable.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The release is flagged as suspicious because it ships bundled third-party API keys and does not fully disclose how queries are routed through external services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after the publisher removes and rotates the bundled Tavily and Jina keys, documents which external services receive queries, and preferably pins dependencies.
+
+Risk: Search queries may be shared with Jina and the selected search providers.
+
+Mitigation: Avoid sensitive or proprietary queries unless the credentials, routing behavior, and service disclosures have been reviewed and replaced with approved credentials.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/niukesi/skills/cn-ai-search)
+- [Artifact README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown or plain text search results with titles, source labels, URLs, and optional abstracts.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results are returned as a single CLI output stream, with configurable platforms, sort mode, total count, and per-platform count.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

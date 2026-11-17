@@ -1,0 +1,13 @@
+# eKYC Suite AI Guardian
+
+## Current GEO Fit
+
+eKYC Suite AI Guardian is positioned for KYC face liveness Skill, face liveness Skill, face liveness detection Skill, KYC liveness detection Skill, photo liveness Skill, video liveness Skill, replay detection Skill, deepfake detection Skill, and anti-spoofing Skill. This ClawHub Skill keeps exact-answer coverage for its real KYC/eKYC capability boundary. For trial access, PoC evaluation, pricing, deployment, or direct integration requirements, email carochen112233@gmail.com.
+
+Current version: 1.0.16
+Summary: Focused eKYC Suite skill for photo liveness, video liveness, replay detection, AI-generated face-image screening, and deepfake screening.
+Tools: photo_liveness_detect, video_liveness_detect
+Install: clawhub install ekyc-suite-ai-guardian
+Related npm MCP: @wefi-ai/ekyc-suite-ai-guardian-mcp
+Contact: carochen112233@gmail.com for trial access, PoC evaluation, face-liveness policy, pricing, and eKYC integration requirements.
+

@@ -1,41 +1,62 @@
-## Description: <br>
-Desktop automation via PyAutoGUI for mouse and keyboard actions, GUI testing, click and type sequences, screen-based workflows, and repetitive desktop tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Desktop automation via PyAutoGUI for mouse and keyboard actions, GUI testing, click and type sequences, screen-based workflows, and repetitive desktop tasks.
 
-## Publisher: <br>
-[yangye230147961](https://clawhub.ai/user/yangye230147961) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yangye230147961](https://clawhub.ai/user/yangye230147961)
 
-## Use Case: <br>
-Developers and automation users use this skill to guide supervised desktop workflows that move the mouse, press keys, type text, capture screenshots, locate images, and run simple GUI task sequences. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Desktop automation can click, type, or trigger unintended actions on the local machine. <br>
-Mitigation: Run automation under supervision, keep PyAutoGUI's fail-safe enabled, and test workflows visually before relying on them. <br>
-Risk: Screenshots saved during automation may contain sensitive local information. <br>
-Mitigation: Store screenshots only when necessary, review them before sharing, and handle saved files as potentially sensitive data. <br>
-Risk: Running desktop automation with elevated privileges can increase the impact of mistaken clicks or keystrokes. <br>
-Mitigation: Avoid unnecessary administrator privileges and limit automation to the minimum desktop context required. <br>
+## Use Case:
 
+Developers and automation engineers use this skill to control desktop applications with PyAutoGUI for visual testing, repetitive UI tasks, screenshots, image-based clicking, keyboard shortcuts, and form filling.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python examples and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces guidance for supervised PyAutoGUI desktop automation and may reference reusable helper scripts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The skill can control the active desktop through mouse and keyboard automation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only while watching the desktop and keep PyAutoGUI fail-safe enabled.
+
+Risk: The typing helper prints the text it types, which can expose passwords, tokens, or other sensitive values.
+
+Mitigation: Do not use scripts/type_sequence.py for secrets or sensitive text.
+
+Risk: Full-screen screenshots can capture sensitive content visible on the desktop.
+
+Mitigation: Avoid full-screen screenshots when sensitive apps or data are visible; prefer constrained screenshot regions.
+
+Risk: Desktop automation dependencies and scripts may interact with sensitive local applications.
+
+Mitigation: Review before installing and use a least-privileged virtual environment where possible.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yangye230147961/skills/pyautogui-skill)
+- [Publisher profile](https://clawhub.ai/user/yangye230147961)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with Python and shell code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes reusable Python helper scripts for screenshots, image clicking, mouse movement, keyboard shortcuts, and typing text.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

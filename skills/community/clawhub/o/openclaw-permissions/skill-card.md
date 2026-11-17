@@ -1,41 +1,54 @@
-## Description: <br>
-Audits OpenClaw permissions and access rights from local OpenClaw configuration files, then produces a structured Markdown report with sensitive values masked. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audits OpenClaw configuration files and produces a structured Markdown permissions report covering API credentials, channel access, gateway settings, tool execution rules, command permissions, device identity, and internal hooks with sensitive values masked.
 
-## Publisher: <br>
-[rushingai](https://clawhub.ai/user/rushingai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rushingai](https://clawhub.ai/user/rushingai)
 
-## Use Case: <br>
-Developers and operators use this skill to review what OpenClaw can access across configured API credentials, channels, gateway settings, tools, commands, device identity, and internal hooks before sharing or changing those permissions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The report may reveal operational details such as enabled channels, permission scopes, gateway settings, and partial identifiers. <br>
-Mitigation: Review the generated report before sharing it outside the intended audience. <br>
-Risk: The skill requires access to local OpenClaw configuration and identity files to perform the audit. <br>
-Mitigation: Install and run it only when that inspection is expected, and keep secret values masked in any report output. <br>
+## Use Case:
 
+Developers, operators, and security reviewers use this skill to inspect what permissions and integrations an OpenClaw installation has configured. It helps summarize access posture while masking credentials, tokens, private keys, and full identifiers.
 
-## Reference(s): <br>
-- [OpenClaw Permissions Audit on ClawHub](https://clawhub.ai/rushingai/openclaw-permissions) <br>
-- [rushingai publisher profile](https://clawhub.ai/user/rushingai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, guidance] <br>
-**Output Format:** [Structured Markdown report with tables and grouped lists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Sensitive values are masked; missing, empty, or unreadable fields are called out in the report.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The generated permissions report can reveal enabled providers, gateway exposure, approval rules, operator scopes, and channel access patterns even when secrets are masked.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the report as sensitive operational security material and share it only with reviewers who need to assess the OpenClaw installation.
+
+Risk: The skill reads local OpenClaw configuration files that may contain credentials, private keys, tokens, user identifiers, and socket details.
+
+Mitigation: Follow the skill's masking rules: never output full secrets, private keys, passwords, full user IDs, full device IDs, or expanded local file paths.
+
+## Reference(s):
+
+- [OpenClaw Permissions Audit on ClawHub](https://clawhub.ai/rushingai/skills/openclaw-permissions)
+- [rushingai publisher profile](https://clawhub.ai/user/rushingai)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Guidance]
+
+**Output Format:** [Markdown report with tables and grouped lists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Masks sensitive values and reports missing, empty, or unreadable fields explicitly.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

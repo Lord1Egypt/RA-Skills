@@ -1,37 +1,49 @@
-## Description: <br>
-Creates structured software implementation plans with phases, ordered steps, dependencies, verification methods, and assumptions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create comprehensive implementation plans for software projects, including phases, steps, dependencies, verification methods, and assumptions.
 
-## Publisher: <br>
-[pigd0g](https://clawhub.ai/user/pigd0g) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pigd0g](https://clawhub.ai/user/pigd0g)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to turn software build requests into clear implementation plans before coding begins. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A generated implementation plan could contain incorrect assumptions or guidance that leads to poor engineering choices if followed blindly. <br>
-Mitigation: Review the plan before handing it to a coding agent or executing any recommended commands. <br>
+## Use Case:
 
+Developers and engineering teams use this skill when they need an agent to clarify requirements and produce a structured implementation plan before coding begins.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown implementation plan] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Planning-only; does not edit files or execute commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill intentionally keeps the agent in planning mode until the user explicitly approves implementation, which can slow direct coding work.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it when planning is desired, then explicitly approve implementation before expecting code changes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/pigd0g/skills/code-planning-agent)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Text]
+
+**Output Format:** [Markdown implementation plan]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Plans include phases, ordered steps, dependencies, verification steps, decisions, assumptions, and open questions when needed.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

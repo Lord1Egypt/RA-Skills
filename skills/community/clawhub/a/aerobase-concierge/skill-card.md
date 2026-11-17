@@ -1,43 +1,54 @@
-## Description: <br>
-Aerobase Concierge is an autonomous jetlag concierge that auto-scores flights, monitors deals, generates recovery plans, and guards itineraries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Autonomous jetlag concierge - auto-scores flights, monitors deals, generates recovery plans, and guards itineraries.
 
-## Publisher: <br>
-[kurosh87](https://clawhub.ai/user/kurosh87) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[kurosh87](https://clawhub.ai/user/kurosh87)
 
-## Use Case: <br>
-External travelers and travel-focused agents use this skill to evaluate flight timing, monitor travel options, generate jetlag recovery plans, and present concise travel guidance with quantified tradeoffs. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill requires an Aerobase API key and may share travel preferences or itinerary details with the Aerobase service. <br>
-Mitigation: Use a revocable or scoped key where available, monitor API usage, and avoid sharing unnecessary loyalty or trip details. <br>
-Risk: The skill can guide booking, purchase, cancellation, or account-change decisions. <br>
-Mitigation: Require explicit user confirmation before any real booking, purchase, cancellation, or account change. <br>
-Risk: Flight scores, deal monitoring, and recovery guidance may be incomplete or misleading if travel data is stale or user context is wrong. <br>
-Mitigation: Review recommendations before acting and confirm itinerary, budget, loyalty, and chronotype details when the decision is material. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Aerobase Concierge on ClawHub](https://clawhub.ai/kurosh87/aerobase-concierge) <br>
-- [Aerobase publisher profile](https://clawhub.ai/user/kurosh87) <br>
-- [Aerobase API](https://aerobase.app/api) <br>
+## Use Case:
 
+External travelers and travel assistants use this skill to compare flight jetlag impact, monitor travel deals, produce recovery plans, and guard upcoming itineraries with quantified recommendations.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with shell setup commands and structured JSON-render examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires AEROBASE_API_KEY and may call the Aerobase API with travel context; responses can include structured data envelopes and rendered travel cards.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may make proactive API calls or monitor travel context before the user expects that behavior.
+
+Mitigation: Require clear user opt-in before deal monitoring, itinerary guarding, or other autonomous checks.
+
+Risk: The skill may infer or retain sensitive travel preferences such as home airport, loyalty programs, chronotype, and upcoming trips.
+
+Mitigation: Collect only the travel details needed for the current task and avoid sharing loyalty or trip information unless the user trusts Aerobase's data handling.
+
+## Reference(s):
+
+- [Aerobase API base URL](https://aerobase.app/api)
+- [Aerobase Concierge ClawHub page](https://clawhub.ai/kurosh87/skills/aerobase-concierge)
+- [Publisher profile](https://clawhub.ai/user/kurosh87)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, API calls, configuration, guidance]
+
+**Output Format:** [Markdown with concise recommendations, quantified scores, API setup commands, and JSON-render card examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include structured travel card payloads for lounges, hotels, credit cards, and loyalty programs.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

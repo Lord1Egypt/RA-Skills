@@ -1,40 +1,53 @@
-## Description: <br>
-Daily tracks X (x.com) hot-topic posts and produces a concise Chinese anti-FOMO brief across AI, LLM, and China, Singapore, and US social topics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+每日追踪并推送 X（x.com）热点话题新闻简报，默认覆盖 AI、LLM、中国社会热点、新加坡社会热点和美国社会热点，并输出反 FOMO 的必知事项、可忽略噪音和 10 分钟行动建议。
 
-## Publisher: <br>
-[hmzo](https://clawhub.ai/user/hmzo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[hmzo](https://clawhub.ai/user/hmzo)
 
-## Use Case: <br>
-Users ask an agent to monitor X trends with a browser and summarize the most useful daily signals in Chinese. The skill is aimed at fast situational awareness across AI, LLM, and regional social news while filtering duplicated, low-quality, or scam-like posts. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill directs the agent to use the regular Chrome profile for X, which may reuse a logged-in personal session. <br>
-Mitigation: Use a dedicated browser profile or logged-out session, keep collection read-only, and review before installing if regular Chrome session reuse is not acceptable. <br>
-Risk: X posts can include misleading claims, scams, or low-quality trend amplification. <br>
-Mitigation: Filter scam-like and unsourced posts as the skill describes, and verify important claims outside X before acting on them. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [X Hot Topics Daily on ClawHub](https://clawhub.ai/hmzo/x-hot-topics-daily) <br>
-- [X Explore](https://x.com/explore/tabs/for_you) <br>
+## Use Case:
 
+External users use this skill to have an agent browse X search and trend surfaces with an existing browser session, filter low-quality or suspicious posts, and produce a concise Chinese daily briefing. It is aimed at readers who want fast awareness of AI, LLM, and regional public-interest topics without manually scanning feeds.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Chinese Markdown brief with prioritized highlights, ignored noise, action steps, and risk notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Default topics are AI, LLM, China social topics, Singapore social topics, and US social topics; output emphasizes two must-know items, three ignorable items, and a ten-minute action plan.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill reads X trends and search results through a browser session, so summaries may reflect rumors, low-quality posts, or misleading engagement signals.
+
+Mitigation: Review the generated briefing for accuracy and source quality before acting on it, especially for breaking news or public-safety topics.
+
+Risk: Using an existing Chrome/X session may expose personalized feed context to the agent during browsing.
+
+Mitigation: Install and run the skill only when browser-based access to the user's X session is intended.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/hmzo/skills/x-hot-topics-daily)
+- [X Explore](https://x.com/explore/tabs/for_you)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Chinese Markdown-style briefing with sections for must-know items, ignorable noise, quick actions, and risk reminders]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Prioritizes recent X posts, filters likely scams and low-quality rumors, and summarizes selected topics into concise human-facing recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

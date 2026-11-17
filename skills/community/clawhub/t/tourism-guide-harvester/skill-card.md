@@ -1,43 +1,62 @@
-## Description: <br>
-Collects high-ranking travel guide content from Xiaohongshu, Mafengwo, Ctrip, WeChat public accounts, and related platforms, then consolidates the findings into a weighted travel guide document. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+从小红书、马蜂窝、携程和微信公众号等多平台抓取评分最高的旅游攻略，按平台优先级、发布时间和季节权重整合为综合旅行攻略文档。
 
-## Publisher: <br>
-[whhh1994](https://clawhub.ai/user/whhh1994) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[whhh1994](https://clawhub.ai/user/whhh1994)
 
-## Use Case: <br>
-Travel researchers, content operators, and agent users can use this skill to gather destination-specific travel posts from supported platforms, preserve source metrics, and produce a combined Markdown guide with weighted recommendations and source links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can automate a logged-in browser while scraping travel sites. <br>
-Mitigation: Use a separate Chrome profile or disposable accounts, keep only the needed session open, and close the CDP-enabled browser after the task completes. <br>
-Risk: The workflow references an external Xiaohongshu extraction helper for eval-based article extraction. <br>
-Mitigation: Review the helper script before use and run it only from a trusted local skill path. <br>
-Risk: Intermediate task, status, and data files can persist scraped content after the guide is generated. <br>
-Mitigation: Review generated files, keep only the final guide when appropriate, and use the documented approval-based cleanup flow with trash instead of permanent deletion. <br>
+## Use Case:
 
+Travel planners and content operators use this skill to collect recent, high-signal travel guides from specified Chinese travel and social platforms, preserve source-specific metrics, and produce a consolidated Markdown itinerary or destination guide. It is intended for agent workflows that can coordinate subagents, browser access, local task files, and user review when anti-automation checks appear.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/whhh1994/tourism-guide-harvester) <br>
-- [Publisher profile](https://clawhub.ai/user/whhh1994) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown travel guide with source tables, inline shell commands, and task/status/data file templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces platform-specific intermediate task files and a consolidated destination guide with source links, mention counts, and freshness or seasonality weighting.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.5.0 (source: server release evidence and artifact version history) <br>
+Risk: The launcher and browser workflow create review-worthy local execution and authenticated-browser risks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installation, run it with a low-privilege browser profile or account, and close unrelated authenticated tabs before connecting CDP.
+
+Risk: Destination inputs and harvested page text may be untrusted.
+
+Mitigation: Use trusted destination inputs, keep the skill's source-platform constraints intact, and review generated travel guidance and source links before publishing or acting on them.
+
+Risk: The workflow can evaluate an external xiaohongshu-crawler extraction script in the browser.
+
+Mitigation: Verify the extraction script before allowing browser eval and avoid running the launcher on untrusted text.
+
+Risk: Anti-automation checks, redirects, or platform blocks can interrupt collection or produce incomplete data.
+
+Mitigation: Pause on CAPTCHA or redirect events, request user confirmation or specific article URLs, and mark partial platform results clearly in the final guide.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/whhh1994/skills/tourism-guide-harvester)
+- [ClawHub publisher profile](https://clawhub.ai/user/whhh1994)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown travel-guide reports with source links, local task/status/data file templates, and inline shell or browser-command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Coordinates multi-platform collection, source weighting, mention counts, seasonal recency weighting, and final guide generation under user review.]
+
+## Skill Version(s):
+
+1.5.0 (source: release evidence and artifact/SKILL.md version history)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

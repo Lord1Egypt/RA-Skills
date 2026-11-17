@@ -1,0 +1,18 @@
+{
+  "task_id": "rt002",
+  "verifier_role": "evidence-verifier",
+  "verdict": "fail",
+  "verified_dimensions": {
+    "source_reliability": {"status": "fail", "detail": "Only Reddit posts found"},
+    "recency": {"status": "pass", "detail": "Sources are recent"},
+    "completeness": {"status": "fail", "detail": "Only async features covered"},
+    "independence": {"status": "pass", "detail": "Sources are independent"},
+    "corroboration": {"status": "hold", "detail": "Cannot verify without primary sources"},
+    "invalid_dimension": {"status": "pass", "detail": "This dimension should trigger a warning"}
+  },
+  "confirmed_evidence_ids": ["E-001", "E-002"],
+  "rejected_evidence_ids": ["E-001"],
+  "flagged_evidence_ids": [],
+  "retry_patch": null,
+  "cycle_number": 1
+}

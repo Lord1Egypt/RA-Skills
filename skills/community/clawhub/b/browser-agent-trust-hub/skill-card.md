@@ -1,42 +1,52 @@
-## Description: <br>
-Builds and audits trust policies for browser and computer-use agents before they take real-world actions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Builds and audits trust policies for browser/computer-use agents before they take real-world actions.
 
-## Publisher: <br>
-[stevojarvisai-star](https://clawhub.ai/user/stevojarvisai-star) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[stevojarvisai-star](https://clawhub.ai/user/stevojarvisai-star)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill to define and audit browser-agent execution policies, planned tool actions, domain allowlists, approval gates, and audit controls before live browser workflows run.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Custom policy or action JSON can lead to misleading audit results if it does not accurately represent the planned browser workflow.
+
+Mitigation: Review policy and action JSON before running the audit and treat REVIEW or BLOCK findings as pre-flight gates.
+
+Risk: Browser-agent actions involving submission, payment, deletion, or other sensitive steps may proceed without adequate approval or evidence capture.
+
+Mitigation: Require explicit human approval and screenshot or state capture before irreversible browser actions.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and governance reviewers use this skill to evaluate browser-agent policies and proposed actions before live execution, especially for domain allowlists, sensitive-action approval gates, and audit evidence. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, JSON, shell commands, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Policy or action JSON used for browser-agent reviews could include sensitive operational data. <br>
-Mitigation: Keep policy and action JSON files inside the skill directory and avoid placing real secrets in those files. <br>
-Risk: A REVIEW or BLOCK result may indicate that a proposed browser action lacks required controls before live execution. <br>
-Mitigation: Review generated REVIEW or BLOCK results before allowing a browser agent to take live actions. <br>
-Risk: Irreversible actions may be proposed without explicit approval or pre-action evidence. <br>
-Mitigation: Require human approval for sensitive actions and capture screenshot or state evidence before irreversible clicks. <br>
+**Output Format:** [JSON trust report with findings, verdict, score, and required controls.]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/stevojarvisai-star/browser-agent-trust-hub) <br>
+**Other Properties Related to Output:** [Can print JSON to stdout or write a report inside the skill directory when requested.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON trust-report fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces ALLOW, REVIEW, or BLOCK verdicts with findings, scores, and required controls.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

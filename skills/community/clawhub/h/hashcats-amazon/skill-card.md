@@ -1,44 +1,52 @@
-## Description: <br>
-x402 pay-per-call API for Amazon product search, filtering, ranking, detailed extraction, and one-shot best-products recommendations, with no API keys required. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+x402 pay-per-call API for Amazon product search, filtering, ranking, detailed extraction, and one-shot "best products" recommendations.
 
-## Publisher: <br>
-[hashcatter](https://clawhub.ai/user/hashcatter) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hashcatter](https://clawhub.ai/user/hashcatter)
 
-## Use Case: <br>
-External users and developers use this skill to let an agent search, filter, rank, and inspect Amazon products through the HashCats API. It is suited for shopping research and product-intelligence workflows where structured JSON results and x402 micropayments are acceptable. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can trigger small USDC payments through x402 when the agent calls HashCats endpoints. <br>
-Mitigation: Use wallet spending limits, monitor first use, and avoid unattended repeated calls unless cumulative charges are acceptable. <br>
-Risk: Shopping queries and Amazon product URLs are sent to HashCats for processing. <br>
-Mitigation: Avoid sending sensitive or private shopping intent unless sharing that data with HashCats is acceptable. <br>
+## Use Case:
 
+External agents and developers use this skill to query structured Amazon product intelligence, compare products, and build shopping recommendation workflows through the HashCats API.
 
-## Reference(s): <br>
-- [HashCats API homepage](https://api.hashcats.io) <br>
-- [HashCats API docs](https://api.hashcats.io/docs) <br>
-- [HashCats OpenAPI schema](https://api.hashcats.io/openapi.json) <br>
-- [ClawHub skill page](https://clawhub.ai/hashcatter/hashcats-amazon) <br>
-- [HashCatter publisher profile](https://clawhub.ai/user/hashcatter) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, API calls, JSON] <br>
-**Output Format:** [Markdown instructions for the agent, with API responses returned as structured JSON] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May require x402 wallet payment before API responses are returned.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: frontmatter, changelog released 2026-04-18, server release evidence) <br>
+Risk: Agent-initiated USDC micropayments may spend funds unexpectedly if wallet policy is too permissive.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use strict per-call and session spend limits, prefer testnet unless intentionally enabling mainnet, and require confirmation for unexpected amounts, recipients, chains, or repeated paid calls.
+
+## Reference(s):
+
+- [HashCats API Homepage](https://api.hashcats.io)
+- [HashCats API Docs](https://api.hashcats.io/docs)
+- [HashCats OpenAPI](https://api.hashcats.io/openapi.json)
+- [ClawHub Skill Page](https://clawhub.ai/hashcatter/skills/hashcats-amazon)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Guidance]
+
+**Output Format:** [JSON API responses with concise Markdown guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires x402 payment handling for paid API calls.]
+
+## Skill Version(s):
+
+0.1.0 (source: frontmatter, changelog, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

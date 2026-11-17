@@ -1,43 +1,58 @@
-## Description: <br>
-Track and view your watched movies and TV shows via trakt.tv. Use when user asks about their watch history, what they've been watching, or wants to search for movies/shows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Track and view watched movies and TV shows via Trakt.tv, including watch history and movie or show search.
 
-## Publisher: <br>
-[mjrussell](https://clawhub.ai/user/mjrussell) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[mjrussell](https://clawhub.ai/user/mjrussell)
 
-## Use Case: <br>
-External users use this skill to search Trakt.tv and inspect their own movie and TV watch history through the documented trakt-cli commands. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Installing the wrong or unexpected npm trakt-cli package could expose the user to untrusted command-line behavior. <br>
-Mitigation: Verify the npm package identity before installation and review it before using the skill in an agent environment. <br>
-Risk: Saved Trakt credentials in ~/.trakt.yaml may allow access to watch-history data. <br>
-Mitigation: Protect the credentials file like an account secret, limit access to the intended user, and revoke or rotate credentials if the file is exposed. <br>
-Risk: The history command requires Trakt authentication and may reveal personal viewing history. <br>
-Mitigation: Authenticate only the intended Trakt account and confirm the requested output is appropriate before sharing results. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Trakt.tv](https://trakt.tv) <br>
-- [Trakt OAuth Applications](https://trakt.tv/oauth/applications/new) <br>
-- [ClawHub Trakt Skill](https://clawhub.ai/mjrussell/trakt) <br>
+## Use Case:
 
+External users use this skill to have an agent query Trakt.tv watch history and search for movies or TV shows. History lookups require Trakt authentication, while search can be used without authentication.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only watch-history access requires Trakt authentication; search works without authentication.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Installing the required trakt-cli package globally with npm can execute third-party package code.
+
+Mitigation: Install only if you trust the trakt-cli npm package, avoid elevated privileges, and review the package before deployment.
+
+Risk: Trakt OAuth setup uses a client secret and stores credentials in ~/.trakt.yaml.
+
+Mitigation: Use a safer secret-entry method if the CLI supports one and confirm ~/.trakt.yaml is readable only by the current user.
+
+Risk: Watch history commands access personal viewing history after authentication.
+
+Mitigation: Use the skill only with accounts whose watch history the user is authorized to access.
+
+## Reference(s):
+
+- [Trakt](https://trakt.tv)
+- [Trakt OAuth Applications](https://trakt.tv/oauth/applications/new)
+- [ClawHub Trakt Skill](https://clawhub.ai/mjrussell/skills/trakt)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and setup steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces read-only Trakt.tv history and search command guidance; history access depends on local authentication.]
+
+## Skill Version(s):
+
+0.1.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

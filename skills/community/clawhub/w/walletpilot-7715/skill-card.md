@@ -1,43 +1,55 @@
-## Description: <br>
-Execute on-chain transactions with user-granted permissions. Built on MetaMask ERC-7715. No private keys, full guardrails. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+WalletPilot 7715 helps agents execute on-chain transactions with user-granted MetaMask ERC-7715 permissions without sharing private keys.
 
-## Publisher: <br>
-[andreolf](https://clawhub.ai/user/andreolf) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[andreolf](https://clawhub.ai/user/andreolf)
 
-## Use Case: <br>
-External developers and agent builders use WalletPilot 7715 to configure agents that request scoped wallet permissions and perform permitted on-chain actions such as transactions, token sends, swaps, balance checks, and history lookup. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide agents to execute real crypto transactions under delegated permissions. <br>
-Mitigation: Use small spend limits, short expirations, strict chain and contract allowlists, and revoke permissions when the task is complete. <br>
-Risk: WalletPilot API keys and active permissions can expose transaction authority if mishandled. <br>
-Mitigation: Protect the API key, avoid logging secrets, pin and review the SDK version, and rotate or revoke credentials after use. <br>
-Risk: Incorrect recipients, swap calldata, chain IDs, or contract addresses can cause unintended transfers. <br>
-Mitigation: Verify recipients, swap calldata, chain IDs, and contract addresses before execution. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [WalletPilot Documentation](https://docs.walletpilot.xyz) <br>
-- [WalletPilot API Reference](https://api.walletpilot.xyz) <br>
-- [ClawHub Release Page](https://clawhub.ai/andreolf/walletpilot-7715) <br>
+## Use Case:
 
+Developers and external agent builders use WalletPilot 7715 to add permissioned wallet connection, token transfers, swaps, balance checks, and transaction history workflows to agents while keeping custody in the user's MetaMask wallet.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with TypeScript examples and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a WalletPilot API key and user-granted wallet permissions before transaction execution.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Automated on-chain transactions, swaps, and token transfers can cause irreversible asset loss if permissions, transaction data, or recipients are wrong.
+
+Mitigation: Use a test wallet first, keep permissions short-lived, set low spend limits, restrict allowed chains and contracts, simulate transactions, and require explicit approval before swaps or transfers.
+
+Risk: SDK or API-key misuse could broaden the impact of a compromised agent workflow.
+
+Mitigation: Pin and audit the SDK version, keep API keys narrowly scoped, and review active wallet permissions before deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Listing](https://clawhub.ai/andreolf/skills/walletpilot-7715)
+- [WalletPilot Documentation](https://docs.walletpilot.xyz)
+- [WalletPilot GitHub Repository](https://github.com/andreolf/walletpilot)
+- [WalletPilot API Reference](https://api.walletpilot.xyz)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with TypeScript and shell code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include API requests and transaction parameter examples for EVM chains.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

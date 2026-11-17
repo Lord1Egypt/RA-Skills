@@ -1,45 +1,60 @@
-## Description: <br>
-Provides fund net asset value lookup, historical trend analysis, fund screening and ranking, holdings analysis, and fund comparison using public fund-data sources. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fund Analyzer helps agents query China-market fund net asset values, historical trends, rankings, comparisons, and holdings using fund data sources documented in the release.
 
-## Publisher: <br>
-[hl950825](https://clawhub.ai/user/hl950825) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hl950825](https://clawhub.ai/user/hl950825)
 
-## Use Case: <br>
-External users and agents use this skill to retrieve public fund data, compare fund performance, screen ranked funds, and summarize fund holdings for informational analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Fund codes and screening choices are sent to public fund-data websites. <br>
-Mitigation: Use the skill only when that data sharing is acceptable, and avoid entering private account details, cookies, or logged-in session data. <br>
-Risk: Fund data may be delayed, incomplete, or affected by source-site changes. <br>
-Mitigation: Treat results as informational and verify investment decisions against official or primary financial sources. <br>
-Risk: Artifact documentation describes different primary data sources in different places. <br>
-Mitigation: Review outputs with awareness that scripts primarily call Tiantian Fund or Eastmoney endpoints, while some documentation mentions Alipay fund pages. <br>
+## Use Case:
 
+External users and agents can use this skill to retrieve and compare fund information, screen fund rankings, and summarize holdings for investment research workflows. Users should verify any financial results against trusted sources before making investment decisions.
 
-## Reference(s): <br>
-- [Fund Analyzer usage guide](artifact/references/guide.md) <br>
-- [ClawHub fund-analyzer release page](https://clawhub.ai/hl950825/fund-analyzer) <br>
-- [Tiantian Fund ranking data](https://fund.eastmoney.com/data/fundranking.html) <br>
-- [Tiantian Fund detail page pattern](https://fund.eastmoney.com/${fund_code}.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with tabular or list-style fund analysis and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include current fund values, historical return summaries, ranking lists, holdings summaries, and data-source reliability notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The security review reports that documentation and implementation disagree about whether Alipay or Eastmoney/Tiantian Fund is the actual data source.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the data source as Eastmoney/Tiantian Fund unless release evidence is updated, and disclose the mismatch during deployment review.
+
+Risk: The security review notes cookie-based access guidance without adequate safety handling.
+
+Mitigation: Do not paste, hardcode, log, or share Alipay cookies or other session data when using or extending the skill.
+
+Risk: Fund data can be delayed, unavailable, or incorrect for investment decisions.
+
+Mitigation: Verify outputs against trusted financial sources before acting on the analysis.
+
+## Reference(s):
+
+- [Fund Analyzer Guide](references/guide.md)
+- [ClawHub skill page](https://clawhub.ai/hl950825/skills/fund-analyzer)
+- [Eastmoney fund rankings](https://fund.eastmoney.com/data/fundranking.html)
+- [Eastmoney fund data](https://fund.eastmoney.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, guidance]
+
+**Output Format:** [Markdown-style tables and lists, with optional JSON from selected scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill depends on network access to third-party fund data pages and may return delayed or incomplete market data.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

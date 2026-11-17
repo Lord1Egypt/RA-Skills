@@ -1,44 +1,59 @@
-## Description: <br>
-Provides a quick reference for OpenClaw CLI commands, configuration syntax, and common setup patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a quick reference for OpenClaw CLI commands, configuration syntax, and common usage patterns.
 
-## Publisher: <br>
-[maxadc](https://clawhub.ai/user/maxadc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[maxadc](https://clawhub.ai/user/maxadc)
 
-## Use Case: <br>
-Developers and operators use this skill to answer OpenClaw command, configuration, environment variable, and setup-reference questions quickly. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Examples include commands that can change configuration, remove plugins, delete sessions, or start daemon services. <br>
-Mitigation: Review each command against the current workspace and OpenClaw environment before running it. <br>
-Risk: Configuration examples mention API keys and service tokens. <br>
-Mitigation: Use environment variables or secret storage, and do not paste real credentials into shared commands or files. <br>
-Risk: Plugin installation examples may point to external or local package sources. <br>
-Mitigation: Verify plugin source, publisher, and package contents before installation. <br>
+## Use Case:
 
+Developers and operators use this skill to answer OpenClaw CLI and configuration questions, including command syntax, config paths, provider settings, and common patterns.
 
-## Reference(s): <br>
-- [OpenClaw CLI Command Reference](references/cli-reference.md) <br>
-- [OpenClaw Configuration Reference](references/config-reference.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/maxadc/openclaw-quickref) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration, code] <br>
-**Output Format:** [Markdown with inline command and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only output; no automatic actions are executed by the skill.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact frontmatter: 1.0.0) <br>
+Risk: The reference includes destructive OpenClaw command examples such as session deletion, plugin removal, config unset, and node unpairing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation before proposing or executing destructive OpenClaw commands.
+
+Risk: Some configuration examples involve API keys and provider credentials.
+
+Mitigation: Prefer environment-variable references and avoid placing real API keys directly in shell commands or configuration snippets.
+
+Risk: Broad quick-reference activation can produce outdated or misleading command guidance if the local OpenClaw version differs from the examples.
+
+Mitigation: Treat generated answers as quick-reference guidance and verify commands against the local OpenClaw CLI help or configuration before execution.
+
+## Reference(s):
+
+- [OpenClaw CLI Command Reference](artifact/references/cli-reference.md)
+- [OpenClaw Configuration Reference](artifact/references/config-reference.md)
+- [ClawHub Skill Page](https://clawhub.ai/maxadc/skills/openclaw-quickref)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash and JSON code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include OpenClaw CLI commands and configuration snippets; sensitive keys should be represented as environment-variable references.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

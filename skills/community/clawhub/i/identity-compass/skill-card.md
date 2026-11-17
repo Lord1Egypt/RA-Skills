@@ -1,43 +1,52 @@
-## Description: <br>
-Identity Compass helps an agent extract value and decision signals from everyday conversations, maintain them as vectors, calculate alignment with a provisional life-direction vector, and produce decision guidance and visualizations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Identity Compass helps an agent infer personal decision-direction signals from conversations, store them locally as vectors, calculate alignment scores, and provide decision simulations and visual maps.
 
-## Publisher: <br>
-[ico1036](https://clawhub.ai/user/ico1036) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ico1036](https://clawhub.ai/user/ico1036)
 
-## Use Case: <br>
-External users and agents use this skill when evaluating career moves, life choices, identity questions, or opportunity fit. It turns conversational preference signals into local decision-vector records, alignment reports, and decision simulations that support reflection rather than making the decision for the user. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can build and persist a sensitive long-term profile from normal conversations. <br>
-Mitigation: Decide where the vault and JSON files live before use, inspect what gets written, and require explicit confirmation before saving personal signals. <br>
-Risk: Decision alignment scores and life-direction vectors may be treated as more certain than they are. <br>
-Mitigation: Present outputs as estimates for reflection, keep the user's judgment in control, and avoid using the skill for sensitive conversations unless background capture is disabled or confirmed. <br>
+## Use Case:
 
+Individuals, career changers, founders, and other agent users use this skill to track decision signals over time and compare options against inferred values. It supports reflection and decision alignment, not automated decision-making.
 
-## Reference(s): <br>
-- [Identity Compass ClawHub Release](https://clawhub.ai/ico1036/identity-compass) <br>
-- [Dialectical Protocol](references/dialectical-protocol.md) <br>
-- [Bayesian Update](references/bayesian-update.md) <br>
-- [Obsidian](https://obsidian.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, JSON, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with local vault notes, JSON data files, and optional HTML visualization support] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local Obsidian vault files and derived JSON files for vector, magnetization, and compass visualization data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.5.0 (source: server release evidence) <br>
+Risk: The skill can silently build and retain a personal identity and decision profile from ordinary conversations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only for intentional personal profiling use; keep the vault private, avoid sensitive chats while enabled, review and delete stored files regularly, and prefer pinned or verified installs.
+
+## Reference(s):
+
+- [Dialectical Protocol](artifact/references/dialectical-protocol.md)
+- [Bayesian Update Methodology](artifact/references/bayesian-update.md)
+- [Identity Compass on ClawHub](https://clawhub.ai/ico1036/skills/identity-compass)
+- [Obsidian](https://obsidian.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance, Obsidian-compatible Markdown notes, JSON files, shell commands, and interactive HTML visualization data]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores local personal profile data and derived decision vectors over time.]
+
+## Skill Version(s):
+
+0.5.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

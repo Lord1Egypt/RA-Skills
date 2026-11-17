@@ -1,0 +1,79 @@
+{
+  "app": {
+    "repo": "https://github.com/wormsun/FunnyAnimationAssitant",
+    "name": "FunnyAnimationAssitant (Web Community Edition)",
+    "commit": "c699521842202e8a803f1b7b3fbc0d1ce4d4a7cc",
+    "packageVersion": "0.1.0",
+    "license": "Apache-2.0",
+    "verifiedAt": "2026-11-05",
+    "verifiedOn": "macOS (Apple Silicon) / Node 24.16.0 / npm 12.0.2"
+  },
+  "format": {
+    "projectMetaVersion": "2.0.0",
+    "episodeVersion": "6.0",
+    "notes": "app 打开时校验 meta.version 主版本必须为 2；episode.version 目前为 6.0"
+  },
+  "cache": {
+    "dirPattern": "<anime 文件名去掉扩展名>_cache",
+    "tts": "<cache>/tts/<hash>.mp3",
+    "assets": "<cache>/assets/{characters,backgrounds,props}/"
+  },
+  "tts": {
+    "providerRequiredForPreview": false,
+    "notes": "预生成音频 + ttsConfig.audioPath 可直接播放；generatedFrom 必须与 text/voiceId/speed/instanceId 一致，否则 app 会尝试重新合成"
+  },
+  "upstreamSkills": {
+    "novel-to-shadiao-script": "MIT",
+    "shadiao-script-to-anime": "MIT",
+    "funny-animation-assistant": "MIT（Adobe Animate 插件路线，本 skill 不使用）"
+  },
+  "regression": {
+    "command": "node 04-工程/shadiao-anime-skill/scripts/validate_anime.mjs 99-项目/示例-周一打工人/第01季/04-工程/示例-周一打工人.anime",
+    "expected": "通过"
+  },
+  "skillVersion": "1.0.0",
+  "features": [
+    "edge-tts-batch",
+    "expression-overlay",
+    "emotion-to-expression",
+    "prop-placement",
+    "camera-follow",
+    "anime-validate",
+    "vertical-patch-819x1456",
+    "video-export-1080x1920",
+    "ai-art-newapi",
+    "sfx-bgm-mix",
+    "expression-head-crop",
+    "fullbody-expression",
+    "styled-subtitles",
+    "compose-bodies",
+    "fill-holes-white-clothing",
+    "shot-blocking",
+    "walk-pose",
+    "sleep-pose",
+    "lip-flap",
+    "mouth-layer",
+    "talk-animation",
+    "rule-comedy",
+    "endcard"
+  ],
+  "verticalPatch": {
+    "required": true,
+    "cameraBase": {
+      "width": 819,
+      "height": 1456
+    },
+    "resolutions": [
+      {
+        "width": 1080,
+        "height": 1920
+      },
+      {
+        "width": 720,
+        "height": 1280
+      }
+    ],
+    "script": "00-工作台/patch_vertical.sh",
+    "backupSuffix": ".bak-vertical"
+  }
+}

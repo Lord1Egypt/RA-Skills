@@ -1,41 +1,58 @@
-## Description: <br>
-Captures learnings, errors, and corrections to enable continuous improvement for coding agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Captures learnings, errors, and corrections to enable continuous improvement for coding agents.
 
-## Publisher: <br>
-[tigertamvip](https://clawhub.ai/user/tigertamvip) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tigertamvip](https://clawhub.ai/user/tigertamvip)
 
-## Use Case: <br>
-Developers and agent operators use this skill to help agents record command failures, user corrections, missing capabilities, and reusable lessons in local learning files for later review and promotion. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent learning logs can capture private conversation details, secrets, raw transcripts, or command output if used without controls. <br>
-Mitigation: Require explicit user approval for persistent logging, redact secrets and private data, avoid raw transcripts or full command output, and keep .learnings local unless sharing is intentional. <br>
-Risk: Promoting unresolved learnings into agent memory can preserve incorrect or misleading guidance. <br>
-Mitigation: Review entries before promotion, resolve or correct stale items, and scan modified memory or skill files before deployment. <br>
+## Use Case:
 
+Developers and agent operators use this skill to record failures, corrections, knowledge gaps, and feature requests in structured learning logs so future agent work can reuse or promote the learning.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tigertamvip/self-improving-agent-5) <br>
-- [Agent Skills specification](https://agentskills.io/specification) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May direct agents to append structured entries to .learnings Markdown files and update project memory files after review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: release evidence) <br>
+Risk: Persistent learning logs or shared transcripts may capture sensitive project context or personal data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only where persistent logs are acceptable, redact secrets and unnecessary transcript content, and avoid storing full conversations.
+
+Risk: Promoting learnings into future agent instruction files can preserve incorrect or unsafe guidance.
+
+Mitigation: Require human review before adding or updating agent memory and instruction files.
+
+Risk: Optional hooks and inter-session sharing can change agent behavior beyond a single task.
+
+Mitigation: Enable hooks or transcript-sharing workflows only after reviewing the referenced scripts and confirming that behavior is desired.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tigertamvip/skills/self-improving-agent-5)
+- [Agent Skills specification](https://agentskills.io/specification)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces structured learning-log entries and setup guidance for agent memory files.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

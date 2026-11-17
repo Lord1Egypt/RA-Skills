@@ -1,0 +1,26 @@
+[
+  {
+    "type": "function",
+    "function": {
+      "name": "get_me",
+      "description": "获取当前 API Key 上下文：userId、keyId、当前生效的交易环境（sim 或 live），以及权限档位 scope（SIM=模拟盘，SIM_LIVE=模拟盘+实盘）、canTradeLive 与 liveUpgradeSteps。用于验证鉴权是否正常、确认所处交易环境，以及在下实盘单前确认是否具备实盘权限。",
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "get_account_summary",
+      "description": "获取交易账户摘要，包含余额、可用资金、已用保证金、持仓盈亏。sim 模式返回模拟盘数据；live 模式返回 CTP 实盘数据。当前环境由 SLZQ_OPENCLAW_ENV 变量决定。",
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      }
+    }
+  }
+]

@@ -31,7 +31,7 @@ HEADERS = {
 }
 
 # 硅基流动API配置
-SILICONFLOW_API_KEY = 'sk-ggfjehtmwgthcdyajhpipxhurytmnmqsnvpfzoripdgdmzar'
+SILICONFLOW_API_KEY = 'REDACTED-SECRET'
 SILICONFLOW_API_URL = 'https://api.siliconflow.cn/v1/chat/completions'
 AI_MODEL = 'Doubao-ai/doubao-seed-v2-18k'
 

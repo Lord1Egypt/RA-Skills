@@ -1,37 +1,54 @@
-## Description: <br>
-Academic research assistant for literature reviews, paper analysis, and scholarly writing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Academic Researcher helps with literature reviews, paper analysis, research summaries, methodology analysis, citation formatting, and scholarly writing.
 
-## Publisher: <br>
-[hades4501](https://clawhub.ai/user/hades4501) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[hades4501](https://clawhub.ai/user/hades4501)
 
-## Use Case: <br>
-Students, researchers, and scholarly writers use this skill to review academic papers, structure literature reviews, analyze methodologies, format citations, and draft research summaries or proposals. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Research summaries, citations, or factual claims may be inaccurate or incomplete. <br>
-Mitigation: Verify citations, source details, and substantive claims against the original academic sources before relying on the output. <br>
+## Use Case:
 
+External users, students, researchers, and academic writers use this skill to structure literature reviews, summarize papers, analyze methodologies, format citations, identify research gaps, and draft research proposals.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown research summaries, citation examples, review structures, and scholarly writing guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only output; no code execution or hidden system access is described by the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: Broad activation wording may cause the skill to process academic or private research material beyond the user's immediate intent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide only the paper text, notes, or private research material that the assistant should analyze.
+
+Risk: Research summaries, citation formatting, and scholarly writing guidance can contain mistakes or unsupported claims.
+
+Mitigation: Review generated summaries, citations, and recommendations against the source papers before using them in academic work.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hades4501/skills/academic-researcher)
+- [Cepeda et al. spacing effect meta-analysis DOI](https://doi.org/10.1037/0033-2909.132.3.354)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown and structured text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include citation examples, literature review outlines, paper-summary sections, methodology analysis, limitations, and future-direction notes.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

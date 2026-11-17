@@ -1,41 +1,54 @@
-## Description: <br>
-Persistent NDJSON event logging with rotation, compression, and retention policies. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Persistent NDJSON event logging with rotation, compression, and retention policies.
 
-## Publisher: <br>
-[teoslayer](https://clawhub.ai/user/teoslayer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[teoslayer](https://clawhub.ai/user/teoslayer)
 
-## Use Case: <br>
-Developers and operators use this skill to persist Pilot Protocol event streams, audit event history by timestamp or topic, and export retained events for external analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent event logs may capture secrets or personal data, especially when using broad source or topic subscriptions. <br>
-Mitigation: Configure narrow sources and topics where possible, avoid logging secrets or personal data, and review export practices before use. <br>
-Risk: Durable logs under /var/log/pilot-events can create retention and access-control exposure. <br>
-Mitigation: Restrict permissions on /var/log/pilot-events and align rotation, compression, and deletion schedules with organizational retention requirements. <br>
+## Use Case:
 
+Developers and operators use this skill to persist Pilot Protocol event streams as NDJSON logs for audit history, time and topic queries, rotation, compression, retention, and external analysis.
 
-## Reference(s): <br>
-- [Pilot Protocol](https://pilotprotocol.network) <br>
-- [ClawHub Skill Page](https://clawhub.ai/teoslayer/pilot-event-log) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with bash command examples and workflow snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Assumes pilotctl, jq, gzip, and a running Pilot daemon.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Crafted source names can cause the example logger to write outside the intended /var/log/pilot-events directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Validate source names, run the logger as a dedicated low-privilege user, and confirm log paths remain under /var/log/pilot-events before deployment.
+
+Risk: Persistent event logging and automated cleanup can affect operational audit history.
+
+Mitigation: Review retention settings and the 90-day deletion command against operational and compliance requirements before use.
+
+## Reference(s):
+
+- [Pilot Protocol](https://pilotprotocol.network)
+- [ClawHub Skill Page](https://clawhub.ai/teoslayer/skills/pilot-event-log)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Code, Configuration, Guidance]
+
+**Output Format:** [Markdown with bash command examples and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes commands for event subscription logging, jq queries, log rotation, compression, and retention cleanup.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

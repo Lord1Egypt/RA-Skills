@@ -1,39 +1,54 @@
-## Description: <br>
-Serverless compute orchestration by Watadot Studio. Manage functions, triggers, and cloud rendering. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Serverless compute orchestration by Watadot Studio. Manage functions, triggers, and cloud rendering.
 
-## Publisher: <br>
-[ordiy](https://clawhub.ai/user/ordiy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ordiy](https://clawhub.ai/user/ordiy)
 
-## Use Case: <br>
-Developers and cloud engineers use this skill for AWS Lambda function lifecycle, deployment, configuration, performance, and monitoring guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: AWS Lambda commands can affect live cloud resources, configuration, invocation behavior, concurrency, and costs. <br>
-Mitigation: Verify the AWS profile, account, region, function name, alias, credentials, and least-privilege permissions before allowing update, configuration, invocation, or concurrency commands. <br>
+## Use Case:
 
+Developers and cloud engineers use this skill to get AWS Lambda CLI commands and operational guidance for function lifecycle management, deployment, configuration, scaling, and monitoring.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ordiy/watadot-aws-lambda) <br>
-- [Publisher profile](https://clawhub.ai/user/ordiy) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires AWS CLI access and user review before acting on live cloud resources.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: AWS Lambda update and provisioned concurrency commands can change cloud resources or affect cost.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the AWS account, region, function names, IAM permissions, and cost-impacting parameters before executing changes.
+
+Risk: Function configuration or deployment guidance may be applied to the wrong function or environment.
+
+Mitigation: Confirm function names, aliases, environment variables, payloads, and deployment artifacts before running commands.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ordiy/skills/watadot-aws-lambda)
+- [Publisher Profile](https://clawhub.ai/user/ordiy)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires AWS CLI access and user review before cloud-changing commands are run.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

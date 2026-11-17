@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """潜水旅行助手 - Dive Travel Assistant
 7个工具覆盖潜水全链路：潜点搜索/考证指南/安全检查 + 机票/酒店/交通/美食预订
-国内走飞猪+高德，国际走RG，自动分流
+国内走途牛+高德，国际走RG，自动分流
 """
 import os
 import json
@@ -10,7 +10,7 @@ import urllib.request
 import urllib.error
 
 # ============ 代理配置 ============
-FLIGGY_PROXY = "https://1439498936-6sysdjjt99.ap-guangzhou.tencentscf.com"
+TUNIU_PROXY = "https://1439498936-0junm3maxj.ap-guangzhou.tencentscf.com"
 RG_PROXY = "https://1439498936-460a7b6oqn.ap-guangzhou.tencentscf.com"
 GAODE_PROXY = "https://1439498936-bl10af74fl.ap-guangzhou.tencentscf.com"
 PROXY_TOKEN = os.environ.get("PROXY_TOKEN", "")
@@ -73,10 +73,27 @@ def _call_proxy(url, payload, token_header="X-Proxy-Token"):
         return {"error": str(e)}
 
 
-def _call_fliggy(rtype, params):
-    """飞猪代理"""
-    return _call_proxy(FLIGGY_PROXY, {"type": rtype, "params": params})
-
+def _call_tuniu_domestic(rtype, params):
+    """途牛国内代理"""
+    url = TUNIU_PROXY
+    headers = {"Content-Type": "application/json", "X-Proxy-Token": PROXY_TOKEN}
+    
+    # Map non-standard names to tuniu standard names
+    type_map = {
+        "flight": "tuniu_flight_search",
+        "hotel": "tuniu_hotel_search",
+        "train": "tuniu_train_search",
+    }
+    mapped_type = type_map.get(rtype, rtype)
+    
+    body = {"type": mapped_type, "params": params}
+    data = json.dumps(body, ensure_ascii=False).encode("utf-8")
+    req = urllib.request.Request(url, data=data, headers=headers, method="POST")
+    try:
+        with urllib.request.urlopen(req, timeout=30) as resp:
+            return json.loads(resp.read().decode("utf-8"))
+    except Exception as e:
+        return {"error": str(e)}
 
 def _call_rg(api_type, params):
     """RG代理"""
@@ -888,7 +905,7 @@ def dive_safety_check(topic="", **kwargs):
 # 工具4: search_dive_flights 潜水机票搜索
 # ============================================================
 def search_dive_flights(origin="", destination="", date="", **kwargs):
-    """搜索机票，国内走飞猪，国际走RG，自动分流"""
+    """搜索机票，国内走途牛，国际走RG，自动分流"""
     if not origin or not destination or not date:
         return json.dumps({"error": "请提供origin(出发城市)、destination(到达城市)、date(日期YYYY-MM-DD)"}, ensure_ascii=False)
 
@@ -904,16 +921,16 @@ def search_dive_flights(origin="", destination="", date="", **kwargs):
     is_domestic = _is_domestic(destination)
 
     if is_domestic:
-        # 国内走飞猪
-        result = _call_fliggy("flight", {
+        # 国内走途牛
+        result = _call_tuniu_domestic("flight", {
             "origin": origin,
             "destination": destination,
             "date": date,
         })
         if isinstance(result, dict) and "error" in result:
-            return json.dumps({"error": f"飞猪机票查询失败: {result['error']}"}, ensure_ascii=False)
+            return json.dumps({"error": f"途牛机票查询失败: {result['error']}"}, ensure_ascii=False)
 
-        # 解析飞猪返回
+        # 解析途牛返回
         flights = result.get("flightInformationList") or result.get("data", {}).get("flightInformationList", []) if isinstance(result, dict) else []
         if not flights:
             return json.dumps({
@@ -937,7 +954,7 @@ def search_dive_flights(origin="", destination="", date="", **kwargs):
             })
 
         return json.dumps({
-            "type": "国内航班(飞猪)",
+            "type": "国内航班(途牛)",
             "dive_site": site_name,
             "origin": origin,
             "destination": destination,
@@ -993,7 +1010,7 @@ def search_dive_flights(origin="", destination="", date="", **kwargs):
 # 工具5: search_dive_hotels 潜水酒店搜索
 # ============================================================
 def search_dive_hotels(city="", checkin="", checkout="", keyword="", **kwargs):
-    """搜索酒店，国内走飞猪，国际走RG，自动分流"""
+    """搜索酒店，国内走途牛，国际走RG，自动分流"""
     if not city or not checkin or not checkout:
         return json.dumps({"error": "请提供city(城市)、checkin(入住日期)、checkout(离店日期)"}, ensure_ascii=False)
 
@@ -1013,14 +1030,14 @@ def search_dive_hotels(city="", checkin="", checkout="", keyword="", **kwargs):
         keyword = "潜水 潜店 度假村"
 
     if is_domestic:
-        # 国内走飞猪
+        # 国内走途牛
         params = {"city": city, "checkIn": checkin, "checkOut": checkout}
         if keyword:
             params["keyword"] = keyword
-        result = _call_fliggy("hotel", params)
+        result = _call_tuniu_domestic("hotel", params)
 
         if isinstance(result, dict) and "error" in result:
-            return json.dumps({"error": f"飞猪酒店查询失败: {result['error']}"}, ensure_ascii=False)
+            return json.dumps({"error": f"途牛酒店查询失败: {result['error']}"}, ensure_ascii=False)
 
         hotels = result.get("hotelInformationList") or result.get("data", {}).get("hotelInformationList", []) if isinstance(result, dict) else []
         if not hotels:
@@ -1040,7 +1057,7 @@ def search_dive_hotels(city="", checkin="", checkout="", keyword="", **kwargs):
             })
 
         return json.dumps({
-            "type": "国内酒店(飞猪)",
+            "type": "国内酒店(途牛)",
             "dive_site": site_name,
             "city": city,
             "checkin": checkin,
@@ -1109,8 +1126,8 @@ def search_dive_transport(origin="", destination="", date="", transport_type="",
     types = [transport_type] if transport_type else ["train", "taxi"]
 
     if "train" in types and date:
-        # 飞猪火车票查询
-        train_result = _call_fliggy("train", {
+        # 途牛火车票查询
+        train_result = _call_tuniu_domestic("train", {
             "origin": origin,
             "destination": destination,
             "date": date,

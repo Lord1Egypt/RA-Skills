@@ -1,44 +1,63 @@
-## Description: <br>
-Baidu trans-cli document translation for PDF, Word, Excel, PowerPoint, text, HTML, and related file formats while preserving formatting and layout. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Baidu File Translate helps agents translate uploaded or referenced documents with Baidu trans-cli while preserving the original document formatting and layout.
 
-## Publisher: <br>
-[baidu-translate](https://clawhub.ai/user/baidu-translate) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[baidu-translate](https://clawhub.ai/user/baidu-translate)
 
-## Use Case: <br>
-Developers and document translation agents use this skill to submit supported files to Baidu's trans-cli workflow, poll asynchronous translation jobs, handle errors, and download translated files after user confirmation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Translating a file sends its contents to Baidu's document translation service. <br>
-Mitigation: Do not submit confidential, regulated, or customer documents unless the user's organization permits processing by Baidu. <br>
-Risk: The skill requires a TRANS_API_KEY credential for Baidu's translation service. <br>
-Mitigation: Configure the credential outside the skill content, stop on authentication or configuration errors, and guide the user to update the key when needed. <br>
-Risk: Document translation is asynchronous and an unbounded wait can block an agent workflow. <br>
-Mitigation: Use the submit and poll loop with an agent-level timeout, save the request_id on WAIT_TIMEOUT, and resume the job later instead of continuing to wait. <br>
+## Use Case:
 
+Developers and agents use this skill when a user asks to translate a file or convert a document into another language. It covers common office and text formats, submits asynchronous translation jobs, polls for completion, and guides download only after user confirmation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/baidu-translate/baidu-file-translate) <br>
-- [Baidu Translate](https://fanyi.baidu.com) <br>
-- [Baidu Translate API key management](https://fanyi-api.baidu.com/manage/apiKey) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with bash commands and JSON response contracts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the trans CLI binary and TRANS_API_KEY. Translated file downloads should be confirmed with the user before saving.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Documents submitted for translation are processed by Baidu's translation service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only documents that policy allows to be processed by Baidu, and avoid confidential, regulated, or highly sensitive files unless explicitly approved.
+
+Risk: The translation CLI requires TRANS_API_KEY, which may be exposed to local tooling or logs if mishandled.
+
+Mitigation: Store the key in the agent environment or secret manager, avoid echoing it in commands, and rotate it if exposure is suspected.
+
+Risk: The skill depends on an npm-installed trans CLI package.
+
+Mitigation: Pin or otherwise control the npm dependency in managed environments before deployment.
+
+Risk: Document translation is asynchronous and can exceed an agent's active session.
+
+Mitigation: Use the submit and poll workflow, set a bounded agent timeout, preserve request_id on WAIT_TIMEOUT, and resume later instead of retrying blindly.
+
+## Reference(s):
+
+- [Baidu Translate](https://fanyi.baidu.com)
+- [Baidu API Key Management](https://fanyi-api.baidu.com/manage/apiKey)
+- [ClawHub Skill Page](https://clawhub.ai/baidu-translate/skills/baidu-file-translate)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON response examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses asynchronous submit and poll workflow; requires trans CLI and TRANS_API_KEY.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

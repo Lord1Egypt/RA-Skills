@@ -1,40 +1,50 @@
-## Description: <br>
-Provides a structured code review workflow covering functionality, readability, performance, security, maintainability, and report writing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Chinese-language guidance for structuring code review services, including review dimensions, preparation steps, report templates, communication practices, pricing references, and service channels.
 
-## Publisher: <br>
-[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk)
 
-## Use Case: <br>
-Developers, reviewers, and technical service providers use this skill to plan code reviews, check common quality dimensions, and produce concise improvement reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad code-review trigger terms may activate the skill during ordinary development discussions. <br>
-Mitigation: Invoke it intentionally for review tasks and avoid sharing sensitive code or business context unless appropriate for the agent environment. <br>
-Risk: Review guidance can miss project-specific requirements or produce incomplete recommendations. <br>
-Mitigation: Treat the output as review assistance and have a qualified reviewer validate findings before changes are made. <br>
+## Use Case:
 
+Developers, engineering leads, and code review service providers use this skill to plan review scope, assess code across quality and security dimensions, and produce structured review reports and improvement recommendations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yang1002378395-cmyk/code-review-service) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown review plan, checklist, and report template] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable output; recommendations should be reviewed before applying to code.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Broad activation phrases may trigger the skill during ordinary developer conversations where a code review service workflow is not intended.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Narrow activation phrases or require explicit user intent before applying the service-planning workflow.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/yang1002378395-cmyk/skills/code-review-service)
+- [Publisher Profile](https://clawhub.ai/user/yang1002378395-cmyk)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, text]
+
+**Output Format:** [Markdown and plain text templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language service plans, review checklists, report templates, pricing suggestions, and communication guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

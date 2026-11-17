@@ -1,45 +1,59 @@
-## Description: <br>
-Autoglm Browser Agent delegates browser-based tasks such as web search, social media interaction, form filling, screenshots, shopping comparison, news reading, and online document operations to an autonomous browser subagent. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Autoglm Browser Agent delegates browser-based tasks to an autonomous browser subagent that can open sites, search, interact with pages, fill forms, capture screenshots, and continue sessions.
 
-## Publisher: <br>
-[mrhenghu](https://clawhub.ai/user/mrhenghu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mrhenghu](https://clawhub.ai/user/mrhenghu)
 
-## Use Case: <br>
-External users and agents use this skill to delegate browser-only workflows that require opening websites, searching, clicking, scrolling, collecting page content, completing forms, or returning screenshots. It is most relevant when a task needs interactive browser automation rather than local file processing or offline computation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can control browser sessions and interact with signed-in accounts, including sensitive actions such as posting, liking, commenting, and messaging. <br>
-Mitigation: Keep trust mode disabled for normal use, require user confirmation for sensitive actions, and avoid using the skill with financial or highly sensitive accounts. <br>
-Risk: The skill depends on a Chrome extension plus local relay and server binaries that can persist browser state and screenshots. <br>
-Mitigation: Install only when the publisher, extension, and local binaries are trusted; stop the relay and clear ~/.openclaw-autoclaw state after sensitive tasks. <br>
-Risk: Screenshots and Feishu or instant-message integrations can expose page contents or account context outside the browser session. <br>
-Mitigation: Review any Feishu or messaging credential setup before use and confirm that screenshot sharing is appropriate for the task. <br>
+## Use Case:
 
+Developers and end users use this skill to automate browser workflows such as web search, social media interaction, form entry, screenshots, online shopping comparison, news review, and online document operations.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/mrhenghu/autoglm-browser-agent) <br>
-- [AutoClaw Chrome Web Store extension](https://chromewebstore.google.com/detail/jelniggicmclhfgnlapbkgfibmgelfnp) <br>
-- [Skill instructions](artifact/SKILL.md) <br>
-- [Installation guide](artifact/INSTALL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with browser task results, screenshot markdown, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Browser results must include screenshot markdown; setup and runtime behavior depend on mcporter, a local MCP server, a relay process, and a Chromium extension.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The security summary flags unverifiable local binaries and a long-running browser relay.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the exact binaries and their source before running them, and keep the relay stopped when browser automation is not in use.
+
+Risk: The skill can persist broad approval for account actions through auto_approve.
+
+Mitigation: Keep auto_approve disabled and require explicit user confirmation for posting, messaging, purchases, form submissions, and other sensitive actions.
+
+Risk: Feishu integration can use app credentials and send screenshots to chats.
+
+Mitigation: Use least-privilege Feishu credentials and enable screenshot replies only for trusted workspaces and conversations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mrhenghu/skills/autoglm-browser-agent)
+- [Publisher profile](https://clawhub.ai/user/mrhenghu)
+- [AutoClaw Chrome Web Store extension](https://chromewebstore.google.com/detail/jelniggicmclhfgnlapbkgfibmgelfnp)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown containing browser task results and screenshot links, with shell commands for setup and tool calls.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results are expected to include screenshots; sensitive browser actions may require user confirmation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,53 +1,65 @@
-## Description: <br>
-Gorm Expert helps agents support GORM v2 development with code review, SQL and model generation, performance analysis, connection-pool sizing, migrations, observability, session safety, sharding, caching, and multi-tenant patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Gorm Expert provides GORM v2 best-practice guidance, code review support, performance tuning advice, and local helper scripts for Go database development.
 
-## Publisher: <br>
-[lynnss-ai](https://clawhub.ai/user/lynnss-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lynnss-ai](https://clawhub.ai/user/lynnss-ai)
 
-## Use Case: <br>
-Developers and engineering agents use this skill to review and improve Go applications that use GORM v2, including query tuning, transaction handling, indexing, migrations, model scaffolding, observability, and multi-tenant data access. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Observability examples could expose debug or profiling endpoints if copied directly into production. <br>
-Mitigation: Keep pprof and similar debug endpoints bound to localhost or protected behind strong administrator-only access controls. <br>
-Risk: Session reuse or multi-tenant query examples may lead to query-isolation mistakes if adopted without validation. <br>
-Mitigation: Verify GORM session cloning and tenant-filter behavior against the deployed GORM version with focused tests before production use. <br>
-Risk: Bundled helper scripts can generate code, SQL, benchmark templates, and scaffold files. <br>
-Mitigation: Run scripts as local developer tools, review generated output before applying it, and use explicit output paths or dry-run modes where available. <br>
+## Use Case:
 
+Developers and engineers use this skill to review GORM code, diagnose slow queries and N+1 patterns, design indexes and transactions, generate model or migration scaffolding, and apply multi-tenant database patterns.
 
-## Reference(s): <br>
-- [Reference Index](references/README.md) <br>
-- [Base Model Pattern](references/base-model-pattern.md) <br>
-- [Association Loading](references/association.md) <br>
-- [Caching](references/caching.md) <br>
-- [Clause and Upsert](references/clause.md) <br>
-- [Concurrency](references/concurrency.md) <br>
-- [Indexing](references/indexing.md) <br>
-- [Migration](references/migration.md) <br>
-- [Observability](references/observability.md) <br>
-- [Session Safety](references/session.md) <br>
-- [Sharding](references/sharding.md) <br>
-- [Testing](references/testing.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline code and shell command examples; scripts may also emit JSON, SQL, Go code, or generated files when explicitly requested.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes local Python helper scripts for static analysis, model generation, query review, migration SQL, benchmark templates, scope generation, connection-pool advice, and project scaffolding.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.6.0 (source: server release metadata and CHANGELOG) <br>
+Risk: Generated SQL or migration output may be unsafe for a production database if applied without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Manually review generated SQL, test migrations against representative data, and use established migration controls before execution.
+
+Risk: The scaffolded dbcore package has tenant-isolation concerns in the security evidence.
+
+Mitigation: Review and fix tenant enforcement before relying on the scaffold for tenant security in a real application.
+
+Risk: Telemetry or pprof examples could expose sensitive operational data if copied into production unchanged.
+
+Mitigation: Protect or disable diagnostic endpoints and review observability examples against production security requirements.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/lynnss-ai/skills/gorm-expert-skill)
+- [README](artifact/README.md)
+- [Changelog](artifact/CHANGELOG.md)
+- [Reference Index](artifact/references/README.md)
+- [Base Model Pattern](artifact/references/base-model-pattern.md)
+- [Indexing](artifact/references/indexing.md)
+- [Session](artifact/references/session.md)
+- [Migration](artifact/references/migration.md)
+- [Observability](artifact/references/observability.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline code blocks, generated Go code, SQL, JSON, and shell commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Some local scripts can generate files only when output flags are supplied; generated SQL and database scaffolding should be reviewed before use.]
+
+## Skill Version(s):
+
+1.6.0 (source: server release evidence and changelog, released 2026-03-15)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

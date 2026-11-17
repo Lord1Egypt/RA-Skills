@@ -1,45 +1,54 @@
-## Description: <br>
-WP Multitool helps agents audit WordPress site health, diagnose performance and database issues, and propose or run WP-CLI optimization and configuration commands with confirmation for write operations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+WordPress site health audit, performance optimization, database cleanup, autoload tuning, slow query detection, wp-config management, image size control, frontend speed fixes, and server diagnostics. Combines 19 optimization and control modules into a single paid plugin (Pro $79/year single-site, $199/year or $499 lifetime unlimited). The diagnostic commands in this skill work on any WordPress 5.8+ site without the plugin.
 
-## Publisher: <br>
-[marcindudekdev](https://clawhub.ai/user/marcindudekdev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[marcindudekdev](https://clawhub.ai/user/marcindudekdev)
 
-## Use Case: <br>
-Developers, WordPress site administrators, and operations teams use this skill to inspect WordPress health, database bloat, autoload pressure, slow queries, frontend optimization state, and related configuration. It can also guide confirmed WP-CLI cleanup and configuration actions for sites the user is authorized to administer. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: WordPress admin-level WP-CLI commands can delete database rows, optimize tables, change wp-config.php, and modify plugin options. <br>
-Mitigation: Run the skill only on WordPress sites the user is authorized to administer, take a database backup before destructive changes, and require explicit confirmation before every write command. <br>
-Risk: The security review notes a plugin activation command that is not clearly declared or confirmation-gated like other site-changing actions. <br>
-Mitigation: Treat `wp plugin activate wp-multitool` as a write operation and require explicit user confirmation before running it. <br>
-Risk: Read-only diagnostics can still expose site metadata, environment details, and performance information. <br>
-Mitigation: Use diagnostic output only for the user's immediate review and avoid logging, storing, or transmitting site data. <br>
+## Use Case:
 
+WordPress site owners and developers use this skill to inspect site health, performance, database state, and WP Multitool monitoring data through WP-CLI. They can use its suggested cleanup and configuration commands after confirming each write operation.
 
-## Reference(s): <br>
-- [WP Multitool Homepage](https://wpmultitool.com) <br>
-- [ClawHub Skill Page](https://clawhub.ai/marcindudekdev/skills/wp-multi-tool) <br>
-- [Publisher Profile](https://clawhub.ai/user/marcindudekdev) <br>
-- [Author Website](https://marcindudek.dev) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with WP-CLI command blocks and optional JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires WP-CLI. Write operations require explicit user confirmation, and backups are recommended before destructive database changes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.5.2 (source: server-resolved release metadata) <br>
+Risk: Cleanup and configuration commands can delete WordPress data or change site behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Get user confirmation before every write operation and export a database backup before cleanup.
+
+Risk: The included SQL examples use the default wp_ table prefix and may fail on sites with a custom prefix.
+
+Mitigation: Check the site's prefix with `wp db prefix` and substitute it in the SQL before running queries.
+
+## Reference(s):
+
+- [WP Multitool](https://wpmultitool.com)
+- [ClawHub skill release](https://clawhub.ai/marcindudekdev/skills/wp-multi-tool)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Analysis, Guidance, Configuration instructions]
+
+**Output Format:** [Markdown with inline SQL and shell code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Write operations require user confirmation.]
+
+## Skill Version(s):
+
+1.10.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

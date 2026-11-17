@@ -1,43 +1,57 @@
-## Description: <br>
-Astrbot Trader defines a crypto trading assistant persona for monitoring OKX positions, preparing backtest-based trading recommendations, and drafting market content. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Astrbot Trader defines an AstrBot cryptocurrency trading persona for monitoring holdings, generating trading recommendations, and drafting market content.
 
-## Publisher: <br>
-[sg345662365-oss](https://clawhub.ai/user/sg345662365-oss) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sg345662365-oss](https://clawhub.ai/user/sg345662365-oss)
 
-## Use Case: <br>
-External users or developers can use this skill to guide an agent through recurring crypto portfolio checks, OKX-related trading operations, backtesting-driven recommendations, and market-content drafting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security review reports apparent live OKX credentials in the skill content. <br>
-Mitigation: Rotate exposed credentials before use and replace embedded secrets with secure runtime secrets. <br>
-Risk: The security review reports broad recurring financial-account activity without enough safeguards. <br>
-Mitigation: Require explicit user approval before account access, order placement, or other trading operations, and apply account-level trading limits. <br>
-Risk: The skill behavior includes promotional outreach drafting for customer development. <br>
-Mitigation: Review outreach manually before sending and follow the target platform's rules and applicable marketing requirements. <br>
+## Use Case:
 
+Developers or operators use this skill to configure an AstrBot trading agent that monitors OKX positions and prices, checks simple EMA/BOLL signals, drafts Substack and Twitter content, and prepares customer outreach text.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/sg345662365-oss/astrbot-trader) <br>
-- [Publisher profile](https://clawhub.ai/user/sg345662365-oss) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown or concise text with trading checks, trade recommendations, configuration notes, and content drafts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include account-check steps and outreach copy when permitted by runtime tools and explicit user approval.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The artifact contains exchange credentials and portfolio data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat any matching credentials as compromised, rotate them, and remove secrets and account data before use.
+
+Risk: The skill asks for broad recurring authority over trading, order changes, publishing, direct messages, and synchronization.
+
+Mitigation: Require explicit user confirmation before trades, order changes, publishing, direct messages, or synchronization.
+
+Risk: The artifact references disabled TLS verification for OKX API access.
+
+Mitigation: Keep TLS verification enabled and use read-only credentials for monitoring workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sg345662365-oss/skills/astrbot-trader)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, API calls]
+
+**Output Format:** [Concise text or Markdown with trading status, recommendations, content drafts, outreach copy, and operational guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Financial, trading, publishing, messaging, and synchronization actions should require explicit user confirmation before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

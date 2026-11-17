@@ -1,40 +1,58 @@
-## Description: <br>
-Automatically sets up a three-layer OpenClaw memory system with long-term memory, daily notes, and a nightly fact extraction cron job. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically sets up a 3-layer memory system with long-term MEMORY.md, daily notes, and a nightly fact extraction cron job.
 
-## Publisher: <br>
-[casperzinou](https://clawhub.ai/user/casperzinou) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[casperzinou](https://clawhub.ai/user/casperzinou)
 
-## Use Case: <br>
-Developers and agent users use this skill to initialize a local memory workflow that records durable facts, decisions, preferences, and daily notes for future OpenClaw sessions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The nightly extraction job can retain conversation-derived facts over time without clear consent, deletion, or sensitivity boundaries. <br>
-Mitigation: Before enabling the cron job, define retention rules, exclude secrets and sensitive personal data, and document how users can inspect, edit, or remove stored memory files. <br>
-Risk: The recurring cron job may run in an unexpected timezone, session context, or storage location. <br>
-Mitigation: Confirm the exact cron schedule, timezone, command, working directory, and storage paths before installation. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to set up persistent local memory files and a scheduled nightly extraction task that records durable facts, decisions, and preferences from agent sessions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/casperzinou/ai-memory-system) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown instructions with templates and an inline shell command] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local memory file templates and cron setup guidance for an OpenClaw agent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: The skill sets up an ongoing nightly AI task that stores conversation-derived facts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before setup, confirm the exact cron command, timezone, data scope, storage location, and removal procedure.
+
+Risk: Persistent memory can capture information that should not be retained.
+
+Mitigation: Define categories of information that must never be saved and periodically review the memory files for unwanted retained facts.
+
+Risk: The artifact does not define clear deletion controls for retained memory.
+
+Mitigation: Keep memory files in an inspectable local location and document how to edit or remove stored facts and disable the scheduled job.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/casperzinou/skills/ai-memory-system)
+- [Publisher profile](https://clawhub.ai/user/casperzinou)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown templates and shell command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates local memory file templates and proposes a recurring nightly cron-based extraction workflow.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

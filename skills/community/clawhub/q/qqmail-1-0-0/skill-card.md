@@ -1,43 +1,54 @@
-## Description: <br>
-Manage QQ Mail (QQmail) via IMAP/SMTP so an agent can read, send, search, and list folders for a configured QQ mailbox. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage QQ Mail (QQ邮箱) via IMAP/SMTP for reading inbox messages, sending emails with attachments, searching by subject, sender, or date, and listing folders.
 
-## Publisher: <br>
-[sunyue1977](https://clawhub.ai/user/sunyue1977) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sunyue1977](https://clawhub.ai/user/sunyue1977)
 
-## Use Case: <br>
-Developers and external users with QQ Mail accounts use this skill to inspect folders, read or search messages, and send email through QQ Mail after configuring a QQ authorization code. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send real outbound email through the configured QQ Mail account. <br>
-Mitigation: Review each recipient, subject, and message body before running send commands. <br>
-Risk: Attachments may disclose private files, customer data, credentials, or regulated information. <br>
-Mitigation: Confirm every attachment path and file content before sending; avoid attaching sensitive files unless explicitly required. <br>
-Risk: QQMAIL_AUTH_CODE is a mailbox credential that enables IMAP/SMTP access. <br>
-Mitigation: Keep the authorization code in environment variables or a secret store, and do not paste it into prompts, logs, or generated documents. <br>
+## Use Case:
 
+External users and developers use this skill to let an agent operate a QQ Mail account through IMAP and SMTP after the user configures QQ Mail credentials and an authorization code.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sunyue1977/qqmail-1-0-0) <br>
-- [Publisher profile](https://clawhub.ai/user/sunyue1977) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with inline bash commands and command-line text output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 plus QQMAIL_USER and QQMAIL_AUTH_CODE environment variables; uses the Python standard library.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: The skill can read mailbox contents when QQMAIL_USER and QQMAIL_AUTH_CODE are configured.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with an intended QQ Mail account and avoid exposing the authorization code outside the local environment.
+
+Risk: The skill can send email messages and attachments through QQ Mail.
+
+Mitigation: Review recipients, subject, body, and attachment paths before allowing send commands to run.
+
+## Reference(s):
+
+- [Qqmail 1.0.0 ClawHub release](https://clawhub.ai/sunyue1977/skills/qqmail-1-0-0)
+- [sunyue1977 ClawHub publisher profile](https://clawhub.ai/user/sunyue1977)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and text output from the QQ Mail script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Python 3 and the QQMAIL_USER and QQMAIL_AUTH_CODE environment variables.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

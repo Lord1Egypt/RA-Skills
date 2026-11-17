@@ -1,46 +1,62 @@
-## Description: <br>
-Maps unstructured biomedical terms to standardized SNOMED CT and MeSH ontology concepts using local reference data and optional UMLS/MeSH API lookup. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Maps biomedical terms from unstructured text to SNOMED CT and MeSH concepts using local reference data and optional UMLS or MeSH API lookups.
 
-## Publisher: <br>
-[aipoch-ai](https://clawhub.ai/user/aipoch-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aipoch-ai](https://clawhub.ai/user/aipoch-ai)
 
-## Use Case: <br>
-Developers, biomedical data analysts, and informatics teams use this skill to normalize clinical or scientific terms into ontology identifiers for interoperability, search, and data harmonization workflows. It is not a substitute for clinical review or patient-care decision-making. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: API mode can send submitted biomedical terms to external NLM services. <br>
-Mitigation: Use local-only processing for confidential or patient-identifying data, and enable API lookup only after confirming text is de-identified and permitted by privacy and compliance requirements. <br>
-Risk: Ontology mappings can be ambiguous, incomplete, or unsuitable for clinical decisions without expert review. <br>
-Mitigation: Review low-confidence and high-impact mappings with qualified domain experts before using results in patient-care or regulated workflows. <br>
-Risk: The listed Python requirements are unnecessary or unpinned. <br>
-Mitigation: Avoid blindly installing the requirements file; inspect dependencies and use a controlled environment before execution. <br>
+## Use Case:
 
+Developers, data integration teams, and biomedical analysts use this skill to map clinical or scientific terms to ontology identifiers, inspect confidence scores, and produce reviewable JSON or text outputs. Mappings require domain review before use in clinical or other high-stakes workflows.
 
-## Reference(s): <br>
-- [Bio-Ontology Mapper release page](https://clawhub.ai/aipoch-ai/bio-ontology-mapper-1) <br>
-- [UMLS API endpoint](https://uts-ws.nlm.nih.gov/rest) <br>
-- [SNOMED sample reference data](references/snomed_sample.json) <br>
-- [MeSH sample reference data](references/mesh_sample.json) <br>
-- [Synonym reference data](references/synonyms.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Guidance, Files] <br>
-**Output Format:** [Markdown guidance with CLI commands; script results as JSON or plain text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can write mapping results to an output file and can use external ontology APIs only when explicitly enabled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and target metadata) <br>
+Risk: The documented scope and install dependencies are not cleanly aligned with the shipped artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the artifact before installation, prefer running the script without installing requirements, and remove unnecessary dependency entries before deployment.
+
+Risk: Sensitive clinical text could be sent to external ontology APIs when API mode is enabled.
+
+Mitigation: Use local-only mode for sensitive text; if API mode is necessary, de-identify inputs first and provide the UMLS key through an environment variable rather than a command-line argument.
+
+Risk: Biomedical ontology mappings can be ambiguous, outdated, or falsely high-confidence.
+
+Mitigation: Review low-confidence and top candidate mappings, track ontology versions where relevant, and require domain expert validation for clinical or other high-stakes use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aipoch-ai/skills/bio-ontology-mapper-1)
+- [UMLS UTS API](https://uts-ws.nlm.nih.gov/rest)
+- [MeSH API](https://id.nlm.nih.gov/mesh)
+- [snomed_sample.json](references/snomed_sample.json)
+- [mesh_sample.json](references/mesh_sample.json)
+- [synonyms.json](references/synonyms.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON or text mapping output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include confidence scores, ontology identifiers, source labels, and API status fields.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

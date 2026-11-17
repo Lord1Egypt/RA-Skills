@@ -1,39 +1,48 @@
-## Description: <br>
-Searches a configured Prowlarr instance for media resources and returns matching torrents, magnet links, and related result details as JSON. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches media resources through the Prowlarr API and returns torrent, Usenet, and magnet-link results as JSON.
 
-## Publisher: <br>
-[pengzhxyz](https://clawhub.ai/user/pengzhxyz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[pengzhxyz](https://clawhub.ai/user/pengzhxyz)
 
-## Use Case: <br>
-Agents and developers use this skill to query their own Prowlarr instance for movie, TV, or music resources, including season and episode searches for TV series. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a Prowlarr API key to query a configured Prowlarr instance. <br>
-Mitigation: Treat PROWLARR_API_KEY as sensitive, avoid exposing it in logs, and rotate it if it may have been disclosed. <br>
-Risk: Search requests are sent to the configured PROWLARR_BASE_URL. <br>
-Mitigation: Use a trusted local or HTTPS Prowlarr endpoint and avoid routing requests through untrusted proxies. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/pengzhxyz/prowlarr-search) <br>
+## Use Case:
 
+External users and developers use this skill to query their configured Prowlarr instance for movies, TV episodes, torrents, Usenet releases, and magnet links. It is useful when an agent needs structured media search results with title, size, indexer, link, and publish date fields.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Configuration instructions] <br>
-**Output Format:** [Markdown usage guidance with JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 plus PROWLARR_BASE_URL and PROWLARR_API_KEY environment variables.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill sends the Prowlarr API key in request URLs when querying the configured Prowlarr instance.
+
+Mitigation: Use localhost or a trusted HTTPS PROWLARR_BASE_URL, avoid untrusted proxies, and rotate the Prowlarr API key if request URLs may have been logged.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/pengzhxyz/skills/prowlarr-search)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Guidance]
+
+**Output Format:** [JSON array from the Prowlarr search helper, with error messages emitted as JSON on stderr]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and a configured Prowlarr API key; accepts query text plus optional media type, season, and episode parameters.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,38 +1,48 @@
-## Description: <br>
-Write Arabic that sounds human. Not formal, not robotic, not AI-generated. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Write Arabic that sounds human. Not formal, not robotic, not AI-generated.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users and writers use this skill to draft or revise Arabic so it sounds natural, colloquial where appropriate, and consistent with the intended regional dialect. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Arabic output may use the wrong regional dialect, formality level, or script style for the user's audience. <br>
-Mitigation: Confirm the target region, formality, and script preference when they matter, then review the final text for dialect consistency. <br>
-Risk: Casual expressions or religious phrases may be inappropriate in some contexts. <br>
-Mitigation: Review culturally sensitive wording before use in formal, professional, or public communications. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+External users and content-writing agents use this skill to make Arabic responses sound more natural by selecting appropriate MSA, dialect, formality, greetings, fillers, and expressions.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Guidance] <br>
-**Output Format:** [Plain text or Markdown natural-language responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May vary dialect, formality, script choice, and phrasing based on the user's context.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may favor dialect or casual register in contexts that require Modern Standard Arabic or a specific regional dialect.
+
+Mitigation: Explicitly request MSA, a formal register, or the target regional dialect when those constraints matter.
+
+## Reference(s):
+
+- [Arabic ClawHub skill page](https://clawhub.ai/ivangdavila/skills/arabic)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Guidance]
+
+**Output Format:** [Natural-language guidance for Arabic text generation and editing]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution, tools, persistence, or data access.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,50 +1,68 @@
-## Description: <br>
-Guides an agent to use the LangExtract Python library to extract source-grounded structured data from unstructured text and generate JSONL results and HTML review visualizations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Langextract helps agents use Google's LangExtract Python library to extract structured data from unstructured text with source-text offsets, visual review, and Gemini, OpenAI, or Ollama models.
 
-## Publisher: <br>
-[cn-big-cabbage](https://clawhub.ai/user/cn-big-cabbage) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cn-big-cabbage](https://clawhub.ai/user/cn-big-cabbage)
 
-## Use Case: <br>
-Developers and analysts use this skill to install and configure LangExtract, design extraction prompts and examples, run structured extraction over text or document URLs, and review source-grounded results. It is aimed at extraction workflows for clinical, legal, academic, news, and long-document analysis where traceability to source text matters. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive documents may be sent to external model providers during extraction. <br>
-Mitigation: Use only approved providers and environments for sensitive data, and prefer local Ollama for private documents. <br>
-Risk: API keys may be exposed through environment setup or local .env files. <br>
-Mitigation: Store keys in a secret manager or protected environment variables, and keep .env files out of version control. <br>
-Risk: Generated JSONL and HTML review files may contain sensitive source text or extracted data. <br>
-Mitigation: Review generated files, restrict access, and keep sensitive outputs out of version control. <br>
-Risk: The installation guide includes a remote Ollama installer script. <br>
-Mitigation: Inspect remote installer scripts or use an organization-approved installation source before running them. <br>
+## Use Case:
 
+Developers and data practitioners use this skill to install and apply LangExtract for extracting grounded structured records from clinical, legal, literary, academic, and long-form documents, then save JSONL results and generate HTML visualizations for review.
 
-## Reference(s): <br>
-- [LangExtract GitHub](https://github.com/google/langextract) <br>
-- [LangExtract PyPI](https://pypi.org/project/langextract/) <br>
-- [LangExtract paper DOI](https://doi.org/10.5281/zenodo.17015089) <br>
-- [Installation guide](guides/01-installation.md) <br>
-- [Quickstart guide](guides/02-quickstart.md) <br>
-- [Advanced usage guide](guides/03-advanced-usage.md) <br>
-- [Troubleshooting guide](troubleshooting.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Shell commands, Configuration, Files] <br>
-**Output Format:** [Markdown with Python and shell command examples; runtime outputs may include JSONL and HTML files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Python 3 and may use Gemini, OpenAI, or local Ollama model configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: Installer guidance includes a curl-to-shell Ollama command.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the command first and prefer an official verified installer or inspected script before execution.
+
+Risk: Hosted model use and examples involving medical, legal, confidential, or regulated documents can expose sensitive text to external providers.
+
+Mitigation: Use approved providers and privacy terms, avoid sending regulated or confidential documents without authorization, and prefer local models for sensitive workflows.
+
+Risk: API key setup and troubleshooting can reveal credentials if full environment values are printed or logged.
+
+Mitigation: Use environment or secret-management tooling and avoid printing complete API keys in terminals, notebooks, logs, or shared artifacts.
+
+Risk: Saved JSONL and HTML visualization outputs may contain sensitive source text and extracted entities.
+
+Mitigation: Treat generated output files as sensitive, restrict access, and remove or encrypt them according to the data handling policy for the source documents.
+
+Risk: Unpinned package upgrades and model choices can reduce reproducibility.
+
+Mitigation: Use a virtual environment and pin package and model versions when repeatable extraction behavior is required.
+
+## Reference(s):
+
+- [LangExtract GitHub Repository](https://github.com/google/langextract)
+- [LangExtract PyPI Project](https://pypi.org/project/langextract/)
+- [LangExtract Paper DOI](https://doi.org/10.5281/zenodo.17015089)
+- [LangExtract Examples](https://github.com/google/langextract/tree/main/examples)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Code, Configuration, Files]
+
+**Output Format:** [Markdown guidance with bash and Python code blocks; generated project outputs may include JSONL and HTML files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May call hosted or local LLM providers and write extraction artifacts that can contain source document content.]
+
+## Skill Version(s):
+
+0.1.1 (source: release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

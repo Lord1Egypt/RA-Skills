@@ -1,41 +1,50 @@
-## Description: <br>
-Generates customer-facing answers for common healthcare questions for healthcare operators, clinic teams, and patient educators. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate customer-facing answers for common healthcare questions for healthcare operators, clinic teams, and patient educators.
 
-## Publisher: <br>
-[modestyrichards](https://clawhub.ai/user/modestyrichards) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[modestyrichards](https://clawhub.ai/user/modestyrichards)
 
-## Use Case: <br>
-Healthcare operators, clinic teams, and patient educators use this skill to draft FAQ content for common patient or customer questions, then refine it for accuracy, readability, and actionability. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts or drafts may include PHI or patient-specific details. <br>
-Mitigation: Do not include PHI or patient-specific details in prompts or generated FAQ content. <br>
-Risk: Healthcare FAQ drafts may contain unverified web-search claims or regulated medical content. <br>
-Mitigation: Verify claims against trusted sources and require clinical or compliance review before publishing patient-facing content. <br>
+## Use Case:
 
+Healthcare operators, clinic teams, and patient educators use this skill to draft FAQ content that answers common patient or customer questions. Patient-facing content should be reviewed by qualified clinical or legal reviewers before publication.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/modestyrichards/modesty-build-healthcare-faq-page) <br>
-- [SkillBoss skill page](https://www.skillboss.co/skills/build-healthcare-faq-page) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Draft FAQ content should be reviewed before patient-facing or regulated use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Healthcare FAQ drafts may contain inaccurate, inappropriate, or regulated medical claims if published without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide the intended audience, locale, clinic policy, and allowed topics, then have qualified clinical or legal reviewers approve any patient-facing FAQ before publication.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/modestyrichards/skills/modesty-build-healthcare-faq-page)
+- [SkillBoss homepage](https://www.skillboss.co/skills/build-healthcare-faq-page)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text FAQ draft]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use chat and web search APIs; output requires human review before patient-facing publication.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

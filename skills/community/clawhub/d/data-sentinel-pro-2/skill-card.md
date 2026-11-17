@@ -1,43 +1,55 @@
-## Description: <br>
-Monitors webpages, product prices, and competitor updates around the clock and notifies users when tracked content changes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitors webpages, product prices, and competitor pages around the clock and alerts when monitored content changes.
 
-## Publisher: <br>
-[anson125chen](https://clawhub.ai/user/anson125chen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[anson125chen](https://clawhub.ai/user/anson125chen)
 
-## Use Case: <br>
-External users and developers use this skill to monitor authorized webpages for price, content, or status changes, schedule recurring checks, and receive change notifications through configured channels. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The dependency manifest may create a supply-chain risk if OpenClaw installs package.json dependencies from npm. <br>
-Mitigation: Confirm OpenClaw's dependency resolution before installing; if npm installation is used, remove or replace beautifulsoup4 with a verified Python dependency path and exact pinned versions. <br>
-Risk: Recurring cron checks and notifications can create ongoing network activity against monitored sites. <br>
-Mitigation: Add cron entries only for intentional monitoring jobs and monitor only pages the user is authorized to watch. <br>
-Risk: Telegram and email notification settings require credentials in local configuration. <br>
-Mitigation: Use dedicated notification credentials and keep real tokens, passwords, and chat IDs out of version control. <br>
+## Use Case:
 
+External users, developers, and operations teams use this skill to monitor selected URLs for price or content changes, store local change state, and receive change alerts when configured.
 
-## Reference(s): <br>
-- [Cron configuration example](crontab-example.txt) <br>
-- [ClawHub release page](https://clawhub.ai/anson125chen/data-sentinel-pro-2) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The monitoring script prints status messages and change alerts, and stores per-URL state in local JSON files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release, package.json) <br>
+Risk: The skill fetches monitored URLs and can run repeatedly through cron, which may create network, privacy, or policy exposure if pointed at sensitive targets.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Monitor only URLs the user is authorized to access, avoid private dashboards, account pages, internal hosts, and cloud metadata URLs, and apply network controls for recurring jobs.
+
+Risk: Configured Telegram alerts may send monitored URL details and change summaries outside the local machine.
+
+Mitigation: Review notification destinations and alert text before enabling Telegram, and keep credentials in environment variables or local configuration outside version control.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/anson125chen/skills/data-sentinel-pro-2)
+- [Project Documentation](https://github.com/anson125chen/data-sentinel-pro)
+- [Publisher Website](https://asmartglobal.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline JSON configuration and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce local monitoring state and optional notification text when executed with user-provided URLs and alert settings.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

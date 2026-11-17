@@ -1,44 +1,64 @@
-## Description: <br>
-NotebookLM RAG Line syncs NotebookLM answers into a local SQLite vector RAG store and serves LINE chatbot responses with follow-up question suggestions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Syncs NotebookLM answers into a local SQLite RAG knowledge base and serves LINE chatbot responses with embeddings and follow-up question suggestions.
 
-## Publisher: <br>
-[claws-peak](https://clawhub.ai/user/claws-peak) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[claws-peak](https://clawhub.ai/user/claws-peak)
 
-## Use Case: <br>
-Developers and automation builders use this skill to populate a local RAG knowledge base from NotebookLM and connect it to a LINE chatbot for teaching assistant, support, or personal knowledge workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Browser automation can operate inside a logged-in NotebookLM session. <br>
-Mitigation: Use a dedicated Chrome profile with only the needed notebook access and review each configured notebook ID before running. <br>
-Risk: The script can install browser automation dependencies at runtime. <br>
-Mitigation: Preinstall, pin, and review dependencies in the deployment environment instead of relying on runtime installation. <br>
-Risk: Retrieved NotebookLM answers are written to local SQLite and JSON files. <br>
-Mitigation: Store only approved content and protect the local database and output files according to the sensitivity of the source material. <br>
-Risk: Scheduled execution may repeatedly update the local knowledge base without direct supervision. <br>
-Mitigation: Enable scheduled tasks only when recurring background updates are intended and monitor logs and output files. <br>
+## Use Case:
 
+Developers and operators use this skill to automate NotebookLM-to-RAG knowledge-base updates and provide LINE chatbot answers from local vector search. It is aimed at teaching assistants, customer support bots, and personal knowledge-management workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/claws-peak/notebooklm-rag-line) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with code and shell command examples; runtime components produce JSON files and HTTP JSON responses.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires local configuration for Chrome profile, NotebookLM notebook ID, Ollama models, SQLite paths, and the RAG server port.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The runtime can auto-install an unpinned browser automation dependency.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin and review dependencies before installation, and remove runtime package installation from the script.
+
+Risk: The NotebookLM automation uses an authenticated Chrome profile.
+
+Mitigation: Use a dedicated Chrome profile with no unrelated sessions or accounts.
+
+Risk: NotebookLM answers and RAG data may contain sensitive content stored in SQLite and JSON outputs.
+
+Mitigation: Define retention, deletion, and access controls for generated database and response files.
+
+Risk: The local RAG server or LINE bridge could be exposed without adequate controls.
+
+Mitigation: Keep services bound to trusted interfaces and add authentication, request limits, and prompt-injection hardening before exposure.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/claws-peak/skills/notebooklm-rag-line)
+- [Publisher profile](https://clawhub.ai/user/claws-peak)
+- [Artifact README](artifact/README.md)
+- [Artifact skill definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with Python and shell snippets; runtime scripts produce SQLite records and JSON HTTP responses.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Python, Node, and Ollama with bge-m3 embeddings and a local LLM model.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

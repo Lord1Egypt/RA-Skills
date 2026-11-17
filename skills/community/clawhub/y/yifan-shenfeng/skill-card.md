@@ -1,39 +1,50 @@
-## Description: <br>
-一饭封神 helps users prepare recipe-generation requests from ingredients, tastes, dietary restrictions, cooking time, and difficulty preferences, and points them to the third-party AI recipe website. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+一饭封神 is an AI recipe helper that directs users to https://eat.lz-t.top/ and helps format ingredients, taste preferences, dietary restrictions, cooking time, and difficulty constraints for recipe generation.
 
-## Publisher: <br>
-[13700307924](https://clawhub.ai/user/13700307924) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[13700307924](https://clawhub.ai/user/13700307924)
 
-## Use Case: <br>
-External users use this skill to get help turning available ingredients, flavor preferences, and constraints into a structured recipe request and to access the 一饭封神 online recipe generator. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill directs users to a third-party recipe website that may receive ingredients, preferences, dietary constraints, or other information the user enters there. <br>
-Mitigation: Use the external site only when comfortable sharing that information, and avoid entering sensitive personal information. <br>
+## Use Case:
 
+External users use this skill when they want recipe ideas from available ingredients or cooking preferences. The agent can recommend the 一饭封神 website and organize the user's recipe request into a concise input format.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/13700307924/yifan-shenfeng) <br>
-- [一饭封神 recipe website](https://eat.lz-t.top/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown text with a third-party website URL and structured recipe-request examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No local code installation, shell commands, or local data access are described in the release evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Users may submit ingredients, dietary preferences, or other personal details to the third-party recipe website.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Tell users the recipe request may be handled by https://eat.lz-t.top/ and advise them to share only details they are comfortable submitting to that site.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/13700307924/skills/yifan-shenfeng)
+- [一饭封神 website](https://eat.lz-t.top/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text with recipe-request fields and website guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No local files, commands, credentials, or persistent storage are produced by the skill.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,54 @@
-## Description: <br>
-Confidential real-world-asset (RWA) portfolio agent for reading encrypted MuHaven balances and staging buy, yield-claim, and pause intents for human confirmation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Confidential RWA portfolio agent on Fhenix CoFHE that reads encrypted balances, stages buy and yield-claim intents, and requires human confirmation before state-changing actions.
 
-## Publisher: <br>
-[hastodev](https://clawhub.ai/user/hastodev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[hastodev](https://clawhub.ai/user/hastodev)
 
-## Use Case: <br>
-External MuHaven users and developers use this skill to inspect encrypted RWA portfolio state, review yields and audit records, and prepare buy, claim, or pause requests that require out-of-band human confirmation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Wallet-adjacent actions can stage buy, claim, and pause workflows through a persistent authenticated broker. <br>
-Mitigation: Install only when the publisher is trusted, prefer read-only mode unless state-changing workflows are needed, and verify every confirmation request before approval. <br>
-Risk: Security boundaries may depend on the local OpenClaw runtime and may be advisory rather than enforced in host-native operation. <br>
-Mitigation: Verify that the runtime enforces sandbox permissions before relying on egress, filesystem, process, keychain, or hash-pinning protections. <br>
+## Use Case:
 
+External MuHaven users and agents use this skill to inspect encrypted real-world-asset portfolio data, review yields and audit context, and prepare buy, claim, or pause intents for separate user confirmation.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/hastodev/muhaven-rwa-skill) <br>
-- [Publisher profile](https://clawhub.ai/user/hastodev) <br>
-- [MuHaven homepage](https://muhaven.app) <br>
-- [Security posture](artifact/SECURITY.md) <br>
-- [Artifact README](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, guidance, configuration] <br>
-**Output Format:** [MCP tool responses with structured JSON payloads and human-facing text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Wallet-adjacent actions are staged as confirmation intents; read-only mode limits exposed tools to read operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.4 (source: SKILL.md frontmatter, manifest.json, package.json, CHANGELOG released 2026-05-17, server release evidence) <br>
+Risk: The skill handles account JWTs and financial intents while some runtime protections may be advisory in host-native deployments.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if you trust MuHaven, keep backend_url, dashboard_url, and broker_endpoint at expected values, and prefer a runtime that enforces the declared network allowlist.
+
+Risk: Misconfigured broker or account session could affect financial-intent handling.
+
+Mitigation: Verify the broker daemon and account session are yours before use; enable read-only mode when portfolio viewing is sufficient.
+
+## Reference(s):
+
+- [MuHaven homepage](https://muhaven.app)
+- [ClawHub skill page](https://clawhub.ai/hastodev/skills/muhaven-rwa-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, configuration, guidance]
+
+**Output Format:** [Structured MCP tool responses and human-readable text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [State-changing actions are returned as staged intents for external confirmation; the skill does not auto-submit them.]
+
+## Skill Version(s):
+
+0.1.4 (source: frontmatter, package.json, CHANGELOG, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

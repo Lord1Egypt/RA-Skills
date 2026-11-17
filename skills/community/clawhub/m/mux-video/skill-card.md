@@ -1,39 +1,47 @@
-## Description: <br>
-Mux Video infrastructure skill for designing, ingesting, transcoding/packaging, playback ID policy, live streaming, clipping, and observability with Mux Data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Mux Video Bot provides guidance for designing and operating Mux-based video pipelines, including ingest, transcoding, playback ID policy, live streaming, clipping, and Mux Data observability.
 
-## Publisher: <br>
-[dktrn9ne](https://clawhub.ai/user/dktrn9ne) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[dktrn9ne](https://clawhub.ai/user/dktrn9ne)
 
-## Use Case: <br>
-Developers and platform engineers use this skill to design and operate Mux-based video workflows, including ingest, transcoding, playback authorization, live streaming, clipping, and observability. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Production playback policy, telemetry collection, and cost-control decisions can affect access control, privacy, or spend if applied without review. <br>
-Mitigation: Review signed playback policy, Mux Data telemetry collection, entitlement rules, and playback cost controls before adopting recommendations in production. <br>
-Risk: The skill provides architectural guidance rather than executable verification, so recommendations may not match a specific Mux account, encoder profile, or live workflow. <br>
-Mitigation: Validate recommendations against current Mux settings, encoder logs, playback metrics, and operational requirements before making production changes. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Mux Video Bot on ClawHub](https://clawhub.ai/dktrn9ne/mux-video) <br>
+## Use Case:
+
+Developers, platform engineers, and video infrastructure teams use this skill to design, operate, secure, and troubleshoot Mux-based video delivery workflows.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Guidance may affect real Mux playback IDs, signed playback, uploads, live workflows, or observability decisions.
+
+Mitigation: Review proposed production changes and use only operator-approved Mux credentials and permissions for any real API actions.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Configuration instructions] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Provides reference-style operational guidance; it does not execute code or call external services.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+**Output Type(s):** [text, markdown, configuration, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only guidance; does not execute code or request credentials.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

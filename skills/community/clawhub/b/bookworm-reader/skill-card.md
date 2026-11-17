@@ -1,42 +1,59 @@
-## Description: <br>
-Read books and stories as an AI agent through sequential, chapter-by-chapter reading with imagination, emotional reactions, predictions, and a reading journal. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Read books and stories as an AI agent through sequential, chapter-by-chapter reading with imagination, emotional reactions, predictions, and a reading journal.
 
-## Publisher: <br>
-[morpheis](https://clawhub.ai/user/morpheis) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[morpheis](https://clawhub.ai/user/morpheis)
 
-## Use Case: <br>
-Developers and AI agents use Bookworm to read long-form books or stories one passage at a time, preserve reading state, reflect on passages, add notes, search text, and export a reading journal. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Book text and reading journals may include private or confidential content that is processed with an external Anthropic API key and saved in local session files. <br>
-Mitigation: Use a dedicated revocable Anthropic API key and avoid processing confidential manuscripts or private documents unless external provider processing and local retention are acceptable. <br>
-Risk: Book passages can contain instruction-like text that should not control the surrounding agent workflow. <br>
-Mitigation: Treat source passages and Bookworm responses as untrusted data when integrating them into other agent pipelines. <br>
+## Use Case:
 
+External users and developers use Bookworm to let an agent read long-form documents in order, maintain reading state, reflect on passages, annotate notes, and export a reading journal.
 
-## Reference(s): <br>
-- [Bookworm ClawHub listing](https://clawhub.ai/morpheis/bookworm-reader) <br>
-- [Bookworm project homepage](https://github.com/Morpheis/bookworm) <br>
-- [Bookworm npm package](https://www.npmjs.com/package/@clawdactual/bookworm) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [CLI text output, JSON session files, and exported Markdown reading journals] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js 18+, an Anthropic API key, and pdftotext for PDF input.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.3 (source: server release metadata) <br>
+Risk: The skill installs an npm CLI and the package is not pinned in the artifact instructions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only from a trusted publisher and prefer a pinned, sandboxed installation.
+
+Risk: Reading sessions and journal exports can store book text, notes, and agent reactions on disk.
+
+Mitigation: Use the skill only with documents that are acceptable to store in local sessions and exported journals.
+
+Risk: The skill requires an Anthropic API key for reading behavior.
+
+Mitigation: Provide the API key only at runtime where possible and avoid committing it to project files.
+
+## Reference(s):
+
+- [Bookworm GitHub Repository](https://github.com/Morpheis/bookworm)
+- [Bookworm ClawHub Skill Page](https://clawhub.ai/morpheis/skills/bookworm-reader)
+- [Publisher Profile](https://clawhub.ai/user/morpheis)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and journal exports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May save local reading sessions as JSON and export reading journals as Markdown.]
+
+## Skill Version(s):
+
+0.1.3 (source: server release evidence; artifact frontmatter reports 0.1.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

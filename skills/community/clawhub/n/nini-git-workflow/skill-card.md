@@ -1,42 +1,53 @@
-## Description: <br>
-Guides agents through Git commits, pull requests, releases, conventional commit messages, changelog updates, and commit-message validation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through Git commits, pull requests, and releases using conventional commits, semantic versioning, optional GitHub CLI workflows, and commit-message validation.
 
-## Publisher: <br>
-[niracler](https://clawhub.ai/user/niracler) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[niracler](https://clawhub.ai/user/niracler)
 
-## Use Case: <br>
-Developers and engineering agents use this skill to prepare concise Git commits, create pull requests, tag releases, update changelogs, and validate commit-message format. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill instructs the agent to push commits to the configured remote immediately after committing. <br>
-Mitigation: Before use, override the auto-push behavior so the agent must show the branch, remote, staged files, and active GitHub account before any push, tag, pull request, or release. <br>
+## Use Case:
 
+Developers and agents use this skill to create focused commits, draft pull requests, and prepare releases with consistent messages, changelog updates, tags, and GitHub release commands.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/niracler/nini-git-workflow) <br>
-- [Release v0.3.0 Changelog](https://github.com/niracler/skill/releases/tag/v0.3.0) <br>
-- [Examples and Templates](references/examples-and-templates.md) <br>
-- [Git Documentation](https://git-scm.com/) <br>
-- [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and prose guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include commit messages, pull request descriptions, release checklists, changelog guidance, and validation commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.3.0 (source: server release evidence) <br>
+Risk: The skill instructs agents to push commits to a remote repository automatically after committing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only where immediate publication is intended; otherwise require explicit approval before git push, creating upstream branches, pushing tags, creating pull requests, or publishing releases.
+
+## Reference(s):
+
+- [Git Workflow ClawHub page](https://clawhub.ai/niracler/skills/nini-git-workflow)
+- [Examples and Templates](references/examples-and-templates.md)
+- [Git documentation](https://git-scm.com/)
+- [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
+- [Release v0.3.0](https://github.com/niracler/skill/releases/tag/v0.3.0)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown prose with inline shell commands and code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May run git commands that change repository state and publish commits, tags, pull requests, or releases.]
+
+## Skill Version(s):
+
+0.3.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

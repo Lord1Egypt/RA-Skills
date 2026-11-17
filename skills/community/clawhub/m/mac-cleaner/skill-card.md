@@ -1,40 +1,53 @@
-## Description: <br>
-Analyze and safely clean disk space on macOS. Use when the user asks about Mac storage, "System Data" taking too much space, disk cleanup, freeing up space, or managing storage on macOS. Covers caches, iOS simulators, Xcode data, trash, logs, and browser caches. Safe for everyday Mac users. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze and safely clean disk space on macOS. Use when the user asks about Mac storage, "System Data" taking too much space, disk cleanup, freeing up space, or managing storage on macOS. Covers caches, iOS simulators, Xcode data, trash, logs, and browser caches. Safe for everyday Mac users.
 
-## Publisher: <br>
-[apprithm](https://clawhub.ai/user/apprithm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[apprithm](https://clawhub.ai/user/apprithm)
 
-## Use Case: <br>
-Mac users and support agents use this skill to inspect disk usage, identify common macOS storage consumers, and run guided cleanup steps for caches, Xcode data, browser caches, old logs, and Trash. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Clean mode can permanently delete caches, Trash contents, and old system logs after confirmation. <br>
-Mitigation: Run analyze mode first and only run clean mode when the user accepts permanent deletion of those items. <br>
-Risk: Old log cleanup may require an administrator password and can remove logs that are useful for troubleshooting, compliance, or incident review. <br>
-Mitigation: Skip or modify log cleanup when recent or historical logs need to be preserved. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Apple: Check storage space on your Mac](https://support.apple.com/guide/mac-help/check-storage-space-mchlc03eb677/mac) <br>
-- [Apple: Free up storage space on your Mac](https://support.apple.com/en-us/HT202083) <br>
+## Use Case:
 
+External macOS users and developers use this skill to inspect disk usage, identify common storage-heavy locations, and run or review cleanup steps for caches, Xcode data, browser caches, logs, trash, and related storage items.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with bash command examples and terminal output from the cleanup script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Analyze mode is read-only; clean mode prompts before deleting rebuildable caches, old logs, and Trash contents.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Cleanup mode and manual examples include broad deletion commands that can remove user data if paths are misunderstood or copied without review.
+
+Mitigation: Run analyze mode first, review the exact paths and backup folders, and only execute cleanup or manual deletion commands after confirming the data is no longer needed.
+
+Risk: Some cleanup paths involve administrator privileges, old system logs, Time Machine snapshots, or Terminal Full Disk Access.
+
+Mitigation: Avoid privileged or snapshot deletion commands unless the recovery impact is understood, and grant Full Disk Access or enter an administrator password only after reviewing the requested action.
+
+## Reference(s):
+
+- [Apple: Check Your Storage Space](https://support.apple.com/guide/mac-help/check-storage-space-mchlc03eb677/mac)
+- [Apple: Free Up Storage Space on Your Mac](https://support.apple.com/en-us/HT202083)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline bash commands and plain-text terminal guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include macOS cleanup guidance, read-only analysis steps, and confirmation-gated cleanup commands.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

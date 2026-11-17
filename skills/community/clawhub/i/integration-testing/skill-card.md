@@ -1,45 +1,60 @@
-## Description: <br>
-Automated integration testing with external services using testcontainers, wiremock, localstack. Use when developer needs to set up integration tests for testing with real services in Docker containers via testcontainers, mocking HTTP APIs with WireMock, testing AWS S3 with LocalStack, SFTP integration testing, or setting up complex integration test environments with external dependencies. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automated integration testing with external services using Testcontainers, WireMock, LocalStack, SFTP, and containerized test environments.
 
-## Publisher: <br>
-[ahmed181283](https://clawhub.ai/user/ahmed181283) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ahmed181283](https://clawhub.ai/user/ahmed181283)
 
-## Use Case: <br>
-Developers and engineers use this skill to set up isolated integration tests with Docker-based services, mocked HTTP APIs, LocalStack S3, and SFTP test environments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Helper scripts can install or execute external software. <br>
-Mitigation: Review scripts before running them, verify downloaded or installed dependencies, and execute them only in an isolated development environment. <br>
-Risk: Helper scripts can persist environment changes in a shell profile. <br>
-Mitigation: Keep AWS and Testcontainers variables scoped to a project or one terminal session, and avoid allowing scripts to modify ~/.bashrc unless the change is intentional. <br>
-Risk: Disabling Testcontainers cleanup can leave containers running after tests. <br>
-Mitigation: Remove TESTCONTAINERS_RYUK_DISABLED unless persistent containers are intentionally needed, and clean up local Docker resources after testing. <br>
+## Use Case:
 
+Developers and engineers use this skill to create integration tests for applications that depend on databases, message queues, HTTP APIs, AWS S3, SFTP, or other external services. It helps set up isolated local test environments, mocks, and reusable Python test templates.
 
-## Reference(s): <br>
-- [Testcontainers Guide](references/testcontainers-guide.md) <br>
-- [WireMock Patterns](references/wiremock-patterns.md) <br>
-- [LocalStack S3 Configuration Guide](references/localstack-s3-config.md) <br>
-- [Security & Compliance](SECURITY.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with Python examples, shell commands, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes helper scripts and templates for local integration-test environments] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Helper scripts may install or execute dependencies and downloaded artifacts that have not been independently verified.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review scripts before execution, use a virtual environment with pinned dependencies, and verify downloaded artifacts before running them.
+
+Risk: Setup helpers may make persistent shell profile changes, including local AWS and Testcontainers environment exports.
+
+Mitigation: Inspect and edit profile changes before applying them, and remove temporary shell exports after testing.
+
+Risk: Local test containers or mock services may remain running or become reachable outside the intended development environment.
+
+Mitigation: Keep cleanup enabled, bind test services to loopback, avoid production networks, and remove lingering containers or services after use.
+
+## Reference(s):
+
+- [Testcontainers Guide](references/testcontainers-guide.md)
+- [WireMock Patterns](references/wiremock-patterns.md)
+- [LocalStack S3 Configuration Guide](references/localstack-s3-config.md)
+- [Security & Compliance](SECURITY.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with Python code, shell commands, configuration snippets, and implementation guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce test templates, helper commands, dependency setup steps, and local service configuration guidance.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

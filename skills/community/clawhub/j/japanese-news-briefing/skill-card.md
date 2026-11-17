@@ -1,40 +1,57 @@
-## Description: <br>
-Produces concise Japanese news briefings covering the Iran-Israel situation, U.S. and Japanese economics, and Tokyo and New York weather up to four times per day. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Summarizes Iran-Israel developments, U.S. and Japan economic news, and Tokyo/New York weather in Japanese four times daily.
 
-## Publisher: <br>
-[harinezumi](https://clawhub.ai/user/harinezumi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harinezumi](https://clawhub.ai/user/harinezumi)
 
-## Use Case: <br>
-Japanese-speaking users use this skill to receive scheduled or manually triggered briefings on selected geopolitical, economic, market, and weather topics. It is suited to lightweight daily awareness rather than emergency alerts or archival research. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Recurring scheduled runs may make repeated external news and weather requests. <br>
-Mitigation: Review or disable the HEARTBEAT schedule if recurring public news and weather lookups are not desired. <br>
-Risk: The skill is not designed for severe weather alerts, breaking-news guarantees, or historical data retrieval. <br>
-Mitigation: Use authoritative emergency, market, weather, or archival sources for decisions that require timeliness, completeness, or historical accuracy. <br>
+## Use Case:
 
+External OpenClaw users use this skill to receive concise Japanese news and weather briefings on a daily schedule or by manual briefing command.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/harinezumi/japanese-news-briefing) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown] <br>
-**Output Format:** [Japanese Markdown briefing with short sectioned bullet summaries and weather lines] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Scheduled up to four times daily; artifact rules target concise output of about 500 Japanese characters.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill may perform web searches and weather lookups four times daily on an automated schedule.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review HEARTBEAT.md before enabling the skill so the schedule, topics, and locations match the intended use.
+
+Risk: News, market, and weather summaries depend on external live sources and may be incomplete, stale, or misleading.
+
+Mitigation: Require source mentions in each briefing and verify important decisions against primary news, market, or weather sources.
+
+Risk: The artifact states that severe weather alerts are not covered and that breaking-news checks may be skipped within 30 minutes.
+
+Mitigation: Use official emergency weather channels and request a manual check for time-sensitive events.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/harinezumi/skills/japanese-news-briefing)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Japanese Markdown briefing with topic sections, bullet summaries, source mentions, weather lines, and a one-line overall summary.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Scheduled four times daily with manual /briefing morning, noon, afternoon, and evening triggers; target length is 500 Japanese characters or fewer.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact/clawhub.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

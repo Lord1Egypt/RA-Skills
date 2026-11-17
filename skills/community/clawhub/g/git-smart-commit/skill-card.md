@@ -1,42 +1,54 @@
-## Description: <br>
-Analyze staged git changes and generate high-quality commit messages following Conventional Commits format. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze staged git changes and generate high-quality Conventional Commits messages with optional scope and breaking change detection.
 
-## Publisher: <br>
-[wusuiling-if](https://clawhub.ai/user/wusuiling-if) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wusuiling-if](https://clawhub.ai/user/wusuiling-if)
 
-## Use Case: <br>
-Developers and engineers use this skill to inspect staged Git changes, draft Conventional Commits messages, and optionally create a commit after user approval. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Repository diffs may include sensitive code, accidental secrets, or private implementation details. <br>
-Mitigation: Invoke the skill only in repositories where staged changes may be inspected, and review the generated message before sharing or committing it. <br>
-Risk: A generated commit message may misrepresent the change or hide unrelated changes in a single commit. <br>
-Mitigation: Review the proposed message against the staged diff and split unrelated changes with git add -p when the skill recommends doing so. <br>
-Risk: The skill can produce a git commit command after approval. <br>
-Mitigation: Require explicit user approval before running git commit, and use dry-run message generation when only wording is needed. <br>
+## Use Case:
 
+Developers and engineers use this skill to inspect staged Git changes and draft clear Conventional Commits messages. With user approval, the agent can run the proposed git commit command.
 
-## Reference(s): <br>
-- [Conventional Commits](https://www.conventionalcommits.org/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline git commands and Conventional Commits message text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include a subject-only commit message, an optional body/footer, split-commit guidance, or a proposed git commit command when the user approves committing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Generated commit messages could inaccurately describe the staged changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the proposed message against the staged diff before approving a commit.
+
+Risk: Running git commit mutates repository history.
+
+Mitigation: Require explicit user approval before executing git commit, and use dry-run behavior when the user only wants a message.
+
+## Reference(s):
+
+- [Conventional Commits](https://www.conventionalcommits.org/)
+- [ClawHub Skill Page](https://clawhub.ai/wusuiling-if/skills/git-smart-commit)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with Conventional Commit messages and optional shell command proposals]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated commit messages should be reviewed by the user before any commit is executed.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

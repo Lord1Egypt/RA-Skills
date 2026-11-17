@@ -1,47 +1,62 @@
-## Description: <br>
-Build production-ready n8n community nodes as npm packages, covering declarative and programmatic node styles. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build production-ready n8n community nodes as npm packages, covering declarative and programmatic node styles.
 
-## Publisher: <br>
-[rwilson504](https://clawhub.ai/user/rwilson504) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rwilson504](https://clawhub.ai/user/rwilson504)
 
-## Use Case: <br>
-Developers and engineers use this skill to scaffold, implement, test, and publish n8n community node packages, including node classes, credentials, triggers, package configuration, and publishing steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated n8n nodes may handle OAuth tokens, API keys, or other service credentials. <br>
-Mitigation: Prefer Authorization or custom headers for API keys, keep OAuth scopes minimal, use query-string secrets only when an API requires them, and avoid storing secrets in workflow static data. <br>
-Risk: Generated packages commonly start from a cloned starter repository and npm dependencies. <br>
-Mitigation: Review cloned source and dependencies before use, then build and test the package locally before publishing or installing it in a live n8n environment. <br>
-Risk: Credential examples can lead to unsafe handling if copied without review. <br>
-Mitigation: Review generated credential files for secret masking, authentication placement, and scope before connecting real services. <br>
+## Use Case:
 
+Developers and engineers use this skill to scaffold and implement n8n community node packages, including declarative REST nodes, programmatic nodes, credential types, triggers, local testing, and npm publishing guidance.
 
-## Reference(s): <br>
-- [N8n Create Nodes source](https://github.com/rwilson504/agent-skills/tree/main/n8n-create-nodes) <br>
-- [n8n Nodes Starter](https://github.com/n8n-io/n8n-nodes-starter.git) <br>
-- [Credential Patterns](references/CREDENTIAL_PATTERNS.md) <br>
-- [Trigger Patterns](references/TRIGGER_PATTERNS.md) <br>
-- [Examples](references/EXAMPLES.md) <br>
-- [Common Mistakes](references/COMMON_MISTAKES.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with TypeScript, JSON, and shell code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces development guidance and implementation patterns for n8n node packages; the skill itself does not execute generated commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release metadata) <br>
+Risk: Scaffold cleanup commands can remove an existing Git history if run in the wrong working directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run scaffold commands only in a fresh project directory and verify the working directory before removing `.git`.
+
+Risk: Credential examples can lead to weak secret handling if copied without adapting them to the target API.
+
+Mitigation: Mask secret fields, prefer header-based credential injection, and use query parameters only when the API requires them.
+
+Risk: Generated delete, webhook, and poll examples can affect external data or registrations during testing.
+
+Mitigation: Test destructive operations, webhook registration, and polling behavior with sandbox data before publishing or linking a node into n8n.
+
+## Reference(s):
+
+- [Credential Patterns](references/CREDENTIAL_PATTERNS.md)
+- [Trigger Node Patterns](references/TRIGGER_PATTERNS.md)
+- [Examples](references/EXAMPLES.md)
+- [Common Mistakes](references/COMMON_MISTAKES.md)
+- [ClawHub Skill Page](https://clawhub.ai/rwilson504/skills/n8n-create-nodes)
+- [Source Homepage](https://github.com/rwilson504/agent-skills/tree/main/n8n-create-nodes)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with TypeScript, JSON, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces n8n node package scaffolding and implementation guidance; no runtime service is embedded in the skill.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

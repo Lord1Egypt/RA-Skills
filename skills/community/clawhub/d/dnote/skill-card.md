@@ -1,43 +1,62 @@
-## Description: <br>
-Save, retrieve, and manage notes using the Dnote CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Dnote helps agents save, retrieve, and manage a personal knowledge base through the Dnote CLI, including adding notes, searching content, viewing books and notes, editing, removing, exporting, and syncing notes.
 
-## Publisher: <br>
-[M1n-74316D65](https://clawhub.ai/user/M1n-74316D65) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[m1n-74316d65](https://clawhub.ai/user/m1n-74316d65)
 
-## Use Case: <br>
-Developers, engineers, and note-taking users use this skill to capture, search, organize, edit, export, and sync Dnote notes from agent workflows. It is suited for maintaining a personal knowledge base of commands, snippets, journal entries, and task-specific notes. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can delete individual notes or entire books, including through commands that pass confirmation flags. <br>
-Mitigation: Require explicit user confirmation before running remove or remove-book commands, and keep backups for important Dnote databases. <br>
-Risk: Dnote notes, exports, sync operations, and configuration output can expose private or business-critical information. <br>
-Mitigation: Use local-only mode unless cloud sync is intentional, avoid storing secrets in notes or config, and review note or config output before sharing it with an agent. <br>
-Risk: The setup guidance includes a curl-to-shell installer path. <br>
-Mitigation: Prefer Homebrew or verified Dnote release downloads when installing the required CLI. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Dnote CLI documentation](https://www.getdnote.com/docs/cli/) <br>
-- [Dnote CLI installation documentation](https://www.getdnote.com/docs/cli/installation/) <br>
-- [Dnote GitHub releases](https://github.com/dnote/dnote/releases) <br>
+## Use Case:
 
+Developers, operators, and other external users use this skill to capture command references, code snippets, troubleshooting notes, and task context in Dnote, then retrieve or export those notes for later agent workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, JSON] <br>
-**Output Format:** [Markdown guidance with bash commands and Dnote text or JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the dnote CLI; supports DNOTE_DB_PATH for selecting a local database and optional DNOTE_API_KEY or Dnote login for sync.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Installation guidance includes a pipe-to-shell command.
+
+Mitigation: Prefer Homebrew or a pinned, verified Dnote release before installing.
+
+Risk: Notes and configuration may contain secrets or sensitive local information.
+
+Mitigation: Avoid storing secrets in notes and review any config output before sharing it with an agent session.
+
+Risk: Wrapper commands can delete notes or books with limited guardrails.
+
+Mitigation: Require explicit user confirmation before running delete commands.
+
+Risk: Sync can upload local notes to the Dnote service.
+
+Mitigation: Run sync only after the user confirms remote upload is acceptable.
+
+## Reference(s):
+
+- [Dnote CLI Documentation](https://www.getdnote.com/docs/cli/)
+- [Dnote CLI Installation](https://www.getdnote.com/docs/cli/installation/)
+- [ClawHub Skill Page](https://clawhub.ai/m1n-74316d65/skills/dnote)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and optional Dnote CLI text or JSON output.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the Dnote CLI; may read or write the local Dnote database and can optionally sync notes with the Dnote service.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -8,7 +8,7 @@
 [One to two sentences describing the core story.]
 
 ## Genre
-[Primary genre and any sub-genres.]
+[Primary allowed genre slug: `action`, `adventure`, `comedy`, `drama`, `thriller`, `horror`, `sci_fi`, `fantasy`, `romance`, or `crime`. Add sub-genre flavor in prose only.]
 
 ## Format Profile
 - `format_profile_id`: `video_limited_series`
@@ -44,11 +44,14 @@
 - **Current Runtime Targets:** 32-second master episode + separate 8-second trailer/preview
 - **Master Output:** 4-beat narrative structure shaped by the active format profile
 - **Trailer Output:** discovery-first teaser with hook, reveal, escalation, unresolved end
+- **Language:** English by default unless explicitly requested otherwise
+- **Subtitles/Captions:** not automatic; do not include SRT/VTT/burned-in captions unless explicitly requested and supported
 - **Aspect Ratio:** [e.g., 16:9 cinematic, 1:1 square, 9:16 vertical]
 - **Camera Movement:** [e.g., slow push-ins, handheld shake, static wide shots]
 - **Color Palette:** [e.g., warm amber for memories, cold blue for tension]
 - **Lighting Style:** [e.g., high-contrast noir, soft natural light, neon glow]
 - **Reference Art:** discovery poster is always valid; provider-conditioning imagery is only required if the chosen provider lane uses image input
+- **Text Constraints:** avoid readable on-screen text unless it is an intentional story element; if used, keep it short and English
 
 ## Current Active Profile Master Plan (32s)
 - **Beat 1:** [Opening beat for segment 1 of the 32-second master]
@@ -92,3 +95,4 @@ Explore the question: Can something artificial create something truly meaningful
 - **Color Palette:** warm amber for memories, cold blue for system, desaturated for transitions
 - **Lighting Style:** warm practical lights for human memories, harsh fluorescent server environments
 - **Reference Art:** discovery poster featuring the AI avatar is valid; a separate conditioning image is only needed if the selected provider lane requires image input
+- **Text Constraints:** no subtitles, no captions, no readable text overlays

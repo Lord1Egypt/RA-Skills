@@ -1,38 +1,49 @@
-## Description: <br>
-My Integration helps agents clarify integration requirements, identify target systems, and suggest implementation steps with examples. <br>
+## Description:
 
-This skill is for demonstration purposes and not for production usage. <br>
+My Integration helps agents understand integration requirements, identify target systems, suggest implementation steps, and provide examples.
 
-## Publisher: <br>
-[karaninfoorigin](https://clawhub.ai/user/karaninfoorigin) <br>
+This skill is for demonstration purposes and not for production usage.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[karaninfoorigin](https://clawhub.ai/user/karaninfoorigin)
 
-## Use Case: <br>
-Developers and agents use this skill to plan basic integrations by clarifying requirements, identifying the target system, and outlining implementation steps. It is useful as a starter template for integration guidance rather than a complete system-specific connector. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The included files provide generic integration guidance and may not provide the GitHub-specific functionality suggested by metadata. <br>
-Mitigation: Review the skill instructions against the intended integration workflow before relying on domain-specific behavior. <br>
+## Use Case:
 
+Developers and users can use this starter skill when they need structured help planning an integration between systems. The skill prompts an agent to clarify requirements, identify the target system, suggest implementation steps, and include examples when helpful.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/karaninfoorigin/skills/integration) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code] <br>
-**Output Format:** [Markdown guidance with optional examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable output; content depends on the requested integration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata) <br>
+Risk: The artifact uses generic starter wording and does not specify supported integration types.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and specialize the skill instructions for the intended integration scope before relying on it in production.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/karaninfoorigin/skills/integration)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Configuration instructions]
+
+**Output Format:** [Markdown or plain text with optional examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No commands, credentials, persistence, or data access are defined by the artifact.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,55 @@
-## Description: <br>
-Provides a Windows-focused deployment guide for local OpenClaw memory search using nomic-embed-text, memorySearch configuration, Nomic Atlas visualization, and intranet troubleshooting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides OpenClaw users through Windows-focused local embedding memory-search deployment, Nomic Atlas visualization, and troubleshooting for restricted network environments.
 
-## Publisher: <br>
-[paudyyin](https://clawhub.ai/user/paudyyin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[paudyyin](https://clawhub.ai/user/paudyyin)
 
-## Use Case: <br>
-Developers and engineers use this skill to configure local semantic memory search for OpenClaw, install the memory-tencentdb plugin, verify readiness, and troubleshoot Windows or intranet deployment issues. It also provides optional guidance for Nomic Atlas memory visualization and remote embedding fallback. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The optional remote embedding configuration can send memory content or search queries outside the local machine. <br>
-Mitigation: Prefer the local embedding setup for sensitive memory data; use a remote endpoint only after confirming it is trusted, approved, and appropriate for the data being processed. <br>
-Risk: The guide includes configuration and system file edits that can affect OpenClaw memory search behavior. <br>
-Mitigation: Review the OpenClaw configuration changes before applying them and verify the deployment with `openclaw memory status`. <br>
+## Use Case:
 
+Developers and administrators use this skill to deploy local embedding-backed OpenClaw memory search, configure related memory tooling, and troubleshoot setup issues in Windows and restricted network environments.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/paudyyin/node-llama-cpp-install-guide) <br>
-- [nomic-embed-text-v1.5 GGUF mirror](https://hf-mirror.com/nomic-ai/nomic-embed-text-v1.5-GGUF/resolve/main/nomic-embed-text-v1.5.Q4_K_M.gguf) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with PowerShell, bash, batch, and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only output for local memory search deployment and troubleshooting.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release evidence and package.json) <br>
+Risk: The guide includes steps to bypass centralized OpenClaw configuration and edit installed OpenClaw files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use those steps only in an authorized environment with administrator approval, and preserve centralized configuration policy unless that change has been explicitly approved.
+
+Risk: Remote embedding configuration can expose memory data if endpoint privacy and retention terms are not understood.
+
+Mitigation: Prefer local embedding for sensitive memory data, or confirm the remote endpoint's privacy, retention, and authorization rules before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/paudyyin/skills/node-llama-cpp-install-guide)
+- [nomic-embed-text v1.5 GGUF model mirror](https://hf-mirror.com/nomic-ai/nomic-embed-text-v1.5-GGUF/resolve/main/nomic-embed-text-v1.5.Q4_K_M.gguf)
+- [Source skill documentation](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guide with JSON, PowerShell, Bash, and batch snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes environment requirements, deployment checklist, validation commands, and troubleshooting notes.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,66 @@
-## Description: <br>
-NVEIL is an AI-powered data-processing and visualization toolkit for agents that plans joins, aggregations, pivots, resampling, geocoding, time-series analysis, feature engineering, 2D/3D charts, geospatial maps, volume rendering, and medical imaging remotely while executing work locally on the user's machine. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+NVEIL helps agents turn natural-language data processing and visualization requests into local CLI or Python workflows, using a remote planning service while executing on the user's machine.
 
-## Publisher: <br>
-[pierrejacquet](https://clawhub.ai/user/pierrejacquet) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pierrejacquet](https://clawhub.ai/user/pierrejacquet)
 
-## Use Case: <br>
-Developers, data analysts, and agent users use this skill to transform, summarize, and visualize structured, geospatial, image, and volume data without hand-writing pandas, NumPy, Plotly, Matplotlib, VTK, or DeckGL code. The skill guides an agent to inspect data, invoke the NVEIL CLI or Python API, and return generated visualizations, reusable specs, or explanations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, column names, data types, and summary statistics may be sent to NVEIL's remote planning service. <br>
-Mitigation: Use the skill only for datasets where sharing metadata is acceptable, and avoid auto-invocation for sensitive analysis unless the user explicitly agrees. <br>
-Risk: The skill requires the sensitive credential NVEIL_API_KEY. <br>
-Mitigation: Store the key in the environment or pass it at invocation time; do not commit or paste the key into shared files, logs, or prompts. <br>
-Risk: Broad agent auto-invocation could route ordinary data-analysis requests through NVEIL unexpectedly. <br>
-Mitigation: Use manual invocation or uninstall the skill when users do not want analysis metadata sent to the NVEIL planning service. <br>
+## Use Case:
 
+Developers, analysts, and agent users use this skill to delegate structured data transformation, analysis, and visualization tasks to the NVEIL CLI or Python package instead of hand-writing pandas, NumPy, plotting, geospatial, or volume-rendering code.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/pierrejacquet/nveil) <br>
-- [NVEIL homepage](https://nveil.com) <br>
-- [NVEIL documentation](https://docs.nveil.com) <br>
-- [NVEIL API reference](https://docs.nveil.com/api-reference/) <br>
-- [NVEIL PyPI package](https://pypi.org/project/nveil/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Code, Configuration] <br>
-**Output Format:** [Markdown instructions with CLI commands and Python examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May direct the agent to produce HTML, PNG, and .nveil spec files through the NVEIL toolchain.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: ClawHub release evidence) <br>
+Risk: Sensitive or regulated data workflows may send prompts, schema, and summary statistics to the NVEIL planning service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only after confirming that sharing dataset metadata is acceptable, and avoid autonomous use on confidential files unless this data flow has been approved.
+
+Risk: The skill relies on unaudited external package behavior and remote planning.
+
+Mitigation: Install a pinned NVEIL package version in an isolated virtual environment and review generated plans or outputs before using them in decisions.
+
+Risk: Disabling TLS verification can weaken transport security.
+
+Mitigation: Keep TLS verification enabled except for strictly local self-signed development servers.
+
+Risk: Automatic MCP registration can modify local client configuration.
+
+Mitigation: Prefer manual MCP registration or verify exactly what the installer changes before using auto-registration.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/pierrejacquet/skills/nveil)
+- [Publisher profile](https://clawhub.ai/user/pierrejacquet)
+- [NVEIL homepage](https://nveil.com)
+- [NVEIL documentation](https://docs.nveil.com)
+- [NVEIL API reference](https://docs.nveil.com/api-reference/)
+- [NVEIL PyPI package](https://pypi.org/project/nveil/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with inline shell and Python examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide the agent to produce HTML, PNG, and .nveil files through the separate NVEIL package when invoked against user data.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,17 @@
+{
+  "skill": "ocas-lucid",
+  "version": "1.0.0",
+  "description": "Evaluation test cases for ocas-lucid",
+  "evals": [
+    {
+      "input": "Curate last night's skill journals",
+      "expected_output": "Batch-processes journals into MemPalace store with proper classification",
+      "description": "Journal curation"
+    },
+    {
+      "input": "Find stale entries in the journal archive",
+      "expected_output": "Identifies and marks stale entries for cleanup",
+      "description": "Stale entry detection"
+    }
+  ]
+}

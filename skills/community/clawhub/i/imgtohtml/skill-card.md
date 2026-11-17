@@ -1,41 +1,56 @@
-## Description: <br>
-Convert UI screenshots/images into fully functional HTML/CSS copies. This skill is used when a user provides images of a website, application interface, dashboard, or any UI design and wants to recreate it as working HTML code with accurate styles, layout, and visual details. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert UI screenshots or design images into functional HTML/CSS replicas with accurate layout, styling, and visual details.
 
-## Publisher: <br>
-[jinqiu193](https://clawhub.ai/user/jinqiu193) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[jinqiu193](https://clawhub.ai/user/jinqiu193)
+
+### License/Terms of Use:
+
+MIT
+
+## Use Case:
+
+Developers and designers use this skill to recreate UI screenshots, mockups, or design references as functional HTML/CSS pages for prototyping or implementation handoff.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can recreate UI designs from screenshots or mockups that the user may not have permission to copy.
+
+Mitigation: Use it only with images the user is authorized to reproduce, and confirm rights before publishing or distributing generated replicas.
+
+Risk: Generated HTML/CSS may approximate fonts, visual effects, dynamic content, or interaction behavior that is not fully visible in the source image.
+
+Mitigation: Review the generated page against the original image, provide missing interaction requirements, and test the result before deployment.
+
+Risk: Generated UI code may introduce incorrect or misleading design details if visual interpretation is wrong.
+
+Mitigation: Inspect and scan generated files before use, especially when the replica will be customer-facing or integrated into a larger application.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and designers use this skill to turn UI screenshots, mockups, or design references into working HTML/CSS replicas with close attention to layout, colors, typography, spacing, and responsive behavior. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Code, Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Generated JavaScript, external font links, or external asset links may introduce behavior or dependencies that were not intended. <br>
-Mitigation: Review added JavaScript and external links before running, publishing, or deploying generated output. <br>
-Risk: Input screenshots may contain private, sensitive, or copyrighted information. <br>
-Mitigation: Redact sensitive content and confirm rights to use screenshots, copied branding, and recreated assets before publication. <br>
-Risk: Image-based UI recreation can approximate fonts, effects, and interactive behavior incorrectly. <br>
-Mitigation: Validate generated pages against the source image and specify required interactivity beyond hover and focus states. <br>
+**Output Format:** [Self-contained HTML/CSS code, usually delivered in Markdown code blocks; complex designs may be split into HTML, CSS, and JavaScript files.]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [May process multiple images sequentially and produce one replica per input image.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with complete HTML/CSS code or generated web files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce one self-contained HTML file per input image, or separate HTML, CSS, and JavaScript files for complex designs.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

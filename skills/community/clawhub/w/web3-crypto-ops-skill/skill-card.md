@@ -1,47 +1,53 @@
-## Description: <br>
-Universal Web3 and crypto operating skill for AI agents covering token discovery, market data, token safety scoring, wallet and portfolio analysis, DEX swaps, CEX spot trading, and smart-money or meme-market signals across supported providers and chains. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Web3-Crypto-Degen helps agents research tokens, inspect wallet and market data, assess token safety, and prepare or execute DEX and spot-exchange trading workflows across supported Web3 providers.
 
-## Publisher: <br>
-[stanpoldark](https://clawhub.ai/user/stanpoldark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[stanpoldark](https://clawhub.ai/user/stanpoldark)
 
-## Use Case: <br>
-Developers and external users use this skill to guide AI agents through crypto market analysis, portfolio review, provider credential setup, and gated trading workflows with transaction safety checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Live crypto trading and on-chain swaps can cause financial loss. <br>
-Mitigation: Use testnet first, require manual review before every order or transaction, and start mainnet use with dedicated low-balance wallets. <br>
-Risk: Exchange API keys or wallet private keys could expose funds if overprivileged or leaked. <br>
-Mitigation: Disable withdrawal permissions, use trade-only exchange scopes, enable IP whitelisting where available, and keep signing keys in dedicated wallets or a vault. <br>
-Risk: Provider, RPC, or quote failures can lead to stale decisions or unsafe retries. <br>
-Mitigation: Check transaction and order status before retrying, block execution on quote failure, and use RPC health failover with explicit user confirmation for mainnet movement. <br>
+## Use Case:
 
+External developers and agents use this skill to support Web3 token discovery, market analysis, wallet review, safety checks, and crypto trade preparation or execution across OKX, Binance, Gate.io, Bitget, and supported chains.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/stanpoldark/web3-crypto-ops-skill) <br>
-- [OKX API key management](https://www.okx.com/account/my-api) <br>
-- [Binance API management](https://www.binance.com/en/my/settings/api-management) <br>
-- [Gate.io API keys](https://www.gate.io/myaccount/apikeys) <br>
-- [Bitget API keys](https://www.bitget.com/account/newapi) <br>
-- [Alchemy dashboard](https://dashboard.alchemy.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with tables, configuration snippets, and inline command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Risk flags first; blocked trades include reasons and safer alternatives; credentials must remain outside chat and source control.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata and user changelog) <br>
+Risk: The skill requests broad exchange credentials and raw wallet private keys, which can create financial risk even for read-only use.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Separate read-only analytics from execution and provide only the single provider credential needed for the current task.
+
+Risk: Live exchange or on-chain execution can move funds if powerful credentials or funded wallets are configured.
+
+Mitigation: Use withdrawal-disabled trade-only exchange keys with IP allowlisting, dedicated minimal-balance wallets, testnet-first validation, and vault-backed mainnet key handling.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/stanpoldark/skills/web3-crypto-ops-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with code snippets, configuration examples, API call patterns, and concise decision summaries.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Risk flags are expected first; blocked trades should include the reason and alternatives; raw secrets should not be returned.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

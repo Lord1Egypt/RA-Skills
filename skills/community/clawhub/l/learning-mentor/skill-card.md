@@ -1,39 +1,49 @@
-## Description: <br>
-通用学习带教模式，支持算法训练和编程语言学习，通过苏格拉底式提问逐步引导学习者思考、练习、复盘，并在学习单元结束后生成代码和文档。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language learning mentor that guides LeetCode algorithm practice and programming-language study through Socratic, step-by-step tutoring, then helps generate study notes and code files for completed learning units.
 
-## Publisher: <br>
-[xiaodingyang](https://clawhub.ai/user/xiaodingyang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiaodingyang](https://clawhub.ai/user/xiaodingyang)
 
-## Use Case: <br>
-Learners and developers use this skill for guided LeetCode, data-structure, algorithm, and programming-language study. It helps them work through exercises step by step, compare Python concepts with JavaScript when relevant, and produce study notes, progress records, and practice code. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may read exercise code and create or update study files in the active learning workspace. <br>
-Mitigation: Install it in a dedicated learning workspace and review generated or modified files before committing or relying on them. <br>
+## Use Case:
 
+Learners and developers use this skill for guided algorithm interview practice, data-structure study, and programming-language learning, especially Python learning for JavaScript developers. It emphasizes learner reflection, incremental hints, code review after the learner finishes, and reusable study artifacts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xiaodingyang/learning-mentor) <br>
-- [README.md](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Files] <br>
-**Output Format:** [Conversational guidance with Markdown notes, progress documents, and code snippets or files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update study notes, progress documents, and exercise files as part of the tutoring workflow.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata; artifact frontmatter reports 1.0.0) <br>
+Risk: The skill may create study notes, progress files, and code files in the user's workspace.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Choose a target directory before long sessions and require confirmation before overwriting existing files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xiaodingyang/skills/learning-mentor)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown tutoring responses with code snippets and generated study files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update study notes, progress files, and solution code in the workspace after learner confirmation.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

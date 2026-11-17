@@ -1,43 +1,54 @@
-## Description: <br>
-Send plain-text email from macOS through Mail.app using AppleScript without SMTP credentials, passwords, or API keys. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Send plain-text emails on macOS through Mail.app using AppleScript without SMTP credentials, passwords, or API keys.
 
-## Publisher: <br>
-[yumik20](https://clawhub.ai/user/yumik20) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yumik20](https://clawhub.ai/user/yumik20)
 
-## Use Case: <br>
-Developers and automation agents use this skill to send plain-text status reports, standup updates, alerts, and cron-generated messages from a configured macOS Mail.app account when SMTP or other mail tools are unavailable. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send email silently through Mail.app. <br>
-Mitigation: Require explicit user approval before each send and confirm the configured sender account, recipients, subject, body, and attachments. <br>
-Risk: The helper builds executable AppleScript from input values with insufficient validation. <br>
-Mitigation: Do not pass untrusted or externally supplied recipient, sender, subject, body, or file path values until AppleScript escaping and validation are fixed. <br>
-Risk: Attachment examples can send local files when given an absolute path. <br>
-Mitigation: Use only approved absolute file paths, verify the file exists, and avoid large or sensitive attachments. <br>
+## Use Case:
 
+Developers and agents use this skill to send standup reports, alerts, and other trusted plain-text email from a configured macOS Mail.app account when SMTP or other mail tools are unavailable.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/yumik20/osascript-email) <br>
-- [Sending Attachments via osascript-email](references/attachments.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with AppleScript, bash, and Python code snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces commands and helper code for plain-text Mail.app sends; attachment examples are optional and require absolute file paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: The skill can silently send email from a configured macOS Mail.app account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with explicit user consent and restrict recipient, sender, subject, body, and attachment values to trusted inputs.
+
+Risk: Helper code builds executable AppleScript from email fields and attachment paths with insufficient validation.
+
+Mitigation: Validate addresses and absolute attachment paths, pass values as data where possible, and require review before sending or attaching files.
+
+## Reference(s):
+
+- [Sending Attachments via osascript-email](references/attachments.md)
+- [ClawHub skill page](https://clawhub.ai/yumik20/skills/osascript-email)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with bash, AppleScript, and Python code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs guidance and helper code for Mail.app email sending; the helper prints send status or raises an error on osascript failure.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,53 @@
-## Description: <br>
-Reads WeChat public-account article lists and article bodies from a locally running WeWe RSS service, then parses article HTML into readable text. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reads article lists and article bodies from a locally running WeWe RSS service for subscribed WeChat Official Accounts.
 
-## Publisher: <br>
-[agasding](https://clawhub.ai/user/agasding) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[agasding](https://clawhub.ai/user/agasding)
 
-## Use Case: <br>
-Developers and agent users use this skill to retrieve subscribed WeChat public-account article metadata or body text from a local WeWe RSS instance and return readable article text for a requested account or link. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can trigger or rely on a local WeWe RSS deployment before reading articles. <br>
-Mitigation: Review the separate wewe-rss-deploy skill first and require explicit user confirmation before deployment or service startup. <br>
-Risk: The skill may access AUTH_CODE or broad local subscription database contents while resolving accounts and articles. <br>
-Mitigation: Limit access to the specific article task and do not print, save, or share AUTH_CODE values or unrelated subscription data. <br>
+## Use Case:
 
+Developers and users with a local WeWe RSS service use this skill to locate subscribed WeChat Official Account articles, retrieve article lists, and extract article bodies as readable plain text.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/agasding/wewe-rss-articles) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with command examples, Python snippets, API request details, and extracted article text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include article titles, links, dates, and plain-text content parsed from HTML returned by the local service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The workflow can read local WeWe RSS configuration, subscription database entries, cached article content, and localhost service responses.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only where that local WeWe RSS data is intended to be accessible, and review outputs before sharing article content or subscription details.
+
+Risk: The workflow may direct the agent to inspect .env for AUTH_CODE when API requests return 401.
+
+Mitigation: Confirm whether AUTH_CODE exists without printing or pasting it; redact secrets and avoid exposing the full .env file.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/agasding/skills/wewe-rss-articles)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with command and code snippets; extracted article text when the workflow is used by an agent]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include local WeWe RSS API responses and parsed plain text from cached article HTML.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

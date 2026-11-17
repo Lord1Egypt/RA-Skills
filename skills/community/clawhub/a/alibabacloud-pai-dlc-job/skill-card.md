@@ -1,48 +1,62 @@
-## Description: <br>
-Alibaba Cloud PAI-DLC job management skill for distributed training job CRUD, logs and events monitoring, and GPU sanity checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Alibaba Cloud PAI-DLC job management skill for distributed training job CRUD, monitoring logs and events, and GPU sanity checks.
 
-## Publisher: <br>
-[sdk-team](https://clawhub.ai/user/sdk-team) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sdk-team](https://clawhub.ai/user/sdk-team)
 
-## Use Case: <br>
-Developers and ML engineers use this skill to operate Alibaba Cloud PAI-DLC training jobs through the Aliyun CLI, including resource discovery, job creation, status inspection, logs and events, updates, stops, and GPU sanity checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill operates Alibaba Cloud PAI-DLC jobs through configured Aliyun CLI credentials. <br>
-Mitigation: Use a dedicated RAM user or role with the narrowest required permissions, and avoid root or broad administrator credentials. <br>
-Risk: Job stop, web-terminal URL generation, sharing-token generation, plugin installation, and persistent CLI configuration changes can affect running workloads or expose access paths. <br>
-Mitigation: Review and confirm these operations before execution, pre-check job status for stop/update actions, and share generated URLs or tokens only through trusted channels. <br>
-Risk: Creating or continuing training jobs can incur Alibaba Cloud compute charges. <br>
-Mitigation: Confirm resource choices before creation, use appropriate quotas or ECS specs, and set running-time limits for long experiments when available. <br>
+## Use Case:
 
+Developers and ML platform engineers use this skill to manage Alibaba Cloud PAI-DLC distributed training jobs, inspect job state, retrieve logs and events, discover required AIWorkSpace resources, and verify GPU health.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/sdk-team/alibabacloud-pai-dlc-job) <br>
-- [Acceptance Criteria](references/acceptance-criteria.md) <br>
-- [CLI Installation Guide](references/cli-installation-guide.md) <br>
-- [Job Lifecycle Management](references/job-management.md) <br>
-- [PAI-DLC RAM Permission Policies](references/ram-policies.md) <br>
-- [Related APIs](references/related-apis.md) <br>
-- [Verification Method](references/verification-method.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with bash command examples and JSON policy snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands should use confirmed Alibaba Cloud regions, workspace and job identifiers, scoped RAM permissions, and the required user-agent flag.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.1 (source: server release evidence) <br>
+Risk: The skill can guide high-impact cloud job operations, including stopping jobs, opening web terminals, and generating sharing tokens.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user approval before high-impact operations, present current job status before stop actions, and prefer read-only or least-privilege RAM permissions when full job management is not required.
+
+Risk: The skill relies on the user's configured Aliyun profile, which may have broad access to Alibaba Cloud resources.
+
+Mitigation: Configure credentials outside the agent session, avoid pasting secrets into commands, and use short-lived credentials or scoped roles where available.
+
+Risk: PAI-DLC create operations do not expose a client-token, so retries after network failures can create duplicate jobs.
+
+Mitigation: Before reissuing a failed create request, list jobs by display name to detect a previously committed job.
+
+## Reference(s):
+
+- [PAI-DLC API and CLI Reference](references/related-apis.md)
+- [PAI-DLC RAM Permission Policies](references/ram-policies.md)
+- [PAI-DLC Operation Verification Methods](references/verification-method.md)
+- [Job Lifecycle Management](references/job-management.md)
+- [Acceptance Criteria](references/acceptance-criteria.md)
+- [Aliyun CLI Installation and Configuration Guide](references/cli-installation-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands target Aliyun CLI workflows and should preserve the documented session User-Agent, timeout, confirmation, and least-privilege guidance.]
+
+## Skill Version(s):
+
+0.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -52,7 +52,7 @@ sleep 4
 #### A. 첨부 사진이 있을 때 (사진 + 오버레이 합성)
 나노바나나 스킬 사용 — 실제 사진 위에 세련된 텍스트 오버레이:
 ```bash
-GEMINI_API_KEY=AIzaSyDxmCkHR-aBXJsGUpGlS36CPywynors0vM \
+GEMINI_API_KEY=REDACTED-SECRET \
 uv run ~/.openclaw/workspace/skills/nano-banana-pro/scripts/generate_image.py \
   --prompt "[채널별 오버레이 프롬프트 - 아래 참조]" \
   --input-image "[첨부파일경로]" \
@@ -87,7 +87,7 @@ Warm, trustworthy, premium magazine style.
 
 #### B. 첨부 사진이 없을 때 (AI 이미지 생성)
 ```bash
-GEMINI_API_KEY=AIzaSyDxmCkHR-aBXJsGUpGlS36CPywynors0vM \
+GEMINI_API_KEY=REDACTED-SECRET \
 uv run ~/.openclaw/workspace/skills/nano-banana-pro/scripts/generate_image.py \
   --prompt "Professional Korean government SNS poster. [내용]. Navy #1A2E5A, Coral #FF5733, Lime #6DCC5A. Modern editorial style." \
   --filename "YYYY-MM-DD-gajago-[채널].png" \
@@ -118,7 +118,7 @@ python3 /Users/isangsu/.openclaw/workspace/skills/gajago-sns/scripts/make_video.
 - `YYYY-MM-DD-gajago-카피.txt`
 
 ## 환경변수
-- `GEMINI_API_KEY=AIzaSyDxmCkHR-aBXJsGUpGlS36CPywynors0vM`
+- `GEMINI_API_KEY=REDACTED-SECRET`
 - 웹앱: `http://localhost:3000` (gajago-sns Next.js 앱)
 - 웹앱 경로: `/Users/isangsu/.openclaw/workspace/artifacts/gajago-sns/`
 

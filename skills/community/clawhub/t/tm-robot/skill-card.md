@@ -1,49 +1,60 @@
-## Description: <br>
-Control and monitor OMRON TM collaborative robots with motion commands, status feedback, safety controls, camera support, and IO handling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Control and monitor OMRON TM collaborative robots with motion commands, status feedback, safety controls, camera support, and IO handling.
 
-## Publisher: <br>
-[qujingyang28](https://clawhub.ai/user/qujingyang28) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qujingyang28](https://clawhub.ai/user/qujingyang28)
 
-## Use Case: <br>
-Developers and automation engineers use this skill to connect agent workflows to configured OMRON TM collaborative robots for status monitoring, motion commands, IO checks, camera pose retrieval, and troubleshooting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Live motion scripts and examples can move physical robot hardware or actuate IO outputs. <br>
-Mitigation: Use only with trained robot operators, an isolated control network, a clear robot work area, emergency stop available, and verified speed and tooling limits. <br>
-Risk: Included reset_alarm and camera trigger helpers are convenience functions, not validated safety interlocks. <br>
-Mitigation: Rely on the robot safety controller and site safety procedures, and review or remove these helpers before operational deployment. <br>
-Risk: Incorrect robot IP, TMflow, Ethernet Slave, or Listen Node configuration can produce failed connections or unintended command targets. <br>
-Mitigation: Verify the target robot, network ports, TMflow version, Ethernet Slave variables, and Listen Node project in a dry-run or controlled test setup before sending motion commands. <br>
+## Use Case:
 
+Developers and robotics engineers use this skill to connect agents or Python automation to OMRON TM collaborative robots for status monitoring, motion commands, safety controls, camera pose retrieval, and IO handling.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/qujingyang28/tm-robot) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact test report](artifact/TEST_REPORT.md) <br>
-- [TMflow official documentation](https://www.tm-robot.com/) <br>
-- [techmanpy GitHub](https://github.com/TechmanRobotInc/techmanpy) <br>
-- [TM Export tool](https://github.com/TechmanRobotInc/TM_Export) <br>
-- [RobotQu support site](https://robotqu.com) <br>
-- [RobotQu forum](https://robotqu.mbbs.cc) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with Python and shell code snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include robot IP configuration, TMflow setup steps, Python API calls, diagnostic commands, and safety review guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata; artifact documentation references 1.1.0) <br>
+Risk: Examples and tests can issue live motion commands to connected robot hardware.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit operator confirmation, independent safety interlocks, and bounded motion validation before running any motion command.
+
+Risk: Module-level scripts may move hardware when executed in an environment that can reach a robot.
+
+Mitigation: Remove or gate live-motion scripts in deployment workflows and separate hardware tests from parser or documentation-only checks.
+
+Risk: Dependency and robot-control behavior may vary across local environments and robot configurations.
+
+Mitigation: Pin reviewed dependency versions, verify TMflow configuration, and test on the target robot model before production use.
+
+## Reference(s):
+
+- [TM Robot Control on ClawHub](https://clawhub.ai/qujingyang28/skills/tm-robot)
+- [TMflow Official Documentation](https://www.tm-robot.com/)
+- [techmanpy](https://github.com/TechmanRobotInc/techmanpy)
+- [TM Export Tool](https://github.com/TechmanRobotInc/TM_Export)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with Python examples, shell commands, and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include live robot-control commands that require operator review before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

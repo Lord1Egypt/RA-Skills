@@ -1,0 +1,23 @@
+{
+  "comparison": {
+    "question": "离线构造示例：比较青禾和两个竞品指定产品页的 FAQ、品牌实体和引用资料缺口，不代表真实站点评估。",
+    "page_slots": ["product"]
+  },
+  "sites": [
+    {
+      "id": "qinghe", "name": "青禾", "role": "brand",
+      "pages": [{"slot": "product", "url": "https://qinghe.example/products/crm", "snapshot": {"path": "pages/qinghe.html", "status": "ok", "http_status": 200, "kind": "simulated", "captured_at": "2026-10-19T12:00:00+08:00"}}],
+      "robots": {"url": "https://qinghe.example/robots.txt", "snapshot": {"path": "pages/robots.txt", "status": "ok", "http_status": 200, "kind": "simulated", "captured_at": "2026-10-19T12:00:00+08:00"}}
+    },
+    {
+      "id": "cedar", "name": "杉木", "role": "competitor",
+      "pages": [{"slot": "product", "url": "https://cedar.example/products/crm", "snapshot": {"path": "pages/cedar.html", "status": "ok", "http_status": 200, "kind": "simulated", "captured_at": "2026-10-19T12:00:00+08:00"}}],
+      "robots": {"url": "https://cedar.example/robots.txt", "snapshot": {"path": "pages/robots.txt", "status": "ok", "http_status": 200, "kind": "simulated", "captured_at": "2026-10-19T12:00:00+08:00"}}
+    },
+    {
+      "id": "river", "name": "溪流", "role": "competitor",
+      "pages": [{"slot": "product", "url": "https://river.example/products/crm", "snapshot": {"path": "pages/river.html", "status": "ok", "http_status": 200, "kind": "simulated", "captured_at": "2026-10-19T12:00:00+08:00"}}]
+    }
+  ],
+  "ai_samples": []
+}

@@ -1,43 +1,58 @@
-## Description: <br>
-Manage Cal.com calendars via CLI, including schedules, bookings, event types, available slots, and user profile tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Cal.com calendars through a CLI for schedules, bookings, event types, available slots, and user profiles.
 
-## Publisher: <br>
-[Melvynx](https://clawhub.ai/user/Melvynx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[melvynx](https://clawhub.ai/user/melvynx)
 
-## Use Case: <br>
-External users and developers use this skill to operate Cal.com accounts from an agent-driven CLI: inspect schedules, bookings, event types, slots, and profile data, then perform calendar-management actions when requested. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Remote install commands could fetch and run code from the GitHub/api2cli installation path. <br>
-Mitigation: Review the install source before running setup commands and install only when the agent should manage the user's Cal.com account. <br>
-Risk: The Cal.com token is stored at ~/.config/tokens/calcom-cli.txt. <br>
-Mitigation: Use a least-privilege or revocable token and protect or remove the token file when the skill is no longer needed. <br>
-Risk: Calendar mutations can cancel bookings or delete schedules and event types. <br>
-Mitigation: Ask the agent to confirm before destructive booking, schedule, or event-type actions. <br>
+## Use Case:
 
+Developers and agent operators use this skill to manage Cal.com scheduling workflows from an agent session, including calendar availability, bookings, event types, slot queries, and profile inspection.
 
-## Reference(s): <br>
-- [Calcom Cli on ClawHub](https://clawhub.ai/Melvynx/calcom-cli) <br>
-- [Bun installer](https://bun.sh/install) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance, JSON] <br>
-**Output Format:** [Markdown instructions with CLI command examples and JSON response envelopes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill directs agent-driven CLI calls to use --json for parseable results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: release evidence) <br>
+Risk: Setup uses mutable third-party installation commands and may link a CLI into the user's PATH.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review installation commands before running them and prefer trusted, pinned, verified dependency sources.
+
+Risk: The skill stores a Cal.com API token in a local file.
+
+Mitigation: Use the least-privileged token available, protect local file permissions, and remove the token when it is no longer needed.
+
+Risk: The skill enables account-changing calendar actions such as create, update, delete, cancel, confirm, and reschedule.
+
+Mitigation: Require explicit user confirmation before mutating Cal.com schedules, bookings, or event types.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/melvynx/skills/calcom-cli)
+- [Bun install script referenced by setup](https://bun.sh/install)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, JSON, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and standardized JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Agent-driven CLI calls should use --json; mutating calendar actions can create, update, delete, cancel, confirm, or reschedule Cal.com resources.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

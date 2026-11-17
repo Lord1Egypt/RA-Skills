@@ -1,39 +1,53 @@
-## Description: <br>
-Design, manage, and improve client relationships across sales, onboarding, delivery, communication, retention, and account growth. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Design, manage, and improve client relationships across sales, onboarding, delivery, communication, retention, and account growth.
 
-## Publisher: <br>
-[depinHQ](https://clawhub.ai/user/depinHQ) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[depinhq](https://clawhub.ai/user/depinhq)
 
-## Use Case: <br>
-Employees, client-facing teams, account managers, and service operators use this skill to structure onboarding, communication, delivery expectations, retention work, and account growth across an ongoing client relationship. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Client relationship work can involve confidential or sensitive business information. <br>
-Mitigation: Avoid sharing confidential client information unless the user is comfortable including it in the agent conversation. <br>
-Risk: Outputs may touch legal, financial, HR, compliance, or contract-adjacent topics while structuring client relationships. <br>
-Mitigation: Do not treat the skill as legal, financial, HR, compliance, or contract advice; adapt outputs to the user's jurisdiction, industry requirements, and formal agreements for regulated or high-stakes engagements. <br>
+## Use Case:
 
+Employees, external teams, and business operators use this skill to structure client onboarding, communication, delivery expectations, retention planning, and account growth. It helps turn ad hoc client work into clearer relationship systems with explicit scope, ownership, cadence, risks, and next steps.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown guidance with structured plans, frameworks, audits, maps, and templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution, external tools, credentials, installs, or system access are requested by the skill.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Outputs may be mistaken for legal, financial, HR, compliance, or contract advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as business relationship guidance and review regulated or high-stakes engagements against jurisdiction, industry requirements, and formal agreements.
+
+Risk: Broad client-related activation may produce advice for contexts that need specialist judgment.
+
+Mitigation: Review recommendations before use and adapt them to the specific client relationship, risk level, and organizational policies.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/depinhq/skills/client)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with structured plans, frameworks, audits, templates, and next-step recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces business relationship guidance only; outputs should not be treated as legal, financial, HR, compliance, or contract advice.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

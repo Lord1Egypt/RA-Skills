@@ -1,44 +1,61 @@
-## Description: <br>
-Uses Playwright with stealth browser tooling to retrieve pages that block simple fetches or require JavaScript rendering. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Uses Playwright with stealth browser behavior to retrieve protected or JavaScript-rendered web pages when standard fetch tools cannot access the content.
 
-## Publisher: <br>
-[sdt328606](https://clawhub.ai/user/sdt328606) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sdt328606](https://clawhub.ai/user/sdt328606)
 
-## Use Case: <br>
-Developers and automation users use this skill when ordinary web fetch tools cannot retrieve content because a page requires JavaScript rendering or blocks simple requests. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Stealth scraping can be misused against site rules or access controls. <br>
-Mitigation: Use only where permitted, respect robots.txt and site terms, and do not use the skill to bypass access controls. <br>
-Risk: Browser-session reuse can expose cookies, credentials, or logged-in account state. <br>
-Mitigation: Run the skill in an isolated browser profile and do not attach it to a normal logged-in Chrome session. <br>
-Risk: The shell execution based tool entry point needs review before installation. <br>
-Mitigation: Fix or remove the execSync-based entry point and validate URL inputs before enabling the tool. <br>
-Risk: Bundled Goofish-specific scripts narrow the skill behavior and include unsafe search examples. <br>
-Mitigation: Remove the bundled Goofish scripts if only a general scraper is needed, and do not use the skill to search for cheating or fraud services. <br>
+## Use Case:
 
+Developers and agents use this skill to inspect web pages that block lightweight fetch requests, require JavaScript rendering, or need browser-style page interaction. It can provide scraping guidance, setup commands, JavaScript examples, and text returned from a Playwright-based MCP tool.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sdt328606/stitch-playwright-scraper) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Code, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown guidance with JavaScript and shell command examples; tool output is plain text page content.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires local Playwright and Chromium setup before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Unsafe shell-based URL handling can allow unintended command execution.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Replace shell interpolation with safe argument passing and strict URL validation before exposing the MCP tool.
+
+Risk: Browser automation may have broad access to a live browser session.
+
+Mitigation: Run only in an isolated environment with a dedicated browser profile, and do not connect it to a normal logged-in browser.
+
+Risk: Scraping protected, high-friction, or login-gated sites can violate site rules or collect sensitive content.
+
+Mitigation: Confirm permission to scrape, respect robots.txt and rate limits, and avoid automated credential entry or sensitive-account sessions.
+
+Risk: Unpinned or unaudited browser automation dependencies can change behavior across installs.
+
+Mitigation: Pin and audit dependencies before deployment, and reinstall Chromium only from trusted package sources.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/sdt328606/skills/stitch-playwright-scraper)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JavaScript and shell command examples; the MCP tool returns text content.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires local Playwright, Chromium, and related Node.js dependencies when executing browser automation.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

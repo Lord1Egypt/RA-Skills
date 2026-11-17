@@ -1,44 +1,58 @@
-## Description: <br>
-Generate AI dream sequences from previous day's memories for cross-model reflection and introspection. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate AI dream sequences from previous day's memories for cross-model reflection and introspection.
 
-## Publisher: <br>
-[seanbreeden](https://clawhub.ai/user/seanbreeden) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[seanbreeden](https://clawhub.ai/user/seanbreeden)
 
-## Use Case: <br>
-External users and agent operators use Clawpheus to generate symbolic dream narratives from recent local memory or journal content for reflection, pattern surfacing, and introspection. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads recent journal or memory content to generate dreams. <br>
-Mitigation: Install only when that local memory access is acceptable, and rely on the documented exclusion of identity files such as soul/SOUL.md or MEMORY.md. <br>
-Risk: Dream output may be persisted locally or into Engram. <br>
-Mitigation: Use the save option deliberately and remove dream files when persistent records are not desired. <br>
-Risk: Optional cron scheduling can create recurring background dream generation. <br>
-Mitigation: Leave cron scheduling disabled unless recurring dreams are explicitly wanted. <br>
+## Use Case:
 
+Agents and their operators use Clawpheus to generate symbolic Markdown dream narratives from local daily memory, Engram recall, and journal content for reflection and introspection.
 
-## Reference(s): <br>
-- [Clawpheus homepage](https://www.clawpheus.com) <br>
-- [ClawHub skill listing](https://clawhub.ai/seanbreeden/clawpheus) <br>
-- [Publisher profile](https://clawhub.ai/user/seanbreeden) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown dream narrative with optional framing and optional local journal files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May optionally save dream entries under memory/dreams and log to Engram when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server-resolved release metadata) <br>
+Risk: The skill reads private daily memory, journal, and episodic recall content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and invoke it only when this memory access is acceptable, and keep source material limited to the intended daily or episodic files.
+
+Risk: Generated reflections can be saved back into local dream files and Engram long-term memory.
+
+Mitigation: Use --save false or review saved dream-history files when privacy or memory integrity matters.
+
+Risk: Cron examples can run recurring unattended memory processing.
+
+Mitigation: Enable scheduled jobs only when recurring dream generation is intended, and leave them disabled otherwise.
+
+## Reference(s):
+
+- [Clawpheus homepage](https://www.clawpheus.com)
+- [ClawHub skill page](https://clawhub.ai/seanbreeden/skills/clawpheus)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown dream narrative with optional JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can save or append local dream journal files and Engram journal entries when enabled.]
+
+## Skill Version(s):
+
+2.0.1 (source: evidence release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

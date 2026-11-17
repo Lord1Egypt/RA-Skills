@@ -1,40 +1,53 @@
-## Description: <br>
-Monitors session context and automatically manages model switching based on a cascading protocol. Use as part of a heartbeat or cron job to maintain session health and optimize token usage. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitors session context and automatically manages model switching based on a cascading protocol.
 
-## Publisher: <br>
-[Nietzsche247](https://clawhub.ai/user/Nietzsche247) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[nietzsche247](https://clawhub.ai/user/nietzsche247)
 
-## Use Case: <br>
-Developers and agent operators use this skill to add context-health checks to heartbeat or scheduled workflows and decide whether to switch models, trigger a handoff, or continue the current session. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill directs users to run check_context.ps1, but that PowerShell script is not included in the package. <br>
-Mitigation: Do not add the skill to cron or an agent heartbeat until the script is present, reviewed, and tested. <br>
-Risk: Automated model switching or handoff actions can change an active agent session unexpectedly. <br>
-Mitigation: Limit script outputs to known-safe model IDs and keep model changes or handoffs under clear user control. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/Nietzsche247/context-sentinel) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
+## Use Case:
 
+Developers and agent operators use this skill to add periodic session-health checks that recommend model switching, handoff, or no action based on context usage.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown instructions with PowerShell and command snippets; referenced script output is plain string commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Expected action strings are SWITCH_TO:<model_id>, HANDOFF_NOW, or STATUS_OK.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill asks agents to automate model switching and handoff actions through referenced files that are not present in the artifact.
+
+Mitigation: Review the missing check_context.ps1 and MEMORY.md logic before installation, and require explicit user approval before switching models or writing handoff files.
+
+Risk: A script path could resolve outside the reviewed package content if wired into a heartbeat or scheduled job carelessly.
+
+Mitigation: Pin the script path to reviewed package content and verify the resolved path before enabling cron or HEARTBEAT.md automation.
+
+## Reference(s):
+
+- [Context Sentinel ClawHub page](https://clawhub.ai/nietzsche247/skills/context-sentinel)
+- [nietzsche247 publisher profile](https://clawhub.ai/user/nietzsche247)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with command strings and PowerShell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Expected action strings are STATUS_OK, SWITCH_TO:<model_id>, or HANDOFF_NOW when the referenced script is available.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

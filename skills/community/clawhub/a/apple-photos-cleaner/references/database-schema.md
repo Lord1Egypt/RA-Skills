@@ -14,6 +14,7 @@ To convert to Python datetime:
 
 ```python
 from datetime import datetime, timedelta
+
 EPOCH = datetime(2001, 1, 1, 0, 0, 0)
 dt = EPOCH + timedelta(seconds=timestamp)
 ```
@@ -36,6 +37,7 @@ Main table containing all photos and videos.
 | Field | Type | Description |
 |-------|------|-------------|
 | `Z_PK` | INTEGER | Primary key (unique asset ID) |
+| `ZUUID` | TEXT | Stable per-asset UUID; the only safe way to address an asset from AppleScript (see below) |
 | `ZFILENAME` | TEXT | Original filename |
 | `ZDIRECTORY` | TEXT | Directory path within library |
 | `ZDATECREATED` | REAL | Timestamp when photo/video was taken (Core Data format) |
@@ -55,6 +57,51 @@ Main table containing all photos and videos.
 
 **Filtering Non-Trashed Items:**
 Always use `WHERE ZTRASHEDSTATE != 1` to exclude items in the trash.
+
+**Addressing Assets from AppleScript (`ZUUID`):**
+
+`ZFILENAME` is **not unique** — the same `IMG_0042.HEIC` can appear many times across
+devices and re-imports. Never match assets by filename when performing an operation that
+writes, deletes, or exports. A filename search returns whatever Photos has by that name,
+which may include assets the SQL filters deliberately excluded.
+
+`ZUUID` is the stable identifier Photos uses internally. Photos exposes it to AppleScript
+as a local identifier with a `/L0/001` suffix:
+
+```applescript
+tell application "Photos"
+    set theItem to media item id "11111111-2222-3333-4444-555555555555/L0/001"
+end tell
+```
+
+`ZUUID` is not present in very old library versions, so verify it before relying on it:
+
+```sql
+PRAGMA table_info(ZASSET);  -- look for a ZUUID row
+```
+
+Both mutating scripts do exactly this via `_common.require_uuid_support()` and refuse to
+run rather than falling back to filename matching:
+
+| Script | Operation | Guard |
+|---|---|---|
+| `cleanup_executor.py` | Move to Recently Deleted | `require_uuid_support(cursor, "Cleanup")` |
+| `smart_export.py` | Export copies | `require_uuid_support(cursor, "Export")` |
+
+Both then build their AppleScript through `_common.build_identifier_lists()`, which emits
+positionally-paired id and filename lists and raises if any item lacks a UUID.
+
+**Verified behaviour** (macOS 26.7.2, Photos 11.0, 12,059-item library):
+
+| Input | Result |
+|-------|--------|
+| Valid UUID, filename matches the database | Item resolves and is selected |
+| Valid UUID, filename no longer matches | Counted as skipped — **not** acted on |
+| UUID absent from the library | `media item id` raises; counted as skipped — **not** acted on |
+
+Every failure mode resolves to doing nothing. The filename is only ever a
+second check *after* the UUID has already identified the asset — it is never
+used to find one.
 
 ### ZADDITIONALASSETATTRIBUTES
 
@@ -312,4 +359,6 @@ This documentation is based on Photos app schema versions from macOS Monterey th
 - **READ ONLY:** Never `INSERT`, `UPDATE`, or `DELETE`
 - **Backup first:** Work on a copy if experimenting
 - **Close Photos.app:** For best results, close Photos.app before querying
-- **No writes:** All operations in this skill are read-only queries
+- **No writes to the database:** every query in this skill is read-only. Deletion and
+  export are *not* done through SQLite — `cleanup_executor.py` and `smart_export.py`
+  go through Photos.app AppleScript automation instead, and are opt-in.

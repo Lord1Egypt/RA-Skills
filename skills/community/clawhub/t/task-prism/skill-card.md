@@ -1,44 +1,59 @@
-## Description: <br>
-Task Prism helps agents turn vague business needs into structured project plans, work breakdowns, skill profiles, workflows, budgets, risk registers, change controls, and Go/No-Go recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Task Prism is a Chinese-language project planning and task decomposition skill that turns vague business needs into structured work modules, skill profiles, delivery plans, and execution workflows.
 
-## Publisher: <br>
-[qomob](https://clawhub.ai/user/qomob) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qomob](https://clawhub.ai/user/qomob)
 
-## Use Case: <br>
-Employees, consultants, project managers, and operators use this skill to clarify ambiguous initiatives and convert them into executable plans with scope, roles, timelines, communications, budgets, risks, change controls, and review criteria. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate on broad task-breakdown or project-planning requests. <br>
-Mitigation: Review activation behavior after installation and narrow or disable the skill if it interrupts unrelated planning conversations. <br>
-Risk: Viewing the README may load an external group-chat image. <br>
-Mitigation: Review or remove the remote image before using the package in environments that restrict external content. <br>
-Risk: Generated project plans can contain incomplete estimates, role assignments, or legal and regional assumptions. <br>
-Mitigation: Have qualified stakeholders review outputs before using them for staffing, budget, compliance, or delivery commitments. <br>
+## Use Case:
 
+External users, developers, and project teams use this skill to clarify goals and decompose projects into WBS tasks, estimates, role assignments, stakeholder plans, risks, change controls, deliverables, and Go/No-Go recommendations.
 
-## Reference(s): <br>
-- [Task Prism on ClawHub](https://clawhub.ai/qomob/task-prism) <br>
-- [Task Prism Templates](references/templates.md) <br>
-- [Task Prism Examples](references/examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with tables, lists, and code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces structured project-planning artifacts such as WBS, RACI matrices, stakeholder maps, budgets, risk registers, change-control plans, and Go/No-Go recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-4.1.0 (source: server release metadata and skill frontmatter) <br>
+Risk: Broad planning prompts may trigger the skill for generic task decomposition requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install or enable it where Chinese-language project planning assistance is intended, and review whether activation scope fits the agent's deployment.
+
+Risk: Project plans, estimates, dependencies, risk ratings, and Go/No-Go recommendations are advisory outputs.
+
+Mitigation: Have a responsible project owner validate assumptions, estimates, regulatory defaults, and decision recommendations before using them to execute work.
+
+Risk: Rendering the README may load an external image from qomob.ai.
+
+Mitigation: Review remote content loading policy or disable external image rendering in restricted environments.
+
+## Reference(s):
+
+- [Task Prism skill page](https://clawhub.ai/qomob/skills/task-prism)
+- [Detailed templates](artifact/references/templates.md)
+- [Example outputs](artifact/references/examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with structured headings, tables, lists, and code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language project planning outputs may include WBS trees, PERT and CPM estimates, RACI matrices, stakeholder tables, budgets, risk registers, change requests, sprint plans, and retrospectives.]
+
+## Skill Version(s):
+
+4.1.0 (source: evidence release.version and artifact SKILL.md metadata.version; released 2026-06-15 from artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

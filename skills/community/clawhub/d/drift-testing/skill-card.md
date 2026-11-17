@@ -1,51 +1,64 @@
-## Description: <br>
-Verifies API implementations against OpenAPI specifications using the Drift CLI, catching spec drift and supporting Bi-Directional Contract Testing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Verifies API implementations against OpenAPI specifications using the Drift CLI, catching spec drift and supporting Bi-Directional Contract Testing (BDCT).
 
-## Publisher: <br>
-[kevinrvaz](https://clawhub.ai/user/kevinrvaz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kevinrvaz](https://clawhub.ai/user/kevinrvaz)
 
-## Use Case: <br>
-Developers and QA engineers use this skill to write, run, and debug Drift tests for API contract conformance, endpoint coverage, and spec drift detection against OpenAPI specifications. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Live API verification can exercise state-changing POST, PUT, PATCH, or DELETE operations. <br>
-Mitigation: Prefer mock or staging APIs, use disposable test data, and avoid production write or delete runs unless explicitly reviewed. <br>
-Risk: Drift tests and publishing flows may require sensitive API or PactFlow credentials. <br>
-Mitigation: Use least-privilege test tokens, keep secrets in environment variables or CI secret stores, and avoid embedding credentials in generated files. <br>
-Risk: Generated tests, hooks, and feedback loops can repeat incorrect or destructive behavior if accepted without review. <br>
-Mitigation: Review generated Drift YAML and Lua hooks before running loops, especially setup and cleanup code for stateful endpoints. <br>
-Risk: Helper scripts may install or invoke external tools such as Drift, Prism, uv, npm packages, or PactFlow bundles. <br>
-Mitigation: Pin or preinstall tools where possible, inspect bundles before publishing, and run commands in controlled development or CI environments. <br>
+## Use Case:
 
+Developers and API engineers use this skill to create, run, and debug Drift contract tests against OpenAPI specs, check endpoint and response-code coverage, and identify implementation/spec drift before release.
 
-## Reference(s): <br>
-- [Drift Test Cases Reference](references/test-cases.md) <br>
-- [Drift Authentication Reference](references/auth.md) <br>
-- [Local Testing with a Mock Server](references/mock-server.md) <br>
-- [Drift Lua API Reference](references/lua-api.md) <br>
-- [Drift CLI Reference](references/cli-reference.md) <br>
-- [PactFlow Integration and CI/CD](references/pactflow-and-cicd.md) <br>
-- [Drift Documentation](https://pactflow.github.io/drift-docs/) <br>
-- [Drift Test Case Schema](https://download.pactflow.io/drift/schemas/drift.testcases.v1.schema.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with YAML, Lua, and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May generate or review Drift test files, helper scripts, coverage reports, and command sequences for local or CI execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Global or latest-version installation examples can execute unpinned packages or binaries with broad local or CI privileges.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin package and binary versions, verify checksums, and prefer project-local installs for Drift and Prism.
+
+Risk: Contract tests can mutate APIs when pointed at live systems, especially POST and DELETE scenarios.
+
+Mitigation: Use mock, local, or dedicated test environments unless mutation is intentional, and use least-privilege test tokens that are not printed in logs.
+
+Risk: Copied subprocess wrappers that use shell execution can expand command-injection impact.
+
+Mitigation: Remove shell-based subprocess execution from copied wrappers and pass arguments as structured arrays.
+
+## Reference(s):
+
+- [Drift Test Cases Reference](references/test-cases.md)
+- [Drift Authentication Reference](references/auth.md)
+- [Local Testing with a Mock Server](references/mock-server.md)
+- [Drift Lua API Reference](references/lua-api.md)
+- [Drift CLI Reference](references/cli-reference.md)
+- [PactFlow Integration and CI/CD](references/pactflow-and-cicd.md)
+- [PactFlow Drift Documentation](https://pactflow.github.io/drift-docs/)
+- [Drift Test Case Schema](https://download.pactflow.io/drift/schemas/drift.testcases.v1.schema.json)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with YAML, Lua, shell command, and JSON snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose or run local helper scripts for OpenAPI endpoint extraction, Drift coverage checks, mock-server startup, and test rerun loops.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

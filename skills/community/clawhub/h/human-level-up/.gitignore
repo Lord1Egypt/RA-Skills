@@ -1,0 +1,6 @@
+node_modules/
+.clawhub/
+.clawdhub/
+*.pyc
+__pycache__/
+evolution_data.json

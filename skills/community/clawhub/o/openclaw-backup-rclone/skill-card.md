@@ -1,42 +1,57 @@
-## Description: <br>
-Backs up OpenClaw configuration, skills, agents, workspaces, memory, and credentials to an rclone remote with scheduling and rotation guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw Backup Rclone helps configure, schedule, run, inspect, and restore OpenClaw backups to rclone-compatible remote storage.
 
-## Publisher: <br>
-[doradx](https://clawhub.ai/user/doradx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[doradx](https://clawhub.ai/user/doradx)
 
-## Use Case: <br>
-OpenClaw users and operators use this skill to configure and run recurring remote backups through rclone, rotate retained backup files, and restore backed-up OpenClaw data when needed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The default backup can include credentials, memory, agents, and workspaces, which may expose sensitive OpenClaw data at the remote destination. <br>
-Mitigation: Use a private encrypted rclone destination where possible, verify access controls, and disable unnecessary backup sections such as credentials, memory, or workspaces. <br>
-Risk: An incorrect rclone path or remote configuration can send backups to the wrong destination or fail silently in scheduled operation. <br>
-Mitigation: Verify the rclone remote path before scheduling, run check-only or manual backup tests first, and keep cron logs for troubleshooting. <br>
-Risk: The cron example continues sending backups until the scheduled task is removed or changed. <br>
-Mitigation: Document the installed cron entry, review retention settings, and remove or disable the cron job when recurring backups are no longer intended. <br>
+## Use Case:
 
+External OpenClaw operators and developers use this skill to set up recurring or manual backups of OpenClaw configuration, skills, agents, workspaces, memory, and credentials to an rclone remote and to review restore commands when needed.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/doradx/openclaw-backup-rclone) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash command examples and configuration options] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes rclone remote path, retention count, include/exclude flags, check-only mode, cron scheduling, and restore examples.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Default backups can include credentials, memory, and workspaces, which may contain sensitive data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted encrypted backup destinations and disable credentials or memory backups unless they are explicitly needed.
+
+Risk: Remote storage choices without strong protection can expose backup contents.
+
+Mitigation: Avoid FTP and prefer encrypted rclone destinations with restricted access.
+
+Risk: Restoring over /root/.openclaw can overwrite the current OpenClaw state.
+
+Mitigation: Take a fresh snapshot first and test restores in a staging directory before extracting over the live directory.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/doradx/skills/openclaw-backup-rclone)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with bash command examples and backup script invocation parameters]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes options for rclone remote path, retention count, backup scope, and check-only status checks.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

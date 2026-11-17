@@ -1,40 +1,54 @@
-## Description: <br>
-Helps developers design production-grade database schemas from requirements through ER diagrams, table structures, DDL, indexing, migration strategy, and design review for MySQL, PostgreSQL, MongoDB, Redis, and Milvus. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+数据库模式设计 helps agents turn project requirements into production-oriented database schemas, ER diagrams, DDL, index strategies, migration plans, and design reviews for systems such as MySQL, PostgreSQL, MongoDB, Redis, and Milvus.
 
-## Publisher: <br>
-[qqyougitcom](https://clawhub.ai/user/qqyougitcom) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qqyougitcom](https://clawhub.ai/user/qqyougitcom)
 
-## Use Case: <br>
-Developers and engineers use this skill to turn application requirements into database models, ER diagrams, table definitions, index plans, DDL, and migration review notes. It is especially relevant when designing new schemas or reviewing existing database architecture for performance, scalability, and data safety. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated DDL, index choices, or rollback scripts may be unsuitable for a production database without environment-specific review. <br>
-Mitigation: Review generated DDL and migration rollback scripts before execution, test them outside production first, and confirm operational safeguards for the target database. <br>
+## Use Case:
 
+Developers and engineers use this skill to design or review database schemas from business requirements, including entity modeling, normalization, database selection, index planning, migration strategy, and security checks. It is especially relevant when an agent needs to produce ER diagrams, table structures, SQL DDL, or schema review guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/qqyougitcom/qqyougit-database-schema-designer) <br>
-- [Publisher profile](https://clawhub.ai/user/qqyougitcom) <br>
-- [Database schema design details](artifact/references/details.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Chinese Markdown with Mermaid ER diagrams, tables, and SQL DDL code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [DDL and field names are expected in English; explanatory output is expected in Chinese.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release metadata) <br>
+Risk: Generated DDL, migration scripts, or index changes could cause data loss, table locks, downtime, or performance regressions if applied directly to a real database.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review all SQL and migration recommendations, test them in staging, maintain backups and rollback scripts, and pay special attention to ALTER, DROP, and indexing changes.
+
+Risk: Schema recommendations may be incomplete when workload, data growth, consistency, privacy, or security requirements are underspecified.
+
+Mitigation: Collect the required business entities, relationships, data volume, read/write patterns, consistency needs, and sensitive-field handling before adopting the design.
+
+## Reference(s):
+
+- [数据库模式设计 - 详细参考](artifact/references/details.md)
+- [ClawHub skill page](https://clawhub.ai/qqyougitcom/skills/qqyougit-database-schema-designer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown with Mermaid ER diagrams, tables, and SQL DDL code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language output with English DDL and field names]
+
+## Skill Version(s):
+
+2.0.1 (source: server release evidence; artifact frontmatter is 1.4.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

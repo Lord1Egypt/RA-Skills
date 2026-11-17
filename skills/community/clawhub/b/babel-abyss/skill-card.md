@@ -1,38 +1,50 @@
-## Description: <br>
-Transforms user-provided text into a deliberately degraded, semantically corrupted, non-explanatory experimental text stream when invoked with triggers such as "巴别渊" or "劣化". <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transforms user-provided text into deliberately degraded, semantically corrupted experimental prose when invoked for semantic decay or anti-clarity rewriting.
 
-## Publisher: <br>
-[daoforhere](https://clawhub.ai/user/daoforhere) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[daoforhere](https://clawhub.ai/user/daoforhere)
 
-## Use Case: <br>
-External users and creative writers use this skill to intentionally corrupt prompts or prose into dense, unstable, non-explanatory experimental text. It is not intended for faithful editing, summarization, translation, technical help, or tasks where preserving meaning matters. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill intentionally distorts meaning and can make accurate source text unsuitable for editing, summarization, translation, technical help, or other meaning-preserving tasks. <br>
-Mitigation: Enable it only for deliberate experimental text corruption using explicit triggers such as "巴别渊" or "劣化", and avoid using it where preserving meaning matters. <br>
+## Use Case:
 
+External users and creative writers use this skill to turn prompts, notes, sentences, or longer passages into dense experimental text that intentionally erodes the original meaning. It is unsuitable for faithful editing, summarization, or technical transformation where preserving meaning matters.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/daoforhere/babel-abyss) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text] <br>
-**Output Format:** [Plain text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs transformed text directly, without headings, explanations, summaries, labels, or structured sections unless explicitly requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill is designed to degrade meaning and may produce output that no longer preserves the source text's intent or factual content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for creative semantic degradation, and avoid it for faithful editing, summarization, technical work, or other tasks where accuracy and meaning preservation are required.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/daoforhere/skills/babel-abyss)
+- [Publisher profile](https://clawhub.ai/user/daoforhere)
+
+## Skill Output:
+
+**Output Type(s):** [text, guidance]
+
+**Output Format:** [Plain text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs transformed text directly without explanations, labels, headings, bullets, numbering, or code fences unless the user explicitly requests structure.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

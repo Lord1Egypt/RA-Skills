@@ -1,0 +1,13 @@
+{
+  "name": "fiction-crafter-cn",
+  "version": "1.0.2",
+  "description": "用文件工作台维护中文长篇小说的人物、世界观、大纲、章节和连续性。",
+  "private": false,
+  "license": "MIT-0",
+  "scripts": {
+    "test": "python3 scripts/self_test.py self-test"
+  },
+  "engines": {
+    "python": ">=3.9"
+  }
+}

@@ -1,49 +1,60 @@
-## Description: <br>
-Generates affiliate and partner program plans, commission structures, recruitment materials, partner marketing assets, and performance reporting templates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates affiliate and partner program materials, including program structure, commission guidance, recruitment copy, partner assets, and performance reporting templates.
 
-## Publisher: <br>
-[gitflopez](https://clawhub.ai/user/gitflopez) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gitflopez](https://clawhub.ai/user/gitflopez)
 
-## Use Case: <br>
-Founders, marketers, agencies, and creators use this skill to draft affiliate and partnership program materials, including program structure, partner outreach, promotional assets, and optimization reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated affiliate copy may include fictional personal anecdotes or unsupported performance and competitor claims. <br>
-Mitigation: Replace anecdotes with real experience and substantiate performance, comparison, and competitor claims before publishing. <br>
-Risk: Affiliate promotions can create disclosure and advertising compliance issues. <br>
-Mitigation: Require clear affiliate disclosures in every promotional channel and review partner-facing copy before use. <br>
-Risk: Program inputs may include sensitive partner, revenue, or performance data. <br>
-Mitigation: Avoid entering confidential data unless necessary, and redact partner names, private financials, and customer details where possible. <br>
+## Use Case:
 
+Founders, marketers, agencies, and creators use this skill to plan, launch, recruit for, and optimize affiliate or partner programs. It is suited to producing program briefs, partner outreach, promotional copy, compliance-oriented partner rules, and recurring performance review templates.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/gitflopez/affiliate-partner-program-generator) <br>
-- [Publisher profile](https://clawhub.ai/user/gitflopez) <br>
-- [README](artifact/README.md) <br>
-- [NudgePay worked example](artifact/examples/nudge-saas-affiliate-program.md) <br>
-- [Program architecture prompt](artifact/prompts/01-program-architecture.md) <br>
-- [Partner recruitment prompt](artifact/prompts/02-partner-recruitment-kit.md) <br>
-- [Partner marketing toolkit prompt](artifact/prompts/03-partner-marketing-toolkit.md) <br>
-- [Performance optimization prompt](artifact/prompts/04-performance-optimization.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown prompt outputs with tables, templates, checklists, and partner-facing copy.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces draft affiliate program artifacts that should be reviewed before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: Generated commission, refund, payout, termination, and dispute language may not satisfy legal or financial requirements for a specific program.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Have qualified reviewers check program terms before launch and align them with the business's contract, refund, tax, and payout policies.
+
+Risk: Generated cold outreach and partner recruitment copy may create anti-spam or platform compliance exposure if used without adaptation.
+
+Mitigation: Review outreach sequences for applicable email, messaging, and platform rules, and require opt-out handling where relevant.
+
+Risk: Affiliate disclosure and promotional claim language may be incomplete or inaccurate for a specific jurisdiction, product, or partner channel.
+
+Mitigation: Confirm FTC disclosure language, product claims, comparison tables, and partner-facing compliance rules before publishing or sending partner assets.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gitflopez/skills/affiliate-partner-program-generator)
+- [Publisher profile](https://clawhub.ai/user/gitflopez)
+- [README](artifact/README.md)
+- [Worked example: NudgePay affiliate program](artifact/examples/nudge-saas-affiliate-program.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Configuration]
+
+**Output Format:** [Markdown prompt outputs with tables, checklists, templates, and short-form copy]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces business planning and marketing materials for human review before use.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.release and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

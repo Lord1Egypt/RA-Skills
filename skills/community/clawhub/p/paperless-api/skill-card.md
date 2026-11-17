@@ -1,40 +1,54 @@
-## Description: <br>
-Upload and categorize documents using the Paperless-ngx API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Upload and categorize documents using the Paperless-ngx API.
 
-## Publisher: <br>
-[thistine](https://clawhub.ai/user/thistine) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[thistine](https://clawhub.ai/user/thistine)
 
-## Use Case: <br>
-Developers and operators use this skill to upload documents into a Paperless-ngx instance and optionally assign titles, tags, and document types. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles sensitive documents and a Paperless-ngx API key. <br>
-Mitigation: Use it only with a Paperless-ngx server you control, avoid placing API keys in commands or logs, and confirm the exact file and destination before upload. <br>
-Risk: The upload script disables TLS certificate verification. <br>
-Mitigation: Prefer HTTPS with certificate verification enabled before using the script against any network-accessible Paperless-ngx server. <br>
+## Use Case:
 
+Developers and operators use this skill to upload documents to a Paperless-ngx instance and attach titles, tags, or document types for document-management automation.
 
-## Reference(s): <br>
-- [Paperless-ngx API Endpoints](references/api_endpoints.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and Python script usage] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces upload guidance and command-line script usage for a user-supplied Paperless-ngx host, API key, document path, title, tags, and document type.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Document uploads and API tokens may be exposed if used with unsafe transport settings or an untrusted Paperless-ngx server.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only a Paperless-ngx server you control, prefer HTTPS with valid certificate verification, and confirm the destination before uploading sensitive documents.
+
+Risk: API keys can leak through command history, logs, or shared prompts.
+
+Mitigation: Avoid placing real API keys directly in command history or shared prompts; use local secret handling where possible.
+
+## Reference(s):
+
+- [Paperless-ngx API Endpoints](references/api_endpoints.md)
+- [ClawHub Skill Page](https://clawhub.ai/thistine/skills/paperless-api)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include local file paths, Paperless-ngx host URL, API token handling guidance, and document metadata such as title, tags, and document type.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

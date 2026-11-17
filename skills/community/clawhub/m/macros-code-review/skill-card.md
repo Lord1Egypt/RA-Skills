@@ -1,42 +1,59 @@
-## Description: <br>
-Reviews Rust macro code for hygiene issues, fragment misuse, compile-time impact, and procedural macro patterns when reviewing macro_rules! definitions, procedural macros, derive macros, or attribute macros. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reviews Rust macro code for hygiene issues, fragment misuse, compile-time impact, and procedural macro patterns.
 
-## Publisher: <br>
-[anderskev](https://clawhub.ai/user/anderskev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[anderskev](https://clawhub.ai/user/anderskev)
 
-## Use Case: <br>
-Developers and engineers use this skill to structure Rust macro code reviews for declarative macros, procedural macros, derive macros, and attribute macros. It guides checks for hygiene, fragment matching, span handling, error reporting, compile-time cost, and edition-specific generated code. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill directs an agent to inspect Rust project files during macro review. <br>
-Mitigation: Use it only in repositories where agent access to relevant source code is acceptable. <br>
-Risk: The pre-report gate references a separate review-verification-protocol skill. <br>
-Mitigation: Install or otherwise provide that referenced skill before relying on the final verification gate. <br>
+## Use Case:
 
+Developers and engineers use this skill to review Rust declarative and procedural macros for correctness, hygiene, diagnostics, compile-time impact, and edition-specific risks before reporting code-review findings.
 
-## Reference(s): <br>
-- [Declarative Macros](artifact/references/declarative-macros.md) <br>
-- [Procedural Macros](artifact/references/procedural-macros.md) <br>
-- [ClawHub skill page](https://clawhub.ai/anderskev/macros-code-review) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or plain text review findings with file-line citations and severity labels] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Findings should include [FILE:LINE], severity, and a concise description; no findings are emitted until the verification gates pass.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: A macro review may require the agent to read Rust project files in the active workspace.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the review only in the intended project workspace and avoid including unrelated sensitive files in scope.
+
+Risk: One reporting gate depends on a separate review-verification-protocol skill.
+
+Mitigation: Ensure that companion skill is available, or perform equivalent macro-specific verification before reporting findings.
+
+Risk: Incomplete crate context or partial macro-definition review can lead to incorrect findings.
+
+Mitigation: Follow the skill's gates: inspect Cargo.toml, read full macro definitions, and cite current-tree file and line evidence for every issue.
+
+## Reference(s):
+
+- [Declarative Macros](references/declarative-macros.md)
+- [Procedural Macros](references/procedural-macros.md)
+- [ClawHub skill page](https://clawhub.ai/anderskev/skills/macros-code-review)
+
+## Skill Output:
+
+**Output Type(s):** [analysis, markdown, guidance]
+
+**Output Format:** [Markdown code-review findings with file and line references, severity labels, and concise explanations.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Findings are gated on crate-context review, complete macro-definition reading, current-tree file and line evidence, and a separate review-verification protocol.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

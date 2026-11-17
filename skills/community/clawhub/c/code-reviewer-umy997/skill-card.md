@@ -1,41 +1,52 @@
-## Description: <br>
-Performs code review and quality checks when a user requests code review or code quality analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides code review and quality-check guidance when users request code review or code quality analysis.
 
-## Publisher: <br>
-[umy997](https://clawhub.ai/user/umy997) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[umy997](https://clawhub.ai/user/umy997)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill to structure code reviews, identify quality and security concerns, and receive concrete improvement suggestions for submitted code.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill instructions are written in Chinese, which may make behavior unclear for users who expect another language.
+
+Mitigation: Review the source instructions or ask the publisher to clarify expected language behavior before installation.
+
+Risk: Code review guidance can miss defects or suggest changes that do not fit the target project.
+
+Mitigation: Treat the output as review assistance and validate recommendations with human review and project tests before applying changes.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use this skill to structure code reviews, assess readability, maintainability, performance, security, and test coverage, and receive practical improvement suggestions. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [guidance, markdown, code]
 
-## Known Risks and Mitigations: <br>
-Risk: Code submitted for review can contain secrets or proprietary material. <br>
-Mitigation: Avoid sharing secrets or proprietary code unless the agent environment is approved for that content. <br>
-Risk: Review guidance may be incomplete or incorrect for urgent fixes, new features, refactors, security issues, or performance-sensitive code. <br>
-Mitigation: Treat findings as assistance and have a qualified reviewer verify high-impact recommendations before implementation. <br>
+**Output Format:** [Markdown or plain text with review findings and suggested changes]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/umy997/code-reviewer-umy997) <br>
-- [Publisher profile](https://clawhub.ai/user/umy997) <br>
+**Other Properties Related to Output:** [No executable files or persistent behavior are included in the inspected artifact.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown review notes with prioritized findings and suggested improvements] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include code-quality observations, security concerns, test coverage notes, and concrete remediation suggestions.] <br>
+0.1.0 (source: release evidence)
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

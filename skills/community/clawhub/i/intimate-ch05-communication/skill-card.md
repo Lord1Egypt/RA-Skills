@@ -1,48 +1,66 @@
-## Description: <br>
-Assists Chinese-language study of Chapter 5, Communication, from Rowland S. Miller's Intimate Relationships, 6th edition, by explaining concepts, examples, research notes, and communication repair practices from the bundled chapter references. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language study aid that helps learners discuss and review Chapter 5, Communication, from Rowland S. Miller's Intimate Relationships, 6th edition.
 
-## Publisher: <br>
-[junwugit](https://clawhub.ai/user/junwugit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[junwugit](https://clawhub.ai/user/junwugit)
 
-## Use Case: <br>
-Students, instructors, and external learners use this skill to review Miller's Chapter 5 communication material, clarify bilingual key terms, and apply chapter-scoped frameworks to study questions or low-risk relationship communication examples. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat educational relationship communication guidance as professional counseling, emergency support, or legal advice. <br>
-Mitigation: Frame responses as study support, maintain the skill's therapy, abuse, and legal-risk boundaries, and direct high-risk situations to appropriate professional or emergency resources. <br>
-Risk: Chapter-scoped explanations may be over-applied to topics outside Chapter 5 or to personal relationship decisions that need more context. <br>
-Mitigation: State the Chapter 5 scope, avoid extending into other textbook chapters or major personal decisions, and ask clarifying questions before applying concepts to examples. <br>
+## Use Case:
 
+Students, self-learners, and educators use this skill to review textbook concepts, examples, and study questions about interpersonal communication, self-disclosure, nonverbal cues, and communication repair. It can frame relationship communication examples for learning, while staying within the textbook chapter rather than providing therapy, legal advice, or safety planning.
 
-## Reference(s): <br>
-- [Common Misconceptions](references/common-misconceptions.md) <br>
-- [Examples](references/examples.md) <br>
-- [Gender And Language](references/gender-and-language.md) <br>
-- [Key Terms](references/key-terms.md) <br>
-- [Miscommunication Repair](references/miscommunication-repair.md) <br>
-- [Models](references/models.md) <br>
-- [Nonverbal Communication](references/nonverbal-communication.md) <br>
-- [Research](references/research.md) <br>
-- [Verbal Self Disclosure](references/verbal-self-disclosure.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Chinese-language conversational Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses progressive disclosure and chapter-scoped reference material; does not execute code or access external tools.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Users may treat relationship communication guidance as therapy, legal advice, or safety planning.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Frame outputs as textbook study support and direct abuse, coercion, immediate risk, therapy, or legal concerns to appropriate professional or emergency support.
+
+Risk: The skill may overextend beyond the covered textbook chapter.
+
+Mitigation: Limit answers to Chapter 5 communication concepts and state when a topic belongs to another chapter or is not supported by the provided references.
+
+Risk: Learners may overinterpret nonverbal cues or gender-language patterns as diagnoses or stereotypes.
+
+Mitigation: Present cues and group differences as context-dependent study concepts, not as proof about a specific person or relationship.
+
+## Reference(s):
+
+- [Skill Page](https://clawhub.ai/junwugit/skills/intimate-ch05-communication)
+- [Key Terms](references/key-terms.md)
+- [Models](references/models.md)
+- [Nonverbal Communication](references/nonverbal-communication.md)
+- [Verbal Communication And Self-Disclosure](references/verbal-self-disclosure.md)
+- [Miscommunication And Repair](references/miscommunication-repair.md)
+- [Gender And Language](references/gender-and-language.md)
+- [Research](references/research.md)
+- [Examples](references/examples.md)
+- [Common Misconceptions](references/common-misconceptions.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Chinese-language conversational guidance and study explanations in Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses progressive disclosure and references chapter-specific material on demand.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

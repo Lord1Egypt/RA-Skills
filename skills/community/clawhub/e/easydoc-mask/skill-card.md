@@ -1,43 +1,56 @@
-## Description: <br>
-Redacts sensitive fields from medical records or other documents through the EasyLink masking API, including submission, polling, custom masking fields, and masked-file result handling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Uses the EasyLink EasyDoc masking API to redact selected sensitive fields from medical records or other supported documents and return masked-file results.
 
-## Publisher: <br>
-[sycamore792](https://clawhub.ai/user/sycamore792) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sycamore792](https://clawhub.ai/user/sycamore792)
 
-## Use Case: <br>
-Developers and operational users use this skill to submit medical records or documents to EasyLink for sensitive-field masking, poll asynchronous tasks, and retrieve normalized masked-file results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global, subject to EasyLink CN platform availability and applicable data-processing requirements. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive medical or personal documents are sent to an external EasyLink service. <br>
-Mitigation: Use only when authorized, confirm the endpoint, region, retention model, and API-key handling, and avoid regulated records unless third-party processing is approved. <br>
-Risk: The skill requires an EasyLink API key. <br>
-Mitigation: Store the key in EASYLINK_API_KEY or a managed secret store, and avoid exposing it in shared logs, prompts, or saved outputs. <br>
+## Use Case:
 
+Developers and document-processing teams use this skill to submit EMR or other supported files to EasyLink, poll asynchronous masking jobs, and retrieve normalized masked-document results.
 
-## Reference(s): <br>
-- [EasyLink EasyDoc Mask API Reference](references/easydoc-mask-api.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/sycamore792/easydoc-mask) <br>
-- [EasyLink Platform](https://platform.easylink-ai.com) <br>
-- [EasyLink EasyDoc Mask Endpoint](https://api.easylink-ai.com/v1/easydoc/mask) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash and Python command examples plus normalized JSON result envelopes.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires EASYLINK_API_KEY; uploads supported document files up to 100 MB and may return masked-file download URLs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: The helper accepts a base URL override that could send medical records and the API key to an unintended endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the documented EasyLink HTTPS host for real records, and allow --base-url only after independently verifying the destination and credential handling.
+
+Risk: The skill processes sensitive medical documents through an external API.
+
+Mitigation: Use it only when the operator has authority to upload the documents and trusts EasyLink for the intended data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sycamore792/skills/easydoc-mask)
+- [EasyDoc Mask API reference](references/easydoc-mask-api.md)
+- [EasyLink platform](https://platform.easylink-ai.com)
+- [EasyLink EasyDoc Mask endpoint](https://api.easylink-ai.com/v1/easydoc/mask)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON result envelopes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Normalized results include task_id, status, result URLs, masked fields, page counts, and raw API response data.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

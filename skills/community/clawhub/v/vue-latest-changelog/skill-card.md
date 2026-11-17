@@ -1,43 +1,55 @@
-## Description: <br>
-Guides an agent to fetch the latest Vue changelog section and save it locally for review. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents retrieve and organize the latest Vue version changelog.
 
-## Publisher: <br>
-[aliangtech](https://clawhub.ai/user/aliangtech) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aliangtech](https://clawhub.ai/user/aliangtech)
 
-## Use Case: <br>
-Developers and release reviewers use this skill to retrieve the newest Vue changelog entry and organize it as a local markdown file for inspection. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill makes an outbound request to GitHub for Vue changelog content. <br>
-Mitigation: Confirm the environment permits the GitHub request and that the upstream changelog source is acceptable before running the script. <br>
-Risk: The script writes or overwrites assets/latest_changelog.md in the current project. <br>
-Mitigation: Review the target path before execution and preserve any existing changelog file that should not be replaced. <br>
-Risk: The write can fail if the expected assets directory is missing. <br>
-Mitigation: Create or verify the assets directory before running node scripts/changelog.js. <br>
+## Use Case:
 
+Developers and external users use this skill when they want an agent to fetch the latest Vue changelog from Vue's published GitHub changelog and save the newest section for review.
 
-## Reference(s): <br>
-- [Vue core changelog](https://raw.githubusercontent.com/vuejs/core/refs/heads/main/CHANGELOG.md) <br>
-- [ClawHub skill page](https://clawhub.ai/aliangtech/vue-latest-changelog) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Markdown] <br>
-**Output Format:** [Markdown file with concise execution guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Fetches Vue's public changelog from GitHub and writes the first changelog section to assets/latest_changelog.md.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill runs a Node.js script that contacts GitHub and writes a local changelog file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the script before execution and run it only where outbound GitHub access and local file writes are acceptable.
+
+Risk: The workflow depends on live network access to Vue's GitHub changelog.
+
+Mitigation: Use a reviewed offline changelog source or defer execution in environments that require no-network operation.
+
+## Reference(s):
+
+- [Vue Core Changelog](https://raw.githubusercontent.com/vuejs/core/refs/heads/main/CHANGELOG.md)
+- [ClawHub Skill Page](https://clawhub.ai/aliangtech/skills/vue-latest-changelog)
+- [Publisher Profile](https://clawhub.ai/user/aliangtech)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with a Node.js command and a generated Markdown changelog file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The script writes the latest changelog section to assets/latest_changelog.md.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,57 @@
-## Description: <br>
-Store, verify, and manage AI data on the Ethereum blockchain (Base network) using the ERCData standard. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Store, verify, and manage AI data on the Ethereum blockchain (Base network) using the ERCData standard.
 
-## Publisher: <br>
-[0xReisearch](https://clawhub.ai/user/0xReisearch) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[0xreisearch](https://clawhub.ai/user/0xreisearch)
 
-## Use Case: <br>
-Developers, engineers, and agents use ERCData to store data fingerprints, verify data integrity, create audit trails, manage access control for private data, and interact with the ERCData smart contract on Base mainnet. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Write commands submit real Base mainnet transactions and require access to a wallet key. <br>
-Mitigation: Use a dedicated, minimally funded wallet; verify the contract and RPC endpoint before writes; and manually approve store, verify, access, and snapshot actions. <br>
-Risk: Raw secrets or sensitive data stored on-chain or included in transaction calldata may be exposed. <br>
-Mitigation: Store hashes or client-side encrypted data instead of raw secrets. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ERCData API Reference](references/api.md) <br>
-- [ClawHub ERCData Skill Page](https://clawhub.ai/0xReisearch/ercdata) <br>
+## Use Case:
 
+Developers and agent builders use ERCData to store blockchain-backed fingerprints, audit trails, access-controlled records, and verification data for AI memory, identity, outputs, and model provenance.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, environment variables, and CLI arguments] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose Base mainnet read and write operations that require user-supplied wallet credentials and contract configuration.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Data written to Base mainnet can be permanent and publicly observable, including raw transaction calldata even when the skill uses its private access-control mode.
+
+Mitigation: Store only hashes or pre-encrypted content, and avoid placing sensitive plaintext or secrets in on-chain data or metadata.
+
+Risk: Write and verification commands require a funded wallet and can incur Base mainnet transaction costs.
+
+Mitigation: Use a dedicated minimally funded wallet and review the target contract, RPC endpoint, and transaction details before submitting transactions.
+
+Risk: Passing private keys with command-line flags can expose credentials through shell history or process inspection.
+
+Mitigation: Prefer environment-based or external secret management and avoid using the `--key` flag with long-lived wallets.
+
+## Reference(s):
+
+- [ERCData API Reference](artifact/references/api.md)
+- [ClawHub ERCData Skill Page](https://clawhub.ai/0xreisearch/skills/ercdata)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, JSON, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON CLI responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses Base mainnet, an ERCData contract address, RPC configuration, wallet credentials, and role-based permissions for write and verification operations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,12 @@
+{
+  "schema_version": 2,
+  "generated_at": null,
+  "article_count": 0,
+  "articles": [],
+  "a_articles": [],
+  "a_ranking": {
+    "status": "not_materialized",
+    "article_ids": [],
+    "ordering_rule": "Compute expected cognitive gain versus reading cost when requested"
+  }
+}

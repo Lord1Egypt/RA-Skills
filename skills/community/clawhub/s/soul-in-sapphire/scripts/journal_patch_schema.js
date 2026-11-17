@@ -17,7 +17,7 @@ function parseArgs(argv) {
 async function main(){
   const args = parseArgs(process.argv);
   const dsid = args.journalDsid;
-  if(!dsid) die('Missing --journal-dsid. Check TOOLS.md for the value.');
+  if(!dsid) die('Missing --journal-dsid. Check the workspace AGENTS.md ## Tools section for the value.');
 
   const moodOpts = ['clear','wired','dull','tense','playful','guarded','tender'].map(name=>({name}));
   const intentOpts = ['build','fix','organize','explore','rest','socialize','reflect'].map(name=>({name}));

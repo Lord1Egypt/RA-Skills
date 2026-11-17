@@ -53,4 +53,4 @@ python3 scripts/run.py --input case.json --appkey YOUR_KEY
 
 ## 模型
 
-默认 `u1-insuremed`，`https://maas-api.hivoice.cn/v1/chat/completions`。
+默认 `u2-med`，`https://maas-api.hivoice.cn/v1/chat/completions`。

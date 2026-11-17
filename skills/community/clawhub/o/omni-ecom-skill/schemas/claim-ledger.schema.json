@@ -1,0 +1,177 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://pinmoo.com/omni-ecom/schemas/claim-ledger-2.0.schema.json",
+  "title": "Omni E-commerce Numeric Claim Ledger",
+  "type": "object",
+  "required": ["schema_version", "artifact_type", "contract_name", "contract_version", "created_by_team_version", "legacy_compatibility", "run_id", "client_scope", "period", "claims"],
+  "properties": {
+    "schema_version": { "const": "2.0" },
+    "artifact_type": { "const": "numeric_claim_ledger" },
+    "contract_name": { "const": "omni-ecom.claim-ledger" },
+    "contract_version": { "const": "2.0" },
+    "created_by_team_version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+(?:-[0-9A-Za-z]+(?:\\.[0-9A-Za-z-]+)*)?$"
+    },
+    "legacy_compatibility": {
+      "type": "object",
+      "required": ["read_only_import", "current_numeric_evidence", "execution_permission_inherited"],
+      "properties": {
+        "read_only_import": { "const": ["omni-ecom.claim-ledger@1.0"] },
+        "current_numeric_evidence": { "const": false },
+        "execution_permission_inherited": { "const": false }
+      },
+      "additionalProperties": false
+    },
+    "run_id": { "type": "string", "minLength": 1 },
+    "client_scope": { "type": "string", "minLength": 1 },
+    "period": { "type": "string", "minLength": 1 },
+    "source_context_policy": {"enum": ["legacy_unbound", "required"]},
+    "additional_periods": { "type": "array", "uniqueItems": true, "items": { "type": "string", "minLength": 1 } },
+    "claims": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/claim" }
+    }
+  },
+  "$defs": {
+    "accounting": {
+      "type": "object",
+      "required": ["method", "scope_note", "perimeter", "revenue_claim", "refund_claim", "costs", "cost_treatment", "allocations"],
+      "properties": {
+        "method": {"const": "net_operating_profit_over_operating_cost"},
+        "scope_note": {"type": "string", "minLength": 1},
+        "perimeter": {
+          "type": "object",
+          "required": ["perimeter_id", "accounting_basis", "period_status", "completeness_status", "authenticity_status", "source_system", "export_record_id", "exported_at", "covered_cost_categories", "excluded_items"],
+          "properties": {
+            "perimeter_id": {"type": "string", "minLength": 1},
+            "accounting_basis": {"enum": ["accrual", "cash", "platform_settlement"]},
+            "period_status": {"const": "closed"},
+            "completeness_status": {"const": "declared_complete_for_listed_perimeter"},
+            "authenticity_status": {"const": "source_bound_not_independently_authenticated"},
+            "source_system": {"type": "string", "minLength": 1},
+            "export_record_id": {"type": "string", "minLength": 1},
+            "exported_at": {"type": "string", "format": "date-time"},
+            "covered_cost_categories": {"type": "array", "minItems": 7, "maxItems": 7, "uniqueItems": true, "items": {"enum": ["product_cost", "ad_spend", "platform_fee", "fulfillment_cost", "inventory_loss", "tax_cost", "other_operating_cost"]}},
+            "excluded_items": {"type": "array", "items": {"type": "string", "minLength": 1}}
+          },
+          "additionalProperties": false
+        },
+        "revenue_claim": {"type": "string", "pattern": "^C-[A-Za-z0-9_-]+$"},
+        "refund_claim": {"type": "string", "pattern": "^C-[A-Za-z0-9_-]+$"},
+        "costs": {
+          "type": "object",
+          "required": ["product_cost", "ad_spend", "platform_fee", "fulfillment_cost", "inventory_loss", "tax_cost", "other_operating_cost"],
+          "propertyNames": {"enum": ["product_cost", "ad_spend", "platform_fee", "fulfillment_cost", "inventory_loss", "tax_cost", "other_operating_cost"]},
+          "additionalProperties": {"type": "string", "pattern": "^C-[A-Za-z0-9_-]+$"}
+        },
+        "cost_treatment": {
+          "type": "object",
+          "required": ["product_cost", "ad_spend", "platform_fee", "fulfillment_cost", "inventory_loss", "tax_cost", "other_operating_cost"],
+          "propertyNames": {"enum": ["product_cost", "ad_spend", "platform_fee", "fulfillment_cost", "inventory_loss", "tax_cost", "other_operating_cost"]},
+          "additionalProperties": {"enum": ["direct_source", "explicit_zero", "allocated"]}
+        },
+        "allocations": {
+          "type": "object",
+          "propertyNames": {"enum": ["product_cost", "ad_spend", "platform_fee", "fulfillment_cost", "inventory_loss", "tax_cost", "other_operating_cost"]},
+          "additionalProperties": {
+            "type": "object",
+            "required": ["method", "basis_name", "pool_claim", "scope_base_claim", "total_base_claim", "schedule_total_claim"],
+            "properties": {
+              "method": {"const": "proportional_actual_base"},
+              "basis_name": {"type": "string", "minLength": 1},
+              "pool_claim": {"type": "string", "pattern": "^C-[A-Za-z0-9_-]+$"},
+              "scope_base_claim": {"type": "string", "pattern": "^C-[A-Za-z0-9_-]+$"},
+              "total_base_claim": {"type": "string", "pattern": "^C-[A-Za-z0-9_-]+$"},
+              "schedule_total_claim": {"type": "string", "pattern": "^C-[A-Za-z0-9_-]+$"}
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "sourceRef": {
+      "type": "object",
+      "required": ["source_id", "source_file", "field", "source_sha256"],
+      "properties": {
+        "source_id": { "type": "string", "minLength": 1 },
+        "source_file": { "type": "string", "minLength": 1 },
+        "sheet": { "type": "string" },
+        "range": { "type": "string" },
+        "field": { "type": "string", "minLength": 1 },
+        "source_sha256": { "type": "string", "pattern": "^[0-9a-fA-F]{64}$" },
+        "period_mode": {"enum": ["exact", "contained"]},
+        "period_coverage": {
+          "type": "object",
+          "required": ["frequency", "status"],
+          "properties": {"frequency": {"const": "daily"}, "status": {"const": "complete_no_missing_dates"}},
+          "additionalProperties": false
+        },
+        "contexts": {
+          "type": "object", "minProperties": 1,
+          "additionalProperties": {
+            "oneOf": [
+              {"type": "object", "required": ["field"], "properties": {"field": {"type": "string", "minLength": 1}}, "additionalProperties": false},
+              {"type": "object", "required": ["column", "field"], "properties": {"column": {"type": "string", "pattern": "^[A-Z]+$"}, "field": {"type": "string", "minLength": 1}}, "additionalProperties": false},
+              {"type": "object", "required": ["cell", "label_cell", "field"], "properties": {"cell": {"type": "string"}, "label_cell": {"type": "string"}, "field": {"type": "string", "minLength": 1}}, "additionalProperties": false}
+            ]
+          }
+        }
+      },
+      "additionalProperties": true
+    },
+    "formula": {
+      "type": "object",
+      "required": ["name", "numerator", "denominator", "expression"],
+      "properties": {
+        "name": { "type": "string", "minLength": 1 },
+        "numerator": { "type": "string", "minLength": 1 },
+        "denominator": { "type": "string", "minLength": 1 },
+        "expression": { "type": "string", "minLength": 1 }
+      },
+      "additionalProperties": true
+    },
+    "attribution": {
+      "type": "object",
+      "required": ["source_id", "window", "level", "acquisition_mode", "export_reference", "exported_at", "client_scope", "platform", "authenticity_status", "metric_semantics_version"],
+      "properties": {
+        "source_id": { "type": "string", "minLength": 1 },
+        "window": { "type": "string", "minLength": 1 },
+        "level": { "type": "string", "minLength": 1 },
+        "acquisition_mode": {"const": "manual_platform_export"},
+        "export_reference": {"type": "string", "minLength": 1},
+        "exported_at": {"type": "string", "format": "date-time"},
+        "client_scope": {"type": "string", "minLength": 1},
+        "platform": {"type": "string", "minLength": 1},
+        "authenticity_status": {"const": "source_bound_export_not_platform_authenticated"},
+        "metric_semantics_version": {"const": "2.0"},
+        "cost_complete": { "type": "boolean" }
+        ,"refund_basis": { "type": "string", "minLength": 1 }
+        ,"cost_basis": { "type": "string", "minLength": 1 }
+        ,"reconciliation_id": { "type": "string", "minLength": 1 }
+      },
+      "additionalProperties": true
+    },
+    "claim": {
+      "type": "object",
+      "required": ["claim_id", "metric", "value", "unit", "period", "status", "source_ref"],
+      "properties": {
+        "claim_id": { "type": "string", "pattern": "^C-[A-Za-z0-9_-]+$" },
+        "metric": { "type": "string", "minLength": 1 },
+        "value": { "type": ["number", "null"] },
+        "unit": { "type": "string", "minLength": 1 },
+        "period": { "type": "string", "minLength": 1 },
+        "status": { "enum": ["verified", "derived", "unknown"] },
+        "source_ref": { "$ref": "#/$defs/sourceRef" },
+        "formula": { "$ref": "#/$defs/formula" },
+        "inputs": { "type": "array", "items": { "type": "string" } },
+        "attribution": { "$ref": "#/$defs/attribution" }
+        ,"accounting": { "$ref": "#/$defs/accounting" }
+        ,"currency": {"type": "string", "minLength": 1}
+      },
+      "additionalProperties": true
+    }
+  }
+}

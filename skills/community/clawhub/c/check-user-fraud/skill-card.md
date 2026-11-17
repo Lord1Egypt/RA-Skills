@@ -1,45 +1,57 @@
-## Description: <br>
-Query MySQL database to analyze user fraud/shuadan behavior. Use when user asks to check if a user is engaging in fraudulent task completion. Analyzes time intervals, publisher concentration, task duplication, and top refresh status to identify suspicious patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes user records from a MySQL database to assess suspected fraudulent task completion using timing, publisher concentration, duplicate-task, and top-refresh patterns.
 
-## Publisher: <br>
-[star1986c](https://clawhub.ai/user/star1986c) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[star1986c](https://clawhub.ai/user/star1986c)
 
-## Use Case: <br>
-Risk and operations staff use this skill to investigate suspected fraudulent task completion by querying user, task, login, device, IP, account-status, and transaction records and summarizing fraud indicators. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill exposes reusable database credentials. <br>
-Mitigation: Rotate the embedded password, remove secrets from the skill and history, and replace them with scoped read-only credentials before use. <br>
-Risk: The skill can retrieve broad personal, login, device, IP, account-status, and financial data. <br>
-Mitigation: Run it only with explicit authorization, role checks, case justification, audit logging, and default redaction for sensitive fields. <br>
-Risk: The fraud investigation queries may exceed a tightly scoped user-fraud check. <br>
-Mitigation: Limit database access to the minimum tables and records needed for the approved investigation. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/star1986c/check-user-fraud) <br>
-- [Fraud analysis guide](artifact/references/fraud_analysis_guide.md) <br>
-- [User records query](artifact/references/query_user_records.sql) <br>
-- [Top refresh query](artifact/references/query_top_refresh.sql) <br>
-- [Account transactions query](artifact/references/query_account_trans.sql) <br>
+## Use Case:
 
+Operations, risk, and fraud-review users use this skill to investigate accounts, tasks, publishers, or IP addresses for suspected task-fraud patterns and generate a risk assessment. It is suited to case-scoped review where access to the underlying user and transaction data is authorized.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON-formatted analysis results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Fraud assessments include risk level, indicator counts, detailed records, and summary conclusions when database queries return data.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The published artifact includes a reusable database password.
+
+Mitigation: Rotate the exposed credential and replace embedded secrets with authenticated, scoped access before any use.
+
+Risk: The workflow can expose sensitive user, login, device, payment, and account data through broad command-line lookups.
+
+Mitigation: Rebuild access behind a case-scoped service with read-only least privilege, masking, audit logging, and controls that prevent arbitrary user or IP enumeration.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/star1986c/skills/check-user-fraud)
+- [README](artifact/README.md)
+- [Fraud analysis guide](artifact/references/fraud_analysis_guide.md)
+- [User records SQL reference](artifact/references/query_user_records.sql)
+- [Top refresh SQL reference](artifact/references/query_top_refresh.sql)
+- [Account transactions SQL reference](artifact/references/query_account_trans.sql)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, guidance]
+
+**Output Format:** [JSON and console text reports with fraud indicators, supporting records, and risk summaries.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include sensitive user, login, device, payment, and account fields.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

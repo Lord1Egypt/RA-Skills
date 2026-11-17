@@ -1,44 +1,56 @@
-## Description: <br>
-Five-phase token audit and optimization framework for OpenClaw agents: discover, prioritize, optimize, validate, and monitor token usage. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Five-phase token audit and optimization framework for OpenClaw agents, covering discovery, prioritization, optimization, validation, and monitoring.
 
-## Publisher: <br>
-[youxiyin](https://clawhub.ai/user/youxiyin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[youxiyin](https://clawhub.ai/user/youxiyin)
 
-## Use Case: <br>
-Developers and operators of OpenClaw agents use this skill to audit scheduled tasks, prompts, context loading, model routing, and tool profiles, then produce practical token-saving recommendations and reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can propose or directly change prompts, model routing, cron schedules, provider settings, and tool profiles. <br>
-Mitigation: Run it in read-only or proposal mode first, require a diff and rollback plan before applying moderate or high-risk changes, and approve configuration edits explicitly. <br>
-Risk: Audit reports may include local filenames, task names, prompt text, and configuration details. <br>
-Mitigation: Review generated reports before sharing them outside the deployment context. <br>
-Risk: Some configuration changes require a gateway restart or can affect scheduled-agent behavior. <br>
-Mitigation: Validate JSON configuration, confirm restart requirements, and test cron or heartbeat behavior after edits. <br>
+## Use Case:
 
+Developers and operators use this skill to audit OpenClaw token usage, prioritize savings opportunities, and produce recommended prompt, model-routing, cron, and gateway configuration changes.
 
-## Reference(s): <br>
-- [Wave Token Saver on ClawHub](https://clawhub.ai/youxiyin/wave-token-saver) <br>
-- [OpenClaw Cron Jobs](https://docs.openclaw.ai/automation/cron.md) <br>
-- [OpenClaw Standing Orders](https://docs.openclaw.ai/automation/standing-orders.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports with tables, proposed changes, JSON snippets, and shell commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Full executions write token-audit-report-YYYY-MM-DD.md; recommendations can include before-and-after comparisons, estimated savings, deferred items, and next steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: server release evidence) <br>
+Risk: The skill may read local OpenClaw cron and gateway configuration while auditing token usage.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run an initial read-only audit and require the agent to list exact paths inspected before making any changes.
+
+Risk: The skill can propose or perform persistent prompt, routing, scheduled task, or gateway configuration changes, including changes labeled Safe.
+
+Mitigation: Require exact diffs and explicit approval for every write, cron update, routing change, or gateway configuration change.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/youxiyin/skills/wave-token-saver)
+- [OpenClaw Cron Jobs](https://docs.openclaw.ai/automation/cron.md)
+- [OpenClaw Standing Orders](https://docs.openclaw.ai/automation/standing-orders.md)
+- [Test prompts](artifact/test-prompts.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports with tables, recommendations, and occasional shell or configuration snippets.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [A full execution produces token-audit-report-YYYY-MM-DD.md and may recommend or perform prompt, model-routing, cron, and gateway configuration updates.]
+
+## Skill Version(s):
+
+2.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

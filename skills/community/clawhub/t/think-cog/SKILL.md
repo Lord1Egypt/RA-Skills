@@ -1,6 +1,6 @@
 ---
-name: think-cog
-description: "AI brainstorming and strategic thinking powered by CellCog. Reasoning, problem-solving, ideation, strategic planning — then execution across every modality: research, documents, visuals, data, prototypes. Think, build, review, repeat."
+name: brainstorming-strategy-cellcog
+description: "AI brainstorming and strategy thinking partner powered by CellCog. Reasoning, problem-solving, ideation, strategic planning — then execution across every modality: research, documents, visuals, data, prototypes. Think, build, review, repeat."
 metadata:
   openclaw:
     emoji: "💭"
@@ -12,7 +12,7 @@ author: CellCog
 homepage: https://cellcog.ai
 dependencies: [cellcog]
 ---
-# Think Cog - Your Alfred for Complex Ideas
+# Brainstorming & Strategy - Your Alfred for Complex Ideas
 
 **Complex ideas need iteration, not conversation.** Think → Do → Review → Repeat.
 
@@ -59,13 +59,13 @@ But some problems don't work that way:
 - The solution emerges through exploration, not execution
 - You need to reason through tradeoffs before committing
 
-**Think-cog is your worker agent for intellectual exploration.** You're the manager agent providing direction. CellCog thinks and works alongside you.
+**This skill makes CellCog your worker agent for intellectual exploration.** You're the manager agent providing direction. CellCog thinks and works alongside you.
 
 ---
 
 ## How It Works
 
-Unlike single-shot tasks, think-cog is **conversational by design**:
+Unlike single-shot tasks, brainstorming-strategy-cellcog is **conversational by design**:
 
 ```python
 # Start the thinking session
@@ -82,7 +82,7 @@ result = client.send_message(
 )
 ```
 
-**Think-cog expects back-and-forth conversation**, not single requests. Each exchange deepens understanding.
+**This skill expects back-and-forth conversation**, not single requests. Each exchange deepens understanding.
 
 See https://cellcog.ai for complete SDK API reference.
 
@@ -165,13 +165,16 @@ Think of it as pair programming for thinking:
 
 ---
 
-## Chat Mode for Thinking
+## Choosing Mode & Tier
 
-**Use `chat_mode="agent"`** for think-cog sessions.
+| Scenario | Recommended |
+|----------|-------------|
+| Ideation and strategy sessions | `chat_mode="agent"` (defaults to the `"core"` tier) |
+| In-depth strategic analysis | `chat_mode="agent", chat_tier="max"` |
 
-Why not agent team? Agent team is designed for autonomous deep work with multiple internal passes. Think-cog is about collaborative iteration WITH you. Agent mode keeps the conversation flowing naturally.
+**The core tier is the default and handles most brainstorming well**, balanced speed and depth. **Upgrade to `chat_tier="max"`** when quality disappoints or the work is genuinely complex: just re-run the same prompt with `chat_tier="max"`.
 
-The magic happens in the back-and-forth, not in autonomous processing.
+Agent Team (`chat_mode="team"`) is reserved for deep research — don't use it for brainstorming.
 
 ---
 
@@ -195,12 +198,12 @@ The magic happens in the back-and-forth, not in autonomous processing.
 
 | Skill | Pattern | You Know the Output? |
 |-------|---------|---------------------|
-| research-cog | Fire-and-forget | Yes - "Give me research on X" |
-| video-cog | Fire-and-forget | Yes - "Create a video about X" |
-| docs-cog | Fire-and-forget | Yes - "Create a document for X" |
-| **think-cog** | **Conversational** | **No - "Help me figure out X"** |
+| deep-research-cellcog | Fire-and-forget | Yes - "Give me research on X" |
+| video-generation-cellcog | Fire-and-forget | Yes - "Create a video about X" |
+| pdf-document-generation-cellcog | Fire-and-forget | Yes - "Create a document for X" |
+| **brainstorming-strategy-cellcog** | **Conversational** | **No - "Help me figure out X"** |
 
-Think-cog is for when you're in discovery mode. Other skills are for when you're in execution mode.
+This skill is for when you're in discovery mode. Other skills are for when you're in execution mode.
 
 ---
 
@@ -253,7 +256,8 @@ The conversation continues, ideas refine, and eventually you arrive at a clear s
 
 ## If CellCog is not installed
 
-Run `/cellcog-setup` (or `/cellcog:cellcog-setup` depending on your tool) to install and authenticate.
-**OpenClaw users:** Run `clawhub install cellcog` instead.
+**Claude Code, Cursor, Codex + 70 more agents:** `npx skills add cellcog/skills --skill cellcog`
+**OpenClaw:** `openclaw skills install @cellcog/cellcog`
+**CellCog plugin users:** run `/cellcog-setup` (or `/cellcog:cellcog-setup` depending on your tool)
 **Manual setup:** `pip install -U cellcog` and set `CELLCOG_API_KEY`. See the **cellcog** skill for SDK reference.
 **Other agents:** `pip install cellcog` and set `CELLCOG_API_KEY`. See https://cellcog.ai for details.

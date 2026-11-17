@@ -1,36 +1,48 @@
-## Description: <br>
-A practical guide for maintaining composure and effectiveness when project boundaries expand unexpectedly. Apply Stoic philosophy to one of the most common sources of workplace frustration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A practical guide for maintaining composure and effectiveness when project boundaries expand unexpectedly.
 
-## Publisher: <br>
-[crtahlin](https://clawhub.ai/user/crtahlin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[crtahlin](https://clawhub.ai/user/crtahlin)
 
-## Use Case: <br>
-Employees, project leads, and contributors use this skill to respond to changing project boundaries with clearer communication, documentation, and emotional composure. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Workplace communication and mindset advice may not fit every team's norms or decision process. <br>
-Mitigation: Review the guidance for fit with team expectations before applying it in stakeholder conversations. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+Employees and project contributors use this skill to respond to changing scope with composure, clearer tradeoff communication, and practical reflection exercises.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown] <br>
-**Output Format:** [Markdown guidance with checklists, reflection prompts, and workplace communication scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution, system access, or external tool calls are requested by the skill.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Workplace guidance and sample phrasing may not fit every organization, stakeholder relationship, or project context.
+
+Mitigation: Review suggested scripts and practices against team norms, management expectations, and the specific decision-making authority for the project.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/crtahlin/skills/stoic-scope-creep)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown]
+
+**Output Format:** [Markdown prose with checklists, response frameworks, reflective exercises, and sample workplace scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces advice only; it does not request tool access, execute code, or access user data.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact footer)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

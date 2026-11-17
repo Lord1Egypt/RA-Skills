@@ -1,42 +1,58 @@
-## Description: <br>
-Ra Lite -- Research Intelligence. Drop a topic and get an instant structured 3-source research brief. Free tier of Ra. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ra Lite -- Research Intelligence. Drop a topic and get an instant structured 3-source research brief. Free tier of Ra.
 
-## Publisher: <br>
-[occupythemilkyway](https://clawhub.ai/user/occupythemilkyway) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[occupythemilkyway](https://clawhub.ai/user/occupythemilkyway)
 
-## Use Case: <br>
-External users and agents use Ra Lite to turn a supplied research topic into a concise, cited research brief based on three web sources. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The user-provided research topic may be sent through web search. <br>
-Mitigation: Avoid entering confidential or sensitive topics unless the operating environment and search tools are approved for that data. <br>
-Risk: A short web-sourced brief can contain incomplete, outdated, or misleading findings. <br>
-Mitigation: Review cited sources and verify important claims before using the brief for decisions or publication. <br>
-Risk: The setup command uses pip with --break-system-packages, which can affect system Python hygiene. <br>
-Mitigation: Run installation in a virtual environment or another isolated Python environment. <br>
+## Use Case:
 
+External users and developers use Ra Lite to turn a research topic into a concise, sourced brief with an executive summary, key findings, implications, and three cited sources.
 
-## Reference(s): <br>
-- [Ra Lite ClawHub Page](https://clawhub.ai/occupythemilkyway/ra-lite) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown research brief with executive summary, key findings, analysis, and source links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires RESEARCH_TOPIC and is designed to cite 3 authoritative, recent web sources.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The setup step may modify system Python packages for presentation-only formatting.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill in an isolated virtual environment or remove the rich installation step before use.
+
+Risk: The generated research brief depends on three web sources selected at runtime, so source quality and recency can vary.
+
+Mitigation: Review the cited sources and verify important claims before relying on the brief.
+
+Risk: The skill includes an upgrade prompt after producing the Lite brief.
+
+Mitigation: Expect the prompt as part of the release behavior and remove it if it is not appropriate for the deployment context.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/occupythemilkyway/skills/ra-lite)
+- [OpenClaw Homepage](https://clawhub.ai/occupythemilkyway/ra-lite)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, shell commands, guidance]
+
+**Output Format:** [Markdown research brief with inline setup commands and cited source links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires RESEARCH_TOPIC and expects the agent to use web search for three authoritative sources.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

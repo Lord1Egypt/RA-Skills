@@ -1,39 +1,53 @@
-## Description: <br>
-Compares two text strings or files and highlights added, removed, and changed lines for code review, document comparison, and version comparison workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Diff Tool compares text strings or files, highlights added and removed lines, and can emit standard, simple, or JSON diff output.
 
-## Publisher: <br>
-[SxLiuYu](https://clawhub.ai/user/SxLiuYu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sxliuyu](https://clawhub.ai/user/sxliuyu)
 
-## Use Case: <br>
-Developers, writers, and reviewers use this skill to compare text snippets or files, inspect highlighted line-level differences, and optionally receive concise or JSON-formatted diff output. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generic requests containing "diff" may route to this skill even when the user intended a broader comparison task. <br>
-Mitigation: Use the skill for explicit text or file comparison requests, and confirm any file reads before comparing local paths. <br>
+## Use Case:
 
+Developers, reviewers, and documentation maintainers use this skill to compare two text inputs or local files and inspect added or removed content during code review, document comparison, or version comparison workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/SxLiuYu/diff-tool) <br>
-- [Publisher profile](https://clawhub.ai/user/SxLiuYu) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, shell commands, guidance] <br>
-**Output Format:** [Plain text, ANSI-colored terminal output, or JSON diff summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports standard, simple, and JSON formats; can ignore whitespace and show added or removed line counts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata; artifact frontmatter reports 1.0.0) <br>
+Risk: The tool reads and prints differences from user-specified local file paths, which may expose sensitive file contents in terminal output.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Only compare files the user intends to inspect and avoid passing secrets or private data unless that output is appropriate for the session.
+
+Risk: The generic diff trigger may be invoked in contexts where the intended scope is ambiguous.
+
+Mitigation: Use explicit trigger phrases or direct commands when comparing content, and document the tool scope clearly for users.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/sxliuyu/skills/diff-tool)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Guidance]
+
+**Output Format:** [Plain text, ANSI-colored terminal output, or JSON diff summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reads only user-specified strings or local file paths; supports standard, simple, and JSON output modes.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,22 +1,26 @@
 ---
 name: kling-video
-description: Generate AI videos with Kuaishou Kling via AceDataCloud API. Use when creating videos from text or images, extending existing videos, or applying motion control. Supports text-to-video, image-to-video, extend, and motion generation with multiple models and quality modes.
+description: Create Kling videos and commercial media through AceDataCloud. Use for text/image video generation, Turbo, storyboards, motion control, talking photos, lip sync, product studio, commercial voiceovers, and supported reference inputs.
 license: Apache-2.0
 metadata:
   author: acedatacloud
   version: "1.0"
-compatibility: Requires ACEDATACLOUD_API_TOKEN environment variable.
+compatibility: Requires ACEDATACLOUD_API_TOKEN in .env file (get an API key at https://platform.acedata.cloud/console/applications).
 ---
 
 # Kling Video Generation
 
 Generate AI videos through AceDataCloud's Kuaishou Kling API.
 
-## Authentication
+## First-time setup
 
-```bash
-export ACEDATACLOUD_API_TOKEN="your-token-here"
-```
+1. Install the official Skill with `clawhub install @acedatacloud/kling`. Check that the ClawHub publisher is **@acedatacloud**.
+2. Sign in at [AceDataCloud → Applications](https://platform.acedata.cloud/console/applications), open **General application**, and check Kling access, balance, and current pricing. Copy its API key, or select **Manage Keys → Create** for a separate key. Copy the key value without `Bearer `; a `platform-...` management token is not a service API key.
+3. If you enable **Allowed APIs** restrictions, include `/kling/videos` and `/kling/tasks`. Advanced workflows below may call additional routes.
+4. On the OpenClaw Gateway host, put `ACEDATACLOUD_API_TOKEN=your_api_key_here` in `~/.openclaw/.env`, then restart the Gateway and start a new session. For a direct terminal test, run `export ACEDATACLOUD_API_TOKEN="your_api_key_here"` in that shell. Never put the key in a prompt or commit an `.env` file.
+5. Run the **Quick Start** below. If this workflow returns a task ID, query that same task until it finishes; do not submit the same billable request again just to check progress.
+
+[Illustrated key setup, first run, and troubleshooting](https://github.com/AceDataCloud/Skills#first-run-with-clawhub-and-openclaw) · [Token details](https://github.com/AceDataCloud/Skills/blob/main/skills/_shared/authentication.md)
 
 ## Quick Start
 
@@ -24,19 +28,24 @@ export ACEDATACLOUD_API_TOKEN="your-token-here"
 curl -X POST https://api.acedata.cloud/kling/videos \
   -H "Authorization: Bearer $ACEDATACLOUD_API_TOKEN" \
   -H "Content-Type: application/json" \
-  -d '{"action": "text2video", "prompt": "a cat playing piano on a rooftop at sunset", "model": "kling-v2-5-turbo", "mode": "std", "duration": 5}'
+  -d '{"action": "text2video", "prompt": "a cat playing piano on a rooftop at sunset", "model": "kling-v3", "mode": "std", "duration": 5}'
 ```
 
+> **Async:** See [async task polling](https://github.com/AceDataCloud/Skills/blob/main/skills/_shared/async-tasks.md). Poll via `POST /kling/tasks` with `{"id": "..."}`.
 ## Models
 
 | Model | Quality | Best For |
 |-------|---------|----------|
-| `kling-v1` | Standard | Basic generation, lowest cost |
-| `kling-v1-6` | Improved | Better quality than v1 |
+| `kling-v3-turbo` | Fast | 720p/1080p, integer 3–15 seconds, included native audio with no off switch |
+| `kling-v3` | Latest | Best quality, flexible 3–15s duration, optional audio generation |
+| `kling-v3-omni` | Latest | V3 Omni model with audio plus image/video references, flexible 3–15s duration |
+| `kling-v2-6` | High | High-quality output with optional audio (pro mode) |
+| `kling-v2-5-turbo` | High + Fast | Best speed/quality trade-off |
 | `kling-v2-master` | High | High-quality output |
 | `kling-v2-1-master` | High | Improved v2 |
-| `kling-v2-5-turbo` | High + Fast | Best speed/quality trade-off (recommended) |
-| `kling-video-o1` | Premium | Highest quality |
+| `kling-v1-6` | Improved | Better quality than v1 |
+| `kling-v1` | Standard | Basic generation, lowest cost |
+| `kling-o1` | Premium | Independent O1 model with image/video references, 5s only |
 
 ## Quality Modes
 
@@ -44,6 +53,7 @@ curl -X POST https://api.acedata.cloud/kling/videos \
 |------|-------|------|---------|
 | `std` (Standard) | Slower | Lower | Draft/preview |
 | `pro` (Professional) | Faster | Higher | Final output |
+| `4k` (Native 4K) | — | Premium | Native 4K output — only `kling-v3` and `kling-v3-omni`; incompatible with `camera_control` |
 
 ## Workflows
 
@@ -54,7 +64,7 @@ POST /kling/videos
 {
   "action": "text2video",
   "prompt": "a futuristic city with flying cars",
-  "model": "kling-v2-5-turbo",
+  "model": "kling-v3",
   "mode": "std",
   "duration": 5,
   "aspect_ratio": "16:9"
@@ -72,12 +82,36 @@ POST /kling/videos
   "prompt": "the scene slowly comes alive with movement",
   "start_image_url": "https://example.com/scene.jpg",
   "end_image_url": "https://example.com/end-scene.jpg",
-  "model": "kling-v2-5-turbo",
+  "model": "kling-v3",
   "mode": "pro"
 }
 ```
 
-### 3. Extend Video
+### 3. Omni References
+
+Use `kling-o1` or `kling-v3-omni` with reference images and/or one reference video. Cite each item in the prompt using its one-based token.
+
+```json
+POST /kling/videos
+{
+  "action": "text2video",
+  "prompt": "turn <<<video_1>>> into hand-painted animation while preserving its motion",
+  "model": "kling-o1",
+  "mode": "std",
+  "duration": 5,
+  "video_list": [
+    {
+      "video_url": "https://example.com/source.mp4",
+      "refer_type": "base",
+      "keep_original_sound": "no"
+    }
+  ]
+}
+```
+
+Use `refer_type: "feature"` to reference style, motion, or a neighboring shot. Use `refer_type: "base"` to edit the supplied video. A base video cannot be combined with first/end frames.
+
+### 4. Extend Video
 
 Continue an existing video with additional seconds.
 
@@ -91,7 +125,7 @@ POST /kling/videos
 }
 ```
 
-### 4. Motion Control
+### 5. Motion Control
 
 Apply precise camera/motion control from an image + reference video.
 
@@ -99,7 +133,37 @@ Apply precise camera/motion control from an image + reference video.
 POST /kling/motion
 {
   "image_url": "https://example.com/subject.jpg",
-  "video_url": "https://example.com/motion-reference.mp4"
+  "video_url": "https://example.com/motion-reference.mp4",
+  "mode": "std",
+  "character_orientation": "image"
+}
+```
+
+### 6. Lip Sync
+
+Create a lip-synced video from a source video plus either an audio track or input text.
+
+```json
+POST /kling/lip-sync
+{
+  "video_url": "https://example.com/source.mp4",
+  "mode": "audio2video",
+  "audio_url": "https://example.com/voiceover.mp3"
+}
+```
+
+### 7. Talking Photo
+
+Animate a still portrait from an image plus an audio track.
+
+```json
+POST /kling/talking-photo
+{
+  "image_url": "https://example.com/portrait.jpg",
+  "audio_url": "https://example.com/voiceover.mp3",
+  "model": "kling-v2-1-master",
+  "duration": 5,
+  "mode": "pro"
 }
 ```
 
@@ -109,28 +173,63 @@ POST /kling/motion
 |-----------|--------|-------------|
 | `action` | `"text2video"`, `"image2video"`, `"extend"` | Generation mode |
 | `model` | See models table | Model to use |
-| `mode` | `"std"`, `"pro"` | Quality mode |
-| `duration` | `5`, `10` | Duration in seconds |
+| `prompt` | string | Required generation or continuation instructions |
+| `mode` | `"std"`, `"pro"`, `"4k"` | Quality mode (`4k` only for `kling-v3` / `kling-v3-omni`, incompatible with `camera_control`) |
+| `duration` | O1: `5`; v3/v3-omni/v3-turbo: integer `3`–`15`; others: `5`, `10` | Duration in seconds |
+| `start_image_url` | URL | Required first frame for `action=image2video` |
+| `end_image_url` | URL | Optional end frame for `image2video`; requires `start_image_url` |
+| `video_id` | string | Existing Kling video ID required by `action=extend` |
+| `generate_audio` | `true`, `false` | Optional audio for v3, v3-omni and v2-6 pro. Turbo always includes audio: omit this field or use `true` |
 | `aspect_ratio` | `"16:9"`, `"9:16"`, `"1:1"` | Video aspect ratio |
 | `cfg_scale` | 0–1 | Prompt relevance strength |
 | `negative_prompt` | string | What to avoid in the video |
 | `camera_control` | object | Camera movement parameters |
+| `image_list` | array | Omni reference images for `kling-o1` / `kling-v3-omni`; each item has `image_url` and optional `type` (`first_frame` / `end_frame`). Up to 7 images without a reference video, or 4 with one, including first/end frames |
+| `video_list` | array | One MP4/MOV Omni reference video for `kling-o1` / `kling-v3-omni` (3–10s, 720–2160px, 24–60fps, ≤200MB); item has `video_url`, `refer_type` (`feature` / `base`), and `keep_original_sound` (`yes` / `no`) |
 | `callback_url` | string | Async callback URL |
-
-## Task Polling
-
-```json
-POST /kling/tasks
-{"task_id": "your-task-id"}
-```
-
-States: `processing` → `succeed` or `failed`.
+| `mode` (`/kling/lip-sync`) | `"audio2video"`, `"text2video"` | Lip-sync mode |
+| `video_url` (`/kling/lip-sync`) | URL | Source video URL for lip-sync |
+| `video_id` (`/kling/lip-sync`) | string | Existing Kling video ID for lip-sync |
+| `audio_url` (`/kling/lip-sync`) | URL | Audio source URL (for `audio2video`) |
+| `audio_type` (`/kling/lip-sync`) | `"url"`, `"file"` | Audio input type (default `url`) |
+| `audio_file` (`/kling/lip-sync`) | string | Audio file payload when `audio_type=file` |
+| `text` (`/kling/lip-sync`) | string | Input text to synthesize speech (for `text2video`) |
+| `voice_id` (`/kling/lip-sync`) | string | Voice preset ID used in `text2video` |
+| `voice_language` (`/kling/lip-sync`) | `"zh"`, `"en"` | TTS language for `text2video` (default `zh`) |
+| `voice_speed` (`/kling/lip-sync`) | number | TTS speaking speed (default `1.0`) |
+| `mode` (`/kling/motion`) | `"std"`, `"pro"` | Motion generation quality mode |
+| `character_orientation` (`/kling/motion`) | `"image"`, `"video"` | Character orientation source |
+| `image_url` (`/kling/talking-photo`) | URL | Source portrait image |
+| `audio_url` (`/kling/talking-photo`) | URL | Driving audio track |
+| `model` (`/kling/talking-photo`) | `"kling-v1"`, `"kling-v1-6"`, `"kling-v2-master"`, `"kling-v2-1-master"`, `"kling-v2-5-turbo"`, `"kling-v2-6"` | Talking-photo model |
+| `duration` (`/kling/talking-photo`) | `5`, `10` | Talking-photo duration |
+| `mode` (`/kling/talking-photo`) | `"std"`, `"pro"` | Talking-photo quality mode |
 
 ## Gotchas
 
-- `duration` only supports `5` or `10` seconds
+- `kling-o1` supports `duration=5` only; `kling-v3` and `kling-v3-omni` support flexible `3`–`15` seconds; most other models support `5` or `10`
+- `mode=4k` is only available for `kling-v3` and `kling-v3-omni` and is incompatible with `camera_control`
+- `generate_audio` enables optional synchronized audio for `kling-v3`, `kling-v3-omni`, and `kling-v2-6` pro. Turbo includes audio and rejects `false`.
 - `end_image_url` is only for `image2video` action — it defines the last frame
+- Omni references are supported only by `kling-o1` and `kling-v3-omni`; cite them as `<<<image_N>>>` / `<<<video_1>>>`
+- Omni reference requests do not support `negative_prompt`, `cfg_scale`, `camera_control`, or `mode=4k`
+- With `video_list`, `generate_audio` must be `false`; a base video cannot be combined with first/end frames
+- `element_list` accepts existing platform-owned or verified preset IDs; raw external IDs are rejected. Standalone management is not published.
 - Motion control (`/kling/motion`) is a separate endpoint from video generation
-- `pro` mode costs roughly 2x `std` mode but generates faster with better quality
+- Lip-sync is a separate endpoint (`/kling/lip-sync`) and requires `mode`; use `audio_url` for `audio2video` or `text` + voice fields for `text2video`
+- Talking-photo is a separate endpoint (`/kling/talking-photo`) and requires both `image_url` and `audio_url`
+- Read the current platform price for the selected model and quality mode. Their price ratios vary; Turbo standard/pro rates are 1.12/1.4 Credits per actual delivered second.
 - Task states use `"succeed"` (not "succeeded") — check for this value when polling
 - `negative_prompt` helps avoid unwanted elements (e.g., "blurry, low quality, text")
+
+## Turbo, multishot and commerce
+
+Turbo accepts text or a first frame. Omit `generate_audio` or set it to true; false is unsupported. It omits tail frames, camera_control, cfg_scale, separate negative_prompt and Omni references. Use `kling_generate_turbo_video` in the companion MCP or `kling turbo --request-file request.json` in the CLI.
+
+V3/V3 Omni accept `multi_shot=true`. Automatic `shot_type="intelligence"` uses the global prompt. Customized shots use `multi_prompt` (1–6 entries) with consecutive index values, prompts of at most 512 characters and integer durations summing to the total. Companion tools: `kling_generate_storyboard` / `kling storyboard`.
+
+Commercial capabilities use `/kling/goods-studio` and `/kling/video-commerce`. Pass structured contents/settings and poll task IDs through `/kling/tasks`. Apparel, virtual try-on and standalone asset management are not currently published.
+
+## Reference inputs
+
+Use `element_list` and `voice_list` only with already valid platform references and the supported model combinations in the current backend guide. Standalone asset creation and management are not published.

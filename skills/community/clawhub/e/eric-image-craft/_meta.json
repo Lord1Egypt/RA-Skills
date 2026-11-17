@@ -1,6 +1,7 @@
 {
-  "ownerId": "kn712egma3976f4b68hksznyrs85wsr5",
-  "slug": "eric-image-craft",
-  "version": "11.1.0",
-  "publishedAt": 1778039921145
+  "id": 378680790331469,
+  "version": "1.0.0",
+  "name": "image-craft",
+  "updated_at": 1774005047307,
+  "platform": "minimax"
 }

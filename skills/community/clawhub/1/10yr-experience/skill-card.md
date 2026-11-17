@@ -1,44 +1,58 @@
-## Description: <br>
-A Chinese-language career-coaching skill that provides structured role research, resume drafting support, interview preparation, and industry-context guidance for new media operations, HR, administrative specialist, marketing, and product manager roles. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language career guidance skill that helps job seekers understand new media operations, HR, administration, marketing, and product manager roles, then prepare resumes and interviews using bundled role and interview references.
 
-## Publisher: <br>
-[futurezyx](https://clawhub.ai/user/futurezyx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[futurezyx](https://clawhub.ai/user/futurezyx)
 
-## Use Case: <br>
-External job seekers, students, and career changers use this skill to understand target roles, compare job functions, prepare resumes with STAR-style examples, and practice interview answers. It is intended as Chinese-language career guidance that users adapt to their real background and target role. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Resume and interview drafts may overstate or mismatch the user's actual experience if copied directly. <br>
-Mitigation: Review every generated draft, replace templates with true personal experience, and prioritize real examples in interviews. <br>
-Risk: Career guidance may be broad or company-general rather than specific to a particular employer or workflow. <br>
-Mitigation: Confirm the target role, company context, and user background before applying role examples or industry-general supplements. <br>
-Risk: The skill may trigger on broad career topics and provide guidance beyond the user's intended role. <br>
-Mitigation: Ask clarifying questions when the target role, task, or career stage is ambiguous. <br>
+## Use Case:
 
+External job seekers, students, and career changers use this skill to explore five common business roles, draft truthful resume content, prepare interview answers, compare roles, and understand role-specific workflows and terminology.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/futurezyx/skills/10yr-experience) <br>
-- [Career data reference](references/career-data.md) <br>
-- [Interview guide reference](references/interview-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Chinese-language Markdown with tables, lists, templates, and conversational coaching text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses read-only local reference files and may include industry-general supplements that users should adapt to their real experience.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter, clawhub.json, server release metadata) <br>
+Risk: Resume bullets, interview examples, or sample accomplishments could be mistaken for the user's real experience.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat generated material as templates and replace sample metrics, achievements, and scenarios with truthful personal experience before use.
+
+Risk: Role workflows and workplace practices are general guidance and may not match a specific employer, industry, or local requirement.
+
+Mitigation: Verify important details against the target company, job description, and applicable local rules before relying on them.
+
+Risk: General industry knowledge supplied by the model may be incomplete or stale.
+
+Mitigation: Keep model additions clearly labeled as general supplements and review high-impact claims before using them in resumes or interviews.
+
+## Reference(s):
+
+- [Five-role career experience reference](references/career-data.md)
+- [Resume and interview preparation guide](references/interview-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or structured Chinese-language prose, often with tables, resume bullets, interview answers, and preparation plans.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses bundled reference material and may add clearly labeled general industry knowledge; users should adapt examples to their real experience.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter, clawhub.json, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

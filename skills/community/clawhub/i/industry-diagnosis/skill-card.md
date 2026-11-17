@@ -1,46 +1,59 @@
-## Description: <br>
-Provides structured Chinese industry diagnostics across Shenwan's 31 first-level industries, combining customized supply-chain, supply-demand, profit-distribution, price-volume, technical, valuation, and rotation analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Chinese-language industry diagnosis for China-market sector analysis across the 31 Shenwan first-level industries, combining supply-chain structure, supply-demand conditions, profit distribution, valuation, price-volume, and technical indicators.
 
-## Publisher: <br>
-[stevenge791](https://clawhub.ai/user/stevenge791) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[stevenge791](https://clawhub.ai/user/stevenge791)
 
-## Use Case: <br>
-External analysts and finance-focused agents use this skill to generate structured Chinese industry and sector diagnostics, including supply-chain decomposition, market-data checks, scoring, and allocation-style conclusions. It is intended for research support and decision framing, not as a substitute for independently verified market data or personalized investment advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Outputs can contain investment ratings, allocation suggestions, and trading-signal style language. <br>
-Mitigation: Treat outputs as research framing only; verify market data independently and do not use the skill's output as personalized trading instructions. <br>
-Risk: Industry diagnostics depend on current financial, policy, and market data that may change quickly. <br>
-Mitigation: Require fresh, cited data sources for any time-sensitive conclusion before acting on the analysis. <br>
+## Use Case:
 
+External users and analysts use this skill to generate structured Chinese-language industry diagnostics for China-market sectors, including industry-chain decomposition, core indicators, sector rotation positioning, and allocation-style recommendations. It is best suited for workflows where users will verify market data and treat the result as analytical support rather than personalized financial advice.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/stevenge791/industry-diagnosis) <br>
-- [通用分析框架](references/methodology.md) <br>
-- [周期 & 原材料行业模板](references/cyclical.md) <br>
-- [中游制造 & 科技行业模板](references/manufacturing.md) <br>
-- [消费 & 医药 & 成长行业模板](references/consumer-hero.md) <br>
-- [金融 & 服务 & 稳定行业模板](references/financial-services.md) <br>
-- [细分行业 & 新兴行业动态分析](references/dynamic-analysis.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with structured Chinese headings, tables, scores, ratings, and signal lists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include investment ratings, allocation suggestions, technical indicators, valuation ranges, sector-rotation labels, watch signals, and data-source notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: server release evidence) <br>
+Risk: The skill produces investment-style sector ratings and allocation suggestions that could be mistaken for personalized financial advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Users should verify finance and web data sources, review assumptions, and treat outputs as analytical support rather than personalized advice.
+
+Risk: The fixed Chinese-language China-market template may be limiting for users outside that market or language context.
+
+Mitigation: Use the skill only when Chinese-language China-market industry diagnosis is appropriate, or adapt the template before relying on it in other contexts.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/stevenge791/skills/industry-diagnosis)
+- [通用分析框架](references/methodology.md)
+- [周期 & 原材料行业模板](references/cyclical.md)
+- [中游制造 & 科技行业模板](references/manufacturing.md)
+- [消费 & 医药 & 成长行业模板](references/consumer-hero.md)
+- [金融 & 服务 & 稳定行业模板](references/financial-services.md)
+- [细分行业 & 新兴行业动态分析](references/dynamic-analysis.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown report with tables, scores, sector ratings, and action-oriented analysis]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language fixed report template for China-market industry diagnosis.]
+
+## Skill Version(s):
+
+2.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

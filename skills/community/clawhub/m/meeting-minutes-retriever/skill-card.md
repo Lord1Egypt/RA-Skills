@@ -1,40 +1,53 @@
-## Description: <br>
-Reads meeting minutes from local text files or URLs and lists local meeting-note directories so an agent can answer questions about decisions, action items, discussions, and file counts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Read meeting minutes or notes from a local file path or URL, or inspect a local meeting-notes directory and report the file count plus file list.
 
-## Publisher: <br>
-[xiaocaijic](https://clawhub.ai/user/xiaocaijic) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiaocaijic](https://clawhub.ai/user/xiaocaijic)
 
-## Use Case: <br>
-Employees, external users, and agents use this skill to retrieve meeting-note content from a provided local path or URL, or to count and list meeting-note files in a local directory before answering meeting-related questions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The Windows folder-listing helper can turn a supplied folder path into unintended PowerShell commands. <br>
-Mitigation: Review before installing on Windows, use only trusted meeting-note paths, and prefer a fixed version that uses Python-only file enumeration. <br>
-Risk: Reading broad local directories or untrusted URLs can expose sensitive meeting content or internal resources. <br>
-Mitigation: Provide only the specific meeting-note file, folder, or URL needed for the task and avoid broad sensitive directories or internal network URLs. <br>
+## Use Case:
 
+Employees, external users, and developers use this skill to read meeting notes from trusted local files or URLs and answer questions about decisions, action items, conclusions, and discussion content. It can also list supported meeting-note files in a local directory when the user asks for counts or file names.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xiaocaijic/meeting-minutes-retriever) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Markdown, Guidance] <br>
-**Output Format:** [Plain text or JSON from helper scripts, followed by concise Markdown answers.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Directory listings count supported .md and .txt meeting-note files; file reads return raw meeting text or human-readable ERROR messages.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Unrestricted URL fetching can retrieve untrusted or permission-gated meeting documents.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted meeting-document URLs only and run the skill with network egress controls when URL fetching is allowed.
+
+Risk: Windows directory listing has a command-injection risk.
+
+Mitigation: Avoid Windows use until the PowerShell directory listing is replaced with Python-only enumeration or properly parameterized.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xiaocaijic/skills/meeting-minutes-retriever)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown or plain text responses, with JSON strings returned by the directory listing helper.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reads raw meeting text from a local path or URL; directory listings include directory, recursion flag, supported extensions, total file count, and file paths.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

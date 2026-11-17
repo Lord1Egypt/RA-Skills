@@ -1,40 +1,57 @@
-## Description: <br>
-Send multiple images or files in a single Zalo message using zca-js with an existing OpenClaw Zalo credential profile. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Send multiple images or files in a single Zalo message using zca-js directly.
 
-## Publisher: <br>
-[tuanbi97](https://clawhub.ai/user/tuanbi97) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tuanbi97](https://clawhub.ai/user/tuanbi97)
 
-## Use Case: <br>
-Agents or developers with configured OpenClaw Zalo credentials use this skill to send multiple selected local files or URL downloads to a Zalo user or group in one message. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can share selected local files or downloaded URL content through the user's existing Zalo session. <br>
-Mitigation: Before running it, verify the recipient ID, group flag, credential profile, caption, and every file path or URL. <br>
-Risk: Private files or internal URLs may be disclosed to the chosen Zalo recipient if included in the file list. <br>
-Mitigation: Avoid sending sensitive local files or private/internal URLs unless the recipient is intended to receive that content. <br>
+## Use Case:
 
+External users and agents use this skill to send multiple local or URL-based attachments to a Zalo contact or group in one message when single-media sending is insufficient.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tuanbi97/zalo-multi-send) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Text, API Calls] <br>
-**Output Format:** [Command-line execution with console status text and JSON send result] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an existing OpenClaw Zalo credential profile; selected local files must be readable and URL sources must be intentionally shareable.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can use stored Zalo credentials to send messages and attachments immediately.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit confirmation of the recipient, group setting, credential profile, caption, and attachment list before execution.
+
+Risk: Local paths may expose sensitive files, and URL attachments may fetch untrusted remote content.
+
+Mitigation: Avoid sensitive local files and untrusted URLs; use HTTPS-only fetching, URL allowlisting, file size limits, and request timeouts where possible.
+
+Risk: Recipient and profile safeguards are weak for agents that may act automatically.
+
+Mitigation: Use recipient allowlists and profile controls before deploying the skill in automated workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tuanbi97/skills/zalo-multi-send)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Text, JSON]
+
+**Output Format:** [Command-line output with optional JSON API response]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May send the selected caption and attachments to a specified Zalo user or group.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

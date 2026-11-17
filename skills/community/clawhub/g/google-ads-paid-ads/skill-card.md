@@ -1,43 +1,55 @@
-## Description: <br>
-Guides setup, optimization, and management of Google Ads campaigns, including Search, Performance Max, keyword strategy, bidding, tracking, and paid traffic learning loops. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides Google Ads setup, campaign structure, keyword targeting, bidding, tracking, and optimization for PPC, SEM, PMF testing, Responsive Search Ads, Performance Max, Quality Score, and Google Display or YouTube ads.
 
-## Publisher: <br>
-[kostja94](https://clawhub.ai/user/kostja94) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kostja94](https://clawhub.ai/user/kostja94)
 
-## Use Case: <br>
-External marketers, founders, and growth teams use this skill to plan, launch, optimize, and audit Google Ads campaigns for product-market-fit testing or conversion-driven acquisition. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Campaign, budget, targeting, or bidding recommendations can affect ad spend and acquisition performance if applied without review. <br>
-Mitigation: Review proposed campaign, budget, targeting, and bidding changes before applying them; start with controlled budgets when testing product-market fit. <br>
-Risk: Customer Match, CRM imports, remarketing, and enhanced conversion workflows can involve customer or personal data. <br>
-Mitigation: Use these workflows only with proper authorization, consent, and data-minimization controls. <br>
-Risk: Competitor keyword guidance can create trademark or ad-policy risk when competitor names are used in ad copy. <br>
-Mitigation: Treat competitor terms as keywords only where permitted and do not use competitor names in ad copy without permission. <br>
+## Use Case:
 
+Marketing teams, founders, and growth practitioners use this skill to plan, launch, and optimize Google Ads campaigns for PMF tests and conversion-driven acquisition. It helps structure campaigns, choose keyword and bidding approaches, align landing pages, set tracking, and run pre-launch checks.
 
-## Reference(s): <br>
-- [Marketing Cactus - Using Google Ads to Test Product-Market Fit](https://mktcactus.com/en/using-google-ads-to-test-product-market-fit-before-launching/) <br>
-- [Backlinko - SEO and PPC: 8 Smart Ways to Align](https://backlinko.com/seo-and-ppc) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown guidance with tables, checklists, and campaign recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces reviewable Google Ads planning and optimization guidance; it does not execute code or directly change ad accounts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.1 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: The skill may activate for broad PPC or SEM questions where the desired channel is ambiguous.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm that the user wants Google Ads advice before applying channel-specific recommendations.
+
+Risk: Competitor keyword campaigns can create trademark or ad-copy compliance concerns if competitor names are used without permission.
+
+Mitigation: Use competitor terms only as keywords where appropriate, avoid competitor names in ad copy without permission, and review campaign copy before launch.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kostja94/skills/google-ads-paid-ads)
+- [Marketing Cactus - Using Google Ads to Test Product-Market Fit](https://mktcactus.com/en/using-google-ads-to-test-product-market-fit-before-launching/)
+- [Backlinko - SEO and PPC: 8 Smart Ways to Align](https://backlinko.com/seo-and-ppc)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration]
+
+**Output Format:** [Markdown guidance with tables, checklists, and short campaign examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code; may include campaign names, budget ranges, bidding thresholds, tracking checks, and landing-page recommendations.]
+
+## Skill Version(s):
+
+1.4.1 (source: server release metadata and artifact frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,54 @@
-## Description: <br>
-Restaurant Operator helps manage restaurant operations with recipe creation, inventory prediction, menu optimization, staff scheduling, and food safety compliance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage restaurant operations with recipe creation, inventory prediction, menu optimization, staff scheduling, and food safety compliance.
 
-## Publisher: <br>
-[larios613-hub](https://clawhub.ai/user/larios613-hub) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[larios613-hub](https://clawhub.ai/user/larios613-hub)
 
-## Use Case: <br>
-Restaurant owners, managers, chefs, and hospitality operators use this skill to plan menus, scale recipes, forecast inventory, schedule staff, and monitor food safety workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Connected business systems may expose POS, inventory, reservation, weather, and operational data. <br>
-Mitigation: Confirm each integration, grant least-privilege API scopes, and avoid connecting production systems until data access and change permissions are understood. <br>
-Risk: Operational recommendations may be inaccurate for food safety, staffing, inventory, or menu decisions. <br>
-Mitigation: Review outputs against restaurant policy, HACCP/ServSafe requirements, and local regulations before applying. <br>
+## Use Case:
 
+Restaurant operators, managers, and hospitality teams use this skill to plan menus, scale recipes, forecast inventory, coordinate staffing, and monitor food-safety workflows across restaurants, food trucks, catering operations, and ghost kitchens.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/larios613-hub/restaurant-operator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Configuration] <br>
-**Output Format:** [Markdown or structured text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include operational recommendations for recipes, inventory, menus, staffing, and food safety checks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact/_meta.json) <br>
+Risk: Connected restaurant operational data may include POS sales, inventory, reservation, staff scheduling, or cost data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm data-sharing permissions and connect only data sources the operator is comfortable sharing before installing or using the skill.
+
+Risk: Operational recommendations for inventory, menu engineering, staffing, or food-safety workflows may be incomplete or unsuitable for a specific venue.
+
+Mitigation: Have qualified restaurant staff review recommendations against source systems, business policies, and applicable food-safety requirements before acting.
+
+## Reference(s):
+
+- [Restaurant Operator ClawHub skill page](https://clawhub.ai/larios613-hub/skills/restaurant-operator)
+- [larios613-hub ClawHub publisher profile](https://clawhub.ai/user/larios613-hub)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Configuration, Guidance]
+
+**Output Format:** [Markdown or structured text with operational recommendations and integration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference optional POS, inventory, weather, and reservation integrations when the user chooses to connect those systems.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, artifact _meta.json, target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

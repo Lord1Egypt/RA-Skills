@@ -1,42 +1,60 @@
-## Description: <br>
-Sahabat Bumil provides Indonesia-focused pregnancy, nutrition, wellness, BPJS, MBG program, hospital, and budgeting reference guidance for expectant mothers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Sahabat Bumil is an Indonesia-focused pregnancy companion that provides nutrition, pregnancy tracking, health, preparation, BPJS, financial planning, and MBG program guidance for expectant mothers.
 
-## Publisher: <br>
-[defzky](https://clawhub.ai/user/defzky) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[defzky](https://clawhub.ai/user/defzky)
 
-## Use Case: <br>
-Expectant mothers in Indonesia and agents assisting them use this skill for localized pregnancy education, preparation checklists, nutrition tips, BPJS and MBG program references, hospital information, and cost-planning guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Indonesia <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Medical, nutrition, symptom, medication, or fetal-movement guidance may be mistaken for professional medical care. <br>
-Mitigation: Treat outputs as reference material only and confirm symptoms, medications, supplements, nutrition decisions, and emergencies with qualified healthcare professionals. <br>
-Risk: BPJS, MBG eligibility, benefit, hospital, and cost information may be incomplete or outdated. <br>
-Mitigation: Verify program eligibility, coverage, prices, documents, and distribution details with official BPJS, Puskesmas, hospital, or government sources before acting. <br>
-Risk: The package includes a shell packaging script that should not be run blindly. <br>
-Mitigation: Review the packaging script before execution and install only when the Indonesia-focused reference material is desired. <br>
+## Use Case:
 
+Expectant mothers in Indonesia and agents supporting them use this skill for localized pregnancy nutrition, wellness, hospital preparation, BPJS coverage, delivery cost planning, and MBG program reference guidance.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/defzky/sahabat-bumil) <br>
+### Deployment Geography for Use:
 
+Indonesia
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Text] <br>
-**Output Format:** [Markdown-style command responses with checklists, tables, and localized reference guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces informational pregnancy, nutrition, healthcare, MBG, BPJS, hospital, and budgeting responses for Indonesian users.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release evidence) <br>
+Risk: Manual installation can point users to a noncanonical repository before installing dependencies.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer the ClawHub install path or verify that manual clones use the canonical defzky/openclaw-sahabat-bumil repository, then install dependencies in a virtual environment.
+
+Risk: Pregnancy, BPJS, and MBG guidance may be incomplete, outdated, or unsuitable for an individual medical situation.
+
+Mitigation: Treat the content as general reference only and verify current details with doctors, hospitals, BPJS, Puskesmas, or official government sources.
+
+Risk: MBG registration workflows may involve identity or medical documents.
+
+Mitigation: Do not submit identity or medical documents through chat unless a trusted workflow clearly explains collection, use, and retention.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/defzky/skills/sahabat-bumil)
+- [Publisher profile](https://clawhub.ai/user/defzky)
+- [Project repository listed in artifact documentation](https://github.com/defzky/openclaw-sahabat-bumil)
+- [Project issues listed in artifact documentation](https://github.com/defzky/openclaw-sahabat-bumil/issues)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and structured text with command examples and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes Indonesia-specific pregnancy, nutrition, BPJS, MBG, hospital, and financial planning guidance; medical and policy details require external verification.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata and README badge/changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

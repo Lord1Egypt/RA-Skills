@@ -1,8 +1,8 @@
 # How to Run the Mallary CLI
 
-There are several ways to run the CLI, depending on your needs.
+You can run the CLI in several ways.
 
-## Option 1: Direct Execution (Quick Test)
+## Option 1: Run the Built File Directly
 
 The built file at `cli/dist/index.js` is executable.
 
@@ -13,8 +13,8 @@ node cli/dist/index.js --help
 # Or run it directly (it has a shebang)
 ./cli/dist/index.js --help
 
-# Example command
-export MALLARY_API_KEY=your_key
+# Example authenticated command. Set MALLARY_API_KEY from a secret store first
+test -n "${MALLARY_API_KEY:-}" && echo "MALLARY_API_KEY is set"
 node cli/dist/index.js posts list
 node cli/dist/index.js profiles list
 ```
@@ -32,13 +32,12 @@ npm link
 mallary --help
 mallary profiles list
 mallary posts list
-mallary posts create --message "Hello!" --platform facebook --profile-id AbC123xYz90
 
 # To unlink later
 npm unlink -g @mallary/cli
 ```
 
-After linking, you can use `mallary` from any directory.
+After you link the package, you can use `mallary` from any directory.
 
 ## Option 3: Use npm Scripts (From `cli/`)
 
@@ -49,12 +48,11 @@ npm run build
 npm run start -- --help
 npm run start -- profiles list
 npm run start -- posts list
-npm run start -- posts create --message "Hello" --platform facebook
 ```
 
 ## Option 4: Use npm/npx (Published Package)
 
-Once published or installed from npm:
+After you publish or install the package from npm:
 
 ```bash
 # Install globally
@@ -81,11 +79,10 @@ npm run build
 
 ### Step 2: Set Your API Key
 
-```bash
-export MALLARY_API_KEY=your_api_key_here
+Security: `MALLARY_API_KEY` is a bearer secret. Do not commit it, paste it into prompts or tickets, print it in logs, or expose it in shell history. Use your password manager, a locked-down untracked env file, or a CI secret store for persistent use.
 
-# To make it permanent, add to your shell profile:
-echo 'export MALLARY_API_KEY=your_api_key_here' >> ~/.zshrc
+```bash
+read -rsp "Mallary API key: " MALLARY_API_KEY; echo; export MALLARY_API_KEY
 ```
 
 ### Step 3: Choose Your Method
@@ -111,29 +108,29 @@ mallary --help
 If you linked globally but still get this error:
 
 ```bash
-# Check if it's linked
+# Make sure that the link exists
 which mallary
 
-# If not found, try linking again
+# If it is not found, link it again
 cd cli
 npm link
 
-# Or check your PATH
+# Or look at your PATH
 echo $PATH
 ```
 
 ### "MALLARY_API_KEY is not set"
 
 ```bash
-export MALLARY_API_KEY=your_key
+read -rsp "Mallary API key: " MALLARY_API_KEY; echo; export MALLARY_API_KEY
 
-# Verify it's set
-echo $MALLARY_API_KEY
+# Make sure that it is set without printing the key
+test -n "${MALLARY_API_KEY:-}" && echo "MALLARY_API_KEY is set"
 ```
 
 ### Permission Denied
 
-If you get permission errors when running the built file directly:
+If you get permission errors when you run the built file directly:
 
 ```bash
 # Make the file executable
@@ -145,14 +142,14 @@ chmod +x cli/dist/index.js
 
 ### Rebuild After Changes
 
-After making code changes, rebuild:
+After you change the code, build it again:
 
 ```bash
 cd cli
 npm run build
 ```
 
-If you linked globally, your changes will be reflected after the rebuild.
+If you linked globally, the new build applies to the `mallary` command.
 
 ## Testing the CLI
 
@@ -163,20 +160,26 @@ mallary --help
 node cli/dist/index.js help posts create
 ```
 
-### Test with Sample Command (requires API key)
+### Test with Safe Read-Only Commands (requires API key)
 
 ```bash
-export MALLARY_API_KEY=your_key
+test -n "${MALLARY_API_KEY:-}" && echo "MALLARY_API_KEY is set"
 
 # Health check
 mallary health
 
 # Profile discovery
 mallary profiles list
+```
 
-# Create a test post
+### Optional Real Publish Check
+
+Warning: `mallary posts create` publishes or schedules content on the selected connected social-media account. Do not run it as a harmless test. First, make sure that the profile ID and the platform point to the account for the real public post.
+
+```bash
+# Publishes a real Facebook post to the selected profile
 mallary posts create \
-  --message "Test post from CLI" \
+  --message "Intentional publish from Mallary CLI" \
   --platform facebook \
   --profile-id AbC123xYz90
 ```
@@ -217,30 +220,26 @@ npm test
 
 - `MALLARY_API_KEY` - your Mallary API key
 
+Treat `MALLARY_API_KEY` as a bearer credential. Store it in a secret manager, a locked-down untracked env file, or a masked CI secret. Do not commit it. Do not paste it into prompts or tickets. Do not print it with `echo` or `printenv`. Do not enable shell tracing around it. Do not share logs that contain it. If the key is exposed, rotate or revoke it.
+
 ### Setting Environment Variables
 
 Temporary:
 
 ```bash
-# For bash/zsh
-export MALLARY_API_KEY=your_key
+# For bash/zsh, without printing the key
+read -rsp "Mallary API key: " MALLARY_API_KEY; echo; export MALLARY_API_KEY
 
-# For fish
-set -x MALLARY_API_KEY your_key
+# For fish, without printing the key
+read --silent --prompt-str "Mallary API key: " MALLARY_API_KEY; set -gx MALLARY_API_KEY $MALLARY_API_KEY
 
 # For PowerShell
 $env:MALLARY_API_KEY="your_key"
 ```
 
-Permanent:
+Persistent local storage:
 
-```bash
-# For bash
-echo 'export MALLARY_API_KEY=your_key' >> ~/.bashrc
-
-# For zsh
-echo 'export MALLARY_API_KEY=your_key' >> ~/.zshrc
-```
+Use a password manager, a shell secret plugin, an OS keychain, or an untracked env file with restrictive permissions. Do not write real keys into shared dotfiles. Do not write them into commands that the shell history can save.
 
 ## Using Aliases
 
@@ -286,13 +285,14 @@ cd cli && npm install && npm run build
 # 2. Link globally
 npm link
 
-# 3. Set API key
-export MALLARY_API_KEY=your_key
+# 3. Confirm API key is available without printing it
+test -n "${MALLARY_API_KEY:-}" && echo "MALLARY_API_KEY is set"
 
 # 4. Test
 mallary health
 
-# 5. Start using
+# 5. Start with read-only commands
 mallary profiles list
-mallary posts create --message "My first post" --platform facebook --profile-id AbC123xYz90
 ```
+
+Do not include `mallary posts create` in setup smoke tests. It publishes or schedules a post on a connected social-media account. Before you use the optional real publish check above, make sure that the target profile and the platform are correct. Also make sure that the message and the media are correct. Also make sure that the user wants a public or scheduled post.

@@ -1,45 +1,54 @@
-## Description: <br>
-Interactive Business Model Canvas and Value Proposition Canvas generator based on Strategyzer methodology that guides users through Jobs-Pains-Gains analysis, a 9-block BMC, Test Cards, and Learning Cards. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Interactive Business Model Canvas and Value Proposition Canvas generator based on Strategyzer methodology, guiding users through structured business modeling with Jobs-Pains-Gains analysis, 9-block BMC, Test Cards, and Learning Cards.
 
-## Publisher: <br>
-[qianen6](https://clawhub.ai/user/qianen6) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qianen6](https://clawhub.ai/user/qianen6)
 
-## Use Case: <br>
-Developers, founders, product teams, and business operators use this skill to turn project context and user input into structured business model, value proposition, validation, and executive-summary documents. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may read project and business context while preparing canvas documents. <br>
-Mitigation: Use it only in repositories where reading product and business materials is acceptable. <br>
-Risk: Generated business canvas files may contain incorrect, speculative, or sensitive planning content. <br>
-Mitigation: Review generated files under docs/business/ before committing, sharing, or using them for decisions. <br>
+## Use Case:
 
+External users and developers use this skill to guide an agent through commercialization analysis for a product or startup. It produces structured business-planning documents including a Value Proposition Canvas, Business Model Canvas, validation cards, and optional executive summary.
 
-## Reference(s): <br>
-- [Business Canvas ClawHub release](https://clawhub.ai/qianen6/business-canvas) <br>
-- [Publisher profile](https://clawhub.ai/user/qianen6) <br>
-- [Business Model Generation (2010)](artifact/SKILL.md#references) <br>
-- [Value Proposition Design (2014)](artifact/SKILL.md#references) <br>
-- [Testing Business Ideas (2019)](artifact/SKILL.md#references) <br>
-- [Strategyzer official canvas templates and testing framework](artifact/SKILL.md#references) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, files, guidance] <br>
-**Output Format:** [Markdown files and conversational guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes business canvas documents under docs/business/ when used as directed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: Generated documents may summarize product strategy, pricing, competitors, and assumptions inferred from a repository.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and redact generated documents before sharing them, especially when the source project contains confidential business context.
+
+Risk: Business recommendations, fit scores, and validation plans may depend on unvalidated assumptions or incomplete project evidence.
+
+Mitigation: Treat outputs as planning hypotheses and validate them with customer research, Test Cards, Learning Cards, and user confirmation before making business decisions.
+
+## Reference(s):
+
+- [Business Canvas on ClawHub](https://clawhub.ai/qianen6/skills/business-canvas)
+- [Strategyzer canvas and testing framework](https://www.strategyzer.com/)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Files, Guidance]
+
+**Output Format:** [Structured Markdown documents]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates business canvas documents under docs/business/ when used by an agent; Test/Learning Cards and executive summary are optional.]
+
+## Skill Version(s):
+
+1.1.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

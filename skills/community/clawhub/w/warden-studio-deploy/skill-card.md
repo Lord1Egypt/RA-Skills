@@ -1,44 +1,59 @@
-## Description: <br>
-Uses Warden Studio browser automation to register or publish a Community Agent to the Warden Agent Hub with endpoint, authentication, billing, payment, and verification checkpoints. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use Warden Studio (studio.wardenprotocol.org) via browser automation to register/publish a Community Agent to the Warden Agent Hub with read-only validation and explicit confirmation gates.
 
-## Publisher: <br>
-[Kryptopaid](https://clawhub.ai/user/Kryptopaid) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[kryptopaid](https://clawhub.ai/user/kryptopaid)
 
-## Use Case: <br>
-Developers and operators use this skill to prepare, register, and verify a Community Agent listing in Warden Studio. It guides browser-based submission, endpoint and billing checks, explicit publication approval, and post-registration verification. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Publishing can trigger registration fees, gas costs, or wallet signing on the wrong network. <br>
-Mitigation: Before final registration, verify the official Studio URL, Base network, USDC fee, gas estimate, and wallet prompt, then require explicit user approval. <br>
-Risk: Secrets could be exposed if API keys, seed phrases, or private keys are shared in chat. <br>
-Mitigation: Never request seed phrases or private keys; instruct users to enter API keys only directly into the Studio UI. <br>
-Risk: Incorrect endpoint, authentication, or billing settings can produce a failed or misleading listing. <br>
-Mitigation: Use read-only validation first, test the endpoint when the UI supports it, and show a submission summary before publishing. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Warden Studio UI Notes](references/warden-studio-ui-notes.md) <br>
-- [Warden Studio](https://studio.wardenprotocol.org/) <br>
-- [Warden Studio Register Agent](https://studio.wardenprotocol.org/agents/create) <br>
-- [ClawHub Skill Page](https://clawhub.ai/Kryptopaid/warden-studio-deploy) <br>
+## Use Case:
 
+External developers and agent operators use this skill to publish an already deployed Community Agent in Warden Studio, including endpoint checks, listing metadata, billing setup, registration payment review, and post-publish verification.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Configuration instructions, Browser automation steps] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires explicit user approval before final registration or wallet confirmation.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Publishing a public agent listing or paying registration and gas fees can have unintended financial or operational effects.
+
+Mitigation: Review the submission summary, network, fee, and transaction details before approving any final publish action or wallet prompt.
+
+Risk: API keys, wallet credentials, or other secrets could be exposed if pasted into chat.
+
+Mitigation: Enter API keys directly in Warden Studio and never provide seed phrases, private keys, or credentials to the agent.
+
+Risk: Incorrect endpoint, billing, or metadata settings could publish a misleading or nonfunctional listing.
+
+Mitigation: Use read-only validation, confirm the endpoint is HTTPS and reachable, verify required fields, and inspect the final listing details before submission.
+
+## Reference(s):
+
+- [Warden Studio UI Notes](references/warden-studio-ui-notes.md)
+- [Warden Studio](https://studio.wardenprotocol.org/)
+- [Warden Studio Register Agent Page](https://studio.wardenprotocol.org/agents/create)
+- [ClawHub Skill Page](https://clawhub.ai/kryptopaid/skills/warden-studio-deploy)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown guidance with checklists and browser-action steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user-controlled entry of secrets and explicit approval before publishing, fee payment, or wallet signing.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

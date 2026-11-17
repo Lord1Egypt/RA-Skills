@@ -1,45 +1,64 @@
-## Description: <br>
-Redesign and beautify PowerPoint/PDF presentation decks into polished, on-brand slides using Deckly's AI. Use when the user wants to improve, beautify, restyle, or redesign a .pptx or .pdf deck, asks to "make slides look better", or mentions Deckly. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Redesign and beautify PowerPoint/PDF presentation decks into polished, on-brand slides using Deckly's AI.
 
-## Publisher: <br>
-[jimmymelbj](https://clawhub.ai/user/jimmymelbj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jimmymelbj](https://clawhub.ai/user/jimmymelbj)
 
-## Use Case: <br>
-Developers and users with presentation decks use this skill through an agent to analyze PPTX or PDF files, choose a visual style, preview or fine-tune slides, and download a redesigned PPTX. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Presentation contents are uploaded to Deckly for analysis and redesign. <br>
-Mitigation: Use the skill only for decks that are appropriate to send to Deckly, and confirm the user's consent before uploading sensitive or proprietary presentations. <br>
-Risk: Authentication flows can ask for passwords or email verification codes in chat. <br>
-Mitigation: Prefer an existing manually created API key or a throwaway account, and avoid pasting existing account passwords or verification codes into the agent conversation. <br>
-Risk: Full redesign, continue, fine-tune, and one-shot actions can spend paid Deckly credits. <br>
-Mitigation: Check balance and quote output first, then get explicit user confirmation before running any paid action. <br>
+## Use Case:
 
+External users and developers use this skill to guide an AI agent through Deckly-powered presentation analysis, style selection, preview, fine-tuning, rendering, and download for PowerPoint or PDF decks.
 
-## Reference(s): <br>
-- [Deckly API Reference](reference.md) <br>
-- [Deckly Service](https://deckly.art) <br>
-- [Server-Resolved Source Repository](https://github.com/jimmymelbj/deckly-redesign-skill) <br>
-- [ClawHub Skill Listing](https://clawhub.ai/jimmymelbj/deckly-redesign-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance, Files] <br>
-**Output Format:** [Markdown guidance with shell commands, JSON command output, and generated PPTX files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses the Python standard library CLI and Deckly API; may upload presentation files, save an API key locally, and download a redesigned deck.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Presentation content is uploaded to Deckly for analysis and redesign.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not use the skill on confidential decks without data-handling approval.
+
+Risk: The workflow can handle Deckly passwords, verification codes, and long-lived API keys.
+
+Mitigation: Prefer a pre-created Deckly API token, avoid entering passwords or verification codes directly in chat when possible, and review or revoke saved API keys after use.
+
+Risk: Full redesign and fine-tuning actions can spend Deckly credits.
+
+Mitigation: Check balance and free-preview status before paid actions, use quote before redesigning, and confirm the credit cost with the user before continuing a paid render.
+
+Risk: Changing DECKLY_API_BASE can send presentation files and credentials to a different service.
+
+Mitigation: Use the default Deckly endpoint unless the alternate API base is explicitly trusted.
+
+## Reference(s):
+
+- [Server-resolved GitHub repository](https://github.com/jimmymelbj/deckly-redesign-skill)
+- [ClawHub skill page](https://clawhub.ai/jimmymelbj/skills/deckly-redesign-skill)
+- [Deckly service](https://deckly.art)
+- [Deckly API reference](reference.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, JSON, files]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON command responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May upload presentation files to Deckly, persist an API key locally, and download a redesigned PPTX file.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

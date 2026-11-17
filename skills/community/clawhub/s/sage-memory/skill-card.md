@@ -1,43 +1,60 @@
-## Description: <br>
-Persistent, consensus-validated memory for AI agents via SAGE MCP server, enabling agents to recall past context, reflect on completed tasks, and maintain continuity across sessions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Persistent, consensus-validated memory for AI agents via the SAGE MCP server, supporting durable recall, reflection, and continuity across conversations.
 
-## Publisher: <br>
-[l33tdawg](https://clawhub.ai/user/l33tdawg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[l33tdawg](https://clawhub.ai/user/l33tdawg)
 
-## Use Case: <br>
-Developers and agent users use this skill with a locally installed SAGE MCP server to give AI agents persistent, locally stored memory across conversations. It supports memory recall, per-turn observation storage, task reflection, and deletion of retained memories. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent local memory can retain conversation summaries, task outcomes, user preferences, or other sensitive details across sessions. <br>
-Mitigation: Decide before installation whether persistent memory is appropriate, avoid storing secrets or regulated data, and review or delete ~/.sage/data/sage.db when retention is no longer wanted. <br>
-Risk: The skill depends on local SAGE MCP server behavior and generated MCP configuration. <br>
-Mitigation: Install SAGE locally, inspect the generated .mcp.json for localhost-only tool configuration, and use the dashboard or API to view, edit, or delete retained memories. <br>
+## Use Case:
 
+Developers and external users use this skill to connect an MCP-capable agent to a local SAGE server for persistent memory, contextual recall, task reflection, and deletion or review of stored memories.
 
-## Reference(s): <br>
-- [SAGE Documentation](https://l33tdawg.github.io/sage/) <br>
-- [SAGE Repository](https://github.com/l33tdawg/sage) <br>
-- [SAGE Releases](https://github.com/l33tdawg/sage/releases) <br>
-- [ClawHub Skill Page](https://clawhub.ai/l33tdawg/sage-memory) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with MCP tool names and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill guides an agent to use local SAGE MCP tools and local SQLite-backed memory; it does not automatically capture raw conversation transcripts according to the artifact disclosure.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-5.0.2 (source: release evidence and SKILL.md frontmatter) <br>
+Risk: The skill persists agent-written observations and memories across sessions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid storing secrets or sensitive personal data, review stored memories in the dashboard, use deletion controls when needed, and enable at-rest encryption if appropriate.
+
+Risk: The local SAGE server can return operating instructions that influence agent behavior.
+
+Mitigation: Treat the local server and dashboard as trusted components, review their configuration before use, and restrict use to environments where that local service is controlled.
+
+Risk: Server-resolved provenance for this release is unavailable.
+
+Mitigation: Verify the installed SAGE binary and release source before using the skill with confidential work.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/l33tdawg/skills/sage-memory)
+- [SAGE documentation](https://l33tdawg.github.io/sage/)
+- [SAGE repository](https://github.com/l33tdawg/sage)
+- [SAGE releases](https://github.com/l33tdawg/sage/releases)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, text]
+
+**Output Format:** [Markdown with inline tool names and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a locally installed SAGE server and MCP configuration.]
+
+## Skill Version(s):
+
+5.0.2 (source: server release evidence and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

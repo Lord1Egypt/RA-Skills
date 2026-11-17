@@ -1,46 +1,61 @@
-## Description: <br>
-Clawmeter tracks OpenClaw API usage and spending with a self-hosted dashboard, cost breakdowns, and configurable budget alerts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tracks OpenClaw API usage and spending in real time with budget alerts, dashboard analytics, and model/session cost breakdowns.
 
-## Publisher: <br>
-[Someone0070](https://clawhub.ai/user/Someone0070) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[someone0070](https://clawhub.ai/user/someone0070)
 
-## Use Case: <br>
-Developers, teams, and OpenClaw users use Clawmeter to monitor session-log usage, estimate API spend by model or session, and receive budget threshold alerts before costs exceed planned limits. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The local Clawmeter API is unauthenticated and may be exposed more broadly than intended. <br>
-Mitigation: Bind the service explicitly to localhost, avoid exposing port 3377, or place it behind authentication before broader network use. <br>
-Risk: The service indexes OpenClaw usage metadata and stores it in a local SQLite database. <br>
-Mitigation: Protect the SQLite database path and restrict filesystem permissions to the intended user or service account. <br>
-Risk: Optional Telegram and SMTP alerts require credentials in local configuration. <br>
-Mitigation: Use dedicated alerting credentials, keep the .env file private, and rotate credentials if the configuration is shared or exposed. <br>
+## Use Case:
 
+OpenClaw users, teams, and developers use Clawmeter to monitor local session-log costs, compare model spending, and receive budget alerts from a self-hosted dashboard.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/Someone0070/clawmeter) <br>
-- [README](artifact/README.md) <br>
-- [Architecture](artifact/docs/ARCHITECTURE.md) <br>
-- [Quick Start](artifact/docs/QUICKSTART.md) <br>
-- [Changelog](artifact/CHANGELOG.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, configuration examples, and local API response summaries.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces cost-tracking guidance for an agent and points to a local dashboard/API for live usage data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata; artifact package metadata and changelog report 0.1.0) <br>
+Risk: Unauthenticated dashboard and API access can expose usage and cost metadata if the service is reachable beyond a trusted local machine.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only on a trusted local machine, do not expose port 3377 to a network, and add authentication plus explicit loopback binding before broader deployment.
+
+Risk: Browser rendering flaws can make dashboard display unsafe when stored values are rendered into the page.
+
+Mitigation: Avoid ingesting untrusted logs and fix dashboard HTML escaping before relying on shared, remote, or production use.
+
+Risk: Remote installation scripts and outdated dependencies can add supply-chain and maintenance risk.
+
+Mitigation: Pin or bundle remote scripts, update dependencies, and review the package before installation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/someone0070/skills/clawmeter)
+- [README](README.md)
+- [OpenClaw skill guide](SKILL.md)
+- [Quick start guide](docs/QUICKSTART.md)
+- [Architecture](docs/ARCHITECTURE.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline JSON, HTTP endpoint examples, JavaScript snippets, and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May direct an agent to query a local REST API and summarize cost, budget, model, session, or alert data.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

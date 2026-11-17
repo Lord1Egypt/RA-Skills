@@ -1,41 +1,50 @@
-## Description: <br>
-Records and queries OpenClaw ecosystem deployment services, including new deployments, existing services, service status, dependencies, and standardized local service records without requiring credentials. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Records and queries OpenClaw ecosystem deployments, including service registration, status updates, dependency checks, and port conflict checks, while avoiding credential values.
 
-## Publisher: <br>
-[axelhu](https://clawhub.ai/user/axelhu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[axelhu](https://clawhub.ai/user/axelhu)
 
-## Use Case: <br>
-Developers and operators use this skill to maintain local Markdown records for OpenClaw-related services, including service registration, status updates, dependency notes, health checks, and port lookup workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Service records could accidentally capture credentials, private configuration contents, or unnecessary internal topology details. <br>
-Mitigation: Record only credential variable names or file paths, never passwords, tokens, secret keys, private config contents, or unnecessary topology details. <br>
-Risk: Local deployment notes can become stale and mislead future service checks. <br>
-Mitigation: Update registry.md and the matching service record whenever service status changes, and check the registry before answering service-related questions. <br>
+## Use Case:
 
+Developers and operators use this skill to maintain a local registry of OpenClaw deployments and services. It helps agents create service records, update service status, find existing services by port, type, or status, and document dependency and health-check details.
 
-## Reference(s): <br>
-- [OpenClaw deployment record specification](references/spec.md) <br>
-- [ClawHub skill page](https://clawhub.ai/axelhu/openclaw-deploy-tracker) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown service records with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes and updates local files under memory/services; credentials should be recorded only as variable names or file paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and artifact metadata) <br>
+Risk: The skill may persist operational inventory such as ports, URLs, dependency names, and credential locations in memory/services/.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in workspaces where local deployment metadata may be retained, and record credential references without secret values.
+
+## Reference(s):
+
+- [OpenClaw deployment record specification](references/spec.md)
+- [ClawHub skill listing](https://clawhub.ai/axelhu/skills/openclaw-deploy-tracker)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with service registry templates and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update local files under memory/services/ when the agent applies the workflow.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,37 +1,49 @@
-## Description: <br>
-Deep REST workflow-resource modeling, HTTP methods and safety, status codes, errors, pagination, caching, versioning, and idempotency. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deep REST workflow-resource modeling, HTTP methods and safety, status codes, errors, pagination, caching, versioning, and idempotency.
 
-## Publisher: <br>
-[mike47512](https://clawhub.ai/user/mike47512) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mike47512](https://clawhub.ai/user/mike47512)
 
-## Use Case: <br>
-Developers and engineers use this skill when designing public, partner, or internal HTTP APIs and when reviewing controllers or gateways for consistent REST semantics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: REST API design advice could be applied to production-facing endpoints without project-specific review. <br>
-Mitigation: Review any API design, controller, gateway, or OpenAPI changes proposed while using the skill before deployment. <br>
+## Use Case:
 
+Developers and engineers use this skill when designing HTTP APIs or reviewing controllers and gateways for consistent REST resource modeling, HTTP semantics, errors, pagination, caching, versioning, and idempotency.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Configuration] <br>
-**Output Format:** [Markdown guidance with checklists and structured recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable code or privileged operations; output is advisory REST API design guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: REST API design guidance may shape controller or gateway behavior incorrectly if applied without project-specific review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review proposed resource models, method semantics, error formats, caching headers, versioning, and idempotency behavior against the API contract before implementation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mike47512/skills/rest-best-practices)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown]
+
+**Output Format:** [Markdown guidance, checklists, and review notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No execution capabilities, credential requests, API calls, or generated files are introduced by the skill.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

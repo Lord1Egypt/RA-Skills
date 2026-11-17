@@ -1,0 +1,4 @@
+interface:
+  display_name: "Amazon 价格与 BSR 变化追踪"
+  short_description: "从商品快照摘要展示价格与 BSR 字段变化"
+  default_prompt: "使用 $amazon-price-bsr-tracker 摘要一个 Amazon ASIN 已保存快照中的展示价格与 BSR 字段变化。"

@@ -1,48 +1,66 @@
-## Description: <br>
-Automatically creates prediction markets on betbud.live by analyzing trending crypto Twitter topics with Claude AI, selecting images, creating Base Sepolia markets, and registering them through the Betbud workflow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically creates prediction markets on betbud.live by analyzing trending crypto Twitter topics with Claude AI and fetching professional images.
 
-## Publisher: <br>
-[SamJ12](https://clawhub.ai/user/SamJ12) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[samj12](https://clawhub.ai/user/samj12)
 
-## Use Case: <br>
-External developers and platform operators can use this agent to keep a prediction-market site populated with timely crypto-related markets. The skill monitors crypto Twitter, asks Claude to draft a yes/no market proposal, fetches an image, sends a Base Sepolia transaction, and registers the market on betbud.live. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can autonomously spend testnet wallet funds and publish prediction markets without a built-in confirmation step or clear limits. <br>
-Mitigation: Run it manually first with a dedicated low-value Base Sepolia test wallet, and require confirmation showing the proposed market, contract address, deposit, gas settings, and Betbud payload before signing or posting. <br>
-Risk: Scheduled or continuous operation can create repeated external actions without rate, budget, or monitoring controls. <br>
-Mitigation: Avoid cron or 24/7 operation unless rate limits, budget limits, monitoring, and alerting are added. <br>
-Risk: The skill requires a wallet private key and API keys in the local environment. <br>
-Mitigation: Use only scoped service credentials and never use a main wallet key. Keep secrets in local environment files outside source control. <br>
+## Use Case:
 
+Developers and operators use this agent to monitor crypto-related social media, propose debatable time-bound market questions, create Base Sepolia prediction markets, and register them with betbud.live.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/SamJ12/betbud-prediction-market-creation) <br>
-- [Publisher profile](https://clawhub.ai/user/SamJ12) <br>
-- [twitterapi.io](https://twitterapi.io) <br>
-- [Anthropic Console](https://console.anthropic.com) <br>
-- [Unsplash Developers](https://unsplash.com/developers) <br>
-- [Base Sepolia RPC](https://sepolia.base.org) <br>
-- [Base Sepolia transaction explorer](https://sepolia.basescan.org) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, API Calls, Blockchain transactions, Files] <br>
-**Output Format:** [Console text, JSON market proposals, HTTP requests, signed Base Sepolia transactions, and a local JSON cache] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates externally visible prediction markets and stores recent prediction questions in recent_predictions.json.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Unattended operation can spend wallet funds and publish blockchain or platform records based on LLM-generated proposals.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated low-balance test wallet, require manual approval before each transaction and registration, and enforce spend and rate limits.
+
+Risk: Generated market questions, resolution criteria, categories, or sources may be malformed, misleading, duplicative, or hard to resolve.
+
+Mitigation: Validate LLM output against a strict schema and review each question, source list, category, and resolution rule before publication.
+
+Risk: The agent requires sensitive API credentials and a wallet private key.
+
+Mitigation: Store secrets only in environment variables, never reuse a primary wallet key, rotate exposed credentials, and limit wallet permissions and balance.
+
+Risk: Scheduled execution can amplify bad proposals or transaction failures.
+
+Mitigation: Avoid cron or 24/7 operation until a dry-run mode, review workflow, and failure monitoring are in place.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/samj12/skills/betbud-prediction-market-creation)
+- [betbud.live](https://betbud.live)
+- [TwitterAPI.io](https://twitterapi.io)
+- [Anthropic Console](https://console.anthropic.com)
+- [Unsplash Developers](https://unsplash.com/developers)
+- [Base Sepolia RPC](https://sepolia.base.org)
+
+## Skill Output:
+
+**Output Type(s):** [text, configuration, shell commands, API calls, blockchain transactions, files]
+
+**Output Format:** [Terminal text, JSON API payloads, blockchain transaction hashes, and a local JSON cache file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires API keys, an RPC URL, and a dedicated Ethereum wallet private key supplied through environment variables.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

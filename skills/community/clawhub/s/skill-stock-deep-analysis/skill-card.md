@@ -1,43 +1,58 @@
-## Description: <br>
-Generates structured Markdown deep-analysis reports for US, Hong Kong, and A-share stocks by fetching financial statements, valuation data, price data, and optional position-cost information from Yahoo Finance and Tushare. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates structured Markdown financial analysis reports for US, Hong Kong, and China A-share stocks by fetching financial statements, valuation, price, and position data from Yahoo Finance and Tushare.
 
-## Publisher: <br>
-[heiheiheibj](https://clawhub.ai/user/heiheiheibj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[heiheiheibj](https://clawhub.ai/user/heiheiheibj)
 
-## Use Case: <br>
-Developers and investors use this skill to generate Markdown stock-analysis reports for supported US, Hong Kong, and China market tickers. The reports summarize company profile, valuation, profitability, balance sheet quality, growth, cash flow, position status, and recommendations based on fetched market and financial data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security review flags hard-coded proxy defaults that may route market-data traffic unexpectedly. <br>
-Mitigation: Review or remove the proxy defaults before installation, and set proxy environment variables only when that routing is intended. <br>
-Risk: The skill fetches market data from Yahoo Finance and Tushare, and A-share analysis may require a Tushare token. <br>
-Mitigation: Provide TUSHARE_TOKEN only when China market analysis is needed, and avoid using the skill for unrelated financial conversations. <br>
-Risk: Generated stock reports can contain stale or rate-limited market data and should not be treated as investment advice. <br>
-Mitigation: Review the generated report against current source data and apply independent financial judgment before relying on it. <br>
+## Use Case:
 
+External users, developers, and analysts use this skill to generate stock deep-dive reports for US, Hong Kong, and China A-share tickers, optionally including position-cost context for profit and loss calculations.
 
-## Reference(s): <br>
-- [Financial Indicators Guide](references/indicators-guide.md) <br>
-- [ClawHub Release Page](https://clawhub.ai/heiheiheibj/skill-stock-deep-analysis) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Analysis, Shell commands, Code, Guidance] <br>
-**Output Format:** [Markdown report text printed by a Python CLI or returned by a Python function] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a ticker and market selection; optional position cost and currency parameters affect the generated report.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill can silently route external market-data traffic through an undocumented hard-coded proxy.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove the proxy default or explicitly configure trusted proxy settings before running the skill.
+
+Risk: Ticker requests, Tushare token use, and optional position-cost inputs may expose sensitive portfolio context to external services.
+
+Mitigation: Use a skill-specific environment, protect the Tushare token, and avoid entering sensitive portfolio details unless the external data-sharing risk is acceptable.
+
+Risk: Generated financial reports can contain stale, incomplete, or provider-delayed market and financial data.
+
+Mitigation: Cross-check outputs against authoritative filings or market-data sources before making investment decisions.
+
+## Reference(s):
+
+- [Financial Indicators Guide](artifact/references/indicators-guide.md)
+- [ClawHub Skill Page](https://clawhub.ai/heiheiheibj/skills/skill-stock-deep-analysis)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, code, guidance]
+
+**Output Format:** [Markdown report with tables and narrative analysis; CLI usage and Python API examples are documented.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports may include fetched market data, financial metrics, valuation indicators, position cost, profit and loss calculations, and investment-risk disclaimers.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

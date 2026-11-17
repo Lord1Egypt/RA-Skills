@@ -1,46 +1,54 @@
-## Description: <br>
-抖音爆款作品查询工具，根据关键词搜索抖音热门爆款作品，支持按日期范围筛选，并以结构化表格展示结果。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches Douyin for trending videos by keyword or date range and presents engagement metrics in a structured table.
 
-## Publisher: <br>
-[redfox-data](https://clawhub.ai/user/redfox-data) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[redfox-data](https://clawhub.ai/user/redfox-data)
 
-## Use Case: <br>
-Content creators, brand operators, MCN teams, growth teams, and marketing teams use this skill to search Douyin viral content by keyword, filter by date range, and review engagement metrics for trend research and content planning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a locally stored RedFox API key. <br>
-Mitigation: Store REDFOX_API_KEY in an environment or agent secret store, avoid hard-coding it in prompts or files, and rotate or revoke it if exposure is suspected. <br>
-Risk: Search terms are sent to RedFox when the Douyin search script runs. <br>
-Mitigation: Avoid submitting sensitive, confidential, or regulated terms unless that data sharing is acceptable for the deployment. <br>
-Risk: Subscription behavior may create recurring background jobs. <br>
-Mitigation: Before enabling a subscription, confirm the schedule, where the task is stored, and the exact procedure to view, disable, and delete it. <br>
+## Use Case:
 
+Content creators, brand operators, and marketing teams use this skill to research Douyin trends and compare video engagement when planning topics or campaigns.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/redfox-data/douyin-search-redfox) <br>
-- [RedFox API key settings](https://redfox.hk/settings/api-keys?source=clawhub) <br>
-- [RedFoxHub](https://redfox.hk) <br>
-- [Chinese README](README.md) <br>
-- [English README](README.en.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown tables with linked Douyin works, concise text guidance, and shell command examples.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires REDFOX_API_KEY. May include date-filtered search results, hot recommendations, topic lists, and subscription scheduling guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: When API credits are insufficient, the workflow can install payment software and initiate a recharge.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require separate user approval before installing payment software and before each recharge; confirm the merchant and total amount, and validate the payment destination.
+
+Risk: Search keywords are sent to RedFox and consume credits; daily subscriptions can create recurring searches.
+
+Mitigation: Disclose the data sharing and credit use, and enable recurring searches only with explicit user opt-in.
+
+## Reference(s):
+
+- [Alipay recharge workflow](references/alipay-recharge.md)
+- [ClawHub skill release](https://clawhub.ai/redfox-data/skills/douyin-search-redfox)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, JSON]
+
+**Output Format:** [Markdown table with linked video titles and engagement metrics; JSON search records.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Keyword and optional date range; results are ranked by likes, with up to 50 records per page.]
+
+## Skill Version(s):
+
+1.0.6 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

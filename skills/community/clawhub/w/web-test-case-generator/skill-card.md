@@ -1,39 +1,57 @@
-## Description: <br>
-根据提供的网站页面自动生成测试用例，支持 UI 测试、功能测试、流程测试、异常测试、权限测试和兼容性测试，并输出 Markdown 表格或 CSV。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+根据提供的网站页面自动生成测试用例，支持 UI 测试、功能测试、流程测试、异常测试、权限测试和兼容性测试，并可输出 Markdown 表格和 CSV。
 
-## Publisher: <br>
-[linzetai](https://clawhub.ai/user/linzetai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[linzetai](https://clawhub.ai/user/linzetai)
 
-## Use Case: <br>
-Developers, QA engineers, and product teams use this skill to inspect web pages, identify interactive elements and flows, and generate structured UI, functional, process, exception, permission, and compatibility test cases. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may inspect live web pages and propose real clicks, form fills, submissions, or external document exports. <br>
-Mitigation: Use staging sites or test accounts where possible, and explicitly approve real clicks, form fills, submissions, and exports before they occur. <br>
-Risk: Generated Markdown or CSV files could overwrite or create confusing local test-case artifacts. <br>
-Mitigation: Choose non-destructive filenames and review generated test cases before saving or sharing them. <br>
+## Use Case:
 
+Developers, QA engineers, and product teams use this skill to inspect a supplied web page and generate structured UI, functional, workflow, exception, permission, and compatibility test cases.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance, Files] <br>
-**Output Format:** [Markdown tables and CSV files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can produce named test-case files such as <feature>-test-cases.md and <feature>-test-cases.csv.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill may open and inspect authenticated or private web pages provided by the user.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the target page and scope before inspection, and avoid exposing sensitive pages or data unless the user has permission.
+
+Risk: The skill may save generated test cases as Markdown or CSV files.
+
+Mitigation: Ask the agent to confirm filenames and output locations before writing files.
+
+Risk: Generated test cases can be incomplete or misleading if dynamic content, modals, permissions, or asynchronous loading are not captured.
+
+Mitigation: Review the generated cases against the live page state and repeat snapshots after key interactions or loading delays.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/linzetai/skills/web-test-case-generator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, csv, guidance]
+
+**Output Format:** [Markdown tables and CSV files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated test cases may be prioritized as P0, P1, P2, or P3 and organized by feature module, test point, prerequisites, steps, and expected result.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

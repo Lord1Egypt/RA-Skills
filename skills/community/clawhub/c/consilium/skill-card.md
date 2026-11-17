@@ -1,43 +1,52 @@
-## Description: <br>
-Consilium helps users convene 3-5 configured AI models from different providers to analyze complex questions independently and synthesize consensus, disagreements, action items, and minority opinions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Consilium helps an agent route hard questions to a 3-5 model advisory panel, collect independent analyses, and synthesize consensus, disagreements, minority opinions, and action items.
 
-## Publisher: <br>
-[morozsm](https://clawhub.ai/user/morozsm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[morozsm](https://clawhub.ai/user/morozsm)
 
-## Use Case: <br>
-External users, developers, and decision-makers use Consilium to run multi-model deliberation on complex decisions, technical architecture, strategy, or other hard questions and receive a synthesized council report with action items. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Council questions are sent to several configured model providers. <br>
-Mitigation: Use only trusted providers and avoid secrets, private business details, or highly sensitive legal, medical, or financial information unless the provider set and session-retention settings are acceptable. <br>
-Risk: Multi-model synthesis can still produce incorrect, incomplete, or overconfident guidance, especially for high-stakes decisions. <br>
-Mitigation: Treat the council output as advisory, preserve minority views, and require human review before acting on legal, medical, financial, security, or business-critical recommendations. <br>
-Risk: Each run uses multiple model calls, and an optional debate round can double the number of calls. <br>
-Mitigation: Choose the fast, balanced, or thorough profile deliberately, set quorum and timeout values, and use debate rounds only when the additional cost is justified. <br>
-Risk: If the orchestrator model is also a panelist, synthesis may favor that model's response. <br>
-Mitigation: Randomize position order, quote specific panelist arguments with attribution, and explicitly preserve dissenting and minority opinions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Council Protocol Details](references/PROTOCOL.md) <br>
+## Use Case:
 
+Developers and other agent users use this skill when they want multi-model analysis of complex decisions, architecture choices, strategy, disputes, or other questions where independent perspectives can expose blind spots.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown synthesis with optional JSON panel configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces consensus, disagreements, minority opinions, and prioritized action items; may create council-panel.json with model names and slot assignments.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: User questions are sent to several configured model providers and may be stored according to normal OpenClaw session settings.
+
+Mitigation: Use only trusted providers in the panel and rerun model selection with --models when controlling which models receive the question matters.
+
+Risk: Independent model advice can still be incomplete, inconsistent, or misleading for high-impact decisions.
+
+Mitigation: Treat the synthesis as advisory input and review the consensus, disagreements, and minority opinions before acting.
+
+## Reference(s):
+
+- [Council Protocol Details](references/PROTOCOL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown synthesis with structured sections, attributed panelist summaries, consensus, disagreements, minority opinions, and action items; may also maintain a JSON panel configuration file.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Panelist prompts cap individual responses at 800 words and optional debate rebuttals at 400 words.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

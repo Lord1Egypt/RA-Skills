@@ -1,42 +1,62 @@
-## Description: <br>
-Company Intel helps agents research prospective companies, identify relevant contacts, validate email candidates, create local prospect dossiers, and prepare OKKI CRM entries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Researches companies and contacts, validates candidate emails, creates sales-intelligence records, and generates lead scoring and outreach guidance.
 
-## Publisher: <br>
-[cjboy007](https://clawhub.ai/user/cjboy007) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cjboy007](https://clawhub.ai/user/cjboy007)
 
-## Use Case: <br>
-Sales and business-development users can use this skill to evaluate target companies, prioritize leads, draft outreach, and prepare structured company/contact records for follow-up. It is intended for reviewed prospecting workflows where users confirm collected contact data and CRM writes before relying on them. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global, subject to applicable sanctions, privacy, anti-spam, and CRM compliance requirements. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can infer and validate individual email addresses, including through active SMTP probing. <br>
-Mitigation: Use only when authorized and legally appropriate; prefer review-only workflows and avoid live SMTP probing unless there is a clear lawful basis. <br>
-Risk: The skill can store contact dossiers locally and prepare or write records to OKKI. <br>
-Mitigation: Require human confirmation before CRM writes and define retention and deletion rules for generated company and contact records. <br>
-Risk: Prospecting conclusions may rely on public-source inferences about companies, contacts, and timing. <br>
-Mitigation: Review source evidence, preserve uncertainty in the output, and avoid acting on unsupported or sensitive conclusions. <br>
+## Use Case:
 
+Sales and business development users use this skill to build company intelligence dossiers, identify potential contacts, validate candidate emails, create CRM records, and draft follow-up messaging.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cjboy007/shadow-company-intel-scout) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown reports with structured tables, contact lists, scoring rationale, outreach drafts, and CRM-ready records.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local dossier files and batch summary reports; CRM writes and contact validation should be reviewed before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server evidence release version) <br>
+Risk: The skill performs lead enrichment involving personal contact records.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with authorization and a lawful basis, and define retention and deletion controls for collected contact data.
+
+Risk: The skill can perform active SMTP email probing.
+
+Mitigation: Avoid raw SMTP probing unless the organization has approved it; require a compliant email-validation method where approval is absent.
+
+Risk: The skill can write customer and contact records into OKKI.
+
+Mitigation: Require explicit confirmation before any OKKI write and review records for accuracy before submission.
+
+Risk: The security evidence notes weak safeguards around local files and contact records.
+
+Mitigation: Validate filenames and email addresses before writing files or records, and restrict local storage access to authorized users.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cjboy007/skills/shadow-company-intel-scout)
+- [Reasoning layer requirements](artifact/specs/reasoning-layer-requirements.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports, local Markdown files, contact lists, CRM record payloads, and concise text guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local company dossier files and summary reports, and may write contact or customer records to OKKI when authorized.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

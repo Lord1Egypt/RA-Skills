@@ -1,43 +1,58 @@
-## Description: <br>
-Desktop Monitor Widget opens a local desktop or browser-based system monitor that shows CPU, memory, disk, temperature, uptime, and process count. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Desktop Monitor Widget helps an agent launch a local floating system monitor that displays CPU, memory, disk, temperature, uptime, and process count.
 
-## Publisher: <br>
-[1173910773](https://clawhub.ai/user/1173910773) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[1173910773](https://clawhub.ai/user/1173910773)
 
-## Use Case: <br>
-Employees, external users, and developers use this skill to launch a lightweight local monitor for real-time system resource status. It is intended for personal desktop visibility into CPU, memory, disk, temperature, uptime, and process count. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The startup script can automatically change the Python environment by installing psutil, including with --break-system-packages. <br>
-Mitigation: Review before installing, prefer a virtual environment, and remove the --break-system-packages install path before deployment. <br>
-Risk: The browser mode exposes live local system metrics through a localhost endpoint with a permissive CORS header. <br>
-Mitigation: Restrict or remove the permissive CORS header and only run the endpoint in trusted local contexts. <br>
-Risk: While running, the widget makes CPU, memory, disk, uptime, temperature, and process count available from the local endpoint. <br>
-Mitigation: Stop the widget when not needed and avoid running it on shared or sensitive machines without review. <br>
+## Use Case:
 
+Developers and desktop users use this skill to start a browser-based or Tkinter-based local monitor for quickly checking host resource usage during active work.
 
-## Reference(s): <br>
-- [README.md](artifact/README.md) <br>
-- [ClawHub skill page](https://clawhub.ai/1173910773/desktop-monitor-widget) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, code, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and local UI output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The launched widget refreshes local system metrics every 2 seconds.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The launcher may install the psutil Python package automatically.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer installing psutil manually in a virtual environment before running the skill, and do not run the launcher with sudo.
+
+Risk: The browser mode starts a localhost web server that exposes live host resource data.
+
+Mitigation: Start it only from a directory without sensitive files and stop the process when monitoring is no longer needed.
+
+Risk: The README includes optional systemd autostart guidance that can make the monitor persistent.
+
+Mitigation: Enable autostart only when persistent startup is intended and the operator knows how to disable or remove the service.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/1173910773/skills/desktop-monitor-widget)
+- [Local web monitor endpoint](http://127.0.0.1:8765)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, code, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and local runtime instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Starts a local web server or Tkinter desktop window and refreshes host metrics about every two seconds.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

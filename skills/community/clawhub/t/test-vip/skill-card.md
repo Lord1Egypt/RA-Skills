@@ -1,41 +1,53 @@
-## Description: <br>
-Helps users search shopping products, compare top results, and produce a concise purchase recommendation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps an agent search for products, compare top results, and summarize price, satisfaction, and recommendation details.
 
-## Publisher: <br>
-[miketobusy](https://clawhub.ai/user/miketobusy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[miketobusy](https://clawhub.ai/user/miketobusy)
 
-## Use Case: <br>
-External users use this skill to search for apparel, beauty, maternity, baby, and similar products, then compare price, satisfaction, and recommendation signals across top results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release references a missing query_search_products.py helper script and a vipshop-product-consultant skill, so behavior cannot be fully reviewed from the submitted artifact alone. <br>
-Mitigation: Inspect and trust those dependencies before installation or execution. <br>
-Risk: Product search terms may be sent to an external shopping search service. <br>
-Mitigation: Avoid sensitive personal search terms unless that external lookup behavior is acceptable. <br>
+## Use Case:
 
+External users and shopping assistants use this skill to search for products in categories such as apparel, beauty, and mother-and-baby goods. It summarizes top product candidates, compares pricing and satisfaction, and produces purchase recommendations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/miketobusy/test-vip) <br>
-- [Publisher profile](https://clawhub.ai/user/miketobusy) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown product comparison report with tabular summaries and recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May invoke a product-search script and a referenced product consultant skill when those dependencies are available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: The documented command pattern passes user-supplied search text to a helper script.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and package the helper script, pass search terms as safely quoted arguments, and avoid shell interpolation when invoking it.
+
+Risk: The skill is not clearly packaged or narrowly scoped and relies on external product search behavior.
+
+Mitigation: Disclose external search behavior, narrow activation to explicit product-search requests, and audit the installed artifact before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/miketobusy/skills/test-vip)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown report with product comparison tables, summaries, and recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Searches up to five top product results and may coordinate product consultation for each result.]
+
+## Skill Version(s):
+
+1.0.3 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

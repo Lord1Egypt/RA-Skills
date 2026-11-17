@@ -1,41 +1,50 @@
-## Description: <br>
-AI Combat Shot Prompts helps agents turn broad martial-arts or fantasy combat scene ideas into cinematic image and video prompts with concrete physics, lighting, camera language, and platform adaptation guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents write cinematic Chinese wuxia/xianxia combat-shot prompts with concrete action physics, environment interaction, cinematography, and visual-style guidance.
 
-## Publisher: <br>
-[beermanzz](https://clawhub.ai/user/beermanzz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[beermanzz](https://clawhub.ai/user/beermanzz)
 
-## Use Case: <br>
-External users and creators use this skill to draft detailed combat-shot prompts for AI image and video generation platforms. It is aimed at Chinese wuxia and xianxia scenes, including duels, chases, weapon collisions, and spell clashes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide generation of combat or violent imagery. <br>
-Mitigation: Review generated prompts against the target platform's content policy and remove gratuitous gore or disallowed violent detail before use. <br>
-Risk: The publisher is a third party. <br>
-Mitigation: Confirm that the publisher is trusted for the intended ClawHub workflow before installing or relying on the skill. <br>
+## Use Case:
 
+Creative users and developers use this skill to turn broad fight-scene ideas into structured prompts for image or video generation platforms, especially Chinese wuxia/xianxia combat choreography.
 
-## Reference(s): <br>
-- [Combat Elements](references/combat-elements.md) <br>
-- [Shot Types Combat](references/shot-types-combat.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown prompt guidance and checklist-style recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Agent output is expected to be human-readable prompt text for downstream image or video generation tools.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can steer an agent toward intense combat imagery, including blood, injury close-ups, or other violent cinematic details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask for non-graphic or choreography-focused outputs when violent detail is not desired, and review generated prompts before use.
+
+## Reference(s):
+
+- [combat-elements.md](artifact/references/combat-elements.md)
+- [shot-types-combat.md](artifact/references/shot-types-combat.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown prompt-writing guidance with examples and checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces structured prompt guidance; no code, credentials, persistence, or hidden data access were reported by security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

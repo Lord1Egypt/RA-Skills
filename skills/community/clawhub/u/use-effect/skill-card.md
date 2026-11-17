@@ -1,41 +1,54 @@
-## Description: <br>
-Refactor React code away from direct useEffect usage by reviewing, rewriting, or preventing effect-driven patterns in React components, hooks, and frontend architecture. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Refactor React code away from direct useEffect usage by replacing effect-driven state, fetching, action relays, and resets with clearer React patterns.
 
-## Publisher: <br>
-[liyown](https://clawhub.ai/user/liyown) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liyown](https://clawhub.ai/user/liyown)
 
-## Use Case: <br>
-Developers and engineering agents use this skill to identify direct React useEffect usage, classify why it exists, and replace it with derived render values, event handlers, data-loading abstractions, keyed remounts, or narrow mount-only lifecycle wrappers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Refactors may change React lifecycle behavior, remount boundaries, request timing, or local state semantics. <br>
-Mitigation: Review generated diffs and run relevant tests or targeted checks for loops, duplicate requests, stale state, and remount behavior. <br>
-Risk: Broad lint-rule or contributor-guidance changes may affect many future edits. <br>
-Mitigation: Review policy changes before adoption and prefer incremental rollout around touched files unless a full migration is requested. <br>
+## Use Case:
 
+Developers and code review agents use this skill to review or refactor React components, custom hooks, and frontend architecture away from direct useEffect where derived render values, event handlers, data-loading abstractions, keyed remounts, or mount-only wrappers are safer.
 
-## Reference(s): <br>
-- [Use Effect on ClawHub](https://clawhub.ai/liyown/use-effect) <br>
-- [useEffect Replacement Patterns](artifact/references/patterns.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Code, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown guidance with code examples and optional shell commands or configuration changes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should preserve project conventions and call for relevant tests or targeted checks after refactors.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Refactoring direct useEffect usage can change lifecycle timing, remount behavior, request frequency, or state ownership in React applications.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the relevant tests or targeted checks after applying changes, with attention to loops, duplicate requests, stale state, and remount semantics.
+
+Risk: Broad adoption may introduce lint or documentation changes that affect contributor workflow.
+
+Mitigation: Apply no-direct-useEffect policy changes incrementally unless a full migration is explicitly requested.
+
+## Reference(s):
+
+- [useEffect Replacement Patterns](references/patterns.md)
+- [ClawHub skill page](https://clawhub.ai/liyown/skills/use-effect)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Code, Markdown, Configuration instructions, Shell commands]
+
+**Output Format:** [Markdown guidance with code snippets, patch-ready recommendations, and optional shell commands or configuration changes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose lint or contributor guidance updates during broader React adoption work.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

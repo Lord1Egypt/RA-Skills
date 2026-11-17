@@ -1,42 +1,56 @@
-## Description: <br>
-配置OpenClaw连接远程Chrome/CDP浏览器，实现无头浏览器自动化操作与管理。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Configures OpenClaw to connect to remote Chrome/CDP browser endpoints for browser automation.
 
-## Publisher: <br>
-[HappyFee](https://clawhub.ai/user/HappyFee) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[happyfee](https://clawhub.ai/user/happyfee)
 
-## Use Case: <br>
-Developers and operators use this skill to configure OpenClaw to attach to remote Chrome/CDP browsers, including Docker-hosted headless browsers and Browserless.io, then verify and troubleshoot browser automation connectivity. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Remote browser control can expose privileged automation access if the CDP endpoint is reachable by untrusted users. <br>
-Mitigation: Bind local CDP endpoints to localhost or protect them with SSH, VPN, or firewall controls before using the configuration. <br>
-Risk: Cloud browser credentials and Browserless tokens can be exposed through shared configuration or logs. <br>
-Mitigation: Treat browser service tokens as secrets and avoid sensitive logins in shared or cloud browser sessions. <br>
-Risk: Using an unpinned Docker image tag can change browser behavior or security posture over time. <br>
-Mitigation: Pin the browser container image to a reviewed version or digest for repeatable deployments. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/HappyFee/openclaw-browser-auto) <br>
-- [HappyFee publisher profile](https://clawhub.ai/user/HappyFee) <br>
+## Use Case:
 
+Developers and operators use this skill to configure OpenClaw for remote Chrome/CDP browser automation, including Docker-hosted headless Chrome and hosted browser endpoints.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with bash commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes OpenClaw browser profile settings, verification commands, and troubleshooting guidance.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Remote Chrome/CDP control ports can expose browser automation capabilities if reachable from untrusted networks.
+
+Mitigation: Bind CDP to 127.0.0.1 only and do not expose port 9222 to untrusted networks.
+
+Risk: Remote browser sessions may expose sensitive account data or credentials.
+
+Mitigation: Avoid logging into sensitive accounts through remote browser endpoints.
+
+Risk: Container and hosted browser endpoints can introduce supply-chain or credential-handling risk.
+
+Mitigation: Prefer a pinned and verified container digest and keep browserless or provider tokens out of shared configuration where possible.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/happyfee/skills/openclaw-browser-auto)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with bash and JSON5 examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Provides setup steps, configuration keys, verification commands, and troubleshooting notes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

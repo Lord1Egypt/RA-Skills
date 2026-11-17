@@ -1,43 +1,58 @@
-## Description: <br>
-舌尖香港门店AI助手 helps store operators use Chinese natural-language requests to query inventory, sales, purchases, operation logs, and weather, and to prepare confirmed store-management API calls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Chinese-language store-management assistant for Shejian Hong Kong that helps staff interpret store operation requests and prepare inventory, sales, purchasing, account, and weather API actions.
 
-## Publisher: <br>
-[xingke2023](https://clawhub.ai/user/xingke2023) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xingke2023](https://clawhub.ai/user/xingke2023)
 
-## Use Case: <br>
-Store employees and trusted remote operators use this skill to manage fresh-food store operations through natural-language inventory, sales, purchase, account, log, and weather workflows. The skill is intended for the specific store-management API at s.xingke888.com and requires an authorized bearer token. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can query and update inventory, sales supplements, purchase orders, and other operational store records through an authenticated API. <br>
-Mitigation: Restrict use to trusted operators, require confirmation before write operations, and review operation summaries before approving changes. <br>
-Risk: The skill requires sensitive bearer-token credentials for the intended store-management system. <br>
-Mitigation: Provide the narrowest possible token, avoid sharing passwords when token setup is available, and keep credentials out of user-visible responses. <br>
-Risk: Using the skill against the wrong service or store could expose data or modify unintended business records. <br>
-Mitigation: Install only when s.xingke888.com is the intended store-management system and verify the store/account context before operational use. <br>
+## Use Case:
 
+Store staff and operators use this agent to convert Chinese natural-language updates and questions into confirmed store-management actions for inventory lookup, sales supplement records, purchase intake, sales reports, account checks, and weather context.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xingke2023/store-ai) <br>
-- [Store API base URL](https://s.xingke888.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Chinese Markdown responses with operation summaries, confirmation prompts, query results, and single-line curl commands for API calls] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a bearer token and is designed to avoid exposing internal execution details to store staff.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: server release evidence) <br>
+Risk: Bearer tokens and user-derived fields may be placed directly into shell curl commands for sensitive store actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use least-privilege, revocable tokens; redact Authorization headers; and replace shell-built requests with a structured HTTP client or secret-aware tool before deployment.
+
+Risk: Untrusted product names, notes, or other free-text fields could be unsafe while shell-based command construction is used.
+
+Mitigation: Limit use to trusted operators and safely validate or serialize free-text fields before allowing execution.
+
+Risk: The skill can prepare sensitive business write actions such as sales supplements, inventory adjustments, and purchase orders.
+
+Mitigation: Require explicit confirmation before write actions and review account permissions and operation logs regularly.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xingke2023/skills/store-ai)
+- [Store management API base URL](https://s.xingke888.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Chinese user-facing text with confirmation summaries, formatted results, and inline curl command structures]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Write operations are expected to present a confirmation summary before execution.]
+
+## Skill Version(s):
+
+1.0.6 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

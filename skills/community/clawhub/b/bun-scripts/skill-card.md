@@ -1,43 +1,60 @@
-## Description: <br>
-Helps agents create, run, test, and manage TypeScript and JavaScript scripts with Bun instead of plain Node.js, npm, npx, Jest, or Vitest. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Write and run TypeScript scripts with Bun instead of plain Node.js or JavaScript, using Bun's runtime, package manager, test runner, file APIs, shell API, HTTP server, and SQLite support.
 
-## Publisher: <br>
-[bcanfield](https://clawhub.ai/user/bcanfield) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bcanfield](https://clawhub.ai/user/bcanfield)
 
-## Use Case: <br>
-Developers and coding agents use this skill to prefer Bun for local TypeScript and JavaScript scripting, package management, testing, file I/O, shell commands, HTTP servers, and SQLite-backed utilities. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Agent-proposed Bun commands can install packages, run shell commands, start local servers, fetch network resources, or read project data. <br>
-Mitigation: Review commands before execution in sensitive repositories, especially package installs, server startup, network fetches, and scripts that may read .env files or local data. <br>
-Risk: Bun executes TypeScript after stripping types, so type errors do not stop runtime execution. <br>
-Mitigation: Use a separate type-checking step such as tsc --noEmit when type correctness matters. <br>
+## Use Case:
 
+Developers and engineering agents use this skill to create, run, test, and manage TypeScript and JavaScript scripts with Bun. It helps agents choose Bun-native commands and APIs for scripting, package management, file I/O, process execution, HTTP serving, SQLite work, and tests.
 
-## Reference(s): <br>
-- [Bun API Reference](references/REFERENCE.md) <br>
-- [Bun LLM Documentation Index](https://bun.sh/llms.txt) <br>
-- [Bun LLM Full Documentation](https://bun.sh/llms-full.txt) <br>
-- [ClawHub Skill Page](https://clawhub.ai/bcanfield/bun-scripts) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline TypeScript, JavaScript, JSON, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the bun executable for commands the agent proposes or runs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release and skill frontmatter) <br>
+Risk: Package installation, bunx execution, and network fetches can introduce third-party code or dependency changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review proposed bun add, bun install, bunx, and network-fetching commands before execution, especially in projects with existing Node/npm workflows.
+
+Risk: Shell commands, file writes, and server starts can modify local projects, expose services, or touch sensitive environment variables.
+
+Mitigation: Confirm the working directory, files, ports, and environment variables before running commands or starting servers.
+
+Risk: Bun runs TypeScript without runtime type-checking, so type errors may not block execution.
+
+Mitigation: Run tsc --noEmit when type correctness matters, such as before committing or in CI.
+
+## Reference(s):
+
+- [Bun API Reference](references/REFERENCE.md)
+- [Bun LLM documentation index](https://bun.sh/llms.txt)
+- [Bun LLM full documentation](https://bun.sh/llms-full.txt)
+- [ClawHub skill page](https://clawhub.ai/bcanfield/skills/bun-scripts)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with TypeScript and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the bun binary. TypeScript is stripped at runtime, so run tsc --noEmit separately when type-checking is required.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

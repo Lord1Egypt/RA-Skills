@@ -1,38 +1,58 @@
-## Description: <br>
-Logs FlashRev mailer send and dry-run records to a configured Notion database for tracking, auditing, and campaign history lookup. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Logs FlashRev mailer send and dry-run records to a configured Notion database for campaign tracking and audit queries.
 
-## Publisher: <br>
-[sawera557](https://clawhub.ai/user/sawera557) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sawera557](https://clawhub.ai/user/sawera557)
 
-## Use Case: <br>
-Developers and operators running FlashRev outreach use this skill after send or dry-run batches to sync campaign send history into Notion and query prior sends. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: FlashRev outreach metadata and email body previews can be sent to the configured Notion database. <br>
-Mitigation: Install only when that data handling is acceptable, restrict the Notion integration to the intended database, and use query-only mode when inspection is sufficient. <br>
+## Use Case:
 
+Developers and operators running FlashRev mailer use this skill after send or dry-run batches to write campaign email records to Notion and query prior campaign sends.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sawera557/flashrev-mailer-notion-tracker) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and plain-text status summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js plus NOTION_TOKEN and NOTION_DATABASE_ID; can write records to Notion or query existing campaign records.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Campaign email metadata and a 300-character body preview are copied into Notion.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for campaigns appropriate for Notion logging and avoid logging sensitive campaigns unless that storage is approved.
+
+Risk: The Notion integration token can access any workspace content granted to that integration.
+
+Mitigation: Limit the Notion integration to the intended database and rotate or revoke NOTION_TOKEN if access is no longer needed.
+
+Risk: Dependency installation may resolve newer package versions because the package file does not include a lockfile and uses a semver range.
+
+Mitigation: Pin the Notion client dependency and use a package-lock.json with npm ci before broader use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sawera557/skills/flashrev-mailer-notion-tracker)
+- [Publisher profile](https://clawhub.ai/user/sawera557)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and Notion sync status summaries.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js plus NOTION_TOKEN and NOTION_DATABASE_ID configuration; logs campaign email metadata and a 300-character body preview to Notion.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

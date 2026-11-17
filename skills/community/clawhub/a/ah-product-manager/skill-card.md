@@ -1,43 +1,54 @@
-## Description: <br>
-Expert product manager specializing in product strategy, user-centric development, business outcomes, roadmap planning, feature prioritization, and cross-functional leadership. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Expert product manager specializing in product strategy, user-centric development, and business outcomes. Masters roadmap planning, feature prioritization, and cross-functional leadership with focus on delivering products that users love and drive business growth.
 
-## Publisher: <br>
-[mtsatryan](https://clawhub.ai/user/mtsatryan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mtsatryan](https://clawhub.ai/user/mtsatryan)
 
-## Use Case: <br>
-Product managers, founders, and product teams use this skill to shape product strategy, plan roadmaps, prioritize features, analyze users and markets, and coordinate launch execution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Product recommendations may reflect incomplete business metrics, user feedback, analytics, market context, or competitive information. <br>
-Mitigation: Treat recommendations as advisory and validate them against authoritative product data, customer evidence, and stakeholder review before acting. <br>
-Risk: Roadmap, prioritization, launch, or growth guidance may overstate expected user or business impact. <br>
-Mitigation: Use explicit success metrics, experiments, and human product review before committing resources or making launch decisions. <br>
-Risk: Prompts may include sensitive customer, analytics, or competitive information. <br>
-Mitigation: Provide only information appropriate for the task and follow applicable business data handling policies. <br>
+## Use Case:
 
+Product managers, founders, and product teams use this skill to structure product strategy, roadmap planning, user research, prioritization, launch planning, stakeholder alignment, and data-informed product decisions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mtsatryan/ah-product-manager) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/mtsatryan) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or plain text product management guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Advisory product strategy, prioritization, research, analytics, roadmap, and launch recommendations; no code execution or persistent data handling.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Product feedback, analytics, market context, or roadmap details may contain private business information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide only project-appropriate inputs and avoid sharing confidential product, customer, or competitive data unless the deployment environment is approved for that information.
+
+Risk: Product strategy or prioritization guidance can be incomplete or misleading if based on stale, narrow, or unvalidated inputs.
+
+Mitigation: Review recommendations against current user research, analytics, business constraints, and stakeholder judgment before using them for roadmap or launch decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mtsatryan/skills/ah-product-manager)
+- [ClawHub publisher profile](https://clawhub.ai/user/mtsatryan)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text product-management guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include product strategy, prioritization rationale, research plans, launch recommendations, stakeholder guidance, and metric-focused analysis.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

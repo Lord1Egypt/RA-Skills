@@ -1,40 +1,53 @@
-## Description: <br>
-Interact with Astra's Docker container workspace by executing commands and reading or writing files at /workspace inside the astra-env container. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Astra Docker lets an agent execute commands and read or write files in Astra's /workspace directory inside the astra-env Docker container.
 
-## Publisher: <br>
-[walniek](https://clawhub.ai/user/walniek) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[walniek](https://clawhub.ai/user/walniek)
 
-## Use Case: <br>
-Developers and engineers use this skill to operate inside an Astra Docker workspace, run commands in the astra-env container, and write files under /workspace when the container is trusted and available. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives an agent powerful sudo Docker command access to the astra-env container. <br>
-Mitigation: Install only when the Astra Docker container is trusted and Docker command authority is acceptable for the environment. <br>
-Risk: The security summary warns that Docker commands are built unsafely and should be reviewed before use. <br>
-Mitigation: Prefer a revised version that uses argument-based execution, validates paths under /workspace, avoids host shell interpolation, and confirms state-changing commands or file writes. <br>
+## Use Case:
 
+Developers and agents use this skill to work inside an existing Astra Docker workspace, run shell commands, and create or update files in the container workspace.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/walniek/astra-docker) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Files] <br>
-**Output Format:** [Structured tool results with success status, stdout, stderr, errors, or file-write confirmation.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands and file writes target the astra-env Docker container workspace at /workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Broad sudo-backed Docker command and file-write access can exceed the intended container boundary.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when the agent is expected to control astra-env, remove sudo where possible, restrict paths to /workspace, and require clear confirmation for destructive commands and writes.
+
+Risk: Shell-built Docker commands can expose command, path, or content parameters to injection.
+
+Mitigation: Replace shell-built command strings with structured Docker calls and validate command, working directory, file path, and file content inputs before execution.
+
+## Reference(s):
+
+- [Astra Docker ClawHub listing](https://clawhub.ai/walniek/skills/astra-docker)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, code, configuration]
+
+**Output Format:** [Text responses and command output from Docker workspace operations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands target the astra-env container with /workspace as the default working directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; package.json reports 0.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

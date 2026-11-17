@@ -1,40 +1,52 @@
-## Description: <br>
-Generates a short-video talking-head storyboard table from a topic, duration, shot count, and target platform. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates a Markdown storyboard table for Chinese short-video talking-head scripts, including shot number, duration, visual direction, talking points, and subtitle prompts.
 
-## Publisher: <br>
-[wangshengli0421](https://clawhub.ai/user/wangshengli0421) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[wangshengli0421](https://clawhub.ai/user/wangshengli0421)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Content creators, marketers, and video producers use this skill to turn a topic, target duration, shot count, and platform into a practical storyboard table for Douyin, WeChat, or Bilibili-style talking-head videos.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Generated storyboard language is Chinese-focused and platform-specific, which may not fit other audiences, languages, or platform rules.
+
+Mitigation: Review and adapt the hook, CTA, and talking points for the target language, brand voice, audience, and platform policy before publishing.
+
+Risk: Template output includes placeholder talking points and CTA guidance that may be incomplete for a specific product, campaign, or claim.
+
+Mitigation: Replace placeholders with verified product details and review factual or promotional claims before filming or publishing.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Content creators, social media marketers, and video editors use this skill to turn a short-video topic into a shot-by-shot Markdown storyboard with timing, visual direction, talking points, subtitles, hook guidance, and CTA guidance. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: ClawScan marked the release suspicious and advises installing only when the publisher is trusted. <br>
-Mitigation: Review the skill and scan result before deployment, and install only when the publisher and local execution behavior are acceptable for the environment. <br>
-Risk: Generated storyboard copy can include placeholder claims, platform CTAs, or marketing guidance that may not match brand, legal, or platform requirements. <br>
-Mitigation: Review and edit the generated table before filming or publishing, especially claims, calls to action, and platform-specific compliance language. <br>
+**Output Format:** [Markdown storyboard table with hook, CTA, shot rows, and production notes]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wangshengli0421/tianshu-short-script) <br>
+**Other Properties Related to Output:** [Chinese-focused template for Douyin, WeChat, and Bilibili platforms.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown table with brief notes and inline shell command usage] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Accepts topic, total seconds, shot count, and platform options; defaults to Douyin, 60 seconds, and an estimated shot count.] <br>
+1.0.0 (source: server release and clawhub.json)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and clawhub.json) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

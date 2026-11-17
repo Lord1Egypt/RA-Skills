@@ -1,39 +1,50 @@
-## Description: <br>
-Read data from a Google Sheet and create a formatted Google Docs report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Read data from a Google Sheet and create a formatted Google Docs report.
 
-## Publisher: <br>
-[googleworkspace-bot](https://clawhub.ai/user/googleworkspace-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[googleworkspace-bot](https://clawhub.ai/user/googleworkspace-bot)
 
-## Use Case: <br>
-Employees and operations users use this recipe to read rows from a Google Sheet, create a Google Docs report, write a formatted summary, and optionally share it with stakeholders. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The recipe includes a Google Drive permission command with a hard-coded email address, which could share the generated report with an unintended recipient. <br>
-Mitigation: Review and edit the sharing step before use; confirm the connected Google account, spreadsheet ID, document ID, and recipient, and keep the document private unless sharing is explicitly approved. <br>
+## Use Case:
 
+Employees and business users use this recipe to turn Sheet data into a Google Docs sales report and prepare it for stakeholder sharing through Google Workspace tools.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/googleworkspace-bot/recipe-generate-report-from-sheet) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/googleworkspace-bot) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires gws plus the gws-sheets, gws-docs, and gws-drive skills; review the sharing recipient before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.13 (source: server release metadata; artifact metadata version 0.22.5) <br>
+Risk: The recipe shares the generated report with a fixed email address.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Replace the recipient with a user-supplied stakeholder address and confirm the document ID, recipient, and reader role before running the Drive permissions command.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/googleworkspace-bot/skills/recipe-generate-report-from-sheet)
+- [googleworkspace-bot Publisher Profile](https://clawhub.ai/user/googleworkspace-bot)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Markdown, Configuration]
+
+**Output Format:** [Markdown instructions with inline Google Workspace CLI commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires gws plus the gws-sheets, gws-docs, and gws-drive skills.]
+
+## Skill Version(s):
+
+1.0.13 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

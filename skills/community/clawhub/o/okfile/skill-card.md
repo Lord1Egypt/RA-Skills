@@ -1,43 +1,57 @@
-## Description: <br>
-Uploads and publishes files or static site folders to OkFile, with direct links, preview URLs, and multipart support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Uploads and publishes files or static site folders to OkFile, with direct links, preview URLs, and multipart support.
 
-## Publisher: <br>
-[okfilecom](https://clawhub.ai/user/okfilecom) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[okfilecom](https://clawhub.ai/user/okfilecom)
 
-## Use Case: <br>
-Developers and agents use this skill to upload files, publish static site folders, generate shareable file or preview URLs, and run repeatable OkFile CLI workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Uploaded files, generated links, preview pages, directory listings, and published sites may be externally shareable. <br>
-Mitigation: Avoid uploading secrets, regulated data, private personal data, or confidential business files unless appropriate access controls and handling requirements are confirmed. <br>
-Risk: Authenticated workflows use an OkFile API key and optional CLI installation from a third-party package source. <br>
-Mitigation: Review package provenance before installing the CLI and handle API keys as credentials, including secure storage and rotation where appropriate. <br>
+## Use Case:
 
+Developers and agents use Okfile to upload, publish, and share files or static site folders through OkFile, including workflows that need generated direct, preview, playback, or site URLs.
 
-## Reference(s): <br>
-- [Server-resolved GitHub source](https://github.com/okfilecom/okfile) <br>
-- [OkFile home](https://www.okfile.com/en/) <br>
-- [OkFile upload page](https://www.okfile.com/en/upload/) <br>
-- [OkFile PyPI package](https://pypi.org/project/okfile/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with API examples, shell commands, and returned URL fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce direct file URLs, preview URLs, site URLs, API request examples, and CLI commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Files or folders uploaded through this skill may become accessible through generated links or subdomains.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for content intended for OkFile sharing, and avoid uploading secrets, credentials, internal documents, or private folders unless sharing is explicitly intended.
+
+Risk: The optional CLI install relies on external package distribution.
+
+Mitigation: Use trusted package sources and pin versions when reproducibility or supply-chain review is required.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/okfilecom/skills/okfile)
+- [Server-resolved source repository](https://github.com/okfilecom/okfile)
+- [OkFile official site](https://www.okfile.com/)
+- [OkFile upload page](https://www.okfile.com/en/upload/)
+- [OkFile PyPI package](https://pypi.org/project/okfile/)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, API Calls, Configuration]
+
+**Output Format:** [Markdown with HTTP request examples and shell command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include generated public URLs such as url, playUrl, siteUrl, and entryUrl.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

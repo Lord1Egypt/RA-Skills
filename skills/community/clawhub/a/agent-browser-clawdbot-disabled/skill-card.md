@@ -1,40 +1,50 @@
-## Description: <br>
-Headless browser automation CLI optimized for AI agents with accessibility tree snapshots and ref-based element selection. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Headless browser automation CLI optimized for AI agents with accessibility tree snapshots and ref-based element selection.
 
-## Publisher: <br>
-[quanfuda](https://clawhub.ai/user/quanfuda) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[quanfuda](https://clawhub.ai/user/quanfuda)
 
-## Use Case: <br>
-Developers and agents use this skill to drive browser workflows through the agent-browser CLI, including navigation, accessibility-tree snapshots, ref-based interactions, sessions, state persistence, screenshots, PDFs, network control, cookies, storage, tabs, and frames. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Saved browser state, cookies, and localStorage output can contain credential-like secrets. <br>
-Mitigation: Treat saved state files and storage output as secrets; do not commit, share, log, or reuse them across sensitive accounts unless the session is isolated and authorized. <br>
+## Use Case:
 
+Developers and agents use this skill to drive browser automation workflows with deterministic element references, JSON snapshots, isolated sessions, and command-line interactions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/quanfuda/agent-browser-clawdbot-disabled) <br>
-- [Publisher profile](https://clawhub.ai/user/quanfuda) <br>
-- [agent-browser homepage](https://github.com/vercel-labs/agent-browser) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the external agent-browser command.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: release evidence) <br>
+Risk: Saved auth state, cookies, local storage output, screenshots, and PDFs can expose sensitive browser data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only from the intended npm package or source, prefer a pinned reviewed version, treat auth state files like passwords, and avoid committing, sharing, or printing them unnecessarily.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/quanfuda/skills/agent-browser-clawdbot-disabled)
+- [agent-browser project homepage](https://github.com/vercel-labs/agent-browser)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline bash and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the agent-browser CLI command; command execution may create JSON snapshots, auth state files, screenshots, or PDFs.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

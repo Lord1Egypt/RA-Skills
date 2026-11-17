@@ -1,40 +1,54 @@
-## Description: <br>
-Helps users set up an enterprise internal question-answering knowledge base with document upload, semantic retrieval, access controls, analytics, and chat-platform access. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI Enterprise Knowledge Base helps agents guide setup of an internal enterprise question-answering knowledge base with document upload, semantic retrieval, access control, and multi-channel integrations.
 
-## Publisher: <br>
-[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk)
 
-## Use Case: <br>
-Employees, IT teams, and support teams can use this skill to plan or configure an internal knowledge-base assistant over enterprise documents. The described workflows cover document ingestion, permission-aware search, question answering, chat integrations, and usage analytics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release claims enterprise document, identity, and chat integrations while shipping no reviewed implementation and pointing to a missing runtime file. <br>
-Mitigation: Review the package contents and require a complete implementation, deployment instructions, and credential-scope documentation before connecting company documents, identity providers, chat secrets, or paid setup services. <br>
-Risk: The described workflows may process sensitive company documents and external LLM or vector-store data. <br>
-Mitigation: Use test data first, then verify retention and deletion policies plus external data-handling terms before production use. <br>
+## Use Case:
 
+Developers and IT teams use this skill to set up or evaluate an internal enterprise knowledge-base Q&A service for company documents, including retrieval, permissions, and chat-platform access.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yang1002378395-cmyk/ai-enterprise-knowledge-base) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with shell, YAML, and API examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata and package.json) <br>
+Risk: The skill handles sensitive company documents and credentials, while storage, retention, sharing, and data-flow details are under-specified.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm where documents, embeddings, prompts, answers, and chat messages are stored, retained, and shared before uploading private business data.
+
+Risk: The setup flow depends on installing OpenClaw source code and configuring API tokens or Feishu secrets.
+
+Mitigation: Use an isolated, unprivileged install environment, pin or verify the OpenClaw source revision, and protect tokens and chat-platform secrets with least-privilege access.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yang1002378395-cmyk/skills/ai-enterprise-knowledge-base)
+- [Publisher profile](https://clawhub.ai/user/yang1002378395-cmyk)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline bash, YAML, and curl examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes setup steps, configuration examples, and API request examples for an enterprise knowledge-base workflow.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.release.version, artifact/package.json, target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

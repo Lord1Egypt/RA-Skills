@@ -1,48 +1,57 @@
-## Description: <br>
-Runs autonomous iterative AI loops for requirements, planning, or building phases using structured prompts and fresh context per iteration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Runs autonomous iterative AI loops for requirements, planning, and building workflows using structured prompts and fresh context per iteration.
 
-## Publisher: <br>
-[qlifebot-coder](https://clawhub.ai/user/qlifebot-coder) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[qlifebot-coder](https://clawhub.ai/user/qlifebot-coder)
 
-## Use Case: <br>
-Developers and agent operators use this skill to run iterative AI development loops for requirements interviews, implementation planning, and build execution with persistent file state and dashboard monitoring. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Autonomous loop execution can edit files, run commands, and continue until stopped. <br>
-Mitigation: Run it only in an isolated development workspace with a disposable branch, limited credentials, explicit iteration or time limits, and human review of outputs. <br>
-Risk: Permission prompts are bypassed during loop execution. <br>
-Mitigation: Use a sandboxed environment such as a VM or container and provide only the API keys and local files required for the task. <br>
-Risk: Automatic git push can publish unintended changes to a remote branch. <br>
-Mitigation: Review or disable automatic push behavior and use a throwaway or protected branch until changes have been inspected. <br>
-Risk: The check command option runs shell commands and can be unsafe with untrusted input. <br>
-Mitigation: Use only trusted, fixed check commands and do not pass user-controlled strings into --check-cmd. <br>
-Risk: The dashboard exposes local loop status and process controls. <br>
-Mitigation: Run the dashboard only on a trusted local machine and avoid exposing it on shared or public networks. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Ralph Loops on ClawHub](https://clawhub.ai/qlifebot-coder/ralph-loops) <br>
-- [Ralph Wiggum Technique](https://ghuntley.com/ralph/) <br>
-- [Clayton Farr Ralph Playbook](https://github.com/ClaytonFarr/ralph-playbook) <br>
-- [Geoffrey Huntley how-to-ralph-wiggum](https://github.com/ghuntley/how-to-ralph-wiggum) <br>
+## Use Case:
 
+Developers and engineering agents use Ralph Loops to run structured autonomous iteration across requirements interviews, implementation planning, and build tasks while preserving progress in files and loop state.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance, prompt templates, shell commands, configuration files, and code or file changes produced by autonomous loop iterations.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Loop runs may create or edit files, run commands, record local state, commit changes, push to git remotes, and expose status through a local dashboard.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Autonomous loop execution can act with broad local authority and permission checks disabled.
+
+Mitigation: Run it only in an isolated VM or container, use a disposable branch, provide task-specific credentials only, and review diffs before any push or tag.
+
+Risk: Dashboard, process, and Git controls are underprotected according to the authoritative security evidence.
+
+Mitigation: Disable the dashboard or restrict it to loopback with authentication, and avoid repositories or workspaces containing sensitive files until those issues are fixed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/qlifebot-coder/skills/ralph-loops)
+- [Ralph Loops skill documentation](artifact/SKILL.md)
+- [Ralph Loops setup guide](artifact/SETUP.md)
+- [Geoffrey Huntley Ralph technique](https://ghuntley.com/ralph/)
+- [Clayton Farr Ralph Playbook](https://github.com/ClaytonFarr/ralph-playbook)
+- [How to Ralph Wiggum fork](https://github.com/ghuntley/how-to-ralph-wiggum)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown prompts, markdown specs and plans, code edits, shell command output, and JSON loop state]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write project files, update Git history through configured prompts, and archive loop state under ~/clawd/logs/ralph-archive.]
+
+## Skill Version(s):
+
+1.0.2 (source: ClawHub server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

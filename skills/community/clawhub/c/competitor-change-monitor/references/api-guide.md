@@ -124,7 +124,7 @@ node scripts/monitor.js report | mail -s "Weekly Competitive Report" team@compan
 ### Slack integration
 ```bash
 # Send report to Slack channel
-curl -X POST https://hooks.slack.com/services/YOUR/WEBHOOK/URL \
+curl -X POST REDACTED-SECRET \
   -H 'Content-Type: application/json' \
   -d @report-latest.json
 ```

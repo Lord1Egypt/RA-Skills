@@ -39,7 +39,7 @@
 | [acei-arb-antihypertensive-selection](acei-arb-antihypertensive-selection/SKILL.md) | 判断优先选用ACEI或ARB，并指导初始治疗、监测及联合用药 | 当高血压患者合并糖尿病、左心室肥厚、心力衰竭或心肌梗死，或因干咳无法耐受ACEI时 |
 | [spironolactone-use-in-heart-failure-and-refractory-edema](spironolactone-use-in-heart-failure-and-refractory-edema/SKILL.md) | 指导在醛固酮升高相关的心力衰竭或顽固性水肿中合理使用螺内酯 | 当患者肾功能基本正常、无高钾血症且存在醛固酮活性时 |
 | [local-anesthetic-toxicity-recognition-and-emergency-management](local-anesthetic-toxicity-recognition-and-emergency-management/SKILL.md) | 识别局麻药毒性反应类型并执行标准化急救与预防措施 | 当患者接受局部麻醉后出现神经系统或心血管异常症状且疑似中毒时 |
-| [succinylcholine-high-risk-reaction-and-contraindication-management](succinylcholine-high-risk-reaction-and-contraindication-management/SKILL.md) | 识别琥珀胆碱高危患者、评估禁忌证并启动恶性高热抢救流程 | 当患者存在烧伤、恶性肿瘤、青光眼、神经肌肉病变或恶性高热家族史时 |
+| [succinylcholine-high-riREDACTED-SECRET](succinylcholine-high-riREDACTED-SECRET/SKILL.md) | 识别琥珀胆碱高危患者、评估禁忌证并启动恶性高热抢救流程 | 当患者存在烧伤、恶性肿瘤、青光眼、神经肌肉病变或恶性高热家族史时 |
 | [antibacterial-drug-classification-by-action-type](antibacterial-drug-classification-by-action-type/SKILL.md) | 根据药物对细菌的作用方式（抑菌或杀菌）进行分类 | 当已知抗菌药物名称或类别并需结合患者免疫状态选药时 |
 | [succinylcholine-metabolism-and-excretion](succinylcholine-metabolism-and-excretion/SKILL.md) | 分析琥珀胆碱的水解代谢路径、排泄方式及与假性胆碱酯酶活性的关系 | 当需判断琥珀胆碱药效持续时间或患者出现异常延长的肌松效应时 |
 | [sulfonamide-mechanism-and-urinary-toxicity-prevention](sulfonamide-mechanism-and-urinary-toxicity-prevention/SKILL.md) | 理解磺胺类药物抑菌机制并实施结晶尿预防措施 | 当使用可经肾脏排泄的磺胺类药物治疗全身性感染且疗程超过1天时 |
@@ -240,7 +240,7 @@
 - local-anesthetic-toxicity-recognition-and-emergency-management  
 - local-anesthetic-mechanism-and-structure-activity  
 - local-anesthetic-administration-selection  
-- succinylcholine-high-risk-reaction-and-contraindication-management  
+- succinylcholine-high-riREDACTED-SECRET  
 - succinylcholine-metabolism-and-excretion  
 - succinylcholine-clinical-application-and-dosage-regulation  
 
@@ -414,7 +414,7 @@
 本技能索引可用于快速定位药理学知识点，支持以下使用场景：
 
 - **临床决策支持**：如输入“如何为肝功能不全患者选择糖皮质激素？”，可调用 `glucocorticoid-selection-based-on-liver-function` 技能。
-- **考试复习**：如查询“琥珀胆碱的代谢途径与禁忌证”，对应 `succinylcholine-metabolism-and-excretion` 和 `succinylcholine-high-risk-reaction-and-contraindication-management`。
+- **考试复习**：如查询“琥珀胆碱的代谢途径与禁忌证”，对应 `succinylcholine-metabolism-and-excretion` 和 `succinylcholine-high-riREDACTED-SECRET`。
 - **药物安全评估**：如“氟西汀与MAOI联用的风险”，触发 `fluoxetine-maoi-serotonin-syndrome-risk-management`。
 - **治疗方案设计**：如“晚期NSCLC患者EGFR突变阳性，如何选择三代TKI？”，激活 `third-generation-egfr-tki-selection-for-nsclc`。
 - **教材查阅辅助**：如“查找教材中所有免疫调节药物的页码”，使用 `textbook-immunomodulatory-drug-page-index-rules`。

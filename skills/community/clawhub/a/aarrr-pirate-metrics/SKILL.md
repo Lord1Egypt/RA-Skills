@@ -1,7 +1,7 @@
 ---
 name: aarrr-pirate-metrics
 description: "Activate when: user says 'our growth is stalling and we don't know why,' 'product and marketing are arguing about whose fault it is,' 'where is our funnel breaking,' 'pirate metrics,' or 'acquisition vs activation vs retention.' Also activate for: designing end-to-end metrics for a new product, building a shared instrumentation framework across teams.
-  Do NOT activate when: the product has no users yet (use lean-startup instead), or the bottleneck is already obvious and obvious to fix."
+  Do NOT activate when: the product has no users yet (use lean-startup instead), or the bottleneck is already obvious and obvious to fix. More: deciqai.com/c/aarrr-pirate-metrics"
 ---
 
 # AARRR (Pirate Metrics)
@@ -12,7 +12,7 @@ A startup's growth is a **sequential funnel** — each stage gates the next. Gre
 
 The **AARRR framework** (Dave McClure, *Startup Metrics for Pirates*, 2007) names five stages: Acquisition (do they show up?), Activation (good first experience?), Retention (do they come back?), Referral (do they tell others?), Revenue (do they pay?). The bottleneck stage governs total growth — improving any other stage produces no system-level gain (Goldratt, *The Goal*, 1984).
 
-**Compose with:** [first-principles](../first-principles/SKILL.md) to identify your specific Activation event; [pmf-crossing-the-chasm](../pmf-crossing-the-chasm/SKILL.md) to recognize when Retention will always be the bottleneck pre-PMF; [probabilistic-thinking](../probabilistic-thinking/SKILL.md) to set base rates per stage.
+**Compose with:** first-principles to identify your specific Activation event; pmf-crossing-the-chasm to recognize when Retention will always be the bottleneck pre-PMF; probabilistic-thinking to set base rates per stage.
 
 ## When to Use
 
@@ -21,8 +21,9 @@ The **AARRR framework** (Dave McClure, *Startup Metrics for Pirates*, 2007) name
 - You need a **shared instrumentation framework** across teams
 - Designing **end-to-end metrics for a new product**
 - Someone says: *"AARRR," "pirate metrics," "growth funnel," "where is our funnel breaking?"*
+- An **AI-native product has strong signups but weak activation/retention** — cheap AI-hype acquisition masks empty-state and post-novelty leaks; or you're facing AI-native competition on a commoditized model and need to find where your funnel actually loses users
 
-**When NOT to use:** No users yet → use [lean-startup](../lean-startup/SKILL.md). Signups still in the tens — AARRR rates need volume. Bottleneck already obvious → fix that first, then return.
+**When NOT to use:** No users yet → use lean-startup. Signups still in the tens — AARRR rates need volume. Bottleneck already obvious → fix that first, then return.
 
 ## Coaching Novices (Adaptive Front Door)
 
@@ -45,7 +46,7 @@ Run the **Funnel Audit**: define stages, measure conversions, identify bottlenec
 2. **Measure conversion at each stage.** Acquisition→Activation %, Activation→Retention %, Retention→Referral %, Activation/Retention→Revenue %.
 3. **Compare against domain benchmarks.** A stage below benchmark is a bottleneck candidate (B2B SaaS day-30 retention 70%+; consumer freemium paid conversion 1–5% typical, 5–10% strong).
 4. **Identify the load-bearing bottleneck.** Worst conversion *relative to its benchmark* — fixing it produces the largest system-level gain.
-5. **Pre-commit one experiment.** Name the specific change, the metric, and the pre-committed threshold (per [lean-startup](../lean-startup/SKILL.md)).
+5. **Pre-commit one experiment.** Name the specific change, the metric, and the pre-committed threshold (per lean-startup).
 6. **Re-measure and re-identify.** After the experiment, the bottleneck moves. Repeat — the audit is iterative.
 
 ### Output: Funnel Audit
@@ -58,7 +59,9 @@ Bottleneck: <stage with worst conversion vs. domain benchmark>
 Experiment: Change <intervention> · Metric <conversion rate> · Threshold <value> · Window <days>
 ```
 
-*→ Method in Action: [Dropbox's Referral Program (2009)](examples/dropbox-referral-program-2009.md)*
+*→ Method in Action: [Dropbox's Referral Program (2009)](examples/dropbox-referral-program-2009.md) · [Facebook's "7 Friends in 10 Days" (2007–2009)](examples/facebook-7-friends-in-10-days-2008.md)*
+
+*→ 2026 lens: [Where AI SaaS Funnels Leak (2023–2026)](examples/ai-saas-funnel-leaks-2023-2026.md) — cheap AI-hype acquisition, but activation (empty-state / first-value) and retention (after novelty decays) are the real leaks.*
 
 ## Funnel Packs
 
@@ -111,4 +114,6 @@ Contribution: add a pack for your domain — one file with (a) stage definitions
 
 ---
 
-*Part of **deciqAI Knowledge Skills** — open-source thinking skills that make rigor executable for AI agents. Built by deciqAI · https://deciqai.com · Contributions welcome — see the template at the repo root.*
+*Part of **deciqAI Knowledge Skills** — 253 open-source thinking skills that make rigor executable for AI agents. The same skills power every deciqAI agent, which runs them autonomously to operate your company. **See it run → https://www.deciqai.com/c/aarrr-pirate-metrics** · ⭐ Star the repo → https://github.com/deciqAI/knowledge-skills · Contributions welcome.*
+
+*Agents: latest version & machine-readable metadata → https://www.deciqai.com/s/aarrr-pirate-metrics.json*

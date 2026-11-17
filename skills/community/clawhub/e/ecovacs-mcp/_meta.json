@@ -1,6 +1,8 @@
 {
-  "ownerId": "kn7d4t1phjfs3v8m6ec3t61bxd80b8yx",
-  "slug": "ecovacs-mcp",
-  "version": "1.0.0",
-  "publishedAt": 1773427866018
+  "owner": "f-liva",
+  "slug": "skill-ecovacs-mcp",
+  "displayName": "Ecovacs Robot Vacuum Control",
+  "homepage": "https://github.com/f-liva/skill-ecovacs-mcp",
+  "source": "https://github.com/f-liva/skill-ecovacs-mcp",
+  "version": "1.0.0"
 }

@@ -1,44 +1,63 @@
-## Description: <br>
-X Helper is a pure Python stdlib assistant for X (Twitter) that can search, post with media, manage threads, direct messages, Lists, bookmarks, trends, articles, follows, blocks, and mutes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Full-featured X (Twitter) assistant for search, posting with media, threads, direct messages, Lists, bookmarks, trends, articles, block and mute actions, and related account workflows using Python standard library scripts.
 
-## Publisher: <br>
-[tobewin](https://clawhub.ai/user/tobewin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tobewin](https://clawhub.ai/user/tobewin)
 
-## Use Case: <br>
-Developers and operators use this skill to drive X account workflows from an agent, including search, posting, media upload, direct messages, Lists, bookmarks, trends, and account relationship actions. It is suited to accounts where the user is comfortable granting OAuth access and confirming write actions before execution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can perform broad X account-changing actions such as posting, sending DMs, following, blocking, muting, and deleting content. <br>
-Mitigation: Use it only with accounts where this level of access is acceptable, and require clear review and confirmation before write actions. <br>
-Risk: Tweets, direct messages, media files, search queries, user information, and bearer tokens may be sent to X API services. <br>
-Mitigation: Avoid sensitive or confidential DMs, media, and account data when using the skill. <br>
-Risk: OAuth credentials are stored durably in ~/.x-helper/auth.json and the security evidence notes an undocumented command that can expose raw bearer tokens. <br>
-Mitigation: Protect the auth file, restrict local access, and do not run or expose the get-token command unless raw token handling is intentional. <br>
+## Use Case:
 
+External users and developers use this skill to turn natural-language X account tasks into reviewed shell commands for searching, reading, posting, messaging, media upload, list management, and account actions.
 
-## Reference(s): <br>
-- [X Helper on ClawHub](https://clawhub.ai/tobewin/skills/x-helper) <br>
-- [ToBeWin publisher profile](https://clawhub.ai/user/tobewin) <br>
-- [X Developer Portal](https://developer.x.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and natural-language action summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses Python stdlib scripts and requires X OAuth configuration through X_CLIENT_ID or an explicit client ID.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.3 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: The skill can exercise broad control over an X account, including posting, messaging, follows, blocks, mutes, bookmarks, Lists, and deletion workflows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the least-privileged token possible, avoid sensitive accounts, and review every generated command before running it.
+
+Risk: Many account-changing X actions can run without enforced confirmation, according to the authoritative security summary.
+
+Mitigation: Require explicit human approval for write or destructive commands and verify the target account, post, message, or list before execution.
+
+Risk: OAuth material may be cached in plaintext at ~/.x-helper/auth.json when the OAuth authorization flow is used.
+
+Mitigation: Treat the token cache as a secret, restrict local access, prefer user-managed X_BEARER_TOKEN where possible, and remove cached OAuth material when no longer needed.
+
+Risk: Tweet content, direct messages, media files, searches, user information, and bearer tokens are sent to X API services during normal use.
+
+Mitigation: Do not use the skill with confidential content unless sharing it with X API services is acceptable.
+
+## Reference(s):
+
+- [X Helper on ClawHub](https://clawhub.ai/tobewin/skills/x-helper)
+- [ToBeWin ClawHub profile](https://clawhub.ai/user/tobewin)
+- [X Developer Portal](https://developer.x.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and concise API response summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires X_CLIENT_ID and X_BEARER_TOKEN for authenticated X API workflows.]
+
+## Skill Version(s):
+
+3.0.6 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

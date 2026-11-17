@@ -1,42 +1,58 @@
-## Description: <br>
-查询唯品会商品详情，并根据商品ID或商品链接汇总价格、折扣、图片、服务保障、正品信息、用户评价和商品链接。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Queries Vipshop product details by product ID or product link and returns structured product information including pricing, discounts, images, reviews, brand information, and product links after Vipshop login.
 
-## Publisher: <br>
-[vip](https://clawhub.ai/user/vip) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vip](https://clawhub.ai/user/vip)
 
-## Use Case: <br>
-Vipshop shoppers and shopping assistants use this skill to retrieve structured product details for a specific item and present them as a concise Markdown summary. It is useful when comparing prices, discounts, service guarantees, images, reviews, and purchase links for a Vipshop product. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads Vipshop login tokens from the user's home directory and sends session cookies to Vipshop. <br>
-Mitigation: Install and run it only when comfortable sharing a Vipshop session with the skill, and review the security guidance before use. <br>
-Risk: The skill can install or invoke a separate login helper. <br>
-Mitigation: Confirm the login helper source and behavior before allowing the automated login flow. <br>
-Risk: Generated exchange-token links may contain sensitive session material. <br>
-Mitigation: Do not share generated auto-login or exchange-token links. <br>
+## Use Case:
 
+External users and shopping assistants use this skill to look up Vipshop product details from a product ID or link and present a concise shopping summary with product images, prices, discounts, service tags, authenticity information, reviews, and a product link.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/vip/vip-product-detail) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown summary derived from JSON product data] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Vipshop product ID or product link and a valid Vipshop login session.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Generated product links may include exchange-token data that can expose Vipshop account access if shared or displayed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not publish or forward generated product links that contain exchange-token parameters; prefer ordinary product detail links and refresh or revoke the Vipshop login session if such links were shared.
+
+Risk: The skill automatically reads stored Vipshop login tokens and may trigger or install a login dependency.
+
+Mitigation: Require explicit user approval before installing or invoking login flows, and verify the dependency identity before use.
+
+Risk: The skill depends on Vipshop network APIs and a valid login state, so results may fail or be incomplete when tokens expire or auxiliary endpoints are unavailable.
+
+Mitigation: Handle token-expired and endpoint-failure responses clearly, reauthenticate through a verified login flow, and fall back to main product information when auxiliary data is unavailable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/vip/skills/vip-product-detail)
+- [Vipshop product detail API endpoint](https://mapi-pc.vip.com/vips-mobile/rest/shopping/skill/detail/main/v6)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, guidance]
+
+**Output Format:** [Markdown product summary backed by JSON script output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Vipshop login state and network access; auxiliary product detail data may be unavailable and the skill can fall back to main product information.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,54 @@
-## Description: <br>
-Linkbox is a local reference skill for devtools topics, covering intro, quickstart, patterns, debugging, performance, security, migration, and cheatsheet guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reference tool for devtools - covers intro, quickstart, patterns and more, with quick lookup for Linkbox concepts, best practices, and implementation patterns.
 
-## Publisher: <br>
-[bytesagain3](https://clawhub.ai/user/bytesagain3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain3](https://clawhub.ai/user/bytesagain3)
 
-## Use Case: <br>
-Developers and engineers use Linkbox to quickly print local reference documentation for Linkbox and devtools workflows without requiring API keys, credentials, network access, or external services. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Reference content may be generic or stale for a user's actual Linkbox environment. <br>
-Mitigation: Use the output as quick-reference guidance and verify operational changes against the user's project documentation before applying them. <br>
-Risk: Future versions could add credentials, dependency installation, network calls, or system changes. <br>
-Mitigation: Review release security evidence and artifact behavior before installing or updating beyond this clean local documentation helper release. <br>
+## Use Case:
 
+Developers and engineers use this skill to retrieve local Linkbox reference guidance for devtools workflows, including quickstart, patterns, debugging, performance, security, migration, and cheatsheet topics.
 
-## Reference(s): <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
-- [Linkbox on ClawHub](https://clawhub.ai/bytesagain3/linkbox) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Plain text with Markdown-style headings, lists, tables, and checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Local heredoc output; no credentials, network access, or external API calls are required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The bundled reference content is generic and may not match a user's production environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the guidance against current project requirements and authoritative Linkbox documentation before applying operational changes.
+
+Risk: Users could mistake the included security checklist for a complete security review.
+
+Mitigation: Use the checklist as a starting point and perform environment-specific security validation before deployment.
+
+## Reference(s):
+
+- [Linkbox ClawHub skill page](https://clawhub.ai/bytesagain3/skills/linkbox)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Plain text reference documentation with Markdown headings and tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Local static documentation; no external API calls, credentials, or network access.]
+
+## Skill Version(s):
+
+2.0.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

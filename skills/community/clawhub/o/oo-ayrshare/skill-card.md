@@ -1,42 +1,57 @@
-## Description: <br>
-Ayrshare helps agents manage social posting workflows, including reading, creating, updating, validating, scheduling, and deleting posts through a connected account. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use the Ayrshare connector to inspect account and post data, validate content, publish or schedule posts, and manage existing posts.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and external users use this skill to operate an Ayrshare-connected social posting account from an agent, including post publishing, validation, analytics, history lookup, profile access, updates, retries, and deletion. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Write and destructive Ayrshare actions can affect public or scheduled social media content. <br>
-Mitigation: Review payloads carefully and require explicit user confirmation before publishing, updating, retrying, or deleting posts. <br>
-Risk: The skill depends on an OOMOL-connected Ayrshare account and may fail when authentication, connection scope, app readiness, or billing is missing. <br>
-Mitigation: Use the documented first-time setup or billing steps only after a command fails with the matching error. <br>
+## Use Case:
 
+Developers and social media operators use this skill to inspect an Ayrshare account, review post history and analytics, validate content, and publish, schedule, update, retry, or delete posts through a connected account.
 
-## Reference(s): <br>
-- [ClawHub Ayrshare skill page](https://clawhub.ai/oomol/skills/oo-ayrshare) <br>
-- [Ayrshare homepage](https://www.ayrshare.com/) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON payload examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May execute Ayrshare connector actions through the oo CLI when the agent has user approval and the account is connected.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata and skill metadata) <br>
+Risk: The setup flow can execute downloaded CLI installers and may make persistent changes to other agent applications through startup skill synchronization.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and explicitly approve CLI installation first, preferably using a verified, pinned release; decide whether to disable startup skill synchronization.
+
+Risk: Publishing, retrying, updating, or deleting posts can change or remove social media content.
+
+Mitigation: Review the exact action and payload before publishing, and confirm the target before destructive actions.
+
+## Reference(s):
+
+- [ClawHub Ayrshare skill release](https://clawhub.ai/oomol/skills/oo-ayrshare)
+- [Ayrshare API documentation](https://www.ayrshare.com/docs/apis/overview)
+- [Ayrshare homepage](https://www.ayrshare.com/)
+- [oo CLI repository](https://github.com/oomol-lab/oo-cli)
+- [oo CLI installation guide](https://cli.oomol.com/install-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Shell commands, Guidance]
+
+**Output Format:** [JSON connector responses and shell command examples, with Markdown guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Connector responses depend on the selected Ayrshare action and account data.]
+
+## Skill Version(s):
+
+1.0.8 (source: ClawHub release metadata, frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

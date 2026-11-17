@@ -1,44 +1,59 @@
-## Description: <br>
-Uses Playwright to help an agent back up Weibo favorites, personal posts, or other users' posts, including images, optional videos, long articles, and Markdown navigation links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Uses Playwright to help an agent back up Weibo favorites, personal posts, or other users' posts as Markdown with optional images, videos, and long articles.
 
-## Publisher: <br>
-[hhjin](https://clawhub.ai/user/hhjin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hhjin](https://clawhub.ai/user/hhjin)
 
-## Use Case: <br>
-External users and developers use this skill to run a local Playwright workflow that archives authorized Weibo favorites, personal timelines, or selected public profiles into Markdown with local media folders. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can save reusable Weibo login cookies and browser profile data locally. <br>
-Mitigation: Use a dedicated browser profile and protect or delete cookies.json and browser_data after use. <br>
-Risk: Browser-session access can expose more account state than the intended backup task requires. <br>
-Mitigation: Set a clear target URL and download limit, and only archive content you are authorized to retain. <br>
-Risk: The --connect-browser option can control an already-running browser session. <br>
-Mitigation: Avoid --connect-browser unless the operator understands the browser-control risk and has isolated the session. <br>
+## Use Case:
 
+Users and agents use this skill to preserve Weibo favorites, personal timelines, or selected public creator posts for local review and archival workflows. It is intended for personal data backup or focused content backup, not large-scale commercial data collection.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/hhjin/weibo-backup) <br>
-- [Publisher Profile](https://clawhub.ai/user/hhjin) <br>
-- [ModelScope Skill Page](https://www.modelscope.cn/skills/hhjinhh/weibo-data-backup) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Markdown, Files] <br>
-**Output Format:** [Markdown guidance with bash commands; downloaded Weibo content is saved as Markdown files with local media directories.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create cookies.json, browser_data, output/pictures, output/videos, and output/articles under the skill or chosen output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill handles Weibo login cookies and account-linked browsing data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an isolated browser profile, keep cookies.json and output folders out of shared or synced locations, and prefer --no-save-cookies when persistent cookies are not needed.
+
+Risk: Connecting to a normal browser over CDP can expose broader browser state than the backup task requires.
+
+Mitigation: Avoid connecting the skill to a regular personal browser; use a dedicated profile or browser session for Weibo backup work.
+
+Risk: Video downloads can fetch large media files and currently depend on page-provided media URLs.
+
+Mitigation: Use conservative download limits, review available storage before large runs, and avoid --download-video on untrusted pages until URL and redirect allowlisting is added.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hhjin/skills/weibo-backup)
+- [ModelScope skill package](https://www.modelscope.cn/skills/hhjinhh/weibo-data-backup)
+- [Weibo](https://weibo.com)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, files, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown files and downloaded media files, with agent-facing setup guidance and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local output directories for Markdown, pictures, videos, articles, browser profile data, and cookies depending on selected options.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

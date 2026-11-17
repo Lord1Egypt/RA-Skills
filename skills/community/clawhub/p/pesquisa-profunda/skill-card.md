@@ -1,37 +1,55 @@
-## Description: <br>
-Pesquisa profunda com pipeline de 8 fases: escopo, planejamento, recuperação, triangulação, síntese, crítica, refinamento e empacotamento. Relatórios com citações verificadas. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pesquisa profunda com pipeline de 8 fases: escopo, planejamento, recuperacao, triangulacao, sintese, critica, refinamento e empacotamento, com relatorios que incluem citacoes verificadas.
 
-## Publisher: <br>
-[engsathiago](https://clawhub.ai/user/engsathiago) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[engsathiago](https://clawhub.ai/user/engsathiago)
 
-## Use Case: <br>
-External users and developers use this Portuguese-language skill to structure deep research tasks into scoping, planning, retrieval, triangulation, synthesis, critique, refinement, and final report packaging. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Research output can include incorrect, incomplete, or misleading source interpretation, especially for high-stakes topics. <br>
-Mitigation: Review important sources manually and provide the preferred language, region, and scope before using the workflow. <br>
+## Use Case:
 
+External users and developers use this skill to guide an agent through a structured Portuguese research workflow, from scoping and source retrieval through triangulation, synthesis, critique, refinement, and final reporting.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown research reports with citations, methodology, limitations, and executive summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only workflow; users should review important sources themselves for legal, medical, financial, or other high-stakes topics.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata and skill frontmatter) <br>
+Risk: Research output can still be incomplete or misleading if source quality is weak or citations are not checked.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill's triangulation and critique phases to compare multiple reliable sources, identify contradictions, and preserve citations in the final report.
+
+Risk: The workflow is Portuguese-oriented and focused on Brazilian examples, which may not match another language or regional context.
+
+Mitigation: Ask the agent to use the desired language, geography, and source mix explicitly when applying the workflow outside a Brazilian Portuguese context.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/engsathiago/skills/pesquisa-profunda)
+- [Skill homepage](https://github.com/eve-agent/pesquisa-profunda)
+- [Support issues](https://github.com/eve-agent/pesquisa-profunda/issues)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown research report with citations, methodology, limitations, and an executive summary]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Portuguese-oriented research workflow; security evidence reports no executable code, persistence, credential handling, or hidden high-impact behavior.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence, SKILL.md frontmatter, clawhub.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,54 @@
-## Description: <br>
-Turn your session history into publish-ready stories: an embedded AI journalist reviews conversations and writes narrative dispatches for LinkedIn, Twitter/X, Instagram, and blogs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Chronicler turns OpenClaw session history into publish-ready narrative dispatches for LinkedIn, Twitter/X, Instagram, and blogs.
 
-## Publisher: <br>
-[moltbotmolty-del](https://clawhub.ai/user/moltbotmolty-del) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[moltbotmolty-del](https://clawhub.ai/user/moltbotmolty-del)
 
-## Use Case: <br>
-Developers, creators, and teams use Chronicler to turn local OpenClaw session transcripts produced by the chat-memory skill into recurring social and blog-ready narrative dispatches. It is intended for drafting publishable content, with manual review before sharing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Saved chat transcripts may contain private or identifying details that could be converted into publishable drafts. <br>
-Mitigation: Review the chat-memory dependency separately and manually inspect every generated dispatch before publishing or sharing it. <br>
-Risk: The cron job repeatedly processes local transcript files, so unwanted or stale settings can continue generating drafts. <br>
-Mitigation: Track the chronicle-reporter cron job and periodically review its schedule, model, state file, and output directory. <br>
+## Use Case:
 
+External users and developers use this skill to convert OpenClaw session transcripts into reviewable social and blog-ready narrative content while preserving a running chronicle.
 
-## Reference(s): <br>
-- [Chronicler on ClawHub](https://clawhub.ai/moltbotmolty-del/chronicler) <br>
-- [AI Advantage](https://aiadvantage.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates or updates local chronicle files and configures an OpenClaw cron job that appends dispatches over time.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill processes broad private session history and can turn it into draft public content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only transcript ranges that are safe to send to the configured model, sanitize sensitive sessions first, and review every dispatch before posting.
+
+Risk: A recurring cron job may continue processing future session transcripts after initial setup.
+
+Mitigation: Confirm the cron schedule, keep the chat-memory dependency's scheduled tasks visible, and know how to list, pause, or remove both jobs.
+
+## Reference(s):
+
+- [Chronicler on ClawHub](https://clawhub.ai/moltbotmolty-del/skills/chronicler)
+- [AI Advantage](https://aiadvantage.ai)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash commands and JSON snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces chronicle files, reporter state, and recurring cron-job guidance when followed.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

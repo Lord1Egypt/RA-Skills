@@ -1,49 +1,54 @@
-## Description: <br>
-Agency Agents Main is a role-switching skill pack that lets an agent activate specialized professional personas across engineering, design, business, support, finance, strategy, and other domains. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+The Agency activates specialized professional roles, such as frontend developer, sales agent, or marketing specialist, when a user asks the agent to switch roles.
 
-## Publisher: <br>
-[keda118228-dev](https://clawhub.ai/user/keda118228-dev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[keda118228-dev](https://clawhub.ai/user/keda118228-dev)
 
-## Use Case: <br>
-Developers, operators, and business users use this skill to switch an assistant into a specialized role for domain-specific guidance, drafting, code work, research, workflow design, and operational planning. It can also serve as a reusable roster of prompt-defined agents for multiple CLI and coding-assistant integrations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Some roles can guide external API use, social-account publishing, scheduling, or account changes. <br>
-Mitigation: Require explicit human approval before posts, purchases, account updates, scheduling actions, or other external side effects. <br>
-Risk: Some roles and integrations may require OAuth tokens, sensitive credentials, wallet access, or other privileged configuration. <br>
-Mitigation: Use least-privilege credentials, keep secrets out of prompt files, and avoid enabling wallet or credential-backed actions unless the execution environment enforces approval gates. <br>
-Risk: The artifact includes shell scripts and role prompts that may produce local file edits, shell commands, or generated code. <br>
-Mitigation: Review scripts and generated code before execution, run commands in a controlled workspace, and avoid applying broad file changes without a diff review. <br>
-Risk: The optional memory integration can persist project context across sessions. <br>
-Mitigation: Enable persistent memory only with a trusted MCP server, restrict stored data to non-sensitive context, and review memory contents before reuse across projects. <br>
+## Use Case:
 
+Developers and other agent users use this meta-skill to activate domain-specific professional personas and workflows from the bundled role files. It is intended for role-guided responses, plans, code, configuration, analysis, and operational guidance across engineering, business, design, testing, and specialized domains.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/keda118228-dev/agency-agents-main) <br>
-- [README](artifact/README.md) <br>
-- [Skill definition](artifact/SKILL.md) <br>
-- [Security policy](artifact/SECURITY.md) <br>
-- [MCP memory integration](artifact/integrations/mcp-memory/README.md) <br>
-- [Installation script](artifact/scripts/install.sh) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with optional code blocks, shell commands, and configuration snippets.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs depend on the activated role and may include plans, reviews, implementation guidance, commands, configuration examples, or draft deliverables.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Broad role switching can activate roles that publish content, move money, change production routing, persist memory, remediate data, or propose unsafe code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Enable only required roles and require human approval, credential scoping, audit logs, data redaction, rollback planning, and environment isolation for high-impact actions.
+
+Risk: Generated role guidance may be inaccurate or unsuitable for a specific business, legal, security, or production context.
+
+Mitigation: Review outputs before execution, especially commands, code, payment actions, public publishing, and production changes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/keda118228-dev/skills/agency-agents-main)
+- [ClawHub publisher profile](https://clawhub.ai/user/keda118228-dev)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown or plain text with optional code, configuration, and shell command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs vary by activated role and should be reviewed before execution or operational use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, created 2026-04-26)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

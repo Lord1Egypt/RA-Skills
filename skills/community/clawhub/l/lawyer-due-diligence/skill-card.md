@@ -1,42 +1,56 @@
-## Description: <br>
-Professional Chinese legal due diligence report writer covering 11 standard modules for M&A, investment, IPO, and company compliance review. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Professional Chinese legal due diligence report writer for structured M&A, investment, IPO, and company compliance review reports.
 
-## Publisher: <br>
-[wangfromchu-ai](https://clawhub.ai/user/wangfromchu-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangfromchu-ai](https://clawhub.ai/user/wangfromchu-ai)
 
-## Use Case: <br>
-Legal professionals and transaction teams use this skill to draft structured Chinese legal due diligence reports for M&A, investment, IPO, or targeted company compliance reviews. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Confidential transaction materials or company records may be sensitive. <br>
-Mitigation: Limit uploaded materials to what is necessary and protect confidential deal data throughout drafting and review. <br>
-Risk: Generated legal analysis may contain incomplete facts, outdated law, or unsupported conclusions. <br>
-Mitigation: Verify facts, cited law, and risk ratings against source materials, and have qualified legal counsel review outputs before using them in a deal or formal decision. <br>
+## Use Case:
 
+Legal, compliance, and transaction teams use this skill to draft Chinese legal due diligence reports, check due diligence materials, grade risks, and produce action-oriented recommendations for M&A, investment, IPO, or special-purpose reviews.
 
-## Reference(s): <br>
-- [法律尽职调查清单](references/checklist.md) <br>
-- [律师尽职调查 - 各模块要点指引](references/dd-modules.md) <br>
-- [律师尽职调查报告 - 标准结构](references/report-structure.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Files, Guidance] <br>
-**Output Format:** [Structured Chinese Markdown report, with optional DOCX conversion guidance when requested] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes module-by-module legal analysis, risk grading, and actionable recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Sensitive company records may be shared during due diligence drafting.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and minimize confidential materials before sharing them with an agent, and follow the organization's confidentiality and data handling requirements.
+
+Risk: Generated legal conclusions or citations may be incomplete or outdated.
+
+Mitigation: Have qualified counsel verify legal conclusions, current law, cited authorities, and transaction-specific recommendations before relying on the report.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wangfromchu-ai/skills/lawyer-due-diligence)
+- [Due diligence checklist](artifact/references/checklist.md)
+- [Due diligence modules guide](artifact/references/dd-modules.md)
+- [Report structure guide](artifact/references/report-structure.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Structured Chinese legal due diligence report in Markdown, with optional DOCX conversion guidance when requested.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes module-by-module findings, legal analysis, risk grading, and actionable recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

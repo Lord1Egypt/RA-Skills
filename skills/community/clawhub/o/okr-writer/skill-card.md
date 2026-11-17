@@ -1,41 +1,54 @@
-## Description: <br>
-A professional OKR writing assistant that generates clear and concise Objectives, Key Results, action plans, and timelines from work objectives. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A professional OKR writing assistant that generates clear and concise OKRs based on work objectives, including Objectives, Key Results, action plans, and timelines.
 
-## Publisher: <br>
-[openlark](https://clawhub.ai/user/openlark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[openlark](https://clawhub.ai/user/openlark)
 
-## Use Case: <br>
-Employees, managers, and planning teams use this skill to draft quarterly or annual OKRs from work objectives, including measurable Key Results, action plans, timelines, and responsible parties when known. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may include confidential company strategy, personnel details, or sensitive metrics in OKR prompts. <br>
-Mitigation: Avoid pasting sensitive information unless it is appropriate for the active chat context. <br>
-Risk: Generated OKRs may be misaligned, unclear, or use unsuitable metrics for the organization. <br>
-Mitigation: Review objectives, Key Results, timelines, and responsible parties before using the output for planning or performance tracking. <br>
+## Use Case:
 
+Employees and teams use this skill to draft quarterly or annual OKRs from work objectives, with measurable Key Results, action plans, timelines, and responsible parties when known.
 
-## Reference(s): <br>
-- [Okr Writer on ClawHub](https://clawhub.ai/openlark/okr-writer) <br>
-- [OpenLark publisher profile](https://clawhub.ai/user/openlark) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown OKR body with objectives, measurable key results, action plan tables, timelines, and optional notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Defaults to quarterly OKRs when no period is specified; outputs only the OKR body without descriptive commentary.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Users may include sensitive business goals, owner names, or internal metrics in prompts while drafting OKRs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Share only the information needed for drafting and remove confidential details when a generalized OKR is sufficient.
+
+Risk: Generated OKRs may be misaligned with actual strategy, ownership, or measurement definitions.
+
+Mitigation: Review the drafted objectives, Key Results, timelines, and responsible parties before using them for planning or performance tracking.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/openlark/skills/okr-writer)
+- [Publisher profile](https://clawhub.ai/user/openlark)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown OKR body]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Defaults to a quarterly period when the user does not specify one; outputs only the OKR body without descriptive commentary.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

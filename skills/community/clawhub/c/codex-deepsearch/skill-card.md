@@ -1,41 +1,58 @@
-## Description: <br>
-Guides Codex through deep, source-backed research workflows with evidence separation, source and claim ledgers, review gates, privacy-safe repository handling, and readiness decisions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides Codex through deep, source-backed research with local, web, and user-provided evidence separation, tool-limit disclosure, source and claim ledgers, review gates, privacy-safe repository handling, and optional worker delegation.
 
-## Publisher: <br>
-[shaoqing404](https://clawhub.ai/user/shaoqing404) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shaoqing404](https://clawhub.ai/user/shaoqing404)
 
-## Use Case: <br>
-Developers, researchers, and technical decision makers use this skill when Codex needs to perform evidence-heavy research, architecture discovery, product or API analysis, or research that may become a plan, specification, roadmap, PRD, or engineering input. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may guide an agent to inspect local repository files or make user-requested documentation or skill-file edits. <br>
-Mitigation: Use it only with explicit workspace authority, keep edits scoped to the requested project or research directory, and review changes before relying on them. <br>
-Risk: Research outputs can be misleading if claims are based on incomplete, stale, or snippet-only evidence. <br>
-Mitigation: Maintain source and claim ledgers, label uncertainty, check counter-evidence, and run the review gate before treating outputs as decision-ready. <br>
+## Use Case:
 
+Developers, engineers, and research-focused agents use this skill to plan, conduct, review, and hand off evidence-heavy research that may become a specification, roadmap, product decision, PRD, or engineering input.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/shaoqing404/skills/codex-deepsearch) <br>
-- [Server-resolved GitHub source](https://github.com/shaoqing404/codex-deepsearch/tree/main/plugins/codex-deepsearch/skills/codex-deepsearch) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown reports, ledgers, status labels, and optional code or configuration changes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Final status is reported as DONE, DONE_WITH_CONCERNS, NEEDS_CONTEXT, or BLOCKED.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill may guide an agent to read local project files, browse current sources, create research documents, or delegate work when permitted.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Apply the skill's stated privacy boundaries, require explicit authorization for private or ignored files, and keep the main agent responsible for final review and acceptance.
+
+Risk: The inspected artifact references supporting files under references/ and templates/ that are not included in the artifact.
+
+Mitigation: Review the missing referenced materials before relying on those detailed workflows, templates, or review gates.
+
+Risk: Research outputs can contain stale, snippet-only, or insufficiently verified claims.
+
+Mitigation: Use source and claim ledgers, label claim reliability, disclose tool limits, check counter-evidence, and surface unresolved gaps in the final status.
+
+## Reference(s):
+
+- [Server-resolved GitHub provenance](https://github.com/shaoqing404/codex-deepsearch/tree/main/plugins/codex-deepsearch/skills/codex-deepsearch)
+- [ClawHub skill page](https://clawhub.ai/shaoqing404/skills/codex-deepsearch)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports, ledgers, checkpoints, implementation guidance, and status labels]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include DONE, DONE_WITH_CONCERNS, NEEDS_CONTEXT, or BLOCKED status labels and explicit uncertainty notes.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

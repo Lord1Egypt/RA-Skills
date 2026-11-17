@@ -1,40 +1,58 @@
-## Description: <br>
-AI diary service - push diary entries, query diaries, get AI analysis and cover images via HTTP API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI diary service - push diary entries, query diaries, get AI analysis and cover images via HTTP API.
 
-## Publisher: <br>
-[fengye607](https://clawhub.ai/user/fengye607) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[fengye607](https://clawhub.ai/user/fengye607)
 
-## Use Case: <br>
-External users and agents use this skill to save, retrieve, analyze, and fetch cover images for diary entries through the publisher's HTTP API. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Diary requests and content are sent to an external diary API operated at image.yezishop.vip. <br>
-Mitigation: Use the skill only if you trust that service and are comfortable sending the diary content involved in each request. <br>
-Risk: AI_DIARY_TOKEN is long-lived, tied to a Feishu account, and used directly in API URLs. <br>
-Mitigation: Keep the token private, avoid exposing it in logs, shell history, or committed files, and regenerate it in diary settings if it is exposed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fengye607/cyber-luban-diary) <br>
-- [Diary service authorization endpoint](https://image.yezishop.vip/api/openclaw/auth-redirect) <br>
+## Use Case:
 
+External users and agents use this skill to save diary entries, retrieve diary records, request AI-generated diary analysis, and fetch diary cover images through an HTTP API.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API Calls, JSON, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl, jq, and AI_DIARY_TOKEN.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Diary entries, dates, AI-analysis requests, and the Feishu-linked token are sent to image.yezishop.vip.
+
+Mitigation: Use the skill only for diary content appropriate for that external service, and avoid submitting secrets or highly sensitive personal information.
+
+Risk: The API token is long-lived and tied to a Feishu account.
+
+Mitigation: Store AI_DIARY_TOKEN securely, avoid logging or sharing it, and rotate the token if it may have been exposed.
+
+Risk: Privacy, retention, deletion, and AI-provider details are not fully disclosed in the evidence.
+
+Mitigation: Review the service operator's privacy and credential-handling information before installing or using the skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fengye607/skills/cyber-luban-diary)
+- [Publisher profile](https://clawhub.ai/user/fengye607)
+- [Feishu authorization endpoint](https://image.yezishop.vip/api/openclaw/auth-redirect)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl, jq, and AI_DIARY_TOKEN.]
+
+## Skill Version(s):
+
+1.2.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

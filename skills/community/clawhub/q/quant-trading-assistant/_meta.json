@@ -1,6 +1,10 @@
 {
-  "ownerId": "kn72a3kqhw330jbwe6g1q9hen582whqp",
-  "slug": "quant-trading-assistant",
+  "name": "quant-trading-assistant",
   "version": "1.0.1",
-  "publishedAt": 1774145443245
+  "description": "量化交易助手 - A股技术分析+量化选股",
+  "author": "dxie48892-jpg",
+  "tags": ["trading", "stock", "quantitative", "a-stock", "china", "analysis"],
+  "license": "MIT",
+  "homepage": "https://clawhub.com",
+  "source": "https://clawhub.com/skills/quant-trading-assistant"
 }

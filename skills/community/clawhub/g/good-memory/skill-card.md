@@ -1,42 +1,57 @@
-## Description: <br>
-Good Memory restores OpenClaw session context after resets by detecting prior session files and reinserting recent conversation history. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Good Memory restores recent OpenClaw session history after a reset or session rotation so an agent can continue with prior conversation context.
 
-## Publisher: <br>
-[acilgit](https://clawhub.ai/user/acilgit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[acilgit](https://clawhub.ai/user/acilgit)
 
-## Use Case: <br>
-OpenClaw users and operators use this skill to recover recent chat context when sessions are reset, rotated, or restarted. It is intended for environments where automatic restoration of prior conversation history is desired. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill automatically reads and reinserts prior session history, which may expose sensitive chat content in the active context. <br>
-Mitigation: Use only in trusted, single-user OpenClaw environments or add explicit opt-in and session-scope controls before deployment. <br>
-Risk: The installer persists startup behavior by modifying AGENTS.md and maintaining a session tracker. <br>
-Mitigation: Review installer changes before use, back up AGENTS.md, restrict tracker access, and provide a clear disable and deletion path. <br>
-Risk: Automatic restoration can cross session boundaries if the deployment is shared or mis-scoped. <br>
-Mitigation: Avoid shared agents and sensitive workflows unless session ownership is validated and restoration is limited to the intended user or chat. <br>
+## Use Case:
 
+External users and developers of OpenClaw use this skill to restore recent conversation context after a session reset or rotation. It is intended for OpenClaw environments where automatic session-start recovery is acceptable.
 
-## Reference(s): <br>
-- [Good Memory ClawHub page](https://clawhub.ai/acilgit/good-memory) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text and Markdown with inline shell commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May emit recovered conversation excerpts from recent OpenClaw session history.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release metadata, artifact frontmatter, and _meta.json) <br>
+Risk: Automatic recovery can replay prior chat content into later sessions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Enable automatic recovery only with informed user or administrator approval, and limit restored history to the minimum context needed.
+
+Risk: The advertised one-line installer and persistence changes can modify local agent startup behavior.
+
+Mitigation: Install only from a pinned, locally reviewed archive with a verified hash, review AGENTS.md changes before use, and keep a clear uninstall or rollback path.
+
+Risk: Trackers and logs may expose session paths or recovered conversation context.
+
+Mitigation: Restrict permissions on tracker and log files, and review storage locations before deployment.
+
+## Reference(s):
+
+- [Good Memory on ClawHub](https://clawhub.ai/acilgit/skills/good-memory)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text recovery context with Markdown documentation and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Restores recent prior-session records when recovery is enabled; exact restored history depends on local OpenClaw session files and configuration.]
+
+## Skill Version(s):
+
+2.0.1 (source: SKILL.md frontmatter, release evidence, CHANGELOG released 2026-03-28)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

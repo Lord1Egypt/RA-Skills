@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>AI 通识课 · 自适应测评 · C1-C3</title>
+<style>
+  body { font-family: "Microsoft YaHei", sans-serif; margin: 0; background: #ecfeff; color: #0f172a; }
+  header { padding: 14px 20px; background: #0e7490; color: #fff; }
+  h1 { margin: 0; font-size: 19px; }
+  .wrap { padding: 16px 20px; }
+  .q { background:#fff; border:1px solid #cffafe; border-radius:8px; padding:12px; margin:10px 0; }
+  .q p { margin: 0 0 8px; font-weight: bold; }
+  label { display:block; margin:4px 0; }
+  button { background:#0e7490; color:#fff; border:0; padding:9px 16px; border-radius:6px; margin:6px 8px 0 0; cursor:pointer; }
+  #report { background:#fff; border:1px solid #cffafe; border-radius:8px; padding:14px; margin-top:12px; display:none; }
+  .gate { margin: 16px 20px; }
+</style>
+</head>
+<body>
+<header><h1>AI 通识课 · 自适应测评 · 模块 C1-C3</h1></header>
+<div class="wrap" id="quiz">
+  <div class="q"><p>1. Prompt 五要素不含以下哪项？</p>
+    <label><input type="radio" name="q1" value="a" /> Role</label>
+    <label><input type="radio" name="q1" value="b" /> Task</label>
+    <label><input type="radio" name="q1" value="c" /> Budget</label></div>
+  <div class="q"><p>2. 需求拆解应优先保证？</p>
+    <label><input type="radio" name="q2" value="a" /> 中间产物自包含</label>
+    <label><input type="radio" name="q2" value="b" /> 一次拆到底</label>
+    <label><input type="radio" name="q2" value="c" /> 越少越好</label></div>
+  <div class="q"><p>3. 验证闭环的“事前”动作是？</p>
+    <label><input type="radio" name="q3" value="a" /> 事后审计</label>
+    <label><input type="radio" name="q3" value="b" /> 事前约束</label>
+    <label><input type="radio" name="q3" value="c" /> 用户投诉</label></div>
+  <button id="submit">提交测评</button>
+  <button id="save">保存进度</button>
+  <button id="review">查看报告</button>
+</div>
+<div id="report"></div>
+
+<script>
+const ANS = { q1:'c', q2:'a', q3:'b' };
+function score() {
+  let s = 0, done = 0;
+  for (const k in ANS) { const v = document.querySelector(`input[name="${k}"]:checked`); if (v) { done++; if (v.value === ANS[k]) s++; } }
+  return { s, done };
+}
+// IndexedDB 进度保存（离线可用，失败静默降级，不抛错阻塞）
+function saveProgress() {
+  try {
+    const req = indexedDB.open('ailit', 1);
+    req.onupgradeneeded = e => { const db = e.target.result; if (!db.objectStoreNames.contains('progress')) db.createObjectStore('progress', { keyPath: 'id' }); };
+    req.onsuccess = e => {
+      const db = e.target.result; const tx = db.transaction('progress','readwrite');
+      tx.objectStore('progress').put({ id:'last', ts: Date.now(), score: score().s });
+      tx.onerror = () => {}; db.close();
+    };
+    req.onerror = () => {};
+  } catch (_) {}
+}
+document.getElementById('submit').addEventListener('click', () => {
+  const { s, done } = score();
+  document.getElementById('report').style.display = 'block';
+  document.getElementById('report').innerHTML =
+    `<b>测评结果</b><br>答对 ${s}/3 · 完成 ${done}/3` +
+    (s < 3 ? '<br>薄弱点：建议复习对应模块（LEARN 回流补学）。' : '<br>掌握良好！');
+});
+document.getElementById('save').addEventListener('click', saveProgress);
+document.getElementById('review').addEventListener('click', () => {
+  document.getElementById('report').style.display = 'block';
+  document.getElementById('report').innerHTML = '<b>学习报告</b><br>本轮测评已记录，可查看薄弱点章节。';
+});
+</script>
+</body>
+</html>

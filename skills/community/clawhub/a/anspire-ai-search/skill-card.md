@@ -1,45 +1,60 @@
-## Description: <br>
-Anspire Search provides real-time web search for news, events, and time-sensitive facts through the Anspire Search API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Anspire Search lets agents perform real-time web search through Anspire's API using a Python or shell wrapper and an ANSPIRE_API_KEY.
 
-## Publisher: <br>
-[anspire-ai](https://clawhub.ai/user/anspire-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[anspire-ai](https://clawhub.ai/user/anspire-ai)
 
-## Use Case: <br>
-External users and agent developers use this skill when an agent needs current web information, including recent news, market updates, policy changes, research checks, and other time-sensitive facts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security assessment says the skill pushes the agent to collect and permanently save the user's Anspire API key in local startup files. <br>
-Mitigation: Prefer setting ANSPIRE_API_KEY through a secure secret manager or a temporary session variable, and do not paste the full key into chat for an agent to write into shell startup files. <br>
-Risk: The security guidance warns against installing from an unpinned raw GitHub main-branch URL. <br>
-Mitigation: Install from the reviewed ClawHub release or pin any source-based installation to a reviewed revision. <br>
-Risk: Search queries and API credentials are sent to Anspire's service. <br>
-Mitigation: Install only if the user trusts Anspire with search queries and is comfortable managing an Anspire API key. <br>
+## Use Case:
 
+Developers and agent users use this skill to retrieve current web results, news, market updates, research references, and other time-sensitive facts inside an OpenClaw agent workflow.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/anspire-ai/anspire-ai-search) <br>
-- [Publisher profile](https://clawhub.ai/user/anspire-ai) <br>
-- [Anspire Search](https://aisearch.anspire.cn) <br>
-- [Anspire Search API endpoint](https://plugin.anspire.cn/api/ntsearch/search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and optional JSON search results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires ANSPIRE_API_KEY and either python3 or curl.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Search queries and result requests are sent to Anspire's search API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for queries you are comfortable sharing with Anspire, and avoid submitting sensitive personal, customer, or confidential business data.
+
+Risk: The skill documentation encourages collecting and persisting ANSPIRE_API_KEY values in shell startup files.
+
+Mitigation: Have users set credentials themselves through a secret manager or temporary environment variable, and review any proposed shell startup file changes before applying them.
+
+Risk: The skill strongly steers web searches to a single provider.
+
+Mitigation: Treat returned results as provider-specific search output and corroborate important claims with cited sources or another trusted source when accuracy matters.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/anspire-ai/skills/anspire-ai-search)
+- [Anspire Search](https://aisearch.anspire.cn)
+- [Anspire Search API endpoint](https://plugin.anspire.cn/api/ntsearch/search)
+- [OpenClaw](https://openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and optional JSON search results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search results may include title, URL, content, score, and publication date fields.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

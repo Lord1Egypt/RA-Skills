@@ -1,42 +1,54 @@
-## Description: <br>
-Index and search historical data exchanges, messages, and file transfers over Pilot Protocol. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Index and search historical data exchanges, messages, and file transfers over Pilot Protocol.
 
-## Publisher: <br>
-[teoslayer](https://clawhub.ai/user/teoslayer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[teoslayer](https://clawhub.ai/user/teoslayer)
 
-## Use Case: <br>
-Developers and operators use this skill to create a searchable local archive of Pilot Protocol messages, file transfers, and communication metadata for auditing or historical analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+AGPL-3.0
 
-## Known Risks and Mitigations: <br>
-Risk: The archive commands can persist Pilot messages and file-transfer details in plaintext local JSONL files. <br>
-Mitigation: Use the skill only where archiving all accessible Pilot communications is acceptable, restrict file permissions on the archive directory, and define retention or deletion rules before indexing. <br>
-Risk: Stored message content may include sensitive data that should not be searchable by every local user or downstream process. <br>
-Mitigation: Apply filters or redaction before writing archive records, and limit access to $HOME/.pilot/archive. <br>
+## Use Case:
 
+Developers and operators use this skill to index Pilot Protocol inbox messages and received file-transfer records into local searchable archives for history review, audit, and communication-pattern analysis.
 
-## Reference(s): <br>
-- [Pilot Protocol](https://pilotprotocol.network) <br>
-- [ClawHub release page](https://clawhub.ai/teoslayer/pilot-archive) <br>
-- [Publisher profile](https://clawhub.ai/user/teoslayer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, markdown, guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local JSONL archive indexes under $HOME/.pilot/archive when the suggested commands are run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can copy Pilot message bodies, sender metadata, filenames, ports, and transfer details into local plaintext archive files with open-ended retention.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Set restrictive permissions on archive directories and files, avoid archiving secrets, and delete or rotate archives when long-term retention is unnecessary.
+
+Risk: The archive workflow is unclear about using current inbox data while presenting the result as historical archive data.
+
+Mitigation: Confirm the intended data source and retention scope before indexing, and review generated shell commands before execution.
+
+## Reference(s):
+
+- [Pilot Protocol Homepage](https://pilotprotocol.network)
+- [Pilot Archive on ClawHub](https://clawhub.ai/teoslayer/skills/pilot-archive)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with bash command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local plaintext JSONL archive examples that depend on pilotctl, jq, and a running Pilot daemon.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,53 @@
-## Description: <br>
-Compares Monero and Bitcoin across privacy, transaction speed, fees, mining, scalability, use cases, and core philosophies. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Compare Monero and Bitcoin on privacy, transaction speed, mining, scalability, use cases, and core philosophies for informed cryptocurrency choice.
 
-## Publisher: <br>
-[liumaimiao](https://clawhub.ai/user/liumaimiao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liumaimiao](https://clawhub.ai/user/liumaimiao)
 
-## Use Case: <br>
-External users and agents use this skill to produce a side-by-side educational comparison of Monero and Bitcoin for cryptocurrency research and decision support. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat the cryptocurrency comparison as financial, legal, or tax advice. <br>
-Mitigation: Present it as general commentary and independently check local laws, exchange rules, and current market conditions before acting. <br>
-Risk: The artifact includes an XMR tip address that could be mistaken for a required payment destination. <br>
-Mitigation: Only send funds to the listed address if the user independently intends to make that voluntary donation. <br>
-Risk: Static cryptocurrency metrics such as fees, market capitalization, hashrate, and adoption can become stale. <br>
-Mitigation: Verify current network and market data before relying on the comparison for time-sensitive decisions. <br>
+## Use Case:
 
+External users can use this skill to get an educational, side-by-side comparison of Monero and Bitcoin before deciding which cryptocurrency characteristics matter for their needs.
 
-## Reference(s): <br>
-- [Monero: Bitcoin](https://ww.getmonero.org/resources/moneropedia/bitcoin/) <br>
-- [Monero Privacy Resources](https://ww.getmonero.org/resources/privacy/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown comparison tables and explanatory prose] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Static cryptocurrency comparison; no code execution or system access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and package.json) <br>
+Risk: Cryptocurrency price, fee, hashrate, market cap, and adoption claims can become outdated.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the comparison as educational guidance and verify time-sensitive claims against current sources before relying on them.
+
+Risk: The artifact includes a voluntary cryptocurrency donation address.
+
+Mitigation: Confirm that donations are optional and not required for installing, using, or evaluating the skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/liumaimiao/skills/monero-vs-bitcoin)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown comparison tables and explanatory prose]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Educational content may require review for current cryptocurrency market, fee, hashrate, and adoption claims.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

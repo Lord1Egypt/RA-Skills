@@ -1,44 +1,62 @@
-## Description: <br>
-Google Search Unlimited V2 helps agents run cached web searches with rate limiting, provider fallbacks, and cost-aware use of OpenClaw tools and free APIs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Google Search with intelligent caching, rate limiting, and cost optimization. Uses OpenClaw tools + free APIs. 10x faster, 99% cheaper than v1.
 
-## Publisher: <br>
-[gloriaolk](https://clawhub.ai/user/gloriaolk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gloriaolk](https://clawhub.ai/user/gloriaolk)
 
-## Use Case: <br>
-Developers, researchers, and agents use this skill to perform web searches, reuse cached results, process batches of search queries, and reduce paid search API usage through free-first fallback behavior. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search terms may be sent to external providers and stored in local cache or exported result files. <br>
-Mitigation: Avoid submitting secrets or sensitive personal data, review cache/export paths before use, and purge local search data when retention is not required. <br>
-Risk: Some artifact behavior and documentation reference mocked or test search results, which can make provider provenance unclear. <br>
-Mitigation: Use only deployments that clearly separate live search from mock/test output, and verify each result's provider and source before relying on it. <br>
-Risk: Fallback search behavior can mix providers with different terms, quotas, and result quality. <br>
-Mitigation: Configure the permitted search methods, monitor rate limits and costs, and review outputs for relevance and source quality. <br>
+## Use Case:
 
+Developers and agent builders use this skill to run cached, rate-limited web searches and batch query workflows while prioritizing lower-cost search methods.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gloriaolk/google-search-unlimited-v2) <br>
-- [Publisher profile](https://clawhub.ai/user/gloriaolk) <br>
-- [OpenClaw documentation](https://docs.openclaw.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON search results and Markdown or terminal guidance with shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include query, method, cache status, cost estimate, response time, result links, snippets, and batch metrics.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release evidence; artifact frontmatter reports 2.0.0) <br>
+Risk: The skill advertises real search integrations but may return mock or fabricated results.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the search implementation before use and do not rely on live-search outputs until mock oxylabs paths are removed or clearly disabled.
+
+Risk: Search queries and results may be stored in a local plaintext SQLite cache.
+
+Mitigation: Avoid sensitive queries unless caching is disabled, the cache path is protected, or cache retention is configured appropriately.
+
+Risk: Batch inputs and search queries may be sent to external search providers.
+
+Mitigation: Do not include secrets or sensitive data in queries, and review provider terms and credentials before batch use.
+
+Risk: Dependencies are declared with minimum versions rather than pinned versions.
+
+Mitigation: Install in an isolated environment and pin reviewed dependency versions for controlled deployments.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/gloriaolk/skills/google-search-unlimited-v2)
+- [OpenClaw Documentation](https://docs.openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [JSON search results and Markdown usage guidance with shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search queries can be cached locally; batch mode can write structured result files.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release metadata; artifact frontmatter lists 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

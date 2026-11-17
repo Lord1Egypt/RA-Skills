@@ -1,45 +1,58 @@
-## Description: <br>
-企微瓣 (Qiweiban) AI 平台 CLI 工具 that helps agents use the qwb CLI for speech synthesis, voice cloning, digital-human video generation, AI chat, image generation, and account balance workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+企微瓣 (Qiweiban) AI platform CLI skill helps agents use qwb commands for authentication, voice synthesis and cloning, digital-human video generation, AI chat, image generation, and petals account management.
 
-## Publisher: <br>
-[louiseliu](https://clawhub.ai/user/louiseliu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[louiseliu](https://clawhub.ai/user/louiseliu)
 
-## Use Case: <br>
-Developers and external users can use this skill to have an agent produce qwb CLI commands and guidance for Qiweiban media-generation, AI chat, user profile, and petals balance workflows. It is most relevant when the user already intends to use the Qiweiban/qwb service and can authorize uploads or account spending. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide account login and stores qwb tokens in ~/.qwb/credentials.json. <br>
-Mitigation: Use it only in a trusted environment, avoid sharing passwords or SMS codes with the agent when possible, and protect or remove the credentials file when the session ends. <br>
-Risk: Voice, face, image, video, and audio uploads may include biometric or personal media. <br>
-Mitigation: Require explicit user confirmation and rights review before uploading personal media or creating cloned voices and digital humans. <br>
-Risk: Some commands can spend account credits or consume petals. <br>
-Mitigation: Confirm billable actions before execution and review qwb petals balance and history for unexpected usage. <br>
-Risk: The security verdict is suspicious and recommends publisher and package review. <br>
-Mitigation: Verify the npm package, qwb binary source, and publisher profile before installing or running commands. <br>
+## Use Case:
 
+External developers and agent users use this skill to perform Qiweiban CLI workflows, including media generation, voice cloning, digital-human video jobs, AI chat, account updates, and petals balance review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/louiseliu/qwb-cli) <br>
-- [Publisher profile](https://clawhub.ai/user/louiseliu) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Guidance, Text] <br>
-**Output Format:** [Markdown with inline qwb CLI commands and expected JSON, table, or quiet CLI output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The underlying qwb CLI defaults to JSON output and may write generated media to URLs or local files when commanded.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: Global, unpinned CLI installation may install an unexpected qwb-cli package version or publisher.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the qwb-cli npm package publisher and version before installation, and prefer a pinned or isolated install.
+
+Risk: Authenticated operations can send passwords, verification codes, tokens, or private media to Qiweiban services.
+
+Mitigation: Keep authentication interactive where possible and require explicit user confirmation before sending credentials, codes, or private media.
+
+Risk: Some actions can delete resources, update profile details, change the API URL, or consume Qiweiban credits.
+
+Mitigation: Require explicit user confirmation before destructive, account-changing, endpoint-changing, or billable operations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/louiseliu/skills/qwb-cli)
+- [Publisher profile](https://clawhub.ai/user/louiseliu)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, text]
+
+**Output Format:** [Markdown with inline shell commands and JSON-oriented CLI output guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The qwb CLI defaults to JSON output, with table and quiet formats available for human review or scripting.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

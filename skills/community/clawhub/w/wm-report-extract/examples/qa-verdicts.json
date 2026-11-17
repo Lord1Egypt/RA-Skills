@@ -1,0 +1,15 @@
+{
+  "verdicts": [
+    {
+      "id": "top_holders",
+      "verdict": "demote",
+      "reason": "混入附注子公司名单，不是前十大股东表"
+    },
+    {
+      "id": "non_recurring",
+      "verdict": "split",
+      "keep_items": ["政府补助", "合计"],
+      "reason": "仅保留非经常性损益项目行"
+    }
+  ]
+}

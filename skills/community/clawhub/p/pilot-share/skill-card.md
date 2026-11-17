@@ -1,41 +1,54 @@
-## Description: <br>
-One-click file sharing with progress tracking and automatic retry over Pilot Protocol. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pilot Share helps agents share a single file or directory over Pilot Protocol with progress tracking and retry guidance.
 
-## Publisher: <br>
-[teoslayer](https://clawhub.ai/user/teoslayer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[teoslayer](https://clawhub.ai/user/teoslayer)
 
-## Use Case: <br>
-Developers and agents use this skill to share a selected file or archived directory with another agent over Pilot Protocol, with progress tracking, confirmation, and retry guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill proposes commands that send selected local files or archives to another agent. <br>
-Mitigation: Verify the recipient and inspect the exact file or archive path before running any send command. <br>
-Risk: A broad path or archive could include secrets, private keys, customer data, home-directory content, or unrelated personal files. <br>
-Mitigation: Share only the intended file or a reviewed archive, and exclude sensitive or unrelated data before transfer. <br>
+## Use Case:
 
+Developers and agent operators use Pilot Share to send one-time files or archived directories to another agent and inspect received shares.
 
-## Reference(s): <br>
-- [Pilot Protocol](https://pilotprotocol.network) <br>
-- [Pilot Share on ClawHub](https://clawhub.ai/teoslayer/pilot-share) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with Bash and JSON command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces user-directed file transfer commands and retry workflow guidance; it does not itself transmit files unless the proposed commands are run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Files may be sent to the wrong destination agent or include sensitive content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the destination agent ID and inspect the exact file or directory path before running send commands.
+
+Risk: The directory archive example writes a temporary archive under /tmp and removes it only after the send command completes.
+
+Mitigation: Use a mktemp-based archive path and cleanup trap before sharing directories.
+
+## Reference(s):
+
+- [Pilot Protocol](https://pilotprotocol.network)
+- [ClawHub Skill Page](https://clawhub.ai/teoslayer/skills/pilot-share)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, code, guidance]
+
+**Output Format:** [Markdown with Bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Examples use JSON output from pilotctl and may require jq, tar, pilotctl, and a running Pilot Protocol daemon.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence; artifact frontmatter version is 1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,59 @@
-## Description: <br>
-VoxCPM2 — Tokenizer-Free TTS model guide covering installation, Python and CLI usage, voice design, voice cloning, streaming, vLLM-Omni deployment, and fine-tuning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+VoxCPM2 - Tokenizer-Free TTS model guide covering installation, Python and CLI usage for TTS, voice design, voice cloning, streaming, vLLM-Omni deployment, and SFT/LoRA fine-tuning.
 
-## Publisher: <br>
-[openlark](https://clawhub.ai/user/openlark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Apache 2.0 <br>
+## Publisher:
 
+[openlark](https://clawhub.ai/user/openlark)
 
-## Use Case: <br>
-Developers and engineers use this skill to guide installation, local use, deployment, and fine-tuning of VoxCPM2 for multilingual text-to-speech, voice design, streaming speech generation, and speaker adaptation workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill documents voice cloning and speaker adaptation workflows that could be misused for impersonation or deceptive audio. <br>
-Mitigation: Use the skill only with your own voice or voices you are explicitly authorized to reproduce, and do not use it to impersonate people or create deceptive audio. <br>
-Risk: Reference audio and uploaded voice samples may contain sensitive personal data. <br>
-Mitigation: Handle voice samples as sensitive data and keep documented consent for any speaker whose voice is used. <br>
+## Use Case:
 
+Developers and engineers use this skill to install and operate VoxCPM2 for multilingual text-to-speech, voice design, voice cloning, streaming, deployment, and fine-tuning workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/openlark/voxcpm) <br>
-- [VoxCPM repository](https://github.com/OpenBMB/VoxCPM.git) <br>
-- [vLLM-Omni repository](https://github.com/vllm-project/vllm-omni.git) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline bash and Python code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes commands and code snippets for installing, running, deploying, and fine-tuning VoxCPM2.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Package installation and repository checkout steps may introduce unreviewed dependencies or code into the user's environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install in a virtual environment or container and prefer pinned versions or reviewed commits before use.
+
+Risk: Demo and API server examples may expose text-to-speech functionality if bound to a public interface.
+
+Mitigation: Keep demo and API servers bound to localhost unless authentication and network restrictions are added.
+
+Risk: Voice cloning and fine-tuning workflows can be misused for impersonation or unauthorized voice reproduction.
+
+Mitigation: Use only voices and transcripts for which rights and consent are available, and do not use generated speech for impersonation or fraud.
+
+## Reference(s):
+
+- [VoxCPM GitHub repository](https://github.com/OpenBMB/VoxCPM.git)
+- [vLLM-Omni GitHub repository](https://github.com/vllm-project/vllm-omni.git)
+- [ClawHub skill page](https://clawhub.ai/openlark/skills/voxcpm)
+
+## Skill Output:
+
+**Output Type(s):** [text, guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown with inline Python and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces agent-facing setup, usage, deployment, and fine-tuning guidance; generated audio files are produced by the referenced VoxCPM tools, not by the skill itself.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,50 @@
-## Description: <br>
-Test skills via TDD in fresh subagents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Test skills via TDD in fresh subagents
 
-## Publisher: <br>
-[athola](https://clawhub.ai/user/athola) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[athola](https://clawhub.ai/user/athola)
 
-## Use Case: <br>
-Developers and skill authors use this skill to design baseline, with-skill, rationalization, and regression tests that measure whether a skill improves agent behavior in fresh subagent conversations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may inspect broad repository documentation and propose or apply documentation changes. <br>
-Mitigation: Use report-only or single-agent mode when review is needed, and review proposed file changes before accepting them. <br>
+## Use Case:
 
+Developers use this skill to evaluate whether a skill changes agent behavior by comparing baseline and with-skill results, then testing guardrails in fresh subagent instances.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-abstract-subagent-testing) <br>
-- [OpenClaw homepage metadata](https://github.com/athola/claude-night-market/tree/master/plugins/abstract) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands] <br>
-**Output Format:** [Markdown guidance with example prompts, test templates, and inline shell commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces testing methodology, scenario templates, comparison criteria, and documentation-oriented recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.9.13 (source: server release metadata) <br>
+Risk: Test comparisons may be misleading if baseline and with-skill runs use different prompts or instance conditions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use identical prompts in fresh instances, record the test setup, and repeat runs to check reproducibility.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/athola/skills/nm-abstract-subagent-testing)
+- [Project homepage](https://github.com/athola/claude-night-market/tree/master/plugins/abstract)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Analysis, Markdown]
+
+**Output Format:** [Markdown with test prompts, response records, and scoring templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.10.3 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

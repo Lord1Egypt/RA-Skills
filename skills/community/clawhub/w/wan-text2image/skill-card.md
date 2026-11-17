@@ -1,41 +1,54 @@
-## Description: <br>
-Uses Alibaba Cloud DashScope Wan2.6-t2i to generate images from text prompts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Uses Alibaba Cloud DashScope's Wan2.6 text-to-image model to generate images from text prompts through a shell script.
 
-## Publisher: <br>
-[baokui](https://clawhub.ai/user/baokui) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[baokui](https://clawhub.ai/user/baokui)
 
-## Use Case: <br>
-External users and developers use this skill to ask an agent to generate images from text through Alibaba Cloud DashScope, with optional negative prompts and image size choices. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts are sent to Alibaba Cloud DashScope, which can expose secrets, private data, or confidential creative direction if users include them. <br>
-Mitigation: Avoid private or confidential prompt content and use a revocable API key where possible. <br>
-Risk: Unusual quotes or JSON-like prompt text may produce malformed or unexpected API requests. <br>
-Mitigation: Review and simplify prompts with special quoting or JSON-like content before running the shell script. <br>
+## Use Case:
 
+Developers and external users can use this skill to call Alibaba Cloud DashScope Wan2.6-t2i for text-to-image generation from positive prompts, optional negative prompts, and supported image sizes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/baokui/wan-text2image) <br>
-- [DashScope multimodal generation endpoint](https://dashscope.aliyuncs.com/api/v1/services/aigc/multimodal-generation/generation) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API calls, Guidance] <br>
-**Output Format:** [JSON API response, typically containing generated image data or image URLs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires DASHSCOPE_API_KEY and curl; supports prompt, negative prompt, and image size inputs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Prompts are sent to Alibaba DashScope using the user's configured API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when sending prompt content to DashScope is acceptable, and avoid including secrets or sensitive data in prompts.
+
+Risk: Prompt, negative prompt, and size arguments are passed into the JSON request by the shell script, and size validation is not enforced by the script.
+
+Mitigation: Use trusted inputs, add JSON-safe request encoding before accepting untrusted text, and restrict size to documented values.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/baokui/skills/wan-text2image)
+- [Alibaba DashScope multimodal generation endpoint](https://dashscope.aliyuncs.com/api/v1/services/aigc/multimodal-generation/generation)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash commands; the invoked API returns JSON containing generated image data or a URL.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires DASHSCOPE_API_KEY and curl; documented image sizes are 1280*1280, 720*1280, and 1280*720.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

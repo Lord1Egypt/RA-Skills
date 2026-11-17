@@ -1,45 +1,60 @@
-## Description: <br>
-A comprehensive tool for creating, documenting, wrapping, and quality-checking professional-grade skills with standardized templates and best practices. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A comprehensive tool for creating, documenting, wrapping, and quality-checking professional-grade skills with standardized templates and best practices.
 
-## Publisher: <br>
-[variyaone](https://clawhub.ai/user/variyaone) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[variyaone](https://clawhub.ai/user/variyaone)
 
-## Use Case: <br>
-Developers and agent builders use this skill to scaffold new skills, wrap existing tools, generate documentation, check skill structure, package releases, and install skills into supported agent environments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can run system package installation commands for dependencies. <br>
-Mitigation: Inspect the target skill's _meta.json requires.bins entries and review requested packages before running install-deps. <br>
-Risk: The skill can persist files into a local OpenClaw skill installation. <br>
-Mitigation: Review generated skill files before using install --openclaw and verify the destination directory after installation. <br>
-Risk: Generated or wrapped skills may inherit unsafe behavior from third-party scripts or binaries. <br>
-Mitigation: Run a security review and quality check on wrapped tools and generated skill directories before deployment. <br>
+## Use Case:
 
+Developers and agent builders use Skill Forge to create new skills, wrap existing tools, generate documentation, check quality, package releases, and manage dependency guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/variyaone/skill-forge-va) <br>
-- [README.md](artifact/README.md) <br>
-- [references/examples.md](artifact/references/examples.md) <br>
-- [hooks/openclaw/HOOK.md](artifact/hooks/openclaw/HOOK.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with generated files, JSON metadata, scripts, shell commands, and checklist-style review output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or copy skill directories, templates, wrapper scripts, metadata files, examples, changelogs, and OpenClaw installation artifacts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: server release metadata, _meta.json, and CHANGELOG.md) <br>
+Risk: The CLI includes unsafe command execution paths.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and patch command execution before installing or running it on third-party skills; prefer argument-array APIs over shell-composed commands.
+
+Risk: Install, dependency, packaging, and OpenClaw paths can be risky when inputs are untrusted.
+
+Mitigation: Avoid running check, install-deps, wrap, package --zip, or install --openclaw with untrusted skill names, dependency values, or tool paths until names are validated, paths are contained, and installs require clear confirmation.
+
+Risk: The release security verdict is suspicious.
+
+Mitigation: Treat the skill as requiring review and patching before execution, following the authoritative security guidance in the release evidence.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/variyaone/skills/skill-forge-va)
+- [README](README.md)
+- [Examples](references/examples.md)
+- [OpenClaw hook documentation](hooks/openclaw/HOOK.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, JSON examples, and generated skill files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or modify local skill directories and produce package/install commands for agent platforms.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release evidence and _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

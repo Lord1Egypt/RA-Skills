@@ -1,42 +1,60 @@
-## Description: <br>
-Google Voice web-client automation and MCP integration from HAR captures for listing, reading, exporting, and sending SMS; starting calls; injecting approved TTS or local audio; recording call audio; and configuring the bundled HAR-derived MCP server. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Google Voice web-client automation and MCP integration from HAR captures for SMS thread access, approved SMS sends, approved outbound calls, optional audio injection and recording, and HAR endpoint analysis.
 
-## Publisher: <br>
-[earlvanze](https://clawhub.ai/user/earlvanze) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[earlvanze](https://clawhub.ai/user/earlvanze)
 
-## Use Case: <br>
-Developers and operations agents use this skill to inspect Google Voice HAR-derived endpoints, manage authorized SMS records, and perform explicitly approved outbound messaging or calling through a logged-in Google Voice session. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can expose or act on private Google Voice messages, calls, recordings, and raw authenticated API calls. <br>
-Mitigation: Install only in a trusted local workspace, use a dedicated account or isolated browser profile where possible, and confirm exact recipients, message text, phone numbers, and recording consent before use. <br>
-Risk: HAR files, SMS exports, cookies, API keys, OAuth tokens, transcripts, and recordings are sensitive secrets. <br>
-Mitigation: Prefer browser authentication, avoid gv_raw_call, gws mode, GV_COOKIE, GV_AUTHORIZATION, and cookie exports unless specifically needed, and keep all generated records and credentials out of prompts and committed files. <br>
+## Use Case:
 
+Developers and agent operators use this skill to automate Google Voice web-client workflows from authenticated browser sessions or HAR-derived endpoint knowledge. It is intended for user-approved SMS reads, SMS sends, outbound calls, local audio injection, call recording, and MCP-based Google Voice operations.
 
-## Reference(s): <br>
-- [Google Voice Skill Page](https://clawhub.ai/earlvanze/google-voice) <br>
-- [Google Voice HAR notes](references/har-endpoints.md) <br>
-- [Google Voice call HAR notes](references/call-har-endpoints.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, JSON examples, and generated configuration or code snippets.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce JSON or Markdown exports for SMS records and can invoke local MCP or browser automation when explicitly authorized.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.3.0 (source: server release metadata) <br>
+Risk: The skill can perform broad authenticated Google Voice account actions, including sending SMS and starting calls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing and require explicit approval for the exact recipient, phone number, message, call intent, or audio before taking external actions.
+
+Risk: Cookie exports, HAR samples, SMS records, generated speech, and call recordings can expose private account or communications data.
+
+Mitigation: Prefer browser/CDP mode, keep cookie exports outside shared workspaces, avoid committing secrets or raw payloads, and treat exported records and recordings as sensitive private data.
+
+Risk: Raw endpoint calls and audio mode can bypass normal guardrails or increase impact if misconfigured.
+
+Mitigation: Avoid gv_raw_call unless the endpoint and payload are understood, use dry-run modes before live actions, and do not run audio mode as a privileged user.
+
+## Reference(s):
+
+- [Google Voice Skill Page](https://clawhub.ai/earlvanze/skills/google-voice)
+- [Publisher Profile](https://clawhub.ai/user/earlvanze)
+- [Google Voice HAR Notes](references/har-endpoints.md)
+- [Google Voice Call HAR Notes](references/call-har-endpoints.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, JSON records, and code-oriented configuration details]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include sensitive SMS records, call recordings, generated speech files, and authenticated Google Voice actions when explicitly approved.]
+
+## Skill Version(s):
+
+0.3.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

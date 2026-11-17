@@ -1,44 +1,59 @@
-## Description: <br>
-Smart Refinement System refines ambiguous user prompts, matches them against a local skill database, integrates context, and returns suggested execution steps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically refines unclear prompts, matches relevant skills, integrates context, and suggests execution steps for AI assistant workflows.
 
-## Publisher: <br>
-[janussilence](https://clawhub.ai/user/janussilence) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[janussilence](https://clawhub.ai/user/janussilence)
 
-## Use Case: <br>
-Developers and agent operators use this skill to clarify underspecified user requests, identify relevant skill categories, and produce structured next-step guidance before an agent acts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Suggested tools or execution steps may be inappropriate for the user's actual task if the original prompt is ambiguous. <br>
-Mitigation: Treat suggestions as recommendations only, review the refined prompt, and ask for clarification before taking consequential actions. <br>
-Risk: Context supplied to the refinement flow may contain secrets or sensitive project history. <br>
-Mitigation: Avoid passing secrets or sensitive project history unless the user is comfortable with the host agent retaining it in session memory. <br>
-Risk: The skill can recommend command, file, or network-related tool categories, but it does not enforce execution safety. <br>
-Mitigation: Keep normal agent approval controls for command, file, and network actions. <br>
+## Use Case:
 
+Developers and AI assistant builders use this skill to turn vague user requests into clearer prompts, identify matching skill categories, and generate suggested execution guidance. It is intended for prompt engineering, agent routing, task refinement, and context-aware workflow planning.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/janussilence/smart-refinement) <br>
-- [Skill Documentation](artifact/SKILL.md) <br>
-- [Artifact README](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Configuration, Guidance] <br>
-**Output Format:** [Structured JSON-like Python dictionaries and Markdown execution guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include refined prompts, matched skill scores, suggested actions, integrated context, and processing statistics.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and package metadata) <br>
+Risk: Installation instructions use an unpinned npx command, which can pull changing package contents.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only from a trusted or pinned ClawHub/npm source and do not run the installer with elevated privileges.
+
+Risk: The skill can recommend file, web, and system-operation tools that may affect local files or external services.
+
+Mitigation: Keep file writes, web access, and system-operation recommendations behind normal user confirmation.
+
+Risk: Context integration and export functions may include sensitive user or project information.
+
+Mitigation: Avoid passing secrets into context and do not export configuration or skill data to shared locations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/janussilence/skills/smart-refinement)
+- [README.md](artifact/README.md)
+- [SKILL.md](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration]
+
+**Output Format:** [Structured result containing refined prompt text, skill matches, suggested actions, context fields, and an execution guide.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include confidence scores, processing timing, and system statistics.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, package.json, README.md, SKILL.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

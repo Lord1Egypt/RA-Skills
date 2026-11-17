@@ -1,39 +1,52 @@
-## Description: <br>
-Remove signs of AI-generated writing from text and revise it to sound more natural while preserving the original meaning and intended tone. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Humanizer rewrites AI-sounding text into more natural human-written prose by identifying patterns such as promotional language, vague attribution, em dash overuse, formulaic phrasing, and other common AI tells.
 
-## Publisher: <br>
-[mahendernath](https://clawhub.ai/user/mahendernath) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[mahendernath](https://clawhub.ai/user/mahendernath)
 
-## Use Case: <br>
-Writers, editors, and reviewers use this skill to identify common AI-writing patterns, produce a draft rewrite, audit remaining tells, and deliver a final humanized revision. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Rewrites can unintentionally change meaning, tone, or authorial voice. <br>
-Mitigation: Review the draft and final rewrite before accepting changes, especially for sensitive, legal, academic, or workplace text. <br>
-Risk: Using the skill may conflict with rules that require preserving the original text or disclosing AI assistance. <br>
-Mitigation: Use it only where revision is allowed, and keep any required disclosure or attribution intact. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Wikipedia: Signs of AI writing](https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing) <br>
+## Use Case:
 
+Writers, editors, and agents use this skill to review drafts, identify AI-sounding patterns, and produce a draft rewrite, audit bullets, and final rewrite while preserving the intended meaning and tone.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown containing a draft rewrite, brief audit bullets, final rewrite, and optional change summary.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution, network access, persistence, or hidden install behavior was identified in the security evidence.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can use Write/Edit permissions and may alter documents where file changes are not intended.
+
+Mitigation: Use it on documents where edits are expected, and ask the agent to show proposed edits first for important or sensitive text.
+
+Risk: Rewriting text to sound less AI-generated can unintentionally change tone, emphasis, or factual nuance.
+
+Mitigation: Review the final rewrite against the source text before publishing or relying on it.
+
+## Reference(s):
+
+- [Wikipedia: Signs of AI writing](https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with draft rewrite, audit bullets, final rewrite, and optional change summary]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose direct document edits when the host agent is allowed to write files.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata; artifact frontmatter declares 2.2.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,38 +1,53 @@
-## Description: <br>
-语文素材库 helps students save, tag, retrieve, and reuse Chinese writing materials, then proactively recommends relevant quotes, examples, and summaries during writing or reading practice. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Stores, tags, and retrieves Chinese writing materials by topic, with source tracking and opt-in usage summaries.
 
-## Publisher: <br>
-[qizhitang](https://clawhub.ai/user/qizhitang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qizhitang](https://clawhub.ai/user/qizhitang)
 
-## Use Case: <br>
-Students and education-focused assistants use this skill to build a continuing Chinese writing-material library, tag saved phrases or references, retrieve 3-5 relevant materials for a writing theme, and review monthly material usage. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is designed to maintain a continuing library of student-provided writing materials and usage history. <br>
-Mitigation: Ask for confirmation before saving ambiguous student content and periodically review or delete stored materials where the platform allows it. <br>
+## Use Case:
 
+Students use this skill to save and retrieve Chinese writing materials by topic, while a writing coach can call it during planning. It also supports source tracking and consent-based usage summaries.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/qizhitang/xiaozhi-chinese-material-library) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown conversation responses with structured lists, tags, recommendations, and report templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use saved student writing materials and usage history when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release evidence; artifact frontmatter lists 1.0.3) <br>
+Risk: The security review is marked partial because a path-like reference in SKILL.md did not match a bundled artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm whether the referenced resource is intentionally absent or obtain the complete bundle before installation.
+
+Risk: Saved materials and confirmed usage counts may persist across sessions or be shared with the learning profile.
+
+Mitigation: Use the skill's pause, delete, and export controls as needed; only write usage counts to the shared profile when the required consent is active and confirmed.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/qizhitang/skills/xiaozhi-chinese-material-library)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Chinese text and Markdown lists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Tagged material entries, source labels, retrieval suggestions, and usage summaries; cross-skill usage counts require consent.]
+
+## Skill Version(s):
+
+2.12.7 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

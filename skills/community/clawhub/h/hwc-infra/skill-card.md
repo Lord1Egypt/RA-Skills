@@ -1,45 +1,60 @@
-## Description: <br>
-Helps agents use Huawei Cloud KooCLI to query, audit, monitor, and, with confirmation, manage ECS, VPC, and RDS resources. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Huawei Cloud Infra helps agents use KooCLI (hcloud) to query, audit, monitor, and perform explicitly confirmed changes for Huawei Cloud ECS, VPC, and RDS resources.
 
-## Publisher: <br>
-[5xuanwen](https://clawhub.ai/user/5xuanwen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[5xuanwen](https://clawhub.ai/user/5xuanwen)
 
-## Use Case: <br>
-Developers, operators, and cloud administrators use this skill to inspect Huawei Cloud inventory, check ECS, VPC, and RDS health and security state, and prepare confirmed KooCLI commands for changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can install a host-level CLI from a remote download source. <br>
-Mitigation: Verify the KooCLI download source and integrity before installation, review the installer, and avoid elevated privileges unless necessary. <br>
-Risk: The skill includes commands that can stop, restart, or delete cloud resources. <br>
-Mitigation: Require the agent to show exact resource IDs and full commands, then wait for explicit confirmation before any mutating operation. <br>
-Risk: Huawei Cloud credentials are needed for KooCLI configuration. <br>
-Mitigation: Enter AK/SK credentials only through local KooCLI configuration and do not expose secrets in chat, logs, or command output. <br>
+## Use Case:
 
+Developers, operators, and cloud administrators use this skill to inspect Huawei Cloud infrastructure state, review ECS, VPC, and RDS resources, and prepare cloud management commands with explicit confirmation for changes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/5xuanwen/hwc-infra) <br>
-- [KooCLI common commands](references/hcloud-queries.md) <br>
-- [Huawei Cloud KooCLI quick start](https://support.huaweicloud.com/qs-hcli/hcli_02_003.html) <br>
-- [Huawei Cloud KooCLI download source](https://cn-north-4-hdn-koocli.obs.cn-north-4.myhuaweicloud.com/cli/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline KooCLI shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only queries are the default; write or destructive commands require explicit user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can guide installation of a local KooCLI binary and configure persistent Huawei Cloud credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the installer before use, prefer verified Huawei Cloud installation instructions, and configure least-privilege AK/SK credentials.
+
+Risk: The skill can prepare cloud-admin commands, including stop, restart, delete, and other write operations.
+
+Mitigation: Require explicit user confirmation and show the exact command before any write or destructive operation.
+
+Risk: Credential exposure would create cloud account risk.
+
+Mitigation: Do not print, store in transcripts, or otherwise expose AK/SK values; use existing local KooCLI configuration when available.
+
+## Reference(s):
+
+- [KooCLI (hcloud) common commands](references/hcloud-queries.md)
+- [Huawei Cloud KooCLI quick start](https://support.huaweicloud.com/qs-hcli/hcli_02_003.html)
+- [Huawei Cloud KooCLI download source](https://cn-north-4-hdn-koocli.obs.cn-north-4.myhuaweicloud.com/cli/)
+- [ClawHub skill page](https://clawhub.ai/5xuanwen/skills/hwc-infra)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should avoid exposing AK/SK credentials and should request explicit confirmation before write or destructive cloud operations.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

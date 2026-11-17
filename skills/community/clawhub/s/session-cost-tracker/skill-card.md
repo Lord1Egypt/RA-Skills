@@ -1,38 +1,53 @@
-## Description: <br>
-Track and analyze AI session cost-to-value by logging task, value, and token use to optimize productivity and reduce wasted effort. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Track and analyze AI session cost-to-value by logging task, value, and token use to optimize productivity and reduce wasted effort.
 
-## Publisher: <br>
-[Rushant-123](https://clawhub.ai/user/Rushant-123) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[rushant-123](https://clawhub.ai/user/rushant-123)
 
-## Use Case: <br>
-Developers and agent users use this skill to log AI work sessions, estimate token cost, categorize delivered value, and review patterns that indicate leverage or wasted effort. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Session logs may contain task descriptions, outcomes, notes, token counts, model names, and estimated costs in a local JSON file. <br>
-Mitigation: Avoid entering secrets or sensitive client and project details; use a private storage path or stricter file permissions on shared or backed-up machines. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Session Cost Tracker on ClawHub](https://clawhub.ai/Rushant-123/session-cost-tracker) <br>
-- [Publisher profile: Rushant-123](https://clawhub.ai/user/Rushant-123) <br>
+## Use Case:
 
+Developers and AI agent users can use this skill to log session tasks, value categories, token usage, and estimated costs, then review patterns that help reduce low-value work.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands and JSON session data] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes local session records to a JSON file and prints command-line summaries.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The bundled shell script has unsafe Python fallback paths that may execute injected commands under the user's account.
+
+Mitigation: Review or fix track.sh before installing; keep jq installed, avoid logging untrusted text, prevent untrusted code from setting SESSION_COST_FILE, and pass data and paths to Python as arguments or stdin.
+
+Risk: Session logs can contain task, outcome, token, model, and cost details in a local JSON file.
+
+Mitigation: Avoid recording sensitive task details and protect access to the configured session cost file.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/rushant-123/skills/session-cost-tracker)
+- [Publisher profile](https://clawhub.ai/user/rushant-123)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, JSON]
+
+**Output Format:** [Markdown guidance with shell command examples and local JSON log output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes session records to a local JSON file when the shell script is used.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

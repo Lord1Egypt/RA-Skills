@@ -1,0 +1,4 @@
+[0:v][1:v]overlay=0:0:format=auto:eof_action=pass[v1];
+[v1][2:v]overlay=0:0:format=auto:eof_action=pass[v2];
+[v2][3:v]overlay=0:0:format=auto:eof_action=pass[v];
+[0:a]volume=2.0[a]

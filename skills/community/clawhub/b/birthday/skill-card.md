@@ -1,43 +1,58 @@
-## Description: <br>
-Helps manage Chinese birthday reminders by extracting birthdays from Chinese ID numbers, storing lunar or solar dates with per-record reminder lead times, and generating reminders for today or upcoming days. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents manage Chinese lunar and solar birthday reminders, extract birthdays from Chinese ID numbers, set per-record advance reminder windows, and generate due or upcoming reminder results.
 
-## Publisher: <br>
-[web3aivc](https://clawhub.ai/user/web3aivc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[web3aivc](https://clawhub.ai/user/web3aivc)
 
-## Use Case: <br>
-Developers and agents use this skill to maintain local birthday records, parse Chinese ID-card birthdays, convert between lunar and solar birthday dates, and produce upcoming reminder results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Birthday records and optional Chinese ID-derived data may contain personal information stored locally. <br>
-Mitigation: Avoid entering full ID numbers unless needed, review the generated birthdays.json file, and protect or remove local birthday data according to the user's privacy requirements. <br>
-Risk: Email or webhook reminders can send birthday information to configured destinations. <br>
-Mitigation: Keep non-agent channels disabled unless the destination is trusted, and review notification.json before enabling email or webhook delivery. <br>
-Risk: Suggested daily automation may run reminder checks on a schedule. <br>
-Mitigation: Approve the OpenClaw automation only after reviewing the command, schedule, and data file it will use. <br>
+## Use Case:
 
+External users and developers use this skill to maintain structured birthday records, convert between lunar and solar birthday dates, import birthday data from Chinese ID numbers, and run reminder checks locally or through an explicitly configured notification channel.
 
-## Reference(s): <br>
-- [Data format](references/data-format.md) <br>
-- [ClawHub skill page](https://clawhub.ai/web3aivc/birthday) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON file content] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores birthday records in local JSON and can emit an OpenClaw automation suggestion when the first record is created.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: release evidence and package.json) <br>
+Risk: The skill can store names, birthdays, and masked ID-derived data in a local JSON file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the local record and check features only when storing this personal data locally is acceptable.
+
+Risk: The skill can suggest creation of a recurring OpenClaw automation for daily reminder checks.
+
+Mitigation: Allow the agent to create the recurring automation only when daily background checks are explicitly wanted.
+
+Risk: Configured email or webhook channels can transmit personal reminder data outside the local environment.
+
+Mitigation: Enable outbound notification channels only after verifying destinations, limiting message contents, and handling SMTP credentials through a secure environment or secret manager.
+
+## Reference(s):
+
+- [Data format reference](references/data-format.md)
+- [ClawHub skill page](https://clawhub.ai/web3aivc/skills/birthday)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, JSON configuration examples, and text command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose a daily OpenClaw automation when the local data file first receives a record; email and webhook notification channels require explicit user configuration.]
+
+## Skill Version(s):
+
+1.0.1 (source: package.json and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

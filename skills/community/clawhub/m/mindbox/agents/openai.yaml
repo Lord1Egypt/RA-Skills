@@ -1,0 +1,4 @@
+interface:
+  display_name: "mindbox"
+  short_description: "生成与续改可编辑的离线脑图，16套样式，支持阅读演示和图像导出"
+  default_prompt: "用 $mindbox 把【主题、资料或最新 HTML】整理成可编辑的思维导图，按内容推荐样式；同一话题继续更新原文件。"

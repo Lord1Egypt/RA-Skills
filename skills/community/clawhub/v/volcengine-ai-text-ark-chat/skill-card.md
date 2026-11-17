@@ -1,40 +1,54 @@
-## Description: <br>
-Text generation and chat completion on Volcengine ARK. Use when users need long-form writing, summarization, extraction, rewriting, Q&A, or prompt optimization with ARK text models. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Text generation and chat completion on Volcengine ARK for long-form writing, summarization, extraction, rewriting, Q&A, and prompt optimization with ARK text models.
 
-## Publisher: <br>
-[cinience](https://clawhub.ai/user/cinience) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[cinience](https://clawhub.ai/user/cinience)
 
-## Use Case: <br>
-Developers and operators use this skill to prepare ARK chat completion requests, run text generation workflows, and return generated content with the key parameters used. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a Volcengine ARK API key and can expose credentials if commands or logs are shared carelessly. <br>
-Mitigation: Keep ARK_API_KEY private, scope it appropriately, and avoid pasting secrets into prompts, command output, or shared transcripts. <br>
-Risk: Prompts sent to ARK may include sensitive personal, proprietary, or regulated content. <br>
-Mitigation: Send sensitive data only when it is acceptable under the user's Volcengine account terms and organizational data-handling rules. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Sources](references/sources.md) <br>
-- [Volcengine ARK Chat Completions API endpoint](https://ark.cn-beijing.volces.com/api/v3/chat/completions) <br>
+## Use Case:
 
+Developers, employees, and external users use this skill to route text tasks to Volcengine ARK chat models with stable request defaults and reproducible templates. It is intended for chat, summarization, rewriting, extraction, Q&A, and prompt optimization workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with generated text, parameter notes, and optional bash request templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses ARK_API_KEY and a caller-provided endpoint ID, region, and generation parameters.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Selected prompts or text tasks may be sent to Volcengine ARK.
+
+Mitigation: Use the skill only when the configured ARK account, region, and data-handling requirements are acceptable, and avoid submitting secrets or sensitive personal data unless approved.
+
+Risk: The skill requires ARK_API_KEY and endpoint configuration to call the ARK chat completion API.
+
+Mitigation: Verify credentials, endpoint ID, and region before use, and do not expose API keys in prompts, generated output, or shared logs.
+
+## Reference(s):
+
+- [Sources](references/sources.md)
+- [Volcengine ARK Chat Completions API endpoint](https://ark.cn-beijing.volces.com/api/v3/chat/completions)
+- [ClawHub skill page](https://clawhub.ai/cinience/skills/volcengine-ai-text-ark-chat)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with text responses, parameter notes, and inline bash request templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should include the generated or transformed text plus key ARK request parameters such as model endpoint, region, temperature, max_tokens, and top_p when used.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

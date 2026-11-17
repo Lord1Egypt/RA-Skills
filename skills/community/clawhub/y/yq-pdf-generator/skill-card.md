@@ -1,38 +1,58 @@
-## Description: <br>
-Provides an HTML-to-PDF export workflow that prepares printable HTML, deploys it to a persistent page, and gives browser print-to-PDF instructions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts HTML content, web links, presentations, or HTML files into a browser-printable page that users can export to PDF.
 
-## Publisher: <br>
-[tianheihei002](https://clawhub.ai/user/tianheihei002) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tianheihei002](https://clawhub.ai/user/tianheihei002)
 
-## Use Case: <br>
-External users and agents use this skill to turn HTML documents, presentations, and URLs into browser-printable pages for PDF export when preserving print styling matters. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: User-provided HTML or URLs may be deployed to a long-lived hosted page without enough consent or scoping. <br>
-Mitigation: Use only non-confidential content, confirm publication with the user before deployment, and avoid private URLs, credentials, customer data, or drafts unless an explicit cleanup and access-control process is added. <br>
+## Use Case:
 
+Developers and content authors use this skill to stage HTML documents or URLs as printable pages and return concise instructions for exporting them to PDF in a local browser.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tianheihei002/yq-pdf-generator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, HTML, Guidance] <br>
-**Output Format:** [Markdown instructions with shell commands and HTML/CSS snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or overwrite /workspace/dist/index.html and return a persistent hosted page for browser print-to-PDF.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: User HTML may be published to a potentially reachable long-lived URL.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only non-sensitive HTML unless deployment destination, access controls, expiration, and deletion are explicitly handled outside the skill.
+
+Risk: URL rendering can fetch or display content outside the intended scope.
+
+Mitigation: Confirm the exact source URL, user consent, and permitted content scope before rendering or deploying a page.
+
+Risk: Private documents, credentials, internal pages, customer data, or regulated information could be exposed through the export workflow.
+
+Mitigation: Do not use the skill for sensitive or regulated content without external controls that prevent unauthorized access and support cleanup.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tianheihei002/skills/yq-pdf-generator)
+- [ClawHub publisher profile](https://clawhub.ai/user/tianheihei002)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command snippets and HTML/CSS templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce or deploy HTML pages for browser-based PDF export; does not support direct image-to-PDF conversion.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

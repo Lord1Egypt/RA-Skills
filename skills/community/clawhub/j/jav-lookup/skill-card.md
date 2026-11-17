@@ -1,44 +1,56 @@
-## Description: <br>
-Looks up Japanese adult-video film codes for cast, concise Traditional Chinese plot summaries, studio information, and magnet links when explicitly requested. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill helps agents look up Japanese adult video film codes for cast details, short Traditional Chinese plot summaries, studios, and, when explicitly requested, magnet links.
 
-## Publisher: <br>
-[onebowl824](https://clawhub.ai/user/onebowl824) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[onebowl824](https://clawhub.ai/user/onebowl824)
 
-## Use Case: <br>
-External users and agents use this skill to research batches of Japanese adult-video film codes and return structured cast, studio, plot, and optional magnet-link information in a table. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is designed for adult-content lookup and may query third-party adult sites. <br>
-Mitigation: Install it only where JAV/adult-video lookup is intended, and restrict activation to explicit JAV codes or JAV-specific wording. <br>
-Risk: Magnet-link lookup may surface download links whose legality, safety, and availability vary by user, jurisdiction, and source. <br>
-Mitigation: Request magnet links only when needed, evaluate legality and safety before use, and treat availability claims as unverified until checked. <br>
-Risk: Search results and plot summaries can be incomplete, inferred, or stale. <br>
-Mitigation: Prefer the named sources in the skill, label inferred or missing details in notes, and ask users to verify important results against JAVDB, FANZA/DMM, or official studio pages. <br>
+## Use Case:
 
+External users can use this skill to have an agent organize Japanese adult video code lookups into concise markdown tables with cast, studio, and short plot information. When a user explicitly asks for magnet links, the skill also guides the agent to search and report matching magnet results with notes about version availability.
 
-## Reference(s): <br>
-- [JAVDB search](https://javdb.com/search?q=JUR-067&f=all) <br>
-- [JAVDB example detail page](https://javdb.com/v/qAb836) <br>
-- [ClawHub skill page](https://clawhub.ai/onebowl824/jav-lookup) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown table with concise notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include adult-content metadata and magnet links only when the user explicitly requests magnet lookup.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can direct agents to search adult-content sites and return magnet links, which may create legal or unsafe-file risk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for intended JAV metadata workflows, prefer official or reputable metadata sources, and avoid returning download links unless policy and user intent permit it.
+
+Risk: Broad trigger phrases can cause the skill to activate for sensitive adult-content requests with limited user protection.
+
+Mitigation: Review requests before use and limit execution to explicit adult-content lookup tasks from appropriate users.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/onebowl824/skills/jav-lookup)
+- [Publisher profile](https://clawhub.ai/user/onebowl824)
+- [JAVDB search example](https://javdb.com/search?q=JUR-067&f=all)
+- [JAVDB detail example](https://javdb.com/v/qAb836)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown tables with concise notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include magnet links only when explicitly requested by the user.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

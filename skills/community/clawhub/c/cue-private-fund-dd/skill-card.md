@@ -1,47 +1,61 @@
-## Description: <br>
-Runs Cue deep research for private-fund due diligence using cross-referenced public data and source-linked conclusions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+用 Cue 跑「私募尽调」场景的深度研究：一次拉齐私募管理人的协会登记、管理规模、核心团队、产品运作、股权结构与处罚涉诉，产出带疑点清单、可上会尽调的私募底稿。
 
-## Publisher: <br>
-[wangxiaoxu](https://clawhub.ai/user/wangxiaoxu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangxiaoxu](https://clawhub.ai/user/wangxiaoxu)
 
-## Use Case: <br>
-External users, analysts, and developers use this skill to run Cue private-fund due diligence workflows for fund managers, products, FOF screening, registrations, filings, regulatory signals, and related-party checks using public data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The setup may fetch and run code from an external repository. <br>
-Mitigation: Review the external repository before use and pin installation to a trusted commit or release instead of auto-updating from the latest branch. <br>
-Risk: Deep research runs consume Cue credits. <br>
-Mitigation: Require explicit user confirmation before starting a credit-consuming run. <br>
-Risk: The skill relies on public data and does not replace formal due diligence, legal review, or underwriting. <br>
-Mitigation: Keep source links in the report and require users to verify findings against authoritative records before acting on them. <br>
-Risk: The runner may return no content for a selected subject or template. <br>
-Mitigation: Report the empty result and suggest retrying with a different subject or template rather than fabricating findings. <br>
+## Use Case:
 
+External analysts and investment diligence teams use this skill to run Cue private-fund due diligence research over public sources for managers, products, ownership links, filings, and risk signals. The resulting report supports review workflows but does not replace legal, underwriting, or formal due diligence.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wangxiaoxu/skills/cue-private-fund-dd) <br>
-- [Cue playbook API](https://cuecue.cn/api/playbook) <br>
-- [Cue skills runner](https://github.com/sensedeal/cue-skills) <br>
-- [Cue skills runner mirror](https://gitee.com/sensedeal/cue-skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, API Calls, Markdown] <br>
-**Output Format:** [Markdown report with source links and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Cue runner, Cue API key, user confirmation before credit-consuming runs, and public-data availability; returns no fabricated content when the runner reports empty.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may install or update mutable third-party runner code before execution.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the cue-skills repository before running, prefer a trusted packaged runner or pinned commit, and run it in a least-privilege environment.
+
+Risk: The skill may use a local Cue API key and spend credits after confirmation.
+
+Mitigation: Require explicit user confirmation before each paid research run and monitor Cue account usage.
+
+Risk: The research uses public data and can miss private, stale, or legally material information.
+
+Mitigation: Treat the generated report as decision support and require formal legal, underwriting, or diligence review before relying on conclusions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wangxiaoxu/skills/cue-private-fund-dd)
+- [Cue playbook API](https://cuecue.cn/api/playbook)
+- [Cue skills runner repository](https://github.com/sensedeal/cue-skills)
+- [Cue skills runner mirror](https://gitee.com/sensedeal/cue-skills)
+- [Cue API key page](https://cuecue.cn/hub/api-key)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown report with source links and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May consume Cue credits after user confirmation and may return an empty result if the live research run produces no content.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

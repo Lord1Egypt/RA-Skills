@@ -1,48 +1,62 @@
-## Description: <br>
-Summarizes lengthy Electronic Health Record documents into structured summaries and extracted clinical sections. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates structured EHR summaries and extracts clinical sections such as allergies, medications, diagnoses, family history, procedures, and vitals from medical-record text.
 
-## Publisher: <br>
-[AIPOCH-AI](https://clawhub.ai/user/AIPOCH-AI) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aipoch-ai](https://clawhub.ai/user/aipoch-ai)
 
-## Use Case: <br>
-Developers and clinical operations teams can use this skill to compress long EHR text into reviewable summaries and extracted sections such as allergies, medications, diagnoses, family history, procedures, and vitals. Human clinical review is required before relying on the output. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Clinical summaries may be inaccurate, incomplete, or misleading for patient care decisions. <br>
-Mitigation: Require qualified human review of every summary and validate the tool against approved clinical evaluation data before operational use. <br>
-Risk: The artifact claims Transformer-based clinical AI behavior that the implementation and security summary do not validate. <br>
-Mitigation: Do not rely on the Transformer or clinical-accuracy claims unless the implementation is replaced or independently validated. <br>
-Risk: The root requirements file lists an unexpected 'main' package for a sensitive medical-data workflow. <br>
-Mitigation: Inspect dependency files before installation and avoid installing the unexpected package without provenance checks. <br>
-Risk: The skill processes EHR content and can write summary files containing PHI. <br>
-Mitigation: Run only in a secure PHI-approved workspace, restrict input and output paths, and de-identify data where policy requires it. <br>
+## Use Case:
 
+Developers and clinical operations teams can use this skill to summarize long EHR text into reviewable bullet summaries and structured clinical sections. Outputs should be manually reviewed and should not be treated as clinical decision support.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/AIPOCH-AI/ehr-semantic-compressor) <br>
-- [Clinical Summarization Guidelines](references/guidelines.md) <br>
-- [Sample Input](references/sample_input.json) <br>
-- [Sample Output](references/sample_output.json) <br>
-- [Python Dependencies](references/requirements.txt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration] <br>
-**Output Format:** [JSON by default, with Markdown and plain text options described by the artifact] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can write output to a file or stdout; summary length and extracted clinical sections are configurable.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata; artifact frontmatter reports 1.0.0) <br>
+Risk: The skill handles sensitive medical-record text and writes summaries or extracted sections that may contain protected health information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run in an isolated, access-controlled environment, keep inputs and outputs within approved storage, and treat all generated artifacts as sensitive medical data.
+
+Risk: Security evidence says the release overstates its clinical AI capability.
+
+Mitigation: Require clinician or qualified reviewer validation of summaries and do not use the output as clinical decision support unless claims are corrected or independently validated.
+
+Risk: Security evidence identifies an unrelated unpinned root dependency and mismatched requirements files.
+
+Mitigation: Remove the root main dependency, reconcile dependency files, pin expected packages, and install only in an isolated environment before use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/aipoch-ai/skills/ehr-semantic-compressor)
+- [Publisher Profile](https://clawhub.ai/user/aipoch-ai)
+- [Clinical Summarization Guidelines](references/guidelines.md)
+- [Python Dependencies](references/requirements.txt)
+- [Sample Input](references/sample_input.json)
+- [Sample Output](references/sample_output.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [JSON by default, with documented Markdown and text output options]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces EHR summaries, extracted clinical sections, status/error objects, and processing metadata.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata; artifact frontmatter declares 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

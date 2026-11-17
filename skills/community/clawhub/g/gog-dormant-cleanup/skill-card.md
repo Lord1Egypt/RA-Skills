@@ -1,40 +1,57 @@
-## Description: <br>
-Find installed GOG games not played in 30+ days, email a summary report, and add each game to Apple Reminders as a cleanup nudge. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Finds installed GOG games that have not been played for 30+ days, emails a summary report, and creates Apple Reminders cleanup nudges.
 
-## Publisher: <br>
-[terrycarter1985](https://clawhub.ai/user/terrycarter1985) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[terrycarter1985](https://clawhub.ai/user/terrycarter1985)
 
-## Use Case: <br>
-External users and developers use this skill to scan a local GOG library JSON for installed games inactive past a cutoff, then review a cleanup report and optionally create personal email and reminder nudges. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow can send an email report or create Apple Reminders from broad cleanup triggers. <br>
-Mitigation: Ask the agent to scan first, review the generated report and recipient, and approve email or reminder creation explicitly before running those actions. <br>
-Risk: The workflow reads a local GOG library JSON that may contain game names, play history, and install paths. <br>
-Mitigation: Run it only against the intended library file and avoid sharing the generated report outside the user's chosen email or reminder workflow. <br>
+## Use Case:
 
+ClawHub users and agents use this skill to review a local GOG library for installed games that have gone idle and create email and reminder nudges for cleanup decisions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/terrycarter1985/gog-dormant-cleanup) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and generated plain-text reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write a temporary report file and can send email or create reminders when approved and supporting tools are available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The script can send email and create reminders using default account and list settings.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run with DRY_RUN=1 first and confirm the email account and reminders list before allowing side effects.
+
+Risk: The report is written to a fixed temporary path, /tmp/gog_dormant_email.txt.
+
+Mitigation: Review the generated file before use and prefer an updated release that writes to a secure per-run temporary file.
+
+Risk: Scheduled execution can repeatedly create email and reminder nudges.
+
+Mitigation: Avoid scheduled runs until the behavior has been reviewed and trusted in dry-run mode.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/terrycarter1985/skills/gog-dormant-cleanup)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and generated plain-text reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local email and reminder side effects when run outside dry-run mode.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

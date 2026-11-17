@@ -1,38 +1,53 @@
-## Description: <br>
-Retrieves country data including population, capital, languages, currencies, flags, and regional information using the REST Countries API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Retrieve detailed country data including population, capital, languages, currencies, flag, and regional information using the REST Countries API.
 
-## Publisher: <br>
-[picaye](https://clawhub.ai/user/picaye) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[picaye](https://clawhub.ai/user/picaye)
 
-## Use Case: <br>
-Agent users and developers use this skill to answer country fact questions, compare countries, and look up currencies, languages, capitals, populations, flags, and regions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Country names and related public lookup terms may be sent to restcountries.com. <br>
-Mitigation: Use the skill for ordinary country-information lookups and avoid including unrelated sensitive personal data in lookup terms. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Country Info on ClawHub](https://clawhub.ai/picaye/country-info) <br>
-- [REST Countries API](https://restcountries.com/v3.1) <br>
+## Use Case:
 
+External users and agents use this skill to answer country, language, currency, capital, population, flag, and regional-information questions. It is also useful for comparing countries or looking up countries by currency, language, code, or region.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include REST Countries API query URLs and summarized country facts.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Country, language, currency, or region lookup terms are sent to the REST Countries service.
+
+Mitigation: Use only non-sensitive lookup terms and avoid sending internal or confidential context with API requests.
+
+Risk: Country data may be unavailable, delayed, or shaped differently by the public REST Countries API.
+
+Mitigation: Handle empty responses and nested fields carefully, and verify important facts before relying on them.
+
+## Reference(s):
+
+- [REST Countries API](https://restcountries.com/v3.1)
+- [ClawHub skill page](https://clawhub.ai/picaye/skills/country-info)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with curl examples and plain-text country summaries.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports optional REST Countries field filtering to reduce response size.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

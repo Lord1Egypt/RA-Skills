@@ -1,0 +1,3 @@
+These sound effects were generated with ffmpeg's signal generators for this
+project (no samples, no recordings). They are released under the MIT licence
+of this repository and are safe to use in videos on any platform.

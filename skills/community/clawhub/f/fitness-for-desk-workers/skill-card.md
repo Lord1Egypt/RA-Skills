@@ -1,45 +1,63 @@
-## Description: <br>
-Rebuild a body that's been sitting in a chair for years. Fix posture, build functional strength, and recover mobility. No gym required. For people who are deconditioned, overweight, or in pain from desk work. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps deconditioned desk workers assess their mobility and strength, rebuild posture, restore movement, and progress through no-gym fitness routines for less pain and better functional capacity.
 
-## Publisher: <br>
-[howtousehumans](https://clawhub.ai/user/howtousehumans) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[howtousehumans](https://clawhub.ai/user/howtousehumans)
 
-## Use Case: <br>
-Employees and external users use this skill to assess desk-work deconditioning, choose a safe starting phase, follow progressive mobility and bodyweight routines, and set posture or workout reminders. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Recurring workout or posture reminders may be enabled at unwanted times or persist longer than the user intends. <br>
-Mitigation: Require deliberate opt-in, let the user choose reminder times, and tell the user how to pause or delete reminders. <br>
-Risk: Inferring whether the user is at a desk could create unnecessary monitoring or incorrect reminder triggers. <br>
-Mitigation: Do not infer desk presence automatically; use only user-confirmed schedules or explicit user input. <br>
-Risk: Fitness guidance may be unsuitable when pain worsens or a user has an unresolved medical issue. <br>
-Mitigation: Start with gentle restoration, avoid high-impact or heavy lifting for deconditioned users, and recommend a doctor or physical therapist when pain persists or worsens. <br>
+## Use Case:
 
+External users and agents use this skill to guide desk workers through a starting assessment, phased mobility and strength routines, walking plans, posture resets, reminders, and progress checks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/howtousehumans/fitness-for-desk-workers) <br>
-- [Physical Activity Guidelines for Americans](https://health.gov/our-work/nutrition-physical-activity/physical-activity-guidelines) <br>
-- [NIH National Institute on Aging: Exercise and Physical Activity](https://www.nia.nih.gov/health/exercise-and-physical-activity) <br>
-- [Cochrane Library](https://www.cochranelibrary.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Text, Markdown, Configuration] <br>
-**Output Format:** [Markdown guidance with assessment checklists, exercise routines, reminder schedules, and YAML agent state examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose recurring workout and posture reminders using calendar and filesystem tools when the user opts in.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The security review reports broad filesystem access without an explained file-use need.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only with least-privilege permissions; deny filesystem access unless the publisher documents a specific need.
+
+Risk: The security review reports an unpinned npx install command.
+
+Mitigation: Pin the installer or package version and verify the release before installation.
+
+Risk: Calendar reminders can reveal or infer desk-work patterns if configured too broadly.
+
+Mitigation: Grant only calendar access when needed and configure reminder timing explicitly.
+
+Risk: Fitness guidance can be inappropriate for users with worsening pain, injuries, or medical constraints.
+
+Mitigation: Follow the skill's instruction to seek medical or physical-therapy assessment when pain persists or worsens, and avoid heavy lifting, running, or high-impact exercise for deconditioned users.
+
+## Reference(s):
+
+- [Physical Activity Guidelines for Americans](https://health.gov/our-work/nutrition-physical-activity/physical-activity-guidelines)
+- [NIH National Institute on Aging: Exercise and Physical Activity](https://www.nia.nih.gov/health/exercise-and-physical-activity)
+- [Cochrane Library](https://www.cochranelibrary.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration]
+
+**Output Format:** [Markdown guidance with checklists, phased routines, reminder prompts, and YAML-like state snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use calendar reminders and agent state for workout scheduling, phase progression, posture resets, and progress tracking.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

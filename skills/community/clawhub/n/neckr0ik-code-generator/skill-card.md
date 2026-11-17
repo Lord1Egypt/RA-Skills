@@ -1,42 +1,57 @@
-## Description: <br>
-Generates boilerplate code for common patterns, including project scaffolds, CRUD operations, API clients, database models, tests, and configuration files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate boilerplate code for common patterns, including project scaffolds, CRUD operations, API clients, database models, tests, and configuration files.
 
-## Publisher: <br>
-[Neckr0ik](https://clawhub.ai/user/Neckr0ik) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[neckr0ik](https://clawhub.ai/user/neckr0ik)
 
-## Use Case: <br>
-Developers and engineers use this skill to quickly scaffold projects and generate common application boilerplate so they can focus on project-specific logic. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Generated scaffold files may be written to an unintended output path. <br>
-Mitigation: Run the skill from a controlled project directory and choose output paths carefully. <br>
-Risk: Generated boilerplate may need project-specific review before use. <br>
-Mitigation: Review generated files before committing or running them. <br>
+## Use Case:
 
+Developers use this skill to scaffold Python projects and generate boilerplate code for CRUD operations, database models, tests, and common project configuration. It is suited for accelerating routine project setup while keeping generated files under developer review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Neckr0ik/neckr0ik-code-generator) <br>
-- [Skill documentation](artifact/SKILL.md) <br>
-- [Generator script](artifact/scripts/generator.py) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, configuration] <br>
-**Output Format:** [Generated source files and plain text code or configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write scaffold files to a selected output directory; generated files should be reviewed before committing or running them.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: Generated files can be written or overwritten in local project directories.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill in a disposable workspace or explicitly chosen output directory, then review diffs before using the generated files.
+
+Risk: Untrusted names, fields, or output paths could produce unsafe or misleading generated code.
+
+Mitigation: Use trusted input values and inspect generated source, tests, and configuration before execution or deployment.
+
+Risk: Documented multi-language and API-client capabilities may exceed the implementation observed in the artifact.
+
+Mitigation: Verify requested language, API-client, and framework behavior against the generated output before relying on it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/neckr0ik/skills/neckr0ik-code-generator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown, command examples, generated source code, and generated project files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write files to a selected output directory; generated code should be reviewed before execution.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata; artifact frontmatter and claw.json list 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

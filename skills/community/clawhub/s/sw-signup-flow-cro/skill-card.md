@@ -1,37 +1,52 @@
-## Description: <br>
-Audit and optimize signup flows by mapping, measuring, reducing friction, accelerating access, and activating users for improved conversion rates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audit and optimize signup flows by mapping each step, measuring drop-off, reducing friction, accelerating access, and connecting signup to activation.
 
-## Publisher: <br>
-[amdf01-debug](https://clawhub.ai/user/amdf01-debug) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[amdf01-debug](https://clawhub.ai/user/amdf01-debug)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Growth, product, and UX practitioners use this skill to audit signup flows, identify drop-off points, reduce registration friction, and connect account creation to a first value moment.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Recommendations involving analytics, social login, pre-fill, or email verification can affect privacy, compliance, and user experience.
+
+Mitigation: Review proposed signup-flow changes with privacy, legal, product, and UX stakeholders before implementation.
+
+Risk: Estimated conversion improvements may be directional rather than measured.
+
+Mitigation: Validate changes with analytics instrumentation and controlled experiments before rollout.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Product teams, growth marketers, UX designers, and developers use this skill to audit registration flows, identify drop-off and friction, and propose conversion-focused signup changes. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Signup recommendations can affect authentication, email verification timing, abuse prevention, or privacy requirements in a real product flow. <br>
-Mitigation: Review product-security and privacy tradeoffs before shipping changes, especially around verification timing and access before account confirmation. <br>
+**Output Format:** [Markdown guidance with step-by-step wireframe descriptions, field requirements, conversion estimates, and implementation notes.]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Recommendations should be reviewed before implementation because signup changes can affect privacy, compliance, and user experience.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Guidance] <br>
-**Output Format:** [Markdown with step-by-step wireframe descriptions, field requirements, estimated conversion improvement, and implementation notes.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Advisory content only; does not execute code or access user data.] <br>
+1.0.0 (source: release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

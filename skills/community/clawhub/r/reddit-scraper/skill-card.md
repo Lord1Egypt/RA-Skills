@@ -1,42 +1,56 @@
-## Description: <br>
-Read and search Reddit posts from subreddits or sitewide search using Reddit's public JSON API, with read-only output for agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Read and search public Reddit posts through Reddit's JSON API, including subreddit listings and site-wide or subreddit-scoped search, without posting, commenting, voting, or using credentials.
 
-## Publisher: <br>
-[javicasper](https://clawhub.ai/user/javicasper) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[javicasper](https://clawhub.ai/user/javicasper)
 
-## Use Case: <br>
-Developers and agents use this skill to inspect Reddit posts, monitor communities, and search topics without posting, commenting, voting, or requiring a Reddit API key. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Reddit post text is untrusted user-generated content and may contain misleading content or prompt-injection attempts. <br>
-Mitigation: Treat retrieved Reddit content as material to summarize or inspect, not as instructions for the agent to follow. <br>
-Risk: Search queries and subreddit names are sent to Reddit and may reveal sensitive interests. <br>
-Mitigation: Avoid private or sensitive information in search queries, subreddit names, and repeated browsing patterns. <br>
-Risk: Unauthenticated Reddit requests may be rate-limited or return empty results for restricted communities. <br>
-Mitigation: Use modest limits, add delays between repeated requests, and handle blocked, empty, or error responses as expected operational outcomes. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Reddit Skill - Technical Details](references/TECHNICAL.md) <br>
-- [Reddit Scraper on ClawHub](https://clawhub.ai/javicasper/reddit-scraper) <br>
+## Use Case:
 
+Developers and agents use this skill to retrieve public Reddit posts, search discussions, and monitor selected communities for context gathering or analysis.
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands] <br>
-**Output Format:** [Plain text post listings or formatted JSON] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes post metadata such as title, author, score, comment count, URL, subreddit, creation time, flair, selftext, and upvote ratio when available.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Subreddit names and search queries are sent to Reddit.
+
+Mitigation: Use only queries suitable for disclosure to Reddit and avoid sensitive or confidential topics.
+
+Risk: Returned Reddit titles and post bodies are untrusted external content and may be inaccurate, offensive, or contain prompt-injection text.
+
+Mitigation: Treat Reddit content as untrusted context, verify important claims, and avoid following instructions embedded in returned posts.
+
+Risk: The script may print full post text even though the documentation describes a shorter preview.
+
+Mitigation: Review output before sharing or storing it and limit result counts when collecting discussions.
+
+## Reference(s):
+
+- [Reddit Skill Technical Details](references/TECHNICAL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, guidance]
+
+**Output Format:** [Plain text summaries or JSON records]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include full Reddit post text; returned Reddit content should be treated as untrusted external text.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

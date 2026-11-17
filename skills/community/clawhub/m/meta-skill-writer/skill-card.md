@@ -1,41 +1,55 @@
-## Description: <br>
-Guides an agent, in Chinese, through designing and writing an OpenClaw skill from a user's request. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+帮我写个 skill。
 
-## Publisher: <br>
-[54lynnn](https://clawhub.ai/user/54lynnn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[54lynnn](https://clawhub.ai/user/54lynnn)
 
-## Use Case: <br>
-Developers and agent builders use this skill to turn a request for a new skill into a scoped skill design, SKILL.md content, optional references, examples, evals, and deterministic helper scripts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger wording may cause the skill to activate for requests that only loosely mention skill creation. <br>
-Mitigation: Review and narrow generated skill descriptions so they match the intended user request and avoid accidental activation. <br>
-Risk: The skill can help create scripts or install commands that may affect a user's environment. <br>
-Mitigation: Review generated scripts and installation steps before use, and run deterministic checks such as openclaw skills check where applicable. <br>
+## Use Case:
 
+Developers and agent builders use this skill to create focused OpenClaw skills, choose an appropriate file structure, write usable SKILL.md instructions, and add scripts, references, examples, or evals when they are justified.
 
-## Reference(s): <br>
-- [Skill template reference](artifact/references/skill-template.md) <br>
-- [ClawHub skill page](https://clawhub.ai/54lynnn/meta-skill-writer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance and generated skill files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce SKILL.md content, reference files, examples, eval definitions, and deterministic helper scripts depending on the requested skill.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.1 (source: server release metadata) <br>
+Risk: The optional evaluator install command could introduce an unreviewed dependency if the package source is not checked.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the eval-skill package source and prefer a pinned or reviewed version before running the install command.
+
+Risk: Overly broad generated skill descriptions can cause agents to trigger the skill in the wrong situations.
+
+Mitigation: Review generated descriptions and make them specific to the intended user request and task boundary.
+
+## Reference(s):
+
+- [SKILL.md](artifact/SKILL.md)
+- [SKILL.md template](artifact/references/skill-template.md)
+- [ClawHub skill page](https://clawhub.ai/54lynnn/skills/meta-skill-writer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with YAML frontmatter, directory layouts, code snippets, and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce skill file content, directory recommendations, self-checklists, and optional evaluator installation guidance.]
+
+## Skill Version(s):
+
+1.3.1 (source: release metadata; artifact frontmatter says 1.3.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

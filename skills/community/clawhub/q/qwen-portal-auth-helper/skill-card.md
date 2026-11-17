@@ -1,48 +1,60 @@
-## Description: <br>
-Automates qwen-portal OAuth authentication by using tmux to obtain login links, monitor OpenClaw task health, and guide task recovery. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automate qwen-portal OAuth authentication - solves the interactive TTY problem with tmux, provides monitoring and recovery tools.
 
-## Publisher: <br>
-[jazzqi](https://clawhub.ai/user/jazzqi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jazzqi](https://clawhub.ai/user/jazzqi)
 
-## Use Case: <br>
-Developers and OpenClaw operators use this skill to recover and monitor qwen-portal authentication for scheduled tasks when interactive OAuth login is unavailable or expired. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can add persistent monitoring through crontab changes. <br>
-Mitigation: Back up and review the user's crontab before enabling monitoring, and confirm the scheduled command path and log destination. <br>
-Risk: The recovery script can rewrite OpenClaw cron job state. <br>
-Mitigation: Reset only verified qwen-portal task IDs and keep a backup of the OpenClaw cron jobs file before making changes. <br>
-Risk: OAuth links, device codes, and diagnostic details may be written to local temporary logs. <br>
-Mitigation: Treat OAuth details as sensitive and delete or protect /tmp qwen OAuth logs and reports after use. <br>
-Risk: The skill runs local tmux and OpenClaw commands during authentication recovery. <br>
-Mitigation: Run it only in a trusted local user environment with the expected tmux and openclaw binaries installed. <br>
+## Use Case:
 
+Developers and operators use this skill to recover qwen-portal authentication in OpenClaw automation, monitor qwen-backed cron tasks, and reset task state after successful re-authentication.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/jazzqi/qwen-portal-auth-helper) <br>
-- [Publisher Profile](https://clawhub.ai/user/jazzqi) <br>
-- [Skill Instructions](artifact/SKILL.md) <br>
-- [README](artifact/README.md) <br>
-- [Quick Recovery Example](artifact/examples/quick-recovery.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and local report file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce OAuth links and device codes, local /tmp reports, cron entries, and OpenClaw task-state update guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence, package.json, and skill metadata) <br>
+Risk: The skill can create persistent cron monitoring jobs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use setup-monitoring only after explicit user confirmation and document the exact crontab entry so it can be reviewed or removed.
+
+Risk: OAuth links, device codes, and authentication reports may be written to shared temporary files or logs.
+
+Mitigation: Treat generated logs and reports as sensitive, restrict access to shared systems, and delete temporary OAuth artifacts after recovery.
+
+Risk: Reset commands modify OpenClaw scheduler state for a supplied task ID.
+
+Mitigation: Run reset-task only with task IDs verified from trusted OpenClaw output and confirm the target task before writing scheduler state.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/jazzqi/skills/qwen-portal-auth-helper)
+- [Publisher profile](https://clawhub.ai/user/jazzqi)
+- [README](artifact/README.md)
+- [Quick recovery guide](artifact/examples/quick-recovery.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance, terminal output, JSON command results, and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May generate local log and report files under /tmp and may update OpenClaw cron state when reset commands are used.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence, package.json, and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.
